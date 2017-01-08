@@ -49,9 +49,10 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << std::setw(width) << "==============="
 	      << '\n';
+    const auto del = _Tp{1} / _Tp{10};
     for (int i = -1600; i <= +1600; ++i)
       {
-	auto x = _Tp(0.1Q * i);
+	auto x = del * i;
 	auto sin_pi_g = __gnu_cxx::sin_pi(x);
 	auto sin_pi_b = beast::sin_pi(x);
 	auto cos_pi_g = __gnu_cxx::cos_pi(x);
@@ -97,9 +98,10 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << std::setw(width) << "==============="
 	      << '\n';
+    const auto bigdel = _Tp{1} / _Tp{4};
     for (int i = 0; i <= +3200; ++i)
       {
-	auto x = _Tp(0.25Q * i);
+	auto x = bigdel * i;
 	auto sin_pi_g = __gnu_cxx::sin_pi(x);
 	auto sin_pi_b = beast::sin_pi(x);
 	auto cos_pi_g = __gnu_cxx::cos_pi(x);

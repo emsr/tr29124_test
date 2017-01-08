@@ -40,9 +40,10 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << std::setw(width) << "==============="
 	      << '\n';
+    const auto del = _Tp{1} / _Tp{10};
     for (int i = -40; i <= +40; ++i)
       {
-	auto x = _Tp(0.1Q * i) * pi;
+	auto x = del * i * pi;
 	auto sinc = __gnu_cxx::sinc(x);
 	auto sinc_gsl = gsl::sinc(x);
 	auto sinc_boost = beast::sinc(x);
@@ -81,9 +82,10 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << std::setw(width) << "==============="
 	      << '\n';
+    const auto del = _Tp{1} / _Tp{10};
     for (int i = -40; i <= +40; ++i)
       {
-	auto x = _Tp(0.1Q * i);
+	auto x = del * i;
 	auto sinc_pi = __gnu_cxx::sinc_pi(x);
 	auto sinc_pi_gsl = gsl::sinc_pi(x);
 	auto sinc_pi_boost = beast::sinc_pi(x);
@@ -123,9 +125,10 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << '\n';
 
+    const auto del = _Tp{1} / _Tp{10};
     for (int i = -40; i <= +40; ++i)
       {
-	auto x = _Tp(0.1Q * i);
+	auto x = del * i;
 	auto sinhc = __gnu_cxx::sinhc(x);
 	auto sinhc_gsl = gsl::sinhc(x);
 	auto sinhc_boost = beast::sinhc(x);
@@ -164,9 +167,10 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << std::setw(width) << "==============="
 	      << '\n';
+    const auto del = _Tp{1} / _Tp{10};
     for (int i = -40; i <= +40; ++i)
       {
-	auto x = _Tp(0.1Q * i);
+	auto x = del * i;
 	auto sinhc_pi = __gnu_cxx::sinhc_pi(x);
 	auto sinhc_pi_gsl = gsl::sinhc_pi(x);
 	auto sinhc_pi_boost = beast::sinhc_pi(x);

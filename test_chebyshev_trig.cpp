@@ -282,9 +282,10 @@ template<typename Tp>
 		  << ' ' << std::setw(width) << "Vt - Vg"
 		  << ' ' << std::setw(width) << "Wt - Wg"
 		  << '\n';
+	const auto del = Tp{1} / Tp{100};
 	for (int i = -150; i <= 150; ++i)
 	  {
-	    auto x = Tp{0.01Q} * i;
+	    auto x = del * i;
 	    auto Tt = __chebyshev_t_trig(n, x);
 	    auto Ut = __chebyshev_u_trig(n, x);
 	    auto Vt = __chebyshev_v_trig(n, x);

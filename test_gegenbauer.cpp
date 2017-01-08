@@ -127,16 +127,17 @@ template<typename _Tp>
       {
 	for (int i = 0; i <= 3; ++i)
 	  {
-            auto alpha = i * _Tp{1.0Q};
-            auto jalpha = alpha - _Tp{0.5Q};
+            auto alpha = i * _Tp{1};
+            auto jalpha = alpha - _Tp{1}/_Tp{2};
             auto jnorm = __gnu_cxx::pochhammer(_Tp{2} * alpha, n)
-			/ __gnu_cxx::pochhammer(alpha + _Tp{0.5Q}, n);
+			/ __gnu_cxx::pochhammer(alpha + _Tp{1}/_Tp{2}, n);
             std::cout << "n     = " << n << '\n';
             std::cout << "alpha = " << alpha << '\n';
             Life::Jacobi<_Tp> jac(n, jalpha, jalpha);
+	    const auto del = _Tp{1} / _Tp{100};
 	    for (int k = 0; k <= 200; ++k)
               {
-        	auto x = (k - 100) * _Tp{0.01Q};
+        	auto x = (k - 100) * del;
         	auto ggb = __gnu_cxx::gegenbauer(n, alpha, x);
         	auto gj = jnorm * __gnu_cxx::jacobi(n, jalpha, jalpha, x);
         	auto lj = jnorm * jac(x);

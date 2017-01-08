@@ -93,8 +93,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sincos te
       else if (__x < _Tp{0})
 	{
 	  __gnu_cxx::__sincos_t<_Tp> __tempsc = __sincos_pi(-__x);
-	  return __gnu_cxx::__sincos_t<_Tp>{-__tempsc.sin_value,
-					     __tempsc.cos_value};
+	  return __gnu_cxx::__sincos_t<_Tp>{-__tempsc.__sin_value,
+					     __tempsc.__cos_value};
 	}
       else if (__x < _Tp{0.5L})
 	return __sincos(_S_pi * __x);
@@ -102,8 +102,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sincos te
 	{
 	  __gnu_cxx::__sincos_t<_Tp>
 	    __tempsc = __sincos(_S_pi * (_Tp{1} - __x));
-	  return __gnu_cxx::__sincos_t<_Tp>{__tempsc.sin_value,
-					   -__tempsc.cos_value};
+	  return __gnu_cxx::__sincos_t<_Tp>{__tempsc.__sin_value,
+					   -__tempsc.__cos_value};
 	}
       else
 	{
@@ -166,20 +166,21 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << std::setw(width) << "==============="
 	      << '\n';
+    const auto del = _Tp{1} / _Tp{10};
     for (int i = -40; i <= +40; ++i)
       {
-	auto x = _Tp(0.1Q * i);
+	auto x = del * i;
 	auto sc = std::__detail::__sincos(pi * x);
 	auto scpi = std::__detail::__sincos_pi(x);
 	std::cout << std::setw(width) << x
-		  << std::setw(width) << sc.sin_value
-		  << std::setw(width) << scpi.sin_value
-		  << std::setw(width) << sc.sin_value - scpi.sin_value
-		  << std::setw(width) << scpi.sin_value - std::sin(pi * x)
-		  << std::setw(width) << sc.cos_value
-		  << std::setw(width) << scpi.cos_value
-		  << std::setw(width) << sc.cos_value - scpi.cos_value
-		  << std::setw(width) << scpi.cos_value - std::cos(pi * x)
+		  << std::setw(width) << sc.__sin_value
+		  << std::setw(width) << scpi.__sin_value
+		  << std::setw(width) << sc.__sin_value - scpi.__sin_value
+		  << std::setw(width) << scpi.__sin_value - std::sin(pi * x)
+		  << std::setw(width) << sc.__cos_value
+		  << std::setw(width) << scpi.__cos_value
+		  << std::setw(width) << sc.__cos_value - scpi.__cos_value
+		  << std::setw(width) << scpi.__cos_value - std::cos(pi * x)
 		  << '\n';
       }
   }

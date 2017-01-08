@@ -35,9 +35,10 @@ template<typename _Tp>
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
+    const auto del = _Tp{1} / _Tp{100};
     for (int i = -1000; i <= +1000; ++i)
       {
-	auto w = __cmplx{_Tp(0.01Q * i)};
+	auto w = __cmplx{del * i};
 	auto clausen1 = __gnu_cxx::clausen(1, w);
 	auto clausen2 = __gnu_cxx::clausen(2, w);
 	std::cout << std::setw(width) << std::real(w)

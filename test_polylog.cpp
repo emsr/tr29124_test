@@ -25,9 +25,10 @@ template<typename Tp>
     std::cout << std::scientific;
 
     std::cout << '\n';
+    const auto del = Tp{1} / Tp{10};
     for (int i = -200; i <= 10; ++i)
       {
-	auto x = Tp(0.1Q) * i;
+	auto x = del * i;
 	auto Ls_ceph = __gnu_cxx::dilog(x);
 	auto Ls_gnu = __gnu_cxx::polylog(Tp(2), x);
 	std::cout << ' ' << x
@@ -48,9 +49,10 @@ template<typename Tp>
     for (auto n : {0, 1, 2, 3, 4, 5})
       {
 	std::cout << '\n';
+	const auto del = Tp{1} / Tp{10};
 	for (int i = -200; i <= 10; ++i)
 	  {
-	    auto x = Tp(0.1Q) * i;
+	    auto x = del * i;
 	    auto Ls_ceph = pheces::polylog(n, x);
 	    auto Ls_gnu = __gnu_cxx::polylog(Tp(n), x);
 	    std::cout << ' ' << n
@@ -99,7 +101,7 @@ template<typename Tp>
     for(std::size_t k = 0; k < 32; ++k)
     {
       std::cout << "=======  " << k << "  ==========" << '\n';
-      auto w = std::complex<Tp>(Tp{0}, _S_2pi * k/Tp{32});
+      auto w = std::complex<Tp>(Tp{0}, _S_2pi * k / Tp{32});
       std::cout << std::__detail::__polylog_exp(Tp{4}, w) << '\n';
       std::cout << std::__detail::__polylog_exp(-Tp{4}, w) << '\n';
       std::cout << std::__detail::__polylog_exp(Tp{2.6}, w) << '\n';
@@ -111,7 +113,7 @@ template<typename Tp>
 
     for(std::size_t k = 0; k < 10; ++k)
     {
-      auto w = std::complex<Tp>(-_S_pi/2 - _S_pi*4/20, 0);
+      auto w = std::complex<Tp>(-_S_pi / 2 - _S_pi * 4 / 20, 0); // x == 0 ???
       std::cout << std::__detail::__polylog_exp(-Tp{4}, w) << '\n';
       std::cout << std::__detail::__polylog_exp_negative_real_part(-Tp{4}, w) << '\n';
     }
@@ -137,8 +139,11 @@ template<typename Tp>
     //   }
     // }
 
+    const auto del01 = Tp{1} / Tp{100};
+    const auto del05 = Tp{1} / Tp{20};
+
     std::ofstream test("test.dat");
-    for (auto s = Tp{2.5}; s < Tp{3.5}; s += Tp{0.01})
+    for (auto s = Tp{2.5}; s < Tp{3.5}; s += del01)
       test << s << ' ' << std::real(std::__detail::__polylog(s, Tp{2})) - Tp{2} << '\n';
     std::cout << std::endl;
 
@@ -147,7 +152,7 @@ template<typename Tp>
 
     //test function 1:
     for (std::size_t k = 3; k < 8; ++k)
-      for (Tp x = 0; x < Tp{1}; x += Tp{0.05})
+      for (Tp x = 0; x < Tp{1}; x += del05)
 	std::cout << k
 		  << ' ' << x
 		  << ' ' << std::__detail::__polylog_exp_pos(k, std::polar(Tp{1}, _S_2pi * x))
@@ -156,7 +161,7 @@ template<typename Tp>
 
     //test function 2
     for (std::size_t k = 3; k < 8; ++k)
-      for (Tp x = 0; x < 6.28; x += Tp{0.05})
+      for (Tp x = 0; x < 6.28; x += del05)
 	std::cout << k
 		  << ' ' << x
 		  << ' ' << std::__detail::__polylog_exp_pos(k, x)
@@ -165,7 +170,7 @@ template<typename Tp>
 
     //test function 3
     for (Tp k = -Tp{8}; k < 0; k += Tp{1}/Tp{13})
-      for(Tp x = 0; x < Tp{1}; x += Tp{0.05})
+      for(Tp x = 0; x < Tp{1}; x += del05)
 	std::cout << k
 		  << ' ' << x
 		  << ' ' << std::__detail::__polylog_exp_neg(k, std::polar(Tp{1}, _S_2pi * x))
@@ -174,7 +179,7 @@ template<typename Tp>
 
     //test function 4 + 5
     for (int k = -40; k < 0; ++k)
-      for (Tp x = 0; x < Tp{1}; x += Tp{0.05})
+      for (Tp x = 0; x < Tp{1}; x += del05)
 	std::cout << k
 		  << ' ' << x
 		  << ' ' << std::__detail::__polylog_exp_neg(k, std::polar(Tp{1}, _S_2pi * x))
@@ -183,7 +188,7 @@ template<typename Tp>
 
     //test series 6
     for (Tp k = Tp{1} / Tp{7}; k < Tp{13}; k += Tp{1} / Tp{11})
-      for (Tp x = Tp{0}; x < Tp{1}; x += Tp{0.05})
+      for (Tp x = Tp{0}; x < Tp{1}; x += del05)
 	std::cout << k
 		  << ' ' << x
 		  << ' ' << std::__detail::__polylog_exp_pos(k, std::polar(Tp{1}, _S_2pi * x))
@@ -192,16 +197,16 @@ template<typename Tp>
 
     //test series 7
     for (Tp k = -Tp{13}; k < Tp{13}; k += Tp{1} / Tp{11})
-      for (Tp x = Tp{0}; x < Tp{1}; x += Tp{0.01})
+      for (Tp x = Tp{0}; x < Tp{1}; x += del01)
 	std::cout << k
 		  << ' ' << x
-		  << ' ' << std::__detail::__polylog_exp_asymp(k, Tp{100} + std::polar(Tp{1}, _S_2pi * 0) )
+		  << ' ' << std::__detail::__polylog_exp_asymp(k, Tp{100} + std::polar(Tp{1}, _S_2pi * 0)) // x == 0 ???
 		  << '\n';
     std::cout << std::endl;
 
     //test series 8
     for (Tp k = -Tp{13}; k < Tp{13}; k += Tp{1} / Tp{11})
-      for (Tp x = -Tp{7} / Tp{10} * _S_pi; x > -_S_2pi; x -= Tp{0.05})
+      for (Tp x = -Tp{7} / Tp{10} * _S_pi; x > -_S_2pi; x -= del05)
 	std::cout << k
 		  << ' ' << x
 		  << ' ' << std::__detail::__polylog_exp_negative_real_part(k, x)

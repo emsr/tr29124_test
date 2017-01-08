@@ -89,8 +89,8 @@ template<typename _Tp>
     else
       {
 	auto __theta = std::acos(__x);
-	return std::cos(_Tp(__n + 0.5Q) * __theta)
-	     / std::cos(_Tp{0.5Q} * __theta);
+	return std::cos(_Tp(__n + _Tp{1} / _Tp{2}) * __theta)
+	     / std::cos(__theta / _Tp{2});
       }
   }
 
@@ -112,8 +112,8 @@ template<typename _Tp>
     else
       {
 	auto __theta = std::acos(__x);
-	return std::sin(_Tp(__n + 0.5Q) * __theta)
-	     / std::sin(_Tp{0.5Q} * __theta);
+	return std::sin(_Tp(__n + _Tp{1} / _Tp{2}) * __theta)
+	     / std::sin(__theta / _Tp{2});
       }
   }
 
@@ -280,11 +280,11 @@ template<typename Real>
     std::vector<Real> dvorder{0, 1, 2, 5, 10, 20, 50, 100};
 
     // Orders for cylindrical Bessel functions.
-    std::vector<Real> cyl_neg_order{-5, -2, -1, -Real{2.0Q/3.0Q},
-				    -Real{0.5Q}, -Real{1.0Q/3.0Q}};
+    std::vector<Real> cyl_neg_order{-5, -2, -1, -Real{2}/Real{3},
+				    -Real{1}/Real{2}, -Real{1}/Real{3}};
 
-    std::vector<Real> cyl_order{0, Real{1.0Q/3.0Q},
-				Real{0.5Q}, Real{2.0Q/3.0Q},
+    std::vector<Real> cyl_order{0, Real{1}/Real{3},
+				Real{1}/Real{2}, Real{2}/Real{3},
 				1, 2, 5, 10, 20, 50, 100};
 
     // Orders for spherical bessel functions.
@@ -300,7 +300,7 @@ template<typename Real>
     for (unsigned int i = 1; i < num_phi - 1; ++i)
       vnopolesd.push_back(Real{10} * i * _S_pi / Real{180});
 
-    std::vector<Real> vab{0, Real{0.5Q}, 1, 2, 5, 10, 20};
+    std::vector<Real> vab{0, Real{1}/Real{2}, 1, 2, 5, 10, 20};
 
     unsigned int test = 1;
 
@@ -1024,10 +1024,11 @@ template<typename Real>
     basename = "psi";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_psi(filename);
+    const auto skip = Real{1} / Real{16};
     test =
     maketest(psi, gsl::psi,
 	     "testcase_psi", "__gnu_cxx", basename,
-	     "x", fill_argument(std::make_pair(Real{-9.9375Q}, +Real{10.0625Q}),
+	     "x", fill_argument(std::make_pair(Real{-10} + skip, Real{+10} + skip),
 				std::make_pair(true, true), 801),
 	     "GSL",
 	     file_psi, true, false);

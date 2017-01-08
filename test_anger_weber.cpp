@@ -520,9 +520,10 @@ template<typename _Tp>
 
     //std::cout << "\n\n Write J and E values\n";
     //std::cout << " --------------------\n";
-    for (auto nu : {_Tp{0}, _Tp{0.5Q}, _Tp{1}, _Tp{1.5Q},
-		    _Tp{1.999Q}, _Tp{2},
-		    _Tp{2.999Q}, _Tp{3},
+    const auto twk = _Tp{1}/_Tp{1000};
+    for (auto nu : {_Tp{0}, _Tp{1}/_Tp{2}, _Tp{1}, _Tp{3}/_Tp{2},
+		    _Tp{2} - twk, _Tp{2},
+		    _Tp{3} - twk, _Tp{3},
 		    _Tp{5}})
       {
 	std::cout << "\n\n nu = " << std::setw(4) << nu << '\n';
@@ -534,9 +535,10 @@ template<typename _Tp>
 		  << ' ' << std::setw(width) << "-----"
 		  << ' ' << std::setw(width) << "-----"
 		  << '\n';
+	const auto del = _Tp{1} / _Tp{10};
 	for (int k = -80; k <= 80; ++k)
 	  {
-	    auto z = _Tp{0.1Q} * k;
+	    auto z = del * k;
 	    //auto AW = __anger_weber_sum(nu, z);
 	    auto AW = __anger_weber_sum_new(nu, z);
 	    std::cout << ' ' << std::setw(4) << z
@@ -548,9 +550,9 @@ template<typename _Tp>
 
     std::cout << "\n\n Test J and E values at zero\n";
     std::cout << " ---------------------------\n";
-    for (auto nu : {_Tp{0}, _Tp{0.5Q}, _Tp{1}, _Tp{1.5Q},
-		    _Tp{1.999Q}, _Tp{2},
-		    _Tp{2.999Q}, _Tp{3},
+    for (auto nu : {_Tp{0}, _Tp{1}/_Tp{2}, _Tp{1}, _Tp{3}/_Tp{2},
+		    _Tp{2} - twk, _Tp{2},
+		    _Tp{3} - twk, _Tp{3},
 		    _Tp{5}})
       {
 	std::cout << "\n\n nu = " << std::setw(4) << nu << '\n';
@@ -567,9 +569,10 @@ template<typename _Tp>
     for (auto nu : {_Tp{0}, _Tp{1}, _Tp{2}, _Tp{3}, _Tp{5}})
       {
 	std::cout << "\n\n nu = " << std::setw(4) << nu << '\n';
+	const auto del = _Tp{1} / _Tp{10};
 	for (int k = 0; k <= 80; ++k)
 	  {
-	    auto z = _Tp{0.1Q} * k;
+	    auto z = del * k;
 	    auto AW = __anger_weber_sum_new(nu, z);
 	    std::cout << ' ' << std::setw(4) << z
 		      << ' ' << std::setw(width) << AW.__J_value

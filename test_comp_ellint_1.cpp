@@ -20,11 +20,11 @@ template<typename _Tp>
   __comp_ellint_1_agm(_Tp __k)
   {
     constexpr auto _S_max_iter = 100;
-    auto __am = _Tp{0.5Q} * (_Tp{1} + __k);
+    auto __am = (_Tp{1} + __k) / _Tp{2};
     auto __gm = std::sqrt(__k);
     for (int __i = 0; __i < _S_max_iter; ++__i)
       {
-	__gm = std::sqrt(__gm * std::exchange(__am, _Tp{0.5Q} * (__am + __gm)));
+	__gm = std::sqrt(__gm * std::exchange(__am, (__am + __gm) / _Tp{2}));
 	if (std::abs(__am - __gm) < std::numeric_limits<_Tp>::epsilon())
 	  break;
       }
@@ -70,11 +70,12 @@ template<typename _Tp>
   __ellint_nome(_Tp __k)
   {
     const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-    if (__k < std::pow(_Tp{67} * _S_eps, _Tp{0.125Q}))
+    if (__k < std::pow(_Tp{67} * _S_eps, _Tp{1}/_Tp{8}))
       return __ellint_nome_series(__k);
     else
       return __ellint_nome_agm(__k);
   }
+
 
 template<typename _Tp>
   void
@@ -83,14 +84,16 @@ template<typename _Tp>
     std::cout.precision(__gnu_cxx::__digits10(proto));
 
     auto width = 6 + std::cout.precision();
+    const auto del = _Tp{1} / _Tp{1000};
     for (int i = 0; i <= 1000; ++i)
       {
-	auto k = _Tp(i * 0.001Q);
+	auto k = i * del;
 	std::cout << ' ' << std::setw(width) << k
 		  << ' ' << std::setw(width) << __comp_ellint_1_agm(k)
 		  << ' ' << std::setw(width) << __ellint_nome(k) << '\n';
       }
   }
+
 
 int
 main()

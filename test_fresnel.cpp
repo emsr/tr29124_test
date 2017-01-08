@@ -33,9 +33,10 @@ template<typename _Tp>
     std::cout << "  " << std::setw(width) << "C(x)";
     std::cout << "  " << std::setw(width) << "S(x)";
     std::cout << '\n';
+    const auto del = _Tp{1} / _Tp{100};
     for (int i = 0; i <= 1000; ++i)
       {
-	auto x = i * _Tp{0.01Q};
+	auto x = i * del;
 	auto frnl = __fresnel(x);
 	std::cout << "  " << std::setw(width) << x;
 	std::cout << "  " << std::setw(width) << frnl.first;
