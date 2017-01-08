@@ -126,6 +126,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * IS 29124 - Extensions to the C++ Library to Support Mathematical Special
    * Functions</a>.
    *
+   * Follow-up proosals for new special functions have also been published:
+   * <a href="http://open-std.org/JTC1/SC22/WG21/docs/papers/2013/n3494.pdf">
+   * A proposal to add special mathematical functions according to
+   * the ISO/IEC 80000-2:2009 standard, Vincent Reverdy</a>.
+   *
+   * <a href="http://open-std.org/JTC1/SC22/WG21/docs/papers/2004/n1668.pdf">
+   * A Proposal to add Mathematical Functions for Statistics
+   * to the C++ Standard Library, Paul A Bristow</a>.
+   *
+   * <a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0081r0.pdf">
+   * A proposal to add sincos to the standard library, Paul Dreik</a>.
+
    * For C++17 these functions were incorporated into the main standard.
    *
    * @section contents Contents
@@ -197,6 +209,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::fermi_dirac "fermi_dirac - Fermi-Dirac integrals"
    * - @ref __gnu_cxx::fresnel_c "fresnel_c - Fresnel cosine integrals"
    * - @ref __gnu_cxx::fresnel_s "fresnel_s - Fresnel sine integrals"
+   * - @ref __gnu_cxx::gamma_reciprocal "gamma_reciprocal - Reciprocal gamma function"
    * - @ref __gnu_cxx::gegenbauer "gegenbauer - Gegenbauer polynomials"
    * - @ref __gnu_cxx::heuman_lambda "heuman_lambda - Heuman lambda functions"
    * - @ref __gnu_cxx::hurwitz_zeta "hurwitz_zeta - Hurwitz zeta functions"
@@ -6174,6 +6187,45 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>;
       return std::__detail::__logistic_cdf<__type>(__a, __b, __x);
+    }
+
+  // Reciprocal Gamma function.
+
+  /**
+   * Return the reciprocal gamma function for <tt> float </tt> argument.
+   *
+   * @see gamma_reciprocal for details.
+   */
+  inline float
+  gamma_reciprocalf(float __a)
+  { return std::__detail::__gamma_reciprocal<float>(__a); }
+
+  /**
+   * Return the reciprocal gamma function for <tt> long double </tt>
+   * argument.
+   *
+   * @see gamma_reciprocal for details.
+   */
+  inline long double
+  gamma_reciprocall(long double __a)
+  { return std::__detail::__gamma_reciprocal<long double>(__a); }
+
+  /**
+   * Return the reciprocal gamma function for real argument.
+   *
+   * The reciprocal of the Gamma function is what you'd expect:
+   * @f[
+   *     \Gamma_r(a) = \frac{1}{\Gamma(a)}
+   * @f]
+   * But unlike the Gamma function this function has no singularities
+   * and is exponentially decreasing for increasing argument.
+   */
+  template<typename _Ta>
+    inline __gnu_cxx::__promote_fp_t<_Ta>
+    gamma_reciprocal(_Ta __a)
+    {
+      using __type = __gnu_cxx::__promote_fp_t<_Ta>;
+      return std::__detail::__gamma_reciprocal<__type>(__a);
     }
 
 #endif // __cplusplus >= 201103L
