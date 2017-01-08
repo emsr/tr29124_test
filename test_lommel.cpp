@@ -119,11 +119,12 @@ template<typename _Tp>
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    auto mu = _Tp{1.2Q};
-    auto nu = _Tp{0.2Q};
+    auto mu = _Tp{6}/_Tp{5};
+    auto nu = _Tp{1}/_Tp{5};
+    const auto del = _Tp{1} / _Tp{10};
     for (int i = 0; i < +200; ++i)
     {
-      auto z = _Tp{0.1Q} * i;
+      auto z = del * i;
       std::cout << ' ' << std::setw(6) << z
 		<< ' ' << std::setw(width) << __lommel_1(mu, nu, z)
 		<< '\n';
@@ -138,11 +139,12 @@ template<typename _Tp>
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    auto mu = _Tp{1.2Q};
-    auto nu = _Tp{0.2Q};
+    auto mu = _Tp{6}/_Tp{5};
+    auto nu = _Tp{1}/_Tp{5};
+    const auto del = _Tp{1} / _Tp{10};
     for (int i = 0; i < +200; ++i)
     {
-      auto z = _Tp{0.1Q} * i;
+      auto z = del * i;
       std::cout << ' ' << std::setw(6) << z
 		<< ' ' << std::setw(width) << __lommel_2(mu, nu, z)
 		<< '\n';

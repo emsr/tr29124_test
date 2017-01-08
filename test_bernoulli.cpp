@@ -30,6 +30,21 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
     frac = __frac<_RealTp, unsigned long long, _Num, _Den>;
 
   /**
+   * According to Modern Computer Arithmetic a stable recursion for the Bernoulli numbers is
+   * @f[
+   *    \sum_{k=0}^{n} \frac{C_k}{(2n+1-2k)!4^{n-k}} = \frac{1}{(2n)! 4^n}
+   * @f]
+   * where @f$ C_k = B_{2k} / (2k)! @f$ is the scaled Bernoulli number.
+   */
+  template<typename _Tp>
+    _Tp
+    __bernoulli_scaled_recur(unsigned int __n)
+    {
+      return _Tp{0};
+    }
+
+
+  /**
    * Return the Bernoulli number from lookup or by series expansion.
    */
   template<typename _Tp>
@@ -509,9 +524,10 @@ template<typename _Tp>
     for (auto n = 0u; n <= 50; ++n)
       {
 	std::cout << '\n' << ' ' << std::setw(4) << n << '\n';
+	const auto del = _Tp{1} / _Tp{10};
 	for (auto i = 0u; i <= 50; ++i)
 	  {
-	    auto x = _Tp{0.1Q} * i;
+	    auto x = del * i;
 	    auto _B_n = __bernoulli(n, x);
 	    std::cout << ' ' << std::setw(width) << x
 		      << ' ' << std::setw(width) << _B_n
@@ -529,9 +545,10 @@ template<typename _Tp>
     for (auto n = 0u; n <= 50; ++n)
       {
 	std::cout << '\n' << ' ' << std::setw(4) << n << '\n';
+	const auto del = _Tp{1} / _Tp{10};
 	for (auto i = 0u; i <= 50; ++i)
 	  {
-	    auto x = _Tp{0.1Q} * i;
+	    auto x = del * i;
 	    auto _E_n = __euler(n, x);
 	    std::cout << ' ' << std::setw(width) << x
 		      << ' ' << std::setw(width) << _E_n

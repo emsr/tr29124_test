@@ -441,13 +441,15 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
+    const auto del = _Tp{1} / _Tp{100};
     for (int i = 500; i <= +5500; ++i)
       {
-	auto t = _Tp(0.01Q * i);
+	auto t = del * i;
 	std::cout << std::setw(width) << t;
+	const auto ndel = _Tp{1};
 	for (int n = 0; n <= 5; ++n)
 	  {
-	    auto nu = _Tp(1.0Q * n);
+	    auto nu = ndel * n;
 	    auto series = std::__detail::__struve_series<std::__detail::_StruveH>(nu, t);
 	    auto asymp = std::__detail::__struve_asymp<std::__detail::_StruveK>(nu, t)
 		       + std::__detail::__cyl_neumann_n(nu, t);
@@ -486,13 +488,15 @@ template<typename _Tp>
 	 << std::setw(width) << "========="
 	 << std::setw(width) << "========="
 	 << '\n';
+    const auto del = _Tp{1} / _Tp{100};
     for (int i = 0; i <= +3000; ++i)
       {
-	auto t = _Tp(0.01Q * i);
+	auto t = del * i;
 	data << std::setw(width) << t;
+	const auto ndel = _Tp{1};
 	for (int n = 0; n <= 20; ++n)
 	  {
-	    auto nu = _Tp(1.0Q * n);
+	    auto nu = ndel * n;
 	    data << '\t'
 		 << std::setw(width) << __gnu_cxx::struve_h(nu, t)
 		 << std::setw(width) << __gnu_cxx::struve_l(nu, t);
@@ -503,11 +507,12 @@ template<typename _Tp>
 
     for (int i = 0; i <= +3000; ++i)
       {
-	auto t = _Tp(0.01Q * i);
+	auto t = del * i;
 	data << std::setw(width) << t;
+	const auto ndel = _Tp{1};
 	for (int n = 0; n <= 20; ++n)
 	  {
-	    auto nu = _Tp(1.0Q * n);
+	    auto nu = ndel * n;
 	    data << '\t'
 		 << std::setw(width) << __gnu_cxx::struve_k(nu, t)
 		 << std::setw(width) << __gnu_cxx::struve_m(nu, t);
@@ -523,14 +528,15 @@ test_struve()
   std::cout.precision(__gnu_cxx::__digits10<double>());
   std::cout << std::showpoint << std::scientific;
   auto width = 8 + std::cout.precision();
-
+  const auto del = double{1} / double{100};
   for (int i = 0; i <= +3000; ++i)
     {
-      auto t = double(0.01Q * i);
+      auto t = del * i;
       std::cout << std::setw(width) << t;
+      const auto ndel = double{1};
       for (int n = 0; n <= 20; ++n)
 	{
-	  auto nu = double(1.0Q * n);
+	  auto nu = ndel * n;
 	  auto h = __gnu_cxx::struve_h(nu, t);
 	  auto l = __gnu_cxx::struve_l(nu, t);
 	  auto hb = burkhardt::struve_h(nu, t);

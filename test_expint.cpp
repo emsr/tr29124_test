@@ -61,9 +61,10 @@ template<typename _Tp>
 		  << ' ' << std::setw(width) << "delta asymp"
 		  << '\n';
 	int i_min = -500;
+	const auto del = _Tp{1} / _Tp{10};
 	for (int i = i_min; i <= +500; ++i)
 	  {
-	    auto x = _Tp{0.10Q} * i;
+	    auto x = del * i;
 
 	    _Tp ens = _S_NaN;
 	    try

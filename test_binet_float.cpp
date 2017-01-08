@@ -748,15 +748,17 @@ template<typename _Tp>
 	      << ' ' << std::setw(width) << "(J_cf - J_f) / J_f"
 	      << ' ' << std::setw(width) << "(J_bern - J_f) / J_f"
 	      << '\n';
+    const auto half = _Real{1} / _Real{2};
+    const auto del = _Real{1} / _Real{10};
     for (int k = 1; k <= 5000; ++k)
       {
-	auto x = _Real{0.1Q} * k;
+	auto x = del * k;
 	auto j_as = std::__detail::__binet_asymp(x);
 	auto j_cf = std::__detail::__binet_cont_frac(x);
 	auto j_fake = std::lgamma(x)
-		    - (x - _Real{0.5Q}) * std::log(x) + x - _S_ln2pi / _Real{2};
+		    - (x - half) * std::log(x) + x - _S_ln2pi / _Real{2};
 	auto j_bern = std::__detail::__log_gamma_bernoulli(x)
-		    - (x - _Real{0.5Q}) * std::log(x) + x - _S_ln2pi / _Real{2};
+		    - (x - half) * std::log(x) + x - _S_ln2pi / _Real{2};
 	std::cout << ' ' << std::setw(4) << x
 		  << ' ' << std::setw(width) << j_as
 		  << ' ' << std::setw(width) << j_cf
@@ -809,9 +811,10 @@ template<typename _Tp>
     __gnu_cxx::_Polynomial<_Tp> expoly(std::begin(coeff), std::end(coeff));
     __gnu_cxx::_Polynomial<_Tp> rat_numer(std::begin(coeff), std::begin(coeff) + 10);
     __gnu_cxx::_Polynomial<_Tp> rat_denom(std::begin(recip), std::begin(recip) + 10);
+    const auto del = _Tp{1} / _Tp{10};
     for (int k = 0; k <= 500; ++k)
       {
-	auto x = _Tp{0.1Q} * k;
+	auto x = del * k;
 	auto pexp = expoly(x);
 	auto rexp = std::sqrt(rat_numer(x) / rat_denom(x));
 	std::cout << ' ' << std::setw(4) << x

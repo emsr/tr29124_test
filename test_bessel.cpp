@@ -55,9 +55,10 @@ template<typename _Tp>
 	std::cout << ' ' << std::setw(width) << "K'_nu(x)";
 	std::cout << ' ' << std::setw(width) << "-x W{I,K}";
 	std::cout << '\n';
+	const auto del = _Tp{1} / _Tp{100};
 	for (unsigned int i = 0; i <= 1000; ++i)
           {
-            auto x = _Tp(i) / _Tp{100};
+            auto x = i * del;
             std::cout << ' ' << std::setw(width) << x;
             try
               {
@@ -127,9 +128,10 @@ template<typename _Tp>
 	std::cout << ' ' << std::setw(width) << "N_nu(x)";
 	std::cout << ' ' << std::setw(width) << "I_nu(x)";
 	std::cout << ' ' << std::setw(width) << "K_nu(x)";
+	const auto del = _Tp{1} / _Tp{10};
 	for (int i = 0; i <= 100; ++i)
 	  {
-	    auto x = i * _Tp{0.1Q};
+	    auto x = i * del;
 	    std::cout << ' ' << std::setw(width) << x;
 	    try
 	      {

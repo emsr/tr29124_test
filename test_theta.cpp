@@ -18,9 +18,11 @@ template<typename _Tp>
 
     std::cout << "\n\n Theta function values\n";
     std::cout << " =====================\n";
+    const auto del1 = _Tp{1} / _Tp{10};
+    const auto del01 = _Tp{1} / _Tp{100};
     for (int i = 0; i <= 20; ++i)
       {
-	auto nu = _Tp(i * 0.1Q);
+	auto nu = i * del1;
 	std::cout << '\n' << " nu   = " << std::setw(width) << nu << '\n';
 	std::cout << ' ' << std::setw(width) << "x"
 		  << ' ' << std::setw(width) << "theta_1"
@@ -36,7 +38,7 @@ template<typename _Tp>
 		  << '\n';
 	for (int j = 0; j <= 100; ++j)
 	  {
-	    auto x = _Tp(j * 0.01Q);
+	    auto x = j * del01;
 	    std::cout << ' ' << std::setw(width) << x
 		      << ' ' << std::setw(width) << __gnu_cxx::theta_1(nu, x)
 		      << ' ' << std::setw(width) << __gnu_cxx::theta_2(nu, x)
@@ -71,7 +73,7 @@ template<typename _Tp>
 	      << '\n';
     for (int j = -1000; j <= 1000; ++j)
       {
-	auto x = _Tp(j * 0.01Q);
+	auto x = j * del01;
 	auto s = __gnu_cxx::theta_s(k, x);
 	auto c = __gnu_cxx::theta_c(k, x);
 	auto d = __gnu_cxx::theta_d(k, x);
@@ -92,7 +94,7 @@ template<typename _Tp>
     std::cout << " =================================================================\n";
     for (int i = -10; i <= 10; ++i)
       {
-	auto k = _Tp(i * 0.1Q);
+	auto k = i * del1;
 	std::cout << '\n' << " k    = " << std::setw(width) << k;
 	std::cout << '\n' << " q(k) = " << std::setw(width) << __gnu_cxx::ellnome(k) << '\n';
 	std::cout << ' ' << std::setw(width) << "x"
@@ -115,7 +117,7 @@ template<typename _Tp>
 		  << '\n';
 	for (int j = 0; j <= 100; ++j)
 	  {
-	    auto x = _Tp(j * 0.01Q);
+	    auto x = j * del01;
 	    auto s = __gnu_cxx::theta_s(k, x);
 	    auto c = __gnu_cxx::theta_c(k, x);
 	    auto d = __gnu_cxx::theta_d(k, x);

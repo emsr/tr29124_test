@@ -49,9 +49,10 @@ template<typename _Tp>
 	std::cout << ' ' << std::setw(width) << fname("k_", n, "(x)");
 	std::cout << ' ' << std::setw(width) << "-(2x^2/pi) W[i,k]";
 	std::cout << '\n';
+	const auto del = _Tp{1} / _Tp{10};
 	for (int i = 0; i <= 100; ++i)
 	  {
-	    auto x = i * _Tp{0.1Q};
+	    auto x = i * del;
 	    auto Wjn = x * x;
 	    auto Wik = -_Tp{2} * Wjn / _S_pi;
 	    std::cout << ' ' << std::setw(width) << x;
@@ -107,9 +108,10 @@ template<typename _Tp>
 	std::cout << ' ' << std::setw(width) << "x";
 	std::cout << ' ' << std::setw(width) << fname("j_", n, "(x)");
 	std::cout << ' ' << std::setw(width) << fname("n_", n, "(x)");
+	const auto del = _Tp{1} / _Tp{10};
 	for (int i = 0; i <= 100; ++i)
 	  {
-	    auto x = i * _Tp{0.1Q};
+	    auto x = i * del;
 	    std::cout << ' ' << std::setw(width) << x;
 	    try
 	      {

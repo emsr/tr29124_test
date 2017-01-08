@@ -40,9 +40,10 @@ template<typename _Tp>
 	      << std::setw(width) << " ==============="
 	      << std::setw(width) << " ==============="
 	      << '\n';
+    const auto del = _Tp{1}/_Tp{10};
     for (int i = -1600; i <= +1600; ++i)
       {
-	auto x = _Tp(0.1Q * i);
+	auto x = del * i;
 	auto sinh_pi_g = __gnu_cxx::sinh_pi(x);
 	auto cosh_pi_g = __gnu_cxx::cosh_pi(x);
 	auto tanh_pi_g = __gnu_cxx::tanh_pi(x);

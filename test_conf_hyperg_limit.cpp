@@ -43,10 +43,11 @@ template<typename _Tp>
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    auto c = _Tp{0.2Q};
+    const auto c = _Tp{0.2Q};
+    const auto del = _Tp{1} / _Tp{10};
     for (int i = -200; i < +200; ++i)
     {
-      auto z = _Tp{0.1Q} * i;
+      auto z = del * i;
       std::cout << ' ' << std::setw(6) << z
 		<< ' ' << std::setw(width) << __gnu_cxx::conf_hyperg_lim(c, z)
 		<< '\n';

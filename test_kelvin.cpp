@@ -207,7 +207,7 @@ namespace __detail
 
       const auto _S_gamma_e = __gnu_cxx::__const_gamma_e(__x);
       const auto _S_pi_4 = __gnu_cxx::__const_pi_quarter(__x);
-      const auto _S_eps = _Real{0.01Q} * __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = __gnu_cxx::__epsilon(__x) / _Real{100};
       constexpr auto _S_maxiter = 1000;
       const auto __xd2 = __x / _Real{2};
       const auto __xxd4 = __xd2 * __xd2;
@@ -525,8 +525,8 @@ namespace __detail
 	{
 	  __barg -= _S_pi_4;
 	  __karg += _S_pi_4;
-	  auto __fact = (_Real(__k) - _Real{0.5Q} - __nu)
-		      * (_Real(__k) - _Real{0.5Q} + __nu) / _Real(__k);
+	  auto __fact = (_Real(__k) - _Real{1}/_Real{2} - __nu)
+		      * (_Real(__k) - _Real{1}/_Real{2} + __nu) / _Real(__k);
 	  auto __next = __y * __fact;
 	  if (std::abs(__next) > _Real{1})
 	    break;
@@ -1046,9 +1046,10 @@ template<typename _Real>
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
+    const auto del = _Real{1}/_Real{10};
     for (int i = 0; i <= 200; ++i)
       {
-	auto x = _Real(0.1Q) * i;
+	auto x = del * i;
 	auto ber = std::__detail::__kelvin_ber_series(x);
 	auto bei = std::__detail::__kelvin_bei_series(x);
 	auto ker = std::__detail::__kelvin_ker_series(x);
@@ -1093,9 +1094,10 @@ template<typename _Real>
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
+    const auto del = _Real{1}/_Real{10};
     for (int i = 0; i <= 200; ++i)
       {
-	auto x = _Real(0.1Q) * i;
+	auto x = del * i;
 	auto ke = std::__detail::__kelvin_series(x);
 	std::cout << std::setw(width) << ke.__x
 		  << std::setw(width) << ke.__ber
@@ -1143,9 +1145,10 @@ template<typename _Real>
 	      << "  " << std::setw(width) << "============="
 	      << "  " << std::setw(width) << "============="
 	      << '\n';
+    const auto del = _Real{1}/_Real{10};
     for (int i = 50; i <= 400; ++i)
       {
-	auto x = _Real(0.1Q) * i;
+	auto x = del * i;
 	auto kes = std::__detail::__kelvin_series(x);
 	auto kea = std::__detail::__kelvin_asymp(x);
 	std::cout << "  " << std::setw(width) << kes.__x
@@ -1190,9 +1193,10 @@ template<typename _Real>
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
+    const auto del = _Real{1}/_Real{10};
     for (int i = 0; i <= 200; ++i)
       {
-	auto x = _Real(0.1Q) * i;
+	auto x = del * i;
 	auto ke = std::__detail::__kelvin_series(nu, x);
 	std::cout << std::setw(width) << ke.__x
 		  << std::setw(width) << ke.__ber
@@ -1232,9 +1236,10 @@ template<typename _Real>
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
+    const auto del = _Real{1} / _Real{10};
     for (int i = 50; i <= 400; ++i)
       {
-	auto x = _Real(0.1Q) * i;
+	auto x = del * i;
 	auto kes = std::__detail::__kelvin_series(nu, x);
 	auto kea = std::__detail::__kelvin_asymp(nu, x);
 	std::cout << "  " << std::setw(width) << kes.__x
@@ -1275,9 +1280,10 @@ template<typename _Real>
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
+    const auto del = _Real{1} / _Real{10};
     for (int i = 0; i <= 200; ++i)
       {
-	auto x = _Real(0.1Q) * i;
+	auto x = del * i;
 	auto ke = std::__detail::__kelvin_series(n, x);
 	std::cout << std::setw(width) << ke.__x
 		  << std::setw(width) << ke.__ber
@@ -1322,9 +1328,10 @@ template<typename _Real>
 	 << std::setw(width) << "========="
 	 << std::setw(width) << "========="
 	 << '\n';
+    const auto del = _Real{1} / _Real{100};
     for (int i = 0; i <= +2000; ++i)
       {
-	auto x = _Real(0.01Q * i);
+	auto x = del * i;
 	auto kv = std::__detail::__kelvin_series(x);
 	auto exf = std::exp(x / _S_sqrt_2);
 	auto rt2x = _S_sqrt_2 * std::sqrt(x);
@@ -1337,7 +1344,7 @@ template<typename _Real>
       }
     for (int i = 2001; i <= +4000; ++i)
       {
-	auto x = _Real(0.01Q * i);
+	auto x = del * i;
 	auto kv = std::__detail::__kelvin_asymp(x);
 	auto exf = std::exp(x / _S_sqrt_2);
 	auto rt2x = _S_sqrt_2 * std::sqrt(x);
@@ -1385,13 +1392,14 @@ template<typename _Real>
 	 << std::setw(width) << "========="
 	 << '\n';
 
-    std::vector<_Real> nuv{_Real{0.0Q}, _Real{0.5Q}, _Real{1.0Q},
-			   _Real{1.5Q}, _Real{2.0Q}, _Real{5.0Q}};
+    std::vector<_Real> nuv{_Real{0}, _Real{1}/_Real{2}, _Real{1},
+			   _Real{3}/_Real{2}, _Real{2}, _Real{5}};
+    const auto del = _Real{1} / _Real{100};
     for (auto nu : nuv)
       {
 	for (int i = 0; i <= 2000; ++i)
 	  {
-	    auto x = _Real(0.01Q * i);
+	    auto x = del * i;
 	    auto kv = std::__detail::__kelvin_series(nu, x);
 	    auto exf = std::exp(x / _S_sqrt_2);
 	    auto rt2x = _S_sqrt_2 * std::sqrt(x);
@@ -1404,7 +1412,7 @@ template<typename _Real>
 	  }
 	for (int i = 2001; i <= 4000; ++i)
 	  {
-	    auto x = _Real(0.01Q * i);
+	    auto x = del * i;
 	    auto kv = std::__detail::__kelvin_asymp(nu, x);
 	    auto exf = std::exp(x / _S_sqrt_2);
 	    auto rt2x = _S_sqrt_2 * std::sqrt(x);

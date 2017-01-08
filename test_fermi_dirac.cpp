@@ -49,16 +49,16 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    std::vector<_Tp> svec{_Tp{-0.5Q}, _Tp{0}, _Tp{0.5Q}, _Tp{1}, _Tp{1.5Q},
-			  _Tp{2}, _Tp{3}, _Tp{4}, _Tp{5}};
+    std::vector<_Tp> svec{_Tp{-1}/_Tp{2}, _Tp{0}, _Tp{1}/_Tp{2}, _Tp{1},
+			  _Tp{3}/_Tp{2}, _Tp{2}, _Tp{3}, _Tp{4}, _Tp{5}};
 
     for (auto s : svec)
       {
-	std::cout << " s = " << std::setw(width) << s << '\n';
-	std::cout << '\n';
+	std::cout << "\n\n\n s = " << std::setw(width) << s << '\n';
+	const auto del = _Tp{1} / _Tp{10};
 	for (int i = -250; i <= 250; ++i)
 	  {
-	    auto x = _Tp{0.1Q} * i;
+	    auto x = del * i;
 	    auto F = std::__detail::__fermi_dirac(s, x);
 	    auto F_GSL = gsl::fermi_dirac(s, x);
 	    auto err = (F - F_GSL) / std::abs(F_GSL);

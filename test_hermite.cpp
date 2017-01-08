@@ -183,7 +183,6 @@ template<typename _Tp>
     for (int n = 4; n <= 200; ++n)
       {
 	auto xt = std::sqrt(_Tp{2} * n);
-	auto del = _Tp{0.5Q} * xt / _Tp{200};
 	std::cout << "  " << std::setw(6) << "n   = " << std::setw(4) << n << '\n';
 	std::cout << "  " << std::setw(6) << "x_t = " << std::setw(width) << xt << '\n';
 	std::cout << "  " << std::setw(width) << "x";
@@ -204,17 +203,18 @@ template<typename _Tp>
 	std::cout << "  " << std::setw(width) << "------------";
 	std::cout << "  " << std::setw(width) << "------------";
 	std::cout << '\n';
+	const auto del = xt / _Tp{2} / _Tp{200};
 	for (int i = 0; i <= 201; ++i)
           {
-            auto x = _Tp{0.75Q} * xt + i * del;
+            auto x = _Tp{3} * xt / _Tp{4} + i * del;
             auto h = __poly_hermite_recursion(n, x);
             auto ht = __poly_hermite_asymp(n, x);
             auto h2 = __poly_hermite_asymp2(n, x);
 	    if (std::abs(x - xt) < del)
 	      std::cout << ">>";
-	    else if (std::abs(x - _Tp{0.95Q} * xt) < del)
+	    else if (std::abs(x - (_Tp{1} - _Tp{1}/_Tp{20}) * xt) < del)
 	      std::cout << "> ";
-	    else if (std::abs(x - _Tp{1.05Q} * xt) < del)
+	    else if (std::abs(x - (_Tp{1} + _Tp{1}/_Tp{20}) * xt) < del)
 	      std::cout << "> ";
             else
               std::cout << "  ";
@@ -235,7 +235,6 @@ template<typename _Tp>
     for (int n : {1000, 2000, 5000, 10000})
       {
 	auto xt = std::sqrt(_Tp{2} * n);
-	auto del = _Tp{0.5Q} * xt / _Tp{200};
 	std::cout << "  " << std::setw(6) << "n   = " << std::setw(4) << n << '\n';
 	std::cout << "  " << std::setw(6) << "x_t = " << std::setw(width) << xt << '\n';
 	std::cout << "  " << std::setw(width) << "x";
@@ -256,17 +255,18 @@ template<typename _Tp>
 	std::cout << "  " << std::setw(width) << "------------";
 	std::cout << "  " << std::setw(width) << "------------";
 	std::cout << '\n';
+	const auto del = xt / _Tp{2} / _Tp{200};
 	for (int i = 1; i <= 201; ++i)
           {
-            auto x = _Tp{0.75Q} * xt + i * del;
+            auto x = _Tp{3} * xt / _Tp{4} + i * del;
             auto h = __poly_hermite_recursion(n, x);
             auto ht = __poly_hermite_asymp(n, x);
             auto h2 = __poly_hermite_asymp2(n, x);
 	    if (std::abs(x - xt) < del)
 	      std::cout << ">>";
-	    else if (std::abs(x - _Tp{0.95Q} * xt) < del)
+	    else if (std::abs(x - (_Tp{1} - _Tp{1}/_Tp{20}) * xt) < del)
 	      std::cout << "> ";
-	    else if (std::abs(x - _Tp{1.05Q} * xt) < del)
+	    else if (std::abs(x - (_Tp{1} + _Tp{1}/_Tp{20}) * xt) < del)
 	      std::cout << "> ";
             else
               std::cout << "  ";
@@ -301,7 +301,7 @@ template<typename _Tp>
 	std::cout << "  " << std::setw(width) << "------------";
 	std::cout << "  " << std::setw(width) << "------------";
 	std::cout << '\n';
-	auto del = _Tp{0.1Q};
+	const auto del = _Tp{1} / _Tp{10};
 	for (int i = 0; i <= 100; ++i)
           {
             auto x = i * del;
@@ -309,9 +309,9 @@ template<typename _Tp>
             auto ht = __poly_hermite_asymp(n, x);
 	    if (std::abs(x - xt) < del)
 	      std::cout << ">>";
-	    else if (std::abs(x - _Tp{0.95Q} * xt) < del)
+	    else if (std::abs(x - (_Tp{1} - _Tp{1}/_Tp{20}) * xt) < del)
 	      std::cout << "> ";
-	    else if (std::abs(x - _Tp{1.05Q} * xt) < del)
+	    else if (std::abs(x - (_Tp{1} _ _Tp{1}/_Tp{20}) * xt) < del)
 	      std::cout << "> ";
             else
               std::cout << "  ";
@@ -330,7 +330,7 @@ template<typename _Tp>
     for (int n = 0; n <= 50; ++n)
       {
 	// sqrt(factorial(n) * 2**n sqrt(pi))
-	auto norm = std::exp(_Tp{0.5Q} * std::lgamma(n + 1)) * std::sqrt(power * std::sqrt(_S_pi));
+	auto norm = std::exp(std::lgamma(n + 1) / _Tp{2}) * std::sqrt(power * std::sqrt(_S_pi));
 	power *= _Tp{2};
 	std::cout << "  " << std::setw(width) << "n = " << n << '\n';
 	std::cout << "  " << std::setw(width) << "norm = " << norm << '\n';
@@ -346,9 +346,10 @@ template<typename _Tp>
 	std::cout << "  " << std::setw(width) << "------------";
 	std::cout << "  " << std::setw(width) << "------------";
 	std::cout << '\n';
+	const auto del = _Tp{1} / _Tp{10};
 	for (int i = 0; i <= 100; ++i)
           {
-            auto x = i * _Tp{0.1Q};
+            auto x = i * del;
             auto h = __poly_hermite_recursion(n, x);
             auto hn = __poly_hermite_norm_recursion(n, x);
             auto he = __poly_prob_hermite_recursion(n, x);

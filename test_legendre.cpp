@@ -40,10 +40,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_legendre 
 	{
 	  if (__l < std::__detail::_S_num_factorials<_Tp>)
 	    {
-	      auto __lm = __l - 1;
-	      auto __lmfact = std::__detail::__factorial<_Tp>(__lm);
-	      auto __mm = __lm / 2;
-	      auto __mmfact = std::__detail::__factorial<_Tp>(__mm);
+	      const auto __lm = __l - 1;
+	      const auto __lmfact = std::__detail::__factorial<_Tp>(__lm);
+	      const auto __mm = __lm / 2;
+	      const auto __mmfact = std::__detail::__factorial<_Tp>(__mm);
 	      auto __Plm1 = (__lm & 1 ? -1 : 1) * __lmfact / __mmfact / __mmfact
 			    / std::pow(_Tp{2}, __lm);
 	      auto __Ppl = __l * __Plm1;
@@ -52,13 +52,13 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_legendre 
 	    }
 	  else
 	    {
-	      auto __lm = __l - 1;
-	      auto __lmfact = std::__detail::__log_factorial<_Tp>(__lm);
-	      auto __mm = __lm / 2;
-	      auto __mmfact = std::__detail::__log_factorial<_Tp>(__mm);
+	      const auto _S_ln2 = __gnu_cxx::__const_ln_2(proto);
+	      const auto __lm = __l - 1;
+	      const auto __lmfact = std::__detail::__log_factorial<_Tp>(__lm);
+	      const auto __mm = __lm / 2;
+	      const auto __mmfact = std::__detail::__log_factorial<_Tp>(__mm);
 	      auto __Plm1 = (__lm & 1 ? -1 : 1)
-			  * std::exp(__lmfact - 2 * __mmfact)
-			  / std::pow(_Tp{2}, __lm);
+			  * std::exp(__lmfact - 2 * __mmfact - __lm * _S_ln2);
 	      auto __Ppl = __l * __Plm1;
 	      __pt[__m].__zero = _Tp{0};
 	      __pt[__m].__weight = _Tp{2} / __Ppl / __Ppl;
@@ -125,9 +125,10 @@ template<typename _Tp>
 	std::cout << "  " << std::setw(width) << "x";
 	std::cout << "  " << std::setw(width) << "P_" << l << "(x)";
 	std::cout << '\n';
+	const auto del = _Tp{1} / _Tp{100};
 	for (int i = -100; i <= 100; ++i)
 	  {
-	    auto x = i * _Tp{0.01Q};
+	    auto x = i * del;
 	    _Tp P, P_l, P_l0;
 	    try
 	      {
@@ -155,9 +156,10 @@ template<typename _Tp>
 	    std::cout << "  " << std::setw(width) << "x";
 	    std::cout << "  " << std::setw(width) << "P_" << l << "_" << m << "(x)";
 	    std::cout << '\n';
+	    const auto del = _Tp{1} / _Tp{100};
 	    for (int i = -100; i <= 100; ++i)
 	      {
-		auto x = i * _Tp{0.01Q};
+		auto x = i * del;
 		_Tp P_lm;
 		try
 		  {

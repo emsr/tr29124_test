@@ -219,18 +219,19 @@ template<typename _Tp>
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    auto a = _Tp{1.2Q};
-    auto c = _Tp{0.2Q};
+    const auto a = _Tp{6} / _Tp{5};
+    const auto c = _Tp{1} / _Tp{5};
+    const auto del = _Tp{1} / _Tp{10};
     for (int i = 0; i < +200; ++i)
     {
-      auto z = _Tp{0.1Q} * i;
+      auto z = del * i;
       std::cout << ' ' << std::setw(6) << z
 		<< ' ' << std::setw(width) << __tricomi_u_naive(a, c, z)
 		<< '\n';
     }
 
     std::cout << "\nInteger c = m\n";
-    auto z = _Tp{0.5};
+    const auto z = _Tp{1} / _Tp{2};
     std::cout << " a = " << std::setw(6) << a << '\n';
     std::cout << " z = " << std::setw(6) << z << '\n';
     for (auto m = 1u; m <= +20; ++m)

@@ -8,6 +8,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_float128 
 #include <cmath>
 #include <limits>
 #include <iostream>
+#include <algorithm> // For clamp
 
 #include <bits/float128_io.h>
 
@@ -15,9 +16,11 @@ int
 main()
 {
   std::cout.precision(std::numeric_limits<__float128>::max_digits10);
+  //auto width = 8 + std::cout.precision();
 
   auto x = 0.00004472229441850588228136889483397204368247Q;
   auto y = -1.00200035757357000394547575997277994404042345Q;
+  auto z = 2.12005432105145066363366054636636034336318985Q;
   int n = 5;
   int exp = 3;
   __float128 m = 4.0Q;
@@ -42,6 +45,7 @@ main()
   std::cout << "atan2(x)        = " << std::atan2(y, x) << '\n';
   std::cout << "cbrt(x)         = " << std::cbrt(x) << '\n';
   std::cout << "ceil(x)         = " << std::ceil(x) << '\n';
+  std::cout << "clamp(z, y, x)  = " << std::clamp(z, y, x) << '\n';
   std::cout << "copysign(x, y)  = " << std::copysign(x, y) << '\n';
   std::cout << "cos(x)          = " << std::cos(x) << '\n';
   std::cout << "cosh(x)         = " << std::cosh(x) << '\n';
@@ -57,7 +61,8 @@ main()
   std::cout << "fmin(x, y)      = " << std::fmin(x, y) << '\n';
   std::cout << "fmod(x, y)      = " << std::fmod(x, y) << '\n';
   std::cout << "frexp(x, &exp)  = " << std::frexp(x, &exp) << ", exp = " << exp << '\n';
-  std::cout << "hypot(x)        = " << std::hypot(x, y) << '\n';
+  std::cout << "hypot(x, y)     = " << std::hypot(x, y) << '\n';
+  std::cout << "hypot(x, y, z)  = " << std::hypot(x, y, z) << '\n';
   std::cout << "isinf(x)        = " << std::isinf(x) << '\n';
   std::cout << "ilogb(x)        = " << std::ilogb(x) << '\n';
   std::cout << "isnan(x)        = " << std::isnan(x) << '\n';
