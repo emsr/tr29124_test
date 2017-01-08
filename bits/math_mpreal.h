@@ -32,6 +32,8 @@
 
 #pragma GCC system_header
 
+
+
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
@@ -92,9 +94,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   fabs(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
   { return mpfr::fabs(__x); }
 
-  //inline mpfr::mpreal
-  //fdim(const mpfr::mpreal& __x, const mpfr::mpreal& __y) _GLIBCXX_USE_NOEXCEPT
-  //{ return mpfr::fdim(__x, __y); }
+  inline mpfr::mpreal
+  abs(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
+  { return mpfr::fabs(__x); }
+
+  inline mpfr::mpreal
+  fdim(const mpfr::mpreal& __x, const mpfr::mpreal& __y) _GLIBCXX_USE_NOEXCEPT
+  { return mpfr::dim(__x, __y); }
+
+  // This is what mpreal has
+  inline mpfr::mpreal
+  dim(const mpfr::mpreal& __x, const mpfr::mpreal& __y) _GLIBCXX_USE_NOEXCEPT
+  { return mpfr::dim(__x, __y); }
 
   inline mpfr::mpreal
   floor(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
@@ -128,6 +139,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline mpfr::mpreal
   hypot(const mpfr::mpreal& __x, const mpfr::mpreal& __y) _GLIBCXX_USE_NOEXCEPT
   { return mpfr::hypot(__x, __y); }
+
+  inline mpfr::mpreal
+  hypot(const mpfr::mpreal& __x, const mpfr::mpreal& __y, const mpfr::mpreal& __z) _GLIBCXX_USE_NOEXCEPT
+  { return mpfr::hypot(__x, __y, __z); }
 
   inline int
   isinf(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
@@ -322,7 +337,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   yn(int __n, const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
   { return mpfr::besselyn(__n, __x); }
 
-
   inline mpfr::mpreal
   mod(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
   { return __x * __x; }
@@ -335,8 +349,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   }
 
   inline mpfr::mpreal
-  imag(const mpfr::mpreal&) _GLIBCXX_USE_NOEXCEPT
-  { return 0; }
+  imag(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
+  {
+    auto __prec = __x.getPrecision();
+    return mpfr::mpreal{0, __prec};
+  }
 
   inline mpfr::mpreal
   real(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
