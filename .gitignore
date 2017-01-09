@@ -8,6 +8,10 @@ a.out
 
 obj
 
+#Too large output
+test_legendre.txt
+
+# Another git repo
 zeta
 
 bernoulli
