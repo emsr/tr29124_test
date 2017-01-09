@@ -855,7 +855,7 @@ polylog(unsigned int /*n*/, double /*x*/)
 std::complex<double>
 polylog(unsigned int /*n*/, std::complex<double> /*x*/)
 {
-  const auto NaN = std::numeric_limits<double>::quiet_NaN()
+  const auto NaN = std::numeric_limits<double>::quiet_NaN();
   return std::complex<double>(NaN, NaN);
 }
 

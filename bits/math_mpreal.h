@@ -33,7 +33,6 @@
 #pragma GCC system_header
 
 
-
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION

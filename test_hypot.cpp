@@ -164,13 +164,13 @@ template<typename _Tp>
 
     constexpr auto inf = std::numeric_limits<_Tp>::infinity();
     constexpr auto bigexp = std::numeric_limits<_Tp>::max_exponent - 2;
-    constexpr auto big1 = std::ldexp(_Tp{1}, bigexp);
-    constexpr auto big2 = std::ldexp(_Tp{2}, bigexp);
-    constexpr auto big3 = std::ldexp(_Tp{3}, bigexp);
+    const auto big1 = std::ldexp(_Tp{1}, bigexp);
+    const auto big2 = std::ldexp(_Tp{2}, bigexp);
+    const auto big3 = std::ldexp(_Tp{3}, bigexp);
     constexpr auto smallexp = std::numeric_limits<_Tp>::min_exponent + 2;
-    constexpr auto small1 = std::ldexp(_Tp{1}, smallexp);
-    constexpr auto small2 = std::ldexp(_Tp{2}, smallexp);
-    constexpr auto small3 = std::ldexp(_Tp{3}, smallexp);
+    const auto small1 = std::ldexp(_Tp{1}, smallexp);
+    const auto small2 = std::ldexp(_Tp{2}, smallexp);
+    const auto small3 = std::ldexp(_Tp{3}, smallexp);
 
     std::cout << '\n';
 

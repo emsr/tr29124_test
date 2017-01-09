@@ -264,9 +264,9 @@ template<typename _Tp>
             auto h2 = __poly_hermite_asymp2(n, x);
 	    if (std::abs(x - xt) < del)
 	      std::cout << ">>";
-	    else if (std::abs(x - (_Tp{1} - _Tp{1}/_Tp{20}) * xt) < del)
+	    else if (std::abs(x - (_Tp{1} - _Tp{1} / _Tp{20}) * xt) < del)
 	      std::cout << "> ";
-	    else if (std::abs(x - (_Tp{1} + _Tp{1}/_Tp{20}) * xt) < del)
+	    else if (std::abs(x - (_Tp{1} + _Tp{1} / _Tp{20}) * xt) < del)
 	      std::cout << "> ";
             else
               std::cout << "  ";
@@ -309,9 +309,9 @@ template<typename _Tp>
             auto ht = __poly_hermite_asymp(n, x);
 	    if (std::abs(x - xt) < del)
 	      std::cout << ">>";
-	    else if (std::abs(x - (_Tp{1} - _Tp{1}/_Tp{20}) * xt) < del)
+	    else if (std::abs(x - (_Tp{1} - _Tp{1} / _Tp{20}) * xt) < del)
 	      std::cout << "> ";
-	    else if (std::abs(x - (_Tp{1} _ _Tp{1}/_Tp{20}) * xt) < del)
+	    else if (std::abs(x - (_Tp{1} + _Tp{1} / _Tp{20}) * xt) < del)
 	      std::cout << "> ";
             else
               std::cout << "  ";
