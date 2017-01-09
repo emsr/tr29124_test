@@ -1449,8 +1449,15 @@ polylog(unsigned int /*n*/, double /*x*/)
 std::complex<double>
 polylog(unsigned int /*n*/, std::complex<double> /*x*/)
 {
-  const auto NaN = std::numeric_limits<double>::quiet_NaN()
+  const auto NaN = std::numeric_limits<double>::quiet_NaN();
   return std::complex<double>(NaN, NaN);
+}
+
+/// Reciprocal gamma.
+double
+gamma_reciprocal(unsigned int /*a*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 } // namespace gsl

@@ -767,4 +767,11 @@ polylog(unsigned int n, std::complex<double> x)
   return std::complex<double>(__real__ r99, __imag__ r99);
 }
 
+/// Reciprocal gamma.
+double
+gamma_reciprocal(unsigned int /*a*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
 } // namespace pheces

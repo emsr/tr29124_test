@@ -151,6 +151,7 @@ void legendre_associated_values ( int *n_data, int *n, int *m, double *x,
 BURKHARDT_EXPORT
 void legendre_function_q ( int n, double x, double cx[] );
 void legendre_function_q_values ( int *n_data, int *n, double *x, double *fx );
+BURKHARDT_EXPORT
 void legendre_poly ( int n, double x, double cx[], double cpx[] );
 void legendre_poly_coef ( int n, double c[] );
 void legendre_poly_values ( int *n_data, int *n, double *x, double *fx );

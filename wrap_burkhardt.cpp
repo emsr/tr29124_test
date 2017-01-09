@@ -272,7 +272,7 @@ laguerre(unsigned int /*n*/, double /*x*/)
 double
 legendre_p(unsigned int l, double x)
 {
-  std::vector<double> P(l), Pp(l);
+  std::vector<double> P(l + 1), Pp(l + 1);
   ::legendre_poly(l, x, P.data(), Pp.data());
   return P[l];
 }
@@ -281,7 +281,7 @@ legendre_p(unsigned int l, double x)
 double
 legendre_q(unsigned int l, double x)
 {
-  std::vector<double> Q(l);
+  std::vector<double> Q(l + 1);
   ::legendre_function_q(l, x, Q.data());
   return Q[l];
 }
