@@ -33,3 +33,4 @@ git filter-branch --force --index-filter \
 
 echo "test_legendre.txt" >> .gitignore
 git add .gitignore
+git commit -m "Ignore too large test_legendre.txt"
