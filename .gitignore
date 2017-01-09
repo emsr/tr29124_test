@@ -10,6 +10,10 @@ obj
 
 #Too large output
 test_legendre.txt
+test_beta.txt
+test_cyl_hankel.txt
+test_sph_hankel.txt
+test_owens_t.txt
 
 # Another git repo
 zeta
