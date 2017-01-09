@@ -5,8 +5,8 @@ set xzeroaxis
 set yzeroaxis
 set grid
 
-plot [-8.0:8.0][-1.0:1.0] "test_anger_weber.txt" index 0 using 1:2 with lines title "J_0(x)"
-plot [-8.0:8.0][-1.0:1.0] "test_anger_weber.txt" index 0 using 1:3 with lines title "E_0(x)"
+plot [-8.0:8.0][-1.0:1.0] "test_anger_weber.txt" index 0 using 1:2 with lines title "{/:Bold J}_0(x)"
+plot [-8.0:8.0][-1.0:1.0] "test_anger_weber.txt" index 0 using 1:3 with lines title "{/:Bold E}_0(x)"
 
 
 plot [-8.0:8.0][-1.0:1.0] \

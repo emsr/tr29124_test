@@ -122,7 +122,8 @@ template<typename _Tp>
     auto mu = _Tp{6}/_Tp{5};
     auto nu = _Tp{1}/_Tp{5};
     const auto del = _Tp{1} / _Tp{10};
-    for (int i = 0; i < +200; ++i)
+    std::cout << "\n\n";
+    for (int i = 0; i <= +200; ++i)
     {
       auto z = del * i;
       std::cout << ' ' << std::setw(6) << z
@@ -142,7 +143,8 @@ template<typename _Tp>
     auto mu = _Tp{6}/_Tp{5};
     auto nu = _Tp{1}/_Tp{5};
     const auto del = _Tp{1} / _Tp{10};
-    for (int i = 0; i < +200; ++i)
+    std::cout << "\n\n";
+    for (int i = 0; i <= +200; ++i)
     {
       auto z = del * i;
       std::cout << ' ' << std::setw(6) << z
