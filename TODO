@@ -458,6 +458,9 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
         Lazhar Fekih-Ahmed - "On the Power Series Expansion of the Reciprocal Gamma Function"
         Probably not useful but... you never know.
 
+101. [] 3D plots need to have the surface occlude the 2D thing.
+        Also, te colors need work.
+
 plot_airy.cpp
 
 test_array_ref.cpp - move with <array_ref> somewhere else
