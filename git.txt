@@ -22,3 +22,14 @@ bz2 large_file.txt
 git commit -m"Compress large_file.txt" large_file.txt.bz2
 
 Of course, sensible diffs go out the window.
+
+This is it...
+-------------------------
+https://help.github.com/articles/remove-sensitive-data/
+
+git filter-branch --force --index-filter \
+'git rm --cached --ignore-unmatch test_legendre.txt' \
+--prune-empty --tag-name-filter cat -- --all
+
+echo "test_legendre.txt" >> .gitignore
+git add .gitignore
