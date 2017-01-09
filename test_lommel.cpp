@@ -43,43 +43,74 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_lommel test_lommel.c
     }
 
   /**
-   * 
+   * Return the Lommel function of the first kind.
+   * @f[
+   *    s_{\mu,\nu}(z) = z^{\mu+1}\sum_{k=0}^{\infty}
+   *             \frac{(-1)^kz^{2k}}{a_{k+1}(\mu,\nu)}
+   * @f]
+   * where
+   * @f[
+   *    a_{k+1}(\mu,\nu) = \prod_{m=1}^{k}\left[(\mu+2m-1)^2-\nu^2\right]
+   * @f]
    */
   template<typename _Tp>
     inline _Tp
     __lommel_1(_Tp __mu, _Tp __nu, _Tp __z)
-    { return __lommel_1_series(__mu, __nu, __z); }
+    {
+      auto _S_NaN = __gnu_cxx::__quiet_NaN(__z);
+      if (__isnan(__mu) || __isnan(__nu) || __isnan(__z))
+	return _S_NaN;
+      else if (__nu < _Tp{0})
+	return __lommel_1(__mu, -__nu, __z);
+      else
+	return __lommel_1_series(__mu, __nu, __z);
+    }
 
 
   /**
-   * 
+   * Return the Lommel function of the second kind.
+   * @f[
+   *   S_{\mu,\nu}(z) = s_{\mu,\nu}(z)
+   *        + 2^{\mu-1}\Gamma\left(\frac{\mu+\nu+1}{2}\right)
+   *                   \Gamma\left(\frac{\mu-\nu+1}{2}\right)
+   *    \left[\sin\left(\frac{(\mu-\nu)\pi}{2}\right)J_\nu(z)
+   *        - \cos\left(\frac{(\mu-\nu)\pi}{2}\right)N_\nu(z0  \right]
+   * @f]
    */
   template<typename _Tp>
     _Tp
     __lommel_2(_Tp __mu, _Tp __nu, _Tp __z)
     {
-      const auto im = __gnu_cxx::__fp_is_odd_integer(__mu - __nu);
-      const auto ip = __gnu_cxx::__fp_is_odd_integer(__mu + __nu);
-      if (im && im() < 0)
-        {
-	  return 0;
-	}
-      else if (ip && ip() < 0)
-        {
-	  return 0;
-	}
+      auto _S_NaN = __gnu_cxx::__quiet_NaN(__z);
+      if (__isnan(__mu) || __isnan(__nu) || __isnan(__z))
+	return _S_NaN;
+      else if (__nu < _Tp{0})
+	return __lommel_2(__mu, -__nu, __z);
       else
-        {
-	  const auto _S1 = __lommel_1(__mu, __nu, __z);
-	  const auto __sc = std::__detail::__sincos_pi((__mu - __nu) / _Tp{2});
-	  const auto __Bess = std::__detail::__cyl_bessel_jn(__nu, __z);
-	  const auto _S2 = _S1
-			 + std::pow(_Tp{2}, __mu - 1)
-			  * std::__detail::__gamma((__mu + __nu + 1)/ _Tp{2})
-			  * std::__detail::__gamma((__mu - __nu + 1)/ _Tp{2})
-		* (__sc.__sin_value * __Bess.__J_value
-		 - __sc.__cos_value * __Bess.__N_value);
-	  return _S2;
+	{
+	  const auto im = __gnu_cxx::__fp_is_odd_integer(__mu - __nu);
+	  const auto ip = __gnu_cxx::__fp_is_odd_integer(__mu + __nu);
+	  if (im && im() < 0)
+            {
+	      return 0;
+	    }
+	  else if (ip && ip() < 0)
+            {
+	      return 0;
+	    }
+	  else
+            {
+	      const auto _S1 = __lommel_1(__mu, __nu, __z);
+	      const auto __sc = std::__detail::__sincos_pi((__mu - __nu) / _Tp{2});
+	      const auto __Bess = std::__detail::__cyl_bessel_jn(__nu, __z);
+	      const auto _S2 = _S1
+			     + std::pow(_Tp{2}, __mu - 1)
+			      * std::__detail::__gamma((__mu + __nu + 1)/ _Tp{2})
+			      * std::__detail::__gamma((__mu - __nu + 1)/ _Tp{2})
+		    * (__sc.__sin_value * __Bess.__J_value
+		     - __sc.__cos_value * __Bess.__N_value);
+	      return _S2;
+	    }
 	}
     }
 
