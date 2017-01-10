@@ -162,11 +162,8 @@ namespace __gnu_test
 		   _Tp __epsabs,
 		   _Tp __epsrel)
     {
-      const qk_intrule __qkintrule = QK_21;
+      const qk_intrule __qk_rule = QK_21;
 
-      _Tp __area, __errsum;
-      _Tp __res_ext, __err_ext;
-      _Tp __result0, __abserr0, __resabs0, __resasc0;
       _Tp __tolerance;
 
       _Tp __ertest = 0;
@@ -181,7 +178,6 @@ namespace __gnu_test
 
       std::size_t __iteration = 0;
 
-      bool __positive_integrand = false;
       int __extrapolate = 0;
       int __disallow_extrapolation = 0;
 
@@ -198,8 +194,9 @@ namespace __gnu_test
 
       // Perform the first integration.
 
+      _Tp __result0, __abserr0, __resabs0, __resasc0;
       std::tie(__result0, __abserr0, __resabs0, __resasc0)
-	  = qk_integrate(__func, __a, __b, __qkintrule);
+	  = qk_integrate(__func, __a, __b, __qk_rule);
 
       __workspace.set_initial_results(__result0, __abserr0);
 
@@ -211,7 +208,7 @@ namespace __gnu_test
 				   "Cannot reach tolerance because of roundoff "
 				   "error on first attempt.");
       else if ((__abserr0 <= __tolerance && __abserr0 != __resasc0)
-		|| __abserr0 == 0.0)
+		|| __abserr0 == _Tp{0})
 	return std::make_tuple(__result0, __abserr0);
       else if (__limit == 1)
 	std::__throw_runtime_error("qags_integrate: "
@@ -221,49 +218,43 @@ namespace __gnu_test
       extrapolation_table<_Tp> __table;
       __table.append(__result0);
 
-      __area = __result0;
-      __errsum = __abserr0;
+      auto __area = __result0;
+      auto __errsum = __abserr0;
 
-      __res_ext = __result0;
-      __err_ext = _S_max;
+      auto __res_ext = __result0;
+      auto __err_ext = _S_max;
 
-      __positive_integrand = __test_positivity(__result0, __resabs0);
+      auto __positive_integrand = __test_positivity(__result0, __resabs0);
 
       __iteration = 1;
 
       do
 	{
-	  std::size_t __current_level;
-	  _Tp __a1, __b1, __a2, __b2;
-	  _Tp __a_i, __b_i, __r_i, __e_i;
-	  _Tp __area1 = 0, __area2 = 0, __area12 = 0;
-	  _Tp __error1 = 0, __error2 = 0, __error12 = 0;
-	  _Tp __resasc1, __resasc2;
-	  _Tp __resabs1, __resabs2;
-	  _Tp __last_e_i;
-
 	  // Bisect the subinterval with the largest error estimate.
 
+	  _Tp __a_i, __b_i, __r_i, __e_i;
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
-	  __current_level = __workspace.current_level() + 1;
+	  auto __current_level = __workspace.current_level() + 1;
 
-	  __a1 = __a_i;
-	  __b1 = 0.5 * (__a_i + __b_i);
-	  __a2 = __b1;
-	  __b2 = __b_i;
+	  auto __a1 = __a_i;
+	  auto __b1 = (__a_i + __b_i) / _Tp{2};
+	  auto __a2 = __b1;
+	  auto __b2 = __b_i;
 
 	  ++__iteration;
 
+	  _Tp __area1, __error1, __resabs1, __resasc1;
 	  std::tie(__area1, __error1, __resabs1, __resasc1)
-	      = qk_integrate(__func, __a1, __b1, __qkintrule);
+	    = qk_integrate(__func, __a1, __b1, __qk_rule);
 
+	  _Tp __area2, __error2, __resabs2, __resasc2;
 	  std::tie(__area2, __error2, __resabs2, __resasc2)
-	      = qk_integrate(__func, __a2, __b2, __qkintrule);
+	    = qk_integrate(__func, __a2, __b2, __qk_rule);
 
-	  __area12 = __area1 + __area2;
-	  __error12 = __error1 + __error2;
-	  __last_e_i = __e_i;
+	  auto __area12 = __area1 + __area2;
+	  auto __error12 = __error1 + __error2;
+	  auto __last_e_i = __e_i;
 
 	  // Improve previous approximations to the integral and test for
 	  // accuracy.
@@ -275,7 +266,7 @@ namespace __gnu_test
 
 	  if (__resasc1 != __error1 && __resasc2 != __error2)
 	    {
-	      _Tp __delta = __r_i - __area12;
+	      auto __delta = __r_i - __area12;
 
 	      if (std::abs(__delta) <= 1.0e-5 * std::abs(__area12)
 		  && __error12 >= 0.99 * __e_i)
@@ -293,7 +284,7 @@ namespace __gnu_test
 
 	  if (__roundoff_type1 + __roundoff_type2 >= 10
 	      || __roundoff_type3 >= 20)
-	    __error_type = 2;       /* round off error */
+	    __error_type = 2; // round off error
 
 	  if (__roundoff_type2 >= 5)
 	    __error_type2 = 1;
@@ -301,7 +292,7 @@ namespace __gnu_test
 	  // Set error flag in the case of bad integrand behaviour at
 	  // a point of the integration range.
 
-	  if (__workspace.subinterval_too_small (__a1, __a2, __b2))
+	  if (__workspace.subinterval_too_small(__a1, __a2, __b2))
 	    __error_type = 4;
 
 	  // Append the newly-created intervals to the list.
@@ -342,8 +333,8 @@ namespace __gnu_test
 
 	  if (!__extrapolate)
 	    {
-	      /* test whether the interval to be bisected next is the
-		smallest interval. */
+	      // Test whether the interval to be bisected next is the
+	      // smallest interval.
 
 	      if (__workspace.large_interval())
 		continue;
@@ -360,8 +351,7 @@ namespace __gnu_test
 
 	  __table.append(__area);
 
-	  std::tuple<_Tp&, _Tp&> __qelg_res(__reseps, __abseps);
-	  __qelg_res = __table.qelg();
+	  std::tie(__reseps, __abseps) = __table.qelg();
 
 	  ++__ktmin;
 
@@ -394,6 +384,9 @@ namespace __gnu_test
 	}
       while (__iteration < __limit);
 
+      auto __result = __res_ext;
+      auto __abserr = __err_ext;
+
       if (__err_ext == _S_max)
 	{
 	  __check_error(__func__, __error_type,
@@ -409,7 +402,7 @@ namespace __gnu_test
 	  if (__error_type == 0)
 	    __error_type = 3;
 
-	  if (__res_ext != 0.0 && __area != 0.0)
+	  if (__res_ext != _Tp{0} && __area != _Tp{0})
 	    {
 	      if (__err_ext / std::abs(__res_ext) > __errsum / std::abs(__area))
 		{
@@ -424,7 +417,7 @@ namespace __gnu_test
 			    __workspace.sum_results(), __errsum);
 	      return std::make_tuple(__workspace.sum_results(), __errsum);
 	    }
-	  else if (__area == 0.0)
+	  else if (__area == _Tp{0})
 	    {
 	      __check_error<_Tp>(__func__, __error_type);
 	      std::__throw_runtime_error("qags_integrate: Unknown error.");
@@ -442,6 +435,9 @@ namespace __gnu_test
       auto __ratio = __res_ext / __area;
       if (__ratio < 0.01 || __ratio > 100.0 || __errsum > std::abs(__area))
 	__error_type = 7;
+
+      if (__error_type == 0)
+	return std::make_tuple(__result, __abserr);
 
       __check_error<_Tp>(__func__, __error_type);
       std::__throw_runtime_error("qags_integrate: Unknown error.");
