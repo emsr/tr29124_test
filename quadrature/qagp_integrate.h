@@ -151,8 +151,6 @@ namespace __gnu_test
 	std::__throw_runtime_error("qagp_integrate: "
 				   "a maximum of one iteration was insufficient");
 
-      /* Initialization */
-
       extrapolation_table<_Tp> __table(__result0);
 
       __area = __result0;
@@ -174,10 +172,10 @@ namespace __gnu_test
 	  _Tp __a_i, __b_i, __r_i, __e_i;
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
-	  std::size_t __current_level = __workspace.current_level() + 1;
+	  auto __current_level = __workspace.current_level() + 1;
 
 	  auto __a1 = __a_i;
-	  auto __b1 = 0.5 * (__a_i + __b_i);
+	  auto __b1 = (__a_i + __b_i) / _Tp{2};
 	  auto __a2 = __b1;
 	  auto __b2 = __b_i;
 
@@ -195,7 +193,8 @@ namespace __gnu_test
 	  auto __error12 = __error1 + __error2;
 	  auto __last_e_i = __e_i;
 
-	  // Improve previous approximations to the integral and test for accuracy.
+	  // Improve previous approximations to the integral and test for
+	  // accuracy.
 
 	  __errsum += __error12 - __e_i;
 	  __area += __area12 - __r_i;
@@ -204,7 +203,7 @@ namespace __gnu_test
 
 	  if (__resasc1 != __error1 && __resasc2 != __error2)
 	    {
-	      _Tp __delta = __r_i - __area12;
+	      auto __delta = __r_i - __area12;
 
 	      if (std::abs(__delta) <= 1.0e-5 * std::abs(__area12)
 		   && __error12 >= 0.99 * __e_i)
@@ -215,13 +214,14 @@ namespace __gnu_test
 		    ++__roundoff_type2;
 		}
 	      // This "i > 10" is just a test on nint.
-	      if (/*i > 10 &&*/ __error12 > __e_i)
+	      if (/*__iteration > 10 &&*/ __error12 > __e_i)
 		++__roundoff_type3;
 	    }
 
 	  // Test for roundoff and eventually set error flag.
 
-	  if (__roundoff_type1 + __roundoff_type2 >= 10 || __roundoff_type3 >= 20)
+	  if (__roundoff_type1 + __roundoff_type2 >= 10
+	   || __roundoff_type3 >= 20)
 	    __error_type = 2; // round off error
 
 	  if (__roundoff_type2 >= 5)
@@ -230,7 +230,7 @@ namespace __gnu_test
 	  // Set error flag in the case of bad integrand behaviour at
 	  // a point of the integration range
 
-	  if (integration_workspace<_Tp>::subinterval_too_small(__a1, __a2, __b2))
+	  if (__workspace.subinterval_too_small(__a1, __a2, __b2))
 	    __error_type = 4;
 
 	  // Append the newly-created intervals to the list.
