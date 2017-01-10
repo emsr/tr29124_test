@@ -50,7 +50,7 @@ LIB_DIR = $(MATH_DIR)
 
 LIBS = \
   $(LIB_DIR)/libwgsl.so \
-  $(LIB_DIR)/libburkhardt.so \
+  $(LIB_DIR)/libwburkhardt.so \
   $(LIB_DIR)/libbeast.so \
   $(LIB_DIR)/libpheces.so
 
@@ -460,10 +460,10 @@ $(OBJ_DIR)/gsl_sf_hermite.o: $(GSL_HERMITE_DIR)/gsl_sf_hermite.c
 	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/gsl_sf_hermite.o $(GSL_HERMITE_DIR)/gsl_sf_hermite.c
 
 
-$(LIB_DIR)/libburkhardt.so: $(OBJ_DIR)/wrap_burkhardt.o $(OBJ_DIR)/special_functions.o
+$(LIB_DIR)/libwburkhardt.so: $(OBJ_DIR)/wrap_burkhardt.o $(OBJ_DIR)/special_functions.o
 	cd burkhardt && make
-	$(CXX17) -fPIC -shared -o $(LIB_DIR)/libburkhardt.so $(OBJ_DIR)/wrap_burkhardt.o $(OBJ_DIR)/special_functions.o -lgfortran -lquadmath
-	cp $(LIB_DIR)/libburkhardt.so $(LIB_DIR)/libburkhardt.dll
+	$(CXX17) -fPIC -shared -o $(LIB_DIR)/libwburkhardt.so $(OBJ_DIR)/wrap_burkhardt.o $(OBJ_DIR)/special_functions.o -lgfortran -lquadmath -L. -lburkhardt
+	cp $(LIB_DIR)/libwburkhardt.so $(LIB_DIR)/libwburkhardt.dll
 
 $(OBJ_DIR)/wrap_burkhardt.o: wrap_burkhardt.h wrap_burkhardt.cpp
 	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/wrap_burkhardt.o wrap_burkhardt.cpp
@@ -482,7 +482,7 @@ $(OBJ_DIR)/wrap_boost.o: wrap_boost.h wrap_boost.cpp
 
 $(LIB_DIR)/libpheces.so: $(OBJ_DIR)/wrap_pheces.o
 	cd cephes && make
-	$(CXX17) -fPIC -shared -o -Wl,-rpath,/home/ed/tr29124_test/cephes $(LIB_DIR)/libpheces.so $(OBJ_DIR)/wrap_pheces.o -Lcephes -lcephes_bessel -lcephes_ellf -lcephes_polyn -lcephes_misc -lcephes_cprob -lcephes_cmath -lcephes_cmplx -lquadmath
+	$(CXX17) -fPIC -shared -Wl,-rpath,/home/ed/tr29124_test/cephes -o $(LIB_DIR)/libpheces.so $(OBJ_DIR)/wrap_pheces.o -Lcephes -lcephes_bessel -lcephes_ellf -lcephes_polyn -lcephes_misc -lcephes_cprob -lcephes_cmath -lcephes_cmplx -lquadmath
 	cp $(LIB_DIR)/libpheces.so $(LIB_DIR)/libpheces.dll
 
 $(OBJ_DIR)/wrap_pheces.o: wrap_pheces.h wrap_pheces.cpp
@@ -490,16 +490,16 @@ $(OBJ_DIR)/wrap_pheces.o: wrap_pheces.h wrap_pheces.cpp
 
 
 test_special_function: test_special_function.cpp $(LIBS) $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -o test_special_function test_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L.  -lwgsl -lbeast -lburkhardt
+	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -o test_special_function test_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L. -lwgsl -lbeast -lwburkhardt
 
 diff_special_function: diff_special_function.cpp $(LIBS) $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -o diff_special_function diff_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L. -lwgsl -lbeast -lburkhardt
+	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -o diff_special_function diff_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L. -lwgsl -lbeast -lwburkhardt
 
 testcase2: testcase2.cpp testcase2.tcc $(LIBS) $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -I$(BOOST_INC_DIR) -o testcase2 testcase2.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L. -lwgsl -lbeast -lburkhardt
+	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -I$(BOOST_INC_DIR) -o testcase2 testcase2.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L. -lwgsl -lbeast -lwburkhardt
 
 testcase: testcase.cpp testcase.tcc $(LIBS) $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -I$(BOOST_INC_DIR) -o testcase testcase.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L. -lwgsl -lbeast -lburkhardt
+	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -I$(BOOST_INC_DIR) -o testcase testcase.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L. -lwgsl -lbeast -lwburkhardt
 
 test_limits: test_limits.cpp
 	$(CXX17) -I. -o test_limits test_limits.cpp -lquadmath
