@@ -206,7 +206,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  auto __term = _S_c[__i] * (__e1 / __d1 + _Tp{1} / (__d2 * __e1));
 	  __sum += __term;
-	  if (std::abs(__term / __sum) < _S_eps)
+	  if (std::abs(__term) < _S_eps * std::abs(__sum))
 	    break;
 	  __d1 += _Tp{2};
 	  __d2 -= _Tp{2};
