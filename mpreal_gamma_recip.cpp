@@ -29,15 +29,22 @@ __gamma_reciprocal_series_coef(std::size_t __n, std::size_t prec)
   return __c;
 }
 
-int
-main()
+void
+write_gamma_reciprocal_series_coef(std::size_t __n, std::size_t prec)
 {
-  std::size_t prec = 128;
-  std::cout.precision(2 + std::numeric_limits<mpfr::mpreal>::digits10(128));
+  std::cout.precision(2 + std::numeric_limits<mpfr::mpreal>::digits10(prec));
   std::cout << std::showpoint << std::fixed;//std::scientific
   auto width = 8 + std::cout.precision();
 
-  auto c = __gamma_reciprocal_series_coef(50, prec);
-  for (auto& cc : c)
-    std::cout << std::setw(width) << cc << '\n';
+  auto c128 = __gamma_reciprocal_series_coef(__n, prec);
+  std::cout << '\n';
+  for (auto& c : c128)
+    std::cout << std::setw(width) << c << '\n';
+}
+
+int
+main()
+{
+  write_gamma_reciprocal_series_coef(50, 128);
+  write_gamma_reciprocal_series_coef(50, 256);
 }
