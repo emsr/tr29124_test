@@ -22,7 +22,7 @@
 // Originally written by Brian Gaugh
 //
 // Implements integration using a recursive Gauss-Kronrod algorithm
-// Based upon gsl-2.3/integration/qag.c
+// Based on gsl/integration/qag.c
 
 #ifndef QAG_INTEGRATE_H
 #define QAG_INTEGRATE_H 1
@@ -66,7 +66,7 @@ namespace __gnu_test
       _Tp __result0, __abserr0, __resabs0, __resasc0;
       _Tp __tolerance;
       std::size_t __iteration = 0;
-      int __roundoff_type1 = 0, __roundoff_type2 = 0, __error_type = 0;
+      int __roundoff_type1 = 0, __roundoff_type2 = 0, __error_type = NO_ERROR;
 
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
 
@@ -99,31 +99,17 @@ namespace __gnu_test
       __round_off = 50 * _S_eps * __resabs0;
 
       if (__abserr0 <= __round_off && __abserr0 > __tolerance)
-	{
-	  __result = __result0;
-	  __abserr = __abserr0;
-
-	  std::__throw_runtime_error("qag_integrate: "
-				     "Cannot reach tolerance because "
-				     "of roundoff error on first attempt.");
-	}
+	__throw__IntegrationError("qag_integrate: "
+				  "cannot reach tolerance because "
+				  "of roundoff error on first attempt",
+				  ROUNDOFF_ERROR, __result0, __abserr0);
       else if ((__abserr0 <= __tolerance && __abserr0 != __resasc0)
 		|| __abserr0 == 0.0)
-	{
-	  __result = __result0;
-	  __abserr = __abserr0;
-
-	  return std::make_tuple(__result, __abserr);
-	}
+	return std::make_tuple(__result0, __abserr0);
       else if (__max_iter == 1)
-	{
-	  __result = __result0;
-	  __abserr = __abserr0;
-
-	  std::__throw_runtime_error("qag_integrate: "
-				     "a maximum of one iteration "
-				     "was insufficient.");
-	}
+	__throw__IntegrationError("qag_integrate: "
+				  "a maximum of one iteration was insufficient",
+				  MAX_ITER_ERROR, __result0, __abserr0);
 
       __area = __result0;
       __errsum = __abserr0;
@@ -135,30 +121,26 @@ namespace __gnu_test
 
       do
 	{
-	  _Tp __a1, __b1, __a2, __b2;
-	  _Tp __a_i, __b_i, __r_i, __e_i;
-	  _Tp __area1 = 0, __area2 = 0, __area12 = 0;
-	  _Tp __error1 = 0, __error2 = 0, __error12 = 0;
-	  _Tp __resasc1, __resasc2;
-	  _Tp __resabs1, __resabs2;
-
 	  // Bisect the subinterval with the largest error estimate
 
+	  _Tp __a_i, __b_i, __r_i, __e_i;
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
-	  __a1 = __a_i;
-	  __b1 = 0.5 * (__a_i + __b_i);
-	  __a2 = __b1;
-	  __b2 = __b_i;
+	  const auto __a1 = __a_i;
+	  const auto __b1 = (__a_i + __b_i) / _Tp{2};
+	  const auto __a2 = __b1;
+	  const auto __b2 = __b_i;
 
+	  _Tp __area1, __error1, __resabs1, __resasc1;
 	  __ret_type{__area1,__error1,__resabs1,__resasc1}
 	      = qk_integrate(__func, __a1, __b1, __qkintrule);
 
+	  _Tp __area2, __error2, __resabs2, __resasc2;
 	  __ret_type{__area2,__error2,__resabs2,__resasc2}
 	      = qk_integrate(__func, __a2, __b2, __qkintrule);
 
-	  __area12 = __area1 + __area2;
-	  __error12 = __error1 + __error2;
+	  const auto __area12 = __area1 + __area2;
+	  const auto __error12 = __error1 + __error2;
 
 	  __errsum += (__error12 - __e_i);
 	  __area += __area12 - __r_i;
@@ -179,13 +161,12 @@ namespace __gnu_test
 	  if (__errsum > __tolerance)
 	    {
 	      if (__roundoff_type1 >= 6 || __roundoff_type2 >= 20)
-		__error_type = 2;   /* round off error */
+		__error_type = ROUNDOFF_ERROR;
 
-	      /* set error flag in the case of bad integrand behaviour at
-		a point of the integration range */
-
+	      // Set error flag in the case of bad integrand behaviour at
+	      // a point of the integration range.
 	      if (__workspace.subinterval_too_small(__a1, __a2, __b2))
-		__error_type = 3;
+		__error_type = SINGULAR_ERROR;
 	    }
 
 	  __workspace.update(__a1, __b1, __area1, __error1,
@@ -205,20 +186,10 @@ namespace __gnu_test
 
       if (__errsum <= __tolerance)
 	return std::make_tuple(__result, __abserr);
-      else if (__error_type == 2)
-	std::__throw_runtime_error("qag_integrate: "
-				   "Cannot reach tolerance "
-				   "because of roundoff error.");
-      else if (__error_type == 3)
-	std::__throw_runtime_error("qag_integrate: "
-				   "Bad integrand behavior found "
-				   "in the integrand inteveral.");
-      else if (__iteration == __max_iter)
-	std::__throw_runtime_error("qag_integrate: "
-				   "Maximum number of iterations reached.");
-      else
-	std::__throw_runtime_error("qag_integrate: "
-				   "Could not integrate function.");
+
+      __check_error<_Tp>(__func__, __error_type);
+      __throw__IntegrationError("qag_integrate: Unknown error.",
+				UNKNOWN_ERROR, __result, __abserr);
     }
 
   template<typename _Tp, typename _FuncTp>

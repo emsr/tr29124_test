@@ -18,16 +18,14 @@
 // with this library; see the file COPYING3.  If not see
 // <http://www.gnu.org/licenses/>.
 //
-// Ported from GSL by Jason Dick
-// Originally written by Brian Gaugh
-
-//
 // Implements the integration_workspace class which stores temporary data
 // for performing integrals
-// Based upon gsl-2.3/integration/workspace.c
+// Based on gsl/integration/workspace.c
 
 #ifndef INTEGRATION_WORKSPACE_TCC
 #define INTEGRATION_WORKSPACE_TCC 1
+
+#include "integration_error.h"
 
 namespace __gnu_test
 {
@@ -59,7 +57,6 @@ namespace __gnu_test
       // integrand, subdivision increased the error estimate. In the normal
       // case the insert procedure should start after the nrmax-th largest
       // error estimate.
-
       while (__i_nrmax > 0
 	  && __errmax > this->_M_abs_error[this->_M_order[__i_nrmax - 1]])
 	{
@@ -70,9 +67,8 @@ namespace __gnu_test
       // Compute the number of elements in the list to be maintained in
       // descending order. This number depends on the number of
       // subdivisions still allowed.
-
-      int __top;
-      if(__last < (this->_M_capacity/2 + 2))
+      std::size_t __top;
+      if(__last < (2 + this->_M_capacity / 2))
 	__top = __last;
       else
 	__top = this->_M_capacity - __last + 1;
@@ -93,9 +89,7 @@ namespace __gnu_test
       this->_M_order[__jj - 1] = __i_maxerr;
 
       // Insert errmin by traversing the list bottom-up
-
       auto __errmin = this->_M_abs_error[__last];
-
       auto __kk = __top - 1;
       while (__kk > __jj - 2
 	  && __errmin >= this->_M_abs_error[this->_M_order[__kk]])
@@ -106,9 +100,7 @@ namespace __gnu_test
       this->_M_order[__kk + 1] = __last;
 
       // Set i_max and e_max
-
       __i_maxerr = this->_M_order[__i_nrmax];
-
       this->_M_current_index = __i_maxerr;
       this->_M_nrmax = __i_nrmax;
     }
@@ -157,9 +149,17 @@ namespace __gnu_test
 				       _Tp __area, _Tp __error)
     {
       const std::size_t __i_new = this->_M_size;
+      if (__i_new >= this->capacity())
+	{
+	  if (this->_M_try_resize)
+	    this->resize();
+	  else
+	    __throw__IntegrationError<_Tp>("integration_workspace: "
+					   "Exhausted work space.",
+					   MAX_ITER_ERROR);
+	}
 
-      // append the newly-created interval to the list
-
+      // Append the newly-created interval to the list.
       this->_M_lower_lim[__i_new] = __a;
       this->_M_upper_lim[__i_new] = __b;
       this->_M_result[__i_new] = __area;
@@ -180,13 +180,21 @@ namespace __gnu_test
 				       _Tp __a2, _Tp __b2,
 				       _Tp __area2, _Tp __error2)
     {
-      const std::size_t __i_max = this->_M_current_index;
-      const std::size_t __i_new = this->_M_size;
+      const auto __i_max = this->_M_current_index;
+      const auto __i_new = this->_M_size;
+      if (__i_new >= this->capacity())
+	{
+	  if (this->_M_try_resize)
+	    this->resize();
+	  else
+	    __throw__IntegrationError<_Tp>("integration_workspace: "
+					   "Exhausted work space.",
+					   MAX_ITER_ERROR);
+	}
 
-      const std::size_t __new_level = this->_M_level[__i_max] + 1;
+      const auto __new_level = this->_M_level[__i_max] + 1;
 
-      // append the newly-created intervals to the list
-
+      // Append the newly-created intervals to the list.
       if (__error2 > __error1)
 	{
 	  this->_M_lower_lim[__i_max] = __a2;

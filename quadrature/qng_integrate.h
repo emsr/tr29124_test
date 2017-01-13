@@ -341,9 +341,10 @@ namespace __gnu_test
 	return std::make_tuple(__result_kronrod, __err, 87);
 
       // Failed to converge.
-      std::__throw_runtime_error("qng_integrate: "
-				 "Failed to reach tolerance "
-				 "with highest-order rule");
+      __throw__IntegrationError("qng_integrate: "
+				"Failed to reach tolerance "
+				"with highest-order rule",
+				TOLERANCE_ERROR, __result_kronrod, __err);
     }
 
 } // namespace __gnu_test

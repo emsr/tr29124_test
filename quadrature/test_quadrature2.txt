@@ -1,5 +1,0 @@
-ERROR: qng_integrate: Failed to reach tolerance with highest-order rule
-ERROR: qag_integrate: Cannot reach tolerance because of roundoff error on first attempt.
-ERROR: qag_integrate: Bad integrand behavior found in the integrand inteveral.
-ERROR: qag_integrate: Maximum number of iterations reached.
-ERROR: qags_integrate: Unknown error.

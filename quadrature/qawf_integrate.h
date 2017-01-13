@@ -58,7 +58,7 @@ namespace __gnu_test
       const _Tp __p = 0.9;
       _Tp __factor = 1;
       _Tp __initial_eps, __eps;
-      int __error_type = 0;
+      int __error_type = NO_ERROR;
 
       __workspace.set_initial_limits(__a, __a);
 
@@ -69,10 +69,9 @@ namespace __gnu_test
       const auto _S_max = std::numeric_limits<_Tp>::max();
       const auto __limit = __workspace.capacity();
 
-      /* Test on accuracy */
-
+      // Test on accuracy.
       if (__epsabs <= _Tp{0})
-	std::__throw_runtime_error("absolute tolerance epsabs must be positive") ;
+	std::__throw_domain_error("absolute tolerance epsabs must be positive") ;
 
       if (__omega == _Tp{0})
 	{
@@ -81,7 +80,8 @@ namespace __gnu_test
 	    return std::make_tuple(_Tp{0}, _Tp{0});
 	  else
 	    // The function cos(w x) f(x) is always f(x) for w = 0.
-	    return qagiu_integrate(__cycle_workspace, __func, __a, __epsabs, 0.0);
+	    return qagiu_integrate(__cycle_workspace, __func, __a, __epsabs,
+				   _Tp{0});
 	}
 
       if (__epsabs * (_Tp{1} - __p) > std::numeric_limits<_Tp>::min())
@@ -98,7 +98,8 @@ namespace __gnu_test
       __err_ext = _S_max;
       __correc = _Tp{0};
 
-      __cycle = (2 * std::floor(std::abs(__omega)) + 1) * M_PI / std::abs(__omega);
+      __cycle = (2 * std::floor(std::abs(__omega)) + 1)
+	      * M_PI / std::abs(__omega);
 
       __wf.set_length(__cycle);
 
@@ -111,7 +112,8 @@ namespace __gnu_test
 
 	  _Tp __area1, __error1;
 	  std::tie(__area1, __error1)
-	    = qawo_integrate(__cycle_workspace, __wf, __func, __a1, __epsabs1, 0.0);
+	    = qawo_integrate(__cycle_workspace, __wf, __func, __a1, __epsabs1,
+			     _Tp{0});
 
 	  __workspace.append(__a1, __b1, __area1, __error1);
 
@@ -120,8 +122,7 @@ namespace __gnu_test
 	  __area += __area1;
 	  __errsum += __error1;
 
-	  // estimate the truncation error as 50 times the final term.
-
+	  // Estimate the truncation error as 50 times the final term.
 	  __truncation_error = 50 * std::abs(__area1);
 
 	  __total_error = __errsum + __truncation_error;
@@ -147,9 +148,8 @@ namespace __gnu_test
 	  std::tie(__reseps, __erreps) = __table.qelg();
 
 	  ++__ktmin;
-
 	  if (__ktmin >= 15 && __err_ext < 0.001 * __total_error)
-	    __error_type = 4;
+	    __error_type = EXTRAP_ROUNDOFF_ERROR;
 
 	  if (__erreps < __err_ext)
 	    {
@@ -165,7 +165,7 @@ namespace __gnu_test
 	}
 
       if (__iteration == __limit)
-	__error_type = 1;
+	__error_type = MAX_ITER_ERROR;
 
       if (__err_ext == _S_max)
 	goto compute_result;
@@ -175,7 +175,7 @@ namespace __gnu_test
       __result = __res_ext;
       __abserr = __err_ext;
 
-      if (__error_type == 0)
+      if (__error_type == NO_ERROR)
 	return std::make_tuple(__result, __abserr);
 
       if (__res_ext != _Tp{0} && __area != _Tp{0})
@@ -188,7 +188,7 @@ namespace __gnu_test
       else if (__area == _Tp{0})
 	goto return_error;
 
-      if (__error_type == 4)
+      if (__error_type == EXTRAP_ROUNDOFF_ERROR)
 	__err_ext += __truncation_error;
 
       goto return_error;
@@ -198,14 +198,14 @@ namespace __gnu_test
       __result = __area;
       __abserr = __total_error;
 
-      if (__error_type == 0)
+      if (__error_type == NO_ERROR)
 	return std::make_tuple(__result, __abserr);
 
     return_error:
 
       __check_error(__func__, __error_type, __result, __abserr);
-      std::__throw_runtime_error("qawf_integrate: "
-				 "Could not integrate function");
+      __throw__IntegrationError("qawf_integrate: Unknown error.", UNKNOWN_ERROR,
+				__result, __abserr);
     }
 
 } // namespace __gn_test

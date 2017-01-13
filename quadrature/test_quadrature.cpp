@@ -63,14 +63,6 @@ template<typename _Tp>
     mutable int neval;
   };
 
-enum
-{
-  ROUND_ERROR,
-  SINGULAR_ERROR,
-  MAX_ITER_ERROR,
-  TOLERANCE_ERROR
-};
-
 template<typename _Tp>
   struct quadrature_test
   {
@@ -366,12 +358,12 @@ template<typename _Tp>
   belch(const __gnu_test::_IntegrationError<double>& iex)
   {
     std::cout << "ERROR: " << iex.what()
-	      << "       status = " << iex.status()
+	      << "       status = " << iex.error_code()
 	      << "       result = " << iex.result()
 	      << "       abserr = " << iex.abserr()
 	      << std::endl;
     std::cerr << "ERROR: " << iex.what()
-	      << "       status = " << iex.status()
+	      << "       status = " << iex.error_code()
 	      << "       result = " << iex.result()
 	      << "       abserr = " << iex.abserr()
 	      << '\n';
@@ -1080,11 +1072,11 @@ main()
   {
     std::cout << ">>>> Test non-adaptive Gaussian integrator..." << std::endl;
 
-    int status = 0;
+    int status = __gnu_test::NO_ERROR;
     double exp_result = 7.716049379303083211E-02;
     double exp_abserr = 9.424302199601294244E-08;
     int exp_neval  =  21;
-    int exp_ier    =   0;
+    int exp_ier    =   __gnu_test::NO_ERROR;
     quadrature_test<double> qtest;
 
     double alpha = 2.6;
@@ -1125,7 +1117,7 @@ main()
     double exp_result = 7.716049382706505200E-02;
     double exp_abserr = 2.666893044866214501E-12;
     int exp_neval  =  43;
-    int exp_ier    =   0;
+    int exp_ier    =   __gnu_test::NO_ERROR;
 
     double alpha = 2.6;
     auto f = make_function<double>(f1, alpha);
@@ -1163,7 +1155,7 @@ main()
     double exp_result =-7.238969575482961938E-01;
     double exp_abserr = 1.277676889520056369E-14;
     int exp_neval  =  43;
-    int exp_ier    =   0;
+    int exp_ier    =   __gnu_test::NO_ERROR;
     quadrature_test<double> qtest;
 
     double alpha = 1.3;
@@ -1204,7 +1196,7 @@ main()
     double exp_result = 7.716049382716029525E-02;
     double exp_abserr = 8.566535680046930668E-16;
     int exp_neval  =  87;
-    int exp_ier    =   0;
+    int exp_ier    =   __gnu_test::NO_ERROR;
 
     double alpha = 2.6;
     auto f = make_function<double>(f1, alpha);
@@ -1244,20 +1236,44 @@ main()
     double exp_result = 3.222948711817264211E+01;
     double exp_abserr = 2.782360287710622870E+01;
     int exp_neval  =  87;
-    int exp_ier    =  TOLERANCE_ERROR;
+    int exp_ier    =  __gnu_test::TOLERANCE_ERROR;
 
     double alpha = -0.9;
     auto f = make_function<double>(f1, alpha);
+    auto fc = counted_function<double>(f);
 
-    auto [result, abserr, neval]
-      = __gnu_test::qng_integrate(f, 0.0, 1.0, 0.0, 1e-3);
+    double result, abserr;
+    std::size_t neval = 0;
+    try
+      {
+	std::tie(result, abserr, neval)
+	  = __gnu_test::qng_integrate(fc, 0.0, 1.0, 0.0, 1e-3);
+      }
+    catch (__gnu_test::_IntegrationError<double>& iex)
+      {
+	status = iex.error_code();
+	result = iex.result();
+	abserr = iex.abserr();
+	neval = fc.neval;
+      }
     qtest.test_rel(result, exp_result, 1e-15, "qng(f1) sing beyond 87pt result");
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qng(f1) sing beyond 87pt abserr");
     qtest.test_int(neval, exp_neval, "qng(f1) sing beyond 87pt neval");
     qtest.test_int(status, exp_ier, "qng(f1) sing beyond 87pt status");
 
-    std::tie(result, abserr, neval)
-      = __gnu_test::qng_integrate(f, 1.0, 0.0, 0.0, 1e-3);
+    fc.neval = 0;
+    try
+      {
+	std::tie(result, abserr, neval)
+	  = __gnu_test::qng_integrate(fc, 1.0, 0.0, 0.0, 1e-3);
+      }
+    catch (__gnu_test::_IntegrationError<double>& iex)
+      {
+	status = iex.error_code();
+	result = iex.result();
+	abserr = iex.abserr();
+	neval = fc.neval;
+      }
     qtest.test_rel(result, -exp_result, 1e-15, "qng(f1) reverse beyond 87pt result");
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qng(f1) rev beyond 87pt abserr");
     qtest.test_int(neval, exp_neval, "qng(f1) rev beyond 87pt neval");
@@ -1286,7 +1302,7 @@ main()
     double exp_result = 7.716049382715854665E-02;
     double exp_abserr = 6.679384885865053037E-12;
     int exp_neval  =     165;
-    int exp_ier    =       0;
+    int exp_ier    =       __gnu_test::NO_ERROR;
     int exp_last   =       6;
 
     double a[6] = { 0, 0.5, 0.25, 0.125, 0.0625, 0.03125 };
@@ -1302,7 +1318,7 @@ main()
     double alpha = 2.6;
     auto f = make_function<double>(f1, alpha);
 
-    counted_function<double> fc(f);
+    auto fc = counted_function<double>(f);
 
     auto [result, abserr]
       = __gnu_test::qag_integrate(w, fc, 0.0, 1.0, 0.0, 1e-10, 1000,
@@ -1330,7 +1346,6 @@ main()
       qtest.test_int(w.order(i), order[i]-1, "qag(f1) smooth order");
 
     fc.neval = 0;
-
     std::tie(result, abserr)
       = __gnu_test::qag_integrate(w, fc, 1.0, 0.0, 0.0, 1e-10, 1000,
 				  __gnu_test::QK_15);
@@ -1363,7 +1378,7 @@ main()
     double exp_result = 7.716049382716050342E-02;
     double exp_abserr = 2.227969521869139532E-15;
     int exp_neval  =     315;
-    int exp_ier    =       0;
+    int exp_ier    =       __gnu_test::NO_ERROR;
     int exp_last   =       8;
 
     double a[8] = { 0, 0.5, 0.25, 0.125, 0.0625, 0.03125, 0.015625,
@@ -1382,7 +1397,7 @@ main()
 
     double alpha = 2.6;
     auto f = make_function<double>(f1, alpha);
-    counted_function<double> fc(f);
+    auto fc = counted_function<double>(f);
 
     auto [result, abserr]
       = __gnu_test::qag_integrate(w, fc, 0.0, 1.0, 1e-14, 0.0, 1000, __gnu_test::QK_21);
@@ -1410,7 +1425,8 @@ main()
 
 
     fc.neval = 0;
-    std::tie(result, abserr) = __gnu_test::qag_integrate(w, fc, 1.0, 0.0, 1e-14, 0.0, 1000, __gnu_test::QK_21);
+    std::tie(result, abserr)
+      = __gnu_test::qag_integrate(w, fc, 1.0, 0.0, 1e-14, 0.0, 1000, __gnu_test::QK_21);
 
     qtest.test_rel(result, -exp_result, 1e-15, "qag(f1, 21pt) reverse result");
     qtest.test_rel(abserr, exp_abserr, 1e-6, "qag(f1, 21pt) reverse abserr");
@@ -1435,7 +1451,7 @@ main()
     std::cout << ">>>> Test adaptive integration of an oscillatory function\n"
 		 ">>>> which terminates because of roundoff error, uses the 31-pt rule..." << std::endl;
 
-    int status = 0;
+    int status = __gnu_test::NO_ERROR;
     quadrature_test<double> qtest;
 
     __gnu_test::integration_workspace<double> w(1000);
@@ -1443,17 +1459,27 @@ main()
     double exp_result = -7.238969575482959717E-01;
     double exp_abserr =  1.285805464427459261E-14;
     int exp_neval   =     31;
-    int exp_ier     =     ROUND_ERROR;
+    int exp_ier     =     __gnu_test::ROUNDOFF_ERROR;
     int exp_last    =     1;
 
     double alpha = 1.3;
     auto f = make_function<double>(f3, alpha);
 
-    counted_function<double> fc(f);
+    auto fc = counted_function<double>(f);
 
-    auto [result, abserr]
-     = __gnu_test::qag_integrate(w, fc, 0.3, 2.71, 1e-14, 0.0, 1000,
-				 __gnu_test::QK_31);
+    double result, abserr;
+    try
+      {
+	std::tie(result, abserr)
+	  = __gnu_test::qag_integrate(w, fc, 0.3, 2.71, 1e-14, 0.0, 1000,
+				     __gnu_test::QK_31);
+      }
+    catch (__gnu_test::_IntegrationError<double>& iex)
+      {
+	result = iex.result();
+	abserr = iex.abserr();
+	status = iex.error_code();
+      }
 
     qtest.test_rel(result, exp_result, 1e-15, "qag(f3, 31pt) oscill result");
     qtest.test_rel(abserr, exp_abserr, 1e-6, "qag(f3, 31pt) oscill abserr");
@@ -1462,9 +1488,18 @@ main()
     qtest.test_int(status, exp_ier, "qag(f3, 31pt) oscill status");
 
     fc.neval = 0;
-    std::tie(result, abserr)
-     = __gnu_test::qag_integrate(w, fc, 2.71, 0.3, 1e-14, 0.0, 1000,
-				 __gnu_test::QK_31);
+    try
+      {
+	std::tie(result, abserr)
+	  = __gnu_test::qag_integrate(w, fc, 2.71, 0.3, 1e-14, 0.0, 1000,
+				     __gnu_test::QK_31);
+      }
+    catch (__gnu_test::_IntegrationError<double>& iex)
+      {
+	result = iex.result();
+	abserr = iex.abserr();
+	status = iex.error_code();
+      }
 
     qtest.test_rel(result, -exp_result, 1e-15, "qag(f3, 31pt) reverse result");
     qtest.test_rel(abserr, exp_abserr, 1e-6, "qag(f3, 31pt) reverse abserr");
@@ -1487,32 +1522,51 @@ main()
   {
     std::cout << ">>>> Test singularity detection (singularity at x=-0.1 in this example)..." << std::endl;
 
-    int status = 0;
+    int status = __gnu_test::NO_ERROR;
     quadrature_test<double> qtest;
 
     __gnu_test::integration_workspace<double> w(1000);
 
     int exp_neval  =     5151;
-    int exp_ier    =     SINGULAR_ERROR;
+    int exp_ier    =     __gnu_test::SINGULAR_ERROR;
     int exp_last   =     51;
 
     double alpha = 2.0;
     auto f = make_function<double>(f16, alpha);
 
-    counted_function<double> fc(f);
+    auto fc = counted_function<double>(f);
 
-    auto [result, abserr]
-      = __gnu_test::qag_integrate(w, fc, -1.0, 1.0, 1e-14, 0.0, 1000,
-				  __gnu_test::QK_51);
+    double result, abserr;
+    try
+      {
+	std::tie(result, abserr)
+	  = __gnu_test::qag_integrate(w, fc, -1.0, 1.0, 1e-14, 0.0, 1000,
+				      __gnu_test::QK_51);
+      }
+    catch (__gnu_test::_IntegrationError<double>& iex)
+      {
+	result = iex.result();
+	abserr = iex.abserr();
+	status = iex.error_code();
+      }
 
     qtest.test_int(fc.neval, exp_neval, "qag(f16, 51pt) sing neval");
     qtest.test_int(w.size(), exp_last, "qag(f16, 51pt) sing last");
     qtest.test_int(status, exp_ier, "qag(f16, 51pt) sing status");
 
     fc.neval = 0;
-    std::tie(result, abserr)
-      = __gnu_test::qag_integrate(w, fc, 1.0, -1.0, 1e-14, 0.0, 1000,
-				  __gnu_test::QK_51);
+    try
+      {
+	std::tie(result, abserr)
+	  = __gnu_test::qag_integrate(w, fc, 1.0, -1.0, 1e-14, 0.0, 1000,
+				      __gnu_test::QK_51);
+      }
+    catch (__gnu_test::_IntegrationError<double>& iex)
+      {
+	result = iex.result();
+	abserr = iex.abserr();
+	status = iex.error_code();
+      }
 
     qtest.test_int(fc.neval, exp_neval, "qag(f16, 51pt) rev neval");
     qtest.test_int(w.size(), exp_last, "qag(f16, 51pt) rev last");
@@ -1533,7 +1587,7 @@ main()
   {
     std::cout << ">>>> Test hitting the iteration limit..." << std::endl;
 
-    int status = 0;
+    int status = __gnu_test::NO_ERROR;
     quadrature_test<double> qtest;
 
     __gnu_test::integration_workspace<double> w(3);
@@ -1541,7 +1595,7 @@ main()
     double exp_result =  9.565151449233894709;
     double exp_abserr =  1.570369823891028460E+01;
     int exp_neval  =     305;
-    int exp_ier    =     MAX_ITER_ERROR;
+    int exp_ier    =     __gnu_test::MAX_ITER_ERROR;
     int exp_last   =     3;
 
     double a[3] = { -5.000000000000000000E-01,
@@ -1564,11 +1618,21 @@ main()
 
     double alpha = 1.0;
     auto f = make_function<double>(f16, alpha);
-    counted_function<double> fc(f);
+    auto fc = counted_function<double>(f);
 
-    auto [result, abserr]
-      = __gnu_test::qag_integrate(w, fc, -1.0, 1.0, 1e-14, 0.0, 3,
-				  __gnu_test::QK_61);
+    double result, abserr;
+    try
+      {
+	std::tie(result, abserr)
+	  = __gnu_test::qag_integrate(w, fc, -1.0, 1.0, 1e-14, 0.0, 3,
+				      __gnu_test::QK_61);
+      }
+    catch (__gnu_test::_IntegrationError<double>& iex)
+      {
+	result = iex.result();
+	abserr = iex.abserr();
+	status = iex.error_code();
+      }
 
     qtest.test_rel(result, exp_result, 1e-15, "qag(f16, 61pt) limit result");
     qtest.test_rel(abserr, exp_abserr, 1e-6, "qag(f16, 61pt) limit abserr");
@@ -1592,9 +1656,18 @@ main()
       qtest.test_int(w.order(i), order[i]-1, "qag(f16, 61pt) limit order");
 
     fc.neval = 0;
-    std::tie(result, abserr)
-      = __gnu_test::qag_integrate(w, fc, 1.0, -1.0, 1e-14, 0.0, 1000,
-				  __gnu_test::QK_61);
+    try
+      {
+	std::tie(result, abserr)
+	  = __gnu_test::qag_integrate(w, fc, 1.0, -1.0, 1e-14, 0.0, 1000,
+				      __gnu_test::QK_61);
+      }
+    catch (__gnu_test::_IntegrationError<double>& iex)
+      {
+	result = iex.result();
+	abserr = iex.abserr();
+	status = iex.error_code();
+      }
 
     qtest.test_rel(result, -exp_result, 1e-15, "qag(f16, 61pt) reverse result");
     qtest.test_rel(abserr, exp_abserr, 1e-6, "qag(f16, 61pt) reverse abserr");
@@ -1625,7 +1698,7 @@ main()
     double exp_result = 7.716049382715789440E-02;
     double exp_abserr = 2.216394961010438404E-12;
     int exp_neval  =     189;
-    int exp_ier    =       0;
+    int exp_ier    =       __gnu_test::NO_ERROR;
     int exp_last   =       5;
 
     double a[5] = { 0, 0.5, 0.25, 0.125, 0.0625 };
@@ -1644,7 +1717,7 @@ main()
 
     double alpha = 2.6;
     auto f = make_function<double>(f1, alpha);
-    counted_function<double> fc(f);
+    auto fc = counted_function<double>(f);
 
     auto [result, abserr]
       = __gnu_test::qags_integrate(w, fc, 0.0, 1.0, 0.0, 1e-10);
@@ -1703,7 +1776,7 @@ main()
     double exp_result = -5.908755278982136588E+03;
     double exp_abserr = 1.299646281053874554E-10;
     int exp_neval  =     357;
-    int exp_ier    =       0;
+    int exp_ier    =       __gnu_test::NO_ERROR;
     int exp_last   =       9;
 
     double a[9] = { 1.000000000000000000E+00,
@@ -1746,7 +1819,7 @@ main()
 
     double alpha = 2.0;
     auto f = make_function<double>(f11, alpha);
-    counted_function<double> fc(f);
+    auto fc = counted_function<double>(f);
 
     auto [result, abserr]
       = __gnu_test::qags_integrate(w, fc, 1.0, 1000.0, 1e-7, 0.0);
@@ -1805,7 +1878,7 @@ main()
     double exp_result = -3.616892186127022568E-01;
     double exp_abserr = 3.016716913328831851E-06;
     int exp_neval  =      285;
-    int exp_ier    =        0;
+    int exp_ier    =        __gnu_test::NO_ERROR;
     int exp_last   =       10;
 
     double a[10] = { 9.687500000000000000E-01,
@@ -1851,7 +1924,7 @@ main()
     int order[10] = { 1, 2, 3, 5, 7, 9, 4, 6, 8, 10 };
 
     auto f = make_function<double>(f455);
-    counted_function<double> fc(f);
+    auto fc = counted_function<double>(f);
 
     auto [result, abserr]
       = __gnu_test::qagiu_integrate(w, fc, 0.0, 0.0, 1.0e-3);
@@ -1900,7 +1973,7 @@ main()
     double exp_result = 6.553600000000024738E+04;
     double exp_abserr = 7.121667111456009280E-04;
     int exp_neval  =      285;
-    int exp_ier    =        0;
+    int exp_ier    =        __gnu_test::NO_ERROR;
     int exp_last   =       10;
 
     double a[10] = { 0.000000000000000000E+00,
@@ -1948,7 +2021,7 @@ main()
     double alpha = 5.0;
 
     auto f = make_function<double>(f15, alpha);
-    counted_function<double> fc(f);
+    auto fc = counted_function<double>(f);
 
     auto [result, abserr]
       = __gnu_test::qagiu_integrate(w, fc, 0.0, 0.0, 1.0e-7);
@@ -1997,7 +2070,7 @@ main()
     double exp_result = 1.000000000006713292E-04;
     double exp_abserr = 3.084062020905636316E-09;
     int exp_neval  =      165;
-    int exp_ier    =        0;
+    int exp_ier    =        __gnu_test::NO_ERROR;
     int exp_last   =        6;
 
     double a[6] = { 0.000000000000000000E+00,
@@ -2029,7 +2102,7 @@ main()
     double alpha = 1.0;
 
     auto f = make_function<double>(f16, alpha);
-    counted_function<double> fc(f);
+    auto fc = counted_function<double>(f);
 
     auto [result, abserr]
       = __gnu_test::qagiu_integrate(w, fc, 99.9, 1.0e-7, 0.0);
@@ -2078,7 +2151,7 @@ main()
     double exp_result = 2.275875794468747770E+00;
     double exp_abserr = 7.436490118267390744E-09;
     int exp_neval  =      270;
-    int exp_ier    =        0;
+    int exp_ier    =        __gnu_test::NO_ERROR;
     int exp_last   =        5;
 
     double a[5] = { 1.250000000000000000E-01,
@@ -2104,7 +2177,7 @@ main()
     int order[5] = { 2, 1, 3, 5, 4 };
 
     auto f = make_function<double>(myfn1);
-    counted_function<double> fc(f);
+    auto fc = counted_function<double>(f);
 
     auto [result, abserr] = __gnu_test::qagi_integrate(w, fc, 1.0e-7, 0.0);
 
@@ -2152,7 +2225,7 @@ main()
     double exp_result = 2.718281828459044647E+00;
     double exp_abserr = 1.588185109253204805E-10;
     int exp_neval  =      135;
-    int exp_ier    =        0;
+    int exp_ier    =        __gnu_test::NO_ERROR;
     int exp_last   =        5;
 
     double a[5] = { 0.000000000000000000E+00,
@@ -2179,7 +2252,7 @@ main()
 
     double alpha = 1.0;
     auto f = make_function<double>(myfn2, alpha);
-    counted_function<double> fc(f);
+    auto fc = counted_function<double>(f);
 
     auto [result, abserr]
       = __gnu_test::qagil_integrate(w, fc, 1.0, 1.0e-7, 0.0);
@@ -2228,7 +2301,7 @@ main()
     double exp_result = 5.274080611672716401E+01;
     double exp_abserr = 1.755703848687062418E-04;
     int exp_neval  =        777;
-    int exp_ier    =          0;
+    int exp_ier    =          __gnu_test::NO_ERROR;
     int exp_last   =         20;
 
     double a[20] = { 9.687500000000000000E-01,
@@ -2315,7 +2388,7 @@ main()
                      15, 16, 14, 19, 17, 20, 13, 9, 5 };
 
     auto f = make_function<double>(f454);
-    counted_function<double> fc(f);
+    auto fc = counted_function<double>(f);
 
     std::vector<double> pts{0.0, 1.0, std::sqrt(2.0), 3.0};
 
@@ -2366,7 +2439,7 @@ main()
     double exp_result = -8.994400695837000137E-02;
     double exp_abserr =  1.185290176227023727E-06;
     int exp_neval  =      215;
-    int exp_ier    =        0;
+    int exp_ier    =        __gnu_test::NO_ERROR;
     int exp_last   =        6;
 
     double a[6] = { -1.000000000000000000E+00,
@@ -2396,7 +2469,7 @@ main()
     int order[6] = { 1, 5, 3, 2, 4, 6 };
 
     auto f = make_function<double>(f459);
-    counted_function<double> fc(f);
+    auto fc = counted_function<double>(f);
 
     auto [result, abserr]
       = __gnu_test::qawc_integrate(w, fc, -1.0, 5.0, 0.0, 0.0, 1.0e-3);
@@ -2457,7 +2530,7 @@ main()
     double exp_result = -1.892751853489401670E-01;
     double exp_abserr = 1.129133712015747658E-08;
     int exp_neval  =      280;
-    int exp_ier    =        0;
+    int exp_ier    =        __gnu_test::NO_ERROR;
     int exp_last   =        8;
 
     double a[8] = { 0.000000000000000000E+00,
@@ -2495,7 +2568,7 @@ main()
     int order[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
 
     auto f = make_function<double>(f458);
-    counted_function<double> fc(f);
+    auto fc = counted_function<double>(f);
 
     auto [result, abserr]
       = __gnu_test::qaws_integrate(w, t, fc, 0.0, 1.0, 0.0, 1.0e-7);
@@ -2522,9 +2595,7 @@ main()
       qtest.test_int(w.order(i), order[i]-1, "qaws(f458) ln(x-a) order");
 
     // Test without logs
-
     t.set(-0.5, -0.3, 0, 0);
-
     std::tie(result, abserr)
       = __gnu_test::qaws_integrate(w, t, fc, 0.0, 1.0, 0.0, 1.0e-7);
 
@@ -2535,9 +2606,7 @@ main()
     qtest.test_rel(abserr, exp_abserr, 1e-6, "qaws(f458) AB abserr");
 
     // Test with ln(x - a)
-
     t.set(-0.5, -0.3, 1, 0);
-
     std::tie(result, abserr)
       = __gnu_test::qaws_integrate(w, t, fc, 0.0, 1.0, 0.0, 1.0e-7);
 
@@ -2548,9 +2617,7 @@ main()
     qtest.test_rel(abserr, exp_abserr, 1e-6, "qaws(f458) AB ln(x-a) abserr");
 
     // Test with ln(b - x)
-
     t.set(-0.5, -0.3, 0, 1);
-
     std::tie(result, abserr)
       = __gnu_test::qaws_integrate(w, t, fc, 0.0, 1.0, 0.0, 1.0e-7);
 
@@ -2561,9 +2628,7 @@ main()
     qtest.test_rel(abserr,exp_abserr,1e-6,"qaws(f458) AB ln(b-x) abserr");
 
     // Test with ln(x - a) ln(b - x)
-
-    t.set (-0.5, -0.3, 1, 1);
-
+    t.set(-0.5, -0.3, 1, 1);
     std::tie(result, abserr)
       = __gnu_test::qaws_integrate(w, t, fc, 0.0, 1.0, 0.0, 1.0e-7);
 
@@ -2598,7 +2663,7 @@ main()
     double exp_result = -1.281368483991674190E-01;
     double exp_abserr =  6.875028324415666248E-12;
     int exp_neval  =      305;
-    int exp_ier    =        0;
+    int exp_ier    =        __gnu_test::NO_ERROR;
     int exp_last   =        9;
 
     double a[9] = { 0.000000000000000000E+00,
@@ -2640,7 +2705,7 @@ main()
     int order[9] = { 1, 2, 4, 3, 6, 5, 7, 8, 9 };
 
     auto f = make_function<double>(f456<double>);
-    counted_function<double> fc(f);
+    auto fc = counted_function<double>(f);
 
     auto [result, abserr] = __gnu_test::qawo_integrate(w, wo, fc, 0.0, 0.0, 1e-7);
 
@@ -2705,7 +2770,7 @@ main()
     double exp_result = 9.999999999279802765E-01;
     double exp_abserr = 1.556289974669056164E-08;
     int exp_neval  =      590;
-    int exp_ier    =        0;
+    int exp_ier    =        __gnu_test::NO_ERROR;
     int exp_last   =       12;
 
     double r[12] = { 1.013283128125232802E+00,
@@ -2734,7 +2799,7 @@ main()
                     2.130457268934021451E-17 };
 
     auto f = make_function<double>(f457);
-    counted_function<double> fc(f);
+    auto fc = counted_function<double>(f);
 
     auto [result, abserr]
       = __gnu_test::qawf_integrate(w, wc, wo, fc, 0.0, 1e-7);
@@ -2952,10 +3017,10 @@ main()
     const double
     e4[4][2]
     {
-      {-sqrt((3.0+2.0*std::sqrt(6./5.0))/7.0), (18.0-std::sqrt(30.0))/36.0},
-      {-sqrt((3.0-2.0*std::sqrt(6./5.0))/7.0), (18.0+std::sqrt(30.0))/36.0},
-      { sqrt((3.0-2.0*std::sqrt(6./5.0))/7.0), (18.0+std::sqrt(30.0))/36.0},
-      { sqrt((3.0+2.0*std::sqrt(6./5.0))/7.0), (18.0-std::sqrt(30.0))/36.0}
+      {-sqrt((3.0+2.0*std::sqrt(6.0/5.0))/7.0), (18.0-std::sqrt(30.0))/36.0},
+      {-sqrt((3.0-2.0*std::sqrt(6.0/5.0))/7.0), (18.0+std::sqrt(30.0))/36.0},
+      { sqrt((3.0-2.0*std::sqrt(6.0/5.0))/7.0), (18.0+std::sqrt(30.0))/36.0},
+      { sqrt((3.0+2.0*std::sqrt(6.0/5.0))/7.0), (18.0-std::sqrt(30.0))/36.0}
     };
 
     const double

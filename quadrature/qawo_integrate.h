@@ -52,7 +52,7 @@ namespace __gnu_test
       _Tp __correc = 0;
       std::size_t __ktmin = 0;
       int __roundoff_type1 = 0, __roundoff_type2 = 0, __roundoff_type3 = 0;
-      int __error_type = 0, __error_type2 = 0;
+      int __error_type = NO_ERROR, __error_type2 = NO_ERROR;
 
       const auto _S_max = std::numeric_limits<_Tp>::max();
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
@@ -74,7 +74,6 @@ namespace __gnu_test
       auto __result = _Tp{0};
       auto __abserr = _Tp{0};
 
-
       if (__epsabs <= 0 && (__epsrel < 50 * _S_eps || __epsrel < 0.5e-28))
 	std::__throw_runtime_error("qawo_integrate: "
 				   "Tolerance cannot be achieved "
@@ -92,27 +91,16 @@ namespace __gnu_test
       auto __tolerance = std::max(__epsabs, __epsrel * std::abs(__result0));
 
       if (__abserr0 <= 100 * _S_eps * __resabs0 && __abserr0 > __tolerance)
-	{
-	  __result = __result0;
-	  __abserr = __abserr0;
-	  std::__throw_runtime_error("qawo_integrate: Cannot reach tolerance "
-				     "because of roundoff error"
-				     "on first attempt.");
-	}
+	__throw__IntegrationError("qawo_integrate: "
+				  "cannot reach tolerance because "
+				  "of roundoff error on first attempt",
+				  ROUNDOFF_ERROR, __result0, __abserr0);
       else if ((__abserr0 <= __tolerance && __abserr0 != __resasc0) || __abserr0 == 0.0)
-	{
-	  __result = __result0;
-	  __abserr = __abserr0;
-	  return std::make_tuple(__result, __abserr);
-	}
+	return std::make_tuple(__result0, __abserr0);
       else if (__limit == 1)
-	{
-	  __result = __result0;
-	  __abserr = __abserr0;
-	  std::__throw_runtime_error("qawo_integrate: "
-				     "A maximum of one iteration "
-				     "was insufficient.");
-	}
+	__throw__IntegrationError("qawo_integrate: "
+				  "a maximum of one iteration was insufficient",
+				  MAX_ITER_ERROR, __result0, __abserr0);
 
       if (0.5 * __abs_omega * std::abs(__b - __a) <= _Tp{2})
 	{
@@ -166,9 +154,8 @@ namespace __gnu_test
 	  auto __error12 = __error1 + __error2;
 	  auto __last_e_i = __e_i;
 
-	  // Improve previous approximations to the integral and test for
-	  // accuracy.
-
+	  // Improve previous approximations to the integral and test
+	  // for accuracy.
 	  __errsum += __error12 - __e_i;
 	  __area += __area12 - __r_i;
 
@@ -192,17 +179,18 @@ namespace __gnu_test
 
 	  // Test for roundoff and eventually set error flag.
 
-	  if (__roundoff_type1 + __roundoff_type2 >= 10 || __roundoff_type3 >= 20)
-	    __error_type = 2; // round off error
+	  if (__roundoff_type1 + __roundoff_type2 >= 10
+	   || __roundoff_type3 >= 20)
+	    __error_type = ROUNDOFF_ERROR; // round off error
 
 	  if (__roundoff_type2 >= 5)
-	    __error_type2 = 1;
+	    __error_type2 = MAX_ITER_ERROR;
 
 	  // Set error flag in the case of bad integrand behaviour at
 	  // a point of the integration range.
 
-	  if (integration_workspace<_Tp>::subinterval_too_small(__a1, __a2, __b2))
-	    __error_type = 4;
+	  if (__workspace.subinterval_too_small(__a1, __a2, __b2))
+	    __error_type = EXTRAP_ROUNDOFF_ERROR;
 
 	  // append the newly-created intervals to the list.
 
@@ -222,7 +210,7 @@ namespace __gnu_test
 
 	  if (__iteration >= __limit - 1)
 	    {
-	      __error_type = 1;
+	      __error_type = MAX_ITER_ERROR;
 	      break;
 	    }
 
@@ -297,9 +285,8 @@ namespace __gnu_test
 	  std::tie(__reseps, __abseps) = __table.qelg();
 
 	  ++__ktmin;
-
 	  if (__ktmin > 5 && __err_ext < 0.001 * __errsum)
-	    __error_type = 5;
+	    __error_type = DIVERGENCE_ERROR;
 
 	  if (__abseps < __err_ext)
 	    {
@@ -317,7 +304,7 @@ namespace __gnu_test
 	  if (__table.get_nn() == 1)
 	    __disallow_extrapolation = 1;
 
-	  if (__error_type == 5)
+	  if (__error_type == DIVERGENCE_ERROR)
 	    break;
 
 	  // work on interval with largest error.
@@ -345,8 +332,8 @@ namespace __gnu_test
 	  if (__error_type2)
 	    __err_ext += __correc;
 
-	  if (__error_type == 0)
-	    __error_type = 3;
+	  if (__error_type == NO_ERROR)
+	    __error_type = SINGULAR_ERROR;
 
 	  if (__result != 0 && __area != 0)
 	    {
@@ -382,7 +369,7 @@ namespace __gnu_test
 
       auto __ratio = __res_ext / __area;
       if (__ratio < 0.01 || __ratio > 100 || __errsum > std::abs(__area))
-	__error_type = 7;
+	__error_type = UNKNOWN_ERROR;
 
       __check_error<_Tp>(__func__, __error_type);
       return std::make_tuple(__result, __abserr);

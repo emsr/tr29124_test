@@ -69,16 +69,18 @@ namespace __gnu_test
       // Perform the first integration.
       _Tp __result0, __abserr0;
       {
-	_Tp __area1, __area2;
-	_Tp __error1, __error2;
-	bool __err_reliable1, __err_reliable2;
 	const auto __a1 = __a;
-	const auto __b1 = 0.5 * (__a + __b);
+	const auto __b1 = (__a + __b) / _Tp{2};
 	const auto __a2 = __b1;
 	const auto __b2 = __b;
 
+	_Tp __area1, __error1;
+	bool __err_reliable1;
 	std::tie(__area1, __error1, __err_reliable1)
 	  = qc25s(__table, __func, __a, __b, __a1, __b1);
+
+	_Tp __area2, __error2;
+	bool __err_reliable2;
 	std::tie(__area2, __error2, __err_reliable2)
 	  = qc25s(__table, __func, __a, __b, __a2, __b2);
 
@@ -98,39 +100,38 @@ namespace __gnu_test
 	__workspace.set_initial(__a, __b, __result0, __abserr0);
       }
 
-      /* Test on accuracy */
-
+      // Test on accuracy; Use 0.01 relative error as an extra safety
+      // margin on the first iteration (ignored for subsequent iterations).
       auto __tolerance = std::max(__epsabs, __epsrel * std::abs(__result0));
-
-      /* Test on accuracy, use 0.01 relative error as an extra safety
-	 margin on the first iteration (ignored for subsequent iterations) */
-
       if (__abserr0 < __tolerance && __abserr0 < 0.01 * std::abs(__result0))
 	return std::make_tuple(__result0, __abserr0);
       else if (__limit == 1)
-	std::__throw_runtime_error("qaws_integrate: A maximum of one iteration was insufficient");
+	__throw__IntegrationError("qaws_integrate: "
+				  "a maximum of one iteration was insufficient",
+				  MAX_ITER_ERROR, __result0, __abserr0);
 
       auto __area = __result0;
       auto __errsum = __abserr0;
       auto __iteration = 2u;
-      int __error_type = 0;
+      int __error_type = NO_ERROR;
       do
 	{
-	  /* Bisect the subinterval with the largest error estimate */
-
+	  // Bisect the subinterval with the largest error estimate.
 	  _Tp __a_i, __b_i, __r_i, __e_i;
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
 	  const auto __a1 = __a_i;
-	  const auto __b1 = 0.5 * (__a_i + __b_i);
+	  const auto __b1 = (__a_i + __b_i) / _Tp{2};
 	  const auto __a2 = __b1;
 	  const auto __b2 = __b_i;
 
 	  _Tp __area1, __error1;
-	  _Tp __area2, __error2;
-	  bool __err_reliable1, __err_reliable2;
+	  bool __err_reliable1;
 	  std::tie(__area1, __error1, __err_reliable1)
 	    = qc25s(__table, __func, __a, __b, __a1, __b1);
+
+	  _Tp __area2, __error2;
+	  bool __err_reliable2;
 	  std::tie(__area2, __error2, __err_reliable2)
 	    = qc25s(__table, __func, __a, __b, __a2, __b2);
 
@@ -145,24 +146,23 @@ namespace __gnu_test
 	    {
 	      auto __delta = __r_i - __area12;
 
-	      if (std::abs (__delta) <= 1.0e-5 * std::abs(__area12) && __error12 >= 0.99 * __e_i)
+	      if (std::abs (__delta) <= 1.0e-5 * std::abs(__area12)
+		 && __error12 >= 0.99 * __e_i)
 		++__roundoff_type1;
 	      if (__iteration >= 10 && __error12 > __e_i)
 		++__roundoff_type2;
 	    }
 
 	  __tolerance = std::max(__epsabs, __epsrel * std::abs(__area));
-
 	  if (__errsum > __tolerance)
 	    {
 	      if (__roundoff_type1 >= 6 || __roundoff_type2 >= 20)
-		__error_type = 2;   /* round off error */
+		__error_type = ROUNDOFF_ERROR;
 
-	      /* set error flag in the case of bad integrand behaviour at
-		 a point of the integration range */
-
-	      if (integration_workspace<_Tp>::subinterval_too_small(__a1, __a2, __b2))
-		__error_type = 3;
+	      // set error flag in the case of bad integrand behaviour at
+	      // a point of the integration range
+	      if (__workspace.subinterval_too_small(__a1, __a2, __b2))
+		__error_type = SINGULAR_ERROR;
 	    }
 
 	  __workspace.update(__a1, __b1, __area1, __error1,
@@ -178,24 +178,17 @@ namespace __gnu_test
       const auto __abserr = __errsum;
 
       if (__iteration == __limit)
-	__error_type = 6;
+	__error_type = MAX_SUBDIV_ERROR;
 
       if (__errsum <= __tolerance)
 	return std::make_tuple(__result, __abserr);
-      else if (__error_type == 2)
-	std::__throw_runtime_error("qaws_integrate: "
-				   "Cannot reach tolerance "
-				   "because of roundoff error");
-      else if (__error_type == 3)
-	std::__throw_runtime_error("qaws_integrate: "
-				   "Bad integrand behavior found "
-				   "in the integration interval");
-      else if (__error_type == 6)
-	std::__throw_runtime_error("qaws_integrate: "
-				   "Maximum number of subdivisions reached");
-      else
-	std::__throw_runtime_error("qaws_integrate: "
-				   "Could not integrate function");
+
+      if (__error_type == NO_ERROR)
+	return std::make_tuple(__result, __abserr);
+
+      __check_error<_Tp>(__func__, __error_type);
+      __throw__IntegrationError("qaws_integrate: Unknown error.",
+				UNKNOWN_ERROR, __result, __abserr);
     }
 
   template<typename _FuncTp, typename _Tp>
