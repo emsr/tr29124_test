@@ -1,4 +1,4 @@
-1. Get all the tests passing for all the GSL integrals.
+1. [] Get all the tests passing for all the GSL integrals.
 
    Remaining fails:
 
@@ -17,7 +17,7 @@
 2. [] Go through and make everything clean style-wise.
    Columns, __, _S_eps, _S_max.
 
-3. Make the various APIs consistent.
+3. [] Make the various APIs consistent.
 
 4. [] Make narrow types instead of pair and tuple.
    Lean towards AOS i think.
@@ -27,36 +27,40 @@
    You'll eventually want to hack src/c++11/functexcept.cc and bits/functexcept.h.
    _GLIBCXX_THROW_OR_ABORT is in bits/c++config
 
-6. Get good names: *Integral - to go with *Sum.
+6. [] Get good names: *Integral - to go with *Sum.
 
-7. These tables should be inside classes.
+7. [] These tables should be inside classes.
    Users should not have to build them in real use.
    Even now, things like 'limit' should come from the table and not another argument.
    Or a limit arg would go to an internally constructed table.
 
-8. The tables are useful for debugging.
+8. [] The tables are useful for debugging.
    I might make these *_integrate public static members of the classes.
 
-9. The GSL seems to lack meat&potatoes integrals like midopint, trapezoid, romberg, ...
+9. [] The GSL seems to lack meat&potatoes integrals like midopint, trapezoid, romberg, ...
    These are in NRiC++ in my trees. old/integration.tcc shold be truly genericized and packaged.
 
-10. Change from __gnu_test to __gnu_cxx
+10. [] Change from __gnu_test to __gnu_cxx
 
-11. Make the library truly type generic.
+11. [] Make the library truly type generic.
 
-12. Make the whole library deal with functions that return other than real - i.e. comlpex.
+12. [] Make the whole library deal with functions that return other than real - i.e. comlpex.
     We want to be able to do contour integrals.
     var_t for the integration variable
     ret_t for function return
     real_t - the scalar type of var_t - Do we require
     area_t - var_t()*ret_t()
 
-13. Gather requirements of types and of __func.
+13. [] Gather requirements of types and of __func.
 
-14. Gather more testcases.
+14. [] Gather more testcases.
 
 15. Try some integral reps of special functions.  At least for testing.
 
 16. I have Gauss rules out the wazoo.  Hermite, Jacobi, Laguerre, ...
     Put these in and get tests for them.
 
+17. The last (5th) qng test throws.  But it gets the expected answer!
+    This is an XFAIL!
+
+18. TOLERANCE_ERROR - A domain/precondition error.

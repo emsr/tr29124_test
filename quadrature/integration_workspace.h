@@ -18,12 +18,9 @@
 // with this library; see the file COPYING3.  If not see
 // <http://www.gnu.org/licenses/>.
 //
-// Ported from GSL by Jason Dick
-// Originally written by Brian Gaugh
-//
 // Implements the integration_workspace class which stores temporary data
 // for performing integrals
-// Based upon gsl-2.3/integration/workspace.c
+// Based on gsl/integration/workspace.c
 
 #ifndef INTEGRATION_WORKSPACE_H
 #define INTEGRATION_WORKSPACE_H 1
@@ -40,13 +37,27 @@ namespace __gnu_test
     {
     private:
 
+      struct interval
+      {
+	_Tp _M_lower_lim;
+	_Tp _M_upper_lim;
+	_Tp _M_result;
+	_Tp _M_abs_error;
+	std::size_t _M_level;
+      };
+
       std::size_t _M_capacity;
       std::size_t _M_size;
       std::size_t _M_nrmax;
       std::size_t _M_current_index;
       std::size_t _M_maximum_level;
-      std::vector<_Tp> _M_lower_lim, _M_upper_lim, _M_result, _M_abs_error;
-      std::vector<std::size_t> _M_order, _M_level;
+      std::vector<_Tp> _M_lower_lim;
+      std::vector<_Tp> _M_upper_lim;
+      std::vector<_Tp> _M_result;
+      std::vector<_Tp> _M_abs_error;
+      std::vector<std::size_t> _M_order;
+      std::vector<std::size_t> _M_level;
+      bool _M_try_resize;
 
     public:
 
@@ -65,44 +76,62 @@ namespace __gnu_test
       { }
 
       void
+      resize()
+      {
+	const auto __new_cap = std::size_t(1 + 1.5 * this->capacity());
+	this->_M_capacity = __new_cap;
+	this->_M_lower_lim.resize(__new_cap);
+	this->_M_upper_lim.resize(__new_cap);
+	this->_M_result.resize(__new_cap);
+	this->_M_abs_error.resize(__new_cap);
+	this->_M_order.resize(__new_cap);
+	this->_M_level.resize(__new_cap);
+      }
+
+      void
       set_initial_limits(_Tp a0, _Tp b0)
       {
+	this->_M_size = 0;
+	this->_M_nrmax = 0;
+	this->_M_current_index = 0;
 	if (this->_M_capacity > 0)
 	  {
-	    this->_M_size = 0;
-	    this->_M_nrmax = 0;
-	    this->_M_current_index = 0;
 	    this->_M_lower_lim[0] = a0;
 	    this->_M_upper_lim[0] = b0;
-	    this->_M_result[0] = 0.0;
-	    this->_M_abs_error[0] = 0.0;
+	    this->_M_result[0] = _Tp{0};
+	    this->_M_abs_error[0] = _Tp{0};
 	    this->_M_order[0] = 0;
 	    this->_M_level[0] = 0;
-	    this->_M_maximum_level = 0;
 	  }
+	this->_M_maximum_level = 0;
       }
 
       void
       set_initial_results(_Tp result, _Tp error)
       {
+	this->_M_size = 1;
 	if (this->_M_capacity > 0)
 	  {
-	    this->_M_size = 1;
 	    this->_M_result[0] = result;
 	    this->_M_abs_error[0] = error;
+	    this->_M_order[0] = 0;
+	    this->_M_level[0] = 0;
 	  }
       }
 
       void
       set_initial(_Tp __a0, _Tp __b0, _Tp __result0, _Tp __error0)
       {
+	this->_M_size = 1;
+	this->_M_nrmax = 0;
+	this->_M_current_index = 0;
 	this->_M_lower_lim[0] = __a0;
 	this->_M_upper_lim[0] = __b0;
 	this->_M_result[0] = __result0;
 	this->_M_abs_error[0] = __error0;
 	this->_M_order[0] = 0;
 	this->_M_level[0] = 0;
-	this->_M_size = 1;
+	this->_M_maximum_level = 0;
       }
 
       void sort_error();
@@ -190,7 +219,7 @@ namespace __gnu_test
 	int __id = this->_M_nrmax;
 	int __jupbnd;
 
-	std::size_t __last = this->_M_size - 1;
+	auto __last = this->_M_size - 1;
 
 	if (__last > (1 + this->_M_capacity / 2))
 	  __jupbnd = this->_M_capacity + 1 - __last;
@@ -199,7 +228,7 @@ namespace __gnu_test
 
 	for (int __k = __id; __k <= __jupbnd; ++__k)
 	  {
-	    std::size_t __i_max = this->_M_order[this->_M_nrmax];
+	    auto __i_max = this->_M_order[this->_M_nrmax];
 
 	    this->_M_current_index = __i_max;
 
@@ -239,8 +268,8 @@ namespace __gnu_test
       static bool
       subinterval_too_small(_Tp __a1, _Tp __a2, _Tp __b2)
       {
-	const _Tp __e = std::numeric_limits<_Tp>::epsilon();
-	const _Tp __u = std::numeric_limits<_Tp>::min();
+	const auto __e = std::numeric_limits<_Tp>::epsilon();
+	const auto __u = std::numeric_limits<_Tp>::min();
 
 	_Tp __tmp = (1 + 100 * __e) * (std::abs(__a2) + 1000 * __u);
 

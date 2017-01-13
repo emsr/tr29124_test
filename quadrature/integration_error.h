@@ -1,7 +1,7 @@
 // -*- C++ -*-
 // Integration utilities for the C++ library testsuite.
 //
-// Copyright (C) 2011-2017 Free Software Foundation, Inc.
+// Copyright (C) 2017 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -18,14 +18,11 @@
 // with this library; see the file COPYING3.  If not see
 // <http://www.gnu.org/licenses/>.
 //
-// Ported from GSL by Jason Dick
-// Originally written by Brian Gaugh
-//
 // Used to interpret the error estimate of the itnegration routines
-// Based upon gsl-2.3/integration/err.c
+// Based on gsl/integration/err.c
 
-#ifndef ERR_H
-#define ERR_H 1
+#ifndef INTEGRATION_ERROR_H
+#define INTEGRATION_ERROR_H 1
 
 #include <cmath>
 #include <limits>
@@ -34,27 +31,40 @@
 namespace __gnu_test
 {
 
+  enum
+  {
+    NO_ERROR,
+    MAX_ITER_ERROR,
+    ROUNDOFF_ERROR,
+    SINGULAR_ERROR,
+    EXTRAP_ROUNDOFF_ERROR,
+    DIVERGENCE_ERROR,
+    MAX_SUBDIV_ERROR,
+    TOLERANCE_ERROR,
+    UNKNOWN_ERROR
+  };
+
   template<typename _Tp>
     class _IntegrationError : public std::runtime_error
     {
       _Tp _M_result;
       _Tp _M_abserr;
-      int _M_status;
+      int _M_errcode;
 
     public:
 
-      _IntegrationError(const char* __what, int __status,
+      _IntegrationError(const char* __what, int __errcode,
 			_Tp __result = std::numeric_limits<_Tp>::quiet_NaN(),
 			_Tp __abserr = std::numeric_limits<_Tp>::quiet_NaN())
       : std::runtime_error(__what),
 	_M_result(__result),
 	_M_abserr(__abserr),
-	_M_status(__status)
+	_M_errcode(__errcode)
       { }
 
       int
-      status() const
-      { return _M_status; }
+      error_code() const
+      { return _M_errcode; }
 
       _Tp
       result() const
@@ -70,12 +80,12 @@ namespace __gnu_test
    */
   template<typename _Tp>
     void
-    __throw__IntegrationError(const char* __what, int __status,
+    __throw__IntegrationError(const char* __what, int __errcode,
 			      _Tp __result = std::numeric_limits<_Tp>::quiet_NaN(),
 			      _Tp __abserr = std::numeric_limits<_Tp>::quiet_NaN())
     {
       _GLIBCXX_THROW_OR_ABORT(
-	_IntegrationError(__what, __status, __result, __abserr));
+	_IntegrationError(__what, __errcode, __result, __abserr));
     }
 
   /**
@@ -94,25 +104,28 @@ namespace __gnu_test
 	--__errcode;
       switch(__errcode)
 	{
-	case 0:
+	case NO_ERROR:
 	  return;
-	case 1:
+	case MAX_ITER_ERROR:
 	  msg << "Number of iterations was insufficient";
 	  break;
-	case 2:
+	case ROUNDOFF_ERROR:
 	  msg << "Cannot reach tolerance because of roundoff error";
 	  break;
-	case 3:
+	case SINGULAR_ERROR:
 	  msg << "Bad integrand behavior found in the integration interval";
 	  break;
-	case 4:
+	case EXTRAP_ROUNDOFF_ERROR:
 	  msg << "Roundoff error detected in the extrapolation";
 	  break;
-	case 5:
+	case DIVERGENCE_ERROR:
 	  msg << "Integral is divergent, or slowly convergent";
 	  break;
-	case 6:
+	case MAX_SUBDIV_ERROR:
 	  msg << "Maximum number of subdivisions reached";
+	  break;
+        case TOLERANCE_ERROR:
+	  msg << "Cannot reach tolerance with maximum order rule";
 	  break;
 	default:
 	  msg << "Could not integrate function";
@@ -151,6 +164,6 @@ namespace __gnu_test
       return __err;
     }
 
-} //namespace
+} // namespace __gnu_test
 
-#endif // ERR_H
+#endif // INTEGRATION_ERROR_H

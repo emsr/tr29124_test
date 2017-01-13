@@ -18,22 +18,21 @@
 // with this library; see the file COPYING3.  If not see
 // <http://www.gnu.org/licenses/>.
 //
-// Ported from GSL by Jason Dick
-// Originally written by Brian Gaugh
-
-//
 // Implements the integration_workspace class which stores temporary data
 // for performing integrals
-// Based upon gsl-2.3/integration/workspace.c
+// Based on gsl/integration/workspace.c
 
 #ifndef INTEGRATION_WORKSPACE_TCC
 #define INTEGRATION_WORKSPACE_TCC 1
+
+#include "integration_error.h"
 
 namespace __gnu_test
 {
 
   /**
    *
+   */
   template<typename _Tp>
     void
     integration_workspace<_Tp>::sort_error()
@@ -41,37 +40,35 @@ namespace __gnu_test
       const std::size_t __last = this->_M_size - 1;
 
       std::size_t __i_nrmax = this->_M_nrmax;
-      std::size_t __i_maxerr = this->_M_interval[__i_nrmax]._M_order;
+      std::size_t __i_maxerr = this->_M_order[__i_nrmax];
 
       // Check whether the list contains more than two error estimates.
       if (__last < 2)
 	{
-	  this->_M_interval[0]._M_order = 0;
-	  this->_M_interval[1]._M_order = 1;
+	  this->_M_order[0] = 0;
+	  this->_M_order[1] = 1;
 	  this->_M_current_index = __i_maxerr;
 	  return;
 	}
 
-      auto __errmax = this->_M_interval[__i_maxerr]._M_abs_error;
+      auto __errmax = this->_M_abs_error[__i_maxerr];
 
       // This part of the routine is only executed if, due to a difficult
       // integrand, subdivision increased the error estimate. In the normal
       // case the insert procedure should start after the nrmax-th largest
       // error estimate.
-
       while (__i_nrmax > 0
 	  && __errmax > this->_M_abs_error[this->_M_order[__i_nrmax - 1]])
 	{
-	  this->_M_interval[__i_nrmax]._M_order = this->_M_order[__i_nrmax - 1];
+	  this->_M_order[__i_nrmax] = this->_M_order[__i_nrmax - 1];
 	  --__i_nrmax;
 	}
 
       // Compute the number of elements in the list to be maintained in
       // descending order. This number depends on the number of
       // subdivisions still allowed.
-
-      int __top;
-      if(__last < (this->_M_capacity/2 + 2))
+      std::size_t __top;
+      if(__last < (2 + this->_M_capacity / 2))
 	__top = __last;
       else
 	__top = this->_M_capacity - __last + 1;
@@ -84,34 +81,64 @@ namespace __gnu_test
 
       auto __jj = __i_nrmax + 1;
       while (__jj < __top
-	  && __errmax < this->_M_abs_error[this->_M_interval[__jj]._M_order])
+	  && __errmax < this->_M_abs_error[this->_M_order[__jj]])
 	{
-	  this->_M_order[__jj - 1] = this->_M_interval[__jj]._M_order;
+	  this->_M_order[__jj - 1] = this->_M_order[__jj];
 	  ++__jj;
 	}
       this->_M_order[__jj - 1] = __i_maxerr;
 
       // Insert errmin by traversing the list bottom-up
-
-      auto __errmin = this->_M_interval[__last]._M_abs_error;
-
+      auto __errmin = this->_M_abs_error[__last];
       auto __kk = __top - 1;
       while (__kk > __jj - 2
-	  && __errmin >= this->_M_abs_error[this->_M_interval[__kk]._M_order])
+	  && __errmin >= this->_M_abs_error[this->_M_order[__kk]])
 	{
-	  this->_M_order[__kk + 1] = this->_M_interval[__kk]._M_order;
+	  this->_M_order[__kk + 1] = this->_M_order[__kk];
 	  --__kk;
 	}
       this->_M_order[__kk + 1] = __last;
 
       // Set i_max and e_max
-
-      __i_maxerr = this->_M_interval[__i_nrmax]._M_order;
-
+      __i_maxerr = this->_M_order[__i_nrmax];
       this->_M_current_index = __i_maxerr;
       this->_M_nrmax = __i_nrmax;
     }
+
+  /**
+   *
    */
+  template<typename _Tp>
+    void
+    integration_workspace<_Tp>::sort_results()
+    {
+      for (std::size_t __i = 0; __i < this->_M_size; ++__i)
+	{
+	  auto __i1 = this->_M_order[__i];
+	  auto __e1 = this->_M_abs_error[__i1];
+	  auto __i_max = __i1;
+
+	  for (auto __j = __i + 1; __j < this->_M_size; ++__j)
+	    {
+	      auto __i2 = this->_M_order[__j];
+	      auto __e2 = this->_M_abs_error[__i2];
+
+	      if (__e2 >= __e1)
+		{
+		  __i_max = __i2;
+		  __e1 = __e2;
+		}
+	    }
+
+	  if (__i_max != __i1)
+	    {
+	      this->_M_order[__i] = this->_M_order[__i_max];
+	      this->_M_order[__i_max] = __i1;
+	    }
+	}
+
+      this->_M_current_index = this->_M_order[0];
+    }
 
   /**
    *
@@ -122,14 +149,23 @@ namespace __gnu_test
 				       _Tp __area, _Tp __error)
     {
       const std::size_t __i_new = this->_M_size;
+      if (__i_new >= this->capacity())
+	{
+	  if (this->_M_try_resize)
+	    this->resize();
+	  else
+	    __throw__IntegrationError<_Tp>("integration_workspace: "
+					   "Exhausted work space.",
+					   MAX_ITER_ERROR);
+	}
 
-      // append the newly-created interval to the list
-
-      this->_M_interval[__i_new]._M_lower_lim = __a;
-      this->_M_interval[__i_new]._M_upper_lim = __b;
-      this->_M_interval[__i_new]._M_result = __area;
-      this->_M_interval[__i_new]._M_abs_error = __error;
-      this->_M_interval[__i_new]._M_level = 0;
+      // Append the newly-created interval to the list.
+      this->_M_lower_lim[__i_new] = __a;
+      this->_M_upper_lim[__i_new] = __b;
+      this->_M_result[__i_new] = __area;
+      this->_M_abs_error[__i_new] = __error;
+      this->_M_order[__i_new] = __i_new;
+      this->_M_level[__i_new] = 0;
 
       ++this->_M_size;
     }
@@ -144,40 +180,48 @@ namespace __gnu_test
 				       _Tp __a2, _Tp __b2,
 				       _Tp __area2, _Tp __error2)
     {
-      const std::size_t __i_max = this->_M_current_index;
-      const std::size_t __i_new = this->_M_size;
+      const auto __i_max = this->_M_current_index;
+      const auto __i_new = this->_M_size;
+      if (__i_new >= this->capacity())
+	{
+	  if (this->_M_try_resize)
+	    this->resize();
+	  else
+	    __throw__IntegrationError<_Tp>("integration_workspace: "
+					   "Exhausted work space.",
+					   MAX_ITER_ERROR);
+	}
 
-      const std::size_t __new_level = this->_M_interval[__i_max]._M_level + 1;
+      const auto __new_level = this->_M_level[__i_max] + 1;
 
-      // append the newly-created intervals to the list
-
+      // Append the newly-created intervals to the list.
       if (__error2 > __error1)
 	{
-	  this->_M_interval[__i_max]._M_lower_lim = __a2;
+	  this->_M_lower_lim[__i_max] = __a2;
 	  // upper_lim[i_max] is already == b2
-	  this->_M_interval[__i_max]._M_result = __area2;
-	  this->_M_interval[__i_max]._M_abs_error = __error2;
-	  this->_M_interval[__i_max]._M_level = __new_level;
+	  this->_M_result[__i_max] = __area2;
+	  this->_M_abs_error[__i_max] = __error2;
+	  this->_M_level[__i_max] = __new_level;
 
-	  this->_M_interval[__i_new]._M_lower_lim = __a1;
-	  this->_M_interval[__i_new]._M_upper_lim = __b1;
-	  this->_M_interval[__i_new]._M_result = __area1;
-	  this->_M_interval[__i_new]._M_abs_error = __error1;
-	  this->_M_interval[__i_new]._M_level = __new_level;
+	  this->_M_lower_lim[__i_new] = __a1;
+	  this->_M_upper_lim[__i_new] = __b1;
+	  this->_M_result[__i_new] = __area1;
+	  this->_M_abs_error[__i_new] = __error1;
+	  this->_M_level[__i_new] = __new_level;
 	}
       else
 	{
 	  // lower_lim[i_max] is already == a1
-	  this->_M_interval[__i_max]._M_upper_lim = __b1;
-	  this->_M_interval[__i_max]._M_result = __area1;
-	  this->_M_interval[__i_max]._M_abs_error = __error1;
-	  this->_M_interval[__i_max]._M_level = __new_level;
+	  this->_M_upper_lim[__i_max] = __b1;
+	  this->_M_result[__i_max] = __area1;
+	  this->_M_abs_error[__i_max] = __error1;
+	  this->_M_level[__i_max] = __new_level;
 
-	  this->_M_interval[__i_new]._M_lower_lim = __a2;
-	  this->_M_interval[__i_new]._M_upper_lim = __b2;
-	  this->_M_interval[__i_new]._M_result = __area2;
-	  this->_M_interval[__i_new]._M_abs_error = __error2;
-	  this->_M_interval[__i_new]._M_level = __new_level;
+	  this->_M_lower_lim[__i_new] = __a2;
+	  this->_M_upper_lim[__i_new] = __b2;
+	  this->_M_result[__i_new] = __area2;
+	  this->_M_abs_error[__i_new] = __error2;
+	  this->_M_level[__i_new] = __new_level;
 	}
 
       ++this->_M_size;
