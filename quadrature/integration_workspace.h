@@ -47,6 +47,17 @@ namespace __gnu_test
 	std::size_t _M_level;
       };
 
+      /**
+       * Comparison of cquad intervals.
+       */
+      struct interval_comp
+      {
+	bool
+	operator()(const interval& __ivl,
+		   const interval& __ivr)
+	{ return __ivl._M_abs_error < __ivr._M_abs_error; }
+      };
+
       std::size_t _M_capacity;
       std::size_t _M_size;
       std::size_t _M_nrmax;
