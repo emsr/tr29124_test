@@ -78,26 +78,18 @@ namespace __gnu_test
 	bool __err_reliable1;
 	std::tie(__area1, __error1, __err_reliable1)
 	  = qc25s(__table, __func, __a, __b, __a1, __b1);
+	__workspace.append(__a1, __b1, __area1, __error1);
 
 	_Tp __area2, __error2;
 	bool __err_reliable2;
 	std::tie(__area2, __error2, __err_reliable2)
 	  = qc25s(__table, __func, __a, __b, __a2, __b2);
+	__workspace.append(__a2, __b2, __area2, __error2);
 
-	if (__error1 > __error2)
-	  {
-	    __workspace.append(__a1, __b1, __area1, __error1);
-	    __workspace.append(__a2, __b2, __area2, __error2);
-	  }
-	else
-	  {
-	    __workspace.append(__a2, __b2, __area2, __error2);
-	    __workspace.append(__a1, __b1, __area1, __error1);
-	  }
-
+	// Why add the parent?
 	__result0 = __area1 + __area2;
 	__abserr0 = __error1 + __error2;
-	__workspace.set_initial(__a, __b, __result0, __abserr0);
+	__workspace.append(__a, __b, __result0, __abserr0);
       }
 
       // Test on accuracy; Use 0.01 relative error as an extra safety
@@ -165,8 +157,7 @@ namespace __gnu_test
 		__error_type = SINGULAR_ERROR;
 	    }
 
-	  __workspace.update(__a1, __b1, __area1, __error1,
-			     __a2, __b2, __area2, __error2);
+	  __workspace.split(__b1, __area1, __error1, __area2, __error2);
 
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 

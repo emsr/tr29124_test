@@ -57,7 +57,7 @@ namespace __gnu_test
       _Tp __initial_eps, __eps;
       int __error_type = NO_ERROR;
 
-      __workspace.set_initial_limits(__a, __a);
+      __workspace.clear();
 
       int __status = 0;
       auto __result = _Tp{0};

@@ -38,9 +38,9 @@ namespace __gnu_test
    */
   template<typename _Tp>
     void
-    _Vinvfx(const _Tp* __fx, _Tp* __c, const int __d)
+    _Vinvfx(const std::array<_Tp, 33>& __fx, _Tp* __c, const int __depth)
     {
-      switch (__d)
+      switch (__depth)
 	{
 	case 0:
 	  for (int __i = 0; __i <= 4; ++__i)
@@ -83,14 +83,14 @@ namespace __gnu_test
    */
   template<typename _Tp>
     void
-    downdate(_Tp* __c, std::size_t __n, std::size_t __d,
+    downdate(_Tp* __c, std::size_t __n, std::size_t __depth,
 	     std::size_t* __NaN, std::size_t __num_NaNs)
     {
       constexpr std::size_t __bidx[4] = { 0, 6, 16, 34 };
       _Tp __b_new[34], __alpha;
 
       for (std::size_t __i = 0; __i <= __n + 1; ++__i)
-	__b_new[__i] = bee[__bidx[__d] + __i];
+	__b_new[__i] = bee[__bidx[__depth] + __i];
       for (std::size_t __i = 0; __i < __num_NaNs; ++__i)
 	{
 	  __b_new[__n + 1] = __b_new[__n + 1] / Lalpha[__n];
@@ -163,12 +163,12 @@ namespace __gnu_test
       _Vinvfx(__iv.fx, &(__iv.c[__idx[2]]), 2);
       for (std::size_t __i = 0; __i < __num_NaNs; ++__i)
 	__iv.fx[__NaN[__i]] = _S_NaN;
-      __iv.a = __a;
-      __iv.b = __b;
+      __iv._M_lower_lim = __a;
+      __iv._M_upper_lim = __b;
       __iv.depth = 3;
       __iv.rdepth = 1;
       __iv.ndiv = 0;
-      __iv.igral = _Tp{2} * __h * __iv.c[__idx[3]] * __w;
+      __iv._M_result = _Tp{2} * __h * __iv.c[__idx[3]] * __w;
       __nc = _Tp{0};
       for (std::size_t __i = __n[2] + 1; __i <= __n[3]; ++__i)
 	{
@@ -184,9 +184,9 @@ namespace __gnu_test
 	}
       __ncdiff = std::sqrt(__ncdiff);
       __nc = std::sqrt(__nc);
-      __iv.err = __ncdiff * _Tp{2} * __h;
-      if (__ncdiff / __nc > _Tp{0.1} && __iv.err < _Tp{2} * __h * __nc)
-	__iv.err = _Tp{2} * __h * __nc;
+      __iv._M_abs_error = __ncdiff * _Tp{2} * __h;
+      if (__ncdiff / __nc > _Tp{0.1} && __iv._M_abs_error < _Tp{2} * __h * __nc)
+	__iv._M_abs_error = _Tp{2} * __h * __nc;
       __ws.push(__iv);
 
 #ifdef INTEGRATION_DEBUG
@@ -194,9 +194,9 @@ namespace __gnu_test
 #endif
 
       // Main loop...
-      auto __igral = __iv.igral;
+      auto __igral = __iv._M_result;
       auto __igral_final = _Tp{0};
-      auto __err = __iv.err;
+      auto __err = __iv._M_abs_error;
       auto __err_final = _Tp{0};
       while (__ws.size() > 0 && __err > _Tp{0} &&
 	     !(__err <= std::abs(__igral) * __epsrel || __err <= __epsabs)
@@ -206,26 +206,26 @@ namespace __gnu_test
 	{
 	  // Put our finger on the interval with the largest error.
 	  auto& __iv = __ws.top();
-	  __m = (__iv.a + __iv.b) / _Tp{2};
-	  __h = (__iv.b - __iv.a) / _Tp{2};
+	  __m = (__iv._M_lower_lim + __iv._M_upper_lim) / _Tp{2};
+	  __h = (__iv._M_upper_lim - __iv._M_lower_lim) / _Tp{2};
 
 #ifdef INTEGRATION_DEBUG
 	  printf
 	    ("cquad: processing ival %i (of %i) with [%e,%e] int=%e, err=%e, depth=%i\n",
-	     0, __ws.size(), __iv.a, __iv.b, __iv.igral, __iv.err, __iv.depth);
+	     0, __ws.size(), __iv._M_lower_lim, __iv._M_upper_lim, __iv._M_result, __iv._M_abs_error, __iv.depth);
 #endif
 	  // Should we try to increase the degree?
 	  if (__iv.depth < 3)
 	    {
 	      // Keep tabs on some variables.
-	      auto __d = ++__iv.depth;
+	      auto __depth = ++__iv.depth;
 
 	      // Get the new (missing) function values.
-	      for (std::size_t __i = __skip[__d];
-			__i <= 32; __i += 2 * __skip[__d])
+	      for (std::size_t __i = __skip[__depth];
+			__i <= 32; __i += 2 * __skip[__depth])
 		__iv.fx[__i] = __func(__m + xi[__i] * __h);
 	      __num_NaNs = 0;
-	      for (std::size_t __i = 0; __i <= 32; __i += __skip[__d])
+	      for (std::size_t __i = 0; __i <= 32; __i += __skip[__depth])
 		if (std::isinf(__iv.fx[__i]) || std::isnan(__iv.fx[__i]))
 		  {
 		    __NaN[__num_NaNs++] = __i;
@@ -233,12 +233,12 @@ namespace __gnu_test
 		  }
 
 	      // Compute the new coefficients.
-	      _Vinvfx(__iv.fx, &(__iv.c[__idx[__d]]), __d);
+	      _Vinvfx(__iv.fx, &(__iv.c[__idx[__depth]]), __depth);
 
 	      // Downdate any NaNs.
 	      if (__num_NaNs > 0)
 		{
-		  downdate(&(__iv.c[__idx[__d]]), __n[__d], __d,
+		  downdate(&(__iv.c[__idx[__depth]]), __n[__depth], __depth,
 			   __NaN, __num_NaNs);
 		  for (std::size_t __i = 0; __i < __num_NaNs; ++__i)
 		    __iv.fx[__NaN[__i]] = _S_NaN;
@@ -246,25 +246,25 @@ namespace __gnu_test
 
 	      // Compute the error estimate.
 	      __nc = _Tp{0};
-	      for (std::size_t __i = __n[__d - 1] + 1; __i <= __n[__d]; ++__i)
+	      for (std::size_t __i = __n[__depth - 1] + 1; __i <= __n[__depth]; ++__i)
 		{
-		  auto __temp = __iv.c[__idx[__d] + __i];
+		  auto __temp = __iv.c[__idx[__depth] + __i];
 		  __nc += __temp * __temp;
 		}
 	      __ncdiff = __nc;
-	      for (std::size_t __i = 0; __i <= __n[__d - 1]; ++__i)
+	      for (std::size_t __i = 0; __i <= __n[__depth - 1]; ++__i)
 		{
-		  auto __temp = __iv.c[__idx[__d - 1] + __i]
-			      - __iv.c[__idx[__d] + __i];
+		  auto __temp = __iv.c[__idx[__depth - 1] + __i]
+			      - __iv.c[__idx[__depth] + __i];
 		  __ncdiff += __temp * __temp;
-		  __nc += __iv.c[__idx[__d] + __i] * __iv.c[__idx[__d] + __i];
+		  __nc += __iv.c[__idx[__depth] + __i] * __iv.c[__idx[__depth] + __i];
 		}
 	      __ncdiff = std::sqrt(__ncdiff);
 	      __nc = std::sqrt(__nc);
-	      __iv.err = __ncdiff * _Tp{2} * __h;
+	      __iv._M_abs_error = __ncdiff * _Tp{2} * __h;
 
 	      // Compute the local integral.
-	      __iv.igral = _Tp{2} * __h * __w * __iv.c[__idx[__d]];
+	      __iv._M_result = _Tp{2} * __h * __w * __iv.c[__idx[__depth]];
 
 	      // Split the interval prematurely?
 	      __split = (__nc > _Tp{0} && __ncdiff / __nc > _Tp{0.1});
@@ -276,35 +276,35 @@ namespace __gnu_test
 	  // Should we drop this interval?
 	  if ((__m + __h * xi[0]) >= (__m + __h * xi[1])
 	      || (__m + __h * xi[31]) >= (__m + __h * xi[32])
-	      || __iv.err < std::abs(__iv.igral) * _S_eps * 10)
+	      || __iv._M_abs_error < std::abs(__iv._M_result) * _S_eps * 10)
 	    {
 #ifdef INTEGRATION_DEBUG
 	      printf
 		("cquad: dumping ival %i (of %i) with [%e,%e] int=%e, err=%e, depth=%i\n",
-		 0, __ws.size(), __iv.a, __iv.b, __iv.igral, __iv.err,
+		 0, __ws.size(), __iv._M_lower_lim, __iv._M_upper_lim, __iv._M_result, __iv._M_abs_error,
 		 __iv.depth);
 #endif
 	      // Keep this interval's contribution.
-	      __err_final += __iv.err;
-	      __igral_final += __iv.igral;
+	      __err_final += __iv._M_abs_error;
+	      __igral_final += __iv._M_result;
 
 	      __ws.pop();
 	    }
 	  else if (__split) // Do we need to split this interval?
 	    {
 	      // Some values we will need often...
-	      auto __d = __iv.depth;
+	      auto __depth = __iv.depth;
 
 	      // Generate the interval on the left.
 	      cquad_interval<_Tp> __ivl;
-	      __ivl.a = __iv.a;
-	      __ivl.b = __m;
+	      __ivl._M_lower_lim = __iv._M_lower_lim;
+	      __ivl._M_upper_lim = __m;
 	      __ivl.depth = 0;
 	      __ivl.rdepth = __iv.rdepth + 1;
 	      __ivl.fx[0] = __iv.fx[0];
 	      __ivl.fx[32] = __iv.fx[16];
 	      for (std::size_t __i = __skip[0]; __i < 32; __i += __skip[0])
-		__ivl.fx[__i] = __func((__ivl.a + __ivl.b)
+		__ivl.fx[__i] = __func((__ivl._M_lower_lim + __ivl._M_upper_lim)
 			      / _Tp{2} + xi[__i] * __h / _Tp{2});
 	      __num_NaNs = 0;
 	      for (std::size_t __i = 0; __i <= 32; __i += __skip[0])
@@ -322,26 +322,26 @@ namespace __gnu_test
 		  for (std::size_t __i = 0; __i < __num_NaNs; ++__i)
 		    __ivl.fx[__NaN[__i]] = _S_NaN;
 		}
-	      for (std::size_t __i = 0; __i <= __n[__d]; ++__i)
+	      for (std::size_t __i = 0; __i <= __n[__depth]; ++__i)
 		{
-		  __ivl.c[__idx[__d] + __i] = _Tp{0};
-		  for (std::size_t __j = __i; __j <= __n[__d]; ++__j)
-		    __ivl.c[__idx[__d] + __i] += Tleft[__i * 33 + __j]
-						* __iv.c[__idx[__d] + __j];
+		  __ivl.c[__idx[__depth] + __i] = _Tp{0};
+		  for (std::size_t __j = __i; __j <= __n[__depth]; ++__j)
+		    __ivl.c[__idx[__depth] + __i] += Tleft[__i * 33 + __j]
+						* __iv.c[__idx[__depth] + __j];
 		}
 	      __ncdiff = _Tp{0};
 	      for (std::size_t __i = 0; __i <= __n[0]; ++__i)
 		{
-		  auto __temp = __ivl.c[__i] - __ivl.c[__idx[__d] + __i];
+		  auto __temp = __ivl.c[__i] - __ivl.c[__idx[__depth] + __i];
 		  __ncdiff += __temp * __temp;
 		}
-	      for (std::size_t __i = __n[0] + 1; __i <= __n[__d]; ++__i)
+	      for (std::size_t __i = __n[0] + 1; __i <= __n[__depth]; ++__i)
 		{
-		  auto __temp = __ivl.c[__idx[__d] + __i];
+		  auto __temp = __ivl.c[__idx[__depth] + __i];
 		  __ncdiff += __temp * __temp;
 		}
 	      __ncdiff = std::sqrt(__ncdiff);
-	      __ivl.err = __ncdiff * __h;
+	      __ivl._M_abs_error = __ncdiff * __h;
 
 	      // Check for divergence.
 	      __ivl.ndiv = __iv.ndiv + (std::abs (__iv.c[0]) > 0
@@ -353,18 +353,18 @@ namespace __gnu_test
 		}
 
 	      // Compute the local integral.
-	      __ivl.igral = __h * __w * __ivl.c[0];
+	      __ivl._M_result = __h * __w * __ivl.c[0];
 
 	      // Generate the interval on the right.
 	      cquad_interval<_Tp> __ivr;
-	      __ivr.a = __m;
-	      __ivr.b = __iv.b;
+	      __ivr._M_lower_lim = __m;
+	      __ivr._M_upper_lim = __iv._M_upper_lim;
 	      __ivr.depth = 0;
 	      __ivr.rdepth = __iv.rdepth + 1;
 	      __ivr.fx[0] = __iv.fx[16];
 	      __ivr.fx[32] = __iv.fx[32];
 	      for (std::size_t __i = __skip[0]; __i < 32; __i += __skip[0])
-		__ivr.fx[__i] = __func((__ivr.a + __ivr.b)
+		__ivr.fx[__i] = __func((__ivr._M_lower_lim + __ivr._M_upper_lim)
 			      / _Tp{2} + xi[__i] * __h / _Tp{2});
 	      __num_NaNs = 0;
 	      for (std::size_t __i = 0; __i <= 32; __i += __skip[0])
@@ -382,26 +382,26 @@ namespace __gnu_test
 		  for (std::size_t __i = 0; __i < __num_NaNs; ++__i)
 		    __ivr.fx[__NaN[__i]] = _S_NaN;
 		}
-	      for (std::size_t __i = 0; __i <= __n[__d]; ++__i)
+	      for (std::size_t __i = 0; __i <= __n[__depth]; ++__i)
 		{
-		  __ivr.c[__idx[__d] + __i] = _Tp{0};
-		  for (std::size_t __j = __i; __j <= __n[__d]; ++__j)
-		    __ivr.c[__idx[__d] + __i] += Tright[__i * 33 + __j]
-						 * __iv.c[__idx[__d] + __j];
+		  __ivr.c[__idx[__depth] + __i] = _Tp{0};
+		  for (std::size_t __j = __i; __j <= __n[__depth]; ++__j)
+		    __ivr.c[__idx[__depth] + __i] += Tright[__i * 33 + __j]
+						 * __iv.c[__idx[__depth] + __j];
 		}
 	      __ncdiff = _Tp{0};
 	      for (std::size_t __i = 0; __i <= __n[0]; ++__i)
 		{
-		  auto __temp = __ivr.c[__i] - __ivr.c[__idx[__d] + __i];
+		  auto __temp = __ivr.c[__i] - __ivr.c[__idx[__depth] + __i];
 		  __ncdiff += __temp * __temp;
 		}
-	      for (std::size_t __i = __n[0] + 1; __i <= __n[__d]; ++__i)
+	      for (std::size_t __i = __n[0] + 1; __i <= __n[__depth]; ++__i)
 		{
-		  auto __temp = __ivr.c[__idx[__d] + __i];
+		  auto __temp = __ivr.c[__idx[__depth] + __i];
 		  __ncdiff += __temp * __temp;
 		}
 	      __ncdiff = std::sqrt(__ncdiff);
-	      __ivr.err = __ncdiff * __h;
+	      __ivr._M_abs_error = __ncdiff * __h;
 
 	      // Check for divergence.
 	      __ivr.ndiv = __iv.ndiv + (std::abs (__iv.c[0]) > 0
@@ -413,7 +413,7 @@ namespace __gnu_test
 		}
 
 	      // Compute the local integral.
-	      __ivr.igral = __h * __w * __ivr.c[0];
+	      __ivr._M_result = __h * __w * __ivr.c[0];
 
 	      __ws.pop();
 	      __ws.push(__ivl);
@@ -433,7 +433,7 @@ namespace __gnu_test
 	{
 	  printf
 	    ("cquad: ival %i (%i) with [%e,%e], int=%e, err=%e, depth=%i, rdepth=%i\n",
-	     0, 0, __iv.a, __iv.b, __iv.igral, __iv.err, __iv.depth,
+	     0, 0, __iv._M_lower_lim, __iv._M_upper_lim, __iv._M_result, __iv._M_abs_error, __iv.depth,
 	     __iv.rdepth);
 	}
 #endif

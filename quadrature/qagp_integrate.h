@@ -53,8 +53,7 @@ namespace __gnu_test
 		   _Tp __epsabs, _Tp __epsrel,
 		   const qk_intrule __qk_rule)
     {
-      _Tp __area, __errsum;
-      _Tp __res_ext, __err_ext;
+      _Tp __errsum;
       _Tp __tolerance;
 
       _Tp __ertest = 0;
@@ -66,9 +65,9 @@ namespace __gnu_test
 
       std::size_t __iteration = 0;
 
-      int __positive_integrand = 0;
-      int __extrapolate = 0;
-      int __disallow_extrapolation = 0;
+      bool __positive_integrand = false;
+      bool __extrapolate = false;
+      bool __disallow_extrapolation = false;
 
       const auto _S_max = std::numeric_limits<_Tp>::max();
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
@@ -95,7 +94,7 @@ namespace __gnu_test
 
       // Perform the first integration.
 
-      __workspace.set_initial_limits(_Tp{0}, _Tp{0});
+      __workspace.clear();
 
       auto __result0 = _Tp{0};
       auto __abserr0 = _Tp{0};
@@ -114,7 +113,7 @@ namespace __gnu_test
 	  __resabs0 += __resabs1;
 	  __workspace.append(__a1, __b1, __area1, __error1);
 
-	  if (__error1 == __resasc1 && __error1 != 0.0)
+	  if (__error1 == __resasc1 && __error1 != _Tp{0})
 	    __workspace.set_level(__i, 1);
 	  else
 	    __workspace.set_level(__i, 0);
@@ -155,10 +154,10 @@ namespace __gnu_test
 
       extrapolation_table<_Tp> __table(__result0);
 
-      __area = __result0;
+      auto __area = __result0;
 
-      __res_ext = __result0;
-      __err_ext = _S_max;
+      auto __res_ext = __result0;
+      auto __err_ext = _S_max;
 
       __error_over_large_intervals = __errsum;
       __ertest = __tolerance;
@@ -235,9 +234,8 @@ namespace __gnu_test
 	  if (__workspace.subinterval_too_small(__a1, __a2, __b2))
 	    __error_type = EXTRAP_ROUNDOFF_ERROR;
 
-	  // Append the newly-created intervals to the list.
-	  __workspace.update(__a1, __b1, __area1, __error1,
-			     __a2, __b2, __area2, __error2);
+	  // Split the current interval in two.
+	  __workspace.split(__b1, __area1, __error1, __area2, __error2);
 
 	  if (__errsum <= __tolerance)
 	    {
@@ -270,8 +268,7 @@ namespace __gnu_test
 	      if (__workspace.large_interval())
 		continue;
 
-	      __extrapolate = 1;
-	      __workspace.set_maxerr_index(1);
+	      __extrapolate = true;
 	    }
 
 	  /* The smallest interval has the largest error.  Before
@@ -280,8 +277,7 @@ namespace __gnu_test
 	     extrapolation. */
 
 	  if (!__error_type2 && __error_over_large_intervals > __ertest)
-	    if (__workspace.increase_maxerr_index())
-	      continue;
+	    continue;
 
 	  // Perform extrapolation.
 
@@ -310,15 +306,14 @@ namespace __gnu_test
 	  // Prepare bisection of the smallest interval.
 
 	  if (__table.get_nn() == 1)
-	    __disallow_extrapolation = 1;
+	    __disallow_extrapolation = true;
 
 	  if (__error_type == DIVERGENCE_ERROR)
 	    break;
 
 	skip_extrapolation:
 
-	  __workspace.reset_maxerr_index();
-	  __extrapolate = 0;
+	  __extrapolate = false;
 	  __error_over_large_intervals = __errsum;
 	}
       while (__iteration < __limit);

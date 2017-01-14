@@ -164,8 +164,6 @@ namespace __gnu_test
     {
       const qk_intrule __qk_rule = QK_21;
 
-      _Tp __tolerance;
-
       _Tp __ertest = 0;
       _Tp __error_over_large_intervals = 0;
       _Tp __reseps = 0, __abseps = 0, __correc = 0;
@@ -178,10 +176,10 @@ namespace __gnu_test
 
       std::size_t __iteration = 0;
 
-      int __extrapolate = 0;
-      int __disallow_extrapolation = 0;
+      bool __extrapolate = false;
+      bool __disallow_extrapolation = false;
 
-      __workspace.set_initial_limits(__a, __b);
+      __workspace.clear();
 
       const auto __limit = __workspace.capacity();
 
@@ -198,9 +196,9 @@ namespace __gnu_test
       std::tie(__result0, __abserr0, __resabs0, __resasc0)
 	  = qk_integrate(__func, __a, __b, __qk_rule);
 
-      __workspace.set_initial_results(__result0, __abserr0);
+      __workspace.append(__a, __b, __result0, __abserr0);
 
-      __tolerance = std::max(__epsabs, __epsrel * std::abs(__result0));
+      auto __tolerance = std::max(__epsabs, __epsrel * std::abs(__result0));
 
       if (__abserr0 <= 100 * _S_eps * __resabs0
 	  && __abserr0 > __tolerance)
@@ -282,7 +280,6 @@ namespace __gnu_test
 	    }
 
 	  // Test for roundoff and eventually set error flag.
-
 	  if (__roundoff_type1 + __roundoff_type2 >= 10
 	      || __roundoff_type3 >= 20)
 	    __error_type = ROUNDOFF_ERROR;
@@ -296,9 +293,8 @@ namespace __gnu_test
 	  if (__workspace.subinterval_too_small(__a1, __a2, __b2))
 	    __error_type = EXTRAP_ROUNDOFF_ERROR;
 
-	  // Append the newly-created intervals to the list.
-	  __workspace.update(__a1, __b1, __area1, __error1,
-			     __a2, __b2, __area2, __error2);
+	  // Split the current interval in two.
+	  __workspace.split(__b1, __area1, __error1, __area2, __error2);
 
 	  if (__errsum <= __tolerance)
 	    {
@@ -340,13 +336,11 @@ namespace __gnu_test
 	      if (__workspace.large_interval())
 		continue;
 
-	      __extrapolate = 1;
-	      __workspace.set_maxerr_index(1);
+	      __extrapolate = true;
 	    }
 
 	  if (!__error_type2 && __error_over_large_intervals > __ertest)
-	    if (__workspace.increase_maxerr_index())
-	      continue;
+	    continue;
 
 	  // Perform extrapolation.
 
@@ -372,14 +366,13 @@ namespace __gnu_test
 
 	  // Prepare bisection of the smallest interval.
 	  if (__table.get_nn() == 1)
-	    __disallow_extrapolation = 1;
+	    __disallow_extrapolation = true;
 
 	  if (__error_type == DIVERGENCE_ERROR)
 	    break;
 
 	  // Work on interval with largest error.
-	  __workspace.reset_maxerr_index();
-	  __extrapolate = 0;
+	  __extrapolate = false;
 	  __error_over_large_intervals = __errsum;
 	}
       while (__iteration < __limit);
