@@ -47,8 +47,8 @@ namespace __gnu_test
 		   std::begin(this->_M_ival) + this->_M_size);
       for (auto __k = 0u; __k < this->_M_size; ++__k)
 	this->_M_ival[__k]._M_order = __k;
-      this->_M_current_index = 0;
-      this->_M_nrmax = 0;
+      //this->_M_maxerr_order = 0;
+      this->_M_maxerr_index = 0;
       return;
 */
       if (this->_M_size < 2)
@@ -56,29 +56,29 @@ namespace __gnu_test
 
       const auto __last = this->_M_size - 1;
 
-      auto __i_nrmax = this->_M_nrmax;
-      auto __i_maxerr = this->_M_ival[__i_nrmax]._M_order;
+      auto __maxerr_index = this->_M_maxerr_index;
+      auto __maxerr_order = this->maxerr_order();
 
       // Check whether the list contains more than two error estimates.
       if (__last < 2)
 	{
 	  this->_M_ival[0]._M_order = 0;
 	  this->_M_ival[1]._M_order = 1;
-	  this->_M_current_index = __i_maxerr;
+	  //this->_M_maxerr_order = __maxerr_order;
 	  return;
 	}
 
-      auto __errmax = this->_M_ival[__i_maxerr]._M_abs_error;
+      auto __errmax = this->_M_ival[__maxerr_order]._M_abs_error;
 
       // This part of the routine is only executed if, due to a difficult
       // integrand, subdivision increased the error estimate. In the normal
-      // case the insert procedure should start after the nrmax-th largest
-      // error estimate.
-      while (__i_nrmax > 0
-	  && __errmax > this->_M_ival[this->_M_ival[__i_nrmax - 1]._M_order]._M_abs_error)
+      // case the insert procedure should start after the maxerr_index-th
+      // largest error estimate.
+      while (__maxerr_index > 0
+	  && __errmax > this->_M_ival[this->_M_ival[__maxerr_index - 1]._M_order]._M_abs_error)
 	{
-	  this->_M_ival[__i_nrmax]._M_order = this->_M_ival[__i_nrmax - 1]._M_order;
-	  --__i_nrmax;
+	  this->_M_ival[__maxerr_index]._M_order = this->_M_ival[__maxerr_index - 1]._M_order;
+	  --__maxerr_index;
 	}
 
       // Compute the number of elements in the list to be maintained in
@@ -91,8 +91,8 @@ namespace __gnu_test
 	__top = this->_M_capacity - __last + 1;
 
       // Insert errmax by traversing the list top-down, starting
-      // comparison from the element abs_error(order(i_nrmax + 1)).
-      auto __jj = __i_nrmax + 1;
+      // comparison from the element abs_error(order(i_maxerr_index + 1)).
+      auto __jj = __maxerr_index + 1;
 
       // The order of the tests in the following line is important to
       // prevent a segmentation fault
@@ -102,7 +102,7 @@ namespace __gnu_test
 	  this->_M_ival[__jj - 1]._M_order = this->_M_ival[__jj]._M_order;
 	  ++__jj;
 	}
-      this->_M_ival[__jj - 1]._M_order = __i_maxerr;
+      this->_M_ival[__jj - 1]._M_order = __maxerr_order;
 
       // Insert errmin by traversing the list bottom-up
       const auto __errmin = this->_M_ival[__last]._M_abs_error;
@@ -116,9 +116,9 @@ namespace __gnu_test
       this->_M_ival[__kk + 1]._M_order = __last;
 
       // Set i_max and e_max
-      __i_maxerr = this->_M_ival[__i_nrmax]._M_order;
-      this->_M_current_index = __i_maxerr;
-      this->_M_nrmax = __i_nrmax;
+      //__maxerr_order = this->_M_ival[__maxerr_index]._M_order;
+      //this->_M_maxerr_order = __maxerr_order;
+      this->_M_maxerr_index = __maxerr_index;
     }
 
   /**
@@ -153,7 +153,7 @@ namespace __gnu_test
 	    }
 	}
 
-      this->_M_current_index = this->_M_ival[0]._M_order;
+      //this->_M_maxerr_order = this->_M_ival[0]._M_order;
     }
 
   /**
@@ -196,7 +196,7 @@ namespace __gnu_test
 				       _Tp __a2, _Tp __b2,
 				       _Tp __area2, _Tp __error2)
     {
-      const auto __i_max = this->_M_current_index;
+      const auto __i_max = this->maxerr_order();
       const auto __i_new = this->_M_size;
       if (__i_new >= this->capacity())
 	{

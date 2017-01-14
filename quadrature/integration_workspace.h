@@ -60,8 +60,7 @@ namespace __gnu_test
 
       std::size_t _M_capacity;
       std::size_t _M_size;
-      std::size_t _M_nrmax;
-      std::size_t _M_current_index;
+      std::size_t _M_maxerr_index;
       std::size_t _M_maximum_level;
       std::vector<interval> _M_ival;
       bool _M_try_resize;
@@ -71,8 +70,7 @@ namespace __gnu_test
       integration_workspace(std::size_t __cap)
       : _M_capacity(__cap),
 	_M_size(0),
-	_M_nrmax(0),
-	_M_current_index(0),
+	_M_maxerr_index(0),
 	_M_maximum_level(0),
 	_M_ival(__cap)
       { }
@@ -89,8 +87,7 @@ namespace __gnu_test
       set_initial_limits(_Tp a0, _Tp b0)
       {
 	this->_M_size = 0;
-	this->_M_nrmax = 0;
-	this->_M_current_index = 0;
+	this->_M_maxerr_index = 0;
 	if (this->_M_capacity > 0)
 	  {
 	    this->_M_ival[0]._M_lower_lim = a0;
@@ -107,6 +104,7 @@ namespace __gnu_test
       set_initial_results(_Tp result, _Tp error)
       {
 	this->_M_size = 1;
+	this->_M_maxerr_index = 0;
 	if (this->_M_capacity > 0)
 	  {
 	    this->_M_ival[0]._M_result = result;
@@ -114,20 +112,23 @@ namespace __gnu_test
 	    this->_M_ival[0]._M_order = 0;
 	    this->_M_ival[0]._M_level = 0;
 	  }
+	this->_M_maximum_level = 0;
       }
 
       void
       set_initial(_Tp __a0, _Tp __b0, _Tp __result0, _Tp __error0)
       {
 	this->_M_size = 1;
-	this->_M_nrmax = 0;
-	this->_M_current_index = 0;
-	this->_M_ival[0]._M_lower_lim = __a0;
-	this->_M_ival[0]._M_upper_lim = __b0;
-	this->_M_ival[0]._M_result = __result0;
-	this->_M_ival[0]._M_abs_error = __error0;
-	this->_M_ival[0]._M_order = 0;
-	this->_M_ival[0]._M_level = 0;
+	this->_M_maxerr_index = 0;
+	if (this->_M_capacity > 0)
+	  {
+	    this->_M_ival[0]._M_lower_lim = __a0;
+	    this->_M_ival[0]._M_upper_lim = __b0;
+	    this->_M_ival[0]._M_result = __result0;
+	    this->_M_ival[0]._M_abs_error = __error0;
+	    this->_M_ival[0]._M_order = 0;
+	    this->_M_ival[0]._M_level = 0;
+	  }
 	this->_M_maximum_level = 0;
       }
 
@@ -142,7 +143,7 @@ namespace __gnu_test
       void
       retrieve(_Tp& __lolim, _Tp& __uplim, _Tp& __res, _Tp& __err) const
       {
-	const auto __ii = this->_M_current_index;
+	const auto __ii = this->maxerr_order();
 	__lolim = this->_M_ival[__ii]._M_lower_lim;
 	__uplim = this->_M_ival[__ii]._M_upper_lim;
 	__res = this->_M_ival[__ii]._M_result;
@@ -158,8 +159,8 @@ namespace __gnu_test
       { return this->_M_capacity; }
 
       std::size_t
-      current_index() const
-      { return this->_M_current_index; }
+      maxerr_order() const
+      { return this->_M_ival[this->_M_maxerr_index]._M_order; }
 
       _Tp
       lower_lim(std::size_t __ii) const
@@ -185,17 +186,19 @@ namespace __gnu_test
       level(std::size_t ii) const
       { return this->_M_ival[ii]._M_level; }
 
+      // Only used by qagp
       _Tp
       set_abs_error(std::size_t __ii, _Tp __abserr)
       { return this->_M_ival[__ii]._M_abs_error = __abserr; }
 
+      // Only used by qagp
       void
       set_level(std::size_t __ii, std::size_t __lvl)
       { this->_M_ival[__ii]._M_level = __lvl; }
 
       std::size_t
       current_level() const
-      { return this->_M_ival[this->_M_current_index]._M_level; }
+      { return this->_M_ival[this->maxerr_order()]._M_level; }
 
       std::size_t
       max_level() const
@@ -204,53 +207,49 @@ namespace __gnu_test
       bool
       large_interval() const
       {
-	if (this->_M_ival[this->_M_current_index]._M_level < this->_M_maximum_level)
+	if (this->_M_ival[this->maxerr_order()]._M_level
+		 < this->_M_maximum_level)
 	  return true;
 	else
 	  return false;
       }
 
       bool
-      increase_nrmax()
+      increase_maxerr_index()
       {
-	int __id = this->_M_nrmax;
-	int __jupbnd;
+	if (this->_M_size < 2)
+	  return false;
 
+	auto __id = this->_M_maxerr_index;
 	auto __last = this->_M_size - 1;
 
+	std::size_t __jupbnd;
 	if (__last > (1 + this->_M_capacity / 2))
 	  __jupbnd = this->_M_capacity + 1 - __last;
 	else
 	  __jupbnd = __last;
 
-	for (int __k = __id; __k <= __jupbnd; ++__k)
+	for (auto __k = __id; __k <= __jupbnd; ++__k)
 	  {
-	    auto __i_max = this->_M_ival[this->_M_nrmax]._M_order;
-
-	    this->_M_current_index = __i_max;
-
+	    auto __i_max = this->_M_ival[this->_M_maxerr_index]._M_order;
 	    if (this->_M_ival[__i_max]._M_level < this->_M_maximum_level)
 	      return true;
-
-	    ++this->_M_nrmax;
+	    ++this->_M_maxerr_index;
 	  }
 	return false;
       }
 
       void
-      reset_nrmax()
-      {
-	this->_M_nrmax = 0;
-	this->_M_current_index = this->_M_ival[0]._M_order;
-      }
+      reset_maxerr_index()
+      { this->_M_maxerr_index = 0; }
 
       std::size_t
-      get_nrmax() const
-      { return this->_M_nrmax; }
+      get_maxerr_index() const
+      { return this->_M_maxerr_index; }
 
       void
-      set_nrmax(std::size_t nrmax)
-      { this->_M_nrmax = nrmax; }
+      set_maxerr_index(std::size_t maxerr_index)
+      { this->_M_maxerr_index = maxerr_index; }
 
       _Tp
       sum_results() const
@@ -265,12 +264,13 @@ namespace __gnu_test
       static bool
       subinterval_too_small(_Tp __a1, _Tp __a2, _Tp __b2)
       {
-	const auto __e = std::numeric_limits<_Tp>::epsilon();
-	const auto __u = std::numeric_limits<_Tp>::min();
+	const auto _S_eps = 100 * std::numeric_limits<_Tp>::epsilon();
+	const auto _S_min = 1000 * std::numeric_limits<_Tp>::min();
 
-	_Tp __tmp = (1 + 100 * __e) * (std::abs(__a2) + 1000 * __u);
+	_Tp __tmp = (1 + _S_eps) * (std::abs(__a2) + _S_min);
 
-	return std::abs(__a1) <= __tmp && std::abs(__b2) <= __tmp;
+	return std::abs(__a1) <= __tmp
+	    && std::abs(__b2) <= __tmp;
       }
     };
 

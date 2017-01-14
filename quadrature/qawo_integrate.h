@@ -244,13 +244,13 @@ namespace __gnu_test
 	  if (__extall)
 	    {
 	      __extrapolate = 1;
-	      __workspace.set_nrmax(1);
+	      __workspace.set_maxerr_index(1);
 	    }
 	  else
 	    {
 	      // test whether the interval to be bisected next is the
 	      // smallest interval.
-	      std::size_t __i = __workspace.current_index(); // ???
+	      std::size_t __i = __workspace.maxerr_order(); // ???
 	      auto __width = __workspace.upper_lim(__i) - __workspace.lower_lim(__i);
 
 	      if (0.25 * std::abs(__width) * __abs_omega > _Tp{2})
@@ -265,7 +265,7 @@ namespace __gnu_test
 	label70:
 	  if (!__error_type2 && __error_over_large_intervals > __ertest)
 	    {
-	      if (__workspace.increase_nrmax())
+	      if (__workspace.increase_maxerr_index())
 		continue;
 	    }
 
@@ -275,7 +275,7 @@ namespace __gnu_test
 
 	  if (__table.get_nn() < 3)
 	    {
-	      __workspace.reset_nrmax();
+	      __workspace.reset_maxerr_index();
 	      __extrapolate = 0;
 	      __error_over_large_intervals = __errsum;
 	      continue;
@@ -308,11 +308,9 @@ namespace __gnu_test
 	    break;
 
 	  // work on interval with largest error.
-
-	  __workspace.reset_nrmax();
+	  __workspace.reset_maxerr_index();
 	  __extrapolate = 0;
 	  __error_over_large_intervals = __errsum;
-
 	}
       while (__iteration < __limit);
 
