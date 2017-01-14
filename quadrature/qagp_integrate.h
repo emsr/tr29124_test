@@ -271,7 +271,7 @@ namespace __gnu_test
 		continue;
 
 	      __extrapolate = 1;
-	      __workspace.set_nrmax(1);
+	      __workspace.set_maxerr_index(1);
 	    }
 
 	  /* The smallest interval has the largest error.  Before
@@ -280,7 +280,7 @@ namespace __gnu_test
 	     extrapolation. */
 
 	  if (!__error_type2 && __error_over_large_intervals > __ertest)
-	    if (__workspace.increase_nrmax())
+	    if (__workspace.increase_maxerr_index())
 	      continue;
 
 	  // Perform extrapolation.
@@ -317,10 +317,9 @@ namespace __gnu_test
 
 	skip_extrapolation:
 
-	  __workspace.reset_nrmax();
+	  __workspace.reset_maxerr_index();
 	  __extrapolate = 0;
 	  __error_over_large_intervals = __errsum;
-
 	}
       while (__iteration < __limit);
 
