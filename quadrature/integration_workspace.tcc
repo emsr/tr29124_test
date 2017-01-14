@@ -37,10 +37,27 @@ namespace __gnu_test
     void
     integration_workspace<_Tp>::sort_error()
     {
-      const std::size_t __last = this->_M_size - 1;
+/*
+      interval_comp __cmp;
+      //std::make_heap(std::begin(this->_M_ival),
+	//	     std::begin(this->_M_ival) + this->_M_size, __cmp);
+      std::sort(std::begin(this->_M_ival),
+		std::begin(this->_M_ival) + this->_M_size, __cmp);
+      std::reverse(std::begin(this->_M_ival),
+		   std::begin(this->_M_ival) + this->_M_size);
+      for (auto __k = 0u; __k < this->_M_size; ++__k)
+	this->_M_ival[__k]._M_order = __k;
+      this->_M_current_index = 0;
+      this->_M_nrmax = 0;
+      return;
+*/
+      if (this->_M_size < 2)
+	return;
 
-      std::size_t __i_nrmax = this->_M_nrmax;
-      std::size_t __i_maxerr = this->_M_ival[__i_nrmax]._M_order;
+      const auto __last = this->_M_size - 1;
+
+      auto __i_nrmax = this->_M_nrmax;
+      auto __i_maxerr = this->_M_ival[__i_nrmax]._M_order;
 
       // Check whether the list contains more than two error estimates.
       if (__last < 2)
@@ -74,14 +91,13 @@ namespace __gnu_test
 	__top = this->_M_capacity - __last + 1;
 
       // Insert errmax by traversing the list top-down, starting
-      // comparison from the element abs_error(order(i_nrmax+1)).
+      // comparison from the element abs_error(order(i_nrmax + 1)).
+      auto __jj = __i_nrmax + 1;
 
       // The order of the tests in the following line is important to
       // prevent a segmentation fault
-
-      auto __jj = __i_nrmax + 1;
       while (__jj < __top
-	  && __errmax < this->_M_ival[this->_M_ival[__jj]._M_order]._M_abs_error)
+	 && __errmax < this->_M_ival[this->_M_ival[__jj]._M_order]._M_abs_error)
 	{
 	  this->_M_ival[__jj - 1]._M_order = this->_M_ival[__jj]._M_order;
 	  ++__jj;
@@ -89,7 +105,7 @@ namespace __gnu_test
       this->_M_ival[__jj - 1]._M_order = __i_maxerr;
 
       // Insert errmin by traversing the list bottom-up
-      auto __errmin = this->_M_ival[__last]._M_abs_error;
+      const auto __errmin = this->_M_ival[__last]._M_abs_error;
       auto __kk = __top - 1;
       while (__kk > __jj - 2
 	  && __errmin >= this->_M_ival[this->_M_ival[__kk]._M_order]._M_abs_error)
