@@ -81,8 +81,17 @@ namespace __gnu_test
   template<typename _Tp>
     void
     __throw__IntegrationError(const char* __what, int __errcode,
-			      _Tp __result = std::numeric_limits<_Tp>::quiet_NaN(),
-			      _Tp __abserr = std::numeric_limits<_Tp>::quiet_NaN())
+			  _Tp __result = std::numeric_limits<_Tp>::quiet_NaN(),
+			  _Tp __abserr = std::numeric_limits<_Tp>::quiet_NaN())
+			  __attribute__((__noreturn__));
+
+  /**
+   * Throws appropriate error if errcode nonzero
+   */
+  template<typename _Tp>
+    void
+    __throw__IntegrationError(const char* __what, int __errcode,
+			      _Tp __result, _Tp __abserr)
     {
       _GLIBCXX_THROW_OR_ABORT(
 	_IntegrationError(__what, __errcode, __result, __abserr));
@@ -135,6 +144,9 @@ namespace __gnu_test
 				__result, __abserr);
     }
 
+  /**
+   * 
+   */
   template<typename _Tp>
     _Tp
     __rescale_error(_Tp __err,
