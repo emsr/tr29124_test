@@ -88,7 +88,7 @@ namespace __gnu_test
       std::tie(__result0, __abserr0, __err_reliable)
 	= qc25c(__func, __lower, __higher, __c);
 
-      __workspace.set_initial(__lower, __higher, __result0, __abserr0);
+      __workspace.append(__lower, __higher, __result0, __abserr0);
 
       // Test on accuracy; Use 0.01 relative error as an extra safety
       // margin on the first iteration (ignored for subsequent iterations).
@@ -166,8 +166,7 @@ namespace __gnu_test
 		__error_type = SINGULAR_ERROR;
 	    }
 
-	  __workspace.update(__a1, __b1, __area1, __error1,
-			     __a2, __b2, __area2, __error2);
+	  __workspace.split(__b1, __area1, __error1, __area2, __error2);
 
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 

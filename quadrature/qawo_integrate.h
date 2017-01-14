@@ -59,17 +59,17 @@ namespace __gnu_test
       const auto __limit = __workspace.capacity();
       std::size_t __iteration = 0;
 
-      int __positive_integrand = 0;
-      int __extrapolate = 0;
-      int __extall = 0;
-      int __disallow_extrapolation = 0;
+      bool __positive_integrand = false;
+      bool __extrapolate = false;
+      bool __extall = false;
+      bool __disallow_extrapolation = false;
 
       extrapolation_table<_Tp> __table;
 
       auto __b = __a + __wf.get_length();
       auto __abs_omega = std::abs(__wf.omega);
 
-      __workspace.set_initial_limits(__a, __b);
+      __workspace.clear();
 
       auto __result = _Tp{0};
       auto __abserr = _Tp{0};
@@ -86,7 +86,7 @@ namespace __gnu_test
       std::tie(__result0, __abserr0, __resabs0, __resasc0)
 	= qc25f(__wf, __func, __a, __b, 0);
 
-      __workspace.set_initial_results(__result0, __abserr0);
+      __workspace.append(__a, __b, __result0, __abserr0);
 
       auto __tolerance = std::max(__epsabs, __epsrel * std::abs(__result0));
 
@@ -105,7 +105,7 @@ namespace __gnu_test
       if (0.5 * __abs_omega * std::abs(__b - __a) <= _Tp{2})
 	{
 	  __table.append(__result0);
-	  __extall = 1;
+	  __extall = true;
 	}
 
       auto __area = __result0;
@@ -188,14 +188,11 @@ namespace __gnu_test
 
 	  // Set error flag in the case of bad integrand behaviour at
 	  // a point of the integration range.
-
 	  if (__workspace.subinterval_too_small(__a1, __a2, __b2))
 	    __error_type = EXTRAP_ROUNDOFF_ERROR;
 
-	  // append the newly-created intervals to the list.
-
-	  __workspace.update(__a1, __b1, __area1, __error1,
-			     __a2, __b2, __area2, __error2);
+	  // Split the current interval in two.
+	  __workspace.split(__b1, __area1, __error1, __area2, __error2);
 
 	  if (__errsum <= __tolerance)
 	    {
@@ -214,8 +211,7 @@ namespace __gnu_test
 	      break;
 	    }
 
-	  // set up variables on first iteration.
-
+	  // Set up variables on first iteration.
 	  if (__iteration == 2 && __extall)
 	    {
 	      __error_over_large_intervals = __errsum;
@@ -242,21 +238,17 @@ namespace __gnu_test
 	    continue;
 
 	  if (__extall)
-	    {
-	      __extrapolate = 1;
-	      __workspace.set_maxerr_index(1);
-	    }
+	    __extrapolate = true;
 	  else
 	    {
-	      // test whether the interval to be bisected next is the
+	      // Test whether the interval to be bisected next is the
 	      // smallest interval.
-	      std::size_t __i = __workspace.maxerr_order(); // ???
-	      auto __width = __workspace.upper_lim(__i) - __workspace.lower_lim(__i);
+	      auto __width = __workspace.upper_lim() - __workspace.lower_lim();
 
 	      if (0.25 * std::abs(__width) * __abs_omega > _Tp{2})
 		continue;
 
-	      __extall = 1;
+	      __extall = true;
 	      __error_over_large_intervals = __errsum;
 	      __ertest = __tolerance;
 	      continue;
@@ -264,19 +256,15 @@ namespace __gnu_test
 
 	label70:
 	  if (!__error_type2 && __error_over_large_intervals > __ertest)
-	    {
-	      if (__workspace.increase_maxerr_index())
-		continue;
-	    }
+	    continue;
 
-	  /* Perform extrapolation */
+	  // Perform extrapolation.
 
 	  __table.append(__area);
 
 	  if (__table.get_nn() < 3)
 	    {
-	      __workspace.reset_maxerr_index();
-	      __extrapolate = 0;
+	      __extrapolate = false;
 	      __error_over_large_intervals = __errsum;
 	      continue;
 	    }
@@ -300,16 +288,14 @@ namespace __gnu_test
 	    }
 
 	  // Prepare bisection of the smallest interval.
-
 	  if (__table.get_nn() == 1)
-	    __disallow_extrapolation = 1;
+	    __disallow_extrapolation = true;
 
 	  if (__error_type == DIVERGENCE_ERROR)
 	    break;
 
-	  // work on interval with largest error.
-	  __workspace.reset_maxerr_index();
-	  __extrapolate = 0;
+	  // Work on interval with largest error.
+	  __extrapolate = false;
 	  __error_over_large_intervals = __errsum;
 	}
       while (__iteration < __limit);
