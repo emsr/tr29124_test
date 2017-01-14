@@ -43,9 +43,6 @@ namespace __gnu_test
 		   const _Tp __a,
 		   const _Tp __epsabs)
     {
-      _Tp __area, __errsum;
-      _Tp __res_ext, __err_ext;
-      _Tp __correc, __total_error = _Tp{0}, __truncation_error;
 
       std::size_t __ktmin = 0;
       std::size_t __iteration = 0;
@@ -91,12 +88,13 @@ namespace __gnu_test
 
       __initial_eps = __eps;
 
-      __area = _Tp{0};
-      __errsum = _Tp{0};
-
-      __res_ext = _Tp{0};
-      __err_ext = _S_max;
-      __correc = _Tp{0};
+      auto __area = _Tp{0};
+      auto __errsum = _Tp{0};
+      auto __res_ext = _Tp{0};
+      auto __err_ext = _S_max;
+      auto __correc = _Tp{0};
+      auto __total_error = _Tp{0};
+      auto __truncation_error = _Tp{0};
 
       __cycle = (2 * std::floor(std::abs(__omega)) + 1)
 	      * M_PI / std::abs(__omega);
@@ -124,9 +122,7 @@ namespace __gnu_test
 
 	  // Estimate the truncation error as 50 times the final term.
 	  __truncation_error = 50 * std::abs(__area1);
-
 	  __total_error = __errsum + __truncation_error;
-
 	  if (__total_error < __epsabs && __iteration > 4)
 	    goto compute_result;
 
