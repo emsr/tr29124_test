@@ -198,6 +198,7 @@ test_cyl_hankel
 test_dawson
 test_debye
 test_dilog
+test_erfc
 test_expint
 test_factorial
 test_fermi_dirac
