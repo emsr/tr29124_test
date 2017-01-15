@@ -73,15 +73,9 @@ namespace __gnu_test
 				 "with given absolute "
 				 "and relative error limits.");
 
-      std::vector<_Tp> __rlist(__max_iter);
-      std::vector<_Tp> __elist(__max_iter);
-
       _Tp __result0, __abserr0, __resabs0, __resasc0;
       std::tie(__result0, __abserr0,__resabs0,__resasc0)
 	  = qk_integrate(__func, __a, __b, __qkintrule);
-
-      __rlist[0] = __result0;
-      __elist[0] = __abserr0;
 
       // Test on accuracy
       auto __tolerance = std::max(__epsabs, __epsrel * std::abs(__result0));
@@ -115,7 +109,6 @@ namespace __gnu_test
       do
 	{
 	  // Bisect the subinterval with the largest error estimate
-
 	  _Tp __a_i, __b_i, __r_i, __e_i;
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
