@@ -52,7 +52,8 @@ template<typename _Tp>
     auto z2 = [n2, m2, rho](_Tp phi) ->_Tp { return __gnu_cxx::zernike(n2, m2, rho, phi); };
     auto norm = _Tp{1} / std::sqrt(_Tp(2 * n1 + 2) * _Tp(2 * n2 + 2));
     auto fun = [n1, m1, rho, z1, z2, norm](_Tp phi) ->_Tp { return rho * z1(phi) * z2(phi) / norm; };
-    auto [val, err] = integrate_smooth(fun, _Tp{0}, _Tp{_S_2pi}, _S_eps, _Tp{0}, 1024, QK_61);
+    _Tp val;
+    std::tie(val, std::ignore) = integrate_smooth(fun, _Tp{0}, _Tp{_S_2pi}, _S_eps, _Tp{0}, 1024, QK_61);
     return _Tp{2} * val / _S_2pi / epsilon<_Tp>(m1);
   }
 
