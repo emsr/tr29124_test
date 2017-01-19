@@ -1,28 +1,29 @@
-/* integration/qagp_integrate.h
- *
- * Copyright (C) 1996, 1997, 1998, 1999, 2000, 2007 Brian Gough
- * Copyright (C) 2016-2017 Free Software Foundation, Inc.
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 3 of the License, or (at
- * your option) any later version.
- *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- */
+// -*- C++ -*-
+// Integration utilities for the C++ library testsuite.
+//
+// Copyright (C) 1996, 1997, 1998, 1999, 2000, 2007 Brian Gough
+// Copyright (C) 2016-2017 Free Software Foundation, Inc.
+//
+// This file is part of the GNU ISO C++ Library.  This library is free
+// software; you can redistribute it and/or modify it under the
+// terms of the GNU General Public License as published by the
+// Free Software Foundation; either version 3, or (at your option)
+// any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with this library; see the file COPYING3.  If not see
+// <http://www.gnu.org/licenses/>.
 //
 // Ported from GSL by Ed Smith-Rowland
 // Originally written by Brian Gaugh
 //
 // Implements integration using a recursive Gauss-Kronrod algorithm
-// Based upon gsl-2.3/integration/qagp.c
+// Based on gsl/integration/qagp.c
 
 #ifndef QAGP_INTEGRATE_H
 #define QAGP_INTEGRATE_H 1
@@ -53,91 +54,76 @@ namespace __gnu_test
 		   _Tp __epsabs, _Tp __epsrel,
 		   const qk_intrule __qk_rule)
     {
-      _Tp __errsum;
-      _Tp __tolerance;
-
-      _Tp __ertest = 0;
-      _Tp __error_over_large_intervals = 0;
-      _Tp __reseps = 0, __abseps = 0, __correc = 0;
-      std::size_t __ktmin = 0;
-      int __roundoff_type1 = 0, __roundoff_type2 = 0, __roundoff_type3 = 0;
-      int __error_type = NO_ERROR, __error_type2 = NO_ERROR;
-
-      std::size_t __iteration = 0;
-
-      bool __positive_integrand = false;
-      bool __extrapolate = false;
-      bool __disallow_extrapolation = false;
-
       const auto _S_max = std::numeric_limits<_Tp>::max();
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       const auto __limit = __workspace.capacity();
+      const auto __n_ivals = __pts.size() - 1;
+
+      bool __extrapolate = false;
+      bool __disallow_extrapolation = false;
+
+      if (__epsabs <= 0
+	  && (__epsrel < 50 * _S_eps || __epsrel < 0.5e-28))
+	std::__throw_runtime_error("qagp_integrate: "
+				   "Tolerance cannot be achieved "
+				   "with given absolute "
+				   "and relative error limits.");
 
       if (__pts.size() > __workspace.capacity())
 	std::__throw_runtime_error("qagp_integrate: "
 				   "number of pts exceeds size of workspace");
-      if (__epsabs <= 0 && (__epsrel < 50 * _S_eps
-			   || __epsrel < 0.5e-28))
-	std::__throw_runtime_error("qagp_integrate: "
-				   "tolerance cannot be achieved "
-				   "with given epsabs and epsrel");
 
-      /* Check that the integration range and break points are an
-	 ascending sequence */
+      // Check that the integration range and break points are an
+      // ascending sequence.
 
-      // number of intervals
-      const std::size_t __nint = __pts.size() - 1;
-      for (std::size_t __i = 0; __i < __nint; ++__i)
+      for (std::size_t __i = 0; __i < __n_ivals; ++__i)
 	if (__pts[__i + 1] < __pts[__i])
 	  std::__throw_runtime_error("qagp_integrate: "
 				     "points are not in an ascending sequence");
 
-      // Perform the first integration.
-
       __workspace.clear();
 
+      // Perform the first integration.
       auto __result0 = _Tp{0};
       auto __abserr0 = _Tp{0};
       auto __resabs0 = _Tp{0};
-      for (std::size_t __i = 0; __i < __nint; ++__i)
+      for (std::size_t __i = 0; __i < __n_ivals; ++__i)
 	{
-	  _Tp __area1, __error1, __resabs1, __resasc1;
-	  const auto __a1 = __pts[__i];
-	  const auto __b1 = __pts[__i + 1];
+	  const auto __a = __pts[__i];
+	  const auto __b = __pts[__i + 1];
 
+	  _Tp __area1, __error1, __resabs1, __resasc1;
 	  std::tie(__area1, __error1, __resabs1, __resasc1)
-	    = qk_integrate(__func, __a1, __b1, __qk_rule);
+	    = qk_integrate(__func, __a, __b, __qk_rule);
 
 	  __result0 += __area1;
 	  __abserr0 += __error1;
 	  __resabs0 += __resabs1;
-	  __workspace.append(__a1, __b1, __area1, __error1);
+	  __workspace.append(__a, __b, __area1, __error1);
 
 	  if (__error1 == __resasc1 && __error1 != _Tp{0})
-	    __workspace.set_level(__i, 1);
+	    __workspace.set_depth(__i, 1);
 	  else
-	    __workspace.set_level(__i, 0);
+	    __workspace.set_depth(__i, 0);
 	}
 
       // Compute the initial error estimate.
-      __errsum = _Tp{0};
-      for (std::size_t __i = 0; __i < __nint; ++__i)
+      auto __errsum = _Tp{0};
+      for (std::size_t __i = 0; __i < __n_ivals; ++__i)
 	{
-	  if (__workspace.level(__i))
-	    __workspace.set_abs_error(__i, __abserr0);
+	  if (__workspace.depth(__i))
+	    {
+	      __workspace.set_abs_error(__i, __abserr0);
+	      __workspace.set_depth(__i, 0);
+	    }
 	  __errsum += __workspace.abs_error(__i);
-	}
+	}	
 
-      for (std::size_t __i = 0; __i < __nint; ++__i)
-	__workspace.set_level(__i, 0);
-
-      // Sort results into order of decreasing error via the indirection
-      // array order[]
-
+      // We must re-sort because the errors were reassigned.
       __workspace.sort_error();
 
       // Test on accuracy.
-      __tolerance = std::max(__epsabs, __epsrel * std::abs(__result0));
+      auto __tolerance = std::max(__epsabs, __epsrel * std::abs(__result0));
 
       if (__abserr0 <= 100 * _S_eps * __resabs0
 	   && __abserr0 > __tolerance)
@@ -152,20 +138,20 @@ namespace __gnu_test
 				  "a maximum of one iteration was insufficient",
 				  MAX_ITER_ERROR, __result0, __abserr0);
 
-      extrapolation_table<_Tp> __table(__result0);
-
-      auto __area = __result0;
+      extrapolation_table<_Tp> __table;
+      __table.append(__result0);
 
       auto __res_ext = __result0;
       auto __err_ext = _S_max;
 
-      __error_over_large_intervals = __errsum;
-      __ertest = __tolerance;
-
-      __positive_integrand = __test_positivity(__result0, __resabs0);
-
-      __iteration = __nint - 1;
-
+      auto __area = __result0;
+      auto __iteration = __n_ivals - 1;
+      auto __ktmin = 0u;
+      auto __ertest = __tolerance;
+      auto __error_over_large_intervals = __errsum;
+      auto __reseps = _Tp{0}, __abseps = _Tp{0}, __correc = _Tp{0};
+      int __error_type = NO_ERROR, __error_type2 = NO_ERROR;
+      int __roundoff_type1 = 0, __roundoff_type2 = 0, __roundoff_type3 = 0;
       do
 	{
 	  // Bisect the subinterval with the largest error estimate.
@@ -173,7 +159,7 @@ namespace __gnu_test
 	  _Tp __a_i, __b_i, __r_i, __e_i;
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
-	  const auto __current_level = __workspace.current_level() + 1;
+	  const auto __current_depth = __workspace.current_depth() + 1;
 
 	  const auto __a1 = __a_i;
 	  const auto __b1 = (__a_i + __b_i) / _Tp{2};
@@ -204,7 +190,7 @@ namespace __gnu_test
 
 	  if (__resasc1 != __error1 && __resasc2 != __error2)
 	    {
-	      auto __delta = __r_i - __area12;
+	      const auto __delta = __r_i - __area12;
 
 	      if (std::abs(__delta) <= 1.0e-5 * std::abs(__area12)
 		   && __error12 >= 0.99 * __e_i)
@@ -214,8 +200,7 @@ namespace __gnu_test
 		  else
 		    ++__roundoff_type2;
 		}
-	      // This "i > 10" is just a test on nint.
-	      if (/*__iteration > 10 &&*/ __error12 > __e_i)
+	      if (__iteration > 10 && __error12 > __e_i)
 		++__roundoff_type3;
 	    }
 
@@ -223,7 +208,7 @@ namespace __gnu_test
 
 	  if (__roundoff_type1 + __roundoff_type2 >= 10
 	   || __roundoff_type3 >= 20)
-	    __error_type = ROUNDOFF_ERROR; // round off error
+	    __error_type = ROUNDOFF_ERROR;
 
 	  if (__roundoff_type2 >= 5)
 	    __error_type2 = MAX_ITER_ERROR;
@@ -239,12 +224,12 @@ namespace __gnu_test
 
 	  if (__errsum <= __tolerance)
 	    {
-	      __check_error(__func__, __error_type,
-			    __workspace.sum_results(), __errsum);
-	      return std::make_tuple(__workspace.sum_results(), __errsum);
+	      const auto __result = __workspace.total_integral();
+	      __check_error(__func__, __error_type, __result, __errsum);
+	      return std::make_tuple(__result, __errsum);
 	    }
 
-	  if (__error_type)
+	  if (__error_type != NO_ERROR)
 	    break;
 
 	  if (__iteration >= __limit - 1)
@@ -256,9 +241,9 @@ namespace __gnu_test
 	  if (__disallow_extrapolation)
 	    continue;
 
-	  __error_over_large_intervals += -__last_e_i;
+	  __error_over_large_intervals -= __last_e_i;
 
-	  if (__current_level < __workspace.max_level())
+	  if (__current_depth < __workspace.max_depth())
 	    __error_over_large_intervals += __error12;
 
 	  if (!__extrapolate)
@@ -267,24 +252,32 @@ namespace __gnu_test
 	      // smallest interval.
 	      if (__workspace.large_interval())
 		continue;
-
-	      __extrapolate = true;
+	      else
+		{
+		  __extrapolate = true;
+		  __workspace.set_start(1);
+		}
 	    }
 
-	  /* The smallest interval has the largest error.  Before
-	     bisecting decrease the sum of the errors over the larger
-	     intervals (error_over_large_intervals) and perform
-	     extrapolation. */
+	  // The smallest interval has the largest error.  Before
+	  // bisecting decrease the sum of the errors over the larger
+	  // intervals (error_over_large_intervals) and perform
+	  // extrapolation.
 
-	  if (!__error_type2 && __error_over_large_intervals > __ertest)
-	    continue;
+	  if (__error_type2 != NO_ERROR
+	   && __error_over_large_intervals > __ertest)
+	    if (__workspace.increment_start())
+	      continue;
 
 	  // Perform extrapolation.
-
 	  __table.append(__area);
 
 	  if (__table.get_nn() < 3)
-	    goto skip_extrapolation;
+	    {
+	      __extrapolate = false;
+	      __error_over_large_intervals = __errsum;
+	      continue;
+	    }
 
 	  std::tie(__reseps, __abseps) = __table.qelg();
 
@@ -304,15 +297,14 @@ namespace __gnu_test
 	    }
 
 	  // Prepare bisection of the smallest interval.
-
 	  if (__table.get_nn() == 1)
 	    __disallow_extrapolation = true;
 
 	  if (__error_type == DIVERGENCE_ERROR)
 	    break;
 
-	skip_extrapolation:
-
+	  // Work on interval with largest error.
+	  __workspace.reset_start();
 	  __extrapolate = false;
 	  __error_over_large_intervals = __errsum;
 	}
@@ -323,52 +315,55 @@ namespace __gnu_test
 
       if (__err_ext == _S_max)
 	{
-	  __check_error(__func__, __error_type,
-			__workspace.sum_results(), __errsum);
-	  return std::make_tuple(__workspace.sum_results(), __errsum);
+	  const auto __result = __workspace.total_integral();
+	  __check_error(__func__, __error_type, __result, __errsum);
+	  return std::make_tuple(__result, __errsum);
 	}
 
-      if (__error_type || __error_type2)
+      if (__error_type != NO_ERROR || __error_type2 != NO_ERROR)
 	{
-	  if (__error_type2)
+	  if (__error_type2 != NO_ERROR)
 	    __err_ext += __correc;
-	  if (__error_type == 0)
+
+	  if (__error_type == NO_ERROR)
 	    __error_type = SINGULAR_ERROR;
+
 	  if (__result != _Tp{0} && __area != _Tp{0})
 	    {
 	      if (__err_ext / std::abs(__res_ext) > __errsum / std::abs(__area))
 		{
-		  __check_error(__func__, __error_type,
-				__workspace.sum_results(), __errsum);
-		  return std::make_tuple(__workspace.sum_results(), __errsum);
+		  const auto __result = __workspace.total_integral();
+		  __check_error(__func__, __error_type, __result, __errsum);
+		  return std::make_tuple(__result, __errsum);
 		}
 	    }
 	  else if (__err_ext > __errsum)
 	    {
-	      __check_error(__func__, __error_type,
-			    __workspace.sum_results(), __errsum);
-	      return std::make_tuple(__workspace.sum_results(), __errsum);
+	      const auto __result = __workspace.total_integral();
+	      __check_error(__func__, __error_type, __result, __errsum);
+	      return std::make_tuple(__result, __errsum);
 	    }
 	  else if (__area == _Tp{0})
 	    {
 	      __check_error<_Tp>(__func__, __error_type);
-	      std::__throw_runtime_error("qagp_integrate: Unknown error");
+	      std::__throw_runtime_error("qagp_integrate: Unknown error.");
 	    }
 	}
 
       // Test on divergence.
+      auto __positive_integrand = __test_positivity(__result0, __resabs0);
       auto __max_area = std::max(std::abs(__res_ext), std::abs(__area));
       if (!__positive_integrand && __max_area < 0.01 * __resabs0)
 	{
 	  __check_error<_Tp>(__func__, __error_type);
-	  std::__throw_runtime_error("qagp_integrate: Unknown error");
+	  std::__throw_runtime_error("qagp_integrate: Unknown error.");
 	}
 
       auto __ratio = __res_ext / __area;
       if (__ratio < 0.01 || __ratio > 100 || __errsum > std::abs(__area))
 	__error_type = UNKNOWN_ERROR;
 
-      if (__error_type == 0)
+      if (__error_type == NO_ERROR)
 	return std::make_tuple(__result, __abserr);
 
       __check_error<_Tp>(__func__, __error_type);

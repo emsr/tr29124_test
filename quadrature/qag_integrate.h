@@ -64,10 +64,7 @@ namespace __gnu_test
     {
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
 
-      auto __result = _Tp{0};
-      auto __abserr = _Tp{0};
-
-      if (__epsabs <= 0 && (__epsrel < 50 * _S_eps))
+      if (__epsabs <= 0 && (__epsrel < _Tp{50} * _S_eps))
 	std::__throw_logic_error("qag_integrate: "
 				 "Tolerance cannot be achieved "
 				 "with given absolute "
@@ -96,16 +93,14 @@ namespace __gnu_test
 				  "a maximum of one iteration was insufficient",
 				  MAX_ITER_ERROR, __result0, __abserr0);
 
-      auto __area = __result0;
-      auto __errsum = __abserr0;
-
-      int __error_type = NO_ERROR;
-      std::size_t __iteration = 1;
-
       __workspace.clear();
       __workspace.append(__a, __b, __result0, __abserr0);
-      __result = __workspace.sum_results();
 
+      auto __area = __result0;
+      auto __errsum = __abserr0;
+      int __error_type = NO_ERROR;
+      std::size_t __iteration = 1;
+      int __roundoff_type1 = 0, __roundoff_type2 = 0;
       do
 	{
 	  // Bisect the subinterval with the largest error estimate
@@ -128,13 +123,12 @@ namespace __gnu_test
 	  const auto __area12 = __area1 + __area2;
 	  const auto __error12 = __error1 + __error2;
 
-	  __errsum += (__error12 - __e_i);
 	  __area += __area12 - __r_i;
+	  __errsum += __error12 - __e_i;
 
-	  int __roundoff_type1 = 0, __roundoff_type2 = 0;
 	  if (__resasc1 != __error1 && __resasc2 != __error2)
 	    {
-	      _Tp __delta = __r_i - __area12;
+	      const auto __delta = __r_i - __area12;
 
 	      if (std::abs(__delta) <= 1.0e-5 * std::abs(__area12)
 		 && __error12 >= 0.99 * __e_i)
@@ -160,15 +154,13 @@ namespace __gnu_test
 
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
-	  __result = __workspace.sum_results();
-
 	  ++__iteration;
 	}
       while (__iteration < __max_iter && !__error_type
 	     && __errsum > __tolerance);
 
-      __result = __workspace.sum_results();
-      __abserr = __errsum;
+      auto __result = __workspace.total_integral();
+      auto __abserr = __errsum;
 
       if (__errsum <= __tolerance)
 	return std::make_tuple(__result, __abserr);

@@ -21,7 +21,7 @@
 // Originally written by Pedro Gonnet
 //
 // This file contains constants for use in integration schemes.
-// Based upon structs in gsl-2.3/integration/gsl_integration.h
+// Based on structs in gsl/integration/gsl_integration.h
 
 #ifndef CQUAD_WORKSPACE_H
 #define CQUAD_WORKSPACE_H 1
@@ -83,6 +83,10 @@ namespace __gnu_test
       std::size_t size() const
       { return this->_M_ival.size(); }
 
+      std::size_t
+      capacity() const
+      { return this->_M_ival.capacity(); }
+
       typename std::vector<cquad_interval<_Tp>>::iterator
       begin()
       { return this->_M_ival.begin(); }
@@ -107,21 +111,21 @@ namespace __gnu_test
       push(const cquad_interval<_Tp>& __iv)
       {
 	this->_M_ival.push_back(__iv);
-	std::push_heap(std::begin(this->_M_ival), std::end(this->_M_ival),
+	std::push_heap(this->begin(), this->end(),
 		       cquad_interval_comp<_Tp>{});
       }
 
       void
       pop()
       {
-	std::pop_heap(std::begin(this->_M_ival), std::end(this->_M_ival));
+	std::pop_heap(this->begin(), this->end());
 	this->_M_ival.pop_back();
       }
 
       void
       update()
       {
-	std::make_heap(std::begin(this->_M_ival), std::end(this->_M_ival),
+	std::make_heap(this->begin(), this->end(),
 		       cquad_interval_comp<_Tp>{});
       }
 

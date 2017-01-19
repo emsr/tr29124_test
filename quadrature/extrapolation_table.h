@@ -22,7 +22,7 @@
 // Originally written by Brian Gaugh
 //
 // This file implements an extrapolation table for use in integration schemes
-// Based upon gsl-2.3/integration/qelg.c
+// Based on gsl/integration/qelg.c
 
 #ifndef EXTRAPOLATION_TABLE_H
 #define EXTRAPOLATION_TABLE_H 1

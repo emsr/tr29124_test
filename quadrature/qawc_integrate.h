@@ -21,7 +21,7 @@
 // Originally written by Brian Gaugh
 //
 // Implements qawc integration algorithm
-// Based upon gsl-2.3/integration/qawc.c
+// Based on gsl/integration/qawc.c
 
 #ifndef QAWC_INTEGRATE_H
 #define QAWC_INTEGRATE_H 1
@@ -82,6 +82,8 @@ namespace __gnu_test
 				    "Cannot integrate with singularity "
 				    "on endpoint.");
 
+      __workspace.clear();
+
       // Perform the first integration.
       _Tp __result0, __abserr0;
       bool __err_reliable;
@@ -104,27 +106,21 @@ namespace __gnu_test
       auto __errsum = __abserr0;
       auto __iteration = 1u;
       int __error_type = NO_ERROR;
+      int __roundoff_type1 = 0, __roundoff_type2 = 0;
       do
 	{
 	  // Bisect the subinterval with the largest error estimate.
 	  _Tp __a_i, __b_i, __r_i, __e_i;
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
-	  auto __a1 = __a_i;
+	  const auto __a1 = __a_i;
 	  auto __b1 = (__a_i + __b_i) / _Tp{2};
-	  auto __a2 = __b1;
-	  auto __b2 = __b_i;
-
+	  const auto __b2 = __b_i;
 	  if (__c > __a1 && __c <= __b1)
-	    {
-	      __b1 = (__c + __b2) / _Tp{2};
-	      __a2 = __b1;
-	    }
+	    __b1 = (__c + __b2) / _Tp{2};
 	  else if (__c > __b1 && __c < __b2)
-	    {
-	      __b1 = (__a1 + __c) / _Tp{2};
-	      __a2 = __b1;
-	    }
+	    __b1 = (__a1 + __c) / _Tp{2};
+	  const auto __a2 = __b1;
 
 	  _Tp __area1, __error1;
 	  bool __err_reliable1;
@@ -142,7 +138,6 @@ namespace __gnu_test
 	  __errsum += (__error12 - __e_i);
 	  __area += __area12 - __r_i;
 
-	  int __roundoff_type1 = 0, __roundoff_type2 = 0;
 	  if (__err_reliable1 && __err_reliable2)
 	    {
 	      _Tp __delta = __r_i - __area12;
@@ -174,7 +169,7 @@ namespace __gnu_test
 	}
       while (__iteration < __limit && !__error_type && __errsum > __tolerance);
 
-      __result = __sign * __workspace.sum_results();
+      __result = __sign * __workspace.total_integral();
       __abserr = __errsum;
 
       if (__iteration == __limit)

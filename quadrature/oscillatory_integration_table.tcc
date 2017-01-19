@@ -23,7 +23,7 @@
 //
 // This file implements an oscillatory integrand table for use
 // in integration schemes.
-// Based upon gsl-2.3/integration/qmomof.c
+// Based on gsl/integration/qmomof.c
 
 #ifndef OSCILLATORY_INTEGRATION_TABLE_TCC
 #define OSCILLATORY_INTEGRATION_TABLE_TCC 1

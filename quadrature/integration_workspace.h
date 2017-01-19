@@ -43,7 +43,7 @@ namespace __gnu_test
 	_Tp _M_upper_lim;
 	_Tp _M_result;
 	_Tp _M_abs_error;
-	std::size_t _M_level;
+	std::size_t _M_depth;
 
 	bool
 	operator<(const interval& __iv)
@@ -61,23 +61,26 @@ namespace __gnu_test
 	{ return __ivl._M_abs_error < __ivr._M_abs_error; }
       };
 
-      std::size_t _M_maximum_level;
+      // The start of the heap.
+      // This allows to skip the actual max error.
+      std::size_t _M_start;
+
+      // The current maximum depth.
+      std::size_t _M_max_depth;
+
       std::vector<interval> _M_ival;
 
     public:
 
       integration_workspace(std::size_t __cap)
-      : _M_maximum_level{0},
+      : _M_start{0},
+	_M_max_depth{0},
 	_M_ival{}
       {
 	_M_ival.reserve(__cap);
       }
 
       void sort_error();
-
-      void
-      clear()
-      { this->_M_ival.clear(); }
 
       void append(_Tp __a, _Tp __b, _Tp __area, _Tp __error);
 
@@ -88,10 +91,10 @@ namespace __gnu_test
       void
       retrieve(_Tp& __lolim, _Tp& __uplim, _Tp& __res, _Tp& __err) const
       {
-	__lolim = this->_M_ival[0]._M_lower_lim;
-	__uplim = this->_M_ival[0]._M_upper_lim;
-	__res = this->_M_ival[0]._M_result;
-	__err = this->_M_ival[0]._M_abs_error;
+	__lolim = this->_M_ival[this->_M_start]._M_lower_lim;
+	__uplim = this->_M_ival[this->_M_start]._M_upper_lim;
+	__res = this->_M_ival[this->_M_start]._M_result;
+	__err = this->_M_ival[this->_M_start]._M_abs_error;
       }
 
       std::size_t
@@ -102,55 +105,110 @@ namespace __gnu_test
       capacity() const
       { return this->_M_ival.capacity(); }
 
+      typename std::vector<interval>::iterator
+      begin()
+      { return this->_M_ival.begin() + this->_M_start; }
+
+      typename std::vector<interval>::iterator
+      end()
+      { return this->_M_ival.end(); }
+
+      const interval&
+      top() const
+      { return this->_M_ival[this->_M_start]; }
+
+      interval&
+      top()
+      { return this->_M_ival[this->_M_start]; }
+
+      void
+      clear()
+      {
+	this->_M_start = 0;
+	this->_M_max_depth = 0;
+	this->_M_ival.clear();
+      }
+
+      void
+      push(const interval& __iv)
+      {
+	this->_M_ival.push_back(__iv);
+	std::push_heap(this->begin(), this->end(),
+		       interval_comp{});
+      }
+
+      void
+      pop()
+      {
+	std::pop_heap(this->begin(), this->end());
+	this->_M_ival.pop_back();
+      }
+
       _Tp
       lower_lim(std::size_t __ii = 0) const
-      { return this->_M_ival[__ii]._M_lower_lim; }
+      { return this->_M_ival[this->_M_start + __ii]._M_lower_lim; }
 
       _Tp
       upper_lim(std::size_t __ii = 0) const
-      { return this->_M_ival[__ii]._M_upper_lim; }
+      { return this->_M_ival[this->_M_start + __ii]._M_upper_lim; }
 
       _Tp
       result(std::size_t __ii = 0) const
-      { return this->_M_ival[__ii]._M_result; }
+      { return this->_M_ival[this->_M_start + __ii]._M_result; }
 
       _Tp
       abs_error(std::size_t __ii = 0) const
-      { return this->_M_ival[__ii]._M_abs_error; }
+      { return this->_M_ival[this->_M_start + __ii]._M_abs_error; }
 
       size_t
-      level(std::size_t ii = 0) const
-      { return this->_M_ival[ii]._M_level; }
+      depth(std::size_t __ii = 0) const
+      { return this->_M_ival[this->_M_start + __ii]._M_depth; }
 
       // Only used by qagp
       _Tp
       set_abs_error(std::size_t __ii, _Tp __abserr)
-      { return this->_M_ival[__ii]._M_abs_error = __abserr; }
+      { return this->_M_ival[this->_M_start + __ii]._M_abs_error = __abserr; }
 
       // Only used by qagp
       void
-      set_level(std::size_t __ii, std::size_t __lvl)
-      { this->_M_ival[__ii]._M_level = __lvl; }
+      set_depth(std::size_t __ii, std::size_t __d)
+      { this->_M_ival[this->_M_start + __ii]._M_depth = __d; }
+
+      void
+      set_start(std::size_t __start)
+      {
+	this->_M_start = __start;
+	this->sort_error();
+      }
+
+      bool increment_start();
+
+      void
+      reset_start()
+      {
+	this->_M_start = 0;
+	this->sort_error();
+      }
 
       std::size_t
-      current_level() const
-      { return this->_M_ival[0]._M_level; }
+      current_depth() const
+      { return this->_M_ival[this->_M_start]._M_depth; }
 
       std::size_t
-      max_level() const
-      { return this->_M_maximum_level; }
+      max_depth() const
+      { return this->_M_max_depth; }
 
       bool
       large_interval() const
       {
-	if (this->current_level() < this->max_level())
+	if (this->current_depth() < this->max_depth())
 	  return true;
 	else
 	  return false;
       }
 
       _Tp
-      sum_results() const
+      total_integral() const
       {
 	auto __result_sum = _Tp{0};
 	for (const auto& __iv : this->_M_ival)
@@ -158,9 +216,17 @@ namespace __gnu_test
 	return __result_sum;
       }
 
+      _Tp
+      total_error() const
+      {
+	auto __tot_error = _Tp{0};
+	for (auto& __iv : _M_ival)
+	  __tot_error += __iv._M_abs_error;
+	return __tot_error;
+      }
+
       /*
-       * FIXME: I think this should be - 
-       *  abs(a2 - a1) < tol || abs(b2 - a2) < tol
+       * 
        */
       static bool
       subinterval_too_small(_Tp __a1, _Tp __a2, _Tp __b2)

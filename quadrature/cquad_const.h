@@ -21,7 +21,7 @@
 // Originally written by Brian Gaugh
 //
 // This file contains constants for use in integration schemes.
-// Based upon gsl-2.3/integration/cquad_const.c
+// Based on gsl/integration/cquad_const.c
 
 #ifndef CQUAD_CONST_H
 #define CQUAD_CONST_H 1

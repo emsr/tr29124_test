@@ -21,7 +21,7 @@
 // Originally written by Pedro Gonnet
 //
 // This file implements the cquad integration scheme.
-// Based upon structs in gsl-2.3/integration/cquad.c
+// Based on structs in gsl/integration/cquad.c
 
 #ifndef CQUAD_INTEGRATE_H
 #define CQUAD_INTEGRATE_H 1
@@ -172,13 +172,13 @@ namespace __gnu_test
       __nc = _Tp{0};
       for (std::size_t __i = __n[2] + 1; __i <= __n[3]; ++__i)
 	{
-	  auto __temp = __iv.c[__idx[3] + __i];
+	  const auto __temp = __iv.c[__idx[3] + __i];
 	  __nc += __temp * __temp;
 	}
       __ncdiff = __nc;
       for (std::size_t __i = 0; __i <= __n[2]; ++__i)
 	{
-	  auto __temp = __iv.c[__idx[2] + __i] - __iv.c[__idx[3] + __i];
+	  const auto __temp = __iv.c[__idx[2] + __i] - __iv.c[__idx[3] + __i];
 	  __ncdiff += __temp * __temp;
 	  __nc += __iv.c[__idx[3] + __i] * __iv.c[__idx[3] + __i];
 	}
@@ -248,14 +248,14 @@ namespace __gnu_test
 	      __nc = _Tp{0};
 	      for (std::size_t __i = __n[__depth - 1] + 1; __i <= __n[__depth]; ++__i)
 		{
-		  auto __temp = __iv.c[__idx[__depth] + __i];
+		  const auto __temp = __iv.c[__idx[__depth] + __i];
 		  __nc += __temp * __temp;
 		}
 	      __ncdiff = __nc;
 	      for (std::size_t __i = 0; __i <= __n[__depth - 1]; ++__i)
 		{
-		  auto __temp = __iv.c[__idx[__depth - 1] + __i]
-			      - __iv.c[__idx[__depth] + __i];
+		  const auto __temp = __iv.c[__idx[__depth - 1] + __i]
+				    - __iv.c[__idx[__depth] + __i];
 		  __ncdiff += __temp * __temp;
 		  __nc += __iv.c[__idx[__depth] + __i] * __iv.c[__idx[__depth] + __i];
 		}
@@ -332,12 +332,13 @@ namespace __gnu_test
 	      __ncdiff = _Tp{0};
 	      for (std::size_t __i = 0; __i <= __n[0]; ++__i)
 		{
-		  auto __temp = __ivl.c[__i] - __ivl.c[__idx[__depth] + __i];
+		  const auto __temp = __ivl.c[__i]
+				    - __ivl.c[__idx[__depth] + __i];
 		  __ncdiff += __temp * __temp;
 		}
 	      for (std::size_t __i = __n[0] + 1; __i <= __n[__depth]; ++__i)
 		{
-		  auto __temp = __ivl.c[__idx[__depth] + __i];
+		  const auto __temp = __ivl.c[__idx[__depth] + __i];
 		  __ncdiff += __temp * __temp;
 		}
 	      __ncdiff = std::sqrt(__ncdiff);
@@ -392,12 +393,13 @@ namespace __gnu_test
 	      __ncdiff = _Tp{0};
 	      for (std::size_t __i = 0; __i <= __n[0]; ++__i)
 		{
-		  auto __temp = __ivr.c[__i] - __ivr.c[__idx[__depth] + __i];
+		  const auto __temp = __ivr.c[__i]
+				    - __ivr.c[__idx[__depth] + __i];
 		  __ncdiff += __temp * __temp;
 		}
 	      for (std::size_t __i = __n[0] + 1; __i <= __n[__depth]; ++__i)
 		{
-		  auto __temp = __ivr.c[__idx[__depth] + __i];
+		  const auto __temp = __ivr.c[__idx[__depth] + __i];
 		  __ncdiff += __temp * __temp;
 		}
 	      __ncdiff = std::sqrt(__ncdiff);

@@ -21,7 +21,7 @@
 // Originally written by Brian Gaugh
 //
 // Implements qawo integration algorithm
-// Based upon gsl-2.3/integration/qawo.c
+// Based on gsl/integration/qawo.c
 
 #ifndef QAWO_INTEGRATE_H
 #define QAWO_INTEGRATE_H 1
@@ -37,7 +37,7 @@ namespace __gnu_test
     std::tuple<_Tp, _Tp, _Tp, _Tp>
     qc25f(oscillatory_integration_table<_Tp>& __wf,
 	  const _FuncTp& __func, _Tp __a, _Tp __b,
-	  std::size_t __level);
+	  std::size_t __depth);
 
   template<typename _Tp, typename _FuncTp>
     std::tuple<_Tp, _Tp>
@@ -47,27 +47,18 @@ namespace __gnu_test
 		   const _Tp __a,
 		   const _Tp __epsabs, const _Tp __epsrel)
     {
-      _Tp __ertest = 0;
-      _Tp __error_over_large_intervals = 0;
-      _Tp __correc = 0;
-      std::size_t __ktmin = 0;
-      int __roundoff_type1 = 0, __roundoff_type2 = 0, __roundoff_type3 = 0;
-      int __error_type = NO_ERROR, __error_type2 = NO_ERROR;
-
       const auto _S_max = std::numeric_limits<_Tp>::max();
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       const auto __limit = __workspace.capacity();
-      std::size_t __iteration = 0;
 
-      bool __positive_integrand = false;
       bool __extrapolate = false;
       bool __extall = false;
       bool __disallow_extrapolation = false;
 
       extrapolation_table<_Tp> __table;
 
-      auto __b = __a + __wf.get_length();
-      auto __abs_omega = std::abs(__wf.omega);
+      const auto __b = __a + __wf.get_length();
+      const auto __abs_omega = std::abs(__wf.omega);
 
       __workspace.clear();
 
@@ -81,7 +72,6 @@ namespace __gnu_test
 				   "and relative error limits.");
 
       // Perform the first integration.
-
       _Tp __result0, __abserr0, __resabs0, __resasc0;
       std::tie(__result0, __abserr0, __resabs0, __resasc0)
 	= qc25f(__wf, __func, __a, __b, 0);
@@ -108,62 +98,64 @@ namespace __gnu_test
 	  __extall = true;
 	}
 
-      auto __area = __result0;
-      auto __errsum = __abserr0;
-
       auto __res_ext = __result0;
       auto __err_ext = _S_max;
 
-      __positive_integrand = __test_positivity(__result0, __resabs0);
-
-      __iteration = 1;
-
+      auto __area = __result0;
+      auto __errsum = __abserr0;
+      auto __iteration = 1u;
+      auto __ktmin = 0u;
+      auto __ertest = _Tp{0};
+      auto __error_over_large_intervals = _Tp{0};
+      auto __correc = _Tp{0};
+      int __roundoff_type1 = 0, __roundoff_type2 = 0, __roundoff_type3 = 0;
+      int __error_type = NO_ERROR, __error_type2 = NO_ERROR;
       do
 	{
-	  std::size_t __current_level;
+	  std::size_t __current_depth;
 
 	  // Bisect the subinterval with the largest error estimate.
 
 	  _Tp __a_i, __b_i, __r_i, __e_i;
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
-	  __current_level = __workspace.current_level() + 1;
+	  __current_depth = __workspace.current_depth() + 1;
 
-	  if (__current_level >= __wf.n)
+	  if (__current_depth >= __wf.n)
 	    {
 	      __error_type = -1; // exceeded limit of table.
 	      break;
 	    }
 
-	  auto __a1 = __a_i;
-	  auto __b1 = (__a_i + __b_i) / _Tp{2};
-	  auto __a2 = __b1;
-	  auto __b2 = __b_i;
+	  const auto __a1 = __a_i;
+	  const auto __b1 = (__a_i + __b_i) / _Tp{2};
+	  const auto __a2 = __b1;
+	  const auto __b2 = __b_i;
 
 	  ++__iteration;
 
 	  _Tp __area1, __error1, __resabs1, __resasc1;
 	  std::tie(__area1, __error1, __resabs1, __resasc1)
-	    = qc25f(__wf, __func, __a1, __b1, __current_level);
+	    = qc25f(__wf, __func, __a1, __b1, __current_depth);
 
 	  _Tp __area2, __error2, __resabs2, __resasc2;
 	  std::tie(__area2, __error2, __resabs2, __resasc2)
-	    = qc25f(__wf, __func, __a2, __b2, __current_level);
+	    = qc25f(__wf, __func, __a2, __b2, __current_depth);
 
-	  auto __area12 = __area1 + __area2;
-	  auto __error12 = __error1 + __error2;
-	  auto __last_e_i = __e_i;
+	  const auto __area12 = __area1 + __area2;
+	  const auto __error12 = __error1 + __error2;
+	  const auto __last_e_i = __e_i;
 
 	  // Improve previous approximations to the integral and test
 	  // for accuracy.
-	  __errsum += __error12 - __e_i;
 	  __area += __area12 - __r_i;
+	  __errsum += __error12 - __e_i;
 
 	  __tolerance = std::max(__epsabs, __epsrel * std::abs(__area));
 
 	  if (__resasc1 != __error1 && __resasc2 != __error2)
 	    {
-	      _Tp __delta = __r_i - __area12;
+	      const auto __delta = __r_i - __area12;
 
 	      if (std::abs(__delta) <= 1.0e-5 * std::abs(__area12)
 			 && __error12 >= 0.99 * __e_i)
@@ -181,7 +173,7 @@ namespace __gnu_test
 
 	  if (__roundoff_type1 + __roundoff_type2 >= 10
 	   || __roundoff_type3 >= 20)
-	    __error_type = ROUNDOFF_ERROR; // round off error
+	    __error_type = ROUNDOFF_ERROR;
 
 	  if (__roundoff_type2 >= 5)
 	    __error_type2 = MAX_ITER_ERROR;
@@ -196,13 +188,13 @@ namespace __gnu_test
 
 	  if (__errsum <= __tolerance)
 	    {
-	      __result = __workspace.sum_results();
+	      __result = __workspace.total_integral();
 	      __abserr = __errsum;
 	      __check_error<_Tp>(__func__, __error_type, __result, __abserr);
 	      return std::make_tuple(__result, __abserr);
 	    }
 
-	  if (__error_type)
+	  if (__error_type != NO_ERROR)
 	    break;
 
 	  if (__iteration >= __limit - 1)
@@ -225,20 +217,26 @@ namespace __gnu_test
 
 	  if (__extall)
 	    {
-	      __error_over_large_intervals += -__last_e_i;
+	      __error_over_large_intervals -= __last_e_i;
 
-	      if (__current_level < __workspace.max_level())
+	      if (__current_depth < __workspace.max_depth())
 		__error_over_large_intervals += __error12;
 
 	      if (__extrapolate)
-		goto label70;
+		if (__error_type2 != NO_ERROR
+		 && __error_over_large_intervals > __ertest)
+		  if (__workspace.increment_start())
+		    continue;
 	    }
 
 	  if (__workspace.large_interval())
 	    continue;
 
 	  if (__extall)
-	    __extrapolate = true;
+	    {
+	      __extrapolate = true;
+	      __workspace.set_start(1);
+	    }
 	  else
 	    {
 	      // Test whether the interval to be bisected next is the
@@ -254,9 +252,10 @@ namespace __gnu_test
 	      continue;
 	    }
 
-	label70:
-	  if (!__error_type2 && __error_over_large_intervals > __ertest)
-	    continue;
+	  if (__error_type2 != NO_ERROR
+	   && __error_over_large_intervals > __ertest)
+	    if (__workspace.increment_start())
+	      continue;
 
 	  // Perform extrapolation.
 
@@ -264,6 +263,7 @@ namespace __gnu_test
 
 	  if (__table.get_nn() < 3)
 	    {
+	      __workspace.reset_start();
 	      __extrapolate = false;
 	      __error_over_large_intervals = __errsum;
 	      continue;
@@ -295,6 +295,7 @@ namespace __gnu_test
 	    break;
 
 	  // Work on interval with largest error.
+	  __workspace.reset_start();
 	  __extrapolate = false;
 	  __error_over_large_intervals = __errsum;
 	}
@@ -305,15 +306,15 @@ namespace __gnu_test
 
       if (__err_ext == _S_max)
 	{
-	  __result = __workspace.sum_results();
+	  __result = __workspace.total_integral();
 	  __abserr = __errsum;
 	  __check_error<_Tp>(__func__, __error_type, __result, __abserr);
 	  return std::make_tuple(__result, __abserr);
 	}
 
-      if (__error_type || __error_type2)
+      if (__error_type != NO_ERROR || __error_type2 != NO_ERROR)
 	{
-	  if (__error_type2)
+	  if (__error_type2 != NO_ERROR)
 	    __err_ext += __correc;
 
 	  if (__error_type == NO_ERROR)
@@ -323,7 +324,7 @@ namespace __gnu_test
 	    {
 	      if (__err_ext / std::abs(__res_ext) > __errsum / std::abs(__area))
 		{
-		  __result = __workspace.sum_results();
+		  __result = __workspace.total_integral();
 		  __abserr = __errsum;
 		  __check_error<_Tp>(__func__, __error_type, __result, __abserr);
 		  return std::make_tuple(__result, __abserr);
@@ -331,12 +332,12 @@ namespace __gnu_test
 	    }
 	  else if (__err_ext > __errsum)
 	    {
-	      __result = __workspace.sum_results();
+	      __result = __workspace.total_integral();
 	      __abserr = __errsum;
 	      __check_error<_Tp>(__func__, __error_type, __result, __abserr);
 	      return std::make_tuple(__result, __abserr);
 	    }
-	  else if (__area == 0.0)
+	  else if (__area == _Tp{0})
 	    {
 	      __check_error<_Tp>(__func__, __error_type);
 	      return std::make_tuple(__result, __abserr);
@@ -344,6 +345,7 @@ namespace __gnu_test
 	}
 
       // Test on divergence.
+      bool __positive_integrand = __test_positivity(__result0, __resabs0);
       auto __max_area = std::max(std::abs(__res_ext), std::abs(__area));
       if (!__positive_integrand && __max_area < 0.01 * __resabs0)
 	{
@@ -352,7 +354,7 @@ namespace __gnu_test
 	}
 
       auto __ratio = __res_ext / __area;
-      if (__ratio < 0.01 || __ratio > 100 || __errsum > std::abs(__area))
+      if (__ratio < 0.01 || __ratio > _Tp{100} || __errsum > std::abs(__area))
 	__error_type = UNKNOWN_ERROR;
 
       __check_error<_Tp>(__func__, __error_type);
@@ -364,7 +366,7 @@ namespace __gnu_test
     std::tuple<_Tp, _Tp, _Tp, _Tp>
     qc25f(oscillatory_integration_table<_Tp>& __wf,
 	  const _FuncTp& __func, _Tp __a, _Tp __b,
-	  std::size_t __level)
+	  std::size_t __depth)
     {
       const auto _S_max = std::numeric_limits<_Tp>::max();
       const auto __center = ( __a + __b) / _Tp{2};
@@ -397,21 +399,19 @@ namespace __gnu_test
 
 	  qcheb_integrate(__func, __a, __b, __cheb12, __cheb24);
 
-	  if (__level >= __wf.n)
+	  if (__depth >= __wf.n)
 	    {
-	      // table overflow should not happen, check before calling.
+	      // Table overflow should not happen, check before calling.
 	      std::__throw_runtime_error("Table overflow in internal function");
 	    }
 
-	  // obtain moments from the table..
-
-	  const auto& __moment = __wf.get_moments(__level);
+	  const auto& __moment = __wf.get_moments(__depth);
 
 	  auto __res12_cos = __cheb12[12] * __moment[12];
 	  auto __res12_sin = _Tp{0};
 	  for (int __i = 0; __i < 6; ++__i)
 	    {
-	      std::size_t __k = 10 - 2 * __i;
+	      const std::size_t __k = 10 - 2 * __i;
 	      __res12_cos += __cheb12[__k] * __moment[__k];
 	      __res12_sin += __cheb12[__k + 1] * __moment[__k + 1];
 	    }
@@ -421,7 +421,7 @@ namespace __gnu_test
 	  auto __result_abs = std::abs(__cheb24[24]);
 	  for (int __i = 0; __i < 12; ++__i)
 	    {
-	      std::size_t __k = 22 - 2 * __i;
+	      const std::size_t __k = 22 - 2 * __i;
 	      __res24_cos += __cheb24[__k] * __moment[__k];
 	      __res24_sin += __cheb24[__k + 1] * __moment[__k + 1];
 	      __result_abs += std::abs(__cheb24[__k])
