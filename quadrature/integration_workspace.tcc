@@ -37,9 +37,7 @@ namespace __gnu_test
     void
     integration_workspace<_Tp>::sort_error()
     {
-      std::make_heap(std::begin(this->_M_ival),
-		     std::begin(this->_M_ival) + this->_M_ival.size(),
-		     interval_comp{});
+      std::make_heap(this->begin(), this->end(), interval_comp{});
       return;
     }
 
@@ -56,10 +54,8 @@ namespace __gnu_test
       __iv._M_upper_lim = __b;
       __iv._M_result = __area;
       __iv._M_abs_error = __error;
-      __iv._M_level = 0;
-      this->_M_ival.push_back(__iv);
-      std::push_heap(std::begin(this->_M_ival), std::end(this->_M_ival),
-		     interval_comp{});
+      __iv._M_depth = 0;
+      this->push(__iv);
     }
 
   /**
@@ -71,34 +67,56 @@ namespace __gnu_test
 				      _Tp __area1, _Tp __error1,
 				      _Tp __area2, _Tp __error2)
     {
-      auto __iv = this->_M_ival[0];//top
+      auto __iv = this->top();
       const auto __a1 = __iv._M_lower_lim;
       const auto __b1 = __ab;
       const auto __a2 = __ab;
       const auto __b2 = __iv._M_upper_lim;
-      const auto __level = __iv._M_level + 1;
-      std::pop_heap(std::begin(this->_M_ival), std::end(this->_M_ival));
-      this->_M_ival.pop_back();
+      const auto __depth = __iv._M_depth + 1;
+      this->pop();
 
       interval __iv1;
       __iv1._M_lower_lim = __a1;
       __iv1._M_upper_lim = __b1;
       __iv1._M_result = __area1;
       __iv1._M_abs_error = __error1;
-      __iv1._M_level = __level;
-      this->_M_ival.push_back(__iv1);
-      std::push_heap(std::begin(this->_M_ival), std::end(this->_M_ival),
-		     interval_comp{});
+      __iv1._M_depth = __depth;
+      this->push(__iv1);
 
       interval __iv2;
       __iv2._M_lower_lim = __a2;
       __iv2._M_upper_lim = __b2;
       __iv2._M_result = __area2;
       __iv2._M_abs_error = __error2;
-      __iv2._M_level = __level;
-      this->_M_ival.push_back(__iv2);
-      std::push_heap(std::begin(this->_M_ival), std::end(this->_M_ival),
-		     interval_comp{});
+      __iv2._M_depth = __depth;
+      this->push(__iv2);
+
+      if (__depth > this->_M_max_depth)
+	this->_M_max_depth = __depth;
+    }
+
+  /**
+   *
+   */
+  template<typename _Tp>
+    bool
+    integration_workspace<_Tp>::increment_start()
+    {
+      const auto __i_max = this->_M_start;
+      for (auto __k = __i_max; __k < this->size(); ++__k)
+	{
+	  if (this->_M_ival[this->_M_start]._M_depth < this->_M_max_depth)
+	    return true;
+	  else if (this->_M_start + 1 < this->size())
+	    {
+	      ++this->_M_start;
+	      this->sort_error();
+	    }
+	  else
+	    return false;
+	}
+      return false;
+
     }
 
 } // namespace __gnu_test

@@ -18,11 +18,11 @@
 // with this library; see the file COPYING3.  If not see
 // <http://www.gnu.org/licenses/>.
 //
-// Ported from GSL by Jason Dick and Ed Smith-Rowland
+// Ported from GSL by Ed Smith-Rowland
 // Originally written by Brian Gaugh
 //
 //This file implements an extrapolation table for use in integration schemes
-//Based upon gsl-2.1/integration/qelg.c
+//Based on gsl/integration/qelg.c
 
 #ifndef EXTRAPOLATION_TABLE_TCC
 #define EXTRAPOLATION_TABLE_TCC 1
@@ -34,8 +34,8 @@ namespace __gnu_test
     std::tuple<_Tp, _Tp>
     extrapolation_table<_Tp>::qelg()
     {
-      const size_t __cur_n = this->_M_nn - 1;
-      const _Tp __current = this->_M_rlist2[__cur_n];
+      const auto __cur_n = this->_M_nn - 1;
+      const auto __current = this->_M_rlist2[__cur_n];
 
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       const auto _S_max = std::numeric_limits<_Tp>::max();
@@ -43,12 +43,11 @@ namespace __gnu_test
       auto __absolute = _S_max;
       auto __relative = 5 * _S_eps * std::abs(__current);
 
-      const size_t __newelm = __cur_n / 2;
-      const size_t __n_orig = __cur_n;
-      size_t __n_final = __cur_n;
-      size_t __ii;
+      const auto __newelm = __cur_n / 2;
+      const auto __n_orig = __cur_n;
+      auto __n_final = __cur_n;
 
-      const size_t __nres_orig = this->_M_nres;
+      const auto __nres_orig = this->_M_nres;
 
       auto __result = __current;
       auto __abserr = _S_max;
@@ -66,12 +65,12 @@ namespace __gnu_test
       for (size_t __ii = 0; __ii < __newelm; ++__ii)
 	{
 	  auto __res = this->_M_rlist2[__cur_n - 2 * __ii + 2];
-	  auto __e0 = this->_M_rlist2[__cur_n - 2 * __ii - 2];
-	  auto __e1 = this->_M_rlist2[__cur_n - 2 * __ii - 1];
-	  auto __e2 = __res;
+	  const auto __e0 = this->_M_rlist2[__cur_n - 2 * __ii - 2];
+	  const auto __e1 = this->_M_rlist2[__cur_n - 2 * __ii - 1];
+	  const auto __e2 = __res;
 
-	  auto __e1abs = std::abs(__e1);
-	  auto __delta2 = __e2 - __e1;
+	  const auto __e1abs = std::abs(__e1);
+	  const auto __delta2 = __e2 - __e1;
 	  auto __err2 = std::abs(__delta2);
 	  auto __tol2 = std::max(std::abs(__e2), __e1abs) * _S_eps;
 	  auto __delta3 = __e1 - __e0;
@@ -95,16 +94,16 @@ namespace __gnu_test
 	  auto __err1 = std::abs(__delta1);
 	  auto __tol1 = std::max(__e1abs, std::abs(__e3)) * _S_eps;
 
-	  /* If two elements are very close to each other, omit a part of
-	    the table by adjusting the value of n */
-
+	  // If two elements are very close to each other, omit a part of
+	  // the table by adjusting the value of n.
 	  if (__err1 <= __tol1 || __err2 <= __tol2 || __err3 <= __tol3)
 	    {
 	      __n_final = 2 * __ii;
 	      break;
 	    }
 
-	  auto __ss = (_Tp{1} / __delta1 + _Tp{1} / __delta2) - _Tp{1} / __delta3;
+	  auto __ss = (_Tp{1} / __delta1 + _Tp{1} / __delta2)
+		    - _Tp{1} / __delta3;
 
 	  // Test to detect irregular behaviour in the table,
 	  // and eventually omit a part of the table by adjusting
@@ -140,18 +139,18 @@ namespace __gnu_test
 
       if (__n_orig % 2 == 1)
 	{
-	  for (__ii = 0; __ii <= __newelm; ++__ii)
+	  for (size_t __ii = 0; __ii <= __newelm; ++__ii)
 	    this->_M_rlist2[1 + __ii * 2] = this->_M_rlist2[__ii * 2 + 3];
 	}
       else
 	{
-	  for (__ii = 0; __ii <= __newelm; ++__ii)
+	  for (size_t __ii = 0; __ii <= __newelm; ++__ii)
 	    this->_M_rlist2[__ii * 2] = this->_M_rlist2[__ii * 2 + 2];
 	}
 
       if (__n_orig != __n_final)
 	{
-	  for (__ii = 0; __ii <= __n_final; ++__ii)
+	  for (size_t __ii = 0; __ii <= __n_final; ++__ii)
 	    this->_M_rlist2[__ii] = this->_M_rlist2[__n_orig - __n_final + __ii];
 	}
 

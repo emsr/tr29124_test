@@ -21,7 +21,7 @@
 // Originally written by Brian Gaugh
 //
 // Implements qawf integration algorithm
-// Based upon gsl-2.3/integration/qawf.c
+// Based on gsl/integration/qawf.c
 
 #ifndef QAWF_INTEGRATE_H
 #define QAWF_INTEGRATE_H 1
@@ -57,8 +57,6 @@ namespace __gnu_test
       _Tp __initial_eps, __eps;
       int __error_type = NO_ERROR;
 
-      __workspace.clear();
-
       int __status = 0;
       auto __result = _Tp{0};
       auto __abserr = _Tp{0};
@@ -88,6 +86,8 @@ namespace __gnu_test
 
       __initial_eps = __eps;
 
+      __workspace.clear();
+
       auto __area = _Tp{0};
       auto __errsum = _Tp{0};
       auto __res_ext = _Tp{0};
@@ -103,10 +103,10 @@ namespace __gnu_test
 
       for (__iteration = 0; __iteration < __limit; ++__iteration)
 	{
-	  auto __a1 = __a + __iteration * __cycle;
-	  auto __b1 = __a1 + __cycle;
+	  const auto __a1 = __a + __iteration * __cycle;
+	  const auto __b1 = __a1 + __cycle;
 
-	  auto __epsabs1 = __eps * __factor;
+	  const auto __epsabs1 = __eps * __factor;
 
 	  _Tp __area1, __error1;
 	  std::tie(__area1, __error1)
