@@ -241,6 +241,22 @@ namespace __gnu_test
       }
     };
 
+  template<typename _Tp>
+    std::ostream&
+    operator<<(std::ostream& __out, const integration_workspace<_Tp>& __ws)
+    {
+      __out << ' ' << __ws._M_start << '\n';
+      __out << ' ' << __ws._M_max_depth << '\n';
+      for (const auto& __seg : __ws._M_ival)
+	__out << ' ' << __seg._M_depth
+	      << ' ' << __seg._M_lower_lim
+	      << ' ' << __seg._M_upper_lim
+	      << ' ' << __seg._M_result
+	      << ' ' << __seg._M_abs_error
+	      << '\n';
+      return __out;
+    }
+
 } // namespace __gnu_test
 
 #include "integration_workspace.tcc"
