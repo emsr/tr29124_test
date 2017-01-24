@@ -82,7 +82,8 @@ namespace __gnu_test
 
       void sort_error();
 
-      void append(_Tp __a, _Tp __b, _Tp __area, _Tp __error);
+      void append(_Tp __a, _Tp __b, _Tp __area, _Tp __error,
+		  std::size_t __depth = 0);
 
       void split(_Tp __ab,
 		 _Tp __area1, _Tp __error1,
@@ -198,6 +199,10 @@ namespace __gnu_test
       max_depth() const
       { return this->_M_max_depth; }
 
+      std::size_t
+      start() const
+      { return this->_M_start; }
+
       bool
       large_interval() const
       {
@@ -220,10 +225,14 @@ namespace __gnu_test
       total_error() const
       {
 	auto __tot_error = _Tp{0};
-	for (auto& __iv : _M_ival)
+	for (auto& __iv : this->_M_ival)
 	  __tot_error += __iv._M_abs_error;
 	return __tot_error;
       }
+
+      const std::vector<interval>&
+      intervals() const
+      { return this->_M_ival; }
 
       /*
        * 
@@ -245,14 +254,16 @@ namespace __gnu_test
     std::ostream&
     operator<<(std::ostream& __out, const integration_workspace<_Tp>& __ws)
     {
-      __out << ' ' << __ws._M_start << '\n';
-      __out << ' ' << __ws._M_max_depth << '\n';
-      for (const auto& __seg : __ws._M_ival)
-	__out << ' ' << __seg._M_depth
-	      << ' ' << __seg._M_lower_lim
-	      << ' ' << __seg._M_upper_lim
-	      << ' ' << __seg._M_result
-	      << ' ' << __seg._M_abs_error
+      auto __w = __out.width();
+      __out << std::setw(0);
+      __out << ' ' << std::setw(2) << __ws.max_depth() << '\n';
+      __out << ' ' << std::setw(2) << __ws.start() << '\n';
+      for (const auto& __seg : __ws.intervals())
+	__out << ' ' << std::setw(2) << __seg._M_depth
+	      << ' ' << std::setw(__w) << __seg._M_lower_lim
+	      << ' ' << std::setw(__w) << __seg._M_upper_lim
+	      << ' ' << std::setw(__w) << __seg._M_result
+	      << ' ' << std::setw(__w) << __seg._M_abs_error
 	      << '\n';
       return __out;
     }
