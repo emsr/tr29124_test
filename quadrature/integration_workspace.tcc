@@ -47,14 +47,15 @@ namespace __gnu_test
   template<typename _Tp>
     void
     integration_workspace<_Tp>::append(_Tp __a, _Tp __b,
-				       _Tp __area, _Tp __error)
+				       _Tp __area, _Tp __error,
+				       std::size_t __depth)
     {
       interval __iv;
       __iv._M_lower_lim = __a;
       __iv._M_upper_lim = __b;
       __iv._M_result = __area;
       __iv._M_abs_error = __error;
-      __iv._M_depth = 0;
+      __iv._M_depth = __depth;
       this->push(__iv);
     }
 
@@ -96,7 +97,7 @@ namespace __gnu_test
     }
 
   /**
-   *
+   * 
    */
   template<typename _Tp>
     bool
@@ -105,18 +106,15 @@ namespace __gnu_test
       const auto __i_max = this->_M_start;
       for (auto __k = __i_max; __k < this->size(); ++__k)
 	{
-	  if (this->_M_ival[this->_M_start]._M_depth < this->_M_max_depth)
+	  if (this->_M_ival[__k]._M_depth < this->_M_max_depth)
 	    return true;
 	  else if (this->_M_start + 1 < this->size())
 	    {
 	      ++this->_M_start;
 	      this->sort_error();
 	    }
-	  else
-	    return false;
 	}
       return false;
-
     }
 
 } // namespace __gnu_test

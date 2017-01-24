@@ -35,6 +35,15 @@
 namespace __gnu_test
 {
 
+template<typename _Tp>
+void
+dump_ws(integration_workspace<_Tp>& workspace, const char* cmp, const char* msg)
+{
+  std::cerr.precision(8);
+  std::cerr << '\n' << cmp << ": " << msg << '\n';
+  std::cerr << std::setw(15) << workspace << '\n';
+}
+
   template<typename _FuncTp, typename _Tp>
     std::tuple<_Tp, _Tp>
     qagp_integrate(integration_workspace<_Tp>& __workspace,
@@ -61,6 +70,8 @@ namespace __gnu_test
 
       bool __extrapolate = false;
       bool __disallow_extrapolation = false;
+std::cerr.precision(8);
+std::cerr << "\nC++\n";
 
       if (__epsabs <= 0
 	  && (__epsrel < 50 * _S_eps || __epsrel < 0.5e-28))
@@ -95,23 +106,29 @@ namespace __gnu_test
 	  _Tp __area1, __error1, __resabs1, __resasc1;
 	  std::tie(__area1, __error1, __resabs1, __resasc1)
 	    = qk_integrate(__func, __a, __b, __qk_rule);
+std::cerr << "  area1   = " << __area1
+	  << "  error1  = " << __error1
+	  << "  resabs1 = " << __resabs1
+	  << "  resasc1 = " << __resasc1
+	  << "  error1 == resasc1 : " << (__error1 == __resasc1) << '\n';
 
 	  __result0 += __area1;
 	  __abserr0 += __error1;
 	  __resabs0 += __resabs1;
-	  __workspace.append(__a, __b, __area1, __error1);
-
-	  if (__error1 == __resasc1 && __error1 != _Tp{0})
-	    __workspace.set_depth(__i, 1);
-	  else
-	    __workspace.set_depth(__i, 0);
+	  std::size_t __level = (__error1 == __resasc1 && __error1 != _Tp{0})
+				? 1 : 0;
+std::cerr << "  result0 = " << __result0
+	  << "  abserr0 = " << __abserr0
+	  << "  resabs0 = " << __resabs0 << '\n';
+	  __workspace.append(__a, __b, __area1, __error1, __level);
 	}
+dump_ws(__workspace, "qagp", "first quad");
 
       // Compute the initial error estimate.
       auto __errsum = _Tp{0};
       for (std::size_t __i = 0; __i < __n_ivals; ++__i)
 	{
-	  if (__workspace.depth(__i))
+	  if (__workspace.depth(__i) == 1)
 	    {
 	      __workspace.set_abs_error(__i, __abserr0);
 	      __workspace.set_depth(__i, 0);
@@ -119,8 +136,10 @@ namespace __gnu_test
 	  __errsum += __workspace.abs_error(__i);
 	}	
 
+dump_ws(__workspace, "qagp", "first quad, pre-sort");
       // We must re-sort because the errors were reassigned.
       __workspace.sort_error();
+dump_ws(__workspace, "qagp", "first quad, post-sort");
 
       // Test on accuracy.
       auto __tolerance = std::max(__epsabs, __epsrel * std::abs(__result0));
@@ -160,6 +179,7 @@ namespace __gnu_test
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
 	  const auto __current_depth = __workspace.current_depth() + 1;
+std::cerr << "current_level = " << __current_depth << '\n';
 
 	  const auto __a1 = __a_i;
 	  const auto __b1 = (__a_i + __b_i) / _Tp{2};
@@ -221,6 +241,7 @@ namespace __gnu_test
 
 	  // Split the current interval in two.
 	  __workspace.split(__b1, __area1, __error1, __area2, __error2);
+dump_ws(__workspace, "qagp", "split");
 
 	  if (__errsum <= __tolerance)
 	    {
@@ -245,7 +266,13 @@ namespace __gnu_test
 
 	  if (__current_depth < __workspace.max_depth())
 	    __error_over_large_intervals += __error12;
-
+std::cerr << "eoli        = " << __error_over_large_intervals << '\n';
+std::cerr << "extrapolate = " << __extrapolate << '\n';
+std::cerr << "wkli        = " << __workspace.large_interval() << '\n';
+std::cerr << "error_type2 : " << __error_type2 << "  error_over_large_intervals = "
+  << __error_over_large_intervals << "  ertest = " << __ertest << '\n';
+std::cerr << "extrapolate : " << __extrapolate << '\n';
+std::cerr << "large_interval : " << __workspace.large_interval() << '\n';
 	  if (!__extrapolate)
 	    {
 	      // Test whether the interval to be bisected next is the
@@ -264,22 +291,30 @@ namespace __gnu_test
 	  // intervals (error_over_large_intervals) and perform
 	  // extrapolation.
 
-	  if (__error_type2 != NO_ERROR
+	  if (__error_type2 == NO_ERROR
 	   && __error_over_large_intervals > __ertest)
 	    if (__workspace.increment_start())
+{
+std::cerr << "increase_nrmax\n";
 	      continue;
+}
 
 	  // Perform extrapolation.
 	  __table.append(__area);
+dump_ws(__workspace, "qagp", "extrap");
+std::cerr << "nn          = " << __table.get_nn() << '\n';
 
 	  if (__table.get_nn() < 3)
 	    {
+	      __workspace.reset_start();
 	      __extrapolate = false;
 	      __error_over_large_intervals = __errsum;
+dump_ws(__workspace, "qagp", "stop extrap");
 	      continue;
 	    }
 
 	  std::tie(__reseps, __abseps) = __table.qelg();
+std::cerr << "reseps      = " << __reseps << "  abseps      = " << __abseps << '\n';
 
 	  ++__ktmin;
 	  if (__ktmin > 5 && __err_ext < 0.001 * __errsum)
@@ -307,8 +342,10 @@ namespace __gnu_test
 	  __workspace.reset_start();
 	  __extrapolate = false;
 	  __error_over_large_intervals = __errsum;
+dump_ws(__workspace, "qagp", "stop extrap");
 	}
       while (__iteration < __limit);
+dump_ws(__workspace, "qagp", "done");
 
       auto __result = __res_ext;
       auto __abserr = __err_ext;

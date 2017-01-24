@@ -336,7 +336,7 @@ namespace __gnu_test
 	  // intervals (error_over_large_intervals) and perform
 	  // extrapolation.
 
-	  if (__error_type2 != NO_ERROR
+	  if (__error_type2 == NO_ERROR
 	   && __error_over_large_intervals > __ertest)
 	    if (__workspace.increment_start())
 	      continue;

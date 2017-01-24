@@ -87,10 +87,8 @@ namespace __gnu_test
 	  = qc25s(__table, __func, __a, __b, __a2, __b2);
 	__workspace.append(__a2, __b2, __area2, __error2);
 
-	// Why add the parent?
 	__result0 = __area1 + __area2;
 	__abserr0 = __error1 + __error2;
-	__workspace.append(__a, __b, __result0, __abserr0);
       }
 
       // Test on accuracy; Use 0.01 relative error as an extra safety
