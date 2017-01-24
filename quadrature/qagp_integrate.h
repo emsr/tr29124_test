@@ -70,8 +70,6 @@ dump_ws(integration_workspace<_Tp>& workspace, const char* cmp, const char* msg)
 
       bool __extrapolate = false;
       bool __disallow_extrapolation = false;
-std::cerr.precision(8);
-std::cerr << "\nC++\n";
 
       if (__epsabs <= 0
 	  && (__epsrel < 50 * _S_eps || __epsrel < 0.5e-28))
@@ -106,23 +104,14 @@ std::cerr << "\nC++\n";
 	  _Tp __area1, __error1, __resabs1, __resasc1;
 	  std::tie(__area1, __error1, __resabs1, __resasc1)
 	    = qk_integrate(__func, __a, __b, __qk_rule);
-std::cerr << "  area1   = " << __area1
-	  << "  error1  = " << __error1
-	  << "  resabs1 = " << __resabs1
-	  << "  resasc1 = " << __resasc1
-	  << "  error1 == resasc1 : " << (__error1 == __resasc1) << '\n';
 
 	  __result0 += __area1;
 	  __abserr0 += __error1;
 	  __resabs0 += __resabs1;
 	  std::size_t __level = (__error1 == __resasc1 && __error1 != _Tp{0})
 				? 1 : 0;
-std::cerr << "  result0 = " << __result0
-	  << "  abserr0 = " << __abserr0
-	  << "  resabs0 = " << __resabs0 << '\n';
 	  __workspace.append(__a, __b, __area1, __error1, __level);
 	}
-dump_ws(__workspace, "qagp", "first quad");
 
       // Compute the initial error estimate.
       auto __errsum = _Tp{0};
@@ -136,10 +125,8 @@ dump_ws(__workspace, "qagp", "first quad");
 	  __errsum += __workspace.abs_error(__i);
 	}	
 
-dump_ws(__workspace, "qagp", "first quad, pre-sort");
       // We must re-sort because the errors were reassigned.
       __workspace.sort_error();
-dump_ws(__workspace, "qagp", "first quad, post-sort");
 
       // Test on accuracy.
       auto __tolerance = std::max(__epsabs, __epsrel * std::abs(__result0));
@@ -179,7 +166,6 @@ dump_ws(__workspace, "qagp", "first quad, post-sort");
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
 	  const auto __current_depth = __workspace.current_depth() + 1;
-std::cerr << "current_level = " << __current_depth << '\n';
 
 	  const auto __a1 = __a_i;
 	  const auto __b1 = (__a_i + __b_i) / _Tp{2};
@@ -241,7 +227,6 @@ std::cerr << "current_level = " << __current_depth << '\n';
 
 	  // Split the current interval in two.
 	  __workspace.split(__b1, __area1, __error1, __area2, __error2);
-dump_ws(__workspace, "qagp", "split");
 
 	  if (__errsum <= __tolerance)
 	    {
@@ -266,13 +251,7 @@ dump_ws(__workspace, "qagp", "split");
 
 	  if (__current_depth < __workspace.max_depth())
 	    __error_over_large_intervals += __error12;
-std::cerr << "eoli        = " << __error_over_large_intervals << '\n';
-std::cerr << "extrapolate = " << __extrapolate << '\n';
-std::cerr << "wkli        = " << __workspace.large_interval() << '\n';
-std::cerr << "error_type2 : " << __error_type2 << "  error_over_large_intervals = "
-  << __error_over_large_intervals << "  ertest = " << __ertest << '\n';
-std::cerr << "extrapolate : " << __extrapolate << '\n';
-std::cerr << "large_interval : " << __workspace.large_interval() << '\n';
+
 	  if (!__extrapolate)
 	    {
 	      // Test whether the interval to be bisected next is the
@@ -294,27 +273,20 @@ std::cerr << "large_interval : " << __workspace.large_interval() << '\n';
 	  if (__error_type2 == NO_ERROR
 	   && __error_over_large_intervals > __ertest)
 	    if (__workspace.increment_start())
-{
-std::cerr << "increase_nrmax\n";
 	      continue;
-}
 
 	  // Perform extrapolation.
 	  __table.append(__area);
-dump_ws(__workspace, "qagp", "extrap");
-std::cerr << "nn          = " << __table.get_nn() << '\n';
 
 	  if (__table.get_nn() < 3)
 	    {
 	      __workspace.reset_start();
 	      __extrapolate = false;
 	      __error_over_large_intervals = __errsum;
-dump_ws(__workspace, "qagp", "stop extrap");
 	      continue;
 	    }
 
 	  std::tie(__reseps, __abseps) = __table.qelg();
-std::cerr << "reseps      = " << __reseps << "  abseps      = " << __abseps << '\n';
 
 	  ++__ktmin;
 	  if (__ktmin > 5 && __err_ext < 0.001 * __errsum)
@@ -342,10 +314,8 @@ std::cerr << "reseps      = " << __reseps << "  abseps      = " << __abseps << '
 	  __workspace.reset_start();
 	  __extrapolate = false;
 	  __error_over_large_intervals = __errsum;
-dump_ws(__workspace, "qagp", "stop extrap");
 	}
       while (__iteration < __limit);
-dump_ws(__workspace, "qagp", "done");
 
       auto __result = __res_ext;
       auto __abserr = __err_ext;

@@ -165,6 +165,8 @@ namespace __gnu_test
       const auto _S_max = std::numeric_limits<_Tp>::max();
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       const auto __limit = __workspace.capacity();
+std::cerr.precision(8);
+std::cerr << "\nC++\n";
 
       bool __extrapolate = false;
       bool __disallow_extrapolation = false;
@@ -183,8 +185,14 @@ namespace __gnu_test
       _Tp __result0, __abserr0, __resabs0, __resasc0;
       std::tie(__result0, __abserr0, __resabs0, __resasc0)
 	  = qk_integrate(__func, __a, __b, __qk_rule);
+std::cerr << "  area0   = " << __area0
+	  << "  error0  = " << __error0
+	  << "  resabs0 = " << __resabs0
+	  << "  resasc0 = " << __resasc0
+	  << "  error0 == resasc0 : " << (__error0 == __resasc0) << '\n';
 
       __workspace.append(__a, __b, __result0, __abserr0);
+dump_ws(__workspace, "qags", "first quad");
 
       auto __tolerance = std::max(__epsabs, __epsrel * std::abs(__result0));
 
@@ -198,7 +206,7 @@ namespace __gnu_test
 		|| __abserr0 == _Tp{0})
 	return std::make_tuple(__result0, __abserr0);
       else if (__limit == 1)
-	__throw__IntegrationError("qagp_integrate: "
+	__throw__IntegrationError("qags_integrate: "
 				  "a maximum of one iteration was insufficient",
 				  MAX_ITER_ERROR, __result0, __abserr0);
 
@@ -225,6 +233,7 @@ namespace __gnu_test
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
 	  const auto __current_depth = __workspace.current_depth() + 1;
+std::cerr << "current_level = " << __current_depth << '\n';
 
 	  const auto __a1 = __a_i;
 	  const auto __b1 = (__a_i + __b_i) / _Tp{2};
@@ -285,6 +294,7 @@ namespace __gnu_test
 
 	  // Split the current interval in two.
 	  __workspace.split(__b1, __area1, __error1, __area2, __error2);
+dump_ws(__workspace, "qags", "split");
 
 	  if (__errsum <= __tolerance)
 	    {
