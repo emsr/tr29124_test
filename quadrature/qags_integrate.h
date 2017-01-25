@@ -185,11 +185,11 @@ std::cerr << "\nC++\n";
       _Tp __result0, __abserr0, __resabs0, __resasc0;
       std::tie(__result0, __abserr0, __resabs0, __resasc0)
 	  = qk_integrate(__func, __a, __b, __qk_rule);
-std::cerr << "  area0   = " << __area0
-	  << "  error0  = " << __error0
+std::cerr << "  result0 = " << __result0
+	  << "  abserr0 = " << __abserr0
 	  << "  resabs0 = " << __resabs0
 	  << "  resasc0 = " << __resasc0
-	  << "  error0 == resasc0 : " << (__error0 == __resasc0) << '\n';
+	  << "  abserr0 == resasc0 : " << (__abserr0 == __resasc0) << '\n';
 
       __workspace.append(__a, __b, __result0, __abserr0);
 dump_ws(__workspace, "qags", "first quad");
