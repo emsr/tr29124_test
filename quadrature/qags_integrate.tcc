@@ -24,8 +24,8 @@
 // This file implements Gauss-Kronrod integration with singularities
 // Based on gsl/integration/qags.c
 
-#ifndef QAGS_INTEGRATE_H
-#define QAGS_INTEGRATE_H 1
+#ifndef QAGS_INTEGRATE_TCC
+#define QAGS_INTEGRATE_TCC 1
 
 #include <utility>
 #include <limits>
@@ -34,7 +34,7 @@
 
 #include "integration_error.h"
 #include "integration_transform.h"
-#include "qk_integrate.h"
+#include "qk_integrate.tcc"
 #include "integration_workspace.h"
 #include "extrapolation_table.h"
 
@@ -466,4 +466,4 @@ dump_ws(__workspace, "qagp", "stop extrap");
 
 } // namespace __gnu_test
 
-#endif // QAGS_INTEGRATE_H
+#endif // QAGS_INTEGRATE_TCC

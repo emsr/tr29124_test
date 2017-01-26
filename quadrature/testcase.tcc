@@ -21,7 +21,6 @@
 #ifndef QUADRATURE_TESTCASE_TCC
 #define QUADRATURE_TESTCASE_TCC 1
 
-//#include <config.h>
 #include <cmath>
 
 /* These are the test functions from table 4.1 of the QUADPACK book */

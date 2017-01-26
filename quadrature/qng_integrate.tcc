@@ -1,4 +1,4 @@
-/* integration/qng_integrate.h
+/* integration/qng_integrate.tcc
  *
  * Copyright (C) 1996, 1997, 1998, 1999, 2000, 2007 Brian Gough
  * Copyright (C) 2016-2017 Free Software Foundation, Inc.
@@ -18,8 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#ifndef QNG_INTEGRATE_H
-#define QNG_INTEGRATE_H 1
+#ifndef QNG_INTEGRATE_TCC
+#define QNG_INTEGRATE_TCC 1
 
 #include "integration_error.h"
 
@@ -349,4 +349,4 @@ namespace __gnu_test
 
 } // namespace __gnu_test
 
-#endif // QNG_INTEGRATE_H
+#endif // QNG_INTEGRATE_TCC

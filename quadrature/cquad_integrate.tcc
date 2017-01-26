@@ -1,4 +1,4 @@
-/* integration/cquad_integrate.h
+/* integration/cquad_integrate.tcc
  *
  * Copyright (C) 2010 Pedro Gonnet
  * Copyright (C) 2016-2017 Free Software Foundation, Inc.
@@ -23,10 +23,10 @@
 // This file implements the cquad integration scheme.
 // Based on structs in gsl/integration/cquad.c
 
-#ifndef CQUAD_INTEGRATE_H
-#define CQUAD_INTEGRATE_H 1
+#ifndef CQUAD_INTEGRATE_TCC
+#define CQUAD_INTEGRATE_TCC 1
 
-#include "cquad_const.h"
+#include "cquad_const.tcc"
 #include "cquad_workspace.h"
 
 namespace __gnu_test
@@ -445,4 +445,4 @@ namespace __gnu_test
 
 } // namespace __gnu_test
 
-#endif // CQUAD_INTEGRATE_H
+#endif // CQUAD_INTEGRATE_TCC

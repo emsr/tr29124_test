@@ -1,4 +1,4 @@
-/* quadrature/qaws_integration_table.h
+/* quadrature/qcheb_integrate.tcc
  *
  * Copyright (C) 1996, 1997, 1998, 1999, 2000, 2007, 2009 Brian Gough
  * Copyright (C) 2016-2017 Free Software Foundation, Inc.
@@ -18,8 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#ifndef QCHEB_INTEGRATE_H
-#define QCHEB_INTEGRATE_H 1
+#ifndef QCHEB_INTEGRATE_TCC
+#define QCHEB_INTEGRATE_TCC 1
 
 #include <array>
 
@@ -234,4 +234,4 @@ namespace __gnu_test
 
 } // namespace __gnu_test
 
-#endif // QCHEB_INTEGRATE_H
+#endif // QCHEB_INTEGRATE_TCC

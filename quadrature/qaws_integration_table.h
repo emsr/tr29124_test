@@ -18,8 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#ifndef QAWS_INTEGRATION_TABLE_H
-#define QAWS_INTEGRATION_TABLE_H 1
+#ifndef QAWS_INTEGRATION_TABLE_TCC
+#define QAWS_INTEGRATION_TABLE_TCC 1
 
 #include <array>
 
@@ -170,4 +170,4 @@ namespace __gnu_test
 
 } // namespace
 
-#endif // QAWS_INTEGRATION_TABLE_H
+#endif // QAWS_INTEGRATION_TABLE_TCC

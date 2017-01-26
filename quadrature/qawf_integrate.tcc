@@ -23,8 +23,8 @@
 // Implements qawf integration algorithm
 // Based on gsl/integration/qawf.c
 
-#ifndef QAWF_INTEGRATE_H
-#define QAWF_INTEGRATE_H 1
+#ifndef QAWF_INTEGRATE_TCC
+#define QAWF_INTEGRATE_TCC 1
 
 #include <cmath>
 
@@ -208,4 +208,4 @@ namespace __gnu_test
 
 } // namespace __gn_test
 
-#endif // QAWF_INTEGRATE_H
+#endif // QAWF_INTEGRATE_TCC

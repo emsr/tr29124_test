@@ -24,8 +24,8 @@
 // Implements Gauss-Kronrod integration
 // Based on gsl/integration/qk.c
 
-#ifndef QK_INTEGRATE_H
-#define QK_INTEGRATE_H 1
+#ifndef QK_INTEGRATE_TCC
+#define QK_INTEGRATE_TCC 1
 
 #include <vector>
 #include <cmath>
@@ -709,4 +709,4 @@ namespace __detail
 
 } // namespace __gnu_test
 
-#endif // QK_INTEGRATE_H
+#endif // QK_INTEGRATE_TCC

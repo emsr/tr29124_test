@@ -24,8 +24,8 @@
 // Implements integration using a recursive Gauss-Kronrod algorithm
 // Based on gsl/integration/qag.c
 
-#ifndef QAG_INTEGRATE_H
-#define QAG_INTEGRATE_H 1
+#ifndef QAG_INTEGRATE_TCC
+#define QAG_INTEGRATE_TCC 1
 
 #include <utility>
 #include <limits>
@@ -33,7 +33,7 @@
 #include <sstream>
 #include <stdexcept>
 
-#include "qk_integrate.h"
+#include "qk_integrate.tcc"
 #include "integration_workspace.h"
 
 namespace __gnu_test
@@ -184,4 +184,4 @@ namespace __gnu_test
 
 } // namespace __gnu_test
 
-#endif // QAG_INTEGRATE_H
+#endif // QAG_INTEGRATE_TCC
