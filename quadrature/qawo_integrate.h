@@ -55,12 +55,12 @@ namespace __gnu_test
       bool __extall = false;
       bool __disallow_extrapolation = false;
 
+      __workspace.clear();
+      //__wf.clear();
       extrapolation_table<_Tp> __table;
 
       const auto __b = __a + __wf.get_length();
       const auto __abs_omega = std::abs(__wf.omega);
-
-      __workspace.clear();
 
       auto __result = _Tp{0};
       auto __abserr = _Tp{0};
