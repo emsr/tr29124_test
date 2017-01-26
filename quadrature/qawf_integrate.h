@@ -64,6 +64,10 @@ namespace __gnu_test
       const auto _S_max = std::numeric_limits<_Tp>::max();
       const auto __limit = __workspace.capacity();
 
+      __workspace.clear();
+      __cycle_workspace.clear();
+      //__wf.clear();
+
       // Test on accuracy.
       if (__epsabs <= _Tp{0})
 	std::__throw_domain_error("absolute tolerance epsabs must be positive") ;
@@ -85,8 +89,6 @@ namespace __gnu_test
 	__eps = __epsabs;
 
       __initial_eps = __eps;
-
-      __workspace.clear();
 
       auto __area = _Tp{0};
       auto __errsum = _Tp{0};

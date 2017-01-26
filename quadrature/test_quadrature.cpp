@@ -141,14 +141,14 @@ template<typename _Tp>
   {
     this->test_update(status);
 
-    if (status ||  this->verbose)
+    if (status || this->verbose)
       {
 	printf(status ? "FAIL: " : "PASS: ");
 
-	if (status && ! this->verbose)
+	if (status && !this->verbose)
           printf(" [%u]", this->num_tests);
 
-	 printf(" %s", test_desc);
+	printf(" %s", test_desc);
 
 	printf("\n");
 	fflush(stdout);
@@ -158,44 +158,37 @@ template<typename _Tp>
 template<typename _Tp>
   void
   quadrature_test<_Tp>::test_rel(_Tp result, _Tp expected, _Tp rel_error,
-		      const char* test_desc)
+				 const char* /*test_desc*/)
   {
+    // Check for NaN vs inf vs number.
     int status;
-
-    /* Check for NaN vs inf vs number */
-
     if (std::isnan(result) || std::isnan(expected))
       status = std::isnan(result) != std::isnan(expected);
     else if (std::isinf(result) || std::isinf(expected))
       status = std::isinf(result) != std::isinf(expected);
     else if ((expected > 0 && expected < std::numeric_limits<_Tp>::min())
-             || (expected < 0 && expected > -(std::numeric_limits<_Tp>::min())))
+	  || (expected < 0 && expected > -(std::numeric_limits<_Tp>::min())))
       status = -1;
     else if (expected != 0)
-      status = (std::abs(result-expected)/std::abs(expected) > rel_error);
+      status = (std::abs(result - expected) / std::abs(expected) > rel_error);
     else
       status = (std::abs(result) > rel_error);
 
     this->test_update(status);
 
-    if (status ||  this->verbose)
+    if (status || this->verbose)
       {
 	printf(status ? "FAIL: " : "PASS: ");
 
 	if (status == 0)
-          {
-            if (strlen(test_desc) < 45)
-              printf(" (%g observed vs %g expected)", result, expected);
-            else
-              printf(" (%g obs vs %g exp)", result, expected);
-          }
+          printf(" (%g observed vs %g expected)", result, expected);
 	else
           printf(" (%.18g observed vs %.18g expected)", result, expected);
 
 	if (status == -1)
           printf(" [test uses subnormal value]");
 
-	if (status && ! this->verbose)
+	if (status && !this->verbose)
           printf(" [%u]", this->num_tests);
 
 	printf("\n");
@@ -206,42 +199,35 @@ template<typename _Tp>
 template<typename _Tp>
   void
   quadrature_test<_Tp>::test_abs(_Tp result, _Tp expected, _Tp abs_error,
-		      const char* test_desc)
+				 const char* /*test_desc*/)
   {
+    // Check for NaN vs inf vs number.
     int status;
-
-    /* Check for NaN vs inf vs number */
-
     if (std::isnan(result) || std::isnan(expected))
       status = std::isnan(result) != std::isnan(expected);
     else if (std::isinf(result) || std::isinf(expected))
       status = std::isinf(result) != std::isinf(expected);
     else if ((expected > 0 && expected < std::numeric_limits<_Tp>::min())
-             || (expected < 0 && expected > -(std::numeric_limits<_Tp>::min())))
+	  || (expected < 0 && expected > -(std::numeric_limits<_Tp>::min())))
       status = -1;
     else
-      status = std::abs(result-expected) > abs_error;
+      status = std::abs(result - expected) > abs_error;
 
     this->test_update(status);
 
-    if (status ||  this->verbose)
+    if (status || this->verbose)
       {
 	printf(status ? "FAIL: " : "PASS: ");
 
 	if (status == 0)
-          {
-            if (strlen(test_desc) < 45)
-              printf(" (%g observed vs %g expected)", result, expected);
-            else
-              printf(" (%g obs vs %g exp)", result, expected);
-          }
+          printf(" (%g observed vs %g expected)", result, expected);
 	else
           printf(" (%.18g observed vs %.18g expected)", result, expected);
 
 	if (status == -1)
           printf(" [test uses subnormal value]");
 
-	if (status && ! this->verbose)
+	if (status && !this->verbose)
           printf(" [%u]", this->num_tests);
 
 	printf("\n");
@@ -252,10 +238,9 @@ template<typename _Tp>
 template<typename _Tp>
   void
   quadrature_test<_Tp>::test_factor(_Tp result, _Tp expected, _Tp factor,
-			 const char* test_desc)
+				    const char* test_desc)
   {
     int status;
-
     if ((expected > 0 && expected < std::numeric_limits<_Tp>::min())
 	|| (expected < 0 && expected > -(std::numeric_limits<_Tp>::min())))
       status = -1;
@@ -271,24 +256,19 @@ template<typename _Tp>
 
     this->test_update (status);
 
-    if (status ||  this->verbose)
+    if (status || this->verbose)
       {
 	printf(status ? "FAIL: " : "PASS: ");
 
 	if (status == 0)
-          {
-            if (strlen(test_desc) < 45)
-              printf(" (%g observed vs %g expected)", result, expected);
-            else
-              printf(" (%g obs vs %g exp)", result, expected);
-          }
+          printf(" (%g observed vs %g expected)", result, expected);
 	else
           printf(" (%.18g observed vs %.18g expected)", result, expected);
 
 	if (status == -1)
           printf(" [test uses subnormal value]");
 
-	if (status && ! this->verbose)
+	if (status && !this->verbose)
           printf(" [%u]", this->num_tests);
 
 	printf("\n");
@@ -298,13 +278,14 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  quadrature_test<_Tp>::test_int(int result, int expected, const char*/*test_desc*/)
+  quadrature_test<_Tp>::test_int(int result, int expected,
+				 const char*/*test_desc*/)
   {
     int status = (result != expected);
 
     this->test_update(status);
 
-    if (status ||  this->verbose)
+    if (status || this->verbose)
       {
 	printf(status ? "FAIL: " : "PASS: ");
 
@@ -313,7 +294,7 @@ template<typename _Tp>
 	else
           printf(" (%d observed vs %d expected)", result, expected);
 
-	if (status && ! this->verbose)
+	if (status && !this->verbose)
           printf(" [%u]", this->num_tests);
 
 	printf("\n");
@@ -329,9 +310,7 @@ template<typename _Tp>
       printf("%d tests, passed %d, failed %d.\n", tot_num_tests, tot_num_passed, tot_num_failed);
 
     if (tot_num_failed != 0)
-      {
-	return FAILURE;
-      }
+      return FAILURE;
 
     if (tot_num_tests !=  tot_num_passed +  tot_num_failed)
       {

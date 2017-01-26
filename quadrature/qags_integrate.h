@@ -295,6 +295,8 @@ std::cerr << "current_level = " << __current_depth << '\n';
 	  // Split the current interval in two.
 	  __workspace.split(__b1, __area1, __error1, __area2, __error2);
 dump_ws(__workspace, "qags", "split");
+std::cerr << "errsum    = " << __errsum << '\n';
+std::cerr << "tolerance = " << __tolerance << '\n';
 
 	  if (__errsum <= __tolerance)
 	    {
@@ -327,6 +329,16 @@ dump_ws(__workspace, "qags", "split");
 
 	  if (__current_depth < __workspace.max_depth())
 	    __error_over_large_intervals += __error12;
+std::cerr << "last_e_i    = " << __last_e_i << "\n";
+std::cerr << "error12     = " << __error12 << "\n";
+std::cerr << "eoli        = " << __error_over_large_intervals << "\n";
+std::cerr << "extrapolate = " << __extrapolate << "\n";
+std::cerr << "wkli        = " << __workspace.large_interval()<< "\n";
+std::cerr << "error_type2 : " << __error_type2
+ << "  error_over_large_intervals = " << __error_over_large_intervals
+ << "  ertest = " << __ertest << "\n";
+std::cerr << "extrapolate : " << __extrapolate << "\n";
+std::cerr << "large_interval : " << __workspace.large_interval() << "\n";
 
 	  if (!__extrapolate)
 	    {
@@ -354,8 +366,11 @@ dump_ws(__workspace, "qags", "split");
 	  // Perform extrapolation.
 
 	  __table.append(__area);
+dump_ws(__workspace, "qagp", "extrap");
+std::cerr << "nn          = " << __table.get_nn() << "\n";
 
 	  std::tie(__reseps, __abseps) = __table.qelg();
+std::cerr << "reseps      = " << __reseps << "  abseps      = " << __abseps << "\n";
 
 	  ++__ktmin;
 
@@ -384,6 +399,7 @@ dump_ws(__workspace, "qags", "split");
 	  __workspace.reset_start();
 	  __extrapolate = false;
 	  __error_over_large_intervals = __errsum;
+dump_ws(__workspace, "qagp", "stop extrap");
 	}
       while (__iteration < __limit);
 
