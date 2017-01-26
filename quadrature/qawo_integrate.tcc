@@ -23,8 +23,8 @@
 // Implements qawo integration algorithm
 // Based on gsl/integration/qawo.c
 
-#ifndef QAWO_INTEGRATE_H
-#define QAWO_INTEGRATE_H 1
+#ifndef QAWO_INTEGRATE_TCC
+#define QAWO_INTEGRATE_TCC 1
 
 #include <cmath>
 
@@ -455,5 +455,5 @@ namespace __gnu_test
 
 } // namespace __gnu_test
 
-#endif // QAWO_INTEGRATE_H
+#endif // QAWO_INTEGRATE_TCC
 

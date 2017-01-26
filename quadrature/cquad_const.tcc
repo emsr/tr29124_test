@@ -1,4 +1,4 @@
-/* integration/qagp_integrate.h
+/* integration/qagp_integrate.tcc
  *
  * Copyright (C) 2010 Pedro Gonnet
  * Copyright (C) 2016-2017 Free Software Foundation, Inc.
@@ -23,8 +23,8 @@
 // This file contains constants for use in integration schemes.
 // Based on gsl/integration/cquad_const.c
 
-#ifndef CQUAD_CONST_H
-#define CQUAD_CONST_H 1
+#ifndef CQUAD_CONST_TCC
+#define CQUAD_CONST_TCC 1
 
 namespace __gnu_test
 {
@@ -1716,4 +1716,4 @@ Tright[33 * 33]
 
 } // namespace __gnu_test
 
-#endif // CQUAD_CONST_H
+#endif // CQUAD_CONST_TCC

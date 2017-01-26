@@ -1,4 +1,4 @@
-/* quadrature/qaws_integrate.h
+/* quadrature/qaws_integrate.tcc
  *
  * Copyright (C) 1996, 1997, 1998, 1999, 2000, 2007 Brian Gough
  * Copyright (C) 2016-2017 Free Software Foundation, Inc.
@@ -23,13 +23,13 @@
 // Implements qawo integration algorithm
 // Based on gsl/integration/qawo.c
 
-#ifndef QAWS_INTEGRATE_H
-#define QAWS_INTEGRATE_H 1
+#ifndef QAWS_INTEGRATE_TCC
+#define QAWS_INTEGRATE_TCC 1
 
 #include <array>
 #include <tuple>
 
-#include "qk_integrate.h"
+#include "qk_integrate.tcc"
 #include "integration_workspace.h"
 #include "qaws_integration_table.h"
 
@@ -375,4 +375,4 @@ namespace __gnu_test
 
 } // namespace __gnu_test
 
-#endif // QAWS_INTEGRATE_H
+#endif // QAWS_INTEGRATE_TCC

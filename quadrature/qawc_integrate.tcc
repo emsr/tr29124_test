@@ -23,14 +23,14 @@
 // Implements qawc integration algorithm
 // Based on gsl/integration/qawc.c
 
-#ifndef QAWC_INTEGRATE_H
-#define QAWC_INTEGRATE_H 1
+#ifndef QAWC_INTEGRATE_TCC
+#define QAWC_INTEGRATE_TCC 1
 
 #include <array>
 #include <tuple>
 
 #include "integration_workspace.h"
-#include "qk_integrate.h"
+#include "qk_integrate.tcc"
 
 namespace __gnu_test
 {
@@ -280,4 +280,4 @@ namespace __gnu_test
 
 } // namespace
 
-#endif // QAWC_INTEGRATE_H
+#endif // QAWC_INTEGRATE_TCC

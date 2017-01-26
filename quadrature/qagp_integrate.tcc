@@ -25,10 +25,10 @@
 // Implements integration using a recursive Gauss-Kronrod algorithm
 // Based on gsl/integration/qagp.c
 
-#ifndef QAGP_INTEGRATE_H
-#define QAGP_INTEGRATE_H 1
+#ifndef QAGP_INTEGRATE_TCC
+#define QAGP_INTEGRATE_TCC 1
 
-#include "qk_integrate.h"
+#include "qk_integrate.tcc"
 #include "integration_workspace.h"
 #include "extrapolation_table.h"
 

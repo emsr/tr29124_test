@@ -25,18 +25,18 @@
 #ifndef INTEGRATION_H
 #define INTEGRATION_H 1
 
-#include "qag_integrate.h"
-#include "qags_integrate.h"
-#include "qng_integrate.h"
-#include "qagp_integrate.h"
-#include "qcheb_integrate.h"
-#include "qawc_integrate.h"
-#include "qaws_integrate.h"
-#include "qawo_integrate.h"
-#include "qawf_integrate.h"
+#include "qag_integrate.tcc"
+#include "qags_integrate.tcc"
+#include "qng_integrate.tcc"
+#include "qagp_integrate.tcc"
+#include "qcheb_integrate.tcc"
+#include "qawc_integrate.tcc"
+#include "qaws_integrate.tcc"
+#include "qawo_integrate.tcc"
+#include "qawf_integrate.tcc"
 #include "gauss_legendre_table.h"
-#include "glfixed_integrate.h"
-#include "cquad_integrate.h"
+#include "glfixed_integrate.tcc"
+#include "cquad_integrate.tcc"
 #include "integrate.h"
 
 #endif // INTEGRATION_H
