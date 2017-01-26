@@ -263,7 +263,7 @@ template<typename Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    std::vector<unsigned int> index{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};
+    std::vector<unsigned int> index{0, 1, 2, 3, 4, 5, 10, 20, 23, 50, 100};
 
     for (auto n : index)
       {
