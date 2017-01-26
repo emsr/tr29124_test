@@ -21,7 +21,7 @@
 // Originally written by Pedro Gonnet
 //
 // This file contains constants for use in integration schemes.
-// Based upon structs in gsl-2.3/integration/gsl_integration.h
+// Based on structs in gsl/integration/gsl_integration.h
 
 #ifndef CQUAD_WORKSPACE_H
 #define CQUAD_WORKSPACE_H 1
@@ -37,12 +37,15 @@ namespace __gnu_test
   template<typename _Tp>
     struct cquad_interval
     {
-      _Tp a, b;
+      _Tp _M_lower_lim;
+      _Tp _M_upper_lim;
+      _Tp _M_result;
+      _Tp _M_abs_error;
       _Tp c[64];
-      _Tp fx[33];
-      _Tp igral;
-      _Tp err;
-      std::size_t depth, rdepth, ndiv;
+      std::array<_Tp, 33> fx;
+      std::size_t depth;
+      std::size_t rdepth;
+      std::size_t ndiv;
     };
 
   /**
@@ -52,7 +55,7 @@ namespace __gnu_test
     bool
     operator<(const cquad_interval<_Tp>& __ivl,
 	      const cquad_interval<_Tp>& __ivr)
-    { return __ivl.err < __ivr.err; }
+    { return __ivl._M_abs_error < __ivr._M_abs_error; }
 
   template<typename _Tp>
     struct cquad_interval_comp
@@ -60,7 +63,7 @@ namespace __gnu_test
       bool
       operator()(const cquad_interval<_Tp>& __ivl,
 		 const cquad_interval<_Tp>& __ivr)
-      { return __ivl.err < __ivr.err; }
+      { return __ivl._M_abs_error < __ivr._M_abs_error; }
     };
 
   /**
@@ -71,63 +74,67 @@ namespace __gnu_test
   template<typename _Tp>
     struct cquad_workspace
     {
-      std::vector<cquad_interval<_Tp>> ivals;
+      std::vector<cquad_interval<_Tp>> _M_ival;
 
       cquad_workspace(std::size_t __len = 200)
-      : ivals()
-      { this->ivals.reserve(__len); }
+      : _M_ival()
+      { this->_M_ival.reserve(__len); }
 
       std::size_t size() const
-      { return this->ivals.size(); }
+      { return this->_M_ival.size(); }
+
+      std::size_t
+      capacity() const
+      { return this->_M_ival.capacity(); }
 
       typename std::vector<cquad_interval<_Tp>>::iterator
       begin()
-      { return this->ivals.begin(); }
+      { return this->_M_ival.begin(); }
 
       typename std::vector<cquad_interval<_Tp>>::iterator
       end()
-      { return this->ivals.end(); }
+      { return this->_M_ival.end(); }
 
       const cquad_interval<_Tp>&
       top() const
-      { return this->ivals[0]; }
+      { return this->_M_ival[0]; }
 
       cquad_interval<_Tp>&
       top()
-      { return this->ivals[0]; }
+      { return this->_M_ival[0]; }
 
       void
       clear()
-      { this->ivals.clear(); }
+      { this->_M_ival.clear(); }
 
       void
       push(const cquad_interval<_Tp>& __iv)
       {
-	cquad_interval_comp<_Tp> __cmp;
-	this->ivals.push_back(__iv);
-	std::push_heap(std::begin(this->ivals), std::end(this->ivals), __cmp);
+	this->_M_ival.push_back(__iv);
+	std::push_heap(this->begin(), this->end(),
+		       cquad_interval_comp<_Tp>{});
       }
 
       void
       pop()
       {
-	std::pop_heap(std::begin(this->ivals), std::end(this->ivals));
-	this->ivals.pop_back();
+	std::pop_heap(this->begin(), this->end());
+	this->_M_ival.pop_back();
       }
 
       void
       update()
       {
-	cquad_interval_comp<_Tp> __cmp;
-	std::make_heap(std::begin(this->ivals), std::end(this->ivals), __cmp);
+	std::make_heap(this->begin(), this->end(),
+		       cquad_interval_comp<_Tp>{});
       }
 
       _Tp
       total_integral() const
       {
 	auto __tot_igral = _Tp{0};
-	for (auto& __iv : ivals)
-	  __tot_igral += __iv.igral;
+	for (auto& __iv : _M_ival)
+	  __tot_igral += __iv._M_result;
 	return __tot_igral;
       }
 
@@ -135,8 +142,8 @@ namespace __gnu_test
       total_error() const
       {
 	auto __tot_error = _Tp{0};
-	for (auto& __iv : ivals)
-	  __tot_error += __iv.err;
+	for (auto& __iv : _M_ival)
+	  __tot_error += __iv._M_abs_error;
 	return __tot_error;
       }
     };

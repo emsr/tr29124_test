@@ -21,7 +21,7 @@
 // Originally written by Brian Gaugh
 //
 // Implements qawo integration algorithm
-// Based upon gsl-2.3/integration/qawo.c
+// Based on gsl/integration/qawo.c
 
 #ifndef QAWS_INTEGRATE_H
 #define QAWS_INTEGRATE_H 1
@@ -65,6 +65,7 @@ namespace __gnu_test
 				   "and relative error limits.");
 
       const auto __limit = __workspace.capacity();
+      __workspace.clear();
 
       // Perform the first integration.
       _Tp __result0, __abserr0;
@@ -78,26 +79,16 @@ namespace __gnu_test
 	bool __err_reliable1;
 	std::tie(__area1, __error1, __err_reliable1)
 	  = qc25s(__table, __func, __a, __b, __a1, __b1);
+	__workspace.append(__a1, __b1, __area1, __error1);
 
 	_Tp __area2, __error2;
 	bool __err_reliable2;
 	std::tie(__area2, __error2, __err_reliable2)
 	  = qc25s(__table, __func, __a, __b, __a2, __b2);
-
-	if (__error1 > __error2)
-	  {
-	    __workspace.append(__a1, __b1, __area1, __error1);
-	    __workspace.append(__a2, __b2, __area2, __error2);
-	  }
-	else
-	  {
-	    __workspace.append(__a2, __b2, __area2, __error2);
-	    __workspace.append(__a1, __b1, __area1, __error1);
-	  }
+	__workspace.append(__a2, __b2, __area2, __error2);
 
 	__result0 = __area1 + __area2;
 	__abserr0 = __error1 + __error2;
-	__workspace.set_initial(__a, __b, __result0, __abserr0);
       }
 
       // Test on accuracy; Use 0.01 relative error as an extra safety
@@ -114,6 +105,7 @@ namespace __gnu_test
       auto __errsum = __abserr0;
       auto __iteration = 2u;
       int __error_type = NO_ERROR;
+      int __roundoff_type1 = 0, __roundoff_type2 = 0;
       do
 	{
 	  // Bisect the subinterval with the largest error estimate.
@@ -141,10 +133,9 @@ namespace __gnu_test
 	  __errsum += __error12 - __e_i;
 	  __area += __area12 - __r_i;
 
-	  int __roundoff_type1 = 0, __roundoff_type2 = 0;
 	  if (__err_reliable1 && __err_reliable2)
 	    {
-	      auto __delta = __r_i - __area12;
+	      const auto __delta = __r_i - __area12;
 
 	      if (std::abs (__delta) <= 1.0e-5 * std::abs(__area12)
 		 && __error12 >= 0.99 * __e_i)
@@ -165,8 +156,7 @@ namespace __gnu_test
 		__error_type = SINGULAR_ERROR;
 	    }
 
-	  __workspace.update(__a1, __b1, __area1, __error1,
-			     __a2, __b2, __area2, __error2);
+	  __workspace.split(__b1, __area1, __error1, __area2, __error2);
 
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
@@ -174,7 +164,7 @@ namespace __gnu_test
 	}
       while (__iteration < __limit && !__error_type && __errsum > __tolerance);
 
-      const auto __result = __workspace.sum_results();
+      const auto __result = __workspace.total_integral();
       const auto __abserr = __errsum;
 
       if (__iteration == __limit)

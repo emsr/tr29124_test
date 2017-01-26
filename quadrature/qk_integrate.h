@@ -22,7 +22,7 @@
 // Originally written by Brian Gaugh
 //
 // Implements Gauss-Kronrod integration
-// Based upon gsl-2.3/integration/qk.c
+// Based on gsl/integration/qk.c
 
 #ifndef QK_INTEGRATE_H
 #define QK_INTEGRATE_H 1
@@ -68,12 +68,13 @@ namespace __gnu_test
 
   // Integrates func from a to b using integration rule qkintrule
   // returns a tuple with the results of a single Gauss-Kronrod integration
-  // Based upon GSL function gsl_integration_qk()
+  // Based on GSL function gsl_integration_qk()
   // Return values are as follows:
-  // 0: result (result of integration using Kronrod scheme)
-  // 1: abserr (Estimated error as difference between Gauss and Kronrod)
-  // 2: resabs (Integral of absolute value of function)
-  // 3: resasc (unknown)
+  // 0: result - result of integration using Kronrod scheme
+  // 1: abserr - Estimated error as difference between Gauss and Kronrod
+  // 2: resabs - Integral of absolute value of function
+  // 3: resasc - Integral of absolute value of difference between function
+  //             and weighted mean function value
   template<typename _Tp, typename _FuncTp>
     std::tuple<_Tp, _Tp, _Tp, _Tp>
     qk_integrate(const _FuncTp& __func, _Tp __a, _Tp __b,
