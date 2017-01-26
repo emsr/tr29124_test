@@ -64,3 +64,8 @@
     This is an XFAIL!
 
 18. TOLERANCE_ERROR - A domain/precondition error.
+
+19. Type generic tester.
+    We'll need type promotion wrappers.  Make current finctions __q***_integrate. so we don't have to cast every constexpr arg.
+    Use C++ I/O to silence errors.
+    

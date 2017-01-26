@@ -22,7 +22,7 @@
 // Originally written by Brian Gaugh
 //
 // This file implements an Gauss-Legendre table for use in integration schemes
-// Based upon gsl-2.3/integration/qelg.c
+// Based on gsl/integration/qelg.c
 
 #ifndef GAUSS_LEGENDRE_TABLE_TCC
 #define GAUSS_LEGENDRE_TABLE_TCC 1

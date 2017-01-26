@@ -62,41 +62,23 @@ namespace __gnu_test
 		  _Tp __epsabs, _Tp __epsrel, const std::size_t __max_iter,
 		  const qk_intrule __qkintrule)
     {
-      _Tp __area, __errsum;
-      _Tp __result0, __abserr0, __resabs0, __resasc0;
-      _Tp __tolerance;
-      std::size_t __iteration = 0;
-      int __roundoff_type1 = 0, __roundoff_type2 = 0, __error_type = NO_ERROR;
-
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
 
-      _Tp __round_off;
-
-      _Tp __result = 0;
-      _Tp __abserr = 0;
-
-      std::vector<_Tp> __rlist(__max_iter);
-      std::vector<_Tp> __elist(__max_iter);
-
-      if (__epsabs <= 0 && (__epsrel < 50 * _S_eps))
+      if (__epsabs <= 0 && (__epsrel < _Tp{50} * _S_eps))
 	std::__throw_logic_error("qag_integrate: "
 				 "Tolerance cannot be achieved "
 				 "with given absolute "
 				 "and relative error limits.");
 
-      typedef std::tuple<_Tp&,_Tp&,_Tp&,_Tp&> __ret_type;
-
-      __ret_type{__result0, __abserr0,__resabs0,__resasc0}
+      _Tp __result0, __abserr0, __resabs0, __resasc0;
+      std::tie(__result0, __abserr0,__resabs0,__resasc0)
 	  = qk_integrate(__func, __a, __b, __qkintrule);
 
-      __rlist[0] = __result0;
-      __elist[0] = __abserr0;
+      // Test on accuracy
+      auto __tolerance = std::max(__epsabs, __epsrel * std::abs(__result0));
 
-      //Test on accuracy
-      __tolerance = std::max(__epsabs, __epsrel * std::abs(__result0));
-
-      //Compute roundoff
-      __round_off = 50 * _S_eps * __resabs0;
+      // Compute roundoff
+      const auto __round_off = _Tp{50} * _S_eps * __resabs0;
 
       if (__abserr0 <= __round_off && __abserr0 > __tolerance)
 	__throw__IntegrationError("qag_integrate: "
@@ -111,18 +93,17 @@ namespace __gnu_test
 				  "a maximum of one iteration was insufficient",
 				  MAX_ITER_ERROR, __result0, __abserr0);
 
-      __area = __result0;
-      __errsum = __abserr0;
+      __workspace.clear();
+      __workspace.append(__a, __b, __result0, __abserr0);
 
-      __iteration = 1;
-
-      __workspace.set_initial(__a, __b, __result0, __abserr0);
-      __result = __workspace.sum_results();
-
+      auto __area = __result0;
+      auto __errsum = __abserr0;
+      int __error_type = NO_ERROR;
+      std::size_t __iteration = 1;
+      int __roundoff_type1 = 0, __roundoff_type2 = 0;
       do
 	{
 	  // Bisect the subinterval with the largest error estimate
-
 	  _Tp __a_i, __b_i, __r_i, __e_i;
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
 
@@ -132,22 +113,22 @@ namespace __gnu_test
 	  const auto __b2 = __b_i;
 
 	  _Tp __area1, __error1, __resabs1, __resasc1;
-	  __ret_type{__area1,__error1,__resabs1,__resasc1}
+	  std::tie(__area1,__error1,__resabs1,__resasc1)
 	      = qk_integrate(__func, __a1, __b1, __qkintrule);
 
 	  _Tp __area2, __error2, __resabs2, __resasc2;
-	  __ret_type{__area2,__error2,__resabs2,__resasc2}
+	  std::tie(__area2,__error2,__resabs2,__resasc2)
 	      = qk_integrate(__func, __a2, __b2, __qkintrule);
 
 	  const auto __area12 = __area1 + __area2;
 	  const auto __error12 = __error1 + __error2;
 
-	  __errsum += (__error12 - __e_i);
 	  __area += __area12 - __r_i;
+	  __errsum += __error12 - __e_i;
 
 	  if (__resasc1 != __error1 && __resasc2 != __error2)
 	    {
-	      _Tp __delta = __r_i - __area12;
+	      const auto __delta = __r_i - __area12;
 
 	      if (std::abs(__delta) <= 1.0e-5 * std::abs(__area12)
 		 && __error12 >= 0.99 * __e_i)
@@ -169,20 +150,17 @@ namespace __gnu_test
 		__error_type = SINGULAR_ERROR;
 	    }
 
-	  __workspace.update(__a1, __b1, __area1, __error1,
-			     __a2, __b2, __area2, __error2);
+	  __workspace.split(__b1, __area1, __error1, __area2, __error2);
 
 	  __workspace.retrieve(__a_i, __b_i, __r_i, __e_i);
-
-	  __result = __workspace.sum_results();
 
 	  ++__iteration;
 	}
       while (__iteration < __max_iter && !__error_type
 	     && __errsum > __tolerance);
 
-      __result = __workspace.sum_results();
-      __abserr = __errsum;
+      auto __result = __workspace.total_integral();
+      auto __abserr = __errsum;
 
       if (__errsum <= __tolerance)
 	return std::make_tuple(__result, __abserr);

@@ -53,8 +53,8 @@ namespace __gnu_test
 	0.1305261922200516
       };
 
-      const _Tp __center = (__b + __a) / _Tp{2};
-      const _Tp __half_length = (__b - __a) / _Tp{2};
+      const auto __center = (__b + __a) / _Tp{2};
+      const auto __half_length = (__b - __a) / _Tp{2};
 
       __fval[0] = __func(__b) / _Tp{2};
       __fval[12] = __func(__center);
@@ -63,7 +63,7 @@ namespace __gnu_test
       for (int __i = 1; __i < 12; ++__i)
 	{
 	  const std::size_t __j = 24 - __i;
-	  const _Tp __u = __half_length * __x[__i - 1];
+	  const auto __u = __half_length * __x[__i - 1];
 	  __fval[__i] = __func(__center + __u);
 	  __fval[__j] = __func(__center - __u);
 	}
@@ -76,36 +76,36 @@ namespace __gnu_test
 	}
 
       {
-	const _Tp __alam1 = __v[0] - __v[8];
-	const _Tp __alam2 = __x[5] * (__v[2] - __v[6] - __v[10]);
+	const auto __alam1 = __v[0] - __v[8];
+	const auto __alam2 = __x[5] * (__v[2] - __v[6] - __v[10]);
 	__cheb12[3] = __alam1 + __alam2;
 	__cheb12[9] = __alam1 - __alam2;
       }
 
       {
-	const _Tp __alam1 = __v[1] - __v[7] - __v[9];
-	const _Tp __alam2 = __v[3] - __v[5] - __v[11];
+	const auto __alam1 = __v[1] - __v[7] - __v[9];
+	const auto __alam2 = __v[3] - __v[5] - __v[11];
 	{
-	  const _Tp __alam = __x[2] * __alam1 + __x[8] * __alam2;
+	  const auto __alam = __x[2] * __alam1 + __x[8] * __alam2;
 	  __cheb24[3] = __cheb12[3] + __alam;
 	  __cheb24[21] = __cheb12[3] - __alam;
 	}
 
 	{
-	  const _Tp __alam = __x[8] * __alam1 - __x[2] * __alam2;
+	  const auto __alam = __x[8] * __alam1 - __x[2] * __alam2;
 	  __cheb24[9] = __cheb12[9] + __alam;
 	  __cheb24[15] = __cheb12[9] - __alam;
 	}
       }
 
       {
-	const _Tp __part1 = __x[3] * __v[4];
-	const _Tp __part2 = __x[7] * __v[8];
-	const _Tp __part3 = __x[5] * __v[6];
+	const auto __part1 = __x[3] * __v[4];
+	const auto __part2 = __x[7] * __v[8];
+	const auto __part3 = __x[5] * __v[6];
 
 	{
-	  const _Tp __alam1 = __v[0] + __part1 + __part2;
-	  const _Tp __alam2 = __x[1] * __v[2] + __part3 + __x[9] * __v[10];
+	  const auto __alam1 = __v[0] + __part1 + __part2;
+	  const auto __alam2 = __x[1] * __v[2] + __part3 + __x[9] * __v[10];
 
 	  __cheb12[1] = __alam1 + __alam2;
 	  __cheb12[11] = __alam1 - __alam2;
@@ -120,29 +120,33 @@ namespace __gnu_test
       }
 
       {
-	const _Tp __alam = (__x[0] * __v[1] + __x[2] * __v[3] + __x[4] * __v[5]
-		    + __x[6] * __v[7] + __x[8] * __v[9] + __x[10] * __v[11]);
+	const auto __alam = (__x[0] * __v[1] + __x[2] * __v[3]
+			  + __x[4] * __v[5] + __x[6] * __v[7]
+			  + __x[8] * __v[9] + __x[10] * __v[11]);
 	__cheb24[1] = __cheb12[1] + __alam;
 	__cheb24[23] = __cheb12[1] - __alam;
       }
 
       {
-	const _Tp __alam = (__x[10] * __v[1] - __x[8] * __v[3] + __x[6] * __v[5]
-		    - __x[4] * __v[7] + __x[2] * __v[9] - __x[0] * __v[11]);
+	const auto __alam = (__x[10] * __v[1] - __x[8] * __v[3]
+			  + __x[6] * __v[5] - __x[4] * __v[7]
+			  + __x[2] * __v[9] - __x[0] * __v[11]);
 	__cheb24[11] = __cheb12[11] + __alam;
 	__cheb24[13] = __cheb12[11] - __alam;
       }
 
       {
-	const _Tp __alam = (__x[4] * __v[1] - __x[8] * __v[3] - __x[0] * __v[5]
-		    - __x[10] * __v[7] + __x[2] * __v[9] + __x[6] * __v[11]);
+	const auto __alam = (__x[4] * __v[1] - __x[8] * __v[3]
+			  - __x[0] * __v[5] - __x[10] * __v[7]
+			  + __x[2] * __v[9] + __x[6] * __v[11]);
 	__cheb24[5] = __cheb12[5] + __alam;
 	__cheb24[19] = __cheb12[5] - __alam;
       }
 
       {
-	const _Tp __alam = (__x[6] * __v[1] - __x[2] * __v[3] - __x[10] * __v[5]
-		    + __x[0] * __v[7] - __x[8] * __v[9] - __x[4] * __v[11]);
+	const auto __alam = (__x[6] * __v[1] - __x[2] * __v[3]
+			  - __x[10] * __v[5] + __x[0] * __v[7]
+			  - __x[8] * __v[9] - __x[4] * __v[11]);
 	__cheb24[7] = __cheb12[7] + __alam;
 	__cheb24[17] = __cheb12[7] - __alam;
       }
@@ -155,8 +159,8 @@ namespace __gnu_test
 	}
 
       {
-	const _Tp __alam1 = __v[0] + __x[7] * __v[4];
-	const _Tp __alam2 = __x[3] * __v[2];
+	const auto __alam1 = __v[0] + __x[7] * __v[4];
+	const auto __alam2 = __x[3] * __v[2];
 
 	__cheb12[2] = __alam1 + __alam2;
 	__cheb12[10] = __alam1 - __alam2;
@@ -165,19 +169,19 @@ namespace __gnu_test
       __cheb12[6] = __v[0] - __v[4];
 
       {
-	const _Tp __alam = __x[1] * __v[1] + __x[5] * __v[3] + __x[9] * __v[5];
+	const auto __alam = __x[1] * __v[1] + __x[5] * __v[3] + __x[9] * __v[5];
 	__cheb24[2] = __cheb12[2] + __alam;
 	__cheb24[22] = __cheb12[2] - __alam;
       }
 
       {
-	const _Tp __alam = __x[5] * (__v[1] - __v[3] - __v[5]);
+	const auto __alam = __x[5] * (__v[1] - __v[3] - __v[5]);
 	__cheb24[6] = __cheb12[6] + __alam;
 	__cheb24[18] = __cheb12[6] - __alam;
       }
 
       {
-	const _Tp __alam = __x[9] * __v[1] - __x[5] * __v[3] + __x[1] * __v[5];
+	const auto __alam = __x[9] * __v[1] - __x[5] * __v[3] + __x[1] * __v[5];
 	__cheb24[10] = __cheb12[10] + __alam;
 	__cheb24[14] = __cheb12[10] - __alam;
       }
@@ -193,13 +197,13 @@ namespace __gnu_test
       __cheb12[8] = __fval[0] - __x[7] * __fval[2];
 
       {
-	const _Tp __alam = __x[3] * __v[1];
+	const auto __alam = __x[3] * __v[1];
 	__cheb24[4] = __cheb12[4] + __alam;
 	__cheb24[20] = __cheb12[4] - __alam;
       }
 
       {
-	const _Tp __alam = __x[7] * __fval[1] - __fval[3];
+	const auto __alam = __x[7] * __fval[1] - __fval[3];
 	__cheb24[8] = __cheb12[8] + __alam;
 	__cheb24[16] = __cheb12[8] - __alam;
       }
@@ -207,7 +211,7 @@ namespace __gnu_test
       __cheb12[0] = __fval[0] + __fval[2];
 
       {
-	const _Tp __alam = __fval[1] + __fval[3];
+	const auto __alam = __fval[1] + __fval[3];
 	__cheb24[0] = __cheb12[0] + __alam;
 	__cheb24[24] = __cheb12[0] - __alam;
       }
