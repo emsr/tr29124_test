@@ -171,23 +171,64 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_g
     }
 
 /**
- * Return the Stirling numbers of the first kind.
- *
+ * Return the gamma ratio by asymptotic series:
+ * @f[
+ *    \frac{\Gamma(z+\alpha)}{\Gamma(z+\beta)}
+ *  ~ z^{\alpha-\beta}\sum_{n=0}^{\infty}\frac{(\beta-\alpha)_n}{n!}
+ *         {}_2F_0(-n, z+\beta;;1/z)
+ * @f]
+ * The hypergeometric function @f$ {}_2F_0(a,b;;z) @f$
+ * with nonpositive numeratorial parameter n
+ * is a polynomial with a simple TTRR:
+ * @f[
+ *  z {}_2F_0(-n-1,z+\beta;;1/z) = -(n+\beta) {}_2F_0(-n,z+\beta;;1/z)
+ *      + n {}_2F_0(-n+1,z+\beta;;1/z)
+ * @f]
+ * where @f$ {}_2F_0(-0,z+\beta;;1/z) = 1 @f$
+ * and @f$ {}_2F_0(-1,z+\beta;;1/z) = -\beta/z @f$.
  */
 template<typename _Tp>
   _Tp
-  stirling_number_1(int __n, int __k)
+  gamma_ratio_2f0(_Tp __alpha, _Tp __beta, _Tp __z)
   {
     return _Tp{0};
   }
 
 /**
- * Return the Stirling numbers of the first kind.
- *
+ * Return the gamma ratio by asymptotic series:
+ * @f[
+ *    \frac{\Gamma(z+\alpha)}{\Gamma(z+\beta)}
+ *  ~ z^{\alpha-\beta}\sum_{n=0}^{\infty}\frac{(\alpha-\beta)_n}{n!}
+ *         {}_1F_1(-n; z+\alpha; z)
+ * @f]
+ * The hypergeometric function @f$ {}_1F_1(a;b;z) @f$
+ * with nonpositive numeratorial parameter n
+ * is a polynomial with a simple TTRR:
+ * @f[
+ *  (z+\alpha+n) {}_1F_1(-n-1;z+\alpha;z) = -(2n+\alpha) {}_1F_1(-n;z+\alpha;z)
+ *      - n {}_1F_1(-n+1;z+\alpha;z)
+ * @f]
+ * where @f$ {}_1F_1(-0;z+\alpha;z) = 1 @f$
+ * and @f$ {}_1F_1(-1;z+\alpha;z) = \alpha/(z+\alpha) @f$.
  */
 template<typename _Tp>
   _Tp
-  stirling_number_1(int __n, _Tp __kappa)
+  gamma_ratio_1f1(_Tp __alpha, _Tp __beta, _Tp __z)
+  {
+    return _Tp{0};
+  }
+
+/**
+ * Return the gamma ratio by asymptotic series:
+ * @f[
+ *    \frac{\Gamma(z+\alpha)}{\Gamma(z+\beta)}
+ *  ~ z^{\alpha-\beta}\sum_{n=0}^{\infty}
+ *      \frac{(\alpha-\beta+1-n)_n B_n^{\alpha-\beta+1}(\alpha)}{n!}z^{-n}
+ * @f]
+ * where @f$@f$ is the Norlund or generalized Bernoulli polynomial.
+ */
+  _Tp
+  gamma_ratio_erdelyi_tricomi(_Tp __alpha, _Tp __beta, _Tp __z)
   {
     return _Tp{0};
   }
