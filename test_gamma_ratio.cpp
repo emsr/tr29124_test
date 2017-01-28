@@ -35,9 +35,9 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_g
    *          + O(n^{-M-1})
    * @f]
    */
-  template<typename _Tp>
+  template<typename _Tn, typename _Tp>
     _Tp
-    __gamma_ratio_buhring(int __n, _Tp __a, _Tp __b, _Tp __c,
+    __gamma_ratio_buhring(_Tn __n, _Tp __a, _Tp __b, _Tp __c,
 			  int _S_M = 20, __buhring_mode mode = automatic)
     {
       const auto _S_eps = 10 * __gnu_cxx::__epsilon(__a);
@@ -50,10 +50,12 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_g
 	  __sum += _Tp{__term};
 	  auto __ca = __c - __a;
 	  auto __cb = __c - __b;
-	  auto __cabn = _Tp{1} + __c - __a - __b - __n;
+	  auto __cabn = _Tp{1} + __c - __a - __b - _Tp(__n);
 	  for (int __m = 1; __m <= _S_M; ++__m)
 	    {
 	      auto __prev = __term;
+	      if (__cabn == _Tp{0})
+		break;
 	      __term *= __ca / __m * __cb / __cabn;
 	      __sum += __term;
 	      if (mode == automatic
@@ -67,7 +69,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_g
 	  return __sum();
 	}
       else if (mode == equation3p1
-	|| (mode == automatic && std::real(1 + __c - __a - __b - __n) < _Tp{0}))
+	|| (mode == automatic && std::real(1 + __c - __a - __b - _Tp(__n)) < _Tp{0}))
 	{
 	  //__gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<_Tp>> __sum;
 	  __gnu_cxx::_BasicSum<_Tp> __sum;
@@ -75,10 +77,12 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_g
 	  __sum += _Tp{__term};
 	  auto __ac = __a - __c;
 	  auto __bc = __b - __c;
-	  auto __cn = _Tp{1} - __c - __n;
+	  auto __cn = _Tp{1} - __c - _Tp(__n);
 	  for (int __m = 1; __m <= _S_M; ++__m)
 	    {
 	      auto __prev = __term;
+	      if (__cn == _Tp{0})
+		break;
 	      __term *= __ac / __m * __bc / __cn;
 	      __sum += __term;
 	      if (mode == automatic
@@ -101,45 +105,56 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_g
 	  __sum2p7 += _Tp{__term2p7};
 	  auto __ca = __c - __a;
 	  auto __cb = __c - __b;
-	  auto __cabn = _Tp{1} + __c - __a - __b - __n;
+	  auto __cabn = _Tp{1} + __c - __a - __b - _Tp(__n);
 
 	  __gnu_cxx::_BasicSum<_Tp> __sum3p1;
 	  auto __term3p1 = _Tp{1};
 	  __sum3p1 += _Tp{__term3p1};
 	  auto __ac = __a - __c;
 	  auto __bc = __b - __c;
-	  auto __cn = _Tp{1} - __c - __n;
+	  auto __cn = _Tp{1} - __c - _Tp(__n);
 
 	  bool __conv2p7 = false;
 	  bool __conv3p1 = false;
 	  for (int __m = 1; __m <= _S_M; ++__m)
 	    {
-	      auto __prev2p7 = __term2p7;
-	      __term2p7 *= __ca / __m * __cb / __cabn;
-	      __sum2p7 += __term2p7;
-	      ++__ca;
-	      ++__cb;
-	      ++__cabn;
-	      if (std::abs(__term2p7) < _S_eps * __sum2p7()
-		|| std::abs(__term2p7) > std::abs(__prev2p7))
+	      if (__cabn == _Tp{0})
 		__conv2p7 = true;
+	      else if (!__conv2p7)
+		{
+		  auto __prev2p7 = __term2p7;
+		  __term2p7 *= __ca / __m * __cb / __cabn;
+		  __sum2p7 += __term2p7;
+		  ++__ca;
+		  ++__cb;
+		  ++__cabn;
+		  if (std::abs(__term2p7) < _S_eps * __sum2p7()
+		    || std::abs(__term2p7) > std::abs(__prev2p7))
+		    __conv2p7 = true;
+		}
 
-	      auto __prev3p1 = __term3p1;
-	      __term3p1 *= __ac / __m * __bc / __cn;
-	      __sum3p1 += __term3p1;
-	      ++__ac;
-	      ++__bc;
-	      ++__cn;
-	      if (std::abs(__term3p1) < _S_eps * __sum3p1()
-		|| std::abs(__term3p1) > std::abs(__prev3p1))
+	      if (__cn == _Tp{0})
 		__conv3p1 = true;
+	      else if (!__conv3p1)
+		{
+		  auto __prev3p1 = __term3p1;
+		  __term3p1 *= __ac / __m * __bc / __cn;
+		  __sum3p1 += __term3p1;
+		  ++__ac;
+		  ++__bc;
+		  ++__cn;
+		  if (std::abs(__term3p1) < _S_eps * __sum3p1()
+		    || std::abs(__term3p1) > std::abs(__prev3p1))
+		    __conv3p1 = true;
+		}
 
 	      if (__conv2p7 && __conv3p1)
 		break;
 	    }
 	  return (__sum2p7() + __sum3p1()) / _Tp{2}
-		* __gnu_cxx::sin_pi(__c + __n) * __gnu_cxx::sin_pi(__a + __b - __c + __n)
-		/ __gnu_cxx::sin_pi(__a + __n) * __gnu_cxx::sin_pi(__b + __n);
+		* __gnu_cxx::sin_pi(__c + _Tp(__n))
+		* __gnu_cxx::sin_pi(__a + __b - __c + _Tp(__n))
+		/ __gnu_cxx::sin_pi(__a + __n) * __gnu_cxx::sin_pi(__b + _Tp(__n));
 	}
     }
 
@@ -191,7 +206,22 @@ template<typename _Tp>
   _Tp
   gamma_ratio_2f0(_Tp __alpha, _Tp __beta, _Tp __z)
   {
-    return _Tp{0};
+    const auto _S_max_iter = 1000;
+    auto __fact = _Tp{1};
+    auto _Fnm1 = _Tp{1};
+    auto __sum = __fact * _Fnm1;
+    __fact *= (__beta - __alpha);
+    auto _Fn = -__beta / __z;
+    __sum += __fact * _Fn;
+    for (auto __n = 2; __n < _S_max_iter; ++__n)
+      {
+	__fact *= (__beta - __alpha + __n - 1) / __n;
+	auto _Fnp1 = (-(__n + __beta) * _Fn + __n * _Fnm1) / __z;
+	__sum += __fact * _Fnp1;
+	_Fnm1 = _Fn;
+	_Fn = _Fnp1;
+      }
+    return __sum * std::pow(__z, __alpha - __beta);
   }
 
 /**
@@ -227,6 +257,7 @@ template<typename _Tp>
  * @f]
  * where @f$@f$ is the Norlund or generalized Bernoulli polynomial.
  */
+template<typename _Tp>
   _Tp
   gamma_ratio_erdelyi_tricomi(_Tp __alpha, _Tp __beta, _Tp __z)
   {
