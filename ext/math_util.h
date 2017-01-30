@@ -53,8 +53,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline _Tp
-    __fpmaxabs(_Tp __a, _Tp __b)
-    { std::abs(__a) < std::abs(__b) ? std::abs(__b) : std::abs(__a); }
+    __fp_max_abs(_Tp __a, _Tp __b)
+    {
+      const auto __aa = std::abs(__a);
+      const auto __bb = std::abs(__b);
+      return std::max(__aa, __bb);
+    }
 
   /**
    * A function to reliably compare two floating point numbers.
@@ -73,7 +77,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       bool __retval = true;
       if ((__a != _Tp{0}) || (__b != _Tp{0}))
 	// Looks mean, but is necessary that the next line has sense.
-	__retval = (std::abs(__a - __b) < __fpmaxabs(__a, __b) * _S_tol);
+	__retval = (std::abs(__a - __b) < __fp_max_abs(__a, __b) * _S_tol);
       return __retval;
     }
 
