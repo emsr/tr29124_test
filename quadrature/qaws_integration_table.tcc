@@ -113,8 +113,6 @@ namespace __gnu_test
 	  __anm1 = __an;
 	  __an += _Tp{1};
 	}
-      for (size_t __i = 1; __i < this->rj.size(); __i += 2)
-	this->rj[__i] *= _Tp{-1};
 
       this->rg[0] = -this->ri[0] / __alpha_p1;
       this->rg[1] = -this->rg[0]
@@ -144,6 +142,9 @@ namespace __gnu_test
 	  __anm1 = __an;
 	  __an += _Tp{1};
 	}
+
+      for (size_t __i = 1; __i < this->rj.size(); __i += 2)
+	this->rj[__i] *= _Tp{-1};
       for (size_t __i = 1; __i < this->rh.size(); __i += 2)
 	this->rh[__i] *= _Tp{-1};
     }
