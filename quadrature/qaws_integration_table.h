@@ -26,6 +26,13 @@
 namespace __gnu_test
 {
 
+  /**
+   * This structure manages integration of functions
+   * with optional singular factors
+   * @f[
+   *   log(x - \alpha) log(\beta - x)
+   * @f]
+   */
   template<typename _Tp>
     struct qaws_integration_table
     {
