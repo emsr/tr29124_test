@@ -280,14 +280,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     inline bool
     __fp_is_equal(const std::complex<_Tp>& __a, const std::complex<_Tp>& __b,
-	      _Tp __mul = _Tp{1})
+		  _Tp __mul = _Tp{1})
     {
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       const auto _S_tol = __mul * _S_eps;
       bool __retval = true;
       if (!__fp_is_zero(std::abs(__a), __mul) || !__fp_is_zero(std::abs(__b), __mul))
 	// Looks mean, but is necessary that the next line has sense.
-	__retval = (std::abs(__a - __b) < __fpmaxabs(__a, __b) * _S_tol);
+	__retval = (std::abs(__a - __b) < __fp_max_abs(__a, __b) * _S_tol);
       return __retval;
     }
 
