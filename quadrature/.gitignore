@@ -3,6 +3,7 @@ CMakeFiles
 cmake_install.cmake
 error.txt
 
+build_clenshaw_curtis
 chebyshev_t_test
 chebyshev_u_test
 chebyshev_v_test
