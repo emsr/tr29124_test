@@ -122,7 +122,9 @@ g++ -std=gnu++14 -o test_chebyshev_trig test_chebyshev_trig.cpp -lquadmath
       std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
       for (unsigned int __k = 1; __k <= __n; ++__k)
 	{
-	  auto __z = __gnu_cxx::cos_pi(_Tp(__k) / _Tp(__n + 1));
+	  auto __arg = _Tp(__k) / _Tp(__n + 1);
+	  auto __half = __gnu_cxx::__fp_is_equal<_Tp>(__arg, _Tp{0.5L});
+	  auto __z = (__half ? _Tp{0} : __gnu_cxx::cos_pi(__arg));
 	  auto __w = _S_pi * (_Tp{1} - __z * __z) / _Tp(__n + 1);
 	  __pt[__k - 1].__zero = __z;
 	  __pt[__k - 1].__weight = __w;
