@@ -47,6 +47,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       _Tp __zero;
       _Tp __weight;
+
+      __quadrature_point_t() = default;
+
+      __quadrature_point_t(_Tp __z, _Tp __w)
+      : __zero(__z),
+	__weight(__w)
+      { }
     };
 
   /**

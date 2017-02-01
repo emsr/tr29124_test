@@ -72,11 +72,11 @@ void dstzr ( double *zxlo, double *zxhi, double *zabstl, double *zreltl );
 double dt1 ( double *p, double *q, double *df );
 void dzror ( int *status, double *x, double *fx, double *xlo,
   double *xhi, unsigned long *qleft, unsigned long *qhi );
-static void E0000 ( int IENTRY, int *status, double *x, double *fx,
+void E0000 ( int IENTRY, int *status, double *x, double *fx,
   unsigned long *qleft, unsigned long *qhi, double *zabsst,
   double *zabsto, double *zbig, double *zrelst,
   double *zrelto, double *zsmall, double *zstpmu );
-static void E0001 ( int IENTRY, int *status, double *x, double *fx,
+void E0001 ( int IENTRY, int *status, double *x, double *fx,
   double *xlo, double *xhi, unsigned long *qleft,
   unsigned long *qhi, double *zabstl, double *zreltl,
   double *zxhi, double *zxlo );

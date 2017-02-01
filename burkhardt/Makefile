@@ -21,7 +21,8 @@ SRCS = \
   quadrule.cpp \
   test_values.cpp \
   timestamp.cpp \
-  toms462.cpp
+  toms462.cpp \
+  quadrule.cpp
 
 OBJS = \
   $(OBJ_DIR)/asa109.o \
@@ -38,12 +39,9 @@ OBJS = \
   $(OBJ_DIR)/minmax.o \
   $(OBJ_DIR)/polpak.o \
   $(OBJ_DIR)/timestamp.o \
-  $(OBJ_DIR)/toms462.o
+  $(OBJ_DIR)/toms462.o \
+  $(OBJ_DIR)/quadrule.o
 
-#
-#  $(OBJ_DIR)/test_values.o \
-#  $(OBJ_DIR)/quadrule.o \
-#
 
 libburkhardt.so: $(OBJS)
 	$(CXX) -shared -o libburkhardt.so $(OBJS)
@@ -89,9 +87,6 @@ $(OBJ_DIR)/minmax.o: minmax.cpp
 $(OBJ_DIR)/polpak.o: polpak.cpp
 	$(CXX) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/polpak.o polpak.cpp
 
-$(OBJ_DIR)/quadrule.o: quadrule.cpp
-	$(CXX) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/quadrule.o quadrule.cpp
-
 $(OBJ_DIR)/test_values.o: test_values.cpp
 	$(CXX) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/test_values.o test_values.cpp
 
@@ -100,4 +95,7 @@ $(OBJ_DIR)/timestamp.o: timestamp.cpp
 
 $(OBJ_DIR)/toms462.o: toms462.cpp
 	$(CXX) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/toms462.o toms462.cpp
+
+$(OBJ_DIR)/quadrule.o: quadrule.cpp
+	$(CXX) -c -fPIC -I$(INC_DIR) -o $(OBJ_DIR)/quadrule.o quadrule.cpp
 
