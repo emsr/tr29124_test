@@ -1,8 +1,8 @@
 /*
-LD_LIBRARY_PATH=..:$LD_LIBRARY_PATH $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I.. -o build_clenshaw_curtis build_clenshaw_curtis.cpp -lquadmath -L.. -lwburkhardt
+LD_LIBRARY_PATH=..:$LD_LIBRARY_PATH $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I.. -o build_clenshaw_curtis build_clenshaw_curtis.cpp -lquadmath -L.. -lwrap_burkhardt
 LD_LIBRARY_PATH=..:$LD_LIBRARY_PATH ./build_clenshaw_curtis > build_clenshaw_curtis.txt
 
-PATH=..:$PATH $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -Wl,-rpath,$HOME/tr29124 -I.. -o build_clenshaw_curtis build_clenshaw_curtis.cpp -lquadmath -L.. -lwburkhardt
+PATH=..:$PATH $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -Wl,-rpath,$HOME/tr29124 -I.. -o build_clenshaw_curtis build_clenshaw_curtis.cpp -lquadmath -L.. -lwrap_burkhardt
 PATH=..:$PATH ./build_clenshaw_curtis > build_clenshaw_curtis.txt
 */
 
@@ -171,7 +171,9 @@ template<typename _Tp>
       		     / _Tp(1 - 4 * __k * __k);
     __v[__n / 2] = _Tp((__n - 3) / (2 * (__n / 2) - 1) - 1);
     __gnu_cxx::ifft(__v);
-    ;
+std::cout << '\n';
+for (auto x : __v)
+std::cout << x << '\n';
     return __out;
   }
 
@@ -246,7 +248,9 @@ template<typename _Tp>
       __v[__n - __k] = __v[__k] = _Tp{2} / _Tp(1 - 4 * __k * __k);
     __v[__n / 2] = _Tp((__n - 3) / (2 * (__n / 2) - 1) - 1);
     __gnu_cxx::ifft(__v);
-    ;
+std::cout << '\n';
+for (auto x : __v)
+std::cout << x << '\n';
     return __out;
   }
 
@@ -306,10 +310,11 @@ main()
 
   auto f2_24b = burkhardt::fejer_2_rule(25);
 
-  auto f2_24 = build_fejer_2_sum<long double>(24);
+  auto f2_24s = build_fejer_2_sum<long double>(24);
+  auto f2_24f = build_fejer_2_fft<long double>(24);
   std::cout << "\nFejer2 24\n";
   i = 0;
-  for (const auto& f2 : f2_24)
+  for (const auto& f2 : f2_24s)
     {
       std::cout << std::setw(w) << f2.__zero << ' '
 		<< std::setw(w) << f2.__weight << ' '
