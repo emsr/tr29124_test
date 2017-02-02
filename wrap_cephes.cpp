@@ -4,7 +4,7 @@
 #include <sstream>
 #include <stdexcept>
 
-#include "wrap_pheces.h"
+#include "wrap_cephes.h"
 
 #include "cephes/cmath/cephes_cmath.h"
 #include "cephes/cprob/cephes_cprob.h"

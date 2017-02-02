@@ -39,7 +39,7 @@
 #include <complex>
 #include <ext/math_const.h>
 
-namespace Math
+namespace __gnu_cxx
 {
 
   template<typename _Tp>
@@ -118,7 +118,7 @@ namespace Math
     void
     dft(bool __do_forward, std::vector<std::complex<_Tp>> & __z)
     {
-      const _Tp __sign(__do_forward ? 1.0 : -1.0);
+      const _Tp __sign(__do_forward ? _Tp{+1} : _Tp{-1});
       const std::size_t __length = __z.size();
 
       std::vector<std::complex<_Tp>> __result;
@@ -135,8 +135,9 @@ namespace Math
       // Rescale if forward
       if (__do_forward)
 	{
+	  const auto __len = _Tp(__length);
 	  for (std::size_t __i = 0; __i < __length; ++__i)
-	    __result[__i] /= static_cast<_Tp>(__length);
+	    __result[__i] /= __len;
 	}
 
       // Copy data back (swap is fast!).
@@ -231,4 +232,4 @@ namespace Math
       std::copy(__z.begin(), __z.end(), __from);
     }
 
-} // namespace Math
+} // namespace __gnu_cxx
