@@ -44,7 +44,7 @@ namespace __gnu_cxx
 
   template<typename _Tp>
     _Tp
-    rational_arg(std::size_t __i, std::size_t __m)
+    __rational_arg(std::size_t __i, std::size_t __m)
     {
       const auto _S_2pi = __gnu_cxx::__const_2_pi<_Tp>();
       return _S_2pi * _Tp(__i) / _Tp(__m);
@@ -52,7 +52,7 @@ namespace __gnu_cxx
 
   template<typename _Tp>
     _Tp
-    rational_arg_pi(std::size_t __i, std::size_t __m)
+    __rational_arg_pi(std::size_t __i, std::size_t __m)
     { return _Tp(2 * __i) / _Tp(__m); }
 
   /**
@@ -77,25 +77,25 @@ namespace __gnu_cxx
 
       _DFT_PseudoIter(_Tp __sign,
                       std::size_t __i,
-                      std::size_t __length,
+                      std::size_t __len,
                       bool __past_end = false)
       :
 #if REPERIOD
 	__omega_pow_i(std::__detail::__polar_pi(_Tp{1},
-			-__sign * rational_arg_pi<_Tp>(__i, __length))),
+			-__sign * __rational_arg_pi<_Tp>(__i, __len))),
 #else
 	__omega_pow_i(std::polar(_Tp{1},
-			-__sign * rational_arg<_Tp>(__i, __length))),
+			-__sign * __rational_arg<_Tp>(__i, __len))),
 #endif
 	__omega_pow_ik(_Tp{1}),
-	__k(__past_end ? __length : 0)
+	__k(__past_end ? __len : 0)
       { }
 
       std::complex<_Tp>
       operator*() const
       { return __omega_pow_ik; }
 
-      _DFT_PseudoIter &
+      _DFT_PseudoIter&
       operator++()
       {
 	__omega_pow_ik *= __omega_pow_i;
@@ -112,36 +112,36 @@ namespace __gnu_cxx
       }
 
       bool
-      operator==(_DFT_PseudoIter const & __other) const
+      operator==(const _DFT_PseudoIter& __other) const
       {
 	return (this->__omega_pow_i == __other.__omega_pow_i)
 	    && (this->__k == __other.__k);
       }
 
       bool
-      operator!=(_DFT_PseudoIter const & __other) const
+      operator!=(const _DFT_PseudoIter& __other) const
       { return !(*this == __other); }
 
     }; // _DFT_PseudoIter
 
 
   /**
-   * Discreet Fourier transform.
+   * Discreet Fourier transform on complex data.
    */
   template<typename _Tp>
     void
     dft(bool __do_forward, std::vector<std::complex<_Tp>> & __z)
     {
-      const _Tp __sign(__do_forward ? _Tp{+1} : _Tp{-1});
-      const std::size_t __length = __z.size();
+      const auto __sign(__do_forward ? _Tp{+1} : _Tp{-1});
+      const auto __len = __z.size();
 
       std::vector<std::complex<_Tp>> __result;
-      __result.reserve(__length);
+      __result.reserve(__len);
 
       // Do matrix multiplication.
-      for (std::size_t __i = 0; __i < __length; ++__i)
+      for (std::size_t __i = 0; __i < __len; ++__i)
 	{
-	  _DFT_PseudoIter __coefficient_iter(__sign, __i, __length);
+	  _DFT_PseudoIter __coefficient_iter(__sign, __i, __len);
 	  __result.push_back(std::inner_product(__z.begin(), __z.end(),
 			     __coefficient_iter, std::complex<_Tp>{0}));
 	}
@@ -149,9 +149,9 @@ namespace __gnu_cxx
       // Rescale if forward.
       if (__do_forward)
 	{
-	  const auto __len = _Tp(__length);
-	  for (std::size_t __i = 0; __i < __length; ++__i)
-	    __result[__i] /= __len;
+	  const auto __norm = _Tp{1} / _Tp(__len);
+	  for (std::size_t __i = 0; __i < __len; ++__i)
+	    __result[__i] *= __norm;
 	}
 
       // Copy data back (swap is fast!).
@@ -159,21 +159,21 @@ namespace __gnu_cxx
     }
 
   /**
-   * Do Fast Fourier Transform.
+   * Do Fast Fourier Transform on complex data.
    */
   template<typename _Tp>
     void
-    fft(std::vector<std::complex<_Tp>> & __z)
+    fft(std::vector<std::complex<_Tp>>& __z)
     {
-      std::size_t const __length = __z.size();
-      if (__length % 2 == 1) // Too bad, we're odd.
+      const auto __len = __z.size();
+      if (__len % 2 == 1) // Too bad, we're odd.
 	dft(true, __z);
       else // Good, we're even.
 	{
 	  // Let's divide and conquer!
 	  std::vector<std::complex<_Tp>> __odd;
 	  std::vector<std::complex<_Tp>> __even;
-	  const auto __halflen = __length / 2;
+	  const auto __halflen = __len / 2;
 	  __odd.reserve(__halflen);
 	  __even.reserve(__halflen);
 	  for (auto __run = __z.cbegin(); __run != __z.cend(); ++__run)
@@ -184,7 +184,7 @@ namespace __gnu_cxx
 	    }
 	  fft(__even);
 	  fft(__odd);
-	  _DFT_PseudoIter __omega_iter(_Tp{1}, 1, __length);
+	  _DFT_PseudoIter __omega_iter(_Tp{1}, 1, __len);
 	  for (std::size_t __i = 0, __j = __halflen; __i < __halflen;
 		++__i, ++__j, ++__omega_iter)
 	    {
@@ -196,21 +196,21 @@ namespace __gnu_cxx
     }
 
   /**
-   * Do inverse Fast Fourier Transform.
+   * Do inverse Fast Fourier Transform on complex data.
    */
   template<typename _Tp>
     void
     ifft(std::vector<std::complex<_Tp>> & __z)
     {
-      std::size_t const __length = __z.size();
-      if (__length % 2 == 1) // Too bad, we're odd.
+      const std::size_t __len = __z.size();
+      if (__len % 2 == 1) // Too bad, we're odd.
 	dft(false, __z);
       else // Good, we are even.
 	{
 	  // Let's divide and conquer!
 	  std::vector<std::complex<_Tp>> __odd;
 	  std::vector<std::complex<_Tp>> __even;
-	  const auto __halflen = __length / 2;
+	  const auto __halflen = __len / 2;
 	  __odd.reserve(__halflen);
 	  __even.reserve(__halflen);
 	  for (auto __run = __z.cbegin(); __run != __z.cend(); ++__run)
@@ -221,7 +221,7 @@ namespace __gnu_cxx
 	    }
 	  ifft(__even);
 	  ifft(__odd);
-	  _DFT_PseudoIter __omega_iter(_Tp{-1}, 1, __length);
+	  _DFT_PseudoIter __omega_iter(_Tp{-1}, 1, __len);
 	  for (std::size_t __i = 0, __j = __halflen; __i < __halflen;
 		++__i, ++__j, ++__omega_iter)
 	    {
@@ -238,7 +238,7 @@ namespace __gnu_cxx
   template <typename _CmplxIter>
     void
     fft(bool __do_forward,
-        _CmplxIter const & __from, _CmplxIter const & __to)
+        const _CmplxIter& __from, const _CmplxIter& __to)
     {
       using _Cmplx = typename _CmplxIter::value_type;
       using _Tp = typename _Cmplx::value_type;
