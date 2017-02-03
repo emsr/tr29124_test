@@ -13,42 +13,55 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I.. -DREPERIOD=1 -o 
 #include <ext/cmath>
 #include "fft.h"
 
+template<typename _Tp>
+  void
+  test_fft()
+  {
+    const auto _S_2pi = __gnu_cxx::__const_2_pi<_Tp>();
+    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    auto w = 8 + std::cout.precision();
+    auto cw = 4 + 2 * w;
+    const auto len = 1000u;
+
+    std::default_random_engine re;
+    std::uniform_real_distribution<_Tp> ud(_Tp{0}, _S_2pi);
+    auto gen = [&ud, &re]()->_Tp{ return ud(re); };
+    std::vector<std::complex<_Tp>> vec;
+    vec.reserve(len);
+    for (auto i = 0u; i < len; ++i)
+      vec.push_back(std::polar(_Tp{1}, gen()));
+
+    auto xform = vec;
+    __gnu_cxx::fft(xform);
+
+    auto iform = xform;
+    __gnu_cxx::ifft(iform);
+
+    auto mean_abs_diff = _Tp{0};
+    for (auto i = 0u; i < len; ++i)
+      {
+	auto diff = vec[i] - iform[i];
+	auto abs_diff = std::abs(diff);
+	mean_abs_diff += abs_diff;
+	std::cout << ' ' << std::setw(cw) << vec[i]
+		  << ' ' << std::setw(cw) << xform[i]
+		  << ' ' << std::setw(cw) << iform[i]
+		  << ' ' << std::setw(cw) << diff
+		  << ' ' << std::setw(w) << abs_diff
+		  << '\n';
+      }
+    mean_abs_diff /= len;
+    std::cout << "mean_abs_diff = " << mean_abs_diff << '\n';
+  }
+
 int
 main()
 {
-  const auto _S_2pi = __gnu_cxx::__const_2_pi<double>();
-  std::cout.precision(__gnu_cxx::__digits10<double>());
-  auto w = 8 + std::cout.precision();
-  auto cw = 4 + 2 * w;
-  const auto len = 1000u;
+  test_fft<float>();
 
-  std::default_random_engine re;
-  std::uniform_real_distribution<double> ud(0, 2 * _S_2pi);
-  auto gen = [&ud, &re]()->double{ return ud(re); };
-  std::vector<std::complex<double>> vec;
-  vec.reserve(len);
-  for (auto i = 0u; i < len; ++i)
-    vec.push_back(std::polar(1.0, gen()));
+  test_fft<double>();
 
-  auto xform = vec;
-  __gnu_cxx::fft(xform);
+  test_fft<long double>();
 
-  auto iform = xform;
-  __gnu_cxx::ifft(iform);
-
-  auto mean_abs_diff = double{0};
-  for (auto i = 0u; i < len; ++i)
-    {
-      auto diff = vec[i] - iform[i];
-      auto abs_diff = std::abs(diff);
-      mean_abs_diff += abs_diff;
-      std::cout << ' ' << std::setw(cw) << vec[i]
-		<< ' ' << std::setw(cw) << xform[i]
-		<< ' ' << std::setw(cw) << iform[i]
-		<< ' ' << std::setw(cw) << diff
-		<< ' ' << std::setw(w) << abs_diff
-		<< '\n';
-    }
-  mean_abs_diff /= len;
-  std::cout << "mean_abs_diff = " << mean_abs_diff << '\n';
+  test_fft<__float128>();
 }
