@@ -51,12 +51,20 @@ namespace __gnu_cxx
     }
 
   template<typename _Tp>
-    class DFT_Pseudoiterator
+    _Tp
+    rational_arg_pi(std::size_t __i, std::size_t __m)
+    { return _Tp(2 * __i) / _Tp(__m); }
+
+  /**
+   * 
+   */
+  template<typename _Tp>
+    class _DFT_PseudoIter
     : public std::iterator<std::input_iterator_tag,
                            std::complex<_Tp>,
                            std::ptrdiff_t,
-                           std::complex<_Tp> const *,
-                           std::complex<_Tp> const &>
+                           const std::complex<_Tp>*,
+                           const std::complex<_Tp>&>
     {
 
     private:
@@ -67,21 +75,27 @@ namespace __gnu_cxx
 
     public:
 
-      DFT_Pseudoiterator(_Tp __sign,
-                	 std::size_t __i,
-                	 std::size_t __length,
-                	 bool __past_end = false)
-      : __omega_pow_i(std::polar(_Tp{1},
-		      -__sign * rational_arg<_Tp>(__i, __length))),
+      _DFT_PseudoIter(_Tp __sign,
+                      std::size_t __i,
+                      std::size_t __length,
+                      bool __past_end = false)
+      :
+#if REPERIOD
+	__omega_pow_i(std::__detail::__polar_pi(_Tp{1},
+			-__sign * rational_arg_pi<_Tp>(__i, __length))),
+#else
+	__omega_pow_i(std::polar(_Tp{1},
+			-__sign * rational_arg<_Tp>(__i, __length))),
+#endif
 	__omega_pow_ik(_Tp{1}),
 	__k(__past_end ? __length : 0)
-      {}
+      { }
 
       std::complex<_Tp>
       operator*() const
       { return __omega_pow_ik; }
 
-      DFT_Pseudoiterator &
+      _DFT_PseudoIter &
       operator++()
       {
 	__omega_pow_ik *= __omega_pow_i;
@@ -89,26 +103,26 @@ namespace __gnu_cxx
 	return *this;
       }
 
-      DFT_Pseudoiterator
+      _DFT_PseudoIter
       operator++(int)
       {
-	DFT_Pseudoiterator __dummy(*this);
+	_DFT_PseudoIter __dummy(*this);
 	++__k;
 	return __dummy;
       }
 
       bool
-      operator==(DFT_Pseudoiterator const & __other) const
+      operator==(_DFT_PseudoIter const & __other) const
       {
 	return (this->__omega_pow_i == __other.__omega_pow_i)
 	    && (this->__k == __other.__k);
       }
 
       bool
-      operator!=(DFT_Pseudoiterator const & __other) const
-      { return ! (*this == __other); }
+      operator!=(_DFT_PseudoIter const & __other) const
+      { return !(*this == __other); }
 
-    }; // DFT_Pseudoiterator
+    }; // _DFT_PseudoIter
 
 
   /**
@@ -124,15 +138,15 @@ namespace __gnu_cxx
       std::vector<std::complex<_Tp>> __result;
       __result.reserve(__length);
 
-      // Do matrix multiplication
+      // Do matrix multiplication.
       for (std::size_t __i = 0; __i < __length; ++__i)
 	{
-	  DFT_Pseudoiterator __coefficient_iter(__sign, __i, __length);
+	  _DFT_PseudoIter __coefficient_iter(__sign, __i, __length);
 	  __result.push_back(std::inner_product(__z.begin(), __z.end(),
-			     __coefficient_iter, std::complex<_Tp>(0)));
+			     __coefficient_iter, std::complex<_Tp>{0}));
 	}
 
-      // Rescale if forward
+      // Rescale if forward.
       if (__do_forward)
 	{
 	  const auto __len = _Tp(__length);
@@ -145,7 +159,7 @@ namespace __gnu_cxx
     }
 
   /**
-   *  Do Fast Fourier Transform.
+   * Do Fast Fourier Transform.
    */
   template<typename _Tp>
     void
@@ -159,8 +173,9 @@ namespace __gnu_cxx
 	  // Let's divide and conquer!
 	  std::vector<std::complex<_Tp>> __odd;
 	  std::vector<std::complex<_Tp>> __even;
-	  __odd.reserve(__length / 2);
-	  __even.reserve(__length / 2);
+	  const auto __halflen = __length / 2;
+	  __odd.reserve(__halflen);
+	  __even.reserve(__halflen);
 	  for (auto __run = __z.cbegin(); __run != __z.cend(); ++__run)
 	    {
               __even.push_back(*__run);
@@ -169,18 +184,19 @@ namespace __gnu_cxx
 	    }
 	  fft(__even);
 	  fft(__odd);
-	  DFT_Pseudoiterator __omega_iter(_Tp{1}, 1, __length);
-	  for (std::size_t __i = 0; __i < __length / 2; ++__i, ++__omega_iter)
+	  _DFT_PseudoIter __omega_iter(_Tp{1}, 1, __length);
+	  for (std::size_t __i = 0, __j = __halflen; __i < __halflen;
+		++__i, ++__j, ++__omega_iter)
 	    {
-              __z[__i] = 0.5 * (__even[__i] + *__omega_iter * __odd[__i]);
-              // The next line works because omega^(length/2) = -1 !!!
-              __z[__i + __length/2] = 0.5 * (__even[__i] - *__omega_iter * __odd[__i]);
+              __z[__i] = (__even[__i] + *__omega_iter * __odd[__i]) / _Tp{2};
+              // The next line works because omega^(length/2) = -1.
+              __z[__j] = (__even[__i] - *__omega_iter * __odd[__i]) / _Tp{2};
 	    }
 	}
     }
 
   /**
-   *  Do inverse Fast Fourier Transform.
+   * Do inverse Fast Fourier Transform.
    */
   template<typename _Tp>
     void
@@ -194,8 +210,9 @@ namespace __gnu_cxx
 	  // Let's divide and conquer!
 	  std::vector<std::complex<_Tp>> __odd;
 	  std::vector<std::complex<_Tp>> __even;
-	  __odd.reserve(__length / 2);
-	  __even.reserve(__length / 2);
+	  const auto __halflen = __length / 2;
+	  __odd.reserve(__halflen);
+	  __even.reserve(__halflen);
 	  for (auto __run = __z.cbegin(); __run != __z.cend(); ++__run)
 	    {
 	      __even.push_back(*__run);
@@ -204,25 +221,26 @@ namespace __gnu_cxx
 	    }
 	  ifft(__even);
 	  ifft(__odd);
-	  DFT_Pseudoiterator __omega_iter(_Tp{-1}, 1, __length);
-	  for (std::size_t __i = 0; __i < __length / 2; ++__i, ++__omega_iter)
+	  _DFT_PseudoIter __omega_iter(_Tp{-1}, 1, __length);
+	  for (std::size_t __i = 0, __j = __halflen; __i < __halflen;
+		++__i, ++__j, ++__omega_iter)
 	    {
 	      __z[__i] = __even[__i] + *__omega_iter * __odd[__i];
-	      // The next line works because omega^(length/2) = -1 !!!
-	      __z[__i + __length/2] = __even[__i] - *__omega_iter * __odd[__i];
+	      // The next line works because omega^(length/2) = -1.
+	      __z[__j] = __even[__i] - *__omega_iter * __odd[__i];
 	    }
 	}
     }
 
   /**
-   *  Do Fast Fourier Transform on input range.
+   * Do Fast Fourier Transform on input range.
    */
-  template <typename ComplexIterator>
+  template <typename _CmplxIter>
     void
     fft(bool __do_forward,
-        ComplexIterator const & __from, ComplexIterator const & __to)
+        _CmplxIter const & __from, _CmplxIter const & __to)
     {
-      using _Cmplx = typename ComplexIterator::value_type;
+      using _Cmplx = typename _CmplxIter::value_type;
       using _Tp = typename _Cmplx::value_type;
       std::vector<std::complex<_Tp>> __z(__from, __to);
       if (__do_forward)
