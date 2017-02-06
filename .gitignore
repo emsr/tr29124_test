@@ -1,3 +1,4 @@
+# Build files...
 *.so
 *.a
 *.o
@@ -6,9 +7,17 @@
 a.out
 *.ppu
 
+# Tarballs...
+*.gz
+*.bz2
+
+# Images...
+*.png
+*.jpg
+
 obj
 
-#Too large output
+# Too large output
 test_legendre.txt
 test_beta.txt
 test_cyl_hankel.txt
