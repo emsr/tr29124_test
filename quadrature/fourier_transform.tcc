@@ -239,8 +239,8 @@ namespace __gnu_cxx
 	  __z.reserve(__halflen);
 	  for (std::size_t __i = 0; __i < __halflen; ++__i)
 	    __z.emplace_back(__x[2 * __i], __x[2 * __i + 1]);
-	  __z.emplace_back(__z[0]);
-	  fast_fourier_transform(__z); // Use symmetry.  We need N/2 transform.
+	  fast_fourier_transform(__z);
+	  __z.emplace_back(__z[0]); // Use symmetry.  We need N/2 transform.
 	  const auto _S_i2 = std::complex<_Tp>{0, 2};
 	  __phase_iterator __omega_iter(_Tp{+1}, 1, __halflen);
 	  for (std::size_t __i = 0; __i < __halflen; ++__i)
