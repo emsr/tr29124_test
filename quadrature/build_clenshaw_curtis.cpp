@@ -12,7 +12,7 @@ PATH=..:$PATH ./build_clenshaw_curtis > build_clenshaw_curtis.txt
 #include <iostream>
 #include <iomanip>
 #include "wrap_burkhardt.h"
-#include "fft.h"
+#include "fourier_transform.h"
 
   /**
    * Return a vector of zeros of the Chebyshev function of the second kind
@@ -169,8 +169,8 @@ template<typename _Tp>
     for (auto __k = 0u; __k < __n / 2; ++__k)
       __v[__n - __k] = __v[__k] = std::polar(_Tp{2}, __k * _S_pi / _Tp{2})
       		     / _Tp(1 - 4 * __k * __k);
-    __v[__n / 2] = _Tp((__n - 3) / (2 * (__n / 2) - 1) - 1);
-    __gnu_cxx::ifft(__v);
+    __v[__n / 2] = _Tp(__n - 3) / _Tp(2 * (__n / 2) - 1) - _Tp(1);
+    __gnu_cxx::inv_fast_fourier_transform(__v);
 std::cout << '\n';
 for (auto x : __v)
 std::cout << x << '\n';
@@ -246,8 +246,8 @@ template<typename _Tp>
     std::vector<std::complex<_Tp>> __v(__n + 1);
     for (auto __k = 0u; __k < __n / 2; ++__k)
       __v[__n - __k] = __v[__k] = _Tp{2} / _Tp(1 - 4 * __k * __k);
-    __v[__n / 2] = _Tp((__n - 3) / (2 * (__n / 2) - 1) - 1);
-    __gnu_cxx::ifft(__v);
+    __v[__n / 2] = _Tp(__n - 3) / _Tp(2 * (__n / 2) - 1) - _Tp(1);
+    __gnu_cxx::inv_fast_fourier_transform(__v);
 std::cout << '\n';
 for (auto x : __v)
 std::cout << x << '\n';

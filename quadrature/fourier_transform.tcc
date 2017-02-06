@@ -87,7 +87,7 @@ namespace __gnu_cxx
       operator++(int)
       {
 	__phase_iterator __dummy(*this);
-	++__k;
+	++_M_k;
 	return __dummy;
       }
 
