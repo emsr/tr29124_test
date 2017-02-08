@@ -1,10 +1,10 @@
 /*
-$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -L. -lpheces
+$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -L. -lwrap_cephes
 LD_LIBRARY_PATH=.:cephes:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
 
-LD_LIBRARY_PATH=.:cephes:$LD_LIBRARY_PATH $HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -L. -lpheces
+LD_LIBRARY_PATH=.:cephes:$LD_LIBRARY_PATH $HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -L. -lwrap_cephes
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -L. -lpheces
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -L. -lwrap_cephes
 LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
 */
 
@@ -15,7 +15,7 @@ LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
 #include <complex>
 #include <bits/float128_io.h>
 
-#include "wrap_pheces.h"
+#include "wrap_cephes.h"
 
 template<typename Tp>
   void
@@ -53,7 +53,7 @@ template<typename Tp>
 	for (int i = -200; i <= 10; ++i)
 	  {
 	    auto x = del * i;
-	    auto Ls_ceph = pheces::polylog(n, x);
+	    auto Ls_ceph = cephes::polylog(n, x);
 	    auto Ls_gnu = __gnu_cxx::polylog(Tp(n), x);
 	    std::cout << ' ' << n
 		      << ' ' << x

@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_conf_hyperg_limit test_conf_hyperg_limit.cpp -lquadmath -L. -lwgsl -lburkhardt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_conf_hyperg_limit test_conf_hyperg_limit.cpp -lquadmath -L. -lwrap_gsl -lwrap_burkhardt
 ./test_conf_hyperg_limit > test_conf_hyperg_limit.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_conf_hyperg_limit test_conf_hyperg_limit.cpp -lquadmath -L. -lwgsl -lburkhardt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_conf_hyperg_limit test_conf_hyperg_limit.cpp -lquadmath -L. -lwrap_gsl -lwrap_burkhardt
 ./test_conf_hyperg_limit > test_conf_hyperg_limit.txt
 */
 

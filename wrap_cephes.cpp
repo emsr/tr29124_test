@@ -14,7 +14,7 @@
 #include "cephes/bessel/cephes_bessel.h"
 #include "cephes/c9x-complex/cephes_cmplx.h"
 
-namespace pheces
+namespace cephes
 {
 
 /// Airy Ai function.
@@ -774,4 +774,4 @@ gamma_reciprocal(unsigned int /*a*/)
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-} // namespace pheces
+} // namespace cephes
