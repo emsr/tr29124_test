@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lommel test_lommel.cpp -lquadmath -L. -lwgsl -lburkhardt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lommel test_lommel.cpp -lquadmath -L. -lwrap_gsl -lwrap_burkhardt
 LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_lommel > test_lommel.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_lommel test_lommel.cpp -lquadmath -L. -lwgsl -lburkhardt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_lommel test_lommel.cpp -lquadmath -L. -lwrap_gsl -lwrap_burkhardt
 ./test_lommel > test_lommel.txt
 */
 
