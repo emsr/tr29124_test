@@ -1,7 +1,7 @@
-#ifndef WRAP_PHECES_H
-#define WRAP_PHECES_H 1
+#ifndef WRAP_CEPHES_H
+#define WRAP_CEPHES_H 1
 
-namespace pheces
+namespace cephes
 {
 
 /// Airy Ai function.
@@ -364,7 +364,7 @@ double polylog(unsigned int n, double x);
 /// Reciprocal gamma.
 double gamma_reciprocal(unsigned int a);
 
-} // namespace pheces
+} // namespace cephes
 
-#endif // WRAP_PHECES_H
+#endif // WRAP_CEPHES_H
 
