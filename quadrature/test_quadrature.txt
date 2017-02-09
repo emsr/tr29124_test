@@ -288,26 +288,26 @@ PASS:  (0 observed vs 0 expected)
 PASS:  (-0.723897 observed vs -0.723897 expected)
 PASS:  (1.28581e-14 observed vs 1.28581e-14 expected)
 PASS:  (31 observed vs 31 expected)
-FAIL:  (0 observed vs 1 expected)
+FAIL:  (0 observed vs 1 expected)  "qag(f3, 31pt) oscill last"
 PASS:  (2 observed vs 2 expected)
 PASS:  (0.723897 observed vs 0.723897 expected)
 PASS:  (1.28581e-14 observed vs 1.28581e-14 expected)
 PASS:  (31 observed vs 31 expected)
-FAIL:  (0 observed vs 1 expected)
+FAIL:  (0 observed vs 1 expected)  "qag(f3, 31pt) reverse last"
 PASS:  (2 observed vs 2 expected)
 >>>> Test singularity detection (singularity at x=-0.1 in this example)...
 PASS:  (5151 observed vs 5151 expected)
 PASS:  (51 observed vs 51 expected)
-FAIL:  (2 observed vs 3 expected)
+FAIL:  (2 observed vs 3 expected)  "qag(f16, 51pt) sing status"
 PASS:  (5151 observed vs 5151 expected)
 PASS:  (51 observed vs 51 expected)
-FAIL:  (2 observed vs 3 expected)
+FAIL:  (2 observed vs 3 expected)  "qag(f16, 51pt) rev status"
 >>>> Test hitting the iteration limit...
 PASS:  (9.56515 observed vs 9.56515 expected)
 PASS:  (15.7037 observed vs 15.7037 expected)
 PASS:  (305 observed vs 305 expected)
 PASS:  (3 observed vs 3 expected)
-FAIL:  (8 observed vs 1 expected)
+FAIL:  (8 observed vs 1 expected)  "qag(f16, 61pt) limit status"
 PASS:  (-0.5 observed vs -0.5 expected)
 PASS:  (-1 observed vs -1 expected)
 PASS:  (0 observed vs 0 expected)
@@ -320,11 +320,11 @@ PASS:  (0.0909091 observed vs 0.0909091 expected)
 PASS:  (15.7037 observed vs 15.7037 expected)
 PASS:  (1.54198e-16 observed vs 1.54198e-16 expected)
 PASS:  (1.00929e-15 observed vs 1.00929e-15 expected)
-FAIL:  (-inf observed vs -9.56515144923389471 expected)
-FAIL:  (nan observed vs 15.7036982389102846 expected)
-FAIL:  (6039 observed vs 305 expected)
-FAIL:  (50 observed vs 3 expected)
-FAIL:  (8 observed vs 1 expected)
+FAIL:  (-inf observed vs -9.56515144923389471 expected)  "qag(f16, 61pt) reverse result"
+FAIL:  (nan observed vs 15.7036982389102846 expected)  "qag(f16, 61pt) reverse abserr"
+FAIL:  (6039 observed vs 305 expected)  "qag(f16, 61pt) reverse neval"
+FAIL:  (50 observed vs 3 expected)  "qag(f16, 61pt) reverse last"
+FAIL:  (8 observed vs 1 expected)  "qag(f16, 61pt) reverse status"
 >>>> Test the adaptive integrator with extrapolation...
 PASS:  (0.0771605 observed vs 0.0771605 expected)
 PASS:  (2.21639e-12 observed vs 2.21639e-12 expected)
@@ -404,9 +404,9 @@ PASS:  (357 observed vs 357 expected)
 PASS:  (9 observed vs 9 expected)
 PASS:  (0 observed vs 0 expected)
 >>>> Test infinite range integral f455 using a relative error bound...
-FAIL:  (-0.361689220635139252 observed vs -0.361689218612702257 expected)
-FAIL:  (2.05709478062754414e-07 observed vs 3.01671691332883185e-06 expected)
-FAIL:  (399 observed vs 285 expected)
+FAIL:  (-0.361689220635139252 observed vs -0.361689218612702257 expected)  "qagiu(f455) smooth result"
+FAIL:  (2.05709478062754414e-07 observed vs 3.01671691332883185e-06 expected)  "qagiu(f455) smooth abserr"
+FAIL:  (399 observed vs 285 expected)  "qagiu(f455) smooth neval"
 PASS:  (10 observed vs 10 expected)
 PASS:  (0 observed vs 0 expected)
 PASS:  (0 observed vs 0 expected)
@@ -418,7 +418,7 @@ PASS:  (0.125 observed vs 0.125 expected)
 PASS:  (0.0625 observed vs 0.0625 expected)
 PASS:  (0.75 observed vs 0.75 expected)
 PASS:  (0.03125 observed vs 0.03125 expected)
-FAIL:  (-0.5 observed vs 0.96875 expected)
+FAIL:  (-0.5 observed vs 0.96875 expected)  "qagiu(f455) smooth lower lim"
 PASS:  (0.03125 observed vs 0.03125 expected)
 PASS:  (0.9375 observed vs 0.9375 expected)
 PASS:  (0.5 observed vs 0.5 expected)
@@ -428,8 +428,8 @@ PASS:  (0.25 observed vs 0.25 expected)
 PASS:  (0.125 observed vs 0.125 expected)
 PASS:  (0.875 observed vs 0.875 expected)
 PASS:  (0.0625 observed vs 0.0625 expected)
-FAIL:  (-1 observed vs 1 expected)
-FAIL:  (0.00143004753482503001 observed vs 0.00142978530600346631 expected)
+FAIL:  (-1 observed vs 1 expected)  "qagiu(f455) smooth upper lim"
+FAIL:  (0.00143004753482503001 observed vs 0.00142978530600346631 expected)  "qagiu(f455) smooth integral"
 PASS:  (-0.0865375 observed vs -0.0865375 expected)
 PASS:  (0.00299532 observed vs 0.00299532 expected)
 PASS:  (-0.0839875 observed vs -0.0839875 expected)
@@ -438,22 +438,22 @@ PASS:  (0.00278539 observed vs 0.00278539 expected)
 PASS:  (0.00173622 observed vs 0.00173622 expected)
 PASS:  (-0.0498005 observed vs -0.0498005 expected)
 PASS:  (0.00104169 observed vs 0.00104169 expected)
-FAIL:  (-0.0138888888888888881 observed vs -0.139000341553972534 expected)
-FAIL:  (0.000215688848140732978 observed vs 0.000216121499217253852 expected)
+FAIL:  (-0.0138888888888888881 observed vs -0.139000341553972534 expected)  "qagiu(f455) smooth integral"
+FAIL:  (0.000215688848140732978 observed vs 0.000216121499217253852 expected)  "qagiu(f455) smooth abs error"
 PASS:  (9.6076e-16 observed vs 9.6076e-16 expected)
 PASS:  (3.32547e-17 observed vs 3.32547e-17 expected)
 PASS:  (9.32448e-16 observed vs 9.32448e-16 expected)
-FAIL:  (1.36551144737438555e-16 observed vs 5.72064484085877785e-14 expected)
+FAIL:  (1.36551144737438555e-16 observed vs 5.72064484085877785e-14 expected)  "qagiu(f455) smooth abs error"
 PASS:  (3.0924e-17 observed vs 3.0924e-17 expected)
 PASS:  (1.92759e-17 observed vs 1.92759e-17 expected)
-FAIL:  (5.52896632227800671e-16 observed vs 3.14738043219817641e-14 expected)
+FAIL:  (5.52896632227800671e-16 observed vs 3.14738043219817641e-14 expected)  "qagiu(f455) smooth abs error"
 PASS:  (1.15651e-17 observed vs 1.15651e-17 expected)
-FAIL:  (1.54197642309049514e-16 observed vs 0.0239503724989345301 expected)
+FAIL:  (1.54197642309049514e-16 observed vs 0.0239503724989345301 expected)  "qagiu(f455) smooth abs error"
 >>>> Test infinite range integral f15 using a relative error bound...
-FAIL:  (65536.0000000069122 observed vs 65536.0000000002474 expected)
-FAIL:  (0.00147506021259102837 observed vs 0.000712166711145600928 expected)
-FAIL:  (357 observed vs 285 expected)
-FAIL:  (9 observed vs 10 expected)
+FAIL:  (65536.0000000069122 observed vs 65536.0000000002474 expected)  "qagiu(f15) smooth result"
+FAIL:  (0.00147506021259102837 observed vs 0.000712166711145600928 expected)  "qagiu(f15) smooth abserr"
+FAIL:  (357 observed vs 285 expected)  "qagiu(f15) smooth neval"
+FAIL:  (9 observed vs 10 expected)  "qagiu(f15) smooth last"
 PASS:  (0 observed vs 0 expected)
 PASS:  (0 observed vs 0 expected)
 PASS:  (0.0078125 observed vs 0.0078125 expected)
@@ -464,8 +464,8 @@ PASS:  (0.125 observed vs 0.125 expected)
 PASS:  (0.0625 observed vs 0.0625 expected)
 PASS:  (0.5 observed vs 0.5 expected)
 PASS:  (0.03125 observed vs 0.03125 expected)
-FAIL:  (0.03125 observed vs 0.001953125 expected)
-FAIL:  (0.00390625 observed vs 0.001953125 expected)
+FAIL:  (0.03125 observed vs 0.001953125 expected)  "qagiu(f15) smooth lower lim"
+FAIL:  (0.00390625 observed vs 0.001953125 expected)  "qagiu(f15) smooth upper lim"
 PASS:  (0.015625 observed vs 0.015625 expected)
 PASS:  (0.03125 observed vs 0.03125 expected)
 PASS:  (0.0078125 observed vs 0.0078125 expected)
@@ -474,8 +474,8 @@ PASS:  (0.25 observed vs 0.25 expected)
 PASS:  (0.125 observed vs 0.125 expected)
 PASS:  (1 observed vs 1 expected)
 PASS:  (0.0625 observed vs 0.0625 expected)
-FAIL:  (0.0625 observed vs 0.00390625 expected)
-FAIL:  (923.624454755654142 observed vs 1.09929766575434029 expected)
+FAIL:  (0.0625 observed vs 0.00390625 expected)  "qagiu(f15) smooth upper lim"
+FAIL:  (923.624454755654142 observed vs 1.09929766575434029 expected)  "qagiu(f15) smooth integral"
 PASS:  (28994.2 observed vs 28994.2 expected)
 PASS:  (15743.2 observed vs 15743.2 expected)
 PASS:  (14983.1 observed vs 14983.1 expected)
@@ -484,99 +484,99 @@ PASS:  (88.7313 observed vs 88.7313 expected)
 PASS:  (697.768 observed vs 697.768 expected)
 PASS:  (0.325618 observed vs 0.325618 expected)
 PASS:  (4096.98 observed vs 4096.98 expected)
-FAIL:  (0.00104168919200449536 observed vs 922.525157083236536 expected)
-FAIL:  (0.00147505949033352002 observed vs 0.000710186597162133781 expected)
-FAIL:  (3.21900077126317828e-10 observed vs 1.93465241354732547e-07 expected)
-FAIL:  (1.74784362896356526e-10 observed vs 1.38000392845384658e-07 expected)
-FAIL:  (1.66346355182154033e-10 observed vs 3.40893302835732036e-07 expected)
-FAIL:  (8.95360958062565935e-14 observed vs 9.16776341711992333e-08 expected)
-FAIL:  (9.8511517344845796e-13 observed vs 3.76950171916386558e-07 expected)
-FAIL:  (7.7467799240396843e-12 observed vs 6.97349313127555251e-07 expected)
-FAIL:  (1.05404956584444065e-14 observed vs 1.91266067717017577e-08 expected)
-FAIL:  (4.54856285804356788e-11 observed vs 1.20565395234067971e-07 expected)
-FAIL:  (1.15650732546656621e-17 observed vs 2.13247317546589703e-09 expected)
+FAIL:  (0.00104168919200449536 observed vs 922.525157083236536 expected)  "qagiu(f15) smooth integral"
+FAIL:  (0.00147505949033352002 observed vs 0.000710186597162133781 expected)  "qagiu(f15) smooth abs error"
+FAIL:  (3.21900077126317828e-10 observed vs 1.93465241354732547e-07 expected)  "qagiu(f15) smooth abs error"
+FAIL:  (1.74784362896356526e-10 observed vs 1.38000392845384658e-07 expected)  "qagiu(f15) smooth abs error"
+FAIL:  (1.66346355182154033e-10 observed vs 3.40893302835732036e-07 expected)  "qagiu(f15) smooth abs error"
+FAIL:  (8.95360958062565935e-14 observed vs 9.16776341711992333e-08 expected)  "qagiu(f15) smooth abs error"
+FAIL:  (9.8511517344845796e-13 observed vs 3.76950171916386558e-07 expected)  "qagiu(f15) smooth abs error"
+FAIL:  (7.7467799240396843e-12 observed vs 6.97349313127555251e-07 expected)  "qagiu(f15) smooth abs error"
+FAIL:  (1.05404956584444065e-14 observed vs 1.91266067717017577e-08 expected)  "qagiu(f15) smooth abs error"
+FAIL:  (4.54856285804356788e-11 observed vs 1.20565395234067971e-07 expected)  "qagiu(f15) smooth abs error"
+FAIL:  (1.15650732546656621e-17 observed vs 2.13247317546589703e-09 expected)  "qagiu(f15) smooth abs error"
 >>>> Test infinite range integral f16 using an absolute error bound...
-FAIL:  (0.000100000000000727139 observed vs 0.000100000000000671329 expected)
-FAIL:  (1.98969837087046061e-09 observed vs 3.08406202090563632e-09 expected)
-FAIL:  (189 observed vs 165 expected)
-FAIL:  (5 observed vs 6 expected)
+FAIL:  (0.000100000000000727139 observed vs 0.000100000000000671329 expected)  "qagiu(f16) smooth result"
+FAIL:  (1.98969837087046061e-09 observed vs 3.08406202090563632e-09 expected)  "qagiu(f16) smooth abserr"
+FAIL:  (189 observed vs 165 expected)  "qagiu(f16) smooth neval"
+FAIL:  (5 observed vs 6 expected)  "qagiu(f16) smooth last"
 PASS:  (0 observed vs 0 expected)
 PASS:  (0 observed vs 0 expected)
 PASS:  (0.0625 observed vs 0.0625 expected)
 PASS:  (0.25 observed vs 0.25 expected)
 PASS:  (0.5 observed vs 0.5 expected)
 PASS:  (0.125 observed vs 0.125 expected)
-FAIL:  (0.125 observed vs 0.03125 expected)
-FAIL:  (0.0625 observed vs 0.03125 expected)
+FAIL:  (0.125 observed vs 0.03125 expected)  "qagiu(f16) smooth lower lim"
+FAIL:  (0.0625 observed vs 0.03125 expected)  "qagiu(f16) smooth upper lim"
 PASS:  (0.125 observed vs 0.125 expected)
 PASS:  (0.5 observed vs 0.5 expected)
 PASS:  (1 observed vs 1 expected)
 PASS:  (0.25 observed vs 0.25 expected)
-FAIL:  (0.25 observed vs 0.0625 expected)
-FAIL:  (8.69565217398575745e-05 observed vs 7.63358778632667462e-05 expected)
+FAIL:  (0.25 observed vs 0.0625 expected)  "qagiu(f16) smooth upper lim"
+FAIL:  (8.69565217398575745e-05 observed vs 7.63358778632667462e-05 expected)  "qagiu(f16) smooth integral"
 PASS:  (6.50142e-06 observed vs 6.50142e-06 expected)
 PASS:  (1.92252e-06 observed vs 1.92252e-06 expected)
 PASS:  (9.90099e-07 observed vs 9.90099e-07 expected)
 PASS:  (3.62943e-06 observed vs 3.62943e-06 expected)
-FAIL:  (88.7312865611899326 observed vs 1.06206438765350139e-05 expected)
-FAIL:  (1.98969837072925964e-09 observed vs 3.08406185835156905e-09 expected)
-FAIL:  (7.21802860382060278e-20 observed vs 3.01433867226948178e-17 expected)
-FAIL:  (2.1344285775740776e-20 observed vs 4.54345365222656125e-17 expected)
-FAIL:  (1.09923071745064981e-20 observed vs 3.11206481475508967e-17 expected)
-FAIL:  (4.02948198756975445e-20 observed vs 4.90861816636134455e-17 expected)
-FAIL:  (9.8511517344845796e-13 observed vs 6.79599673801355546e-18 expected)
+FAIL:  (88.7312865611899326 observed vs 1.06206438765350139e-05 expected)  "qagiu(f16) smooth integral"
+FAIL:  (1.98969837072925964e-09 observed vs 3.08406185835156905e-09 expected)  "qagiu(f16) smooth abs error"
+FAIL:  (7.21802860382060278e-20 observed vs 3.01433867226948178e-17 expected)  "qagiu(f16) smooth abs error"
+FAIL:  (2.1344285775740776e-20 observed vs 4.54345365222656125e-17 expected)  "qagiu(f16) smooth abs error"
+FAIL:  (1.09923071745064981e-20 observed vs 3.11206481475508967e-17 expected)  "qagiu(f16) smooth abs error"
+FAIL:  (4.02948198756975445e-20 observed vs 4.90861816636134455e-17 expected)  "qagiu(f16) smooth abs error"
+FAIL:  (9.8511517344845796e-13 observed vs 6.79599673801355546e-18 expected)  "qagiu(f16) smooth abs error"
 >>>> Test infinite range integral myfn1 using an absolute error bound...
 PASS:  (2.27588 observed vs 2.27588 expected)
-FAIL:  (1.62787704284343693e-08 observed vs 7.43649011826739074e-09 expected)
-FAIL:  (210 observed vs 270 expected)
-FAIL:  (3 observed vs 5 expected)
+FAIL:  (1.62787704284343693e-08 observed vs 7.43649011826739074e-09 expected)  "qagi(myfn1) smooth abserr"
+FAIL:  (210 observed vs 270 expected)  "qagi(myfn1) smooth neval"
+FAIL:  (3 observed vs 5 expected)  "qagi(myfn1) smooth last"
 PASS:  (0 observed vs 0 expected)
 PASS:  (0 observed vs 0 expected)
 PASS:  (0.5 observed vs 0.5 expected)
 PASS:  (0.25 observed vs 0.25 expected)
-FAIL:  (0.5 observed vs 0.125 expected)
-FAIL:  (0.125 observed vs 0.375 expected)
-FAIL:  (0.25 observed vs 0.125 expected)
+FAIL:  (0.5 observed vs 0.125 expected)  "qagi(myfn1) smooth lower lim"
+FAIL:  (0.125 observed vs 0.375 expected)  "qagi(myfn1) smooth lower lim"
+FAIL:  (0.25 observed vs 0.125 expected)  "qagi(myfn1) smooth upper lim"
 PASS:  (1 observed vs 1 expected)
-FAIL:  (0.5 observed vs 0.375 expected)
-FAIL:  (1 observed vs 0.25 expected)
-FAIL:  (0.25 observed vs 0.5 expected)
-FAIL:  (0.000463931722793899982 observed vs 4.37939247735095357e-20 expected)
+FAIL:  (0.5 observed vs 0.375 expected)  "qagi(myfn1) smooth upper lim"
+FAIL:  (1 observed vs 0.25 expected)  "qagi(myfn1) smooth upper lim"
+FAIL:  (0.25 observed vs 0.5 expected)  "qagi(myfn1) smooth upper lim"
+FAIL:  (0.000463931722793899982 observed vs 4.37939247735095357e-20 expected)  "qagi(myfn1) smooth integral"
 PASS:  (1.69166 observed vs 1.69166 expected)
-FAIL:  (0.583747667389193148 observed vs 0.114630747190029109 expected)
-FAIL:  (9.90099009900989962e-07 observed vs 0.000463931722805840572 expected)
-FAIL:  (3.62943471554305418e-06 observed vs 0.469116920199164067 expected)
-FAIL:  (1.62776098588802677e-08 observed vs 8.36090298677530767e-20 expected)
-FAIL:  (1.87812453961905083e-14 observed vs 4.26598897487442504e-09 expected)
-FAIL:  (1.14179091410439823e-12 observed vs 1.23195407296496964e-12 expected)
-FAIL:  (1.09923071745064981e-20 observed vs 3.16926396039305114e-09 expected)
-FAIL:  (4.02948198756975445e-20 observed vs 5.20824406046354143e-15 expected)
+FAIL:  (0.583747667389193148 observed vs 0.114630747190029109 expected)  "qagi(myfn1) smooth integral"
+FAIL:  (9.90099009900989962e-07 observed vs 0.000463931722805840572 expected)  "qagi(myfn1) smooth integral"
+FAIL:  (3.62943471554305418e-06 observed vs 0.469116920199164067 expected)  "qagi(myfn1) smooth integral"
+FAIL:  (1.62776098588802677e-08 observed vs 8.36090298677530767e-20 expected)  "qagi(myfn1) smooth abs error"
+FAIL:  (1.87812453961905083e-14 observed vs 4.26598897487442504e-09 expected)  "qagi(myfn1) smooth abs error"
+FAIL:  (1.14179091410439823e-12 observed vs 1.23195407296496964e-12 expected)  "qagi(myfn1) smooth abs error"
+FAIL:  (1.09923071745064981e-20 observed vs 3.16926396039305114e-09 expected)  "qagi(myfn1) smooth abs error"
+FAIL:  (4.02948198756975445e-20 observed vs 5.20824406046354143e-15 expected)  "qagi(myfn1) smooth abs error"
 >>>> Test infinite range integral myfn2 using an absolute error bound...
 PASS:  (2.71828 observed vs 2.71828 expected)
-FAIL:  (1.01950905639588792e-09 observed vs 1.5881851092532048e-10 expected)
-FAIL:  (147 observed vs 135 expected)
-FAIL:  (4 observed vs 5 expected)
+FAIL:  (1.01950905639588792e-09 observed vs 1.5881851092532048e-10 expected)  "qagil(myfn2) smooth abserr"
+FAIL:  (147 observed vs 135 expected)  "qagil(myfn2) smooth neval"
+FAIL:  (4 observed vs 5 expected)  "qagil(myfn2) smooth last"
 PASS:  (0 observed vs 0 expected)
 PASS:  (0 observed vs 0 expected)
 PASS:  (0.25 observed vs 0.25 expected)
 PASS:  (0.5 observed vs 0.5 expected)
 PASS:  (0.125 observed vs 0.125 expected)
-FAIL:  (0.125 observed vs 0.0625 expected)
-FAIL:  (0.125 observed vs 0.0625 expected)
+FAIL:  (0.125 observed vs 0.0625 expected)  "qagil(myfn2) smooth lower lim"
+FAIL:  (0.125 observed vs 0.0625 expected)  "qagil(myfn2) smooth upper lim"
 PASS:  (0.5 observed vs 0.5 expected)
 PASS:  (1 observed vs 1 expected)
 PASS:  (0.25 observed vs 0.25 expected)
-FAIL:  (0.25 observed vs 0.125 expected)
-FAIL:  (0.00247875217666495336 observed vs 8.31528718974602982e-07 expected)
+FAIL:  (0.25 observed vs 0.125 expected)  "qagil(myfn2) smooth upper lim"
+FAIL:  (0.00247875217666495336 observed vs 8.31528718974602982e-07 expected)  "qagil(myfn2) smooth integral"
 PASS:  (0.864665 observed vs 0.864665 expected)
 PASS:  (1.71828 observed vs 1.71828 expected)
 PASS:  (0.132857 observed vs 0.132857 expected)
-FAIL:  (3.62943471554305418e-06 observed vs 0.00247792064794725552 expected)
-FAIL:  (1.01947890435329124e-09 observed vs 1.53343709041352593e-10 expected)
-FAIL:  (9.59970677131702432e-15 observed vs 7.80245578530194104e-13 expected)
-FAIL:  (1.9076760487502454e-14 observed vs 4.11786824794356751e-12 expected)
-FAIL:  (1.47500379754579674e-15 observed vs 5.39558602613839718e-13 expected)
-FAIL:  (4.02948198756975445e-20 observed vs 3.71331243486615012e-14 expected)
+FAIL:  (3.62943471554305418e-06 observed vs 0.00247792064794725552 expected)  "qagil(myfn2) smooth integral"
+FAIL:  (1.01947890435329124e-09 observed vs 1.53343709041352593e-10 expected)  "qagil(myfn2) smooth abs error"
+FAIL:  (9.59970677131702432e-15 observed vs 7.80245578530194104e-13 expected)  "qagil(myfn2) smooth abs error"
+FAIL:  (1.9076760487502454e-14 observed vs 4.11786824794356751e-12 expected)  "qagil(myfn2) smooth abs error"
+FAIL:  (1.47500379754579674e-15 observed vs 5.39558602613839718e-13 expected)  "qagil(myfn2) smooth abs error"
+FAIL:  (4.02948198756975445e-20 observed vs 3.71331243486615012e-14 expected)  "qagil(myfn2) smooth abs error"
 >>>> Test integral f454 with integrable singular points...
 PASS:  (52.7408 observed vs 52.7408 expected)
 PASS:  (0.00017557 observed vs 0.00017557 expected)
@@ -602,7 +602,7 @@ PASS:  (1.51333 observed vs 1.51333 expected)
 PASS:  (1.38833 observed vs 1.38833 expected)
 PASS:  (0.9375 observed vs 0.9375 expected)
 PASS:  (1.31066 observed vs 1.31066 expected)
-FAIL:  (1.89478062869351864e-12 observed vs 1.41421356237309515 expected)
+FAIL:  (1.89478062869351864e-12 observed vs 1.41421356237309515 expected)  "qagp(f454) singular lower lim"
 PASS:  (1.05178 observed vs 1.05178 expected)
 PASS:  (1.41421 observed vs 1.41421 expected)
 PASS:  (3 observed vs 3 expected)
@@ -622,7 +622,7 @@ PASS:  (1.61244 observed vs 1.61244 expected)
 PASS:  (1.40127 observed vs 1.40127 expected)
 PASS:  (0.96875 observed vs 0.96875 expected)
 PASS:  (1.36244 observed vs 1.36244 expected)
-FAIL:  (7.41098468761869816e-323 observed vs 1.46376938854893579 expected)
+FAIL:  (7.41098468761869816e-323 observed vs 1.46376938854893579 expected)  "qagp(f454) singular upper lim"
 PASS:  (-0.183039 observed vs -0.183039 expected)
 PASS:  (-0.156513 observed vs -0.156513 expected)
 PASS:  (48.7392 observed vs 48.7392 expected)
@@ -642,7 +642,7 @@ PASS:  (-0.172136 observed vs -0.172136 expected)
 PASS:  (-0.104869 observed vs -0.104869 expected)
 PASS:  (-0.0630229 observed vs -0.0630229 expected)
 PASS:  (-0.223679 observed vs -0.223679 expected)
-FAIL:  (-0.0999755859375 observed vs -0.422532851320742919 expected)
+FAIL:  (-0.0999755859375 observed vs -0.422532851320742919 expected)  "qagp(f454) singular integral"
 PASS:  (0.0325281 observed vs 0.0325281 expected)
 PASS:  (0.0273045 observed vs 0.0273045 expected)
 PASS:  (5.41114e-13 observed vs 5.41114e-13 expected)
@@ -662,7 +662,7 @@ PASS:  (1.9111e-15 observed vs 1.9111e-15 expected)
 PASS:  (1.16428e-15 observed vs 1.16428e-15 expected)
 PASS:  (6.99694e-16 observed vs 6.99694e-16 expected)
 PASS:  (2.48333e-15 observed vs 2.48333e-15 expected)
-FAIL:  (-0.0999908447265625 observed vs 0.101744608181619012 expected)
+FAIL:  (-0.0999908447265625 observed vs 0.101744608181619012 expected)  "qagp(f454) singular abs error"
 >>>> Test cauchy integration using a relative error bound...
 PASS:  (-0.089944 observed vs -0.089944 expected)
 PASS:  (1.18529e-06 observed vs 1.18529e-06 expected)
@@ -758,7 +758,7 @@ PASS:  (0.03125 observed vs 0.03125 expected)
 PASS:  (0.0625 observed vs 0.0625 expected)
 PASS:  (0.0078125 observed vs 0.0078125 expected)
 PASS:  (0.00390625 observed vs 0.00390625 expected)
-FAIL:  (0.0009765625 observed vs 0 expected)
+FAIL:  (0.0009765625 observed vs 0 expected)  "qawo(f456) lower lim"
 PASS:  (1 observed vs 1 expected)
 PASS:  (0.5 observed vs 0.5 expected)
 PASS:  (0.25 observed vs 0.25 expected)
@@ -767,7 +767,7 @@ PASS:  (0.0625 observed vs 0.0625 expected)
 PASS:  (0.125 observed vs 0.125 expected)
 PASS:  (0.015625 observed vs 0.015625 expected)
 PASS:  (0.0078125 observed vs 0.0078125 expected)
-FAIL:  (0.001953125 observed vs 0.00390625 expected)
+FAIL:  (0.001953125 observed vs 0.00390625 expected)  "qawo(f456) upper lim"
 PASS:  (0.0219054 observed vs 0.0219054 expected)
 PASS:  (-0.0258773 observed vs -0.0258773 expected)
 PASS:  (0.0548321 observed vs 0.0548321 expected)
@@ -776,7 +776,7 @@ PASS:  (-0.0917832 observed vs -0.0917832 expected)
 PASS:  (-0.030817 observed vs -0.030817 expected)
 PASS:  (-0.0124231 observed vs -0.0124231 expected)
 PASS:  (-0.0036595 observed vs -0.0036595 expected)
-FAIL:  (-8.7885651091269376e-05 observed vs -0.00144719369237765114 expected)
+FAIL:  (-8.7885651091269376e-05 observed vs -0.00144719369237765114 expected)  "qawo(f456) integral"
 PASS:  (1.30264e-13 observed vs 1.30264e-13 expected)
 PASS:  (7.25922e-15 observed vs 7.25922e-15 expected)
 PASS:  (1.24977e-14 observed vs 1.24977e-14 expected)
@@ -785,7 +785,7 @@ PASS:  (1.019e-15 observed vs 1.019e-15 expected)
 PASS:  (7.83218e-16 observed vs 7.83218e-16 expected)
 PASS:  (1.37924e-16 observed vs 1.37924e-16 expected)
 PASS:  (4.06286e-17 observed vs 4.06286e-17 expected)
-FAIL:  (1.10574127074917468e-18 observed vs 8.32650662579814647e-07 expected)
+FAIL:  (1.10574127074917468e-18 observed vs 8.32650662579814647e-07 expected)  "qawo(f456) abs error"
 PASS:  (0.128137 observed vs 0.128137 expected)
 PASS:  (6.87503e-12 observed vs 6.87503e-12 expected)
 PASS:  (305 observed vs 305 expected)
@@ -2197,7 +2197,7 @@ PASS:  (2 observed vs 2 expected)
 PASS:  (2 observed vs 2 expected)
 PASS:  (2 observed vs 2 expected)
 PASS:  (2 observed vs 2 expected)
-FAIL:  (1.9856337788276941 observed vs 2 expected)
+FAIL:  (1.9856337788276941 observed vs 2 expected)  "glfixed 343-point: acceptable absolute error for on-the-fly coefficients"
 PASS:  (2 observed vs 2 expected)
 PASS:  (2 observed vs 2 expected)
 PASS:  (2 observed vs 2 expected)

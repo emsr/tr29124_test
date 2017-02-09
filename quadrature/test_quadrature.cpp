@@ -167,7 +167,7 @@ template<typename _Tp>
 template<typename _Tp>
   void
   quadrature_test<_Tp>::test_rel(_Tp result, _Tp expected, _Tp rel_error,
-				 const char* /*test_desc*/)
+				 const char* test_desc)
   {
     // Check for NaN vs inf vs number.
     int status;
@@ -192,7 +192,8 @@ template<typename _Tp>
 	if (status == 0)
           printf(" (%g observed vs %g expected)", result, expected);
 	else
-          printf(" (%.18g observed vs %.18g expected)", result, expected);
+          printf(" (%.18g observed vs %.18g expected)  \"%s\"",
+		 result, expected, test_desc);
 
 	if (status == -1)
           printf(" [test uses subnormal value]");
@@ -208,7 +209,7 @@ template<typename _Tp>
 template<typename _Tp>
   void
   quadrature_test<_Tp>::test_abs(_Tp result, _Tp expected, _Tp abs_error,
-				 const char* /*test_desc*/)
+				 const char* test_desc)
   {
     // Check for NaN vs inf vs number.
     int status;
@@ -231,7 +232,8 @@ template<typename _Tp>
 	if (status == 0)
           printf(" (%g observed vs %g expected)", result, expected);
 	else
-          printf(" (%.18g observed vs %.18g expected)", result, expected);
+          printf(" (%.18g observed vs %.18g expected)  \"%s\"",
+		 result, expected, test_desc);
 
 	if (status == -1)
           printf(" [test uses subnormal value]");
@@ -272,7 +274,8 @@ template<typename _Tp>
 	if (status == 0)
           printf(" (%g observed vs %g expected)", result, expected);
 	else
-          printf(" (%.18g observed vs %.18g expected)", result, expected);
+          printf(" (%.18g observed vs %.18g expected)  \"%s\"",
+		 result, expected, test_desc);
 
 	if (status == -1)
           printf(" [test uses subnormal value]");
@@ -288,7 +291,7 @@ template<typename _Tp>
 template<typename _Tp>
   void
   quadrature_test<_Tp>::test_int(int result, int expected,
-				 const char*/*test_desc*/)
+				 const char* test_desc)
   {
     int status = (result != expected);
 
@@ -301,7 +304,8 @@ template<typename _Tp>
 	if (status == 0)
           printf(" (%d observed vs %d expected)", result, expected);
 	else
-          printf(" (%d observed vs %d expected)", result, expected);
+          printf(" (%d observed vs %d expected)  \"%s\"",
+		 result, expected, test_desc);
 
 	if (status && !this->verbose)
           printf(" [%u]", this->num_tests);
