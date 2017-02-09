@@ -209,6 +209,37 @@ namespace __gnu_cxx
     }
 
   /**
+   * Fast Sine Transform on real data.
+   */
+  template <typename _Tp>
+    void
+    fast_sine_transform(std::vector<_Tp>& __x)
+    {
+      const auto __len = __x.size();
+	  const auto __halflen = __len / 2;
+	  const auto __n2 = __len - 2;
+	  __phase_iterator __omega_iter(_Tp{+1}, 1, __halflen);
+	  __x[0] = _Tp{0};
+	  for (std::size_t __i = 2; __i < __halflen; ++__i, ++__omega_iter)
+	    {
+	      const auto __y1 = __omega_iter->sin()
+			      * (__x[__k] + __x[__n2 - __k]);
+	      const auto __y2 = (__x[__k] + __x[__n2 - __k]) / _Tp{2};
+	      __x[__k] = __y1 + __y2;
+	      __x[__n2 - __k] = __y1 - __y2;
+	    }
+          fast_fourier_transform(__x);
+          __x[0] *= _Tp{0.5L};
+          __x[1] = _Tp{0};
+          auto __sum = _Tp{0};
+	  for (std::size_t __i = 2; __i < __halflen; __i += 2)
+	    {
+	      __sum += std::exchange(__x[__i], __x[__i + 1]);
+	      __x[__i + 1] = __sum;
+	    }
+    }
+
+  /**
    * Fast Fourier Transform on input range.
    */
   template <typename _CmplxIter>
