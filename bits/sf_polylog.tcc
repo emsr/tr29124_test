@@ -1032,9 +1032,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __w  The real or complex argument.
    * @return  The real or complex value of Li_s(e^w).
    */
-  template<typename _Tp, typename ArgType>
-    __gnu_cxx::__promote_fp_t<std::complex<_Tp>, ArgType>
-    __polylog_exp(_Tp __s, ArgType __w)
+  template<typename _Tp, typename _ArgType>
+    __gnu_cxx::__promote_fp_t<std::complex<_Tp>, _ArgType>
+    __polylog_exp(_Tp __s, _ArgType __w)
     {
       if (__isnan(__s) || __isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
