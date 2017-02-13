@@ -153,7 +153,7 @@ namespace __gnu_cxx
 	  // @todo I really want to just make a view to a complex vector.
 	  const auto __halflen = __len / 2;
 	  std::vector<std::complex<_Tp>> __z;
-	  __z.reserve(__halflen);
+	  __z.reserve(__halflen + 1);
 	  for (std::size_t __i = 0; __i < __halflen; ++__i)
 	    __z.emplace_back(__x[2 * __i], __x[2 * __i + 1]);
 	  fast_fourier_transform(__z);
