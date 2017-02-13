@@ -15,6 +15,47 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I.. -DREPERIOD=1 -o 
 
 template<typename _Tp>
   void
+  test_fft_seq()
+  {
+    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    auto w = 8 + std::cout.precision();
+    auto cw = 4 + 2 * w;
+    const auto len = 1000u;
+    using Cmplx = std::complex<_Tp>;
+
+    // Complex doesn't have ++.
+    std::vector<Cmplx> vec(len);
+    for (auto k = 0u; k < len; ++k)
+      vec[k] = k;
+    auto xform = vec;
+    __gnu_cxx::fast_fourier_transform(xform);
+
+    auto mean_abs_diff = _Tp{0};
+    std::cout << '\n';
+    auto diff = xform[0] - Cmplx(len * (len - 1) / _Tp{2});
+    auto abs_diff = std::abs(diff);
+    mean_abs_diff += abs_diff;
+    __gnu_cxx::__phase_iterator omega_k(_Tp{-1}, 1, len);
+    ++omega_k;
+    for (auto k = 1u; k < len; ++k, ++omega_k)
+      {
+        auto xact = _Tp(len) / (_Tp{1} - *omega_k);
+        diff = xform[k] - xact;
+	abs_diff = std::abs(diff);
+	mean_abs_diff += abs_diff;
+	std::cout << ' ' << std::setw(6) << k
+		  << ' ' << std::setw(cw) << vec[k]
+		  << ' ' << std::setw(cw) << xact
+		  << ' ' << std::setw(cw) << diff
+		  << ' ' << std::setw(w) << abs_diff
+		  << '\n';
+      }
+    mean_abs_diff /= _Tp(len);
+    std::cout << "mean_abs_diff = " << mean_abs_diff << '\n';
+  }
+
+template<typename _Tp>
+  void
   test_fft()
   {
     const auto _S_2pi = __gnu_cxx::__const_2_pi<_Tp>();
@@ -104,6 +145,8 @@ template<typename _Tp>
 int
 main()
 {
+  test_fft_seq<double>();
+
   test_fft<float>();
 
   test_fft<double>();
