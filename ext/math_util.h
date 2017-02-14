@@ -42,7 +42,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return -1 if the integer argument is odd and +1 if it is even.
    */
-  template<typename _IntTp, typename _Tp = std::make_signed_t<_IntTp>>
+  template<typename _Tp, typename _IntTp>
     inline _Tp
     __parity(_IntTp __k)
     { return __k & 1 ? _Tp{-1} : _Tp{+1}; }

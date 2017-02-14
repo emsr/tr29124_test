@@ -805,7 +805,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  else
 	    return std::numeric_limits<_Tp>::infinity();
 	}
-      else if (__s == 0)
+      else if (0 == __s)
 	{
 	  auto __t = std::exp(__w);
 	  return __t / (_Tp{1} - __t);
@@ -1044,7 +1044,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  // In this branch of the if statement, s is an integer
 	  int __p = int(std::lrint(__s));
-	  if (__p > 0)
+	  if (__p >= 0)
 	    return __polylog_exp_int_pos(__p, __w);
 	  else
 	    return __polylog_exp_int_neg(__p, __w);
@@ -1073,18 +1073,26 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __gnu_cxx::__quiet_NaN(__s);
       else if (__gnu_cxx::__fp_is_zero(__x))
 	return _Tp{0}; // According to Mathematica
-      else if (__x < _Tp{0})
-	{ // Use the reflection formula to access negative values.
-	  auto __xp = -__x;
-	  auto __y = std::log(__xp);
-	  return std::real(__polylog_exp(__s, _Tp{2} * __y)
-				* std::pow(_Tp{2}, _Tp{1} - __s)
-			 - __polylog_exp(__s, __y));
-	}
       else
 	{
-	  auto __y = std::log(__x);
-	  return std::real(__polylog_exp(__s, __y));
+	  const auto __n = __gnu_cxx::__fp_is_integer(__s);
+	  if (__n && __n() == 1)
+	    return -std::log(_Tp{1} - __x);
+	  else if (__n && __n() == 0)
+	    return __x / (_Tp{1} - __x);
+	  else if (__x < _Tp{0})
+	    { // Use the reflection formula to access negative values.
+	      auto __xp = -__x;
+	      auto __y = std::log(__xp);
+	      return std::real(__polylog_exp(__s, _Tp{2} * __y)
+				    * std::pow(_Tp{2}, _Tp{1} - __s)
+			     - __polylog_exp(__s, __y));
+	    }
+	  else
+	    {
+	      auto __y = std::log(__x);
+	      return std::real(__polylog_exp(__s, __y));
+	    }
 	}
     }
 
