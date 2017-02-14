@@ -17,6 +17,122 @@ LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
 
 #include "wrap_cephes.h"
 
+  /**
+   * Stolen from test_bernoulli.cpp
+   * Use for nonpositive integer order.
+   */
+  template<typename _Tp>
+    _Tp
+    __stirling_2_recur(unsigned int __n, unsigned int __m)
+    {
+      if (__n == 0)
+	return _Tp(__m == 0);
+      else if (__m == 0)
+	return _Tp(__n == 0);
+      else
+	{
+	  std::vector<_Tp> __sigold(__m + 1), __signew(__m + 1);
+	  __sigold[1] = _Tp{1};
+	  if (__n == 1)
+	    return __sigold[__m];
+	  for (auto __in = 1u; __in <= __n; ++__in)
+	    {
+	      __signew[1] = __sigold[1];
+	      for (auto __im = 2u; __im <= __m; ++__im)
+		__signew[__im] = __im * __sigold[__im] + __sigold[__im - 1];
+	      std::swap(__sigold, __signew);
+	    }
+	  return __signew[__m];
+	}
+    }
+
+  template<typename _Tp>
+    _Tp
+    __polylog_nonpos_int(int __n, _Tp __x)
+    {
+      const auto __arg = _Tp{-1} / (_Tp{1} - __x);
+      auto __term  =__arg * __stirling_2_recur<_Tp>(1 - __n, 1);
+      auto __sum = __term;
+      for (int __k = 1; __k <= -__n; ++__k)
+	{
+	  __term *= __arg * __stirling_2_recur<_Tp>(1 - __n, 1 + __k);
+	  __sum += __term;
+	}
+      __sum *= __gnu_cxx::__parity<_Tp>(1 - __n);
+      return __sum;
+    }
+
+template<typename Tp>
+  void
+  test_polylog_nonpos_int(Tp proto = Tp{})
+  {
+    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout << std::scientific;
+
+    std::cout << "\nTest negative integer order\n";
+    for (auto n : {-0, -1, -2, -3, -4, -5})
+      {
+	std::cout << "\n\nn = " << n << '\n';
+	const auto del = Tp{1} / Tp{10};
+	for (int i = -200; i <= 10; ++i)
+	  {
+	    auto x = del * i;
+	    auto Ls_ceph = __polylog_nonpos_int(n, x);
+	    auto Ls_gnu = __gnu_cxx::polylog(Tp(n), x);
+	    std::cout << ' ' << n
+		      << ' ' << x
+		      << ' ' << Ls_ceph
+		      << ' ' << Ls_gnu
+		      << '\n';
+	  }
+      }
+    std::cout << std::endl;
+  }
+
+template<typename Tp>
+  void
+  test_polylog_0(Tp proto = Tp{})
+  {
+    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout << std::scientific;
+
+    std::cout << "\n\nTest against algebraic function\n";
+    const auto del = Tp{1} / Tp{10};
+    for (int i = -200; i <= 10; ++i)
+      {
+	auto x = del * i;
+	auto Li0 = x / (Tp{1} - x);
+	auto Lis_gnu = __gnu_cxx::polylog(Tp{0}, x);
+	std::cout << ' ' << x
+		  << ' ' << Li0
+		  << ' ' << Lis_gnu
+		  << '\n';
+      }
+    std::cout << std::endl;
+  }
+
+template<typename Tp>
+  void
+  test_polylog_1(Tp proto = Tp{})
+  {
+    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout << std::scientific;
+
+    std::cout << "\n\nTest against algebraic function\n";
+    const auto del = Tp{1} / Tp{10};
+    for (int i = -200; i <= 10; ++i)
+      {
+	auto x = del * i;
+	auto Li1 = -std::log(Tp{1} - x);
+	auto Lis_gnu = __gnu_cxx::polylog(Tp{1}, x);
+	std::cout << ' ' << x
+		  << ' ' << Li1
+		  << ' ' << Lis_gnu
+		  << '\n';
+      }
+    std::cout << std::endl;
+  }
+
 template<typename Tp>
   void
   test_polylog_dilog(Tp proto = Tp{})
@@ -24,7 +140,7 @@ template<typename Tp>
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::scientific;
 
-    std::cout << "\nTest against local dilog\n";
+    std::cout << "\n\nTest against local dilog\n";
     const auto del = Tp{1} / Tp{10};
     for (int i = -200; i <= 10; ++i)
       {
@@ -49,7 +165,7 @@ template<typename Tp>
     std::cout << "\nTest against Cephes for integer order\n";
     for (auto n : {0, 1, 2, 3, 4, 5})
       {
-	std::cout << "n = " << n << '\n';
+	std::cout << "\n\nn = " << n << '\n';
 	const auto del = Tp{1} / Tp{10};
 	for (int i = -200; i <= 10; ++i)
 	  {
@@ -218,9 +334,15 @@ template<typename Tp>
 int
 main()
 {
+  test_polylog_0(1.0);
+
+  test_polylog_1(1.0);
+
   test_polylog_dilog(1.0);
 
   test_polylog_cephes(1.0);
+
+  test_polylog_nonpos_int(1.0);
 
   TestPolyLog<double>();
 
