@@ -506,6 +506,46 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
     { return (__n + __m) & 1 ? _Tp{-1} : _Tp{+1}; }
 
 
+  /**
+   * Return the Eulerian number of the first kind by recursion.
+   * The recursion is
+   * @f[
+   *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m)
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __eulerian_1_recur(unsigned int __n, unsigned int __m)
+    {
+      if (__n == 0)
+	return _Tp{0};
+      else if (__m == 0)
+	return _Tp{1};
+      else if (__m == __n - 1)
+	return _Tp{1};
+      else if (__m >= __n)
+	return _Tp{0};
+      else if (__n - __m - 1 < __m) // Symmetry.
+	return __eulerian_1_recur<_Tp>(__n, __n - __m - 1);
+      else
+	{
+	  // Start recursion with n == 2 (already returned above).
+	  std::vector<_Tp> _Aold(__m + 1), _Anew(__m + 1);
+	  _Aold[0] = _Tp{1};
+	  _Anew[0] = _Tp{1};
+	  _Anew[1] = _Tp{1};
+	  for (auto __in = 3u; __in <= __n; ++__in)
+	    {
+	      std::swap(_Aold, _Anew);
+	      for (auto __im = 1u; __im <= __m; ++__im)
+		_Anew[__im] = (__in - __im) * _Aold[__im - 1]
+			    + (__im + 1) * _Aold[__im];
+	    }
+	  return _Anew[__m];
+	}
+    }
+
+
 template<typename _Tp>
   void
   test_bernoulli(_Tp proto = _Tp{})
@@ -577,6 +617,18 @@ template<typename _Tp>
 		    << ' ' << std::setw(4) << m
 		    << ' ' << std::setw(width) << __stirling_1_series<_Tp>(n, m)
 		    << ' ' << std::setw(width) << __stirling_1_recur<_Tp>(n, m)
+		    << '\n';
+      }
+
+    std::cout << "\n Eulerian numbers of the first kind";
+    for (auto n = 1u; n <= 10; ++n)
+      {
+	std::cout << '\n';
+	for (auto m = 0u; m < n; ++m)
+	  std::cout << ' ' << std::setw(4) << n
+		    << ' ' << std::setw(4) << m
+		  //  << ' ' << std::setw(width) << __eulerian_1_series<_Tp>(n, m)
+		    << ' ' << std::setw(width) << __eulerian_1_recur<_Tp>(n, m)
 		    << '\n';
       }
 /*
