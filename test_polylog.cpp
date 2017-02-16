@@ -17,6 +17,7 @@ LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
 
 #include "wrap_cephes.h"
 
+
   /**
    * Stolen from test_bernoulli.cpp
    * Use for nonpositive integer order.
@@ -48,20 +49,135 @@ LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
 
   template<typename _Tp>
     _Tp
-    __polylog_nonpos_int(int __n, _Tp __x)
+    __eulerian_1_recur(unsigned int __n, unsigned int __m)
     {
-      const auto __arg = _Tp{-1} / (_Tp{1} - __x);
-      auto __term  =__arg * __stirling_2_recur<_Tp>(1 - __n, 1);
-      auto __sum = __term;
-      for (int __k = 1; __k <= -__n; ++__k)
+      if (__n == 0)
+	return _Tp{0};
+      else if (__m == 0)
+	return _Tp{1};
+      else if (__m == __n - 1)
+	return _Tp{1};
+      else if (__m >= __n)
+	return _Tp{0};
+      else if (__n - __m - 1 < __m) // Symmetry.
+	return __eulerian_1_recur<_Tp>(__n, __n - __m - 1);
+      else
 	{
-	  __term *= __arg * __stirling_2_recur<_Tp>(1 - __n, 1 + __k);
-	  __sum += __term;
+	  // Start recursion with n == 2 (already returned above).
+	  std::vector<_Tp> _Aold(__m + 1), _Anew(__m + 1);
+	  _Aold[0] = _Tp{1};
+	  _Anew[0] = _Tp{1};
+	  _Anew[1] = _Tp{1};
+	  for (auto __in = 3u; __in <= __n; ++__in)
+	    {
+	      std::swap(_Aold, _Anew);
+	      for (auto __im = 1u; __im <= __m; ++__im)
+		_Anew[__im] = (__in - __im) * _Aold[__im - 1]
+			    + (__im + 1) * _Aold[__im];
+	    }
+	  return _Anew[__m];
 	}
-      __sum *= __gnu_cxx::__parity<_Tp>(1 - __n);
-      return __sum;
     }
 
+  /**
+   * Compute the polylogarithm for nonpositive integer order.
+   * @f[
+   *    Li_{-n}(z) = \sum_{k=0}^{n} S(n+1,k+1) \left(\frac{z}{1-z}\right)^{k+1}
+   *           \mbox{    } n = 0,1,2, ...
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __polylog_nonpos_int_1(int __n, _Tp __x)
+    {
+      if (__x == _Tp{0})
+	return _Tp{0};
+      else if (__x == _Tp{1})
+	return std::numeric_limits<_Tp>::infinity();
+      else
+	{
+	  const auto __arg = __x / (_Tp{1} - __x);
+	  auto __fact = __arg;
+	  auto __term = __arg * __stirling_2_recur<_Tp>(1 - __n, 1);
+	  auto __sum = __term;
+	  for (int __k = 1; __k <= -__n; ++__k)
+	    {
+	      __fact *= __k * __arg;
+	      __term = __fact * __stirling_2_recur<_Tp>(1 - __n, 1 + __k);
+	      __sum += __term;
+	    }
+	  return __sum;
+	}
+    }
+
+  /**
+   * Compute the polylogarithm for negative integer order.
+   * @f[
+   *    Li_{-n}(z) = (-1)^{n+1}
+   *                \sum_{k=0}^{n} S(n+1,k+1) \left(\frac{-1}{1-z}\right)^{k+1}
+   *           \mbox{    } n = 0,1,2, ...
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __polylog_nonpos_int_2(int __n, _Tp __x)
+    {
+      if (__x == _Tp{0})
+	return _Tp{0};
+      else if (__x == _Tp{1})
+	return std::numeric_limits<_Tp>::infinity();
+      else
+	{
+	  const auto __arg = _Tp{-1} / (_Tp{1} - __x);
+	  auto __fact = __arg;
+	  auto __term = __fact * __stirling_2_recur<_Tp>(1 - __n, 1);
+	  auto __sum = __term;
+	  for (int __k = 1; __k <= -__n; ++__k)
+	    {
+	      __fact *= __k * __arg;
+	      __term = __fact * __stirling_2_recur<_Tp>(1 - __n, 1 + __k);
+	      __sum += __term;
+	    }
+	  __sum *= __gnu_cxx::__parity<_Tp>(1 - __n);
+	  return __sum;
+	}
+    }
+
+  /**
+   * Compute the polylogarithm for negative integer order.
+   * @f[
+   *    Li_{-n}(z) = \frac{1}{(1-z)^{n+1}}\sum_{k=0}^{n-1}
+   *                 \sum_{k=0}^{n-1} \left< n \over k \right> z^{n-k}
+   *           \mbox{    } n = 1,2, ...
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __polylog_nonpos_int_3(int __n, _Tp __x)
+    {
+      if (__x == _Tp{0})
+	return _Tp{0};
+      else if (__x == _Tp{1})
+	return std::numeric_limits<_Tp>::infinity();
+      else
+	{
+	  auto __fact = _Tp{1} / __x;
+	  auto __term = __fact * __eulerian_1_recur<_Tp>(-__n, 0);
+	  auto __sum = __term;
+	  for (int __k = 1; __k < -__n; ++__k)
+	    {
+	      __fact /= __x;
+	      __term = __fact * __eulerian_1_recur<_Tp>(-__n, __k);
+	      __sum += __term;
+	    }
+	  __sum *= std::pow(__x / (_Tp{1} - __x), _Tp(1 - __n));
+	  return __sum;
+	}
+    }
+
+/**
+ * Compute the polylogarithm for negative integer order.
+ */
 template<typename Tp>
   void
   test_polylog_nonpos_int(Tp proto = Tp{})
@@ -69,19 +185,23 @@ template<typename Tp>
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::scientific;
 
-    std::cout << "\nTest negative integer order\n";
-    for (auto n : {-0, -1, -2, -3, -4, -5})
+    //std::cout << "\nTest negative integer order\n";
+    for (auto n : {-1, -2, -3, -4, -5})
       {
 	std::cout << "\n\nn = " << n << '\n';
-	const auto del = Tp{1} / Tp{10};
-	for (int i = -200; i <= 10; ++i)
+	const auto del = Tp{1} / Tp{20};
+	for (int i = -200; i <= 20; ++i)
 	  {
 	    auto x = del * i;
-	    auto Ls_ceph = __polylog_nonpos_int(n, x);
+	    auto Ls_rat1 = __polylog_nonpos_int_1(n, x);
+	    auto Ls_rat2 = __polylog_nonpos_int_2(n, x);
+	    auto Ls_rat3 = __polylog_nonpos_int_3(n, x);
 	    auto Ls_gnu = __gnu_cxx::polylog(Tp(n), x);
 	    std::cout << ' ' << n
 		      << ' ' << x
-		      << ' ' << Ls_ceph
+		      << ' ' << Ls_rat1
+		      << ' ' << Ls_rat2
+		      << ' ' << Ls_rat3
 		      << ' ' << Ls_gnu
 		      << '\n';
 	  }
@@ -162,7 +282,7 @@ template<typename Tp>
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::scientific;
 
-    std::cout << "\nTest against Cephes for integer order\n";
+    //std::cout << "\nTest against Cephes for integer order\n";
     for (auto n : {0, 1, 2, 3, 4, 5})
       {
 	std::cout << "\n\nn = " << n << '\n';
@@ -350,7 +470,8 @@ main()
 
   TestPolyLog<long double>();
 
-  TestPolyLog<__float128>();
+  // This works but it takes forever.
+  //TestPolyLog<__float128>();
 
   return 0;
 }

@@ -464,6 +464,15 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 102. [] Crazy Idea: invent a stream option for formatting individual scalar numbers inside
         a complex or a vector.  width, justification, (do we need scientific, etc?)
 
+103. [] The negative int polylog exp fails for s = 0.  Differs by 0.5.
+
+104. [] The negative int polylog exp fails for z = -1.
+        We could use the plynomial even if it's not stable generally?
+        I think what's happening is that the routines use reflection for negative argument.
+        There is generally a pole at x = 1.
+
+105. [] The negative even int polylog exp fails for -1 < z < -small.
+
 plot_airy.cpp
 
 test_array_ref.cpp - move with <array_ref> somewhere else
