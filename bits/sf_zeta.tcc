@@ -513,64 +513,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   * @brief  Return the Riemann zeta function @f$ \zeta(s) @f$.
-   *
-   * The Riemann zeta function is defined by:
-   * @f[
-   * 	\zeta(s) = \sum_{k=1}^{\infty} k^{-s} \mbox{ for } \Re s > 1 \\
-   * 		   \frac{(2\pi)^s}{\pi} \sin(\frac{\pi s}{2})
-   * 		   \Gamma(1 - s) \zeta(1 - s) \mbox{ for } \Re s < 1
-   * @f]
-   *
-   * @param __s The argument
-   */
-  template<typename _Tp>
-    _Tp
-    __riemann_zeta(_Tp __s)
-    {
-      using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__s));
-      const auto _S_inf = __gnu_cxx::__infinity(std::real(__s));
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__s));
-      if (__isnan(__s))
-	return _S_NaN;
-      else if (__s == _Val{1})
-	return _S_inf;
-      else if (std::real(__s) < -_Real{19})
-	{
-	  auto __zeta = __riemann_zeta_product(_Val{1} - __s);
-	  __zeta *= std::pow(_Real{2} * _S_pi, __s)
-		 * __sin_pi(_Real{0.5L} * __s)
-		 * std::exp(__log_gamma(_Val{1} - __s))
-		 / _S_pi;
-	  return __zeta;
-	}
-      else if (std::real(__s) < _Real{20})
-	{
-	  // Global double sum or McLaurin?
-	  bool __glob = true;
-	  if (__glob)
-	    return __riemann_zeta_glob(__s);
-	  else
-	    {
-	      if (std::real(__s) > _Real{1})
-		return __riemann_zeta_sum(__s);
-	      else
-		{
-		  _Tp __zeta = std::pow(_Real{2} * _S_pi, __s)
-			     * __sin_pi(_Real{0.5L} * __s)
-			     * __gamma(_Val{1} - __s)
-			     * __riemann_zeta_sum(_Val{1} - __s);
-		  return __zeta;
-		}
-	    }
-	}
-      else
-	return __riemann_zeta_product(__s);
-    }
-
-  /**
    * Table of zeta(n) - 1 from 0 - 120.
    * MPFR @ 128 bits.
    */
@@ -726,7 +668,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
 	{
 	  int __k_max = std::min(1000000,
-			    int(std::pow(_Real{1} / _S_eps, _Real{1} / __s)));
+				 int(std::pow(_Real{1} / _S_eps,
+				     _Real{1} / std::abs(__s))));
 	  auto __zeta_m_1 = _Val{0};
 	  for (int __k = __k_max; __k >= 2; --__k)
 	    {
@@ -751,13 +694,78 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
       if (__s == _Real{1})
-	return __gnu_cxx::__quiet_NaN(std::real(__s));
+	return __gnu_cxx::__infinity(std::real(__s));
 
       auto __n = int(std::nearbyint(__s));
       if (__s == __n && __n >= 0 && __n < _S_num_zetam1)
 	return _S_zetam1[__n];
       else
 	return __riemann_zeta_m_1_sum(__s);
+    }
+
+
+  /**
+   * @brief  Return the Riemann zeta function @f$ \zeta(s) @f$.
+   *
+   * The Riemann zeta function is defined by:
+   * @f[
+   * 	\zeta(s) = \sum_{k=1}^{\infty} k^{-s} \mbox{ for } \Re s > 1 \\
+   * 		   \frac{(2\pi)^s}{\pi} \sin(\frac{\pi s}{2})
+   * 		   \Gamma(1 - s) \zeta(1 - s) \mbox{ for } \Re s < 1
+   * @f]
+   *
+   * @param __s The argument
+   */
+  template<typename _Tp>
+    _Tp
+    __riemann_zeta(_Tp __s)
+    {
+      using _Val = _Tp;
+      using _Real = __num_traits_t<_Val>;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__s));
+      const auto _S_inf = __gnu_cxx::__infinity(std::real(__s));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__s));
+      if (__isnan(__s))
+	return _S_NaN;
+      else if (__s == _Val{1})
+	return _S_inf;
+      else
+	{
+	  const auto __p = __gnu_cxx::__fp_is_integer(__s);
+	  if (__p && __p() >= 0)
+	    return _Tp{1} + __riemann_zeta_m_1_sum(__s);
+	  else if (std::real(__s) < -_Real{19})
+	    {
+	      auto __zeta = __riemann_zeta_product(_Val{1} - __s);
+	      __zeta *= std::pow(_Real{2} * _S_pi, __s)
+		     * __sin_pi(_Real{0.5L} * __s)
+		     * std::exp(__log_gamma(_Val{1} - __s))
+		     / _S_pi;
+	      return __zeta;
+	    }
+	  else if (std::real(__s) < _Real{20})
+	    {
+	      // Global double sum or McLaurin?
+	      bool __glob = true;
+	      if (__glob)
+		return __riemann_zeta_glob(__s);
+	      else
+		{
+		  if (std::real(__s) > _Real{1})
+		    return __riemann_zeta_sum(__s);
+		  else
+		    {
+		      _Tp __zeta = std::pow(_Real{2} * _S_pi, __s)
+				 * __sin_pi(_Real{0.5L} * __s)
+				 * __gamma(_Val{1} - __s)
+				 * __riemann_zeta_sum(_Val{1} - __s);
+		      return __zeta;
+		    }
+		}
+	    }
+	  else
+	    return __riemann_zeta_product(__s);
+	}
     }
 
   /**
