@@ -173,13 +173,13 @@ struct functions
 };
 
 static int
-mpfr_floor_dummy (mpfr_ptr rop, mpfr_srcptr op, mp_rnd_t rmode)
+mpfr_floor_dummy (mpfr_ptr rop, mpfr_srcptr op, mp_rnd_t /*rmode*/)
 {
   return mpfr_floor (rop, op);
 }
 
 static int
-mpfr_ceil_dummy (mpfr_ptr rop, mpfr_srcptr op, mp_rnd_t rmode)
+mpfr_ceil_dummy (mpfr_ptr rop, mpfr_srcptr op, mp_rnd_t /*rmode*/)
 {
   return mpfr_ceil (rop, op);
 }
