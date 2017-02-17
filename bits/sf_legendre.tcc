@@ -70,7 +70,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * This can be expressed as a series:
    * @f[
-   *   P_l(x) = frac{1}{2^l l!}\sum_{k=0}^{\lfloor l/2 \rfloor}
+   *   P_l(x) = \frac{1}{2^l l!}\sum_{k=0}^{\lfloor l/2 \rfloor}
    *            \frac{(-1)^k(2l-2k)!}{k!(l-k)!(l-2k)!}x^{l-2k}
    * @f]
    *

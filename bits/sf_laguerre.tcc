@@ -110,10 +110,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The associated Laguerre function is defined by
    * @f[
    *    L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!}
-   * 		       _1F_1(-n; \alpha + 1; x)
+   * 		       {}_1F_1(-n; \alpha + 1; x)
    * @f]
    * where @f$ (\alpha)_n @f$ is the Pochhammer symbol and
-   * @f$ _1F_1(a; c; x) @f$ is the confluent hypergeometric function.
+   * @f$ {}_1F_1(a; c; x) @f$ is the confluent hypergeometric function.
    *
    * This function assumes x != 0.
    *
@@ -162,10 +162,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The associated Laguerre function is defined by
    * @f[
    *   L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!}
-   *                  _1F_1(-n; \alpha + 1; x)
+   *                  {}_1F_1(-n; \alpha + 1; x)
    * @f]
    * where @f$ (\alpha)_n @f$ is the Pochhammer symbol and
-   * @f$ _1F_1(a; c; x) @f$ is the confluent hypergeometric function.
+   * @f$ {}_1F_1(a; c; x) @f$ is the confluent hypergeometric function.
    *
    * The associated Laguerre polynomial is defined for integral
    * @f$ \alpha = m @f$ by:
@@ -286,10 +286,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The associated Laguerre function is defined by
    * @f[
    *    L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!}
-   * 			_1F_1(-n; \alpha + 1; x)
+   * 			{}_1F_1(-n; \alpha + 1; x)
    * @f]
    * where @f$ (\alpha)_n @f$ is the Pochhammer symbol and
-   * @f$ _1F_1(a; c; x) @f$ is the confluent hypergeometric function.
+   * @f$ {}_1F_1(a; c; x) @f$ is the confluent hypergeometric function.
    *
    * The associated Laguerre polynomial is defined for integral
    * @f$ \alpha = m @f$ by:
