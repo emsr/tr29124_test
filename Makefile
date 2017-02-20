@@ -44,12 +44,6 @@ OBJ_DIR = $(MATH_DIR)/obj
 
 LIB_DIR = $(MATH_DIR)
 
-LIBS = \
-  $(LIB_DIR)/libwrap_gsl.so \
-  $(LIB_DIR)/libwrap_burkhardt.so \
-  $(LIB_DIR)/libwrap_boost.so \
-  $(LIB_DIR)/libwrap_cephes.so
-
 BINS = testcase \
        mpfrcalc \
        diff_special_function \
@@ -270,8 +264,7 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/origin_cyl_bessel_j \
 	 ${CHECK_DIR}/origin_cyl_neumann
 
-all: $(LIBS) \
-     $(BINS)
+all: $(BINS)
 
 
 docs: bits/*
@@ -439,63 +432,17 @@ mpfrcalc: mpfr_gexpr.c
 	$(GCC) -I. -o mpfrcalc mpfr_gexpr.c -lgmp -lmpfr -lm
 
 
-$(LIB_DIR)/libwrap_gsl.so: $(OBJ_DIR)/wrap_gsl.o $(OBJ_DIR)/fresnel.o $(OBJ_DIR)/jacobi.o $(OBJ_DIR)/gsl_sf_hermite.o
-	$(CXX17) -fPIC -shared -o $(LIB_DIR)/libwrap_gsl.so $(OBJ_DIR)/wrap_gsl.o $(OBJ_DIR)/fresnel.o $(OBJ_DIR)/jacobi.o $(OBJ_DIR)/gsl_sf_hermite.o -lquadmath -L$(GSL_LIB_DIR) -lgsl -lgslcblas
-	cp $(LIB_DIR)/libwrap_gsl.so $(LIB_DIR)/libwrap_gsl.dll
+test_special_function: test_special_function.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -o test_special_function test_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -Lwrappers -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes
 
-$(OBJ_DIR)/wrap_gsl.o: wrap_gsl.h wrap_gsl.cpp
-	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/wrap_gsl.o wrap_gsl.cpp
+diff_special_function: diff_special_function.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -o diff_special_function diff_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -Lwrappers -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes
 
-$(OBJ_DIR)/fresnel.o: $(GSL_FRESNEL_DIR)/fresnel.c
-	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/fresnel.o $(GSL_FRESNEL_DIR)/fresnel.c
+testcase2: testcase2.cpp testcase2.tcc $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -I$(BOOST_INC_DIR) -o testcase2 testcase2.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -Lwrappers -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes
 
-$(OBJ_DIR)/jacobi.o: $(GSL_JACOBI_DIR)/jacobi.c
-	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/jacobi.o $(GSL_JACOBI_DIR)/jacobi.c
-
-$(OBJ_DIR)/gsl_sf_hermite.o: $(GSL_HERMITE_DIR)/gsl_sf_hermite.c
-	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/gsl_sf_hermite.o $(GSL_HERMITE_DIR)/gsl_sf_hermite.c
-
-
-$(LIB_DIR)/libwrap_burkhardt.so: $(OBJ_DIR)/wrap_burkhardt.o $(OBJ_DIR)/special_functions.o
-	cd burkhardt && make
-	$(CXX17) -fPIC -shared -o $(LIB_DIR)/libwrap_burkhardt.so $(OBJ_DIR)/wrap_burkhardt.o $(OBJ_DIR)/special_functions.o -lgfortran -lquadmath -L. -lburkhardt
-	cp $(LIB_DIR)/libwrap_burkhardt.so $(LIB_DIR)/libwrap_burkhardt.dll
-
-$(OBJ_DIR)/wrap_burkhardt.o: wrap_burkhardt.h wrap_burkhardt.cpp
-	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/wrap_burkhardt.o wrap_burkhardt.cpp
-
-$(OBJ_DIR)/special_functions.o: burkhardt/special_functions.f90
-	$(GFORTRAN) -fPIC -c -o $(OBJ_DIR)/special_functions.o burkhardt/special_functions.f90
-
-
-$(LIB_DIR)/libwrap_boost.so: $(OBJ_DIR)/wrap_boost.o
-	$(CXX17) -fPIC -shared -o $(LIB_DIR)/libwrap_boost.so $(OBJ_DIR)/wrap_boost.o -lquadmath
-	cp $(LIB_DIR)/libwrap_boost.so $(LIB_DIR)/libwrap_boost.dll
-
-$(OBJ_DIR)/wrap_boost.o: wrap_boost.h wrap_boost.cpp
-	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/wrap_boost.o wrap_boost.cpp
-
-
-$(LIB_DIR)/libwrap_cephes.so: $(OBJ_DIR)/wrap_cephes.o
-	cd cephes && make
-	$(CXX17) -fPIC -shared -Wl,-rpath,/home/ed/tr29124_test/cephes -o $(LIB_DIR)/libwrap_cephes.so $(OBJ_DIR)/wrap_cephes.o -Lcephes -lcephes_bessel -lcephes_ellf -lcephes_polyn -lcephes_misc -lcephes_cprob -lcephes_cmath -lcephes_cmplx -lquadmath
-	cp $(LIB_DIR)/libwrap_cephes.so $(LIB_DIR)/libwrap_cephes.dll
-
-$(OBJ_DIR)/wrap_cephes.o: wrap_cephes.h wrap_cephes.cpp
-	$(CXX17) -fPIC -I. -c -o $(OBJ_DIR)/wrap_cephes.o wrap_cephes.cpp
-
-
-test_special_function: test_special_function.cpp $(LIBS) $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -o test_special_function test_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L. -lwrap_gsl -lwrap_boost -lwrap_burkhardt
-
-diff_special_function: diff_special_function.cpp $(LIBS) $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -o diff_special_function diff_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L. -lwrap_gsl -lwrap_boost -lwrap_burkhardt
-
-testcase2: testcase2.cpp testcase2.tcc $(LIBS) $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -I$(BOOST_INC_DIR) -o testcase2 testcase2.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L. -lwrap_gsl -lwrap_boost -lwrap_burkhardt
-
-testcase: testcase.cpp testcase.tcc $(LIBS) $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -I$(BOOST_INC_DIR) -o testcase testcase.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -L. -lwrap_gsl -lwrap_boost -lwrap_burkhardt
+testcase: testcase.cpp testcase.tcc $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -I$(BOOST_INC_DIR) -o testcase testcase.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -Lwrappers -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes
 
 test_limits: test_limits.cpp
 	$(CXX17) -I. -o test_limits test_limits.cpp -lquadmath
@@ -503,8 +450,8 @@ test_limits: test_limits.cpp
 test_cmath: test_cmath.cpp
 	$(CXX) -o test_cmath test_cmath.cpp -lquadmath
 
-test_airy: test_airy.cpp sf_airy.tcc wrap_gsl.cpp
-	$(CXX) -o test_airy -I$(GSL_INC_DIR) test_airy.cpp -lquadmath -L. -lwrap_gsl
+test_airy: test_airy.cpp sf_airy.tcc
+	$(CXX) -o test_airy -I$(GSL_INC_DIR) test_airy.cpp -lquadmath -Lwrappers -lwrap_gsl
 
 test_csint: test_csint.cpp csint.tcc
 	$(CXX) -o test_csint test_csint.cpp -lquadmath
@@ -693,7 +640,7 @@ test_pochhammer_lower: test_pochhammer_lower.cpp
 	$(CXX17) -I. -o test_pochhammer_lower test_pochhammer_lower.cpp -lquadmath
 
 test_polylog: test_polylog.cpp
-	$(CXX17) -I. -o test_polylog test_polylog.cpp -lquadmath -L. -lwrap_cephes
+	$(CXX17) -I. -o test_polylog test_polylog.cpp -lquadmath -Lwrappers -lwrap_cephes
 
 test_polynomial: test_polynomial.cpp
 	$(CXX17) -I. -o test_polynomial test_polynomial.cpp -lquadmath
