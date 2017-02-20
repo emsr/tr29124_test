@@ -7,6 +7,10 @@
  ****************************************************************************
  */
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <math.h>
 
 static const double sqrt_pi_2   = 1.2533141373155002512078826424; /* sqrt(pi/2) */
@@ -265,7 +269,9 @@ double fresnel_s1(double x)
   return fresnel_s(x*sqrt_2_pi);
 }
 
-
+#ifdef __cplusplus
+}
+#endif
 
 
 
