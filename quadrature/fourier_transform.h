@@ -222,6 +222,20 @@ namespace __gnu_cxx
     inv_fast_fourier_transform(std::vector<std::complex<_Tp>>& __z);
 
   /**
+   * Fast Sine Transform on real data.
+   */
+  template <typename _Tp>
+    void
+    fast_sine_transform(std::vector<_Tp>& __x);
+
+  /**
+   * Fast Sine Transform on real data.
+   */
+  template <typename _Tp>
+    void
+    inv_fast_sine_transform(std::vector<_Tp>& __x);
+
+  /**
    * Fast Fourier Transform on real data.
    */
   template<typename _Tp>

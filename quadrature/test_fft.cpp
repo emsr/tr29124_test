@@ -142,6 +142,48 @@ template<typename _Tp>
     std::cout << "mean_abs_diff = " << mean_abs_diff << '\n';
   }
 
+template<typename _Tp>
+  void
+  test_fst()
+  {
+    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    auto w = 8 + std::cout.precision();
+    const auto len = 1000u;
+
+    std::default_random_engine re;
+    std::uniform_real_distribution<_Tp> ud(_Tp{-5}, _Tp{+5});
+    auto gen = [&ud, &re]()->_Tp{ return ud(re); };
+    std::vector<_Tp> vec;
+    vec.reserve(len);
+    for (auto i = 0u; i < len; ++i)
+      vec.push_back(gen());
+
+    auto xform = vec;
+    __gnu_cxx::fast_sine_transform(xform);
+
+    auto iform = xform;
+    __gnu_cxx::inv_fast_sine_transform(iform);
+
+    // This has the correct indexing you would want for fourier_transform_t<real_t>.
+    auto mean_abs_diff = _Tp{0};
+    std::cout << '\n';
+    for (auto i = 0u; i < len; ++i)
+      {
+	auto diff = vec[i] - iform[i];
+	auto abs_diff = std::abs(diff);
+	mean_abs_diff += abs_diff;
+	std::cout << ' ' << std::setw(6) << i
+		  << ' ' << std::setw(w) << vec[i]
+		  << ' ' << std::setw(w) << xform[i]
+		  << ' ' << std::setw(w) << iform[i]
+		  << ' ' << std::setw(w) << diff
+		  << ' ' << std::setw(w) << abs_diff
+		  << '\n';
+      }
+    mean_abs_diff /= _Tp(len);
+    std::cout << "mean_abs_diff = " << mean_abs_diff << '\n';
+  }
+
 int
 main()
 {
@@ -156,4 +198,6 @@ main()
   test_fft<__float128>();
 
   test_real_fft<double>();
+
+  test_fst<double>();
 }
