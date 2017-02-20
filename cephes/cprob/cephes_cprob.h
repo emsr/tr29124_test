@@ -46,7 +46,6 @@ double gdtr(double a, double b, double x);
 
 double gamma(double x);
 double lgam(double x);
-int sgngam;
 
 double fdtrc(int ia, int ib, double x);
 double fdtr(int ia, int ib, double x);
