@@ -153,7 +153,7 @@ namespace __gnu_cxx
 	  // @todo I really want to just make a view to a complex vector.
 	  const auto __halflen = __len / 2;
 	  std::vector<std::complex<_Tp>> __z;
-	  __z.reserve(__halflen);
+	  __z.reserve(__halflen + 1);
 	  for (std::size_t __i = 0; __i < __halflen; ++__i)
 	    __z.emplace_back(__x[2 * __i], __x[2 * __i + 1]);
 	  fast_fourier_transform(__z);
@@ -206,6 +206,50 @@ namespace __gnu_cxx
 	      __x[2 * __i + 1] = __z[__i].imag();
 	    }
 	}
+    }
+
+  /**
+   * Fast Sine Transform on real data.
+   */
+  template <typename _Tp>
+    void
+    fast_sine_transform(std::vector<_Tp>& __x)
+    {
+      const auto __len = __x.size();
+      const auto __halflen = __len / 2;
+      const auto __n2 = __len - 1;
+      __phase_iterator __omega_iter(_Tp{+1}, 1, __len);
+      __x[0] = _Tp{0};
+      for (std::size_t __k = 1; __k <= __halflen; ++__k, ++__omega_iter)
+	{
+	  const auto __y1 = __omega_iter.sin()
+			  * (__x[__k] + __x[__n2 - __k]);
+	  const auto __y2 = (__x[__k] - __x[__n2 - __k]) / _Tp{2};
+	  __x[__k] = __y1 + __y2;
+	  __x[__n2 - __k] = __y1 - __y2;
+	}
+      fast_fourier_transform(__x);
+      __x[0] *= _Tp{0.5L};
+      __x[1] = _Tp{0};
+      auto __sum = _Tp{0};
+      for (std::size_t __i = 2; __i < __halflen; __i += 2)
+	{
+	  __sum += std::exchange(__x[__i], __x[__i + 1]);
+	  __x[__i + 1] = __sum;
+	}
+    }
+
+  /**
+   * Fast Sine Transform on real data.
+   */
+  template <typename _Tp>
+    void
+    inv_fast_sine_transform(std::vector<_Tp>& __x)
+    {
+      fast_sine_transform(__x);
+      const auto __norm = _Tp{2} / __x.size();
+      for (std::size_t __i = 0; __i < __x.size(); ++__i)
+	__x[__i] *= __norm;
     }
 
   /**

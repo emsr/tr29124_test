@@ -24,7 +24,7 @@ template<typename Tp>
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::scientific;
 
-    std::cout << '\n';
+    std::cout << "\nTest against local dilog\n";
     const auto del = Tp{1} / Tp{10};
     for (int i = -200; i <= 10; ++i)
       {
@@ -46,9 +46,10 @@ template<typename Tp>
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::scientific;
 
+    std::cout << "\nTest against Cephes for integer order\n";
     for (auto n : {0, 1, 2, 3, 4, 5})
       {
-	std::cout << '\n';
+	std::cout << "n = " << n << '\n';
 	const auto del = Tp{1} / Tp{10};
 	for (int i = -200; i <= 10; ++i)
 	  {
@@ -150,7 +151,7 @@ template<typename Tp>
     std::cout << std::__detail::__polylog(Tp{3.1}, Tp{2}) << '\n';
     std::cout << std::__detail::__polylog_exp_pos(Tp{3.1}, std::complex<Tp>(std::log(Tp{2}))) << '\n';
 
-    //test function 1:
+    // Test function 1:
     for (std::size_t k = 3; k < 8; ++k)
       for (Tp x = 0; x < Tp{1}; x += del05)
 	std::cout << k
@@ -159,7 +160,7 @@ template<typename Tp>
 		  << '\n';
     std::cout << std::endl;
 
-    //test function 2
+    // Test function 2
     for (std::size_t k = 3; k < 8; ++k)
       for (Tp x = 0; x < 6.28; x += del05)
 	std::cout << k
@@ -168,7 +169,7 @@ template<typename Tp>
 		  << '\n';
     std::cout << std::endl;
 
-    //test function 3
+    // Test function 3
     for (Tp k = -Tp{8}; k < 0; k += Tp{1}/Tp{13})
       for(Tp x = 0; x < Tp{1}; x += del05)
 	std::cout << k
@@ -177,7 +178,7 @@ template<typename Tp>
 		  << '\n';
     std::cout << std::endl;
 
-    //test function 4 + 5
+    // Test function 4 + 5
     for (int k = -40; k < 0; ++k)
       for (Tp x = 0; x < Tp{1}; x += del05)
 	std::cout << k
@@ -186,7 +187,7 @@ template<typename Tp>
 		  << '\n';
     std::cout << std::endl;
 
-    //test series 6
+    // Test series 6
     for (Tp k = Tp{1} / Tp{7}; k < Tp{13}; k += Tp{1} / Tp{11})
       for (Tp x = Tp{0}; x < Tp{1}; x += del05)
 	std::cout << k
@@ -195,7 +196,7 @@ template<typename Tp>
 		  << '\n';
     std::cout << std::endl;
 
-    //test series 7
+    // Test series 7
     for (Tp k = -Tp{13}; k < Tp{13}; k += Tp{1} / Tp{11})
       for (Tp x = Tp{0}; x < Tp{1}; x += del01)
 	std::cout << k
@@ -204,7 +205,7 @@ template<typename Tp>
 		  << '\n';
     std::cout << std::endl;
 
-    //test series 8
+    // Test series 8
     for (Tp k = -Tp{13}; k < Tp{13}; k += Tp{1} / Tp{11})
       for (Tp x = -Tp{7} / Tp{10} * _S_pi; x > -_S_2pi; x -= del05)
 	std::cout << k
