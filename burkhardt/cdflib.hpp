@@ -1,3 +1,5 @@
+#include <string>
+
 double algdiv ( double *a, double *b );
 double alnrel ( double *a );
 double apser ( double *a, double *b, double *x, double *eps );
