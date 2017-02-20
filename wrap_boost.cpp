@@ -548,7 +548,8 @@ sinc(double x)
 double
 sinc_pi(double x)
 {
-  return boost::math::sinc_pi(M_PI * x);
+  using namespace boost::math::constants;
+  return boost::math::sinc_pi(pi<double>() * x);
 }
 
 /// Hyperbolic sinus cardinal function.
@@ -562,7 +563,8 @@ sinhc(double x)
 double
 sinhc_pi(double x)
 {
-  auto arg = M_PI * x;
+  using namespace boost::math::constants;
+  auto arg = pi<double>() * x;
   return std::sinh(arg) / arg;
 }
 
