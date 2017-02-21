@@ -63,8 +63,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     struct __sincos_t
     {
-      _Tp __sin_value;
-      _Tp __cos_value;
+      _Tp __sin_v;
+      _Tp __cos_v;
     };
 
   // Slots for Jacobi elliptic function tuple.
