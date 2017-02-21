@@ -4,8 +4,8 @@ LD_LIBRARY_PATH=.:cephes:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
 
 LD_LIBRARY_PATH=.:cephes:$LD_LIBRARY_PATH $HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -L. -lwrap_cephes
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -L. -lwrap_cephes
-LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -Lwrappers -lwrap_cephes
+PATH=wrappers:$PATH ./test_polylog > test_polylog.txt
 */
 
 #include <iostream>
@@ -141,6 +141,7 @@ LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
    *                \sum_{k=0}^{n} S(n+1,k+1) \left(\frac{-1}{1-z}\right)^{k+1}
    *           \mbox{    } n = 0,1,2, ...
    * @f]
+   * where @f$ S(n,k) @f$ are the Sterling numbers of the second kind.
    */
   template<typename _Tp>
     _Tp
@@ -204,28 +205,28 @@ LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
    * @f[
    * @f]
    */
-//  template<typename _Tp>
-//    std::complex<_Tp>
-//    __polylog_exp_neg_int(int __n, std::complex<_Tp> __w)
   template<typename _Tp>
-    _Tp
-    __polylog_exp_neg_int(int __n, _Tp __w)
+    std::complex<_Tp>
+    __polylog_exp_neg_int(int __n, std::complex<_Tp> __w)
     {
       const int __p = -__n;
       const int __pp = 1 + __p;
+      const int __q = __p & 1 ? 0 : 1;
       const auto __w2 = __w * __w;
       auto __pref = std::pow(-__w, -_Tp(__pp));
-      auto __wp = __w;
-      unsigned int __2k = 0;
+      auto __wp = __p & 1 ? std::complex<_Tp>{1} : __w;
+      unsigned int __2k = __q;
       auto __gam = std::__detail::__factorial<_Tp>(__p);
       auto __res = __gam * std::pow(-__w, _Tp(-__pp));
-      auto __sum = _Tp{0};
+      auto __sum = std::complex<_Tp>{};
       constexpr unsigned int __maxit = 300;
-      _Terminator<_Tp> __done(__maxit);
+      _Terminator<std::complex<_Tp>> __done(__maxit);
       while (true)
 	{
+	  if (__p + __2k + 1 == std::__detail::_Num_Euler_Maclaurin_zeta)
+	    break;
 	  auto __term = __gam * __wp
-		      * std::__detail::__bernoulli<_Tp>(__p + __2k + 2);
+		  * _Tp(std::__detail::_S_Euler_Maclaurin_zeta[__p + __2k + 1]);
 	  __sum += __term;
 	  if (__done(__term, __sum))
 	    break;
@@ -256,10 +257,11 @@ template<typename Tp>
 	for (int i = -200; i <= 20; ++i)
 	  {
 	    auto x = del * i;
+	    auto w = std::log(std::complex<Tp>(x));
 	    auto Ls_rat1 = __polylog_nonpos_int_1(n, x);
 	    auto Ls_rat2 = __polylog_nonpos_int_2(n, x);
 	    auto Ls_rat3 = __polylog_nonpos_int_3(n, x);
-	    auto Ls_nint = __polylog_exp_neg_int(n, x);
+	    auto Ls_nint = std::real(__polylog_exp_neg_int(n, w));
 	    auto Ls_gnu = __gnu_cxx::polylog(Tp(n), x);
 	    std::cout << ' ' << n
 		      << ' ' << x
