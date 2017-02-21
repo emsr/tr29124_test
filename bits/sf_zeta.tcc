@@ -294,7 +294,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
       const auto _S_N = 10 + __gnu_cxx::__digits10(std::real(__s)) / _Tp{2};
-      const auto _S_jmax = 99;
+      const auto _S_jmax = _Num_Euler_Maclaurin_zeta - 1;
 
       const auto __pmax  = std::pow(_Val{_S_N + 1}, -__s);
       const auto __denom = _Val{_S_N + 1} * _Val{_S_N + 1};
@@ -304,7 +304,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       auto __fact = __pmax * __s / _Val{_S_N + 1};
       auto __delta_prev = __gnu_cxx::__max(__s);
-      for (auto __j = 0; __j <= _S_jmax; ++__j)
+      for (auto __j = 0; __j < _S_jmax; ++__j)
         {
 	  auto __delta = _S_Euler_Maclaurin_zeta[__j + 1] * __fact;
 	  if (std::abs(__delta) > __delta_prev)
@@ -475,9 +475,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Riemann zeta function is defined by:
    * @f[
-   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for \Re s > 1
+   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for \Re(s) > 1
    * @f]
-   * For \Re s < 1 use the reflection formula:
+   * For \Re(s) < 1 use the reflection formula:
    * @f[
    * 	\zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
    * @f]
@@ -647,11 +647,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief  Return the Riemann zeta function @f$ \zeta(s) - 1 @f$
-   * 	     by summation for \Re s > 1.  This is a small remainder for large s.
+   * by summation for \Re(s) > 1.  This is a small remainder for large s.
    *
    * The Riemann zeta function is defined by:
    * @f[
-   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for \Re s > 1
+   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for \Re(s) > 1
    * @f]
    *
    * @param __s The argument @f$ s != 1 @f$
@@ -667,9 +667,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __gnu_cxx::__quiet_NaN(std::real(__s));
       else
 	{
-	  int __k_max = std::min(1000000,
-				 int(std::pow(_Real{1} / _S_eps,
-				     _Real{1} / std::abs(__s))));
+	  auto __arg = -std::log10(_S_eps) / std::abs(__s);
+	  int __k_max = __arg > _Real{6} ? 1000000 : std::pow(_Real{10}, __arg);
 	  auto __zeta_m_1 = _Val{0};
 	  for (int __k = __k_max; __k >= 2; --__k)
 	    {
@@ -691,16 +690,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __riemann_zeta_m_1(_Tp __s)
     {
-      using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__s));
       if (__s == _Real{1})
 	return __gnu_cxx::__infinity(std::real(__s));
 
-      auto __n = int(std::nearbyint(__s));
-      if (__s == __n && __n >= 0 && __n < _S_num_zetam1)
-	return _S_zetam1[__n];
-      else
+      auto __n = __gnu_cxx::__fp_is_integer(__s);
+      if (__n && __n() >= 0 && __n() < _S_num_zetam1)
+	return _Tp(_S_zetam1[__n()]);
+      else if (std::real(__s) > _Real{0})
 	return __riemann_zeta_m_1_sum(__s);
+      else // Re[s] < 0
+	return std::pow(_Real{2} * _S_pi, __s)
+	     * __sin_pi(_Real{0.5L} * __s)
+	     * __gamma(_Tp{1} - __s)
+	     * (_Real{1} + __riemann_zeta_m_1(_Tp{1} - __s)) - _Real{1};
     }
 
 
@@ -709,9 +713,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Riemann zeta function is defined by:
    * @f[
-   * 	\zeta(s) = \sum_{k=1}^{\infty} k^{-s} \mbox{ for } \Re s > 1 \\
+   * 	\zeta(s) = \sum_{k=1}^{\infty} k^{-s} \mbox{ for } \Re(s) > 1 \\
    * 		   \frac{(2\pi)^s}{\pi} \sin(\frac{\pi s}{2})
-   * 		   \Gamma(1 - s) \zeta(1 - s) \mbox{ for } \Re s < 1
+   * 		   \Gamma(1 - s) \zeta(1 - s) \mbox{ for } \Re(s) < 1
    * @f]
    *
    * @param __s The argument
@@ -733,7 +737,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  const auto __p = __gnu_cxx::__fp_is_integer(__s);
 	  if (__p && __p() >= 0)
-	    return _Tp{1} + __riemann_zeta_m_1_sum(__s);
+	    return _Real{1} + __riemann_zeta_m_1(_Real(__p()));
+	  else if (__p && __p() < 0)
+	    {
+	      const auto __r = _Real(__p());
+	      _Tp __zeta = std::pow(_Real{2} * _S_pi, __r)
+			 * __sin_pi(_Real{0.5L} * __r)
+			 * __gamma(_Real{1} - __r)
+			 * (_Real{1} + __riemann_zeta_m_1(_Real{1} - __r));
+	      return __zeta;
+	    }
 	  else if (std::real(__s) < -_Real{19})
 	    {
 	      auto __zeta = __riemann_zeta_product(_Val{1} - __s);
@@ -773,7 +786,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	     for all s != 1 and a > -1.
    * @see An efficient algorithm for accelerating the convergence
    * 	  of oscillatory series, useful for computing the
-   * 	  polylogarithm and Hurwitz zeta functions, Linas Vep\u0160tas
+   * 	  polylogarithm and Hurwitz zeta functions, Linas Vep"0160tas
    *
    * @param __s The argument @f$ s != 1 @f$
    * @param __a The scale parameter @f$ a > -1 @f$
@@ -786,7 +799,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
       const int _S_N = 10 + __gnu_cxx::__digits10(std::real(__s)) / 2;
-      const int _S_jmax = 99;
+      const int _S_jmax = _Num_Euler_Maclaurin_zeta - 1;
 
       const auto __pmax  = std::pow(_Val{_S_N} + __a, -__s);
       auto __ans = __pmax
@@ -796,7 +809,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       auto __sfact = __s;
       auto __pfact = __pmax / (_Val(_S_N) + __a);
-      for(auto __j = 0; __j <= _S_jmax; ++__j)
+      for(auto __j = 0; __j < _S_jmax; ++__j)
 	{
 	  auto __delta = _Real(_S_Euler_Maclaurin_zeta[__j + 1])
 			* __sfact * __pfact;
