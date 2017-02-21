@@ -17,6 +17,30 @@ LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
 
 #include "wrap_cephes.h"
 
+  template<typename _Tp>
+    class _Terminator
+    {
+    private:
+
+      using _Real = std::__detail::__num_traits_t<_Tp>;
+      std::size_t _M_max_iter;
+      _Real _M_toler;
+
+    public:
+
+      _Terminator(std::size_t __max_iter, _Real __mul = _Real{1})
+      : _M_max_iter(__max_iter),
+	_M_toler(__mul * std::numeric_limits<_Real>::epsilon())
+      { }
+
+      bool
+      operator()(_Tp __term, _Tp __sum)
+      {
+	return (--_M_max_iter == 0
+		|| std::abs(__term) < _M_toler * std::abs(__sum));
+      }
+    };
+
 
   /**
    * Stolen from test_bernoulli.cpp
@@ -175,12 +199,51 @@ LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
 	}
     }
 
+  /**
+   * Compute the polylogarithm for negative integer order.
+   * @f[
+   * @f]
+   */
+//  template<typename _Tp>
+//    std::complex<_Tp>
+//    __polylog_exp_neg_int(int __n, std::complex<_Tp> __w)
+  template<typename _Tp>
+    _Tp
+    __polylog_exp_neg_int(int __n, _Tp __w)
+    {
+      const int __p = -__n;
+      const int __pp = 1 + __p;
+      const auto __w2 = __w * __w;
+      auto __pref = std::pow(-__w, -_Tp(__pp));
+      auto __wp = __w;
+      unsigned int __2k = 0;
+      auto __gam = std::__detail::__factorial<_Tp>(__p);
+      auto __res = __gam * std::pow(-__w, _Tp(-__pp));
+      auto __sum = _Tp{0};
+      constexpr unsigned int __maxit = 300;
+      _Terminator<_Tp> __done(__maxit);
+      while (true)
+	{
+	  auto __term = __gam * __wp
+		      * std::__detail::__bernoulli<_Tp>(__p + __2k + 2);
+	  __sum += __term;
+	  if (__done(__term, __sum))
+	    break;
+	  __gam *= _Tp(__p + __2k + 2) / _Tp(__2k + 2)
+		 * _Tp(__p + __2k + 1) / _Tp(__2k + 1);
+	  __wp *= __w2;
+	  __2k += 2;
+	}
+      __res -= __pref * __sum;
+      return __res;
+    }
+
 /**
  * Compute the polylogarithm for negative integer order.
  */
 template<typename Tp>
   void
-  test_polylog_nonpos_int(Tp proto = Tp{})
+  test_polylog_neg_int(Tp proto = Tp{})
   {
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::scientific;
@@ -196,12 +259,14 @@ template<typename Tp>
 	    auto Ls_rat1 = __polylog_nonpos_int_1(n, x);
 	    auto Ls_rat2 = __polylog_nonpos_int_2(n, x);
 	    auto Ls_rat3 = __polylog_nonpos_int_3(n, x);
+	    auto Ls_nint = __polylog_exp_neg_int(n, x);
 	    auto Ls_gnu = __gnu_cxx::polylog(Tp(n), x);
 	    std::cout << ' ' << n
 		      << ' ' << x
 		      << ' ' << Ls_rat1
 		      << ' ' << Ls_rat2
 		      << ' ' << Ls_rat3
+		      << ' ' << Ls_nint
 		      << ' ' << Ls_gnu
 		      << '\n';
 	  }
@@ -387,7 +452,7 @@ template<typename Tp>
     std::cout << std::__detail::__polylog(Tp{3.1}, Tp{2}) << '\n';
     std::cout << std::__detail::__polylog_exp_pos(Tp{3.1}, std::complex<Tp>(std::log(Tp{2}))) << '\n';
 
-    // Test function 1:
+    std::cout << "\nTest function 1:\n";
     for (std::size_t k = 3; k < 8; ++k)
       for (Tp x = 0; x < Tp{1}; x += del05)
 	std::cout << k
@@ -396,7 +461,7 @@ template<typename Tp>
 		  << '\n';
     std::cout << std::endl;
 
-    // Test function 2
+    std::cout << "\nTest function 2:\n";
     for (std::size_t k = 3; k < 8; ++k)
       for (Tp x = 0; x < 6.28; x += del05)
 	std::cout << k
@@ -405,7 +470,7 @@ template<typename Tp>
 		  << '\n';
     std::cout << std::endl;
 
-    // Test function 3
+    std::cout << "\nTest function 3:\n";
     for (Tp k = -Tp{8}; k < 0; k += Tp{1}/Tp{13})
       for(Tp x = 0; x < Tp{1}; x += del05)
 	std::cout << k
@@ -414,7 +479,7 @@ template<typename Tp>
 		  << '\n';
     std::cout << std::endl;
 
-    // Test function 4 + 5
+    std::cout << "\nTest function 4 + 5:\n";
     for (int k = -40; k < 0; ++k)
       for (Tp x = 0; x < Tp{1}; x += del05)
 	std::cout << k
@@ -423,7 +488,7 @@ template<typename Tp>
 		  << '\n';
     std::cout << std::endl;
 
-    // Test series 6
+    std::cout << "\nTest series 6:\n";
     for (Tp k = Tp{1} / Tp{7}; k < Tp{13}; k += Tp{1} / Tp{11})
       for (Tp x = Tp{0}; x < Tp{1}; x += del05)
 	std::cout << k
@@ -432,7 +497,7 @@ template<typename Tp>
 		  << '\n';
     std::cout << std::endl;
 
-    // Test series 7
+    std::cout << "\nTest series 7:\n";
     for (Tp k = -Tp{13}; k < Tp{13}; k += Tp{1} / Tp{11})
       for (Tp x = Tp{0}; x < Tp{1}; x += del01)
 	std::cout << k
@@ -441,7 +506,7 @@ template<typename Tp>
 		  << '\n';
     std::cout << std::endl;
 
-    // Test series 8
+    std::cout << "\nTest series 8:\n";
     for (Tp k = -Tp{13}; k < Tp{13}; k += Tp{1} / Tp{11})
       for (Tp x = -Tp{7} / Tp{10} * _S_pi; x > -_S_2pi; x -= del05)
 	std::cout << k
@@ -462,7 +527,7 @@ main()
 
   test_polylog_cephes(1.0);
 
-  test_polylog_nonpos_int(1.0);
+  test_polylog_neg_int(1.0);
 
   TestPolyLog<double>();
 
