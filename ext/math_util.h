@@ -50,6 +50,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * A function to return the max of the absolute values of two numbers
    * ... so we won't include everything.
+   * @param __a The left hand side
+   * @param __b The right hand side
    */
   template<typename _Tp>
     inline _Tp
@@ -125,6 +127,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * A function to reliably detect if a floating point number is an integer.
    *
    * @param __a The floating point number
+   * @param __mul The multiplier of machine epsilon for the tolerance
    * @return @c true if a is an integer within mul * epsilon.
    */
   template<typename _Tp>
@@ -139,6 +142,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * A function to reliably detect if a floating point number is a half-integer.
    *
    * @param __a The floating point number
+   * @param __mul The multiplier of machine epsilon for the tolerance
    * @return @c true if 2*a is an integer within mul * epsilon.
    */
   template<typename _Tp>
@@ -154,6 +158,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * half-odd-integer.
    *
    * @param __a The floating point number
+   * @param __mul The multiplier of machine epsilon for the tolerance
    * @return @c true if 2*a is an odd integer within mul * epsilon.
    */
   template<typename _Tp>
@@ -170,6 +175,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * A function to reliably detect if a floating point number is an odd integer.
    *
    * @param __a The floating point number
+   * @param __mul The multiplier of machine epsilon for the tolerance
    * @return @c true if a is an odd integer within mul * epsilon.
    */
   template<typename _Tp>
