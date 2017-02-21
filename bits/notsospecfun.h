@@ -76,8 +76,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename Tp>
     struct sincos_t
     {
-      Tp sin_value;
-      Tp cos_value;
+      Tp sin_v;
+      Tp cos_v;
     };
 
   template<typename Tp>

@@ -362,8 +362,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (__x < _Tp{0})
 	{
 	  __gnu_cxx::__sincos_t<_Tp> __tempsc = __sincos_pi(-__x);
-	  return __gnu_cxx::__sincos_t<_Tp>{-__tempsc.__sin_value,
-					     __tempsc.__cos_value};
+	  return __gnu_cxx::__sincos_t<_Tp>{-__tempsc.__sin_v,
+					     __tempsc.__cos_v};
 	}
       else if (__x < _Tp{0.5L})
 	return __sincos(_S_pi * __x);
@@ -371,8 +371,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  __gnu_cxx::__sincos_t<_Tp>
 	    __tempsc = __sincos(_S_pi * (_Tp{1} - __x));
-	  return __gnu_cxx::__sincos_t<_Tp>{__tempsc.__sin_value,
-					   -__tempsc.__cos_value};
+	  return __gnu_cxx::__sincos_t<_Tp>{__tempsc.__sin_v,
+					   -__tempsc.__cos_v};
 	}
       else
 	{
@@ -397,8 +397,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __polar_pi(_Tp __rho, _Tp __phi_pi)
     {
       __gnu_cxx::__sincos_t<_Tp> __sc = __sincos_pi(__phi_pi);
-      return std::complex<_Tp>(__rho * __sc.__cos_value,
-			       __rho * __sc.__sin_value);
+      return std::complex<_Tp>(__rho * __sc.__cos_v,
+			       __rho * __sc.__sin_v);
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
