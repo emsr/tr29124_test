@@ -3,6 +3,7 @@
 #include <limits>
 #include <sstream>
 #include <stdexcept>
+#include <complex>
 
 #include "wrap_cephes.h"
 
