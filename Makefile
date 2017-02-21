@@ -44,6 +44,11 @@ OBJ_DIR = $(MATH_DIR)/obj
 
 LIB_DIR = $(MATH_DIR)
 
+.PHONY: wrappers
+
+wrappers:
+	$(MAKE) -C wrappers
+
 BINS = testcase \
        mpfrcalc \
        diff_special_function \
