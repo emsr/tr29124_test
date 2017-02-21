@@ -7,6 +7,10 @@
  ****************************************************************************
  */
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #ifndef FRESNEL_H_
 #define FRESNEL_H_
 
@@ -33,3 +37,7 @@ double fresnel_s1(double x);
 
 #endif /* FRESNEL_H_ */
 
+
+#ifdef __cplusplus
+}
+#endif

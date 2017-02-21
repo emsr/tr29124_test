@@ -1,3 +1,5 @@
+#include <string>
+
 double *bernstein_matrix ( int n );
 double bernstein_matrix_determinant ( int n );
 double *bernstein_matrix_inverse ( int n );
