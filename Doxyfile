@@ -32,7 +32,7 @@ DOXYFILE_ENCODING      = UTF-8
 # title of most generated pages and in a few other places.
 # The default value is: My Project.
 
-PROJECT_NAME           = "TR29124 C++ Special Math Functions"
+PROJECT_NAME           = "C++ Special Math Functions"
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. This
 # could be handy for archiving the generated documentation or if some version
@@ -761,14 +761,15 @@ WARN_LOGFILE           = doxywarn.txt
 # Note: If this tag is empty the current directory is searched.
 
 INPUT                  = bits/specfun.h \
+			 bits/specfun_state.h \
 			 bits/sf_airy.tcc \
 			 bits/sf_bessel.tcc \
 			 bits/sf_beta.tcc \
 			 bits/sf_cardinal.tcc \
 			 bits/sf_chebyshev.tcc \
 			 bits/sf_dawson.tcc \
-			 bits/sf_ellint.tcc \
 			 bits/sf_distributions.tcc \
+			 bits/sf_ellint.tcc \
 			 bits/sf_expint.tcc \
 			 bits/sf_fresnel.tcc \
 			 bits/sf_gamma.tcc \
@@ -785,9 +786,10 @@ INPUT                  = bits/specfun.h \
 			 bits/sf_owens_t.tcc \
 			 bits/sf_polylog.tcc \
 			 bits/sf_theta.tcc \
-			 bits/sf_trig.tcc \
 			 bits/sf_trigint.tcc \
-			 bits/sf_zeta.tcc
+			 bits/sf_trig.tcc \
+			 bits/sf_zeta.tcc \
+			 ext/math_util.h
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
