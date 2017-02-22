@@ -667,7 +667,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __gnu_cxx::__quiet_NaN(std::real(__s));
       else
 	{
-	  auto __arg = -std::log10(_S_eps) / std::abs(__s);
+	  const auto __arg = -std::log10(_S_eps) / std::abs(__s);
 	  int __k_max = __arg > _Real{6} ? 1000000 : std::pow(_Real{10}, __arg);
 	  auto __zeta_m_1 = _Val{0};
 	  for (int __k = __k_max; __k >= 2; --__k)
