@@ -1,11 +1,11 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sph_bessel test_sph_bessel.cpp wrap_boost.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sph_bessel test_sph_bessel.cpp -lquadmath -Lwrappers -lwrap_boost
 ./test_sph_bessel > test_sph_bessel.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sph_bessel test_sph_bessel.cpp wrap_boost.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sph_bessel test_sph_bessel.cpp -lquadmath -Lwrappers -lwrap_boost
 ./test_sph_bessel > test_sph_bessel.txt
 
-g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_sph_bessel test_sph_bessel.cpp wrap_boost.cpp -lquadmath
+g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_sph_bessel test_sph_bessel.cpp -lquadmath -Lwrappers -lwrap_boost
 ./test_sph_bessel > test_sph_bessel.txt
 */
 

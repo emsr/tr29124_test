@@ -1,8 +1,8 @@
 /*
-$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -L. -lwrap_cephes
-LD_LIBRARY_PATH=.:cephes:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
+$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -Lwrappers -lwrap_cephes
+LD_LIBRARY_PATH=wrappers:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
 
-LD_LIBRARY_PATH=.:cephes:$LD_LIBRARY_PATH $HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -L. -lwrap_cephes
+LD_LIBRARY_PATH=wrappers:$LD_LIBRARY_PATH $HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -Lwrappers -lwrap_cephes
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -Lwrappers -lwrap_cephes
 PATH=wrappers:$PATH ./test_polylog > test_polylog.txt
@@ -332,10 +332,10 @@ template<typename Tp>
     for (int i = -200; i <= 10; ++i)
       {
 	auto x = del * i;
-	auto Ls_ceph = __gnu_cxx::dilog(x);
+	auto Ls_dilog = __gnu_cxx::dilog(x);
 	auto Ls_gnu = __gnu_cxx::polylog(Tp(2), x);
 	std::cout << ' ' << x
-		  << ' ' << Ls_ceph
+		  << ' ' << Ls_dilog
 		  << ' ' << Ls_gnu
 		  << '\n';
       }

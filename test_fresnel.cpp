@@ -1,11 +1,11 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_fresnel test_fresnel.cpp wrap_boost.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_fresnel test_fresnel.cpp -lquadmath -Lwrappers -lwrap_boost
 ./test_fresnel > test_fresnel.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_fresnel test_fresnel.cpp wrap_boost.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_fresnel test_fresnel.cpp -lquadmath -Lwrappers -lwrap_boost
 ./test_fresnel > test_fresnel.txt
 
-g++ -std=gnu++17 -g -Wall -Wextra -DNO_LOGBQ -I. -o test_fresnel test_fresnel.cpp wrap_boost.cpp -lquadmath
+g++ -std=gnu++17 -g -Wall -Wextra -DNO_LOGBQ -I. -o test_fresnel test_fresnel.cpp wrap_boost.cpp -lquadmath -Lwrappers -lwrap_boost
 ./test_fresnel > test_fresnel.txt
 */
 
