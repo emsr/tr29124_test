@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sincos test_sincos.cpp -lquadmath -Lwrappers -lwrap_boost
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sincos test_sincos.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 ./test_sincos > test_sincos.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sincos test_sincos.cpp -lquadmath -Lwrappers -lwrap_boost
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sincos test_sincos.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 ./test_sincos > test_sincos.txt
 */
 
