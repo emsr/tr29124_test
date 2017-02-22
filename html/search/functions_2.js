@@ -9,6 +9,8 @@ var searchData=
   ['bincoef',['bincoef',['../group__gnu__math__spec__func.html#ga2934ccfb8bbd5877efd369a3ecd9ac4d',1,'__gnu_cxx']]],
   ['bincoeff',['bincoeff',['../group__gnu__math__spec__func.html#ga20ff8c4c82808c78c299634d02f3f8bd',1,'__gnu_cxx']]],
   ['bincoefl',['bincoefl',['../group__gnu__math__spec__func.html#ga6874da4660b1ef35c03e28bf09e81796',1,'__gnu_cxx']]],
+  ['binomial_5fcdf',['binomial_cdf',['../group__gnu__math__spec__func.html#gababdb8009e34572d1a4f8a89ed799218',1,'__gnu_cxx']]],
+  ['binomial_5fpdf',['binomial_pdf',['../group__gnu__math__spec__func.html#gac7bd7c29fb9048ec90f181b473e26ac2',1,'__gnu_cxx']]],
   ['bose_5feinstein',['bose_einstein',['../group__gnu__math__spec__func.html#gacf63ebbc67ea21d569cf510ed0da95fd',1,'__gnu_cxx']]],
   ['bose_5feinsteinf',['bose_einsteinf',['../group__gnu__math__spec__func.html#gac1fb313fba5639d4168b6ee682507688',1,'__gnu_cxx']]],
   ['bose_5feinsteinl',['bose_einsteinl',['../group__gnu__math__spec__func.html#ga995c3ff580f81afb139f9cd50f445b48',1,'__gnu_cxx']]]

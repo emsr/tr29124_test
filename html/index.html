@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>TR29124 C++ Special Math Functions: Mathematical Special Functions</title>
+<title>C++ Special Math Functions: Mathematical Special Functions</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">TR29124 C++ Special Math Functions
+   <div id="projectname">C++ Special Math Functions
    &#160;<span id="projectnumber">2.0</span>
    </div>
   </td>
@@ -108,6 +108,9 @@ $(document).ready(function(){initNavTree('index.html','');});
 Introduction and History</h1>
 <p>The first significant library upgrade on the road to C++2011, <a href="http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2005/n1836.pdf">TR1</a>, included a set of 23 mathematical functions that significantly extended the standard transcendental functions inherited from C and declared in &lt;cmath&gt;.</p>
 <p>Although most components from TR1 were eventually adopted for C++11 these math functions were left behind out of concern for implementability. The math functions were published as a separate international standard <a href="http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2010/n3060.pdf">IS 29124 - Extensions to the C++ Library to Support Mathematical Special Functions</a>.</p>
+<p>Follow-up proosals for new special functions have also been published: <a href="http://open-std.org/JTC1/SC22/WG21/docs/papers/2013/n3494.pdf">A proposal to add special mathematical functions according to the ISO/IEC 80000-2:2009 standard, Vincent Reverdy</a>.</p>
+<p><a href="http://open-std.org/JTC1/SC22/WG21/docs/papers/2004/n1668.pdf">A Proposal to add Mathematical Functions for Statistics to the C++ Standard Library, Paul A Bristow</a>.</p>
+<p><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0081r0.pdf">A proposal to add sincos to the standard library, Paul Dreik</a>.</p>
 <p>For C++17 these functions were incorporated into the main standard.</p>
 <h1><a class="anchor" id="contents"></a>
 Contents</h1>
@@ -176,6 +179,7 @@ Contents</h1>
 <li><a class="el" href="group__gnu__math__spec__func.html#ga47dd583a4f3a19f797a5e074e357ba36">fermi_dirac - Fermi-Dirac integrals</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#gab6a34ce43bad4e8181ad9c40aebb9ada">fresnel_c - Fresnel cosine integrals</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#gaaf6e2b182d0abde6fde72c0b8b9f959c">fresnel_s - Fresnel sine integrals</a></li>
+<li><a class="el" href="group__gnu__math__spec__func.html#ga5d0da7c5a9ba020da4ed87785a682133">gamma_reciprocal - Reciprocal gamma function</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#ga793df814fb4e1b60e926ead0be14cc87">gegenbauer - Gegenbauer polynomials</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#gab73b2a75a662785fa102926dca3be59f">heuman_lambda - Heuman lambda functions</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#ga19b3014d94dd102c59a5c7776474be41">hurwitz_zeta - Hurwitz zeta functions</a></li>
@@ -189,7 +193,7 @@ Contents</h1>
 <li><a class="el" href="group__gnu__math__spec__func.html#ga31ca8e7a5b1f5c883e727ed9c053edd8">ldouble_factorial - Log double factorials</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#ga4ad68133a4ff354cb99e4d3608ce6e4d">legendre_q - Legendre functions of the second kind</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#gaee28cc03db944a3e02fd10542016cfa8">lfactorial - Log factorials</a></li>
-<li><a class="el" href="group__gnu__math__spec__func.html#gaf70747491390b1bfc27b93ff4be6376e">lgamma - Log gamma for complex arguments</a></li>
+<li><a class="el" href="group__gnu__math__spec__func.html#ga3a5c8ad2a513470bd71be1bb14439945">lgamma - Log gamma for complex arguments</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#ga4975d412b8e15f499a4da7b4e3f535c6">lpochhammer_lower - Log lower Pochhammer functions</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#ga68c4a9e8b38757a21ac54c55fe4e8dda">lpochhammer - Log upper Pochhammer functions</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#gaa6ca4f2127c6c2101dc360673304cc2c">owens_t - Owens T functions</a></li>
@@ -203,7 +207,7 @@ Contents</h1>
 <li><a class="el" href="group__gnu__math__spec__func.html#ga56bea42a4701761e82567f7100d9ca5e">sinhc_pi - </a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#ga6a11b9d949ab86f9fd170dcf0d3b1251">sinc - Normalized sinus cardinal function</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#ga8041c24b528475bcf8a4178e484652a3">sincos - Sine + cosine function</a></li>
-<li><a class="el" href="group__gnu__math__spec__func.html#ga3152cfc9d5fa04fbe61781b45b3d4c04">sincos_pi - Reperiodized sine + cosine function</a></li>
+<li><a class="el" href="group__gnu__math__spec__func.html#ga011b1b2431b5f0467f7e3688b14628c6">sincos_pi - Reperiodized sine + cosine function</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#ga8fcd01a56e0c16d7568026c0bb4312eb">sin_pi - Reperiodized sine function.</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#gab004f7356231c96ae819d72e5d75b8dd">sinh_pi - Reperiodized hyperbolic sine function.</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#ga3dbc3831c1bd9f2a8be05496db9375a0">sinc_pi - Sinus cardinal function</a></li>
@@ -216,13 +220,14 @@ Contents</h1>
 <li><a class="el" href="group__gnu__math__spec__func.html#gadca3d25c4f7eed15099d8f80681d4055">sph_harmonic - Spherical</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#ga5029c1e804c1c9b28949b5ef00237c08">tan_pi - Reperiodized tangent function.</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#ga5f0c92cb16210a8d087327ff2c048115">tanh_pi - Reperiodized hyperbolic tangent function.</a></li>
-<li><a class="el" href="group__gnu__math__spec__func.html#ga6133351c7602e917fd08d62d897e57d0">tgamma - Gamma for complex arguments</a></li>
-<li><a class="el" href="group__gnu__math__spec__func.html#ga6133351c7602e917fd08d62d897e57d0">tgamma - Upper incomplete gamma functions</a></li>
+<li><a class="el" href="group__gnu__math__spec__func.html#gac76f330d5eed535fc5936b9625099fdf">tgamma - Gamma for complex arguments</a></li>
+<li><a class="el" href="group__gnu__math__spec__func.html#gac76f330d5eed535fc5936b9625099fdf">tgamma - Upper incomplete gamma functions</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#ga973fba718e906a5179d954c56b991c8d">tgamma_lower - Lower incomplete gamma functions</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#gac122af3ffd2e5536fdf021afce79b7d4">theta_1 - Exponential theta function 1</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#gacec36dc316e561bbaa371c60c06e52f7">theta_2 - Exponential theta function 2</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#ga34e5d79e6ba8b8b104e690fc1ebc7fd6">theta_3 - Exponential theta function 3</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#ga25e72f2b50b53d168f8fa653b1a0d012">theta_4 - Exponential theta function 4</a></li>
+<li><a class="el" href="group__gnu__math__spec__func.html#gaa1fda5b87a8c44debac679331bebfb11">tricomi_u - Tricomi confluent hypergeometric function</a></li>
 <li><a class="el" href="group__gnu__math__spec__func.html#ga5df3bb50b78cd1bc676763dbf9e64929">zernike - Zernike polynomials</a></li>
 </ul>
 <h1><a class="anchor" id="general"></a>

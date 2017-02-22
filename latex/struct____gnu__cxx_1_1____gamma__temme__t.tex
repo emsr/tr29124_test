@@ -1,0 +1,99 @@
+\hypertarget{struct____gnu__cxx_1_1____gamma__temme__t}{}\section{\+\_\+\+\_\+gnu\+\_\+cxx\+:\+:\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t$<$ \+\_\+\+Tp $>$ Struct Template Reference}
+\label{struct____gnu__cxx_1_1____gamma__temme__t}\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t$<$ \+\_\+\+Tp $>$@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t$<$ \+\_\+\+Tp $>$}}
+
+
+A structure for the gamma functions required by the Temme series expansions of $ N_\nu(x) $ and $ K_\nu(x) $. \[ \Gamma_1 = \frac{1}{2\mu} \left[\frac{1}{\Gamma(1 - \mu)} - \frac{1}{\Gamma(1 + \mu)}\right] \] and \[ \Gamma_2 = \frac{1}{2} \left[\frac{1}{\Gamma(1 - \mu)} + \frac{1}{\Gamma(1 + \mu)}\right] \] where $ -1/2 <= \mu <= 1/2 $ is $ \mu = \nu - N $ and $ N $. is the nearest integer to $ \nu $. The values of $ \Gamma(1 + \mu) $ and $ \Gamma(1 - \mu) $ are returned as well.  
+
+
+
+
+{\ttfamily \#include $<$specfun\+\_\+state.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____gamma__temme__t_a5cd3cdcf5479d232d3ea118c69198215}{\+\_\+\+\_\+gamma\+\_\+1\+\_\+value}
+\begin{DoxyCompactList}\small\item\em The output function $ \Gamma_1(\mu) $. \end{DoxyCompactList}\item 
+\+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____gamma__temme__t_af3113befce3b6bc9c561472fbaff4520}{\+\_\+\+\_\+gamma\+\_\+2\+\_\+value}
+\begin{DoxyCompactList}\small\item\em The output function $ \Gamma_2(\mu) $. \end{DoxyCompactList}\item 
+\+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____gamma__temme__t_afc5c8fbbc48bdb065bc425e53605dc3c}{\+\_\+\+\_\+gamma\+\_\+minus\+\_\+value}
+\begin{DoxyCompactList}\small\item\em The output function $ 1/\Gamma(1 - \mu) $. \end{DoxyCompactList}\item 
+\+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____gamma__temme__t_a5484bd46240c8348c2d1f0718a056665}{\+\_\+\+\_\+gamma\+\_\+plus\+\_\+value}
+\begin{DoxyCompactList}\small\item\em The output function $ 1/\Gamma(1 + \mu) $. \end{DoxyCompactList}\item 
+\+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____gamma__temme__t_a841e7c549dd505de260018ddaa020565}{\+\_\+\+\_\+mu\+\_\+arg}
+\begin{DoxyCompactList}\small\item\em The input parameter of the gamma functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Tp$>$\\*
+struct \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t$<$ \+\_\+\+Tp $>$}
+
+A structure for the gamma functions required by the Temme series expansions of $ N_\nu(x) $ and $ K_\nu(x) $. \[ \Gamma_1 = \frac{1}{2\mu} \left[\frac{1}{\Gamma(1 - \mu)} - \frac{1}{\Gamma(1 + \mu)}\right] \] and \[ \Gamma_2 = \frac{1}{2} \left[\frac{1}{\Gamma(1 - \mu)} + \frac{1}{\Gamma(1 + \mu)}\right] \] where $ -1/2 <= \mu <= 1/2 $ is $ \mu = \nu - N $ and $ N $. is the nearest integer to $ \nu $. The values of $ \Gamma(1 + \mu) $ and $ \Gamma(1 - \mu) $ are returned as well. 
+
+The accuracy requirements on this are high for $ |\mu| < 0 $. 
+
+Definition at line 397 of file specfun\+\_\+state.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}!\+\_\+\+\_\+gamma\+\_\+1\+\_\+value@{\+\_\+\+\_\+gamma\+\_\+1\+\_\+value}}
+\index{\+\_\+\+\_\+gamma\+\_\+1\+\_\+value@{\+\_\+\+\_\+gamma\+\_\+1\+\_\+value}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+gamma\+\_\+1\+\_\+value}{__gamma_1_value}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ \+\_\+\+Tp {\bf \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+gamma\+\_\+1\+\_\+value}\hypertarget{struct____gnu__cxx_1_1____gamma__temme__t_a5cd3cdcf5479d232d3ea118c69198215}{}\label{struct____gnu__cxx_1_1____gamma__temme__t_a5cd3cdcf5479d232d3ea118c69198215}
+
+
+The output function $ \Gamma_1(\mu) $. 
+
+
+
+Definition at line 409 of file specfun\+\_\+state.\+h.
+
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}!\+\_\+\+\_\+gamma\+\_\+2\+\_\+value@{\+\_\+\+\_\+gamma\+\_\+2\+\_\+value}}
+\index{\+\_\+\+\_\+gamma\+\_\+2\+\_\+value@{\+\_\+\+\_\+gamma\+\_\+2\+\_\+value}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+gamma\+\_\+2\+\_\+value}{__gamma_2_value}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ \+\_\+\+Tp {\bf \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+gamma\+\_\+2\+\_\+value}\hypertarget{struct____gnu__cxx_1_1____gamma__temme__t_af3113befce3b6bc9c561472fbaff4520}{}\label{struct____gnu__cxx_1_1____gamma__temme__t_af3113befce3b6bc9c561472fbaff4520}
+
+
+The output function $ \Gamma_2(\mu) $. 
+
+
+
+Definition at line 412 of file specfun\+\_\+state.\+h.
+
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}!\+\_\+\+\_\+gamma\+\_\+minus\+\_\+value@{\+\_\+\+\_\+gamma\+\_\+minus\+\_\+value}}
+\index{\+\_\+\+\_\+gamma\+\_\+minus\+\_\+value@{\+\_\+\+\_\+gamma\+\_\+minus\+\_\+value}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+gamma\+\_\+minus\+\_\+value}{__gamma_minus_value}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ \+\_\+\+Tp {\bf \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+gamma\+\_\+minus\+\_\+value}\hypertarget{struct____gnu__cxx_1_1____gamma__temme__t_afc5c8fbbc48bdb065bc425e53605dc3c}{}\label{struct____gnu__cxx_1_1____gamma__temme__t_afc5c8fbbc48bdb065bc425e53605dc3c}
+
+
+The output function $ 1/\Gamma(1 - \mu) $. 
+
+
+
+Definition at line 406 of file specfun\+\_\+state.\+h.
+
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}!\+\_\+\+\_\+gamma\+\_\+plus\+\_\+value@{\+\_\+\+\_\+gamma\+\_\+plus\+\_\+value}}
+\index{\+\_\+\+\_\+gamma\+\_\+plus\+\_\+value@{\+\_\+\+\_\+gamma\+\_\+plus\+\_\+value}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+gamma\+\_\+plus\+\_\+value}{__gamma_plus_value}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ \+\_\+\+Tp {\bf \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+gamma\+\_\+plus\+\_\+value}\hypertarget{struct____gnu__cxx_1_1____gamma__temme__t_a5484bd46240c8348c2d1f0718a056665}{}\label{struct____gnu__cxx_1_1____gamma__temme__t_a5484bd46240c8348c2d1f0718a056665}
+
+
+The output function $ 1/\Gamma(1 + \mu) $. 
+
+
+
+Definition at line 403 of file specfun\+\_\+state.\+h.
+
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}!\+\_\+\+\_\+mu\+\_\+arg@{\+\_\+\+\_\+mu\+\_\+arg}}
+\index{\+\_\+\+\_\+mu\+\_\+arg@{\+\_\+\+\_\+mu\+\_\+arg}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+mu\+\_\+arg}{__mu_arg}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ \+\_\+\+Tp {\bf \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+mu\+\_\+arg}\hypertarget{struct____gnu__cxx_1_1____gamma__temme__t_a841e7c549dd505de260018ddaa020565}{}\label{struct____gnu__cxx_1_1____gamma__temme__t_a841e7c549dd505de260018ddaa020565}
+
+
+The input parameter of the gamma functions. 
+
+
+
+Definition at line 400 of file specfun\+\_\+state.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+bits/\hyperlink{specfun__state_8h}{specfun\+\_\+state.\+h}\end{DoxyCompactItemize}

@@ -44,7 +44,6 @@ var searchData=
   ['cos_5fpi',['cos_pi',['../group__gnu__math__spec__func.html#ga05f183d57b1726136ba9795ba1b158c5',1,'__gnu_cxx']]],
   ['cos_5fpif',['cos_pif',['../group__gnu__math__spec__func.html#gaddcae99c1572af6fa1d79b9cfa053033',1,'__gnu_cxx']]],
   ['cos_5fpil',['cos_pil',['../group__gnu__math__spec__func.html#ga9b6816c0abf30fd88417d79a33cb5465',1,'__gnu_cxx']]],
-  ['cos_5fvalue',['cos_value',['../struct____gnu__cxx_1_1____sincos__t.html#a7bd05f866e4b6ad9ffd83f6a2eb01595',1,'__gnu_cxx::__sincos_t']]],
   ['cosh_5fpi',['cosh_pi',['../group__gnu__math__spec__func.html#ga633224563637e80a4cda93863a693ad6',1,'__gnu_cxx']]],
   ['cosh_5fpif',['cosh_pif',['../group__gnu__math__spec__func.html#ga79a2f5c9da96b5ea6c663d6efca24944',1,'__gnu_cxx']]],
   ['cosh_5fpil',['cosh_pil',['../group__gnu__math__spec__func.html#gab7bf4f591dd35af2bdb88a8219f5e248',1,'__gnu_cxx']]],

@@ -3,6 +3,12 @@ The first significant library upgrade on the road to C++2011, \href{http://www.o
 
 Although most components from T\+R1 were eventually adopted for C++11 these math functions were left behind out of concern for implementability. The math functions were published as a separate international standard \href{http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2010/n3060.pdf}{\tt IS 29124 -\/ Extensions to the C++ Library to Support Mathematical Special Functions}.
 
+Follow-\/up proosals for new special functions have also been published\+: \href{http://open-std.org/JTC1/SC22/WG21/docs/papers/2013/n3494.pdf}{\tt A proposal to add special mathematical functions according to the I\+S\+O/\+I\+EC 80000-\/2\+:2009 standard, Vincent Reverdy}.
+
+\href{http://open-std.org/JTC1/SC22/WG21/docs/papers/2004/n1668.pdf}{\tt A Proposal to add Mathematical Functions for Statistics to the C++ Standard Library, Paul A Bristow}.
+
+\href{http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0081r0.pdf}{\tt A proposal to add sincos to the standard library, Paul Dreik}.
+
 For C++17 these functions were incorporated into the main standard.\hypertarget{index_contents}{}\section{Contents}\label{index_contents}
 The following functions are implemented in namespace {\ttfamily std\+:} 
 \begin{DoxyItemize}
@@ -74,6 +80,7 @@ In addition a large number of new functions are added as extensions\+:
 \item \hyperlink{group__gnu__math__spec__func_ga47dd583a4f3a19f797a5e074e357ba36}{fermi\+\_\+dirac -\/ Fermi-\/\+Dirac integrals}
 \item \hyperlink{group__gnu__math__spec__func_gab6a34ce43bad4e8181ad9c40aebb9ada}{fresnel\+\_\+c -\/ Fresnel cosine integrals}
 \item \hyperlink{group__gnu__math__spec__func_gaaf6e2b182d0abde6fde72c0b8b9f959c}{fresnel\+\_\+s -\/ Fresnel sine integrals}
+\item \hyperlink{group__gnu__math__spec__func_ga5d0da7c5a9ba020da4ed87785a682133}{gamma\+\_\+reciprocal -\/ Reciprocal gamma function}
 \item \hyperlink{group__gnu__math__spec__func_ga793df814fb4e1b60e926ead0be14cc87}{gegenbauer -\/ Gegenbauer polynomials}
 \item \hyperlink{group__gnu__math__spec__func_gab73b2a75a662785fa102926dca3be59f}{heuman\+\_\+lambda -\/ Heuman lambda functions}
 \item \hyperlink{group__gnu__math__spec__func_ga19b3014d94dd102c59a5c7776474be41}{hurwitz\+\_\+zeta -\/ Hurwitz zeta functions}
@@ -87,7 +94,7 @@ In addition a large number of new functions are added as extensions\+:
 \item \hyperlink{group__gnu__math__spec__func_ga31ca8e7a5b1f5c883e727ed9c053edd8}{ldouble\+\_\+factorial -\/ Log double factorials}
 \item \hyperlink{group__gnu__math__spec__func_ga4ad68133a4ff354cb99e4d3608ce6e4d}{legendre\+\_\+q -\/ Legendre functions of the second kind}
 \item \hyperlink{group__gnu__math__spec__func_gaee28cc03db944a3e02fd10542016cfa8}{lfactorial -\/ Log factorials}
-\item \hyperlink{group__gnu__math__spec__func_gaf70747491390b1bfc27b93ff4be6376e}{lgamma -\/ Log gamma for complex arguments}
+\item \hyperlink{group__gnu__math__spec__func_ga3a5c8ad2a513470bd71be1bb14439945}{lgamma -\/ Log gamma for complex arguments}
 \item \hyperlink{group__gnu__math__spec__func_ga4975d412b8e15f499a4da7b4e3f535c6}{lpochhammer\+\_\+lower -\/ Log lower Pochhammer functions}
 \item \hyperlink{group__gnu__math__spec__func_ga68c4a9e8b38757a21ac54c55fe4e8dda}{lpochhammer -\/ Log upper Pochhammer functions}
 \item \hyperlink{group__gnu__math__spec__func_gaa6ca4f2127c6c2101dc360673304cc2c}{owens\+\_\+t -\/ Owens T functions}
@@ -101,7 +108,7 @@ In addition a large number of new functions are added as extensions\+:
 \item \hyperlink{group__gnu__math__spec__func_ga56bea42a4701761e82567f7100d9ca5e}{sinhc\+\_\+pi -\/ }
 \item \hyperlink{group__gnu__math__spec__func_ga6a11b9d949ab86f9fd170dcf0d3b1251}{sinc -\/ Normalized sinus cardinal function}
 \item \hyperlink{group__gnu__math__spec__func_ga8041c24b528475bcf8a4178e484652a3}{sincos -\/ Sine + cosine function}
-\item \hyperlink{group__gnu__math__spec__func_ga3152cfc9d5fa04fbe61781b45b3d4c04}{sincos\+\_\+pi -\/ Reperiodized sine + cosine function}
+\item \hyperlink{group__gnu__math__spec__func_ga011b1b2431b5f0467f7e3688b14628c6}{sincos\+\_\+pi -\/ Reperiodized sine + cosine function}
 \item \hyperlink{group__gnu__math__spec__func_ga8fcd01a56e0c16d7568026c0bb4312eb}{sin\+\_\+pi -\/ Reperiodized sine function.}
 \item \hyperlink{group__gnu__math__spec__func_gab004f7356231c96ae819d72e5d75b8dd}{sinh\+\_\+pi -\/ Reperiodized hyperbolic sine function.}
 \item \hyperlink{group__gnu__math__spec__func_ga3dbc3831c1bd9f2a8be05496db9375a0}{sinc\+\_\+pi -\/ Sinus cardinal function}
@@ -114,13 +121,14 @@ In addition a large number of new functions are added as extensions\+:
 \item \hyperlink{group__gnu__math__spec__func_gadca3d25c4f7eed15099d8f80681d4055}{sph\+\_\+harmonic -\/ Spherical}
 \item \hyperlink{group__gnu__math__spec__func_ga5029c1e804c1c9b28949b5ef00237c08}{tan\+\_\+pi -\/ Reperiodized tangent function.}
 \item \hyperlink{group__gnu__math__spec__func_ga5f0c92cb16210a8d087327ff2c048115}{tanh\+\_\+pi -\/ Reperiodized hyperbolic tangent function.}
-\item \hyperlink{group__gnu__math__spec__func_ga6133351c7602e917fd08d62d897e57d0}{tgamma -\/ Gamma for complex arguments}
-\item \hyperlink{group__gnu__math__spec__func_ga6133351c7602e917fd08d62d897e57d0}{tgamma -\/ Upper incomplete gamma functions}
+\item \hyperlink{group__gnu__math__spec__func_gac76f330d5eed535fc5936b9625099fdf}{tgamma -\/ Gamma for complex arguments}
+\item \hyperlink{group__gnu__math__spec__func_gac76f330d5eed535fc5936b9625099fdf}{tgamma -\/ Upper incomplete gamma functions}
 \item \hyperlink{group__gnu__math__spec__func_ga973fba718e906a5179d954c56b991c8d}{tgamma\+\_\+lower -\/ Lower incomplete gamma functions}
 \item \hyperlink{group__gnu__math__spec__func_gac122af3ffd2e5536fdf021afce79b7d4}{theta\+\_\+1 -\/ Exponential theta function 1}
 \item \hyperlink{group__gnu__math__spec__func_gacec36dc316e561bbaa371c60c06e52f7}{theta\+\_\+2 -\/ Exponential theta function 2}
 \item \hyperlink{group__gnu__math__spec__func_ga34e5d79e6ba8b8b104e690fc1ebc7fd6}{theta\+\_\+3 -\/ Exponential theta function 3}
 \item \hyperlink{group__gnu__math__spec__func_ga25e72f2b50b53d168f8fa653b1a0d012}{theta\+\_\+4 -\/ Exponential theta function 4}
+\item \hyperlink{group__gnu__math__spec__func_gaa1fda5b87a8c44debac679331bebfb11}{tricomi\+\_\+u -\/ Tricomi confluent hypergeometric function}
 \item \hyperlink{group__gnu__math__spec__func_ga5df3bb50b78cd1bc676763dbf9e64929}{zernike -\/ Zernike polynomials}
 \end{DoxyItemize}\hypertarget{index_general}{}\section{General Features}\label{index_general}
 \hypertarget{index_promotion}{}\subsection{Argument Promotion}\label{index_promotion}

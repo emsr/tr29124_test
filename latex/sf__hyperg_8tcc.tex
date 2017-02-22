@@ -33,7 +33,7 @@ This graph shows which files directly or indirectly include this file\+:
 \begin{DoxyCompactItemize}
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a3cb3151857e9ac01bc442c90301365ee}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+conf\+\_\+hyperg} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
-\begin{DoxyCompactList}\small\item\em Return the confluent hypergeometric function $ {}_1F_1(a;c;x) $. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Return the confluent hypergeometric function $ {}_1F_1(a;c;x) = M(a,c,x) $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_adc839c2b3faad5d78bf64236c5c7af73}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+conf\+\_\+hyperg\+\_\+lim} (\+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Return the confluent hypergeometric limit function $ {}_0F_1(-;c;x) $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a44b73ec79e0a8cfd1f29a21cb39f2bdc}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+conf\+\_\+hyperg\+\_\+lim\+\_\+series} (\+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
@@ -49,7 +49,11 @@ This graph shows which files directly or indirectly include this file\+:
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a3c3baddc93bfaf1cb368d4b74e53542d}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+hyperg\+\_\+reflect} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Return the hypergeometric function $ {}_2F_1(a,b;c;x) $ by the reflection formulae in Abramowitz \& Stegun formula 15.\+3.\+6 for d = c -\/ a -\/ b not integral and formula 15.\+3.\+11 for d = c -\/ a -\/ b integral. This assumes a, b, c != negative integer. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_ad234e0d31f55cd3748169dccb2533c6a}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+hyperg\+\_\+series} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
-\begin{DoxyCompactList}\small\item\em Return the hypergeometric function $ {}_2F_1(a,b;c;x) $ by series expansion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Return the hypergeometric function $ {}_2F_1(a,b;c;x) $ by series expansion. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_ae67133e463041158ebbffe6c54af6e0a}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+tricomi\+\_\+u} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Return the Tricomi confluent hypergeometric function \[ U(a,c,x) = \frac{\Gamma(1-c)}{\Gamma(a-c+1)} {}_1F_1(a;c;x) + \frac{\Gamma(c-1)}{\Gamma(a)} x^{1-c} {}_1F_1(a-c+1;2-c;x) \]. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_adc131cec2eae93bacc28d6afd89def2f}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+tricomi\+\_\+u\+\_\+naive} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Return the Tricomi confluent hypergeometric function \[ U(a,c,x) = \frac{\Gamma(1-c)}{\Gamma(a-c+1)} {}_1F_1(a;c;x) + \frac{\Gamma(c-1)}{\Gamma(a)} x^{1-c} {}_1F_1(a-c+1;2-c;x) \]. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
