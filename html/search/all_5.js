@@ -42,8 +42,9 @@ var searchData=
   ['ellnome',['ellnome',['../group__gnu__math__spec__func.html#ga7bfb34f8b5c0ed7c72040f9cb7034bba',1,'__gnu_cxx']]],
   ['ellnomef',['ellnomef',['../group__gnu__math__spec__func.html#gad3ba08e5843ea0ec2bb9ddde3033adff',1,'__gnu_cxx']]],
   ['ellnomel',['ellnomel',['../group__gnu__math__spec__func.html#ga0774570b24f654f8ae39e1865613a4e2',1,'__gnu_cxx']]],
-  ['evenzeta',['evenzeta',['../namespacestd_1_1____detail.html#af59bd2be508cc6a421ddf5dd70c93d97',1,'std::__detail']]],
   ['expint',['expint',['../group__tr29124__math__spec__func.html#gac6d12da409bbd0e41dd1f7cdb3317252',1,'std::expint()'],['../group__gnu__math__spec__func.html#ga2cfc699129ceac9cfed87c61e6dc0e08',1,'__gnu_cxx::expint()']]],
   ['expintf',['expintf',['../group__tr29124__math__spec__func.html#ga5842816f6eed2594e0a327df4e4a2a47',1,'std::expintf()'],['../group__gnu__math__spec__func.html#ga85751691a29807d99e990fcba61312f3',1,'__gnu_cxx::expintf()']]],
-  ['expintl',['expintl',['../group__tr29124__math__spec__func.html#ga1329130b32328d0666e290ee5931fa4f',1,'std::expintl()'],['../group__gnu__math__spec__func.html#ga720ca0b275784c8b82193f427a2b3553',1,'__gnu_cxx::expintl()']]]
+  ['expintl',['expintl',['../group__tr29124__math__spec__func.html#ga1329130b32328d0666e290ee5931fa4f',1,'std::expintl()'],['../group__gnu__math__spec__func.html#ga720ca0b275784c8b82193f427a2b3553',1,'__gnu_cxx::expintl()']]],
+  ['exponential_5fcdf',['exponential_cdf',['../group__gnu__math__spec__func.html#ga20e07d9a4ba13fa11b269cad45d3dd90',1,'__gnu_cxx']]],
+  ['exponential_5fpdf',['exponential_pdf',['../group__gnu__math__spec__func.html#ga0b3746456b0eb5cc066b2c13906c6000',1,'__gnu_cxx']]]
 ];

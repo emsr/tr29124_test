@@ -55,9 +55,9 @@ struct \hyperlink{structstd_1_1____detail_1_1__Factorial__table}{std\+::\+\_\+\+
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+G\+L\+I\+B\+C\+X\+X14\+\_\+\+C\+O\+N\+S\+T\+E\+X\+PR \+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a5dc6cb42a6bcd3258371b6cc93ee12f0}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+bernoulli} (int \+\_\+\+\_\+n)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+G\+L\+I\+B\+C\+X\+X14\+\_\+\+C\+O\+N\+S\+T\+E\+X\+PR \+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a68ae2aecb4cdf37b72cd60409cdc500c}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+bernoulli} (unsigned int \+\_\+\+\_\+n)
 \begin{DoxyCompactList}\small\item\em This returns Bernoulli number $ B_n $. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+G\+L\+I\+B\+C\+X\+X14\+\_\+\+C\+O\+N\+S\+T\+E\+X\+PR \+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a72c7ddb85ace9619af583ca2acdb0a9b}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+bernoulli\+\_\+2n} (int \+\_\+\+\_\+n)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+G\+L\+I\+B\+C\+X\+X14\+\_\+\+C\+O\+N\+S\+T\+E\+X\+PR \+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_abd0b1f05f2b32a21cad034b38473bb8b}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+bernoulli\+\_\+2n} (unsigned int \+\_\+\+\_\+n)
 \begin{DoxyCompactList}\small\item\em This returns Bernoulli number $ B_2n $ at even integer arguments $ 2n $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+G\+L\+I\+B\+C\+X\+X14\+\_\+\+C\+O\+N\+S\+T\+E\+X\+PR \+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_ad3d3e44d340742b0362a8ad95080d315}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+bernoulli\+\_\+series} (unsigned int \+\_\+\+\_\+n)
 \begin{DoxyCompactList}\small\item\em This returns Bernoulli numbers from a table or by summation for larger values. \end{DoxyCompactList}\item 
@@ -71,8 +71,12 @@ struct \hyperlink{structstd_1_1____detail_1_1__Factorial__table}{std\+::\+\_\+\+
 \begin{DoxyCompactList}\small\item\em Return the factorial of the integer n. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a178e0b2cc0ae66b7d958e837da4fe4c1}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma} (\+\_\+\+Tp \+\_\+\+\_\+a)
 \begin{DoxyCompactList}\small\item\em Return the gamma function $ \Gamma(a) $. The gamma function is defined by\+: \[ \Gamma(a) = \int_0^\infty e^{-t}t^{a-1}dt (a > 0) \]. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::pair$<$ \+\_\+\+Tp, \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a00ade496acee116fb7990d20ff4be762}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Return the incomplete gamma functions. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::pair$<$ \+\_\+\+Tp, \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_afd6319747af991947a02388acee40c26}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+cont\+\_\+frac} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Return the incomplete gamma function by continued fraction. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a8ac187fda39e0c55614e4c58146f871c}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+reciprocal} (\+\_\+\+Tp \+\_\+\+\_\+a)
+\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a08dc6d850e2f02ff45deaa4772298cf3}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+reciprocal\+\_\+series} (\+\_\+\+Tp \+\_\+\+\_\+a)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::pair$<$ \+\_\+\+Tp, \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_aa480c595e1c5b894d76398cf0e8eb02b}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+series} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+x)

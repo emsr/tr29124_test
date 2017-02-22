@@ -3,7 +3,37 @@
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
+struct \hyperlink{struct____gnu__cxx_1_1____airy__t}{\+\_\+\+\_\+airy\+\_\+t}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____cyl__bessel__t}{\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+t}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____cyl__hankel__t}{\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+t}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____cyl__mod__bessel__t}{\+\_\+\+\_\+cyl\+\_\+mod\+\_\+bessel\+\_\+t}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____fock__airy__t}{\+\_\+\+\_\+fock\+\_\+airy\+\_\+t}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____gamma__inc__t}{\+\_\+\+\_\+gamma\+\_\+inc\+\_\+t}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____gamma__temme__t}{\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A structure for the gamma functions required by the Temme series expansions of $ N_\nu(x) $ and $ K_\nu(x) $. \[ \Gamma_1 = \frac{1}{2\mu} \left[\frac{1}{\Gamma(1 - \mu)} - \frac{1}{\Gamma(1 + \mu)}\right] \] and \[ \Gamma_2 = \frac{1}{2} \left[\frac{1}{\Gamma(1 - \mu)} + \frac{1}{\Gamma(1 + \mu)}\right] \] where $ -1/2 <= \mu <= 1/2 $ is $ \mu = \nu - N $ and $ N $. is the nearest integer to $ \nu $. The values of $ \Gamma(1 + \mu) $ and $ \Gamma(1 - \mu) $ are returned as well. \end{DoxyCompactList}\item 
+struct \hyperlink{struct____gnu__cxx_1_1____jacobi__t}{\+\_\+\+\_\+jacobi\+\_\+t}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____lgamma__t}{\+\_\+\+\_\+lgamma\+\_\+t}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____pqgamma__t}{\+\_\+\+\_\+pqgamma\+\_\+t}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____quadrature__point__t}{\+\_\+\+\_\+quadrature\+\_\+point\+\_\+t}
+\item 
 struct \hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+sincos\+\_\+t}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____sph__bessel__t}{\+\_\+\+\_\+sph\+\_\+bessel\+\_\+t}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____sph__hankel__t}{\+\_\+\+\_\+sph\+\_\+hankel\+\_\+t}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____sph__mod__bessel__t}{\+\_\+\+\_\+sph\+\_\+mod\+\_\+bessel\+\_\+t}
 \end{DoxyCompactItemize}
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
@@ -15,6 +45,22 @@ enum \{ \hyperlink{group__gnu__math__spec__func_ggad6c62dd86a596716cece6ac2d4cfd
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\bool \hyperlink{namespace____gnu__cxx_a586fa80a2f00ea60e6bed5e4f267bfd4}{\+\_\+\+\_\+fp\+\_\+is\+\_\+equal} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\})
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \hyperlink{namespace____gnu__cxx_a5b5e889240854b8a4452ac49593fdc74}{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\})
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \hyperlink{namespace____gnu__cxx_af4f5d1b815527e3d8587bdbbef9470e3}{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\})
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \hyperlink{namespace____gnu__cxx_a75c2c5ab6f25d41dddd3d00235593211}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\})
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \hyperlink{namespace____gnu__cxx_adfc2607bd5aebd90ba6af2d4d4365bef}{\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\})
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\bool \hyperlink{namespace____gnu__cxx_a8d30fc0f2348283e00f56c16d5713fc9}{\+\_\+\+\_\+fp\+\_\+is\+\_\+zero} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\})
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespace____gnu__cxx_adebbf99919675806def929327e724a53}{\+\_\+\+\_\+fp\+\_\+max\+\_\+abs} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Int\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespace____gnu__cxx_abc155473831db12736006150c0ad42b6}{\+\_\+\+\_\+parity} (\+\_\+\+Int\+Tp \+\_\+\+\_\+k)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga53243cdb83abeb008fa90d8a098768af}{airy\+\_\+ai} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
@@ -44,6 +90,10 @@ float \hyperlink{group__gnu__math__spec__func_ga20ff8c4c82808c78c299634d02f3f8bd
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga6874da4660b1ef35c03e28bf09e81796}{bincoefl} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gababdb8009e34572d1a4f8a89ed799218}{binomial\+\_\+cdf} (\+\_\+\+Tp \+\_\+\+\_\+p, unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
+\begin{DoxyCompactList}\small\item\em Return the binomial cumulative distribution function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gac7bd7c29fb9048ec90f181b473e26ac2}{binomial\+\_\+pdf} (\+\_\+\+Tp \+\_\+\+\_\+p, unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
+\begin{DoxyCompactList}\small\item\em Return the binomial probability mass function. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tps , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tps, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gacf63ebbc67ea21d569cf510ed0da95fd}{bose\+\_\+einstein} (\+\_\+\+Tps \+\_\+\+\_\+s, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gac1fb313fba5639d4168b6ee682507688}{bose\+\_\+einsteinf} (float \+\_\+\+\_\+s, float \+\_\+\+\_\+x)
@@ -284,6 +334,10 @@ float \hyperlink{group__gnu__math__spec__func_ga85751691a29807d99e990fcba61312f3
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga720ca0b275784c8b82193f427a2b3553}{expintl} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Tlam , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tlam, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga20e07d9a4ba13fa11b269cad45d3dd90}{exponential\+\_\+cdf} (\+\_\+\+Tlam \+\_\+\+\_\+lambda, \+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Return the exponential cumulative probability density function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tlam , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tlam, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga0b3746456b0eb5cc066b2c13906c6000}{exponential\+\_\+pdf} (\+\_\+\+Tlam \+\_\+\+\_\+lambda, \+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Return the exponential probability density function. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga48bc268969bfc03eaeaf4bfd457bb25c}{factorial} (unsigned int \+\_\+\+\_\+n)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga5a288283a8ed63e1d2b0145f313a5378}{factorialf} (unsigned int \+\_\+\+\_\+n)
@@ -296,6 +350,10 @@ float \hyperlink{group__gnu__math__spec__func_gacf7f49b2b7bf50fd37d939236712cbe2
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga3876af54a92853036cc88ec6b8ea5d67}{fermi\+\_\+diracl} (long double \+\_\+\+\_\+s, long double \+\_\+\+\_\+x)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga48e9043ad2a45c40aeeb782e7f536bdd}{fisher\+\_\+f\+\_\+cdf} (\+\_\+\+Tp \+\_\+\+\_\+F, unsigned int \+\_\+\+\_\+nu1, unsigned int \+\_\+\+\_\+nu2)
+\begin{DoxyCompactList}\small\item\em Return the F-\/distribution propability function. This returns the probability that the observed chi-\/square for a correct model exceeds the value $ \chi^2 $. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gab0ecd24dba55d2117cf4d623a5f9637a}{fisher\+\_\+f\+\_\+pdf} (\+\_\+\+Tp \+\_\+\+\_\+F, unsigned int \+\_\+\+\_\+nu1, unsigned int \+\_\+\+\_\+nu2)
+\begin{DoxyCompactList}\small\item\em Return the F-\/distribution propability function. This returns the probability that the observed chi-\/square for a correct model exceeds the value $ \chi^2 $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gab6a34ce43bad4e8181ad9c40aebb9ada}{fresnel\+\_\+c} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga02ca7579d5aef96cba69e38e988e7a42}{fresnel\+\_\+cf} (float \+\_\+\+\_\+x)
@@ -307,6 +365,16 @@ long double \hyperlink{group__gnu__math__spec__func_gaa3f82a7569d61c2f7c194d2e64
 float \hyperlink{group__gnu__math__spec__func_ga73450b8fd4abd5d8d3191dd6cbcda808}{fresnel\+\_\+sf} (float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga5d6ac976fa316df9b943f92bafe1407d}{fresnel\+\_\+sl} (long double \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Ta , typename \+\_\+\+Tb , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta, \+\_\+\+Tb, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaf20f8e0778d43ad42d3c05e2e7896821}{gamma\+\_\+cdf} (\+\_\+\+Ta \+\_\+\+\_\+alpha, \+\_\+\+Tb \+\_\+\+\_\+beta, \+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Return the gamma cumulative propability distribution function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Ta , typename \+\_\+\+Tb , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta, \+\_\+\+Tb, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gae6eff89b253773f8d6851d8648b7cd51}{gamma\+\_\+pdf} (\+\_\+\+Ta \+\_\+\+\_\+alpha, \+\_\+\+Tb \+\_\+\+\_\+beta, \+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Return the gamma propability distribution function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Ta $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta $>$ \hyperlink{group__gnu__math__spec__func_ga5d0da7c5a9ba020da4ed87785a682133}{gamma\+\_\+reciprocal} (\+\_\+\+Ta \+\_\+\+\_\+a)
+\item 
+float \hyperlink{group__gnu__math__spec__func_ga10cccd5045490ac24590c094c43107d8}{gamma\+\_\+reciprocalf} (float \+\_\+\+\_\+a)
+\item 
+long double \hyperlink{group__gnu__math__spec__func_ga73bfcace13daa8b50e7e7e3f583a2eb0}{gamma\+\_\+reciprocall} (long double \+\_\+\+\_\+a)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Talpha , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Talpha, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga793df814fb4e1b60e926ead0be14cc87}{gegenbauer} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Talpha \+\_\+\+\_\+alpha, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
@@ -400,9 +468,15 @@ float \hyperlink{group__gnu__math__spec__func_ga65af05c4093d4895a564a8d67e389a9b
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga3a0c196f34916dc68c29c89f26cbe1ee}{lfactoriall} (unsigned int \+\_\+\+\_\+n)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Ta $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta $>$ \hyperlink{group__gnu__math__spec__func_ga3a5c8ad2a513470bd71be1bb14439945}{lgamma} (\+\_\+\+Ta \+\_\+\+\_\+a)
+\item 
 {\footnotesize template$<$typename \+\_\+\+Ta $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta $>$ $>$ \hyperlink{group__gnu__math__spec__func_gaf70747491390b1bfc27b93ff4be6376e}{lgamma} (std\+::complex$<$ \+\_\+\+Ta $>$ \+\_\+\+\_\+a)
 \item 
+float \hyperlink{group__gnu__math__spec__func_ga37956b360838b5b2f98c8e5cfd15d307}{lgammaf} (float \+\_\+\+\_\+a)
+\item 
 std\+::complex$<$ float $>$ \hyperlink{group__gnu__math__spec__func_ga5b10ee6e92d8707a151b00086889b2ea}{lgammaf} (std\+::complex$<$ float $>$ \+\_\+\+\_\+a)
+\item 
+long double \hyperlink{group__gnu__math__spec__func_gabc66f234f4554cd5ff878792cc85bd37}{lgammal} (long double \+\_\+\+\_\+a)
 \item 
 std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_ga5f12f60afe9a47f4ca04964f642bbf0d}{lgammal} (std\+::complex$<$ long double $>$ \+\_\+\+\_\+a)
 \item 
@@ -412,6 +486,14 @@ float \hyperlink{group__gnu__math__spec__func_gab878da3ba2f5c1d49d96eadde533b233
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gab17f5cadc8f77ba2666d0d5ecc78de5d}{logintl} (long double \+\_\+\+\_\+x)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Ta , typename \+\_\+\+Tb , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta, \+\_\+\+Tb, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga5a4ad2c21300e112def147c1c832a651}{logistic\+\_\+cdf} (\+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tb \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Return the logistic cumulative distribution function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Ta , typename \+\_\+\+Tb , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta, \+\_\+\+Tb, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga6c3f760a8485f4b4feed6b275bf9db82}{logistic\+\_\+pdf} (\+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tb \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Return the logistic probability density function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tmu , typename \+\_\+\+Tsig , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tmu, \+\_\+\+Tsig, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gafa67c235e52c647104b9b439d828390b}{lognormal\+\_\+cdf} (\+\_\+\+Tmu \+\_\+\+\_\+mu, \+\_\+\+Tsig \+\_\+\+\_\+sigma, \+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Return the lognormal cumulative probability density function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tmu , typename \+\_\+\+Tsig , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tmu, \+\_\+\+Tsig, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga32c31df3d88526cf991a045f85d73c00}{lognormal\+\_\+pdf} (\+\_\+\+Tmu \+\_\+\+\_\+mu, \+\_\+\+Tsig \+\_\+\+\_\+sigma, \+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Return the lognormal probability density function. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tn $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tn $>$ \hyperlink{group__gnu__math__spec__func_ga68c4a9e8b38757a21ac54c55fe4e8dda}{lpochhammer} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tn \+\_\+\+\_\+n)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tn $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tn $>$ \hyperlink{group__gnu__math__spec__func_ga4975d412b8e15f499a4da7b4e3f535c6}{lpochhammer\+\_\+lower} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tn \+\_\+\+\_\+n)
@@ -424,6 +506,10 @@ float \hyperlink{group__gnu__math__spec__func_ga0b14e36032c36b1ebf79ea2af65f4f90
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga1057026f8679c601ecddd7c8d33edbc9}{lpochhammerl} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+n)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Tmu , typename \+\_\+\+Tsig , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tmu, \+\_\+\+Tsig, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gacba6cec6dfb42d64614b7ef1d198cd13}{normal\+\_\+cdf} (\+\_\+\+Tmu \+\_\+\+\_\+mu, \+\_\+\+Tsig \+\_\+\+\_\+sigma, \+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Return the normal cumulative probability density function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tmu , typename \+\_\+\+Tsig , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tmu, \+\_\+\+Tsig, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaff2213ae9a4822cbd506f05300f061f4}{normal\+\_\+pdf} (\+\_\+\+Tmu \+\_\+\+\_\+mu, \+\_\+\+Tsig \+\_\+\+\_\+sigma, \+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Return the normal probability density function. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tph , typename \+\_\+\+Tpa $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tph, \+\_\+\+Tpa $>$ \hyperlink{group__gnu__math__spec__func_gaa6ca4f2127c6c2101dc360673304cc2c}{owens\+\_\+t} (\+\_\+\+Tph \+\_\+\+\_\+h, \+\_\+\+Tpa \+\_\+\+\_\+a)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gac24d32e9b072c4953654d5559f992871}{owens\+\_\+tf} (float \+\_\+\+\_\+h, float \+\_\+\+\_\+a)
@@ -498,9 +584,9 @@ long double \hyperlink{group__gnu__math__spec__func_ga79a8fd931f5ad4f737e2931e63
 \item 
 \hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}$<$ double $>$ \hyperlink{group__gnu__math__spec__func_ga8041c24b528475bcf8a4178e484652a3}{sincos} (double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga49243d9883994c9c10c82ae79596457b}{sincos} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga055df322391de7d0450f58b2e73b6171}{sincos} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga3152cfc9d5fa04fbe61781b45b3d4c04}{sincos\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga011b1b2431b5f0467f7e3688b14628c6}{sincos\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 \hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}$<$ float $>$ \hyperlink{group__gnu__math__spec__func_gacf416c867a8a456f8f0e3d8b45ca8bd5}{sincos\+\_\+pif} (float \+\_\+\+\_\+x)
 \item 
@@ -582,6 +668,10 @@ std\+::complex$<$ float $>$ \hyperlink{group__gnu__math__spec__func_ga062b1156f5
 \item 
 std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_ga414c8374b4579aa14e38f5401304b6fa}{sph\+\_\+harmonicl} (unsigned int \+\_\+\+\_\+l, int \+\_\+\+\_\+m, long double \+\_\+\+\_\+theta, long double \+\_\+\+\_\+phi)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Tt , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga9762f044477668e7138f72569ef50a89}{student\+\_\+t\+\_\+cdf} (\+\_\+\+Tt \+\_\+\+\_\+t, unsigned int \+\_\+\+\_\+nu)
+\begin{DoxyCompactList}\small\item\em Return the Students T probability function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tt , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga74de88458ea2ed12e92a1520c7cad08e}{student\+\_\+t\+\_\+pdf} (\+\_\+\+Tt \+\_\+\+\_\+t, unsigned int \+\_\+\+\_\+nu)
+\begin{DoxyCompactList}\small\item\em Return the complement of the Students T probability function. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga5029c1e804c1c9b28949b5ef00237c08}{tan\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gaab32e2d76da811451e84232320ddf80c}{tan\+\_\+pif} (float \+\_\+\+\_\+x)
@@ -594,6 +684,8 @@ float \hyperlink{group__gnu__math__spec__func_gab6cbfb582127f997ad9a198903d08889
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga4bc71ee5cf3df2ba35e6504027e5c6c6}{tanh\+\_\+pil} (long double \+\_\+\+\_\+x)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Ta $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta $>$ \hyperlink{group__gnu__math__spec__func_gac76f330d5eed535fc5936b9625099fdf}{tgamma} (\+\_\+\+Ta \+\_\+\+\_\+a)
+\item 
 {\footnotesize template$<$typename \+\_\+\+Ta $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga6133351c7602e917fd08d62d897e57d0}{tgamma} (std\+::complex$<$ \+\_\+\+Ta $>$ \+\_\+\+\_\+a)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Ta , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga5e8ff98ee1e04d90965f2a8b2f639a18}{tgamma} (\+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+x)
@@ -604,9 +696,13 @@ float \hyperlink{group__gnu__math__spec__func_ga8f2aabeaa29d21b19c43972efb26798c
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gad057fe49a5bf95b1550f5f0a6e60bb19}{tgamma\+\_\+lowerl} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+x)
 \item 
+float \hyperlink{group__gnu__math__spec__func_ga008b1f4cc3a54c9c8221ad1f3504b593}{tgammaf} (float \+\_\+\+\_\+a)
+\item 
 std\+::complex$<$ float $>$ \hyperlink{group__gnu__math__spec__func_gaf548b80db1501cbc067de1564e721972}{tgammaf} (std\+::complex$<$ float $>$ \+\_\+\+\_\+a)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga942773871e9c21a50cf13ec160e7e8d9}{tgammaf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+x)
+\item 
+long double \hyperlink{group__gnu__math__spec__func_ga2c7d954852d84665aabd43566d67e344}{tgammal} (long double \+\_\+\+\_\+a)
 \item 
 std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_ga8d53515dba9c860fd6058a4b75aaff58}{tgammal} (std\+::complex$<$ long double $>$ \+\_\+\+\_\+a)
 \item 
@@ -660,9 +756,235 @@ float \hyperlink{group__gnu__math__spec__func_ga5e69cf30c9a4cc057accc43e8c4bf7a3
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gac574077067a4e7b24a0a9ff2d537d885}{theta\+\_\+sl} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+x)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Tpa , typename \+\_\+\+Tpc , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Tpa, \+\_\+\+Tpc, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaa1fda5b87a8c44debac679331bebfb11}{tricomi\+\_\+u} (\+\_\+\+Tpa \+\_\+\+\_\+a, \+\_\+\+Tpc \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
+float \hyperlink{group__gnu__math__spec__func_gab6eb5ec587642bf0952d6c3df1c64904}{tricomi\+\_\+uf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+c, float \+\_\+\+\_\+x)
+\item 
+long double \hyperlink{group__gnu__math__spec__func_gac5213af3913aeb8beb7206688889c60c}{tricomi\+\_\+ul} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+c, long double \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Ta , typename \+\_\+\+Tb , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta, \+\_\+\+Tb, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga99bd93638c9e36761728231839c2948c}{weibull\+\_\+cdf} (\+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tb \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Return the Weibull cumulative probability density function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Ta , typename \+\_\+\+Tb , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Ta, \+\_\+\+Tb, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gae9bdc4937c57d15bc0eb3fe505f86eb2}{weibull\+\_\+pdf} (\+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tb \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Return the Weibull probability density function. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Trho , typename \+\_\+\+Tphi $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+promote\+\_\+fp\+\_\+t$<$ \+\_\+\+Trho, \+\_\+\+Tphi $>$ \hyperlink{group__gnu__math__spec__func_ga5df3bb50b78cd1bc676763dbf9e64929}{zernike} (unsigned int \+\_\+\+\_\+n, int \+\_\+\+\_\+m, \+\_\+\+Trho \+\_\+\+\_\+rho, \+\_\+\+Tphi \+\_\+\+\_\+phi)
 \item 
 float \hyperlink{group__gnu__math__spec__func_gababce1066ecef7258070b9b7fcea975f}{zernikef} (unsigned int \+\_\+\+\_\+n, int \+\_\+\+\_\+m, float \+\_\+\+\_\+rho, float \+\_\+\+\_\+phi)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga9236dd8545b448da9cb05dd8b7cf6811}{zernikel} (unsigned int \+\_\+\+\_\+n, int \+\_\+\+\_\+m, long double \+\_\+\+\_\+rho, long double \+\_\+\+\_\+phi)
 \end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+equal@{\+\_\+\+\_\+fp\+\_\+is\+\_\+equal}}
+\index{\+\_\+\+\_\+fp\+\_\+is\+\_\+equal@{\+\_\+\+\_\+fp\+\_\+is\+\_\+equal}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+equal(\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\lcurly{}1\rcurly{})}{__fp_is_equal(_Tp __a, _Tp __b, _Tp __mul=_Tp\{1\})}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ bool \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+equal (
+\begin{DoxyParamCaption}
+\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a, }
+\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+b, }
+\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{namespace____gnu__cxx_a586fa80a2f00ea60e6bed5e4f267bfd4}{}\label{namespace____gnu__cxx_a586fa80a2f00ea60e6bed5e4f267bfd4}
+A function to reliably compare two floating point numbers.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+a} & The left hand side \\
+\hline
+{\em \+\_\+\+\_\+b} & The right hand side \\
+\hline
+{\em \+\_\+\+\_\+mul} & The multiplier for numeric epsilon for comparison \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if a and b are equal to zero or differ only by $ max(a,b) * mul * epsilon $ 
+\end{DoxyReturn}
+
+
+Definition at line 76 of file math\+\_\+util.\+h.
+
+
+
+References \+\_\+\+\_\+fp\+\_\+max\+\_\+abs().
+
+
+
+Referenced by \+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer(), \+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer(), \+\_\+\+\_\+fp\+\_\+is\+\_\+integer(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+int\+\_\+neg(), and std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+int\+\_\+pos().
+
+\index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer}}
+\index{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer(\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\lcurly{}1\rcurly{})}{__fp_is_half_integer(_Tp __a, _Tp __mul=_Tp\{1\})}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ {\bf \+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer (
+\begin{DoxyParamCaption}
+\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a, }
+\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{namespace____gnu__cxx_a5b5e889240854b8a4452ac49593fdc74}{}\label{namespace____gnu__cxx_a5b5e889240854b8a4452ac49593fdc74}
+A function to reliably detect if a floating point number is a half-\/integer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+a} & The floating point number \\
+\hline
+{\em \+\_\+\+\_\+mul} & The multiplier of machine epsilon for the tolerance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if 2$\ast$a is an integer within mul $\ast$ epsilon. 
+\end{DoxyReturn}
+
+
+Definition at line 150 of file math\+\_\+util.\+h.
+
+
+
+References \+\_\+\+\_\+fp\+\_\+is\+\_\+equal().
+
+\index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer}}
+\index{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer(\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\lcurly{}1\rcurly{})}{__fp_is_half_odd_integer(_Tp __a, _Tp __mul=_Tp\{1\})}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ {\bf \+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer (
+\begin{DoxyParamCaption}
+\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a, }
+\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{namespace____gnu__cxx_af4f5d1b815527e3d8587bdbbef9470e3}{}\label{namespace____gnu__cxx_af4f5d1b815527e3d8587bdbbef9470e3}
+A function to reliably detect if a floating point number is a half-\/odd-\/integer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+a} & The floating point number \\
+\hline
+{\em \+\_\+\+\_\+mul} & The multiplier of machine epsilon for the tolerance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if 2$\ast$a is an odd integer within mul $\ast$ epsilon. 
+\end{DoxyReturn}
+
+
+Definition at line 166 of file math\+\_\+util.\+h.
+
+
+
+References \+\_\+\+\_\+fp\+\_\+is\+\_\+equal().
+
+\index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer}}
+\index{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer(\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\lcurly{}1\rcurly{})}{__fp_is_integer(_Tp __a, _Tp __mul=_Tp\{1\})}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ {\bf \+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+integer (
+\begin{DoxyParamCaption}
+\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a, }
+\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{namespace____gnu__cxx_a75c2c5ab6f25d41dddd3d00235593211}{}\label{namespace____gnu__cxx_a75c2c5ab6f25d41dddd3d00235593211}
+A function to reliably detect if a floating point number is an integer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+a} & The floating point number \\
+\hline
+{\em \+\_\+\+\_\+mul} & The multiplier of machine epsilon for the tolerance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if a is an integer within mul $\ast$ epsilon. 
+\end{DoxyReturn}
+
+
+Definition at line 135 of file math\+\_\+util.\+h.
+
+
+
+References \+\_\+\+\_\+fp\+\_\+is\+\_\+equal().
+
+
+
+Referenced by \+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+reciprocal(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+series(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+log\+\_\+gamma(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+log\+\_\+pochhammer\+\_\+lower(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+pgamma(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+pochhammer\+\_\+lower(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+qgamma(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+riemann\+\_\+zeta(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+tgamma(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+tgamma\+\_\+lower(), and std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+tricomi\+\_\+u\+\_\+naive().
+
+\index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer}}
+\index{\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer(\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\lcurly{}1\rcurly{})}{__fp_is_odd_integer(_Tp __a, _Tp __mul=_Tp\{1\})}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ {\bf \+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer (
+\begin{DoxyParamCaption}
+\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a, }
+\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{namespace____gnu__cxx_adfc2607bd5aebd90ba6af2d4d4365bef}{}\label{namespace____gnu__cxx_adfc2607bd5aebd90ba6af2d4d4365bef}
+A function to reliably detect if a floating point number is an odd integer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+a} & The floating point number \\
+\hline
+{\em \+\_\+\+\_\+mul} & The multiplier of machine epsilon for the tolerance \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if a is an odd integer within mul $\ast$ epsilon. 
+\end{DoxyReturn}
+
+
+Definition at line 183 of file math\+\_\+util.\+h.
+
+
+
+References \+\_\+\+\_\+fp\+\_\+is\+\_\+integer().
+
+\index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+zero@{\+\_\+\+\_\+fp\+\_\+is\+\_\+zero}}
+\index{\+\_\+\+\_\+fp\+\_\+is\+\_\+zero@{\+\_\+\+\_\+fp\+\_\+is\+\_\+zero}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+zero(\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\lcurly{}1\rcurly{})}{__fp_is_zero(_Tp __a, _Tp __mul=_Tp\{1\})}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ bool \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+zero (
+\begin{DoxyParamCaption}
+\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a, }
+\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{namespace____gnu__cxx_a8d30fc0f2348283e00f56c16d5713fc9}{}\label{namespace____gnu__cxx_a8d30fc0f2348283e00f56c16d5713fc9}
+A function to reliably compare a floating point number with zero.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+a} & The floating point number \\
+\hline
+{\em \+\_\+\+\_\+mul} & The multiplier for numeric epsilon for comparison \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\ttfamily true} if a and b are equal to zero or differ only by $ max(a,b) * mul * epsilon $ 
+\end{DoxyReturn}
+
+
+Definition at line 96 of file math\+\_\+util.\+h.
+
+
+
+Referenced by std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+asymp(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+int\+\_\+neg(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+int\+\_\+pos(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg\+\_\+even(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg\+\_\+odd(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+negative\+\_\+real\+\_\+part(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos(), and std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+real\+\_\+pos().
+
+\index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+max\+\_\+abs@{\+\_\+\+\_\+fp\+\_\+max\+\_\+abs}}
+\index{\+\_\+\+\_\+fp\+\_\+max\+\_\+abs@{\+\_\+\+\_\+fp\+\_\+max\+\_\+abs}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+max\+\_\+abs(\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b)}{__fp_max_abs(_Tp __a, _Tp __b)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ \+\_\+\+Tp \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+max\+\_\+abs (
+\begin{DoxyParamCaption}
+\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a, }
+\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{namespace____gnu__cxx_adebbf99919675806def929327e724a53}{}\label{namespace____gnu__cxx_adebbf99919675806def929327e724a53}
+A function to return the max of the absolute values of two numbers ... so we won\textquotesingle{}t include everything. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+a} & The left hand side \\
+\hline
+{\em \+\_\+\+\_\+b} & The right hand side \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 58 of file math\+\_\+util.\+h.
+
+
+
+Referenced by \+\_\+\+\_\+fp\+\_\+is\+\_\+equal().
+
+\index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+parity@{\+\_\+\+\_\+parity}}
+\index{\+\_\+\+\_\+parity@{\+\_\+\+\_\+parity}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
+\subsubsection[{\texorpdfstring{\+\_\+\+\_\+parity(\+\_\+\+Int\+Tp \+\_\+\+\_\+k)}{__parity(_IntTp __k)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp , typename \+\_\+\+Int\+Tp $>$ \+\_\+\+Tp \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+parity (
+\begin{DoxyParamCaption}
+\item[{\+\_\+\+Int\+Tp}]{\+\_\+\+\_\+k}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{namespace____gnu__cxx_abc155473831db12736006150c0ad42b6}{}\label{namespace____gnu__cxx_abc155473831db12736006150c0ad42b6}
+Return -\/1 if the integer argument is odd and +1 if it is even. 
+
+Definition at line 47 of file math\+\_\+util.\+h.
+

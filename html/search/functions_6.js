@@ -6,6 +6,8 @@ var searchData=
   ['fermi_5fdirac',['fermi_dirac',['../group__gnu__math__spec__func.html#ga47dd583a4f3a19f797a5e074e357ba36',1,'__gnu_cxx']]],
   ['fermi_5fdiracf',['fermi_diracf',['../group__gnu__math__spec__func.html#gacf7f49b2b7bf50fd37d939236712cbe2',1,'__gnu_cxx']]],
   ['fermi_5fdiracl',['fermi_diracl',['../group__gnu__math__spec__func.html#ga3876af54a92853036cc88ec6b8ea5d67',1,'__gnu_cxx']]],
+  ['fisher_5ff_5fcdf',['fisher_f_cdf',['../group__gnu__math__spec__func.html#ga48e9043ad2a45c40aeeb782e7f536bdd',1,'__gnu_cxx']]],
+  ['fisher_5ff_5fpdf',['fisher_f_pdf',['../group__gnu__math__spec__func.html#gab0ecd24dba55d2117cf4d623a5f9637a',1,'__gnu_cxx']]],
   ['fresnel_5fc',['fresnel_c',['../group__gnu__math__spec__func.html#gab6a34ce43bad4e8181ad9c40aebb9ada',1,'__gnu_cxx']]],
   ['fresnel_5fcf',['fresnel_cf',['../group__gnu__math__spec__func.html#ga02ca7579d5aef96cba69e38e988e7a42',1,'__gnu_cxx']]],
   ['fresnel_5fcl',['fresnel_cl',['../group__gnu__math__spec__func.html#gaa3f82a7569d61c2f7c194d2e64b616f8',1,'__gnu_cxx']]],

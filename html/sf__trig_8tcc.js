@@ -1,6 +1,5 @@
 var sf__trig_8tcc =
 [
-    [ "__sincos_t", "struct____gnu__cxx_1_1____sincos__t.html", "struct____gnu__cxx_1_1____sincos__t" ],
     [ "_GLIBCXX_BITS_SF_TRIG_TCC", "sf__trig_8tcc.html#a6e1b0eff1758b4646af73ac467f1b629", null ],
     [ "__cos_pi", "sf__trig_8tcc.html#abfdaa500e1321747a0ad391ca3416a0b", null ],
     [ "__cos_pi", "sf__trig_8tcc.html#a0332c7fb29ed7be543103adc8d04d39d", null ],
