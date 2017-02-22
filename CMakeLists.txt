@@ -1,11 +1,17 @@
-cmake_minimum_required (VERSION 3.0)
+cmake_minimum_required (VERSION 3.2)
 
 project(SpecfunWrappers LANGUAGES CXX C Fortran)
+
 set(SpecfunWrappers_VERSION_MAJOR 1)
 set(SpecfunWrappers_VERSION_MINOR 0)
 
-set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-deprecated-declarations -Wold-style-cast -std=c++14")
+set(CMAKE_C_COMPILER $ENV{HOME}/bin/bin/gcc)
+set(CMAKE_CXX_COMPILER $ENV{HOME}/bin/bin/g++)
+set(CMAKE_Fortran_COMPILER $ENV{HOME}/bin/bin/gfortran)
 
+set(CMAKE_C_FLAGS "-std=c11 -Wall -Wextra")
+set(CMAKE_CXX_FLAGS "-std=c++17 -Wall -Wextra -Wno-deprecated-declarations -Wold-style-cast")
+set(CMAKE_Fortran_FLAGS "-Wall -Wextra")
 
 add_library(wrap_boost SHARED
             wrap_boost.h wrap_boost.cpp)
@@ -50,7 +56,6 @@ add_library(wrap_cephes SHARED
 	    cephes/cmath/atan.c
 	    cephes/cmath/atanh.c
 	    cephes/cmath/cbrt.c
-	    cephes/cmath/clog.c
 	    cephes/cmath/const.c
 	    cephes/cmath/cosh.c
 	    cephes/cmath/exp.c
@@ -112,8 +117,6 @@ add_library(wrap_cephes SHARED
 	    cephes/ldouble/bdtrl.c
 	    cephes/ldouble/btdtrl.c
 	    cephes/ldouble/cbrtl.c
-	    cephes/ldouble/clogl.c
-	    cephes/ldouble/cmplxl.c
 	    cephes/ldouble/coshl.c
 	    cephes/ldouble/econst.c
 	    cephes/ldouble/elliel.c
