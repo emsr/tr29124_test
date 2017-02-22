@@ -20,7 +20,7 @@ add_library(wrap_gsl SHARED
 	    gslextras/Fresnel/fresnel.h
 	    gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c
 	    gslextras/Hermite/gsl_sf_hermite.c)
-target_link_libraries(wrap_gsl GSL)
+target_link_libraries(wrap_gsl gsl)
 
 add_library(wrap_cephes SHARED
             wrap_cephes.h wrap_cephes.cpp
