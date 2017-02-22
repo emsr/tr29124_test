@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_pochhammer test_pochhammer.cpp wrap_boost.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_pochhammer test_pochhammer.cpp -lquadmath -Lwrappers -lwrap_boost
 ./test_pochhammer > test_pochhammer.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -I. -o test_pochhammer test_pochhammer.cpp wrap_boost.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -g -I. -o test_pochhammer test_pochhammer.cpp -lquadmath -Lwrappers -lwrap_boost -lwrap_gsl
 ./test_pochhammer > test_pochhammer.txt
 */
 

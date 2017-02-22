@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -Wall -Wextra -Wno-psabi -g -I. -o zeta_glob_deathmatch zeta_glob_deathmatch.cpp -lquadmath -L. -lwrap_gsl
+$HOME/bin/bin/g++ -std=c++17 -Wall -Wextra -Wno-psabi -g -I. -o zeta_glob_deathmatch zeta_glob_deathmatch.cpp -lquadmath -Lwrappers -lwrap_gsl
 LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./zeta_glob_deathmatch > zeta_glob_deathmatch.txt
 
-$HOME/bin/bin/g++ -std=c++17 -Wall -Wextra -g -I. -o zeta_glob_deathmatch zeta_glob_deathmatch.cpp -lquadmath -L. -lwrap_gsl
+$HOME/bin/bin/g++ -std=c++17 -Wall -Wextra -g -I. -o zeta_glob_deathmatch zeta_glob_deathmatch.cpp -lquadmath -Lwrappers -lwrap_gsl
 ./zeta_glob_deathmatch > zeta_glob_deathmatch.txt
 */
 

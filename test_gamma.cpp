@@ -1,11 +1,11 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma test_gamma.cpp wrap_boost.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma test_gamma.cpp -lquadmath -Lwrappers -lwrap_boost
 ./test_gamma > test_gamma.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma test_gamma.cpp wrap_boost.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma test_gamma.cpp -lquadmath -Lwrappers -lwrap_boost
 ./test_gamma > test_gamma.txt
 
-g++ -std=gnu++17 -g -Wall -Wextra -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp wrap_boost.cpp -lquadmath
+g++ -std=gnu++17 -g -Wall -Wextra -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp -lquadmath -Lwrappers -lwrap_boost
 ./test_gamma > test_gamma.txt
 */
 
