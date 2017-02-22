@@ -159,7 +159,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __harmonicN += __temp;
 	}
       // harmonicN now contains H_{s-1}.
-      // fac should be 1/(n-1)!
+      // fac should be 1/(s-1)!
       __res += (__harmonicN - std::log(-__w)) * __wk * __fac;
       __wk *= __w;
       __fac /= __s;
@@ -170,7 +170,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const unsigned int __maxit = 200;
       unsigned int __j = 1;
       bool __terminate = false;
-      __fac /= (__s + _Tp{1}); // (1/(n+1)!)
+      __fac /= _Tp(__s + 1); // (1/(n+1)!)
       __res -= _S_pipio6 * __fac * __pref; //subtract the zeroth order term.
       // Remainder of series.
       __fac *= _Tp{3} * _Tp{2} / (__s + _Tp{2}) / (__s + _Tp{3});
