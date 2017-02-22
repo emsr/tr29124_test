@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o debug_airy debug_airy.cpp -Lwrappers -lwrap_gsl -lwrap_boost
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o debug_airy debug_airy.cpp -Lwrappers/debug -lwrap_gsl -lwrap_boost
 ./debug_airy
 
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o debug_airy debug_airy.cpp -lquadmath -Lwrappers -lwrap_gsl -lwrap_boost
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o debug_airy debug_airy.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost
 ./debug_airy
 */
 

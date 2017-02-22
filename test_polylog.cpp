@@ -1,11 +1,11 @@
 /*
-$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -Lwrappers -lwrap_cephes
-LD_LIBRARY_PATH=wrappers:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
+$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -Lwrappers/debug -lwrap_cephes
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
 
-LD_LIBRARY_PATH=wrappers:$LD_LIBRARY_PATH $HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -Lwrappers -lwrap_cephes
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH $HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -Lwrappers/debug -lwrap_cephes
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -Lwrappers -lwrap_cephes
-PATH=wrappers:$PATH ./test_polylog > test_polylog.txt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -Lwrappers/debug -lwrap_cephes
+PATH=wrappers/debug:$PATH ./test_polylog > test_polylog.txt
 */
 
 #include <iostream>

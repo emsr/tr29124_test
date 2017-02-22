@@ -1,0 +1,10 @@
+
+cd release
+cmake ../../ -DCMAKE_BUILD_TYPE=RELEASE
+make
+cd ..
+
+cd debug
+cmake ../../ -DCMAKE_BUILD_TYPE=DEBUG
+make
+cd ..

@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_psi test_psi.cpp -lquadmath -Lwrappers -lwrap_gsl
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_psi test_psi.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 ./test_psi > test_psi.txt
 */
 

@@ -44,10 +44,13 @@ OBJ_DIR = $(MATH_DIR)/obj
 
 LIB_DIR = $(MATH_DIR)
 
-.PHONY: wrappers
+.PHONY: wrappers_debug wrappers_release
 
-wrappers:
-	$(MAKE) -C wrappers
+wrappers_debug:
+	$(MAKE) -C wrappers/debug
+
+wrappers_release:
+	$(MAKE) -C wrappers/release
 
 BINS = testcase \
        mpfrcalc \
@@ -438,16 +441,16 @@ mpfrcalc: mpfr_gexpr.c
 
 
 test_special_function: test_special_function.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -o test_special_function test_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -Lwrappers -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes
+	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -o test_special_function test_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes
 
 diff_special_function: diff_special_function.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -o diff_special_function diff_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -Lwrappers -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes
+	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -o diff_special_function diff_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes
 
 testcase2: testcase2.cpp testcase2.tcc $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -I$(BOOST_INC_DIR) -o testcase2 testcase2.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -Lwrappers -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes
+	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -I$(BOOST_INC_DIR) -o testcase2 testcase2.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes
 
 testcase: testcase.cpp testcase.tcc $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -I$(BOOST_INC_DIR) -o testcase testcase.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -Lwrappers -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes
+	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(LIB_DIR) -I$(BOOST_INC_DIR) -o testcase testcase.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes
 
 test_limits: test_limits.cpp
 	$(CXX17) -I. -o test_limits test_limits.cpp -lquadmath
@@ -456,7 +459,7 @@ test_cmath: test_cmath.cpp
 	$(CXX) -o test_cmath test_cmath.cpp -lquadmath
 
 test_airy: test_airy.cpp sf_airy.tcc
-	$(CXX) -o test_airy -I$(GSL_INC_DIR) test_airy.cpp -lquadmath -Lwrappers -lwrap_gsl
+	$(CXX) -o test_airy -I$(GSL_INC_DIR) test_airy.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 
 test_csint: test_csint.cpp csint.tcc
 	$(CXX) -o test_csint test_csint.cpp -lquadmath
@@ -645,7 +648,7 @@ test_pochhammer_lower: test_pochhammer_lower.cpp
 	$(CXX17) -I. -o test_pochhammer_lower test_pochhammer_lower.cpp -lquadmath
 
 test_polylog: test_polylog.cpp
-	$(CXX17) -I. -o test_polylog test_polylog.cpp -lquadmath -Lwrappers -lwrap_cephes
+	$(CXX17) -I. -o test_polylog test_polylog.cpp -lquadmath -Lwrappers/debug -lwrap_cephes
 
 test_polynomial: test_polynomial.cpp
 	$(CXX17) -I. -o test_polynomial test_polynomial.cpp -lquadmath
