@@ -167,8 +167,8 @@ void gegenbauer_ek_compute ( int n, double alpha, double x[], double w[] )
 
   for ( i = 2; i <= n; i++ )
   {
-    abi = 2.0 * ( alpha + ( double ) i );
-    bj[i-1] = 4.0 * ( double ) ( i ) * pow ( alpha + i, 2 ) * ( 2.0 * alpha + i )
+    abi = 2.0 * ( alpha + double( i ) );
+    bj[i-1] = 4.0 * double( i ) * pow ( alpha + i, 2 ) * ( 2.0 * alpha + i )
       / ( ( abi - 1.0 ) * ( abi + 1.0 ) * abi * abi );
   }
 
@@ -248,7 +248,7 @@ double gegenbauer_integral ( int expon, double alpha )
     return value;
   }
 
-  c = ( double ) ( expon );
+  c = double( expon );
 
   arg1 = - alpha;
   arg2 =   1.0 + c;
@@ -380,7 +380,7 @@ double *gegenbauer_polynomial_value ( int m, int n, double alpha, double x[] )
 
   for ( i = 2; i <= m; i++ )
   {
-    i_r8 = ( double ) i;
+    i_r8 = double(i);
     for ( j = 0; j < n; j++ )
     {
       c[i+j*(m+1)] = (  (     2.0 * i_r8 - 2.0  + 2.0 * alpha ) * x[j] * c[i-1+j*(m+1)]
@@ -718,10 +718,10 @@ void gegenbauer_ss_compute ( int order, double alpha, double xtab[],
 
   for ( i = 3; i <= order; i++ )
   {
-    c[i-1] = ( double ) ( i - 1 ) 
-          * ( alpha + alpha + ( double ) ( i - 1 ) ) / 
-          ( ( alpha + alpha + ( double ) ( 2 * i - 1 ) ) 
-          * ( alpha + alpha + ( double ) ( 2 * i - 3 ) ) );
+    c[i-1] = double( i - 1 ) 
+          * ( alpha + alpha + double( i - 1 ) ) / 
+          ( ( alpha + alpha + double( 2 * i - 1 ) ) 
+          * ( alpha + alpha + double( 2 * i - 3 ) ) );
   }
 
   delta = tgamma ( alpha         + 1.0 ) 
@@ -739,11 +739,11 @@ void gegenbauer_ss_compute ( int order, double alpha, double xtab[],
   {
     if ( i == 1 )
     {
-      an = alpha / ( double ) ( order );
+      an = alpha / double( order );
 
       r1 = ( 1.0 + alpha ) 
-        * ( 2.78 / ( 4.0 + ( double ) ( order * order ) ) 
-        + 0.768 * an / ( double ) ( order ) );
+        * ( 2.78 / ( 4.0 + double( order * order ) ) 
+        + 0.768 * an / double( order ) );
 
       r2 = 1.0 + 2.44 * an + 1.282 * an * an;
 
@@ -754,11 +754,11 @@ void gegenbauer_ss_compute ( int order, double alpha, double xtab[],
       r1 = ( 4.1 + alpha ) / 
         ( ( 1.0 + alpha ) * ( 1.0 + 0.156 * alpha ) );
 
-      r2 = 1.0 + 0.06 * ( ( double ) ( order ) - 8.0 ) * 
-        ( 1.0 + 0.12 * alpha ) / ( double ) ( order );
+      r2 = 1.0 + 0.06 * ( double( order ) - 8.0 ) * 
+        ( 1.0 + 0.12 * alpha ) / double( order );
 
       r3 = 1.0 + 0.012 * alpha * 
-        ( 1.0 + 0.25 * fabs ( alpha ) ) / ( double ) ( order );
+        ( 1.0 + 0.25 * fabs ( alpha ) ) / double( order );
 
       x = x - r1 * r2 * r3 * ( 1.0 - x );
     }
@@ -766,11 +766,11 @@ void gegenbauer_ss_compute ( int order, double alpha, double xtab[],
     {
       r1 = ( 1.67 + 0.28 * alpha ) / ( 1.0 + 0.37 * alpha );
 
-      r2 = 1.0 + 0.22 * ( ( double ) ( order ) - 8.0 ) 
-        / ( double ) ( order );
+      r2 = 1.0 + 0.22 * ( double( order ) - 8.0 ) 
+        / double( order );
 
       r3 = 1.0 + 8.0 * alpha / 
-        ( ( 6.28 + alpha ) * ( double ) ( order * order ) );
+        ( ( 6.28 + alpha ) * double( order * order ) );
 
       x = x - r1 * r2 * r3 * ( xtab[0] - x );
     }
@@ -783,11 +783,11 @@ void gegenbauer_ss_compute ( int order, double alpha, double xtab[],
       r1 = ( 1.0 + 0.235 * alpha ) / ( 0.766 + 0.119 * alpha );
 
       r2 = 1.0 / ( 1.0 + 0.639 
-        * ( ( double ) ( order ) - 4.0 ) 
-        / ( 1.0 + 0.71 * ( ( double ) ( order ) - 4.0 ) ) );
+        * ( double( order ) - 4.0 ) 
+        / ( 1.0 + 0.71 * ( double( order ) - 4.0 ) ) );
 
       r3 = 1.0 / ( 1.0 + 20.0 * alpha / ( ( 7.5 + alpha ) * 
-        ( double ) ( order * order ) ) );
+        double( order * order ) ) );
 
       x = x + r1 * r2 * r3 * ( x - xtab[i-3] );
     }
@@ -796,11 +796,11 @@ void gegenbauer_ss_compute ( int order, double alpha, double xtab[],
       r1 = ( 1.0 + 0.37 * alpha ) / ( 1.67 + 0.28 * alpha );
 
       r2 = 1.0 / 
-        ( 1.0 + 0.22 * ( ( double ) ( order ) - 8.0 ) 
-        / ( double ) ( order ) );
+        ( 1.0 + 0.22 * ( double( order ) - 8.0 ) 
+        / double( order ) );
 
       r3 = 1.0 / ( 1.0 + 8.0 * alpha / 
-        ( ( 6.28 + alpha ) * ( double ) ( order * order ) ) );
+        ( ( 6.28 + alpha ) * double( order * order ) ) );
 
       x = x + r1 * r2 * r3 * ( x - xtab[i-3] );
     }

@@ -2716,7 +2716,7 @@ void imtqlx_test ( )
 
   for ( i = 0; i < n; i++ )
   {
-    angle = ( double ) ( i + 1 ) * r8_pi / ( double ) ( 2 * ( n + 1 ) );
+    angle = double( i + 1 ) * r8_pi / double( 2 * ( n + 1 ) );
     lam2[i] = 4.0 * pow ( sin ( angle ), 2 );
   }
 

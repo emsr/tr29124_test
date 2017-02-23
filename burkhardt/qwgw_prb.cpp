@@ -318,7 +318,7 @@ void test03 ( )
 
   for ( j = 0; j < n - 1; j++ )
   {
-    jr = ( double ) ( j + 1 );
+    jr = double( j + 1 );
     bj[j] = ( jr * ( 2.0 * alpha + jr ) ) 
       / ( 4.0 * pow ( alpha + jr, 2 ) - 1.0 );
   }
@@ -413,7 +413,7 @@ void test04 ( )
 
   for ( j = 0; j < n - 1; j++ )
   {
-    jr = ( double ) ( j + 1 );
+    jr = double( j + 1 );
     if ( ( j % 2 ) == 0 )
     {
       bj[j] = ( jr + alpha ) / 2.0;
@@ -511,13 +511,13 @@ void test05 ( )
 
   for ( j = 0; j < n; j++ )
   {
-    jr = ( double ) ( j + 1 );
+    jr = double( j + 1 );
     aj[j] = alpha + 2.0 * jr - 1.0;
   }
 
   for ( j = 0; j < n - 1; j++ )
   {
-    jr = ( double ) ( j + 1 );
+    jr = double( j + 1 );
     bj[j] = jr * ( alpha + jr );
   }
   bj[n-1] = 0.0;
@@ -605,7 +605,7 @@ void test06 ( )
 
   for ( j = 0; j < n - 1; j++ )
   {
-    jr = ( double ) ( j + 1 );
+    jr = double( j + 1 );
     bj[j] = jr / 2.0;
   }
   bj[n-1] = 0.0;
@@ -699,7 +699,7 @@ void test07 ( )
 
   for ( j = 0; j < n; j++ )
   {
-    jr = ( double ) ( j + 1 );
+    jr = double( j + 1 );
     aj[j] = ( beta - alpha ) * ( beta + alpha ) 
       / ( alpha + beta + 2.0 * jr - 2.0 ) 
       / ( alpha + beta + 2.0 * jr );
@@ -707,7 +707,7 @@ void test07 ( )
 
   for ( j = 0; j < n - 1; j++ )
   {
-    jr = ( double ) ( j + 1 );
+    jr = double( j + 1 );
     bj[j] = 4.0 * jr * ( alpha + jr ) * ( beta + jr ) 
       * ( alpha + beta + jr ) 
       / ( pow ( alpha + beta + 2.0 * jr, 2 ) - 1.0 ) 
@@ -797,13 +797,13 @@ void test08 ( )
 
   for ( j = 0; j < n; j++ )
   {
-    jr = ( double ) ( j + 1 );
+    jr = double( j + 1 );
     aj[j] = 2.0 * jr - 1.0;
   }
 
   for ( j = 0; j < n - 1; j++ )
   {
-    jr = ( double ) ( j + 1 );
+    jr = double( j + 1 );
     bj[j] = jr * jr;
   }
   bj[n-1] = 0.0;
@@ -894,7 +894,7 @@ void test09 ( )
 
   for ( j = 0; j < n - 1; j++ )
   {
-    jr = ( double ) ( j + 1 );
+    jr = double( j + 1 );
     bj[j] = jr * jr / ( 4.0 * jr * jr - 1.0 );
   }
   bj[n-1] = 0.0;

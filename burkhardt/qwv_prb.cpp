@@ -167,8 +167,8 @@ void test02 ( )
 
   for ( i = 0; i < n; i++ )
   {
-    theta = ( double ) ( n - i - 1 ) * pi 
-          / ( double ) ( n - 1 );
+    theta = double( n - i - 1 ) * pi 
+          / double( n - 1 );
 
     x[i] = ( ( 1.0 - cos ( theta ) ) * a   
            + ( 1.0 + cos ( theta ) ) * b ) 

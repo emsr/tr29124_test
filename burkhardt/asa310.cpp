@@ -454,7 +454,7 @@ double betain ( double x, double p, double q, double beta, int *ifault )
   term = 1.0;
   ai = 1.0;
   value = 1.0;
-  ns = ( int ) ( qq + cx * psq );
+  ns = int( qq + cx * psq );
 //
 //  Use the Soper reduction formula.
 //
@@ -651,7 +651,7 @@ double betanc ( double x, double a, double b, double lambda, int *ifault )
       break;
     }
 
-    if (  itrmax < ( int ) xj )
+    if ( itrmax <  int(xj) )
     {
       break;
     }
@@ -1004,9 +1004,9 @@ double ncbeta ( double a, double b, double lambda, double x, double errmax,
   else
   {
     m = ( int ) ( c + 0.5 );
-    mr = ( double ) ( m );
-    iterlo = m - ( int ) ( 5.0 * sqrt ( mr ) );
-    iterhi = m + ( int ) ( 5.0 * sqrt ( mr ) );
+    mr = double( m );
+    iterlo = m - int( 5.0 * sqrt ( mr ) );
+    iterhi = m + int( 5.0 * sqrt ( mr ) );
     t = - c + mr * log ( c ) - lgamma ( mr + 1.0 );
     q = exp ( t );
     r = q;
@@ -1075,7 +1075,7 @@ double ncbeta ( double a, double b, double lambda, double x, double errmax,
 //
 //  Compute the first part of error bound.
 //
-    errbd = ( 1.0 - gammad ( c, ( double ) ( iter1 ), ifault ) ) * ( temp + s );
+    errbd = ( 1.0 - gammad ( c, double( iter1 ), ifault ) ) * ( temp + s );
 
     q = r;
     temp = ftemp;

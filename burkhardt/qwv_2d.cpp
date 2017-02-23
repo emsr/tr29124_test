@@ -142,8 +142,8 @@ double *qwv_2d ( int t, int n, double a, double b, double c, double d,
       {
         v[k+l*n] = pow ( x[l], i ) * pow ( y[l], j );
       }
-      rhs[k] = ( pow ( b, i + 1 ) - pow ( a, i + 1 ) ) / ( double ) ( i + 1 )
-             * ( pow ( d, j + 1 ) - pow ( c, j + 1 ) ) / ( double ) ( j + 1 );
+      rhs[k] = ( pow ( b, i + 1 ) - pow ( a, i + 1 ) ) / double( i + 1 )
+             * ( pow ( d, j + 1 ) - pow ( c, j + 1 ) ) / double( j + 1 );
       k = k + 1;
     }
   }
@@ -591,9 +591,9 @@ double *r8vec_even_new ( int n, double alo, double ahi )
   {
     for ( i = 0; i < n; i++ )
     {
-      a[i] = ( ( double ) ( n - i - 1 ) * alo
-             + ( double ) (     i     ) * ahi )
-             / ( double ) ( n     - 1 );
+      a[i] = ( double( n - i - 1 ) * alo
+             + double(     i     ) * ahi )
+             / double( n     - 1 );
     }
   }
 

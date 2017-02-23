@@ -141,7 +141,7 @@ double *qwv ( int n, double a, double b, double x[] )
 
   for ( i = 0; i < n; i++ )
   {
-    rhs[i] = ( pow ( b, i + 1 ) - pow ( a, i + 1 ) ) / ( double ) ( i + 1 );
+    rhs[i] = ( pow ( b, i + 1 ) - pow ( a, i + 1 ) ) / double( i + 1 );
   }
 
   r8mat_print ( n, n, v, "  Matrix:" );
@@ -588,9 +588,9 @@ double *r8vec_even_new ( int n, double alo, double ahi )
   {
     for ( i = 0; i < n; i++ )
     {
-      a[i] = ( ( double ) ( n - i - 1 ) * alo
-             + ( double ) (     i     ) * ahi )
-             / ( double ) ( n     - 1 );
+      a[i] = ( double( n - i - 1 ) * alo
+             + double(     i     ) * ahi )
+             / double( n     - 1 );
     }
   }
 

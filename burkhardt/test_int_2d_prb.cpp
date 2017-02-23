@@ -136,7 +136,7 @@ void test01 ( )
 
       p00_fun ( problem, n, x, fx );
 
-      quad = volume * r8vec_sum ( n, fx ) / ( double ) ( n );
+      quad = volume * r8vec_sum ( n, fx ) / double( n );
    
 
       exact = p00_exact ( problem );
@@ -232,15 +232,15 @@ void test02 ( )
 
       for ( ix = 1; ix <= nx; ix++ )
       {
-        xval = ( ( double ) ( 2 * nx - 2 * ix + 1 ) * a[0]   
-               + ( double ) (          2 * ix - 1 ) * b[0] ) 
-               / ( double ) ( 2 * nx              );
+        xval = ( double( 2 * nx - 2 * ix + 1 ) * a[0]   
+               + double(          2 * ix - 1 ) * b[0] ) 
+               / double( 2 * nx              );
 
         for ( iy = 1; iy <= ny; iy++ )
         {
-          yval = ( ( double ) ( 2 * ny - 2 * iy + 1 ) * a[1]
-                 + ( double ) (          2 * iy - 1 ) * b[1] ) 
-                 / ( double ) ( 2 * ny              );
+          yval = ( double( 2 * ny - 2 * iy + 1 ) * a[1]
+                 + double(          2 * iy - 1 ) * b[1] ) 
+                 / double( 2 * ny              );
 
           x[0+k*2] = xval;
           x[1+k*2] = yval;
@@ -252,7 +252,7 @@ void test02 ( )
 
       p00_fun ( problem, n, x, fx );
 
-      quad = volume * r8vec_sum ( n, fx ) / ( double ) ( n );
+      quad = volume * r8vec_sum ( n, fx ) / double( n );
    
       exact = p00_exact ( problem );
 

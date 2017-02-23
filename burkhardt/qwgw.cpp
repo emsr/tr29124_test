@@ -283,7 +283,7 @@ double r8_epsilon ( )
 
   value = 1.0;
 
-  while ( 1.0 < ( double ) ( 1.0 + value )  )
+  while ( 1.0 < double( 1.0 + value )  )
   {
     value = value / 2.0;
   }
@@ -407,12 +407,12 @@ double r8_gamma ( double x )
   if ( y <= 0.0 )
   {
     y = - x;
-    y1 = ( double ) ( int ) ( y );
+    y1 = double( int ) ( y );
     res = y - y1;
 
     if ( res != 0.0 )
     {
-      if ( y1 != ( double ) ( int ) ( y1 * 0.5 ) * 2.0 )
+      if ( y1 != double( int ) ( y1 * 0.5 ) * 2.0 )
       {
         parity = true;
       }
@@ -464,7 +464,7 @@ double r8_gamma ( double x )
     else
     {
       n = ( int ) ( y ) - 1;
-      y = y - ( double ) ( n );
+      y = y - double( n );
       z = y - 1.0;
     }
 //
@@ -800,9 +800,9 @@ double *r8vec_even_new ( int n, double alo, double ahi )
   {
     for ( i = 0; i < n; i++ )
     {
-      a[i] = ( ( double ) ( n - i - 1 ) * alo
-             + ( double ) (     i     ) * ahi )
-             / ( double ) ( n     - 1 );
+      a[i] = ( double( n - i - 1 ) * alo
+             + double(     i     ) * ahi )
+             / double( n     - 1 );
     }
   }
 

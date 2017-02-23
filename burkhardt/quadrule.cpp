@@ -357,7 +357,7 @@ void chebyshev_set ( int n, double x[], double w[] )
 
   for ( i = 0; i < n; i++ )
   {
-    w[i] = 2.0 / ( double ) ( n );
+    w[i] = 2.0 / double( n );
   }
 
   return;
@@ -426,12 +426,12 @@ void chebyshev1_compute ( int n, double x[], double w[] )
 
   for ( i = 0; i < n; i++ )
   {
-    w[i] = r8_pi / ( double ) ( n );
+    w[i] = r8_pi / double( n );
   }
   for ( i = 0; i < n; i++ )
   {
-    x[i] = cos ( r8_pi * ( double ) ( 2 * n - 1 - 2 * i ) 
-                       / ( double ) ( 2 * n ) );
+    x[i] = cos ( r8_pi * double( 2 * n - 1 - 2 * i ) 
+                       / double( 2 * n ) );
   }
 
   return;
@@ -489,7 +489,7 @@ double chebyshev1_integral ( int expon )
       bot = bot *   i;
     }
 	
-    exact = r8_pi * ( double ) ( top ) / ( double ) ( bot );
+    exact = r8_pi * double( top ) / double( bot );
   }
   else
   {
@@ -756,8 +756,8 @@ void chebyshev2_compute ( int n, double x[], double w[] )
 
   for ( i = 0; i < n; i++ )
   {
-    angle = r8_pi * ( double ) ( n - i ) / ( double ) ( n + 1 );
-    w[i] = r8_pi / ( double ) ( n + 1 ) * pow ( sin ( angle ), 2 );
+    angle = r8_pi * double( n - i ) / double( n + 1 );
+    w[i] = r8_pi / double( n + 1 ) * pow ( sin ( angle ), 2 );
     x[i] = cos ( angle );
   }
 
@@ -816,9 +816,9 @@ double chebyshev2_integral ( int expon )
       bot = bot *   i;
     }
 
-    bot = bot * ( double ) ( expon + 2 );
+    bot = bot * double( expon + 2 );
 
-    exact = r8_pi * ( double ) ( top ) / ( double ) ( bot );
+    exact = r8_pi * double( top ) / double( bot );
   }
   else
   {
@@ -1111,16 +1111,16 @@ void chebyshev3_compute ( int n, double x[], double w[] )
 
   for ( i = 0; i < n; i++ )
   {
-    angle = ( double ) ( n - 1 - i ) * r8_pi / ( double ) ( n - 1 );
+    angle = double( n - 1 - i ) * r8_pi / double( n - 1 );
     x[i] = cos ( angle );
   }
 
-  w[0] = r8_pi / ( double ) ( 2 * ( n - 1 ) );
+  w[0] = r8_pi / double( 2 * ( n - 1 ) );
   for ( i = 1; i < n - 1; i++ )
   {
-    w[i] = r8_pi / ( double ) ( n - 1 );
+    w[i] = r8_pi / double( n - 1 );
   }
-  w[n-1] = r8_pi / ( double ) ( 2 * ( n - 1 ) );
+  w[n-1] = r8_pi / double( 2 * ( n - 1 ) );
 
   return;
 }
@@ -1177,7 +1177,7 @@ double chebyshev3_integral ( int expon )
       bot = bot *   i;
     }
 	
-    exact = r8_pi * ( double ) ( top ) / ( double ) ( bot );
+    exact = r8_pi * double( top ) / double( bot );
   }
   else
   {
@@ -1738,8 +1738,8 @@ void clenshaw_curtis_compute ( int n, double x[], double w[] )
 
   for ( i = 1; i <= n; i++ )
   {
-    theta[i-1] = ( double ) ( i - 1 ) * r8_pi 
-               / ( double ) ( n - 1 );
+    theta[i-1] = double( i - 1 ) * r8_pi 
+               / double( n - 1 );
   }
 
   for ( i = 0; i < n; i++ )
@@ -1762,17 +1762,17 @@ void clenshaw_curtis_compute ( int n, double x[], double w[] )
         b = 2.0;
       }
 
-      w[i] = w[i] - b * cos ( 2.0 * ( double ) ( j ) * theta[i] ) 
-           / ( double ) ( 4 * j * j - 1 );
+      w[i] = w[i] - b * cos ( 2.0 * double( j ) * theta[i] ) 
+           / double( 4 * j * j - 1 );
     }
   }
 
-  w[0] = w[0] / ( double ) ( n - 1 );
+  w[0] = w[0] / double( n - 1 );
   for ( i = 2; i <= n-1; i++ )
   {
-    w[i-1] = 2.0 * w[i-1] / ( double ) ( n - 1 );
+    w[i-1] = 2.0 * w[i-1] / double( n - 1 );
   }
-  w[n-1] = w[n-1] / ( double ) ( n - 1 );
+  w[n-1] = w[n-1] / double( n - 1 );
 
   delete [] theta;
 
@@ -2776,8 +2776,8 @@ void fejer1_compute ( int n, double x[], double w[] )
 
   for ( i = 1; i <= n; i++ )
   {
-    theta[i-1] = ( double ) ( 2 * ( n - i ) + 1 ) * r8_pi
-               / ( double ) ( 2 * n     );
+    theta[i-1] = double( 2 * ( n - i ) + 1 ) * r8_pi
+               / double( 2 * n     );
   }
 
   for ( i = 0; i < n; i++ )
@@ -2791,14 +2791,14 @@ void fejer1_compute ( int n, double x[], double w[] )
     for ( j = 1; j <= ( n / 2 ); j++ )
     {
       w[i] = w[i] - 2.0
-        * cos ( 2.0 * ( double ) ( j ) * theta[i] ) 
-        / ( double ) ( 4 * j * j - 1 );
+        * cos ( 2.0 * double( j ) * theta[i] ) 
+        / double( 4 * j * j - 1 );
     }
   }
 
   for ( i = 0; i < n; i++ )
   {
-    w[i] = 2.0 * w[i] / ( double ) ( n );
+    w[i] = 2.0 * w[i] / double( n );
   }
 
   delete [] theta;
@@ -3106,8 +3106,8 @@ void fejer2_compute ( int n, double x[], double w[] )
 
   for ( i = 1; i <= n; i++ )
   {
-    theta[i-1] = ( double ) ( n + 1 - i ) * r8_pi
-               / ( double ) ( n + 1     );
+    theta[i-1] = double( n + 1 - i ) * r8_pi
+               / double( n + 1     );
   }
 
   for ( i = 0; i < n; i++ )
@@ -3121,13 +3121,13 @@ void fejer2_compute ( int n, double x[], double w[] )
 
     for ( j = 1; j <= ( ( n - 1 ) / 2 ); j++ )
     {
-      w[i] = w[i] - 2.0 * cos ( 2.0 * ( double ) ( j ) * theta[i] ) 
-        / ( double ) ( 4 * j * j - 1 );
+      w[i] = w[i] - 2.0 * cos ( 2.0 * double( j ) * theta[i] ) 
+        / double( 4 * j * j - 1 );
     }
 
     if ( 2 < n )
     {
-      p = 2.0 * ( double ) ( ( n + 1 ) / 2 ) - 1.0;
+      p = 2.0 * double( ( n + 1 ) / 2 ) - 1.0;
       w[i] = w[i] - cos ( ( p + 1.0 ) * theta[i] ) / p;
     }
 
@@ -3135,7 +3135,7 @@ void fejer2_compute ( int n, double x[], double w[] )
 
   for ( i = 0; i < n; i++ )
   {
-    w[i] = 2.0 * w[i] / ( double ) ( n + 1 );
+    w[i] = 2.0 * w[i] / double( n + 1 );
   }
 
   delete [] theta;
@@ -3648,7 +3648,7 @@ void gen_hermite_ek_compute ( int n, double alpha, double x[], double w[] )
 
   for ( i = 0; i < n; i++ )
   {
-    i_r8 = ( double ) ( i + 1 );
+    i_r8 = double( i + 1 );
     if ( ( i % 2 ) == 0 )
     {
       bj[i] = ( i_r8 + alpha ) / 2.0;
@@ -3737,7 +3737,7 @@ double gen_hermite_integral ( int expon, double alpha )
   }
   else
   {
-    a = alpha + ( double ) ( expon );
+    a = alpha + double( expon );
     if ( a <= - 1.0 )
     {
       value = - r8_huge ( );
@@ -3826,13 +3826,13 @@ void gen_laguerre_ek_compute ( int n, double alpha, double x[], double w[] )
 
   for ( i = 0; i < n; i++ )
   {
-    i_r8 = ( double ) ( i + 1 );
+    i_r8 = double( i + 1 );
     bj[i] = sqrt ( i_r8 * ( i_r8 + alpha ) );
   }
 
   for ( i = 0; i < n; i++ )
   {
-    i_r8 = ( double ) ( i + 1 );
+    i_r8 = double( i + 1 );
     x[i] = 2.0 * i_r8 - 1.0 + alpha;
   }
 
@@ -3898,7 +3898,7 @@ double gen_laguerre_integral ( int expon, double alpha )
   double arg;
   double value;
 
-  arg = alpha + ( double ) ( expon + 1.0 );
+  arg = alpha + double( expon + 1.0 );
   value = tgamma ( arg );
 
   return value;
@@ -4004,12 +4004,12 @@ void gen_laguerre_ss_compute ( int order, double alpha, double xtab[],
 //
   for ( i = 0; i < order; i++ )
   {
-    b[i] = ( alpha + ( double ) ( 2 * i + 1 ) );
+    b[i] = ( alpha + double( 2 * i + 1 ) );
   }
 
   for ( i = 0; i < order; i++ )
   {
-    c[i] = ( double ) ( i ) * ( alpha + ( double ) ( i ) );
+    c[i] = double( i ) * ( alpha + double( i ) );
   }
   prod = 1.0;
   for ( i = 1; i < order; i++ )
@@ -4026,20 +4026,20 @@ void gen_laguerre_ss_compute ( int order, double alpha, double xtab[],
     if ( i == 0 )
     {
       xval = ( 1.0 + alpha ) * ( 3.0+ 0.92 * alpha ) / 
-        ( 1.0 + 2.4 * ( double ) ( order ) + 1.8 * alpha );
+        ( 1.0 + 2.4 * double( order ) + 1.8 * alpha );
     }
     else if ( i == 1 )
     {
       xval = xval + ( 15.0 + 6.25 * alpha ) / 
-        ( 1.0 + 0.9 * alpha + 2.5 * ( double ) ( order ) );
+        ( 1.0 + 0.9 * alpha + 2.5 * double( order ) );
     }
     else
     {
-      r1 = ( 1.0 + 2.55 * ( double ) ( i - 1 ) ) 
-        / ( 1.9 * ( double ) ( i - 1 ) );
+      r1 = ( 1.0 + 2.55 * double( i - 1 ) ) 
+        / ( 1.9 * double( i - 1 ) );
 
-      r2 = 1.26 * ( double ) ( i - 1 ) * alpha / 
-        ( 1.0 + 3.5 * ( double ) ( i - 1 ) );
+      r2 = 1.26 * double( i - 1 ) * alpha / 
+        ( 1.0 + 3.5 * double( i - 1 ) );
 
       ratio = ( r1 + r2 ) / ( 1.0 + 0.3 * alpha );
 
@@ -4275,7 +4275,7 @@ void hermite_ek_compute ( int n, double x[], double w[] )
 
   for ( i = 0; i < n; i++ )
   {
-    bj[i] = sqrt ( ( double ) ( i + 1 ) / 2.0 );
+    bj[i] = sqrt ( double( i + 1 ) / 2.0 );
   }
 
   for ( i = 0; i < n; i++ )
@@ -8043,10 +8043,10 @@ void hermite_ss_compute ( int order, double xtab[], double weight[] )
   double s;
   double x;
 
-  cc = sqrt ( r8_pi ) * tgamma ( ( double ) ( order ) ) 
+  cc = sqrt ( r8_pi ) * tgamma ( double( order ) ) 
     / pow ( 2.0, order - 1 );
 
-  s = pow ( 2.0 * ( double ) ( order ) + 1.0, 1.0 / 6.0 );
+  s = pow ( 2.0 * double( order ) + 1.0, 1.0 / 6.0 );
 
   for ( i = 0; i < ( order + 1 ) / 2; i++ )
   {
@@ -8056,7 +8056,7 @@ void hermite_ss_compute ( int order, double xtab[], double weight[] )
     }
     else if ( i == 1 )
     {
-      x = x - 1.14 * pow ( ( double ) ( order ), 0.426 ) / x;
+      x = x - 1.14 * pow ( double( order ), 0.426 ) / x;
     }
     else if ( i == 2 )
     {
@@ -8156,8 +8156,8 @@ void hermite_ss_recur ( double *p2, double *dp2, double *p1, double x, int order
     q1 = q2;
     dq1 = dq2;
 
-    q2  = x * q1 - 0.5 * ( ( double ) ( i ) - 1.0 ) * q0;
-    dq2 = x * dq1 + q1 - 0.5 * ( ( double ) ( i ) - 1.0 ) * dq0;
+    q2  = x * q1 - 0.5 * ( double( i ) - 1.0 ) * q0;
+    dq2 = x * dq1 + q1 - 0.5 * ( double( i ) - 1.0 ) * dq0;
   }
 
   *p2 = q2;
@@ -8311,7 +8311,7 @@ void jacobi_ek_compute ( int n, double alpha, double beta, double x[],
 
   for ( i = 1; i < n; i++ )
   {
-    i_r8 = ( double ) ( i + 1 );
+    i_r8 = double( i + 1 );
     abi = 2.0 * i_r8 + alpha + beta;
     x[i] = ( beta + alpha ) * ( beta - alpha ) / ( ( abi - 2.0 ) * abi );
     bj[i] = 4.0 * i_r8 * ( i_r8 + alpha ) * ( i_r8 + beta ) 
@@ -8393,7 +8393,7 @@ double jacobi_integral ( int expon, double alpha, double beta )
   double value1;
   double value2;
 
-  c = ( double ) ( expon );
+  c = double( expon );
 
   if ( ( expon % 2 ) == 0 )
   {
@@ -8530,8 +8530,8 @@ void jacobi_ss_compute ( int order, double alpha, double beta, double xtab[],
     else
     {
       b[i-1] = ( alpha + beta ) * ( beta - alpha ) / 
-             ( ( alpha + beta + ( double ) ( 2 * i ) ) 
-             * ( alpha + beta + ( double ) ( 2 * i - 2 ) ) );
+             ( ( alpha + beta + double( 2 * i ) ) 
+             * ( alpha + beta + double( 2 * i - 2 ) ) );
     }
 
     if ( i == 1 )
@@ -8540,13 +8540,13 @@ void jacobi_ss_compute ( int order, double alpha, double beta, double xtab[],
     }
     else
     {
-      c[i-1] = 4.0 * ( double ) ( i - 1 ) 
-         * ( alpha + ( double ) ( i - 1 ) ) 
-          * ( beta + ( double ) ( i - 1 ) ) 
-            * ( alpha + beta + ( double ) ( i - 1 ) ) / 
-            ( ( alpha + beta + ( double ) ( 2 * i - 1 ) ) 
-            * pow ( alpha + beta + ( double ) ( 2 * i - 2 ), 2 ) 
-            * ( alpha + beta + ( double ) ( 2 * i - 3 ) ) );
+      c[i-1] = 4.0 * double( i - 1 ) 
+         * ( alpha + double( i - 1 ) ) 
+          * ( beta + double( i - 1 ) ) 
+            * ( alpha + beta + double( i - 1 ) ) / 
+            ( ( alpha + beta + double( 2 * i - 1 ) ) 
+            * pow ( alpha + beta + double( 2 * i - 2 ), 2 ) 
+            * ( alpha + beta + double( 2 * i - 3 ) ) );
     }
   }
 
@@ -8564,12 +8564,12 @@ void jacobi_ss_compute ( int order, double alpha, double beta, double xtab[],
   {
     if ( i == 1 )
     {
-      an = alpha / ( double ) ( order );
-      bn = beta / ( double ) ( order );
+      an = alpha / double( order );
+      bn = beta / double( order );
 
       r1 = ( 1.0 + alpha ) 
-        * ( 2.78 / ( 4.0 + ( double ) ( order * order ) ) 
-        + 0.768 * an / ( double ) ( order ) );
+        * ( 2.78 / ( 4.0 + double( order * order ) ) 
+        + 0.768 * an / double( order ) );
 
       r2 = 1.0 + 1.48 * an + 0.96 * bn 
         + 0.452 * an * an + 0.83 * an * bn;
@@ -8581,11 +8581,11 @@ void jacobi_ss_compute ( int order, double alpha, double beta, double xtab[],
       r1 = ( 4.1 + alpha ) / 
         ( ( 1.0 + alpha ) * ( 1.0 + 0.156 * alpha ) );
 
-      r2 = 1.0 + 0.06 * ( ( double ) ( order ) - 8.0 ) * 
-        ( 1.0 + 0.12 * alpha ) / ( double ) ( order );
+      r2 = 1.0 + 0.06 * ( double( order ) - 8.0 ) * 
+        ( 1.0 + 0.12 * alpha ) / double( order );
 
       r3 = 1.0 + 0.012 * beta * 
-        ( 1.0 + 0.25 * fabs ( alpha ) ) / ( double ) ( order );
+        ( 1.0 + 0.25 * fabs ( alpha ) ) / double( order );
 
       x = x - r1 * r2 * r3 * ( 1.0 - x );
     }
@@ -8593,11 +8593,11 @@ void jacobi_ss_compute ( int order, double alpha, double beta, double xtab[],
     {
       r1 = ( 1.67 + 0.28 * alpha ) / ( 1.0 + 0.37 * alpha );
 
-      r2 = 1.0 + 0.22 * ( ( double ) ( order ) - 8.0 ) 
-        / ( double ) ( order );
+      r2 = 1.0 + 0.22 * ( double( order ) - 8.0 ) 
+        / double( order );
 
       r3 = 1.0 + 8.0 * beta / 
-        ( ( 6.28 + beta ) * ( double ) ( order * order ) );
+        ( ( 6.28 + beta ) * double( order * order ) );
 
       x = x - r1 * r2 * r3 * ( xtab[0] - x );
     }
@@ -8610,11 +8610,11 @@ void jacobi_ss_compute ( int order, double alpha, double beta, double xtab[],
       r1 = ( 1.0 + 0.235 * beta ) / ( 0.766 + 0.119 * beta );
 
       r2 = 1.0 / ( 1.0 + 0.639 
-        * ( ( double ) ( order ) - 4.0 ) 
-        / ( 1.0 + 0.71 * ( ( double ) ( order ) - 4.0 ) ) );
+        * ( double( order ) - 4.0 ) 
+        / ( 1.0 + 0.71 * ( double( order ) - 4.0 ) ) );
 
       r3 = 1.0 / ( 1.0 + 20.0 * alpha / ( ( 7.5 + alpha ) * 
-        ( double ) ( order * order ) ) );
+        double( order * order ) ) );
 
       x = x + r1 * r2 * r3 * ( x - xtab[i-3] );
     }
@@ -8623,11 +8623,11 @@ void jacobi_ss_compute ( int order, double alpha, double beta, double xtab[],
       r1 = ( 1.0 + 0.37 * beta ) / ( 1.67 + 0.28 * beta );
 
       r2 = 1.0 / 
-        ( 1.0 + 0.22 * ( ( double ) ( order ) - 8.0 ) 
-        / ( double ) ( order ) );
+        ( 1.0 + 0.22 * ( double( order ) - 8.0 ) 
+        / double( order ) );
 
       r3 = 1.0 / ( 1.0 + 8.0 * alpha / 
-        ( ( 6.28 + alpha ) * ( double ) ( order * order ) ) );
+        ( ( 6.28 + alpha ) * double( order * order ) ) );
 
       x = x + r1 * r2 * r3 * ( x - xtab[i-3] );
     }
@@ -9155,12 +9155,12 @@ void laguerre_ek_compute ( int n, double x[], double w[] )
 
   for ( i = 0; i < n; i++ )
   {
-    bj[i] = ( double ) ( i + 1 );
+    bj[i] = double( i + 1 );
   }
 
   for ( i = 0; i < n; i++ )
   {
-    x[i] = ( double ) ( 2 * i + 1 );
+    x[i] = double( 2 * i + 1 );
   }
 
   w[0] = sqrt ( zemu );
@@ -11483,12 +11483,12 @@ void laguerre_ss_compute ( int order, double xtab[], double weight[] )
 //
   for ( i = 0; i < order; i++ )
   {
-    b[i] = ( double ) ( 2 * i + 1 );
+    b[i] = double( 2 * i + 1 );
   }
 
   for ( i = 0; i < order; i++ )
   {
-    c[i] = ( double ) ( i * i );
+    c[i] = double( i * i );
   }
   prod = 1.0;
   for ( i = 1; i < order; i++ )
@@ -11504,16 +11504,16 @@ void laguerre_ss_compute ( int order, double xtab[], double weight[] )
 //
     if ( i == 0 )
     {
-      x =  3.0 / ( 1.0 + 2.4 * ( double ) ( order ) );
+      x =  3.0 / ( 1.0 + 2.4 * double( order ) );
     }
     else if ( i == 1 )
     {
-      x = x + 15.0 / ( 1.0 + 2.5 * ( double ) ( order ) );
+      x = x + 15.0 / ( 1.0 + 2.5 * double( order ) );
     }
     else
     {
-      r1 = ( 1.0 + 2.55 * ( double ) ( i - 1 ) ) 
-        / ( 1.9 * ( double ) ( i - 1 ) );
+      r1 = ( 1.0 + 2.55 * double( i - 1 ) ) 
+        / ( 1.9 * double( i - 1 ) );
 
       x = x + r1 * ( x - xtab[i-2] );
     }
@@ -11859,7 +11859,7 @@ void legendre_dr_compute ( int order, double xtab[], double weight[] )
     exit ( 1 );
   }
 
-  e1 = ( double ) ( order * ( order + 1 ) );
+  e1 = double( order * ( order + 1 ) );
 
   m = ( order + 1 ) / 2;
 
@@ -11867,22 +11867,22 @@ void legendre_dr_compute ( int order, double xtab[], double weight[] )
   {
     mp1mi = m + 1 - i;
 
-    t = ( double ) ( 4 * i - 1 ) * r8_pi / ( double ) ( 4 * order + 2 );
+    t = double( 4 * i - 1 ) * r8_pi / double( 4 * order + 2 );
 
-    x0 = cos ( t ) * ( 1.0 - ( 1.0 - 1.0 / ( double ) ( order ) ) 
-      / ( double ) ( 8 * order * order ) );
+    x0 = cos ( t ) * ( 1.0 - ( 1.0 - 1.0 / double( order ) ) 
+      / double( 8 * order * order ) );
 
     pkm1 = 1.0;
     pk = x0;
 
     for ( k = 2; k <= order; k++ )
     {
-      pkp1 = 2.0 * x0 * pk - pkm1 - ( x0 * pk - pkm1 ) / ( double ) ( k );
+      pkp1 = 2.0 * x0 * pk - pkm1 - ( x0 * pk - pkm1 ) / double( k );
       pkm1 = pk;
       pk = pkp1;
     }
 
-    d1 = ( double ) ( order ) * ( pkm1 - x0 * pk );
+    d1 = double( order ) * ( pkm1 - x0 * pk );
 
     dpn = d1 / ( 1.0 - x0 * x0 );
 
@@ -11999,8 +11999,8 @@ void legendre_ek_compute ( int n, double x[], double w[] )
 
   for ( i = 0; i < n; i++ )
   {
-    bj[i] = ( double ) ( ( i + 1 ) * ( i + 1 ) ) 
-          / ( double ) ( 4 * ( i + 1 ) * ( i + 1 ) - 1 );
+    bj[i] = double( ( i + 1 ) * ( i + 1 ) ) 
+          / double( 4 * ( i + 1 ) * ( i + 1 ) - 1 );
     bj[i] = sqrt ( bj[i] );
   }
 
@@ -12070,7 +12070,7 @@ double legendre_integral ( int expon )
 //
   if ( ( expon % 2 ) == 0 )
   {
-    exact = 2.0 / ( double ) ( expon + 1 );
+    exact = 2.0 / double( expon + 1 );
   }
   else
   {
@@ -12141,13 +12141,13 @@ void legendre_recur ( double *p2, double *dp2, double *p1, double x, int order )
     *p1 = *p2;
     dp1 = *dp2;
 
-    *p2 = ( ( double ) ( 2 * i - 1 ) * x * ( *p1 ) 
-          + ( double ) (   - i + 1 )     * p0 ) 
-          / ( double ) (     i     );
+    *p2 = ( double( 2 * i - 1 ) * x * ( *p1 ) 
+          + double(   - i + 1 )     * p0 ) 
+          / double(     i     );
 
-    *dp2 = ( ( double ) ( 2 * i - 1 ) * ( ( *p1 ) + x * dp1 ) 
-           - ( double ) (     i - 1 ) * dp0 ) 
-           / ( double ) (     i     );
+    *dp2 = ( double( 2 * i - 1 ) * ( ( *p1 ) + x * dp1 ) 
+           - double(     i - 1 ) * dp0 ) 
+           / double(     i     );
   }
 
   return;
@@ -16320,7 +16320,7 @@ void lobatto_compute ( int n, double x[], double w[] )
 //
   for ( i = 0; i < n; i++ )
   {
-    x[i] = cos ( r8_pi * ( double ) ( i ) / ( double ) ( n - 1 ) );
+    x[i] = cos ( r8_pi * double( i ) / double( n - 1 ) );
   }
 
   xold = new double[n];
@@ -16345,16 +16345,16 @@ void lobatto_compute ( int n, double x[], double w[] )
     {
       for ( i = 0; i < n; i++)
       {
-        p[i+j*n] = ( ( double ) ( 2 * j - 1 ) * x[i] * p[i+(j-1)*n]     
-                   + ( double ) (   - j + 1 ) *        p[i+(j-2)*n] ) 
-                   / ( double ) (     j     );
+        p[i+j*n] = ( double( 2 * j - 1 ) * x[i] * p[i+(j-1)*n]     
+                   + double(   - j + 1 ) *        p[i+(j-2)*n] ) 
+                   / double(     j     );
       }
     }
 
     for ( i = 0; i < n; i++ )
     {
       x[i] = xold[i] - ( x[i] * p[i+(n-1)*n] - p[i+(n-2)*n] ) 
-           / ( ( double ) ( n ) * p[i+(n-1)*n] );
+           / ( double( n ) * p[i+(n-1)*n] );
     }
 
     test = 0.0;
@@ -16369,7 +16369,7 @@ void lobatto_compute ( int n, double x[], double w[] )
 
   for ( i = 0; i < n; i++ )
   {
-    w[i] = 2.0 / ( ( double ) ( ( n - 1 ) * n ) * pow ( p[i+(n-1)*n], 2 ) );
+    w[i] = 2.0 / ( double( ( n - 1 ) * n ) * pow ( p[i+(n-1)*n], 2 ) );
   }
 
   delete [] p;
@@ -17041,17 +17041,17 @@ void nc_compute_weights ( int n, double x_min, double x_max, double x[],
 //  Evaluate the antiderivative of the polynomial at the left and
 //  right endpoints.
 //
-    yvala = d[n-1] / ( double ) ( n );
+    yvala = d[n-1] / double( n );
     for ( j = n - 2; 0 <= j; j-- )
     {
-      yvala = yvala * x_min + d[j] / ( double ) ( j + 1 );
+      yvala = yvala * x_min + d[j] / double( j + 1 );
     }
     yvala = yvala * x_min;
 
-    yvalb = d[n-1] / ( double ) ( n );
+    yvalb = d[n-1] / double( n );
     for ( j = n - 2; 0 <= j; j-- )
     {
-      yvalb = yvalb * x_max + d[j] / ( double ) ( j + 1 );
+      yvalb = yvalb * x_max + d[j] / double( j + 1 );
     }
     yvalb = yvalb * x_max;
 
@@ -17119,9 +17119,9 @@ void ncc_compute ( int n, double x[], double w[] )
   {
     for ( i = 0; i < n; i++ )
     {
-      x[i] = ( ( double ) ( n - i - 1 ) * x_min   
-             + ( double ) (     i     ) * x_max ) 
-             / ( double ) ( n     - 1 );
+      x[i] = ( double( n - i - 1 ) * x_min   
+             + double(     i     ) * x_max ) 
+             / double( n     - 1 );
     }
   }
 
@@ -18095,9 +18095,9 @@ void nco_compute ( int n, double x[], double w[] )
 
   for ( i = 0; i < n; i++ )
   {
-    x[i] = ( ( double ) ( n - i     ) * x_min   
-           + ( double ) (   + i + 1 ) * x_max ) 
-           / ( double ) ( n     + 1 );
+    x[i] = ( double( n - i     ) * x_min   
+           + double(   + i + 1 ) * x_max ) 
+           / double( n     + 1 );
   }
 
   nc_compute_weights ( n, x_min, x_max, x, w );
@@ -18289,8 +18289,8 @@ void nco_set ( int n, double x[], double w[] )
 //
   for ( i = 0; i < n; i++ )
   {
-    x[i] = ( double ) ( 2 * i - n + 1 ) 
-         / ( double ) ( n + 1 );
+    x[i] = double( 2 * i - n + 1 ) 
+         / double( n + 1 );
   }
 
   return;
@@ -18345,9 +18345,9 @@ void ncoh_compute ( int n, double x[], double w[] )
 
   for ( i = 0; i < n; i++ )
   {
-    x[i] = ( ( double ) ( 2 * n - 2 * i - 1 ) * x_min   
-           + ( double ) (         2 * i + 1 ) * x_max ) 
-           / ( double ) ( 2 * n             );
+    x[i] = ( double( 2 * n - 2 * i - 1 ) * x_min   
+           + double(         2 * i + 1 ) * x_max ) 
+           / double( 2 * n             );
   }
 
   nc_compute_weights ( n, x_min, x_max, x, w );
@@ -18675,9 +18675,9 @@ void ncoh_set ( int n, double x[], double w[] )
 
   for ( i = 0; i < n; i++ )
   {
-    x[i] = ( ( double ) ( 2 * n - 2 * i - 1 ) * a   
-           + ( double ) (         2 * i + 1 ) * b ) 
-           / ( double ) ( 2 * n                   );
+    x[i] = ( double( 2 * n - 2 * i - 1 ) * a   
+           + double(         2 * i + 1 ) * b ) 
+           / double( 2 * n                   );
   }
 
   return;
@@ -21032,8 +21032,8 @@ void radau_compute ( int n, double x[], double w[] )
 //
   for ( i = 0; i < n; i++ )
   {
-    x[i] = - cos ( 2.0 * r8_pi * ( double ) (         i ) 
-                               / ( double ) ( 2 * n - 1 ) );
+    x[i] = - cos ( 2.0 * r8_pi * double(         i ) 
+                               / double( 2 * n - 1 ) );
   }
   xold = new double[n];
   p = new double[n*(n+1)];
@@ -21066,14 +21066,14 @@ void radau_compute ( int n, double x[], double w[] )
     {
       for ( i = 1; i < n; i++ )
       {
-        p[i+j*n] = ( ( double ) ( 2 * j - 1 ) * x[i] * p[i+(j-1)*n]     
-                   + ( double ) (   - j + 1 ) *        p[i+(j-2)*n] ) 
-                   / ( double ) (     j     );
+        p[i+j*n] = ( double( 2 * j - 1 ) * x[i] * p[i+(j-1)*n]     
+                   + double(   - j + 1 ) *        p[i+(j-2)*n] ) 
+                   / double(     j     );
       }
     }
     for ( i = 1; i < n; i++ )
     {
-      x[i] = xold[i] - ( ( 1.0 - xold[i] ) / ( double ) ( n ) ) 
+      x[i] = xold[i] - ( ( 1.0 - xold[i] ) / double( n ) ) 
         * ( p[i+(n-1)*n] + p[i+n*n] ) / ( p[i+(n-1)*n] - p[i+n*n] );
     }
     test = 0.0;
@@ -21084,10 +21084,10 @@ void radau_compute ( int n, double x[], double w[] )
     iterate = iterate + 1;
   } while ( tolerance < test && iterate < iterate_max );
 
-  w[0] = 2.0 / ( double ) ( n * n );
+  w[0] = 2.0 / double( n * n );
   for ( i = 1; i < n; i++ )
   {
-    w[i] = ( 1.0 - x[i] ) / pow ( ( double ) ( n ) * p[i+(n-1)*n], 2 );
+    w[i] = ( 1.0 - x[i] ) / pow ( double( n ) * p[i+(n-1)*n], 2 );
   }
   delete [] xold;
   delete [] p;

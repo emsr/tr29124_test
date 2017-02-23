@@ -1732,7 +1732,7 @@ double *r8vec_uniform_01_new ( int n, int &seed )
       seed = seed + i4_huge;
     }
 
-    r[i] = ( double ) ( seed ) * 4.656612875E-10;
+    r[i] = double( seed ) * 4.656612875E-10;
   }
 
   return r;
@@ -1837,7 +1837,7 @@ double *r8vec_uniform_ab_new ( int n, double a, double b, int &seed )
       seed = seed + i4_huge;
     }
 
-    r[i] = a + ( b - a ) * ( double ) ( seed ) * 4.656612875E-10;
+    r[i] = a + ( b - a ) * double( seed ) * 4.656612875E-10;
   }
 
   return r;
@@ -3008,7 +3008,7 @@ double *t_polynomial_zeros ( int n )
 
   for ( i = 1; i <= n; i++ )
   {
-    angle = ( double) ( 2 * i - 1 ) * r8_pi / ( double ) ( 2 * n );
+    angle = double( 2 * i - 1 ) * r8_pi / double( 2 * n );
     z[i-1] = cos ( angle );
   }
 
@@ -3067,11 +3067,11 @@ double *t_project_coefficients ( int n, double f ( double x ) )
 
   for ( k = 0; k <= n; k++ )
   {
-    y = cos ( r8_pi * ( ( double ) ( k ) + 0.5 ) / ( double ) ( n + 1 ) );
+    y = cos ( r8_pi * ( double( k ) + 0.5 ) / double( n + 1 ) );
     d[k] = f ( y );
   }
 
-  fac = 2.0 / ( double ) ( n + 1 );
+  fac = 2.0 / double( n + 1 );
 
   c = new double[n+1];
 
@@ -3080,8 +3080,8 @@ double *t_project_coefficients ( int n, double f ( double x ) )
     total = 0.0;
     for ( k = 0; k <= n; k++ )
     {
-      total = total + d[k] * cos ( ( r8_pi * ( double ) ( j ) ) 
-        * ( ( ( double ) ( k ) + 0.5 ) / ( double ) ( n + 1 ) ) );
+      total = total + d[k] * cos ( ( r8_pi * double( j ) ) 
+        * ( ( double( k ) + 0.5 ) / double( n + 1 ) ) );
     }
     c[j] = fac * total;
   }
@@ -3155,7 +3155,7 @@ double *t_project_coefficients_ab ( int n, double f ( double x ), double a,
 
   for ( k = 0; k <= n; k++ )
   {
-    t = cos ( r8_pi * ( ( double ) ( k ) + 0.5 ) / ( double ) ( n + 1 ) );
+    t = cos ( r8_pi * ( double( k ) + 0.5 ) / double( n + 1 ) );
 
     y = ( ( 1.0 + t ) * b   
         + ( 1.0 - t ) * a ) 
@@ -3164,7 +3164,7 @@ double *t_project_coefficients_ab ( int n, double f ( double x ), double a,
     d[k] = f ( y );
   }
 
-  fac = 2.0 / ( double ) ( n + 1 );
+  fac = 2.0 / double( n + 1 );
 
   c = new double[n+1];
 
@@ -3173,8 +3173,8 @@ double *t_project_coefficients_ab ( int n, double f ( double x ), double a,
     total = 0.0;
     for ( k = 0; k <= n; k++ )
     {
-      total = total + d[k] * cos ( ( r8_pi * ( double ) ( j ) ) 
-        * ( ( ( double ) ( k ) + 0.5 ) / ( double ) ( n + 1 ) ) );
+      total = total + d[k] * cos ( ( r8_pi * double( j ) ) 
+        * ( ( double( k ) + 0.5 ) / double( n + 1 ) ) );
     }
     c[j] = fac * total;
   }
@@ -3846,8 +3846,8 @@ double u_moment ( int e )
   }
   else
   {
-    arg1 = 0.5 * ( double ) ( 1 + e );
-    arg2 = 2.0 + 0.5 * ( double ) ( e );
+    arg1 = 0.5 * double( 1 + e );
+    arg2 = 2.0 + 0.5 * double( e );
     value = 0.5 * sqrt ( r8_pi ) * tgamma ( arg1 ) / tgamma ( arg2 );
   }
 
@@ -4650,7 +4650,7 @@ double *u_polynomial_zeros ( int n )
 
   for ( i = 1; i <= n; i++ )
   {
-    angle = ( double) ( i ) * r8_pi / ( double ) ( n + 1 );
+    angle = double( i ) * r8_pi / double( n + 1 );
     z[i-1] = cos ( angle );
   }
 
@@ -4942,7 +4942,7 @@ double v_moment ( int e )
   const double r8_pi = 3.141592653589793;
   double value;
 
-  r8_e = ( double ) ( e );
+  r8_e = double( e );
 
   f1 = 1.0 / tgamma ( 1.5 + r8_e );
   f2 = r8_mop ( e );
@@ -5726,7 +5726,7 @@ double *v_polynomial_zeros ( int n )
 
   for ( i = 0; i < n; i++ )
   {
-    angle = ( double) ( 2 * n - 2 * i - 1 ) * r8_pi / ( double ) ( 2 * n + 1 );
+    angle = double( 2 * n - 2 * i - 1 ) * r8_pi / double( 2 * n + 1 );
     z[i] = cos ( angle );
   }
 
@@ -5977,7 +5977,7 @@ double w_moment ( int e )
   const double r8_pi = 3.141592653589793;
   double value;
 
-  r8_e = ( double ) ( e );
+  r8_e = double( e );
 
   f1 = 1.0 / tgamma ( 1.5 + r8_e );
   f2 = r8_mop ( e );
@@ -6761,7 +6761,7 @@ double *w_polynomial_zeros ( int n )
 
   for ( i = 0; i < n; i++ )
   {
-    angle = ( double ) ( 2 * ( n - i ) ) * r8_pi / ( double ) ( 2 * n + 1 );
+    angle = double( 2 * ( n - i ) ) * r8_pi / double( 2 * n + 1 );
     z[i] = cos ( angle );
   }
 

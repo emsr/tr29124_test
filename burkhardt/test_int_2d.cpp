@@ -95,7 +95,7 @@ void legendre_dr_compute ( int n, double x[], double w[] )
     exit ( 1 );
   }
 
-  e1 = ( double ) ( n * ( n + 1 ) );
+  e1 = double( n * ( n + 1 ) );
 
   m = ( n + 1 ) / 2;
 
@@ -103,22 +103,22 @@ void legendre_dr_compute ( int n, double x[], double w[] )
   {
     mp1mi = m + 1 - i;
 
-    t = ( double ) ( 4 * i - 1 ) * pi / ( double ) ( 4 * n + 2 );
+    t = double( 4 * i - 1 ) * pi / double( 4 * n + 2 );
 
-    x0 = cos ( t ) * ( 1.0 - ( 1.0 - 1.0 / ( double ) ( n ) ) 
-      / ( double ) ( 8 * n * n ) );
+    x0 = cos ( t ) * ( 1.0 - ( 1.0 - 1.0 / double( n ) ) 
+      / double( 8 * n * n ) );
 
     pkm1 = 1.0;
     pk = x0;
 
     for ( k = 2; k <= n; k++ )
     {
-      pkp1 = 2.0 * x0 * pk - pkm1 - ( x0 * pk - pkm1 ) / ( double ) ( k );
+      pkp1 = 2.0 * x0 * pk - pkm1 - ( x0 * pk - pkm1 ) / double( k );
       pkm1 = pk;
       pk = pkp1;
     }
 
-    d1 = ( double ) ( n ) * ( pkm1 - x0 * pk );
+    d1 = double( n ) * ( pkm1 - x0 * pk );
 
     dpn = d1 / ( 1.0 - x0 * x0 );
 
@@ -2097,7 +2097,7 @@ double *r8mat_uniform_01 ( int m, int n, int *seed )
         *seed = *seed + i4_huge;
       }
 
-      r[i+j*m] = ( double ) ( *seed ) * 4.656612875E-10;
+      r[i+j*m] = double( *seed ) * 4.656612875E-10;
     }
   }
 

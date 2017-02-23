@@ -424,7 +424,7 @@ double betain ( double x, double p, double q, double beta, int &ifault )
   term = 1.0;
   ai = 1.0;
   value = 1.0;
-  ns = ( int ) ( qq + cx * psq );
+  ns = int( qq + cx * psq );
 //
 //  Use the Soper reduction formula.
 //

@@ -96,7 +96,7 @@ double j_double_product_integral ( int i, int j, double a, double b )
   }
   else
   {
-    i_r8 = ( double ) ( i );
+    i_r8 = double( i );
 
     value = pow ( 2, a + b + 1.0 ) 
       / ( 2.0 * i_r8 + a + b + 1.0 ) 
@@ -151,7 +151,7 @@ double j_integral ( int n )
   }
   else
   {
-    value = 2.0 / ( double ) ( n + 1 );
+    value = 2.0 / double( n + 1 );
   }
 
   return value;
@@ -291,19 +291,19 @@ double *j_polynomial ( int m, int n, double alpha, double beta, double x[] )
   {
     for ( j = 2; j <= n; j++ )
     {
-      c1 = 2.0 * ( double ) ( j ) * ( ( double ) ( j ) + alpha + beta ) 
-        * ( ( double ) ( 2 * j - 2 ) + alpha + beta );
+      c1 = 2.0 * double( j ) * ( double( j ) + alpha + beta ) 
+        * ( double( 2 * j - 2 ) + alpha + beta );
 
-      c2 = ( ( double ) ( 2 * j - 1 ) + alpha + beta ) 
-        * ( ( double ) ( 2 * j ) + alpha + beta ) 
-        * ( ( double ) ( 2 * j - 2 ) + alpha + beta );
+      c2 = ( double( 2 * j - 1 ) + alpha + beta ) 
+        * ( double( 2 * j ) + alpha + beta ) 
+        * ( double( 2 * j - 2 ) + alpha + beta );
 
-      c3 = ( ( double ) ( 2 * j - 1 ) + alpha + beta ) 
+      c3 = ( double( 2 * j - 1 ) + alpha + beta ) 
         * ( alpha + beta ) * ( alpha - beta );
 
-      c4 = - ( double ) ( 2 ) * ( ( double ) ( j - 1 ) + alpha ) 
-        * ( ( double ) ( j - 1 ) + beta )  
-        * ( ( double ) ( 2 * j ) + alpha + beta );
+      c4 = - double( 2 ) * ( double( j - 1 ) + alpha ) 
+        * ( double( j - 1 ) + beta )  
+        * ( double( 2 * j ) + alpha + beta );
 
       v[i+j*m] = ( ( c3 + c2 * x[i] ) * v[i+(j-1)*m] + c4 * v[i+(j-2)*m] ) / c1;
     }
@@ -564,7 +564,7 @@ double *j_polynomial_zeros ( int n, double alpha, double beta )
 
   for ( i = 1; i < n; i++ )
   {
-    i_r8 = ( double ) ( i + 1 );
+    i_r8 = double( i + 1 );
     abi = 2.0 * i_r8 + ab;
     x[i] = a2b2 / ( ( abi - 2.0 ) * abi );
     abi = abi * abi;
@@ -674,7 +674,7 @@ void j_quadrature_rule ( int n, double alpha, double beta, double x[],
 
   for ( i = 1; i < n; i++ )
   {
-    i_r8 = ( double ) ( i + 1 );
+    i_r8 = double( i + 1 );
     abi = 2.0 * i_r8 + ab;
     x[i] = a2b2 / ( ( abi - 2.0 ) * abi );
     abi = abi * abi;

@@ -394,13 +394,13 @@ S20:
     for ( n = 2; n <= num; n += 2 )
     {
         hn = h2*hn;
-        a0[n-1] = 2.0e0*r0*(1.0e0+h*hn)/((double)n+2.0e0);
+        a0[n-1] = 2.0e0*r0*(1.0e0+h*hn)/(double(n)+2.0e0);
         np1 = n+1;
         s += hn;
-        a0[np1-1] = 2.0e0*r1*s/((double)n+3.0e0);
+        a0[np1-1] = 2.0e0*r1*s/(double(n)+3.0e0);
         for ( i = n; i <= np1; i++ )
         {
-            r = -(0.5e0*((double)i+1.0e0));
+            r = -(0.5e0*(double(i)+1.0e0));
             b0[0] = r*a0[0];
             for ( m = 2; m <= i; m++ )
             {
@@ -409,11 +409,11 @@ S20:
                 for ( j = 1; j <= mm1; j++ )
                 {
                     mmj = m-j;
-                    bsum += (((double)j*r-(double)mmj)*a0[j-1]*b0[mmj-1]);
+                    bsum += ((double(j)*r-double(mmj))*a0[j-1]*b0[mmj-1]);
                 }
-                b0[m-1] = r*a0[m-1]+bsum/(double)m;
+                b0[m-1] = r*a0[m-1]+bsum/double(m);
             }
-            c[i-1] = b0[i-1]/((double)i+1.0e0);
+            c[i-1] = b0[i-1]/(double(i)+1.0e0);
             dsum = 0.0e0;
             im1 = i-1;
             for ( j = 1; j <= im1; j++ )
@@ -423,8 +423,8 @@ S20:
             }
             d[i-1] = -(dsum+c[i-1]);
         }
-        j0 = e1*znm1+((double)n-1.0e0)*j0;
-        j1 = e1*zn+(double)n*j1;
+        j0 = e1*znm1+(double(n)-1.0e0)*j0;
+        j1 = e1*zn+double(n)*j1;
         znm1 = z2*znm1;
         zn = z2*zn;
         w = w0*w;
@@ -603,14 +603,14 @@ S20:
         s = 0.0e0;
         if(n == 1) goto S40;
         nm1 = n-1;
-        coef = *b-(double)n;
+        coef = *b-double(n);
         for ( i = 1; i <= nm1; i++ )
         {
             s = s + (coef*c[i-1]*d[n-i-1]);
             coef = coef + *b;
         }
 S40:
-        d[n-1] = bm1*cn+s/(double)n;
+        d[n-1] = bm1*cn+s/double(n);
         dj = d[n-1]*j;
         sum = sum + dj;
         if(sum <= 0.0e0) goto S70;
@@ -779,15 +779,15 @@ S130:
     goto S250;
 S140:
     *w1 = beta_up ( &b0, &a0, &y0, &x0, &n, &eps );
-    b0 = b0 + (double)n;
+    b0 = b0 + double(n);
 S150:
     T3 = 15.0e0*eps;
     beta_grat (&b0,&a0,&y0,&x0,w1,&T3,&ierr1);
     *w = 0.5e0+(0.5e0-*w1);
     goto S250;
 S160:
-    n = ( int ) b0;
-    b0 -= (double)n;
+    n =  int(b0);
+    b0 -= double(n);
     if(b0 != 0.0e0) goto S170;
     n -= 1;
     b0 = 1.0e0;
@@ -801,7 +801,7 @@ S180:
     if(a0 > 15.0e0) goto S190;
     n = 20;
     *w = *w + beta_up ( &a0, &b0, &x0, &y0, &n, &eps );
-    a0 = a0 + (double)n;
+    a0 = a0 + double(n);
 S190:
     T4 = 15.0e0*eps;
     beta_grat ( &a0, &b0, &x0, &y0, w, &T4, &ierr1 );
@@ -1057,7 +1057,7 @@ S40:
 //  REDUCTION OF A WHEN B .LE. 1000
 //
     if(b > 1000.0e0) goto S80;
-    n = ( int ) ( a - 1.0e0 );
+    n = int( a - 1.0e0 );
     w = 1.0e0;
     for ( i = 1; i <= n; i++ )
     {
@@ -1073,7 +1073,7 @@ S60:
 //
 //  REDUCTION OF B WHEN B .LT. 8
 //
-    n = ( int ) ( b - 1.0e0 );
+    n = int( b - 1.0e0 );
     z = 1.0e0;
     for ( i = 1; i <= n; i++ )
     {
@@ -1086,14 +1086,14 @@ S80:
 //
 //  REDUCTION OF A WHEN B .GT. 1000
 //
-    n = ( int ) ( a - 1.0e0 );
+    n = int( a - 1.0e0 );
     w = 1.0e0;
     for ( i = 1; i <= n; i++ )
     {
         a -= 1.0e0;
         w *= (a/(1.0e0+a/b));
     }
-    value = log(w)-(double)n*log(b)+( gamma_log ( &a )+algdiv(&a,&b));
+    value = log(w)-double(n)*log(b)+( gamma_log ( &a )+algdiv(&a,&b));
     return value;
 S100:
 //
@@ -1175,7 +1175,7 @@ S40:
 //  PROCEDURE FOR A0 .LT. 1 AND 1 .LT. B0 .LT. 8
 //
     u = gamma_ln1 ( &a0 );
-    m = ( int ) ( b0 - 1.0e0 );
+    m = int( b0 - 1.0e0 );
     if(m < 1) goto S60;
     c = 1.0e0;
     for ( i = 1; i <= m; i++ )
@@ -1301,7 +1301,7 @@ S70:
 //  ALGORITHM FOR 1 .LT. B0 .LT. 8
 //
     u = gamma_ln1 ( &a0 );
-    n = ( int ) ( b0 - 1.0e0 );
+    n = int( b0 - 1.0e0 );
     if(n < 1) goto S90;
     c = 1.0e0;
     for ( i = 1; i <= n; i++ )
@@ -1445,7 +1445,7 @@ S70:
 //  ALGORITHM FOR 1 .LT. B0 .LT. 8
 //
     u = gamma_ln1 ( &a0 );
-    n = ( int ) ( b0 - 1.0e0 );
+    n = int( b0 - 1.0e0 );
     if(n < 1) goto S90;
     c = 1.0e0;
     for ( i = 1; i <= n; i++ )
@@ -1549,8 +1549,8 @@ double beta_up ( double *a, double *b, double *x, double *y, int *n,
     d = 1.0e0;
     if(*n == 1 || *a < 1.0e0) goto S10;
     if(apb < 1.1e0*ap1) goto S10;
-    mu = ( int ) fabs ( exparg(&K1) );
-    k = ( int ) exparg ( &K2 );
+    mu = int(fabs(exparg(&K1)));
+    k = int(exparg(&K2));
     if(k < mu) mu = k;
     t = mu;
     d = exp(-t);
@@ -1570,9 +1570,9 @@ S10:
 S20:
     r = (*b-1.0e0)**x/ *y-*a;
     if(r < 1.0e0) goto S50;
-    t = ( double ) nm1;
+    t = double(nm1);
     k = nm1;
-    if ( r < t ) k = ( int ) r;
+    if ( r < t ) k = int(r);
 S30:
 //
 //          ADD THE INCREASING TERMS OF THE SERIES
@@ -5400,9 +5400,9 @@ void cumchn ( double *x, double *df, double *pnonc, double *cum,
 //    the program did not stop on NTIRED criterion.
 //
 {
-# define dg(i) (*df+2.0e0*(double)(i))
-# define qsmall(xx) (int)(sum < 1.0e-20 || (xx) < eps*sum)
-# define qtired(i) (int)((i) > ntired)
+# define dg(i) (*df+2.0e0*double(i))
+# define qsmall(xx) int(sum < 1.0e-20 || (xx) < eps*sum)
+# define qtired(i) int((i) > ntired)
 
   static double eps = 1.0e-5;
   static int ntired = 1000;
@@ -5439,9 +5439,9 @@ S20:
 //
 //     Calculate central weight term
 //
-    T1 = (double)(icent+1);
+    T1 = double(icent+1);
     lfact = gamma_log ( &T1 );
-    lcntwt = -xnonc+(double)icent*log(xnonc)-lfact;
+    lcntwt = -xnonc+double(icent)*log(xnonc)-lfact;
     centwt = exp(lcntwt);
 //
 //     Calculate central chi-square
@@ -5484,7 +5484,7 @@ S40:
 //
 //     Adjust poisson weight for J decreased by one
 //
-    wt *= ((double)i/xnonc);
+    wt *= (double(i)/xnonc);
     term = wt*pterm;
     sum = sum + term;
     i -= 1;
@@ -5508,7 +5508,7 @@ S70:
 //
 //     Update weights for next higher J
 //
-    wt *= (xnonc/(double)(i+1));
+    wt *= (xnonc/double(i+1));
 //
 //     Calculate PTERM and add term to sum
 //
@@ -5658,7 +5658,7 @@ void cumfnc ( double *f, double *dfn, double *dfd, double *pnonc,
 //    complementary CDF.
 //
 {
-# define qsmall(x) (int)(sum < 1.0e-20 || (x) < eps*sum)
+# define qsmall(x) int(sum < 1.0e-20 || (x) < eps*sum)
 # define half 0.5e0
 # define done 1.0e0
 
@@ -5685,13 +5685,13 @@ S20:
 //
 //  Calculate the central term of the poisson weighting factor.
 //
-    icent = ( int ) xnonc;
+    icent = int(xnonc);
     if(icent == 0) icent = 1;
 //
 //  Compute central weight term
 //
-    T1 = (double)(icent+1);
-    centwt = exp(-xnonc+(double)icent*log(xnonc)- gamma_log ( &T1 ) );
+    T1 = double(icent+1);
+    centwt = exp(-xnonc+double(icent)*log(xnonc)- gamma_log ( &T1 ) );
 //
 //  Compute central incomplete beta term
 //  Assure that minimum of arg to beta and 1 - arg is computed
@@ -5705,10 +5705,10 @@ S20:
         yy = done-xx;
     }
     else  xx = done-yy;
-    T2 = *dfn*half+(double)icent;
+    T2 = *dfn*half+double(icent);
     T3 = *dfd*half;
     beta_inc ( &T2, &T3, &xx, &yy, &betdn, &dummy, &ierr );
-    adn = *dfn/2.0e0+(double)icent;
+    adn = *dfn/2.0e0+double(icent);
     aup = adn;
     b = *dfd/2.0e0;
     betup = betdn;
@@ -5724,7 +5724,7 @@ S20:
       - gamma_log ( &b ) + adn * log ( xx ) + b * log(yy));
 S30:
     if(qsmall(xmult*betdn) || i <= 0) goto S40;
-    xmult *= ((double)i/xnonc);
+    xmult *= (double(i)/xnonc);
     i -= 1;
     adn -= 1.0;
     dnterm = (adn+1.0)/((adn+b)*xx)*dnterm;
@@ -5750,7 +5750,7 @@ S40:
 S50:
     if(qsmall(xmult*betup)) goto S70;
 S60:
-    xmult *= (xnonc/(double)i);
+    xmult *= (xnonc/double(i));
     i += 1;
     aup += 1.0;
     upterm = (aup+b-2.0e0)*xx/(aup-1.0)*upterm;
@@ -6470,7 +6470,7 @@ double dpmpar ( int *i )
     if(*i > 1) goto S10;
     b = ipmpar(&K1);
     m = ipmpar(&K2);
-    value = pow(b,(double)(1-m));
+    value = pow(b,double(1-m));
     return value;
 S10:
     if(*i > 2) goto S20;
@@ -6478,7 +6478,7 @@ S10:
     emin = ipmpar(&K3);
     one = 1.0;
     binv = one/b;
-    w = pow(b,(double)(emin+2));
+    w = pow(b,double(emin+2));
     value = w*binv*binv*binv;
     return value;
 S20:
@@ -6488,9 +6488,9 @@ S20:
     b = ibeta;
     bm1 = ibeta-1;
     one = 1.0;
-    z = pow(b,(double)(m-1));
+    z = pow(b,double(m-1));
     w = ((z-one)*b+bm1)/(b*z);
-    z = pow(b,(double)(emax-2));
+    z = pow(b,double(emax-2));
     value = w*z*b*b;
     return value;
 }
@@ -6843,7 +6843,7 @@ void E0000 ( int IENTRY, int *status, double *x, double *fx,
 //    E0000 is a reverse-communication zero bounder.
 //
 {
-# define qxmon(zx,zy,zz) (int)((zx) <= (zy) && (zy) <= (zz))
+# define qxmon(zx,zy,zz) int((zx) <= (zy) && (zy) <= (zz))
 
   static double absstp;
   static double abstol;
@@ -7039,7 +7039,7 @@ S300:
     *status = 1;
     return;
 S310:
-    switch((int)i99999){case 1: goto S10;case 2: goto S20;case 3: goto S90;case
+    switch(int(i99999)){case 1: goto S10;case 2: goto S20;case 3: goto S90;case
       4: goto S130;case 5: goto S200;case 6: goto S270;default: break;}
 # undef qxmon
 }
@@ -7208,7 +7208,7 @@ S270:
     *status = 1;
     return;
 S280:
-    switch((int)i99999){case 1: goto S10;case 2: goto S20;case 3: goto S200;
+    switch(int(i99999)){case 1: goto S10;case 2: goto S20;case 3: goto S200;
       default: break;}
 # undef ftol
 }
@@ -7507,13 +7507,13 @@ double esum ( int *mu, double *x )
 
     if(*x > 0.0e0) goto S10;
     if(*mu < 0) goto S20;
-    w = (double)*mu+*x;
+    w = double(*mu)+*x;
     if(w > 0.0e0) goto S20;
     esum = exp(w);
     return esum;
 S10:
     if(*mu > 0) goto S20;
-    w = (double)*mu+*x;
+    w = double(*mu)+*x;
     if(w < 0.0e0) goto S20;
     esum = exp(w);
     return esum;
@@ -7611,15 +7611,15 @@ S20:
     lnb = 2.7725887222398e0;
     goto S40;
 S30:
-    lnb = log((double)b);
+    lnb = log(double(b));
 S40:
     if(*l == 0) goto S50;
     m = ipmpar(&K2)-1;
-    exparg = 0.99999e0*((double)m*lnb);
+    exparg = 0.99999e0*(double(m)*lnb);
     return exparg;
 S50:
     m = ipmpar(&K3);
-    exparg = 0.99999e0*((double)m*lnb);
+    exparg = 0.99999e0*(double(m)*lnb);
     return exparg;
 }
 //****************************************************************************80
@@ -7858,7 +7858,7 @@ double fifdint ( double a )
 //
 // a     -     number to be truncated
 {
-  return (double) ((int) a);
+  return double(int(a));
 }
 //****************************************************************************80
 
@@ -7942,11 +7942,11 @@ long fifidint ( double a )
 {
   if ( a < 1.0 )
   {
-    return (long) 0;
+    return long(0);
   }
   else
   {
-    return ( long ) a;
+    return long(a);
   }
 }
 //****************************************************************************80
@@ -8246,9 +8246,9 @@ S10:
     if(*a > *x || *x >= x0) goto S20;
     twoa = *a+*a;
     m = fifidint(twoa);
-    if(twoa != (double)m) goto S20;
+    if(twoa != double(m)) goto S20;
     i = m/2;
-    if(*a == (double)i) goto S210;
+    if(*a == double(i)) goto S210;
     goto S220;
 S20:
     t1 = *a*log(*x)-*x;
@@ -9104,7 +9104,7 @@ S10:
     return gamln;
 S20:
     if(*a >= 10.0e0) goto S40;
-    n = ( int ) ( *a - 1.25e0 );
+    n = int( *a - 1.25e0 );
     t = *a;
     w = 1.0e0;
     for ( i = 1; i <= n; i++ )
@@ -9449,8 +9449,8 @@ S110:
     if(fabs(*a) >= 1.e3) return Xgamm;
     if(*a > 0.0e0) goto S120;
     x = -*a;
-    n = ( int ) x;
-    t = x-(double)n;
+    n = int(x);
+    t = x-double(n);
     if(t > 0.9e0) t = 1.0e0-t;
     s = sin(pi*t)/pi;
     if(fifmod(n,2) == 0) s = -s;
@@ -10330,9 +10330,9 @@ S20:
 //
     if(w >= xmax1) goto S100;
     nq = fifidint(w);
-    w -= (double)nq;
+    w -= double(nq);
     nq = fifidint(w*4.0e0);
-    w = 4.0e0*(w-(double)nq*.25e0);
+    w = 4.0e0*(w-double(nq)*.25e0);
 //
 //     W IS NOW RELATED TO THE FRACTIONAL PART OF  4.0 * X.
 //     ADJUST ARGUMENT TO CORRESPOND TO VALUES IN FIRST

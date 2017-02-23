@@ -67,7 +67,7 @@ double line_monomial ( double a, double b, int expon )
   }
   
   value = ( pow ( b, expon + 1 ) - pow ( a, expon + 1 ) ) 
-    / ( double ) ( expon + 1 );
+    / double( expon + 1 );
 
   return value;
 }

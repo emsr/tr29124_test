@@ -430,12 +430,12 @@ double *i4_to_halton_number_sequence_new ( int seed, int base, int n )
   for ( i = 0; i < n; i++ )
   {
     r[i] = 0.0;
-    base_inv = 1.0 / ( double ) ( base );
+    base_inv = 1.0 / double( base );
     while ( seed2[i] != 0 )
     {
       digit = ( seed2[i] % base );
-      r[i] = r[i] + ( double ) ( digit ) * base_inv;
-      base_inv = base_inv / ( double ) ( base );
+      r[i] = r[i] + double( digit ) * base_inv;
+      base_inv = base_inv / double( base );
       seed2[i] = seed2[i] / base;
     }
   }
@@ -531,7 +531,7 @@ double p00_even ( int prob, int int_num )
 
   fx = p00_fun ( prob, int_num, x );
 
-  result = ( b - a ) * r8vec_sum ( int_num, fx ) / ( double ) ( int_num );
+  result = ( b - a ) * r8vec_sum ( int_num, fx ) / double( int_num );
 
   delete [] fx;
   delete [] x;
@@ -1147,19 +1147,19 @@ double p00_gauss_legendre ( int prob, int int_num )
 
   p00_lim ( prob, a, b );
 
-  h = ( b - a ) / ( double ) ( int_num );
+  h = ( b - a ) / double( int_num );
 
   result = 0.0;
 
   for ( int_i = 1; int_i <= int_num; int_i++ )
   {
-    a_sub = ( ( double ) ( int_num - int_i + 1 ) * a   
-            + ( double ) (           int_i - 1 ) * b ) 
-            / ( double ) ( int_num             );
+    a_sub = ( double( int_num - int_i + 1 ) * a   
+            + double(           int_i - 1 ) * b ) 
+            / double( int_num             );
 
-    b_sub = ( ( double ) ( int_num - int_i ) * a   
-            + ( double ) (           int_i ) * b ) 
-            / ( double ) ( int_num         );
+    b_sub = ( double( int_num - int_i ) * a   
+            + double(           int_i ) * b ) 
+            / double( int_num         );
 
     for ( i = 0; i < GAUSS_NUM; i++ )
     {
@@ -1236,7 +1236,7 @@ double p00_halton ( int prob, int int_num )
   }
   fx = p00_fun ( prob, int_num, x );
 
-  result = ( b - a ) * r8vec_sum ( int_num, fx ) / ( double ) ( int_num );
+  result = ( b - a ) * r8vec_sum ( int_num, fx ) / double( int_num );
 
   delete [] fx;
   delete [] x;
@@ -1558,20 +1558,20 @@ double p00_midpoint ( int prob, int int_num )
 
   for ( int_i = 0; int_i < int_num; int_i++ )
   {
-    a_sub = ( ( double ) ( int_num - int_i     ) * a   
-            + ( double ) (           int_i     ) * b ) 
-            / ( double ) ( int_num             );
+    a_sub = ( double( int_num - int_i     ) * a   
+            + double(           int_i     ) * b ) 
+            / double( int_num             );
 
-    b_sub = ( ( double ) ( int_num - int_i - 1 ) * a   
-            + ( double ) (           int_i + 1 ) * b ) 
-            / ( double ) ( int_num         );
+    b_sub = ( double( int_num - int_i - 1 ) * a   
+            + double(           int_i + 1 ) * b ) 
+            / double( int_num         );
 
     x[int_i] = 0.5 * ( a_sub + b_sub );
   }
 
   fx = p00_fun ( prob, int_num, x );
 
-  result = h * r8vec_sum ( int_num, fx ) / ( double ) ( int_num );
+  result = h * r8vec_sum ( int_num, fx ) / double( int_num );
 
   delete [] fx;
   delete [] x;
@@ -1636,7 +1636,7 @@ double p00_montecarlo ( int prob, int int_num )
   }
   fx = p00_fun ( prob, int_num, x );
 
-  result = ( b - a ) * r8vec_sum ( int_num, fx ) / ( double ) ( int_num );
+  result = ( b - a ) * r8vec_sum ( int_num, fx ) / double( int_num );
 
   delete [] fx;
   delete [] x;
@@ -1791,7 +1791,7 @@ double p00_trapezoid ( int prob, int int_num )
   result = ( b - a ) * ( 
            0.5 * fx[0] 
          + r8vec_sum ( int_num - 1, fx + 1 )
-         + 0.5 * fx[int_num] ) / ( double ) ( int_num );
+         + 0.5 * fx[int_num] ) / double( int_num );
 
   delete [] fx;
   delete [] x;
@@ -11478,11 +11478,11 @@ double r8_aint ( double x )
 
   if ( x < 0.0E+00 )
   {
-    value = - ( double ) ( ( int ) ( r8_abs ( x ) ) );
+    value = - double( ( int ) ( r8_abs ( x ) ) );
   }
   else
   {
-    value =   ( double ) ( ( int ) ( r8_abs ( x ) ) );
+    value =   double( ( int ) ( r8_abs ( x ) ) );
   }
 
   return value;
@@ -12617,7 +12617,7 @@ double r8_gamma ( double x )
     {
       n = n - 1;
     }
-    y = x - ( double ) ( n );
+    y = x - double( n );
     n = n - 1;
     value = 0.9375 + r8_csevl ( 2.0 * y - 1.0, gcs, ngcs );
 
@@ -12637,7 +12637,7 @@ double r8_gamma ( double x )
         exit ( 1 );
       }
 
-      if ( x < 0.0 && x + ( double ) ( n - 2 ) == 0.0 )
+      if ( x < 0.0 && x + double( n - 2 ) == 0.0 )
       {
         cerr << "\n";
         cerr << "R8_GAMMA - Fatal error!\n";
@@ -12663,7 +12663,7 @@ double r8_gamma ( double x )
 
       for ( i = 1; i <= n; i++ )
       {
-        value = value / ( x + ( double ) ( i - 1 ) );
+        value = value / ( x + double( i - 1 ) );
       }
 
     }
@@ -12674,7 +12674,7 @@ double r8_gamma ( double x )
     {
       for ( i = 1; i <= n; i++ )
       {
-        value = ( y + ( double ) ( i ) ) * value;
+        value = ( y + double( i ) ) * value;
       }
     }
   }
@@ -13756,9 +13756,9 @@ double *r8vec_linspace_new ( int n, double a_first, double a_last )
   {
     for ( i = 0; i < n; i++ )
     {
-      a[i] = ( ( double ) ( n - 1 - i ) * a_first 
-             + ( double ) (         i ) * a_last ) 
-             / ( double ) ( n - 1     );
+      a[i] = ( double( n - 1 - i ) * a_first 
+             + double(         i ) * a_last ) 
+             / double( n - 1     );
     }
   }
   return a;
@@ -13904,7 +13904,7 @@ double *r8vec_uniform_01_new ( int n, int *seed )
       *seed = *seed + i4_huge;
     }
 
-    r[i] = ( double ) ( *seed ) * 4.656612875E-10;
+    r[i] = double( *seed ) * 4.656612875E-10;
   }
 
   return r;

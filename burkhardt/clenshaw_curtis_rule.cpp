@@ -249,8 +249,8 @@ void clenshaw_curtis_compute ( int order, double x[], double w[] )
   {
     for ( i = 0; i < order; i++ )
     {
-      x[i] =  std::cos ( ( double ) ( order - 1 - i ) * pi
-                       / ( double ) ( order - 1     ) );
+      x[i] =  std::cos ( double( order - 1 - i ) * pi
+                       / double( order - 1     ) );
     }
     x[0] = -1.0;
     if ( ( order % 2 ) == 1 )
@@ -261,7 +261,7 @@ void clenshaw_curtis_compute ( int order, double x[], double w[] )
 
     for ( i = 0; i < order; i++ )
     {
-      theta = ( double ) ( i ) * pi / ( double ) ( order - 1 );
+      theta = double( i ) * pi / double( order - 1 );
 
       w[i] = 1.0;
 
@@ -276,17 +276,17 @@ void clenshaw_curtis_compute ( int order, double x[], double w[] )
           b = 2.0;
         }
 
-        w[i] = w[i] - b *  std::cos ( 2.0 * ( double ) ( j ) * theta )
-          / ( double ) ( 4 * j * j - 1 );
+        w[i] = w[i] - b *  std::cos ( 2.0 * double( j ) * theta )
+          / double( 4 * j * j - 1 );
       }
     }
 
-    w[0] = w[0] / ( double ) ( order - 1 );
+    w[0] = w[0] / double( order - 1 );
     for ( i = 1; i < order - 1; i++ )
     {
-      w[i] = 2.0 * w[i] / ( double ) ( order - 1 );
+      w[i] = 2.0 * w[i] / double( order - 1 );
     }
-    w[order-1] = w[order-1] / ( double ) ( order - 1 );
+    w[order-1] = w[order-1] / double( order - 1 );
   }
 
   return;

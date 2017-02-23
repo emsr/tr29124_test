@@ -146,11 +146,11 @@ double r8_choose ( int n, int k )
   else
   {
     mx = i4_max ( k, n - k );
-    value = ( double ) ( mx + 1 );
+    value = double( mx + 1 );
 
     for ( i = 2; i <= mn; i++ )
     {
-      value = ( value * ( double ) ( mx + i ) ) / ( double ) i;
+      value = ( value * double( mx + i ) ) / double(i);
     }
   }
 
@@ -236,7 +236,7 @@ double r8_factorial ( int n )
 
   for ( i = 1; i <= n; i++ )
   {
-    value = value * ( double ) ( i );
+    value = value * double( i );
   }
 
   return value;
@@ -306,7 +306,7 @@ double r8_factorial2 ( int n )
 
   while ( 1 < n_copy )
   {
-    value = value * ( double ) n_copy;
+    value = value * double(n_copy);
     n_copy = n_copy - 2;
   }
 
@@ -432,12 +432,12 @@ double r8_gamma ( double x )
   if ( y <= zero )
   {
     y = - x;
-    y1 = ( double ) ( int ) ( y );
+    y1 = double(int( y ));
     res = y - y1;
 
     if ( res != zero )
     {
-      if ( y1 != ( double ) ( int ) ( y1 * half ) * two )
+      if ( y1 != double(int( y1 * half ) * two ))
       {
         parity = true;
       }
@@ -488,8 +488,8 @@ double r8_gamma ( double x )
 //
     else
     {
-      n = ( int ) ( y ) - 1;
-      y = y - ( double ) ( n );
+      n = int( y ) - 1;
+      y = y - double( n );
       z = y - one;
     }
 //
@@ -807,9 +807,9 @@ double r8_psi ( double xx )
         sgn = - piov4;
       }
 
-      w = w - ( double ) ( ( int ) ( w ) );
+      w = w - double( int( w ) );
       nq = int ( w * four );
-      w = four * ( w - ( double ) ( nq ) * fourth );
+      w = four * ( w - double( nq ) * fourth );
 //
 //  W is now related to the fractional part of 4.0 * X.
 //  Adjust argument to correspond to values in the first
@@ -1096,9 +1096,9 @@ double *r8vec_linspace_new ( int n, double a_first, double a_last )
   {
     for ( i = 0; i < n; i++ )
     {
-      a[i] = ( ( double ) ( n - 1 - i ) * a_first 
-             + ( double ) (         i ) * a_last ) 
-             / ( double ) ( n - 1     );
+      a[i] = ( double( n - 1 - i ) * a_first 
+             + double(         i ) * a_last ) 
+             / double( n - 1     );
     }
   }
   return a;
@@ -1721,12 +1721,12 @@ double r8_hyper_2f1 ( double a, double b, double c, double x )
   double sp0;
   double x1;
 
-  l0 = ( c == ( int ) ( c ) ) && ( c < 0.0 );
+  l0 = ( c == int( c ) ) && ( c < 0.0 );
   l1 = ( 1.0 - x < 1.0E-15 ) && ( c - a - b <= 0.0 );
-  l2 = ( a == ( int ) ( a ) ) && ( a < 0.0 );
-  l3 = ( b == ( int ) ( b ) ) && ( b < 0.0 );
-  l4 = ( c - a == ( int ) ( c - a ) ) && ( c - a <= 0.0 );
-  l5 = ( c - b == ( int ) ( c - b ) ) && ( c - b <= 0.0 );
+  l2 = ( a == int( a ) ) && ( a < 0.0 );
+  l3 = ( b == int( b ) ) && ( b < 0.0 );
+  l4 = ( c - a == int( c - a ) ) && ( c - a <= 0.0 );
+  l5 = ( c - b == int( c - b ) ) && ( c - b <= 0.0 );
 
   if ( l0 )
   {
@@ -1787,12 +1787,12 @@ double r8_hyper_2f1 ( double a, double b, double c, double x )
   {
     if ( l2 )
     {
-      nm = ( int ) ( fabs ( a ) );
+      nm = int( fabs ( a ) );
     }
 
     if ( l3 )
     {
-      nm = ( int ) ( fabs ( b ) );
+      nm = int( fabs ( b ) );
     }
 
     hf = 1.0;
@@ -1811,12 +1811,12 @@ double r8_hyper_2f1 ( double a, double b, double c, double x )
   {
     if ( l4 )
     {
-      nm = ( int ) ( fabs ( c - a ) );
+      nm = int( fabs ( c - a ) );
     }
 
     if ( l5 )
     {
-      nm = ( int ) ( fabs ( c - b ) );
+      nm = int( fabs ( c - b ) );
     }
 
     hf = 1.0;
@@ -1850,9 +1850,9 @@ double r8_hyper_2f1 ( double a, double b, double c, double x )
   {
     gm = 0.0;
 
-    if ( fabs ( c - a - b - ( int ) ( c - a - b ) ) < 1.0E-15 )
+    if ( fabs ( c - a - b - int( c - a - b ) ) < 1.0E-15 )
     {
-      m = ( int ) ( c - a - b );
+      m = int( c - a - b );
       ga = tgamma ( a );
       gb = tgamma ( b );
       gc = tgamma ( c );
@@ -1899,7 +1899,7 @@ double r8_hyper_2f1 ( double a, double b, double c, double x )
         for ( k = 1; k <= m; k++ )
         {
           sp0 = sp0 + 1.0 / ( a + k - 1.0 ) + 1.0 / ( b + k - 1.0 ) 
-          - 1.0 / ( double ) ( k );
+          - 1.0 / double( k );
         }
 
         f1 = pa + pb + sp0 + 2.0 * el + log ( 1.0 - x );
@@ -1948,7 +1948,7 @@ double r8_hyper_2f1 ( double a, double b, double c, double x )
 
         for ( k = 1; k <= m; k++ )
         {
-          sp0 = sp0 + 1.0 / ( double ) ( k );
+          sp0 = sp0 + 1.0 / double( k );
         }
 
         f1 = pa + pb - sp0 + 2.0 * el + log ( 1.0 - x );
@@ -1963,7 +1963,7 @@ double r8_hyper_2f1 ( double a, double b, double c, double x )
           sm = 0.0;
           for ( j = 1; j <= m; j++ )
           {
-            sm = sm + 1.0 / ( double ) ( j + k );
+            sm = sm + 1.0 / double( j + k );
           }
 
           rp = pa + pb + 2.0 * el + sp - sm + log ( 1.0 - x );
@@ -2129,7 +2129,7 @@ double r8_uniform_ab ( double a, double b, int &seed )
     seed = seed + i4_huge;
   }
 
-  value = ( double ) ( seed ) * 4.656612875E-10;
+  value = double( seed ) * 4.656612875E-10;
 
   value = a + ( b - a ) * value;
 
@@ -2308,12 +2308,12 @@ int i4_uniform_ab ( int a, int b, int &seed )
     seed = seed + i4_huge;
   }
 
-  r = ( float ) ( seed ) * 4.656612875E-10;
+  r = float( seed ) * 4.656612875E-10;
 //
 //  Scale R to lie between A-0.5 and B+0.5.
 //
-  r = ( 1.0 - r ) * ( ( float ) a - 0.5 ) 
-    +         r   * ( ( float ) b + 0.5 );
+  r = ( 1.0 - r ) * ( float(a) - 0.5 ) 
+    +         r   * ( float(b) + 0.5 );
 //
 //  Use rounding to convert R to an integer between A and B.
 //

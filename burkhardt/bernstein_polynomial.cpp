@@ -826,7 +826,7 @@ double *bernstein_vandermonde ( int n )
 
   for ( i = 0; i < n; i++ )
   {
-    x = ( double ) ( i ) / ( double ) ( n - 1 );
+    x = double( i ) / double( n - 1 );
     b = bernstein_poly_01 ( n - 1, x );
     for ( j = 0; j < n; j++ )
     {

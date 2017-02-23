@@ -569,7 +569,7 @@ double benford ( int ival )
     exit ( 1 );
   }
 
-  value = log10 ( ( double ) ( ival + 1 ) / ( double ) ival  );
+  value = log10 ( double( ival + 1 ) / double(ival)  );
 
   return value;
 }
@@ -707,10 +707,10 @@ void bernoulli_number ( int n, double b[] )
       b_sum = 0.0;
       for ( j = 0; j <= i-1; j++ )
       {
-        b_sum = b_sum + b[j] * ( double ) ( c[j] );
+        b_sum = b_sum + b[j] * double( c[j] );
       }
 
-      b[i] = - b_sum / ( double ) ( c[i] );
+      b[i] = - b_sum / double( c[i] );
 
     }
 
@@ -862,7 +862,7 @@ void bernoulli_number2 ( int n, double b[] )
     }
     else
     {
-      b[i] = log ( ( double ) ( i * ( i - 1 ) ) ) + b[i-2];
+      b[i] = log ( double( i * ( i - 1 ) ) ) + b[i-2];
     }
   }
 
@@ -880,13 +880,13 @@ void bernoulli_number2 ( int n, double b[] )
   for ( i = 6; i <= n; i = i + 2 )
   {
     sgn = -sgn;
-    t = 2.0 * sgn * exp ( b[i] - ( double ) ( i ) * altpi );
+    t = 2.0 * sgn * exp ( b[i] - double( i ) * altpi );
 
     sum2 = 1.0;
 
     for ( k = 2; k <= kmax; k++ )
     {
-      term = pow ( ( double ) k, ( double ) -i );
+      term = pow ( double(k), double(-i) );
 
       sum2 = sum2 + term;
 
@@ -1030,7 +1030,7 @@ double bernoulli_number3 ( int n )
 
     for ( i = 1; i <= itmax; i++ )
     {
-      term = 1.0 / pow ( ( double ) i, n );
+      term = 1.0 / pow ( double(i), n );
       sum2 = sum2 + term;
 
       if ( fabs ( term ) < tol || fabs ( term ) < tol * fabs ( sum2 ) )
@@ -1291,7 +1291,7 @@ double bernoulli_poly ( int n, double x )
   value = 1.0;
   for ( i = 1; i <= n; i++ )
   {
-    value = value * x + work[i] * ( double ) c[i];
+    value = value * x + work[i] * double(c[i]);
   }
 
   delete [] c;
@@ -1375,7 +1375,7 @@ double bernoulli_poly2 ( int n, double x )
 
   for ( i = 1; i <= n; i++ )
   {
-    fact = fact * ( double ) ( n + 1 - i ) / ( double ) i;
+    fact = fact * double( n + 1 - i ) / double(i);
     value = value * x + fact * bernoulli_number3 ( i );
   }
 
@@ -2126,7 +2126,7 @@ double *cardinal_cos ( int j, int m, int n, double t[] )
     cj = 1.0;
   }
 
-  tj = r8_pi * ( double ) ( j ) / ( double ) ( m + 1 );
+  tj = r8_pi * double( j ) / double( m + 1 );
 
   for ( i = 0; i < n; i++ )
   {
@@ -2138,9 +2138,9 @@ double *cardinal_cos ( int j, int m, int n, double t[] )
     {
       c[i] = r8_mop ( j + 1 ) 
         * sin ( t[i] ) 
-        * sin ( ( double ) ( m + 1 ) * t[i] ) 
+        * sin ( double( m + 1 ) * t[i] ) 
         / cj 
-        / ( double ) ( m + 1 ) 
+        / double( m + 1 ) 
         / ( cos ( t[i] ) - cos ( tj ) );
     }
   }
@@ -2207,7 +2207,7 @@ double *cardinal_sin ( int j, int m, int n, double t[] )
 
   s = new double[n];
 
-  tj = r8_pi * ( double ) ( j ) / ( double ) ( m + 1 );
+  tj = r8_pi * double( j ) / double( m + 1 );
 
   for ( i = 0; i < n; i++ )
   {
@@ -2219,8 +2219,8 @@ double *cardinal_sin ( int j, int m, int n, double t[] )
     {
       s[i] = r8_mop ( j + 1 ) 
         * sin ( tj ) 
-        * sin ( ( double ) ( m + 1 ) * t[i] ) 
-        / ( double ) ( m + 1 ) 
+        * sin ( double( m + 1 ) * t[i] ) 
+        / double( m + 1 ) 
         / ( cos ( t[i] ) - cos ( tj ) );
     }
   }
@@ -3222,7 +3222,7 @@ double *cheby_t_poly_zero ( int n )
 
   for ( i = 0; i < n; i++ )
   {
-    angle = ( double) ( 2 * i + 1 ) * r8_pi / ( double ) ( 2 * n );
+    angle = double( 2 * i + 1 ) * r8_pi / double( 2 * n );
     z[i] = cos ( angle );
   }
 
@@ -3607,7 +3607,7 @@ double *cheby_u_poly_zero ( int n )
 
   for ( i = 0; i < n; i++ )
   {
-    angle = ( double) ( i + 1 ) * r8_pi / ( double ) ( n + 1 );
+    angle = double( i + 1 ) * r8_pi / double( n + 1 );
     z[i] = cos ( angle );
   }
 
@@ -3691,7 +3691,7 @@ void chebyshev_discrete ( int n, int m, double x, double v[] )
     return;
   }
 
-  v[1] = 2.0 * x + ( double ) ( 1 - m );
+  v[1] = 2.0 * x + double( 1 - m );
 
   if ( n == 1 )
   {
@@ -3701,10 +3701,10 @@ void chebyshev_discrete ( int n, int m, double x, double v[] )
   for ( i = 1; i < n; i++ )
   {
     v[i+1] = ( 
-      ( double ) ( 2 * i + 1 ) 
-      * ( 2.0 * x + ( double ) ( 1 - m ) ) * v[i]
-      - ( double ) ( i * ( m + i ) * ( m - i ) ) * v[i-1]
-    ) / ( double ) ( i + 1 );
+      double( 2 * i + 1 ) 
+      * ( 2.0 * x + double( 1 - m ) ) * v[i]
+      - double( i * ( m + i ) * ( m - i ) ) * v[i-1]
+    ) / double( i + 1 );
   }
 
   return;
@@ -4166,12 +4166,12 @@ int commul ( int n, int nfact, int iarray[] )
     exit ( 1 );
   }
 
-  arg = ( double ) ( n + 1 );
+  arg = double( n + 1 );
   facn = lgamma ( arg );
 
   for ( i = 0; i < nfact; i++ )
   {
-    arg = ( double ) ( iarray[i] + 1 );
+    arg = double( iarray[i] + 1 );
     fack = lgamma ( arg );
     facn = facn - fack;
   }
@@ -4353,9 +4353,9 @@ double cos_power_int ( double a, double b, int n )
 
   for ( m = mlo; m <= n; m = m + 2 )
   {
-    value = ( ( double ) ( m - 1 ) * value 
+    value = ( double( m - 1 ) * value 
       - pow ( ca, (m-1) ) * sa + pow ( cb, (m-1) ) * sb ) 
-      / ( double ) ( m );
+      / double( m );
   }
 
   return value;
@@ -4842,7 +4842,7 @@ double euler_number2 ( int n )
 
   for ( i = 1; i <= itmax; i++ )
   {
-    term = 1.0 / pow ( ( double ) ( 2 * i - 1 ), n + 1 );
+    term = 1.0 / pow ( double( 2 * i - 1 ), n + 1 );
 
     if ( ( i % 2 ) == 1 )
     {
@@ -5006,8 +5006,8 @@ double euler_poly ( int n, double x )
   bx1 = bernoulli_poly2 ( n+1, x );
   bx2 = bernoulli_poly2 ( n+1, 0.5 * x );
 
-  value = 2.0 * ( bx1 - bx2 * pow ( ( double ) 2, n+1 ) ) 
-    / ( double ) ( n + 1 );
+  value = 2.0 * ( bx1 - bx2 * pow ( double(2), n+1 ) ) 
+    / double( n + 1 );
 
   return value;
 }
@@ -5305,8 +5305,8 @@ void fibonacci_floor ( int n, int *f, int *i )
   }
   else
   {
-    *i = ( int ) ( 
-        log ( 0.5 * ( double ) ( 2 * n + 1 ) * sqrt ( 5.0 ) )
+    *i = int( 
+        log ( 0.5 * double( 2 * n + 1 ) * sqrt ( 5.0 ) )
       / log ( 0.5 * ( 1.0 + sqrt ( 5.0 ) ) ) );
 
     *f = fibonacci_direct ( *i );
@@ -5857,9 +5857,9 @@ void gegenbauer_poly ( int n, double alpha, double x, double cx[] )
 
   for ( i = 2; i <= n; i++ )
   {
-    cx[i] = ( ( ( double ) ( 2 * i - 2 ) + 2.0 * alpha ) * x * cx[i-1] 
-            + ( ( double ) (   - i + 2 ) - 2.0 * alpha )     * cx[i-2] ) 
-            /   ( double )       i;
+    cx[i] = ( ( double( 2 * i - 2 ) + 2.0 * alpha ) * x * cx[i-1] 
+            + ( double(   - i + 2 ) - 2.0 * alpha )     * cx[i-2] ) 
+            /   double(i);
   }
 
   return;
@@ -6089,7 +6089,7 @@ void gen_hermite_poly ( int n, double x, double mu, double p[] )
       theta = 2.0 * mu;
     }
 
-    p[i+1] = 2.0 * x * p[i] - 2.0 * ( ( double ) ( i ) + theta ) * p[i-1];
+    p[i+1] = 2.0 * x * p[i] - 2.0 * ( double( i ) + theta ) * p[i-1];
   }
  
   return;
@@ -6195,9 +6195,9 @@ void gen_laguerre_poly ( int n, double alpha, double x, double cx[] )
 
   for ( i = 2; i <= n; i++ )
   {
-    cx[i] = ( ( ( double ) ( 2 * i - 1 ) + alpha - x ) * cx[i-1] 
-            + ( ( double ) (   - i + 1 ) - alpha     ) * cx[i-2] ) 
-              / ( double )       i;
+    cx[i] = ( ( double( 2 * i - 1 ) + alpha - x ) * cx[i-1] 
+            + ( double(   - i + 1 ) - alpha     ) * cx[i-2] ) 
+              / double(i);
   }
 
   return;
@@ -6596,7 +6596,7 @@ void hermite_poly_phys ( int n, double x, double cx[] )
 
   for ( i = 2; i <= n; i++ )
   {
-    cx[i] = 2.0 * x * cx[i-1] - 2.0 * ( double ) ( i - 1 ) * cx[i-2];
+    cx[i] = 2.0 * x * cx[i-1] - 2.0 * double( i - 1 ) * cx[i-2];
   }
 
   return;
@@ -6689,11 +6689,11 @@ void hermite_poly_phys_coef ( int n, double c[] )
 
   for ( i = 2; i <= n; i++ )
   {
-    c[i+0*(n+1)] = - 2.0 * ( double ) ( i - 1 ) * c[i-2+0*(n+1)];
+    c[i+0*(n+1)] = - 2.0 * double( i - 1 ) * c[i-2+0*(n+1)];
     for ( j = 1; j <= i-2; j++ )
     {
       c[i+j*(n+1)] =   2.0 * c[i-1+(j-1)*(n+1)] 
-                     - 2.0 * ( double ) ( i - 1 ) * c[i-2+j*(n+1)];
+                     - 2.0 * double( i - 1 ) * c[i-2+j*(n+1)];
     }
     c[i+(i-1)*(n+1)] =  2.0 * c[i-1+(i-2)*(n+1)];
     c[i+ i   *(n+1)] =  2.0 * c[i-1+(i-1)*(n+1)];
@@ -7652,7 +7652,7 @@ bool i4_is_prime ( int n )
     return true;
   }
 
-  nhi = ( int ) ( sqrt ( ( double ) n ) );
+  nhi = int( sqrt ( double(n) ) );
 
   for ( i = 2; i <= nhi; i++ )
   {
@@ -8114,7 +8114,7 @@ void i4_to_triangle ( int k, int *i, int *j )
 //
 //   ( N - 1 )^2 + ( N - 1 ) < 2 * K <= N^2 + N
 //
-  r = ( int ) ( sqrt ( ( double ) ( 2 * ( k + 1 ) ) ) );
+  r = int( sqrt ( double( 2 * ( k + 1 ) ) ) );
 
   if ( r * r + r < 2 * ( k + 1 ) )
   {
@@ -8405,19 +8405,19 @@ double *jacobi_poly ( int n, double alpha, double beta, double x )
 
   for ( i = 2; i <= n; i++ )
   {
-    c1 = 2.0 * ( double ) ( i ) * ( ( double ) ( i ) + alpha + beta ) 
-      * ( ( double ) ( 2 * i - 2 ) + alpha + beta );
+    c1 = 2.0 * double( i ) * ( double( i ) + alpha + beta ) 
+      * ( double( 2 * i - 2 ) + alpha + beta );
 
-    c2 = ( ( double ) ( 2 * i - 1 ) + alpha + beta ) 
-      * ( ( double ) ( 2 * i ) + alpha + beta ) 
-      * ( ( double ) ( 2 * i - 2 ) + alpha + beta );
+    c2 = ( double( 2 * i - 1 ) + alpha + beta ) 
+      * ( double( 2 * i ) + alpha + beta ) 
+      * ( double( 2 * i - 2 ) + alpha + beta );
 
-    c3 = ( ( double ) ( 2 * i - 1 ) + alpha + beta ) 
+    c3 = ( double( 2 * i - 1 ) + alpha + beta ) 
       * ( alpha + beta ) * ( alpha - beta );
 
-    c4 = - ( double ) ( 2 ) * ( ( double ) ( i - 1 ) + alpha ) 
-      * ( ( double ) ( i - 1 ) + beta )  
-      * ( ( double ) ( 2 * i ) + alpha + beta );
+    c4 = - double( 2 ) * ( double( i - 1 ) + alpha ) 
+      * ( double( i - 1 ) + beta )  
+      * ( double( 2 * i ) + alpha + beta );
 
     cx[i] = ( ( c3 + c2 * x ) * cx[i-1] + c4 * cx[i-2] ) / c1;
   }
@@ -8710,7 +8710,7 @@ int jacobi_symbol ( int q, int p )
       cerr << "  Error during Legendre symbol calculation.\n";
       exit ( 1 );
     }
-    value = value * ( int ) pow ( ( double ) l, power[i] );
+    value = value * int(pow ( double(l), power[i] ));
   }
 
   return value;
@@ -8812,15 +8812,15 @@ void krawtchouk ( int n, double p, double x, int m, double v[] )
 
   if ( 1 <= n )
   {
-    v[1] = x - p * ( double ) ( m );
+    v[1] = x - p * double( m );
   }
 
   for ( i = 1; i < n; i++ )
   {
     v[i+1] = ( 
-      ( x - ( ( double ) ( i ) + p * ( double ) ( m - 2 * i ) ) ) * v[i] 
-      - ( double ) ( m - i + 1 ) * p * ( 1.0 - p ) * v[i-1]
-      ) / ( double ) ( i + 1 );
+      ( x - ( double( i ) + p * double( m - 2 * i ) ) ) * v[i] 
+      - double( m - i + 1 ) * p * ( 1.0 - p ) * v[i-1]
+      ) / double( i + 1 );
   }
 
   return;
@@ -8961,13 +8961,13 @@ void laguerre_associated ( int n, int m, double x, double cx[] )
     return;
   }
 
-  cx[1] = ( double ) ( m + 1 ) - x;
+  cx[1] = double( m + 1 ) - x;
 
   for ( i = 2; i <= n; i++ )
   {
-    cx[i] = ( ( ( double ) ( 2 * i + m - 1 ) - x ) * cx[i-1]
-              + ( double ) (   - i - m + 1 )       * cx[i-2] ) 
-              / ( double )       i;
+    cx[i] = ( ( double( 2 * i + m - 1 ) - x ) * cx[i-1]
+              + double(   - i - m + 1 )       * cx[i-2] ) 
+              / double(i);
   }
 
   return;
@@ -9069,9 +9069,9 @@ void laguerre_poly ( int n, double x, double cx[] )
 
   for ( i = 2; i <= n; i++ )
   {
-    cx[i] = ( ( ( double ) ( 2 * i - 1 ) - x ) * cx[i-1] 
-              + ( double ) (   - i + 1 )       * cx[i-2] ) 
-              / ( double ) (     i     );
+    cx[i] = ( ( double( 2 * i - 1 ) - x ) * cx[i-1] 
+              + double(   - i + 1 )       * cx[i-2] ) 
+              / double(     i     );
 
   }
 
@@ -9164,10 +9164,10 @@ void laguerre_poly_coef ( int n, double c[] )
     for ( j = 1; j <= n; j++ )
     {
       c[i+j*(n+1)] = ( 
-          ( double ) ( 2 * i - 1 ) * c[i-1+j*(n+1)] 
-        + ( double ) (   - i + 1 ) * c[i-2+j*(n+1)] 
+          double( 2 * i - 1 ) * c[i-1+j*(n+1)] 
+        + double(   - i + 1 ) * c[i-2+j*(n+1)] 
         -                          c[i-1+(j-1)*(n+1)] ) 
-        / ( double )       i;
+        / double(i);
     }
  
   }
@@ -9440,13 +9440,13 @@ void legendre_associated ( int n, int m, double x, double cx[] )
     return;
   }
 
-  cx[m+1] = x * ( double ) ( 2 * m + 1 ) * cx[m];
+  cx[m+1] = x * double( 2 * m + 1 ) * cx[m];
 
   for ( i = m+2; i <= n; i++ )
   {
-    cx[i] = ( ( double ) ( 2 * i     - 1 ) * x * cx[i-1] 
-            + ( double ) (   - i - m + 1 )     * cx[i-2] ) 
-            / ( double ) (     i - m     );
+    cx[i] = ( double( 2 * i     - 1 ) * x * cx[i-1] 
+            + double(   - i - m + 1 )     * cx[i-2] ) 
+            / double(     i - m     );
   }
 
   return;
@@ -9573,21 +9573,21 @@ void legendre_associated_normalized ( int n, int m, double x, double cx[] )
 
   if ( m+1 <= n )
   {
-    cx[m+1] = x * ( double ) ( 2 * m + 1 ) * cx[m];
+    cx[m+1] = x * double( 2 * m + 1 ) * cx[m];
   }
 
   for ( i = m+2; i <= n; i++ )
   {
-    cx[i] = ( ( double ) ( 2 * i     - 1 ) * x * cx[i-1] 
-            + ( double ) (   - i - m + 1 )     * cx[i-2] ) 
-            / ( double ) (     i - m     );
+    cx[i] = ( double( 2 * i     - 1 ) * x * cx[i-1] 
+            + double(   - i - m + 1 )     * cx[i-2] ) 
+            / double(     i - m     );
   }
 //
 //  Normalization.
 //
   for ( mm = m; mm <= n; mm++ )
   {
-    factor = sqrt ( ( ( double ) ( 2 * mm + 1 ) * r8_factorial ( mm - m ) ) 
+    factor = sqrt ( ( double( 2 * mm + 1 ) * r8_factorial ( mm - m ) ) 
       / ( 4.0 * r8_pi * r8_factorial ( mm + m ) ) );
     cx[mm] = cx[mm] * factor;
   }
@@ -9949,9 +9949,9 @@ void legendre_function_q ( int n, double x, double cx[] )
 
   for ( i = 2; i <= n; i++ )
   {
-    cx[i] = ( ( double ) ( 2 * i - 1 ) * x * cx[i-1] 
-            + ( double ) (   - i + 1 ) *     cx[i-2] ) 
-            / ( double )       i;
+    cx[i] = ( double( 2 * i - 1 ) * x * cx[i-1] 
+            + double(   - i + 1 ) *     cx[i-2] ) 
+            / double(i);
   }
 
   return;
@@ -10174,13 +10174,13 @@ void legendre_poly ( int n, double x, double cx[], double cpx[] )
 
   for ( i = 2; i <= n; i++ )
   {
-    cx[i] = ( ( double ) ( 2 * i - 1 ) * x * cx[i-1] 
-            + ( double ) (   - i + 1 )     * cx[i-2] ) 
-            / ( double ) (     i     );
+    cx[i] = ( double( 2 * i - 1 ) * x * cx[i-1] 
+            + double(   - i + 1 )     * cx[i-2] ) 
+            / double(     i     );
 
-    cpx[i] = ( ( double ) ( 2 * i - 1 ) * ( cx[i-1] + x * cpx[i-1] ) 
-             + ( double ) (   - i + 1 ) * cpx[i-2] ) 
-             / ( double ) (     i     );
+    cpx[i] = ( double( 2 * i - 1 ) * ( cx[i-1] + x * cpx[i-1] ) 
+             + double(   - i + 1 ) * cpx[i-2] ) 
+             / double(     i     );
 
   }
 
@@ -10280,12 +10280,12 @@ void legendre_poly_coef ( int n, double c[] )
     for ( j = 0; j <= i-2; j++ )
     {
       c[i+j*(n+1)] =          
-          ( double ) (   - i + 1 ) * c[i-2+j*(n+1)] / ( double ) i;
+          double(   - i + 1 ) * c[i-2+j*(n+1)] / double(i);
     }
     for ( j = 1; j <= i; j++ )
     {
       c[i+j*(n+1)] = c[i+j*(n+1)] 
-        + ( double ) ( i + i - 1 ) * c[i-1+(j-1)*(n+1)] / ( double ) i;
+        + double( i + i - 1 ) * c[i-1+(j-1)*(n+1)] / double(i);
     }
   }
 
@@ -10710,9 +10710,9 @@ double lerch ( double z, int s, double a )
 
   for ( ; ; )
   {
-    if ( a + ( double ) ( k ) != 0.0 )
+    if ( a + double( k ) != 0.0 )
     {
-      term = z_k / pow ( a + ( double ) k, s );
+      term = z_k / pow ( a + double(k), s );
 
       total = total + term;
 
@@ -11079,9 +11079,9 @@ void meixner ( int n, double beta, double c, double x, double v[] )
   {
     v[i+1] = ( 
       ( ( c - 1.0 ) * x + ( 1.0 + c ) 
-      * ( double ) ( i ) + beta * c ) * v[i]
-      - ( double ) ( i ) * v[i-1] 
-      ) / ( ( double ) ( i ) + beta );
+      * double( i ) + beta * c ) * v[i]
+      - double( i ) * v[i-1] 
+      ) / ( double( i ) + beta );
   }
 
   return;
@@ -12258,7 +12258,7 @@ int phi ( int n )
   value = 1;
   for ( i = 0; i < nfactor; i++ )
   {
-    value = value * ( int ) pow ( ( double ) factor[i], power[i]-1 ) 
+    value = value *  int(pow( double(factor[i]), power[i]-1 ))
       * ( factor[i] - 1 );
   }
 
@@ -13343,7 +13343,7 @@ double r8_erf ( double x )
     }
 
     erfx = ( xnum + c[7] ) / ( xden + d[7] );
-    xsq = ( double ) ( ( int ) ( ( xabs * 16.0 ) / 16.0 ) );
+    xsq = double(int( ( xabs * 16.0 ) / 16.0 ));
     del = ( xabs - xsq ) * ( xabs + xsq );
     erfx = exp ( - xsq * xsq ) * exp ( - del ) * erfx;
 
@@ -13384,7 +13384,7 @@ double r8_erf ( double x )
 
       erfx = xsq * ( xnum + p[4] ) / ( xden + q[4] );
       erfx = ( sqrpi - erfx ) / xabs;
-      xsq = ( double ) ( ( int ) ( ( xabs * 16.0 ) / 16.0 ) );
+      xsq = double(int( ( xabs * 16.0 ) / 16.0 ));
       del = ( xabs - xsq ) * ( xabs + xsq );
       erfx = exp ( - xsq * xsq ) * exp ( - del ) * erfx;
 
@@ -13526,7 +13526,7 @@ double r8_factorial_log ( int n )
 
   for ( i = 1; i <= n; i++ )
   {
-    value = value + log ( ( double ) i );
+    value = value + log ( double(i) );
   }
 
   return value;
@@ -13772,11 +13772,11 @@ int r8_nint ( double x )
 
   if ( x < 0.0 )
   {
-    value = - ( int ) ( fabs ( x ) + 0.5 );
+    value = - int( fabs ( x ) + 0.5 );
   }
   else
   {
-    value =   ( int ) ( fabs ( x ) + 0.5 );
+    value =   int( fabs ( x ) + 0.5 );
   }
 
   return value;
@@ -14109,7 +14109,7 @@ int sigma ( int n )
   for ( i = 0; i < nfactor; i++ )
   {
     value = ( value * 
-      ( ( int ) pow ( ( double ) factor[i], power[i] + 1 ) - 1 ) ) 
+      (int(pow(double(factor[i]), power[i] + 1 )) - 1) )
       / ( factor[i] - 1 );
   }
 
@@ -14324,9 +14324,9 @@ double sin_power_int ( double a, double b, int n )
 
   for ( m = mlo; m <= n; m = m + 2 )
   {
-    value = ( ( double ) ( m - 1 ) * value 
+    value = ( double( m - 1 ) * value 
       + pow ( sa, (m-1) ) * ca - pow ( sb, (m-1) ) * cb ) 
-      / ( double ) ( m );
+      / double( m );
   }
 
   return value;
@@ -14621,7 +14621,7 @@ void spherical_harmonic ( int l, int m, double theta, double phi,
 
   legendre_associated_normalized ( l, m_abs, cos ( theta ), plm );
 
-  angle = ( double ) ( m ) * phi;
+  angle = double( m ) * phi;
 
   if ( 0 <= m )
   {
@@ -15951,16 +15951,16 @@ double zernike_poly ( int m, int n, double rho )
 
     for ( nn = m+2; nn <= n-2; nn = nn + 2 )
     {
-      a = ( double ) ( nn + 2 ) 
-        / ( double ) ( ( nn + 2 ) * ( nn + 2 ) - m * m );
+      a = double( nn + 2 ) 
+        / double( ( nn + 2 ) * ( nn + 2 ) - m * m );
 
-      b = ( double ) ( 4 * ( nn + 1 ) );
+      b = double( 4 * ( nn + 1 ) );
 
-      c = ( double ) ( ( nn + m ) * ( nn + m ) ) / ( double ) ( nn ) 
-        + ( double ) ( ( nn - m + 2 ) * ( nn - m + 2 ) ) 
-        / ( double ) ( nn + 2 );
+      c = double( ( nn + m ) * ( nn + m ) ) / double( nn ) 
+        + double( ( nn - m + 2 ) * ( nn - m + 2 ) ) 
+        / double( nn + 2 );
 
-      d = ( double ) ( nn * nn - m * m ) / ( double ) ( nn );
+      d = double( nn * nn - m * m ) / double( nn );
 
       zp2 = a * ( ( b * rho * rho - c ) * z - d * zm2 );
       zm2 = z;
@@ -15971,16 +15971,16 @@ double zernike_poly ( int m, int n, double rho )
   {
     for ( nn = m; nn <= n-2; nn = nn + 2 )
     {
-      a = ( double ) ( nn + 2 ) 
-        / ( double ) ( ( nn + 2 ) * ( nn + 2 ) - m * m );
+      a = double( nn + 2 ) 
+        / double( ( nn + 2 ) * ( nn + 2 ) - m * m );
 
-      b = ( double ) ( 4 * ( nn + 1 ) );
+      b = double( 4 * ( nn + 1 ) );
 
-      c = ( double ) ( ( nn + m ) * ( nn + m ) ) / ( double ) ( nn ) 
-        + ( double ) ( ( nn - m + 2 ) * ( nn - m + 2 ) ) 
-        / ( double ) ( nn + 2 );
+      c = double( ( nn + m ) * ( nn + m ) ) / double( nn ) 
+        + double( ( nn - m + 2 ) * ( nn - m + 2 ) ) 
+        / double( nn + 2 );
 
-      d = ( double ) ( nn * nn - m * m ) / ( double ) ( nn );
+      d = double( nn * nn - m * m ) / double( nn );
 
       zp2 = a * ( ( b * rho * rho - c ) * z - d * zm2 );
       zm2 = z;
@@ -16101,8 +16101,8 @@ double *zernike_poly_coef ( int m, int n )
 
   for ( l = 0; l <= nm_minus - 1; l++ )
   {
-    c[n-2*l-2] = - ( double ) ( ( nm_plus - l ) * ( nm_minus - l ) ) 
-      * c[n-2*l] / ( double ) ( ( n - l ) * ( l + 1 ) );
+    c[n-2*l-2] = - double( ( nm_plus - l ) * ( nm_minus - l ) ) 
+      * c[n-2*l] / double( ( n - l ) * ( l + 1 ) );
 
   }
 
@@ -16173,7 +16173,7 @@ double zeta ( double p )
   {
     n = n + 1;
     value_old = value;
-    value = value + 1.0 / pow ( ( double ) n, p );
+    value = value + 1.0 / pow ( double(n), p );
 
     if ( value <= value_old || 1000 <= n )
     {

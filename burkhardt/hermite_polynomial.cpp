@@ -150,11 +150,11 @@ double *h_polynomial_coefficients ( int n )
 
   for ( i = 2; i <= n; i++ )
   {
-    c[i+0*(n+1)] = - 2.0 * ( double ) ( i - 1 ) * c[i-2+0*(n+1)];
+    c[i+0*(n+1)] = - 2.0 * double( i - 1 ) * c[i-2+0*(n+1)];
     for ( j = 1; j <= i - 2; j++ )
     {
       c[i+j*(n+1)] =   2.0 * c[i-1+(j-1)*(n+1)] 
-                     - 2.0 * ( double ) ( i - 1 ) * c[i-2+j*(n+1)];
+                     - 2.0 * double( i - 1 ) * c[i-2+j*(n+1)];
     }
     c[i+(i-1)*(n+1)] =  2.0 * c[i-1+(i-2)*(n+1)];
     c[i+ i   *(n+1)] =  2.0 * c[i-1+(i-1)*(n+1)];
@@ -269,7 +269,7 @@ double *h_polynomial_value ( int m, int n, double x[] )
     for ( i = 0; i < m; i++ )
     {
       p[i+j*m] = 2.0 * x[i] * p[i+(j-1)*m]
-        - 2.0 * ( double ) ( j - 1 ) * p[i+(j-2)*m];
+        - 2.0 * double( j - 1 ) * p[i+(j-2)*m];
     }
   }
   return p;
@@ -486,7 +486,7 @@ double *h_polynomial_zeros ( int nt )
 
   for ( i = 0; i < nt; i++ )
   {
-    bj[i] = sqrt ( ( double ) ( i + 1 ) / 2.0 );
+    bj[i] = sqrt ( double( i + 1 ) / 2.0 );
   }
 
   wts = new double[nt];
@@ -547,7 +547,7 @@ void h_quadrature_rule ( int nt, double t[], double wts[] )
 
   for ( i = 0; i < nt; i++ )
   {
-    bj[i] = sqrt ( ( double ) ( i + 1 ) / 2.0 );
+    bj[i] = sqrt ( double( i + 1 ) / 2.0 );
   }
 
   for ( i = 0; i < nt; i++ )
@@ -757,10 +757,10 @@ double *he_polynomial_coefficients ( int n )
 
   for ( i = 2; i <= n; i++ )
   {
-    c[i+0*(n+1)] =                      - ( double ) ( i - 1 ) * c[i-2+0*(n+1)];
+    c[i+0*(n+1)] =                      - double( i - 1 ) * c[i-2+0*(n+1)];
     for ( j = 1; j <= i - 2; j++ )
     {
-      c[i+j*(n+1)] = c[i-1+(j-1)*(n+1)] - ( double ) ( i - 1 ) * c[i-2+j*(n+1)];
+      c[i+j*(n+1)] = c[i-1+(j-1)*(n+1)] - double( i - 1 ) * c[i-2+j*(n+1)];
     }
     c[i+(i-1)*(n+1)] =   c[i-1+(i-2)*(n+1)];
     c[i+ i   *(n+1)] =   c[i-1+(i-1)*(n+1)];
@@ -880,7 +880,7 @@ double *he_polynomial_value ( int m, int n, double x[] )
   {
     for ( i = 0; i < m; i++ )
     {
-      p[i+j*m] = x[i] * p[i+(j-1)*m] - ( double ) ( j - 1 ) * p[i+(j-2)*m];
+      p[i+j*m] = x[i] * p[i+(j-1)*m] - double( j - 1 ) * p[i+(j-2)*m];
     }
   }
   return p;
@@ -1093,7 +1093,7 @@ double *he_polynomial_zeros ( int nt )
 
   for ( i = 0; i < nt; i++ )
   {
-    bj[i] = sqrt ( ( double ) ( i + 1 ) / 2.0 );
+    bj[i] = sqrt ( double( i + 1 ) / 2.0 );
   }
 
   wts = new double[nt];
@@ -1164,7 +1164,7 @@ void he_quadrature_rule ( int nt, double t[], double wts[] )
 
   for ( i = 0; i < nt; i++ )
   {
-    bj[i] = sqrt ( ( double ) ( i + 1 ) / 2.0 );
+    bj[i] = sqrt ( double( i + 1 ) / 2.0 );
   }
 
   for ( i = 0; i < nt; i++ )
@@ -1444,7 +1444,7 @@ double *hen_polynomial_value ( int m, int n, double x[] )
   {
     for ( i = 0; i < m; i++ )
     {
-      p[i+j*m] = x[i] * p[i+(j-1)*m] - ( double ) ( j - 1 ) * p[i+(j-2)*m];
+      p[i+j*m] = x[i] * p[i+(j-1)*m] - double( j - 1 ) * p[i+(j-2)*m];
     }
   }
 //
@@ -1457,7 +1457,7 @@ double *hen_polynomial_value ( int m, int n, double x[] )
     {
       p[i+j*m] = p[i+j*m] / sqrt ( fact * sqrt ( 2.0 * r8_pi ) );
     }
-    fact = fact * ( double ) ( j + 1 );
+    fact = fact * double( j + 1 );
   }
   return p;
 }
@@ -1764,8 +1764,8 @@ double *hf_function_value ( int m, int n, double x[] )
     for ( i = 0; i < m; i++ )
     {
       f[i+j*m] = ( sqrt ( 2.0 ) * x[i] * f[i+(j-1)*m]
-        - sqrt ( ( double ) ( j - 1 ) ) * f[i+(j-2)*m] ) 
-        / sqrt ( ( double ) ( j ) );
+        - sqrt ( double( j - 1 ) ) * f[i+(j-2)*m] ) 
+        / sqrt ( double( j ) );
     }
   }
  
@@ -2049,7 +2049,7 @@ void hf_quadrature_rule ( int nt, double t[], double wts[] )
 
   for ( i = 0; i < nt; i++ )
   {
-    bj[i] = sqrt ( ( double ) ( i + 1 ) / 2.0 );
+    bj[i] = sqrt ( double( i + 1 ) / 2.0 );
   }
 
   for ( i = 0; i < nt; i++ )
@@ -2254,7 +2254,7 @@ double *hn_polynomial_value ( int m, int n, double x[] )
     for ( i = 0; i < m; i++ )
     {
       p[i+j*m] = 2.0 * x[i] * p[i+(j-1)*m]
-        - 2.0 * ( double ) ( j - 1 ) * p[i+(j-2)*m];
+        - 2.0 * double( j - 1 ) * p[i+(j-2)*m];
     }
   }
 //
@@ -2268,7 +2268,7 @@ double *hn_polynomial_value ( int m, int n, double x[] )
     {
       p[i+j*m] = p[i+j*m] / sqrt ( fact * two_power * sqrt ( r8_pi ) );
     }
-    fact = fact * ( double ) ( j + 1 );
+    fact = fact * double( j + 1 );
     two_power = two_power * 2.0;
   }
   return p;

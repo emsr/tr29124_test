@@ -518,10 +518,10 @@ void kronrod ( int n, double eps, double x[], double w1[], double w2[] )
 //  COEF2 = 2^(2*n+1) * n! * n! / (2n+1)! 
 //        = 2 * 4^n * n! / product( (n+1)*...*(2*n+1))
 //
-  coef2 = 2.0 / ( double ) ( 2 * n + 1 );
+  coef2 = 2.0 / double( 2 * n + 1 );
   for ( i = 1; i <= n; i++ )
   {
-    coef2 = coef2 * 4.0 * ( double ) ( i ) / ( double ) ( n + i );
+    coef2 = coef2 * 4.0 * double( i ) / double( n + i );
   }
 //
 //  Calculation of the K-th abscissa (a Kronrod abscissa) and the

@@ -111,7 +111,7 @@ void test01 ( )
       break;
     }
 
-    df_real = ( double ) ( df );
+    df_real = double( df );
 
     fx2 = tnc ( x, df_real, delta, &ifault );
 

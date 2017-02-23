@@ -269,12 +269,12 @@ double *ccn_compute_points_new ( int n )
     {
       if ( ( i % 2 ) == 1 )
       {
-        x[m+i-1] = tu / 2.0 / ( double ) ( k );
+        x[m+i-1] = tu / 2.0 / double( k );
         tu = tu + 2;
       }
       else
       {
-        x[m+i-1] = td / 2.0 / ( double ) ( k );
+        x[m+i-1] = td / 2.0 / double( k );
         td = td - 2;
       }
     }
@@ -432,17 +432,17 @@ double *nc_compute_new ( int n, double x_min, double x_max, double x[] )
 //  Evaluate the antiderivative of the polynomial at the left and
 //  right endpoints.
 //
-    yvala = d[n-1] / ( double ) ( n );
+    yvala = d[n-1] / double( n );
     for ( j = n - 2; 0 <= j; j-- )
     {
-      yvala = yvala * x_min + d[j] / ( double ) ( j + 1 );
+      yvala = yvala * x_min + d[j] / double( j + 1 );
     }
     yvala = yvala * x_min;
 
-    yvalb = d[n-1] / ( double ) ( n );
+    yvalb = d[n-1] / double( n );
     for ( j = n - 2; 0 <= j; j-- )
     {
-      yvalb = yvalb * x_max + d[j] / ( double ) ( j + 1 );
+      yvalb = yvalb * x_max + d[j] / double( j + 1 );
     }
     yvalb = yvalb * x_max;
 

@@ -795,7 +795,7 @@ void test03 ( int nbits, double xmin, double xmax, int n )
     xmax = temp;
   }
 
-  dx = ( xmax - xmin ) / ( double ) ( n );
+  dx = ( xmax - xmin ) / double( n );
   xmin = xmin - dx;
 
   if ( xmax <= 0.0 )

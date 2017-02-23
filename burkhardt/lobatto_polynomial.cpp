@@ -93,9 +93,9 @@ double *lobatto_polynomial_derivative ( int m, int n, double x[] )
         for ( j = 1; j < n; j++ )
         {
           p[i+(j+1)*m] =
-            ( ( double ) ( 2 * j + 1 ) * x[i] * p[i+j*m]
-            - ( double ) (     j     ) *        p[i+(j-1)*m] )
-            / ( double ) (     j + 1 );
+            ( double( 2 * j + 1 ) * x[i] * p[i+j*m]
+            - double(     j     ) *        p[i+(j-1)*m] )
+            / double(     j + 1 );
         }
 
         pp[i+0*m] = 0.0;
@@ -103,15 +103,15 @@ double *lobatto_polynomial_derivative ( int m, int n, double x[] )
         for ( j = 1; j < n; j++ )
         {
           pp[i+(j+1)*m] =
-            ( ( double ) ( 2 * j + 1 ) * ( p[i+j*m] + x[i] * pp[i+j*m] )
-            - ( double ) (     j     ) *                     pp[i+(j-1)*m] )
-            / ( double ) (     j + 1 );
+            ( double( 2 * j + 1 ) * ( p[i+j*m] + x[i] * pp[i+j*m] )
+            - double(     j     ) *                     pp[i+(j-1)*m] )
+            / double(     j + 1 );
         }
 
         for ( j = 1; j < n; j++ )
         {
           lp[i+j*m] =
-            ( double ) ( j + 1 )
+            double( j + 1 )
             * ( pp[i+j*m] - p[i+(j+1)*m] - x[i] * pp[i+(j+1)*m] );
         }
       }
@@ -594,14 +594,14 @@ double *lobatto_polynomial_value ( int m, int n, double x[] )
         for ( j = 1; j < n; j++ )
         {
           p[i+(j+1)*m] =
-            ( ( double ) ( 2 * j + 1 ) * x[i] * p[i+j*m]
-            - ( double ) (     j ) *            p[i+(j-1)*m] )
-            / ( double ) (     j + 1 );
+            ( double( 2 * j + 1 ) * x[i] * p[i+j*m]
+            - double(     j ) *            p[i+(j-1)*m] )
+            / double(     j + 1 );
         }
 
         for ( j = 1; j < n; j++ )
         {
-          l[i+j*m] = ( double ) ( j + 1 ) * ( p[i+j*m] - x[i] * p[i+(j+1)*m] );
+          l[i+j*m] = double( j + 1 ) * ( p[i+j*m] - x[i] * p[i+(j+1)*m] );
         }
       }
     }

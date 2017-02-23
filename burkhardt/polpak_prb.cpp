@@ -324,7 +324,7 @@ void agud_test ( )
 
   for ( i = 0; i <= 10; i++ )
   {
-    x = 1.0 + ( ( double ) i ) / 5.0;
+    x = 1.0 + ( double(i) ) / 5.0;
     g = gud ( x );
     x2 = agud ( g );
 
@@ -1325,7 +1325,7 @@ void charlier_test ( )
 
     for ( j = 0; j <= 5; j++ )
     {
-      x = ( double ) ( j ) / 2.0;
+      x = double( j ) / 2.0;
 
       charlier ( n, a, x, value );
 
@@ -1757,7 +1757,7 @@ void chebyshev_discrete_test ( )
 
   for ( j = 0; j <= 5; j++ )
   {
-    x = ( double ) ( j ) / 2.0;
+    x = double( j ) / 2.0;
 
     chebyshev_discrete ( n, m, x, value );
 
@@ -3574,7 +3574,7 @@ void krawtchouk_test ( )
 
     for ( j = 0; j <= 5; j++ )
     {
-      x = ( double ) ( j ) / 2.0;
+      x = double( j ) / 2.0;
 
       krawtchouk ( n, p, x, m, value );
 
@@ -4394,7 +4394,7 @@ void meixner_test ( )
 
     for ( j = 0; j <= 5; j++ )
     {
-      x = ( double ) ( j ) / 2.0;
+      x = double( j ) / 2.0;
 
       meixner ( n, beta, c, x, v );
 
@@ -5366,11 +5366,11 @@ void r8_euler_constant_test ( )
   n = 1;
   for ( test = 0; test <= 20; test++ )
   {
-    n_r8 = ( double ) ( n );
+    n_r8 = double( n );
     g_approx = - log ( n_r8 );
     for ( i = 1; i <= n; i++ )    
     {
-      g_approx = g_approx + 1.0 / ( double ) ( i );
+      g_approx = g_approx + 1.0 / double( i );
     }
     cout << "  " << setw(8) << n
          << "  " << setw(14) << g_approx
@@ -6797,7 +6797,7 @@ void zeta_test ( )
       break;
     }
 
-    n_real = ( double ) n;
+    n_real = double(n);
 
     z2 = zeta ( n_real );
 
