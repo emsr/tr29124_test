@@ -1715,7 +1715,7 @@ void beta_values ( int *n_data, double *x, double *y, double *fxy )
     3.0, 4.0, 5.0, 6.0, 
     7.0 };
 
-  if ( n_data < 0 )
+  if ( *n_data < 0 )
   {
     *n_data = 0;
   }
