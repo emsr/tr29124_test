@@ -1817,7 +1817,7 @@ void bpab ( int n, double x, double a, double b, double bern[] )
   {
     bern[0] = 1.0;
   }
-  else if ( 0 < n );
+  else if ( 0 < n )//;
   {
     bern[0] = ( b - x ) / ( b - a );
     bern[1] = ( x - a ) / ( b - a );
