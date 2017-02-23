@@ -473,6 +473,8 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 
 105. [] The negative even int polylog exp fails for -1 < z < -small.
 
+106. [] Semantic constants.  pi() that would do lazy math and figure out a precision.
+
 plot_airy.cpp
 
 test_array_ref.cpp - move with <array_ref> somewhere else
