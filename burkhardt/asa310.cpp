@@ -393,7 +393,6 @@ double betain ( double x, double p, double q, double beta, int *ifault )
 {
   double acu = 0.1E-14;
   double ai;
-  double betain;
   double cx;
   bool indx;
   int ns;
@@ -569,7 +568,6 @@ double betanc ( double x, double a, double b, double lambda, int *ifault )
 //    of X.
 //
 {
-  double a0;
   double ax;
   double beta;
   double c;
@@ -580,9 +578,7 @@ double betanc ( double x, double a, double b, double lambda, int *ifault )
   double q;
   double sumq;
   double temp;
-  double ualpha = 5.0;
   double value;
-  double x0;
   double xj;
 
   *ifault = 0;
@@ -1003,7 +999,7 @@ double ncbeta ( double a, double b, double lambda, double x, double errmax,
   }
   else
   {
-    m = ( int ) ( c + 0.5 );
+    m = int( c + 0.5 );
     mr = double( m );
     iterlo = m - int( 5.0 * sqrt ( mr ) );
     iterhi = m + int( 5.0 * sqrt ( mr ) );

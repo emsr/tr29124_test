@@ -238,7 +238,6 @@ double gegenbauer_integral ( int expon, double alpha )
   double arg3;
   double arg4;
   double c;
-  double s;
   double value;
   double value1;
 

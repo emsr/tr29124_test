@@ -317,7 +317,6 @@ double dnrm2 ( int n, double x[], int incx )
   double norm;
   double scale;
   double ssq;
-  double value;
 
   if ( n < 1 || incx < 1 )
   {
@@ -795,8 +794,8 @@ int dsvdc ( double a[], int lda, int m, int n, double s[], double e[],
   int maxit = 30;
   int mm;
   int mm1;
-  int mn;
   int mp1;
+  int mn;
   int nct;
   int nctp1;
   int ncu;
@@ -2009,7 +2008,6 @@ double *t_mass_matrix ( int n )
   double *a;
   int i;
   int j;
-  int k;
   double *phi;
   double *phiw;
   double *w;
@@ -3708,10 +3706,6 @@ double tu_product ( int i, int j, double x )
 //    Output, double TU_PRODUCT, the value.
 //
 {
-  int imj;
-  int ipj;
-  double timj;
-  double tipj;
   double value;
 
   if ( i < 0 )
@@ -3758,7 +3752,6 @@ double *u_mass_matrix ( int n )
 {
   double *a;
   int i;
-  int j;
   int k;
   double *phi;
   double *phiw;
@@ -4848,7 +4841,6 @@ double *v_mass_matrix ( int n )
   double *a;
   int i;
   int j;
-  int k;
   double *phi;
   double *phiw;
   double *w;
@@ -5883,7 +5875,6 @@ double *w_mass_matrix ( int n )
   double *a;
   int i;
   int j;
-  int k;
   double *phi;
   double *phiw;
   double *w;

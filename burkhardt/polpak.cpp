@@ -674,7 +674,6 @@ void bernoulli_number ( int n, double b[] )
   int *c;
   int i;
   int j;
-  bool next;
 
   if ( n < 0 )
   {
@@ -1273,7 +1272,6 @@ double bernoulli_poly ( int n, double x )
 {
   int *c;
   int i;
-  int *iwork;
   double value;
   double *work;
 

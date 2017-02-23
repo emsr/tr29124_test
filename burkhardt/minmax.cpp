@@ -1320,7 +1320,6 @@ void r8poly_print ( int n, double a[], std::string title )
 {
   int i;
   double mag;
-  int n2;
   char plus_minus;
 
   if ( 0 < title.length ( ) )

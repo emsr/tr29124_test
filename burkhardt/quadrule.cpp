@@ -11472,8 +11472,6 @@ void laguerre_ss_compute ( int order, double xtab[], double weight[] )
   double p1;
   double prod;
   double r1;
-  double r2;
-  double ratio;
   double x;
 
   b = new double[order];

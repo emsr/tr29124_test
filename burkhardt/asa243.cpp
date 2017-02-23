@@ -278,23 +278,19 @@ double tnc ( double t, double df, double delta, int *ifault )
   double errmax = 1.0E-10;
   double geven;
   double godd;
-  double half;
   int itrmax = 100;
   double lambda;
   bool negdel;
-  double one;
   double p;
   double q;
   double r2pi = 0.79788456080286535588;
   double rxb;
   double s;
   double tt;
-  double two;
   double value;;
   double x;
   double xeven;
   double xodd;
-  double zero;
 
   value = 0.0;
 
