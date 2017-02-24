@@ -211,3 +211,8 @@ add_library(wrap_burkhardt SHARED
 	    burkhardt/toms462.cpp
 	    burkhardt/quadrule.cpp
            )
+
+
+add_library(wrap_faddeeva SHARED
+            wrap_faddeeva.h wrap_faddeeva.cpp
+	    Faddeeva/Faddeeva.h Faddeeva/Faddeeva.cpp)
