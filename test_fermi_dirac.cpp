@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_fermi_dirac test_fermi_dirac.cpp -lquadmath -Lwrappers -lwrap_gsl
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_fermi_dirac test_fermi_dirac.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 ./test_fermi_dirac > test_fermi_dirac.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_fermi_dirac test_fermi_dirac.cpp -lquadmath -Lwrappers -lwrap_gsl
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_fermi_dirac test_fermi_dirac.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 ./test_fermi_dirac > test_fermi_dirac.txt
 */
 

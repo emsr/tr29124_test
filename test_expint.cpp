@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_expint test_expint.cpp -lquadmath -Lwrappers -lwrap_boost
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_expint test_expint.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 ./test_expint > test_expint.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_expint test_expint.cpp -lquadmath -Lwrappers -lwrap_boost
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_expint test_expint.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 ./test_expint > test_expint.txt
 
 g++ -std=gnu++17 -DNO_LOGBQ -g -Wall -Wextra -I. -o test_expint test_expint.cpp -lquadmath -Lwrappers -lwrap_boost

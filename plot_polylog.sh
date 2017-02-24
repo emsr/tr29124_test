@@ -81,7 +81,8 @@ plot [-10.0:1.0][-1.0:1.0] \
                     "test_polylog.txt" index 9 using 2:3 with lines title "Li_{-1}(x)", \
                     "" index 9 using 2:4 with lines title "Li_{-1}(x)", \
                     "" index 9 using 2:5 with lines title "Li_{-1}(x)", \
-                    "" index 9 using 2:6 with lines title "Li_{-1}(x)"
+                    "" index 9 using 2:6 with lines title "Li_{-1}(x)", \
+                    "" index 9 using 2:7 with lines title "Li_{-1}(x)"
 
 set title "Polylog Li_{-2}(x)"
 set xlabel "x"
@@ -89,7 +90,8 @@ plot [-10.0:1.0][-1.0:1.0] \
                     "test_polylog.txt" index 10 using 2:3 with lines title "Li_{-2}(x)", \
                     "" index 10 using 2:4 with lines title "Li_{-2}(x)", \
                     "" index 10 using 2:5 with lines title "Li_{-2}(x)", \
-                    "" index 10 using 2:6 with lines title "Li_{-2}(x)"
+                    "" index 10 using 2:6 with lines title "Li_{-2}(x)", \
+                    "" index 10 using 2:7 with lines title "Li_{-2}(x)"
 
 set title "Polylog Li_{-3}(x)"
 set xlabel "x"
@@ -97,7 +99,8 @@ plot [-10.0:1.0][-1.0:1.0] \
                     "test_polylog.txt" index 11 using 2:3 with lines title "Li_{-3}(x)", \
                     "" index 11 using 2:4 with lines title "Li_{-3}(x)", \
                     "" index 11 using 2:5 with lines title "Li_{-3}(x)", \
-                    "" index 11 using 2:6 with lines title "Li_{-3}(x)"
+                    "" index 11 using 2:6 with lines title "Li_{-3}(x)", \
+                    "" index 11 using 2:7 with lines title "Li_{-3}(x)"
 
 set title "Polylog Li_{-4}(x)"
 set xlabel "x"
@@ -105,7 +108,8 @@ plot [-10.0:1.0][-1.0:1.0] \
                     "test_polylog.txt" index 12 using 2:3 with lines title "Li_{-4}(x)", \
                     "" index 12 using 2:4 with lines title "Li_{-4}(x)", \
                     "" index 12 using 2:5 with lines title "Li_{-4}(x)", \
-                    "" index 12 using 2:6 with lines title "Li_{-4}(x)"
+                    "" index 12 using 2:6 with lines title "Li_{-4}(x)", \
+                    "" index 12 using 2:7 with lines title "Li_{-4}(x)"
 
 set title "Polylog Li_{-5}(x)"
 set xlabel "x"
@@ -113,4 +117,5 @@ plot [-10.0:1.0][-1.0:1.0] \
                     "test_polylog.txt" index 13 using 2:3 with lines title "Li_{-5}(x)", \
                     "" index 13 using 2:4 with lines title "Li_{-5}(x)", \
                     "" index 13 using 2:5 with lines title "Li_{-5}(x)", \
-                    "" index 13 using 2:6 with lines title "Li_{-5}(x)"
+                    "" index 13 using 2:6 with lines title "Li_{-5}(x)", \
+                    "" index 13 using 2:7 with lines title "Li_{-5}(x)"

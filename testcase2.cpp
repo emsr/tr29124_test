@@ -1,5 +1,5 @@
 /*
-/home/ESmith-rowland/bin/bin/g++ -std=gnu++17 -fconcepts -g -I. -o testcase2 -I/usr/local/include -I/usr/local/include testcase2.cpp lerchphi/Source/lerchphi.cpp -lquadmath -Lwrappers -lwrap_gsl
+/home/ESmith-rowland/bin/bin/g++ -std=gnu++17 -fconcepts -g -I. -o testcase2 -I/usr/local/include -I/usr/local/include testcase2.cpp lerchphi/Source/lerchphi.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 */
 #include <iostream>
 #include <sstream>
