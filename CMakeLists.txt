@@ -26,7 +26,7 @@ add_library(wrap_gsl SHARED
 	    gslextras/Fresnel/fresnel.h
 	    gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c
 	    gslextras/Hermite/gsl_sf_hermite.c)
-target_link_libraries(wrap_gsl gsl)
+target_link_libraries(wrap_gsl gsl gslcblas)
 
 add_library(wrap_cephes SHARED
             wrap_cephes.h wrap_cephes.cpp
@@ -214,3 +214,11 @@ add_library(wrap_burkhardt SHARED
 	    burkhardt/toms462.cpp
 	    burkhardt/quadrule.cpp
            )
+target_link_libraries(wrap_burkhardt gfortran)
+
+
+add_library(wrap_lerchphi SHARED
+            wrap_lerch.h wrap_lerch.cpp
+	    lerchphi/Source/lerchphi.h
+	    lerchphi/Source/lerchphi.cpp)
+
