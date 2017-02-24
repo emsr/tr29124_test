@@ -164,10 +164,10 @@ int lerchphi(const double *z, const double *s, const double *v, const double *ac
 
 		else
 		    {
-			m = - (int) floor(*v);
+			m = - int(floor(*v));
 			v1 += m;
 			sum1 = 0.0;
-			if ((int) *s % 2 == 0) sign = 1;
+			if (int(*s) % 2 == 0) sign = 1;
 			else sign = -1;
 			for (i = 0; i <= m-1; i++)
 			    {
@@ -202,7 +202,7 @@ int lerchphi(const double *z, const double *s, const double *v, const double *ac
 
 			else
 			    {
-				if ((int) *s % 2 == 0) sign = 1;
+				if (int(*s) % 2 == 0) sign = 1;
 				else sign = -1;
 				*result = sign * 1.0 / pow(fabs(*v), *s);
 			    }
@@ -264,10 +264,10 @@ int lerchphi(const double *z, const double *s, const double *v, const double *ac
 	  
 	/* Allocate memory for working arrays. */
 
-	num = (double *) malloc(imax * sizeof(double));
-	den = (double *) malloc(imax * sizeof(double));
+	num = static_cast<double *>(malloc(imax * sizeof(double)));
+	den = static_cast<double *>(malloc(imax * sizeof(double)));
 	/* StoreAj is used only in CNCT */
-	if (*z > 0.5) StoreAj = (double *) malloc(imax * sizeof(double)); 
+	if (*z > 0.5) StoreAj = static_cast<double *>(malloc(imax * sizeof(double))); 
 
 	flag = 0;
 	i = -1;
@@ -350,7 +350,7 @@ int lerchphi(const double *z, const double *s, const double *v, const double *ac
 				*(den+i-1) = *(den+i) - factor * (*(den+i-1));
 			    }
 
-			factor1 = (double) (beta+n+i-1) * (beta+n+i-2);
+			factor1 = double((beta+n+i-1) * (beta+n+i-2));
 			for(j = 2; j <= i; j++)
 			    {
 				factor = factor1 / (beta+n+i+j-2) / (beta+n+i+j-3);
