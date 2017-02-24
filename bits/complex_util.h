@@ -292,6 +292,52 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
+   * A function to reliably compare a complex number and a real number.
+   *
+   * @param __a The complex left hand side
+   * @param __b The real right hand side
+   * @param __mul The multiplier for numeric epsilon for comparison
+   * @return @c true if a and b are equal to zero
+   *         or differ only by @f$ max(a,b) * mul * epsilon @f$
+   */
+  template<typename _Tp>
+    inline bool
+    __fp_is_equal(const std::complex<_Tp>& __a, _Tp __b,
+		  _Tp __mul = _Tp{1})
+    {
+      const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto _S_tol = __mul * _S_eps;
+      bool __retval = true;
+      if (__fp_is_real(__a, __mul))
+	return __fp_is_equal(std::real(__a), __b, __mul);
+      else
+      	return false;
+    }
+
+  /**
+   * A function to reliably compare a real number and a complex number.
+   *
+   * @param __a The real left hand side
+   * @param __b The complex right hand side
+   * @param __mul The multiplier for numeric epsilon for comparison
+   * @return @c true if a and b are equal to zero
+   *         or differ only by @f$ max(a,b) * mul * epsilon @f$
+   */
+  template<typename _Tp>
+    inline bool
+    __fp_is_equal(const _Tp __a, std::complex<_Tp>& __b,
+		  _Tp __mul = _Tp{1})
+    {
+      const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto _S_tol = __mul * _S_eps;
+      bool __retval = true;
+      if (__fp_is_real(__b, __mul))
+	return __fp_is_equal(__a, std::real(__b), __mul);
+      else
+      	return false;
+    }
+
+  /**
    * A function to reliably compare a complex number with zero.
    *
    * @param __a The complex point number
