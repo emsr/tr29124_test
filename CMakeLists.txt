@@ -5,13 +5,13 @@ project(SpecfunWrappers LANGUAGES CXX C Fortran)
 set(SpecfunWrappers_VERSION_MAJOR 1)
 set(SpecfunWrappers_VERSION_MINOR 0)
 
-set(CMAKE_C_COMPILER $ENV{HOME}/bin/bin/gcc)
-set(CMAKE_CXX_COMPILER $ENV{HOME}/bin/bin/g++)
-set(CMAKE_Fortran_COMPILER $ENV{HOME}/bin/bin/gfortran)
+set(CMAKE_C_COMPILER $ENV{HOME}/bin_tr29124/bin/gcc)
+set(CMAKE_CXX_COMPILER $ENV{HOME}/bin_tr29124/bin/g++)
+set(CMAKE_Fortran_COMPILER $ENV{HOME}/bin_tr29124/bin/gfortran)
 
-set(CMAKE_C_FLAGS "-std=c11 -Wall -Wextra")
-set(CMAKE_CXX_FLAGS "-std=c++17 -Wall -Wextra -Wno-deprecated-declarations -Wold-style-cast")
-set(CMAKE_Fortran_FLAGS "-Wall -Wextra")
+set(CMAKE_C_FLAGS "-std=c11 -Wall -Wextra -I$ENV{HOME}/tr29124_test")
+set(CMAKE_CXX_FLAGS "-std=c++17 -Wall -Wextra -Wno-deprecated-declarations -Wold-style-cast -I$ENV{HOME}/tr29124_test")
+set(CMAKE_Fortran_FLAGS "-Wall -Wextra -I$ENV{HOME}/tr29124_test")
 
 add_library(wrap_boost SHARED
             wrap_boost.h wrap_boost.cpp)
@@ -19,6 +19,8 @@ add_library(wrap_boost SHARED
 
 set(GSL_ROOT_DIR /usr/local)
 find_package(GSL REQUIRED)
+
+find_library(GFORTRAN_LIBRARY NAMES gfortran)
 
 add_library(wrap_gsl SHARED
             wrap_gsl.h wrap_gsl.cpp
