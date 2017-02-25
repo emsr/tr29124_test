@@ -100,7 +100,7 @@ void cdgqf ( int nt, int kind, double alpha, double beta, double t[],
 //****************************************************************************80
 
 void cgqf ( int nt, int kind, double alpha, double beta, double a, double b, 
-  int lo, double t[], double wts[] )
+  int /*lo*/, double t[], double wts[] )
 
 //****************************************************************************80
 //
@@ -170,26 +170,9 @@ void cgqf ( int nt, int kind, double alpha, double beta, double a, double b,
 //
 {
   int i;
-  int key;
-  int m;
-  int mex;
   int *mlt;
-  int mmex;
-  int mop;
   int *ndx;
-//
-//  Check that there is enough workspace and assign it.
-//
-  key = 1;
-  mop = 2 * nt;
-  m = mop + 1;
-  mex = m + 2;
-  mmex = i4_max ( mex, 1 );
 
-  if ( lo <= 0 )
-  {
-    mex = 0;
-  }
 //
 //  Compute the Gauss quadrature formula for default values of A and B.
 //
@@ -21471,7 +21454,7 @@ void radau_set ( int order, double xtab[], double weight[] )
 }
 //****************************************************************************80
 
-void scqf ( int nt, double t[], int mlt[], double wts[], int nwts, int ndx[], 
+void scqf ( int nt, double t[], int mlt[], double wts[], int /*nwts*/, int ndx[], 
   double swts[], double st[], int kind, double alpha, double beta, double a, 
   double b )
 
@@ -21545,14 +21528,14 @@ void scqf ( int nt, double t[], int mlt[], double wts[], int nwts, int ndx[],
 //    Input, double A, B, the interval endpoints.
 //
 {
-  double al;
-  double be;
+  double al = 0.0; // Silence uninitialized warning.
+  double be = 0.0; // Silence uninitialized warning.
   int i;
   int k;
   int l;
   double p;
-  double shft;
-  double slp;
+  double shft = 0.0; // Silence uninitialized warning.
+  double slp = 0.0; // Silence uninitialized warning.
   double temp;
   double tmp;
 

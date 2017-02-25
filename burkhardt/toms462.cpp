@@ -222,12 +222,12 @@ double bivnor ( double ah, double ak, double r )
   double g2;
   double gh;
   double gk;
-  double gw;
+  double gw = 0.0; // Silence uninitialized warning.
   double h2;
   double h4;
   int i;
   static int idig = 15;
-  int is;
+  int is = 0; // Silence uninitialized warning.
   double rr;
   double s1;
   double s2;
@@ -238,8 +238,8 @@ double bivnor ( double ah, double ak, double r )
   double t;
   static double twopi = 6.283185307179587;
   double w2;
-  double wh;
-  double wk;
+  double wh = 0.0; // Silence uninitialized warning.
+  double wk = 0.0; // Silence uninitialized warning.
 
   b = 0.0;
 

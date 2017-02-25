@@ -794,7 +794,6 @@ int dsvdc ( double a[], int lda, int m, int n, double s[], double e[],
   int maxit = 30;
   int mm;
   int mm1;
-  int mp1;
   int mn;
   int nct;
   int nctp1;
@@ -1098,8 +1097,6 @@ int dsvdc ( double a[], int lda, int m, int n, double s[], double e[],
     }
     else
     {
-      mp1 = mn + 1;
-
       for ( lls = l+1; lls <= mn+1; lls++ )
       {
         ls = mn - lls + l + 1;

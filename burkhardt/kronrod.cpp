@@ -61,7 +61,7 @@ void abwe1 ( int n, int m, double eps, double coef2, bool even, double b[],
 //
 {
   double ai;
-  double b0;
+  double b0 = 0.0; // Silence uninitialized warning.
   double b1;
   double b2;
   double d0;

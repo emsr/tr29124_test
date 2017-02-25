@@ -833,7 +833,7 @@ void gegenbauer_ss_compute ( int order, double alpha, double xtab[],
 //****************************************************************************80
 
 void gegenbauer_ss_recur ( double &p2, double &dp2, double &p1, double x,
-  int order, double alpha, double c[] )
+  int order, double /*alpha*/, double c[] )
 
 //****************************************************************************80
 //
