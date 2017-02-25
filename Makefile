@@ -440,17 +440,17 @@ mpfrcalc: mpfr_gexpr.c
 	$(GCC) -I. -o mpfrcalc mpfr_gexpr.c -lgmp -lmpfr -lm
 
 
-test_special_function: test_special_function.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(CXX_LIB_DIR) -o test_special_function test_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes
+test_special_function: test_special_function.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -I. -o test_special_function test_special_function.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
-diff_special_function: diff_special_function.cpp $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(CXX_LIB_DIR) -o diff_special_function diff_special_function.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes
+diff_special_function: diff_special_function.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -I. -o diff_special_function diff_special_function.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
-testcase2: testcase2.cpp testcase2.tcc $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(CXX_LIB_DIR) -I$(BOOST_INC_DIR) -o testcase2 testcase2.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes
+testcase2: testcase2.cpp testcase2.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -I. -o testcase2 testcase2.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
-testcase: testcase.cpp testcase.tcc $(LERCH_DIR)/lerchphi.h $(LERCH_DIR)/lerchphi.cpp $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -I$(GSL_INC_DIR) -Wl,-rpath,$(CXX_LIB_DIR) -I$(BOOST_INC_DIR) -o testcase testcase.cpp $(LERCH_DIR)/lerchphi.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes
+testcase: testcase.cpp testcase.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -I. -o testcase testcase.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
 test_limits: test_limits.cpp
 	$(CXX17) -I. -o test_limits test_limits.cpp -lquadmath
