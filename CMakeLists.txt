@@ -222,3 +222,7 @@ add_library(wrap_lerchphi SHARED
 	    lerchphi/Source/lerchphi.h
 	    lerchphi/Source/lerchphi.cpp)
 
+
+add_library(wrap_faddeeva SHARED
+            wrap_faddeeva.h wrap_faddeeva.cpp
+	    Faddeeva/Faddeeva.h Faddeeva/Faddeeva.cpp)
