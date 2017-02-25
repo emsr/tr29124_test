@@ -32,8 +32,8 @@ void poleva( fract a[], int na, fract* x, fract* s );
 */
 void polini( int maxdeg );
 void polprt( double a[], int na, int d );
-void polclr( register double *a, int n );
-void polmov( register double *a, int na, register double *b );
+void polclr( double *a, int n );
+void polmov( double *a, int na, double *b );
 void polmul( double a[], int na, double b[], int nb, double c[] );
 void poladd( double a[], int na, double b[], int nb, double c[] );
 void polsub( double a[], int na, double b[], int nb, double c[] );
