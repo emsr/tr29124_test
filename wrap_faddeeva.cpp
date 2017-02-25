@@ -1,6 +1,8 @@
 
 #include "wrap_faddeeva.h"
 
+#include <ext/cmath>
+
 #include "Faddeeva/Faddeeva.h"
 
 namespace faddeeva
@@ -149,10 +151,10 @@ namespace faddeeva
   std::complex<double>
   voigt(double x, double t)
   {
-    const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi<double>;
+    const auto _S_sqrt_pi = 2 * __gnu_cxx::__math_constants<double>::__root_pi_div_2;
     auto s = 1.0 / (2.0 * std::sqrt(t));
     std::complex z(s, -s * x);
-    return _S_sqrt_pi * s * fadeeva(z);
+    return _S_sqrt_pi * s * faddeeva(z);
   }
 
   /**
