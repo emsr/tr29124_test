@@ -1197,7 +1197,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * and
    * @f[
    * 	\zeta(s) = \frac{1}{1-2^{1-s}}\sum_{k=1}^{\infty}(-1)^{k-1}k^{-s}
-   *              \mbox{ for } 0 <= s <= 1
+   *              \mbox{ for } 0 <= s < 1
    * @f]
    * For s < 1 use the reflection formula:
    * @f[
