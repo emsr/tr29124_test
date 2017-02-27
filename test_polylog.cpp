@@ -209,34 +209,42 @@ PATH=wrappers/debug:$PATH ./test_polylog > test_polylog.txt
     std::complex<_Tp>
     __polylog_exp_neg_int(int __n, std::complex<_Tp> __w)
     {
-      const int __p = -__n;
-      const int __pp = 1 + __p;
-      const int __q = __p & 1 ? 0 : 1;
-      const auto __w2 = __w * __w;
-      auto __pref = std::pow(-__w, -_Tp(__pp));
-      auto __wp = __p & 1 ? std::complex<_Tp>{1} : __w;
-      unsigned int __2k = __q;
-      auto __gam = std::__detail::__factorial<_Tp>(__p);
-      auto __res = __gam * std::pow(-__w, _Tp(-__pp));
-      auto __sum = std::complex<_Tp>{};
-      constexpr unsigned int __maxit = 300;
-      _Terminator<std::complex<_Tp>> __done(__maxit);
-      while (true)
+      const auto _S_inf = std::numeric_limits<_Tp>::infinity();
+      if (__gnu_cxx::__fp_is_zero(__w))
+	return std::complex<_Tp>{0};
+      else if (__gnu_cxx::__fp_is_equal(__w, _Tp{1}))
+	return std::complex<_Tp>{_S_inf, _Tp{0}};
+      else
 	{
-	  if (__p + __2k + 1 == std::__detail::_Num_Euler_Maclaurin_zeta)
-	    break;
-	  auto __term = __gam * __wp
-		  * _Tp(std::__detail::_S_Euler_Maclaurin_zeta[__p + __2k + 1]);
-	  __sum += __term;
-	  if (__done(__term, __sum))
-	    break;
-	  __gam *= _Tp(__p + __2k + 2) / _Tp(__2k + 2)
-		 * _Tp(__p + __2k + 1) / _Tp(__2k + 1);
-	  __wp *= __w2;
-	  __2k += 2;
+	  const int __p = -__n;
+	  const int __pp = 1 + __p;
+	  const int __q = __p & 1 ? 0 : 1;
+	  const auto __w2 = -__w * __w;
+	  auto __wp = __p & 1 ? std::complex<_Tp>{1} : __w;
+	  unsigned int __2k = __q;
+	  auto __gam = std::__detail::__factorial<_Tp>(__p + __2k);
+	  const auto __pfact = std::__detail::__factorial<_Tp>(__p);
+	  auto __res = __pfact * std::pow(-__w, _Tp(-__pp));
+	  auto __sum = std::complex<_Tp>{};
+	  constexpr unsigned int __maxit = 300;
+	  _Terminator<std::complex<_Tp>> __done(__maxit);
+	  while (true)
+	    {
+	      if (__p + __2k + 1 == std::__detail::_Num_Euler_Maclaurin_zeta)
+		break;
+	      auto __term = __gam * __wp
+		* _Tp(std::__detail::_S_Euler_Maclaurin_zeta[__p + __2k + 1]);
+	      __sum += __term;
+	      if (__done(__term, __sum))
+		break;
+	      __gam *= _Tp(__p + __2k + 1) / _Tp(__2k + 1)
+		     * _Tp(__p + __2k + 2) / _Tp(__2k + 2);
+	      __wp *= __w2;
+	      __2k += 2;
+	    }
+	  __res -= __sum;
+	  return __res;
 	}
-      __res -= __pref * __sum;
-      return __res;
     }
 
 /**
@@ -257,11 +265,14 @@ template<typename Tp>
 	for (int i = -200; i <= 20; ++i)
 	  {
 	    auto x = del * i;
-	    auto w = std::log(std::complex<Tp>(x));
 	    auto Ls_rat1 = __polylog_nonpos_int_1(n, x);
 	    auto Ls_rat2 = __polylog_nonpos_int_2(n, x);
 	    auto Ls_rat3 = __polylog_nonpos_int_3(n, x);
-	    auto Ls_nint = std::real(__polylog_exp_neg_int(n, w));
+	    auto Ls_nint = x == Tp{0}
+			 ? Tp{0}
+			 : [n, x]() -> Tp
+			   { auto w = std::log(std::complex<Tp>(x));
+			     return std::real(__polylog_exp_neg_int(n, w)); }();
 	    auto Ls_gnu = __gnu_cxx::polylog(Tp(n), x);
 	    std::cout << ' ' << n
 		      << ' ' << x

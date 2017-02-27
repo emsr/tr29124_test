@@ -309,7 +309,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __res += _S_i * __gam * (std::conj(__expis) * std::pow(__p, __s - _Tp{1})
 	     - __expis * std::pow(__q, __s - _Tp{1}));
       // The above expression is the result of
-      // sum_k Gamma(1+k-s) /k! * sin(pi /2* (s-k)) * (w/2/pi)^k
+      // sum_k Gamma(1+k-s)/k! * sin(pi (s-k)/2) (w/2/pi)^k
       // Therefore we only need to sample values of zeta(n) on the real axis
       // that really differ from one
       std::complex<_Tp> __sum = __sp * __gam * __riemann_zeta_m_1(_Tp{1} - __s);
