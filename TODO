@@ -475,6 +475,10 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 
 106. [] Semantic constants.  pi() that would do lazy math and figure out a precision.
 
+107. [] I wonder if measure theory, and a measure for computer numbers would help
+        with understanding the relationship between computer math and real number math.
+
+
 plot_airy.cpp
 
 test_array_ref.cpp - move with <array_ref> somewhere else
