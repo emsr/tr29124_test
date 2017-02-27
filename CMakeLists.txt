@@ -228,3 +228,8 @@ add_library(wrap_lerchphi SHARED
 add_library(wrap_faddeeva SHARED
             wrap_faddeeva.h wrap_faddeeva.cpp
 	    Faddeeva/Faddeeva.h Faddeeva/Faddeeva.cpp)
+
+
+add_library(wrap_lambert SHARED
+            wrap_lambert.h wrap_lambert.cpp
+	    LambertW/LambertW.h LambertW/LambertW.cc)
