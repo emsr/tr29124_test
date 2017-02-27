@@ -129,6 +129,7 @@ namespace __gnu_cxx
 	      auto __poly(this->coefficient(this->degree()) * _Tp2(1));
 	      for (int __i = this->degree() - 1; __i >= 0; --__i)
 		__poly = __poly * __x + this->coefficient(__i);
+	      return __poly;
 	    }
 	  else
 	    return value_type{};
