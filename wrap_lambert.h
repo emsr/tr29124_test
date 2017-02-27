@@ -6,8 +6,8 @@ namespace lambert
 {
 
   template<int branch>
-  double
-  lambert(double x);
+    double
+    lambert(double x);
 
 } // namespace lambert
 
