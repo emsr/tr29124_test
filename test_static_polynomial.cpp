@@ -17,5 +17,6 @@ main()
   float aa[5]{1.0f, 2.0f, -1.5f, 0.2f, -0.1f};
 
   __gnu_cxx::_StaticPolynomial<float, 5> p(aa);
+  auto y = p(1.2);
   //__gnu_cxx::_StaticPolynomial<float, 5> a(1.0f, 2.0f, -1.5f, 0.2f, -0.1f);
 }
