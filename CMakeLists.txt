@@ -232,4 +232,4 @@ add_library(wrap_faddeeva SHARED
 
 add_library(wrap_lambert SHARED
             wrap_lambert.h wrap_lambert.cpp
-	    LambertW/LambertW.h LambertW/LambertW.cc)
+	    LambertW/Horner.h LambertW.h LambertW/LambertW.cc)
