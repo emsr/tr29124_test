@@ -163,7 +163,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __pref = __wk / _S_pi / _S_2pi;
       // Remainder of series.
       __fact *= _Tp{2} * _Tp{3} / _Tp(__s + 2) / _Tp(__s + 3);
-      auto __w2 = -(__w / _S_2pi) * (__w / _S_2pi);
+      const auto __w2 = -(__w / _S_2pi) * (__w / _S_2pi);
       auto __w2k = __w2;
       auto __rzarg = _Tp{2};
       __fact /= _Tp(__s + 1); // (1/(s+1)!)
@@ -223,13 +223,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  __res += __wk * __fact * __riemann_zeta<_Tp>(__s - __k);
 	  __wk *= __w;
-	  auto __temp = _Tp{1} / (_Tp{1} + __k);
+	  const auto __temp = _Tp{1} / (_Tp{1} + __k);
 	  __fact *= __temp;
 	  __harmonicN += __temp;
 	}
       // harmonicN now contains H_{s-1}
       // fact should be 1/(n-1)!
-      auto __imagtemp = __fact * __wk
+      const auto __imagtemp = __fact * __wk
 		    * (__harmonicN - std::log(std::complex<_Tp>(-__w, _Tp{0})));
       __res += std::real(__imagtemp);
       __wk *= __w;
@@ -244,7 +244,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __sum = _S_pipio6 * __fact;
       // Remainder of series.
       __fact *= _Tp{2} * _Tp{3} / _Tp(__s + 2) / _Tp(__s + 3);
-      auto __w2 = -(__w / _S_2pi) * (__w / _S_2pi);
+      const auto __w2 = -(__w / _S_2pi) * (__w / _S_2pi);
       auto __w2k = __w2;
       auto __rzarg = _Tp{2};
       const unsigned int __maxit = 200;
@@ -296,7 +296,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __res = std::exp(__ls - (_Tp{1} - __s) * std::log(-__w));
       const auto __wup = __w / _S_2pi;
       auto __w2k = __wup;
-      auto __pref = _Tp{2} * std::pow(_S_2pi, -(_Tp{1} - __s));
+      const auto __pref = _Tp{2} * std::pow(_S_2pi, -(_Tp{1} - __s));
       // here we factor up the ratio of Gamma(1 - s + k)/k! .
       // This ratio should be well behaved even for large k in the series
       // afterwards
@@ -305,14 +305,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // on the positive real axis where it is real.
       auto __gam = std::exp(__ls);
 
-      auto __phase = __polar_pi(_Tp{1}, __s / _Tp{2});
-      auto __cp = std::real(__phase);
-      auto __sp = std::imag(__phase);
+      const auto __phase = __polar_pi(_Tp{1}, __s / _Tp{2});
+      const auto __cp = std::real(__phase);
+      const auto __sp = std::imag(__phase);
       // Here we add the expression that would result from ignoring
       // the zeta function in the series.
-      std::complex<_Tp> __expis(__cp, __sp);
-      auto __p = _S_2pi - _S_i * __w;
-      auto __q = _S_2pi + _S_i * __w;
+      const std::complex<_Tp> __expis(__cp, __sp);
+      const auto __p = _S_2pi - _S_i * __w;
+      const auto __q = _S_2pi + _S_i * __w;
       // This can be optimized for real values of w
       __res += _S_i * __gam * (std::conj(__expis) * std::pow(__p, __s - _Tp{1})
 	     - __expis * std::pow(__q, __s - _Tp{1}));
@@ -327,8 +327,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Terminator<std::complex<_Tp>> __done(__maxit);
       while (true)
 	{
-	  auto __rzarg = _Tp(1 + __j) - __s;
-	  auto __rz = __riemann_zeta_m_1(__rzarg);
+	  const auto __rzarg = _Tp(1 + __j) - __s;
+	  const auto __rz = __riemann_zeta_m_1(__rzarg);
 	  _Tp __sine;
 	  // Save repeated recalculation of the sines.
 	  if (__j & 1)
@@ -343,7 +343,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      if ((__j / 2) & 1)
 		__sine = -__sine;
 	    }
-	  auto __term =  __w2k * (__gam * __sine * __rz);
+	  const auto __term =  __w2k * (__gam * __sine * __rz);
 	  __w2k *= __wup;
 	  ++__j;
 	  __gam  *= __rzarg / _Tp(__j); // == 1/(j+1) we incremented j above.
@@ -396,8 +396,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      const auto __id = (__p + __2k + 1) / 2;
 	      if (__id == std::__detail::_Num_Euler_Maclaurin_zeta)
 		break;
-	      auto __term = __gam * __wp
-		* _Tp(std::__detail::_S_Euler_Maclaurin_zeta[__id]);
+	      const auto __term = __gam * __wp
+			* _Tp(std::__detail::_S_Euler_Maclaurin_zeta[__id]);
 	      __sum += __term;
 	      if (__done(__term, __sum))
 		break;
@@ -440,9 +440,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
       std::complex<_Tp> __res = __riemann_zeta(__s);
       auto __wk = __w;
-      auto __phase = __polar_pi(_Tp{1}, __s / _Tp{2});
-      auto __cp = std::real(__phase);
-      auto __sp = std::imag(__phase);
+      const auto __phase = __polar_pi(_Tp{1}, __s / _Tp{2});
+      const auto __cp = std::real(__phase);
+      const auto __sp = std::imag(__phase);
       // This is \Gamma(1-s)(-w)^{s-1}
       __res += _S_pi / (_Tp{2} * __sp * __cp)
 	  * std::exp(-__log_gamma(__s) + (__s - _Tp{1}) * std::log(-__w));
@@ -469,9 +469,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __gam = __gamma(_Tp(2 + __m) - __s) * __fact;
       while (!__terminate)
 	{
-	  auto __idx = __m + 1 + __j;
-	  auto __zetaarg = _Tp(1 + __idx) - __s;
-	  auto __rz = __riemann_zeta(__zetaarg);
+	  const auto __idx = __m + 1 + __j;
+	  const auto __zetaarg = _Tp(1 + __idx) - __s;
+	  const auto __rz = __riemann_zeta(__zetaarg);
 	  auto __sine = __cp;
 	  if (__idx & 1) // Save the repeated calculation of the sines.
 	    { // odd
@@ -485,7 +485,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      if ((__idx / 2) & 1)
 		__sine = -__sine;
 	    }
-	  auto __term = __wbark * __sine * __gam * __rz;
+	  const auto __term = __wbark * __sine * __gam * __rz;
 	  __wbark *= __wup;
 	  __gam *= __zetaarg / _Tp(1 + __idx);
 	  ++__j;
@@ -576,7 +576,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  __ew *= __up;
 	  _Tp __temp = std::pow(__k, __s); // This saves us a type conversion
-	  auto __term = __ew / __temp;
+	  const auto __term = __ew / __temp;
 	  __terminate = (__k > __maxiter || __gnu_cxx::__fp_is_zero(__term));
 	  __res += __term;
 	  ++__k;
@@ -599,8 +599,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__w));
-      auto __rw = __w.real();
-      auto __iw = __w.imag();
+      const auto __rw = __w.real();
+      const auto __iw = __w.imag();
       if (__gnu_cxx::__fp_is_real(__w)
 	  && __gnu_cxx::__fp_is_equal(std::remainder(__iw, _S_2pi), _Tp{0}))
 	{
@@ -611,7 +611,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else if (0 == __s)
 	{
-	  auto __t = std::exp(__w);
+	  const auto __t = std::exp(__w);
 	  return __t / (_Tp{1} - __t);
 	}
       else if (1 == __s)
@@ -660,7 +660,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else if (0 == __s)
 	{
-	  auto __t = std::exp(__w);
+	  const auto __t = std::exp(__w);
 	  return __t / (_Tp{1} - __t);
 	}
       else if (1 == __s)
@@ -700,8 +700,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if ((((-__s) & 1) == 0) && __gnu_cxx::__fp_is_imag(__w))
 	{
 	  // Now s is odd and w on the unit-circle.
-	  auto __iw = imag(__w);  //get imaginary part
-	  auto __rem = std::remainder(__iw, _S_2pi);
+	  const auto __iw = imag(__w);  //get imaginary part
+	  const auto __rem = std::remainder(__iw, _S_2pi);
 	  if (__gnu_cxx::__fp_is_equal(std::abs(__rem), _Tp{0.5L}))
 	    // Due to: Li_{-n}(-1) + (-1)^n Li_{-n}(1/-1) = 0.
 	    return _Tp{0};
@@ -767,8 +767,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_2pi = __gnu_cxx::__const_2_pi(__s);
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
-      auto __rw = __w.real();
-      auto __iw = __w.imag();
+      const auto __rw = __w.real();
+      const auto __iw = __w.imag();
       if (__gnu_cxx::__fp_is_real(__w)
 	  && __gnu_cxx::__fp_is_zero(std::remainder(__iw, _S_2pi)))
 	{
@@ -834,8 +834,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
-      auto __rw = __w.real();
-      auto __iw = __w.imag();
+      const auto __rw = __w.real();
+      const auto __iw = __w.imag();
       if (__rw < -(_S_pi_2 + _S_pi/_Tp{5})) // Choose exp'ly converging series.
 	return __polylog_exp_negative_real_part(__s, __w);
       else if (__rw < 6) // arbitrary transition point
@@ -939,14 +939,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				* (std::pow(_Tp{2}, _Tp{1} - __s) - _Tp{1}));
 	  else if (__x < _Tp{0})
 	    { // Use the reflection formula to access negative values.
-	      auto __y = std::log(-__x);
+	      const auto __y = std::log(-__x);
 	      return std::real(__polylog_exp(__s, _Tp{2} * __y)
 				    * std::pow(_Tp{2}, _Tp{1} - __s)
 			     - __polylog_exp(__s, __y));
 	    }
 	  else
 	    {
-	      auto __y = std::log(__x);
+	      const auto __y = std::log(__x);
 	      return std::real(__polylog_exp(__s, __y));
 	    }
 	}
@@ -996,10 +996,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		&& (__a.real() >  _Tp{0} && __a.real() <= _Tp{1})))
 	{
 	  _Tp __t = _Tp{1} - __s;
-	  auto __lpe = __polylog_exp(__t, _S_i2pi * __a);
+	  const auto __lpe = __polylog_exp(__t, _S_i2pi * __a);
 	  /// @todo This __hurwitz_zeta_polylog prefactor is prone to overflow.
 	  /// positive integer orders s?
-	  auto __thing = std::exp(_Cmplx(_Tp{0}, -_S_pi_2 * __t));
+	  const auto __thing = std::exp(_Cmplx(_Tp{0}, -_S_pi_2 * __t));
 	  return __gamma(__t)
 	       * std::pow(_S_2pi, -__t)
 	       * (__lpe * __thing + std::conj(__lpe * __thing));
