@@ -478,6 +478,25 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 107. [] I wonder if measure theory, and a measure for computer numbers would help
         with understanding the relationship between computer math and real number math.
 
+108. [] Look into folding polylog cases:
+            __polylog_exp_pos(unsigned int __s, std::complex<_Tp> __w)
+            __polylog_exp_pos(unsigned int __s, _Tp __w)
+            __polylog_exp_pos(_Tp __s, std::complex<_Tp> __w)
+        and
+            __polylog_exp_neg(_Tp __s, std::complex<_Tp> __w)
+            __polylog_exp_neg(int __n, std::complex<_Tp> __w)
+        and
+            __polylog_exp_int_pos(unsigned int __s, std::complex<_Tp> __w)
+            __polylog_exp_int_pos(unsigned int __s, _Tp __w)
+        and
+            __polylog_exp_int_neg(int __s, std::complex<_Tp> __w)
+            __polylog_exp_int_neg(int __s, _Tp __w)
+        and
+            __polylog_exp_real_pos(_Tp __s, std::complex<_Tp> __w)
+            __polylog_exp_real_pos(_Tp __s, _Tp __w)
+        and
+            __polylog_exp_real_neg(_Tp __s, std::complex<_Tp> __w)
+            __polylog_exp_real_neg(_Tp __s, _Tp __w)
 
 plot_airy.cpp
 
