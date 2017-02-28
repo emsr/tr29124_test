@@ -617,7 +617,7 @@ template<typename Tp>
 
     for(std::size_t k = 0; k < 10; ++k)
     {
-      auto w = std::complex<Tp>(-_S_pi / 2 - _S_pi * 4 / 20, 0); // x == 0 ???
+      auto w = std::complex<Tp>(-_S_pi / 2 - _S_pi / 5, 0);
       std::cout << std::__detail::__polylog_exp(-Tp{4}, w) << '\n';
       std::cout << std::__detail::__polylog_exp_negative_real_part(-Tp{4}, w) << '\n';
     }
@@ -649,7 +649,7 @@ template<typename Tp>
     std::ofstream test("test.dat");
     for (auto s = Tp{2.5}; s < Tp{3.5}; s += del01)
       test << s << ' ' << std::real(std::__detail::__polylog(s, Tp{2})) - Tp{2} << '\n';
-    std::cout << std::endl;
+    test << std::endl;
 
     std::cout << std::__detail::__polylog(Tp{3.1}, Tp{2}) << '\n';
     std::cout << std::__detail::__polylog_exp_pos(Tp{3.1}, std::complex<Tp>(std::log(Tp{2}))) << '\n';
@@ -700,11 +700,11 @@ template<typename Tp>
     std::cout << std::endl;
 
     std::cout << "\nTest series 7:\n";
-    for (Tp k = -Tp{13}; k < Tp{13}; k += Tp{1} / Tp{11})
+    for (Tp k = Tp{-13}; k < Tp{13}; k += Tp{1} / Tp{11})
       for (Tp x = Tp{0}; x < Tp{1}; x += del01)
 	std::cout << k
 		  << ' ' << x
-		  << ' ' << std::__detail::__polylog_exp_asymp(k, Tp{100} + std::polar(Tp{1}, _S_2pi * 0)) // x == 0 ???
+		  << ' ' << std::__detail::__polylog_exp_asymp(k, Tp{100} * std::polar(Tp{1}, _S_2pi * x))
 		  << '\n';
     std::cout << std::endl;
 

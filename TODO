@@ -498,6 +498,14 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
             __polylog_exp_real_neg(_Tp __s, std::complex<_Tp> __w)
             __polylog_exp_real_neg(_Tp __s, _Tp __w)
 
+109. [] Learn how to plot even in log space and use it to pick up details in polylog
+        near the origin.
+        Maybe a plot_utils.h would be nice.
+
+110. [] If 2^{-s} < epsilon, zeta == 1.
+        For zetam1 you should keep trying - that's why we have it.
+        The polylog_asymp is slow.
+
 plot_airy.cpp
 
 test_array_ref.cpp - move with <array_ref> somewhere else
