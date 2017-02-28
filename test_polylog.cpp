@@ -203,11 +203,19 @@ PATH=wrappers/debug:$PATH ./test_polylog > test_polylog.txt
   /**
    * Compute the polylogarithm for negative integer order.
    * @f[
+   *   Li_{-p}(e^w) = p!(-w)^{-(p+1)}
+   *     - \sum_{k=0}^{\infty} \frac{B_{p+2k+q+1}}{(p+2k+q+1)!}
+   *                           \frac{(p+2k+q)!}{(2k+q)!}w^{2k+q}
    * @f]
+   * where @f$ q = (p+1) mod 2 @f$.
+   *
+   * @param __n the negative integer index @f$ n = -p @f$.
+   * @param __w the argument w.
+   * @return the value of the polylogarithm.
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __polylog_exp_neg_int(int __n, std::complex<_Tp> __w)
+    __polylog_exp_neg(int __n, std::complex<_Tp> __w)
     {
       const auto _S_inf = std::numeric_limits<_Tp>::infinity();
       if (__gnu_cxx::__fp_is_zero(__w))
@@ -219,7 +227,7 @@ PATH=wrappers/debug:$PATH ./test_polylog > test_polylog.txt
 	  const int __p = -__n;
 	  const int __pp = 1 + __p;
 	  const int __q = __p & 1 ? 0 : 1;
-	  const auto __w2 = -__w * __w;
+	  const auto __w2 = __w * __w;
 	  auto __wp = __p & 1 ? std::complex<_Tp>{1} : __w;
 	  unsigned int __2k = __q;
 	  auto __gam = std::__detail::__factorial<_Tp>(__p + __2k);
@@ -230,10 +238,11 @@ PATH=wrappers/debug:$PATH ./test_polylog > test_polylog.txt
 	  _Terminator<std::complex<_Tp>> __done(__maxit);
 	  while (true)
 	    {
-	      if (__p + __2k + 1 == std::__detail::_Num_Euler_Maclaurin_zeta)
+	      const auto __id = (__p + __2k + 1) / 2;
+	      if (__id == std::__detail::_Num_Euler_Maclaurin_zeta)
 		break;
 	      auto __term = __gam * __wp
-		* _Tp(std::__detail::_S_Euler_Maclaurin_zeta[__p + __2k + 1]);
+		* _Tp(std::__detail::_S_Euler_Maclaurin_zeta[__id]);
 	      __sum += __term;
 	      if (__done(__term, __sum))
 		break;
@@ -245,6 +254,182 @@ PATH=wrappers/debug:$PATH ./test_polylog > test_polylog.txt
 	  __res -= __sum;
 	  return __res;
 	}
+    }
+
+  /**
+   * This function treats the cases of negative integer index @f$ s = -p @f$
+   * which are even.
+   *
+   * In that case the sine occuring in the expansion occasionally
+   * takes on the value zero.
+   * We use that to provide an optimized series for p = 2n:
+   *
+   * @f[
+   *   Li_{-p}(e^w) = \Gamma(1+p) (-w)^{-p-1} - A_p(w) - \sigma B_p(w)
+   * @f]
+   * with
+   * @f[
+   *   A_p(w) = 2 (2\pi)^{-p-1} \frac{p!}{(2\pi)^{-p/2}}
+   *           \left(1 + \frac{w^2}{4\pi^2}\right)^{-(p+1)/2}
+   *          \cos\left[(1 + p)ArcTan\left(\frac{2\pi}{w}\right)\right]
+   * @f]
+   * and 
+   * @f[
+   *   B_p(w) = - 2 (2\pi)^{-p-1} \sum_{k = 0}^{\infty} 
+   *           \frac{(2k + 1 + p)!}{(2k + 1)!}
+   *           (-1)^k \left(\frac{w}{2\pi}\right)^{2k+1} [\zeta(2 + 2k + p) - 1]
+   * @f]
+   * This is suitable for @f$ |w| < 2 \pi @f$
+   * The original series is (This might be worthwhile if we use
+   * the already present table of the Bernoullis)
+   * @f[
+   *   Li_{-p}(e^w) = p! (-w)^{-p-1}
+   *      - \sigma (2\pi)^p /\pi \sum_{k = 0}^{\infty}
+   *       \frac{(2k + 1 + p)!}{(2k + 1)!}
+   *       (-1)^k \left(\frac{w}{2\pi}\right)^{2k+1} \zeta(2 + 2k + p)
+   * @f]
+   * Where @f$ p = 4k (\sigma = 1) @f$ or @f$ p = 4k + 2 (\sigma = -1) @f$.
+   *
+   * @param __p the integral index @f$ p = 4k @f$ or @f$ p = 4k + 2 @f$.
+   * @param __w The complex argument w
+   * @return the value of the Polylogarithm.
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    __polylog_exp_neg_even(unsigned int __p, std::complex<_Tp> __w)
+    {
+      const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
+      const int __pp = 1 + __p;
+      const int __sigma = __p % 4 == 0 ? +1 : -1;
+      const auto __lnp = std::__detail::__log_factorial<_Tp>(__p);
+      auto __res = std::exp(__lnp - _Tp(__pp) * std::log(-__w));
+      auto __wup = __w / _S_2pi;
+      auto __wq = -__wup * __wup;
+      auto __pref = _Tp{2} * std::pow(_S_2pi, _Tp(-__pp));
+      // Subtract the expression A_p(w)
+      __pref *= __sigma;
+      __res -= __pref
+	     * std::exp(__lnp - _Tp{0.5L} * __pp * std::log(_Tp{1} - __wq))
+	     * std::cos(_Tp(__pp) * std::atan(_Tp{1} / __wup));
+      unsigned int __2k = 0;
+      auto __gam = std::__detail::__factorial<_Tp>(1 + __p);
+      std::complex<_Tp> __sum;
+      constexpr unsigned int __maxit = 400;
+      _Terminator<std::complex<_Tp>> __done(__maxit);
+      while (true)
+	{
+	  auto __term = __gam * __wup
+		      * std::__detail::__riemann_zeta_m_1<_Tp>(__2k + 2 + __p);
+	  __sum += __term;
+	  if (__done(__term, __sum))
+	    break;
+	  __gam *= _Tp(__2k + 2 + __p) / _Tp(__2k + 2)
+		 * _Tp(__2k + 3 + __p) / _Tp(__2k + 3);
+	  __2k += 2;
+	  __wup *= __wq;
+	}
+      __res -= __pref * __sum;
+      return __res;
+    }
+
+  /**
+   * This function treats the cases of negative integer index @f$ s = -p @f$
+   * which are odd.
+   *
+   * In that case the sine occuring in the expansion occasionally vanishes.
+   * We use that to provide an optimized series for @f$ p = 1 + 2k @f$:
+   * In the template parameter sigma we transport whether
+   * @f$ p = 4k + 1 (\sigma = 1) @f$ or @f$ p = 4k + 3  (\sigma = -1) @f$.
+   *
+   * @f[
+   *   Li_{-p}(e^w) = \Gamma(1+p) (-w)^{-p-1} + \sigma A_p(w) - \sigma B_p(w)
+   * @f]
+   * with
+   * @f[
+   *   A_p(w) = 2 (2\pi)^{-p-1} p!
+   *          \left(1 + \frac{w^2}{4\pi^2}\right)^{-(p + 1)/2}
+   *           \cos((1 + p) ArcTan(2 \pi / w))
+   * @f]
+   * and 
+   * @f[
+   *   B_p(w) = 2 (2\pi)^{-p-1}
+   *            \sum_{k=0}^{\infty}\frac{(2k + p)!}{(2k)!}
+   *      \left(\frac{-w^2}{4\pi^2}\right)^k [\zeta(2k + p + 1) - 1]
+   * @f]
+   * This is suitable for @f$ |w| < 2 \pi @f$.
+   * The original series is (This might be worthwhile if we use
+   * the already present table of the Bernoullis)
+   * @f[
+   *   Li_{-p}(e^w) = p! (-w)^{-p-1}
+   *      - 2\sigma (2\pi)^{-p-1} \sum_{k = 0}^{\infty}
+   *       \frac{(2k + p)!}{(2k)!}
+   *       (-1)^k \left(\frac{w}{2\pi}\right)^{2k} \zeta(1 + 2k + p)
+   * @f]
+   *
+   * @param __p the integral index @f$ p = 4k + 1 @f$ or @f$ p = 4k + 3 @f$.
+   * @param __w The complex argument w.
+   * @return The value of the Polylogarithm.
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    __polylog_exp_neg_odd(unsigned int __p, std::complex<_Tp> __w)
+    {
+      const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
+      const int __pp = 1 + __p;
+      const int __sigma = __p % 4 == 1 ? +1 : -1;
+      const auto __lnp = std::__detail::__log_factorial<_Tp>(__p);
+      auto __res = std::exp(__lnp - _Tp(__pp) * std::log(-__w));
+      auto __wup = __w / _S_2pi;
+      auto __wq = -__wup * __wup;
+      auto __pref = _Tp{2} * std::pow(_S_2pi, _Tp(-__pp));
+      __pref *= __sigma;
+      // Add the expression A_p(w)
+      __res += __pref
+	     * std::exp(__lnp - _Tp{0.5L} * __pp * std::log(_Tp{1} - __wq))
+	     * std::cos(_Tp(__pp) * std::atan(_Tp{1} / __wup));
+      auto __gam = std::__detail::__factorial<_Tp>(__p);
+      unsigned int __2k = 0;
+      std::complex<_Tp> __sum;
+      constexpr unsigned int __maxit = 400;
+      _Terminator<std::complex<_Tp>> __done(__maxit);
+      while (true)
+	{
+	  auto __term = __gam * __wup
+		      * std::__detail::__riemann_zeta_m_1<_Tp>(__2k + 1 + __p);
+	  __sum += __term;
+	  if (__done(__term, __sum))
+	    break;
+	  __gam *= _Tp(__2k + 1 + __p) / _Tp(__2k + 1)
+		 * _Tp(__2k + 2 + __p) / _Tp(__2k + 2);
+	  __2k += 2;
+	  __wup *= __wq;
+	}
+      __res -= __pref * __sum;
+      return __res;
+  }
+
+  /**
+   * This function treats the cases of negative integer index s
+   * and branches accordingly
+   *
+   * @param __s the integer index s.
+   * @param __w The Argument w
+   * @return The value of the Polylogarithm evaluated by a suitable function.
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    __polylog_exp_neg_old(int __s, std::complex<_Tp> __w)
+    { // negative integer __s
+      const auto __p = -__s;
+      switch (__p % 2)
+      {
+      case 0:
+	return __polylog_exp_neg_even<_Tp>(__p, __w);
+      case 1:
+	return __polylog_exp_neg_odd<_Tp>(__p, __w);
+      default: // We shouldn't need this.
+	return std::complex<_Tp>{};
+      }
     }
 
 /**
@@ -272,8 +457,12 @@ template<typename Tp>
 			 ? Tp{0}
 			 : [n, x]() -> Tp
 			   { auto w = std::log(std::complex<Tp>(x));
-			     return std::real(__polylog_exp_neg_int(n, w)); }();
-	    auto Ls_gnu = __gnu_cxx::polylog(Tp(n), x);
+			     return std::real(std::__detail::__polylog_exp_neg(n, w)); }();
+	    auto Ls_gnu = x == Tp{0}
+			? Tp{0}
+			: [n, x]() -> Tp
+			  { auto w = std::log(std::complex<Tp>(x));
+			    return std::real(__polylog_exp_neg_old(n, w)); }();
 	    std::cout << ' ' << n
 		      << ' ' << x
 		      << ' ' << Ls_rat1
