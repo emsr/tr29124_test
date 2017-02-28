@@ -13,6 +13,28 @@ g++ -std=gnu++17 -g -Wall -Wextra -DNO_LOGBQ -I. -o test_debye test_debye.cpp -l
 #include <iomanip>
 #include <ext/cmath>
 
+/**
+ * Return the Debye integral or the incomplete Riemann zeta function:
+ * @todo: really, we should return both the integral and it's complement.
+ * @f[
+ *    \zeta_x(s) = \frac{1}{\Gamma(s)}\int_{0}^{x}\frac{t^{s-1}}{e^t-1}dt
+ *          = \sum{k=1}{\infty}k^{-s}P(s,kx)
+ * @f]
+ * @f[
+ *    \Zeta_x(s) = \frac{1}{\Gamma(s)}\int_{x}^{\infty}\frac{t^{s-1}}{e^t-1}dt
+ *          = \sum{k=1}{\infty}k^{-s}Q(s,kx)
+ * @f]
+ * where @f$ P(a,x), Q(a,x) @f$ is the incomplete gamma function ratios.
+ * The Debye integrals are:
+ * @f[
+ *    \int_{x}^{\infty}\frac{t^n}{e^t-1}dt
+ *      = \Gamma(n+1)[\zeta(n+1)-\zeta_x(n+1)]
+ * @f]
+ * and
+ * @f[
+ *    \int_{0}^{x}\frac{t^n}{e^t-1}dt = \Gamma(n+1)\zeta_x(n+1)
+ * @f]
+ */
 template<typename _Tp>
   _Tp
   __debye(unsigned int __n, _Tp __x)
