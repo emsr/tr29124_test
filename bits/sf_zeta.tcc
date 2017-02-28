@@ -322,50 +322,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __ans;
     }
 
-  /**
-   * @brief  Evaluate the Riemann zeta function @f$ \zeta(s) @f$
-   * 	     by an alternate series for s > 0.
-   *
-   * The series is:
-   * @f[
-   * 	\zeta(s) = \frac{1}{1-2^{1-s}}
-   * 		   \sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{n^s}
-   * @f]
-   *
-   * The Riemann zeta function is defined by:
-   * @f[
-   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
-   * @f]
-   * For s < 1 use the reflection formula:
-   * @f[
-   * 	\zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
-   * @f]
-   */
-  template<typename _Tp>
-    _Tp
-    __riemann_zeta_alt(_Tp __s)
-    {
-      using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
-      const unsigned int _S_max_iter = 10000000;
-      auto __sgn = _Real{1};
-      auto __zeta = _Val{0};
-      for (unsigned int __i = 1; __i < _S_max_iter; ++__i)
-	{
-	  auto __term = __sgn / std::pow(_Val(__i), __s);
-	  __zeta += __term;
-	  __sgn = -__sgn;
-	  if (std::abs(__term) < _S_eps * std::abs(__zeta)
-	      || std::abs(__term) < _S_eps
-		 && std::abs(__zeta) < _Real{100} * _S_eps)
-	    break;
-	}
-      __zeta /= _Val{1} - std::pow(_Val{2}, _Val{1} - __s);
-
-      return __zeta;
-    }
-
 
   /**
    * @brief  Evaluate the Riemann zeta function by series for all s != 1.
