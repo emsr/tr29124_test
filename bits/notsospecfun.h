@@ -146,6 +146,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   constexpr double nan();
   constexpr float nanf();
   constexpr long double nanl();
+  // And/or:
+  template<char... Str>
+    constexpr double nan();
+  template<char... Str>
+    constexpr float nanf();
+  template<char... Str>
+    constexpr long double nanl();
 
 
   // Log to arbitrary base - the inverse of pow(base, x).
