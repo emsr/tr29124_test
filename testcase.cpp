@@ -1026,17 +1026,17 @@ template<typename Real>
     std::ofstream file_psi(filename);
     const auto skip = Real{1} / Real{16};
     test =
-    maketest(psi, gsl::psi,
+    maketest(psi, beast::psi,
 	     "testcase_psi", "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{-10} + skip, Real{+10} + skip),
 				std::make_pair(true, true), 801),
-	     "GSL",
+	     "Boost",
 	     file_psi, true, false);
-    maketest(psi, gsl::psi,
+    maketest(psi, beast::psi,
 	     "testcase_psi", "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{1}, Real{100}),
 				std::make_pair(true, true), 199),
-	     "GSL",
+	     "Boost",
 	     file_psi, false, true, test);
 
     // Sine integral or Si functions.
