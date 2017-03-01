@@ -58,6 +58,96 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // The ship has sailed for lgamma (I think?)
 
 
+  // Several functions have pointer arguments and so can't be constexpr.
+  // Return types.  See p0533.
+
+  // Should we bother with C-style suffixed functions?
+  // I don't think providing default conversions to numeric types is good enough
+  // to avoid collision and surprise.
+  // Namespace? Naming?
+
+  // Implementation-wise, these could be wrappers of the regular functions.
+  // The pointers would be hidden inside the wrapper.
+
+  template<typename IntTp>
+    struct int_div_t
+    {
+      IntTp quot;
+      IntTp rem;
+    };
+
+  using sdiv_t = int_div_t<short int>; // Adding this ;-)
+  using div_t = int_div_t<int>;
+  using ldiv_t = int_div_t<long int>;
+  using lldiv_t = int_div_t<long long int>;
+  using imaxdiv_t = int_div_t<std::intmax_t>;
+
+  constexpr sdiv_t div(short int numer, short int denom); // Adding this ;-)
+  constexpr div_t div(int numer, int denom);
+  constexpr ldiv_t div(long int numer, long int denom);
+  constexpr lldiv_t div(long long int numer, long long int denom);
+  constexpr imaxdiv_t div(std::intmax_t x, std::intmax_t y);
+  constexpr sdiv_t sdiv(short int numer, short int denom); // Adding this ;-)
+  constexpr ldiv_t ldiv(long int numer, long int denom);
+  constexpr lldiv_t lldiv(long long int numer, long long int denom);
+  constexpr imaxdiv_t imaxdiv(std::intmax_t x, std::intmax_t y);
+
+  // Decompose floating-point number into a normalized fraction
+  // and integral power of two.
+
+  // frexp -> frac_exp2?
+  template<typename Tp>
+    struct frexp_t
+    {
+      Tp value;
+      int exp2;
+    };
+
+  constexpr frexp_t<float> frexp(float value);
+  constexpr frexp_t<double> frexp(double value);
+  constexpr frexp_t<long double> frexp(long double value);
+  constexpr frexp_t<float> frexpf(float value);
+  constexpr frexp_t<long double> frexpl(long double value);
+
+  // Decompose floating-point number into fractional and integer part.
+
+  // modf -> fp_mod?
+  template<typename Tp>
+    struct modf_t
+    {
+      Tp frac_part;
+      Tp int_part;
+    };
+
+  constexpr modf_t<float> modf(float value);
+  constexpr modf_t<double> modf(double value);
+  constexpr modf_t<long double> modf(long double value);
+  constexpr modf_t<float> modff(float value);
+  constexpr modf_t<long double> modfl(long double value);
+
+
+  // Divide x by y providing remainder and integer quotient.
+  // Should the int grow depending on Tp?
+  // Could the int be unsigned?
+
+  template<typename Tp>
+    struct remquo_t
+    {
+      Tp remainder;
+      int quotient;
+    };
+
+  constexpr remquo_t<float> remquo(float x, float y);
+  constexpr remquo_t<double> remquo(double x, double y);
+  constexpr remquo_t<long double> remquo(long double x, long double y);
+  constexpr remquo_t<float> remquof(float x, float y, int* quo);
+  constexpr remquo_t<long double> remquol(long double x, long double y);
+
+  constexpr double nan();
+  constexpr float nanf();
+  constexpr long double nanl();
+
+
   // Log to arbitrary base - the inverse of pow(base, x).
 
   float logf(float base, float x);
