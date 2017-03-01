@@ -232,6 +232,7 @@ test_hypot
 test_inv_erf
 test_inv_ibeta
 test_jacobi
+test_jacobi_ellint
 test_jacobi_inv
 test_jacobi_zeta
 test_kelvin
