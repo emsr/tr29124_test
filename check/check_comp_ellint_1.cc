@@ -40,10 +40,10 @@
 
 // Test data.
 // max(|f - f_GSL|): 4.4408920985006262e-16
-// max(|f - f_GSL| / |f_GSL|): 2.7985267365680201e-16
-// mean(f - f_GSL): -1.5192525600133721e-16
-// variance(f - f_GSL): 5.0056658723514899e-33
-// stddev(f - f_GSL): 7.0750730542881954e-17
+// max(|f - f_GSL| / |f_GSL|): 2.4060825371980270e-16
+// mean(f - f_GSL): -9.3492465231592125e-17
+// variance(f - f_GSL): 5.1258018532879257e-34
+// stddev(f - f_GSL): 2.2640233773722228e-17
 const testcase_comp_ellint_1<double>
 data001[19] =
 {

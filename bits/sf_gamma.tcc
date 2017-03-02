@@ -3460,7 +3460,12 @@ _S_neg_double_factorial_table[999]
       const auto __m = std::nearbyint(_Tp{2} * __x);
       const bool __half_integral = !__integral
 				&& (std::abs(_Tp{2} * __x - _Tp(__m)) < _S_eps);
-      if (__integral)
+      if (__x < _Tp{0})
+	{
+	  const auto __pi = __gnu_cxx::__const_pi(__x);
+	  return __psi(_Tp{1} - __x) - __pi / __tan_pi(__x);
+	}
+      else if (__integral)
 	{
 	  if (__n <= 0)
 	    return __gnu_cxx::__quiet_NaN(__x);
@@ -3472,17 +3477,12 @@ _S_neg_double_factorial_table[999]
 	      return __sum;
 	    }
 	}
-      if (__half_integral)
+      else if (__half_integral)
 	{
 	  _Tp __sum = -__gamma_E - __2_ln_2;
 	  for (int __k = 1; __k < __m / 2; ++__k)
 	    __sum += _Tp{2} / (2 * __k - 1);
 	  return __sum;
-	}
-      else if (__x < _Tp{0})
-	{
-	  const auto __pi = __gnu_cxx::__const_pi(__x);
-	  return __psi(_Tp{1} - __x) - __pi / __tan_pi(__x);
 	}
       else if (__x > _S_x_asymp)
 	return __psi_asymp(__x);

@@ -195,11 +195,24 @@ double dawson(double x);
 /// Jacobian elliptic integrals sn.
 double jacobi_sn(double k, double u);
 
+double jacobi_sc(double k, double u);
+double jacobi_sd(double k, double u);
+
 /// Jacobian elliptic integrals cn.
 double jacobi_cn(double k, double u);
 
+double jacobi_cd(double k, double u);
+double jacobi_cs(double k, double u);
+
 /// Jacobian elliptic integrals dn.
 double jacobi_dn(double k, double u);
+
+double jacobi_ds(double k, double u);
+double jacobi_dc(double k, double u);
+
+double jacobi_ns(double k, double u);
+double jacobi_nc(double k, double u);
+double jacobi_nd(double k, double u);
 
 /// Fresnel cosine integral.
 double fresnel_c(double x);

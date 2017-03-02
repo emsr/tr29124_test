@@ -282,10 +282,10 @@ docs: bits/*
 	cd latex && make
 
 testcases2: testcase2
-	LD_LIBRARY_PATH=/home/ed/bin$(SUFFIX)/lib64:$(GSL_LIB_DIR):$$LD_LIBRARY_PATH ./testcase2
+	LD_LIBRARY_PATH=/home/ed/bin$(SUFFIX)/lib64:wrappers/debug:$$LD_LIBRARY_PATH ./testcase2
 
 testcases: testcase
-	LD_LIBRARY_PATH=/home/ed/bin$(SUFFIX)/lib64:$(GSL_LIB_DIR):$$LD_LIBRARY_PATH ./testcase
+	LD_LIBRARY_PATH=/home/ed/bin$(SUFFIX)/lib64:wrappers/debug:$$LD_LIBRARY_PATH ./testcase
 
 diffs: diff_special_function
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./diff_special_function > diff_special_function.txt

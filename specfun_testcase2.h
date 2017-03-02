@@ -327,12 +327,21 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Digamma functions.
+// Gamma function.
 template<typename _Tp>
   struct testcase_gamma
   {
     _Tp x;
     _Tp f0;
+    _Tp f;
+  };
+
+// Reciprocal Gamma function.
+template<typename _Tp>
+  struct testcase_gamma_reciprocal
+  {
+    _Tp f0;
+    _Tp x;
     _Tp f;
   };
 
