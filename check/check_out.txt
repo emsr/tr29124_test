@@ -12,6 +12,7 @@ check_chebyshev_v
 check_chebyshev_w
 check_chi
 check_clausen_c
+line 118  max_abs_frac = 5.37795
 check_comp_ellint_1
 check_comp_ellint_2
 check_comp_ellint_3
@@ -30,9 +31,10 @@ check_cyl_neumann
 check_dawson
 check_dilog
 check_dirichlet_beta
-line 274  max_abs_frac = 17.1216
+line 274  max_abs_frac = 0.0411383
 check_dirichlet_eta
 check_dirichlet_lambda
+line 274  max_abs_frac = inf
 check_double_factorial
 check_ellint_1
 check_ellint_2
@@ -49,6 +51,7 @@ check_expint_en
 check_factorial
 check_fresnel_c
 check_fresnel_s
+check_gamma_reciprocal
 check_gegenbauer
 check_hermite
 check_heuman_lambda
@@ -122,6 +125,7 @@ check_psi
 check_qgamma
 check_radpoly
 check_riemann_zeta
+line 305  max_abs_frac = 2.14159
 check_shi
 check_sinc
 check_sinc_pi
@@ -129,6 +133,13 @@ check_sinhint
 check_sinint
 check_sin_pi
 check_sph_bessel
+line 528  max_abs_frac = 2.08323
+line 528  max_abs_frac = 40.2206
+line 528  max_abs_frac = 14.0217
+line 528  max_abs_frac = 14.0217
+line 528  max_abs_frac = 14.0217
+line 528  max_abs_frac = 14.0217
+line 528  max_abs_frac = 14.0217
 check_sph_bessel_i
 check_sph_bessel_k
 check_sph_hankel_1
