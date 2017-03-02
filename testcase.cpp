@@ -727,17 +727,17 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_riemann_zeta(filename);
     test =
-    maketest(riemann_zeta, gsl::riemann_zeta,
+    maketest(riemann_zeta, beast::riemann_zeta,
 	     "testcase_riemann_zeta", nsname, basename,
 	     "s", fill_argument(std::make_pair(Real{-10}, Real{1}),
 				std::make_pair(true, false), 56),
-	     "GSL",
+	     "Boost",
 	     file_riemann_zeta, true, false);
-    maketest(riemann_zeta, gsl::riemann_zeta,
+    maketest(riemann_zeta, beast::riemann_zeta,
 	     "testcase_riemann_zeta", nsname, basename,
 	     "s", fill_argument(std::make_pair(Real{1}, Real{30}),
 				std::make_pair(false, true), 146),
-	     "GSL",
+	     "Boost",
 	     file_riemann_zeta, false, true, test);
 
 #if STD
@@ -1104,13 +1104,13 @@ template<typename Real>
     basename = "jacobi_sn";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_jacobi_sn(filename);
-    maketest(jacobi_sn, gsl::jacobi_sn,
+    maketest(jacobi_sn, beast::jacobi_sn,
 	     "testcase_jacobi_sn", "__gnu_cxx", basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{+1}),
 				std::make_pair(true, true), 21),
 	     "u", fill_argument(std::make_pair(Real{-5}, Real{+5}),
 				std::make_pair(true, true), 101),
-	     "GSL",
+	     "Boost",
 	     file_jacobi_sn);
 
     // Jacobian elliptic cosine amplitude integrals.
@@ -1118,13 +1118,13 @@ template<typename Real>
     basename = "jacobi_cn";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_jacobi_cn(filename);
-    maketest(jacobi_cn, gsl::jacobi_cn,
+    maketest(jacobi_cn, beast::jacobi_cn,
 	     "testcase_jacobi_cn", "__gnu_cxx", basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{+1}),
 				std::make_pair(true, true), 21),
 	     "u", fill_argument(std::make_pair(Real{-5}, Real{+5}),
 				std::make_pair(true, true), 101),
-	     "GSL",
+	     "Boost",
 	     file_jacobi_cn);
 
     // Jacobian elliptic delta amplitude integrals.
@@ -1132,13 +1132,13 @@ template<typename Real>
     basename = "jacobi_dn";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_jacobi_dn(filename);
-    maketest(jacobi_dn, gsl::jacobi_dn,
+    maketest(jacobi_dn, beast::jacobi_dn,
 	     "testcase_jacobi_dn", "__gnu_cxx", basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{+1}),
 				std::make_pair(true, true), 21),
 	     "u", fill_argument(std::make_pair(Real{-5}, Real{+5}),
 				std::make_pair(true, true), 101),
-	     "GSL",
+	     "Boost",
 	     file_jacobi_dn);
 
     // Exponential integral En.
