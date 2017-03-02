@@ -1842,18 +1842,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::__detail::__coshint<__type>(__x);
     }
 
-  // Slots for Jacobi elliptic function tuple.
-  enum
-  {
-    _GLIBCXX_JACOBI_SN,
-    _GLIBCXX_JACOBI_CN,
-    _GLIBCXX_JACOBI_DN
-  };
-
   // Jacobi elliptic sine amplitude functions.
 
   /**
-   * Return the Jacobi elliptic @f$ sn(k,u) @f$ integral
+   * Return the Jacobi elliptic sine amplitude function @f$ sn(k,u) @f$
    * of @c float modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * @see jacobi_sn for details.
@@ -1861,12 +1853,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline float
   jacobi_snf(float __k, float __u)
   {
-    return std::get<_GLIBCXX_JACOBI_SN>
-		(std::__detail::__jacobi_sncndn<float>(__k, __u));
+    return std::__detail::__jacobi_sncndn<float>(__k, __u).__sn_value;
   }
 
   /**
-   * Return the Jacobi elliptic @f$ sn(k,u) @f$ integral
+   * Return the Jacobi elliptic sine amplitude function @f$ sn(k,u) @f$
    * of <tt>long double</tt> modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * @see jacobi_sn for details.
@@ -1874,19 +1865,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline long double
   jacobi_snl(long double __k, long double __u)
   {
-    return std::get<_GLIBCXX_JACOBI_SN>
-		(std::__detail::__jacobi_sncndn<long double>(__k, __u));
+    return std::__detail::__jacobi_sncndn<long double>(__k, __u).__sn_value;
   }
 
   /**
-   * Return the Jacobi elliptic @f$ sn(k,u) @f$ integral
+   * Return the Jacobi elliptic sine amplitude function @f$ sn(k,u) @f$
    * of real modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * The Jacobi elliptic @c sn integral is defined by
    * @f[
    *    \sin(\phi) = sn(k, F(k,\phi))
    * @f]
-   * where @f$ F(k,\phi) @f$ is the elliptic integral of the first kind.
+   * where @f$ F(k,\phi) @f$ is the Legendre elliptic integral
+   * of the first kind (@see ellint_1).
    *
    * @tparam _Kp The type of the real modulus
    * @tparam _Up The type of the real argument
@@ -1898,14 +1889,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_sn(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::get<_GLIBCXX_JACOBI_SN>
-		(std::__detail::__jacobi_sncndn<__type>(__k, __u));
+      return std::__detail::__jacobi_sncndn<__type>(__k, __u).__sn_value;
     }
 
   // Jacobi elliptic cosine amplitude functions.
 
   /**
-   * Return the Jacobi elliptic @f$ cn(k,u) @f$ integral
+   * Return the Jacobi elliptic cosine amplitude function @f$ cn(k,u) @f$
    * of @c float modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * @see jacobi_cn for details.
@@ -1913,12 +1903,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline float
   jacobi_cnf(float __k, float __u)
   {
-    return std::get<_GLIBCXX_JACOBI_CN>
-		(std::__detail::__jacobi_sncndn<float>(__k, __u));
+    return std::__detail::__jacobi_sncndn<float>(__k, __u).__cn_value;
   }
 
   /**
-   * Return the Jacobi elliptic @f$ cn(k,u) @f$ integral
+   * Return the Jacobi elliptic cosine amplitude function @f$ cn(k,u) @f$
    * of <tt>long double</tt> modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * @see jacobi_cn for details.
@@ -1926,19 +1915,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline long double
   jacobi_cnl(long double __k, long double __u)
   {
-    return std::get<_GLIBCXX_JACOBI_CN>
-		(std::__detail::__jacobi_sncndn<long double>(__k, __u));
+    return std::__detail::__jacobi_sncndn<long double>(__k, __u).__cn_value;
   }
 
   /**
-   * Return the Jacobi elliptic @f$ cn(k,u) @f$ integral
+   * Return the Jacobi elliptic cosine amplitude function @f$ cn(k,u) @f$
    * of real modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * The Jacobi elliptic @c cn integral is defined by
    * @f[
    *    \cos(\phi) = cn(k, F(k,\phi))
    * @f]
-   * where @f$ F(k,\phi) @f$ is the elliptic integral of the first kind.
+   * where @f$ F(k,\phi) @f$ is the Legendre elliptic integral
+   * of the first kind (@see ellint_1).
    *
    * @tparam _Kp The type of the real modulus
    * @tparam _Up The type of the real argument
@@ -1950,14 +1939,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_cn(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::get<_GLIBCXX_JACOBI_CN>
-		(std::__detail::__jacobi_sncndn<__type>(__k, __u));
+      return std::__detail::__jacobi_sncndn<__type>(__k, __u).__cn_value;
     }
 
   // Jacobi elliptic delta amplitude functions.
 
   /**
-   * Return the Jacobi elliptic @f$ dn(k,u) @f$ integral
+   * Return the Jacobi elliptic delta amplitude function @f$ dn(k,u) @f$
    * of @c float modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * @see jacobi_dn for details.
@@ -1965,12 +1953,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline float
   jacobi_dnf(float __k, float __u)
   {
-    return std::get<_GLIBCXX_JACOBI_DN>
-		(std::__detail::__jacobi_sncndn<float>(__k, __u));
+    return std::__detail::__jacobi_sncndn<float>(__k, __u).__dn_value;
   }
 
   /**
-   * Return the Jacobi elliptic @f$ dn(k,u) @f$ integral
+   * Return the Jacobi elliptic delta amplitude function @f$ dn(k,u) @f$
    * of <tt>long double</tt> modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * @see jacobi_dn for details.
@@ -1978,19 +1965,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline long double
   jacobi_dnl(long double __k, long double __u)
   {
-    return std::get<_GLIBCXX_JACOBI_DN>
-		(std::__detail::__jacobi_sncndn<long double>(__k, __u));
+    return std::__detail::__jacobi_sncndn<long double>(__k, __u).__dn_value;
   }
 
   /**
-   * Return the Jacobi elliptic @f$ dn(k,u) @f$ integral
+   * Return the Jacobi elliptic delta amplitude function @f$ dn(k,u) @f$
    * of real modulus @f$ k @f$ and argument @f$ u @f$.
    *
    * The Jacobi elliptic @c dn integral is defined by
    * @f[
    *    \sqrt{1 - k^2\sin(\phi)} = dn(k, F(k,\phi))
    * @f]
-   * where @f$ F(k,\phi) @f$ is the elliptic integral of the first kind.
+   * where @f$ F(k,\phi) @f$ is the Legendre elliptic integral
+   * of the first kind (@see ellint_1).
    *
    * @tparam _Kp The type of the real modulus
    * @tparam _Up The type of the real argument
@@ -2002,8 +1989,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_dn(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::get<_GLIBCXX_JACOBI_DN>
-		(std::__detail::__jacobi_sncndn<__type>(__k, __u));
+      return std::__detail::__jacobi_sncndn<__type>(__k, __u).__dn_value;
     }
 
   // Chebyshev polynomials of the first kind
@@ -6091,10 +6077,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief  Return the F-distribution propability function.
-   * This returns the probability that the observed chi-square for a correct model
-   * exceeds the value @f$ \chi^2 @f$.
+   * This returns the probability that the observed chi-square
+   * for a correct model exceeds the value @f$ \chi^2 @f$.
    *
-   * The f-distribution propability function is related to the incomplete beta function:
+   * The f-distribution propability function is related
+   * to the incomplete beta function:
    * @f[
    *   P(F|\nu_1, \nu_2) = 1 - I_{\frac{\nu_2}{\nu_2 + \nu_1 F}}
    * 			     (\frac{\nu_2}{2}, \frac{\nu_1}{2})
@@ -6250,9 +6237,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     constexpr _Tp
     __fmax3(_Tp __x, _Tp __y, _Tp __z)
-    {
-      return std::fmax(std::fmax(__x, __y), std::fmax(__y, __z));
-    }
+    { return std::fmax(std::fmax(__x, __y), std::fmax(__y, __z)); }
 
   template<typename _Tp>
     constexpr _Tp
@@ -6282,18 +6267,26 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
     }
 
+  /**
+   * Return the three-dimensional hypoteneuse @f$ \sqrt{x^2 + y^2 + z^2} @f$
+   * for @c float arguments x, y, and z.
+   */
   constexpr inline float
   hypot(float __x, float __y, float __z)
   { return std::__hypot3<float>(__x, __y, __z); }
 
-  constexpr inline double
-  hypot(double __x, double __y, double __z)
-  { return std::__hypot3<double>(__x, __y, __z); }
-
+  /**
+   * Return the three-dimensional hypoteneuse @f$ \sqrt{x^2 + y^2 + z^2} @f$
+   * for <tt>long double</tt> arguments x, y, and z.
+   */
   constexpr inline long double
   hypot(long double __x, long double __y, long double __z)
   { return std::__hypot3<long double>(__x, __y, __z); }
 
+  /**
+   * Return the three-dimensional hypoteneuse @f$ \sqrt{x^2 + y^2 + z^2} @f$
+   * for real arguments x, y, and z.
+   */
   template<typename _Tp, typename _Up, typename _Vp>
     constexpr typename __gnu_cxx::__promote_3<_Tp, _Up, _Vp>::__type
     hypot(_Tp __x, _Up __y, _Vp __z)
