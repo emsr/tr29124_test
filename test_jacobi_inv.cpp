@@ -14,21 +14,34 @@ g++ -std=gnu++17 -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_inv
   // Jacobi elliptic cosine amplitude inverse functions.
 
   /**
-   * 
+   * Return the inverse of the Jacobi elliptic cosine amplitude function
+   * @f$ cn(k,u) @f$ (@see jacobi_cn) for @c float arguments.
+   *
+   * @see jacobi_acn for more information.
    */
   float
   jacobi_acnf(float __k, float __v)
   { return std::ellint_1(__k, std::acos(__v)); }
 
   /**
-   * 
+   * Return the inverse of the Jacobi elliptic cosine amplitude function
+   * @f$ cn(k,u) @f$ (@see jacobi_cn) for <tt>long double</tt> arguments.
+   *
+   * @see jacobi_acn for more information.
    */
   long double
   jacobi_acnl(long double __k, long double __v)
   { return std::ellint_1(__k, std::acos(__v)); }
 
   /**
-   * 
+   * Return the inverse of the Jacobi elliptic cosine amplitude function
+   * @f$ cn(k,u) @f$ (@see jacobi_cn) for real arguments.
+   * The inverse is given by
+   * @f[
+   *    arccn(k,v) = F(k, arccos(v))
+   * @f]
+   * where @f$ F(k, \phi) @f$ is the Legendre elliptic function
+   * of the first kind (@see ellint_1).
    */
   template<typename _Tk, typename _Tv>
     __gnu_cxx::__promote_fp_t<_Tk, _Tv>
@@ -41,21 +54,34 @@ g++ -std=gnu++17 -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_inv
   // Jacobi elliptic sine amplitude inverse functions.
 
   /**
-   * 
+   * Return the inverse of the Jacobi elliptic sine amplitude function
+   * @f$ sn(k,u) @f$ (@see jacobi_sn) for @c float arguments.
+   *
+   * @see jacobi_asn for more information.
    */
   float
   jacobi_asnf(float __k, float __v)
   { return std::ellint_1(__k, std::asin(__v)); }
 
   /**
-   * 
+   * Return the inverse of the Jacobi elliptic sine amplitude function
+   * @f$ sn(k,u) @f$ (@see jacobi_sn) for <tt>long double</tt> arguments.
+   *
+   * @see jacobi_asn for more information.
    */
   long double
   jacobi_asnl(long double __k, long double __v)
   { return std::ellint_1(__k, std::asin(__v)); }
 
   /**
-   * 
+   * Return the inverse of the Jacobi elliptic sine amplitude function
+   * @f$ sn(k,u) @f$ (@see jacobi_sn) for real arguments.
+   * The inverse is given by
+   * @f[
+   *    arcsn(k,v) = F(k, arcsin(v))
+   * @f]
+   * where @f$ F(k, \phi) @f$ is the Legendre elliptic function
+   * of the first kind (@see ellint_1).
    */
   template<typename _Tk, typename _Tv>
     __gnu_cxx::__promote_fp_t<_Tk, _Tv>
@@ -68,21 +94,34 @@ g++ -std=gnu++17 -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_inv
   // Jacobi elliptic delta amplitude inverse functions.
 
   /**
-   * 
+   * Return the inverse of the Jacobi elliptic delta amplitude function
+   * @f$ dn(k,u) @f$ (@see jacobi_dn) for @c float arguments.
+   *
+   * @see jacobi_adn for more information.
    */
   float
   jacobi_adnf(float __k, float __v)
   { return std::ellint_1(__k, std::asin(std::sqrt(1.0F - __v * __v) / __k)); }
 
   /**
-   * 
+   * Return the inverse of the Jacobi elliptic delta amplitude function
+   * @f$ dn(k,u) @f$ (@see jacobi_dn) for <tt>long double</tt> arguments.
+   *
+   * @see jacobi_adn for more information.
    */
   long double
   jacobi_adnl(long double __k, long double __v)
   { return std::ellint_1(__k, std::asin(std::sqrt(1.0L - __v * __v) / __k)); }
 
   /**
-   * 
+   * Return the inverse of the Jacobi elliptic delta amplitude function
+   * @f$ dn(k,u) @f$ (@see jacobi_dn) for real arguments.
+   * The inverse is given by
+   * @f[
+   *    arcdn(k,v) = F(k, arcsin(\sqrt{1-v^2}/2))
+   * @f]
+   * where @f$ F(k, \phi) @f$ is the Legendre elliptic function
+   * of the first kind (@see ellint_1).
    */
   template<typename _Tk, typename _Tv>
     __gnu_cxx::__promote_fp_t<_Tk, _Tv>
