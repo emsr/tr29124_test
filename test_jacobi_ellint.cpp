@@ -93,41 +93,42 @@ _GLIBCXX_END_NAMESPACE_VERSION
 int
 main()
 {
+  std::cout.precision(std::numeric_limits<double>::digits10);
+  std::cout << std::showpoint << std::scientific;
+  auto width = 8 + std::cout.precision();
+
   std::vector<double> kvals{0.0, 0.5, 0.75, 0.95, 1.0};
 
   std::cout << "\n\n";
+  std::cout << "Jacobi elliptic sine amplitude function sn(k,u)\n";
   for (int i = -200; i <= 200; ++i)
     {
       auto u = 0.05 * i;
-      std::cout << ' ' << u;
+      std::cout << ' ' << std::setw(width) << u;
       for (auto k : kvals)
-	{
-	  std::cout << ' ' << __gnu_cxx::jacobi_sn(k, u);
-	}
+	std::cout << ' ' << std::setw(width) << __gnu_cxx::jacobi_sn(k, u);
       std::cout << '\n';
     }
 
   std::cout << "\n\n";
+  std::cout << "Jacobi elliptic cosine amplitude function cn(k,u)\n";
   for (int i = -200; i <= 200; ++i)
     {
       auto u = 0.05 * i;
-      std::cout << ' ' << u;
+      std::cout << ' ' << std::setw(width) << u;
       for (auto k : kvals)
-	{
-	  std::cout << ' ' << __gnu_cxx::jacobi_cn(k, u);
-	}
+	std::cout << ' ' << std::setw(width) << __gnu_cxx::jacobi_cn(k, u);
       std::cout << '\n';
     }
 
   std::cout << "\n\n";
+  std::cout << "Jacobi elliptic delta amplitude function dn(k,u)\n";
   for (int i = -200; i <= 200; ++i)
     {
       auto u = 0.05 * i;
-      std::cout << ' ' << u;
+      std::cout << ' ' << std::setw(width) << u;
       for (auto k : kvals)
-	{
-	  std::cout << ' ' << __gnu_cxx::jacobi_dn(k, u);
-	}
+	std::cout << ' ' << std::setw(width) << __gnu_cxx::jacobi_dn(k, u);
       std::cout << '\n';
     }
 }
