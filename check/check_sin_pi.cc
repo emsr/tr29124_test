@@ -41,9 +41,9 @@
 // Test data.
 // max(|f - f_Boost|): 1.1102230246251565e-16
 // max(|f - f_Boost| / |f_Boost|): 1.8888242266968490e-16
-// mean(f - f_Boost): -1.5860328923216522e-19
-// variance(f - f_Boost): 3.6038612996459890e-41
-// stddev(f - f_Boost): 6.0032168873413103e-21
+// mean(f - f_Boost): 1.7195803074886034e-38
+// variance(f - f_Boost): 1.9517844511553150e-71
+// stddev(f - f_Boost): 4.4179004641971226e-36
 const testcase_sin_pi<double>
 data001[700] =
 {

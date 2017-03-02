@@ -95,6 +95,7 @@ check/check_expint_en
 check/check_factorial
 check/check_fresnel_c
 check/check_fresnel_s
+check/check_gamma_reciprocal
 check/check_gegenbauer
 check/check_hermite
 check/check_heuman_lambda
@@ -231,6 +232,7 @@ test_hypot
 test_inv_erf
 test_inv_ibeta
 test_jacobi
+test_jacobi_ellint
 test_jacobi_inv
 test_jacobi_zeta
 test_kelvin

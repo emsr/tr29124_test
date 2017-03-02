@@ -509,6 +509,18 @@ jacobi_sn(double k, double u)
   return boost::math::jacobi_sn(k, u);
 }
 
+double
+jacobi_sc(double k, double u)
+{
+  return boost::math::jacobi_sc(k, u);
+}
+
+double
+jacobi_sd(double k, double u)
+{
+  return boost::math::jacobi_sd(k, u);
+}
+
 /// Jacobian elliptic integrals cn.
 double
 jacobi_cn(double k, double u)
@@ -516,11 +528,53 @@ jacobi_cn(double k, double u)
   return boost::math::jacobi_cn(k, u);
 }
 
+double
+jacobi_cd(double k, double u)
+{
+  return boost::math::jacobi_cd(k, u);
+}
+
+double
+jacobi_cs(double k, double u)
+{
+  return boost::math::jacobi_cs(k, u);
+}
+
 /// Jacobian elliptic integrals dn.
 double
 jacobi_dn(double k, double u)
 {
   return boost::math::jacobi_dn(k, u);
+}
+
+double
+jacobi_ds(double k, double u)
+{
+  return boost::math::jacobi_ds(k, u);
+}
+
+double
+jacobi_dc(double k, double u)
+{
+  return boost::math::jacobi_dc(k, u);
+}
+
+double
+jacobi_ns(double k, double u)
+{
+  return boost::math::jacobi_ns(k, u);
+}
+
+double
+jacobi_nc(double k, double u)
+{
+  return boost::math::jacobi_nc(k, u);
+}
+
+double
+jacobi_nd(double k, double u)
+{
+  return boost::math::jacobi_nd(k, u);
 }
 
 /// Fresnel cosine integral.
