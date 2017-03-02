@@ -412,7 +412,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f$ sn(k, u), cn(k, u), dn(k, u) @f$.
    */
   template<typename _Tp>
-    std::tuple<_Tp, _Tp, _Tp>
+    __gnu_cxx::__jacobi_t<_Tp>
     __jacobi_sncndn(_Tp __k, _Tp __u)
     {
       using _Val = __num_traits_t<_Tp>;
@@ -420,7 +420,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__u);
 
       if (__isnan(__k) || __isnan(__u))
-	return std::make_tuple(_S_NaN, _S_NaN, _S_NaN);
+	return __gnu_cxx::__jacobi_t<_Tp>{_S_NaN, _S_NaN, _S_NaN};
       else if (std::abs(__k) > _Tp{1})
 	std::__throw_domain_error(__N("__jacobi_sncndn:"
 				      " argument k out of range"));
@@ -429,14 +429,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __sn = std::tanh(__u);
 	  auto __cn = _Tp{1} / std::cosh(__u);
 	  auto __dn = __cn;
-	  return std::make_tuple(__sn, __cn, __dn);
+	  return __gnu_cxx::__jacobi_t<_Tp>{__sn, __cn, __dn};
 	}
       else if (std::abs(__k) < _Tp{2} * _S_eps)
 	{
 	  auto __sn = std::sin(__u);
 	  auto __cn = std::cos(__u);
 	  auto __dn = _Tp{1};
-	  return std::make_tuple(__sn, __cn, __dn);
+	  return __gnu_cxx::__jacobi_t<_Tp>{__sn, __cn, __dn};
 	}
       else
 	{
@@ -451,9 +451,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  bool __bo = (__mc < _Tp{0});
 	  if (__bo)
 	    {
-	      __d = _Tp{1} - __mc;
+	      __d = __k * __k;
 	      __mc /= -_Tp{1} / __d;
-	      __u *= (__d = std::sqrt(__d));
+	      __u *= (__d = __k);
 	    }
 	  auto __a = _Tp{1};
 	  auto __dn = _Tp{1};
@@ -476,11 +476,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    {
 	      __a = __cn / __sn;
 	      __c *= __a;
-	      for (auto __ii = __l; __ii + 1 >= 1; --__ii)
+	      for (auto __ii = __l; __ii >= 0; --__ii)
 		{
 		  _Tp __b = __m[__ii];
 		  __a *= __c;
-		  __c *= (__dn);
+		  __c *= __dn;
 		  __dn = (__n[__ii] + __a) / (__b + __a);
 		  __a = __c / __b;
 		}
@@ -490,12 +490,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 	  if (__bo)
 	    {
-	      __a = __dn;
-	      __dn = __cn;
-	      __cn = __a;
+	      std::swap(__dn, __cn);
 	      __sn /= __d;
 	    }
-	  return std::make_tuple(__sn, __cn, __dn);
+	  return __gnu_cxx::__jacobi_t<_Tp>{__sn, __cn, __dn};
 	}
     }
 
