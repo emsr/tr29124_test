@@ -32,6 +32,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_riemann_zeta test_riemann_
    * @f[
    * 	\zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
    * @f]
+   *
+   * @todo Try vanWijnGaarden summation and maybe even shanks avter that.
    */
   template<typename _Tp>
     _Tp
@@ -45,7 +47,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_riemann_zeta test_riemann_
       auto __zeta = _Val{0};
       for (unsigned int __i = 1; __i < _S_max_iter; ++__i)
 	{
-	  auto __term = __sgn / std::pow(_Val(__i), __s);
+	  const auto __term = __sgn / std::pow(_Val(__i), __s);
 	  __zeta += __term;
 	  __sgn = -__sgn;
 	  if (std::abs(__term) < _S_eps * std::abs(__zeta)
