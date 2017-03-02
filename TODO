@@ -464,14 +464,14 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 102. [] Crazy Idea: invent a stream option for formatting individual scalar numbers inside
         a complex or a vector.  width, justification, (do we need scientific, etc?)
 
-103. [] The negative int polylog exp fails for s = 0.  Differs by 0.5.
+103. [DONE] The negative int polylog exp fails for s = 0.  Differs by 0.5.
 
-104. [] The negative int polylog exp fails for z = -1.
+104. [DONE] The negative int polylog exp fails for z = -1.
         We could use the plynomial even if it's not stable generally?
         I think what's happening is that the routines use reflection for negative argument.
         There is generally a pole at x = 1.
 
-105. [] The negative even int polylog exp fails for -1 < z < -small.
+105. [DONE] The negative even int polylog exp fails for -1 < z < -small.
 
 106. [] Semantic constants.  pi() that would do lazy math and figure out a precision.
 
@@ -505,6 +505,22 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 110. [] If 2^{-s} < epsilon, zeta == 1.
         For zetam1 you should keep trying - that's why we have it.
         The polylog_asymp is slow.
+
+111. [] Find expansions of zeta near tabulated values.
+        __riemann_zeta_m_1_sum for __s=3.0000000000000098 is slow.
+        The tabs could have both value and deriv.
+
+112. [] Checks to actually follow up on:
+        [] check/check_dirichlet_eta.cc  -- s < 0.  Dive into polylog.  Could use reflection.
+        [DONE] check/check_jacobi_cn.cc      -- Completely ruined except for |k| == 1. Use Boost (WTF doesn't do k<0).
+        [DONE] check/check_jacobi_dn.cc      -- Completely ruined except for |k| == 1. Use Boost (WTF doesn't do k<0).
+        [DONE] check/check_jacobi_sn.cc      -- Completely ruined except for |k| == 1. Use Boost (WTF doesn't do k<0).
+        [DONE] check/check_psi.cc        -- x < -2.0
+        [] check/check_sph_bessel.cc     -- n == 1, large distances, large orders.
+        [] check/check_lpochhammer_lower -- Logs of negative numbers.  Need decision. lgamma_t?
+        [] check/check_cyl_hankel_[12]   -- negative fractional order
+
+113. [] I suspect for sn, cn, dn the mc > 1 code is wrong.
 
 plot_airy.cpp
 
