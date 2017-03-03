@@ -1,15 +1,18 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_ellint test_jacobi_ellint.cpp -L$HOME/bin/lib64 -lquadmath
-./test_jacobi_ellint > test_jacobi_ellint.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_ellint test_jacobi_ellint.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_jacobi_ellint > test_jacobi_ellint.txt
 
-g++ -std=gnu++17 -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_ellint test_jacobi_ellint.cpp -lquadmath
-./test_jacobi_ellint > test_jacobi_ellint.txt
+g++ -std=gnu++17 -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_ellint test_jacobi_ellint.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_jacobi_ellint > test_jacobi_ellint.txt
 */
 
 #include <cmath>
 #include <vector>
 #include <iostream>
 #include <iomanip>
+
+#include "wrap_boost.h"
+#include "wrap_gsl.h"
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
@@ -90,6 +93,61 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
+void
+test_gsl()
+{
+  std::cout.precision(std::numeric_limits<double>::digits10);
+  std::cout << std::showpoint << std::scientific;
+  auto width = 8 + std::cout.precision();
+
+  std::vector<double> kvals{0.0, 0.5, 0.75, 0.95, 1.0};
+
+  std::cout << "\n\n";
+  std::cout << "Jacobi elliptic sine amplitude function sn(k,u)\n";
+  for (auto k : kvals)
+    for (int i = -50; i <= 50; ++i)
+      {
+	auto u = 0.2 * i;
+	auto fgnu = __gnu_cxx::jacobi_sn(k, u);
+	auto fgsl = gsl::jacobi_sn(k, u);
+	std::cout << ' ' << std::setw(width) << u;
+	  std::cout << ' ' << std::setw(width) << fgnu
+		    << ' ' << std::setw(width) << fgsl
+		    << ' ' << fgnu - fgsl;
+	std::cout << '\n';
+      }
+
+  std::cout << "\n\n";
+  std::cout << "Jacobi elliptic cosine amplitude function cn(k,u)\n";
+  for (auto k : kvals)
+    for (int i = -50; i <= 50; ++i)
+      {
+	auto u = 0.2 * i;
+	auto fgnu = __gnu_cxx::jacobi_cn(k, u);
+	auto fgsl = gsl::jacobi_cn(k, u);
+	std::cout << ' ' << std::setw(width) << u;
+	  std::cout << ' ' << std::setw(width) << fgnu
+		    << ' ' << std::setw(width) << fgsl
+		    << ' ' << fgnu - fgsl;
+	std::cout << '\n';
+      }
+
+  std::cout << "\n\n";
+  std::cout << "Jacobi elliptic delta amplitude function dn(k,u)\n";
+  for (auto k : kvals)
+    for (int i = -50; i <= 50; ++i)
+      {
+	auto u = 0.2 * i;
+	auto fgnu = __gnu_cxx::jacobi_dn(k, u);
+	auto fgsl = gsl::jacobi_dn(k, u);
+	std::cout << ' ' << std::setw(width) << u;
+	  std::cout << ' ' << std::setw(width) << fgnu
+		    << ' ' << std::setw(width) << fgsl
+		    << ' ' << fgnu - fgsl;
+	std::cout << '\n';
+      }
+}
+
 int
 main()
 {
@@ -131,4 +189,6 @@ main()
 	std::cout << ' ' << std::setw(width) << __gnu_cxx::jacobi_dn(k, u);
       std::cout << '\n';
     }
+
+  test_gsl();
 }

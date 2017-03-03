@@ -878,7 +878,7 @@ jacobi_sn(double k, double u)
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in jacobi_sn:");
-      msg << " u=" << u << " k=" << k;
+      msg << " k=" << k << " u=" << u;
       throw std::runtime_error(msg.str());
     }
   else
@@ -895,7 +895,7 @@ jacobi_cn(double k, double u)
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in jacobi_cn:");
-      msg << " u=" << u << " k=" << k;
+      msg << " k=" << k << " u=" << u;
       throw std::runtime_error(msg.str());
     }
   else
@@ -912,7 +912,7 @@ jacobi_dn(double k, double u)
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in jacobi_dn:");
-      msg << " u=" << u << " k=" << k;
+      msg << " k=" << k << " u=" << u;
       throw std::runtime_error(msg.str());
     }
   else
