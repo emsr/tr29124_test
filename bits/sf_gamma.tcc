@@ -3455,32 +3455,24 @@ _S_neg_double_factorial_table[999]
       const auto __gamma_E = __gnu_cxx::__const_gamma_e(__x);
       const auto __2_ln_2 = _Tp{2} * __gnu_cxx::__const_ln_2(__x);
 
-      const auto __n = std::nearbyint(__x);
-      const bool __integral = (std::abs(__x - _Tp(__n)) < _S_eps);
-      const auto __m = std::nearbyint(_Tp{2} * __x);
-      const bool __half_integral = !__integral
-				&& (std::abs(_Tp{2} * __x - _Tp(__m)) < _S_eps);
+      const auto __n = __gnu_cxx::__fp_is_integer(__x);
+      const auto __m = __gnu_cxx::__fp_is_half_integer(__x);
       if (__x < _Tp{0})
 	{
 	  const auto __pi = __gnu_cxx::__const_pi(__x);
 	  return __psi(_Tp{1} - __x) - __pi / __tan_pi(__x);
 	}
-      else if (__integral)
+      else if (__n)
 	{
-	  if (__n <= 0)
+	  if (__n() <= 0)
 	    return __gnu_cxx::__quiet_NaN(__x);
 	  else
-	    {
-	      _Tp __sum = -__gamma_E;
-	      for (int __k = 1; __k < __n; ++__k)
-		__sum += _Tp{1} / __k;
-	      return __sum;
-	    }
+	    return __psi<_Tp>(__n());
 	}
-      else if (__half_integral)
+      else if (__m)
 	{
 	  _Tp __sum = -__gamma_E - __2_ln_2;
-	  for (int __k = 1; __k < __m / 2; ++__k)
+	  for (int __k = 1; __k < __m(); ++__k)
 	    __sum += _Tp{2} / (2 * __k - 1);
 	  return __sum;
 	}
@@ -3488,7 +3480,6 @@ _S_neg_double_factorial_table[999]
 	return __psi_asymp(__x);
       else
 	{
-	  //return __psi_series(__x);
 	  // The series does not converge quickly enough.
 	  // Reflect to larger argument and use asymptotic expansion.
 	  auto __w = _Tp{0};
