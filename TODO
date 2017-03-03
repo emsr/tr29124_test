@@ -522,6 +522,10 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 
 113. [] I suspect for sn, cn, dn the mc > 1 code is wrong.
 
+114. [] You might want to expose max_factorial<_Tp> for the last integral member
+        for a given bit representation.  For floats this would be, for example,
+        24 and 53 bits for most floats and doubles respectively.  Does boost do this?
+
 plot_airy.cpp
 
 test_array_ref.cpp - move with <array_ref> somewhere else
