@@ -57,9 +57,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline _Tp
     __fp_max_abs(_Tp __a, _Tp __b)
     {
-      const auto __aa = std::abs(__a);
-      const auto __bb = std::abs(__b);
-      return std::max(__aa, __bb);
+      if (__isnan(__a) || __isnan(__b))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else
+	{
+	  const auto __aa = std::abs(__a);
+	  const auto __bb = std::abs(__b);
+	  return std::max(__aa, __bb);
+	}
     }
 
   /**
@@ -75,12 +80,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline bool
     __fp_is_equal(_Tp __a, _Tp __b, _Tp __mul = _Tp{1})
     {
-      const auto _S_tol = __mul * std::numeric_limits<_Tp>::epsilon();
-      bool __retval = true;
-      if ((__a != _Tp{0}) || (__b != _Tp{0}))
-	// Looks mean, but is necessary that the next line has sense.
-	__retval = (std::abs(__a - __b) < __fp_max_abs(__a, __b) * _S_tol);
-      return __retval;
+      if (__isnan(__a) || __isnan(__b) || __isnan(__mul))
+	return false;
+      else
+	{
+	  const auto _S_tol = __mul * std::numeric_limits<_Tp>::epsilon();
+	  bool __retval = true;
+	  if ((__a != _Tp{0}) || (__b != _Tp{0}))
+	    // Looks mean, but is necessary that the next line has sense.
+	    __retval = (std::abs(__a - __b) < __fp_max_abs(__a, __b) * _S_tol);
+	  return __retval;
+	}
     }
 
   /**
@@ -95,11 +105,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline bool
     __fp_is_zero(_Tp __a, _Tp __mul = _Tp{1})
     {
-      const auto _S_tol = __mul * std::numeric_limits<_Tp>::epsilon();
-      if (__a != _Tp{0})
-	return (std::abs(__a) < _S_tol);
+      if (__isnan(__a) || __isnan(__mul))
+	return false;
       else
-        return true;
+	{
+	  const auto _S_tol = __mul * std::numeric_limits<_Tp>::epsilon();
+	  if (__a != _Tp{0})
+	    return (std::abs(__a) < _S_tol);
+	  else
+            return true;
+	}
     }
 
   /**
@@ -134,8 +149,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline __fp_is_integer_t
     __fp_is_integer(_Tp __a, _Tp __mul = _Tp{1})
     {
-      auto __n = static_cast<int>(std::nearbyint(__a));
-      return __fp_is_integer_t{__fp_is_equal(__a, _Tp(__n), __mul), __n};
+      if (__isnan(__a) || __isnan(__mul))
+	return __fp_is_integer_t{false, 0};
+      else
+	{
+	  const auto __n = static_cast<int>(std::nearbyint(__a));
+	  const auto __eq = __fp_is_equal(__a, _Tp(__n), __mul);
+	  return __fp_is_integer_t{__eq, __n};
+	}
     }
 
   /**
@@ -149,8 +170,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline __fp_is_integer_t
     __fp_is_half_integer(_Tp __a, _Tp __mul = _Tp{1})
     {
-      auto __n = static_cast<int>(std::nearbyint(_Tp{2} * __a));
-      return __fp_is_integer_t{__fp_is_equal(_Tp{2} * __a, _Tp(__n), __mul), __n / 2};
+      if (__isnan(__a) || __isnan(__mul))
+	return __fp_is_integer_t{false, 0};
+      else
+	{
+	  const auto __n = static_cast<int>(std::nearbyint(_Tp{2} * __a));
+	  const auto __eq = __fp_is_equal(_Tp{2} * __a, _Tp(__n), __mul);
+	  return __fp_is_integer_t{__eq, __n / 2};
+	}
     }
 
   /**
@@ -165,10 +192,35 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline __fp_is_integer_t
     __fp_is_half_odd_integer(_Tp __a, _Tp __mul = _Tp{1})
     {
-      auto __n = static_cast<int>(std::nearbyint(_Tp{2} * __a));
-      bool __halfodd = (__n & 1 == 1)
-		      && __fp_is_equal(_Tp{2} * __a, _Tp(__n), __mul);
-      return __fp_is_integer_t{__halfodd, (__n - 1) / 2};
+      if (__isnan(__a) || __isnan(__mul))
+	return __fp_is_integer_t{false, 0};
+      else
+	{
+	  const auto __n = static_cast<int>(std::nearbyint(_Tp{2} * __a));
+	  const bool __halfodd = (__n & 1 == 1)
+			       && __fp_is_equal(_Tp{2} * __a, _Tp(__n), __mul);
+	  return __fp_is_integer_t{__halfodd, (__n - 1) / 2};
+	}
+    }
+
+  /**
+   * A function to reliably detect if a floating point number is an even integer.
+   *
+   * @param __a The floating point number
+   * @param __mul The multiplier of machine epsilon for the tolerance
+   * @return @c true if a is an even integer within mul * epsilon.
+   */
+  template<typename _Tp>
+    inline __fp_is_integer_t
+    __fp_is_even_integer(_Tp __a, _Tp __mul = _Tp{1})
+    {
+      if (__isnan(__a) || __isnan(__mul))
+	return __fp_is_integer_t{false, 0};
+      else
+	{
+	  const auto __integ = __fp_is_integer(__a, __mul);
+	  return __fp_is_integer_t{__integ && !(__integ() & 1), __integ()};
+	}
     }
 
   /**
@@ -182,8 +234,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline __fp_is_integer_t
     __fp_is_odd_integer(_Tp __a, _Tp __mul = _Tp{1})
     {
-      const auto __integ = __fp_is_integer(__a, __mul);
-      return __fp_is_integer_t{__integ && (__integ() & 1), __integ()};
+      if (__isnan(__a) || __isnan(__mul))
+	return __fp_is_integer_t{false, 0};
+      else
+	{
+	  const auto __integ = __fp_is_integer(__a, __mul);
+	  return __fp_is_integer_t{__integ && (__integ() & 1), __integ()};
+	}
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION

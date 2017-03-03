@@ -238,8 +238,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     bool
-    __fp_is_real(const std::complex<_Tp>& __w, const _Tp __mul = _Tp{5})
-    { return __gnu_cxx::__fp_is_equal(std::imag(__w), _Tp{0}, __mul); }
+    __fp_is_real(const std::complex<_Tp>& __w, const _Tp __mul = _Tp{1})
+    { return __gnu_cxx::__fp_is_zero(std::imag(__w), __mul); }
 
   // Specialize for real numbers.
   template<typename _Tp>
@@ -257,8 +257,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     bool
-    __fp_is_imag(const std::complex<_Tp>& __w, const _Tp __mul = _Tp{5})
-    { return __gnu_cxx::__fp_is_equal(std::real(__w), _Tp{0}, __mul); }
+    __fp_is_imag(const std::complex<_Tp>& __w, const _Tp __mul = _Tp{1})
+    { return __gnu_cxx::__fp_is_zero(std::real(__w), __mul); }
 
   // Specialize for real numbers.
   template<typename _Tp>
@@ -397,6 +397,46 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __fp_is_half_odd_integer(std::real(__a), __mul);
       else
       	return __fp_is_integer_t{false, 0};
+    }
+
+  /**
+   * A function to reliably detect if a floating point number is an even integer.
+   *
+   * @param __a The floating point number
+   * @param __mul The multiplier of machine epsilon for the tolerance
+   * @return @c true if a is an even integer within mul * epsilon.
+   */
+  template<typename _Tp>
+    inline __fp_is_integer_t
+    __fp_is_even_integer(const std::complex<_Tp>& __a, _Tp __mul = _Tp{1})
+    {
+      if (__fp_is_real(__a, __mul))
+	{
+	  const auto __integ = __fp_is_integer(std::real(__a), __mul);
+	  return __fp_is_integer_t{__integ && !(__integ() & 1), __integ()};
+	}
+      else
+	return __fp_is_integer_t{false, 0};
+    }
+
+  /**
+   * A function to reliably detect if a floating point number is an odd integer.
+   *
+   * @param __a The floating point number
+   * @param __mul The multiplier of machine epsilon for the tolerance
+   * @return @c true if a is an odd integer within mul * epsilon.
+   */
+  template<typename _Tp>
+    inline __fp_is_integer_t
+    __fp_is_odd_integer(const std::complex<_Tp>& __a, _Tp __mul = _Tp{1})
+    {
+      if (__fp_is_real(__a, __mul))
+	{
+	  const auto __integ = __fp_is_integer(std::real(__a), __mul);
+	  return __fp_is_integer_t{__integ && (__integ() & 1), __integ()};
+	}
+      else
+	return __fp_is_integer_t{false, 0};
     }
 
 #if __cplusplus >= 201103L
