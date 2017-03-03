@@ -1,6 +1,6 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_ratio test_gamma_ratio.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-./test_gamma_ratio > test_gamma_ratio.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_gamma_ratio > test_gamma_ratio.txt
 
 */
 
@@ -23,6 +23,42 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_g
     equation2p7,
     equation3p1
   };
+
+  /**
+   * Factorial ratio.
+   */
+  template<typename _Tp>
+    _Tp
+    __factorial_ratio(long long __m, long long __n)
+    {
+      if (__m == __n)
+	return _Tp{1};
+      else if (__m < 0 && __n >= 0)
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else if (__m >= 0 && __n < 0)
+	return _Tp{0};
+      else if ((__m == 0 || __m == 1)
+	    && __n < std::__detail::_S_num_factorials<_Tp>)
+	return _Tp{1} / std::__detail::__factorial<_Tp>(__n);
+      else if ((__n == 0 || __n == 1)
+	    && __m < std::__detail::_S_num_factorials<_Tp>)
+	return std::__detail::__factorial<_Tp>(__m);
+      else
+	{
+	  // Try a running product.
+	  auto __pmin = __m;
+	  auto __pmax = __n;
+	  if (__pmax < __pmin)
+	    std::swap(__pmin, __pmax);
+	  long long __p = 1;
+	  for (; __pmin < __pmax; ++__pmin)
+	    __p *= __pmin;
+	  if (__m < __n)
+	    return _Tp{1} / _Tp{__p};
+	  else
+	    return _Tp{__p};
+	}
+    }
 
 
   /**
