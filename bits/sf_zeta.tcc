@@ -347,42 +347,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     _Tp
-    __riemann_zeta_glob(_Tp __s)
+    __riemann_zeta_m_1_glob(_Tp __s)
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-
-      auto __zeta = _Val{0};
-
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
       //  Max e exponent before overflow.
       const auto __max_bincoeff
 		 = std::exp(__gnu_cxx::__max_exponent10(std::real(__s))
 			    * std::log(_Real{10}) - _Real{1});
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__s));
-      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__s));
-      //  This series works until the binomial coefficient blows up
-      //  so use reflection.
-      if (std::real(__s) < _Real{0})
-	{
-	  if (std::imag(__s) == _Real{0}
-	   && std::fmod(std::real(__s), _Real{2}) == _Real{0})
-	    return _Val{0};
-	  else
-	    {
-	      auto __zeta = __riemann_zeta_glob(_Val{1} - __s);
-	      __zeta *= std::pow(_Real{2} * _S_pi, __s)
-		     * __sin_pi(_Real{0.5L} * __s)
-		     * __gamma(_Val{1} - __s) / _S_pi;
-	      return __zeta;
-	    }
-	}
 
-      auto __num = _Real{0.25L};
-      const unsigned int __maxit = 10000;
-      __zeta = _Val{0.5L};
+      auto __zeta_m_1 = _Val{0};
       // This for loop starts at 1 because we already calculated the
-      // value of the zeroeth order in __zeta above
+      // value of the zeroeth order in __zeta_m_1 above
+      const unsigned int __maxit = 10000;
+      auto __num = _Real{0.25L};
       for (unsigned int __i = 1; __i < __maxit; ++__i)
 	{
 	  bool __punt = false;
@@ -405,17 +384,48 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (__punt)
 	    break;
 	  __term *= __num;
-	  __zeta += __term;
-	  if (std::abs(__term) < _S_eps * std::abs(__zeta)
+	  __zeta_m_1 += __term;
+	  if (std::abs(__term) < _S_eps * std::abs(__zeta_m_1)
 	      || std::abs(__term) < _S_eps
-		 && std::abs(__zeta) < _Real{100} * _S_eps)
+		 && std::abs(__zeta_m_1) < _Real{100} * _S_eps)
 	    break;
 	  __num *= _Real{0.5L};
 	}
+      __zeta_m_1 /= _Val{1} - std::pow(_Val{2}, _Val{1} - __s);
+      return __zeta_m_1;
+    }
 
-      __zeta /= _Real{1} - std::pow(_Real{2}, _Val{1} - __s);
+  template<typename _Tp>
+    _Tp
+    __riemann_zeta_glob(_Tp __s)
+    {
+      using _Val = _Tp;
+      using _Real = __num_traits_t<_Val>;
 
-      return __zeta;
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__s));
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__s));
+
+      //  This series works until the binomial coefficient blows up
+      //  so use reflection.
+      if (std::real(__s) < _Real{0})
+	{
+	  if (__gnu_cxx::__fp_is_even_integer(__s))
+	    return _Val{0};
+	  else
+	    {
+	      auto __zeta = __riemann_zeta_glob(_Val{1} - __s);
+	      __zeta *= std::pow(_Real{2} * _S_pi, __s)
+		     * __sin_pi(_Real{0.5L} * __s)
+		     * __gamma(_Val{1} - __s) / _S_pi;
+	      return __zeta;
+	    }
+	}
+      else
+	{
+	  auto __zeta = _Val{0.5L} / (_Val{1} - std::pow(_Val{2}, _Val{1} - __s));
+	  __zeta += __riemann_zeta_m_1_glob(__s);
+	  return __zeta;
+	}
     }
 
 
@@ -600,40 +610,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     7.523163845262640050999913838222372338039e-37L, // 120
   };
 
-  /**
-   * @brief  Return the Riemann zeta function @f$ \zeta(s) - 1 @f$
-   * by summation for \Re(s) > 1.  This is a small remainder for large s.
-   *
-   * The Riemann zeta function is defined by:
-   * @f[
-   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for \Re(s) > 1
-   * @f]
-   *
-   * @param __s The argument @f$ s != 1 @f$
-   */
-  template<typename _Tp>
-    _Tp
-    __riemann_zeta_m_1_sum(_Tp __s)
-    {
-      using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
-      if (__s == _Real{1})
-	return __gnu_cxx::__quiet_NaN(std::real(__s));
-      else
-	{
-	  const auto __arg = -std::log10(_S_eps) / std::abs(__s);
-	  int __k_max = __arg > _Real{6} ? 1000000 : std::pow(_Real{10}, __arg);
-	  auto __zeta_m_1 = _Val{0};
-	  for (int __k = __k_max; __k >= 2; --__k)
-	    {
-	      auto __term = std::pow(_Real(__k), -__s);
-	      __zeta_m_1 += __term;
-	    }
-	  return __zeta_m_1;
-	}
-    }
-
 
   /**
    * @brief  Return the Riemann zeta function @f$ \zeta(s) - 1 @f$
@@ -654,7 +630,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__n && __n() >= 0 && __n() < _S_num_zetam1)
 	return _Tp(_S_zetam1[__n()]);
       else if (std::real(__s) > _Real{0})
-	return __riemann_zeta_m_1_sum(__s);
+	return __riemann_zeta_m_1_glob(__s);
       else // Re[s] < 0
 	return std::pow(_Real{2} * _S_pi, __s)
 	     * __sin_pi(_Real{0.5L} * __s)
