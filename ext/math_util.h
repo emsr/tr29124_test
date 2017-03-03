@@ -164,7 +164,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @param __a The floating point number
    * @param __mul The multiplier of machine epsilon for the tolerance
-   * @return @c true if 2*a is an integer within mul * epsilon.
+   * @return @c true if 2a is an integer within mul * epsilon
+   *            and the returned value is half the integer, int(a) / 2. 
    */
   template<typename _Tp>
     inline __fp_is_integer_t
@@ -186,7 +187,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @param __a The floating point number
    * @param __mul The multiplier of machine epsilon for the tolerance
-   * @return @c true if 2*a is an odd integer within mul * epsilon.
+   * @return @c true if 2a is an odd integer within mul * epsilon
+   *            and the returned value is int(a - 1) / 2.
    */
   template<typename _Tp>
     inline __fp_is_integer_t
