@@ -1606,7 +1606,7 @@ subroutine cchg ( a, b, z, chg )
     chg = ( 1.0D+00 + z / b ) * exp ( z )
   else if ( abs(a - 1.0D+00) < epsilon(a) .and. abs(b - 2.0D+00) < epsilon(b) ) then
     chg = ( exp ( z ) - 1.0D+00 ) / z
-  else if ( a == int ( a ) .and. a < 0.0D+00 ) then
+  else if ( abs(a  - int(a)) < epsilon(a) .and. a < 0.0D+00 ) then
     m = int ( - a )
     cr = cmplx ( 1.0D+00, 0.0D+00, kind = 8 )
     chg = cmplx ( 1.0D+00, 0.0D+00, kind = 8 )
@@ -2395,7 +2395,7 @@ subroutine cgama ( x, y, kf, gr, gi )
 
   pi = 3.141592653589793D+00
 
-  if ( abs(y) < epsilon(y) .and. x == int ( x ) .and. x <= 0.0D+00 ) then
+  if ( abs(y) < epsilon(y) .and. abs(x - int(x)) < epsilon(x) .and. x <= 0.0D+00 ) then
     gr = 1.0D+300
     gi = 0.0D+00
     return
@@ -2672,7 +2672,7 @@ subroutine chgm ( a, b, x, hg )
     hg = ( 1.0D+00 + x / b ) * exp ( x )
   else if ( abs(a - 1.0D+00) < epsilon(a) .and. abs(b - 2.0D+00) < epsilon(b) ) then
     hg = ( exp ( x ) - 1.0D+00 ) / x
-  else if ( a == int ( a ) .and. a < 0.0D+00 ) then
+  else if ( abs(a - int(a)) < epsilon(a) .and. a < 0.0D+00 ) then
     m = int ( - a )
     r = 1.0D+00
     hg = 1.0D+00
@@ -2829,14 +2829,14 @@ subroutine chgu ( a, b, x, hu, md )
   real ( kind = 8 ) x
 
   aa = a - b + 1.0D+00
-  il1 = a == int ( a ) .and. a <= 0.0D+00
-  il2 = aa == int ( aa ) .and. aa <= 0.0D+00
+  il1 = abs(a - int (a)) < epsilon(a) .and. a <= 0.0D+00
+  il2 = abs(aa - int(aa)) < epsilon(aa) .and. aa <= 0.0D+00
   il3 = abs ( a * ( a - b + 1.0D+00 ) ) / x <= 2.0D+00
   bl1 = x <= 5.0D+00 .or. ( x <= 10.0D+00 .and. a <= 2.0D+00 )
   bl2 = ( 5.0D+00 < x .and. x <= 12.5D+00 ) .and. &
     ( 1.0D+00 <= a .and. a + 4.0D+00 <= b )
   bl3 = 12.5D+00 < x .and. 5.0D+00 <= a .and. a + 5.0D+00 <= b
-  bn = b == int ( b ) .and. b .ne. 0.0D+00
+  bn = abs(b - int(b)) < epsilon(b) .and. b .ne. 0.0D+00
   id1 = -100
 
   if ( b .ne. int ( b ) ) then
@@ -3344,8 +3344,8 @@ subroutine chgul ( a, b, x, hu, id )
 
   id = -100
   aa = a - b + 1.0D+00
-  il1 = ( a == int ( a ) ) .and. ( a <= 0.0D+00 )
-  il2 = ( aa == int ( aa ) ) .and. ( aa <= 0.0D+00 )
+  il1 = ( abs(a - int(a)) < epsilon(a) ) .and. ( a <= 0.0D+00 )
+  il2 = ( abs(aa - int(aa)) < epsilon(aa) ) .and. ( aa <= 0.0D+00 )
 
   if ( il1 .or. il2 ) then
 
@@ -7532,7 +7532,7 @@ subroutine cpdsa ( n, z, cdn )
 
     if ( abs ( z ) == 0.0D+00 ) then
 
-      if ( va0 <= 0.0D+00 .and. va0 == int ( va0 ) ) then
+      if ( va0 <= 0.0D+00 .and. abs(va0 - int ( va0 )) < epsilon(va0) ) then
         cdn = 0.0D+00
       else
         call gaih ( va0, ga0 )
@@ -7633,7 +7633,7 @@ subroutine cpsi ( x, y, psr, psi )
 
   pi = 3.141592653589793D+00
 
-  if ( abs(y) < epsilon(y) .and. x == int ( x ) .and. x <= 0.0D+00 ) then
+  if ( abs(y) < epsilon(y) .and. abs(x - int (x)) < epsilon(x) .and. x <= 0.0D+00 ) then
 
     psr = 1.0D+300
     psi = 0.0D+00
@@ -9554,7 +9554,7 @@ subroutine dvsa ( va, x, pd )
   else
 
     if ( abs(x) < epsilon(x) ) then
-      if ( va0 <= 0.0D+00 .and. va0 == int ( va0 ) ) then
+      if ( va0 <= 0.0D+00 .and. abs(va0 - int (va0)) < epsilon(va0) ) then
         pd = 0.0D+00
       else
         call gamma ( va0, ga0 )
@@ -11433,7 +11433,7 @@ subroutine gaih ( x, ga )
 
   pi = 3.141592653589793D+00
 
-  if ( x == int ( x ) .and. 0.0 < x ) then
+  if ( abs(x - int(x)) < epsilon(x) .and. 0.0 < x ) then
     ga = 1.0D+00
     m1 = int ( x - 1.0D+00 )
     do k = 2, m1
@@ -11601,7 +11601,7 @@ subroutine gamma ( x, ga )
   real ( kind = 8 ) x
   real ( kind = 8 ) z
 
-  if ( x == aint ( x ) ) then
+  if ( abs(x - aint(x)) < epsilon(x) ) then
 
     if ( 0.0D+00 < x ) then
       ga = 1.0D+00
@@ -11997,12 +11997,12 @@ subroutine hygfx ( a, b, c, x, hf )
   real ( kind = 8 ) x
   real ( kind = 8 ) x1
 
-  l0 = ( c == aint ( c ) ) .and. ( c < 0.0D+00 )
+  l0 = ( abs(c - aint (c)) < epsilon(c) ) .and. ( c < 0.0D+00 )
   l1 = ( 1.0D+00 - x < 1.0D-15 ) .and. ( c - a - b <= 0.0D+00 )
-  l2 = ( a == aint ( a ) ) .and. ( a < 0.0D+00 )
-  l3 = ( b == aint ( b ) ) .and. ( b < 0.0D+00 )
-  l4 = ( c - a == aint ( c - a ) ) .and. ( c - a <= 0.0D+00 )
-  l5 = ( c - b == aint ( c - b ) ) .and. ( c - b <= 0.0D+00 )
+  l2 = ( abs(a - aint (a)) < epsilon(a) ) .and. ( a < 0.0D+00 )
+  l3 = ( abs(b - aint (b)) < epsilon(b) ) .and. ( b < 0.0D+00 )
+  l4 = ( c - abs(a - aint(c - a)) < epsilon(a) ) .and. ( c - a <= 0.0D+00 )
+  l5 = ( c - abs(b - aint(c - b)) < epsilon(b) ) .and. ( c - b <= 0.0D+00 )
 
   if ( l0 .or. l1 ) then
     write ( *, '(a)' ) ' '
@@ -12434,15 +12434,15 @@ subroutine hygfz ( a, b, c, z, zhf )
   x = real ( z, kind = 8 )
   y = imag ( z )
   eps = 1.0D-15
-  l0 = c == int ( c ) .and. c < 0.0D+00
+  l0 = abs(c - int (c)) < epsilon(c) .and. c < 0.0D+00
   l1 = abs ( 1.0D+00 - x ) < eps .and. abs(y) < epsilon(y) .and. &
     c - a - b <= 0.0D+00
   l2 = abs ( z + 1.0D+00 ) < eps .and. &
     abs ( c - a + b - 1.0D+00 ) < eps
-  l3 = a == int ( a ) .and. a < 0.0D+00
-  l4 = b == int ( b ) .and. b < 0.0D+00
-  l5 = c - a == int ( c - a ) .and. c - a <= 0.0D+00
-  l6 = c - b == int ( c - b ) .and. c - b <= 0.0D+00
+  l3 = abs(a - int (a)) < epsilon(a) .and. a < 0.0D+00
+  l4 = abs(b - int (b)) < epsilon(b) .and. b < 0.0D+00
+  l5 = abs(c - a - int(c - a)) < epsilon(c - a) .and. c - a <= 0.0D+00
+  l6 = abs(c - b - int(c - b)) < epsilon(c - b) .and. c - b <= 0.0D+00
   aa = a
   bb = b
   a0 = abs ( z )
@@ -21517,12 +21517,12 @@ subroutine psi ( x, ps )
   xa = abs ( x )
   s = 0.0D+00
 
-  if ( x == aint ( x ) .and. x <= 0.0D+00 ) then
+  if (abs(x  - aint(x)) < epsilon(x) .and. x <= 0.0D+00 ) then
 
     ps = 1.0D+300
     return
 
-  else if ( xa == aint ( xa ) ) then
+  else if (abs(xa - aint(xa)) < epsilon(xa) ) then
 
     n = int ( xa )
     do k = 1, n - 1
@@ -25373,7 +25373,7 @@ subroutine vvsa ( va, x, pv )
 
   if ( abs(x) < epsilon(x) ) then
 
-    if ( ( va0 <= 0.0D+00 .and. va0 == int ( va0 ) ) .or. &
+    if ( ( va0 <= 0.0D+00 .and. abs(va0 - int(va0)) < epsilon(va0) ) .or. &
       abs(va) < epsilon(va) ) then
       pv = 0.0D+00
     else
