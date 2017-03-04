@@ -57,7 +57,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline _Tp
     __fp_max_abs(_Tp __a, _Tp __b)
     {
-      if (__isnan(__a) || __isnan(__b))
+      if (std::__detail::__isnan(__a) || std::__detail::__isnan(__b))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	{
@@ -80,7 +80,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline bool
     __fp_is_equal(_Tp __a, _Tp __b, _Tp __mul = _Tp{1})
     {
-      if (__isnan(__a) || __isnan(__b) || __isnan(__mul))
+      if (std::__detail::__isnan(__a) || std::__detail::__isnan(__b) || std::__detail::__isnan(__mul))
 	return false;
       else
 	{
@@ -105,7 +105,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline bool
     __fp_is_zero(_Tp __a, _Tp __mul = _Tp{1})
     {
-      if (__isnan(__a) || __isnan(__mul))
+      if (std::__detail::__isnan(__a) || std::__detail::__isnan(__mul))
 	return false;
       else
 	{
@@ -149,7 +149,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline __fp_is_integer_t
     __fp_is_integer(_Tp __a, _Tp __mul = _Tp{1})
     {
-      if (__isnan(__a) || __isnan(__mul))
+      if (std::__detail::__isnan(__a) || std::__detail::__isnan(__mul))
 	return __fp_is_integer_t{false, 0};
       else
 	{
@@ -164,13 +164,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @param __a The floating point number
    * @param __mul The multiplier of machine epsilon for the tolerance
-   * @return @c true if 2*a is an integer within mul * epsilon.
+   * @return @c true if 2a is an integer within mul * epsilon
+   *            and the returned value is half the integer, int(a) / 2. 
    */
   template<typename _Tp>
     inline __fp_is_integer_t
     __fp_is_half_integer(_Tp __a, _Tp __mul = _Tp{1})
     {
-      if (__isnan(__a) || __isnan(__mul))
+      if (std::__detail::__isnan(__a) || std::__detail::__isnan(__mul))
 	return __fp_is_integer_t{false, 0};
       else
 	{
@@ -186,13 +187,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @param __a The floating point number
    * @param __mul The multiplier of machine epsilon for the tolerance
-   * @return @c true if 2*a is an odd integer within mul * epsilon.
+   * @return @c true if 2a is an odd integer within mul * epsilon
+   *            and the returned value is int(a - 1) / 2.
    */
   template<typename _Tp>
     inline __fp_is_integer_t
     __fp_is_half_odd_integer(_Tp __a, _Tp __mul = _Tp{1})
     {
-      if (__isnan(__a) || __isnan(__mul))
+      if (std::__detail::__isnan(__a) || std::__detail::__isnan(__mul))
 	return __fp_is_integer_t{false, 0};
       else
 	{
@@ -214,7 +216,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline __fp_is_integer_t
     __fp_is_even_integer(_Tp __a, _Tp __mul = _Tp{1})
     {
-      if (__isnan(__a) || __isnan(__mul))
+      if (std::__detail::__isnan(__a) || std::__detail::__isnan(__mul))
 	return __fp_is_integer_t{false, 0};
       else
 	{
@@ -234,7 +236,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline __fp_is_integer_t
     __fp_is_odd_integer(_Tp __a, _Tp __mul = _Tp{1})
     {
-      if (__isnan(__a) || __isnan(__mul))
+      if (std::__detail::__isnan(__a) || std::__detail::__isnan(__mul))
 	return __fp_is_integer_t{false, 0};
       else
 	{
