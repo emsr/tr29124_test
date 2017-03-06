@@ -6252,7 +6252,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __x = std::abs(__x);
 	  __y = std::abs(__y);
 	  __z = std::abs(__z);
-	  auto __amax = __fmax3(__x, __y, __z);
+	  const auto __amax = __fmax3(__x, __y, __z);
 	  if (__amax == _Tp{0})
 	    return _Tp{0};
 	  else if (std::__detail::__isinf(__amax))
