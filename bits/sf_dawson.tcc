@@ -75,20 +75,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_1_sqrtpi{0.5641895835477562869480794515607726L};
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const auto _S_H{0.2L};
-      /// @todo this needs some compile-time construction!
+      /// This array could be built on a thread-local basis.
       const auto _S_n_max = 100;
       // The array below is produced by the following snippet:
-	//static _Tp _S_c[_S_n_max + 1];
-	//static auto __init = false;
-	//if (! __init)
-	//  {
-	//    __init = true;
-	//    for (unsigned int __i = 0; __i < _S_n_max; ++__i)
-	//  	{
-	//  	  auto __y = _Tp(2 * __i + 1) * _S_H;
-	//  	  _S_c[__i] = std::exp(-__y * __y);
-	//  	}
-	//  }
+      //static thread_local _Tp _S_c[_S_n_max + 1];
+      //static thread_local auto __init = false;
+      //if (! __init)
+      //  {
+      //    __init = true;
+      //    for (unsigned int __i = 0; __i < _S_n_max; ++__i)
+      //  	{
+      //  	  auto __y = _Tp(2 * __i + 1) * _S_H;
+      //  	  _S_c[__i] = std::exp(-__y * __y);
+      //  	}
+      //  }
       constexpr _Tp
       _S_c[_S_n_max]
       {
@@ -204,7 +204,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __sum = _Tp{0};
       for (unsigned int __i = 0; __i < _S_n_max; ++__i)
 	{
-	  auto __term = _S_c[__i] * (__e1 / __d1 + _Tp{1} / (__d2 * __e1));
+	  auto __term = _Tp(_S_c[__i]) * (__e1 / __d1 + _Tp{1} / (__d2 * __e1));
 	  __sum += __term;
 	  if (std::abs(__term) < _S_eps * std::abs(__sum))
 	    break;
