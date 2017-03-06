@@ -285,6 +285,9 @@ GSL extras has these - there was struggle there too.
 
 68. [] Look at: test_dawson.cpp
        It works but we have todos on the compile-time construction of arrays.
+       Boost does thread_local.  I commented that instead of a todo.
+       If I make this a thing I should make the num variable.
+       I could do a vector.
 
 69. [DONE] Make work: test_complex128.cpp
      test_complex128.cpp - No compile.
