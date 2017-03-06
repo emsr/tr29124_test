@@ -526,6 +526,9 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
         for a given bit representation.  For floats this would be, for example,
         24 and 53 bits for most floats and doubles respectively.  Does boost do this?
 
+115. [] hypot(x,y) and hypot(x,y,z) should work for complex as well.
+        I've built a toy and I'm actively working C++ std!
+
 plot_airy.cpp
 
 test_array_ref.cpp - move with <array_ref> somewhere else
