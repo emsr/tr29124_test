@@ -42,12 +42,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return mpfr::acos(__x); }
 
   inline mpfr::mpreal
+  acosh(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
+  { return mpfr::acosh(__x); }
+
+  inline mpfr::mpreal
   asin(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
   { return mpfr::asin(__x); }
 
   inline mpfr::mpreal
+  asinh(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
+  { return mpfr::asinh(__x); }
+
+  inline mpfr::mpreal
   atan(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
   { return mpfr::atan(__x); }
+
+  inline mpfr::mpreal
+  atanh(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
+  { return mpfr::atanh(__x); }
 
   inline mpfr::mpreal
   atan2(const mpfr::mpreal& __y, const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
@@ -147,9 +159,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   isinf(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
   { return mpfr::isinf(__x); }
 
-  //inline int
-  //ilogb(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
-  //{ return mpfr::ilogb(__x); }
+  inline int
+  ilogb(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
+  { return mpfr::ilogb(__x); }
 
   inline int
   isnan(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT

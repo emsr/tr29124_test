@@ -1,31 +1,30 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mpreal test_mpreal.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mpreal test_mpreal.cpp -lquadmath -lmpfr
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_mpreal > test_mpreal.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mpreal test_mpreal.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mpreal test_mpreal.cpp -lquadmath -lmpfr
 */
 
-#include <bits/numeric_limits.h>
 #include <mpreal.h>
+#include <bits/numeric_limits_mpreal.h>
 #include <ext/math_const_mpreal.h>
 #include <bits/math_mpreal.h>
-#include <bits/numeric_limits_mpreal.h>
 
 int
 main()
 {
-  mpreal::mpreal p(0, 128);
+  mpfr::mpreal p(0, 128);
   std::cout.precision(__gnu_cxx::__max_digits10(p));
   //auto width = 8 + std::cout.precision();
 
-  auto x = mpreal::mpreal(0.00004472229441850588228136889483397204368247, 128);
-  auto y = mpreal::mpreal(-1.00200035757357000394547575997277994404042345, 128);
-  auto z = mpreal::mpreal(2.12005432105145066363366054636636034336318985, 128);
+  auto x = mpfr::mpreal(0.00004472229441850588228136889483397204368247, 128);
+  auto y = mpfr::mpreal(-1.00200035757357000394547575997277994404042345, 128);
+  auto z = mpfr::mpreal(2.12005432105145066363366054636636034336318985, 128);
   int n = 5;
   int exp = 3;
-  mpreal::mpreal m(4.0L, 128);
-  mpreal::mpreal b(2.5L, 128);
-  mpreal::mpreal xsin(0, 128), xcos(0, 128), i;
+  mpfr::mpreal m(4.0L, 128);
+  mpfr::mpreal b(2.5L, 128);
+  mpfr::mpreal xsin(0, 128), xcos(0, 128), i;
 
   //std::cout << std::hexfloat << std::uppercase;
 
