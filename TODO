@@ -529,6 +529,15 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 115. [] hypot(x,y) and hypot(x,y,z) should work for complex as well.
         I've built a toy and I'm actively working C++ std!
 
+116. [DONE] mpreal needs ilogb, acosh, asinh, atanh!  I just need to add them to my wrapper!
+
+117. [] Why do test_float128.txt and float_mpreal.txt differ to so many figures?
+        It's because of the constants!  float128 has Q.
+        1. Test_mpreal gets double because it doesn't grok float128. (why not long double at least?
+        2. Does mpreal have a way to take literals?
+
+118. [] Try std::complex<mpfr::mpreal> vs. cmp!  It should work!  Make it work!
+
 plot_airy.cpp
 
 test_array_ref.cpp - move with <array_ref> somewhere else
