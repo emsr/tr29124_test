@@ -35,6 +35,8 @@ complex_literal_bug
 
 build_gamma_lanczos
 build_gamma_spouge
+build_log_table
+build_sqrt_table
 
 carlson
 carlson1
