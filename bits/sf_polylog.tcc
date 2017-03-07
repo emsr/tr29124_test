@@ -458,8 +458,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // fac should now be 1/(m+1)!
       const auto __pref = _Tp{2} * std::pow(_S_2pi, __s - _Tp{1});
       // Now comes the remainder of the series
-      constexpr unsigned int __maxit = 100;
       unsigned int __j = 0;
+      constexpr unsigned int __maxit = 100;
+      _Terminator<std::complex<_Tp>> __done(__maxit);
       bool __terminate = false;
       auto __wup = __w / _S_2pi;
       auto __wbark = std::pow(__wup, _Tp(__m + 1));
@@ -467,6 +468,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Here we factor up the ratio of Gamma(1 - s + k) / k!.
       // This ratio should be well behaved even for large k
       auto __gam = __gamma(_Tp(2 + __m) - __s) * __fact;
+      std::complex<_Tp> __sum{};
       while (!__terminate)
 	{
 	  const auto __idx = __m + 1 + __j;
@@ -489,10 +491,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __wbark *= __wup;
 	  __gam *= __zetaarg / _Tp(1 + __idx);
 	  ++__j;
-	  __terminate = (__j > __maxit
-			 || __gnu_cxx::__fp_is_zero(__pref * __term));
-	  __res += __pref * __term;
+	  __terminate = __done(__sum, __term);
+	  __sum += __term;
 	}
+      __res += __pref * __sum;
       return __res;
     }
 
@@ -526,6 +528,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // wgamma = w^s / Gamma(s+1)
       __wgamma *= __w / __s;
       constexpr unsigned int __maxiter = 100;
+      _Terminator<std::complex<_Tp>> __done(__maxiter);
       bool __terminate = false;
       // zeta(0) * w^s / Gamma(s + 1)
       std::complex<_Tp> __oldterm = -_Tp{0.5L} * __wgamma;
@@ -538,11 +541,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __wgamma *= __wq * (__s + _Tp(1 - 2 * __k))
 		    * (__s + _Tp(2 - 2 * __k));
 	  __term = __riemann_zeta<_Tp>(2 * __k) * __wgamma;
-	  if (std::abs(__term) > std::abs(__oldterm))
-	    __terminate = true; // Failure of asymptotic expansion.
-	  if (__k > __maxiter || __gnu_cxx::__fp_is_zero(_Tp{2} * __term))
-	    __terminate = true; // Precision goal reached.
 	  __res += _Tp{2} * __term;
+	  __terminate = (std::abs(__term) > std::abs(__oldterm))
+			|| __done(_Tp{2} * __term, __res);
 	  __oldterm = __term;
 	  ++__k;
 	}
@@ -570,6 +571,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __up = __ew;
       auto __res = __ew;
       unsigned int __maxiter = 500;
+      _Terminator<_Tp> __done(__maxiter);
       bool __terminate = false;
       unsigned int __k = 2;
       while (!__terminate)
@@ -577,8 +579,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __ew *= __up;
 	  _Tp __temp = std::pow(__k, __s); // This saves us a type conversion
 	  const auto __term = __ew / __temp;
-	  __terminate = (__k > __maxiter || __gnu_cxx::__fp_is_zero(__term));
 	  __res += __term;
+	  __terminate = __done(__term, __res);
 	  ++__k;
 	}
       return __res;
