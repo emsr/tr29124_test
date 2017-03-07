@@ -15,6 +15,7 @@ OBJ_DIR = obj
 
 BINS = \
   test_quadrature \
+  test_trapezoid_integral \
   hermite_test \
   laguerre_test \
   legendre_test \
@@ -37,6 +38,9 @@ test: $(BINS)
 
 test_quadrature: test_quadrature.cpp *.h *.tcc
 	$(CXX17) -o test_quadrature test_quadrature.cpp -lquadmath
+
+test_trapezoid_integral: test_trapezoid_integral.cpp trapezoid_integral.h trapezoid_integral.tcc
+	$(CXX17) -o test_trapezoid_integral test_trapezoid_integral.cpp -lquadmath
 
 hermite_test: $(OBJ_DIR)/hermite_test.o
 	$(CXX17) -o hermite_test $(OBJ_DIR)/hermite_test.o -lquadmath
