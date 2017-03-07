@@ -1,8 +1,32 @@
+/* quadrature/trapezoid_integral.h
+ *
+ * Copyright (C) 2017 Free Software Foundation, Inc.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or (at
+ * your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ */
+
+#ifndef TRAPEZOID_INTEGRAL_H
+#define TRAPEZOID_INTEGRAL_H 1
 
 #include <cstddef>
 #include <limits>
 
-template<typename _Tp, typename _Func>
+namespace __gnu_test
+{
+
+template<typename _Func, typename _Tp>
   class trapezoid_integral
   {
   public:
@@ -15,7 +39,7 @@ template<typename _Tp, typename _Func>
 
   private:
 
-    _Tp step();
+    _Tp _M_step();
 
     _Func _M_fun;
     _Tp _M_a;
@@ -27,4 +51,8 @@ template<typename _Tp, typename _Func>
     std::size_t _S_max_iter = std::numeric_limits<std::size_t>::digits - 1;
   };
 
+} // namespace __gnu_test
+
 #include "trapezoid_integral.tcc"
+
+#endif // TRAPEZOID_INTEGRAL_TCC
