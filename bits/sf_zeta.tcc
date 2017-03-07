@@ -666,8 +666,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return _S_inf;
       else
 	{
-	  const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
-	  const auto __s_max = -std::log2(_S_eps);
+	  const auto __S_max = __gnu_cxx::__digits(std::real(__s));
 	  const auto __p = __gnu_cxx::__fp_is_integer(__s);
 	  if (__p && __p() >= 0)
 	    return _Real{1} + __riemann_zeta_m_1(_Real(__p()));
@@ -689,7 +688,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		     / _S_pi;
 	      return __zeta;
 	    }
-	  else if (std::real(__s) < __s_max)
+	  else if (std::real(__s) < __S_max)
 	    {
 	      // Global double sum or McLaurin?
 	      bool __glob = true;
@@ -710,7 +709,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		}
 	    }
 	  else
-	    return __riemann_zeta_product(__s);
+	    return _Val{1} + std::pow(_Val{2}, -__s);
 	}
     }
 

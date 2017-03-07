@@ -1026,7 +1026,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__s))
 	return __gnu_cxx::__quiet_NaN(std::imag(__s));
       else if (__gnu_cxx::__fp_is_real(__s))
-	return -__polylog(__s.real(), _Tp{-1});
+	return -__polylog(std::real(__s), _Tp{-1});
       else
 	std::__throw_domain_error(__N("__dirichlet_eta: Bad argument"));
     }
@@ -1043,6 +1043,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__isnan(__s))
 	return __gnu_cxx::__quiet_NaN(__s);
+      else if (__s < _Tp{0})
+	{
+	  const auto _S_pi = __gnu_cxx::__const_pi(__s);
+	  const auto __sc = _Tp{1} - __s;
+	  const auto __p2 = std::pow(_Tp{2}, -__sc);
+	  return _Tp{2} * (_Tp{1} - __p2) / (_Tp{1} - _Tp{2} * __p2)
+	       * std::pow(_S_pi, -__sc) *__s * __sin_pi(__s / _Tp{2})
+	       * __gamma(-__s) * __dirichlet_eta(__sc);
+	}
       else
 	return -std::real(__polylog(__s, _Tp{-1}));
     }
