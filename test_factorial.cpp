@@ -6,12 +6,12 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_factorial
 ./test_factorial > test_factorial.txt
 */
 
+#include <cmath>
 #include <bits/numeric_limits.h>
 #include <limits>
 #include <iostream>
 #include <iomanip>
 #include <bits/float128_io.h>
-#include <cmath>
 
 template<typename Tp>
   std::string
@@ -121,6 +121,8 @@ template<typename Tp>
 int
 main()
 {
+  __gnu_cxx::factorial<double>(5);
+
   std::cout << "\n_S_factorial_table<float>\n";
   factorial<float>();
   std::cout << "\n_S_factorial_table<double>\n";

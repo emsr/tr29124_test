@@ -174,6 +174,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
 
       /**
+       * Create a polynomial from a generator and a maximum degree.
+       */
+      template<typename Gen>
+	_Polynomial(Gen __gen, size_type __degree)
+	: _M_coeff()
+	{
+	  _M_coeff.reserve(__degree);
+	  for (size_type __k = 0; __k <= __degree; ++__k)
+	    _M_coeff.push_back(__gen(__k));
+	}
+
+
+      /**
        *  Swap the polynomial with another polynomial.
        */
       void
