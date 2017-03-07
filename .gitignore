@@ -234,6 +234,7 @@ test_hurwitz_zeta
 test_hurwitz_zeta_new
 test_hyperg
 test_hypot
+test_inverse_gamma_distribution
 test_inv_erf
 test_inv_ibeta
 test_jacobi
