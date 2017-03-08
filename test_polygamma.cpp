@@ -1,12 +1,12 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_trigamma test_trigamma.cpp -L$HOME/bin/lib64 -lquadmath
-./test_trigamma > test_trigamma.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polygamma test_polygamma.cpp -L$HOME/bin/lib64 -lquadmath
+./test_polygamma > test_polygamma.txt
 
-g++ -std=gnu++14 -Wall -Wextra -DNO_LOGBQ -I. -o test_trigamma test_trigamma.cpp -lquadmath
-./test_trigamma > test_trigamma.txt
+g++ -std=gnu++14 -Wall -Wextra -DNO_LOGBQ -I. -o test_polygamma test_polygamma.cpp -lquadmath
+./test_polygamma > test_polygamma.txt
 
-$HOME/bin/bin/g++ -std=gnu++14 -Wall -Wextra -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -DNO_LOGBQ -I. -o test_trigamma test_trigamma.cpp -lquadmath
-./test_trigamma > test_trigamma.txt
+$HOME/bin/bin/g++ -std=gnu++14 -Wall -Wextra -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -DNO_LOGBQ -I. -o test_polygamma test_polygamma.cpp -lquadmath
+./test_polygamma > test_polygamma.txt
 */
 
 #include <limits>
@@ -14,6 +14,7 @@ $HOME/bin/bin/g++ -std=gnu++14 -Wall -Wextra -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -
 #include <iomanip>
 #include <ext/cmath>
 #include <bits/specfun.h>
+#include <ext/polynomial.h>
 #include "LentzContinuedFraction.tcc"
 
 template<typename _Tp>
@@ -173,6 +174,26 @@ template<typename _Tp>
 	std::cout << ' ' << x
 		  << ' ' << std::setw(width) << __tetragamma_cont_frac(x)
 		  << '\n';
+      }
+  }
+
+template<typename _Tp>
+  __gnu_cxx::_Polynomial<_Tp>
+  __polygamma_poly(unsigned int __n)
+  {
+    __gnu_cxx::_Polynomial<_Tp> __a{_Tp{0}, _Tp{1}};
+    __gnu_cxx::_Polynomial<_Tp> __b{_Tp{1}, _Tp{0}, _Tp{-1}};
+    if (__n == 0)
+      return __a;
+    else
+      {
+	auto __P = __a;
+	auto __Pp = __P.deriv();
+	for (unsigned int __k = 0; __k < __n; ++__k)
+	{
+	  __P = -(_Tp(__k + 1) * __a * __P + __b * __Pp);
+	  __Pp = __P.deriv();
+	}
       }
   }
 
