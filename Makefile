@@ -17,24 +17,7 @@ CXX_TEST_INC_DIR = .
 
 INC_DIR = bits
 
-CEPHES_DIR = cephes
-
-LERCH_DIR = lerchphi/Source
-
 FAD_DIR = Faddeeva
-
-GSL_DIR = /usr/local
-GSL_INC_DIR = $(GSL_DIR)/include
-GSL_LIB_DIR = $(GSL_DIR)/lib
-
-GSL_EXT_DIR = $(HOME)/tr29124_test/gslextras
-GSL_FRESNEL_DIR = $(GSL_EXT_DIR)/Fresnel
-GSL_JACOBI_DIR = $(GSL_EXT_DIR)/Jacobi/jacobi-0.9.2/src
-GSL_HERMITE_DIR = $(GSL_EXT_DIR)/Hermite
-
-BOOST_DIR = /usr/local
-BOOST_INC_DIR = $(BOOST_DIR)/include
-BOOST_LIB_DIR = $(BOOST_DIR)/lib
 
 MATH_DIR = $(HOME)/tr29124_test
 
@@ -459,7 +442,7 @@ test_cmath: test_cmath.cpp
 	$(CXX) -o test_cmath test_cmath.cpp -lquadmath
 
 test_airy: test_airy.cpp sf_airy.tcc
-	$(CXX) -o test_airy -I$(GSL_INC_DIR) test_airy.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
+	$(CXX) -o test_airy test_airy.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 
 test_csint: test_csint.cpp csint.tcc
 	$(CXX) -o test_csint test_csint.cpp -lquadmath
