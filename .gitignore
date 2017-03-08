@@ -187,6 +187,7 @@ diff_special_function
 diff_local_special_function
 testcase
 testcase2
+test_agm
 test_airy
 test_anger_weber
 test_bernoulli
