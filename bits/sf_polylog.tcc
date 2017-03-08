@@ -1045,7 +1045,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __gnu_cxx::__quiet_NaN(__s);
       else if (__s < _Tp{0})
 	{
-	  auto __p = __gnu_cx::__fp_is_integer(__s);
+	  auto __p = __gnu_cxx::__fp_is_integer(__s);
 	  if (__p)
 	    return _Tp{0};
 	  else
