@@ -25,25 +25,31 @@
 namespace __gnu_test
 {
 
+/**
+ * 
+ */
 template<typename _Func, typename _Tp>
   _Tp
   midpoint_integral<_Func, _Tp>::operator()()
   {
-    auto __sum_prev = -std::numeric_limits<_Tp>::max() / 1000;
-    for (std::size_t __j = 0; __j < _S_max_iter; ++__j)
+    auto __sum_prev = this->_M_step();
+    for (std::size_t __j = 1; __j < _S_max_iter; ++__j)
       {
 	auto __sum = this->_M_step();
 	if (std::abs(__sum - __sum_prev) < this->_M_err * std::abs(__sum_prev))
 	  return __sum;
 	if (std::abs(__sum) < this->_M_err
 		&& std::abs(__sum_prev) < this->_M_err
-		&& __j > 6 )
+		&& __j > 6)
 	  return __sum;
 	__sum_prev = __sum;
       }
     return __sum_prev;
   }
 
+/**
+ * 
+ */
 template<typename _Func, typename _Tp>
   _Tp
   midpoint_integral<_Func, _Tp>::_M_step()
@@ -63,14 +69,14 @@ template<typename _Func, typename _Tp>
         const auto __ddel = _Tp{2} * __del;
         auto __x = this->_M_a + __del / _Tp{2};
         auto __sum = _Tp{0};
-        for (auto __j = 1; __j <= this->_M_pow3; ++__j)
+        for (auto __j = 1u; __j <= this->_M_pow3; ++__j)
 	  {
             __sum += this->_M_fun(__x);
             __x += __ddel;
             __sum += this->_M_fun(__x);
             __x += __del;
           }
-        // The new sum is combined with the old integral to give a refined integral.
+        // The new sum is combined with the old integral.
 	this->_M_sum += (this->_M_b - this->_M_a) * __sum / this->_M_pow3;
         this->_M_sum /= _Tp{3};
         this->_M_pow3 *= 3;
