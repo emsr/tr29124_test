@@ -48,7 +48,7 @@ template<typename _Func, typename _Tp>
     _Tp _M_sum;
     std::size_t _M_iter = 0;
     std::size_t _M_pow2 = 0;
-    std::size_t _S_max_iter = std::numeric_limits<std::size_t>::digits - 1;
+    std::size_t _S_max_iter = std::numeric_limits<std::size_t>::digits / 2;
   };
 
 } // namespace __gnu_test

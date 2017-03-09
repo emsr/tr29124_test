@@ -25,25 +25,31 @@
 namespace __gnu_test
 {
 
+/**
+ * 
+ */
 template<typename _Func, typename _Tp>
   _Tp
   trapezoid_integral<_Func, _Tp>::operator()()
   {
-    auto __sum_prev = -std::numeric_limits<_Tp>::max() / 1000;
-    for (std::size_t __j = 0; __j < _S_max_iter; ++__j)
+    auto __sum_prev = this->_M_step();
+    for (std::size_t __j = 1; __j < _S_max_iter; ++__j)
       {
 	auto __sum = this->_M_step();
 	if (std::abs(__sum - __sum_prev) < this->_M_err * std::abs(__sum_prev))
 	  return __sum;
 	if (std::abs(__sum) < this->_M_err
 		&& std::abs(__sum_prev) < this->_M_err
-		&& __j > 6 )
+		&& __j > 6)
 	  return __sum;
 	__sum_prev = __sum;
       }
     return __sum_prev;
   }
 
+/**
+ * 
+ */
 template<typename _Func, typename _Tp>
   _Tp
   trapezoid_integral<_Func, _Tp>::_M_step()
@@ -58,6 +64,7 @@ template<typename _Func, typename _Tp>
       }
     else
       {
+	++this->_M_iter;
         const auto __del = (this->_M_b - this->_M_a) / this->_M_pow2;
         auto __x = this->_M_a + __del / _Tp{2};
 	auto __sum = _Tp{0};
@@ -65,7 +72,6 @@ template<typename _Func, typename _Tp>
 	  __sum += this->_M_fun(__x);
         this->_M_sum = (this->_M_sum + __del * __sum) / _Tp{2};
         this->_M_pow2 *= 2;
-	++this->_M_iter;
       }
     return this->_M_sum;
   }
