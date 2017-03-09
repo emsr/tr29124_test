@@ -32,12 +32,15 @@ template<typename _Func, typename _Tp>
   public:
 
     midpoint_integral(_Func __fun, _Tp __a, _Tp __b, _Tp __err)
-    : _M_fun(__fun), _M_a(__a), _M_b(__b), _M_err(__err), _M_sum()
+    : _M_fun(__fun), _M_a(__a), _M_b(__b), _M_err(std::abs(__err)), _M_sum()
     { }
 
     _Tp operator()();
 
   private:
+
+    static constexpr auto _S_max_iter = std::numeric_limits<_Tp>::digits / 2;
+    static constexpr auto _S_min_delta = std::sqrt(std::numeric_limits<_Tp>::epsilon());
 
     _Tp _M_step();
 
@@ -48,7 +51,6 @@ template<typename _Func, typename _Tp>
     _Tp _M_sum;
     std::size_t _M_iter = 0;
     std::size_t _M_pow3 = 0;
-    std::size_t _S_max_iter = std::numeric_limits<std::size_t>::digits / 2;
   };
 
 } // namespace __gnu_test

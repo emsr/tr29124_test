@@ -36,7 +36,7 @@ template<typename _Func, typename _Tp>
     for (std::size_t __j = 1; __j < _S_max_iter; ++__j)
       {
 	auto __sum = this->_M_step();
-	if (std::abs(__sum - __sum_prev) < this->_M_err * std::abs(__sum_prev))
+	if (std::abs(__sum - __sum_prev) < this->_M_err * std::abs(__sum))
 	  return __sum;
 	if (std::abs(__sum) < this->_M_err
 		&& std::abs(__sum_prev) < this->_M_err
@@ -66,6 +66,8 @@ template<typename _Func, typename _Tp>
       {
 	++this->_M_iter;
         const auto __del = (this->_M_b - this->_M_a) / this->_M_pow2;
+	if (std::abs(__del) < _S_min_delta)
+	  return this->_M_sum;
         auto __x = this->_M_a + __del / _Tp{2};
 	auto __sum = _Tp{0};
         for (std::size_t __j = 0; __j < this->_M_pow2; ++__j, __x += __del)
