@@ -41,35 +41,40 @@ template<typename Tp>
     __gnu_test::trapezoid_integral<decltype(one), Tp> t0(one, a, b, err);
     Tp a0 = t0();
     Tp e0 = b - a;
-    std::cout << ' ' << std::setw(w) << a0
+    std::cout << "one     : "
+	      << ' ' << std::setw(w) << a0
 	      << ' ' << std::setw(w) << e0
 	      << ' ' << std::setw(w) << a0 - e0 << '\n';
 
     __gnu_test::trapezoid_integral<decltype(ex), Tp> t1(ex, a, b, err);
     Tp a1 = t1();
-    Tp e1 = PI / Tp{1};
-    std::cout << ' ' << std::setw(w) << a1
+    Tp e1 = (b * b - a * a) / Tp{2};
+    std::cout << "ex      : "
+	      << ' ' << std::setw(w) << a1
 	      << ' ' << std::setw(w) << e1
 	      << ' ' << std::setw(w) << a1 - e1 << '\n';
 
     __gnu_test::trapezoid_integral<decltype(cos2), Tp> t2(cos2, a, b, err);
     Tp a2 = t2();
     Tp e2 = PI / Tp{2};
-    std::cout << ' ' << std::setw(w) << a2
+    std::cout << "cos2    : "
+	      << ' ' << std::setw(w) << a2
 	      << ' ' << std::setw(w) << e2
 	      << ' ' << std::setw(w) << a2 - e2 << '\n';
 
     __gnu_test::trapezoid_integral<decltype(sin2), Tp> t3(sin2, a, b, err);
     Tp a3 = t3();
-    Tp e3 = PI / Tp{3};
-    std::cout << ' ' << std::setw(w) << a3
+    Tp e3 = PI / Tp{2};
+    std::cout << "sin2    : "
+	      << ' ' << std::setw(w) << a3
 	      << ' ' << std::setw(w) << e3
 	      << ' ' << std::setw(w) << a3 - e3 << '\n';
 
     __gnu_test::trapezoid_integral<decltype(j1), Tp> t4(j1, a, b, err);
     Tp a4 = t4();
     Tp e4 = std::cyl_bessel_j(Tp{0}, Tp{0}) - std::cyl_bessel_j(Tp{0}, PI);
-    std::cout << ' ' << std::setw(w) << a4
+    std::cout << "j1      : "
+	      << ' ' << std::setw(w) << a4
 	      << ' ' << std::setw(w) << e4
 	      << ' ' << std::setw(w) << a4 - e4 << '\n';
 
@@ -79,14 +84,16 @@ template<typename Tp>
     Tp a5 = t5();
     Tp e5 = Tp{2} * (Tp{1} + b) * std::exp(-b / Tp{2})
 	  - Tp{2} * (Tp{1} + a) * std::exp(-a / Tp{2});
-    std::cout << ' ' << std::setw(w) << a5
+    std::cout << "foo     : "
+	      << ' ' << std::setw(w) << a5
 	      << ' ' << std::setw(w) << e5
 	      << ' ' << std::setw(w) << a5 - e5 << '\n';
 
     __gnu_test::trapezoid_integral<__gnu_cxx::_Polynomial<Tp>, Tp> t6(poly1, a, b, err);
     Tp a6 = t6();
     Tp e6 = poly1.integral()(b) - poly1.integral()(a);
-    std::cout << ' ' << std::setw(w) << a6
+    std::cout << "poly1   : "
+	      << ' ' << std::setw(w) << a6
 	      << ' ' << std::setw(w) << e6
 	      << ' ' << std::setw(w) << a6 - e6 << '\n';
 
@@ -95,14 +102,16 @@ template<typename Tp>
     __gnu_test::trapezoid_integral<decltype(funk1), Tp> t7(funk1, a, b, err);
     Tp a7 = t7();
     Tp e7 = Tp{0};
-    std::cout << ' ' << std::setw(w) << a7
+    std::cout << "funk1   : "
+	      << ' ' << std::setw(w) << a7
 	      << ' ' << std::setw(w) << e7
 	      << ' ' << std::setw(w) << a7 - e7 << '\n';
 
     __gnu_test::trapezoid_integral<decltype(funk2), Tp> t8(funk2, a, b, err);
     Tp a8 = t8();
     Tp e8 = Tp{0};
-    std::cout << ' ' << std::setw(w) << a8
+    std::cout << "funk2   : "
+	      << ' ' << std::setw(w) << a8
 	      << ' ' << std::setw(w) << e8
 	      << ' ' << std::setw(w) << a8 - e8 << '\n';
   }
