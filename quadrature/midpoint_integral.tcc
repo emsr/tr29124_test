@@ -58,17 +58,19 @@ template<typename _Func, typename _Tp>
       {
 	this->_M_iter = 1;
         this->_M_pow3 = 1;
-        auto __x = (this->_M_a + this->_M_b) / _Tp{2};
-        this->_M_sum = (this->_M_b - this->_M_a) * this->_M_fun(__x);
+        auto __x = (this->_M_lower_lim + this->_M_upper_lim) / _Tp{2};
+        this->_M_sum = (this->_M_upper_lim - this->_M_lower_lim)
+		     * this->_M_fun(__x);
       }
     else
       {
 	++this->_M_iter;
-        const auto __del = (this->_M_b - this->_M_a) / _Tp(3 * this->_M_pow3);
+        const auto __del = (this->_M_upper_lim - this->_M_lower_lim)
+			 / _Tp(3 * this->_M_pow3);
 	if (std::abs(__del) < _S_min_delta)
 	  return this->_M_sum;
         const auto __ddel = _Tp{2} * __del;
-        auto __x = this->_M_a + __del / _Tp{2};
+        auto __x = this->_M_lower_lim + __del / _Tp{2};
         auto __sum = _Tp{0};
         for (auto __j = 1u; __j <= this->_M_pow3; ++__j)
 	  {
@@ -77,7 +79,8 @@ template<typename _Func, typename _Tp>
             __sum += this->_M_fun(__x);
             __x += __del;
           }
-	this->_M_sum += (this->_M_b - this->_M_a) * __sum / this->_M_pow3;
+	this->_M_sum += (this->_M_upper_lim - this->_M_lower_lim) * __sum
+		      / this->_M_pow3;
         this->_M_sum /= _Tp{3};
         this->_M_pow3 *= 3;
       }

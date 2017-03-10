@@ -48,6 +48,20 @@ template<typename _Func, typename _Tp>
   }
 
 /**
+ * Chances are, we stepped on a pole.
+ */
+template<typename _Func, typename _Tp>
+  _Tp
+  __downdate_func(_Func __func, _Tp __x)
+  {
+    auto __y = __func(__x);
+    if (__isnan(__y) || std::__detail::__isinf(__y))
+      return _Tp{0};
+    else
+      return __y;
+  }
+
+/**
  * 
  */
 template<typename _Func, typename _Tp>
@@ -57,21 +71,23 @@ template<typename _Func, typename _Tp>
     if (this->_M_iter == 0)
       {
 	this->_M_iter = 1;
-        this->_M_sum = (this->_M_b - this->_M_a)
-		     * (this->_M_fun(this->_M_a) + this->_M_fun(this->_M_b))
+        this->_M_sum = (this->_M_upper_lim - this->_M_lower_lim)
+		     * (__downdate_func(this->_M_fun, this->_M_lower_lim)
+		      + __downdate_func(this->_M_fun, this->_M_upper_lim))
 		     / _Tp{2};
         this->_M_pow2 = 1;
       }
     else
       {
 	++this->_M_iter;
-        const auto __del = (this->_M_b - this->_M_a) / this->_M_pow2;
+        const auto __del = (this->_M_upper_lim - this->_M_lower_lim)
+			 / this->_M_pow2;
 	if (std::abs(__del) < _S_min_delta)
 	  return this->_M_sum;
-        auto __x = this->_M_a + __del / _Tp{2};
+        auto __x = this->_M_lower_lim + __del / _Tp{2};
 	auto __sum = _Tp{0};
         for (std::size_t __j = 0; __j < this->_M_pow2; ++__j, __x += __del)
-	  __sum += this->_M_fun(__x);
+	  __sum += __downdate_func(this->_M_fun, __x);
         this->_M_sum = (this->_M_sum + __del * __sum) / _Tp{2};
         this->_M_pow2 *= 2;
       }
