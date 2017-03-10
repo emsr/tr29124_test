@@ -20,8 +20,8 @@ template<typename Tp>
     auto cos2 = [](Tp x) ->Tp { Tp c = std::cos(x); return c * c; };
     auto j1 = [](Tp x) ->Tp { return std::cyl_bessel_j(Tp{1}, x); };
     auto foo = [](Tp x) ->Tp { return (Tp{1} - x) * std::exp(-x / Tp{2}); };
-    auto funk1 = [PI](Tp x) ->Tp { return std::cos(x) / std::sqrt(x * (PI - x)); };
     auto foonum = [](Tp x) ->Tp { return (Tp{1} - x); };
+    auto funk1 = [PI](Tp x) ->Tp { return std::cos(x) / std::sqrt(x * (PI - x)); };
     auto funk1num = [](Tp x) ->Tp { return std::cos(x); };
     auto funk2 = [PI](Tp x) ->Tp { return (Tp{2} + std::sin(x)) / std::sqrt(x * (PI - x)); };
     auto funk2num = [](Tp x) ->Tp { return Tp{2} + std::sin(x); };
@@ -89,6 +89,15 @@ template<typename Tp>
 	      << ' ' << std::setw(w) << e5
 	      << ' ' << std::setw(w) << a5 - e5 << '\n';
 
+    __gnu_test::midpoint_integral<decltype(foonum), Tp> t5n(foonum, a, b, err);
+    Tp a5n = t5n();
+    Tp e5n = b * (Tp{1} - b / Tp{2})
+	   - a * (Tp{1} - a / Tp{2});
+    std::cout << "foonum  : "
+	      << ' ' << std::setw(w) << a5n
+	      << ' ' << std::setw(w) << e5n
+	      << ' ' << std::setw(w) << a5n - e5n << '\n';
+
     __gnu_test::midpoint_integral<__gnu_cxx::_Polynomial<Tp>, Tp> t6(poly1, a, b, err);
     Tp a6 = t6();
     Tp e6 = poly1.integral()(b) - poly1.integral()(a);
@@ -107,6 +116,14 @@ template<typename Tp>
 	      << ' ' << std::setw(w) << e7
 	      << ' ' << std::setw(w) << a7 - e7 << '\n';
 
+    __gnu_test::midpoint_integral<decltype(funk1num), Tp> t7n(funk1num, a, b, err);
+    Tp a7n = t7n();
+    Tp e7n = Tp{0};
+    std::cout << "funk1num: "
+	      << ' ' << std::setw(w) << a7n
+	      << ' ' << std::setw(w) << e7n
+	      << ' ' << std::setw(w) << a7n - e7n << '\n';
+
     __gnu_test::midpoint_integral<decltype(funk2), Tp> t8(funk2, a, b, err);
     Tp a8 = t8();
     Tp e8 = Tp{0};
@@ -114,6 +131,14 @@ template<typename Tp>
 	      << ' ' << std::setw(w) << a8
 	      << ' ' << std::setw(w) << e8
 	      << ' ' << std::setw(w) << a8 - e8 << '\n';
+
+    __gnu_test::midpoint_integral<decltype(funk2num), Tp> t8n(funk2num, a, b, err);
+    Tp a8n = t8n();
+    Tp e8n = Tp{0};
+    std::cout << "funk2num: "
+	      << ' ' << std::setw(w) << a8n
+	      << ' ' << std::setw(w) << e8n
+	      << ' ' << std::setw(w) << a8n - e8n << '\n';
   }
 
 int
