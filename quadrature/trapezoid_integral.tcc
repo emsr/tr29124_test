@@ -35,12 +35,13 @@ template<typename _Func, typename _Tp>
     auto __sum_prev = this->_M_step();
     for (std::size_t __j = 1; __j < _S_max_iter; ++__j)
       {
-	auto __sum = this->_M_step();
-	if (std::abs(__sum - __sum_prev) < this->_M_err * std::abs(__sum))
+	const auto __sum = this->_M_step();
+	this->_M_abs_error = std::abs(__sum - __sum_prev);
+	if (this->_M_abs_error < this->_M_rel_tol * std::abs(__sum))
 	  return __sum;
-	if (std::abs(__sum) < this->_M_err
-		&& std::abs(__sum_prev) < this->_M_err
-		&& __j > 6)
+	if (__j > 6
+	    && std::abs(__sum) < this->_M_rel_tol
+	    && std::abs(__sum_prev) < this->_M_rel_tol )
 	  return __sum;
 	__sum_prev = __sum;
       }
@@ -55,7 +56,7 @@ template<typename _Func, typename _Tp>
   __downdate_func(_Func __func, _Tp __x)
   {
     auto __y = __func(__x);
-    if (__isnan(__y) || std::__detail::__isinf(__y))
+    if (std::__detail::__isnan(__y) || std::__detail::__isinf(__y))
       return _Tp{0};
     else
       return __y;
@@ -71,9 +72,9 @@ template<typename _Func, typename _Tp>
     if (this->_M_iter == 0)
       {
 	this->_M_iter = 1;
-        this->_M_sum = (this->_M_upper_lim - this->_M_lower_lim)
-		     * (__downdate_func(this->_M_fun, this->_M_lower_lim)
-		      + __downdate_func(this->_M_fun, this->_M_upper_lim))
+        this->_M_result = (this->_M_upper_lim - this->_M_lower_lim)
+			* (__downdate_func(this->_M_fun, this->_M_lower_lim)
+			 + __downdate_func(this->_M_fun, this->_M_upper_lim))
 		     / _Tp{2};
         this->_M_pow2 = 1;
       }
@@ -83,15 +84,15 @@ template<typename _Func, typename _Tp>
         const auto __del = (this->_M_upper_lim - this->_M_lower_lim)
 			 / this->_M_pow2;
 	if (std::abs(__del) < _S_min_delta)
-	  return this->_M_sum;
+	  return this->_M_result;
         auto __x = this->_M_lower_lim + __del / _Tp{2};
 	auto __sum = _Tp{0};
         for (std::size_t __j = 0; __j < this->_M_pow2; ++__j, __x += __del)
 	  __sum += __downdate_func(this->_M_fun, __x);
-        this->_M_sum = (this->_M_sum + __del * __sum) / _Tp{2};
+        this->_M_result = (this->_M_result + __del * __sum) / _Tp{2};
         this->_M_pow2 *= 2;
       }
-    return this->_M_sum;
+    return this->_M_result;
   }
 
 } // namespace __gnu_test

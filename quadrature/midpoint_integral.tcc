@@ -35,12 +35,13 @@ template<typename _Func, typename _Tp>
     auto __sum_prev = this->_M_step();
     for (std::size_t __j = 1; __j < _S_max_iter; ++__j)
       {
-	auto __sum = this->_M_step();
-	if (std::abs(__sum - __sum_prev) < this->_M_err * std::abs(__sum))
+	const auto __sum = this->_M_step();
+	this->_M_abs_error = std::abs(__sum - __sum_prev);
+	if (this->_M_abs_error < this->_M_rel_tol * std::abs(__sum))
 	  return __sum;
-	if (std::abs(__sum) < this->_M_err
-		&& std::abs(__sum_prev) < this->_M_err
-		&& __j > 6)
+	if (__j > 6
+	    && std::abs(__sum) < this->_M_rel_tol
+	    && std::abs(__sum_prev) < this->_M_rel_tol )
 	  return __sum;
 	__sum_prev = __sum;
       }
@@ -59,8 +60,8 @@ template<typename _Func, typename _Tp>
 	this->_M_iter = 1;
         this->_M_pow3 = 1;
         auto __x = (this->_M_lower_lim + this->_M_upper_lim) / _Tp{2};
-        this->_M_sum = (this->_M_upper_lim - this->_M_lower_lim)
-		     * this->_M_fun(__x);
+        this->_M_result = (this->_M_upper_lim - this->_M_lower_lim)
+			* this->_M_fun(__x);
       }
     else
       {
@@ -68,7 +69,7 @@ template<typename _Func, typename _Tp>
         const auto __del = (this->_M_upper_lim - this->_M_lower_lim)
 			 / _Tp(3 * this->_M_pow3);
 	if (std::abs(__del) < _S_min_delta)
-	  return this->_M_sum;
+	  return this->_M_result;
         const auto __ddel = _Tp{2} * __del;
         auto __x = this->_M_lower_lim + __del / _Tp{2};
         auto __sum = _Tp{0};
@@ -79,12 +80,12 @@ template<typename _Func, typename _Tp>
             __sum += this->_M_fun(__x);
             __x += __del;
           }
-	this->_M_sum += (this->_M_upper_lim - this->_M_lower_lim) * __sum
-		      / this->_M_pow3;
-        this->_M_sum /= _Tp{3};
+	this->_M_result += (this->_M_upper_lim - this->_M_lower_lim) * __sum
+			 / this->_M_pow3;
+        this->_M_result /= _Tp{3};
         this->_M_pow3 *= 3;
       }
-    return this->_M_sum;
+    return this->_M_result;
   }
 
 } // namespace __gnu_test
