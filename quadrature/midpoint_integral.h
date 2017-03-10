@@ -31,12 +31,15 @@ template<typename _Func, typename _Tp>
   {
   public:
 
-    midpoint_integral(_Func __fun, _Tp __a, _Tp __b, _Tp __err)
+    midpoint_integral(_Func __fun, _Tp __a, _Tp __b, _Tp __tol)
     : _M_fun(__fun), _M_lower_lim(__a), _M_upper_lim(__b),
-      _M_err(std::abs(__err)), _M_sum()
+      _M_rel_tol(std::abs(__tol)), _M_result(), _M_abs_error()
     { }
 
     _Tp operator()();
+
+    _Tp abs_error() const
+    { return this->_M_abs_error; }
 
   private:
 
@@ -49,8 +52,9 @@ template<typename _Func, typename _Tp>
     _Func _M_fun;
     _Tp _M_lower_lim;
     _Tp _M_upper_lim;
-    _Tp _M_err;
-    _Tp _M_sum;
+    _Tp _M_rel_tol;
+    _Tp _M_result;
+    _Tp _M_abs_error;
     std::size_t _M_iter = 0;
     std::size_t _M_pow3 = 0;
   };
