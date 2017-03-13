@@ -365,14 +365,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       for (unsigned int __i = 1; __i < __maxit; ++__i)
 	{
 	  bool __punt = false;
-	  auto __term = _Val{1};
 	  auto __bincoeff = _Real{1};
+	  auto __term = _Val{0};
 	  // This for loop starts at 1 because we already calculated the value
 	  // of the zeroeth order in __term above.
 	  for (unsigned int __j = 1; __j <= __i; ++__j)
 	    {
-	      auto __incr = _Real(__i - __j + 1) / _Real(__j);
-	      __bincoeff *= -__incr;
+	      __bincoeff *= -_Real(__i - __j + 1) / _Real(__j);
 	      if(std::abs(__bincoeff) > __max_bincoeff )
 		{
 		  // This only gets hit for x << 0.
@@ -391,7 +390,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    break;
 	  __num *= _Real{0.5L};
 	}
-      __zeta_m_1 /= _Val{1} - std::pow(_Val{2}, _Val{1} - __s);
+      const auto __pow2 = std::pow(_Val{2}, _Val{1} - __s);
+      __zeta_m_1 += __pow2;
+      __zeta_m_1 /= _Val{1} - __pow2;
       return __zeta_m_1;
     }
 
@@ -421,11 +422,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 	}
       else
-	{
-	  auto __zeta = _Val{0.5L} / (_Val{1} - std::pow(_Val{2}, _Val{1} - __s));
-	  __zeta += __riemann_zeta_m_1_glob(__s);
-	  return __zeta;
-	}
+	return _Tp{1} + __riemann_zeta_m_1_glob(__s);
     }
 
 
