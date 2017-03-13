@@ -178,6 +178,8 @@ clamp_2
 
 debug_airy
 debug_bessel
+debug_polylog
+
 poly_root
 
 mpreal_gamma_recip
