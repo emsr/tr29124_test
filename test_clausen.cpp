@@ -1,9 +1,9 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_clausen test_clausen.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-./test_clausen > test_clausen.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_clausen > test_clausen.txt
 
 $HOME/bin/bin/g++ -std=c++17 -std=gnu++17 -g -Wall -Wextra -I. -o test_clausen test_clausen.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-./test_clausen
+PATH=wrappers/debug:$PATH ./test_clausen
 */
 
 #include <iostream>
@@ -28,8 +28,14 @@ template<typename _Tp>
 	      << std::setw(width) << "Im(Cl_1)"
 	      << std::setw(width) << "Re(Cl_2)"
 	      << std::setw(width) << "Im(Cl_2)"
+	      << std::setw(width) << "C_2 GSL"
+	      << std::setw(width) << "Cl_2(x)"
+	      << std::setw(width) << "C_2"
 	      << '\n';
     std::cout << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
