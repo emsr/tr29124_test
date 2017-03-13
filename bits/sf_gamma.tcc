@@ -3125,11 +3125,11 @@ _S_neg_double_factorial_table[999]
 		     - __log_factorial<_Val>(unsigned(__ia() - __inu()));
 	    }
 	  else
-	    return std::log(__pochhammer_lower(__a, __inu()));
+	    return std::log(std::abs(__pochhammer_lower(__a, __inu())));
 	}
       else if (std::abs(__a) < _S_num_factorials<_Real>
 	    && std::abs(__a - __nu) < _S_num_factorials<_Real>)
-	return std::log(__pochhammer_lower(__a, __nu));
+	return std::log(std::abs(__pochhammer_lower(__a, __nu)));
       else
 	return __log_gamma(__a + _Tp{1}) - __log_gamma(__a - __nu + _Tp{1});
     }
