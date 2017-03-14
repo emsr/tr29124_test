@@ -145,7 +145,7 @@ template<typename Real>
     using       std::assoc_legendre;
     using __gnu_cxx::bernoulli;
     using       std::beta;
-    using __gnu_cxx::bincoef;
+    using __gnu_cxx::binomial;
     using __gnu_cxx::chebyshev_t;
     using __gnu_cxx::chebyshev_u;
     using __gnu_cxx::chebyshev_v;
@@ -200,7 +200,7 @@ template<typename Real>
     using __gnu_cxx::jacobi_dn;
     using __gnu_cxx::jacobi_zeta;
     using       std::laguerre;
-    using __gnu_cxx::lbincoef;
+    using __gnu_cxx::lbinomial;
     using __gnu_cxx::ldouble_factorial;
     using       std::legendre;
     using __gnu_cxx::legendre_q;
@@ -1359,32 +1359,32 @@ template<typename Real>
 	     file_ldouble_factorial);
 
     // Binomial coefficient.
-    std::cout << "bincoef" << std::endl;
-    basename = "bincoef";
+    std::cout << "binomial" << std::endl;
+    basename = "binomial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
-    std::ofstream file_bincoef(filename);
-    maketest(bincoef<Real>, gsl::choose,
-	     "testcase_bincoef", "__gnu_cxx", basename,
+    std::ofstream file_binomial(filename);
+    maketest(binomial<Real>, gsl::binomial,
+	     "testcase_binomial", "__gnu_cxx", basename,
 	     "n", fill_argument(std::make_pair(0U, 50U),
 				std::make_pair(true, true), 51),
 	     "k", fill_argument(std::make_pair(0U, 50U),
 				std::make_pair(true, true), 51),
 	     "GSL",
-	     file_bincoef);
+	     file_binomial);
 
     // Log binomial coefficient.
-    std::cout << "lbincoef" << std::endl;
-    basename = "lbincoef";
+    std::cout << "lbinomial" << std::endl;
+    basename = "lbinomial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
-    std::ofstream file_lbincoef(filename);
-    maketest(lbincoef<Real>, gsl::lnchoose,
-	     "testcase_lbincoef", "__gnu_cxx", basename,
+    std::ofstream file_lbinomial(filename);
+    maketest(lbinomial<Real>, gsl::lbinomial,
+	     "testcase_lbinomial", "__gnu_cxx", basename,
 	     "n", fill_argument(std::make_pair(0U, 200U),
 				std::make_pair(true, true), 201),
 	     "k", fill_argument(std::make_pair(0U, 200U),
 				std::make_pair(true, true), 201),
 	     "GSL",
-	     file_lbincoef);
+	     file_lbinomial);
 
     // Gegenbauer polynomials.
     std::cout << "gegenbauer" << std::endl;

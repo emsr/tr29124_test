@@ -556,7 +556,7 @@ template<typename _Tp>
 
 // Binomial coefficients.
 template<typename _Tp>
-  struct testcase_bincoef
+  struct testcase_binomial
   {
     unsigned int n;
     unsigned int k;

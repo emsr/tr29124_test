@@ -2498,7 +2498,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __log_bincoef(unsigned int __n, unsigned int __k)
+    __log_binomial(unsigned int __n, unsigned int __k)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
@@ -2535,11 +2535,11 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __log_bincoef(_Tp __nu, unsigned int __k)
+    __log_binomial(_Tp __nu, unsigned int __k)
     {
       auto __n = std::nearbyint(__nu);
       if (__n >= 0 && __nu == __n)
-	return __log_bincoef<_Tp>((unsigned int)__n, __k);
+	return __log_binomial<_Tp>((unsigned int)__n, __k);
       else
 	{
 	  return __log_gamma(_Tp(1) + __nu)
@@ -2566,7 +2566,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __log_bincoef_sign(_Tp __nu, unsigned int __k)
+    __log_binomial_sign(_Tp __nu, unsigned int __k)
     {
       auto __n = std::nearbyint(__nu);
       if (__n >= 0 && __nu == __n)
@@ -2581,7 +2581,7 @@ _S_neg_double_factorial_table[999]
 
   template<typename _Tp>
     std::complex<_Tp>
-    __log_bincoef_sign(std::complex<_Tp> __nu, unsigned int __k)
+    __log_binomial_sign(std::complex<_Tp> __nu, unsigned int __k)
     { return std::complex<_Tp>{1}; }
 
 
@@ -2602,12 +2602,12 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __bincoef(unsigned int __n, unsigned int __k)
+    __binomial(unsigned int __n, unsigned int __k)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
       // Max e exponent before overflow.
-      const auto __max_bincoeff
+      const auto __max_binom
                       = __gnu_cxx::__max_exponent10<_Real>()
                       * std::log(_Real(10)) - _Real(1);
 
@@ -2621,8 +2621,8 @@ _S_neg_double_factorial_table[999]
 	     / __factorial<_Tp>(__k) / __factorial<_Tp>(__n - __k);
       else
         {
-	  const auto __log_coeff = __log_bincoef<_Val>(__n, __k);
-	  if (std::abs(__log_coeff) > __max_bincoeff)
+	  const auto __log_coeff = __log_binomial<_Val>(__n, __k);
+	  if (std::abs(__log_coeff) > __max_binom)
 	    return __gnu_cxx::__infinity<_Tp>();
 	  else
 	    return std::exp(__log_coeff);
@@ -2647,7 +2647,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __bincoef(_Tp __nu, unsigned int __k)
+    __binomial(_Tp __nu, unsigned int __k)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
@@ -2656,20 +2656,20 @@ _S_neg_double_factorial_table[999]
       if (__isnan(__nu))
 	return __gnu_cxx::__quiet_NaN(__nu);
       else if (__nu == __n && __n >= 0 && __n < _S_num_factorials<_Real>)
-	return __bincoef<_Tp>((unsigned int)__n, __k);
+	return __binomial<_Tp>((unsigned int)__n, __k);
       else if (std::abs(__nu) < _S_num_factorials<_Real>
       	    && __k < _S_num_factorials<_Real>)
 	return __gamma(__nu + _Tp{1})
 	     / __gamma(_Tp(__k + 1)) / __gamma(__nu - _Tp(__k + 1));
       else
 	{
-	  const auto __max_bincoeff
+	  const auto __max_binom
                 	  = __gnu_cxx::__max_exponent10(__nu)
                 	  * std::log(_Tp{10}) - _Tp{1};
 
-	  const auto __log_coeff = __log_bincoef(__nu, __k);
-	  const auto __sign = __log_bincoef_sign(__nu, __k);
-	  if (__log_coeff > __max_bincoeff)
+	  const auto __log_coeff = __log_binomial(__nu, __k);
+	  const auto __sign = __log_binomial_sign(__nu, __k);
+	  if (__log_coeff > __max_binom)
 	    return __gnu_cxx::__infinity(__nu) * __sign;
 	  else
 	    return std::exp(__log_coeff) * __sign;

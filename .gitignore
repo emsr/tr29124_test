@@ -56,7 +56,7 @@ check/check_assoc_laguerre
 check/check_assoc_legendre
 check/check_bernoulli
 check/check_beta
-check/check_bincoef
+check/check_binomial
 check_chebyshev_t
 check_chebyshev_u
 check_chebyshev_v
@@ -114,7 +114,7 @@ check/check_jacobi_dn
 check/check_jacobi_sn
 check/check_jacobi_zeta
 check/check_laguerre
-check/check_lbincoef
+check/check_lbinomial
 check/check_ldouble_factorial
 check/check_legendre
 check/check_legendre_q

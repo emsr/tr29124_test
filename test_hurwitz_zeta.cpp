@@ -224,17 +224,17 @@ g++ -std=c++14 -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
 	{
 	  bool __punt = false;
 	  auto __term = _Tp{1}; // Again, the zeroth order.
-	  auto __bincoeff = _Tp{1};
+	  auto __binom = _Tp{1};
 	  for (unsigned int __k = 1; __k <= __n; ++__k)
 	    {
-	      __bincoeff *= -_Tp(__n - __k + 1) / _Tp(__k);
-	      if (std::abs(__bincoeff) > _S_max)
+	      __binom *= -_Tp(__n - __k + 1) / _Tp(__k);
+	      if (std::abs(__binom) > _S_max)
 	      {
 		__punt = true;
 		break;
 	      }
-	      __term += __bincoeff * std::pow(_Tp(__k + __a), _Tp{1} - __s);
-	      //std::cout << "        " << __k << ' ' << __bincoeff << ' ' << __term << '\n';
+	      __term += __binom * std::pow(_Tp(__k + __a), _Tp{1} - __s);
+	      //std::cout << "        " << __k << ' ' << __binom << ' ' << __term << '\n';
 	    }
 	  if (__punt)
 	    break;
