@@ -729,14 +729,14 @@ jacobi(unsigned int /*n*/, double /*alpha*/, double /*beta*/, double /*x*/)
 
 /// Binomial coefficients.
 double
-choose(unsigned int /*n*/, unsigned int /*k*/)
+binomial(unsigned int /*n*/, unsigned int /*k*/)
 {
   return std::numeric_limits<double>::quiet_NaN();//boost::math::binomial_coefficient(n, k);
 }
 
 /// Log binomial coefficients.
 double
-lnchoose(unsigned int /*n*/, unsigned int /*k*/)
+lbinomial(unsigned int /*n*/, unsigned int /*k*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }

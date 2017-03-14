@@ -591,7 +591,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (__k == __n)
 	return std::pow(__p, __n);
       else
-	return __bincoef<_Tp>(__n, __k)
+	return __binomial<_Tp>(__n, __k)
 	     * std::pow(__p, __k)
 	     * std::pow(_Tp{1} - __p, __n - __k);
     }

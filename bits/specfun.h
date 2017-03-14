@@ -174,7 +174,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * In addition a large number of new functions are added as extensions:
    * - @ref __gnu_cxx::airy_ai "airy_ai - Airy functions of the first kind"
    * - @ref __gnu_cxx::airy_bi "airy_bi - Airy functions of the second kind"
-   * - @ref __gnu_cxx::bincoef "bincoef - Binomial coefficients"
+   * - @ref __gnu_cxx::binomial "binomial - Binomial coefficients"
    * - @ref __gnu_cxx::bose_einstein "bose_einstein - Bose-Einstein integrals"
    * - @ref __gnu_cxx::chebyshev_t "chebyshev_t - Chebyshev polynomials of the first kind"
    * - @ref __gnu_cxx::chebyshev_u "chebyshev_u - Chebyshev polynomials of the second kind"
@@ -219,7 +219,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::jacobi_cn "jacobi_cn - Jacobi cosine amplitude functions"
    * - @ref __gnu_cxx::jacobi_dn "jacobi_dn - Jacobi delta amplitude functions"
    * - @ref __gnu_cxx::jacobi_zeta "jacobi_zeta - Jacobi zeta functions"
-   * - @ref __gnu_cxx::lbincoef "lbincoef - Log binomial coefficients"
+   * - @ref __gnu_cxx::lbinomial "lbinomial - Log binomial coefficients"
    * - @ref __gnu_cxx::ldouble_factorial "ldouble_factorial - Log double factorials"
    * - @ref __gnu_cxx::legendre_q "legendre_q - Legendre functions of the second kind"
    * - @ref __gnu_cxx::lfactorial "lfactorial - Log factorials"
@@ -3926,43 +3926,43 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Binomial coefficient
 
   inline float
-  bincoeff(unsigned int __n, unsigned int __k)
-  { return std::__detail::__bincoef<float>(__n, __k); }
+  binomialf(unsigned int __n, unsigned int __k)
+  { return std::__detail::__binomial<float>(__n, __k); }
 
   inline long double
-  bincoefl(unsigned int __n, unsigned int __k)
-  { return std::__detail::__bincoef<long double>(__n, __k); }
+  binomiall(unsigned int __n, unsigned int __k)
+  { return std::__detail::__binomial<long double>(__n, __k); }
 
   /**
    * 
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
-    bincoef(unsigned int __n, unsigned int __k)
+    binomial(unsigned int __n, unsigned int __k)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__bincoef<__type>(__n, __k);
+      return std::__detail::__binomial<__type>(__n, __k);
     }
 
   // Log binomial coefficient
 
   inline float
-  lbincoeff(unsigned int __n, unsigned int __k)
-  { return std::__detail::__log_bincoef<float>(__n, __k); }
+  lbinomialf(unsigned int __n, unsigned int __k)
+  { return std::__detail::__log_binomial<float>(__n, __k); }
 
   inline long double
-  lbincoefl(unsigned int __n, unsigned int __k)
-  { return std::__detail::__log_bincoef<long double>(__n, __k); }
+  lbinomiall(unsigned int __n, unsigned int __k)
+  { return std::__detail::__log_binomial<long double>(__n, __k); }
 
   /**
    * 
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
-    lbincoef(unsigned int __n, unsigned int __k)
+    lbinomial(unsigned int __n, unsigned int __k)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__log_bincoef<__type>(__n, __k);
+      return std::__detail::__log_binomial<__type>(__n, __k);
     }
 
   // Bernoulli numbers

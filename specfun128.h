@@ -393,12 +393,12 @@ namespace __gnu_cxx
   { return std::__detail::__log_double_factorial<__float128>(__n); }
 
   inline __float128
-  bincoefq(unsigned int __n, unsigned int __k)
-  { return std::__detail::__bincoef<__float128>(__n, __k); }
+  binomialq(unsigned int __n, unsigned int __k)
+  { return std::__detail::__binomial<__float128>(__n, __k); }
 
   inline __float128
-  lbincoefq(unsigned int __n, unsigned int __k)
-  { return std::__detail::__log_bincoef<__float128>(__n, __k); }
+  lbinomialq(unsigned int __n, unsigned int __k)
+  { return std::__detail::__log_binomial<__float128>(__n, __k); }
 
   inline __float128
   legendre_qq(unsigned int __n, __float128 __x)

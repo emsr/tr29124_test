@@ -167,12 +167,12 @@ namespace __detail
 	  for (auto __n = 1u; __n < _S_maxit; ++__n)
 	    {
 	      auto __term = std::pow(__a, -__s);
-	      auto __bincoef = _Tp{1};
+	      auto __binomial = _Tp{1};
 	      __gnu_cxx::_VanWijngaardenSum<_Tp> __sum(__term);
 	      for (auto __k = 1; __k <= __n; ++__k)
 		{
-		  __bincoef *= -_Tp(__n - __k + 1) / _Tp(__k);
-		  __term *= __z * __bincoef * std::pow(__a + __k, -__s);
+		  __binomial *= -_Tp(__n - __k + 1) / _Tp(__k);
+		  __term *= __z * __binomial * std::pow(__a + __k, -__s);
 		  __sum += __term;
 		}
 	      __zfact *= __zfrac;

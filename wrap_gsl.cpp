@@ -1157,7 +1157,7 @@ chebyshev_t(unsigned int /*n*/, double /*x*/)
 
 /// Binomial coefficients.
 double
-choose(unsigned int n, unsigned int k)
+binomial(unsigned int n, unsigned int k)
 {
   if (k > n)
     return std::numeric_limits<double>::quiet_NaN(); // GSL barfs on this for no reason.
@@ -1165,7 +1165,7 @@ choose(unsigned int n, unsigned int k)
   int stat = gsl_sf_choose_e(n, k, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in choose:");
+      std::ostringstream msg("Error in binomial:");
       msg << " n=" << n << " k=" << k;
       throw std::runtime_error(msg.str());
     }
@@ -1175,7 +1175,7 @@ choose(unsigned int n, unsigned int k)
 
 /// Log binomial coefficients.
 double
-lnchoose(unsigned int n, unsigned int k)
+lbinomial(unsigned int n, unsigned int k)
 {
   if (k > n)
     return -std::numeric_limits<double>::infinity(); // GSL barfs on this for no reason.
@@ -1183,7 +1183,7 @@ lnchoose(unsigned int n, unsigned int k)
   int stat = gsl_sf_lnchoose_e(n, k, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in lnchoose:");
+      std::ostringstream msg("Error in lbinomial:");
       msg << " n=" << n << " k=" << k;
       throw std::runtime_error(msg.str());
     }

@@ -361,26 +361,26 @@ g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 	  // Again, the zeroth order contribution already calculated.
 	  auto __termp = _Tp(__a1ms);
 	  auto __termm = _Tp{0};
-	  auto __bincoeff = _Tp{1};
+	  auto __binom = _Tp{1};
 #ifdef DEBUG_SERIES
 	  std::cout << "        n=" << setw(4) << __n << " k=" << setw(4) << 0
-		    << " bincoeff=" << setw(20) << __bincoeff
+		    << " binom=" << setw(20) << __binom
 		    << " termp=" << setw(20) << __termp
 		    << " termm=" << setw(20) << __termm << '\n';
 #endif
 	  __apow.push_back(std::pow(_Tp(__n) + __a, _Tp{1} - __s));
 	  for (unsigned int __k = 1; __k <= __n; ++__k)
 	    {
-	      __bincoeff *= _Tp(__n - __k + 1) / _Tp(__k);
-	      if (std::abs(__bincoeff) > _S_max)
+	      __binom *= _Tp(__n - __k + 1) / _Tp(__k);
+	      if (std::abs(__binom) > _S_max)
 		{
 		  __punt = true;
 		  break;
 		}
-	      (__k % 2 == 0 ? __termp : __termm) += __bincoeff * __apow[__k];
+	      (__k % 2 == 0 ? __termp : __termm) += __binom * __apow[__k];
 #ifdef DEBUG_SERIES
 	      std::cout << "        n=" << setw(4) << __n << " k=" << setw(4) << __k
-			<< " bincoeff=" << setw(20) << __bincoeff
+			<< " binom=" << setw(20) << __binom
 			<< " termp=" << setw(20) << __termp
 			<< " termm=" << setw(20) << __termm << '\n';
 #endif

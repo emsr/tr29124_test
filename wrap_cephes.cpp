@@ -577,14 +577,14 @@ chebyshev_t(unsigned int /*n*/, double /*x*/)
 
 /// Binomial coefficients.
 double
-choose(unsigned int /*n*/, unsigned int /*k*/)
+binomial(unsigned int /*n*/, unsigned int /*k*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Log binomial coefficients.
 double
-lnchoose(unsigned int /*n*/, unsigned int /*k*/)
+lbinomial(unsigned int /*n*/, unsigned int /*k*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }

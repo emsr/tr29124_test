@@ -72,7 +72,7 @@ ${tool} check/check_sph_neumann.cc      ${gcc_dir}/21_sph_neumann/check_value.cc
 ${makedir} ${ext_dir}/airy_ai
 ${makedir} ${ext_dir}/airy_bi
 ${makedir} ${ext_dir}/bernoulli
-${makedir} ${ext_dir}/bincoef
+${makedir} ${ext_dir}/binomial
 ${makedir} ${ext_dir}/chebyshev_t
 ${makedir} ${ext_dir}/chebyshev_u
 ${makedir} ${ext_dir}/chebyshev_v
@@ -114,7 +114,7 @@ ${makedir} ${ext_dir}/jacobi
 ${makedir} ${ext_dir}/jacobi_sn
 ${makedir} ${ext_dir}/jacobi_cn
 ${makedir} ${ext_dir}/jacobi_dn
-${makedir} ${ext_dir}/lbincoef
+${makedir} ${ext_dir}/lbinomial
 ${makedir} ${ext_dir}/ldouble_factorial
 ${makedir} ${ext_dir}/legendre_q
 ${makedir} ${ext_dir}/lfactorial
@@ -154,7 +154,7 @@ ${tool} check/deathmatch_hyperg.cc        ${ext_dir}/deathmatch_hyperg.cc
 ${tool} check/check_airy_ai.cc            ${ext_dir}/airy_ai/check_value.cc
 ${tool} check/check_airy_bi.cc            ${ext_dir}/airy_bi/check_value.cc
 ${tool} check/check_bernoulli.cc          ${ext_dir}/bernoulli/check_value.cc
-${tool} check/check_bincoef.cc            ${ext_dir}/bincoef/check_value.cc
+${tool} check/check_binomial.cc           ${ext_dir}/binomial/check_value.cc
 ${tool} check/check_chi.cc                ${ext_dir}/coshint/check_chi.cc
 ${tool} check/check_chebyshev_t.cc        ${ext_dir}/chebyshev_t/check_value.cc
 ${tool} check/check_chebyshev_u.cc        ${ext_dir}/chebyshev_u/check_value.cc
@@ -198,7 +198,7 @@ ${tool} check/check_jacobi.cc             ${ext_dir}/jacobi/check_value.cc
 ${tool} check/check_jacobi_sn.cc          ${ext_dir}/jacobi_sn/check_value.cc
 ${tool} check/check_jacobi_cn.cc          ${ext_dir}/jacobi_cn/check_value.cc
 ${tool} check/check_jacobi_dn.cc          ${ext_dir}/jacobi_dn/check_value.cc
-${tool} check/check_lbincoef.cc           ${ext_dir}/lbincoef/check_value.cc
+${tool} check/check_lbinomial.cc          ${ext_dir}/lbinomial/check_value.cc
 ${tool} check/check_ldouble_factorial.cc  ${ext_dir}/ldouble_factorial/check_value.cc
 ${tool} check/check_legendre_q.cc         ${ext_dir}/legendre_q/check_value.cc
 ${tool} check/check_lfactorial.cc         ${ext_dir}/lfactorial/check_value.cc
