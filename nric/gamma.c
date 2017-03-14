@@ -34,17 +34,17 @@ double  ln_gamma( double x)  {
 double  factorial( int n)  {
 
     static int ntop=10;
-    static int  a[33] = { 1.0,
-                          1.0,
-                          2.0,
-                          6.0,
-                         24.0,
-                        120.0,
-                        720.0,
-                       5040.0,
-                      40320.0,
-                     362880.0,
-                    3628800.0};
+    static int  a[33] = { 1,
+                          1,
+                          2,
+                          6,
+                         24,
+                        120,
+                        720,
+                       5040,
+                      40320,
+                     362880,
+                    3628800};
     int  j;
 
     if  ( n < 0)
