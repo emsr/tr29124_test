@@ -2,9 +2,9 @@
 #ifndef  __NRIC_H__
 #define  __NRIC_H__
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+//#ifdef __cplusplus
+//extern "C" {
+//#endif
 
 
 #define PI2       6.2831853071795862
@@ -989,9 +989,9 @@ double  radial_harmonic_2d( double mu, double omega, int n, int m, double p, dou
 double  radial_harmonic_3d( double mu, double omega, int n, int l, double r, double *E_nl);
 
 
-#ifdef __cplusplus
-}
-#endif
+//#ifdef __cplusplus
+//}
+//#endif
 
 #endif  /*  __NRIC_H__  */
 
