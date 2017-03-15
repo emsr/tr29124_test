@@ -433,9 +433,9 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
        Line up deathmatch tests.
        Equator should have tests for M-L at least for real arg.
 
-95. [] polyloghas tests where some of the variables don't actually change.
+95. [DONE] polyloghas tests where some of the variables don't actually change.
        Look for ???
-       Maybe change tests in both places and see if we can agre with good numbers.
+       Maybe change tests in both places and see if we can agree with good numbers.
 
 96. [] Lose the Tp{0.123Q} decimals in favor of Tp fractions!
        Make damn sure this doesn't get into specfun impls!

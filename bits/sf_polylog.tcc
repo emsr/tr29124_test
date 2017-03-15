@@ -72,15 +72,53 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       _Terminator(std::size_t __max_iter, _Real __mul = _Real{1})
       : _M_max_iter(__max_iter),
-	_M_toler(__mul * std::numeric_limits<_Real>::epsilon())
+	_M_toler(std::abs(__mul) * std::numeric_limits<_Real>::epsilon())
       { }
 
       bool
       operator()(_Tp __term, _Tp __sum)
       {
-	if (_M_max_iter == 0 || --_M_max_iter == 0)
+	if (this->_M_max_iter == 0 || --this->_M_max_iter == 0)
 	  return true;
-	else if (std::abs(__term) < _M_toler * std::abs(__sum))
+	else if (std::abs(__term) < this->_M_toler * std::abs(__sum))
+	  return true;
+	else
+	  return false;
+      }
+    };
+  /**
+   * This class manages the termination of series.
+   * Termination conditions involve both a maximum iteration count
+   * and a relative precision.
+   */
+  template<typename _Tp>
+    class _AsympTerminator
+    {
+    private:
+
+      using _Real = __num_traits_t<_Tp>;
+      std::size_t _M_max_iter;
+      _Real _M_toler;
+      _Real _M_prev_term = std::numeric_limits<_Real>::max();
+
+    public:
+
+      _AsympTerminator(std::size_t __max_iter, _Real __mul = _Real{1})
+      : _M_max_iter(__max_iter),
+	_M_toler(std::abs(__mul) * std::numeric_limits<_Real>::epsilon())
+      { }
+
+      bool
+      operator()(_Tp __term, _Tp __sum)
+      {
+	const auto __aterm = std::abs(__term);
+	const auto __stop_asymp = (__aterm > this->_M_prev_term);
+	this->_M_prev_term = __aterm;
+	if (this->_M_max_iter == 0 || --this->_M_max_iter == 0)
+	  return true;
+	else if (__aterm < this->_M_toler * std::abs(__sum))
+	  return true;
+	else if (__stop_asymp)
 	  return true;
 	else
 	  return false;
@@ -161,13 +199,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __wk *= __w;
       // Now comes the remainder of the series.
       const auto __pref = __wk / _S_pi / _S_2pi;
+      // Factor this out for now so we can compare with sum.
+      __res /= __pref;
       // Remainder of series.
-      __fact *= _Tp{2} * _Tp{3} / _Tp(__s + 2) / _Tp(__s + 3);
+      __fact /= _Tp(__s + 1); // (1/(s+1)!)
+      auto __sum = std::complex<_Tp>(_S_pipio6 * __fact); // Sum the zeroth order term.
+      __fact *= _Tp{2} / _Tp(__s + 2) * _Tp{3} / _Tp(__s + 3);
       const auto __w2 = -(__w / _S_2pi) * (__w / _S_2pi);
       auto __w2k = __w2;
       auto __rzarg = _Tp{2};
-      __fact /= _Tp(__s + 1); // (1/(s+1)!)
-      auto __sum = std::complex<_Tp>(_S_pipio6 * __fact); // Sum the zeroth order term.
       const unsigned int __maxit = 200;
       _Terminator<std::complex<_Tp>> __done(__maxit);
       while (true)
@@ -176,14 +216,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __rz = __riemann_zeta(__rzarg);
 	  const auto __term = (__rz * __fact) * __w2k;
 	  __sum += __term;
-	  if (__done(__term, __sum))
+	  if (__done(__term, __res - __sum))
 	    break;
 	  __w2k *= __w2;
 	  __fact *= _Tp(__rzarg) / _Tp(__rzarg + __s)
 		  * _Tp(__rzarg + 1) / _Tp(__rzarg + __s + 1);
 	}
-      __res -= __pref * __sum;
-      return __res;
+      __res -= __sum;
+      return __pref * __res;
     }
 
   /**
@@ -223,14 +263,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  __res += __wk * __fact * __riemann_zeta<_Tp>(__s - __k);
 	  __wk *= __w;
-	  const auto __temp = _Tp{1} / (_Tp{1} + __k);
+	  const auto __temp = _Tp{1} / _Tp(1 + __k);
 	  __fact *= __temp;
 	  __harmonicN += __temp;
 	}
       // harmonicN now contains H_{s-1}
       // fact should be 1/(n-1)!
       const auto __imagtemp = __fact * __wk
-		    * (__harmonicN - std::log(std::complex<_Tp>(-__w, _Tp{0})));
+			    * (__harmonicN - std::log(std::complex<_Tp>(-__w)));
       __res += std::real(__imagtemp);
       __wk *= __w;
       __fact /= __s;
@@ -243,7 +283,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Subtract the zeroth order term.
       auto __sum = _S_pipio6 * __fact;
       // Remainder of series.
-      __fact *= _Tp{2} * _Tp{3} / _Tp(__s + 2) / _Tp(__s + 3);
+      __fact *= _Tp{2} / _Tp(__s + 2) * _Tp{3} / _Tp(__s + 3);
       const auto __w2 = -(__w / _S_2pi) * (__w / _S_2pi);
       auto __w2k = __w2;
       auto __rzarg = _Tp{2};
@@ -252,14 +292,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       while (true)
 	{
 	  __rzarg += _Tp{2};
-	  auto __rz = __riemann_zeta(__rzarg);
-	  auto __term = __rz * __fact * __w2k;
+	  const auto __rz = __riemann_zeta(__rzarg);
+	  const auto __term = __rz * __fact * __w2k;
 	  __sum += __term;
 	  if (__done(__term, __sum))
 	    break;
 	  __w2k *= __w2;
 	  __fact *= _Tp(__rzarg) / _Tp(__rzarg + __s)
-		  * _Tp(__rzarg + 1) / _Tp(__rzarg + __s + 1);
+		  * _Tp(__rzarg + 1) / _Tp(__rzarg + 1 + __s);
 	}
       __res -= __pref * __sum;
       return std::complex<_Tp>(__res, std::imag(__imagtemp));
@@ -297,10 +337,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __wup = __w / _S_2pi;
       auto __w2k = __wup;
       const auto __pref = _Tp{2} * std::pow(_S_2pi, -(_Tp{1} - __s));
-      // here we factor up the ratio of Gamma(1 - s + k)/k! .
+      // Here we factor up the ratio of Gamma(1 - s + k)/k! .
       // This ratio should be well behaved even for large k in the series
       // afterwards
-      // Note that we have a problem for large s
+      // Note that we have a problem for large s.
       // Since s is negative we evaluate the Gamma Function
       // on the positive real axis where it is real.
       auto __gam = std::exp(__ls);
@@ -310,12 +350,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __sp = std::imag(__phase);
       // Here we add the expression that would result from ignoring
       // the zeta function in the series.
-      const std::complex<_Tp> __expis(__cp, __sp);
       const auto __p = _S_2pi - _S_i * __w;
       const auto __q = _S_2pi + _S_i * __w;
       // This can be optimized for real values of w
-      __res += _S_i * __gam * (std::conj(__expis) * std::pow(__p, __s - _Tp{1})
-	     - __expis * std::pow(__q, __s - _Tp{1}));
+      __res += _S_i * __gam * (std::conj(__phase) * std::pow(__p, __s - _Tp{1})
+	     - __phase * std::pow(__q, __s - _Tp{1}));
       // The above expression is the result of
       // sum_k Gamma(1+k-s)/k! * sin(pi (s-k)/2) (w/2/pi)^k
       // Therefore we only need to sample values of zeta(n) on the real axis
@@ -457,6 +496,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       // fac should now be 1/(m+1)!
       const auto __pref = _Tp{2} * std::pow(_S_2pi, __s - _Tp{1});
+      // Factor this out for now so we can compare with sum.
+      __res /= __pref;
       // Now comes the remainder of the series
       unsigned int __j = 0;
       constexpr unsigned int __maxit = 100;
@@ -491,11 +532,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __wbark *= __wup;
 	  __gam *= __zetaarg / _Tp(1 + __idx);
 	  ++__j;
-	  __terminate = __done(__sum, __term);
+	  __terminate = __done(__term, __res + __sum);
 	  __sum += __term;
 	}
-      __res += __pref * __sum;
-      return __res;
+      __res += __sum;
+      return __pref * __res;
     }
 
   /**
@@ -522,28 +563,26 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     { // asymptotic expansion
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
       // wgamma = w^{s-1} / \Gamma(s)
-      auto __wgamma = std::exp((__s - _Tp{1}) * std::log(__w)
-		    - __log_gamma(__s));
+      auto __wgamma = std::pow(__w, __s - _Tp{1}) * __gamma_reciprocal(__s);
+      //__wgamma = std::exp((__s - _Tp{1}) * std::log(__w) - __log_gamma(__s)); // Sign flip!
       auto __res = std::complex<_Tp>(_Tp{0}, -_S_pi) * __wgamma;
       // wgamma = w^s / Gamma(s+1)
       __wgamma *= __w / __s;
       constexpr unsigned int __maxiter = 100;
-      _Terminator<std::complex<_Tp>> __done(__maxiter);
+      _AsympTerminator<std::complex<_Tp>> __done(__maxiter);
       bool __terminate = false;
       // zeta(0) * w^s / Gamma(s + 1)
       std::complex<_Tp> __oldterm = -_Tp{0.5L} * __wgamma;
       __res += _Tp{2} * __oldterm;
       std::complex<_Tp> __term;
       auto __wq = _Tp{1} / (__w * __w);
-      unsigned int __k = 1;
+      int __k = 1;
       while (!__terminate)
 	{
-	  __wgamma *= __wq * (__s + _Tp(1 - 2 * __k))
-		    * (__s + _Tp(2 - 2 * __k));
+	  __wgamma *= __wq * (__s + _Tp(1 - 2 * __k)) * (__s + _Tp(2 - 2 * __k));
 	  __term = __riemann_zeta<_Tp>(2 * __k) * __wgamma;
 	  __res += _Tp{2} * __term;
-	  __terminate = (std::abs(__term) > std::abs(__oldterm))
-			|| __done(_Tp{2} * __term, __res);
+	  __terminate = __done(_Tp{2} * __term, __res);
 	  __oldterm = __term;
 	  ++__k;
 	}
@@ -565,7 +604,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _PowTp, typename _Tp>
     _Tp
-    __polylog_exp_negative_real_part(_PowTp __s, _Tp __w)
+    __polylog_exp_neg_real_part(_PowTp __s, _Tp __w)
     {
       auto __ew = std::exp(__w);
       const auto __up = __ew;
@@ -596,7 +635,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __polylog_exp_int_pos(unsigned int __s, std::complex<_Tp> __w)
+    __polylog_exp_pos_int(unsigned int __s, std::complex<_Tp> __w)
     {
       const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
@@ -614,15 +653,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (0 == __s)
 	{
 	  const auto __t = std::exp(__w);
-	  return __t / (_Tp{1} - __t);
+	  return __gnu_cxx::__fp_is_zero(_Tp{1} - __t)
+	       ? std::numeric_limits<_Tp>::quiet_NaN()
+	       : __t / (_Tp{1} - __t);
 	}
       else if (1 == __s)
-	return -std::log(_Tp{1} - std::exp(__w));
+	{
+	  const auto __t = std::exp(__w);
+	  return __gnu_cxx::__fp_is_zero(_Tp{1} - __t)
+	       ? std::numeric_limits<_Tp>::quiet_NaN()
+	       : -std::log(_Tp{1} - __t);
+	}
       else
 	{
 	  if (__rw < -(_S_pi_2 + _S_pi / _Tp{5})  )
 	    // Choose the exponentially converging series
-	    return __polylog_exp_negative_real_part(__s, __w);
+	    return __polylog_exp_neg_real_part(__s, __w);
 	  else if (__rw < _Tp{6})
 	    // The transition point chosen here, is quite arbitrary
 	    // and needs more testing.
@@ -632,8 +678,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    return __polylog_exp_pos(__s, __clamp_pi(__w));
 	  else
 	    // Wikipedia says that this is required for Wood's formula.
-	    // FIXME: The series should terminate after a finite number
-	    // of terms.
 	    return __polylog_exp_asymp(static_cast<_Tp>(__s),
 				       __clamp_0_m2pi(__w));
 	}
@@ -649,7 +693,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __polylog_exp_int_pos(unsigned int __s, _Tp __w)
+    __polylog_exp_pos_int(unsigned int __s, _Tp __w)
     {
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__w));
@@ -663,23 +707,27 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (0 == __s)
 	{
 	  const auto __t = std::exp(__w);
-	  return __t / (_Tp{1} - __t);
+	  return __gnu_cxx::__fp_is_zero(_Tp{1} - __t)
+	       ? std::numeric_limits<_Tp>::quiet_NaN()
+	       : __t / (_Tp{1} - __t);
 	}
       else if (1 == __s)
-	return -std::log(_Tp{1} - std::exp(__w));
+	{
+	  const auto __t = std::exp(__w);
+	  return __gnu_cxx::__fp_is_zero(_Tp{1} - __t)
+	       ? std::numeric_limits<_Tp>::quiet_NaN()
+	       : -std::log(_Tp{1} - __t);
+	}
       else
 	{
 	  if (__w < -(_S_pi_2 + _S_pi / _Tp{5}))
 	    // Choose the exponentially converging series
-	    return __polylog_exp_negative_real_part(__s,
-						    std::complex<_Tp>(__w));
+	    return __polylog_exp_neg_real_part(__s, std::complex<_Tp>(__w));
 	  else if (__w < _Tp{6})
 	    // The transition point chosen here, is quite arbitrary
 	    // and needs more testing.
 	    return __polylog_exp_pos(__s, __w);
 	  else
-	    // FIXME: The series should terminate
-	    // after a finite number of terms.
 	    return __polylog_exp_asymp(static_cast<_Tp>(__s),
 				       std::complex<_Tp>(__w));
 	}
@@ -694,7 +742,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __polylog_exp_int_neg(int __s, std::complex<_Tp> __w)
+    __polylog_exp_neg_int(int __s, std::complex<_Tp> __w)
     {
       const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
@@ -715,7 +763,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  if (std::real(__w) < -(_S_pi_2 + _S_pi / _Tp{5})  )
 	    // Choose the exponentially converging series
-	    return __polylog_exp_negative_real_part(__s, __w);
+	    return __polylog_exp_neg_real_part(__s, __w);
 	  else if (std::real(__w) < _Tp{6}) // Arbitrary transition point...
 	    // The reductions of the imaginary part yield the same results
 	    // as Mathematica.
@@ -723,8 +771,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    return __polylog_exp_neg(__s, __clamp_pi(__w));
 	  else
 	    // Wikipedia says that this clamping is required for Wood's formula.
-	    // FIXME: The series should terminate
-	    // after a finite number of terms.
 	    return __polylog_exp_asymp(_Tp(__s), __clamp_0_m2pi(__w));
 	}
     }
@@ -738,19 +784,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __polylog_exp_int_neg(int __s, _Tp __w)
+    __polylog_exp_neg_int(int __s, _Tp __w)
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__w);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__w);
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose exp'ly converging series.
-	return __polylog_exp_negative_real_part(__s, std::complex<_Tp>(__w));
+	return __polylog_exp_neg_real_part(__s, std::complex<_Tp>(__w));
       else if (__gnu_cxx::__fp_is_zero(__w))
 	return std::numeric_limits<_Tp>::infinity();
       else if (__w < _Tp{6}) // Arbitrary transition point less than 2 pi.
 	return __polylog_exp_neg(__s, std::complex<_Tp>(__w));
       else
-	// FIXME: The series should terminate
-	// after a finite number of terms.
 	return __polylog_exp_asymp(_Tp(__s), std::complex<_Tp>(__w));
     }
 
@@ -780,7 +824,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    return std::numeric_limits<_Tp>::infinity();
 	}
       if (__rw < -(_S_pi_2 + _S_pi/_Tp{5})) // Choose exp'ly converging series.
-	return __polylog_exp_negative_real_part(__s, __w);
+	return __polylog_exp_neg_real_part(__s, __w);
       if (__rw < _Tp{6}) // arbitrary transition point
 	// The reductions of the imaginary part yield the same results
 	// as Mathematica then.
@@ -813,7 +857,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    return std::numeric_limits<_Tp>::infinity();
 	}
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose exp'ly converging series.
-	return __polylog_exp_negative_real_part(__s, __w);
+	return __polylog_exp_neg_real_part(__s, __w);
       if (__w < _Tp{6}) // arbitrary transition point
 	return __polylog_exp_pos(__s, std::complex<_Tp>(__w));
       else
@@ -839,7 +883,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __rw = __w.real();
       const auto __iw = __w.imag();
       if (__rw < -(_S_pi_2 + _S_pi/_Tp{5})) // Choose exp'ly converging series.
-	return __polylog_exp_negative_real_part(__s, __w);
+	return __polylog_exp_neg_real_part(__s, __w);
       else if (__rw < 6) // arbitrary transition point
 	// The reductions of the imaginary part yield the same results
 	// as Mathematica then.
@@ -866,7 +910,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose exp'ly converging series.
-	return __polylog_exp_negative_real_part(__s, std::complex<_Tp>(__w));
+	return __polylog_exp_neg_real_part(__s, std::complex<_Tp>(__w));
       else if (__w < _Tp{6}) // arbitrary transition point
 	return __polylog_exp_neg(__s, std::complex<_Tp>(__w));
       else
@@ -892,16 +936,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__isnan(__s) || __isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__s > _Tp{25}) // Cutoff chosen by some testing on the real axis.
-	return __polylog_exp_negative_real_part(__s, __w);
+	return __polylog_exp_neg_real_part(__s, __w);
       else
 	{
-	  const auto __p = __gnu_cxx::__fp_is_integer(__s);
+	  const auto __p = __gnu_cxx::__fp_is_integer(__s, _Tp{5});
 	  if (__p)
 	    { // The order s is an integer.
 	      if (__p() >= 0)
-		return __polylog_exp_int_pos(__p(), __w);
+		return __polylog_exp_pos_int(__p(), __w);
 	      else
-		return __polylog_exp_int_neg(__p(), __w);
+		return __polylog_exp_neg_int(__p(), __w);
 	    }
 	  else
 	    {
@@ -930,7 +974,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return _Tp{0};
       else
 	{
-	  const auto __n = __gnu_cxx::__fp_is_integer(__s);
+	  const auto __n = __gnu_cxx::__fp_is_integer(__s, _Tp{5});
 	  if (__n && __n() == 1)
 	    return -std::log(_Tp{1} - __x);
 	  else if (__n && __n() == 0)
@@ -997,7 +1041,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
        || (__a.imag() <  _Tp{0}
 		&& (__a.real() >  _Tp{0} && __a.real() <= _Tp{1})))
 	{
-	  _Tp __t = _Tp{1} - __s;
+	  const auto __t = _Tp{1} - __s;
 	  const auto __lpe = __polylog_exp(__t, _S_i2pi * __a);
 	  /// @todo This __hurwitz_zeta_polylog prefactor is prone to overflow.
 	  /// positive integer orders s?
@@ -1045,7 +1089,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __gnu_cxx::__quiet_NaN(__s);
       else if (__s < _Tp{0})
 	{
-	  auto __p = __gnu_cxx::__fp_is_integer(__s);
+	  const auto __p = __gnu_cxx::__fp_is_integer(__s, _Tp{5});
 	  if (__p)
 	    return _Tp{0};
 	  else
@@ -1129,16 +1173,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __clausen(unsigned int __m, std::complex<_Tp> __w)
     {
-      const auto _S_i = std::complex<_Tp>{0, 1};
-      auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
 	std::__throw_domain_error(__N("__clausen: Non-positive order"));
-      else if (__m & 1)
-	return __ple;
       else
-	return _S_i * std::conj(__ple);
+	{
+	  const auto _S_i = std::complex<_Tp>{0, 1};
+	  const auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
+	  if (__m & 1)
+	    return __ple;
+	  else
+	    return _S_i * std::conj(__ple);
+	}
     }
 
   /**
@@ -1153,16 +1200,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __clausen(unsigned int __m, _Tp __w)
     {
-      const auto _S_i = std::complex<_Tp>{0, 1};
-      auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
 	std::__throw_domain_error(__N("__clausen: Non-positive order"));
-      else if (__m & 1)
-	return std::real(__ple);
       else
-	return std::imag(__ple);
+	{
+	  const auto _S_i = std::complex<_Tp>{0, 1};
+	  const auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
+	  if (__m & 1)
+	    return std::real(__ple);
+	  else
+	    return std::imag(__ple);
+	}
     }
 
   /**
@@ -1176,18 +1226,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     _Tp
-    __clausen_s(unsigned int __m, std::complex<_Tp> __w)
+    __clausen_sl(unsigned int __m, std::complex<_Tp> __w)
     {
-      const auto _S_i = std::complex<_Tp>{0, 1};
-      auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
-	std::__throw_domain_error(__N("__clausen_s: Non-positive order"));
-      else if (__m & 1)
-	return std::imag(__ple);
+	std::__throw_domain_error(__N("__clausen_sl: Non-positive order"));
       else
-	return std::real(__ple);
+	{
+	  const auto _S_i = std::complex<_Tp>{0, 1};
+	  const auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
+	  if (__m & 1)
+	    return std::imag(__ple);
+	  else
+	    return std::real(__ple);
+	}
     }
 
   /**
@@ -1201,18 +1254,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     _Tp
-    __clausen_s(unsigned int __m, _Tp __w)
+    __clausen_sl(unsigned int __m, _Tp __w)
     {
-      const auto _S_i = std::complex<_Tp>{0, 1};
-      auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
-	std::__throw_domain_error(__N("__clausen_s: Non-positive order"));
-      else if (__m & 1)
-	return std::imag(__ple);
+	std::__throw_domain_error(__N("__clausen_sl: Non-positive order"));
       else
-	return std::real(__ple);
+	{
+	  const auto _S_i = std::complex<_Tp>{0, 1};
+	  const auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
+	  if (__m & 1)
+	    return std::imag(__ple);
+	  else
+	    return std::real(__ple);
+	}
     }
 
   /**
@@ -1226,18 +1282,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     _Tp
-    __clausen_c(unsigned int __m, std::complex<_Tp> __w)
+    __clausen_cl(unsigned int __m, std::complex<_Tp> __w)
     {
-      const auto _S_i = std::complex<_Tp>{0, 1};
-      auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
-	std::__throw_domain_error(__N("__clausen_c: Non-positive order"));
-      else if (__m & 1)
-	return std::real(__ple);
+	std::__throw_domain_error(__N("__clausen_cl: Non-positive order"));
       else
-	return std::imag(__ple);
+	{
+	  const auto _S_i = std::complex<_Tp>{0, 1};
+	  const auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
+	  if (__m & 1)
+	    return std::real(__ple);
+	  else
+	    return std::imag(__ple);
+	}
     }
 
   /**
@@ -1251,18 +1310,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     _Tp
-    __clausen_c(unsigned int __m, _Tp __w)
+    __clausen_cl(unsigned int __m, _Tp __w)
     {
-      const auto _S_i = std::complex<_Tp>{0, 1};
-      auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
       if (__isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
-	std::__throw_domain_error(__N("__clausen_c: Non-positive order"));
-      else if (__m & 1)
-	return std::real(__ple);
+	std::__throw_domain_error(__N("__clausen_cl: Non-positive order"));
       else
-	return std::imag(__ple);
+	{
+	  const auto _S_i = std::complex<_Tp>{0, 1};
+	  const auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
+	  if (__m & 1)
+	    return std::real(__ple);
+	  else
+	    return std::imag(__ple);
+	}
     }
 
   /**
@@ -1284,15 +1346,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __fermi_dirac(_Sp __s, _Tp __x)
     {
-      const auto _S_i = std::complex<_Tp>{0, 1};
-      const auto _S_pi = __gnu_cxx::__const_pi(__s);
       if (__isnan(__s) || __isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__s <= _Sp{-1})
 	std::__throw_domain_error(__N("__fermi_dirac: "
 				      "Order must be greater than -1"));
       else
-	return -std::real(__polylog_exp(__s + _Sp{1}, __x + _S_i * _S_pi));
+	{
+	  const auto _S_i = std::complex<_Tp>{0, 1};
+	  const auto _S_pi = __gnu_cxx::__const_pi(__s);
+	  return -std::real(__polylog_exp(__s + _Sp{1}, __x + _S_i * _S_pi));
+	}
     }
 
   /**
