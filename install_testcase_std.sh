@@ -77,7 +77,7 @@ ${makedir} ${ext_dir}/chebyshev_t
 ${makedir} ${ext_dir}/chebyshev_u
 ${makedir} ${ext_dir}/chebyshev_v
 ${makedir} ${ext_dir}/chebyshev_w
-${makedir} ${ext_dir}/clausen
+${makedir} ${ext_dir}/clausen_cl
 ${makedir} ${ext_dir}/comp_ellint_d
 ${makedir} ${ext_dir}/conf_hyperg
 ${makedir} ${ext_dir}/conf_hyperg_lim
@@ -160,7 +160,7 @@ ${tool} check/check_chebyshev_t.cc        ${ext_dir}/chebyshev_t/check_value.cc
 ${tool} check/check_chebyshev_u.cc        ${ext_dir}/chebyshev_u/check_value.cc
 ${tool} check/check_chebyshev_v.cc        ${ext_dir}/chebyshev_v/check_value.cc
 ${tool} check/check_chebyshev_w.cc        ${ext_dir}/chebyshev_w/check_value.cc
-${tool} check/check_clausen_c.cc          ${ext_dir}/clausen/check_value.cc
+${tool} check/check_clausen_cl.cc         ${ext_dir}/clausen_cl/check_value.cc
 ${tool} check/check_comp_ellint_d.cc      ${ext_dir}/comp_ellint_d/check_value.cc
 ${tool} check/check_conf_hyperg.cc        ${ext_dir}/conf_hyperg/check_value.cc
 ${tool} check/check_conf_hyperg_lim.cc    ${ext_dir}/conf_hyperg_lim/check_value.cc

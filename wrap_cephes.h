@@ -325,8 +325,8 @@ std::complex<double> sph_harmonic(unsigned int l, int m, double theta, double ph
 /// Owen's T function.
 double owens_t(double h, double a);
 
-/// Clausen function of order 2.
-double clausen_c(unsigned int m, double w);
+/// Clausen Cl function of order 2.
+double clausen_cl(unsigned int m, double w);
 
 /// Struve H function.
 double struve_h(double nu, double x);

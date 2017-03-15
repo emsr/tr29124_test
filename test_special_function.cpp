@@ -78,8 +78,8 @@ template<typename Real>
     using __gnu_cxx::chebyshev_v;
     using __gnu_cxx::chebyshev_w;
     using __gnu_cxx::clausen;
-    using __gnu_cxx::clausen_c;
-    using __gnu_cxx::clausen_s;
+    using __gnu_cxx::clausen_cl;
+    using __gnu_cxx::clausen_sl;
     using __gnu_cxx::comp_ellint_d;
     using       std::comp_ellint_1;
     using       std::comp_ellint_2;
