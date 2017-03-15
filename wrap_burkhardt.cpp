@@ -783,9 +783,9 @@ owens_t(double /*h*/, double /*a*/)
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Clausen function of order 2.
+/// Clausen Cl function of order 2.
 double
-clausen_c(unsigned int /*m*/, double /*w*/)
+clausen_cl(unsigned int /*m*/, double /*w*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }

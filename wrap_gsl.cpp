@@ -1317,9 +1317,9 @@ owens_t(double /*h*/, double /*a*/)
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Clausen function of order 2.
+/// Clausen Cl function of order 2.
 double
-clausen_c(unsigned int m, double w)
+clausen_cl(unsigned int m, double w)
 {
   if (m != 2)
     return std::numeric_limits<double>::quiet_NaN();
@@ -1327,7 +1327,7 @@ clausen_c(unsigned int m, double w)
   int stat = gsl_sf_clausen_e(w, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in clausen_c:");
+      std::ostringstream msg("Error in clausen_cl:");
       msg << " w=" << w;
       throw std::runtime_error(msg.str());
     }

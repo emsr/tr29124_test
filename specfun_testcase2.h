@@ -720,9 +720,9 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Clausen Cl_2 function.
+// Clausen Cl_m function.
 template<typename _Tp>
-  struct testcase_clausen_c
+  struct testcase_clausen_cl
   {
     unsigned int m;
     _Tp w;
