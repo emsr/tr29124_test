@@ -48,9 +48,9 @@
 // Test data.
 // max(|f - f_Boost|): 0.17846605446581615
 // max(|f - f_Boost| / |f_Boost|): 2.1415926535897944
-// mean(f - f_Boost): -0.0032076130293010249
-// variance(f - f_Boost): 1.9406141786954206e-07
-// stddev(f - f_Boost): 0.00044052402643844759
+// mean(f - f_Boost): -0.0032076130293010171
+// variance(f - f_Boost): 1.9406141786954111e-07
+// stddev(f - f_Boost): 0.00044052402643844651
 const testcase_riemann_zeta<double>
 data001[55] =
 {
@@ -123,10 +123,10 @@ const double toler001 = 0.050000000000000003;
 
 // Test data.
 // max(|f - f_Boost|): 8.8817841970012523e-16
-// max(|f - f_Boost| / |f_Boost|): 4.4408888880252023e-16
-// mean(f - f_Boost): -7.9629789352425020e-17
-// variance(f - f_Boost): 4.4339843078953478e-35
-// stddev(f - f_Boost): 6.6588169428925947e-18
+// max(|f - f_Boost| / |f_Boost|): 2.8599739118398860e-16
+// mean(f - f_Boost): -1.5313421029312504e-18
+// variance(f - f_Boost): 1.6397870961151434e-38
+// stddev(f - f_Boost): 1.2805417197870374e-19
 const testcase_riemann_zeta<double>
 data002[145] =
 {

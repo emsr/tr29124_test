@@ -62,7 +62,7 @@ check_chebyshev_u
 check_chebyshev_v
 check_chebyshev_w
 check/check_chi
-check/check_clausen_c
+check/check_clausen_cl
 check/check_comp_ellint_1
 check/check_comp_ellint_2
 check/check_comp_ellint_3

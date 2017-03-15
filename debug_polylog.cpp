@@ -25,6 +25,23 @@ main()
   //std::__detail::__polylog_exp_asymp(s, 100.0 * std::polar(1.0, _S_2pi * x));
   //PolyLog_Exp_asym(s, 100.0 * std::polar(1.0, _S_2pi * x));
 
+
+
+
+  // OK, now on to Test series 1 [PolyLog_Exp_pos(k, exp(i2pix)]:
+  int s = 3;
+  double x = 0.05;
+  std::__detail::__polylog_exp_pos(s, std::polar(1.0, _S_2pi * x));
+  PolyLog_Exp_pos(s, std::polar(1.0, _S_2pi * x));
+
+
+
+  //int m = 2;
+  //double = 3.1;
+  //std::__detail::__clausen_cl<__type>(m, x);
+  //Claussen_Cl(m, x);
+
+
   // OK, now on to Test series 6 [PolyLog_Exp_pos(s, exp(i2pix)]: DONE
   //s = 0.145;
   //x = 0.05;
@@ -35,14 +52,17 @@ main()
   // Which assumes the angle is in degrees. LOL!
 
   // OK, now on to Test series 6 [PolyLog_Exp_pos(s, exp(i2pix)]:
-  int s = 3;
-  double x = 0.05;
+  //int s = 3;
+  //double x = 0.05;
   // Complex arg seems OK.. But why issue with Clausen?
   //std::__detail::__polylog_exp_pos(s, std::polar(1.0, _S_2pi * x));
   //PolyLog_Exp_pos(s, std::polar(1.0, _S_2pi * x));
-  std::__detail::__polylog_exp_pos(s, x);
-  PolyLog_Exp_pos(s, x);
 
+  // Try float, complex...
+  //double s = 2.1;
+  //double x = 3.1;
+  //std::__detail::__polylog_exp_pos(s, std::polar(1.0, _S_2pi * x));
+  //PolyLog_Exp_pos(s, std::polar(1.0, _S_2pi * x));
   //Test function 3 [PolyLog_Exp_neg(s<0, exp(i2pik)]:
   //s = -7.9;
   //std::__detail::__polylog_exp_neg(s, std::polar(1.0, _S_2pi * x));
