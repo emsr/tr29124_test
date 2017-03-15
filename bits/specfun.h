@@ -3531,6 +3531,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::__detail::__psi<__type>(__x);
     }
 
+  /**
+   * Return the harmonic number @f$ H_n @f$.
+   *
+   * The the harmonic number is defined by
+   * @f[
+   *    H_n = \sum_{k=1}^{n}\frac{1}{k}
+   * @f]
+   *
+   * @param __x The parameter
+   */
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
+    harmonic(unsigned int __n)
+    {
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      return std::__detail::__harmonic_number<__type>(__n);
+    }
+
   // Incomplete beta functions
 
   /**
