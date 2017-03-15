@@ -631,14 +631,14 @@ chebyshev_w(unsigned int /*n*/, double /*x*/)
 
 /// Binomial coefficients.
 double
-choose(unsigned int /*n*/, unsigned int /*k*/)
+binomial(unsigned int /*n*/, unsigned int /*k*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Log binomial coefficients.
 double
-lnchoose(unsigned int /*n*/, unsigned int /*k*/)
+lbinomial(unsigned int /*n*/, unsigned int /*k*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -783,9 +783,9 @@ owens_t(double /*h*/, double /*a*/)
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Clausen function of order 2.
+/// Clausen Cl function of order 2.
 double
-clausen_c(unsigned int /*m*/, double /*w*/)
+clausen_cl(unsigned int /*m*/, double /*w*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }

@@ -1,9 +1,9 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_clausen test_clausen.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-./test_clausen > test_clausen.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_clausen > test_clausen.txt
 
 $HOME/bin/bin/g++ -std=c++17 -std=gnu++17 -g -Wall -Wextra -I. -o test_clausen test_clausen.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-./test_clausen
+PATH=wrappers/debug:$PATH ./test_clausen
 */
 
 #include <iostream>
@@ -15,7 +15,7 @@ $HOME/bin/bin/g++ -std=c++17 -std=gnu++17 -g -Wall -Wextra -I. -o test_clausen t
 
 template<typename _Tp>
   void
-  run_clausen()
+  test_clausen_cl()
   {
     using __cmplx = std::complex<_Tp>;
 
@@ -23,13 +23,20 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
+    std::cout << '\n';
     std::cout << std::setw(width) << "t"
 	      << std::setw(width) << "Re(Cl_1)"
 	      << std::setw(width) << "Im(Cl_1)"
 	      << std::setw(width) << "Re(Cl_2)"
 	      << std::setw(width) << "Im(Cl_2)"
+	      << std::setw(width) << "C_2 GSL"
+	      << std::setw(width) << "Cl_2(x)"
+	      << std::setw(width) << "C_2"
 	      << '\n';
     std::cout << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
@@ -46,9 +53,47 @@ template<typename _Tp>
 		  << std::setw(width) << std::real(clausen1)
 		  << std::setw(width) << std::real(clausen2)
 		  << std::setw(width) << std::imag(clausen2)
-		  << std::setw(width) << gsl::clausen_c(2, std::real(w))
+		  << std::setw(width) << gsl::clausen_cl(2, std::real(w))
 		  << std::setw(width) << __gnu_cxx::clausen(2, std::real(w))
-		  << std::setw(width) << __gnu_cxx::clausen_c(2, std::real(w))
+		  << std::setw(width) << __gnu_cxx::clausen_cl(2, std::real(w))
+		  << '\n';
+      }
+    std::cout << std::endl;
+  }
+
+template<typename _Tp>
+  void
+  plot_clausen()
+  {
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout << std::showpoint << std::scientific;
+    auto width = 8 + std::cout.precision();
+
+    std::cout << '\n';
+    std::cout << std::setw(width) << "t"
+	      << std::setw(width) << "Cl_1"
+	      << std::setw(width) << "Cl_2"
+	      << std::setw(width) << "Cl_3"
+	      << std::setw(width) << "Cl_4"
+	      << std::setw(width) << "Cl_5"
+	      << '\n';
+    std::cout << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << std::setw(width) << "========="
+	      << '\n';
+    const auto del = _Tp{1} / _Tp{100};
+    for (int i = -1000; i <= +1000; ++i)
+      {
+	auto w = del * i;
+	std::cout << std::setw(width) << w
+		  << std::setw(width) << __gnu_cxx::clausen_cl(1, w)
+		  << std::setw(width) << __gnu_cxx::clausen_cl(2, w)
+		  << std::setw(width) << __gnu_cxx::clausen_cl(3, w)
+		  << std::setw(width) << __gnu_cxx::clausen_cl(4, w)
+		  << std::setw(width) << __gnu_cxx::clausen_cl(5, w)
 		  << '\n';
       }
     std::cout << std::endl;
@@ -59,14 +104,16 @@ int
 main()
 {
   std::cout << "\nfloat\n=====\n\n";
-  run_clausen<float>();
+  test_clausen_cl<float>();
 
   std::cout << "\ndouble\n======\n";
-  run_clausen<double>();
+  test_clausen_cl<double>();
 
   std::cout << "\nlong double\n===========\n";
-  run_clausen<long double>();
+  test_clausen_cl<long double>();
 
   //std::cout << "\n__float128\n==========\n";
-  //run_clausen<__float128>();
+  //test_clausen_cl<__float128>();
+
+  plot_clausen<double>();
 }

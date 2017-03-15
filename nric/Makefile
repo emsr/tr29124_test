@@ -56,7 +56,7 @@ graph: graph.c plot.c gamma.c poly_*.c bessel_*.c util.c nric.c int_*.c dcomplex
 	gcc -std=c11 -o graph graph.c plot.c gamma.c poly_*.c bessel_*.c util.c nric.c int_*.c dcomplex.c dvector.c fvector.c memory.c interpolation.c chebyshev.c poly.c integration.c gauss_quad.c -lm
 
 integrate: integrate.c integration.c chebyshev.c dvector.c fvector.c memory.c poly.c gauss_quad.c bessel_integer.c gamma.c interpolation.c plot.c nric.c
-	gcc -std=c11 -o integrate integrate.c integration.c chebyshev.c dvector.c fvector.c memory.c poly.c gauss_quad.c bessel_integer.c gamma.c interpolation.c plot.c nric.c
+	g++ -std=c++11 -o integrate integrate.c integration.c chebyshev.c dvector.c fvector.c memory.c poly.c gauss_quad.c bessel_integer.c gamma.c interpolation.c plot.c nric.c
 
 cheb: cheb.c chebyshev.c dvector.c fvector.c memory.c poly.c nric.c 
 	gcc -std=c11 -o cheb cheb.c chebyshev.c dvector.c fvector.c memory.c poly.c nric.c

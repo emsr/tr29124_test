@@ -258,10 +258,10 @@ double chebyshev_v(unsigned int n, double x);
 double chebyshev_w(unsigned int n, double x);
 
 /// Binomial coefficients.
-double choose(unsigned int n, unsigned int k);
+double binomial(unsigned int n, unsigned int k);
 
 /// Log binomial coefficients.
-double lnchoose(unsigned int n, unsigned int k);
+double lbinomial(unsigned int n, unsigned int k);
 
 /// Jacobi polynomials.
 double jacobi(unsigned int n, double alpha, double beta, double x);
@@ -323,8 +323,8 @@ double ibetac_invb(double a, double x, double q);
 /// Owen's T function.
 double owens_t(double h, double a);
 
-/// Clausen function of order 2.
-double clausen_c(unsigned int m, double w);
+/// Clausen Cl function of order 2.
+double clausen_cl(unsigned int m, double w);
 
 /// Struve H function.
 double struve_h(double nu, double x);

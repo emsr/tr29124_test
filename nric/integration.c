@@ -138,7 +138,7 @@ double midpoint_inv( double (*funk)(double), double aa, double bb, int n ) {
 
 /*
  *    This routine is an exact replacement of midpoint except that it allows
- *    for an inverse square root singularity at the upper limit bb.
+ *    for an inverse square root singularity at the lower limit aa.
  */
 double midpoint_inv_sqrt_lower( double (*funk)(double), double aa, double bb, int n ) {
 

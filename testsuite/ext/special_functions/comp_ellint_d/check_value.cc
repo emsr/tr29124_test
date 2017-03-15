@@ -41,9 +41,9 @@
 // Test data.
 // max(|f - f_Boost|): 2.2204460492503131e-16
 // max(|f - f_Boost| / |f_Boost|): 2.7843193611279334e-16
-// mean(f - f_Boost): 9.3492465231592125e-17
-// variance(f - f_Boost): 5.1258018532879257e-34
-// stddev(f - f_Boost): 2.2640233773722228e-17
+// mean(f - f_Boost): 8.1805907077643109e-17
+// variance(f - f_Boost): 3.9244420439235681e-34
+// stddev(f - f_Boost): 1.9810204552006948e-17
 const testcase_comp_ellint_d<double>
 data001[19] =
 {

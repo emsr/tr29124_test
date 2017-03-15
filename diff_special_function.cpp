@@ -75,7 +75,7 @@ main()
     using       std::assoc_legendre;
     using __gnu_cxx::bernoulli;
     using       std::beta;
-    using __gnu_cxx::bincoef;
+    using __gnu_cxx::binomial;
     using __gnu_cxx::chebyshev_t;
     using __gnu_cxx::chebyshev_u;
     using __gnu_cxx::chebyshev_v;
@@ -130,7 +130,7 @@ main()
     using __gnu_cxx::jacobi_dn;
     using __gnu_cxx::jacobi_zeta;
     using       std::laguerre;
-    using __gnu_cxx::lbincoef;
+    using __gnu_cxx::lbinomial;
     using __gnu_cxx::ldouble_factorial;
     using       std::legendre;
     using __gnu_cxx::legendre_q;
@@ -245,18 +245,18 @@ main()
 
 #if STD
     // Binomial coefficient.
-    std::cout << "bincoef" << '\n';
-    basename = "diff_bincoef";
-    rundiff(bincoef<Real>, gsl::choose, basename,
+    std::cout << "binomial" << '\n';
+    basename = "diff_binomial";
+    rundiff(binomial<Real>, gsl::choose, basename,
 	    "n", fill_argument(std::make_pair(0U, 50U),
 	    		       std::make_pair(true, true), 51),
 	    "k", fill_argument(std::make_pair(0U, 50U),
 	    		       std::make_pair(true, true), 51));
 
     // Log binomial coefficient.
-    std::cout << "lbincoef" << '\n';
-    basename = "diff_lbincoef";
-    rundiff(lbincoef<Real>, gsl::lnchoose, basename,
+    std::cout << "lbinomial" << '\n';
+    basename = "diff_lbinomial";
+    rundiff(lbinomial<Real>, gsl::lnchoose, basename,
 	    "n", fill_argument(std::make_pair(0U, 200U),
 			       std::make_pair(true, true), 201),
 	    "k", fill_argument(std::make_pair(0U, 200U),
@@ -818,18 +818,18 @@ main()
 			       std::make_pair(true, true), 501));
 
     // Binomial coefficient.
-    std::cout << "bincoef" << '\n';
-    basename = "diff_bincoef";
-    rundiff(bincoef<Real>, gsl::choose, basename,
+    std::cout << "binomial" << '\n';
+    basename = "diff_binomial";
+    rundiff(binomial<Real>, gsl::choose, basename,
 	    "n", fill_argument(std::make_pair(0U, 50U),
 			       std::make_pair(true, true), 51),
 	    "k", fill_argument(std::make_pair(0U, 50U),
 			       std::make_pair(true, true), 51));
 
     // Log binomial coefficient.
-    std::cout << "lbincoef" << '\n';
-    basename = "diff_lbincoef";
-    rundiff(lbincoef<Real>, gsl::lnchoose, basename,
+    std::cout << "lbinomial" << '\n';
+    basename = "diff_lbinomial";
+    rundiff(lbinomial<Real>, gsl::lnchoose, basename,
 	    "n", fill_argument(std::make_pair(0U, 200U),
 			       std::make_pair(true, true), 201),
 	    "k", fill_argument(std::make_pair(0U, 200U),

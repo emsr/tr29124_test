@@ -39,11 +39,11 @@
 #include <specfun_testcase.h>
 
 // Test data.
-// max(|f - f_GSL|): 6.6613381477509392e-16
-// max(|f - f_GSL| / |f_GSL|): 4.4233707954398090e-16
-// mean(f - f_GSL): 8.1805907077643109e-17
-// variance(f - f_GSL): 1.6218357426418829e-32
-// stddev(f - f_GSL): 1.2735131497718752e-16
+// max(|f - f_GSL|): 1.1102230246251565e-15
+// max(|f - f_GSL| / |f_GSL|): 7.3722846590663481e-16
+// mean(f - f_GSL): 1.6361181415528622e-16
+// variance(f - f_GSL): 2.1656512830141486e-32
+// stddev(f - f_GSL): 1.4716151952919448e-16
 const testcase_comp_ellint_2<double>
 data001[19] =
 {

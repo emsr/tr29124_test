@@ -38,7 +38,7 @@ ext_dir="$HOME/gcc${suffix}/libstdc++-v3/testsuite/ext/special_functions"
 
 ${tool} ${text_dir}/airy_ai/*            ${ext_dir}/airy_ai
 ${tool} ${text_dir}/airy_bi/*            ${ext_dir}/airy_bi
-${tool} ${text_dir}/bincoef/*            ${ext_dir}/bincoef
+${tool} ${text_dir}/binomial/*           ${ext_dir}/binomial
 ${tool} ${text_dir}/comp_ellint_d/*      ${ext_dir}/comp_ellint_d
 ${tool} ${text_dir}/conf_hyperg/*        ${ext_dir}/conf_hyperg
 ${tool} ${text_dir}/conf_hyperg_lim/*    ${ext_dir}/conf_hyperg_lim
@@ -72,7 +72,7 @@ ${tool} ${text_dir}/ibetac/*             ${ext_dir}/ibetac
 ${tool} ${text_dir}/jacobi_sn/*          ${ext_dir}/jacobi_sn
 ${tool} ${text_dir}/jacobi_cn/*          ${ext_dir}/jacobi_cn
 ${tool} ${text_dir}/jacobi_dn/*          ${ext_dir}/jacobi_dn
-${tool} ${text_dir}/lbincoef/*           ${ext_dir}/lbincoef
+${tool} ${text_dir}/lbinomial/*          ${ext_dir}/lbinomial
 ${tool} ${text_dir}/ldouble_factorial/*  ${ext_dir}/ldouble_factorial
 ${tool} ${text_dir}/legendre_q/*         ${ext_dir}/legendre_q
 ${tool} ${text_dir}/lfactorial/*         ${ext_dir}/lfactorial

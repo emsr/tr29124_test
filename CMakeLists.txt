@@ -80,7 +80,6 @@ add_library(wrap_cephes SHARED
 	    cephes/cmath/round.c
 	    cephes/cmath/setprec.c
 	    cephes/cmath/sin.c
-	    cephes/cmath/sincos.c
 	    cephes/cmath/sindg.c
 	    cephes/cmath/sinh.c
 	    cephes/cmath/sqrt.c
@@ -200,6 +199,9 @@ add_library(wrap_cephes SHARED
 	    cephes/c9x-complex/cgamma.c
 	    cephes/c9x-complex/cpolylog.c
            )
+
+# This was an interesting disaster!
+#	    cephes/cmath/sincos.c
 
 
 add_library(wrap_burkhardt SHARED

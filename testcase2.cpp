@@ -35,7 +35,7 @@ template<typename Real>
     using       std::assoc_legendre;
     using __gnu_cxx::bernoulli;
     using       std::beta;
-    using __gnu_cxx::bincoef;
+    using __gnu_cxx::binomial;
     using __gnu_cxx::chebyshev_t;
     using __gnu_cxx::chebyshev_u;
     using __gnu_cxx::chebyshev_v;
@@ -89,7 +89,7 @@ template<typename Real>
     using __gnu_cxx::jacobi_dn;
     using __gnu_cxx::jacobi_zeta;
     using       std::laguerre;
-    using __gnu_cxx::lbincoef;
+    using __gnu_cxx::lbinomial;
     using __gnu_cxx::ldouble_factorial;
     using       std::legendre;
     using __gnu_cxx::legendre_q;

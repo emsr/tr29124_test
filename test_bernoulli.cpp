@@ -128,11 +128,11 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
     __bernoulli(unsigned int __n, _Tp __x)
     {
       auto _B_n = std::__detail::__bernoulli<_Tp>(0);
-      auto __bincoef = _Tp{1};
+      auto __binomial = _Tp{1};
       for (auto __k = 1u; __k <= __n; ++__k)
       {
-	__bincoef *= _Tp(__n + 1 - __k) / _Tp(__k);
-	_B_n = __x * _B_n + __bincoef * std::__detail::__bernoulli<_Tp>(__k);
+	__binomial *= _Tp(__n + 1 - __k) / _Tp(__k);
+	_B_n = __x * _B_n + __binomial * std::__detail::__bernoulli<_Tp>(__k);
       }
 
       return _B_n;
@@ -193,7 +193,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
 	      if (__i % 2 == 0)
 		{
 		  for (auto __j = 2u; __j <= __i; __j += 2u)
-		    _En[__i] -= std::__detail::__bincoef<_Tp>(__i, __j)
+		    _En[__i] -= std::__detail::__binomial<_Tp>(__i, __j)
 			      * _En[__i - __j];
 		}
 	    }
@@ -374,10 +374,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
 	  for (auto __k = 0u; __k <= __n - __m; ++__k)
 	    {
 	      auto __nmk = __n - __m + __k;
-	      auto __lbc1 = std::__detail::__log_bincoef<_Tp>(__n - 1 + __k, __nmk);
-	      auto __slbc1 = std::__detail::__log_bincoef_sign<_Tp>(__n - 1 + __k, __nmk);
-	      auto __lbc2 = std::__detail::__log_bincoef<_Tp>(2 * __n - __m, __nmk);
-	      auto __slbc2 = std::__detail::__log_bincoef_sign<_Tp>(2 * __n - __m, __nmk);
+	      auto __lbc1 = std::__detail::__log_binomial<_Tp>(__n - 1 + __k, __nmk);
+	      auto __slbc1 = std::__detail::__log_binomial_sign<_Tp>(__n - 1 + __k, __nmk);
+	      auto __lbc2 = std::__detail::__log_binomial<_Tp>(2 * __n - __m, __nmk);
+	      auto __slbc2 = std::__detail::__log_binomial_sign<_Tp>(2 * __n - __m, __nmk);
 	      _S1 += (__k & 1 ? _Tp{-1} : _Tp{1}) * __slbc1 * __slbc2
 		   * std::exp(__lbc1 + __lbc2 + __log_stirling_2<_Tp>(__nmk, __k));
 	    }
@@ -390,8 +390,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
 	    {
 	      auto __nmk = __n - __m + __k;
 	      _S1 += (__k & 1 ? _Tp{-1} : _Tp{1})
-		   * std::__detail::__bincoef<_Tp>(__n - 1 + __k, __nmk)
-		   * std::__detail::__bincoef<_Tp>(2 * __n - __m, __nmk)
+		   * std::__detail::__binomial<_Tp>(__n - 1 + __k, __nmk)
+		   * std::__detail::__binomial<_Tp>(2 * __n - __m, __nmk)
 		   * __stirling_2<_Tp>(__nmk, __k);
 	    }
 	  // @todo Only round if the sum is less than

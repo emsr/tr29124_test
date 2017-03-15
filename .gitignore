@@ -56,13 +56,13 @@ check/check_assoc_laguerre
 check/check_assoc_legendre
 check/check_bernoulli
 check/check_beta
-check/check_bincoef
+check/check_binomial
 check_chebyshev_t
 check_chebyshev_u
 check_chebyshev_v
 check_chebyshev_w
 check/check_chi
-check/check_clausen_c
+check/check_clausen_cl
 check/check_comp_ellint_1
 check/check_comp_ellint_2
 check/check_comp_ellint_3
@@ -114,7 +114,7 @@ check/check_jacobi_dn
 check/check_jacobi_sn
 check/check_jacobi_zeta
 check/check_laguerre
-check/check_lbincoef
+check/check_lbinomial
 check/check_ldouble_factorial
 check/check_legendre
 check/check_legendre_q
@@ -178,6 +178,8 @@ clamp_2
 
 debug_airy
 debug_bessel
+debug_polylog
+
 poly_root
 
 mpreal_gamma_recip

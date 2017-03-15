@@ -1,9 +1,9 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_fermi_dirac test_fermi_dirac.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-./test_fermi_dirac > test_fermi_dirac.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_fermi_dirac > test_fermi_dirac.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_fermi_dirac test_fermi_dirac.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-./test_fermi_dirac > test_fermi_dirac.txt
+PATH=wrappers/debug:$PATH ./test_fermi_dirac > test_fermi_dirac.txt
 */
 
 #include <iostream>
@@ -84,7 +84,8 @@ main()
   std::cout << "\nlong double\n===========\n";
   run_fermi_dirac<long double>();
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+// This works but takes too long.
+#if 0 && !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   std::cout << "\n__float128\n==========\n";
   run_fermi_dirac<__float128>();
 #endif

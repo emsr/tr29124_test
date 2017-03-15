@@ -174,15 +174,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * In addition a large number of new functions are added as extensions:
    * - @ref __gnu_cxx::airy_ai "airy_ai - Airy functions of the first kind"
    * - @ref __gnu_cxx::airy_bi "airy_bi - Airy functions of the second kind"
-   * - @ref __gnu_cxx::bincoef "bincoef - Binomial coefficients"
+   * - @ref __gnu_cxx::binomial "binomial - Binomial coefficients"
    * - @ref __gnu_cxx::bose_einstein "bose_einstein - Bose-Einstein integrals"
    * - @ref __gnu_cxx::chebyshev_t "chebyshev_t - Chebyshev polynomials of the first kind"
    * - @ref __gnu_cxx::chebyshev_u "chebyshev_u - Chebyshev polynomials of the second kind"
    * - @ref __gnu_cxx::chebyshev_v "chebyshev_v - Chebyshev polynomials of the third kind"
    * - @ref __gnu_cxx::chebyshev_w "chebyshev_w - Chebyshev polynomials of the fourth kind"
    * - @ref __gnu_cxx::clausen "clausen - Clausen integrals"
-   * - @ref __gnu_cxx::clausen_c "clausen_c - Clausen cosine integrals"
-   * - @ref __gnu_cxx::clausen_s "clausen_s - Clausen sine integrals"
+   * - @ref __gnu_cxx::clausen_cl "clausen_cl - Clausen cosine integrals"
+   * - @ref __gnu_cxx::clausen_sl "clausen_sl - Clausen sine integrals"
    * - @ref __gnu_cxx::comp_ellint_d "comp_ellint_d - Incomplete Legendre D elliptic integral"
    * - @ref __gnu_cxx::conf_hyperg_lim "conf_hyperg_lim - Confluent hypergeometric limit functions"
    * - @ref __gnu_cxx::cos_pi "cos_pi - Reperiodized cosine function."
@@ -219,7 +219,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::jacobi_cn "jacobi_cn - Jacobi cosine amplitude functions"
    * - @ref __gnu_cxx::jacobi_dn "jacobi_dn - Jacobi delta amplitude functions"
    * - @ref __gnu_cxx::jacobi_zeta "jacobi_zeta - Jacobi zeta functions"
-   * - @ref __gnu_cxx::lbincoef "lbincoef - Log binomial coefficients"
+   * - @ref __gnu_cxx::lbinomial "lbinomial - Log binomial coefficients"
    * - @ref __gnu_cxx::ldouble_factorial "ldouble_factorial - Log double factorials"
    * - @ref __gnu_cxx::legendre_q "legendre_q - Legendre functions of the second kind"
    * - @ref __gnu_cxx::lfactorial "lfactorial - Log factorials"
@@ -3926,43 +3926,43 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Binomial coefficient
 
   inline float
-  bincoeff(unsigned int __n, unsigned int __k)
-  { return std::__detail::__bincoef<float>(__n, __k); }
+  binomialf(unsigned int __n, unsigned int __k)
+  { return std::__detail::__binomial<float>(__n, __k); }
 
   inline long double
-  bincoefl(unsigned int __n, unsigned int __k)
-  { return std::__detail::__bincoef<long double>(__n, __k); }
+  binomiall(unsigned int __n, unsigned int __k)
+  { return std::__detail::__binomial<long double>(__n, __k); }
 
   /**
    * 
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
-    bincoef(unsigned int __n, unsigned int __k)
+    binomial(unsigned int __n, unsigned int __k)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__bincoef<__type>(__n, __k);
+      return std::__detail::__binomial<__type>(__n, __k);
     }
 
   // Log binomial coefficient
 
   inline float
-  lbincoeff(unsigned int __n, unsigned int __k)
-  { return std::__detail::__log_bincoef<float>(__n, __k); }
+  lbinomialf(unsigned int __n, unsigned int __k)
+  { return std::__detail::__log_binomial<float>(__n, __k); }
 
   inline long double
-  lbincoefl(unsigned int __n, unsigned int __k)
-  { return std::__detail::__log_bincoef<long double>(__n, __k); }
+  lbinomiall(unsigned int __n, unsigned int __k)
+  { return std::__detail::__log_binomial<long double>(__n, __k); }
 
   /**
    * 
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
-    lbincoef(unsigned int __n, unsigned int __k)
+    lbinomial(unsigned int __n, unsigned int __k)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__log_bincoef<__type>(__n, __k);
+      return std::__detail::__log_binomial<__type>(__n, __k);
     }
 
   // Bernoulli numbers
@@ -4885,35 +4885,35 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::__detail::__dirichlet_lambda<__type>(__s);
     }
 
-  // Clausen S functions
+  // Clausen Sl functions
 
   /**
-   * Return the Clausen sine function @f$ S_n(w) @f$ of order @f$ m @f$
+   * Return the Clausen sine function @f$ Sl_m(w) @f$ of order @f$ m @f$
    * and @c float argument @f$ w @f$.
    *
-   * @see clausen_s for details.
+   * @see clausen_sl for details.
    */
   inline float
-  clausen_sf(unsigned int __m, float __w)
-  { return std::__detail::__clausen_s<float>(__m, __w); }
+  clausen_slf(unsigned int __m, float __w)
+  { return std::__detail::__clausen_sl<float>(__m, __w); }
 
   /**
-   * Return the Clausen sine function @f$ S_n(w) @f$ of order @f$ m @f$
+   * Return the Clausen sine function @f$ Sl_m(w) @f$ of order @f$ m @f$
    * and <tt>long double</tt> argument @f$ w @f$.
    *
-   * @see clausen_s for details.
+   * @see clausen_sl for details.
    */
   inline long double
-  clausen_sl(unsigned int __m, long double __w)
-  { return std::__detail::__clausen_s<long double>(__m, __w); }
+  clausen_sll(unsigned int __m, long double __w)
+  { return std::__detail::__clausen_sl<long double>(__m, __w); }
 
   /**
-   * Return the Clausen sine function @f$ S_n(w) @f$ of order @f$ m @f$
+   * Return the Clausen sine function @f$ Sl_m(w) @f$ of order @f$ m @f$
    * and real argument @f$ w @f$.
    *
    * The Clausen sine function is defined by
    * @f[
-   *    S_n(w) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^n}
+   *    Sl_m(w) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^m}
    * @f]
    *
    * @tparam _Tp The real type of the argument
@@ -4922,41 +4922,41 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
-    clausen_s(unsigned int __m, _Tp __w)
+    clausen_sl(unsigned int __m, _Tp __w)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__clausen_s<__type>(__m, __w);
+      return std::__detail::__clausen_sl<__type>(__m, __w);
     }
 
-  // Clausen C functions
+  // Clausen Cl functions
 
   /**
-   * Return the Clausen cosine function @f$ C_n(w) @f$ of order @f$ m @f$
+   * Return the Clausen cosine function @f$ Cl_m(w) @f$ of order @f$ m @f$
    * and @c float argument @f$ w @f$.
    *
-   * @see clausen_c for details.
+   * @see clausen_cl for details.
    */
   inline float
-  clausen_cf(unsigned int __m, float __w)
-  { return std::__detail::__clausen_c<float>(__m, __w); }
+  clausen_clf(unsigned int __m, float __w)
+  { return std::__detail::__clausen_cl<float>(__m, __w); }
 
   /**
-   * Return the Clausen cosine function @f$ C_n(w) @f$ of order @f$ m @f$
+   * Return the Clausen cosine function @f$ Cl_m(w) @f$ of order @f$ m @f$
    * and <tt>long double</tt> argument @f$ w @f$.
    *
-   * @see clausen_c for details.
+   * @see clausen_cl for details.
    */
   inline long double
-  clausen_cl(unsigned int __m, long double __w)
-  { return std::__detail::__clausen_c<long double>(__m, __w); }
+  clausen_cll(unsigned int __m, long double __w)
+  { return std::__detail::__clausen_cl<long double>(__m, __w); }
 
   /**
-   * Return the Clausen cosine function @f$ C_n(w) @f$ of order @f$ m @f$
+   * Return the Clausen cosine function @f$ Cl_m(w) @f$ of order @f$ m @f$
    * and real argument @f$ w @f$.
    *
    * The Clausen cosine function is defined by
    * @f[
-   *    C_n(w) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^n}
+   *    Cl_m(w) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^m}
    * @f]
    *
    * @tparam _Tp The real type of the argument
@@ -4965,16 +4965,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
-    clausen_c(unsigned int __m, _Tp __w)
+    clausen_cl(unsigned int __m, _Tp __w)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__clausen_c<__type>(__m, __w);
+      return std::__detail::__clausen_cl<__type>(__m, __w);
     }
 
   // Clausen functions - real argument
 
   /**
-   * Return the Clausen function @f$ Cl_n(w) @f$ of integer order @f$ m @f$
+   * Return the Clausen function @f$ Cl_m(w) @f$ of integer order @f$ m @f$
    * and @c float argument @f$ w @f$.
    *
    * @see clausen for details.
@@ -4984,7 +4984,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__clausen<float>(__m, __w); }
 
   /**
-   * Return the Clausen function @f$ Cl_n(w) @f$ of integer order @f$ m @f$
+   * Return the Clausen function @f$ Cl_m(w) @f$ of integer order @f$ m @f$
    * and <tt>long double</tt> argument @f$ w @f$.
    *
    * @see clausen for details.
@@ -4994,13 +4994,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__clausen<long double>(__m, __w); }
 
   /**
-   * Return the Clausen function @f$ Cl_n(w) @f$ of integer order @f$ m @f$
+   * Return the Clausen function @f$ Cl_m(w) @f$ of integer order @f$ m @f$
    * and real argument @f$ w @f$.
    *
    * The Clausen function is defined by
    * @f[
-   *    Cl_n(w) = S_n(w) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^n} \mbox{ for even } m
-   * = C_n(w) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^n} \mbox{ for odd } m
+   *    Cl_m(w) = S_m(w) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^m} \mbox{ for even } m
+   *            = C_m(w) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^m} \mbox{ for odd } m
    * @f]
    *
    * @tparam _Tp The real type of the argument
@@ -5018,7 +5018,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Clausen functions - complex argument
 
   /**
-   * Return the Clausen function @f$ Cl_n(w) @f$ of integer order @f$ m @f$
+   * Return the Clausen function @f$ Cl_m(w) @f$ of integer order @f$ m @f$
    * and <tt>std::complex<float></tt> argument @f$ w @f$.
    *
    * @see clausen for details.
@@ -5028,7 +5028,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__clausen<float>(__m, __w); }
 
   /**
-   * Return the Clausen function @f$ Cl_n(w) @f$ of integer order @f$ m @f$
+   * Return the Clausen function @f$ Cl_m(w) @f$ of integer order @f$ m @f$
    * and <tt>std::complex<long double></tt> argument @f$ w @f$.
    *
    * @see clausen for details.
@@ -5038,13 +5038,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__clausen<long double>(__m, __w); }
 
   /**
-   * Return the Clausen function @f$ Cl_n(w) @f$ of integer order @f$ m @f$
+   * Return the Clausen function @f$ Cl_m(w) @f$ of integer order @f$ m @f$
    * and complex argument @f$ w @f$.
    *
    * The Clausen function is defined by
    * @f[
-   *    Cl_n(w) = S_n(w) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^n} \mbox{ for even } m
-   * = C_n(w) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^n} \mbox{ for odd } m
+   *    Cl_m(w) = S_m(w) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^m} \mbox{ for even } m
+   *            = C_m(w) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^m} \mbox{ for odd } m
    * @f]
    *
    * @tparam _Tp The real type of the complex components
