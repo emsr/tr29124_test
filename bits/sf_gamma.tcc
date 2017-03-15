@@ -3343,7 +3343,7 @@ _S_neg_double_factorial_table[999]
         {
 	  unsigned int __k = _S_num_harmonic_numer - 1;
 	  auto _H_k = _Tp(_S_harmonic_numer[__k]) / _Tp(_S_harmonic_denom[__k]);
-	  for (__k = _S_num_harmonic_numer; __k <= __n; ++__k)
+	  for (__k = _S_num_harmonic_numer + 1; __k <= __n; ++__k)
 	    _H_k += _Tp{1} / _Tp(__k);
 	  return _H_k;
 	}
@@ -3359,7 +3359,7 @@ _S_neg_double_factorial_table[999]
    * @f]
    * The digamma series for integral argument is given by:
    * @f[
-   *   \psi(n) = -\gamma_E + \sum_{k=1}^{\infty} \frac{1}{k}
+   *   \psi(n) = -\gamma_E + \sum_{k=1}^{n-1} \frac{1}{k}
    * @f]
    * The latter sum is called the harmonic number, @f$ H_n @f$.
    */
@@ -3368,7 +3368,10 @@ _S_neg_double_factorial_table[999]
     __psi(unsigned int __n)
     {
       constexpr _Tp __gamma_E = __gnu_cxx::__const_gamma_e(_Tp{});
-      return -__gamma_E + __harmonic_number<_Tp>(__n);
+      if (__n > 1)
+	return -__gamma_E + __harmonic_number<_Tp>(__n - 1);
+      else
+	return -__gamma_E;
     }
 
   /**
@@ -3456,7 +3459,7 @@ _S_neg_double_factorial_table[999]
       const auto __2_ln_2 = _Tp{2} * __gnu_cxx::__const_ln_2(__x);
 
       const auto __n = __gnu_cxx::__fp_is_integer(__x);
-      const auto __m = __gnu_cxx::__fp_is_half_integer(__x);
+      const auto __m = __gnu_cxx::__fp_is_half_odd_integer(__x);
       if (__x < _Tp{0})
 	{
 	  const auto __pi = __gnu_cxx::__const_pi(__x);
@@ -3472,8 +3475,8 @@ _S_neg_double_factorial_table[999]
       else if (__m)
 	{
 	  _Tp __sum = -__gamma_E - __2_ln_2;
-	  for (int __k = 1; __k < __m(); ++__k)
-	    __sum += _Tp{2} / (2 * __k - 1);
+	  for (int __k = 1; __k <= __m(); ++__k)
+	    __sum += _Tp{2} / _Tp(2 * __k - 1);
 	  return __sum;
 	}
       else if (__x > _S_x_asymp)

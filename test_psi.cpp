@@ -11,41 +11,51 @@ PATH=wrappers/debug:$PATH ./test_psi > test_psi.txt
 #include <iomanip>
 #include "wrap_gsl.h"
 
+template<typename _Tp>
+  void
+  test_psi(_Tp __proto = _Tp{})
+  {
+    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    auto w = 8 + std::cout.precision();
+
+    auto x_start = -9.9375L;
+    auto x_stop = +10.0625L;
+    const unsigned int max = 801;
+    const auto delta = (x_stop - x_start) / (max - 1);
+
+    std::cout << '\n' << '\n';
+    for (unsigned int i = 0; i < max; ++i)
+      {
+	_Tp x = x_start + i * delta;
+	_Tp y_gcc = __gnu_cxx::psi(x);
+	_Tp y_gsl = gsl::psi(x);
+	std::cout << std::setw(5) << x
+                  << ' ' << std::setw(w) << y_gcc
+                  << ' ' << std::setw(w) << y_gsl
+                  << ' ' << std::setw(w) << y_gcc - y_gsl
+                  << '\n';
+      }
+
+    std::cout << '\n' << '\n';
+    for (unsigned int i = 1; i <= 200; ++i)
+      {
+	_Tp x = i * 0.25;
+	_Tp y_gcc = __gnu_cxx::psi(x);
+	_Tp y_gsl = gsl::psi(x);
+	std::cout << std::setw(5) << x
+                  << ' ' << std::setw(w) << y_gcc
+                  << ' ' << std::setw(w) << y_gsl
+                  << ' ' << std::setw(w) << y_gcc - y_gsl;
+	if (i % 4 == 0)
+	  std::cout << ' ' << std::setw(w) << __gnu_cxx::harmonic<_Tp>(i / 4);
+	std::cout << '\n';
+      }
+  }
+
 int
 main()
 {
-  std::cout.precision(16);
-  std::cout.flags(std::ios::showpoint);
-
-  double x_start = -9.9375;
-  double x_stop = +10.0625;
-  const unsigned int max = 801;
-  double delta = (x_stop - x_start) / (max - 1);
-  std::cout << std::endl;
-  for (unsigned int i = 0; i < max; ++i)
-    {
-      double x = x_start + i * delta;
-      double y_gcc = __gnu_cxx::psi(x);
-      double y_gsl = gsl::psi(x);
-      std::cout << "psi(" << std::setw(5) << x << ") ="
-                << ' ' << std::setw(20) << y_gcc
-                << ' ' << std::setw(20) << y_gsl
-                << ' ' << std::setw(20) << y_gcc - y_gsl
-                << std::endl;
-    }
-
-  std::cout << std::endl;
-  for (unsigned int i = 1; i < 100; ++i)
-    {
-      double x = i * 0.5;
-      double y_gcc = __gnu_cxx::psi(x);
-      double y_gsl = gsl::psi(x);
-      std::cout << "psi(" << std::setw(5) << x << ") ="
-                << ' ' << std::setw(20) << y_gcc
-                << ' ' << std::setw(20) << y_gsl
-                << ' ' << std::setw(20) << y_gcc - y_gsl
-                << std::endl;
-    }
+  test_psi<double>();
 
   return 0;
 }
