@@ -85,8 +85,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __zeta = _Tp(0);
 
       //  Max e exponent before overflow.
-      const _Tp __max_bincoeff = std::numeric_limits<_Tp>::max_exponent10
-                               * std::log(_Tp(10)) - _Tp(1);
+      const _Tp __max_binom = std::numeric_limits<_Tp>::max_exponent10
+                            * std::log(_Tp(10)) - _Tp(1);
 
       const unsigned int __maxit = 10000;
       for (unsigned int __i = 0; __i < __maxit; ++__i)
@@ -97,22 +97,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
           for (unsigned int __j = 0; __j <= __i; ++__j)
             {
 #if _GLIBCXX_USE_C99_MATH_TR1
-              _Tp __bincoeff =  std::lgamma(_Tp(1 + __i))
-                              - std::lgamma(_Tp(1 + __j))
-                              - std::lgamma(_Tp(1 + __i - __j));
+              _Tp __binom = std::lgamma(_Tp(1 + __i))
+                          - std::lgamma(_Tp(1 + __j))
+                          - std::lgamma(_Tp(1 + __i - __j));
 #else
-              _Tp __bincoeff =  __log_gamma(_Tp(1 + __i))
-                              - __log_gamma(_Tp(1 + __j))
-                              - __log_gamma(_Tp(1 + __i - __j));
+              _Tp __binom = __log_gamma(_Tp(1 + __i))
+                          - __log_gamma(_Tp(1 + __j))
+                          - __log_gamma(_Tp(1 + __i - __j));
 #endif
-              if (__bincoeff > __max_bincoeff)
+              if (__binom > __max_binom)
                 {
                   //  This only gets hit for x << 0.
                   __punt = true;
                   break;
                 }
-              __bincoeff = std::exp(__bincoeff);
-              __term += __sgn * __bincoeff * std::pow(_Tp(__a + __j), -__s);
+              __binom = std::exp(__binom);
+              __term += __sgn * __binom * std::pow(_Tp(__a + __j), -__s);
               __sgn *= _Tp(-1);
             }
           if (__punt)
