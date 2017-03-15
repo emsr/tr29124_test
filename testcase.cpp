@@ -145,14 +145,14 @@ template<typename Real>
     using       std::assoc_legendre;
     using __gnu_cxx::bernoulli;
     using       std::beta;
-    using __gnu_cxx::bincoef;
+    using __gnu_cxx::binomial;
     using __gnu_cxx::chebyshev_t;
     using __gnu_cxx::chebyshev_u;
     using __gnu_cxx::chebyshev_v;
     using __gnu_cxx::chebyshev_w;
     using __gnu_cxx::clausen;
-    using __gnu_cxx::clausen_c;
-    using __gnu_cxx::clausen_s;
+    using __gnu_cxx::clausen_cl;
+    using __gnu_cxx::clausen_sl;
     using __gnu_cxx::comp_ellint_d;
     using       std::comp_ellint_1;
     using       std::comp_ellint_2;
@@ -200,7 +200,7 @@ template<typename Real>
     using __gnu_cxx::jacobi_dn;
     using __gnu_cxx::jacobi_zeta;
     using       std::laguerre;
-    using __gnu_cxx::lbincoef;
+    using __gnu_cxx::lbinomial;
     using __gnu_cxx::ldouble_factorial;
     using       std::legendre;
     using __gnu_cxx::legendre_q;
@@ -1359,32 +1359,32 @@ template<typename Real>
 	     file_ldouble_factorial);
 
     // Binomial coefficient.
-    std::cout << "bincoef" << std::endl;
-    basename = "bincoef";
+    std::cout << "binomial" << std::endl;
+    basename = "binomial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
-    std::ofstream file_bincoef(filename);
-    maketest(bincoef<Real>, gsl::choose,
-	     "testcase_bincoef", "__gnu_cxx", basename,
+    std::ofstream file_binomial(filename);
+    maketest(binomial<Real>, gsl::binomial,
+	     "testcase_binomial", "__gnu_cxx", basename,
 	     "n", fill_argument(std::make_pair(0U, 50U),
 				std::make_pair(true, true), 51),
 	     "k", fill_argument(std::make_pair(0U, 50U),
 				std::make_pair(true, true), 51),
 	     "GSL",
-	     file_bincoef);
+	     file_binomial);
 
     // Log binomial coefficient.
-    std::cout << "lbincoef" << std::endl;
-    basename = "lbincoef";
+    std::cout << "lbinomial" << std::endl;
+    basename = "lbinomial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
-    std::ofstream file_lbincoef(filename);
-    maketest(lbincoef<Real>, gsl::lnchoose,
-	     "testcase_lbincoef", "__gnu_cxx", basename,
+    std::ofstream file_lbinomial(filename);
+    maketest(lbinomial<Real>, gsl::lbinomial,
+	     "testcase_lbinomial", "__gnu_cxx", basename,
 	     "n", fill_argument(std::make_pair(0U, 200U),
 				std::make_pair(true, true), 201),
 	     "k", fill_argument(std::make_pair(0U, 200U),
 				std::make_pair(true, true), 201),
 	     "GSL",
-	     file_lbincoef);
+	     file_lbinomial);
 
     // Gegenbauer polynomials.
     std::cout << "gegenbauer" << std::endl;
@@ -1743,19 +1743,19 @@ template<typename Real>
 	     "Boost",
 	     file_owens_t, true, true);
 
-    // Clausen C function.
-    std::cout << "clausen_c" << std::endl;
-    basename = "clausen_c";
+    // Clausen Cl function.
+    std::cout << "clausen_cl" << std::endl;
+    basename = "clausen_cl";
     filename = get_filename(path, prefix, basename, "",  ".cc");
-    std::ofstream file_clausen_c(filename);
-    maketest(clausen_c<Real>, gsl::clausen_c,
-	     "testcase_clausen_c", "__gnu_cxx", basename,
+    std::ofstream file_clausen_cl(filename);
+    maketest(clausen_cl<Real>, gsl::clausen_cl,
+	     "testcase_clausen_cl", "__gnu_cxx", basename,
 	     "m", fill_argument(std::make_pair(2U, 2U),
 				std::make_pair(true, true), 1),
 	     "w", fill_argument(std::make_pair(Real{-10}, Real{+10}),
 				std::make_pair(true, true), 41),
 	     "GSL",
-	     file_clausen_c, true, true);
+	     file_clausen_cl, true, true);
 
     // Bernoulli numbers.
     std::cout << "bernoulli" << std::endl;

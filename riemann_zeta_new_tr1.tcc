@@ -162,8 +162,8 @@ namespace tr1
 
       const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
       //  Max e exponent before overflow.
-      const _Tp __max_bincoeff = std::exp(std::numeric_limits<_Tp>::max_exponent10
-                               * std::log(_Tp(10)) - _Tp(1));
+      const _Tp __max_binom = std::exp(std::numeric_limits<_Tp>::max_exponent10
+                            * std::log(_Tp(10)) - _Tp(1));
 
       //  This series works until the binomial coefficient blows up
       //  so use reflection.
@@ -198,20 +198,20 @@ namespace tr1
         {
           bool __punt = false;
           _Tp __term = _Tp(1.0L);
-          _Tp __bincoeff = _Tp(1.0L);
+          _Tp __binom = _Tp(1.0L);
           // This for loop starts at 1 because we already calculated the value
           // of the zeroeth order in __term above.
           for (unsigned int __j = 1; __j <= __i; ++__j)
             {
               _Tp incr = _Tp(__i - __j + 1) / _Tp(__j);
-              __bincoeff *= -incr;
-              if(std::abs(__bincoeff) > __max_bincoeff )
+              __binom *= -incr;
+              if(std::abs(__binom) > __max_binom )
                 {
                   // This only gets hit for x << 0.
                   __punt = true;
                   break;
                 }
-              __term += __bincoeff * std::pow(_Tp(1 + __j), -__s);
+              __term += __binom * std::pow(_Tp(1 + __j), -__s);
             }
           if (__punt)
             break;
@@ -366,8 +366,8 @@ namespace tr1
 
       const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
       //  Max e exponent before overflow.
-      const _Tp __max_bincoeff = std::numeric_limits<_Tp>::max_exponent10
-                               * std::log(_Tp(10)) - _Tp(1);
+      const _Tp __max_binom = std::numeric_limits<_Tp>::max_exponent10
+                            * std::log(_Tp(10)) - _Tp(1);
 
       const unsigned int __maxit = 10000;
       for (unsigned int __i = 0; __i < __maxit; ++__i)
@@ -378,22 +378,22 @@ namespace tr1
           for (unsigned int __j = 0; __j <= __i; ++__j)
             {
 #if _GLIBCXX_USE_C99_MATH_TR1
-              _Tp __bincoeff =  _GLIBCXX_MATH_NS::lgamma(_Tp(1 + __i))
-                              - _GLIBCXX_MATH_NS::lgamma(_Tp(1 + __j))
-                              - _GLIBCXX_MATH_NS::lgamma(_Tp(1 + __i - __j));
+              _Tp __binom = _GLIBCXX_MATH_NS::lgamma(_Tp(1 + __i))
+                          - _GLIBCXX_MATH_NS::lgamma(_Tp(1 + __j))
+                          - _GLIBCXX_MATH_NS::lgamma(_Tp(1 + __i - __j));
 #else
-              _Tp __bincoeff =  __log_gamma(_Tp(1 + __i))
-                              - __log_gamma(_Tp(1 + __j))
-                              - __log_gamma(_Tp(1 + __i - __j));
+              _Tp __binom = __log_gamma(_Tp(1 + __i))
+                          - __log_gamma(_Tp(1 + __j))
+                          - __log_gamma(_Tp(1 + __i - __j));
 #endif
-              if (__bincoeff > __max_bincoeff)
+              if (__binom > __max_binom)
                 {
                   //  This only gets hit for x << 0.
                   __punt = true;
                   break;
                 }
-              __bincoeff = std::exp(__bincoeff);
-              __term += __sgn * __bincoeff * std::pow(_Tp(__j + __a), -__s);
+              __binom = std::exp(__binom);
+              __term += __sgn * __binom * std::pow(_Tp(__j + __a), -__s);
               __sgn *= _Tp(-1);
             }
           if (__punt)

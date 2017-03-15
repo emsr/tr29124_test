@@ -445,7 +445,7 @@ template<typename Tp>
     //std::cout << "\nTest negative integer order\n";
     for (auto n : {-1, -2, -3, -4, -5})
       {
-	std::cout << "\n\nn = " << n << '\n';
+	std::cout << "\n\nNegative integer degere: n = " << n << '\n';
 	const auto del = Tp{1} / Tp{20};
 	for (int i = -200; i <= 20; ++i)
 	  {
@@ -483,12 +483,14 @@ template<typename Tp>
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::scientific;
 
-    std::cout << "\n\nTest against algebraic function\n";
+    std::cout << "\n\nTest against algebraic function for Li_0\n";
     const auto del = Tp{1} / Tp{10};
     for (int i = -200; i <= 10; ++i)
       {
 	auto x = del * i;
-	auto Li0 = x / (Tp{1} - x);
+	auto Li0 = __gnu_cxx::__fp_is_zero(Tp{1} - x)
+		 ? std::numeric_limits<Tp>::quiet_NaN()
+		 : x / (Tp{1} - x);
 	auto Lis_gnu = __gnu_cxx::polylog(Tp{0}, x);
 	std::cout << ' ' << x
 		  << ' ' << Li0
@@ -505,12 +507,14 @@ template<typename Tp>
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::scientific;
 
-    std::cout << "\n\nTest against algebraic function\n";
+    std::cout << "\n\nTest against algebraic function for Li_1\n";
     const auto del = Tp{1} / Tp{10};
     for (int i = -200; i <= 10; ++i)
       {
 	auto x = del * i;
-	auto Li1 = -std::log(Tp{1} - x);
+	auto Li1 = __gnu_cxx::__fp_is_zero(Tp{1} - x)
+		 ? std::numeric_limits<Tp>::quiet_NaN()
+		 : -std::log(Tp{1} - x);
 	auto Lis_gnu = __gnu_cxx::polylog(Tp{1}, x);
 	std::cout << ' ' << x
 		  << ' ' << Li1
@@ -552,7 +556,7 @@ template<typename Tp>
     //std::cout << "\nTest against Cephes for integer order\n";
     for (auto n : {0, 1, 2, 3, 4, 5})
       {
-	std::cout << "\n\nn = " << n << '\n';
+	std::cout << "\n\nNon-negative integer degere: n = " << n << '\n';
 	const auto del = Tp{1} / Tp{10};
 	for (int i = -200; i <= 10; ++i)
 	  {
@@ -611,23 +615,23 @@ template<typename Tp>
       std::cout << std::__detail::__polylog_exp(Tp{2.6}, w) << '\n';
       std::cout << std::__detail::__polylog_exp(Tp{-2.6}, w) << '\n';
     }
-    std::cout << std::endl;
+    std::cout << '\n';
 
-    std::cout << std::__detail::__polylog_exp(Tp{2.6}, std::complex<Tp>(_S_pi, _S_pi)) << '\n';
+    std::cout << '\n' << std::__detail::__polylog_exp(Tp{2.6}, std::complex<Tp>(_S_pi, _S_pi)) << '\n';
 
     for(std::size_t k = 0; k < 10; ++k)
     {
       auto w = std::complex<Tp>(-_S_pi / 2 - _S_pi / 5, 0);
       std::cout << std::__detail::__polylog_exp(-Tp{4}, w) << '\n';
-      std::cout << std::__detail::__polylog_exp_negative_real_part(-Tp{4}, w) << '\n';
+      std::cout << std::__detail::__polylog_exp_neg_real_part(-Tp{4}, w) << '\n';
     }
     std::cout << std::endl;
 
-    std::cout << std::__detail::__polylog_exp_neg(Tp{-50.5}, std::complex<Tp>(Tp{1}, Tp{1})) << '\n';
-    std::cout << std::__detail::__polylog_exp_neg(Tp{-5}, std::complex<Tp>(Tp{1}, Tp{1})) << '\n';
-    std::cout << std::__detail::__polylog_exp_pos(Tp{2.3}, std::complex<Tp>(Tp{1}, Tp{1})) << '\n';
+    std::cout << '\n' << std::__detail::__polylog_exp_neg(Tp{-50.5}, std::complex<Tp>(Tp{1}, Tp{1})) << '\n';
+    std::cout << '\n' << std::__detail::__polylog_exp_neg(Tp{-5}, std::complex<Tp>(Tp{1}, Tp{1})) << '\n';
+    std::cout << '\n' << std::__detail::__polylog_exp_pos(Tp{2.3}, std::complex<Tp>(Tp{1}, Tp{1})) << '\n';
     //Don't trust Mathematica for small s
-    std::cout << std::__detail::__polylog_exp_asymp(Tp{60.4}, std::complex<Tp>(Tp{30}, Tp{0})) << '\n';
+    std::cout << '\n' << std::__detail::__polylog_exp_asymp(Tp{60.4}, std::complex<Tp>(Tp{30}, Tp{0})) << '\n';
 
     // auto l = 2;
     // auto p = std::atan(l);
@@ -651,10 +655,10 @@ template<typename Tp>
       test << s << ' ' << std::real(std::__detail::__polylog(s, Tp{2})) - Tp{2} << '\n';
     test << std::endl;
 
-    std::cout << std::__detail::__polylog(Tp{3.1}, Tp{2}) << '\n';
-    std::cout << std::__detail::__polylog_exp_pos(Tp{3.1}, std::complex<Tp>(std::log(Tp{2}))) << '\n';
+    std::cout << '\n' << std::__detail::__polylog(Tp{3.1}, Tp{2}) << '\n';
+    std::cout << '\n' << std::__detail::__polylog_exp_pos(Tp{3.1}, std::complex<Tp>(std::log(Tp{2}))) << '\n';
 
-    std::cout << "\nTest function 1:\n";
+    std::cout << "\nTest function 1 [PolyLog_Exp_pos(k,exp(i2pik)]:\n";
     for (std::size_t k = 3; k < 8; ++k)
       for (Tp x = 0; x < Tp{1}; x += del05)
 	std::cout << k
@@ -663,7 +667,7 @@ template<typename Tp>
 		  << '\n';
     std::cout << std::endl;
 
-    std::cout << "\nTest function 2:\n";
+    std::cout << "\nTest function 2 [PolyLog_Exp_pos(k,x)]:\n";
     for (std::size_t k = 3; k < 8; ++k)
       for (Tp x = 0; x < 6.28; x += del05)
 	std::cout << k
@@ -672,8 +676,8 @@ template<typename Tp>
 		  << '\n';
     std::cout << std::endl;
 
-    std::cout << "\nTest function 3:\n";
-    for (Tp k = -Tp{8}; k < 0; k += Tp{1}/Tp{13})
+    std::cout << "\nTest function 3 [PolyLog_Exp_neg(s<0, exp(i2pik)]:\n";
+    for (Tp k = -Tp{8}; k < Tp{0}; k += Tp{1} / Tp{13})
       for(Tp x = 0; x < Tp{1}; x += del05)
 	std::cout << k
 		  << ' ' << x
@@ -681,7 +685,7 @@ template<typename Tp>
 		  << '\n';
     std::cout << std::endl;
 
-    std::cout << "\nTest function 4 + 5:\n";
+    std::cout << "\nTest function 4 + 5 [PolyLog_Exp_neg(k<0, exp(i2pik]:\n";
     for (int k = -40; k < 0; ++k)
       for (Tp x = 0; x < Tp{1}; x += del05)
 	std::cout << k
@@ -690,7 +694,7 @@ template<typename Tp>
 		  << '\n';
     std::cout << std::endl;
 
-    std::cout << "\nTest series 6:\n";
+    std::cout << "\nTest series 6 [PolyLog_Exp_pos(s, exp(i2pix)]:\n";
     for (Tp k = Tp{1} / Tp{7}; k < Tp{13}; k += Tp{1} / Tp{11})
       for (Tp x = Tp{0}; x < Tp{1}; x += del05)
 	std::cout << k
@@ -699,7 +703,7 @@ template<typename Tp>
 		  << '\n';
     std::cout << std::endl;
 
-    std::cout << "\nTest series 7:\n";
+    std::cout << "\nTest series 7 [PolyLog_Exp_asym(k, 100 exp(i2pix))]:\n";
     for (Tp k = Tp{-13}; k < Tp{13}; k += Tp{1} / Tp{11})
       for (Tp x = Tp{0}; x < Tp{1}; x += del01)
 	std::cout << k
@@ -708,12 +712,12 @@ template<typename Tp>
 		  << '\n';
     std::cout << std::endl;
 
-    std::cout << "\nTest series 8:\n";
+    std::cout << "\nTest series 8 [PolyLog_Exp_negative_real_part(k, x)]:\n";
     for (Tp k = -Tp{13}; k < Tp{13}; k += Tp{1} / Tp{11})
       for (Tp x = -Tp{7} / Tp{10} * _S_pi; x > -_S_2pi; x -= del05)
 	std::cout << k
 		  << ' ' << x
-		  << ' ' << std::__detail::__polylog_exp_negative_real_part(k, x)
+		  << ' ' << std::__detail::__polylog_exp_neg_real_part(k, x)
 		  << '\n';
     std::cout << std::endl;
   }
@@ -733,9 +737,9 @@ main()
 
   TestPolyLog<double>();
 
-  TestPolyLog<float>();
+  //TestPolyLog<float>();
 
-  TestPolyLog<long double>();
+  //TestPolyLog<long double>();
 
   // This works but it takes forever.
   //TestPolyLog<__float128>();

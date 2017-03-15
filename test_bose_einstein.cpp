@@ -1,9 +1,9 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bose_einstein test_bose_einstein.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-./test_bose_einstein > test_bose_einstein.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_bose_einstein > test_bose_einstein.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_bose_einstein test_bose_einstein.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-./test_bose_einstein > test_bose_einstein.txt
+PATH=wrappers/debug:$PATH ./test_bose_einstein > test_bose_einstein.txt
 */
 
 #include <iostream>
@@ -93,7 +93,8 @@ main()
   std::cout << "\nlong double\n===========\n";
   run_bose_einstein<long double>();
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+// This works but takes too long.
+#if 0 && !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   std::cout << "\n__float128\n==========\n";
   run_bose_einstein<__float128>();
 #endif

@@ -633,7 +633,7 @@ lpochhammer(double a, double x)
 double
 lpochhammer_lower(double a, double x)
 {
-  return std::log(boost::math::falling_factorial(a, x));
+  return std::log(std::abs(boost::math::falling_factorial(a, x)));
 }
 
 /// Upper Pochhammer symbol.
@@ -729,14 +729,14 @@ jacobi(unsigned int /*n*/, double /*alpha*/, double /*beta*/, double /*x*/)
 
 /// Binomial coefficients.
 double
-choose(unsigned int /*n*/, unsigned int /*k*/)
+binomial(unsigned int /*n*/, unsigned int /*k*/)
 {
   return std::numeric_limits<double>::quiet_NaN();//boost::math::binomial_coefficient(n, k);
 }
 
 /// Log binomial coefficients.
 double
-lnchoose(unsigned int /*n*/, unsigned int /*k*/)
+lbinomial(unsigned int /*n*/, unsigned int /*k*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -832,9 +832,9 @@ owens_t(double h, double a)
   return boost::math::owens_t(h, a);
 }
 
-/// Clausen function of order 2.
+/// Clausen Cl function of order 2.
 double
-clausen_c(unsigned int /*m*/, double /*w*/)
+clausen_cl(unsigned int /*m*/, double /*w*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }

@@ -33,7 +33,7 @@
 
   Prevent collision with an extra constants namespace after std.
   Add namespace versioning.
-  Should I insert an experimental namespace between std and constants?
+  This should go right into std not through experimental.
 
   Should we default to double?  Doing so might play nice with auto.
 
@@ -54,10 +54,6 @@
 #else
 
 namespace std
-{
-namespace experimental
-{
-inline namespace maths_v1
 {
 inline namespace constants
 {
@@ -97,16 +93,6 @@ inline namespace math_constants
   template<typename _RealType>
     constexpr _RealType
     m_4pi           = 1.2566'37061'43591'72953'85057'35331'18011'53678e+1L;
-
-  /// Constant: degrees per radian @f$ 180 / \pi @f$.
-  template<typename _RealType>
-    constexpr _RealType
-    m_deg_rad       = 5.7295'77951'30823'20876'79815'48141'05170'33237e+1L;
-
-  /// Constant: radians per degree @f$ \pi / 180 @f$.
-  template<typename _RealType>
-    constexpr _RealType
-    m_rad_deg       = 1.7453'29251'99432'95769'23690'76848'86127'13443e-2L;
 
   /// Constant: @f$ \sqrt{\pi / 2} @f$.
   template<typename _RealType>
@@ -235,8 +221,6 @@ inline namespace math_constants
 
 } // inline namespace math_constants
 } // inline namespace constants
-} // inline namespace maths_v1
-} // namespace experimental
 } // namespace std
 
 #endif // C++14

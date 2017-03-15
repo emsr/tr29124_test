@@ -393,12 +393,12 @@ namespace __gnu_cxx
   { return std::__detail::__log_double_factorial<__float128>(__n); }
 
   inline __float128
-  bincoefq(unsigned int __n, unsigned int __k)
-  { return std::__detail::__bincoef<__float128>(__n, __k); }
+  binomialq(unsigned int __n, unsigned int __k)
+  { return std::__detail::__binomial<__float128>(__n, __k); }
 
   inline __float128
-  lbincoefq(unsigned int __n, unsigned int __k)
-  { return std::__detail::__log_bincoef<__float128>(__n, __k); }
+  lbinomialq(unsigned int __n, unsigned int __k)
+  { return std::__detail::__log_binomial<__float128>(__n, __k); }
 
   inline __float128
   legendre_qq(unsigned int __n, __float128 __x)
@@ -486,12 +486,12 @@ namespace __gnu_cxx
   { return std::__detail::__dirichlet_lambda<__float128>(__s); }
 
   inline __float128
-  clausen_sq(unsigned int __m, __float128 __w)
-  { return std::__detail::__clausen_s<__float128>(__m, __w); }
+  clausen_slq(unsigned int __m, __float128 __w)
+  { return std::__detail::__clausen_sl<__float128>(__m, __w); }
 
   inline __float128
-  clausen_cq(unsigned int __m, __float128 __w)
-  { return std::__detail::__clausen_c<__float128>(__m, __w); }
+  clausen_clq(unsigned int __m, __float128 __w)
+  { return std::__detail::__clausen_cl<__float128>(__m, __w); }
 
   inline __float128
   clausenq(unsigned int __m, __float128 __w)

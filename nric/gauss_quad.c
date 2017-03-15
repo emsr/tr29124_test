@@ -6,7 +6,6 @@
 #include "nric.h"
 
 #define EPS 1.0e-15
-#define MAXIT 40
 #define PIM4 0.7511255444649425
 
 
@@ -63,21 +62,20 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
   gauss_legendre(int n, double a, double b, double *x, double *w)
   {
 
-    int m, k = 0;
-    double bpa, bma;
+    int k = 0;
     int i, j;
-    double z1, z;
+    double z;
     double p2, p1, p, pp;
 
-    m = (n + 1) / 2;
-    bpa = (b + a) / 2.0;
-    bma = (b - a) / 2.0;
+    const auto m = (n + 1) / 2;
+    const auto bpa = (b + a) / 2.0;
+    const auto bma = (b - a) / 2.0;
 
     for  (i = 1; i <= m; i++)
       {
 	z = std::cos(PI * (i - 1.0 / 4.0) / (n + 1.0 / 2.0));    /*    Clever approximation of root.    */
 	k = 0;
-	do
+	while (true)
 	  {
 	    /*
 	     *    Compute p, p1, and p2 the Legendre polynomials of order n, n-1, n-2 respectively
@@ -91,11 +89,12 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
 		p = ((2.0 * j - 1.0) * z * p1 - (j - 1.0) * p2) / j;  /*  Recursion relation for legendre polynomials.  */
 	      }
 	    pp = n * (z * p - p1) / (z * z - 1.0);  /*  Recursion relation for derivatives of legendre polynomials.  */
-	    z1 = z;
+	    const auto z1 = z;
 	    z = z1 - p / pp;  /*  Converge on root by Newton's method.  */
 	    k = k + 1;
+	    if (std::abs(z - z1) < EPS)
+	      break;
 	  }
-	while  (std::abs(z - z1) > EPS);
 
 	x[i] = bpa - bma*z;
 	x[n + 1 - i] = bpa + bma * z;
@@ -109,11 +108,12 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
   void
   gauss_laguerre(double *x, double *w, int n, double alpha)
   {
-    int i, its, j;
+    int its;
     double ai;
-    double p1, p2, p3, pp, z, z1;
+    double p2, pp, z;
+    const int MAXIT = 40;
 
-    for (i = 1; i <= n; ++i)
+    for (int i = 1; i <= n; ++i)
       {
 	if (i == 1)
 	  z = (1.0 + alpha) * (3.0 + 0.92 * alpha) / (1.0 + 2.4 * n + 1.8 * alpha);
@@ -126,16 +126,16 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
 	  }
 	for (its = 1; its <= MAXIT; ++its)
 	  {
-	    p1 = 1.0;
+	    auto p1 = 1.0;
 	    p2 = 0.0;
-	    for (j = 1; j <= n; ++j)
+	    for (int j = 1; j <= n; ++j)
 	      {
-		p3 = p2;
+		const auto p3 = p2;
 		p2 = p1;
 		p1 = ((2 * j - 1 + alpha - z) * p2 - (j - 1 + alpha) * p3) / j;
 	      }
 	    pp = (n * p1 - (n + alpha) * p2) / z;
-	    z1 = z;
+	    const auto z1 = z;
 	    z = z1 - p1 / pp;
 	    if (std::abs(z - z1) <= 100 * EPS)
 	      break;
@@ -152,11 +152,12 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
   void 
   gauss_hermite(double *x, double *w, unsigned int n)
   {
-    int i, its, j, m;
-    double p1, p2, p3, pp, z, z1;
+    int its;
+    double p2, pp, z;
+    const int MAXIT = 40;
 
-    m = (n+1)/2;
-    for (auto i = 1u; i <= m; ++i)
+    auto m = (n+1)/2;
+    for (auto i = 1; i <= m; ++i)
       {
 	if (i == 1)
 	  z = std::sqrt(2.0 * n + 1.0)
@@ -171,16 +172,16 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
 	  z = 2.0 * z - x[i - 2];
 	for (its = 1; its <= MAXIT; ++its)
 	  {
-	    p1 = PIM4;
+	    auto p1 = PIM4;
 	    p2 = 0.0;
-	    for (j = 1; j <= n; ++j)
+	    for (int j = 1; j <= n; ++j)
 	      {
-		p3 = p2;
+		const auto p3 = p2;
 		p2 = p1;
 		p1 = z * std::sqrt(2.0 / j) * p2 - std::sqrt(1.0 * (j - 1) / j) * p3;
 	      }
 	    pp = std::sqrt(2.0 * n) * p2;
-	    z1 = z;
+	    const auto z1 = z;
 	    z = z1 - p1 / pp;
 	    if (std::abs(z - z1) <= EPS)
 	      break;
@@ -199,11 +200,11 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
   void
   gauss_jacobi(double *x, double *w, unsigned int n, double alpha, double beta)
   {
-    int i, its, j;
-    double alphabeta;
-    double a, b, c, p1, p2, p3, pp, temp, z, z1;
+    int its;
+    double p2, pp, z;
+    const int MAXIT = 40;
 
-    for (i = 1; i <= n; ++i)
+    for (int i = 1; i <= n; ++i)
       {
 	if (i == 1)
 	  {
@@ -246,24 +247,24 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
 	    z = 3.0 * x[i - 1] - 3.0 * x[i - 2] + x[i - 3];
 	  }
 
-	alphabeta = alpha + beta;
+	auto alphabeta = alpha + beta;
+	auto temp = 2.0 + alphabeta;
 	for (its = 1; its <= MAXIT; ++its)
 	  {
-	    temp = 2.0 + alphabeta;
-	    p1 = (alpha - beta + temp * z) / 2.0;
+	    auto p1 = (alpha - beta + temp * z) / 2.0;
 	    p2 = 1.0;
-	    for (j = 2; j <= n; ++j)
+	    for (int j = 2; j <= n; ++j)
 	      {
-		p3 = p2;
+		const auto p3 = p2;
 		p2 = p1;
 		temp = 2.0 * j + alphabeta;
-		a = 2.0 * j * (j + alphabeta) * (temp - 2.0);
-		b = (temp - 1.0) * (alpha * alpha - beta * beta + temp * (temp - 2.0) * z);
-		c = 2.0 * (j - 1 + alpha) * (j - 1 + beta) * temp; 
+		const auto a = 2.0 * j * (j + alphabeta) * (temp - 2.0);
+		const auto b = (temp - 1.0) * (alpha * alpha - beta * beta + temp * (temp - 2.0) * z);
+		const auto c = 2.0 * (j - 1 + alpha) * (j - 1 + beta) * temp; 
 		p1 = (b * p2 - c * p3) / a;
 	      }
 	    pp = (n * (alpha - beta - temp * z) * p1 + 2.0 * (n + alpha) * (n + beta) * p2) / (temp * (1.0 - z * z));
-	    z1 = z;
+	    const auto z1 = z;
 	    z = z1 - p1/pp;
 	    if (std::abs(z - z1) <= EPS)
 	      break;
@@ -282,6 +283,8 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
   void
   gauss_gegenbauer(double *x, double *w, unsigned int n, double alpha)
   {
+    const int MAXIT = 40;
+    int its;
     for (int i = 1; i <= n; ++i)
       {
 	double z;
@@ -325,30 +328,31 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
 	    z = 3.0 * x[i - 1] - 3.0 * x[i - 2] + x[i - 3];
 	  }
 
+        double p2, pp;
 	auto alphaalpha = alpha + alpha;
+	auto temp = 2.0 + alphaalpha;
 	for (int its = 1; its <= MAXIT; ++its)
 	  {
-	    auto temp = 2.0 + alphaalpha;
 	    auto p1 = (alpha - alpha + temp * z) / 2.0;
-	    auto p2 = 1.0;
+	    p2 = 1.0;
 	    for (int j = 2; j <= n; ++j)
 	      {
-		auto p3 = p2;
+		const auto p3 = p2;
 		p2 = p1;
 		temp = 2.0 * (j + alpha);
-		auto a = 2.0 * j * (j + alphaalpha) * (temp - 2.0);
-		auto b = (temp - 1.0) * (temp * (temp - 2.0) * z);
-		auto c = 2.0 * (j - 1 + alpha) * (j - 1 + alpha) * temp; 
+		const auto a = 2.0 * j * (j + alphaalpha) * (temp - 2.0);
+		const auto b = (temp - 1.0) * (temp * (temp - 2.0) * z);
+		const auto c = 2.0 * (j - 1 + alpha) * (j - 1 + alpha) * temp; 
 		p1 = (b * p2 - c * p3) / a;
 	      }
-	    auto pp = (n * (-temp * z) * p1 + 2.0 * (n + alpha) * (n + alpha) * p2) / (temp * (1.0 - z * z));
-	    auto z1 = z;
+	    pp = (n * (-temp * z) * p1 + 2.0 * (n + alpha) * (n + alpha) * p2) / (temp * (1.0 - z * z));
+	    const auto z1 = z;
 	    z = z1 - p1 / pp;
 	    if (std::abs(z - z1) <= EPS)
 	      break;
 	  }
 	if (its > MAXIT)
-	  nrerror("Too many iterations in gauss_jacobi.");
+	  nrerror("Too many iterations in gauss_gegenbauer.");
 	x[i] = z;
 	w[i] = std::exp(std::lgamma(alpha + n)
 		  + std::lgamma(alpha + n)

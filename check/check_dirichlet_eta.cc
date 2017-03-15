@@ -44,8 +44,8 @@
 // Divergence at s=0.80000000000000071 f=-inf f_GSL=0.65985466267981696
 // Test data.
 // max(|f - f_GSL|): 7.7500000000000027
-// max(|f - f_GSL| / |f_GSL|): 5.1392882667089506e-15
-// mean(f - f_GSL): -0.13848039215686228
+// max(|f - f_GSL| / |f_GSL|): 5.0169242603587372e-15
+// mean(f - f_GSL): -0.13848039215686217
 // variance(f - f_GSL): inf
 // stddev(f - f_GSL): inf
 const testcase_dirichlet_eta<double>
@@ -108,11 +108,11 @@ const double toler001 = 5.0000000000000039e-13;
 
 
 // Test data.
-// max(|f - f_GSL|): 9.9920072216264089e-16
-// max(|f - f_GSL| / |f_GSL|): 1.3287551992583114e-15
-// mean(f - f_GSL): -8.1926802506821900e-17
-// variance(f - f_GSL): 4.6934806158555690e-35
-// stddev(f - f_GSL): 6.8508982008606501e-18
+// max(|f - f_GSL|): 8.8817841970012523e-16
+// max(|f - f_GSL| / |f_GSL|): 1.1811157326740546e-15
+// mean(f - f_GSL): -1.6079092080778131e-17
+// variance(f - f_GSL): 1.8078652734669456e-36
+// stddev(f - f_GSL): 1.3445688057763893e-18
 const testcase_dirichlet_eta<double>
 data002[145] =
 {

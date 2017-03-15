@@ -79,12 +79,12 @@ ${copy} check/check_sph_neumann.cc      ${test_dir}/21_sph_neumann/check_value.c
 ${makedir} ${text_dir}/airy_ai
 ${makedir} ${text_dir}/airy_bi
 ${makedir} ${text_dir}/bernoulli
-${makedir} ${text_dir}/bincoef
+${makedir} ${text_dir}/binomial
 ${makedir} ${text_dir}/chebyshev_t
 ${makedir} ${text_dir}/chebyshev_u
 ${makedir} ${text_dir}/chebyshev_v
 ${makedir} ${text_dir}/chebyshev_w
-${makedir} ${text_dir}/clausen
+${makedir} ${text_dir}/clausen_cl
 ${makedir} ${text_dir}/comp_ellint_d
 ${makedir} ${text_dir}/conf_hyperg
 ${makedir} ${text_dir}/conf_hyperg_lim
@@ -121,7 +121,7 @@ ${makedir} ${text_dir}/jacobi
 ${makedir} ${text_dir}/jacobi_sn
 ${makedir} ${text_dir}/jacobi_cn
 ${makedir} ${text_dir}/jacobi_dn
-${makedir} ${text_dir}/lbincoef
+${makedir} ${text_dir}/lbinomial
 ${makedir} ${text_dir}/ldouble_factorial
 ${makedir} ${text_dir}/legendre_q
 ${makedir} ${text_dir}/lfactorial
@@ -160,13 +160,13 @@ ${copy} check/deathmatch_hyperg.cc        ${text_dir}/deathmatch_hyperg.cc
 ${copy} check/check_airy_ai.cc            ${text_dir}/airy_ai/check_value.cc
 ${copy} check/check_airy_bi.cc            ${text_dir}/airy_bi/check_value.cc
 ${copy} check/check_bernoulli.cc          ${text_dir}/bernoulli/check_value.cc
-${copy} check/check_bincoef.cc            ${text_dir}/bincoef/check_value.cc
+${copy} check/check_binomial.cc           ${text_dir}/binomial/check_value.cc
 ${copy} check/check_chebyshev_t.cc        ${text_dir}/chebyshev_t/check_value.cc
 ${copy} check/check_chebyshev_u.cc        ${text_dir}/chebyshev_u/check_value.cc
 ${copy} check/check_chebyshev_v.cc        ${text_dir}/chebyshev_v/check_value.cc
 ${copy} check/check_chebyshev_w.cc        ${text_dir}/chebyshev_w/check_value.cc
 ${copy} check/check_chi.cc                ${text_dir}/coshint/check_chi.cc
-${copy} check/check_clausen_c.cc          ${text_dir}/clausen/check_value.cc
+${copy} check/check_clausen_cl.cc         ${text_dir}/clausen_cl/check_value.cc
 ${copy} check/check_comp_ellint_d.cc      ${text_dir}/comp_ellint_d/check_value.cc
 ${copy} check/check_conf_hyperg.cc        ${text_dir}/conf_hyperg/check_value.cc
 ${copy} check/check_conf_hyperg_lim.cc    ${text_dir}/conf_hyperg_lim/check_value.cc
@@ -205,7 +205,7 @@ ${copy} check/check_jacobi.cc             ${text_dir}/jacobi/check_value.cc
 ${copy} check/check_jacobi_sn.cc          ${text_dir}/jacobi_sn/check_value.cc
 ${copy} check/check_jacobi_cn.cc          ${text_dir}/jacobi_cn/check_value.cc
 ${copy} check/check_jacobi_dn.cc          ${text_dir}/jacobi_dn/check_value.cc
-${copy} check/check_lbincoef.cc           ${text_dir}/lbincoef/check_value.cc
+${copy} check/check_lbinomial.cc          ${text_dir}/lbinomial/check_value.cc
 ${copy} check/check_ldouble_factorial.cc  ${text_dir}/ldouble_factorial/check_value.cc
 ${copy} check/check_legendre_q.cc         ${text_dir}/legendre_q/check_value.cc
 ${copy} check/check_lfactorial.cc         ${text_dir}/lfactorial/check_value.cc

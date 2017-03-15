@@ -72,14 +72,14 @@ template<typename Real>
     using       std::assoc_legendre;
     using __gnu_cxx::bernoulli;
     using       std::beta;
-    using __gnu_cxx::bincoef;
+    using __gnu_cxx::binomial;
     using __gnu_cxx::chebyshev_t;
     using __gnu_cxx::chebyshev_u;
     using __gnu_cxx::chebyshev_v;
     using __gnu_cxx::chebyshev_w;
     using __gnu_cxx::clausen;
-    using __gnu_cxx::clausen_c;
-    using __gnu_cxx::clausen_s;
+    using __gnu_cxx::clausen_cl;
+    using __gnu_cxx::clausen_sl;
     using __gnu_cxx::comp_ellint_d;
     using       std::comp_ellint_1;
     using       std::comp_ellint_2;
@@ -125,7 +125,7 @@ template<typename Real>
     using __gnu_cxx::jacobi_dn;
     using __gnu_cxx::jacobi_zeta;
     using       std::laguerre;
-    using __gnu_cxx::lbincoef;
+    using __gnu_cxx::lbinomial;
     using __gnu_cxx::ldouble_factorial;
     using       std::legendre;
     using __gnu_cxx::legendre_q;
