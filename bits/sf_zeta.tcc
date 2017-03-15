@@ -353,7 +353,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
       //  Max e exponent before overflow.
-      const auto __max_bincoeff
+      const auto __max_binom
 		 = std::exp(__gnu_cxx::__max_exponent10(std::real(__s))
 			    * std::log(_Real{10}) - _Real{1});
 
@@ -365,20 +365,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       for (unsigned int __i = 1; __i < __maxit; ++__i)
 	{
 	  bool __punt = false;
-	  auto __bincoeff = _Real{1};
+	  auto __binom = _Real{1};
 	  auto __term = _Val{0};
 	  // This for loop starts at 1 because we already calculated the value
 	  // of the zeroeth order in __term above.
 	  for (unsigned int __j = 1; __j <= __i; ++__j)
 	    {
-	      __bincoeff *= -_Real(__i - __j + 1) / _Real(__j);
-	      if(std::abs(__bincoeff) > __max_bincoeff )
+	      __binom *= -_Real(__i - __j + 1) / _Real(__j);
+	      if(std::abs(__binom) > __max_binom )
 		{
 		  // This only gets hit for x << 0.
 		  __punt = true;
 		  break;
 		}
-	      __term += __bincoeff * std::pow(_Val(1 + __j), -__s);
+	      __term += __binom * std::pow(_Val(1 + __j), -__s);
 	    }
 	  if (__punt)
 	    break;
