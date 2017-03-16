@@ -5,14 +5,13 @@ check_assoc_laguerre
 check_assoc_legendre
 check_bernoulli
 check_beta
-check_bincoef
+check_binomial
 check_chebyshev_t
 check_chebyshev_u
 check_chebyshev_v
 check_chebyshev_w
 check_chi
-check_clausen_c
-line 118  max_abs_frac = 5.37795
+check_clausen_cl
 check_comp_ellint_1
 check_comp_ellint_2
 check_comp_ellint_3
@@ -65,7 +64,7 @@ check_jacobi_dn
 check_jacobi_sn
 check_jacobi_zeta
 check_laguerre
-check_lbincoef
+check_lbinomial
 check_ldouble_factorial
 check_legendre
 check_legendre
@@ -125,7 +124,6 @@ check_psi
 check_qgamma
 check_radpoly
 check_riemann_zeta
-line 305  max_abs_frac = 2.14159
 check_shi
 check_sinc
 check_sinc_pi
@@ -133,13 +131,6 @@ check_sinhint
 check_sinint
 check_sin_pi
 check_sph_bessel
-line 528  max_abs_frac = 2.08323
-line 528  max_abs_frac = 40.2206
-line 528  max_abs_frac = 14.0217
-line 528  max_abs_frac = 14.0217
-line 528  max_abs_frac = 14.0217
-line 528  max_abs_frac = 14.0217
-line 528  max_abs_frac = 14.0217
 check_sph_bessel_i
 check_sph_bessel_k
 check_sph_hankel_1

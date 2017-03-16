@@ -443,6 +443,7 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 
 97. [] The plots for Fermi-Dirac and Bose-Einstein look choppy.
        I need to jump in and work on polylog.
+       The chop starts at that trasition at 6.
 
 98. [DONE] test_gamma_recip - the thing that makes the coefficients should stop
        when the last coeff is smaller than epsilon.

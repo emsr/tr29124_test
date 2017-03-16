@@ -1,0 +1,100 @@
+
+97. [] The plots for Fermi-Dirac and Bose-Einstein look choppy.
+       I need to jump in and work on polylog.
+       The chop starts at that trasition at 6.
+
+108. [] Look into folding polylog cases:
+            __polylog_exp_pos(unsigned int __s, std::complex<_Tp> __w)
+            __polylog_exp_pos(unsigned int __s, _Tp __w)
+            __polylog_exp_pos(_Tp __s, std::complex<_Tp> __w)
+        and
+            __polylog_exp_neg(_Tp __s, std::complex<_Tp> __w)
+            __polylog_exp_neg(int __n, std::complex<_Tp> __w)
+        and
+            __polylog_exp_int_pos(unsigned int __s, std::complex<_Tp> __w)
+            __polylog_exp_int_pos(unsigned int __s, _Tp __w)
+        and
+            __polylog_exp_int_neg(int __s, std::complex<_Tp> __w)
+            __polylog_exp_int_neg(int __s, _Tp __w)
+        and
+            __polylog_exp_real_pos(_Tp __s, std::complex<_Tp> __w)
+            __polylog_exp_real_pos(_Tp __s, _Tp __w)
+        and
+            __polylog_exp_real_neg(_Tp __s, std::complex<_Tp> __w)
+            __polylog_exp_real_neg(_Tp __s, _Tp __w)
+
+109. [] Learn how to plot even steps in log space and use it to pick up details in polylog
+        near the origin.
+        Maybe a plot_utils.h would be nice.
+
+110. [DONE] If 2^{-s} < epsilon, zeta == 1.
+        For zetam1 you should keep trying - that's why we have it.
+        The polylog_asymp is slow.
+
+120. [] check/check_dirichlet_eta.cc  -- 0 < s < 1.
+        Dive into polylog.  Could use reflection.
+
+
+
+WORKS: Test against algebraic function for Li_0.
+
+WORKS: Test against algebraic function for Li_1.
+
+WORKS: Test against local dilog.
+	For s < -12.6 there is divergence - Li_2 is broken for real arg and presumably integral s == 2.
+	The divergence gets better with increasing s.
+	Fixed.
+
+WORKS: Non-negative integer s(0, ..., 5), real arument.
+	s == 1, x == 1: log singularity error
+
+WORKS: Negative integer (-1, ..., -5
+	Original series hosed
+	For negative integer s all three of my formulations involving numbers agree very well.
+
+	The original series test as follows
+	  -2 works for s > -1
+	  -3 looks redeemable for x > 0
+	  -4 is dead on!
+	  -5 looks redeemable all over
+
+Now start with zeta tests:
+
+=======  N  ==========
+The second pair of lines are broken:
+      std::cout << mytr1::__detail::PolyLog_Exp(2.6, arg) << std::endl;
+      std::cout << mytr1::__detail::PolyLog_Exp(-2.6, arg) << std::endl;
+The first pair are +/-4.0, arg.
+OK, now the first pair!
+Now the second pair is OK and the first pair are dodgy! WTF!
+
+Finally, It seems that negative integrer (the -4) with complex args is borked.
+
+
+WORKS: Test function 1 [PolyLog_Exp_pos(k,exp(i2pik)]:
+	Now broken!
+
+WORKS: Test function 2 [PolyLog_Exp_pos(k,x)]:
+	real parts diverge from 5.5 onwards.  Gets better with increasing degree.
+	Looks like a breakdown.
+	Fixed.
+
+WORKS: Test function 3 [PolyLog_Exp_neg(s<0, exp(i2pik)]:
+	Dead on up until s > -8 then only first 5 or 6 digits are the same.
+	This is int vs real order!  widen the eps test and see if 6 comes in!
+
+	Better. Now the diffs are generally tiny.
+	Now the diffs are on negative integers s.
+
+WORKS: Test function 4 + 5 [PolyLog_Exp_neg(k<0, exp(i2pik]:
+	Of course I replaced the series.
+
+WORKS: Test series 6 [PolyLog_Exp_pos(s, exp(i2pix)]:
+	Fixed.
+
+WORKS: Test series 7 [PolyLog_Exp_asym(k, 100 exp(i2pix))]:
+
+WORKS: Test series 8 [PolyLog_Exp_negative_real_part(k, x)]:
+
+
+WORKS: Clausen is hosed.

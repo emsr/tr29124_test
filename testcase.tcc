@@ -428,7 +428,7 @@ template<typename Ret, typename Arg1>
 	dataname.fill(' ');
 	output << '\n';
 	output << "// Test data.\n";
-	output << "// max(|f - f_" << baseline << "|): " << abs_stats.max() << '\n';
+	output << "// max(|f - f_" << baseline << "|): " << abs_stats.max() << " at index " << abs_stats.max_index() << '\n';
 	output << "// max(|f - f_" << baseline << "| / |f_" << baseline << "|): " << max_abs_frac << '\n';
 	output << "// mean(f - f_" << baseline << "): " << raw_stats.mean() << '\n';
 	output << "// variance(f - f_" << baseline << "): " << raw_stats.variance() << '\n';
@@ -631,7 +631,7 @@ template<typename Ret, typename Arg1, typename Arg2>
 	    dataname.fill(' ');
 	    output << '\n';
 	    output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]) << ".\n";
-	    output << "// max(|f - f_" << baseline << "|): " << abs_stats.max() << '\n';
+	    output << "// max(|f - f_" << baseline << "|): " << abs_stats.max() << " at index " << abs_stats.max_index() << '\n';
 	    output << "// max(|f - f_" << baseline << "| / |f_" << baseline << "|): " << max_abs_frac << '\n';
 	    output << "// mean(f - f_" << baseline << "): " << raw_stats.mean() << '\n';
 	    output << "// variance(f - f_" << baseline << "): " << raw_stats.variance() << '\n';
@@ -842,7 +842,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
 		output << '\n';
 		output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]);
 		output << ", " << arg2 << '=' << std::get<2>(crud[0]) << ".\n";
-		output << "// max(|f - f_" << baseline << "|): " << abs_stats.max() << '\n';
+		output << "// max(|f - f_" << baseline << "|): " << abs_stats.max() << " at index " << abs_stats.max_index() << '\n';
 		output << "// max(|f - f_" << baseline << "| / |f_" << baseline << "|): " << max_abs_frac << '\n';
 		output << "// mean(f - f_" << baseline << "): " << raw_stats.mean() << '\n';
 		output << "// variance(f - f_" << baseline << "): " << raw_stats.variance() << '\n';
@@ -1066,7 +1066,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
 		    output << "// Test data for " << arg1 << '=' << std::get<1>(crud[0]);
 		    output << ", " << arg2 << '=' << std::get<2>(crud[0]);
 		    output << ", " << arg3 << '=' << std::get<3>(crud[0]) << ".\n";
-		    output << "// max(|f - f_" << baseline << "|): " << abs_stats.max() << '\n';
+		    output << "// max(|f - f_" << baseline << "|): " << abs_stats.max() << " at index " << abs_stats.max_index() << '\n';
 		    output << "// max(|f - f_" << baseline << "| / |f_" << baseline << "|): " << max_abs_frac << '\n';
 		    output << "// mean(f - f_" << baseline << "): " << raw_stats.mean() << '\n';
 		    output << "// variance(f - f_" << baseline << "): " << raw_stats.variance() << '\n';
