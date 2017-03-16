@@ -62,5 +62,5 @@ main()
   test_mod2pi<double>();
   test_mod2pi<long double>();
   test_mod2pi<__float128>();
-  //test_mod2pi<mpfr::mpreal>((1,  256));
+  //test_mod2pi<mpfr::mpreal>(mpfr::mpreal(1,  256));
 }

@@ -33,6 +33,7 @@ bernoulli
 
 complex_literal_bug
 
+build_bernoulli_2n_table
 build_etam1_table
 build_gamma_lanczos
 build_gamma_spouge
