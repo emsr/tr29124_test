@@ -640,8 +640,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__w));
+      const auto _S_max_asymp = _Tp{6};
       const auto __rw = __w.real();
       const auto __iw = __w.imag();
+      const auto __warg = std::arg(__w);
       if (__gnu_cxx::__fp_is_real(__w)
 	  && __gnu_cxx::__fp_is_equal(std::remainder(__iw, _S_2pi), _Tp{0}))
 	{
@@ -666,10 +668,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else
 	{
-	  if (__rw < -(_S_pi_2 + _S_pi / _Tp{5})  )
+	  if (std::abs(__warg) > _S_pi_2 + _S_pi / _Tp{5})
 	    // Choose the exponentially converging series
 	    return __polylog_exp_neg_real_part(__s, __w);
-	  else if (__rw < _Tp{6})
+	  else if (__rw < _S_max_asymp)
 	    // The transition point chosen here, is quite arbitrary
 	    // and needs more testing.
 	    // The reductions of the imaginary part yield the same results
@@ -697,6 +699,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__w));
+      const auto _S_max_asymp = _Tp{6};
       if (__gnu_cxx::__fp_is_zero(__w))
 	{
 	  if (__s > 1)
@@ -723,7 +726,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (__w < -(_S_pi_2 + _S_pi / _Tp{5}))
 	    // Choose the exponentially converging series
 	    return __polylog_exp_neg_real_part(__s, std::complex<_Tp>(__w));
-	  else if (__w < _Tp{6})
+	  else if (__w < _S_max_asymp)
 	    // The transition point chosen here, is quite arbitrary
 	    // and needs more testing.
 	    return __polylog_exp_pos(__s, __w);
@@ -747,6 +750,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__w));
+      const auto _S_max_asymp = _Tp{6};
       if ((((-__s) & 1) == 0) && __gnu_cxx::__fp_is_imag(__w))
 	{
 	  // Now s is odd and w on the unit-circle.
@@ -764,7 +768,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::real(__w) < -(_S_pi_2 + _S_pi / _Tp{5})  )
 	    // Choose the exponentially converging series
 	    return __polylog_exp_neg_real_part(__s, __w);
-	  else if (std::real(__w) < _Tp{6}) // Arbitrary transition point...
+	  else if (std::real(__w) < _S_max_asymp)
+	    // Arbitrary transition point...
 	    // The reductions of the imaginary part yield the same results
 	    // as Mathematica.
 	    // Necessary to improve the speed of convergence.
@@ -788,11 +793,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__w);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__w);
+      const auto _S_max_asymp = _Tp{6};
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose exp'ly converging series.
 	return __polylog_exp_neg_real_part(__s, std::complex<_Tp>(__w));
       else if (__gnu_cxx::__fp_is_zero(__w))
 	return std::numeric_limits<_Tp>::infinity();
-      else if (__w < _Tp{6}) // Arbitrary transition point less than 2 pi.
+      else if (__w < _S_max_asymp)
+	// Arbitrary transition point less than 2 pi.
 	return __polylog_exp_neg(__s, std::complex<_Tp>(__w));
       else
 	return __polylog_exp_asymp(_Tp(__s), std::complex<_Tp>(__w));
@@ -813,8 +820,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_2pi = __gnu_cxx::__const_2_pi(__s);
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
+      const auto _S_max_asymp = _Tp{6};
       const auto __rw = __w.real();
       const auto __iw = __w.imag();
+      const auto __warg = std::arg(__w);
       if (__gnu_cxx::__fp_is_real(__w)
 	  && __gnu_cxx::__fp_is_zero(std::remainder(__iw, _S_2pi)))
 	{
@@ -823,9 +832,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  else
 	    return std::numeric_limits<_Tp>::infinity();
 	}
-      if (__rw < -(_S_pi_2 + _S_pi/_Tp{5})) // Choose exp'ly converging series.
+      if (std::abs(__warg) > _S_pi_2 + _S_pi / _Tp{5})
+        // Choose exponentially converging series.
 	return __polylog_exp_neg_real_part(__s, __w);
-      if (__rw < _Tp{6}) // arbitrary transition point
+      if (__rw < _S_max_asymp)
+	// Arbitrary transition point.
 	// The reductions of the imaginary part yield the same results
 	// as Mathematica then.
 	// Branch cuts??
@@ -849,6 +860,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
+      const auto _S_max_asymp = _Tp{6};
       if (__gnu_cxx::__fp_is_zero(__w))
 	{
 	  if (__s > _Tp{1})
@@ -858,7 +870,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose exp'ly converging series.
 	return __polylog_exp_neg_real_part(__s, __w);
-      if (__w < _Tp{6}) // arbitrary transition point
+      if (__w < _S_max_asymp)
+	// Arbitrary transition point
 	return __polylog_exp_pos(__s, std::complex<_Tp>(__w));
       else
 	return __polylog_exp_asymp(__s, std::complex<_Tp>(__w));
@@ -909,9 +922,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
+      const auto _S_max_asymp = _Tp{6};
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose exp'ly converging series.
 	return __polylog_exp_neg_real_part(__s, std::complex<_Tp>(__w));
-      else if (__w < _Tp{6}) // arbitrary transition point
+      else if (__w < _S_max_asymp)
+	// Arbitrary transition point
 	return __polylog_exp_neg(__s, std::complex<_Tp>(__w));
       else
 	return __polylog_exp_asymp(__s, std::complex<_Tp>(__w));
