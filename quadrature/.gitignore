@@ -19,3 +19,5 @@ zernike_test
 test_fft
 test_gauss_hermite
 test_quadrature
+test_midpoint_integral
+test_trapezoid_integral
