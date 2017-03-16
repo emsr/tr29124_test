@@ -29,11 +29,16 @@ main()
 
 
   // OK, now on to Test series 1 [PolyLog_Exp_pos(k, exp(i2pix)]:
-  int s = 3;
-  double x = 0.05;
+  //int s = 3;
+  //double x = 0.05;
+  //std::__detail::__polylog_exp_pos(s, std::polar(1.0, _S_2pi * x));
+  //PolyLog_Exp_pos(s, std::polar(1.0, _S_2pi * x));
+
+  // Same, [PolyLog_Exp_pos(k, exp(i2pix)] but we need within pi/3 of the negative axis it seems:
+  int s = 4;
+  double x = 0.60;
   std::__detail::__polylog_exp_pos(s, std::polar(1.0, _S_2pi * x));
   PolyLog_Exp_pos(s, std::polar(1.0, _S_2pi * x));
-
 
 
   //int m = 2;
