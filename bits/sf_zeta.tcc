@@ -249,7 +249,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  @f]
    * For s < 1 use the reflection formula:
    *  @f[
-   * 	\zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
+   * 	\zeta(s) = (2\pi)^s \Gamma(1-s) \zeta(1-s) / \pi
    *  @f]
    */
   template<typename _Tp>
@@ -262,21 +262,30 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (std::real(__s) < _Real{1})
 	std::__throw_domain_error(__N("__riemann_zeta_sum: "
 				      "Bad argument in zeta sum."));
-
-      constexpr unsigned int _S_max_iter = 10000;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
-      auto __zeta = _Val{1};
-      for (unsigned int __k = 2; __k < _S_max_iter; ++__k)
+      else if (std::real(__s) > _Real{1})
 	{
-	  auto __term = std::pow(_Val(__k), -__s);
-	  __zeta += __term;
-	  if (std::abs(__term) < _S_eps * std::abs(__zeta)
-	      || std::abs(__term) < _S_eps
-		 && std::abs(__zeta) < _Real{100} * _S_eps)
-	    break;
+	  constexpr unsigned int _S_max_iter = 10000;
+	  const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
+	  auto __zeta = _Val{1};
+	  for (unsigned int __k = 2; __k < _S_max_iter; ++__k)
+	    {
+	      auto __term = std::pow(_Val(__k), -__s);
+	      __zeta += __term;
+	      if (std::abs(__term) < _S_eps * std::abs(__zeta)
+		  || std::abs(__term) < _S_eps
+		     && std::abs(__zeta) < _Real{100} * _S_eps)
+		break;
+	    }
+	  return __zeta;
 	}
-
-      return __zeta;
+      else
+	{
+	  const auto _S_pi = __gnu_cxx::__const_pi(std::real(__s));
+	  auto __zeta = std::pow(_Real{2} * _S_pi, __s)
+		      * __sin_pi(_Real{0.5L} * __s) * __gamma(_Val{1} - __s)
+		      * __riemann_zeta_sum(_Val{1} - __s) / _S_pi;
+	  return __zeta;
+	}
     }
 
 
@@ -342,7 +351,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * For s < 1 use the reflection formula:
    * @f[
-   * 	\zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
+   * 	\zeta(s) = (2\pi)^s \Gamma(1-s) \zeta(1-s) / \pi
    * @f]
    */
   template<typename _Tp>
@@ -441,7 +450,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * For \Re(s) < 1 use the reflection formula:
    * @f[
-   * 	\zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
+   * 	\zeta(s) = (2\pi)^s \Gamma(1-s) \zeta(1-s) / \pi
    * @f]
    *
    * @param __s The argument
@@ -632,7 +641,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::pow(_Real{2} * _S_pi, __s)
 	     * __sin_pi(_Real{0.5L} * __s)
 	     * __gamma(_Tp{1} - __s)
-	     * (_Real{1} + __riemann_zeta_m_1(_Tp{1} - __s)) - _Real{1};
+	     * (_Real{1} + __riemann_zeta_m_1(_Tp{1} - __s)) / _S_pi
+	     - _Real{1};
     }
 
 
@@ -673,7 +683,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      _Tp __zeta = std::pow(_Real{2} * _S_pi, __r)
 			 * __sin_pi(_Real{0.5L} * __r)
 			 * __gamma(_Real{1} - __r)
-			 * (_Real{1} + __riemann_zeta_m_1(_Real{1} - __r));
+			 * (_Real{1} + __riemann_zeta_m_1(_Real{1} - __r))
+			 / _S_pi;
 	      return __zeta;
 	    }
 	  else if (std::real(__s) < -_Real{19})
@@ -687,23 +698,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 	  else if (std::real(__s) < __S_max)
 	    {
-	      // Global double sum or McLaurin?
+	      /// @todo Global double sum or MacLaurin series in riemann_zeta?
 	      bool __glob = true;
 	      if (__glob)
 		return __riemann_zeta_glob(__s);
 	      else
-		{
-		  if (std::real(__s) > _Real{1})
-		    return __riemann_zeta_sum(__s);
-		  else
-		    {
-		      _Tp __zeta = std::pow(_Real{2} * _S_pi, __s)
-				 * __sin_pi(_Real{0.5L} * __s)
-				 * __gamma(_Val{1} - __s)
-				 * __riemann_zeta_sum(_Val{1} - __s);
-		      return __zeta;
-		    }
-		}
+		return __riemann_zeta_sum(__s);
 	    }
 	  else
 	    return _Val{1} + std::pow(_Val{2}, -__s);

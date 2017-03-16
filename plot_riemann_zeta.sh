@@ -3,6 +3,21 @@ gnuplot
 
 set termoption enhanced
 
+set xzeroaxis
+set yzeroaxis
+set grid
+
+set title "{/Symbol z}(s)"
+set xlabel "s"
+plot [-25:25][-20:20] \
+                    "test_riemann_zeta.txt" index 0 using 1:2 with lines title "{/Symbol z}(s)", \
+                    "" index 0 using 1:3 with lines title "{/Symbol z}(s) GSL"
+
+
+gnuplot
+
+set termoption enhanced
+
 set hidden3d
 
 set palette model RGB defined (0.0 "blue", 0.3 "green", 0.7 "yellow", 1 "red")
