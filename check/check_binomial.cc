@@ -40,7 +40,7 @@
 
 // Failure at n=0 k=1 f=0.0000000000000000 f_GSL=nan
 // Test data for n=0.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -54,7 +54,7 @@ const double toler001 = 2.5000000000000020e-13;
 
 // Failure at n=1 k=2 f=0.0000000000000000 f_GSL=nan
 // Test data for n=1.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -69,7 +69,7 @@ const double toler002 = 2.5000000000000020e-13;
 
 // Failure at n=2 k=3 f=0.0000000000000000 f_GSL=nan
 // Test data for n=2.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -85,7 +85,7 @@ const double toler003 = 2.5000000000000020e-13;
 
 // Failure at n=3 k=4 f=0.0000000000000000 f_GSL=nan
 // Test data for n=3.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -102,7 +102,7 @@ const double toler004 = 2.5000000000000020e-13;
 
 // Failure at n=4 k=5 f=0.0000000000000000 f_GSL=nan
 // Test data for n=4.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -120,7 +120,7 @@ const double toler005 = 2.5000000000000020e-13;
 
 // Failure at n=5 k=6 f=0.0000000000000000 f_GSL=nan
 // Test data for n=5.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -139,7 +139,7 @@ const double toler006 = 2.5000000000000020e-13;
 
 // Failure at n=6 k=7 f=0.0000000000000000 f_GSL=nan
 // Test data for n=6.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -159,7 +159,7 @@ const double toler007 = 2.5000000000000020e-13;
 
 // Failure at n=7 k=8 f=0.0000000000000000 f_GSL=nan
 // Test data for n=7.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -180,7 +180,7 @@ const double toler008 = 2.5000000000000020e-13;
 
 // Failure at n=8 k=9 f=0.0000000000000000 f_GSL=nan
 // Test data for n=8.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -202,7 +202,7 @@ const double toler009 = 2.5000000000000020e-13;
 
 // Failure at n=9 k=10 f=0.0000000000000000 f_GSL=nan
 // Test data for n=9.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -225,7 +225,7 @@ const double toler010 = 2.5000000000000020e-13;
 
 // Failure at n=10 k=11 f=0.0000000000000000 f_GSL=nan
 // Test data for n=10.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -249,7 +249,7 @@ const double toler011 = 2.5000000000000020e-13;
 
 // Failure at n=11 k=12 f=0.0000000000000000 f_GSL=nan
 // Test data for n=11.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -274,7 +274,7 @@ const double toler012 = 2.5000000000000020e-13;
 
 // Failure at n=12 k=13 f=0.0000000000000000 f_GSL=nan
 // Test data for n=12.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -300,7 +300,7 @@ const double toler013 = 2.5000000000000020e-13;
 
 // Failure at n=13 k=14 f=0.0000000000000000 f_GSL=nan
 // Test data for n=13.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -327,7 +327,7 @@ const double toler014 = 2.5000000000000020e-13;
 
 // Failure at n=14 k=15 f=0.0000000000000000 f_GSL=nan
 // Test data for n=14.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -355,7 +355,7 @@ const double toler015 = 2.5000000000000020e-13;
 
 // Failure at n=15 k=16 f=0.0000000000000000 f_GSL=nan
 // Test data for n=15.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -384,7 +384,7 @@ const double toler016 = 2.5000000000000020e-13;
 
 // Failure at n=16 k=17 f=0.0000000000000000 f_GSL=nan
 // Test data for n=16.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -414,7 +414,7 @@ const double toler017 = 2.5000000000000020e-13;
 
 // Failure at n=17 k=18 f=0.0000000000000000 f_GSL=nan
 // Test data for n=17.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -445,7 +445,7 @@ const double toler018 = 2.5000000000000020e-13;
 
 // Failure at n=18 k=19 f=0.0000000000000000 f_GSL=nan
 // Test data for n=18.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -477,7 +477,7 @@ const double toler019 = 2.5000000000000020e-13;
 
 // Failure at n=19 k=20 f=0.0000000000000000 f_GSL=nan
 // Test data for n=19.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -510,7 +510,7 @@ const double toler020 = 2.5000000000000020e-13;
 
 // Failure at n=20 k=21 f=0.0000000000000000 f_GSL=nan
 // Test data for n=20.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -544,7 +544,7 @@ const double toler021 = 2.5000000000000020e-13;
 
 // Failure at n=21 k=22 f=0.0000000000000000 f_GSL=nan
 // Test data for n=21.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -579,7 +579,7 @@ const double toler022 = 2.5000000000000020e-13;
 
 // Failure at n=22 k=23 f=0.0000000000000000 f_GSL=nan
 // Test data for n=22.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -615,7 +615,7 @@ const double toler023 = 2.5000000000000020e-13;
 
 // Failure at n=23 k=24 f=0.0000000000000000 f_GSL=nan
 // Test data for n=23.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -652,7 +652,7 @@ const double toler024 = 2.5000000000000020e-13;
 
 // Failure at n=24 k=25 f=0.0000000000000000 f_GSL=nan
 // Test data for n=24.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -690,7 +690,7 @@ const double toler025 = 2.5000000000000020e-13;
 
 // Failure at n=25 k=26 f=0.0000000000000000 f_GSL=nan
 // Test data for n=25.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -729,7 +729,7 @@ const double toler026 = 2.5000000000000020e-13;
 
 // Failure at n=26 k=27 f=0.0000000000000000 f_GSL=nan
 // Test data for n=26.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -769,7 +769,7 @@ const double toler027 = 2.5000000000000020e-13;
 
 // Failure at n=27 k=28 f=0.0000000000000000 f_GSL=nan
 // Test data for n=27.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -810,7 +810,7 @@ const double toler028 = 2.5000000000000020e-13;
 
 // Failure at n=28 k=29 f=0.0000000000000000 f_GSL=nan
 // Test data for n=28.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -852,7 +852,7 @@ const double toler029 = 2.5000000000000020e-13;
 
 // Failure at n=29 k=30 f=0.0000000000000000 f_GSL=nan
 // Test data for n=29.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -895,7 +895,7 @@ const double toler030 = 2.5000000000000020e-13;
 
 // Failure at n=30 k=31 f=0.0000000000000000 f_GSL=nan
 // Test data for n=30.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -939,7 +939,7 @@ const double toler031 = 2.5000000000000020e-13;
 
 // Failure at n=31 k=32 f=0.0000000000000000 f_GSL=nan
 // Test data for n=31.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -984,7 +984,7 @@ const double toler032 = 2.5000000000000020e-13;
 
 // Failure at n=32 k=33 f=0.0000000000000000 f_GSL=nan
 // Test data for n=32.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -1030,7 +1030,7 @@ const double toler033 = 2.5000000000000020e-13;
 
 // Failure at n=33 k=34 f=0.0000000000000000 f_GSL=nan
 // Test data for n=33.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -1077,7 +1077,7 @@ const double toler034 = 2.5000000000000020e-13;
 
 // Failure at n=34 k=35 f=0.0000000000000000 f_GSL=nan
 // Test data for n=34.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -1125,7 +1125,7 @@ const double toler035 = 2.5000000000000020e-13;
 
 // Failure at n=35 k=36 f=0.0000000000000000 f_GSL=nan
 // Test data for n=35.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -1174,7 +1174,7 @@ const double toler036 = 2.5000000000000020e-13;
 
 // Failure at n=36 k=37 f=0.0000000000000000 f_GSL=nan
 // Test data for n=36.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -1224,7 +1224,7 @@ const double toler037 = 2.5000000000000020e-13;
 
 // Failure at n=37 k=38 f=0.0000000000000000 f_GSL=nan
 // Test data for n=37.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -1275,7 +1275,7 @@ const double toler038 = 2.5000000000000020e-13;
 
 // Failure at n=38 k=39 f=0.0000000000000000 f_GSL=nan
 // Test data for n=38.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -1327,7 +1327,7 @@ const double toler039 = 2.5000000000000020e-13;
 
 // Failure at n=39 k=40 f=0.0000000000000000 f_GSL=nan
 // Test data for n=39.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -1380,7 +1380,7 @@ const double toler040 = 2.5000000000000020e-13;
 
 // Failure at n=40 k=41 f=0.0000000000000000 f_GSL=nan
 // Test data for n=40.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -1434,7 +1434,7 @@ const double toler041 = 2.5000000000000020e-13;
 
 // Failure at n=41 k=42 f=0.0000000000000000 f_GSL=nan
 // Test data for n=41.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -1489,7 +1489,7 @@ const double toler042 = 2.5000000000000020e-13;
 
 // Failure at n=42 k=43 f=0.0000000000000000 f_GSL=nan
 // Test data for n=42.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -1545,7 +1545,7 @@ const double toler043 = 2.5000000000000020e-13;
 
 // Failure at n=43 k=44 f=0.0000000000000000 f_GSL=nan
 // Test data for n=43.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -1602,7 +1602,7 @@ const double toler044 = 2.5000000000000020e-13;
 
 // Failure at n=44 k=45 f=0.0000000000000000 f_GSL=nan
 // Test data for n=44.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -1660,7 +1660,7 @@ const double toler045 = 2.5000000000000020e-13;
 
 // Failure at n=45 k=46 f=0.0000000000000000 f_GSL=nan
 // Test data for n=45.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -1719,7 +1719,7 @@ const double toler046 = 2.5000000000000020e-13;
 
 // Failure at n=46 k=47 f=0.0000000000000000 f_GSL=nan
 // Test data for n=46.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -1779,7 +1779,7 @@ const double toler047 = 2.5000000000000020e-13;
 
 // Failure at n=47 k=48 f=0.0000000000000000 f_GSL=nan
 // Test data for n=47.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -1840,7 +1840,7 @@ const double toler048 = 2.5000000000000020e-13;
 
 // Failure at n=48 k=49 f=0.0000000000000000 f_GSL=nan
 // Test data for n=48.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -1902,7 +1902,7 @@ const double toler049 = 2.5000000000000020e-13;
 
 // Failure at n=49 k=50 f=0.0000000000000000 f_GSL=nan
 // Test data for n=49.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000
@@ -1964,7 +1964,7 @@ data050[50] =
 const double toler050 = 2.5000000000000020e-13;
 
 // Test data for n=50.
-// max(|f - f_GSL|): 0.0000000000000000
+// max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
 // variance(f - f_GSL): 0.0000000000000000

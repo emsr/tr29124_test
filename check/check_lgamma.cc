@@ -44,7 +44,7 @@
 //  ...
 // Divergence at a=0.0000000000000000 f=inf f_Boost=inf
 // Test data.
-// max(|f - f_Boost|): 7.1054273576010019e-15
+// max(|f - f_Boost|): 7.1054273576010019e-15 at index 131
 // max(|f - f_Boost| / |f_Boost|): 2.3519355639624262e-16
 // mean(f - f_Boost): 1.4214819797432807e-16
 // variance(f - f_Boost): 1.4641350997509589e-34

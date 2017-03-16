@@ -39,7 +39,7 @@
 
 
 // Test data for k=0.0000000000000000.
-// max(|f - f_Boost|): 1.1102230246251565e-16
+// max(|f - f_Boost|): 1.1102230246251565e-16 at index 14
 // max(|f - f_Boost| / |f_Boost|): 1.9569457642232772e-16
 // mean(f - f_Boost): 2.0954085551403016e-18
 // variance(f - f_Boost): 2.8817739812976152e-35
@@ -152,7 +152,7 @@ data001[101] =
 const double toler001 = 2.5000000000000020e-13;
 
 // Test data for k=0.10000000000000009.
-// max(|f - f_Boost|): 4.9960036108132044e-16
+// max(|f - f_Boost|): 4.9960036108132044e-16 at index 92
 // max(|f - f_Boost| / |f_Boost|): 1.1079032546336184e-14
 // mean(f - f_Boost): -4.8091343888465936e-18
 // variance(f - f_Boost): 1.1530182180254808e-33
@@ -265,7 +265,7 @@ data002[101] =
 const double toler002 = 1.0000000000000008e-12;
 
 // Test data for k=0.20000000000000018.
-// max(|f - f_Boost|): 7.0082828429463007e-16
+// max(|f - f_Boost|): 7.0082828429463007e-16 at index 2
 // max(|f - f_Boost| / |f_Boost|): 1.8160265585250779e-14
 // mean(f - f_Boost): -4.8795538566832761e-17
 // variance(f - f_Boost): 2.8808474403563160e-33
@@ -378,7 +378,7 @@ data003[101] =
 const double toler003 = 1.0000000000000008e-12;
 
 // Test data for k=0.30000000000000004.
-// max(|f - f_Boost|): 7.2511441295830537e-16
+// max(|f - f_Boost|): 7.2511441295830537e-16 at index 98
 // max(|f - f_Boost| / |f_Boost|): 3.1483120615030623e-14
 // mean(f - f_Boost): 3.7253616033600937e-17
 // variance(f - f_Boost): 4.3548224556723288e-33
@@ -491,7 +491,7 @@ data004[101] =
 const double toler004 = 2.5000000000000015e-12;
 
 // Test data for k=0.40000000000000013.
-// max(|f - f_Boost|): 5.1347814888913490e-16
+// max(|f - f_Boost|): 5.1347814888913490e-16 at index 1
 // max(|f - f_Boost| / |f_Boost|): 2.8014363192033280e-14
 // mean(f - f_Boost): -2.9541825531486221e-17
 // variance(f - f_Boost): 9.3048750068885655e-34
@@ -604,7 +604,7 @@ data005[101] =
 const double toler005 = 2.5000000000000015e-12;
 
 // Test data for k=0.50000000000000000.
-// max(|f - f_Boost|): 5.5511151231257827e-16
+// max(|f - f_Boost|): 5.5511151231257827e-16 at index 4
 // max(|f - f_Boost| / |f_Boost|): 9.9807061936908415e-15
 // mean(f - f_Boost): -8.7079683398043683e-18
 // variance(f - f_Boost): 6.8205122599984291e-36
@@ -717,7 +717,7 @@ data006[101] =
 const double toler006 = 5.0000000000000039e-13;
 
 // Test data for k=0.60000000000000009.
-// max(|f - f_Boost|): 9.9920072216264089e-16
+// max(|f - f_Boost|): 9.9920072216264089e-16 at index 96
 // max(|f - f_Boost| / |f_Boost|): 8.6312332437592636e-15
 // mean(f - f_Boost): 1.1061009094347167e-17
 // variance(f - f_Boost): 2.9279173559038022e-33
@@ -830,7 +830,7 @@ data007[101] =
 const double toler007 = 5.0000000000000039e-13;
 
 // Test data for k=0.70000000000000018.
-// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16 at index 98
 // max(|f - f_Boost| / |f_Boost|): 2.8627384899784680e-15
 // mean(f - f_Boost): 1.1404518693550494e-17
 // variance(f - f_Boost): 4.4812938386881734e-34
@@ -943,7 +943,7 @@ data008[101] =
 const double toler008 = 2.5000000000000020e-13;
 
 // Test data for k=0.80000000000000004.
-// max(|f - f_Boost|): 5.5511151231257827e-16
+// max(|f - f_Boost|): 5.5511151231257827e-16 at index 98
 // max(|f - f_Boost| / |f_Boost|): 3.4314866427374517e-14
 // mean(f - f_Boost): 3.2212612665292098e-17
 // variance(f - f_Boost): 1.3476341904773278e-33
@@ -1056,7 +1056,7 @@ data009[101] =
 const double toler009 = 2.5000000000000015e-12;
 
 // Test data for k=0.90000000000000013.
-// max(|f - f_Boost|): 7.2164496600635175e-16
+// max(|f - f_Boost|): 7.2164496600635175e-16 at index 17
 // max(|f - f_Boost| / |f_Boost|): 3.6418129587242081e-14
 // mean(f - f_Boost): 2.0624316336167821e-16
 // variance(f - f_Boost): 2.9376390593564961e-33
@@ -1169,7 +1169,7 @@ data010[101] =
 const double toler010 = 2.5000000000000015e-12;
 
 // Test data for k=1.0000000000000000.
-// max(|f - f_Boost|): 1.1102230246251565e-16
+// max(|f - f_Boost|): 1.1102230246251565e-16 at index 38
 // max(|f - f_Boost| / |f_Boost|): 2.3005559515234057e-16
 // mean(f - f_Boost): 5.1526439880499220e-18
 // variance(f - f_Boost): 4.7910188890379316e-37

@@ -43,7 +43,7 @@
 // Divergence at s=0.60000000000000142 f=-inf f_GSL=0.62389077976882457
 // Divergence at s=0.80000000000000071 f=-inf f_GSL=0.65985466267981696
 // Test data.
-// max(|f - f_GSL|): 7.7500000000000027
+// max(|f - f_GSL|): 7.7500000000000027 at index 5
 // max(|f - f_GSL| / |f_GSL|): 5.0169242603587372e-15
 // mean(f - f_GSL): -0.13848039215686217
 // variance(f - f_GSL): inf
@@ -108,7 +108,7 @@ const double toler001 = 5.0000000000000039e-13;
 
 
 // Test data.
-// max(|f - f_GSL|): 8.8817841970012523e-16
+// max(|f - f_GSL|): 8.8817841970012523e-16 at index 1
 // max(|f - f_GSL| / |f_GSL|): 1.1811157326740546e-15
 // mean(f - f_GSL): -1.6079092080778131e-17
 // variance(f - f_GSL): 1.8078652734669456e-36

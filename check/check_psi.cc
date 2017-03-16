@@ -39,7 +39,7 @@
 #include <specfun_testcase.h>
 
 // Test data.
-// max(|f - f_Boost|): 1.8474111129762605e-13
+// max(|f - f_Boost|): 1.8474111129762605e-13 at index 77
 // max(|f - f_Boost| / |f_Boost|): 3.6020996091956069e-13
 // mean(f - f_Boost): 1.2656536254347268e-15
 // variance(f - f_Boost): 3.6585932356389751e-33
@@ -854,11 +854,11 @@ const double toler001 = 2.5000000000000014e-11;
 
 
 // Test data.
-// max(|f - f_Boost|): 3.5527136788005009e-15
+// max(|f - f_Boost|): 3.5527136788005009e-15 at index 183
 // max(|f - f_Boost| / |f_Boost|): 1.9015891619931257e-15
-// mean(f - f_Boost): -2.0621416355631834e-16
-// variance(f - f_Boost): 4.1832446875039909e-32
-// stddev(f - f_Boost): 2.0452981903634470e-16
+// mean(f - f_Boost): -7.1167248532033436e-16
+// variance(f - f_Boost): 1.2992170715760175e-32
+// stddev(f - f_Boost): 1.1398320365632902e-16
 const testcase_psi<double>
 data002[199] =
 {

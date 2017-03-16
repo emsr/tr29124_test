@@ -39,7 +39,7 @@
 #include <specfun_testcase.h>
 
 // Test data.
-// max(|f - f_Boost|): 1.1102230246251565e-16
+// max(|f - f_Boost|): 1.1102230246251565e-16 at index 2
 // max(|f - f_Boost| / |f_Boost|): 1.8888242266968490e-16
 // mean(f - f_Boost): 1.7195803074886034e-38
 // variance(f - f_Boost): 1.9517844511553150e-71

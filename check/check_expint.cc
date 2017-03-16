@@ -39,7 +39,7 @@
 #include <specfun_testcase.h>
 
 // Test data.
-// max(|f - f_GSL|): 4.9960036108132044e-16
+// max(|f - f_GSL|): 4.9960036108132044e-16 at index 49
 // max(|f - f_GSL| / |f_GSL|): 2.2772878171680836e-15
 // mean(f - f_GSL): 1.1295166444684511e-17
 // variance(f - f_GSL): 4.9654719514602855e-33
@@ -103,7 +103,7 @@ const double toler001 = 2.5000000000000020e-13;
 
 
 // Test data.
-// max(|f - f_GSL|): 16384.000000000000
+// max(|f - f_GSL|): 16384.000000000000 at index 48
 // max(|f - f_GSL| / |f_GSL|): 1.2494807514688476e-15
 // mean(f - f_GSL): 371.15283351771996
 // variance(f - f_GSL): inf
