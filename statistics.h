@@ -22,9 +22,15 @@ template<typename _Tp>
 		    + _M_type(_M_count - 1) * __del_mean * __del_mean
 		    + __del_diff * __del_diff) / _M_type(_M_count - 1);
       if (__diff < _M_min)
-	_M_min = __diff;
+	{
+	  _M_min = __diff;
+	  _M_min_index = _M_count - 1;
+	}
       if (__diff > _M_max)
-	_M_max = __diff;
+	{
+	  _M_max = __diff;
+	  _M_max_index = _M_count - 1;
+	}
 
       return *this;
     }
@@ -54,11 +60,21 @@ template<typename _Tp>
     min() const
     { return _Tp(_M_min); }
 
+    std::size_t
+    min_index() const
+    { return _M_min_index; }
+
     _Tp
     max() const
     { return _Tp(_M_max); }
 
+    std::size_t
+    max_index() const
+    { return _M_max_index; }
+
     std::size_t _M_count = 0;
+    std::size_t _M_min_index = -1;
+    std::size_t _M_max_index = -1;
     _M_type _M_mean = 0;
     _M_type _M_variance = 0;
     _M_type _M_min = std::numeric_limits<long double>::max();
