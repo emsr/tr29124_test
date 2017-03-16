@@ -633,7 +633,11 @@ lpochhammer(double a, double x)
 double
 lpochhammer_lower(double a, double x)
 {
-  return std::log(std::abs(boost::math::falling_factorial(a, x)));
+  auto ff = boost::math::falling_factorial(a, x);
+  if (ff == 0)
+    return std::numeric_limits<double>::infinity();
+  else
+    return std::log(std::abs(ff));
 }
 
 /// Upper Pochhammer symbol.
