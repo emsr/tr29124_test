@@ -3,6 +3,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o build_
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./build_sincos_tables > build_sincos_tables.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o build_sincos_tables build_sincos_tables.cpp -lquadmath -lmpfr
+./build_sincos_tables
 */
 
 #include <mpreal.h>
@@ -11,10 +12,11 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o build_sincos_t
 int
 main()
 {
-  mpfr::mpreal p(0, 128);
+  std::size_t prec = 128;
+  mpfr::mpreal p(0, prec);
   std::cout.precision(__gnu_cxx::__max_digits10(p));
   auto w = 8 + std::cout.precision();
-  mpfr::mpreal pi4 = mpfr::const_pi(128) / mpfr::mpreal(4 * 46, 128);
+  mpfr::mpreal pi4 = mpfr::const_pi(prec) / mpfr::mpreal(4 * 46, prec);
 
   std::cout << "\n// sin table\n";
   for (int i = 0; i <= 46; ++i)

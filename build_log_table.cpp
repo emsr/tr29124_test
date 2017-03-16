@@ -3,6 +3,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o build_
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./build_log_table > build_log_table.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o build_log_table build_log_table.cpp -lquadmath -lmpfr
+./build_log_table
 */
 
 #include <mpreal.h>
@@ -11,13 +12,14 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o build_log_tabl
 int
 main()
 {
-  mpfr::mpreal p(0, 128);
+  std::size_t prec = 128;
+  mpfr::mpreal p(0, prec);
   std::cout.precision(__gnu_cxx::__max_digits10(p));
   auto w = 8 + std::cout.precision();
 
   for (int i = 0; i <= 100; ++i)
     {
-      auto x = mpfr::mpreal(i, 128);
+      auto x = mpfr::mpreal(i, prec);
       std::cout << "  " << std::setw(w) << mpfr::log(x) << '\n';
     }
 }

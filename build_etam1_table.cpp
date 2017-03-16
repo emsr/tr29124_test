@@ -11,13 +11,15 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o build_etam1_ta
 int
 main()
 {
-  mpfr::mpreal p(0, 128);
+  int prec = 128;
+  mpfr::mpreal p(0, prec);
   std::cout.precision(__gnu_cxx::__max_digits10(p));
   auto w = 8 + std::cout.precision();
 
   for (int i = 0; i <= 120; ++i)
     {
-      auto x = mpfr::mpreal(i, 128);
-      std::cout << "  " << std::setw(w) << (1 - mpfr::pow(2, 1 - x)) * mpfr::zeta(x) - 1 << '\n';
+      auto x = mpfr::mpreal(i, prec);
+      auto pow2 = mpfr::pow(mpfr::mpreal(2, prec), 1 - x)
+      std::cout << "  " << std::setw(w) << (1 - pow2) * mpfr::zeta(x) - 1 << '\n';
     }
 }

@@ -11,13 +11,14 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o build_zetam1_t
 int
 main()
 {
-  mpfr::mpreal p(0, 128);
+  std::size_t prec = 128;
+  mpfr::mpreal p(0, prec);
   std::cout.precision(__gnu_cxx::__max_digits10(p));
   auto w = 8 + std::cout.precision();
 
   for (int i = 0; i <= 120; ++i)
     {
-      auto x = mpfr::mpreal(i, 128);
+      auto x = mpfr::mpreal(i, prec);
       std::cout << "  " << std::setw(w) << mpfr::zeta(x) - 1 << '\n';
     }
 }
