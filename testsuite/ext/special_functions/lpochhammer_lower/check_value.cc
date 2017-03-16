@@ -39,7 +39,7 @@
 
 
 // Test data for a=0.25000000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -59,7 +59,7 @@ data001[8] =
 const double toler001 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -79,7 +79,7 @@ data002[8] =
 const double toler002 = 2.5000000000000020e-13;
 
 // Test data for a=0.75000000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -99,12 +99,12 @@ data003[8] =
 const double toler003 = 2.5000000000000020e-13;
 
 // Divergence at a=1.0000000000000000 x=1.0000000000000000 f=-inf f_Boost=0.0000000000000000
-// Divergence at a=1.0000000000000000 x=2.0000000000000000 f=-inf f_Boost=-inf
-// Divergence at a=1.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=-inf
+// Divergence at a=1.0000000000000000 x=2.0000000000000000 f=-inf f_Boost=inf
+// Divergence at a=1.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=inf
 // ...
-// Divergence at a=1.0000000000000000 x=100.00000000000000 f=-inf f_Boost=-inf
+// Divergence at a=1.0000000000000000 x=100.00000000000000 f=-inf f_Boost=inf
 // Test data for a=1.2500000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -124,7 +124,7 @@ data004[8] =
 const double toler004 = 2.5000000000000020e-13;
 
 // Test data for a=1.5000000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -144,7 +144,7 @@ data005[8] =
 const double toler005 = 2.5000000000000020e-13;
 
 // Test data for a=1.7500000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -164,12 +164,12 @@ data006[8] =
 const double toler006 = 2.5000000000000020e-13;
 
 // Divergence at a=2.0000000000000000 x=2.0000000000000000 f=-inf f_Boost=0.69314718055994529
-// Divergence at a=2.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=-inf
-// Divergence at a=2.0000000000000000 x=10.000000000000000 f=-inf f_Boost=-inf
+// Divergence at a=2.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=inf
+// Divergence at a=2.0000000000000000 x=10.000000000000000 f=-inf f_Boost=inf
 // ...
-// Divergence at a=2.0000000000000000 x=100.00000000000000 f=-inf f_Boost=-inf
+// Divergence at a=2.0000000000000000 x=100.00000000000000 f=-inf f_Boost=inf
 // Test data for a=2.0000000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -183,7 +183,7 @@ data007[2] =
 const double toler007 = 2.5000000000000020e-13;
 
 // Test data for a=2.2500000000000000.
-// max(|f - f_Boost|): 7.1054273576010019e-15
+// max(|f - f_Boost|): 7.1054273576010019e-15 at index 5
 // max(|f - f_Boost| / |f_Boost|): 2.2042050888748361e-16
 // mean(f - f_Boost): 8.8817841970012523e-16
 // variance(f - f_Boost): 1.2879361717894069e-31
@@ -203,7 +203,7 @@ data008[8] =
 const double toler008 = 2.5000000000000020e-13;
 
 // Test data for a=2.5000000000000000.
-// max(|f - f_Boost|): 7.1054273576010019e-15
+// max(|f - f_Boost|): 7.1054273576010019e-15 at index 5
 // max(|f - f_Boost| / |f_Boost|): 2.2109556181289465e-16
 // mean(f - f_Boost): -8.8817841970012523e-16
 // variance(f - f_Boost): 1.2879361717894069e-31
@@ -223,7 +223,7 @@ data009[8] =
 const double toler009 = 2.5000000000000020e-13;
 
 // Test data for a=2.7500000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -242,13 +242,13 @@ data010[8] =
 };
 const double toler010 = 2.5000000000000020e-13;
 
-// Divergence at a=3.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=-inf
-// Divergence at a=3.0000000000000000 x=10.000000000000000 f=-inf f_Boost=-inf
-// Divergence at a=3.0000000000000000 x=20.000000000000000 f=-inf f_Boost=-inf
+// Divergence at a=3.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=inf
+// Divergence at a=3.0000000000000000 x=10.000000000000000 f=-inf f_Boost=inf
+// Divergence at a=3.0000000000000000 x=20.000000000000000 f=-inf f_Boost=inf
 // ...
-// Divergence at a=3.0000000000000000 x=100.00000000000000 f=-inf f_Boost=-inf
+// Divergence at a=3.0000000000000000 x=100.00000000000000 f=-inf f_Boost=inf
 // Test data for a=3.0000000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -263,7 +263,7 @@ data011[3] =
 const double toler011 = 2.5000000000000020e-13;
 
 // Test data for a=3.2500000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -283,7 +283,7 @@ data012[8] =
 const double toler012 = 2.5000000000000020e-13;
 
 // Test data for a=3.5000000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -303,7 +303,7 @@ data013[8] =
 const double toler013 = 2.5000000000000020e-13;
 
 // Test data for a=3.7500000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -322,13 +322,13 @@ data014[8] =
 };
 const double toler014 = 2.5000000000000020e-13;
 
-// Divergence at a=4.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=-inf
-// Divergence at a=4.0000000000000000 x=10.000000000000000 f=-inf f_Boost=-inf
-// Divergence at a=4.0000000000000000 x=20.000000000000000 f=-inf f_Boost=-inf
+// Divergence at a=4.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=inf
+// Divergence at a=4.0000000000000000 x=10.000000000000000 f=-inf f_Boost=inf
+// Divergence at a=4.0000000000000000 x=20.000000000000000 f=-inf f_Boost=inf
 // ...
-// Divergence at a=4.0000000000000000 x=100.00000000000000 f=-inf f_Boost=-inf
+// Divergence at a=4.0000000000000000 x=100.00000000000000 f=-inf f_Boost=inf
 // Test data for a=4.0000000000000000.
-// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost|): 2.2204460492503131e-16 at index 1
 // max(|f - f_Boost| / |f_Boost|): 1.6017132519074588e-16
 // mean(f - f_Boost): 7.4014868308343765e-17
 // variance(f - f_Boost): 4.1086505480261029e-33
@@ -343,7 +343,7 @@ data015[3] =
 const double toler015 = 2.5000000000000020e-13;
 
 // Test data for a=4.2500000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -363,7 +363,7 @@ data016[8] =
 const double toler016 = 2.5000000000000020e-13;
 
 // Test data for a=4.5000000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -383,7 +383,7 @@ data017[8] =
 const double toler017 = 2.5000000000000020e-13;
 
 // Test data for a=4.7500000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -403,12 +403,12 @@ data018[8] =
 const double toler018 = 2.5000000000000020e-13;
 
 // Divergence at a=5.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=4.7874917427820458
-// Divergence at a=5.0000000000000000 x=10.000000000000000 f=-inf f_Boost=-inf
-// Divergence at a=5.0000000000000000 x=20.000000000000000 f=-inf f_Boost=-inf
+// Divergence at a=5.0000000000000000 x=10.000000000000000 f=-inf f_Boost=inf
+// Divergence at a=5.0000000000000000 x=20.000000000000000 f=-inf f_Boost=inf
 // ...
-// Divergence at a=5.0000000000000000 x=100.00000000000000 f=-inf f_Boost=-inf
+// Divergence at a=5.0000000000000000 x=100.00000000000000 f=-inf f_Boost=inf
 // Test data for a=5.0000000000000000.
-// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost|): 2.2204460492503131e-16 at index 1
 // max(|f - f_Boost| / |f_Boost|): 1.3796407007040920e-16
 // mean(f - f_Boost): -7.4014868308343765e-17
 // variance(f - f_Boost): 4.1086505480261029e-33

@@ -39,7 +39,7 @@
 
 
 // Test data for a=0.25000000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -58,7 +58,7 @@ data001[7] =
 const double toler001 = 2.5000000000000020e-13;
 
 // Test data for a=0.50000000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -77,7 +77,7 @@ data002[7] =
 const double toler002 = 2.5000000000000020e-13;
 
 // Test data for a=0.75000000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -96,7 +96,7 @@ data003[7] =
 const double toler003 = 2.5000000000000020e-13;
 
 // Test data for a=1.0000000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -115,7 +115,7 @@ data004[7] =
 const double toler004 = 2.5000000000000020e-13;
 
 // Test data for a=1.2500000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -134,7 +134,7 @@ data005[7] =
 const double toler005 = 2.5000000000000020e-13;
 
 // Test data for a=1.5000000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -153,7 +153,7 @@ data006[7] =
 const double toler006 = 2.5000000000000020e-13;
 
 // Test data for a=1.7500000000000000.
-// max(|f - f_Boost|): 8.8817841970012523e-16
+// max(|f - f_Boost|): 8.8817841970012523e-16 at index 2
 // max(|f - f_Boost| / |f_Boost|): 1.4324725944115532e-16
 // mean(f - f_Boost): -1.2688263138573217e-16
 // variance(f - f_Boost): 3.1304004175436975e-33
@@ -172,7 +172,7 @@ data007[7] =
 const double toler007 = 2.5000000000000020e-13;
 
 // Test data for a=2.0000000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -191,7 +191,7 @@ data008[7] =
 const double toler008 = 2.5000000000000020e-13;
 
 // Test data for a=2.2500000000000000.
-// max(|f - f_Boost|): 2.2204460492503131e-16
+// max(|f - f_Boost|): 2.2204460492503131e-16 at index 1
 // max(|f - f_Boost| / |f_Boost|): 1.1160346564877836e-16
 // mean(f - f_Boost): 3.1720657846433042e-17
 // variance(f - f_Boost): 1.9565002609648109e-34
@@ -210,7 +210,7 @@ data009[7] =
 const double toler009 = 2.5000000000000020e-13;
 
 // Test data for a=2.5000000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -229,7 +229,7 @@ data010[7] =
 const double toler010 = 2.5000000000000020e-13;
 
 // Test data for a=2.7500000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -248,7 +248,7 @@ data011[7] =
 const double toler011 = 2.5000000000000020e-13;
 
 // Test data for a=3.0000000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -267,7 +267,7 @@ data012[7] =
 const double toler012 = 2.5000000000000020e-13;
 
 // Test data for a=3.2500000000000000.
-// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16 at index 1
 // max(|f - f_Boost| / |f_Boost|): 1.6913985793391602e-16
 // mean(f - f_Boost): 6.3441315692866085e-17
 // variance(f - f_Boost): 7.8260010438592437e-34
@@ -286,7 +286,7 @@ data013[7] =
 const double toler013 = 2.5000000000000020e-13;
 
 // Test data for a=3.5000000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -305,7 +305,7 @@ data014[7] =
 const double toler014 = 2.5000000000000020e-13;
 
 // Test data for a=3.7500000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -324,7 +324,7 @@ data015[7] =
 const double toler015 = 2.5000000000000020e-13;
 
 // Test data for a=4.0000000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -343,7 +343,7 @@ data016[7] =
 const double toler016 = 2.5000000000000020e-13;
 
 // Test data for a=4.2500000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -362,7 +362,7 @@ data017[7] =
 const double toler017 = 2.5000000000000020e-13;
 
 // Test data for a=4.5000000000000000.
-// max(|f - f_Boost|): 4.4408920985006262e-16
+// max(|f - f_Boost|): 4.4408920985006262e-16 at index 1
 // max(|f - f_Boost| / |f_Boost|): 1.3839618619659635e-16
 // mean(f - f_Boost): 6.3441315692866085e-17
 // variance(f - f_Boost): 7.8260010438592437e-34
@@ -381,7 +381,7 @@ data018[7] =
 const double toler018 = 2.5000000000000020e-13;
 
 // Test data for a=4.7500000000000000.
-// max(|f - f_Boost|): 0.0000000000000000
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
 // mean(f - f_Boost): 0.0000000000000000
 // variance(f - f_Boost): 0.0000000000000000
@@ -400,7 +400,7 @@ data019[7] =
 const double toler019 = 2.5000000000000020e-13;
 
 // Test data for a=5.0000000000000000.
-// max(|f - f_Boost|): 2.8421709430404007e-14
+// max(|f - f_Boost|): 2.8421709430404007e-14 at index 5
 // max(|f - f_Boost| / |f_Boost|): 1.7637673061156899e-16
 // mean(f - f_Boost): -4.0602442043434294e-15
 // variance(f - f_Boost): 3.2055300275647462e-30

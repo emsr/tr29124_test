@@ -39,7 +39,7 @@
 #include <specfun_testcase.h>
 
 // Test data.
-// max(|f - f_GSL|): 711.71472580228999
+// max(|f - f_GSL|): 711.71472580228999 at index 171
 // max(|f - f_GSL| / |f_GSL|): 2.5480034333324759e-12
 // mean(f - f_GSL): -1.4205882747123555
 // variance(f - f_GSL): inf

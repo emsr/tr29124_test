@@ -39,7 +39,7 @@
 #include <specfun_testcase.h>
 
 // Test data.
-// max(|f - f_Boost|): 1.8474111129762605e-13
+// max(|f - f_Boost|): 1.8474111129762605e-13 at index 77
 // max(|f - f_Boost| / |f_Boost|): 3.6020996091956069e-13
 // mean(f - f_Boost): 1.2656536254347268e-15
 // variance(f - f_Boost): 3.6585932356389751e-33
@@ -854,11 +854,11 @@ const double toler001 = 2.5000000000000014e-11;
 
 
 // Test data.
-// max(|f - f_Boost|): 2.0000000000000000
-// max(|f - f_Boost| / |f_Boost|): 54.809575944729687
-// mean(f - f_Boost): 0.0054121570470424610
-// variance(f - f_Boost): inf
-// stddev(f - f_Boost): inf
+// max(|f - f_Boost|): 3.5527136788005009e-15 at index 183
+// max(|f - f_Boost| / |f_Boost|): 1.9015891619931257e-15
+// mean(f - f_Boost): -7.1167248532033436e-16
+// variance(f - f_Boost): 1.2992170715760175e-32
+// stddev(f - f_Boost): 1.1398320365632902e-16
 const testcase_psi<double>
 data002[199] =
 {
@@ -1062,7 +1062,7 @@ data002[199] =
   { 4.5951241013255641, 99.500000000000000, 0.0 },
   { 4.6001618527380872, 100.00000000000000, 0.0 },
 };
-const double toler002 = 0.050000000000000003;
+const double toler002 = 2.5000000000000020e-13;
 
 template<typename Ret, unsigned int Num>
   void

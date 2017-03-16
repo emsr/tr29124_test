@@ -46,11 +46,11 @@
 #include <specfun_testcase.h>
 
 // Test data.
-// max(|f - f_Boost|): 0.17846605446581615
-// max(|f - f_Boost| / |f_Boost|): 2.1415926535897944
-// mean(f - f_Boost): -0.0032076130293010171
-// variance(f - f_Boost): 1.9406141786954111e-07
-// stddev(f - f_Boost): 0.00044052402643844651
+// max(|f - f_Boost|): 6.6613381477509392e-16 at index 52
+// max(|f - f_Boost| / |f_Boost|): 2.1066054193139689e-15
+// mean(f - f_Boost): -2.3962839288606896e-17
+// variance(f - f_Boost): 1.0830580134580974e-35
+// stddev(f - f_Boost): 3.2909846755311660e-18
 const testcase_riemann_zeta<double>
 data001[55] =
 {
@@ -110,7 +110,7 @@ data001[55] =
   { -1.9526614482240094, 0.60000000000000142, 0.0 },
   { -4.4375384158955686, 0.80000000000000071, 0.0 },
 };
-const double toler001 = 0.050000000000000003;
+const double toler001 = 2.5000000000000020e-13;
 //  riemann_zeta
 
 // This can take long on simulators, timing out the test.
@@ -122,7 +122,7 @@ const double toler001 = 0.050000000000000003;
 
 
 // Test data.
-// max(|f - f_Boost|): 8.8817841970012523e-16
+// max(|f - f_Boost|): 8.8817841970012523e-16 at index 1
 // max(|f - f_Boost| / |f_Boost|): 2.8599739118398860e-16
 // mean(f - f_Boost): -1.5313421029312504e-18
 // variance(f - f_Boost): 1.6397870961151434e-38
