@@ -12,7 +12,8 @@ template<typename _Tp>
 	auto __sum = _Tp{1};
 	for (auto __k = 0; __k < 100; ++__k)
 	  {
-	    __term *= __xx / (2 * __k + 1) / (2 * __k + 2);
+	    __term *= -__xx / (2 * __k + 1) / (2 * __k + 2);
+	    __sum += __term;
 	  }
 	return __x * __sum;
       }
@@ -39,6 +40,7 @@ template<typename _Tp>
     else if (__x < _S_pi_2)
 	return __cos_taylor(__x);
   }
+
 int
 main()
 {

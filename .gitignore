@@ -37,6 +37,7 @@ build_etam1_table
 build_gamma_lanczos
 build_gamma_spouge
 build_log_table
+build_sincos_tables
 build_sqrt_table
 build_zetahalfm1_table
 build_zetam1_table
