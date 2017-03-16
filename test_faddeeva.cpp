@@ -1,9 +1,7 @@
-#ifndef WRAP_FADDEEVA_H
-#define WRAP_FADDEEVA_H 1
 
-#include <complex>
+#include <wrap_faddeeva.h>
 
-namespace faddeeva
+namespace __gnu_cxx
 {
 
   /**
@@ -13,7 +11,9 @@ namespace faddeeva
    *    w(z) = exp(-z^2) erfc(-iz)
    * @f]
    */
-  std::complex<double> faddeeva(std::complex<double> z);
+  template<typename _Tp>
+    std::complex<_Tp>
+    faddeeva(std::complex<_Tp> __z);
 
   /**
    * Compute the Faddeeva or scaled complex complementary error function
@@ -22,7 +22,9 @@ namespace faddeeva
    *    w(z) = exp(-z^2) erfc(-iz)
    * @f]
    */
-  double faddeeva(double x);
+  template<typename _Tp>
+    _Tp
+    faddeeva(_Tp __x);
 
   /**
    * Compute the scaled complementary error function of complex argument:
@@ -30,7 +32,9 @@ namespace faddeeva
    *    erfcx(z) = exp^{z^2} erfc(z).
    * @f]
    */
-  std::complex<double> erfc_scaled(std::complex<double> z);
+  template<typename _Tp>
+    std::complex<_Tp>
+    erfc_scaled(std::complex<_Tp> __z);
 
   /**
    * Compute the scaled complementary error function of real argument:
@@ -38,7 +42,9 @@ namespace faddeeva
    *    erfcx(z) = exp^{z^2} erfc(z).
    * @f]
    */
-  double erfc_scaled(double x);
+  template<typename _Tp>
+    _Tp
+    erfc_scaled(_Tp __x);
 
   /**
    * Compute the error function of complex argument:
@@ -46,7 +52,9 @@ namespace faddeeva
    *    erf(z) = \frac{2}{\sqrt{\pi}}\int_{0}^{z} e^{-t^2} dt
    * @f]
    */
-  std::complex<double> erf(std::complex<double> z);
+  template<typename _Tp>
+    std::complex<_Tp>
+    erf(std::complex<_Tp> __z);
 
   /**
    * Compute the error function of real argument:
@@ -54,7 +62,9 @@ namespace faddeeva
    *    erf(x) = \frac{2}{\sqrt{\pi}}\int_{0}^{x} e^{-t^2} dt
    * @f]
    */
-  double erf(double x);
+  template<typename _Tp>
+    _Tp
+    erf(_Tp __x);
 
   /**
    * Compute the imaginary error function for complex argument:
@@ -62,7 +72,9 @@ namespace faddeeva
    *   erfi(z) = -i erf(iz)
    * @f]
    */
-  std::complex<double> erfi(std::complex<double> z);
+  template<typename _Tp>
+    std::complex<_Tp>
+    erfi(std::complex<_Tp> __z);
 
   /**
    * Compute the imaginary error function of real argument:
@@ -70,7 +82,9 @@ namespace faddeeva
    *    erfi(x) = -i erf(ix)
    * @f]
    */
-  double erfi(double x);
+  template<typename _Tp>
+    _Tp
+    erfi(_Tp __x);
 
   /**
    * Compute the complementary error function for complex argument:
@@ -78,7 +92,9 @@ namespace faddeeva
    *    erfc(z) = 1 - erf(z) = \frac{2}{\sqrt{\pi}}\int_{z}^{\infty} e^{-t^2} dt
    * @f]
    */
-  std::complex<double> erfc(std::complex<double> z);
+  template<typename _Tp>
+    std::complex<_Tp>
+    erfc(std::complex<_Tp> __z);
 
   /**
    * Compute the complementary error function for real argument:
@@ -86,7 +102,9 @@ namespace faddeeva
    *   erfc(x) = 1 - erf(x) = \frac{2}{\sqrt{\pi}}\int_{x}^{\infty} e^{-t^2} dt
    * @f]
    */
-  double erfc(double x);
+  template<typename _Tp>
+    _Tp
+    erfc(_Tp __x);
 
   /**
    * Compute the Dawson integral for complex argument:
@@ -95,7 +113,9 @@ namespace faddeeva
    *         = \frac{\sqrt{\pi}}{2} exp^{-z^2} erfi(z).
    * @f]
    */
-  std::complex<double> dawson(std::complex<double> z);
+  template<typename _Tp>
+    std::complex<_Tp>
+    dawson(std::complex<_Tp> __z);
 
   /**
    * Compute the Dawson integral for real argument:
@@ -104,7 +124,9 @@ namespace faddeeva
    *         = \frac{\sqrt{\pi}}{2} exp^{-x^2} erfi(x).
    * @f]
    */
-  double dawson(double x);
+  template<typename _Tp>
+    _Tp
+    dawson(_Tp __x);
 
   /**
    * Compute Voigt function for real shape parameter t and argument x:
@@ -122,7 +144,9 @@ namespace faddeeva
    *            \frac{y e^{(x - y)^2 / (4t)}}{1 + y^2} dy
    * @f]
    */
-  std::complex<double> voigt(double x, double t);
+  template<typename _Tp>
+    std::complex<_Tp>
+    voigt(_Tp __x, _Tp __t);
 
   /**
    * Compute the Voigt U function for real shape parameter t and argument x:
@@ -131,7 +155,9 @@ namespace faddeeva
    *            \frac{e^{(x - y)^2 / (4t)}}{1 + y^2} dy
    * @f]
    */
-  std::complex<double> voigt_u(double x, double t);
+  template<typename _Tp>
+    std::complex<_Tp>
+    voigt_u(_Tp __x, _Tp __t);
 
   /**
    * Compute the Voigt V function for real shape parameter t and argument x:
@@ -140,9 +166,14 @@ namespace faddeeva
    *            \frac{y e^{(x - y)^2 / (4t)}}{1 + y^2} dy
    * @f]
    */
-  std::complex<double> voigt_v(double x, double t);
+  template<typename _Tp>
+    std::complex<_Tp>
+    voigt_v(_Tp __x, _Tp __t);
 
-} // namespace faddeeva
+} // namespace __gnu_cxx
 
-#endif // WRAP_FADDEEVA_H
+int
+main()
+{
+}
 
