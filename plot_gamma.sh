@@ -7,7 +7,7 @@ set hidden3d
 
 set palette model RGB defined (0.0 "blue", 0.3 "green", 0.7 "yellow", 1 "red")
 set colorbox
-set pm3d at sb corners2color geomean
+set pm3d at bs corners2color geomean
 
 splot [-50:50][-50:50][-40:120] "plot/beta_double.txt" index 0 with pm3d title "B(a,b)"
 

@@ -22,9 +22,7 @@ set hidden3d
 
 set palette model RGB defined (0.0 "blue", 0.3 "green", 0.7 "yellow", 1 "red")
 set colorbox
-set pm3d at sb corners2color geomean
-
-#splot [-20:5][-5:5][-20:20] "plot/riemann_zeta_*.txt" index * with lines title "*"
+set pm3d at bs corners2color geomean
 
 splot [-20:5][-5:5][-20:20] "plot/riemann_zeta_float.txt" index 0 with pm3d title "Re({/Symbol z}(s))"
 splot [-20:5][-5:5][-20:20] "plot/riemann_zeta_float.txt" index 1 with pm3d title "Im({/Symbol z}(s))"
