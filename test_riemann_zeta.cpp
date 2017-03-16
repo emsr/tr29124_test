@@ -1,9 +1,9 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath
-./test_riemann_zeta > test_riemann_zeta.txt
+$HOME/bin_tr29124/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_riemann_zeta > test_riemann_zeta.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath
-./test_riemann_zeta > test_riemann_zeta.txt
+$HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
+PATH=wrappers/debug:$PATH ./test_riemann_zeta > test_riemann_zeta.txt
 */
 
 #include <ext/cmath>
@@ -13,6 +13,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_riemann_zeta test_riemann_
 #include <fstream>
 #include <vector>
 #include <bits/float128_io.h>
+
+#include "wrap_gsl.h"
 
   /**
    * @brief  Evaluate the Riemann zeta function @f$ \zeta(s) @f$
@@ -76,7 +78,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_riemann_zeta test_riemann_
     __riemann_zeta_m_1_sum(_Tp __s)
     {
       using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
       if (__gnu_cxx::__fp_is_integer(__s) == _Real{1})
        return __gnu_cxx::__quiet_NaN(std::real(__s));
@@ -203,10 +205,6 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    using zetaT = decltype(std::__detail::__riemann_zeta(_Cmplx{}));
-    std::vector<std::vector<zetaT>> sv;
-    std::vector<std::vector<zetaT>> zetav;
-
     int i_min = -250;
 
     std::cout << '\n'
@@ -225,6 +223,44 @@ template<typename _Tp>
 		  << std::setw(4 + 2 * width) << zetac
 		  << std::setw(width) << zeta
 		  << std::setw(width) << std::abs(zetac - zeta)
+		  << '\n';
+      }
+  }
+
+template<typename _Tp>
+  void
+  test_riemann_zeta(_Tp proto = _Tp{})
+  {
+    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout << std::showpoint << std::scientific;
+    auto w = 8 + std::cout.precision();
+
+    int i_min = -500;
+
+    std::cout << '\n'
+	      << std::setw(w) << "s"
+	      << std::setw(w) << "zeta"
+	      << std::setw(w) << "zeta_GSL"
+	      << std::setw(w) << "|zeta - zeta_GSL|"
+	      << '\n';
+    for (int i = i_min; i <= +500; ++i)
+      {
+        auto s = _Tp(0.05L * i);
+	if (s == _Tp{1})
+	  {
+	    std::cout << std::setw(w) << s
+		      << std::setw(w) << "nan"
+		      << std::setw(w) << "nan"
+		      << std::setw(w) << "nan"
+		      << '\n';
+	    continue;
+	  }
+	auto zeta = std::riemann_zeta(s);
+	auto zeta_gsl = gsl::riemann_zeta(s);
+	std::cout << std::setw(w) << s
+		  << std::setw(w) << zeta
+		  << std::setw(w) << zeta_gsl
+		  << std::setw(w) << zeta - zeta_gsl
 		  << '\n';
       }
   }
@@ -283,6 +319,8 @@ main()
   //std::cout << "zeta(" << 0.01l - 1.0il << ") = " << zetam << '\n';
   //auto zetap = std::__detail::__riemann_zeta(0.01l + 1.0il);
   //std::cout << "zeta(" << 0.01l + 1.0il << ") = " << zetap << '\n';
+
+  test_riemann_zeta(1.0);
 
   test_nontrivial_zeros<long double>();
 
