@@ -43,6 +43,7 @@ ${tool} bits/sf_chebyshev.tcc      ${gcc_dir}/sf_chebyshev.tcc
 ${tool} bits/sf_dawson.tcc         ${gcc_dir}/sf_dawson.tcc
 ${tool} bits/sf_distributions.tcc  ${gcc_dir}/sf_distributions.tcc
 ${tool} bits/sf_ellint.tcc         ${gcc_dir}/sf_ellint.tcc
+${tool} bits/sf_euler.tcc          ${gcc_dir}/sf_euler.tcc
 ${tool} bits/sf_expint.tcc         ${gcc_dir}/sf_expint.tcc
 ${tool} bits/sf_fresnel.tcc        ${gcc_dir}/sf_fresnel.tcc
 ${tool} bits/sf_gamma.tcc          ${gcc_dir}/sf_gamma.tcc
@@ -57,7 +58,8 @@ ${tool} bits/sf_laguerre.tcc       ${gcc_dir}/sf_laguerre.tcc
 ${tool} bits/sf_legendre.tcc       ${gcc_dir}/sf_legendre.tcc
 ${tool} bits/sf_mod_bessel.tcc     ${gcc_dir}/sf_mod_bessel.tcc
 ${tool} bits/sf_owens_t.tcc        ${gcc_dir}/sf_owens_t.tcc
-${tool} bits/sf_polylog.tcc        ${gcc_dir}/sf_polylog.tcc 
+${tool} bits/sf_polylog.tcc        ${gcc_dir}/sf_polylog.tcc
+${tool} bits/sf_stirling.tcc       ${gcc_dir}/sf_stirling.tcc
 ${tool} bits/sf_theta.tcc          ${gcc_dir}/sf_theta.tcc
 ${tool} bits/sf_trig.tcc           ${gcc_dir}/sf_trig.tcc
 ${tool} bits/sf_trigint.tcc        ${gcc_dir}/sf_trigint.tcc
