@@ -814,7 +814,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __polylog_exp_real_pos(_Tp __s, std::complex<_Tp> __w)
+    __polylog_exp_pos_real(_Tp __s, std::complex<_Tp> __w)
     {
       const auto _S_2pi = __gnu_cxx::__const_2_pi(__s);
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
@@ -854,7 +854,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __polylog_exp_real_pos(_Tp __s, _Tp __w)
+    __polylog_exp_pos_real(_Tp __s, _Tp __w)
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
@@ -887,7 +887,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __polylog_exp_real_neg(_Tp __s, std::complex<_Tp> __w)
+    __polylog_exp_neg_real(_Tp __s, std::complex<_Tp> __w)
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
@@ -916,12 +916,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __polylog_exp_real_neg(_Tp __s, _Tp __w)
+    __polylog_exp_neg_real(_Tp __s, _Tp __w)
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
       const auto _S_max_asymp = _Tp{6};
-      if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose exp'ly converging series.
+      if (__w < -(_S_pi_2 + _S_pi / _Tp{5}))
+	// Choose exponentially converging series.
 	return __polylog_exp_neg_real_part(__s, std::complex<_Tp>(__w));
       else if (__w < _S_max_asymp)
 	// Arbitrary transition point
@@ -948,7 +949,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__isnan(__s) || __isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__s > _Tp{25}) // Cutoff chosen by some testing on the real axis.
+      else if (__s > _Tp{25})
+	// Cutoff chosen by some testing on the real axis.
 	return __polylog_exp_neg_real_part(__s, __w);
       else
 	{
@@ -963,9 +965,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  else
 	    {
 	      if (__s > _Tp{0})
-		return __polylog_exp_real_pos(__s, __w);
+		return __polylog_exp_pos_real(__s, __w);
 	      else
-		return __polylog_exp_real_neg(__s, __w);
+		return __polylog_exp_neg_real(__s, __w);
 	    }
 	}
     }
