@@ -595,7 +595,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Seems to beat the other expansions for @f$ Re(w) < -\pi/2 - \pi/5 @f$.
    * Note that this is an implementation of the basic series:
    * @f[
-   *   Li_s(e^z) = \sum_{k=1} e^{kz} * k^{-s}
+   *   Li_s(e^z) = \sum_{k=1}^{\infty} e^{kz} k^{-s}
    * @f]
    *
    * @param __s is an arbitrary type, integral or float.
@@ -643,7 +643,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_max_asymp = _Tp{6};
       const auto __rw = __w.real();
       const auto __iw = __w.imag();
-      const auto __warg = std::arg(__w);
       if (__gnu_cxx::__fp_is_real(__w)
 	  && __gnu_cxx::__fp_is_equal(std::remainder(__iw, _S_2pi), _Tp{0}))
 	{
@@ -668,7 +667,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else
 	{
-	  if (std::abs(__warg) > _S_pi_2 + _S_pi / _Tp{5})
+	  if (__rw > -(_S_pi_2 + _S_pi / _Tp{5}))
 	    // Choose the exponentially converging series
 	    return __polylog_exp_neg_real_part(__s, __w);
 	  else if (__rw < _S_max_asymp)
@@ -823,7 +822,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_max_asymp = _Tp{6};
       const auto __rw = __w.real();
       const auto __iw = __w.imag();
-      const auto __warg = std::arg(__w);
       if (__gnu_cxx::__fp_is_real(__w)
 	  && __gnu_cxx::__fp_is_zero(std::remainder(__iw, _S_2pi)))
 	{
@@ -832,7 +830,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  else
 	    return std::numeric_limits<_Tp>::infinity();
 	}
-      if (std::abs(__warg) > _S_pi_2 + _S_pi / _Tp{5})
+      if (__rw < -(_S_pi_2 + _S_pi / _Tp{5}))
         // Choose exponentially converging series.
 	return __polylog_exp_neg_real_part(__s, __w);
       if (__rw < _S_max_asymp)
