@@ -7,6 +7,18 @@ set xzeroaxis
 set yzeroaxis
 set grid
 
+set title "Polylog Li_{4.1}(x)"
+set xlabel "x"
+set polar
+plot [-0.1:6.3][-4.0:4.0] \
+                    "debug_polylog.txt" index 0 using 1:2 with lines title "Re[Li_{4.1}(x)]", \
+                    "" index 0 using 1:3 with lines title "Im[Li_{4.1}(x)]", \
+                    "" index 0 using 1:4 with lines title "Re[Li_{4.1}(x)]", \
+                    "" index 0 using 1:5 with lines title "Im[Li_{4.1}(x)]", \
+                    "" index 0 using 1:6 with lines title "Li_{4.1}(x)"
+
+unset polar
+
 set title "Polylog Li_{s}(x)"
 set xlabel "x"
 plot [-20.0:1.0][-10.0:10.0] \

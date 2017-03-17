@@ -9,6 +9,7 @@ PATH=wrappers/debug:$PATH ./debug_polylog > debug_polylog.txt
 */
 
 #include <ext/cmath>
+#include <iostream>
 
 #include "zeta/riemann_zeta.tcc"
 #include "zeta/PolyLog.h"
@@ -16,6 +17,10 @@ PATH=wrappers/debug:$PATH ./debug_polylog > debug_polylog.txt
 int
 main()
 {
+  std::cout.precision(__gnu_cxx::__digits10(1.0));
+  std::cout << std::scientific;
+  const auto w = 8 + std::cout.precision();
+
   //const auto _S_pi = __gnu_cxx::__const_pi(1.0);
   const auto _S_2pi = __gnu_cxx::__const_2_pi(1.0);
 
@@ -25,7 +30,27 @@ main()
   //std::__detail::__polylog_exp_asymp(s, 100.0 * std::polar(1.0, _S_2pi * x));
   //PolyLog_Exp_asym(s, 100.0 * std::polar(1.0, _S_2pi * x));
 
-
+  double rs = 4.1;
+  std::cout << '\n' << '\n';
+  for (int i = 0; i <= 360; ++i)
+    {
+      const auto theta = _S_2pi * i / 360;
+      const auto phase = std::polar(1.0, theta);
+      const auto li_gnu = std::__detail::__polylog_exp_pos(rs, phase);
+      const auto li = PolyLog_Exp_pos(rs, phase);
+      const auto delta = li_gnu - li;
+      const auto absdelta = std::abs(delta);
+      std::cout << ' ' << std::setw(w) << theta
+		//<< ' ' << phase
+		<< ' ' << std::setw(w) << std::real(li_gnu)
+		<< ' ' << std::setw(w) << std::imag(li_gnu)
+		<< ' ' << std::setw(w) << std::real(li)
+		<< ' ' << std::setw(w) << std::imag(li)
+		<< ' ' << std::setw(w) << absdelta
+		<< ' ' << std::setw(w) << std::real(delta)
+		<< ' ' << std::setw(w) << std::imag(delta)
+		<< '\n';
+    }
 
 
   // OK, now on to Test series 1 [PolyLog_Exp_pos(k, exp(i2pix)]:
