@@ -30,14 +30,14 @@ main()
   //std::__detail::__polylog_exp_asymp(s, 100.0 * std::polar(1.0, _S_2pi * x));
   //PolyLog_Exp_asym(s, 100.0 * std::polar(1.0, _S_2pi * x));
 
-  double rs = 4.1;
+  double rs = -4.0;
   std::cout << '\n' << '\n';
   for (int i = 0; i <= 360; ++i)
     {
       const auto theta = _S_2pi * i / 360;
       const auto phase = std::polar(1.0, theta);
-      const auto li_gnu = std::__detail::__polylog_exp_pos(rs, phase);
-      const auto li = PolyLog_Exp_pos(rs, phase);
+      const auto li_gnu = std::__detail::__polylog_exp(rs, phase);
+      const auto li = PolyLog_Exp(rs, phase);
       const auto delta = li_gnu - li;
       const auto absdelta = std::abs(delta);
       std::cout << ' ' << std::setw(w) << theta
