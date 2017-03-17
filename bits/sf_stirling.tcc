@@ -36,6 +36,7 @@
 
 #pragma GCC system_header
 
+#include <vector>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
