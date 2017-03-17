@@ -558,6 +558,11 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 
 	I should solicit ideas for numeric_limits for precision-erased number types.
 
+122. [] The polynomial class needs to protect the requirement that c_{n=order} != 0.
+        The coefficient can be dangerously tiny 9we can deal with that elsewhere)
+        But not zero.  The decision to connect order and vector size might need a look.
+        Or not.
+
 plot_airy.cpp
 
 test_array_ref.cpp - move with <array_ref> somewhere else
