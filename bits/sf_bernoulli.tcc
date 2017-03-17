@@ -109,7 +109,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
     }
 
-
   /**
    *   @brief This returns Bernoulli number @f$ B_n @f$.
    *
@@ -120,7 +119,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _GLIBCXX14_CONSTEXPR _Tp
     __bernoulli(unsigned int __n)
     { return __bernoulli_series<_Tp>(__n); }
-
 
   /**
    * @brief This returns Bernoulli number @f$ B_2n @f$ at even integer
@@ -133,7 +131,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _GLIBCXX14_CONSTEXPR _Tp
     __bernoulli_2n(unsigned int __n)
     { return __bernoulli_series<_Tp>(2 * __n); }
-
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail

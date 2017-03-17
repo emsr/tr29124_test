@@ -56,6 +56,8 @@
 #  include <bits/sf_trig.tcc>
 #  include <bits/sf_bernoulli.tcc>
 #  include <bits/sf_gamma.tcc>
+#  include <bits/sf_euler.tcc>
+#  include <bits/sf_stirling.tcc>
 #  include <bits/sf_bessel.tcc>
 #  include <bits/sf_beta.tcc>
 #  include <bits/sf_cardinal.tcc>
