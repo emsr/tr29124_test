@@ -54,6 +54,7 @@
 #  include <bits/numeric_limits.h>
 #  include <bits/complex_util.h>
 #  include <bits/sf_trig.tcc>
+#  include <bits/sf_bernoulli.tcc>
 #  include <bits/sf_gamma.tcc>
 #  include <bits/sf_bessel.tcc>
 #  include <bits/sf_beta.tcc>

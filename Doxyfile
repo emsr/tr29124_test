@@ -763,6 +763,7 @@ WARN_LOGFILE           = doxywarn.txt
 INPUT                  = bits/specfun.h \
 			 bits/specfun_state.h \
 			 bits/sf_airy.tcc \
+			 bits/sf_bernoulli.tcc \
 			 bits/sf_bessel.tcc \
 			 bits/sf_beta.tcc \
 			 bits/sf_cardinal.tcc \
