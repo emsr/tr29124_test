@@ -37,18 +37,42 @@ main()
       const auto theta = _S_2pi * i / 360;
       const auto phase = std::polar(1.0, theta);
       const auto li_gnu = std::__detail::__polylog_exp(rs, phase);
-      const auto li = PolyLog_Exp(rs, phase);
-      const auto delta = li_gnu - li;
+      const auto li_zeta = PolyLog_Exp(rs, phase);
+      const auto delta = li_gnu - li_zeta;
       const auto absdelta = std::abs(delta);
       std::cout << ' ' << std::setw(w) << theta
 		//<< ' ' << phase
 		<< ' ' << std::setw(w) << std::real(li_gnu)
 		<< ' ' << std::setw(w) << std::imag(li_gnu)
-		<< ' ' << std::setw(w) << std::real(li)
-		<< ' ' << std::setw(w) << std::imag(li)
+		<< ' ' << std::setw(w) << std::real(li_zeta)
+		<< ' ' << std::setw(w) << std::imag(li_zeta)
 		<< ' ' << std::setw(w) << absdelta
 		<< ' ' << std::setw(w) << std::real(delta)
 		<< ' ' << std::setw(w) << std::imag(delta)
+		<< '\n';
+    }
+
+  // Zoom in on the area around pi/2
+  // I'm right!  My series is continuous across pi/2.
+  // I bet the arctan in zeta has a wrong sign or something.
+  std::cout << '\n' << '\n';
+  for (int i = -20; i <= 20; ++i)
+    {
+      const auto theta = _S_2pi / 4 + _S_2pi * i / 3600;
+      const auto phase = std::polar(1.0, theta);
+      const auto li_gnu = std::__detail::__polylog_exp(rs, phase);
+      const auto li_zeta = PolyLog_Exp(rs, phase);
+      const auto delta = li_gnu - li_zeta;
+      const auto absdelta = std::abs(delta);
+      std::cout << ' ' << std::setw(w) << theta
+		//<< ' ' << phase
+		<< ' ' << std::setw(w) << std::real(li_gnu)
+		<< ' ' << std::setw(w) << std::imag(li_gnu)
+		<< ' ' << std::setw(w) << std::real(li_zeta)
+		<< ' ' << std::setw(w) << std::imag(li_zeta)
+		<< ' ' << std::setw(w) << 100 * absdelta
+		<< ' ' << std::setw(w) << 100 * std::real(delta)
+		<< ' ' << std::setw(w) << 100 * std::imag(delta)
 		<< '\n';
     }
 

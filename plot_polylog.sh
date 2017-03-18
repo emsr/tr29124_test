@@ -7,17 +7,29 @@ set xzeroaxis
 set yzeroaxis
 set grid
 
-set title "Polylog Li_{4.1}(x)"
+set title "Polylog Li_{-4}(x)"
 set xlabel "x"
 set polar
-plot [-0.1:6.3][-4.0:4.0] \
-                    "debug_polylog.txt" index 0 using 1:2 with lines title "Re[Li_{4.1}(x)]", \
-                    "" index 0 using 1:3 with lines title "Im[Li_{4.1}(x)]", \
-                    "" index 0 using 1:4 with lines title "Re[Li_{4.1}(x)]", \
-                    "" index 0 using 1:5 with lines title "Im[Li_{4.1}(x)]", \
-                    "" index 0 using 1:6 with lines title "Li_{4.1}(x)"
+set grid polar pi/3
+plot [-25:25][-25:25] \
+                    "debug_polylog.txt" index 0 using 1:2 with lines title "Re[Li_{-4}(x)]", \
+                    "" index 0 using 1:3 with lines title "Im[Li_{-4}(x)]", \
+                    "" index 0 using 1:4 with lines title "Re[Li_{-4}(x)]", \
+                    "" index 0 using 1:5 with lines title "Im[Li_{-4}(x)]", \
+                    "" index 0 using 1:6 with lines title "Li_{-4}(x)"
 
 unset polar
+
+set title "Polylog Li_{-4}(x)"
+set xlabel "x"
+plot [1.5:1.7][-4.0:4.0] \
+                    "debug_polylog.txt" index 1 using 1:2 with lines title "Re[Li_{-4}(x)] gnu", \
+                    "" index 1 using 1:3 with lines title "Im[Li_{-4}(x)] gnu", \
+                    "" index 1 using 1:4 with lines title "Re[Li_{-4}(x)] zeta", \
+                    "" index 1 using 1:5 with lines title "Im[Li_{-4}(x)] zeta", \
+                    "" index 1 using 1:6 with lines title "100 |delta|", \
+                    "" index 1 using 1:7 with lines title "100 Re[delta]", \
+                    "" index 1 using 1:8 with lines title "100 Im[delta]"
 
 set title "Polylog Li_{s}(x)"
 set xlabel "x"
