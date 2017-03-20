@@ -69,6 +69,8 @@ OK, now the first pair!
 Now the second pair is OK and the first pair are dodgy! WTF!
 
 Finally, It seems that negative integrer (the -4) with complex args is borked.
+I'm actually right on this.  It was s=-4.  I think he has a sign error with arctan.
+There are discontinuities in deltas at pi/2 and 3pi/2.
 
 
 WORKS: Test function 1 [PolyLog_Exp_pos(k,exp(i2pik)]:
