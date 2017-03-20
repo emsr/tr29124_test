@@ -45,13 +45,20 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *  @brief This returns Bernoulli numbers from a table or by summation
-   *         for larger values.
+   * @brief This returns Bernoulli numbers from a table or by summation
+   * for larger values.
+   * @f[
+   *    B_{2n} = (-1)^{n+1} 2\frac{(2n)!}{(2\pi)^{2n}} \zeta(2n)
+   * @f]
    *
-   *  Upward recursion is unstable.
+   * Note that
+   * @f[
+   *    \zeta(2n) - 1 = (-1)^{n+1} \frac{(2\pi)^{2n}}{(2n)!} B_{2n} - 2
+   * @f]
+   * are small and rapidly decreasing finctions of n.
    *
-   *  @param __n the order n of the Bernoulli number.
-   *  @return  The Bernoulli number of order n.
+   * @param __n the order n of the Bernoulli number.
+   * @return  The Bernoulli number of order n.
    */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
@@ -74,7 +81,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	-_Tp{174611ULL}        / _Tp{330ULL},
 	 _Tp{854513ULL}        / _Tp{138ULL}
       };
-      constexpr _Tp _S_2pi = __gnu_cxx::__const_2_pi(_Tp{});
 
       if (__n == 0)
 	return _Tp{1};
@@ -88,6 +94,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return _S_bernoulli_2n[__n / 2];
       else
 	{
+	  constexpr auto _S_eps = __gnu_cxx::__epsilon<>(_Tp{});
+	  constexpr auto _S_2pi = __gnu_cxx::__const_2_pi(_Tp{});
 	  auto __fact = _Tp{1};
 	  if ((__n / 2) % 2 == 0)
 	    __fact *= -_Tp{1};
@@ -131,6 +139,44 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _GLIBCXX14_CONSTEXPR _Tp
     __bernoulli_2n(unsigned int __n)
     { return __bernoulli_series<_Tp>(2 * __n); }
+
+  /**
+   * Return the Bernoulli polynomial @f$ B_n(x) @f$ of order n at argument x.
+   *
+   * The values at 0 and 1 are equal to the corresponding Bernoulli number:
+   * @f[
+   *   B_n(0) = B_n(1) = B_n
+   * @f]
+   *
+   * The derivative is proportional to the previous polynomial:
+   * @f[
+   *   B_n'(x) = n * B_{n-1}(x)
+   * @f]
+   *
+   * The series expansion is:
+   * @f[
+   *   B_n(x) = \sum_{k=0}^{n} B_k binom{n}{k} x^{n-k}
+   * @f]
+   *
+   * A useful argument promotion is:
+   * @f[
+   *   B_n(x+1) - B_n(x) = n * x^{n-1}
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __bernoulli(unsigned int __n, _Tp __x)
+    {
+      auto _B_n = std::__detail::__bernoulli<_Tp>(0);
+      auto __binomial = _Tp{1};
+      for (auto __k = 1u; __k <= __n; ++__k)
+      {
+	__binomial *= _Tp(__n + 1 - __k) / _Tp(__k);
+	_B_n = __x * _B_n + __binomial * std::__detail::__bernoulli<_Tp>(__k);
+      }
+
+      return _B_n;
+    }
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
