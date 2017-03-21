@@ -169,6 +169,7 @@ template<typename Real>
     using __gnu_cxx::cyl_hankel_2;
     using       std::cyl_neumann;
     using __gnu_cxx::dawson;
+    using __gnu_cxx::debye;
     using __gnu_cxx::dilog;
     using __gnu_cxx::dirichlet_beta;
     using __gnu_cxx::dirichlet_eta;
@@ -1792,6 +1793,19 @@ template<typename Real>
 				std::make_pair(false, true), 701),
 	     "Boost",
 	     file_cos_pi);
+
+    // Debye integrals.
+    std::cout << "debye" << std::endl;
+    basename = "debye";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_debye(filename);
+    maketest(debye, gsl::debye,
+	     "testcase_debye", "__gnu_cxx", basename,
+	     "n", {1U, 2U, 3U, 4U, 5U, 6U},
+	     "x", fill_argument(std::make_pair(Real{0}, Real{10}),
+				std::make_pair(true, true), 41),
+	     "GSL",
+	     file_debye);
 
 #endif // STD
 

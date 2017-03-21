@@ -6236,6 +6236,49 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::__detail::__gamma_reciprocal<__type>(__a);
     }
 
+  // Debye integrals.
+
+  /**
+   * Return the Debye integral @f$ D_n(x) @f$
+   * of positive order @f$ n @f$ and @c float argument @f$ x @f$.
+   *
+   * @see debye for details.
+   */
+  inline float
+  debyef(unsigned int __n, float __x)
+  { return std::__detail::__debye<float>(__n, __x); }
+
+  /**
+   * Return the Debye integral @f$ D_n(x) @f$
+   * of positive order @f$ n @f$ and real argument @f$ x @f$.
+   *
+   * @see debye for details.
+   */
+  inline long double
+  debyel(unsigned int __n, long double __x)
+  { return std::__detail::__debye<long double>(__n, __x); }
+
+  /**
+   * Return the Debye integral @f$ D_n(x) @f$
+   * of positive order @f$ n @f$ and real argument @f$ x @f$.
+   *
+   * The Debye integral is defined by:
+   * @f[
+   *    D_n(x) = \frac{n}{x^n}\int_{0}^{x}\frac{t^n}{e^t-1}dt
+   * @f]
+   *
+   * @tparam _Tp The real type of the argument
+   * @param __n The positive integral order
+   * @param __x The real argument @f$ x >= 0 @f$
+   */
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
+    debye(unsigned int __n, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      return std::__detail::__debye<__type>(__n, __x);
+    }
+
 #endif // __cplusplus >= 201103L
 
   /** @} */ // gnu_math_spec_func

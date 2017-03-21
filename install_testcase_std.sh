@@ -87,6 +87,7 @@ ${makedir} ${ext_dir}/cos_pi
 ${makedir} ${ext_dir}/cyl_hankel_1
 ${makedir} ${ext_dir}/cyl_hankel_2
 ${makedir} ${ext_dir}/dawson
+${makedir} ${ext_dir}/debye
 ${makedir} ${ext_dir}/dilog
 ${makedir} ${ext_dir}/dirichlet_beta
 ${makedir} ${ext_dir}/dirichlet_eta
@@ -171,6 +172,7 @@ ${tool} check/pr56216_cyl_hankel_1.cc     ${ext_dir}/cyl_hankel_1/pr56216.cc
 ${tool} check/check_cyl_hankel_2.cc       ${ext_dir}/cyl_hankel_2/check_value.cc
 ${tool} check/pr56216_cyl_hankel_2.cc     ${ext_dir}/cyl_hankel_2/pr56216.cc
 ${tool} check/check_dawson.cc             ${ext_dir}/dawson/check_value.cc
+${tool} check/check_debye.cc              ${ext_dir}/debye/check_value.cc
 ${tool} check/check_dilog.cc              ${ext_dir}/dilog/check_value.cc
 ${tool} check/check_dirichlet_beta.cc     ${ext_dir}/dirichlet_beta/check_value.cc
 ${tool} check/check_dirichlet_eta.cc      ${ext_dir}/dirichlet_eta/check_value.cc
