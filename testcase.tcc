@@ -1012,7 +1012,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
 			  {
 			    output << "\n// Failure at"
 				   << " " << arg1 << "=" << w
-				   << " " << arg1 << "=" << x
+				   << " " << arg2 << "=" << x
 				   << " " << arg3 << "=" << y
 				   << " " << arg4 << "=" << z
 				   << " f=" << f1
