@@ -749,4 +749,14 @@ template<typename _Tp>
     _Tp f;
   };
 
+// Debye integrals.
+template<typename _Tp>
+  struct testcase_debye
+  {
+    _Tp f0;
+    unsigned int n;
+    _Tp x;
+    _Tp f;
+  };
+
 #endif // _GLIBCXX_SPECFUN_TESTCASE_H

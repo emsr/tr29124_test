@@ -1412,7 +1412,7 @@ bose_einstein(double /*s*/, double /*x*/)
 double
 debye(unsigned int n, double x)
 {
-  if (n > 0 && n < 5)
+  if (n > 0 && n < 7)
     {
       int stat;
       gsl_sf_result result;
@@ -1424,6 +1424,10 @@ debye(unsigned int n, double x)
 	stat = gsl_sf_debye_3_e(x, &result);
       else if (n == 4)
 	stat = gsl_sf_debye_4_e(x, &result);
+      else if (n == 5)
+	stat = gsl_sf_debye_5_e(x, &result);
+      else if (n == 6)
+	stat = gsl_sf_debye_6_e(x, &result);
 
       if (stat != GSL_SUCCESS)
 	{

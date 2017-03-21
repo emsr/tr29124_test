@@ -95,6 +95,7 @@ template<typename Real>
     using __gnu_cxx::cyl_hankel_2;
     using       std::cyl_neumann;
     using __gnu_cxx::dawson;
+    using __gnu_cxx::debye;
     using __gnu_cxx::dilog;
     using __gnu_cxx::dirichlet_beta;
     using __gnu_cxx::dirichlet_eta;

@@ -25,7 +25,7 @@ PATH=wrappers/debug:$PATH $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-p
    * where @f$ P(a,x), Q(a,x) @f$ is the incomplete gamma function ratios.
    * The Debye integrals are:
    * @f[
-   *    D_n(x) = \frac{n}{x+n}\int_{0}^{x}\frac{t^n}{e^t-1}dt
+   *    D_n(x) = \frac{n}{x^n}\int_{0}^{x}\frac{t^n}{e^t-1}dt
    *           = \Gamma(n+1)[\zeta(n+1)-\zeta_x(n+1)]
    * @f]
    * and

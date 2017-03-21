@@ -99,6 +99,7 @@ main()
     using __gnu_cxx::cyl_hankel_2;
     using       std::cyl_neumann;
     using __gnu_cxx::dawson;
+    using __gnu_cxx::debye;
     using __gnu_cxx::dilog;
     using __gnu_cxx::dirichlet_beta;
     using __gnu_cxx::dirichlet_eta;
@@ -1046,6 +1047,14 @@ main()
     rundiff(cos_pi, beast::cos_pi, basename,
 	    "x", fill_argument(std::make_pair(Real{-20}, Real{+50}),
 			       std::make_pair(false, true), 701));
+
+    // Chebyshev polynomials of the first kind.
+    std::cout << "debye" << '\n';
+    basename = "diff_debye";
+    rundiff(debye, gsl::debye, basename,
+	     "n", {1U, 2U, 3U, 4U, 5U, 6U},
+	     "x", fill_argument(std::make_pair(Real{0}, Real{10}),
+				std::make_pair(true, true), 41));
 
 #endif // STD
 
