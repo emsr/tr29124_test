@@ -1,15 +1,16 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_debye test_debye.cpp -lquadmath -Lwrappers/debug -lwrap_boost
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_debye test_debye.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_debye > test_debye.txt
 
-PATH=wrappers/debug:$PATH $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_debye test_debye.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-./test_debye > test_debye.txt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_debye test_debye.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
+PATH=wrappers/debug:$PATH ./test_debye > test_debye.txt
 */
 
 #include <iostream>
 #include <iomanip>
 #include <limits>
 #include <ext/cmath>
+#include "wrap_gsl.h"
 
   /**
    * Return the Debye integral or the incomplete Riemann zeta function:
@@ -131,13 +132,41 @@ template<typename _Tp>
 	      << ' ' << std::setw(width) << "Debye_3(x)"
 	      << ' ' << std::setw(width) << "Debye_4(x)"
 	      << ' ' << std::setw(width) << "Debye_5(x)"
+	      << ' ' << std::setw(width) << "Debye_6(x)"
 	      << '\n';
     for (int i = -50; i <= +200; ++i)
       {
 	auto x = _Tp{0.1L} * i;
 	std::cout << ' ' << std::setw(width) << x;
-	for (int n = 1; n <= 5; ++n)
+	for (int n = 1; n <= 6; ++n)
 	  std::cout << ' ' << std::setw(width) << __debye(n, x);
+	std::cout << '\n';
+      }
+  }
+
+template<typename _Tp>
+  void
+  test_debye_gsl(_Tp __proto = _Tp{})
+  {
+    std::cout.precision(__gnu_cxx::__max_digits10(__proto));
+    std::cout << std::showpoint << std::scientific;
+    auto width = 8 + std::cout.precision();
+
+    std::cout << '\n' << '\n';
+    std::cout << ' ' << std::setw(width) << "x"
+	      << ' ' << std::setw(width) << "Debye_1(x) GSL"
+	      << ' ' << std::setw(width) << "Debye_2(x) GSL"
+	      << ' ' << std::setw(width) << "Debye_3(x) GSL"
+	      << ' ' << std::setw(width) << "Debye_4(x) GSL"
+	      << ' ' << std::setw(width) << "Debye_5(x) GSL"
+	      << ' ' << std::setw(width) << "Debye_6(x) GSL"
+	      << '\n';
+    for (int i = 0; i <= +200; ++i)
+      {
+	auto x = _Tp{0.1L} * i;
+	std::cout << ' ' << std::setw(width) << x;
+	for (int n = 1; n <= 6; ++n)
+	  std::cout << ' ' << std::setw(width) << gsl::debye(n, x);
 	std::cout << '\n';
       }
   }
@@ -146,6 +175,8 @@ int
 main()
 {
   test_debye(1.0);
+
+  test_debye_gsl(1.0);
 
   return 0;
 }
