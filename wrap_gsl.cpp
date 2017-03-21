@@ -1160,7 +1160,7 @@ double
 binomial(unsigned int n, unsigned int k)
 {
   if (k > n)
-    return std::numeric_limits<double>::quiet_NaN(); // GSL barfs on this for no reason.
+    return 0.0; // GSL barfs on this for no reason.
   gsl_sf_result result;
   int stat = gsl_sf_choose_e(n, k, &result);
   if (stat != GSL_SUCCESS)
