@@ -82,6 +82,7 @@ check/check_cyl_hankel_1
 check/check_cyl_hankel_2
 check/check_cyl_neumann
 check/check_dawson
+check/check_debye
 check/check_dilog
 check/check_dirichlet_beta
 check/check_dirichlet_eta
