@@ -3,7 +3,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_c
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_clausen > test_clausen.txt
 
 $HOME/bin/bin/g++ -std=c++17 -std=gnu++17 -g -Wall -Wextra -I. -o test_clausen test_clausen.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-PATH=wrappers/debug:$PATH ./test_clausen
+PATH=wrappers/debug:$PATH ./test_clausen > test_clausen.txt
 */
 
 #include <iostream>
@@ -103,16 +103,12 @@ template<typename _Tp>
 int
 main()
 {
-  std::cout << "\nfloat\n=====\n\n";
   test_clausen_cl<float>();
 
-  std::cout << "\ndouble\n======\n";
   test_clausen_cl<double>();
 
-  std::cout << "\nlong double\n===========\n";
   test_clausen_cl<long double>();
 
-  //std::cout << "\n__float128\n==========\n";
   //test_clausen_cl<__float128>();
 
   plot_clausen<double>();

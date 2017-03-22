@@ -647,9 +647,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  && __gnu_cxx::__fp_is_equal(std::remainder(__iw, _S_2pi), _Tp{0}))
 	{
 	  if (__s == 1)
-	    return __riemann_zeta<_Tp>(__s);
-	  else
 	    return std::numeric_limits<_Tp>::infinity();
+	  else
+	    return __riemann_zeta<_Tp>(__s);
 	}
       else if (0 == __s)
 	{
@@ -702,9 +702,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__gnu_cxx::__fp_is_zero(__w))
 	{
 	  if (__s == 1)
-	    return __riemann_zeta<_Tp>(__s);
-	  else
 	    return std::numeric_limits<_Tp>::infinity();
+	  else
+	    return __riemann_zeta<_Tp>(__s);
 	}
       else if (0 == __s)
 	{
