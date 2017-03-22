@@ -64,8 +64,8 @@ __float128 fminq(__float128, __float128) _GLIBCXX_NOEXCEPT;
 __float128 fmodq(__float128, __float128) _GLIBCXX_NOEXCEPT;
 __float128 frexpq(__float128, int*) _GLIBCXX_NOEXCEPT;
 __float128 hypotq(__float128, __float128) _GLIBCXX_NOEXCEPT;
-int isinfq(__float128) _GLIBCXX_NOEXCEPT;
 int ilogbq(__float128) _GLIBCXX_NOEXCEPT;
+int isinfq(__float128) _GLIBCXX_NOEXCEPT;
 int isnanq(__float128) _GLIBCXX_NOEXCEPT;
 __float128 j0q(__float128) _GLIBCXX_NOEXCEPT;
 __float128 j1q(__float128) _GLIBCXX_NOEXCEPT;
@@ -223,14 +223,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return hypotq(__x, __y); }
 
   inline int
-  isinf(__float128 __x) _GLIBCXX_USE_NOEXCEPT
-  { return isinfq(__x); }
-
-  inline int
   ilogb(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return ilogbq(__x); }
 
-  inline int
+  inline bool
+  isinf(__float128 __x) _GLIBCXX_USE_NOEXCEPT
+  { return isinfq(__x); }
+
+  inline bool
   isnan(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return isnanq(__x); }
 
