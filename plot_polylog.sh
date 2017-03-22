@@ -31,6 +31,15 @@ plot [1.5:1.7][-4.0:4.0] \
                      "" index 1 using 1:7 with lines title "100 Re[delta]", \
                      "" index 1 using 1:8 with lines title "100 Im[delta]"
 
+set title "Polylog Li_{2}(x)"
+set xlabel "x"
+plot [-12.2:-12.1][-4.70:-4.66] \
+    "debug_polylog.txt" index 2 using 1:2 with lines title "dilog(x) gnu", \
+                     "" index 2 using 1:3 with lines title "Re[Li_{2}(x)] gnu", \
+                     "" index 2 using 1:4 with lines title "Re[Li_{2}(x)] zeta", \
+                     "" index 2 using 1:5 with lines title "-1000 delta", \
+                     "" index 2 using 1:6 with lines title "-1000 Re[delta]"
+
 set title "Polylog Li_{s}(x)"
 set xlabel "x"
 plot [-20.0:1.0][-10.0:10.0] \
