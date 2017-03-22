@@ -646,7 +646,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__gnu_cxx::__fp_is_real(__w)
 	  && __gnu_cxx::__fp_is_equal(std::remainder(__iw, _S_2pi), _Tp{0}))
 	{
-	  if (__s > 1)
+	  if (__s == 1)
 	    return __riemann_zeta<_Tp>(__s);
 	  else
 	    return std::numeric_limits<_Tp>::infinity();
@@ -701,7 +701,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_max_asymp = _Tp{6};
       if (__gnu_cxx::__fp_is_zero(__w))
 	{
-	  if (__s > 1)
+	  if (__s == 1)
 	    return __riemann_zeta<_Tp>(__s);
 	  else
 	    return std::numeric_limits<_Tp>::infinity();
@@ -753,7 +753,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if ((((-__s) & 1) == 0) && __gnu_cxx::__fp_is_imag(__w))
 	{
 	  // Now s is odd and w on the unit-circle.
-	  const auto __iw = imag(__w);  //get imaginary part
+	  const auto __iw = imag(__w); // Get imaginary part.
 	  const auto __rem = std::remainder(__iw, _S_2pi);
 	  if (__gnu_cxx::__fp_is_equal(std::abs(__rem), _Tp{0.5L}))
 	    // Due to: Li_{-n}(-1) + (-1)^n Li_{-n}(1/-1) = 0.
@@ -793,7 +793,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_pi = __gnu_cxx::__const_pi(__w);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__w);
       const auto _S_max_asymp = _Tp{6};
-      if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose exp'ly converging series.
+      if (__w < -(_S_pi_2 + _S_pi / _Tp{5}))
+	// Choose exponentially converging series.
 	return __polylog_exp_sum(__s, std::complex<_Tp>(__w));
       else if (__gnu_cxx::__fp_is_zero(__w))
 	return std::numeric_limits<_Tp>::infinity();
@@ -825,10 +826,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__gnu_cxx::__fp_is_real(__w)
 	  && __gnu_cxx::__fp_is_zero(std::remainder(__iw, _S_2pi)))
 	{
-	  if (__s > _Tp{1})
-	    return __riemann_zeta(__s);
-	  else
+	  if (__gnu_cxx::__fp_is_equal(__s, _Tp{1}))
 	    return std::numeric_limits<_Tp>::infinity();
+	  else
+	    return __riemann_zeta(__s);
 	}
       if (__rw < -(_S_pi_2 + _S_pi / _Tp{5}))
         // Choose exponentially converging series.
@@ -861,19 +862,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_max_asymp = _Tp{6};
       if (__gnu_cxx::__fp_is_zero(__w))
 	{
-	  if (__s > _Tp{1})
-	    return __riemann_zeta(__s);
-	  else
+	  if (__gnu_cxx::__fp_is_equal(__s, _Tp{1}))
 	    return std::numeric_limits<_Tp>::infinity();
+	  else
+	    return __riemann_zeta(__s);
 	}
-      if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose exp'ly converging series.
+      if (__w < -(_S_pi_2 + _S_pi / _Tp{5}))
+	// Choose exponentially converging series.
 	return __polylog_exp_sum(__s, __w);
       if (__w < _S_max_asymp)
 	// Arbitrary transition point
 	return __polylog_exp_pos(__s, std::complex<_Tp>(__w));
       else
 	return __polylog_exp_asymp(__s, std::complex<_Tp>(__w));
-  }
+    }
 
   /**
    * Return the polylog where s is a negative real value
@@ -893,7 +895,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
       const auto __rw = __w.real();
       const auto __iw = __w.imag();
-      if (__rw < -(_S_pi_2 + _S_pi/_Tp{5})) // Choose exp'ly converging series.
+      if (__rw < -(_S_pi_2 + _S_pi / _Tp{5}))
+	// Choose exponentially converging series.
 	return __polylog_exp_sum(__s, __w);
       else if (__rw < 6) // arbitrary transition point
 	// The reductions of the imaginary part yield the same results
@@ -1105,7 +1108,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (__s < _Tp{0})
 	{
 	  const auto __p = __gnu_cxx::__fp_is_integer(__s, _Tp{5});
-	  if (__p)
+	  if (__p && (__p() % 2 == 0))
 	    return _Tp{0};
 	  else
 	    {
@@ -1113,7 +1116,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      const auto __sc = _Tp{1} - __s;
 	      const auto __p2 = std::pow(_Tp{2}, -__sc);
 	      return _Tp{2} * (_Tp{1} - __p2) / (_Tp{1} - _Tp{2} * __p2)
-		   * std::pow(_S_pi, -__sc) *__s * __sin_pi(__s / _Tp{2})
+		   * std::pow(_S_pi, -__sc) * __s * __sin_pi(__s / _Tp{2})
 		   * __gamma(-__s) * __dirichlet_eta(__sc);
 	    }
 	}
