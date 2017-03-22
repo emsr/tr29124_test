@@ -425,6 +425,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__isnan(__x))
 	return __sph_t{__n, __x, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
+      else if (__x == _Tp{0})
+	{
+	  const auto _S_inf = __gnu_cxx::__infinity(__x);
+	  if (__n == 0)
+	    return __sph_t{__n, __x, _Tp{1}, _Tp{0}, _S_inf, -_S_inf};
+	  else
+	    return __sph_t{__n, __x, _Tp{0}, _Tp{0}, _S_inf, -_S_inf};
+	}
       else
 	{
 	  const auto __nu = _Tp(__n + 0.5L);
