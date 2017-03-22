@@ -1400,7 +1400,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__s <= _Sp{0} && __x < _Tp{0})
 	std::__throw_domain_error(__N("__bose_einstein: "
-				      "Order must be greater than -1"));
+				      "Order must be greater than 0"));
       else
 	return std::real(__polylog_exp(__s + _Sp{1}, __x));
     }
