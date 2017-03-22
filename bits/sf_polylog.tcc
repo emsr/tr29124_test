@@ -604,7 +604,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _PowTp, typename _Tp>
     _Tp
-    __polylog_exp_neg_real_part(_PowTp __s, _Tp __w)
+    __polylog_exp_sum(_PowTp __s, _Tp __w)
     {
       auto __ew = std::exp(__w);
       const auto __up = __ew;
@@ -669,7 +669,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  if (__rw < -(_S_pi_2 + _S_pi / _Tp{5}))
 	    // Choose the exponentially converging series
-	    return __polylog_exp_neg_real_part(__s, __w);
+	    return __polylog_exp_sum(__s, __w);
 	  else if (__rw < _S_max_asymp)
 	    // The transition point chosen here, is quite arbitrary
 	    // and needs more testing.
@@ -724,7 +724,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  if (__w < -(_S_pi_2 + _S_pi / _Tp{5}))
 	    // Choose the exponentially converging series
-	    return __polylog_exp_neg_real_part(__s, std::complex<_Tp>(__w));
+	    return __polylog_exp_sum(__s, std::complex<_Tp>(__w));
 	  else if (__w < _S_max_asymp)
 	    // The transition point chosen here, is quite arbitrary
 	    // and needs more testing.
@@ -766,7 +766,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  if (std::real(__w) < -(_S_pi_2 + _S_pi / _Tp{5})  )
 	    // Choose the exponentially converging series
-	    return __polylog_exp_neg_real_part(__s, __w);
+	    return __polylog_exp_sum(__s, __w);
 	  else if (std::real(__w) < _S_max_asymp)
 	    // Arbitrary transition point...
 	    // The reductions of the imaginary part yield the same results
@@ -794,7 +794,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__w);
       const auto _S_max_asymp = _Tp{6};
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose exp'ly converging series.
-	return __polylog_exp_neg_real_part(__s, std::complex<_Tp>(__w));
+	return __polylog_exp_sum(__s, std::complex<_Tp>(__w));
       else if (__gnu_cxx::__fp_is_zero(__w))
 	return std::numeric_limits<_Tp>::infinity();
       else if (__w < _S_max_asymp)
@@ -832,7 +832,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       if (__rw < -(_S_pi_2 + _S_pi / _Tp{5}))
         // Choose exponentially converging series.
-	return __polylog_exp_neg_real_part(__s, __w);
+	return __polylog_exp_sum(__s, __w);
       if (__rw < _S_max_asymp)
 	// Arbitrary transition point.
 	// The reductions of the imaginary part yield the same results
@@ -867,7 +867,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    return std::numeric_limits<_Tp>::infinity();
 	}
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose exp'ly converging series.
-	return __polylog_exp_neg_real_part(__s, __w);
+	return __polylog_exp_sum(__s, __w);
       if (__w < _S_max_asymp)
 	// Arbitrary transition point
 	return __polylog_exp_pos(__s, std::complex<_Tp>(__w));
@@ -894,7 +894,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __rw = __w.real();
       const auto __iw = __w.imag();
       if (__rw < -(_S_pi_2 + _S_pi/_Tp{5})) // Choose exp'ly converging series.
-	return __polylog_exp_neg_real_part(__s, __w);
+	return __polylog_exp_sum(__s, __w);
       else if (__rw < 6) // arbitrary transition point
 	// The reductions of the imaginary part yield the same results
 	// as Mathematica then.
@@ -923,7 +923,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_max_asymp = _Tp{6};
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5}))
 	// Choose exponentially converging series.
-	return __polylog_exp_neg_real_part(__s, std::complex<_Tp>(__w));
+	return __polylog_exp_sum(__s, std::complex<_Tp>(__w));
       else if (__w < _S_max_asymp)
 	// Arbitrary transition point
 	return __polylog_exp_neg(__s, std::complex<_Tp>(__w));
@@ -951,7 +951,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__s > _Tp{25})
 	// Cutoff chosen by some testing on the real axis.
-	return __polylog_exp_neg_real_part(__s, __w);
+	return __polylog_exp_sum(__s, __w);
       else
 	{
 	  const auto __p = __gnu_cxx::__fp_is_integer(__s, _Tp{5});
