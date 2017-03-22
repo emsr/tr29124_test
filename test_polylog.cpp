@@ -623,7 +623,7 @@ template<typename Tp>
     {
       auto w = std::complex<Tp>(-_S_pi / 2 - _S_pi / 5, 0);
       std::cout << std::__detail::__polylog_exp(-Tp{4}, w) << '\n';
-      std::cout << std::__detail::__polylog_exp_neg_real_part(-Tp{4}, w) << '\n';
+      std::cout << std::__detail::__polylog_exp_sum(-Tp{4}, w) << '\n';
     }
     std::cout << std::endl;
 
@@ -717,7 +717,7 @@ template<typename Tp>
       for (Tp x = -Tp{7} / Tp{10} * _S_pi; x > -_S_2pi; x -= del05)
 	std::cout << k
 		  << ' ' << x
-		  << ' ' << std::__detail::__polylog_exp_neg_real_part(k, x)
+		  << ' ' << std::__detail::__polylog_exp_sum(k, x)
 		  << '\n';
     std::cout << std::endl;
   }
