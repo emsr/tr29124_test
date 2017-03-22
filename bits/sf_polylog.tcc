@@ -640,7 +640,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__w));
-      const auto _S_max_asymp = _Tp{6};
+      const auto _S_max_asymp = _Tp{5};
       const auto __rw = __w.real();
       const auto __iw = __w.imag();
       if (__gnu_cxx::__fp_is_real(__w)
@@ -698,7 +698,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__w));
-      const auto _S_max_asymp = _Tp{6};
+      const auto _S_max_asymp = _Tp{5};
       if (__gnu_cxx::__fp_is_zero(__w))
 	{
 	  if (__s > 1)
@@ -749,7 +749,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__w));
-      const auto _S_max_asymp = _Tp{6};
+      const auto _S_max_asymp = _Tp{5};
       if ((((-__s) & 1) == 0) && __gnu_cxx::__fp_is_imag(__w))
 	{
 	  // Now s is odd and w on the unit-circle.
@@ -792,7 +792,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__w);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__w);
-      const auto _S_max_asymp = _Tp{6};
+      const auto _S_max_asymp = _Tp{5};
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5})) // Choose exp'ly converging series.
 	return __polylog_exp_neg_real_part(__s, std::complex<_Tp>(__w));
       else if (__gnu_cxx::__fp_is_zero(__w))
@@ -819,7 +819,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_2pi = __gnu_cxx::__const_2_pi(__s);
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
-      const auto _S_max_asymp = _Tp{6};
+      const auto _S_max_asymp = _Tp{5};
       const auto __rw = __w.real();
       const auto __iw = __w.imag();
       if (__gnu_cxx::__fp_is_real(__w)
@@ -858,7 +858,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
-      const auto _S_max_asymp = _Tp{6};
+      const auto _S_max_asymp = _Tp{5};
       if (__gnu_cxx::__fp_is_zero(__w))
 	{
 	  if (__s > _Tp{1})
@@ -920,7 +920,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
-      const auto _S_max_asymp = _Tp{6};
+      const auto _S_max_asymp = _Tp{5};
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5}))
 	// Choose exponentially converging series.
 	return __polylog_exp_neg_real_part(__s, std::complex<_Tp>(__w));
