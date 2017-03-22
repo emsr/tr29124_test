@@ -29,9 +29,9 @@ template<typename _Tp>
 	      << std::setw(width) << "Im(Cl_1)"
 	      << std::setw(width) << "Re(Cl_2)"
 	      << std::setw(width) << "Im(Cl_2)"
-	      << std::setw(width) << "C_2 GSL"
-	      << std::setw(width) << "Cl_2(x)"
-	      << std::setw(width) << "C_2"
+	      << std::setw(width) << "Cl_2 GSL"
+	      << std::setw(width) << "C_2(x)"
+	      << std::setw(width) << "Cl_2"
 	      << '\n';
     std::cout << std::setw(width) << "========="
 	      << std::setw(width) << "========="

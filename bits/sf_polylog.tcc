@@ -667,7 +667,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else
 	{
-	  if (__rw > -(_S_pi_2 + _S_pi / _Tp{5}))
+	  if (__rw < -(_S_pi_2 + _S_pi / _Tp{5}))
 	    // Choose the exponentially converging series
 	    return __polylog_exp_neg_real_part(__s, __w);
 	  else if (__rw < _S_max_asymp)
