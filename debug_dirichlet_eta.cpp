@@ -2,8 +2,6 @@
 $HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -Izeta -o debug_dirichlet_eta debug_dirichlet_eta.cpp -lquadmath -Lwrappers/debug -lwrap_cephes
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./debug_dirichlet_eta > debug_dirichlet_eta.txt
 
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH $HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o debug_dirichlet_eta debug_dirichlet_eta.cpp -lquadmath -Lwrappers/debug -lwrap_cephes
-
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -Izeta -o debug_dirichlet_eta debug_dirichlet_eta.cpp -lquadmath -Lwrappers/debug -lwrap_cephes
 PATH=wrappers/debug:$PATH ./debug_dirichlet_eta > debug_dirichlet_eta.txt
 */
