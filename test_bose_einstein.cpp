@@ -84,18 +84,14 @@ template<typename _Tp>
 int
 main()
 {
-  std::cout << "\nfloat\n=====\n\n";
   run_bose_einstein<float>();
 
-  std::cout << "\ndouble\n======\n";
   run_bose_einstein<double>();
 
-  std::cout << "\nlong double\n===========\n";
   run_bose_einstein<long double>();
 
 // This works but takes too long.
 #if 0 && !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  std::cout << "\n__float128\n==========\n";
   run_bose_einstein<__float128>();
 #endif
 }
