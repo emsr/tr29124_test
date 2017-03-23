@@ -724,7 +724,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  if (__w < -(_S_pi_2 + _S_pi / _Tp{5}))
 	    // Choose the exponentially converging series
-	    return __polylog_exp_sum(__s, std::complex<_Tp>(__w));
+	    return __polylog_exp_sum(__s, __w);
 	  else if (__w < _S_max_asymp)
 	    // The transition point chosen here, is quite arbitrary
 	    // and needs more testing.
@@ -795,7 +795,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_max_asymp = _Tp{5};
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5}))
 	// Choose exponentially converging series.
-	return __polylog_exp_sum(__s, std::complex<_Tp>(__w));
+	return __polylog_exp_sum(__s, __w);
       else if (__gnu_cxx::__fp_is_zero(__w))
 	return std::numeric_limits<_Tp>::infinity();
       else if (__w < _S_max_asymp)
@@ -926,7 +926,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_max_asymp = _Tp{5};
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5}))
 	// Choose exponentially converging series.
-	return __polylog_exp_sum(__s, std::complex<_Tp>(__w));
+	return __polylog_exp_sum(__s, __w);
       else if (__w < _S_max_asymp)
 	// Arbitrary transition point
 	return __polylog_exp_neg(__s, std::complex<_Tp>(__w));
