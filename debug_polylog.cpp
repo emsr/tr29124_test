@@ -82,12 +82,12 @@ main()
   for (int i = 0; i <= 100; ++i)
     {
       const auto x = double(-12.2L + i * 0.001L);
-      const auto dilog = std::__detail::__dilog(x);
       const auto li_gnu = std::__detail::__polylog(2.0, std::complex<double>(x));
+      const auto dilog = std::__detail::__dilog(x);
       const auto li_zeta = PolyLog(2.0, std::complex<double>(x));
       std::cout << ' ' << std::setw(w) << x
-		<< ' ' << std::setw(w) << dilog
 		<< ' ' << std::setw(w) << std::real(li_gnu)
+		<< ' ' << std::setw(w) << dilog
 		<< ' ' << std::setw(w) << std::real(li_zeta)
 		<< ' ' << std::setw(w) << -1000 * std::real(li_gnu - dilog)
 		<< ' ' << std::setw(w) << -1000 * std::real(li_gnu - li_zeta)
