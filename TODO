@@ -565,8 +565,6 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 
 plot_airy.cpp
 
-test_array_ref.cpp - move with <array_ref> somewhere else
-
 test_hankel.cpp - warns and crashes
   In function \u2018int main()\u2019:
   test_hankel.cpp:35:34: warning: unused variable \u2018zx\u2019 [-Wunused-variable]
