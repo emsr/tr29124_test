@@ -359,6 +359,21 @@ double polylog(unsigned int n, double x);
 /// Reciprocal gamma.
 double gamma_reciprocal(unsigned int a);
 
+/// Euler numbers.
+double euler(unsigned int n);
+
+/// Euler polynomials.
+double euler(unsigned int n, double x);
+
+/// Eulerian numbers.
+double eulerian_1(unsigned int n, unsigned int m);
+
+/// Stirling numbers of the first kind.
+double stirling_1(unsigned int n, unsigned int m);
+
+/// Stirling numbers of the second kind.
+double stirling_2(unsigned int n, unsigned int m);
+
 /// Gauss-Chebyshev T rule.
 std::vector<__gnu_cxx::__quadrature_point_t<double>>
 gauss_chebyshev_t_rule(std::size_t n);

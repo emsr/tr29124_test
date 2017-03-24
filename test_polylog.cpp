@@ -17,6 +17,11 @@ PATH=wrappers/debug:$PATH ./test_polylog > test_polylog.txt
 
 #include "wrap_cephes.h"
 
+  /**
+   * This class manages the termination of series.
+   * Termination conditions involve both a maximum iteration count
+   * and a relative precision.
+   */
   template<typename _Tp>
     class _Terminator
     {
@@ -30,78 +35,59 @@ PATH=wrappers/debug:$PATH ./test_polylog > test_polylog.txt
 
       _Terminator(std::size_t __max_iter, _Real __mul = _Real{1})
       : _M_max_iter(__max_iter),
-	_M_toler(__mul * std::numeric_limits<_Real>::epsilon())
+	_M_toler(std::abs(__mul) * std::numeric_limits<_Real>::epsilon())
       { }
 
       bool
       operator()(_Tp __term, _Tp __sum)
       {
-	return (--_M_max_iter == 0
-		|| std::abs(__term) < _M_toler * std::abs(__sum));
+	if (this->_M_max_iter == 0 || --this->_M_max_iter == 0)
+	  return true;
+	else if (std::abs(__term) < this->_M_toler * std::abs(__sum))
+	  return true;
+	else
+	  return false;
       }
     };
 
-
   /**
-   * Stolen from test_bernoulli.cpp
-   * Use for nonpositive integer order.
+   * This class manages the termination of series.
+   * Termination conditions involve both a maximum iteration count
+   * and a relative precision.
    */
   template<typename _Tp>
-    _Tp
-    __stirling_2_recur(unsigned int __n, unsigned int __m)
+    class _AsympTerminator
     {
-      if (__n == 0)
-	return _Tp(__m == 0);
-      else if (__m == 0)
-	return _Tp(__n == 0);
-      else
-	{
-	  std::vector<_Tp> __sigold(__m + 1), __signew(__m + 1);
-	  __sigold[1] = _Tp{1};
-	  if (__n == 1)
-	    return __sigold[__m];
-	  for (auto __in = 1u; __in <= __n; ++__in)
-	    {
-	      __signew[1] = __sigold[1];
-	      for (auto __im = 2u; __im <= __m; ++__im)
-		__signew[__im] = __im * __sigold[__im] + __sigold[__im - 1];
-	      std::swap(__sigold, __signew);
-	    }
-	  return __signew[__m];
-	}
-    }
+    private:
 
-  template<typename _Tp>
-    _Tp
-    __eulerian_1_recur(unsigned int __n, unsigned int __m)
-    {
-      if (__n == 0)
-	return _Tp{0};
-      else if (__m == 0)
-	return _Tp{1};
-      else if (__m == __n - 1)
-	return _Tp{1};
-      else if (__m >= __n)
-	return _Tp{0};
-      else if (__n - __m - 1 < __m) // Symmetry.
-	return __eulerian_1_recur<_Tp>(__n, __n - __m - 1);
-      else
-	{
-	  // Start recursion with n == 2 (already returned above).
-	  std::vector<_Tp> _Aold(__m + 1), _Anew(__m + 1);
-	  _Aold[0] = _Tp{1};
-	  _Anew[0] = _Tp{1};
-	  _Anew[1] = _Tp{1};
-	  for (auto __in = 3u; __in <= __n; ++__in)
-	    {
-	      std::swap(_Aold, _Anew);
-	      for (auto __im = 1u; __im <= __m; ++__im)
-		_Anew[__im] = (__in - __im) * _Aold[__im - 1]
-			    + (__im + 1) * _Aold[__im];
-	    }
-	  return _Anew[__m];
-	}
-    }
+      using _Real = std::__detail::__num_traits_t<_Tp>;
+      std::size_t _M_max_iter;
+      _Real _M_toler;
+      _Real _M_prev_term = std::numeric_limits<_Real>::max();
+
+    public:
+
+      _AsympTerminator(std::size_t __max_iter, _Real __mul = _Real{1})
+      : _M_max_iter(__max_iter),
+	_M_toler(std::abs(__mul) * std::numeric_limits<_Real>::epsilon())
+      { }
+
+      bool
+      operator()(_Tp __term, _Tp __sum)
+      {
+	const auto __aterm = std::abs(__term);
+	const auto __stop_asymp = (__aterm > this->_M_prev_term);
+	this->_M_prev_term = __aterm;
+	if (this->_M_max_iter == 0 || --this->_M_max_iter == 0)
+	  return true;
+	else if (__aterm < this->_M_toler * std::abs(__sum))
+	  return true;
+	else if (__stop_asymp)
+	  return true;
+	else
+	  return false;
+      }
+    };
 
   /**
    * Compute the polylogarithm for nonpositive integer order.
@@ -122,12 +108,12 @@ PATH=wrappers/debug:$PATH ./test_polylog > test_polylog.txt
 	{
 	  const auto __arg = __x / (_Tp{1} - __x);
 	  auto __fact = __arg;
-	  auto __term = __arg * __stirling_2_recur<_Tp>(1 - __n, 1);
+	  auto __term = __arg * __gnu_cxx::stirling_2<_Tp>(1 - __n, 1);
 	  auto __sum = __term;
 	  for (int __k = 1; __k <= -__n; ++__k)
 	    {
 	      __fact *= __k * __arg;
-	      __term = __fact * __stirling_2_recur<_Tp>(1 - __n, 1 + __k);
+	      __term = __fact * __gnu_cxx::stirling_2<_Tp>(1 - __n, 1 + __k);
 	      __sum += __term;
 	    }
 	  return __sum;
@@ -155,12 +141,12 @@ PATH=wrappers/debug:$PATH ./test_polylog > test_polylog.txt
 	{
 	  const auto __arg = _Tp{-1} / (_Tp{1} - __x);
 	  auto __fact = __arg;
-	  auto __term = __fact * __stirling_2_recur<_Tp>(1 - __n, 1);
+	  auto __term = __fact * __gnu_cxx::stirling_2<_Tp>(1 - __n, 1);
 	  auto __sum = __term;
 	  for (int __k = 1; __k <= -__n; ++__k)
 	    {
 	      __fact *= __k * __arg;
-	      __term = __fact * __stirling_2_recur<_Tp>(1 - __n, 1 + __k);
+	      __term = __fact * __gnu_cxx::stirling_2<_Tp>(1 - __n, 1 + __k);
 	      __sum += __term;
 	    }
 	  __sum *= __gnu_cxx::__parity<_Tp>(1 - __n);
@@ -187,12 +173,12 @@ PATH=wrappers/debug:$PATH ./test_polylog > test_polylog.txt
       else
 	{
 	  auto __fact = _Tp{1} / __x;
-	  auto __term = __fact * __eulerian_1_recur<_Tp>(-__n, 0);
+	  auto __term = __fact * __gnu_cxx::eulerian_1<_Tp>(-__n, 0);
 	  auto __sum = __term;
 	  for (int __k = 1; __k < -__n; ++__k)
 	    {
 	      __fact /= __x;
-	      __term = __fact * __eulerian_1_recur<_Tp>(-__n, __k);
+	      __term = __fact * __gnu_cxx::eulerian_1<_Tp>(-__n, __k);
 	      __sum += __term;
 	    }
 	  __sum *= std::pow(__x / (_Tp{1} - __x), _Tp(1 - __n));
@@ -430,6 +416,56 @@ PATH=wrappers/debug:$PATH ./test_polylog > test_polylog.txt
       default: // We shouldn't need this.
 	return std::complex<_Tp>{};
       }
+    }
+
+  /**
+   * This function implements the asymptotic series for the polylog.
+   * It is given by
+   * @f[
+   *    2 \sum_{k=0}^{\infty} \zeta(2k) w^{s-2k}/\Gamma(s-2k+1)
+   *       -i \pi w^{s-1}/\Gamma(s)
+   * @f]
+   * for @f$ Re(w) >> 1 @f$
+   *
+   * Don't check this against Mathematica 8.
+   * For real u the imaginary part of the polylog is given by
+   * @f$ Im(Li_s(e^u)) = - \pi u^{s-1}/\Gamma(s) @f$.
+   * Check this relation for any benchmark that you use.
+   *
+   * @param __s the real index s.
+   * @param __w the large complex argument w.
+   * @return the value of the polylogarithm.
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    __polylog_exp_asymp(_Tp __s, std::complex<_Tp> __w)
+    { // asymptotic expansion
+      const auto _S_pi = __gnu_cxx::__const_pi(__s);
+      // wgamma = w^{s-1} / Gamma(s)
+      auto __wgamma = std::pow(__w, __s - _Tp{1}) * std::__detail::__gamma_reciprocal(__s);
+      __wgamma = std::exp((__s - _Tp{1}) * std::log(__w) - __log_gamma(__s)); // Sign flip!
+      auto __res = std::complex<_Tp>(_Tp{0}, -_S_pi) * __wgamma;
+      // wgamma = w^s / Gamma(s+1)
+      __wgamma *= __w / __s;
+      constexpr unsigned int __maxiter = 100;
+      _AsympTerminator<std::complex<_Tp>> __done(__maxiter);
+      // zeta(0) w^s / Gamma(s + 1)
+      std::complex<_Tp> __oldterm = -_Tp{0.5L} * __wgamma;
+      __res += _Tp{2} * __oldterm;
+      std::complex<_Tp> __term;
+      auto __wq = _Tp{1} / (__w * __w);
+      int __k = 1;
+      while (true)
+	{
+	  __wgamma *= __wq * (__s + _Tp(1 - 2 * __k)) * (__s + _Tp(2 - 2 * __k));
+	  __term = std::__detail::__riemann_zeta<_Tp>(2 * __k) * __wgamma;
+	  __res += _Tp{2} * __term;
+	  if (__done(_Tp{2} * __term, __res))
+	    break;
+	  __oldterm = __term;
+	  ++__k;
+	}
+      return __res;
     }
 
 /**

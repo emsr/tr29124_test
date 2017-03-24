@@ -115,7 +115,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return  The Euler number of order n.
    */
   template<typename _Tp>
-    _Tp //_GLIBCXX14_CONSTEXPR
+    inline _Tp
     __euler(unsigned int __n)
     { return __euler_series<_Tp>(__n); }
 
@@ -131,19 +131,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   E_n(1/2) = \frac{E_n}{2^n}, \mbox{ where } E_n
    *             \mbox{ is the n-th Euler number.}
    * @f]
-   *
    */
   template<typename _Tp>
     _Tp
     __euler(unsigned int __n, _Tp __x)
     {
-      auto __bx1 = __bernoulli(__n + 1, __x );
-      auto __bx2 = __bernoulli(__n + 1, _Tp{0.5L} * __x );
+      if (__isnan(__x))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else
+	{
+	  auto __bx1 = __bernoulli(__n + 1, __x );
+	  auto __bx2 = __bernoulli(__n + 1, _Tp{0.5L} * __x );
 
-      auto _E_n = _Tp{2} * (__bx1 - __bx2 * std::pow(_Tp{2}, _Tp(__n + 1)))
-		/ _Tp(__n + 1);
+	  auto _E_n = _Tp{2} * (__bx1 - __bx2 * std::pow(_Tp{2}, _Tp(__n + 1)))
+		    / _Tp(__n + 1);
 
-      return _E_n;
+	  return _E_n;
+	}
     }
 
   /**
@@ -184,6 +188,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  return _Anew[__m];
 	}
     }
+
+  /**
+   * Return the Eulerian number of the first.
+   * The Eulerian numbers are defined by recursion:
+   * @f[
+   *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m)
+   * @f]
+   */
+  template<typename _Tp>
+    inline _Tp
+    __eulerian_1(unsigned int __n, unsigned int __m)
+    { return __eulerian_1_recur<_Tp>(__n, __m); }
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
