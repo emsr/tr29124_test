@@ -131,7 +131,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the Stirling number of the second kind from lookup
    * or by series expansion.
    *
-   * @todo Look into asymptotic solutions.
+   * The series is:
+   * @f[
+   *   \sigma_n^{(m)} = \sum_{k=0}^{m}\frac{(-1)^{m-k}k^n}{(m-k)!k!}
+   * @f]
+   *
+   * @todo Look into asymptotic solutions for the Stirling numbers.
    */
   template<typename _Tp>
     _Tp
@@ -268,7 +273,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   S_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0}
    * @f]
    *
-   * @todo Look into asymptotic solutions.
+   * @todo Look into asymptotic solutions for the Stirling numbers.
    */
   template<typename _Tp>
     _Tp
