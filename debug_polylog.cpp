@@ -24,6 +24,9 @@ main()
   //const auto _S_pi = __gnu_cxx::__const_pi(1.0);
   const auto _S_2pi = __gnu_cxx::__const_2_pi(1.0);
 
+  auto li_ok = std::__detail::__polylog(2.0, std::complex<double>(-12.1800));
+  auto li_bad = std::__detail::__polylog(2.0, std::complex<double>(-12.1850));
+
   //  Start with asymp. DONE
   //double s = -12.9;
   //double x = 0.0;
