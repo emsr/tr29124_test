@@ -1436,7 +1436,7 @@ debye(unsigned int n, double x)
 	  throw std::runtime_error(msg.str());
 	}
       else
-        return result.val;
+        return factorial(n) * riemann_zeta(n + 1) * (1.0 - result.val);
     }
   else
     return std::numeric_limits<double>::quiet_NaN();
