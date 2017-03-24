@@ -828,7 +828,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto _S_eps = __gnu_cxx::__epsilon(__x);
 	  const std::size_t _S_max_iter = 100;
 
-	  // n!zeta(n) is the integral for x=infty, Abramowitz & Stegun 27.1.3
+	  // n!zeta(n + 1) is the integral for x=infty, Abramowitz & Stegun 27.1.3
 	  auto __sum = _Tp{0};
 	  if (_S_num_factorials<_Tp>)
 	    __sum += __factorial<_Tp>(__n) * __riemann_zeta<_Tp>(__n + 1);

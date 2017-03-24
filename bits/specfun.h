@@ -177,6 +177,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * In addition a large number of new functions are added as extensions:
    * - @ref __gnu_cxx::airy_ai "airy_ai - Airy functions of the first kind"
    * - @ref __gnu_cxx::airy_bi "airy_bi - Airy functions of the second kind"
+   * - @ref __gnu_cxx::bernoulli "bernoulli - Bernoulli polynomials"
    * - @ref __gnu_cxx::binomial "binomial - Binomial coefficients"
    * - @ref __gnu_cxx::bose_einstein "bose_einstein - Bose-Einstein integrals"
    * - @ref __gnu_cxx::chebyshev_t "chebyshev_t - Chebyshev polynomials of the first kind"
@@ -208,6 +209,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::ellint_rg "ellint_rg - Carlson elliptic functions R_G"
    * - @ref __gnu_cxx::ellint_rj "ellint_rj - Carlson elliptic functions R_J"
    * - @ref __gnu_cxx::ellnome "ellnome - Elliptic nome"
+   * - @ref __gnu_cxx::euler "euler - Euler numbers"
+   * - @ref __gnu_cxx::euler "euler - Euler polynomials"
+   * - @ref __gnu_cxx::eulerian "eulerian - Eulerian numbers"
    * - @ref __gnu_cxx::expint "expint - Exponential integrals"
    * - @ref __gnu_cxx::factorial "factorial - Factorials"
    * - @ref __gnu_cxx::fermi_dirac "fermi_dirac - Fermi-Dirac integrals"
@@ -252,6 +256,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::sph_hankel_1 "sph_hankel_1 - Spherical Hankel functions of the first kind"
    * - @ref __gnu_cxx::sph_hankel_2 "sph_hankel_2 - Spherical Hankel functions of the first kind"
    * - @ref __gnu_cxx::sph_harmonic "sph_harmonic - Spherical"
+   * - @ref __gnu_cxx::stirling_1 "stirling_1 - Stirling numbers of the first kind"
+   * - @ref __gnu_cxx::stirling_2 "stirling_2 - Stirling numbers of the second kind"
    * - @ref __gnu_cxx::tan_pi "tan_pi - Reperiodized tangent function."
    * - @ref __gnu_cxx::tanh_pi "tanh_pi - Reperiodized hyperbolic tangent function."
    * - @ref __gnu_cxx::tgamma "tgamma - Gamma for complex arguments"
@@ -6279,6 +6285,98 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__debye<__type>(__n, __x);
     }
+
+  /**
+   * Return the Bernoulli polynomial @f$ B_n(x) @f$ of order n at argument x.
+   *
+   * The values at 0 and 1 are equal to the corresponding Bernoulli number:
+   * @f[
+   *   B_n(0) = B_n(1) = B_n
+   * @f]
+   *
+   * The derivative is proportional to the previous polynomial:
+   * @f[
+   *   B_n'(x) = n * B_{n-1}(x)
+   * @f]
+   *
+   * The series expansion is:
+   * @f[
+   *   B_n(x) = \sum_{k=0}^{n} B_k binom{n}{k} x^{n-k}
+   * @f]
+   *
+   * A useful argument promotion is:
+   * @f[
+   *   B_n(x+1) - B_n(x) = n * x^{n-1}
+   * @f]
+   */
+  template<typename _Tp>
+    inline _Tp
+    bernoulli(unsigned int __n, _Tp __x)
+    { return std::__detail::__bernoulli(__n, __x); }
+
+  /**
+   * @brief This returns Euler number @f$ E_n @f$.
+   *
+   * @param __n the order n of the Euler number.
+   * @return  The Euler number of order n.
+   */
+  template<typename _Tp>
+    inline _Tp
+    euler(unsigned int __n)
+    { return std::__detail::__euler<_Tp>(__n); }
+
+  /**
+   * Return the Eulerian number of the first.
+   * The Eulerian numbers are defined by recursion:
+   * @f[
+   *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m)
+   * @f]
+   */
+  template<typename _Tp>
+    inline _Tp
+    eulerian_1(unsigned int __n, unsigned int __m)
+    { return std::__detail::__eulerian_1<_Tp>(__n, __m); }
+
+  /**
+   * Return the Stirling number of the first kind.
+   *
+   * The Stirling numbers of the first kind are the coefficients of
+   * the Pocchammer polynomials:
+   * @f[
+   *   (x)_n = \sum_{k=0}^{n} S_n^{(k)} x^k
+   * @f]
+   *
+   * The recursion is
+   * @f[
+   *   S_{n+1}^{(m)} = S_n^{(m-1)} - n S_n^{(m)} \mbox{ or }
+   * @f]
+   * with starting values
+   * @f[
+   *   S_0^{(0\rightarrow m)} = {1, 0, 0, ..., 0}
+   * @f]
+   * and
+   * @f[
+   *   S_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0}
+   * @f]
+   */
+  template<typename _Tp>
+    inline _Tp
+    stirling_1(unsigned int __n, unsigned int __m)
+    { return std::__detail::__stirling_1<_Tp>(__n, __m); }
+
+  /**
+   * Return the Stirling number of the second kind from lookup
+   * or by series expansion.
+   *
+   * The series is:
+   * @f[
+   *   \sigma_n^{(m)} = \sum_{k=0}^{m}\frac{(-1)^{m-k}k^n}{(m-k)!k!}
+   * @f]
+   */
+  template<typename _Tp>
+    inline _Tp
+    stirling_2(unsigned int __n, unsigned int __m)
+    { return std::__detail::__stirling_2<_Tp>(__n, __m); }
 
 #endif // __cplusplus >= 201103L
 

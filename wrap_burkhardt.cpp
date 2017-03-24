@@ -2,6 +2,7 @@
 #include <limits>
 #include <vector>
 #include <cmath>
+#include <memory>
 
 #include "burkhardt/special_functions.h"
 
@@ -855,6 +856,45 @@ double
 polylog(unsigned int /*n*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
+}
+
+/// Euler numbers.
+double
+euler(unsigned int n)
+{
+  return ::euler_number2(n);
+}
+
+/// Euler polynomials.
+double
+euler(unsigned int n, double x)
+{
+  return ::euler_poly(n, x);
+}
+
+/// Eulerian numbers.
+double
+eulerian_1(unsigned int n, unsigned int m)
+{
+  std::vector<int> e(n * n);
+  ::eulerian(n, e.data());
+  return double(e[n - 1 + (m - 1) * n]);
+}
+
+/// Stirling numbers of the first kind.
+double
+stirling_1(unsigned int n, unsigned int m)
+{
+  std::unique_ptr<int[]> s1(::stirling1(n, m));
+  return double(s1[n - 1 + (m - 1) * n]);
+}
+
+/// Stirling numbers of the second kind.
+double
+stirling_2(unsigned int n, unsigned int m)
+{
+  std::unique_ptr<int[]> s2(::stirling2(n, m));
+  return double(s2[n - 1 + (m - 1) * n]);
 }
 
 
