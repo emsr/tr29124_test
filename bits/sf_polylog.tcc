@@ -86,6 +86,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  return false;
       }
     };
+
   /**
    * This class manages the termination of series.
    * Termination conditions involve both a maximum iteration count
@@ -152,22 +153,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * This function treats the cases of positive integer index s.
+   * This function treats the cases of positive integer index s
+   * for complex argument w.
    *
    * @f[
    *   Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) \frac{w^k}{k!}
-   *             + (H_{s-1} - \log(-w)) \frac{w^{s-1}}{(s-1)!}
+   *             + \left[H_{s-1} - \log(-w)\right] \frac{w^{s-1}}{(s-1)!}
    * @f]
    * The radius of convergence is @f$ |w| < 2 \pi @f$.
    * Note that this series involves a @f$ \log(-x) @f$.
    * gcc and Mathematica differ in their implementation
-   * of @f$ \log(e^{i \pi}) @f$:
-   * gcc: @f$ \log(e^{+- i * \pi}) = +- i \pi @f$
+   * of @f$ \log(e^{i\pi}) @f$:
+   * gcc: @f$ \log(e^{+-i\pi}) = +-i\pi @f$
    * whereas Mathematica doesn't preserve the sign in this case:
    * @f$ \log(e^{+- i\pi}) = +i \pi @f$
    *
-   * @param __s the positive integer index s.
-   * @param __w the argument w.
+   * @param __s the positive integer index.
+   * @param __w the argument.
    * @return the value of the polylogarithm.
    */
   template<typename _Tp>
@@ -184,28 +186,27 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __harmonicN = _Tp{1}; // HarmonicNumber_1
       for (unsigned int __k = 1; __k <= __s - 2; ++__k)
 	{
-	  __res += __wk * __fact * __riemann_zeta<_Tp>(__s - __k);
+	  __res += __fact * __riemann_zeta<_Tp>(__s - __k) * __wk;
 	  __wk *= __w;
 	  const auto __temp = _Tp{1} / _Tp(1 + __k);
 	  __fact *= __temp;
 	  __harmonicN += __temp;
 	}
       // harmonicN now contains H_{s-1}.
-      // fac should be 1/(n-1)!
+      // fact should be 1/(s-1)!
       __res += (__harmonicN - std::log(-__w)) * __wk * __fact;
       __wk *= __w;
-      __fact /= __s;
+      __fact /= __s; // 1/s!
       __res -= __wk * __fact / _Tp{2};
       __wk *= __w;
       // Now comes the remainder of the series.
       const auto __pref = __wk / _S_pi / _S_2pi;
-      // Factor this out for now so we can compare with sum.
-      __res /= __pref;
-      // Remainder of series.
-      __fact /= _Tp(__s + 1); // (1/(s+1)!)
-      auto __sum = std::complex<_Tp>(_S_pipio6 * __fact); // Sum the zeroth order term.
+      __fact /= _Tp(__s + 1); // 1/(s+1)!
+      // Subtract the zeroth order term.
+      __res -= _S_pipio6 * __fact * __pref;
       __fact *= _Tp{2} / _Tp(__s + 2) * _Tp{3} / _Tp(__s + 3);
-      const auto __w2 = -(__w / _S_2pi) * (__w / _S_2pi);
+      const auto __wbar = __w / _S_2pi;
+      const auto __w2 = -__wbar * __wbar;
       auto __w2k = __w2;
       auto __rzarg = _Tp{2};
       const unsigned int __maxit = 200;
@@ -213,39 +214,39 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       while (true)
 	{
 	  __rzarg += _Tp{2};
-	  const auto __rz = __riemann_zeta(__rzarg);
-	  const auto __term = (__rz * __fact) * __w2k;
-	  __sum += __term;
-	  if (__done(__term, __res - __sum))
+	  const auto __rzeta = __riemann_zeta(__rzarg);
+	  const auto __term = __pref * __fact * __rzeta * __w2k;
+	  __res -= __term;
+	  if (__done(__term, __res))
 	    break;
 	  __w2k *= __w2;
-	  __fact *= _Tp(__rzarg) / _Tp(__rzarg + __s)
-		  * _Tp(__rzarg + 1) / _Tp(__rzarg + __s + 1);
+	  __fact *= _Tp(__rzarg) / _Tp(__s + __rzarg)
+		  * _Tp(__rzarg + 1) / _Tp(__s + __rzarg + 1);
 	}
-      __res -= __sum;
-      return __pref * __res;
+      return __res;
     }
 
   /**
-   * This function treats the cases of positive integer index s for real w.
+   * This function treats the cases of positive integer index s
+   * for real argument w.
    *
    * This specialization is worthwhile to catch the differing behaviour
    * of log(x).
    * @f[
    *   Li_s(e^w) = \sum_{k=0, k != s-1} \zeta(s-k) \frac{w^k}{k!}
-   *             + \left(H_{s-1} - \log(-w)\right) \frac{w^{s-1}}{(s-1)!}
+   *             + \left[H_{s-1} - \log(-w)\right] \frac{w^{s-1}}{(s-1)!}
    * @f]
    * The radius of convergence is @f$ |w| < 2 \pi @f$.
    * Note that this series involves a @f$ \log(-x) @f$.
    * gcc and Mathematica differ in their implementation
    * of @f$ \log(e^{i\pi}) @f$:
-   * gcc: @f$ \log(e^{+- i\pi}) = +- i\pi @f$
+   * gcc: @f$ \log(e^{+-i\pi}) = +-i\pi @f$
    * whereas Mathematica doesn't preserve the sign in this case:
    * @f$ \log(e^{+- i\pi}) = +i\pi @f$
    *
    * @param __s the positive integer index.
-   * @param __w the argument
-   * @return the value of the Polylogarithm
+   * @param __w the argument.
+   * @return the value of the polylogarithm.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -261,30 +262,29 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __harmonicN = _Tp{1}; // HarmonicNumber_1
       for (unsigned int __k = 1; __k <= __s - 2; ++__k)
 	{
-	  __res += __wk * __fact * __riemann_zeta<_Tp>(__s - __k);
+	  __res += __fact * __riemann_zeta<_Tp>(__s - __k) * __wk;
 	  __wk *= __w;
 	  const auto __temp = _Tp{1} / _Tp(1 + __k);
 	  __fact *= __temp;
 	  __harmonicN += __temp;
 	}
       // harmonicN now contains H_{s-1}
-      // fact should be 1/(n-1)!
+      // fact should be 1/(s-1)!
       const auto __imagtemp = __fact * __wk
 			    * (__harmonicN - std::log(std::complex<_Tp>(-__w)));
       __res += std::real(__imagtemp);
       __wk *= __w;
-      __fact /= __s;
+      __fact /= __s; // 1/s!
       __res -= __wk * __fact / _Tp{2};
       __wk *= __w;
       // Now comes the remainder of the series.
       const auto __pref = __wk / _S_pi / _S_2pi;
-      bool __terminate = false;
-      __fact /= _Tp(__s + 1); // (1/(n+1)!)
+      __fact /= _Tp(__s + 1); // 1/(s+1)!
       // Subtract the zeroth order term.
-      auto __sum = _S_pipio6 * __fact;
-      // Remainder of series.
+      __res -= _S_pipio6 * __fact * __pref;
       __fact *= _Tp{2} / _Tp(__s + 2) * _Tp{3} / _Tp(__s + 3);
-      const auto __w2 = -(__w / _S_2pi) * (__w / _S_2pi);
+      const auto __wbar = __w / _S_2pi;
+      const auto __w2 = -__wbar * __wbar;
       auto __w2k = __w2;
       auto __rzarg = _Tp{2};
       const unsigned int __maxit = 200;
@@ -292,16 +292,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       while (true)
 	{
 	  __rzarg += _Tp{2};
-	  const auto __rz = __riemann_zeta(__rzarg);
-	  const auto __term = __rz * __fact * __w2k;
-	  __sum += __term;
-	  if (__done(__term, __sum))
+	  const auto __rzeta = __riemann_zeta(__rzarg);
+	  const auto __term = __pref * __fact * __rzeta * __w2k;
+	  __res -= __term;
+	  if (__done(__term, __res))
 	    break;
 	  __w2k *= __w2;
-	  __fact *= _Tp(__rzarg) / _Tp(__rzarg + __s)
-		  * _Tp(__rzarg + 1) / _Tp(__rzarg + 1 + __s);
+	  __fact *= _Tp(__rzarg) / _Tp(__s + __rzarg)
+		  * _Tp(__rzarg + 1) / _Tp(__s + __rzarg + 1);
 	}
-      __res -= __pref * __sum;
       return std::complex<_Tp>(__res, std::imag(__imagtemp));
     }
 
@@ -502,7 +501,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       unsigned int __j = 0;
       constexpr unsigned int __maxit = 100;
       _Terminator<std::complex<_Tp>> __done(__maxit);
-      bool __terminate = false;
       auto __wup = __w / _S_2pi;
       auto __wbark = std::pow(__wup, _Tp(__m + 1));
       // It is 1 < 2 - s + m < 2 => Gamma(2-s+m) will not overflow
@@ -510,7 +508,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // This ratio should be well behaved even for large k
       auto __gam = __gamma(_Tp(2 + __m) - __s) * __fact;
       std::complex<_Tp> __sum{};
-      while (!__terminate)
+      while (true)
 	{
 	  const auto __idx = __m + 1 + __j;
 	  const auto __zetaarg = _Tp(1 + __idx) - __s;
@@ -532,8 +530,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __wbark *= __wup;
 	  __gam *= __zetaarg / _Tp(1 + __idx);
 	  ++__j;
-	  __terminate = __done(__term, __res + __sum);
 	  __sum += __term;
+	  if (__done(__term, __res + __sum))
+	    break;
 	}
       __res += __sum;
       return __pref * __res;
@@ -562,32 +561,32 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __polylog_exp_asymp(_Tp __s, std::complex<_Tp> __w)
     { // asymptotic expansion
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
-      // wgamma = w^{s-1} / \Gamma(s)
+      // wgamma = w^{s-1} / Gamma(s)
       auto __wgamma = std::pow(__w, __s - _Tp{1}) * __gamma_reciprocal(__s);
-      //__wgamma = std::exp((__s - _Tp{1}) * std::log(__w) - __log_gamma(__s)); // Sign flip!
+      __wgamma = std::exp((__s - _Tp{1}) * std::log(__w) - __log_gamma(__s)); // Sign flip!
       auto __res = std::complex<_Tp>(_Tp{0}, -_S_pi) * __wgamma;
       // wgamma = w^s / Gamma(s+1)
       __wgamma *= __w / __s;
       constexpr unsigned int __maxiter = 100;
       _AsympTerminator<std::complex<_Tp>> __done(__maxiter);
-      bool __terminate = false;
-      // zeta(0) * w^s / Gamma(s + 1)
+      // zeta(0) w^s / Gamma(s + 1)
       std::complex<_Tp> __oldterm = -_Tp{0.5L} * __wgamma;
       __res += _Tp{2} * __oldterm;
       std::complex<_Tp> __term;
       auto __wq = _Tp{1} / (__w * __w);
       int __k = 1;
-      while (!__terminate)
+      while (true)
 	{
 	  __wgamma *= __wq * (__s + _Tp(1 - 2 * __k)) * (__s + _Tp(2 - 2 * __k));
 	  __term = __riemann_zeta<_Tp>(2 * __k) * __wgamma;
 	  __res += _Tp{2} * __term;
-	  __terminate = __done(_Tp{2} * __term, __res);
+	  if (__done(_Tp{2} * __term, __res))
+	    break;
 	  __oldterm = __term;
 	  ++__k;
 	}
       return __res;
-  }
+    }
 
   /**
    * Theoretical convergence for Re(w) < 0.
@@ -706,18 +705,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  else
 	    return __riemann_zeta<_Tp>(__s);
 	}
-      else if (0 == __s)
+      else if (__s == 0)
 	{
 	  const auto __t = std::exp(__w);
 	  return __gnu_cxx::__fp_is_zero(_Tp{1} - __t)
-	       ? std::numeric_limits<_Tp>::quiet_NaN()
+	       ? std::numeric_limits<_Tp>::infinity()
 	       : __t / (_Tp{1} - __t);
 	}
-      else if (1 == __s)
+      else if (__s == 1)
 	{
 	  const auto __t = std::exp(__w);
 	  return __gnu_cxx::__fp_is_zero(_Tp{1} - __t)
-	       ? std::numeric_limits<_Tp>::quiet_NaN()
+	       ? -std::numeric_limits<_Tp>::infinity()
 	       : -std::log(_Tp{1} - __t);
 	}
       else
