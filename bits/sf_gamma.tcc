@@ -2732,7 +2732,7 @@ _S_neg_double_factorial_table[999]
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__a);
 
       if (__isnan(__a) || __isnan(__x))
-	return _S_NaN;
+	return std::make_pair(_S_NaN, _S_NaN);
 
       auto __ia = __gnu_cxx::__fp_is_integer(__a);
       if (__ia && __ia() <= 0)
