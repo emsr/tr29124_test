@@ -183,6 +183,8 @@ template<typename Real>
     using __gnu_cxx::ellint_rf;
     using __gnu_cxx::ellint_rg;
     using __gnu_cxx::ellint_rj;
+    using __gnu_cxx::euler;
+    using __gnu_cxx::eulerian_1;
     using       std::expint;
     using __gnu_cxx::expint;
     using __gnu_cxx::factorial;
@@ -231,6 +233,8 @@ template<typename Real>
     using __gnu_cxx::sph_harmonic;
     using       std::sph_legendre;
     using       std::sph_neumann;
+    using __gnu_cxx::stirling_1;
+    using __gnu_cxx::stirling_2;
     using __gnu_cxx::tgamma_lower;
     using __gnu_cxx::tgamma;
     using __gnu_cxx::theta_1;
@@ -1770,6 +1774,60 @@ template<typename Real>
 	     "Boost",
 	     file_bernoulli);
 
+    // Euler numbers.
+    std::cout << "euler" << std::endl;
+    basename = "euler";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_euler(filename);
+    maketest(euler<Real>, burkhardt::euler,
+	     "testcase_euler", "__gnu_cxx", basename,
+	     "n", fill_argument(std::make_pair(0U, 50U),
+				std::make_pair(true, true), 51),
+	     "Burkhardt",
+	     file_euler);
+
+    // Eulerian numbers of the first kind.
+    std::cout << "eulerian_1" << std::endl;
+    basename = "eulerian_1";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_eulerian_1(filename);
+    maketest(eulerian_1<Real>, burkhardt::eulerian_1,
+	     "testcase_eulerian_1", "__gnu_cxx", basename,
+	     "n", fill_argument(std::make_pair(0U, 50U),
+				std::make_pair(true, true), 51),
+	     "m", fill_argument(std::make_pair(0U, 50U),
+				std::make_pair(true, true), 51),
+	     "Burkhardt",
+	     file_eulerian_1);
+
+    // Stirling numbers of the first kind.
+    std::cout << "stirling_1" << std::endl;
+    basename = "stirling_1";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_stirling_1(filename);
+    maketest(stirling_1<Real>, burkhardt::stirling_1,
+	     "testcase_stirling_1", "__gnu_cxx", basename,
+	     "n", fill_argument(std::make_pair(0U, 50U),
+				std::make_pair(true, true), 51),
+	     "m", fill_argument(std::make_pair(0U, 50U),
+				std::make_pair(true, true), 51),
+	     "Burkhardt",
+	     file_stirling_1);
+
+    // Stirling numbers of the first kind.
+    std::cout << "stirling_2" << std::endl;
+    basename = "stirling_2";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_stirling_2(filename);
+    maketest(stirling_2<Real>, burkhardt::stirling_2,
+	     "testcase_stirling_2", "__gnu_cxx", basename,
+	     "n", fill_argument(std::make_pair(0U, 50U),
+				std::make_pair(true, true), 51),
+	     "m", fill_argument(std::make_pair(0U, 50U),
+				std::make_pair(true, true), 51),
+	     "Burkhardt",
+	     file_stirling_2);
+
     // Reperiodized sine function.
     std::cout << "sin_pi" << std::endl;
     basename = "sin_pi";
@@ -1794,7 +1852,7 @@ template<typename Real>
 	     "Boost",
 	     file_cos_pi);
 
-    // Debye integrals.
+    // Debye functions.
     std::cout << "debye" << std::endl;
     basename = "debye";
     filename = get_filename(path, prefix, basename, "",  ".cc");

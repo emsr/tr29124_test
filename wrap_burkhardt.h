@@ -335,6 +335,9 @@ double struve_l(double nu, double x);
 /// Bernoulli numbers.
 double bernoulli(unsigned int n);
 
+/// Bernoulli polynomials.
+double bernoulli(unsigned int n, double x);
+
 /// Reperiodized sine.
 double sin_pi(double x);
 
@@ -347,7 +350,7 @@ double fermi_dirac(double s, double x);
 /// Bose-Einstein integrals.
 double bose_einstein(double s, double x);
 
-/// Debye integrals.
+/// Debye functions.
 double debye(unsigned int n, double x);
 
 /// Polylogarithms.
@@ -365,8 +368,11 @@ double euler(unsigned int n);
 /// Euler polynomials.
 double euler(unsigned int n, double x);
 
-/// Eulerian numbers.
+/// Eulerian numbers of the first kind.
 double eulerian_1(unsigned int n, unsigned int m);
+
+/// Eulerian numbers of the second kind.
+double eulerian_2(unsigned int n, unsigned int m);
 
 /// Stirling numbers of the first kind.
 double stirling_1(unsigned int n, unsigned int m);

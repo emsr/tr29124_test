@@ -897,7 +897,7 @@ bose_einstein(double /*s*/, double /*x*/)
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Debye integrals.
+/// Debye functions.
 double
 debye(unsigned int /*n*/, double /*x*/)
 {

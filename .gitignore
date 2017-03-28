@@ -99,6 +99,9 @@ check/check_ellint_2
 check/check_ellint_3
 check/check_ellint_d
 check/check_ellnome
+check/check_euler
+check/check_eulerian_1
+check/check_eulerian_2
 check/check_expint
 check/check_expint_en
 check/check_factorial
@@ -154,6 +157,8 @@ check/check_sph_hankel_2
 check/check_sph_harmonic
 check/check_sph_legendre
 check/check_sph_neumann
+check/check_stirling_1
+check/check_stirling_2
 check/check_tgamma_lower
 check/check_tgamma
 check/check_theta_1
