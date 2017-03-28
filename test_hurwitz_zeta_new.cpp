@@ -5,7 +5,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_h
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -DDEBUG_SERIES -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
 
-g++ -std=c++14 -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
 */
 

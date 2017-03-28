@@ -2,7 +2,7 @@
 $HOME/bin_tr29124/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_riemann_zeta > test_riemann_zeta.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -DNO_LOGBQ -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 PATH=wrappers/debug:$PATH ./test_riemann_zeta > test_riemann_zeta.txt
 */
 

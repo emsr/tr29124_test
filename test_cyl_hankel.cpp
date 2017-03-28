@@ -1,9 +1,9 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_cyl_hankel test_cyl_hankel.cpp  -lquadmath -Lwrappers/debug -lwrap_boost
-./test_cyl_hankel > test_cyl_hankel.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_cyl_hankel > test_cyl_hankel.txt
 
-$HOME/bin/bin/g++ -std=c++1/ -g -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-./test_cyl_hankel > test_cyl_hankel.txt
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
+PATH=wrappers/debug:$PATH ./test_cyl_hankel > test_cyl_hankel.txt
 */
 
 #define __STDCPP_WANT_MATH_SPEC_FUNCS__ 1

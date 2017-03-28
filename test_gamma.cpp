@@ -1,12 +1,9 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma test_gamma.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-./test_gamma > test_gamma.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_gamma > test_gamma.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma test_gamma.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-./test_gamma > test_gamma.txt
-
-g++ -std=gnu++17 -g -Wall -Wextra -DNO_LOGBQ -I. -o test_gamma test_gamma.cpp -lquadmath -Lwrappers -lwrap_boost
-./test_gamma > test_gamma.txt
+PATH=wrappers/debug:$PATH ./test_gamma > test_gamma.txt
 */
 
 #include <bits/specfun.h>

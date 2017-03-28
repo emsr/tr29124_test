@@ -1,4 +1,7 @@
 /*
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_reciprocal test_gamma_reciprocal.cpp -lquadmath -lmpfr
+./test_gamma_reciprocal > test_gamma_reciprocal.txt
+
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_reciprocal test_gamma_reciprocal.cpp -lquadmath -lmpfr
 ./test_gamma_reciprocal > test_gamma_reciprocal.txt
 */

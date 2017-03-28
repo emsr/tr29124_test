@@ -1,9 +1,9 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_pochhammer_lower test_pochhammer_lower.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-./test_pochhammer_lower > test_pochhammer_lower.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_pochhammer_lower > test_pochhammer_lower.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_pochhammer_lower test_pochhammer_lower.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
-./test_pochhammer_lower > test_pochhammer_lower.txt
+PATH=wrappers/debug:$PATH ./test_pochhammer_lower > test_pochhammer_lower.txt
 */
 
 #include <limits>

@@ -107,8 +107,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_lommel test_lommel.c
 			     + std::pow(_Tp{2}, __mu - 1)
 			      * std::__detail::__gamma((__mu + __nu + 1)/ _Tp{2})
 			      * std::__detail::__gamma((__mu - __nu + 1)/ _Tp{2})
-		    * (__sc.__sin_value * __Bess.__J_value
-		     - __sc.__cos_value * __Bess.__N_value);
+		    * (__sc.__sin_v * __Bess.__J_value
+		     - __sc.__cos_v * __Bess.__N_value);
 	      return _S2;
 	    }
 	}

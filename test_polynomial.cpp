@@ -1,6 +1,9 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polynomial test_polynomial.cpp -lquadmath
 ./test_polynomial > test_polynomial.txt
+
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polynomial test_polynomial.cpp -lquadmath
+./test_polynomial > test_polynomial.txt
 */
 
 #include <cmath>

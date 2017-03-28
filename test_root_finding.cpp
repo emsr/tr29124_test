@@ -1,5 +1,7 @@
-
 /*
+$HOME/bin_tr29124/bin/g++ -g -Wall -Wextra -Wno-psabi -I. -o test_root_finding test_root_finding.cpp -lquadmath
+./test_root_finding > test_root_finding.txt
+
 $HOME/bin/bin/g++ -g -Wall -Wextra -Wno-psabi -I. -o test_root_finding test_root_finding.cpp -lquadmath
 ./test_root_finding > test_root_finding.txt
 */

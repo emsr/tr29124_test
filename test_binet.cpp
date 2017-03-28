@@ -2,7 +2,7 @@
 $HOME/bin_tr29124/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_binet test_binet.cpp
 ./test_binet > test_binet.txt
 
-$HOME/bin/bin/g++ -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_binet test_binet.cpp
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_binet test_binet.cpp
 ./test_binet > test_binet.txt
  */
 

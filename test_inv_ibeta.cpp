@@ -1,4 +1,7 @@
 /*
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_inv_ibeta test_inv_ibeta.cpp
+./test_inv_ibeta > test_inv_ibeta.txt
+
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_inv_ibeta test_inv_ibeta.cpp
 ./test_inv_ibeta > test_inv_ibeta.txt
 */

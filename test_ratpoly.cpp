@@ -2,7 +2,7 @@
 $HOME/bin_tr29124/bin/g++ -g -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_ratpoly test_ratpoly.cpp -lquadmath
 ./test_ratpoly > test_ratpoly.txt
 
-$HOME/bin/bin/g++ -g -std=gnu++17 -g -Wall -Wextra -I. -o test_ratpoly test_ratpoly.cpp
+$HOME/bin/bin/g++ -g -std=gnu++17 -g -Wall -Wextra -I. -o test_ratpoly test_ratpoly.cpp -lquadmath
 ./test_ratpoly > test_ratpoly.txt
 */
 

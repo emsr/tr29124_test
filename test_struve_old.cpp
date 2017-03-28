@@ -1,7 +1,10 @@
 
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_struve_old test_struve_old.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_struve_old > test_struve_old.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_struve_old > test_struve_old.txt
+
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_struve_old test_struve_old.cpp -lquadmath
+PATH=wrappers/debug:$PATH ./test_struve_old > test_struve_old.txt
 */
 
 /*

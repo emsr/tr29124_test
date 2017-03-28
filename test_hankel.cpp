@@ -1,6 +1,9 @@
 /*
 $HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hankel test_hankel.cpp -lquadmath
 ./test_hankel > test_hankel.txt
+
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hankel test_hankel.cpp -lquadmath
+./test_hankel > test_hankel.txt
 */
 
 #include <iostream>

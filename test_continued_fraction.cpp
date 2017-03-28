@@ -2,7 +2,7 @@
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_continued_fraction test_continued_fraction.cpp -L$HOME/bin/lib64 -lquadmath
 ./test_continued_fraction > test_continued_fraction.txt
 
-g++ -std=gnu++14 -g -Wall -Wextra -DNO_LOGBQ -I. -o test_continued_fraction test_continued_fraction.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_continued_fraction test_continued_fraction.cpp -lquadmath
 ./test_continued_fraction > test_continued_fraction.txt
 */
 
