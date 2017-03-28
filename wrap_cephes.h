@@ -349,7 +349,7 @@ double fermi_dirac(double s, double x);
 /// Bose-Einstein integrals.
 double bose_einstein(double s, double x);
 
-/// Debye integrals.
+/// Debye functions.
 double debye(unsigned int n, double x);
 
 /// Polylogarithms.

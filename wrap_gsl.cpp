@@ -1408,7 +1408,7 @@ bose_einstein(double /*s*/, double /*x*/)
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Debye integrals
+/// Debye functions
 double
 debye(unsigned int n, double x)
 {
@@ -1436,7 +1436,7 @@ debye(unsigned int n, double x)
 	  throw std::runtime_error(msg.str());
 	}
       else
-        return factorial(n) * riemann_zeta(n + 1) * (1.0 - result.val);
+        return result.val;
     }
   else
     return std::numeric_limits<double>::quiet_NaN();
