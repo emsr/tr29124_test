@@ -7,7 +7,6 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_factorial
 */
 
 #include <cmath>
-#include <bits/numeric_limits.h>
 #include <limits>
 #include <iostream>
 #include <iomanip>

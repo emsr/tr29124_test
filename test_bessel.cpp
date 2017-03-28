@@ -1,6 +1,9 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bessel test_bessel.cpp -lquadmath
 ./test_bessel > test_bessel.txt
+
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bessel test_bessel.cpp -lquadmath
+./test_bessel > test_bessel.txt
 */
 
 #include <iostream>

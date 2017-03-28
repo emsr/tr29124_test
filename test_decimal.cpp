@@ -3,6 +3,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_d
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_decimal > test_decimal.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_decimal test_decimal.cpp -lquadmath
+PATH=$HOME/bin_tr29124/lib64:$PATH ./test_decimal > test_decimal.txt
 */
 
 #include <cmath>

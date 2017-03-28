@@ -1,9 +1,16 @@
+/*
+$HOME/bin_specfun/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_cyl_bessel_zeros test_cyl_bessel_zeros.cpp
+./test_cyl_bessel_zeros > test_cyl_bessel_zeros.txt
+
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_cyl_bessel_zeros test_cyl_bessel_zeros.cpp
+./test_cyl_bessel_zeros > test_cyl_bessel_zeros.txt
+*/
 
 #include <ext/cmath>
 
 template<typename _Tp, typename _Hfun>
   std::vector<_Tp>
-  cyl_bessel_zeros(_Hfun __cyl_ratio, _Tp __nu, _Tp __a, _Tp__b)
+  cyl_bessel_zeros(_Hfun __cyl_ratio, _Tp __nu, _Tp __a, _Tp __b)
   {
     const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__nu);
     const auto _S_eps = __gnu_cxx::__epsilon(__nu);
@@ -21,7 +28,7 @@ template<typename _Tp, typename _Hfun>
 	    while (__keep && _E > _S_eps)
 	      {
 		const auto __xp = __x;
-		x -= std::atan(__cyl_ratio(__nu, __x));
+		__x -= std::atan(__cyl_ratio(__nu, __x));
 		_E = std::abs(_Tp{1} = __x / __xp);
 		if (__x < __a)
 		  __keep = false;
@@ -44,7 +51,7 @@ template<typename _Tp, typename _Hfun>
 	    while (__keep && _E > _S_eps)
 	      {
 		const auto __xp = __x;
-		x -= std::atan(__cyl_ratio(__nu, __x));
+		__x -= std::atan(__cyl_ratio(__nu, __x));
 		_E = std::abs(_Tp{1} = __x / __xp);
 		if (__x > __b)
 		  __keep = false;
@@ -61,5 +68,5 @@ template<typename _Tp, typename _Hfun>
 int
 main()
 {
-  auto 
+  auto x = 1;
 }

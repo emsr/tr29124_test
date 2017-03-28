@@ -1,4 +1,7 @@
 /*
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_dilog test_dilog.cpp -lquadmath
+./test_dilog > test_dilog.txt
+
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_dilog test_dilog.cpp -lquadmath
 ./test_dilog > test_dilog.txt
 */

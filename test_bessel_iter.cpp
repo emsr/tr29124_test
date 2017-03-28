@@ -2,7 +2,7 @@
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bessel_iter test_bessel_iter.cpp -lquadmath
 ./test_bessel_iter > test_bessel_iter.txt
 
-g++ -std=c++14 -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o test_bessel_iter test_bessel_iter.cpp
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bessel_iter test_bessel_iter.cpp
 ./test_bessel_iter > test_bessel_iter.txt
 */
 

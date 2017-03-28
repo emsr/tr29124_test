@@ -1,6 +1,9 @@
 /*
 $HOME/bin_specfun/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_beta_inc test_beta_inc.cpp
 ./test_beta_inc > test_beta_inc.txt
+
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_beta_inc test_beta_inc.cpp
+./test_beta_inc > test_beta_inc.txt
 */
 
 #include <cmath>

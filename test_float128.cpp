@@ -3,6 +3,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_f
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_float128 > test_float128.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_float128 test_float128.cpp -lquadmath
+PATH=$HOME/bin_tr29124/lib64:$PATH ./test_float128 > test_float128.txt
 */
 
 #include <cmath>

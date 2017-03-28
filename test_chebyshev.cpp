@@ -4,9 +4,6 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_c
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev test_chebyshev.cpp -lquadmath
 ./test_chebyshev
-
-g++ -std=gnu++14 -o test_chebyshev test_chebyshev.cpp -lquadmath
-./test_chebyshev
 */
 
 #include <iostream>

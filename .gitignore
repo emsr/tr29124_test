@@ -218,14 +218,17 @@ test_conf_hyperg_limit
 test_const
 test_continued_fraction
 test_csint
+test_cyl_bessel_zeros
 test_cyl_hankel
 test_dawson
 test_debye
+test_decimal
 test_dilog
 test_dirichlet_eta
 test_erfc
 test_expint
 test_factorial
+test_faddeeva
 test_fermi_dirac
 test_float128
 test_fresnel
@@ -251,6 +254,7 @@ test_jacobi_inv
 test_jacobi_zeta
 test_kelvin
 test_laguerre
+test_lambert_w
 test_legendre
 test_legendre_ellint
 test_lentz_continued_fraction
@@ -295,6 +299,7 @@ test_struve_old
 test_summation
 test_theta
 test_tricomi_u
+test_trig
 test_trigamma
 
 plot_airy

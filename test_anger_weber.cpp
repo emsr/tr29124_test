@@ -227,10 +227,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
 
 	  auto __ph = std::__detail::__sincos_pi(__nu / _Tp{2});
 	  return __anger_weber_t<_Tp>{__nu, __z,
-				      __ph.__cos_value * _S1
-				    + __ph.__sin_value * _S2,
-				      __ph.__sin_value * _S1
-				    - __ph.__cos_value * _S2};
+				      __ph.__cos_v * _S1
+				    + __ph.__sin_v * _S2,
+				      __ph.__sin_v * _S1
+				    - __ph.__cos_v * _S2};
 	}
     }
 
@@ -332,10 +332,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
 	  //auto [__sin, __cos] = __sincos_pi(__nu / _Tp{2});
 	  auto __ph = std::__detail::__sincos_pi(__nu / _Tp{2});
 	  return __anger_weber_t<_Tp>{__nu, __z,
-				      __ph.__cos_value * _S1
-				    + __ph.__sin_value * _S2,
-				      __ph.__sin_value * _S1
-				    - __ph.__cos_value * _S2};
+				      __ph.__cos_v * _S1
+				    + __ph.__sin_v * _S2,
+				      __ph.__sin_v * _S1
+				    - __ph.__cos_v * _S2};
 	}
     }
 
@@ -373,12 +373,12 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
       auto _Bess = __cyl_bessel(__nu, __z);
       return __anger_weber_t<_Tp>{__nu, __z,
 				  _Bess._J_value
-				    + __ph.__sin_value
+				    + __ph.__sin_v
 				* (__Fsum + __nu * __Gsum / __z) / _S_pi / __z,
 				 -_Bess._N_value
-				    - (_Tp{1} + __ph.__cos_value) * __Fsum
+				    - (_Tp{1} + __ph.__cos_v) * __Fsum
 					/ _S_pi / __z
-				    - (_Tp{1} - __ph.__cos_value) * __Gsum
+				    - (_Tp{1} - __ph.__cos_v) * __Gsum
 					* __nu / _S_pi / __z / __z};
     }
 
@@ -456,10 +456,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
       //auto [__sin, __cos] = __sincos_pi(__nu / _Tp{2});
       auto __ph = std::__detail::__sincos_pi(__nu / _Tp{2});
       return __anger_weber_t<_Tp>{__nu, __z,
-				  __ph.__cos_value * _S1
-				+ __ph.__sin_value * _S2,
-				  __ph.__sin_value * _S1
-				- __ph.__cos_value * _S2};
+				  __ph.__cos_v * _S1
+				+ __ph.__sin_v * _S2,
+				  __ph.__sin_v * _S1
+				- __ph.__cos_v * _S2};
     }
 
   /**

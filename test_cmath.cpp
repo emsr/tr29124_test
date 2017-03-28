@@ -1,6 +1,9 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_cmath test_cmath.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 ./test_cmath > test_cmath.txt
+
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_cmath test_cmath.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
+./test_cmath > test_cmath.txt
 */
 
 #include <iostream>

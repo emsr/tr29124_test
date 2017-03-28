@@ -1,4 +1,7 @@
 /*
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr
+./test_numeric_limits > test_numeric_limits.txt
+
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr
 ./test_numeric_limits > test_numeric_limits.txt
 */

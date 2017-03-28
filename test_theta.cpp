@@ -1,6 +1,9 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_theta test_theta.cpp -lquadmath
 ./test_theta > test_theta.txt
+
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_theta test_theta.cpp -lquadmath
+./test_theta > test_theta.txt
 */
 
 #include <iostream>
@@ -78,15 +81,15 @@ template<typename _Tp>
 	auto c = __gnu_cxx::theta_c(k, x);
 	auto d = __gnu_cxx::theta_d(k, x);
 	auto n = __gnu_cxx::theta_n(k, x);
-	auto sncndn = std::__detail::__jacobi_sncndn(k, x);
+	auto [sn, cn, dn] = std::__detail::__jacobi_sncndn(k, x);
 	std::cout << ' ' << std::setw(width) << x
 		  << ' ' << std::setw(width) << s
 		  << ' ' << std::setw(width) << c
 		  << ' ' << std::setw(width) << d
 		  << ' ' << std::setw(width) << n
-		  << ' ' << std::setw(width) << s / n - std::get<0>(sncndn)
-		  << ' ' << std::setw(width) << c / n - std::get<1>(sncndn)
-		  << ' ' << std::setw(width) << d / n - std::get<2>(sncndn)
+		  << ' ' << std::setw(width) << s / n - sn
+		  << ' ' << std::setw(width) << c / n - cn
+		  << ' ' << std::setw(width) << d / n - dn
 		  << '\n';
       }
 
@@ -122,15 +125,15 @@ template<typename _Tp>
 	    auto c = __gnu_cxx::theta_c(k, x);
 	    auto d = __gnu_cxx::theta_d(k, x);
 	    auto n = __gnu_cxx::theta_n(k, x);
-	    auto sncndn = std::__detail::__jacobi_sncndn(k, x);
+	    auto [sn, cn, dn] = std::__detail::__jacobi_sncndn(k, x);
 	    std::cout << ' ' << std::setw(width) << x
 		      << ' ' << std::setw(width) << s
 		      << ' ' << std::setw(width) << c
 		      << ' ' << std::setw(width) << d
 		      << ' ' << std::setw(width) << n
-		      << ' ' << std::setw(width) << s / n - std::get<0>(sncndn)
-		      << ' ' << std::setw(width) << c / n - std::get<1>(sncndn)
-		      << ' ' << std::setw(width) << d / n - std::get<2>(sncndn)
+		      << ' ' << std::setw(width) << s / n - sn
+		      << ' ' << std::setw(width) << c / n - cn
+		      << ' ' << std::setw(width) << d / n - dn
 		      << '\n';
 	  }
       }

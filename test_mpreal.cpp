@@ -1,8 +1,9 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mpreal test_mpreal.cpp -lquadmath -lmpfr
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_mpreal > test_mpreal.txt
+./test_mpreal > test_mpreal.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mpreal test_mpreal.cpp -lquadmath -lmpfr
+./test_mpreal > test_mpreal.txt
 */
 
 #include <mpreal.h>

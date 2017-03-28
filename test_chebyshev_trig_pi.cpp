@@ -4,9 +4,6 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_c
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev_trig_pi test_chebyshev_trig_pi.cpp -lquadmath
 ./test_chebyshev_trig_pi > test_chebyshev_trig_pi.txt
-
-g++ -std=gnu++14 -o test_chebyshev_trig_pi test_chebyshev_trig_pi.cpp -lquadmath
-./test_chebyshev_trig_pi > test_chebyshev_trig_pi.txt
 */
 
 #include <iostream>

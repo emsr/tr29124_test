@@ -1,6 +1,9 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_complex128 test_complex128.cpp -lquadmath
 ./test_complex128 > test_complex128.txt
+
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_complex128 test_complex128.cpp -lquadmath
+./test_complex128 > test_complex128.txt
 */
 
 #include <limits>
