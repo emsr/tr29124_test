@@ -1,9 +1,9 @@
 /*
-$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli test_bernoulli.cpp -lquadmath
-./test_bernoulli > test_bernoulli.txt
+$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli test_bernoulli.cpp -lquadmath -Lwrappers/debug -lwrap_burkhardt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli > test_bernoulli.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli test_bernoulli.cpp -lquadmath
-./test_bernoulli > test_bernoulli.txt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli test_bernoulli.cpp -lquadmath -Lwrappers/debug -lwrap_burkhardt
+PATH=wrappers/debug:$PATH ./test_bernoulli > test_bernoulli.txt
 */ 
 
 #include <cmath>
@@ -16,6 +16,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
 // Why no math stuff without this?
 #include <ext/math_const.h>
 #include <bits/sf_gamma.tcc>
+
+#include "wrap_burkhardt.h"
 
 
   template<typename _RealTp, typename _IntTp,
@@ -30,7 +32,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
     frac = __frac<_RealTp, unsigned long long, _Num, _Den>;
 
   /**
-   * According to Modern Computer Arithmetic a stable recursion for the Bernoulli numbers is
+   * According to Modern Computer Arithmetic a stable recursion
+   * for the Bernoulli numbers is
    * @f[
    *    \sum_{k=0}^{n} \frac{C_k}{(2n+1-2k)!4^{n-k}} = \frac{1}{(2n)! 4^n}
    * @f]
@@ -127,15 +130,20 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
     _Tp
     __bernoulli(unsigned int __n, _Tp __x)
     {
-      auto _B_n = std::__detail::__bernoulli<_Tp>(0);
-      auto __binomial = _Tp{1};
-      for (auto __k = 1u; __k <= __n; ++__k)
-      {
-	__binomial *= _Tp(__n + 1 - __k) / _Tp(__k);
-	_B_n = __x * _B_n + __binomial * std::__detail::__bernoulli<_Tp>(__k);
-      }
-
-      return _B_n;
+      if (__isnan(__x))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else
+	{
+	  auto _B_n = std::__detail::__bernoulli<_Tp>(0);
+	  auto __binomial = _Tp{1};
+	  for (auto __k = 1u; __k <= __n; ++__k)
+	  {
+	    __binomial *= _Tp(__n + 1 - __k) / _Tp(__k);
+	    _B_n = __x * _B_n + __binomial
+		 * std::__detail::__bernoulli<_Tp>(__k);
+	  }
+	  return _B_n;
+	}
     }
 
   /**
@@ -202,13 +210,43 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
     }
 
   /**
+   * @brief This returns Euler number @f$ E_n @f$
+   * with an asymptotic formula:
+   * @f[
+   *    E_{2n} = (-1)^n8\sqrt{\frac{n}{\pi}}
+   *   \left( \frac{4n}{\pi e} \frac{480n^2+9}{480n^2-1} \right)^{2n}
+   * @f]
+   *
+   * @param __n the order n of the Euler number.
+   * @return  The Euler number of order n.
+   */
+  template<typename _Tp>
+    inline _Tp
+    __euler_asymp(unsigned int __n)
+    {
+      if (__n & 1)
+	return _Tp{0};
+      else
+	{
+	  const auto _S_e = __gnu_cxx::__const_e(_Tp{});
+	  const auto _S_pi = __gnu_cxx::__const_pi(_Tp{});
+	  const auto __n2 = _Tp(__n * __n);
+	  return __gnu_cxx::__parity<_Tp>(__n / 2) * _Tp{8}
+		* std::sqrt(_Tp(__n) / _S_pi)
+		* std::pow(_Tp(4 * __n) / (_S_pi * _S_e)
+			 * (__n2 + _Tp{9} / _Tp{480})
+			 / (__n2 - _Tp{1} / _Tp{480}), _Tp(2 * __n));
+	}
+    }
+
+  /**
    * @brief This returns Euler number @f$ E_n @f$.
    *
    * @param __n the order n of the Euler number.
    * @return  The Euler number of order n.
    */
   template<typename _Tp>
-    _Tp //_GLIBCXX14_CONSTEXPR
+    inline _Tp
     __euler(unsigned int __n)
     { return __euler_series<_Tp>(__n); }
 
@@ -224,19 +262,23 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
    *   E_n(1/2) = \frac{E_n}{2^n}, \mbox{ where } E_n
    *             \mbox{ is the n-th Euler number.}
    * @f]
-   *
    */
   template<typename _Tp>
     _Tp
     __euler(unsigned int __n, _Tp __x)
     {
-      auto __bx1 = __bernoulli(__n + 1, __x );
-      auto __bx2 = __bernoulli(__n + 1, _Tp{0.5L} * __x );
+      if (__isnan(__x))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else
+	{
+	  auto __bx1 = __bernoulli(__n + 1, __x );
+	  auto __bx2 = __bernoulli(__n + 1, _Tp{0.5L} * __x );
 
-      auto _E_n = _Tp{2} * (__bx1 - __bx2 * std::pow(_Tp{2}, _Tp(__n + 1)))
-		/ _Tp(__n + 1);
+	  auto _E_n = _Tp{2} * (__bx1 - __bx2 * std::pow(_Tp{2}, _Tp(__n + 1)))
+		    / _Tp(__n + 1);
 
-      return _E_n;
+	  return _E_n;
+	}
     }
 
   /**
@@ -325,7 +367,12 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
    * Return the Stirling number of the second kind from lookup
    * or by series expansion.
    *
-   * @todo Look into asymptotic solutions.
+   * The series is:
+   * @f[
+   *   \sigma_n^{(m)} = \sum_{k=0}^{m}\frac{(-1)^{m-k}k^n}{(m-k)!k!}
+   * @f]
+   *
+   * @todo Look into asymptotic solutions for the Stirling numbers.
    */
   template<typename _Tp>
     _Tp
@@ -462,7 +509,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
    *   S_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0}
    * @f]
    *
-   * @todo Look into asymptotic solutions.
+   * @todo Look into asymptotic solutions for the Stirling numbers.
    */
   template<typename _Tp>
     _Tp
@@ -501,7 +548,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
    * of the first kind.
    */
   template<typename _Tp>
-    _Tp
+    inline _Tp
     __log_stirling_1_sign(unsigned int __n, unsigned int __m)
     { return (__n + __m) & 1 ? _Tp{-1} : _Tp{+1}; }
 
@@ -544,6 +591,18 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli
 	  return _Anew[__m];
 	}
     }
+
+  /**
+   * Return the Eulerian number of the first.
+   * The Eulerian numbers are defined by recursion:
+   * @f[
+   *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m)
+   * @f]
+   */
+  template<typename _Tp>
+    inline _Tp
+    __eulerian_1(unsigned int __n, unsigned int __m)
+    { return __eulerian_1_recur<_Tp>(__n, __m); }
 
 
 template<typename _Tp>
@@ -629,15 +688,65 @@ template<typename _Tp>
 		    << ' ' << std::setw(4) << m
 		  //  << ' ' << std::setw(width) << __eulerian_1_series<_Tp>(n, m)
 		    << ' ' << std::setw(width) << __eulerian_1_recur<_Tp>(n, m)
+		    << ' ' << std::setw(width) << burkhardt::eulerian_1(n, m)
 		    << '\n';
       }
-/*
- */
   }
+
+void eulerian(int n, int e[]);
+int *stirling1(int n, int m);
+int *stirling2(int n, int m);
 
 int
 main()
 {
+    {
+      int n = 10;
+      std::vector<int> e(n * n);
+      ::eulerian(n, e.data());
+      for (auto i = 0; i < n; ++i)
+	{
+	  std::cout << '\n';
+	  for (auto j = 0; j < n; ++j)
+	    std::cout << ' ' << std::setw(4) << i
+		      << ' ' << std::setw(4) << j
+ 		      << ' ' << std::setw(20) << e[j * n + i]
+		      << '\n';
+	}
+    }
+
+    {
+      int n = 10;
+      int m = 8;
+      std::unique_ptr<int[]> s1(::stirling1(n, m));
+      for (auto i = 0; i < n; ++i)
+	{
+	  std::cout << '\n';
+	  for (auto j = 0; j < m; ++j)
+	    std::cout << ' ' << std::setw(4) << i
+		      << ' ' << std::setw(4) << j
+ 		      << ' ' << std::setw(20) << s1[j * n + i]
+		      << '\n';
+	}
+    }
+
+    {
+      int n = 10;
+      int m = 8;
+      std::unique_ptr<int[]> s1(::stirling2(n, m));
+      for (auto i = 0; i < n; ++i)
+	{
+	  std::cout << '\n';
+	  for (auto j = 0; j < m; ++j)
+	    std::cout << ' ' << std::setw(4) << i
+		      << ' ' << std::setw(4) << j
+ 		      << ' ' << std::setw(20) << s1[j * n + i]
+		      << '\n';
+	}
+    }
+
+  return 0;
+
   //test_bernoulli(0.0F);
 
   test_bernoulli(0.0);

@@ -1191,7 +1191,7 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Debye integrals.
+// Debye functions.
 template<typename _Tp>
   struct testcase_debye
   {

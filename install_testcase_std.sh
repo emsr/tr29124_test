@@ -99,8 +99,9 @@ ${makedir} ${ext_dir}/ellint_rd
 ${makedir} ${ext_dir}/ellint_rf
 ${makedir} ${ext_dir}/ellint_rg
 ${makedir} ${ext_dir}/ellint_rj
-${makedir} ${ext_dir}/expint
 ${makedir} ${ext_dir}/ellnome
+${makedir} ${ext_dir}/euler
+${makedir} ${ext_dir}/expint
 ${makedir} ${ext_dir}/factorial
 ${makedir} ${ext_dir}/fresnel_c
 ${makedir} ${ext_dir}/fresnel_s
@@ -185,6 +186,7 @@ ${tool} check/check_ellint_rf.cc          ${ext_dir}/ellint_rf/check_value.cc
 ${tool} check/check_ellint_rg.cc          ${ext_dir}/ellint_rg/check_value.cc
 ${tool} check/check_ellint_rj.cc          ${ext_dir}/ellint_rj/check_value.cc
 ${tool} check/check_ellnome.cc            ${ext_dir}/ellnome/check_value.cc
+${tool} check/check_euler.cc              ${ext_dir}/euler/check_value.cc
 ${tool} check/check_expint_en.cc          ${ext_dir}/expint/check_value.cc
 ${tool} check/check_factorial.cc          ${ext_dir}/factorial/check_value.cc
 ${tool} check/check_fresnel_c.cc          ${ext_dir}/fresnel_c/check_value.cc

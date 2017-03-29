@@ -811,9 +811,16 @@ struve_l(double nu, double x)
 
 /// Bernoulli numbers.
 double
-bernoulli(unsigned int /*n*/)
+bernoulli(unsigned int n)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  return ::bernoulli_number3(n);
+}
+
+/// Bernoulli polynomials.
+double
+bernoulli(unsigned int n, double x)
+{
+  return ::bernoulli_poly(n, x);
 }
 
 /// Reperiodized sine.
@@ -844,7 +851,7 @@ bose_einstein(double /*s*/, double /*x*/)
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Debye integrals.
+/// Debye functions.
 double
 debye(unsigned int /*n*/, double /*x*/)
 {
@@ -872,29 +879,51 @@ euler(unsigned int n, double x)
   return ::euler_poly(n, x);
 }
 
-/// Eulerian numbers.
+/// Eulerian numbers of the first kind.
 double
 eulerian_1(unsigned int n, unsigned int m)
 {
-  std::vector<int> e(n * n);
-  ::eulerian(n, e.data());
-  return double(e[n - 1 + (m - 1) * n]);
+  if (m > n)
+    return 0.0;
+  else
+    {
+      std::vector<int> e((n + 1) * (n + 1));
+      ::eulerian(n, e.data());
+      return double(e[n + m * n]);
+    }
+}
+
+/// Eulerian numbers of the second kind.
+double
+eulerian_2(unsigned int /*n*/, unsigned int /*m*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Stirling numbers of the first kind.
 double
 stirling_1(unsigned int n, unsigned int m)
 {
-  std::unique_ptr<int[]> s1(::stirling1(n, m));
-  return double(s1[n - 1 + (m - 1) * n]);
+  if (m > n)
+    return 0.0;
+  else
+    {
+      std::unique_ptr<int[]> s1(::stirling1(n + 1, m + 1));
+      return double(s1[n + m * (n + 1)]);
+    }
 }
 
 /// Stirling numbers of the second kind.
 double
 stirling_2(unsigned int n, unsigned int m)
 {
-  std::unique_ptr<int[]> s2(::stirling2(n, m));
-  return double(s2[n - 1 + (m - 1) * n]);
+  if (m > n)
+    return 0.0;
+  else
+    {
+      std::unique_ptr<int[]> s2(::stirling2(n + 1, m + 1));
+      return double(s2[n + m * (n + 1)]);
+    }
 }
 
 
