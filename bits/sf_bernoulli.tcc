@@ -179,7 +179,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    _B_n = __x * _B_n + __binomial
 		 * std::__detail::__bernoulli<_Tp>(__k);
 	  }
-
 	  return _B_n;
 	}
     }

@@ -196,7 +196,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::cyl_hankel_1 "cyl_hankel_1 - Cylindrical Hankel functions of the first kind"
    * - @ref __gnu_cxx::cyl_hankel_2 "cyl_hankel_2 - Cylindrical Hankel functions of the second kind"
    * - @ref __gnu_cxx::dawson "dawson - Dawson integrals"
-   * - @ref __gnu_cxx::debye "debye - Debye integrals"
+   * - @ref __gnu_cxx::debye "debye - Debye functions"
    * - @ref __gnu_cxx::dilog "dilog - Dilogarithm functions"
    * - @ref __gnu_cxx::dirichlet_beta "dirichlet_beta - Dirichlet beta function"
    * - @ref __gnu_cxx::dirichlet_eta "dirichlet_eta - Dirichlet beta function"
@@ -6243,10 +6243,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::__detail::__gamma_reciprocal<__type>(__a);
     }
 
-  // Debye integrals.
+  // Debye functions.
 
   /**
-   * Return the Debye integral @f$ D_n(x) @f$
+   * Return the Debye function @f$ D_n(x) @f$
    * of positive order @f$ n @f$ and @c float argument @f$ x @f$.
    *
    * @see debye for details.
@@ -6256,7 +6256,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__debye<float>(__n, __x); }
 
   /**
-   * Return the Debye integral @f$ D_n(x) @f$
+   * Return the Debye function @f$ D_n(x) @f$
    * of positive order @f$ n @f$ and real argument @f$ x @f$.
    *
    * @see debye for details.
@@ -6266,10 +6266,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__debye<long double>(__n, __x); }
 
   /**
-   * Return the Debye integral @f$ D_n(x) @f$
+   * Return the Debye function @f$ D_n(x) @f$
    * of positive order @f$ n @f$ and real argument @f$ x @f$.
    *
-   * The Debye integral is defined by:
+   * The Debye function is defined by:
    * @f[
    *    D_n(x) = \frac{n}{x^n}\int_{0}^{x}\frac{t^n}{e^t-1}dt
    * @f]

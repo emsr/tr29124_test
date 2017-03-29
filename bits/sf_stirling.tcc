@@ -312,7 +312,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * of the first kind.
    */
   template<typename _Tp>
-    _Tp
+    inline _Tp
     __log_stirling_1_sign(unsigned int __n, unsigned int __m)
     { return (__n + __m) & 1 ? _Tp{-1} : _Tp{+1}; }
 
