@@ -759,4 +759,43 @@ template<typename _Tp>
     _Tp f;
   };
 
+// Euler numbers.
+template<typename _Tp>
+  struct testcase_euler
+  {
+    unsigned int n;
+    _Tp f0;
+    _Tp f;
+  };
+
+// Eulerian numbers of the first kind.
+template<typename _Tp>
+  struct testcase_eulerian_1
+  {
+    unsigned int n;
+    unsigned int m;
+    _Tp f0;
+    _Tp f;
+  };
+
+// Stirling numbers of the first kind.
+template<typename _Tp>
+  struct testcase_stirling_1
+  {
+    unsigned int n;
+    unsigned int m;
+    _Tp f0;
+    _Tp f;
+  };
+
+// Stirling numbers of the second kind.
+template<typename _Tp>
+  struct testcase_stirling_2
+  {
+    unsigned int n;
+    unsigned int m;
+    _Tp f0;
+    _Tp f;
+  };
+
 #endif // _GLIBCXX_SPECFUN_TESTCASE_H
