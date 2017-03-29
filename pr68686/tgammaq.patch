@@ -1,0 +1,16 @@
+diff --git a/libquadmath/math/tgammaq.c b/libquadmath/math/tgammaq.c
+index a07d583..3080094 100644
+--- a/libquadmath/math/tgammaq.c
++++ b/libquadmath/math/tgammaq.c
+@@ -47,7 +47,9 @@ tgammaq (__float128 x)
+     /* x == -Inf.  According to ISO this is NaN.  */
+     return x - x;
+ 
+-  /* XXX FIXME.  */
+   res = expq (lgammaq (x));
+-  return signbitq (x) ? -res : res;
++  if (x > 0.0Q || ((int)(-x) & 1) == 1)
++    return res;
++  else
++    return -res;
+ }
