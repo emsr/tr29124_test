@@ -1,0 +1,29 @@
+// https://gcc.gnu.org/bugzilla/show_bug.cgi?id=66689
+
+ John Maddock 2015-06-27 08:49:42 UTC
+
+The std::tr1 functions comp_ellint_3 and ellint_3 appear to return garbage values whenever the nu parameter is non zero.
+
+For example:
+
+comp_ellint_3(0.75, 0) returns 1.91099 which is correct, but
+comp_ellint_3(0.75, 0.5) returns 1.52852 when it should be 2.80011 (see for example http://www.wolframalpha.com/input/?i=EllipticPi[0.5%2C+0.75^2] but note different parameterization on the wolfram site)
+
+Similar errors occur with ellint_3 rendering these functions essentially useless as far as I can see?
+
+[reply] [?] Comment 1 John Maddock 2015-06-28 12:32:38 UTC
+
+I think I've found the problem - make the nu parameter negative and you get the correct answers.
+
+These functions appear to use the same definition for ellint_3 as GSL uses (same code?), but TR1 uses a different one which matches A&S: note the change of sign in the nu parameter in the integral:
+
+GSL has Pi(\phi,k,n) = \int_0^\phi dt 1/((1 + n \sin^2(t))\sqrt(1 - k^2 \sin^2(t)))
+
+TR1 has Pi(\phi,k,n) = \int_0^\phi dt 1/((1 - n \sin^2(t))\sqrt(1 - k^2 \sin^2(t)))
+
+[reply] [?] Comment 2 Jonathan Wakely 2015-06-28 13:33:46 UTC
+
+Thanks for the analysis.
+
+I'd like to re-use the TR1 code for an implementation of ISO/IEC 29124:2010 (whether or not it also goes into C++17) so we should fix this first.
+
