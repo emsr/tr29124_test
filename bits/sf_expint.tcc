@@ -79,7 +79,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __term = _Tp{1};
       auto __esum = _Tp{0};
       auto __osum = _Tp{0};
-      const unsigned int __max_iter = 100;
+      const unsigned int __max_iter = 1000;
       for (unsigned int __i = 1; __i < __max_iter; ++__i)
 	{
 	  __term *= - __x / __i;
