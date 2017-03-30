@@ -129,8 +129,8 @@ template<typename _Tp>
 	  {
             auto alpha = i * _Tp{1};
             auto jalpha = alpha - _Tp{1}/_Tp{2};
-            auto jnorm = __gnu_cxx::pochhammer(_Tp{2} * alpha, n)
-			/ __gnu_cxx::pochhammer(alpha + _Tp{1}/_Tp{2}, n);
+            auto jnorm = __gnu_cxx::rising_factorial(_Tp{2} * alpha, n)
+			/ __gnu_cxx::rising_factorial(alpha + _Tp{1}/_Tp{2}, n);
             std::cout << "n     = " << n << '\n';
             std::cout << "alpha = " << alpha << '\n';
             Life::Jacobi<_Tp> jac(n, jalpha, jalpha);

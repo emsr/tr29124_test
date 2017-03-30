@@ -1,9 +1,9 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_tricomi_u test_tricomi_u.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_burkhardt
-LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_tricomi_u > test_tricomi_u.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_tricomi_u > test_tricomi_u.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_tricomi_u test_tricomi_u.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_burkhardt
-./test_tricomi_u > test_tricomi_u.txt
+PATH=wrappers/debug:$PATH ./test_tricomi_u > test_tricomi_u.txt
 */
 
 #include <ext/cmath>
@@ -153,7 +153,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_tricomi_u test_trico
 	  if (std::abs(__term) < _S_eps * std::abs(_Usum))
 	    break;
 	}
-      return (__n & 1 ? -1 : +1) * __gnu_cxx::pochhammer(__m, -__n) * _Usum;
+      return (__n & 1 ? -1 : +1)
+	   * __gnu_cxx::rising_factorial(__m, -__n) * _Usum;
     }
 
   /**

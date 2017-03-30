@@ -1,9 +1,9 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_pochhammer test_pochhammer.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_pochhammer > test_pochhammer.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_falling_factorial test_falling_factorial.cpp -lquadmath -Lwrappers/debug -lwrap_boost
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_falling_factorial > test_falling_factorial.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -I. -o test_pochhammer test_pochhammer.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
-PATH=wrappers/debug:$PATH ./test_pochhammer > test_pochhammer.txt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_falling_factorial test_falling_factorial.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
+PATH=wrappers/debug:$PATH ./test_falling_factorial > test_falling_factorial.txt
 */
 
 #include <limits>
@@ -11,7 +11,6 @@ PATH=wrappers/debug:$PATH ./test_pochhammer > test_pochhammer.txt
 #include <iostream>
 #include <iomanip>
 #include <ext/cmath>
-
 #include "wrap_boost.h"
 
 namespace __gnu_cxx
@@ -19,7 +18,7 @@ namespace __gnu_cxx
 
   template<typename _Tp>
     _Tp
-    __pochhammer_upper_prod(int __a, int __n)
+    __falling_factorial_prod(int __a, int __n)
     {
       if (__a < __n)
 	return _Tp{0};
@@ -34,17 +33,17 @@ namespace __gnu_cxx
 
   template<typename _Tp>
     _Tp
-    __pochhammer_prod(_Tp __a, int __n)
+    __falling_factorial_prod(_Tp __a, int __n)
     {
       auto __prod = _Tp{1};
       for (int __k = 0; __k < __n; ++__k)
-	__prod *= __a++;
+	__prod *= __a--;
       return __prod;
     }
 
   template<typename _Tp>
     _Tp
-    __pochhammer_fake(_Tp __a, _Tp __x)
+    __falling_factorial_fake(_Tp __a, _Tp __x)
     {
       auto __n = int(std::nearbyint(__x));
       if (_Tp(__n) == __x)
@@ -55,14 +54,14 @@ namespace __gnu_cxx
 	    {
 	      auto __m = int(std::nearbyint(__a));
 	      if (int(__m) == __a)
-		return __pochhammer_prod<_Tp>(__m, __n);
+		return __falling_factorial_prod<_Tp>(__m, __n);
 	      else
-		return __pochhammer_prod(__a, __n);
+		return __falling_factorial_prod(__a, __n);
 	    }
 	}
       else
-	return std::__detail::__gamma(__a + __x)
-	     / std::__detail::__gamma(__a);
+	return std::__detail::__gamma(__a + _Tp{1})
+	     / std::__detail::__gamma(__a - __x + _Tp{1});
     }
 
 }
@@ -84,8 +83,8 @@ main()
       std::cout << '\n';
       for (auto x : xv)
 	{
-	  auto pochg = __gnu_cxx::pochhammer(a, x);
-	  auto pochb = beast::pochhammer(a, x);
+	  auto pochg = __gnu_cxx::falling_factorial(a, x);
+	  auto pochb = beast::falling_factorial(a, x);
 	  std::cout << ' ' << std::setw(width) << a
 		    << ' ' << std::setw(width) << x
 		    << ' ' << std::setw(width) << pochg
@@ -104,8 +103,8 @@ main()
       std::cout << '\n';
       for (auto x : xv)
 	{
-	  auto pochg = __gnu_cxx::__pochhammer_fake(a, x);
-	  auto pochb = beast::pochhammer(a, x);
+	  auto pochg = __gnu_cxx::__falling_factorial_fake(a, x);
+	  auto pochb = beast::falling_factorial(a, x);
 	  std::cout << ' ' << std::setw(width) << a
 		    << ' ' << std::setw(width) << x
 		    << ' ' << std::setw(width) << pochg

@@ -622,16 +622,16 @@ sinhc_pi(double x)
   return std::sinh(arg) / arg;
 }
 
-/// Log upper Pochhammer symbol.
+/// Log rising factorials.
 double
-lpochhammer(double a, double x)
+lrising_factorial(double a, double x)
 {
   return std::log(boost::math::rising_factorial(a, x));
 }
 
-/// Log lower Pochhammer symbol.
+/// Log falling factorials.
 double
-lpochhammer_lower(double a, double x)
+lfalling_factorial(double a, double x)
 {
   auto ff = boost::math::falling_factorial(a, x);
   if (ff == 0)
@@ -640,16 +640,16 @@ lpochhammer_lower(double a, double x)
     return std::log(std::abs(ff));
 }
 
-/// Upper Pochhammer symbol.
+/// Rising factorials.
 double
-pochhammer(double a, double x)
+rising_factorial(double a, double x)
 {
   return boost::math::rising_factorial(a, x);
 }
 
-/// Lower Pochhammer symbol.
+/// Falling factorials.
 double
-pochhammer_lower(double a, double x)
+falling_factorial(double a, double x)
 {
   return boost::math::falling_factorial(a, x);
 }

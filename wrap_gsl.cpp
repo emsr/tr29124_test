@@ -977,15 +977,15 @@ sinhc_pi(double x)
   return std::sinh(_S_pi * x) / (_S_pi * x);
 }
 
-/// Log upper Pochhammer symbol.
+/// Log rising factorials.
 double
-lpochhammer(double a, double x)
+lrising_factorial(double a, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_lnpoch_e(a, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in lpochhammer:");
+      std::ostringstream msg("Error in lrising_factorial:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -993,9 +993,9 @@ lpochhammer(double a, double x)
     return result.val;
 }
 
-/// Log lower Pochhammer symbol.
+/// Log falling factorials.
 double
-lpochhammer_lower(double a, double x)
+lfalling_factorial(double a, double x)
 {
   if (a == x)
     return std::numeric_limits<double>::infinity();
@@ -1005,7 +1005,7 @@ lpochhammer_lower(double a, double x)
   int stat_den = gsl_sf_lngamma_e(std::abs(a), &result_den);
   if (stat_num != GSL_SUCCESS && stat_den != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in lpochhammer_lower:");
+      std::ostringstream msg("Error in lfalling_factorial:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -1013,15 +1013,15 @@ lpochhammer_lower(double a, double x)
     return result_num.val - result_den.val;
 }
 
-/// Upper Pochhammer symbol.
+/// Rising factorials.
 double
-pochhammer(double a, double x)
+rising_factorial(double a, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_poch_e(a, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in pochhammer:");
+      std::ostringstream msg("Error in rising_factorial:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -1029,9 +1029,9 @@ pochhammer(double a, double x)
     return result.val;
 }
 
-/// Lower Pochhammer symbol.
+/// Falling factorials.
 double
-pochhammer_lower(double a, double x)
+falling_factorial(double a, double x)
 {
   const double _S_pi = 3.141592653589793238462643383279502884195;
   if (a == x)
@@ -1046,7 +1046,7 @@ pochhammer_lower(double a, double x)
   int stat_den = gsl_sf_gamma_e(std::abs(a), &result_den);
   if (stat_num != GSL_SUCCESS && stat_den != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in lpochhammer_lower:");
+      std::ostringstream msg("Error in lfalling_factorial:");
       msg << " a=" << a << " x=" << x;
       throw std::runtime_error(msg.str());
     }

@@ -232,17 +232,17 @@ double sinhc(double x);
 /// Reperiodized hyperbolic sinus cardinal function.
 double sinhc_pi(double x);
 
-/// Log upper Pochhammer symbol.
-double lpochhammer(double a, double x);
+/// Log rising factorials.
+double lrising_factorial(double a, double x);
 
-/// Log lower Pochhammer symbol.
-double lpochhammer_lower(double a, double x);
+/// Log falling factorials.
+double lfalling_factorial(double a, double x);
 
-/// Upper Pochhammer symbol.
-double pochhammer(double a, double x);
+/// Rising factorials.
+double rising_factorial(double a, double x);
 
-/// Lower Pochhammer symbol.
-double pochhammer_lower(double a, double x);
+/// Falling factorials.
+double falling_factorial(double a, double x);
 
 /// Log factorial.
 double lfactorial(unsigned int n);

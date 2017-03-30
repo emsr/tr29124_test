@@ -121,12 +121,12 @@ ${makedir} ${ext_dir}/ldouble_factorial
 ${makedir} ${ext_dir}/legendre_q
 ${makedir} ${ext_dir}/lfactorial
 ${makedir} ${ext_dir}/lgamma
-${makedir} ${ext_dir}/lpochhammer_lower
-${makedir} ${ext_dir}/lpochhammer
+${makedir} ${ext_dir}/lfalling_factorial
+${makedir} ${ext_dir}/lrising_factorial
 ${makedir} ${ext_dir}/owens_t
 ${makedir} ${ext_dir}/pgamma
-${makedir} ${ext_dir}/pochhammer_lower
-${makedir} ${ext_dir}/pochhammer
+${makedir} ${ext_dir}/falling_factorial
+${makedir} ${ext_dir}/rising_factorial
 ${makedir} ${ext_dir}/psi
 ${makedir} ${ext_dir}/qgamma
 ${makedir} ${ext_dir}/radpoly
@@ -189,6 +189,7 @@ ${tool} check/check_ellnome.cc            ${ext_dir}/ellnome/check_value.cc
 ${tool} check/check_euler.cc              ${ext_dir}/euler/check_value.cc
 ${tool} check/check_expint_en.cc          ${ext_dir}/expint/check_value.cc
 ${tool} check/check_factorial.cc          ${ext_dir}/factorial/check_value.cc
+${tool} check/check_falling_factorial.cc  ${ext_dir}/falling_factorial/check_value.cc
 ${tool} check/check_fresnel_c.cc          ${ext_dir}/fresnel_c/check_value.cc
 ${tool} check/check_fresnel_s.cc          ${ext_dir}/fresnel_s/check_value.cc
 ${tool} check/check_gamma_reciprocal.cc   ${ext_dir}/gamma_reciprocal/check_value.cc
@@ -206,16 +207,15 @@ ${tool} check/check_lbinomial.cc          ${ext_dir}/lbinomial/check_value.cc
 ${tool} check/check_ldouble_factorial.cc  ${ext_dir}/ldouble_factorial/check_value.cc
 ${tool} check/check_legendre_q.cc         ${ext_dir}/legendre_q/check_value.cc
 ${tool} check/check_lfactorial.cc         ${ext_dir}/lfactorial/check_value.cc
+${tool} check/check_lfalling_factorial.cc ${ext_dir}/lfalling_factorial/check_value.cc
 ${tool} check/check_lgamma.cc             ${ext_dir}/lgamma/check_value.cc
-${tool} check/check_lpochhammer_lower.cc  ${ext_dir}/lpochhammer_lower/check_value.cc
-${tool} check/check_lpochhammer.cc        ${ext_dir}/lpochhammer/check_value.cc
+${tool} check/check_lrising_factorial.cc  ${ext_dir}/lrising_factorial/check_value.cc
 ${tool} check/check_owens_t.cc            ${ext_dir}/owens_t/check_value.cc
 ${tool} check/check_pgamma.cc             ${ext_dir}/pgamma/check_value.cc
-${tool} check/check_pochhammer_lower.cc   ${ext_dir}/pochhammer_lower/check_value.cc
-${tool} check/check_pochhammer.cc         ${ext_dir}/pochhammer/check_value.cc
 ${tool} check/check_psi.cc                ${ext_dir}/psi/check_value.cc
 ${tool} check/check_qgamma.cc             ${ext_dir}/qgamma/check_value.cc
 ${tool} check/check_radpoly.cc            ${ext_dir}/radpoly/check_value.cc
+${tool} check/check_rising_factorial.cc   ${ext_dir}/rising_factorial/check_value.cc
 ${tool} check/check_shi.cc                ${ext_dir}/sinhint/check_shi.cc
 ${tool} check/check_sinc.cc               ${ext_dir}/sinc/check_value.cc
 ${tool} check/check_sinc_pi.cc            ${ext_dir}/sinc_pi/check_value.cc
