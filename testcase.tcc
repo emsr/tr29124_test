@@ -230,6 +230,7 @@ template<typename Tp>
 		   else
 		     return x;
 		 };
+    argument.reserve(num_points);
     for (unsigned int i = 0; i < num_points; ++i)
       {
 	if (i == 0 && ! inclusive.first)
