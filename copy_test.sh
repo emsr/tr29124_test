@@ -61,6 +61,7 @@ ${tool} ${text_dir}/ellint_rj/*          ${ext_dir}/ellint_rj
 ${tool} ${text_dir}/ellnome/*            ${ext_dir}/ellnome
 ${tool} ${text_dir}/expint_e1/*          ${ext_dir}/expint_e1
 ${tool} ${text_dir}/factorial/*          ${ext_dir}/factorial
+${tool} ${text_dir}/falling_factorial/*  ${ext_dir}/falling_factorial
 ${tool} ${text_dir}/fresnel_c/*          ${ext_dir}/fresnel_c
 ${tool} ${text_dir}/fresnel_s/*          ${ext_dir}/fresnel_s
 ${tool} ${text_dir}/gamma_reciprocal/*   ${ext_dir}/gamma_reciprocal
@@ -77,11 +78,10 @@ ${tool} ${text_dir}/ldouble_factorial/*  ${ext_dir}/ldouble_factorial
 ${tool} ${text_dir}/legendre_q/*         ${ext_dir}/legendre_q
 ${tool} ${text_dir}/lfactorial/*         ${ext_dir}/lfactorial
 ${tool} ${text_dir}/lgamma/*             ${ext_dir}/lgamma
-${tool} ${text_dir}/lpochhammer_lower/*  ${ext_dir}/lpochhammer_lower
-${tool} ${text_dir}/lpochhammer/*        ${ext_dir}/lpochhammer
-${tool} ${text_dir}/pochhammer_lower/*   ${ext_dir}/pochhammer_lower
-${tool} ${text_dir}/pochhammer/*         ${ext_dir}/pochhammer
+${tool} ${text_dir}/lfalling_factorial/* ${ext_dir}/lfalling_factorial
+${tool} ${text_dir}/lrising_factorial/*  ${ext_dir}/lrising_factorial
 ${tool} ${text_dir}/psi/*                ${ext_dir}/psi
+${tool} ${text_dir}/rising_factorial/*   ${ext_dir}/rising_factorial
 ${tool} ${text_dir}/sinc/*               ${ext_dir}/sinc
 ${tool} ${text_dir}/sinc_pi/*            ${ext_dir}/sinc_pi
 ${tool} ${text_dir}/sinhint/*            ${ext_dir}/sinhint

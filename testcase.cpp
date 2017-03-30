@@ -208,12 +208,12 @@ template<typename Real>
     using       std::legendre;
     using __gnu_cxx::legendre_q;
     using __gnu_cxx::lfactorial;
-    using __gnu_cxx::lpochhammer_lower;
-    using __gnu_cxx::lpochhammer;
+    using __gnu_cxx::lfalling_factorial;
+    using __gnu_cxx::lrising_factorial;
     using __gnu_cxx::owens_t;
     using __gnu_cxx::pgamma;
-    using __gnu_cxx::pochhammer_lower;
-    using __gnu_cxx::pochhammer;
+    using __gnu_cxx::falling_factorial;
+    using __gnu_cxx::rising_factorial;
     using __gnu_cxx::psi;
     using __gnu_cxx::qgamma;
     using __gnu_cxx::radpoly;
@@ -1208,57 +1208,57 @@ template<typename Real>
 	     "GSL",
 	     file_sinc_pi);
 
-    // Log upper Pochhammer symbol.
-    std::cout << "lpochhammer" << std::endl;
-    basename = "lpochhammer";
+    // Log rising factorials.
+    std::cout << "lrising_factorial" << std::endl;
+    basename = "lrising_factorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
-    std::ofstream file_lpochhammer(filename);
-    maketest(lpochhammer, beast::lpochhammer,
-	     "testcase_lpochhammer", "__gnu_cxx", basename,
+    std::ofstream file_lrising_factorial(filename);
+    maketest(lrising_factorial, beast::lrising_factorial,
+	     "testcase_lrising_factorial", "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     "x", {Real{1}, Real{2}, Real{5}, Real{10}, Real{20}, Real{50}, Real{100}},
 	     "Boost",
-	     file_lpochhammer, true, true);
+	     file_lrising_factorial, true, true);
 
-    // Log lower Pochhammer symbol.
-    std::cout << "lpochhammer_lower" << std::endl;
-    basename = "lpochhammer_lower";
+    // Log falling factorials.
+    std::cout << "lfalling_factorial" << std::endl;
+    basename = "lfalling_factorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
-    std::ofstream file_lpochhammer_lower(filename);
-    maketest(lpochhammer_lower, beast::lpochhammer_lower,
-	     "testcase_lpochhammer_lower", "__gnu_cxx", basename,
+    std::ofstream file_lfalling_factorial(filename);
+    maketest(lfalling_factorial, beast::lfalling_factorial,
+	     "testcase_lfalling_factorial", "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     "x", {Real{0}, Real{1}, Real{2}, Real{5}, Real{10}, Real{20}, Real{50}, Real{100}},
 	     "Boost",
-	     file_lpochhammer_lower, true, true);
+	     file_lfalling_factorial, true, true);
 
-    // Upper Pochhammer symbols (see boost::rising_factorial).
-    std::cout << "pochhammer" << std::endl;
-    basename = "pochhammer";
+    // Rising factorials.
+    std::cout << "rising_factorial" << std::endl;
+    basename = "rising_factorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
-    std::ofstream file_pochhammer(filename);
-    maketest(pochhammer, beast::pochhammer,
-	     "testcase_pochhammer", "__gnu_cxx", basename,
+    std::ofstream file_rising_factorial(filename);
+    maketest(rising_factorial, beast::rising_factorial,
+	     "testcase_rising_factorial", "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     "x", dvorder,
 	     "Boost",
-	     file_pochhammer, true, true);
+	     file_rising_factorial, true, true);
 
-    // Lower Pochhammer symbols (see boost::falling_factorial).
-    std::cout << "pochhammer_lower" << std::endl;
-    basename = "pochhammer_lower";
+    // Falling factorials.
+    std::cout << "falling_factorial" << std::endl;
+    basename = "falling_factorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
-    std::ofstream file_pochhammer_lower(filename);
-    maketest(pochhammer_lower, beast::pochhammer_lower,
-	     "testcase_pochhammer_lower", "__gnu_cxx", basename,
+    std::ofstream file_falling_factorial(filename);
+    maketest(falling_factorial, beast::falling_factorial,
+	     "testcase_falling_factorial", "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     "x", {Real{0}, Real{1}, Real{2}, Real{5}, Real{10}, Real{20}, Real{50}, Real{100}},
 	     "Boost",
-	     file_pochhammer_lower, true, true);
+	     file_falling_factorial, true, true);
 
     // Regular modified spherical bessel functions.
     std::cout << "sph_bessel_i" << std::endl;

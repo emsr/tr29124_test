@@ -131,12 +131,12 @@ template<typename Real>
     using       std::legendre;
     using __gnu_cxx::legendre_q;
     using __gnu_cxx::lfactorial;
-    using __gnu_cxx::lpochhammer_lower;
-    using __gnu_cxx::lpochhammer;
+    using __gnu_cxx::lfalling_factorial;
+    using __gnu_cxx::lrising_factorial;
     using __gnu_cxx::owens_t;
     using __gnu_cxx::pgamma;
-    using __gnu_cxx::pochhammer_lower;
-    using __gnu_cxx::pochhammer;
+    using __gnu_cxx::falling_factorial;
+    using __gnu_cxx::rising_factorial;
     using __gnu_cxx::psi;
     using __gnu_cxx::qgamma;
     using __gnu_cxx::radpoly;

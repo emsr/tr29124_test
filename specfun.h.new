@@ -197,6 +197,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::ellnome "ellnome - Elliptic nome"
    * - @ref __gnu_cxx::expint "expint - Exponential integrals"
    * - @ref __gnu_cxx::factorial "factorial - Factorials"
+   * - @ref __gnu_cxx::falling_factorial "falling_factorial - Lower Pochhammer functions"
    * - @ref __gnu_cxx::fermi_dirac "fermi_dirac - Fermi-Dirac integrals"
    * - @ref __gnu_cxx::fresnel_c "fresnel_c - Fresnel cosine integrals"
    * - @ref __gnu_cxx::fresnel_s "fresnel_s - Fresnel sine integrals"
@@ -213,16 +214,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::ldouble_factorial "ldouble_factorial - Log double factorials"
    * - @ref __gnu_cxx::legendre_q "legendre_q - Legendre functions of the second kind"
    * - @ref __gnu_cxx::lfactorial "lfactorial - Log factorials"
+   * - @ref __gnu_cxx::lfalling_factorial "lfalling_factorial - Log lower Pochhammer functions"
    * - @ref __gnu_cxx::lgamma "lgamma - Log gamma for complex arguments"
-   * - @ref __gnu_cxx::lpochhammer_lower "lpochhammer_lower - Log lower Pochhammer functions"
-   * - @ref __gnu_cxx::lpochhammer "lpochhammer - Log upper Pochhammer functions"
+   * - @ref __gnu_cxx::lrising_factorial "lrising_factorial - Log upper Pochhammer functions"
    * - @ref __gnu_cxx::owens_t "owens_t - Owens T functions"
    * - @ref __gnu_cxx::pgamma "pgamma - Regularized lower incomplete gamma functions"
-   * - @ref __gnu_cxx::pochhammer_lower "pochhammer_lower - Lower Pochhammer functions"
-   * - @ref __gnu_cxx::pochhammer "pochhammer - Upper Pochhammer functions"
    * - @ref __gnu_cxx::psi "psi - Psi or digamma function"
    * - @ref __gnu_cxx::qgamma "qgamma - Regularized upper incomplete gamma functions"
    * - @ref __gnu_cxx::radpoly "radpoly - Radial polynomials"
+   * - @ref __gnu_cxx::rising_factorial "rising_factorial - Upper Pochhammer functions"
    * - @ref __gnu_cxx::sinhc "sinhc - Hyperbolic sinus cardinal function"
    * - @ref __gnu_cxx::sinhc_pi "sinhc_pi - "
    * - @ref __gnu_cxx::sinc "sinc - Normalized sinus cardinal function"
@@ -3572,88 +3572,88 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::__detail::__expint<__type>(__n, __x);
     }
 
-  //  Log upper Pochhammer symbol
+  //  Log rising factorials
 
   inline float
-  lpochhammer_uf(float __a, float __n)
-  { return std::__detail::__log_pochhammer_u<float>(__a, __n); }
+  lrising_factorialf(float __a, float __n)
+  { return std::__detail::__log_rising_factorial<float>(__a, __n); }
 
   inline long double
-  lpochhammer_ul(long double __a, long double __n)
-  { return std::__detail::__log_pochhammer_u<long double>(__a, __n); }
+  lrising_factoriall(long double __a, long double __n)
+  { return std::__detail::__log_rising_factorial<long double>(__a, __n); }
 
   /**
    * 
    */
   template<typename _Tp, typename _Tn>
     inline __gnu_cxx::__promote_fp_t<_Tp, _Tn>
-    lpochhammer_u(_Tp __a, _Tn __n)
+    lrising_factorial(_Tp __a, _Tn __n)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tn>;
-      return std::__detail::__log_pochhammer_u<__type>(__a, __n);
+      return std::__detail::__log_rising_factorial<__type>(__a, __n);
     }
 
-  //  Log lower Pochhammer symbol
+  //  Log falling factorials
 
   inline float
-  lpochhammer_lf(float __a, float __n)
-  { return std::__detail::__log_pochhammer_l<float>(__a, __n); }
+  lfalling_factorialf(float __a, float __n)
+  { return std::__detail::__log_falling_factorial<float>(__a, __n); }
 
   inline long double
-  lpochhammer_ll(long double __a, long double __n)
-  { return std::__detail::__log_pochhammer_l<long double>(__a, __n); }
+  lfalling_factoriall(long double __a, long double __n)
+  { return std::__detail::__log_falling_factorial<long double>(__a, __n); }
 
   /**
    * 
    */
   template<typename _Tp, typename _Tn>
     inline __gnu_cxx::__promote_fp_t<_Tp, _Tn>
-    lpochhammer_l(_Tp __a, _Tn __n)
+    lfalling_factorial(_Tp __a, _Tn __n)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tn>;
-      return std::__detail::__log_pochhammer_l<__type>(__a, __n);
+      return std::__detail::__log_falling_factorial<__type>(__a, __n);
     }
 
-  //  Upper Pochhammer symbols (see boost::rising_factorial)
+  //  Rising factorials
 
   inline float
-  pochhammer_uf(float __a, float __n)
-  { return std::__detail::__pochhammer_u<float>(__a, __n); }
+  rising_factorialf(float __a, float __n)
+  { return std::__detail::__rising_factorial<float>(__a, __n); }
 
   inline long double
-  pochhammer_ul(long double __a, long double __n)
-  { return std::__detail::__pochhammer_u<long double>(__a, __n); }
+  rising_factoriall(long double __a, long double __n)
+  { return std::__detail::__rising_factorial<long double>(__a, __n); }
 
   /**
    * 
    */
   template<typename _Tp, typename _Tn>
     inline __gnu_cxx::__promote_fp_t<_Tp, _Tn>
-    pochhammer_u(_Tp __a, _Tn __n)
+    rising_factorial(_Tp __a, _Tn __n)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tn>;
-      return std::__detail::__pochhammer_u<__type>(__a, __n);
+      return std::__detail::__rising_factorial<__type>(__a, __n);
     }
 
-  //  Lower Pochhammer symbols (see boost::falling_factorial)
+  //  Falling factorials
 
   inline float
-  pochhammer_lf(float __a, float __n)
-  { return std::__detail::__pochhammer_l<float>(__a, __n); }
+  falling_factorialf(float __a, float __n)
+  { return std::__detail::__falling_factorial<float>(__a, __n); }
 
   inline long double
-  pochhammer_ll(long double __a, long double __n)
-  { return std::__detail::__pochhammer_l<long double>(__a, __n); }
+  falling_factoriall(long double __a, long double __n)
+  { return std::__detail::__falling_factorial<long double>(__a, __n); }
 
   /**
    * 
    */
   template<typename _Tp, typename _Tn>
     inline __gnu_cxx::__promote_fp_t<_Tp, _Tn>
-    pochhammer_l(_Tp __a, _Tn __n)
+    falling_factorial(_Tp __a, _Tn __n)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tn>;
-      return std::__detail::__pochhammer_l<__type>(__a, __n);
+      return std::__detail::__falling_factorial<__type>(__a, __n);
     }
 
   // Factorial

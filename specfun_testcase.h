@@ -618,9 +618,9 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Log upper Pochhammer symbol.
+// Log rising factorials.
 template<typename _Tp>
-  struct testcase_lpochhammer
+  struct testcase_lrising_factorial
   {
     _Tp f0;
     _Tp a;
@@ -628,9 +628,9 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Upper Pochhammer symbols.
+// Rising factorials.
 template<typename _Tp>
-  struct testcase_pochhammer
+  struct testcase_rising_factorial
   {
     _Tp f0;
     _Tp a;
@@ -638,9 +638,9 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Log lower Pochhammer symbol.
+// Log falling factorials.
 template<typename _Tp>
-  struct testcase_lpochhammer_lower
+  struct testcase_lfalling_factorial
   {
     _Tp f0;
     _Tp a;
@@ -648,9 +648,9 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Lower Pochhammer symbol.
+// Falling factorials.
 template<typename _Tp>
-  struct testcase_pochhammer_lower
+  struct testcase_falling_factorial
   {
     _Tp f0;
     _Tp a;

@@ -361,20 +361,20 @@ namespace __gnu_cxx
   { return std::__detail::__expint<__float128>(__n, __x); }
 
   inline __float128
-  lpochhammer_uq(__float128 __a, __float128 __n)
-  { return std::__detail::__log_pochhammer_u<__float128>(__a, __n); }
+  lrising_factorialq(__float128 __a, __float128 __n)
+  { return std::__detail::__log_rising_factorial<__float128>(__a, __n); }
 
   inline __float128
-  lpochhammer_lq(__float128 __a, __float128 __n)
-  { return std::__detail::__log_pochhammer_l<__float128>(__a, __n); }
+  lfalling_factorialq(__float128 __a, __float128 __n)
+  { return std::__detail::__log_falling_factorial<__float128>(__a, __n); }
 
   inline __float128
-  pochhammer_uq(__float128 __a, __float128 __n)
-  { return std::__detail::__pochhammer_u<__float128>(__a, __n); }
+  rising_factorialq(__float128 __a, __float128 __n)
+  { return std::__detail::__rising_factorial<__float128>(__a, __n); }
 
   inline __float128
-  pochhammer_lq(__float128 __a, __float128 __n)
-  { return std::__detail::__pochhammer_l<__float128>(__a, __n); }
+  falling_factorialq(__float128 __a, __float128 __n)
+  { return std::__detail::__falling_factorial<__float128>(__a, __n); }
 
   inline __float128
   factorialq(unsigned int __n)

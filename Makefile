@@ -73,6 +73,7 @@ BINS = testcase \
        test_dilog \
        test_expint \
        test_factorial \
+       test_falling_factorial \
        test_fermi_dirac \
        test_float128 \
        test_fresnel \
@@ -106,8 +107,6 @@ BINS = testcase \
        test_numeric_limits \
        test_owens_t \
        test_parab_cyl \
-       test_pochhammer \
-       test_pochhammer_lower \
        test_polylog \
        test_polynomial \
        test_pow_funs \
@@ -118,6 +117,7 @@ BINS = testcase \
        test_reperiodized_hyper \
        test_reperiodized_trig \
        test_riemann_zeta \
+       test_rising_factorial \
        test_root_finding \
        test_sincos \
        test_sinus_cardinal \
@@ -202,16 +202,16 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/check_lgamma \
 	 ${CHECK_DIR}/check_logistic_cdf \
 	 ${CHECK_DIR}/check_logistic_pdf \
-	 ${CHECK_DIR}/check_lpochhammer_lower \
-	 ${CHECK_DIR}/check_lpochhammer \
+	 ${CHECK_DIR}/check_lfalling_factorial \
+	 ${CHECK_DIR}/check_lrising_factorial \
 	 ${CHECK_DIR}/check_lognormal_cdf \
 	 ${CHECK_DIR}/check_lognormal_pdf \
 	 ${CHECK_DIR}/check_normal_cdf \
 	 ${CHECK_DIR}/check_normal_pdf \
 	 ${CHECK_DIR}/check_owens_t \
 	 ${CHECK_DIR}/check_pgamma \
-	 ${CHECK_DIR}/check_pochhammer_lower \
-	 ${CHECK_DIR}/check_pochhammer \
+	 ${CHECK_DIR}/check_falling_factorial \
+	 ${CHECK_DIR}/check_rising_factorial \
 	 ${CHECK_DIR}/check_psi \
 	 ${CHECK_DIR}/check_qgamma \
 	 ${CHECK_DIR}/check_radpoly \
@@ -368,12 +368,12 @@ check: $(CHECKS)
 	echo "check_logistic_pdf" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_logistic_pdf >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_lognormal_cdf" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lognormal_cdf >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_lognormal_pdf" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lognormal_pdf >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
-	echo "check_lpochhammer_lower" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lpochhammer_lower >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
-	echo "check_lpochhammer" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lpochhammer >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_lfalling_factorial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lfalling_factorial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_lrising_factorial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lrising_factorial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_owens_t" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_owens_t >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_pgamma" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_pgamma >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
-	echo "check_pochhammer_lower" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_pochhammer_lower >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
-	echo "check_pochhammer" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_pochhammer >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_falling_factorial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_falling_factorial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_rising_factorial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_rising_factorial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_normal_cdf" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_normal_cdf >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_normal_pdf" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_normal_pdf >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_psi" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_psi >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
@@ -537,6 +537,9 @@ test_expint: test_expint.cpp
 test_factorial: test_factorial.cpp
 	$(CXX17) -I. -o test_factorial test_factorial.cpp -lquadmath
 
+test_falling_factorial: test_falling_factorial.cpp
+	$(CXX17) -I. -o test_falling_factorial test_falling_factorial.cpp -lquadmath
+
 test_fermi_dirac: test_fermi_dirac.cpp
 	$(CXX17) -I. -o test_fermi_dirac test_fermi_dirac.cpp -lquadmath
 
@@ -624,12 +627,6 @@ test_owens_t: test_owens_t.cpp
 test_parab_cyl: test_parab_cyl.cpp
 	$(CXX17) -I. -o test_parab_cyl test_parab_cyl.cpp -lquadmath
 
-test_pochhammer: test_pochhammer.cpp
-	$(CXX17) -I. -o test_pochhammer test_pochhammer.cpp -lquadmath
-
-test_pochhammer_lower: test_pochhammer_lower.cpp
-	$(CXX17) -I. -o test_pochhammer_lower test_pochhammer_lower.cpp -lquadmath
-
 test_polylog: test_polylog.cpp
 	$(CXX17) -I. -o test_polylog test_polylog.cpp -lquadmath -Lwrappers/debug -lwrap_cephes
 
@@ -659,6 +656,9 @@ test_reperiodized_trig: test_reperiodized_trig.cpp
 
 test_riemann_zeta: test_riemann_zeta.cpp
 	$(CXX17) -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath
+
+test_rising_factorial: test_rising_factorial.cpp
+	$(CXX17) -I. -o test_rising_factorial test_rising_factorial.cpp -lquadmath
 
 test_root_finding: test_root_finding.cpp
 	$(CXX17) -I. -o test_root_finding test_root_finding.cpp -lquadmath
@@ -851,6 +851,9 @@ ${CHECK_DIR}/check_expint_en: ${CHECK_DIR}/check_expint_en.cc
 ${CHECK_DIR}/check_factorial: ${CHECK_DIR}/check_factorial.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_factorial ${CHECK_DIR}/check_factorial.cc -lquadmath
 
+${CHECK_DIR}/check_falling_factorial: ${CHECK_DIR}/check_falling_factorial.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_falling_factorial ${CHECK_DIR}/check_falling_factorial.cc -lquadmath
+
 ${CHECK_DIR}/check_fresnel_c: ${CHECK_DIR}/check_fresnel_c.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_fresnel_c ${CHECK_DIR}/check_fresnel_c.cc -lquadmath
 
@@ -914,6 +917,9 @@ ${CHECK_DIR}/check_legendre_q: ${CHECK_DIR}/check_legendre_q.cc
 ${CHECK_DIR}/check_lfactorial: ${CHECK_DIR}/check_lfactorial.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lfactorial ${CHECK_DIR}/check_lfactorial.cc -lquadmath
 
+${CHECK_DIR}/check_lfalling_factorial: ${CHECK_DIR}/check_lfalling_factorial.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lfalling_factorial ${CHECK_DIR}/check_lfalling_factorial.cc -lquadmath
+
 ${CHECK_DIR}/check_lgamma: ${CHECK_DIR}/check_lgamma.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lgamma ${CHECK_DIR}/check_lgamma.cc -lquadmath
 
@@ -929,11 +935,8 @@ ${CHECK_DIR}/check_lognormal_cdf: ${CHECK_DIR}/check_lognormal_cdf.cc
 ${CHECK_DIR}/check_lognormal_pdf: ${CHECK_DIR}/check_lognormal_pdf.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lognormal_pdf ${CHECK_DIR}/check_lognormal_pdf.cc -lquadmath
 
-${CHECK_DIR}/check_lpochhammer_lower: ${CHECK_DIR}/check_lpochhammer_lower.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lpochhammer_lower ${CHECK_DIR}/check_lpochhammer_lower.cc -lquadmath
-
-${CHECK_DIR}/check_lpochhammer: ${CHECK_DIR}/check_lpochhammer.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lpochhammer ${CHECK_DIR}/check_lpochhammer.cc -lquadmath
+${CHECK_DIR}/check_lrising_factorial: ${CHECK_DIR}/check_lrising_factorial.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lrising_factorial ${CHECK_DIR}/check_lrising_factorial.cc -lquadmath
 
 ${CHECK_DIR}/check_normal_cdf: ${CHECK_DIR}/check_normal_cdf.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_normal_cdf ${CHECK_DIR}/check_normal_cdf.cc -lquadmath
@@ -947,12 +950,6 @@ ${CHECK_DIR}/check_owens_t: ${CHECK_DIR}/check_owens_t.cc
 ${CHECK_DIR}/check_pgamma: ${CHECK_DIR}/check_pgamma.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_pgamma ${CHECK_DIR}/check_pgamma.cc -lquadmath
 
-${CHECK_DIR}/check_pochhammer_lower: ${CHECK_DIR}/check_pochhammer_lower.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_pochhammer_lower ${CHECK_DIR}/check_pochhammer_lower.cc -lquadmath
-
-${CHECK_DIR}/check_pochhammer: ${CHECK_DIR}/check_pochhammer.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_pochhammer ${CHECK_DIR}/check_pochhammer.cc -lquadmath
-
 ${CHECK_DIR}/check_psi: ${CHECK_DIR}/check_psi.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_psi ${CHECK_DIR}/check_psi.cc -lquadmath
 
@@ -964,6 +961,9 @@ ${CHECK_DIR}/check_radpoly: ${CHECK_DIR}/check_radpoly.cc
 
 ${CHECK_DIR}/check_riemann_zeta: ${CHECK_DIR}/check_riemann_zeta.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_riemann_zeta ${CHECK_DIR}/check_riemann_zeta.cc -lquadmath
+
+${CHECK_DIR}/check_rising_factorial: ${CHECK_DIR}/check_rising_factorial.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_rising_factorial ${CHECK_DIR}/check_rising_factorial.cc -lquadmath
 
 ${CHECK_DIR}/check_shi: ${CHECK_DIR}/check_shi.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_shi ${CHECK_DIR}/check_shi.cc -lquadmath

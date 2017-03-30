@@ -2888,19 +2888,19 @@ _S_neg_double_factorial_table[999]
     }
 
   /**
-   * @brief  Return the logarithm of the lower Pochhammer symbol
-   * or the falling factorial function for real argument @f$ a @f$
+   * @brief  Return the logarithm of the falling factorial function
+   * or the lower Pochhammer symbol for real argument @f$ a @f$
    * and integral order @f$ n @f$.
-   * The lower Pochammer symbol is defined by
+   * The falling factorial function is defined by
    * @f[
-   *   (a)_n = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1
+   *   a^{\underline{n}} = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1
    *	     = \Gamma(a + 1) / \Gamma(a - n + 1)
    * @f]
-   * In particular, $f[ (n)_n = n! $f].
+   * In particular, $f[ n^{\underline{n}} = n! $f].
    */
   template<typename _Tp>
     _Tp
-    __pochhammer_lower(_Tp __a, int __n)
+    __falling_factorial(_Tp __a, int __n)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
@@ -2945,19 +2945,17 @@ _S_neg_double_factorial_table[999]
     }
 
   /**
-   * @brief  Return the logarithm of the lower Pochhammer symbol
-   * or the falling factorial function for real argument @f$ a @f$
+   * @brief Return the logarithm of the falling factorial function
+   * or the lower Pochhammer symbol for real argument @f$ a @f$
    * and order @f$ \nu @f$.
-   * The lower Pochammer symbol is defined by
+   * The falling factorial function is defined by
    * @f[
-   *   (a)_\nu = \Gamma(a + 1) / \Gamma(a - \nu + 1)
-   *	     = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1, \nu = n
+   *   a^{\underline{\nu}} = \Gamma(a + 1) / \Gamma(a - \nu + 1)
    * @f]
-   * In particular, $f[ (n)_n = n! $f].
    */
   template<typename _Tp>
     _Tp
-    __pochhammer_lower(_Tp __a, _Tp __nu)
+    __falling_factorial(_Tp __a, _Tp __nu)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
@@ -2975,7 +2973,7 @@ _S_neg_double_factorial_table[999]
 	  if (__ia && __ia() < __inu())
 	    return -_S_inf;
 	  else
-	    return __pochhammer_lower(__a, __inu());
+	    return __falling_factorial(__a, __inu());
 	}
       else
 	{
@@ -2991,26 +2989,27 @@ _S_neg_double_factorial_table[999]
     }
 
   /**
-   * @brief  Return the logarithm of the lower Pochhammer symbol
-   * or the falling factorial function.
+   * @brief  Return the logarithm of the falling factorial function
+   * or the lower Pochhammer symbol.
    * The lower Pochammer symbol is defined by
    * @f[
-   *   (a)_\nu = \Gamma(a + 1) / \Gamma(a - \nu + 1)
+   *   a^{\underline{n}} = \Gamma(a + 1) / \Gamma(a - \nu + 1)
    *	     = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1
    * @f]
-   * In particular, $f[ (n)_n = n! $f].
+   * In particular, $f[ n^{\underline{n}} = n! $f].
    * Thus this function returns
    * @f[
-   *   ln[(a)_\nu] = ln[\Gamma(a + 1)] - ln[\Gamma(a - \nu + 1)], ln[(a)_0] = 0
+   *   ln[a^{\underline{n}}] = ln[\Gamma(a + 1)] - ln[\Gamma(a - \nu + 1)],
+   *      ln[a^{\underline{0}}] = 0
    * @f]
-   * Many notations exist: @f[ a^{\underline{n}} @f],
+   * Many notations exist for this function: @f[ (a)_\nu @f],
    *  @f[ \{ \begin{array}{c}
    *	  a \\
-   *	  n \end{array} \} @f], and others.
+   *	  \nu \end{array} \} @f], and others.
    */
   template<typename _Tp>
     _Tp
-    __log_pochhammer_lower(_Tp __a, _Tp __nu)
+    __log_falling_factorial(_Tp __a, _Tp __nu)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
@@ -3035,11 +3034,11 @@ _S_neg_double_factorial_table[999]
 		     - __log_factorial<_Val>(unsigned(__ia() - __inu()));
 	    }
 	  else
-	    return std::log(std::abs(__pochhammer_lower(__a, __inu())));
+	    return std::log(std::abs(__falling_factorial(__a, __inu())));
 	}
       else if (std::abs(__a) < _S_num_factorials<_Real>
 	    && std::abs(__a - __nu) < _S_num_factorials<_Real>)
-	return std::log(std::abs(__pochhammer_lower(__a, __nu)));
+	return std::log(std::abs(__falling_factorial(__a, __nu)));
       else
 	return __log_gamma(__a + _Tp{1}) - __log_gamma(__a - __nu + _Tp{1});
     }
@@ -3049,17 +3048,18 @@ _S_neg_double_factorial_table[999]
    * or the rising factorial function.
    * The Pochammer symbol is defined by
    * @f[
-   *   (a)_\nu = \Gamma(a + \nu) / \Gamma(\nu)
+   *   a^{\overline{n}} = \Gamma(a + \nu) / \Gamma(\nu)
    *	     = \prod_{k=0}^{n-1} (a + k), (a)_0 = 1
    * @f]
-   * Many notations exist: @f[ a^{\overline{n}} @f],
+   * Many notations exist for this function: @f[ (a)_\nu @f],
+   * (especially in the literature of special functions),
    *  @f[ \left[ \begin{array}{c}
    *	  a \\
    *	  n \end{array} \right] @f], and others.
    */
   template<typename _Tp>
     _Tp
-    __pochhammer(_Tp __a, int __n)
+    __rising_factorial(_Tp __a, int __n)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
@@ -3100,21 +3100,21 @@ _S_neg_double_factorial_table[999]
     }
 
   /**
-   * @brief  Return the (upper) Pochhammer function
-   * or the rising factorial function.
-   * The Pochammer symbol is defined by
+   * @brief  Return the rising factorial function
+   * or the (upper) Pochhammer function.
+   * The rising factorial function is defined by
    * @f[
-   *   (a)_\nu = \Gamma(a + \nu) / \Gamma(\nu)
-   *	     = \prod_{k=0}^{n-1} (a + k), (a)_0 = 1
+   *   a^{\overline{\nu}} = \Gamma(a + \nu) / \Gamma(\nu)
    * @f]
-   * Many notations exist: @f[ a^{\overline{n}} @f],
+   * Many notations exist for this function: @f[ (a)_\nu @f],
+   * (especially in the literature of special functions),
    *  @f[ \left[ \begin{array}{c}
    *	  a \\
    *	  n \end{array} \right] @f], and others.
    */
   template<typename _Tp>
     _Tp
-    __pochhammer(_Tp __a, _Tp __nu)
+    __rising_factorial(_Tp __a, _Tp __nu)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
 
@@ -3125,7 +3125,7 @@ _S_neg_double_factorial_table[999]
       else if (std::abs(__nu - std::nearbyint(__nu)) < _S_eps)
 	{
 	  auto __n = int(std::nearbyint(__nu));
-	  return __pochhammer(__a, __n);
+	  return __rising_factorial(__a, __n);
 	}
       else
 	{
@@ -3139,25 +3139,26 @@ _S_neg_double_factorial_table[999]
     }
 
   /**
-   * @brief  Return the logarithm of the (upper) Pochhammer symbol
-   * or the rising factorial function.
+   * @brief  Return the logarithm of the rising factorial function
+   * or the (upper) Pochhammer symbol.
    * The Pochammer symbol is defined for integer order by
    * @f[
-   *   (a)_\nu = \Gamma(a + \nu) / \Gamma(n)
+   *   a^{\overline{\nu}} = \Gamma(a + \nu) / \Gamma(n)
    *	     = \prod_{k=0}^{\nu-1} (a + k), (a)_0 = 1
    * @f]
    * Thus this function returns
    * @f[
-   *   ln[(a)_\nu] = ln[\Gamma(a + \nu)] - ln[\Gamma(\nu)], ln[(a)_0] = 0
+   *   ln[a^{\overline{\nu}}] = ln[\Gamma(a + \nu)] - ln[\Gamma(\nu)], ln[(a)_0] = 0
    * @f]
-   * Many notations exist: @f[ a^{\overline{n}} @f],
+   * Many notations exist for this function: @f[ (a)_\nu @f]
+   * (especially in the literature of special functions),
    *  @f[ \left[ \begin{array}{c}
    *	  a \\
-   *	  n \end{array} \right] @f], and others.
+   *	  \nu \end{array} \right] @f], and others.
    */
   template<typename _Tp>
     _Tp
-    __log_pochhammer(_Tp __a, _Tp __nu)
+    __log_rising_factorial(_Tp __a, _Tp __nu)
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
@@ -3168,7 +3169,7 @@ _S_neg_double_factorial_table[999]
 	return _Tp{0};
       else if (std::abs(__a) < _S_num_factorials<_Real>
 	    && std::abs(__a + __nu) < _S_num_factorials<_Real>)
-	return std::log(__pochhammer(__a, __nu));
+	return std::log(__rising_factorial(__a, __nu));
       else
 	return __log_gamma(__a + __nu) - __log_gamma(__a);
     }

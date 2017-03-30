@@ -214,6 +214,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::eulerian "eulerian - Eulerian numbers"
    * - @ref __gnu_cxx::expint "expint - Exponential integrals"
    * - @ref __gnu_cxx::factorial "factorial - Factorials"
+   * - @ref __gnu_cxx::falling_factorial "falling_factorial - Falling factorials"
    * - @ref __gnu_cxx::fermi_dirac "fermi_dirac - Fermi-Dirac integrals"
    * - @ref __gnu_cxx::fresnel_c "fresnel_c - Fresnel cosine integrals"
    * - @ref __gnu_cxx::fresnel_s "fresnel_s - Fresnel sine integrals"
@@ -231,16 +232,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::ldouble_factorial "ldouble_factorial - Log double factorials"
    * - @ref __gnu_cxx::legendre_q "legendre_q - Legendre functions of the second kind"
    * - @ref __gnu_cxx::lfactorial "lfactorial - Log factorials"
+   * - @ref __gnu_cxx::lfalling_factorial "lfalling_factorial - Log falling factorials"
    * - @ref __gnu_cxx::lgamma "lgamma - Log gamma for complex arguments"
-   * - @ref __gnu_cxx::lpochhammer_lower "lpochhammer_lower - Log lower Pochhammer functions"
-   * - @ref __gnu_cxx::lpochhammer "lpochhammer - Log upper Pochhammer functions"
+   * - @ref __gnu_cxx::lrising_factorial "lrising_factorial - Log rising factorials"
    * - @ref __gnu_cxx::owens_t "owens_t - Owens T functions"
    * - @ref __gnu_cxx::pgamma "pgamma - Regularized lower incomplete gamma functions"
-   * - @ref __gnu_cxx::pochhammer_lower "pochhammer_lower - Lower Pochhammer functions"
-   * - @ref __gnu_cxx::pochhammer "pochhammer - Upper Pochhammer functions"
    * - @ref __gnu_cxx::psi "psi - Psi or digamma function"
    * - @ref __gnu_cxx::qgamma "qgamma - Regularized upper incomplete gamma functions"
    * - @ref __gnu_cxx::radpoly "radpoly - Radial polynomials"
+   * - @ref __gnu_cxx::rising_factorial "rising_factorial - Rising factorials"
    * - @ref __gnu_cxx::sinhc "sinhc - Hyperbolic sinus cardinal function"
    * - @ref __gnu_cxx::sinhc_pi "sinhc_pi - Reperiodized hyperbolic sinus cardinal function""
    * - @ref __gnu_cxx::sinc "sinc - Normalized sinus cardinal function"
@@ -3707,7 +3707,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__dawson<float>(__x); }
 
   /**
-   * Return the Dawson integral, @f$ F(x) @f$, for <tt>long double</tt> argument @f$ x @f$.
+   * Return the Dawson integral, @f$ F(x) @f$,
+   * for <tt>long double</tt> argument @f$ x @f$.
    *
    * @see dawson for details.
    */
@@ -3783,102 +3784,213 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::__detail::__expint<__type>(__n, __x);
     }
 
-  //  Log upper Pochhammer symbol
-
-  inline float
-  lpochhammerf(float __a, float __n)
-  { return std::__detail::__log_pochhammer<float>(__a, __n); }
-
-  inline long double
-  lpochhammerl(long double __a, long double __n)
-  { return std::__detail::__log_pochhammer<long double>(__a, __n); }
+  //  Log rising factorials
 
   /**
-   * 
+   * Return the logarithm of the rising factorial @f$ a^{\overline{\nu}} @f$
+   * for float arguments.
+   *
+   * @see lrising_factorial for details.
    */
-  template<typename _Tp, typename _Tn>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Tn>
-    lpochhammer(_Tp __a, _Tn __n)
+  inline float
+  lrising_factorialf(float __a, float __nu)
+  { return std::__detail::__log_rising_factorial<float>(__a, __nu); }
+
+  /**
+   * Return the logarithm of the rising factorial @f$ ln(a^{\overline{\nu}}) @f$
+   * for <tt> long double </tt> arguments.
+   *
+   * @see lrising_factorial for details.
+   */
+  inline long double
+  lrising_factoriall(long double __a, long double __nu)
+  { return std::__detail::__log_rising_factorial<long double>(__a, __nu); }
+
+  /**
+   * @brief  Return the logarithm of the rising factorial function
+   * or the (upper) Pochhammer symbol.
+   * The Pochammer symbol is defined for integer order by
+   * @f[
+   *   a^{\overline{\nu}} = \Gamma(a + \nu) / \Gamma(n)
+   *	     = \prod_{k=0}^{\nu-1} (a + k), (a)_0 = 1
+   * @f]
+   * Thus this function returns
+   * @f[
+   *   ln[a^{\overline{\nu}}] = ln[\Gamma(a + \nu)] - ln[\Gamma(\nu)],
+   *      ln[(a)_0] = 0
+   * @f]
+   * Many notations exist for this function: @f[ (a)_\nu @f]
+   * (especially in the literature of special functions),
+   *  @f[ \left[ \begin{array}{c}
+   *	  a \\
+   *	  \nu \end{array} \right] @f], and others.
+   */
+  template<typename _Tp, typename _Tnu>
+    inline __gnu_cxx::__promote_fp_t<_Tp, _Tnu>
+    lrising_factorial(_Tp __a, _Tnu __nu)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tn>;
-      return std::__detail::__log_pochhammer<__type>(__a, __n);
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tnu>;
+      return std::__detail::__log_rising_factorial<__type>(__a, __nu);
     }
 
-  //  Log lower Pochhammer symbol
-
-  inline float
-  lpochhammer_lowerf(float __a, float __n)
-  { return std::__detail::__log_pochhammer_lower<float>(__a, __n); }
-
-  inline long double
-  lpochhammer_lowerl(long double __a, long double __n)
-  { return std::__detail::__log_pochhammer_lower<long double>(__a, __n); }
+  //  Log falling factorials
 
   /**
-   * 
+   * Return the logarithm of the falling factorial @f$ ln(a^{\overline{\nu}})@f$
+   * for float arguments.
+   *
+   * @see lfalling_factorial for details.
    */
-  template<typename _Tp, typename _Tn>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Tn>
-    lpochhammer_lower(_Tp __a, _Tn __n)
+  inline float
+  lfalling_factorialf(float __a, float __nu)
+  { return std::__detail::__log_falling_factorial<float>(__a, __nu); }
+
+  /**
+   * Return the logarithm of the falling factorial @f$ ln(a^{\overline{\nu}})@f$
+   * for float arguments.
+   *
+   * @see lfalling_factorial for details.
+   */
+  inline long double
+  lfalling_factoriall(long double __a, long double __nu)
+  { return std::__detail::__log_falling_factorial<long double>(__a, __nu); }
+
+  /**
+   * @brief  Return the logarithm of the falling factorial function
+   * or the lower Pochhammer symbol.
+   * The falling factorial function is defined by
+   * @f[
+   *   a^{\underline{n}} = \Gamma(a + 1) / \Gamma(a - \nu + 1)
+   *	     = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1
+   * @f]
+   * In particular, $f[ n^{\underline{n}} = n! $f].
+   * Thus this function returns
+   * @f[
+   *   ln[a^{\underline{n}}] = ln[\Gamma(a + 1)] - ln[\Gamma(a - \nu + 1)],
+   *      ln[a^{\underline{0}}] = 0
+   * @f]
+   * Many notations exist for this function: @f[ (a)_\nu @f],
+   *  @f[ \{ \begin{array}{c}
+   *	  a \\
+   *	  \nu \end{array} \} @f], and others.
+   */
+  template<typename _Tp, typename _Tnu>
+    inline __gnu_cxx::__promote_fp_t<_Tp, _Tnu>
+    lfalling_factorial(_Tp __a, _Tnu __nu)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tn>;
-      return std::__detail::__log_pochhammer_lower<__type>(__a, __n);
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tnu>;
+      return std::__detail::__log_falling_factorial<__type>(__a, __nu);
     }
 
-  //  Upper Pochhammer symbols
-
-  inline float
-  pochhammerf(float __a, float __n)
-  { return std::__detail::__pochhammer<float>(__a, __n); }
-
-  inline long double
-  pochhammerl(long double __a, long double __n)
-  { return std::__detail::__pochhammer<long double>(__a, __n); }
+  //  Rising factorials
 
   /**
-   * 
+   * Return the rising factorial @f$ a^{\overline{\nu}} @f$
+   * for float arguments.
+   *
+   * @see rising_factorial for details.
    */
-  template<typename _Tp, typename _Tn>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Tn>
-    pochhammer(_Tp __a, _Tn __n)
+  inline float
+  rising_factorialf(float __a, float __nu)
+  { return std::__detail::__rising_factorial<float>(__a, __nu); }
+
+  /**
+   * Return the rising factorial @f$ ln(a^{\overline{\nu}}) @f$
+   * for <tt> long double </tt> arguments.
+   *
+   * @see rising_factorial for details.
+   */
+  inline long double
+  rising_factoriall(long double __a, long double __nu)
+  { return std::__detail::__rising_factorial<long double>(__a, __nu); }
+
+  /**
+   * @brief  Return the rising factorial function
+   * or the (upper) Pochhammer function.
+   * The rising factorial function is defined by
+   * @f[
+   *   a^{\overline{\nu}} = \Gamma(a + \nu) / \Gamma(\nu)
+   * @f]
+   * Many notations exist for this function: @f[ (a)_\nu @f],
+   * (especially in the literature of special functions),
+   *  @f[ \left[ \begin{array}{c}
+   *	  a \\
+   *	  n \end{array} \right] @f], and others.
+   */
+  template<typename _Tp, typename _Tnu>
+    inline __gnu_cxx::__promote_fp_t<_Tp, _Tnu>
+    rising_factorial(_Tp __a, _Tnu __nu)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tn>;
-      return std::__detail::__pochhammer<__type>(__a, __n);
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tnu>;
+      return std::__detail::__rising_factorial<__type>(__a, __nu);
     }
 
-  //  Lower Pochhammer symbols
-
-  inline float
-  pochhammer_lowerf(float __a, float __n)
-  { return std::__detail::__pochhammer_lower<float>(__a, __n); }
-
-  inline long double
-  pochhammer_lowerl(long double __a, long double __n)
-  { return std::__detail::__pochhammer_lower<long double>(__a, __n); }
+  //  Falling factorials
 
   /**
-   * 
+   * Return the falling factorial @f$ ln(a^{\overline{\nu}})@f$
+   * for float arguments.
+   *
+   * @see falling_factorial for details.
    */
-  template<typename _Tp, typename _Tn>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Tn>
-    pochhammer_lower(_Tp __a, _Tn __n)
+  inline float
+  falling_factorialf(float __a, float __nu)
+  { return std::__detail::__falling_factorial<float>(__a, __nu); }
+
+  /**
+   * Return the falling factorial @f$ ln(a^{\overline{\nu}})@f$
+   * for <tt> long double </tt> arguments.
+   *
+   * @see falling_factorial for details.
+   */
+  inline long double
+  falling_factoriall(long double __a, long double __nu)
+  { return std::__detail::__falling_factorial<long double>(__a, __nu); }
+
+  /**
+   * @brief  Return the logarithm of the falling factorial function
+   * or the lower Pochhammer symbol for real argument @f$ a @f$
+   * and integral order @f$ n @f$.
+   * The falling factorial function is defined by
+   * @f[
+   *   a^{\underline{n}} = \prod_{k=0}^{n-1} (a - k), a^{\underline{0}} = 1
+   *	     = \Gamma(a + 1) / \Gamma(a - n + 1)
+   * @f]
+   * In particular, $f[ n^{\underline{n}} = n! $f].
+   */
+  template<typename _Tp, typename _Tnu>
+    inline __gnu_cxx::__promote_fp_t<_Tp, _Tnu>
+    falling_factorial(_Tp __a, _Tnu __nu)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tn>;
-      return std::__detail::__pochhammer_lower<__type>(__a, __n);
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tnu>;
+      return std::__detail::__falling_factorial<__type>(__a, __nu);
     }
 
   // Factorial
 
+  /**
+   * Return the factorial @f$ n! @f$ of the argument as a @c float.
+   *
+   * @see factorial for more details
+   */
   inline float
   factorialf(unsigned int __n)
   { return std::__detail::__factorial<float>(__n); }
 
+  /**
+   * Return the factorial @f$ n! @f$ of the argument as a <tt>long double</tt>.
+   *
+   * @see factorial for more details
+   */
   inline long double
   factoriall(unsigned int __n)
   { return std::__detail::__factorial<long double>(__n); }
 
   /**
-   * 
+   * @brief Return the factorial @f$ n! @f$ of the argument as a real number.
+   * @f[
+   *   n! = 1 \times 2 \times ... \times n, 0! = 1
+   * @f]
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
@@ -3890,16 +4002,36 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Double factorial
 
+  /**
+   * Return the double factorial @f$ n!! @f$ of the argument as a @c float.
+   *
+   * @see double_factorial for more details
+   */
   inline float
   double_factorialf(int __n)
   { return std::__detail::__double_factorial<float>(__n); }
 
+  /**
+   * Return the double factorial @f$ n!! @f$ of the argument
+   * as a <tt> long double </tt>.
+   *
+   * @see double_factorial for more details
+   */
   inline long double
   double_factoriall(int __n)
   { return std::__detail::__double_factorial<long double>(__n); }
 
   /**
-   * 
+   * @brief Return the double factorial @f$ n!! @f$ of the argument
+   * as a real number.
+   * @f[
+   *   n!! = n(n-2)...(2), 0!! = 1
+   * @f]
+   * for even @f$ n @f$ and
+   * @f[
+   *   n!! = n(n-2)...(1), (-1)!! = 1
+   * @f]
+   * for odd @f$ n @f$ and
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
@@ -3911,16 +4043,32 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Log factorial
 
+  /**
+   * Return the logarithm of the factorial @f$ ln(n!) @f$ of the argument
+   * as a @c float.
+   *
+   * @see lfactorial for more details
+   */
   inline float
   lfactorialf(unsigned int __n)
   { return std::__detail::__log_factorial<float>(__n); }
 
+  /**
+   * Return the logarithm of the factorial @f$ ln(n!) @f$ of the argument
+   * as a <tt>long double</tt>.
+   *
+   * @see lfactorial for more details
+   */
   inline long double
   lfactoriall(unsigned int __n)
   { return std::__detail::__log_factorial<long double>(__n); }
 
   /**
-   * 
+   * @brief Return the logarithm of the factorial @f$ ln(n!) @f$ of the argument
+   * as a real number.
+   * @f[
+   *   n! = 1 \times 2 \times ... \times n, 0! = 1
+   * @f]
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
@@ -3932,16 +4080,37 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Log double factorial
 
+  /**
+   * Return the logarithm of the double factorial @f$ ln(n!!) @f$
+   * of the argument as a @c float.
+   *
+   * @see ldouble_factorial for more details
+   */
   inline float
   ldouble_factorialf(int __n)
   { return std::__detail::__log_double_factorial<float>(__n); }
 
+  /**
+   * Return the logarithm of the double factorial @f$ ln(n!!) @f$
+   * of the argument as a <tt> long double </tt>.
+   *
+   * @see double_factorial for more details
+   */
   inline long double
   ldouble_factoriall(int __n)
   { return std::__detail::__log_double_factorial<long double>(__n); }
 
   /**
-   * 
+   * @brief Return the logarithm of the double factorial @f$ ln(n!!) @f$
+   * of the argument as a real number.
+   * @f[
+   *   n!! = n(n-2)...(2), 0!! = 1
+   * @f]
+   * for even @f$ n @f$ and
+   * @f[
+   *   n!! = n(n-2)...(1), (-1)!! = 1
+   * @f]
+   * for odd @f$ n @f$ and
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>

@@ -500,30 +500,30 @@ sinhc_pi(double /*x*/)
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Log upper Pochhammer symbol.
+/// Log rising factorials.
 double
-lpochhammer(double /*a*/, double /*x*/)
+lrising_factorial(double /*a*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Log lower Pochhammer symbol.
+/// Log falling factorials.
 double
-lpochhammer_lower(double /*a*/, double /*x*/)
+lfalling_factorial(double /*a*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Upper Pochhammer symbol.
+/// Rising factorials.
 double
-pochhammer(double /*a*/, double /*x*/)
+rising_factorial(double /*a*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Lower Pochhammer symbol.
+/// Falling factorials.
 double
-pochhammer_lower(double /*a*/, double /*x*/)
+falling_factorial(double /*a*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }

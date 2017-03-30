@@ -521,7 +521,7 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
         [DONE] check/check_jacobi_sn.cc      -- Completely ruined except for |k| == 1. Use Boost (WTF doesn't do k<0).
         [DONE] check/check_psi.cc        -- x < -2.0
         [] check/check_sph_bessel.cc     -- n == 1, large distances, large orders.
-        [] check/check_lpochhammer_lower -- Logs of negative numbers.  Need decision. lgamma_t?
+        [DONE] check/check_lfalling_factorial -- Logs of negative numbers.  Need decision. lgamma_t?
         [] check/check_cyl_hankel_[12]   -- negative fractional order
 
 113. [] I suspect for sn, cn, dn the mc > 1 code is wrong.
@@ -562,6 +562,10 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
         The coefficient can be dangerously tiny 9we can deal with that elsewhere)
         But not zero.  The decision to connect order and vector size might need a look.
         Or not.
+
+123. [] Offer factorials and other integer numbers as unsigned long, etc.
+        Look at the templates and see if we can 
+        You might go ahead and do the C thing with ull/ul or ll/l suffixed things.
 
 plot_airy.cpp
 

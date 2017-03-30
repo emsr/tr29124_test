@@ -532,30 +532,30 @@ sinhc_pi(double /*x*/)
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Log upper Pochhammer symbol.
+/// Log rising factorials.
 double
-lpochhammer(double /*a*/, double /*x*/)
+lrising_factorial(double /*a*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Log lower Pochhammer symbol.
+/// Log falling factorials.
 double
-lpochhammer_lower(double /*a*/, double /*x*/)
+lfalling_factorial(double /*a*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Upper Pochhammer symbol.
+/// Rising factorials.
 double
-pochhammer(double /*a*/, double /*x*/)
+rising_factorial(double /*a*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
-/// Lower Pochhammer symbol.
+/// Falling factorials.
 double
-pochhammer_lower(double /*a*/, double /*x*/)
+falling_factorial(double /*a*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -904,12 +904,16 @@ eulerian_2(unsigned int /*n*/, unsigned int /*m*/)
 double
 stirling_1(unsigned int n, unsigned int m)
 {
-  if (m > n)
+  if (n == 0 && m == 0)
+    return 1.0;
+  else if (m == 0)
+    return 0.0;
+  else if (m > n)
     return 0.0;
   else
     {
-      std::unique_ptr<int[]> s1(::stirling1(n + 1, m + 1));
-      return double(s1[n + m * (n + 1)]);
+      std::unique_ptr<int[]> s1(::stirling1(n, m));
+      return double(s1[(n - 1) + (m - 1) * n]);
     }
 }
 
@@ -917,12 +921,16 @@ stirling_1(unsigned int n, unsigned int m)
 double
 stirling_2(unsigned int n, unsigned int m)
 {
-  if (m > n)
+  if (n == 0 && m == 0)
+    return 1.0;
+  else if (m == 0)
+    return 0.0;
+  else if (m > n)
     return 0.0;
   else
     {
-      std::unique_ptr<int[]> s2(::stirling2(n + 1, m + 1));
-      return double(s2[n + m * (n + 1)]);
+      std::unique_ptr<int[]> s2(::stirling2(n, m));
+      return double(s2[(n - 1) + (m - 1) * n]);
     }
 }
 

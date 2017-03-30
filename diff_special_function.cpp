@@ -136,12 +136,12 @@ main()
     using       std::legendre;
     using __gnu_cxx::legendre_q;
     using __gnu_cxx::lfactorial;
-    using __gnu_cxx::lpochhammer_lower;
-    using __gnu_cxx::lpochhammer;
+    using __gnu_cxx::lfalling_factorial;
+    using __gnu_cxx::lrising_factorial;
     using __gnu_cxx::owens_t;
     using __gnu_cxx::pgamma;
-    using __gnu_cxx::pochhammer_lower;
-    using __gnu_cxx::pochhammer;
+    using __gnu_cxx::falling_factorial;
+    using __gnu_cxx::rising_factorial;
     using __gnu_cxx::psi;
     using __gnu_cxx::qgamma;
     using __gnu_cxx::radpoly;
@@ -728,34 +728,34 @@ main()
 	    "x", fill_argument(std::make_pair(_TpGSL{-20}, _TpGSL{+20}),
 			       std::make_pair(false, true), 401));
 
-    // Log upper Pochhammer symbol.
-    std::cout << "lpochhammer" << '\n';
-    basename = "diff_lpochhammer";
-    rundiff(lpochhammer, beast::lpochhammer, basename,
+    // Log rising factorial symbol.
+    std::cout << "lrising_factorial" << '\n';
+    basename = "diff_lrising_factorial";
+    rundiff(lrising_factorial, beast::lrising_factorial, basename,
 	    "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 			       std::make_pair(false, true), 21),
 	    "x", {Real{1}, Real{2}, Real{5}, Real{10}, Real{20}, Real{50}, Real{100}});
 
-    // Log lower Pochhammer symbol.
-    std::cout << "lpochhammer_lower" << '\n';
-    basename = "diff_lpochhammer_lower";
-    rundiff(lpochhammer_lower, beast::lpochhammer_lower, basename,
+    // Log falling factorials.
+    std::cout << "lfalling_factorial" << '\n';
+    basename = "diff_lfalling_factorial";
+    rundiff(lfalling_factorial, beast::lfalling_factorial, basename,
 	    "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 			       std::make_pair(false, true), 21),
 	    "x", {Real{0}, Real{1}, Real{2}, Real{5}, Real{10}, Real{20}, Real{50}, Real{100}});
 
-    // Upper Pochhammer symbols (see boost::rising_factorial).
-    std::cout << "pochhammer" << '\n';
-    basename = "diff_pochhammer";
-    rundiff(pochhammer, beast::pochhammer, basename,
+    // Rising factorials.
+    std::cout << "rising_factorial" << '\n';
+    basename = "diff_rising_factorial";
+    rundiff(rising_factorial, beast::rising_factorial, basename,
 	    "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 			       std::make_pair(false, true), 21),
 	    "x", dvorder);
 
-    // Lower Pochhammer symbols (see boost::falling_factorial).
-    std::cout << "pochhammer_lower" << '\n';
-    basename = "diff_pochhammer_lower";
-    rundiff(pochhammer_lower, beast::pochhammer_lower, basename,
+    // Falling factorials.
+    std::cout << "falling_factorial" << '\n';
+    basename = "diff_falling_factorial";
+    rundiff(falling_factorial, beast::falling_factorial, basename,
 	    "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 			       std::make_pair(false, true), 21),
 	    "x", {Real{0}, Real{1}, Real{2}, Real{5}, Real{10}, Real{20}, Real{50}, Real{100}});
