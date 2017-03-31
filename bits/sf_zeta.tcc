@@ -797,7 +797,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *          = \sum{k=1}{\infty}\frac{P(s,kx)}{k^s}
    * @f]
    * @f[
-   *    \Zeta_x(s) = \frac{1}{\Gamma(s)}\int_{x}^{\infty}\frac{t^{s-1}}{e^t-1}dt
+   *    Z_x(s) = \frac{1}{\Gamma(s)}\int_{x}^{\infty}\frac{t^{s-1}}{e^t-1}dt
    *          = \sum{k=1}{\infty}\frac{Q(s,kx)}{k^s}
    * @f]
    * where @f$ P(a,x), Q(a,x) @f$ is the incomplete gamma function ratios.
