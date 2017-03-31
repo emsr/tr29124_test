@@ -63,4 +63,4 @@ template<typename _Func, typename _Tp>
 
 #include "trapezoid_integral.tcc"
 
-#endif // TRAPEZOID_INTEGRAL_TCC
+#endif // TRAPEZOID_INTEGRAL_H
