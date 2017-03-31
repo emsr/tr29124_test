@@ -180,6 +180,7 @@ check/deathmatch_hyperg
 check/pr56216_cyl_hankel_1
 check/pr56216_cyl_hankel_2
 check/pr56216_cyl_bessel_i
+check/pr68397
 check/origin_cyl_bessel_j
 check/origin_cyl_neumann
 
