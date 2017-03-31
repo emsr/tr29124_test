@@ -31,10 +31,9 @@ main()
   long double ans_ok = -0.10001943365331651406888645149537315243646135979573L;
   long double ans_bomb = -0.10777727809650077516264612749163100483995270163783L;
   auto Ei_ok = std::expint(-1.500001L);
-  assert(std::abs(diff_ok) < 1.0e-15)
   auto diff_ok = Ei_ok - ans_ok;
+  assert(std::abs(diff_ok) < 1.0e-15)
   auto Ei_bomb = std::expint(-1.450001L);
   auto diff_bomb = Ei_bomb - ans_bomb;
   assert(std::abs(diff_bomb) < 1.0e-15)
 }
-

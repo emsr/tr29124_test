@@ -1,5 +1,10 @@
 // https://gcc.gnu.org/bugzilla/show_bug.cgi?id=66689
 
+
+// I say not a bug WONTFIX...
+// Maybe documentation.
+
+
  John Maddock 2015-06-27 08:49:42 UTC
 
 The std::tr1 functions comp_ellint_3 and ellint_3 appear to return garbage values whenever the nu parameter is non zero.
