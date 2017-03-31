@@ -81,7 +81,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="current"><a href="namespacemembers.html"><span>All</span></a></li>
       <li><a href="namespacemembers_func.html"><span>Functions</span></a></li>
       <li><a href="namespacemembers_vars.html"><span>Variables</span></a></li>
-      <li><a href="namespacemembers_eval.html"><span>Enumerator</span></a></li>
     </ul>
   </div>
   <div id="navrow4" class="tabs3">
@@ -161,17 +160,20 @@ $(document).ready(function(){initNavTree('namespacemembers_l.html','');});
 <li>__legendre_zeros()
 : <a class="el" href="namespacestd_1_1____detail.html#a9d53ac0fd39232190e7564fa067a878d">std::__detail</a>
 </li>
-<li>__log_bincoef()
-: <a class="el" href="namespacestd_1_1____detail.html#abd174c4887c0f3bbb5125e2a65856386">std::__detail</a>
+<li>__log_binomial()
+: <a class="el" href="namespacestd_1_1____detail.html#a087d65f98ba6a6709b4d62fa32445e59">std::__detail</a>
 </li>
-<li>__log_bincoef_sign()
-: <a class="el" href="namespacestd_1_1____detail.html#a6cea85f06264c3c9b05a76012205a0ca">std::__detail</a>
+<li>__log_binomial_sign()
+: <a class="el" href="namespacestd_1_1____detail.html#aa89a8a5ced6325e1d64782f84e4ad95d">std::__detail</a>
 </li>
 <li>__log_double_factorial()
 : <a class="el" href="namespacestd_1_1____detail.html#a0de46e790512550b535bdda97e11e1b5">std::__detail</a>
 </li>
 <li>__log_factorial()
 : <a class="el" href="namespacestd_1_1____detail.html#a2809419dbbe9fc60066dacfdc13761d4">std::__detail</a>
+</li>
+<li>__log_falling_factorial()
+: <a class="el" href="namespacestd_1_1____detail.html#abc3aa91fde134d9f01be8fc8e7c7cc79">std::__detail</a>
 </li>
 <li>__log_gamma()
 : <a class="el" href="namespacestd_1_1____detail.html#af6c4c0192a07f467fd9ddeebb28a34d4">std::__detail</a>
@@ -182,11 +184,17 @@ $(document).ready(function(){initNavTree('namespacemembers_l.html','');});
 <li>__log_gamma_sign()
 : <a class="el" href="namespacestd_1_1____detail.html#ab17ef141874b20a302d5c142cf304542">std::__detail</a>
 </li>
-<li>__log_pochhammer()
-: <a class="el" href="namespacestd_1_1____detail.html#a662ea050ddbb017ae6f5f981e95d8e71">std::__detail</a>
+<li>__log_rising_factorial()
+: <a class="el" href="namespacestd_1_1____detail.html#a48998bae6619c9f63574af354b205074">std::__detail</a>
 </li>
-<li>__log_pochhammer_lower()
-: <a class="el" href="namespacestd_1_1____detail.html#ac647507ca578c270d3cd7a4c02e68dbb">std::__detail</a>
+<li>__log_stirling_1()
+: <a class="el" href="namespacestd_1_1____detail.html#a4924c5c0666c33328d6276b5dbbdfad5">std::__detail</a>
+</li>
+<li>__log_stirling_1_sign()
+: <a class="el" href="namespacestd_1_1____detail.html#af804ed0eecfca835d1338a48892460b0">std::__detail</a>
+</li>
+<li>__log_stirling_2()
+: <a class="el" href="namespacestd_1_1____detail.html#a7ba1fde0547236676d579b6405f2fb25">std::__detail</a>
 </li>
 <li>__logint()
 : <a class="el" href="namespacestd_1_1____detail.html#a4d5f8cb2b4e6e192faba9418ec14149f">std::__detail</a>
@@ -212,14 +220,14 @@ $(document).ready(function(){initNavTree('namespacemembers_l.html','');});
 <li>laguerrel()
 : <a class="el" href="group__tr29124__math__spec__func.html#gaaf8b141edf9163b37ea4f2ed3e0191fc">std</a>
 </li>
-<li>lbincoef()
-: <a class="el" href="group__gnu__math__spec__func.html#gab6a2243313b6286cbd466c96fc7f69ed">__gnu_cxx</a>
+<li>lbinomial()
+: <a class="el" href="group__gnu__math__spec__func.html#ga40d19a09e31feb1ee619e11780113c58">__gnu_cxx</a>
 </li>
-<li>lbincoeff()
-: <a class="el" href="group__gnu__math__spec__func.html#gab48439faacd87f02d088a04e7cee0853">__gnu_cxx</a>
+<li>lbinomialf()
+: <a class="el" href="group__gnu__math__spec__func.html#ga2fe55bab4211fb240e1eb01341914129">__gnu_cxx</a>
 </li>
-<li>lbincoefl()
-: <a class="el" href="group__gnu__math__spec__func.html#gab5b5d92a2a522aaef999106f5d602163">__gnu_cxx</a>
+<li>lbinomiall()
+: <a class="el" href="group__gnu__math__spec__func.html#ga20e6c250e10e20b9e2c3f68bf9a3d4c1">__gnu_cxx</a>
 </li>
 <li>ldouble_factorial()
 : <a class="el" href="group__gnu__math__spec__func.html#ga31ca8e7a5b1f5c883e727ed9c053edd8">__gnu_cxx</a>
@@ -257,11 +265,20 @@ $(document).ready(function(){initNavTree('namespacemembers_l.html','');});
 <li>lfactoriall()
 : <a class="el" href="group__gnu__math__spec__func.html#ga3a0c196f34916dc68c29c89f26cbe1ee">__gnu_cxx</a>
 </li>
+<li>lfalling_factorial()
+: <a class="el" href="group__gnu__math__spec__func.html#ga7190df10af767718f1862e804a2d7129">__gnu_cxx</a>
+</li>
+<li>lfalling_factorialf()
+: <a class="el" href="group__gnu__math__spec__func.html#ga59ad7045c90aa1e3bc671e2eb6b8a2a7">__gnu_cxx</a>
+</li>
+<li>lfalling_factoriall()
+: <a class="el" href="group__gnu__math__spec__func.html#gaa69b6c70e000b073d7f0f17199b1feb0">__gnu_cxx</a>
+</li>
 <li>lgamma()
-: <a class="el" href="group__gnu__math__spec__func.html#gaf70747491390b1bfc27b93ff4be6376e">__gnu_cxx</a>
+: <a class="el" href="group__gnu__math__spec__func.html#ga3a5c8ad2a513470bd71be1bb14439945">__gnu_cxx</a>
 </li>
 <li>lgammaf()
-: <a class="el" href="group__gnu__math__spec__func.html#ga37956b360838b5b2f98c8e5cfd15d307">__gnu_cxx</a>
+: <a class="el" href="group__gnu__math__spec__func.html#ga5b10ee6e92d8707a151b00086889b2ea">__gnu_cxx</a>
 </li>
 <li>lgammal()
 : <a class="el" href="group__gnu__math__spec__func.html#gabc66f234f4554cd5ff878792cc85bd37">__gnu_cxx</a>
@@ -287,23 +304,14 @@ $(document).ready(function(){initNavTree('namespacemembers_l.html','');});
 <li>lognormal_pdf()
 : <a class="el" href="group__gnu__math__spec__func.html#ga32c31df3d88526cf991a045f85d73c00">__gnu_cxx</a>
 </li>
-<li>lpochhammer()
-: <a class="el" href="group__gnu__math__spec__func.html#ga68c4a9e8b38757a21ac54c55fe4e8dda">__gnu_cxx</a>
+<li>lrising_factorial()
+: <a class="el" href="group__gnu__math__spec__func.html#ga86158caf7d3e8b439599a12953af9844">__gnu_cxx</a>
 </li>
-<li>lpochhammer_lower()
-: <a class="el" href="group__gnu__math__spec__func.html#ga4975d412b8e15f499a4da7b4e3f535c6">__gnu_cxx</a>
+<li>lrising_factorialf()
+: <a class="el" href="group__gnu__math__spec__func.html#ga68c64f4e44d03b5b3f75f90dbe2e0819">__gnu_cxx</a>
 </li>
-<li>lpochhammer_lowerf()
-: <a class="el" href="group__gnu__math__spec__func.html#ga7a6c48d5e06ffa4972d78db3ce46f8de">__gnu_cxx</a>
-</li>
-<li>lpochhammer_lowerl()
-: <a class="el" href="group__gnu__math__spec__func.html#ga39e5ecc81b33d28a54672855b7da3235">__gnu_cxx</a>
-</li>
-<li>lpochhammerf()
-: <a class="el" href="group__gnu__math__spec__func.html#ga0b14e36032c36b1ebf79ea2af65f4f90">__gnu_cxx</a>
-</li>
-<li>lpochhammerl()
-: <a class="el" href="group__gnu__math__spec__func.html#ga1057026f8679c601ecddd7c8d33edbc9">__gnu_cxx</a>
+<li>lrising_factoriall()
+: <a class="el" href="group__gnu__math__spec__func.html#ga1ac811f56f38f7ea7a1e035ec0157f6b">__gnu_cxx</a>
 </li>
 </ul>
 </div><!-- contents -->

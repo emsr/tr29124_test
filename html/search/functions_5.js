@@ -42,6 +42,8 @@ var searchData=
   ['ellnome',['ellnome',['../group__gnu__math__spec__func.html#ga7bfb34f8b5c0ed7c72040f9cb7034bba',1,'__gnu_cxx']]],
   ['ellnomef',['ellnomef',['../group__gnu__math__spec__func.html#gad3ba08e5843ea0ec2bb9ddde3033adff',1,'__gnu_cxx']]],
   ['ellnomel',['ellnomel',['../group__gnu__math__spec__func.html#ga0774570b24f654f8ae39e1865613a4e2',1,'__gnu_cxx']]],
+  ['euler',['euler',['../group__gnu__math__spec__func.html#gac956e6457ab7d0d1765d281e73073f55',1,'__gnu_cxx']]],
+  ['eulerian_5f1',['eulerian_1',['../group__gnu__math__spec__func.html#gadfd8810a97655d2cdd1b0e3af68a79d3',1,'__gnu_cxx']]],
   ['expint',['expint',['../group__tr29124__math__spec__func.html#gac6d12da409bbd0e41dd1f7cdb3317252',1,'std::expint()'],['../group__gnu__math__spec__func.html#ga2cfc699129ceac9cfed87c61e6dc0e08',1,'__gnu_cxx::expint()']]],
   ['expintf',['expintf',['../group__tr29124__math__spec__func.html#ga5842816f6eed2594e0a327df4e4a2a47',1,'std::expintf()'],['../group__gnu__math__spec__func.html#ga85751691a29807d99e990fcba61312f3',1,'__gnu_cxx::expintf()']]],
   ['expintl',['expintl',['../group__tr29124__math__spec__func.html#ga1329130b32328d0666e290ee5931fa4f',1,'std::expintl()'],['../group__gnu__math__spec__func.html#ga720ca0b275784c8b82193f427a2b3553',1,'__gnu_cxx::expintl()']]],

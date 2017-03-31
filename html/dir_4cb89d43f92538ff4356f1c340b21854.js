@@ -1,6 +1,7 @@
 var dir_4cb89d43f92538ff4356f1c340b21854 =
 [
     [ "sf_airy.tcc", "sf__airy_8tcc.html", "sf__airy_8tcc" ],
+    [ "sf_bernoulli.tcc", "sf__bernoulli_8tcc.html", "sf__bernoulli_8tcc" ],
     [ "sf_bessel.tcc", "sf__bessel_8tcc.html", "sf__bessel_8tcc" ],
     [ "sf_beta.tcc", "sf__beta_8tcc.html", "sf__beta_8tcc" ],
     [ "sf_cardinal.tcc", "sf__cardinal_8tcc.html", "sf__cardinal_8tcc" ],
@@ -8,6 +9,7 @@ var dir_4cb89d43f92538ff4356f1c340b21854 =
     [ "sf_dawson.tcc", "sf__dawson_8tcc.html", "sf__dawson_8tcc" ],
     [ "sf_distributions.tcc", "sf__distributions_8tcc.html", "sf__distributions_8tcc" ],
     [ "sf_ellint.tcc", "sf__ellint_8tcc.html", "sf__ellint_8tcc" ],
+    [ "sf_euler.tcc", "sf__euler_8tcc.html", "sf__euler_8tcc" ],
     [ "sf_expint.tcc", "sf__expint_8tcc.html", "sf__expint_8tcc" ],
     [ "sf_fresnel.tcc", "sf__fresnel_8tcc.html", "sf__fresnel_8tcc" ],
     [ "sf_gamma.tcc", "sf__gamma_8tcc.html", "sf__gamma_8tcc" ],
@@ -23,6 +25,7 @@ var dir_4cb89d43f92538ff4356f1c340b21854 =
     [ "sf_mod_bessel.tcc", "sf__mod__bessel_8tcc.html", "sf__mod__bessel_8tcc" ],
     [ "sf_owens_t.tcc", "sf__owens__t_8tcc.html", "sf__owens__t_8tcc" ],
     [ "sf_polylog.tcc", "sf__polylog_8tcc.html", "sf__polylog_8tcc" ],
+    [ "sf_stirling.tcc", "sf__stirling_8tcc.html", "sf__stirling_8tcc" ],
     [ "sf_theta.tcc", "sf__theta_8tcc.html", "sf__theta_8tcc" ],
     [ "sf_trig.tcc", "sf__trig_8tcc.html", "sf__trig_8tcc" ],
     [ "sf_trigint.tcc", "sf__trigint_8tcc.html", "sf__trigint_8tcc" ],

@@ -38,5 +38,7 @@ var searchData=
   ['_5fairy_5fseries',['_Airy_series',['../classstd_1_1____detail_1_1__Airy__series.html',1,'std::__detail']]],
   ['_5fairyauxilliarystate',['_AiryAuxilliaryState',['../structstd_1_1____detail_1_1__AiryAuxilliaryState.html',1,'std::__detail']]],
   ['_5fairystate',['_AiryState',['../structstd_1_1____detail_1_1__AiryState.html',1,'std::__detail']]],
-  ['_5ffactorial_5ftable',['_Factorial_table',['../structstd_1_1____detail_1_1__Factorial__table.html',1,'std::__detail']]]
+  ['_5fasympterminator',['_AsympTerminator',['../classstd_1_1____detail_1_1__AsympTerminator.html',1,'std::__detail']]],
+  ['_5ffactorial_5ftable',['_Factorial_table',['../structstd_1_1____detail_1_1__Factorial__table.html',1,'std::__detail']]],
+  ['_5fterminator',['_Terminator',['../classstd_1_1____detail_1_1__Terminator.html',1,'std::__detail']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['harmonic',['harmonic',['../group__gnu__math__spec__func.html#gacfed8c7fa783d1a49c03de96e80bbdc1',1,'__gnu_cxx']]],
   ['hermite',['hermite',['../group__tr29124__math__spec__func.html#gaded38c372f2977d30b613bd55426f132',1,'std']]],
   ['hermitef',['hermitef',['../group__tr29124__math__spec__func.html#ga94dae7444bb349e33057a92932db8abe',1,'std']]],
   ['hermitel',['hermitel',['../group__tr29124__math__spec__func.html#ga21f8e312ee3e65286f86bf141b0f32e0',1,'std']]],

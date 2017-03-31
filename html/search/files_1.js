@@ -1,6 +1,7 @@
 var searchData=
 [
   ['sf_5fairy_2etcc',['sf_airy.tcc',['../sf__airy_8tcc.html',1,'']]],
+  ['sf_5fbernoulli_2etcc',['sf_bernoulli.tcc',['../sf__bernoulli_8tcc.html',1,'']]],
   ['sf_5fbessel_2etcc',['sf_bessel.tcc',['../sf__bessel_8tcc.html',1,'']]],
   ['sf_5fbeta_2etcc',['sf_beta.tcc',['../sf__beta_8tcc.html',1,'']]],
   ['sf_5fcardinal_2etcc',['sf_cardinal.tcc',['../sf__cardinal_8tcc.html',1,'']]],
@@ -8,6 +9,7 @@ var searchData=
   ['sf_5fdawson_2etcc',['sf_dawson.tcc',['../sf__dawson_8tcc.html',1,'']]],
   ['sf_5fdistributions_2etcc',['sf_distributions.tcc',['../sf__distributions_8tcc.html',1,'']]],
   ['sf_5fellint_2etcc',['sf_ellint.tcc',['../sf__ellint_8tcc.html',1,'']]],
+  ['sf_5feuler_2etcc',['sf_euler.tcc',['../sf__euler_8tcc.html',1,'']]],
   ['sf_5fexpint_2etcc',['sf_expint.tcc',['../sf__expint_8tcc.html',1,'']]],
   ['sf_5ffresnel_2etcc',['sf_fresnel.tcc',['../sf__fresnel_8tcc.html',1,'']]],
   ['sf_5fgamma_2etcc',['sf_gamma.tcc',['../sf__gamma_8tcc.html',1,'']]],
@@ -23,6 +25,7 @@ var searchData=
   ['sf_5fmod_5fbessel_2etcc',['sf_mod_bessel.tcc',['../sf__mod__bessel_8tcc.html',1,'']]],
   ['sf_5fowens_5ft_2etcc',['sf_owens_t.tcc',['../sf__owens__t_8tcc.html',1,'']]],
   ['sf_5fpolylog_2etcc',['sf_polylog.tcc',['../sf__polylog_8tcc.html',1,'']]],
+  ['sf_5fstirling_2etcc',['sf_stirling.tcc',['../sf__stirling_8tcc.html',1,'']]],
   ['sf_5ftheta_2etcc',['sf_theta.tcc',['../sf__theta_8tcc.html',1,'']]],
   ['sf_5ftrig_2etcc',['sf_trig.tcc',['../sf__trig_8tcc.html',1,'']]],
   ['sf_5ftrigint_2etcc',['sf_trigint.tcc',['../sf__trigint_8tcc.html',1,'']]],

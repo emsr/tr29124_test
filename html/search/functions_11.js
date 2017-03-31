@@ -54,6 +54,8 @@ var searchData=
   ['sph_5fneumann',['sph_neumann',['../group__tr29124__math__spec__func.html#gae8528a53bb38d600c6c517a7ec10039e',1,'std']]],
   ['sph_5fneumannf',['sph_neumannf',['../group__tr29124__math__spec__func.html#ga789143122fa99536329bc2d1b1aac2f0',1,'std']]],
   ['sph_5fneumannl',['sph_neumannl',['../group__tr29124__math__spec__func.html#ga3cededa9b6e4601f190c3811e6aabfd6',1,'std']]],
+  ['stirling_5f1',['stirling_1',['../group__gnu__math__spec__func.html#ga2b955dac7d2c5125f2091eaeb25c8ad2',1,'__gnu_cxx']]],
+  ['stirling_5f2',['stirling_2',['../group__gnu__math__spec__func.html#ga3761c0e467cbe45cbda66a4e796adcd3',1,'__gnu_cxx']]],
   ['student_5ft_5fcdf',['student_t_cdf',['../group__gnu__math__spec__func.html#ga9762f044477668e7138f72569ef50a89',1,'__gnu_cxx']]],
   ['student_5ft_5fpdf',['student_t_pdf',['../group__gnu__math__spec__func.html#ga74de88458ea2ed12e92a1520c7cad08e',1,'__gnu_cxx']]]
 ];

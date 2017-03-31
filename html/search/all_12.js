@@ -3,6 +3,7 @@ var searchData=
   ['_5f_5fdetail',['__detail',['../namespacestd_1_1____detail.html',1,'std']]],
   ['scalar_5ftype',['scalar_type',['../classstd_1_1____detail_1_1__Airy__asymp__series.html#a17ec74b13ebc38d5531bf27cd31684fb',1,'std::__detail::_Airy_asymp_series::scalar_type()'],['../classstd_1_1____detail_1_1__Airy.html#a266cdfcc86b36c8743fd0e102387e1f0',1,'std::__detail::_Airy::scalar_type()']]],
   ['sf_5fairy_2etcc',['sf_airy.tcc',['../sf__airy_8tcc.html',1,'']]],
+  ['sf_5fbernoulli_2etcc',['sf_bernoulli.tcc',['../sf__bernoulli_8tcc.html',1,'']]],
   ['sf_5fbessel_2etcc',['sf_bessel.tcc',['../sf__bessel_8tcc.html',1,'']]],
   ['sf_5fbeta_2etcc',['sf_beta.tcc',['../sf__beta_8tcc.html',1,'']]],
   ['sf_5fcardinal_2etcc',['sf_cardinal.tcc',['../sf__cardinal_8tcc.html',1,'']]],
@@ -10,6 +11,7 @@ var searchData=
   ['sf_5fdawson_2etcc',['sf_dawson.tcc',['../sf__dawson_8tcc.html',1,'']]],
   ['sf_5fdistributions_2etcc',['sf_distributions.tcc',['../sf__distributions_8tcc.html',1,'']]],
   ['sf_5fellint_2etcc',['sf_ellint.tcc',['../sf__ellint_8tcc.html',1,'']]],
+  ['sf_5feuler_2etcc',['sf_euler.tcc',['../sf__euler_8tcc.html',1,'']]],
   ['sf_5fexpint_2etcc',['sf_expint.tcc',['../sf__expint_8tcc.html',1,'']]],
   ['sf_5ffresnel_2etcc',['sf_fresnel.tcc',['../sf__fresnel_8tcc.html',1,'']]],
   ['sf_5fgamma_2etcc',['sf_gamma.tcc',['../sf__gamma_8tcc.html',1,'']]],
@@ -25,6 +27,7 @@ var searchData=
   ['sf_5fmod_5fbessel_2etcc',['sf_mod_bessel.tcc',['../sf__mod__bessel_8tcc.html',1,'']]],
   ['sf_5fowens_5ft_2etcc',['sf_owens_t.tcc',['../sf__owens__t_8tcc.html',1,'']]],
   ['sf_5fpolylog_2etcc',['sf_polylog.tcc',['../sf__polylog_8tcc.html',1,'']]],
+  ['sf_5fstirling_2etcc',['sf_stirling.tcc',['../sf__stirling_8tcc.html',1,'']]],
   ['sf_5ftheta_2etcc',['sf_theta.tcc',['../sf__theta_8tcc.html',1,'']]],
   ['sf_5ftrig_2etcc',['sf_trig.tcc',['../sf__trig_8tcc.html',1,'']]],
   ['sf_5ftrigint_2etcc',['sf_trigint.tcc',['../sf__trigint_8tcc.html',1,'']]],
@@ -86,6 +89,8 @@ var searchData=
   ['sph_5fneumannf',['sph_neumannf',['../group__tr29124__math__spec__func.html#ga789143122fa99536329bc2d1b1aac2f0',1,'std']]],
   ['sph_5fneumannl',['sph_neumannl',['../group__tr29124__math__spec__func.html#ga3cededa9b6e4601f190c3811e6aabfd6',1,'std']]],
   ['std',['std',['../namespacestd.html',1,'']]],
+  ['stirling_5f1',['stirling_1',['../group__gnu__math__spec__func.html#ga2b955dac7d2c5125f2091eaeb25c8ad2',1,'__gnu_cxx']]],
+  ['stirling_5f2',['stirling_2',['../group__gnu__math__spec__func.html#ga3761c0e467cbe45cbda66a4e796adcd3',1,'__gnu_cxx']]],
   ['student_5ft_5fcdf',['student_t_cdf',['../group__gnu__math__spec__func.html#ga9762f044477668e7138f72569ef50a89',1,'__gnu_cxx']]],
   ['student_5ft_5fpdf',['student_t_pdf',['../group__gnu__math__spec__func.html#ga74de88458ea2ed12e92a1520c7cad08e',1,'__gnu_cxx']]]
 ];

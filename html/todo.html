@@ -107,19 +107,43 @@ $(document).ready(function(){initNavTree('todo.html','');});
 <div class="textblock"><dl class="reflist">
 <dt><a class="anchor" id="_todo000001"></a>page <a class="el" href="index.html">Mathematical Special Functions</a>  </dt>
 <dd>Provide accuracy comparisons on a per-function basis for a small number of targets. </dd>
-<dt><a class="anchor" id="_todo000004"></a>Member <a class="el" href="namespacestd_1_1____detail.html#a3ad3b7b4dcebdf69778dbf7a5ba2427c">std::__detail::__dawson_cont_frac</a>  (_Tp __x)</dt>
-<dd>this needs some compile-time construction!  </dd>
+<dt><a class="anchor" id="_todo000015"></a>Member <a class="el" href="namespacestd_1_1____detail.html#a26d3f285cfbcaba6fa30d3e4164c6187">std::__detail::__debye</a>  (unsigned int __n, _Tp __x)</dt>
+<dd>: We should return both the integral and it's complement. <p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \zeta_x(s) = \frac{1}{\Gamma(s)}\int_{0}^{x}\frac{t^{s-1}}{e^t-1}dt = \sum{k=1}{\infty}\frac{P(s,kx)}{k^s} \]" src="form_605.png"/>
+</p>
+ <p class="formulaDsp">
+<img class="formulaDsp" alt="\[ Z_x(s) = \frac{1}{\Gamma(s)}\int_{x}^{\infty}\frac{t^{s-1}}{e^t-1}dt = \sum{k=1}{\infty}\frac{Q(s,kx)}{k^s} \]" src="form_606.png"/>
+</p>
+ where <img class="formulaInl" alt="$ P(a,x), Q(a,x) $" src="form_607.png"/> is the incomplete gamma function ratios. The Debye functions are: <p class="formulaDsp">
+<img class="formulaDsp" alt="\[ D_n(x) = \frac{n}{x^n}\int_{0}^{x}\frac{t^n}{e^t-1}dt = \Gamma(n+1)\zeta_x(n+1) \]" src="form_608.png"/>
+</p>
+ and <p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \int_{0}^{x}\frac{t^n}{e^t-1}dt = \Gamma(n+1)\zeta_x(n+1) \]" src="form_609.png"/>
+</p>
+  </dd>
+<dt><a class="anchor" id="_todo000004"></a>Member <a class="el" href="namespacestd_1_1____detail.html#a2e3eb67dee4d0b5c96824a4e8e9c227e">std::__detail::__euler_series</a>  (unsigned int __n)</dt>
+<dd>Find a way to predict the maximum Euler number for a type.  </dd>
 <dt><a class="anchor" id="_todo000007"></a>Member <a class="el" href="namespacestd_1_1____detail.html#a0282700710ec07b8ca095fe2ec140d6e">std::__detail::__expint</a>  (unsigned int __n, _Tp __x)</dt>
-<dd><p class="startdd">Study arbitrary switch to large-n <img class="formulaInl" alt="$ E_n(x) $" src="form_192.png"/>. </p>
-<p>Find a good asymptotic switch point in <img class="formulaInl" alt="$ E_n(x) $" src="form_192.png"/>. </p>
-<p class="enddd">Find a good asymptotic switch point in <img class="formulaInl" alt="$ E_n(x) $" src="form_192.png"/>.  </p>
+<dd><p class="startdd">Study arbitrary switch to large-n <img class="formulaInl" alt="$ E_n(x) $" src="form_194.png"/>. </p>
+<p>Find a good asymptotic switch point in <img class="formulaInl" alt="$ E_n(x) $" src="form_194.png"/>. </p>
+<p class="enddd">Find a good asymptotic switch point in <img class="formulaInl" alt="$ E_n(x) $" src="form_194.png"/>.  </p>
 </dd>
 <dt><a class="anchor" id="_todo000006"></a>Member <a class="el" href="namespacestd_1_1____detail.html#a665eb0c524b929c035d88bbb17815917">std::__detail::__expint_E1</a>  (_Tp __x)</dt>
-<dd>Find a good asymptotic switch point in <img class="formulaInl" alt="$ E_1(x) $" src="form_385.png"/>.  </dd>
+<dd>Find a good asymptotic switch point in <img class="formulaInl" alt="$ E_1(x) $" src="form_437.png"/>.  </dd>
 <dt><a class="anchor" id="_todo000005"></a>Member <a class="el" href="namespacestd_1_1____detail.html#a9b0a2050324390fb6c4a584170289a99">std::__detail::__expint_En_recursion</a>  (unsigned int __n, _Tp __x)</dt>
-<dd>Find a principled starting number for the <img class="formulaInl" alt="$ E_n(x) $" src="form_192.png"/> downward recursion.  </dd>
+<dd>Find a principled starting number for the <img class="formulaInl" alt="$ E_n(x) $" src="form_194.png"/> downward recursion.  </dd>
 <dt><a class="anchor" id="_todo000009"></a>Member <a class="el" href="namespacestd_1_1____detail.html#a7c45415c3ec0e137eea2364a6dd3af4e">std::__detail::__hurwitz_zeta_polylog</a>  (_Tp __s, std::complex&lt; _Tp &gt; __a)</dt>
 <dd>This __hurwitz_zeta_polylog prefactor is prone to overflow. positive integer orders s?  </dd>
+<dt><a class="anchor" id="_todo000012"></a>Member <a class="el" href="namespacestd_1_1____detail.html#a7ba1fde0547236676d579b6405f2fb25">std::__detail::__log_stirling_2</a>  (unsigned int __n, unsigned int __m)</dt>
+<dd>Look into asymptotic solutions.  </dd>
+<dt><a class="anchor" id="_todo000014"></a>Member <a class="el" href="namespacestd_1_1____detail.html#a2be77d9bdd1b8b463be44a0e7558bc2a">std::__detail::__riemann_zeta</a>  (_Tp __s)</dt>
+<dd>Global double sum or MacLaurin series in riemann_zeta?  </dd>
+<dt><a class="anchor" id="_todo000013"></a>Member <a class="el" href="namespacestd_1_1____detail.html#a8b215e4ca28ec9b7b078d7f3d9aecc17">std::__detail::__stirling_1</a>  (unsigned int __n, unsigned int __m)</dt>
+<dd>Look into asymptotic solutions for the Stirling numbers.  </dd>
+<dt><a class="anchor" id="_todo000011"></a>Member <a class="el" href="namespacestd_1_1____detail.html#a4589d459a7a9d1d9e19b33601238a4af">std::__detail::__stirling_2</a>  (unsigned int __n, unsigned int __m)</dt>
+<dd>Look into asymptotic solutions for the Stirling numbers.  </dd>
+<dt><a class="anchor" id="_todo000010"></a>Member <a class="el" href="namespacestd_1_1____detail.html#a8408f17699eb43a14447c7e4795b277f">std::__detail::__stirling_2_series</a>  (unsigned int __n, unsigned int __m)</dt>
+<dd>Find a way to predict the maximum Stirling number for a type.  </dd>
 <dt><a class="anchor" id="_todo000003"></a>Member <a class="el" href="classstd_1_1____detail_1_1__Airy__asymp.html#ac64506848c5b2cfd0d90d30bdac33416">std::__detail::_Airy_asymp&lt; _Tp &gt;::_S_absarg_lt_pio3</a>  (_Cmplx __z) const </dt>
 <dd>Revisit these numbers of terms for the Airy asymptotic expansions.  </dd>
 <dt><a class="anchor" id="_todo000002"></a>Member <a class="el" href="classstd_1_1____detail_1_1__Airy__series.html#a71f68d64f0e202c4f98146f90c6b3298">std::__detail::_Airy_series&lt; _Tp &gt;::_S_Scorer</a>  (_Cmplx __t)</dt>
