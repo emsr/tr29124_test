@@ -1,12 +1,12 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hyperg test_hyperg.cpp -lquadmath -Lwrappers/debug -lwrap_boost
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hyperg test_hyperg.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_hyperg > test_hyperg.txt
+
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hyperg test_hyperg.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 ./test_hyperg > test_hyperg.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hyperg test_hyperg.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-./test_hyperg > test_hyperg.txt
-
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hyperg test_hyperg.cpp -lquadmath -Lwrappers -lwrap_boost
-./test_hyperg > test_hyperg.txt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hyperg test_hyperg.cpp -lquadmath -Lwrappers -lwrap_gsl
+PATH=wrappers/debug:$PATH ./test_hyperg > test_hyperg.txt
 */
 
 #include <bits/specfun.h>
@@ -18,6 +18,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hyperg test_hyperg.c
 #include <vector>
 #include <string>
 #include <complex>
+
+#include <wrap_gsl.h>
 
   template<typename _Tp>
     bool
@@ -183,9 +185,44 @@ template<typename _Tp>
 	    }
   }
 
+template<typename _Tp>
+  void
+  test_gsl_issue(_Tp proto = _Tp{})
+  {
+    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout << std::showpoint << std::scientific;
+    auto w = 8 + std::cout.precision();
+
+    for (int n = 1; n <= 20; ++n)
+      {
+	for (int i = 1; i <= n; ++i)
+	  {
+	    for (int j = 1; j <= n; ++j)
+	      {
+		for (int k = 0; k <= 20; ++k)
+		  {
+		    auto x = _Tp(k * 0.05L);
+		    auto gnu = __gnu_cxx::hyperg(_Tp(-i), _Tp(-n + j), _Tp(1 - i + j), x);
+		    auto gsl = gsl::hyperg(_Tp(-i), _Tp(-n + j), _Tp(1 - i + j), x);
+		    auto del = gnu - gsl;
+		    std::cout << ' ' << std::setw(2) << n
+			      << ' ' << std::setw(2) << i
+			      << ' ' << std::setw(2) << j
+			      << ' ' << std::setw(w) << gnu
+			      << ' ' << std::setw(w) << gsl
+			      << ' ' << std::setw(w) << del
+			      << '\n';
+		  }
+	      }
+	  }
+      }
+  }
+
 int
 main()
 {
+  test_gsl_issue(1.0);
+
   test_hyperg(1.0F);
 
   test_hyperg(1.0);
