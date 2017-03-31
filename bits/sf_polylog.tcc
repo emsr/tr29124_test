@@ -128,28 +128,28 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<typename _Tp>
     std::complex<_Tp>
-    __clamp_pi(std::complex<_Tp> __w)
+    __clamp_pi(std::complex<_Tp> __z)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
       const auto _S_i2pi = std::complex<_Tp>{0, _Tp{2} * _S_pi};
-      while (__w.imag() > _S_pi)
-	__w -= _S_i2pi;
-      while (__w.imag() <= -_S_pi)
-	__w += _S_i2pi;
-      return __w;
+      while (__z.imag() > _S_pi)
+	__z -= _S_i2pi;
+      while (__z.imag() <= -_S_pi)
+	__z += _S_i2pi;
+      return __z;
     }
 
   template<typename _Tp>
     std::complex<_Tp>
-    __clamp_0_m2pi(std::complex<_Tp> __w)
+    __clamp_0_m2pi(std::complex<_Tp> __z)
     {
-      const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
+      const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__z));
       const auto _S_i2pi = std::complex<_Tp>{0, _S_2pi};
-      while (__w.imag() > _Tp{0})
-	__w = std::complex<_Tp>(__w.real(), __w.imag() - _S_2pi);
-      while (__w.imag() <= -_S_2pi)
-	__w = std::complex<_Tp>(__w.real(), __w.imag() + _S_2pi);
-      return __w;
+      while (__z.imag() > _Tp{0})
+	__z = std::complex<_Tp>(__z.real(), __z.imag() - _S_2pi);
+      while (__z.imag() <= -_S_2pi)
+	__z = std::complex<_Tp>(__z.real(), __z.imag() + _S_2pi);
+      return __z;
     }
 
   /**
@@ -1179,7 +1179,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return Clausen's function of integer order m and complex argument @c w.
+   * Return Clausen's function of integer order m and complex argument @c z.
    * The notation and connection to polylog is from Wikipedia
    *
    * @param __m  The non-negative integral order.
@@ -1188,16 +1188,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __clausen(unsigned int __m, std::complex<_Tp> __w)
+    __clausen(unsigned int __m, std::complex<_Tp> __z)
     {
-      if (__isnan(__w))
+      if (__isnan(__z))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
 	std::__throw_domain_error(__N("__clausen: Non-positive order"));
       else
 	{
 	  const auto _S_i = std::complex<_Tp>{0, 1};
-	  const auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
+	  const auto __ple = __polylog_exp(_Tp(__m), _S_i * __z);
 	  if (__m & 1)
 	    return __ple;
 	  else
@@ -1206,25 +1206,25 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return Clausen's function of integer order m and real argument w.
+   * Return Clausen's function of integer order m and real argument x.
    * The notation and connection to polylog is from Wikipedia
    *
    * @param __m  The integer order m >= 1.
-   * @param __w  The real argument.
+   * @param __x  The real argument.
    * @return  The Clausen function.
    */
   template<typename _Tp>
     _Tp
-    __clausen(unsigned int __m, _Tp __w)
+    __clausen(unsigned int __m, _Tp __x)
     {
-      if (__isnan(__w))
+      if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
 	std::__throw_domain_error(__N("__clausen: Non-positive order"));
       else
 	{
 	  const auto _S_i = std::complex<_Tp>{0, 1};
-	  const auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
+	  const auto __ple = __polylog_exp(_Tp(__m), _S_i * __x);
 	  if (__m & 1)
 	    return std::real(__ple);
 	  else
@@ -1234,25 +1234,25 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return Clausen's sine sum Sl_m for positive integer order m
-   * and complex argument w.
+   * and complex argument z.
    * @see https://en.wikipedia.org/wiki/Clausen_function
    *
    * @param __m  The integer order m >= 1.
-   * @param __w  The complex argument.
+   * @param __z  The complex argument.
    * @return  The Clausen sine sum Sl_m(w),
    */
   template<typename _Tp>
     _Tp
-    __clausen_sl(unsigned int __m, std::complex<_Tp> __w)
+    __clausen_sl(unsigned int __m, std::complex<_Tp> __z)
     {
-      if (__isnan(__w))
+      if (__isnan(__z))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
 	std::__throw_domain_error(__N("__clausen_sl: Non-positive order"));
       else
 	{
 	  const auto _S_i = std::complex<_Tp>{0, 1};
-	  const auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
+	  const auto __ple = __polylog_exp(_Tp(__m), _S_i * __z);
 	  if (__m & 1)
 	    return std::imag(__ple);
 	  else
@@ -1262,25 +1262,25 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return Clausen's sine sum Sl_m for positive integer order m
-   * and real argument w.
+   * and real argument x.
    * @see https://en.wikipedia.org/wiki/Clausen_function
    *
    * @param __m  The integer order m >= 1.
-   * @param __w  The complex argument.
+   * @param __x  The real argument.
    * @return  The Clausen sine sum Sl_m(w),
    */
   template<typename _Tp>
     _Tp
-    __clausen_sl(unsigned int __m, _Tp __w)
+    __clausen_sl(unsigned int __m, _Tp __x)
     {
-      if (__isnan(__w))
+      if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
 	std::__throw_domain_error(__N("__clausen_sl: Non-positive order"));
       else
 	{
 	  const auto _S_i = std::complex<_Tp>{0, 1};
-	  const auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
+	  const auto __ple = __polylog_exp(_Tp(__m), _S_i * __x);
 	  if (__m & 1)
 	    return std::imag(__ple);
 	  else
@@ -1294,21 +1294,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see https://en.wikipedia.org/wiki/Clausen_function
    *
    * @param __m  The integer order m >= 1.
-   * @param __w  The real argument.
+   * @param __z  The complex argument.
    * @return  The Clausen cosine sum Cl_m(w),
    */
   template<typename _Tp>
     _Tp
-    __clausen_cl(unsigned int __m, std::complex<_Tp> __w)
+    __clausen_cl(unsigned int __m, std::complex<_Tp> __z)
     {
-      if (__isnan(__w))
+      if (__isnan(__z))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
 	std::__throw_domain_error(__N("__clausen_cl: Non-positive order"));
       else
 	{
 	  const auto _S_i = std::complex<_Tp>{0, 1};
-	  const auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
+	  const auto __ple = __polylog_exp(_Tp(__m), _S_i * __z);
 	  if (__m & 1)
 	    return std::real(__ple);
 	  else
@@ -1322,21 +1322,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see https://en.wikipedia.org/wiki/Clausen_function
    *
    * @param __m  The integer order m >= 1.
-   * @param __w  The real argument.
+   * @param __x  The real argument.
    * @return  The real Clausen cosine sum Cl_m(w),
    */
   template<typename _Tp>
     _Tp
-    __clausen_cl(unsigned int __m, _Tp __w)
+    __clausen_cl(unsigned int __m, _Tp __x)
     {
-      if (__isnan(__w))
+      if (__isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
 	std::__throw_domain_error(__N("__clausen_cl: Non-positive order"));
       else
 	{
 	  const auto _S_i = std::complex<_Tp>{0, 1};
-	  const auto __ple = __polylog_exp(_Tp(__m), _S_i * __w);
+	  const auto __ple = __polylog_exp(_Tp(__m), _S_i * __x);
 	  if (__m & 1)
 	    return std::real(__ple);
 	  else

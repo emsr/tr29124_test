@@ -5132,124 +5132,124 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Clausen Sl functions
 
   /**
-   * Return the Clausen sine function @f$ Sl_m(w) @f$ of order @f$ m @f$
-   * and @c float argument @f$ w @f$.
+   * Return the Clausen sine function @f$ Sl_m(x) @f$ of order @f$ m @f$
+   * and @c float argument @f$ x @f$.
    *
    * @see clausen_sl for details.
    */
   inline float
-  clausen_slf(unsigned int __m, float __w)
-  { return std::__detail::__clausen_sl<float>(__m, __w); }
+  clausen_slf(unsigned int __m, float __x)
+  { return std::__detail::__clausen_sl<float>(__m, __x); }
 
   /**
-   * Return the Clausen sine function @f$ Sl_m(w) @f$ of order @f$ m @f$
-   * and <tt>long double</tt> argument @f$ w @f$.
+   * Return the Clausen sine function @f$ Sl_m(x) @f$ of order @f$ m @f$
+   * and <tt>long double</tt> argument @f$ x @f$.
    *
    * @see clausen_sl for details.
    */
   inline long double
-  clausen_sll(unsigned int __m, long double __w)
-  { return std::__detail::__clausen_sl<long double>(__m, __w); }
+  clausen_sll(unsigned int __m, long double __x)
+  { return std::__detail::__clausen_sl<long double>(__m, __x); }
 
   /**
-   * Return the Clausen sine function @f$ Sl_m(w) @f$ of order @f$ m @f$
-   * and real argument @f$ w @f$.
+   * Return the Clausen sine function @f$ Sl_m(x) @f$ of order @f$ m @f$
+   * and real argument @f$ x @f$.
    *
    * The Clausen sine function is defined by
    * @f[
-   *    Sl_m(w) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^m}
+   *    Sl_m(x) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^m}
    * @f]
    *
    * @tparam _Tp The real type of the argument
    * @param __m The unsigned integer order
-   * @param __w The real argument
+   * @param __x The real argument
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
-    clausen_sl(unsigned int __m, _Tp __w)
+    clausen_sl(unsigned int __m, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__clausen_sl<__type>(__m, __w);
+      return std::__detail::__clausen_sl<__type>(__m, __x);
     }
 
   // Clausen Cl functions
 
   /**
-   * Return the Clausen cosine function @f$ Cl_m(w) @f$ of order @f$ m @f$
-   * and @c float argument @f$ w @f$.
+   * Return the Clausen cosine function @f$ Cl_m(x) @f$ of order @f$ m @f$
+   * and @c float argument @f$ x @f$.
    *
    * @see clausen_cl for details.
    */
   inline float
-  clausen_clf(unsigned int __m, float __w)
-  { return std::__detail::__clausen_cl<float>(__m, __w); }
+  clausen_clf(unsigned int __m, float __x)
+  { return std::__detail::__clausen_cl<float>(__m, __x); }
 
   /**
-   * Return the Clausen cosine function @f$ Cl_m(w) @f$ of order @f$ m @f$
-   * and <tt>long double</tt> argument @f$ w @f$.
+   * Return the Clausen cosine function @f$ Cl_m(x) @f$ of order @f$ m @f$
+   * and <tt>long double</tt> argument @f$ x @f$.
    *
    * @see clausen_cl for details.
    */
   inline long double
-  clausen_cll(unsigned int __m, long double __w)
-  { return std::__detail::__clausen_cl<long double>(__m, __w); }
+  clausen_cll(unsigned int __m, long double __x)
+  { return std::__detail::__clausen_cl<long double>(__m, __x); }
 
   /**
-   * Return the Clausen cosine function @f$ Cl_m(w) @f$ of order @f$ m @f$
-   * and real argument @f$ w @f$.
+   * Return the Clausen cosine function @f$ Cl_m(x) @f$ of order @f$ m @f$
+   * and real argument @f$ x @f$.
    *
    * The Clausen cosine function is defined by
    * @f[
-   *    Cl_m(w) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^m}
+   *    Cl_m(x) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^m}
    * @f]
    *
    * @tparam _Tp The real type of the argument
    * @param __m The unsigned integer order
-   * @param __w The real argument
+   * @param __x The real argument
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
-    clausen_cl(unsigned int __m, _Tp __w)
+    clausen_cl(unsigned int __m, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__clausen_cl<__type>(__m, __w);
+      return std::__detail::__clausen_cl<__type>(__m, __x);
     }
 
   // Clausen functions - real argument
 
   /**
-   * Return the Clausen function @f$ Cl_m(w) @f$ of integer order @f$ m @f$
-   * and @c float argument @f$ w @f$.
+   * Return the Clausen function @f$ C_m(x) @f$ of integer order @f$ m @f$
+   * and @c float argument @f$ x @f$.
    *
    * @see clausen for details.
    */
   inline float
-  clausenf(unsigned int __m, float __w)
-  { return std::__detail::__clausen<float>(__m, __w); }
+  clausenf(unsigned int __m, float __x)
+  { return std::__detail::__clausen<float>(__m, __x); }
 
   /**
-   * Return the Clausen function @f$ Cl_m(w) @f$ of integer order @f$ m @f$
-   * and <tt>long double</tt> argument @f$ w @f$.
+   * Return the Clausen function @f$ C_m(x) @f$ of integer order @f$ m @f$
+   * and <tt>long double</tt> argument @f$ x @f$.
    *
    * @see clausen for details.
    */
   inline long double
-  clausenl(unsigned int __m, long double __w)
-  { return std::__detail::__clausen<long double>(__m, __w); }
+  clausenl(unsigned int __m, long double __x)
+  { return std::__detail::__clausen<long double>(__m, __x); }
 
   /**
-   * Return the Clausen function @f$ Cl_m(w) @f$ of integer order @f$ m @f$
-   * and real argument @f$ w @f$.
+   * Return the Clausen function @f$ C_m(x) @f$ of integer order @f$ m @f$
+   * and real argument @f$ x @f$.
    *
    * The Clausen function is defined by
    * @f[
-   *    Cl_m(w) = S_m(w) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^m} \mbox{ for even } m
-   *            = C_m(w) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^m} \mbox{ for odd } m
+   *    C_m(x) = Sl_m(x) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^m} \mbox{ for even } m
+   *           = Cl_m(x) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^m} \mbox{ for odd } m
    * @f]
    *
    * @tparam _Tp The real type of the argument
    * @param __m The integral order
-   * @param __w The complex argument
+   * @param __x The real argument
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
@@ -5262,45 +5262,45 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Clausen functions - complex argument
 
   /**
-   * Return the Clausen function @f$ Cl_m(w) @f$ of integer order @f$ m @f$
-   * and <tt>std::complex<float></tt> argument @f$ w @f$.
+   * Return the Clausen function @f$ C_m(z) @f$ of integer order @f$ m @f$
+   * and <tt>std::complex<float></tt> argument @f$ z @f$.
    *
    * @see clausen for details.
    */
   inline std::complex<float>
-  clausenf(unsigned int __m, std::complex<float> __w)
-  { return std::__detail::__clausen<float>(__m, __w); }
+  clausenf(unsigned int __m, std::complex<float> __z)
+  { return std::__detail::__clausen<float>(__m, __z); }
 
   /**
-   * Return the Clausen function @f$ Cl_m(w) @f$ of integer order @f$ m @f$
-   * and <tt>std::complex<long double></tt> argument @f$ w @f$.
+   * Return the Clausen function @f$ C_m(z) @f$ of integer order @f$ m @f$
+   * and <tt>std::complex<long double></tt> argument @f$ z @f$.
    *
    * @see clausen for details.
    */
   inline std::complex<long double>
-  clausenl(unsigned int __m, std::complex<long double> __w)
-  { return std::__detail::__clausen<long double>(__m, __w); }
+  clausenl(unsigned int __m, std::complex<long double> __z)
+  { return std::__detail::__clausen<long double>(__m, __z); }
 
   /**
-   * Return the Clausen function @f$ Cl_m(w) @f$ of integer order @f$ m @f$
-   * and complex argument @f$ w @f$.
+   * Return the Clausen function @f$ C_m(z) @f$ of integer order @f$ m @f$
+   * and complex argument @f$ z @f$.
    *
    * The Clausen function is defined by
    * @f[
-   *    Cl_m(w) = S_m(w) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^m} \mbox{ for even } m
-   *            = C_m(w) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^m} \mbox{ for odd } m
+   *    C_m(z) = Sl_m(z) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^m} \mbox{ for even } m
+   *           = Cl_m(z) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^m} \mbox{ for odd } m
    * @f]
    *
    * @tparam _Tp The real type of the complex components
    * @param __m The integral order
-   * @param __w The complex argument
+   * @param __z The complex argument
    */
   template<typename _Tp>
     inline std::complex<__gnu_cxx::__promote_fp_t<_Tp>>
-    clausen(unsigned int __m, std::complex<_Tp> __w)
+    clausen(unsigned int __m, std::complex<_Tp> __z)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__clausen<__type>(__m, __w);
+      return std::__detail::__clausen<__type>(__m, __z);
     }
 
   // Exponential theta_1 functions.
@@ -6076,7 +6076,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return both the sine and the cosine of a reperiodized real argument.
-   * 
+   *
    * @f[
    *   sincos_\pi(x) = {\sin(\pi x), \cos(\pi x)}
    * @f]
