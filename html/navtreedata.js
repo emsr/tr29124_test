@@ -19,8 +19,7 @@ var NAVTREE =
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", "namespacemembers_dup" ],
         [ "Functions", "namespacemembers_func.html", "namespacemembers_func" ],
-        [ "Variables", "namespacemembers_vars.html", null ],
-        [ "Enumerator", "namespacemembers_eval.html", null ]
+        [ "Variables", "namespacemembers_vars.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -47,12 +46,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"group__gnu__math__spec__func.html#ga9496b81f94b8ba0162cf45df72be1e71",
-"namespacemembers_func_h.html",
-"sf__hankel_8tcc.html#a561dc02bc44b2dba376d6047289563c7",
-"specfun_8h.html#ga25e72f2b50b53d168f8fa653b1a0d012",
-"specfun_8h.html#gab5405f1669b3ce8b560dc33aa5b97287",
-"structstd_1_1____detail_1_1__Factorial__table.html#a9d4b412d4d8b46ec660b0441516f412c"
+"group__gnu__math__spec__func.html#ga8d53515dba9c860fd6058a4b75aaff58",
+"namespacemembers_c.html",
+"sf__gamma_8tcc.html#ad73e7e0dfab6a4f54af026fa3d9e9c9a",
+"specfun_8h.html#ga0c421700d244cdf58e3ac5ff267664d1",
+"specfun_8h.html#ga9bb40e20b18e3eb822e70af955940830",
+"struct____gnu__cxx_1_1____sph__hankel__t.html#a7b734a1eef61be0bee57ffafa4d9d17d"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

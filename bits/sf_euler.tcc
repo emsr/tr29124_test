@@ -154,7 +154,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the Eulerian number of the first kind by recursion.
    * The recursion is
    * @f[
-   *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m)
+   *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
    * @f]
    */
   template<typename _Tp>

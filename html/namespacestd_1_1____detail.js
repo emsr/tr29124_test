@@ -22,5 +22,7 @@ var namespacestd_1_1____detail =
     [ "_Airy_series", "classstd_1_1____detail_1_1__Airy__series.html", "classstd_1_1____detail_1_1__Airy__series" ],
     [ "_AiryAuxilliaryState", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html", "structstd_1_1____detail_1_1__AiryAuxilliaryState" ],
     [ "_AiryState", "structstd_1_1____detail_1_1__AiryState.html", "structstd_1_1____detail_1_1__AiryState" ],
-    [ "_Factorial_table", "structstd_1_1____detail_1_1__Factorial__table.html", "structstd_1_1____detail_1_1__Factorial__table" ]
+    [ "_AsympTerminator", "classstd_1_1____detail_1_1__AsympTerminator.html", "classstd_1_1____detail_1_1__AsympTerminator" ],
+    [ "_Factorial_table", "structstd_1_1____detail_1_1__Factorial__table.html", "structstd_1_1____detail_1_1__Factorial__table" ],
+    [ "_Terminator", "classstd_1_1____detail_1_1__Terminator.html", "classstd_1_1____detail_1_1__Terminator" ]
 ];

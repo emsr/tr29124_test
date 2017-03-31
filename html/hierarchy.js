@@ -39,5 +39,7 @@ var hierarchy =
     [ "std::__detail::_Airy_series< _Tp >", "classstd_1_1____detail_1_1__Airy__series.html", null ],
     [ "std::__detail::_AiryAuxilliaryState< _Tp >", "structstd_1_1____detail_1_1__AiryAuxilliaryState.html", null ],
     [ "std::__detail::_AiryState< _Tp >", "structstd_1_1____detail_1_1__AiryState.html", null ],
-    [ "std::__detail::_Factorial_table< _Tp >", "structstd_1_1____detail_1_1__Factorial__table.html", null ]
+    [ "std::__detail::_AsympTerminator< _Tp >", "classstd_1_1____detail_1_1__AsympTerminator.html", null ],
+    [ "std::__detail::_Factorial_table< _Tp >", "structstd_1_1____detail_1_1__Factorial__table.html", null ],
+    [ "std::__detail::_Terminator< _Tp >", "classstd_1_1____detail_1_1__Terminator.html", null ]
 ];
