@@ -790,8 +790,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the Debye functions or the incomplete Riemann zeta function:
-   * @todo: We should return both the integral and it's complement.
+   * Return the Debye function.
+   * The Debye functions are related to the incomplete Riemann zeta function:
    * @f[
    *    \zeta_x(s) = \frac{1}{\Gamma(s)}\int_{0}^{x}\frac{t^{s-1}}{e^t-1}dt
    *          = \sum{k=1}{\infty}\frac{P(s,kx)}{k^s}
@@ -810,6 +810,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *    \int_{0}^{x}\frac{t^n}{e^t-1}dt = \Gamma(n+1)\zeta_x(n+1)
    * @f]
+   *
+   * @todo: We should return both the Debye function and it's complement.
    */
   template<typename _Tp>
     _Tp
