@@ -733,19 +733,19 @@ main()
     {
       int n = 10;
       int m = 8;
-      std::unique_ptr<int[]> s1(::stirling2(n, m));
+      std::unique_ptr<int[]> s2(::stirling2(n, m));
       for (auto i = 0; i < n; ++i)
 	{
 	  std::cout << '\n';
 	  for (auto j = 0; j < m; ++j)
 	    std::cout << ' ' << std::setw(4) << i
 		      << ' ' << std::setw(4) << j
- 		      << ' ' << std::setw(20) << s1[j * n + i]
+		      << ' ' << std::setw(20) << s2[j * n + i]
 		      << '\n';
 	}
     }
 
-  return 0;
+  //return 0;
 
   //test_bernoulli(0.0F);
 
