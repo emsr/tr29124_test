@@ -30,6 +30,7 @@ git checkout -- \
  check/origin_cyl_neumann.cc
 
 git checkout -- \
+ check/pr68397.cc \
  check/pr56216_cyl_bessel_i.cc \
  check/pr56216_cyl_hankel_1.cc \
  check/pr56216_cyl_hankel_2.cc
