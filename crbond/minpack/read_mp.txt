@@ -1,0 +1,39 @@
+CMINPACK
+(C)2001, C. Bond. All rights reserved.
+======================================
+
+These files include a port of a subset of the Fortran MINPACK package to C.
+MINPACK provides several optional paths for solving nonlinear least squares
+problems, depending on the availability of a user provided Jacobian matrix.
+The most general path involves internal calculation of an estimate of the
+Jacobian using finite differences, and that is the path included here.
+
+Complete documentation for MINPACK can be found in...
+
+FILES
+=====
+
+The files are distributed among several directories for convenience in
+identification. For application development a totally different directory
+structure would be better, and you should feel free to relocate files as
+needed.
+
+SOURCE FILES
+
+The source and header files are in the directory: SRC.
+
+TEST FILES
+
+A few test files are in the directory: TEST. Batch files for the Borland
+BCC32 compiler are provided to show the dependencies. These files assume
+that all source files are in the default directory. You can ignore the
+batch files if you have compiled the source files into a suitable
+directory. (Recommended.)
+
+CAVEATS
+=======
+
+The author makes no warranty about the correctness of any translation. This
+is just as well, because there is no guarantee that the original codes were
+error free in the first place. Every effort has been made to assure that the
+programs are functional and that they perform as expected.
