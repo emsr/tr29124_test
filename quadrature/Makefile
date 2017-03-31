@@ -16,8 +16,8 @@ OBJ_DIR = obj
 BINS = \
   test_quadrature \
   test_trapezoid_integral \
-  test_simpson_integral \
   test_midpoint_integral \
+  test_double_exp_integrate \
   hermite_test \
   laguerre_test \
   legendre_test \
@@ -49,6 +49,9 @@ test_simpson_integral: test_simpson_integral.cpp simpson_integral.h simpson_inte
 
 test_midpoint_integral: test_midpoint_integral.cpp midpoint_integral.h midpoint_integral.tcc
 	$(CXX17) -o test_midpoint_integral test_midpoint_integral.cpp -lquadmath
+
+test_double_exp_integrate: test_double_exp_integrate.cpp double_exp_integrate.tcc
+	$(CXX17) -o test_double_exp_integrate test_double_exp_integrate.cpp -lquadmath
 
 hermite_test: $(OBJ_DIR)/hermite_test.o
 	$(CXX17) -o hermite_test $(OBJ_DIR)/hermite_test.o -lquadmath
