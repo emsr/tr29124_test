@@ -1036,7 +1036,7 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Log gamma functions.
+// Bernoulli numbers.
 template<typename _Tp>
   struct testcase_bernoulli
   {
@@ -1205,8 +1205,8 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_euler
   {
-    unsigned int n;
     _Tp f0;
+    unsigned int n;
     _Tp f;
   };
 
@@ -1214,9 +1214,19 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_eulerian_1
   {
+    _Tp f0;
     unsigned int n;
     unsigned int m;
+    _Tp f;
+  };
+
+// Eulerian numbers of the second kind.
+template<typename _Tp>
+  struct testcase_eulerian_2
+  {
     _Tp f0;
+    unsigned int n;
+    unsigned int m;
     _Tp f;
   };
 
@@ -1224,9 +1234,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_stirling_1
   {
+    _Tp f0;
     unsigned int n;
     unsigned int m;
-    _Tp f0;
     _Tp f;
   };
 
@@ -1234,9 +1244,9 @@ template<typename _Tp>
 template<typename _Tp>
   struct testcase_stirling_2
   {
+    _Tp f0;
     unsigned int n;
     unsigned int m;
-    _Tp f0;
     _Tp f;
   };
 

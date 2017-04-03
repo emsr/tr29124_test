@@ -759,6 +759,15 @@ template<typename _Tp>
     _Tp f;
   };
 
+// Bernoulli numbers.
+template<typename _Tp>
+  struct testcase_bernoulli
+  {
+    _Tp f0;
+    unsigned int n;
+    _Tp f;
+  };
+
 // Euler numbers.
 template<typename _Tp>
   struct testcase_euler
@@ -768,9 +777,9 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Eulerian numbers of the first kind.
+// Eulerian numbers.
 template<typename _Tp>
-  struct testcase_eulerian_1
+  struct testcase_eulerian
   {
     unsigned int n;
     unsigned int m;
@@ -778,19 +787,9 @@ template<typename _Tp>
     _Tp f;
   };
 
-// Stirling numbers of the first kind.
+// Stirling numbers.
 template<typename _Tp>
-  struct testcase_stirling_1
-  {
-    unsigned int n;
-    unsigned int m;
-    _Tp f0;
-    _Tp f;
-  };
-
-// Stirling numbers of the second kind.
-template<typename _Tp>
-  struct testcase_stirling_2
+  struct testcase_stirling
   {
     unsigned int n;
     unsigned int m;
