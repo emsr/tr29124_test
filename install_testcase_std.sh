@@ -102,6 +102,7 @@ ${makedir} ${ext_dir}/ellint_rg
 ${makedir} ${ext_dir}/ellint_rj
 ${makedir} ${ext_dir}/ellnome
 ${makedir} ${ext_dir}/euler
+${makedir} ${ext_dir}/eulerian_1
 ${makedir} ${ext_dir}/expint
 ${makedir} ${ext_dir}/factorial
 ${makedir} ${ext_dir}/fresnel_c
@@ -141,6 +142,8 @@ ${makedir} ${ext_dir}/sph_bessel_k
 ${makedir} ${ext_dir}/sph_hankel_1
 ${makedir} ${ext_dir}/sph_hankel_2
 ${makedir} ${ext_dir}/sph_harmonic
+${makedir} ${ext_dir}/stirling_1
+${makedir} ${ext_dir}/stirling_2
 ${makedir} ${ext_dir}/tgamma
 ${makedir} ${ext_dir}/tgamma_lower
 ${makedir} ${ext_dir}/theta_1
@@ -188,6 +191,7 @@ ${tool} check/check_ellint_rg.cc          ${ext_dir}/ellint_rg/check_value.cc
 ${tool} check/check_ellint_rj.cc          ${ext_dir}/ellint_rj/check_value.cc
 ${tool} check/check_ellnome.cc            ${ext_dir}/ellnome/check_value.cc
 ${tool} check/check_euler.cc              ${ext_dir}/euler/check_value.cc
+${tool} check/check_eulerian_1.cc         ${ext_dir}/eulerian_1/check_value.cc
 ${tool} check/check_expint_en.cc          ${ext_dir}/expint/check_value.cc
 ${tool} check/check_factorial.cc          ${ext_dir}/factorial/check_value.cc
 ${tool} check/check_falling_factorial.cc  ${ext_dir}/falling_factorial/check_value.cc
@@ -227,6 +231,8 @@ ${tool} check/check_sph_bessel_k.cc       ${ext_dir}/sph_bessel_k/check_value.cc
 ${tool} check/check_sph_hankel_1.cc       ${ext_dir}/sph_hankel_1/check_value.cc
 ${tool} check/check_sph_hankel_2.cc       ${ext_dir}/sph_hankel_2/check_value.cc
 ${tool} check/check_sph_harmonic.cc       ${ext_dir}/sph_harmonic/check_value.cc
+${tool} check/check_stirling_1.cc         ${ext_dir}/stirling_1/check_value.cc
+${tool} check/check_stirling_2.cc         ${ext_dir}/stirling_2/check_value.cc
 ${tool} check/check_tgamma.cc             ${ext_dir}/tgamma/check_value.cc
 ${tool} check/check_tgamma_lower.cc       ${ext_dir}/tgamma_lower/check_value.cc
 ${tool} check/check_theta_1.cc            ${ext_dir}/theta_1/check_value.cc

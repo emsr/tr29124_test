@@ -883,13 +883,17 @@ euler(unsigned int n, double x)
 double
 eulerian_1(unsigned int n, unsigned int m)
 {
-  if (m > n)
+  if (m == 0)
+    return 1.0;
+  else if (m >= n)
     return 0.0;
+  else if (m == n - 1)
+    return 1.0;
   else
     {
-      std::vector<int> e((n + 1) * (n + 1));
+      std::vector<int> e(n * n);
       ::eulerian(n, e.data());
-      return double(e[n + m * n]);
+      return double(e[m * n + n - 1]);
     }
 }
 
@@ -904,11 +908,11 @@ eulerian_2(unsigned int /*n*/, unsigned int /*m*/)
 double
 stirling_1(unsigned int n, unsigned int m)
 {
-  if (n == 0 && m == 0)
+  if (m > n)
+    return 0.0;
+  else if (n == 0 && m == 0)
     return 1.0;
   else if (m == 0)
-    return 0.0;
-  else if (m > n)
     return 0.0;
   else
     {
@@ -921,11 +925,11 @@ stirling_1(unsigned int n, unsigned int m)
 double
 stirling_2(unsigned int n, unsigned int m)
 {
-  if (n == 0 && m == 0)
+  if (m > n)
+    return 0.0;
+  else if (n == 0 && m == 0)
     return 1.0;
   else if (m == 0)
-    return 0.0;
-  else if (m > n)
     return 0.0;
   else
     {
