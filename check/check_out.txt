@@ -45,6 +45,9 @@ check_ellint_rf
 check_ellint_rg
 check_ellint_rj
 check_ellnome
+check_euler
+check_eulerian_1
+check_eulerian_2
 check_expint
 check_expint_en
 check_factorial
@@ -111,12 +114,12 @@ line 1046  max_abs_frac = inf
 line 1046  max_abs_frac = inf
 line 1046  max_abs_frac = inf
 line 1046  max_abs_frac = inf
-check_lpochhammer_lower
-check_lpochhammer
+check_lfalling_factorial
+check_lrising_factorial
 check_owens_t
 check_pgamma
-check_pochhammer_lower
-check_pochhammer
+check_falling_factorial
+check_rising_factorial
 check_normal_cdf
 line 1045  max_abs_frac = 4.89615e-11
 check_normal_pdf
@@ -138,6 +141,8 @@ check_sph_hankel_2
 check_sph_harmonic
 check_sph_legendre
 check_sph_neumann
+check_stirling_1
+check_stirling_2
 check_tgamma_lower
 check_tgamma
 check_theta_1
@@ -210,5 +215,6 @@ Success:   samples = 19  mean = 5.57668e-16  variance = 2.47696e-29
 pr56216_cyl_hankel_1
 pr56216_cyl_hankel_2
 pr56216_cyl_bessel_i
+pr68397
 origin_bessel_j
 origin_cyl_neumann
