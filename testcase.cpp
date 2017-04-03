@@ -1793,10 +1793,10 @@ template<typename Real>
     std::ofstream file_eulerian_1(filename);
     maketest(eulerian_1<Real>, burkhardt::eulerian_1,
 	     "testcase_eulerian_1", "__gnu_cxx", basename,
-	     "n", fill_argument(std::make_pair(0U, 50U),
-				std::make_pair(true, true), 51),
-	     "m", fill_argument(std::make_pair(0U, 50U),
-				std::make_pair(true, true), 51),
+	     "n", fill_argument(std::make_pair(0U, 10U),
+				std::make_pair(true, true), 11),
+	     "m", fill_argument(std::make_pair(0U, 10U),
+				std::make_pair(true, true), 11),
 	     "Burkhardt",
 	     file_eulerian_1);
 
@@ -1807,10 +1807,10 @@ template<typename Real>
     std::ofstream file_stirling_1(filename);
     maketest(stirling_1<Real>, burkhardt::stirling_1,
 	     "testcase_stirling_1", "__gnu_cxx", basename,
-	     "n", fill_argument(std::make_pair(0U, 50U),
-				std::make_pair(true, true), 51),
-	     "m", fill_argument(std::make_pair(0U, 50U),
-				std::make_pair(true, true), 51),
+	     "n", fill_argument(std::make_pair(0U, 10U),
+				std::make_pair(true, true), 11),
+	     "m", fill_argument(std::make_pair(0U, 10U),
+				std::make_pair(true, true), 11),
 	     "Burkhardt",
 	     file_stirling_1);
 
@@ -1821,10 +1821,10 @@ template<typename Real>
     std::ofstream file_stirling_2(filename);
     maketest(stirling_2<Real>, burkhardt::stirling_2,
 	     "testcase_stirling_2", "__gnu_cxx", basename,
-	     "n", fill_argument(std::make_pair(0U, 50U),
-				std::make_pair(true, true), 51),
-	     "m", fill_argument(std::make_pair(0U, 50U),
-				std::make_pair(true, true), 51),
+	     "n", fill_argument(std::make_pair(0U, 10U),
+				std::make_pair(true, true), 11),
+	     "m", fill_argument(std::make_pair(0U, 10U),
+				std::make_pair(true, true), 11),
 	     "Burkhardt",
 	     file_stirling_2);
 

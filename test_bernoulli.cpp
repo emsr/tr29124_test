@@ -552,26 +552,23 @@ PATH=wrappers/debug:$PATH ./test_bernoulli > test_bernoulli.txt
     __log_stirling_1_sign(unsigned int __n, unsigned int __m)
     { return (__n + __m) & 1 ? _Tp{-1} : _Tp{+1}; }
 
-
   /**
    * Return the Eulerian number of the first kind by recursion.
    * The recursion is
    * @f[
-   *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m)
+   *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
    * @f]
    */
   template<typename _Tp>
     _Tp
     __eulerian_1_recur(unsigned int __n, unsigned int __m)
     {
-      if (__n == 0)
-	return _Tp{0};
-      else if (__m == 0)
-	return _Tp{1};
-      else if (__m == __n - 1)
+      if (__m == 0)
 	return _Tp{1};
       else if (__m >= __n)
 	return _Tp{0};
+      else if (__m == __n - 1)
+	return _Tp{1};
       else if (__n - __m - 1 < __m) // Symmetry.
 	return __eulerian_1_recur<_Tp>(__n, __n - __m - 1);
       else
@@ -593,16 +590,63 @@ PATH=wrappers/debug:$PATH ./test_bernoulli > test_bernoulli.txt
     }
 
   /**
-   * Return the Eulerian number of the first.
+   * Return the Eulerian number of the first kind.
    * The Eulerian numbers are defined by recursion:
    * @f[
-   *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m)
+   *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
    * @f]
    */
   template<typename _Tp>
     inline _Tp
     __eulerian_1(unsigned int __n, unsigned int __m)
     { return __eulerian_1_recur<_Tp>(__n, __m); }
+
+  /**
+   * Return the Eulerian number of the second kind by recursion.
+   * The recursion is:
+   * @f[
+   *   A(n,m) = (2n-m-1)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __eulerian_2_recur(unsigned int __n, unsigned int __m)
+    {
+      if (__m == 0)
+	return _Tp{1};
+      else if (__m >= __n)
+	return _Tp{0};
+      else if (__n == 0)
+	return _Tp{1};
+      else
+	{
+	  // Start recursion with n == 2 (already returned above).
+	  std::vector<_Tp> _Aold(__m + 1), _Anew(__m + 1);
+	  _Aold[0] = _Tp{1};
+	  _Anew[0] = _Tp{1};
+	  _Anew[1] = _Tp{2};
+	  for (auto __in = 3u; __in <= __n; ++__in)
+	    {
+	      std::swap(_Aold, _Anew);
+	      for (auto __im = 1u; __im <= __m; ++__im)
+		_Anew[__im] = (2 * __in - __im - 1) * _Aold[__im - 1]
+			    + (__im + 1) * _Aold[__im];
+	    }
+	  return _Anew[__m];
+	}
+    }
+
+  /**
+   * Return the Eulerian number of the second kind.
+   * The Eulerian numbers of the second kind are defined by recursion:
+   * @f[
+   *   A(n,m) = (2n-m-1)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
+   * @f]
+   */
+  template<typename _Tp>
+    inline _Tp
+    __eulerian_2(unsigned int __n, unsigned int __m)
+    { return __eulerian_2_recur<_Tp>(__n, __m); }
 
 
 template<typename _Tp>
@@ -691,59 +735,126 @@ template<typename _Tp>
 		    << ' ' << std::setw(width) << burkhardt::eulerian_1(n, m)
 		    << '\n';
       }
+
+    std::cout << "\n Eulerian numbers of the second kind";
+    for (auto n = 1u; n <= 10; ++n)
+      {
+	std::cout << '\n';
+	for (auto m = 0u; m < n; ++m)
+	  std::cout << ' ' << std::setw(4) << n
+		    << ' ' << std::setw(4) << m
+		  //  << ' ' << std::setw(width) << __eulerian_1_series<_Tp>(n, m)
+		    << ' ' << std::setw(width) << __eulerian_2_recur<_Tp>(n, m)
+		    << '\n';
+      }
   }
 
 void eulerian(int n, int e[]);
 int *stirling1(int n, int m);
 int *stirling2(int n, int m);
 
+double
+my_eulerian1(unsigned int n, unsigned int m)
+{
+  if (m == 0)
+    return 1.0;
+  else if (m >= n)
+    return 0.0;
+  else if (m == n - 1)
+    return 1.0;
+  else
+    {
+      std::vector<int> e(n * n);
+      ::eulerian(n, e.data());
+      return 1.0 * e[m * n + n - 1];
+    }
+}
+
+double
+my_stirling1(unsigned int n, unsigned int m)
+{
+  if (m > n)
+    return 0.0;
+  else if (m == n)
+    return 1.0;
+  else if (m == 0 && n >= 1)
+    return 0.0;
+  else
+    {
+      std::unique_ptr<int[]> s1(::stirling1(n, m));
+      return 1.0 * s1[(m - 1) * n + (n - 1)];
+    }
+}
+
+double
+my_stirling2(unsigned int n, unsigned int m)
+{
+  if (m > n)
+    return 0.0;
+  else if (m == n)
+    return 1.0;
+  else if (m == 0 && n >= 1)
+    return 0.0;
+  else
+    {
+      std::unique_ptr<int[]> s2(::stirling2(n, m));
+      return 1.0 * s2[(m - 1) * n + (n - 1)];
+    }
+}
+
 int
 main()
 {
-    {
-      int n = 10;
-      std::vector<int> e(n * n);
-      ::eulerian(n, e.data());
-      for (auto i = 0; i < n; ++i)
-	{
-	  std::cout << '\n';
-	  for (auto j = 0; j < n; ++j)
-	    std::cout << ' ' << std::setw(4) << i
-		      << ' ' << std::setw(4) << j
- 		      << ' ' << std::setw(20) << e[j * n + i]
-		      << '\n';
-	}
-    }
+  {
+    std::cout << "\neulerian_1" << '\n';
+    int n = 10;
+    std::vector<int> e(n * n);
+    ::eulerian(n, e.data());
+    for (auto i = 0; i < n; ++i)
+      {
+	std::cout << '\n';
+	for (auto j = 0; j < n; ++j)
+	  std::cout << ' ' << std::setw(4) << i
+		    << ' ' << std::setw(4) << j
+ 		    << ' ' << std::setw(20) << e[j * n + i]
+ 		    << ' ' << std::setw(20) << my_eulerian1(i + 1, j)
+		    << '\n';
+      }
+  }
 
-    {
-      int n = 10;
-      int m = 8;
-      std::unique_ptr<int[]> s1(::stirling1(n, m));
-      for (auto i = 0; i < n; ++i)
-	{
-	  std::cout << '\n';
-	  for (auto j = 0; j < m; ++j)
-	    std::cout << ' ' << std::setw(4) << i
-		      << ' ' << std::setw(4) << j
- 		      << ' ' << std::setw(20) << s1[j * n + i]
-		      << '\n';
-	}
-    }
+  {
+    std::cout << "\nstirling_1" << '\n';
+    int n = 10;
+    int m = 8;
+    std::unique_ptr<int[]> s1(::stirling1(n, m));
+    for (auto i = 0; i < n; ++i)
+      {
+	std::cout << '\n';
+	for (auto j = 0; j < m; ++j)
+	  std::cout << ' ' << std::setw(4) << i
+		    << ' ' << std::setw(4) << j
+ 		    << ' ' << std::setw(20) << s1[j * n + i]
+ 		    << ' ' << std::setw(20) << my_stirling1(i + 1, j + 1)
+		    << '\n';
+      }
+  }
 
-    {
-      int n = 10;
-      int m = 8;
-      std::unique_ptr<int[]> s2(::stirling2(n, m));
-      for (auto i = 0; i < n; ++i)
-	{
-	  std::cout << '\n';
-	  for (auto j = 0; j < m; ++j)
-	    std::cout << ' ' << std::setw(4) << i
-		      << ' ' << std::setw(4) << j
-		      << ' ' << std::setw(20) << s2[j * n + i]
-		      << '\n';
-	}
-    }
+  {
+    std::cout << "\nstirling_2" << '\n';
+    int n = 10;
+    int m = 8;
+    std::unique_ptr<int[]> s2(::stirling2(n, m));
+    for (auto i = 0; i < n; ++i)
+      {
+	std::cout << '\n';
+	for (auto j = 0; j < m; ++j)
+	  std::cout << ' ' << std::setw(4) << i
+		    << ' ' << std::setw(4) << j
+		    << ' ' << std::setw(20) << s2[j * n + i]
+ 		    << ' ' << std::setw(20) << my_stirling2(i + 1, j + 1)
+		    << '\n';
+      }
+  }
 
   //return 0;
 
