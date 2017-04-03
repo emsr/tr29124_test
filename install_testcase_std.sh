@@ -103,6 +103,7 @@ ${makedir} ${ext_dir}/ellint_rj
 ${makedir} ${ext_dir}/ellnome
 ${makedir} ${ext_dir}/euler
 ${makedir} ${ext_dir}/eulerian_1
+${makedir} ${ext_dir}/eulerian_2
 ${makedir} ${ext_dir}/expint
 ${makedir} ${ext_dir}/factorial
 ${makedir} ${ext_dir}/fresnel_c
@@ -192,6 +193,7 @@ ${tool} check/check_ellint_rj.cc          ${ext_dir}/ellint_rj/check_value.cc
 ${tool} check/check_ellnome.cc            ${ext_dir}/ellnome/check_value.cc
 ${tool} check/check_euler.cc              ${ext_dir}/euler/check_value.cc
 ${tool} check/check_eulerian_1.cc         ${ext_dir}/eulerian_1/check_value.cc
+${tool} check/check_eulerian_2.cc         ${ext_dir}/eulerian_2/check_value.cc
 ${tool} check/check_expint_en.cc          ${ext_dir}/expint/check_value.cc
 ${tool} check/check_factorial.cc          ${ext_dir}/factorial/check_value.cc
 ${tool} check/check_falling_factorial.cc  ${ext_dir}/falling_factorial/check_value.cc

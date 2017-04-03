@@ -14,7 +14,8 @@ git checkout -- \
  check/check_theta_2.cc \
  check/check_theta_3.cc \
  check/check_theta_4.cc \
- check/check_gamma_reciprocal.cc
+ check/check_gamma_reciprocal.cc \
+ check/check_eulerian_2.cc
 
 git checkout -- \
  check/complex_airy_ai.cc \

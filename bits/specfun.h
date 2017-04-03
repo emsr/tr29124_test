@@ -211,7 +211,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::ellnome "ellnome - Elliptic nome"
    * - @ref __gnu_cxx::euler "euler - Euler numbers"
    * - @ref __gnu_cxx::euler "euler - Euler polynomials"
-   * - @ref __gnu_cxx::eulerian "eulerian - Eulerian numbers"
+   * - @ref __gnu_cxx::eulerian_1 "eulerian_1 - Eulerian numbers of the first kind"
+   * - @ref __gnu_cxx::eulerian_2 "eulerian_2 - Eulerian numbers of the second kind"
    * - @ref __gnu_cxx::expint "expint - Exponential integrals"
    * - @ref __gnu_cxx::factorial "factorial - Factorials"
    * - @ref __gnu_cxx::falling_factorial "falling_factorial - Falling factorials"
@@ -6542,8 +6543,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     { return std::__detail::__euler<_Tp>(__n); }
 
   /**
-   * Return the Eulerian number of the first.
-   * The Eulerian numbers are defined by recursion:
+   * Return the Eulerian number of the first kind.
+   * The Eulerian numbers of the first kind are defined by recursion:
    * @f[
    *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m)
    * @f]
@@ -6552,6 +6553,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline _Tp
     eulerian_1(unsigned int __n, unsigned int __m)
     { return std::__detail::__eulerian_1<_Tp>(__n, __m); }
+
+  /**
+   * Return the Eulerian number of the second kind.
+   * The Eulerian numbers of the second kind are defined by recursion:
+   * @f[
+   *   A(n,m) = (2n-m-1)A(n-1,m-1) + (m+1)A(n-1,m)
+   * @f]
+   */
+  template<typename _Tp>
+    inline _Tp
+    eulerian_2(unsigned int __n, unsigned int __m)
+    { return std::__detail::__eulerian_2<_Tp>(__n, __m); }
 
   /**
    * Return the Stirling number of the first kind.
