@@ -88,7 +88,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
   /**
-   * This class manages the termination of series.
+   * This class manages the termination of asymptotic series.
+   * In particular, this termination watches for the growth of the sequence
+   * of terms to stop the series.
+   *
    * Termination conditions involve both a maximum iteration count
    * and a relative precision.
    */
@@ -548,8 +551,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * for @f$ Re(w) >> 1 @f$
    *
    * Don't check this against Mathematica 8.
-   * For real u the imaginary part of the polylog is given by
-   * @f$ Im(Li_s(e^u)) = - \pi u^{s-1}/\Gamma(s) @f$.
+   * For real w the imaginary part of the polylog is given by
+   * @f$ Im(Li_s(e^w)) = -\pi w^{s-1}/\Gamma(s) @f$.
    * Check this relation for any benchmark that you use.
    *
    * @param __s the real index s.
@@ -559,11 +562,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     std::complex<_Tp>
     __polylog_exp_asymp(_Tp __s, std::complex<_Tp> __w)
-    { // asymptotic expansion
+    {
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
       // wgamma = w^{s-1} / Gamma(s)
       auto __wgamma = std::pow(__w, __s - _Tp{1}) * __gamma_reciprocal(__s);
-      __wgamma = std::exp((__s - _Tp{1}) * std::log(__w) - __log_gamma(__s)); // Sign flip!
       auto __res = std::complex<_Tp>(_Tp{0}, -_S_pi) * __wgamma;
       // wgamma = w^s / Gamma(s+1)
       __wgamma *= __w / __s;
@@ -725,8 +727,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    // Choose the exponentially converging series
 	    return __polylog_exp_sum(__s, __w);
 	  else if (__w < _S_max_asymp)
-	    // The transition point chosen here, is quite arbitrary
-	    // and needs more testing.
 	    return __polylog_exp_pos(__s, __w);
 	  else
 	    return __polylog_exp_asymp(static_cast<_Tp>(__s),
@@ -763,7 +763,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else
 	{
-	  if (std::real(__w) < -(_S_pi_2 + _S_pi / _Tp{5})  )
+	  if (std::real(__w) < -(_S_pi_2 + _S_pi / _Tp{5}))
 	    // Choose the exponentially converging series
 	    return __polylog_exp_sum(__s, __w);
 	  else if (std::real(__w) < _S_max_asymp)
@@ -892,12 +892,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__s);
+      const auto _S_max_asymp = _Tp{5};
       const auto __rw = __w.real();
       const auto __iw = __w.imag();
       if (__rw < -(_S_pi_2 + _S_pi / _Tp{5}))
 	// Choose exponentially converging series.
 	return __polylog_exp_sum(__s, __w);
-      else if (__rw < 6) // arbitrary transition point
+      else if (__rw < _S_max_asymp)
 	// The reductions of the imaginary part yield the same results
 	// as Mathematica then.
 	// Necessary to improve the speed of convergence.
