@@ -439,11 +439,10 @@ PATH=wrappers/debug:$PATH ./test_polylog > test_polylog.txt
   template<typename _Tp>
     std::complex<_Tp>
     __polylog_exp_asymp(_Tp __s, std::complex<_Tp> __w)
-    { // asymptotic expansion
+    {
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
       // wgamma = w^{s-1} / Gamma(s)
       auto __wgamma = std::pow(__w, __s - _Tp{1}) * std::__detail::__gamma_reciprocal(__s);
-      __wgamma = std::exp((__s - _Tp{1}) * std::log(__w) - __log_gamma(__s)); // Sign flip!
       auto __res = std::complex<_Tp>(_Tp{0}, -_S_pi) * __wgamma;
       // wgamma = w^s / Gamma(s+1)
       __wgamma *= __w / __s;

@@ -31,6 +31,7 @@ plot [1.5:1.7][-4.0:4.0] \
                      "" index 1 using 1:7 with lines title "100 Re[delta]", \
                      "" index 1 using 1:8 with lines title "100 Im[delta]"
 
+# Discontinuity
 set title "Polylog Li_{2}(x)"
 set xlabel "x"
 plot [-12.2:-12.1][-4.70:-4.66] \
