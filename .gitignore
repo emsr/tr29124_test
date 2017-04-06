@@ -43,6 +43,7 @@ build_sincos_tables
 build_sqrt_table
 build_zetahalfm1_table
 build_zetam1_table
+build_zeta_trig_tables
 
 carlson
 carlson1
