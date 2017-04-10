@@ -12,7 +12,7 @@ var searchData=
   ['chebyshev_5fw',['chebyshev_w',['../group__gnu__math__spec__func.html#ga55ebf3cda76302bc6e0f173fc1c1425e',1,'__gnu_cxx']]],
   ['chebyshev_5fwf',['chebyshev_wf',['../group__gnu__math__spec__func.html#gae6d468cee53df584e40afe294127b090',1,'__gnu_cxx']]],
   ['chebyshev_5fwl',['chebyshev_wl',['../group__gnu__math__spec__func.html#ga1297dfd9b9a0f584435de7d83eb9e9c3',1,'__gnu_cxx']]],
-  ['clausen',['clausen',['../group__gnu__math__spec__func.html#ga7959ce3dea7f8d98b1dfee5715303f1c',1,'__gnu_cxx::clausen(unsigned int __m, _Tp __w)'],['../group__gnu__math__spec__func.html#ga437d2381d7fe35784bfbac594cebfe5c',1,'__gnu_cxx::clausen(unsigned int __m, std::complex&lt; _Tp &gt; __z)']]],
+  ['clausen',['clausen',['../group__gnu__math__spec__func.html#ga6a1c122722cc68f2347aee002360b2e0',1,'__gnu_cxx::clausen(unsigned int __m, _Tp __x)'],['../group__gnu__math__spec__func.html#ga437d2381d7fe35784bfbac594cebfe5c',1,'__gnu_cxx::clausen(unsigned int __m, std::complex&lt; _Tp &gt; __z)']]],
   ['clausen_5fcl',['clausen_cl',['../group__gnu__math__spec__func.html#gaf5b819dba52683de1869f5f788114dfe',1,'__gnu_cxx']]],
   ['clausen_5fclf',['clausen_clf',['../group__gnu__math__spec__func.html#ga5e1bf6c24eb4359ffacb49da62f0838b',1,'__gnu_cxx']]],
   ['clausen_5fcll',['clausen_cll',['../group__gnu__math__spec__func.html#gab06f3c94f96538167147f028711903a9',1,'__gnu_cxx']]],

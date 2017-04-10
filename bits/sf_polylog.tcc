@@ -1168,8 +1168,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the Dirichlet beta function for real argument.
    * The Dirichlet beta function, in terms of the polylogarithm, is
    * @f[
-   * \renewcommand\Re{\operatorname{Re}}
-   * \renewcommand\Im{\operatorname{Im}}
+   *   \renewcommand\Re{\operatorname{Re}}
+   *   \renewcommand\Im{\operatorname{Im}}
    *   \beta(s) = \Im{Li_s(i)}
    * @f]
    *
@@ -1211,7 +1211,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The notation and connection to polylog is from Wikipedia
    *
    * @param __m  The non-negative integral order.
-   * @param __w  The complex argument.
+   * @param __z  The complex argument.
    * @return  The complex Clausen function.
    */
   template<typename _Tp>

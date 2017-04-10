@@ -1,5 +1,6 @@
 var NAVTREEINDEX5 =
 {
+"specfun_8h.html#ga9b6816c0abf30fd88417d79a33cb5465":[5,0,0,30,81],
 "specfun_8h.html#ga9bb40e20b18e3eb822e70af955940830":[5,0,0,30,125],
 "specfun_8h.html#ga9bc456941d5e35cf54ec9c50f2e52884":[5,0,0,30,180],
 "specfun_8h.html#ga9db158df9459aa12c840724338753913":[5,0,0,30,246],
@@ -248,6 +249,5 @@ var NAVTREEINDEX5 =
 "struct____gnu__cxx_1_1____sph__bessel__t.html#ad846c3cb00bfabcbddc3e2f6512e3d7f":[4,0,0,13,5],
 "struct____gnu__cxx_1_1____sph__bessel__t.html#af89f13e97d771e4cb18f69ea88056ee6":[4,0,0,13,1],
 "struct____gnu__cxx_1_1____sph__bessel__t.html#afa9cf4b1888081bd21716c58ed19719b":[4,0,0,13,6],
-"struct____gnu__cxx_1_1____sph__hankel__t.html":[4,0,0,14],
-"struct____gnu__cxx_1_1____sph__hankel__t.html#a225e48ba2faafbdabd65cd173372d418":[4,0,0,14,4]
+"struct____gnu__cxx_1_1____sph__hankel__t.html":[4,0,0,14]
 };

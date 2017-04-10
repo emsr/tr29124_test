@@ -32,7 +32,7 @@ var group__gnu__math__spec__func =
     [ "chebyshev_w", "group__gnu__math__spec__func.html#ga55ebf3cda76302bc6e0f173fc1c1425e", null ],
     [ "chebyshev_wf", "group__gnu__math__spec__func.html#gae6d468cee53df584e40afe294127b090", null ],
     [ "chebyshev_wl", "group__gnu__math__spec__func.html#ga1297dfd9b9a0f584435de7d83eb9e9c3", null ],
-    [ "clausen", "group__gnu__math__spec__func.html#ga7959ce3dea7f8d98b1dfee5715303f1c", null ],
+    [ "clausen", "group__gnu__math__spec__func.html#ga6a1c122722cc68f2347aee002360b2e0", null ],
     [ "clausen", "group__gnu__math__spec__func.html#ga437d2381d7fe35784bfbac594cebfe5c", null ],
     [ "clausen_cl", "group__gnu__math__spec__func.html#gaf5b819dba52683de1869f5f788114dfe", null ],
     [ "clausen_clf", "group__gnu__math__spec__func.html#ga5e1bf6c24eb4359ffacb49da62f0838b", null ],
