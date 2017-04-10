@@ -243,7 +243,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::radpoly "radpoly - Radial polynomials"
    * - @ref __gnu_cxx::rising_factorial "rising_factorial - Rising factorials"
    * - @ref __gnu_cxx::sinhc "sinhc - Hyperbolic sinus cardinal function"
-   * - @ref __gnu_cxx::sinhc_pi "sinhc_pi - Reperiodized hyperbolic sinus cardinal function""
+   * - @ref __gnu_cxx::sinhc_pi "sinhc_pi - Reperiodized hyperbolic sinus cardinal function"
    * - @ref __gnu_cxx::sinc "sinc - Normalized sinus cardinal function"
    * - @ref __gnu_cxx::sincos "sincos - Sine + cosine function"
    * - @ref __gnu_cxx::sincos_pi "sincos_pi - Reperiodized sine + cosine function"
@@ -1295,12 +1295,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the spherical Legendre function of nonnegative integral
-   * degree @f$ l @f$ and order @f$ m @f$ and real angle @f$ \theta @f$ in radians.
+   * degree @f$ l @f$ and order @f$ m @f$ and real angle @f$ \theta @f$
+   * in radians.
    *
    * The spherical Legendre function is defined by
    * @f[
-   *  Y_l^m(\theta,\phi) = (-1)^m[\frac{(2l+1)}{4\pi}
-   *                              \frac{(l-m)!}{(l+m)!}]
+   *  Y_l^m(\theta,\phi) = (-1)^m\frac{(2l+1)}{4\pi} \frac{(l-m)!}{(l+m)!}
    *                   P_l^m(\cos\theta) \exp^{im\phi}
    * @f]
    *
@@ -2510,10 +2510,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f$ H^{(1)}_n(x) @f$ of real order @f$ \nu @f$
    * and argument @f$ x >= 0 @f$.
    *
-   * The cylindrical Hankel function of the first kind is defined by:
+   * The spherical Hankel function of the first kind is defined by:
    * @f[
-   *    H^{(1)}_\nu(x) = \left(\frac{\pi}{2x} \right) ^{1/2}
-   *       \left[ J_{n+1/2}(x) + iN_{n+1/2}(x) \right]
+   *    H^{(1)}_\nu(x) = J_\nu(x) + iN_\nu(x)
    * @f]
    * where @f$ J_\nu(x) @f$ and @f$ N_\nu(x) @f$ are the cylindrical Bessel
    * and Neumann functions respectively (@see cyl_bessel and cyl_neumann).
@@ -2561,8 +2560,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The cylindrical Hankel function of the second kind is defined by:
    * @f[
-   *    H^{(2)}_\nu(x) = \left(\frac{\pi}{2x} \right) ^{1/2}
-   *       \left[ J_{n+1/2}(x) - iN_{n+1/2}(x) \right]
+   *    H^{(2)}_\nu(x) = J_\nu(x) - iN_\nu(x)
    * @f]
    * where @f$ J_\nu(x) @f$ and @f$ N_\nu(x) @f$ are the cylindrical Bessel
    * and Neumann functions respectively (@see cyl_bessel and cyl_neumann).
@@ -2609,6 +2607,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *    h^{(1)}_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} H^{(1)}_{n+1/2}(x)
    * @f]
+   * or in terms of the cylindrical Bessel and Neumann functions by:
+   * @f[
+   *    h^{(1)}_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2}
+   *       \left[ J_{n+1/2}(x) + iN_{n+1/2}(x) \right]
+   * @f]
    *
    * @tparam _Tp The real type of the argument
    * @param __n The non-negative order
@@ -2651,6 +2654,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The spherical Hankel function of the second kind is defined by:
    * @f[
    *    h^{(2)}_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} H^{(2)}_{n+1/2}(x)
+   * @f]
+   * or in terms of the cylindrical Bessel and Neumann functions by:
+   * @f[
+   *    h^{(2)}_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2}
+   *       \left[ J_{n+1/2}(x) - iN_{n+1/2}(x) \right]
    * @f]
    *
    * @tparam _Tp The real type of the argument
@@ -3897,7 +3905,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__rising_factorial<float>(__a, __nu); }
 
   /**
-   * Return the rising factorial @f$ ln(a^{\overline{\nu}}) @f$
+   * Return the rising factorial @f$ a^{\overline{\nu}} @f$
    * for <tt> long double </tt> arguments.
    *
    * @see rising_factorial for details.
@@ -3930,7 +3938,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   //  Falling factorials
 
   /**
-   * Return the falling factorial @f$ ln(a^{\overline{\nu}})@f$
+   * Return the falling factorial @f$ a^{\underline{\nu}} @f$
    * for float arguments.
    *
    * @see falling_factorial for details.
@@ -3940,7 +3948,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__falling_factorial<float>(__a, __nu); }
 
   /**
-   * Return the falling factorial @f$ ln(a^{\overline{\nu}})@f$
+   * Return the falling factorial @f$ a^{\underline{\nu}} @f$
    * for <tt> long double </tt> arguments.
    *
    * @see falling_factorial for details.
@@ -3950,7 +3958,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__falling_factorial<long double>(__a, __nu); }
 
   /**
-   * @brief  Return the logarithm of the falling factorial function
+   * @brief  Return the falling factorial function
    * or the lower Pochhammer symbol for real argument @f$ a @f$
    * and integral order @f$ n @f$.
    * The falling factorial function is defined by
@@ -4874,8 +4882,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Spherical harmonic functions
 
   /**
-   * Return the complex spherical harmonic function of degree @f$ l @f$, order @f$ m @f$,
-   * and @c float zenith angle @f$ \theta @f$, and azimuth angle @f$ \phi @f$.
+   * Return the complex spherical harmonic function of degree @f$ l @f$,
+   * order @f$ m @f$, and @c float zenith angle @f$ \theta @f$,
+   * and azimuth angle @f$ \phi @f$.
    *
    * @see sph_harmonic for details.
    */
@@ -4885,8 +4894,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__sph_harmonic<float>(__l, __m, __theta, __phi); }
 
   /**
-   * Return the complex spherical harmonic function of degree @f$ l @f$, order @f$ m @f$,
-   * and <tt>long double</tt> zenith angle @f$ \theta @f$,
+   * Return the complex spherical harmonic function of degree @f$ l @f$,
+   * order @f$ m @f$, and <tt>long double</tt> zenith angle @f$ \theta @f$,
    * and azimuth angle @f$ \phi @f$.
    *
    * @see sph_harmonic for details.
@@ -4899,13 +4908,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   }
 
   /**
-   * Return the complex spherical harmonic function of degree @f$ l @f$, order @f$ m @f$,
-   * and real zenith angle @f$ \theta @f$, and azimuth angle @f$ \phi @f$.
+   * Return the complex spherical harmonic function of degree @f$ l @f$,
+   * order @f$ m @f$, and real zenith angle @f$ \theta @f$,
+   * and azimuth angle @f$ \phi @f$.
    *
    * The spherical harmonic function is defined by:
    * @f[
-   *    Y_l^m(\theta,\phi) = (-1)^m[\frac{(2l+1)}{4\pi}
-   *                                \frac{(l-m)!}{(l+m)!}]
+   *    Y_l^m(\theta,\phi) = (-1)^m\frac{(2l+1)}{4\pi} \frac{(l-m)!}{(l+m)!}
    *                     P_l^{|m|}(\cos\theta) \exp^{im\phi}
    * @f]
    *
@@ -5037,6 +5046,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    \eta(-s) = 2 \frac{1-2^{-s-1}}{1-2^{-s}} \pi^{-s-1} 
    *              s \sin(\frac{\pi s}{2}) \Gamma(s) \eta(s+1)
    * @f]
+   * The Dirichlet eta function, in terms of the polylogarithm, is
+   * @f[
+   *   \renewcommand\Re{\operatorname{Re}}
+   *   \renewcommand\Im{\operatorname{Im}}
+   *   \eta(s) = -\Re{Li_s(-1)}
+   * @f]
    *
    * @param __s 
    */
@@ -5080,6 +5095,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    \beta(1-s) = \left( \frac{2}{\pi}\right)^s \sin(\frac{\pi s}{2})
    *               \Gamma(s) \beta(s)
    * @f]
+   * The Dirichlet beta function, in terms of the polylogarithm, is
+   * @f[
+   *   \renewcommand\Re{\operatorname{Re}}
+   *   \renewcommand\Im{\operatorname{Im}}
+   *   \beta(s) = \Im{Li_s(i)}
+   * @f]
    *
    * @param __s 
    */
@@ -5118,6 +5139,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *    \lambda(s) = \sum_{k=0}^\infty \frac{1}{(2k+1)^s}
    *    = \left( 1 - 2^{-s} \right) \zeta(s)
+   * @f]
+   * In terms of the Riemann zeta and the Dirichlet eta functions
+   * @f[
+   *   \lambda(s) = \frac{1}{2}(\zeta(s) + \eta(s))
    * @f]
    *
    * @param __s 
@@ -5308,7 +5333,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-1 function @f$ \theta_1(\nu,x) @f$
-   * of period @f$ nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @f$ x @f$.
    *
    * @see theta_1 for details.
    */
@@ -5318,7 +5343,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-1 function @f$ \theta_1(\nu,x) @f$
-   * of period @f$ nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @f$ x @f$.
    *
    * @see theta_1 for details.
    */
@@ -5328,7 +5353,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-1 function @f$ \theta_1(\nu,x) @f$
-   * of period @f$ nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @f$ x @f$.
    *
    * The Neville theta-1 function is defined by
    * @f[
@@ -5351,7 +5376,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-2 function @f$ \theta_2(\nu,x) @f$
-   * of period @f$ nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @f$ x @f$.
    *
    * @see theta_2 for details.
    */
@@ -5361,7 +5386,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-2 function @f$ \theta_2(\nu,x) @f$
-   * of period @f$ nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @f$ x @f$.
    *
    * @see theta_2 for details.
    */
@@ -5371,7 +5396,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-2 function @f$ \theta_2(\nu,x) @f$
-   * of period @f$ nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @f$ x @f$.
    *
    * The exponential theta-2 function is defined by
    * @f[
@@ -5394,7 +5419,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-3 function @f$ \theta_3(\nu,x) @f$
-   * of period @f$ nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @f$ x @f$.
    *
    * @see theta_3 for details.
    */
@@ -5404,7 +5429,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-3 function @f$ \theta_3(\nu,x) @f$
-   * of period @f$ nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @f$ x @f$.
    *
    * @see theta_3 for details.
    */
@@ -5414,7 +5439,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-3 function @f$ \theta_3(\nu,x) @f$
-   * of period @f$ nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @f$ x @f$.
    *
    * The exponential theta-3 function is defined by
    * @f[
@@ -5437,7 +5462,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-4 function @f$ \theta_4(\nu,x) @f$
-   * of period @f$ nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @f$ x @f$.
    *
    * @see theta_4 for details.
    */
@@ -5447,7 +5472,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-4 function @f$ \theta_4(\nu,x) @f$
-   * of period @f$ nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @f$ x @f$.
    *
    * @see theta_4 for details.
    */
@@ -5457,7 +5482,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-4 function @f$ \theta_4(\nu,x) @f$
-   * of period @f$ nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @f$ x @f$.
    *
    * The exponential theta-4 function is defined by
    * @f[
@@ -5503,7 +5528,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The elliptic nome function is defined by
    * @f[
-   *    q(k) = \exp \left(-\pi\frac{K(k)}{K(\sqrt{1-k^2})} \right)
+   *    q(k) = \exp \left(-\pi\frac{K(\sqrt{1-k^2})}{K(k)} \right)
    * @f]
    * where @f$ K(k) @f$ is the complete elliptic function of the first kind.
    *
@@ -5546,8 +5571,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Neville theta-s function is defined by
    * @f[
-   *    
+   *  \theta_s(k,x) = \sqrt{\frac{\pi}{2 k k' K(k)}}
+   *                  \theta_1\left(q(k),\frac{\pi x}{2K(k)}\right)
    * @f]
+   * where @f$ q(k) @f$ is the elliptic nome, @f$ K(k) @f$ is
+   * the complete Legendre elliptic integral of the first kind,
+   * and @f$ \theta_1(\nu,x) @f$ is the exponential theta-1 function.
+   * @see ellnome, std::comp_ellint_1, and theta_1 for details.
    *
    * @param __k The modulus @f$ -1 <= k <= +1 @f$
    * @param __x The argument
@@ -5588,8 +5618,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Neville theta-c function is defined by
    * @f[
-   *    
+   *    \theta_c(k,x) = \sqrt{\frac{\pi}{2 k K(k)}}
+   *                  \theta_1\left(q(k),\frac{\pi x}{2K(k)}\right)
    * @f]
+   * where @f$ q(k) @f$ is the elliptic nome, @f$ K(k) @f$ is
+   * the complete Legendre elliptic integral of the first kind,
+   * and @f$ \theta_1(\nu,x) @f$ is the exponential theta-1 function.
+   * @see ellnome, std::comp_ellint_1, and theta_1 for details.
    *
    * @param __k The modulus @f$ -1 <= k <= +1 @f$
    * @param __x The argument
@@ -5630,8 +5665,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Neville theta-d function is defined by
    * @f[
-   *    \theta_d(k,x) = 
+   *    \theta_d(k,x) = \sqrt{\frac{\pi}{2K(k)}}
+   *                  \theta_3\left(q(k),\frac{\pi x}{2K(k)}\right)
    * @f]
+   * where @f$ q(k) @f$ is the elliptic nome, @f$ K(k) @f$ is
+   * the complete Legendre elliptic integral of the first kind,
+   * and @f$ \theta_3(\nu,x) @f$ is the exponential theta-3 function.
+   * @see ellnome, std::comp_ellint_1, and theta_3 for details.
    *
    * @param __k The modulus @f$ -1 <= k <= +1 @f$
    * @param __x The argument
@@ -5672,8 +5712,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Neville theta-n function is defined by
    * @f[
-   *    \theta_n(k,x) = 
+   *  \theta_n(k,x) = \sqrt{\frac{\pi}{2k'K(k)}}
+   *                  \theta_4\left(q(k),\frac{\pi x}{2K(k)}\right)
    * @f]
+   * where @f$ q(k) @f$ is the elliptic nome, @f$ K(k) @f$ is
+   * the complete Legendre elliptic integral of the first kind,
+   * and @f$ \theta_4(\nu,x) @f$ is the exponential theta-4 function.
+   * @see ellnome, std::comp_ellint_1, and theta_4 for details.
    *
    * @param __k The modulus @f$ -1 <= k <= +1 @f$
    * @param __x The argument
@@ -6516,7 +6561,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   B_n'(x) = n * B_{n-1}(x)
    * @f]
    *
-   * The series expansion is:
+   * The series expansion for the Bernoulli polynomials is:
    * @f[
    *   B_n(x) = \sum_{k=0}^{n} B_k \binom{n}{k} x^{n-k}
    * @f]
@@ -6546,8 +6591,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the Eulerian number of the first kind.
    * The Eulerian numbers of the first kind are defined by recursion:
    * @f[
-   *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m)
+   *   \newcommand{\eulerian}[2]{\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}}
+   *
+   *   \eulerian{n}{m} = (n-m)\eulerian{n-1}{m-1} + (m+1)\eulerian{n-1}{m}
+   *   \mbox{ for } n > 0
    * @f]
+   * Note that @f$ A(n,m) @f$ is a common older notation.
+   *
+   * @todo Develop an iterator model for Eulerian numbers of the first kind.
    */
   template<typename _Tp>
     inline _Tp
@@ -6558,8 +6609,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the Eulerian number of the second kind.
    * The Eulerian numbers of the second kind are defined by recursion:
    * @f[
-   *   A(n,m) = (2n-m-1)A(n-1,m-1) + (m+1)A(n-1,m)
+   *   \newcommand{\eulerian}[2]
+   *   {\left\langle\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}\right\rangle}
+   *
+   *   \eulerian{n}{m} = (2n-m-1)\eulerian{n-1}{m-1} + (m+1)\eulerian{n-1}{m}
+   *       \mbox{ for } n > 0
    * @f]
+   *
+   * @todo Develop an iterator model for Eulerian numbers of the second kind.
    */
   template<typename _Tp>
     inline _Tp
@@ -6570,23 +6627,32 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the Stirling number of the first kind.
    *
    * The Stirling numbers of the first kind are the coefficients of
-   * the Pocchammer polynomials:
+   * the Pocchammer polynomials or the rising factorials:
    * @f[
-   *   (x)_n = \sum_{k=0}^{n} S_n^{(k)} x^k
+   *   \newcommand{\stirling}[2]{\genfrac{[}{]}{0pt}{0}{#1}{#2}}
+   *   (x)_n = \sum_{k=0}^{n} \stirling{n}{k} x^k
    * @f]
    *
    * The recursion is
    * @f[
-   *   S_{n+1}^{(m)} = S_n^{(m-1)} - n S_n^{(m)} \mbox{ or }
+   *   \newcommand{\stirling}[2]{\genfrac{[}{]}{0pt}{0}{#1}{#2}}
+   *
+   *   \stirling{n+1}{m} = \stirling{n}{m-1} - n \stirling{n}{m}
    * @f]
    * with starting values
    * @f[
-   *   S_0^{(0\rightarrow m)} = {1, 0, 0, ..., 0}
+   *   \newcommand{\stirling}[2]{\genfrac{[}{]}{0pt}{0}{#1}{#2}}
+   *   \stirling{0}{0\rightarrow m} = {1, 0, 0, ..., 0}
    * @f]
    * and
    * @f[
-   *   S_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0}
+   *   \newcommand{\stirling}[2]{\genfrac{[}{]}{0pt}{0}{#1}{#2}}
+   *   \stirling{0\rightarrow n}{0} = {1, 0, 0, ..., 0}
    * @f]
+   * The Stirling number of the first kind is denoted by other symbols
+   * in the literature, usually @f$ S_n^{(m)} @f$.
+   *
+   * @todo Develop an iterator model for Stirling numbers of the first kind.
    */
   template<typename _Tp>
     inline _Tp
@@ -6594,13 +6660,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     { return std::__detail::__stirling_1<_Tp>(__n, __m); }
 
   /**
-   * Return the Stirling number of the second kind from lookup
-   * or by series expansion.
+   * Return the Stirling number of the second kind by series expansion
+   * or by recursion.
    *
    * The series is:
    * @f[
-   *   \sigma_n^{(m)} = \sum_{k=0}^{m}\frac{(-1)^{m-k}k^n}{(m-k)!k!}
+   *   \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}}
+   *
+   *   \sigma_n^{(m)} = \stirling{n}{m}
+   *      = \sum_{k=0}^{m}\frac{(-1)^{m-k}k^n}{(m-k)!k!}
    * @f]
+   *
+   * The Stirling number of the second kind is denoted by other symbols
+   * in the literature: 
+   * @f$ \sigma_n^{(m)} @f$, @f$ \textit{S}_n^{(m)} @f$ and others.
+   *
+   * @todo Develop an iterator model for Stirling numbers of the second kind.
    */
   template<typename _Tp>
     inline _Tp

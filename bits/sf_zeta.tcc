@@ -176,7 +176,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    *  The dilogarithm function is defined by:
    *   @f[
-   *     Li_2(x) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1
+   *     Li_2(x) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} \mbox{ for } s > 1
    *   @f]
    *  For |x| near 1 use the reflection formulae:
    *   @f[
@@ -794,11 +794,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The Debye functions are related to the incomplete Riemann zeta function:
    * @f[
    *    \zeta_x(s) = \frac{1}{\Gamma(s)}\int_{0}^{x}\frac{t^{s-1}}{e^t-1}dt
-   *          = \sum{k=1}{\infty}\frac{P(s,kx)}{k^s}
+   *          = \sum_{k=1}^{\infty}\frac{P(s,kx)}{k^s}
    * @f]
    * @f[
    *    Z_x(s) = \frac{1}{\Gamma(s)}\int_{x}^{\infty}\frac{t^{s-1}}{e^t-1}dt
-   *          = \sum{k=1}{\infty}\frac{Q(s,kx)}{k^s}
+   *          = \sum_{k=1}^{\infty}\frac{Q(s,kx)}{k^s}
    * @f]
    * where @f$ P(a,x), Q(a,x) @f$ is the incomplete gamma function ratios.
    * The Debye functions are:

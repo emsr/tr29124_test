@@ -1076,6 +1076,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the Dirichlet eta function.
    * Currently, s must be real (complex type but negligible imaginary part.)
    * Otherwise std::domain_error is thrown.
+   * The Dirichlet eta function, in terms of the polylogarithm, is
+   * @f[
+   *   \renewcommand\Re{\operatorname{Re}}
+   *   \renewcommand\Im{\operatorname{Im}}
+   *   \eta(s) = -\Re{Li_s(-1)}
+   * @f]
    *
    * @param __s  The complex (but on-real-axis) argument.
    * @return  The complex Dirichlet eta function.
@@ -1094,10 +1100,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the Dirichlet eta function for real argument.
+   * Return the Dirichlet eta function for real argument.
+   * The Dirichlet eta function, in terms of the polylogarithm, is
+   * @f[
+   *   \renewcommand\Re{\operatorname{Re}}
+   *   \renewcommand\Im{\operatorname{Im}}
+   *   \eta(s) = -\Re{Li_s(-1)}
+   * @f]
    *
-   *  @param __s  The real argument.
-   *  @return  The Dirichlet eta function.
+   * @param __s  The real argument.
+   * @return  The Dirichlet eta function.
    */
   template<typename _Tp>
     _Tp
@@ -1128,6 +1140,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the Dirichlet beta function.
    * Currently, s must be real (complex type but negligible imaginary part.)
    * Otherwise std::domain_error is thrown.
+   * The Dirichlet beta function, in terms of the polylogarithm, is
+   * @f[
+   *   \renewcommand\Re{\operatorname{Re}}
+   *   \renewcommand\Im{\operatorname{Im}}
+   *   \beta(s) = \Im{Li_s(i)}
+   * @f]
    *
    * @param __s  The complex (but on-real-axis) argument.
    * @return  The Dirichlet Beta function of real argument.
@@ -1148,6 +1166,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Dirichlet beta function for real argument.
+   * The Dirichlet beta function, in terms of the polylogarithm, is
+   * @f[
+   * \renewcommand\Re{\operatorname{Re}}
+   * \renewcommand\Im{\operatorname{Im}}
+   *   \beta(s) = \Im{Li_s(i)}
+   * @f]
    *
    * @param __s  The real argument.
    * @return  The Dirichlet Beta function of real argument.
@@ -1164,10 +1188,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Return the Dirichlet lambda function for real argument.
+   * Return the Dirichlet lambda function for real argument.
+   * @f[
+   *   \lambda(s) = \frac{1}{2}(\zeta(s) + \eta(s))
+   * @f]
    *
-   *  @param __s  The real argument.
-   *  @return  The Dirichlet lambda function.
+   * @param __s  The real argument.
+   * @return  The Dirichlet lambda function.
    */
   template<typename _Tp>
     _Tp
