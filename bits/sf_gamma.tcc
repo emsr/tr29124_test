@@ -2896,7 +2896,7 @@ _S_neg_double_factorial_table[999]
    *   a^{\underline{n}} = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1
    *	     = \Gamma(a + 1) / \Gamma(a - n + 1)
    * @f]
-   * In particular, $f[ n^{\underline{n}} = n! $f].
+   * In particular, @f$ n^{\underline{n}} = n! @f$.
    */
   template<typename _Tp>
     _Tp
@@ -2996,7 +2996,7 @@ _S_neg_double_factorial_table[999]
    *   a^{\underline{n}} = \Gamma(a + 1) / \Gamma(a - \nu + 1)
    *	     = \prod_{k=0}^{n-1} (a - k), (a)_0 = 1
    * @f]
-   * In particular, $f[ n^{\underline{n}} = n! $f].
+   * In particular, @f$ n^{\underline{n}} = n! @f$.
    * Thus this function returns
    * @f[
    *   ln[a^{\underline{n}}] = ln[\Gamma(a + 1)] - ln[\Gamma(a - \nu + 1)],

@@ -446,7 +446,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Riemann zeta function is defined by:
    * @f[
-   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for \Re(s) > 1
+   *    \renewcommand\Re{\operatorname{Re}}
+   *    \renewcommand\Im{\operatorname{Im}}
+   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for \Re{s} > 1
    * @f]
    * For \Re(s) < 1 use the reflection formula:
    * @f[

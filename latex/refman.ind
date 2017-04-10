@@ -524,38 +524,40 @@
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{248, 249}
   \item {\+\_\+\+\_\+euler\+\_\+series}
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{249}
+  \item {\+\_\+\+\_\+eulerian\+\_\+1}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{249}
   \item {\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur}
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{249}
   \item {\+\_\+\+\_\+eulerian\+\_\+2}
-    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{249}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{250}
   \item {\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur}
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{250}
   \item {\+\_\+\+\_\+expint}
-    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{250}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{250, 251}
   \item {\+\_\+\+\_\+expint\+\_\+\+E1}
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{251}
   \item {\+\_\+\+\_\+expint\+\_\+\+E1\+\_\+asymp}
-    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{251}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{252}
   \item {\+\_\+\+\_\+expint\+\_\+\+E1\+\_\+series}
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{252}
   \item {\+\_\+\+\_\+expint\+\_\+\+Ei}
-    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{252}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{253}
   \item {\+\_\+\+\_\+expint\+\_\+\+Ei\+\_\+asymp}
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{253}
   \item {\+\_\+\+\_\+expint\+\_\+\+Ei\+\_\+series}
-    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{253}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{254}
   \item {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+asymp}
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{254}
   \item {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+cont\+\_\+frac}
-    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{254}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{255}
   \item {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+large\+\_\+n}
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{255}
   \item {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+recursion}
-    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{255}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{256}
   \item {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+series}
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{256}
   \item {\+\_\+\+\_\+exponential\+\_\+cdf}
-    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{256}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{257}
   \item {\+\_\+\+\_\+exponential\+\_\+cdfc}
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{257}
   \item {\+\_\+\+\_\+exponential\+\_\+pdf}
@@ -571,7 +573,7 @@
     \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+Auxilliary\+State}, 
 		\hyperpage{385}
   \item {\+\_\+\+\_\+falling\+\_\+factorial}
-    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{257, 258}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{258}
   \item {\+\_\+\+\_\+fermi\+\_\+dirac}
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{258}
   \item {\+\_\+\+\_\+fisher\+\_\+f\+\_\+cdf}
@@ -579,7 +581,7 @@
   \item {\+\_\+\+\_\+fisher\+\_\+f\+\_\+cdfc}
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{259}
   \item {\+\_\+\+\_\+fisher\+\_\+f\+\_\+pdf}
-    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{259}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{260}
   \item {\+\_\+\+\_\+fock\+\_\+airy}
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{260}
   \item {\+\_\+\+\_\+fp\+\_\+is\+\_\+equal}
@@ -599,7 +601,7 @@
   \item {\+\_\+\+\_\+fp\+\_\+max\+\_\+abs}
     \subitem {\+\_\+\+\_\+gnu\+\_\+cxx}, \hyperpage{181}
   \item {\+\_\+\+\_\+fresnel}
-    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{260}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{261}
   \item {\+\_\+\+\_\+fresnel\+\_\+cont\+\_\+frac}
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{261}
   \item {\+\_\+\+\_\+fresnel\+\_\+series}
@@ -3017,38 +3019,39 @@
     \subitem {\+\_\+\+\_\+ellnome\+\_\+series}, \hyperpage{248}
     \subitem {\+\_\+\+\_\+euler}, \hyperpage{248, 249}
     \subitem {\+\_\+\+\_\+euler\+\_\+series}, \hyperpage{249}
+    \subitem {\+\_\+\+\_\+eulerian\+\_\+1}, \hyperpage{249}
     \subitem {\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur}, \hyperpage{249}
-    \subitem {\+\_\+\+\_\+eulerian\+\_\+2}, \hyperpage{249}
+    \subitem {\+\_\+\+\_\+eulerian\+\_\+2}, \hyperpage{250}
     \subitem {\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur}, \hyperpage{250}
-    \subitem {\+\_\+\+\_\+expint}, \hyperpage{250}
+    \subitem {\+\_\+\+\_\+expint}, \hyperpage{250, 251}
     \subitem {\+\_\+\+\_\+expint\+\_\+\+E1}, \hyperpage{251}
-    \subitem {\+\_\+\+\_\+expint\+\_\+\+E1\+\_\+asymp}, \hyperpage{251}
+    \subitem {\+\_\+\+\_\+expint\+\_\+\+E1\+\_\+asymp}, \hyperpage{252}
     \subitem {\+\_\+\+\_\+expint\+\_\+\+E1\+\_\+series}, 
 		\hyperpage{252}
-    \subitem {\+\_\+\+\_\+expint\+\_\+\+Ei}, \hyperpage{252}
+    \subitem {\+\_\+\+\_\+expint\+\_\+\+Ei}, \hyperpage{253}
     \subitem {\+\_\+\+\_\+expint\+\_\+\+Ei\+\_\+asymp}, \hyperpage{253}
     \subitem {\+\_\+\+\_\+expint\+\_\+\+Ei\+\_\+series}, 
-		\hyperpage{253}
+		\hyperpage{254}
     \subitem {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+asymp}, \hyperpage{254}
     \subitem {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+cont\+\_\+frac}, 
-		\hyperpage{254}
+		\hyperpage{255}
     \subitem {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+large\+\_\+n}, 
 		\hyperpage{255}
     \subitem {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+recursion}, 
-		\hyperpage{255}
+		\hyperpage{256}
     \subitem {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+series}, 
 		\hyperpage{256}
-    \subitem {\+\_\+\+\_\+exponential\+\_\+cdf}, \hyperpage{256}
+    \subitem {\+\_\+\+\_\+exponential\+\_\+cdf}, \hyperpage{257}
     \subitem {\+\_\+\+\_\+exponential\+\_\+cdfc}, \hyperpage{257}
     \subitem {\+\_\+\+\_\+exponential\+\_\+pdf}, \hyperpage{257}
     \subitem {\+\_\+\+\_\+factorial}, \hyperpage{257}
-    \subitem {\+\_\+\+\_\+falling\+\_\+factorial}, \hyperpage{257, 258}
+    \subitem {\+\_\+\+\_\+falling\+\_\+factorial}, \hyperpage{258}
     \subitem {\+\_\+\+\_\+fermi\+\_\+dirac}, \hyperpage{258}
     \subitem {\+\_\+\+\_\+fisher\+\_\+f\+\_\+cdf}, \hyperpage{259}
     \subitem {\+\_\+\+\_\+fisher\+\_\+f\+\_\+cdfc}, \hyperpage{259}
-    \subitem {\+\_\+\+\_\+fisher\+\_\+f\+\_\+pdf}, \hyperpage{259}
+    \subitem {\+\_\+\+\_\+fisher\+\_\+f\+\_\+pdf}, \hyperpage{260}
     \subitem {\+\_\+\+\_\+fock\+\_\+airy}, \hyperpage{260}
-    \subitem {\+\_\+\+\_\+fresnel}, \hyperpage{260}
+    \subitem {\+\_\+\+\_\+fresnel}, \hyperpage{261}
     \subitem {\+\_\+\+\_\+fresnel\+\_\+cont\+\_\+frac}, \hyperpage{261}
     \subitem {\+\_\+\+\_\+fresnel\+\_\+series}, \hyperpage{261}
     \subitem {\+\_\+\+\_\+gamma}, \hyperpage{261, 262}

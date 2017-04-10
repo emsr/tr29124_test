@@ -200,7 +200,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *       + (m+1)\genfrac\langle\rangle{0pt}{0}{n-1}{m}
    *    \mbox{ for } n > 0
    * @f]
-   * Note that 2f$ A(n,m) @f$ is a common older notation.
+   * Note that @f$ A(n,m) @f$ is a common older notation.
    */
   template<typename _Tp>
     inline _Tp

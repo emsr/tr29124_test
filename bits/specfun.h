@@ -3468,8 +3468,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__hurwitz_zeta<float>(__s, __a); }
 
   /**
-   * Return the Hurwitz zeta function of <tt>long double</tt> argument @f$ s @f$,
-   * and parameter @f$ a @f$.
+   * Return the Hurwitz zeta function of <tt>long double</tt>
+   * argument @f$ s @f$, and parameter @f$ a @f$.
    *
    * @see hurwitz_zeta for details.
    */
@@ -3478,7 +3478,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__hurwitz_zeta<long double>(__s, __a); }
 
   /**
-   * Return the Hurwitz zeta function of real argument @f$ s @f$, and parameter @f$ a @f$.
+   * Return the Hurwitz zeta function of real argument @f$ s @f$,
+   * and parameter @f$ a @f$.
    *
    * The the Hurwitz zeta function is defined by
    * @f[
@@ -3558,7 +3559,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    H_n = \sum_{k=1}^{n}\frac{1}{k}
    * @f]
    *
-   * @param __x The parameter
+   * @param __n The parameter
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
@@ -3571,8 +3572,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Incomplete beta functions
 
   /**
-   * Return the regularized incomplete beta function of parameters @f$ a @f$, @f$ b @f$,
-   * and argument @f$ x @f$.
+   * Return the regularized incomplete beta function of parameters
+   * @f$ a @f$, @f$ b @f$, and argument @f$ x @f$.
    *
    * See ibeta for details.
    */
@@ -3872,7 +3873,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   a^{\underline{n}} = \Gamma(a + 1) / \Gamma(a - \nu + 1)
    *	     = \prod_{k=0}^{n-1} (a - k), a^{\underline{0}} = 1
    * @f]
-   * In particular, $f[ n^{\underline{n}} = n! $f].
+   * In particular, @f$ n^{\underline{n}} = n! @f$.
    * Thus this function returns
    * @f[
    *   ln[a^{\underline{n}}] = ln[\Gamma(a + 1)] - ln[\Gamma(a - \nu + 1)],
@@ -3966,7 +3967,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   a^{\underline{n}} = \prod_{k=0}^{n-1} (a - k), a^{\underline{0}} = 1
    *	     = \Gamma(a + 1) / \Gamma(a - n + 1)
    * @f]
-   * In particular, $f$ n^{\underline{n}} = n! $f$.
+   * In particular, @f$ n^{\underline{n}} = n! @f$.
    */
   template<typename _Tp, typename _Tnu>
     inline __gnu_cxx::__promote_fp_t<_Tp, _Tnu>
@@ -5269,8 +5270,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Clausen function is defined by
    * @f[
-   *    C_m(x) = Sl_m(x) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^m} \mbox{ for even } m
-   *           = Cl_m(x) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^m} \mbox{ for odd } m
+   *    C_m(x)
+   *      = Sl_m(x) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^m} \mbox{ for even } m
+   *      = Cl_m(x) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^m} \mbox{ for odd } m
    * @f]
    *
    * @tparam _Tp The real type of the argument
@@ -5279,10 +5281,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
-    clausen(unsigned int __m, _Tp __w)
+    clausen(unsigned int __m, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__clausen<__type>(__m, __w);
+      return std::__detail::__clausen<__type>(__m, __x);
     }
 
   // Clausen functions - complex argument
