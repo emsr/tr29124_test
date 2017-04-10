@@ -36,6 +36,7 @@ wrappers_release:
 	$(MAKE) -C wrappers/release
 
 BINS = testcase \
+       testcase_tr1 \
        mpfrcalc \
        diff_special_function \
        test_special_function \
@@ -276,6 +277,9 @@ testcases2: testcase2
 testcases: testcase
 	LD_LIBRARY_PATH=/home/ed/bin$(SUFFIX)/lib64:wrappers/debug:$$LD_LIBRARY_PATH ./testcase
 
+testcases_tr1: testcase_tr1
+	LD_LIBRARY_PATH=/home/ed/bin$(SUFFIX)/lib64:wrappers/debug:$$LD_LIBRARY_PATH ./testcase_tr1
+
 diffs: diff_special_function
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./diff_special_function > diff_special_function.txt
 
@@ -445,7 +449,10 @@ testcase2: testcase2.cpp testcase2.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
 	$(CXX17) -I. -o testcase2 testcase2.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
 testcase: testcase.cpp testcase.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -o testcase testcase.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
+	$(CXX17) -UTR1 -I. -o testcase testcase.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
+
+testcase_tr1: testcase.cpp testcase.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -DTR1 -I. -o testcase_tr1 testcase.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
 test_limits: test_limits.cpp
 	$(CXX17) -I. -o test_limits test_limits.cpp -lquadmath

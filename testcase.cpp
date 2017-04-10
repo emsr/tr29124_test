@@ -1,3 +1,5 @@
+#define STD !TR1
+
 #include <iostream>
 #include <sstream>
 #include <iomanip>
@@ -5,12 +7,14 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
-#include <cmath>
+#if STD
+#  include <cmath>
+#else
+#  include <tr1/cmath>
+#endif
 #include <functional>
 #include <utility>
 #include <tuple>
-
-#define STD 1
 
 #include "specfun_testcase.h"
 #include "wrap_gsl.h"
@@ -310,9 +314,14 @@ template<typename Real>
     unsigned int test = 1;
 
     const std::string path = "check";
-    const std::string prefix = "/check_";
 
+#if STD
     std::string nsname = "std";
+    const std::string prefix = "/check_";
+#else
+    std::string nsname = "std::tr1";
+    const std::string prefix = "/check_tr1_";
+#endif
 
     std::string basename;
     std::string filename;
