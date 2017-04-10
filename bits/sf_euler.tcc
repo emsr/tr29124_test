@@ -151,11 +151,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the Eulerian number of the first kind by recursion.
-   * The recursion is
+   * Return the Eulerian number of the first kind.
+   * The Eulerian numbers of the first kind are defined by recursion:
    * @f[
-   *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
+   *   \newcommand{\eulerian}[2]{\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}}
+   *
+   *   \eulerian{n}{m} = (n-m)\eulerian{n-1}{m-1} + (m+1)\eulerian{n-1}{m}
+   *   \mbox{ for } n > 0
    * @f]
+   * Note that @f$ A(n,m) @f$ is a common older notation.
    */
   template<typename _Tp>
     _Tp
@@ -189,10 +193,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Eulerian number of the first kind.
-   * The Eulerian numbers are defined by recursion:
+   * The Eulerian numbers of the first kind are defined by recursion:
    * @f[
-   *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
+   *    \genfrac\langle\rangle{0pt}{0}{n}{m}
+   *       = (n-m)\genfrac\langle\rangle{0pt}{0}{n-1}{m-1}
+   *       + (m+1)\genfrac\langle\rangle{0pt}{0}{n-1}{m}
+   *    \mbox{ for } n > 0
    * @f]
+   * Note that 2f$ A(n,m) @f$ is a common older notation.
    */
   template<typename _Tp>
     inline _Tp
