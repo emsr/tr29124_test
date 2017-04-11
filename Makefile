@@ -262,6 +262,32 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/origin_cyl_bessel_j \
 	 ${CHECK_DIR}/origin_cyl_neumann
 
+TR1_CHECKS =  \
+	${CHECK_DIR}/check_tr1_assoc_laguerre \
+	${CHECK_DIR}/check_tr1_assoc_legendre \
+	${CHECK_DIR}/check_tr1_beta \
+	${CHECK_DIR}/check_tr1_comp_ellint_1 \
+	${CHECK_DIR}/check_tr1_comp_ellint_2 \
+	${CHECK_DIR}/check_tr1_comp_ellint_3 \
+	${CHECK_DIR}/check_tr1_conf_hyperg \
+	${CHECK_DIR}/check_tr1_cyl_bessel_i \
+	${CHECK_DIR}/check_tr1_cyl_bessel_j \
+	${CHECK_DIR}/check_tr1_cyl_bessel_k \
+	${CHECK_DIR}/check_tr1_cyl_neumann \
+	${CHECK_DIR}/check_tr1_ellint_1 \
+	${CHECK_DIR}/check_tr1_ellint_2 \
+	${CHECK_DIR}/check_tr1_ellint_3 \
+	${CHECK_DIR}/check_tr1_expint \
+	${CHECK_DIR}/check_tr1_hermite \
+	${CHECK_DIR}/check_tr1_hyperg \
+	${CHECK_DIR}/check_tr1_laguerre \
+	${CHECK_DIR}/check_tr1_legendre \
+	${CHECK_DIR}/check_tr1_riemann_zeta \
+	${CHECK_DIR}/check_tr1_sph_bessel \
+	${CHECK_DIR}/check_tr1_sph_legendre \
+	${CHECK_DIR}/check_tr1_sph_neumann
+
+
 all: $(BINS)
 
 
@@ -433,6 +459,33 @@ check: $(CHECKS)
 	echo "pr68397" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/pr68397 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "origin_bessel_j" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/origin_cyl_bessel_j >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "origin_cyl_neumann" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/origin_cyl_neumann >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+
+
+check_tr1: $(TR1_CHECKS)
+	echo "Beginning executions of tr1 checks..." > $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt
+	echo "check_tr1_assoc_laguerre" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_assoc_laguerre >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_assoc_legendre" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_assoc_legendre >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_beta" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_beta >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_comp_ellint_1" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_comp_ellint_1 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_comp_ellint_2" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_comp_ellint_2 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_comp_ellint_3" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_comp_ellint_3 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_conf_hyperg" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_conf_hyperg >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_cyl_bessel_i" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_cyl_bessel_i >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_cyl_bessel_j" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_cyl_bessel_j >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_cyl_bessel_k" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_cyl_bessel_k >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_cyl_neumann" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_cyl_neumann >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_ellint_1" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_ellint_1 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_ellint_2" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_ellint_2 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_ellint_3" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_ellint_3 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_expint" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_expint >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_hermite" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_hermite >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_hyperg" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_hyperg >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_laguerre" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_laguerre >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_legendre" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_legendre >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_riemann_zeta" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_riemann_zeta >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_sph_bessel" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_sph_bessel >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_sph_legendre" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_sph_legendre >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_tr1_sph_neumann" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_sph_neumann >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 
 
 mpfrcalc: mpfr_gexpr.c
@@ -1112,6 +1165,75 @@ ${CHECK_DIR}/origin_cyl_bessel_j: ${CHECK_DIR}/origin_cyl_bessel_j.cc
 
 ${CHECK_DIR}/origin_cyl_neumann: ${CHECK_DIR}/origin_cyl_neumann.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/origin_cyl_neumann ${CHECK_DIR}/origin_cyl_neumann.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_assoc_laguerre: ${CHECK_DIR}/check_tr1_assoc_laguerre.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_assoc_laguerre ${CHECK_DIR}/check_tr1_assoc_laguerre.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_assoc_legendre: ${CHECK_DIR}/check_tr1_assoc_legendre.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_assoc_legendre ${CHECK_DIR}/check_tr1_assoc_legendre.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_beta: ${CHECK_DIR}/check_tr1_beta.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_beta ${CHECK_DIR}/check_tr1_beta.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_comp_ellint_1: ${CHECK_DIR}/check_tr1_comp_ellint_1.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_comp_ellint_1 ${CHECK_DIR}/check_tr1_comp_ellint_1.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_comp_ellint_2: ${CHECK_DIR}/check_tr1_comp_ellint_2.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_comp_ellint_2 ${CHECK_DIR}/check_tr1_comp_ellint_2.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_comp_ellint_3: ${CHECK_DIR}/check_tr1_comp_ellint_3.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_comp_ellint_3 ${CHECK_DIR}/check_tr1_comp_ellint_3.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_conf_hyperg: ${CHECK_DIR}/check_tr1_conf_hyperg.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_conf_hyperg ${CHECK_DIR}/check_tr1_conf_hyperg.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_cyl_bessel_i: ${CHECK_DIR}/check_tr1_cyl_bessel_i.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_cyl_bessel_i ${CHECK_DIR}/check_tr1_cyl_bessel_i.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_cyl_bessel_j: ${CHECK_DIR}/check_tr1_cyl_bessel_j.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_cyl_bessel_j ${CHECK_DIR}/check_tr1_cyl_bessel_j.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_cyl_bessel_k: ${CHECK_DIR}/check_tr1_cyl_bessel_k.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_cyl_bessel_k ${CHECK_DIR}/check_tr1_cyl_bessel_k.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_cyl_neumann: ${CHECK_DIR}/check_tr1_cyl_neumann.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_cyl_neumann ${CHECK_DIR}/check_tr1_cyl_neumann.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_ellint_1: ${CHECK_DIR}/check_tr1_ellint_1.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_ellint_1 ${CHECK_DIR}/check_tr1_ellint_1.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_ellint_2: ${CHECK_DIR}/check_tr1_ellint_2.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_ellint_2 ${CHECK_DIR}/check_tr1_ellint_2.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_ellint_3: ${CHECK_DIR}/check_tr1_ellint_3.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_ellint_3 ${CHECK_DIR}/check_tr1_ellint_3.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_expint: ${CHECK_DIR}/check_tr1_expint.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_expint ${CHECK_DIR}/check_tr1_expint.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_hermite: ${CHECK_DIR}/check_tr1_hermite.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_hermite ${CHECK_DIR}/check_tr1_hermite.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_hyperg: ${CHECK_DIR}/check_tr1_hyperg.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_hyperg ${CHECK_DIR}/check_tr1_hyperg.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_laguerre: ${CHECK_DIR}/check_tr1_laguerre.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_laguerre ${CHECK_DIR}/check_tr1_laguerre.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_legendre: ${CHECK_DIR}/check_tr1_legendre.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_legendre ${CHECK_DIR}/check_tr1_legendre.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_riemann_zeta: ${CHECK_DIR}/check_tr1_riemann_zeta.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_riemann_zeta ${CHECK_DIR}/check_tr1_riemann_zeta.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_sph_bessel: ${CHECK_DIR}/check_tr1_sph_bessel.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_sph_bessel ${CHECK_DIR}/check_tr1_sph_bessel.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_sph_legendre: ${CHECK_DIR}/check_tr1_sph_legendre.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_sph_legendre ${CHECK_DIR}/check_tr1_sph_legendre.cc -lquadmath
+
+${CHECK_DIR}/check_tr1_sph_neumann: ${CHECK_DIR}/check_tr1_sph_neumann.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_tr1_sph_neumann ${CHECK_DIR}/check_tr1_sph_neumann.cc -lquadmath
 
 
 tarball:

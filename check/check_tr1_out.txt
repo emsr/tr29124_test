@@ -1,0 +1,24 @@
+Beginning executions of tr1 checks...
+check_tr1_assoc_laguerre
+check_tr1_assoc_legendre
+check_tr1_beta
+check_tr1_comp_ellint_1
+check_tr1_comp_ellint_2
+check_tr1_comp_ellint_3
+check_tr1_conf_hyperg
+check_tr1_cyl_bessel_i
+check_tr1_cyl_bessel_j
+check_tr1_cyl_bessel_k
+check_tr1_cyl_neumann
+check_tr1_ellint_1
+check_tr1_ellint_2
+check_tr1_ellint_3
+check_tr1_expint
+check_tr1_hermite
+check_tr1_hyperg
+check_tr1_laguerre
+check_tr1_legendre
+check_tr1_riemann_zeta
+check_tr1_sph_bessel
+check_tr1_sph_legendre
+check_tr1_sph_neumann

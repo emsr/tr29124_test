@@ -22,4 +22,5 @@ test_quadrature
 test_midpoint_integral
 test_trapezoid_integral
 test_double_exp_integrate
+test_phase_iterator
 
