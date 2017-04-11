@@ -37,7 +37,6 @@
 #endif
 #include <specfun_testcase.h>
 
-
 // Test data for n=0.
 // max(|f - f_Burkhardt|): 0.0000000000000000 at index 0
 // max(|f - f_Burkhardt| / |f_Burkhardt|): 0.0000000000000000
