@@ -142,7 +142,6 @@ template<typename Real>
   harness()
   {
 #if STD
-    std::string ns("std");
     using __gnu_cxx::airy_ai;
     using __gnu_cxx::airy_bi;
     using       std::assoc_laguerre;
@@ -251,7 +250,6 @@ template<typename Real>
     using __gnu_cxx::theta_n;
     using __gnu_cxx::zernike;
 #else
-    std::string ns("tr1");
     using  std::tr1::assoc_laguerre;
     using  std::tr1::assoc_legendre;
     using  std::tr1::beta;

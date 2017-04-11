@@ -184,6 +184,29 @@ check/pr56216_cyl_bessel_i
 check/pr68397
 check/origin_cyl_bessel_j
 check/origin_cyl_neumann
+check/check_tr1_assoc_laguerre
+check/check_tr1_assoc_legendre
+check/check_tr1_beta
+check/check_tr1_comp_ellint_1
+check/check_tr1_comp_ellint_2
+check/check_tr1_comp_ellint_3
+check/check_tr1_conf_hyperg
+check/check_tr1_cyl_bessel_i
+check/check_tr1_cyl_bessel_j
+check/check_tr1_cyl_bessel_k
+check/check_tr1_cyl_neumann
+check/check_tr1_ellint_1
+check/check_tr1_ellint_2
+check/check_tr1_ellint_3
+check/check_tr1_expint
+check/check_tr1_hermite
+check/check_tr1_hyperg
+check/check_tr1_laguerre
+check/check_tr1_legendre
+check/check_tr1_riemann_zeta
+check/check_tr1_sph_bessel
+check/check_tr1_sph_legendre
+check/check_tr1_sph_neumann
 
 clamp_2
 
@@ -199,6 +222,7 @@ complex_literal_arith
 diff_special_function
 diff_local_special_function
 testcase
+testcase_tr1
 testcase2
 test_agm
 test_airy

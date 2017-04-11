@@ -61,9 +61,16 @@ namespace __gnu_cxx
                        bool __past_end = false)
       :
 	_M_omega_pow_i(std::polar(_Tp{1},
-			-__sign * _S_rational_arg(__i, __len))),
+				  -__sign * _S_rational_arg(__i, __len))),
 	_M_omega_pow_ik(_Tp{1}),
 	_M_k(__past_end ? __len : 0)
+      { }
+
+      __phase_iterator(_Tp __delta)
+      :
+	_M_omega_pow_i(std::polar(_Tp{1}, __delta)),
+	_M_omega_pow_ik(_Tp{1}),
+	_M_k(0)
       { }
 
       std::complex<_Tp>

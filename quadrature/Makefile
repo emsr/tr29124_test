@@ -14,6 +14,7 @@ CXX_LIB_DIR = $(CXX_INST_DIR)/lib64
 OBJ_DIR = obj
 
 BINS = \
+  test_phase_iterator \
   test_quadrature \
   test_trapezoid_integral \
   test_midpoint_integral \
@@ -37,6 +38,9 @@ all: $(BINS)
 test: $(BINS)
 	./test_quadrature > test_quadrature.txt 2> test_quadrature2.txt
 
+
+test_phase_iterator: test_phase_iterator.cpp *.h *.tcc
+	$(CXX17) -o test_phase_iterator test_phase_iterator.cpp -lquadmath
 
 test_quadrature: test_quadrature.cpp *.h *.tcc
 	$(CXX17) -o test_quadrature test_quadrature.cpp -lquadmath
