@@ -37,7 +37,6 @@
 #endif
 #include <specfun_testcase.h>
 
-
 // Test data for nu=-5.0000000000000000.
 // max(|f - f_Boost|): 1.1102230246251565e-16 at index 18
 // max(|f - f_Boost| / |f_Boost|): 1.1449301029630651e-15

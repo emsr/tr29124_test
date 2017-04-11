@@ -37,7 +37,6 @@
 #endif
 #include <specfun_testcase.h>
 
-
 // Divergence at n=0 k=1 f=-inf f_GSL=-inf
 // Divergence at n=0 k=2 f=-inf f_GSL=-inf
 // Divergence at n=0 k=3 f=-inf f_GSL=-inf

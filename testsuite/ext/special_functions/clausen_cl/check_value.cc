@@ -37,7 +37,6 @@
 #endif
 #include <specfun_testcase.h>
 
-
 // Test data for m=2.
 // max(|f - f_GSL|): 9.4368957093138306e-16 at index 0
 // max(|f - f_GSL| / |f_GSL|): 9.9845549689259114e-15
