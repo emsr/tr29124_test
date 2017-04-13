@@ -104,7 +104,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Rsum += __bk_xk;
 	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
 	  _Psum += __ak_xk;
-	  auto __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
+	  const auto __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
 
 	  ++__k;
 	  __2km1 += 2;
@@ -112,18 +112,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Ssum += __bk_xk;
 	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
 	  _Qsum += __ak_xk;
-	  auto __convQ = std::abs(__ak_xk) < _S_eps * std::abs(_Qsum);
+	  const auto __convQ = std::abs(__ak_xk) < _S_eps * std::abs(_Qsum);
 
 	  if (__convP && __convQ && __k > (__nu / _Tp{2}))
 	    break;
 	}
       while (__k < _Tp{100} * __nu);
 
-      auto __coef = std::sqrt(_Tp{1} / (_Tp{2} * _S_pi * __x));
-      auto _Inu = __coef * std::exp(__x) * (_Psum - _Qsum);
-      auto _Ipnu = __coef * std::exp(__x) * (_Rsum - _Ssum);
-      auto _Knu = _S_pi * __coef * std::exp(-__x) * (_Psum + _Qsum);
-      auto _Kpnu =  -_S_pi * __coef * std::exp(-__x) * (_Rsum + _Ssum);
+      const auto __coef = std::sqrt(_Tp{1} / (_Tp{2} * _S_pi * __x));
+      const auto _Inu = __coef * std::exp(__x) * (_Psum - _Qsum);
+      const auto _Ipnu = __coef * std::exp(__x) * (_Rsum - _Ssum);
+      const auto _Knu = _S_pi * __coef * std::exp(-__x) * (_Psum + _Qsum);
+      const auto _Kpnu =  -_S_pi * __coef * std::exp(-__x) * (_Rsum + _Ssum);
 
       return __bess_t{__nu, __x, _Inu, _Ipnu, _Knu, _Kpnu};
     }
@@ -158,9 +158,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __mu2 = __mu * __mu;
       const auto __xi = _Tp{1} / __x;
       const auto __xi2 = _Tp{2} * __xi;
-      auto __h = __nu * __xi;
-      if (__h < _S_fp_min)
-	__h = _S_fp_min;
+      auto __h = std::max(_S_fp_min, __nu * __xi);
       auto __b = __xi2 * __nu;
       auto __d = _Tp{0};
       auto __c = __h;
@@ -191,7 +189,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Inul = _Inutemp;
 	}
 
-      auto __f = _Ipnul / _Inul;
+      const auto __f = _Ipnul / _Inul;
       _Tp _Kmu, _Knu1;
       if (__x < _S_x_min)
 	{
