@@ -316,55 +316,44 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
       else
 	{
+	  const auto _S_i = std::complex<_Tp>{0, 1};
 	  auto __a = _Tp{0.25L} - __mu2;
-	  auto __q = _Tp{1};
-	  auto __p = -__xi / _Tp{2};
-	  auto __br = _Tp{2} * __x;
-	  auto __bi = _Tp{2};
-	  auto __fact = __a * __xi / (__p * __p + __q * __q);
-	  auto __cr = __br + __q * __fact;
-	  auto __ci = __bi + __p * __fact;
-	  auto __den = __br * __br + __bi * __bi;
-	  auto __dr = __br / __den;
-	  auto __di = -__bi / __den;
-	  auto __dlr = __cr * __dr - __ci * __di;
-	  auto __dli = __cr * __di + __ci * __dr;
-	  auto __temp = __p * __dlr - __q * __dli;
-	  __q = __p * __dli + __q * __dlr;
-	  __p = __temp;
+	  auto __pq = std::complex<_Tp>(-__xi / _Tp{2}, _Tp{1});
+	  auto __b = std::complex<_Tp>(_Tp{2} * __x, _Tp{2});
+	  auto __fact = __a * __xi / std::norm(__pq);
+	  auto __c = __b + _S_i * __fact * std::conj(__pq);
+	  auto __den = std::norm(__b);
+	  auto __d = std::conj(__b) / __den;
+	  auto __dl = __c * __d;
+	  __pq *= __dl;
 	  int __i;
 	  for (__i = 2; __i <= _S_max_iter; ++__i)
 	    {
 	      __a += _Tp{2 * (__i - 1)};
-	      __bi += _Tp{2};
-	      __dr = __a * __dr + __br;
-	      __di = __a * __di + __bi;
-	      if (std::abs(__dr) + std::abs(__di) < _S_fp_min)
-		__dr = _S_fp_min;
-	      __fact = __a / (__cr * __cr + __ci * __ci);
-	      __cr = __br + __cr * __fact;
-	      __ci = __bi - __ci * __fact;
-	      if (std::abs(__cr) + std::abs(__ci) < _S_fp_min)
-		__cr = _S_fp_min;
-	      __den = __dr * __dr + __di * __di;
-	      __dr /= __den;
-	      __di /= -__den;
-	      __dlr = __cr * __dr - __ci * __di;
-	      __dli = __cr * __di + __ci * __dr;
-	      __temp = __p * __dlr - __q * __dli;
-	      __q = __p * __dli + __q * __dlr;
-	      __p = __temp;
-	      if (std::abs(__dlr - _Tp{1}) + std::abs(__dli) < _S_eps)
+	      __b += _S_i * _Tp{2};
+	      __d = __a * __d + __b;
+	      if (std::abs(__d) < _S_fp_min)
+		__d = _S_fp_min;
+	      __fact = __a / std::norm(__c);
+	      __c = __b + __fact * std::conj(__c);
+	      if (std::abs(__c) < _S_fp_min)
+		__c = _S_fp_min;
+	      __den = std::norm(__d);
+	      __d = std::conj(__d) / __den;
+	      __dl = __c * __d;
+	      __pq *= __dl;
+	      if (std::abs(__dl - _Tp{1}) < _S_eps)
 		break;
 	    }
 	  if (__i > _S_max_iter)
 	    std::__throw_runtime_error(__N("__cyl_bessel_jn_steed: "
 					   "Lentz's method failed"));
-	  const auto __gam = (__p - __f) / __q;
-	  _Jmu = std::sqrt(_Wronski / ((__p - __f) * __gam + __q));
+	  const auto __gam = (__pq.real() - __f) / __pq.imag();
+	  _Jmu = std::sqrt(_Wronski / ((__pq.real() - __f) * __gam
+					+ __pq.imag()));
 	  _Jmu = std::copysign(_Jmu, _Jnul);
 	  _Nmu = __gam * _Jmu;
-	  _Npmu = (__p + __q / __gam) * _Nmu;
+	  _Npmu = (__pq.real() + __pq.imag() / __gam) * _Nmu;
 	  _Nnu1 = __mu * __xi * _Nmu - _Npmu;
         }
       __fact = _Jmu / _Jnul;
