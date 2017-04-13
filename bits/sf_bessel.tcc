@@ -344,13 +344,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (__i > _S_max_iter)
 	    std::__throw_runtime_error(__N("__cyl_bessel_jn_steed: "
 					   "Lentz's method failed"));
-	  //const auto [__p, __q] = __pq; This should be a thing.
-	  const auto __gam = (__pq.real() - __f) / __pq.imag();
-	  _Jmu = std::sqrt(_Wronski / ((__pq.real() - __f) * __gam
-					+ __pq.imag()));
+	  //const auto [__p, __q] = __pq; // This should be a thing.
+	  const auto [__p, __q] = reinterpret_cast<_Tp(&)[2]>(__pq);
+	  const auto __gam = (__p - __f) / __q;
+	  _Jmu = std::sqrt(_Wronski / ((__p - __f) * __gam + __q));
 	  _Jmu = std::copysign(_Jmu, _Jnul);
 	  _Nmu = __gam * _Jmu;
-	  _Npmu = (__pq.real() + __pq.imag() / __gam) * _Nmu;
+	  _Npmu = (__p + __q / __gam) * _Nmu;
 	  _Nnu1 = __mu * __xi * _Nmu - _Npmu;
         }
       __fact = _Jmu / _Jnul;
