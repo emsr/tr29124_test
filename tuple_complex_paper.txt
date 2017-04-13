@@ -1,0 +1,108 @@
+In many uses of std::complex one wants to capture the real and imaginary parts in separate variables either to use them in subsequent calculations or to modify them individually.
+There are many options:
+
+These options reflect an over-encapsulation of std::complex, which everyone agrees is a struct with two floating point numbers, real part and imaginary part, in that ordder.
+Attempting to use a decomposition declaration for a complex number is an error because of the pretension (ostensibly for C compatibility) the complex numbers are opaque.
+
+The rvalue and lvalue decomposition of std::complex can be accomplished with a simple pure-library extension:
+Provide a tuple interface to std::complex.
+
+  // Tuple interface to class template complex.
+#define __cxx_lib_tuple_complex 201705
+
+  // Declare tuple_size.
+  template<typename RealTp>
+    class tuple_size;
+
+  // Partial specialization for std::complex.
+  template<typename RealTp>
+    struct tuple_size<std::complex<RealTp>>
+    : public integral_constant<std::size_t, 2> { };
+
+  // Declare tuple_element.
+  template<std::size_t _Int, typename RealTp>
+    class tuple_element;
+
+  // Partial specialization for std::complex.
+  template<std::size_t _Int, typename RealTp>
+    struct tuple_element<_Int, std::complex<RealTp>>
+    {
+      static_assert(_Int < 2, "index is out of bounds");
+      typedef RealTp type;
+    };
+
+  // Decompose complex as rvalues.
+  template<std::size_t _Int, typename RealTp>
+    constexpr const RealTp
+    get(const std::complex<RealTp>& z)
+    {
+      static_assert(_Int < 2, "index is out of bounds");
+      return _Int == 0 ? z.real() : z.imag();
+    }
+
+  // Decompose complex as lvalues.
+  template<std::size_t _Int, typename RealTp>
+    constexpr RealTp&
+    get(std::complex<RealTp>& z)
+    {
+      static_assert(_Int < 2, "index is out of bounds");
+      auto w = reinterpret_cast<RealTp(&)[2]>(z);
+      return _Int == 0 ? w[0] : w[1];
+    }
+
+Then we have the following behavior:
+
+template<typename Tp>
+  void
+  test_complex_decomp()
+  {
+    std::complex<Tp> z(1, 2);
+
+    auto [x, y] = z;
+    std::cout << "z = " << z << '\n';
+    std::cout << "z parts:" << ' ' << x << ' ' << y << '\n';
+
+    z.real(3);
+    z.imag(4);
+    std::cout << "z = " << z << '\n';
+    std::cout << "z parts:" << ' ' << x << ' ' << y << '\n';
+
+    std::complex<Tp> w(1, 2);
+    std::cout << "w = " << w << '\n';
+    auto& [p, q] = w;
+
+    w.real(3);
+    w.imag(4);
+    std::cout << "w = " << w << '\n';
+    std::cout << "w parts:" << ' ' << p << ' ' << q << '\n';
+
+    p = -5;
+    q = -6;
+    std::cout << "w = " << w << '\n';
+    std::cout << "w parts:" << ' ' << p << ' ' << q << '\n';
+
+    return;
+  }
+
+int
+main()
+{
+  test_complex_decomp<double>();
+  return 0;
+}
+
+-------------------
+z = (1,2)
+z parts: 1 2
+z = (3,4)
+z parts: 1 2
+w = (1,2)
+w = (3,4)
+w parts: 3 4
+w = (-5,-6)
+w parts: -5 -6
+-------------------
+
+The static cast, ugly as it is, is required to be valid by conforming implementations of complex.
+29.5 Complex numbers [complex.numbers] p4, specifically 4.1-4.3.
+This solution elegantly isolates user code from this wart.
