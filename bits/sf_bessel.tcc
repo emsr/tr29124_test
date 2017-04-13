@@ -104,7 +104,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Rsum += __bk_xk;
 	  __ak_xk *= -(__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
 	  _Psum += __ak_xk;
-	  auto __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
+	  const auto __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
 
 	  ++__k;
 	  __2km1 += 2;
@@ -112,18 +112,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Ssum += __bk_xk;
 	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
 	  _Qsum += __ak_xk;
-	  auto __convQ = std::abs(__ak_xk) < _S_eps * std::abs(_Qsum);
+	  const auto __convQ = std::abs(__ak_xk) < _S_eps * std::abs(_Qsum);
 
 	  if (__convP && __convQ && __k > (__nu / _Tp{2}))
 	    break;
 	}
       while (__k < _Tp{100} * __nu);
 
-      auto __omega = __x - (__nu + 0.5L) * _S_pi_2;
-      auto __c = std::cos(__omega);
-      auto __s = std::sin(__omega);
+      const auto __omega = __x - (__nu + 0.5L) * _S_pi_2;
+      const auto __c = std::cos(__omega);
+      const auto __s = std::sin(__omega);
 
-      auto __coef = std::sqrt(_Tp{2} / (_S_pi * __x));
+      const auto __coef = std::sqrt(_Tp{2} / (_S_pi * __x));
       return __bess_t{__nu, __x,
 		__coef * (__c * _Psum - __s * _Qsum),
 		-__coef * (__s * _Rsum + __c * _Ssum),
@@ -176,8 +176,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __gamp = __gamma_reciprocal_series(__mu) / __mu;
 	      __gamm = __gamma_reciprocal_series(_Tp{1} - __mu);
 	    }
-	  auto __gam1 = (__gamm - __gamp) / (_Tp{2} * __mu);
-	  auto __gam2 = (__gamm + __gamp) / _Tp{2};
+	  const auto __gam1 = (__gamm - __gamp) / (_Tp{2} * __mu);
+	  const auto __gam2 = (__gamm + __gamp) / _Tp{2};
 	  return __gammat_t{__mu, __gamp, __gamm, __gam1, __gam2};
 	}
     }
@@ -221,9 +221,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __xi2 = _Tp{2} * __xi;
       const auto _Wronski = __xi2 / _S_pi;
       int __isign = 1;
-      _Tp __h = __nu * __xi;
-      if (__h < _S_fp_min)
-	__h = _S_fp_min;
+      auto __h = std::max(_S_fp_min, __nu * __xi);
       auto __b = __xi2 * __nu;
       auto __d = _Tp{0};
       auto __c = __h;
@@ -263,7 +261,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (_Jnul == _Tp{0})
 	_Jnul = _S_eps;
 
-      auto __f = _Jpnul / _Jnul;
+      const auto __f = _Jpnul / _Jnul;
       _Tp _Nmu, _Nnu1, _Npmu, _Jmu;
       if (__x < _S_x_min)
 	{
@@ -285,9 +283,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __p = __e / (_S_pi * __gamt.__gamma_plus_value);
 	  auto __q = _Tp{1} / (__e * _S_pi * __gamt.__gamma_minus_value);
 	  const auto __pimu2 = __pimu / _Tp{2};
-	  auto __fact3 = (std::abs(__pimu2) < _S_eps
-		       ? _Tp{1} : std::sin(__pimu2) / __pimu2 );
-	  auto __r = _S_pi * __pimu2 * __fact3 * __fact3;
+	  const auto __fact3 = (std::abs(__pimu2) < _S_eps
+			     ? _Tp{1} : std::sin(__pimu2) / __pimu2 );
+	  const auto __r = _S_pi * __pimu2 * __fact3 * __fact3;
 	  auto __c = _Tp{1};
 	  __d = -__x2 * __x2;
 	  auto __sum = __ff + __r * __q;
@@ -322,8 +320,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __b = std::complex<_Tp>(_Tp{2} * __x, _Tp{2});
 	  auto __fact = __a * __xi / std::norm(__pq);
 	  auto __c = __b + _S_i * __fact * std::conj(__pq);
-	  auto __den = std::norm(__b);
-	  auto __d = std::conj(__b) / __den;
+	  auto __d = std::conj(__b) / std::norm(__b);
 	  auto __dl = __c * __d;
 	  __pq *= __dl;
 	  int __i;
@@ -338,8 +335,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __c = __b + __fact * std::conj(__c);
 	      if (std::abs(__c) < _S_fp_min)
 		__c = _S_fp_min;
-	      __den = std::norm(__d);
-	      __d = std::conj(__d) / __den;
+	      __d = std::conj(__d) / std::norm(__d);
 	      __dl = __c * __d;
 	      __pq *= __dl;
 	      if (std::abs(__dl - _Tp{1}) < _S_eps)
