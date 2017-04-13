@@ -3,6 +3,7 @@ namespace std _GLIBCXX_VISIBILITY(default)
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Tuple interface to class template complex.
+#define __cxx_lib_tuple_complex 201705
 
   /// tuple_size
   template<typename _Tp>
@@ -29,19 +30,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     struct __is_tuple_like_impl<std::complex<_Tp>> : true_type
     { };
 
+  /// Decompose complex as rvalues.
   template<std::size_t _Int, typename _Tp>
     constexpr const _Tp
     get(const std::complex<_Tp>& __z)
     {
-      static_assert(_Int < 2, "index is within bounds");
+      static_assert(_Int < 2, "index is out of bounds");
       return _Int == 0 ? __z.real() : __z.imag();
     }
 
+  /// Decompose complex as lvalues.
   template<std::size_t _Int, typename _Tp>
     constexpr _Tp&
     get(std::complex<_Tp>& __z)
     {
-      static_assert(_Int < 2, "index is within bounds");
+      static_assert(_Int < 2, "index is out of bounds");
       auto __w = reinterpret_cast<_Tp(&)[2]>(__z);
       return _Int == 0 ? __w[0] : __w[1];
     }
