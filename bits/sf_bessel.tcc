@@ -275,7 +275,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __fact2 = (std::abs(__e) < _S_eps
 			     ? _Tp{1}
 			     : std::sinh(__e) / __e);
-	  auto __gamt = __gamma_temme(__mu);
+	  const auto __gamt = __gamma_temme(__mu);
 	  auto __ff = (_Tp{2} / _S_pi) * __fact
 		    * (__gamt.__gamma_1_value * std::cosh(__e)
 		     + __gamt.__gamma_2_value * __fact2 * __d);
@@ -344,6 +344,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (__i > _S_max_iter)
 	    std::__throw_runtime_error(__N("__cyl_bessel_jn_steed: "
 					   "Lentz's method failed"));
+	  //const auto [__p, __q] = __pq; This should be a thing.
 	  const auto __gam = (__pq.real() - __f) / __pq.imag();
 	  _Jmu = std::sqrt(_Wronski / ((__pq.real() - __f) * __gam
 					+ __pq.imag()));
@@ -353,13 +354,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Nnu1 = __mu * __xi * _Nmu - _Npmu;
         }
       __fact = _Jmu / _Jnul;
-      auto _Jnu = __fact * _Jnul1;
-      auto _Jpnu = __fact * _Jpnu1;
+      const auto _Jnu = __fact * _Jnul1;
+      const auto _Jpnu = __fact * _Jpnu1;
       for (int __i = 1; __i <= __n; ++__i)
 	_Nmu = __gnu_cxx::__exchange(_Nnu1,
 				     (__mu + __i) * __xi2 * _Nnu1 - _Nmu);
-      auto _Nnu = _Nmu;
-      auto _Npnu = __nu * __xi * _Nmu - _Nnu1;
+      const auto _Nnu = _Nmu;
+      const auto _Npnu = __nu * __xi * _Nmu - _Nnu1;
 
       return __bess_t{__nu, __x, _Jnu, _Jpnu, _Nnu, _Npnu};
     }
@@ -442,19 +443,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
       if (__nu < _Tp{0})
 	{
-	  auto _Bess = __cyl_bessel_jn(-__nu, __x);
-	  auto __sinnupi = __sin_pi(-__nu);
-	  auto __cosnupi = __cos_pi(-__nu);
+	  const auto _Bess = __cyl_bessel_jn(-__nu, __x);
+	  const auto __sinnupi = __sin_pi(-__nu);
+	  const auto __cosnupi = __cos_pi(-__nu);
 	  if (std::abs(__sinnupi) < _S_eps)
 	    { // Carefully preserve +-inf.
-	      auto __sign = std::copysign(_Tp{1}, __cosnupi);
+	      const auto __sign = std::copysign(_Tp{1}, __cosnupi);
 	      return __bess_t{__nu, __x,
 			__sign * _Bess.__J_value, __sign * _Bess.__J_deriv,
 			__sign * _Bess.__N_value, __sign * _Bess.__N_deriv};
 	    }
 	  else if (std::abs(__cosnupi) < _S_eps)
 	    { // Carefully preserve +-inf.
-	      auto __sign = std::copysign(_Tp{1}, __sinnupi);
+	      const auto __sign = std::copysign(_Tp{1}, __sinnupi);
 	      return __bess_t{__nu, __x,
 			-__sign * _Bess.__N_value, -__sign * _Bess.__N_deriv,
 			 __sign * _Bess.__J_value,  __sign * _Bess.__J_deriv};
@@ -502,18 +503,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, std::complex<_Tp>>
     __cyl_bessel_jn_neg_arg(_Tp __nu, _Tp __x)
     {
-      using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, std::complex<_Tp>>;
+      using _Cmplx = std::complex<_Tp>;
+      using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Cmplx>;
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
-      constexpr std::complex<_Tp> _S_i{0, 1};
+      constexpr _Cmplx _S_i{0, 1};
       if (__x >= _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_jn_neg_arg: "
 				      "non-negative argument"));
       else
 	{
-	  auto _Bess = __cyl_bessel_jn(__nu, -__x);
-	  auto __phm = __polar_pi(_Tp{1}, -__nu);
-	  auto __php = __polar_pi(_Tp{1}, __nu);
-	  auto __cosp = __cos_pi(__nu);
+	  const auto _Bess = __cyl_bessel_jn(__nu, -__x);
+	  const auto __phm = __polar_pi(_Tp{1}, -__nu);
+	  const auto __php = __polar_pi(_Tp{1}, __nu);
+	  const auto __cosp = __cos_pi(__nu);
 	  return __bess_t{__nu, __x,
 			  __php * _Bess.__J_value,
 			  -__php * _Bess.__J_deriv,
@@ -600,23 +602,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __cyl_hankel_1(_Tp __nu, _Tp __x)
     {
+      using _Cmplx = std::complex<_Tp>;
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
       const auto _S_nan = __gnu_cxx::__quiet_NaN(__x);
-      constexpr std::complex<_Tp> _S_i{0, 1};
+      constexpr _Cmplx _S_i{0, 1};
       if (__nu < _Tp{0})
 	return __polar_pi(_Tp{1}, -__nu)
 	     * __cyl_hankel_1(-__nu, __x);
       else if (__isnan(__x))
-	return std::complex<_Tp>{_S_nan, _S_nan};
+	return _Cmplx{_S_nan, _S_nan};
       else if (__x < _Tp{0})
 	{
-	  auto _Bess = __cyl_bessel_jn_neg_arg(__nu, __x);
+	  const auto _Bess = __cyl_bessel_jn_neg_arg(__nu, __x);
 	  return _Bess.__J_value + _S_i * _Bess.__N_value;
 	}
       else
 	{
-	  auto _Bess = __cyl_bessel_jn(__nu, __x);
-	  return std::complex<_Tp>{_Bess.__J_value, _Bess.__N_value};
+	  const auto _Bess = __cyl_bessel_jn(__nu, __x);
+	  return _Cmplx{_Bess.__J_value, _Bess.__N_value};
 	}
     }
 
@@ -638,23 +641,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __cyl_hankel_2(_Tp __nu, _Tp __x)
     {
+      using _Cmplx = std::complex<_Tp>;
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
       const auto _S_nan = __gnu_cxx::__quiet_NaN(__x);
-      constexpr std::complex<_Tp> _S_i{0, 1};
+      constexpr _Cmplx _S_i{0, 1};
       if (__nu < _Tp{0})
 	return __polar_pi(_Tp{1}, __nu)
 	     * __cyl_hankel_2(-__nu, __x);
       else if (__isnan(__x))
-	return std::complex<_Tp>{_S_nan, _S_nan};
+	return _Cmplx{_S_nan, _S_nan};
       else if (__x < _Tp{0})
 	{
-	  auto _Bess = __cyl_bessel_jn_neg_arg(__nu, __x);
+	  const auto _Bess = __cyl_bessel_jn_neg_arg(__nu, __x);
 	  return _Bess.__J_value - _S_i * _Bess.__N_value;
 	}
       else
 	{
-	  auto _Bess = __cyl_bessel_jn(__nu, __x);
-	  return std::complex<_Tp>{_Bess.__J_value, -_Bess.__N_value};
+	  const auto _Bess = __cyl_bessel_jn(__nu, __x);
+	  return _Cmplx{_Bess.__J_value, -_Bess.__N_value};
 	}
     }
 
@@ -676,15 +680,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using __bess_t = __gnu_cxx::__sph_bessel_t<unsigned int, _Tp, _Tp>;
       const auto __nu = _Tp(__n + 0.5L);
 
-      auto _Bess = __cyl_bessel_jn(__nu, __x);
+      const auto _Bess = __cyl_bessel_jn(__nu, __x);
 
       const auto __factor = __gnu_cxx::__const_root_pi_div_2(__x)
 			  / std::sqrt(__x);
 
-      auto __j_n = __factor * _Bess.__J_value;
-      auto __jp_n = __factor * _Bess.__J_deriv - __j_n / (_Tp{2} * __x);
-      auto __n_n = __factor * _Bess.__N_value;
-      auto __np_n = __factor * _Bess.__N_deriv - __n_n / (_Tp{2} * __x);
+      const auto __j_n = __factor * _Bess.__J_value;
+      const auto __jp_n = __factor * _Bess.__J_deriv - __j_n / (_Tp{2} * __x);
+      const auto __n_n = __factor * _Bess.__N_value;
+      const auto __np_n = __factor * _Bess.__N_deriv - __n_n / (_Tp{2} * __x);
 
       return __bess_t{__n, __x, __j_n, __jp_n, __n_n, __np_n};
     }
@@ -697,24 +701,27 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gnu_cxx::__sph_bessel_t<unsigned int, _Tp, std::complex<_Tp>>
     __sph_bessel_jn_neg_arg(unsigned int __n, _Tp __x)
     {
+      using _Cmplx = std::complex<_Tp>;
       using __bess_t
-	= __gnu_cxx::__sph_bessel_t<unsigned int, _Tp, std::complex<_Tp>>;
+	= __gnu_cxx::__sph_bessel_t<unsigned int, _Tp, _Cmplx>;
       if (__x >= _Tp{0})
 	std::__throw_domain_error(__N("__sph_bessel_jn_neg_arg: "
 				      "non-negative argument"));
       else
 	{
 	  const auto __nu = _Tp(__n + 0.5L);
-	  auto _Bess = __cyl_bessel_jn_neg_arg(__nu, __x);
+	  const auto _Bess = __cyl_bessel_jn_neg_arg(__nu, __x);
 
 	  const auto __factor
 	    = __gnu_cxx::__const_root_pi_div_2(__x)
-	      / std::sqrt(std::complex<_Tp>(__x));
+	      / std::sqrt(_Cmplx(__x));
 
-	  auto __j_n = __factor * _Bess.__J_value;
-	  auto __jp_n = __factor * _Bess.__J_deriv - __j_n / (_Tp{2} * __x);
-	  auto __n_n = __factor * _Bess.__N_value;
-	  auto __np_n = __factor * _Bess.__N_deriv - __n_n / (_Tp{2} * __x);
+	  const auto __j_n = __factor * _Bess.__J_value;
+	  const auto __jp_n = __factor * _Bess.__J_deriv
+			    - __j_n / (_Tp{2} * __x);
+	  const auto __n_n = __factor * _Bess.__N_value;
+	  const auto __np_n = __factor * _Bess.__N_deriv
+			    - __n_n / (_Tp{2} * __x);
 
 	  return __bess_t{__n, __x, __j_n, __jp_n, __n_n, __np_n};
 	}
@@ -799,19 +806,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __sph_hankel_1(unsigned int __n, _Tp __x)
     {
-      constexpr std::complex<_Tp> _S_i{0, 1};
+      using _Cmplx = std::complex<_Tp>;
+      constexpr _Cmplx _S_i{0, 1};
       const auto _S_nan = __gnu_cxx::__quiet_NaN(__x);
       if (__isnan(__x))
-	return std::complex<_Tp>{_S_nan, _S_nan};
+	return _Cmplx{_S_nan, _S_nan};
       else if (__x < _Tp{0})
 	{
-	  auto _Bess = __sph_bessel_jn_neg_arg(__n, __x);
+	  const auto _Bess = __sph_bessel_jn_neg_arg(__n, __x);
 	  return _Bess.__j_value + _S_i * _Bess.__n_value;
 	}
       else
 	{
-	  auto _Bess = __sph_bessel_jn(__n, __x);
-	  return std::complex<_Tp>{_Bess.__j_value, _Bess.__n_value};
+	  const auto _Bess = __sph_bessel_jn(__n, __x);
+	  return _Cmplx{_Bess.__j_value, _Bess.__n_value};
 	}
     }
 
@@ -833,19 +841,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __sph_hankel_2(unsigned int __n, _Tp __x)
     {
-      constexpr std::complex<_Tp> _S_i{0, 1};
+      using _Cmplx = std::complex<_Tp>;
+      constexpr _Cmplx _S_i{0, 1};
       const auto _S_nan = __gnu_cxx::__quiet_NaN(__x);
       if (__isnan(__x))
-	return std::complex<_Tp>{_S_nan, _S_nan};
+	return _Cmplx{_S_nan, _S_nan};
       else if (__x < _Tp{0})
 	{
-	  auto _Bess = __sph_bessel_jn_neg_arg(__n, __x);
+	  const auto _Bess = __sph_bessel_jn_neg_arg(__n, __x);
 	  return _Bess.__j_value - _S_i * _Bess.__n_value;
 	}
       else
 	{
-	  auto _Bess = __sph_bessel_jn(__n, __x);
-	  return std::complex<_Tp>{_Bess.__j_value, -_Bess.__n_value};
+	  const auto _Bess = __sph_bessel_jn(__n, __x);
+	  return _Cmplx{_Bess.__j_value, -_Bess.__n_value};
 	}
     }
 

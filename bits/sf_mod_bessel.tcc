@@ -203,7 +203,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __fact2 = (std::abs(__e) < _S_eps
 			     ? _Tp{1}
 			     : std::sinh(__e) / __e);
-	  auto __gamt = __gamma_temme(__mu);
+	  const auto __gamt = __gamma_temme(__mu);
 	  auto __ff = __fact
 		    * (__gamt.__gamma_1_value * std::cosh(__e)
 		     + __gamt.__gamma_2_value * __fact2 * __d);
@@ -242,7 +242,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __h = __delh;
 	  auto __q1 = _Tp{0};
 	  auto __q2 = _Tp{1};
-	  auto __a1 = _Tp{0.25L} - __mu2;
+	  const auto __a1 = _Tp{0.25L} - __mu2;
 	  auto __q = __c = __a1;
 	  auto __a = -__a1;
 	  auto __s = _Tp{1} + __q * __delh;
@@ -273,15 +273,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Knu1 = _Kmu * (__mu + __x + _Tp{0.5L} - __h) * __xi;
 	}
 
-      auto _Kpmu = __mu * __xi * _Kmu - _Knu1;
-      auto _Inumu = __xi / (__f * _Kmu - _Kpmu);
-      auto _Inu = _Inumu * _Inul1 / _Inul;
-      auto _Ipnu = _Inumu * _Ipnu1 / _Inul;
+      const auto _Kpmu = __mu * __xi * _Kmu - _Knu1;
+      const auto _Inumu = __xi / (__f * _Kmu - _Kpmu);
+      const auto _Inu = _Inumu * _Inul1 / _Inul;
+      const auto _Ipnu = _Inumu * _Ipnu1 / _Inul;
       for (int __i = 1; __i <= __n; ++__i)
 	_Kmu = __gnu_cxx::__exchange(_Knu1,
 				     (__mu + _Tp(__i)) * __xi2 * _Knu1 + _Kmu);
-      auto _Knu = _Kmu;
-      auto _Kpnu = __nu * __xi * _Kmu - _Knu1;
+      const auto _Knu = _Kmu;
+      const auto _Kpnu = __nu * __xi * _Kmu - _Knu1;
 
       return __bess_t{__nu, __x, _Inu, _Ipnu, _Knu, _Kpnu};
     }
@@ -305,9 +305,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
       if (__nu < _Tp{0})
 	{
-	  auto _Bessm = __cyl_bessel_ik(-__nu, __x);
-	  auto __arg = -__nu * _S_pi;
-	  auto __sinnupi = __sin_pi(-__nu);
+	  const auto _Bessm = __cyl_bessel_ik(-__nu, __x);
+	  const auto __arg = -__nu * _S_pi;
+	  const auto __sinnupi = __sin_pi(-__nu);
 	  if (std::abs(__sinnupi) < _S_eps) // Carefully preserve +-inf.
 	    return __bess_t{__nu, __x, _Bessm.__I_value, _Bessm.__I_deriv,
 					_Bessm.__K_value, _Bessm.__K_deriv};
@@ -439,10 +439,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __factor = __gnu_cxx::__const_root_pi_div_2(_Tp{})
 			      / std::sqrt(__x);
 
-	  auto __i_n = __factor * _Bess.__I_value;
-	  auto __ip_n = __factor * _Bess.__I_deriv - __i_n / (_Tp{2} * __x);
-	  auto __k_n = __factor * _Bess.__K_value;
-	  auto __kp_n = __factor * _Bess.__K_deriv - __k_n / (_Tp{2} * __x);
+	  const auto __i_n = __factor * _Bess.__I_value;
+	  const auto __ip_n = __factor * _Bess.__I_deriv
+			    - __i_n / (_Tp{2} * __x);
+	  const auto __k_n = __factor * _Bess.__K_value;
+	  const auto __kp_n = __factor * _Bess.__K_deriv
+			    - __k_n / (_Tp{2} * __x);
 
 	  return __sph_t{__n, __x, __i_n, __ip_n, __k_n, __kp_n};
 	}
@@ -480,31 +482,31 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __ai_t{__z, _Tp{0}, _Tp{0}, _Tp{0}, _Tp{0}};
       else if (__z > _Tp{0})
 	{
-	  auto _Bess13 = __cyl_bessel_ik(_Tp{1} / _Tp{3}, __xi);
-	  auto _Ai = __rootz * _Bess13.__K_value / (_S_sqrt3 * _S_pi);
-	  auto _Bi = __rootz * (_Bess13.__K_value / _S_pi
-		     + _Tp{2} * _Bess13.__I_value / _S_sqrt3);
+	  const auto _Bess13 = __cyl_bessel_ik(_Tp{1} / _Tp{3}, __xi);
+	  const auto _Ai = __rootz * _Bess13.__K_value / (_S_sqrt3 * _S_pi);
+	  const auto _Bi = __rootz * (_Bess13.__K_value / _S_pi
+				    + _Tp{2} * _Bess13.__I_value / _S_sqrt3);
 
-	  auto _Bess23 = __cyl_bessel_ik(_Tp{2} / _Tp{3}, __xi);
-	  auto _Aip = -__z * _Bess23.__K_value / (_S_sqrt3 * _S_pi);
-	  auto _Bip = __z * (_Bess23.__K_value / _S_pi
-		  + _Tp{2} * _Bess23.__I_value / _S_sqrt3);
+	  const auto _Bess23 = __cyl_bessel_ik(_Tp{2} / _Tp{3}, __xi);
+	  const auto _Aip = -__z * _Bess23.__K_value / (_S_sqrt3 * _S_pi);
+	  const auto _Bip = __z * (_Bess23.__K_value / _S_pi
+				 + _Tp{2} * _Bess23.__I_value / _S_sqrt3);
 
 	  return __ai_t{__z, _Ai, _Aip, _Bi, _Bip};
 	}
       else if (__z < _Tp{0})
 	{
-	  auto _Bess13 = __cyl_bessel_jn(_Tp{1} / _Tp{3}, __xi);
-	  auto _Ai = +__rootz * (_Bess13.__J_value
-			       - _Bess13.__N_value / _S_sqrt3) / _Tp{2};
-	  auto _Bi = -__rootz * (_Bess13.__N_value
-			       + _Bess13.__J_value / _S_sqrt3) / _Tp{2};
+	  const auto _Bess13 = __cyl_bessel_jn(_Tp{1} / _Tp{3}, __xi);
+	  const auto _Ai = +__rootz * (_Bess13.__J_value
+				     - _Bess13.__N_value / _S_sqrt3) / _Tp{2};
+	  const auto _Bi = -__rootz * (_Bess13.__N_value
+				     + _Bess13.__J_value / _S_sqrt3) / _Tp{2};
 
-	  auto _Bess23 = __cyl_bessel_jn(_Tp{2} / _Tp{3}, __xi);
-	  auto _Aip = __absz * (_Bess23.__N_value / _S_sqrt3
-			      + _Bess23.__J_value) / _Tp{2};
-	  auto _Bip = __absz * (_Bess23.__J_value / _S_sqrt3
-			      - _Bess23.__N_value) / _Tp{2};
+	  const auto _Bess23 = __cyl_bessel_jn(_Tp{2} / _Tp{3}, __xi);
+	  const auto _Aip = __absz * (_Bess23.__N_value / _S_sqrt3
+				    + _Bess23.__J_value) / _Tp{2};
+	  const auto _Bip = __absz * (_Bess23.__J_value / _S_sqrt3
+				    - _Bess23.__N_value) / _Tp{2};
 
 	  return __ai_t{__z, _Ai, _Aip, _Bi, _Bip};
 	}
@@ -513,14 +515,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  // Reference:
 	  //  Abramowitz & Stegun, page 446 section 10.4.4 on Airy functions.
 	  // The number is Ai(0) = 3^{-2/3}/\Gamma(2/3).
-	  auto _Ai = _Tp{0.3550280538878172392600631860041831763979791741991772L};
-	  auto _Bi = _Ai * _S_sqrt3;
+	  const auto _Ai
+	    = _Tp{0.3550280538878172392600631860041831763979791741991772L};
+	  const auto _Bi = _Ai * _S_sqrt3;
 
 	  // Reference:
 	  //  Abramowitz & Stegun, page 446 section 10.4.5 on Airy functions.
 	  // The number is Ai'(0) = -3^{-1/3}/\Gamma(1/3).
-	  auto _Aip = -_Tp{0.25881940379280679840518356018920396347909113835493L};
-	  auto _Bip = -_Aip * _S_sqrt3;
+	  const auto _Aip
+	    = -_Tp{0.25881940379280679840518356018920396347909113835493L};
+	  const auto _Bip = -_Aip * _S_sqrt3;
 
 	  return __ai_t{__z, _Ai, _Aip, _Bi, _Bip};
 	}
@@ -546,15 +550,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gnu_cxx::__fock_airy_t<_Tp, std::complex<_Tp>>
     __fock_airy(_Tp __x)
     {
-      using __fock_t = __gnu_cxx::__fock_airy_t<_Tp, std::complex<_Tp>>;
+      using _Cmplx = std::complex<_Tp>;
+      using __fock_t = __gnu_cxx::__fock_airy_t<_Tp, _Cmplx>;
       const auto _S_sqrtpi = __gnu_cxx::__const_root_pi(__x);
 
-      auto _Ai = __airy(__x);
+      const auto _Ai = __airy(__x);
 
-      auto __w1 = _S_sqrtpi * std::complex<_Tp>(_Ai.__Ai_value, _Ai.__Bi_value);
-      auto __w1p = _S_sqrtpi * std::complex<_Tp>(_Ai.__Ai_deriv, _Ai.__Bi_deriv);
-      auto __w2 = _S_sqrtpi * std::complex<_Tp>(_Ai.__Ai_value, -_Ai.__Bi_value);
-      auto __w2p = _S_sqrtpi * std::complex<_Tp>(_Ai.__Ai_deriv, -_Ai.__Bi_deriv);
+      const auto __w1 = _S_sqrtpi * _Cmplx(_Ai.__Ai_value, _Ai.__Bi_value);
+      const auto __w1p = _S_sqrtpi * _Cmplx(_Ai.__Ai_deriv, _Ai.__Bi_deriv);
+      const auto __w2 = _S_sqrtpi * _Cmplx(_Ai.__Ai_value, -_Ai.__Bi_value);
+      const auto __w2p = _S_sqrtpi * _Cmplx(_Ai.__Ai_deriv, -_Ai.__Bi_deriv);
 
       return __fock_t{__x, __w1, __w1p, __w2, __w2p};
     }
