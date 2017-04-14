@@ -30,7 +30,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     struct __is_tuple_like_impl<std::complex<_Tp>> : true_type
     { };
 
-  /// Decompose complex as rvalues.
+  /// Decompose complex as lvalues.
+  template<std::size_t _Int, typename _Tp>
+    constexpr _Tp&&
+    get(std::complex<_Tp>&& __z)
+    {
+      static_assert(_Int < 2, "index is out of bounds");
+      return _Int == 0 ? __z.real() : __z.imag();
+    }
+
+  /// Decompose complex as lvalues.
   template<std::size_t _Int, typename _Tp>
     constexpr const _Tp
     get(const std::complex<_Tp>& __z)
@@ -39,7 +48,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return _Int == 0 ? __z.real() : __z.imag();
     }
 
-  /// Decompose complex as lvalues.
+  /// Decompose complex as rvalues.
   template<std::size_t _Int, typename _Tp>
     constexpr _Tp&
     get(std::complex<_Tp>& __z)
