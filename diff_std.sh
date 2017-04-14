@@ -40,6 +40,7 @@ ${tool} bits/sf_bessel.tcc         ${gcc_dir}/sf_bessel.tcc
 ${tool} bits/sf_beta.tcc           ${gcc_dir}/sf_beta.tcc
 ${tool} bits/sf_cardinal.tcc       ${gcc_dir}/sf_cardinal.tcc
 ${tool} bits/sf_chebyshev.tcc      ${gcc_dir}/sf_chebyshev.tcc
+${tool} bits/sf_coulomb.tcc        ${gcc_dir}/sf_coulomb.tcc
 ${tool} bits/sf_dawson.tcc         ${gcc_dir}/sf_dawson.tcc
 ${tool} bits/sf_distributions.tcc  ${gcc_dir}/sf_distributions.tcc
 ${tool} bits/sf_ellint.tcc         ${gcc_dir}/sf_ellint.tcc
@@ -50,7 +51,6 @@ ${tool} bits/sf_gamma.tcc          ${gcc_dir}/sf_gamma.tcc
 ${tool} bits/sf_gegenbauer.tcc     ${gcc_dir}/sf_gegenbauer.tcc
 ${tool} bits/sf_hankel.tcc         ${gcc_dir}/sf_hankel.tcc
 ${tool} bits/sf_hermite.tcc        ${gcc_dir}/sf_hermite.tcc
-${tool} bits/sf_hydrogen.tcc       ${gcc_dir}/sf_hydrogen.tcc
 ${tool} bits/sf_hyperg.tcc         ${gcc_dir}/sf_hyperg.tcc
 ${tool} bits/sf_hypint.tcc         ${gcc_dir}/sf_hypint.tcc
 ${tool} bits/sf_jacobi.tcc         ${gcc_dir}/sf_jacobi.tcc

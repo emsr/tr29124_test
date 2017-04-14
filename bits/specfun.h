@@ -62,6 +62,7 @@
 #  include <bits/sf_beta.tcc>
 #  include <bits/sf_cardinal.tcc>
 #  include <bits/sf_chebyshev.tcc>
+#  include <bits/sf_coulomb.tcc>
 #  include <bits/sf_dawson.tcc>
 #  include <bits/sf_ellint.tcc>
 #  include <bits/sf_expint.tcc>
@@ -72,7 +73,6 @@
 #  include <bits/sf_jacobi.tcc>
 #  include <bits/sf_laguerre.tcc>
 #  include <bits/sf_legendre.tcc>
-#  include <bits/sf_hydrogen.tcc>
 #  include <bits/sf_mod_bessel.tcc>
 #  include <bits/sf_hermite.tcc>
 #  include <bits/sf_theta.tcc>

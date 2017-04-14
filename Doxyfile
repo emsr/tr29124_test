@@ -768,6 +768,7 @@ INPUT                  = bits/specfun.h \
 			 bits/sf_beta.tcc \
 			 bits/sf_cardinal.tcc \
 			 bits/sf_chebyshev.tcc \
+			 bits/sf_coulomb.tcc \
 			 bits/sf_dawson.tcc \
 			 bits/sf_distributions.tcc \
 			 bits/sf_ellint.tcc \
@@ -778,7 +779,6 @@ INPUT                  = bits/specfun.h \
 			 bits/sf_gegenbauer.tcc \
 			 bits/sf_hankel.tcc \
 			 bits/sf_hermite.tcc \
-			 bits/sf_hydrogen.tcc \
 			 bits/sf_hyperg.tcc \
 			 bits/sf_hypint.tcc \
 			 bits/sf_jacobi.tcc \
