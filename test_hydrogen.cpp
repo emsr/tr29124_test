@@ -9,6 +9,21 @@
 
 #include "hydrogen.tcc"
 
+template<typename _Tp>
+  _Tp
+  __coulomb_norm(unsigned int __l, _Tp __eta)
+  {
+    _Tp _Ck = std::sqrt(_S_2pi * __eta / (std::exp(_S_2pi * __eta) - _Tp{1}));
+    if (__l == 0)
+      return _Ck;
+    else
+      {
+	for (int __k = 0; __k < __l; ++__k)
+	  _Ck *= std::hypot(_Tp(__k + 1), __eta) / _Tp(__k) / _Tp(__k + 1);
+	return _Ck;
+      }
+  }
+
 template <typename _Tp>
   void
   test01()
