@@ -1464,4 +1464,20 @@ gamma_reciprocal(unsigned int /*a*/)
   return std::numeric_limits<double>::quiet_NaN();
 }
 
+/// Coulomb normalization.
+double
+coulomb_norm(unsigned int l, double eta)
+{
+  gsl_sf_result result;`
+  int stat = gsl_sf_coulomb_CL_e (double(l), eta, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in coulomb_norm:");
+      msg << " l=" << l << " eta=" << eta;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
 } // namespace gsl
