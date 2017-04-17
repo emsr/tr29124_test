@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This tool pushes from this development directory into a gcc directory.
+
 tool="cp -f"
 suffix="_tr29124"
 if [ $# -ge 1 ]; then
@@ -31,6 +33,9 @@ ${tool} "${src_ext_dir}/polynomial.h"           "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/polynomial.tcc"         "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/type_traits.h"          "${dst_ext_dir}"
 
+${tool} "${src_impl_dir}/specfun.h"             "${dst_impl_dir}"
+${tool} "${src_impl_dir}/specfun_state.h"       "${dst_impl_dir}"
+${tool} "${src_impl_dir}/specfun_util.h"        "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/complex_util.h"        "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/complex_util.tcc"      "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/complex128.h"          "${dst_impl_dir}"
@@ -70,8 +75,5 @@ ${tool} "${src_impl_dir}/sf_theta.tcc"          "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/sf_trig.tcc"           "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/sf_trigint.tcc"        "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/sf_zeta.tcc"           "${dst_impl_dir}" 
-${tool} "${src_impl_dir}/specfun.h"             "${dst_impl_dir}"
-${tool} "${src_impl_dir}/specfun_state.h"       "${dst_impl_dir}"
-${tool} "${src_impl_dir}/specfun_util.h"        "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/summation.h"           "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/summation.tcc"         "${dst_impl_dir}"
