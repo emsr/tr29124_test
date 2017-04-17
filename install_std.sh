@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# This tool 'installs' from a gcc directory to the corresponding bin directory
+# to avoid going through the actual install process.
+
 tool="cp -f"
 
 suffix="_tr29124"
@@ -21,6 +24,10 @@ fi
 dst_impl_dir="${dst_dir}/bits"
 dst_ext_dir="${dst_dir}/ext"
 
+${tool} "${src_dir}/cmath"                      "${dst_dir}/c_global"
+${tool} "${src_dir}/limits"                     "${dst_dir}/std"
+${tool} "${src_dir}/complex"                    "${dst_dir}/std"
+
 ${tool} "${src_ext_dir}/cmath"                  "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/math_const.h"           "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/math_util.h"            "${dst_ext_dir}"
@@ -29,10 +36,11 @@ ${tool} "${src_ext_dir}/polynomial.tcc"         "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/type_traits.h"          "${dst_ext_dir}"
 
 ${tool} "${src_impl_dir}/specfun.h"             "${dst_impl_dir}"
-${tool} "${src_impl_dir}/specfun_util.h"        "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/specfun_state.h"       "${dst_impl_dir}"
+${tool} "${src_impl_dir}/specfun_util.h"        "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/complex_util.h"        "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/complex_util.tcc"      "${dst_impl_dir}"
+${tool} "${src_impl_dir}/complex128.h"          "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/float128_io.h"         "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/float128_io.tcc"       "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/float128_limits.h"     "${dst_impl_dir}"
