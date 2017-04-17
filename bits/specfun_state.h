@@ -191,6 +191,39 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
   /**
+   * This struct captures the state of the Coulomb functions
+   * at a given order and argument.
+   */
+  template<typename _Teta, typename _Trho, typename _Tp>
+    struct __cyl_coulomb_t
+    {
+      /// The nonnegative order of the Coulomb functions.
+      unsigned int __l;
+
+      /// The real parameter of the Coulomb functions.
+      _Teta __eta_arg;
+
+      /// The argument of the Coulomb functions.
+      _Trho __rho_arg;
+
+      /// The value of the regular Coulomb function.
+      _Tp __F_value;
+
+      /// The derivative of the regular Coulomb function.
+      _Tp __F_deriv;
+
+      /// The value of the irregular Coulomb function.
+      _Tp __G_value;
+
+      /// The derivative of the irregular Coulomb function.
+      _Tp __G_deriv;
+
+      /// Return the Wronskian of the Coulomb functions.
+      _Tp __Wronskian() const
+      { return __F_value * __G_deriv - __G_value * __F_deriv; }
+    };
+
+  /**
    * This struct captures the state of the modified cylindrical Bessel functions
    * at a given order and argument.
    */
