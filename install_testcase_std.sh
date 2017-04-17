@@ -60,7 +60,7 @@ ${tool} check/check_ellint_1.cc         ${gcc_dir}/11_ellint_1/check_value.cc
 ${tool} check/check_ellint_2.cc         ${gcc_dir}/12_ellint_2/check_value.cc
 ${tool} check/check_ellint_3.cc         ${gcc_dir}/13_ellint_3/check_value.cc
 ${tool} check/check_expint.cc           ${gcc_dir}/14_expint/check_value.cc
-${tool} check/pr68397.cc                ${test_dir}/14_expint/pr68397.cc
+${tool} check/pr68397.cc                ${gcc_dir}/14_expint/pr68397.cc
 ${tool} check/check_hermite.cc          ${gcc_dir}/15_hermite/check_value.cc
 ${tool} check/check_laguerre.cc         ${gcc_dir}/16_laguerre/check_value.cc
 ${tool} check/check_legendre.cc         ${gcc_dir}/17_legendre/check_value.cc
