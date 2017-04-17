@@ -1017,12 +1017,14 @@ _GLIBCXX_END_NAMESPACE_VERSION
 #undef lgamma
 #undef lgammaf
 #undef lgammal
+#ifndef _GLIBCXX_NO_C99_ROUNDING_FUNCS
 #undef llrint
 #undef llrintf
 #undef llrintl
 #undef llround
 #undef llroundf
 #undef llroundl
+#endif
 #undef log1p
 #undef log1pf
 #undef log1pl
@@ -1148,6 +1150,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   using ::lgammaf;
   using ::lgammal;
 
+#ifndef _GLIBCXX_NO_C99_ROUNDING_FUNCS
   using ::llrint;
   using ::llrintf;
   using ::llrintl;
@@ -1155,6 +1158,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   using ::llround;
   using ::llroundf;
   using ::llroundl;
+#endif
 
   using ::log1p;
   using ::log1pf;
@@ -1866,7 +1870,7 @@ _GLIBCXX_END_NAMESPACE_VERSION
 
 #include <bits/float128_math.h>
 
-#if defined(_GLIBCXX_USE_STD_SPEC_FUNCS) && !defined(_GLIBCXX_NO_SPECFUN)
+#if defined(_GLIBCXX_USE_STD_SPEC_FUNCS)
 #  include <bits/specfun.h>
 #endif
 
