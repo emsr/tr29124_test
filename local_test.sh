@@ -292,6 +292,7 @@ ${tool} check/check_tr1_ellint_1.cc	    ${tr1_dir}/12_ellint_1/check_value.cc
 ${tool} check/check_tr1_ellint_2.cc	    ${tr1_dir}/13_ellint_2/check_value.cc
 ${tool} check/check_tr1_ellint_3.cc	    ${tr1_dir}/14_ellint_3/check_value.cc
 ${tool} check/check_tr1_expint.cc           ${tr1_dir}/15_expint/check_value_neg.cc
+${tool} check/tr1_pr68397.cc                ${tr1_dir}/15_expint/pr68397.cc
 ${tool} check/check_tr1_hermite.cc	    ${tr1_dir}/16_hermite/check_value.cc
 ${tool} check/check_tr1_hyperg.cc	    ${tr1_dir}/17_hyperg/check_value.cc
 ${tool} check/check_tr1_laguerre.cc	    ${tr1_dir}/18_laguerre/check_value.cc
