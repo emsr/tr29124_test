@@ -28,7 +28,7 @@ GSL extras has these - there was struggle there too.
 
 10. [] legendre_Qlm
 
-11. [] Test against spherical_harmonic(unsigned n, int m, T1 theta, T2 phi);
+11. [DONE] Test against spherical_harmonic(unsigned n, int m, T1 theta, T2 phi);
     They have spherical_harmonic_[r|i]
     Note the signed m on all of them!
 
@@ -113,10 +113,10 @@ GSL extras has these - there was struggle there too.
       +//  ...
       +// Divergence at n=500 f=inf f_GSL=2611.3304584601556
 
-31. [] I seem to have lost accuracy in cyl_bessel_i near the origin.
+31. [DONE] I seem to have lost accuracy in cyl_bessel_i near the origin.
        cyl_neumann also for < 2!  All bessels in non-oscillatory region.
 
-32. [] radpoly is nan ing out for odd m!
+32. [DONE] radpoly is nan ing out for odd m!
 
 33. [DONE] beta for a=100 b>71 wrong sign.  But dead on magnitude!  We could crush it!
 
@@ -185,7 +185,7 @@ GSL extras has these - there was struggle there too.
        These could be tag types and we if constexpr tail calls right out. _NoTail?
 
 54. [] test_special_function - it's the std functions that cause build failure.
-       The GSL functions a re just fine.
+       The GSL functions are just fine.
 
 55. [] Make 2D color plots of the Hurwitz zeta function (complex)
        Wikipedia has cool color pictures.
@@ -402,13 +402,14 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
        ldexp(1, std::numeric_limits<Tp>::digits);
        calling it __max_integer.
 
-88. [] I think __parity(int __k) {return __k & 1 ? -1 : +1; }
+88. [DONE] I think __parity(int __k) {return __k & 1 ? -1 : +1; }
        possibly with some optional casting to floats would be real nice.
 
 89. [] cephes has a mod2pi. Figure out WTF it actually does.
        Make it type generic.
        See if you can use it in concert with *_pi circular functions.
        The guts of a good fmod might also hold clues.
+       Basically, they multiply a high presicion version of pi by int(fmod(pi)) and subtract it.
 
 90. [] Put a more extensive deathmatch test (in a separate function) in the corresponding test_*.cpp
        Work out kinks!
@@ -433,7 +434,7 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
        Line up deathmatch tests.
        Equator should have tests for M-L at least for real arg.
 
-95. [DONE] polyloghas tests where some of the variables don't actually change.
+95. [DONE] polylog has tests where some of the variables don't actually change.
        Look for ???
        Maybe change tests in both places and see if we can agree with good numbers.
 
@@ -441,7 +442,7 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
        Make damn sure this doesn't get into specfun impls!
        This will make mpreal integration easier too.
 
-97. [] The plots for Fermi-Dirac and Bose-Einstein look choppy.
+97. [DONE] The plots for Fermi-Dirac and Bose-Einstein look choppy.
        I need to jump in and work on polylog.
        The chop starts at that trasition at 6.
 
@@ -454,7 +455,7 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
        __float128  : 46
      We could make a variable template and not check in the series.
 
-99. [] test_gamma_recip - The negative arg vales are completely hosed for __float128.
+99. [DONE] test_gamma_reciprocal - The negative arg vales are completely hosed for __float128.
 	They alternate between long doublish vales (probably due to factorial)
         and -2ish!!!  The 2-deltas are the usual wrong sign! Probably the sin_pi!
 
@@ -463,7 +464,7 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
         Probably not useful but... you never know.
 
 101. [] 3D plots need to have the surface occlude the 2D thing.
-        Also, te colors need work.
+        Also, the colors need work.
 
 102. [] Crazy Idea: invent a stream option for formatting individual scalar numbers inside
         a complex or a vector.  width, justification, (do we need scientific, etc?)
@@ -550,7 +551,7 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 120. [] check/check_dirichlet_eta.cc  -- 0 < s < 1.
         Dive into polylog.  Could use reflection.
 
-121. [] Trying to make bernoulli numbers with mpreal was a sobering exercisse!
+121. [] Trying to make bernoulli numbers with mpreal was a sobering exercise!
         The sums in my code were better!  You need to cast ints to mpreal or they go to double!
 	I've patched my table generators but the issue is deep.
 	num_thing_t may need to be a functions (constexpr, trivial for basic types)
@@ -559,12 +560,12 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 	I should solicit ideas for numeric_limits for precision-erased number types.
 
 122. [] The polynomial class needs to protect the requirement that c_{n=order} != 0.
-        The coefficient can be dangerously tiny 9we can deal with that elsewhere)
+        The coefficient can be dangerously tiny (we can deal with that elsewhere)
         But not zero.  The decision to connect order and vector size might need a look.
         Or not.
 
 123. [] Offer factorials and other integer numbers as unsigned long, etc.
-        Look at the templates and see if we can 
+        Look at the templates and see if we can do it now.
         You might go ahead and do the C thing with ull/ul or ll/l suffixed things.
 
 124. [] The stirling_1 sum looks like it might be just scaled wrong.
