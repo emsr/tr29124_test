@@ -1,3 +1,10 @@
+/*
+$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hydrogen test_hydrogen.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_hydrogen > test_hydrogen.txt
+
+$HOME/bin/bin/g++ -std=c++17 -std=gnu++17 -g -Wall -Wextra -I. -o test_hydrogen test_hydrogen.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
+PATH=wrappers/debug:$PATH ./test_hydrogen > test_hydrogen.txt
+*/
 
 //
 //  This tests both the Laurerre polynomials and the spherical legendre function.
@@ -5,24 +12,6 @@
 
 #include <complex>
 #include <cmath>
-#include <tr1/cmath>
-
-#include "hydrogen.tcc"
-
-template<typename _Tp>
-  _Tp
-  __coulomb_norm(unsigned int __l, _Tp __eta)
-  {
-    _Tp _Ck = std::sqrt(_S_2pi * __eta / (std::exp(_S_2pi * __eta) - _Tp{1}));
-    if (__l == 0)
-      return _Ck;
-    else
-      {
-	for (int __k = 0; __k < __l; ++__k)
-	  _Ck *= std::hypot(_Tp(__k + 1), __eta) / _Tp(__k) / _Tp(__k + 1);
-	return _Ck;
-      }
-  }
 
 template <typename _Tp>
   void
@@ -40,4 +29,28 @@ template <typename _Tp>
 
     return;
   }
+
+template <typename _Tp>
+  void
+  test_norm()
+  {
+    for (unsigned int l = 0; l <= 100; ++l)
+      for (int k = 0; k <= 20; ++k)
+	{
+	  auto eta = k * _Tp{1};
+	  auto C_cxx = std::__detail::__coulomb_norm(l, eta);
+	  auto C_gsl = gsl::coulomb_norm(l, eta);
+	  std::cout << setw(4) << l
+		    << setw(w) << eta
+		    << setw(w) << C_cxx
+		    << setw(w) << C_gsl
+		    << '\n';
+	}
+  }
+
+int
+main()
+{
+}
+
 
