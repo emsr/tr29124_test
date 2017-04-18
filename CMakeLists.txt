@@ -221,7 +221,9 @@ add_library(wrap_burkhardt SHARED
 	    burkhardt/minmax.cpp
 	    burkhardt/polpak.cpp
 	    burkhardt/timestamp.cpp
+	    burkhardt/toms443.cpp
 	    burkhardt/toms462.cpp
+	    burkhardt/toms917.cpp
 	    burkhardt/quadrule.cpp
            )
 target_link_libraries(wrap_burkhardt gfortran)
