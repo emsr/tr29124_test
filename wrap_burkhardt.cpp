@@ -23,7 +23,9 @@
 #include "burkhardt/lobatto_polynomial.hpp"
 #include "burkhardt/polpak.hpp"
 #include "burkhardt/quadrule.hpp"
+#include "burkhardt/toms443.hpp"
 #include "burkhardt/toms462.hpp"
+#include "burkhardt/toms917.hpp"
 
 namespace burkhardt
 {
@@ -938,6 +940,20 @@ stirling_2(unsigned int n, unsigned int m)
     }
 }
 
+/// Wright omega function.
+std::complex<double>
+wright_omega(std::complex<double> z)
+{
+  return wrightomega(z);
+}
+
+/// Lambert W function.
+double
+lambert_w(double x)
+{
+  double en;
+  return wew_a(x, en);
+}
 
 /// Gauss-Chebyshev T rule.
 std::vector<__gnu_cxx::__quadrature_point_t<double>>

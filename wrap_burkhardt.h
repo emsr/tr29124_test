@@ -380,6 +380,12 @@ double stirling_1(unsigned int n, unsigned int m);
 /// Stirling numbers of the second kind.
 double stirling_2(unsigned int n, unsigned int m);
 
+/// Wright omega function.
+std::complex<double> wright_omega(std::complex<double> z);
+
+/// Lambert W function.
+double lambert_w(double x);
+
 /// Gauss-Chebyshev T rule.
 std::vector<__gnu_cxx::__quadrature_point_t<double>>
 gauss_chebyshev_t_rule(std::size_t n);

@@ -360,6 +360,12 @@ double gamma_reciprocal(unsigned int a);
 /// Coulomb normalization.
 double coulomb_norm(unsigned int l, double eta);
 
+/// Coulomb F
+double coulomb_f(unsigned int l, double eta, double x);
+
+/// Coulomb G
+double coulomb_g(unsigned int l, double eta, double x);
+
 } // namespace gsl
 
 #endif // WRAP_GSL_H

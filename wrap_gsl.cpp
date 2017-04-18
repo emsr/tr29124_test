@@ -1480,4 +1480,42 @@ coulomb_norm(unsigned int l, double eta)
     return result.val;
 }
 
+/// Coulomb F
+double
+coulomb_f(unsigned int l, double eta, double x)
+{
+  gsl_sf_result F, Fp, G, Gp;
+  double exp_F, exp_G;
+  int k = 0; // GSL can return G_{l - k}, Gp_{l - k}.
+  int stat = gsl_sf_coulomb_wave_FG_e(eta, x, double(l), k,
+				      &F, &Fp, &G, &Gp, &exp_F, &exp_G);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in coulomb_f:");
+      msg << " l=" << l << " eta=" << eta << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return F.val;
+}
+
+/// Coulomb G
+double
+coulomb_g(unsigned int l, double eta, double x)
+{
+  gsl_sf_result F, Fp, G, Gp;
+  double exp_F, exp_G;
+  int k = 0; // GSL can return G_{l - k}, Gp_{l - k}.
+  int stat = gsl_sf_coulomb_wave_FG_e(eta, x, double(l), k,
+				      &F, &Fp, &G, &Gp, &exp_F, &exp_G);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in coulomb_g:");
+      msg << " l=" << l << " eta=" << eta << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return G.val;
+}
+
 } // namespace gsl
