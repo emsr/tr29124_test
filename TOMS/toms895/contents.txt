@@ -1,0 +1,52 @@
+CFSF : a continued fractions package for special functions
+==========================================================
+
+This bundle contains all files belonging to CFSF,
+a continued fractions package for special functions,
+written in Maple.
+
+Directory structure:
+
+- CFSF/functions:
+
+  This directory contains all formula definitions that are
+  initially known to the CFSF package.  It has subdirectories
+  per chapter and function.
+
+- CFSF/library:
+
+  In this directory resides the implementation of the CFSF
+  package.  It includes a Makefile for creating the library.
+
+- CFSF/tests:
+
+  This directory contains a sample Maple worksheet to demonstrate
+  the use of the package.  It can be used to check the output
+  according to the article that was submitted to ACM Toms.
+
+System requirements:
+
+- You will need at least Maple version 9.
+
+Creating the library:
+
+- To create the library, go to the CFSF/library directory,
+  and issue the make command.  The location of the maple
+  library should be passed to the MAPLE variable.
+
+  $ cd CFSF/library
+  $ make MAPLE=/location/of/maple
+
+Using the library:
+
+- To make the library available, add it to the libname variable of
+  Maple.  Then load the library using the with command.
+
+  $ maple
+  > libname := libname, "/location/of/CFSF/library":
+  > with(CFSF):
+
+- By adding the libname statement to the personal Maple initialization
+  file (e.g. ~/.mapleinit under Unix/Linux), you can make the library
+  available at all times.  For more information, see ?mapleinit in
+  Maple.
