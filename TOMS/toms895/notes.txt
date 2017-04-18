@@ -1,0 +1,12 @@
+CFSF : a continued fractions package for special functions
+==========================================================
+
+This bundle contains all files belonging to CFSF,
+a continued fractions package for special functions,
+written in Maple.
+
+Notes about the current release:
+
+- Instead of showing the whole output of a formula that does not
+  have a label, formula only shows the type of the formula, followed
+  by three dots.  To display the complete formula object, use eval.
