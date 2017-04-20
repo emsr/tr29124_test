@@ -570,6 +570,8 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 
 124. [] The stirling_1 sum looks like it might be just scaled wrong.
 
+125. [] In order to support float128 we'll need to make libstdc++ require libquadmath.
+
 plot_airy.cpp
 
 test_hankel.cpp - warns and crashes
