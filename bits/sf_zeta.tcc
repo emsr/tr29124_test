@@ -186,7 +186,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *     Li_2(-x) - Li_2(1-x) - \frac{1}{2}Li_2(1-x^2)
    *         = -\frac{\pi^2}{12} - \ln(x) \ln(1-x)
    *   @f]
-   *  For x < 1 use the reflection formula:
+   *  For x < -1 use the reflection formula:
    *   @f[
    *     Li_2(1-x) - Li_2(1-\frac{1}{1-x}) - \frac{1}{2}(\ln(x))^2
    *   @f]
