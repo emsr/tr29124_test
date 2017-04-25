@@ -25,7 +25,7 @@ template<typename _Real, typename _Iter>
       {
 	++__n;
 	if (*__begin < _Real{0})
-	  std::__throw_domain_error("entries must be non-negative");
+	  std::__throw_domain_error("negative number");
 	__prod *= *__begin;
 	++__begin;
       }
@@ -52,7 +52,7 @@ template<typename _Real, typename _Iter>
       {
 	++__n;
 	if (*__begin < _Real{0})
-	  std::__throw_domain_error("entries must be non-negative");
+	  std::__throw_domain_error("negative number");
 	__sum += std::pow(*__begin, __p);
 	++__begin;
       }
@@ -71,7 +71,7 @@ template<typename _Real, typename _Iter, typename _IterW>
     while (__vbegin != __vend)
       {
 	if (*__vbegin < _Real{0})
-	  std::__throw_domain_error("entries must be non-negative");
+	  std::__throw_domain_error("negative number");
 	__w += *__wbegin;
 	__prod *= std::pow(*__vbegin, *__wbegin);
 	++__vbegin;
@@ -99,7 +99,7 @@ template<typename _Real, typename _Iter, typename _IterW>
     while (__vbegin != __vend)
       {
 	if (*__vbegin < _Real{0})
-	  std::__throw_domain_error("entries must be non-negative");
+	  std::__throw_domain_error("negative number");
 	__w += *__wbegin;
 	__sum += *__wbegin * std::pow(*__vbegin, __p);
 	++__vbegin;
