@@ -152,12 +152,19 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
+    _Tp inf = std::numeric_limits<_Tp>::infinity();
     _Tp a = 1.5;
     _Tp b = 6.7;
+    std::cout << ' ' << std::setw(w) << -inf
+	      << ' ' << std::setw(w) << power_mean(-inf, {a, b})
+	      << '\n';
     for (_Tp p = -10.0; p <= 10.0; p += 0.015625)
       std::cout << ' ' << std::setw(w) << p
 		<< ' ' << std::setw(w) << power_mean(p, {a, b})
 		<< '\n';
+    std::cout << ' ' << std::setw(w) << inf
+	      << ' ' << std::setw(w) << power_mean(inf, {a, b})
+	      << '\n';
   }
 
 int
