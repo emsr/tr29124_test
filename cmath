@@ -5,7 +5,7 @@
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
 // terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
+U// Free Software Foundation; either version 3, or (at your option)
 // any later version.
 
 // This library is distributed in the hope that it will be useful,
@@ -44,7 +44,10 @@
 #define _GLIBCXX_INCLUDE_NEXT_C_HEADERS
 #include_next <math.h>
 #undef _GLIBCXX_INCLUDE_NEXT_C_HEADERS
-#include <bits/std_abs.h>
+// Don't need this for g++-6.*
+#if __GNUC__ > 6
+#  include <bits/std_abs.h>
+#endif
 
 #ifndef _GLIBCXX_CMATH
 #define _GLIBCXX_CMATH 1
