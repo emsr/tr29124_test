@@ -45,7 +45,9 @@
 #endif
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-#  include <quadmath.h>
+#  if __has_include(quadmath.h)
+#    include <quadmath.h>
+#  endif
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
 namespace std _GLIBCXX_VISIBILITY(default)
