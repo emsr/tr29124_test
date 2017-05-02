@@ -11,6 +11,7 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_power_mean 
 #include <iostream>
 #include <iomanip>
 #include <limits>
+#include <algorithm>
 
 /**
  * 
@@ -45,18 +46,27 @@ template<typename _Real, typename _Iter>
     using _Tp = std::decay_t<decltype(*__begin)>;
     if (__p == _Real{0})
       return __impl_power_mean_0<_Tp>(__begin, __end);
-
-    std::size_t __n = 0;
-    auto __sum = _Real{0};
-    while (__begin != __end)
+    else if (std::isinf(__p))
       {
-	++__n;
-	if (*__begin < _Real{0})
-	  std::__throw_domain_error("negative number");
-	__sum += std::pow(*__begin, __p);
-	++__begin;
+	if (__p < _Real{0})
+	  return *std::min_element(__begin, __end);
+	else
+	  return *std::max_element(__begin, __end);
       }
-    return std::pow(__sum / _Real(__n), _Real{1} / _Real(__p));
+    else
+      {
+	std::size_t __n = 0;
+	auto __sum = _Real{0};
+	while (__begin != __end)
+	  {
+	    ++__n;
+	    if (*__begin < _Real{0})
+	      std::__throw_domain_error("negative number");
+	    __sum += std::pow(*__begin, __p);
+	    ++__begin;
+	  }
+	return std::pow(__sum / _Real(__n), _Real{1} / _Real(__p));
+      }
   }
 
 /**
