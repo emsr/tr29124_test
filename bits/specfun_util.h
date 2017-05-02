@@ -44,8 +44,12 @@
 #  include <utility> // For exchange
 #endif
 
+#define _GLIBCXX_HAVE_FLOAT128_MATH 0
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-#  include <quadmath.h>
+#  if __has_include(<quadmath.h>)
+#    include <quadmath.h>
+#    define _GLIBCXX_HAVE_FLOAT128_MATH 1
+#  endif
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
 namespace std _GLIBCXX_VISIBILITY(default)
