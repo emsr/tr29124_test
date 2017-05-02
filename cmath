@@ -44,7 +44,10 @@
 #define _GLIBCXX_INCLUDE_NEXT_C_HEADERS
 #include_next <math.h>
 #undef _GLIBCXX_INCLUDE_NEXT_C_HEADERS
-#include <bits/std_abs.h>
+// Don't need this for g++-6.*
+#if __GNUC__ > 6
+#  include <bits/std_abs.h>
+#endif
 
 #ifndef _GLIBCXX_CMATH
 #define _GLIBCXX_CMATH 1

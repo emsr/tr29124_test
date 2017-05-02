@@ -28,20 +28,29 @@ PATH=wrappers/debug:$PATH ./test_polylog > test_polylog.txt
     private:
 
       using _Real = std::__detail::__num_traits_t<_Tp>;
-      std::size_t _M_max_iter;
+      const std::size_t _M_max_iter;
+      std::size_t _M_curr_iter;
       _Real _M_toler;
 
     public:
 
       _Terminator(std::size_t __max_iter, _Real __mul = _Real{1})
-      : _M_max_iter(__max_iter),
+      : _M_max_iter(__max_iter), _M_curr_iter{0},
 	_M_toler(std::abs(__mul) * std::numeric_limits<_Real>::epsilon())
       { }
 
+      /// Return the current number of terms summed.
+      std::size_t
+      num_terms() const
+      { return this->_M_curr_iter; }
+
+      /// Detect if the sum should terminate either because the incoming term
+      /// is small enough or the maximum number of terms has been reached.
       bool
       operator()(_Tp __term, _Tp __sum)
       {
-	if (this->_M_max_iter == 0 || --this->_M_max_iter == 0)
+	if (this->_M_curr_iter >= this->_M_max_iter
+	    || ++this->_M_curr_iter == this->_M_max_iter)
 	  return true;
 	else if (std::abs(__term) < this->_M_toler * std::abs(__sum))
 	  return true;
@@ -51,7 +60,10 @@ PATH=wrappers/debug:$PATH ./test_polylog > test_polylog.txt
     };
 
   /**
-   * This class manages the termination of series.
+   * This class manages the termination of asymptotic series.
+   * In particular, this termination watches for the growth of the sequence
+   * of terms to stop the series.
+   *
    * Termination conditions involve both a maximum iteration count
    * and a relative precision.
    */
@@ -61,31 +73,60 @@ PATH=wrappers/debug:$PATH ./test_polylog > test_polylog.txt
     private:
 
       using _Real = std::__detail::__num_traits_t<_Tp>;
-      std::size_t _M_max_iter;
+      const std::size_t _M_max_iter;
+      std::size_t _M_curr_iter;
       _Real _M_toler;
       _Real _M_prev_term = std::numeric_limits<_Real>::max();
+      bool _M_stop_asymp = false;
 
     public:
 
       _AsympTerminator(std::size_t __max_iter, _Real __mul = _Real{1})
-      : _M_max_iter(__max_iter),
+      : _M_max_iter(__max_iter), _M_curr_iter{0},
 	_M_toler(std::abs(__mul) * std::numeric_limits<_Real>::epsilon())
       { }
 
+      /// Filter a term before applying it to the sum.
+      _Tp
+      operator<<(_Tp __term)
+      {
+	if (std::abs(__term) > this->_M_prev_term)
+	  {
+	    this->_M_stop_asymp = true;
+	    return _Tp{0};
+	  }
+	else
+	  return __term;
+      }
+
+      /// Return the current number of terms summed.
+      std::size_t
+      num_terms() const
+      { return this->_M_curr_iter; }
+
+      /// Detect if the sum should terminate either because the incoming term
+      /// is small enough or because the terms are starting to grow or
+      //  the maximum number of terms has been reached.
       bool
       operator()(_Tp __term, _Tp __sum)
       {
-	const auto __aterm = std::abs(__term);
-	const auto __stop_asymp = (__aterm > this->_M_prev_term);
-	this->_M_prev_term = __aterm;
-	if (this->_M_max_iter == 0 || --this->_M_max_iter == 0)
-	  return true;
-	else if (__aterm < this->_M_toler * std::abs(__sum))
-	  return true;
-	else if (__stop_asymp)
+	if (this->_M_stop_asymp)
 	  return true;
 	else
-	  return false;
+	  {
+	    const auto __aterm = std::abs(__term);
+	    this->_M_stop_asymp = (__aterm > this->_M_prev_term);
+	    this->_M_prev_term = __aterm;
+	    if (this->_M_curr_iter >= this->_M_max_iter
+	    || ++this->_M_curr_iter == this->_M_max_iter)
+	      return true;
+	    else if (__aterm < this->_M_toler * std::abs(__sum))
+	      return true;
+	    else if (this->_M_stop_asymp)
+	      return true;
+	    else
+	      return false;
+	  }
       }
     };
 
@@ -458,7 +499,7 @@ PATH=wrappers/debug:$PATH ./test_polylog > test_polylog.txt
 	{
 	  __wgamma *= __wq * (__s + _Tp(1 - 2 * __k)) * (__s + _Tp(2 - 2 * __k));
 	  __term = std::__detail::__riemann_zeta<_Tp>(2 * __k) * __wgamma;
-	  __res += _Tp{2} * __term;
+	  __res += __done << _Tp{2} * __term;
 	  if (__done(_Tp{2} * __term, __res))
 	    break;
 	  __oldterm = __term;
