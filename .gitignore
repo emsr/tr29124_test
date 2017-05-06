@@ -310,6 +310,7 @@ test_polynomial
 test_pow_funs
 test_pow_bits
 test_power_mean
+test_power_norm
 test_promote_num
 test_psi
 test_rational
