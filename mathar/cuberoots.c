@@ -3,13 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-			/* define HAVE_NO_CBRT if your math library does not contain a double cbrt(double)
-			function which returns the cube root of a single real number, returning a negative
-			number for negative arguments */
-/*#define HAVE_NO_CBRT */
-			/* define HAVE_NO_SINCOS if your math library does not contain a void sincos(double,double *,double*)
-			function which returns the sine and cosine a single real number at the same time */
-/*#define HAVE_NO_SINCOS */
 /**********************************************************************
  Solve a cubic equation with real-valued coefficients a[0..2]
  a[0]+a[1]*z+a[2]*z^2+z^3=0
@@ -92,33 +85,3 @@ int cuberoots(const double a[3], double z[3][2])
 }
 #undef M_SQRT3_2
 #undef M_SQRT3
-
-#ifdef HAVE_NO_CBRT
-/******************************************************************
- Implement a local cbrt() function (cube root) if not provided by the local library.
- Returns "sign-extended" negative numbers if the argument is negative.
- Not needed for Sun's or HP's native compilers, for example.
- Richard J. Mathar, 11 Oct 2000
-******************************************************************/
-static double cbrt(const double x)
-{
-	if( x < 0.)
-		return -pow(-x,1./3.) ;
-	else
-		return pow(x,1./3.) ;
-}
-#endif /* HAVE_NO_CBRT */
-
-#ifdef HAVE_NO_SINCOS
-/***************************************************************************
- Auxiliary replacement for the sincos() function that might be missing
- in some mathematical environments.
- Available with   -lsunmath -lm with the Sun compilers.
- Richard J. Mathar, 16 Oct 2000
-***************************************************************************/
-static void sincos(const double x, double *s, double *c)
-{
-	*s=sin(x) ;
-	*c=cos(x) ;
-}
-#endif /* HAVE_NO_SINCOS */
