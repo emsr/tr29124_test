@@ -2,7 +2,7 @@
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hypot test_hypot.cpp -L$HOME/bin/lib64 -lquadmath
 ./test_hypot > test_hypot.txt
 
-g++ -std=gnu++14 -Wall -Wextra -DNO_LOGBQ -I. -o test_hypot test_hypot.cpp -lquadmath
+g++ -std=gnu++14 -Wall -Wextra -I. -o test_hypot test_hypot.cpp -lquadmath
 ./test_hypot > test_hypot.txt
 */
 

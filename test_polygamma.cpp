@@ -2,10 +2,10 @@
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polygamma test_polygamma.cpp -L$HOME/bin/lib64 -lquadmath
 ./test_polygamma > test_polygamma.txt
 
-g++ -std=gnu++14 -Wall -Wextra -DNO_LOGBQ -I. -o test_polygamma test_polygamma.cpp -lquadmath
+g++ -std=gnu++14 -Wall -Wextra -I. -o test_polygamma test_polygamma.cpp -lquadmath
 ./test_polygamma > test_polygamma.txt
 
-$HOME/bin/bin/g++ -std=gnu++14 -Wall -Wextra -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -DNO_LOGBQ -I. -o test_polygamma test_polygamma.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++14 -Wall -Wextra -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_polygamma test_polygamma.cpp -lquadmath
 ./test_polygamma > test_polygamma.txt
 */
 

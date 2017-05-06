@@ -2,7 +2,7 @@
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o airy_toy_old airy_toy_old.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_old > airy_toy_old.new
 
-$HOME/bin/bin/g++ -std=gnu++17 -Wall -Wextra -DNO_LOGBQ -I. -o airy_toy_old airy_toy_old.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old.cpp -lquadmath
 ./airy_toy_old > airy_toy_old.txt
 */
 
@@ -23,8 +23,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -Wall -Wextra -DNO_LOGBQ -I. -o airy_toy_old airy
     _Tp
     get_zeta(_Tp __y)
     {
-      static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666667Q};
-      static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
+      static constexpr auto _S_2d3
+	= _Tp{0.6666666666666666666666666666666666666667Q};
+      static constexpr auto _S_lncon
+	= _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
       if (__y < _Tp{0})
 	throw std::range_error("get_zeta: negative argument");
       else if (__y == _Tp{0})
