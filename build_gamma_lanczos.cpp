@@ -2,7 +2,7 @@
 $HOME/bin_tr29124/bin/g++ -I. -o build_gamma_lanczos build_gamma_lanczos.cpp -lquadmath
 ./build_gamma_lanczos > build_gamma_lanczos.txt
 
-$HOME/bin/bin/g++ -std=gnu++14 -DNO_LOGBQ -I. -o build_gamma_lanczos build_gamma_lanczos.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++14 -I. -o build_gamma_lanczos build_gamma_lanczos.cpp -lquadmath
 ./build_gamma_lanczos > build_gamma_lanczos.txt
 */
 
