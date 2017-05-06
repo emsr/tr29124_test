@@ -1468,7 +1468,7 @@ gamma_reciprocal(unsigned int /*a*/)
 double
 coulomb_norm(unsigned int l, double eta)
 {
-  gsl_sf_result result;`
+  gsl_sf_result result;
   int stat = gsl_sf_coulomb_CL_e (double(l), eta, &result);
   if (stat != GSL_SUCCESS)
     {
