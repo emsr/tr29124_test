@@ -1,4 +1,3 @@
-complex <double> wrightomega ( complex <double> z );
-int wrightomega_ext ( complex <double> z, complex <double> &w, 
-  complex <double> &e, complex <double> &r, complex <double> &condest );
-void timestamp ( );
+std::complex<double> wrightomega ( std::complex<double> z );
+int wrightomega_ext ( std::complex<double> z, std::complex<double> &w, 
+  std::complex<double> &e, std::complex<double> &r, std::complex<double> &condest );
