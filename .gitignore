@@ -224,7 +224,7 @@ diff_local_special_function
 testcase
 testcase_tr1
 testcase2
-test_agm
+test_arith_geom_mean
 test_airy
 test_anger_weber
 test_bernoulli
