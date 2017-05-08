@@ -36,6 +36,9 @@
 // ISO C++ 14882: 26.5  C library
 //
 
+#ifndef _GLIBCXX_CMATH
+#define _GLIBCXX_CMATH 1
+
 #pragma GCC system_header
 
 #include <bits/c++config.h>
@@ -48,9 +51,6 @@
 #if __GNUC__ > 6
 #  include <bits/std_abs.h>
 #endif
-
-#ifndef _GLIBCXX_CMATH
-#define _GLIBCXX_CMATH 1
 
 // Get rid of those macros defined in <math.h> in lieu of real functions.
 #undef div
@@ -412,7 +412,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 #endif
 #endif
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#if _GLIBCXX_HAVE_FLOAT128_MATH
   // Prevent infinite recursion with pow for __float128.
   inline __float128 pow(__float128 __x, __float128 __y);
 #endif
@@ -1871,7 +1871,9 @@ _GLIBCXX_END_NAMESPACE_VERSION
 
 #endif // C++11
 
-#include <bits/float128_math.h>
+#if _GLIBCXX_HAVE_FLOAT128_MATH
+#  include <bits/float128_math.h>
+#endif
 
 #if defined(_GLIBCXX_USE_STD_SPEC_FUNCS) && !defined(_GLIBCXX_NO_SPECFUN)
 #  include <bits/specfun.h>

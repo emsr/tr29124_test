@@ -41,6 +41,15 @@
 
 #include <bits/c++config.h>
 
+#define _GLIBCXX_HAVE_FLOAT128_MATH 0
+#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#  if __has_include(<quadmath.h>)
+#    include <quadmath.h>
+#    define _GLIBCXX_HAVE_FLOAT128_MATH 1
+#  endif
+#endif
+
+#if _GLIBCXX_HAVE_FLOAT128_MATH
 #define FLT128_MAX 1.18973149535723176508575932662800702e4932Q
 #define FLT128_MIN 3.36210314311209350626267781732175260e-4932Q
 #define FLT128_EPSILON 1.92592994438723585305597794258492732e-34Q
@@ -51,6 +60,7 @@
 #define FLT128_DIG 33
 #define FLT128_MIN_10_EXP (-4931)
 #define FLT128_MAX_10_EXP 4932
+#endif
 
 //
 // The numeric_limits<> traits document implementation-defined aspects
@@ -134,7 +144,7 @@
 #  define __glibcxx_long_double_tinyness_before false
 #endif
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#if _GLIBCXX_HAVE_FLOAT128_MATH
 
 // __float128
 
@@ -150,7 +160,7 @@
 #    define __glibcxx_float128_tinyness_before false
 #  endif
 
-#  endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
+#  endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
 // You should not need to define any macros below this point.
 
@@ -1843,7 +1853,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 #undef __glibcxx_long_double_traps
 #undef __glibcxx_long_double_tinyness_before
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#if _GLIBCXX_HAVE_FLOAT128_MATH
 
   /// numeric_limits<__float128> specialization.
   template<>
@@ -1920,7 +1930,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 #  undef __glibcxx_float128_traps
 #  undef __glibcxx_float128_tinyness_before
 
-#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
+#endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace

@@ -14,7 +14,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 
 
 
-// g++ -std=gnu++17 -g -Wall -Wextra -DNO_LOGBQ -I. -o airy_toy airy_toy.cpp -lquadmath
+// g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy airy_toy.cpp -lquadmath
 
 // ./airy_toy > airy_toy.txt
 
@@ -98,31 +98,62 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 
 
   /**
-   * This struct defines the Airy function state with two presumably
-   * numerically useful Airy functions and their derivatives.
+   * This struct defines the Airy function state with the
+   * Airy Ai ams Bi functions and their derivatives.
    * The data mambers are directly accessible.
-   * The lone method computes the Wronskian from the stord functions.
+   * The lone method computes the Wronskian from the stored functions.
    * A static method returns the correct Wronskian.
    */
-  template<typename _Tp>
-    struct _AiryState
+  template<typename _Tx, typename _Tp>
+    struct __airy_t
     {
+      using _Arg = _Tx;
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
 
-      _Val z;
-      _Val Ai;
-      _Val Aip;
-      _Val Bi;
-      _Val Bip;
+      _Arg __x_arg;
+      _Val __Ai_value;
+      _Val __Ai_deriv;
+      _Val __Bi_value;
+      _Val __Bi_deriv;
 
       constexpr _Val
-      Wronskian() const
-      { return Ai * Bip - Bi * Aip; }
+      __Wronskian() const
+      { return __Ai_value * __Bi_deriv - __Bi_value * __Ai_deriv; }
 
       static constexpr _Real
-      true_Wronskian()
+      __true_Wronskian()
       { return _Real{1} /__gnu_cxx::__math_constants<_Real>::__pi; }
+    };
+
+
+  /**
+   * This struct defines the Fock Airy function state with the
+   * w1 and w2 Fock Airy functions and their derivatives.
+   * The data mambers are directly accessible.
+   * The lone method computes the Wronskian from the stored functions.
+   * A static method returns the correct Wronskian.
+   */
+  template<typename _Tx, typename _Tp>
+    struct __fock_airy_t
+    {
+      using _Arg = _Tx;
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+
+      _Arg __x_arg;
+      _Val __w1_value;
+      _Val __w1_deriv;
+      _Val __w2_value;
+      _Val __w2_deriv;
+
+      constexpr _Val
+      __Wronskian() const
+      { return __w1_value * __w2_deriv - __w2_value * __w1_deriv; }
+
+      static constexpr _Real
+      __true_Wronskian()
+      { return _Real{1}; }
     };
 
 
@@ -130,19 +161,40 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
    * A structure containing three auxilliary Airy functions
    * and their derivatives.
    */
-  template<typename _Tp>
-    struct _AiryAuxilliaryState
+  template<typename _Tx, typename _Tp>
+    struct __airy_aux_t
     {
+      using _Arg = _Tx;
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
 
-      _Val z;
-      _Val fai;
-      _Val faip;
-      _Val gai;
-      _Val gaip;
-      _Val hai;
-      _Val haip;
+      _Arg __x_arg;
+      _Val __fai_value;
+      _Val __fai_deriv;
+      _Val __gai_value;
+      _Val __gai_deriv;
+      _Val __hai_value;
+      _Val __hai_deriv;
+    };
+
+
+  /**
+   * This struct defines the Scorer function state with the
+   * Airy Gi ams Hi functions and their derivatives.
+   * The data mambers are directly accessible.
+   */
+  template<typename _Tx, typename _Tp>
+    struct __scorer_t
+    {
+      using _Arg = _Tx;
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+
+      _Arg __x_arg;
+      _Val __Gi_value;
+      _Val __Gi_deriv;
+      _Val __Hi_value;
+      _Val __Hi_deriv;
     };
 
 
@@ -1481,10 +1533,10 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
       static constexpr _Cmplx _S_i{_Real{0}, _Real{1}};
       static const _Real _S_log10min;
 
-      static _AiryState<_Val>
+      static __airy_t<_Val, _Val>
       _S_Airy(_Val __t);
 
-      static _AiryState<_Cmplx>
+      static __fock_airy_t<_Cmplx, _Cmplx>
       _S_Fock(_Val __t);
 
       static std::pair<_Val, _Val>
@@ -1493,17 +1545,17 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
       static std::pair<_Val, _Val>
       _S_Bi(_Val __t);
 
-      static _AiryAuxilliaryState<_Val>
+      static __airy_aux_t<_Val, _Val>
       _S_FGH(_Val __t);
 
-      static _AiryState<_Val>
+      static __scorer_t<_Val, _Val>
       _S_Scorer(_Val __t);
-      static _AiryState<_Val>
+      static __scorer_t<_Val, _Val>
       _S_Scorer2(_Val __t);
 
     private:
 
-      static _AiryState<_Val>
+      static __airy_t<_Val, _Val>
       _S_AiryUV(_Val __t);
 
       std::pair<_Val, _Val>
@@ -1624,7 +1676,8 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
    * @tparam _Tp A real type
    */
   template<typename _Tp>
-    _AiryState<typename _Airy_series<_Tp>::_Val>
+    __airy_t<typename _Airy_series<_Tp>::_Val,
+	     typename _Airy_series<_Tp>::_Val>
     _Airy_series<_Tp>::_S_AiryUV(typename _Airy_series<_Tp>::_Val __t)
     {
       const auto __log10t = std::log10(std::abs(__t));
@@ -1666,7 +1719,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
       auto _UUp = _S_sqrt_pi * (_S_Bi0 * _Fp + _S_Bip0 * _Gp);
       auto _VVp = _S_sqrt_pi * (_S_Ai0 * _Fp + _S_Aip0 * _Gp);
 
-      return _AiryState<_Val>{__t, _UU, _UUp, _VV, _VVp};
+      return __airy_t<_Val, _Val>{__t, _UU, _UUp, _VV, _VVp};
     }
 
   /**
@@ -1738,7 +1791,8 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
    * @tparam _Tp A real type
    */
   template<typename _Tp>
-    _AiryAuxilliaryState<typename _Airy_series<_Tp>::_Val>
+    __airy_aux_t<typename _Airy_series<_Tp>::_Val,
+		 typename _Airy_series<_Tp>::_Val>
     _Airy_series<_Tp>::_S_FGH(typename _Airy_series<_Tp>::_Val __t)
     {
       const auto __log10t = std::log10(std::abs(__t));
@@ -1781,7 +1835,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 	  _Hp += _Haip[__n] * __term * __t;
 	}
 
-      return _AiryAuxilliaryState<_Val>{__t, _F, _G, _H, _Fp, _Gp, _Hp};
+      return __airy_aux_t<_Val, _Val>{__t, _F, _G, _H, _Fp, _Gp, _Hp};
     }
 
   /**
@@ -1812,19 +1866,20 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
    * @tparam _Tp A real type
    */
   template<typename _Tp>
-    _AiryState<typename _Airy_series<_Tp>::_Val>
+    __scorer_t<typename _Airy_series<_Tp>::_Val,
+	       typename _Airy_series<_Tp>::_Val>
     _Airy_series<_Tp>::_S_Scorer(typename _Airy_series<_Tp>::_Val __t)
     {
-      auto __aux = FGH(__t);
+      const auto __aux = FGH(__t);
 
-      auto _Hi = _S_Hi0 * (__aux.fai + __aux.gai + __aux.hai);
-      auto _Hip = _S_Hip0 * (__aux.faip + __aux.gaip + __aux.haip);
-      auto _Bi = _S_Bi0 * __aux.fai + _S_Bip0 * __aux.gai;
-      auto _Bip = _S_Bi0 * __aux.faip + _S_Bip0 * __aux.gaip;
-      auto _Gi = _Bi - _Hi;
-      auto _Gip = _Bip - _Hip;
+      const auto _Hi = _S_Hi0 * (__aux.__fai_value + __aux.__gai_value + __aux.__hai_value);
+      const auto _Hip = _S_Hip0 * (__aux.__fai_deriv + __aux.__gai_deriv + __aux.__hai_deriv);
+      const auto _Bi = _S_Bi0 * __aux.__fai_value + _S_Bip0 * __aux.__gai_value;
+      const auto _Bip = _S_Bi0 * __aux.__fai_deriv + _S_Bip0 * __aux.__gai_deriv;
+      const auto _Gi = _Bi - _Hi;
+      const auto _Gip = _Bip - _Hip;
 
-      return _AiryState<_Val>{__t, _Gi, _Gip, _Hi, _Hip};
+      return __scorer_t<_Val, _Val>{__t, _Gi, _Gip, _Hi, _Hip};
     }
 
   /**
@@ -1849,7 +1904,8 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
    * @f]
    */
   template<typename _Tp>
-    _AiryState<typename _Airy_series<_Tp>::_Val>
+    __scorer_t<typename _Airy_series<_Tp>::_Val,
+	       typename _Airy_series<_Tp>::_Val>
     _Airy_series<_Tp>::_S_Scorer2(typename _Airy_series<_Tp>::_Val __t)
     {
       constexpr auto _S_cbrt_3 = _Real(1.442249570307408382321638310780109588390Q);
@@ -1890,7 +1946,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
       _Hi *= __fact;
       _Hip *= __factp;
 
-      return _AiryState<_Val>{__t, _Gi, _Gip, _Hi, _Hip};
+      return __scorer_t<_Val, _Val>{__t, _Gi, _Gip, _Hi, _Hip};
     }
 
   /**
@@ -1956,15 +2012,16 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
    * @param __t The complex argument
    */
   template<typename _Tp>
-    _AiryState<typename _Airy_series<_Tp>::_Val>
+    __airy_t<typename _Airy_series<_Tp>::_Val,
+	     typename _Airy_series<_Tp>::_Val>
     _Airy_series<_Tp>::_S_Airy(typename _Airy_series<_Tp>::_Val __t)
     {
-      auto _UV = _S_AiryUV(__t);
-      auto _Bi = _UV.Ai / _S_sqrt_pi;
-      auto _Ai = _UV.Bi / _S_sqrt_pi;
-      auto _Bip = _UV.Aip / _S_sqrt_pi;
-      auto _Aip = _UV.Bip / _S_sqrt_pi;
-      return _AiryState<_Val>{__t, _Ai, _Aip, _Bi, _Bip};
+      const auto _UV = _S_AiryUV(__t);
+      const auto _Bi = _UV.__Ai_value / _S_sqrt_pi;
+      const auto _Ai = _UV.__Bi_value / _S_sqrt_pi;
+      const auto _Bip = _UV.__Ai_deriv / _S_sqrt_pi;
+      const auto _Aip = _UV.__Bi_deriv / _S_sqrt_pi;
+      return __airy_t<_Val, _Val>{__t, _Ai, _Aip, _Bi, _Bip};
     }
 
   /**
@@ -1975,15 +2032,16 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
    * @param __t The complex argument
    */
   template<typename _Tp>
-    _AiryState<typename _Airy_series<_Tp>::_Cmplx>
+    __fock_airy_t<typename _Airy_series<_Tp>::_Cmplx,
+		  typename _Airy_series<_Tp>::_Cmplx>
     _Airy_series<_Tp>::_S_Fock(typename _Airy_series<_Tp>::_Val __t)
     {
-      auto _UV = _S_AiryUV(__t);
-      auto __w1 = _UV.Ai - _S_i * _UV.Bi;
-      auto __w2 = _UV.Ai + _S_i * _UV.Bi;
-      auto __w1p = _UV.Aip - _S_i * _UV.Bip;
-      auto __w2p = _UV.Aip + _S_i * _UV.Bip;
-      return _AiryState<_Cmplx>{__t, __w1, __w1p, __w2, __w2p};
+      const auto _UV = _S_AiryUV(__t);
+      const auto __w1 = _UV.__Ai_value - _S_i * _UV.__Bi_value;
+      const auto __w2 = _UV.__Ai_value + _S_i * _UV.__Bi_value;
+      const auto __w1p = _UV.__Ai_deriv - _S_i * _UV.__Bi_deriv;
+      const auto __w2p = _UV.__Ai_deriv + _S_i * _UV.__Bi_deriv;
+      return __airy_t<_Cmplx, _Cmplx>{__t, __w1, __w1p, __w2, __w2p};
     }
 
   /**
@@ -2132,10 +2190,11 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
   template<>
     constexpr std::size_t
     _Airy_asymp_data<float>::_S_max<long double> = 43;
-
+#if _GLIBCXX_HAVE_FLOAT128_MATH
   template<>
     constexpr std::size_t
     _Airy_asymp_data<float>::_S_max<__float128> = 43;
+#endif
 
   constexpr float
   _Airy_asymp_data<float>::_S_c[_Airy_asymp_data<float>::_S_max_cd];
@@ -2589,10 +2648,11 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
   template<>
     constexpr std::size_t
     _Airy_asymp_data<double>::_S_max<long double> = 198;
-
+#if _GLIBCXX_HAVE_FLOAT128_MATH
   template<>
     constexpr std::size_t
     _Airy_asymp_data<double>::_S_max<__float128> = 198;
+#endif
 
   constexpr double
   _Airy_asymp_data<double>::_S_c[_Airy_asymp_data<double>::_S_max_cd];
@@ -3052,10 +3112,11 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
   template<>
     constexpr std::size_t
     _Airy_asymp_data<long double>::_S_max<long double> = 201;
-
+#if _GLIBCXX_HAVE_FLOAT128_MATH
   template<>
     constexpr std::size_t
     _Airy_asymp_data<long double>::_S_max<__float128> = 201;
+#endif
 
   constexpr long double
   _Airy_asymp_data<long double>::_S_c[_Airy_asymp_data<long double>::_S_max_cd];
@@ -3063,7 +3124,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
   constexpr long double
   _Airy_asymp_data<long double>::_S_d[_Airy_asymp_data<long double>::_S_max_cd];
 
-
+#if _GLIBCXX_HAVE_FLOAT128_MATH
   template<>
     struct _Airy_asymp_data<__float128>
     {
@@ -3525,6 +3586,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 
   constexpr __float128
   _Airy_asymp_data<__float128>::_S_d[_Airy_asymp_data<__float128>::_S_max_cd];
+#endif
 
 
   /**
@@ -3545,13 +3607,16 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 
       constexpr _Airy_asymp() = default;
 
-      _AiryState<_Cmplx>
-      operator()(_Cmplx __t, bool __return_fock_airy = false) const;
+      __airy_t<_Cmplx, _Cmplx>
+      operator()(_Cmplx __t) const;
 
-      _AiryState<_Cmplx>
+      __fock_airy_t<_Cmplx, _Cmplx>
+      _S_fock_airy(_Cmplx __t) const;
+
+      __airy_t<_Cmplx, _Cmplx>
       _S_absarg_ge_pio3(_Cmplx __z) const;
 
-      _AiryState<_Cmplx>
+      __airy_t<_Cmplx, _Cmplx>
       _S_absarg_lt_pio3(_Cmplx __z) const;
 
     private:
@@ -3566,9 +3631,9 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
    * @tparam _Tp A real type
    */
   template<typename _Tp>
-    _AiryState<typename _Airy_asymp<_Tp>::_Cmplx>
-    _Airy_asymp<_Tp>::operator()(typename _Airy_asymp<_Tp>::_Cmplx __t,
-				 bool __return_fock_airy) const
+    __airy_t<typename _Airy_asymp<_Tp>::_Cmplx,
+	     typename _Airy_asymp<_Tp>::_Cmplx>
+    _Airy_asymp<_Tp>::operator()(typename _Airy_asymp<_Tp>::_Cmplx __t) const
     {
       constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
       constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Real>::__root_pi;
@@ -3647,21 +3712,65 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 	  _Ai1p *= _Real(-0.5L) * __t1p1d4 * __ezeta1 / _S_sqrt_pi;
 	  _Ai2p *= _Real(-0.5L) * __t2p1d4 * __ezeta2 / _S_sqrt_pi;
 
-	  auto _Bi = std::exp(+_S_i * _S_pi / _Real{6}) * _Ai1
-		   + std::exp(-_S_i * _S_pi / _Real{6}) * _Ai2;
-	  auto _Bip = std::exp(+_S_i * _Real{5} * _S_pi / _Real{6}) * _Ai1p
-		    + std::exp(-_S_i * _Real{5} * _S_pi / _Real{6}) * _Ai2p;
+	  const auto _Bi = std::exp(+_S_i * _S_pi / _Real{6}) * _Ai1
+			 + std::exp(-_S_i * _S_pi / _Real{6}) * _Ai2;
+	  const auto _Bip = std::exp(_S_i * _Real{5} * _S_pi / _Real{6}) * _Ai1p
+			+ std::exp(-_S_i * _Real{5} * _S_pi / _Real{6}) * _Ai2p;
 
-	  if (__return_fock_airy)
-	    {
-	      auto __w1 = _S_sqrt_pi * (_Bi - _S_i * _Ai);
-	      auto __w2 = _S_sqrt_pi * (_Bi + _S_i * _Ai);
-	      auto __w1p = _S_sqrt_pi * (_Bip - _S_i * _Aip);
-	      auto __w2p = _S_sqrt_pi * (_Bip + _S_i * _Aip);
-	      return _AiryState<_Cmplx>{__t, __w1, __w1p, __w2, __w2p};
-	    }
-	  else
-	    return _AiryState<_Cmplx>{__t, _Ai, _Aip, _Bi, _Bip};
+	  return __airy_t<_Cmplx, _Cmplx>{__t, _Ai, _Aip, _Bi, _Bip};
+	}
+      else // Argument t is on or left of the imaginary axis.
+	{
+	  const auto __fock = _S_fock_airy(__t);
+//#if __cpp_structured_bindings
+//	  const auto& [__tx, __w1, __w1p, __w2, __w2p] = __fock;
+//#else
+	  const auto __w1 = __fock.__w1_value;
+	  const auto __w1p = __fock.__w1_deriv;
+	  const auto __w2 = __fock.__w2_value;
+	  const auto __w2p = __fock.__w2_deriv;
+//#endif
+	  const auto _Bi = (__w1 + __w2) / (_Real{2} * _S_sqrt_pi);
+	  const auto _Ai = (__w2 - __w1) / (_Real{2} * _S_i * _S_sqrt_pi);
+	  const auto _Bip = (__w1p + __w2p) / (_Real{2} * _S_sqrt_pi);
+	  const auto _Aip = (__w2p - __w1p) / (_Real{2} * _S_i * _S_sqrt_pi);
+
+	  return __airy_t<_Cmplx, _Cmplx>{__t, _Ai, _Aip, _Bi, _Bip};
+	}
+    }
+
+
+  /**
+   * Return the Airy functions for a given argument using asymptotic series.
+   *
+   *
+   * @tparam _Tp A real type
+   */
+  template<typename _Tp>
+    __fock_airy_t<typename _Airy_asymp<_Tp>::_Cmplx,
+		  typename _Airy_asymp<_Tp>::_Cmplx>
+    _Airy_asymp<_Tp>::_S_fock_airy(typename _Airy_asymp<_Tp>::_Cmplx __t) const
+    {
+      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Real>::__pi;
+      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Real>::__root_pi;
+      constexpr auto _S_i = _Cmplx(0, 1);
+      if (std::real(__t) > _Real{0})
+	{
+	  const auto __airy = _Airy_asymp<_Tp>::operator()(__t);
+//#if __cpp_structured_bindings
+//	  const auto& [__tx, _Ai, _Aip, _Bi, _Bip] = __airy;
+//#else
+	  const auto _Ai = __airy.__Ai_value;
+	  const auto _Aip = __airy.__Ai_deriv;
+	  const auto _Bi = __airy.__Bi_value;
+	  const auto _Bip = __airy.__Bi_deriv;
+//#endif
+	  const auto __w1 = _S_sqrt_pi * (_Bi - _S_i * _Ai);
+	  const auto __w2 = _S_sqrt_pi * (_Bi + _S_i * _Ai);
+	  const auto __w1p = _S_sqrt_pi * (_Bip - _S_i * _Aip);
+	  const auto __w2p = _S_sqrt_pi * (_Bip + _S_i * _Aip);
+
+	  return __fock_airy_t<_Cmplx, _Cmplx>{__t, __w1, __w1p, __w2, __w2p};
 	}
       else // Argument t is on or left of the imaginary axis.
 	{
@@ -3706,16 +3815,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 	  __w1p *= __tp1d4 * __mezeta;
 	  __w2p *= __tp1d4 * __pezeta;
 
-	  if (__return_fock_airy)
-	    return _AiryState<_Cmplx>{__t, __w1, __w1p, __w2, __w2p};
-	  else
-	    {
-	      auto _Bi = (__w1 + __w2) / (_Real{2} * _S_sqrt_pi);
-	      auto _Ai = (__w2 - __w1) / (_Real{2} * _S_i * _S_sqrt_pi);
-	      auto _Bip = (__w1p + __w2p) / (_Real{2} * _S_sqrt_pi);
-	      auto _Aip = (__w2p - __w1p) / (_Real{2} * _S_i * _S_sqrt_pi);
-	      return _AiryState<_Cmplx>{__t, _Ai, _Aip, _Bi, _Bip};
-	    }
+	  return __fock_airy_t<_Cmplx, _Cmplx>{__t, __w1, __w1p, __w2, __w2p};
 	}
     }
 
@@ -3807,14 +3907,15 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
    * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
    */
   template<typename _Tp>
-    _AiryState<typename _Airy_asymp<_Tp>::_Cmplx>
+    __airy_t<typename _Airy_asymp<_Tp>::_Cmplx,
+	     typename _Airy_asymp<_Tp>::_Cmplx>
     _Airy_asymp<_Tp>::_S_absarg_ge_pio3(typename _Airy_asymp<_Tp>::_Cmplx __z) const
     {
       _Cmplx _Ai, _Aip;
       std::tie(_Ai, _Aip) = _S_absarg_ge_pio3_help(__z, -1);
       _Cmplx _Bi, _Bip;
       std::tie(_Bi, _Bip) = _S_absarg_ge_pio3_help(__z, +1);
-      return _AiryState<_Cmplx>{__z, _Ai, _Aip, _Bi, _Bip};
+      return __airy_t<_Cmplx, _Cmplx>{__z, _Ai, _Aip, _Bi, _Bip};
     }
 
 
@@ -3837,7 +3938,8 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
    * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
    */
   template<typename _Tp>
-    _AiryState<typename _Airy_asymp<_Tp>::_Cmplx>
+    __airy_t<typename _Airy_asymp<_Tp>::_Cmplx,
+	     typename _Airy_asymp<_Tp>::_Cmplx>
     _Airy_asymp<_Tp>::_S_absarg_lt_pio3(typename _Airy_asymp<_Tp>::_Cmplx __z) const
     {
       constexpr _Real _S_pimh
@@ -3891,7 +3993,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
       _Bip *= _S_pimh * __z1d4;
 
       // I think we're computing d/d(-z) above.
-      return _AiryState<_Cmplx>{__z, _Ai, -_Aip, _Bi, -_Bip};
+      return __airy_t<_Cmplx, _Cmplx>{__z, _Ai, -_Aip, _Bi, -_Bip};
     }
 
 
@@ -3958,7 +4060,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 	0.3799305912780064e-01,
 	0.3713348765432099e-01,
 	0.6944444444444444e-01,
-	0.1000000000000000e+01
+	1.0000000000000000e+00
       };
 
       constexpr _Real
@@ -3978,7 +4080,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 	-0.4246283078989483e-01,
 	-0.4388503086419753e-01,
 	-0.9722222222222222e-01,
-	 0.1000000000000000e+01
+	 1.0000000000000000e+00
       };
 
       // Compute zeta and z^(1/4).
@@ -4042,14 +4144,15 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
    * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
    */
   template<typename _Tp>
-    _AiryState<std::complex<_Tp>>
+    __airy_t<std::complex<_Tp>, std::complex<_Tp>>
     __airy_asymp_absarg_ge_pio3(std::complex<_Tp> __z)
     {
-      std::complex<_Tp> _Ai, _Aip;
+      using _Cmplx = std::complex<_Tp>;
+      _Cmplx _Ai, _Aip;
       __airy_asymp_absarg_ge_pio3_help(__z, _Ai, _Aip, -1);
-      std::complex<_Tp> _Bi, _Bip;
+      _Cmplx _Bi, _Bip;
       __airy_asymp_absarg_ge_pio3_help(__z, _Bi, _Bip, +1);
-      return _AiryState<std::complex<_Tp>>{__z, _Ai, _Aip, _Bi, _Bip};
+      return __airy_t<_Cmplx, _Cmplx>{__z, _Ai, _Aip, _Bi, _Bip};
     }
 
 
@@ -4070,7 +4173,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
    * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
    */
   template<typename _Tp>
-    _AiryState<std::complex<_Tp>>
+    __airy_t<std::complex<_Tp>, std::complex<_Tp>>
     __airy_asymp_absarg_lt_pio3(std::complex<_Tp> __z)
     {
       using _Val = _Tp;
@@ -4244,7 +4347,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 		+ __zeta * __sinzeta * __alphapc * __zetam2 + __betapc;
       _Bip *= _S_pimh * __z1d4;
 
-      return _AiryState<_Cmplx>{__z, _Ai, _Aip, _Bi, _Bip};
+      return __airy_t<_Cmplx, _Cmplx>{__z, _Ai, _Aip, _Bi, _Bip};
     }
 
 
@@ -4286,7 +4389,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
    * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
    */
   template<typename _Tp>
-    _AiryState<_Tp>
+    __airy_t<_Tp, _Tp>
     __airy_hyperg_rational(_Tp __z)
     {
       using _Val = _Tp;
@@ -4320,7 +4423,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
       _Val _Fp1d3, _Fm1d3, _Fp2d3, _Fm2d3;
 
       if (std::abs(__zzz) < _Real{10} * __gnu_cxx::__min<_Real>())
-	return _AiryState<_Val>{__z, _S_Ai0, _S_Aip0, _S_Bi0, _S_Bip0};
+	return __airy_t<_Val, _Val>{__z, _S_Ai0, _S_Aip0, _S_Bi0, _S_Bip0};
       else
 	{
 	  auto __r = _Real{2} * std::real(__zzz);
@@ -4367,7 +4470,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 	  auto _Bip = _S_Bi0 * __z * __z * _Fp2d3 / _Real{2}
 		    + _S_Bip0 * _Fm2d3;
 
-	  return _AiryState<_Val>{__z, _Ai, _Aip, _Bi, _Bip};
+	  return __airy_t<_Val, _Val>{__z, _Ai, _Aip, _Bi, _Bip};
 	}
     }
 
@@ -4396,7 +4499,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
       _Airy_asymp_series(const _Airy_asymp_series&) = default;
       _Airy_asymp_series(_Airy_asymp_series&&) = default;
 
-      _AiryState<_Val>
+      __airy_t<_Val, _Val>
       operator()(_Val __y);
 
     private:
@@ -4425,13 +4528,14 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 
 
   /**
-   * Return an _AiryState containing, not actual Airy functions, but
+   * Return an __airy_t containing, not actual Airy functions, but
    * four asymptotic Airy components:
    *
    * @tparam _Sum A sum type
    */
   template<typename _Sum>
-    _AiryState<typename _Airy_asymp_series<_Sum>::_Val>
+    __airy_t<typename _Airy_asymp_series<_Sum>::_Val,
+	     typename _Airy_asymp_series<_Sum>::_Val>
     _Airy_asymp_series<_Sum>::operator()(typename _Sum::value_type __y)
     {
       _M_Asum.reset(_Real{1});
@@ -4468,10 +4572,10 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 	  _M_Csum += _Cterm;
 	  auto _Dterm = __numerCD;
 	  _M_Dsum += _Dterm;
-	  if (std::abs(_M_Asum()) * _S_eps > std::abs(_Aterm)
-	   && std::abs(_M_Bsum()) * _S_eps > std::abs(_Bterm)
-	   && std::abs(_M_Csum()) * _S_eps > std::abs(_Cterm)
-	   && std::abs(_M_Dsum()) * _S_eps > std::abs(_Dterm))
+	  if (std::abs(_Aterm) < std::abs(_M_Asum()) * _S_eps
+	   && std::abs(_Bterm) < std::abs(_M_Bsum()) * _S_eps
+	   && std::abs(_Cterm) < std::abs(_M_Csum()) * _S_eps
+	   && std::abs(_Dterm) < std::abs(_M_Dsum()) * _S_eps)
 	    break;
 	}
 
@@ -4482,7 +4586,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
       auto _CC = _Real{-0.5L} * __y1o4 * _M_Csum() / _S_sqrt_pi / __expzeta;
       auto _DD = _Real{0.5L} * __y1o4 * __expzeta * _M_Dsum() / _S_sqrt_pi;
 
-      return _AiryState<_Val>{__y, _AA, _CC, _BB, _DD};
+      return __airy_t<_Val, _Val>{__y, _AA, _CC, _BB, _DD};
     }
 
 
@@ -4541,7 +4645,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
       _Airy(const _Airy&) = default;
       _Airy(_Airy&&) = default;
 
-      constexpr _AiryState<_Cmplx>
+      constexpr __airy_t<_Cmplx, _Cmplx>
       operator()(_Val __y) const;
 
       _Real inner_radius{_Airy_default_radii<_Real>::inner_radius};
@@ -4568,7 +4672,9 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
    * Return the Airy functions for complex argument.
    */
   template<typename _Tp>
-    constexpr _AiryState<typename _Airy<_Tp>::_Cmplx>
+    constexpr
+    __airy_t<typename _Airy<_Tp>::_Cmplx,
+	     typename _Airy<_Tp>::_Cmplx>
     _Airy<_Tp>::operator()(typename _Airy<_Tp>::_Val __y) const
     {
       using _OuterSum = __gnu_cxx::_KahanSum<_Val>;
@@ -4576,13 +4682,13 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
       //using _InnerSum = __gnu_cxx::_AitkenDeltaSquaredSum<_OuterSum>;
 
       if (std::__detail::__isnan(__y))
-	return _AiryState<_Cmplx>{__y, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
+	return __airy_t<_Cmplx, _Cmplx>{__y, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
 
       auto __absargy = std::abs(std::arg(__y));
       auto __absy = std::abs(__y);
       auto __sign = std::copysign(_Real{1}, std::arg(__y));
 
-      _AiryState<_Val> __sums{_Val{}, _Val{}, _Val{}, _Val{}, _Val{}};
+      __airy_t<_Val, _Val> __sums{_Val{}, _Val{}, _Val{}, _Val{}, _Val{}};
       if (__absy >= inner_radius)
 	{
 	  if (__absy < outer_radius)
@@ -4605,27 +4711,27 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 	std::tie(_Bi, _Bip) = _Airy_series<_Val>::_S_Bi(__y);
       else if (__absy < outer_radius)
 	{
-	  _Bi = _Real{2} * __sums.Bi + __sign * _S_i * __sums.Ai;
-	  _Bip = _Real{2} * __sums.Bip + __sign * _S_i * __sums.Aip;
+	  _Bi = _Real{2} * __sums.__Bi_value + __sign * _S_i * __sums.__Ai_value;
+	  _Bip = _Real{2} * __sums.__Bi_deriv + __sign * _S_i * __sums.__Ai_deriv;
 	  if (__absargy > _S_5pi_6)
 	    {
-	      _Bi -= __sums.Bi;
-	      _Bip -= __sums.Bip;
+	      _Bi -= __sums.__Bi_value;
+	      _Bip -= __sums.__Bi_deriv;
 	    }
 	}
       else
 	{
-	  _Bi = _Real{2} * __sums.Bi;
-	  _Bip = _Real{2} * __sums.Bip;
+	  _Bi = _Real{2} * __sums.__Bi_value;
+	  _Bip = _Real{2} * __sums.__Bi_deriv;
 	  if (__absargy > _S_pi_6)
 	    {
-	      _Bi += __sign * _S_i * __sums.Ai;
-	      _Bip += __sign * _S_i * __sums.Aip;
+	      _Bi += __sign * _S_i * __sums.__Ai_value;
+	      _Bip += __sign * _S_i * __sums.__Ai_deriv;
 	    }
 	  if (__absargy > _S_5pi_6)
 	    {
-	      _Bi -= __sums.Bi;
-	      _Bip -= __sums.Bip;
+	      _Bi -= __sums.__Bi_value;
+	      _Bip -= __sums.__Bi_deriv;
 	    }
 	}
 
@@ -4636,21 +4742,21 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 	std::tie(_Ai, _Aip) = _Airy_series<_Val>::_S_Ai(__y);
       else if (__absy < outer_radius)
 	{
-	  _Ai = __sums.Ai;
-	  _Aip = __sums.Aip;
+	  _Ai = __sums.__Ai_value;
+	  _Aip = __sums.__Ai_deriv;
 	}
       else
 	{
-	  _Ai = __sums.Ai;
-	  _Aip = __sums.Aip;
+	  _Ai = __sums.__Ai_value;
+	  _Aip = __sums.__Ai_deriv;
 	  if (__absargy >= _S_5pi_6)
 	    {
-	      _Ai += __sign * _S_i * __sums.Bi;
-	      _Aip += __sign * _S_i * __sums.Bip;
+	      _Ai += __sign * _S_i * __sums.__Bi_value;
+	      _Aip += __sign * _S_i * __sums.__Bi_deriv;
 	    }
 	}
 
-      return _AiryState<_Cmplx>{__y, _Ai, _Aip, _Bi, _Bip};
+      return __airy_t<_Cmplx, _Cmplx>{__y, _Ai, _Aip, _Bi, _Bip};
     }
 
 
@@ -4761,7 +4867,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 
       static constexpr auto _S_NaN = std::__detail::__make_NaN<_Val>{}();
 
-      constexpr _AiryState<_Val>
+      constexpr __scorer_t<_Val, _Val>
       operator()(_Val __y) const;
 
       _Real inner_radius{_Airy_default_radii<_Real>::inner_radius};
@@ -4780,29 +4886,30 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
    * Return the Scorer functions for complex argument.
    */
   template<typename _Tp>
-    constexpr _AiryState<typename _Scorer<_Tp>::_Val>
+    constexpr __scorer_t<typename _Scorer<_Tp>::_Val,
+			 typename _Scorer<_Tp>::_Val>
     _Scorer<_Tp>::operator()(typename _Scorer<_Tp>::_Val __y) const
     {
       using _OuterSum = __gnu_cxx::_KahanSum<_Val>;
       using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
 
       if (std::__detail::__isnan(__y))
-	return _AiryState<_Val>{__y, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
+	return __scorer_t<_Val, _Val>{__y, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
 
       auto __absargy = std::abs(std::arg(__y));
       auto __absy = std::abs(__y);
 
-      _AiryState<_Cmplx> __airy_sums = _Airy<_Val>()(__y);
+      __airy_t<_Cmplx, _Cmplx> __airy_sums = _Airy<_Val>()(__y);
       _Val _Bi{}, _Bip{};
       if constexpr (__gnu_cxx::is_complex_v<_Val>)
 	{
-	  _Bi = __airy_sums.Bi;
-	  _Bip = __airy_sums.Bip;
+	  _Bi = __airy_sums.__Bi_value;
+	  _Bip = __airy_sums.__Bi_deriv;
 	}
       else
 	{
-	  _Bi = std::real(__airy_sums.Bi);
-	  _Bip = std::real(__airy_sums.Bip);
+	  _Bi = std::real(__airy_sums.__Bi_value);
+	  _Bip = std::real(__airy_sums.__Bi_deriv);
 	}
 
       std::pair<_Val, _Val> __scorer_sums;
@@ -4831,7 +4938,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
  	      auto _Hip = __scorer_sums.second;
 	      auto _Gi = _Bi - _Hi;
 	      auto _Gip = _Bip - _Hip;
-	      return _AiryState<_Val>{__y, _Gi, _Gip, _Hi, _Hip};
+	      return __scorer_t<_Val, _Val>{__y, _Gi, _Gip, _Hi, _Hip};
 	    }
 	  else
 	    {
@@ -4839,7 +4946,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 	      auto _Gip = -__scorer_sums.second;
 	      auto _Hi = _Bi - _Gi;
 	      auto _Hip = _Bip - _Gip;
-	      return _AiryState<_Val>{__y, _Gi, _Gip, _Hi, _Hip};
+	      return __scorer_t<_Val, _Val>{__y, _Gi, _Gip, _Hi, _Hip};
 	    }
 	}
     }
@@ -5005,13 +5112,13 @@ template<typename _Tp>
       {
 	auto t = _Cmplx{_Tp(0.01Q * i)};
 	auto airy = _Airy_series<_Cmplx>::_S_Airy(t);
-	std::cout << std::setw(width) << std::real(airy.z)
-		  << std::setw(width) << std::real(airy.Ai)
-		  << std::setw(width) << std::real(airy.Aip)
-		  << std::setw(width) << std::real(airy.Bi)
-		  << std::setw(width) << std::real(airy.Bip)
-		  << std::setw(width) << std::real(airy.Wronskian())
-		  << std::setw(width) << std::real(airy.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy.__x_arg)
+		  << std::setw(width) << std::real(airy.__Ai_value)
+		  << std::setw(width) << std::real(airy.__Ai_deriv)
+		  << std::setw(width) << std::real(airy.__Bi_value)
+		  << std::setw(width) << std::real(airy.__Bi_deriv)
+		  << std::setw(width) << std::real(airy.__Wronskian())
+		  << std::setw(width) << std::real(airy.__true_Wronskian())
 		  << '\n';
       }
     std::cout << std::endl;
@@ -5051,13 +5158,13 @@ template<typename _Tp>
       {
 	auto t = _Cmplx{_Tp(0.01Q * i)};
 	auto airy = airy_asymp(t);
-	std::cout << std::setw(width) << std::real(airy.z)
-		  << std::setw(width) << std::real(airy.Ai)
-		  << std::setw(width) << std::real(airy.Aip)
-		  << std::setw(width) << std::real(airy.Bi)
-		  << std::setw(width) << std::real(airy.Bip)
-		  << std::setw(width) << std::real(airy.Wronskian())
-		  << std::setw(width) << std::real(airy.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy.__x_arg)
+		  << std::setw(width) << std::real(airy.__Ai_value)
+		  << std::setw(width) << std::real(airy.__Ai_deriv)
+		  << std::setw(width) << std::real(airy.__Bi_value)
+		  << std::setw(width) << std::real(airy.__Bi_deriv)
+		  << std::setw(width) << std::real(airy.__Wronskian())
+		  << std::setw(width) << std::real(airy.__true_Wronskian())
 		  << '\n';
       }
     std::cout << std::endl;
@@ -5097,13 +5204,13 @@ template<typename _Tp>
       {
 	auto t = _Cmplx{_Tp(0.01Q * i)};
 	auto airy = airy_asymp(t);
-	std::cout << std::setw(width) << std::real(airy.z)
-		  << std::setw(width) << std::real(airy.Ai)
-		  << std::setw(width) << std::real(airy.Aip)
-		  << std::setw(width) << std::real(airy.Bi)
-		  << std::setw(width) << std::real(airy.Bip)
-		  << std::setw(width) << std::real(airy.Wronskian())
-		  << std::setw(width) << std::real(airy.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy.__x_arg)
+		  << std::setw(width) << std::real(airy.__Ai_value)
+		  << std::setw(width) << std::real(airy.__Ai_deriv)
+		  << std::setw(width) << std::real(airy.__Bi_value)
+		  << std::setw(width) << std::real(airy.__Bi_deriv)
+		  << std::setw(width) << std::real(airy.__Wronskian())
+		  << std::setw(width) << std::real(airy.__true_Wronskian())
 		  << '\n';
       }
     std::cout << std::endl;
@@ -5146,13 +5253,13 @@ template<typename _Tp>
       {
 	auto t = _Val(0.01Q * i);
 	auto airy = airy_asymp(t);
-	std::cout << std::setw(width) << std::real(airy.z)
-		  << std::setw(width) << std::real(airy.Ai)
-		  << std::setw(width) << std::real(airy.Aip)
-		  << std::setw(width) << std::real(airy.Bi)
-		  << std::setw(width) << std::real(airy.Bip)
-		  << std::setw(width) << std::real(airy.Wronskian())
-		  << std::setw(width) << std::real(airy.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy.__x_arg)
+		  << std::setw(width) << std::real(airy.__Ai_value)
+		  << std::setw(width) << std::real(airy.__Ai_deriv)
+		  << std::setw(width) << std::real(airy.__Bi_value)
+		  << std::setw(width) << std::real(airy.__Bi_deriv)
+		  << std::setw(width) << std::real(airy.__Wronskian())
+		  << std::setw(width) << std::real(airy.__true_Wronskian())
 		  << '\n';
       }
     std::cout << std::endl;
@@ -5182,10 +5289,8 @@ template<typename _Tp>
 	      << std::setw(width) << "Gi'"
 	      << std::setw(width) << "Hi"
 	      << std::setw(width) << "Hi'"
-	      << std::setw(width) << "Wronskian"
 	      << '\n';
     std::cout << std::setw(width) << "========="
-	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
@@ -5195,13 +5300,11 @@ template<typename _Tp>
       {
 	auto t = _Val(0.01Q * i);
 	auto scorer = scorer_asymp(t);
-	std::cout << std::setw(width) << std::real(scorer.z)
-		  << std::setw(width) << std::real(scorer.Ai)
-		  << std::setw(width) << std::real(scorer.Aip)
-		  << std::setw(width) << std::real(scorer.Bi)
-		  << std::setw(width) << std::real(scorer.Bip)
-		  << std::setw(width) << std::real(scorer.Wronskian())
-		  << std::setw(width) << std::real(scorer.true_Wronskian())
+	std::cout << std::setw(width) << std::real(scorer.__x_arg)
+		  << std::setw(width) << std::real(scorer.__Gi_value)
+		  << std::setw(width) << std::real(scorer.__Gi_deriv)
+		  << std::setw(width) << std::real(scorer.__Hi_value)
+		  << std::setw(width) << std::real(scorer.__Hi_deriv)
 		  << '\n';
       }
     std::cout << std::endl;
@@ -5226,10 +5329,8 @@ template<typename _Tp>
 	      << std::setw(width) << "Gip"
 	      << std::setw(width) << "Hi"
 	      << std::setw(width) << "Hip"
-	      << std::setw(width) << "Wronskian"
 	      << '\n';
     std::cout << std::setw(width) << "========="
-	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
@@ -5239,14 +5340,12 @@ template<typename _Tp>
     for (int i = -500; i <= +500; ++i)
       {
 	auto t = _Cmplx{_Real(0.01Q * i)};
-	auto airy1 = _Airy_series<_Cmplx>::_S_Scorer2(t);
-	std::cout << std::setw(width) << airy1.z
-		  << std::setw(width) << airy1.Ai
-		  << std::setw(width) << airy1.Aip
-		  << std::setw(width) << airy1.Bi
-		  << std::setw(width) << airy1.Bip
-		  << std::setw(width) << airy1.Wronskian()
-		  << std::setw(width) << airy1.true_Wronskian()
+	auto scorer1 = _Airy_series<_Cmplx>::_S_Scorer2(t);
+	std::cout << std::setw(width) << scorer1.__x_arg
+		  << std::setw(width) << scorer1.__Gi_value
+		  << std::setw(width) << scorer1.__Gi_deriv
+		  << std::setw(width) << scorer1.__Hi_value
+		  << std::setw(width) << scorer1.__Hi_deriv
 		  << '\n';
       }
     std::cout << std::endl;
@@ -5286,28 +5385,28 @@ template<typename _Tp>
 	auto t = _Cmplx{_Real(0.01Q * i)};
 	auto airy1 = _Airy_series<_Cmplx>::_S_Airy(t);
 	std::cout << '\n';
-	std::cout << std::setw(width) << std::real(airy1.z)
-		  << std::setw(width) << std::real(airy1.Ai)
-		  << std::setw(width) << std::real(airy1.Aip)
-		  << std::setw(width) << std::real(airy1.Bi)
-		  << std::setw(width) << std::real(airy1.Bip)
-		  << std::setw(width) << std::real(airy1.Wronskian())
-		  << std::setw(width) << std::real(airy1.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy1.__x_arg)
+		  << std::setw(width) << std::real(airy1.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv)
+		  << std::setw(width) << std::real(airy1.__Wronskian())
+		  << std::setw(width) << std::real(airy1.__true_Wronskian())
 		  << '\n';
 	auto airy2 = __airy_hyperg_rational(t);
-	std::cout << std::setw(width) << std::real(airy2.z)
-		  << std::setw(width) << std::real(airy2.Ai)
-		  << std::setw(width) << std::real(airy2.Aip)
-		  << std::setw(width) << std::real(airy2.Bi)
-		  << std::setw(width) << std::real(airy2.Bip)
-		  << std::setw(width) << std::real(airy2.Wronskian())
-		  << std::setw(width) << std::real(airy2.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy2.__x_arg)
+		  << std::setw(width) << std::real(airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy2.__Bi_deriv)
+		  << std::setw(width) << std::real(airy2.__Wronskian())
+		  << std::setw(width) << std::real(airy2.__true_Wronskian())
 		  << '\n';
 	std::cout << std::setw(width) << ""
-		  << std::setw(width) << std::real(airy1.Ai - airy2.Ai)
-		  << std::setw(width) << std::real(airy1.Aip - airy2.Aip)
-		  << std::setw(width) << std::real(airy1.Bi - airy2.Bi)
-		  << std::setw(width) << std::real(airy1.Bip - airy2.Bip)
+		  << std::setw(width) << std::real(airy1.__Ai_value - airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv - airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value - airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv - airy2.__Bi_deriv)
 		  << std::setw(width) << ""
 		  << std::setw(width) << ""
 		  << '\n';
@@ -5351,32 +5450,32 @@ template<typename _Tp>
 	auto t = _Cmplx{_Tp(0.01Q * i)};
 	auto airy1 = airy_asymp(t);
 	std::cout << '\n';
-	std::cout << std::setw(width) << std::real(airy1.z)
-		  << std::setw(width) << std::real(airy1.Ai)
-		  << std::setw(width) << std::real(airy1.Aip)
-		  << std::setw(width) << std::real(airy1.Bi)
-		  << std::setw(width) << std::real(airy1.Bip)
-		  << std::setw(width) << std::real(airy1.Wronskian())
-		  << std::setw(width) << std::real(airy1.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy1.__x_arg)
+		  << std::setw(width) << std::real(airy1.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv)
+		  << std::setw(width) << std::real(airy1.__Wronskian())
+		  << std::setw(width) << std::real(airy1.__true_Wronskian())
 		  << '\n';
 #ifdef OLD
 	auto airy2 = __airy_asymp_absarg_ge_pio3(t);
 #else
 	auto airy2 = airy_asymp._S_absarg_ge_pio3(t);
 #endif
-	std::cout << std::setw(width) << std::real(airy2.z)
-		  << std::setw(width) << std::real(airy2.Ai)
-		  << std::setw(width) << std::real(airy2.Aip)
-		  << std::setw(width) << std::real(airy2.Bi)
-		  << std::setw(width) << std::real(airy2.Bip)
-		  << std::setw(width) << std::real(airy2.Wronskian())
-		  << std::setw(width) << std::real(airy2.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy2.__x_arg)
+		  << std::setw(width) << std::real(airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy2.__Bi_deriv)
+		  << std::setw(width) << std::real(airy2.__Wronskian())
+		  << std::setw(width) << std::real(airy2.__true_Wronskian())
 		  << '\n';
 	std::cout << std::setw(width) << ""
-		  << std::setw(width) << std::real(airy1.Ai - airy2.Ai)
-		  << std::setw(width) << std::real(airy1.Aip - airy2.Aip)
-		  << std::setw(width) << std::real(airy1.Bi - airy2.Bi)
-		  << std::setw(width) << std::real(airy1.Bip - airy2.Bip)
+		  << std::setw(width) << std::real(airy1.__Ai_value - airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv - airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value - airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv - airy2.__Bi_deriv)
 		  << std::setw(width) << ""
 		  << std::setw(width) << ""
 		  << '\n';
@@ -5420,32 +5519,32 @@ template<typename _Tp>
 	auto t = _Cmplx{_Tp(0.01Q * i)};
 	auto airy1 = airy_asymp(t);
 	std::cout << '\n';
-	std::cout << std::setw(width) << std::real(airy1.z)
-		  << std::setw(width) << std::real(airy1.Ai)
-		  << std::setw(width) << std::real(airy1.Aip)
-		  << std::setw(width) << std::real(airy1.Bi)
-		  << std::setw(width) << std::real(airy1.Bip)
-		  << std::setw(width) << std::real(airy1.Wronskian())
-		  << std::setw(width) << std::real(airy1.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy1.__x_arg)
+		  << std::setw(width) << std::real(airy1.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv)
+		  << std::setw(width) << std::real(airy1.__Wronskian())
+		  << std::setw(width) << std::real(airy1.__true_Wronskian())
 		  << '\n';
 #ifdef OLD
 	auto airy2 = __airy_asymp_absarg_lt_pio3(t);
 #else
 	auto airy2 = airy_asymp._S_absarg_lt_pio3(t);
 #endif
-	std::cout << std::setw(width) << std::real(airy2.z)
-		  << std::setw(width) << std::real(airy2.Ai)
-		  << std::setw(width) << std::real(airy2.Aip)
-		  << std::setw(width) << std::real(airy2.Bi)
-		  << std::setw(width) << std::real(airy2.Bip)
-		  << std::setw(width) << std::real(airy2.Wronskian())
-		  << std::setw(width) << std::real(airy2.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy2.__x_arg)
+		  << std::setw(width) << std::real(airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy2.__Bi_deriv)
+		  << std::setw(width) << std::real(airy2.__Wronskian())
+		  << std::setw(width) << std::real(airy2.__true_Wronskian())
 		  << '\n';
 	std::cout << std::setw(width) << ""
-		  << std::setw(width) << std::real(airy1.Ai - airy2.Ai)
-		  << std::setw(width) << std::real(airy1.Aip - airy2.Aip)
-		  << std::setw(width) << std::real(airy1.Bi - airy2.Bi)
-		  << std::setw(width) << std::real(airy1.Bip - airy2.Bip)
+		  << std::setw(width) << std::real(airy1.__Ai_value - airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv - airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value - airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv - airy2.__Bi_deriv)
 		  << std::setw(width) << ""
 		  << std::setw(width) << ""
 		  << '\n';
@@ -5489,28 +5588,28 @@ template<typename _Tp>
 	auto t = _Val{_Real(0.01Q * i)};
 	auto airy1 = airy(t);
 	std::cout << '\n';
-	std::cout << std::setw(width) << std::real(airy1.z)
-		  << std::setw(width) << std::real(airy1.Ai)
-		  << std::setw(width) << std::real(airy1.Aip)
-		  << std::setw(width) << std::real(airy1.Bi)
-		  << std::setw(width) << std::real(airy1.Bip)
-		  << std::setw(width) << std::real(airy1.Wronskian())
-		  << std::setw(width) << std::real(airy1.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy1.__x_arg)
+		  << std::setw(width) << std::real(airy1.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv)
+		  << std::setw(width) << std::real(airy1.__Wronskian())
+		  << std::setw(width) << std::real(airy1.__true_Wronskian())
 		  << '\n';
 	auto airy2 = __airy_asymp_absarg_lt_pio3(t);
-	std::cout << std::setw(width) << std::real(airy2.z)
-		  << std::setw(width) << std::real(airy2.Ai)
-		  << std::setw(width) << std::real(airy2.Aip)
-		  << std::setw(width) << std::real(airy2.Bi)
-		  << std::setw(width) << std::real(airy2.Bip)
-		  << std::setw(width) << std::real(airy2.Wronskian())
-		  << std::setw(width) << std::real(airy2.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy2.__x_arg)
+		  << std::setw(width) << std::real(airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy2.__Bi_deriv)
+		  << std::setw(width) << std::real(airy2.__Wronskian())
+		  << std::setw(width) << std::real(airy2.__true_Wronskian())
 		  << '\n';
 	std::cout << std::setw(width) << ""
-		  << std::setw(width) << std::real(airy1.Ai - airy2.Ai)
-		  << std::setw(width) << std::real(airy1.Aip - airy2.Aip)
-		  << std::setw(width) << std::real(airy1.Bi - airy2.Bi)
-		  << std::setw(width) << std::real(airy1.Bip - airy2.Bip)
+		  << std::setw(width) << std::real(airy1.__Ai_value - airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv - airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value - airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv - airy2.__Bi_deriv)
 		  << std::setw(width) << ""
 		  << std::setw(width) << ""
 		  << '\n';
@@ -5537,28 +5636,28 @@ template<typename _Tp>
 	auto t = _Val{_Real(0.01Q * i)};
 	auto airy1 = airy(t);
 	std::cout << '\n';
-	std::cout << std::setw(width) << std::real(airy1.z)
-		  << std::setw(width) << std::real(airy1.Ai)
-		  << std::setw(width) << std::real(airy1.Aip)
-		  << std::setw(width) << std::real(airy1.Bi)
-		  << std::setw(width) << std::real(airy1.Bip)
-		  << std::setw(width) << std::real(airy1.Wronskian())
-		  << std::setw(width) << std::real(airy1.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy1.__x_arg)
+		  << std::setw(width) << std::real(airy1.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv)
+		  << std::setw(width) << std::real(airy1.__Wronskian())
+		  << std::setw(width) << std::real(airy1.__true_Wronskian())
 		  << '\n';
 	auto airy2 = __airy_asymp_absarg_ge_pio3(t);
-	std::cout << std::setw(width) << std::real(airy2.z)
-		  << std::setw(width) << std::real(airy2.Ai)
-		  << std::setw(width) << std::real(airy2.Aip)
-		  << std::setw(width) << std::real(airy2.Bi)
-		  << std::setw(width) << std::real(airy2.Bip)
-		  << std::setw(width) << std::real(airy2.Wronskian())
-		  << std::setw(width) << std::real(airy2.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy2.__x_arg)
+		  << std::setw(width) << std::real(airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy2.__Bi_deriv)
+		  << std::setw(width) << std::real(airy2.__Wronskian())
+		  << std::setw(width) << std::real(airy2.__true_Wronskian())
 		  << '\n';
 	std::cout << std::setw(width) << ""
-		  << std::setw(width) << std::real(airy1.Ai - airy2.Ai)
-		  << std::setw(width) << std::real(airy1.Aip - airy2.Aip)
-		  << std::setw(width) << std::real(airy1.Bi - airy2.Bi)
-		  << std::setw(width) << std::real(airy1.Bip - airy2.Bip)
+		  << std::setw(width) << std::real(airy1.__Ai_value - airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv - airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value - airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv - airy2.__Bi_deriv)
 		  << std::setw(width) << ""
 		  << std::setw(width) << ""
 		  << '\n';
@@ -5645,13 +5744,13 @@ template<typename _Tp>
       {
 	auto t = _Val(0.01Q * i);
 	auto airy0 = airy(t);
-	data << std::setw(width) << std::real(airy0.z)
-	     << std::setw(width) << std::real(airy0.Ai)
-	     << std::setw(width) << std::real(airy0.Aip)
-	     << std::setw(width) << std::real(airy0.Bi)
-	     << std::setw(width) << std::real(airy0.Bip)
-	     << std::setw(width) << std::real(airy0.Wronskian())
-	     << std::setw(width) << std::real(airy0.true_Wronskian())
+	data << std::setw(width) << std::real(airy0.__x_arg)
+	     << std::setw(width) << std::real(airy0.__Ai_value)
+	     << std::setw(width) << std::real(airy0.__Ai_deriv)
+	     << std::setw(width) << std::real(airy0.__Bi_value)
+	     << std::setw(width) << std::real(airy0.__Bi_deriv)
+	     << std::setw(width) << std::real(airy0.__Wronskian())
+	     << std::setw(width) << std::real(airy0.__true_Wronskian())
 	     << '\n';
       }
     data << "\n\n";
@@ -5693,9 +5792,9 @@ template<typename _Tp>
 	for (auto airy_val : airy_row)
 	  {
 	    auto airy0 = airy_val;
-	    data << std::setw(width) << std::real(airy0.z)
-		 << std::setw(width) << std::imag(airy0.z)
-		 << std::setw(width) << std::pow(std::abs(airy0.Ai), _Real{1} / _Real{6})
+	    data << std::setw(width) << std::real(airy0.__x_arg)
+		 << std::setw(width) << std::imag(airy0.__x_arg)
+		 << std::setw(width) << std::pow(std::abs(airy0.__Ai_value), _Real{1} / _Real{6})
 		 << '\n';
 	  }
 	data << '\n';
@@ -5707,9 +5806,9 @@ template<typename _Tp>
 	for (auto airy_val : airy_row)
 	  {
 	    auto airy0 = airy_val;
-	    data << std::setw(width) << std::real(airy0.z)
-		 << std::setw(width) << std::imag(airy0.z)
-		 << std::setw(width) << std::real(airy0.Ai)
+	    data << std::setw(width) << std::real(airy0.__x_arg)
+		 << std::setw(width) << std::imag(airy0.__x_arg)
+		 << std::setw(width) << std::real(airy0.__Ai_value)
 		 << '\n';
 	  }
 	data << '\n';
@@ -5721,9 +5820,9 @@ template<typename _Tp>
 	for (auto airy_val : airy_row)
 	  {
 	    auto airy0 = airy_val;
-	    data << std::setw(width) << std::real(airy0.z)
-		 << std::setw(width) << std::imag(airy0.z)
-		 << std::setw(width) << std::imag(airy0.Ai)
+	    data << std::setw(width) << std::real(airy0.__x_arg)
+		 << std::setw(width) << std::imag(airy0.__x_arg)
+		 << std::setw(width) << std::imag(airy0.__Ai_value)
 		 << '\n';
 	  }
 	data << '\n';
@@ -5735,9 +5834,9 @@ template<typename _Tp>
 	for (auto airy_val : airy_row)
 	  {
 	    auto airy0 = airy_val;
-	    data << std::setw(width) << std::real(airy0.z)
-		 << std::setw(width) << std::imag(airy0.z)
-		 << std::setw(width) << std::arg(airy0.Ai)
+	    data << std::setw(width) << std::real(airy0.__x_arg)
+		 << std::setw(width) << std::imag(airy0.__x_arg)
+		 << std::setw(width) << std::arg(airy0.__Ai_value)
 		 << '\n';
 	  }
 	data << '\n';
@@ -5749,9 +5848,9 @@ template<typename _Tp>
 	for (auto airy_val : airy_row)
 	  {
 	    auto airy0 = airy_val;
-	    data << std::setw(width) << std::real(airy0.z)
-		 << std::setw(width) << std::imag(airy0.z)
-		 << std::setw(width) << std::pow(std::abs(airy0.Bi), _Real{1} / _Real{6})
+	    data << std::setw(width) << std::real(airy0.__x_arg)
+		 << std::setw(width) << std::imag(airy0.__x_arg)
+		 << std::setw(width) << std::pow(std::abs(airy0.__Bi_value), _Real{1} / _Real{6})
 		 << '\n';
 	  }
 	data << '\n';
@@ -5763,9 +5862,9 @@ template<typename _Tp>
 	for (auto airy_val : airy_row)
 	  {
 	    auto airy0 = airy_val;
-	    data << std::setw(width) << std::real(airy0.z)
-		 << std::setw(width) << std::imag(airy0.z)
-		 << std::setw(width) << std::real(airy0.Bi)
+	    data << std::setw(width) << std::real(airy0.__x_arg)
+		 << std::setw(width) << std::imag(airy0.__x_arg)
+		 << std::setw(width) << std::real(airy0.__Bi_value)
 		 << '\n';
 	  }
 	data << '\n';
@@ -5777,9 +5876,9 @@ template<typename _Tp>
 	for (auto airy_val : airy_row)
 	  {
 	    auto airy0 = airy_val;
-	    data << std::setw(width) << std::real(airy0.z)
-		 << std::setw(width) << std::imag(airy0.z)
-		 << std::setw(width) << std::imag(airy0.Bi)
+	    data << std::setw(width) << std::real(airy0.__x_arg)
+		 << std::setw(width) << std::imag(airy0.__x_arg)
+		 << std::setw(width) << std::imag(airy0.__Bi_value)
 		 << '\n';
 	  }
 	data << '\n';
@@ -5791,9 +5890,9 @@ template<typename _Tp>
 	for (auto airy_val : airy_row)
 	  {
 	    auto airy0 = airy_val;
-	    data << std::setw(width) << std::real(airy0.z)
-	         << std::setw(width) << std::imag(airy0.z)
-		 << std::setw(width) << std::arg(airy0.Bi)
+	    data << std::setw(width) << std::real(airy0.__x_arg)
+	         << std::setw(width) << std::imag(airy0.__x_arg)
+		 << std::setw(width) << std::arg(airy0.__Bi_value)
 		 << '\n';
 	  }
 	data << '\n';
@@ -5805,9 +5904,9 @@ template<typename _Tp>
 	for (auto airy_val : airy_row)
 	  {
 	    auto airy0 = airy_val;
-	    data << std::setw(width) << std::real(airy0.z)
-		 << std::setw(width) << std::imag(airy0.z)
-		 << std::setw(width) << std::abs(airy0.Wronskian())
+	    data << std::setw(width) << std::real(airy0.__x_arg)
+		 << std::setw(width) << std::imag(airy0.__x_arg)
+		 << std::setw(width) << std::abs(airy0.__Wronskian())
 		 << '\n';
 	  }
 	data << '\n';
@@ -5840,10 +5939,8 @@ template<typename _Tp>
 	 << std::setw(width) << "Gip"
 	 << std::setw(width) << "Hi"
 	 << std::setw(width) << "Hip"
-	 << std::setw(width) << "Wronskian"
 	 << '\n';
     data << "#"
-	 << std::setw(width) << "========="
 	 << std::setw(width) << "========="
 	 << std::setw(width) << "========="
 	 << std::setw(width) << "========="
@@ -5854,13 +5951,11 @@ template<typename _Tp>
       {
 	auto t = _Val(0.01Q * i);
 	auto scorer0 = scorer(t);
-	data << std::setw(width) << std::real(scorer0.z)
-	     << std::setw(width) << std::real(scorer0.Ai)
-	     << std::setw(width) << std::real(scorer0.Aip)
-	     << std::setw(width) << std::real(scorer0.Bi)
-	     << std::setw(width) << std::real(scorer0.Bip)
-	     << std::setw(width) << std::real(scorer0.Wronskian())
-	     << std::setw(width) << std::real(scorer0.true_Wronskian())
+	data << std::setw(width) << std::real(scorer0.__x_arg)
+	     << std::setw(width) << std::real(scorer0.__Gi_value)
+	     << std::setw(width) << std::real(scorer0.__Gi_deriv)
+	     << std::setw(width) << std::real(scorer0.__Hi_value)
+	     << std::setw(width) << std::real(scorer0.__Hi_deriv)
 	     << '\n';
       }
     data << "\n\n";
@@ -5905,13 +6000,13 @@ template<typename _Tp>
       {
 	auto t = _Val(0.01Q * i);
 	auto fgh0 = _Airy_series<_Val>::_S_FGH(t);
-	data << std::setw(width) << std::real(fgh0.z)
-	     << std::setw(width) << std::real(fgh0.fai)
-	     << std::setw(width) << std::real(fgh0.faip)
-	     << std::setw(width) << std::real(fgh0.gai)
-	     << std::setw(width) << std::real(fgh0.gaip)
-	     << std::setw(width) << std::real(fgh0.hai)
-	     << std::setw(width) << std::real(fgh0.haip)
+	data << std::setw(width) << std::real(fgh0.__x_arg)
+	     << std::setw(width) << std::real(fgh0.__fai_value)
+	     << std::setw(width) << std::real(fgh0.__fai_deriv)
+	     << std::setw(width) << std::real(fgh0.__gai_value)
+	     << std::setw(width) << std::real(fgh0.__gai_deriv)
+	     << std::setw(width) << std::real(fgh0.__hai_value)
+	     << std::setw(width) << std::real(fgh0.__hai_deriv)
 	     << '\n';
       }
     data << "\n\n";
@@ -5968,7 +6063,7 @@ namespace __detail
       else
 	{
 	  auto __scorer = _Scorer<_Tp>{}(__x);
-	  return __scorer.Ai;
+	  return __scorer.__Gi_value;
 	}
     }
 
@@ -5988,7 +6083,7 @@ namespace __detail
       else
 	{
 	  auto __scorer = _Scorer<_Tp>{}(__x);
-	  return __scorer.Bi;
+	  return __scorer.__Hi_value;
 	}
     }
 
@@ -6116,7 +6211,7 @@ main()
   diff_airy_asymp_m<long double>();
   diff_airy_series<long double>();
   diff_airy_asymp_p<long double>();
-
+#if _GLIBCXX_HAVE_FLOAT128_MATH
   std::cout << "\n__float128\n==========\n";
   run_toy<__float128>();
   //run_airy_asymp_m<__float128>();
@@ -6125,19 +6220,20 @@ main()
   //diff_airy_asymp_m<__float128>();
   //diff_airy_series<__float128>();
   //diff_airy_asymp_p<__float128>();
+#endif
 
-  using _FCmplx = std::complex<float>;
+  using __fcmplx_t = std::complex<float>;
   using _Cmplx = std::complex<double>;
-  using _LCmplx = std::complex<long double>;
+  using __lcmplx_t = std::complex<long double>;
 
   std::cout << "\nfloat\n=====\n\n";
-  diff_airy<_FCmplx>();
+  diff_airy<__fcmplx_t>();
 
   std::cout << "\ndouble\n======\n";
   diff_airy<_Cmplx>();
 
   std::cout << "\nlong double\n===========\n";
-  diff_airy<_LCmplx>();
+  diff_airy<__lcmplx_t>();
 
   std::cout << "\ndouble\n======\n";
   run_airy<_Cmplx>();
@@ -6149,23 +6245,23 @@ main()
   std::cout << "\nlong double\n======\n";
   diff_zeta<long double>();
 
-  plot_airy<_FCmplx>("plot/airy_float.txt");
+  plot_airy<__fcmplx_t>("plot/airy_float.txt");
   plot_airy<_Cmplx>("plot/airy_double.txt");
-  plot_airy<_LCmplx>("plot/airy_long_double.txt");
+  plot_airy<__lcmplx_t>("plot/airy_long_double.txt");
 
-  splot_airy<_FCmplx>("plot/airy_complex_float.txt");
+  splot_airy<__fcmplx_t>("plot/airy_complex_float.txt");
   splot_airy<_Cmplx>("plot/airy_complex_double.txt");
-  splot_airy<_LCmplx>("plot/airy_complex_long_double.txt");
+  splot_airy<__lcmplx_t>("plot/airy_complex_long_double.txt");
 
   std::cout << "\ndouble\n======\n";
   run_scorer<_Cmplx>();
-  plot_scorer<_FCmplx>("plot/scorer_float.txt");
+  plot_scorer<__fcmplx_t>("plot/scorer_float.txt");
   plot_scorer<_Cmplx>("plot/scorer_double.txt");
-  plot_scorer<_LCmplx>("plot/scorer_long_double.txt");
+  plot_scorer<__lcmplx_t>("plot/scorer_long_double.txt");
 
-  plot_fgh<_FCmplx>("plot/fgh_float.txt");
+  plot_fgh<__fcmplx_t>("plot/fgh_float.txt");
   plot_fgh<_Cmplx>("plot/fgh_double.txt");
-  plot_fgh<_LCmplx>("plot/fgh_long_double.txt");
+  plot_fgh<__lcmplx_t>("plot/fgh_long_double.txt");
 
   run_scorer_series<double>();
 

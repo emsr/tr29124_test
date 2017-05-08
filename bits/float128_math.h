@@ -32,7 +32,6 @@
 
 #pragma GCC system_header
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
 #if _GLIBCXX_HAVE_FLOAT128_MATH
 
 #ifdef __cplusplus
@@ -262,11 +261,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   llround(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return llroundq(__x); }
 
-#ifndef NO_LOGBQ
   inline __float128
   logb(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return logbq(__x); }
-#endif
 
   inline __float128
   log(__float128 __x) _GLIBCXX_USE_NOEXCEPT
@@ -389,6 +386,5 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
 
 #endif // _GLIBCXX_HAVE_FLOAT128_MATH
-#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
 #endif // _GLIBCXX_BITS_FLOAT128_MATH_H

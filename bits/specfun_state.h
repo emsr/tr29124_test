@@ -32,8 +32,6 @@
 
 #pragma GCC system_header
 
-#include <cmath>
-
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
@@ -129,7 +127,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /// The derivative of the Airy function Bi.
       _Tp __Bi_deriv;
 
-      /// Return the Wronskian of the Airy functions.
+      /// Return the Wronskian of this Airy function state.
       _Tp __Wronskian() const
       { return __Ai_value * __Bi_deriv - __Bi_value * __Ai_deriv; }
     };
@@ -155,7 +153,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /// The derivative of the Fock-type Airy function w2.
       _Tp __w2_deriv;
 
-      /// Return the Wronskian of the Fock-type Airy functions.
+      /// Return the Wronskian of this Fock-type Airy function state.
       _Tp __Wronskian() const
       { return __w1_value * __w2_deriv - __w2_value * __w1_deriv; }
     };
@@ -185,7 +183,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /// The derivative of the Bessel function of the second kind.
       _Tp __N_deriv;
 
-      /// Return the Wronskian of the cylindrical Bessel functions.
+      /// Return the Wronskian of this cylindrical Bessel function state.
       _Tp __Wronskian() const
       { return __J_value * __N_deriv - __N_value * __J_deriv; }
     };
@@ -218,7 +216,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /// The derivative of the irregular Coulomb function.
       _Tp __G_deriv;
 
-      /// Return the Wronskian of the Coulomb functions.
+      /// Return the Wronskian of this Coulomb function state.
       _Tp __Wronskian() const
       { return __F_value * __G_deriv - __G_value * __F_deriv; }
     };
@@ -252,7 +250,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /// of the second kind.
       _Tp __K_deriv;
 
-      /// Return the Wronskian of the modified cylindrical Bessel functions.
+      /// Return the Wronskian of this modified cylindrical Bessel function
+      /// state.
       _Tp __Wronskian() const
       { return __I_value * __K_deriv - __K_value * __I_deriv; }
     };
@@ -281,7 +280,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /// The derivative of the cylindrical Hankel function of the second kind.
       _Tp __H2_deriv;
 
-      /// Return the Wronskian of the cylindrical Hankel functions.
+      /// Return the Wronskian of this cylindrical Hankel function state.
       _Tp __Wronskian() const
       { return __H1_value * __H2_deriv - __H2_value * __H1_deriv; }
     };
@@ -307,7 +306,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /// The derivative of the spherical Bessel function of the second kind.
       _Tp __n_deriv;
 
-      /// Return the Wronskian of the spherical Bessel functions.
+      /// Return the Wronskian of this spherical Bessel function state.
       _Tp __Wronskian() const
       { return __j_value * __n_deriv - __n_value * __j_deriv; }
     };
@@ -337,7 +336,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /// of the second kind.
       _Tp __k_deriv;
 
-      /// Return the Wronskian of the modified cylindrical Bessel functions.
+      /// Return the Wronskian of this modified cylindrical Bessel function
+      /// state.
       _Tp __Wronskian() const
       { return __i_value * __k_deriv - __k_value * __i_deriv; }
     };
@@ -366,7 +366,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /// The derivative of the spherical Hankel function of the second kind.
       _Tp __h2_deriv;
 
-      /// Return the Wronskian of the cylindrical Hankel functions.
+      /// Return the Wronskian of this cylindrical Hankel function state.
       _Tp __Wronskian() const
       { return __h1_value * __h2_deriv - __h2_value * __h1_deriv; }
     };

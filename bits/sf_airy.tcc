@@ -1567,7 +1567,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#if _GLIBCXX_HAVE_FLOAT128_MATH
   template<>
     struct _Airy_asymp_data<__float128>
     {
@@ -1985,7 +1985,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	-3.909325877634014064587453253641059e+311Q,
       };
     };
-#endif // _GLIBCXX_USE_FLOAT128
+#endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
 
   /**
@@ -2427,29 +2427,36 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       auto __zeta = _Real{2} * std::pow(__y, _Real{1.5L}) / _Real{3};
       auto __sign = _Real{1};
-      auto __numerAB = _Real{1};
-      auto __numerCD = _Real{1};
-      auto __denom = _Cmplx{1};
+      auto __numerAB = _Cmplx{1};
+      auto __numerCD = _Cmplx{1};
       for (int __k = 1; __k < _S_max_iter; ++__k)
 	{
 	  __sign = -__sign;
+	  auto __denom = _Cmplx(2 * __k) * __zeta;
 	  __numerAB *= _Real(__k + _Real{1} / _Real{6})
-		     * _Real(__k + _Real{5} / _Real{6});
-	  __numerCD *= _Real(__k - _Real{1} / _Real{6})
-		     * _Real(__k + _Real{7} / _Real{6});
-	  __denom *= _Cmplx(2 * __k) * __zeta;
-	  auto _Aterm = __sign * __numerAB / __denom;
+		     * _Real(__k + _Real{5} / _Real{6})
+		     / __denom;
+	  if (__k > 1 && (std::abs(_M_Asum.term()) < std::abs(__numerAB)
+		|| std::__detail::__isinf(__numerAB)))
+	    break;
+	  auto _Aterm = __sign * __numerAB;
 	  _M_Asum += _Aterm;
-	  auto _Bterm = __numerAB / __denom;
+	  auto _Bterm = __numerAB;
 	  _M_Bsum += _Bterm;
-	  auto _Cterm = __sign * __numerCD / __denom;
+	  __numerCD *= _Real(__k - _Real{1} / _Real{6})
+		     * _Real(__k + _Real{7} / _Real{6})
+		     / __denom;
+	  if (__k > 1 && (std::abs(_M_Csum.term()) < std::abs(__numerCD)
+		|| std::__detail::__isinf(__numerCD)))
+	    break;
+	  auto _Cterm = __sign * __numerCD;
 	  _M_Csum += _Cterm;
-	  auto _Dterm = __numerCD / __denom;
+	  auto _Dterm = __numerCD;
 	  _M_Dsum += _Dterm;
-	  if (std::abs(_M_Asum()) * _S_eps < std::abs(_Aterm)
-	   && std::abs(_M_Bsum()) * _S_eps < std::abs(_Bterm)
-	   && std::abs(_M_Csum()) * _S_eps < std::abs(_Cterm)
-	   && std::abs(_M_Dsum()) * _S_eps < std::abs(_Dterm))
+	  if (std::abs(_Aterm) < std::abs(_M_Asum()) * _S_eps
+	   && std::abs(_Bterm) < std::abs(_M_Bsum()) * _S_eps
+	   && std::abs(_Cterm) < std::abs(_M_Csum()) * _S_eps
+	   && std::abs(_Dterm) < std::abs(_M_Dsum()) * _S_eps)
 	    break;
 	}
 

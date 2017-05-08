@@ -57,7 +57,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline _Tp
     __fp_max_abs(_Tp __a, _Tp __b)
     {
-      if (std::__detail::__isnan(__a) || std::__detail::__isnan(__b))
+      if (std::isnan(__a) || std::isnan(__b))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	{
@@ -80,7 +80,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline bool
     __fp_is_equal(_Tp __a, _Tp __b, _Tp __mul = _Tp{1})
     {
-      if (std::__detail::__isnan(__a) || std::__detail::__isnan(__b) || std::__detail::__isnan(__mul))
+      if (std::isnan(__a) || std::isnan(__b) || std::isnan(__mul))
 	return false;
       else
 	{
@@ -105,7 +105,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline bool
     __fp_is_zero(_Tp __a, _Tp __mul = _Tp{1})
     {
-      if (std::__detail::__isnan(__a) || std::__detail::__isnan(__mul))
+      if (std::isnan(__a) || std::isnan(__mul))
 	return false;
       else
 	{
@@ -149,7 +149,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline __fp_is_integer_t
     __fp_is_integer(_Tp __a, _Tp __mul = _Tp{1})
     {
-      if (std::__detail::__isnan(__a) || std::__detail::__isnan(__mul))
+      if (std::isnan(__a) || std::isnan(__mul))
 	return __fp_is_integer_t{false, 0};
       else
 	{
@@ -171,7 +171,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline __fp_is_integer_t
     __fp_is_half_integer(_Tp __a, _Tp __mul = _Tp{1})
     {
-      if (std::__detail::__isnan(__a) || std::__detail::__isnan(__mul))
+      if (std::isnan(__a) || std::isnan(__mul))
 	return __fp_is_integer_t{false, 0};
       else
 	{
@@ -194,7 +194,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline __fp_is_integer_t
     __fp_is_half_odd_integer(_Tp __a, _Tp __mul = _Tp{1})
     {
-      if (std::__detail::__isnan(__a) || std::__detail::__isnan(__mul))
+      if (std::isnan(__a) || std::isnan(__mul))
 	return __fp_is_integer_t{false, 0};
       else
 	{
@@ -216,7 +216,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline __fp_is_integer_t
     __fp_is_even_integer(_Tp __a, _Tp __mul = _Tp{1})
     {
-      if (std::__detail::__isnan(__a) || std::__detail::__isnan(__mul))
+      if (std::isnan(__a) || std::isnan(__mul))
 	return __fp_is_integer_t{false, 0};
       else
 	{
@@ -236,7 +236,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline __fp_is_integer_t
     __fp_is_odd_integer(_Tp __a, _Tp __mul = _Tp{1})
     {
-      if (std::__detail::__isnan(__a) || std::__detail::__isnan(__mul))
+      if (std::isnan(__a) || std::isnan(__mul))
 	return __fp_is_integer_t{false, 0};
       else
 	{

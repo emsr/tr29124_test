@@ -32,7 +32,8 @@
 
 #pragma GCC system_header
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#if _GLIBCXX_HAVE_FLOAT128_MATH
+#if __has_include(<quadmath.h>)
 
 #include <iosfwd>
 #include <quadmath.h>
@@ -53,8 +54,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
 
-#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
-
 #include <bits/float128_io.tcc>
+
+#endif // __has_include(<quadmath.h>)
+#endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
 #endif // _GLIBCXX_BITS_FLOAT128_IO_H

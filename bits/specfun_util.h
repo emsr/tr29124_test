@@ -126,12 +126,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __isnan<long double>(long double __x)
     { return __builtin_isnanl(__x); }
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#if _GLIBCXX_HAVE_FLOAT128_MATH
   template<>
     inline bool
     __isnan<__float128>(__float128 __x)
     { return __builtin_isnanq(__x); }
-#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
+#endif
 
 #endif // _GLIBCXX_USE_C99_MATH && !_GLIBCXX_USE_C99_FP_MACROS_DYNAMIC
 
@@ -182,7 +182,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     struct __promote_fp_help<long double>
     { using __type = long double; };
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#if _GLIBCXX_HAVE_FLOAT128_MATH
   template<>
     struct __promote_fp_help<__float128>
     { using __type = __float128; };
