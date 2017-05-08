@@ -1,9 +1,9 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_agm test_agm.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_agm > test_agm.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_arith_geom_mean test_arith_geom_mean.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_arith_geom_mean > test_arith_geom_mean.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_agm test_agm.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
-PATH=wrappers/debug:$PATH ./test_agm > test_agm.txt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_arith_geom_mean test_arith_geom_mean.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
+PATH=wrappers/debug:$PATH ./test_arith_geom_mean > test_arith_geom_mean.txt
 */
 
 #include <wrap_boost.h>
@@ -12,7 +12,7 @@ PATH=wrappers/debug:$PATH ./test_agm > test_agm.txt
 
   template<typename _Tp>
     _Tp
-    __agm(_Tp __x, _Tp __y)
+    __arith_geom_mean(_Tp __x, _Tp __y)
     {
       if (__x == _Tp{0} || __y == _Tp{0})
 	return _Tp{0};
@@ -42,7 +42,7 @@ template<typename _Tp>
 	for (int j = 0; j < 100; ++j)
 	  {
 	    auto y = j * _Tp{1};
-	    auto agm = __agm(x, y);
+	    auto agm = __arith_geom_mean(x, y);
 	    std::cout << ' ' << x
 		      << ' ' << y
 		      << ' ' << std::setw(w) << agm << '\n';
@@ -53,6 +53,6 @@ template<typename _Tp>
 int
 main()
 {
-  test_agm(1.0);
+  test_arith_geom_mean(1.0);
 }
 
