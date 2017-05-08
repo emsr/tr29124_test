@@ -2,7 +2,7 @@
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o hankel_transition hankel_transition.cpp -L$HOME/bin/lib64 -lquadmath
 ./hankel_transition > hankel_transition.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -DNO_CBRT -I. -o hankel_transition hankel_transition.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o hankel_transition hankel_transition.cpp -lquadmath
 ./hankel_transition > hankel_transition.txt
 */
 

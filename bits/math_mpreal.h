@@ -195,11 +195,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   llround(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
   { return mpfr::round(__x).toLLong(); }
 
-#ifndef NO_LOGBQ
   inline mpfr::mpreal
   logb(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT
   { return mpfr::logb(__x); }
-#endif
 
   inline mpfr::mpreal
   log(const mpfr::mpreal& __x) _GLIBCXX_USE_NOEXCEPT

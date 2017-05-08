@@ -78,7 +78,7 @@ template<>
   constexpr std::size_t _S_num_factorials<double> = 171;
 template<>
   constexpr std::size_t _S_num_factorials<long double> = 171;
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#if _GLIBCXX_HAVE_FLOAT128_MATH
 template<>
   constexpr std::size_t _S_num_factorials<__float128> = 171;
 #endif
@@ -268,7 +268,7 @@ template<>
   constexpr std::size_t _S_num_double_factorials<double> = 301;
 template<>
   constexpr std::size_t _S_num_double_factorials<long double> = 301;
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#if _GLIBCXX_HAVE_FLOAT128_MATH
 template<>
   constexpr std::size_t _S_num_double_factorials<__float128> = 301;
 #endif
@@ -588,7 +588,7 @@ template<>
   constexpr std::size_t _S_num_neg_double_factorials<double> = 150;
 template<>
   constexpr std::size_t _S_num_neg_double_factorials<long double> = 999;
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#if _GLIBCXX_HAVE_FLOAT128_MATH
 template<>
   constexpr std::size_t _S_num_neg_double_factorials<__float128> = 999;
 #endif
@@ -1844,7 +1844,7 @@ _S_neg_double_factorial_table[999]
       };
     };
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#if _GLIBCXX_HAVE_FLOAT128_MATH
   template<>
     struct __gamma_spouge_data<__float128>
     {
@@ -2054,7 +2054,7 @@ _S_neg_double_factorial_table[999]
       };
     };
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#if _GLIBCXX_HAVE_FLOAT128_MATH
   template<>
     struct __gamma_lanczos_data<__float128>
     {

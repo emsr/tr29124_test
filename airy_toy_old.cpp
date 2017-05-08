@@ -118,23 +118,23 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old
    *
    */
   template<typename _Tp>
-    struct _AiryState
+    struct __airy_t
     {
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Real = std::__detail::__num_traits_t<_Tp>;
 
-      _Tp z;
-      _Tp Ai;
-      _Tp Aip;
-      _Tp Bi;
-      _Tp Bip;
+      _Tp __x_arg;
+      _Tp __Ai_value;
+      _Tp __Ai_deriv;
+      _Tp __Bi_value;
+      _Tp __Bi_deriv;
 
       constexpr _Tp
-      Wronskian() const
-      { return Ai * Bip - Bi * Aip; }
+      __Wronskian() const
+      { return __Ai_value * __Bi_deriv - __Bi_value * __Ai_deriv; }
 
-      static constexpr _Val
-      true_Wronskian()
-      { return _Val{1} / __gnu_cxx::__math_constants<_Val>::__pi; }
+      static constexpr _Real
+      __true_Wronskian()
+      { return _Real{1} / __gnu_cxx::__math_constants<_Real>::__pi; }
     };
 
 
@@ -974,7 +974,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old
 
       constexpr _Airy_series() = default;
 
-      _AiryState<std::complex<_Tp>>
+      __airy_t<std::complex<_Tp>>
       operator()(std::complex<_Tp> __t, bool __return_fock_airy = false) const;
     };
 
@@ -1024,7 +1024,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old
    * wnere @f$ Bi(0) = 3^{1/2}Ai(0) @f$, @f$ Bi'(0) = 3^{1/6}/\Gamma(1/3) @f$
    */
   template<typename _Tp>
-    _AiryState<std::complex<_Tp>>
+    __airy_t<std::complex<_Tp>>
     _Airy_series<_Tp>::operator()(std::complex<_Tp> __t,
 				  bool __return_fock_airy) const
     {
@@ -1047,17 +1047,17 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old
 	{
 	  if (std::abs(__t) < _S_eps)
 	    break;
-	  auto __xx = __log10t * (3 * (__n + 1) + 1)
-		    + _S_slope_G * __n + _S_intercept_G;
+	  const auto __xx = __log10t * (3 * (__n + 1) + 1)
+			  + _S_slope_G * __n + _S_intercept_G;
 	  if (__xx < _S_log10min)
 	    break;
 	  __term *= __ttt;
 	  _F += _Fai[__n] * __term;
 	  _G += _Gai[__n] * __term * __t;
 	}
-      auto _UU = std::sqrt(_Tp{3} * _S_pi)
-	      * (_S_Ai0 * _F + _S_Aip0 * _G);
-      auto _VV = _S_sqrt_pi * (_S_Ai0 * _F - _S_Aip0 * _G);
+      const auto _UU = std::sqrt(_Tp{3} * _S_pi)
+		     * (_S_Ai0 * _F + _S_Aip0 * _G);
+      const auto _VV = _S_sqrt_pi * (_S_Ai0 * _F - _S_Aip0 * _G);
 
       __term = __cmplx{_Tp{1}};
       auto _Fp = __cmplx{_Tp{0}};
@@ -1066,33 +1066,33 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old
 	{
 	  if (std::abs(__t) < _S_eps)
 	    break;
-	  auto __xx = __log10t * 3 * (__n + 1)
-		    + _S_slope_Gp * __n + _S_intercept_Gp;
+	  const auto __xx = __log10t * 3 * (__n + 1)
+			  + _S_slope_Gp * __n + _S_intercept_Gp;
 	  if (__xx < _S_log10min)
 	    break;
 	  __term *= __ttt;
 	  _Fp += _Faip[__n] * __term / __t;
 	  _Gp += _Gaip[__n] * __term;
 	}
-      auto _UUp = std::sqrt(_Tp{3} * _S_pi)
-		* (_S_Ai0 * _Fp + _S_Aip0 * _Gp);
-	auto _VVp = _S_sqrt_pi * (_S_Ai0 * _Fp - _S_Aip0 * _Gp);
+      const auto _UUp = std::sqrt(_Tp{3} * _S_pi)
+		      * (_S_Ai0 * _Fp + _S_Aip0 * _Gp);
+      const auto _VVp = _S_sqrt_pi * (_S_Ai0 * _Fp - _S_Aip0 * _Gp);
 
       if (!__return_fock_airy)
 	{
-	  auto _Bi = _UU / _S_sqrt_pi;
-	  auto _Ai = _VV / _S_sqrt_pi;
-	  auto _Bip = _UUp / _S_sqrt_pi;
-	  auto _Aip = _VVp / _S_sqrt_pi;
-	  return _AiryState<std::complex<_Tp>>{__t, _Ai, _Aip, _Bi, _Bip};
+	  const auto _Bi = _UU / _S_sqrt_pi;
+	  const auto _Ai = _VV / _S_sqrt_pi;
+	  const auto _Bip = _UUp / _S_sqrt_pi;
+	  const auto _Aip = _VVp / _S_sqrt_pi;
+	  return __airy_t<std::complex<_Tp>>{__t, _Ai, _Aip, _Bi, _Bip};
 	}
       else
 	{
-	  auto __w1 = _UU - _S_i * _VV;
-	  auto __w2 = _UU + _S_i * _VV;
-	  auto __w1p = _UUp - _S_i * _VVp;
-	  auto __w2p = _UUp + _S_i * _VVp;
-	  return _AiryState<std::complex<_Tp>>{__t, __w1, __w1p, __w2, __w2p};
+	  const auto __w1 = _UU - _S_i * _VV;
+	  const auto __w2 = _UU + _S_i * _VV;
+	  const auto __w1p = _UUp - _S_i * _VVp;
+	  const auto __w2p = _UUp + _S_i * _VVp;
+	  return __airy_t<std::complex<_Tp>>{__t, __w1, __w1p, __w2, __w2p};
 	}
     }
 
@@ -1525,7 +1525,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old
 
       constexpr _Airy_asymp() = default;
 
-      _AiryState<std::complex<_Tp>>
+      __airy_t<std::complex<_Tp>>
       operator()(std::complex<_Tp> __t, bool __return_fock_airy = false) const;
     };
 
@@ -1554,7 +1554,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old
    *
    */
   template<typename _Tp>
-    _AiryState<std::complex<_Tp>>
+    __airy_t<std::complex<_Tp>>
     _Airy_asymp<_Tp>::operator()(std::complex<_Tp> __t,
 				 bool __return_fock_airy) const
     {
@@ -1647,10 +1647,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old
 	      auto __w2 = _S_sqrt_pi * (_Bi + _S_i * _Ai);
 	      auto __w1p = _S_sqrt_pi * (_Bip - _S_i * _Aip);
 	      auto __w2p = _S_sqrt_pi * (_Bip + _S_i * _Aip);
-	      return _AiryState<std::complex<_Tp>>{__t, __w1, __w1p, __w2, __w2p};
+	      return __airy_t<std::complex<_Tp>>{__t, __w1, __w1p, __w2, __w2p};
 	    }
 	  else
-	    return _AiryState<std::complex<_Tp>>{__t, _Ai, _Aip, _Bi, _Bip};
+	    return __airy_t<std::complex<_Tp>>{__t, _Ai, _Aip, _Bi, _Bip};
 	}
       else // Argument t is on or left of the imaginary axis.
 	{
@@ -1697,14 +1697,14 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old
 	  __w2p *= __pqrt * __pezeta;
 
 	  if (__return_fock_airy)
-	    return _AiryState<std::complex<_Tp>>{__t, __w1, __w1p, __w2, __w2p};
+	    return __airy_t<std::complex<_Tp>>{__t, __w1, __w1p, __w2, __w2p};
 	  else
 	    {
 	      auto _Bi = (__w1 + __w2) / (_Tp{2} * _S_sqrt_pi);
 	      auto _Ai = (__w2 - __w1) / (_Tp{2} * _S_i * _S_sqrt_pi);
 	      auto _Bip = (__w1p + __w2p) / (_Tp{2} * _S_sqrt_pi);
 	      auto _Aip = (__w2p - __w1p) / (_Tp{2} * _S_i * _S_sqrt_pi);
-	      return _AiryState<std::complex<_Tp>>{__t, _Ai, _Aip, _Bi, _Bip};
+	      return __airy_t<std::complex<_Tp>>{__t, _Ai, _Aip, _Bi, _Bip};
 	    }
 	}
     }
@@ -1846,14 +1846,14 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old
    * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
    */
   template<typename _Tp>
-    _AiryState<std::complex<_Tp>>
+    __airy_t<std::complex<_Tp>>
     __airy_asymp_absarg_ge_pio3(std::complex<_Tp> __z)
     {
       std::complex<_Tp> _Ai, _Aip;
       __airy_asymp_absarg_ge_pio3_help(__z, _Ai, _Aip, -1);
       std::complex<_Tp> _Bi, _Bip;
       __airy_asymp_absarg_ge_pio3_help(__z, _Bi, _Bip, +1);
-      return _AiryState<std::complex<_Tp>>{__z, _Ai, _Aip, _Bi, _Bip};
+      return __airy_t<std::complex<_Tp>>{__z, _Ai, _Aip, _Bi, _Bip};
     }
 
 
@@ -1873,7 +1873,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old
    * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
    */
   template<typename _Tp>
-    _AiryState<std::complex<_Tp>>
+    __airy_t<std::complex<_Tp>>
     __airy_asymp_absarg_lt_pio3(std::complex<_Tp> __z)
     {
       constexpr _Tp _S_2d3 {_Tp{2} / _Tp{3}};
@@ -2082,7 +2082,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old
 		+ __zeta * __sinzeta * __alpc * __zetam2 + __bepc;
       _Bip *= _S_pimh * __z1d4;
 
-      return _AiryState<std::complex<_Tp>>{__z, _Ai, _Aip, _Bi, _Bip};
+      return __airy_t<std::complex<_Tp>>{__z, _Ai, _Aip, _Bi, _Bip};
     }
 
 
@@ -2123,7 +2123,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old
    * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
    */
   template<typename _Tp>
-    _AiryState<std::complex<_Tp>>
+    __airy_t<std::complex<_Tp>>
     __airy_hyperg_rational(const std::complex<_Tp>& __z)
     {
       using __cmplx = std::complex<_Tp>;
@@ -2149,7 +2149,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old
       std::complex<_Tp> _Fp1d3, _Fm1d3, _Fp2d3, _Fm2d3;
 
       if (std::abs(__zzz) < _Tp{10} * __gnu_cxx::__min<_Tp>())
-	return _AiryState<std::complex<_Tp>>{__z, _S_Ai0, _S_Aip0, _S_Bi0, _S_Bip0};
+	return __airy_t<std::complex<_Tp>>{__z, _S_Ai0, _S_Aip0, _S_Bi0, _S_Bip0};
       else
 	{
 	  auto __r = _Tp{2} * std::real(__zzz);
@@ -2194,7 +2194,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old
 	  auto _Bi = _S_Bi0 * _Fm1d3 + _S_Bip0 * __z * _Fp1d3;
 	  auto _Bip = _S_Bi0 * __z * __z * _Fp2d3 / _Tp{2} + _S_Bip0 * _Fm2d3;
 
-	  return _AiryState<std::complex<_Tp>>{__z, _Ai, _Aip, _Bi, _Bip};
+	  return __airy_t<std::complex<_Tp>>{__z, _Ai, _Aip, _Bi, _Bip};
 	}
     }
 
@@ -2203,7 +2203,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old
    *
    */
 template<typename _Sum>
-  _AiryState<typename _Sum::value_type>
+  __airy_t<typename _Sum::value_type>
   airy_asymp(typename _Sum::value_type __z)
   {
     using _Tp = typename _Sum::value_type;
@@ -2269,7 +2269,7 @@ template<typename _Sum>
 	_Bi += _S_i * _AA;
 	_Bip += _S_i * _CC;
       }
-    return _AiryState<_Tp>{__z, _Ai, _Aip, _Bi, _Bip};
+    return __airy_t<_Tp>{__z, _Ai, _Aip, _Bi, _Bip};
   }
 
 
@@ -2277,7 +2277,7 @@ template<typename _Sum>
    *
    */
   template<typename _Tp>
-    _AiryState<_Tp>
+    __airy_t<_Tp>
     airy(_Tp __z)
     {
       
@@ -2440,13 +2440,13 @@ template<typename _Tp>
       {
 	auto t = __cmplx{_Tp(0.01Q * i)};
 	auto airy = __airy_series(t);
-	std::cout << std::setw(width) << std::real(airy.z)
-		  << std::setw(width) << std::real(airy.Ai)
-		  << std::setw(width) << std::real(airy.Aip)
-		  << std::setw(width) << std::real(airy.Bi)
-		  << std::setw(width) << std::real(airy.Bip)
-		  << std::setw(width) << std::real(airy.Wronskian())
-		  << std::setw(width) << std::real(airy.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy.__x_arg)
+		  << std::setw(width) << std::real(airy.__Ai_value)
+		  << std::setw(width) << std::real(airy.__Ai_deriv)
+		  << std::setw(width) << std::real(airy.__Bi_value)
+		  << std::setw(width) << std::real(airy.__Bi_deriv)
+		  << std::setw(width) << std::real(airy.__Wronskian())
+		  << std::setw(width) << std::real(airy.__true_Wronskian())
 		  << '\n';
       }
   }
@@ -2482,13 +2482,13 @@ template<typename _Tp>
       {
 	auto t = __cmplx{_Tp(0.01Q * i)};
 	auto airy = __airy_asymp(t);
-	std::cout << std::setw(width) << std::real(airy.z)
-		  << std::setw(width) << std::real(airy.Ai)
-		  << std::setw(width) << std::real(airy.Aip)
-		  << std::setw(width) << std::real(airy.Bi)
-		  << std::setw(width) << std::real(airy.Bip)
-		  << std::setw(width) << std::real(airy.Wronskian())
-		  << std::setw(width) << std::real(airy.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy.__x_arg)
+		  << std::setw(width) << std::real(airy.__Ai_value)
+		  << std::setw(width) << std::real(airy.__Ai_deriv)
+		  << std::setw(width) << std::real(airy.__Bi_value)
+		  << std::setw(width) << std::real(airy.__Bi_deriv)
+		  << std::setw(width) << std::real(airy.__Wronskian())
+		  << std::setw(width) << std::real(airy.__true_Wronskian())
 		  << '\n';
       }
   }
@@ -2524,13 +2524,13 @@ template<typename _Tp>
       {
 	auto t = __cmplx{_Tp(0.01Q * i)};
 	auto airy = __airy_asymp(t);
-	std::cout << std::setw(width) << std::real(airy.z)
-		  << std::setw(width) << std::real(airy.Ai)
-		  << std::setw(width) << std::real(airy.Aip)
-		  << std::setw(width) << std::real(airy.Bi)
-		  << std::setw(width) << std::real(airy.Bip)
-		  << std::setw(width) << std::real(airy.Wronskian())
-		  << std::setw(width) << std::real(airy.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy.__x_arg)
+		  << std::setw(width) << std::real(airy.__Ai_value)
+		  << std::setw(width) << std::real(airy.__Ai_deriv)
+		  << std::setw(width) << std::real(airy.__Bi_value)
+		  << std::setw(width) << std::real(airy.__Bi_deriv)
+		  << std::setw(width) << std::real(airy.__Wronskian())
+		  << std::setw(width) << std::real(airy.__true_Wronskian())
 		  << '\n';
       }
       std::cout << std::endl;
@@ -2567,26 +2567,26 @@ template<typename _Sum>
       {
 	auto t = _Tp(0.01Q * i);
 	auto airy = airy_asymp<_Sum>(t);
-	std::cout << std::setw(width) << std::real(airy.z)
-		  << std::setw(width) << std::real(airy.Ai)
-		  << std::setw(width) << std::real(airy.Aip)
-		  << std::setw(width) << std::real(airy.Bi)
-		  << std::setw(width) << std::real(airy.Bip)
-		  << std::setw(width) << std::real(airy.Wronskian())
-		  << std::setw(width) << std::real(airy.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy.__x_arg)
+		  << std::setw(width) << std::real(airy.__Ai_value)
+		  << std::setw(width) << std::real(airy.__Ai_deriv)
+		  << std::setw(width) << std::real(airy.__Bi_value)
+		  << std::setw(width) << std::real(airy.__Bi_deriv)
+		  << std::setw(width) << std::real(airy.__Wronskian())
+		  << std::setw(width) << std::real(airy.__true_Wronskian())
 		  << '\n';
       }
     for (int i = 350; i <= 1000; ++i)
       {
 	auto t = _Tp(0.01Q * i);
 	auto airy = airy_asymp<_Sum>(t);
-	std::cout << std::setw(width) << std::real(airy.z)
-		  << std::setw(width) << std::real(airy.Ai)
-		  << std::setw(width) << std::real(airy.Aip)
-		  << std::setw(width) << std::real(airy.Bi)
-		  << std::setw(width) << std::real(airy.Bip)
-		  << std::setw(width) << std::real(airy.Wronskian())
-		  << std::setw(width) << std::real(airy.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy.__x_arg)
+		  << std::setw(width) << std::real(airy.__Ai_value)
+		  << std::setw(width) << std::real(airy.__Ai_deriv)
+		  << std::setw(width) << std::real(airy.__Bi_value)
+		  << std::setw(width) << std::real(airy.__Bi_deriv)
+		  << std::setw(width) << std::real(airy.__Wronskian())
+		  << std::setw(width) << std::real(airy.__true_Wronskian())
 		  << '\n';
       }
       std::cout << std::endl;
@@ -2625,28 +2625,28 @@ template<typename _Tp>
 	auto t = __cmplx{_Tp(0.01Q * i)};
 	auto airy1 = __airy_series(t);
 	std::cout << '\n';
-	std::cout << std::setw(width) << std::real(airy1.z)
-		  << std::setw(width) << std::real(airy1.Ai)
-		  << std::setw(width) << std::real(airy1.Aip)
-		  << std::setw(width) << std::real(airy1.Bi)
-		  << std::setw(width) << std::real(airy1.Bip)
-		  << std::setw(width) << std::real(airy1.Wronskian())
-		  << std::setw(width) << std::real(airy1.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy1.__x_arg)
+		  << std::setw(width) << std::real(airy1.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv)
+		  << std::setw(width) << std::real(airy1.__Wronskian())
+		  << std::setw(width) << std::real(airy1.__true_Wronskian())
 		  << '\n';
 	auto airy2 = __airy_hyperg_rational(t);
-	std::cout << std::setw(width) << std::real(airy2.z)
-		  << std::setw(width) << std::real(airy2.Ai)
-		  << std::setw(width) << std::real(airy2.Aip)
-		  << std::setw(width) << std::real(airy2.Bi)
-		  << std::setw(width) << std::real(airy2.Bip)
-		  << std::setw(width) << std::real(airy2.Wronskian())
-		  << std::setw(width) << std::real(airy2.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy2.__x_arg)
+		  << std::setw(width) << std::real(airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy2.__Bi_deriv)
+		  << std::setw(width) << std::real(airy2.__Wronskian())
+		  << std::setw(width) << std::real(airy2.__true_Wronskian())
 		  << '\n';
 	std::cout << std::setw(width) << ""
-		  << std::setw(width) << std::real(airy1.Ai - airy2.Ai)
-		  << std::setw(width) << std::real(airy1.Aip - airy2.Aip)
-		  << std::setw(width) << std::real(airy1.Bi - airy2.Bi)
-		  << std::setw(width) << std::real(airy1.Bip - airy2.Bip)
+		  << std::setw(width) << std::real(airy1.__Ai_value - airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv - airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value - airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv - airy2.__Bi_deriv)
 		  << std::setw(width) << ""
 		  << std::setw(width) << ""
 		  << '\n';
@@ -2687,28 +2687,28 @@ template<typename _Tp>
 	auto t = __cmplx{_Tp(0.01Q * i)};
 	auto airy1 = __airy_asymp(t);
 	std::cout << '\n';
-	std::cout << std::setw(width) << std::real(airy1.z)
-		  << std::setw(width) << std::real(airy1.Ai)
-		  << std::setw(width) << std::real(airy1.Aip)
-		  << std::setw(width) << std::real(airy1.Bi)
-		  << std::setw(width) << std::real(airy1.Bip)
-		  << std::setw(width) << std::real(airy1.Wronskian())
-		  << std::setw(width) << std::real(airy1.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy1.__x_arg)
+		  << std::setw(width) << std::real(airy1.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv)
+		  << std::setw(width) << std::real(airy1.__Wronskian())
+		  << std::setw(width) << std::real(airy1.__true_Wronskian())
 		  << '\n';
 	auto airy2 = __airy_asymp_absarg_ge_pio3(t);
-	std::cout << std::setw(width) << std::real(airy2.z)
-		  << std::setw(width) << std::real(airy2.Ai)
-		  << std::setw(width) << std::real(airy2.Aip)
-		  << std::setw(width) << std::real(airy2.Bi)
-		  << std::setw(width) << std::real(airy2.Bip)
-		  << std::setw(width) << std::real(airy2.Wronskian())
-		  << std::setw(width) << std::real(airy2.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy2.__x_arg)
+		  << std::setw(width) << std::real(airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy2.__Bi_deriv)
+		  << std::setw(width) << std::real(airy2.__Wronskian())
+		  << std::setw(width) << std::real(airy2.__true_Wronskian())
 		  << '\n';
 	std::cout << std::setw(width) << ""
-		  << std::setw(width) << std::real(airy1.Ai - airy2.Ai)
-		  << std::setw(width) << std::real(airy1.Aip - airy2.Aip)
-		  << std::setw(width) << std::real(airy1.Bi - airy2.Bi)
-		  << std::setw(width) << std::real(airy1.Bip - airy2.Bip)
+		  << std::setw(width) << std::real(airy1.__Ai_value - airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv - airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value - airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv - airy2.__Bi_deriv)
 		  << std::setw(width) << ""
 		  << std::setw(width) << ""
 		  << '\n';
@@ -2748,28 +2748,28 @@ template<typename _Tp>
 	auto t = __cmplx{_Tp(0.01Q * i)};
 	auto airy1 = __airy_asymp(t);
 	std::cout << '\n';
-	std::cout << std::setw(width) << std::real(airy1.z)
-		  << std::setw(width) << std::real(airy1.Ai)
-		  << std::setw(width) << std::real(airy1.Aip)
-		  << std::setw(width) << std::real(airy1.Bi)
-		  << std::setw(width) << std::real(airy1.Bip)
-		  << std::setw(width) << std::real(airy1.Wronskian())
-		  << std::setw(width) << std::real(airy1.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy1.__x_arg)
+		  << std::setw(width) << std::real(airy1.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv)
+		  << std::setw(width) << std::real(airy1.__Wronskian())
+		  << std::setw(width) << std::real(airy1.__true_Wronskian())
 		  << '\n';
 	auto airy2 = __airy_asymp_absarg_lt_pio3(t);
-	std::cout << std::setw(width) << std::real(airy2.z)
-		  << std::setw(width) << std::real(airy2.Ai)
-		  << std::setw(width) << std::real(airy2.Aip)
-		  << std::setw(width) << std::real(airy2.Bi)
-		  << std::setw(width) << std::real(airy2.Bip)
-		  << std::setw(width) << std::real(airy2.Wronskian())
-		  << std::setw(width) << std::real(airy2.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy2.__x_arg)
+		  << std::setw(width) << std::real(airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy2.__Bi_deriv)
+		  << std::setw(width) << std::real(airy2.__Wronskian())
+		  << std::setw(width) << std::real(airy2.__true_Wronskian())
 		  << '\n';
 	std::cout << std::setw(width) << ""
-		  << std::setw(width) << std::real(airy1.Ai - airy2.Ai)
-		  << std::setw(width) << std::real(airy1.Aip - airy2.Aip)
-		  << std::setw(width) << std::real(airy1.Bi - airy2.Bi)
-		  << std::setw(width) << std::real(airy1.Bip - airy2.Bip)
+		  << std::setw(width) << std::real(airy1.__Ai_value - airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv - airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value - airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv - airy2.__Bi_deriv)
 		  << std::setw(width) << ""
 		  << std::setw(width) << ""
 		  << '\n';
@@ -2809,28 +2809,28 @@ template<typename _Sum>
 	auto t = _Tp{_Val(0.01Q * i)};
 	auto airy1 = airy_asymp<_Sum>(t);
 	std::cout << '\n';
-	std::cout << std::setw(width) << std::real(airy1.z)
-		  << std::setw(width) << std::real(airy1.Ai)
-		  << std::setw(width) << std::real(airy1.Aip)
-		  << std::setw(width) << std::real(airy1.Bi)
-		  << std::setw(width) << std::real(airy1.Bip)
-		  << std::setw(width) << std::real(airy1.Wronskian())
-		  << std::setw(width) << std::real(airy1.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy1.__x_arg)
+		  << std::setw(width) << std::real(airy1.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv)
+		  << std::setw(width) << std::real(airy1.__Wronskian())
+		  << std::setw(width) << std::real(airy1.__true_Wronskian())
 		  << '\n';
 	auto airy2 = __airy_asymp_absarg_lt_pio3(t);
-	std::cout << std::setw(width) << std::real(airy2.z)
-		  << std::setw(width) << std::real(airy2.Ai)
-		  << std::setw(width) << std::real(airy2.Aip)
-		  << std::setw(width) << std::real(airy2.Bi)
-		  << std::setw(width) << std::real(airy2.Bip)
-		  << std::setw(width) << std::real(airy2.Wronskian())
-		  << std::setw(width) << std::real(airy2.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy2.__x_arg)
+		  << std::setw(width) << std::real(airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy2.__Bi_deriv)
+		  << std::setw(width) << std::real(airy2.__Wronskian())
+		  << std::setw(width) << std::real(airy2.__true_Wronskian())
 		  << '\n';
 	std::cout << std::setw(width) << ""
-		  << std::setw(width) << std::real(airy1.Ai - airy2.Ai)
-		  << std::setw(width) << std::real(airy1.Aip - airy2.Aip)
-		  << std::setw(width) << std::real(airy1.Bi - airy2.Bi)
-		  << std::setw(width) << std::real(airy1.Bip - airy2.Bip)
+		  << std::setw(width) << std::real(airy1.__Ai_value - airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv - airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value - airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv - airy2.__Bi_deriv)
 		  << std::setw(width) << ""
 		  << std::setw(width) << ""
 		  << '\n';
@@ -2857,28 +2857,28 @@ template<typename _Sum>
 	auto t = _Tp{_Val(0.01Q * i)};
 	auto airy1 = airy_asymp<_Sum>(t);
 	std::cout << '\n';
-	std::cout << std::setw(width) << std::real(airy1.z)
-		  << std::setw(width) << std::real(airy1.Ai)
-		  << std::setw(width) << std::real(airy1.Aip)
-		  << std::setw(width) << std::real(airy1.Bi)
-		  << std::setw(width) << std::real(airy1.Bip)
-		  << std::setw(width) << std::real(airy1.Wronskian())
-		  << std::setw(width) << std::real(airy1.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy1.__x_arg)
+		  << std::setw(width) << std::real(airy1.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv)
+		  << std::setw(width) << std::real(airy1.__Wronskian())
+		  << std::setw(width) << std::real(airy1.__true_Wronskian())
 		  << '\n';
 	auto airy2 = __airy_asymp_absarg_ge_pio3(t);
-	std::cout << std::setw(width) << std::real(airy2.z)
-		  << std::setw(width) << std::real(airy2.Ai)
-		  << std::setw(width) << std::real(airy2.Aip)
-		  << std::setw(width) << std::real(airy2.Bi)
-		  << std::setw(width) << std::real(airy2.Bip)
-		  << std::setw(width) << std::real(airy2.Wronskian())
-		  << std::setw(width) << std::real(airy2.true_Wronskian())
+	std::cout << std::setw(width) << std::real(airy2.__x_arg)
+		  << std::setw(width) << std::real(airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy2.__Bi_deriv)
+		  << std::setw(width) << std::real(airy2.__Wronskian())
+		  << std::setw(width) << std::real(airy2.__true_Wronskian())
 		  << '\n';
 	std::cout << std::setw(width) << ""
-		  << std::setw(width) << std::real(airy1.Ai - airy2.Ai)
-		  << std::setw(width) << std::real(airy1.Aip - airy2.Aip)
-		  << std::setw(width) << std::real(airy1.Bi - airy2.Bi)
-		  << std::setw(width) << std::real(airy1.Bip - airy2.Bip)
+		  << std::setw(width) << std::real(airy1.__Ai_value - airy2.__Ai_value)
+		  << std::setw(width) << std::real(airy1.__Ai_deriv - airy2.__Ai_deriv)
+		  << std::setw(width) << std::real(airy1.__Bi_value - airy2.__Bi_value)
+		  << std::setw(width) << std::real(airy1.__Bi_deriv - airy2.__Bi_deriv)
 		  << std::setw(width) << ""
 		  << std::setw(width) << ""
 		  << '\n';
