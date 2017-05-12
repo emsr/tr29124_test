@@ -70,7 +70,11 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
     };
 
   /**
-   * 
+   * Compute a sum used for Anger and Weber functions:
+   * @f[
+   *    S_1(\nu,z) = \sum_{k=0}^{\infty}\frac{(-1)^k(\frac{z}{2})^{2k}}
+   *   {\Gamma(k+\frac{\nu}{2}+1) \Gamma(k-\frac{\nu}{2}+1)}
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -101,7 +105,12 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
     }
 
   /**
+   * Compute a sum used for Anger and Weber functions.
    * Assumes n == 2m, m > 0.
+   * @f[
+   *    S_1(\nu,z) = \sum_{k=0}^{\infty}\frac{(-1)^k(\frac{z}{2})^{2k}}
+   *   {\Gamma(k+\frac{\nu}{2}+1) \Gamma(k-\frac{\nu}{2}+1)}
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -135,7 +144,11 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
     }
 
   /**
-   * 
+   * Compute a sum used for Anger and Weber functions:
+   * @f[
+   *    S_2(\nu,z) = \sum_{k=0}^{\infty}\frac{(-1)^k(\frac{z}{2})^{2k+1}}
+   *   {\Gamma(k+\frac{\nu}{2}+\frac{3}{2}) \Gamma(k-\frac{\nu}{2}+\frac{3}{2})}
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -166,7 +179,12 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
     }
 
   /**
+   * Compute a sum used for Anger and Weber functions.
    * Assumes n == 2m+1, m > 0.
+   * @f[
+   *    S_2(\nu,z) = \sum_{k=0}^{\infty}\frac{(-1)^k(\frac{z}{2})^{2k+1}}
+   *   {\Gamma(k+\frac{\nu}{2}+\frac{3}{2}) \Gamma(k-\frac{\nu}{2}+\frac{3}{2})}
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -199,6 +217,9 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
       return _Tp{0};
     }
 
+  /**
+   * 
+   */
   template<typename _Tp>
     __anger_weber_t<_Tp>
     __anger_weber_sum_new(_Tp __nu, _Tp __z)
@@ -234,6 +255,9 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
 	}
     }
 
+  /**
+   * 
+   */
   template<typename _Tp>
     __anger_weber_t<_Tp>
     __anger_weber_sum(_Tp __nu, _Tp __z)
@@ -343,7 +367,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
    * Compute Anger and Weber functions for fixed order @f$ \nu @f$
    * and large agument @f$ |z| @f$.
    *
-   * @see http://dlmf.nist.gov/11.11#i
+   * @see http://dlmf.nist.gov/11.10#i
    */
   template<typename _Tp>
     __anger_weber_t<_Tp>
@@ -386,7 +410,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
    * Compute Anger and Weber functions for large order @f$ |\nu| @f$
    * and fixed agument @f$ z @f$.
    *
-   * @see http://dlmf.nist.gov/11.11#ii
+   * @see http://dlmf.nist.gov/11.10#ii
    */
   template<typename _Tp>
     __anger_weber_t<_Tp>
@@ -407,7 +431,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
    * Compute Anger and Weber functions for large order @f$ \nu @f$
    * and fixed ratio @f$ z/\nu @f$.
    *
-   * @see http://dlmf.nist.gov/11.11#iii
+   * @see http://dlmf.nist.gov/11.10#iii
    */
   template<typename _Tp>
     __anger_weber_t<_Tp>
@@ -415,7 +439,9 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
     {
     }
 
-  /* Use the reciprocal gamma function... Fails.  WTF. */
+  /**
+   * Use the reciprocal gamma function... Fails.  WTF.
+   */
   template<typename _Tp>
     __anger_weber_t<_Tp>
     __anger_weber_sum_recip(_Tp __nu, _Tp __z)
@@ -467,10 +493,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
    * and Weber @f$ {\boldmath E}_\nu(z) @f$ functions
    * for order @f$ \nu @f$ and agument @f$ z @f$.
    *
-   * @see http://dlmf.nist.gov/11.11#ii
+   * @see http://dlmf.nist.gov/11.10#ii
    */
   template<typename _Tp>
-    __anger_weber_t<_Tp>
+    _Tp
     __assoc_anger_weber_asymp(_Tp __nu, _Tp __z)
     {
       auto _Bessel = __cyl_bessel(__nu, __z);
@@ -482,17 +508,21 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
    * for order @f$ \nu @f$ and agument @f$ z @f$.
    * We use the relationship:
    * @f[
-   *   \boldmath{J}_\nu(z) = J_\nu(z)
+   *   \boldmath{J}_\nu(z) = J_\nu(z) + \sin(\nu \pi) \boldmath{A}_\nu(z)
    * @f]
    *
-   * @see http://dlmf.nist.gov/11.11#ii
+   * @see http://dlmf.nist.gov/11.10#v
    */
   template<typename _Tp>
-    __anger_weber_t<_Tp>
+    _Tp
     __assoc_anger_weber(_Tp __nu, _Tp __z)
     {
-      auto _Bessel = __cyl_bessel(__nu, __z);
-      auto _Weber = __anger_weber(__nu, __z);
+      auto _Bessel = std::cyl_bessel_j(__nu, __z);
+      auto _Weber = __anger_weber_sum_new(__nu, __z);
+      if (__gnu_cxx::__fp_is_integer(__nu))
+	return _Tp{1}; // FIXME!!!
+      else
+        return (_Weber.__J_value - _Bessel) / __gnu_cxx::sin_pi(__nu);
     }
 
   /**
@@ -509,6 +539,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
     else
       return (_Tp{1} - __gnu_cxx::cos_pi(__x)) / _S_pi / __x;
   }
+
 
 template<typename _Tp>
   void
@@ -541,7 +572,7 @@ template<typename _Tp>
 	    auto z = del * k;
 	    //auto AW = __anger_weber_sum(nu, z);
 	    auto AW = __anger_weber_sum_new(nu, z);
-	    std::cout << ' ' << std::setw(4) << z
+	    std::cout << ' ' << std::setw(4) << AW.__z
 		      << ' ' << std::setw(width) << AW.__J_value
 		      << ' ' << std::setw(width) << AW.__E_value
 		      << '\n';
@@ -555,8 +586,8 @@ template<typename _Tp>
 		    _Tp{3} - twk, _Tp{3},
 		    _Tp{5}})
       {
-	std::cout << "\n\n nu = " << std::setw(4) << nu << '\n';
 	auto AW = __anger_weber_sum_new(nu, _Tp{0});
+	std::cout << "\n\n nu = " << std::setw(4) << AW.__nu << '\n';
 	std::cout << ' ' << std::setw(width) << AW.__J_value
 		  << ' ' << std::setw(width) << __gnu_cxx::sinc_pi(nu)
 		  << ' ' << std::setw(width) << AW.__E_value
@@ -574,9 +605,54 @@ template<typename _Tp>
 	  {
 	    auto z = del * k;
 	    auto AW = __anger_weber_sum_new(nu, z);
-	    std::cout << ' ' << std::setw(4) << z
+	    std::cout << ' ' << std::setw(4) << AW.__z
 		      << ' ' << std::setw(width) << AW.__J_value
 		      << ' ' << std::setw(width) << std::cyl_bessel_j(nu, z)
+		      << '\n';
+	  }
+      }
+
+    std::cout << "\n\n Write A values\n";
+    std::cout << " -------------------------------\n";
+    for (auto nu : {_Tp{0}, _Tp{1}/_Tp{2}, _Tp{1}, _Tp{3}/_Tp{2},
+		    _Tp{2} - twk, _Tp{2},
+		    _Tp{3} - twk, _Tp{3},
+		    _Tp{5}})
+      {
+	std::cout << "\n\n nu = " << std::setw(4) << nu << '\n';
+	std::cout << ' ' << std::setw(4) << "z"
+		  << ' ' << std::setw(width) << "Abold"
+		  << '\n';
+	std::cout << ' ' << std::setw(4) << "-"
+		  << ' ' << std::setw(width) << "-----"
+		  << '\n';
+	const auto del = _Tp{1} / _Tp{10};
+	for (int k = 0; k <= 80; ++k)
+	  {
+	    auto z = del * k;
+	    auto AW = __assoc_anger_weber(nu, z);
+	    std::cout << ' ' << std::setw(4) << z
+		      << ' ' << std::setw(width) << AW
+		      << '\n';
+	  }
+      }
+
+    std::cout << "\n\n Test A values for integer order\n";
+    std::cout << " -------------------------------\n";
+    for (auto nu : {_Tp{0}, _Tp{1}, _Tp{2}, _Tp{3}, _Tp{5}})
+      {
+	std::cout << "\n\n nu = " << std::setw(4) << nu << '\n';
+	const auto del = _Tp{1} / _Tp{10};
+	for (int k = 0; k <= 80; ++k)
+	  {
+	    auto z = del * k;
+	    auto AWm = __assoc_anger_weber(nu - twk, z);
+	    auto AW = __assoc_anger_weber(nu, z);
+	    auto AWp = __assoc_anger_weber(nu + twk, z);
+	    std::cout << ' ' << std::setw(4) << z
+		      << ' ' << std::setw(width) << AWm
+		      << ' ' << std::setw(width) << AW
+		      << ' ' << std::setw(width) << AWp
 		      << '\n';
 	  }
       }
