@@ -26,10 +26,10 @@ namespace __gnu_test
 {
 
 /**
- * 
+ * Integrate the function by naive subdivision.
  */
 template<typename _Func, typename _Tp>
-  _Tp
+  typename trapezoid_integral<_Func, _Tp>::_AreaTp
   trapezoid_integral<_Func, _Tp>::operator()()
   {
     auto __sum_prev = this->_M_step();
@@ -49,11 +49,11 @@ template<typename _Func, typename _Tp>
   }
 
 /**
- * Chances are, we stepped on a pole.
+ * Chances are, if the function returns Nan or inf, we stepped on a pole.
  */
 template<typename _Func, typename _Tp>
   _Tp
-  __downdate_func(_Func __func, _Tp __x)
+  __wrap_func(_Func __func, _Tp __x)
   {
     auto __y = __func(__x);
     if (std::__detail::__isnan(__y) || std::__detail::__isinf(__y))
@@ -66,15 +66,15 @@ template<typename _Func, typename _Tp>
  * 
  */
 template<typename _Func, typename _Tp>
-  _Tp
+  typename trapezoid_integral<_Func, _Tp>::_AreaTp
   trapezoid_integral<_Func, _Tp>::_M_step()
   {
     if (this->_M_iter == 0)
       {
 	this->_M_iter = 1;
         this->_M_result = (this->_M_upper_lim - this->_M_lower_lim)
-			* (__downdate_func(this->_M_fun, this->_M_lower_lim)
-			 + __downdate_func(this->_M_fun, this->_M_upper_lim))
+			* (__wrap_func(this->_M_fun, this->_M_lower_lim)
+			 + __wrap_func(this->_M_fun, this->_M_upper_lim))
 		     / _Tp{2};
         this->_M_pow2 = 1;
       }
@@ -88,7 +88,7 @@ template<typename _Func, typename _Tp>
         auto __x = this->_M_lower_lim + __del / _Tp{2};
 	auto __sum = _Tp{0};
         for (std::size_t __j = 0; __j < this->_M_pow2; ++__j, __x += __del)
-	  __sum += __downdate_func(this->_M_fun, __x);
+	  __sum += __wrap_func(this->_M_fun, __x);
         this->_M_result = (this->_M_result + __del * __sum) / _Tp{2};
         this->_M_pow2 *= 2;
       }

@@ -20,6 +20,7 @@
 #ifndef TRAPEZOID_INTEGRAL_H
 #define TRAPEZOID_INTEGRAL_H 1
 
+#include <type_traits>
 #include <cstddef>
 #include <limits>
 
@@ -31,14 +32,17 @@ template<typename _Func, typename _Tp>
   {
   public:
 
+    using _RetTp = std::invoke_result_t<_Func, _Tp>;
+    using _AreaTp = decltype(_RetTp{} * _Tp{});
+
     trapezoid_integral(_Func __fun, _Tp __a, _Tp __b, _Tp __tol)
     : _M_fun(__fun), _M_lower_lim(__a), _M_upper_lim(__b),
       _M_rel_tol(std::abs(__tol)), _M_result(), _M_abs_error()
     { }
 
-    _Tp operator()();
+    _AreaTp operator()();
 
-    _Tp abs_error() const
+    _AreaTp abs_error() const
     { return this->_M_abs_error; }
 
   private:
@@ -47,14 +51,14 @@ template<typename _Func, typename _Tp>
     static constexpr auto _S_min_delta
 			 = std::sqrt(std::numeric_limits<_Tp>::epsilon());
 
-    _Tp _M_step();
+    _AreaTp _M_step();
 
     _Func _M_fun;
     _Tp _M_lower_lim;
     _Tp _M_upper_lim;
-    _Tp _M_rel_tol;
-    _Tp _M_result;
-    _Tp _M_abs_error;
+    _AreaTp _M_rel_tol;
+    _AreaTp _M_result;
+    _AreaTp _M_abs_error;
     std::size_t _M_iter = 0;
     std::size_t _M_pow2 = 0;
   };
