@@ -1,9 +1,9 @@
 /*
-LD_LIBRARY_PATH=..:$LD_LIBRARY_PATH $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I.. -o build_clenshaw_curtis build_clenshaw_curtis.cpp -lquadmath -L.. -lwrap_burkhardt
-LD_LIBRARY_PATH=..:$LD_LIBRARY_PATH ./build_clenshaw_curtis > build_clenshaw_curtis.txt
+LD_LIBRARY_PATH=..:$LD_LIBRARY_PATH $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I.. -o build_clenshaw_curtis build_clenshaw_curtis.cpp -lquadmath -L../wrappers/debug -lwrap_burkhardt -lgfortran
+LD_LIBRARY_PATH=../wrappers/debug:$HOME/bin/lib64:$LD_LIBRARY_PATH ./build_clenshaw_curtis > build_clenshaw_curtis.txt
 
-PATH=..:$PATH $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -Wl,-rpath,$HOME/tr29124 -I.. -o build_clenshaw_curtis build_clenshaw_curtis.cpp -lquadmath -L.. -lwrap_burkhardt
-PATH=..:$PATH ./build_clenshaw_curtis > build_clenshaw_curtis.txt
+PATH=..:$PATH $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -Wl,-rpath,$HOME/tr29124 -I.. -o build_clenshaw_curtis build_clenshaw_curtis.cpp -lquadmath -L../wrappers/debug -lwrap_burkhardt -lgfortran
+PATH=../wrappers/debug:$HOME/bin/lib64:$PATH ./build_clenshaw_curtis > build_clenshaw_curtis.txt
 */
 
 #include <vector>
@@ -322,5 +322,17 @@ main()
 		<< std::setw(w) << f2.__weight - f2_24b[i].__weight
 		<< '\n';
       ++i;
+    }
+
+  std::cout << "\n\nCQUAD Rules\n";
+  for (const auto& n : {4, 8, 16, 32, 64})
+    {
+      std::cout << "\nClenshaw-Curtis " << n << "\n";
+      for (const auto& cc : build_clenshaw_curtis_sum<long double>(n))
+	{
+	  std::cout << std::setw(w) << cc.__zero << ' '
+		    << std::setw(w) << cc.__weight << ' '
+		    << '\n';
+	}
     }
 }
