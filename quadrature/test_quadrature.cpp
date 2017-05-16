@@ -1093,7 +1093,7 @@ test_quadrature()
     qtest.test_int(fc.num_evals(), exp_neval, "qng(f1) smooth neval");
     qtest.test_int(status, exp_ier, "qng(f1) smooth status");
 
-    fc.num_evals(0)
+    fc.num_evals(0);
     std::tie(result, abserr)
       = __gnu_test::qng_integrate(fc, _Tp{1}, _Tp{0}, _Tp{1.0e-1}, _Tp{0});
     qtest.test_rel(result, -exp_result, 1e-15, "qng(f1) reverse result");
@@ -1135,7 +1135,7 @@ test_quadrature()
     qtest.test_int(fc.num_evals(), exp_neval, "qng(f1) smooth 43pt neval");
     qtest.test_int(status, exp_ier, "qng(f1) smooth 43pt status");
 
-    fc.num_evals(0)
+    fc.num_evals(0);
     std::tie(result, abserr)
       = __gnu_test::qng_integrate(fc, _Tp{1}, _Tp{0}, _Tp{0}, 1e-9);
     qtest.test_rel(result, -exp_result, 1e-15, "qng(f1) reverse 43pt result");
@@ -1176,7 +1176,7 @@ test_quadrature()
     qtest.test_int(fc.num_evals(), exp_neval, "qng(f3) oscill neval");
     qtest.test_int(status, exp_ier, "qng(f3) oscill status");
 
-    fc.num_evals(0)
+    fc.num_evals(0);
     std::tie(result, abserr)
       = __gnu_test::qng_integrate(fc, 2.71, 0.3, _Tp{0}, 1e-12);
     qtest.test_rel(result, -exp_result, 1e-15, "qnq(f3) reverse result");
@@ -1218,7 +1218,7 @@ test_quadrature()
     qtest.test_int(fc.num_evals(), exp_neval, "qng(f1) 87pt smooth neval");
     qtest.test_int(status, exp_ier, "qng(f1) 87pt smooth status");
 
-    fc.num_evals(0)
+    fc.num_evals(0);
     std::tie(result, abserr)
       = __gnu_test::qng_integrate(fc, _Tp{1}, _Tp{0}, _Tp{0}, 1e-13);
     qtest.test_rel(result, -exp_result, 1e-15, "qng(f1) 87pt reverse result");
@@ -1264,7 +1264,6 @@ test_quadrature()
 	status = iex.error_code();
 	result = iex.result();
 	abserr = iex.abserr();
-	neval = fc.num_evals();
       }
     qtest.test_rel(result, exp_result, 1e-15, "qng(f1) sing beyond 87pt result");
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qng(f1) sing beyond 87pt abserr");
@@ -1282,7 +1281,6 @@ test_quadrature()
 	status = iex.error_code();
 	result = iex.result();
 	abserr = iex.abserr();
-	neval = fc.num_evals();
       }
     qtest.test_rel(result, -exp_result, 1e-15, "qng(f1) reverse beyond 87pt result");
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qng(f1) rev beyond 87pt abserr");
