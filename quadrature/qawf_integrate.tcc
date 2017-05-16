@@ -34,6 +34,10 @@
 namespace __gnu_test
 {
 
+  /**
+   * This function attempts to compute a Fourier integral of the function f
+   * over the semi-infinite interval [a,+\infty)
+   */
   template<typename _Tp, typename _FuncTp>
     std::tuple<_Tp, _Tp>
     qawf_integrate(integration_workspace<_Tp>& __workspace,

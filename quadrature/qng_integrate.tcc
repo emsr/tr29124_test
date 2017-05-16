@@ -225,7 +225,7 @@ namespace __gnu_test
   };
 
   template<typename _FuncTp, typename _Tp>
-    std::tuple<_Tp, _Tp, std::size_t>
+    std::tuple<_Tp, _Tp>
     qng_integrate(const _FuncTp& __func,
 		  _Tp __a, _Tp __b,
 		  _Tp __epsabs, _Tp __epsrel)
@@ -300,7 +300,7 @@ namespace __gnu_test
       auto __err = __rescale_error((__res21 - __res10) * __half_length,
 				   __resabs, __resasc);
       if (__err < __epsabs || __err < __epsrel * std::abs(__result_kronrod))
-	return std::make_tuple(__result_kronrod, __err, 21);
+	return std::make_tuple(__result_kronrod, __err);
 
       // Compute the integral using the 43-point formula.
       auto __res43 = _Tp(qng_w43b[11]) * __f_center;
@@ -320,7 +320,7 @@ namespace __gnu_test
       __err = __rescale_error((__res43 - __res21) * __half_length,
 				 __resabs, __resasc);
       if (__err < __epsabs || __err < __epsrel * std::abs(__result_kronrod))
-	return std::make_tuple(__result_kronrod, __err, 43);
+	return std::make_tuple(__result_kronrod, __err);
 
       // Compute the integral using the 87-point formula.
       auto __res87 = _Tp(qng_w87b[22]) * __f_center;
@@ -338,7 +338,7 @@ namespace __gnu_test
       __err = __rescale_error((__res87 - __res43) * __half_length,
 				__resabs, __resasc);
       if (__err < __epsabs || __err < __epsrel * std::abs(__result_kronrod))
-	return std::make_tuple(__result_kronrod, __err, 87);
+	return std::make_tuple(__result_kronrod, __err);
 
       // Failed to converge.
       __throw__IntegrationError("qng_integrate: "
