@@ -1084,19 +1084,21 @@ test_quadrature()
 
     _Tp alpha = _Tp{2.6};
     auto f = make_function<_Tp>(f1, alpha);
+    auto fc = counted_function<double>(f);
 
-    auto [result, abserr, neval]
-      = __gnu_test::qng_integrate(f, _Tp{0}, _Tp{1}, _Tp{1.0e-1}, _Tp{0});
+    auto [result, abserr]
+      = __gnu_test::qng_integrate(fc, _Tp{0}, _Tp{1}, _Tp{1.0e-1}, _Tp{0});
     qtest.test_rel(result, exp_result, 1e-15, "qng(f1) smooth result");
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qng(f1) smooth abserr");
-    qtest.test_int(neval, exp_neval, "qng(f1) smooth neval");
+    qtest.test_int(fc.num_evals(), exp_neval, "qng(f1) smooth neval");
     qtest.test_int(status, exp_ier, "qng(f1) smooth status");
 
-    std::tie(result, abserr, neval)
-      = __gnu_test::qng_integrate(f, _Tp{1}, _Tp{0}, _Tp{1.0e-1}, _Tp{0});
+    fc.num_evals(0)
+    std::tie(result, abserr)
+      = __gnu_test::qng_integrate(fc, _Tp{1}, _Tp{0}, _Tp{1.0e-1}, _Tp{0});
     qtest.test_rel(result, -exp_result, 1e-15, "qng(f1) reverse result");
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qng(f1) reverse abserr");
-    qtest.test_int(neval, exp_neval, "qng(f1) reverse neval");
+    qtest.test_int(fc.num_evals(), exp_neval, "qng(f1) reverse neval");
     qtest.test_int(status, exp_ier, "qng(f1) reverse status");
   }
   catch (__gnu_test::_IntegrationError<_Tp>& iex)
@@ -1124,19 +1126,21 @@ test_quadrature()
 
     double alpha = 2.6;
     auto f = make_function<double>(f1, alpha);
+    auto fc = counted_function<double>(f);
 
-    auto [result, abserr, neval]
-      = __gnu_test::qng_integrate(f, _Tp{0}, _Tp{1}, _Tp{0}, 1e-9);
+    auto [result, abserr]
+      = __gnu_test::qng_integrate(fc, _Tp{0}, _Tp{1}, _Tp{0}, 1e-9);
     qtest.test_rel(result, exp_result, 1e-15, "qng(f1) smooth 43pt result");
     qtest.test_rel(abserr, exp_abserr, 1e-5, "qng(f1) smooth 43pt abserr");
-    qtest.test_int(neval, exp_neval, "qng(f1) smooth 43pt neval");
+    qtest.test_int(fc.num_evals(), exp_neval, "qng(f1) smooth 43pt neval");
     qtest.test_int(status, exp_ier, "qng(f1) smooth 43pt status");
 
-    std::tie(result, abserr, neval)
-      = __gnu_test::qng_integrate(f, _Tp{1}, _Tp{0}, _Tp{0}, 1e-9);
+    fc.num_evals(0)
+    std::tie(result, abserr)
+      = __gnu_test::qng_integrate(fc, _Tp{1}, _Tp{0}, _Tp{0}, 1e-9);
     qtest.test_rel(result, -exp_result, 1e-15, "qng(f1) reverse 43pt result");
     qtest.test_rel(abserr, exp_abserr, 1e-5, "qng(f1) reverse 43pt abserr");
-    qtest.test_int(neval, exp_neval, "qng(f1) reverse 43pt neval");
+    qtest.test_int(fc.num_evals(), exp_neval, "qng(f1) reverse 43pt neval");
     qtest.test_int(status, exp_ier, "qng(f1) reverse 43pt status");
   }
   catch (__gnu_test::_IntegrationError<double>& iex)
@@ -1163,19 +1167,21 @@ test_quadrature()
 
     double alpha = 1.3;
     auto f = make_function<double>(f3, alpha);
+    auto fc = counted_function<double>(f);
 
-    auto [result, abserr, neval]
-      = __gnu_test::qng_integrate(f, 0.3, 2.71, _Tp{0}, 1e-12);
+    auto [result, abserr]
+      = __gnu_test::qng_integrate(fc, 0.3, 2.71, _Tp{0}, 1e-12);
     qtest.test_rel(result, exp_result, 1e-15, "qnq(f3) oscill result");
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qng(f3) oscill abserr");
-    qtest.test_int(neval, exp_neval, "qng(f3) oscill neval");
+    qtest.test_int(fc.num_evals(), exp_neval, "qng(f3) oscill neval");
     qtest.test_int(status, exp_ier, "qng(f3) oscill status");
 
-    std::tie(result, abserr, neval)
-      = __gnu_test::qng_integrate(f, 2.71, 0.3, _Tp{0}, 1e-12);
+    fc.num_evals(0)
+    std::tie(result, abserr)
+      = __gnu_test::qng_integrate(fc, 2.71, 0.3, _Tp{0}, 1e-12);
     qtest.test_rel(result, -exp_result, 1e-15, "qnq(f3) reverse result");
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qng(f3) reverse abserr");
-    qtest.test_int(neval, exp_neval, "qng(f3) reverse neval");
+    qtest.test_int(fc.num_evals(), exp_neval, "qng(f3) reverse neval");
     qtest.test_int(status, exp_ier, "qng(f3) reverse status");
   }
   catch (__gnu_test::_IntegrationError<double>& iex)
@@ -1203,19 +1209,21 @@ test_quadrature()
 
     double alpha = 2.6;
     auto f = make_function<double>(f1, alpha);
+    auto fc = counted_function<double>(f);
 
-    auto [result, abserr, neval]
-      = __gnu_test::qng_integrate(f, _Tp{0}, _Tp{1}, _Tp{0}, 1e-13);
+    auto [result, abserr]
+      = __gnu_test::qng_integrate(fc, _Tp{0}, _Tp{1}, _Tp{0}, 1e-13);
     qtest.test_rel(result, exp_result, 1e-15, "qng(f1) 87pt smooth result");
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qng(f1) 87pt smooth abserr");
-    qtest.test_int(neval, exp_neval, "qng(f1) 87pt smooth neval");
+    qtest.test_int(fc.num_evals(), exp_neval, "qng(f1) 87pt smooth neval");
     qtest.test_int(status, exp_ier, "qng(f1) 87pt smooth status");
 
-    std::tie(result, abserr, neval)
-      = __gnu_test::qng_integrate(f, _Tp{1}, _Tp{0}, _Tp{0}, 1e-13);
+    fc.num_evals(0)
+    std::tie(result, abserr)
+      = __gnu_test::qng_integrate(fc, _Tp{1}, _Tp{0}, _Tp{0}, 1e-13);
     qtest.test_rel(result, -exp_result, 1e-15, "qng(f1) 87pt reverse result");
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qng(f1) 87pt reverse abserr");
-    qtest.test_int(neval, exp_neval, "qng(f1) 87pt reverse neval");
+    qtest.test_int(fc.num_evals(), exp_neval, "qng(f1) 87pt reverse neval");
     qtest.test_int(status, exp_ier, "qng(f1) 87pt reverse status");
   }
   catch (__gnu_test::_IntegrationError<double>& iex)
@@ -1246,10 +1254,9 @@ test_quadrature()
     auto fc = counted_function<double>(f);
 
     double result, abserr;
-    std::size_t neval = 0;
     try
       {
-	std::tie(result, abserr, neval)
+	std::tie(result, abserr)
 	  = __gnu_test::qng_integrate(fc, _Tp{0}, _Tp{1}, _Tp{0}, 1e-3);
       }
     catch (__gnu_test::_IntegrationError<double>& iex)
@@ -1261,13 +1268,13 @@ test_quadrature()
       }
     qtest.test_rel(result, exp_result, 1e-15, "qng(f1) sing beyond 87pt result");
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qng(f1) sing beyond 87pt abserr");
-    qtest.test_int(neval, exp_neval, "qng(f1) sing beyond 87pt neval");
+    qtest.test_int(fc.num_evals(), exp_neval, "qng(f1) sing beyond 87pt neval");
     qtest.test_int(status, exp_ier, "qng(f1) sing beyond 87pt status");
 
     fc.num_evals(0);
     try
       {
-	std::tie(result, abserr, neval)
+	std::tie(result, abserr)
 	  = __gnu_test::qng_integrate(fc, _Tp{1}, _Tp{0}, _Tp{0}, 1e-3);
       }
     catch (__gnu_test::_IntegrationError<double>& iex)
@@ -1279,7 +1286,7 @@ test_quadrature()
       }
     qtest.test_rel(result, -exp_result, 1e-15, "qng(f1) reverse beyond 87pt result");
     qtest.test_rel(abserr, exp_abserr, 1e-7, "qng(f1) rev beyond 87pt abserr");
-    qtest.test_int(neval, exp_neval, "qng(f1) rev beyond 87pt neval");
+    qtest.test_int(fc.num_evals(), exp_neval, "qng(f1) rev beyond 87pt neval");
     qtest.test_int(status, exp_ier, "qng(f1) rev beyond 87pt status");
   }
   catch (__gnu_test::_IntegrationError<double>& iex)
@@ -1320,7 +1327,6 @@ test_quadrature()
 
     double alpha = 2.6;
     auto f = make_function<double>(f1, alpha);
-
     auto fc = counted_function<double>(f);
 
     auto [result, abserr]
