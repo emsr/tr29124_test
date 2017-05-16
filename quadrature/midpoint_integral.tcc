@@ -26,10 +26,10 @@ namespace __gnu_test
 {
 
 /**
- * 
+ * Integrate the function by naive subdivision.
  */
 template<typename _Func, typename _Tp>
-  _Tp
+  typename midpoint_integral<_Func, _Tp>::_AreaTp
   midpoint_integral<_Func, _Tp>::operator()()
   {
     auto __sum_prev = this->_M_step();
@@ -52,7 +52,7 @@ template<typename _Func, typename _Tp>
  * 
  */
 template<typename _Func, typename _Tp>
-  _Tp
+  typename midpoint_integral<_Func, _Tp>::_AreaTp
   midpoint_integral<_Func, _Tp>::_M_step()
   {
     if (this->_M_iter == 0)
