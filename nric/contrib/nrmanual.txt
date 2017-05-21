@@ -1,0 +1,983 @@
+Package of Matrix and Vector Utility Functions for use with 
+"Numerical Recipes"
+
+James Trevelyan
+
+July 1994 Revised February 1996
+
+This package is designed for use with functions supplied in the 
+book  "Numerical Recipes in C" (NR) by W. Press et al (2nd 
+Ed). However, it is a versatile package in its own right and can be 
+used for a wide variety of problems requiring linear algebra.  It 
+includes may utility functions.  The low level functions are 
+based on the NR functions with the same names. However some 
+important functions have been extended to enhance reliability 
+and to help find programming errors.
+
+Contents at a Glance
+Sample program and data	
+Declaring matrices and vectors 	
+Vector operations	
+Matrix operations	
+Matrix inversion	
+Input/Output	
+Frames - transformations - rotations	
+Debugging facilities	
+Using the library with Little-X	
+Extending the library	
+
+NOTE:   This library incorporates some functions obtained 
+from the book "Numerical Recipes in C".  The version of this 
+library distributed across the internet has these functions 
+replaced by dummy modules which display error messages such 
+as 
+Numerical Recipes run-time error...
+Obtain "ludcmp" source from NR diskette
+Call to dinverse at line 70 in nrdemo.c
+
+Buy the book and the diskette (or CD version) and insert the required 
+modules into the source file NRLIN.C.
+
+Basic instructions for vectors and matrices. 
+
+Two real data types are supported:  'float;'  and 'double;', 
+though 'double' is the preferred type and most functions have 
+been written for this only.  If computation speed or storage space 
+is a real problem, and precision is adequate, 'float'can be useful.  
+Equaivalent functions for 'float' can easily be produced by 
+copying the source code and making minor changes.
+Different functions are used for each type:  functions using 
+'double' have a 'd' at the start of their names.
+
+Subscript range
+
+Most numerical algorithms are based on arrays which start with 
+subscript 1, not 0 as in 'C'.  This package initializes arrays for 
+vectors and matrices with a user-specified subscript range, as in 
+Pascal. Normally the first subscript will be 1.
+
+Initializing vectors
+
+Each vector requires a pointer to be declared and a function call 
+to allocate dynamic memory:
+
+	double *v;
+
+	:
+
+	v = dvector( 1, n );
+The function 'dvector' must be called to declare the vector 
+subscript range (1..n in this case).  The elements of v can be 
+accessed exactly as if they were in a normal array, starting with 
+subscript 1:
+
+	v[1]   v[2]   v[3]   .....   v[n]
+When this vector is no longer needed, the space can be realeased 
+by:
+
+	free_dvector( v, 1, n );
+The validity of the pointer can be checked by the function 
+'valid_dvector' as the following example shows.  If the pointer to 
+'v' is not valid, an error message is printed.  
+
+	if ( !valid_dvector( v, 1, n ) ) 
+		nrerror("Invalid vector pointer");
+
+A close inspection of the include file NRLIN.H will reveal that 
+some these functions are implemented as macros to make the 
+compiled code more efficient.
+
+Initializing Matrices
+
+Like vectors, a pointer must be declared locally, and a function 
+called to define the subscript ranges:
+
+	double **M;
+
+	:
+
+	M = dmatrix( 1, n, 1, m );
+This defines dynamic memory for a matrix of 'n' rows and 'm' 
+columns.  The elements of M can be accessed exactly as if they 
+were in a normal array, starting with subscripts 1,1:
+
+	M[1][1]   M[1][2]   M[1][3]   .....   M[1][m]
+	M[2][1]   M[2][2]   M[2][3]   .....   M[2][m]
+	:.
+	M[n][1]   M[n][2]   M[n][3]   .....   M[n][m]
+
+Once the space is no longer needed it can be released by:
+
+	free_dmatrix( M, 1, n, 1, m );
+
+At any time, the validity of the pointers can be checked by 
+'valid_dmatrix' as in the following example which is similar to 
+the one for a vector above.
+
+	if ( !valid_dmatrix( M, 1, n , 1, m ) ) 
+				nrerror("Invalid vector pointer");
+
+Protection Mechanism
+
+It will help to understand the protection mechanism which 
+these functions provide to help detect the effects of writing data 
+beyond array boundaries.  In the case of a vector[1..n], two extra 
+elements are defined.  These are initialized thus:
+
+	v[0] = -322.0; v[n+1] = -722.0;
+
+The validity of a vector is checked by inspecting these elements.  
+Since they lie outside the normal subscript range, they will only 
+change if your program operates incorrectly.  If these values are 
+corrupted, then the pointers on which the memory allocation 
+system relies may also have been corrupted.  The validity is 
+always checked by the function 'free_dvector' before it attempts 
+to free the memory space.  'v[0]' is usually checked by vector 
+manipulation functions: they seldom check the last element 
+because operations on less than the full number of elements are 
+permitted for both vectors and matrices and the functions may 
+not 'know' the number of elements allocated.  
+In the case of matrices (using the example above) the following 
+values are initialized:
+
+	M[1][0] = -422.0; M[n][m+1] = -822.0; M[0] = (double *)0x555;
+
+The last one is a reserved pointer value which is otherwise 
+unused.  Again, space for two extra double values and one extra 
+pointer is reserved.  The function 'valid_dmatrix' tests all these 
+values:  if any has changed it assumes that the pointers may have 
+been corrupted.  
+
+Using the Functions
+
+A detailed description of each function appears in the appendix.  
+However, the following example will demonstrate how the basic 
+functions are used.  In this example, two matrices are read from 
+a data file.  After one is inverted, they are multiplied together, 
+and then are used to transform a vector by multiplication.
+Paragraphs explain the different sections of the program.
+
+/*  Sample program for demonstrating NR linear algebra functions.
+*/
+
+
+#include <stdio.h>
+#include <math.h>
+#include <float.h>
+#include <stdlib.h>
+#include <string.h>
+
+/* NR include file - turn parameter checking ON */
+#define NR_CHECK
+#include "nrlin.h;"
+
+/* useful macros */
+
+#define True ;1
+#define False ;0
+#define X ;1
+#define Y ;2
+#define Z ;3
+#define U ;4
+#define PIG (3.141592654)
+#define DEGREES(x) ((x)/(PIG)*180) // radians to degrees
+#define RAD(x) ((x)/180.0*(PIG)) // degrees to radians
+
+
+void main( void )
+{
+	int i, cols, rows, error, errors;
+	FILE *inpfile;		/* data input  */
+	FILE *outfile;		/* data output */
+	
+	double **F1, **F1copy, **F2, **F1F2;  	/* matrix pointers */
+	double *a, *b;							/* vector pointers */
+
+	outfile = fopen("nrdemo.out","w");
+	inpfile = fopen("nrdemo.dat","r");
+	
+/*
+This completes the preliminaries.  The pointers to the matrices 
+and vectors have been declared.  The following statements 
+define the subscript ranges, and allocate storage space.......
+*/
+	F1 = dmatrix( 1,5,1,5 );
+	F1copy = dmatrix( 1,5,1,5 );
+	F2 = dmatrix( 1,5,1,2 );
+	F1F2 = dmatrix( 1,5, 1,2 );
+	a = dvector( 1,2 );
+	b = dvector( 1,5 );
+	
+/*
+Next the data file is read (see listing after the program).  We 
+keep track of errors in the data, and if there are any errors at all 
+the program stops after reading the data.
+*/
+
+	errors = 0;
+	printf("Reading F1\n");
+	dReadMatrix( inpfile, F1, &rows, &cols, &error);
+	errors += error;
+	if ( rows != 5 || cols != 5 ) errors++;
+	
+	printf("Reading F2\n");
+	dReadMatrix( inpfile, F2, &rows, &cols, &error);
+	errors != error;
+	if ( rows != 5 || cols != 2 ) errors++;
+	
+	printf("Reading a\n");
+	dReadVector( inpfile, a, &rows, &error);
+	errors != error;
+	if ( rows != 5 ) errors++;
+	
+	if ( errors > 0 ) {
+		printf("Data errors\n");
+		exit(1);
+	}
+	
+/*
+Now we are ready to invert F1.  This is done by first making a 
+copy which is destroyed by the inversion algorithm in 'dinverse'.  
+The inverted matrix is written into the output file.......
+*/
+
+	dmcopy(F1, 5, 5, F1copy);
+	dinverse(F1copy, 5, F1);	/* F1 is now inverted */
+	dmdump( outfile, "F1 inverted", F1, 5, 5, "%11.6lf");
+	
+/*
+Next, the inverted matrix is post-multiplied by F2, and then the 
+resulting matrix transforms the vector by multiplication....
+*/
+
+	dmmult(F1, 5, 5, F2, 5, 2, F1F2);
+	
+	dmvmult( F1F2, 5, 2, a, 2, b );
+	
+/*
+Next, write results to the screen (stdout) and to the output 
+file.......
+*/
+	dvdump( outfile, "Result b", b, 5, "%11.4lf");
+	dvdump( stdout, "Result b", b, 5, "%11.4lf");  /* on screen */
+	
+	fprintf( outfile, "Memory used for matrices & vectors: %ld\n",
+			mem_used() );
+	fprintf( stdout, "Memory used for matrices & vectors: %ld\n",
+			mem_used() );
+	
+/*
+Finally, we free the allocated memory.  When the program runs, 
+you will see that one of these calls detects a pointer error which 
+was caused by a deliberate mistake in the program.  One vector 
+has elements written beyond its declared bounds.  Can you find 
+the mistake?  (Hint: remember to check the data file too)
+*/
+	free_dvector( b, 1, 5 );
+	free_dvector( a, 1, 2 );
+	free_dmatrix( F1, 1,5,1,5 );
+	free_dmatrix( F1copy, 1,5,1,5 );
+	free_dmatrix( F2, 1,5,1,2 );
+	free_dmatrix( F1F2, 1,5, 1,2 );
+
+	fclose(inpfile); 
+	fclose(outfile);
+}
+
+The sample data file supplied is the following:  (NRDEMO.DAT;)  
+Note that comment lines can be included; they start with a *.
+
+
+* nrdemo.dat - input file for demonstration program
+* first matrix
+M 5 5
+ 1.0   0.2  -0.3   -0.4   0.02
+ 0.3   1.2  -0.2    0.7   0.2 
+-0.07 -0.1   1.8    0.2  -0.1
+ 0.0   0.0   0.5    1.2   0.2
+ 0.0   0.0   0.1   -0.2   0.86
+*
+* 2nd matrix
+M 5 2
+4.0  0.2
+3.0  0.3
+2.0  0.4
+1.0  0.75
+-1.0 1.0
+*
+* Vector
+V 5
+17.2  15.1  -13.7  0.5  4.7
+
+Description of Functions
+
+Each function is specified by its header line which shows the 
+argument types and the return value type.  The description tells 
+you how to prepare the arguments and any restrictions which 
+may apply.  For example:
+
+double dReadScalar(FILE *datafile, int *error);
+
+This defines function 'dReadScalar' which returns a 'double' 
+value, in this case the value of a number read from a data file.  
+The first parameter is a file pointer which is obtained by using 
+'fopen;' to open a file (see sample program).  The second 
+parameter is a pointer to an integer.  This is a value which is zero 
+if there are no errors, or a positive value depending on which 
+error occurs.  In some instances, examples of how to use the 
+functions are provided.
+
+Macros
+
+Macros are provided to generate fast in-line code for basic 
+arithmetical operations.  Each is demonstrated by an example.  
+By convention, macro definitions are always in capital letters.
+
+	s = SQR( sin(theta)+cos(theta) );	/* multiply a value by tself */
+	d = DSQR( sin(theta)+cos(theta) );	/* version for 'double' type  */
+
+	dsmax = DMAX( alpha, beta );		/* find greater value */
+	dsmin = DMIN( alpha, beta );		/* find lesser value */
+	smax = FMAX( alpha, beta );				
+	smin = FMIN( alpha, beta );			/* 'float' equivalents */
+
+	df = SIGN( alpha, beta );	 
+						/* return alpha if beta >= 0, otherwise -alpha */
+
+Utility functions
+
+'mem_used()' returns the memory space needed for 'float' and 
+'double' matrices and vectors in bytes.  
+
+long mem_used(void);
+
+'nrerror' is called with a text string by any function which 
+detects a problem.  As supplied, it prints the text string as an 
+error message and stops the program immediately.  You can 
+change the source code if you wish, or divert error messages to 
+your own function to handle them.  Refer to the source code in 
+NRLIN.C for details.
+
+void nrerror(char error_text[]);
+
+Functions for allocating space for vectors and matrices.  
+Refer to the demonstration program above.  There are also 
+functions provided for integers, long integers, and three 
+dimensional matrices.  These are not documented here: refer to 
+"Numercial Recipes in C" instead if you think you need them.  
+Note that validity checks described in the introduction are only 
+provided for 'float' and 'double' vectors and matrices.
+
+float *vector(long nl, long nh);
+double *dvector(long nl, long nh);
+float **matrix(long nrl, long nrh, long ncl, long nch);
+double **dmatrix(long nrl, long nrh, long ncl, long nch);
+
+int valid_vector(float *v, long nl, long nh);
+int valid_dvector(double *v, long nl, long nh);
+int valid_matrix(float **m, long nrl, long nrh, long ncl, long nch);
+int valid_dmatrix(double **m, long nrl, long nrh, long ncl, long nch);
+
+void free_vector(float *v, long nl, long nh);
+void free_dvector(double *v, long nl, long nh);
+void free_matrix(float **m, long nrl, long nrh, long ncl, long nch);
+void free_dmatrix(double **m, long nrl, long nrh, long ncl, long nch);
+
+Integer vectors and matrices -- see NR:
+
+int *ivector(long nl, long nh);
+unsigned char *cvector(long nl, long nh);
+unsigned long *lvector(long nl, long nh);
+int **imatrix(long nrl, long nrh, long ncl, long nch);
+
+void free_ivector(int *v, long nl, long nh);
+void free_cvector(unsigned char *v, long nl, long nh);
+void free_lvector(unsigned long *v, long nl, long nh);
+void free_imatrix(int **m, long nrl, long nrh, long ncl, long nch);
+
+3-d matri;x - 'float' only -- see NR:
+
+float ***f3tensor(long nrl, long nrh, long ncl, long nch, long ndl, long ndh);
+void free_f3tensor(float ***t, long nrl, long nrh, long ncl, long nch,
+	long ndl, long ndh);
+
+
+Vector combination functions
+copy 						a  => y
+add 						a + b => y
+subtract 					a Ð b => y
+dot product 				a ¥ b => return value
+multiplication by a scalar 	r a => y
+magnitude					|a|  => return value
+nomalize					a  /  |a|  => a
+pivoting					r a  + b => y
+comparison -- return a value indicating relative differences between
+vectors a and b. If they are identical, the result is zero.
+	
+void dvcopy( double *a, int n, double *y); 
+void dvadd( double *a, int n, double *b, double *y);
+void dvsub( double *a, int n, double *b, double *y);
+double dvdot( double *a, int n, double *b);
+void dvsmy( double *a, int n, double r, double *y);
+double dvmag( double *a, int n);
+double dvmnorm( double *a, int n);	
+void dvpiv( double *a, int n, double r, double *b, double *y);
+double dvcomp( double *a, int n, double *b); 
+
+In each case, a has elements [1..n].  b and y must have at least as 
+many elements.  
+
+Never use element addresses as pointers  E.g.  dvadd( &a[3], n-2, b, y)
+
+
+Matrix functions. 
+
+In each case, the number of rows and columns are specified 
+by integer parameters.
+
+copy 							A  => Y
+add 							A + B => Y
+subtract 						A Ð B => Y
+product 						A B => Y
+product with a vector			A b => y
+multiplication by a scalar 		r A => Y
+transpose			 			AT => Y
+copy lower triangular section of A to upper triangular 
+section making A symmetric. 	
+
+void dmcopy( double **A, int a_rows, int a_cols, double **B);
+void dmadd( double **A, int a_rows, int a_cols, double **B, double **Y);
+void dmsub( double **A, int a_rows, int a_cols, double **B, double **Y);
+void dmmult( double **A, int a_rows, int a_cols, 
+              double **B, int b_rows, int b_cols, double **Y);
+void dmvmult( double **A, int a_rows, int a_cols, 
+				double *b, int n, double *y);
+void dmsmy( double **A, int a_rows, int a_cols, double r, double **Y);
+void dmtranspose( double **A, int a_rows, int a_cols, double **Y);
+void dmfillUT( double **A, int a_rows, int a_cols);
+
+Column manipulation
+
+pass column 'i' into vector					Ai  => y[1..n]
+pass vector into column 'i' 				y[1..n]  => Ai 
+
+void dgetcolumn(double **A, int i, double *y, int n); 
+void dputcolumn(double *y, int n, double **A, int i); 
+
+Matrix Inversion 
+
+These functions have been provided to invert square 'double' 
+matrices.  'dinverse' uses LU decomposition and should work 
+well for most matrices.  'dinverse_mult' forms the product of 'a' 
+inverse times 'b' more accurately and faster than if separate 
+operations were used.  'dPDSinverse' uses Cholesky 
+decomposition to invert a symmetric positive definite matrix 
+quickly.  
+
+Note:  the input matrix 'a' is destroyed in all cases and must not be 
+the same matrix as the output 'y'.  
+
+If you need the equivalent routines for 'float', simply alter all 
+references to 'double', and change function references by 
+removing the 'd' from the front of names (e.g. dludcmp -> 
+ludcmp).
+
+void dinverse( double **a, int a_rows, double **y );
+void dinverse_mult( double **a, int a_rows, double **b, 
+			int b_cols, double **y );
+void dPDSinverse( double **a, int a_rows, double **y );
+void dPDS_L_inverse( double **a, int a_rows, double **y );
+
+Matrix Decomposition 
+
+These functions are from the Numerical Recipes package 
+(not available on internet)
+choldc	Cholesky decomposition 
+cholsl	Solve for inverse using Cholesky decomposition
+ludcmp	LU decomposition of a matrix
+lubksb	Back substitution to obtain inverse
+
+See "Numercial Recipes in C" for details of these functions.  
+They have been included to provide facilities for matrix 
+inversion, not for direct use.
+
+void choldc(float **a, int n, float p[]);
+void cholsl(float **a, int n, float p[], float b[], float x[]);
+void lubksb(float **a, int n, int *indx, float b[]);
+void ludcmp(float **a, int n, int *indx, float *d);
+
+void dcholdc(double **a, int n, double p[]);
+void dcholsl(double **a, int n, double p[], double b[], double x[]);
+void dlubksb(double **a, int n, int *indx, double b[]);
+void dludcmp(double **a, int n, int *indx, double *d);
+
+Input / Output
+
+The following functions read a data file containing scalar values, 
+vectors, or matrices.  The format of the data is best shown by the 
+example above.  Comment lines can be anywhere in the file, and 
+commence with '*'.  Blank lines are also permitted.  A scalar is 
+specified by an 'S' at the beginning of the line followed by the 
+value:
+
+S	45.2
+
+A vector is specified by 'V' at the beginning of a line 
+followed by the number of elements.  The element values 
+follow on the next line after any comment or blank lines.
+A matrix is specified by 'M' at the beginning of a line 
+followed by the number of rows and columns.  The 
+element values follow in rows on succeeding lines after any 
+comment or blank lines.
+
+Read a scalar through file pointer 'datafile'.  
+
+double dReadScalar(FILE *datafile, int *error);
+
+Read ;a vector through file pointer 'datafile'.  The function 
+returns the number of elements specified in the data file, and it 
+is a good idea to check that this value matches expectations as 
+shown in the example program above.
+
+void dReadVector(FILE *datafile, double *y, int *els, int *error);
+
+Read a matrix through file pointer 'datafile'.  The function 
+returns the number of rows and columns specified in the data 
+file, and it is a good idea to check that these values match 
+expectations as shown in the example program above.
+
+void dReadMatrix(FILE *datafile, double **y, int *rows, 
+			int *cols,  int *error);
+
+Error values (for all three functions):
+
+none		Vector or matrix pointer supplied is not valid - program aborts
+1			File not open
+2			Could not read number of rows of matrix or elements of vector
+3			Could not find 'M', 'V' or 'S' (depending on which data expected)
+4			Missing data (e.g. insufficient rows of matrix)
+
+The following functions write ;the contents of a matrix or 
+vector to an output file through the file pointer 'outf' with a 
+text string 'text' to identify the values:
+
+void dmdump( FILE *outf, char *text, 
+double **A, int a_rows, int a_cols, char *format);
+void dvdump( FILE *outf, char *text, double *a, int n, char *format);
+
+The 'format;' parameter must be a valid format specification 
+for a 'double', for example "%11.4lf" or just simply "%lf".  Look at 
+the sample program for examples.  'outf' can be 'stdout' if you 
+want to display the output on the screen.
+
+
+Operations on Frames 
+
+Frames ;are homogeneous coordinate frames used for 
+projections, robotics and 3-d spatial geometry problems.  They 
+are stored as 4 x 4 matrices.  The following routines are used for 
+allocating space for frames and vectors, and releasing space.  
+These calls access functions 'dmatrix', 'free_dmatrix' etc. to 
+define or free 4 x 4 matrices and 4 element vectors.
+
+double **dframe( void )
+void free_dframe( double **Y )
+int valid_dframe( double **Y )
+double *d4vector(void)
+void free_d4vector( double *y )
+int valid_d4vector( double *y )
+
+Transformations
+
+Form serial product AB => A
+
+void chainmult( double **A, double **B );
+
+Form rotation ;transformation   
+
+		rot( x, q ) => A, or
+		rot( y, q ) => A or 
+		rot( z, q ) => A 
+
+depending on the integer 'axis'  1 for x, 2 for y, 3 for z.  Use 
+the macros defined in the sample program X  Y  Z which are 
+pre-defined as 1, 2 or 3.  Use the macro RAD to convert 
+degrees to radians.  (Note: this function generates a 
+transform - it does not do the rotation.  Pre-multiply the 
+frame you wish to rotate by A to perform the rotation).
+
+void rotframe( double **A, int axis, double theta); 
+
+For example:  rotframe( A, Y, RAD(22.5));
+
+Form translation ;transformation   trans( dx, dy, dz ) => A
+
+void transframe( double **A, double dx, double dy, double dz); 
+
+Orthogonalize ;A. This is done by first nomalizing the z 
+axis column vector, and forming the cross product of the y 
+axis and z axis columns to form the x axis column, which is 
+in turn nomalized too.  Finally, the y axis column is 
+recomputed from the cross product of the z axis and x axis 
+columns.  This allows approximate frame values to be read 
+from a data file and converted to orthonormal orientation 
+frames.
+
+void orthog( double **A );  
+
+Cross product of two 4 element vectors:  a x b  => c
+
+void dcross4 ( double *a, double *b, double *c );  /* cross two vectors*/
+Return dot product of two frame columns: Ai ¥ Bj 
+
+double column_dot( double **A, int i, double **B, int j );
+
+
+Rotations about an arbitrary axisrotation;
+
+Given two frames T1 and T2 which are slightly rotated with 
+respect to each other, the relative rotation can be obtained 
+by:
+
+rot'n about x             y1 ¥ z2
+about y          =        z1 ¥ x2
+about z                   x1 ¥ y2	
+
+where x, y, z  are the appropriate column vectors of the 
+respective frames.  Orientation difference can readily be 
+computed by the dot products above, provided that the 
+difference is small.  This can be explained as follows.  If 
+there is a slight relative rotation about the x axis, y1  will 
+have a slight positive or negative projection on on z2 -- this 
+is given by their vector dot product which would otherwise 
+be zero if they were perpendicular.  Similarly we can use the 
+other dot products for the remaining components of 
+rotation.  We could pre-multiply the result by  T1 to 
+transform it to world coordinates.  We could equally pre-
+multiply by  T2.  Since the result is in effect the rotation 
+axis vector, it would remain the same in both the  T1 and  T2 
+frames.
+
+void make_d_omega( double **T1, double **T2, double *w);
+
+
+Given two frames T1 and  T2 find an axis of rotation 
+which allows T1 to be rotated to T2.  The sine and cosine of 
+the angle of rotation required are returned.  The integer 
+'twitching' is set to 1 if the frames are very nearly aligned 
+with each other in which case the function 
+'make_d_omega' can be used.
+
+void FindAxis(double **T1, double **T2, double *axis, 
+				double *sphi, double *cphi,int *twitching);
+
+Rotate 'v' about 'axis' through angle f specified by its sine 
+and cosine values, and place result in y.
+
+void RotateVector(double *v, double *axis, 
+						double sphi, double cphi, double *y);
+
+Rotate 'T' about 'axis' through angle f specified by its sine 
+and cosine values and place result in T2. 
+
+void RotateFrame(double **T, double *axis, 
+						double sphi, double cphi, double **T2);
+
+ 
+Debugging Facilities
+
+The basic NR library has error detection built in, as explained in 
+the introduction.  However, sometimes it can be difficult to see 
+where a problem has occurred when you receive a simple one 
+line error message and the program exits.
+There is an optional additional module NRCHECK which diverts 
+calls to the NR library functions through a series of "wrapper" 
+functions which perform some extended checks on the validity 
+of the parameters you supplied, and receive two additional 
+parameters: the line number and the name of your source file.  
+However, the insertion of these extra parameters is automatic as 
+a result of defining NR_CHECK before including nrlin.h.  If you are 
+using the source code, you must also include the module 
+nrcheck.c ;in your project list or make file.
+Once you have done this, any error message will include the 
+location of the function call which detected the problem.  Also, 
+file pointers and strings are checked as far as possible to see that 
+they make sense.  
+Remember that if the error suggests that a "dmatrix" or 
+"dvector" is invalid, the problem probably originates before the 
+function call which detected the problem.  Check that the 
+matrix or vector pointers were correctly assigned in the first 
+place, then use the macro valid_dvector or valid_dmatrix to check 
+the pointers after they have been defined, and at other places in 
+the program, to try to isolate the section of the program which is 
+"damaging" the pointers or the data structures in memory.
+Use the function reportmemory(stderr) to list the number of 
+bytes used and the number of dmatrices and dvectors currently 
+assigned.  This function is called with an open file pointer so the 
+output can be directed to a log file, for instance.
+Temporary vectors; - initializing
+Using dvector for every vector can be tedious.  The system 
+overhead needed for memory allocation and release can slow 
+some programs.  It is possible to use local arrays as vectors by 
+declaring them appropriately.  It is essential to declare extra 
+space for the protection 'tags'.  The following skeleton shows 
+how 'double' arrays can be declared (2 elements longer than the 
+required vector) and then 'validated'.  If they are not validated, 
+other functions will assume that the pointers have been 
+corrupted.
+
+void RotateDraw CB_PARAMS
+{
+	double u[6], v[6], a[8];
+
+	validate_dvector(u, 1, 4); /* insert validation values */
+	validate_dvector(v, 1, 4); 
+	validate_dvector(a, 1, 6); 
+	:.
+	return;
+}
+Note:  when this initialization technique is used, the subscript range 
+must start with 1. 
+
+Using the Library with Little-X 
+
+A graphical user interface program using Little-X (or any other 
+GUI system) introduces some special requirements which can 
+complicate the use of dynamic memory dependent code such as 
+this library.  (Little-X is a library of C functions which provides 
+an easy method for constructing graphical user interfaces for C 
+programs on a Unix system with X-Windows, or in DOS on PC 
+computers.  It is available from the author.)  Since Little-X 
+shares dynamic memory, corruption of pointers can cause 
+mysterious failures, so safe and secure use of dynamic memory is 
+even more important than usual.
+Pointer values local to a function which is called by another 
+module (e.g. a call-back function;) are temporary:  they exist on 
+the stack only while that function is running.  As soon as the 
+function returns to the module which called it, the local pointer 
+values disappear.  However, the dynamic memory structures 
+created by the function are not automatically released.
+Look at the function below which creates a frame, rotates it, and 
+calls a drawing function with that frame:
+
+void RotateDraw CB_PARAMS
+{
+	double **F, **G;
+
+	F = dframe();
+	G = dframe();		/* create frames */
+
+	rotframe( F, Z, angleZ );
+	rotframe( G, Y, angleY );
+	chainmult( F, G );	/* combine rotations */
+	
+	draw_cube( F );	/* draw object using rotated frame */
+	
+	return;
+}
+This function will work, but after executing it leaves dynamic 
+memory structures for F and G without valid pointers to 
+access them.  Next time the function is called, new memory 
+structures are allocated.  Thus more dynamic memory is 
+consumed every time the function is called.
+This problem can be corrected by making sure that the 
+structures are released before the function return.  Add the 
+following calls:
+	
+	free_dframe(F);
+	free_dframe(G);		/* free frame memory */
+
+If the function needs to retain data between calls, use static 
+pointers as the following example shows:
+
+void RotateDraw CB_PARAMS
+{
+	static double **F, **G;
+	static int done_once = False;
+
+	if ( !done_once ) {
+		done_once = True;
+		F = dframe();
+		G = dframe();		/* create frames */
+	}
+
+	rotframe( F, Z, angleZ );
+	rotframe( G, Y, angleY );
+	chainmult( F, G );	/* combine rotations */
+	
+	draw_cube( F );	/* draw object using rotated frame */
+	
+	return;
+}
+Now the data structures are retained in dynamic memory, and 
+the pointer values are also retained since they are declared 
+'static'.  The flag 'done_once' is initially 'False'.  The first time 
+the function is called, the memory structures are defined, and 
+'done_once' is set 'True' so they are never re-created. 
+Another way of doing this is to use global pointer values.  
+While this can lead to a messy program structure, it is sometimes 
+the only practical way of handling this situation.  Global pointer 
+values can be used to free the memory structures later, if desired.  
+Some of the worst effects of global variables can be avoided by 
+using the keyword 'static' to hide names of global variables.  I 
+like to re-define this as 'internal_global;':
+
+#define internal_global static
+internal_global double **F, **G;
+internal_global int rd_done_once = False;
+
+void RotateDraw CB_PARAMS
+{
+	if ( !rd_done_once ) {
+		rd_done_once = True;
+		F = dframe();
+		G = dframe();		/* create frames */
+	}
+
+	rotframe( F, Z, angleZ );
+	rotframe( G, Y, angleY );
+	chainmult( F, G );	/* combine rotations */
+	
+	draw_cube( F );	/* draw object using rotated frame */
+	
+	return;
+}
+
+void free_RotateDraw()
+{
+	if ( rd_done_once ) {
+		rd_done_once = False;
+		free_dframe(F);
+		free_dframe(G);		/* release frame structures */
+	}
+	return;
+}
+In this code example, the pointer names F and G are hidden 
+from other program source modules, so there is less chance of 
+accidentally referring to the same name.   The pointers are 
+retained between calls to 'RotateDrawCB'.  The function 
+'free_RotateDraw' releases the memory structures when 
+necessary, such as just before terminating the program.
+Refer to the source file lx-3d.c as an example of a Little-X 
+program which uses the library and some of these concepts.  
+This is distributed with the Little-X package.
+
+Extending the Library 
+
+The source code for the library is arranged in four files:
+nrlin.c;	Basic functions, matrix inversion from Numerical Recipes library
+nrutil.c;	Vector and matrix combination, utility and input/output functions
+nrframe.c;	Frame manipulation, rotation transformations
+nrcheck.c;	Checking arguments and locating errors
+nrlin.h is a composite header file for all three sources.
+Many of the functions exist only for type 'double'.  To provide a 
+'float' equivalent, 
+
+1) copy the function
+2) change the name by removing the leading 'd'
+3) make sure the function calls only 'float' versions of supporting functions
+4) change instances of 'double' to 'float', and,
+5) change any format specifiers from %x.xlf to %x.xf.
+
+Any new function should satisfy the following requirements:
+i) it checks validity of vector and matrix parameters
+ii) it releases any heap memory assigned, or, has a specific 
+associated function which is called to release retained heap 
+memory structures
+iii) as far as possible, it has a similar set of parameters in a 
+similar sequence to similar functions already provided
+iv) its name starts with 'd' if it handles 'doubles'.
+The modules nrcheck.c and nrcheck.h will need to be 
+extended with additional wrapper functions and macros to 
+divert user calls to these wrapper functions.  However, there are 
+enough examples for all the existing functions for you to see 
+what to do.
+Note that most library functions use different validity checking 
+macros "valid_dmatrix_b;" and "valid_dvector_b;" instead of 
+the recommended ones for library users.  These macros do not 
+need to know the range of subscripts or the array size, but they 
+only check the "front end" pointers and check locations.
+Make your own copies of the source code before making 
+changes, and once your additions are tested, please send them to 
+me for inclusion with the next release of the library.  My E-mail 
+address is jamest@mech.uwa.edu.au.  
+
+Error Detection Scheme Limitations
+
+The protection scheme which allows errors to be detected 
+requires extra data to be stored with each matrix and vector.  
+Functions matrix, dmatrix, vector, dvector, dframe (and 
+corresponding functions to free memory) make use of this 
+scheme.  Functions f3tensor, convert_matrix, submatrix, imatrix 
+etc. do not yet have this scheme built in.  However, by following 
+the code provided it should be possible to extend this scheme to 
+these functions as well.  These functions still work, of course, 
+and all of the functions can be used in exactly the manner 
+prescribed in "Numerical Recipes in C".  
+The scheme adopted for dmatrix, matrix and dframe (which 
+simply calls dmatrix) is illustrated below.  The matrix pointer 
+returned by the respective functions points at a block of pointers 
+large enough to hold one pointer for each row and two extra 
+ones.  These, in turn, point at various locations in a block 
+reserved for the matrix elements.  This block is two elements 
+larger than it strictly needs to be.  
+The first element of the pointer block, m[-1], is initialized to 
+the constant value 555.  The matrix pointer points at the row 0 
+pointer within the block if the first row subscript is 1, otherwise 
+an appropriate offset is applied.  In the illustration beneath, I 
+have assumed the first row and column numbers are 1 (the 
+convention used in the book).
+
+
+                           ________________
+                          |     555        | (check value)  
+matrix pointer    ------->| row 0 pointer  | (points to <a>)
+                          | row 1 pointer  | (points to <a>)
+                 ---------| row 2 pointer  | (points to <b>)
+                /   ------| row 3 pointer  | (points to <c>)
+                |  /      |     .          |
+                |  |      |     .          |
+                |  |      |     .          |
+                |  |   ---| row n pointer  | (points to <y>)
+                |  |  /    ------------------
+                V  V  V
+_____________________________________________________________________________
+|                                                                                      
+|
+| -422.0  m[1][1]  m[1][2]  .. m[1][m]  m[2][1] m[2][2] .. m[2][m] m[3][1] ..  |
+|   <a>                          <b>                         <c>               
+|
+|                                                                                      
+|
+|   ...............m[n-1][m]  m[n][1] m[n][2] ....... m[n][m]   -822.0                 
+|
+|                     <y>                                                              
+|
+----------------------------------------------------------------------------
+The row pointers point to various locations within the block 
+reserved for the matrix elements.  In the example above, where 
+the first column number is 1, the row pointers point at the 
+element immediately before the first element in each row.   
+Thus, the code m[1][1] uses the row 1 pointer, incremented by 
+1, to access m[1][1].
+Notice how the row 0 pointer also points to the element before 
+row[1].  Students will almost always declare matrices with 
+subscript ranges starting from 1, as the worked examples show.  
+However, students may also confuse the normal C subscript 
+range and the NR convention and address array elements in row 
+or column 0.  By duplicating the row 0 and row 1 pointers, we 
+can avoid nasty system crashes which might result from using an 
+arbitrary row 0 pointer value.
+These safety precautions represent a compromise between 
+speed, memory space and the probability of detecting errors.  It 
+is possible to go further and increase the chances of error 
+detection.  However, each improvement in error detection 
+probability decreases convenience, adds time, and takes more 
+memory space.
+Professional program developers use commercial packages such 
+as Purify, Nu-Mega or Memcheck for comprehensive error 
+detection.  I recommend that you think seriously about using 
+these if you want to write lots of code.  They will save you hours 
+of debugging.  This package is intended for student use, and can 
+be distributed free of charge.
+
