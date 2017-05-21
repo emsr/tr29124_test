@@ -45,9 +45,10 @@
 #  include <cmath>
 #undef _GLIBCXX_NO_SPECFUN
 #include <sstream>
+
 #if _GLIBCXX_HAVE_FLOAT128_MATH
-#include <bits/float128_io.h>
-#endif
+#  include <bits/complex128_math.h>
+#endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
 // Get rid of a macro possibly defined in <complex.h>
 #undef complex
@@ -571,42 +572,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     { return __z.imag(); }
 #endif
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  typedef _Complex float __attribute__((mode(TC))) __complex128;
-#ifdef __cplusplus
-extern "C" {
-#endif
-  __float128 strtoflt128 (const char*, char**) _GLIBCXX_NOEXCEPT;
-
-  __float128 cabsq (__complex128) _GLIBCXX_NOEXCEPT;
-  __float128 cargq (__complex128) _GLIBCXX_NOEXCEPT;
-  __float128 cimagq (__complex128) _GLIBCXX_NOEXCEPT;
-  __float128 crealq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 cacosq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 cacoshq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 casinq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 casinhq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 catanq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 catanhq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 ccosq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 ccoshq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 cexpq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 cexpiq (__float128) _GLIBCXX_NOEXCEPT;
-  __complex128 clogq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 clog10q (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 conjq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 cpowq (__complex128, __complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 cprojq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 csinq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 csinhq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 csqrtq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 ctanq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 ctanhq (__complex128) _GLIBCXX_NOEXCEPT;
-#ifdef __cplusplus
-}
-#endif
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
-
   // 26.2.7/3 abs(__z):  Returns the magnitude of __z.
   template<typename _Tp>
     inline _Tp
@@ -632,12 +597,6 @@ extern "C" {
   inline long double
   __complex_abs(const __complex__ long double& __z)
   { return __builtin_cabsl(__z); }
-
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __float128
-  __complex_abs(const __complex128& __z)
-  { return cabsq(__z); }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
   template<typename _Tp>
     inline _Tp
@@ -665,12 +624,6 @@ extern "C" {
   inline long double
   __complex_arg(const __complex__ long double& __z)
   { return __builtin_cargl(__z); }
-
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __float128
-  __complex_arg(const __complex128& __z)
-  { return cargq(__z); }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
   template<typename _Tp>
     inline _Tp
@@ -753,12 +706,6 @@ extern "C" {
   __complex_cos(const __complex__ long double& __z)
   { return __builtin_ccosl(__z); }
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __complex128
-  __complex_cos(const __complex128& __z)
-  { return ccosq(__z); }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
-
   template<typename _Tp>
     inline complex<_Tp>
     cos(const complex<_Tp>& __z) { return __complex_cos(__z.__rep()); }
@@ -789,12 +736,6 @@ extern "C" {
   __complex_cosh(const __complex__ long double& __z)
   { return __builtin_ccoshl(__z); }
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __complex128
-  __complex_cosh(const __complex128& __z)
-  { return ccoshq(__z); }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
-
   template<typename _Tp>
     inline complex<_Tp>
     cosh(const complex<_Tp>& __z) { return __complex_cosh(__z.__rep()); }
@@ -820,12 +761,6 @@ extern "C" {
   inline __complex__ long double
   __complex_exp(const __complex__ long double& __z)
   { return __builtin_cexpl(__z); }
-
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __complex128
-  __complex_exp(const __complex128& __z)
-  { return cexpq(__z); }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
   template<typename _Tp>
     inline complex<_Tp>
@@ -853,12 +788,6 @@ extern "C" {
   inline __complex__ long double
   __complex_log(const __complex__ long double& __z)
   { return __builtin_clogl(__z); }
-
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __complex128
-  __complex_log(const __complex128& __z)
-  { return clogq(__z); }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
   template<typename _Tp>
     inline complex<_Tp>
@@ -895,12 +824,6 @@ extern "C" {
   __complex_sin(const __complex__ long double& __z)
   { return __builtin_csinl(__z); }
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __complex128
-  __complex_sin(const __complex128& __z)
-  { return csinq(__z); }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
-
   template<typename _Tp>
     inline complex<_Tp>
     sin(const complex<_Tp>& __z) { return __complex_sin(__z.__rep()); }
@@ -930,12 +853,6 @@ extern "C" {
   inline __complex__ long double
   __complex_sinh(const __complex__ long double& __z)
   { return __builtin_csinhl(__z); }
-
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __complex128
-  __complex_sinh(const __complex128& __z)
-  { return csinhq(__z); }      
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
   template<typename _Tp>
     inline complex<_Tp>
@@ -981,12 +898,6 @@ extern "C" {
   __complex_sqrt(const __complex__ long double& __z)
   { return __builtin_csqrtl(__z); }
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __complex128
-  __complex_sqrt(const __complex128& __z)
-  { return csqrtq(__z); }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
-
   template<typename _Tp>
     inline complex<_Tp>
     sqrt(const complex<_Tp>& __z) { return __complex_sqrt(__z.__rep()); }
@@ -1013,12 +924,6 @@ extern "C" {
   inline __complex__ long double
   __complex_tan(const __complex__ long double& __z)
   { return __builtin_ctanl(__z); }
-
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __complex128
-  __complex_tan(const __complex128& __z)
-  { return ctanq(__z); }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
   template<typename _Tp>
     inline complex<_Tp>
@@ -1047,12 +952,6 @@ extern "C" {
   inline __complex__ long double
   __complex_tanh(const __complex__ long double& __z)
   { return __builtin_ctanhl(__z); }
-
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __complex128
-  __complex_tanh(const __complex128& __z)
-  { return ctanhq(__z); }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
   template<typename _Tp>
     inline complex<_Tp>
@@ -1131,12 +1030,6 @@ extern "C" {
   __complex_pow(const __complex__ long double& __x,
 		const __complex__ long double& __y)
   { return __builtin_cpowl(__x, __y); }
-
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __complex128
-  __complex_pow(const __complex128& __x, const __complex128& __y)
-  { return cpowq(__x, __y); }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
   template<typename _Tp>
     inline complex<_Tp>
@@ -1619,189 +1512,6 @@ extern "C" {
       _ComplexT _M_value;
     };
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-
-  /// complex<__float128> specialization
-  template<>
-    struct complex<__float128>
-    {
-      typedef __float128 value_type;
-
-      // From quadmath.h
-      //typedef _Complex float __attribute__((mode(TC))) __complex128;
-      typedef __complex128 _ComplexT;
-
-      _GLIBCXX_CONSTEXPR
-      complex(_ComplexT __z)
-      : _M_value(__z)
-      { }
-
-      _GLIBCXX_CONSTEXPR
-      complex(__float128 __r = 0.0Q, 
-	      __float128 __i = 0.0Q)
-#if __cplusplus >= 201103L
-      : _M_value{ __r, __i }
-      { }
-#else
-      {
-	__real__ _M_value = __r;
-	__imag__ _M_value = __i;
-      }
-#endif
-
-      _GLIBCXX_CONSTEXPR
-      complex(const complex<float>& __z)
-      : _M_value(__z.__rep())
-      { }
-
-      _GLIBCXX_CONSTEXPR
-      complex(const complex<double>& __z)
-      : _M_value(__z.__rep())
-      { }
-
-      _GLIBCXX_CONSTEXPR
-      complex(const complex<long double>& __z)
-      : _M_value(__z.__rep())
-      { }
-
-#if __cplusplus >= 201103L
-      // _GLIBCXX_RESOLVE_LIB_DEFECTS
-      // DR 387. std::complex over-encapsulated.
-      __attribute ((__abi_tag__ ("cxx11")))
-      constexpr __float128 
-      real() const
-      { return __real__ _M_value; }
-
-      __attribute ((__abi_tag__ ("cxx11")))
-      constexpr __float128 
-      imag() const
-      { return __imag__ _M_value; }
-#else
-      __float128& 
-      real()
-      { return __real__ _M_value; }
-
-      const __float128& 
-      real() const
-      { return __real__ _M_value; }
-
-      __float128& 
-      imag()
-      { return __imag__ _M_value; }
-
-      const __float128& 
-      imag()
-      const { return __imag__ _M_value; }
-#endif
-
-      // _GLIBCXX_RESOLVE_LIB_DEFECTS
-      // DR 387. std::complex over-encapsulated.
-      void 
-      real(__float128 __val)
-      { __real__ _M_value = __val; }
-
-      void 
-      imag(__float128 __val)
-      { __imag__ _M_value = __val; }
-
-      complex&
-      operator=(__float128 __r)
-      {
-	_M_value = __r;
-	return *this;
-      }
-
-      complex&
-      operator+=(__float128 __r)
-      {
-	_M_value += __r;
-	return *this;
-      }
-
-      complex&
-      operator-=(__float128 __r)
-      {
-	_M_value -= __r;
-	return *this;
-      }
-
-      complex&
-      operator*=(__float128 __r)
-      {
-	_M_value *= __r;
-	return *this;
-      }
-
-      complex&
-      operator/=(__float128 __r)
-      {
-	_M_value /= __r;
-	return *this;
-      }
-
-      // The compiler knows how to do this efficiently
-      // complex& operator=(const complex&);
-
-      template<typename _Tp>
-        complex&
-        operator=(const complex<_Tp>& __z)
-	{
-	  __real__ _M_value = __z.real();
-	  __imag__ _M_value = __z.imag();
-	  return *this;
-	}
-
-      template<typename _Tp>
-        complex&
-	operator+=(const complex<_Tp>& __z)
-	{
-	  __real__ _M_value += __z.real();
-	  __imag__ _M_value += __z.imag();
-	  return *this;
-	}
-
-      template<typename _Tp>
-        complex&
-	operator-=(const complex<_Tp>& __z)
-	{
-	  __real__ _M_value -= __z.real();
-	  __imag__ _M_value -= __z.imag();
-	  return *this;
-	}
-
-      template<typename _Tp>
-        complex&
-	operator*=(const complex<_Tp>& __z)
-	{
-	  _ComplexT __t;
-	  __real__ __t = __z.real();
-	  __imag__ __t = __z.imag();
-	  _M_value *= __t;
-	  return *this;
-	}
-
-      template<typename _Tp>
-        complex&
-	operator/=(const complex<_Tp>& __z)
-	{
-	  _ComplexT __t;
-	  __real__ __t = __z.real();
-	  __imag__ __t = __z.imag();
-	  _M_value /= __t;
-	  return *this;
-	}
-
-      _GLIBCXX_CONSTEXPR _ComplexT
-      __rep() const
-      { return _M_value; }
-
-    private:
-
-      _ComplexT _M_value;
-    };
-
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
-
   // These bits have to be at the end of this file, so that the
   // specializations have all been defined.
   inline _GLIBCXX_CONSTEXPR
@@ -1816,20 +1526,6 @@ extern "C" {
   complex<double>::complex(const complex<long double>& __z)
   : _M_value(__z.__rep()) { }
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline _GLIBCXX_CONSTEXPR
-  complex<float>::complex(const complex<__float128>& __z)
-  : _M_value(__z.__rep()) { }
-
-  inline _GLIBCXX_CONSTEXPR
-  complex<double>::complex(const complex<__float128>& __z)
-  : _M_value(__z.__rep()) { }
-
-  inline _GLIBCXX_CONSTEXPR
-  complex<long double>::complex(const complex<__float128>& __z)
-  : _M_value(__z.__rep()) { }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
-
   // Inhibit implicit instantiations for required instantiations,
   // which are defined via explicit instantiations elsewhere.
   // NB:  This syntax is a GNU extension.
@@ -1840,10 +1536,6 @@ extern "C" {
   extern template ostream& operator<<(ostream&, const complex<double>&);
   extern template istream& operator>>(istream&, complex<long double>&);
   extern template ostream& operator<<(ostream&, const complex<long double>&);
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  template istream& operator>>(istream&, complex<__float128>&);
-  template ostream& operator<<(ostream&, const complex<__float128>&);
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
 #ifdef _GLIBCXX_USE_WCHAR_T
   extern template wistream& operator>>(wistream&, complex<float>&);
@@ -1928,12 +1620,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   __complex_acos(const __complex__ long double& __z)
   { return __builtin_cacosl(__z); }
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __complex128
-  __complex_acos(const __complex128& __z)
-  { return cacosq(__z); }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
-
   template<typename _Tp>
     inline std::complex<_Tp>
     acos(const std::complex<_Tp>& __z)
@@ -1969,12 +1655,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline __complex__ long double
   __complex_asin(const __complex__ long double& __z)
   { return __builtin_casinl(__z); }
-
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __complex128
-  __complex_asin(const __complex128& __z)
-  { return casinq(__z); }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
   template<typename _Tp>
     inline std::complex<_Tp>
@@ -2020,12 +1700,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   __complex_atan(const __complex__ long double& __z)
   { return __builtin_catanl(__z); }
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __complex128
-  __complex_atan(const __complex128& __z)
-  { return catanq(__z); }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
-
   template<typename _Tp>
     inline std::complex<_Tp>
     atan(const std::complex<_Tp>& __z)
@@ -2061,12 +1735,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline __complex__ long double
   __complex_acosh(const __complex__ long double& __z)
   { return __builtin_cacoshl(__z); }
-
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __complex128
-  __complex_acosh(const __complex128& __z)
-  { return cacoshq(__z); }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
   template<typename _Tp>
     inline std::complex<_Tp>
@@ -2106,12 +1774,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline __complex__ long double
   __complex_asinh(const __complex__ long double& __z)
   { return __builtin_casinhl(__z); }
-
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __complex128
-  __complex_asinh(const __complex128& __z)
-  { return casinhq(__z); }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
   template<typename _Tp>
     inline std::complex<_Tp>
@@ -2156,12 +1818,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline __complex__ long double
   __complex_atanh(const __complex__ long double& __z)
   { return __builtin_catanhl(__z); }
-
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __complex128
-  __complex_atanh(const __complex128& __z)
-  { return catanhq(__z); }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
   template<typename _Tp>
     inline std::complex<_Tp>
@@ -2270,12 +1926,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   __complex_proj(const __complex__ long double& __z)
   { return __builtin_cprojl(__z); }
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline __complex128
-  __complex_proj(const __complex128& __z)
-  { return cprojq(__z); }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
-
   template<typename _Tp>
     inline std::complex<_Tp>
     proj(const std::complex<_Tp>& __z)
@@ -2337,16 +1987,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   operator""il(unsigned long long __num)
   { return std::complex<long double>{0.0L, static_cast<long double>(__num)}; }
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  inline std::complex<__float128>
-  operator""iq(const char* __str)
-  { return complex<__float128>(0.0Q, strtoflt128(__str, 0)); }
-
-  constexpr std::complex<__float128>
-  operator""iq(unsigned long long __num)
-  { return std::complex<__float128>{0.0L, static_cast<__float128>(__num)}; }
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
-
 _GLIBCXX_END_NAMESPACE_VERSION
 } // inline namespace complex_literals
 } // inline namespace literals
@@ -2356,5 +1996,9 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace
 
 #endif  // C++11
+
+#if _GLIBCXX_HAVE_FLOAT128_MATH
+#  include <bits/complex128.h>
+#endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
 #endif  /* _GLIBCXX_COMPLEX */
