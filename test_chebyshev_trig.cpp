@@ -382,5 +382,22 @@ template<typename Tp>
 int
 main()
 {
+  using Tp = __float128;
+
   test_chebyshev(1.0);
+
+  std::cout.precision(__gnu_cxx::__digits10<Tp>());
+  std::cout << std::showpoint << std::scientific;
+  auto width = 8 + std::cout.precision();
+  std::cout << "\n\nZeros of Chebyshev U_23(x) for qcheb_integrate\n";
+  for (auto n : {23})
+    {
+      auto uz = __chebyshev_u_zeros<Tp>(n);
+      for (auto z : uz)
+	{
+	  std::cout << ' ' << std::setw(width) << z.__zero
+		    << ' ' << std::setw(width) << z.__weight
+		    << '\n';
+	}
+    }
 }
