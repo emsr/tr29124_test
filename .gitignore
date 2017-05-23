@@ -335,6 +335,7 @@ test_theta
 test_tricomi_u
 test_trig
 test_trigamma
+test_weierstrass_ellint
 test_wright_omega
 test_zeta_trig
 
