@@ -39,11 +39,11 @@ template<typename _Tp>
     int i_min = 1;
     for (int i = i_min; i <= +500; ++i)
       {
-	auto a = _Tp{0.1L} * i;
+	auto a = _Tp{0.1Q} * i;
 	int j_min = 1;
 	for (int j = j_min; j <= +500; ++j)
 	  {
-	    auto b = _Tp{0.1L} * j;
+	    auto b = _Tp{0.1Q} * j;
 	    auto gbet = std::__detail::__beta(a, b);
 	    auto bbet = beast::beta(a, b);
 	    std::cout << ' ' << std::setw(width) << a
