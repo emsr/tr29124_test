@@ -49,6 +49,12 @@
 #  if __has_include(<quadmath.h>)
 #    include <quadmath.h>
 #    define _GLIBCXX_HAVE_FLOAT128_MATH 1
+#    if _GLIBCXX_USE_C99_MATH && !_GLIBCXX_USE_C99_FP_MACROS_DYNAMIC
+namespace std
+{
+  bool isnan(__float128);
+}
+#    endif
 #  endif
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
@@ -89,6 +95,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Create a NaN.
+   * This will be overloaded for complex and vector types.
    */
   template<typename _Tp>
     struct __make_NaN
