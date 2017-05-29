@@ -1,6 +1,6 @@
 // -*- C++ -*- header.
 
-// Copyright (C) 2016-2017 Free Software Foundation, Inc.
+// Copyright (C) 2017 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -24,7 +24,7 @@
 
 /** @file bits/complex128.h
  *  This is an internal header file, included by other library headers.
- *  Do not attempt to use it directly. @headername{complex}
+ *  Do not attempt to use it directly. @headername{xxxxx}
  */
 
 #ifndef _GLIBCXX_BITS_COMPLEX128_H
@@ -33,42 +33,21 @@
 #pragma GCC system_header
 
 #if _GLIBCXX_HAVE_FLOAT128_MATH
-/*
+
+#include <bits/float128_io.h>
+
 typedef _Complex float __attribute__((mode(TC))) __complex128;
-#ifdef __cplusplus
-extern "C" {
-#endif
-  __float128 cabsq (__complex128) noexcept;
-  __float128 cargq (__complex128) noexcept;
-  __float128 cimagq (__complex128) noexcept;
-  __float128 crealq (__complex128) noexcept;
-  __complex128 cacosq (__complex128) noexcept;
-  __complex128 cacoshq (__complex128) noexcept;
-  __complex128 casinq (__complex128) noexcept;
-  __complex128 casinhq (__complex128) noexcept;
-  __complex128 catanq (__complex128) noexcept;
-  __complex128 catanhq (__complex128) noexcept;
-  __complex128 ccosq (__complex128) noexcept;
-  __complex128 ccoshq (__complex128) noexcept;
-  __complex128 cexpq (__complex128) noexcept;
-  __complex128 cexpiq (__float128) noexcept;
-  __complex128 clogq (__complex128) noexcept;
-  __complex128 clog10q (__complex128) noexcept;
-  __complex128 conjq (__complex128) noexcept;
-  __complex128 cpowq (__complex128, __complex128) noexcept;
-  __complex128 cprojq (__complex128) noexcept;
-  __complex128 csinq (__complex128) noexcept;
-  __complex128 csinhq (__complex128) noexcept;
-  __complex128 csqrtq (__complex128) noexcept;
-  __complex128 ctanq (__complex128) noexcept;
-  __complex128 ctanhq (__complex128) noexcept;
-#ifdef __cplusplus
-}
-#endif
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
+
+  // Forward declarations.?
+  //template<typename _Tp> class complex;
+  //template<> class complex<float>;
+  //template<> class complex<double>;
+  //template<> class complex<long double>;
+  //template<> class complex<__float128>;
 
   /// complex<__float128> specialization
   template<>
@@ -260,173 +239,41 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline _GLIBCXX_CONSTEXPR
   complex<long double>::complex(const complex<__float128>& __z)
   : _M_value(__z.__rep()) { }
-*/
-/*
-  inline __float128
-  abs(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return cabsq(__z); }
 
-  inline __float128
-  arg(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return cargq(__z); }
+#if _GLIBCXX_EXTERN_TEMPLATE
+  template istream& operator>>(istream&, complex<__float128>&);
+  template ostream& operator<<(ostream&, const complex<__float128>&);
+#ifdef _GLIBCXX_USE_WCHAR_T
+  // FIXME!!!
+  //template wistream& operator>>(wistream&, complex<__float128>&);
+  //template wostream& operator<<(wostream&, const complex<__float128>&);
+#endif // _GLIBCXX_USE_WCHAR_T
+#endif // _GLIBCXX_EXTERN_TEMPLATE
 
-  inline __float128
-  imag(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return cimagq(__z); }
-
-  inline __float128
-  real(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return crealq(__z); }
-
-  inline __complex128
-  acos(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return cacosq(__z); }
-
-  inline __complex128
-  acosh(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return cacoshq(__z); }
-
-  inline __complex128
-  asin(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return casinq(__z); }
-
-  inline __complex128
-  asinh(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return casinhq(__z); }
-
-  inline __complex128
-  atan(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return catanq(__z); }
-
-  inline __complex128
-  atanh(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return catanhq(__z); }
-
-  inline __complex128
-  cos(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return ccosq(__z); }
-
-  inline __complex128
-  cosh(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return ccoshq(__z); }
-
-  inline __complex128
-  exp(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return cexpq(__z); }
-
-  inline __complex128
-  log(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return clogq(__z); }
-
-  inline __complex128
-  log10(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return clog10q(__z); }
-
-  inline __complex128
-  conj(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return conjq(__z); }
-
-  inline __complex128
-  pow(const __complex128& __z, const __complex128& __w) _GLIBCXX_USE_NOEXCEPT
-  { return cpowq(__z, __w); }
-
-  inline __complex128
-  proj(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return cprojq(__z); }
-
-  inline __complex128
-  sin(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return csinq(__z); }
-
-  inline __complex128
-  sinh(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return csinhq(__z); }
-
-  inline __complex128
-  sqrt(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return csqrtq(__z); }
-
-  inline __complex128
-  tan(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return ctanq(__z); }
-
-  inline __complex128
-  tanh(const __complex128& __z) _GLIBCXX_USE_NOEXCEPT
-  { return ctanhq(__z); }
-#if _GLIBCXX_USE_C99_COMPLEX
-
-#endif  
-*/
-/*
-  inline __complex128
-  fabs(const __complex128& __z)
-  { return std::abs(__z); }
-
-  /// Additional overloads.
-
-  inline __float128
-  arg(__float128 __x) _GLIBCXX_USE_NOEXCEPT
-  { return __x < 0.0Q ? M_PIq : 0.0Q; }
-
-  inline _GLIBCXX_USE_CONSTEXPR __float128
-  imag(__float128) _GLIBCXX_USE_NOEXCEPT
-  { return 0.0Q; }
-
-  inline _GLIBCXX_USE_CONSTEXPR __float128
-  real(__float128 __x) _GLIBCXX_USE_NOEXCEPT
-  { return __x; }
-
-  inline __float128
-  norm(__float128 __x) _GLIBCXX_USE_NOEXCEPT
-  { return __x * __x; }
-*/
-/* FIXME: Can't find __promote_fp_t for some reason.
-  template<typename _Up>
-    inline std::complex<__gnu_cxx::__promote_fp_t<__float128, _Up>>
-    pow(const __complex128& __x, const _Up& __y)
-    {
-      using __type = __gnu_cxx::__promote_fp_t<__float128, _Up>;
-      return std::pow(std::complex<__type>(__x), __type(__y));
-    }
-
-  template<typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp, __float128>>
-    pow(const _Tp& __x, const __complex128& __y)
-    {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, __float128>;
-      return std::pow(__type(__x), std::complex<__type>(__y));
-    }
-*/
-/*
-  // DR 1137.
-  inline _GLIBCXX_USE_CONSTEXPR __float128
-  proj(__float128 __x)
-  { return __x; }
-
-  inline _GLIBCXX_USE_CONSTEXPR __float128
-  conj(__float128 __x)
-  { return __x; }
-_GLIBCXX_END_NAMESPACE_VERSION
-*/
-/*
 #if __cplusplus > 201103L
 
 inline namespace literals {
 inline namespace complex_literals {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
+#define __cpp_lib_complex_udls 201309
+
   inline std::complex<__float128>
   operator""iq(const char* __str)
   { return complex<__float128>(0.0Q, strtoflt128(__str, 0)); }
+
+  constexpr std::complex<__float128>
+  operator""iq(unsigned long long __num)
+  { return std::complex<__float128>{0.0L, static_cast<__float128>(__num)}; }
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // inline namespace complex_literals
 } // inline namespace literals
 
 #endif // C++14
-} // namespace std
-*/
 
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
+#endif // C++11
+
+} // namespace std
 
 #endif // _GLIBCXX_BITS_COMPLEX128_H
