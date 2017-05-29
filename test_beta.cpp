@@ -1,6 +1,6 @@
 /*
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_beta test_beta.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-./test_beta > test_beta.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_beta > test_beta.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_beta test_beta.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 ./test_beta > test_beta.txt
@@ -69,15 +69,15 @@ template<typename _Tp>
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
-    int i_min = -500;
-    for (int i = i_min; i <= +500; ++i)
+    int i_min = -150;
+    for (int i = i_min; i <= +150; ++i)
       {
-	auto a = _Tp{0.2L} * i;
-	int j_min = -500;
+	auto a = _Tp{0.02L} * i;
+	int j_min = -150;
 	data << '\n';
-	for (int j = j_min; j <= +500; ++j)
+	for (int j = j_min; j <= +150; ++j)
 	  {
-	    auto b = _Tp{0.2L} * j;
+	    auto b = _Tp{0.02L} * j;
 	    auto gbet = std::__detail::__beta(a, b);
 	    data << ' ' << std::setw(width) << a
 		 << ' ' << std::setw(width) << b
@@ -103,5 +103,5 @@ main()
 
   // Beta seems to be either really tiny or really huge.
   // Maybe graph log_beta.
-  //plot_beta<double>("plot/beta_double.txt");
+  plot_beta<double>("plot/beta_double.txt");
 }

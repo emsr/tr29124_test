@@ -572,6 +572,18 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 
 125. [] In order to support float128 we'll need to make libstdc++ require libquadmath.
 
+126. [] Add Lah, Bell, etc.  See starred repo (python) saiedhk / PyComb for ideas.
+        He does sums which I think will crap out unless mp.  I'll use recur.
+
+127. [] Possible idea - return state from these numbers whick will be more useful.
+        Not just array.  Order.  Have methods to eval polynomials from *them*.
+
+128. [] Would it be a good idea for specfun states to have a separate param type
+        that would have the (true) wronskian?
+
+129. [] All the orthogonal polynomials should return states with both value and derivative!
+
+
 plot_airy.cpp
 
 test_hankel.cpp - warns and crashes

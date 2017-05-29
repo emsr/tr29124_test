@@ -50,10 +50,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __theta_2_sum(_Tp __nu, _Tp __x)
     {
-      using _Val = __num_traits_t<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
       auto __sum = std::exp(-__nu * __nu / __x);
       auto __sign = _Tp{-1};
       for (auto __k = 1; __k < 20; ++__k)
@@ -78,10 +78,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __theta_3_sum(_Tp __nu, _Tp __x)
     {
-      using _Val = __num_traits_t<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
       auto __sum = std::exp(-__nu * __nu / __x);
       for (auto __k = 1; __k < 20; ++__k)
 	{
@@ -104,10 +104,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __theta_2_asymp(_Tp __nu, _Tp __x)
     {
-      using _Val = __num_traits_t<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
       auto __sum = _Tp{0};
       for (auto __k = 0; __k < 20; ++__k)
 	{
@@ -129,10 +129,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __theta_3_asymp(_Tp __nu, _Tp __x)
     {
-      using _Val = __num_traits_t<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
       auto __sum = _Tp{0};
       for (auto __k = 1; __k < 20; ++__k)
 	{
@@ -145,6 +145,72 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    break;
 	}
       return _Tp{1} + _Tp{2} * __sum;
+    }
+
+  /**
+   *  Compute and return the @f$ \theta_2 @f$ at zero argument by product expansion.
+   */
+  template<typename _Tp>
+    _Tp
+    __theta_2_prod0(_Tp __q)
+    {
+      auto __prod = _Tp{1};
+      const auto __q2 = __q * __q;
+      auto __qp = _Tp{1};
+      for (int __n = 1; __n < 20; ++__n)
+	{
+	  __qp *= __q2;
+	  const auto __fact1 = _Tp{1} + __qp;
+	  const auto __fact2 = _Tp{1} - __qp;
+	  __prod *= __fact2 * __fact1 * __fact1;
+	  if (std::abs(__qp) == _Tp{1})
+	    break;
+	}
+      return _Tp{2} * std::pow(__q, _Tp{0.25}) * __prod;
+    }
+
+  /**
+   *  Compute and return the @f$ \theta_3 @f$ at zero argument by product expansion.
+   */
+  template<typename _Tp>
+    _Tp
+    __theta_3_prod0(_Tp __q)
+    {
+      auto __prod = _Tp{1};
+      auto __qp = _Tp{1};
+      for (int __n = 1; __n < 20; ++__n)
+	{
+	  __qp *= __q;
+	  const auto __fact1 = _Tp{1} - __qp;
+	  __qp *= __q;
+	  const auto __fact2 = _Tp{1} - __qp;
+	  __prod *= __fact2 * __fact1 * __fact1;
+	  if (std::abs(__qp) == _Tp{1})
+	    break;
+	}
+      return __prod;
+    }
+
+  /**
+   *  Compute and return the @f$ \theta_4 @f$ at zero argument by product expansion.
+   */
+  template<typename _Tp>
+    _Tp
+    __theta_4_prod0(_Tp __q)
+    {
+      auto __prod = _Tp{1};
+      auto __qp = _Tp{1};
+      for (int __n = 1; __n < 20; ++__n)
+	{
+	  __qp *= __q;
+	  const auto __fact1 = _Tp{1} + __qp;
+	  __qp *= __q;
+	  const auto __fact2 = _Tp{1} - __qp;
+	  __prod *= __fact2 * __fact1 * __fact1;
+	  if (std::abs(__qp) == _Tp{1})
+	    break;
+	}
+      return __prod;
     }
 
   /**
@@ -163,13 +229,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __theta_2(_Tp __nu, _Tp __x)
     {
-      using _Val = __num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
 
       if (__isnan(__nu) || __isnan(__x))
 	return _S_NaN;
-      else if (std::abs(__x) <= _Tp{1} / _S_pi)
+      else if (__gnu_cxx::__fp_is_zero(__x))
+	return __theta_2_prod0(__nu);
+      else if (std::abs(__x) <= _Real{1} / _S_pi)
 	return __theta_2_sum(__nu, __x);
       else
 	return __theta_2_asymp(__nu, __x);
@@ -191,12 +259,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __theta_1(_Tp __nu, _Tp __x)
     {
-      using _Val = __num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
 
       if (__isnan(__nu) || __isnan(__x))
 	return _S_NaN;
+      else if (__gnu_cxx::__fp_is_zero(__x))
+	return _Tp{0};
       else
 	return __theta_2(__nu - _Tp{0.5L}, __x);
     }
@@ -217,13 +287,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __theta_3(_Tp __nu, _Tp __x)
     {
-      using _Val = __num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
 
       if (__isnan(__nu) || __isnan(__x))
 	return _S_NaN;
-      else if (std::abs(__x) <= _Tp{1} / _S_pi)
+      else if (__gnu_cxx::__fp_is_zero(__x))
+	return __theta_3_prod0(__nu);
+      else if (std::abs(__x) <= _Real{1} / _S_pi)
 	return __theta_3_sum(__nu, __x);
       else
 	return __theta_3_asymp(__nu, __x);
@@ -245,12 +317,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __theta_4(_Tp __nu, _Tp __x)
     {
-      using _Val = __num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
 
       if (__isnan(__nu) || __isnan(__x))
 	return _S_NaN;
+      else if (__gnu_cxx::__fp_is_zero(__x))
+	return __theta_4_prod0(__nu);
       else
 	return __theta_3(__nu + _Tp{0.5L}, __x);
     }
@@ -329,9 +403,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __theta_s(_Tp __k, _Tp __x)
     {
-      using _Val = __num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
-      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__x);
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::abs(__x));
 
       if (__isnan(__k) || __isnan(__x))
 	return _S_NaN;
@@ -359,9 +433,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __theta_c(_Tp __k, _Tp __x)
     {
-      using _Val = __num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
-      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__x);
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::abs(__x));
 
       if (__isnan(__k) || __isnan(__x))
 	return _S_NaN;
@@ -388,9 +462,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __theta_d(_Tp __k, _Tp __x)
     {
-      using _Val = __num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
-      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__x);
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::abs(__x));
 
       if (__isnan(__k) || __isnan(__x))
 	return _S_NaN;
@@ -419,9 +493,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __theta_n(_Tp __k, _Tp __x)
     {
-      using _Val = __num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
-      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__x);
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::abs(__x));
 
       if (__isnan(__k) || __isnan(__x))
 	return _S_NaN;
@@ -446,9 +520,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gnu_cxx::__jacobi_t<_Tp>
     __jacobi_sncndn(_Tp __k, _Tp __u)
     {
-      using _Val = __num_traits_t<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__u);
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__u);
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__u));
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__u));
 
       if (__isnan(__k) || __isnan(__u))
 	return __gnu_cxx::__jacobi_t<_Tp>{_S_NaN, _S_NaN, _S_NaN};
