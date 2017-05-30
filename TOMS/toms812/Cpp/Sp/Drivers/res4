@@ -1,0 +1,7 @@
+Test case -- Composition operation:
+
+For the two Bernstein-form polynomials x and y,
+where deg(x) = 15, deg(y) = 9
+
+The RMS error in computing x << y: 0.0000000000155472
+Time taken: 27.770000 seconds
