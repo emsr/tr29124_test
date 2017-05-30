@@ -1,0 +1,4 @@
+Test case -- Normalization:
+
+The RMS value of the normalized polynomial on [0,1]: 0.9999999999999999
+Its error from the theoretical value is: -0.0000000000000001

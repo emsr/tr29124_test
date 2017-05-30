@@ -1,0 +1,8 @@
+Test case -- Subdivision:
+
+The subdivision point: 0.380000
+The left test point (in the original domain [0,1]): 0.120000
+The right test point (in the original domain [0,1]): 0.950000
+
+Error on the left piece: -0.0000000000000036
+Error on the right piece: -0.0000000000000355

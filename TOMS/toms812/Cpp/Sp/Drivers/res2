@@ -1,0 +1,12 @@
+Test case -- Arithmetic operations:
+
+For the two Bernstein-form polynomials x and y,
+where deg(x) = 15, deg(y) = 9
+
+The RMS error in computing x + y: 0.0000000000000025
+The RMS error in computing x - y: 0.0000000000000026
+The RMS error in computing x * y: 0.0000000000000055
+The RMS error in computing 3.0 * y: 0.0000000000000033
+The RMS error in computing x * 3.0: 0.0000000000000095
+The RMS error in computing x / y: 0.0000000000000049
+The RMS error in computing y^2: 0.0000000000000106
