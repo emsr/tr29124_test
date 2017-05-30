@@ -212,6 +212,8 @@ namespace __gnu_test
 	  return false;
       }
 
+      /// Return the total integral:
+      /// the sum of the results over all integration segments.
       _Tp
       total_integral() const
       {
@@ -221,6 +223,7 @@ namespace __gnu_test
 	return __result_sum;
       }
 
+      /// Return the sum of the absolute errors over all integration segments.
       _Tp
       total_error() const
       {
@@ -230,6 +233,7 @@ namespace __gnu_test
 	return __tot_error;
       }
 
+      /// Return the vector of integration intervals.
       const std::vector<interval>&
       intervals() const
       { return this->_M_ival; }
