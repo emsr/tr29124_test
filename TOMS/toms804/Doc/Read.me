@@ -1,0 +1,44 @@
+Last update 8/5/2000
+Author: Fayez A. Alhargan
+email: alhargan@kacst.edu.sa
+Tel: 966-1-4813770
+Fax: 966-1-4813764
+
+Programs for the papers:
+Algorithms for the Computation of all Mathieu Functions of Integer Orders
+and
+Subroutines for the computation of  Mathieu functions of integer orders
+which are published in ACM Trans. On Mathematical Software.
+
+The programs are writen in C++ and contained in the following files:
+  MATHUR.CPP     Mathieu functions
+  MMATHUR.CPP    Modified Mathieu functions
+  MCNR.CPP       Mathieu charactristic Numbers
+  BSSLR.CPP      Bessel functions
+  MBSSLR.CPP     Modified Bessel functions
+Plus the header files:
+  MATHUR.h     Mathieu functions
+  MMATHUR.h    Modified Mathieu functions
+  MCNR.h       Mathieu charactristic Numbers
+  BSSLR.h      Bessel functions
+  MBSSLR.h     Modified Bessel functions
+
+The driver for the programs is
+  main.cpp
+
+It has been tested using Borland C++ v3.1 using the project file
+   drive.prj
+
+The test data input/output of the program are as follows:
+
+  input parameters:(e,3,c,f,s)
+  output file name:E03FCS00.DAT (SEE BELOW)
+  contains:
+  Circumferential First  kind  Even   Mathieu function of order n=3
+
+  input parameters:(o,3,d,r,m)
+  output file name:O03DRM00.DAT (SEE BELOW)
+  contains:
+  Modified  Radial Second  kind  Odd   Mathieu function of order n=3
+
+NOTE:  main program changed to take data from stdin and output on stdout.
