@@ -18,11 +18,6 @@
 
 /* Author:  Paulo J. Saiz Jabardo */
 
-
-
-
-
-
 /** \file jacobi.h
   \brief Header file for jacobi library
   
@@ -41,210 +36,201 @@
   This software is supposed to be an add-on module for the GNU Scientific Library
 */
 
-
-
-
-
-
 #ifndef __JACOBI_H__
 #define __JACOBI_H__
 
-#ifdef __cplusplus
-extern "C"{
-#endif
-
-#include <gsl/gsl_sf_result.h>
-
-
-
-/** \brief Enumeration with differing types of quadrature defined in the library
-
-  The jac_quad_type is used to determine the type of quadrature that is being used.
-   
+/** 
+ * \brief Enumeration with differing types of quadrature defined in the library
+ * The jac_quad_type is used to determine the type of quadrature that is being used.
  */
 enum jac_quad_type
 {
-  JAC_GJ,   ///< Gauss-Jacobi quadrature
-  JAC_GLJ,  ///< Gauss-Lobatto-Jacobi quadrature
-  JAC_GRJM, ///< Gauss-Radau-Jacobi quadrature including the node -1
-  JAC_GRJP  ///< Gauss-Radau-Jacobi quadrature including the node +1
+  Gauss,          ///< Gauss quadrature
+  Gauss_Lobatto,  ///< Gauss-Lobatto quadrature
+  Gauss_Radau_m1, ///< Gauss-Radau quadrature including the node -1
+  Gauss_Radau_p1  ///< Gauss-Radau quadrature including the node +1
 };
 
 
-/** \brief Struct used to store information and memory on the quadrature
-    
-  This strucuture is used to store data about the quadrature. It can be later used to integrate, 
-  derive or interpolate functions. It should be created using the jac_quadrature_alloc function.
+/**
+ * \brief Struct used to store information and memory on the quadrature
+ *
+ * This strucuture is used to store data about the quadrature. It can be later used to integrate, 
+ * derive or interpolate functions. It should be created using the jac_quadrature_alloc function.
+ */
+template<typename _Tp>
+  struct jac_quadrature
+  {
+    /// Number of quadrature points
+    int Q;
 
-*/
-struct jac_quadrature
-{ 
-  int Q;   			///< Number of quadrature points
-  enum jac_quad_type type;      ///< Quadrature type
-  double alpha;                 ///< Alpha weight of the quadrature
-  double beta;                  ///< Beta weight of the quadrature
-  
-  double *x;                    ///< Array that stores the nodes coordinates
-  double *w;                    ///< Array that stores quadrature weights
-  double *D;                    ///< Array that stores the derivative matrix
-  double *Imat;                 ///< Array That stores the interpolation matrix
-  int np;                       ///< Number of interpolation points
-  double *xp;                   ///< Interpolation points
-  
-};
+    /// Quadrature type
+    enum jac_quad_type type;
 
+    /// Alpha weight of the quadrature
+    _Tp alpha;
 
+    /// Beta weight of the quadrature
+    _Tp beta;
 
-		 
-		 
+  private:
 
-/// Calculates the Jacobi polynomial of order 0
-int jac_jacobi_P0_e (double x, double a, double b, gsl_sf_result *result);
+    /// Array that stores the nodes coordinates
+    _Tp* x;
 
-/// Calculates the Jacobi polynomial of order 1
-int jac_jacobi_P1_e (double x, double a, double b, gsl_sf_result *result);
+    /// Array that stores quadrature weights
+    _Tp* w;
 
-/// Calculates the Jacobi polynomial of order n
-int jac_jacobi_e (double x, int n, double a, double b, gsl_sf_result *result);
+    /// Array that stores the derivative matrix
+    _Tp* D;
 
-/// Calculates the Jacobi polynomial of order 0
-double jac_jacobi_P0(double x, double a, double b);
+    /// Array That stores the interpolation matrix
+    _Tp* Imat;
 
-/// Calculates the Jacobi polynomial of order 1
-double jac_jacobi_P1(double x, double a, double b);
+    /// Number of interpolation points
+    int np;
 
-/// Calculates the Jacobi polynomial of order n
-double jac_jacobi (double x, int n, double a, double b);
-
-/// Calculates the derivative of the Jacobi polynomial of order 0
-int jac_djacobi_P0_e (double x, double a, double b, gsl_sf_result *result);
-
-/// Calculates the derivative of the Jacobi polynomial of order 1
-int jac_djacobi_P1_e (double x, double a, double b, gsl_sf_result *result);
-
-/// Calculates the derivative of the Jacobi polynomial of order n
-int jac_djacobi_e (double x, int n, double a, double b, gsl_sf_result *result);
-
-/// Calculates the derivative of the Jacobi polynomial of order 0
-double jac_djacobi_P0(double x, double a, double b);
-
-/// Calculates the derivative of the Jacobi polynomial of order 1
-double jac_djacobi_P1(double x, double a, double b);
-
-/// Calculates the derivative of the Jacobi polynomial of order n
-double jac_djacobi (double x, int n, double a, double b);
-
-/// Calculates Jacobi polynomials at an array of points
-int jac_jacobi_array (int np, const double *x, int n, double * result_array,
-		      double a, double b, double *ws);
-
-/// Calculates the derivative of Jacobi polynomials at an array of points
-int jac_djacobi_array(int np, const double *x, int n, double * result_array,
-		      double a, double b, double *ws);
-
-/// Calculates the zeros of Jacobi polynomials in the interval -1 up to 1
-int jac_jacobi_zeros(double *x, int m, double alfa, double beta);
-
-
-/// Calculates the integral of a function with values at quadrature points given by f with quadrature weights w
-double jac_integrate(jac_quadrature *quad, double *f);
-
-/// Calculates the derivative at quadrature points of a function f and derivative matrix D
-int jac_differentiate(jac_quadrature *quad, double *f, double *d);
-
-/// Interpolates the function given by f using the interpolation matrix
-int jac_interpolate(jac_quadrature *quad, double *f, double *fout);
-
-
-/// Calculates the Gauss-Jacobi quadrature points
-int jac_zeros_gj(double *z, const int Q, double alpha, double beta);
-
-/// Calculates the Gauss-Jacobi quadrature weights
-int jac_weights_gj(double *z, double *w, const int Q, const double alpha,
-		   const double beta, double *ws);
-
-/// Calculates the Gauss-Jacobi Derivative matrix
-int jac_diffmat_gj(double *z, double *D, const int Q, double alpha, double beta, double *ws);
-
-/// Calculates the Lagrange polynomials through Gauss-Jacobi Quadratures
-double jac_lagrange_gj(int i, double zz, int Q, double *z, double alpha, double beta);
-
-
-/// Calculates the Gauss-Lobatto-Jacobi quadrature points
-int jac_zeros_glj(double *z, const int Q, double alpha, double beta);
-/// Calculates the Gauss-Lobatto-Jacobi quadrature weights
-int jac_weights_glj(double *z, double *w, const int Q, double alpha, double beta, double *ws1);
-/// Calculates the Gauss-Lobatto-Jacobi Derivative matrix
-int jac_diffmat_glj(double *z, double *D, const int Q, double alpha, double beta, double *ws);
-/// Calculates the Lagrange polynomials through Gauss-Lobatto-Jacobi Quadratures
-double jac_lagrange_glj(int i, double zz, int Q, double *z, double alpha, double beta);
-
-
-/// Calculates the Gauss-Radau-Jacobi quadrature points (point -1 included)
-int jac_zeros_grjm(double *z, const int Q, double alpha, double beta);
-
-/// Calculates the Gauss-Radau-Jacobi quadrature weights (point -1 included)
-int jac_weights_grjm(double *z, double *w, const int Q, double alpha, double beta, double *ws);
-
-/// Calculates the Gauss-Radau-Jacobi Derivative matrix (point -1 included)
-int jac_diffmat_grjm(double *z, double *D, const int Q, double alpha, double beta, double *ws);
-
-/// Calculates the Lagrange polynomials through Gauss-Radau-Jacobi Quadratures (point -1 included)
-double jac_lagrange_grjm(int i, double zz, int Q, double *z, double alpha, double beta);
-
-
-/// Calculates the Gauss-Radau-Jacobi quadrature points (point +1 included)
-int jac_zeros_grjp(double *z, const int Q, double alpha, double beta);
-
-/// Calculates the Gauss-Radau-Jacobi quadrature weights (point +1 included)
-int jac_weights_grjp(double *z, double *w, const int Q, double alpha, double beta, double *ws);
-
-/// Calculates the Gauss-Radau-Jacobi Derivative matrix (point +1 included)
-int jac_diffmat_grjp(double *z, double *D, const int Q, double alpha, double beta, double *ws);
-
-/// Calculates the Lagrange polynomials through Gauss-Radau-Jacobi Quadratures (point +1 included)
-double jac_lagrange_grjp(int i, double zz, int Q, double *z, double alpha, double beta);
-
-
-/// Calculates the interpolation matrix for GJ quadrature
-int jac_interpmat_gj(double *imat, double *zp, int np, double *z, int Q, double alpha, double beta);
-
-/// Calculates the interpolation matrix for GLJ quadrature
-int jac_interpmat_glj(double *imat, double *zp, int np, double *z, int Q, double alpha, double beta);
-
-/// Calculates the interpolation matrix for GRJM quadrature
-int jac_interpmat_grjm(double *imat, double *zp, int np, double *z, int Q, double alpha, double beta);
-
-/// Calculates the interpolation matrix for GRJP quadrature
-int jac_interpmat_grjp(double *imat, double *zp, int np, double *z, int Q, double alpha, double beta);
-
+    /// Interpolation points
+    _Tp* xp;
+  };
 
 
 /// Allocates the jac_quadrature data structure to be used later
-jac_quadrature *jac_quadrature_alloc(int nq);
+template<typename _Tp>
+  jac_quadrature<_Tp>* jac_quadrature_alloc(int nq);
 
 /// Calculates the quadrature zeros, weights and derivative matrix
-int jac_quadrature_zwd(jac_quadrature *quad, enum jac_quad_type qtype, double a, double b, double *ws);
+template<typename _Tp>
+  int jac_quadrature_zwd(jac_quadrature<_Tp>* quad, enum jac_quad_type qtype, _Tp a, _Tp b, _Tp* ws);
 
 /// Reclaims memory allocated by jac_quadrature_alloc
-void jac_quadrature_free(jac_quadrature *quad);
-
+template<typename _Tp>
+  void jac_quadrature_free(jac_quadrature<_Tp>* quad);
 
 /// Allocates memory to an interpolation matrix
-int jac_interpmat_alloc(jac_quadrature *quad, int npoints, double *xp);
+template<typename _Tp>
+  int jac_interpmat_alloc(jac_quadrature<_Tp>* quad, int npoints, _Tp* xp);
 
 /// Reclaims memory allocated by the jac_interpmat_alloc
-void jac_interpmat_free(jac_quadrature *quad);
+template<typename _Tp>
+  void jac_interpmat_free(jac_quadrature<_Tp>* quad);
 
 
 
+/// Calculates the derivative of the Jacobi polynomial of order n
+template<typename _Tp>
+  _Tp jac_djacobi(_Tp x, int n, _Tp a, _Tp b);
+
+/// Calculates Jacobi polynomials at an array of points
+template<typename _Tp>
+  int jac_jacobi_array(int np, const _Tp* x, int n, _Tp* result_array,
+		      _Tp a, _Tp b, _Tp* ws);
+
+/// Calculates the derivative of Jacobi polynomials at an array of points
+template<typename _Tp>
+  int jac_djacobi_array(int np, const _Tp* x, int n, _Tp* result_array,
+		      _Tp a, _Tp b, _Tp* ws);
+
+/// Calculates the zeros of Jacobi polynomials in the interval -1 up to 1
+template<typename _Tp>
+  int jac_jacobi_zeros(_Tp* x, int m, _Tp alpha, _Tp beta);
 
 
+/// Calculates the integral of a function with values at quadrature points given by f with quadrature weights w
+template<typename _Tp>
+  _Tp jac_integrate(jac_quadrature<_Tp>* quad, _Tp* f);
+
+/// Calculates the derivative at quadrature points of a function f and derivative matrix D
+template<typename _Tp>
+  int jac_differentiate(jac_quadrature<_Tp>* quad, _Tp* f, _Tp* d);
+
+/// Interpolates the function given by f using the interpolation matrix
+template<typename _Tp>
+  int jac_interpolate(jac_quadrature<_Tp>* quad, _Tp* f, _Tp* fout);
 
 
+/// Calculates the Gauss-Jacobi quadrature points
+template<typename _Tp>
+  int jac_zeros_gj(_Tp* z, const int Q, _Tp alpha, _Tp beta);
 
-#ifdef __cplusplus
-}
-#endif
+/// Calculates the Gauss-Jacobi quadrature weights
+template<typename _Tp>
+  int jac_weights_gj(_Tp* z, _Tp* w, const int Q, const _Tp alpha,
+		   const _Tp beta, _Tp* ws);
+
+/// Calculates the Gauss-Jacobi Derivative matrix
+template<typename _Tp>
+  int jac_diffmat_gj(_Tp* z, _Tp* D, const int Q, _Tp alpha, _Tp beta, _Tp* ws);
+
+/// Calculates the Lagrange polynomials through Gauss-Jacobi Quadratures
+template<typename _Tp>
+  _Tp jac_lagrange_gj(int i, _Tp zz, int Q, _Tp* z, _Tp alpha, _Tp beta);
+
+/// Calculates the interpolation matrix for GJ quadrature
+template<typename _Tp>
+  int jac_interpmat_gj(_Tp* imat, _Tp* zp, int np, _Tp* z, int Q, _Tp alpha, _Tp beta);
+
+
+/// Calculates the Gauss-Lobatto-Jacobi quadrature points
+template<typename _Tp>
+  int jac_zeros_glj(_Tp* z, const int Q, _Tp alpha, _Tp beta);
+
+/// Calculates the Gauss-Lobatto-Jacobi quadrature weights
+template<typename _Tp>
+  int jac_weights_glj(_Tp* z, _Tp* w, const int Q, _Tp alpha, _Tp beta, _Tp* ws1);
+
+/// Calculates the Gauss-Lobatto-Jacobi Derivative matrix
+template<typename _Tp>
+  int jac_diffmat_glj(_Tp* z, _Tp* D, const int Q, _Tp alpha, _Tp beta, _Tp* ws);
+
+/// Calculates the Lagrange polynomials through Gauss-Lobatto-Jacobi Quadratures
+template<typename _Tp>
+  _Tp jac_lagrange_glj(int i, _Tp zz, int Q, _Tp* z, _Tp alpha, _Tp beta);
+
+/// Calculates the interpolation matrix for GLJ quadrature
+template<typename _Tp>
+  int jac_interpmat_glj(_Tp* imat, _Tp* zp, int np, _Tp* z, int Q, _Tp alpha, _Tp beta);
+
+
+/// Calculates the Gauss-Radau-Jacobi quadrature points (point -1 included)
+template<typename _Tp>
+  int jac_zeros_grjm(_Tp* z, const int Q, _Tp alpha, _Tp beta);
+
+/// Calculates the Gauss-Radau-Jacobi quadrature weights (point -1 included)
+template<typename _Tp>
+  int jac_weights_grjm(_Tp* z, _Tp* w, const int Q, _Tp alpha, _Tp beta, _Tp* ws);
+
+/// Calculates the Gauss-Radau-Jacobi Derivative matrix (point -1 included)
+template<typename _Tp>
+  int jac_diffmat_grjm(_Tp* z, _Tp* D, const int Q, _Tp alpha, _Tp beta, _Tp* ws);
+
+/// Calculates the Lagrange polynomials through Gauss-Radau-Jacobi Quadratures (point -1 included)
+template<typename _Tp>
+  _Tp jac_lagrange_grjm(int i, _Tp zz, int Q, _Tp* z, _Tp alpha, _Tp beta);
+
+/// Calculates the interpolation matrix for GRJM quadrature
+template<typename _Tp>
+  int jac_interpmat_grjm(_Tp* imat, _Tp* zp, int np, _Tp* z, int Q, _Tp alpha, _Tp beta);
+
+
+/// Calculates the Gauss-Radau-Jacobi quadrature points (point +1 included)
+template<typename _Tp>
+  int jac_zeros_grjp(_Tp* z, const int Q, _Tp alpha, _Tp beta);
+
+/// Calculates the Gauss-Radau-Jacobi quadrature weights (point +1 included)
+template<typename _Tp>
+  int jac_weights_grjp(_Tp* z, _Tp* w, const int Q, _Tp alpha, _Tp beta, _Tp* ws);
+
+/// Calculates the Gauss-Radau-Jacobi Derivative matrix (point +1 included)
+template<typename _Tp>
+  int jac_diffmat_grjp(_Tp* z, _Tp* D, const int Q, _Tp alpha, _Tp beta, _Tp* ws);
+
+/// Calculates the Lagrange polynomials through Gauss-Radau-Jacobi Quadratures (point +1 included)
+template<typename _Tp>
+  _Tp jac_lagrange_grjp(int i, _Tp zz, int Q, _Tp* z, _Tp alpha, _Tp beta);
+
+/// Calculates the interpolation matrix for GRJP quadrature
+template<typename _Tp>
+  int jac_interpmat_grjp(_Tp* imat, _Tp* zp, int np, _Tp* z, int Q, _Tp alpha, _Tp beta);
 
 #endif /* __JACOBI_H__ */
