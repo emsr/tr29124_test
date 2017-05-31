@@ -16,12 +16,16 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_weierstrass_ellint t
    */
   template<typename _Tp>
     std::complex<_Tp>
-    weierstrass_p(_Tp __omega1, _Tp __omega3, std::complex<_Tp> __z)
+    weierstrass_p(std::complex<_Tp> __omega1, std::complex<_Tp> __omega3,
+		  std::complex<_Tp> __z)
     {
       using _Real = std::__detail::__num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
       const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
       const auto __tau = __omega3 / __omega1;
+      // Confine z to the fundamental parallelogram defined by pi and tau*pi.
+      const auto __zi = std::fmod(std::imag(__z), _S_pi * std::imag(__tau));
+      const auto __zr = std::fmod(std::real(__z), _S_pi);
       const auto __q = std::__detail::__polar_pi(_Tp{1}, __tau);
       const auto __theta2 = std::__detail::__theta_2(__q, _Cmplx{0});
       const auto __theta2p2 = __theta2 * __theta2;
