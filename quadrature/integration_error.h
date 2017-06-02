@@ -26,6 +26,7 @@
 
 #include <cmath>
 #include <limits>
+#include <sstream>
 #include <string_view>
 
 namespace __gnu_test

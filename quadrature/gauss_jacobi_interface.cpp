@@ -1,4 +1,5 @@
-/* jacobi.c
+/**
+ * jacobi.c
  * Copyright (C) 2006 Paulo José Saiz Jabardo
  * 
  * This program is free software; you can redistribute it and/or modify
@@ -21,10 +22,9 @@
 /** @file  Wrappers to basic functions defined in gauss_quad.c
  */
 
-#include <stdlib.h>
-#include <gsl/gsl_errno.h>
-#include <gsl/gsl_cblas.h>
+#include <cstdlib>
 #include "jacobi.h"
+#include "integration_error.h"
 
 
 /**
@@ -33,33 +33,33 @@
  * @param nq Number of quadrature nodes
  * @param a Alpha weight
  * @param b Beta weight
- * @returm A pointer to newly created jac_quadrature structure. NULL if some problem occurred
+ * @return A pointer to newly created jac_quadrature structure. nullptr if some problem occurred
  */
-jac_quadrature *
-jac_quadrature_alloc(int nq)
-{
-  
-  if (nq < 1)
-    GSL_ERROR_NULL("The number of quadrature points should be at least 1", GSL_EINVAL);
+template<typename _Tp>
+  jac_quadrature<_Tp>*
+  jac_quadrature_alloc(int nq)
+  {
+    if (nq < 1)
+      std::__throw_domain_error("The number of quadrature points should be at least 1");
 
-  void *mem_block = malloc(sizeof(jac_quadrature) + (2*nq+nq*nq)*sizeof(double));
+    void* mem_block = malloc(sizeof(jac_quadrature<_Tp>) + (2 * nq + nq * nq) * sizeof(_Tp));
 
-  if (mem_block == NULL)
-    GSL_ERROR_NULL("Memory allocation was not possible", GSL_ENOMEM);
+    if (mem_block == nullptr)
+      std::__throw_runtime_error("Memory allocation was not possible");
 
-  jac_quadrature *quad = (jac_quadrature *) mem_block;
+    jac_quadrature<_Tp>* quad = static_cast<jac_quadrature<_Tp>*>(mem_block);
 
-  quad->Q = nq;
+    quad->Q = nq;
 
-  quad->x = (double *) (mem_block + sizeof(jac_quadrature));
-  quad->w = quad->x + nq;
-  quad->D = quad->x + 2*nq;
-  quad->np = 0;
-  quad->Imat = NULL;
-  quad->xp = NULL;
+    quad->x = static_cast<_Tp*>(mem_block + sizeof(jac_quadrature<_Tp>));
+    quad->w = quad->x + nq;
+    quad->D = quad->x + 2 * nq;
+    quad->np = 0;
+    quad->Imat = nullptr;
+    quad->xp = nullptr;
 
-  return quad;
-}
+    return quad;
+  }
 
 /**
  * Releases memory allocated by jac_quadrature_alloc. It also releases memory allocated by the
@@ -67,16 +67,15 @@ jac_quadrature_alloc(int nq)
  *
  * @param quad A jac_quadrature structure allocated with jac_quadrature_alloc
  */
-void 
-jac_quadrature_free(jac_quadrature *quad)
-{
-  jac_interpmat_free(quad);
-  free(quad);
-}
+template<typename _Tp>
+  void 
+  jac_quadrature_free(jac_quadrature<_Tp>* quad)
+  {
+    jac_interpmat_free(quad);
+    free(quad);
+  }
 
 
-  
-  
 /**
  * This function calculates the quadrature nodes weights and derivative matrix
  * and stores the data on a previously allocated jac_quadrature structure.
@@ -85,109 +84,84 @@ jac_quadrature_free(jac_quadrature *quad)
  * @param qtype Quadrature type
  * @param a Alpha weight
  * @param b Beta weight
- * @param ws Workspace 3*quad->Q long used in calculations. If it is null, memory is allocated and at the end released
- * @returm AN error code or GSL_SUCCESS
+ * @param ws Workspace 3*quad->Q long used in calculations. If it is nullptr, memory is allocated and at the end released
+ * @return An error code or 0
  * 
  */
-int 
-jac_quadrature_zwd(jac_quadrature *quad, enum jac_quad_type qtype, double a, double b, double *ws)
-{
-  int allocated = 0;
-  if (ws == NULL){
-    // Try to allocate the workspace:
-    ws = (double *) malloc(3*quad->Q);
-    if (ws == NULL)
+template<typename _Tp>
+  int 
+  jac_quadrature_zwd(jac_quadrature<_Tp>* quad, enum jac_quad_type qtype, _Tp a, _Tp b, _Tp* ws)
+  {
+    int allocated = 0;
+    if (ws == nullptr)
       {
-	GSL_ERROR("Could not allocate workspace memory", GSL_ENOMEM);
+	// Try to allocate the workspace:
+	ws = static_cast<_Tp*>(malloc(3 * quad->Q));
+	if (ws == nullptr)
+	  std::__throw_runtime_error("Could not allocate workspace memory");
+	allocated = 1;
       }
-    allocated = 1;
+    quad->alpha = a;
+    quad->beta = b;
+    quad->type = qtype;
+    int err = 0;
+
+    // Calculates the zeros of the quadrature
+    switch (quad->type)
+      {
+      case Gauss:
+	err = jac_zeros_gj(quad->x, quad->Q, quad->alpha, quad->beta);
+	if (err)
+	  __gnu_test::__throw__IntegrationError("Problem calculating the zeros", err, _Tp{}, _Tp{});
+	err = jac_weights_gj(quad->x, quad->w, quad->Q, quad->alpha, quad->beta, ws);
+	if (err)
+	  __gnu_test::__throw__IntegrationError("Problem calculating the weightd", err, _Tp{}, _Tp{});
+	err = jac_diffmat_gj(quad->x, quad->D, quad->Q, quad->alpha, quad->beta, ws);
+	if (err)
+	  __gnu_test::__throw__IntegrationError("Problem calculating the differentiation matrix", err, _Tp{}, _Tp{});
+	break;
+      case Gauss_Lobatto:
+	err = jac_zeros_glj(quad->x, quad->Q, quad->alpha, quad->beta);
+	if (err)
+	  __gnu_test::__throw__IntegrationError("Problem calculating the zeros", err, _Tp{}, _Tp{});
+	err = jac_weights_glj(quad->x, quad->w, quad->Q, quad->alpha, quad->beta, ws);
+	if (err)
+	  __gnu_test::__throw__IntegrationError("Problem calculating the weightd", err, _Tp{}, _Tp{});
+	err = jac_diffmat_glj(quad->x, quad->D, quad->Q, quad->alpha, quad->beta, ws);
+	if (err)
+	  __gnu_test::__throw__IntegrationError("Problem calculating the differentiation matrix", err, _Tp{}, _Tp{});
+	break;
+      case Gauss_Radau_m1:
+	err = jac_zeros_grjm(quad->x, quad->Q, quad->alpha, quad->beta);
+	if (err)
+	  __gnu_test::__throw__IntegrationError("Problem calculating the zeros", err, _Tp{}, _Tp{});
+	err = jac_weights_grjm(quad->x, quad->w, quad->Q, quad->alpha, quad->beta, ws);
+	if (err)
+	  __gnu_test::__throw__IntegrationError("Problem calculating the weightd", err, _Tp{}, _Tp{});
+	err = jac_diffmat_grjm(quad->x, quad->D, quad->Q, quad->alpha, quad->beta, ws);
+	if (err)
+	  __gnu_test::__throw__IntegrationError("Problem calculating the differentiation matrix", err, _Tp{}, _Tp{});
+	break;
+      case Gauss_Radau_p1:
+	err = jac_zeros_grjp(quad->x, quad->Q, quad->alpha, quad->beta);
+	if (err)
+	  __gnu_test::__throw__IntegrationError("Problem calculating the zeros", err, _Tp{}, _Tp{});
+	err = jac_weights_grjp(quad->x, quad->w, quad->Q, quad->alpha, quad->beta, ws);
+	if (err)
+	  __gnu_test::__throw__IntegrationError("Problem calculating the weightd", err, _Tp{}, _Tp{});
+	err = jac_diffmat_grjp(quad->x, quad->D, quad->Q, quad->alpha, quad->beta, ws);
+	if (err)
+	  __gnu_test::__throw__IntegrationError("Problem calculating the differentiation matrix", err, _Tp{}, _Tp{});
+	break;
+      default:
+	__gnu_test::__throw__IntegrationError("Illegal quadrature type", err, _Tp{}, _Tp{});
+      }
+
+    if (allocated)
+      free(ws);
+
+    return 0;
   }
-  quad->alpha = a;
-  quad->beta = b;
-  quad->type = qtype;
-  int err=0;
-  // Calculates the zeros of the quadrature
-  switch (quad->type)
-    {
-    case JAC_GJ:
-      err = jac_zeros_gj(quad->x, quad->Q, quad->alpha, quad->beta);
-      if (err)
-	{
-	  GSL_ERROR("Problem calculating the zeros", err);
-	}
-      err = jac_weights_gj(quad->x, quad->w, quad->Q, quad->alpha, quad->beta, ws);
-      if (err)
-	{
-	  GSL_ERROR("Problem calculating the weightd", err);
-	}
-      err = jac_diffmat_gj(quad->x, quad->D, quad->Q, quad->alpha, quad->beta, ws);
-      if (err)
-	{
-	  GSL_ERROR("Problem calculating the differentiation matrix", err);
-	}
-      break;
-    case JAC_GLJ:
-      err = jac_zeros_glj(quad->x, quad->Q, quad->alpha, quad->beta);
-      if (err)
-	{
-	  GSL_ERROR("Problem calculating the zeros", err);
-	}
-      err = jac_weights_glj(quad->x, quad->w, quad->Q, quad->alpha, quad->beta, ws);
-      if (err)
-	{
-	  GSL_ERROR("Problem calculating the weightd", err);
-	}
-      err = jac_diffmat_glj(quad->x, quad->D, quad->Q, quad->alpha, quad->beta, ws);
-      if (err)
-	{
-	  GSL_ERROR("Problem calculating the differentiation matrix", err);
-	}
-      break;
-    case JAC_GRJM:
-      err = jac_zeros_grjm(quad->x, quad->Q, quad->alpha, quad->beta);
-      if (err)
-	{
-	  GSL_ERROR("Problem calculating the zeros", err);
-	}
-      err = jac_weights_grjm(quad->x, quad->w, quad->Q, quad->alpha, quad->beta, ws);
-      if (err)
-	{
-	  GSL_ERROR("Problem calculating the weightd", err);
-	}
-      err = jac_diffmat_grjm(quad->x, quad->D, quad->Q, quad->alpha, quad->beta, ws);
-      if (err)
-	{
-	  GSL_ERROR("Problem calculating the differentiation matrix", err);
-	}
-      break;
-    case JAC_GRJP:
-      err = jac_zeros_grjp(quad->x, quad->Q, quad->alpha, quad->beta);
-      if (err)
-	{
-	  GSL_ERROR("Problem calculating the zeros", err);
-	}
-      err = jac_weights_grjp(quad->x, quad->w, quad->Q, quad->alpha, quad->beta, ws);
-      if (err)
-	{
-	  GSL_ERROR("Problem calculating the weightd", err);
-	}
-      err = jac_diffmat_grjp(quad->x, quad->D, quad->Q, quad->alpha, quad->beta, ws);
-      if (err)
-	{
-	  GSL_ERROR("Problem calculating the differentiation matrix", err);
-	}
-      break;
-    default:
-      GSL_ERROR("Illegal quadrature type", err);
-    }
-
-
-  if (allocated)
-    free(ws);
-
-  return GSL_SUCCESS;
-}
-
 
 
 /**
@@ -197,48 +171,48 @@ jac_quadrature_zwd(jac_quadrature *quad, enum jac_quad_type qtype, double a, dou
  * @param quad A previously allocated jac_quadrature structure
  * @param npoints Number of interpolation points
  * @param xp Interpolation points
- * @returm Error code or GSL_SUCCESS
+ * @return Error code or 0
  */
-int 
-jac_interpmat_alloc(jac_quadrature *quad, int npoints, double *xp)
-{
-  if (npoints < 1)
-    GSL_ERROR("The number of interpolating points should be at least 1", GSL_EINVAL);
-
-  // Allocate memory for the interpolation matrix and points
-  quad->xp = (double *) malloc( sizeof(double) * (npoints + npoints*quad->Q));
-  if (!quad->xp)
-    GSL_ERROR("Memory for interpolation matrix could not be allocated", GSL_ENOMEM);
-
-  quad->Imat = quad->xp + npoints;
-  int i;
-  for (i = 0; i < npoints; ++i)
-    quad->xp[i] = xp[i];
-
-  int err=0;
-  
-  quad->np = npoints;
-
-  switch (quad->type)
+template<typename _Tp>
+  int 
+  jac_interpmat_alloc(jac_quadrature<_Tp>* quad, int npoints, _Tp* xp)
   {
-  case JAC_GJ:
-    err = jac_interpmat_gj(quad->Imat, quad->xp, npoints, quad->x, quad->Q, quad->alpha, quad->beta);
-    break;
-  case JAC_GLJ:
-    err = jac_interpmat_glj(quad->Imat, quad->xp, npoints, quad->x, quad->Q, quad->alpha, quad->beta);
-    break;
-  case JAC_GRJM:
-    err = jac_interpmat_grjm(quad->Imat, quad->xp, npoints, quad->x, quad->Q, quad->alpha, quad->beta);
-    break;
-  case JAC_GRJP:
-    err = jac_interpmat_grjp(quad->Imat, quad->xp, npoints, quad->x, quad->Q, quad->alpha, quad->beta);
-    break;
-  default:
-    GSL_ERROR("Illegal quadrature type", err);
-  }
+    if (npoints < 1)
+      std::__throw_domain_error("The number of interpolating points should be at least 1");
 
-  return err;
-}
+    // Allocate memory for the interpolation matrix and points
+    quad->xp = static_cast<_Tp*>(malloc(sizeof(_Tp) * (npoints + npoints*quad->Q)));
+    if (!quad->xp)
+      std::__throw_runtime_error("Memory for interpolation matrix could not be allocated");
+
+    quad->Imat = quad->xp + npoints;
+    for (int i = 0; i < npoints; ++i)
+      quad->xp[i] = xp[i];
+
+    int err = 0;
+
+    quad->np = npoints;
+
+    switch (quad->type)
+    {
+    case Gauss:
+      err = jac_interpmat_gj(quad->Imat, quad->xp, npoints, quad->x, quad->Q, quad->alpha, quad->beta);
+      break;
+    case Gauss_Lobatto:
+      err = jac_interpmat_glj(quad->Imat, quad->xp, npoints, quad->x, quad->Q, quad->alpha, quad->beta);
+      break;
+    case Gauss_Radau_m1:
+      err = jac_interpmat_grjm(quad->Imat, quad->xp, npoints, quad->x, quad->Q, quad->alpha, quad->beta);
+      break;
+    case Gauss_Radau_p1:
+      err = jac_interpmat_grjp(quad->Imat, quad->xp, npoints, quad->x, quad->Q, quad->alpha, quad->beta);
+      break;
+    default:
+      __gnu_test::__throw__IntegrationError("Illegal quadrature type", err, _Tp{}, _Tp{});
+    }
+
+    return err;
+  }
 
 
 /**
@@ -246,19 +220,16 @@ jac_interpmat_alloc(jac_quadrature *quad, int npoints, double *xp)
  *
  * @param quad An allocated jac_quadrature structure.
  */
-void
-jac_interpmat_free(jac_quadrature *quad)
-{
-  if (quad->xp)
-    free(quad->xp);
-  quad->np = 0;
-  quad->xp = NULL;
-  quad->Imat = NULL;
-}
-
-
-
-
+template<typename _Tp>
+  void
+  jac_interpmat_free(jac_quadrature<_Tp>* quad)
+  {
+    if (quad->xp)
+      free(quad->xp);
+    quad->np = 0;
+    quad->xp = nullptr;
+    quad->Imat = nullptr;
+  }
 
 
 /** Aproximates the integral of a function using a a quadrature.
@@ -271,14 +242,15 @@ jac_interpmat_free(jac_quadrature *quad)
  *
  * @param quad A structure containing quadrature information
  * @param f Value of function at quadrature points
- * @returm @f$\int_{-1}^{1} f(x) dx \approx \sum_{i=0}^{Q-1} w_i f(x_i)@f$
+ * @return @f$\int_{-1}^{1} f(x) dx \approx \sum_{i=0}^{Q-1} w_i f(x_i)@f$
  */
-double 
-jac_integrate(jac_quadrature *quad, double *f)
-{
-  double sum = cblas_ddot(quad->Q, quad->w, 1, f, 1);
-  return sum;
-}
+template<typename _Tp>
+  _Tp 
+  jac_integrate(jac_quadrature<_Tp>* quad, _Tp* f)
+  {
+    auto sum = cblas_ddot(quad->Q, quad->w, 1, f, 1);
+    return sum;
+  }
     
 
 /**
@@ -301,14 +273,15 @@ jac_integrate(jac_quadrature *quad, double *f)
  * @param quad A structure containing quadrature information
  * @param f Value of function at quadrature points
  * @param d The Estimated derivative at quadrature points: 
- * @returm GSL_SUCCESS if everything was ok. Otherwise return an error code
+ * @return 0 if everything was ok. Otherwise return an error code
  */
-int
-jac_differentiate(jac_quadrature *quad, double *f, double *d)
-{
-  cblas_dgemv(CblasRowMajor, CblasNoTrans, quad->Q, quad->Q, 1.0, quad->D, quad->Q, f,1, 0.0, d, 1);
-  return GSL_SUCCESS;
-}
+template<typename _Tp>
+  int
+  jac_differentiate(jac_quadrature<_Tp>* quad, _Tp* f, _Tp* d)
+  {
+    cblas_dgemv(CblasRowMajor, CblasNoTrans, quad->Q, quad->Q, _Tp{1}, quad->D, quad->Q, f, 1, _Tp{0}, d, 1);
+    return 0;
+  }
 
 
 /**
@@ -327,19 +300,16 @@ jac_differentiate(jac_quadrature *quad, double *f, double *d)
  * @param quad Quadrature information (including interpolation matrix)
  * @param f Value of function at quadrature points
  * @param fout Interpolated values
- * @returm GSL_SUCCESS if everything was ok. Otherwise return an error code
+ * @return 0 if everything was ok. Otherwise return an error code
  * 
  */
-int
-jac_interpolate(jac_quadrature *quad, double *f, double *fout)
-{
-  if (!quad->np)
-    {
-      // No interpolation data
-      GSL_ERROR("No interpolation info was setup", GSL_EINVAL);
-    }
-  
-  cblas_dgemv(CblasRowMajor, CblasNoTrans, quad->np, quad->Q, 1.0, quad->Imat, quad->Q, f, 1, 0.0, fout, 1);
-  return GSL_SUCCESS;
-}
-    
+template<typename _Tp>
+  int
+  jac_interpolate(jac_quadrature<_Tp>* quad, _Tp* f, _Tp* fout)
+  {
+    if (!quad->np)
+      std::__throw_runtime_error("No interpolation info was setup");
+
+    cblas_dgemv(CblasRowMajor, CblasNoTrans, quad->np, quad->Q, _Tp{1}, quad->Imat, quad->Q, f, 1, _Tp{0}, fout, 1);
+    return 0;
+  }
