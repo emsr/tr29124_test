@@ -513,6 +513,141 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
+   * Return the Jacobi @f$ \theta_1 @f$ function by summation of the series.
+   *
+   * The Jacobi or elliptic theta-1 function is defined by
+   * @f[
+   *  \theta_1(q,x) = 2\sum_{n=1}^{\infty}(-1)^n
+   *                   q^{(n+\frac{1}{2})^2}\sin{(2n+1)x}
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __jacobi_theta_1_sum(_Tp __q, _Tp __x)
+    {
+      using _Real = __num_traits_t<_Tp>;
+      constexpr std::size_t _S_max_iter = 50;
+      _Tp __sum{};
+      _Real __sign{1};
+      for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
+	{
+	  __sign *= -1;
+	  const auto __term = __sign
+			    * std::pow(__q, _Real((__n + 0.5L) * (__n + 0.5L)))
+			    * std::sin(_Real(2 * __n + 1) * __x);
+	  __sum += __term;
+	  if (std::abs(__term) < _S_eps * std::abs(__sum))
+	    break;
+	}
+      return 2 * __sum;
+    }
+
+  /**
+   * Return the Jacobi @f$ \theta_2 @f$ function by summation of the series.
+   *
+   * The Jacobi or elliptic theta-2 function is defined by
+   * @f[
+   *  \theta_2(q,x) = 2\sum_{n=1}^{\infty}
+   *                   q^{(n+\frac{1}{2})^2}\cos{(2n+1)x}
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __jacobi_theta_2_sum(_Tp __q, _Tp __x)
+    {
+      using _Real = __num_traits_t<_Tp>;
+      constexpr std::size_t _S_max_iter = 50;
+      _Tp __sum{};
+      for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
+	{
+	  const auto __term = std::pow(__q, _Real((__n + 0.5L) * (__n + 0.5L)))
+			    * std::cos(_Real(2 * __n + 1) * __x);
+	  __sum += __term;
+	  if (std::abs(__term) < _S_eps * std::abs(__sum))
+	    break;
+	}
+      return 2 * __sum;
+    }
+
+  /**
+   * Return the Jacobi @f$ \theta_3 @f$ function by summation of the series.
+   *
+   * The Jacobi or elliptic theta-3 function is defined by
+   * @f[
+   *  \theta_3(q,x) = 2\sum_{n=1}^{\infty} q^{n^2}\cos{2nx}
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __jacobi_theta_3_sum(_Tp __q, _Tp __x)
+    {
+      using _Real = __num_traits_t<_Tp>;
+      constexpr std::size_t _S_max_iter = 50;
+      _Tp __sum{};
+      for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
+	{
+	  const auto __term = std::pow(__q, _Real(__n * __n))
+			    * std::cos(_Real(2 * __n) * __x);
+	  __sum += __term;
+	  if (std::abs(__term) < _S_eps * std::abs(__sum))
+	    break;
+	}
+      return 2 * __sum;
+    }
+
+  /**
+   * Return the Jacobi @f$ \theta_4 @f$ function by summation of the series.
+   *
+   * The Jacobi or elliptic theta-4 function is defined by
+   * @f[
+   *  \theta_4(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __jacobi_theta_4_sum(_Tp __q, _Tp __x)
+    {
+      using _Real = __num_traits_t<_Tp>;
+      constexpr std::size_t _S_max_iter = 50;
+      _Tp __sum{};
+      _Real __sign{1};
+      for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
+	{
+	  __sign *= -1;
+	  const auto __term = __sign * std::pow(__q, _Real(__n * __n))
+			    * std::cos(_Real(2 * __n) * __x);
+	  __sum += __term;
+	  if (std::abs(__term) < _S_eps * std::abs(__sum))
+	    break;
+	}
+      return 2 * __sum;
+    }
+
+  /**
+   * Return the Jacobi @f$ \theta_4 @f$ function by summation of the series.
+   *
+   * The Jacobi or elliptic theta-4 function is defined by
+   * @f[
+   *  \theta_4(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __jacobi_theta_4(_Tp __q, _Tp __x)
+    {
+      using _Real = __num_traits_t<_Tp>;
+
+      if (__isnan(__q) || __isnan(__x))
+	return _Tp{_S_NaN};
+      else if (std::abs(__q) >= _Tp{1})
+	std::__throw_domain_error(__N("__jacobi_theta_4:"
+				      " nome q out of range"));
+      else
+	return __jacobi_theta_4_sum(__q, __x);
+    }
+
+
+  /**
    * Return a tuple of the three primary Jacobi elliptic functions:
    * @f$ sn(k, u), cn(k, u), dn(k, u) @f$.
    */
