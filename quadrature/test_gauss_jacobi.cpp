@@ -1,10 +1,16 @@
 // This is a demo program for the jacobi library
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+/*
+$HOME/bin/bin/g++ -o test_gauss_jacobi test_gauss_jacobi.cpp gauss_jacobi_interface.cpp
 
-#include "../src/jacobi.h"
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -o test_gauss_jacobi test_gauss_jacobi.cpp gauss_jacobi_interface.cpp
+*/
+
+#include <cstdio>
+#include <cstdlib>
+#include <cmath>
+
+#include "jacobi.h"
 
 double 
 fun(double x)
@@ -32,25 +38,22 @@ main(int argc, char **argv)
       return 1;
     }
 
-  double *f = (double *) malloc(4*Q * sizeof(double));
+  double *f = (double *)malloc(4 * Q * sizeof(double));
   double *ws = f + Q;
 
-  jac_quadrature *quad = jac_quadrature_alloc(Q);
-  jac_quadrature_zwd(quad, JAC_GJ, 0.0, 0.0, ws);
-  
-  
-  int i;
+  jac_quadrature<double> *quad = jac_quadrature_alloc<double>(Q);
+  jac_quadrature_zwd(quad, Gauss, 0.0, 0.0, ws);
 
-  for (i = 0; i < Q; ++i)
+  for (int i = 0; i < Q; ++i)
     f[i] = fun(quad->x[i]);
-  
+
   double integr = jac_integrate(quad, f);
-  double exact = 2.0/3.0*sin(3.0);
-  
+  double exact = 2.0 / 3.0 * std::sin(3.0);
+
   printf("Integral of cos(3x) from -1 to 1: %lf\n", integr);
   printf("Error: %e\n", integr - exact);
   jac_quadrature_free(quad);
   free(f);
-  
+
   return 0;
 }
