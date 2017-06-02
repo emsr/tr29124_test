@@ -526,6 +526,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __jacobi_theta_1_sum(_Tp __q, _Tp __x)
     {
       using _Real = __num_traits_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       constexpr std::size_t _S_max_iter = 50;
       _Tp __sum{};
       _Real __sign{1};
@@ -556,6 +557,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __jacobi_theta_2_sum(_Tp __q, _Tp __x)
     {
       using _Real = __num_traits_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       constexpr std::size_t _S_max_iter = 50;
       _Tp __sum{};
       for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
@@ -582,6 +584,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __jacobi_theta_3_sum(_Tp __q, _Tp __x)
     {
       using _Real = __num_traits_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       constexpr std::size_t _S_max_iter = 50;
       _Tp __sum{};
       for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
@@ -608,6 +611,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __jacobi_theta_4_sum(_Tp __q, _Tp __x)
     {
       using _Real = __num_traits_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       constexpr std::size_t _S_max_iter = 50;
       _Tp __sum{};
       _Real __sign{1};
@@ -636,6 +640,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __jacobi_theta_4(_Tp __q, _Tp __x)
     {
       using _Real = __num_traits_t<_Tp>;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
 
       if (__isnan(__q) || __isnan(__x))
 	return _Tp{_S_NaN};
@@ -645,7 +650,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
 	return __jacobi_theta_4_sum(__q, __x);
     }
-
 
   /**
    * Return a tuple of the three primary Jacobi elliptic functions:
