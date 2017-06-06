@@ -7,7 +7,7 @@ PATH=wrappers/debug:$PATH ./test_struve > test_struve.txt
 */
 
 #include <cassert>
-#include <cmath>
+#include <ext/cmath>
 #include <limits>
 #include <iostream>
 #include <fstream>
@@ -112,7 +112,10 @@ namespace __detail
       __struve += __term;
       for (int __k = 1; __k < _S_max_iter; ++__k)
 	{
+	  const auto __term_prev = __term;
       	  __term *= _Val(__k - 0.5L) / (_Val(-__k - 0.5L) + __nu) / __xx4;
+	  if (std::abs(__term) > std::abs(__term_prev))
+	    break;
 	  __struve += __term;
 	  if (std::abs(__term) < _S_eps * std::abs(__struve))
 	    break;
