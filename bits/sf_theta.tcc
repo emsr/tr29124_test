@@ -44,7 +44,8 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   *  Compute and return the @f$ \theta_1 @f$ function by series expansion.
+   * Compute and return the exponential @f$ \theta_2 @f$ function
+   * by series expansion.
    */
   template<typename _Tp>
     _Tp
@@ -72,7 +73,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Compute and return the @f$ \theta_3 @f$ function by series expansion.
+   * Compute and return the exponential @f$ \theta_3 @f$ function
+   * by series expansion.
    */
   template<typename _Tp>
     _Tp
@@ -98,7 +100,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Compute and return the @f$ \theta_2 @f$ function by series expansion.
+   * Compute and return the exponential @f$ \theta_2 @f$ function
+   * by asymptotic series expansion.
    */
   template<typename _Tp>
     _Tp
@@ -123,7 +126,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Compute and return the @f$ \theta_3 @f$ function by asymptotic series expansion.
+   * Compute and return the exponential @f$ \theta_3 @f$ function
+   * by asymptotic series expansion.
    */
   template<typename _Tp>
     _Tp
@@ -148,11 +152,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Compute and return the @f$ \theta_2 @f$ at zero argument by product expansion.
+   * Compute and return the Jacobi @f$ \theta_2 @f$ at zero argument
+   * by product expansion.
    */
   template<typename _Tp>
     _Tp
-    __theta_2_prod0(_Tp __q)
+    __jacobi_theta_2_prod0(_Tp __q)
     {
       auto __prod = _Tp{1};
       const auto __q2 = __q * __q;
@@ -170,11 +175,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Compute and return the @f$ \theta_3 @f$ at zero argument by product expansion.
+   * Compute and return the Jacobi @f$ \theta_3 @f$ at zero argument
+   * by product expansion.
    */
   template<typename _Tp>
     _Tp
-    __theta_3_prod0(_Tp __q)
+    __jacobi_theta_3_prod0(_Tp __q)
     {
       auto __prod = _Tp{1};
       auto __qp = _Tp{1};
@@ -192,11 +198,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *  Compute and return the @f$ \theta_4 @f$ at zero argument by product expansion.
+   * Compute and return the Jacobi @f$ \theta_4 @f$ at zero argument
+   * by product expansion.
    */
   template<typename _Tp>
     _Tp
-    __theta_4_prod0(_Tp __q)
+    __jacobi_theta_4_prod0(_Tp __q)
     {
       auto __prod = _Tp{1};
       auto __qp = _Tp{1};
@@ -235,8 +242,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__isnan(__nu) || __isnan(__x))
 	return _S_NaN;
-      else if (__gnu_cxx::__fp_is_zero(__x))
-	return __theta_2_prod0(__nu);
       else if (std::abs(__x) <= _Real{1} / _S_pi)
 	return __theta_2_sum(__nu, __x);
       else
@@ -246,7 +251,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the exponential theta-1 function of period @c nu and argument @c x.
    *
-   * The Neville theta-1 function is defined by
+   * The exponential theta-1 function is defined by
    * @f[
    *    \theta_1(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
    *    (-1)^j \exp\left( \frac{-(\nu + j - 1/2)^2}{x} \right)
@@ -293,8 +298,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__isnan(__nu) || __isnan(__x))
 	return _S_NaN;
-      else if (__gnu_cxx::__fp_is_zero(__x))
-	return __theta_3_prod0(__nu);
       else if (std::abs(__x) <= _Real{1} / _S_pi)
 	return __theta_3_sum(__nu, __x);
       else
@@ -302,17 +305,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the exponential theta-2 function of period @c nu and argument @c x.
+   * Return the exponential theta-4 function of period @c nu and argument @c x.
    *
-   * The exponential theta-2 function is defined by
+   * The exponential theta-4 function is defined by
    * @f[
-   *    \theta_2(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
+   *    \theta_4(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
    *    (-1)^j \exp\left( \frac{-(\nu + j)^2}{x} \right)
    * @f]
    *
    * @param __nu The periodic (period = 2) argument
    * @param __x The argument
-   */
+   */44444
   template<typename _Tp>
     _Tp
     __theta_4(_Tp __nu, _Tp __x)
@@ -323,8 +326,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__isnan(__nu) || __isnan(__x))
 	return _S_NaN;
-      else if (__gnu_cxx::__fp_is_zero(__x))
-	return __theta_4_prod0(__nu);
       else
 	return __theta_3(__nu + _Tp{0.5L}, __x);
     }
@@ -641,6 +642,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_pi = __gnu_cxx::__quiet_pi(std::abs(__x));
+      const auto _S_i = std::complex<_Real>{0, 1};
 
       if (__isnan(__q) || __isnan(__x))
 	return _Tp{_S_NaN};
@@ -648,7 +651,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_domain_error(__N("__jacobi_theta_4:"
 				      " nome q out of range"));
       else
-	return __jacobi_theta_4_sum(__q, __x);
+	{
+	  auto __tau = std::log(__q) / _S_pi / _S_i;
+	  // theta_4(tau+1, z) = theta4(tau, z)
+	  const auto __itau = std::floor(std::real(__tau));
+	  __tau -= __itau;
+	  //const auto __phase = _S_pi * __itau / _Real{4};
+	  // theta_4(xxxx, z) = theta4(xxxx, z)
+	  if (std::imag(__q) < 0.5)
+	    __tau = -1 / __tau;
+	  return __jacobi_theta_4_sum(__q, __x);
+	}
     }
 
   /**

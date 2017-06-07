@@ -10,6 +10,7 @@ PATH=wrappers/debug:$PATH ./test_jacobi_ellint > test_jacobi_ellint.txt
 #include <vector>
 #include <iostream>
 #include <iomanip>
+#include <limits>
 
 #include "wrap_boost.h"
 #include "wrap_gsl.h"
