@@ -1,6 +1,7 @@
 #ifndef TESTCASE_TCC
 #define TESTCASE_TCC 1
 
+#include <cmath>
 #include <complex>
 #include <sstream>
 #include <type_traits> // For *_v type traits.
