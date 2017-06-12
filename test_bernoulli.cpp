@@ -147,6 +147,28 @@ PATH=wrappers/debug:$PATH ./test_bernoulli > test_bernoulli.txt
     }
 
   /**
+   * Return the generalized Bernoulli polynomial @f$ B^{(a)}_n(x) @f$
+   * of order n, degree a, at argument x.
+   *
+   * A recursion is:
+   * @f[
+   *   aB^{(a+1)}_n(x) = (a-n)B^{(a)}_n(x) + k(x-a)B^{(a)}_{n-1}(x)
+   * @f]
+   * Starting with @f$ B^{(a)}_0(x) = 1 @f$, @f$  @f$.
+   */
+  template<typename _Tp>
+    _Tp
+    __bernoulli(unsigned int __n, _Tp __a, _Tp __x)
+    {
+      if (__isnan(__x))
+	return std::numeric_limits<_Tp>::quiet_NaN();
+      else
+	{
+	  /* Not so easy after all :-( */;
+	}
+    }
+
+  /**
    * Return the Euler number from lookup or by series expansion.
    *
    * The Euler numbers are given by the recursive sum:
