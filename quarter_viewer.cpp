@@ -1,5 +1,9 @@
 // g++ -I/usr/local/include -I/usr/include/qt5 -o quarter_viewer quarter_viewer.cpp -lQt5Widgets -lQt5Core -L/usr/local/lib -lCoin -lQuarter
 
+// g++ -DCOIN_DLL -DQUARTER_DLL -I/D:/msys64/usr/local/include -I/usr/include/qt5 -o quarter_viewer quarter_viewer.cpp -lQt5Widgets -lQt5Core -L/D:/msys64/usr/local/lib -lQuarter -lCoin  -lopengl32 -lgdi32 -lwinmm -luser32 -lopengl32 -lgdi32 -lwinmm -luser32
+
+// g++ -DCOIN_DLL -DQUARTER_DLL -I/D:/msys64/home/ESmith-Rowland/Coin3D/insanity/coin_install/include -I/usr/include/qt5 -o quarter_viewer quarter_viewer.cpp -lQt5Widgets -lQt5Core -L/D:/msys64/home/ESmith-Rowland/Coin3D/insanity/coin_install/lib -lQuarter -lCoin  -lopengl32 -lgdi32 -lwinmm -luser32 -lopengl32 -lgdi32 -lwinmm -luser32
+
 // LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH ./quarter_viewer
 
 //#include <QtGui/QApplication>
