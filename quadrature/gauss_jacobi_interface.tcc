@@ -1,5 +1,5 @@
 /**
- * jacobi.c
+ * gauss_jacobi_interface.tcc
  * Copyright (C) 2006 Paulo José Saiz Jabardo
  * 
  * This program is free software; you can redistribute it and/or modify
@@ -23,56 +23,67 @@
  */
 
 #include <cstdlib>
+#include <numeric>
 #include "jacobi.h"
 #include "integration_error.h"
 
-
-/**
- * Allocates memory for a jac_quadrature structure.
- * @param qtype Quadrature type
- * @param nq Number of quadrature nodes
- * @param a Alpha weight
- * @param b Beta weight
- * @return A pointer to newly created jac_quadrature structure. nullptr if some problem occurred
- */
+/*
+//  Y = alpha A X + beta Y
 template<typename _Tp>
-  jac_quadrature<_Tp>*
-  jac_quadrature_alloc(int nq)
+  void
+  fake_gemv(// Specifies row-major (C) or column-major (Fortran) data ordering.
+	    // SpecifiesIn file included from test_gauss_jacobi.cpp:14:0:
+jacobi.h:111:10: note: declared private here
+     _Tp* x;
+          ^
+test_gauss_jacobi.cpp:52:40: error: \u2018_Tp jac_quadrature<_Tp>::integrate(_Tp*) [with _Tp = double]\u2019 is private within this context
+   auto integr = quad.integrate(f.data());
+                                        ^
+In file included from jacobi.h:238:0,
+                 from test_gauss_jacobi.cpp:14:
+gauss_jacobi_interface.tcc:291:3: note: declared private here
+   jac_quadrature<_Tp>::integrate(_Tp* f)
+   ^~~~~~~~~~~~~~~~~~~
+gauss_jacobi_interface.tcc: In instantiation of \u2018_Tp jac_quadrature<_Tp>::integrate(_Tp*) [with _Tp = double]\u2019:
+test_gauss_jacobi.cpp:52:40:   required from here
+ whether to transpose matrix A.
+	    int __M,	   // 
+	    int __N,	   // 
+	    _Tp __alpha,   // Scaling factor for the product of matrix A and vector X.
+	    const _Tp*__A, // Matrix A.
+	    int __lda,     // The size of the first dimension of matrix A; if you are passing a matrix A[m][n], the value should be m.
+	    const _Tp*__X, // Vector X.
+	    int __incX,    // Stride within X. For example, if incX is 7, every 7th element is used.
+	    _Tp __beta,    // Scaling factor for vector Y.
+	    _Tp* __Y,       // Vector Y
+	    int __incY)    // Stride within Y. For example, if incY is 7, every 7th element is used.
   {
-    if (nq < 1)
-      std::__throw_domain_error("The number of quadrature points should be at least 1");
+    if (__beta != _Tp{0})
+      for (std::size_t __iy = 0, __ir = 0; __ir < __lda; __iy += __incY, ++__ir)
+	__Y[__iy] *= __beta;
 
-    void* mem_block = malloc(sizeof(jac_quadrature<_Tp>) + (2 * nq + nq * nq) * sizeof(_Tp));
-
-    if (mem_block == nullptr)
-      std::__throw_runtime_error("Memory allocation was not possible");
-
-    jac_quadrature<_Tp>* quad = static_cast<jac_quadrature<_Tp>*>(mem_block);
-
-    quad->Q = nq;
-
-    quad->x = static_cast<_Tp*>(mem_block + sizeof(jac_quadrature<_Tp>));
-    quad->w = quad->x + nq;
-    quad->D = quad->x + 2 * nq;
-    quad->np = 0;
-    quad->Imat = nullptr;
-    quad->xp = nullptr;
-
-    return quad;
+    if (__alpha != _Tp{0})
+      for (std::size_t __iy = 0, __ir = 0; __ir < __lda; __iy += __incY, ++__ir)
+	{
+	  for (std::size_t __ix = 0, __ic = 0; __ic < __N; __ix += __incX, ++__ic)
+	    __Y[__iy] += __alpha * __A[__ir][__ic] * __X[__ix];
+	}
   }
+*/
+//    cblas_dgemv(CblasRowMajor, CblasNoTrans, quad->Q, quad->Q, _Tp{1}, quad->D, quad->Q, f, 1, _Tp{0}, d, 1);
+//    matvec(quad->Q, quad->D, f, d);
 
-/**
- * Releases memory allocated by jac_quadrature_alloc. It also releases memory allocated by the
- * jac_interpmat_alloc if necessary
- *
- * @param quad A jac_quadrature structure allocated with jac_quadrature_alloc
- */
+//  Y = A X
 template<typename _Tp>
-  void 
-  jac_quadrature_free(jac_quadrature<_Tp>* quad)
+  void
+  matvec(std::size_t __n, const _Tp* __A, const _Tp* __x, _Tp* __y)
   {
-    jac_interpmat_free(quad);
-    free(quad);
+    for (std::size_t __ir = 0; __ir < __n; ++__ir)
+      {
+	__y[__ir] = _Tp{0};
+	for (std::size_t __ic = 0; __ic < __n; ++__ic)
+	  __y[__ir] += __A[__ir][__ic] * __x[__ic];
+      }
   }
 
 
@@ -84,81 +95,63 @@ template<typename _Tp>
  * @param qtype Quadrature type
  * @param a Alpha weight
  * @param b Beta weight
- * @param ws Workspace 3*quad->Q long used in calculations. If it is nullptr, memory is allocated and at the end released
  * @return An error code or 0
- * 
  */
 template<typename _Tp>
-  int 
-  jac_quadrature_zwd(jac_quadrature<_Tp>* quad, enum jac_quad_type qtype, _Tp a, _Tp b, _Tp* ws)
+  int
+  jac_quadrature<_Tp>::quadrature_zwd()
   {
-    int allocated = 0;
-    if (ws == nullptr)
-      {
-	// Try to allocate the workspace:
-	ws = static_cast<_Tp*>(malloc(3 * quad->Q));
-	if (ws == nullptr)
-	  std::__throw_runtime_error("Could not allocate workspace memory");
-	allocated = 1;
-      }
-    quad->alpha = a;
-    quad->beta = b;
-    quad->type = qtype;
-    int err = 0;
-
     // Calculates the zeros of the quadrature
-    switch (quad->type)
+    int err = 0;
+    switch (this->type)
       {
       case Gauss:
-	err = jac_zeros_gj(quad->x, quad->Q, quad->alpha, quad->beta);
+	err = this->zeros_gj();
 	if (err)
 	  __gnu_test::__throw__IntegrationError("Problem calculating the zeros", err, _Tp{}, _Tp{});
-	err = jac_weights_gj(quad->x, quad->w, quad->Q, quad->alpha, quad->beta, ws);
+	err = this->weights_gj();
 	if (err)
 	  __gnu_test::__throw__IntegrationError("Problem calculating the weightd", err, _Tp{}, _Tp{});
-	err = jac_diffmat_gj(quad->x, quad->D, quad->Q, quad->alpha, quad->beta, ws);
+	err = this->diffmat_gj();
 	if (err)
 	  __gnu_test::__throw__IntegrationError("Problem calculating the differentiation matrix", err, _Tp{}, _Tp{});
 	break;
       case Gauss_Lobatto:
-	err = jac_zeros_glj(quad->x, quad->Q, quad->alpha, quad->beta);
+	err = this->zeros_glj();
 	if (err)
 	  __gnu_test::__throw__IntegrationError("Problem calculating the zeros", err, _Tp{}, _Tp{});
-	err = jac_weights_glj(quad->x, quad->w, quad->Q, quad->alpha, quad->beta, ws);
+	err = this->weights_glj();
 	if (err)
 	  __gnu_test::__throw__IntegrationError("Problem calculating the weightd", err, _Tp{}, _Tp{});
-	err = jac_diffmat_glj(quad->x, quad->D, quad->Q, quad->alpha, quad->beta, ws);
+	err = this->diffmat_glj();
 	if (err)
 	  __gnu_test::__throw__IntegrationError("Problem calculating the differentiation matrix", err, _Tp{}, _Tp{});
 	break;
-      case Gauss_Radau_m1:
-	err = jac_zeros_grjm(quad->x, quad->Q, quad->alpha, quad->beta);
+      case Gauss_Radau_lower:
+	err = this->zeros_grjm();
 	if (err)
 	  __gnu_test::__throw__IntegrationError("Problem calculating the zeros", err, _Tp{}, _Tp{});
-	err = jac_weights_grjm(quad->x, quad->w, quad->Q, quad->alpha, quad->beta, ws);
+	err = this->weights_grjm();
 	if (err)
 	  __gnu_test::__throw__IntegrationError("Problem calculating the weightd", err, _Tp{}, _Tp{});
-	err = jac_diffmat_grjm(quad->x, quad->D, quad->Q, quad->alpha, quad->beta, ws);
+	err = this->diffmat_grjm();
 	if (err)
 	  __gnu_test::__throw__IntegrationError("Problem calculating the differentiation matrix", err, _Tp{}, _Tp{});
 	break;
-      case Gauss_Radau_p1:
-	err = jac_zeros_grjp(quad->x, quad->Q, quad->alpha, quad->beta);
+      case Gauss_Radau_upper:
+	err = this->zeros_grjp();
 	if (err)
 	  __gnu_test::__throw__IntegrationError("Problem calculating the zeros", err, _Tp{}, _Tp{});
-	err = jac_weights_grjp(quad->x, quad->w, quad->Q, quad->alpha, quad->beta, ws);
+	err = this->weights_grjp();
 	if (err)
 	  __gnu_test::__throw__IntegrationError("Problem calculating the weightd", err, _Tp{}, _Tp{});
-	err = jac_diffmat_grjp(quad->x, quad->D, quad->Q, quad->alpha, quad->beta, ws);
+	err = this->diffmat_grjp();
 	if (err)
 	  __gnu_test::__throw__IntegrationError("Problem calculating the differentiation matrix", err, _Tp{}, _Tp{});
 	break;
       default:
 	__gnu_test::__throw__IntegrationError("Illegal quadrature type", err, _Tp{}, _Tp{});
       }
-
-    if (allocated)
-      free(ws);
 
     return 0;
   }
@@ -174,61 +167,38 @@ template<typename _Tp>
  * @return Error code or 0
  */
 template<typename _Tp>
-  int 
-  jac_interpmat_alloc(jac_quadrature<_Tp>* quad, int npoints, _Tp* xp)
+  int
+  jac_quadrature<_Tp>::interpmat_alloc(int npoints, _Tp* xp)
   {
     if (npoints < 1)
       std::__throw_domain_error("The number of interpolating points should be at least 1");
 
-    // Allocate memory for the interpolation matrix and points
-    quad->xp = static_cast<_Tp*>(malloc(sizeof(_Tp) * (npoints + npoints*quad->Q)));
-    if (!quad->xp)
-      std::__throw_runtime_error("Memory for interpolation matrix could not be allocated");
-
-    quad->Imat = quad->xp + npoints;
+    this->xp.resize(npoints);
+    this->imat.resize(this->Q * npoints);
     for (int i = 0; i < npoints; ++i)
-      quad->xp[i] = xp[i];
+      this->xp[i] = xp[i];
 
     int err = 0;
 
-    quad->np = npoints;
-
-    switch (quad->type)
+    switch (this->type)
     {
     case Gauss:
-      err = jac_interpmat_gj(quad->Imat, quad->xp, npoints, quad->x, quad->Q, quad->alpha, quad->beta);
+      err = this->interpmat_gj();
       break;
     case Gauss_Lobatto:
-      err = jac_interpmat_glj(quad->Imat, quad->xp, npoints, quad->x, quad->Q, quad->alpha, quad->beta);
+      err = this->interpmat_glj();
       break;
-    case Gauss_Radau_m1:
-      err = jac_interpmat_grjm(quad->Imat, quad->xp, npoints, quad->x, quad->Q, quad->alpha, quad->beta);
+    case Gauss_Radau_lower:
+      err = this->interpmat_grjm();
       break;
-    case Gauss_Radau_p1:
-      err = jac_interpmat_grjp(quad->Imat, quad->xp, npoints, quad->x, quad->Q, quad->alpha, quad->beta);
+    case Gauss_Radau_upper:
+      err = this->interpmat_grjp();
       break;
     default:
       __gnu_test::__throw__IntegrationError("Illegal quadrature type", err, _Tp{}, _Tp{});
     }
 
     return err;
-  }
-
-
-/**
- * Frees memory used by jac_ionterpmat_alloc
- *
- * @param quad An allocated jac_quadrature structure.
- */
-template<typename _Tp>
-  void
-  jac_interpmat_free(jac_quadrature<_Tp>* quad)
-  {
-    if (quad->xp)
-      free(quad->xp);
-    quad->np = 0;
-    quad->xp = nullptr;
-    quad->Imat = nullptr;
   }
 
 
@@ -245,17 +215,21 @@ template<typename _Tp>
  * @return @f$\int_{-1}^{1} f(x) dx \approx \sum_{i=0}^{Q-1} w_i f(x_i)@f$
  */
 template<typename _Tp>
-  _Tp 
-  jac_integrate(jac_quadrature<_Tp>* quad, _Tp* f)
-  {
-    auto sum = cblas_ddot(quad->Q, quad->w, 1, f, 1);
-    return sum;
-  }
+  template<typename _Func>
+    _Tp
+    jac_quadrature<_Tp>::integrate(_Func fun)
+    {
+      std::vector<_Tp> f(this->Q);
+      for (int i = 0; i < this->Q; ++i)
+        f[i] = fun(this->x[i]);
+      return std::inner_product(std::begin(this->w), std::end(this->w),
+				std::begin(f), _Tp{0});
+    }
     
 
 /**
  * Calculates the derivative of a function known at quadrature points given the derivative matrix
- * The derivative matrix should have been calculated before using one of the functions jac_**_diffmat.
+ * The derivative matrix should have been calculated before using one of the functions *_diffmat.
  *
  * The derivative is calculated according to the following equation:
  * 
@@ -277,9 +251,9 @@ template<typename _Tp>
  */
 template<typename _Tp>
   int
-  jac_differentiate(jac_quadrature<_Tp>* quad, _Tp* f, _Tp* d)
+  jac_quadrature<_Tp>::differentiate(_Tp* f, _Tp* d)
   {
-    cblas_dgemv(CblasRowMajor, CblasNoTrans, quad->Q, quad->Q, _Tp{1}, quad->D, quad->Q, f, 1, _Tp{0}, d, 1);
+    matvec(this->Q, this->D, f, d);
     return 0;
   }
 
@@ -305,11 +279,12 @@ template<typename _Tp>
  */
 template<typename _Tp>
   int
-  jac_interpolate(jac_quadrature<_Tp>* quad, _Tp* f, _Tp* fout)
+  jac_quadrature<_Tp>::interpolate(_Tp* f, _Tp* fout)
   {
-    if (!quad->np)
+    if (this->xp.size() == 0)
       std::__throw_runtime_error("No interpolation info was setup");
 
-    cblas_dgemv(CblasRowMajor, CblasNoTrans, quad->np, quad->Q, _Tp{1}, quad->Imat, quad->Q, f, 1, _Tp{0}, fout, 1);
+    //cblas_dgemv(CblasRowMajor, CblasNoTrans, this->np, this->Q, _Tp{1}, this->imat, this->Q, f, 1, _Tp{0}, fout, 1);
+    matvec(this->Q, this->D, f, fout);
     return 0;
   }

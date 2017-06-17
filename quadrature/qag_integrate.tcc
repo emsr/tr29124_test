@@ -165,6 +165,9 @@ namespace __gnu_test
       if (__errsum <= __tolerance)
 	return std::make_tuple(__result, __abserr);
 
+      if (__error_type == NO_ERROR && __iteration >= __max_iter)
+	__error_type = MAX_ITER_ERROR;
+
       __check_error<_Tp>(__func__, __error_type);
       __throw__IntegrationError("qag_integrate: Unknown error.",
 				UNKNOWN_ERROR, __result, __abserr);
