@@ -2525,17 +2525,32 @@ _S_neg_double_factorial_table[999]
 	return _Tp{0};
       else if (__k == 0 || __k == __n)
 	return _Tp{1};
-      else if (__n < _S_num_factorials<_Real>
-      	    && __k < _S_num_factorials<_Real>)
-	return __factorial<_Tp>(__n)
-	     / __factorial<_Tp>(__k) / __factorial<_Tp>(__n - __k);
       else
-        {
-	  const auto __log_coeff = __log_binomial<_Val>(__n, __k);
-	  if (std::abs(__log_coeff) > __max_binom)
-	    return __gnu_cxx::__infinity<_Tp>();
+	{
+	  unsigned int __nmk = __n - __k;
+#if __cpp_lib_gcd >= 201606
+	  unsigned int& __m = (__k > __nmk ? __k : __nmk);
+	  unsigned int __q = 1;
+	  while ((__q = std::gcd(__n, std::max(__k, __m))) > 1)
+	    {
+	      __n /= __q;
+	      __m /= __q;
+	      __m = (__k > __nmk ? __k : __nmk);
+	    }
+#endif
+	  if (__n < _S_num_factorials<_Real>
+      	   && __k < _S_num_factorials<_Real>
+	   && __m < _S_num_factorials<_Real>)
+	    return __factorial<_Tp>(__n)
+	         / __factorial<_Tp>(__k) / __factorial<_Tp>(__m);
 	  else
-	    return std::exp(__log_coeff);
+	    {
+	      const auto __log_coeff = __log_binomial<_Val>(__n, __k);
+	      if (std::abs(__log_coeff) > __max_binom
+		return __gnu_cxx::__infinity<_Tp>();
+	      else
+		return std::exp(__log_coeff);
+	    }
 	}
     }
 
