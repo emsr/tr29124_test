@@ -266,6 +266,7 @@ test_factorial
 test_falling_factorial
 test_faddeeva
 test_fermi_dirac
+test_fibonacci
 test_float128
 test_fresnel
 test_gamma
