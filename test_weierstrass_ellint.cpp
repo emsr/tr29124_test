@@ -27,19 +27,19 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_weierstrass_ellint t
       const auto __zi = std::fmod(std::imag(__z), _S_pi * std::imag(__tau));
       const auto __zr = std::fmod(std::real(__z), _S_pi);
       const auto __q = std::__detail::__polar_pi(_Tp{1}, __tau);
-      const auto __theta2 = std::__detail::__theta_2(__q, _Cmplx{0});
+      const auto __theta2 = std::__detail::__jacobi_theta_2(__q, _Cmplx{0});
       const auto __theta2p2 = __theta2 * __theta2;
       const auto __theta2p4 = __theta2p2 * __theta2p2;
-      const auto __theta4 = std::__detail::__theta_4(__q, _Cmplx{0});
+      const auto __theta4 = std::__detail::__jacobi_theta_4(__q, _Cmplx{0});
       const auto __theta4p2 = __theta4 * __theta4;
       const auto __theta4p4 = __theta4p2 * __theta4p2;
       const auto __e1 = _S_pi * _S_pi * (__theta2p4 + _Tp{2} * __theta4p4)
 		      / (_Tp{12} * __omega1 * __omega1);
       const _Cmplx __arg = _S_pi * __z / _Tp{2} / __omega1;
-      const auto __theta3 = std::__detail::__theta_3(__q, _Cmplx{0});
-      const auto __theta2a = std::__detail::__theta_2(__q, __arg);
+      const auto __theta3 = std::__detail::__jacobi_theta_3(__q, _Cmplx{0});
+      const auto __theta2a = std::__detail::__jacobi_theta_2(__q, __arg);
       const auto __numer = _S_pi * __theta3 * __theta4 * __theta2a;
-      const auto __theta1a = std::__detail::__theta_1(__q, __arg);
+      const auto __theta1a = std::__detail::__jacobi_theta_1(__q, __arg);
       const auto __denom = _Tp{2} * __omega1 * __theta1a;
       const auto __rat = __numer / __denom;
       return __e1 * __rat * __rat;
@@ -54,8 +54,8 @@ template<typename _Tp>
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    const auto omega1 = _Tp{2};
-    const auto omega3 = _Tp{3};
+    const auto omega1 = std::complex<_Tp>{2};
+    const auto omega3 = std::complex<_Tp>{0, 3};
     const auto del = _Tp{0.0625};
     for (int ir = -100; ir <= +100; ++ir)
       for (int ii = -100; ii <= +100; ++ii)
