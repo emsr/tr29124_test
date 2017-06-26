@@ -68,7 +68,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       _Tp
       deriv() const
-      { return std::sqrt(_Tp(2 * __n)) * __H_nm1; }
+      { return _Tp(2 * __n) * __H_nm1; }
+    };
+
+  /**
+   * A struct to store the state of a probabilist Hermite polynomial.
+   */
+  template<typename _Tp>
+    struct __hermite_he_t
+    {
+      std::size_t __n;
+      _Tp __x;
+      _Tp __He_n;
+      _Tp __He_nm1;
+      _Tp __He_nm2;
+
+      _Tp
+      deriv() const
+      { return _Tp(__n) * __He_nm1; }
     };
 
   /**
