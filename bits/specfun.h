@@ -5778,14 +5778,39 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Fermi-Dirac integrals.
 
+  /**
+   * Return the Fermi-Dirac integral of @c float order s and argument x.
+   *
+   * @see fermi_dirac for details.
+   */
   inline float
   fermi_diracf(float __s, float __x)
   { return std::__detail::__fermi_dirac<float>(__s, __x); }
 
+  /**
+   * Return the Fermi-Dirac integral of <tt> long double </tt> order s and argument x.
+   *
+   * @see fermi_dirac for details.
+   */
   inline long double
   fermi_diracl(long double __s, long double __x)
   { return std::__detail::__fermi_dirac<long double>(__s, __x); }
 
+  /**
+   * Return the Fermi-Dirac integral of integer or real order s
+   * and real argument x.
+   * @see https://en.wikipedia.org/wiki/Clausen_function
+   * @see http://dlmf.nist.gov/25.12.16
+   *
+   * @f[
+   *    F_s(x) = \frac{1}{\Gamma(s+1)}\int_0^\infty \frac{t^s}{e^{t-x} + 1}dt
+   *           = -Li_{s+1}(-e^x)
+   * @f]
+   *
+   * @param __s  The order s > -1.
+   * @param __x  The real argument.
+   * @return  The real Fermi-Dirac integral F_s(x),
+   */
   template<typename _Tps, typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tps, _Tp>
     fermi_dirac(_Tps __s, _Tp __x)
@@ -5796,14 +5821,39 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Bose-Einstein integrals.
 
+  /**
+   * Return the Bose-Einstein integral of @c float order s and argument x.
+   *
+   * @see bose_einstein for details.
+   */
   inline float
   bose_einsteinf(float __s, float __x)
   { return std::__detail::__bose_einstein<float>(__s, __x); }
 
+  /**
+   * Return the Bose-Einstein integral of <tt> long double </tt> order s and argument x.
+   *
+   * @see bose_einstein for details.
+   */
   inline long double
   bose_einsteinl(long double __s, long double __x)
   { return std::__detail::__bose_einstein<long double>(__s, __x); }
 
+  /**
+   * Return the Bose-Einstein integral of integer or real order s
+   * and real argument x.
+   * @see https://en.wikipedia.org/wiki/Clausen_function
+   * @see http://dlmf.nist.gov/25.12.16
+   *
+   * @f[
+   *    G_s(x) = \frac{1}{\Gamma(s+1)}\int_0^\infty \frac{t^s}{e^{t-x} - 1}dt
+   *           = Li_{s+1}(e^x)
+   * @f]
+   *
+   * @param __s  The order s >= 0.
+   * @param __x  The real argument.
+   * @return  The real Bose-Einstein integral G_s(x),
+   */
   template<typename _Tps, typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tps, _Tp>
     bose_einstein(_Tps __s, _Tp __x)
