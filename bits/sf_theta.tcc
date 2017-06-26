@@ -315,7 +315,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @param __nu The periodic (period = 2) argument
    * @param __x The argument
-   */44444
+   */
   template<typename _Tp>
     _Tp
     __theta_4(_Tp __nu, _Tp __x)
@@ -642,7 +642,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
-      const auto _S_pi = __gnu_cxx::__quiet_pi(std::abs(__x));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
       const auto _S_i = std::complex<_Real>{0, 1};
 
       if (__isnan(__q) || __isnan(__x))
