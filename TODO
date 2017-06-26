@@ -11,7 +11,7 @@
 
 3. [] Debye integrals matharr has some.  Started a test.
 
-4. [] test asymptotic Hermite polys - adjust the crossover width!
+4. [] Test asymptotic Hermite polys - adjust the crossover width!
 GSL extras has these - there was struggle there too.
 
 5. [] I got derivs in the Bessel asymp!
@@ -24,19 +24,19 @@ GSL extras has these - there was struggle there too.
 
 8. [] Thrash float testing!
 
-9. [DONE] ibeta complement
+9. [DONE] Implement ibeta complement
 
-10. [] legendre_Qlm
+10. [] Implement legendre_Qlm
 
 11. [DONE] Test against spherical_harmonic(unsigned n, int m, T1 theta, T2 phi);
     They have spherical_harmonic_[r|i]
     Note the signed m on all of them!
 
-12. [DONE] Owen's T function (a stat function)
+12. [DONE] Implement Owen's T function (a stat function)
     template <class T>
       calculated-result-type owens_t(T h, T a);
 
-13. [DONE] heuman_lambda - I've got this! - __heuman_lambda(_Tp __beta, _Tp __k)
+13. [DONE] Implement heuman_lambda - I've got this! - __heuman_lambda(_Tp __beta, _Tp __k)
     template <class T1, class T2>
       calculated-result-type heuman_lambda(T1 k, T2 phi);
     and __jacobi_zeta(_Tp __k, _Tp __phi)
@@ -48,11 +48,12 @@ GSL extras has these - there was struggle there too.
 
 14. [DONE] Expose Bernoulli numbers.
 
-15. [DONE] polygamma...
+15. [DONE] Implement polygamma.
 
-16. [] inverse erf and erfc.
+16. [] Implement inverse erf and erfc.
+       And for that matter, we want native implementations of erf and erfc as well.
 
-17. [] inverse incomplete gammas
+17. [] Implement inverse incomplete gammas
     [] We will want lgamma_scaled - the Binet function.
     [] Then tgamma_scaled - sometines called \Gamma^{*}.
     [] Then Amparo, Gil, etc have a paper...
@@ -65,14 +66,15 @@ GSL extras has these - there was struggle there too.
 
 19. [DONE] Tabulate riemann_zeta for integer arguments - various sums can use this.
 
-20. [DONE] Look at test_cyl_hankel - we got issues! vu=1, z=0.01 Y bombs on steeds algorithm!
-       OK! Steeds algorithm fails for cyl_neumann for exatly nu=1 and no thoer. WTF!
+20. [DONE] Look at test_cyl_hankel - we got issues! vu=1, z=0.01 Y bombs on Steeds algorithm!
+       OK! Steeds algorithm fails for cyl_neumann for exatly nu=1 and no other. WTF!
        nearbyint(nu + .5) -> nearbyint(nu).  mu = nu - n was -1.
 
 21. [] Finish experfc = exp(x*x)*erfc(x) (and maybe even sqrt(pi)*x*exp(x*x)*erfc(x))
-       Callit erfc_scaled?
+       Call it erfc_scaled?
 
-22. [] ../LambertW has a very good static polynomial I think - with static Horner.
+22. [] Implement a static compile-time polynomial.
+       LambertW has a very good static polynomial I think - with static Horner.
        They use macros... Sigh.  Still, we could hack these into templates.
 
 23. [DONE] We have both psi *and* digamma!  Pick one!
@@ -583,6 +585,11 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 
 129. [] All the orthogonal polynomials should return states with both value and derivative!
 
+130. [] Think about using polynomial (or rather rational polynomial) to represent
+        fixed and floating point numbers...  The type would be the base (ratio?)
+        coefs would need be constrained to less than base for normal numbers.
+
+131. [] A beta_reciprocal might be very useful for statistics and be well behaved.
 
 plot_airy.cpp
 
