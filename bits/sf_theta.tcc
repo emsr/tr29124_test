@@ -576,11 +576,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  // theta_1(xxxx, z) = theta_1(xxxx, z)
 	  if (std::imag(__q) < 0.5)
 	    {
-	      const auto __fact = std::sqrt(-_S_i * __tau);
+	      const auto __fact = _S_i * std::sqrt(-_S_i * __tau);
 	      __tau = -1 / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
-	      return -_S_i * __phase * __jacobi_theta_1_sum(__q, __q * __x)
-		 / __fact;
+	      __q = std::exp(_S_i * _S_pi * __tau);
+	      return __phase * __jacobi_theta_1_sum(__q, __tau * __x) / __fact;
 	    }
 	  else
 	    return __jacobi_theta_1_sum(__q, __x);
@@ -650,7 +650,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      const auto __fact = std::sqrt(-_S_i * __tau);
 	      __tau = -1 / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
-	      return __phase * __jacobi_theta_2_sum(__q, __q * __x) / __fact;
+	      __q = std::exp(_S_i * _S_pi * __tau);
+	      return __phase * __jacobi_theta_2_sum(__q, __tau * __x) / __fact;
 	    }
 	  else
 	    return __jacobi_theta_2_sum(__q, __x);
@@ -719,7 +720,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      const auto __fact = std::sqrt(-_S_i * __tau);
 	      __tau = -1 / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
-	      return __phase * __jacobi_theta_3_sum(__q, __q * __x) / __fact;
+	      __q = std::exp(_S_i * _S_pi * __tau);
+	      return __phase * __jacobi_theta_3_sum(__q, __tau * __x) / __fact;
 	    }
 	  else
 	    return __jacobi_theta_3_sum(__q, __x);
@@ -790,7 +792,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      const auto __fact = std::sqrt(-_S_i * __tau);
 	      __tau = -1 / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
-	      return __phase * __jacobi_theta_4_sum(__q, __q * __x) / __fact;
+	      __q = std::exp(_S_i * _S_pi * __tau);
+	      return __phase * __jacobi_theta_4_sum(__q, __tau * __x) / __fact;
 	    }
 	  else
 	    return __jacobi_theta_4_sum(__q, __x);
