@@ -5788,7 +5788,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__fermi_dirac<float>(__s, __x); }
 
   /**
-   * Return the Fermi-Dirac integral of <tt> long double </tt> order s and argument x.
+   * Return the Fermi-Dirac integral of <tt> long double </tt>
+   * order s and argument x.
    *
    * @see fermi_dirac for details.
    */
@@ -5831,7 +5832,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__bose_einstein<float>(__s, __x); }
 
   /**
-   * Return the Bose-Einstein integral of <tt> long double </tt> order s and argument x.
+   * Return the Bose-Einstein integral of <tt> long double </tt>
+   * order s and argument x.
    *
    * @see bose_einstein for details.
    */
