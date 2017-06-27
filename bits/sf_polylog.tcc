@@ -1423,7 +1423,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @param __s  The order s > -1.
    * @param __x  The real argument.
-   * @return  The real Fermi-Dirac cosine sum F_s(x),
+   * @return  The real Fermi-Dirac integral F_s(x),
    */
   template<typename _Sp, typename _Tp>
     _Tp
@@ -1455,7 +1455,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @param __s  The order s >= 0.
    * @param __x  The real argument.
-   * @return  The real Fermi-Dirac cosine sum G_s(x),
+   * @return  The real Bose-Einstein integral G_s(x),
    */
   template<typename _Sp, typename _Tp>
     _Tp
