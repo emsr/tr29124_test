@@ -1,6 +1,6 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o mpreal_gamma_recip mpreal_gamma_recip.cpp -lquadmath -lmpfr
-./mpreal_gamma_recip > mpreal_gamma_recip.txt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o build_gamma_recip build_gamma_recip.cpp -lquadmath -lmpfr
+./build_gamma_recip > build_gamma_recip.txt
 */
 
 #include <mpreal.h>
