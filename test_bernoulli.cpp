@@ -670,28 +670,28 @@ PATH=wrappers/debug:$PATH ./test_bernoulli > test_bernoulli.txt
     __eulerian_2(unsigned int __n, unsigned int __m)
     { return __eulerian_2_recur<_Tp>(__n, __m); }
 
-    /**
-     * Return the Lah number by downward recurrence.
-     * @f[
-     *   L(n.k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
-     * @f]
-     */
-template<typename _Tp>
-  _Tp
-  __lah(unsigned int __n, unsigned int __k)
-  {
-    if (__k > __n)
-      return _Tp{0};
-    else if (__n == 0)
-      return (__k == 0 ? _Tp{1} : _Tp{0});
-    else
-      {
-	_Tp __Lnn = 1;
-	for (int __i = 0; __i < __n - __k; ++__i)
-	  __Lnn *= (__n - __i) * (__n - __i - 1) / (__i + 1);
-	return __Lnn;
-      }
-  }
+  /**
+   * Return the Lah number by downward recurrence.
+   * @f[
+   *   L(n.k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __lah(unsigned int __n, unsigned int __k)
+    {
+      if (__k > __n)
+	return _Tp{0};
+      else if (__n == 0)
+	return (__k == 0 ? _Tp{1} : _Tp{0});
+      else
+	{
+	  _Tp __Lnn = 1;
+	  for (int __i = 0; __i < __n - __k; ++__i)
+	    __Lnn *= (__n - __i) * (__n - __i - 1) / (__i + 1);
+	  return __Lnn;
+	}
+    }
 
 template<typename _Tp>
   void
