@@ -249,6 +249,7 @@ test_conf_hyperg
 test_conf_hyperg_limit
 test_const
 test_continued_fraction
+test_cordic
 test_coulomb
 test_csint
 test_cyl_bessel_zeros
