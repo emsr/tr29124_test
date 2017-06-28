@@ -36,6 +36,7 @@ complex_literal_bug
 build_bernoulli_2n_table
 build_etam1_table
 build_gamma_lanczos
+build_gamma_recip
 build_gamma_spouge
 build_log_table
 build_nfact_zetanp1
@@ -215,8 +216,6 @@ debug_bessel
 debug_polylog
 
 poly_root
-
-mpreal_gamma_recip
 
 complex_literal_arith
 diff_special_function
