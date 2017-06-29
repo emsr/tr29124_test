@@ -109,7 +109,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The associated Laguerre function is defined by
    * @f[
-   *    L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!}
+   *    L_n^{(\alpha)}(x) = \frac{(\alpha + 1)_n}{n!}
    * 		       {}_1F_1(-n; \alpha + 1; x)
    * @f]
    * where @f$ (\alpha)_n @f$ is the Pochhammer symbol and
@@ -156,12 +156,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief This routine returns the associated Laguerre polynomial
-   * 	    of order @c n, degree @c @f$ \alpha @f$: @f$ L_n^\alpha(x) @f$
+   * 	    of order @c n, degree @c @f$ \alpha @f$: @f$ L_n^{(\alpha)}(x) @f$
    * 	    by recursion.
    *
    * The associated Laguerre function is defined by
    * @f[
-   *   L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!}
+   *   L_n^{(\alpha)}(x) = \frac{(\alpha + 1)_n}{n!}
    *                  {}_1F_1(-n; \alpha + 1; x)
    * @f]
    * where @f$ (\alpha)_n @f$ is the Pochhammer symbol and
@@ -170,7 +170,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The associated Laguerre polynomial is defined for integral
    * @f$ \alpha = m @f$ by:
    * @f[
-   *    L_n^m(x) = (-1)^m \frac{d^m}{dx^m} L_{n + m}(x)
+   *    L_n^{(m)}(x) = (-1)^m \frac{d^m}{dx^m} L_{n + m}(x)
    * @f]
    * where the Laguerre polynomial is defined by:
    * @f[
@@ -284,7 +284,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief This routine returns the associated Laguerre polynomial
-   * 	    of order n, degree @f$ \alpha @f$: @f$ L_n^alpha(x) @f$.
+   * 	    of order n, degree @f$ \alpha @f$: @f$ L_n^{(\alpha)}(x) @f$.
    *
    * The associated Laguerre function is defined by
    * @f[
@@ -343,7 +343,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief This routine returns the associated Laguerre polynomial
-   * 	    of order n, degree m: @f$ L_n^m(x) @f$.
+   * 	    of order n, degree m: @f$ L_n^{(m)}(x) @f$.
    *
    * The associated Laguerre polynomial is defined for integral
    * @f$ \alpha = m @f$ by:
