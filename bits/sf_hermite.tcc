@@ -220,12 +220,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Compute He_0.
       auto __He_nm2 = _Tp{1};
       if (__n == 0)
-	return __He_nm2;
+	return {__He_nm2, _Tp{0}, _Tp{0}};
 
       // Compute He_1.
       auto __He_nm1 = __x;
       if (__n == 1)
-	return __He_nm1;
+	return {__He_nm1, __He_nm2, _Tp{0}};
 
       // Compute He_n.
       auto __He_n = __x * __He_nm1 - __He_nm2;
