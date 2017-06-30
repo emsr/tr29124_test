@@ -591,6 +591,12 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 
 131. [] A beta_reciprocal might be very useful for statistics and be well behaved.
 
+132. [] Design a set of free functions which generate polynomials like exp_n, log, etc.
+        That will become the basis of a generating function capability.  How does
+        ADL work?  You might want a polynomial fraction to turn into a ratpoly?
+
+
+
 plot_airy.cpp
 
 test_hankel.cpp - warns and crashes
