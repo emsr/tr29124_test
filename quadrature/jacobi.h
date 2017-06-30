@@ -123,10 +123,10 @@ template<typename _Tp>
     _Tp jacobi_deriv(_Tp x, int n, _Tp alpha, _Tp beta);
 
     /// Calculates Jacobi polynomials at an array of points
-    //int jacobi_value_array(_Tp* x, int n, _Tp* result_array, _Tp alpha, _Tp beta);
+    //int jacobi_value_array(int nx, _Tp* x, _Tp* result_array, int n, _Tp alpha, _Tp beta);
 
     /// Calculates the derivative of Jacobi polynomials at an array of points
-    //int jacobi_deriv_array(_Tp* x, int n, _Tp* result_array, _Tp alpha, _Tp beta);
+    //int jacobi_deriv_array(int nx, _Tp* x, _Tp* result_array, int n, _Tp alpha, _Tp beta);
 
     /// Calculates the zeros of Jacobi polynomials in the interval -1 up to 1
     int jacobi_zeros(_Tp* x, int m, _Tp alpha, _Tp beta);
