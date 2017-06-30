@@ -97,16 +97,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (__l == 1)
 	    return _P_lm1;
 
-	  auto _P_l = _Tp{0};
-	  for (unsigned int __ll = 2; __ll <= __l; ++__ll)
+	  auto _P_l = _Tp{2} * __x * _P_lm1 - _P_lm2
+		    - (__x * _P_lm1 - _P_lm2) / _Tp{2};
+	  for (unsigned int __ll = 3; __ll <= __l; ++__ll)
 	    {
+	      _P_lm2 = _P_lm1;
+	      _P_lm1 = _P_l;
 	      // This arrangement is supposed to be better for roundoff
 	      // protection, Arfken, 2nd Ed, Eq 12.17a.
 	      _P_l = _Tp{2} * __x * _P_lm1 - _P_lm2
 		    - (__x * _P_lm1 - _P_lm2) / _Tp(__ll);
-	      _P_lm2 = _P_lm1;
-	      _P_lm1 = _P_l;
 	    }
+	  // Recursion for the derivative of The Legendre polynomial.
+	  //auto __Pp_l = __l * (__z * _P_l - _P_lm1) / (__z * __z - _Tp{1});
 
 	  return _P_l;
 	}
@@ -147,15 +150,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto _Q_lm1 = __x * _Q_lm2 - _Tp{1};
 	  if (__l == 1)
 	    return _Q_lm1;
-	  auto _Q_l = _Tp{0};
-	  for (unsigned int __ll = 2; __ll <= __l; ++__ll)
+	  auto _Q_l = _Tp{2} * __x * _Q_lm1 - _Q_lm2
+		    - (__x * _Q_lm1 - _Q_lm2) / _Tp{2};
+	  for (unsigned int __ll = 3; __ll <= __l; ++__ll)
 	    {
+	      _Q_lm2 = _Q_lm1;
+	      _Q_lm1 = _Q_l;
 	      // This arrangement is supposed to be better for roundoff
 	      // protection, Arfken, 2nd Ed, Eq 12.17a.
 	      _Q_l = _Tp{2} * __x * _Q_lm1 - _Q_lm2
 		    - (__x * _Q_lm1 - _Q_lm2) / _Tp(__ll);
-	      _Q_lm2 = _Q_lm1;
-	      _Q_lm1 = _Q_l;
 	    }
 
 	  return _Q_l;
@@ -163,20 +167,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   *   @brief  Return the associated Legendre function by recursion
-   *           on @f$ l @f$ and downward recursion on m.
+   * @brief  Return the associated Legendre function by recursion
+   * 	     on @f$ l @f$ and downward recursion on m.
    *
-   *   The associated Legendre function is derived from the Legendre function
-   *   @f$ P_l(x) @f$ by the Rodrigues formula:
-   *   @f[
-   *     P_l^m(x) = (1 - x^2)^{m/2}\frac{d^m}{dx^m}P_l(x)
-   *   @f]
+   * The associated Legendre function is derived from the Legendre function
+   * @f$ P_l(x) @f$ by the Rodrigues formula:
+   * @f[
+   *   P_l^m(x) = (1 - x^2)^{m/2}\frac{d^m}{dx^m}P_l(x)
+   * @f]
    *
-   *   @param  __l  The order of the associated Legendre function.
-   *              @f$ l >= 0 @f$.
-   *   @param  __m  The order of the associated Legendre function.
-   *              @f$ m <= l @f$.
-   *   @param  __x  The argument of the associated Legendre function.
+   * @param  __l  The order of the associated Legendre function.
+   * 		@f$ l >= 0 @f$.
+   * @param  __m  The order of the associated Legendre function.
+   * 		@f$ m <= l @f$.
+   * @param  __x  The argument of the associated Legendre function.
    */
   template<typename _Tp>
     _Tp
@@ -213,13 +217,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 	  _Tp _P_lm2m = _P_mm;
 	  _Tp _P_lm1m = _P_mp1m;
-	  _Tp _P_lm = _Tp{0};
-	  for (unsigned int __j = __m + 2; __j <= __l; ++__j)
+	  _Tp _P_lm = (_Tp(2 * __m + 3) * __x * _P_lm1m
+		      - _Tp(2 * __m + 1) * _P_lm2m) / _Tp{2};
+	  for (unsigned int __j = __m + 3; __j <= __l; ++__j)
 	    {
-	      _P_lm = (_Tp(2 * __j - 1) * __x * _P_lm1m
-		      - _Tp(__j + __m - 1) * _P_lm2m) / _Tp(__j - __m);
 	      _P_lm2m = _P_lm1m;
 	      _P_lm1m = _P_lm;
+	      _P_lm = (_Tp(2 * __j - 1) * __x * _P_lm1m
+		      - _Tp(__j + __m - 1) * _P_lm2m) / _Tp(__j - __m);
 	    }
 
 	  return _P_lm;
@@ -228,30 +233,30 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the spherical associated Legendre function.
+   * @brief  Return the spherical associated Legendre function.
    *
-   *   The spherical associated Legendre function of @f$ l @f$, @f$ m @f$,
-   *   and @f$ \theta @f$ is defined as @f$ Y_l^m(\theta,0) @f$ where
-   *   @f[
-   *      Y_l^m(\theta,\phi) = (-1)^m[\frac{(2l+1)}{4\pi}
-   *                                  \frac{(l-m)!}{(l+m)!}]
-   *                     P_l^m(\cos\theta) \exp^{im\phi}
-   *   @f]
-   *   is the spherical harmonic function and @f$ P_l^m(x) @f$ is the
-   *   associated Legendre function.
+   * The spherical associated Legendre function of @f$ l @f$, @f$ m @f$,
+   * and @f$ \theta @f$ is defined as @f$ Y_l^m(\theta,0) @f$ where
+   * @f[
+   * 	Y_l^m(\theta,\phi) = (-1)^m[\frac{(2l+1)}{4\pi}
+   * 				    \frac{(l-m)!}{(l+m)!}]
+   * 		       P_l^m(\cos\theta) \exp^{im\phi}
+   * @f]
+   * is the spherical harmonic function and @f$ P_l^m(x) @f$ is the
+   * associated Legendre function.
    *
-   *   This function differs from the associated Legendre function by
-   *   argument (@f$x = \cos(\theta)@f$) and by a normalization factor
-   *   but this factor is rather large for large @f$ l @f$ and @f$ m @f$
-   *   and so this function is stable for larger differences of @f$ l @f$
-   *   and @f$ m @f$.
+   * This function differs from the associated Legendre function by
+   * argument (@f$x = \cos(\theta)@f$) and by a normalization factor
+   * but this factor is rather large for large @f$ l @f$ and @f$ m @f$
+   * and so this function is stable for larger differences of @f$ l @f$
+   * and @f$ m @f$.
    *
-   *   @param  __l  The order of the spherical associated Legendre function.
-   *              @f$ l >= 0 @f$.
-   *   @param  __m  The order of the spherical associated Legendre function.
-   *              @f$ m <= l @f$.
-   *   @param  __theta  The radian polar angle argument
-   *                  of the spherical associated Legendre function.
+   * @param  __l  The order of the spherical associated Legendre function.
+   * 		@f$ l >= 0 @f$.
+   * @param  __m  The order of the spherical associated Legendre function.
+   * 		@f$ m <= l @f$.
+   * @param  __theta  The radian polar angle argument
+   * 		    of the spherical associated Legendre function.
    */
   template<typename _Tp>
     _Tp
@@ -331,24 +336,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
-   *   @brief  Return the spherical harmonic function.
+   * @brief  Return the spherical harmonic function.
    *
-   *   The spherical harmonic function of @f$ l @f$, @f$ m @f$,
-   *   and @f$ \theta @f$, @f$ \phi @f$ is defined by:
-   *   @f[
-   *      Y_l^m(\theta,\phi) = (-1)^m[\frac{(2l+1)}{4\pi}
-   *                                  \frac{(l-m)!}{(l+m)!}]
-   *                     P_l^{|m|}(\cos\theta) \exp^{im\phi}
-   *   @f]
+   * The spherical harmonic function of @f$ l @f$, @f$ m @f$,
+   * and @f$ \theta @f$, @f$ \phi @f$ is defined by:
+   * @f[
+   * 	Y_l^m(\theta,\phi) = (-1)^m[\frac{(2l+1)}{4\pi}
+   * 				    \frac{(l-m)!}{(l+m)!}]
+   * 		       P_l^{|m|}(\cos\theta) \exp^{im\phi}
+   * @f]
    *
-   *   @param  __l  The order of the spherical harmonic function.
-   *              @f$ l >= 0 @f$.
-   *   @param  __m  The order of the spherical harmonic function.
-   *              @f$ m <= l @f$.
-   *   @param  __theta  The radian polar angle argument
-   *                  of the spherical harmonic function.
-   *   @param  __phi    The radian azimuthal angle argument
-   *                  of the spherical harmonic function.
+   * @param  __l  The order of the spherical harmonic function.
+   * 		@f$ l >= 0 @f$.
+   * @param  __m  The order of the spherical harmonic function.
+   * 		@f$ m <= l @f$.
+   * @param  __theta  The radian polar angle argument
+   * 		    of the spherical harmonic function.
+   * @param  __phi    The radian azimuthal angle argument
+   * 		    of the spherical harmonic function.
    */
   template<typename _Tp>
     std::complex<_Tp>

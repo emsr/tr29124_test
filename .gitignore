@@ -29,6 +29,8 @@ test_owens_t.txt
 # Another git repo
 zeta
 
+run_coulfg
+
 bernoulli
 
 complex_literal_bug
@@ -265,6 +267,7 @@ test_factorial
 test_falling_factorial
 test_faddeeva
 test_fermi_dirac
+test_fibonacci
 test_float128
 test_fresnel
 test_gamma

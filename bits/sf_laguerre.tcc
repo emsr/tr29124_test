@@ -189,30 +189,33 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __poly_laguerre_recursion(unsigned int __n, _Tpa __alpha1, _Tp __x)
     {
-      // Compute l_0.
-      _Tp __l_0 = _Tp{1};
+      // Compute L_0.
+      _Tp __L_0 = _Tp{1};
       if  (__n == 0)
-	return __l_0;
+	return __L_0;
 
-      // Compute l_1^alpha.
-      _Tp __l_1 = -__x + _Tp{1} + _Tp(__alpha1);
+      // Compute L_1^{(aLpha)}.
+      _Tp __L_1 = -__x + _Tp{1} + _Tp(__alpha1);
       if  (__n == 1)
-	return __l_1;
+	return __L_1;
 
-      // Compute l_n^alpha by recursion on n.
-      _Tp __l_n2 = __l_0;
-      _Tp __l_n1 = __l_1;
-      _Tp __l_n = _Tp{0};
-      for  (unsigned int __nn = 2; __nn <= __n; ++__nn)
+      // Compute L_n^{(aLpha)} by recursion on n.
+      _Tp __L_nm2 = __L_0;
+      _Tp __L_nm1 = __L_1;
+      _Tp __L_n = (_Tp{3} + _Tp(__alpha1) - __x) * __L_nm1 / _Tp{2}
+		  - (_Tp{1} + _Tp(__alpha1)) * __L_nm2 / _Tp(2);
+      for  (unsigned int __nn = 3; __nn <= __n; ++__nn)
 	{
-	    __l_n = (_Tp(2 * __nn - 1) + _Tp(__alpha1) - __x)
-		  * __l_n1 / _Tp(__nn)
-		  - (_Tp(__nn - 1) + _Tp(__alpha1)) * __l_n2 / _Tp(__nn);
-	    __l_n2 = __l_n1;
-	    __l_n1 = __l_n;
+	    __L_nm2 = __L_nm1;
+	    __L_nm1 = __L_n;
+	    __L_n = (_Tp(2 * __nn - 1) + _Tp(__alpha1) - __x)
+		  * __L_nm1 / _Tp(__nn)
+		  - (_Tp(__nn - 1) + _Tp(__alpha1)) * __L_nm2 / _Tp(__nn);
 	}
 
-      return __l_n;
+      // Derivative.
+      //auto __Lp_n = (_Tp(__n) * __L_nm1 - _Tp(__n + __alpha1) * __L_nm2) / __x;
+      return __L_n;
     }
 
   /**
@@ -220,9 +223,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
-    __laguerre_zeros(unsigned int __n, _Tp __alpha)
+    __laguerre_zeros(unsigned int __n, _Tp __alpha1)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__alpha);
+      const auto _S_eps = __gnu_cxx::__epsilon(__alpha1);
       const unsigned int _S_maxit = 1000;
 
       std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
@@ -233,16 +236,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __w = _Tp{0};
 	  // Clever approximations for roots.
 	  if (__i == 1)
-	    __z += (1.0 + __alpha)
-		 * (3.0 + 0.92 * __alpha) / (1.0 + 2.4 * __n + 1.8 * __alpha);
+	    __z += (1.0 + __alpha1)
+		 * (3.0 + 0.92 * __alpha1) / (1.0 + 2.4 * __n + 1.8 * __alpha1);
 	  else if (__i == 2)
-	    __z += (15.0 + 6.25 * __alpha) / (1.0 + 2.5 * __n + 0.9 * __alpha);
+	    __z += (15.0 + 6.25 * __alpha1) / (1.0 + 2.5 * __n + 0.9 * __alpha1);
 	  else
 	    {
 	      auto __ai = __i - 2;
 	      __z += ((1.0 + 2.55 * __ai) / (1.9 * __ai)
-		     + 1.26 * __ai * __alpha / (1.0 + 3.5 * __ai))
-		   * (__z - __pt[__i - 3].__zero) / (1.0 + 0.3 * __alpha);
+		     + 1.26 * __ai * __alpha1 / (1.0 + 3.5 * __ai))
+		   * (__z - __pt[__i - 3].__zero) / (1.0 + 0.3 * __alpha1);
 	    }
 	  // Iterate TTRR for polynomial values
 	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
@@ -253,17 +256,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		{
 		  auto __L3 = __L2;
 		  __L2 = __L1;
-		  __L1 = ((_Tp(2 * __j - 1 + __alpha) - __z) * __L2
-			- (_Tp(__j - 1 + __alpha)) * __L3) / _Tp(__j);
+		  __L1 = ((_Tp(2 * __j - 1 + __alpha1) - __z) * __L2
+			- (_Tp(__j - 1 + __alpha1)) * __L3) / _Tp(__j);
 		}
 	      // Derivative.
-	      auto __Lp = (_Tp(__n) * __L1 - _Tp(__n + __alpha) * __L2) / __z;
+	      auto __Lp = (_Tp(__n) * __L1 - _Tp(__n + __alpha1) * __L2) / __z;
 	      // Newton's rule for root.
 	      auto __z1 = __z;
 	      __z = __z1 - __L1 / __Lp;
 	      if (std::abs(__z - __z1) <= _S_eps)
 		{
-		  auto __exparg = std::lgamma(_Tp(__alpha + __n))
+		  auto __exparg = std::lgamma(_Tp(__alpha1 + __n))
 				- std::lgamma(_Tp(__n));
 		  __w = -std::exp(__exparg) / (__Lp * __n * __L2);
 		  break;
@@ -281,7 +284,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief This routine returns the associated Laguerre polynomial
-   * 	    of order n, degree @f$ \alpha @f$: @f$ L_n^{(alpha)}(x) @f$.
+   * 	    of order n, degree @f$ \alpha @f$: @f$ L_n^{(\alpha)}(x) @f$.
    *
    * The associated Laguerre function is defined by
    * @f[
