@@ -54,8 +54,8 @@ template<typename _Tp>
 // Computes the jacobi polyniomials on several points
 template<typename _Tp>
   int 
-  jacobi_value_array(int np, const _Tp* x, int n, _Tp* result_array,
-		     _Tp a, _Tp b)
+  jacobi_value_array(int np, const _Tp* x, _Tp* result_array,
+		     int n, _Tp a, _Tp b)
   {
     if (n == 0)
       {
@@ -109,9 +109,11 @@ template<typename _Tp>
  */
 template<typename _Tp>
   int
-  jacobi_deriv_array(int np, const _Tp* x, int n, _Tp* result_array, double a, double b)
+  jacobi_deriv_array(int np, const _Tp* x, _Tp* result_array,
+		     int n, double a, double b)
   {
-    int code = jacobi_value_array(np, x, n - 1, result_array, a + _Tp{1}, b + _Tp{1});
+    int code = jacobi_value_array(np, x, result_array,
+			          n - 1, a + _Tp{1}, b + _Tp{1});
     if (code)
       return code;
     
@@ -167,7 +169,8 @@ template<typename _Tp>
 	     * std::tgamma(this->beta + _Tp(this->Q + 1))
 	     / std::tgamma(this->alpha + this->beta + _Tp(this->Q + 1));
 
-    int code = jacobi_deriv_array(this->x.data(), this->Q, this->w.data(), this->alpha, this->beta);
+    int code = jacobi_deriv_array(this->Q, this->x.data(), this->w.data(),
+				  this->Q, this->alpha, this->beta);
     if (code)
       return code;
 
@@ -203,7 +206,8 @@ template<typename _Tp>
   {
     std::vector<_Tp> pnd(this->Q);
 
-    jacobi_deriv_array(this->x.data(), this->Q, pnd.data(), this->alpha, this->beta);
+    jacobi_deriv_array(this->Q, this->x.data(), pnd.data(),
+		       this->Q, this->alpha, this->beta);
     for (int i = 0; i < this->Q; ++i)
       for (int j = 0; j < this->Q; ++j)
 	if (i != j)
@@ -297,7 +301,8 @@ template<typename _Tp>
     this->x[0] = _Tp{-1};
     this->x[Q - 1] = _Tp{1};
 
-    return this->jacobi_zeros(this->x.data() + 1, this->Q - 2, this->alpha + _Tp{1}, this->beta + _Tp{1});
+    return this->jacobi_zeros(this->x.data() + 1,
+			      this->Q - 2, this->alpha + _Tp{1}, this->beta + _Tp{1});
   }
 
 
@@ -321,12 +326,13 @@ template<typename _Tp>
 	     * std::tgamma(this->beta + this->Q)
 	     / std::tgamma(this->alpha + this->beta + _Tp(this->Q + 1));
 
-    jacobi_value_array(this->x.data(), this->Q - 1/*2?*/, this->w.data(), this->alpha, this->beta);
+    jacobi_value_array(this->Q, this->x.data(), this->w.data(),
+		       this->Q - 1, this->alpha, this->beta);
 
     this->w[0] = (this->beta + _Tp{1}) * coef / (this->w[0] * this->w[0]);
     for (int i = 1; i < this->Q - 1; ++i)
       {
-	const auto xx = this->x[i + 1];
+	//const auto xx = this->x[i + 1];
 	const auto ww = this->w[i + 1];
         this->w[i] = coef / (ww * ww);
       }
@@ -365,8 +371,8 @@ template<typename _Tp>
     pnd[this->Q - 1] = -_Tp{2} * std::tgamma(_Tp(this->Q) + this->alpha)
 		     / std::tgamma(_Tp(this->Q - 1))
 		     / std::tgamma(this->alpha + _Tp{2});
-    jacobi_deriv_array(this->x.data() + 1, this->Q - 2, pnd.data() + 1,
-		       this->alpha + _Tp{1}, this->beta + _Tp{1});
+    jacobi_deriv_array(this->Q - 2, this->x.data() + 1, pnd.data() + 1,
+		       this->Q - 2, this->alpha + _Tp{1}, this->beta + _Tp{1});
 
     for (int i = 1; i < this->Q - 1; ++i)
       pnd[i] *= (_Tp{1} - this->x[i]) * (_Tp{1} + this->x[i]);
@@ -466,7 +472,8 @@ template<typename _Tp>
     // The zeros
     this->x[0] = _Tp{-1};
 
-    return this->jacobi_zeros(this->x.data() + 1, this->Q - 1, this->alpha, this->beta + _Tp{1});
+    return this->jacobi_zeros(this->x.data() + 1,
+			      this->Q - 1, this->alpha, this->beta + _Tp{1});
   }
 
 /**
@@ -490,7 +497,8 @@ template<typename _Tp>
 	     * std::tgamma(this->beta + this->Q)
 	     / std::tgamma(this->alpha + this->beta + _Tp(this->Q + 1));
 
-    jacobi_value_array(this->x.data(), this->Q - 1, this->w.data(), this->alpha, this->beta);
+    jacobi_value_array(this->Q, this->x.data(), this->w.data(),
+		       this->Q - 1, this->alpha, this->beta);
 
     //this->w[0] = coef * (this->beta + _Tp{1}) * (_Tp{1} - xx) / (this->w[0] * this->w[0]);
     for (int i = 0/*1*/; i < this->Q; ++i)
@@ -526,7 +534,8 @@ template<typename _Tp>
   {
     std::vector<_Tp> pnd(this->Q);
 
-    jacobi_deriv_array(this->x.data(), this->Q - 1, pnd.data(), this->alpha, this->beta + _Tp{1});
+    jacobi_deriv_array(this->Q, this->x.data(), pnd.data(),
+		       this->Q - 1, this->alpha, this->beta + _Tp{1});
     for (int i = 1; i < Q; ++i)
       pnd[i] *= (_Tp{1} + x[i]);
 
@@ -634,7 +643,8 @@ template<typename _Tp>
     // The zeros
     this->x[Q - 1] = _Tp{1};
 
-    return this->jacobi_zeros(this->x.data(), this->Q - 1, this->alpha + _Tp{1}, this->beta);
+    return this->jacobi_zeros(this->x.data(),
+			      this->Q - 1, this->alpha + _Tp{1}, this->beta);
   }
 
 
@@ -659,7 +669,8 @@ template<typename _Tp>
 	     * std::tgamma(this->beta + this->Q)
 	     / std::tgamma(this->alpha + this->beta + _Tp(this->Q + 1));
 
-    jacobi_value_array(this->x.data(), this->Q - 1, this->w.data(), this->alpha, this->beta);
+    jacobi_value_array(this->Q, this->x.data(), this->w.data(),
+		       this->Q - 1, this->alpha, this->beta);
     for (int i = 0; i < this->Q; ++i)
       {
 	const auto xx = this->x[i];
@@ -693,7 +704,8 @@ template<typename _Tp>
   {
     std::vector<_Tp> pnd(this->Q);
 
-    jacobi_deriv_array(this->x.data(), this->Q - 1, pnd.data(), this->alpha + _Tp{1}, this->beta);
+    jacobi_deriv_array(this->Q - 1, this->x.data(), pnd.data(),
+		       this->Q - 1, this->alpha + _Tp{1}, this->beta);
     for (int i = 0; i < this->Q - 1; ++i)
       pnd[i] *= (_Tp{1} - x[i]);
 
