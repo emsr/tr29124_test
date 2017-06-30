@@ -541,7 +541,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__term) < _S_eps * std::abs(__sum))
 	    break;
 	}
-      return 2 * __sum;
+      return _Real{2} * __sum;
     }
 
   /**
@@ -563,27 +563,27 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__isnan(__q) || __isnan(__x))
 	return _Tp{_S_NaN};
-      else if (std::abs(__q) >= _Tp{1})
+      else if (std::abs(__q) >= _Real{1})
 	std::__throw_domain_error(__N("__jacobi_theta_1:"
 				      " nome q out of range"));
       else
 	{
 	  auto __tau = std::log(__q) / _S_pi / _S_i;
-	  // theta_1(tau+1, z) = theta4(tau, z)
+	  // theta_1(tau+1, z) = theta_1(tau, z)
 	  const auto __itau = std::floor(std::real(__tau));
 	  __tau -= __itau;
-	  //const auto __phase = _S_pi * __itau / _Real{4};
-	  // theta_1(xxxx, z) = theta_1(xxxx, z)
+	  const auto __ph = __polar_pi(_Real{1}, __itau / _Real{4});
 	  if (std::imag(__q) < 0.5)
 	    {
 	      const auto __fact = _S_i * std::sqrt(-_S_i * __tau);
-	      __tau = -1 / __tau;
+	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
 	      __q = std::exp(_S_i * _S_pi * __tau);
-	      return __phase * __jacobi_theta_1_sum(__q, __tau * __x) / __fact;
+	      return __ph * __phase * __jacobi_theta_1_sum(__q, __tau * __x)
+			 / __fact;
 	    }
 	  else
-	    return __jacobi_theta_1_sum(__q, __x);
+	    return __ph * __jacobi_theta_1_sum(__q, __x);
 	}
     }
 
@@ -612,7 +612,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__term) < _S_eps * std::abs(__sum))
 	    break;
 	}
-      return 2 * __sum;
+      return _Real{2} * __sum;
     }
 
   /**
@@ -634,27 +634,27 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__isnan(__q) || __isnan(__x))
 	return _Tp{_S_NaN};
-      else if (std::abs(__q) >= _Tp{1})
+      else if (std::abs(__q) >= _Real{1})
 	std::__throw_domain_error(__N("__jacobi_theta_2:"
 				      " nome q out of range"));
       else
 	{
 	  auto __tau = std::log(__q) / _S_pi / _S_i;
-	  // theta_2(tau+1, z) = theta4(tau, z)
+	  // theta_2(tau+1, z) = theta_2(tau, z)
 	  const auto __itau = std::floor(std::real(__tau));
 	  __tau -= __itau;
-	  //const auto __phase = _S_pi * __itau / _Real{4};
-	  // theta_2(xxxx, z) = theta_2(xxxx, z)
+	  const auto __ph = __polar_pi(_Real{1}, __itau / _Real{4});
 	  if (std::imag(__q) < 0.5)
 	    {
 	      const auto __fact = std::sqrt(-_S_i * __tau);
-	      __tau = -1 / __tau;
+	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
 	      __q = std::exp(_S_i * _S_pi * __tau);
-	      return __phase * __jacobi_theta_2_sum(__q, __tau * __x) / __fact;
+	      return __ph * __phase * __jacobi_theta_2_sum(__q, __tau * __x)
+			 / __fact;
 	    }
 	  else
-	    return __jacobi_theta_2_sum(__q, __x);
+	    return __ph * __jacobi_theta_2_sum(__q, __x);
 	}
     }
 
@@ -682,7 +682,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__term) < _S_eps * std::abs(__sum))
 	    break;
 	}
-      return 2 * __sum;
+      return _Real{2} * __sum;
     }
 
   /**
@@ -704,21 +704,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__isnan(__q) || __isnan(__x))
 	return _Tp{_S_NaN};
-      else if (std::abs(__q) >= _Tp{1})
+      else if (std::abs(__q) >= _Real{1})
 	std::__throw_domain_error(__N("__jacobi_theta_3:"
 				      " nome q out of range"));
       else
 	{
 	  auto __tau = std::log(__q) / _S_pi / _S_i;
-	  // theta_3(tau+1, z) = theta4(tau, z)
+	  // theta_3(tau+1, z) = theta_3(tau, z)
 	  const auto __itau = std::floor(std::real(__tau));
 	  __tau -= __itau;
-	  //const auto __phase = _S_pi * __itau / _Real{4};
-	  // theta_3(xxxx, z) = theta_3(xxxx, z)
 	  if (std::imag(__q) < 0.5)
 	    {
 	      const auto __fact = std::sqrt(-_S_i * __tau);
-	      __tau = -1 / __tau;
+	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
 	      __q = std::exp(_S_i * _S_pi * __tau);
 	      return __phase * __jacobi_theta_3_sum(__q, __tau * __x) / __fact;
@@ -754,7 +752,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__term) < _S_eps * std::abs(__sum))
 	    break;
 	}
-      return 2 * __sum;
+      return _Real{2} * __sum;
     }
 
   /**
@@ -776,21 +774,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__isnan(__q) || __isnan(__x))
 	return _Tp{_S_NaN};
-      else if (std::abs(__q) >= _Tp{1})
+      else if (std::abs(__q) >= _Real{1})
 	std::__throw_domain_error(__N("__jacobi_theta_4:"
 				      " nome q out of range"));
       else
 	{
 	  auto __tau = std::log(__q) / _S_pi / _S_i;
-	  // theta_4(tau+1, z) = theta4(tau, z)
+	  // theta_4(tau+1, z) = theta_4(tau, z)
 	  const auto __itau = std::floor(std::real(__tau));
 	  __tau -= __itau;
-	  //const auto __phase = _S_pi * __itau / _Real{4};
-	  // theta_4(xxxx, z) = theta_4(xxxx, z)
 	  if (std::imag(__q) < 0.5)
 	    {
 	      const auto __fact = std::sqrt(-_S_i * __tau);
-	      __tau = -1 / __tau;
+	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
 	      __q = std::exp(_S_i * _S_pi * __tau);
 	      return __phase * __jacobi_theta_4_sum(__q, __tau * __x) / __fact;
