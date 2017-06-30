@@ -513,6 +513,69 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
     }
 
+  template<typename _Tp>
+    struct __jacobi_theta_0_t
+    {
+      _Tp th1p, th1ppp;
+      _Tp th2, th2pp;
+      _Tp th3, th3pp;
+      _Tp th4, th4pp;
+      //_Tp e1, e2, e3;
+      //_Tp g2, g3;
+    };
+
+  /**
+   * Return a struct of the Jacobi theta functions and up to three non-zero derivatives
+   * evaluated at zero argument.
+   */
+  template<typename _Tp>
+    __jacobi_theta_0_t<_Tp>
+    __jacobi_theta_0(_Tp __q)
+    {
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__q));
+      constexpr std::size_t _S_max_iter = 50;
+
+      const auto __fact = _Real{2} * std::pow(__q, _Real{0.25L});
+      __jacobi_theta_0_t<_Tp> __ret;
+      __ret.th1p = __fact;
+      __ret.th2 = __fact;
+      __ret.th3 = _Real{1};
+      __ret.th4 = _Real{1};
+      const auto __q2n = _Tp{1};
+      for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
+	{
+	  const auto __q2n *= __q;
+	  const auto __tp = _Real(1) + __q2n;
+	  __ret.th3 *= __tp * __tp;
+	  const auto __tm = _Real(1) - __q2n;
+	  __ret.th4 *= __tm * __tm;
+	  const auto __q2n *= __q;
+	  const auto __tm2 = _Real(1) - __q2n;
+	  __ret.th3 *= __tm2;
+	  __ret.th4 *= __tm2;
+	  __ret.th2 *= __tm2;
+	  __ret.th1p *= __tm2 * __tm2 * __tm2;
+	  const auto __tp2 = _Real(1) + __q2n;
+	  __ret.th2 *= __tp2 * __tp2;
+	  if (std::abs(__q2n) < _S_eps)
+	    break;
+	}
+      //const auto __th22 = __ret.th2 * __ret.th2;
+      //const auto __th24 = __th22 * __th22;
+      //const auto __th42 = __ret.th4 * __ret.th4;
+      //const auto __th44 = __th42 * __th42;
+      //const auto __fr = _S_pi / __omega1;
+      //const auto __fc = __fr * __fr / _Real{12};
+      //__ret.e1 = __fc * (__th24 + _Real{2} * __th44);
+      //__ret.e2 = __fc * (__th24 - __th44 );
+      //__ret.e3 = __fc * (_Real{-2} * __th24 - __th44 );
+      //__ret.g2 = _Real{2} * (__ret.e1 * __ret.e1
+      //		     + __ret.e2 * __ret.e2
+      //		     + __ret.e3 * __ret.e3);
+      //__ret.g3 = _Real{4} * __ret.e1 * __ret.e2 * __ret.e3;
+    }
+
   /**
    * Return the Jacobi @f$ \theta_1 @f$ function by summation of the series.
    *
@@ -657,7 +720,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __itau = std::floor(std::real(__tau));
 	  __tau -= __itau;
 	  //const auto __phase = _S_pi * __itau / _Real{4};
-	  // theta_4(xxxx, z) = theta4(xxxx, z)
+	  // theta_4(xxxx, z) = theta_4(xxxx, z)
 	  if (std::imag(__q) < 0.5)
 	    __tau = -1 / __tau;
 	  return __jacobi_theta_4_sum(__q, __x);
