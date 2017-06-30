@@ -1,5 +1,7 @@
 
-all: \
+FPC = D:/FPC/2.6.4/bin/i386-win32/fpc
+
+OBJS = \
  amath.o \
  amcmplx.o \
  amtools.o \
@@ -20,60 +22,63 @@ all: \
  specfun.o \
  specfunx.o
 
+libamath: $(OBJS)
+	$(FPC) -Xc $(OBJS)
+
 amath.o: amath.pas
-	fpc amath
+	$(FPC) amath
 
 amcmplx.o: amcmplx.pas
-	fpc amcmplx
+	$(FPC) amcmplx
 
 amtools.o: amtools.pas
-	fpc amtools
+	$(FPC) amtools
 
 memh.o: memh.pas
-	fpc memh
+	$(FPC) memh
 
 sfbasic.o: sfbasic.pas
-	fpc sfbasic
+	$(FPC) sfbasic
 
 sfbessel.o: sfbessel.pas
-	fpc sfbessel
+	$(FPC) sfbessel
 
 sfellint.o: sfellint.pas
-	fpc sfellint
+	$(FPC) sfellint
 
 sferf.o: sferf.pas
-	fpc sferf
+	$(FPC) sferf
 
 sfexpint.o: sfexpint.pas
-	fpc sfexpint
+	$(FPC) sfexpint
 
 sfgamma2.o: sfgamma2.pas
-	fpc sfgamma2
+	$(FPC) sfgamma2
 
 sfgamma.o: sfgamma.pas
-	fpc sfgamma
+	$(FPC) sfgamma
 
 sfhyperg.o: sfhyperg.pas
-	fpc sfhyperg
+	$(FPC) sfhyperg
 
 sfmisc.o: sfmisc.pas
-	fpc sfmisc
+	$(FPC) sfmisc
 
 sfpoly.o: sfpoly.pas
-	fpc sfpoly
+	$(FPC) sfpoly
 
 sfsdist.o: sfsdist.pas
-	fpc sfsdist
+	$(FPC) sfsdist
 
 sfzeta2.o: sfzeta2.pas
-	fpc sfzeta2
+	$(FPC) sfzeta2
 
 sfzeta.o: sfzeta.pas
-	fpc sfzeta
+	$(FPC) sfzeta
 
 specfun.o: specfun.pas
-	fpc specfun
+	$(FPC) specfun
 
 specfunx.o: specfunx.pas
-	fpc specfunx
+	$(FPC) specfunx
 

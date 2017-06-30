@@ -120,7 +120,7 @@ int wrightomega_ext ( complex <double> z, complex <double> &w,
 //
 {
   double near;
-  double pi = M_PI;
+  double pi = 3.1415926535897932384626433832795029;//M_PI;
   complex <double> pz;
   double s = 1.0;
   complex <double> t;

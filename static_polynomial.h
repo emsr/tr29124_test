@@ -63,8 +63,19 @@ namespace __gnu_cxx
 	    this->_M_coeff[__i] = static_cast<value_type>(__arr[__i]);
 	}
 
+      //  Constructor from initializer_list array.
+      constexpr
+      _StaticPolynomial(std::initializer_list<_Tp> __il)
+      : _M_coeff{}
+      {
+	static_assert(__il.size() == _Num, "");
+	std::size_t __i = 0;
+	for (auto&& __coeff : __il)
+	  this->_M_coeff[__i++] = __coeff;
+      }
+
       /**
-       *  Create a polynomial of just one constant term.
+       *  Create a polynomial - actually a monomial - of just one term.
        */
       constexpr explicit
       _StaticPolynomial(value_type __a, size_type __degree = 0)
