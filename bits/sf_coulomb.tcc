@@ -200,7 +200,7 @@ template<typename _Tp>
     std::complex<_Tp>
     __coulomb_CF2(unsigned int __l, _Tp __eta, _Tp __x)
     {
-      const auto _S_i = std::complex{0, 1};
+      const auto _S_i = std::complex<_Tp>{0, 1};
       const auto _CF2_acc = _Tp{4} * std::numeric_limits<_Tp>::epsilon();
       const auto _CF2_abort = 2.0e+05;
 
@@ -221,7 +221,7 @@ template<typename _Tp>
         {
 	  __PQ += __dpq;
 	  __pk += _Tp{2};
-	  __a += std::complex(__pk, __wi);
+	  __a += std::complex<_Tp>(__pk, __wi);
 	  __b += _Tp{2} * _S_i;
 	  __d = __b + __a * __d;
 	  __d = std::conj(__d) / std::norm(__d);
