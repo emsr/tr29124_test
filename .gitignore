@@ -29,15 +29,15 @@ test_owens_t.txt
 # Another git repo
 zeta
 
-run_coulfg
-
 bernoulli
 
 complex_literal_bug
 
 build_bernoulli_2n_table
+build_cordic
 build_etam1_table
 build_gamma_lanczos
+build_gamma_recip
 build_gamma_spouge
 build_log_table
 build_nfact_zetanp1
@@ -218,8 +218,6 @@ debug_polylog
 
 poly_root
 
-mpreal_gamma_recip
-
 complex_literal_arith
 diff_special_function
 diff_local_special_function
@@ -251,6 +249,7 @@ test_conf_hyperg
 test_conf_hyperg_limit
 test_const
 test_continued_fraction
+test_cordic
 test_coulomb
 test_csint
 test_cyl_bessel_zeros
@@ -266,7 +265,6 @@ test_factorial
 test_falling_factorial
 test_faddeeva
 test_fermi_dirac
-test_fibonacci
 test_float128
 test_fresnel
 test_gamma
