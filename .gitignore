@@ -302,7 +302,9 @@ test_little_airy
 test_lobatto
 test_local_special_function
 test_lommel
+test_marcum_q
 test_math_h
+test_maxint
 test_mittag_leffler
 test_mpreal
 test_notsospecfun 
@@ -310,6 +312,7 @@ test_nric_bessel
 test_numeric_limits
 test_owens_t
 test_parab_cyl
+test_polygamma
 test_polylog
 test_polynomial
 test_pow_funs
@@ -318,6 +321,7 @@ test_power_mean
 test_power_norm
 test_promote_num
 test_psi
+test_quadratic
 test_rational
 test_ratpoly
 test_recursion
