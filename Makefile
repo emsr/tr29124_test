@@ -307,10 +307,10 @@ testcases_tr1: testcase_tr1
 	LD_LIBRARY_PATH=/home/ed/bin$(SUFFIX)/lib64:wrappers/debug:$$LD_LIBRARY_PATH ./testcase_tr1
 
 diffs: diff_special_function
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./diff_special_function > diff_special_function.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):wrappers/debug:$$LD_LIBRARY_PATH ./diff_special_function > diff_special_function.txt
 
 tests: test_special_function
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_special_function > test_special_function.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):wrappers/debug:$$LD_LIBRARY_PATH ./test_special_function > test_special_function.txt
 
 test:
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_airy > test_airy.txt

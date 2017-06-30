@@ -81,8 +81,8 @@ main()
     using __gnu_cxx::chebyshev_v;
     using __gnu_cxx::chebyshev_w;
     using __gnu_cxx::clausen;
-    using __gnu_cxx::clausen_c;
-    using __gnu_cxx::clausen_s;
+    using __gnu_cxx::clausen_cl;
+    using __gnu_cxx::clausen_sl;
     using __gnu_cxx::comp_ellint_d;
     using       std::comp_ellint_1;
     using       std::comp_ellint_2;
@@ -248,7 +248,7 @@ main()
     // Binomial coefficient.
     std::cout << "binomial" << '\n';
     basename = "diff_binomial";
-    rundiff(binomial<Real>, gsl::choose, basename,
+    rundiff(binomial<Real>, gsl::binomial, basename,
 	    "n", fill_argument(std::make_pair(0U, 50U),
 	    		       std::make_pair(true, true), 51),
 	    "k", fill_argument(std::make_pair(0U, 50U),
@@ -257,7 +257,7 @@ main()
     // Log binomial coefficient.
     std::cout << "lbinomial" << '\n';
     basename = "diff_lbinomial";
-    rundiff(lbinomial<Real>, gsl::lnchoose, basename,
+    rundiff(lbinomial<Real>, gsl::lbinomial, basename,
 	    "n", fill_argument(std::make_pair(0U, 200U),
 			       std::make_pair(true, true), 201),
 	    "k", fill_argument(std::make_pair(0U, 200U),
@@ -821,7 +821,7 @@ main()
     // Binomial coefficient.
     std::cout << "binomial" << '\n';
     basename = "diff_binomial";
-    rundiff(binomial<Real>, gsl::choose, basename,
+    rundiff(binomial<Real>, gsl::binomial, basename,
 	    "n", fill_argument(std::make_pair(0U, 50U),
 			       std::make_pair(true, true), 51),
 	    "k", fill_argument(std::make_pair(0U, 50U),
@@ -830,7 +830,7 @@ main()
     // Log binomial coefficient.
     std::cout << "lbinomial" << '\n';
     basename = "diff_lbinomial";
-    rundiff(lbinomial<Real>, gsl::lnchoose, basename,
+    rundiff(lbinomial<Real>, gsl::lbinomial, basename,
 	    "n", fill_argument(std::make_pair(0U, 200U),
 			       std::make_pair(true, true), 201),
 	    "k", fill_argument(std::make_pair(0U, 200U),
@@ -1018,10 +1018,10 @@ main()
 	    "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 			       std::make_pair(true, true), 21));
 
-    // clausen_c function.
-    std::cout << "clausen_c" << '\n';
-    basename = "diff_clausen_c";
-    rundiff(clausen_c, gsl::clausen_c, basename,
+    // clausen_cl function.
+    std::cout << "clausen_cl" << '\n';
+    basename = "diff_clausen_cl";
+    rundiff(clausen_cl, gsl::clausen_cl, basename,
 	    "m", fill_argument(std::make_pair(2U, 2U),
 			       std::make_pair(true, true), 1),
 	    "w", fill_argument(std::make_pair(Real{-10}, Real{+10}),

@@ -67,29 +67,30 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	     and argument x.
    */
   template<typename _Tp>
-    _Tp
+    __gnu_cxx::__hermite_t<_Tp>
     __poly_hermite_recursion(unsigned int __n, _Tp __x)
     {
       // Compute H_0.
       auto __H_nm2 = _Tp{1};
       if (__n == 0)
-	return __H_nm2;
+	return {__n, __x, __H_nm2, _Tp{0}, _Tp{0}};
 
       // Compute H_1.
       auto __H_nm1 = _Tp{2} * __x;
       if (__n == 1)
-	return __H_nm1;
+	return {__n, __x, __H_nm1, __H_nm2, _Tp{0}};
 
       // Compute H_n.
-      _Tp __H_n;
-      for (unsigned int __i = 2; __i <= __n; ++__i)
+      auto __H_n = _Tp{2} * (__x * __H_nm1 - __H_nm2);
+      for (unsigned int __i = 3; __i <= __n; ++__i)
 	{
-	  __H_n = _Tp{2} * (__x * __H_nm1 - _Tp(__i - 1) * __H_nm2);
 	  __H_nm2 = __H_nm1;
 	  __H_nm1 = __H_n;
+	  __H_n = _Tp{2} * (__x * __H_nm1 - _Tp(__i - 1) * __H_nm2);
 	}
 
-      return __H_n;
+      //auto __Hp_n = std::sqrt(_Tp(2 * __n)) * __H_nm1;
+      return {__n, __x, __H_n, __H_nm1, __H_nm2};
     }
 
   /**
@@ -190,7 +191,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (__n > 10000)
 	return __poly_hermite_asymp(__n, __x);
       else
-	return __poly_hermite_recursion(__n, __x);
+	return __poly_hermite_recursion(__n, __x).__H_n;
     }
 
   /**
@@ -213,29 +214,29 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	     and argument x.
    */
   template<typename _Tp>
-    _Tp
+    __gnu_cxx::__hermite_he_t<_Tp>
     __poly_prob_hermite_recursion(unsigned int __n, _Tp __x)
     {
       // Compute He_0.
       auto __He_nm2 = _Tp{1};
       if (__n == 0)
-	return __He_nm2;
+	return {__n, __x, __He_nm2, _Tp{0}, _Tp{0}};
 
       // Compute He_1.
       auto __He_nm1 = __x;
       if (__n == 1)
-	return __He_nm1;
+	return {__n, __x, __He_nm1, __He_nm2, _Tp{0}};
 
       // Compute He_n.
-      _Tp __He_n;
-      for (unsigned int __i = 2; __i <= __n; ++__i)
+      auto __He_n = __x * __He_nm1 - __He_nm2;
+      for (unsigned int __i = 3; __i <= __n; ++__i)
 	{
-	  __He_n = __x * __He_nm1 - _Tp(__i - 1) * __He_nm2;
 	  __He_nm2 = __He_nm1;
 	  __He_nm1 = __He_n;
+	  __He_n = __x * __He_nm1 - _Tp(__i - 1) * __He_nm2;
 	}
 
-      return __He_n;
+      return {__n, __x, __He_n, __He_nm1, __He_nm2};
     }
 
   /**
@@ -283,10 +284,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 	}
 
-      _Tp __z;
-      _Tp __w;
       for (auto __i = 1u; __i <= __m; ++__i)
 	{
+	  _Tp __z;
+	  _Tp __w;
 	  if (__i == 1)
 	    __z = std::sqrt(_Tp(2 * __n + 1))
 		- 1.85575 * std::pow(_Tp(2 * __n + 1), -0.166667);

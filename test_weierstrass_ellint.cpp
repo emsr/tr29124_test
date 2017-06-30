@@ -3,7 +3,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_w
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_weierstrass_ellint > test_weierstrass_ellint.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_weierstrass_ellint test_weierstrass_ellint.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-./test_weierstrass_ellint > test_weierstrass_ellint.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_weierstrass_ellint > test_weierstrass_ellint.txt
 */
 
 #include <ext/cmath>
@@ -78,18 +78,23 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_weierstrass_ellint t
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __parallelogram(const std::complex<_Tp>& __tau, const std::complex<_Tp>& __z)
+    __parallelogram(const std::complex<_Tp>& __tau,
+		    const std::complex<_Tp>& __z)
     {
+      const auto _S_pi = __gnu_cxx::__const_pi<_Tp>();
+
       const auto __tau_r = std::real(__tau);
       const auto __tau_i = std::imag(__tau);
       const auto __z_r = std::real(__z);
       const auto __z_i = std::imag(__z);
+
       // Solve __z = pi*a*(1,0) + pi*b*(tau_r, tau_i).
-      const auto __b = __zi / __tau_i;
+      const auto __b = __z_i / __tau_i / _S_pi;
       const auto __nu = __b - std::floor(__b);
-      const auto __a = (__zr - __b * __tau_r);
+      const auto __a = (__z_r - _S_pi * __b * __tau_r) / _S_pi;
       const auto __mu = __a - std::floor(__a);
-      return std::complex<_Tp>(__mu + __nu * __tau_t, __nu * __tau_i);
+
+      return _S_pi * std::complex<_Tp>(__mu + __nu * __tau_r, __nu * __tau_i);
     }
 
   /**
@@ -107,22 +112,25 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_weierstrass_ellint t
       const auto _S_i = _Cmplx{0, 1};
 
       const auto __tau = __omega3 / __omega1;
+      if (std::imag(__tau) <= _Tp{0})
+	std::__throw_domain_error("Im(omega3/omega1) must be positive.");
+      __z = __parallelogram(__tau, __z);
       const auto __q = std::exp(_S_i * _S_pi * __tau);
 
-      const auto __theta2 = std::__detail::__theta_2(__q, _Cmplx{0});
+      const auto __theta2 = std::__detail::__jacobi_theta_2(__q, _Cmplx{0});
       const auto __theta2p2 = __theta2 * __theta2;
       const auto __theta2p4 = __theta2p2 * __theta2p2;
-      const auto __theta4 = std::__detail::__theta_4(__q, _Cmplx{0});
+      const auto __theta4 = std::__detail::__jacobi_theta_4(__q, _Cmplx{0});
       const auto __theta4p2 = __theta4 * __theta4;
       const auto __theta4p4 = __theta4p2 * __theta4p2;
       const auto __e1 = _S_pi * _S_pi * (__theta2p4 + _Tp{2} * __theta4p4)
 		      / (_Tp{12} * __omega1 * __omega1);
 
       const _Cmplx __arg = _S_pi * __z / _Tp{2} / __omega1;
-      const auto __theta3 = std::__detail::__theta_3(__q, _Cmplx{0});
-      const auto __theta2a = std::__detail::__theta_2(__q, __arg);
+      const auto __theta3 = std::__detail::__jacobi_theta_3(__q, _Cmplx{0});
+      const auto __theta2a = std::__detail::__jacobi_theta_2(__q, __arg);
       const auto __numer = _S_pi * __theta3 * __theta4 * __theta2a;
-      const auto __theta1a = std::__detail::__theta_1(__q, __arg);
+      const auto __theta1a = std::__detail::__jacobi_theta_1(__q, __arg);
       const auto __denom = _Tp{2} * __omega1 * __theta1a;
       const auto __rat = __numer / __denom;
 
@@ -145,19 +153,23 @@ template<typename _Tp>
     const auto omega3 = _Cmplx{0, 3};
     const auto del = _Tp{0.0625};
     for (int ir = -100; ir <= +100; ++ir)
-      for (int ii = -100; ii <= +100; ++ii)
-	{
-	  //const auto z = 0.1 * ir + 0.1i * ii;
-	  // The above fails because of C99 complex.
-	  // Which needs to die.
-	  const auto z = std::complex<_Tp>(del * ir, del * ii);
-	  const auto fancyP = __weierstrass_p(omega1, omega3, z);
-	  std::cout << ' ' << std::setw(w) << std::real(z)
-		    << ' ' << std::setw(w) << std::imag(z)
-		    << ' ' << std::setw(w) << std::real(fancyP)
-		    << ' ' << std::setw(w) << std::imag(fancyP)
-		    << '\n';
-	}
+      {
+	std::cout << '\n';
+	for (int ii = -100; ii <= +100; ++ii)
+	  {
+	    //const auto z = 0.1 * ir + 0.1i * ii;
+	    // The above fails because of C99 complex.
+	    // Which needs to die.
+	    const auto z = _Cmplx(del * ir, del * ii);
+	    const auto fancyP = __weierstrass_p(omega1, omega3, z);
+	    std::cout << ' ' << std::setw(w) << std::real(z)
+		      << ' ' << std::setw(w) << std::imag(z)
+		      << ' ' << std::setw(w) << std::real(fancyP)
+		      << ' ' << std::setw(w) << std::imag(fancyP)
+		      << ' ' << std::setw(w) << std::abs(fancyP)
+		      << '\n';
+	  }
+      }
   }
 
 int

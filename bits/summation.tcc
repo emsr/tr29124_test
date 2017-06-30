@@ -151,9 +151,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       const auto __n = this->_M_part_sum.num_terms() - 1;
       const auto __s_n = this->_M_part_sum();
-      auto& __a = this->_M_a;
 
-      __a.push_back(__s_n);
+      this->_M_a.push_back(__s_n);
       if (__n < 2)
 	this->_M_sum = __s_n;
       else
@@ -162,17 +161,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  for (auto __j = 1; __j <= __lowmax; ++__j)
 	    {
 	      auto __m = __n - 2 * __j;
-	      auto __denom = (__a[__m + 2] - __a[__m + 1])
-			   - (__a[__m + 1] - __a[__m]);
+	      auto __denom = (this->_M_a[__m + 2] - this->_M_a[__m + 1])
+			   - (this->_M_a[__m + 1] - this->_M_a[__m]);
 	      if (std::abs(__denom) < _S_tiny)
-		__a[__m] = _S_huge;
+		this->_M_a[__m] = _S_huge;
 	      else
 		{
-		  auto __del = __a[__m] - __a[__m + 1];
-		  __a[__m] -= __del * __del / __denom;
+		  auto __del = this->_M_a[__m] - this->_M_a[__m + 1];
+		  this->_M_a[__m] -= __del * __del / __denom;
 		}
 	    }
-	  this->_M_sum = __a[__n % 2];
+	  this->_M_sum = this->_M_a[__n % 2];
 	}
     }
 
@@ -190,9 +189,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       const auto __n = this->_M_part_sum.num_terms() - 1;
       const auto __s_n = this->_M_part_sum();
-      auto& __e = this->_M_e;
 
-      __e.push_back(__s_n);
+      this->_M_e.push_back(__s_n);
       if (__n == 0)
         this->_M_sum = __s_n;
       else
@@ -201,14 +199,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
           for (auto __j = __n; __j >= 1; --__j)
             {
 	      auto __aux1 = __aux2;
-	      __aux2 = __e[__j - 1];
-	      auto __diff = __e[__j] - __aux2;
+	      __aux2 = this->_M_e[__j - 1];
+	      auto __diff = this->_M_e[__j] - __aux2;
 	      if (std::abs(__diff) < _S_tiny)
-		__e[__j - 1] = _S_huge;
+		this->_M_e[__j - 1] = _S_huge;
 	      else
-		__e[__j - 1] = __aux1 + _Tp{1} / __diff;
+		this->_M_e[__j - 1] = __aux1 + _Tp{1} / __diff;
 	    }
-	  this->_M_sum = __e[__n % 2];
+	  this->_M_sum = this->_M_e[__n % 2];
         }
       return;
     }
@@ -227,9 +225,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       const auto __n = this->_M_part_sum.num_terms() - 1;
       const auto __s_n = this->_M_part_sum();
-      auto& __arj = this->_M_arj;
 
-      __arj.push_back(__s_n);
+      this->_M_arj.push_back(__s_n);
       if (__n < 3)
 	this->_M_sum = __s_n;
       else
@@ -239,18 +236,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  for (auto __l = 1; __l <= __lmax; ++__l)
 	    {
 	      __m -= 3;
-	      auto __diff0 = __arj[__m + 1] - __arj[__m];
-	      auto __diff1 = __arj[__m + 2] - __arj[__m + 1];
-	      auto __diff2 = __arj[__m + 3] - __arj[__m + 2];
+	      auto __diff0 = this->_M_arj[__m + 1] - this->_M_arj[__m];
+	      auto __diff1 = this->_M_arj[__m + 2] - this->_M_arj[__m + 1];
+	      auto __diff2 = this->_M_arj[__m + 3] - this->_M_arj[__m + 2];
 	      auto __denom = __diff2 * (__diff1 - __diff0)
 			   - __diff0 * (__diff2 - __diff1);
 	      if (std::abs(__denom) < _S_tiny)
-		__arj[__m] = _S_huge;
+		this->_M_arj[__m] = _S_huge;
 	      else
-		__arj[__m] = __arj[__m + 1]
-			   - __diff0 * __diff1 * (__diff2 - __diff1) / __denom;
+		this->_M_arj[__m] = this->_M_arj[__m + 1]
+				  - __diff0 * __diff1
+				    * (__diff2 - __diff1) / __denom;
 	    }
-	  this->_M_sum = __arj[__n % 3];
+	  this->_M_sum = this->_M_arj[__n % 3];
 	}
     }
 
@@ -268,38 +266,35 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       const auto __n = this->_M_part_sum.num_terms() - 1;
       const auto __s_n = this->_M_part_sum();
-      const auto __beta = this->_M_beta;
-      auto& __anum = this->_M_num;
-      auto& __aden = this->_M_den;
 
-      __anum.push_back(__s_n / __r_n);
-      __aden.push_back(value_type{1} / __r_n);
+      this->_M_num.push_back(__s_n / __r_n);
+      this->_M_den.push_back(value_type{1} / __r_n);
       if (__n == 0)
 	this->_M_sum = __s_n;
       else
 	{
-	  __anum[__n - 1] = __anum[__n] - __anum[__n - 1];
-	  __aden[__n - 1] = __aden[__n] - __aden[__n - 1];
+	  this->_M_num[__n - 1] = this->_M_num[__n] - this->_M_num[__n - 1];
+	  this->_M_den[__n - 1] = this->_M_den[__n] - this->_M_den[__n - 1];
 	  if (__n > 1)
 	    {
-	      auto __bn1 = __beta + _Tp(__n - 1);
-	      auto __bn2 = __beta + _Tp(__n);
+	      auto __bn1 = this->_M_beta + _Tp(__n - 1);
+	      auto __bn2 = this->_M_beta + _Tp(__n);
 	      auto __coef = __bn1 / __bn2;
 	      auto __coefp = _Tp{1};
 	      for (auto __j = 2; __j <= __n; ++__j)
 		{
-		  auto __fact = (__beta + _Tp(__n - __j)) * __coefp / __bn2;
-		  __anum[__n - __j] = __anum[__n - __j + 1]
-				    - __fact * __anum[__n - __j];
-		  __aden[__n - __j] = __aden[__n - __j + 1]
-				    - __fact * __aden[__n - __j];
+		  auto __fact = (this->_M_beta + _Tp(__n - __j)) * __coefp / __bn2;
+		  this->_M_num[__n - __j] = this->_M_num[__n - __j + 1]
+					  - __fact * this->_M_num[__n - __j];
+		  this->_M_den[__n - __j] = this->_M_den[__n - __j + 1]
+					  - __fact * this->_M_den[__n - __j];
 		  __coefp *= __coef;
 		}
 	    }
-	  if (std::abs(__aden[0]) < _S_tiny)
+	  if (std::abs(this->_M_den[0]) < _S_tiny)
 	    this->_M_sum = _S_huge;
 	  else
-	    this->_M_sum = __anum[0] / __aden[0];
+	    this->_M_sum = this->_M_num[0] / this->_M_den[0];
 	}
     }
 
@@ -317,36 +312,33 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       const auto __n = this->_M_part_sum.num_terms() - 1;
       const auto __s_n = this->_M_part_sum();
-      const auto __beta = this->_M_beta;
-      auto& __anum = this->_M_num;
-      auto& __aden = this->_M_den;
 
-      __anum.push_back(__s_n / __r_n);
-      __aden.push_back(value_type{1} / __r_n);
+      this->_M_num.push_back(__s_n / __r_n);
+      this->_M_den.push_back(value_type{1} / __r_n);
       if (__n == 0)
 	this->_M_sum = __s_n;
       else
 	{
-	  __anum[__n - 1] = __anum[__n] - __anum[__n - 1];
-	  __aden[__n - 1] = __aden[__n] - __aden[__n - 1];
+	  this->_M_num[__n - 1] = this->_M_num[__n] - this->_M_num[__n - 1];
+	  this->_M_den[__n - 1] = this->_M_den[__n] - this->_M_den[__n - 1];
 	  if (__n > 1)
 	    {
-	      auto __bn1 = __beta + _Tp(__n - 2);
-	      auto __bn2 = __beta + _Tp(__n - 1);
+	      auto __bn1 = this->_M_beta + _Tp(__n - 2);
+	      auto __bn2 = this->_M_beta + _Tp(__n - 1);
 	      for (auto __j = 2; __j <= __n; ++__j)
 		{
 		  auto __fact = __bn1 * __bn2
 			   / ((__bn1 + _Tp(__j - 1)) * (__bn2 + _Tp(__j - 1)));
-		  __anum[__n - __j] = __anum[__n - __j + 1]
-				    - __fact * __anum[__n - __j];
-		  __aden[__n - __j] = __aden[__n - __j + 1]
-				    - __fact * __aden[__n - __j];
+		  this->_M_num[__n - __j] = this->_M_num[__n - __j + 1]
+					  - __fact * this->_M_num[__n - __j];
+		  this->_M_den[__n - __j] = this->_M_den[__n - __j + 1]
+					  - __fact * this->_M_den[__n - __j];
 		}
 	    }
-	  if (std::abs(__aden[0]) < _S_tiny)
+	  if (std::abs(this->_M_den[0]) < _S_tiny)
 	    this->_M_sum = _S_huge;
 	  else
-	    this->_M_sum = __anum[0] / __aden[0];
+	    this->_M_sum = this->_M_num[0] / this->_M_den[0];
 	}
     }
 

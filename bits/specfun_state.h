@@ -55,6 +55,75 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
   /**
+   * A struct to store the state of a Hermite polynomial.
+   */
+  template<typename _Tp>
+    struct __hermite_t
+    {
+      std::size_t __n;
+      _Tp __x;
+      _Tp __H_n;
+      _Tp __H_nm1;
+      _Tp __H_nm2;
+
+      _Tp
+      deriv() const
+      { return _Tp(2 * __n) * __H_nm1; }
+    };
+
+  /**
+   * A struct to store the state of a probabilist Hermite polynomial.
+   */
+  template<typename _Tp>
+    struct __hermite_he_t
+    {
+      std::size_t __n;
+      _Tp __x;
+      _Tp __He_n;
+      _Tp __He_nm1;
+      _Tp __He_nm2;
+
+      _Tp
+      deriv() const
+      { return _Tp(__n) * __He_nm1; }
+    };
+
+  /**
+   * A struct to store the state of a Legendre polynomial.
+   */
+  template<typename _Tp>
+    struct __legendre_t
+    {
+      std::size_t __l;
+      _Tp __z;
+      _Tp __P_l;
+      _Tp __P_lm1;
+      _Tp __P_lm2;
+
+      _Tp
+      deriv() const
+      { return __l * (__z * __P_l - __P_lm1) / (__z * __z - _Tp{1}); }
+    };
+
+  /**
+   * A struct to store the state of a Laguerre polynomial.
+   */
+  template<typename _Tp, typename _Tpa>
+    struct __laguerre_t
+    {
+      std::size_t __n;
+      _Tpa __alpha1;
+      _Tp __x;
+      _Tp __L_n;
+      _Tp __L_nm1;
+      _Tp __L_nm2;
+
+      _Tp
+      deriv() const
+      { return (_Tp(__n) * __L_nm1 - _Tp(__n + __alpha1) * __L_nm2) / __x; }
+    };
+
+  /**
    * A struct to store a cosine and a sine value.
    * A return for sincos-type functions.
    */
