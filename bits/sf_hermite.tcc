@@ -73,12 +73,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Compute H_0.
       auto __H_nm2 = _Tp{1};
       if (__n == 0)
-	return {__H_nm2, _Tp{0}, _Tp{0}};
+	return {__n, __x, __H_nm2, _Tp{0}, _Tp{0}};
 
       // Compute H_1.
       auto __H_nm1 = _Tp{2} * __x;
       if (__n == 1)
-	return {__H_nm1, __H_nm2, _Tp{0}};
+	return {__n, __x, __H_nm1, __H_nm2, _Tp{0}};
 
       // Compute H_n.
       auto __H_n = _Tp{2} * (__x * __H_nm1 - __H_nm2);
@@ -90,7 +90,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
 
       //auto __Hp_n = std::sqrt(_Tp(2 * __n)) * __H_nm1;
-      return {__H_n, __H_nm1, __H_nm2};
+      return {__n, __x, __H_n, __H_nm1, __H_nm2};
     }
 
   /**
@@ -220,12 +220,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Compute He_0.
       auto __He_nm2 = _Tp{1};
       if (__n == 0)
-	return {__He_nm2, _Tp{0}, _Tp{0}};
+	return {__n, __x, __He_nm2, _Tp{0}, _Tp{0}};
 
       // Compute He_1.
       auto __He_nm1 = __x;
       if (__n == 1)
-	return {__He_nm1, __He_nm2, _Tp{0}};
+	return {__n, __x, __He_nm1, __He_nm2, _Tp{0}};
 
       // Compute He_n.
       auto __He_n = __x * __He_nm1 - __He_nm2;
@@ -236,7 +236,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __He_n = __x * __He_nm1 - _Tp(__i - 1) * __He_nm2;
 	}
 
-      return {__He_n, __He_nm1, __He_nm2};
+      return {__n, __x, __He_n, __He_nm1, __He_nm2};
     }
 
   /**
