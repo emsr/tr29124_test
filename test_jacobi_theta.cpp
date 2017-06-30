@@ -43,10 +43,10 @@ template<typename _Tp>
 	  {
 	    auto x = j * del01;
 	    std::cout << ' ' << std::setw(w) << x
-		      << ' ' << std::setw(w) << __gnu_cxx::jacobi_theta_1(nu, x)
-		      << ' ' << std::setw(w) << __gnu_cxx::jacobi_theta_2(nu, x)
-		      << ' ' << std::setw(w) << __gnu_cxx::jacobi_theta_3(nu, x)
-		      << ' ' << std::setw(w) << __gnu_cxx::jacobi_theta_4(nu, x)
+		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(nu, x)
+		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(nu, x)
+		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(nu, x)
+		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(nu, x)
 		      << '\n';
 	  }
       }
@@ -68,10 +68,10 @@ template<typename _Tp>
       {
 	auto x = _S_pi * i / 100;
 	std::cout << ' ' << std::setw(w) << x
-		  << ' ' << std::setw(w) << __gnu_cxx::jacobi_theta_1(q0, x)
-		  << ' ' << std::setw(w) << __gnu_cxx::jacobi_theta_2(q0, x)
-		  << ' ' << std::setw(w) << __gnu_cxx::jacobi_theta_3(q0, x)
-		  << ' ' << std::setw(w) << __gnu_cxx::jacobi_theta_4(q0, x)
+		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(q0, x)
+		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(q0, x)
+		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(q0, x)
+		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(q0, x)
 		  << '\n';
       }
 
@@ -81,7 +81,7 @@ template<typename _Tp>
 	auto x = _S_pi * i / 100;
 	std::cout << ' ' << std::setw(w) << x;
 	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
-	  std::cout << ' ' << std::setw(w) << __gnu_cxx::jacobi_theta_1(q, x);
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(q, x);
 	std::cout << '\n';
       }
 
@@ -91,7 +91,7 @@ template<typename _Tp>
 	auto x = _S_pi * i / 100;
 	std::cout << ' ' << std::setw(w) << x;
 	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
-	  std::cout << ' ' << std::setw(w) << __gnu_cxx::jacobi_theta_2(q, x);
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(q, x);
 	std::cout << '\n';
       }
 
@@ -101,7 +101,7 @@ template<typename _Tp>
 	auto x = _S_pi * i / 100;
 	std::cout << ' ' << std::setw(w) << x;
 	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
-	  std::cout << ' ' << std::setw(w) << __gnu_cxx::jacobi_theta_3(q, x);
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(q, x);
 	std::cout << '\n';
       }
 
@@ -111,7 +111,7 @@ template<typename _Tp>
 	auto x = _S_pi * i / 100;
 	std::cout << ' ' << std::setw(w) << x;
 	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
-	  std::cout << ' ' << std::setw(w) << __gnu_cxx::jacobi_theta_4(q, x);
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(q, x);
 	std::cout << '\n';
       }
 
@@ -121,7 +121,7 @@ template<typename _Tp>
 	auto q = _Tp(i) / _Tp{100.0L};
 	std::cout << ' ' << std::setw(w) << q;
 	for (auto x : {_Tp{0.0L}, _Tp{0.4L}, _Tp{5.0L}, _Tp{10.0L}, _Tp{40.0L}})
-	  std::cout << ' ' << std::setw(w) << __gnu_cxx::jacobi_theta_1(q, x);
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(q, x);
 	std::cout << '\n';
       }
 
@@ -131,7 +131,7 @@ template<typename _Tp>
 	auto q = _Tp(i) / _Tp{100.0L};
 	std::cout << ' ' << std::setw(w) << q;
 	for (auto x : {_Tp{0.0L}, _Tp{0.4L}, _Tp{5.0L}, _Tp{10.0L}, _Tp{40.0L}})
-	  std::cout << ' ' << std::setw(w) << __gnu_cxx::jacobi_theta_2(q, x);
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(q, x);
 	std::cout << '\n';
       }
 
@@ -141,7 +141,7 @@ template<typename _Tp>
 	auto q = _Tp(i) / _Tp{100.0L};
 	std::cout << ' ' << std::setw(w) << q;
 	for (auto x : {_Tp{0.0L}, _Tp{0.4L}, _Tp{5.0L}, _Tp{10.0L}, _Tp{40.0L}})
-	  std::cout << ' ' << std::setw(w) << __gnu_cxx::jacobi_theta_3(q, x);
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(q, x);
 	std::cout << '\n';
       }
 
@@ -151,7 +151,7 @@ template<typename _Tp>
 	auto q = _Tp(i) / _Tp{100.0L};
 	std::cout << ' ' << std::setw(w) << q;
 	for (auto x : {_Tp{0.0L}, _Tp{0.4L}, _Tp{5.0L}, _Tp{10.0L}, _Tp{40.0L}})
-	  std::cout << ' ' << std::setw(w) << __gnu_cxx::jacobi_theta_4(q, x);
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(q, x);
 	std::cout << '\n';
       }
   }
