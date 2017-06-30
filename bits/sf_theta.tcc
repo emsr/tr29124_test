@@ -545,12 +545,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __q2n = _Tp{1};
       for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
 	{
-	  const auto __q2n *= __q;
+	  __q2n *= __q;
 	  const auto __tp = _Real(1) + __q2n;
 	  __ret.th3 *= __tp * __tp;
 	  const auto __tm = _Real(1) - __q2n;
 	  __ret.th4 *= __tm * __tm;
-	  const auto __q2n *= __q;
+	  __q2n *= __q;
 	  const auto __tm2 = _Real(1) - __q2n;
 	  __ret.th3 *= __tm2;
 	  __ret.th4 *= __tm2;
@@ -604,7 +604,50 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__term) < _S_eps * std::abs(__sum))
 	    break;
 	}
-      return 2 * __sum;
+      return _Real{2}* __sum;
+    }
+
+  /**
+   * Return the Jacobi @f$ \theta_1 @f$ function by summation of the series.
+   *
+   * The Jacobi or elliptic theta function is defined by
+   * @f[
+   *  \theta_1(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __jacobi_theta_1(_Tp __q, _Tp __x)
+    {
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
+      const auto _S_i = std::complex<_Real>{0, 1};
+
+      if (__isnan(__q) || __isnan(__x))
+	return _Tp{_S_NaN};
+      else if (std::abs(__q) >= _Real{1})
+	std::__throw_domain_error(__N("__jacobi_theta_1:"
+				      " nome q out of range"));
+      else
+	{
+	  auto __tau = std::log(__q) / _S_pi / _S_i;
+	  // theta_1(tau+1, z) = theta_1(tau, z)
+	  const auto __itau = std::floor(std::real(__tau));
+	  __tau -= __itau;
+	  const auto __ph = __polar_pi(_Real{1}, __itau / _Real{4});
+	  if (std::imag(__q) < 0.5)
+	    {
+	      const auto __fact = _S_i * std::sqrt(-_S_i * __tau);
+	      __tau = _Real{-1} / __tau;
+	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
+	      __q = std::exp(_S_i * _S_pi * __tau);
+	      return __ph * __phase * __jacobi_theta_1_sum(__q, __tau * __x)
+			 / __fact;
+	    }
+	  else
+	    return __ph * __jacobi_theta_1_sum(__q, __x);
+	}
     }
 
   /**
@@ -632,7 +675,50 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__term) < _S_eps * std::abs(__sum))
 	    break;
 	}
-      return 2 * __sum;
+      return _Real{2}* __sum;
+    }
+
+  /**
+   * Return the Jacobi @f$ \theta_2 @f$ function by summation of the series.
+   *
+   * The Jacobi or elliptic theta function is defined by
+   * @f[
+   *  \theta_2(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __jacobi_theta_2(_Tp __q, _Tp __x)
+    {
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
+      const auto _S_i = std::complex<_Real>{0, 1};
+
+      if (__isnan(__q) || __isnan(__x))
+	return _Tp{_S_NaN};
+      else if (std::abs(__q) >= _Real{1})
+	std::__throw_domain_error(__N("__jacobi_theta_2:"
+				      " nome q out of range"));
+      else
+	{
+	  auto __tau = std::log(__q) / _S_pi / _S_i;
+	  // theta_2(tau+1, z) = theta_2(tau, z)
+	  const auto __itau = std::floor(std::real(__tau));
+	  __tau -= __itau;
+	  const auto __ph = __polar_pi(_Real{1}, __itau / _Real{4});
+	  if (std::imag(__q) < 0.5)
+	    {
+	      const auto __fact = std::sqrt(-_S_i * __tau);
+	      __tau = _Real{-1} / __tau;
+	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
+	      __q = std::exp(_S_i * _S_pi * __tau);
+	      return __ph * __phase * __jacobi_theta_2_sum(__q, __tau * __x)
+			 / __fact;
+	    }
+	  else
+	    return __ph * __jacobi_theta_2_sum(__q, __x);
+	}
     }
 
   /**
@@ -659,13 +745,54 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__term) < _S_eps * std::abs(__sum))
 	    break;
 	}
-      return 2 * __sum;
+      return _Real{2}* __sum;
+    }
+
+  /**
+   * Return the Jacobi @f$ \theta_3 @f$ function by summation of the series.
+   *
+   * The Jacobi or elliptic theta function is defined by
+   * @f[
+   *  \theta_3(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __jacobi_theta_3(_Tp __q, _Tp __x)
+    {
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
+      const auto _S_i = std::complex<_Real>{0, 1};
+
+      if (__isnan(__q) || __isnan(__x))
+	return _Tp{_S_NaN};
+      else if (std::abs(__q) >= _Real{1})
+	std::__throw_domain_error(__N("__jacobi_theta_3:"
+				      " nome q out of range"));
+      else
+	{
+	  auto __tau = std::log(__q) / _S_pi / _S_i;
+	  // theta_3(tau+1, z) = theta_3(tau, z)
+	  const auto __itau = std::floor(std::real(__tau));
+	  __tau -= __itau;
+	  if (std::imag(__q) < 0.5)
+	    {
+	      const auto __fact = std::sqrt(-_S_i * __tau);
+	      __tau = _Real{-1} / __tau;
+	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
+	      __q = std::exp(_S_i * _S_pi * __tau);
+	      return __phase * __jacobi_theta_3_sum(__q, __tau * __x) / __fact;
+	    }
+	  else
+	    return __jacobi_theta_3_sum(__q, __x);
+	}
     }
 
   /**
    * Return the Jacobi @f$ \theta_4 @f$ function by summation of the series.
    *
-   * The Jacobi or elliptic theta-4 function is defined by
+   * The Jacobi or elliptic theta function is defined by
    * @f[
    *  \theta_4(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
    * @f]
@@ -688,7 +815,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__term) < _S_eps * std::abs(__sum))
 	    break;
 	}
-      return 2 * __sum;
+      return _Real{2}* __sum;
     }
 
   /**
@@ -710,20 +837,25 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__isnan(__q) || __isnan(__x))
 	return _Tp{_S_NaN};
-      else if (std::abs(__q) >= _Tp{1})
+      else if (std::abs(__q) >= _Real{1})
 	std::__throw_domain_error(__N("__jacobi_theta_4:"
 				      " nome q out of range"));
       else
 	{
 	  auto __tau = std::log(__q) / _S_pi / _S_i;
-	  // theta_4(tau+1, z) = theta4(tau, z)
+	  // theta_4(tau+1, z) = theta_4(tau, z)
 	  const auto __itau = std::floor(std::real(__tau));
 	  __tau -= __itau;
-	  //const auto __phase = _S_pi * __itau / _Real{4};
-	  // theta_4(xxxx, z) = theta_4(xxxx, z)
 	  if (std::imag(__q) < 0.5)
-	    __tau = -1 / __tau;
-	  return __jacobi_theta_4_sum(__q, __x);
+	    {
+	      const auto __fact = std::sqrt(-_S_i * __tau);
+	      __tau = _Real{-1} / __tau;
+	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
+	      __q = std::exp(_S_i * _S_pi * __tau);
+	      return __phase * __jacobi_theta_4_sum(__q, __tau * __x) / __fact;
+	    }
+	  else
+	    return __jacobi_theta_4_sum(__q, __x);
 	}
     }
 
