@@ -401,6 +401,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 			       __rho * __sc.__sin_v);
     }
 
+  /**
+   * Reperiodized complex constructor.
+   */
+  template<typename _Tp>
+    inline std::complex<_Tp>
+    __polar_pi(_Tp __rho, const std::complex<_Tp>& __phi_pi)
+    {
+      __gnu_cxx::__sincos_t<_Tp> __sc = __sincos_pi(__phi_pi);
+      return std::complex<_Tp>(__rho * __sc.__cos_v,
+			       __rho * __sc.__sin_v);
+    }
+
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 } // namespace std
