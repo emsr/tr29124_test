@@ -32,6 +32,8 @@
 
 #pragma GCC system_header
 
+#include <cmath>
+
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
