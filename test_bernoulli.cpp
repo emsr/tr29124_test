@@ -699,6 +699,7 @@ template<typename _Tp>
   {
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
+    auto width = 8 + std::cout.precision();
 
     std::cout << "\n Lah numbers\n";
     for (auto n = 1u; n <= 20; ++n)
@@ -707,7 +708,6 @@ template<typename _Tp>
 	       	  << ' ' << std::setw(4) << k
 		  << ' ' << std::setw(width) << __lah<_Tp>(n, k)
 		  << '\n';
-    auto width = 8 + std::cout.precision();
 
     std::cout << "\n Bernoulli numbers\n";
     for (auto n = 0u; n <= 200; ++n)
