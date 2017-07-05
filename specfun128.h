@@ -95,7 +95,7 @@ namespace std
 
   inline __float128
   hermiteq(unsigned int __n, __float128 __x)
-  { return __detail::__poly_hermite<__float128>(__n, __x); }
+  { return __detail::__hermite<__float128>(__n, __x); }
 
   inline __float128
   laguerreq(unsigned int __n, __float128 __x)
@@ -103,7 +103,7 @@ namespace std
 
   inline __float128
   legendreq(unsigned int __n, __float128 __x)
-  { return __detail::__poly_legendre_p<__float128>(__n, __x); }
+  { return __detail::__legendre_p<__float128>(__n, __x); }
 
   inline __float128
   riemann_zetaq(__float128 __s)
@@ -177,21 +177,21 @@ namespace __gnu_cxx
   jacobi_snq(__float128 __k, __float128 __u)
   {
     return std::get<_GLIBCXX_JACOBI_SN>
-		(std::__detail::__jacobi_sncndn<__float128>(__k, __u));
+		(std::__detail::__jacobi_ellint<__float128>(__k, __u));
   }
 
   inline __float128
   jacobi_cnq(__float128 __k, __float128 __u)
   {
     return std::get<_GLIBCXX_JACOBI_CN>
-		(std::__detail::__jacobi_sncndn<__float128>(__k, __u));
+		(std::__detail::__jacobi_ellint<__float128>(__k, __u));
   }
 
   inline __float128
   jacobi_dnq(__float128 __k, __float128 __u)
   {
     return std::get<_GLIBCXX_JACOBI_DN>
-		(std::__detail::__jacobi_sncndn<__float128>(__k, __u));
+		(std::__detail::__jacobi_ellint<__float128>(__k, __u));
   }
 
   inline __float128
