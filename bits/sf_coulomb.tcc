@@ -22,13 +22,13 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/sf_hydrogen.tcc
+/** @file bits/sf_coulomb.tcc
  *  This is an internal header file, included by other library headers.
  *  You should not attempt to use it directly.
  */
 
-#ifndef _GLIBCXX_BITS_SF_HYDROGEN_TCC
-#define _GLIBCXX_BITS_SF_HYDROGEN_TCC 1
+#ifndef _GLIBCXX_BITS_SF_COULOMB_TCC
+#define _GLIBCXX_BITS_SF_COULOMB_TCC 1
 
 #pragma GCC system_header
 
@@ -288,4 +288,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
 }
 
-#endif // _GLIBCXX_BITS_SF_HYDROGEN_TCC
+#endif // _GLIBCXX_BITS_SF_COULOMB_TCC

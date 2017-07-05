@@ -29,14 +29,16 @@
     \subitem {sf\+\_\+cardinal.\+tcc}, \hyperpage{528}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+C\+H\+E\+B\+Y\+S\+H\+E\+V\+\_\+\+T\+CC}
     \subitem {sf\+\_\+chebyshev.\+tcc}, \hyperpage{530}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+C\+O\+U\+L\+O\+M\+B\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+coulomb.\+tcc}, \hyperpage{532}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+D\+A\+W\+S\+O\+N\+\_\+\+T\+CC}
     \subitem {sf\+\_\+dawson.\+tcc}, \hyperpage{533}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+O\+N\+S\+\_\+\+T\+CC}
     \subitem {sf\+\_\+distributions.\+tcc}, \hyperpage{536}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+L\+L\+I\+N\+T\+\_\+\+T\+CC}
-    \subitem {sf\+\_\+ellint.\+tcc}, \hyperpage{538}
+    \subitem {sf\+\_\+ellint.\+tcc}, \hyperpage{539}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+U\+L\+E\+R\+\_\+\+T\+CC}
-    \subitem {sf\+\_\+euler.\+tcc}, \hyperpage{540}
+    \subitem {sf\+\_\+euler.\+tcc}, \hyperpage{541}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+X\+P\+I\+N\+T\+\_\+\+T\+CC}
     \subitem {sf\+\_\+expint.\+tcc}, \hyperpage{543}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+F\+R\+E\+S\+N\+E\+L\+\_\+\+T\+CC}
@@ -44,27 +46,25 @@
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+G\+A\+M\+M\+A\+\_\+\+T\+CC}
     \subitem {sf\+\_\+gamma.\+tcc}, \hyperpage{552}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+G\+E\+G\+E\+N\+B\+A\+U\+E\+R\+\_\+\+T\+CC}
-    \subitem {sf\+\_\+gegenbauer.\+tcc}, \hyperpage{553}
+    \subitem {sf\+\_\+gegenbauer.\+tcc}, \hyperpage{554}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+A\+N\+K\+E\+L\+\_\+\+T\+CC}
-    \subitem {sf\+\_\+hankel.\+tcc}, \hyperpage{556}
+    \subitem {sf\+\_\+hankel.\+tcc}, \hyperpage{557}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+E\+R\+M\+I\+T\+E\+\_\+\+T\+CC}
-    \subitem {sf\+\_\+hermite.\+tcc}, \hyperpage{558}
-  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+D\+R\+O\+G\+E\+N\+\_\+\+T\+CC}
-    \subitem {sf\+\_\+coulomb.\+tcc}, \hyperpage{531}
+    \subitem {sf\+\_\+hermite.\+tcc}, \hyperpage{559}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+E\+R\+G\+\_\+\+T\+CC}
-    \subitem {sf\+\_\+hyperg.\+tcc}, \hyperpage{560}
+    \subitem {sf\+\_\+hyperg.\+tcc}, \hyperpage{561}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+I\+N\+T\+\_\+\+T\+CC}
     \subitem {sf\+\_\+hypint.\+tcc}, \hyperpage{562}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+J\+A\+C\+O\+B\+I\+\_\+\+T\+CC}
-    \subitem {sf\+\_\+jacobi.\+tcc}, \hyperpage{563}
+    \subitem {sf\+\_\+jacobi.\+tcc}, \hyperpage{564}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+A\+G\+U\+E\+R\+R\+E\+\_\+\+T\+CC}
-    \subitem {sf\+\_\+laguerre.\+tcc}, \hyperpage{565}
+    \subitem {sf\+\_\+laguerre.\+tcc}, \hyperpage{566}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+E\+G\+E\+N\+D\+R\+E\+\_\+\+T\+CC}
-    \subitem {sf\+\_\+legendre.\+tcc}, \hyperpage{567}
+    \subitem {sf\+\_\+legendre.\+tcc}, \hyperpage{568}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+M\+O\+D\+\_\+\+B\+E\+S\+S\+E\+L\+\_\+\+T\+CC}
-    \subitem {sf\+\_\+mod\+\_\+bessel.\+tcc}, \hyperpage{569}
+    \subitem {sf\+\_\+mod\+\_\+bessel.\+tcc}, \hyperpage{570}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+O\+W\+E\+N\+S\+\_\+\+T\+\_\+\+T\+CC}
-    \subitem {sf\+\_\+owens\+\_\+t.\+tcc}, \hyperpage{570}
+    \subitem {sf\+\_\+owens\+\_\+t.\+tcc}, \hyperpage{571}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+P\+O\+L\+Y\+L\+O\+G\+\_\+\+T\+CC}
     \subitem {sf\+\_\+polylog.\+tcc}, \hyperpage{573}
   \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+S\+T\+I\+R\+L\+I\+N\+G\+\_\+\+T\+CC}
@@ -1507,25 +1507,25 @@
   \item {bits/sf\+\_\+chebyshev.\+tcc}, \hyperpage{529}
   \item {bits/sf\+\_\+coulomb.\+tcc}, \hyperpage{530}
   \item {bits/sf\+\_\+dawson.\+tcc}, \hyperpage{532}
-  \item {bits/sf\+\_\+distributions.\+tcc}, \hyperpage{533}
-  \item {bits/sf\+\_\+ellint.\+tcc}, \hyperpage{536}
+  \item {bits/sf\+\_\+distributions.\+tcc}, \hyperpage{534}
+  \item {bits/sf\+\_\+ellint.\+tcc}, \hyperpage{537}
   \item {bits/sf\+\_\+euler.\+tcc}, \hyperpage{539}
   \item {bits/sf\+\_\+expint.\+tcc}, \hyperpage{541}
   \item {bits/sf\+\_\+fresnel.\+tcc}, \hyperpage{543}
   \item {bits/sf\+\_\+gamma.\+tcc}, \hyperpage{545}
-  \item {bits/sf\+\_\+gegenbauer.\+tcc}, \hyperpage{552}
+  \item {bits/sf\+\_\+gegenbauer.\+tcc}, \hyperpage{553}
   \item {bits/sf\+\_\+hankel.\+tcc}, \hyperpage{554}
   \item {bits/sf\+\_\+hermite.\+tcc}, \hyperpage{557}
-  \item {bits/sf\+\_\+hyperg.\+tcc}, \hyperpage{558}
+  \item {bits/sf\+\_\+hyperg.\+tcc}, \hyperpage{559}
   \item {bits/sf\+\_\+hypint.\+tcc}, \hyperpage{561}
-  \item {bits/sf\+\_\+jacobi.\+tcc}, \hyperpage{562}
+  \item {bits/sf\+\_\+jacobi.\+tcc}, \hyperpage{563}
   \item {bits/sf\+\_\+laguerre.\+tcc}, \hyperpage{564}
   \item {bits/sf\+\_\+legendre.\+tcc}, \hyperpage{566}
   \item {bits/sf\+\_\+mod\+\_\+bessel.\+tcc}, \hyperpage{568}
   \item {bits/sf\+\_\+owens\+\_\+t.\+tcc}, \hyperpage{570}
   \item {bits/sf\+\_\+polylog.\+tcc}, \hyperpage{571}
   \item {bits/sf\+\_\+stirling.\+tcc}, \hyperpage{574}
-  \item {bits/sf\+\_\+theta.\+tcc}, \hyperpage{575}
+  \item {bits/sf\+\_\+theta.\+tcc}, \hyperpage{576}
   \item {bits/sf\+\_\+trig.\+tcc}, \hyperpage{579}
   \item {bits/sf\+\_\+trigint.\+tcc}, \hyperpage{581}
   \item {bits/sf\+\_\+zeta.\+tcc}, \hyperpage{583}
@@ -2852,8 +2852,8 @@
     \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+C\+H\+E\+B\+Y\+S\+H\+E\+V\+\_\+\+T\+CC}, 
 		\hyperpage{530}
   \item {sf\+\_\+coulomb.\+tcc}
-    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+D\+R\+O\+G\+E\+N\+\_\+\+T\+CC}, 
-		\hyperpage{531}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+C\+O\+U\+L\+O\+M\+B\+\_\+\+T\+CC}, 
+		\hyperpage{532}
   \item {sf\+\_\+dawson.\+tcc}
     \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+D\+A\+W\+S\+O\+N\+\_\+\+T\+CC}, 
 		\hyperpage{533}
@@ -2862,10 +2862,10 @@
 		\hyperpage{536}
   \item {sf\+\_\+ellint.\+tcc}
     \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+L\+L\+I\+N\+T\+\_\+\+T\+CC}, 
-		\hyperpage{538}
+		\hyperpage{539}
   \item {sf\+\_\+euler.\+tcc}
     \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+U\+L\+E\+R\+\_\+\+T\+CC}, 
-		\hyperpage{540}
+		\hyperpage{541}
   \item {sf\+\_\+expint.\+tcc}
     \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+X\+P\+I\+N\+T\+\_\+\+T\+CC}, 
 		\hyperpage{543}
@@ -2877,34 +2877,34 @@
 		\hyperpage{552}
   \item {sf\+\_\+gegenbauer.\+tcc}
     \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+G\+E\+G\+E\+N\+B\+A\+U\+E\+R\+\_\+\+T\+CC}, 
-		\hyperpage{553}
+		\hyperpage{554}
   \item {sf\+\_\+hankel.\+tcc}
     \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+A\+N\+K\+E\+L\+\_\+\+T\+CC}, 
-		\hyperpage{556}
+		\hyperpage{557}
   \item {sf\+\_\+hermite.\+tcc}
     \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+E\+R\+M\+I\+T\+E\+\_\+\+T\+CC}, 
-		\hyperpage{558}
+		\hyperpage{559}
   \item {sf\+\_\+hyperg.\+tcc}
     \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+E\+R\+G\+\_\+\+T\+CC}, 
-		\hyperpage{560}
+		\hyperpage{561}
   \item {sf\+\_\+hypint.\+tcc}
     \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+I\+N\+T\+\_\+\+T\+CC}, 
 		\hyperpage{562}
   \item {sf\+\_\+jacobi.\+tcc}
     \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+J\+A\+C\+O\+B\+I\+\_\+\+T\+CC}, 
-		\hyperpage{563}
+		\hyperpage{564}
   \item {sf\+\_\+laguerre.\+tcc}
     \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+A\+G\+U\+E\+R\+R\+E\+\_\+\+T\+CC}, 
-		\hyperpage{565}
+		\hyperpage{566}
   \item {sf\+\_\+legendre.\+tcc}
     \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+E\+G\+E\+N\+D\+R\+E\+\_\+\+T\+CC}, 
-		\hyperpage{567}
+		\hyperpage{568}
   \item {sf\+\_\+mod\+\_\+bessel.\+tcc}
     \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+M\+O\+D\+\_\+\+B\+E\+S\+S\+E\+L\+\_\+\+T\+CC}, 
-		\hyperpage{569}
+		\hyperpage{570}
   \item {sf\+\_\+owens\+\_\+t.\+tcc}
     \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+O\+W\+E\+N\+S\+\_\+\+T\+\_\+\+T\+CC}, 
-		\hyperpage{570}
+		\hyperpage{571}
   \item {sf\+\_\+polylog.\+tcc}
     \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+P\+O\+L\+Y\+L\+O\+G\+\_\+\+T\+CC}, 
 		\hyperpage{573}
