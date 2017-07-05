@@ -25,72 +25,92 @@ A structure for the gamma functions required by the Temme series expansions of $
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$typename \+\_\+\+Tp$>$\\*
+\subsubsection*{template$<$typename \+\_\+\+Tp$>$\newline
 struct \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t$<$ \+\_\+\+Tp $>$}
 
 A structure for the gamma functions required by the Temme series expansions of $ N_\nu(x) $ and $ K_\nu(x) $. \[ \Gamma_1 = \frac{1}{2\mu} \left[\frac{1}{\Gamma(1 - \mu)} - \frac{1}{\Gamma(1 + \mu)}\right] \] and \[ \Gamma_2 = \frac{1}{2} \left[\frac{1}{\Gamma(1 - \mu)} + \frac{1}{\Gamma(1 + \mu)}\right] \] where $ -1/2 <= \mu <= 1/2 $ is $ \mu = \nu - N $ and $ N $. is the nearest integer to $ \nu $. The values of $ \Gamma(1 + \mu) $ and $ \Gamma(1 - \mu) $ are returned as well. 
 
 The accuracy requirements on this are high for $ |\mu| < 0 $. 
 
-Definition at line 397 of file specfun\+\_\+state.\+h.
+Definition at line 528 of file specfun\+\_\+state.\+h.
 
 
 
 \subsection{Member Data Documentation}
+\mbox{\Hypertarget{struct____gnu__cxx_1_1____gamma__temme__t_a5cd3cdcf5479d232d3ea118c69198215}\label{struct____gnu__cxx_1_1____gamma__temme__t_a5cd3cdcf5479d232d3ea118c69198215}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}!\+\_\+\+\_\+gamma\+\_\+1\+\_\+value@{\+\_\+\+\_\+gamma\+\_\+1\+\_\+value}}
 \index{\+\_\+\+\_\+gamma\+\_\+1\+\_\+value@{\+\_\+\+\_\+gamma\+\_\+1\+\_\+value}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}}
-\subsubsection[{\texorpdfstring{\+\_\+\+\_\+gamma\+\_\+1\+\_\+value}{__gamma_1_value}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ \+\_\+\+Tp {\bf \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+gamma\+\_\+1\+\_\+value}\hypertarget{struct____gnu__cxx_1_1____gamma__temme__t_a5cd3cdcf5479d232d3ea118c69198215}{}\label{struct____gnu__cxx_1_1____gamma__temme__t_a5cd3cdcf5479d232d3ea118c69198215}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+gamma\+\_\+1\+\_\+value}{\_\_gamma\_1\_value}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____gamma__temme__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+gamma\+\_\+1\+\_\+value}
+
 
 
 The output function $ \Gamma_1(\mu) $. 
 
 
 
-Definition at line 409 of file specfun\+\_\+state.\+h.
+Definition at line 540 of file specfun\+\_\+state.\+h.
 
+\mbox{\Hypertarget{struct____gnu__cxx_1_1____gamma__temme__t_af3113befce3b6bc9c561472fbaff4520}\label{struct____gnu__cxx_1_1____gamma__temme__t_af3113befce3b6bc9c561472fbaff4520}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}!\+\_\+\+\_\+gamma\+\_\+2\+\_\+value@{\+\_\+\+\_\+gamma\+\_\+2\+\_\+value}}
 \index{\+\_\+\+\_\+gamma\+\_\+2\+\_\+value@{\+\_\+\+\_\+gamma\+\_\+2\+\_\+value}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}}
-\subsubsection[{\texorpdfstring{\+\_\+\+\_\+gamma\+\_\+2\+\_\+value}{__gamma_2_value}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ \+\_\+\+Tp {\bf \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+gamma\+\_\+2\+\_\+value}\hypertarget{struct____gnu__cxx_1_1____gamma__temme__t_af3113befce3b6bc9c561472fbaff4520}{}\label{struct____gnu__cxx_1_1____gamma__temme__t_af3113befce3b6bc9c561472fbaff4520}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+gamma\+\_\+2\+\_\+value}{\_\_gamma\_2\_value}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____gamma__temme__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+gamma\+\_\+2\+\_\+value}
+
 
 
 The output function $ \Gamma_2(\mu) $. 
 
 
 
-Definition at line 412 of file specfun\+\_\+state.\+h.
+Definition at line 543 of file specfun\+\_\+state.\+h.
 
+\mbox{\Hypertarget{struct____gnu__cxx_1_1____gamma__temme__t_afc5c8fbbc48bdb065bc425e53605dc3c}\label{struct____gnu__cxx_1_1____gamma__temme__t_afc5c8fbbc48bdb065bc425e53605dc3c}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}!\+\_\+\+\_\+gamma\+\_\+minus\+\_\+value@{\+\_\+\+\_\+gamma\+\_\+minus\+\_\+value}}
 \index{\+\_\+\+\_\+gamma\+\_\+minus\+\_\+value@{\+\_\+\+\_\+gamma\+\_\+minus\+\_\+value}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}}
-\subsubsection[{\texorpdfstring{\+\_\+\+\_\+gamma\+\_\+minus\+\_\+value}{__gamma_minus_value}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ \+\_\+\+Tp {\bf \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+gamma\+\_\+minus\+\_\+value}\hypertarget{struct____gnu__cxx_1_1____gamma__temme__t_afc5c8fbbc48bdb065bc425e53605dc3c}{}\label{struct____gnu__cxx_1_1____gamma__temme__t_afc5c8fbbc48bdb065bc425e53605dc3c}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+gamma\+\_\+minus\+\_\+value}{\_\_gamma\_minus\_value}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____gamma__temme__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+gamma\+\_\+minus\+\_\+value}
+
 
 
 The output function $ 1/\Gamma(1 - \mu) $. 
 
 
 
-Definition at line 406 of file specfun\+\_\+state.\+h.
+Definition at line 537 of file specfun\+\_\+state.\+h.
 
+\mbox{\Hypertarget{struct____gnu__cxx_1_1____gamma__temme__t_a5484bd46240c8348c2d1f0718a056665}\label{struct____gnu__cxx_1_1____gamma__temme__t_a5484bd46240c8348c2d1f0718a056665}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}!\+\_\+\+\_\+gamma\+\_\+plus\+\_\+value@{\+\_\+\+\_\+gamma\+\_\+plus\+\_\+value}}
 \index{\+\_\+\+\_\+gamma\+\_\+plus\+\_\+value@{\+\_\+\+\_\+gamma\+\_\+plus\+\_\+value}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}}
-\subsubsection[{\texorpdfstring{\+\_\+\+\_\+gamma\+\_\+plus\+\_\+value}{__gamma_plus_value}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ \+\_\+\+Tp {\bf \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+gamma\+\_\+plus\+\_\+value}\hypertarget{struct____gnu__cxx_1_1____gamma__temme__t_a5484bd46240c8348c2d1f0718a056665}{}\label{struct____gnu__cxx_1_1____gamma__temme__t_a5484bd46240c8348c2d1f0718a056665}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+gamma\+\_\+plus\+\_\+value}{\_\_gamma\_plus\_value}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____gamma__temme__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+gamma\+\_\+plus\+\_\+value}
+
 
 
 The output function $ 1/\Gamma(1 + \mu) $. 
 
 
 
-Definition at line 403 of file specfun\+\_\+state.\+h.
+Definition at line 534 of file specfun\+\_\+state.\+h.
 
+\mbox{\Hypertarget{struct____gnu__cxx_1_1____gamma__temme__t_a841e7c549dd505de260018ddaa020565}\label{struct____gnu__cxx_1_1____gamma__temme__t_a841e7c549dd505de260018ddaa020565}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}!\+\_\+\+\_\+mu\+\_\+arg@{\+\_\+\+\_\+mu\+\_\+arg}}
 \index{\+\_\+\+\_\+mu\+\_\+arg@{\+\_\+\+\_\+mu\+\_\+arg}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}}
-\subsubsection[{\texorpdfstring{\+\_\+\+\_\+mu\+\_\+arg}{__mu_arg}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ \+\_\+\+Tp {\bf \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+mu\+\_\+arg}\hypertarget{struct____gnu__cxx_1_1____gamma__temme__t_a841e7c549dd505de260018ddaa020565}{}\label{struct____gnu__cxx_1_1____gamma__temme__t_a841e7c549dd505de260018ddaa020565}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+mu\+\_\+arg}{\_\_mu\_arg}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____gamma__temme__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+mu\+\_\+arg}
+
 
 
 The input parameter of the gamma functions. 
 
 
 
-Definition at line 400 of file specfun\+\_\+state.\+h.
+Definition at line 531 of file specfun\+\_\+state.\+h.
 
 
 
