@@ -592,6 +592,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       constexpr std::size_t _S_max_iter = 50;
+
       _Tp __sum{};
       _Real __sign{1};
       for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
@@ -616,8 +617,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Tp>
-    _Tp
-    __jacobi_theta_1(_Tp __q, _Tp __x)
+    std::complex<_Tp>
+    __jacobi_theta_1(const std::complex<_Tp>& __q, const std::complex<_Tp>& __x)
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
@@ -636,18 +637,43 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __itau = std::floor(std::real(__tau));
 	  __tau -= __itau;
 	  const auto __ph = __polar_pi(_Real{1}, __itau / _Real{4});
-	  if (std::imag(__q) < 0.5)
+	  if (std::imag(__tau) < 0.5)
 	    {
 	      const auto __fact = _S_i * std::sqrt(-_S_i * __tau);
 	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
 	      const auto __qc = std::exp(_S_i * _S_pi * __tau);
-	      return __ph * __phase * __jacobi_theta_1_sum(__qc, __tau * __x)
-			 / __fact;
+	      return __ph * __phase / __fact
+			* __jacobi_theta_1_sum(__qc, __tau * __x);
 	    }
 	  else
 	    return __ph * __jacobi_theta_1_sum(__q, __x);
 	}
+    }
+
+  /**
+   * Return the Jacobi @f$ \theta_1 @f$ function for real nome and argument.
+   *
+   * The Jacobi or elliptic theta function is defined by
+   * @f[
+   *  \theta_1(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __jacobi_theta_1(_Tp __q, const _Tp __x)
+    {
+      using _Cmplx = std::complex<_Tp>;
+
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
+      const auto __ret = __jacobi_theta_1(_Cmplx(__q), _Cmplx(__x));
+
+      if (std::abs(__ret) > _S_eps
+	  && std::abs(std::imag(__ret)) > _S_eps * std::abs(__ret))
+	std::__throw_runtime_error("__jacobi_theta_1: "
+				 "Unexpected large imaginary part");
+      else
+	return std::real(__ret);
     }
 
   /**
@@ -666,6 +692,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       constexpr std::size_t _S_max_iter = 50;
+
       _Tp __sum{};
       for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
 	{
@@ -687,8 +714,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Tp>
-    _Tp
-    __jacobi_theta_2(_Tp __q, _Tp __x)
+    std::complex<_Tp>
+    __jacobi_theta_2(const std::complex<_Tp>& __q, const std::complex<_Tp>& __x)
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
@@ -707,18 +734,43 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __itau = std::floor(std::real(__tau));
 	  __tau -= __itau;
 	  const auto __ph = __polar_pi(_Real{1}, __itau / _Real{4});
-	  if (std::imag(__q) < 0.5)
+	  if (std::imag(__tau) < 0.5)
 	    {
 	      const auto __fact = std::sqrt(-_S_i * __tau);
 	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
 	      const auto __qc = std::exp(_S_i * _S_pi * __tau);
-	      return __ph * __phase * __jacobi_theta_2_sum(__qc, __tau * __x)
-			 / __fact;
+	      return __ph * __phase / __fact
+			* __jacobi_theta_2_sum(__qc, __tau * __x);
 	    }
 	  else
 	    return __ph * __jacobi_theta_2_sum(__q, __x);
 	}
+    }
+
+  /**
+   * Return the Jacobi @f$ \theta_2 @f$ function for real nome and argument.
+   *
+   * The Jacobi or elliptic theta function is defined by
+   * @f[
+   *  \theta_2(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __jacobi_theta_2(_Tp __q, const _Tp __x)
+    {
+      using _Cmplx = std::complex<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
+
+      const auto __ret = __jacobi_theta_2(_Cmplx(__q), _Cmplx(__x));
+
+      if (std::abs(__ret) > _S_eps
+	  && std::abs(std::imag(__ret)) > _S_eps * std::abs(__ret))
+	std::__throw_runtime_error("__jacobi_theta_2: "
+				 "Unexpected large imaginary part");
+      else
+	return std::real(__ret);
     }
 
   /**
@@ -736,6 +788,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       constexpr std::size_t _S_max_iter = 50;
+
       _Tp __sum{};
       for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
 	{
@@ -757,8 +810,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Tp>
-    _Tp
-    __jacobi_theta_3(_Tp __q, _Tp __x)
+    std::complex<_Tp>
+    __jacobi_theta_3(const std::complex<_Tp>& __q, const std::complex<_Tp>& __x)
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
@@ -776,17 +829,43 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  // theta_3(tau+1, z) = theta_3(tau, z)
 	  const auto __itau = std::floor(std::real(__tau));
 	  __tau -= __itau;
-	  if (std::imag(__q) < 0.5)
+	  if (std::imag(__tau) < 0.5)
 	    {
 	      const auto __fact = std::sqrt(-_S_i * __tau);
 	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
 	      const auto __qc = std::exp(_S_i * _S_pi * __tau);
-	      return __phase * __jacobi_theta_3_sum(__qc, __tau * __x) / __fact;
+	      return __phase / __fact
+			* __jacobi_theta_3_sum(__qc, __tau * __x);
 	    }
 	  else
 	    return __jacobi_theta_3_sum(__q, __x);
 	}
+    }
+
+  /**
+   * Return the Jacobi @f$ \theta_3 @f$ function for real nome and argument.
+   *
+   * The Jacobi or elliptic theta function is defined by
+   * @f[
+   *  \theta_3(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __jacobi_theta_3(_Tp __q, const _Tp __x)
+    {
+      using _Cmplx = std::complex<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
+
+      const auto __ret = __jacobi_theta_3(_Cmplx(__q), _Cmplx(__x));
+
+      if (std::abs(__ret) > _S_eps
+	  && std::abs(std::imag(__ret)) > _S_eps * std::abs(__ret))
+	std::__throw_runtime_error("__jacobi_theta_3: "
+				 "Unexpected large imaginary part");
+      else
+	return std::real(__ret);
     }
 
   /**
@@ -804,6 +883,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       constexpr std::size_t _S_max_iter = 50;
+
       _Tp __sum{};
       _Real __sign{1};
       for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
@@ -827,8 +907,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Tp>
-    _Tp
-    __jacobi_theta_4(_Tp __q, _Tp __x)
+    std::complex<_Tp>
+    __jacobi_theta_4(const std::complex<_Tp>& __q, const std::complex<_Tp>& __x)
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
@@ -846,13 +926,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  // theta_4(tau+1, z) = theta_4(tau, z)
 	  const auto __itau = std::floor(std::real(__tau));
 	  __tau -= __itau;
-	  if (std::imag(__q) < 0.5)
+	  if (std::imag(__tau) < 0.5)
 	    {
 	      const auto __fact = std::sqrt(-_S_i * __tau);
 	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
 	      const auto __qc = std::exp(_S_i * _S_pi * __tau);
-	      return __phase * __jacobi_theta_4_sum(__qc, __tau * __x) / __fact;
+	      return __phase / __fact
+			* __jacobi_theta_4_sum(__qc, __tau * __x);
 	    }
 	  else
 	    return __jacobi_theta_4_sum(__q, __x);
@@ -860,35 +941,60 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
+   * Return the Jacobi @f$ \theta_4 @f$ function for real nome and argument.
+   *
+   * The Jacobi or elliptic theta function is defined by
+   * @f[
+   *  \theta_4(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __jacobi_theta_4(_Tp __q, const _Tp __x)
+    {
+      using _Cmplx = std::complex<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
+
+      const auto __ret = __jacobi_theta_4(_Cmplx(__q), _Cmplx(__x));
+
+      if (std::abs(__ret) > _S_eps
+	  && std::abs(std::imag(__ret)) > _S_eps * std::abs(__ret))
+	std::__throw_runtime_error("__jacobi_theta_4: "
+				 "Unexpected large imaginary part");
+      else
+	return std::real(__ret);
+    }
+
+  /**
    * Return a tuple of the three primary Jacobi elliptic functions:
    * @f$ sn(k, u), cn(k, u), dn(k, u) @f$.
    */
   template<typename _Tp>
-    __gnu_cxx::__jacobi_t<_Tp>
-    __jacobi_sncndn(_Tp __k, _Tp __u)
+    __gnu_cxx::__jacobi_ellint_t<_Tp>
+    __jacobi_ellint(_Tp __k, _Tp __u)
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__u));
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__u));
 
       if (__isnan(__k) || __isnan(__u))
-	return __gnu_cxx::__jacobi_t<_Tp>{_S_NaN, _S_NaN, _S_NaN};
+	return __gnu_cxx::__jacobi_ellint_t<_Tp>{_S_NaN, _S_NaN, _S_NaN};
       else if (std::abs(__k) > _Tp{1})
-	std::__throw_domain_error(__N("__jacobi_sncndn:"
+	std::__throw_domain_error(__N("__jacobi_ellint:"
 				      " argument k out of range"));
       else if (std::abs(_Tp{1} - __k) < _Tp{2} * _S_eps)
 	{
 	  auto __sn = std::tanh(__u);
 	  auto __cn = _Tp{1} / std::cosh(__u);
 	  auto __dn = __cn;
-	  return __gnu_cxx::__jacobi_t<_Tp>{__sn, __cn, __dn};
+	  return __gnu_cxx::__jacobi_ellint_t<_Tp>{__sn, __cn, __dn};
 	}
       else if (std::abs(__k) < _Tp{2} * _S_eps)
 	{
 	  auto __sn = std::sin(__u);
 	  auto __cn = std::cos(__u);
 	  auto __dn = _Tp{1};
-	  return __gnu_cxx::__jacobi_t<_Tp>{__sn, __cn, __dn};
+	  return __gnu_cxx::__jacobi_ellint_t<_Tp>{__sn, __cn, __dn};
 	}
       else
 	{
@@ -945,7 +1051,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      std::swap(__dn, __cn);
 	      __sn /= __d;
 	    }
-	  return __gnu_cxx::__jacobi_t<_Tp>{__sn, __cn, __dn};
+	  return __gnu_cxx::__jacobi_ellint_t<_Tp>{__sn, __cn, __dn};
 	}
     }
 

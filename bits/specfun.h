@@ -1864,7 +1864,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline float
   jacobi_snf(float __k, float __u)
   {
-    return std::__detail::__jacobi_sncndn<float>(__k, __u).__sn_value;
+    return std::__detail::__jacobi_ellint<float>(__k, __u).__sn_value;
   }
 
   /**
@@ -1876,7 +1876,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline long double
   jacobi_snl(long double __k, long double __u)
   {
-    return std::__detail::__jacobi_sncndn<long double>(__k, __u).__sn_value;
+    return std::__detail::__jacobi_ellint<long double>(__k, __u).__sn_value;
   }
 
   /**
@@ -1900,7 +1900,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_sn(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_sncndn<__type>(__k, __u).__sn_value;
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).__sn_value;
     }
 
   // Jacobi elliptic cosine amplitude functions.
@@ -1914,7 +1914,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline float
   jacobi_cnf(float __k, float __u)
   {
-    return std::__detail::__jacobi_sncndn<float>(__k, __u).__cn_value;
+    return std::__detail::__jacobi_ellint<float>(__k, __u).__cn_value;
   }
 
   /**
@@ -1926,7 +1926,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline long double
   jacobi_cnl(long double __k, long double __u)
   {
-    return std::__detail::__jacobi_sncndn<long double>(__k, __u).__cn_value;
+    return std::__detail::__jacobi_ellint<long double>(__k, __u).__cn_value;
   }
 
   /**
@@ -1950,7 +1950,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_cn(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_sncndn<__type>(__k, __u).__cn_value;
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).__cn_value;
     }
 
   // Jacobi elliptic delta amplitude functions.
@@ -1964,7 +1964,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline float
   jacobi_dnf(float __k, float __u)
   {
-    return std::__detail::__jacobi_sncndn<float>(__k, __u).__dn_value;
+    return std::__detail::__jacobi_ellint<float>(__k, __u).__dn_value;
   }
 
   /**
@@ -1976,7 +1976,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline long double
   jacobi_dnl(long double __k, long double __u)
   {
-    return std::__detail::__jacobi_sncndn<long double>(__k, __u).__dn_value;
+    return std::__detail::__jacobi_ellint<long double>(__k, __u).__dn_value;
   }
 
   /**
@@ -2000,7 +2000,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_dn(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_sncndn<__type>(__k, __u).__dn_value;
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).__dn_value;
     }
 
   // Chebyshev polynomials of the first kind
