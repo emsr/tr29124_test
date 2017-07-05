@@ -133,7 +133,7 @@ template<typename _Tp>
 	    try
 	      {
 		P = __legendre_p(l, x);
-		P_l = std::__detail::__poly_legendre_p(l, x);
+		P_l = std::__detail::__legendre_p(l, x).__P_l;
 		P_l0 = std::__detail::__assoc_legendre_p(l, 0, x);
 	      }
 	    catch (std::exception & err)

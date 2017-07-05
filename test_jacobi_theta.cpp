@@ -23,10 +23,10 @@ template<typename _Tp>
     std::cout << " =====================\n";
     const auto del1 = _Tp{1} / _Tp{10};
     const auto del01 = _Tp{1} / _Tp{100};
-    for (int i = 0; i <= 20; ++i)
+    for (int i = -9; i <= 9; ++i)
       {
-	auto nu = i * del1;
-	std::cout << '\n' << " nu   = " << std::setw(w) << nu << '\n';
+	auto q = i * del1;
+	std::cout << '\n' << " q   = " << std::setw(w) << q << '\n';
 	std::cout << ' ' << std::setw(w) << "x"
 		  << ' ' << std::setw(w) << "jacobi_theta_1"
 		  << ' ' << std::setw(w) << "jacobi_theta_2"
@@ -43,10 +43,10 @@ template<typename _Tp>
 	  {
 	    auto x = j * del01;
 	    std::cout << ' ' << std::setw(w) << x
-		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(nu, x)
-		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(nu, x)
-		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(nu, x)
-		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(nu, x)
+		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(q, x)
+		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(q, x)
+		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(q, x)
+		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(q, x)
 		      << '\n';
 	  }
       }

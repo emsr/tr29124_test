@@ -24,7 +24,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_sc(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_sncndn<__type>(__k, __u).sc();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).sc();
     }
 
   template<typename _Kp, typename _Up>
@@ -32,7 +32,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_sd(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_sncndn<__type>(__k, __u).sd();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).sd();
     }
 
   template<typename _Kp, typename _Up>
@@ -40,7 +40,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_cd(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_sncndn<__type>(__k, __u).cd();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).cd();
     }
 
   template<typename _Kp, typename _Up>
@@ -48,7 +48,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_cs(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_sncndn<__type>(__k, __u).cs();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).cs();
     }
 
   template<typename _Kp, typename _Up>
@@ -56,7 +56,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_dc(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_sncndn<__type>(__k, __u).dc();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).dc();
     }
 
   template<typename _Kp, typename _Up>
@@ -64,7 +64,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_ds(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_sncndn<__type>(__k, __u).ds();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).ds();
     }
 
   template<typename _Kp, typename _Up>
@@ -72,7 +72,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_nc(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_sncndn<__type>(__k, __u).nc();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).nc();
     }
 
   template<typename _Kp, typename _Up>
@@ -80,7 +80,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_nd(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_sncndn<__type>(__k, __u).nd();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).nd();
     }
 
   template<typename _Kp, typename _Up>
@@ -88,7 +88,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_ns(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_sncndn<__type>(__k, __u).ns();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).ns();
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
