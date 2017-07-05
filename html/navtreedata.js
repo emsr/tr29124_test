@@ -27,7 +27,7 @@ var NAVTREE =
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
+        [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ],
         [ "Typedefs", "functions_type.html", null ]
@@ -46,12 +46,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"group__gnu__math__spec__func.html#ga8fcd01a56e0c16d7568026c0bb4312eb",
-"namespacemembers_b.html",
-"sf__gamma_8tcc.html#ad37ad67a4b856eb97b13c8844f9ef8d8",
-"specfun_8h.html#ga0bda860961b0a121e266b278f260634b",
-"specfun_8h.html#ga9b6816c0abf30fd88417d79a33cb5465",
-"struct____gnu__cxx_1_1____sph__hankel__t.html#a225e48ba2faafbdabd65cd173372d418"
+"group__gnu__math__spec__func.html#ga74de88458ea2ed12e92a1520c7cad08e",
+"hierarchy.html",
+"sf__gamma_8tcc.html#a2d14a1207a6fea22f32586dfd41cf49d",
+"sf__trig_8tcc.html#ae19d579db4245c9c4e53a70a0513bb00",
+"specfun_8h.html#ga795383fa51e02351000b410b478d824f",
+"struct____gnu__cxx_1_1____cyl__mod__bessel__t.html#a8f86a11fb265db76743d80e98be389be"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

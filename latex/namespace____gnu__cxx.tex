@@ -7,6 +7,8 @@ struct \hyperlink{struct____gnu__cxx_1_1____airy__t}{\+\_\+\+\_\+airy\+\_\+t}
 \item 
 struct \hyperlink{struct____gnu__cxx_1_1____cyl__bessel__t}{\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+t}
 \item 
+struct \hyperlink{struct____gnu__cxx_1_1____cyl__coulomb__t}{\+\_\+\+\_\+cyl\+\_\+coulomb\+\_\+t}
+\item 
 struct \hyperlink{struct____gnu__cxx_1_1____cyl__hankel__t}{\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+t}
 \item 
 struct \hyperlink{struct____gnu__cxx_1_1____cyl__mod__bessel__t}{\+\_\+\+\_\+cyl\+\_\+mod\+\_\+bessel\+\_\+t}
@@ -19,7 +21,17 @@ struct \hyperlink{struct____gnu__cxx_1_1____gamma__inc__t}{\+\_\+\+\_\+gamma\+\_
 \item 
 struct \hyperlink{struct____gnu__cxx_1_1____gamma__temme__t}{\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}
 \begin{DoxyCompactList}\small\item\em A structure for the gamma functions required by the Temme series expansions of $ N_\nu(x) $ and $ K_\nu(x) $. \[ \Gamma_1 = \frac{1}{2\mu} \left[\frac{1}{\Gamma(1 - \mu)} - \frac{1}{\Gamma(1 + \mu)}\right] \] and \[ \Gamma_2 = \frac{1}{2} \left[\frac{1}{\Gamma(1 - \mu)} + \frac{1}{\Gamma(1 + \mu)}\right] \] where $ -1/2 <= \mu <= 1/2 $ is $ \mu = \nu - N $ and $ N $. is the nearest integer to $ \nu $. The values of $ \Gamma(1 + \mu) $ and $ \Gamma(1 - \mu) $ are returned as well. \end{DoxyCompactList}\item 
+struct \hyperlink{struct____gnu__cxx_1_1____hermite__he__t}{\+\_\+\+\_\+hermite\+\_\+he\+\_\+t}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____hermite__t}{\+\_\+\+\_\+hermite\+\_\+t}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____jacobi__ellint__t}{\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t}
+\item 
 struct \hyperlink{struct____gnu__cxx_1_1____jacobi__t}{\+\_\+\+\_\+jacobi\+\_\+t}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____laguerre__t}{\+\_\+\+\_\+laguerre\+\_\+t}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____legendre__p__t}{\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}
 \item 
 struct \hyperlink{struct____gnu__cxx_1_1____lgamma__t}{\+\_\+\+\_\+lgamma\+\_\+t}
 \item 
@@ -789,15 +801,13 @@ long double \hyperlink{group__gnu__math__spec__func_ga9236dd8545b448da9cb05dd8b7
 
 
 \subsection{Function Documentation}
+\mbox{\Hypertarget{namespace____gnu__cxx_a586fa80a2f00ea60e6bed5e4f267bfd4}\label{namespace____gnu__cxx_a586fa80a2f00ea60e6bed5e4f267bfd4}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+equal@{\+\_\+\+\_\+fp\+\_\+is\+\_\+equal}}
 \index{\+\_\+\+\_\+fp\+\_\+is\+\_\+equal@{\+\_\+\+\_\+fp\+\_\+is\+\_\+equal}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
-\subsubsection[{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+equal(\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\lcurly{}1\rcurly{})}{__fp_is_equal(_Tp __a, _Tp __b, _Tp __mul=_Tp\{1\})}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ bool \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+equal (
-\begin{DoxyParamCaption}
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a, }
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+b, }
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{namespace____gnu__cxx_a586fa80a2f00ea60e6bed5e4f267bfd4}{}\label{namespace____gnu__cxx_a586fa80a2f00ea60e6bed5e4f267bfd4}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+equal()}{\_\_fp\_is\_equal()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+bool \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+equal (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+b,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 A function to reliably compare two floating point numbers.
 
 
@@ -824,14 +834,13 @@ References \+\_\+\+\_\+fp\+\_\+max\+\_\+abs().
 
 Referenced by \+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer(), \+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer(), \+\_\+\+\_\+fp\+\_\+is\+\_\+integer(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg\+\_\+int(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos\+\_\+int(), and std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos\+\_\+real().
 
+\mbox{\Hypertarget{namespace____gnu__cxx_aa78dac4c2812a060d30efa5a3c99977c}\label{namespace____gnu__cxx_aa78dac4c2812a060d30efa5a3c99977c}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer}}
 \index{\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
-\subsubsection[{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer(\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\lcurly{}1\rcurly{})}{__fp_is_even_integer(_Tp __a, _Tp __mul=_Tp\{1\})}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ {\bf \+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer (
-\begin{DoxyParamCaption}
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a, }
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{namespace____gnu__cxx_aa78dac4c2812a060d30efa5a3c99977c}{}\label{namespace____gnu__cxx_aa78dac4c2812a060d30efa5a3c99977c}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer()}{\_\_fp\_is\_even\_integer()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 A function to reliably detect if a floating point number is an even integer.
 
 
@@ -856,14 +865,13 @@ References \+\_\+\+\_\+fp\+\_\+is\+\_\+integer().
 
 Referenced by std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+glob().
 
+\mbox{\Hypertarget{namespace____gnu__cxx_a5b5e889240854b8a4452ac49593fdc74}\label{namespace____gnu__cxx_a5b5e889240854b8a4452ac49593fdc74}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer}}
 \index{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
-\subsubsection[{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer(\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\lcurly{}1\rcurly{})}{__fp_is_half_integer(_Tp __a, _Tp __mul=_Tp\{1\})}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ {\bf \+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer (
-\begin{DoxyParamCaption}
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a, }
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{namespace____gnu__cxx_a5b5e889240854b8a4452ac49593fdc74}{}\label{namespace____gnu__cxx_a5b5e889240854b8a4452ac49593fdc74}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer()}{\_\_fp\_is\_half\_integer()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 A function to reliably detect if a floating point number is a half-\/integer.
 
 
@@ -884,14 +892,13 @@ Definition at line 172 of file math\+\_\+util.\+h.
 
 References \+\_\+\+\_\+fp\+\_\+is\+\_\+equal().
 
+\mbox{\Hypertarget{namespace____gnu__cxx_af4f5d1b815527e3d8587bdbbef9470e3}\label{namespace____gnu__cxx_af4f5d1b815527e3d8587bdbbef9470e3}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer}}
 \index{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
-\subsubsection[{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer(\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\lcurly{}1\rcurly{})}{__fp_is_half_odd_integer(_Tp __a, _Tp __mul=_Tp\{1\})}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ {\bf \+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer (
-\begin{DoxyParamCaption}
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a, }
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{namespace____gnu__cxx_af4f5d1b815527e3d8587bdbbef9470e3}{}\label{namespace____gnu__cxx_af4f5d1b815527e3d8587bdbbef9470e3}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer()}{\_\_fp\_is\_half\_odd\_integer()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 A function to reliably detect if a floating point number is a half-\/odd-\/integer.
 
 
@@ -916,14 +923,13 @@ References \+\_\+\+\_\+fp\+\_\+is\+\_\+equal().
 
 Referenced by std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+psi().
 
+\mbox{\Hypertarget{namespace____gnu__cxx_a75c2c5ab6f25d41dddd3d00235593211}\label{namespace____gnu__cxx_a75c2c5ab6f25d41dddd3d00235593211}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer}}
 \index{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
-\subsubsection[{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer(\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\lcurly{}1\rcurly{})}{__fp_is_integer(_Tp __a, _Tp __mul=_Tp\{1\})}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ {\bf \+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+integer (
-\begin{DoxyParamCaption}
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a, }
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{namespace____gnu__cxx_a75c2c5ab6f25d41dddd3d00235593211}{}\label{namespace____gnu__cxx_a75c2c5ab6f25d41dddd3d00235593211}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer()}{\_\_fp\_is\_integer()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+integer (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 A function to reliably detect if a floating point number is an integer.
 
 
@@ -948,14 +954,13 @@ References \+\_\+\+\_\+fp\+\_\+is\+\_\+equal().
 
 Referenced by std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+dirichlet\+\_\+eta(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+falling\+\_\+factorial(), \+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer(), \+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+reciprocal(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+series(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+log\+\_\+falling\+\_\+factorial(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+log\+\_\+gamma(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+pgamma(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+psi(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+qgamma(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+riemann\+\_\+zeta(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+m\+\_\+1(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+tgamma(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+tgamma\+\_\+lower(), and std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+tricomi\+\_\+u\+\_\+naive().
 
+\mbox{\Hypertarget{namespace____gnu__cxx_adfc2607bd5aebd90ba6af2d4d4365bef}\label{namespace____gnu__cxx_adfc2607bd5aebd90ba6af2d4d4365bef}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer}}
 \index{\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
-\subsubsection[{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer(\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\lcurly{}1\rcurly{})}{__fp_is_odd_integer(_Tp __a, _Tp __mul=_Tp\{1\})}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ {\bf \+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer (
-\begin{DoxyParamCaption}
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a, }
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{namespace____gnu__cxx_adfc2607bd5aebd90ba6af2d4d4365bef}{}\label{namespace____gnu__cxx_adfc2607bd5aebd90ba6af2d4d4365bef}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer()}{\_\_fp\_is\_odd\_integer()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 A function to reliably detect if a floating point number is an odd integer.
 
 
@@ -976,14 +981,13 @@ Definition at line 237 of file math\+\_\+util.\+h.
 
 References \+\_\+\+\_\+fp\+\_\+is\+\_\+integer().
 
+\mbox{\Hypertarget{namespace____gnu__cxx_a8d30fc0f2348283e00f56c16d5713fc9}\label{namespace____gnu__cxx_a8d30fc0f2348283e00f56c16d5713fc9}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+zero@{\+\_\+\+\_\+fp\+\_\+is\+\_\+zero}}
 \index{\+\_\+\+\_\+fp\+\_\+is\+\_\+zero@{\+\_\+\+\_\+fp\+\_\+is\+\_\+zero}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
-\subsubsection[{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+zero(\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\lcurly{}1\rcurly{})}{__fp_is_zero(_Tp __a, _Tp __mul=_Tp\{1\})}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ bool \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+zero (
-\begin{DoxyParamCaption}
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a, }
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{namespace____gnu__cxx_a8d30fc0f2348283e00f56c16d5713fc9}{}\label{namespace____gnu__cxx_a8d30fc0f2348283e00f56c16d5713fc9}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+zero()}{\_\_fp\_is\_zero()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+bool \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+zero (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 A function to reliably compare a floating point number with zero.
 
 
@@ -1002,16 +1006,15 @@ Definition at line 106 of file math\+\_\+util.\+h.
 
 
 
-Referenced by std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg\+\_\+int(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos\+\_\+int(), and std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos\+\_\+real().
+Referenced by std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg\+\_\+int(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos\+\_\+int(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos\+\_\+real(), and std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+theta\+\_\+1().
 
+\mbox{\Hypertarget{namespace____gnu__cxx_adebbf99919675806def929327e724a53}\label{namespace____gnu__cxx_adebbf99919675806def929327e724a53}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+max\+\_\+abs@{\+\_\+\+\_\+fp\+\_\+max\+\_\+abs}}
 \index{\+\_\+\+\_\+fp\+\_\+max\+\_\+abs@{\+\_\+\+\_\+fp\+\_\+max\+\_\+abs}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
-\subsubsection[{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+max\+\_\+abs(\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b)}{__fp_max_abs(_Tp __a, _Tp __b)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp $>$ \+\_\+\+Tp \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+max\+\_\+abs (
-\begin{DoxyParamCaption}
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a, }
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+b}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{namespace____gnu__cxx_adebbf99919675806def929327e724a53}{}\label{namespace____gnu__cxx_adebbf99919675806def929327e724a53}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+max\+\_\+abs()}{\_\_fp\_max\_abs()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\+\_\+\+Tp \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+max\+\_\+abs (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 A function to return the max of the absolute values of two numbers ... so we won\textquotesingle{}t include everything. 
 \begin{DoxyParams}{Parameters}
 {\em \+\_\+\+\_\+a} & The left hand side \\
@@ -1027,13 +1030,13 @@ Definition at line 58 of file math\+\_\+util.\+h.
 
 Referenced by \+\_\+\+\_\+fp\+\_\+is\+\_\+equal().
 
+\mbox{\Hypertarget{namespace____gnu__cxx_abc155473831db12736006150c0ad42b6}\label{namespace____gnu__cxx_abc155473831db12736006150c0ad42b6}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+parity@{\+\_\+\+\_\+parity}}
 \index{\+\_\+\+\_\+parity@{\+\_\+\+\_\+parity}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
-\subsubsection[{\texorpdfstring{\+\_\+\+\_\+parity(\+\_\+\+Int\+Tp \+\_\+\+\_\+k)}{__parity(_IntTp __k)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp , typename \+\_\+\+Int\+Tp $>$ \+\_\+\+Tp \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+parity (
-\begin{DoxyParamCaption}
-\item[{\+\_\+\+Int\+Tp}]{\+\_\+\+\_\+k}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{namespace____gnu__cxx_abc155473831db12736006150c0ad42b6}{}\label{namespace____gnu__cxx_abc155473831db12736006150c0ad42b6}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+parity()}{\_\_parity()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+Int\+Tp $>$ \\
+\+\_\+\+Tp \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+parity (\begin{DoxyParamCaption}\item[{\+\_\+\+Int\+Tp}]{\+\_\+\+\_\+k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
 Return -\/1 if the integer argument is odd and +1 if it is even. 
 
 Definition at line 47 of file math\+\_\+util.\+h.

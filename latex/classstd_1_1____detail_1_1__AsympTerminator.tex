@@ -5,49 +5,85 @@
 \item 
 \hyperlink{classstd_1_1____detail_1_1__AsympTerminator_a2a052a2ebedaa33cae3a6c07d73ca9cf}{\+\_\+\+Asymp\+Terminator} (std\+::size\+\_\+t \+\_\+\+\_\+max\+\_\+iter, \+\_\+\+Real \+\_\+\+\_\+mul=\+\_\+\+Real\{1\})
 \item 
+std\+::size\+\_\+t \hyperlink{classstd_1_1____detail_1_1__AsympTerminator_a463f9e4e87d22b9839c12cc28b085117}{num\+\_\+terms} () const
+\begin{DoxyCompactList}\small\item\em Return the current number of terms summed. \end{DoxyCompactList}\item 
 bool \hyperlink{classstd_1_1____detail_1_1__AsympTerminator_ad57254b6dcdd419b785477711b296729}{operator()} (\+\_\+\+Tp \+\_\+\+\_\+term, \+\_\+\+Tp \+\_\+\+\_\+sum)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Detect if the sum should terminate either because the incoming term is small enough or because the terms are starting to grow or. \end{DoxyCompactList}\item 
+\+\_\+\+Tp \hyperlink{classstd_1_1____detail_1_1__AsympTerminator_a7299b3abc814127eba98d16f6ac7d4e1}{operator$<$$<$} (\+\_\+\+Tp \+\_\+\+\_\+term)
+\begin{DoxyCompactList}\small\item\em Filter a term before applying it to the sum. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$typename \+\_\+\+Tp$>$\\*
+\subsubsection*{template$<$typename \+\_\+\+Tp$>$\newline
 class std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator$<$ \+\_\+\+Tp $>$}
 
 This class manages the termination of asymptotic series. In particular, this termination watches for the growth of the sequence of terms to stop the series.
 
 Termination conditions involve both a maximum iteration count and a relative precision. 
 
-Definition at line 99 of file sf\+\_\+polylog.\+tcc.
+Definition at line 108 of file sf\+\_\+polylog.\+tcc.
 
 
 
 \subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classstd_1_1____detail_1_1__AsympTerminator_a2a052a2ebedaa33cae3a6c07d73ca9cf}\label{classstd_1_1____detail_1_1__AsympTerminator_a2a052a2ebedaa33cae3a6c07d73ca9cf}} 
 \index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}!\+\_\+\+Asymp\+Terminator@{\+\_\+\+Asymp\+Terminator}}
 \index{\+\_\+\+Asymp\+Terminator@{\+\_\+\+Asymp\+Terminator}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}}
-\subsubsection[{\texorpdfstring{\+\_\+\+Asymp\+Terminator(std\+::size\+\_\+t \+\_\+\+\_\+max\+\_\+iter, \+\_\+\+Real \+\_\+\+\_\+mul=\+\_\+\+Real\lcurly{}1\rcurly{})}{_AsympTerminator(std::size_t __max_iter, _Real __mul=_Real\{1\})}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp$>$ {\bf std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}$<$ \+\_\+\+Tp $>$\+::{\bf \+\_\+\+Asymp\+Terminator} (
-\begin{DoxyParamCaption}
-\item[{std\+::size\+\_\+t}]{\+\_\+\+\_\+max\+\_\+iter, }
-\item[{\+\_\+\+Real}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Real\{1\}}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classstd_1_1____detail_1_1__AsympTerminator_a2a052a2ebedaa33cae3a6c07d73ca9cf}{}\label{classstd_1_1____detail_1_1__AsympTerminator_a2a052a2ebedaa33cae3a6c07d73ca9cf}
+\subsubsection{\texorpdfstring{\+\_\+\+Asymp\+Terminator()}{\_AsympTerminator()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp$>$ \\
+\hyperlink{classstd_1_1____detail_1_1__AsympTerminator}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}$<$ \+\_\+\+Tp $>$\+::\hyperlink{classstd_1_1____detail_1_1__AsympTerminator}{\+\_\+\+Asymp\+Terminator} (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{\+\_\+\+\_\+max\+\_\+iter,  }\item[{\+\_\+\+Real}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Real\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
-Definition at line 110 of file sf\+\_\+polylog.\+tcc.
+
+Definition at line 121 of file sf\+\_\+polylog.\+tcc.
 
 
 
 \subsection{Member Function Documentation}
+\mbox{\Hypertarget{classstd_1_1____detail_1_1__AsympTerminator_a463f9e4e87d22b9839c12cc28b085117}\label{classstd_1_1____detail_1_1__AsympTerminator_a463f9e4e87d22b9839c12cc28b085117}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}!num\+\_\+terms@{num\+\_\+terms}}
+\index{num\+\_\+terms@{num\+\_\+terms}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}}
+\subsubsection{\texorpdfstring{num\+\_\+terms()}{num\_terms()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp$>$ \\
+std\+::size\+\_\+t \hyperlink{classstd_1_1____detail_1_1__AsympTerminator}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}$<$ \+\_\+\+Tp $>$\+::num\+\_\+terms (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the current number of terms summed. 
+
+
+
+Definition at line 141 of file sf\+\_\+polylog.\+tcc.
+
+\mbox{\Hypertarget{classstd_1_1____detail_1_1__AsympTerminator_ad57254b6dcdd419b785477711b296729}\label{classstd_1_1____detail_1_1__AsympTerminator_ad57254b6dcdd419b785477711b296729}} 
 \index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}!operator()@{operator()}}
 \index{operator()@{operator()}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}}
-\subsubsection[{\texorpdfstring{operator()(\+\_\+\+Tp \+\_\+\+\_\+term, \+\_\+\+Tp \+\_\+\+\_\+sum)}{operator()(_Tp __term, _Tp __sum)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp$>$ bool {\bf std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}$<$ \+\_\+\+Tp $>$\+::operator() (
-\begin{DoxyParamCaption}
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+term, }
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+sum}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classstd_1_1____detail_1_1__AsympTerminator_ad57254b6dcdd419b785477711b296729}{}\label{classstd_1_1____detail_1_1__AsympTerminator_ad57254b6dcdd419b785477711b296729}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp$>$ \\
+bool \hyperlink{classstd_1_1____detail_1_1__AsympTerminator}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}$<$ \+\_\+\+Tp $>$\+::operator() (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+term,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+sum }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
-Definition at line 116 of file sf\+\_\+polylog.\+tcc.
+
+Detect if the sum should terminate either because the incoming term is small enough or because the terms are starting to grow or. 
+
+
+
+Definition at line 148 of file sf\+\_\+polylog.\+tcc.
+
+\mbox{\Hypertarget{classstd_1_1____detail_1_1__AsympTerminator_a7299b3abc814127eba98d16f6ac7d4e1}\label{classstd_1_1____detail_1_1__AsympTerminator_a7299b3abc814127eba98d16f6ac7d4e1}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}}
+\subsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp$>$ \\
+\+\_\+\+Tp \hyperlink{classstd_1_1____detail_1_1__AsympTerminator}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}$<$ \+\_\+\+Tp $>$\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+term }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Filter a term before applying it to the sum. 
+
+
+
+Definition at line 128 of file sf\+\_\+polylog.\+tcc.
 
 
 

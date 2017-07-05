@@ -8,6 +8,7 @@ var namespacestd_1_1____detail =
     [ "__gamma_spouge_data< double >", "structstd_1_1____detail_1_1____gamma__spouge__data_3_01double_01_4.html", null ],
     [ "__gamma_spouge_data< float >", "structstd_1_1____detail_1_1____gamma__spouge__data_3_01float_01_4.html", null ],
     [ "__gamma_spouge_data< long double >", "structstd_1_1____detail_1_1____gamma__spouge__data_3_01long_01double_01_4.html", null ],
+    [ "__jacobi_theta_0_t", "structstd_1_1____detail_1_1____jacobi__theta__0__t.html", "structstd_1_1____detail_1_1____jacobi__theta__0__t" ],
     [ "_Airy", "classstd_1_1____detail_1_1__Airy.html", "classstd_1_1____detail_1_1__Airy" ],
     [ "_Airy_asymp", "classstd_1_1____detail_1_1__Airy__asymp.html", "classstd_1_1____detail_1_1__Airy__asymp" ],
     [ "_Airy_asymp_data", "structstd_1_1____detail_1_1__Airy__asymp__data.html", null ],
