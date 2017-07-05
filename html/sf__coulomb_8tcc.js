@@ -1,6 +1,6 @@
 var sf__coulomb_8tcc =
 [
-    [ "_GLIBCXX_BITS_SF_HYDROGEN_TCC", "sf__coulomb_8tcc.html#af6b60d2402ae885b7f3ef4519fb65ed9", null ],
+    [ "_GLIBCXX_BITS_SF_COULOMB_TCC", "sf__coulomb_8tcc.html#a162e29800b43ed4d5f024cda4a7a6531", null ],
     [ "__coulomb_CF1", "sf__coulomb_8tcc.html#a0737f268d024ed5d66d3e926239a5c49", null ],
     [ "__coulomb_CF2", "sf__coulomb_8tcc.html#a400332397b6d529764b61bdd7726f75c", null ],
     [ "__coulomb_f_recur", "sf__coulomb_8tcc.html#ab6a730206fba9db024f3c1c26fe6a954", null ],

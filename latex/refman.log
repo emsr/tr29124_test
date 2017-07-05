@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.4.24)  5 JUL 2017 09:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2017.4.24)  5 JUL 2017 09:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1385,7 +1385,7 @@ Chapter 7.
 ]
 Chapter 8.
 (./group__math__spec__func.tex
-<group__math__spec__func.pdf, id=7766, 397.485pt x 160.6pt>
+<group__math__spec__func.pdf, id=7771, 397.485pt x 160.6pt>
 File: group__math__spec__func.pdf Graphic file (type pdf)
 
 <use group__math__spec__func.pdf>
@@ -1396,7 +1396,7 @@ Package pdftex.def Info: group__math__spec__func.pdf used on input line 8.
 
 
 (./group__tr29124__math__spec__func.tex
-<group__tr29124__math__spec__func.pdf, id=7786, 397.485pt x 111.41624pt>
+<group__tr29124__math__spec__func.pdf, id=7792, 397.485pt x 111.41624pt>
 File: group__tr29124__math__spec__func.pdf Graphic file (type pdf)
 
 <use group__tr29124__math__spec__func.pdf>
@@ -1685,7 +1685,7 @@ Underfull \hbox (badness 10000) detected at line 1473
 \openout2 = `group__gnu__math__spec__func.aux'.
 
  (./group__gnu__math__spec__func.tex
-<group__gnu__math__spec__func.pdf, id=8154, 395.4775pt x 111.41624pt>
+<group__gnu__math__spec__func.pdf, id=8159, 395.4775pt x 111.41624pt>
 File: group__gnu__math__spec__func.pdf Graphic file (type pdf)
 
 <use group__gnu__math__spec__func.pdf>
@@ -4402,7 +4402,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1.
 
 
-<classstd_1_1____detail_1_1__Airy__asymp__inherit__graph.pdf, id=13229, 190.712
+<classstd_1_1____detail_1_1__Airy__asymp__inherit__graph.pdf, id=13234, 190.712
 5pt x 178.6675pt>
 File: classstd_1_1____detail_1_1__Airy__asymp__inherit__graph.pdf Graphic file 
 (type pdf)
@@ -4412,7 +4412,7 @@ Package pdftex.def Info: classstd_1_1____detail_1_1__Airy__asymp__inherit__grap
 h.pdf used on input line 10.
 (pdftex.def)             Requested size: 190.0pt x 178.0073pt.
 
-<classstd_1_1____detail_1_1__Airy__asymp__coll__graph.pdf, id=13230, 190.7125pt
+<classstd_1_1____detail_1_1__Airy__asymp__coll__graph.pdf, id=13235, 190.7125pt
  x 178.6675pt>
 File: classstd_1_1____detail_1_1__Airy__asymp__coll__graph.pdf Graphic file (ty
 pe pdf)
@@ -4453,7 +4453,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1.
 
 
-<structstd_1_1____detail_1_1__Airy__asymp__data__inherit__graph.pdf, id=13304, 
+<structstd_1_1____detail_1_1__Airy__asymp__data__inherit__graph.pdf, id=13309, 
 190.7125pt x 178.6675pt>
 File: structstd_1_1____detail_1_1__Airy__asymp__data__inherit__graph.pdf Graphi
 c file (type pdf)
@@ -4866,14 +4866,14 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 [517]) [518]
 Chapter 11.
 (./sf__airy_8tcc.tex
-<sf__airy_8tcc__incl.pdf, id=13780, 395.4775pt x 156.585pt>
+<sf__airy_8tcc__incl.pdf, id=13785, 395.4775pt x 156.585pt>
 File: sf__airy_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__airy_8tcc__incl.pdf>
 Package pdftex.def Info: sf__airy_8tcc__incl.pdf used on input line 11.
 (pdftex.def)             Requested size: 350.0pt x 138.58128pt.
 
-<sf__airy_8tcc__dep__incl.pdf, id=13781, 161.60374pt x 156.585pt>
+<sf__airy_8tcc__dep__incl.pdf, id=13786, 161.60374pt x 156.585pt>
 File: sf__airy_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__airy_8tcc__dep__incl.pdf>
@@ -4886,7 +4886,7 @@ Package pdftex.def Info: sf__airy_8tcc__dep__incl.pdf used on input line 19.
 pdfTeX warning: pdflatex (file ./sf__airy_8tcc__dep__incl.pdf): PDF inclusion: 
 multiple pdfs with page group included in a single page
 >] [520]) (./sf__bernoulli_8tcc.tex
-<sf__bernoulli_8tcc__dep__incl.pdf, id=13832, 181.67876pt x 156.585pt>
+<sf__bernoulli_8tcc__dep__incl.pdf, id=13837, 181.67876pt x 156.585pt>
 File: sf__bernoulli_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__bernoulli_8tcc__dep__incl.pdf>
@@ -4894,14 +4894,14 @@ Package pdftex.def Info: sf__bernoulli_8tcc__dep__incl.pdf used on input line 8
 .
 (pdftex.def)             Requested size: 181.0pt x 156.004pt.
  [521 <./sf__bernoulli_8tcc__dep__incl.pdf>]) (./sf__bessel_8tcc.tex
-<sf__bessel_8tcc__incl.pdf, id=13854, 244.915pt x 156.585pt>
+<sf__bessel_8tcc__incl.pdf, id=13859, 244.915pt x 156.585pt>
 File: sf__bessel_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__bessel_8tcc__incl.pdf>
 Package pdftex.def Info: sf__bessel_8tcc__incl.pdf used on input line 10.
 (pdftex.def)             Requested size: 244.0pt x 156.004pt.
 
-<sf__bessel_8tcc__dep__incl.pdf, id=13855, 174.6525pt x 156.585pt>
+<sf__bessel_8tcc__dep__incl.pdf, id=13860, 174.6525pt x 156.585pt>
 File: sf__bessel_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__bessel_8tcc__dep__incl.pdf>
@@ -4909,14 +4909,14 @@ Package pdftex.def Info: sf__bessel_8tcc__dep__incl.pdf used on input line 18.
 (pdftex.def)             Requested size: 174.0pt x 156.00879pt.
  [522 <./sf__bessel_8tcc__incl.pdf>]
 [523 <./sf__bessel_8tcc__dep__incl.pdf>] [524]) (./sf__beta_8tcc.tex
-<sf__beta_8tcc__incl.pdf, id=13915, 172.645pt x 156.585pt>
+<sf__beta_8tcc__incl.pdf, id=13920, 172.645pt x 156.585pt>
 File: sf__beta_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__beta_8tcc__incl.pdf>
 Package pdftex.def Info: sf__beta_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 172.0pt x 156.00162pt.
 
-<sf__beta_8tcc__dep__incl.pdf, id=13916, 164.615pt x 156.585pt>
+<sf__beta_8tcc__dep__incl.pdf, id=13921, 164.615pt x 156.585pt>
 File: sf__beta_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__beta_8tcc__dep__incl.pdf>
@@ -4927,14 +4927,14 @@ Package pdftex.def Info: sf__beta_8tcc__dep__incl.pdf used on input line 17.
 pdfTeX warning: pdflatex (file ./sf__beta_8tcc__dep__incl.pdf): PDF inclusion: 
 multiple pdfs with page group included in a single page
 >]) (./sf__cardinal_8tcc.tex
-<sf__cardinal_8tcc__incl.pdf, id=13944, 179.67125pt x 156.585pt>
+<sf__cardinal_8tcc__incl.pdf, id=13949, 179.67125pt x 156.585pt>
 File: sf__cardinal_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__cardinal_8tcc__incl.pdf>
 Package pdftex.def Info: sf__cardinal_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 179.0pt x 156.01117pt.
  [526]
-<sf__cardinal_8tcc__dep__incl.pdf, id=13953, 179.67125pt x 156.585pt>
+<sf__cardinal_8tcc__dep__incl.pdf, id=13958, 179.67125pt x 156.585pt>
 File: sf__cardinal_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__cardinal_8tcc__dep__incl.pdf>
@@ -4946,14 +4946,14 @@ Package pdftex.def Info: sf__cardinal_8tcc__dep__incl.pdf used on input line 17
 pdfTeX warning: pdflatex (file ./sf__cardinal_8tcc__dep__incl.pdf): PDF inclusi
 on: multiple pdfs with page group included in a single page
 >]) (./sf__chebyshev_8tcc.tex
-<sf__chebyshev_8tcc__incl.pdf, id=13982, 193.72375pt x 156.585pt>
+<sf__chebyshev_8tcc__incl.pdf, id=13987, 193.72375pt x 156.585pt>
 File: sf__chebyshev_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__chebyshev_8tcc__incl.pdf>
 Package pdftex.def Info: sf__chebyshev_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 193.0pt x 156.00162pt.
  [528]
-<sf__chebyshev_8tcc__dep__incl.pdf, id=13988, 193.72375pt x 156.585pt>
+<sf__chebyshev_8tcc__dep__incl.pdf, id=13993, 193.72375pt x 156.585pt>
 File: sf__chebyshev_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__chebyshev_8tcc__dep__incl.pdf>
@@ -4965,30 +4965,30 @@ Package pdftex.def Info: sf__chebyshev_8tcc__dep__incl.pdf used on input line 1
 pdfTeX warning: pdflatex (file ./sf__chebyshev_8tcc__dep__incl.pdf): PDF inclus
 ion: multiple pdfs with page group included in a single page
 >]) (./sf__coulomb_8tcc.tex
-<sf__coulomb_8tcc__incl.pdf, id=14017, 182.6825pt x 156.585pt>
+<sf__coulomb_8tcc__incl.pdf, id=14022, 182.6825pt x 156.585pt>
 File: sf__coulomb_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__coulomb_8tcc__incl.pdf>
 Package pdftex.def Info: sf__coulomb_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 182.0pt x 156.0064pt.
 
-<sf__coulomb_8tcc__dep__incl.pdf, id=14018, 182.6825pt x 156.585pt>
+<sf__coulomb_8tcc__dep__incl.pdf, id=14023, 182.6825pt x 156.585pt>
 File: sf__coulomb_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__coulomb_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__coulomb_8tcc__dep__incl.pdf used on input line 17.
 
 (pdftex.def)             Requested size: 182.0pt x 156.0064pt.
- [530 <./sf__coulomb_8tcc__incl.pdf>])
-(./sf__dawson_8tcc.tex [531 <./sf__coulomb_8tcc__dep__incl.pdf>]
-<sf__dawson_8tcc__incl.pdf, id=14056, 179.67125pt x 156.585pt>
+ [530 <./sf__coulomb_8tcc__incl.pdf>]
+[531 <./sf__coulomb_8tcc__dep__incl.pdf>]) (./sf__dawson_8tcc.tex
+<sf__dawson_8tcc__incl.pdf, id=14061, 179.67125pt x 156.585pt>
 File: sf__dawson_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__dawson_8tcc__incl.pdf>
 Package pdftex.def Info: sf__dawson_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 179.0pt x 156.01117pt.
 
-<sf__dawson_8tcc__dep__incl.pdf, id=14057, 179.67125pt x 156.585pt>
+<sf__dawson_8tcc__dep__incl.pdf, id=14062, 179.67125pt x 156.585pt>
 File: sf__dawson_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__dawson_8tcc__dep__incl.pdf>
@@ -4999,65 +4999,68 @@ Package pdftex.def Info: sf__dawson_8tcc__dep__incl.pdf used on input line 17.
 pdfTeX warning: pdflatex (file ./sf__dawson_8tcc__dep__incl.pdf): PDF inclusion
 : multiple pdfs with page group included in a single page
 >]) (./sf__distributions_8tcc.tex
-<sf__distributions_8tcc__incl.pdf, id=14082, 198.7425pt x 156.585pt>
+<sf__distributions_8tcc__incl.pdf, id=14086, 198.7425pt x 156.585pt>
 File: sf__distributions_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__distributions_8tcc__incl.pdf>
 Package pdftex.def Info: sf__distributions_8tcc__incl.pdf used on input line 9.
 
 (pdftex.def)             Requested size: 198.0pt x 156.004pt.
-
-<sf__distributions_8tcc__dep__incl.pdf, id=14083, 198.7425pt x 156.585pt>
+ [533]
+<sf__distributions_8tcc__dep__incl.pdf, id=14096, 198.7425pt x 156.585pt>
 File: sf__distributions_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__distributions_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__distributions_8tcc__dep__incl.pdf used on input li
 ne 17.
 (pdftex.def)             Requested size: 198.0pt x 156.004pt.
- [533 <./sf__distributions_8tcc__incl.pdf>] [534 <./sf__distributions_8tcc__dep
-__incl.pdf>] [535])
-(./sf__ellint_8tcc.tex
-<sf__ellint_8tcc__incl.pdf, id=14147, 244.915pt x 156.585pt>
+ [534 <./sf__distributions_8tcc__incl.pdf> <./sf__distributions_8tcc__dep__incl
+.pdf
+
+pdfTeX warning: pdflatex (file ./sf__distributions_8tcc__dep__incl.pdf): PDF in
+clusion: multiple pdfs with page group included in a single page
+>] [535]) (./sf__ellint_8tcc.tex [536]
+<sf__ellint_8tcc__incl.pdf, id=14155, 244.915pt x 156.585pt>
 File: sf__ellint_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__ellint_8tcc__incl.pdf>
 Package pdftex.def Info: sf__ellint_8tcc__incl.pdf used on input line 10.
 (pdftex.def)             Requested size: 244.0pt x 156.004pt.
 
-<sf__ellint_8tcc__dep__incl.pdf, id=14148, 166.6225pt x 156.585pt>
+<sf__ellint_8tcc__dep__incl.pdf, id=14156, 166.6225pt x 156.585pt>
 File: sf__ellint_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__ellint_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__ellint_8tcc__dep__incl.pdf used on input line 18.
 (pdftex.def)             Requested size: 166.0pt x 156.01117pt.
- [536 <./sf__ellint_8tcc__incl.pdf>]
-[537 <./sf__ellint_8tcc__dep__incl.pdf>]) (./sf__euler_8tcc.tex
-<sf__euler_8tcc__incl.pdf, id=14201, 166.6225pt x 156.585pt>
+ [537 <./sf__ellint_8tcc__incl.pdf> <./sf__ellint_8tcc__dep__incl.pdf
+
+pdfTeX warning: pdflatex (file ./sf__ellint_8tcc__dep__incl.pdf): PDF inclusion
+: multiple pdfs with page group included in a single page
+>] [538]) (./sf__euler_8tcc.tex
+<sf__euler_8tcc__incl.pdf, id=14208, 166.6225pt x 156.585pt>
 File: sf__euler_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__euler_8tcc__incl.pdf>
 Package pdftex.def Info: sf__euler_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 166.0pt x 156.01117pt.
- [538]
-<sf__euler_8tcc__dep__incl.pdf, id=14206, 166.6225pt x 156.585pt>
+
+<sf__euler_8tcc__dep__incl.pdf, id=14209, 166.6225pt x 156.585pt>
 File: sf__euler_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__euler_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__euler_8tcc__dep__incl.pdf used on input line 17.
 (pdftex.def)             Requested size: 166.0pt x 156.01117pt.
- [539 <./sf__euler_8tcc__incl.pdf> <./sf__euler_8tcc__dep__incl.pdf
-
-pdfTeX warning: pdflatex (file ./sf__euler_8tcc__dep__incl.pdf): PDF inclusion:
- multiple pdfs with page group included in a single page
->]) (./sf__expint_8tcc.tex
-<sf__expint_8tcc__incl.pdf, id=14235, 172.645pt x 156.585pt>
+ [539 <./sf__euler_8tcc__incl.pdf>] [540 <./sf__euler_8tcc__dep__incl.pdf>]) (.
+/sf__expint_8tcc.tex
+<sf__expint_8tcc__incl.pdf, id=14246, 172.645pt x 156.585pt>
 File: sf__expint_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__expint_8tcc__incl.pdf>
 Package pdftex.def Info: sf__expint_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 172.0pt x 156.00162pt.
- [540]
-<sf__expint_8tcc__dep__incl.pdf, id=14243, 172.645pt x 156.585pt>
+
+<sf__expint_8tcc__dep__incl.pdf, id=14247, 172.645pt x 156.585pt>
 File: sf__expint_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__expint_8tcc__dep__incl.pdf>
@@ -5068,33 +5071,30 @@ Package pdftex.def Info: sf__expint_8tcc__dep__incl.pdf used on input line 17.
 pdfTeX warning: pdflatex (file ./sf__expint_8tcc__dep__incl.pdf): PDF inclusion
 : multiple pdfs with page group included in a single page
 >] [542]) (./sf__fresnel_8tcc.tex
-<sf__fresnel_8tcc__incl.pdf, id=14288, 244.915pt x 156.585pt>
+<sf__fresnel_8tcc__incl.pdf, id=14292, 244.915pt x 156.585pt>
 File: sf__fresnel_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__fresnel_8tcc__incl.pdf>
 Package pdftex.def Info: sf__fresnel_8tcc__incl.pdf used on input line 10.
 (pdftex.def)             Requested size: 244.0pt x 156.004pt.
 
-<sf__fresnel_8tcc__dep__incl.pdf, id=14289, 175.65625pt x 156.585pt>
+<sf__fresnel_8tcc__dep__incl.pdf, id=14293, 175.65625pt x 156.585pt>
 File: sf__fresnel_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__fresnel_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__fresnel_8tcc__dep__incl.pdf used on input line 18.
 
 (pdftex.def)             Requested size: 175.0pt x 156.01117pt.
- [543 <./sf__fresnel_8tcc__incl.pdf> <./sf__fresnel_8tcc__dep__incl.pdf
-
-pdfTeX warning: pdflatex (file ./sf__fresnel_8tcc__dep__incl.pdf): PDF inclusio
-n: multiple pdfs with page group included in a single page
->]) (./sf__gamma_8tcc.tex
-<sf__gamma_8tcc__incl.pdf, id=14315, 345.29pt x 156.585pt>
+ [543 <./sf__fresnel_8tcc__incl.pdf>])
+(./sf__gamma_8tcc.tex [544 <./sf__fresnel_8tcc__dep__incl.pdf>]
+<sf__gamma_8tcc__incl.pdf, id=14328, 345.29pt x 156.585pt>
 File: sf__gamma_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__gamma_8tcc__incl.pdf>
 Package pdftex.def Info: sf__gamma_8tcc__incl.pdf used on input line 11.
 (pdftex.def)             Requested size: 344.0pt x 156.00162pt.
- [544]
-<sf__gamma_8tcc__dep__incl.pdf, id=14324, 178.6675pt x 156.585pt>
+
+<sf__gamma_8tcc__dep__incl.pdf, id=14329, 178.6675pt x 156.585pt>
 File: sf__gamma_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__gamma_8tcc__dep__incl.pdf>
@@ -5105,81 +5105,82 @@ Package pdftex.def Info: sf__gamma_8tcc__dep__incl.pdf used on input line 19.
 pdfTeX warning: pdflatex (file ./sf__gamma_8tcc__dep__incl.pdf): PDF inclusion:
  multiple pdfs with page group included in a single page
 >] [546] [547] [548] [549] [550] [551]) (./sf__gegenbauer_8tcc.tex
-<sf__gegenbauer_8tcc__incl.pdf, id=14446, 196.735pt x 156.585pt>
+<sf__gegenbauer_8tcc__incl.pdf, id=14450, 196.735pt x 156.585pt>
 File: sf__gegenbauer_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__gegenbauer_8tcc__incl.pdf>
 Package pdftex.def Info: sf__gegenbauer_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 196.0pt x 155.99922pt.
-
-<sf__gegenbauer_8tcc__dep__incl.pdf, id=14447, 196.735pt x 156.585pt>
+ [552]
+<sf__gegenbauer_8tcc__dep__incl.pdf, id=14456, 196.735pt x 156.585pt>
 File: sf__gegenbauer_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__gegenbauer_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__gegenbauer_8tcc__dep__incl.pdf used on input line 
 17.
 (pdftex.def)             Requested size: 196.0pt x 155.99922pt.
- [552 <./sf__gegenbauer_8tcc__incl.pdf>]) (./sf__hankel_8tcc.tex
-<sf__hankel_8tcc__incl.pdf, id=14465, 371.3875pt x 156.585pt>
+ [553 <./sf__gegenbauer_8tcc__incl.pdf> <./sf__gegenbauer_8tcc__dep__incl.pdf
+
+pdfTeX warning: pdflatex (file ./sf__gegenbauer_8tcc__dep__incl.pdf): PDF inclu
+sion: multiple pdfs with page group included in a single page
+>]) (./sf__hankel_8tcc.tex
+<sf__hankel_8tcc__incl.pdf, id=14483, 371.3875pt x 156.585pt>
 File: sf__hankel_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__hankel_8tcc__incl.pdf>
 Package pdftex.def Info: sf__hankel_8tcc__incl.pdf used on input line 12.
 (pdftex.def)             Requested size: 350.0pt x 147.56981pt.
- [553 <./sf__gegenbauer_8tcc__dep__incl.pdf>]
-<sf__hankel_8tcc__dep__incl.pdf, id=14481, 174.6525pt x 156.585pt>
+
+<sf__hankel_8tcc__dep__incl.pdf, id=14484, 174.6525pt x 156.585pt>
 File: sf__hankel_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__hankel_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__hankel_8tcc__dep__incl.pdf used on input line 20.
 (pdftex.def)             Requested size: 174.0pt x 156.00879pt.
- [554 <./sf__hankel_8tcc__incl.pdf> <./sf__hankel_8tcc__dep__incl.pdf
-
-pdfTeX warning: pdflatex (file ./sf__hankel_8tcc__dep__incl.pdf): PDF inclusion
-: multiple pdfs with page group included in a single page
->] [555]) (./sf__hermite_8tcc.tex
-<sf__hermite_8tcc__incl.pdf, id=14539, 178.6675pt x 156.585pt>
+ [554 <./sf__hankel_8tcc__incl.pdf>]
+[555 <./sf__hankel_8tcc__dep__incl.pdf>] [556]) (./sf__hermite_8tcc.tex
+<sf__hermite_8tcc__incl.pdf, id=14549, 178.6675pt x 156.585pt>
 File: sf__hermite_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__hermite_8tcc__incl.pdf>
 Package pdftex.def Info: sf__hermite_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 178.0pt x 156.00879pt.
- [556]
-<sf__hermite_8tcc__dep__incl.pdf, id=14545, 178.6675pt x 156.585pt>
+
+<sf__hermite_8tcc__dep__incl.pdf, id=14550, 178.6675pt x 156.585pt>
 File: sf__hermite_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__hermite_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__hermite_8tcc__dep__incl.pdf used on input line 17.
 
 (pdftex.def)             Requested size: 178.0pt x 156.00879pt.
- [557 <./sf__hermite_8tcc__incl.pdf> <./sf__hermite_8tcc__dep__incl.pdf
-
-pdfTeX warning: pdflatex (file ./sf__hermite_8tcc__dep__incl.pdf): PDF inclusio
-n: multiple pdfs with page group included in a single page
->]) (./sf__hyperg_8tcc.tex
-<sf__hyperg_8tcc__incl.pdf, id=14577, 175.65625pt x 156.585pt>
+ [557 <./sf__hermite_8tcc__incl.pdf>]
+[558 <./sf__hermite_8tcc__dep__incl.pdf>]) (./sf__hyperg_8tcc.tex
+<sf__hyperg_8tcc__incl.pdf, id=14588, 175.65625pt x 156.585pt>
 File: sf__hyperg_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__hyperg_8tcc__incl.pdf>
 Package pdftex.def Info: sf__hyperg_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 175.0pt x 156.01117pt.
 
-<sf__hyperg_8tcc__dep__incl.pdf, id=14578, 175.65625pt x 156.585pt>
+<sf__hyperg_8tcc__dep__incl.pdf, id=14589, 175.65625pt x 156.585pt>
 File: sf__hyperg_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__hyperg_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__hyperg_8tcc__dep__incl.pdf used on input line 17.
 (pdftex.def)             Requested size: 175.0pt x 156.01117pt.
- [558 <./sf__hyperg_8tcc__incl.pdf>]
-[559 <./sf__hyperg_8tcc__dep__incl.pdf>]) (./sf__hypint_8tcc.tex
-<sf__hypint_8tcc__incl.pdf, id=14621, 244.915pt x 156.585pt>
+ [559 <./sf__hyperg_8tcc__incl.pdf> <./sf__hyperg_8tcc__dep__incl.pdf
+
+pdfTeX warning: pdflatex (file ./sf__hyperg_8tcc__dep__incl.pdf): PDF inclusion
+: multiple pdfs with page group included in a single page
+>] [560]) (./sf__hypint_8tcc.tex
+<sf__hypint_8tcc__incl.pdf, id=14630, 244.915pt x 156.585pt>
 File: sf__hypint_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__hypint_8tcc__incl.pdf>
 Package pdftex.def Info: sf__hypint_8tcc__incl.pdf used on input line 10.
 (pdftex.def)             Requested size: 244.0pt x 156.004pt.
- [560]
-<sf__hypint_8tcc__dep__incl.pdf, id=14626, 172.645pt x 156.585pt>
+
+<sf__hypint_8tcc__dep__incl.pdf, id=14631, 172.645pt x 156.585pt>
 File: sf__hypint_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__hypint_8tcc__dep__incl.pdf>
@@ -5190,67 +5191,64 @@ Package pdftex.def Info: sf__hypint_8tcc__dep__incl.pdf used on input line 18.
 pdfTeX warning: pdflatex (file ./sf__hypint_8tcc__dep__incl.pdf): PDF inclusion
 : multiple pdfs with page group included in a single page
 >]) (./sf__jacobi_8tcc.tex
-<sf__jacobi_8tcc__incl.pdf, id=14654, 172.645pt x 156.585pt>
+<sf__jacobi_8tcc__incl.pdf, id=14656, 172.645pt x 156.585pt>
 File: sf__jacobi_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__jacobi_8tcc__incl.pdf>
 Package pdftex.def Info: sf__jacobi_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 172.0pt x 156.00162pt.
-
-<sf__jacobi_8tcc__dep__incl.pdf, id=14655, 171.64125pt x 156.585pt>
+ [562]
+<sf__jacobi_8tcc__dep__incl.pdf, id=14665, 171.64125pt x 156.585pt>
 File: sf__jacobi_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__jacobi_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__jacobi_8tcc__dep__incl.pdf used on input line 17.
 (pdftex.def)             Requested size: 171.0pt x 155.99922pt.
- [562 <./sf__jacobi_8tcc__incl.pdf>])
-(./sf__laguerre_8tcc.tex [563 <./sf__jacobi_8tcc__dep__incl.pdf>]
-<sf__laguerre_8tcc__incl.pdf, id=14692, 234.8775pt x 156.585pt>
+ [563 <./sf__jacobi_8tcc__incl.pdf> <./sf__jacobi_8tcc__dep__incl.pdf
+
+pdfTeX warning: pdflatex (file ./sf__jacobi_8tcc__dep__incl.pdf): PDF inclusion
+: multiple pdfs with page group included in a single page
+>]) (./sf__laguerre_8tcc.tex
+<sf__laguerre_8tcc__incl.pdf, id=14695, 234.8775pt x 156.585pt>
 File: sf__laguerre_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__laguerre_8tcc__incl.pdf>
 Package pdftex.def Info: sf__laguerre_8tcc__incl.pdf used on input line 10.
 (pdftex.def)             Requested size: 234.0pt x 155.99922pt.
 
-<sf__laguerre_8tcc__dep__incl.pdf, id=14693, 180.675pt x 156.585pt>
+<sf__laguerre_8tcc__dep__incl.pdf, id=14696, 180.675pt x 156.585pt>
 File: sf__laguerre_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__laguerre_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__laguerre_8tcc__dep__incl.pdf used on input line 18
 .
 (pdftex.def)             Requested size: 180.0pt x 156.00162pt.
- [564 <./sf__laguerre_8tcc__incl.pdf> <./sf__laguerre_8tcc__dep__incl.pdf
-
-pdfTeX warning: pdflatex (file ./sf__laguerre_8tcc__dep__incl.pdf): PDF inclusi
-on: multiple pdfs with page group included in a single page
->]) (./sf__legendre_8tcc.tex
-<sf__legendre_8tcc__incl.pdf, id=14725, 307.1475pt x 156.585pt>
+ [564 <./sf__laguerre_8tcc__incl.pdf>]
+[565 <./sf__laguerre_8tcc__dep__incl.pdf>]) (./sf__legendre_8tcc.tex
+<sf__legendre_8tcc__incl.pdf, id=14737, 307.1475pt x 156.585pt>
 File: sf__legendre_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__legendre_8tcc__incl.pdf>
 Package pdftex.def Info: sf__legendre_8tcc__incl.pdf used on input line 11.
 (pdftex.def)             Requested size: 306.0pt x 156.00879pt.
- [565]
-<sf__legendre_8tcc__dep__incl.pdf, id=14733, 182.6825pt x 156.585pt>
+
+<sf__legendre_8tcc__dep__incl.pdf, id=14738, 182.6825pt x 156.585pt>
 File: sf__legendre_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__legendre_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__legendre_8tcc__dep__incl.pdf used on input line 19
 .
 (pdftex.def)             Requested size: 182.0pt x 156.0064pt.
- [566 <./sf__legendre_8tcc__incl.pdf> <./sf__legendre_8tcc__dep__incl.pdf
-
-pdfTeX warning: pdflatex (file ./sf__legendre_8tcc__dep__incl.pdf): PDF inclusi
-on: multiple pdfs with page group included in a single page
->]) (./sf__mod__bessel_8tcc.tex
-<sf__mod__bessel_8tcc__incl.pdf, id=14765, 244.915pt x 156.585pt>
+ [566 <./sf__legendre_8tcc__incl.pdf>]
+[567 <./sf__legendre_8tcc__dep__incl.pdf>]) (./sf__mod__bessel_8tcc.tex
+<sf__mod__bessel_8tcc__incl.pdf, id=14777, 244.915pt x 156.585pt>
 File: sf__mod__bessel_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__mod__bessel_8tcc__incl.pdf>
 Package pdftex.def Info: sf__mod__bessel_8tcc__incl.pdf used on input line 10.
 (pdftex.def)             Requested size: 244.0pt x 156.004pt.
- [567]
-<sf__mod__bessel_8tcc__dep__incl.pdf, id=14772, 198.7425pt x 156.585pt>
+
+<sf__mod__bessel_8tcc__dep__incl.pdf, id=14778, 198.7425pt x 156.585pt>
 File: sf__mod__bessel_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__mod__bessel_8tcc__dep__incl.pdf>
@@ -5262,23 +5260,23 @@ Package pdftex.def Info: sf__mod__bessel_8tcc__dep__incl.pdf used on input line
 
 pdfTeX warning: pdflatex (file ./sf__mod__bessel_8tcc__dep__incl.pdf): PDF incl
 usion: multiple pdfs with page group included in a single page
->]) (./sf__owens__t_8tcc.tex
-<sf__owens__t_8tcc__dep__incl.pdf, id=14810, 182.6825pt x 156.585pt>
+>] [569]) (./sf__owens__t_8tcc.tex
+<sf__owens__t_8tcc__dep__incl.pdf, id=14822, 182.6825pt x 156.585pt>
 File: sf__owens__t_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__owens__t_8tcc__dep__incl.pdf>
 Package pdftex.def Info: sf__owens__t_8tcc__dep__incl.pdf used on input line 8.
 
 (pdftex.def)             Requested size: 182.0pt x 156.0064pt.
- [569]) (./sf__polylog_8tcc.tex [570 <./sf__owens__t_8tcc__dep__incl.pdf>]
-<sf__polylog_8tcc__incl.pdf, id=14839, 361.35pt x 156.585pt>
+ [570 <./sf__owens__t_8tcc__dep__incl.pdf>]) (./sf__polylog_8tcc.tex
+<sf__polylog_8tcc__incl.pdf, id=14845, 361.35pt x 156.585pt>
 File: sf__polylog_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__polylog_8tcc__incl.pdf>
 Package pdftex.def Info: sf__polylog_8tcc__incl.pdf used on input line 11.
 (pdftex.def)             Requested size: 350.0pt x 151.66743pt.
 
-<sf__polylog_8tcc__dep__incl.pdf, id=14840, 176.66pt x 156.585pt>
+<sf__polylog_8tcc__dep__incl.pdf, id=14846, 176.66pt x 156.585pt>
 File: sf__polylog_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__polylog_8tcc__dep__incl.pdf>
@@ -5289,15 +5287,15 @@ Package pdftex.def Info: sf__polylog_8tcc__dep__incl.pdf used on input line 19.
 
 pdfTeX warning: pdflatex (file ./sf__polylog_8tcc__dep__incl.pdf): PDF inclusio
 n: multiple pdfs with page group included in a single page
->] [572]) (./sf__stirling_8tcc.tex
-<sf__stirling_8tcc__incl.pdf, id=14906, 174.6525pt x 156.585pt>
+>] [572]) (./sf__stirling_8tcc.tex [573]
+<sf__stirling_8tcc__incl.pdf, id=14918, 174.6525pt x 156.585pt>
 File: sf__stirling_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__stirling_8tcc__incl.pdf>
 Package pdftex.def Info: sf__stirling_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 174.0pt x 156.00879pt.
- [573]
-<sf__stirling_8tcc__dep__incl.pdf, id=14912, 174.6525pt x 156.585pt>
+
+<sf__stirling_8tcc__dep__incl.pdf, id=14919, 174.6525pt x 156.585pt>
 File: sf__stirling_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__stirling_8tcc__dep__incl.pdf>
@@ -5309,14 +5307,14 @@ Package pdftex.def Info: sf__stirling_8tcc__dep__incl.pdf used on input line 17
 pdfTeX warning: pdflatex (file ./sf__stirling_8tcc__dep__incl.pdf): PDF inclusi
 on: multiple pdfs with page group included in a single page
 >]) (./sf__theta_8tcc.tex
-<sf__theta_8tcc__incl.pdf, id=14946, 291.0875pt x 156.585pt>
+<sf__theta_8tcc__incl.pdf, id=14950, 291.0875pt x 156.585pt>
 File: sf__theta_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__theta_8tcc__incl.pdf>
 Package pdftex.def Info: sf__theta_8tcc__incl.pdf used on input line 11.
 (pdftex.def)             Requested size: 290.0pt x 156.01117pt.
  [575]
-<sf__theta_8tcc__dep__incl.pdf, id=14952, 167.62625pt x 156.585pt>
+<sf__theta_8tcc__dep__incl.pdf, id=14958, 167.62625pt x 156.585pt>
 File: sf__theta_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__theta_8tcc__dep__incl.pdf>
@@ -5327,14 +5325,14 @@ Package pdftex.def Info: sf__theta_8tcc__dep__incl.pdf used on input line 19.
 pdfTeX warning: pdflatex (file ./sf__theta_8tcc__dep__incl.pdf): PDF inclusion:
  multiple pdfs with page group included in a single page
 >] [577]) (./sf__trig_8tcc.tex
-<sf__trig_8tcc__incl.pdf, id=15016, 178.6675pt x 156.585pt>
+<sf__trig_8tcc__incl.pdf, id=15022, 178.6675pt x 156.585pt>
 File: sf__trig_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__trig_8tcc__incl.pdf>
 Package pdftex.def Info: sf__trig_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 178.0pt x 156.00879pt.
  [578]
-<sf__trig_8tcc__dep__incl.pdf, id=15022, 159.59625pt x 156.585pt>
+<sf__trig_8tcc__dep__incl.pdf, id=15028, 159.59625pt x 156.585pt>
 File: sf__trig_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__trig_8tcc__dep__incl.pdf>
@@ -5345,14 +5343,14 @@ Package pdftex.def Info: sf__trig_8tcc__dep__incl.pdf used on input line 17.
 pdfTeX warning: pdflatex (file ./sf__trig_8tcc__dep__incl.pdf): PDF inclusion: 
 multiple pdfs with page group included in a single page
 >]) (./sf__trigint_8tcc.tex [580]
-<sf__trigint_8tcc__incl.pdf, id=15076, 244.915pt x 156.585pt>
+<sf__trigint_8tcc__incl.pdf, id=15082, 244.915pt x 156.585pt>
 File: sf__trigint_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__trigint_8tcc__incl.pdf>
 Package pdftex.def Info: sf__trigint_8tcc__incl.pdf used on input line 10.
 (pdftex.def)             Requested size: 244.0pt x 156.004pt.
 
-<sf__trigint_8tcc__dep__incl.pdf, id=15077, 169.63374pt x 156.585pt>
+<sf__trigint_8tcc__dep__incl.pdf, id=15083, 169.63374pt x 156.585pt>
 File: sf__trigint_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__trigint_8tcc__dep__incl.pdf>
@@ -5364,14 +5362,14 @@ Package pdftex.def Info: sf__trigint_8tcc__dep__incl.pdf used on input line 18.
 pdfTeX warning: pdflatex (file ./sf__trigint_8tcc__dep__incl.pdf): PDF inclusio
 n: multiple pdfs with page group included in a single page
 >]) (./sf__zeta_8tcc.tex
-<sf__zeta_8tcc__incl.pdf, id=15103, 172.645pt x 156.585pt>
+<sf__zeta_8tcc__incl.pdf, id=15109, 172.645pt x 156.585pt>
 File: sf__zeta_8tcc__incl.pdf Graphic file (type pdf)
 
 <use sf__zeta_8tcc__incl.pdf>
 Package pdftex.def Info: sf__zeta_8tcc__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 172.0pt x 156.00162pt.
  [582]
-<sf__zeta_8tcc__dep__incl.pdf, id=15111, 164.615pt x 156.585pt>
+<sf__zeta_8tcc__dep__incl.pdf, id=15117, 164.615pt x 156.585pt>
 File: sf__zeta_8tcc__dep__incl.pdf Graphic file (type pdf)
 
 <use sf__zeta_8tcc__dep__incl.pdf>
@@ -5382,7 +5380,7 @@ Package pdftex.def Info: sf__zeta_8tcc__dep__incl.pdf used on input line 17.
 pdfTeX warning: pdflatex (file ./sf__zeta_8tcc__dep__incl.pdf): PDF inclusion: 
 multiple pdfs with page group included in a single page
 >] [584]) (./specfun_8h.tex
-<specfun_8h__incl.pdf, id=15157, 5795.6525pt x 223.83624pt>
+<specfun_8h__incl.pdf, id=15163, 5795.6525pt x 223.83624pt>
 File: specfun_8h__incl.pdf Graphic file (type pdf)
 
 <use specfun_8h__incl.pdf>
@@ -5391,14 +5389,14 @@ Package pdftex.def Info: specfun_8h__incl.pdf used on input line 46.
  [585] [586 <./specfun_8h__incl.pdf>] [587] [588]
 [589] [590] [591] [592] [593] [594] [595] [596] [597] [598] [599])
 (./specfun__state_8h.tex
-<specfun__state_8h__incl.pdf, id=15677, 185.69376pt x 156.585pt>
+<specfun__state_8h__incl.pdf, id=15683, 185.69376pt x 156.585pt>
 File: specfun__state_8h__incl.pdf Graphic file (type pdf)
 
 <use specfun__state_8h__incl.pdf>
 Package pdftex.def Info: specfun__state_8h__incl.pdf used on input line 9.
 (pdftex.def)             Requested size: 185.0pt x 156.004pt.
  [600]
-<specfun__state_8h__dep__incl.pdf, id=15682, 185.69376pt x 156.585pt>
+<specfun__state_8h__dep__incl.pdf, id=15688, 185.69376pt x 156.585pt>
 File: specfun__state_8h__dep__incl.pdf Graphic file (type pdf)
 
 <use specfun__state_8h__dep__incl.pdf>
@@ -5495,7 +5493,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 262.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 262.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 262.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 9600FF7580C71BF56004709609629D51;304614.
+(rerunfilecheck)             Checksum: 242D9E2DE2B4517350B60DC5137F983D;304816.
 
 
 
@@ -5504,13 +5502,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 262.
  ) 
 Here is how much of TeX's memory you used:
- 22882 strings out of 493013
- 459019 string characters out of 6135682
+ 22884 strings out of 493013
+ 459055 string characters out of 6135682
  485282 words of memory out of 5000000
- 21977 multiletter control sequences out of 15000+600000
+ 21978 multiletter control sequences out of 15000+600000
  76949 words of font info for 106 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 53i,17n,92p,4730b,1410s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,17n,92p,4730b,1411s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{todo__todo000012} has been referenced but does no
 t exist, replaced by a fixed one
 
@@ -5538,10 +5536,10 @@ live/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/hel
 vetic/uhvro8a.pfb>
-Output written on refman.pdf (685 pages, 1888902 bytes).
+Output written on refman.pdf (685 pages, 1888114 bytes).
 PDF statistics:
- 18917 PDF objects out of 22161 (max. 8388607)
- 17874 compressed objects within 179 object streams
- 3904 named destinations out of 4296 (max. 500000)
- 11264 words of extra memory for PDF output out of 12000 (max. 10000000)
+ 18923 PDF objects out of 22161 (max. 8388607)
+ 17880 compressed objects within 179 object streams
+ 3905 named destinations out of 4296 (max. 500000)
+ 11272 words of extra memory for PDF output out of 12000 (max. 10000000)
 
