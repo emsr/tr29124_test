@@ -9,17 +9,40 @@
 //Constants
 constexpr short cordic16_1K = 0x26DD;
 constexpr short cordic16_half_pi = 0x6487;
-//#define MUL 16384.0
+constexpr int cordic16_one = 16384;
 constexpr short cordic16_ntab = 16;
 constexpr short
-cordic16_ctab[cordic16_ntab]
-{0x3243, 0x1DAC, 0x0FAD, 0x07F5,
- 0x03FE, 0x01FF, 0x00FF, 0x007F,
- 0x003F, 0x001F, 0x000F, 0x0007,
- 0x0003, 0x0001, 0x0000, 0x0000,};
+cordic16_atan_tab[cordic16_ntab]
+{
+  0x3243, 0x1DAC, 0x0FAD, 0x07F5,
+  0x03FE, 0x01FF, 0x00FF, 0x007F,
+  0x003F, 0x001F, 0x000F, 0x0007,
+  0x0003, 0x0001, 0x0000, 0x0000
+};
+
+// We could use scalb(double x, int scale)
+
+short
+atan2_cordic(int n, short y0, short x0)
+{
+  short x = x0;
+  short y = y0;
+  short z = 0;
+  for (int k = 0; k < n; ++k)
+    {
+      // Get sign.
+      short d = y > 0 ? -1 : 0;
+      short tx = x - (((y >> k) ^ d) - d);
+      short ty = y + (((x >> k) ^ d) - d);
+      z -= ((cordic16_atan_tab[k] ^ d) - d);
+      x = tx;
+      y = ty;
+    }
+  return z;
+}
 
 std::pair<short, short>
-cordic(short theta, int n)
+sincos_cordic(int n, short theta)
 {
   short x = cordic16_1K;
   short y = 0;
@@ -31,10 +54,10 @@ cordic(short theta, int n)
       short d = z >= 0 ? 0 : -1;
       short tx = x - (((y >> k) ^ d) - d);
       short ty = y + (((x >> k) ^ d) - d);
-      z -= ((cordic16_ctab[k] ^ d) - d);
+      z -= ((cordic16_atan_tab[k] ^ d) - d);
       x = tx;
       y = ty;
-    }  
+    }
   return std::make_pair(y, x);
 }
 
