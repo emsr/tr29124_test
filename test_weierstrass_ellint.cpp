@@ -74,30 +74,6 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_weierstrass_ellint > test
     }
 
   /**
-   * Parallelogram reduction of argument.
-   */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __parallelogram(const std::complex<_Tp>& __tau,
-		    const std::complex<_Tp>& __z)
-    {
-      const auto _S_pi = __gnu_cxx::__const_pi<_Tp>();
-
-      const auto __tau_r = std::real(__tau);
-      const auto __tau_i = std::imag(__tau);
-      const auto __z_r = std::real(__z);
-      const auto __z_i = std::imag(__z);
-
-      // Solve __z = pi*a*(1,0) + pi*b*(tau_r, tau_i).
-      const auto __b = __z_i / __tau_i;
-      const auto __nu = __b - std::floor(__b);
-      const auto __a = (__z_r - __b * __tau_r);
-      const auto __mu = __a - std::floor(__a);
-
-      return _S_pi * std::complex<_Tp>(__mu + __nu * __tau_r, __nu * __tau_i);
-    }
-
-  /**
    * Return the Weierstrass elliptic function.
    */
   template<typename _Tp>
