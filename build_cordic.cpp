@@ -90,6 +90,29 @@ template<std::size_t _NumBits>
 	  i <<= 1;
 	}
     }
+
+    void
+    atanh_table()
+    {
+      auto one = std::numeric_limits<typename int_t<_NumBits>::type>::max() >> 2;// + 1;
+      std::cout.precision(std::numeric_limits<double>::digits10);
+      auto w = std::cout.precision() + 6;
+
+      mpq_t p;
+      mpq_init(p);
+      unsigned long int i = 1;
+      for (int k = 0; k < _NumBits; ++k)
+	{
+	  mpq_set_ui(p, 1ul, i);
+	  mpfr::mpreal x(p, 2 * _NumBits);
+	  auto a = mpfr::atanh(x);
+	  std::cout << ' ' << std::setw(w) << x
+		    << ' ' << std::hex << std::setw(w) << a
+		    << ' ' << std::hex << std::setw(w) << one * a
+		    << '\n';
+	  i <<= 1;
+	}
+    }
   };
 
 int
@@ -102,18 +125,21 @@ main()
   std::cout << "K = " << c16.k_circular() << '\n';
   c16.atan_table();
   std::cout << "K' = " << c16.k_hyperbolic() << '\n';
+  c16.atanh_table();
 
   std::cout << "\ncordic<32>\n";
   cordic<32> c32;
   std::cout << "K = " << c32.k_circular() << '\n';
   c32.atan_table();
   std::cout << "K' = " << c32.k_hyperbolic() << '\n';
+  c32.atanh_table();
 
   std::cout << "\ncordic<64>\n";
   cordic<64> c64;
   std::cout << "K = " << c64.k_circular() << '\n';
   c64.atan_table();
   std::cout << "K' = " << c64.k_hyperbolic() << '\n';
+  c64.atanh_table();
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   //std::cout << "\ncordic<128>\n";
@@ -121,5 +147,6 @@ main()
   //std::cout << "K = " << c128.k_circular() << '\n';
   //c128.atan_table();
   //std::cout << "K' = " << c128.k_hyperbolic() << '\n';
+  //c128.atanh_table();
 #endif
 }
