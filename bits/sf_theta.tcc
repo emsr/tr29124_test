@@ -152,75 +152,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Compute and return the Jacobi @f$ \theta_2 @f$ at zero argument
-   * by product expansion.
-   */
-  template<typename _Tp>
-    _Tp
-    __jacobi_theta_2_prod0(_Tp __q)
-    {
-      auto __prod = _Tp{1};
-      const auto __q2 = __q * __q;
-      auto __qp = _Tp{1};
-      for (int __n = 1; __n < 20; ++__n)
-	{
-	  __qp *= __q2;
-	  const auto __fact1 = _Tp{1} + __qp;
-	  const auto __fact2 = _Tp{1} - __qp;
-	  __prod *= __fact2 * __fact1 * __fact1;
-	  if (std::abs(__qp) == _Tp{1})
-	    break;
-	}
-      return _Tp{2} * std::pow(__q, _Tp{0.25}) * __prod;
-    }
-
-  /**
-   * Compute and return the Jacobi @f$ \theta_3 @f$ at zero argument
-   * by product expansion.
-   */
-  template<typename _Tp>
-    _Tp
-    __jacobi_theta_3_prod0(_Tp __q)
-    {
-      auto __prod = _Tp{1};
-      auto __qp = _Tp{1};
-      for (int __n = 1; __n < 20; ++__n)
-	{
-	  __qp *= __q;
-	  const auto __fact1 = _Tp{1} - __qp;
-	  __qp *= __q;
-	  const auto __fact2 = _Tp{1} - __qp;
-	  __prod *= __fact2 * __fact1 * __fact1;
-	  if (std::abs(__qp) == _Tp{1})
-	    break;
-	}
-      return __prod;
-    }
-
-  /**
-   * Compute and return the Jacobi @f$ \theta_4 @f$ at zero argument
-   * by product expansion.
-   */
-  template<typename _Tp>
-    _Tp
-    __jacobi_theta_4_prod0(_Tp __q)
-    {
-      auto __prod = _Tp{1};
-      auto __qp = _Tp{1};
-      for (int __n = 1; __n < 20; ++__n)
-	{
-	  __qp *= __q;
-	  const auto __fact1 = _Tp{1} + __qp;
-	  __qp *= __q;
-	  const auto __fact2 = _Tp{1} - __qp;
-	  __prod *= __fact2 * __fact1 * __fact1;
-	  if (std::abs(__qp) == _Tp{1})
-	    break;
-	}
-      return __prod;
-    }
-
-  /**
    * Return the exponential theta-2 function of period @c nu and argument @c x.
    *
    * The exponential theta-2 function is defined by
@@ -513,6 +444,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
     }
 
+  /**
+   * A struct for the non-zero theta functions and their derivatives
+   * at zero argument.
+   */
   template<typename _Tp>
     struct __jacobi_theta_0_t
     {
@@ -542,7 +477,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __ret.th2 = __fact;
       __ret.th3 = _Real{1};
       __ret.th4 = _Real{1};
-      const auto __q2n = _Tp{1};
+      __ret.th1ppp = _Real{0};
+      __ret.th2pp = _Real{0};
+      __ret.th3pp = _Real{0};
+      __ret.th4pp = _Real{0};
+      auto __q2n = _Tp{1};
       for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
 	{
 	  __q2n *= __q;
@@ -550,6 +489,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __ret.th3 *= __tp * __tp;
 	  const auto __tm = _Real(1) - __q2n;
 	  __ret.th4 *= __tm * __tm;
+
+	  __ret.th3pp += __q2n / __tp / __tp;
+	  __ret.th4pp += __q2n / __tm / __tm;
+
 	  __q2n *= __q;
 	  const auto __tm2 = _Real(1) - __q2n;
 	  __ret.th3 *= __tm2;
@@ -558,9 +501,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __ret.th1p *= __tm2 * __tm2 * __tm2;
 	  const auto __tp2 = _Real(1) + __q2n;
 	  __ret.th2 *= __tp2 * __tp2;
+
+	  __ret.th1ppp += __q2n / __tm2 / __tm2;
+	  __ret.th2pp += __q2n / __tp2 / __tp2;
+
 	  if (std::abs(__q2n) < _S_eps)
 	    break;
 	}
+      // Could check th1p =? th2pp * th3pp * th4pp at this point.
+      // Could check th1ppp =? th2pp + th3pp + th4pp at this point.
+      __ret.th1ppp = (_Real{-1} + _Real{24} * __ret.th1ppp) * __ret.th1p;
+      __ret.th2pp = (_Real{-1} - _Real{8} * __ret.th2pp) * __ret.th2;
+      __ret.th3pp = _Real{-8} * __ret.th3;
+      __ret.th4pp = _Real{8} * __ret.th4;
+
       //const auto __th22 = __ret.th2 * __ret.th2;
       //const auto __th24 = __th22 * __th22;
       //const auto __th42 = __ret.th4 * __ret.th4;
@@ -574,6 +528,93 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       //		     + __ret.e2 * __ret.e2
       //		     + __ret.e3 * __ret.e3);
       //__ret.g3 = _Real{4} * __ret.e1 * __ret.e2 * __ret.e3;
+
+      return __ret;
+    }
+
+  /**
+   * A struct representing the Jacobi and Weierstrass lattice.
+   */
+  template<typename _Tp>
+    struct __jacobi_lattice_t
+    {
+      /**
+       * A struct representing a complex argument reduced
+       * to the 'central' lattice cell.
+       */
+      struct __arg_t
+      {
+	int __m;
+	int __n;
+	std::complex<_Tp> __z;
+      };
+
+      __jacobi_lattice_t(const std::complex<_Tp>& __omega1,
+			 const std::complex<_Tp>& __omega3)
+      : __tau(__omega3 / __omega1)
+      {
+	if (__isnan(__tau))
+	  std::__throw_domain_error("Invalid input");
+	else if (std::imag(__tau) <= _Tp{0})
+	  std::__throw_domain_error("__jacobi_lattice_t: "
+				  "Lattice parameter has negative imag part.");
+      }
+
+      __jacobi_lattice_t(std::complex<_Tp> __tau_in)
+      : __tau(__tau_in)
+      {
+	if (__isnan(__tau))
+	  std::__throw_domain_error("Invalid input");
+	else if (std::imag(__tau) <= _Tp{0})
+	  std::__throw_domain_error("__jacobi_lattice_t: "
+				  "Lattice parameter has negative imag part.");
+      }
+
+      std::complex<_Tp>
+      __ellnome() const;
+
+      __arg_t
+      __reduce(const std::complex<_Tp>& __z) const;
+
+      std::complex<_Tp> __tau;
+    };
+
+  /**
+   * Return the elliptic nome corresponding to the lattice parameter.
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    __jacobi_lattice_t<_Tp>::__ellnome() const
+    {
+      const auto _S_i = std::complex<_Tp>{0, 1};
+      const auto _S_pi = __gnu_cxx::__const_pi<_Tp>();
+      return std::exp(_S_i * _S_pi * __tau);
+    }
+
+  /**
+   * Parallelogram reduction of argument.
+   */
+  template<typename _Tp>
+    typename __jacobi_lattice_t<_Tp>::__arg_t
+    __jacobi_lattice_t<_Tp>::__reduce(const std::complex<_Tp>& __z) const
+    {
+      const auto _S_pi = __gnu_cxx::__const_pi<_Tp>();
+
+      const auto __tau_r = std::real(__tau);
+      const auto __tau_i = std::imag(__tau);
+      const auto __z_r = std::real(__z);
+      const auto __z_i = std::imag(__z);
+
+      // Solve z = pi a (1, 0) + pi b (tau_r, tau_i).
+      const auto __b = __z_i / __tau_i / _S_pi;
+      const int __n = std::floor(__b);
+      const auto __nu = __b - __n;
+      const auto __a = (__z_r - __b * __tau_r * _S_pi) / _S_pi;
+      const int __m = std::floor(__a);
+      const auto __mu = __a - __m;
+
+      return {__m, __n,
+      	      _S_pi * std::complex<_Tp>(__mu + __nu * __tau_r, __nu * __tau_i)};
     }
 
   /**
@@ -594,8 +635,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr std::size_t _S_max_iter = 50;
 
       _Tp __sum{};
-      _Real __sign{1};
-      for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
+      _Real __sign{-1};
+      for (std::size_t __n = 0; __n < _S_max_iter; ++__n)
 	{
 	  __sign *= -1;
 	  const auto __term = __sign
@@ -613,15 +654,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Jacobi or elliptic theta function is defined by
    * @f[
-   *  \theta_1(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
+   *  \theta_1(q,x) = 2\sum_{n=1}^{\infty}(-1)^n
+   *                   q^{(n+\frac{1}{2})^2}\sin{(2n+1)x}
    * @f]
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __jacobi_theta_1(const std::complex<_Tp>& __q, const std::complex<_Tp>& __x)
+    __jacobi_theta_1(std::complex<_Tp> __q, std::complex<_Tp> __x)
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
       const auto _S_i = std::complex<_Real>{0, 1};
 
@@ -630,24 +673,40 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (std::abs(__q) >= _Real{1})
 	std::__throw_domain_error(__N("__jacobi_theta_1:"
 				      " nome q out of range"));
+      else if (std::abs(__x) < _S_eps)
+	return std::complex<_Tp>{0, 0};
+      else if (std::abs(__q) < 0.2)
+	return __jacobi_theta_1_sum(__q, __x);
       else
 	{
 	  auto __tau = std::log(__q) / _S_pi / _S_i;
-	  // theta_1(tau+1, z) = theta_1(tau, z)
+
+	  // theta_1(tau+1, z) = exp(i tau/4) theta_1(tau, z)
 	  const auto __itau = std::floor(std::real(__tau));
 	  __tau -= __itau;
-	  const auto __ph = __polar_pi(_Real{1}, __itau / _Real{4});
+	  auto __fact = __polar_pi(_Real{1}, __itau / _Real{4});
+
 	  if (std::imag(__tau) < 0.5)
 	    {
-	      const auto __fact = _S_i * std::sqrt(-_S_i * __tau);
+	      const auto __fact2 = _S_i * std::sqrt(-_S_i * __tau);
 	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
-	      const auto __qc = std::exp(_S_i * _S_pi * __tau);
-	      return __ph * __phase / __fact
-			* __jacobi_theta_1_sum(__qc, __tau * __x);
+	      __x *= __tau;
+	      __fact *= __phase / __fact2;
 	    }
-	  else
-	    return __ph * __jacobi_theta_1_sum(__q, __x);
+
+	  __q = std::exp(_S_i * _S_pi * __tau);
+
+	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
+	  if (__x_red.__m != 0)
+	    __fact *= __gnu_cxx::__parity<_Tp>(__x_red.__m);
+	  if (__x_red.__n != 0)
+	    __fact *= __gnu_cxx::__parity<_Tp>(__x_red.__n)
+	    	    * std::exp(_S_i * _Real{-2 * __x_red.__n} * __x_red.__z)
+	    	    * std::pow(__q, -__x_red.__n * __x_red.__n);
+	  __x = __x_red.__z;
+
+	  return __fact * __jacobi_theta_1_sum(__q, __x);
 	}
     }
 
@@ -656,7 +715,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Jacobi or elliptic theta function is defined by
    * @f[
-   *  \theta_1(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
+   *  \theta_1(q,x) = 2\sum_{n=1}^{\infty}(-1)^n
+   *                   q^{(n+\frac{1}{2})^2}\sin{(2n+1)x}
    * @f]
    */
   template<typename _Tp>
@@ -694,7 +754,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       constexpr std::size_t _S_max_iter = 50;
 
       _Tp __sum{};
-      for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
+      for (std::size_t __n = 0; __n < _S_max_iter; ++__n)
 	{
 	  const auto __term = std::pow(__q, _Real((__n + 0.5L) * (__n + 0.5L)))
 			    * std::cos(_Real(2 * __n + 1) * __x);
@@ -710,15 +770,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Jacobi or elliptic theta function is defined by
    * @f[
-   *  \theta_2(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
+   *  \theta_2(q,x) = 2\sum_{n=1}^{\infty}
+   *                   q^{(n+\frac{1}{2})^2}\cos{(2n+1)x}
    * @f]
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __jacobi_theta_2(const std::complex<_Tp>& __q, const std::complex<_Tp>& __x)
+    __jacobi_theta_2(std::complex<_Tp> __q, std::complex<_Tp> __x)
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
       const auto _S_i = std::complex<_Real>{0, 1};
 
@@ -727,24 +789,39 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (std::abs(__q) >= _Real{1})
 	std::__throw_domain_error(__N("__jacobi_theta_2:"
 				      " nome q out of range"));
+      else if (std::abs(__x) < _S_eps)
+	return __jacobi_theta_0(__q).th2;
+      else if (std::abs(__q) < 0.2)
+	return __jacobi_theta_2_sum(__q, __x);
       else
 	{
 	  auto __tau = std::log(__q) / _S_pi / _S_i;
+
 	  // theta_2(tau+1, z) = theta_2(tau, z)
 	  const auto __itau = std::floor(std::real(__tau));
 	  __tau -= __itau;
-	  const auto __ph = __polar_pi(_Real{1}, __itau / _Real{4});
+	  auto __fact = __polar_pi(_Real{1}, __itau / _Real{4});
+
 	  if (std::imag(__tau) < 0.5)
 	    {
-	      const auto __fact = std::sqrt(-_S_i * __tau);
+	      const auto __fact2 = std::sqrt(-_S_i * __tau);
 	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
-	      const auto __qc = std::exp(_S_i * _S_pi * __tau);
-	      return __ph * __phase / __fact
-			* __jacobi_theta_2_sum(__qc, __tau * __x);
+	      __x *= __tau;
+	      __fact *= __phase / __fact2;
 	    }
-	  else
-	    return __ph * __jacobi_theta_2_sum(__q, __x);
+
+	  __q = std::exp(_S_i * _S_pi * __tau);
+
+	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
+	  if (__x_red.__m != 0)
+	    __fact *= __gnu_cxx::__parity<_Tp>(__x_red.__m);
+	  if (__x_red.__n != 0)
+	    __fact *= std::exp(_S_i * _Real{-2 * __x_red.__n} * __x_red.__z)
+	    	    * std::pow(__q, -__x_red.__n * __x_red.__n);
+	  __x = __x_red.__z;
+
+	  return __fact * __jacobi_theta_2_sum(__q, __x);
 	}
     }
 
@@ -753,7 +830,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Jacobi or elliptic theta function is defined by
    * @f[
-   *  \theta_2(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
+   *  \theta_2(q,x) = 2\sum_{n=1}^{\infty}
+   *                   q^{(n+\frac{1}{2})^2}\cos{(2n+1)x}
    * @f]
    */
   template<typename _Tp>
@@ -778,7 +856,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Jacobi or elliptic theta-3 function is defined by
    * @f[
-   *  \theta_3(q,x) = 2\sum_{n=1}^{\infty} q^{n^2}\cos{2nx}
+   *  \theta_3(q,x) = 1 + 2\sum_{n=1}^{\infty} q^{n^2}\cos{2nx}
    * @f]
    */
   template<typename _Tp>
@@ -798,7 +876,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__term) < _S_eps * std::abs(__sum))
 	    break;
 	}
-      return _Real{2} * __sum;
+      return _Real{1} + _Real{2} * __sum;
     }
 
   /**
@@ -806,15 +884,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Jacobi or elliptic theta function is defined by
    * @f[
-   *  \theta_3(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
+   *  \theta_3(q,x) = 1 + 2\sum_{n=1}^{\infty} q^{n^2}\cos{2nx}
    * @f]
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __jacobi_theta_3(const std::complex<_Tp>& __q, const std::complex<_Tp>& __x)
+    __jacobi_theta_3(std::complex<_Tp> __q, std::complex<_Tp> __x)
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
       const auto _S_i = std::complex<_Real>{0, 1};
 
@@ -823,23 +902,37 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (std::abs(__q) >= _Real{1})
 	std::__throw_domain_error(__N("__jacobi_theta_3:"
 				      " nome q out of range"));
+      else if (std::abs(__x) < _S_eps)
+	return __jacobi_theta_0(__q).th3;
+      else if (std::abs(__q) < 0.2)
+	return __jacobi_theta_3_sum(__q, __x);
       else
 	{
 	  auto __tau = std::log(__q) / _S_pi / _S_i;
+
 	  // theta_3(tau+1, z) = theta_3(tau, z)
 	  const auto __itau = std::floor(std::real(__tau));
 	  __tau -= __itau;
+	  auto __fact = std::complex<_Tp>{1, 0};
+
 	  if (std::imag(__tau) < 0.5)
 	    {
-	      const auto __fact = std::sqrt(-_S_i * __tau);
+	      const auto __fact2 = std::sqrt(-_S_i * __tau);
 	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
-	      const auto __qc = std::exp(_S_i * _S_pi * __tau);
-	      return __phase / __fact
-			* __jacobi_theta_3_sum(__qc, __tau * __x);
+	      __x *= __tau;
+	      __fact *= __phase / __fact2;
 	    }
-	  else
-	    return __jacobi_theta_3_sum(__q, __x);
+
+	  __q = std::exp(_S_i * _S_pi * __tau);
+
+	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
+	  if (__x_red.__n != 0)
+	    __fact *= std::exp(_S_i * _Real{-2 * __x_red.__n} * __x_red.__z)
+	    	    * std::pow(__q, -__x_red.__n * __x_red.__n);
+	  __x = __x_red.__z;
+
+	  return __fact * __jacobi_theta_3_sum(__q, __x);
 	}
     }
 
@@ -848,7 +941,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Jacobi or elliptic theta function is defined by
    * @f[
-   *  \theta_3(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
+   *  \theta_3(q,x) = 1 + 2\sum_{n=1}^{\infty} q^{n^2}\cos{2nx}
    * @f]
    */
   template<typename _Tp>
@@ -873,7 +966,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Jacobi or elliptic theta function is defined by
    * @f[
-   *  \theta_4(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
+   *  \theta_4(q,x) = 1 + 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
    * @f]
    */
   template<typename _Tp>
@@ -895,7 +988,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__term) < _S_eps * std::abs(__sum))
 	    break;
 	}
-      return _Real{2} * __sum;
+      return _Real{1} + _Real{2} * __sum;
     }
 
   /**
@@ -903,15 +996,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Jacobi or elliptic theta-4 function is defined by
    * @f[
-   *  \theta_4(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
+   *  \theta_4(q,x) = 1 + 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
    * @f]
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __jacobi_theta_4(const std::complex<_Tp>& __q, const std::complex<_Tp>& __x)
+    __jacobi_theta_4(std::complex<_Tp> __q, std::complex<_Tp> __x)
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
       const auto _S_i = std::complex<_Real>{0, 1};
 
@@ -920,23 +1014,38 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (std::abs(__q) >= _Real{1})
 	std::__throw_domain_error(__N("__jacobi_theta_4:"
 				      " nome q out of range"));
+      else if (std::abs(__x) < _S_eps)
+	return __jacobi_theta_0(__q).th4;
+      else if (std::abs(__q) < 0.2)
+	return __jacobi_theta_4_sum(__q, __x);
       else
 	{
 	  auto __tau = std::log(__q) / _S_pi / _S_i;
+
 	  // theta_4(tau+1, z) = theta_4(tau, z)
 	  const auto __itau = std::floor(std::real(__tau));
 	  __tau -= __itau;
+	  auto __fact = std::complex<_Tp>{1, 0};
+
 	  if (std::imag(__tau) < 0.5)
 	    {
-	      const auto __fact = std::sqrt(-_S_i * __tau);
+	      const auto __fact2 = std::sqrt(-_S_i * __tau);
 	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
-	      const auto __qc = std::exp(_S_i * _S_pi * __tau);
-	      return __phase / __fact
-			* __jacobi_theta_4_sum(__qc, __tau * __x);
+	      __x *= __tau;
+	      __fact *= __phase / __fact2;
 	    }
-	  else
-	    return __jacobi_theta_4_sum(__q, __x);
+
+	  __q = std::exp(_S_i * _S_pi * __tau);
+
+	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
+	  if (__x_red.__n != 0)
+	    __fact *= __gnu_cxx::__parity<_Tp>(__x_red.__n)
+	    	    * std::exp(_S_i * _Real{-2 * __x_red.__n} * __x_red.__z)
+	    	    * std::pow(__q, -__x_red.__n * __x_red.__n);
+	  __x = __x_red.__z;
+
+	  return __fact * __jacobi_theta_4_sum(__q, __x);
 	}
     }
 
@@ -945,7 +1054,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Jacobi or elliptic theta function is defined by
    * @f[
-   *  \theta_4(q,x) = 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
+   *  \theta_4(q,x) = 1 + 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
    * @f]
    */
   template<typename _Tp>
