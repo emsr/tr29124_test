@@ -605,7 +605,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __z_r = std::real(__z);
       const auto __z_i = std::imag(__z);
 
-      // Solve z = pi a (1, 0) + pi b (tau_r, tau_i).
+      // Solve z = (z_r, z_i) = pi a (1, 0) + pi b (tau_r, tau_i).
       const auto __b = __z_i / __tau_i / _S_pi;
       const int __n = std::floor(__b);
       const auto __nu = __b - __n;
@@ -657,6 +657,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  \theta_1(q,x) = 2\sum_{n=1}^{\infty}(-1)^n
    *                   q^{(n+\frac{1}{2})^2}\sin{(2n+1)x}
    * @f]
+   * The argument is reduced with
+   * @f[
+   *   \theta_1(q, x+(m+n\tau)\pi) = (-1)^{m+n}q^{-n^2}e^{-2inx}\theta_1(q, x)
+   * @f]
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -675,7 +679,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				      " nome q out of range"));
       else if (std::abs(__x) < _S_eps)
 	return std::complex<_Tp>{0, 0};
-      else if (std::abs(__q) < 0.2)
+      else if (std::abs(__q) < 0.000002)
 	return __jacobi_theta_1_sum(__q, __x);
       else
 	{
@@ -773,6 +777,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  \theta_2(q,x) = 2\sum_{n=1}^{\infty}
    *                   q^{(n+\frac{1}{2})^2}\cos{(2n+1)x}
    * @f]
+   * The argument is reduced with
+   * @f[
+   *  \theta_2(q, x + (m+n\tau)\pi) = (-1)^{m}q^{-n^2}e^{-2inx}\theta_2(q, x)
+   * @f]
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -791,7 +799,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				      " nome q out of range"));
       else if (std::abs(__x) < _S_eps)
 	return __jacobi_theta_0(__q).th2;
-      else if (std::abs(__q) < 0.2)
+      else if (std::abs(__q) < 0.000002)
 	return __jacobi_theta_2_sum(__q, __x);
       else
 	{
@@ -886,6 +894,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *  \theta_3(q,x) = 1 + 2\sum_{n=1}^{\infty} q^{n^2}\cos{2nx}
    * @f]
+   * The argument is reduced with
+   * @f[
+   *   \theta_3(q, x + (m+n\tau)\pi) = q^{-n^2} e^{-2inx} \theta_3(q, x)
+   * @f]
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -904,7 +916,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				      " nome q out of range"));
       else if (std::abs(__x) < _S_eps)
 	return __jacobi_theta_0(__q).th3;
-      else if (std::abs(__q) < 0.2)
+      else if (std::abs(__q) < 0.000002)
 	return __jacobi_theta_3_sum(__q, __x);
       else
 	{
@@ -998,6 +1010,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *  \theta_4(q,x) = 1 + 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
    * @f]
+   * The argument is reduced with
+   * @f[
+   *   \theta_4(q, z+(m + n\tau)\pi) = (-1)^n q^{-n^2}e^{-2inz}\theta_4(q, z)
+   * @f]
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1016,7 +1032,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				      " nome q out of range"));
       else if (std::abs(__x) < _S_eps)
 	return __jacobi_theta_0(__q).th4;
-      else if (std::abs(__q) < 0.2)
+      else if (std::abs(__q) < 0.000002)
 	return __jacobi_theta_4_sum(__q, __x);
       else
 	{
