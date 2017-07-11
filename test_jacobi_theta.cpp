@@ -23,7 +23,7 @@ template<typename _Tp>
     std::cout << " =====================\n";
     const auto del1 = _Tp{1} / _Tp{10};
     const auto del01 = _Tp{1} / _Tp{100};
-    for (int i = -9; i <= 9; ++i)
+    for (int i = 0; i <= 9; ++i)
       {
 	auto q = i * del1;
 	std::cout << '\n' << " q   = " << std::setw(w) << q << '\n';
