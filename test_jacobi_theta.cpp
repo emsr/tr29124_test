@@ -179,14 +179,9 @@ template<typename _Tp>
 int
 main()
 {
-  std::__detail::__jacobi_theta_1(0.9, 4.743804906920587e+00);
-  std::__detail::__jacobi_theta_1(0.9, 4.775220833456485e+00);
+  //std::__detail::__jacobi_theta_1(0.9, 4.743804906920587e+00);
+  //std::__detail::__jacobi_theta_1(0.9, 4.775220833456485e+00);
   plot_jacobi_theta(1.0);
-
-  //auto jt1 [[maybe_unused]] = std::__detail::__jacobi_theta_1_sum(2.0, -8.0);
-  //auto jt2 [[maybe_unused]] = std::__detail::__jacobi_theta_2_sum(1.999, -8.0);
-  //auto jt3 [[maybe_unused]] = std::__detail::__jacobi_theta_3_sum(3.0, -8.0);
-  //auto jt4 [[maybe_unused]] = std::__detail::__jacobi_theta_4_sum(2.999, -8.0);
 
   test_jacobi_theta(1.0);
 }
