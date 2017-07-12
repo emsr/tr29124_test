@@ -45,7 +45,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Compute and return the exponential @f$ \theta_2 @f$ function
-   * by series expansion.
+   * by series expansion:
+   * @f[
+   *    \theta_2(\nu, x) = \frac{1}{\sqrt{\pi x}}
+   *                       \sum_{k=-\infty}^{\infty}(-1)^k e^{-(\nu+k)^2/x}
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -74,7 +78,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Compute and return the exponential @f$ \theta_3 @f$ function
-   * by series expansion.
+   * by series expansion:
+   * @f[
+   *    \theta_3(\nu, x) = \frac{1}{\sqrt{\pi x}}
+   *                       \sum_{k=-\infty}^{\infty} e^{-(\nu+k)^2/x}
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -101,7 +109,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Compute and return the exponential @f$ \theta_2 @f$ function
-   * by asymptotic series expansion.
+   * by asymptotic series expansion:
+   * @f[
+   *    \theta_2(\nu, x) = 2\sum_{k=0}^{\infty} e^{-((k+1/2)\pi)^2 x}
+   *                        \cos((2k+1)\nu\pi)
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -127,7 +139,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Compute and return the exponential @f$ \theta_3 @f$ function
-   * by asymptotic series expansion.
+   * by asymptotic series expansion:
+   * @f[
+   *    \theta_3(\nu, x) = 1 + 2\sum_{k=1}^{\infty} e^{-(k\pi)^2 x}
+   *                           \cos(2k\nu\pi)
+   * @f]
    */
   template<typename _Tp>
     _Tp
@@ -156,8 +172,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The exponential theta-2 function is defined by
    * @f[
-   *    \theta_2(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
-   *    (-1)^j \exp\left( \frac{-(\nu + j)^2}{x} \right)
+   *    \theta_2(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{k=-\infty}^{+\infty}
+   *    (-1)^k \exp\left( \frac{-(\nu + k)^2}{x} \right)
    * @f]
    *
    * @param __nu The periodic (period = 2) argument
@@ -184,8 +200,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The exponential theta-1 function is defined by
    * @f[
-   *    \theta_1(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
-   *    (-1)^j \exp\left( \frac{-(\nu + j - 1/2)^2}{x} \right)
+   *    \theta_1(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{k=-\infty}^{+\infty}
+   *    (-1)^k \exp\left( \frac{-(\nu + k - 1/2)^2}{x} \right)
    * @f]
    *
    * @param __nu The periodic (period = 2) argument
@@ -212,8 +228,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The exponential theta-3 function is defined by
    * @f[
-   *    \theta_3(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
-   *    \exp\left( \frac{-(\nu+j)^2}{x} \right)
+   *    \theta_3(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{k=-\infty}^{+\infty}
+   *    \exp\left( \frac{-(\nu+k)^2}{x} \right)
    * @f]
    *
    * @param __nu The periodic (period = 1) argument
@@ -240,8 +256,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The exponential theta-4 function is defined by
    * @f[
-   *    \theta_4(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
-   *    (-1)^j \exp\left( \frac{-(\nu + j)^2}{x} \right)
+   *    \theta_4(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{k=-\infty}^{+\infty}
+   *    (-1)^k \exp\left( \frac{-(\nu + k)^2}{x} \right)
    * @f]
    *
    * @param __nu The periodic (period = 2) argument
@@ -451,12 +467,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     struct __jacobi_theta_0_t
     {
-      _Tp th1p, th1ppp;
-      _Tp th2, th2pp;
-      _Tp th3, th3pp;
-      _Tp th4, th4pp;
-      //_Tp e1, e2, e3;
-      //_Tp g2, g3;
+      _Tp th1p;
+      _Tp th1ppp;
+      _Tp th2;
+      _Tp th2pp;
+      _Tp th3;
+      _Tp th3pp;
+      _Tp th4;
+      _Tp th4pp;
+
+      _Tp
+      dedekind_eta() const
+      { return std::cbrt(th2 * th3 * th4 / _Tp{2}); }
+
     };
 
   /**
@@ -894,6 +917,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *  \theta_3(q,x) = 1 + 2\sum_{n=1}^{\infty} q^{n^2}\cos{2nx}
    * @f]
+   *
+   * Regarding the nome and the theta function as functions of the lattice
+   * parameter @f$ \tau -i log(q)/ \pi @f$ or @f$ q = e^{i\pi\tau} @f$
+   * the lattice parameter is transformed to maximize its imaginary part:
+   * @f[
+   *   \theta_3(\tau+1,x) = \theta_3(\tau,x)
+   * @f]
+   * and
+   * @f[
+   *   \sqrt{-i\tau}\theta_3(\tau,x) = e^{(i\tau x^2/\pi)}\theta_3(\tau',\tau' x)
+   * @f]
+   * where the new lattice parameter is @f$ \tau' = -1/\tau @f$.
+   *
    * The argument is reduced with
    * @f[
    *   \theta_3(q, x + (m+n\tau)\pi) = q^{-n^2} e^{-2inx} \theta_3(q, x)
@@ -1010,6 +1046,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *  \theta_4(q,x) = 1 + 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
    * @f]
+   *
+   * Regarding the nome and the theta function as functions of the lattice
+   * parameter @f$ \tau -i log(q)/ \pi @f$ or @f$ q = e^{i\pi\tau} @f$
+   * the lattice parameter is transformed to maximize its imaginary part:
+   * @f[
+   *   \theta_4(\tau+1,x) = \theta_4(\tau,x)
+   * @f]
+   * and
+   * @f[
+   *   \sqrt{-i\tau}\theta_4(\tau,x) = e^{(i\tau x^2/\pi)}\theta_4(\tau',\tau' x)
+   * @f]
+   * 
    * The argument is reduced with
    * @f[
    *   \theta_4(q, z+(m + n\tau)\pi) = (-1)^n q^{-n^2}e^{-2inz}\theta_4(q, z)
@@ -1091,7 +1139,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return a tuple of the three primary Jacobi elliptic functions:
+   * Return a structure containing the three primary Jacobi elliptic functions:
    * @f$ sn(k, u), cn(k, u), dn(k, u) @f$.
    */
   template<typename _Tp>
