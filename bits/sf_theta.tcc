@@ -479,7 +479,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp
       dedekind_eta() const
       { return std::cbrt(th2 * th3 * th4 / _Tp{2}); }
-
     };
 
   /**
@@ -538,22 +537,69 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __ret.th3pp = _Real{-8} * __ret.th3;
       __ret.th4pp = _Real{8} * __ret.th4;
 
-      //const auto __th22 = __ret.th2 * __ret.th2;
-      //const auto __th24 = __th22 * __th22;
-      //const auto __th42 = __ret.th4 * __ret.th4;
-      //const auto __th44 = __th42 * __th42;
-      //const auto __fr = _S_pi / __omega1;
-      //const auto __fc = __fr * __fr / _Real{12};
-      //__ret.e1 = __fc * (__th24 + _Real{2} * __th44);
-      //__ret.e2 = __fc * (__th24 - __th44 );
-      //__ret.e3 = __fc * (_Real{-2} * __th24 - __th44 );
-      //__ret.g2 = _Real{2} * (__ret.e1 * __ret.e1
-      //		     + __ret.e2 * __ret.e2
-      //		     + __ret.e3 * __ret.e3);
-      //__ret.g3 = _Real{4} * __ret.e1 * __ret.e2 * __ret.e3;
-
       return __ret;
     }
+
+  /**
+   * A struct of the Weierstrass elliptic function roots.
+   */
+  template<typename _Tp>
+    struct __weierstrass_roots_t
+    {
+      _Tp __e1, __e2, __e3;
+
+      __weierstrass_roots_t(const __jacobi_theta_0_t<_Tp>& __tht0, _Tp __omega1); // Awkward.
+    };
+
+  /**
+   * Constructor for the Weierstrass roots.
+   */
+  template<typename _Tp>
+    __weierstrass_roots_t<_Tp>::
+    __weierstrass_roots_t(const __jacobi_theta_0_t<_Tp>& __tht0, _Tp __omega1) // Awkward.
+    {
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
+      const auto __th22 = __tht0.th2 * __tht0.th2;
+      const auto __th24 = __th22 * __th22;
+      const auto __th42 = __tht0.th4 * __tht0.th4;
+      const auto __th44 = __th42 * __th42;
+      const auto __fr = _S_pi / __omega1;
+      const auto __fc = __fr * __fr / _Real{12};
+      __e1 = __fc * (__th24 + _Real{2} * __th44);
+      __e2 = __fc * (__th24 - __th44 );
+      __e3 = __fc * (_Real{-2} * __th24 - __th44 );
+    }
+
+  /**
+   * A struct of the Weierstrass elliptic function invariants.
+   */
+  template<typename _Tp>
+    struct __weierstrass_invariants_t
+    {
+      _Tp __g2, __g3;
+
+      __weierstrass_invariants_t(const __weierstrass_roots_t<_Tp>& __root);
+    };
+
+  /**
+   * Constructor for the Weierstrass invariants.
+   */
+  template<typename _Tp>
+    __weierstrass_invariants_t<_Tp>::
+    __weierstrass_invariants_t(const __weierstrass_roots_t<_Tp>& __root)
+    {
+      using _Real = __num_traits_t<_Tp>;
+      __g2 = _Real{2} * (__root.e1 * __root.e1
+        	       + __root.e2 * __root.e2
+        	       + __root.e3 * __root.e3);
+      __g3 = _Real{4} * __root.e1 * __root.e2 * __root.e3;
+    }
+
+  /**
+   * Return a struct of the Weierstrass elliptic function roots.
+   */
+  ///template<typename _Tp>
 
   /**
    * A struct representing the Jacobi and Weierstrass lattice.
@@ -680,6 +726,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  \theta_1(q,x) = 2\sum_{n=1}^{\infty}(-1)^n
    *                   q^{(n+\frac{1}{2})^2}\sin{(2n+1)x}
    * @f]
+   *
+   * Regarding the nome and the theta function as functions of the lattice
+   * parameter @f$ \tau -i log(q)/ \pi @f$ or @f$ q = e^{i\pi\tau} @f$
+   * the lattice parameter is transformed to maximize its imaginary part:
+   * @f[
+   *   \theta_1(\tau+1,x) = -i e^{i\pi/4}\theta_1(\tau,x)
+   * @f]
+   * and
+   * @f[
+   *   \sqrt{-i\tau}\theta_1(\tau,x) = e^{(i\tau x^2/\pi)}\theta_1(\tau',\tau' x)
+   * @f]
+   * where the new lattice parameter is @f$ \tau' = -1/\tau @f$.
+   *
    * The argument is reduced with
    * @f[
    *   \theta_1(q, x+(m+n\tau)\pi) = (-1)^{m+n}q^{-n^2}e^{-2inx}\theta_1(q, x)
@@ -718,11 +777,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      const auto __fact2 = _S_i * std::sqrt(-_S_i * __tau);
 	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
-	      __x *= __tau;
 	      __fact *= __phase / __fact2;
+	      __q = std::exp(_S_i * _S_pi * __tau);
+	      __x *= __tau;
 	    }
-
-	  __q = std::exp(_S_i * _S_pi * __tau);
 
 	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
 	  if (__x_red.__m != 0)
@@ -800,6 +858,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  \theta_2(q,x) = 2\sum_{n=1}^{\infty}
    *                   q^{(n+\frac{1}{2})^2}\cos{(2n+1)x}
    * @f]
+   *
+   * Regarding the nome and the theta function as functions of the lattice
+   * parameter @f$ \tau -i log(q)/ \pi @f$ or @f$ q = e^{i\pi\tau} @f$
+   * the lattice parameter is transformed to maximize its imaginary part:
+   * @f[
+   *   \theta_2(\tau+1,x) = e^{i\pi/4}\theta_2(\tau,x)
+   * @f]
+   * and
+   * @f[
+   *   \sqrt{-i\tau}\theta_2(\tau,x) = e^{(i\tau x^2/\pi)}\theta_2(\tau',\tau' x)
+   * @f]
+   * where the new lattice parameter is @f$ \tau' = -1/\tau @f$.
+   *
    * The argument is reduced with
    * @f[
    *  \theta_2(q, x + (m+n\tau)\pi) = (-1)^{m}q^{-n^2}e^{-2inx}\theta_2(q, x)
@@ -838,11 +909,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      const auto __fact2 = std::sqrt(-_S_i * __tau);
 	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
-	      __x *= __tau;
 	      __fact *= __phase / __fact2;
+	      __q = std::exp(_S_i * _S_pi * __tau);
+	      __x *= __tau;
 	    }
-
-	  __q = std::exp(_S_i * _S_pi * __tau);
 
 	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
 	  if (__x_red.__m != 0)
@@ -968,11 +1038,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      const auto __fact2 = std::sqrt(-_S_i * __tau);
 	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
-	      __x *= __tau;
 	      __fact *= __phase / __fact2;
+	      __q = std::exp(_S_i * _S_pi * __tau);
+	      __x *= __tau;
 	    }
-
-	  __q = std::exp(_S_i * _S_pi * __tau);
 
 	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
 	  if (__x_red.__n != 0)
@@ -1057,7 +1126,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *   \sqrt{-i\tau}\theta_4(\tau,x) = e^{(i\tau x^2/\pi)}\theta_4(\tau',\tau' x)
    * @f]
-   * 
+   * where the new lattice parameter is @f$ \tau' = -1/\tau @f$.
+   *
    * The argument is reduced with
    * @f[
    *   \theta_4(q, z+(m + n\tau)\pi) = (-1)^n q^{-n^2}e^{-2inz}\theta_4(q, z)
@@ -1096,11 +1166,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      const auto __fact2 = std::sqrt(-_S_i * __tau);
 	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
-	      __x *= __tau;
 	      __fact *= __phase / __fact2;
+	      __q = std::exp(_S_i * _S_pi * __tau);
+	      __x *= __tau;
 	    }
-
-	  __q = std::exp(_S_i * _S_pi * __tau);
 
 	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
 	  if (__x_red.__n != 0)
