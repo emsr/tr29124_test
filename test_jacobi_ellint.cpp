@@ -19,6 +19,28 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
+  /**
+   * Return the Jacobi amplitude function of modulus k and argument u.
+   * @f[
+   *    am(k, u) = arcsin(sn(k, u))
+   * @f]
+   * @see Consult jacobi_sn for more details.
+   */
+  template<typename _Kp, typename _Up>
+    inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
+    jacobi_am(_Kp __k, _Up __u)
+    {
+      using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).am();
+    }
+
+  /**
+   * Return the Jacobi elliptic sc function of modulus k and argument u.
+   * @f[
+   *    sc(k, u) = \frac{sn(k,u)}{cn(k,u)}
+   * @f]
+   * @see Consult jacobi_sn and jacobi_cn for more details.
+   */
   template<typename _Kp, typename _Up>
     inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
     jacobi_sc(_Kp __k, _Up __u)
@@ -27,6 +49,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::__detail::__jacobi_ellint<__type>(__k, __u).sc();
     }
 
+  /**
+   * Return the Jacobi elliptic  function of modulus k and argument u.
+   * @f[
+   *    sd(k, u) = \frac{sn(k,u)}{dn(k,u)}
+   * @f]
+   * @see Consult jacobi_sn and jacobi_dn for more details.
+   */
   template<typename _Kp, typename _Up>
     inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
     jacobi_sd(_Kp __k, _Up __u)
@@ -35,6 +64,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::__detail::__jacobi_ellint<__type>(__k, __u).sd();
     }
 
+  /**
+   * Return the Jacobi elliptic cd function of modulus k and argument u.
+   * @f[
+   *    cd(k, u) = \frac{cn(k,u)}{dn(k,u)}
+   * @f]
+   * @see Consult jacobi_cn and jacobi_dn for more details.
+   */
   template<typename _Kp, typename _Up>
     inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
     jacobi_cd(_Kp __k, _Up __u)
@@ -43,6 +79,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::__detail::__jacobi_ellint<__type>(__k, __u).cd();
     }
 
+  /**
+   * Return the Jacobi elliptic cs function of modulus k and argument u.
+   * @f[
+   *    cs(k, u) = \frac{cn(k,u)}{sn(k,u)}
+   * @f]
+   * @see Consult jacobi_cn and jacobi_sn for more details.
+   */
   template<typename _Kp, typename _Up>
     inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
     jacobi_cs(_Kp __k, _Up __u)
@@ -51,6 +94,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::__detail::__jacobi_ellint<__type>(__k, __u).cs();
     }
 
+  /**
+   * Return the Jacobi elliptic dc function of modulus k and argument u.
+   * @f[
+   *    dc(k, u) = \frac{dn(k,u)}{cn(k,u)}
+   * @f]
+   * @see Consult jacobi_dn and jacobi_cn for more details.
+   */
   template<typename _Kp, typename _Up>
     inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
     jacobi_dc(_Kp __k, _Up __u)
@@ -59,6 +109,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::__detail::__jacobi_ellint<__type>(__k, __u).dc();
     }
 
+  /**
+   * Return the Jacobi elliptic ds function of modulus k and argument u.
+   * @f[
+   *    ds(k, u) = \frac{dn(k,u)}{sn(k,u)}
+   * @f]
+   * @see Consult jacobi_dn and jacobi_sn for more details.
+   */
   template<typename _Kp, typename _Up>
     inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
     jacobi_ds(_Kp __k, _Up __u)
@@ -67,6 +124,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::__detail::__jacobi_ellint<__type>(__k, __u).ds();
     }
 
+  /**
+   * Return the Jacobi elliptic nc function of modulus k and argument u.
+   * @f[
+   *    nc(k, u) = \frac{1}{cn(k,u)}
+   * @f]
+   * @see Consult jacobi_cn for more details.
+   */
   template<typename _Kp, typename _Up>
     inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
     jacobi_nc(_Kp __k, _Up __u)
@@ -75,6 +139,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::__detail::__jacobi_ellint<__type>(__k, __u).nc();
     }
 
+  /**
+   * Return the Jacobi elliptic nd function of modulus k and argument u.
+   * @f[
+   *    nd(k, u) = \frac{1}{dn(k,u)}
+   * @f]
+   * @see Consult jacobi_dn for more details.
+   */
   template<typename _Kp, typename _Up>
     inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
     jacobi_nd(_Kp __k, _Up __u)
@@ -83,6 +154,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::__detail::__jacobi_ellint<__type>(__k, __u).nd();
     }
 
+  /**
+   * Return the Jacobi elliptic ns function of modulus k and argument u.
+   * @f[
+   *    ns(k, u) = \frac{1}{sn(k,u)}
+   * @f]
+   * @see Consult jacobi_sn for more details.
+   */
   template<typename _Kp, typename _Up>
     inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
     jacobi_ns(_Kp __k, _Up __u)
