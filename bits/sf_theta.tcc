@@ -850,6 +850,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return _Real{2} * __sum;
     }
 
+  // Pre-declare Jacobi theta_4 sum.
+  template<typename _Tp>
+    _Tp
+    __jacobi_theta_4_sum(_Tp __q, _Tp __x);
+
   /**
    * Return the Jacobi @f$ \theta_2 @f$ function by summation of the series.
    *
@@ -867,7 +872,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * and
    * @f[
-   *   \sqrt{-i\tau}\theta_2(\tau,x) = e^{(i\tau x^2/\pi)}\theta_2(\tau',\tau' x)
+   *   \sqrt{-i\tau}\theta_2(\tau,x) = e^{(i\tau x^2/\pi)}\theta_4(\tau',\tau' x)
    * @f]
    * where the new lattice parameter is @f$ \tau' = -1/\tau @f$.
    *
@@ -904,8 +909,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __tau -= __itau;
 	  auto __fact = __polar_pi(_Real{1}, __itau / _Real{4});
 
+	  bool __flip = false;
 	  if (std::imag(__tau) < 0.5)
 	    {
+	      __flip = true;
 	      const auto __fact2 = std::sqrt(-_S_i * __tau);
 	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
@@ -915,14 +922,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    }
 
 	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
-	  if (__x_red.__m != 0)
-	    __fact *= __gnu_cxx::__parity<_Tp>(__x_red.__m);
 	  if (__x_red.__n != 0)
 	    __fact *= std::exp(_S_i * _Real{-2 * __x_red.__n} * __x_red.__z)
 	    	    * std::pow(__q, -__x_red.__n * __x_red.__n);
 	  __x = __x_red.__z;
 
-	  return __fact * __jacobi_theta_2_sum(__q, __x);
+
+	  if (__flip)
+	    {
+	      if (__x_red.__n != 0)
+		__fact *= __gnu_cxx::__parity<_Tp>(__x_red.__n);
+	      return __fact * __jacobi_theta_4_sum(__q, __x);
+	    }
+	  else
+	    {
+	      if (__x_red.__m != 0)
+		__fact *= __gnu_cxx::__parity<_Tp>(__x_red.__m);
+	      return __fact * __jacobi_theta_2_sum(__q, __x);
+	    }
 	}
     }
 
@@ -1124,7 +1141,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * and
    * @f[
-   *   \sqrt{-i\tau}\theta_4(\tau,x) = e^{(i\tau x^2/\pi)}\theta_4(\tau',\tau' x)
+   *   \sqrt{-i\tau}\theta_4(\tau,x) = e^{(i\tau x^2/\pi)}\theta_2(\tau',\tau' x)
    * @f]
    * where the new lattice parameter is @f$ \tau' = -1/\tau @f$.
    *
@@ -1161,8 +1178,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __tau -= __itau;
 	  auto __fact = std::complex<_Tp>{1, 0};
 
+	  bool __flip = false;
 	  if (std::imag(__tau) < 0.5)
 	    {
+	      __flip = true;
 	      const auto __fact2 = std::sqrt(-_S_i * __tau);
 	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
@@ -1173,12 +1192,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
 	  if (__x_red.__n != 0)
-	    __fact *= __gnu_cxx::__parity<_Tp>(__x_red.__n)
-	    	    * std::exp(_S_i * _Real{-2 * __x_red.__n} * __x_red.__z)
+	    __fact *= std::exp(_S_i * _Real{-2 * __x_red.__n} * __x_red.__z)
 	    	    * std::pow(__q, -__x_red.__n * __x_red.__n);
 	  __x = __x_red.__z;
 
-	  return __fact * __jacobi_theta_4_sum(__q, __x);
+	  if (__flip)
+	    {
+	      if (__x_red.__m != 0)
+		__fact *= __gnu_cxx::__parity<_Tp>(__x_red.__m);
+	      return __fact * __jacobi_theta_2_sum(__q, __x);
+	    }
+	  else
+	    {
+	      if (__x_red.__n != 0)
+		__fact *= __gnu_cxx::__parity<_Tp>(__x_red.__n);
+	      return __fact * __jacobi_theta_4_sum(__q, __x);
+	    }
 	}
     }
 
