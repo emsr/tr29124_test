@@ -193,8 +193,9 @@ template<typename _Tp>
 int
 main()
 {
-  //std::__detail::__jacobi_theta_1(0.9, 4.743804906920587e+00);
-  //std::__detail::__jacobi_theta_1(0.9, 4.775220833456485e+00);
+  std::__detail::__jacobi_theta_1(0.205, 40.0);
+  std::__detail::__jacobi_theta_1(0.210, 40.0);
+
   plot_jacobi_theta(1.0);
 
   test_jacobi_theta(1.0);
