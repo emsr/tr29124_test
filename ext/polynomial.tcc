@@ -75,7 +75,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  return __aa;
       };
 
-    //  Could/should this be done by output iterator range?
+  //  Could/should this be done by output iterator range?
   template<typename _Tp>
     template<typename _Polynomial<_Tp>::size_type N>
       void
