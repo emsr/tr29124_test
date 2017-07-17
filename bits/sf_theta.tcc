@@ -719,6 +719,43 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
+   * Return the Jacobi @f$ \theta_1 @f$ function by accumulation of the product.
+   *
+   * The Jacobi or elliptic theta-1 function is defined by
+   * @f[
+   *  \theta_1(q,x) = 2 q^{1/4} \sin(x) \prod_{n=1}^{\infty}
+   *                   (1 - q^{2n})(1 - 2q^{2n}\cos(2x) + q^{4n})
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __jacobi_theta_1_prod(_Tp __q, _Tp __x)
+    {
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
+      constexpr std::size_t _S_max_iter = 50;
+      const auto __q2 = __q * __q;
+      const auto __q4 = __q2 * __q2;
+      const auto __cos2x = std::cos(_Real{2} * __x);
+
+      auto __q2n = _Tp{1};
+      auto __q4n = _Tp{1};
+      auto __prod = _Tp{1};
+      for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
+	{
+	  __q2n *= __q2;
+	  __q4n *= __q4;
+	  const auto __fact = (_Real{1} - __q2n)
+			    * (_Real{1} - _Real{2} * __q2n * __cos2x + __q4n);
+	  __prod *= __fact;
+	  if (std::abs(__fact) < _S_eps)
+	    break;
+	}
+
+      return _Real{2} * std::pow(__q, _Tp{0.25L}) * std::sin(__x) * __prod;
+    }
+
+  /**
    * Return the Jacobi @f$ \theta_1 @f$ function by summation of the series.
    *
    * The Jacobi or elliptic theta function is defined by
@@ -850,10 +887,52 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return _Real{2} * __sum;
     }
 
-  // Pre-declare Jacobi theta_4 sum.
+  /**
+   * Return the Jacobi @f$ \theta_2 @f$ function by accumulation of the product.
+   *
+   * The Jacobi or elliptic theta-2 function is defined by
+   * @f[
+   *  \theta_2(q,x) = 2 q^{1/4} \sin(x) \prod_{n=1}^{\infty}
+   *                   (1 - q^{2n})(1 + 2q^{2n}\cos(2x) + q^{4n})
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __jacobi_theta_2_prod(_Tp __q, _Tp __x)
+    {
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
+      constexpr std::size_t _S_max_iter = 50;
+      const auto __q2 = __q * __q;
+      const auto __q4 = __q2 * __q2;
+      const auto __cos2x = std::cos(_Real{2} * __x);
+
+      auto __q2n = _Tp{1};
+      auto __q4n = _Tp{1};
+      auto __prod = _Tp{1};
+      for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
+	{
+	  __q2n *= __q2;
+	  __q4n *= __q4;
+	  const auto __fact = (_Real{1} - __q2n)
+			    * (_Real{1} + _Real{2} * __q2n * __cos2x + __q4n);
+	  __prod *= __fact;
+	  if (std::abs(__fact) < _S_eps)
+	    break;
+	}
+
+      return _Real{2} * std::pow(__q, _Tp{0.25L}) * std::cos(__x) * __prod;
+    }
+
+  // Pre-declare Jacobi theta_4 sum ...
   template<typename _Tp>
     _Tp
     __jacobi_theta_4_sum(_Tp __q, _Tp __x);
+
+  // ... and product.
+  template<typename _Tp>
+    _Tp
+    __jacobi_theta_4_prod(_Tp __q, _Tp __x);
 
   /**
    * Return the Jacobi @f$ \theta_2 @f$ function by summation of the series.
@@ -998,6 +1077,43 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
+   * Return the Jacobi @f$ \theta_3 @f$ function by accumulation of the product.
+   *
+   * The Jacobi or elliptic theta-3 function is defined by
+   * @f[
+   *  \theta_3(q,x) = \prod_{n=1}^{\infty}
+   *                   (1 - q^{2n})(1 + 2q^{2n-1}\cos(2x) + q^{4n-2})
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __jacobi_theta_3_prod(_Tp __q, _Tp __x)
+    {
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
+      constexpr std::size_t _S_max_iter = 50;
+      const auto __q2 = __q * __q;
+      const auto __q4 = __q2 * __q2;
+      const auto __cos2x = std::cos(_Real{2} * __x);
+
+      auto __q2nm1 = __q;
+      auto __q4nm2 = __q2;
+      auto __prod = _Tp{1};
+      for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
+	{
+	  const auto __fact = (_Real{1} - __q2nm1 * __q)
+			    * (_Real{1} + _Real{2} * __q2nm1 * __cos2x + __q4nm2);
+	  __prod *= __fact;
+	  if (std::abs(__fact) < _S_eps)
+	    break;
+	  __q2nm1 *= __q2;
+	  __q4nm2 *= __q4;
+	}
+
+      return __prod;
+    }
+
+  /**
    * Return the Jacobi @f$ \theta_3 @f$ function by summation of the series.
    *
    * The Jacobi or elliptic theta function is defined by
@@ -1123,6 +1239,43 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    break;
 	}
       return _Real{1} + _Real{2} * __sum;
+    }
+
+  /**
+   * Return the Jacobi @f$ \theta_4 @f$ function by accumulation of the product.
+   *
+   * The Jacobi or elliptic theta-4 function is defined by
+   * @f[
+   *  \theta_4(q,x) = \prod_{n=1}^{\infty}
+   *                   (1 - q^{2n})(1 - 2q^{2n-1}\cos(2x) + q^{4n-2})
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __jacobi_theta_4_prod(_Tp __q, _Tp __x)
+    {
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
+      constexpr std::size_t _S_max_iter = 50;
+      const auto __q2 = __q * __q;
+      const auto __q4 = __q2 * __q2;
+      const auto __cos2x = std::cos(_Real{2} * __x);
+
+      auto __q2nm1 = __q;
+      auto __q4nm2 = __q2;
+      auto __prod = _Tp{1};
+      for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
+	{
+	  const auto __fact = (_Real{1} - __q2nm1 * __q)
+			    * (_Real{1} - _Real{2} * __q2nm1 * __cos2x + __q4nm2);
+	  __prod *= __fact;
+	  if (std::abs(__fact) < _S_eps)
+	    break;
+	  __q2nm1 *= __q2;
+	  __q4nm2 *= __q4;
+	}
+
+      return __prod;
     }
 
   /**
