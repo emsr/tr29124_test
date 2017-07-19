@@ -195,12 +195,12 @@ template<typename _Tp>
 		  << '\n';
       }
 
-    std::cout << "\n\n Fibonacci polynomials\n";
+    //std::cout << "\n\n Fibonacci polynomials\n";
     for (auto n = 0ull; n <= max_order; ++n)
       {
 	std::cout << '\n' << '\n' << ' ' << std::setw(4) << n << '\n';
 	const auto del = _Tp{1} / _Tp{10};
-	for (auto i = 0ull; i <= 50; ++i)
+	for (int i = -50; i <= 50; ++i)
 	  {
 	    auto x = del * i;
 	    auto _F_n = __fibonacci(n, x);
@@ -229,12 +229,12 @@ template<typename _Tp>
 		  << '\n';
       }
 
-    std::cout << "\n\n Lucas polynomials\n";
+    //std::cout << "\n\n Lucas polynomials\n";
     for (auto n = 0ull; n <= max_order; ++n)
       {
 	std::cout << '\n' << '\n' << ' ' << std::setw(4) << n << '\n';
 	const auto del = _Tp{1} / _Tp{10};
-	for (auto i = 0ull; i <= 50; ++i)
+	for (int i = -50; i <= 50; ++i)
 	  {
 	    auto x = del * i;
 	    auto _L_n = __lucas(n, x);
