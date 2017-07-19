@@ -12,11 +12,11 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_fibonacci test_fibon
 #include <iomanip>
 
 /**
- * 
+ * Return the Fibonacci number by recursion.
  */
 template<typename _UIntTp>
   _UIntTp
-  __fibonacci(_UIntTp __n)
+  __fibonacci_recur(_UIntTp __n)
   {
     _UIntTp __Fnm2 = 0;
     if (__n == 0)
@@ -29,7 +29,6 @@ template<typename _UIntTp>
       {
 	__Fnm2 = __Fnm1;
 	__Fnm1 = __Fn;
-	__Fn = __Fnm1 + __Fnm2;
 	if (__builtin_add_overflow(__Fnm1, __Fnm2, &__Fn))
 	    std::__throw_runtime_error(__N("__fibonacci: "
 					   "integer overflow"));	  
@@ -38,19 +37,50 @@ template<typename _UIntTp>
   }
 
 /**
- * 
+ * Return the Fibonacci number for integral or real degree.
+ */
+template<typename _Tp>
+  _Tp
+  __fibonacci(_Tp __nu)
+  {
+    if constexpr (std::is_integral_v<_Tp>)
+      {
+	if (std::is_unsigned_v<_Tp>)
+	  return __fibonacci_recur(__nu);
+	else
+	  {
+	    if (__nu < 0)
+	      return __gnu_cxx::__parity<_Tp>(__nu + 1)
+		   * __fibonacci_recur(-__nu);
+	    else
+	      return __fibonacci_recur(__nu);
+	  }
+      }
+    else if constexpr (std::is_floating_point_v<_Tp>)
+      {
+	const auto _S_phi = __gnu_cxx::__const_phi(__nu);
+	const auto _S_sqrt5 = __gnu_cxx::__const_root_5(__nu);
+	const auto __phinu = std::pow(_S_phi, __nu);
+	return (__phinu - __gnu_cxx::cos_pi(__nu) / __phinu) / _S_sqrt5;
+      }
+  }
+
+/**
+ * Return the Fibonacci polynomial of order n and argument x.
  */
 template<typename _UIntTp, typename _RealTp>
   _RealTp
   __fibonacci(_UIntTp __n, _RealTp __x)
   {
-    _UIntTp __Fnm2 = 0;
+    //const auto _S_log_phi
+    //  = _RealTp{4.812118250596034474977589134243684231358e-1L};
+    auto __Fnm2 = _RealTp{0};
     if (__n == 0)
       return __Fnm2;
-    _UIntTp __Fnm1 = 1;
+    auto __Fnm1 = _RealTp{1};
     if (__n == 1)
       return __Fnm1;
-    _UIntTp __Fn = __x * __Fnm1 + __Fnm2;
+    auto __Fn = __x * __Fnm1 + __Fnm2;
     for (_UIntTp __k = 3; __k <= __n; ++__k)
       {
 	__Fnm2 = __Fnm1;
@@ -61,11 +91,11 @@ template<typename _UIntTp, typename _RealTp>
   }
 
 /**
- * 
+ * Return the Lucas number by recursion.
  */
 template<typename _UIntTp>
   _UIntTp
-  __lucas(_UIntTp __n)
+  __lucas_recur(_UIntTp __n)
   {
     _UIntTp __Lnm2 = 2;
     if (__n == 0)
@@ -86,19 +116,46 @@ template<typename _UIntTp>
   }
 
 /**
- * 
+ * Return the Lucas number for integral or real degree.
+ */
+template<typename _Tp>
+  _Tp
+  __lucas(_Tp __nu)
+  {
+    if constexpr (std::is_integral_v<_Tp>)
+      {
+	if (std::is_unsigned_v<_Tp>)
+	  return __lucas_recur(__nu);
+	else
+	  {
+	    if (__nu < 0)
+	      return __gnu_cxx::__parity<_Tp>(__nu) * __lucas_recur(-__nu);
+	    else
+	      return __lucas_recur(__nu);
+	  }
+      }
+    else if constexpr (std::is_floating_point_v<_Tp>)
+      {
+	const auto _S_phi = __gnu_cxx::__const_phi(__nu);
+	const auto __phinu = std::pow(_S_phi, __nu);
+	return __phinu + __gnu_cxx::cos_pi(__nu) / __phinu;
+      }
+  }
+
+/**
+ * Return the Lucas polynomial of order n and argument x.
  */
 template<typename _UIntTp, typename _RealTp>
   _RealTp
   __lucas(_UIntTp __n, _RealTp __x)
   {
-    _UIntTp __Lnm2 = 2;
+    auto __Lnm2 = _RealTp{2};
     if (__n == 0)
       return __Lnm2;
-    _UIntTp __Lnm1 = __x;
+    auto __Lnm1 = __x;
     if (__n == 1)
       return __Lnm1;
-    _UIntTp __Ln = __x * __Lnm1 + __Lnm2;
+    auto __Ln = __x * __Lnm1 + __Lnm2;
     for (_UIntTp __k = 3; __k <= __n; ++__k)
       {
 	__Lnm2 = __Lnm1;
@@ -115,9 +172,12 @@ template<typename _Tp>
     std::cout.precision(__gnu_cxx::__digits10<_Tp>());
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
+    const auto max_number = 50ull;
+    const auto delnu = _Tp{1} / _Tp{10};
+    const auto max_order = 50ull;
 
-    std::cout << "\n Fibonacci numbers\n";
-    for (auto n = 0ull; n <= 200; ++n)
+    std::cout << "\n\n Fibonacci numbers\n";
+    for (auto n = 0ull; n <= max_number; ++n)
       {
 	auto _F_n = __fibonacci(n);
 	std::cout << ' ' << std::setw(4) << n
@@ -125,10 +185,20 @@ template<typename _Tp>
 		  << '\n';
       }
 
-    std::cout << "\n Fibonacci polynomials\n";
-    for (auto n = 0ull; n <= 50; ++n)
+    std::cout << "\n\n Fibonacci function\n";
+    for (int n = -100; n <= 100; ++n)
       {
-	std::cout << '\n' << ' ' << std::setw(4) << n << '\n';
+	auto nu = n * delnu;
+	auto F_nu = __fibonacci(nu);
+	std::cout << ' ' << std::setw(width) << nu
+		  << ' ' << std::setw(width) << F_nu
+		  << '\n';
+      }
+
+    std::cout << "\n\n Fibonacci polynomials\n";
+    for (auto n = 0ull; n <= max_order; ++n)
+      {
+	std::cout << '\n' << '\n' << ' ' << std::setw(4) << n << '\n';
 	const auto del = _Tp{1} / _Tp{10};
 	for (auto i = 0ull; i <= 50; ++i)
 	  {
@@ -140,8 +210,8 @@ template<typename _Tp>
 	  }
       }
 
-    std::cout << "\n Lucas numbers\n";
-    for (auto n = 0ull; n <= 200; ++n)
+    std::cout << "\n\n Lucas numbers\n";
+    for (auto n = 0ull; n <= max_number; ++n)
       {
 	auto _L_n = __lucas(n);
 	std::cout << ' ' << std::setw(4) << n
@@ -149,10 +219,20 @@ template<typename _Tp>
 		  << '\n';
       }
 
-    std::cout << "\n Lucas polynomials\n";
-    for (auto n = 0ull; n <= 50; ++n)
+    std::cout << "\n\n Lucas function\n";
+    for (int n = -100; n <= 100; ++n)
       {
-	std::cout << '\n' << ' ' << std::setw(4) << n << '\n';
+	auto nu = n * delnu;
+	auto L_nu = __lucas(nu);
+	std::cout << ' ' << std::setw(width) << nu
+		  << ' ' << std::setw(width) << L_nu
+		  << '\n';
+      }
+
+    std::cout << "\n\n Lucas polynomials\n";
+    for (auto n = 0ull; n <= max_order; ++n)
+      {
+	std::cout << '\n' << '\n' << ' ' << std::setw(4) << n << '\n';
 	const auto del = _Tp{1} / _Tp{10};
 	for (auto i = 0ull; i <= 50; ++i)
 	  {
