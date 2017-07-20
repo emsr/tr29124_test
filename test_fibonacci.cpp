@@ -202,12 +202,12 @@ template<typename _Tp>
     std::cout.precision(__gnu_cxx::__digits10<_Tp>());
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
-    const auto max_number = 50ull;
+    const auto max_number = 50;
     const auto delnu = _Tp{1} / _Tp{10};
-    const auto max_order = 50ull;
+    const auto max_order = 50;
 
     std::cout << "\n\n Fibonacci numbers\n";
-    for (auto n = 0ull; n <= max_number; ++n)
+    for (auto n = -max_number; n <= max_number; ++n)
       {
 	auto _F_n = __fibonacci(n);
 	std::cout << ' ' << std::setw(4) << n
@@ -241,7 +241,7 @@ template<typename _Tp>
       }
 
     std::cout << "\n\n Lucas numbers\n";
-    for (auto n = 0ull; n <= max_number; ++n)
+    for (auto n = -max_number; n <= max_number; ++n)
       {
 	auto _L_n = __lucas(n);
 	std::cout << ' ' << std::setw(4) << n
