@@ -12,7 +12,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_fibonacci test_fibon
 #include <iomanip>
 
 /**
- * Return the Fibonacci number by recursion.
+ * Return the Fibonacci number for unsigned integers by recursion:
+ * @f[
+ *    F_n = F_{n-1} + F_{n-2}, F_0 = 0, F_1 = 1
+ * @f]
  */
 template<typename _UIntTp>
   _UIntTp
@@ -38,6 +41,14 @@ template<typename _UIntTp>
 
 /**
  * Return the Fibonacci number for integral or real degree.
+ * The real-valued Fibonacci function matches the Fibonacci numbers
+ * for integral arguments:
+ * @f[
+ *    F_\nu = \frac{1}{\sqrt{5}}\left[\phi^\nu - \cos(\nu\pi)\phi^{-\nu}\right]
+ * @f]
+ * where @f$ \phi = (1+\sqrt{5})/2 @g$ is the Golden ratio.
+ * Note that the Fibonacci numbers for negative integers are given
+ * by @f$ F_{-n} = (-1)^{n+1} F_n @f$.
  */
 template<typename _Tp>
   _Tp
@@ -66,7 +77,10 @@ template<typename _Tp>
   }
 
 /**
- * Return the Fibonacci polynomial of order n and argument x.
+ * Return the Fibonacci polynomial of order @c n and argument @c x by recursion:
+ * @f[
+ *    F_n(x) = xF_{n-1}(x) + F_{n-2}(x), F_0 = 2, F_1 = 1
+ * @f]
  */
 template<typename _UIntTp, typename _RealTp>
   _RealTp
@@ -91,7 +105,10 @@ template<typename _UIntTp, typename _RealTp>
   }
 
 /**
- * Return the Lucas number by recursion.
+ * Return the Lucas number for unsigned integers by recursion:
+ * @f[
+ *    L_n = L_{n-1} + L_{n-2}, L_0 = 2, L_1 = 1
+ * @f]
  */
 template<typename _UIntTp>
   _UIntTp
@@ -117,6 +134,14 @@ template<typename _UIntTp>
 
 /**
  * Return the Lucas number for integral or real degree.
+ * The real-valued Lucas function matches the Lucas numbers
+ * for integral arguments:
+ * @f[
+ *    L_\nu = \phi^\nu + \cos(\nu\pi) \phi^{-\nu}
+ * @f]
+ * where @f$ \phi = (1+\sqrt{5})/2 @g$ is the Golden ratio.
+ * Note that the Lucas numbers for negative integers are given
+ * by @f$ L_{-n} = (-1)^n L_n @f$.
  */
 template<typename _Tp>
   _Tp
@@ -143,12 +168,17 @@ template<typename _Tp>
   }
 
 /**
- * Return the Lucas polynomial of order n and argument x.
+ * Return the Lucas polynomial of order @c n and argument @c x by recursion:
+ * @f[
+ *    L_n(x) = xL_{n-1}(x) + L_{n-2}(x), L_0 = 2, L_1 = x
+ * @f]
  */
 template<typename _UIntTp, typename _RealTp>
   _RealTp
   __lucas(_UIntTp __n, _RealTp __x)
   {
+    //const auto _S_log_phi
+    //  = _RealTp{4.812118250596034474977589134243684231358e-1L};
     auto __Lnm2 = _RealTp{2};
     if (__n == 0)
       return __Lnm2;
