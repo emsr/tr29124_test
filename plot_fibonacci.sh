@@ -23,8 +23,8 @@ plot [-5.0:5.0][-60:60] \
 set title "Lucas function"
 set xlabel "x"
 plot [-10.0:10.0][-80:120] \
-  "test_fibonacci.txt" index 54 using 1:2 with points title "L_n", \
-                    "" index 55 using 1:2 with lines title "L_{/Symbol n}"
+  "test_fibonacci.txt" index 53 using 1:2 with points title "L_n", \
+                    "" index 54 using 1:2 with lines title "L_{/Symbol n}"
 
 # 
 set title "Lucas polynomials"

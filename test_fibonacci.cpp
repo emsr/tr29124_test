@@ -61,7 +61,7 @@ template<typename _Tp>
 	else
 	  {
 	    if (__nu < 0)
-	      return __gnu_cxx::__parity<_Tp>(__nu + 1)
+	      return __gnu_cxx::__parity<_Tp>(-__nu + 1)
 		   * __fibonacci_recur(-__nu);
 	    else
 	      return __fibonacci_recur(__nu);
@@ -202,9 +202,9 @@ template<typename _Tp>
     std::cout.precision(__gnu_cxx::__digits10<_Tp>());
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
-    const auto max_number = 50;
-    const auto delnu = _Tp{1} / _Tp{10};
-    const auto max_order = 50;
+    const auto max_number = 50ll;
+    const auto delnu = _Tp{1} / _Tp{50};
+    const auto max_order = 50ll;
 
     std::cout << "\n\n Fibonacci numbers\n";
     for (auto n = -max_number; n <= max_number; ++n)
@@ -216,7 +216,7 @@ template<typename _Tp>
       }
 
     std::cout << "\n\n Fibonacci function\n";
-    for (int n = -100; n <= 100; ++n)
+    for (int n = -500; n <= 500; ++n)
       {
 	auto nu = n * delnu;
 	auto F_nu = __fibonacci(nu);
@@ -226,7 +226,7 @@ template<typename _Tp>
       }
 
     //std::cout << "\n\n Fibonacci polynomials\n";
-    for (auto n = 0ull; n <= max_order; ++n)
+    for (auto n = 0; n <= max_order; ++n)
       {
 	std::cout << '\n' << '\n' << ' ' << std::setw(4) << n << '\n';
 	const auto del = _Tp{1} / _Tp{10};
@@ -250,7 +250,7 @@ template<typename _Tp>
       }
 
     std::cout << "\n\n Lucas function\n";
-    for (int n = -100; n <= 100; ++n)
+    for (int n = -500; n <= 500; ++n)
       {
 	auto nu = n * delnu;
 	auto L_nu = __lucas(nu);
@@ -260,7 +260,7 @@ template<typename _Tp>
       }
 
     //std::cout << "\n\n Lucas polynomials\n";
-    for (auto n = 0ull; n <= max_order; ++n)
+    for (auto n = 0; n <= max_order; ++n)
       {
 	std::cout << '\n' << '\n' << ' ' << std::setw(4) << n << '\n';
 	const auto del = _Tp{1} / _Tp{10};
