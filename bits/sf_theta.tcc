@@ -618,19 +618,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::complex<_Tp> __z;
       };
 
+      /// Construct the lattice from two complex lattice frequencies.
       __jacobi_lattice_t(const std::complex<_Tp>& __omega1,
 			 const std::complex<_Tp>& __omega3)
-      : __tau(__omega3 / __omega1)
+      : _M_omega_1(__omega1),
+        _M_omega_3(__omega3)
       {
-	if (__isnan(__tau))
+	if (__isnan(__omega1) || __isnan(__omega3))
 	  std::__throw_domain_error("Invalid input");
-	else if (std::imag(__tau) <= _Tp{0})
+	else if (std::imag(this->__tau()) <= _Tp{0})
 	  std::__throw_domain_error("__jacobi_lattice_t: "
 				  "Lattice parameter has negative imag part.");
       }
 
-      __jacobi_lattice_t(std::complex<_Tp> __tau_in)
-      : __tau(__tau_in)
+      /// Construct the lattice from a single complex lattice parameter.
+      __jacobi_lattice_t(std::complex<_Tp> __tau)
+      : _M_omega_1(2 * _S_pi),
+        _M_omega_3(2 * _S_pi * __tau)
       {
 	if (__isnan(__tau))
 	  std::__throw_domain_error("Invalid input");
@@ -640,12 +644,30 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       }
 
       std::complex<_Tp>
+      __tau() const
+      { return this->_M_omega_3 / this->_M_omega_1; }
+
+      std::complex<_Tp>
+      __omega_1() const
+      { return this->_M_omega_1; }
+
+      std::complex<_Tp>
+      __omega_2() const
+      { return -(this->_M_omega_1 + this->omega_3); }
+
+      std::complex<_Tp>
+      __omega_3() const
+      { return this->_M_omega_3; }
+
+      std::complex<_Tp>
       __ellnome() const;
 
       __arg_t
       __reduce(const std::complex<_Tp>& __z) const;
 
-      std::complex<_Tp> __tau;
+      static constexpr auto _S_pi = __gnu_cxx::__const_pi<_Tp>();
+      std::complex<_Tp> _M_omega_1;
+      std::complex<_Tp> _M_omega_3;
     };
 
   /**
@@ -657,7 +679,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_i = std::complex<_Tp>{0, 1};
       const auto _S_pi = __gnu_cxx::__const_pi<_Tp>();
-      return std::exp(_S_i * _S_pi * __tau);
+      return std::exp(_S_i * _S_pi * this->__tau());
     }
 
   /**
@@ -669,6 +691,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_pi = __gnu_cxx::__const_pi<_Tp>();
 
+      const auto __tau = this->__tau();
       const auto __tau_r = std::real(__tau);
       const auto __tau_i = std::imag(__tau);
       const auto __z_r = std::real(__z);

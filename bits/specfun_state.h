@@ -164,7 +164,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       _Tp
       deriv() const
-      { return __n * (__T_nm1 - __x * __T_n) / (_Real{1} - __x * __x); }
+      { return _Tp(__n) * (__T_nm1 - __x * __T_n) / (_Tp{1} - __x * __x); }
     };
 
   /**
@@ -181,8 +181,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       _Tp
       deriv() const
-      { return ((__n + 1) * __U_nm1 - __n * __x * __U_n)
-		/ (_Real{1} - __x * __x); }
+      { return (_Tp(__n + 1) * __U_nm1 - _Tp(__n) * __x * __U_n)
+		/ (_Tp{1} - __x * __x); }
     };
 
   /**
