@@ -151,6 +151,41 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
   /**
+   * A struct to store the state of a Chebyshev polynomial of the first kind.
+   */
+  template<typename _Tp>
+    struct __chebyshev_t_t
+    {
+      std::size_t __n;
+      _Tp __x;
+      _Tp __T_n;
+      _Tp __T_nm1;
+      _Tp __T_nm2;
+
+      _Tp
+      deriv() const
+      { return __n * (__T_nm1 - __x * __T_n) / (_Real{1} - __x * __x); }
+    };
+
+  /**
+   * A struct to store the state of a Chebyshev polynomial of the second kind.
+   */
+  template<typename _Tp>
+    struct __chebyshev_u_t
+    {
+      std::size_t __n;
+      _Tp __x;
+      _Tp __U_n;
+      _Tp __U_nm1;
+      _Tp __U_nm2;
+
+      _Tp
+      deriv() const
+      { return ((__n + 1) * __U_nm1 - __n * __x * __U_n)
+		/ (_Real{1} - __x * __x); }
+    };
+
+  /**
    * A struct to store a cosine and a sine value.
    * A return for sincos-type functions.
    */
