@@ -790,6 +790,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
       const auto _S_i = std::complex<_Real>{0, 1};
+      constexpr auto _S_q_min = _Real{0.001L};
+      constexpr auto _S_q_max = _Real{0.95e-1L};
 
       if (__isnan(__q) || __isnan(__x))
 	return _Tp{_S_NaN};
@@ -798,8 +800,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				      " nome q out of range"));
       else if (std::abs(__x) < _S_eps)
 	return std::complex<_Tp>{0, 0};
-      else if (std::abs(__q) < 0.000002)
-	return __jacobi_theta_1_sum(__q, __x);
+      else if (std::abs(__q) < _S_q_min || std::abs(__q) > _S_q_max)
+	return __jacobi_theta_1_prod(__q, __x);
       else
 	{
 	  auto __tau = std::log(__q) / _S_pi / _S_i;
@@ -970,6 +972,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
       const auto _S_i = std::complex<_Real>{0, 1};
+      constexpr auto _S_q_min = _Real{0.001L};
+      constexpr auto _S_q_max = _Real{0.95e-1L};
 
       if (__isnan(__q) || __isnan(__x))
 	return _Tp{_S_NaN};
@@ -978,8 +982,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				      " nome q out of range"));
       else if (std::abs(__x) < _S_eps)
 	return __jacobi_theta_0(__q).th2;
-      else if (std::abs(__q) < 0.000002)
-	return __jacobi_theta_2_sum(__q, __x);
+      else if (std::abs(__q) < _S_q_min || std::abs(__q) > _S_q_max)
+	return __jacobi_theta_2_prod(__q, __x);
       else
 	{
 	  auto __tau = std::log(__q) / _S_pi / _S_i;
@@ -1138,6 +1142,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
       const auto _S_i = std::complex<_Real>{0, 1};
+      constexpr auto _S_q_min = _Real{0.001L};
+      constexpr auto _S_q_max = _Real{0.95e-1L};
 
       if (__isnan(__q) || __isnan(__x))
 	return _Tp{_S_NaN};
@@ -1146,8 +1152,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				      " nome q out of range"));
       else if (std::abs(__x) < _S_eps)
 	return __jacobi_theta_0(__q).th3;
-      else if (std::abs(__q) < 0.000002)
-	return __jacobi_theta_3_sum(__q, __x);
+      else if (std::abs(__q) < _S_q_min || std::abs(__q) > _S_q_max)
+	return __jacobi_theta_3_prod(__q, __x);
       else
 	{
 	  auto __tau = std::log(__q) / _S_pi / _S_i;
@@ -1303,6 +1309,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
       const auto _S_i = std::complex<_Real>{0, 1};
+      constexpr auto _S_q_min = _Real{0.001L};
+      constexpr auto _S_q_max = _Real{0.95e-1L};
 
       if (__isnan(__q) || __isnan(__x))
 	return _Tp{_S_NaN};
@@ -1311,8 +1319,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				      " nome q out of range"));
       else if (std::abs(__x) < _S_eps)
 	return __jacobi_theta_0(__q).th4;
-      else if (std::abs(__q) < 0.000002)
-	return __jacobi_theta_4_sum(__q, __x);
+      else if (std::abs(__q) < _S_q_min || std::abs(__q) > _S_q_max)
+	return __jacobi_theta_4_prod(__q, __x);
       else
 	{
 	  auto __tau = std::log(__q) / _S_pi / _S_i;
