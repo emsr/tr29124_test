@@ -59,7 +59,7 @@ plot [0.0:2.0][0:6] \
 # 
 set title "Jacobi {/Symbol q}_1 function; x = 0, 0.4, 5, 10, 40"
 set xlabel "q"
-plot [0.0:1.0][-3:1] \
+plot [0.0:1.0][-3:1.5] \
   "test_jacobi_theta.txt" index 5 using 1:2 with lines title "{/Symbol q}_1(q,  0)", \
                        "" index 5 using 1:3 with lines title "{/Symbol q}_1(q,0.4)", \
                        "" index 5 using 1:4 with lines title "{/Symbol q}_1(q,  5)", \
@@ -69,7 +69,7 @@ plot [0.0:1.0][-3:1] \
 # 
 set title "Jacobi {/Symbol q}_2 function; x = 0, 0.4, 5, 10, 40"
 set xlabel "q"
-plot [0.0:1.0][-2:3] \
+plot [0.0:1.0][-2:8] \
   "test_jacobi_theta.txt" index 6 using 1:2 with lines title "{/Symbol q}_2(q,  0)", \
                        "" index 6 using 1:3 with lines title "{/Symbol q}_2(q,0.4)", \
                        "" index 6 using 1:4 with lines title "{/Symbol q}_2(q,  5)", \
@@ -79,7 +79,7 @@ plot [0.0:1.0][-2:3] \
 # 
 set title "Jacobi {/Symbol q}_3 function; x = 0, 0.4, 5, 10, 40"
 set xlabel "q"
-plot [0.0:1.0][0:3] \
+plot [0.0:1.0][-0.5:7.5] \
   "test_jacobi_theta.txt" index 7 using 1:2 with lines title "{/Symbol q}_3(q,  0)", \
                        "" index 7 using 1:3 with lines title "{/Symbol q}_3(q,0.4)", \
                        "" index 7 using 1:4 with lines title "{/Symbol q}_3(q,  5)", \
@@ -89,7 +89,7 @@ plot [0.0:1.0][0:3] \
 # 
 set title "Jacobi {/Symbol q}_4 function; x = 0, 0.4, 5, 10, 40"
 set xlabel "q"
-plot [0.0:1.0][0:3] \
+plot [0.0:1.0][-0.5:3] \
   "test_jacobi_theta.txt" index 8 using 1:2 with lines title "{/Symbol q}_4(q,  0)", \
                        "" index 8 using 1:3 with lines title "{/Symbol q}_4(q,0.4)", \
                        "" index 8 using 1:4 with lines title "{/Symbol q}_4(q,  5)", \
@@ -101,7 +101,7 @@ plot [0.0:1.0][0:3] \
 # 
 set title "Jacobi theta functions q = 0.0"
 set xlabel "x"
-plot [0.0:2.0][-6:6] \
+plot [0.0:2.0][-2:2] \
   "test_jacobi_theta.txt" index 9 using 1:2 with lines title "{/Symbol q}_1(q,{/Symbol p}x)", \
                        "" index 9 using 1:3 with lines title "{/Symbol q}_2(q,{/Symbol p}x)", \
                        "" index 9 using 1:4 with lines title "{/Symbol q}_3(q,{/Symbol p}x)", \
@@ -110,7 +110,7 @@ plot [0.0:2.0][-6:6] \
 # 
 set title "Jacobi theta functions q = 0.1"
 set xlabel "x"
-plot [0.0:2.0][-6:6] \
+plot [0.0:2.0][-2:2] \
   "test_jacobi_theta.txt" index 10 using 1:2 with lines title "{/Symbol q}_1(q,{/Symbol p}x)", \
                        "" index 10 using 1:3 with lines title "{/Symbol q}_2(q,{/Symbol p}x)", \
                        "" index 10 using 1:4 with lines title "{/Symbol q}_3(q,{/Symbol p}x)", \
@@ -119,7 +119,7 @@ plot [0.0:2.0][-6:6] \
 # 
 set title "Jacobi theta functions q = 0.2"
 set xlabel "x"
-plot [0.0:2.0][-6:6] \
+plot [0.0:2.0][-2:2] \
   "test_jacobi_theta.txt" index 11 using 1:2 with lines title "{/Symbol q}_1(q,{/Symbol p}x)", \
                        "" index 11 using 1:3 with lines title "{/Symbol q}_2(q,{/Symbol p}x)", \
                        "" index 11 using 1:4 with lines title "{/Symbol q}_3(q,{/Symbol p}x)", \
@@ -128,7 +128,7 @@ plot [0.0:2.0][-6:6] \
 # 
 set title "Jacobi theta functions q = 0.3"
 set xlabel "x"
-plot [0.0:2.0][-6:6] \
+plot [0.0:2.0][-2:2] \
   "test_jacobi_theta.txt" index 12 using 1:2 with lines title "{/Symbol q}_1(q,{/Symbol p}x)", \
                        "" index 12 using 1:3 with lines title "{/Symbol q}_2(q,{/Symbol p}x)", \
                        "" index 12 using 1:4 with lines title "{/Symbol q}_3(q,{/Symbol p}x)", \
@@ -137,7 +137,7 @@ plot [0.0:2.0][-6:6] \
 # 
 set title "Jacobi theta functions q = 0.4"
 set xlabel "x"
-plot [0.0:2.0][-6:6] \
+plot [0.0:2.0][-2:2] \
   "test_jacobi_theta.txt" index 13 using 1:2 with lines title "{/Symbol q}_1(q,{/Symbol p}x)", \
                        "" index 13 using 1:3 with lines title "{/Symbol q}_2(q,{/Symbol p}x)", \
                        "" index 13 using 1:4 with lines title "{/Symbol q}_3(q,{/Symbol p}x)", \
@@ -146,7 +146,7 @@ plot [0.0:2.0][-6:6] \
 # 
 set title "Jacobi theta functions q = 0.5"
 set xlabel "x"
-plot [0.0:2.0][-6:6] \
+plot [0.0:2.0][-3:3] \
   "test_jacobi_theta.txt" index 14 using 1:2 with lines title "{/Symbol q}_1(q,{/Symbol p}x)", \
                        "" index 14 using 1:3 with lines title "{/Symbol q}_2(q,{/Symbol p}x)", \
                        "" index 14 using 1:4 with lines title "{/Symbol q}_3(q,{/Symbol p}x)", \
@@ -155,7 +155,7 @@ plot [0.0:2.0][-6:6] \
 # 
 set title "Jacobi theta functions q = 0.6"
 set xlabel "x"
-plot [0.0:2.0][-6:6] \
+plot [0.0:2.0][-3:3] \
   "test_jacobi_theta.txt" index 15 using 1:2 with lines title "{/Symbol q}_1(q,{/Symbol p}x)", \
                        "" index 15 using 1:3 with lines title "{/Symbol q}_2(q,{/Symbol p}x)", \
                        "" index 15 using 1:4 with lines title "{/Symbol q}_3(q,{/Symbol p}x)", \
@@ -164,7 +164,7 @@ plot [0.0:2.0][-6:6] \
 # 
 set title "Jacobi theta functions q = 0.7"
 set xlabel "x"
-plot [0.0:2.0][-6:6] \
+plot [0.0:2.0][-4:4] \
   "test_jacobi_theta.txt" index 16 using 1:2 with lines title "{/Symbol q}_1(q,{/Symbol p}x)", \
                        "" index 16 using 1:3 with lines title "{/Symbol q}_2(q,{/Symbol p}x)", \
                        "" index 16 using 1:4 with lines title "{/Symbol q}_3(q,{/Symbol p}x)", \
@@ -173,7 +173,7 @@ plot [0.0:2.0][-6:6] \
 # 
 set title "Jacobi theta functions q = 0.8"
 set xlabel "x"
-plot [0.0:2.0][-6:6] \
+plot [0.0:2.0][-4:4] \
   "test_jacobi_theta.txt" index 17 using 1:2 with lines title "{/Symbol q}_1(q,{/Symbol p}x)", \
                        "" index 17 using 1:3 with lines title "{/Symbol q}_2(q,{/Symbol p}x)", \
                        "" index 17 using 1:4 with lines title "{/Symbol q}_3(q,{/Symbol p}x)", \
@@ -221,7 +221,7 @@ plot [0.0:2.0][-6:6] \
 # 
 set title "Jacobi {/Symbol q}_3 functions q = 0.0 - 0.9"
 set xlabel "x"
-plot [0.0:2.0][-6:6] \
+plot [0.0:2.0][-0.5:6] \
   "test_jacobi_theta.txt" index  9 using 1:4 with lines title "{/Symbol q}_3(0.0,{/Symbol p}x)", \
                        "" index 10 using 1:4 with lines title "{/Symbol q}_3(0.1,{/Symbol p}x)", \
                        "" index 11 using 1:4 with lines title "{/Symbol q}_3(0.2,{/Symbol p}x)", \
@@ -236,7 +236,7 @@ plot [0.0:2.0][-6:6] \
 # 
 set title "Jacobi {/Symbol q}_4 functions q = 0.0 - 0.9"
 set xlabel "x"
-plot [0.0:2.0][-6:6] \
+plot [0.0:2.0][-0.5:6] \
   "test_jacobi_theta.txt" index  9 using 1:5 with lines title "{/Symbol q}_4(0.0,{/Symbol p}x)", \
                        "" index 10 using 1:5 with lines title "{/Symbol q}_4(0.1,{/Symbol p}x)", \
                        "" index 11 using 1:5 with lines title "{/Symbol q}_4(0.2,{/Symbol p}x)", \

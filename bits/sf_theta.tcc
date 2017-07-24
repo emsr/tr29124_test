@@ -804,10 +804,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  auto __tau = std::log(__q) / _S_pi / _S_i;
 
+	  auto __fact = std::complex<_Tp>{1, 0};
+	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
+	  if (__x_red.__m != 0)
+	    __fact *= __gnu_cxx::__parity<_Tp>(__x_red.__m);
+	  if (__x_red.__n != 0)
+	    __fact *= __gnu_cxx::__parity<_Tp>(__x_red.__n)
+	    	    * std::exp(_S_i * _Real{-2 * __x_red.__n} * __x_red.__z)
+		    * std::pow(__q, -__x_red.__n * __x_red.__n);
+	  __x = __x_red.__z;
+
 	  // theta_1(tau+1, z) = exp(i tau/4) theta_1(tau, z)
 	  const auto __itau = std::floor(std::real(__tau));
 	  __tau -= __itau;
-	  auto __fact = __polar_pi(_Real{1}, __itau / _Real{4});
+	  __fact *= __polar_pi(_Real{1}, __itau / _Real{4});
 
 	  if (std::imag(__tau) < 0.5)
 	    {
@@ -818,15 +828,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __q = std::exp(_S_i * _S_pi * __tau);
 	      __x *= __tau;
 	    }
-
-	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
-	  if (__x_red.__m != 0)
-	    __fact *= __gnu_cxx::__parity<_Tp>(__x_red.__m);
-	  if (__x_red.__n != 0)
-	    __fact *= __gnu_cxx::__parity<_Tp>(__x_red.__n)
-	    	    * std::exp(_S_i * _Real{-2 * __x_red.__n} * __x_red.__z)
-	    	    * std::pow(__q, -__x_red.__n * __x_red.__n);
-	  __x = __x_red.__z;
 
 	  return __fact * __jacobi_theta_1_sum(__q, __x);
 	}
@@ -983,42 +984,32 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  auto __tau = std::log(__q) / _S_pi / _S_i;
 
+	  auto __fact = std::complex<_Tp>{1, 0};
+	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
+	  if (__x_red.__m != 0)
+	    __fact *= __gnu_cxx::__parity<_Tp>(__x_red.__m);
+	  if (__x_red.__n != 0)
+	    __fact *= std::exp(_S_i * _Real{-2 * __x_red.__n} * __x_red.__z)
+		    * std::pow(__q, -__x_red.__n * __x_red.__n);
+	  __x = __x_red.__z;
+
 	  // theta_2(tau+1, z) = theta_2(tau, z)
 	  const auto __itau = std::floor(std::real(__tau));
 	  __tau -= __itau;
-	  auto __fact = __polar_pi(_Real{1}, __itau / _Real{4});
+	  __fact *= __polar_pi(_Real{1}, __itau / _Real{4});
 
-	  bool __flip = false;
 	  if (std::imag(__tau) < 0.5)
 	    {
-	      __flip = true;
 	      const auto __fact2 = std::sqrt(-_S_i * __tau);
 	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
 	      __fact *= __phase / __fact2;
 	      __q = std::exp(_S_i * _S_pi * __tau);
 	      __x *= __tau;
-	    }
-
-	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
-	  if (__x_red.__n != 0)
-	    __fact *= std::exp(_S_i * _Real{-2 * __x_red.__n} * __x_red.__z)
-	    	    * std::pow(__q, -__x_red.__n * __x_red.__n);
-	  __x = __x_red.__z;
-
-
-	  if (__flip)
-	    {
-	      if (__x_red.__n != 0)
-		__fact *= __gnu_cxx::__parity<_Tp>(__x_red.__n);
 	      return __fact * __jacobi_theta_4_sum(__q, __x);
 	    }
 	  else
-	    {
-	      if (__x_red.__m != 0)
-		__fact *= __gnu_cxx::__parity<_Tp>(__x_red.__m);
-	      return __fact * __jacobi_theta_2_sum(__q, __x);
-	    }
+	    return __fact * __jacobi_theta_2_sum(__q, __x);
 	}
     }
 
@@ -1161,10 +1152,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  auto __tau = std::log(__q) / _S_pi / _S_i;
 
+	  auto __fact = std::complex<_Tp>{1, 0};
+	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
+	  if (__x_red.__n != 0)
+	    __fact *= std::exp(_S_i * _Real{-2 * __x_red.__n} * __x_red.__z)
+		    * std::pow(__q, -__x_red.__n * __x_red.__n);
+	  __x = __x_red.__z;
+
 	  // theta_3(tau+1, z) = theta_3(tau, z)
 	  const auto __itau = std::floor(std::real(__tau));
 	  __tau -= __itau;
-	  auto __fact = std::complex<_Tp>{1, 0};
 
 	  if (std::imag(__tau) < 0.5)
 	    {
@@ -1175,12 +1172,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __q = std::exp(_S_i * _S_pi * __tau);
 	      __x *= __tau;
 	    }
-
-	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
-	  if (__x_red.__n != 0)
-	    __fact *= std::exp(_S_i * _Real{-2 * __x_red.__n} * __x_red.__z)
-	    	    * std::pow(__q, -__x_red.__n * __x_red.__n);
-	  __x = __x_red.__z;
 
 	  return __fact * __jacobi_theta_3_sum(__q, __x);
 	}
@@ -1326,41 +1317,31 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  auto __tau = std::log(__q) / _S_pi / _S_i;
 
+	  auto __fact = std::complex<_Tp>{1, 0};
+	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
+	  if (__x_red.__n != 0)
+	    __fact *= std::exp(_S_i * _Real{-2 * __x_red.__n} * __x_red.__z)
+		    * std::pow(__q, -__x_red.__n * __x_red.__n);
+	  if (__x_red.__n != 0)
+	    __fact *= __gnu_cxx::__parity<_Tp>(__x_red.__n);
+	  __x = __x_red.__z;
+
 	  // theta_4(tau+1, z) = theta_4(tau, z)
 	  const auto __itau = std::floor(std::real(__tau));
 	  __tau -= __itau;
-	  auto __fact = std::complex<_Tp>{1, 0};
 
-	  bool __flip = false;
 	  if (std::imag(__tau) < 0.5)
 	    {
-	      __flip = true;
 	      const auto __fact2 = std::sqrt(-_S_i * __tau);
 	      __tau = _Real{-1} / __tau;
 	      const auto __phase = std::exp(_S_i * __tau * __x * __x / _S_pi);
 	      __fact *= __phase / __fact2;
 	      __q = std::exp(_S_i * _S_pi * __tau);
 	      __x *= __tau;
-	    }
-
-	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
-	  if (__x_red.__n != 0)
-	    __fact *= std::exp(_S_i * _Real{-2 * __x_red.__n} * __x_red.__z)
-	    	    * std::pow(__q, -__x_red.__n * __x_red.__n);
-	  __x = __x_red.__z;
-
-	  if (__flip)
-	    {
-	      if (__x_red.__m != 0)
-		__fact *= __gnu_cxx::__parity<_Tp>(__x_red.__m);
 	      return __fact * __jacobi_theta_2_sum(__q, __x);
 	    }
 	  else
-	    {
-	      if (__x_red.__n != 0)
-		__fact *= __gnu_cxx::__parity<_Tp>(__x_red.__n);
-	      return __fact * __jacobi_theta_4_sum(__q, __x);
-	    }
+	    return __fact * __jacobi_theta_4_sum(__q, __x);
 	}
     }
 
