@@ -2017,7 +2017,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   chebyshev_tf(unsigned int __n, float __x)
-  { return std::__detail::__chebyshev_t<float>(__n, __x); }
+  { return std::__detail::__chebyshev_t<float>(__n, __x).__T_n; }
 
   /**
    * Return the Chebyshev polynomials of the first kind @f$ T_n(x) @f$
@@ -2027,7 +2027,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline long double
   chebyshev_tl(unsigned int __n, long double __x)
-  { return std::__detail::__chebyshev_t<long double>(__n, __x); }
+  { return std::__detail::__chebyshev_t<long double>(__n, __x).__T_n; }
 
   /**
    * Return the Chebyshev polynomial of the first kind @f$ T_n(x) @f$
@@ -2048,7 +2048,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     chebyshev_t(unsigned int __n, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__chebyshev_t<__type>(__n, __x);
+      return std::__detail::__chebyshev_t<__type>(__n, __x).__T_n;
     }
 
   // Chebyshev polynomials of the second kind
@@ -2061,7 +2061,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   chebyshev_uf(unsigned int __n, float __x)
-  { return std::__detail::__chebyshev_u<float>(__n, __x); }
+  { return std::__detail::__chebyshev_u<float>(__n, __x).__U_n; }
 
   /**
    * Return the Chebyshev polynomials of the second kind  @f$ U_n(x) @f$
@@ -2071,7 +2071,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline long double
   chebyshev_ul(unsigned int __n, long double __x)
-  { return std::__detail::__chebyshev_u<long double>(__n, __x); }
+  { return std::__detail::__chebyshev_u<long double>(__n, __x).__U_n; }
 
   /**
    * Return the Chebyshev polynomial of the second kind @f$ U_n(x) @f$
@@ -2092,7 +2092,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     chebyshev_u(unsigned int __n, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__chebyshev_u<__type>(__n, __x);
+      return std::__detail::__chebyshev_u<__type>(__n, __x).__U_n;
     }
 
   // Chebyshev polynomials of the third kind
