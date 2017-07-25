@@ -12,6 +12,18 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_fibonacci test_fibon
 #include <iomanip>
 
 /**
+ * @todo Test these relations between the Lucas and Fibonacci numbers
+ *     and the Chebyshev polynomials of the first and second kinds respectively.
+ * @f[
+ *   2i^{-n} T_n(i/2) = L_n
+ * @f]
+ * and
+ * @f[
+ *   i^n U(i/2) = F_{n+1}
+ * @f]
+ */
+
+/**
  * Return the Fibonacci number for unsigned integers by recursion:
  * @f[
  *    F_n = F_{n-1} + F_{n-2}, F_0 = 0, F_1 = 1
@@ -34,7 +46,7 @@ template<typename _UIntTp>
 	__Fnm1 = __Fn;
 	if (__builtin_add_overflow(__Fnm1, __Fnm2, &__Fn))
 	    std::__throw_runtime_error(__N("__fibonacci: "
-					   "integer overflow"));	  
+					   "integer overflow"));
       }
     return __Fn;
   }
@@ -127,7 +139,7 @@ template<typename _UIntTp>
 	__Lnm1 = __Ln;
 	if (__builtin_add_overflow(__Lnm1, __Lnm2, &__Ln))
 	    std::__throw_runtime_error(__N("__lucas: "
-					   "integer overflow"));	  
+					   "integer overflow"));
       }
     return __Ln;
   }
