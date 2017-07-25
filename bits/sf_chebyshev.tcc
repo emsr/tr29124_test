@@ -55,7 +55,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param _C1 The value of the first-order Chebyshev polynomial at @f$ x @f$
    */
   template<typename _Tp>
-    _Tp
+    std::tuple<_Tp, _Tp, _Tp>
     __chebyshev_recur(unsigned int __n, _Tp __x, _Tp _C0, _Tp _C1)
     {
       auto _Ck = _Tp{2} * __x * _C1 - _C0;
@@ -65,7 +65,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	_C1 = _Ck;
 	_Ck = _Tp{2} * __x * _C1 - _C0;
       }
-      return _Ck;
+      return std::make_tuple(_Ck, _C1, _C0);
     }
 
   /**
@@ -83,18 +83,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The real argument @f$ -1 <= x <= +1 @f$
    */
   template<typename _Tp>
-    _Tp
+    __gnu_cxx::__chebyshev_t_t<_Tp>
     __chebyshev_t(unsigned int __n, _Tp __x)
     {
       auto _T0 = _Tp{1};
       if (__n == 0)
-	return _T0;
+	return {__n, __x, _T0, _Tp{0}, _Tp{0}};
 
       auto _T1 = __x;
       if (__n == 1)
-	return _T1;
+	return {__n, __x, _T1, _T0, _Tp{0}};
 
-      return __chebyshev_recur(__n, __x, _T0, _T1);
+      auto _Ts = __chebyshev_recur(__n, __x, _T0, _T1);
+      return {__n, __x, std::get<0>(_Ts), std::get<1>(_Ts), std::get<2>(_Ts)};
     }
 
   /**
@@ -112,18 +113,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The real argument @f$ -1 <= x <= +1 @f$
    */
   template<typename _Tp>
-    _Tp
+    __gnu_cxx::__chebyshev_u_t<_Tp>
     __chebyshev_u(unsigned int __n, _Tp __x)
     {
       auto _U0 = _Tp{1};
       if (__n == 0)
-	return _U0;
+	return {__n, __x, _U0, _Tp{0}, _Tp{0}};
 
       auto _U1 = _Tp{2} * __x;
       if (__n == 1)
-	return _U1;
+	return {__n, __x, _U1, _U0, _Tp{0}};
 
-      return __chebyshev_recur(__n, __x, _U0, _U1);
+      auto _Cs = __chebyshev_recur(__n, __x, _U0, _U1);
+      return {__n, __x, std::get<0>(_Cs), std::get<1>(_Cs), std::get<2>(_Cs)};
     }
 
   /**
@@ -153,7 +155,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__n == 1)
 	return _V1;
 
-      return __chebyshev_recur(__n, __x, _V0, _V1);
+      return std::get<0>(__chebyshev_recur(__n, __x, _V0, _V1));
     }
 
   /**
@@ -183,7 +185,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__n == 1)
 	return _W1;
 
-      return __chebyshev_recur(__n, __x, _W0, _W1);
+      return std::get<0>(__chebyshev_recur(__n, __x, _W0, _W1));
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
