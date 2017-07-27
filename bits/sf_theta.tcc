@@ -595,10 +595,45 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
+   * Reduce the argument to the fundamental lattice parallelogram
+   * @f$ (0, 2\pi, 2\pi (1 + \tau), 2\pi \tau) @f$.
+   * This is sort of like a 2D lattice remquo.
+   *
+   * @param __z The argument to be reduced.
+   * @return A struct containing the argument reduced to the interior
+   *         of the fundamental parallelogram and two integers indicating
+   *         the number of periods in the 'real' and 'tau' directions.
+   */
+  template<typename _Tp1, typename _Tp3>
+    typename __jacobi_lattice_t<_Tp1, _Tp3>::__arg_t
+    __jacobi_lattice_t<_Tp1, _Tp3>::
+    __reduce(const typename __jacobi_lattice_t<_Tp1, _Tp3>::_Cmplx& __z) const
+    {
+      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
+
+      const auto __tau = this->__tau().__val;
+      const auto __tau_r = std::real(__tau);
+      const auto __tau_i = std::imag(__tau);
+      const auto __z_r = std::real(__z);
+      const auto __z_i = std::imag(__z);
+
+      // Solve z = (z_r, z_i) = pi a (1, 0) + pi b (tau_r, tau_i).
+      const auto __b = __z_i / __tau_i / _S_pi;
+      const int __n = std::floor(__b);
+      const auto __nu = __b - __n;
+      const auto __a = (__z_r - __b * __tau_r * _S_pi) / _S_pi;
+      const int __m = std::floor(__a);
+      const auto __mu = __a - __m;
+
+      return {__m, __n,
+      	      _S_pi * _Cmplx(__mu + __nu * __tau_r, __nu * __tau_i)};
+    }
+
+  /**
    * A struct for the non-zero theta functions and their derivatives
    * at zero argument.
    */
-  template<typename _Tp1, typename _Tp3>
+  template<typename _Tp1, typename _Tp3 = std::complex<_Tp1>>
     struct __jacobi_theta_0_t
     {
       __jacobi_theta_0_t(const __jacobi_lattice_t<_Tp1, _Tp3>& __lambda);
@@ -678,23 +713,38 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * A struct of the Weierstrass elliptic function roots.
+   * @f[
+   *    e_1 = \frac{\pi^2}{12\omega_1^2}(\theta_2^4(q,0) + 2\theta_4^4(q,0))
+   * @f]
+   * @f[
+   *    e_2 = \frac{\pi^2}{12\omega_1^2}(\theta_2^4(q,0) - \theta_4^4(q,0))
+   * @f]
+   * @f[
+   *    e_3 = \frac{\pi^2}{12\omega_1^2}(-2\theta_2^4(q,0) - \theta_4^4(q,0))
+   * @f]
+   * Note that @f$ e_1 + e_2 + e_3 = 0 @f$
    */
-  template<typename _Tp>
+  template<typename _Tp1, typename _Tp3 = std::complex<_Tp1>>
     struct __weierstrass_roots_t
     {
-      _Tp __e1, __e2, __e3;
+      using _Type = typename __jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome;
+      using _Real = __num_traits_t<_Type>;
+      using _Cmplx = std::complex<_Real>;
 
-      __weierstrass_roots_t(const __jacobi_lattice_t<_Tp>& __lambda);
+      _Type __e1, __e2, __e3;
+
+      __weierstrass_roots_t(const __jacobi_lattice_t<_Tp1, _Tp3>& __lambda);
     };
 
   /**
    * Constructor for the Weierstrass roots.
+   *
+   * @param __lambda The Jacobi latticce.
    */
-  template<typename _Tp>
-    __weierstrass_roots_t<_Tp>::
-    __weierstrass_roots_t(const __jacobi_lattice_t<_Tp>& __lambda)
+  template<typename _Tp1, typename _Tp3>
+    __weierstrass_roots_t<_Tp1, _Tp3>::
+    __weierstrass_roots_t(const __jacobi_lattice_t<_Tp1, _Tp3>& __lambda)
     {
-      using _Real = __num_traits_t<_Tp>;
       const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
 
       const auto __tht0 = __jacobi_theta_0_t(__lambda);
@@ -713,56 +763,43 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * A struct of the Weierstrass elliptic function invariants.
+   * @f[
+   *    g_2 = 2(e_1 e_2 + e_2 e_3 + e_3 e_1)
+   * @f]
+   * @f[
+   *    g_3 = 4(e_1 e_2 e_3)
+   * @f]
    */
-  template<typename _Tp>
+  template<typename _Tp1, typename _Tp3>
     struct __weierstrass_invariants_t
     {
-      _Tp __g2, __g3;
+      using _Type = typename __jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome;
+      using _Real = __num_traits_t<_Type>;
+      using _Cmplx = std::complex<_Real>;
 
-      __weierstrass_invariants_t(const __jacobi_lattice_t<_Tp>& __lambda);
+      _Type __g2, __g3;
+
+      __weierstrass_invariants_t(const __jacobi_lattice_t<_Tp1, _Tp3>&);
     };
 
   /**
    * Constructor for the Weierstrass invariants.
-   */
-  template<typename _Tp>
-    __weierstrass_invariants_t<_Tp>::
-    __weierstrass_invariants_t(const __jacobi_lattice_t<_Tp>& __lambda)
-    {
-      using _Real = __num_traits_t<_Tp>;
-      const auto __root = __weierstrass_roots_t(__lambda);
-      __g2 = _Real{2} * (__root.e1 * __root.e1
-        	       + __root.e2 * __root.e2
-        	       + __root.e3 * __root.e3);
-      __g3 = _Real{4} * __root.e1 * __root.e2 * __root.e3;
-    }
-
-  /**
-   * Parallelogram reduction of argument.
+   * @f[
+   *    g_2 = 2(e_1 e_2 + e_2 e_3 + e_3 e_1)
+   * @f]
+   * @f[
+   *    g_3 = 4(e_1 e_2 e_3)
+   * @f]
    */
   template<typename _Tp1, typename _Tp3>
-    typename __jacobi_lattice_t<_Tp1, _Tp3>::__arg_t
-    __jacobi_lattice_t<_Tp1, _Tp3>::
-    __reduce(const typename __jacobi_lattice_t<_Tp1, _Tp3>::_Cmplx& __z) const
+    __weierstrass_invariants_t<_Tp1, _Tp3>::
+    __weierstrass_invariants_t(const __jacobi_lattice_t<_Tp1, _Tp3>& __lambda)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
-
-      const auto __tau = this->__tau().__val;
-      const auto __tau_r = std::real(__tau);
-      const auto __tau_i = std::imag(__tau);
-      const auto __z_r = std::real(__z);
-      const auto __z_i = std::imag(__z);
-
-      // Solve z = (z_r, z_i) = pi a (1, 0) + pi b (tau_r, tau_i).
-      const auto __b = __z_i / __tau_i / _S_pi;
-      const int __n = std::floor(__b);
-      const auto __nu = __b - __n;
-      const auto __a = (__z_r - __b * __tau_r * _S_pi) / _S_pi;
-      const int __m = std::floor(__a);
-      const auto __mu = __a - __m;
-
-      return {__m, __n,
-      	      _S_pi * _Cmplx(__mu + __nu * __tau_r, __nu * __tau_i)};
+      const auto __roots = __weierstrass_roots_t<_Tp1, _Tp3>(__lambda);
+      __g2 = _Real{2} * (__roots.__e1 * __roots.__e1
+        	       + __roots.__e2 * __roots.__e2
+        	       + __roots.__e3 * __roots.__e3);
+      __g3 = _Real{4} * __roots.__e1 * __roots.__e2 * __roots.__e3;
     }
 
   /**
@@ -773,6 +810,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  \theta_1(q,x) = 2\sum_{n=1}^{\infty}(-1)^n
    *                   q^{(n+\frac{1}{2})^2}\sin{(2n+1)x}
    * @f]
+   *
+   * @param __q The elliptic nome, @f$ |q| < 1 @f$.
+   * @param __x The argument.
    */
   template<typename _Tp>
     _Tp
@@ -805,6 +845,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  \theta_1(q,x) = 2 q^{1/4} \sin(x) \prod_{n=1}^{\infty}
    *                   (1 - q^{2n})(1 - 2q^{2n}\cos(2x) + q^{4n})
    * @f]
+   *
+   * @param __q The elliptic nome, @f$ |q| < 1 @f$.
+   * @param __x The argument.
    */
   template<typename _Tp>
     _Tp
@@ -859,6 +902,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *   \theta_1(q, x+(m+n\tau)\pi) = (-1)^{m+n}q^{-n^2}e^{-2inx}\theta_1(q, x)
    * @f]
+   *
+   * @param __q The elliptic nome, @f$ |q| < 1 @f$.
+   * @param __x The argument.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -924,6 +970,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  \theta_1(q,x) = 2\sum_{n=1}^{\infty}(-1)^n
    *                   q^{(n+\frac{1}{2})^2}\sin{(2n+1)x}
    * @f]
+   *
+   * @param __q The elliptic nome, @f$ |q| < 1 @f$.
+   * @param __x The argument.
    */
   template<typename _Tp>
     _Tp
@@ -950,6 +999,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  \theta_2(q,x) = 2\sum_{n=1}^{\infty}
    *                   q^{(n+\frac{1}{2})^2}\cos{(2n+1)x}
    * @f]
+   *
+   * @param __q The elliptic nome, @f$ |q| < 1 @f$.
+   * @param __x The argument.
    */
   template<typename _Tp>
     _Tp
@@ -979,6 +1031,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  \theta_2(q,x) = 2 q^{1/4} \sin(x) \prod_{n=1}^{\infty}
    *                   (1 - q^{2n})(1 + 2q^{2n}\cos(2x) + q^{4n})
    * @f]
+   *
+   * @param __q The elliptic nome, @f$ |q| < 1 @f$.
+   * @param __x The argument.
    */
   template<typename _Tp>
     _Tp
@@ -1043,6 +1098,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *  \theta_2(q, x + (m+n\tau)\pi) = (-1)^{m}q^{-n^2}e^{-2inx}\theta_2(q, x)
    * @f]
+   *
+   * @param __q The elliptic nome, @f$ |q| < 1 @f$.
+   * @param __x The argument.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1108,6 +1166,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  \theta_2(q,x) = 2\sum_{n=1}^{\infty}
    *                   q^{(n+\frac{1}{2})^2}\cos{(2n+1)x}
    * @f]
+   *
+   * @param __q The elliptic nome, @f$ |q| < 1 @f$.
+   * @param __x The argument.
    */
   template<typename _Tp>
     _Tp
@@ -1133,6 +1194,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *  \theta_3(q,x) = 1 + 2\sum_{n=1}^{\infty} q^{n^2}\cos{2nx}
    * @f]
+   *
+   * @param __q The elliptic nome, @f$ |q| < 1 @f$.
+   * @param __x The argument.
    */
   template<typename _Tp>
     _Tp
@@ -1162,6 +1226,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  \theta_3(q,x) = \prod_{n=1}^{\infty}
    *                   (1 - q^{2n})(1 + 2q^{2n-1}\cos(2x) + q^{4n-2})
    * @f]
+   *
+   * @param __q The elliptic nome, @f$ |q| < 1 @f$.
+   * @param __x The argument.
    */
   template<typename _Tp>
     _Tp
@@ -1215,6 +1282,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *   \theta_3(q, x + (m+n\tau)\pi) = q^{-n^2} e^{-2inx} \theta_3(q, x)
    * @f]
+   *
+   * @param __q The elliptic nome, @f$ |q| < 1 @f$.
+   * @param __x The argument.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1275,6 +1345,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *  \theta_3(q,x) = 1 + 2\sum_{n=1}^{\infty} q^{n^2}\cos{2nx}
    * @f]
+   *
+   * @param __q The elliptic nome, @f$ |q| < 1 @f$.
+   * @param __x The argument.
    */
   template<typename _Tp>
     _Tp
@@ -1300,6 +1373,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *  \theta_4(q,x) = 1 + 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
    * @f]
+   *
+   * @param __q The elliptic nome, @f$ |q| < 1 @f$.
+   * @param __x The argument.
    */
   template<typename _Tp>
     _Tp
@@ -1331,6 +1407,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *  \theta_4(q,x) = \prod_{n=1}^{\infty}
    *                   (1 - q^{2n})(1 - 2q^{2n-1}\cos(2x) + q^{4n-2})
    * @f]
+   *
+   * @param __q The elliptic nome, @f$ |q| < 1 @f$.
+   * @param __x The argument.
    */
   template<typename _Tp>
     _Tp
@@ -1384,6 +1463,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *   \theta_4(q, z+(m + n\tau)\pi) = (-1)^n q^{-n^2}e^{-2inz}\theta_4(q, z)
    * @f]
+   *
+   * @param __q The elliptic nome, @f$ |q| < 1 @f$.
+   * @param __x The argument.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -1447,6 +1529,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *  \theta_4(q,x) = 1 + 2\sum_{n=1}^{\infty}(-1)^n q^{n^2}\cos{2nx}
    * @f]
+   *
+   * @param __q The elliptic nome, @f$ |q| < 1 @f$.
+   * @param __x The argument.
    */
   template<typename _Tp>
     _Tp
@@ -1468,6 +1553,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return a structure containing the three primary Jacobi elliptic functions:
    * @f$ sn(k, u), cn(k, u), dn(k, u) @f$.
+   *
+   * @param __k The elliptic modulus @f$ |k| < 1 @f$.
+   * @param __u The argument.
+   * @return An object containing the three principal Jacobi elliptic functions,
+   *         @f$ sn(k, u), cn(k, u), dn(k, u) @f$ and the means to compute
+   *         the remaining nine as well as the amplitude.
    */
   template<typename _Tp>
     __gnu_cxx::__jacobi_ellint_t<_Tp>
