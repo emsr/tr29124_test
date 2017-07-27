@@ -12,11 +12,13 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_weierstrass_ellint > test
 #include <iomanip>
 
   /**
-   * Return the elliptic modular function.
+   * Return the elliptic modular function by product expansion:
    * @f[
    *    \lambda(q) = 16 q \prod_{n=1}^{\infty}
    *             \left(\frac{(1 + q^{2n})}{(1 + q^{2n-1})}\right)^8
    * @f]
+   *
+   * @param __q The elliptic nome, @f$ |q| < 1 @f$.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -46,10 +48,12 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_weierstrass_ellint > test
     }
 
   /**
-   * Return the Dedekind eta function.
+   * Return the Dedekind eta function by product expansion:
    * @f[
    *    \eta(q) = q^{1/12} \prod_{n=1}^{\infty}(1 - q^{2n})
    * @f]
+   *
+   * @param __q The elliptic nome, @f$ |q| < 1 @f$.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -75,6 +79,10 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_weierstrass_ellint > test
 
   /**
    * Return the Weierstrass elliptic function.
+   *
+   * @param __omega1 The first lattice frequency.
+   * @param __omega3 The third lattice frequency.
+   * @param __z The argument.
    */
   template<typename _Tp>
     std::complex<_Tp>
@@ -147,8 +155,46 @@ template<typename _Tp>
       }
   }
 
+/**/
+template<typename _Tp>
+  void
+  test_weierstrass_invariants()
+  {
+    using _Real = std::__detail::__num_traits_t<_Tp>;
+    using _Cmplx = std::complex<_Real>;
+    const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
+
+    std::cout.precision(__gnu_cxx::__digits10<_Real>());
+    auto w = std::cout.precision() + 8;
+    std::cout << std::showpoint << std::scientific;
+
+    std::cout << '\n';
+    for (int ir = 1; ir < 100; ++ir)
+      {
+	const auto r = _Real{0.01L} * ir;
+	std::cout << '\n';
+	for (int iphi = 0; iphi < 360; ++iphi)
+	  {
+	    const auto phi = _S_pi * iphi / 180.0;
+	    const auto q = std::polar(r, phi);
+	    const auto lambda = std::__detail::__jacobi_lattice_t<_Cmplx, _Cmplx>(q);
+	    const auto [g2, g3] = std::__detail::__weierstrass_invariants_t(lambda);
+	    std::cout << ' ' << std::setw(w) << r
+		      << ' ' << std::setw(w) << phi
+		      << ' ' << std::setw(w) << std::real(g2)
+		      << ' ' << std::setw(w) << std::imag(g2)
+		      << ' ' << std::setw(w) << std::abs(g2)
+		      << ' ' << std::setw(w) << std::real(g3)
+		      << ' ' << std::setw(w) << std::imag(g3)
+		      << ' ' << std::setw(w) << std::abs(g3)
+		      << '\n';
+	  }
+      }
+  }
+
 int
 main()
 {
   test_weierstrass_ellint<double>();
+  test_weierstrass_invariants<double>();
 }
