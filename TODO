@@ -606,6 +606,11 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 	The complex ctor should be a copy ctor or some tagged thing.
 	The scalar (now real) ctor for nome input should take complex nome.
 
+134. [] Find that code for quadratic, cubic, quartic and put it up somehow.
+        Find a solution type-wise for degenerate solutions and real vs. complex.
+
+135. [] Use a cubic routine to solve the Weierstrass cubic for the lattice roots
+        in sf_theta.
 
 plot_airy.cpp
 
