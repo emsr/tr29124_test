@@ -63,10 +63,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __sign = _Tp{-1};
       for (auto __k = 1; __k < 20; ++__k)
 	{
-	  auto __nup = __nu + _Tp(__k);
-	  auto __termp = __sign * std::exp(-__nup * __nup / __x);
-	  auto __num = __nu - _Tp(__k);
-	  auto __termm = __sign * std::exp(-__num * __num / __x);
+	  const auto __nup = __nu + _Tp(__k);
+	  const auto __termp = __sign * std::exp(-__nup * __nup / __x);
+	  const auto __num = __nu - _Tp(__k);
+	  const auto __termm = __sign * std::exp(-__num * __num / __x);
 	  __sum += __termp + __termm;
 	  __sign = -__sign;
 	  if (std::abs(__termp) < _S_eps * std::abs(__sum)
@@ -95,10 +95,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __sum = std::exp(-__nu * __nu / __x);
       for (auto __k = 1; __k < 20; ++__k)
 	{
-	  auto __nup = __nu + _Tp(__k);
-	  auto __termp = std::exp(-__nup * __nup / __x);
-	  auto __num = __nu - _Tp(__k);
-	  auto __termm = std::exp(-__num * __num / __x);
+	  const auto __nup = __nu + _Tp(__k);
+	  const auto __termp = std::exp(-__nup * __nup / __x);
+	  const auto __num = __nu - _Tp(__k);
+	  const auto __termm = std::exp(-__num * __num / __x);
 	  __sum += __termp + __termm;
 	  if (std::abs(__termp) < _S_eps * std::abs(__sum)
 	   && std::abs(__termm) < _S_eps * std::abs(__sum))
@@ -126,10 +126,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __sum = _Tp{0};
       for (auto __k = 0; __k < 20; ++__k)
 	{
-	  auto __thing = _Tp(2 * __k + 1) * _S_pi;
-	  auto __cosarg = __nu * __thing;
-	  auto __exparg = __thing * __thing * __x / _Tp{4};
-	  auto __term = std::exp(-__exparg) * std::cos(__cosarg);
+	  const auto __thing = _Tp(2 * __k + 1) * _S_pi;
+	  const auto __cosarg = __nu * __thing;
+	  const auto __exparg = __thing * __thing * __x / _Tp{4};
+	  const auto __term = std::exp(-__exparg) * std::cos(__cosarg);
 	  __sum += __term;
 	  if (std::abs(__term) < _S_eps * std::abs(__sum))
 	    break;
@@ -156,10 +156,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __sum = _Tp{0};
       for (auto __k = 1; __k < 20; ++__k)
 	{
-	  auto __thing = _Tp(2 * __k) * _S_pi;
-	  auto __cosarg = __nu * __thing;
-	  auto __exparg = __thing * __thing * __x / _Tp{4};
-	  auto __term = std::exp(-__exparg) * std::cos(__cosarg);
+	  const auto __thing = _Tp(2 * __k) * _S_pi;
+	  const auto __cosarg = __nu * __thing;
+	  const auto __exparg = __thing * __thing * __x / _Tp{4};
+	  const auto __term = std::exp(-__exparg) * std::cos(__cosarg);
 	  __sum += __term;
 	  if (std::abs(__term) < _S_eps * std::abs(__sum))
 	    break;
@@ -290,7 +290,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __ellnome_series(_Tp __k)
     {
-      auto __m = __k * __k; 
+      const auto __m = __k * __k; 
       return __m * ((_Tp{1} / _Tp{16})
 	   + __m * ((_Tp{1} / _Tp{32})
 	   + __m * ((_Tp{21} / _Tp{1024})
@@ -312,9 +312,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ellnome_k(_Tp __k)
     {
       const auto _S_pi = _Tp{3.1415926535897932384626433832795029L};
-      auto __kp = std::sqrt(_Tp{1} - __k * __k);
-      auto __K = __comp_ellint_1(__k);
-      auto __Kp = __comp_ellint_1(__kp);
+      const auto __kp = std::sqrt(_Tp{1} - __k * __k);
+      const auto __K = __comp_ellint_1(__k);
+      const auto __Kp = __comp_ellint_1(__kp);
       return std::exp(-_S_pi * __Kp / __K);
     }
 
@@ -362,9 +362,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				      " argument k out of range"));
       else
 	{
-	  auto __kc = std::sqrt(_Tp{1} - __k * __k);
-	  auto _Kk = __comp_ellint_1(__k);
-	  auto __q = __ellnome(__k);
+	  const auto __kc = std::sqrt(_Tp{1} - __k * __k);
+	  const auto _Kk = __comp_ellint_1(__k);
+	  const auto __q = __ellnome(__k);
 	  return std::sqrt(_S_pi_2 / (__k * __kc * _Kk))
 	       * __theta_1(__q, _S_pi_2 * __x / _Kk);
 	}
@@ -392,8 +392,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				      " argument k out of range"));
       else
 	{
-	  auto _Kk = __comp_ellint_1(__k);
-	  auto __q = __ellnome(__k);
+	  const auto _Kk = __comp_ellint_1(__k);
+	  const auto __q = __ellnome(__k);
 	  return std::sqrt(_S_pi_2 / (__k * _Kk))
 	       * __theta_2(__q, _S_pi_2 * __x / _Kk);
 	}
@@ -421,8 +421,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				      " argument k out of range"));
       else
 	{
-	  auto _Kk = __comp_ellint_1(__k);
-	  auto __q = __ellnome(__k);
+	  const auto _Kk = __comp_ellint_1(__k);
+	  const auto __q = __ellnome(__k);
 	  return std::sqrt(_S_pi_2 / _Kk)
 	       * __theta_3(__q, _S_pi_2 * __x / _Kk);
 	}
@@ -452,92 +452,228 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 				      " argument k out of range"));
       else
 	{
-	  auto __kc = std::sqrt(_Tp{1} - __k * __k);
-	  auto _Kk = __comp_ellint_1(__k);
-	  auto __q = __ellnome(__k);
+	  const auto __kc = std::sqrt(_Tp{1} - __k * __k);
+	  const auto _Kk = __comp_ellint_1(__k);
+	  const auto __q = __ellnome(__k);
 	  return std::sqrt(_S_pi_2 / (__kc * _Kk))
 	       * __theta_4(__q, _S_pi_2 * __x / _Kk);
 	}
     }
 
   /**
+   * A struct representing the Jacobi and Weierstrass lattice.
+   * The two types for the frequencies and the subsequent type calculus
+   * allow us to treat the rectangulr lattice (real nome, pure imaginary
+   * lattice parameter) specially.
+   */
+  template<typename _Tp_Omega1, typename _Tp_Omega3 = std::complex<_Tp_Omega1>>
+    struct __jacobi_lattice_t
+    {
+      static_assert(__gnu_cxx::is_complex_v<_Tp_Omega1>
+		 || __gnu_cxx::is_complex_v<_Tp_Omega3>,
+		    "One frequecy type must be complex.");
+      using _Real_Omega1 = __num_traits_t<_Tp_Omega1>;
+      using _Real_Omega3 = __num_traits_t<_Tp_Omega3>;
+      using _Real = __gnu_cxx::__promote_fp_t<_Real_Omega1, _Real_Omega3>;
+      using _Cmplx = std::complex<_Real>;
+      using _Tp_Nome = std::conditional_t<__gnu_cxx::is_complex_v<_Tp_Omega1>
+				       && __gnu_cxx::is_complex_v<_Tp_Omega3>,
+					  _Cmplx, _Real>;
+
+      /**
+       * A struct representing a complex scalar lattice parameter.
+       */
+      struct __tau_t
+      {
+	_Cmplx __val;
+
+	explicit __tau_t(_Cmplx __tau)
+	: __val(__tau)
+	{ }
+      };
+
+      /**
+       * A struct representing a complex argument reduced
+       * to the 'central' lattice cell.
+       */
+      struct __arg_t
+      {
+	int __m;
+	int __n;
+	_Cmplx __z;
+      };
+
+      /// Construct the lattice from two complex lattice frequencies.
+      __jacobi_lattice_t(const _Tp_Omega1& __omega1,
+			 const _Tp_Omega3& __omega3)
+      : _M_omega_1(__omega1),
+        _M_omega_3(__omega3)
+      {
+	if (__isnan(_M_omega_1) || __isnan(_M_omega_3))
+	  std::__throw_domain_error("Invalid input");
+	else if (std::imag(this->__tau().__val) <= _Real{0})
+	  std::__throw_domain_error("__jacobi_lattice_t: "
+			"Lattice parameter must have positive imaginary part.");
+	else
+	  {
+	    auto __det = std::real(_M_omega_3) * std::imag(_M_omega_1)
+		       - std::imag(_M_omega_3) * std::real(_M_omega_1);
+	    if (std::abs(__det) == 0)
+	      std::__throw_domain_error("__jacobi_lattice_t: "
+			"Lattice frequencies must be linearly independent.");
+	  }
+      }
+
+      /// Construct the lattice from a single complex lattice parameter.
+      explicit __jacobi_lattice_t(const __tau_t& __tau)
+      : _M_omega_1(2 * _S_pi),
+        _M_omega_3(2 * _S_pi)
+      {
+	if (__isnan(__tau.__val))
+	  std::__throw_domain_error("Invalid input");
+	else if (std::imag(__tau.__val) <= _Real{0})
+	  std::__throw_domain_error("__jacobi_lattice_t: "
+			"Lattice parameter must have positive imaginary part.");
+	else
+	  {
+	    if constexpr (__gnu_cxx::is_complex_v<_Tp_Omega3>)
+	      _M_omega_3 *= __tau.__val;
+	    else
+	      _M_omega_1 *= __tau.__val;
+	  }
+      }
+
+      /// Construct the lattice from a single scalar elliptic nome.
+      explicit __jacobi_lattice_t(_Tp_Nome __q)
+      : __jacobi_lattice_t(__tau_t(_Cmplx{0, -1} * std::log(__q) / _S_pi))
+      { }
+
+      /// Return the lattice parameter.
+      __tau_t
+      __tau() const
+      { return __tau_t(this->_M_omega_3 / this->_M_omega_1); }
+
+      /// Return the first lattice frequency.
+      _Tp_Omega1
+      __omega_1() const
+      { return this->_M_omega_1; }
+
+      /// Return the second lattice frequency.
+      _Cmplx
+      __omega_2() const
+      { return -(_Cmplx(this->_M_omega_1) + _Cmplx(this->omega_3)); }
+
+      /// Return the third lattice frequency.
+      _Tp_Omega3
+      __omega_3() const
+      { return this->_M_omega_3; }
+
+      _Tp_Nome
+      __ellnome() const;
+
+      __arg_t
+      __reduce(const _Cmplx& __z) const;
+
+      static constexpr auto _S_pi = __gnu_cxx::__const_pi<_Real>();
+      _Tp_Omega1 _M_omega_1;
+      _Tp_Omega3 _M_omega_3;
+    };
+
+  /**
+   * Return the elliptic nome corresponding to the lattice parameter.
+   */
+  template<typename _Tp_Omega1, typename _Tp_Omega3>
+    typename __jacobi_lattice_t<_Tp_Omega1, _Tp_Omega3>::_Tp_Nome
+    __jacobi_lattice_t<_Tp_Omega1, _Tp_Omega3>::__ellnome() const
+    {
+      const auto _S_i = _Cmplx{0, 1};
+      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
+      if constexpr (__gnu_cxx::is_complex_v<_Tp_Nome>)
+	return std::exp(_S_i * _S_pi * this->__tau().__val);
+      else
+	return std::real(std::exp(_S_i * _S_pi * this->__tau().__val));
+    }
+
+  /**
    * A struct for the non-zero theta functions and their derivatives
    * at zero argument.
    */
-  template<typename _Tp>
+  template<typename _Tp1, typename _Tp3>
     struct __jacobi_theta_0_t
     {
-      _Tp th1p;
-      _Tp th1ppp;
-      _Tp th2;
-      _Tp th2pp;
-      _Tp th3;
-      _Tp th3pp;
-      _Tp th4;
-      _Tp th4pp;
+      __jacobi_theta_0_t(const __jacobi_lattice_t<_Tp1, _Tp3>& __lambda);
 
-      _Tp
+      using _Type = typename __jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome;
+
+      _Type th1p;
+      _Type th1ppp;
+      _Type th2;
+      _Type th2pp;
+      _Type th3;
+      _Type th3pp;
+      _Type th4;
+      _Type th4pp;
+
+      _Type
       dedekind_eta() const
-      { return std::cbrt(th2 * th3 * th4 / _Tp{2}); }
+      { return std::cbrt(th2 * th3 * th4 / _Type{2}); }
     };
 
   /**
    * Return a struct of the Jacobi theta functions and up to three non-zero derivatives
    * evaluated at zero argument.
    */
-  template<typename _Tp>
-    __jacobi_theta_0_t<_Tp>
-    __jacobi_theta_0(_Tp __q)
+  template<typename _Tp1, typename _Tp3>
+    __jacobi_theta_0_t<_Tp1, _Tp3>::
+    __jacobi_theta_0_t(const __jacobi_lattice_t<_Tp1, _Tp3>& __lambda)
     {
-      using _Real = __num_traits_t<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__q));
+      using _Real = __num_traits_t<_Type>;
       constexpr std::size_t _S_max_iter = 50;
+      const auto __q = __lambda.__ellnome();
+      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__q));
 
       const auto __fact = _Real{2} * std::pow(__q, _Real{0.25L});
-      __jacobi_theta_0_t<_Tp> __ret;
-      __ret.th1p = __fact;
-      __ret.th2 = __fact;
-      __ret.th3 = _Real{1};
-      __ret.th4 = _Real{1};
-      __ret.th1ppp = _Real{0};
-      __ret.th2pp = _Real{0};
-      __ret.th3pp = _Real{0};
-      __ret.th4pp = _Real{0};
-      auto __q2n = _Tp{1};
+      this->th1p = __fact;
+      this->th2 = __fact;
+      this->th3 = _Real{1};
+      this->th4 = _Real{1};
+      this->th1ppp = _Real{0};
+      this->th2pp = _Real{0};
+      this->th3pp = _Real{0};
+      this->th4pp = _Real{0};
+      auto __q2n = _Type{1};
       for (std::size_t __n = 1; __n < _S_max_iter; ++__n)
 	{
 	  __q2n *= __q;
-	  const auto __tp = _Real(1) + __q2n;
-	  __ret.th3 *= __tp * __tp;
-	  const auto __tm = _Real(1) - __q2n;
-	  __ret.th4 *= __tm * __tm;
+	  const auto __tp = _Real{1} + __q2n;
+	  this->th3 *= __tp * __tp;
+	  const auto __tm = _Real{1} - __q2n;
+	  this->th4 *= __tm * __tm;
 
-	  __ret.th3pp += __q2n / __tp / __tp;
-	  __ret.th4pp += __q2n / __tm / __tm;
+	  this->th3pp += __q2n / __tp / __tp;
+	  this->th4pp += __q2n / __tm / __tm;
 
 	  __q2n *= __q;
-	  const auto __tm2 = _Real(1) - __q2n;
-	  __ret.th3 *= __tm2;
-	  __ret.th4 *= __tm2;
-	  __ret.th2 *= __tm2;
-	  __ret.th1p *= __tm2 * __tm2 * __tm2;
-	  const auto __tp2 = _Real(1) + __q2n;
-	  __ret.th2 *= __tp2 * __tp2;
+	  const auto __tm2 = _Real{1} - __q2n;
+	  this->th3 *= __tm2;
+	  this->th4 *= __tm2;
+	  this->th2 *= __tm2;
+	  this->th1p *= __tm2 * __tm2 * __tm2;
+	  const auto __tp2 = _Real{1} + __q2n;
+	  this->th2 *= __tp2 * __tp2;
 
-	  __ret.th1ppp += __q2n / __tm2 / __tm2;
-	  __ret.th2pp += __q2n / __tp2 / __tp2;
+	  this->th1ppp += __q2n / __tm2 / __tm2;
+	  this->th2pp += __q2n / __tp2 / __tp2;
 
 	  if (std::abs(__q2n) < _S_eps)
 	    break;
 	}
       // Could check th1p =? th2pp * th3pp * th4pp at this point.
       // Could check th1ppp =? th2pp + th3pp + th4pp at this point.
-      __ret.th1ppp = (_Real{-1} + _Real{24} * __ret.th1ppp) * __ret.th1p;
-      __ret.th2pp = (_Real{-1} - _Real{8} * __ret.th2pp) * __ret.th2;
-      __ret.th3pp = _Real{-8} * __ret.th3;
-      __ret.th4pp = _Real{8} * __ret.th4;
-
-      return __ret;
+      this->th1ppp = (_Real{-1} + _Real{24} * this->th1ppp) * this->th1p;
+      this->th2pp = (_Real{-1} - _Real{8} * this->th2pp) * this->th2;
+      this->th3pp = _Real{-8} * this->th3;
+      this->th4pp = _Real{8} * this->th4;
     }
 
   /**
@@ -548,7 +684,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       _Tp __e1, __e2, __e3;
 
-      __weierstrass_roots_t(const __jacobi_theta_0_t<_Tp>& __tht0, _Tp __omega1); // Awkward.
+      __weierstrass_roots_t(const __jacobi_lattice_t<_Tp>& __lambda);
     };
 
   /**
@@ -556,19 +692,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     __weierstrass_roots_t<_Tp>::
-    __weierstrass_roots_t(const __jacobi_theta_0_t<_Tp>& __tht0, _Tp __omega1) // Awkward.
+    __weierstrass_roots_t(const __jacobi_lattice_t<_Tp>& __lambda)
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
+
+      const auto __tht0 = __jacobi_theta_0_t(__lambda);
+
       const auto __th22 = __tht0.th2 * __tht0.th2;
       const auto __th24 = __th22 * __th22;
       const auto __th42 = __tht0.th4 * __tht0.th4;
       const auto __th44 = __th42 * __th42;
-      const auto __fr = _S_pi / __omega1;
+      const auto __fr = _S_pi / __lambda.__omega_1();
       const auto __fc = __fr * __fr / _Real{12};
+
       __e1 = __fc * (__th24 + _Real{2} * __th44);
-      __e2 = __fc * (__th24 - __th44 );
-      __e3 = __fc * (_Real{-2} * __th24 - __th44 );
+      __e2 = __fc * (__th24 - __th44);
+      __e3 = __fc * (_Real{-2} * __th24 - __th44);
     }
 
   /**
@@ -579,7 +719,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       _Tp __g2, __g3;
 
-      __weierstrass_invariants_t(const __weierstrass_roots_t<_Tp>& __root);
+      __weierstrass_invariants_t(const __jacobi_lattice_t<_Tp>& __lambda);
     };
 
   /**
@@ -587,9 +727,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     __weierstrass_invariants_t<_Tp>::
-    __weierstrass_invariants_t(const __weierstrass_roots_t<_Tp>& __root)
+    __weierstrass_invariants_t(const __jacobi_lattice_t<_Tp>& __lambda)
     {
       using _Real = __num_traits_t<_Tp>;
+      const auto __root = __weierstrass_roots_t(__lambda);
       __g2 = _Real{2} * (__root.e1 * __root.e1
         	       + __root.e2 * __root.e2
         	       + __root.e3 * __root.e3);
@@ -597,101 +738,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return a struct of the Weierstrass elliptic function roots.
-   */
-  ///template<typename _Tp>
-
-  /**
-   * A struct representing the Jacobi and Weierstrass lattice.
-   */
-  template<typename _Tp>
-    struct __jacobi_lattice_t
-    {
-      /**
-       * A struct representing a complex argument reduced
-       * to the 'central' lattice cell.
-       */
-      struct __arg_t
-      {
-	int __m;
-	int __n;
-	std::complex<_Tp> __z;
-      };
-
-      /// Construct the lattice from two complex lattice frequencies.
-      __jacobi_lattice_t(const std::complex<_Tp>& __omega1,
-			 const std::complex<_Tp>& __omega3)
-      : _M_omega_1(__omega1),
-        _M_omega_3(__omega3)
-      {
-	if (__isnan(__omega1) || __isnan(__omega3))
-	  std::__throw_domain_error("Invalid input");
-	else if (std::imag(this->__tau()) <= _Tp{0})
-	  std::__throw_domain_error("__jacobi_lattice_t: "
-				  "Lattice parameter has negative imag part.");
-      }
-
-      /// Construct the lattice from a single complex lattice parameter.
-      __jacobi_lattice_t(std::complex<_Tp> __tau)
-      : _M_omega_1(2 * _S_pi),
-        _M_omega_3(2 * _S_pi * __tau)
-      {
-	if (__isnan(__tau))
-	  std::__throw_domain_error("Invalid input");
-	else if (std::imag(__tau) <= _Tp{0})
-	  std::__throw_domain_error("__jacobi_lattice_t: "
-				  "Lattice parameter has negative imag part.");
-      }
-
-      std::complex<_Tp>
-      __tau() const
-      { return this->_M_omega_3 / this->_M_omega_1; }
-
-      std::complex<_Tp>
-      __omega_1() const
-      { return this->_M_omega_1; }
-
-      std::complex<_Tp>
-      __omega_2() const
-      { return -(this->_M_omega_1 + this->omega_3); }
-
-      std::complex<_Tp>
-      __omega_3() const
-      { return this->_M_omega_3; }
-
-      std::complex<_Tp>
-      __ellnome() const;
-
-      __arg_t
-      __reduce(const std::complex<_Tp>& __z) const;
-
-      static constexpr auto _S_pi = __gnu_cxx::__const_pi<_Tp>();
-      std::complex<_Tp> _M_omega_1;
-      std::complex<_Tp> _M_omega_3;
-    };
-
-  /**
-   * Return the elliptic nome corresponding to the lattice parameter.
-   */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __jacobi_lattice_t<_Tp>::__ellnome() const
-    {
-      const auto _S_i = std::complex<_Tp>{0, 1};
-      const auto _S_pi = __gnu_cxx::__const_pi<_Tp>();
-      return std::exp(_S_i * _S_pi * this->__tau());
-    }
-
-  /**
    * Parallelogram reduction of argument.
    */
-  template<typename _Tp>
-    typename __jacobi_lattice_t<_Tp>::__arg_t
-    __jacobi_lattice_t<_Tp>::__reduce(const std::complex<_Tp>& __z) const
+  template<typename _Tp1, typename _Tp3>
+    typename __jacobi_lattice_t<_Tp1, _Tp3>::__arg_t
+    __jacobi_lattice_t<_Tp1, _Tp3>::
+    __reduce(const typename __jacobi_lattice_t<_Tp1, _Tp3>::_Cmplx& __z) const
     {
-      const auto _S_pi = __gnu_cxx::__const_pi<_Tp>();
+      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
 
-      const auto __tau = this->__tau();
+      const auto __tau = this->__tau().__val;
       const auto __tau_r = std::real(__tau);
       const auto __tau_i = std::imag(__tau);
       const auto __z_r = std::real(__z);
@@ -706,7 +762,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __mu = __a - __m;
 
       return {__m, __n,
-      	      _S_pi * std::complex<_Tp>(__mu + __nu * __tau_r, __nu * __tau_i)};
+      	      _S_pi * _Cmplx(__mu + __nu * __tau_r, __nu * __tau_i)};
     }
 
   /**
@@ -809,6 +865,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __jacobi_theta_1(std::complex<_Tp> __q, std::complex<_Tp> __x)
     {
       using _Real = __num_traits_t<_Tp>;
+      using _Cmplx = std::complex<_Real>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
@@ -821,16 +878,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (std::abs(__q) >= _Real{1})
 	std::__throw_domain_error(__N("__jacobi_theta_1:"
 				      " nome q out of range"));
-      else if (std::abs(__x) < _S_eps)
-	return std::complex<_Tp>{0, 0};
       else if (std::abs(__q) < _S_q_min || std::abs(__q) > _S_q_max)
 	return __jacobi_theta_1_prod(__q, __x);
+      else if (std::abs(__x) < _S_eps)
+	return std::complex<_Tp>{0, 0};
       else
 	{
-	  auto __tau = std::log(__q) / _S_pi / _S_i;
+	  const auto __lambda = __jacobi_lattice_t<_Cmplx, _Cmplx>(__q);
+	  auto __tau = __lambda.__tau().__val;
 
+	  const auto __x_red = __lambda.__reduce(__x);
 	  auto __fact = std::complex<_Tp>{1, 0};
-	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
 	  if (__x_red.__m != 0)
 	    __fact *= __gnu_cxx::__parity<_Tp>(__x_red.__m);
 	  if (__x_red.__n != 0)
@@ -991,6 +1049,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __jacobi_theta_2(std::complex<_Tp> __q, std::complex<_Tp> __x)
     {
       using _Real = __num_traits_t<_Tp>;
+      using _Cmplx = std::complex<_Real>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
@@ -1003,16 +1062,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (std::abs(__q) >= _Real{1})
 	std::__throw_domain_error(__N("__jacobi_theta_2:"
 				      " nome q out of range"));
-      else if (std::abs(__x) < _S_eps)
-	return __jacobi_theta_0(__q).th2;
       else if (std::abs(__q) < _S_q_min || std::abs(__q) > _S_q_max)
 	return __jacobi_theta_2_prod(__q, __x);
+      else if (std::abs(__x) < _S_eps)
+	return __jacobi_theta_0_t(__jacobi_lattice_t<_Cmplx, _Cmplx>(__q)).th2;
       else
 	{
-	  auto __tau = std::log(__q) / _S_pi / _S_i;
+	  const auto __lambda = __jacobi_lattice_t<_Cmplx, _Cmplx>(__q);
+	  auto __tau = __lambda.__tau().__val;
 
+	  const auto __x_red = __lambda.__reduce(__x);
 	  auto __fact = std::complex<_Tp>{1, 0};
-	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
 	  if (__x_red.__m != 0)
 	    __fact *= __gnu_cxx::__parity<_Tp>(__x_red.__m);
 	  if (__x_red.__n != 0)
@@ -1161,6 +1221,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __jacobi_theta_3(std::complex<_Tp> __q, std::complex<_Tp> __x)
     {
       using _Real = __num_traits_t<_Tp>;
+      using _Cmplx = std::complex<_Real>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
@@ -1173,16 +1234,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (std::abs(__q) >= _Real{1})
 	std::__throw_domain_error(__N("__jacobi_theta_3:"
 				      " nome q out of range"));
-      else if (std::abs(__x) < _S_eps)
-	return __jacobi_theta_0(__q).th3;
       else if (std::abs(__q) < _S_q_min || std::abs(__q) > _S_q_max)
 	return __jacobi_theta_3_prod(__q, __x);
+      else if (std::abs(__x) < _S_eps)
+	return __jacobi_theta_0_t(__jacobi_lattice_t<_Cmplx, _Cmplx>(__q)).th3;
       else
 	{
-	  auto __tau = std::log(__q) / _S_pi / _S_i;
+	  const auto __lambda = __jacobi_lattice_t<_Cmplx, _Cmplx>(__q);
+	  auto __tau = __lambda.__tau().__val;
 
+	  const auto __x_red = __lambda.__reduce(__x);
 	  auto __fact = std::complex<_Tp>{1, 0};
-	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
 	  if (__x_red.__n != 0)
 	    __fact *= std::exp(_S_i * _Real{-2 * __x_red.__n} * __x_red.__z)
 		    * std::pow(__q, -__x_red.__n * __x_red.__n);
@@ -1328,6 +1390,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __jacobi_theta_4(std::complex<_Tp> __q, std::complex<_Tp> __x)
     {
       using _Real = __num_traits_t<_Tp>;
+      using _Cmplx = std::complex<_Real>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
@@ -1340,16 +1403,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (std::abs(__q) >= _Real{1})
 	std::__throw_domain_error(__N("__jacobi_theta_4:"
 				      " nome q out of range"));
-      else if (std::abs(__x) < _S_eps)
-	return __jacobi_theta_0(__q).th4;
       else if (std::abs(__q) < _S_q_min || std::abs(__q) > _S_q_max)
 	return __jacobi_theta_4_prod(__q, __x);
+      else if (std::abs(__x) < _S_eps)
+	return __jacobi_theta_0_t(__jacobi_lattice_t<_Cmplx, _Cmplx>(__q)).th4;
       else
 	{
-	  auto __tau = std::log(__q) / _S_pi / _S_i;
+	  const auto __lambda = __jacobi_lattice_t<_Cmplx, _Cmplx>(__q);
+	  auto __tau = __lambda.__tau().__val;
 
+	  const auto __x_red = __lambda.__reduce(__x);
 	  auto __fact = std::complex<_Tp>{1, 0};
-	  const auto __x_red = __jacobi_lattice_t<_Tp>(__tau).__reduce(__x);
 	  if (__x_red.__n != 0)
 	    __fact *= std::exp(_S_i * _Real{-2 * __x_red.__n} * __x_red.__z)
 		    * std::pow(__q, -__x_red.__n * __x_red.__n);
