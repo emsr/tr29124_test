@@ -612,6 +612,8 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 135. [] Use a cubic routine to solve the Weierstrass cubic for the lattice roots
         in sf_theta.
 
+136. [] Fix the Weierstrass invariants g_2, g_3 at q = 0.
+
 plot_airy.cpp
 
 test_hankel.cpp - warns and crashes
