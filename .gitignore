@@ -333,6 +333,7 @@ test_rising_factorial
 test_root_finding
 test_sincos
 test_sinus_cardinal
+test_solvers
 test_special_function
 test_sph_bessel
 test_sph_hankel
