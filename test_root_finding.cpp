@@ -96,7 +96,7 @@ template<typename _Tp>
 
     try
       {
-	__gnu_cxx::_Polynomial<_Tp> P({4.0, 1.0, 2.0, 3.0});
+	__gnu_cxx::_Polynomial<_Tp> P({-4.0, 1.0, -2.0, 3.0});
 	_Tp x_lower = -10.0, x_upper = 10.0, eps = 1.0e-14;
 	auto bracket = __gnu_cxx::__root_brackets(P, x_lower, x_upper, 50 * P.degree());
 	std::cout << "root brackets:\n";
