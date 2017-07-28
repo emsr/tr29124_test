@@ -16,7 +16,7 @@ template<typename _Tp>
     auto xcof = poly;
     __gnu_cxx::_Polynomial<_Tp> cof(xcof);
 
-    double mag, cofj;
+    _Tp mag, cofj;
     std::complex<_Tp> t, t1, u, ud;
 
     bool final = false;
@@ -52,7 +52,7 @@ template<typename _Tp>
 	auto x0i = x0.imag();
 	x0.imag(_Tp{-10} * x0.real());
 	x0.real(_Tp{-10} * x0i);
-	std::complex<_Tp> x = x0;
+	auto x = x0;
 
   FINAL_ITER:
 
@@ -160,7 +160,7 @@ template<typename _Tp>
 int
 main()
 {
-  __gnu_cxx::_Polynomial<double> P({1.0, 2.0, 1.0, 4.0, 2,0});
+  __gnu_cxx::_Polynomial<double> P({1.0, -2.0, 1.0, -4.0, 2,0});
   std::vector<std::complex<double>> zero;
   polynomial_roots(P, zero);
   std::cout << "Found " << zero.size() << " roots:\n";
