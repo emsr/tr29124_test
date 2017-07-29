@@ -30,25 +30,26 @@
         {
           // Equation is linear.
           __ret[0] = -asub[0] / asub[1];
+	  return __ret;
         }
       else
         {
           // The discriminant of a quadratic equation
-          auto discrm = asub[1] * asub[1] - 4 * asub[2] * asub[0];
+          auto discrm = asub[1] * asub[1] - _Real{4} * asub[2] * asub[0];
 
           if (discrm < _Real{0})
             {
               // The roots are complex conjugates.
-              auto xreal = -asub[1] / (2 * asub[2]);
-              auto ximag = std::sqrt(std::abs(discrm)) / (2 * asub[2]);
+              auto xreal = -asub[1] / (_Real{2} * asub[2]);
+              auto ximag = std::sqrt(std::abs(discrm)) / (_Real{2} * asub[2]);
 	      __ret[0] = std::complex<_Real>(xreal, ximag);
 	      __ret[1] = std::complex<_Real>(xreal, -ximag);
             }
           else
             {
               // The roots are real.
-              _Real signb = (asub[1] < 0 ? -_Real{1} : _Real{1});
-              _Real temp = -_Real{0.5L} * (asub[1] + signb * std::sqrt(discrm));
+              _Real temp = -(asub[1]
+			+ std::copysign(std::sqrt(discrm), asub[1])) / _Real{2};
               __ret[0] = temp / asub[2];
               __ret[1] = asub[0] / temp;
             }
@@ -89,10 +90,15 @@
     {
       const auto _S_pi = __gnu_cxx::__const_pi(asub[0]);
 
-      if (asub[3] == _Real{0})
-	return quadratic(std::experimental::make_array(asub[0], asub[1], asub[2]));
-
       std::array<solution_t<_Real>, 3> __ret;
+
+      if (asub[3] == _Real{0})
+	{
+	  const auto quad = quadratic(std::experimental::make_array(asub[0], asub[1], asub[2]));
+	  __ret[0] = quad[0];
+	  __ret[1] = quad[1];
+	  return __ret;
+	}
 
       //  Normalize cubic equation coefficients.
       std::array<_Real, 4> acube;
@@ -138,8 +144,8 @@
               //  Find the other two roots which are complex conjugates.
               std::array<_Real, 3> aq;
               aq[2] = acube[3];
-              aq[1] = acube[2] + acube[3] * __ret[0];
-              aq[0] = aq[2] * __ret[0] + acube[1];
+              aq[1] = acube[2] + acube[3] * std::get<1>(__ret[0]);
+              aq[0] = aq[2] * std::get<1>(__ret[0]) + acube[1];
               auto quad = quadratic(aq);
               __ret[1] = quad[0];
               __ret[2] = quad[1];
@@ -175,13 +181,16 @@
     {
       const auto _S_pi = __gnu_cxx::__const_pi(asub[0]);
 
-      if (asub[4] == _Real{0})
-	return cubic(std::experimental::make_array(asub[0], asub[1], asub[2], asub[3]));
-
       std::array<solution_t<_Real>, 4> __ret;
 
-      //  The three coefficients of the quadratic equation.
-      _Real aq[3];
+      if (asub[4] == _Real{0})
+	{
+	  const auto cub = cubic(std::experimental::make_array(asub[0], asub[1], asub[2], asub[3]));
+	  __ret[0] = cub[0];
+	  __ret[1] = cub[1];
+	  __ret[2] = cub[2];
+	  return __ret;
+	}
 
       //  Normalize quartic equation coefficients.
       std::array<_Real, 5> aquart;
@@ -231,6 +240,7 @@
         std::swap(d1, d2);
 
       //  Coefficients for the first quadratic equation and find the roots...
+      std::array<_Real, 3> aq;
       aq[2] = _Real{1};
       aq[1] = c1;
       aq[0] = d1;
