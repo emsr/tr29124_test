@@ -56,10 +56,10 @@
 	{
 	  const auto __rea = real(__a);
 	  const auto __reb = real(__b);
-	  if (__rea < __reb)
+	  if (std::get<1>(__rea) < std::get<1>(__reb))
 	    return true;
 	  else if (__rea == __reb)
-	    return imag(__a) < imag(__b);
+	    return std::get<1>(imag(__a)) < std::get<1>(imag(__b));
 	  else
 	    return false;
 	}
