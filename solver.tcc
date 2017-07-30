@@ -14,7 +14,7 @@
    * @note There are two roots: Both are real roots or the roots
    *       are complex conjugates.
    *
-   * @param[in] asub Array that contains the three coefficients of the quadratic equation
+   * @param[in] coef Array that contains the three coefficients of the quadratic equation
    *
    * @param[out] xreal1 Real part of first root
    * @param[out] xreal2 Real part of second root
@@ -22,38 +22,38 @@
    */
   template<typename _Real>
     std::array<solution_t<_Real>, 2>
-    quadratic(const std::array<_Real, 3>& asub)
+    quadratic(const std::array<_Real, 3>& coef)
     {
       std::array<solution_t<_Real>, 2> __ret;
 
-      if (asub[2] == _Real{0})
-        {
-          // Equation is linear.
-          __ret[0] = -asub[0] / asub[1];
+      if (coef[2] == _Real{0})
+	{
+	  // Equation is linear.
+	  __ret[0] = -coef[0] / coef[1];
 	  return __ret;
-        }
+	}
       else
-        {
-          // The discriminant of a quadratic equation
-          auto discrm = asub[1] * asub[1] - _Real{4} * asub[2] * asub[0];
+	{
+	  // The discriminant of a quadratic equation
+	  auto discrm = coef[1] * coef[1] - _Real{4} * coef[2] * coef[0];
 
-          if (discrm < _Real{0})
-            {
-              // The roots are complex conjugates.
-              auto xreal = -asub[1] / (_Real{2} * asub[2]);
-              auto ximag = std::sqrt(std::abs(discrm)) / (_Real{2} * asub[2]);
-	      __ret[0] = std::complex<_Real>(xreal, ximag);
-	      __ret[1] = std::complex<_Real>(xreal, -ximag);
-            }
-          else
-            {
-              // The roots are real.
-              _Real temp = -(asub[1]
-			+ std::copysign(std::sqrt(discrm), asub[1])) / _Real{2};
-              __ret[0] = temp / asub[2];
-              __ret[1] = asub[0] / temp;
-            }
-        }
+	  if (discrm < _Real{0})
+	    {
+	      // The roots are complex conjugates.
+	      auto xreal = -coef[1] / (_Real{2} * coef[2]);
+	      auto ximag = std::sqrt(std::abs(discrm)) / (_Real{2} * coef[2]);
+	      __ret[0] = std::complex<_Real>(xreal, -ximag);
+	      __ret[1] = std::complex<_Real>(xreal, ximag);
+	    }
+	  else
+	    {
+	      // The roots are real.
+	      _Real temp = -(coef[1]
+			+ std::copysign(std::sqrt(discrm), coef[1])) / _Real{2};
+	      __ret[0] = temp / coef[2];
+	      __ret[1] = coef[0] / temp;
+	    }
+	}
 
       return __ret;
     }
@@ -73,7 +73,7 @@
    * 		 Case 2.  One root is real and the other two
    * 			  are complex conjugates
    *
-   * @param[in] asub  Array that contains the four coefficients of
+   * @param[in] coef  Array that contains the four coefficients of
    *                  the cubic equation
    *
    * @param[out] xreal Array containing the real parts of the three
@@ -86,15 +86,15 @@
    */
   template<typename _Real>
     std::array<solution_t<_Real>, 3>
-    cubic(const std::array<_Real, 4>& asub)
+    cubic(const std::array<_Real, 4>& coef)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi(asub[0]);
+      const auto _S_pi = __gnu_cxx::__const_pi(coef[0]);
 
       std::array<solution_t<_Real>, 3> __ret;
 
-      if (asub[3] == _Real{0})
+      if (coef[3] == _Real{0})
 	{
-	  const auto quad = quadratic(std::experimental::make_array(asub[0], asub[1], asub[2]));
+	  const auto quad = quadratic(std::experimental::make_array(coef[0], coef[1], coef[2]));
 	  __ret[0] = quad[0];
 	  __ret[1] = quad[1];
 	  return __ret;
@@ -103,54 +103,54 @@
       //  Normalize cubic equation coefficients.
       std::array<_Real, 4> acube;
       acube[3] = _Real{1};
-      acube[2] = asub[2] / asub[3];
-      acube[1] = asub[1] / asub[3];
-      acube[0] = asub[0] / asub[3];
+      acube[2] = coef[2] / coef[3];
+      acube[1] = coef[1] / coef[3];
+      acube[0] = coef[0] / coef[3];
 
       if (acube[0] == _Real{0})
-        {
-          __ret[0] = _Real{0};
-          std::array<_Real, 3> aq;
-          aq[2] = acube[3];
-          aq[1] = acube[2];
-          aq[0] = acube[1];
-          const auto __quad = quadratic(aq);
+	{
+	  __ret[0] = _Real{0};
+	  std::array<_Real, 3> aq;
+	  aq[2] = acube[3];
+	  aq[1] = acube[2];
+	  aq[0] = acube[1];
+	  const auto __quad = quadratic(aq);
 	  __ret[1] = __quad[0];
 	  __ret[2] = __quad[1];
-        }
+	}
       else
-        {
-          auto q = (acube[2] * acube[2] - _Real{3} * acube[1]) / _Real{9};
-          auto qcube = q * q * q;
-          auto r = (_Real{2} * acube[2] * acube[2] * acube[2]
-                  - _Real{9} * acube[2] * acube[1]
-                  + _Real{27} * acube[0]) / _Real{54};
-          auto rsqed = r * r;
-          if (qcube - rsqed > _Real{0})
-            {
-              //  Calculate the three real roots.
-              auto theta = std::acos(r / std::sqrt(qcube));
-              auto term1 = -2 * std::sqrt(q);
-              __ret[0] = term1 * std::cos(theta / _Real{3}) - acube[2] / _Real{3};
-              __ret[1] = term1 * std::cos((theta + _Real{2} * _S_pi) / _Real{3}) - acube[2] / _Real{3};
-              __ret[2] = term1 * std::cos((theta + _Real{4} * _S_pi) / _Real{3}) - acube[2] / _Real{3};
-            }
-          else
-            {
-              //  Calculate the single real root.
-              auto term1 = std::cbrt((std::sqrt(rsqed - qcube) + std::abs(r)));
-              __ret[0] = std::copysign(term1 + q / term1, r) - (acube[2] / _Real{3});
+	{
+	  auto q = (acube[2] * acube[2] - _Real{3} * acube[1]) / _Real{9};
+	  auto qcube = q * q * q;
+	  auto r = (_Real{2} * acube[2] * acube[2] * acube[2]
+		  - _Real{9} * acube[2] * acube[1]
+		  + _Real{27} * acube[0]) / _Real{54};
+	  auto rsqed = r * r;
+	  if (qcube - rsqed > _Real{0})
+	    {
+	      //  Calculate the three real roots.
+	      auto theta = std::acos(r / std::sqrt(qcube));
+	      auto term1 = -2 * std::sqrt(q);
+	      __ret[0] = term1 * std::cos(theta / _Real{3}) - acube[2] / _Real{3};
+	      __ret[1] = term1 * std::cos((theta + _Real{2} * _S_pi) / _Real{3}) - acube[2] / _Real{3};
+	      __ret[2] = term1 * std::cos((theta + _Real{4} * _S_pi) / _Real{3}) - acube[2] / _Real{3};
+	    }
+	  else
+	    {
+	      //  Calculate the single real root.
+	      auto term1 = std::cbrt((std::sqrt(rsqed - qcube) + std::abs(r)));
+	      __ret[0] = std::copysign(term1 + q / term1, r) - (acube[2] / _Real{3});
 
-              //  Find the other two roots which are complex conjugates.
-              std::array<_Real, 3> aq;
-              aq[2] = acube[3];
-              aq[1] = acube[2] + acube[3] * std::get<1>(__ret[0]);
-              aq[0] = aq[2] * std::get<1>(__ret[0]) + acube[1];
-              auto quad = quadratic(aq);
-              __ret[1] = quad[0];
-              __ret[2] = quad[1];
-            }
-        }
+	      //  Find the other two roots which are complex conjugates.
+	      std::array<_Real, 3> aq;
+	      aq[2] = acube[3];
+	      aq[1] = acube[2] + acube[3] * std::get<1>(__ret[0]);
+	      aq[0] = aq[2] * std::get<1>(__ret[0]) + acube[1];
+	      auto quad = quadratic(aq);
+	      __ret[1] = quad[0];
+	      __ret[2] = quad[1];
+	    }
+	}
 
       return __ret;
     }
@@ -170,22 +170,22 @@
    * 		 Case 2.  Two real roots and two complex roots (conjugate pair)
    * 		 Case 3.  Four complex roots in conjugate pairs
    *
-   * @param[in]  asub  Array that contains the five(5) coefficients of the quartic equation
+   * @param[in]  coef  Array that contains the five(5) coefficients of the quartic equation
    *
    * @param[out]  xreal  Array containing the real parts of the four roots
    * @param[out]  ximag  Array containing the imaginary parts of the four roots
    */
   template<typename _Real>
     std::array<solution_t<_Real>, 4>
-    quartic(const std::array<_Real, 5>& asub)
+    quartic(const std::array<_Real, 5>& coef)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi(asub[0]);
+      const auto _S_pi = __gnu_cxx::__const_pi(coef[0]);
 
       std::array<solution_t<_Real>, 4> __ret;
 
-      if (asub[4] == _Real{0})
+      if (coef[4] == _Real{0})
 	{
-	  const auto cub = cubic(std::experimental::make_array(asub[0], asub[1], asub[2], asub[3]));
+	  const auto cub = cubic(std::experimental::make_array(coef[0], coef[1], coef[2], coef[3]));
 	  __ret[0] = cub[0];
 	  __ret[1] = cub[1];
 	  __ret[2] = cub[2];
@@ -195,36 +195,38 @@
       //  Normalize quartic equation coefficients.
       std::array<_Real, 5> aquart;
       aquart[4] = _Real{1};
-      aquart[3] = asub[3] / asub[4];
-      aquart[2] = asub[2] / asub[4];
-      aquart[1] = asub[1] / asub[4];
-      aquart[0] = asub[0] / asub[4];
+      aquart[3] = coef[3] / coef[4];
+      aquart[2] = coef[2] / coef[4];
+      aquart[1] = coef[1] / coef[4];
+      aquart[0] = coef[0] / coef[4];
 
       //  Calculate the coefficients of the resolvent cubic equation.
       std::array<_Real, 4> acube;
       acube[3] = _Real{1};
       acube[2] = -aquart[2];
-      acube[1] = aquart[3] * aquart[1] - 4 * aquart[0];
-      acube[0] = aquart[0] * (4 * aquart[2] - aquart[3] * aquart[3])
-               - aquart[1] * aquart[1];
+      acube[1] = aquart[3] * aquart[1] - _Real{4} * aquart[0];
+      acube[0] = aquart[0] * (_Real{4} * aquart[2] - aquart[3] * aquart[3])
+	       - aquart[1] * aquart[1];
 
-      //  Find the algebraically largest real root of the cubic equation
-      //  Note: A cubic equation has either three real roots or one
-      //        real root and two complex roots that are complex
-      //        conjugates. If there is only a single real root then
-      //        subroutine cubic always returns that single real root
-      //        (and therefore the algebraically largest real root of
-      //        the cubic equation) as rt(1).
-      //  The imaginary part of the complex conjugate root of the resolvent cubic equation.
-      _Real rti = 0;
-      auto cube = cubic(acube, rti);
-      if (rti == 0)
-        {
-          if (cube[0] < cube[1])
-            std::swap(cube[0], cube[1]);
-          if (cube[0] < cube[2])
-            std::swap(cube[0], cube[2]);
-        }
+      // Find the algebraically largest real root of the cubic equation
+      // Note: A cubic equation has either three real roots or one
+      //       real root and two complex roots that are complex
+      //       conjugates. If there is only a single real root then
+      //       subroutine cubic always returns that single real root
+      //       (and therefore the algebraically largest real root of
+      //       the cubic equation) as rt(1).
+      // The imaginary part of the complex conjugate root
+      // of the resolvent cubic equation.
+      //_Real rti = 0;
+      //auto cube = cubic(acube, rti);
+      auto cube = cubic(acube);
+      //if (rti == 0)
+      //  {
+	  if (cube[0] < cube[1])
+	    std::swap(cube[0], cube[1]);
+	  if (cube[0] < cube[2])
+	    std::swap(cube[0], cube[2]);
+      //  }
       //  Calculate the coefficients for the two quadratic equations
       auto capa = _Real{0.5L} * aquart[3];
       auto capb = _Real{0.5L} * cube[0];
@@ -237,7 +239,7 @@
       auto t1 = c1 * d2 + c2 * d1;
       auto t2 = c1 * d1 + c2 * d2;
       if (std::abs(t2 - aquart[1]) < std::abs(t1 - aquart[1]))
-        std::swap(d1, d2);
+	std::swap(d1, d2);
 
       //  Coefficients for the first quadratic equation and find the roots...
       std::array<_Real, 3> aq;
