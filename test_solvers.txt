@@ -1,22 +1,25 @@
 
--2
-1
+ -2.000000000000000e+00  good: true
+  1.000000000000000e+00  good: true
 
-2
-null
+(-5.000000000000000e-01,-1.322875655532295e+00)  good: true
+(-5.000000000000000e-01,1.322875655532295e+00)  good: true
 
--3
-4
-1
+  2.000000000000000e+00  good: true
+                   null  good: true
 
--6.43273
-0.93273
-null
+ -3.000000000000000e+00  good: false
+  4.000000000000000e+00  good: false
+  1.000000000000001e+00  good: false
 
-1.09091
-null
-null
+ -6.432729965664059e+00  good: false
+  9.327299656640589e-01  good: true
+                   null  good: true
 
--3.73205
-4
--0.267949
+  1.090909090909091e+00  good: true
+                   null  good: true
+                   null  good: true
+
+ -3.732050807568878e+00  good: false
+  4.000000000000001e+00  good: false
+ -2.679491924311230e-01  good: false
