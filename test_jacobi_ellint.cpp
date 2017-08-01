@@ -31,7 +31,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_am(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).am();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).__am();
     }
 
   /**
@@ -46,7 +46,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_sc(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).sc();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).__sc();
     }
 
   /**
@@ -61,7 +61,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_sd(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).sd();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).__sd();
     }
 
   /**
@@ -76,7 +76,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_cd(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).cd();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).__cd();
     }
 
   /**
@@ -91,7 +91,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_cs(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).cs();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).__cs();
     }
 
   /**
@@ -106,7 +106,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_dc(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).dc();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).__dc();
     }
 
   /**
@@ -121,7 +121,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_ds(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).ds();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).__ds();
     }
 
   /**
@@ -136,7 +136,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_nc(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).nc();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).__nc();
     }
 
   /**
@@ -151,7 +151,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_nd(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).nd();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).__nd();
     }
 
   /**
@@ -166,7 +166,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_ns(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).ns();
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).__ns();
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
@@ -266,6 +266,17 @@ main()
       std::cout << ' ' << std::setw(width) << u;
       for (auto k : kvals)
 	std::cout << ' ' << std::setw(width) << __gnu_cxx::jacobi_dn(k, u);
+      std::cout << '\n';
+    }
+
+  std::cout << "\n\n";
+  std::cout << "Jacobi elliptic amplitude function am(k,u)\n";
+  for (int i = -200; i <= 200; ++i)
+    {
+      auto u = 0.05 * i;
+      std::cout << ' ' << std::setw(width) << u;
+      for (auto k : kvals)
+	std::cout << ' ' << std::setw(width) << __gnu_cxx::jacobi_am(k, u);
       std::cout << '\n';
     }
 
