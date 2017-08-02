@@ -3,6 +3,9 @@
 
 #include <ext/cmath>
 
+namespace __gnu_cxx
+{
+
   /**
    * @brief Finds the roots of a quadratic equation of the form:
    * @f[
@@ -23,7 +26,7 @@
    */
   template<typename _Real>
     std::array<solution_t<_Real>, 2>
-    quadratic(const std::array<_Real, 3>& _CC)
+    __quadratic(const std::array<_Real, 3>& _CC)
     {
       std::array<solution_t<_Real>, 2> _ZZ;
 
@@ -85,7 +88,7 @@
    */
   template<typename _Real>
     std::array<solution_t<_Real>, 3>
-    cubic(const std::array<_Real, 4>& _CC)
+    __cubic(const std::array<_Real, 4>& _CC)
     {
       using std::experimental::make_array;
 
@@ -93,7 +96,7 @@
 
       if (_CC[3] == _Real{0})
 	{
-	  const auto _ZZ2 = quadratic(make_array(_CC[0], _CC[1], _CC[2]));
+	  const auto _ZZ2 = __quadratic(make_array(_CC[0], _CC[1], _CC[2]));
 	  _ZZ[0] = _ZZ2[0];
 	  _ZZ[1] = _ZZ2[1];
 	  return _ZZ;
@@ -114,7 +117,7 @@
 	      _AA2[2] = _AA3[3];
 	      _AA2[1] = _AA3[2];
 	      _AA2[0] = _AA3[1];
-	      const auto _ZZ2 = quadratic(_AA2);
+	      const auto _ZZ2 = __quadratic(_AA2);
 	      _ZZ[1] = _ZZ2[0];
 	      _ZZ[2] = _ZZ2[1];
 	    }
@@ -153,7 +156,7 @@
 		  _AA2[2] = _Real{1};
 		  _AA2[1] = _BB;
 		  _AA2[0] = _BB * _BB - _Real{3} * _QQ;
-		  const auto _ZZ2 = quadratic(_AA2);
+		  const auto _ZZ2 = __quadratic(_AA2);
 		  _ZZ[1] = std::get<2>(_ZZ2[0]) - _PP;
 		  _ZZ[2] = std::get<2>(_ZZ2[1]) - _PP;
 		}
@@ -185,7 +188,7 @@
    */
   template<typename _Real>
     std::array<solution_t<_Real>, 4>
-    quartic(const std::array<_Real, 5>& _CC)
+    __quartic(const std::array<_Real, 5>& _CC)
     {
       using std::experimental::make_array;
       const auto _S_pi = __gnu_cxx::__const_pi(_CC[0]);
@@ -194,7 +197,7 @@
 
       if (_CC[4] == _Real{0})
 	{
-	  const auto _ZZ3 = cubic(make_array(_CC[0], _CC[1], _CC[2], _CC[3]));
+	  const auto _ZZ3 = __cubic(make_array(_CC[0], _CC[1], _CC[2], _CC[3]));
 	  _ZZ[0] = _ZZ3[0];
 	  _ZZ[1] = _ZZ3[1];
 	  _ZZ[2] = _ZZ3[2];
@@ -226,7 +229,7 @@
 	  //       (and therefore the algebraically largest real root of
 	  //       the cubic equation) as root[0].
 	  _Real _Z3max;
-	  auto _ZZ3 = cubic(_AA3);
+	  auto _ZZ3 = __cubic(_AA3);
 	  if (_ZZ3[1].index() == 1 && _ZZ3[2].index() == 1)
             {
 	      if (_ZZ3[0] < _ZZ3[1])
@@ -257,7 +260,7 @@
 	  _AA2[2] = _Real{1};
 	  _AA2[1] = __cp;
 	  _AA2[0] = __dp;
-	  const auto _ZZ2p = quadratic(_AA2);
+	  const auto _ZZ2p = __quadratic(_AA2);
 	  _ZZ[0] = _ZZ2p[0];
 	  _ZZ[1] = _ZZ2p[1];
 
@@ -265,7 +268,7 @@
 	  _AA2[2] = _Real{1};
 	  _AA2[1] = __cm;
 	  _AA2[0] = __dm;
-	  const auto _ZZ2m = quadratic(_AA2);
+	  const auto _ZZ2m = __quadratic(_AA2);
 	  _ZZ[2] = _ZZ2m[0];
 	  _ZZ[3] = _ZZ2m[1];
 
@@ -273,5 +276,6 @@
 	}
     }
 
+} // namespace __gnu_cxx
 
 #endif  //  SOLVER_TCC
