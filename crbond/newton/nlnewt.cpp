@@ -2,8 +2,8 @@
  *
  * (C)2001, C. Bond. All rights reserved.
  */
-#include <math.h>
-#include <iostream.h>
+#include <cmath>
+#include <iostream>
 
 int gelimd(double **a,double *b,double *x,int n);
 

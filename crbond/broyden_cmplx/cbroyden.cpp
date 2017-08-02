@@ -2,24 +2,24 @@
  *  system of equations.
  *  (C) 2001, C. Bond. All rights reserved.
  */
-#include <complex.h>
+#include <complex>
 
-int cged2(complex<double> **a,complex<double> *b,complex<double> *x,int n);
+int cged2(std::complex<double> **a,std::complex<double> *b,std::complex<double> *x,int n);
 
 
-int cbroyden(void (*f)(complex<double> *x,complex<double> *fv,int n),
-    complex<double> *x0,complex<double> *f0,int n,double *eps,int *iter)
+int cbroyden(void (*f)(std::complex<double> *x,std::complex<double> *fv,int n),
+    std::complex<double> *x0,std::complex<double> *f0,int n,double *eps,int *iter)
 {
-    complex<double> **A,*x1,*f1,*s,d,tmp;
+    std::complex<double> **A,*x1,*f1,*s,d,tmp;
     int i,j,k;
 
 // Allocate temporary memory
-    x1 = new complex<double> [n];
-    f1 = new complex<double> [n];
-    s = new complex<double> [n];
-    A = new complex<double> *[n];
+    x1 = new std::complex<double> [n];
+    f1 = new std::complex<double> [n];
+    s = new std::complex<double> [n];
+    A = new std::complex<double> *[n];
     for (i=0;i<n;i++) {
-        A[i] = new complex<double> [n];
+        A[i] = new std::complex<double> [n];
     }
 
 // Create identity matrix for startup (consider Jacobian alternative)
