@@ -1,5 +1,5 @@
-#include <math.h>
-#include <iostream.h>
+#include <cmath>
+#include <iostream>
 
 int broyden(void (*f)(double *x,double *fv,int n),double *x,
     double *fv,int n,double *eps,int *iter);
@@ -28,9 +28,9 @@ int main()
     eps = 1e-12;
     iter = 20;
     ecode = broyden(f,x,r,n,&eps,&iter);
-    cout << "Iterations: " << iter << endl;
-    cout << "x[0] = " << x[0] << endl;
-    cout << "x[1] = " << x[1] << endl;
+    std::cout << "Iterations: " << iter << '\n';
+    std::cout << "x[0] = " << x[0] << '\n';
+    std::cout << "x[1] = " << x[1] << '\n';
 
     delete [] x;
     delete [] r;
