@@ -143,7 +143,8 @@
 	      else
 		{
 		  //  Calculate the single real root.
-		  const auto __fact = std::cbrt(std::sqrt(_RRp2 - _QQp3) + std::abs(_RR));
+		  const auto __fact = std::cbrt(std::sqrt(_RRp2 - _QQp3)
+						 + std::abs(_RR));
 		  const auto _BB = -std::copysign(__fact + _QQ / __fact, _RR);
 		  _ZZ[0] = _BB - _PP;
 
@@ -251,7 +252,7 @@
 	  if (std::abs(__t2 - _AA4[1]) < std::abs(__t1 - _AA4[1]))
 	    std::swap(__dp, __dm);
 
-	  //  Coefficients for the first quadratic equation and find the roots...
+	  //  Coefficients for the first quadratic equation and find the roots.
 	  std::array<_Real, 3> _AA2;
 	  _AA2[2] = _Real{1};
 	  _AA2[1] = __cp;
@@ -260,7 +261,7 @@
 	  _ZZ[0] = _ZZ2p[0];
 	  _ZZ[1] = _ZZ2p[1];
 
-	  //  Coefficients for the second quadratic equation and find the roots...
+	  //  Coefficients for the second quadratic equation and find the roots.
 	  _AA2[2] = _Real{1};
 	  _AA2[1] = __cm;
 	  _AA2[0] = __dm;
