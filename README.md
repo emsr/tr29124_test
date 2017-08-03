@@ -25,14 +25,15 @@ The functions in IS 29124 have been accepted into C++17.
 See Section 26.9.5 Mathematical special functions [sf.cmath] in a recent draft.
 
 In addition to the special functions in C++17, this library adds several extensions:
-* Hypergeometric functions,
-* Carlson elliptic functions,
-* Jacobi elloptic functions, amplitude, and nome,
-* Polylogarithm functions,
-* Hankel functions,
+* Hypergeometric functions
+* Carlson elliptic functions
+* Jacobi elliptic functions, amplitude, and nome
+* Polylogarithm functions
+* Hankel functions
 * Statistical functions
-* Quadrature rules,
-,...
+* Quadrature rules
+* Polynomial classes and solvers
+* ...
 
 I strive for type genericity.  I want C++ numerics to follow
 the containers + algorithms by having numeriic algorithms that will
@@ -42,3 +43,5 @@ and __float128.  Some have been tested with mpreal and efforts are underway to
 allow full multiprecision usage.
 
 I generally strive towards accuracy first and speed second.
+
+Check out the [manual](https://rawgit.com/emsr/tr29124_test/master/html/index.html)
