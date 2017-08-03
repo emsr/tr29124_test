@@ -43,3 +43,5 @@ and __float128.  Some have been tested with mpreal and efforts are underway to
 allow full multiprecision usage.
 
 I generally strive towards accuracy first and speed second.
+
+Check out the [manual](https://github.com/emsr/tr29124_test/blob/master/html/index.html)
