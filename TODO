@@ -177,6 +177,7 @@ GSL extras has these - there was struggle there too.
 50. [] We can do error analysis (sigfigs, etc) by computing functions with several 
        This can be set up.  This is what test *really* should be.  We can publish that.
        I would say *that* is your error anaysis.
+
 51. [] Look for places where you can calculate max_iter and do it.
 
 52. [] What the hell happened to diff_sph_harmonic.txt?
@@ -618,6 +619,15 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
         Looks good - they zigzag between +-pi/2.
         I should think about making continuous with am(u + n2K) = am(u) + n\pi.
         Now it's modulus \pi.
+
+138. [DONE] Get the solvers to take const Iter&.
+        I couldn't get the Real deduced.
+        We could avoid copying so many arrays internally if we could do this.
+        And it would work for C-style arrays and vectors and maybe polynomial.
+        Sigh.
+
+139. [] Try multi-word tables of factorials.
+        Instead of unevaluated sums these are unevaluated producs.
 
 plot_airy.cpp
 
