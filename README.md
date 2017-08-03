@@ -25,14 +25,15 @@ The functions in IS 29124 have been accepted into C++17.
 See Section 26.9.5 Mathematical special functions [sf.cmath] in a recent draft.
 
 In addition to the special functions in C++17, this library adds several extensions:
-* Hypergeometric functions,
-* Carlson elliptic functions,
-* Jacobi elloptic functions, amplitude, and nome,
-* Polylogarithm functions,
-* Hankel functions,
+* Hypergeometric functions
+* Carlson elliptic functions
+* Jacobi elliptic functions, amplitude, and nome
+* Polylogarithm functions
+* Hankel functions
 * Statistical functions
-* Quadrature rules,
-,...
+* Quadrature rules
+* Polynomial classes and solvers
+* ...
 
 I strive for type genericity.  I want C++ numerics to follow
 the containers + algorithms by having numeriic algorithms that will
