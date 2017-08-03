@@ -24,9 +24,9 @@ namespace __gnu_cxx
    * @param[in] _CC Array that contains the three coefficients
    *                  of the quadratic equation.
    */
-  template<typename _Real>
+  template<typename _Real, typename _Iter>
     std::array<solution_t<_Real>, 2>
-    __quadratic(const std::array<_Real, 3>& _CC)
+    __quadratic(const _Iter& _CC)
     {
       std::array<solution_t<_Real>, 2> _ZZ;
 
@@ -38,6 +38,17 @@ namespace __gnu_cxx
 	  else
 	    {
 	      _ZZ[0] = -_CC[0] / _CC[1];
+	      return _ZZ;
+	    }
+	}
+      else if (_CC[0] == _Real{0})
+	{
+	  _ZZ[0] = _Real{0};
+	  if (_CC[1] == _Real{0})
+	    return _ZZ;
+	  else
+	    {
+	      _ZZ[1] = -_CC[1] / _CC[2];
 	      return _ZZ;
 	    }
 	}
@@ -86,21 +97,26 @@ namespace __gnu_cxx
    * @param[in] _CC Array that contains the four coefficients
    *                  of the cubic equation
    */
-  template<typename _Real>
+  template<typename _Real, typename _Iter>
     std::array<solution_t<_Real>, 3>
-    __cubic(const std::array<_Real, 4>& _CC)
+    __cubic(const _Iter& _CC)
     {
-      using std::experimental::make_array;
-
       std::array<solution_t<_Real>, 3> _ZZ;
 
       if (_CC[3] == _Real{0})
 	{
-	  const auto _ZZ2 = __quadratic(make_array(_CC[0], _CC[1], _CC[2]));
+	  const auto _ZZ2 = __quadratic<_Real>(_CC);
 	  _ZZ[0] = _ZZ2[0];
 	  _ZZ[1] = _ZZ2[1];
 	  return _ZZ;
 	}
+      /*else if (_CC[0] == _Real{0})
+	{
+	  _ZZ[0] = _Real{0};
+	  const auto _ZZ2 = __quadratic<_Real>(std::begin(_CC) + 1);
+	  _ZZ[1] = _ZZ2[0];
+	  _ZZ[2] = _ZZ2[1];
+	}*/
       else
 	{
 	  //  Normalize cubic equation coefficients.
@@ -110,56 +126,43 @@ namespace __gnu_cxx
 	  _AA3[1] = _CC[1] / _CC[3];
 	  _AA3[0] = _CC[0] / _CC[3];
 
-	  if (_AA3[0] == _Real{0})
+	  const auto _S_pi = __gnu_cxx::__const_pi(_CC[0]);
+	  const auto _S_2pi = _Real{2} * _S_pi;
+	  const auto _S_4pi = _Real{4} * _S_pi;
+	  const auto _PP = _AA3[2] / _Real{3};
+	  const auto _QQ = (_AA3[2] * _AA3[2] - _Real{3} * _AA3[1])
+			 / _Real{9};
+	  const auto _QQp3 = _QQ * _QQ * _QQ;
+	  const auto _RR = (_Real{2} * _AA3[2] * _AA3[2] * _AA3[2]
+			  - _Real{9} * _AA3[2] * _AA3[1]
+			  + _Real{27} * _AA3[0]) / _Real{54};
+	  const auto _RRp2 = _RR * _RR;
+
+	  if (_QQp3 - _RRp2 > _Real{0})
 	    {
-	      _ZZ[0] = _Real{0};
-	      std::array<_Real, 3> _AA2;
-	      _AA2[2] = _AA3[3];
-	      _AA2[1] = _AA3[2];
-	      _AA2[0] = _AA3[1];
-	      const auto _ZZ2 = __quadratic(_AA2);
-	      _ZZ[1] = _ZZ2[0];
-	      _ZZ[2] = _ZZ2[1];
+	      //  Calculate the three real roots.
+	      const auto __phi = std::acos(_RR / std::sqrt(_QQp3));
+	      const auto __fact = -_Real{2} * std::sqrt(_QQ);
+	      _ZZ[0] = __fact * std::cos(__phi / _Real{3}) - _PP;
+	      _ZZ[1] = __fact * std::cos((__phi + _S_2pi) / _Real{3}) - _PP;
+	      _ZZ[2] = __fact * std::cos((__phi + _S_4pi) / _Real{3}) - _PP;
 	    }
 	  else
 	    {
-	      const auto _S_pi = __gnu_cxx::__const_pi(_CC[0]);
-	      const auto _S_2pi = _Real{2} * _S_pi;
-	      const auto _S_4pi = _Real{4} * _S_pi;
-	      const auto _PP = _AA3[2] / _Real{3};
-	      const auto _QQ = (_AA3[2] * _AA3[2] - _Real{3} * _AA3[1])
-			     / _Real{9};
-	      const auto _QQp3 = _QQ * _QQ * _QQ;
-	      const auto _RR = (_Real{2} * _AA3[2] * _AA3[2] * _AA3[2]
-			      - _Real{9} * _AA3[2] * _AA3[1]
-			      + _Real{27} * _AA3[0]) / _Real{54};
-	      const auto _RRp2 = _RR * _RR;
-	      if (_QQp3 - _RRp2 > _Real{0})
-		{
-		  //  Calculate the three real roots.
-		  const auto __phi = std::acos(_RR / std::sqrt(_QQp3));
-		  const auto __fact = -_Real{2} * std::sqrt(_QQ);
-		  _ZZ[0] = __fact * std::cos(__phi / _Real{3}) - _PP;
-		  _ZZ[1] = __fact * std::cos((__phi + _S_2pi) / _Real{3}) - _PP;
-		  _ZZ[2] = __fact * std::cos((__phi + _S_4pi) / _Real{3}) - _PP;
-		}
-	      else
-		{
-		  //  Calculate the single real root.
-		  const auto __fact = std::cbrt(std::sqrt(_RRp2 - _QQp3)
-						 + std::abs(_RR));
-		  const auto _BB = -std::copysign(__fact + _QQ / __fact, _RR);
-		  _ZZ[0] = _BB - _PP;
+	      //  Calculate the single real root.
+	      const auto __fact = std::cbrt(std::sqrt(_RRp2 - _QQp3)
+					     + std::abs(_RR));
+	      const auto _BB = -std::copysign(__fact + _QQ / __fact, _RR);
+	      _ZZ[0] = _BB - _PP;
 
-		  //  Find the other two roots which are complex conjugates.
-		  std::array<_Real, 3> _AA2;
-		  _AA2[2] = _Real{1};
-		  _AA2[1] = _BB;
-		  _AA2[0] = _BB * _BB - _Real{3} * _QQ;
-		  const auto _ZZ2 = __quadratic(_AA2);
-		  _ZZ[1] = std::get<2>(_ZZ2[0]) - _PP;
-		  _ZZ[2] = std::get<2>(_ZZ2[1]) - _PP;
-		}
+	      //  Find the other two roots which are complex conjugates.
+	      std::array<_Real, 3> _AA2;
+	      _AA2[2] = _Real{1};
+	      _AA2[1] = _BB;
+	      _AA2[0] = _BB * _BB - _Real{3} * _QQ;
+	      const auto _ZZ2 = __quadratic<_Real>(_AA2);
+	      _ZZ[1] = std::get<2>(_ZZ2[0]) - _PP;
+	      _ZZ[2] = std::get<2>(_ZZ2[1]) - _PP;
 	    }
 
 	  return _ZZ;
@@ -186,22 +189,28 @@ namespace __gnu_cxx
    * @param[in] _CC Array that contains the five(5) coefficients
    *                  of the quartic equation.
    */
-  template<typename _Real>
+  template<typename _Real, typename _Iter>
     std::array<solution_t<_Real>, 4>
-    __quartic(const std::array<_Real, 5>& _CC)
+    __quartic(const _Iter& _CC)
     {
-      using std::experimental::make_array;
       const auto _S_pi = __gnu_cxx::__const_pi(_CC[0]);
 
       std::array<solution_t<_Real>, 4> _ZZ;
 
       if (_CC[4] == _Real{0})
 	{
-	  const auto _ZZ3 = __cubic(make_array(_CC[0], _CC[1], _CC[2], _CC[3]));
+	  const auto _ZZ3 = __cubic<_Real>(_CC);
 	  _ZZ[0] = _ZZ3[0];
 	  _ZZ[1] = _ZZ3[1];
 	  _ZZ[2] = _ZZ3[2];
 	  return _ZZ;
+	}
+      else if (_CC[0] == _Real{0})
+	{
+	  _ZZ[0] = _Real{0};
+	  const auto _ZZ3 = __cubic<_Real>(std::begin(_CC) + 1);
+	  _ZZ[1] = _ZZ3[0];
+	  _ZZ[2] = _ZZ3[1];
 	}
       else
 	{
@@ -219,7 +228,7 @@ namespace __gnu_cxx
 	  _AA3[2] = -_AA4[2];
 	  _AA3[1] = _AA4[3] * _AA4[1] - _Real{4} * _AA4[0];
 	  _AA3[0] = _AA4[0] * (_Real{4} * _AA4[2] - _AA4[3] * _AA4[3])
-		     - _AA4[1] * _AA4[1];
+		  - _AA4[1] * _AA4[1];
 
 	  // Find the algebraically largest real root of the cubic equation
 	  // Note: A cubic equation has either three real roots or one
@@ -229,7 +238,7 @@ namespace __gnu_cxx
 	  //       (and therefore the algebraically largest real root of
 	  //       the cubic equation) as root[0].
 	  _Real _Z3max;
-	  auto _ZZ3 = __cubic(_AA3);
+	  auto _ZZ3 = __cubic<_Real>(_AA3);
 	  if (_ZZ3[1].index() == 1 && _ZZ3[2].index() == 1)
             {
 	      if (_ZZ3[0] < _ZZ3[1])
@@ -260,7 +269,7 @@ namespace __gnu_cxx
 	  _AA2[2] = _Real{1};
 	  _AA2[1] = __cp;
 	  _AA2[0] = __dp;
-	  const auto _ZZ2p = __quadratic(_AA2);
+	  const auto _ZZ2p = __quadratic<_Real>(_AA2);
 	  _ZZ[0] = _ZZ2p[0];
 	  _ZZ[1] = _ZZ2p[1];
 
@@ -268,7 +277,7 @@ namespace __gnu_cxx
 	  _AA2[2] = _Real{1};
 	  _AA2[1] = __cm;
 	  _AA2[0] = __dm;
-	  const auto _ZZ2m = __quadratic(_AA2);
+	  const auto _ZZ2m = __quadratic<_Real>(_AA2);
 	  _ZZ[2] = _ZZ2m[0];
 	  _ZZ[3] = _ZZ2m[1];
 

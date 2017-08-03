@@ -68,17 +68,17 @@ namespace __gnu_cxx
 	}
     }
 
-  template<typename _Real>
+  template<typename _Real, typename _Iter>
     std::array<solution_t<_Real>, 2>
-    __quadratic(const std::array<_Real, 3>& __coef);
+    __quadratic(const _Iter& __coef);
 
-  template<typename _Real>
+  template<typename _Real, typename _Iter>
     std::array<solution_t<_Real>, 3>
-    __cubic(const std::array<_Real, 4>& __coef);
+    __cubic(const _Iter& __coef);
 
-  template<typename _Real>
+  template<typename _Real, typename _Iter>
     std::array<solution_t<_Real>, 4>
-    __quartic(const std::array<_Real, 5>& __coef);
+    __quartic(const _Iter& __coef);
 
 } // namespace __gnu_cxx
 
