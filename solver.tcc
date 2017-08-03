@@ -44,7 +44,7 @@ namespace __gnu_cxx
       else if (_CC[0] == _Real{0})
 	{
 	  _ZZ[0] = _Real{0};
-	  if (_CC[1] == _Real{0})
+	  if (_CC[2] == _Real{0})
 	    return _ZZ;
 	  else
 	    {
