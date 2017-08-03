@@ -116,6 +116,7 @@ namespace __gnu_cxx
 	  const auto _ZZ2 = __quadratic<_Real>(std::begin(_CC) + 1);
 	  _ZZ[1] = _ZZ2[0];
 	  _ZZ[2] = _ZZ2[1];
+	  return _ZZ;
 	}*/
       else
 	{
@@ -211,6 +212,7 @@ namespace __gnu_cxx
 	  const auto _ZZ3 = __cubic<_Real>(std::begin(_CC) + 1);
 	  _ZZ[1] = _ZZ3[0];
 	  _ZZ[2] = _ZZ3[1];
+	  return _ZZ;
 	}
       else
 	{
