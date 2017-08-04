@@ -10,9 +10,14 @@ set grid
 set title "{/Symbol z}(s)"
 set xlabel "s"
 plot [-25:25][-20:20] \
-                    "test_riemann_zeta.txt" index 0 using 1:2 with lines title "{/Symbol z}(s)", \
-                    "" index 0 using 1:3 with lines title "{/Symbol z}(s) GSL"
+    "test_riemann_zeta.txt" index 0 using 1:2 with lines title "{/Symbol z}(s)", \
+                         "" index 0 using 1:3 with lines title "{/Symbol z}(s) GSL"
 
+set title "{/Symbol z}(1/2 +i{/Symbol t})"
+set xlabel "{/Symbol t}"
+plot [-25:25][-2.5:2.5] \
+    "test_riemann_zeta.txt" index 2 using 1:2 with lines title "Re[{/Symbol z}(1/2 +i{/Symbol t})]", \
+                         "" index 2 using 1:3 with lines title "Im[{/Symbol z}(1/2 +i{/Symbol t})]"
 
 gnuplot
 
