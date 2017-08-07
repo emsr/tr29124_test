@@ -24,7 +24,7 @@ template<typename _Tp>
 
     std::cout.precision(__gnu_cxx::__digits10<_Real>());
     std::cout << std::showpoint << std::scientific;
-    auto width = 8 + std::cout.precision();
+    auto w = 8 + std::cout.precision();
 
     std::cyl_neumann(1.0, 0.01);
 
@@ -45,32 +45,32 @@ template<typename _Tp>
 
     for (auto nu : nuvec)
       {
-	std::cout << "\n  nu = " << nu << '\n';
-	std::cout << ' ' << std::setw(width) << "x";
-	std::cout << ' ' << std::setw(width) << "J_nu(x)";
-	std::cout << ' ' << std::setw(width) << "J'_nu(x)";
-	std::cout << ' ' << std::setw(width) << "N_nu(x)";
-	std::cout << ' ' << std::setw(width) << "N'_nu(x)";
-	std::cout << ' ' << std::setw(width) << "pi x W{J,N} / 2";
-	std::cout << ' ' << std::setw(width) << "I_nu(x)";
-	std::cout << ' ' << std::setw(width) << "I'_nu(x)";
-	std::cout << ' ' << std::setw(width) << "K_nu(x)";
-	std::cout << ' ' << std::setw(width) << "K'_nu(x)";
-	std::cout << ' ' << std::setw(width) << "-x W{I,K}";
+	std::cout << "\n\n  nu = " << nu << '\n';
+	std::cout << ' ' << std::setw(w) << "x";
+	std::cout << ' ' << std::setw(w) << "J_nu(x)";
+	std::cout << ' ' << std::setw(w) << "J'_nu(x)";
+	std::cout << ' ' << std::setw(w) << "N_nu(x)";
+	std::cout << ' ' << std::setw(w) << "N'_nu(x)";
+	std::cout << ' ' << std::setw(w) << "pi x W{J,N} / 2";
+	std::cout << ' ' << std::setw(w) << "I_nu(x)";
+	std::cout << ' ' << std::setw(w) << "I'_nu(x)";
+	std::cout << ' ' << std::setw(w) << "K_nu(x)";
+	std::cout << ' ' << std::setw(w) << "K'_nu(x)";
+	std::cout << ' ' << std::setw(w) << "-x W{I,K}";
 	std::cout << '\n';
 	const auto del = _Tp{1} / _Tp{100};
 	for (unsigned int i = 0; i <= 1000; ++i)
           {
             auto x = i * del;
-            std::cout << ' ' << std::setw(width) << x;
+            std::cout << ' ' << std::setw(w) << x;
             try
               {
         	auto Cyl = std::__detail::__cyl_bessel_jn(nu, x);
-        	std::cout << ' ' << std::setw(width) << Cyl.__J_value;
-        	std::cout << ' ' << std::setw(width) << Cyl.__J_deriv;
-        	std::cout << ' ' << std::setw(width) << Cyl.__N_value;
-        	std::cout << ' ' << std::setw(width) << Cyl.__N_deriv;
-        	std::cout << ' ' << std::setw(width) << _S_pi_2 * x * Cyl.__Wronskian();
+        	std::cout << ' ' << std::setw(w) << Cyl.__J_value;
+        	std::cout << ' ' << std::setw(w) << Cyl.__J_deriv;
+        	std::cout << ' ' << std::setw(w) << Cyl.__N_value;
+        	std::cout << ' ' << std::setw(w) << Cyl.__N_deriv;
+        	std::cout << ' ' << std::setw(w) << _S_pi_2 * x * Cyl.__Wronskian();
               }
             catch (std::exception& err)
               {
@@ -79,11 +79,11 @@ template<typename _Tp>
             try
               {
         	auto Cyl = std::__detail::__cyl_bessel_ik(nu, x);
-        	std::cout << ' ' << std::setw(width) << Cyl.__I_value;
-        	std::cout << ' ' << std::setw(width) << Cyl.__I_deriv;
-        	std::cout << ' ' << std::setw(width) << Cyl.__K_value;
-        	std::cout << ' ' << std::setw(width) << Cyl.__K_deriv;
-        	std::cout << ' ' << std::setw(width) << -x * Cyl.__Wronskian();
+        	std::cout << ' ' << std::setw(w) << Cyl.__I_value;
+        	std::cout << ' ' << std::setw(w) << Cyl.__I_deriv;
+        	std::cout << ' ' << std::setw(w) << Cyl.__K_value;
+        	std::cout << ' ' << std::setw(w) << Cyl.__K_deriv;
+        	std::cout << ' ' << std::setw(w) << -x * Cyl.__Wronskian();
               }
             catch (std::exception& err)
               {
@@ -105,9 +105,8 @@ template<typename _Tp>
 
     std::cout.precision(__gnu_cxx::__digits10<_Real>());
     std::cout << std::showpoint << std::scientific;
-    auto width = 8 + std::cout.precision();
+    auto w = 8 + std::cout.precision();
 
-    std::cout << '\n';
 
     std::vector<_Tp> nuvec
     {
@@ -126,30 +125,31 @@ template<typename _Tp>
 
     for (auto nu : nuvec)
       {
-	std::cout << ' ' << std::setw(width) << "x";
-	std::cout << ' ' << std::setw(width) << "J_nu(x)";
-	std::cout << ' ' << std::setw(width) << "N_nu(x)";
-	std::cout << ' ' << std::setw(width) << "I_nu(x)";
-	std::cout << ' ' << std::setw(width) << "K_nu(x)";
+	std::cout << "\n\n  nu = " << nu << '\n';
+	std::cout << ' ' << std::setw(w) << "x";
+	std::cout << ' ' << std::setw(w) << "J_nu(x)";
+	std::cout << ' ' << std::setw(w) << "N_nu(x)";
+	std::cout << ' ' << std::setw(w) << "I_nu(x)";
+	std::cout << ' ' << std::setw(w) << "K_nu(x)";
 	const auto del = _Tp{1} / _Tp{10};
 	for (int i = 0; i <= 100; ++i)
 	  {
 	    auto x = i * del;
-	    std::cout << ' ' << std::setw(width) << x;
+	    std::cout << ' ' << std::setw(w) << x;
 	    try
 	      {
 		auto jx = std::cyl_bessel_j(nu, x);
 		auto nx = std::cyl_neumann(nu, x);
-		std::cout << ' ' << std::setw(width) << jx;
-		std::cout << ' ' << std::setw(width) << nx;
+		std::cout << ' ' << std::setw(w) << jx;
+		std::cout << ' ' << std::setw(w) << nx;
 	      }
 	    catch (std::exception& err)
 	      {
 		std::cerr << err.what() << '\n';
 		auto ix = std::cyl_bessel_i(nu, x);
 		auto kx = std::cyl_bessel_k(nu, x);
-		std::cout << ' ' << std::setw(width) << ix;
-		std::cout << ' ' << std::setw(width) << kx;
+		std::cout << ' ' << std::setw(w) << ix;
+		std::cout << ' ' << std::setw(w) << kx;
 	      }
 	    std::cout << '\n';
 	  }
