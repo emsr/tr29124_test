@@ -9,7 +9,7 @@
 
 2. [] __riemann_zeta_alt should be tested with vanWijnGaarden
 
-3. [] Debye integrals matharr has some.  Started a test.
+3. [DONE] Debye integrals matharr has some.  Started a test.
 
 4. [] Test asymptotic Hermite polys - adjust the crossover width!
 GSL extras has these - there was struggle there too.
@@ -78,6 +78,7 @@ GSL extras has these - there was struggle there too.
        They use macros... Sigh.  Still, we could hack these into templates.
 
 23. [DONE] We have both psi *and* digamma!  Pick one!
+    I chose psi.
 
 24. [DONE] polynomial.h needs outline polynomial.tcc
 
@@ -475,7 +476,7 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 103. [DONE] The negative int polylog exp fails for s = 0.  Differs by 0.5.
 
 104. [DONE] The negative int polylog exp fails for z = -1.
-        We could use the plynomial even if it's not stable generally?
+        We could use the polynomial even if it's not stable generally?
         I think what's happening is that the routines use reflection for negative argument.
         There is generally a pole at x = 1.
 
@@ -578,7 +579,7 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 126. [] Add Lah, Bell, etc.  See starred repo (python) saiedhk / PyComb for ideas.
         He does sums which I think will crap out unless mp.  I'll use recur.
 
-127. [] Possible idea - return state from these numbers whick will be more useful.
+127. [] Possible idea - return state from these numbers which will be more useful.
         Not just array.  Order.  Have methods to eval polynomials from *them*.
 
 128. [] Would it be a good idea for specfun states to have a separate param type
@@ -628,6 +629,10 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 
 139. [] Try multi-word tables of factorials.
         Instead of unevaluated sums these are unevaluated producs.
+
+140. [] Test monomials and polynomials with low-order zero coefficients to test easy zero path.
+
+141. [] Fix the cubic easy zero compile.
 
 plot_airy.cpp
 
