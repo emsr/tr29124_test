@@ -307,6 +307,7 @@ test_marcum_q
 test_math_h
 test_maxint
 test_mittag_leffler
+test_mod2pi
 test_mpreal
 test_notsospecfun 
 test_nric_bessel
