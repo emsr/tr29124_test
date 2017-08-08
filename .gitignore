@@ -262,6 +262,7 @@ test_decimal
 test_dilog
 test_dirichlet_eta
 test_erfc
+test_experfc
 test_expint
 test_factorial
 test_falling_factorial
