@@ -41,6 +41,7 @@ build_etam1_table
 build_gamma_lanczos
 build_gamma_recip
 build_gamma_spouge
+build_inv_erf_coefs
 build_log_table
 build_nfact_zetanp1
 build_sincos_tables
