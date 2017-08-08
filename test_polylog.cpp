@@ -659,6 +659,7 @@ template<typename Tp>
 
     std::cout.precision(__gnu_cxx::__digits10(proto) - 1);
     std::cout << std::scientific;
+    const auto w = std::cout.precision() + 8;
 
     std::cout << '\n';
 
@@ -727,9 +728,10 @@ template<typename Tp>
     const auto del01 = Tp{1} / Tp{100};
     const auto del05 = Tp{1} / Tp{20};
 
-    std::ofstream test("test.dat");
+    std::ofstream test("test_polylog.dat");
+    test.precision(std::cout.precision());
     for (auto s = Tp{2.5}; s < Tp{3.5}; s += del01)
-      test << s << ' ' << std::real(std::__detail::__polylog(s, Tp{2})) - Tp{2} << '\n';
+      test << s << ' ' << std::setw(w) << std::real(std::__detail::__polylog(s, Tp{2})) - Tp{2} << '\n';
     test << std::endl;
 
     std::cout << '\n' << std::__detail::__polylog(Tp{3.1}, Tp{2}) << '\n';
