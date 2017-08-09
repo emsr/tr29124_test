@@ -22,7 +22,11 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_inv_erf t
     { return std::exp(__x * __x) * std::erfc(__x); }
 
   /**
-   * Return the inverse error function by recursion.
+   * Return the inverse error function by recursion:
+   * @f[
+   *
+   * @f]
+   *
    * @param[in] __p The argument between -1 and 1
    * @param[in] __x The initial x-value guess.
    */
@@ -228,6 +232,31 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_inv_erf t
 	return __erf_inv_series(__p);
     }
 
+  /**
+   * Return the inverse complementary error function.
+   */
+  template<typename _Tp>
+    _Tp
+    __erfc_inv(_Tp __p)
+    {
+      const auto _S_inf = __gnu_cxx::__infinity(__p);
+      if (std::isnan(__p))
+	return __p;
+      else if (__p < _Tp(0) || __p > _Tp(2))
+	std::__throw_domain_error("__erf_inv: Argument must be within"
+				  " the domain of erfc: [0,2].");
+      else if (__p == _Tp{0})
+	return +_S_inf;
+      else if (__p == _Tp{2})
+	return -_S_inf;
+      else if (std::abs(_Tp{1} - __p) > _Tp{0.95})
+	return __erf_inv_recur(_Tp{1} - __p);
+      else if (std::abs(_Tp{1} - __p) > _Tp{0.75})
+	return __erf_inv_recur(_Tp{1} - __p, __erf_inv_series(_Tp{1} - __p));
+      else
+	return __erf_inv_series(_Tp{1} - __p);
+    }
+
 /**
  * Test the inverse error function.
  */
@@ -285,18 +314,18 @@ template<typename _Tp>
 	      << '\n';
     for (int __i = -100; __i <= 100; ++__i)
       {
-	auto __x = _Tp(__i * 0.01Q);
-	auto __inverfs = __erf_inv_series(__x);
-	auto __inverfr = __erf_inv_recur(__x);
-	auto __inverf = __erf_inv(__x);
-	std::cout << ' ' << std::setw(w) << __x
+	auto __p = _Tp(__i * 0.01Q);
+	auto __inverfs = __erf_inv_series(__p);
+	auto __inverfr = __erf_inv_recur(__p);
+	auto __inverf = __erf_inv(__p);
+	std::cout << ' ' << std::setw(w) << __p
 		  << ' ' << std::setw(w) << __inverfs
 		  << ' ' << std::setw(w) << std::erf(__inverf)
-		  << ' ' << std::setw(w) << std::erf(__inverf) - __x
+		  << ' ' << std::setw(w) << std::erf(__inverf) - __p
 		  << ' ' << std::setw(w) << std::erf(__inverfs)
-		  << ' ' << std::setw(w) << std::erf(__inverfs) - __x
+		  << ' ' << std::setw(w) << std::erf(__inverfs) - __p
 		  << ' ' << std::setw(w) << std::erf(__inverfr)
-		  << ' ' << std::setw(w) << std::erf(__inverfr) - __x
+		  << ' ' << std::setw(w) << std::erf(__inverfr) - __p
 		  << '\n';
       }
 
@@ -325,6 +354,41 @@ template<typename _Tp>
 		  << ' ' << std::setw(w) << __inverfs - __x
 		  << ' ' << std::setw(w) << __inverfr
 		  << ' ' << std::setw(w) << __inverfr - __x
+		  << '\n';
+      }
+
+    std::cout << "\n\n"
+	      << ' ' << std::setw(w) << "\"p\""
+	      << ' ' << std::setw(w) << "\"inv_erfc(p)\""
+	      << ' ' << std::setw(w) << "\"erfc(inv_erfc(p))\""
+	      << ' ' << std::setw(w) << "\"erfc(inv_erfc(p)) - p\""
+	      << '\n';
+    for (int __i = 200; __i >= 0; --__i)
+      {
+	auto __p = _Tp(__i * 0.01Q);
+	auto __inverfc = __erfc_inv(__p);
+	std::cout << ' ' << std::setw(w) << __p
+		  << ' ' << std::setw(w) << __inverfc
+		  << ' ' << std::setw(w) << std::erfc(__inverfc)
+		  << ' ' << std::setw(w) << std::erfc(__inverfc) - __p
+		  << '\n';
+      }
+
+    std::cout << "\n\n"
+	      << ' ' << std::setw(w) << "\"x\""
+	      << ' ' << std::setw(w) << "\"erf(x)\""
+	      << ' ' << std::setw(w) << "\"inv_erf(erf(x))\""
+	      << ' ' << std::setw(w) << "\"inv_erf(erf(x)) - x\""
+	      << '\n';
+    for (int __i = -200; __i <= 200; ++__i)
+      {
+	auto __x = _Tp(__i * 0.01Q);
+	auto __erfcx = std::erfc(__x);
+	auto __inverfc = __erfc_inv(__erfcx);
+	std::cout << ' ' << std::setw(w) << __x
+		  << ' ' << std::setw(w) << __erfcx
+		  << ' ' << std::setw(w) << __inverfc
+		  << ' ' << std::setw(w) << __inverfc - __x
 		  << '\n';
       }
   }
