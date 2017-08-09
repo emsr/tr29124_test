@@ -334,6 +334,31 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_experfc t
  */
 template<typename _Tp>
   void
+  plot_experfc()
+  {
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    decltype(std::cout.precision()) xw = 22;
+    auto w = std::max(xw, 8 + std::cout.precision());
+
+    std::cout << "\n\n"
+	      << ' ' << std::setw(w) << "x"
+	      << ' ' << std::setw(w) << "experfc(x)"
+	      << '\n';
+    for (int __k = -200; __k <= 5500; ++__k)
+      {
+	auto __x = __k * _Tp{0.01Q};
+	auto __experfc = __erfc_scaled(__x);
+	std::cout << ' ' << std::setw(w) << __x
+		  << ' ' << std::setw(w) << __experfc
+		  << '\n';
+      }
+  }
+
+/**
+ * Test the scaled complementary error function - experfc(x) = exp(x^2)erfc(x).
+ */
+template<typename _Tp>
+  void
   test_experfc()
   {
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
@@ -375,6 +400,8 @@ template<typename _Tp>
 int
 main()
 {
+  plot_experfc<double>();
+
   std::cout << "\n\n  float\n";
   std::cout << "  =====\n";
   test_experfc<float>();
