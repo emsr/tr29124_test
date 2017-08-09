@@ -82,7 +82,7 @@ GSL extras has these - there was struggle there too.
 
 24. [DONE] polynomial.h needs outline polynomial.tcc
 
-25. [] Why did dilog lose the x=0 test?
+25. [DONE] Why did dilog lose the x=0 test?
        It is because the answer dilog(0) == 0.  So the fractional error blows up even when the answer is spot on.
        But it doesn't look like such a point would be skipped though.
        We need a way of trapping this...
@@ -301,9 +301,10 @@ GSL extras has these - there was struggle there too.
 	Blocked with HAVE_C99_COMPLEX128 just in case.
 	They are in <complex> in C namespace.  They are used for overloads.
 
-70. [] Look at: test_carlson.cpp
+70. [DONE] Look at: test_carlson.cpp
        Compile shit.
        But maybe we're past needing this thing.
+       I'm killing it.
 
 71. [] test_kelvin.cpp
        ed@bad-horse:~/tr29124_test$ ./test_kelvin > test_kelvin.txt
@@ -349,7 +350,7 @@ GSL extras has these - there was struggle there too.
 
 carlson_std.cpp - Collisions all over.  no surprise there.
 
-78. [] Make hankel_toy_new compile.
+78. [DONE] Make hankel_toy_new compile.
 hankel_toy_new.cpp - Undefinedreference constant things in some struct.
   tmp/ccPVNIiD.o: In function `__hankel_param_t<double>::__hankel_param_t(std::complex<double>, std::complex<double>)':
   /home/ed/tr29124_test/hankel_toy_new.cpp:98: undefined reference to `__hankel_param_t<double>::_S_2d3'
@@ -409,7 +410,7 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 88. [DONE] I think __parity(int __k) {return __k & 1 ? -1 : +1; }
        possibly with some optional casting to floats would be real nice.
 
-89. [] cephes has a mod2pi. Figure out WTF it actually does.
+89. [DONE] cephes has a mod2pi. Figure out WTF it actually does.
        Make it type generic.
        See if you can use it in concert with *_pi circular functions.
        The guts of a good fmod might also hold clues.
@@ -429,7 +430,7 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 
 92. [] Steal root finding tests from GSL.
 
-93. [] Gamma uses gamma_reciprocal_series!  Not Lanczos or Spouge!
+93. [DONE] Gamma uses gamma_reciprocal_series!  Not Lanczos or Spouge!
 
 94. [] Finish Mittag-Leffler
        Now test_mittag_leffler.cpp plots look really good against that paper.
@@ -552,7 +553,7 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 119. [] Between float128 and mpreal, someone is fucking up fmin and fmax big time.
         Check test_float128.* and float_mpreal.* and guts.
 
-120. [] check/check_dirichlet_eta.cc  -- 0 < s < 1.
+120. [DONE] check/check_dirichlet_eta.cc  -- 0 < s < 1.
         Dive into polylog.  Could use reflection.
 
 121. [] Trying to make bernoulli numbers with mpreal was a sobering exercise!
@@ -592,6 +593,7 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
         coefs would need be constrained to less than base for normal numbers.
 
 131. [] A beta_reciprocal might be very useful for statistics and be well behaved.
+        This is a continuous version of the binomial coefficient.
 
 132. [] Design a set of free functions which generate polynomials like exp_n, log, etc.
         That will become the basis of a generating function capability.  How does
@@ -633,6 +635,14 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
 140. [] Test monomials and polynomials with low-order zero coefficients to test easy zero path.
 
 141. [] Fix the cubic easy zero compile.
+
+142. [] Get test cases for Lommel.
+        I think test_lommel may be ready to ship. 
+
+143. [] Ship Terminator and AsympTerminator.
+        Pull the sum terminator tools out of sf_polylog: Terminator and AsympTerminator
+        out into a new header or maybe with te summation.* headers.
+        Use them!
 
 plot_airy.cpp
 
