@@ -47,7 +47,7 @@ main()
     {
       mpfr::mpreal ctemp(0, prec);
       for (unsigned long long k = 1; k <= n; ++k)
-	ctemp += c[k - 1] * c[n - k] / (k * (2 * k - 1));
+	ctemp += c[k - 1] * c[n - k] / k / (2 * k - 1);
       c.push_back(ctemp);
     }
   for (unsigned long long n = 1; n < n_max; ++n)
