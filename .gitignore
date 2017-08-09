@@ -41,6 +41,7 @@ build_etam1_table
 build_gamma_lanczos
 build_gamma_recip
 build_gamma_spouge
+build_inv_erf_coefs
 build_log_table
 build_nfact_zetanp1
 build_sincos_tables
@@ -262,6 +263,7 @@ test_decimal
 test_dilog
 test_dirichlet_eta
 test_erfc
+test_experfc
 test_expint
 test_factorial
 test_falling_factorial
@@ -307,6 +309,7 @@ test_marcum_q
 test_math_h
 test_maxint
 test_mittag_leffler
+test_mod2pi
 test_mpreal
 test_notsospecfun 
 test_nric_bessel
