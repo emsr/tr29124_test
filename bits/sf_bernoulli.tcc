@@ -174,11 +174,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto _B_n = std::__detail::__bernoulli<_Tp>(0);
 	  auto __binomial = _Tp{1};
 	  for (auto __k = 1u; __k <= __n; ++__k)
-	  {
-	    __binomial *= _Tp(__n + 1 - __k) / _Tp(__k);
-	    _B_n = __x * _B_n + __binomial
-		 * std::__detail::__bernoulli<_Tp>(__k);
-	  }
+	    {
+	      __binomial *= _Tp(__n + 1 - __k) / _Tp(__k);
+	      _B_n = __x * _B_n + __binomial
+		   * std::__detail::__bernoulli<_Tp>(__k);
+	    }
 	  return _B_n;
 	}
     }
