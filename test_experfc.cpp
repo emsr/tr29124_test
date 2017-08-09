@@ -320,10 +320,18 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_experfc t
     _Tp
     __erfc_scaled(_Tp __x)
     {
+      const auto _S_inf = std::numeric_limits<_Tp>::infinity();
       const auto _S_cfrac = _Tp{0.025} * std::numeric_limits<_Tp>::digits;
       // The asymptotic series gets good by here but never really beats C.F.
       //const auto _S_asymp = _Tp{0.18} * std::numeric_limits<_Tp>::digits;
-      if (__x < _S_cfrac)
+
+      if (std::isnan(__x))
+	return __x;
+      else if (__x == -_S_inf)
+	return +_S_inf;
+      else if (__x == +_S_inf)
+	return _Tp{0};
+      else if (__x < _S_cfrac)
 	return __experfc_series(__x);
       else
 	return __experfc_cont_frac(__x);
