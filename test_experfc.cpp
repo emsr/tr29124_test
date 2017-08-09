@@ -345,8 +345,7 @@ template<typename _Tp>
   plot_experfc()
   {
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
-    decltype(std::cout.precision()) xw = 22;
-    auto w = std::max(xw, 8 + std::cout.precision());
+    auto w = 8 + std::cout.precision();
 
     std::cout << "\n\n"
 	      << ' ' << std::setw(w) << "x"

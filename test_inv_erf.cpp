@@ -405,8 +405,8 @@ template<typename _Tp>
     auto w = std::max(xw, 8 + std::cout.precision());
 
     std::cout << "\n\n"
-	      << ' ' << std::setw(w) << "x"
-	      << ' ' << std::setw(w) << "inv_erf(x)"
+	      << ' ' << std::setw(w) << "p"
+	      << ' ' << std::setw(w) << "inv_erf(p)"
 	      << '\n';
     for (int __k = -100; __k <= 100; ++__k)
       {
@@ -418,8 +418,8 @@ template<typename _Tp>
       }
 
     std::cout << "\n\n"
-	      << ' ' << std::setw(w) << "x"
-	      << ' ' << std::setw(w) << "inv_erfc(x)"
+	      << ' ' << std::setw(w) << "p"
+	      << ' ' << std::setw(w) << "inv_erfc(p)"
 	      << '\n';
     for (int __k = 200; __k >= 0; --__k)
       {

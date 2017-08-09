@@ -11,6 +11,11 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_erfc test
 #include <cmath>
 #include <LentzContinuedFraction.tcc>
 
+namespace std
+{
+namespace __detail
+{
+
   /**
    * Return the complementary error function by series:
    * @f[
@@ -111,8 +116,9 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_erfc test
     _Tp
     __erfc_cont_frac(_Tp __z)
     {
+      using _Real = std::__detail::__num_traits_t<_Tp>;
       const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(std::real(__z));
-      const auto __a = [](size_t __k, _Tp __z)
+      const auto __a = [](size_t __k, _Tp /*__z*/)
 		 ->_Tp
 		 { return __k == 1 ? _Tp{1} : _Tp(__k - 1) / _Tp{2}; };
       using _AFun = decltype(__a);
@@ -128,7 +134,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_erfc test
       using _WFun = decltype(__w);
       using _CFrac = _LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>;
       const _CFrac __cf(__a, __b, __w);
-      return std::exp(-__z * __z) * __cf(__z) / _S_sqrt_pi;
+      auto __erfc = std::exp(-__z * __z) * __cf(__z) * __z / _S_sqrt_pi;
+      if (std::real(__z) < _Real{0})
+	__erfc += _Real{2};
+      return __erfc;
     }
 
   /**
@@ -216,17 +225,64 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_erfc test
       else if (std::real(__z) < _Real{0})
 	return _Real{2} * std::exp(-__z * __z) - __fadeeva(-__z);
       else if (std::abs(__z) < _Real{15})
-	return 0;//FIXME
+	return __erfc_series(__z);//FIXME
       else
 	return __fadeeva_cont_frac(__z);
     }
+
+  /**
+   * Return the complementary error function.
+   */
+  template<typename _Tp>
+    _Tp
+    __erfc(_Tp __x)
+    {
+      const auto _S_inf = __gnu_cxx::__infinity(__x);
+      const auto _S_cfrac = _Tp{0.025} * std::numeric_limits<_Tp>::digits;
+
+      if (std::isnan(__x))
+	return __x;
+      else if (__x == -_S_inf)
+	return _Tp{2};
+      else if (__x == +_S_inf)
+	return _Tp{0};
+      else if (__x < _S_cfrac)
+	return __erfc_series(__x);
+      else
+	return __erfc_cont_frac(__x);
+    }
+
+  /**
+   * Return the error function.
+   */
+  template<typename _Tp>
+    _Tp
+    __erf(_Tp __x)
+    {
+      const auto _S_inf = std::numeric_limits<_Tp>::infinity();
+      const auto _S_cfrac = _Tp{0.025} * std::numeric_limits<_Tp>::digits;
+
+      if (std::isnan(__x))
+	return __x;
+      else if (__x == -_S_inf)
+	return _Tp{0};
+      else if (__x == +_S_inf)
+	return _Tp{1};
+      else if (__x < _S_cfrac)
+	return _Tp{1} - __erfc_series(__x);
+      else
+	return _Tp{1} - __erfc_cont_frac(__x);
+    }
+
+} // namespace std
+} // namespace __detail
 
 template<typename _Tp>
   void
   test_erfc(_Tp proto = _Tp{})
   {
     using namespace std::literals::complex_literals;
-
+    const auto _S_NaN = std::numeric_limits<_Tp>::quiet_NaN();
     std::cout.precision(__gnu_cxx::__digits10(proto));
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
@@ -235,12 +291,69 @@ template<typename _Tp>
     for (int i = -200; i <= 1000; ++i)
       {
 	auto x = del * i;
-	auto __erfcs = __erfc_series(x);
-	auto __erfccf = 0;//__erfc_cont_frac(x);
+	auto __erfc = std::erfc(x);
 	std::cout << ' ' << x
-		  << ' ' << std::setw(width) << std::erfc(x)
-		  << ' ' << std::setw(width) << __erfcs
-		  << ' ' << std::setw(width) << __erfccf
+		  << ' ' << std::setw(width) << __erfc;
+
+	try
+	  {
+	    auto __erfcs = std::__detail::__erfc_series(x);
+	    std::cout << ' ' << std::setw(width) << __erfcs;
+	  }
+	catch (std::runtime_error& err)
+	  {
+	    std::cout << ' ' << std::setw(width) << _S_NaN;
+	    std::cerr << err.what() << '\n';
+	  }
+
+	try
+	  {
+	    auto __erfccf = std::__detail::__erfc_cont_frac(x);
+	    std::cout << ' ' << std::setw(width) << __erfccf;
+	  }
+	catch (std::runtime_error& err)
+	  {
+	    std::cout << ' ' << std::setw(width) << _S_NaN;
+	    std::cerr << err.what() << '\n';
+	  }
+
+	std::cout << '\n';
+      }
+  }
+
+/**
+ * Test the scaled complementary error function - experfc(x) = exp(x^2)erfc(x).
+ */
+template<typename _Tp>
+  void
+  plot_erfc()
+  {
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    auto w = 8 + std::cout.precision();
+
+    std::cout << "\n\n"
+	      << ' ' << std::setw(w) << "x"
+	      << ' ' << std::setw(w) << "erf(x)"
+	      << '\n';
+    for (int __k = -200; __k <= 200; ++__k)
+      {
+	auto __x = __k * _Tp{0.01Q};
+	auto __erfx = std::__detail::__erf(__x);
+	std::cout << ' ' << std::setw(w) << __x
+		  << ' ' << std::setw(w) << __erfx
+		  << '\n';
+      }
+
+    std::cout << "\n\n"
+	      << ' ' << std::setw(w) << "x"
+	      << ' ' << std::setw(w) << "erfc(x)"
+	      << '\n';
+    for (int __k = -200; __k <= 200; ++__k)
+      {
+	auto __x = __k * _Tp{0.01Q};
+	auto __erfcx = std::__detail::__erfc(__x);
+	std::cout << ' ' << std::setw(w) << __x
+		  << ' ' << std::setw(w) << __erfcx
 		  << '\n';
       }
   }
@@ -249,6 +362,22 @@ template<typename _Tp>
 int
 main()
 {
+  plot_erfc<double>();
+
+  std::cout << "\n\n  float\n";
+  std::cout << "  =====\n";
+  test_erfc(1.0F);
+
+  std::cout << "\n\n  double\n";
+  std::cout << "  ======\n";
   test_erfc(1.0);
+
+  std::cout << "\n\n  long double\n";
+  std::cout << "  ===========\n";
+  test_erfc(1.0L);
+
+  std::cout << "\n\n  __float128\n";
+  std::cout << "  ==========\n";
+  test_erfc<__float128>();
 }
 
