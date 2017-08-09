@@ -393,9 +393,49 @@ template<typename _Tp>
       }
   }
 
+/**
+ * Test the scaled complementary error function - experfc(x) = exp(x^2)erfc(x).
+ */
+template<typename _Tp>
+  void
+  plot_inv_erf()
+  {
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    decltype(std::cout.precision()) xw = 22;
+    auto w = std::max(xw, 8 + std::cout.precision());
+
+    std::cout << "\n\n"
+	      << ' ' << std::setw(w) << "x"
+	      << ' ' << std::setw(w) << "inv_erf(x)"
+	      << '\n';
+    for (int __k = -100; __k <= 100; ++__k)
+      {
+	auto __p = __k * _Tp{0.01Q};
+	auto __inverf = __erf_inv(__p);
+	std::cout << ' ' << std::setw(w) << __p
+		  << ' ' << std::setw(w) << __inverf
+		  << '\n';
+      }
+
+    std::cout << "\n\n"
+	      << ' ' << std::setw(w) << "x"
+	      << ' ' << std::setw(w) << "inv_erfc(x)"
+	      << '\n';
+    for (int __k = 200; __k >= 0; --__k)
+      {
+	auto __p = __k * _Tp{0.01Q};
+	auto __inverfc = __erfc_inv(__p);
+	std::cout << ' ' << std::setw(w) << __p
+		  << ' ' << std::setw(w) << __inverfc
+		  << '\n';
+      }
+  }
+
 int
 main()
 {
+  plot_inv_erf<double>();
+
   std::cout << "\n\n  float\n";
   std::cout << "  =====\n";
   test_inv_erf<float>();
