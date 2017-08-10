@@ -517,9 +517,13 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
         near the origin.
         Maybe a plot_utils.h would be nice.
 
-110. [] If 2^{-s} < epsilon, zeta == 1.
+110. [DONE] If 2^{-s} < epsilon, zeta == 1.
         For zetam1 you should keep trying - that's why we have it.
         The polylog_asymp is slow.
+	  if (__s < ::digits)
+	    ...
+	  else
+	    return _Val{1} + std::exp2(-__s);
 
 111. [] Find expansions of zeta near tabulated values.
         __riemann_zeta_m_1_sum for __s=3.0000000000000098 is slow.
