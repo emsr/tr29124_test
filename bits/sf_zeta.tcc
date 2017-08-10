@@ -708,7 +708,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		return __riemann_zeta_sum(__s);
 	    }
 	  else
-	    return _Val{1} + std::pow(_Val{2}, -__s);
+	    return _Val{1} + std::exp2(-__s);
 	}
     }
 
