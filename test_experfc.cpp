@@ -27,6 +27,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_experfc t
    * The experf function is defined by
    * @f[
    *   experf(x) = exp(x^2)erf(x)
+   *             = \frac{2}{\sqrt{\pi}}
+   *               \sum_{k=0}^{\infty}\frac{x^{2k+1}}{(2k+1)!!}
    * @f]
    */
   template<typename _Tp>
@@ -52,7 +54,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_experfc t
   /**
    * The experfc function is defined by
    * @f[
-   *   experfc(x) = exp(x^2)(1 - erf(x))
+   *   experfc(x) = exp(x^2)erfc(x) = exp(x^2)(1 - erf(x))
    * @f]
    */
   template<typename _Tp>
@@ -63,7 +65,11 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_experfc t
   /**
    * The experfc function is defined by
    * @f[
-   *   experfc(x) = exp(x^2)(1 - erf(x))
+   *   experfc(x) = exp(x^2)erfc(x) = exp(x^2)(1 - erf(x))
+   * @f]
+   * The series is
+   * @f[
+   *    experfc(x) = \sum_{k=0}^{\infty} \frac{(-x)^k}{\Gamma(1+k/2)}
    * @f]
    */
   template<typename _Tp>
@@ -100,20 +106,20 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_experfc t
       return __sum;
     }
 
-
   /**
    * Return a quick approximation to the experfc function.
    * The experfc function is defined by
    * @f[
    *   experfc(x) = exp(x)erfc(\sqrt{x})
    * @f]
+   * Note the change @f$ x -> \sqrt{x} @f$ relative to the other functions here.
    * The approximation is:
    * @f[
    *   experfc(x) = \frac{2}{\sqrt{\pi x}
    *       + \sqrt{\pi(x+2)-2(\pi-2)exp(-\sqrt(5x/7))}}
    * @f]
    * Surprisingly, this is accurate to within 0.1% over the whole range
-   * [0, infty].  It is used to start agm algorithms of the experfc function.
+   * [0, infty].  It is used to start AGM algorithms of the experfc function.
    */
   template<typename _Tp>
     _Tp
@@ -126,47 +132,6 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_experfc t
 			       - _Tp{2} * (_S_pi - _Tp{2})
 			       * std::exp(-std::sqrt(_Tp{5} * __x / _Tp{7})));
       return _Tp{2} / __experfc;
-    }
-
-  /**
-   * Return scaled repeated integrals of the erfc function by asymptotic series.
-   * The experfc function is defined by
-   * @f[
-   *   experfc(k, x) = exp(x^2)I^k erfc(x)
-   * @f]
-   * where the integral of the comlementary error function is:
-   * @f[
-   *   I^k erfc(x) = \frac{2}{k!\sqrt{\pi}}
-   *       \int_{x}^{\infty}(t-x)^ke^{-t^2}dt
-   * @f]
-   * @see Cuyt, et.al. 13.3.2
-   */
-  template<typename _Tp>
-    _Tp
-    __experfc_asymp(int __k, _Tp __x)
-    {
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(__x);
-      const auto _S_max_iter = 200;
-      const auto __2x = _Tp{2} * __x;
-      const auto __2xm2 = -_Tp{1} / (__2x * __2x);
-      auto __term = _Tp{1};
-      auto __sum = __term;
-      auto __kfact = std::__detail::__factorial<_Tp>(__k);
-      auto __prev_term = std::abs(__term);
-      for (int __m = 1; __m < _S_max_iter; ++__m)
-	{
-	  __term *= __2xm2 * _Tp(__k + 2 * __m) * _Tp(__k + 2 * __m - 1)
-		  / _Tp(__m) / __kfact;
-	  if (std::abs(__term) > __prev_term)
-	    break;
-	  __prev_term = std::abs(__term);
-	  __sum += __term;
-	  if (std::abs(__term) < _S_eps * std::abs(__sum))
-	    break;
-	}
-      const auto __fact = _Tp{2} / std::pow(__2x, _Tp(__k + 1)) / _S_sqrt_pi;
-      return __fact * __sum;
     }
 
   /**
