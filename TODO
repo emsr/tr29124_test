@@ -661,6 +661,19 @@ hankel_toy_new.cpp - Undefinedreference constant things in some struct.
         out into a new header or maybe with te summation.* headers.
         Use them!
 
+146. [] GSL histogram has
+        o math operations to merge histograms
+	o serialization (learn format)
+	    range[0] range[1] bin[0]
+	    range[1] range[2] bin[1]
+	    range[2] range[3] bin[2]
+	    ....
+	    range[n-1] range[n] bin[n-1]
+	o multi (well 2) dimensional histograms
+	o the ability to emit pdfs that can be used in variate generators.
+
+147. [] Does anyone have/care about unstructured simplex histograms?
+
 
 plot_airy.cpp
 
