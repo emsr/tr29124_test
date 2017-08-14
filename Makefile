@@ -27,25 +27,20 @@ OBJ_DIR = $(MATH_DIR)/obj
 
 LIB_DIR = $(MATH_DIR)
 
-.PHONY: wrappers_debug wrappers_release
 
-wrappers_debug:
-	$(MAKE) -C wrappers/debug
-
-wrappers_release:
-	$(MAKE) -C wrappers/release
+#       test_special_function \
+#       testcase2 \
+# # Gone?       test_airy \
+#
 
 BINS = testcase \
        testcase_tr1 \
        mpfrcalc \
        diff_special_function \
-       test_special_function \
-       testcase2 \
        airy_toy \
        hankel_toy \
        hankel_toy128 \
        hankel_toy_new \
-       test_airy \
        test_anger_weber \
        test_bernoulli \
        test_bessel \
@@ -130,7 +125,7 @@ BINS = testcase \
        test_struve_old \
        test_summation \
        test_theta \
-       test_trigamma
+       test_polygamma
 
 CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/check_airy_bi \
@@ -289,6 +284,15 @@ TR1_CHECKS =  \
 
 
 all: $(BINS)
+
+
+.PHONY: wrappers_debug wrappers_release
+
+wrappers_debug:
+	$(MAKE) -C wrappers/debug
+
+wrappers_release:
+	$(MAKE) -C wrappers/release
 
 
 docs: bits/*
@@ -523,10 +527,10 @@ test_Faddeeva: $(FAD_DIR)/Faddeeva.h $(FAD_DIR)/Faddeeva.cpp
 	$(CXX) -DTEST_FADDEEVA -o $(FAD_DIR)/test_Faddeeva $(FAD_DIR)/Faddeeva.cpp -lquadmath
 
 test_fresnel: test_fresnel.cpp fresnel.tcc
-	$(CXX) -o test_fresnel test_fresnel.cpp -lquadmath
+	$(CXX17) -o test_fresnel test_fresnel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_hermite: test_hermite.cpp new_hermite.tcc
-	$(CXX) -o test_hermite test_hermite.cpp -lquadmath
+	$(CXX17) -o test_hermite test_hermite.cpp -lquadmath
 
 test_bessel: test_bessel.cpp new_bessel.tcc
 	$(CXX) -o test_bessel test_bessel.cpp -lquadmath
@@ -538,7 +542,7 @@ test_anger_weber: test_anger_weber.cpp
 	$(CXX17) -I. -o test_anger_weber test_anger_weber.cpp -lquadmath
 
 test_bernoulli: test_bernoulli.cpp
-	$(CXX17) -I. -o test_bernoulli test_bernoulli.cpp -lquadmath
+	$(CXX17) -I. -o test_bernoulli test_bernoulli.cpp -lquadmath -Lwrappers/debug -lwrap_burkhardt -lgfortran
 
 test_bessel_asymp: test_bessel_asymp.cpp
 	$(CXX17) -I. -o test_bessel_asymp test_bessel_asymp.cpp -lquadmath
@@ -586,7 +590,7 @@ test_conf_hyperg_limit: test_conf_hyperg_limit.cpp
 	$(CXX17) -I. -o test_conf_hyperg_limit test_conf_hyperg_limit.cpp -lquadmath
 
 test_const: test_const.cpp
-	$(CXX17) -I. -o test_const test_const.cpp -lquadmath
+	$(CXX17) -I. -o test_const test_const.cpp -lquadmath -lmpfr
 
 test_continued_fraction: test_continued_fraction.cpp
 	$(CXX17) -I. -o test_continued_fraction test_continued_fraction.cpp -lquadmath
@@ -598,13 +602,13 @@ test_dawson: test_dawson.cpp
 	$(CXX17) -I. -o test_dawson test_dawson.cpp -lquadmath
 
 test_debye: test_debye.cpp
-	$(CXX17) -I. -o test_debye test_debye.cpp -lquadmath
+	$(CXX17) -I. -o test_debye test_debye.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 
 test_dilog: test_dilog.cpp
 	$(CXX17) -I. -o test_dilog test_dilog.cpp -lquadmath
 
 test_expint: test_expint.cpp
-	$(CXX17) -I. -o test_expint test_expint.cpp -lquadmath
+	$(CXX17) -I. -o test_expint test_expint.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_factorial: test_factorial.cpp
 	$(CXX17) -I. -o test_factorial test_factorial.cpp -lquadmath
@@ -619,10 +623,10 @@ test_float128: test_float128.cpp
 	$(CXX17) -I. -o test_float128 test_float128.cpp -lquadmath
 
 test_gamma: test_gamma.cpp
-	$(CXX17) -I. -o test_gamma test_gamma.cpp -lquadmath
+	$(CXX17) -I. -o test_gamma test_gamma.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_gamma_ratio: test_gamma_ratio.cpp
-	$(CXX17) -I. -o test_gamma_ratio test_gamma_ratio.cpp -lquadmath
+	$(CXX17) -I. -o test_gamma_ratio test_gamma_ratio.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_gamma_reciprocal: test_gamma_reciprocal.cpp
 	$(CXX17) -I. -o test_gamma_reciprocal test_gamma_reciprocal.cpp -lquadmath
