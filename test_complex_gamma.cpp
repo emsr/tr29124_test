@@ -10,11 +10,6 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_complex_gam
 //  This works.  We could replace the lanczos in tr1 with this one.
 // You would define clgamma[f,,l], ctgamma[f,,l] also.
 
-//  Strange, the __numeric_constants work with complex template args!
-//  OK...
-//      static _Tp __pi() throw()
-//      { return static_cast<_Tp>(3.1415926535897932384626433832795029L); }
-
 //  Check this!!!!
 //Notes
 //POSIX specification additionally requires that each execution of lgamma
@@ -26,9 +21,7 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_complex_gam
 #include <complex>
 #include <iostream>
 #include <stdexcept>
-#include <tr1/cmath>
-
-using namespace std::tr1::__detail;
+#include <ext/cmath>
 
 template<typename _Tp>
   struct __value_type
@@ -97,7 +90,7 @@ template<typename _Tp>
 
       const _Tp __term1 = (__xm1 + _Tp(0.5L))
                         * std::log((__xm1 + _Tp(7.5L))
-                       / __numeric_constants<_Tp>::__euler());
+                       / __gnu_cxx::__math_constants<_Val>::__gamma_e);
       const _Tp __term2 = __LOGROOT2PI + std::log(__sum);
       const _Tp __result = __term1 + (__term2 - _Tp(7L));
 
@@ -124,12 +117,12 @@ template<typename _Tp>
       else
         {
           const _Tp __sin_fact
-                 = __sin_fact_helper(std::sin(__numeric_constants<_Tp>::__pi() * __x));
+                 = __sin_fact_helper(std::sin(__gnu_cxx::__math_constants<_Val>::__pi * __x));
           if (__sin_fact == _Tp(0))
             //std::__throw_domain_error(__N("Argument is nonpositive integer "
             //                              "in __log_gamma"));
             throw std::domain_error("Argument is nonpositive integer in __log_gamma");
-          return __numeric_constants<_Tp>::__lnpi()
+          return __gnu_cxx::__math_constants<_Val>::__ln_pi
                      - std::log(__sin_fact)
                      - __log_cccgamma_lanczos(_Tp(1) - __x);
         }
@@ -140,59 +133,54 @@ main()
 {
   std::cout.precision(std::numeric_limits<double>::digits10);
   std::complex<double> z(-1.5, 0.5);
-  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << std::endl;
+  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << '\n';
   z = 1.0/3.0;
-  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << std::endl;
+  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << '\n';
   z = std::complex<double>(1.0,1.0);
-  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << std::endl;
+  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << '\n';
   z = std::complex<double>(1.0,-1.0);
-  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << std::endl;
+  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << '\n';
   z = std::complex<double>(0.5,0.5);
-  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << std::endl;
+  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << '\n';
   z = std::complex<double>(0.5,-0.5);
-  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << std::endl;
+  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << '\n';
   z = std::complex<double>(5.0,3.0);
-  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << std::endl;
+  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << '\n';
   z = std::complex<double>(5.0,-3.0);
-  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << std::endl;
+  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << '\n';
 
   //  Test reals...
   double x = 1.0/3.0;
-  std::cout << "log_gamma(" << x << ") = " << std::exp(__log_cccgamma(x)) << std::endl;
+  std::cout << "log_gamma(" << x << ") = " << std::exp(__log_cccgamma(x)) << '\n';
   x = 1.0/4.0;
-  std::cout << "log_gamma(" << x << ") = " << std::exp(__log_cccgamma(x)) << std::endl;
+  std::cout << "log_gamma(" << x << ") = " << std::exp(__log_cccgamma(x)) << '\n';
   x = 1.0/5.0;
-  std::cout << "log_gamma(" << x << ") = " << std::exp(__log_cccgamma(x)) << std::endl;
+  std::cout << "log_gamma(" << x << ") = " << std::exp(__log_cccgamma(x)) << '\n';
   x = 1.0/6.0;
-  std::cout << "log_gamma(" << x << ") = " << std::exp(__log_cccgamma(x)) << std::endl;
+  std::cout << "log_gamma(" << x << ") = " << std::exp(__log_cccgamma(x)) << '\n';
   x = 1.0/7.0;
-  std::cout << "log_gamma(" << x << ") = " << std::exp(__log_cccgamma(x)) << std::endl;
+  std::cout << "log_gamma(" << x << ") = " << std::exp(__log_cccgamma(x)) << '\n';
 
   //  Test sign with complex...  got it with the helper!  No need for a sign_gamma() or a signgam global variable.
   z = -0.5;
-  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << std::endl;
+  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << '\n';
   z = -1.5;
-  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << std::endl;
+  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << '\n';
   z = -2.5;
-  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << std::endl;
+  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << '\n';
   z = -3.5;
-  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << std::endl;
+  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << '\n';
   z = -4.5;
-  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << std::endl;
+  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << '\n';
 
   //  Test sign_gamma()...
-  std::cout << "__sign_gamma(" << -0.5 << ") = " << __sign_gamma(-0.5) << std::endl;
-  std::cout << "__sign_gamma(" << -1.5 << ") = " << __sign_gamma(-1.5) << std::endl;
-  std::cout << "__sign_gamma(" << -2.5 << ") = " << __sign_gamma(-2.5) << std::endl;
-  std::cout << "__sign_gamma(" << -3.5 << ") = " << __sign_gamma(-3.5) << std::endl;
-  std::cout << "__sign_gamma(" << -4.5 << ") = " << __sign_gamma(-4.5) << std::endl;
+  std::cout << "__sign_gamma(" << -0.5 << ") = " << __sign_gamma(-0.5) << '\n';
+  std::cout << "__sign_gamma(" << -1.5 << ") = " << __sign_gamma(-1.5) << '\n';
+  std::cout << "__sign_gamma(" << -2.5 << ") = " << __sign_gamma(-2.5) << '\n';
+  std::cout << "__sign_gamma(" << -3.5 << ") = " << __sign_gamma(-3.5) << '\n';
+  std::cout << "__sign_gamma(" << -4.5 << ") = " << __sign_gamma(-4.5) << '\n';
 
   //  Test reflection...
   z = std::complex<double>(-8.5, 0.5);
-  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << std::endl;
-
-  //  WTF...
-  std::cout << "pi      = " << __numeric_constants<std::complex<double>>::__pi() << std::endl;
-  std::cout << "gamma_E = " << __numeric_constants<std::complex<double>>::__euler() << std::endl;
-  std::cout << "ln(pi)  = " << __numeric_constants<std::complex<double>>::__lnpi() << std::endl;
+  std::cout << "log_gamma(" << z << ") = " << std::exp(__log_cccgamma(z)) << '\n';
 }
