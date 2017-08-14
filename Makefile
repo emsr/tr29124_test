@@ -105,7 +105,8 @@ BINS = testcase \
        test_parab_cyl \
        test_polylog \
        test_polynomial \
-       test_pow_funs \
+       test_power_mean \
+       test_power_norm \
        test_psi \
        test_rational \
        test_ratpoly \
@@ -551,7 +552,7 @@ test_bessel_iter: test_bessel_iter.cpp
 	$(CXX17) -I. -o test_bessel_iter test_bessel_iter.cpp -lquadmath
 
 test_beta: test_beta.cpp
-	$(CXX17) -I. -o test_beta test_beta.cpp -lquadmath
+	$(CXX17) -I. -o test_beta test_beta.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_beta_inc: test_beta_inc.cpp
 	$(CXX17) -I. -o test_beta_inc test_beta_inc.cpp -lquadmath
@@ -575,7 +576,7 @@ test_chebyshev_trig_pi: test_chebyshev_trig_pi.cpp
 	$(CXX17) -I. -o test_chebyshev_trig_pi test_chebyshev_trig_pi.cpp -lquadmath
 
 test_clausen: test_clausen.cpp
-	$(CXX17) -I. -o test_clausen test_clausen.cpp -lquadmath
+	$(CXX17) -I. -o test_clausen test_clausen.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 
 test_comp_ellint_1: test_comp_ellint_1.cpp
 	$(CXX17) -I. -o test_comp_ellint_1 test_comp_ellint_1.cpp -lquadmath
@@ -596,7 +597,7 @@ test_continued_fraction: test_continued_fraction.cpp
 	$(CXX17) -I. -o test_continued_fraction test_continued_fraction.cpp -lquadmath
 
 test_cyl_hankel: test_cyl_hankel.cpp
-	$(CXX17) -I. -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath
+	$(CXX17) -I. -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_dawson: test_dawson.cpp
 	$(CXX17) -I. -o test_dawson test_dawson.cpp -lquadmath
@@ -614,10 +615,10 @@ test_factorial: test_factorial.cpp
 	$(CXX17) -I. -o test_factorial test_factorial.cpp -lquadmath
 
 test_falling_factorial: test_falling_factorial.cpp
-	$(CXX17) -I. -o test_falling_factorial test_falling_factorial.cpp -lquadmath
+	$(CXX17) -I. -o test_falling_factorial test_falling_factorial.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_fermi_dirac: test_fermi_dirac.cpp
-	$(CXX17) -I. -o test_fermi_dirac test_fermi_dirac.cpp -lquadmath
+	$(CXX17) -I. -o test_fermi_dirac test_fermi_dirac.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 
 test_float128: test_float128.cpp
 	$(CXX17) -I. -o test_float128 test_float128.cpp -lquadmath
@@ -638,10 +639,10 @@ test_hankel: test_hankel.cpp
 	$(CXX17) -I. -o test_hankel test_hankel.cpp -lquadmath
 
 test_hankel_real_arg: test_hankel_real_arg.cpp
-	$(CXX17) -I. -o test_hankel_real_arg test_hankel_real_arg.cpp -lquadmath
+	$(CXX17) -I. -o test_hankel_real_arg test_hankel_real_arg.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_heuman_lambda: test_heuman_lambda.cpp
-	$(CXX17) -I. -o test_heuman_lambda test_heuman_lambda.cpp -lquadmath
+	$(CXX17) -I. -o test_heuman_lambda test_heuman_lambda.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_hurwitz_zeta: test_hurwitz_zeta.cpp
 	$(CXX17) -I. -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
@@ -668,7 +669,7 @@ test_jacobi_inv: test_jacobi_inv.cpp
 	$(CXX17) -I. -o test_jacobi_inv test_jacobi_inv.cpp -lquadmath
 
 test_jacobi_zeta: test_jacobi_zeta.cpp
-	$(CXX17) -I. -o test_jacobi_zeta test_jacobi_zeta.cpp -lquadmath
+	$(CXX17) -I. -o test_jacobi_zeta test_jacobi_zeta.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_kelvin: test_kelvin.cpp
 	$(CXX17) -I. -o test_kelvin test_kelvin.cpp -lquadmath
@@ -686,7 +687,7 @@ test_lerch: test_lerch.cpp
 	$(CXX17) -I. -o test_lerch test_lerch.cpp -lquadmath
 
 test_little_airy: test_little_airy.cpp
-	$(CXX17) -I. -o test_little_airy test_little_airy.cpp -lquadmath
+	$(CXX17) -I. -o test_little_airy test_little_airy.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 
 test_math_h: test_math_h.cpp
 	$(CXX17) -I. -o test_math_h test_math_h.cpp -lquadmath
@@ -695,10 +696,10 @@ test_notsospecfun: test_notsospecfun.cpp
 	$(CXX17) -I. -o test_notsospecfun test_notsospecfun.cpp -lquadmath
 
 test_numeric_limits: test_numeric_limits.cpp
-	$(CXX17) -I. -o test_numeric_limits test_numeric_limits.cpp -lquadmath
+	$(CXX17) -I. -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr
 
 test_owens_t: test_owens_t.cpp
-	$(CXX17) -I. -o test_owens_t test_owens_t.cpp -lquadmath
+	$(CXX17) -I. -o test_owens_t test_owens_t.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_parab_cyl: test_parab_cyl.cpp
 	$(CXX17) -I. -o test_parab_cyl test_parab_cyl.cpp -lquadmath
@@ -706,14 +707,20 @@ test_parab_cyl: test_parab_cyl.cpp
 test_polylog: test_polylog.cpp
 	$(CXX17) -I. -o test_polylog test_polylog.cpp -lquadmath -Lwrappers/debug -lwrap_cephes
 
+test_polygamma: test_polygamma.cpp
+	$(CXX17) -I. -o test_polygamma test_polygamma.cpp -lquadmath
+
 test_polynomial: test_polynomial.cpp
 	$(CXX17) -I. -o test_polynomial test_polynomial.cpp -lquadmath
 
-test_pow_funs: test_pow_funs.cpp
-	$(CXX17) -I. -o test_pow_funs test_pow_funs.cpp -lquadmath
+test_power_mean: test_power_mean.cpp
+	$(CXX17) -I. -o test_power_mean test_power_mean.cpp -lquadmath
+
+test_power_norm: test_power_norm.cpp
+	$(CXX17) -I. -o test_power_norm test_power_norm.cpp -lquadmath
 
 test_psi: test_psi.cpp
-	$(CXX17) -I. -o test_psi test_psi.cpp -lquadmath
+	$(CXX17) -I. -o test_psi test_psi.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 
 test_rational: test_rational.cpp
 	$(CXX17) -I. -o test_rational test_rational.cpp -lquadmath
@@ -728,13 +735,13 @@ test_reperiodized_hyper: test_reperiodized_hyper.cpp
 	$(CXX17) -I. -o test_reperiodized_hyper test_reperiodized_hyper.cpp -lquadmath
 
 test_reperiodized_trig: test_reperiodized_trig.cpp
-	$(CXX17) -I. -o test_reperiodized_trig test_reperiodized_trig.cpp -lquadmath
+	$(CXX17) -I. -o test_reperiodized_trig test_reperiodized_trig.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_riemann_zeta: test_riemann_zeta.cpp
 	$(CXX17) -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath
 
 test_rising_factorial: test_rising_factorial.cpp
-	$(CXX17) -I. -o test_rising_factorial test_rising_factorial.cpp -lquadmath
+	$(CXX17) -I. -o test_rising_factorial test_rising_factorial.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_root_finding: test_root_finding.cpp
 	$(CXX17) -I. -o test_root_finding test_root_finding.cpp -lquadmath
@@ -743,13 +750,13 @@ test_sincos: test_sincos.cpp
 	$(CXX17) -I. -o test_sincos test_sincos.cpp -lquadmath
 
 test_sinus_cardinal: test_sinus_cardinal.cpp
-	$(CXX17) -I. -o test_sinus_cardinal test_sinus_cardinal.cpp -lquadmath
+	$(CXX17) -I. -o test_sinus_cardinal test_sinus_cardinal.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost
 
 test_sph_bessel: test_sph_bessel.cpp
 	$(CXX17) -I. -o test_sph_bessel test_sph_bessel.cpp -lquadmath
 
 test_sph_hankel: test_sph_hankel.cpp
-	$(CXX17) -I. -o test_sph_hankel test_sph_hankel.cpp -lquadmath
+	$(CXX17) -I. -o test_sph_hankel test_sph_hankel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_static_polynomial: test_static_polynomial.cpp
 	$(CXX17) -I. -o test_static_polynomial test_static_polynomial.cpp -lquadmath
