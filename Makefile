@@ -528,7 +528,7 @@ test_Faddeeva: $(FAD_DIR)/Faddeeva.h $(FAD_DIR)/Faddeeva.cpp
 	$(CXX) -DTEST_FADDEEVA -o $(FAD_DIR)/test_Faddeeva $(FAD_DIR)/Faddeeva.cpp -lquadmath
 
 test_fresnel: test_fresnel.cpp fresnel.tcc
-	$(CXX17) -o test_fresnel test_fresnel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
+	$(CXX17) -I. -o test_fresnel test_fresnel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_hermite: test_hermite.cpp new_hermite.tcc
 	$(CXX17) -o test_hermite test_hermite.cpp -lquadmath
@@ -651,7 +651,7 @@ test_hurwitz_zeta_new: test_hurwitz_zeta_new.cpp
 	$(CXX17) -I. -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 
 test_hyperg: test_hyperg.cpp
-	$(CXX17) -I. -o test_hyperg test_hyperg.cpp -lquadmath
+	$(CXX17) -I. -o test_hyperg test_hyperg.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 
 test_hypot: test_hypot.cpp
 	$(CXX17) -I. -o test_hypot test_hypot.cpp -lquadmath
@@ -684,13 +684,13 @@ test_lentz_continued_fraction: test_lentz_continued_fraction.cpp
 	$(CXX17) -I. -o test_lentz_continued_fraction test_lentz_continued_fraction.cpp -lquadmath
 
 test_lerch: test_lerch.cpp
-	$(CXX17) -I. -o test_lerch test_lerch.cpp -lquadmath
+	$(CXX17) -I. -o test_lerch test_lerch.cpp lerchphi/Source/lerchphi.cpp -lquadmath
 
 test_little_airy: test_little_airy.cpp
 	$(CXX17) -I. -o test_little_airy test_little_airy.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 
 test_math_h: test_math_h.cpp
-	$(CXX17) -I. -o test_math_h test_math_h.cpp -lquadmath
+	$(CXX17) -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_math_h test_math_h.cpp -lquadmath
 
 test_notsospecfun: test_notsospecfun.cpp
 	$(CXX17) -I. -o test_notsospecfun test_notsospecfun.cpp -lquadmath
