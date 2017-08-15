@@ -11,7 +11,6 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_fresnel > test_fresnel.tx
 #include <iomanip>
 #include <stdexcept>
 #include <bits/numeric_limits.h>
-#include <bits/specfun_util.h>
 
 #include "fresnel.tcc"
 

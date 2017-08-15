@@ -1,4 +1,7 @@
 
+#include <limits>
+#include <cmath>
+
     ///
     ///  @brief This routine returns the Fresnel cosine and sine integrals
     ///         as a pair by series expansion for positive argument.
