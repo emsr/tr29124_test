@@ -103,6 +103,7 @@ BINS = testcase \
        test_numeric_limits \
        test_owens_t \
        test_parab_cyl \
+       test_polygamma \
        test_polylog \
        test_polynomial \
        test_power_mean \
@@ -118,6 +119,7 @@ BINS = testcase \
        test_root_finding \
        test_sincos \
        test_sinus_cardinal \
+       test_solvers \
        test_sph_bessel \
        test_sph_hankel \
        test_static_polynomial \
@@ -126,7 +128,8 @@ BINS = testcase \
        test_struve_old \
        test_summation \
        test_theta \
-       test_polygamma
+       test_tricomi_u \
+       test_wright_omega
 
 CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/check_airy_bi \
@@ -522,7 +525,7 @@ test_airy: test_airy.cpp sf_airy.tcc
 	$(CXX) -o test_airy test_airy.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 
 test_csint: test_csint.cpp csint.tcc
-	$(CXX) -o test_csint test_csint.cpp -lquadmath
+	$(CXX17) -I. -o test_csint test_csint.cpp -lquadmath
 
 test_Faddeeva: $(FAD_DIR)/Faddeeva.h $(FAD_DIR)/Faddeeva.cpp
 	$(CXX) -DTEST_FADDEEVA -o $(FAD_DIR)/test_Faddeeva $(FAD_DIR)/Faddeeva.cpp -lquadmath
@@ -531,10 +534,10 @@ test_fresnel: test_fresnel.cpp fresnel.tcc
 	$(CXX17) -I. -o test_fresnel test_fresnel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_hermite: test_hermite.cpp new_hermite.tcc
-	$(CXX17) -o test_hermite test_hermite.cpp -lquadmath
+	$(CXX17) -I. -o test_hermite test_hermite.cpp -lquadmath
 
 test_bessel: test_bessel.cpp new_bessel.tcc
-	$(CXX) -o test_bessel test_bessel.cpp -lquadmath
+	$(CXX17) -I. -o test_bessel test_bessel.cpp -lquadmath
 
 test_nric_bessel: test_nric_bessel.cpp nric_bessel.tcc
 	$(CXX) -o test_nric_bessel test_nric_bessel.cpp -lquadmath
@@ -591,7 +594,7 @@ test_conf_hyperg_limit: test_conf_hyperg_limit.cpp
 	$(CXX17) -I. -o test_conf_hyperg_limit test_conf_hyperg_limit.cpp -lquadmath
 
 test_const: test_const.cpp
-	$(CXX17) -I. -o test_const test_const.cpp -lquadmath -lmpfr
+	$(CXX17) -I. -I../mpreal -o test_const test_const.cpp -lquadmath -lmpfr
 
 test_continued_fraction: test_continued_fraction.cpp
 	$(CXX17) -I. -o test_continued_fraction test_continued_fraction.cpp -lquadmath
@@ -696,7 +699,7 @@ test_notsospecfun: test_notsospecfun.cpp
 	$(CXX17) -I. -o test_notsospecfun test_notsospecfun.cpp -lquadmath
 
 test_numeric_limits: test_numeric_limits.cpp
-	$(CXX17) -I. -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr
+	$(CXX17) -I. -I../mpreal -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr
 
 test_owens_t: test_owens_t.cpp
 	$(CXX17) -I. -o test_owens_t test_owens_t.cpp -lquadmath -Lwrappers/debug -lwrap_boost
@@ -752,6 +755,9 @@ test_sincos: test_sincos.cpp
 test_sinus_cardinal: test_sinus_cardinal.cpp
 	$(CXX17) -I. -o test_sinus_cardinal test_sinus_cardinal.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost
 
+test_solvers: test_solvers.cpp
+	$(CXX17) -I. -o test_solvers test_solvers.cpp -lquadmath
+
 test_sph_bessel: test_sph_bessel.cpp
 	$(CXX17) -I. -o test_sph_bessel test_sph_bessel.cpp -lquadmath
 
@@ -776,8 +782,11 @@ test_summation: test_summation.cpp
 test_theta: test_theta.cpp
 	$(CXX17) -I. -o test_theta test_theta.cpp -lquadmath
 
-test_trigamma: test_trigamma.cpp
-	$(CXX17) -I. -o test_trigamma test_trigamma.cpp -lquadmath
+test_tricomi_u: test_tricomi_u.cpp
+	$(CXX17) -I. -o test_tricomi_u test_tricomi_u.cpp -lquadmath
+
+test_wright_omega: test_wright_omega.cpp
+	$(CXX17) -I. -o test_wright_omega test_wright_omega.cpp -lquadmath
 
 
 airy_toy: airy_toy.cpp
