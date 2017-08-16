@@ -2,9 +2,16 @@
 # -Wconversion
 
 SUFFIX = _tr29124
-
 CXX_INST_DIR = $(HOME)/bin$(SUFFIX)
-CXX_SRC_DIR = $(HOME)/gcc$(SUFFIX)
+#ifeq ($(wildcard "$(CXX_INST_DIR)"),)
+#  SUFFIX = 
+#  CXX_INST_DIR = $(HOME)/bin
+#  echo $(CXX_INST_DIR)
+#  ifeq ($(wildcard $(CXX_INST_DIR)),)
+#    CXX_INST_DIR = /usr/bin
+#    echo $(CXX_INST_DIR)
+#  endif
+#endif
 
 GFORTRAN = $(CXX_INST_DIR)/bin/gfortran -g -Wall -Wextra -Wno-compare-reals
 GCC = $(CXX_INST_DIR)/bin/gcc -g -Wall -Wextra
@@ -12,7 +19,6 @@ CXX = $(CXX_INST_DIR)/bin/g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ 
 CXX17 = $(CXX_INST_DIR)/bin/g++ -std=gnu++17 -fconcepts -g -Wall -Wextra -Wno-psabi
 CXX_INC_DIR = $(CXX_INST_DIR)/include/c++/7.0.0/bits
 CXX_LIB_DIR = $(CXX_INST_DIR)/lib64
-#CXX_TEST_INC_DIR = $(CXX_SRC_DIR)/libstdc++-v3/testsuite/util
 CXX_TEST_INC_DIR = .
 
 INC_DIR = bits
@@ -98,6 +104,7 @@ BINS = testcase \
        test_limits \
        test_little_airy \
        test_math_h \
+       test_mpreal \
        test_notsospecfun \
        test_nric_bessel \
        test_numeric_limits \
@@ -306,13 +313,13 @@ docs: bits/*
 	cd latex && make
 
 testcases2: testcase2
-	LD_LIBRARY_PATH=/home/ed/bin$(SUFFIX)/lib64:wrappers/debug:$$LD_LIBRARY_PATH ./testcase2
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):wrappers/debug:$$LD_LIBRARY_PATH ./testcase2
 
 testcases: testcase
-	LD_LIBRARY_PATH=/home/ed/bin$(SUFFIX)/lib64:wrappers/debug:$$LD_LIBRARY_PATH ./testcase
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):wrappers/debug:$$LD_LIBRARY_PATH ./testcase
 
 testcases_tr1: testcase_tr1
-	LD_LIBRARY_PATH=/home/ed/bin$(SUFFIX)/lib64:wrappers/debug:$$LD_LIBRARY_PATH ./testcase_tr1
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):wrappers/debug:$$LD_LIBRARY_PATH ./testcase_tr1
 
 diffs: diff_special_function
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):wrappers/debug:$$LD_LIBRARY_PATH ./diff_special_function > diff_special_function.txt
@@ -694,6 +701,9 @@ test_little_airy: test_little_airy.cpp
 
 test_math_h: test_math_h.cpp
 	$(CXX17) -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_math_h test_math_h.cpp -lquadmath
+
+test_mpreal: test_mpreal.cpp
+	$(CXX17) -I. -I../mpreal -o test_mpreal test_mpreal.cpp -lquadmath -lmpfr
 
 test_notsospecfun: test_notsospecfun.cpp
 	$(CXX17) -I. -o test_notsospecfun test_notsospecfun.cpp -lquadmath
