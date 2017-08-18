@@ -11,7 +11,7 @@ plot [-2.0:2.0][-1.0:2.0] \
                  "" index 1 using 1:2 with lines title "erf(x)"
 
 set xlabel "x"
-plot [-2.0:5.0][0.0:2.0] \
+plot [-2.0:2.0][0.0:5.0] \
   "test_erfc.txt" index 2 using 1:2 with lines title "i^{-1}erfc(x)", \
                "" index 2 using 1:3 with lines title "i^0erfc(x)", \
                "" index 2 using 1:4 with lines title "i^1erfc(x)", \

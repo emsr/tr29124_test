@@ -96,7 +96,7 @@ main(int n_app_args, char ** app_arg)
     {
       Bess = std::__detail::__cyl_bessel_jn(nu, x);
     }
-    catch (std::exception e)
+    catch (std::exception& e)
     {
       std::cout << '\n' << "Couldn't run main Bessel function." << '\n';
     }

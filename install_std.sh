@@ -16,17 +16,19 @@ if [ -d "$1" ]; then
 fi
 src_impl_dir="${src_dir}/bits"
 src_ext_dir="${src_dir}/ext"
+src_std_dir="${src_dir}/std"
 
-dst_dir="$HOME/bin${suffix}/include/c++/7.0.0"
+dst_dir="$HOME/bin${suffix}/include/c++/7.0.1"
 if [ -d "$2" ]; then 
   dst_dir="$2"
 fi
 dst_impl_dir="${dst_dir}/bits"
 dst_ext_dir="${dst_dir}/ext"
+dst_std_dir="${dst_dir}"
 
-${tool} "${src_dir}/cmath"                      "${dst_dir}/c_global"
-${tool} "${src_dir}/limits"                     "${dst_dir}/std"
-${tool} "${src_dir}/complex"                    "${dst_dir}/std"
+${tool} "${src_dir}/c_global/cmath"             "${dst_std_dir}/c_global"
+${tool} "${src_std_dir}/limits"                 "${dst_std_dir}"
+${tool} "${src_std_dir}/complex"                "${dst_std_dir}"
 
 ${tool} "${src_ext_dir}/cmath"                  "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/math_const.h"           "${dst_ext_dir}"
@@ -41,6 +43,7 @@ ${tool} "${src_impl_dir}/specfun_util.h"        "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/complex_util.h"        "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/complex_util.tcc"      "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/complex128.h"          "${dst_impl_dir}"
+${tool} "${src_impl_dir}/complex128_math.h"     "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/float128_io.h"         "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/float128_io.tcc"       "${dst_impl_dir}"
 ${tool} "${src_impl_dir}/float128_limits.h"     "${dst_impl_dir}"

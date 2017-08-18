@@ -749,7 +749,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
 
+#if __cplusplus > 201403L
       const auto __tht0 = __jacobi_theta_0_t(__lattice);
+#else
+      const auto __tht0 = __jacobi_theta_0_t<_Tp1, _Tp3>(__lattice);
+#endif
 
       const auto __th22 = __tht0.th2 * __tht0.th2;
       const auto __th24 = __th22 * __th22;
@@ -1132,7 +1136,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (std::abs(__q) < _S_q_min || std::abs(__q) > _S_q_max)
 	return __jacobi_theta_2_prod(__q, __x);
       else if (std::abs(__x) < _S_eps)
+#if __cplusplus > 201403
 	return __jacobi_theta_0_t(__jacobi_lattice_t<_Cmplx, _Cmplx>(__q)).th2;
+#else
+	return __jacobi_theta_0_t<_Cmplx, _Cmplx>(
+				__jacobi_lattice_t<_Cmplx, _Cmplx>(__q)).th2;
+#endif
       else
 	{
 	  const auto __lattice = __jacobi_lattice_t<_Cmplx, _Cmplx>(__q);
@@ -1316,7 +1325,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (std::abs(__q) < _S_q_min || std::abs(__q) > _S_q_max)
 	return __jacobi_theta_3_prod(__q, __x);
       else if (std::abs(__x) < _S_eps)
+#if __cplusplus > 201403L
 	return __jacobi_theta_0_t(__jacobi_lattice_t<_Cmplx, _Cmplx>(__q)).th3;
+#else
+	return __jacobi_theta_0_t<_Cmplx, _Cmplx>(
+				__jacobi_lattice_t<_Cmplx, _Cmplx>(__q)).th3;
+#endif
       else
 	{
 	  const auto __lattice = __jacobi_lattice_t<_Cmplx, _Cmplx>(__q);
@@ -1497,7 +1511,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (std::abs(__q) < _S_q_min || std::abs(__q) > _S_q_max)
 	return __jacobi_theta_4_prod(__q, __x);
       else if (std::abs(__x) < _S_eps)
+#if __cplusplus > 201403L
 	return __jacobi_theta_0_t(__jacobi_lattice_t<_Cmplx, _Cmplx>(__q)).th4;
+#else
+	return __jacobi_theta_0_t<_Cmplx, _Cmplx>(
+				__jacobi_lattice_t<_Cmplx, _Cmplx>(__q)).th4;
+#endif
       else
 	{
 	  const auto __lattice = __jacobi_lattice_t<_Cmplx, _Cmplx>(__q);
