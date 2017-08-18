@@ -3,15 +3,13 @@
 
 SUFFIX = _tr29124
 CXX_INST_DIR = $(HOME)/bin$(SUFFIX)
-#ifeq ($(wildcard "$(CXX_INST_DIR)"),)
-#  SUFFIX = 
-#  CXX_INST_DIR = $(HOME)/bin
-#  echo $(CXX_INST_DIR)
-#  ifeq ($(wildcard $(CXX_INST_DIR)),)
-#    CXX_INST_DIR = /usr/bin
-#    echo $(CXX_INST_DIR)
-#  endif
-#endif
+ifeq ("$(wildcard $(CXX_INST_DIR))","")
+  SUFFIX = 
+  CXX_INST_DIR = $(HOME)/bin
+  ifeq ($(wildcard $(CXX_INST_DIR)),)
+    CXX_INST_DIR = /usr/bin
+  endif
+endif
 
 GFORTRAN = $(CXX_INST_DIR)/bin/gfortran -g -Wall -Wextra -Wno-compare-reals
 GCC = $(CXX_INST_DIR)/bin/gcc -g -Wall -Wextra
