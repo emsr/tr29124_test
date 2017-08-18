@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+  "http://www.w3.org/TR/REC-html40/transitional.dtd">
+<HTML>
+<HEAD>
+  <TITLE>VecMat - Error Checking</TITLE>
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=iso-8859-1">
+  <META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+  <META NAME="Author" CONTENT="Kevin Dolan">
+  <LINK HREF="vecmat.css" REL="stylesheet" TYPE="text/css">
+</HEAD>
+
+<BODY>
+
+<H1>6. Error Checking.</H2>
+
+<P>The <EM>VecMat</EM> software provides basic error checking for its classes
+and functions. Rather than throwing exceptions, I have used the simpler and
+more straightforward method of simply aborting with a run-time error when
+something undefined happens. Most of the error checking incurs no significant
+performance hit, and is enabled all of the time. Bounds-checking when indexing
+vectors and matrices can be a very inefficient process, though, so this is by
+default enabled only for debug builds. No error checking is done for iterators,
+with the exception that the <CODE>rbegin()</CODE>, <CODE>rend()</CODE>,
+<CODE>cbegin()</CODE>, and <CODE>cend()</CODE> matrix member functions will
+generate an error if you attempt to create an iterator to a row or column that
+does not exist.</P>
+
+<P>There are three types of errors that the <EM>VecMat</EM> software can
+produce.</P>
+
+<H2>6.1. Memory allocation error.</H2>
+
+<P>This occurs when the software attempts to allocate memory for a block of
+data, and fails.</P>
+
+<H2>6.2. Size mismatch error.</H2>
+
+<P>This occurs when a function or operator requires that two objects have the
+same size (or in the case of the <CODE>MatMult()</CODE> functions, when a
+relationship between dimensions must exist), and this requirement is not met.
+An error will also be returned if functions are called for empty objects that
+don't make any sense for such objects, such as <CODE>sum()</CODE>,
+<CODE>min()</CODE>, and <CODE>max()</CODE>.</P>
+
+<H2>6.3. Index out of bounds error.</H2>
+
+<P>This occurs when you attempt to create a view of an object that would end up
+viewing outside of the boundaries of the original object. If bounds-checking is
+enabled, then it will also occur if you attempt to index a vector or matrix out
+of bounds.</P>
+
+<P><A HREF="VM_Tips.htm">Next Section</A></P>
+<P><A HREF="VecMat.htm">Back to Index</A></P>
+
+</BODY>
+</HTML>
+

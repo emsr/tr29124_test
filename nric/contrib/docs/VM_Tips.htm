@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+  "http://www.w3.org/TR/REC-html40/transitional.dtd">
+<HTML>
+<HEAD>
+  <TITLE>VecMat - Performance Tips</TITLE>
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=iso-8859-1">
+  <META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+  <META NAME="Author" CONTENT="Kevin Dolan">
+  <LINK HREF="vecmat.css" REL="stylesheet" TYPE="text/css">
+</HEAD>
+
+<BODY>
+
+<H1>7. Performance Issues and Tips.</H1>
+
+<P>The primary purpose of this software is to maximize both performance and
+flexibility. That said, there are many things that can be done to make optimal
+use of this software.</P>
+
+<H2>7.1. Use the Views.</H2>
+
+<P>Creating a new view of data is not only more memory efficient than copying
+the data into a new object, it is also much faster. One place where this can
+make a big difference is when you are accepting the result of a function that
+returns a vector or a matrix. Consider the following example:</P>
+
+<DIV CLASS=sc><CODE>
+<P>Vec_DP x(10), y(10);</P>
+<P>UniformGen gen(0);</P>
+<P>x.fill(gen);</P>
+<P>y = sqrt(x);</P>
+</CODE></DIV>
+
+<P>The <CODE>sqrt()</CODE> function creates a temporary vector, whose contents
+are then copied into <CODE>y</CODE>. Now consider this alternative:</P>
+
+<DIV CLASS=sc><CODE>
+<P>Vec_DP(10), y;</P>
+<P>Uniformgen gen(0);</P>
+<P>x.fill(gen);</P>
+<P>y.reference(sqrt(x));</P>
+</CODE></DIV>
+
+<P>In this case, <CODE>y</CODE> simply takes over the data of the returned
+vector. Not only does this eliminate the unnecessary copy operation, but it
+also means that we do not have to allocate any memory to <CODE>y</CODE>
+initially. Whenever possible, the <EM>VecMat</EM> routines return views of
+already existing data, rather than new data. For example:</P>
+
+<DIV CLASS=sc><CODE>
+<P>Vec_INT x(0, 10, 1), y(10);</P>
+<P>y = x.slice(9, 10, -1);</P>
+</CODE></DIV>
+
+<P>This code generates a vector of integers starting with zero, and
+incrementing by one up to 9. This vector is then copied into <CODE>y</CODE> in
+reverse order. The <CODE>slice()</CODE> function returns a view, though, not a
+unique object. This means that if <CODE>x</CODE> and <CODE>y</CODE> do not
+explicitly need to each have their own data; we can improve performance with
+the following code:</P>
+
+<DIV CLASS=sc><CODE>
+<P>Vec_INT x(0, 10, 1), y;</P>
+<P>y.reference(x.slice(9, 10, -1));</P>
+</CODE></DIV>
+
+<P>Here the variable <CODE>y</CODE> just takes over the view returned by the
+slice. No extra memory is needed, and no copying is done.</P>
+
+<H2>7.2. Use Arithmetic Assignment Operators.</H2>
+
+<P>Whenever possible, use the arithmetic assignment operators instead of the
+binary arithmetic operators. Once again, this cuts down on the creation of
+temporaries, and eliminates unnecessary copying. Similarly, it may be more
+efficient to use the <CODE>apply()</CODE> function than to use the overloaded
+math functions, because the overloaded math functions produce temporaries, and
+then store the results of the function in them, whereas the
+<CODE>apply()</CODE> function applies the function directly to the vector or
+matrix. If you no longer need the original contents of the vector or matrix,
+this is definitely the way to go.</P>
+
+<H2>7.3. Use the Function Call Operator <CODE>()</CODE> for Indexing
+Matrices.</H2>
+
+<P>It is much more efficient to index a matrix with the function call operator,
+ie <CODE>x(i, j)</CODE>, than with the C-style bracket notation, ie
+<CODE>x[I][j]</CODE>. This is because the function call operator returns a
+reference to the appropriate element, whereas the bracket operator returns an
+iterator to the <CODE>i</CODE>th row, exactly like the <CODE>rbegin()</CODE>
+member function. The C-style indexing is included only to provide compatibility
+with other software, like <EM>Numerical Recipes in C++</EM>, which use this
+notation for indexing matrices.</P>
+
+<P><A HREF="VM_NR.htm">Next Section</A></P>
+<P><A HREF="VecMat.htm">Back to Index</A></P>
+
+</BODY>
+</HTML>
