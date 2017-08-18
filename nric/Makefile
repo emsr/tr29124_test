@@ -62,7 +62,7 @@ cheb: cheb.c chebyshev.c dvector.c fvector.c memory.c poly.c nric.c
 	gcc -std=c11 -o cheb cheb.c chebyshev.c dvector.c fvector.c memory.c poly.c nric.c
 
 matrix: matrix.c gauss_jordan.c lu_decomp.c qr_decomp.c sv_decomp.c cholesky_decomp.c dvector.c fvector.c memory.c nric.c dlinear.c flinear.c util.c
-	gcc -std=c11 -o matrix matrix.c gauss_jordan.c lu_decomp.c qr_decomp.c sv_decomp.c cholesky_decomp.c dvector.c fvector.c memory.c nric.c dlinear.c flinear.c util.c
+	gcc -std=c11 -o matrix matrix.c gauss_jordan.c lu_decomp.c qr_decomp.c sv_decomp.c cholesky_decomp.c dvector.c fvector.c memory.c nric.c dlinear.c flinear.c util.c -lm
 
 u: u.c util.c nric.c
 	gcc -std=c11 -o u u.c util.c nric.c

@@ -5,6 +5,7 @@
 
 #include "nric.h"
 
+int
 main() {
 
     double **a, **ainv, **ain, **b, **bin;
@@ -324,5 +325,7 @@ main() {
     free_dvector( w, 1, 3 );
     free_dvector( d, 1, 3 );
     free_ivector( i, 1, 3 );
+
+    return 0;
 }
 
