@@ -429,7 +429,7 @@ burkhadt_test()
 };
 
 void
-test_burkhadt_boundary()
+test_burkhardt_boundary()
 {
   double a;
   double b;
@@ -626,7 +626,7 @@ test_burkhadt_boundary()
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
        << std::imag ( w ) << "\n"; 
-    }
+  }
 
   //  Region 11
   //  x=1.0 y=[1.0,pi]
@@ -1023,7 +1023,7 @@ int
 main()
 {
   burkhadt_test();
-  test_burkhadt_boundary();
+  test_burkhardt_boundary();
 
   test_wright_omega<double>();
 }

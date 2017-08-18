@@ -117,6 +117,8 @@ __float128 ynq (int, __float128) _GLIBCXX_NOEXCEPT;
 #define FLT128_MIN_10_EXP (-4931)
 #define FLT128_MAX_10_EXP 4932
 
+extern "C++"
+{
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
@@ -170,10 +172,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return coshq(__x); }
 
   inline __float128
-  exp(__float128 __x) _GLIBCXX_USE_NOEXCEPT
-  { return expq(__x); }
-
-  inline __float128
   erf(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return erfq(__x); }
 
@@ -182,8 +180,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return erfcq(__x); }
 
   inline __float128
+  exp(__float128 __x) _GLIBCXX_USE_NOEXCEPT
+  { return expq(__x); }
+
+  inline __float128
   expm1(__float128 __x) _GLIBCXX_USE_NOEXCEPT
   { return expm1q(__x); }
+
+  // libquadmath should get a real exp2!
+  inline __float128
+  exp2(__float128 __x) _GLIBCXX_USE_NOEXCEPT
+  { return powq(2, __x); }
 
   inline __float128
   fabs(__float128 __x) _GLIBCXX_USE_NOEXCEPT
@@ -384,6 +391,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
+} // extern "C++"
 
 #endif // _GLIBCXX_HAVE_FLOAT128_MATH
 
