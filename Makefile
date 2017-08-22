@@ -7,7 +7,7 @@ ifeq ("$(wildcard $(CXX_INST_DIR))","")
   SUFFIX = 
   CXX_INST_DIR = $(HOME)/bin
   ifeq ($(wildcard $(CXX_INST_DIR)),)
-    CXX_INST_DIR = /usr/bin
+    CXX_INST_DIR = /usr
   endif
 endif
 
