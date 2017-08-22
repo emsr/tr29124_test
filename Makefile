@@ -6,8 +6,12 @@ CXX_INST_DIR = $(HOME)/bin$(SUFFIX)
 ifeq ("$(wildcard $(CXX_INST_DIR))","")
   SUFFIX = 
   CXX_INST_DIR = $(HOME)/bin
-  ifeq ($(wildcard $(CXX_INST_DIR)),)
-    CXX_INST_DIR = /usr
+  ifeq ("$(wildcard $(CXX_INST_DIR))","")
+    ifneq ($(wildcard "/mingw64"),"")
+      CXX_INST_DIR = /mingw64
+    else
+      CXX_INST_DIR = /usr
+    endif
   endif
 endif
 
