@@ -325,7 +325,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
         __ans += std::pow(_Val(__k + 1), -__s);
 
       auto __fact = __pmax * __s / _Val{_S_N + 1};
-      auto __delta_prev = __gnu_cxx::__max(__s);
+      auto __delta_prev = __gnu_cxx::__lim_max(__s);
       for (auto __j = 0; __j < _S_jmax; ++__j)
         {
 	  auto __delta = _S_Euler_Maclaurin_zeta[__j + 1] * __fact;

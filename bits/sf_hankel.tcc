@@ -116,7 +116,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Cmplx = std::complex<_Tp>;
 
-      const auto _S_inf = __gnu_cxx::__max(std::real(__zhat));
+      const auto _S_inf = __gnu_cxx::__lim_max(std::real(__zhat));
 
       const auto _S_1d4   = _Tp{0.25L};
       const auto _S_1d3   = _Tp{1} / _Tp{3};
