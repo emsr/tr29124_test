@@ -17,7 +17,7 @@ elseif (EXISTS "/$ENV{MSYSTEM}/bin")
 	set(CMAKE_C_COMPILER "/$ENV{MSYSTEM}/bin/gcc")
 	set(CMAKE_CXX_COMPILER "/$ENV{MSYSTEM}/bin/g++")
 	set(CMAKE_Fortran_COMPILER "/$ENV{MSYSTEM}/bin/gfortran")
-else
+else ()
 	set(CMAKE_C_COMPILER "/usr/bin/gcc")
 	set(CMAKE_CXX_COMPILER "/usr/bin/g++")
 	set(CMAKE_Fortran_COMPILER "/usr/bin/gfortran")
@@ -245,7 +245,7 @@ add_library(wrap_lerchphi SHARED
 
 add_library(wrap_faddeeva SHARED
             wrap_faddeeva.h wrap_faddeeva.cpp
-	    Faddeeva/Faddeeva.h Faddeeva/Faddeeva.cpp)
+	    Faddeeva/Faddeeva.hh Faddeeva/Faddeeva.cc)
 
 
 add_library(wrap_lambert SHARED

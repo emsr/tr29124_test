@@ -158,7 +158,7 @@
 
 #ifdef __cplusplus
 
-#  include "Faddeeva.h"
+#  include "Faddeeva.hh"
 
 #  include <cfloat>
 #  include <cmath>
@@ -195,7 +195,9 @@ static inline bool my_isinf(double x) { return 1/x == 0.; }
 #  endif
 
 // copysign was introduced in C++11 (and is also in POSIX and C99)
-#  if defined(_WIN32) || defined(__WIN32__)
+#  if (__cplusplus > 201103L)
+#    define copysign std::copysign
+#  elif defined(_WIN32) || defined(__WIN32__)
 #    define copysign _copysign // of course MS had to be different
 #  elif defined(GNULIB_NAMESPACE) // we are using using gnulib <cmath>
 #    define copysign GNULIB_NAMESPACE::copysign
