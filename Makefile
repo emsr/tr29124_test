@@ -301,11 +301,21 @@ all: $(BINS)
 
 .PHONY: wrappers_debug wrappers_release
 
-wrappers_debug:
+wrappers_debug: LambertW
+	(cd wrappers/debug; rm -rf *; cmake ../.. -DCMAKE_BUILD_TYPE=DEBUG -G"Unix Makefiles")
 	$(MAKE) -C wrappers/debug
 
-wrappers_release:
+wrappers_release: LambertW
+	(cd wrappers/debug; rm -rf *; cmake ../.. -DCMAKE_BUILD_TYPE=RELEASE -G"Unix Makefiles")
 	$(MAKE) -C wrappers/release
+
+LambertW:
+	ifeq ("$(wildcard LambertW)",""); then \
+	  git clone https://github.com/emsr/LambertW.git; \
+	endif
+
+mpreal:
+	cd $(HOME) && hg clone https://bitbucket.org/advanpix/mpreal
 
 
 docs: bits/*
@@ -506,22 +516,22 @@ check_tr1: $(CHECK_DIR) $(TR1_CHECKS)
 
 
 mpfrcalc: mpfr_gexpr.c
-	$(GCC) -I. -o mpfrcalc mpfr_gexpr.c -lgmp -lmpfr -lm
+	$(GCC) -I. -o mpfrcalc mpfr_gexpr.c -lmpfr -lgmp -lm
 
 
-test_special_function: test_special_function.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+test_special_function: wrappers_debug test_special_function.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
 	$(CXX17) -I. -o test_special_function test_special_function.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
-diff_special_function: diff_special_function.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+diff_special_function: wrappers_debug diff_special_function.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
 	$(CXX17) -I. -o diff_special_function diff_special_function.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
-testcase2: testcase2.cpp testcase2.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+testcase2: wrappers_debug testcase2.cpp testcase2.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
 	$(CXX17) -I. -o testcase2 testcase2.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
-testcase: testcase.cpp testcase.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+testcase: wrappers_debug testcase.cpp testcase.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
 	$(CXX17) -UTR1 -I. -o testcase testcase.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
-testcase_tr1: testcase.cpp testcase.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+testcase_tr1: wrappers_debug testcase.cpp testcase.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
 	$(CXX17) -DTR1 -I. -o testcase_tr1 testcase.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
 test_limits: test_limits.cpp
@@ -530,16 +540,16 @@ test_limits: test_limits.cpp
 test_cmath: test_cmath.cpp
 	$(CXX) -o test_cmath test_cmath.cpp -lquadmath
 
-test_airy: test_airy.cpp sf_airy.tcc
+test_airy: wrappers_debug test_airy.cpp sf_airy.tcc
 	$(CXX) -o test_airy test_airy.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 
 test_csint: test_csint.cpp csint.tcc
 	$(CXX17) -I. -o test_csint test_csint.cpp -lquadmath
 
-test_Faddeeva: $(FAD_DIR)/Faddeeva.h $(FAD_DIR)/Faddeeva.cpp
-	$(CXX) -DTEST_FADDEEVA -o $(FAD_DIR)/test_Faddeeva $(FAD_DIR)/Faddeeva.cpp -lquadmath
+test_Faddeeva: $(FAD_DIR)/Faddeeva.hh $(FAD_DIR)/Faddeeva.cc
+	$(CXX) -DTEST_FADDEEVA -o $(FAD_DIR)/test_Faddeeva $(FAD_DIR)/Faddeeva.cc -lquadmath
 
-test_fresnel: test_fresnel.cpp fresnel.tcc
+test_fresnel: wrappers_debug test_fresnel.cpp fresnel.tcc
 	$(CXX17) -I. -o test_fresnel test_fresnel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_hermite: test_hermite.cpp new_hermite.tcc
@@ -554,7 +564,7 @@ test_nric_bessel: test_nric_bessel.cpp nric_bessel.tcc
 test_anger_weber: test_anger_weber.cpp
 	$(CXX17) -I. -o test_anger_weber test_anger_weber.cpp -lquadmath
 
-test_bernoulli: test_bernoulli.cpp
+test_bernoulli: wrappers_debug test_bernoulli.cpp
 	$(CXX17) -I. -o test_bernoulli test_bernoulli.cpp -lquadmath -Lwrappers/debug -lwrap_burkhardt -lgfortran
 
 test_bessel_asymp: test_bessel_asymp.cpp
@@ -563,7 +573,7 @@ test_bessel_asymp: test_bessel_asymp.cpp
 test_bessel_iter: test_bessel_iter.cpp
 	$(CXX17) -I. -o test_bessel_iter test_bessel_iter.cpp -lquadmath
 
-test_beta: test_beta.cpp
+test_beta: wrappers_debug test_beta.cpp
 	$(CXX17) -I. -o test_beta test_beta.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_beta_inc: test_beta_inc.cpp
@@ -587,7 +597,7 @@ test_chebyshev_trig: test_chebyshev_trig.cpp
 test_chebyshev_trig_pi: test_chebyshev_trig_pi.cpp
 	$(CXX17) -I. -o test_chebyshev_trig_pi test_chebyshev_trig_pi.cpp -lquadmath
 
-test_clausen: test_clausen.cpp
+test_clausen: wrappers_debug test_clausen.cpp
 	$(CXX17) -I. -o test_clausen test_clausen.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 
 test_comp_ellint_1: test_comp_ellint_1.cpp
@@ -603,42 +613,42 @@ test_conf_hyperg_limit: test_conf_hyperg_limit.cpp
 	$(CXX17) -I. -o test_conf_hyperg_limit test_conf_hyperg_limit.cpp -lquadmath
 
 test_const: test_const.cpp
-	$(CXX17) -I. -I../mpreal -o test_const test_const.cpp -lquadmath -lmpfr
+	$(CXX17) -I. -I../mpreal -o test_const test_const.cpp -lquadmath -lmpfr -lgmp
 
 test_continued_fraction: test_continued_fraction.cpp
 	$(CXX17) -I. -o test_continued_fraction test_continued_fraction.cpp -lquadmath
 
-test_cyl_hankel: test_cyl_hankel.cpp
+test_cyl_hankel: wrappers_debug test_cyl_hankel.cpp
 	$(CXX17) -I. -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_dawson: test_dawson.cpp
 	$(CXX17) -I. -o test_dawson test_dawson.cpp -lquadmath
 
-test_debye: test_debye.cpp
+test_debye: wrappers_debug test_debye.cpp
 	$(CXX17) -I. -o test_debye test_debye.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 
 test_dilog: test_dilog.cpp
 	$(CXX17) -I. -o test_dilog test_dilog.cpp -lquadmath
 
-test_expint: test_expint.cpp
+test_expint: wrappers_debug test_expint.cpp
 	$(CXX17) -I. -o test_expint test_expint.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_factorial: test_factorial.cpp
 	$(CXX17) -I. -o test_factorial test_factorial.cpp -lquadmath
 
-test_falling_factorial: test_falling_factorial.cpp
+test_falling_factorial: wrappers_debug test_falling_factorial.cpp
 	$(CXX17) -I. -o test_falling_factorial test_falling_factorial.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
-test_fermi_dirac: test_fermi_dirac.cpp
+test_fermi_dirac: wrappers_debug test_fermi_dirac.cpp
 	$(CXX17) -I. -o test_fermi_dirac test_fermi_dirac.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 
 test_float128: test_float128.cpp
 	$(CXX17) -I. -o test_float128 test_float128.cpp -lquadmath
 
-test_gamma: test_gamma.cpp
+test_gamma: wrappers_debug test_gamma.cpp
 	$(CXX17) -I. -o test_gamma test_gamma.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
-test_gamma_ratio: test_gamma_ratio.cpp
+test_gamma_ratio: wrappers_debug test_gamma_ratio.cpp
 	$(CXX17) -I. -o test_gamma_ratio test_gamma_ratio.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_gamma_reciprocal: test_gamma_reciprocal.cpp
@@ -650,10 +660,10 @@ test_gegenbauer: test_gegenbauer.cpp
 test_hankel: test_hankel.cpp
 	$(CXX17) -I. -o test_hankel test_hankel.cpp -lquadmath
 
-test_hankel_real_arg: test_hankel_real_arg.cpp
+test_hankel_real_arg: wrappers_debug test_hankel_real_arg.cpp
 	$(CXX17) -I. -o test_hankel_real_arg test_hankel_real_arg.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
-test_heuman_lambda: test_heuman_lambda.cpp
+test_heuman_lambda: wrappers_debug test_heuman_lambda.cpp
 	$(CXX17) -I. -o test_heuman_lambda test_heuman_lambda.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_hurwitz_zeta: test_hurwitz_zeta.cpp
@@ -662,7 +672,7 @@ test_hurwitz_zeta: test_hurwitz_zeta.cpp
 test_hurwitz_zeta_new: test_hurwitz_zeta_new.cpp
 	$(CXX17) -I. -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 
-test_hyperg: test_hyperg.cpp
+test_hyperg: wrappers_debug test_hyperg.cpp
 	$(CXX17) -I. -o test_hyperg test_hyperg.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 
 test_hypot: test_hypot.cpp
@@ -680,7 +690,7 @@ test_jacobi: test_jacobi.cpp
 test_jacobi_inv: test_jacobi_inv.cpp
 	$(CXX17) -I. -o test_jacobi_inv test_jacobi_inv.cpp -lquadmath
 
-test_jacobi_zeta: test_jacobi_zeta.cpp
+test_jacobi_zeta: wrappers_debug test_jacobi_zeta.cpp
 	$(CXX17) -I. -o test_jacobi_zeta test_jacobi_zeta.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_kelvin: test_kelvin.cpp
@@ -698,28 +708,28 @@ test_lentz_continued_fraction: test_lentz_continued_fraction.cpp
 test_lerch: test_lerch.cpp
 	$(CXX17) -I. -o test_lerch test_lerch.cpp lerchphi/Source/lerchphi.cpp -lquadmath
 
-test_little_airy: test_little_airy.cpp
+test_little_airy: wrappers_debug test_little_airy.cpp
 	$(CXX17) -I. -o test_little_airy test_little_airy.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 
 test_math_h: test_math_h.cpp
 	$(CXX17) -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_math_h test_math_h.cpp -lquadmath
 
 test_mpreal: test_mpreal.cpp
-	$(CXX17) -I. -I../mpreal -o test_mpreal test_mpreal.cpp -lquadmath -lmpfr
+	$(CXX17) -I. -I../mpreal -o test_mpreal test_mpreal.cpp -lquadmath -lmpfr -lgmp
 
 test_notsospecfun: test_notsospecfun.cpp
 	$(CXX17) -I. -o test_notsospecfun test_notsospecfun.cpp -lquadmath
 
 test_numeric_limits: test_numeric_limits.cpp
-	$(CXX17) -I. -I../mpreal -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr
+	$(CXX17) -I. -I../mpreal -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr -lgmp
 
-test_owens_t: test_owens_t.cpp
+test_owens_t: wrappers_debug test_owens_t.cpp
 	$(CXX17) -I. -o test_owens_t test_owens_t.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_parab_cyl: test_parab_cyl.cpp
 	$(CXX17) -I. -o test_parab_cyl test_parab_cyl.cpp -lquadmath
 
-test_polylog: test_polylog.cpp
+test_polylog: wrappers_debug test_polylog.cpp
 	$(CXX17) -I. -o test_polylog test_polylog.cpp -lquadmath -Lwrappers/debug -lwrap_cephes
 
 test_polygamma: test_polygamma.cpp
@@ -734,7 +744,7 @@ test_power_mean: test_power_mean.cpp
 test_power_norm: test_power_norm.cpp
 	$(CXX17) -I. -o test_power_norm test_power_norm.cpp -lquadmath
 
-test_psi: test_psi.cpp
+test_psi: wrappers_debug test_psi.cpp
 	$(CXX17) -I. -o test_psi test_psi.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 
 test_rational: test_rational.cpp
@@ -749,13 +759,13 @@ test_recursion: test_recursion.cpp
 test_reperiodized_hyper: test_reperiodized_hyper.cpp
 	$(CXX17) -I. -o test_reperiodized_hyper test_reperiodized_hyper.cpp -lquadmath
 
-test_reperiodized_trig: test_reperiodized_trig.cpp
+test_reperiodized_trig: wrappers_debug test_reperiodized_trig.cpp
 	$(CXX17) -I. -o test_reperiodized_trig test_reperiodized_trig.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_riemann_zeta: test_riemann_zeta.cpp
 	$(CXX17) -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath
 
-test_rising_factorial: test_rising_factorial.cpp
+test_rising_factorial: wrappers_debug test_rising_factorial.cpp
 	$(CXX17) -I. -o test_rising_factorial test_rising_factorial.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_root_finding: test_root_finding.cpp
@@ -764,7 +774,7 @@ test_root_finding: test_root_finding.cpp
 test_sincos: test_sincos.cpp
 	$(CXX17) -I. -o test_sincos test_sincos.cpp -lquadmath
 
-test_sinus_cardinal: test_sinus_cardinal.cpp
+test_sinus_cardinal: wrappers_debug test_sinus_cardinal.cpp
 	$(CXX17) -I. -o test_sinus_cardinal test_sinus_cardinal.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost
 
 test_solvers: test_solvers.cpp
@@ -773,7 +783,7 @@ test_solvers: test_solvers.cpp
 test_sph_bessel: test_sph_bessel.cpp
 	$(CXX17) -I. -o test_sph_bessel test_sph_bessel.cpp -lquadmath
 
-test_sph_hankel: test_sph_hankel.cpp
+test_sph_hankel: wrappers_debug test_sph_hankel.cpp
 	$(CXX17) -I. -o test_sph_hankel test_sph_hankel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 
 test_static_polynomial: test_static_polynomial.cpp
