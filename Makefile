@@ -77,6 +77,7 @@ BINS = testcase \
        test_dilog \
        test_expint \
        test_factorial \
+       test_faddeeva \
        test_falling_factorial \
        test_fermi_dirac \
        test_float128 \
@@ -635,6 +636,9 @@ test_expint: wrappers_debug test_expint.cpp
 
 test_factorial: test_factorial.cpp
 	$(CXX17) -I. -o test_factorial test_factorial.cpp -lquadmath
+
+test_faddeeva: wrappers_debug test_faddeeva.cpp
+	$(CXX17) -I. -o test_faddeeva test_faddeeva.cpp -lquadmath -Lwrappers/debug -lwrap_faddeeva
 
 test_falling_factorial: wrappers_debug test_falling_factorial.cpp
 	$(CXX17) -I. -o test_falling_factorial test_falling_factorial.cpp -lquadmath -Lwrappers/debug -lwrap_boost
