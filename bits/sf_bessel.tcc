@@ -205,7 +205,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // When the multiplier is N i.e.
       // fp_min = N * min()
       // Then J_0 and N_0 tank at x = 8 * N (J_0 = 0 and N_0 = nan)!
-      //const _Tp _S_fp_min = _Tp{20} * __gnu_cxx::__min(__nu);
+      //const _Tp _S_fp_min = _Tp{20} * __gnu_cxx::__lim_min(__nu);
       constexpr int _S_max_iter = 15000;
       const auto _S_x_min = _Tp{2};
       const auto _S_fp_min = __gnu_cxx::__sqrt_min(__nu);

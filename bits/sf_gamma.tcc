@@ -2699,7 +2699,7 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      const auto _S_fpmin = _Real{3} * __gnu_cxx::__min(__a);
+      const auto _S_fpmin = _Real{3} * __gnu_cxx::__lim_min(__a);
       const auto _S_eps = _Real{3} * __gnu_cxx::__epsilon(__a);
       const auto _S_itmax = 10 * int(10 + std::sqrt(std::abs(__a)));
 

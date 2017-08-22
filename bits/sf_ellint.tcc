@@ -85,8 +85,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__x));
-      const auto _S_min = __gnu_cxx::__min(std::real(__x));
-      const auto _S_max = __gnu_cxx::__max(std::real(__x));
+      const auto _S_min = __gnu_cxx::__lim_min(std::real(__x));
+      const auto _S_max = __gnu_cxx::__lim_max(std::real(__x));
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__x));
       const auto _S_lolim = _Real{5} * _S_min;
       const auto _S_uplim = _S_max / _Real{5};
@@ -167,8 +167,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__x));
-      const auto _S_min = __gnu_cxx::__min(std::real(__x));
-      const auto _S_max = __gnu_cxx::__max(std::real(__x));
+      const auto _S_min = __gnu_cxx::__lim_min(std::real(__x));
+      const auto _S_max = __gnu_cxx::__lim_max(std::real(__x));
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__x));
       const auto _S_lolim = _Real{5} * _S_min;
       const auto _S_uplim = _S_max / _Real{5};
@@ -281,8 +281,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__x));
-      const auto _S_min = __gnu_cxx::__min(std::real(__x));
-      const auto _S_max = __gnu_cxx::__max(std::real(__x));
+      const auto _S_min = __gnu_cxx::__lim_min(std::real(__x));
+      const auto _S_max = __gnu_cxx::__lim_max(std::real(__x));
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__x));
       const auto _S_lolim = _Real(5) * _S_min;
       const auto _S_uplim = _S_max / _Real(5);
@@ -460,8 +460,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__x));
-      const auto _S_min = __gnu_cxx::__min(std::real(__x));
-      const auto _S_max = __gnu_cxx::__max(std::real(__x));
+      const auto _S_min = __gnu_cxx::__lim_min(std::real(__x));
+      const auto _S_max = __gnu_cxx::__lim_max(std::real(__x));
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__x));
       const auto _S_lolim = _Real(5) * _S_min;
       const auto _S_uplim = _S_max / _Real(5);

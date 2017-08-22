@@ -239,7 +239,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __ibeta_cont_frac(_Tp __a, _Tp __b, _Tp __x)
     {
       constexpr unsigned int _S_itmax = 100;
-      const auto _S_fpmin = 1000 * __gnu_cxx::__min<_Tp>();
+      const auto _S_fpmin = 1000 * __gnu_cxx::__lim_min<_Tp>();
       const auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
 
       auto __apb = __a + __b;
