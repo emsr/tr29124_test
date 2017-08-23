@@ -110,7 +110,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_max_iter = 100;
       const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__ax);
-      const auto _S_fp_min = __gnu_cxx::__min(__ax);
+      const auto _S_fp_min = __gnu_cxx::__lim_min(__ax);
       const auto _S_pi = __gnu_cxx::__const_pi(__ax);
 
       // Evaluate S and C by Lentz's complex continued fraction method.
@@ -169,7 +169,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __fresnel(const _Tp __x)
     {
-      const auto _S_fp_min = __gnu_cxx::__min(__x);
+      const auto _S_fp_min = __gnu_cxx::__lim_min(__x);
       const auto _S_x_min = _Tp{1.5L};
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
       if (__isnan(__x))

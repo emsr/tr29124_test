@@ -56,12 +56,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<typename _Tp>
     _GLIBCXX_CONSTEXPR _Tp
-    __min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    __lim_min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::min(); }
 
   template<typename _Tp>
     _GLIBCXX_CONSTEXPR _Tp
-    __max(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
+    __lim_max(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<_Tp>::max(); }
 
   template<typename _Tp>
@@ -220,53 +220,53 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     inline _Tp
     __sqrt_max(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
-    { return std::sqrt(__max(_Tp{})); }
+    { return std::sqrt(__lim_max(_Tp{})); }
 
   template<typename _Tp>
     inline _Tp
     __cbrt_max(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
-    { return std::cbrt(__max(_Tp{})); }
+    { return std::cbrt(__lim_max(_Tp{})); }
 
   template<typename _Tp>
     inline _Tp
     __root_max(_Tp __root) _GLIBCXX_USE_NOEXCEPT
-    { return std::pow(__max(_Tp{}), 1 / __root); }
+    { return std::pow(__lim_max(_Tp{}), 1 / __root); }
 
   template<typename _Tp>
     inline _Tp
     __log_max(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
-    { return std::log(__max(_Tp{})); }
+    { return std::log(__lim_max(_Tp{})); }
 
   template<typename _Tp>
     inline _Tp
     __log10_max(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
-    { return std::log10(__max(_Tp{})); }
+    { return std::log10(__lim_max(_Tp{})); }
 
 
   template<typename _Tp>
     inline _Tp
     __sqrt_min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
-    { return std::sqrt(__min(_Tp{})); }
+    { return std::sqrt(__lim_min(_Tp{})); }
 
   template<typename _Tp>
     inline _Tp
     __cbrt_min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
-    { return std::cbrt(__min(_Tp{})); }
+    { return std::cbrt(__lim_min(_Tp{})); }
 
   template<typename _Tp>
     inline _Tp
     __root_min(_Tp __root) _GLIBCXX_USE_NOEXCEPT
-    { return std::pow(__min(_Tp{}), 1 / __root); }
+    { return std::pow(__lim_min(_Tp{}), 1 / __root); }
 
   template<typename _Tp>
     inline _Tp
     __log_min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
-    { return std::log(__min(_Tp{})); }
+    { return std::log(__lim_min(_Tp{})); }
 
   template<typename _Tp>
     inline _Tp
     __log10_min(_Tp = _Tp{}) _GLIBCXX_USE_NOEXCEPT
-    { return std::log10(__min(_Tp{})); }
+    { return std::log10(__lim_min(_Tp{})); }
 
   template<typename _Tp>
     inline _Tp

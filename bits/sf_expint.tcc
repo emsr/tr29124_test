@@ -199,7 +199,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const unsigned int _S_max_iter = 1000;
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_fp_min = _Tp{4} * __gnu_cxx::__min(__x);
+      const auto _S_fp_min = _Tp{4} * __gnu_cxx::__lim_min(__x);
       const int __nm1 = __n - 1;
       auto __b = __x + _Tp(__n);
       auto __c = _Tp{1} / _S_fp_min;

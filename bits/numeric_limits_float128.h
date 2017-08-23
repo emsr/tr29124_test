@@ -67,12 +67,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<>
     _GLIBCXX_CONSTEXPR __float128
-    __min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    __lim_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<__float128>::min(); }
 
   template<>
     _GLIBCXX_CONSTEXPR __float128
-    __max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    __lim_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
     { return std::numeric_limits<__float128>::max(); }
 
   template<>
@@ -232,53 +232,53 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<>
     inline __float128
     __sqrt_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::sqrt(__max(__float128{})); }
+    { return std::sqrt(__lim_max(__float128{})); }
 
   template<>
     inline __float128
     __cbrt_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::cbrt(__max(__float128{})); }
+    { return std::cbrt(__lim_max(__float128{})); }
 
   template<>
     inline __float128
     __root_max(__float128 __root) _GLIBCXX_USE_NOEXCEPT
-    { return std::pow(__max(__float128{}), 1 / __root); }
+    { return std::pow(__lim_max(__float128{}), 1 / __root); }
 
   template<>
     inline __float128
     __log_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::log(__max(__float128{})); }
+    { return std::log(__lim_max(__float128{})); }
 
   template<>
     inline __float128
     __log10_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::log10(__max(__float128{})); }
+    { return std::log10(__lim_max(__float128{})); }
 
 
   template<>
     inline __float128
     __sqrt_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::sqrt(__min(__float128{})); }
+    { return std::sqrt(__lim_min(__float128{})); }
 
   template<>
     inline __float128
     __cbrt_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::cbrt(__min(__float128{})); }
+    { return std::cbrt(__lim_min(__float128{})); }
 
   template<>
     inline __float128
     __root_min(__float128 __root) _GLIBCXX_USE_NOEXCEPT
-    { return std::pow(__min(__float128{}), 1 / __root); }
+    { return std::pow(__lim_min(__float128{}), 1 / __root); }
 
   template<>
     inline __float128
     __log_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::log(__min(__float128{})); }
+    { return std::log(__lim_min(__float128{})); }
 
   template<>
     inline __float128
     __log10_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::log10(__min(__float128{})); }
+    { return std::log10(__lim_min(__float128{})); }
 
   template<>
     inline __float128

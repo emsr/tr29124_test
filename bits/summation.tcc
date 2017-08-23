@@ -102,7 +102,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _VanWijngaardenCompressor<_TermFn>::operator[](std::size_t __j) const
     {
       using value_type = decltype(this->_M_term_fn(__j));
-      const auto _S_min = __gnu_cxx::__min<value_type>();
+      const auto _S_min = __gnu_cxx::__lim_min<value_type>();
       const auto _S_eps = __gnu_cxx::__epsilon<value_type>();
       // Maximum number of iterations before 2^k overflow.
       const auto __k_max = std::numeric_limits<std::size_t>::digits;
