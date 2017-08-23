@@ -68,17 +68,66 @@ namespace __gnu_cxx
 	}
     }
 
+
   template<typename _Real, typename _Iter>
     std::array<solution_t<_Real>, 2>
     __quadratic(const _Iter& __coef);
+
+  template<typename _Real>
+    inline std::array<solution_t<_Real>, 3>
+    __quadratic(std::initializer_list<_Real> __il)
+    {
+      if (std::size(__il) != 3)
+	std::__throw_domain_error("__quadratic: Must have three coefficients");
+      else
+	return __quadratic(std::begin(__il));
+    }
+
+  template<typename _Real>
+    inline std::array<solution_t<_Real>, 3>
+    __quadratic(_Real __c0, _Real __c1, _Real __c2)
+    { return __quadratic({__c0, __c1, __c2}); }
+
 
   template<typename _Real, typename _Iter>
     std::array<solution_t<_Real>, 3>
     __cubic(const _Iter& __coef);
 
+  template<typename _Real>
+    inline std::array<solution_t<_Real>, 3>
+    __cubic(std::initializer_list<_Real> __il)
+    {
+      if (std::size(__il) != 4)
+	std::__throw_domain_error("__cubic: Must have four coefficients");
+      else
+	return __cubic(std::begin(__il));
+    }
+
+  template<typename _Real>
+    inline std::array<solution_t<_Real>, 3>
+    __cubic(_Real __c0, _Real __c1, _Real __c2, _Real __c3)
+    { return __cubic({__c0, __c1, __c2, __c3}); }
+
+
   template<typename _Real, typename _Iter>
     std::array<solution_t<_Real>, 4>
     __quartic(const _Iter& __coef);
+
+  template<typename _Real>
+    inline std::array<solution_t<_Real>, 3>
+    __quartic(std::initializer_list<_Real> __il)
+    {
+      if (std::size(__il) != 5)
+	std::__throw_domain_error("__quartic: Must have five coefficients");
+      else
+	return __quartic(std::begin(__il));
+    }
+
+  template<typename _Real>
+    inline std::array<solution_t<_Real>, 3>
+    __quartic(_Real __c0, _Real __c1, _Real __c2, _Real __c3, _Real __c4)
+    { return __quartic({__c0, __c1, __c2, __c3, __c4}); }
+
 
 } // namespace __gnu_cxx
 
