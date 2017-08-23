@@ -1,3 +1,8 @@
+/**
+ * Accurate Computation of Mathieu Functions,
+ * Malcolm M. Bibby and Andrew F. Peterson
+ * Morgan & Claypool, 2014
+ */
 
   /**
    * Return the Mathieu function eigenvalue @f$  @f$ .
@@ -14,18 +19,32 @@
     mathieu_b(int __n, _Tp __q);
 
   /**
-   * Return the angular Mathieu function @f$ se_n^{(k)}(q,x) @f$.
+   * Return the angular Mathieu function @f$ se_n(q,x) @f$.
    */
   template<typename _Tp>
     _Tp
-    mathieu_se(int __n, int __k, _Tp __q, _Tp __x);
+    mathieu_se(int __n, _Tp __q, _Tp __x);
 
   /**
-   * Return the angular Mathieu function @f$ ce_n^{(k)}(q,x) @f$.
+   * Return the angular Mathieu function @f$ ce_n(q,x) @f$.
    */
   template<typename _Tp>
     _Tp
-    mathieu_ce(int __n, int __k, _Tp __q, _Tp __x);
+    mathieu_fe(int __n, _Tp __q, _Tp __x);
+
+  /**
+   * Return the angular Mathieu function @f$ fe_n(q,x) @f$.
+   */
+  template<typename _Tp>
+    _Tp
+    mathieu_ge(int __n, _Tp __q, _Tp __x);
+
+  /**
+   * Return the angular Mathieu function @f$ ge_n(q,x) @f$.
+   */
+  template<typename _Tp>
+    _Tp
+    mathieu_ce(int __n, _Tp __q, _Tp __x);
 
   /**
    * Return the radial Mathieu function @f$ Ms_n^{(k)}(q,x) @f$.
