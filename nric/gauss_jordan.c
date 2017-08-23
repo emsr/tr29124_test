@@ -35,24 +35,23 @@
 	     * Loop over rows looking for the pivot elements.
 	     */
 	    if (ipiv[j] != 1)
-	      {
-		for (int k = 1; k <= n; ++k)
-		  {
-		    if (ipiv[k] == 0)
-		      {
-			if (fabs(a[j][k]) >= big)
-			  {
-			    big = fabs(a[j][k]);
-			    irow = j;
-			    icol = k;
-			  }
-		      }
-		    else if (ipiv[k] > 1)
+	      for (int k = 1; k <= n; ++k)
+		{
+		  if (ipiv[k] == 0)
+		    {
+		      if (fabs(a[j][k]) >= big)
+			{
+			  big = fabs(a[j][k]);
+			  irow = j;
+			  icol = k;
+			}
+		    }
+		  else if (ipiv[k] > 1)
 		      nrerror("Singular matrix in gauss_jordan.");
-		  }
-	      }
+		}
 	  }
 	++(ipiv[icol]);
+printf("ipiv[icol]=%d\n", ipiv[icol]);
 
 	/*
 	 * With the pivot elements in hand, we swap rows to put the pivot elements on the diagonal.
@@ -70,6 +69,8 @@
 	  }
 	indxr[i] = irow;
 	indxc[i] = icol;
+printf("indxr[i]=%d\n", indxr[i]);
+printf("indxc[i]=%d\n", indxc[i]);
 	if (a[icol][icol] == 0.0)
 	  nrerror("Singular matrix error 2 in gauss_jordan.");
 	double pivinv = 1.0 / a[icol][icol];
