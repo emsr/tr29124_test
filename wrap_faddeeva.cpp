@@ -3,7 +3,7 @@
 
 #include <ext/cmath>
 
-#include "Faddeeva/Faddeeva.h"
+#include "Faddeeva/Faddeeva.hh"
 
 namespace faddeeva
 {
