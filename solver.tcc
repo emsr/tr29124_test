@@ -101,6 +101,8 @@ namespace __gnu_cxx
     std::array<solution_t<_Real>, 3>
     __cubic(const _Iter& _CC)
     {
+      using std::experimental::make_array;
+
       std::array<solution_t<_Real>, 3> _ZZ;
 
       if (_CC[3] == _Real{0})
@@ -110,14 +112,15 @@ namespace __gnu_cxx
 	  _ZZ[1] = _ZZ2[1];
 	  return _ZZ;
 	}
-      /*else if (_CC[0] == _Real{0})
+      else if (_CC[0] == _Real{0})
 	{
 	  _ZZ[0] = _Real{0};
-	  const auto _ZZ2 = __quadratic<_Real>(std::begin(_CC) + 1);
+	  const auto _ZZ2 = __quadratic<_Real>(make_array(_CC[1], _CC[2],
+							  _CC[3]));
 	  _ZZ[1] = _ZZ2[0];
 	  _ZZ[2] = _ZZ2[1];
 	  return _ZZ;
-	}*/
+	}
       else
 	{
 	  //  Normalize cubic equation coefficients.
@@ -194,6 +197,8 @@ namespace __gnu_cxx
     std::array<solution_t<_Real>, 4>
     __quartic(const _Iter& _CC)
     {
+      using std::experimental::make_array;
+
       const auto _S_pi = __gnu_cxx::__const_pi(_CC[0]);
 
       std::array<solution_t<_Real>, 4> _ZZ;
@@ -209,7 +214,8 @@ namespace __gnu_cxx
       else if (_CC[0] == _Real{0})
 	{
 	  _ZZ[0] = _Real{0};
-	  const auto _ZZ3 = __cubic<_Real>(std::begin(_CC) + 1);
+	  const auto _ZZ3 = __cubic<_Real>(make_array(_CC[1], _CC[2],
+						      _CC[3], _CC[4]));
 	  _ZZ[1] = _ZZ3[0];
 	  _ZZ[2] = _ZZ3[1];
 	  return _ZZ;
