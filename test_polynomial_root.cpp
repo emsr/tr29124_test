@@ -1,6 +1,6 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o poly_root poly_root.cpp -lquadmath
-./poly_root > poly_root.txt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polynomial_root test_polynomial_root.cpp -lquadmath
+./test_polynomial_root > test_polynomial_root.txt
 */
 
 #include <complex>
