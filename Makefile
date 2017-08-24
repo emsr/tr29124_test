@@ -116,6 +116,7 @@ BINS = testcase \
        test_polygamma \
        test_polylog \
        test_polynomial \
+       test_polynomial_root \
        test_power_mean \
        test_power_norm \
        test_psi \
@@ -741,6 +742,9 @@ test_polygamma: test_polygamma.cpp
 
 test_polynomial: test_polynomial.cpp
 	$(CXX17) -I. -o test_polynomial test_polynomial.cpp -lquadmath
+
+test_polynomial_root: test_polynomial_root.cpp
+	$(CXX17) -I. -o test_polynomial_root test_polynomial_root.cpp -lquadmath
 
 test_power_mean: test_power_mean.cpp
 	$(CXX17) -I. -o test_power_mean test_power_mean.cpp -lquadmath
