@@ -74,11 +74,11 @@ namespace __gnu_cxx
     __quadratic(const _Iter& __coef);
 
   template<typename _Real>
-    inline std::array<solution_t<_Real>, 3>
+    inline std::array<solution_t<_Real>, 2>
     __quadratic(_Real __c0, _Real __c1, _Real __c2)
     {
       using std::experimental::make_array;
-      return __quadratic(std::begin(make_array(__c0, __c1, __c2)));
+      return __quadratic<_Real>(make_array(__c0, __c1, __c2));
     }
 
 
@@ -91,7 +91,7 @@ namespace __gnu_cxx
     __cubic(_Real __c0, _Real __c1, _Real __c2, _Real __c3)
     {
       using std::experimental::make_array;
-      return __cubic(std::begin(make_array(__c0, __c1, __c2, __c3)));
+      return __cubic<_Real>(make_array(__c0, __c1, __c2, __c3));
     }
 
 
@@ -100,11 +100,11 @@ namespace __gnu_cxx
     __quartic(const _Iter& __coef);
 
   template<typename _Real>
-    inline std::array<solution_t<_Real>, 3>
+    inline std::array<solution_t<_Real>, 4>
     __quartic(_Real __c0, _Real __c1, _Real __c2, _Real __c3, _Real __c4)
     {
       using std::experimental::make_array;
-      return __quartic(std::begin(make_array(__c0, __c1, __c2, __c3, __c4)));
+      return __quartic<_Real>(make_array(__c0, __c1, __c2, __c3, __c4));
     }
 
 
