@@ -178,4 +178,9 @@ main()
       bool ok = try_solution(biquad_coef, biquad[i]);
       std::cout << std::setw(w) << biquad[i] << "  good: " << ok << '\n';
     }
+
+  // New API.
+  __gnu_cxx::__quadratic<double>(-2.0, 1.0, 1.0);
+  __gnu_cxx::__cubic<double>(24.0, -22.0, -4.0, 2.0);
+  __gnu_cxx::__quartic<double>(-30.0, 31.0, 5.0, -7.0, 1.0);
 }
