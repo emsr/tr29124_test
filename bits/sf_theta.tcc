@@ -563,7 +563,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /// Return the second lattice frequency.
       _Cmplx
       __omega_2() const
-      { return -(_Cmplx(this->_M_omega_1) + _Cmplx(this->omega_3)); }
+      { return -(_Cmplx(this->_M_omega_1) + _Cmplx(this->_M_omega_3)); }
 
       /// Return the third lattice frequency.
       _Tp_Omega3
@@ -641,6 +641,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __jacobi_theta_0_t(const __jacobi_lattice_t<_Tp1, _Tp3>& __lattice);
 
       using _Type = typename __jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome;
+      using _Real = __num_traits_t<_Type>;
+      using _Cmplx = std::complex<_Real>;
 
       _Type th1p;
       _Type th1ppp;
@@ -650,6 +652,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Type th3pp;
       _Type th4;
       _Type th4pp;
+      _Type eta_1;
+      _Cmplx eta_2;
+      _Cmplx eta_3;
 
       _Type
       dedekind_eta() const
@@ -664,7 +669,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __jacobi_theta_0_t<_Tp1, _Tp3>::
     __jacobi_theta_0_t(const __jacobi_lattice_t<_Tp1, _Tp3>& __lattice)
     {
-      using _Real = __num_traits_t<_Type>;
       constexpr std::size_t _S_max_iter = 50;
       const auto __q = __lattice.__ellnome();
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__q));
@@ -711,6 +715,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       this->th2pp = (_Real{-1} - _Real{8} * this->th2pp) * this->th2;
       this->th3pp = _Real{-8} * this->th3;
       this->th4pp = _Real{8} * this->th4;
+
+      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
+      this->eta_1 = -_S_pi * _S_pi * this->th1ppp
+		  / _Type{12} / __lattice.__omega_1() / this->th1p;
+      const auto _S_i = _Cmplx{0, 1};
+      this->eta_2 = (__lattice.__omega_2() * this->eta_1
+		  + _S_i * _S_pi / _Real{2}) / __lattice.__omega_1();
+      this->eta_3 = (__lattice.__omega_3() * this->eta_1
+		  - _S_i * _S_pi / _Real{2}) / __lattice.__omega_1();
     }
 
   /**
@@ -735,7 +748,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       _Type __e1, __e2, __e3;
 
+      explicit
       __weierstrass_roots_t(const __jacobi_lattice_t<_Tp1, _Tp3>& __lattice);
+
+      __weierstrass_roots_t(const __jacobi_theta_0_t<_Tp1, _Tp3>& __theta0,
+			    _Tp1 __omega1);
+
+      /// Return the discriminant
+      /// @f$ \Delta = 16(e_2 - e_3)^2(e_3 - e_1)^2(e_1 - e_2)^2 @f$.
+      _Type
+      __delta() const
+      {
+	const auto __del1 = __e2 - __e3;
+	const auto __del2 = __e3 - __e1;
+	const auto __del3 = __e1 - __e2;
+	const auto __del = __del1 * __del2 * __del3;
+	return _Type{16} * __del * __del;
+      }
     };
 
   /**
@@ -746,20 +775,33 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp1, typename _Tp3>
     __weierstrass_roots_t<_Tp1, _Tp3>::
     __weierstrass_roots_t(const __jacobi_lattice_t<_Tp1, _Tp3>& __lattice)
+#if __cplusplus > 201403L
+    : __weierstrass_roots_t(__jacobi_theta_0_t(__lattice),
+			    __lattice.__omega_1())
+#else
+    : __weierstrass_roots_t(__jacobi_theta_0_t<_Tp1, _Tp3>(__lattice),
+			    __lattice.__omega_1())
+#endif
+    { }
+
+
+  /**
+   * Constructor for the Weierstrass roots.
+   *
+   * @param __lattice The Jacobi latticce.
+   */
+  template<typename _Tp1, typename _Tp3>
+    __weierstrass_roots_t<_Tp1, _Tp3>::
+    __weierstrass_roots_t(const __jacobi_theta_0_t<_Tp1, _Tp3>& __theta0,
+			  _Tp1 __omega_1)
     {
       const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
 
-#if __cplusplus > 201403L
-      const auto __tht0 = __jacobi_theta_0_t(__lattice);
-#else
-      const auto __tht0 = __jacobi_theta_0_t<_Tp1, _Tp3>(__lattice);
-#endif
-
-      const auto __th22 = __tht0.th2 * __tht0.th2;
+      const auto __th22 = __theta0.th2 * __theta0.th2;
       const auto __th24 = __th22 * __th22;
-      const auto __th42 = __tht0.th4 * __tht0.th4;
+      const auto __th42 = __theta0.th4 * __theta0.th4;
       const auto __th44 = __th42 * __th42;
-      const auto __fr = _S_pi / __lattice.__omega_1();
+      const auto __fr = _S_pi / __omega_1;
       const auto __fc = __fr * __fr / _Real{12};
 
       __e1 = __fc * (__th24 + _Real{2} * __th44);
@@ -787,6 +829,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       __weierstrass_invariants_t(const __jacobi_lattice_t<_Tp1, _Tp3>&);
 
+      /// Return the discriminant @f$ \Delta = g_2^3 - 27 g_3^2 @f$.
+      _Type
+      __delta() const
+      {
+	const auto __g_2p3 = __g_2 * __g_2 * __g_2;
+	return __g_2p3 - _Type{27} * __g_3 * __g_3;
+      }
+
+      /// Return Klein's invariant @f$ J = 1738 g_2^3 / (g_2^3 - 27 g_3^2) @f$.
       _Type
       __klein_j() const
       {

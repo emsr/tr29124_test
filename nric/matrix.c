@@ -67,6 +67,7 @@ main() {
     dcopymat(ain, 1, 3, 1, 3, a);
     dcopymat(bin, 1, 3, 1, 5, b);
 
+    /* Gauss Jordan */
 
     printf("\n");
     printf("\n Input matrix");
@@ -89,7 +90,7 @@ main() {
     printf("\n");
     printf("\n Output inverse matrix of Gauss-Jordan elimination");
     printf("\n");
-    printf("        | %9.6f %9.6f %9.6f |\n A^-1 = | %9.6f %9.6f %9.6f |\n        | %9.6f %9.6f %9.6f |\n",
+    printf("          | %9.6f %9.6f %9.6f |\n A^{-1} = | %9.6f %9.6f %9.6f |\n          | %9.6f %9.6f %9.6f |\n",
       a[1][1], a[1][2], a[1][3],
       a[2][1], a[2][2], a[2][3],
       a[3][1], a[3][2], a[3][3]);
@@ -105,9 +106,9 @@ main() {
     dmatmat(ain, a, 1, 3, 1, 3, 1, 3, temp33);
 
     printf("\n");
-    printf("\n Verify A.A^-1 = I");
+    printf("\n Verify A.A^{-1} = I");
     printf("\n");
-    printf("        | %9.6f %9.6f %9.6f |\n A^-1 = | %9.6f %9.6f %9.6f |\n        | %9.6f %9.6f %9.6f |\n",
+    printf("          | %9.6f %9.6f %9.6f |\n A^{-1} = | %9.6f %9.6f %9.6f |\n          | %9.6f %9.6f %9.6f |\n",
       temp33[1][1], temp33[1][2], temp33[1][3],
       temp33[2][1], temp33[2][2], temp33[2][3],
       temp33[3][1], temp33[3][2], temp33[3][3]);
@@ -122,7 +123,7 @@ main() {
       temp35[2][1], temp35[2][2], temp35[2][3], temp35[2][4], temp35[2][5],
       temp35[3][1], temp35[3][2], temp35[3][3], temp35[3][4], temp35[3][5]);
 
-
+    /* LU Decomposition */
 
     dcopymat(ain, 1, 3, 1, 3, a);
 
@@ -134,9 +135,7 @@ main() {
       a[2][1], a[2][2], a[2][3],
       a[3][1], a[3][2], a[3][3]);
 
-
     lu_decomp(a, 3, i, &p);
-
 
     printf("\n");
     printf("\n Output matrix of LU decompostion");
@@ -184,7 +183,7 @@ main() {
     printf("\n");
     printf("\n Inverse of input matrix");
     printf("\n");
-    printf("        | %9.6f %9.6f %9.6f |\n A^-1 = | %9.6f %9.6f %9.6f |\n        | %9.6f %9.6f %9.6f |\n",
+    printf("          | %9.6f %9.6f %9.6f |\n A^{-1} = | %9.6f %9.6f %9.6f |\n          | %9.6f %9.6f %9.6f |\n",
       ainv[1][1], ainv[1][2], ainv[1][3],
       ainv[2][1], ainv[2][2], ainv[2][3],
       ainv[3][1], ainv[3][2], ainv[3][3]);
@@ -192,17 +191,16 @@ main() {
     dmatmat(ainv, ain, 1, 3, 1, 3, 1, 3, temp33);
 
     printf("\n");
-    printf("\n Verify A^-1.A = I");
+    printf("\n Verify A^{-1}.A = I");
     printf("\n");
-    printf("          | %9.6f %9.6f %9.6f |\n A^-1.A = | %9.6f %9.6f %9.6f |\n          | %9.6f %9.6f %9.6f |\n",
+    printf("            | %9.6f %9.6f %9.6f |\n A^{-1}.A = | %9.6f %9.6f %9.6f |\n            | %9.6f %9.6f %9.6f |\n",
       temp33[1][1], temp33[1][2], temp33[1][3],
       temp33[2][1], temp33[2][2], temp33[2][3],
       temp33[3][1], temp33[3][2], temp33[3][3]);
 
-
+    /* SV Decomposition */
 
     dcopymat(ain, 1, 3, 1, 3, a);
-
 
     printf("\n");
     printf("\n Input matrix");
@@ -212,9 +210,7 @@ main() {
       a[2][1], a[2][2], a[2][3],
       a[3][1], a[3][2], a[3][3]);
 
-
     sv_decomp(a, 3, 3, w, v);
-
 
     printf("\n");
     printf("\n Output matrix of SV decompostion");
@@ -276,12 +272,15 @@ main() {
       r[2][1], r[2][2], r[2][3],
       r[3][1], r[3][2], r[3][3]);
 
-
+    /* Cholesky Decomposition */
 
     dcopymat(ain, 1, 3, 1, 3, a);
-    for (j = 1; j <= 3; ++j) for (k = 1; k < j; ++k) a[j][k] = a[k][j];
-
-
+    for (j = 1; j <= 3; ++j)
+    {
+        a[j][j] = 5 * fabs(a[j][j]);
+        for (k = 1; k < j; ++k)
+            a[j][k] = a[k][j] = fabs(a[j][k]);
+    }
     printf("\n");
     printf("\n Input matrix");
     printf("\n");
@@ -290,9 +289,7 @@ main() {
       a[2][1], a[2][2], a[2][3],
       a[3][1], a[3][2], a[3][3]);
 
-
     cholesky_decomp(a, 3, d);
-
 
     printf("\n");
     printf("\n Output matrix of Cholesky decompostion");
@@ -305,11 +302,10 @@ main() {
     printf("\n");
     printf("\n Output vector of Cholesky decompostion");
     printf("\n");
-    printf("     | %9.6f |\n p = | %9.6f |\n     | %9.6f |\n",
+    printf("     | %9.6f |\n d = | %9.6f |\n     | %9.6f |\n",
       d[1], d[2], d[3]);
 
-
-
+    /*  */
 
     free_dmatrix(IU, 1, 3, 1, 3);
     free_dmatrix(IV, 1, 3, 1, 3);
