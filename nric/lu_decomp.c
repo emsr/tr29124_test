@@ -29,9 +29,7 @@
     double* vv = dvector(1, n);
     *parity = 1.0;
 
-    /*
-     * Loop over rows to get the implicit scaling information.
-     */
+    /* Loop over rows to get the implicit scaling information. */
     for (int i = 1; i <= n; ++i)
       {
 	double big = 0.0;
@@ -48,11 +46,11 @@
 	 * Save the scaling.
 	 */
 	vv[i] = 1.0 / big;
+printf("big=%f\n", big);
+printf("scale[i]=%f\n", vv[i]);
       }
 
-    /*
-     * This is the loop over columns of Crout's method.
-     */
+    /* This is the loop over columns of Crout's method. */
     for (int j = 1; j <= n; ++j)
       {
 	for (int i = 1; i < j; ++i)
@@ -61,11 +59,10 @@
 	    for (int k = 1; k < i; ++k)
 	      sum -= a[i][k] * a[k][j];
 	    a[i][j] = sum;
+printf("a[i][j]=%f\n", a[i][j]);
 	  }
 
-	/*
-	 * Initialize for the search for the largest pivot point.
-	 */
+	/* Initialize for the search for the largest pivot point. */
 	int imax = 0;
 	double big = 0.0;
 	for (int i = j; i <= n; ++i)
@@ -74,6 +71,7 @@
 	    for (int k = 1; k < j; ++k)
 	      sum -= a[i][k] * a[k][j];
 	    a[i][j] = sum;
+printf("a[i][j]=%f\n", a[i][j]);
 	    double dummy = vv[i] * fabs(sum);
 	    if (dummy >= big)
 	      {
@@ -81,10 +79,10 @@
 		imax = i;
 	      }
 	  }
+printf("big=%f\n", big);
+printf("imax=%d\n", imax);
 
-	/*
-	 * Interchang rows if required.
-	 */
+	/* Interchang rows if required. */
 	if (j != imax)
 	  {
 	    for (int k = 1; k <= n; ++k)
@@ -94,28 +92,26 @@
 		a[j][k] = dummy;
 	      }
 
-	    /*
-	     * Change parity.
-	     */
+	    /* Change parity. */
 	    *parity = -*parity;
 
-	    /*
-	     * Interchange the scale factor.
-	     */
+	    /* Interchange the scale factor. */
 	    vv[imax] = vv[j];
 	  }
 	index[j] = imax;
+printf("index[j]=%d\n", index[j]);
 	if (a[j][j] == 0.0)
 	    a[j][j] = TINY;
 
-	/*
-	 * Now finally divide by the pivot element
-	 */
+	/* Now finally divide by the pivot element. */
 	if (j != n)
 	  {
 	    double dummy = 1.0 / a[j][j];
 	    for (int i = j + 1; i <= n; ++i)
+{
 	      a[i][j] *= dummy;
+printf("a[i][j]=%f\n", a[i][j]);
+}
 	  }
       } /* Go back for the next column in the reduction. */
 
@@ -163,9 +159,7 @@
       }
 
 
-    /*
-     * Now do the backsubstitution.
-     */
+    /* Now do the backsubstitution. */
     for (int i = n; i >= 1; i--)
       {
 	double sum = b[i];

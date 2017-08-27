@@ -319,6 +319,7 @@ test_parab_cyl
 test_polygamma
 test_polylog
 test_polynomial
+test_polynomial_root
 test_pow_funs
 test_pow_bits
 test_power_mean
