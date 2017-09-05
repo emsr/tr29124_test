@@ -35,6 +35,7 @@ bernoulli
 
 complex_literal_bug
 
+build_atan_table
 build_bernoulli_2n_table
 build_cordic
 build_etam1_table
