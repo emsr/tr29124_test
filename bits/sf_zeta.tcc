@@ -56,6 +56,19 @@ namespace __detail
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
+  /**
+   * Make exp2 available to complex and real types.
+   */
+  template<typename _Tp>
+    _Tp
+    __exp2(_Tp __x)
+    {
+      if constexpr (__gnu_cxx::is_complex_v<_Tp>)
+	return std::pow(__num_traits_t<_Tp>{2}, __x);
+      else
+	return std::exp2(__x);
+    }
+
 
   /**
    * Coefficients for Euler-Maclaurin summation of zeta functions.
@@ -312,7 +325,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
         __ans += std::pow(_Val(__k + 1), -__s);
 
       auto __fact = __pmax * __s / _Val{_S_N + 1};
-      auto __delta_prev = __gnu_cxx::__max(__s);
+      auto __delta_prev = __gnu_cxx::__lim_max(__s);
       for (auto __j = 0; __j < _S_jmax; ++__j)
         {
 	  auto __delta = _S_Euler_Maclaurin_zeta[__j + 1] * __fact;
@@ -708,7 +721,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		return __riemann_zeta_sum(__s);
 	    }
 	  else
-	    return _Val{1} + std::pow(_Val{2}, -__s);
+	    return _Val{1} + __exp2(-__s);
 	}
     }
 

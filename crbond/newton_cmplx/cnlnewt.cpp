@@ -2,11 +2,11 @@
  *
  * (C)2001, C. Bond. All rights reserved.
  */
-#include <math.h>
-#include <complex.h>
+#include <cmath>
+#include <complex>
 
-void cged(complex<double> **a,complex<double> *b,
-    complex<double> *x,int n);
+void cged(std::complex<double> **a,std::complex<double> *b,
+    std::complex<double> *x,int n);
 
 /*
  * Find solution vector for 'f(x) = 0' given initial estimate
@@ -22,11 +22,11 @@ void cged(complex<double> **a,complex<double> *b,
  * by the calling routine, so that allocation overhead needs to
  * be incurred only once in an iterative application.
  */
-void cnlnewt(void (*f)(complex<double> *x,complex<double> *fv,int n),
-    complex<double> *x,complex<double> *fv,complex<double> **jac,
-    complex<double> *p,int n,double eps)
+void cnlnewt(void (*f)(std::complex<double> *x,std::complex<double> *fv,int n),
+    std::complex<double> *x,std::complex<double> *fv,std::complex<double> **jac,
+    std::complex<double> *p,int n,double eps)
 {
-    complex<double> tmp,delta;
+    std::complex<double> tmp,delta;
     int i,j;
 
     f(x,fv,n);                  // get residuals for current value of 'x'
@@ -36,7 +36,7 @@ void cnlnewt(void (*f)(complex<double> *x,complex<double> *fv,int n),
         if (abs(tmp) > 1.0)
             delta = eps*tmp;
         else
-            delta = complex<double>(eps,eps);
+            delta = std::complex<double>(eps,eps);
         x[i] = tmp+delta;       // bump this element
         f(x,p,n);
         x[i] = tmp;             // restore original value
@@ -59,16 +59,16 @@ void cnlnewt(void (*f)(complex<double> *x,complex<double> *fv,int n),
  * is handled here so the user does not have to manage memory
  * unnecessarily.
  */
-void cnlnewt2(void (*f)(complex<double> *x,complex<double> *fv,int n),
-    complex<double> *x,complex<double> *fv,int n,double eps,int iter)
+void cnlnewt2(void (*f)(std::complex<double> *x,std::complex<double> *fv,int n),
+    std::complex<double> *x,std::complex<double> *fv,int n,double eps,int iter)
 {
-    complex<double> tmp,delta,**jac,*p;
+    std::complex<double> tmp,delta,**jac,*p;
     int i,j,k;
 
-    p = new complex<double> [n];
-    jac = new complex<double> *[n];
+    p = new std::complex<double> [n];
+    jac = new std::complex<double> *[n];
     for (i=0;i<n;i++) {
-        jac[i] = new complex<double> [n];
+        jac[i] = new std::complex<double> [n];
     }
 
     for (k=0;k<iter;k++) {
@@ -80,7 +80,7 @@ void cnlnewt2(void (*f)(complex<double> *x,complex<double> *fv,int n),
             if (abs(tmp) > 1.0)
                 delta = eps*tmp;
             else
-                delta = complex<double>(eps,eps);
+                delta = std::complex<double>(eps,eps);
             x[i] = tmp+delta;       // bump this element
             f(x,p,n);
             x[i] = tmp;             // restore original value
@@ -110,18 +110,18 @@ void cnlnewt2(void (*f)(complex<double> *x,complex<double> *fv,int n),
 /* This version executes up to 'maxiter' loops, exiting if the
  * solution vector converges.
  */
-void cnlnewt3(void (*f)(complex<double> *x,complex<double> *fv,int n),
-    complex<double> *x,complex<double> *fv,int n,double eps,int *maxiter)
+void cnlnewt3(void (*f)(std::complex<double> *x,std::complex<double> *fv,int n),
+    std::complex<double> *x,std::complex<double> *fv,int n,double eps,int *maxiter)
 {
-    complex<double> tmp,delta,**jac,*p,*x0;
+    std::complex<double> tmp,delta,**jac,*p,*x0;
     double dtmp;
     int i,j,k;
 
-    x0 = new complex<double> [n];
-    p = new complex<double> [n];
-    jac = new complex<double> *[n];
+    x0 = new std::complex<double> [n];
+    p = new std::complex<double> [n];
+    jac = new std::complex<double> *[n];
     for (i=0;i<n;i++) {
-        jac[i] = new complex<double> [n];
+        jac[i] = new std::complex<double> [n];
     }
 
     for (k=0;k<*maxiter;k++) {
@@ -133,7 +133,7 @@ void cnlnewt3(void (*f)(complex<double> *x,complex<double> *fv,int n),
             if (abs(tmp) > 1.0)
                 delta = eps*tmp;
             else
-                delta = complex<double>(eps,eps);
+                delta = std::complex<double>(eps,eps);
             x[i] = tmp+delta;       // bump this element
             f(x,p,n);
             x[i] = tmp;             // restore original value

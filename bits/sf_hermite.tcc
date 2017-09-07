@@ -68,7 +68,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     __gnu_cxx::__hermite_t<_Tp>
-    __poly_hermite_recursion(unsigned int __n, _Tp __x)
+    __hermite_recur(unsigned int __n, _Tp __x)
     {
       // Compute H_0.
       auto __H_nm2 = _Tp{1};
@@ -113,7 +113,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     _Tp
-    __poly_hermite_asymp(unsigned int __n, _Tp __x)
+    __hermite_asymp(unsigned int __n, _Tp __x)
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
       const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
@@ -182,16 +182,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     _Tp
-    __poly_hermite(unsigned int __n, _Tp __x)
+    __hermite(unsigned int __n, _Tp __x)
     {
       if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
-	return (__n % 2 == 1 ? -1 : +1) * __poly_hermite(__n, -__x);
+	return (__n % 2 == 1 ? -1 : +1) * __hermite(__n, -__x);
       else if (__n > 10000)
-	return __poly_hermite_asymp(__n, __x);
+	return __hermite_asymp(__n, __x);
       else
-	return __poly_hermite_recursion(__n, __x).__H_n;
+	return __hermite_recur(__n, __x).__H_n;
     }
 
   /**
@@ -215,7 +215,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     __gnu_cxx::__hermite_he_t<_Tp>
-    __poly_prob_hermite_recursion(unsigned int __n, _Tp __x)
+    __prob_hermite_recur(unsigned int __n, _Tp __x)
     {
       // Compute He_0.
       auto __He_nm2 = _Tp{1};

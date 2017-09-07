@@ -29,12 +29,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<>
     inline mpfr::mpreal
-    __min<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    __lim_min<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
     { return mpfr::minval(__proto.getPrecision()); }
 
   template<>
     inline mpfr::mpreal
-    __max<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
+    __lim_max<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
     { return mpfr::maxval(__proto.getPrecision()); }
 
   template<>
@@ -195,52 +195,52 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<>
     inline mpfr::mpreal
     __sqrt_max<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
-    { return std::sqrt(__max(__proto)); }
+    { return std::sqrt(__lim_max(__proto)); }
 
   template<>
     inline mpfr::mpreal
     __cbrt_max<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
-    { return std::cbrt(__max(__proto)); }
+    { return std::cbrt(__lim_max(__proto)); }
 
   template<>
     inline mpfr::mpreal
     __root_max(mpfr::mpreal __root) _GLIBCXX_USE_NOEXCEPT
-    { return std::pow(__max(__root), 1 / __root); }
+    { return std::pow(__lim_max(__root), 1 / __root); }
 
   template<>
     inline mpfr::mpreal
     __log_max<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
-    { return std::log(__max(__proto)); }
+    { return std::log(__lim_max(__proto)); }
 
   template<>
     inline mpfr::mpreal
     __log10_max<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
-    { return std::log10(__max(__proto)); }
+    { return std::log10(__lim_max(__proto)); }
 
   template<>
     inline mpfr::mpreal
     __sqrt_min<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
-    { return std::sqrt(__min(__proto)); }
+    { return std::sqrt(__lim_min(__proto)); }
 
   template<>
     inline mpfr::mpreal
     __cbrt_min<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
-    { return std::cbrt(__min(__proto)); }
+    { return std::cbrt(__lim_min(__proto)); }
 
   template<>
     inline mpfr::mpreal
     __root_min(mpfr::mpreal __root) _GLIBCXX_USE_NOEXCEPT
-    { return std::pow(__min(__root), 1 / __root); }
+    { return std::pow(__lim_min(__root), 1 / __root); }
 
   template<>
     inline mpfr::mpreal
     __log_min<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
-    { return std::log(__min(__proto)); }
+    { return std::log(__lim_min(__proto)); }
 
   template<>
     inline mpfr::mpreal
     __log10_min<mpfr::mpreal>(mpfr::mpreal __proto) _GLIBCXX_USE_NOEXCEPT
-    { return std::log10(__min(__proto)); }
+    { return std::log10(__lim_min(__proto)); }
 
   template<>
     inline mpfr::mpreal

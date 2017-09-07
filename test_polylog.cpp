@@ -6,6 +6,7 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH $HOME/bin_specfun/bin/g++ -std=g
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polylog test_polylog.cpp -lquadmath -Lwrappers/debug -lwrap_cephes
 PATH=wrappers/debug:$PATH ./test_polylog > test_polylog.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
 */
 
 #include <iostream>
@@ -521,7 +522,7 @@ template<typename Tp>
     //std::cout << "\nTest negative integer order\n";
     for (auto n : {-1, -2, -3, -4, -5})
       {
-	std::cout << "\n\nNegative integer degere: n = " << n << '\n';
+	std::cout << "\n\nNegative integer degree: n = " << n << '\n';
 	const auto del = Tp{1} / Tp{20};
 	for (int i = -200; i <= 20; ++i)
 	  {
@@ -632,7 +633,7 @@ template<typename Tp>
     //std::cout << "\nTest against Cephes for integer order\n";
     for (auto n : {0, 1, 2, 3, 4, 5})
       {
-	std::cout << "\n\nNon-negative integer degere: n = " << n << '\n';
+	std::cout << "\n\nNon-negative integer degree: n = " << n << '\n';
 	const auto del = Tp{1} / Tp{10};
 	for (int i = -200; i <= 10; ++i)
 	  {
@@ -658,6 +659,7 @@ template<typename Tp>
 
     std::cout.precision(__gnu_cxx::__digits10(proto) - 1);
     std::cout << std::scientific;
+    const auto w = std::cout.precision() + 8;
 
     std::cout << '\n';
 
@@ -726,9 +728,10 @@ template<typename Tp>
     const auto del01 = Tp{1} / Tp{100};
     const auto del05 = Tp{1} / Tp{20};
 
-    std::ofstream test("test.dat");
+    std::ofstream test("test_polylog.dat");
+    test.precision(std::cout.precision());
     for (auto s = Tp{2.5}; s < Tp{3.5}; s += del01)
-      test << s << ' ' << std::real(std::__detail::__polylog(s, Tp{2})) - Tp{2} << '\n';
+      test << s << ' ' << std::setw(w) << std::real(std::__detail::__polylog(s, Tp{2})) - Tp{2} << '\n';
     test << std::endl;
 
     std::cout << '\n' << std::__detail::__polylog(Tp{3.1}, Tp{2}) << '\n';
@@ -813,12 +816,12 @@ main()
 
   TestPolyLog<double>();
 
-  //TestPolyLog<float>();
+  TestPolyLog<float>();
 
-  //TestPolyLog<long double>();
+  TestPolyLog<long double>();
 
   // This works but it takes forever.
-  //TestPolyLog<__float128>();
+  TestPolyLog<__float128>();
 
   return 0;
 }

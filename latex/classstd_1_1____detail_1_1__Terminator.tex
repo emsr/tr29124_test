@@ -5,12 +5,14 @@
 \item 
 \hyperlink{classstd_1_1____detail_1_1__Terminator_aee41e518162f472b6e62a5477f3256d4}{\+\_\+\+Terminator} (std\+::size\+\_\+t \+\_\+\+\_\+max\+\_\+iter, \+\_\+\+Real \+\_\+\+\_\+mul=\+\_\+\+Real\{1\})
 \item 
+std\+::size\+\_\+t \hyperlink{classstd_1_1____detail_1_1__Terminator_a8797a4fa304ad360f9b101bd340d614d}{num\+\_\+terms} () const
+\begin{DoxyCompactList}\small\item\em Return the current number of terms summed. \end{DoxyCompactList}\item 
 bool \hyperlink{classstd_1_1____detail_1_1__Terminator_a6c69c623075f36692ae86dd65b9c4a5c}{operator()} (\+\_\+\+Tp \+\_\+\+\_\+term, \+\_\+\+Tp \+\_\+\+\_\+sum)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Detect if the sum should terminate either because the incoming term is small enough or the maximum number of terms has been reached. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\subsubsection*{template$<$typename \+\_\+\+Tp$>$\\*
+\subsubsection*{template$<$typename \+\_\+\+Tp$>$\newline
 class std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator$<$ \+\_\+\+Tp $>$}
 
 This class manages the termination of series. Termination conditions involve both a maximum iteration count and a relative precision. 
@@ -20,32 +22,49 @@ Definition at line 63 of file sf\+\_\+polylog.\+tcc.
 
 
 \subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classstd_1_1____detail_1_1__Terminator_aee41e518162f472b6e62a5477f3256d4}\label{classstd_1_1____detail_1_1__Terminator_aee41e518162f472b6e62a5477f3256d4}} 
 \index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator}!\+\_\+\+Terminator@{\+\_\+\+Terminator}}
 \index{\+\_\+\+Terminator@{\+\_\+\+Terminator}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator}}
-\subsubsection[{\texorpdfstring{\+\_\+\+Terminator(std\+::size\+\_\+t \+\_\+\+\_\+max\+\_\+iter, \+\_\+\+Real \+\_\+\+\_\+mul=\+\_\+\+Real\lcurly{}1\rcurly{})}{_Terminator(std::size_t __max_iter, _Real __mul=_Real\{1\})}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp$>$ {\bf std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator}$<$ \+\_\+\+Tp $>$\+::{\bf \+\_\+\+Terminator} (
-\begin{DoxyParamCaption}
-\item[{std\+::size\+\_\+t}]{\+\_\+\+\_\+max\+\_\+iter, }
-\item[{\+\_\+\+Real}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Real\{1\}}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classstd_1_1____detail_1_1__Terminator_aee41e518162f472b6e62a5477f3256d4}{}\label{classstd_1_1____detail_1_1__Terminator_aee41e518162f472b6e62a5477f3256d4}
+\subsubsection{\texorpdfstring{\+\_\+\+Terminator()}{\_Terminator()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp$>$ \\
+\hyperlink{classstd_1_1____detail_1_1__Terminator}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator}$<$ \+\_\+\+Tp $>$\+::\hyperlink{classstd_1_1____detail_1_1__Terminator}{\+\_\+\+Terminator} (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{\+\_\+\+\_\+max\+\_\+iter,  }\item[{\+\_\+\+Real}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Real\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
-Definition at line 73 of file sf\+\_\+polylog.\+tcc.
+
+Definition at line 74 of file sf\+\_\+polylog.\+tcc.
 
 
 
 \subsection{Member Function Documentation}
+\mbox{\Hypertarget{classstd_1_1____detail_1_1__Terminator_a8797a4fa304ad360f9b101bd340d614d}\label{classstd_1_1____detail_1_1__Terminator_a8797a4fa304ad360f9b101bd340d614d}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator}!num\+\_\+terms@{num\+\_\+terms}}
+\index{num\+\_\+terms@{num\+\_\+terms}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator}}
+\subsubsection{\texorpdfstring{num\+\_\+terms()}{num\_terms()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp$>$ \\
+std\+::size\+\_\+t \hyperlink{classstd_1_1____detail_1_1__Terminator}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator}$<$ \+\_\+\+Tp $>$\+::num\+\_\+terms (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the current number of terms summed. 
+
+
+
+Definition at line 81 of file sf\+\_\+polylog.\+tcc.
+
+\mbox{\Hypertarget{classstd_1_1____detail_1_1__Terminator_a6c69c623075f36692ae86dd65b9c4a5c}\label{classstd_1_1____detail_1_1__Terminator_a6c69c623075f36692ae86dd65b9c4a5c}} 
 \index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator}!operator()@{operator()}}
 \index{operator()@{operator()}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator}}
-\subsubsection[{\texorpdfstring{operator()(\+\_\+\+Tp \+\_\+\+\_\+term, \+\_\+\+Tp \+\_\+\+\_\+sum)}{operator()(_Tp __term, _Tp __sum)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename \+\_\+\+Tp$>$ bool {\bf std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator}$<$ \+\_\+\+Tp $>$\+::operator() (
-\begin{DoxyParamCaption}
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+term, }
-\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+sum}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classstd_1_1____detail_1_1__Terminator_a6c69c623075f36692ae86dd65b9c4a5c}{}\label{classstd_1_1____detail_1_1__Terminator_a6c69c623075f36692ae86dd65b9c4a5c}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp$>$ \\
+bool \hyperlink{classstd_1_1____detail_1_1__Terminator}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator}$<$ \+\_\+\+Tp $>$\+::operator() (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+term,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+sum }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
-Definition at line 79 of file sf\+\_\+polylog.\+tcc.
+
+Detect if the sum should terminate either because the incoming term is small enough or the maximum number of terms has been reached. 
+
+
+
+Definition at line 87 of file sf\+\_\+polylog.\+tcc.
 
 
 

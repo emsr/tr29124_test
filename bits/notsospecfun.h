@@ -69,28 +69,31 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Implementation-wise, these could be wrappers of the regular functions.
   // The pointers would be hidden inside the wrapper.
 
+  // These used to be *div_t but they conflicted with 
+  // /usr/include/stdlib.h:70:5: note: previous declaration 'typedef struct ldiv_t ldiv_t'
   template<typename IntTp>
-    struct int_div_t
+    struct int_quot_t
     {
       IntTp quot;
       IntTp rem;
     };
 
-  using sdiv_t = int_div_t<short int>; // Adding this ;-)
-  using div_t = int_div_t<int>;
-  using ldiv_t = int_div_t<long int>;
-  using lldiv_t = int_div_t<long long int>;
-  using imaxdiv_t = int_div_t<std::intmax_t>;
+  using squot_t = int_quot_t<short int>;
+  using quot_t = int_quot_t<int>;
+  using lquot_t = int_quot_t<long int>;
+  using llquot_t = int_quot_t<long long int>;
+  using intmaxquot_t = int_quot_t<std::intmax_t>;
 
-  constexpr sdiv_t div(short int numer, short int denom); // Adding this ;-)
-  constexpr div_t div(int numer, int denom);
-  constexpr ldiv_t div(long int numer, long int denom);
-  constexpr lldiv_t div(long long int numer, long long int denom);
-  constexpr imaxdiv_t div(std::intmax_t x, std::intmax_t y);
-  constexpr sdiv_t sdiv(short int numer, short int denom); // Adding this ;-)
-  constexpr ldiv_t ldiv(long int numer, long int denom);
-  constexpr lldiv_t lldiv(long long int numer, long long int denom);
-  constexpr imaxdiv_t imaxdiv(std::intmax_t x, std::intmax_t y);
+  constexpr squot_t quot(short int numer, short int denom);
+  constexpr quot_t quot(int numer, int denom);
+  constexpr lquot_t quot(long int numer, long int denom);
+  constexpr llquot_t quot(long long int numer, long long int denom);
+  constexpr intmaxquot_t quot(std::intmax_t x, std::intmax_t y);
+
+  constexpr squot_t squot(short int numer, short int denom);
+  constexpr lquot_t lquot(long int numer, long int denom);
+  constexpr llquot_t llquot(long long int numer, long long int denom);
+  constexpr intmaxquot_t intmaxquot(std::intmax_t x, std::intmax_t y);
 
   // Decompose floating-point number into a normalized fraction
   // and integral power of two.
@@ -140,7 +143,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   constexpr remquo_t<float> remquo(float x, float y);
   constexpr remquo_t<double> remquo(double x, double y);
   constexpr remquo_t<long double> remquo(long double x, long double y);
-  constexpr remquo_t<float> remquof(float x, float y, int* quo);
+
+  constexpr remquo_t<float> remquof(float x, float y);
   constexpr remquo_t<long double> remquol(long double x, long double y);
 
   constexpr double nan();

@@ -228,6 +228,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::jacobi_sn "jacobi_sn - Jacobi sine amplitude functions"
    * - @ref __gnu_cxx::jacobi_cn "jacobi_cn - Jacobi cosine amplitude functions"
    * - @ref __gnu_cxx::jacobi_dn "jacobi_dn - Jacobi delta amplitude functions"
+   * - @ref __gnu_cxx::jacobi_theta_1 "theta_1 - Jacobi theta function 1"
+   * - @ref __gnu_cxx::jacobi_theta_2 "theta_2 - Jacobi theta function 2"
+   * - @ref __gnu_cxx::jacobi_theta_3 "theta_3 - Jacobi theta function 3"
+   * - @ref __gnu_cxx::jacobi_theta_4 "theta_4 - Jacobi theta function 4"
    * - @ref __gnu_cxx::jacobi_zeta "jacobi_zeta - Jacobi zeta functions"
    * - @ref __gnu_cxx::lbinomial "lbinomial - Log binomial coefficients"
    * - @ref __gnu_cxx::ldouble_factorial "ldouble_factorial - Log double factorials"
@@ -1048,7 +1052,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   hermitef(unsigned int __n, float __x)
-  { return __detail::__poly_hermite<float>(__n, __x); }
+  { return __detail::__hermite<float>(__n, __x); }
 
   /**
    * Return the Hermite polynomial @f$ H_n(x) @f$ of nonnegative order n
@@ -1058,7 +1062,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline long double
   hermitel(unsigned int __n, long double __x)
-  { return __detail::__poly_hermite<long double>(__n, __x); }
+  { return __detail::__hermite<long double>(__n, __x); }
 
   /**
    * Return the Hermite polynomial @f$ H_n(x) @f$ of order n
@@ -1083,7 +1087,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     hermite(unsigned int __n, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return __detail::__poly_hermite<__type>(__n, __x);
+      return __detail::__hermite<__type>(__n, __x);
     }
 
   // Laguerre polynomials
@@ -1140,7 +1144,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   legendref(unsigned int __l, float __x)
-  { return __detail::__poly_legendre_p<float>(__l, __x); }
+  { return __detail::__legendre_p<float>(__l, __x).__P_l; }
 
   /**
    * Return the Legendre polynomial @f$ P_l(x) @f$ of nonnegative
@@ -1150,7 +1154,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline long double
   legendrel(unsigned int __l, long double __x)
-  { return __detail::__poly_legendre_p<long double>(__l, __x); }
+  { return __detail::__legendre_p<long double>(__l, __x).__P_l; }
 
   /**
    * Return the Legendre polynomial @f$ P_l(x) @f$ of nonnegative
@@ -1172,7 +1176,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     legendre(unsigned int __l, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return __detail::__poly_legendre_p<__type>(__l, __x);
+      return __detail::__legendre_p<__type>(__l, __x).__P_l;
     }
 
   // Riemann zeta functions
@@ -1864,7 +1868,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline float
   jacobi_snf(float __k, float __u)
   {
-    return std::__detail::__jacobi_sncndn<float>(__k, __u).__sn_value;
+    return std::__detail::__jacobi_ellint<float>(__k, __u).__sn_value;
   }
 
   /**
@@ -1876,7 +1880,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline long double
   jacobi_snl(long double __k, long double __u)
   {
-    return std::__detail::__jacobi_sncndn<long double>(__k, __u).__sn_value;
+    return std::__detail::__jacobi_ellint<long double>(__k, __u).__sn_value;
   }
 
   /**
@@ -1900,7 +1904,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_sn(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_sncndn<__type>(__k, __u).__sn_value;
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).__sn_value;
     }
 
   // Jacobi elliptic cosine amplitude functions.
@@ -1914,7 +1918,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline float
   jacobi_cnf(float __k, float __u)
   {
-    return std::__detail::__jacobi_sncndn<float>(__k, __u).__cn_value;
+    return std::__detail::__jacobi_ellint<float>(__k, __u).__cn_value;
   }
 
   /**
@@ -1926,7 +1930,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline long double
   jacobi_cnl(long double __k, long double __u)
   {
-    return std::__detail::__jacobi_sncndn<long double>(__k, __u).__cn_value;
+    return std::__detail::__jacobi_ellint<long double>(__k, __u).__cn_value;
   }
 
   /**
@@ -1950,7 +1954,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_cn(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_sncndn<__type>(__k, __u).__cn_value;
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).__cn_value;
     }
 
   // Jacobi elliptic delta amplitude functions.
@@ -1964,7 +1968,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline float
   jacobi_dnf(float __k, float __u)
   {
-    return std::__detail::__jacobi_sncndn<float>(__k, __u).__dn_value;
+    return std::__detail::__jacobi_ellint<float>(__k, __u).__dn_value;
   }
 
   /**
@@ -1976,7 +1980,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline long double
   jacobi_dnl(long double __k, long double __u)
   {
-    return std::__detail::__jacobi_sncndn<long double>(__k, __u).__dn_value;
+    return std::__detail::__jacobi_ellint<long double>(__k, __u).__dn_value;
   }
 
   /**
@@ -2000,7 +2004,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi_dn(_Kp __k, _Up __u)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
-      return std::__detail::__jacobi_sncndn<__type>(__k, __u).__dn_value;
+      return std::__detail::__jacobi_ellint<__type>(__k, __u).__dn_value;
     }
 
   // Chebyshev polynomials of the first kind
@@ -2013,7 +2017,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   chebyshev_tf(unsigned int __n, float __x)
-  { return std::__detail::__chebyshev_t<float>(__n, __x); }
+  { return std::__detail::__chebyshev_t<float>(__n, __x).__T_n; }
 
   /**
    * Return the Chebyshev polynomials of the first kind @f$ T_n(x) @f$
@@ -2023,7 +2027,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline long double
   chebyshev_tl(unsigned int __n, long double __x)
-  { return std::__detail::__chebyshev_t<long double>(__n, __x); }
+  { return std::__detail::__chebyshev_t<long double>(__n, __x).__T_n; }
 
   /**
    * Return the Chebyshev polynomial of the first kind @f$ T_n(x) @f$
@@ -2044,7 +2048,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     chebyshev_t(unsigned int __n, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__chebyshev_t<__type>(__n, __x);
+      return std::__detail::__chebyshev_t<__type>(__n, __x).__T_n;
     }
 
   // Chebyshev polynomials of the second kind
@@ -2057,7 +2061,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   chebyshev_uf(unsigned int __n, float __x)
-  { return std::__detail::__chebyshev_u<float>(__n, __x); }
+  { return std::__detail::__chebyshev_u<float>(__n, __x).__U_n; }
 
   /**
    * Return the Chebyshev polynomials of the second kind  @f$ U_n(x) @f$
@@ -2067,7 +2071,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline long double
   chebyshev_ul(unsigned int __n, long double __x)
-  { return std::__detail::__chebyshev_u<long double>(__n, __x); }
+  { return std::__detail::__chebyshev_u<long double>(__n, __x).__U_n; }
 
   /**
    * Return the Chebyshev polynomial of the second kind @f$ U_n(x) @f$
@@ -2088,7 +2092,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     chebyshev_u(unsigned int __n, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__chebyshev_u<__type>(__n, __x);
+      return std::__detail::__chebyshev_u<__type>(__n, __x).__U_n;
     }
 
   // Chebyshev polynomials of the third kind
@@ -2192,18 +2196,25 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   jacobif(unsigned __n, float __alpha, float __beta, float __x)
-  { return std::__detail::__poly_jacobi<float>(__n, __alpha, __beta, __x); }
+  {
+    return std::__detail::__jacobi_recur<float>(__n, __alpha, __beta, __x)
+				.__P_n;
+  }
 
   /**
    * Return the Jacobi polynomial @f$ P_n^{(\alpha,\beta)}(x) @f$
-   * of degree @f$ n @f$ and @c <tt>long double</tt> orders @f$ \alpha, \beta > -1 @f$
-   * and argument @f$ x @f$.
+   * of degree @f$ n @f$ and @c <tt>long double</tt> orders
+   * @f$ \alpha, \beta > -1 @f$ and argument @f$ x @f$.
    *
    * @see jacobi for details.
    */
   inline long double
-  jacobil(unsigned __n, long double __alpha, long double __beta, long double __x)
-  { return std::__detail::__poly_jacobi<long double>(__n, __alpha, __beta, __x); }
+  jacobil(unsigned __n, long double __alpha, long double __beta,
+	  long double __x)
+  {
+    return std::__detail::__jacobi_recur<long double>(__n, __alpha, __beta, __x)
+				.__P_n;
+  }
 
   /**
    * Return the Jacobi polynomial @f$ P_n^{(\alpha,\beta)}(x) @f$
@@ -2238,14 +2249,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     jacobi(unsigned __n, _Talpha __alpha, _Tbeta __beta, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Talpha, _Tbeta, _Tp>;
-      return std::__detail::__poly_jacobi<__type>(__n, __alpha, __beta, __x);
+      return std::__detail::__jacobi_recur<__type>(__n, __alpha, __beta,
+						   __x).__P_n;
     }
 
   // Gegenbauer polynomials
 
   /**
    * Return the Gegenbauer polynomial @f$ C_n^{\alpha}(x) @f$ of degree @c n
-   * and @c float order @f$ \alpha > -1/2, \alpha \neq 0 @f$ and argument @f$ x @f$.
+   * and @c float order @f$ \alpha > -1/2, \alpha \neq 0 @f$
+   * and argument @f$ x @f$.
    *
    * @see gegenbauer for details.
    */
@@ -2268,7 +2281,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the Gegenbauer polynomial @f$ C_n^{\alpha}(x) @f$ of degree @c n
    * and real order @f$ \alpha > -1/2, \alpha \neq 0 @f$ and argument @f$ x @f$.
    *
-   * The Gegenbauer polynomials are generated by a three-term recursion relation:
+   * The Gegenbauer polynomial is generated by a three-term recursion relation:
    * @f[
    *    C_n^{\alpha}(x) = \frac{1}{n}\left[ 2x(n+\alpha-1)C_{n-1}^{\alpha}(x)
    *                   - (n+2\alpha-2)C_{n-2}^{\alpha}(x) \right]
@@ -5357,7 +5370,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the exponential theta-1 function @f$ \theta_1(\nu,x) @f$
    * of period @f$ \nu @f$ and argument @f$ x @f$.
    *
-   * The Neville theta-1 function is defined by
+   * The exponential theta-1 function is defined by
    * @f[
    *    \theta_1(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
    *    (-1)^j \exp\left( \frac{-(\nu + j - 1/2)^2}{x} \right)
@@ -5731,6 +5744,178 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tpk, _Tp>;
       return std::__detail::__theta_n<__type>(__k, __x);
+    }
+
+  // Jacobi theta_1 functions.
+
+  /**
+   * Return the Jacobi theta-1 function @f$ \theta_1(q,x) @f$
+   * of nome @f$ q @f$ and argument @f$ x @f$.
+   *
+   * @see jacobi_theta_1 for details.
+   */
+  inline float
+  jacobi_theta_1f(float __q, float __x)
+  { return std::__detail::__jacobi_theta_1<float>(__q, __x); }
+
+  /**
+   * Return the Jacobi theta-1 function @f$ \theta_1(q,x) @f$
+   * of nome @f$ q @f$ and argument @f$ x @f$.
+   *
+   * @see jacobi_theta_1 for details.
+   */
+  inline long double
+  jacobi_theta_1l(long double __q, long double __x)
+  { return std::__detail::__jacobi_theta_1<long double>(__q, __x); }
+
+  /**
+   * Return the Jacobi theta-1 function @f$ \theta_1(q,x) @f$
+   * of nome @f$ q @f$ and argument @f$ x @f$.
+   *
+   * The Jacobi theta-1 function is defined by
+   * @f[
+   *    \theta_1(q,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
+   *    (-1)^j \exp\left( \frac{-(q + j - 1/2)^2}{x} \right)
+   * @f]
+   *
+   * @param __q The periodic (period = 2) argument
+   * @param __x The argument
+   */
+  template<typename _Tpq, typename _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tpq, _Tp>
+    jacobi_theta_1(_Tpq __q, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_fp_t<_Tpq, _Tp>;
+      return std::__detail::__jacobi_theta_1<__type>(__q, __x);
+    }
+
+  // Jacobi theta_2 functions.
+
+  /**
+   * Return the Jacobi theta-2 function @f$ \theta_2(q,x) @f$
+   * of nome @f$ q @f$ and argument @f$ x @f$.
+   *
+   * @see jacobi_theta_2 for details.
+   */
+  inline float
+  jacobi_theta_2f(float __q, float __x)
+  { return std::__detail::__jacobi_theta_2<float>(__q, __x); }
+
+  /**
+   * Return the Jacobi theta-2 function @f$ \theta_2(q,x) @f$
+   * of nome @f$ q @f$ and argument @f$ x @f$.
+   *
+   * @see jacobi_theta_2 for details.
+   */
+  inline long double
+  jacobi_theta_2l(long double __q, long double __x)
+  { return std::__detail::__jacobi_theta_2<long double>(__q, __x); }
+
+  /**
+   * Return the Jacobi theta-2 function @f$ \theta_2(q,x) @f$
+   * of nome @f$ q @f$ and argument @f$ x @f$.
+   *
+   * The Jacobi theta-2 function is defined by
+   * @f[
+   *    \theta_2(q,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
+   *    (-1)^j \exp\left( \frac{-(q + j)^2}{x} \right)
+   * @f]
+   *
+   * @param __q The periodic (period = 2) argument
+   * @param __x The argument
+   */
+  template<typename _Tpq, typename _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tpq, _Tp>
+    jacobi_theta_2(_Tpq __q, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_fp_t<_Tpq, _Tp>;
+      return std::__detail::__jacobi_theta_2<__type>(__q, __x);
+    }
+
+  // Jacobi theta_3 functions.
+
+  /**
+   * Return the Jacobi theta-3 function @f$ \theta_3(q,x) @f$
+   * of nome @f$ q @f$ and argument @f$ x @f$.
+   *
+   * @see jacobi_theta_3 for details.
+   */
+  inline float
+  jacobi_theta_3f(float __q, float __x)
+  { return std::__detail::__jacobi_theta_3<float>(__q, __x); }
+
+  /**
+   * Return the Jacobi theta-3 function @f$ \theta_3(q,x) @f$
+   * of nome @f$ q @f$ and argument @f$ x @f$.
+   *
+   * @see jacobi_theta_3 for details.
+   */
+  inline long double
+  jacobi_theta_3l(long double __q, long double __x)
+  { return std::__detail::__jacobi_theta_3<long double>(__q, __x); }
+
+  /**
+   * Return the Jacobi theta-3 function @f$ \theta_3(q,x) @f$
+   * of nome @f$ q @f$ and argument @f$ x @f$.
+   *
+   * The Jacobi theta-3 function is defined by
+   * @f[
+   *    \theta_3(q,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
+   *    \exp\left( \frac{-(q+j)^2}{x} \right)
+   * @f]
+   *
+   * @param __q The elliptic nome
+   * @param __x The argument
+   */
+  template<typename _Tpq, typename _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tpq, _Tp>
+    jacobi_theta_3(_Tpq __q, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_fp_t<_Tpq, _Tp>;
+      return std::__detail::__jacobi_theta_3<__type>(__q, __x);
+    }
+
+  // Jacobi theta_4 functions.
+
+  /**
+   * Return the Jacobi theta-4 function @f$ \theta_4(q,x) @f$
+   * of nome @f$ q @f$ and argument @f$ x @f$.
+   *
+   * @see jacobi_theta_4 for details.
+   */
+  inline float
+  jacobi_theta_4f(float __q, float __x)
+  { return std::__detail::__jacobi_theta_4<float>(__q, __x); }
+
+  /**
+   * Return the Jacobi theta-4 function @f$ \theta_4(q,x) @f$
+   * of nome @f$ q @f$ and argument @f$ x @f$.
+   *
+   * @see jacobi_theta_4 for details.
+   */
+  inline long double
+  jacobi_theta_4l(long double __q, long double __x)
+  { return std::__detail::__jacobi_theta_4<long double>(__q, __x); }
+
+  /**
+   * Return the Jacobi theta-4 function @f$ \theta_4(q,x) @f$
+   * of nome @f$ q @f$ and argument @f$ x @f$.
+   *
+   * The Jacobi theta-4 function is defined by
+   * @f[
+   *    \theta_4(q,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
+   *                 \exp\left( \frac{-(q + j + 1/2)^2}{x} \right)
+   * @f]
+   *
+   * @param __q The elliptic nome
+   * @param __x The argument
+   */
+  template<typename _Tpq, typename _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tpq, _Tp>
+    jacobi_theta_4(_Tpq __q, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_fp_t<_Tpq, _Tp>;
+      return std::__detail::__jacobi_theta_4<__type>(__q, __x);
     }
 
   // Owens T functions.

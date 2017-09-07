@@ -48,7 +48,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     { return __k & 1 ? _Tp{-1} : _Tp{+1}; }
 
   /**
-   * A function to return the max of the absolute values of two numbers
+   * A function to return the maximum of the absolute values of two numbers
    * ... so we won't include everything.
    * @param __a The left hand side
    * @param __b The right hand side

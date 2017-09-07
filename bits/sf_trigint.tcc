@@ -53,7 +53,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_max_iter = 100;
       const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__t);
-      const auto _S_fp_min = __gnu_cxx::__min(__t);
+      const auto _S_fp_min = __gnu_cxx::__lim_min(__t);
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__t);
 
       // Evaluate Ci and Si by Lentz's modified method of continued fractions.
@@ -96,7 +96,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_max_iter = 100;
       const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__t);
-      const auto _S_fp_min = __gnu_cxx::__min(__t);
+      const auto _S_fp_min = __gnu_cxx::__lim_min(__t);
       const auto _S_gamma_e = __gnu_cxx::__const_gamma_e(__t);
 
       // Evaluate Ci and Si by series simultaneously.

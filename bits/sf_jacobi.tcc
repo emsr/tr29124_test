@@ -55,26 +55,26 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Tp>
-    _Tp
-    __poly_jacobi(unsigned int __n, _Tp __alpha1, _Tp __beta1, _Tp __x)
+    __gnu_cxx::__jacobi_t<_Tp>
+    __jacobi_recur(unsigned int __n, _Tp __alpha1, _Tp __beta1, _Tp __x)
     {
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
 
       if (__isnan(__alpha1) || __isnan(__beta1) || __isnan(__x))
-	return _S_NaN;
+	return {__n, __alpha1, __beta1, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
 
       auto __P_nm2 = _Tp{1};
       if (__n == 0)
-	return __P_nm2;
+	return {__n, __alpha1, __beta1, __x, __P_nm2, _Tp{0}, _Tp{0}};
 
       const auto __apb = __alpha1 + __beta1;
       const auto __amb = __alpha1 - __beta1;
       auto __P_nm1 = (__amb + (__apb + _Tp{2}) * __x) / _Tp{2};
       if (__n == 1)
-	return __P_nm1;
+	return {__n, __alpha1, __beta1, __x, __P_nm1, __P_nm2, _Tp{0}};
 
       const auto __a2mb2 = __amb * __apb;
-      const auto __bah = ((__apb + _Tp(2)) + _Tp(2));
+      const auto __bah = ((__apb + _Tp{2}) + _Tp{2});
       const auto __poo = (__bah - _Tp{1});
       auto __P_n = (((__poo * __a2mb2)
 		     + ((__poo - _Tp{1}) * __poo * __bah) * __x)
@@ -93,16 +93,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto __c = _Tp{2} * (__alpha1 + _Tp(__k - 1))
 			    * (__beta1 + _Tp(__k - 1)) * __apbp2k;
 	  if (__d == _Tp{0})
-	    std::__throw_runtime_error(__N("__poly_jacobi: "
+	    std::__throw_runtime_error(__N("__jacobi_recur: "
 					   "Failure in recursion"));
 	  __P_nm2 = __P_nm1;
 	  __P_nm1 = __P_n;
 	  __P_n = ((__b + __a * __x) * __P_nm1 - __c * __P_nm2) / __d;
 	}
-      //auto __Pp_n = (__n * (__alpha1 - __beta1 - __apbp2k * __x) * ___P_nm1
-	//	   + _Tp{2} * (__n + __alpha1) * (__n + __beta1) * ___P_nm2)
+      //auto __Pp_n = (__n * (__alpha1 - __beta1 - __apbp2k * __x) * __P_nm1
+	//	   + _Tp{2} * (__n + __alpha1) * (__n + __beta1) * __P_nm2)
 	//	/ (__apbp2k * (_Tp{1} - __x * __x));
-      return __P_n;
+      return {__n, __alpha1, __beta1, __x, __P_n, __P_nm1, __P_nm2};
     }
 /*
 
@@ -276,8 +276,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  auto __k = (__n - __m) / 2;
 	  return (__k % 2 == 0 ? +1 : -1) * std::pow(__rho, __m)
-	       * __poly_jacobi(__k, _Tp(__m), _Tp{0},
-			       _Tp{1} - _Tp{2} * __rho * __rho);
+	       * __jacobi_recur(__k, _Tp(__m), _Tp{0},
+				_Tp{1} - _Tp{2} * __rho * __rho).__P_n;
 	}
     }
 

@@ -70,6 +70,9 @@ extern "C" {
 }
 #endif
 
+namespace std
+{
+
 #if _GLIBCXX_USE_C99_COMPLEX
 
   inline __float128
@@ -153,6 +156,8 @@ extern "C" {
 #endif // C++11
 
 #endif // _GLIBCXX_USE_C99_COMPLEX
+
+} // namespace std
 
 #endif // _GLIBCXX_HAVE_FLOAT128_MATH
 

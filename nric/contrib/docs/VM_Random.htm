@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+  "http://www.w3.org/TR/REC-html40/transitional.dtd">
+<HTML>
+<HEAD>
+  <TITLE>VecMat - Random Number Generators</TITLE>
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=iso-8859-1">
+  <META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+  <META NAME="Author" CONTENT="Kevin Dolan">
+  <LINK HREF="vecmat.css" REL="stylesheet" TYPE="text/css">
+</HEAD>
+
+<BODY>
+
+<H2>3.7. BaseGen</H2>
+
+<P>This is a class for generating pseudorandom numbers. It is based on the
+<EM>KISS</EM> (<STRONG>K</STRONG>eep <STRONG>I</STRONG>t
+<STRONG>S</STRONG>imple, <STRONG>S</STRONG>tupid) algorithm developed by George
+Marsaglia.</P>
+
+<P>It combines two multiply-with-carry generators with a 3-shift register
+generator, and a congruential generator, using addition and bitwise
+exclusive-or. It should have a period of about 2^123, or about 1.0E+37. This
+class produces <CODE>unsigned int</CODE> values by default, but if your
+platform does not use 32 bit integers, then the type used by the generator
+should be changed to a 32 bit type. This class is used as the internal
+generator for the <CODE>IntGen</CODE>, <CODE>UniformGen</CODE> and
+<CODE>NormalGen</CODE> classes. To use any of these classes, include the header
+file "random.h".</P>
+
+<H3>3.7.1. Constructors.</H3>
+
+<H4><CODE>explicit BaseGen(UINT32 seed = 0)</CODE></H4>
+<P>This initializes the random number with <CODE>seed</CODE>. Since the state
+of the generator is defined by four numbers, this initialization is done by
+initializing the congruential generator portion of the generator with
+<CODE>seed</CODE>, and then iterating it four times to produce the initial
+states for all four components. If <CODE>seed</CODE> is zero, or no seed is
+supplied, then the current value of the <CODE>time()</CODE> function is
+used.</P>
+
+<H4><CODE>BaseGen(const BaseGen&amp; gen)</CODE></H4>
+<P>The copy constructer initializes the generator with a seed from
+<CODE>gen</CODE>.</P>
+
+<H3>3.7.2. Overloaded operators.</H3>
+
+<H4><CODE>BaseGen&amp; operator=(const BaseGen&amp; gen)</CODE></H4>
+<P>The assignment operator reinitializes the generator with a seed from
+<CODE>gen</CODE>. Note that <CODE>g = g</CODE> is perfectly OK, and will simply
+reseed the generator with the next number it generates.</P>
+
+<H4><CODE>UINT32 operator()() const</CODE></H4>
+<P>The function call operator is used to retrieve the next value from the
+generator.</P>
+
+<H2><A NAME=intgen>3.8. IntGen</A></H2>
+
+<P>This class uses an internal object of class <CODE>BaseGen</CODE> to generate
+uniformly distributed integers on some closed interval.</P>
+
+<H3>3.8.1. Constructors.</H3>
+
+<H4><CODE>explicit IntGen(UINT32 seed = 0, int a = 0, int b = 0)</CODE></H4>
+<P>This initializes the internal <CODE>BaseGen</CODE> with <CODE>seed</CODE>.
+The values <CODE>a</CODE> and <CODE>b</CODE> denote the closed interval of
+numbers to be generated. All three parameters are optional. If no parameters
+are given, then the generator is seeded with the <CODE>time()</CODE> function,
+and the interval is set to <CODE>(0, 1)</CODE>. If one parameter is given, then
+it is taken to be the seed, and the interval is set to <CODE>(0, 1)</CODE>. If
+two parameters are given, then the first is the seed, and the second is used
+for one end of the interval, giving either <CODE>(0, a)</CODE> or <CODE>(a,
+0)</CODE>, depending on whether <CODE>a</CODE> is positive or negative. If
+<CODE>a</CODE> is zero, then the interval is set to <CODE>(0, 1).</CODE> If all
+three parameters are given, then the interval is either set to <CODE>(a,
+b)</CODE>, <CODE>(b, a)</CODE>, or <CODE>(0, 1)</CODE>, depending on whether
+<CODE>a &lt; b</CODE>, <CODE>a &gt; b</CODE>, or <CODE>a == b</CODE>. If a seed
+of zero is given, then the generator is initialized with the
+<CODE>time()</CODE> function.</P>
+
+<H4><CODE>IntGen(const IntGen&amp; gen)</CODE></H4>
+<P>The copy constructor initializes the new generator using the
+<CODE>BaseGen</CODE> assignment operator to initialize the internal generator
+with the internal generator of <CODE>gen</CODE>. The interval of generated
+values is also copied from <CODE>gen</CODE>.</P>
+
+<H3>3.8.2. Member functions.</H3>
+
+<H4><CODE>int low() const</CODE></H4>
+<P>Returns the lower edge of the closed interval of numbers generated.</P>
+
+<H4><CODE>int high() const</CODE></H4>
+<P>Returns the upper edge of the closed interval of numbers generated.</P>
+
+<H4><CODE>void set_range(int a = 0, int b = 0)</CODE></H4>
+<P>Sets the interval of numbers generated to <CODE>(a, b)</CODE>, <CODE>(b,
+a)</CODE>, or <CODE>(0, 1)</CODE>, depending on whether <CODE>a &lt; b</CODE>,
+<CODE>a &gt; b</CODE>, or <CODE>a == b</CODE>. Both parameters are optional. If
+no parameters are given, the interval is set to <CODE>(0, 1)</CODE>. If only
+one parameter is given, then the missing parameter is assumed to be zero.</P>
+
+<H3>3.8.3. Overloaded operators.</H3>
+
+<H4><CODE>IntGen&amp; operator=(const IntGen&amp; gen)</CODE></H4>
+<P>The assignment operator reinitializes the generator by using the
+<CODE>BaseGen</CODE> assignment operator of <CODE>gen</CODE> on the internal
+generator. It also sets the output range equal to that of <CODE>gen</CODE>.</P>
+
+<H4><CODE>int operator()() const</CODE></H4>
+<P>The function call operator returns a random <CODE>int</CODE> from the
+appropriate range.</P>
+
+<H2><A NAME=unigen>3.9. UniformGen</A></H2>
+
+<P>This class uses an internal object of class <CODE>BaseGen</CODE> to generate
+uniformly distributed <CODE>double</CODE> values on some open interval.</P>
+
+<H3>3.9.1. Constructors.</H3>
+
+<H4><CODE>explicit UniformGen(UINT32 seed = 0, double a = 0.0, double b =
+    0.0)</CODE></H4>
+<P>This initializes the internal <CODE>BaseGen</CODE> with <CODE>seed</CODE>.
+The values <CODE>a</CODE> and <CODE>b</CODE> denote the open interval of
+numbers to be generated. All three parameters are optional. If no parameters
+are given, then the generator is seeded with the <CODE>time()</CODE> function,
+and the interval is set to <CODE>(0.0, 1.0)</CODE>. If one parameter is given,
+then it is taken to be the seed, and the interval is set to
+<CODE>(0.0, 1.0)</CODE>. If two parameters are given, then the first is the
+seed, and the second is used for one end of the interval, giving either
+<CODE>(0.0, a)</CODE> or <CODE>(a, 0.0)</CODE>, depending on whether
+<CODE>a</CODE> is positive or negative. If <CODE>a</CODE> is zero, then the
+interval is set to <CODE>(0.0, 1.0)</CODE>. If all three parameters are given,
+then the interval is either set to <CODE>(a, b)</CODE>, <CODE>(b, a)</CODE>, or
+<CODE>(0.0, 1.0)</CODE>, depending on whether <CODE>a &lt; b</CODE>, <CODE>a
+&gt; b</CODE>, or <CODE>a == b</CODE>. If a seed of zero is given, then the
+generator is initialized with the <CODE>time()</CODE> function.</P>
+
+<H4><CODE>UniformGen(const UniformGen&amp; gen)</CODE></H4>
+<P>The copy constructor initializes the new generator using the
+<CODE>BaseGen</CODE> assignment operator to initialize the internal generator
+with the internal generator of <CODE>gen</CODE>. The interval of generated
+values is also copied from <CODE>gen</CODE>.</P>
+
+<H3>3.9.2. Member functions.</H3>
+
+<H4><CODE>double low() const</CODE></H4>
+<P>Returns the lower edge of the open interval of numbers generated.</P>
+
+<H4><CODE>double high() const</CODE></H4>
+<P>Returns the upper edge of the open interval of numbers generated.</P>
+
+<H4><CODE>void set_range(double a = 0.0, double b = 0.0)</CODE></H4>
+<P>Sets the interval of numbers generated to <CODE>(a, b)</CODE>, <CODE>(b,
+a)</CODE>, or <CODE>(0.0, 1.0)</CODE>, depending on whether <CODE>a &lt;
+b</CODE>, <CODE>a &gt; b</CODE>, or <CODE>a == b</CODE>. Both parameters are
+optional. If no parameters are given, the interval is set to <CODE>(0.0,
+1.0)</CODE>. If only one parameter is given, then the missing parameter is
+assumed to be zero.</P>
+
+<H3>3.9.3. Overloaded operators.</H3>
+
+<H4><CODE>UniformGen&amp; operator=(const UniformGen&amp; gen)</CODE></H4>
+<P>The assignment operator reinitializes the generator by using the
+<CODE>BaseGen</CODE> assignment operator of <CODE>gen</CODE> on the internal
+generator. It also sets the output range equal to that of <CODE>gen</CODE>.</P>
+
+<H4><CODE>double operator()() const</CODE></H4>
+<P>The function call operator returns a random <CODE>double</CODE> from the
+appropriate range.</P>
+
+<H2><A NAME=normgen>3.10. NormalGen</A></H2>
+
+<P>This class uses an internal object of class <CODE>BaseGen</CODE> to generate
+normally distributed <CODE>double</CODE> values with a given mean and standard
+deviation. It uses the <EM>Monty Python</EM> method for generating these
+numbers, which is much faster than the commonly used polar and
+<EM>Box-Muller</EM> methods.</P>
+
+<H3>3.10.1. Constructors.</H3>
+
+<H4><CODE>explicit NormalGen(UINT32 seed = 0, double m = 0.0, double
+    stdv = 1.0)</CODE></H4>
+<P>This initializes the internal generator with <CODE>seed</CODE>, and sets the
+mean and standard deviation of the generator to <CODE>m</CODE> and
+<CODE>stdv</CODE>, respectively. If <CODE>seed</CODE> is zero or not given,
+then the <CODE>time()</CODE> function is used for initialization.</P>
+
+<H4><CODE>NormalGen(const NormalGen&amp; gen)</CODE></H4>
+<P>The copy constructor initializes the new generator using the
+<CODE>BaseGen</CODE> assignment operator to initialize the internal generator
+with the internal generator of <CODE>gen</CODE>. The mean and standard
+deviation are also copied from <CODE>gen</CODE>.</P>
+
+<H3>3.10.2. Member functions.</H3>
+
+<H4><CODE>double mean() const</CODE></H4>
+<P>Returns the mean of the generator.</P>
+
+<H4><CODE>double stdv() const</CODE></H4>
+<P>Returns the standard deviation of the generator.</P>
+
+<H4><CODE>void set_range(double m = 0.0, double stdv = 1.0)</CODE></H4>
+<P>Sets the mean and standard deviation of the generator to <CODE>m</CODE> and
+<CODE>stdv</CODE>. Both parameters are optional, with defaults of
+<CODE>0.0</CODE> and <CODE>1.0</CODE>, respectively.</P>
+
+<H3>3.10.3. Overloaded operators.</H3>
+
+<H4><CODE>NormalGen&amp; operator=(const NormalGen&amp; gen)</CODE></H4>
+<P>The assignment operator reinitializes the generator by using the
+<CODE>BaseGen</CODE> assignment operator of <CODE>gen</CODE> on the internal
+generator. It also sets the mean and standard deviation equal to that of
+<CODE>gen</CODE>.</P>
+
+<H4><CODE>double operator()() const</CODE></H4>
+<P>The function call operator returns a random <CODE>double</CODE> from the
+appropriate distribution.</P>
+
+<P><A HREF="VM_Classes.htm">Back to Classes</A></P>
+
+</BODY>
+</HTML>

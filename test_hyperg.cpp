@@ -55,9 +55,9 @@ PATH=wrappers/debug:$PATH ./test_hyperg > test_hyperg.txt
       auto __aint = __gnu_cxx::__fp_is_integer(__a);
       auto __bint = __gnu_cxx::__fp_is_integer(__b);
       auto __max_iter = _S_max_iter;
-      if (__aint && __aint() < 0 && _S_max_iter > -__aint())
+      if (__aint && __aint() < 0 && int(_S_max_iter) > -__aint())
 	__max_iter = -__aint();
-      if (__bint && __bint() < 0 && _S_max_iter > -__bint())
+      if (__bint && __bint() < 0 && int(_S_max_iter) > -__bint())
 	__max_iter = -__bint();
 
       auto __term = _Tp{1};

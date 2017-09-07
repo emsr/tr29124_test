@@ -1,0 +1,37 @@
+/*  Style Sheet for VecMat Documentation  */
+/*  This style sheet is primarily CSS1, with some CSS2  */
+/*  Designed to be compliant with CSS standards and compatable with IE 6.x  */
+/*  Note that this style sheet is NOT compatable with Netscape 4.x  */
+
+/*  Basic Visual Scheme  */
+BODY       {font-family:arial, sans-serif; margin:0em 2em; color:black;
+            background:white; text-align:left}
+H1         {font-weight:bold; font-size:120%; margin:1em 0em; color:green}
+H2         {font-weight:bold; font-size:110%; margin:1em 0em; color:green}
+H3         {font-weight:bold; font-size:100%; margin:1em 0em; color:green}
+H4         {font-weight:bold; font-size:100%; margin:1em 0em 0em 0em; color:navy}
+P          {text-align:justify; margin:0em 0em 1em 0em}
+UL         {list-style:inside; margin:1em 0em}
+OL         {list-style:inside; margin:1em 0em}
+CITE, EM   {font-style:italic}
+Q          {font-style:italic; quotes:none}
+Q:before   {content:no-open-quote}
+Q:after    {content:no-close-quote}
+STRONG     {font-weight:bold}
+ACRONYM    {font-family:"Century Schoolbook", serif; font-weight:bold}
+CODE       {font-family:"Lucida Console", monospace; font-size:90%; color:navy}
+
+/*  Hyperlinks  */
+A:link     {color:olive}
+A:visited  {color:green}
+A:active   {color:purple}
+A:hover    {color:maroon}
+
+/*  Additional Classes  */
+DIV.sc      {white_space:pre; margin:1em 2em}
+CODE P      {margin:0em; text-align:left}
+TABLE       {background:white; border:none; width:100%; margin:1em 0em}
+TH          {font-weight:bold}
+TD          {border:none; text-align:left; vertical-align:top; padding:0em 1em}
+.cntr       {text-align:center}
+.jstfy      {text-align:justify}

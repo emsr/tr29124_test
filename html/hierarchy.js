@@ -2,13 +2,19 @@ var hierarchy =
 [
     [ "__gnu_cxx::__airy_t< _Tx, _Tp >", "struct____gnu__cxx_1_1____airy__t.html", null ],
     [ "__gnu_cxx::__cyl_bessel_t< _Tnu, _Tx, _Tp >", "struct____gnu__cxx_1_1____cyl__bessel__t.html", null ],
+    [ "__gnu_cxx::__cyl_coulomb_t< _Teta, _Trho, _Tp >", "struct____gnu__cxx_1_1____cyl__coulomb__t.html", null ],
     [ "__gnu_cxx::__cyl_hankel_t< _Tnu, _Tx, _Tp >", "struct____gnu__cxx_1_1____cyl__hankel__t.html", null ],
     [ "__gnu_cxx::__cyl_mod_bessel_t< _Tnu, _Tx, _Tp >", "struct____gnu__cxx_1_1____cyl__mod__bessel__t.html", null ],
     [ "__gnu_cxx::__fock_airy_t< _Tx, _Tp >", "struct____gnu__cxx_1_1____fock__airy__t.html", null ],
     [ "__gnu_cxx::__fp_is_integer_t", "struct____gnu__cxx_1_1____fp__is__integer__t.html", null ],
     [ "__gnu_cxx::__gamma_inc_t< _Tp >", "struct____gnu__cxx_1_1____gamma__inc__t.html", null ],
     [ "__gnu_cxx::__gamma_temme_t< _Tp >", "struct____gnu__cxx_1_1____gamma__temme__t.html", null ],
+    [ "__gnu_cxx::__hermite_he_t< _Tp >", "struct____gnu__cxx_1_1____hermite__he__t.html", null ],
+    [ "__gnu_cxx::__hermite_t< _Tp >", "struct____gnu__cxx_1_1____hermite__t.html", null ],
+    [ "__gnu_cxx::__jacobi_ellint_t< _Tp >", "struct____gnu__cxx_1_1____jacobi__ellint__t.html", null ],
     [ "__gnu_cxx::__jacobi_t< _Tp >", "struct____gnu__cxx_1_1____jacobi__t.html", null ],
+    [ "__gnu_cxx::__laguerre_t< _Tpa, _Tp >", "struct____gnu__cxx_1_1____laguerre__t.html", null ],
+    [ "__gnu_cxx::__legendre_p_t< _Tp >", "struct____gnu__cxx_1_1____legendre__p__t.html", null ],
     [ "__gnu_cxx::__lgamma_t< _Tp >", "struct____gnu__cxx_1_1____lgamma__t.html", null ],
     [ "__gnu_cxx::__pqgamma_t< _Tp >", "struct____gnu__cxx_1_1____pqgamma__t.html", null ],
     [ "__gnu_cxx::__quadrature_point_t< _Tp >", "struct____gnu__cxx_1_1____quadrature__point__t.html", null ],
@@ -24,6 +30,7 @@ var hierarchy =
     [ "std::__detail::__gamma_spouge_data< double >", "structstd_1_1____detail_1_1____gamma__spouge__data_3_01double_01_4.html", null ],
     [ "std::__detail::__gamma_spouge_data< float >", "structstd_1_1____detail_1_1____gamma__spouge__data_3_01float_01_4.html", null ],
     [ "std::__detail::__gamma_spouge_data< long double >", "structstd_1_1____detail_1_1____gamma__spouge__data_3_01long_01double_01_4.html", null ],
+    [ "std::__detail::__jacobi_theta_0_t< _Tp >", "structstd_1_1____detail_1_1____jacobi__theta__0__t.html", null ],
     [ "std::__detail::_Airy< _Tp >", "classstd_1_1____detail_1_1__Airy.html", null ],
     [ "std::__detail::_Airy_asymp_data< _Tp >", "structstd_1_1____detail_1_1__Airy__asymp__data.html", [
       [ "std::__detail::_Airy_asymp< _Tp >", "classstd_1_1____detail_1_1__Airy__asymp.html", null ]

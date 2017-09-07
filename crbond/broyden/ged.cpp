@@ -8,7 +8,7 @@
  *   Swaps b[] as well as a[][], so a pivot ID vector
  *   is not required.
  */
-#include <math.h>
+#include <cmath>
 
 int gelimd(double **a,double *b,double *x, int n)
 {

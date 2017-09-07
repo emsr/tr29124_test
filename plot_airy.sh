@@ -191,43 +191,6 @@ plot [0.0:5.0][-0.5:+4.5] \
                                "" using 1:9 with lines title "{/:Bold L}_3"
 
 
-# Kelvin
-plot [0.0:40.0][-1.5:1.5] \
-    "plot/kelvin_float.txt" using 1:2 with lines title "ber(x)", \
-                         "" using 1:3 with lines title "bei(x)", \
-                         "" using 1:4 with lines title "ker(x)", \
-                         "" using 1:5 with lines title "kei(x)"
-
-plot [0.0:40.0][-1.5:1.5] \
-    "plot/kelvin_double.txt" using 1:2 with lines title "ber(x)", \
-                          "" using 1:3 with lines title "bei(x)", \
-                          "" using 1:4 with lines title "ker(x)", \
-                          "" using 1:5 with lines title "kei(x)"
-
-plot [0.0:40.0][-1.5:1.5] \
-    "plot/kelvin_long_double.txt" using 1:2 with lines title "ber(x)", \
-                               "" using 1:3 with lines title "bei(x)", \
-                               "" using 1:4 with lines title "ker(x)", \
-                               "" using 1:5 with lines title "kei(x)"
-
-
-plot [0.0:40.0][-1.5:1.5] \
-    "plot/kelvin_order_float.txt" using 1:2 with lines title "ber(x)", \
-                               "" using 1:3 with lines title "bei(x)", \
-                               "" using 1:4 with lines title "ker(x)", \
-                               "" using 1:5 with lines title "kei(x)"
-plot [0.0:40.0][-1.5:1.5] \
-    "plot/kelvin_order_double.txt" using 1:2 with lines title "ber(x)", \
-                        	"" using 1:3 with lines title "bei(x)", \
-                        	"" using 1:4 with lines title "ker(x)", \
-                        	"" using 1:5 with lines title "kei(x)"
-plot [0.0:40.0][-1.5:1.5] \
-    "plot/kelvin_order_long_double.txt" using 1:2 with lines title "ber(x)", \
-                                     "" using 1:3 with lines title "bei(x)", \
-                                     "" using 1:4 with lines title "ker(x)", \
-                                     "" using 1:5 with lines title "kei(x)"
-
-
 gnuplot
 set xzeroaxis
 set yzeroaxis

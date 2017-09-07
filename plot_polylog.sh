@@ -10,6 +10,8 @@ set grid
 set title "Polylog Li_{-4}(x)"
 set xlabel "x"
 set polar
+set rrange [0:50]
+set view equal xy
 set grid polar pi/3
 plot [-25:25][-25:25] \
     "debug_polylog.txt" index 0 using 1:2 with lines title "Re[Li_{-4}(x)]", \

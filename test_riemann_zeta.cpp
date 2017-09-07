@@ -111,7 +111,7 @@ template<typename _Tp>
 
     data.precision(__gnu_cxx::__digits10(proto));
     data << std::showpoint << std::scientific;
-    auto width = 8 + data.precision();
+    auto w = 8 + data.precision();
 
     using zetaT = decltype(std::__detail::__riemann_zeta(_Cmplx{}));
     std::vector<std::vector<zetaT>> sv;
@@ -138,9 +138,9 @@ template<typename _Tp>
 	  {
 	    auto s = sv[i - i_min][j - j_min];
 	    auto zeta = zetav[i - i_min][j - j_min];
-	    data << std::setw(width) << std::real(s)
-		 << std::setw(width) << std::imag(s)
-		 << std::setw(width) << std::real(zeta)
+	    data << ' ' << std::setw(w) << std::real(s)
+		 << ' ' << std::setw(w) << std::imag(s)
+		 << ' ' << std::setw(w) << std::real(zeta)
 		 << '\n';
 	  }
 	data << '\n';
@@ -153,9 +153,9 @@ template<typename _Tp>
 	  {
 	    auto s = sv[i - i_min][j - j_min];
 	    auto zeta = zetav[i - i_min][j - j_min];
-	    data << std::setw(width) << std::real(s)
-		 << std::setw(width) << std::imag(s)
-		 << std::setw(width) << std::imag(zeta)
+	    data << ' ' << std::setw(w) << std::real(s)
+		 << ' ' << std::setw(w) << std::imag(s)
+		 << ' ' << std::setw(w) << std::imag(zeta)
 		 << '\n';
 	  }
 	data << '\n';
@@ -168,9 +168,9 @@ template<typename _Tp>
 	  {
 	    auto s = sv[i - i_min][j - j_min];
 	    auto zeta = zetav[i - i_min][j - j_min];
-	    data << std::setw(width) << std::real(s)
-		 << std::setw(width) << std::imag(s)
-		 << std::setw(width) << std::abs(zeta)
+	    data << ' ' << std::setw(w) << std::real(s)
+		 << ' ' << std::setw(w) << std::imag(s)
+		 << ' ' << std::setw(w) << std::abs(zeta)
 		 << '\n';
 	  }
 	data << '\n';
@@ -183,9 +183,9 @@ template<typename _Tp>
 	  {
 	    auto s = sv[i - i_min][j - j_min];
 	    auto zeta = zetav[i - i_min][j - j_min];
-	    data << std::setw(width) << std::real(s)
-		 << std::setw(width) << std::imag(s)
-		 << std::setw(width) << deg * std::arg(zeta) 
+	    data << ' ' << std::setw(w) << std::real(s)
+		 << ' ' << std::setw(w) << std::imag(s)
+		 << ' ' << std::setw(w) << deg * std::arg(zeta) 
 		 << '\n';
 	  }
 	data << '\n';
@@ -203,15 +203,15 @@ template<typename _Tp>
 
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
-    auto width = 8 + std::cout.precision();
+    auto w = 8 + std::cout.precision();
 
     int i_min = -250;
 
     std::cout << '\n'
-	      << std::setw(width) << "s"
-	      << std::setw(4 + 2 * width) << "zetac = zeta (cmplx)"
-	      << std::setw(width) << "zeta (real)"
-	      << std::setw(width) << "|zetac - zeta|"
+	      << ' ' << std::setw(w) << "s"
+	      << ' ' << std::setw(4 + 2 * w) << "zetac = zeta (cmplx)"
+	      << ' ' << std::setw(w) << "zeta (real)"
+	      << ' ' << std::setw(w) << "|zetac - zeta|"
 	      << '\n';
     for (int i = i_min; i <= +250; ++i)
       {
@@ -219,10 +219,10 @@ template<typename _Tp>
 	auto zetac = std::__detail::__riemann_zeta(sc);
         auto s = _Real(0.10L * i);
 	auto zeta = std::__detail::__riemann_zeta(s);
-	std::cout << std::setw(width) << s
-		  << std::setw(4 + 2 * width) << zetac
-		  << std::setw(width) << zeta
-		  << std::setw(width) << std::abs(zetac - zeta)
+	std::cout << ' ' << std::setw(w) << s
+		  << ' ' << std::setw(4 + 2 * w) << zetac
+		  << ' ' << std::setw(w) << zeta
+		  << ' ' << std::setw(w) << std::abs(zetac - zeta)
 		  << '\n';
       }
   }
@@ -238,29 +238,29 @@ template<typename _Tp>
     int i_min = -500;
 
     std::cout << '\n'
-	      << std::setw(w) << "s"
-	      << std::setw(w) << "zeta"
-	      << std::setw(w) << "zeta_GSL"
-	      << std::setw(w) << "|zeta - zeta_GSL|"
+	      << ' ' << std::setw(w) << "s"
+	      << ' ' << std::setw(w) << "zeta"
+	      << ' ' << std::setw(w) << "zeta_GSL"
+	      << ' ' << std::setw(w) << "|zeta - zeta_GSL|"
 	      << '\n';
     for (int i = i_min; i <= +500; ++i)
       {
         auto s = _Tp(0.05L * i);
 	if (s == _Tp{1})
 	  {
-	    std::cout << std::setw(w) << s
-		      << std::setw(w) << "nan"
-		      << std::setw(w) << "nan"
-		      << std::setw(w) << "nan"
+	    std::cout << ' ' << std::setw(w) << s
+		      << ' ' << std::setw(w) << "nan"
+		      << ' ' << std::setw(w) << "nan"
+		      << ' ' << std::setw(w) << "nan"
 		      << '\n';
 	    continue;
 	  }
 	auto zeta = std::riemann_zeta(s);
 	auto zeta_gsl = gsl::riemann_zeta(s);
-	std::cout << std::setw(w) << s
-		  << std::setw(w) << zeta
-		  << std::setw(w) << zeta_gsl
-		  << std::setw(w) << zeta - zeta_gsl
+	std::cout << ' ' << std::setw(w) << s
+		  << ' ' << std::setw(w) << zeta
+		  << ' ' << std::setw(w) << zeta_gsl
+		  << ' ' << std::setw(w) << zeta - zeta_gsl
 		  << '\n';
       }
   }
@@ -277,7 +277,24 @@ template<typename _Tp>
 
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
-    auto width = 8 + std::cout.precision();
+    auto w = 8 + std::cout.precision();
+
+    int i_min = -500;
+
+    std::cout << '\n'
+	      << ' ' << std::setw(w) << "s"
+	      << ' ' << std::setw(w) << "zeta"
+	      << '\n';
+    for (int i = i_min; i <= +500; ++i)
+      {
+        auto s = _Cmplx(0.5L, 0.05L * i);
+	auto zeta = std::__detail::__riemann_zeta(s);
+	std::cout << ' ' << std::setw(w) << std::imag(s)
+		  << ' ' << std::setw(w) << std::real(zeta)
+		  << ' ' << std::setw(w) << std::imag(zeta)
+		  << ' ' << std::setw(w) << std::abs(zeta)
+		  << '\n';
+      }
 
     _Cmplx
     __zeros[10]
@@ -295,16 +312,16 @@ template<typename _Tp>
     };
 
     std::cout << '\n'
-	      << std::setw(4 + 2 * width) << "s"
-	      << std::setw(4 + 2 * width) << "zeta(s)"
-	      << std::setw(width) << "|zeta(s)|"
+	      << ' ' << std::setw(4 + 2 * w) << "s"
+	      << ' ' << std::setw(4 + 2 * w) << "zeta(s)"
+	      << ' ' << std::setw(w) << "|zeta(s)|"
 	      << '\n';
     for (auto s : __zeros)
       {
 	auto zeta = std::__detail::__riemann_zeta(s);
-	std::cout << std::setw(4 + 2 * width) << s
-		  << std::setw(4 + 2 * width) << zeta
-		  << std::setw(width) << std::abs(zeta)
+	std::cout << ' ' << std::setw(4 + 2 * w) << s
+		  << ' ' << std::setw(4 + 2 * w) << zeta
+		  << ' ' << std::setw(w) << std::abs(zeta)
 		  << '\n';
       }
   }
@@ -322,9 +339,9 @@ main()
 
   test_riemann_zeta(1.0);
 
-  test_nontrivial_zeros<long double>();
-
   test_riemann_zeta_real<long double>();
+
+  test_nontrivial_zeros<long double>();
 
   std::cout << "\n\nRiemann zeta\n\n";
 

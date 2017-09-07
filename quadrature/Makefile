@@ -32,7 +32,7 @@ BINS = \
   zernike_test
 
 
-all: $(BINS)
+all: $(OBJ_DIR) $(BINS)
 
 
 test: $(BINS)
@@ -124,3 +124,8 @@ $(OBJ_DIR)/radpoly_test.o: *.h *.tcc radpoly_test.cpp
 $(OBJ_DIR)/zernike_test.o: *.h *.tcc zernike_test.cpp
 	$(CXX17) -c -o $(OBJ_DIR)/zernike_test.o zernike_test.cpp
 
+
+$(OBJ_DIR): $(OUT_DIR)
+	if test ! -d $(OBJ_DIR); then \
+	  mkdir $(OBJ_DIR); \
+	fi

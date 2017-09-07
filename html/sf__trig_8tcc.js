@@ -6,6 +6,7 @@ var sf__trig_8tcc =
     [ "__cosh_pi", "sf__trig_8tcc.html#ae6e440447e88191b3cd19daaf7fda96e", null ],
     [ "__cosh_pi", "sf__trig_8tcc.html#a257e13bd4fa9711a87ea68a783ee40d9", null ],
     [ "__polar_pi", "sf__trig_8tcc.html#ac69e259ad511fcc7a54c6ec315adcfa4", null ],
+    [ "__polar_pi", "sf__trig_8tcc.html#a627c0e19f6b3e90af25735f351662d53", null ],
     [ "__sin_pi", "sf__trig_8tcc.html#a763249defff6377195818c2fc6e7bca2", null ],
     [ "__sin_pi", "sf__trig_8tcc.html#a5f26e85b3d646e5c69be173baebd4185", null ],
     [ "__sincos", "sf__trig_8tcc.html#a59a9ff6922faa1a88da8b485ee9d37cb", null ],

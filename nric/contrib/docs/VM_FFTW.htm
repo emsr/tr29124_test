@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+  "http://www.w3.org/TR/REC-html40/transitional.dtd">
+<HTML>
+<HEAD>
+  <TITLE>VecMat - FFTW</TITLE>
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=iso-8859-1">
+  <META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+  <META NAME="Author" CONTENT="Kevin Dolan">
+  <LINK HREF="vecmat.css" REL="stylesheet" TYPE="text/css">
+</HEAD>
+
+<BODY>
+
+<H1>9. Using this Software with the <EM>FFTW</EM> Libraries.</H1>
+
+<P>The contents of the header file "vm_fftw.h" provide two wrapper classes for
+using the <EM>FFTW</EM> one-dimensional Fourier transforms with the
+<CODE>Vector&lt;T&gt;</CODE> classes. These classes serve only as wrappers, and
+should incur no performance penalty over directly using the functions.</P>
+
+<P>The <CODE>FFTWPlan</CODE> class can also take care of conversion from the
+<CODE>std::complex&lt;T&gt;</CODE> classes to the <CODE>fftw_complex</CODE>
+structure. This is done by explicitely casting the pointers to the vector data
+to type <CODE>fftw_complex *</CODE>. As long as the same storage scheme is used
+for both the <CODE>fftw_complex</CODE> structure, and the
+<CODE>std::complex&lt;fftw_real&gt;</CODE> class, this should work. This means
+that your implementation of the <CODE>std::complex</CODE> template classes must
+contain only two data members, and the real part must be listed first, followed
+by the imaginary part. If this storage scheme is not used, this will not
+work.</P>
+
+<P>The advantage of using these conversions is to both allow you to make use of
+the extensive built in functionality of the complex template classes, and to
+allow full usage of vectors composed of these types. You can also call the
+<CODE>FFTWPlan</CODE> routines with vectors of <CODE>fftw_complex</CODE>
+values, if the above conversions do not work on your implememntation.</P>
+
+<P>The documentation lists the <CODE>fourier()</CODE> and
+<CODE>ifourier()</CODE> member functions as taking arguments of types
+<CODE>Vec_REAL</CODE> for the real transforms, and <CODE>Vec_CPLX_REAL</CODE>
+or <CODE>Vec_FFTW_CPLX</CODE> for the complex transforms. These types depend on
+whether you have compiled the <EM>FFTW</EM> for single or double precision.
+The <EM>VecMat</EM> software will automatically expect the same precision that
+<EM>FFTW</EM> was compiled for. That means that if the libraries were compiled
+for single precision, then the types <CODE>Vec_REAL</CODE> and
+<CODE>Vec_CPLX_REAL</CODE> will be synonyms for <CODE>Vec_SP</CODE> and
+<CODE>Vec_CPLX_SP</CODE>, respectively. If it is complied for double precision,
+then they will be synonyms for <CODE>Vec_DP</CODE> and
+<CODE>Vec_CPLX_DP</CODE>. <CODE>Vec_FFTW_CPLX</CODE> is a synonym for
+<CODE>Vector&lt;fftw_complex&gt;</CODE>.</P>
+
+<P>Note that these classes only provide access to a small subset of the
+functionality of the <EM>FFTW</EM> software. I hope to add more functionality
+in the future. For specific information on how the <EM>FFTW</EM> software
+works, see the online documentation on their website: <A
+HREF="http://www.fftw.org/">http://www.fftw.org</A>.</P>
+
+<P><A HREF="VM_Compat.htm">Next Section</A></P>
+<P><A HREF="VecMat.htm">Back to Index</A></P>
+
+</BODY>
+</HTML>

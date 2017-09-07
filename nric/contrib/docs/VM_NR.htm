@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN"
+  "http://www.w3.org/TR/REC-html40/transitional.dtd">
+<HTML>
+<HEAD>
+  <TITLE>VecMat - NR C++</TITLE>
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=iso-8859-1">
+  <META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+  <META NAME="Author" CONTENT="Kevin Dolan">
+  <LINK HREF="vecmat.css" REL="stylesheet" TYPE="text/css">
+</HEAD>
+
+<BODY>
+
+<H1>8. Using this Software with <EM>Numerical Recipes in C++</EM>.</H1>
+
+<P>This software is designed to be compatible with the <EM>Numerical Recipes in
+C++</EM> software. Using it with <EM>NR</EM> is not difficult. Just modify the
+following <EM>NR</EM> header files "nrtypes.h" and "nrutil.h". Each of these
+header files just includes two other header files. By default, these are
+"nrtypes_nr.h" and "nrutil_nr.h". Simply modify these two files to include
+"vm/nrtypes_vm.h" and "vm/nrutil_vm.h" instead. This produces the following
+two <CODE>#define</CODE> statements:</P>
+
+<DIV CLASS=sc><CODE>
+<P>#define NRVec Vector</P>
+<P>#define NRMat Matrix</P>
+</CODE></DIV>
+
+<P>These header files also make sure that nothing is duplicated by the two sets
+of header files. For example, some of the <CODE>typedef</CODE> declarations
+described previously are included in the <EM>NR</EM> software.</P>
+
+<P>These classes should be completely compatible with the <EM>NR</EM> software,
+but that does not mean that they are 100% compatible with the
+<CODE>NRVec&lt;T&gt;</CODE> and <CODE>NRMat&lt;T&gt;</CODE> classes. The
+following few issues should be kept in mind if you are porting a program that
+uses these classes (including any of the <EM>NR</EM> sample programs).</P>
+
+<H2>8.1. The Copy Constructor.</H2>
+
+<P>The <EM>NR</EM> copy constructors create deep copies of the vector or
+matrix's data. The <EM>VecMat</EM> copy constructors make shallow copies. This
+means that if you attempt to use the copy constructor to create a "working
+copy" of data that should not be altered, the results will not be as expected
+when using the <EM>VecMat</EM> classes.</P>
+
+<P>The workaround is simple. If you use something like the following, to create
+a working copy of a vector,</P>
+
+<DIV CLASS=sc><CODE>
+<P>Vec_DP y = x;</P>
+</CODE></DIV>
+
+<P>Replace it with the statement,</P>
+
+<DIV CLASS=sc><CODE>
+<P>Vec_DP y = x.copy();</P>
+</CODE></DIV>
+
+<P>Likewise, one should keep in mind that sending a vector or matrix to a
+function by value, rather than by reference, indirectly calls the copy
+constructor, as does returning by value.</P>
+
+<H2>8.2. The Assignment Operator.</H2>
+
+<P>The <EM>NR</EM> assignment operator will resize a vector or matrix to the
+same size as the right hand expression, if they are not already the same size.
+The <EM>VecMat</EM> assignment operators are not defined for different size
+objects. If you use the assignment operator to resize vectors or matrices in
+your code, then when porting to the <EM>VecMat</EM> classes, simply use the
+<CODE>reshape()</CODE> member function instead.</P>
+
+<H2>8.3. Indexing of Matrices.</H2>
+
+<P>In the <EM>NR</EM> software, the <CODE>[]</CODE> operator returns a pointer
+to the appropriate row of a matrix, which can then be indexed with a second
+<CODE>[]</CODE> operator. In the <EM>VecMat</EM> software, the use of strides
+makes this impossible. The <CODE>[]</CODE> operator instead returns an iterator
+to the row, which can then be indexed for the individual elements. This is
+provided to maintain compatibility with the <EM>NR</EM> software. The
+<EM>VecMat</EM> software also provides an <CODE>()</CODE> operator, for direct
+indexing, which should be more efficient.</P>
+
+<P>The place where the <CODE>[]</CODE> operator could cause compatibility
+issues is if you explicitly use it to get a pointer to a matrix's data.
+Instead, use the <CODE>data()</CODE> member function.</P>
+
+<P>For more information on the <EM>Numerical Recipes in C++</EM> software,
+please refer to their webpage: <A HREF="www.nr.com">www.nr.com</A>.</P>
+
+<P><A HREF="VM_FFTW.htm">Next Section</A></P>
+<P><A HREF="VecMat.htm">Back to Index</A></P>
+
+</BODY>
+</HTML>

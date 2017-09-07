@@ -6,6 +6,7 @@ var searchData=
   ['debye',['debye',['../group__gnu__math__spec__func.html#ga4bd3029fcde3afdeee5f313b2ebc6b0d',1,'__gnu_cxx']]],
   ['debyef',['debyef',['../group__gnu__math__spec__func.html#ga683d3a885913b52db128aa5d624984a4',1,'__gnu_cxx']]],
   ['debyel',['debyel',['../group__gnu__math__spec__func.html#ga2db11e767b89bbd36be6ebfadda3401f',1,'__gnu_cxx']]],
+  ['deriv',['deriv',['../struct____gnu__cxx_1_1____hermite__t.html#aa92fd4096ca98fedad08b95187bb7a34',1,'__gnu_cxx::__hermite_t::deriv()'],['../struct____gnu__cxx_1_1____hermite__he__t.html#a19c1df6940043e1b106b8cf70bddd60e',1,'__gnu_cxx::__hermite_he_t::deriv()'],['../struct____gnu__cxx_1_1____legendre__p__t.html#a91e1b4e4049e5085b52342db2afbad9d',1,'__gnu_cxx::__legendre_p_t::deriv()'],['../struct____gnu__cxx_1_1____laguerre__t.html#aed1a4e46a049188de5ca6c2cc9bc5cdf',1,'__gnu_cxx::__laguerre_t::deriv()'],['../struct____gnu__cxx_1_1____jacobi__t.html#a2b1a1fc42308cb293dfcb1fa4a8202a6',1,'__gnu_cxx::__jacobi_t::deriv()']]],
   ['dilog',['dilog',['../group__gnu__math__spec__func.html#ga7a95a3cb9a53aca2a1ff9752ce9d5e3c',1,'__gnu_cxx']]],
   ['dilogf',['dilogf',['../group__gnu__math__spec__func.html#ga901091e0e7ce7d6113ae6a86f4865a92',1,'__gnu_cxx']]],
   ['dilogl',['dilogl',['../group__gnu__math__spec__func.html#gae90c13ee690ebaf10a18a900fe2646f9',1,'__gnu_cxx']]],

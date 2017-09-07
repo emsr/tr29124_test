@@ -2,7 +2,7 @@
  *              equations.
  *  (C) 2001, C. Bond. All rights reserved.
  */
-#include <math.h>
+#include <cmath>
 
 int gelimd2(double **a,double *b,double *x,int n);
 
