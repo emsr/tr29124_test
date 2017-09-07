@@ -215,7 +215,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     __gnu_cxx::__hermite_he_t<_Tp>
-    __prob_hermite_recursion(unsigned int __n, _Tp __x)
+    __prob_hermite_recur(unsigned int __n, _Tp __x)
     {
       // Compute He_0.
       auto __He_nm2 = _Tp{1};

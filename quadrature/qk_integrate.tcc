@@ -37,7 +37,7 @@
 
 #include "integration_error.h"
 
-namespace __gnu_test
+namespace __gnu_ext
 {
 
   template<typename _Tp>
@@ -707,6 +707,6 @@ namespace __detail
 
 } // namespace __detail
 
-} // namespace __gnu_test
+} // namespace __gnu_ext
 
 #endif // QK_INTEGRATE_TCC

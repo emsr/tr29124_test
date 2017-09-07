@@ -33,7 +33,7 @@
 #include "integration_workspace.h"
 #include "qaws_integration_table.h"
 
-namespace __gnu_test
+namespace __gnu_ext
 {
 
   template<typename _Tp>
@@ -373,6 +373,6 @@ namespace __gnu_test
       return std::make_tuple(__res12, __res24);
     }
 
-} // namespace __gnu_test
+} // namespace __gnu_ext
 
 #endif // QAWS_INTEGRATE_TCC

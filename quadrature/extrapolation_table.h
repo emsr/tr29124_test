@@ -33,7 +33,7 @@
 #include <cmath>
 #include <algorithm>
 
-namespace __gnu_test
+namespace __gnu_ext
 {
 
   template<typename _Tp>
@@ -77,7 +77,7 @@ namespace __gnu_test
       { return this->_M_nn; }
     };
 
-} // namespace __gnu_test
+} // namespace __gnu_ext
 
 #include "extrapolation_table.tcc"
 

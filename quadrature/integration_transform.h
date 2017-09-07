@@ -22,7 +22,7 @@
 #ifndef INTEGRATION_TRANSFORM_H
 #define INTEGRATION_TRANSFORM_H 1
 
-namespace __gnu_test
+namespace __gnu_ext
 {
 
   /**
@@ -95,6 +95,6 @@ namespace __gnu_test
       }
     };
 
-} // namespace __gnu_test
+} // namespace __gnu_ext
 
 #endif // INTEGRATION_TRANSFORM_H

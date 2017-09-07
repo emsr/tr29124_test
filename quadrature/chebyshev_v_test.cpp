@@ -28,7 +28,7 @@
 //#include "simple_integrate.h"
 #include "integration.h"
 
-using namespace __gnu_test;
+using namespace __gnu_ext;
 
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.
 template<typename _Tp>
