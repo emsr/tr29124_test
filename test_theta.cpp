@@ -81,7 +81,7 @@ template<typename _Tp>
 	auto c = __gnu_cxx::theta_c(k, x);
 	auto d = __gnu_cxx::theta_d(k, x);
 	auto n = __gnu_cxx::theta_n(k, x);
-	auto [sn, cn, dn] = std::__detail::__jacobi_sncndn(k, x);
+	auto [sn, cn, dn] = std::__detail::__jacobi_ellint(k, x);
 	std::cout << ' ' << std::setw(width) << x
 		  << ' ' << std::setw(width) << s
 		  << ' ' << std::setw(width) << c
@@ -125,7 +125,7 @@ template<typename _Tp>
 	    auto c = __gnu_cxx::theta_c(k, x);
 	    auto d = __gnu_cxx::theta_d(k, x);
 	    auto n = __gnu_cxx::theta_n(k, x);
-	    auto [sn, cn, dn] = std::__detail::__jacobi_sncndn(k, x);
+	    auto [sn, cn, dn] = std::__detail::__jacobi_ellint(k, x);
 	    std::cout << ' ' << std::setw(width) << x
 		      << ' ' << std::setw(width) << s
 		      << ' ' << std::setw(width) << c

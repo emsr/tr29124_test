@@ -383,7 +383,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Airy_series<_Tp>::_S_FGH(std::complex<_Tp> __t)
     {
       const _Tp _S_log10min = __gnu_cxx::__log10_min(__t);
-      const auto _S_min = __gnu_cxx::__min(__t);
+      const auto _S_min = __gnu_cxx::__lim_min(__t);
       const auto __log10t = std::log10(std::abs(__t));
       const auto __tt = __t * __t;
       const auto __ttt = __t * __tt;

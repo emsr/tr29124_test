@@ -1,10 +1,10 @@
 /*
-$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli test_bernoulli.cpp -lquadmath -Lwrappers/debug -lwrap_burkhardt
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli > test_bernoulli.txt
+$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli test_bernoulli.cpp -lquadmath -Lwrappers/debug -lwrap_burkhardt -lgfortran
+LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli > test_bernoulli.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli test_bernoulli.cpp -lquadmath -Lwrappers/debug -lwrap_burkhardt
-PATH=wrappers/debug:$PATH ./test_bernoulli > test_bernoulli.txt
-*/ 
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli test_bernoulli.cpp -lquadmath -Lwrappers/debug -lwrap_burkhardt -lgfortran
+LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli > test_bernoulli.txt
+*/
 
 #include <cmath>
 //#include <complex>
@@ -137,11 +137,11 @@ PATH=wrappers/debug:$PATH ./test_bernoulli > test_bernoulli.txt
 	  auto _B_n = std::__detail::__bernoulli<_Tp>(0);
 	  auto __binomial = _Tp{1};
 	  for (auto __k = 1u; __k <= __n; ++__k)
-	  {
-	    __binomial *= _Tp(__n + 1 - __k) / _Tp(__k);
-	    _B_n = __x * _B_n + __binomial
-		 * std::__detail::__bernoulli<_Tp>(__k);
-	  }
+	    {
+	      __binomial *= _Tp(__n + 1 - __k) / _Tp(__k);
+	      _B_n = __x * _B_n + __binomial
+		   * std::__detail::__bernoulli<_Tp>(__k);
+	    }
 	  return _B_n;
 	}
     }
@@ -673,12 +673,12 @@ PATH=wrappers/debug:$PATH ./test_bernoulli > test_bernoulli.txt
   /**
    * Return the Lah number by downward recurrence.
    * @f[
-   *   L(n.k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
+   *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
    * @f]
    */
   template<typename _Tp>
     _Tp
-    __lah(unsigned int __n, unsigned int __k)
+    __lah_recur(unsigned int __n, unsigned int __k)
     {
       if (__k > __n)
 	return _Tp{0};
@@ -687,11 +687,32 @@ PATH=wrappers/debug:$PATH ./test_bernoulli > test_bernoulli.txt
       else
 	{
 	  _Tp __Lnn = 1;
-	  for (int __i = 0; __i < __n - __k; ++__i)
+	  for (unsigned int __i = 0; __i < __n - __k; ++__i)
 	    __Lnn *= (__n - __i) * (__n - __i - 1) / (__i + 1);
 	  return __Lnn;
 	}
     }
+
+  /**
+   * Return the Bell number by summation.
+   * @f[
+   *   B(n) = \sum_{}^{}
+   * @f]
+   */
+  std::vector<unsigned int>
+  __bell_series(unsigned int __n)
+  {
+    std::vector<unsigned int> __bell(__n + 1);
+    __bell[0] = 1;
+
+    /// @todo Test for blowup in Bell number summation.
+    for (unsigned int __i = 1; __i <= __n; ++__i)
+      for (unsigned int __j = 1; __j <= __i; ++__j)
+	__bell[__i] += __bell[__i - __j]
+		     * __gnu_cxx::binomial<long double>(__i - 1, __j - 1);
+
+    return __bell;
+  }
 
 template<typename _Tp>
   void
@@ -699,15 +720,27 @@ template<typename _Tp>
   {
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
+    auto width = 8 + std::cout.precision();
+
+    std::cout << "\n Bell numbers\n";
+    for (auto n = 1u; n <= 20; ++n)
+      {
+	auto bell = __bell_series(n);
+
+	for (auto k = 0u; k <= n; ++k)
+	  std::cout << ' ' << std::setw(4) << n
+	       	    << ' ' << std::setw(4) << k
+		    << ' ' << std::setw(width) << bell[k]
+		    << '\n';
+      }
 
     std::cout << "\n Lah numbers\n";
     for (auto n = 1u; n <= 20; ++n)
       for (auto k = 0u; k <= 20; ++k)
 	std::cout << ' ' << std::setw(4) << n
 	       	  << ' ' << std::setw(4) << k
-		  << ' ' << std::setw(width) << __lah<_Tp>(n, k)
+		  << ' ' << std::setw(width) << __lah_recur<_Tp>(n, k)
 		  << '\n';
-    auto width = 8 + std::cout.precision();
 
     std::cout << "\n Bernoulli numbers\n";
     for (auto n = 0u; n <= 200; ++n)

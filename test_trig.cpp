@@ -6,11 +6,14 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_trig test
 ./test_trig > test_trig.txt
 */
 
+/**
+ * naive Taylor-series implementation of sin(x).
+ */
 template<typename _Tp>
   _Tp
   __sin_taylor(_Tp __x)
   {
-    if (__fp_is_zero(__x)
+    if (__fp_is_zero(__x))
       return _Tp{0};
     else
       {
@@ -36,7 +39,7 @@ template<typename _Tp>
 	__x = -__x;
 	__sgn = -1;
       }
-    __x = fmod(__x, _M_2pi);
+    __x = fmod(__x, _S_2pi);
     if (__x > _S_pi)
       {
 	__x -= _S_pi;

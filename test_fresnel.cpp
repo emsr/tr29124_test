@@ -3,7 +3,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_f
 ./test_fresnel > test_fresnel.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_fresnel test_fresnel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-./test_fresnel > test_fresnel.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_fresnel > test_fresnel.txt
 */
 
 #include <complex>
@@ -11,7 +11,6 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_fresnel t
 #include <iomanip>
 #include <stdexcept>
 #include <bits/numeric_limits.h>
-#include <bits/specfun_util.h>
 
 #include "fresnel.tcc"
 

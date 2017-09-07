@@ -1,4 +1,8 @@
+obj
+
 *.exe
+*.a
+
 cheb
 graph
 integrate

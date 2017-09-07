@@ -3,8 +3,8 @@ airy_bi
 assoc_laguerre
 assoc_legendre
 beta
-bincoef
-lbincoef
+binomial
+lbinomial
 comp_ellint_1
 comp_ellint_2
 comp_ellint_3
@@ -52,17 +52,17 @@ fresnel_s
 dawson
 sinc
 sinc_pi
-lpochhammer
-lpochhammer_lower
-pochhammer
-pochhammer_lower
+lrising_factorial
+lfalling_factorial
+rising_factorial
+falling_factorial
 legendre_q
 factorial
 lfactorial
 double_factorial
 ldouble_factorial
-bincoef
-lbincoef
+binomial
+lbinomial
 gegenbauer
 chebyshev_t - UNTESTED
 chebyshev_u - UNTESTED
@@ -78,7 +78,8 @@ comp_ellint_d
 jacobi_zeta
 sph_harmonic
 owens_t
-clausen_c
+clausen_cl
 bernoulli
 sin_pi
 cos_pi
+debye

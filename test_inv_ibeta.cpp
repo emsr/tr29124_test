@@ -27,8 +27,12 @@ template<typename _Tp>
 				"incomplete beta function out of range"));
     const auto _Beta = std::beta(__a, __b);
 
-    __gnu_cxx::__root_bracket([__a, __b](_Tp __x)->_Tp{ return __gnu_cxx::ibeta(__a, __b, __x); },
-		 _Tp{0}, _Tp{1});
+    auto __ibeta = [__a, __b](_Tp __x)
+		   -> _Tp
+		   { return __gnu_cxx::ibeta(__a, __b, __x); };
+    auto __xl = _Tp{0};
+    auto __xr = _Tp{1};
+    __gnu_cxx::__root_bracket(__ibeta, __xl, __xr); // This API blows.
 /*
     auto _Ix = _Ibeta;
     auto _Iy = _Tp{1} - _Ix;
@@ -74,6 +78,8 @@ template<typename _Tp>
       {
 	return __gnu_cxx::__root_brent(__thing, __xy_lower, __xy_upper, _Tp{10} * _S_eps);
       }
+
+    return _Tp{0};
   }
 
 int

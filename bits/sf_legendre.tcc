@@ -78,24 +78,32 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param  __x  The argument of the Legendre polynomial.
    */
   template<typename _Tp>
-    _Tp
-    __poly_legendre_p(unsigned int __l, _Tp __x)
+    __gnu_cxx::__legendre_p_t<_Tp>
+    __legendre_p(unsigned int __l, _Tp __x)
     {
+      using __ret_t = __gnu_cxx::__legendre_p_t<_Tp>;
+
+      const auto __lge1 = __l >= 1 ? _Tp{+1} : _Tp{0};
+      const auto __lge2 = __l >= 2 ? _Tp{+1} : _Tp{0};
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+
       if (__isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return {__l, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
       else if (__x == _Tp{+1})
-	return _Tp{+1};
+	return {__l, __x, _Tp{+1}, __lge1, __lge2};
       else if (__x == _Tp{-1})
-	return (__l % 2 == 1 ? _Tp{-1} : _Tp{+1});
+	return __l % 2 == 1
+		? __ret_t{__l, __x, _Tp{-1}, +__lge1, -__lge2}
+		: __ret_t{__l, __x, _Tp{+1}, -__lge1, +__lge2};
       else
 	{
 	  auto _P_lm2 = _Tp{1};
 	  if (__l == 0)
-	    return _P_lm2;
+	    return {__l, __x, _P_lm2, _Tp{0}, _Tp{0}};
 
 	  auto _P_lm1 = __x;
 	  if (__l == 1)
-	    return _P_lm1;
+	    return {__l, __x, _P_lm1, _P_lm2, _Tp{0}};
 
 	  auto _P_l = _Tp{2} * __x * _P_lm1 - _P_lm2
 		    - (__x * _P_lm1 - _P_lm2) / _Tp{2};
@@ -111,7 +119,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  // Recursion for the derivative of The Legendre polynomial.
 	  //auto __Pp_l = __l * (__z * _P_l - _P_lm1) / (__z * __z - _Tp{1});
 
-	  return _P_l;
+	  return {__l, __x, _P_l, _P_lm1, _P_lm2};
 	}
     }
 
@@ -192,7 +200,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (__isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__m == 0)
-	return __poly_legendre_p(__l, __x);
+	return __legendre_p(__l, __x).__P_l;
       else
 	{
 	  _Tp _P_mm = _Tp{1};
@@ -271,7 +279,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_domain_error(__N("__sph_legendre: bad argument"));
       else if (__m == 0)
 	{
-	  _Tp _P_l = __poly_legendre_p(__l, __x);
+	  _Tp _P_l = __legendre_p(__l, __x).__P_l;
 	  _Tp __fact = std::sqrt(_Tp(2 * __l + 1)
 		     / (_Tp{4} * __gnu_cxx::__const_pi(__theta)));
 	  _P_l *= __fact;

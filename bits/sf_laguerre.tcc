@@ -72,32 +72,31 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tpa, typename _Tp>
     _Tp
-    __poly_laguerre_large_n(unsigned __n, _Tpa __alpha1, _Tp __x)
+    __laguerre_large_n(unsigned __n, _Tpa __alpha1, _Tp __x)
     {
-      const _Tp __a = -_Tp(__n);
-      const _Tp __b = _Tp(__alpha1) + _Tp{1};
-      const _Tp __eta = _Tp{2} * __b - _Tp{4} * __a;
-      const _Tp __cos2th = __x / __eta;
-      const _Tp __sin2th = _Tp{1} - __cos2th;
-      const _Tp __th = std::acos(std::sqrt(__cos2th));
-      const _Tp __pre_h = __gnu_cxx::__const_pi_half(__x)
+      const auto __a = -_Tp(__n);
+      const auto __b = _Tp(__alpha1) + _Tp{1};
+      const auto __eta = _Tp{2} * __b - _Tp{4} * __a;
+      const auto __cos2th = __x / __eta;
+      const auto __sin2th = _Tp{1} - __cos2th;
+      const auto __th = std::acos(std::sqrt(__cos2th));
+      const auto __pre_h = __gnu_cxx::__const_pi_half(__x)
 			* __gnu_cxx::__const_pi_half(__x)
 			* __eta * __eta * __cos2th * __sin2th;
 
-      const _Tp __lg_b = __log_gamma(_Tp(__n) + __b);
-      const _Tp __lnfact = __log_gamma(_Tp(__n + 1));
+      const auto __lg_b = __log_gamma(_Tp(__n) + __b);
+      const auto __lnfact = __log_gamma(_Tp(__n + 1));
 
-      _Tp __pre_term1 = _Tp{0.5L} * (_Tp{1} - __b)
-		      * std::log(_Tp{0.25L} * __x * __eta);
-      _Tp __pre_term2 = _Tp{0.25L} * std::log(__pre_h);
-      _Tp __lnpre = __lg_b - __lnfact + _Tp{0.5L} * __x
-		      + __pre_term1 - __pre_term2;
-      _Tp __ser_term1 = __sin_pi(__a);
-      _Tp __ser_term2 = std::sin(_Tp{0.25L} * __eta
-			      * (_Tp{2} * __th
-			       - std::sin(_Tp{2} * __th))
+      const auto __pre_term1 = _Tp{0.5L} * (_Tp{1} - __b)
+			     * std::log(_Tp{0.25L} * __x * __eta);
+      const auto __pre_term2 = _Tp{0.25L} * std::log(__pre_h);
+      const auto __lnpre = __lg_b - __lnfact + _Tp{0.5L} * __x
+			 + __pre_term1 - __pre_term2;
+      const auto __ser_term1 = __sin_pi(__a);
+      const auto __ser_term2 = std::sin(_Tp{0.25L} * __eta
+			     * (_Tp{2} * __th - std::sin(_Tp{2} * __th))
 			      + __gnu_cxx::__const_pi_quarter(__x));
-      _Tp __ser = __ser_term1 + __ser_term2;
+      const auto __ser = __ser_term1 + __ser_term2;
 
       return std::exp(__lnpre) * __ser;
     }
@@ -129,20 +128,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tpa, typename _Tp>
     _Tp
-    __poly_laguerre_hyperg(unsigned int __n, _Tpa __alpha1, _Tp __x)
+    __laguerre_hyperg(unsigned int __n, _Tpa __alpha1, _Tp __x)
     {
-      const _Tp __b = _Tp(__alpha1) + _Tp{1};
-      const _Tp __mx = -__x;
-      const _Tp __tc_sgn = (__x < _Tp{0} ? _Tp{1}
+      const auto __b = _Tp(__alpha1) + _Tp{1};
+      const auto __mx = -__x;
+      const auto __tc_sgn = (__x < _Tp{0} ? _Tp{1}
 			 : ((__n % 2 == 1) ? -_Tp{1} : _Tp{1}));
       // Get |x|^n/n!
-      _Tp __tc = _Tp{1};
-      const _Tp __ax = std::abs(__x);
+      auto __tc = _Tp{1};
+      const auto __ax = std::abs(__x);
       for (unsigned int __k = 1; __k <= __n; ++__k)
 	__tc *= (__ax / __k);
 
-      _Tp __term = __tc * __tc_sgn;
-      _Tp __sum = __term;
+      auto __term = __tc * __tc_sgn;
+      auto __sum = __term;
       for (int __k = int(__n) - 1; __k >= 0; --__k)
 	{
 	  __term *= ((__b + _Tp(__k)) / _Tp{int(__n) - __k})
@@ -186,24 +185,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 	     degree @f$ \alpha @f$, and argument x.
    */
   template<typename _Tpa, typename _Tp>
-    _Tp
-    __poly_laguerre_recursion(unsigned int __n, _Tpa __alpha1, _Tp __x)
+    __gnu_cxx::__laguerre_t<_Tpa, _Tp>
+    __laguerre_recur(unsigned int __n, _Tpa __alpha1, _Tp __x)
     {
       // Compute L_0.
-      _Tp __L_0 = _Tp{1};
+      auto __L_0 = _Tp{1};
       if  (__n == 0)
-	return __L_0;
+	return {__n, __alpha1, __x, __L_0, _Tp{0}, _Tp{0}};
 
-      // Compute L_1^{(aLpha)}.
-      _Tp __L_1 = -__x + _Tp{1} + _Tp(__alpha1);
+      // Compute L_1^{(alpha)}.
+      auto __L_1 = -__x + _Tp{1} + _Tp(__alpha1);
       if  (__n == 1)
-	return __L_1;
+	return {__n, __alpha1, __x, __L_1, __L_0, _Tp{0}};
 
-      // Compute L_n^{(aLpha)} by recursion on n.
-      _Tp __L_nm2 = __L_0;
-      _Tp __L_nm1 = __L_1;
-      _Tp __L_n = (_Tp{3} + _Tp(__alpha1) - __x) * __L_nm1 / _Tp{2}
-		  - (_Tp{1} + _Tp(__alpha1)) * __L_nm2 / _Tp(2);
+      // Compute L_n^{(alpha)} by recursion on n.
+      auto __L_nm2 = __L_0;
+      auto __L_nm1 = __L_1;
+      auto __L_n = (_Tp{3} + _Tp(__alpha1) - __x) * __L_nm1 / _Tp{2}
+		  - (_Tp{1} + _Tp(__alpha1)) * __L_nm2 / _Tp{2};
       for  (unsigned int __nn = 3; __nn <= __n; ++__nn)
 	{
 	    __L_nm2 = __L_nm1;
@@ -215,7 +214,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       // Derivative.
       //auto __Lp_n = (_Tp(__n) * __L_nm1 - _Tp(__n + __alpha1) * __L_nm2) / __x;
-      return __L_n;
+      return {__n, __alpha1, __x, __L_n, __L_nm1, __L_nm2};
     }
 
   /**
@@ -314,7 +313,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tpa, typename _Tp>
     _Tp
-    __poly_laguerre(unsigned int __n, _Tpa __alpha1, _Tp __x)
+    __laguerre(unsigned int __n, _Tpa __alpha1, _Tp __x)
     {
       const unsigned int __max_iter = 10000000;
       if (__isnan(__x))
@@ -325,19 +324,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return _Tp{1} + _Tp(__alpha1) - __x;
       else if (__x == _Tp{0})
 	{
-	  _Tp __prod = _Tp(__alpha1) + _Tp{1};
+	  auto __prod = _Tp(__alpha1) + _Tp{1};
 	  for (unsigned int __k = 2; __k <= __n; ++__k)
 	    __prod *= (_Tp(__alpha1) + _Tp(__k)) / _Tp(__k);
 	  return __prod;
 	}
       else if (__n > __max_iter && _Tp(__alpha1) > -_Tp{1}
 	    && __x < _Tp{2} * (_Tp(__alpha1) + _Tp{1}) + _Tp(4 * __n))
-	return __poly_laguerre_large_n(__n, __alpha1, __x);
+	return __laguerre_large_n(__n, __alpha1, __x);
       else if (_Tp(__alpha1) >= _Tp{0}
 	   || (__x > _Tp{0} && _Tp(__alpha1) < -_Tp(__n + 1)))
-	return __poly_laguerre_recursion(__n, __alpha1, __x);
+	return __laguerre_recur(__n, __alpha1, __x).__L_n;
       else
-	return __poly_laguerre_hyperg(__n, __alpha1, __x);
+	return __laguerre_hyperg(__n, __alpha1, __x);
     }
 
 
@@ -365,7 +364,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     _Tp
     __assoc_laguerre(unsigned int __n, unsigned int __m, _Tp __x)
-    { return __poly_laguerre<unsigned int, _Tp>(__n, __m, __x); }
+    { return __laguerre<unsigned int, _Tp>(__n, __m, __x); }
 
 
   /**
@@ -385,7 +384,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     _Tp
     __laguerre(unsigned int __n, _Tp __x)
-    { return __poly_laguerre<unsigned int, _Tp>(__n, 0, __x); }
+    { return __laguerre<unsigned int, _Tp>(__n, 0, __x); }
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail

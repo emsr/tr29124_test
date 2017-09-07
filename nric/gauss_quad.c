@@ -67,15 +67,15 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
     double z;
     double p2, p1, p, pp;
 
-    const auto m = (n + 1) / 2;
-    const auto bpa = (b + a) / 2.0;
-    const auto bma = (b - a) / 2.0;
+    const int m = (n + 1) / 2;
+    const double bpa = (b + a) / 2.0;
+    const double bma = (b - a) / 2.0;
 
     for  (i = 1; i <= m; i++)
       {
-	z = std::cos(PI * (i - 1.0 / 4.0) / (n + 1.0 / 2.0));    /*    Clever approximation of root.    */
+	z = cos(PI * (i - 1.0 / 4.0) / (n + 1.0 / 2.0));    /*    Clever approximation of root.    */
 	k = 0;
-	while (true)
+	while (1)
 	  {
 	    /*
 	     *    Compute p, p1, and p2 the Legendre polynomials of order n, n-1, n-2 respectively
@@ -89,10 +89,10 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
 		p = ((2.0 * j - 1.0) * z * p1 - (j - 1.0) * p2) / j;  /*  Recursion relation for legendre polynomials.  */
 	      }
 	    pp = n * (z * p - p1) / (z * z - 1.0);  /*  Recursion relation for derivatives of legendre polynomials.  */
-	    const auto z1 = z;
+	    const double z1 = z;
 	    z = z1 - p / pp;  /*  Converge on root by Newton's method.  */
 	    k = k + 1;
-	    if (std::abs(z - z1) < EPS)
+	    if (fabs(z - z1) < EPS)
 	      break;
 	  }
 
@@ -126,44 +126,44 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
 	  }
 	for (its = 1; its <= MAXIT; ++its)
 	  {
-	    auto p1 = 1.0;
+	    double p1 = 1.0;
 	    p2 = 0.0;
 	    for (int j = 1; j <= n; ++j)
 	      {
-		const auto p3 = p2;
+		const double p3 = p2;
 		p2 = p1;
 		p1 = ((2 * j - 1 + alpha - z) * p2 - (j - 1 + alpha) * p3) / j;
 	      }
 	    pp = (n * p1 - (n + alpha) * p2) / z;
-	    const auto z1 = z;
+	    const double z1 = z;
 	    z = z1 - p1 / pp;
-	    if (std::abs(z - z1) <= 100 * EPS)
+	    if (fabs(z - z1) <= 100 * EPS)
 	      break;
 	  }
 	if (its > MAXIT)
 	  nrerror("Too many iterations in gauss_laguerre.");
 	x[i] = z;
-	w[i] = -std::exp(std::lgamma(alpha + n) - std::lgamma(1.0 * n)) / (pp * n * p2);
+	w[i] = -exp(lgamma(alpha + n) - lgamma(1.0 * n)) / (pp * n * p2);
       }
   }
 
 
 
   void 
-  gauss_hermite(double *x, double *w, unsigned int n)
+  gauss_hermite(double *x, double *w, int n)
   {
     int its;
     double p2, pp, z;
     const int MAXIT = 40;
 
-    auto m = (n+1)/2;
-    for (auto i = 1; i <= m; ++i)
+    int m = (n+1)/2;
+    for (int i = 1; i <= m; ++i)
       {
 	if (i == 1)
-	  z = std::sqrt(2.0 * n + 1.0)
-	    - 1.85575 * std::pow(2.0 * n + 1.0, -0.166667);
+	  z = sqrt(2.0 * n + 1.0)
+	    - 1.85575 * pow(2.0 * n + 1.0, -0.166667);
 	else if (i == 2)
-	  z -= 1.14 * std::pow(1.0 * n, 0.426) / z;
+	  z -= 1.14 * pow(1.0 * n, 0.426) / z;
 	else if (i == 3)
 	  z = 1.86 * z - 0.86 * x[1];
 	else if (i == 4)
@@ -172,18 +172,18 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
 	  z = 2.0 * z - x[i - 2];
 	for (its = 1; its <= MAXIT; ++its)
 	  {
-	    auto p1 = PIM4;
+	    double p1 = PIM4;
 	    p2 = 0.0;
 	    for (int j = 1; j <= n; ++j)
 	      {
-		const auto p3 = p2;
+		const double p3 = p2;
 		p2 = p1;
-		p1 = z * std::sqrt(2.0 / j) * p2 - std::sqrt(1.0 * (j - 1) / j) * p3;
+		p1 = z * sqrt(2.0 / j) * p2 - sqrt(1.0 * (j - 1) / j) * p3;
 	      }
-	    pp = std::sqrt(2.0 * n) * p2;
-	    const auto z1 = z;
+	    pp = sqrt(2.0 * n) * p2;
+	    const double z1 = z;
 	    z = z1 - p1 / pp;
-	    if (std::abs(z - z1) <= EPS)
+	    if (fabs(z - z1) <= EPS)
 	      break;
 	  }
 	if (its > MAXIT)
@@ -198,7 +198,7 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
 
 
   void
-  gauss_jacobi(double *x, double *w, unsigned int n, double alpha, double beta)
+  gauss_jacobi(double *x, double *w, int n, double alpha, double beta)
   {
     int its;
     double p2, pp, z;
@@ -208,38 +208,38 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
       {
 	if (i == 1)
 	  {
-	    auto an = alpha / n;
-	    auto bn = beta / n;
-	    auto r1 = (1.0 + alpha) * (2.78 / (4.0 + n * n) + 0.768 * an / n);
-	    auto r2 = 1.0 + 1.48 * an + 0.96 * bn + 0.452 * an * an + 0.83 * an * bn;
+	    double an = alpha / n;
+	    double bn = beta / n;
+	    double r1 = (1.0 + alpha) * (2.78 / (4.0 + n * n) + 0.768 * an / n);
+	    double r2 = 1.0 + 1.48 * an + 0.96 * bn + 0.452 * an * an + 0.83 * an * bn;
 	    z = 1.0 - r1 / r2;
 	  }
 	else if (i == 2)
 	  {
-	    auto r1 = (4.1 + alpha) / ((1.0 + alpha) * (1.0 + 0.156 * alpha));
-	    auto r2 = 1.0 + 0.06 * (n - 8.0) * (1.0 + 0.12 * alpha) / n;
-	    auto r3 = 1.0 + 0.012 * beta * (1.0 + 0.25 * std::abs(alpha)) / n;
+	    double r1 = (4.1 + alpha) / ((1.0 + alpha) * (1.0 + 0.156 * alpha));
+	    double r2 = 1.0 + 0.06 * (n - 8.0) * (1.0 + 0.12 * alpha) / n;
+	    double r3 = 1.0 + 0.012 * beta * (1.0 + 0.25 * fabs(alpha)) / n;
 	    z -= (1.0 - z) * r1 * r2 * r3;
 	  }
 	else if (i == 3)
 	  {
-	    auto r1 = (1.67 + 0.28 * alpha) / (1.0 + 0.37 * alpha);
-	    auto r2 = 1.0 + 0.22 * (n - 8.0) / n;
-	    auto r3 = 1.0 + 8.0 * beta / ((6.28 + beta) * n * n);
+	    double r1 = (1.67 + 0.28 * alpha) / (1.0 + 0.37 * alpha);
+	    double r2 = 1.0 + 0.22 * (n - 8.0) / n;
+	    double r3 = 1.0 + 8.0 * beta / ((6.28 + beta) * n * n);
 	    z -= (x[1] - z) * r1 * r2 * r3;
 	  }
 	else if (i == n-1)
 	  {
-	    auto r1 = (1.0 + 0.235 * beta) / (0.766 + 0.119 * beta);
-	    auto r2 = 1.0/(1.0 + 0.639 * (n - 4.0) / (1.0 + 0.71 * (n - 4.0)));
-	    auto r3 = 1.0/(1.0 + 20.0 * alpha / ((7.5 + alpha) * n * n));
+	    double r1 = (1.0 + 0.235 * beta) / (0.766 + 0.119 * beta);
+	    double r2 = 1.0/(1.0 + 0.639 * (n - 4.0) / (1.0 + 0.71 * (n - 4.0)));
+	    double r3 = 1.0/(1.0 + 20.0 * alpha / ((7.5 + alpha) * n * n));
 	    z += (z - x[n - 3]) * r1 * r2 * r3;
 	  }
 	else if (i == n)
 	  {
-	    auto r1 = (1.0 + 0.37 * beta) / (1.67 + 0.28 * beta);
-	    auto r2 = 1.0/(1.0 + 0.22 * (n - 8.0) / n);
-	    auto r3 = 1.0/(1.0 + 8.0 * alpha / ((6.28 + alpha) * n * n));
+	    double r1 = (1.0 + 0.37 * beta) / (1.67 + 0.28 * beta);
+	    double r2 = 1.0/(1.0 + 0.22 * (n - 8.0) / n);
+	    double r3 = 1.0/(1.0 + 8.0 * alpha / ((6.28 + alpha) * n * n));
 	    z += (z - x[n - 2]) * r1 * r2 * r3;
 	  }
 	else
@@ -247,41 +247,41 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
 	    z = 3.0 * x[i - 1] - 3.0 * x[i - 2] + x[i - 3];
 	  }
 
-	auto alphabeta = alpha + beta;
-	auto temp = 2.0 + alphabeta;
+	double alphabeta = alpha + beta;
+	double temp = 2.0 + alphabeta;
 	for (its = 1; its <= MAXIT; ++its)
 	  {
-	    auto p1 = (alpha - beta + temp * z) / 2.0;
+	    double p1 = (alpha - beta + temp * z) / 2.0;
 	    p2 = 1.0;
 	    for (int j = 2; j <= n; ++j)
 	      {
-		const auto p3 = p2;
+		const double p3 = p2;
 		p2 = p1;
 		temp = 2.0 * j + alphabeta;
-		const auto a = 2.0 * j * (j + alphabeta) * (temp - 2.0);
-		const auto b = (temp - 1.0) * (alpha * alpha - beta * beta + temp * (temp - 2.0) * z);
-		const auto c = 2.0 * (j - 1 + alpha) * (j - 1 + beta) * temp; 
+		const double a = 2.0 * j * (j + alphabeta) * (temp - 2.0);
+		const double b = (temp - 1.0) * (alpha * alpha - beta * beta + temp * (temp - 2.0) * z);
+		const double c = 2.0 * (j - 1 + alpha) * (j - 1 + beta) * temp; 
 		p1 = (b * p2 - c * p3) / a;
 	      }
 	    pp = (n * (alpha - beta - temp * z) * p1 + 2.0 * (n + alpha) * (n + beta) * p2) / (temp * (1.0 - z * z));
-	    const auto z1 = z;
+	    const double z1 = z;
 	    z = z1 - p1/pp;
-	    if (std::abs(z - z1) <= EPS)
+	    if (fabs(z - z1) <= EPS)
 	      break;
 	  }
 	if (its > MAXIT)
 	  nrerror("Too many iterations in gauss_jacobi.");
 	x[i] = z;
-	w[i] = std::exp(std::lgamma(alpha + n)
-		  + std::lgamma(beta + n)
-		  - std::lgamma(n + 1.0)
-		  - std::lgamma(n + alphabeta + 1.0)) * temp * std::pow(2.0, alphabeta) / (pp * p2);
+	w[i] = exp(lgamma(alpha + n)
+		  + lgamma(beta + n)
+		  - lgamma(n + 1.0)
+		  - lgamma(n + alphabeta + 1.0)) * temp * pow(2.0, alphabeta) / (pp * p2);
       }
   }
 
 
   void
-  gauss_gegenbauer(double *x, double *w, unsigned int n, double alpha)
+  gauss_gegenbauer(double *x, double *w, int n, double alpha)
   {
     const int MAXIT = 40;
     int its;
@@ -290,37 +290,37 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
 	double z;
 	if (i == 1)
 	  {
-	    auto an = alpha / n;
-	    auto r1 = (1.0 + alpha) * (2.78 / (4.0 + n * n) + 0.768 * an / n);
-	    auto r2 = 1.0 + 1.48 * an + 0.96 * an + 0.452 * an * an + 0.83 * an * an;
+	    double an = alpha / n;
+	    double r1 = (1.0 + alpha) * (2.78 / (4.0 + n * n) + 0.768 * an / n);
+	    double r2 = 1.0 + 1.48 * an + 0.96 * an + 0.452 * an * an + 0.83 * an * an;
 	    z = 1.0 - r1 / r2;
 	  }
 	else if (i == 2)
 	  {
-	    auto r1 = (4.1 + alpha) / ((1.0 + alpha) * (1.0 + 0.156 * alpha));
-	    auto r2 = 1.0 + 0.06 * (n - 8.0) * (1.0 + 0.12 * alpha) / n;
-	    auto r3 = 1.0 + 0.012 * alpha * (1.0 + 0.25 * std::abs(alpha)) / n;
+	    double r1 = (4.1 + alpha) / ((1.0 + alpha) * (1.0 + 0.156 * alpha));
+	    double r2 = 1.0 + 0.06 * (n - 8.0) * (1.0 + 0.12 * alpha) / n;
+	    double r3 = 1.0 + 0.012 * alpha * (1.0 + 0.25 * fabs(alpha)) / n;
 	    z -= (1.0 - z) * r1 * r2 * r3;
 	  }
 	else if (i == 3)
 	  {
-	    auto r1 = (1.67 + 0.28 * alpha) / (1.0 + 0.37 * alpha);
-	    auto r2 = 1.0 + 0.22 * (n - 8.0) / n;
-	    auto r3 = 1.0 + 8.0 * alpha / ((6.28 + alpha) * n * n);
+	    double r1 = (1.67 + 0.28 * alpha) / (1.0 + 0.37 * alpha);
+	    double r2 = 1.0 + 0.22 * (n - 8.0) / n;
+	    double r3 = 1.0 + 8.0 * alpha / ((6.28 + alpha) * n * n);
 	    z -= (x[1] - z) * r1 * r2 * r3;
 	  }
 	else if (i == n-1)
 	  {
-	    auto r1 = (1.0 + 0.235 * alpha) / (0.766 + 0.119 * alpha);
-	    auto r2 = 1.0/(1.0 + 0.639 * (n - 4.0) / (1.0 + 0.71 * (n - 4.0)));
-	    auto r3 = 1.0/(1.0 + 20.0 * alpha / ((7.5 + alpha) * n * n));
+	    double r1 = (1.0 + 0.235 * alpha) / (0.766 + 0.119 * alpha);
+	    double r2 = 1.0/(1.0 + 0.639 * (n - 4.0) / (1.0 + 0.71 * (n - 4.0)));
+	    double r3 = 1.0/(1.0 + 20.0 * alpha / ((7.5 + alpha) * n * n));
 	    z += (z - x[n - 3]) * r1 * r2 * r3;
 	  }
 	else if (i == n)
 	  {
-	    auto r1 = (1.0 + 0.37 * alpha) / (1.67 + 0.28 * alpha);
-	    auto r2 = 1.0/(1.0 + 0.22 * (n - 8.0) / n);
-	    auto r3 = 1.0/(1.0 + 8.0 * alpha / ((6.28 + alpha) * n * n));
+	    double r1 = (1.0 + 0.37 * alpha) / (1.67 + 0.28 * alpha);
+	    double r2 = 1.0/(1.0 + 0.22 * (n - 8.0) / n);
+	    double r3 = 1.0/(1.0 + 8.0 * alpha / ((6.28 + alpha) * n * n));
 	    z += (z - x[n - 2]) * r1 * r2 * r3;
 	  }
 	else
@@ -329,35 +329,35 @@ double quad_gauss(double (*funk)(double), double a, double b, double *x, double 
 	  }
 
         double p2, pp;
-	auto alphaalpha = alpha + alpha;
-	auto temp = 2.0 + alphaalpha;
+	double alphaalpha = alpha + alpha;
+	double temp = 2.0 + alphaalpha;
 	for (int its = 1; its <= MAXIT; ++its)
 	  {
-	    auto p1 = (alpha - alpha + temp * z) / 2.0;
+	    double p1 = (alpha - alpha + temp * z) / 2.0;
 	    p2 = 1.0;
 	    for (int j = 2; j <= n; ++j)
 	      {
-		const auto p3 = p2;
+		const double p3 = p2;
 		p2 = p1;
 		temp = 2.0 * (j + alpha);
-		const auto a = 2.0 * j * (j + alphaalpha) * (temp - 2.0);
-		const auto b = (temp - 1.0) * (temp * (temp - 2.0) * z);
-		const auto c = 2.0 * (j - 1 + alpha) * (j - 1 + alpha) * temp; 
+		const double a = 2.0 * j * (j + alphaalpha) * (temp - 2.0);
+		const double b = (temp - 1.0) * (temp * (temp - 2.0) * z);
+		const double c = 2.0 * (j - 1 + alpha) * (j - 1 + alpha) * temp; 
 		p1 = (b * p2 - c * p3) / a;
 	      }
 	    pp = (n * (-temp * z) * p1 + 2.0 * (n + alpha) * (n + alpha) * p2) / (temp * (1.0 - z * z));
-	    const auto z1 = z;
+	    const double z1 = z;
 	    z = z1 - p1 / pp;
-	    if (std::abs(z - z1) <= EPS)
+	    if (fabs(z - z1) <= EPS)
 	      break;
 	  }
 	if (its > MAXIT)
 	  nrerror("Too many iterations in gauss_gegenbauer.");
 	x[i] = z;
-	w[i] = std::exp(std::lgamma(alpha + n)
-		  + std::lgamma(alpha + n)
-		  - std::lgamma(n + 1.0)
-		  - std::lgamma(n + alphaalpha + 1.0)) * temp * std::pow(2.0, alphaalpha) / (pp * p2);
+	w[i] = exp(lgamma(alpha + n)
+		  + lgamma(alpha + n)
+		  - lgamma(n + 1.0)
+		  - lgamma(n + alphaalpha + 1.0)) * temp * pow(2.0, alphaalpha) / (pp * p2);
       }
   }
 
@@ -372,7 +372,7 @@ void gauss_chebyshev(double *x, double *w, int n) {
 
     m = (n + 1)/2;
     for (i = 1; i <= m; ++i) {
-	x[n+1-i] = -(x[i] = std::cos(PI*(i-0.5)/n));
+	x[n+1-i] = -(x[i] = cos(PI*(i-0.5)/n));
 	w[n+1-i] = w[i] = PI/n;
     }
 }
@@ -392,18 +392,18 @@ double gauss_crap(double (*funk)(double), double a, double b, int n) {
 	bpa = 0.5*(b + a);
 	bma = 0.5*(b - a);
 	nn = 3;
-	y = std::cos(PI/6.0);
+	y = cos(PI/6.0);
 	oldn = n;
 	return oldsum = PI*bma*((*funk)(bpa + y*bma) + (*funk)(bpa) + (*funk)(bpa - y*bma))/nn;
     } else {
 	nn *= 3;
-	y = std::cos(PI*0.5/nn);
+	y = cos(PI*0.5/nn);
 	sum = (*funk)(bpa + y*bma) + (*funk)(bpa - y*bma);
 	jmax = 1 + (nn - 4 - n)/6;
 	for (j = 1; j <= jmax; ++j) {
-	    y = std::cos(PI*(3.0*j - 0.5)/nn);
+	    y = cos(PI*(3.0*j - 0.5)/nn);
 	    sum = (*funk)(bpa + y*bma) + (*funk)(bpa - y*bma);
-	    y = std::cos(PI*(3.0*j + 0.5)/nn);
+	    y = cos(PI*(3.0*j + 0.5)/nn);
 	    sum = (*funk)(bpa + y*bma) + (*funk)(bpa - y*bma);
 	}
 	oldn = n;
@@ -437,8 +437,8 @@ double quad_gauss_crap(double (*funk)(double), double a, double b, double eps) {
     olds = -1.0e30;
     for (j = 1; j <= JMAX; ++j) {
 	s = gauss_crap(funk, a, b, j);
-	if (std::abs(s - olds) < eps*std::abs(olds)) return s;
-	if (std::abs(s) < eps && std::abs(olds) < eps && j > 6) return s;
+	if (fabs(s - olds) < eps*fabs(olds)) return s;
+	if (fabs(s) < eps && fabs(olds) < eps && j > 6) return s;
 	olds = s;
     }
     nrerror("Too many steps in routine quad_gauss_crap.");

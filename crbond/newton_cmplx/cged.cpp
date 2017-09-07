@@ -8,13 +8,13 @@
  *      rows to unity pivot value. Swaps b[] as well as a[][],
  *      so pivot ID vector is not required.
  */
-#include <math.h>
-#include <complex.h>
+#include <cmath>
+#include <complex>
 
-int cged(complex<double> **a,complex<double> *b,
-    complex<double> *x, int n)
+int cged(std::complex<double> **a,std::complex<double> *b,
+    std::complex<double> *x, int n)
 {
-    complex<double> tmp,pvt,*t;
+    std::complex<double> tmp,pvt,*t;
     int i,j,k,itmp;
 
     for (i=0;i<n;i++) {             // outer loop on rows
@@ -52,20 +52,20 @@ int cged(complex<double> **a,complex<double> *b,
 }
 /* This version preserves the matrix 'a' and the vector 'b'. */
 
-int cged2(complex<double> **a,complex<double> *b,
-    complex<double> *x, int n)
+int cged2(std::complex<double> **a,std::complex<double> *b,
+    std::complex<double> *x, int n)
 {
-    complex<double> tmp,pvt,*t,**aa,*bb;
+    std::complex<double> tmp,pvt,*t,**aa,*bb;
     int i,j,k,itmp,retval;
 
 // Initialize return value for successful execution.
     retval = 0;
 
 // Create and initialize working storage
-    aa = new complex<double> *[n];
-    bb = new complex<double> [n];
+    aa = new std::complex<double> *[n];
+    bb = new std::complex<double> [n];
     for (i=0;i<n;i++) {
-        aa[i] = new complex<double> [n];
+        aa[i] = new std::complex<double> [n];
         for (j=0;j<n;j++) {
             aa[i][j] = a[i][j];
         }

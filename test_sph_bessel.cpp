@@ -3,10 +3,10 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_s
 ./test_sph_bessel > test_sph_bessel.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sph_bessel test_sph_bessel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-./test_sph_bessel > test_sph_bessel.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_sph_bessel > test_sph_bessel.txt
 
 g++ -std=gnu++17 -I. -o test_sph_bessel test_sph_bessel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-./test_sph_bessel > test_sph_bessel.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_sph_bessel > test_sph_bessel.txt
 */
 
 #include <iostream>
@@ -25,7 +25,7 @@ template<typename _Tp>
 
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
-    auto width = 8 + std::cout.precision();
+    auto w = 8 + std::cout.precision();
 
     auto fname = [](std::string_view front, int n, std::string_view back)
 		 {
@@ -34,20 +34,20 @@ template<typename _Tp>
 		   return out.str();
 		 };
 
-    std::cout << '\n';
     for (int n = 0; n <= 50; ++n)
       {
-	std::cout << ' ' << std::setw(width) << "x";
-	std::cout << ' ' << std::setw(width) << fname("j_", n, "(x)");
-	std::cout << ' ' << std::setw(width) << fname("j'_", n, "(x)");
-	std::cout << ' ' << std::setw(width) << fname("n_", n, "(x)");
-	std::cout << ' ' << std::setw(width) << fname("n'_", n, "(x)");
-	std::cout << ' ' << std::setw(width) << "x^2 W[j,n]";
-	std::cout << ' ' << std::setw(width) << fname("i_", n, "(x)");
-	std::cout << ' ' << std::setw(width) << fname("i'_", n, "(x)");
-	std::cout << ' ' << std::setw(width) << fname("k'_", n, "(x)");
-	std::cout << ' ' << std::setw(width) << fname("k_", n, "(x)");
-	std::cout << ' ' << std::setw(width) << "-(2x^2/pi) W[i,k]";
+	std::cout << "\n\n  n = " << n << '\n';
+	std::cout << ' ' << std::setw(w) << "x";
+	std::cout << ' ' << std::setw(w) << fname("j_", n, "(x)");
+	std::cout << ' ' << std::setw(w) << fname("j'_", n, "(x)");
+	std::cout << ' ' << std::setw(w) << fname("n_", n, "(x)");
+	std::cout << ' ' << std::setw(w) << fname("n'_", n, "(x)");
+	std::cout << ' ' << std::setw(w) << "x^2 W[j,n]";
+	std::cout << ' ' << std::setw(w) << fname("i_", n, "(x)");
+	std::cout << ' ' << std::setw(w) << fname("i'_", n, "(x)");
+	std::cout << ' ' << std::setw(w) << fname("k'_", n, "(x)");
+	std::cout << ' ' << std::setw(w) << fname("k_", n, "(x)");
+	std::cout << ' ' << std::setw(w) << "-(2x^2/pi) W[i,k]";
 	std::cout << '\n';
 	const auto del = _Tp{1} / _Tp{10};
 	for (int i = 0; i <= 100; ++i)
@@ -55,15 +55,15 @@ template<typename _Tp>
 	    auto x = i * del;
 	    auto Wjn = x * x;
 	    auto Wik = -_Tp{2} * Wjn / _S_pi;
-	    std::cout << ' ' << std::setw(width) << x;
+	    std::cout << ' ' << std::setw(w) << x;
 	    try
 	      {
 		auto Sph = std::__detail::__sph_bessel_jn(n, x);
-		std::cout << ' ' << std::setw(width) << Sph.__j_value;
-		std::cout << ' ' << std::setw(width) << Sph.__j_deriv;
-		std::cout << ' ' << std::setw(width) << Sph.__n_value;
-		std::cout << ' ' << std::setw(width) << Sph.__n_deriv;
-		std::cout << ' ' << std::setw(width) << Wjn * Sph.__Wronskian();
+		std::cout << ' ' << std::setw(w) << Sph.__j_value;
+		std::cout << ' ' << std::setw(w) << Sph.__j_deriv;
+		std::cout << ' ' << std::setw(w) << Sph.__n_value;
+		std::cout << ' ' << std::setw(w) << Sph.__n_deriv;
+		std::cout << ' ' << std::setw(w) << Wjn * Sph.__Wronskian();
 	      }
 	    catch (std::exception& err)
 	      {
@@ -72,11 +72,11 @@ template<typename _Tp>
 	    try
 	      {
 		auto Sph = std::__detail::__sph_bessel_ik(n, x);
-		std::cout << ' ' << std::setw(width) << Sph.__i_value;
-		std::cout << ' ' << std::setw(width) << Sph.__i_deriv;
-		std::cout << ' ' << std::setw(width) << Sph.__k_value;
-		std::cout << ' ' << std::setw(width) << Sph.__k_deriv;
-		std::cout << ' ' << std::setw(width) << Wik * Sph.__Wronskian();
+		std::cout << ' ' << std::setw(w) << Sph.__i_value;
+		std::cout << ' ' << std::setw(w) << Sph.__i_deriv;
+		std::cout << ' ' << std::setw(w) << Sph.__k_value;
+		std::cout << ' ' << std::setw(w) << Sph.__k_deriv;
+		std::cout << ' ' << std::setw(w) << Wik * Sph.__Wronskian();
 	      }
 	    catch (std::exception& err)
 	      {
@@ -93,7 +93,7 @@ template<typename _Tp>
   {
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
-    auto width = 8 + std::cout.precision();
+    auto w = 8 + std::cout.precision();
 
     auto fname = [](std::string_view front, int n, std::string_view back)
 		 {
@@ -102,23 +102,23 @@ template<typename _Tp>
 		   return out.str();
 		 };
 
-    std::cout << '\n';
     for (int n = 0; n <= 50; ++n)
       {
-	std::cout << ' ' << std::setw(width) << "x";
-	std::cout << ' ' << std::setw(width) << fname("j_", n, "(x)");
-	std::cout << ' ' << std::setw(width) << fname("n_", n, "(x)");
+	std::cout << "\n\n  n = " << n << '\n';
+	std::cout << ' ' << std::setw(w) << "x";
+	std::cout << ' ' << std::setw(w) << fname("j_", n, "(x)");
+	std::cout << ' ' << std::setw(w) << fname("n_", n, "(x)");
 	const auto del = _Tp{1} / _Tp{10};
 	for (int i = 0; i <= 100; ++i)
 	  {
 	    auto x = i * del;
-	    std::cout << ' ' << std::setw(width) << x;
+	    std::cout << ' ' << std::setw(w) << x;
 	    try
 	      {
 		auto jx = std::sph_bessel(n, x);
 		auto nx = std::sph_neumann(n, x);
-		std::cout << ' ' << std::setw(width) << jx;
-		std::cout << ' ' << std::setw(width) << nx;
+		std::cout << ' ' << std::setw(w) << jx;
+		std::cout << ' ' << std::setw(w) << nx;
 	      }
 	    catch (std::exception& err)
 	      {

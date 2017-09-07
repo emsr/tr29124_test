@@ -22,41 +22,47 @@
 
 /* Available at: http://ab-initio.mit.edu/Faddeeva
 
-   Header file for Faddeeva.cc; see that file for more information. */
+   Header file for Faddeeva.c; see Faddeeva.cc for more information. */
 
-#ifndef FADDEEVA_HH
-#define FADDEEVA_HH 1
+#ifndef FADDEEVA_H
+#define FADDEEVA_H 1
 
-#include <complex>
+// Require C99 complex-number support
+#include <complex.h>
 
-namespace Faddeeva {
+#ifdef __cplusplus
+extern "C"
+{
+#endif /* __cplusplus */
 
 // compute w(z) = exp(-z^2) erfc(-iz) [ Faddeeva / scaled complex error func ]
-extern std::complex<double> w(std::complex<double> z,double relerr=0);
-extern double w_im(double x); // special-case code for Im[w(x)] of real x
+extern double complex Faddeeva_w(double complex z,double relerr);
+extern double Faddeeva_w_im(double x); // special-case code for Im[w(x)] of real x
 
 // Various functions that we can compute with the help of w(z)
 
 // compute erfcx(z) = exp(z^2) erfc(z)
-extern std::complex<double> erfcx(std::complex<double> z, double relerr=0);
-extern double erfcx(double x); // special case for real x
+extern double complex Faddeeva_erfcx(double complex z, double relerr);
+extern double Faddeeva_erfcx_re(double x); // special case for real x
 
 // compute erf(z), the error function of complex arguments
-extern std::complex<double> erf(std::complex<double> z, double relerr=0);
-extern double erf(double x); // special case for real x
+extern double complex Faddeeva_erf(double complex z, double relerr);
+extern double Faddeeva_erf_re(double x); // special case for real x
 
 // compute erfi(z) = -i erf(iz), the imaginary error function
-extern std::complex<double> erfi(std::complex<double> z, double relerr=0);
-extern double erfi(double x); // special case for real x
+extern double complex Faddeeva_erfi(double complex z, double relerr);
+extern double Faddeeva_erfi_re(double x); // special case for real x
 
 // compute erfc(z) = 1 - erf(z), the complementary error function
-extern std::complex<double> erfc(std::complex<double> z, double relerr=0);
-extern double erfc(double x); // special case for real x
+extern double complex Faddeeva_erfc(double complex z, double relerr);
+extern double Faddeeva_erfc_re(double x); // special case for real x
 
 // compute Dawson(z) = sqrt(pi)/2  *  exp(-z^2) * erfi(z)
-extern std::complex<double> Dawson(std::complex<double> z, double relerr=0);
-extern double Dawson(double x); // special case for real x
+extern double complex Faddeeva_Dawson(double complex z, double relerr);
+extern double Faddeeva_Dawson_re(double x); // special case for real x
 
-} // namespace Faddeeva
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
-#endif // FADDEEVA_HH
+#endif // FADDEEVA_H

@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I../mpreal -I. -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr
 ./test_numeric_limits > test_numeric_limits.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I../mpreal -I. -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr
 ./test_numeric_limits > test_numeric_limits.txt
 */
 
@@ -49,8 +49,8 @@ template<typename _Tp>
     std::cout << '\n';
     std::cout << "type             : " << std::quoted(name) << '\n';
     std::cout << "is_specialized   : " << __gnu_cxx::__is_specialized(__x) << '\n';
-    std::cout << "min              : " << __gnu_cxx::__min(__x) << '\n';
-    std::cout << "max              : " << __gnu_cxx::__max(__x) << '\n';
+    std::cout << "min              : " << __gnu_cxx::__lim_min(__x) << '\n';
+    std::cout << "max              : " << __gnu_cxx::__lim_max(__x) << '\n';
     std::cout << "lowest           : " << __gnu_cxx::__lowest(__x) << '\n';
     std::cout << "digits           : " << __gnu_cxx::__digits(__x) << '\n';
     std::cout << "digits10         : " << __gnu_cxx::__digits10(__x) << '\n';

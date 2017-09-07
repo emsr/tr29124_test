@@ -68,7 +68,7 @@ namespace __gnu_cxx
       _StaticPolynomial(std::initializer_list<_Tp> __il)
       : _M_coeff{}
       {
-	static_assert(__il.size() == _Num, "");
+	//static_assert(__il.size() == _Num, "");
 	std::size_t __i = 0;
 	for (auto&& __coeff : __il)
 	  this->_M_coeff[__i++] = __coeff;

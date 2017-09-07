@@ -521,9 +521,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     tanh(_Tp __x)
     { return __builtin_tanh(__x); }
 
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace
-
 #if _GLIBCXX_USE_C99_MATH
 #if !_GLIBCXX_USE_C99_FP_MACROS_DYNAMIC
 
@@ -540,10 +537,6 @@ _GLIBCXX_END_NAMESPACE_VERSION
 #undef islessequal
 #undef islessgreater
 #undef isunordered
-
-namespace std _GLIBCXX_VISIBILITY(default)
-{
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 #if __cplusplus >= 201103L
 
@@ -849,7 +842,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 #endif
 
-#else
+#else // < C++11
 
   template<typename _Tp>
     inline typename __gnu_cxx::__enable_if<__is_arithmetic<_Tp>::__value,
@@ -960,13 +953,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __builtin_isunordered(__type(__f1), __type(__f2));
     }
 
-#endif
-
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace
+#endif // C++11
 
 #endif /* _GLIBCXX_USE_C99_FP_MACROS_DYNAMIC */
-#endif
+#endif /* _GLIBCXX_USE_C99_MATH */
 
 #if __cplusplus >= 201103L
 
@@ -1079,10 +1069,6 @@ _GLIBCXX_END_NAMESPACE_VERSION
 #undef trunc
 #undef truncf
 #undef truncl
-
-namespace std _GLIBCXX_VISIBILITY(default)
-{
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // types
   using ::double_t;
@@ -1864,12 +1850,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     { return __builtin_trunc(__x); }
 #endif
 
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace
-
 #endif // _GLIBCXX_USE_C99_MATH_TR1
 
 #endif // C++11
+
+_GLIBCXX_END_NAMESPACE_VERSION
+} // namespace std
+} // extern "C++"
 
 #if _GLIBCXX_HAVE_FLOAT128_MATH
 #  include <bits/float128_math.h>
@@ -1878,7 +1865,5 @@ _GLIBCXX_END_NAMESPACE_VERSION
 #if defined(_GLIBCXX_USE_STD_SPEC_FUNCS) && !defined(_GLIBCXX_NO_SPECFUN)
 #  include <bits/specfun.h>
 #endif
-
-} // extern "C++"
 
 #endif

@@ -1,8 +1,8 @@
 \hypertarget{sf__legendre_8tcc}{}\section{bits/sf\+\_\+legendre.tcc File Reference}
 \label{sf__legendre_8tcc}\index{bits/sf\+\_\+legendre.\+tcc@{bits/sf\+\_\+legendre.\+tcc}}
-{\ttfamily \#include $<$complex$>$}\\*
-{\ttfamily \#include $<$ext/math\+\_\+const.\+h$>$}\\*
-{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$complex$>$}\newline
+{\ttfamily \#include $<$ext/math\+\_\+const.\+h$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
 Include dependency graph for sf\+\_\+legendre.\+tcc\+:
 \nopagebreak
 \begin{figure}[H]
@@ -36,12 +36,12 @@ This graph shows which files directly or indirectly include this file\+:
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a8b31886e334427566b1b00d71052191b}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Return the associated Legendre function by recursion on $ l $ and downward recursion on m. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____legendre__p__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_ab06b50bbac9758b5a2cc7d3d8213daa9}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+legendre\+\_\+p} (unsigned int \+\_\+\+\_\+l, \+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em Return the Legendre polynomial by upward recursion on order $ l $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a0643760e0d1701df4db880b2ad969055}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+legendre\+\_\+q} (unsigned int \+\_\+\+\_\+l, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Return the Legendre function of the second kind by upward recursion on order $ l $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \hyperlink{struct____gnu__cxx_1_1____quadrature__point__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+quadrature\+\_\+point\+\_\+t}$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{namespacestd_1_1____detail_a9d53ac0fd39232190e7564fa067a878d}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+legendre\+\_\+zeros} (unsigned int \+\_\+\+\_\+l, \+\_\+\+Tp proto=\+\_\+\+Tp\{\})
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_ad340d3fb1a429356292e7dcf61348c8a}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+poly\+\_\+legendre\+\_\+p} (unsigned int \+\_\+\+\_\+l, \+\_\+\+Tp \+\_\+\+\_\+x)
-\begin{DoxyCompactList}\small\item\em Return the Legendre polynomial by upward recursion on order $ l $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a31b9beb882431d61d439862de0366eec}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sph\+\_\+harmonic} (unsigned int \+\_\+\+\_\+l, int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+theta, \+\_\+\+Tp \+\_\+\+\_\+phi)
 \begin{DoxyCompactList}\small\item\em Return the spherical harmonic function. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a1c819d02915bdc2ab5c7693513ce0be0}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sph\+\_\+legendre} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+theta)
@@ -52,9 +52,12 @@ This graph shows which files directly or indirectly include this file\+:
 This is an internal header file, included by other library headers. Do not attempt to use it directly. Instead, include $<$cmath$>$. 
 
 \subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sf__legendre_8tcc_adf9a610f8b35f611eab3b1894e967c9f}\label{sf__legendre_8tcc_adf9a610f8b35f611eab3b1894e967c9f}} 
 \index{sf\+\_\+legendre.\+tcc@{sf\+\_\+legendre.\+tcc}!\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+E\+G\+E\+N\+D\+R\+E\+\_\+\+T\+CC@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+E\+G\+E\+N\+D\+R\+E\+\_\+\+T\+CC}}
 \index{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+E\+G\+E\+N\+D\+R\+E\+\_\+\+T\+CC@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+E\+G\+E\+N\+D\+R\+E\+\_\+\+T\+CC}!sf\+\_\+legendre.\+tcc@{sf\+\_\+legendre.\+tcc}}
-\subsubsection[{\texorpdfstring{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+E\+G\+E\+N\+D\+R\+E\+\_\+\+T\+CC}{_GLIBCXX_BITS_SF_LEGENDRE_TCC}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+E\+G\+E\+N\+D\+R\+E\+\_\+\+T\+CC~1}\hypertarget{sf__legendre_8tcc_adf9a610f8b35f611eab3b1894e967c9f}{}\label{sf__legendre_8tcc_adf9a610f8b35f611eab3b1894e967c9f}
+\subsubsection{\texorpdfstring{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+E\+G\+E\+N\+D\+R\+E\+\_\+\+T\+CC}{\_GLIBCXX\_BITS\_SF\_LEGENDRE\_TCC}}
+{\footnotesize\ttfamily \#define \+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+E\+G\+E\+N\+D\+R\+E\+\_\+\+T\+CC~1}
+
 
 
 Definition at line 47 of file sf\+\_\+legendre.\+tcc.

@@ -32,6 +32,8 @@
 
 #pragma GCC system_header
 
+#include <cmath>
+
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
@@ -92,7 +94,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * A struct to store the state of a Legendre polynomial.
    */
   template<typename _Tp>
-    struct __legendre_t
+    struct __legendre_p_t
     {
       std::size_t __l;
       _Tp __z;
@@ -100,6 +102,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __P_lm1;
       _Tp __P_lm2;
 
+      // @todo endpoints?
       _Tp
       deriv() const
       { return __l * (__z * __P_l - __P_lm1) / (__z * __z - _Tp{1}); }
@@ -108,7 +111,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * A struct to store the state of a Laguerre polynomial.
    */
-  template<typename _Tp, typename _Tpa>
+  template<typename _Tpa, typename _Tp>
     struct __laguerre_t
     {
       std::size_t __n;
@@ -124,6 +127,65 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
   /**
+   * A struct to store the state of a Jacobi polynomial.
+   */
+  template<typename _Tp>
+    struct __jacobi_t
+    {
+      std::size_t __n;
+      _Tp __alpha1;
+      _Tp __beta1;
+      _Tp __x;
+      _Tp __P_n;
+      _Tp __P_nm1;
+      _Tp __P_nm2;
+
+      _Tp
+      deriv() const
+      {
+	auto __apbp2k = __alpha1 + __beta1 + _Tp{2} * __n;
+	return (__n * (__alpha1 - __beta1 - __apbp2k * __x) * __P_nm1
+		   + _Tp{2} * (__n + __alpha1) * (__n + __beta1) * __P_nm2)
+		/ (__apbp2k * (_Tp{1} - __x * __x));
+      }
+    };
+
+  /**
+   * A struct to store the state of a Chebyshev polynomial of the first kind.
+   */
+  template<typename _Tp>
+    struct __chebyshev_t_t
+    {
+      std::size_t __n;
+      _Tp __x;
+      _Tp __T_n;
+      _Tp __T_nm1;
+      _Tp __T_nm2;
+
+      _Tp
+      deriv() const
+      { return _Tp(__n) * (__T_nm1 - __x * __T_n) / (_Tp{1} - __x * __x); }
+    };
+
+  /**
+   * A struct to store the state of a Chebyshev polynomial of the second kind.
+   */
+  template<typename _Tp>
+    struct __chebyshev_u_t
+    {
+      std::size_t __n;
+      _Tp __x;
+      _Tp __U_n;
+      _Tp __U_nm1;
+      _Tp __U_nm2;
+
+      _Tp
+      deriv() const
+      { return (_Tp(__n + 1) * __U_nm1 - _Tp(__n) * __x * __U_n)
+		/ (_Tp{1} - __x * __x); }
+    };
+
+  /**
    * A struct to store a cosine and a sine value.
    * A return for sincos-type functions.
    */
@@ -134,9 +196,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __cos_v;
     };
 
-  // Slots for Jacobi elliptic function tuple.
+  /**
+   * Slots for Jacobi elliptic function tuple.
+   */
   template<typename _Tp>
-    struct __jacobi_t
+    struct __jacobi_ellint_t
     {
       /// Jacobi sine amplitude value.
       _Tp __sn_value;

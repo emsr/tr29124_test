@@ -35,7 +35,7 @@ template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
     _Ret
     operator()(_Tp __x) const
     {
-      const auto _S_fp_min = 1000 * __gnu_cxx::__min(__x);
+      const auto _S_fp_min = 1000 * __gnu_cxx::__lim_min(__x);
       const auto _S_eps = _Tp{0.125L} * __gnu_cxx::__epsilon(__x);
       constexpr std::size_t _S_max_iter = 1000;
 

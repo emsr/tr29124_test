@@ -1,0 +1,32 @@
+--- ChangeLog.old	Fri Jul  9 08:56:45 2004
++++ ChangeLog	Fri Jul  9 08:58:35 2004
+@@ -1,3 +1,29 @@
++2004-07-07  Andrew W. Steiner  <stein@physics.umn.edu>
++
++	* solve_quartic.c: Major bugfixes and removal
++	of complex arithmetic.
++
++	* zsolve_quartic.c: Minor bugfixes with sorting and 
++	variable declarations 
++
++	* Makefile.am: added libgslcomplex to the necessary libraries for
++	the test program.
++
++	* test.c: Extended the quartic tests
++
++Wed Oct  9 15:16:00 2003  Andy Buckley  <buckley@hep.phy.cam.ac.uk>
++
++	* zsolve_quartic.c: added exact quartic solver based on CERNLIB 
++	Fortran code
++	
++	* solve_quartic.c: exact real-roots quartic solver based on the
++	complex-roots version. It still depends on gsl_complex to some 
++	extent
++
++	* Makefile.am, test.c, gsl_poly.h: updated to accomodate these 
++	new functions
++
++
+ Sun Dec  2 22:02:31 2001  Brian Gough  <bjg@network-theory.co.uk>
+ 
+ 	* dd.c: added divided differences code from Dan, Ho-Jin

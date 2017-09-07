@@ -11,6 +11,9 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_th
 #include <ext/cmath>
 #include <bits/float128_io.h>
 
+/**
+ * Plot the thetas over x= [0, 2pi] for q = 0, 0.1, ..., 0.9
+ */
 template<typename _Tp>
   void
   test_jacobi_theta(_Tp proto = _Tp{})
@@ -19,14 +22,14 @@ template<typename _Tp>
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    std::cout << "\n\n Theta function values\n";
-    std::cout << " =====================\n";
+    const auto _S_pi = __gnu_cxx::__const_pi(proto);
+
     const auto del1 = _Tp{1} / _Tp{10};
     const auto del01 = _Tp{1} / _Tp{100};
-    for (int i = 0; i <= 20; ++i)
+    for (int i = 0; i <= 9; ++i)
       {
-	auto nu = i * del1;
-	std::cout << '\n' << " nu   = " << std::setw(w) << nu << '\n';
+	auto q = i * del1;
+	std::cout << '\n' << '\n' << " q   = " << std::setw(w) << q << '\n';
 	std::cout << ' ' << std::setw(w) << "x"
 		  << ' ' << std::setw(w) << "jacobi_theta_1"
 		  << ' ' << std::setw(w) << "jacobi_theta_2"
@@ -39,19 +42,30 @@ template<typename _Tp>
 		  << ' ' << std::setw(w) << "------------------------"
 		  << ' ' << std::setw(w) << "------------------------"
 		  << '\n';
-	for (int j = 0; j <= 100; ++j)
+	for (int j = 0; j <= 200; ++j)
 	  {
 	    auto x = j * del01;
 	    std::cout << ' ' << std::setw(w) << x
+<<<<<<< HEAD
 		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(nu, x)
 		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(nu, x)
 		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(nu, x)
 		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(nu, x)
+=======
+		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(q, _S_pi * x)
+		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(q, _S_pi * x)
+		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(q, _S_pi * x)
+		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(q, _S_pi * x)
+>>>>>>> origin/master
 		      << '\n';
 	  }
       }
+    std::cout.flush();
   }
 
+/**
+ * Reproduce DLMF plots.
+ */
 template<typename _Tp>
   void
   plot_jacobi_theta(_Tp proto = _Tp{})
@@ -64,108 +78,155 @@ template<typename _Tp>
 
     std::cout << "\n\n\n";
     _Tp q0 = _Tp{0.15L};
+    std::cout << "q = " << q0 << '\n';
     for (int i = 0; i <= 200; ++i)
       {
-	auto x = _S_pi * i / 100;
+	auto x = _Tp(i) / _Tp{100};
 	std::cout << ' ' << std::setw(w) << x
+<<<<<<< HEAD
 		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(q0, x)
 		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(q0, x)
 		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(q0, x)
 		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(q0, x)
+=======
+		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(q0, _S_pi * x)
+		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(q0, _S_pi * x)
+		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(q0, _S_pi * x)
+		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(q0, _S_pi * x)
+>>>>>>> origin/master
 		  << '\n';
       }
+    std::cout.flush();
+
+    // Vary x for fixed q.
+    int nx = 400;
+    auto delx = 2 / _Tp(nx);
 
     std::cout << "\n\n\n";
-    for (int i = 0; i <= 200; ++i)
+    std::cout << "theta_1; q = 0.05, 0.5, 0.7, 0.9\n";
+    for (int i = 0; i <= nx; ++i)
       {
-	auto x = _S_pi * i / 100;
+	auto x = _Tp(i) * delx;
 	std::cout << ' ' << std::setw(w) << x;
 	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
+<<<<<<< HEAD
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(q, x);
+=======
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(q, _S_pi * x);
+>>>>>>> origin/master
+	std::cout << '\n';
+      }
+    std::cout.flush();
+
+    std::cout << "\n\n\n";
+    std::cout << "theta_2; q = 0.05, 0.5, 0.7, 0.9\n";
+    for (int i = 0; i <= nx; ++i)
+      {
+	auto x = _Tp(i) * delx;
+	std::cout << ' ' << std::setw(w) << x;
+	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
+<<<<<<< HEAD
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(q, x);
+=======
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(q, _S_pi * x);
+>>>>>>> origin/master
+	std::cout << '\n';
+      }
+    std::cout.flush();
+
+    std::cout << "\n\n\n";
+    std::cout << "theta_3; q = 0.05, 0.5, 0.7, 0.9\n";
+    for (int i = 0; i <= nx; ++i)
+      {
+	auto x = _Tp(i) * delx;
+	std::cout << ' ' << std::setw(w) << x;
+	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
+<<<<<<< HEAD
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(q, x);
+=======
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(q, _S_pi * x);
+>>>>>>> origin/master
+	std::cout << '\n';
+      }
+    std::cout.flush();
+
+    std::cout << "\n\n\n";
+    std::cout << "theta_4; q = 0.05, 0.5, 0.7, 0.9\n";
+    for (int i = 0; i <= nx; ++i)
+      {
+	auto x = _Tp(i) * delx;
+	std::cout << ' ' << std::setw(w) << x;
+	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
+<<<<<<< HEAD
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(q, x);
+=======
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(q, _S_pi * x);
+>>>>>>> origin/master
+	std::cout << '\n';
+      }
+    std::cout.flush();
+
+    // Vary q for fixed x.
+    int nq = 200;
+    auto delq = 1 / _Tp(nq);
+
+    std::cout << "\n\n\n";
+    std::cout << "theta_1; x = 0, 0.4, 5, 10, 40\n";
+    for (int i = 0; i < nq; ++i)
+      {
+	auto q = i * delq;
+	std::cout << ' ' << std::setw(w) << q;
+	for (auto x : {_Tp{0.0L}, _Tp{0.4L}, _Tp{5.0L}, _Tp{10.0L}, _Tp{40.0L}})
 	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(q, x);
 	std::cout << '\n';
       }
+    std::cout.flush();
 
     std::cout << "\n\n\n";
-    for (int i = 0; i <= 200; ++i)
+    std::cout << "theta_2; x = 0, 0.4, 5, 10, 40\n";
+    for (int i = 0; i < nq; ++i)
       {
-	auto x = _S_pi * i / 100;
-	std::cout << ' ' << std::setw(w) << x;
-	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
-	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(q, x);
-	std::cout << '\n';
-      }
-
-    std::cout << "\n\n\n";
-    for (int i = 0; i <= 200; ++i)
-      {
-	auto x = _S_pi * i / 100;
-	std::cout << ' ' << std::setw(w) << x;
-	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
-	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(q, x);
-	std::cout << '\n';
-      }
-
-    std::cout << "\n\n\n";
-    for (int i = 0; i <= 200; ++i)
-      {
-	auto x = _S_pi * i / 100;
-	std::cout << ' ' << std::setw(w) << x;
-	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
-	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(q, x);
-	std::cout << '\n';
-      }
-
-    std::cout << "\n\n\n";
-    for (int i = 0; i < 100; ++i)
-      {
-	auto q = _Tp(i) / _Tp{100.0L};
-	std::cout << ' ' << std::setw(w) << q;
-	for (auto x : {_Tp{0.0L}, _Tp{0.4L}, _Tp{5.0L}, _Tp{10.0L}, _Tp{40.0L}})
-	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(q, x);
-	std::cout << '\n';
-      }
-
-    std::cout << "\n\n\n";
-    for (int i = 0; i < 100; ++i)
-      {
-	auto q = _Tp(i) / _Tp{100.0L};
+	auto q = i * delq;
 	std::cout << ' ' << std::setw(w) << q;
 	for (auto x : {_Tp{0.0L}, _Tp{0.4L}, _Tp{5.0L}, _Tp{10.0L}, _Tp{40.0L}})
 	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(q, x);
 	std::cout << '\n';
       }
+    std::cout.flush();
 
     std::cout << "\n\n\n";
-    for (int i = 0; i < 100; ++i)
+    std::cout << "theta_3; x = 0, 0.4, 5, 10, 40\n";
+    for (int i = 0; i < nq; ++i)
       {
-	auto q = _Tp(i) / _Tp{100.0L};
+	auto q = i * delq;
 	std::cout << ' ' << std::setw(w) << q;
 	for (auto x : {_Tp{0.0L}, _Tp{0.4L}, _Tp{5.0L}, _Tp{10.0L}, _Tp{40.0L}})
 	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(q, x);
 	std::cout << '\n';
       }
+    std::cout.flush();
 
     std::cout << "\n\n\n";
-    for (int i = 0; i < 100; ++i)
+    std::cout << "theta_4; x = 0, 0.4, 5, 10, 40\n";
+    for (int i = 0; i < nq; ++i)
       {
-	auto q = _Tp(i) / _Tp{100.0L};
+	auto q = i * delq;
 	std::cout << ' ' << std::setw(w) << q;
 	for (auto x : {_Tp{0.0L}, _Tp{0.4L}, _Tp{5.0L}, _Tp{10.0L}, _Tp{40.0L}})
 	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(q, x);
 	std::cout << '\n';
       }
+    std::cout.flush();
   }
 
 
 int
 main()
 {
-  plot_jacobi_theta(1.0);
+  std::__detail::__jacobi_theta_1(0.205, 40.0);
+  std::__detail::__jacobi_theta_1(0.210, 40.0);
 
-  //auto jt1 [[maybe_unused]] = std::__detail::__jacobi_theta_1_sum(2.0, -8.0);
-  //auto jt2 [[maybe_unused]] = std::__detail::__jacobi_theta_2_sum(1.999, -8.0);
-  //auto jt3 [[maybe_unused]] = std::__detail::__jacobi_theta_3_sum(3.0, -8.0);
-  //auto jt4 [[maybe_unused]] = std::__detail::__jacobi_theta_4_sum(2.999, -8.0);
+  plot_jacobi_theta(1.0);
 
   test_jacobi_theta(1.0);
 }

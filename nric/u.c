@@ -6,6 +6,7 @@
 #include "nric.h"
 
 
+int
 main() {
 
     double ans, a, b, c;
