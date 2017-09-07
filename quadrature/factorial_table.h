@@ -29,7 +29,7 @@
 #include <vector>
 #include <cmath>
 
-namespace __gnu_test
+namespace __gnu_ext
 {
 
   // Look-up table for storing and obtaining factorials

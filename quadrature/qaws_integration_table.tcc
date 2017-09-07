@@ -21,7 +21,7 @@
 #ifndef QAWS_INTEGRATION_TABLE_TCC
 #define QAWS_INTEGRATION_TABLE_TCC 1
 
-namespace __gnu_test
+namespace __gnu_ext
 {
 
   template<typename _Tp>
@@ -149,6 +149,6 @@ namespace __gnu_test
 	this->rh[__i] *= _Tp{-1};
     }
 
-} // namespace __gnu_test
+} // namespace __gnu_ext
 
 #endif // QAWS_INTEGRATION_TABLE_TCC

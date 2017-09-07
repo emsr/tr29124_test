@@ -3,7 +3,7 @@
 
 #include <cmath>
 
-namespace __gnu_test
+namespace __gnu_ext
 {
 
   template<typename _Tp>
@@ -2770,7 +2770,7 @@ namespace __gnu_test
 		      = sizeof(gauss_legendre_precomp)
 		      / sizeof(gauss_legendre_precomp[0]);
 
-} // namespace __gnu_test
+} // namespace __gnu_ext
 
 #include "gauss_legendre_table.tcc"
 

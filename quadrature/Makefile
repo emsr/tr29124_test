@@ -19,6 +19,7 @@ BINS = \
   test_trapezoid_integral \
   test_midpoint_integral \
   test_double_exp_integrate \
+  test_gauss_hermite \
   hermite_test \
   laguerre_test \
   legendre_test \
@@ -56,6 +57,9 @@ test_midpoint_integral: test_midpoint_integral.cpp midpoint_integral.h midpoint_
 
 test_double_exp_integrate: test_double_exp_integrate.cpp double_exp_integrate.tcc
 	$(CXX17) -o test_double_exp_integrate test_double_exp_integrate.cpp -lquadmath
+
+test_gauss_hermite: test_gauss_hermite.cpp gauss_hermite_integrate.h
+	$(CXX17) -o test_gauss_hermite test_gauss_hermite.cpp -lquadmath
 
 hermite_test: $(OBJ_DIR)/hermite_test.o
 	$(CXX17) -o hermite_test $(OBJ_DIR)/hermite_test.o -lquadmath

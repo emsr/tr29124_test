@@ -30,7 +30,7 @@
 
 #include "oscillatory_integration_table.h"
 
-namespace __gnu_test
+namespace __gnu_ext
 {
 
   template<typename _Tp, typename _FuncTp>
@@ -453,7 +453,7 @@ namespace __gnu_test
 	}
     }
 
-} // namespace __gnu_test
+} // namespace __gnu_ext
 
 #endif // QAWO_INTEGRATE_TCC
 

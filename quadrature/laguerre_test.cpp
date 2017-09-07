@@ -28,7 +28,7 @@
 //#include "simple_integrate.h"
 #include "integration.h"
 
-using namespace __gnu_test;
+using namespace __gnu_ext;
 
 // Try to manage the gamma ratio.
 template<typename _Tp>

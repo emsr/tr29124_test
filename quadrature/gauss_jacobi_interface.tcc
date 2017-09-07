@@ -108,49 +108,49 @@ template<typename _Tp>
       case Gauss:
 	err = this->zeros_gj();
 	if (err)
-	  __gnu_test::__throw__IntegrationError("Problem calculating the zeros", err, _Tp{}, _Tp{});
+	  __gnu_ext::__throw__IntegrationError("Problem calculating the zeros", err, _Tp{}, _Tp{});
 	err = this->weights_gj();
 	if (err)
-	  __gnu_test::__throw__IntegrationError("Problem calculating the weightd", err, _Tp{}, _Tp{});
+	  __gnu_ext::__throw__IntegrationError("Problem calculating the weightd", err, _Tp{}, _Tp{});
 	err = this->diffmat_gj();
 	if (err)
-	  __gnu_test::__throw__IntegrationError("Problem calculating the differentiation matrix", err, _Tp{}, _Tp{});
+	  __gnu_ext::__throw__IntegrationError("Problem calculating the differentiation matrix", err, _Tp{}, _Tp{});
 	break;
       case Gauss_Lobatto:
 	err = this->zeros_glj();
 	if (err)
-	  __gnu_test::__throw__IntegrationError("Problem calculating the zeros", err, _Tp{}, _Tp{});
+	  __gnu_ext::__throw__IntegrationError("Problem calculating the zeros", err, _Tp{}, _Tp{});
 	err = this->weights_glj();
 	if (err)
-	  __gnu_test::__throw__IntegrationError("Problem calculating the weightd", err, _Tp{}, _Tp{});
+	  __gnu_ext::__throw__IntegrationError("Problem calculating the weightd", err, _Tp{}, _Tp{});
 	err = this->diffmat_glj();
 	if (err)
-	  __gnu_test::__throw__IntegrationError("Problem calculating the differentiation matrix", err, _Tp{}, _Tp{});
+	  __gnu_ext::__throw__IntegrationError("Problem calculating the differentiation matrix", err, _Tp{}, _Tp{});
 	break;
       case Gauss_Radau_lower:
 	err = this->zeros_grjm();
 	if (err)
-	  __gnu_test::__throw__IntegrationError("Problem calculating the zeros", err, _Tp{}, _Tp{});
+	  __gnu_ext::__throw__IntegrationError("Problem calculating the zeros", err, _Tp{}, _Tp{});
 	err = this->weights_grjm();
 	if (err)
-	  __gnu_test::__throw__IntegrationError("Problem calculating the weightd", err, _Tp{}, _Tp{});
+	  __gnu_ext::__throw__IntegrationError("Problem calculating the weightd", err, _Tp{}, _Tp{});
 	err = this->diffmat_grjm();
 	if (err)
-	  __gnu_test::__throw__IntegrationError("Problem calculating the differentiation matrix", err, _Tp{}, _Tp{});
+	  __gnu_ext::__throw__IntegrationError("Problem calculating the differentiation matrix", err, _Tp{}, _Tp{});
 	break;
       case Gauss_Radau_upper:
 	err = this->zeros_grjp();
 	if (err)
-	  __gnu_test::__throw__IntegrationError("Problem calculating the zeros", err, _Tp{}, _Tp{});
+	  __gnu_ext::__throw__IntegrationError("Problem calculating the zeros", err, _Tp{}, _Tp{});
 	err = this->weights_grjp();
 	if (err)
-	  __gnu_test::__throw__IntegrationError("Problem calculating the weightd", err, _Tp{}, _Tp{});
+	  __gnu_ext::__throw__IntegrationError("Problem calculating the weightd", err, _Tp{}, _Tp{});
 	err = this->diffmat_grjp();
 	if (err)
-	  __gnu_test::__throw__IntegrationError("Problem calculating the differentiation matrix", err, _Tp{}, _Tp{});
+	  __gnu_ext::__throw__IntegrationError("Problem calculating the differentiation matrix", err, _Tp{}, _Tp{});
 	break;
       default:
-	__gnu_test::__throw__IntegrationError("Illegal quadrature type", err, _Tp{}, _Tp{});
+	__gnu_ext::__throw__IntegrationError("Illegal quadrature type", err, _Tp{}, _Tp{});
       }
 
     return 0;
@@ -195,7 +195,7 @@ template<typename _Tp>
       err = this->interpmat_grjp();
       break;
     default:
-      __gnu_test::__throw__IntegrationError("Illegal quadrature type", err, _Tp{}, _Tp{});
+      __gnu_ext::__throw__IntegrationError("Illegal quadrature type", err, _Tp{}, _Tp{});
     }
 
     return err;

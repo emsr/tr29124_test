@@ -27,7 +27,7 @@
 
 #include <limits>
 
-namespace __gnu_test
+namespace __gnu_ext
 {
 
 /*
@@ -172,6 +172,6 @@ namespace __gnu_test
 	}
     }
 
-} // namespace __gnu_test
+} // namespace __gnu_ext
 
 #endif // INTEGRATE_H

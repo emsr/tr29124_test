@@ -22,7 +22,7 @@
 
 #include <ext/cmath>
 
-namespace __gnu_test
+namespace __gnu_ext
 {
 
 /**
@@ -205,6 +205,6 @@ template<typename _Func, typename _Tp>
     return _Tp{2} * (__b - __a) * _S_pi_4 * __h * (__sum + __sum1 + __sum2);
   }
 
-} // namespace __gnu_test
+} // namespace __gnu_ext
 
 #endif // DOUBLE_EXP_INTEGRATE_TCC

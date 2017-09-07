@@ -31,7 +31,7 @@
 #include "integration_workspace.h"
 #include "oscillatory_integration_table.h"
 
-namespace __gnu_test
+namespace __gnu_ext
 {
 
   /**
