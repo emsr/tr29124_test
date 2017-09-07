@@ -24,7 +24,7 @@
 #include <cstddef>
 #include <limits>
 
-namespace __gnu_test
+namespace __gnu_ext
 {
 
 template<typename _Func, typename _Tp>
@@ -63,7 +63,7 @@ template<typename _Func, typename _Tp>
     std::size_t _M_pow3 = 0;
   };
 
-} // namespace __gnu_test
+} // namespace __gnu_ext
 
 #include "midpoint_integral.tcc"
 

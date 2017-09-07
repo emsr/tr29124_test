@@ -21,7 +21,7 @@
 #ifndef GLFIXED_INTEGRATE_TCC
 #define GLFIXED_INTEGRATE_TCC 1
 
-namespace __gnu_test
+namespace __gnu_ext
 {
 
   template<typename _FuncTp, typename _Tp>
@@ -59,6 +59,6 @@ namespace __gnu_test
 	}
     }
 
-} // namespace __gnu_test
+} // namespace __gnu_ext
 
 #endif // GLFIXED_INTEGRATE_TCC
