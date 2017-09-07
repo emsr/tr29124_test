@@ -28,7 +28,7 @@
 #ifndef OSCILLATORY_INTEGRATION_TABLE_H
 #define OSCILLATORY_INTEGRATION_TABLE_H 1
 
-namespace __gnu_test
+namespace __gnu_ext
 {
 
   template<typename _Tp>
@@ -104,7 +104,7 @@ namespace __gnu_test
 
     };
 
-} // namespace __gnu_test
+} // namespace __gnu_ext
 
 #include "oscillatory_integration_table.tcc"
 

@@ -40,7 +40,7 @@
 9. [] The GSL seems to lack meat&potatoes integrals like midopint, trapezoid, romberg, ...
    These are in NRiC++ in my trees. old/integration.tcc shold be truly genericized and packaged.
 
-10. [] Change from __gnu_test to __gnu_cxx
+10. [DONE] Change from __gnu_test to __gnu_cxx
 
 11. [] Make the library truly type generic.
 

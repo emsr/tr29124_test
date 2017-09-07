@@ -28,7 +28,7 @@
 
 #include "integration.h"
 
-using namespace __gnu_test;
+using namespace __gnu_ext;
 
 /**
  * Neumann's number

@@ -90,12 +90,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto _Rsum = __bk_xk;
       auto __ak_xk = _Tp{1};
       auto _Psum = __ak_xk;
+      auto __convP = false;
       ++__k;
       auto __2km1 = 1;
       __bk_xk *= (__4nu2 + __2km1 * (__2km1 + 2)) / __8x;
       auto _Ssum = __bk_xk;
       __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / __8x;
       auto _Qsum = __ak_xk;
+      auto __convQ = false;
+      auto __ak_xk_prev = std::abs(__ak_xk);
       do
 	{
 	  ++__k;
@@ -104,15 +107,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  _Rsum += __bk_xk;
 	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
 	  _Psum += __ak_xk;
-	  const auto __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
+	  if (std::abs(__ak_xk) > __ak_xk_prev)
+	    break;
+	  __ak_xk_prev = std::abs(__ak_xk);
+	  __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
 
 	  ++__k;
 	  __2km1 += 2;
 	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
 	  _Ssum += __bk_xk;
 	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
+	  if (std::abs(__ak_xk) > __ak_xk_prev)
+	    break;
+	  __ak_xk_prev = std::abs(__ak_xk);
 	  _Qsum += __ak_xk;
-	  const auto __convQ = std::abs(__ak_xk) < _S_eps * std::abs(_Qsum);
+	  __convQ = std::abs(__ak_xk) < _S_eps * std::abs(_Qsum);
 
 	  if (__convP && __convQ && __k > (__nu / _Tp{2}))
 	    break;
@@ -147,6 +156,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using __bess_t = __gnu_cxx::__cyl_mod_bessel_t<_Tp, _Tp, _Tp>;
       const auto _S_inf = __gnu_cxx::__infinity(__x);
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_tiny = __gnu_cxx::__lim_min(__x);
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
       const auto _S_fp_min = _Tp{10} * _S_eps;
       constexpr int _S_max_iter = 15000;

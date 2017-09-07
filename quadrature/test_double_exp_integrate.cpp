@@ -30,14 +30,14 @@ template<typename Tp>
 
     auto fun = [](Tp x) -> Tp { return std::sin(x); };
     using fun_t = decltype(fun);
-    auto mq = __gnu_test::double_exp_integrate4<fun_t, Tp>(fun, 20, Tp{0}, PI, Tp{0.0000001});
+    auto mq = __gnu_ext::double_exp_integrate4<fun_t, Tp>(fun, 20, Tp{0}, PI, Tp{0.0000001});
     std::cout << mq << '\n';
 
     Tp a = Tp{0};
     Tp b = PI;
     Tp err = Tp{0.0000000001};
 
-    Tp a0 = __gnu_test::double_exp_integrate4<decltype(one), Tp>(one, 20, a, b, err);
+    Tp a0 = __gnu_ext::double_exp_integrate4<decltype(one), Tp>(one, 20, a, b, err);
     Tp e0 = b - a;
     std::cout << "one     : "
 	      << ' ' << std::setw(w) << a0
@@ -46,7 +46,7 @@ template<typename Tp>
 	      //<< ' ' << std::setw(w) << t0.abs_error()
 	      << '\n';
 
-    Tp a1 = __gnu_test::double_exp_integrate4<decltype(ex), Tp>(ex, 20, a, b, err);
+    Tp a1 = __gnu_ext::double_exp_integrate4<decltype(ex), Tp>(ex, 20, a, b, err);
     Tp e1 = (b * b - a * a) / Tp{2};
     std::cout << "ex      : "
 	      << ' ' << std::setw(w) << a1
@@ -55,7 +55,7 @@ template<typename Tp>
 	      //<< ' ' << std::setw(w) << t1.abs_error()
 	      << '\n';
 
-    Tp a2 = __gnu_test::double_exp_integrate4<decltype(cos2), Tp>(cos2, 20, a, b, err);
+    Tp a2 = __gnu_ext::double_exp_integrate4<decltype(cos2), Tp>(cos2, 20, a, b, err);
     Tp e2 = PI / Tp{2};
     std::cout << "cos2    : "
 	      << ' ' << std::setw(w) << a2
@@ -64,7 +64,7 @@ template<typename Tp>
 	      //<< ' ' << std::setw(w) << t2.abs_error()
 	      << '\n';
 
-    Tp a3 = __gnu_test::double_exp_integrate4<decltype(sin2), Tp>(sin2, 20, a, b, err);
+    Tp a3 = __gnu_ext::double_exp_integrate4<decltype(sin2), Tp>(sin2, 20, a, b, err);
     Tp e3 = PI / Tp{2};
     std::cout << "sin2    : "
 	      << ' ' << std::setw(w) << a3
@@ -73,7 +73,7 @@ template<typename Tp>
 	      //<< ' ' << std::setw(w) << t3.abs_error()
 	      << '\n';
 
-    Tp a4 = __gnu_test::double_exp_integrate4<decltype(j1), Tp>(j1, 20, a, b, err);
+    Tp a4 = __gnu_ext::double_exp_integrate4<decltype(j1), Tp>(j1, 20, a, b, err);
     Tp e4 = std::cyl_bessel_j(Tp{0}, Tp{0}) - std::cyl_bessel_j(Tp{0}, PI);
     std::cout << "j1      : "
 	      << ' ' << std::setw(w) << a4
@@ -84,7 +84,7 @@ template<typename Tp>
 
     a = Tp{0};
     b = Tp{10} * PI;
-    Tp a5 = __gnu_test::double_exp_integrate4<decltype(foo), Tp>(foo, 20, a, b, err);
+    Tp a5 = __gnu_ext::double_exp_integrate4<decltype(foo), Tp>(foo, 20, a, b, err);
     Tp e5 = Tp{2} * (Tp{1} + b) * std::exp(-b / Tp{2})
 	  - Tp{2} * (Tp{1} + a) * std::exp(-a / Tp{2});
     std::cout << "foo     : "
@@ -94,7 +94,7 @@ template<typename Tp>
 	      //<< ' ' << std::setw(w) << t5.abs_error()
 	      << '\n';
 
-    Tp a5n = __gnu_test::double_exp_integrate4<decltype(foonum), Tp>(foonum, 20, a, b, err);
+    Tp a5n = __gnu_ext::double_exp_integrate4<decltype(foonum), Tp>(foonum, 20, a, b, err);
     Tp e5n = b * (Tp{1} - b / Tp{2})
 	   - a * (Tp{1} - a / Tp{2});
     std::cout << "foonum  : "
@@ -104,7 +104,7 @@ template<typename Tp>
 	      //<< ' ' << std::setw(w) << t5n.abs_error()
 	      << '\n';
 
-    Tp a6 = __gnu_test::double_exp_integrate4<__gnu_cxx::_Polynomial<Tp>, Tp>(poly1, 20, a, b, err);
+    Tp a6 = __gnu_ext::double_exp_integrate4<__gnu_cxx::_Polynomial<Tp>, Tp>(poly1, 20, a, b, err);
     Tp e6 = poly1.integral()(b) - poly1.integral()(a);
     std::cout << "poly1   : "
 	      << ' ' << std::setw(w) << a6
@@ -115,7 +115,7 @@ template<typename Tp>
 
     a = Tp{0};
     b = PI;
-    Tp a7 = __gnu_test::double_exp_integrate4<decltype(funk1), Tp>(funk1, 20, a, b, err);
+    Tp a7 = __gnu_ext::double_exp_integrate4<decltype(funk1), Tp>(funk1, 20, a, b, err);
     Tp e7 = Tp{0};
     std::cout << "funk1   : "
 	      << ' ' << std::setw(w) << a7
@@ -124,7 +124,7 @@ template<typename Tp>
 	      //<< ' ' << std::setw(w) << t7.abs_error()
 	      << '\n';
 
-    Tp a7n = __gnu_test::double_exp_integrate4<decltype(funk1num), Tp>(funk1num, 20, a, b, err);
+    Tp a7n = __gnu_ext::double_exp_integrate4<decltype(funk1num), Tp>(funk1num, 20, a, b, err);
     Tp e7n = Tp{0};
     std::cout << "funk1num: "
 	      << ' ' << std::setw(w) << a7n
@@ -133,7 +133,7 @@ template<typename Tp>
 	      //<< ' ' << std::setw(w) << t7n.abs_error()
 	      << '\n';
 
-    Tp a8 = __gnu_test::double_exp_integrate4<decltype(funk2), Tp>(funk2, 20, a, b, err);
+    Tp a8 = __gnu_ext::double_exp_integrate4<decltype(funk2), Tp>(funk2, 20, a, b, err);
     Tp e8 = Tp{0};
     std::cout << "funk2   : "
 	      << ' ' << std::setw(w) << a8
@@ -142,7 +142,7 @@ template<typename Tp>
 	      //<< ' ' << std::setw(w) << t8.abs_error()
 	      << '\n';
 
-    Tp a8n = __gnu_test::double_exp_integrate4<decltype(funk2num), Tp>(funk2num, 20, a, b, err);
+    Tp a8n = __gnu_ext::double_exp_integrate4<decltype(funk2num), Tp>(funk2num, 20, a, b, err);
     Tp e8n = Tp{0};
     std::cout << "funk2num: "
 	      << ' ' << std::setw(w) << a8n

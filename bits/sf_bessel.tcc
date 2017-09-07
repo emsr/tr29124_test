@@ -90,12 +90,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto _Rsum = __bk_xk;
       auto __ak_xk = _Tp{1};
       auto _Psum = __ak_xk;
+      auto __convP = false;
       ++__k;
       auto __2km1 = 1;
       __bk_xk *= (__4nu2 + __2km1 * (__2km1 + 2)) / __8x;
       auto _Ssum = __bk_xk;
       __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / __8x;
       auto _Qsum = __ak_xk;
+      auto __convQ = false;
+      auto __ak_xk_prev = std::abs(__ak_xk);
       do
 	{
 	  ++__k;
@@ -103,16 +106,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __bk_xk = -(__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
 	  _Rsum += __bk_xk;
 	  __ak_xk *= -(__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
+	  if (std::abs(__ak_xk) > __ak_xk_prev)
+	    break;
+	  __ak_xk_prev = std::abs(__ak_xk);
 	  _Psum += __ak_xk;
-	  const auto __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
+	  __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
 
 	  ++__k;
 	  __2km1 += 2;
 	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
 	  _Ssum += __bk_xk;
 	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
+	  if (std::abs(__ak_xk) > __ak_xk_prev)
+	    break;
+	  __ak_xk_prev = std::abs(__ak_xk);
 	  _Qsum += __ak_xk;
-	  const auto __convQ = std::abs(__ak_xk) < _S_eps * std::abs(_Qsum);
+	  __convQ = std::abs(__ak_xk) < _S_eps * std::abs(_Qsum);
 
 	  if (__convP && __convQ && __k > (__nu / _Tp{2}))
 	    break;
@@ -201,6 +210,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Tp>;
       const auto _S_inf = __gnu_cxx::__infinity(__x);
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_tiny = __gnu_cxx::__lim_min(__x);
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
       // When the multiplier is N i.e.
       // fp_min = N * min()
@@ -356,13 +366,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __fact = _Jmu / _Jnul;
       const auto _Jnu = __fact * _Jnul1;
       const auto _Jpnu = __fact * _Jpnu1;
-      for (int __i = 1; __i <= __n; ++__i)
-	_Nmu = __gnu_cxx::__exchange(_Nnu1,
-				     (__mu + __i) * __xi2 * _Nnu1 - _Nmu);
-      const auto _Nnu = _Nmu;
-      const auto _Npnu = __nu * __xi * _Nmu - _Nnu1;
-
-      return __bess_t{__nu, __x, _Jnu, _Jpnu, _Nnu, _Npnu};
+      if (std::abs(_S_pi * __x * _Jnu / _Tp{2}) > _S_tiny)
+	{
+	  for (int __i = 1; __i <= __n; ++__i)
+	    _Nmu = __gnu_cxx::__exchange(_Nnu1,
+					 (__mu + __i) * __xi2 * _Nnu1 - _Nmu);
+	  const auto _Nnu = _Nmu;
+	  const auto _Npnu = __nu * __xi * _Nmu - _Nnu1;
+	  return __bess_t{__nu, __x, _Jnu, _Jpnu, _Nnu, _Npnu};
+	}
+      else
+	return __bess_t{__nu, __x, _Jnu, _Jpnu, -_S_inf, _S_inf};
     }
 
 
