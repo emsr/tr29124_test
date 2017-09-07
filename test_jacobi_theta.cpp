@@ -46,10 +46,17 @@ template<typename _Tp>
 	  {
 	    auto x = j * del01;
 	    std::cout << ' ' << std::setw(w) << x
+<<<<<<< HEAD
+		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(nu, x)
+		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(nu, x)
+		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(nu, x)
+		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(nu, x)
+=======
 		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(q, _S_pi * x)
 		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(q, _S_pi * x)
 		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(q, _S_pi * x)
 		      << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(q, _S_pi * x)
+>>>>>>> origin/master
 		      << '\n';
 	  }
       }
@@ -76,10 +83,17 @@ template<typename _Tp>
       {
 	auto x = _Tp(i) / _Tp{100};
 	std::cout << ' ' << std::setw(w) << x
+<<<<<<< HEAD
+		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(q0, x)
+		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(q0, x)
+		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(q0, x)
+		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(q0, x)
+=======
 		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(q0, _S_pi * x)
 		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(q0, _S_pi * x)
 		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(q0, _S_pi * x)
 		  << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(q0, _S_pi * x)
+>>>>>>> origin/master
 		  << '\n';
       }
     std::cout.flush();
@@ -95,7 +109,11 @@ template<typename _Tp>
 	auto x = _Tp(i) * delx;
 	std::cout << ' ' << std::setw(w) << x;
 	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
+<<<<<<< HEAD
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(q, x);
+=======
 	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_1(q, _S_pi * x);
+>>>>>>> origin/master
 	std::cout << '\n';
       }
     std::cout.flush();
@@ -107,7 +125,11 @@ template<typename _Tp>
 	auto x = _Tp(i) * delx;
 	std::cout << ' ' << std::setw(w) << x;
 	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
+<<<<<<< HEAD
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(q, x);
+=======
 	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_2(q, _S_pi * x);
+>>>>>>> origin/master
 	std::cout << '\n';
       }
     std::cout.flush();
@@ -119,7 +141,11 @@ template<typename _Tp>
 	auto x = _Tp(i) * delx;
 	std::cout << ' ' << std::setw(w) << x;
 	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
+<<<<<<< HEAD
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(q, x);
+=======
 	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_3(q, _S_pi * x);
+>>>>>>> origin/master
 	std::cout << '\n';
       }
     std::cout.flush();
@@ -131,7 +157,11 @@ template<typename _Tp>
 	auto x = _Tp(i) * delx;
 	std::cout << ' ' << std::setw(w) << x;
 	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
+<<<<<<< HEAD
+	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(q, x);
+=======
 	  std::cout << ' ' << std::setw(w) << std::__detail::__jacobi_theta_4(q, _S_pi * x);
+>>>>>>> origin/master
 	std::cout << '\n';
       }
     std::cout.flush();
