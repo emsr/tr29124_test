@@ -41,10 +41,10 @@ template<typename _Tp>
     const auto a = _Tp{2};
     for (int n = 0; n <= N; ++n)
       {
-	std::cout << '\n' << " n = " << n << '\n';
-	for (int i = 0; i <= 100; ++i)
+	std::cout << '\n' << '\n' << " n = " << n << '\n';
+	for (int i = 0; i <= 400; ++i)
 	  {
-	    auto x = i * _Tp{0.1L};
+	    auto x = i * _Tp{0.05L};
 	    auto C = __charlier_recur(n, a, x);
 	    std::cout << ' ' << std::setw(w) << x
 		      << ' ' << std::setw(w) << C
