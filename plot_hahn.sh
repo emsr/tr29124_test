@@ -18,4 +18,4 @@ plot [0.0:15.0][-20.0:20.0] \
                  "" index 7 using 1:2 with lines title "Q_7(x; {/Symbol a}, {/Symbol b}, N)", \
                  "" index 8 using 1:2 with lines title "Q_8(x; {/Symbol a}, {/Symbol b}, N)", \
                  "" index 9 using 1:2 with lines title "Q_9(x; {/Symbol a}, {/Symbol b}, N)", \
-                 "" index 10 using 1:2 with lines title "Q_10(x; {/Symbol a}, {/Symbol b}, N)"
+                 "" index 10 using 1:2 with lines title "Q_{10}(x; {/Symbol a}, {/Symbol b}, N)"

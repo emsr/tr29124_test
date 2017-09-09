@@ -19,16 +19,17 @@ template<typename _Tp>
     if (n == 1)
       return Mnm1;
 
+    const auto cc = _Tp{1} - c;
     auto nm1 = 1;
     auto cbnm1 = c * (beta + nm1);
-    auto Mn = (((c - _Tp{1}) * x + nm1 + cbnm1) * Mnm1 - nm1 * Mnm2) / cbnm1;
+    auto Mn = ((cbnm1 + nm1 - cc * x) * Mnm1 - nm1 * Mnm2) / cbnm1;
     for (int k = 3; k <= n; ++k)
       {
 	nm1 = _Tp(k - 1);
 	cbnm1 = c * (beta + nm1);
 	Mnm2 = Mnm1;
 	Mnm1 = Mn;
-	Mn = (((c - _Tp{1}) * x + nm1 + cbnm1) * Mnm1 - nm1 * Mnm2) / cbnm1;
+	Mn = ((cbnm1 + nm1 - cc * x) * Mnm1 - nm1 * Mnm2) / cbnm1;
       }
 
     return Mn;
@@ -43,7 +44,7 @@ template<typename _Tp>
 
     const auto N = 10;
     const auto beta = _Tp{0.5};
-    const auto c = _Tp{2.0};
+    const auto c = _Tp{0.5};
     for (int n = 0; n <= N; ++n)
       {
 	std::cout << '\n' << '\n' << " n = " << n << '\n';

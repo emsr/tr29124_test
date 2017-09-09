@@ -19,13 +19,16 @@ template<typename _Tp>
     if (n == 1)
       return Knm1;
 
+    const auto q = _Tp{1} - p;
     auto pnn = p * _Tp(N - 1);
-    auto nm1q = _Tp{1} * (_Tp{1} - p);
+    auto nm1q = _Tp{1} * q;
     auto Kn = ((pnn + nm1q - x) * Knm1 - nm1q * Knm2) / pnn;
     for (int k = 3; k <= n; ++k)
       {
 	pnn = p * _Tp(N - k + 1);
-	nm1q = _Tp(k - 1) * (_Tp{1} - p);
+	nm1q = _Tp(k - 1) * q;
+	Knm2 = Knm1;
+	Knm1 = Kn;
 	Kn = ((pnn + nm1q - x) * Knm1 - nm1q * Knm2) / pnn;
       }
 
