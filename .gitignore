@@ -240,6 +240,7 @@ test_beta_inc
 test_binet
 test_binet_float
 test_bose_einstein
+test_charlier
 test_chebyshev
 test_chebyshev_trig
 test_chebyshev_trig_pi
@@ -278,9 +279,10 @@ test_gamma_ratio
 test_gamma_reciprocal
 test_gauss_kronrod
 test_gegenbauer
-test_hermite
+test_hahn
 test_hankel
 test_hankel_real_arg
+test_hermite
 test_heuman_lambda
 test_hurwitz_zeta
 test_hurwitz_zeta_new
@@ -295,6 +297,7 @@ test_jacobi_inv
 test_jacobi_theta
 test_jacobi_zeta
 test_kelvin
+test_krawtchouk
 test_laguerre
 test_lambert_w
 test_legendre
@@ -309,6 +312,7 @@ test_lommel
 test_marcum_q
 test_math_h
 test_maxint
+test_meixner
 test_mittag_leffler
 test_mod2pi
 test_mpreal
