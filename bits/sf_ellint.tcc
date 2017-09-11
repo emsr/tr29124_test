@@ -93,16 +93,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__isnan(__x) || __isnan(__y))
 	return _S_NaN;
-      else if (std::imag(__x) == _Real{0} && std::real(__x) < _Real{0})
-	std::__throw_domain_error(__N("__ellint_rc: argument less than zero"));
+      else if constexpr (!__gnu_cxx::is_complex_v<_Tp>)
+	{
+	  if (__x < _Real{0})
+	    std::__throw_domain_error(__N("__ellint_rc:"
+					  " Real argument less than zero"));
+	}
       else if (std::abs(__x) + std::abs(__y) < _S_lolim)
         std::__throw_domain_error(__N("__ellint_rc: arguments too small"));
-      else if (std::imag(__y) == _Real{0} && std::real(__y) < _Real{0})
+      else if constexpr (!__gnu_cxx::is_complex_v<_Tp>)
 	{
-	  if (std::abs(__x) == _Real{0})
-	    return _Tp{};
-	  else
-	    return std::sqrt(__x / (__x - __y)) * __ellint_rc(__x - __y, -__y);
+	  if (__y < _Real{0})
+	    {
+	      if (std::abs(__x) == _Real{0})
+		return _Tp{};
+	      else
+		return std::sqrt(__x / (__x - __y))
+		     * __ellint_rc(__x - __y, -__y);
+	    }
 	}
       else
 	{
@@ -175,10 +183,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__isnan(__x) || __isnan(__y) || __isnan(__z))
 	return _S_NaN;
-      else if ((std::imag(__x) == _Real{0} && std::real(__x) < _Real{0})
-	    || (std::imag(__y) == _Real{0} && std::real(__y) < _Real{0})
-	    || (std::imag(__z) == _Real{0} && std::real(__z) < _Real{0}))
-        std::__throw_domain_error(__N("__ellint_rd: argument less than zero"));
+      else if constexpr (!__gnu_cxx::is_complex_v<_Tp>)
+	{
+	  if (__x < _Real{0} || __y < _Real{0} || __z < _Real{0})
+	    std::__throw_domain_error(__N("__ellint_rd:"
+					  " Real argument less than zero"));
+	}
       else if (std::abs(__x) + std::abs(__y) < _S_lolim
 	    || std::abs(__z) < _S_lolim)
 	std::__throw_domain_error(__N("__ellint_rd: arguments too small"));
@@ -191,7 +201,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  auto _Q = std::pow(_S_eps / _Real{4}, -_Real{1} / _Real{6})
 		  * std::max(std::abs(_A0 - __z),
 			     std::max(std::abs(_A0 - __x),
-			     std::abs(_A0 - __y)));
+				      std::abs(_A0 - __y)));
 	  auto _A = _A0;
 	  auto __f = _Real{1};
 	  auto __sum = _Tp{0};
@@ -289,10 +299,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__isnan(__x) || __isnan(__y) || __isnan(__z))
 	return _S_NaN;
-      else if (std::imag(__x) == _Real{0} && std::real(__x) < _Real{0}
-	    || std::imag(__y) == _Real{0} && std::real(__y) < _Real{0}
-	    || std::imag(__z) == _Real{0} && std::real(__z) < _Real{0})
-        std::__throw_domain_error(__N("__ellint_rf: argument less than zero"));
+      else if constexpr (!__gnu_cxx::is_complex_v<_Tp>)
+	{
+	  if (__x < _Real{0} || __y < _Real{0} || __z < _Real{0})
+	    std::__throw_domain_error(__N("__ellint_rf:"
+					  " Real argument less than zero"));
+	}
       else if (std::abs(__x) + std::abs(__y) < _S_lolim
 	    || std::abs(__x) + std::abs(__z) < _S_lolim
 	    || std::abs(__y) + std::abs(__z) < _S_lolim)
@@ -468,10 +480,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__isnan(__x) || __isnan(__y) || __isnan(__z) || __isnan(__p))
 	return _S_NaN;
-      else if (std::imag(__x) == _Real{0} && std::real(__x) < _Real{0}
-	    || std::imag(__y) == _Real{0} && std::real(__y) < _Real{0}
-	    || std::imag(__z) == _Real{0} && std::real(__z) < _Real{0})
-        std::__throw_domain_error(__N("__ellint_rj: argument less than zero"));
+      else if constexpr (!__gnu_cxx::is_complex_v<_Tp>)
+	{
+	  if (__x < _Real{0} || __y < _Real{0} || __z < _Real{0})
+	    std::__throw_domain_error(__N("__ellint_rj:"
+					  " Real argument less than zero"));
+	}
       else if (std::abs(__x) + std::abs(__y) < _S_lolim
 	    || std::abs(__x) + std::abs(__z) < _S_lolim
 	    || std::abs(__y) + std::abs(__z) < _S_lolim
