@@ -7,7 +7,11 @@ set yzeroaxis
 set grid
 
 set xlabel "x"
-plot [0.0:15.0][-20.0:20.0] \
+plot [0.0:10.0][-1.4:1.4] \
+    "test_hahn.txt" index 5 using 1:2 with lines title "Q_5(x; {/Symbol a}, {/Symbol b}, N)"
+
+set xlabel "x"
+plot [0.0:10.0][-20.0:20.0] \
     "test_hahn.txt" index 0 using 1:2 with lines title "Q_0(x; {/Symbol a}, {/Symbol b}, N)", \
                  "" index 1 using 1:2 with lines title "Q_1(x; {/Symbol a}, {/Symbol b}, N)", \
                  "" index 2 using 1:2 with lines title "Q_2(x; {/Symbol a}, {/Symbol b}, N)", \
