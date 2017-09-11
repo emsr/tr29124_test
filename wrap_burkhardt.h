@@ -1,7 +1,8 @@
 #ifndef WRAP_BURKHARDT_H
 #define WRAP_BURKHARDT_H 1
 
-//#include <complex>
+#include <vector>
+#include <complex>
 
 #include "bits/specfun_state.h"
 
@@ -437,6 +438,18 @@ fejer_1_rule(std::size_t n);
 /// Fejer 2 rule.
 std::vector<__gnu_cxx::__quadrature_point_t<double>>
 fejer_2_rule(std::size_t n);
+
+/// Meixner polynomials.
+double
+meixner(int n, double beta, double c, double x);
+
+/// Krawtchouk polynomials.
+double
+krawtchouk(int n, double p, double x, int m);
+
+/// Charlier polynomials.
+double
+charlier(int n, double a, double x);
 
 } // namespace burkhardt
 
