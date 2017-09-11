@@ -1,11 +1,13 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_meixner test_meixner.cpp
-./test_meixner > test_meixner.txt
+$HOME/bin_specfun/bin/g++ -std=c++17 -g -Wall -Wextra -o test_meixner test_meixner.cpp -Lwrappers/debug -lwrap_burkhardt -lgfortran
+LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_meixner > test_meixner.txt
 */
 
 #include <iostream>
 #include <iomanip>
 #include <limits>
+
+#include "wrap_burkhardt.h"
 
 template<typename _Tp>
   _Tp
@@ -52,8 +54,10 @@ template<typename _Tp>
 	  {
 	    auto x = i * _Tp{0.05L};
 	    auto M = __meixner_recur(n, beta, c, x);
+	    auto M_test = burkhardt::meixner(n, beta, c, x);
 	    std::cout << ' ' << std::setw(w) << x
 		      << ' ' << std::setw(w) << M
+		      << ' ' << std::setw(w) << M_test
 		      << '\n';
 	  }
       }
