@@ -871,6 +871,9 @@ test_theta: test_theta.cpp
 test_tricomi_u: test_tricomi_u.cpp
 	$(CXX17) -I. -o test_tricomi_u test_tricomi_u.cpp -lquadmath
 
+test_weierstrass_ellint: test_weierstrass_ellint.cpp
+	$(CXX17) -I. -o test_weierstrass_ellint test_weierstrass_ellint.cpp -lquadmath
+
 test_wright_omega: test_wright_omega.cpp
 	$(CXX17) -I. -o test_wright_omega test_wright_omega.cpp -lquadmath
 
