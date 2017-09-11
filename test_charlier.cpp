@@ -1,11 +1,13 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_charlier test_charlier.cpp
-./test_charlier > test_charlier.txt
+$HOME/bin_specfun/bin/g++ -std=c++17 -g -Wall -Wextra -o test_charlier test_charlier.cpp -Lwrappers/debug -lwrap_burkhardt -lgfortran
+LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_charlier > test_charlier.txt
 */
 
 #include <iostream>
 #include <iomanip>
 #include <limits>
+
+#include "wrap_burkhardt.h"
 
 template<typename _Tp>
   _Tp
@@ -46,8 +48,10 @@ template<typename _Tp>
 	  {
 	    auto x = i * _Tp{0.05L};
 	    auto C = __charlier_recur(n, a, x);
+	    auto C_test = burkhardt::charlier(n, a, x);
 	    std::cout << ' ' << std::setw(w) << x
 		      << ' ' << std::setw(w) << C
+		      << ' ' << std::setw(w) << C_test
 		      << '\n';
 	  }
       }

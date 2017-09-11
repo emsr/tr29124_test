@@ -1,11 +1,13 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_krawtchouk test_krawtchouk.cpp
-./test_krawtchouk > test_krawtchouk.txt
+$HOME/bin_specfun/bin/g++ -std=c++17 -g -Wall -Wextra -o test_krawtchouk test_krawtchouk.cpp -Lwrappers/debug -lwrap_burkhardt -lgfortran
+LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_krawtchouk > test_krawtchouk.txt
 */
 
 #include <iostream>
 #include <iomanip>
 #include <limits>
+
+#include "wrap_burkhardt.h"
 
 template<typename _Tp>
   _Tp
@@ -51,8 +53,10 @@ template<typename _Tp>
 	  {
 	    auto x = i * _Tp{0.05L};
 	    auto K = __krawtchouk_recur(n, p, N, x);
+	    auto K_test = burkhardt::krawtchouk(n, p, N, x);
 	    std::cout << ' ' << std::setw(w) << x
 		      << ' ' << std::setw(w) << K
+		      << ' ' << std::setw(w) << K_test
 		      << '\n';
 	  }
       }
