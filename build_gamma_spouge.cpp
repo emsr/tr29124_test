@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -I. -o build_gamma_spouge build_gamma_spouge.cpp -lquadmath
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_gamma_spouge build_gamma_spouge.cpp -lquadmath
 ./build_gamma_spouge > build_gamma_spouge.txt
 
-$HOME/bin/bin/g++ -std=gnu++14 -I. -o build_gamma_spouge build_gamma_spouge.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_gamma_spouge build_gamma_spouge.cpp -lquadmath
 ./build_gamma_spouge > build_gamma_spouge.txt
 */
 
