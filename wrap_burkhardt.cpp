@@ -1137,5 +1137,32 @@ fejer_2_rule(std::size_t n)
   return rule;
 }
 
+/// Meixner polynomials.
+double
+meixner(int n, double beta, double c, double x)
+{
+  double v[n + 1];
+  ::meixner(n, beta, c, x, v);
+  return v[n];
+}
+
+/// Krawtchouk polynomials.
+double
+krawtchouk(int n, double p, double x, int N)
+{
+  double v[n + 1];
+  ::krawtchouk(n, p, x, N, v);
+  return v[n];
+}
+
+/// Charlier polynomials.
+double
+charlier(int n, double a, double x)
+{
+  double v[n + 1];
+  ::charlier(n, a, x, v);
+  return v[n];
+}
+
 } // namespace burkhardt
 
