@@ -548,7 +548,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /// Construct the lattice from a single scalar elliptic nome.
       explicit __jacobi_lattice_t(_Tp_Nome __q)
       : __jacobi_lattice_t(__tau_t(_Cmplx{0, -1} * std::log(__q) / _S_pi))
-      { }
+      {
+	if (std::abs(__q) == _Real{0})
+	  std::__throw_domain_error("__jacobi_lattice_t: "
+				    "Nome must be nonzero.");
+      }
 
       /// Return the acalar lattice parameter or half period ratio.
       __tau_t
