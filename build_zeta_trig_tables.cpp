@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o build_zeta_trig_tables build_zeta_trig_tables.cpp -lquadmath -lmpfr
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_zeta_trig_tables build_zeta_trig_tables.cpp -lquadmath -lmpfr
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./build_zeta_trig_tables > build_zeta_trig_tables.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o build_zeta_trig_tables build_zeta_trig_tables.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_zeta_trig_tables build_zeta_trig_tables.cpp -lquadmath -lmpfr
 PATH=$HOME/bin/lib64:$PATH ./build_zeta_trig_tables > build_zeta_trig_tables.txt
 */
 

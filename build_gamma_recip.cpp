@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o build_gamma_recip build_gamma_recip.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_gamma_recip build_gamma_recip.cpp -lquadmath -lmpfr
 ./build_gamma_recip > build_gamma_recip.txt
 */
 

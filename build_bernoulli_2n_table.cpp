@@ -1,8 +1,8 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o build_bernoulli_2n_table build_bernoulli_2n_table.cpp -lquadmath -lmpfr
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_bernoulli_2n_table build_bernoulli_2n_table.cpp -lquadmath -lmpfr
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./build_bernoulli_2n_table > build_bernoulli_2n_table.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o build_bernoulli_2n_table build_bernoulli_2n_table.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_bernoulli_2n_table build_bernoulli_2n_table.cpp -lquadmath -lmpfr
 ./build_bernoulli_2n_table > build_bernoulli_2n_table.txt
 */
 
