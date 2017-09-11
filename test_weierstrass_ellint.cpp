@@ -281,14 +281,6 @@ template<typename _Tp>
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    { // Debug!
-      const auto r = _Real{0};
-      const auto phi = _Real{0};
-      const auto q = std::polar(r, phi);
-      const auto lambda = std::__detail::__jacobi_lattice_t<_Cmplx, _Cmplx>(q);
-      const auto [g2, g3] = std::__detail::__weierstrass_invariants_t(lambda);
-    }
-
     bool polar = false;
     std::cout << '\n';
     for (int ir = 1; ir < 100; ++ir)
