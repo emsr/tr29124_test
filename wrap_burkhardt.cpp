@@ -1137,6 +1137,15 @@ fejer_2_rule(std::size_t n)
   return rule;
 }
 
+// Bell numbers.
+std::vector<unsigned int>
+bell(int n)
+{
+  std::vector<unsigned int> b(n + 1);
+  ::bell(n, reinterpret_cast<int*>(b.data()));
+  return b;
+}
+
 /// Meixner polynomials.
 double
 meixner(int n, double beta, double c, double x)
