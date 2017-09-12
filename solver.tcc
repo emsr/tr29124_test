@@ -249,10 +249,21 @@ namespace __gnu_cxx
 	  auto _ZZ3 = __cubic<_Real>(_AA3);
 	  if (_ZZ3[1].index() == 1 && _ZZ3[2].index() == 1)
             {
+	      // There is some horrible big with swap and this variant.
 	      if (_ZZ3[0] < _ZZ3[1])
-		std::swap(_ZZ3[0], _ZZ3[1]);
+		//std::swap(_ZZ3[0], _ZZ3[1]);
+		{
+		  const auto __tmp = _ZZ3[0];
+		  _ZZ3[0] = _ZZ3[1];
+		  _ZZ3[1] = __tmp;
+		}
 	      if (_ZZ3[0] < _ZZ3[2])
-		std::swap(_ZZ3[0], _ZZ3[2]);
+		//std::swap(_ZZ3[0], _ZZ3[2]);
+		{
+		  const auto __tmp = _ZZ3[0];
+		  _ZZ3[0] = _ZZ3[2];
+		  _ZZ3[2] = __tmp;
+		}
 	      _Z3max = std::get<1>(_ZZ3[0]);
             }
 	  else
