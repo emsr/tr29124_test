@@ -1,9 +1,18 @@
 
 #SUFFIX = _tr29124
 SUFFIX = _specfun
-
 CXX_INST_DIR = $(HOME)/bin$(SUFFIX)
-CXX_SRC_DIR = $(HOME)/gcc$(SUFFIX)
+ifeq ("$(wildcard $(CXX_INST_DIR))","")
+  SUFFIX = 
+  CXX_INST_DIR = $(HOME)/bin
+  ifeq ("$(wildcard $(CXX_INST_DIR))","")
+    ifneq ($(wildcard "/mingw64"),"")
+      CXX_INST_DIR = /mingw64
+    else
+      CXX_INST_DIR = /usr
+    endif
+  endif
+endif
 
 GCC = $(CXX_INST_DIR)/bin/gcc -g -Wall -Wextra
 CXX = $(CXX_INST_DIR)/bin/g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -Wall -Wextra -Wno-psabi -I..
