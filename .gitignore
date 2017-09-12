@@ -29,6 +29,9 @@ test_owens_t.txt
 # Another git repo
 zeta
 
+# A nasty bug with variant and the solver type?
+variant_help
+
 run_coulfg
 
 bernoulli
