@@ -439,6 +439,10 @@ fejer_1_rule(std::size_t n);
 std::vector<__gnu_cxx::__quadrature_point_t<double>>
 fejer_2_rule(std::size_t n);
 
+// Bell numbers.
+std::vector<unsigned int>
+bell(int n);
+
 /// Meixner polynomials.
 double
 meixner(int n, double beta, double c, double x);

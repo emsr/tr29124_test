@@ -726,11 +726,13 @@ template<typename _Tp>
     for (auto n = 1u; n <= 20; ++n)
       {
 	auto bell = __bell_series(n);
+        auto bell_test = burkhardt::bell(n);
 
 	for (auto k = 0u; k <= n; ++k)
 	  std::cout << ' ' << std::setw(4) << n
 	       	    << ' ' << std::setw(4) << k
 		    << ' ' << std::setw(width) << bell[k]
+		    << ' ' << std::setw(width) << bell_test[k]
 		    << '\n';
       }
 
