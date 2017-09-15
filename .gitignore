@@ -234,6 +234,8 @@ testcase2
 test_arith_geom_mean
 test_airy
 test_anger_weber
+test_appell
+test_bairstow
 test_bernoulli
 test_bessel
 test_bessel_asymp
@@ -287,6 +289,7 @@ test_hankel
 test_hankel_real_arg
 test_hermite
 test_heuman_lambda
+test_heun
 test_hurwitz_zeta
 test_hurwitz_zeta_new
 test_hyperg
