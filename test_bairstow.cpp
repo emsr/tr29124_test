@@ -11,6 +11,7 @@ $HOME/bin/bin/g++ -std=c++17 -g -I. -o test_bairstow test_bairstow.cpp
 #include <random>
 
 #include "bits/specfun_state.h"
+#include "ext/polynomial.h"
 #include "solver.h"
 
 namespace __gnu_cxx
@@ -45,6 +46,7 @@ template<typename _Real>
     }
 
     std::vector<solution_t<_Real>> solve();
+    std::vector<_Real> equations() const;
 
   private:
 
@@ -154,9 +156,27 @@ template<typename _Real>
 
     while (this->_M_order > 2)
       this->_M_iterate();
-    this->_M_add_zero(this->_M_coeff[1]);
+    if (this->_M_order == 1)
+      this->_M_add_zero(-this->_M_coeff[1]);
 
     return this->_M_zero;
+  }
+
+/**
+ * Return the equations fouble by Bairstow's method.
+ * There will be order/2 quadratic equations of the form
+ * a[k] + a[k+1]x + x^2 = 0
+ * and, if there is an odd term, a linear equation
+ * a[order] + t = 0.
+ */
+template<typename _Real>
+  std::vector<_Real>
+  _BairstowSolver<_Real>::equations() const
+  {
+    std::vector<_Real> __eqs(this->_M_coeff.rbegin(), this->_M_coeff.rend());
+    __eqs.erase(__eqs.begin() + __eqs.size() - 1, __eqs.end());
+    __eqs[__eqs.size() - 1] *= _Real{-1};
+    return __eqs;
   }
 
 } // namespace __gnu_cxx
@@ -184,14 +204,30 @@ template<typename _Real>
       }
 
     __gnu_cxx::_BairstowSolver bairstow(a);
-    for (const auto& z : bairstow.solve())
+    const auto zeros = bairstow.solve();
+    std::cout << "\nThe zeros are:\n";
+    for (const auto& z : zeros)
       std::cout << z << '\n';
-    //std::cout << "\nThe quadratic factors are:\n";
 
-    //for (int i = order; i >= 2; i -= 2)
-    //  std::cout << "t^2 + " << a[i - 1] << " t + " << a[i] << '\n';
-    //if ((order % 2) == 1)
-    //  std::cout << "The linear term is: \nt - " << a[1] << '\n';
+    const auto eq = bairstow.equations();
+    std::cout << "\nThe quadratic factors are:\n";
+    for (int p = 0; p < eq.size() / 2; ++p)
+      std::cout << "t^2 + " << eq[2 * p + 1] << " t + " << eq[2 * p] << '\n';
+    if ((eq.size() % 2) == 1)
+      std::cout << "The linear term is: \nt - " << eq.back() << '\n';
+
+    std::cout << "\nSolution tests:\n";
+    __gnu_cxx::_Polynomial<_Real> poly(a.begin(), a.end());
+    for (const auto& z : zeros)
+      {
+	const auto idx = z.index();
+	std::cout << "P(" << z << ") = ";
+	if (idx == 1)
+	  std::cout << poly(std::get<1>(z));
+	else if (idx == 2)
+	  std::cout << poly(std::get<2>(z));
+	std::cout << '\n';
+      }
   }
 
 int
