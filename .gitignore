@@ -269,6 +269,7 @@ test_debye
 test_decimal
 test_dilog
 test_dirichlet_eta
+test_dual_hahn
 test_erfc
 test_experfc
 test_expint
