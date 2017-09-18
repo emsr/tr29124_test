@@ -1,14 +1,18 @@
 /*
-$HOME/bin_specfun/bin/g++ -std=c++17 -g -Wall -Wextra -o test_meixner test_meixner.cpp -Lwrappers/debug -lwrap_burkhardt -lgfortran
-LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_meixner > test_meixner.txt
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_meixner test_meixner.cpp -Lwrappers/debug -lwrap_burkhardt -lgfortran
+LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_meixner > test_meixner.txt
 */
 
 #include <iostream>
 #include <iomanip>
 #include <limits>
+#include <cmath>
 
 #include "wrap_burkhardt.h"
 
+/**
+ * 
+ */
 template<typename _Tp>
   _Tp
   __meixner_recur(int n, _Tp beta, _Tp c, _Tp x)
@@ -37,23 +41,35 @@ template<typename _Tp>
     return Mn;
   }
 
+/**
+ * 
+ */
+template<typename _Tp>
+  _Tp
+  __meixner(int n, _Tp beta, _Tp c, _Tp x)
+  {
+    if (std::isnan(beta))
+      return beta;
+    if (std::isnan(c))
+      return c;
+    else
+      return __meixner_recur(n, beta, c, x);
+  }
+
 template<typename _Tp>
   void
-  test_meixner()
+  test_meixner(int n_max, _Tp beta, _Tp c)
   {
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     auto w = std::cout.precision() + 8;
 
-    const auto N = 10;
-    const auto beta = _Tp{0.5};
-    const auto c = _Tp{0.5};
-    for (int n = 0; n <= N; ++n)
+    for (int n = 0; n <= n_max; ++n)
       {
 	std::cout << '\n' << '\n' << " n = " << n << '\n';
 	for (int i = 0; i <= 400; ++i)
 	  {
 	    auto x = i * _Tp{0.05L};
-	    auto M = __meixner_recur(n, beta, c, x);
+	    auto M = __meixner(n, beta, c, x);
 	    auto M_test = burkhardt::meixner(n, beta, c, x);
 	    std::cout << ' ' << std::setw(w) << x
 		      << ' ' << std::setw(w) << M
@@ -66,5 +82,5 @@ template<typename _Tp>
 int
 main()
 {
-  test_meixner<float>();
+  test_meixner(10, 0.5f, 0.5f);
 }
