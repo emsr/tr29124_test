@@ -1,14 +1,19 @@
 /*
-$HOME/bin_specfun/bin/g++ -std=c++17 -g -Wall -Wextra -o test_krawtchouk test_krawtchouk.cpp -Lwrappers/debug -lwrap_burkhardt -lgfortran
-LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_krawtchouk > test_krawtchouk.txt
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_krawtchouk test_krawtchouk.cpp -Lwrappers/debug -lwrap_burkhardt -lgfortran
+LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_krawtchouk > test_krawtchouk.txt
 */
 
+#include <stdexcept>
 #include <iostream>
 #include <iomanip>
 #include <limits>
+#include <cmath>
 
 #include "wrap_burkhardt.h"
 
+/**
+ * 
+ */
 template<typename _Tp>
   _Tp
   __krawtchouk_recur(int n, _Tp p, int N, _Tp x)
@@ -37,22 +42,39 @@ template<typename _Tp>
     return Kn;
   }
 
+/**
+ * 
+ */
+template<typename _Tp>
+  _Tp
+  __krawtchouk(int n, _Tp p, int N, _Tp x)
+  {
+    if (std::isnan(p))
+      return p;
+    else if (n > N)
+      std::__throw_domain_error(__N("__krawtchouk: "
+				"Degree must be less than or equal to big N."));
+    else
+      return __krawtchouk_recur(n, p, N, x);
+  }
+
+/**
+ * 
+ */
 template<typename _Tp>
   void
-  test_krawtchouk()
+  test_krawtchouk(_Tp p, int N)
   {
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     auto w = std::cout.precision() + 8;
 
-    const auto N = 10;
-    const auto p = _Tp{0.5};
     for (int n = 0; n <= N; ++n)
       {
 	std::cout << '\n' << '\n' << " n = " << n << '\n';
 	for (int i = 0; i <= 400; ++i)
 	  {
 	    auto x = i * _Tp{0.05L};
-	    auto K = __krawtchouk_recur(n, p, N, x);
+	    auto K = __krawtchouk(n, p, N, x);
 	    auto K_test = burkhardt::krawtchouk(n, p, N, x);
 	    std::cout << ' ' << std::setw(w) << x
 		      << ' ' << std::setw(w) << K
@@ -65,5 +87,5 @@ template<typename _Tp>
 int
 main()
 {
-  test_krawtchouk<float>();
+  test_krawtchouk(0.5f, 10);
 }
