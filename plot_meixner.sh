@@ -1,10 +1,8 @@
 # http://pool-serv1.mathematik.uni-kassel.de/caop/CAOP/plot_meixner.html
 
 gnuplot
-set termoption enhanced
-set xzeroaxis
-set yzeroaxis
-set grid
+
+load 'setings.gp'
 
 set xlabel "x"
 plot [0.0:16.0][-120.0:880.0] \
