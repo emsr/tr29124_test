@@ -339,6 +339,7 @@ test_power_norm
 test_promote_num
 test_psi
 test_quadratic
+test_racah
 test_rational
 test_ratpoly
 test_recursion
@@ -363,6 +364,7 @@ test_tricomi_u
 test_trig
 test_trigamma
 test_weierstrass_ellint
+test_wilson
 test_wright_omega
 test_zeta_trig
 
