@@ -259,6 +259,8 @@ test_conf_hyperg
 test_conf_hyperg_limit
 test_const
 test_continued_fraction
+test_continuous_hahn
+test_continuous_dual_hahn
 test_cordic
 test_coulomb
 test_csint
@@ -320,6 +322,7 @@ test_marcum_q
 test_math_h
 test_maxint
 test_meixner
+test_meixner_pollaczek
 test_mittag_leffler
 test_mod2pi
 test_mpreal

@@ -21,12 +21,12 @@ template<typename _Tp>
  * 
  */
 template<typename _Tp>
-  _Tp
+  __continuous_dual_hahn_t<_Tp>
   __continuous_dual_hahn_recur(int n, _Tp a, _Tp b, _Tp c, _Tp x)
   {
     auto Snm1 = _Tp{1};
     if (n == 0)
-      return Snm1;
+      return {Snm1, _Tp{1}};
 
     const auto aa = a * a;
     const auto ab = a + b;
@@ -38,9 +38,9 @@ template<typename _Tp>
 
     auto fn = ab * ac;
     fact *= fn;
-    auto Sn = _Tp{1} - n * (aa + xx) / fn;
+    auto Sn = _Tp{1} - (aa + xx) / fn;
     if (n == 1)
-      return Sn;
+      return {Sn, fact};
 
     fn = (ab + _Tp{1}) * (ac + _Tp{1});
     fact *= fn;
@@ -61,22 +61,22 @@ template<typename _Tp>
         Snp1 = ((An + Cn - (aa + xx)) * Sn - Cn * Snm1) / An;
       }
 
-    return fact * Snp1;
+    return {Snp1, fact};
   }
 
 /**
  * 
  */
 template<typename _Tp>
-  _Tp
+  __continuous_dual_hahn_t<_Tp>
   __continuous_dual_hahn(int n, _Tp a, _Tp b, _Tp c, _Tp x)
   {
     if (std::isnan(a))
-      return a;
+      return {a, _Tp{}};
     else if (std::isnan(b))
-      return b;
+      return {b, _Tp{}};
     else if (std::isnan(c))
-      return c;
+      return {c, _Tp{}};
     else
       return __continuous_dual_hahn_recur(n, a, b, c, x);
   }
@@ -99,7 +99,7 @@ template<typename _Tp>
 	    auto x = i * _Tp{0.05L};
 	    auto S = __continuous_dual_hahn(n, a, b, c, x);
 	    std::cout << ' ' << std::setw(w) << x
-		      << ' ' << std::setw(w) << S
+		      << ' ' << std::setw(w) << S.__value
 		      << '\n';
 	  }
       }
