@@ -1,0 +1,116 @@
+/*
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_continuous_hahn test_continuous_hahn.cpp
+./test_continuous_hahn > test_continuous_hahn.txt
+*/
+
+#include <stdexcept>
+#include <iostream>
+#include <iomanip>
+#include <limits>
+#include <cmath>
+#include <complex>
+
+template<typename _Tp>
+  struct
+  __continuous_hahn_t
+  {
+    std::complex<_Tp> __value;
+    std::complex<_Tp> __factor;
+  };
+
+template<typename _Tp>
+  __continuous_hahn_t<_Tp>
+  __continuous_hahn_recur(int n, _Tp a, _Tp b, _Tp c, _Tp d, _Tp x)
+  {
+    auto pnm1 = std::complex<_Tp>{1};
+    if (n == 0)
+      return {pnm1, _Tp{1}};
+
+    constexpr std::complex<_Tp> i{0, 1};
+    const auto abcd = a + b + c + d;
+    const auto ac = a + c;
+    const auto ad = a + d;
+    const auto bc = b + c;
+    const auto db = d + b;
+    const auto ix = i * x;
+
+    auto fact = std::complex<_Tp>{1};
+
+    auto fn = ac * ad;
+    fact *= fn / _Tp{2};
+    auto pn = _Tp{1} - abcd * (a + ix) / fn;
+    if (n == 1)
+      return {pn, fact};
+
+    fn = (ac + _Tp{1}) * (ad + _Tp{1});
+    fact *= i * fn;
+    auto An = -abcd * fn / (abcd + _Tp{1}) / (abcd + _Tp{2});
+    auto Cn = bc * db / abcd / (abcd + _Tp{1});
+
+    auto pnp1 = ((An + Cn - (a + ix)) * pn - Cn * pnm1) / An;
+
+    for (int k = 2; k < n; ++k)
+      {
+	const auto abcd2n = abcd + _Tp(2 * k);
+
+	fn = (ac + _Tp(k)) * (ad + _Tp(k));
+	fact *= i * fn / _Tp(1 + k);
+
+	auto An = -(abcd + _Tp(k - 1)) * fn / (abcd2n - _Tp(1)) / abcd2n;
+	auto Cn = _Tp(k)
+		* (bc + _Tp(k - 1)) * (db + _Tp(k - 1))
+		/ (abcd2n - _Tp(2)) / (abcd2n - _Tp(1));
+
+	pnm1 = pn;
+	pn = pnp1;
+        pnp1 = ((An + Cn - (a + ix)) * pn - Cn * pnm1) / An;
+      }
+
+    return {pnp1, fact};
+  }
+
+/**
+ * 
+ */
+template<typename _Tp>
+  __continuous_hahn_t<_Tp>
+  __continuous_hahn(int n, _Tp a, _Tp b, _Tp c, _Tp d, _Tp x)
+  {
+    if (std::isnan(a))
+      return {std::complex<_Tp>(a), std::complex<_Tp>{}};
+    else if (std::isnan(b))
+      return {std::complex<_Tp>(b), std::complex<_Tp>{}};
+    else if (std::isnan(c))
+      return {std::complex<_Tp>(c), std::complex<_Tp>{}};
+    else if (std::isnan(d))
+      return {std::complex<_Tp>(d), std::complex<_Tp>{}};
+    else
+      return __continuous_hahn_recur(n, a, b, c, d, x);
+  }
+
+template<typename _Tp>
+  void
+  test_continuous_hahn(int n_max, _Tp a, _Tp b, _Tp c, _Tp d)
+  {
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    auto w = std::cout.precision() + 8;
+
+    for (int n = 0; n <= n_max; ++n)
+      {
+	std::cout << '\n' << '\n' << " n = " << n << '\n';
+	for (int i = -200; i <= 200; ++i)
+	  {
+	    auto x = i * _Tp{0.01L};
+	    auto p = __continuous_hahn(n, a, b, c, d, x);
+	    std::cout << ' ' << std::setw(w) << x
+		      << ' ' << std::setw(w) << p.__value
+		      << '\n';
+	  }
+      }
+  }
+
+int
+main()
+{
+  test_continuous_hahn(10, 1.0f, 2.0f, 2.0f, 1.0f);
+}
