@@ -20,9 +20,9 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
+template<typename _Tp, typename _TpX>
   __continuous_dual_hahn_t<_Tp>
-  __continuous_dual_hahn_recur(int n, _Tp a, _Tp b, _Tp c, _Tp x)
+  __continuous_dual_hahn_recur(int n, _Tp a, _Tp b, _Tp c, _TpX x)
   {
     auto Snm1 = _Tp{1};
     if (n == 0)
@@ -32,7 +32,7 @@ template<typename _Tp>
     const auto ab = a + b;
     const auto ac = a + c;
     const auto bc = b + c;
-    const auto xx = x * x;
+    const auto xx = _Tp(x * x);
 
     auto fact = _Tp{1};
 
@@ -67,9 +67,9 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
+template<typename _Tp, typename _TpX>
   __continuous_dual_hahn_t<_Tp>
-  __continuous_dual_hahn(int n, _Tp a, _Tp b, _Tp c, _Tp x)
+  __continuous_dual_hahn(int n, _Tp a, _Tp b, _Tp c, _TpX x)
   {
     if (std::isnan(a))
       return {a, _Tp{}};
@@ -77,6 +77,8 @@ template<typename _Tp>
       return {b, _Tp{}};
     else if (std::isnan(c))
       return {c, _Tp{}};
+    else if (std::isnan(x))
+      return {x, _Tp{}};
     else
       return __continuous_dual_hahn_recur(n, a, b, c, x);
   }

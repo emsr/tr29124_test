@@ -5,11 +5,11 @@ gnuplot
 load 'setings.gp'
 
 set xlabel "x"
-plot [0.0:16.0][-120.0:880.0] \
+plot [0.0:16.0][-13.0:7.5] \
     "test_meixner.txt" index 5 using 1:2 with lines title "M_5(x; {/Symbol b}, c)"
 
 set xlabel "x"
-plot [0.0:15.0][-20.0:20.0] \
+plot [0.0:16.0][-20.0:45.0] \
     "test_meixner.txt" index 0 using 1:2 with lines title "M_0(x; {/Symbol b}, c)", \
                     "" index 1 using 1:2 with lines title "M_1(x; {/Symbol b}, c)", \
                     "" index 2 using 1:2 with lines title "M_2(x; {/Symbol b}, c)", \

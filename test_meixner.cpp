@@ -13,29 +13,29 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_meixner >
 /**
  * 
  */
-template<typename _Tp>
+template<typename _Tp, typename _TpX>
   _Tp
-  __meixner_recur(int n, _Tp beta, _Tp c, _Tp x)
+  __meixner_recur(int n, _Tp beta, _Tp c, _TpX x)
   {
     auto Mnm2 = _Tp{1};
     if (n == 0)
       return Mnm2;
 
-    auto Mnm1 = _Tp{1} + (_Tp{1} - _Tp{1} / c) * x / beta;
+    auto Mnm1 = _Tp{1} + (_Tp{1} - _Tp{1} / c) * _Tp(x) / beta;
     if (n == 1)
       return Mnm1;
 
     const auto cc = _Tp{1} - c;
-    auto nm1 = 1;
+    auto nm1 = _Tp(1);
     auto cbnm1 = c * (beta + nm1);
-    auto Mn = ((cbnm1 + nm1 - cc * x) * Mnm1 - nm1 * Mnm2) / cbnm1;
+    auto Mn = ((cbnm1 + nm1 - cc * _Tp(x)) * Mnm1 - nm1 * Mnm2) / cbnm1;
     for (int k = 3; k <= n; ++k)
       {
 	nm1 = _Tp(k - 1);
 	cbnm1 = c * (beta + nm1);
 	Mnm2 = Mnm1;
 	Mnm1 = Mn;
-	Mn = ((cbnm1 + nm1 - cc * x) * Mnm1 - nm1 * Mnm2) / cbnm1;
+	Mn = ((cbnm1 + nm1 - cc * _Tp(x)) * Mnm1 - nm1 * Mnm2) / cbnm1;
       }
 
     return Mn;
@@ -44,14 +44,16 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
+template<typename _Tp, typename _TpX>
   _Tp
-  __meixner(int n, _Tp beta, _Tp c, _Tp x)
+  __meixner(int n, _Tp beta, _Tp c, _TpX x)
   {
     if (std::isnan(beta))
       return beta;
     if (std::isnan(c))
       return c;
+    if (std::isnan(x))
+      return x;
     else
       return __meixner_recur(n, beta, c, x);
   }
@@ -82,5 +84,5 @@ template<typename _Tp>
 int
 main()
 {
-  test_meixner(10, 0.5f, 0.5f);
+  test_meixner(10, 10.f, 0.25f);
 }

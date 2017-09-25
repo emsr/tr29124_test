@@ -12,9 +12,9 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_dual_hahn test_dual_hahn.c
 /**
  * 
  */
-template<typename _Tp>
+template<typename _Tp, typename _TpX>
   _Tp
-  __dual_hahn_recur(int n, _Tp gamma, _Tp delta, int N, _Tp x)
+  __dual_hahn_recur(int n, _Tp gamma, _Tp delta, int N, _TpX x)
   {
     auto Rnm2 = _Tp{1};
     if (n == 0)
@@ -22,7 +22,7 @@ template<typename _Tp>
 
     const auto cd = gamma + delta;
 
-    auto lambda = x * (x + cd + _Tp{1});
+    auto lambda = _Tp(x) * (_Tp(x) + cd + _Tp{1});
 
     auto Rnm1 = _Tp{1} - lambda / (gamma + _Tp{1}) / _Tp(N);
     if (n == 1)
@@ -47,14 +47,16 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
+template<typename _Tp, typename _TpX>
   _Tp
-  __dual_hahn(int n, _Tp gamma, _Tp delta, int N, _Tp x)
+  __dual_hahn(int n, _Tp gamma, _Tp delta, int N, _TpX x)
   {
     if (std::isnan(gamma))
       return gamma;
     else if (std::isnan(delta))
       return delta;
+    else if (std::isnan(x))
+      return x;
     else if (n > N)
       std::__throw_domain_error(__N("__dual_hahn: "
 				"Degree must be less than or equal to big N."));

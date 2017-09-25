@@ -18,16 +18,16 @@ template<typename _Tp>
     std::complex<_Tp> __factor;
   };
 
-template<typename _Tp>
+template<typename _Tp, typename _TpX>
   __meixner_pollaczek_t<_Tp>
-  __meixner_pollaczek_recur(int n, _Tp lambda, _Tp phi, _Tp x)
+  __meixner_pollaczek_recur(int n, _Tp lambda, _Tp phi, _TpX x)
   {
     std::complex<_Tp> Pnm1 = _Tp{1};
     if (n == 0)
       return {Pnm1, _Tp{1}};
 
     constexpr std::complex<_Tp> i{0, 1};
-    const auto ix = i * x;
+    const auto ix = i * _Tp(x);
     const auto sinphi = std::sin(phi);
     const auto cosphi = std::cos(phi);
 
@@ -39,28 +39,30 @@ template<typename _Tp>
     if (n == 1)
       return {Pn, fact};
 
-    auto Pnp1 = (_Tp{2} * (x * sinphi + (lambda + _Tp{1}) * cosphi) * Pn
+    auto Pnp1 = (_Tp{2} * (_Tp(x) * sinphi + (lambda + _Tp{1}) * cosphi) * Pn
 		 - _Tp{2} * lambda * Pnm1) / _Tp{2};
 
     for (int k = 2; k < n; ++k)
       {
 	Pnm1 = Pn;
 	Pn = Pnp1;
-	Pnp1 = (_Tp{2} * (x * sinphi + (lambda + _Tp(k)) * cosphi) * Pn
+	Pnp1 = (_Tp{2} * (_Tp(x) * sinphi + (lambda + _Tp(k)) * cosphi) * Pn
 		 - (_Tp{2} * lambda + _Tp(k - 1)) * Pnm1) / _Tp(k + 1);
       }
 
     return {Pnp1, fact};
   }
 
-template<typename _Tp>
+template<typename _Tp, typename _TpX>
   __meixner_pollaczek_t<_Tp>
-  __meixner_pollaczek(int n, _Tp lambda, _Tp phi, _Tp x)
+  __meixner_pollaczek(int n, _Tp lambda, _Tp phi, _TpX x)
   {
     if (std::isnan(lambda))
       return {std::complex<_Tp>(lambda), std::complex<_Tp>{}};
     else if (std::isnan(phi))
       return {std::complex<_Tp>(phi), std::complex<_Tp>{}};
+    else if (std::isnan(x))
+      return {std::complex<_Tp>(x), std::complex<_Tp>{}};
     else
       return __meixner_pollaczek_recur(n, lambda, phi, x);
   }

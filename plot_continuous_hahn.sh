@@ -1,4 +1,4 @@
-# http://pool-serv1.mathematik.uni-kassel.de/caop/CAOP/plot_continuous_hahn.html
+# http://pool-serv1.mathematik.uni-kassel.de/caop/CAOP/plot_conthahn.html
 
 gnuplot
 

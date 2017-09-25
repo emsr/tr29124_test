@@ -12,9 +12,9 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_hahn test_hahn.cpp
 /**
  * 
  */
-template<typename _Tp>
+template<typename _Tp, typename _TpX>
   _Tp
-  __hahn_recur(int n, _Tp alpha, _Tp beta, int N, _Tp x)
+  __hahn_recur(int n, _Tp alpha, _Tp beta, int N, _TpX x)
   {
     auto Qnm2 = _Tp{1};
     if (n == 0)
@@ -22,7 +22,7 @@ template<typename _Tp>
 
     const auto ab = alpha + beta;
 
-    auto Qnm1 = _Tp{1} - x * (ab + _Tp{2}) / (alpha + _Tp{1}) / _Tp(N);
+    auto Qnm1 = _Tp{1} - _Tp(x) * (ab + _Tp{2}) / (alpha + _Tp{1}) / _Tp(N);
     if (n == 1)
       return Qnm1;
 
@@ -30,7 +30,7 @@ template<typename _Tp>
 	    / (ab + _Tp{3}) / (ab + _Tp{4});
     auto Cn = (ab + _Tp(N + 2)) * (beta + _Tp{1})
 	    / (ab + _Tp{2}) / (ab + _Tp{3});
-    auto Qn = ((An + Cn - x) * Qnm1 - Cn * Qnm2) / An;
+    auto Qn = ((An + Cn - _Tp(x)) * Qnm1 - Cn * Qnm2) / An;
 
     for (int k = 3; k <= n; ++k)
       {
@@ -40,7 +40,7 @@ template<typename _Tp>
 		/ (ab + _Tp(2 * k - 2)) / (ab + _Tp(2 * k - 1));
 	Qnm2 = Qnm1;
 	Qnm1 = Qn;
-        Qn = ((An + Cn - x) * Qnm1 - Cn * Qnm2) / An;
+        Qn = ((An + Cn - _Tp(x)) * Qnm1 - Cn * Qnm2) / An;
       }
 
     return Qn;
@@ -49,14 +49,16 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
+template<typename _Tp, typename _TpX>
   _Tp
-  __hahn(int n, _Tp alpha, _Tp beta, int N, _Tp x)
+  __hahn(int n, _Tp alpha, _Tp beta, int N, _TpX x)
   {
     if (std::isnan(alpha))
       return alpha;
     else if (std::isnan(beta))
       return beta;
+    else if (std::isnan(x))
+      return x;
     else if (n > N)
       std::__throw_domain_error(__N("__hahn: "
 				"Degree must be less than or equal to big N."));
