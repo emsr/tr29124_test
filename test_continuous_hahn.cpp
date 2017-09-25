@@ -18,9 +18,9 @@ template<typename _Tp>
     std::complex<_Tp> __factor;
   };
 
-template<typename _Tp>
+template<typename _Tp, typename _TpX>
   __continuous_hahn_t<_Tp>
-  __continuous_hahn_recur(int n, _Tp a, _Tp b, _Tp c, _Tp d, _Tp x)
+  __continuous_hahn_recur(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
   {
     auto pnm1 = std::complex<_Tp>{1};
     if (n == 0)
@@ -32,18 +32,18 @@ template<typename _Tp>
     const auto ad = a + d;
     const auto bc = b + c;
     const auto db = d + b;
-    const auto ix = i * x;
+    const auto ix = i * _Tp(x);
 
     auto fact = std::complex<_Tp>{1};
 
     auto fn = ac * ad;
-    fact *= fn / _Tp{2};
+    fact *= i * fn;
     auto pn = _Tp{1} - abcd * (a + ix) / fn;
     if (n == 1)
       return {pn, fact};
 
     fn = (ac + _Tp{1}) * (ad + _Tp{1});
-    fact *= i * fn;
+    fact *= i * fn / _Tp{2};
     auto An = -abcd * fn / (abcd + _Tp{1}) / (abcd + _Tp{2});
     auto Cn = bc * db / abcd / (abcd + _Tp{1});
 
@@ -72,9 +72,9 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
+template<typename _Tp, typename _TpX>
   __continuous_hahn_t<_Tp>
-  __continuous_hahn(int n, _Tp a, _Tp b, _Tp c, _Tp d, _Tp x)
+  __continuous_hahn(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
   {
     if (std::isnan(a))
       return {std::complex<_Tp>(a), std::complex<_Tp>{}};
@@ -84,6 +84,8 @@ template<typename _Tp>
       return {std::complex<_Tp>(c), std::complex<_Tp>{}};
     else if (std::isnan(d))
       return {std::complex<_Tp>(d), std::complex<_Tp>{}};
+    else if (std::isnan(x))
+      return {std::complex<_Tp>(x), std::complex<_Tp>{}};
     else
       return __continuous_hahn_recur(n, a, b, c, d, x);
   }
@@ -103,7 +105,8 @@ template<typename _Tp>
 	    auto x = i * _Tp{0.01L};
 	    auto p = __continuous_hahn(n, a, b, c, d, x);
 	    std::cout << ' ' << std::setw(w) << x
-		      << ' ' << std::setw(w) << p.__value
+		      << ' ' << std::setw(w) << std::real(p.__factor * p.__value)
+		      << ' ' << std::setw(w) << std::imag(p.__factor * p.__value)
 		      << '\n';
 	  }
       }

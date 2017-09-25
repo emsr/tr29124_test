@@ -14,29 +14,29 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_krawtchou
 /**
  * 
  */
-template<typename _Tp>
+template<typename _Tp, typename _TpX>
   _Tp
-  __krawtchouk_recur(int n, _Tp p, int N, _Tp x)
+  __krawtchouk_recur(int n, _Tp p, int N, _TpX x)
   {
     auto Knm2 = _Tp{1};
     if (n == 0)
       return Knm2;
 
-    auto Knm1 = _Tp{1} - x / p / _Tp(N);
+    auto Knm1 = _Tp{1} - _Tp(x) / p / _Tp(N);
     if (n == 1)
       return Knm1;
 
     const auto q = _Tp{1} - p;
     auto pnn = p * _Tp(N - 1);
     auto nm1q = _Tp{1} * q;
-    auto Kn = ((pnn + nm1q - x) * Knm1 - nm1q * Knm2) / pnn;
+    auto Kn = ((pnn + nm1q - _Tp(x)) * Knm1 - nm1q * Knm2) / pnn;
     for (int k = 3; k <= n; ++k)
       {
 	pnn = p * _Tp(N - k + 1);
 	nm1q = _Tp(k - 1) * q;
 	Knm2 = Knm1;
 	Knm1 = Kn;
-	Kn = ((pnn + nm1q - x) * Knm1 - nm1q * Knm2) / pnn;
+	Kn = ((pnn + nm1q - _Tp(x)) * Knm1 - nm1q * Knm2) / pnn;
       }
 
     return Kn;
@@ -45,12 +45,14 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
+template<typename _Tp, typename _TpX>
   _Tp
-  __krawtchouk(int n, _Tp p, int N, _Tp x)
+  __krawtchouk(int n, _Tp p, int N, _TpX x)
   {
     if (std::isnan(p))
       return p;
+    else if (std::isnan(x))
+      return x;
     else if (n > N)
       std::__throw_domain_error(__N("__krawtchouk: "
 				"Degree must be less than or equal to big N."));

@@ -1,4 +1,4 @@
-# http://pool-serv1.mathematik.uni-kassel.de/caop/CAOP/plot_contdualhahn.html
+# http://pool-serv1.mathematik.uni-kassel.de/caop/CAOP/plot_meixpol.html
 
 gnuplot
 

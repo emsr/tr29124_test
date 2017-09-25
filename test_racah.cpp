@@ -12,15 +12,15 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_racah test_racah.cpp
 /**
  * 
  */
-template<typename _Tp>
+template<typename _Tp, typename _TpX>
   _Tp
-  __racah_recur(int n, _Tp a, _Tp b, _Tp c, _Tp d, _Tp x)
+  __racah_recur(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
   {
     auto Rnm1 = _Tp{1};
     if (n == 0)
       return Rnm1;
 
-    auto lambda = x * (x + c + d + _Tp{1});
+    auto lambda = _Tp(x) * (_Tp(x) + c + d + _Tp{1});
 
     auto Rn = _Tp{1} + (a + b + _Tp{2}) * lambda
 		     / (a + _Tp{1}) / (b + d + _Tp{1}) / (c + _Tp{1});
@@ -54,9 +54,9 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
+template<typename _Tp, typename _TpX>
   _Tp
-  __racah(int n, _Tp a, _Tp b, _Tp c, _Tp d, _Tp x)
+  __racah(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
   {
     if (std::isnan(a))
       return a;
@@ -66,6 +66,8 @@ template<typename _Tp>
       return c;
     else if (std::isnan(d))
       return d;
+    else if (std::isnan(x))
+      return x;
     else
       return __racah_recur(n, a, b, c, d, x);
   }

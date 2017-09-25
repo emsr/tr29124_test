@@ -20,9 +20,9 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
+template<typename _Tp, typename _TpX>
   __wilson_t<_Tp>
-  __wilson_recur(int n, _Tp a, _Tp b, _Tp c, _Tp d, _Tp x)
+  __wilson_recur(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
   {
     auto Wnm1 = _Tp{1};
     if (n == 0)
@@ -36,7 +36,7 @@ template<typename _Tp>
     const auto bc = b + c;
     const auto cd = c + d;
     const auto db = d + b;
-    const auto xx = x * x;
+    const auto xx = _Tp(x * x);
 
     auto fact = _Tp{1};
 
@@ -76,9 +76,9 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
+template<typename _Tp, typename _TpX>
   __wilson_t<_Tp>
-  __wilson(int n, _Tp a, _Tp b, _Tp c, _Tp d, _Tp x)
+  __wilson(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
   {
     if (std::isnan(a))
       return {a, _Tp{}};
@@ -88,6 +88,8 @@ template<typename _Tp>
       return {c, _Tp{}};
     else if (std::isnan(d))
       return {d, _Tp{}};
+    else if (std::isnan(x))
+      return {x, _Tp{}};
     else
       return __wilson_recur(n, a, b, c, d, x);
   }
