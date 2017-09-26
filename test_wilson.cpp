@@ -20,15 +20,19 @@ template<typename _Tp>
 /**
  * Compute the Wilson polynomial by recursion:
  * @f[
- *    
+ *    -(a^2 + x^2)\bar{W}_n(x^2) = A_n \bar{W}_{n+1}(x^2)
+ *                               - (A_n + C_n) \bar{W}_n(x^2)
+ *                               + C_n \bar{W}_{n-1}(x^2)
  * @f]
- * where
+ * where  and
  * @f[
- *    A_n = 
+ *    A_n = \frac{(n + a + b + c + d - 1)(n + a + b)(n + a + c)(n + a + d)}
+ *               {(2n + a + b + c + d - 1)(2n + a + b + c + d)}
  * @f]
  * and
  * @f[
- *    C_n = 
+ *    C_n = \frac{n(n + b + c - 1)(n + c + d - 1)(n + d + b - 1)}
+ *               {(2n + a + b + c + d - 2)(2n + a + b + c + d - 1)}
  * @f]
  */
 template<typename _Tp, typename _TpX>
@@ -85,7 +89,13 @@ template<typename _Tp, typename _TpX>
   }
 
 /**
- * 
+ * Return the Wilson polynomial defined by
+ * @f[
+ *    \frac{W_n(x^2, a, b, c, d)}{(a + b)_n(a + c)_n(a + d)_n}
+ *      = \bar{W}_{n}(x^2, a, b, c, d)
+ *      = {}_4F_3(-n, n + a + b + c + d, a + ix, a - ix;
+ *                                   a + b, a + c, a + d; 1)
+ * @f]
  */
 template<typename _Tp, typename _TpX>
   __wilson_t<_Tp>

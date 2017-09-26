@@ -12,15 +12,20 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_racah test_racah.cpp
 /**
  * Compute the Racah polynomial by recursion:
  * @f[
- *    
+ *   \lambda(x)R_n(\lambda(x)) = A_n R_{n+1}(\lambda(x))
+ *                               - (A_n + C_n) R_n(\lambda(x))
+ *                               + C_n R_{n-1}(\lambda(x))
  * @f]
  * where
  * @f[
- *    A_n = 
+ *  A_n = \frac{(n + \alpha + 1)(n + \alpha + \beta + 1)
+ *              (n + \beta + \delta + 1)(n + \gamma + 1)}
+ *             {(2n + \alpha + \beta + 1)(2n + \alpha + \beta + 2)}
  * @f]
  * and
  * @f[
- *    C_n = 
+ *  C_n = \frac{n(n + \alpha + \beta - \gamma)(n + \alpha - \delta)(n + \beta)}
+ *             {(2n + \alpha + \beta)(2n + \alpha + \beta + 1)}
  * @f]
  */
 template<typename _Tp, typename _TpX>
@@ -63,7 +68,13 @@ template<typename _Tp, typename _TpX>
   }
 
 /**
- * 
+ * Return the Racah polynomial defined by
+ * @f[
+ *    R_n(\lambda(x), \alpha, \beta, \gamma, \delta)
+ *      = {}_4F_3(-n, n + \alpha + \beta + 1, -x, x + \gamma + \delta + 1;
+ *                \alpha + 1, \beta + \delta + 1, \gamma + 1; 1)
+ * @f]
+ * where @f$ \lambda(x) = x(x + \gamma + \delta + 1) @f$.
  */
 template<typename _Tp, typename _TpX>
   _Tp
