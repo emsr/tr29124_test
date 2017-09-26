@@ -12,38 +12,47 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_krawtchou
 #include "wrap_burkhardt.h"
 
 /**
- * 
+ * Compute the Krawtchouk polynomial by recursion:
+ * @f[
+ *    -xK_n(x) = p(N - n) K_{n+1}(x)
+ *             - [p(N - n) + n(1 - p)] K_n(x)
+ *             + n(1 - p) K_{n-1}(x)
+ * @f]
+ * where @f$ K_n(x) = K_n(x; p, N) @f$.
  */
 template<typename _Tp, typename _TpX>
   _Tp
   __krawtchouk_recur(int n, _Tp p, int N, _TpX x)
   {
-    auto Knm2 = _Tp{1};
+    auto Knm1 = _Tp{1};
     if (n == 0)
-      return Knm2;
-
-    auto Knm1 = _Tp{1} - _Tp(x) / p / _Tp(N);
-    if (n == 1)
       return Knm1;
+
+    auto Kn = _Tp{1} - _Tp(x) / p / _Tp(N);
+    if (n == 1)
+      return Kn;
 
     const auto q = _Tp{1} - p;
     auto pnn = p * _Tp(N - 1);
-    auto nm1q = _Tp{1} * q;
-    auto Kn = ((pnn + nm1q - _Tp(x)) * Knm1 - nm1q * Knm2) / pnn;
-    for (int k = 3; k <= n; ++k)
+    auto nq = q;
+    auto Knp1 = ((pnn + nq - _Tp(x)) * Kn - nq * Knm1) / pnn;
+    for (int k = 2; k < n; ++k)
       {
-	pnn = p * _Tp(N - k + 1);
-	nm1q = _Tp(k - 1) * q;
-	Knm2 = Knm1;
+	pnn = p * _Tp(N - k);
+	nq = _Tp(k) * q;
 	Knm1 = Kn;
-	Kn = ((pnn + nm1q - _Tp(x)) * Knm1 - nm1q * Knm2) / pnn;
+	Kn = Knp1;
+	Knp1 = ((pnn + nq - _Tp(x)) * Kn - nq * Knm1) / pnn;
       }
 
-    return Kn;
+    return Knp1;
   }
 
 /**
- * 
+ * Return the Krawtchouk polynomial defined by
+ * @f[
+ *    K_n(x; p, N) = {}_2F_1(-n, -x; -N; \frac{1}{p})
+ * @f]
  */
 template<typename _Tp, typename _TpX>
   _Tp

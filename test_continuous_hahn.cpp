@@ -18,6 +18,22 @@ template<typename _Tp>
     std::complex<_Tp> __factor;
   };
 
+/**
+ * Compute the continuous Hahn polynomial by recursion:
+ * @f[
+ *    (a + ix)p_n(x) = A_n p_{n+1}(x) - (A_n + C_n) p_n(x) + C_n p_{n-1}(x)
+ * @f]
+ * where @f$ p_n(x) = p_n(x; a, b, c, d) @f$ and
+ * @f[
+ *    A_n = \frac{(n + a + b + c + d - 1)(n + a + c)(n + a + d)}
+ *               {(2n + a + b + c + d - 1)(2n + a + b + c + d)}
+ * @f]
+ * and
+ * @f[
+ *    C_n = \frac{n(n + b + c - 1)(n + b + d - 1)}
+ *               {(2n + a + b + c + d - 2)(2n + a + b + c + d - 1)}
+ * @f]
+ */
 template<typename _Tp, typename _TpX>
   __continuous_hahn_t<_Tp>
   __continuous_hahn_recur(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
@@ -70,7 +86,12 @@ template<typename _Tp, typename _TpX>
   }
 
 /**
- * 
+ * Compute the continuous Hahn polynomial defined by
+ * @f[
+ *    p_n(x; a, b, c, d) = i^n\frac{(a+c)_n(a+d)_n}{n!}
+ *       {}_3F_2(-n, n + a + b + c + d - 1, a + ix;
+ *               a + c, a + d; 1)
+ * @f]
  */
 template<typename _Tp, typename _TpX>
   __continuous_hahn_t<_Tp>

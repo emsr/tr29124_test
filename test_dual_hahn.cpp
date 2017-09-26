@@ -10,42 +10,58 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_dual_hahn test_dual_hahn.c
 #include <cmath>
 
 /**
- * 
+ * Compute the dual Hahn polynomial by recursion:
+ * @f[
+ *    \lambda(x)R_n(x) = A_n R_{n+1} - (A_n + C_n) R_n + C_n R_{n-1}
+ * @f]
+ * where @f$ R_n(x) = R_n(\lambda(x); \gamma, \delta, N) @f$ and
+ * @f[
+ *    A_n = (n + \gamma + 1)(n - N)
+ * @f]
+ * and
+ * @f[
+ *    C_n = n(n - \delta - N - 1)
+ * @f]
  */
 template<typename _Tp, typename _TpX>
   _Tp
   __dual_hahn_recur(int n, _Tp gamma, _Tp delta, int N, _TpX x)
   {
-    auto Rnm2 = _Tp{1};
+    auto Rnm1 = _Tp{1};
     if (n == 0)
-      return Rnm2;
+      return Rnm1;
 
     const auto cd = gamma + delta;
 
     auto lambda = _Tp(x) * (_Tp(x) + cd + _Tp{1});
 
-    auto Rnm1 = _Tp{1} - lambda / (gamma + _Tp{1}) / _Tp(N);
+    auto Rn = _Tp{1} - lambda / (gamma + _Tp{1}) / _Tp(N);
     if (n == 1)
-      return Rnm1;
+      return Rn;
 
     auto An = (gamma + _Tp{2}) * _Tp(1 - N);
     auto Cn = -(delta + _Tp(N));
-    auto Rn = ((An + Cn + lambda) * Rnm1 - Cn * Rnm2) / An;
+    auto Rnp1 = ((An + Cn + lambda) * Rn - Cn * Rnm1) / An;
 
-    for (int k = 3; k <= n; ++k)
+    for (int k = 2; k < n; ++k)
       {
-	auto An = (gamma + _Tp(k)) * _Tp(k - N - 1);
-	auto Cn = -_Tp(k - 1) * (delta + _Tp(N - k + 2));
-	Rnm2 = Rnm1;
+	auto An = (gamma + _Tp(k + 1)) * _Tp(k - N);
+	auto Cn = -_Tp(k) * (delta + _Tp(N - k + 1));
 	Rnm1 = Rn;
-        Rn = ((An + Cn + lambda) * Rnm1 - Cn * Rnm2) / An;
+	Rn = Rnp1;
+        Rnp1 = ((An + Cn + lambda) * Rn - Cn * Rnm1) / An;
       }
 
-    return Rn;
+    return Rnp1;
   }
 
 /**
- * 
+ * Return the dual Hahn polynomial defined by
+ * @f[
+ *    R_n(\lambda(x); \gamma, \delta, N)
+ *       = {}_3F_2(-n, -x, x + \gamma + \delta + 1; \gamma + 1, -N; 1)
+ * @f]
+ * where @f$ \lambda(x) = x(x + \gamma + \delta + 1) @f$.
  */
 template<typename _Tp, typename _TpX>
   _Tp
