@@ -11,38 +11,48 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_meixner >
 #include "wrap_burkhardt.h"
 
 /**
- * 
+ * Compute the Meixner-Pollaczek polynomial by recursion:
+ * @f[
+ *    (c - 1)x M_n(x) = c(n + \beta) M_{n+1}(x)
+ *                    - [n + (n + \beta)c] M_n(x)
+ *                    + n M_{n-1}(x)
+ * @f]
+ * where @f$ M_n(x) = M_n(x; \beta, c) @f$.
  */
 template<typename _Tp, typename _TpX>
   _Tp
   __meixner_recur(int n, _Tp beta, _Tp c, _TpX x)
   {
-    auto Mnm2 = _Tp{1};
+    auto Mnm1 = _Tp{1};
     if (n == 0)
-      return Mnm2;
-
-    auto Mnm1 = _Tp{1} + (_Tp{1} - _Tp{1} / c) * _Tp(x) / beta;
-    if (n == 1)
       return Mnm1;
+
+    auto Mn = _Tp{1} + (_Tp{1} - _Tp{1} / c) * _Tp(x) / beta;
+    if (n == 1)
+      return Mn;
 
     const auto cc = _Tp{1} - c;
     auto nm1 = _Tp(1);
     auto cbnm1 = c * (beta + nm1);
-    auto Mn = ((cbnm1 + nm1 - cc * _Tp(x)) * Mnm1 - nm1 * Mnm2) / cbnm1;
-    for (int k = 3; k <= n; ++k)
+    auto Mnp1 = ((cbnm1 + nm1 - cc * _Tp(x)) * Mn - nm1 * Mnm1) / cbnm1;
+
+    for (int k = 2; k < n; ++k)
       {
 	nm1 = _Tp(k - 1);
 	cbnm1 = c * (beta + nm1);
-	Mnm2 = Mnm1;
 	Mnm1 = Mn;
-	Mn = ((cbnm1 + nm1 - cc * _Tp(x)) * Mnm1 - nm1 * Mnm2) / cbnm1;
+	Mn = Mnp1;
+	Mnp1 = ((cbnm1 + nm1 - cc * _Tp(x)) * Mn - nm1 * Mnm1) / cbnm1;
       }
 
-    return Mn;
+    return Mnp1;
   }
 
 /**
- * 
+ * Return the Meixner polynomial defined by
+ * @f[
+ *    M_n(x; \beta, c) = {}_2F_1(-n, -x; \beta; 1 - \frac{1}{c})
+ * @f]
  */
 template<typename _Tp, typename _TpX>
   _Tp

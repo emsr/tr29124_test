@@ -18,7 +18,18 @@ template<typename _Tp>
   };
 
 /**
- * 
+ * Compute the Wilson polynomial by recursion:
+ * @f[
+ *    
+ * @f]
+ * where
+ * @f[
+ *    A_n = 
+ * @f]
+ * and
+ * @f[
+ *    C_n = 
+ * @f]
  */
 template<typename _Tp, typename _TpX>
   __wilson_t<_Tp>

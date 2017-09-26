@@ -18,6 +18,12 @@ template<typename _Tp>
     std::complex<_Tp> __factor;
   };
 
+/**
+ * Compute the Meixner-Pollaczek polynomial by recursion:
+ * @f[
+ *    
+ * @f]
+ */
 template<typename _Tp, typename _TpX>
   __meixner_pollaczek_t<_Tp>
   __meixner_pollaczek_recur(int n, _Tp lambda, _Tp phi, _TpX x)

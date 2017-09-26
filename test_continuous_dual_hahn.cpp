@@ -18,7 +18,20 @@ template<typename _Tp>
   };
 
 /**
- * 
+ * Compute the continuous dual Hahn polynomial by recursion:
+ * @f[
+ *    -(a^2 + x^2) S_n(x^2) = A_n S_{n+1}(x^2)
+ *                            - (A_n + C_n) S_n(x^2)
+ *                            + C_n S_{n-1}(x^2)
+ * @f]
+ * where @f$ S_n(x^2) = S_n(x^2; a, b, c) @f$ and
+ * @f[
+ *    A_n = (n + a + b)(n + a + c)
+ * @f]
+ * and
+ * @f[
+ *    C_n = n(n + b + c - 1)
+ * @f]
  */
 template<typename _Tp, typename _TpX>
   __continuous_dual_hahn_t<_Tp>
@@ -65,7 +78,11 @@ template<typename _Tp, typename _TpX>
   }
 
 /**
- * 
+ * Return the continuous dual Hahn polynomial defined by
+ * @f[
+ *    S_n() = \frac{1}{(a + b)_n(a + c)_n}
+ *            {}_3F_2(-n, a + ix, a - ix, a + b, a + c; 1)
+ * @f]
  */
 template<typename _Tp, typename _TpX>
   __continuous_dual_hahn_t<_Tp>

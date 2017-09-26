@@ -11,33 +11,40 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_charlier 
 #include "wrap_burkhardt.h"
 
 /**
- * 
+ * Compute the Charlier polynomial by recursion:
+ * @f[
+ *    -x C_n(x) = a C_{n+1}(x) - (n + a) C_n(x) + n C_{n-1}(x)
+ * @f]
+ * where @f$ C_n(x) = C_n(x; a) @f$.
  */
 template<typename _Tp, typename _TpX>
   _Tp
   __charlier_recur(int n, _Tp a, _TpX x)
   {
-    auto Cnm2 = _Tp{1};
+    auto Cnm1 = _Tp{1};
     if (n == 0)
-      return Cnm2;
-
-    auto Cnm1 = _Tp{1} - _Tp(x) / a;
-    if (n == 1)
       return Cnm1;
 
-    auto Cn = ((_Tp{1} + a - _Tp(x)) * Cnm1 - Cnm2) / a;
-    for (int k = 3; k <= n; ++k)
+    auto Cn = _Tp{1} - _Tp(x) / a;
+    if (n == 1)
+      return Cn;
+
+    auto Cnp1 = ((_Tp{1} + a - _Tp(x)) * Cn - Cnm1) / a;
+    for (int k = 2; k < n; ++k)
       {
-	Cnm2 = Cnm1;
 	Cnm1 = Cn;
-	Cn = ((_Tp(k - 1) + a - _Tp(x)) * Cnm1 - _Tp(k - 1) * Cnm2) / a;
+	Cn = Cnp1;
+	Cnp1 = ((_Tp(k) + a - _Tp(x)) * Cn - _Tp(k) * Cnm1) / a;
       }
 
-    return Cn;
+    return Cnp1;
   }
 
 /**
- * 
+ * Return the Charlier polynomial defined by
+ * @f[
+ *    C_n(x; a) = {}_2F_0(-n, -x; ; -\frac{1}{a})
+ * @f]
  */
 template<typename _Tp, typename _TpX>
   _Tp

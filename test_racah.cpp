@@ -10,7 +10,18 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_racah test_racah.cpp
 #include <cmath>
 
 /**
- * 
+ * Compute the Racah polynomial by recursion:
+ * @f[
+ *    
+ * @f]
+ * where
+ * @f[
+ *    A_n = 
+ * @f]
+ * and
+ * @f[
+ *    C_n = 
+ * @f]
  */
 template<typename _Tp, typename _TpX>
   _Tp
