@@ -21,8 +21,11 @@ template<typename _Tp>
 /**
  * Compute the Meixner-Pollaczek polynomial by recursion:
  * @f[
- *    
+ *    0 = (n + 1) P_{n+1}(x)
+ *      - 2 [x \sin \phi + (n + \lambda) \cos \phi] P_n(x)
+ *      + (n + 2\lambda - 1) P_{n-1}(x) = 0
  * @f]
+ * where @f$ P_n(x) = P^{(\lambda)}_n(x;\phi) @f$
  */
 template<typename _Tp, typename _TpX>
   __meixner_pollaczek_t<_Tp>
@@ -59,6 +62,13 @@ template<typename _Tp, typename _TpX>
     return {Pnp1, fact};
   }
 
+/**
+ * Compute the Meixner-Pollaczek polynomial defined by
+ * @f[
+ *    P^{(\lambda)}_n(x;\phi) = \frac{(2\lambda)_n}{n!}
+ *             {}_2F_1(-n, \lambda + ix; 2\lambda; 1 - e^{-i2\phi})
+ * @f]
+ */
 template<typename _Tp, typename _TpX>
   __meixner_pollaczek_t<_Tp>
   __meixner_pollaczek(int n, _Tp lambda, _Tp phi, _TpX x)

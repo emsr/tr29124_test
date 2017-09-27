@@ -56,7 +56,7 @@ template<typename _Tp, typename _TpX>
   }
 
 /**
- * Return the dual Hahn polynomial defined by
+ * Compute the dual Hahn polynomial defined by
  * @f[
  *    R_n(\lambda(x); \gamma, \delta, N)
  *       = {}_3F_2(-n, -x, x + \gamma + \delta + 1; \gamma + 1, -N; 1)
