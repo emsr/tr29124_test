@@ -5,11 +5,11 @@ gnuplot
 load 'settings.gp'
 
 set xlabel "x"
-plot [-2.0:2.0][-6200.0:6200.0] \
+plot [-2.0:2.0][-6500.0:6500.0] \
     "test_continuous_hahn.txt" index 5 using 1:2 with lines ls 1 title "p_5(x; a, b, c, d)"
 
 set xlabel "x"
-plot [-2.0:2.0][-6200.0:6200.0] \
+plot [-2.0:2.0][-75000.0:75000.0] \
     "test_continuous_hahn.txt" index 0 using 1:2 with lines ls 1 title "p_0(x; a, b, c, d)", \
                    "" index 1 using 1:2 with lines ls 2 title "p_1(x; a, b, c, d)", \
                    "" index 2 using 1:2 with lines ls 3 title "p_2(x; a, b, c, d)", \

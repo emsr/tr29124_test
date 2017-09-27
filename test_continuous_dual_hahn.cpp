@@ -78,7 +78,7 @@ template<typename _Tp, typename _TpX>
   }
 
 /**
- * Return the continuous dual Hahn polynomial defined by
+ * Compute the continuous dual Hahn polynomial defined by
  * @f[
  *    S_n() = \frac{1}{(a + b)_n(a + c)_n}
  *            {}_3F_2(-n, a + ix, a - ix, a + b, a + c; 1)

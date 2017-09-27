@@ -63,7 +63,7 @@ template<typename _Tp, typename _TpX>
     auto An = -abcd * fn / (abcd + _Tp{1}) / (abcd + _Tp{2});
     auto Cn = bc * db / abcd / (abcd + _Tp{1});
 
-    auto pnp1 = ((An + Cn - (a + ix)) * pn - Cn * pnm1) / An;
+    auto pnp1 = ((An + Cn + (a + ix)) * pn - Cn * pnm1) / An;
 
     for (int k = 2; k < n; ++k)
       {
@@ -79,7 +79,7 @@ template<typename _Tp, typename _TpX>
 
 	pnm1 = pn;
 	pn = pnp1;
-        pnp1 = ((An + Cn - (a + ix)) * pn - Cn * pnm1) / An;
+        pnp1 = ((An + Cn + (a + ix)) * pn - Cn * pnm1) / An;
       }
 
     return {pnp1, fact};
