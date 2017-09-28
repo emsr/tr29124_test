@@ -4,10 +4,12 @@ gnuplot
 
 load 'setings.gp'
 
+set title "Meixner Polynomial M_n(x; {/Symbol b}, c)"
 set xlabel "x"
 plot [0.0:16.0][-13.0:7.5] \
     "test_meixner.txt" index 5 using 1:2 with lines title "M_5(x; {/Symbol b}, c)"
 
+set title "Meixner Polynomial M_n(x; {/Symbol b}, c)"
 set xlabel "x"
 plot [0.0:16.0][-20.0:45.0] \
     "test_meixner.txt" index 0 using 1:2 with lines title "M_0(x; {/Symbol b}, c)", \

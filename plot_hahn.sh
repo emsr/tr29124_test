@@ -4,12 +4,14 @@ gnuplot
 
 load 'settings.gp'
 
+set title "Hahn Polynomial Q_n(x; {/Symbol a}, {/Symbol b}, N)"
 set xlabel "x"
 plot [0.0:10.0][-1.4:1.4] \
     "test_hahn.txt" index 5 using 1:2 with lines ls 1 title "Q_5(x; {/Symbol a}, {/Symbol b}, N)"
 
+set title "Hahn Polynomials Q_n(x; {/Symbol a}, {/Symbol b}, N)"
 set xlabel "x"
-plot [0.0:10.0][-20.0:20.0] \
+plot [0.0:10.0][-65.0:65.0] \
     "test_hahn.txt" index 0 using 1:2 with lines ls 1 title "Q_0(x; {/Symbol a}, {/Symbol b}, N)", \
                  "" index 1 using 1:2 with lines ls 2 title "Q_1(x; {/Symbol a}, {/Symbol b}, N)", \
                  "" index 2 using 1:2 with lines ls 3 title "Q_2(x; {/Symbol a}, {/Symbol b}, N)", \

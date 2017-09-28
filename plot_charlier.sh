@@ -4,12 +4,14 @@ gnuplot
 
 load 'setings.gp'
 
+set title "Charlier Polynomial C_n(x;a)"
 set xlabel "x"
 plot [0.0:9.5][-25.0:16.0] \
     "test_charlier.txt" index 5 using 1:2 with lines title "C_5(x;a)"
 
+set title "Charlier Polynomial C_n(x;a)"
 set xlabel "x"
-plot [0.0:15.0][-20.0:20.0] \
+plot [0.0:15.0][-110.0:110.0] \
     "test_charlier.txt" index 0 using 1:2 with lines title "C_0(x;a)", \
                      "" index 1 using 1:2 with lines title "C_1(x;a)", \
                      "" index 2 using 1:2 with lines title "C_2(x;a)", \

@@ -34,10 +34,12 @@ splot [-20:5][-5:5][-20:20] "plot/riemann_zeta_float.txt" index 1 with pm3d titl
 splot [-20:5][-5:5][0:80] "plot/riemann_zeta_float.txt" index 2 with pm3d title "|{/Symbol z}(s)|"
 splot [-20:5][-5:5][-180:180] "plot/riemann_zeta_float.txt" index 3 with pm3d title "Arg({/Symbol z}(s))"
 
+
 splot [-20:5][-5:5][-20:20] "plot/riemann_zeta_double.txt" index 0 with pm3d title "Re({/Symbol z}(s))"
 splot [-20:5][-5:5][-20:20] "plot/riemann_zeta_double.txt" index 1 with pm3d title "Im({/Symbol z}(s))"
 splot [-20:5][-5:5][0:80] "plot/riemann_zeta_double.txt" index 2 with pm3d title "|{/Symbol z}(s)|"
 splot [-20:5][-5:5][-180:180] "plot/riemann_zeta_double.txt" index 3 with pm3d title "Arg({/Symbol z}(s))"
+
 
 splot [-20:5][-5:5][-20:20] "plot/riemann_zeta_long_double.txt" index 0 with pm3d title "Re({/Symbol z}(s))"
 splot [-20:5][-5:5][-20:20] "plot/riemann_zeta_long_double.txt" index 1 with pm3d title "Im({/Symbol z}(s))"

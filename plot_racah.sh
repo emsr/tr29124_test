@@ -4,10 +4,12 @@ gnuplot
 
 load 'settings.gp'
 
+set title "Racah polynomial R_n({/Symbol l}(x); a, b, c, d)"
 set xlabel "x"
 plot [0.0:180.0][-0.1:1.1] \
     "test_racah.txt" index 5 using 1:2 with lines ls 1 title "R_5({/Symbol l}(x); a, b, c, d)"
 
+set title "Racah polynomial R_n({/Symbol l}(x); a, b, c, d)"
 set xlabel "x"
 plot [0.0:200.0][-20.0:20.0] \
     "test_racah.txt" index 0 using 1:2 with lines ls 1 title "R_0({/Symbol l}(x); a, b, c, d)", \

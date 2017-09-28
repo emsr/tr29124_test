@@ -4,10 +4,12 @@ gnuplot
 
 load 'settings.gp'
 
+set title "Continuous Hahn Polynomial p_n(x; a, b, c, d)"
 set xlabel "x"
 plot [-2.0:2.0][-6500.0:6500.0] \
     "test_continuous_hahn.txt" index 5 using 1:2 with lines ls 1 title "p_5(x; a, b, c, d)"
 
+set title "Continuous Hahn Polynomial p_n(x; a, b, c, d)"
 set xlabel "x"
 plot [-2.0:2.0][-75000.0:75000.0] \
     "test_continuous_hahn.txt" index 0 using 1:2 with lines ls 1 title "p_0(x; a, b, c, d)", \
