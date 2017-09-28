@@ -510,6 +510,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
    * @f[
    *   \boldmath{J}_\nu(z) = J_\nu(z) + \sin(\nu \pi) \boldmath{A}_\nu(z)
    * @f]
+   * Note that for integer order n @f$ \boldmath{A}_n(z) = 0 @f$
+   * since @f$ \boldmath{J}_n(z) = J_n(z) @f$.
    *
    * @see http://dlmf.nist.gov/11.10#v
    */
@@ -520,10 +522,18 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
       auto _Bessel = std::cyl_bessel_j(__nu, __z);
       auto _Weber = __anger_weber_sum_new(__nu, __z);
       if (__gnu_cxx::__fp_is_integer(__nu))
-	return _Tp{1}; // FIXME!!!
+	return _Tp{0};
       else
         return (_Weber.__J_value - _Bessel) / __gnu_cxx::sin_pi(__nu);
     }
+
+  /**
+   * @todo: Find out if
+   * @f[
+   *   \boldmath{J}_\nu(z) + i\boldmath{E}_\nu(z)
+   * @f]
+   * is a thing.
+   */
 
   /**
    * \frac{1 - \cos(\pi x)}{\pi x}
