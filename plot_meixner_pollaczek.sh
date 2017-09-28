@@ -4,10 +4,12 @@ gnuplot
 
 load 'settings.gp'
 
+set title "Meixner-Pollaczek Polynomial P^{({/Symbol l})}_0(x; {/Symbol f})"
 set xlabel "x"
 plot [-3.2:3.2][-12.0:12.0] \
     "test_meixner_pollaczek.txt" index 5 using 1:2 with lines ls 1 title "P^{({/Symbol l})}_5(x; {/Symbol f})"
 
+set title "Meixner-Pollaczek Polynomial P^{({/Symbol l})}_0(x; {/Symbol f})"
 set xlabel "x"
 plot [-3.2:3.2][-12.0:12.0] \
     "test_meixner_pollaczek.txt" index 0 using 1:2 with lines ls 1 title "P^{({/Symbol l})}_0(x; {/Symbol f})", \

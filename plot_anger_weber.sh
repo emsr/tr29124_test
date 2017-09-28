@@ -5,10 +5,18 @@ set xzeroaxis
 set yzeroaxis
 set grid
 
+
+set title "Anger function {/:Bold J}_0(x)"
+set xlabel "x"
 plot [-8.0:8.0][-1.0:1.0] "test_anger_weber.txt" index 0 using 1:2 with lines title "{/:Bold J}_0(x)"
+
+set title "Weber function {/:Bold E}_0(x)"
+set xlabel "x"
 plot [-8.0:8.0][-1.0:1.0] "test_anger_weber.txt" index 0 using 1:3 with lines title "{/:Bold E}_0(x)"
 
 
+set title "Anger {/:Bold J}_{/Symbol n}(x) and Weber {/:Bold E}_{/Symbol n}(x) functions"
+set xlabel "x"
 plot [-8.0:8.0][-1.0:1.0] \
 "test_anger_weber.txt" index 0 using 1:2 with lines title "{/:Bold J}_0(x)", \
                     "" index 0 using 1:3 with lines title "{/:Bold E}_0(x)", \

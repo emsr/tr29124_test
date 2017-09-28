@@ -4,12 +4,14 @@ gnuplot
 
 load 'settings.gp'
 
+set title "Wilson polynomial W_n(x^2; a, b, c, d)"
 set xlabel "x"
 plot [0.0:20.0][-10.0:20.0] \
     "test_wilson.txt" index 5 using 1:2 with lines ls 1 title "W_5(x^2; a, b, c, d)"
 
+set title "Wilson polynomial W_n(x^2; a, b, c, d)"
 set xlabel "x"
-plot [0.0:20.0][-1000.0:2000.0] \
+plot [0.0:20.0][-125.0:125.0] \
     "test_wilson.txt" index 0 using 1:2 with lines ls 1 title "W_0(x^2; a, b, c, d)", \
                    "" index 1 using 1:2 with lines ls 2 title "W_1(x^2; a, b, c, d)", \
                    "" index 2 using 1:2 with lines ls 3 title "W_2(x^2; a, b, c, d)", \

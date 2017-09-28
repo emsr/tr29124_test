@@ -4,10 +4,12 @@ gnuplot
 
 load 'settings.gp'
 
+set title "Continuous Dual Hahn Polynomial S_n(x^2; a, b, c)"
 set xlabel "x"
 plot [0.0:11.0][-5.0:10.0] \
     "test_continuous_dual_hahn.txt" index 5 using 1:2 with lines ls 1 title "S_5(x^2; a, b, c)"
 
+set title "Continuous Dual Hahn Polynomial S_n(x^2; a, b, c)"
 set xlabel "x"
 plot [0.0:11.0][-10.0:50.0] \
     "test_continuous_dual_hahn.txt" index 0 using 1:2 with lines ls 1 title "S_0(x^2; a, b, c)", \

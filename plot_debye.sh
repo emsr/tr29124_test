@@ -7,6 +7,8 @@ set xzeroaxis
 set yzeroaxis
 set grid
 
+set title "Debye functions D_n(x)"
+set xlabel "x"
 plot [0.0:20.0][0.0:1.1] "test_debye.txt" index 0 using 1:2 with lines title "Debye_1(x)", \
                                        "" index 0 using 1:3 with lines title "Debye_2(x)", \
                                        "" index 0 using 1:4 with lines title "Debye_3(x)", \
@@ -15,6 +17,8 @@ plot [0.0:20.0][0.0:1.1] "test_debye.txt" index 0 using 1:2 with lines title "De
                                        "" index 0 using 1:7 with lines title "Debye_6(x)"
 
 
+set title "Debye functions D_n(x) - GSL"
+set xlabel "x"
 plot [0.0:20.0][0.0:1.1] "test_debye.txt" index 1 using 1:2 with lines title "Debye_1(x) GSL", \
                                        "" index 1 using 1:3 with lines title "Debye_2(x) GSL", \
                                        "" index 1 using 1:4 with lines title "Debye_3(x) GSL", \

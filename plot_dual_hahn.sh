@@ -4,12 +4,14 @@ gnuplot
 
 load 'settings.gp'
 
+set title "Dual Hahn Polynomial R_n({/Symbol l}(x); {/Symbol g}, {/Symbol d}, N)"
 set xlabel "{/Symbol l}(x)"
-plot [0.0:100.0][-2.0:12.0] \
+plot [0.0:100.0][-2.2:12.0] \
     "test_dual_hahn.txt" index 5 using 1:2 with lines ls 1 title "R_5({/Symbol l}(x); {/Symbol g}, {/Symbol d}, N)"
 
+set title "Dual Hahn Polynomial R_n({/Symbol l}(x); {/Symbol g}, {/Symbol d}, N)"
 set xlabel "{/Symbol l}(x)"
-plot [0.0:100.0][-20.0:200.0] \
+plot [0.0:100.0][-50.0:200.0] \
     "test_dual_hahn.txt" index 0 using 1:2 with lines ls 1 title "R_0({/Symbol l}(x); {/Symbol g}, {/Symbol d}, N)", \
                  "" index 1 using 1:2 with lines ls 2 title "R_1({/Symbol l}(x); {/Symbol g}, {/Symbol d}, N)", \
                  "" index 2 using 1:2 with lines ls 3 title "R_2({/Symbol l}(x); {/Symbol g}, {/Symbol d}, N)", \

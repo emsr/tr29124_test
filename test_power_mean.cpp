@@ -26,7 +26,8 @@ template<typename _Real, typename _Iter>
       {
 	++__n;
 	if (*__begin < _Real{0})
-	  std::__throw_domain_error("negative number");
+	  std::__throw_domain_error("__impl_power_mean_0: "
+				    "numbers must be non-negative");
 	__prod *= *__begin;
 	++__begin;
       }
@@ -61,7 +62,8 @@ template<typename _Real, typename _Iter>
 	  {
 	    ++__n;
 	    if (*__begin < _Real{0})
-	      std::__throw_domain_error("negative number");
+	      std::__throw_domain_error("__impl_power_mean: "
+				    "numbers must be non-negative");
 	    __sum += std::pow(*__begin, __p);
 	    ++__begin;
 	  }
@@ -81,7 +83,8 @@ template<typename _Real, typename _Iter, typename _IterW>
     while (__vbegin != __vend)
       {
 	if (*__vbegin < _Real{0})
-	  std::__throw_domain_error("negative number");
+	  std::__throw_domain_error("__impl_power_mean: "
+				    "numbers must be non-negative");
 	__w += *__wbegin;
 	__prod *= std::pow(*__vbegin, *__wbegin);
 	++__vbegin;
@@ -109,7 +112,8 @@ template<typename _Real, typename _Iter, typename _IterW>
     while (__vbegin != __vend)
       {
 	if (*__vbegin < _Real{0})
-	  std::__throw_domain_error("negative number");
+	  std::__throw_domain_error("__impl_power_mean: "
+				    "numbers must be non-negative");
 	__w += *__wbegin;
 	__sum += *__wbegin * std::pow(*__vbegin, __p);
 	++__vbegin;
@@ -119,7 +123,10 @@ template<typename _Real, typename _Iter, typename _IterW>
   }
 
 /**
- * 
+ * Compute the power mean of a sequence of non-negative numbers:
+ * @f[
+ *    M_p(x_1, x_2, ..., n_n) = \left( \prod_{k=1}^{n} x_k^p \right)^{1/p}
+ * @f]
  */
 template<typename _Real>
   _Real
@@ -130,7 +137,12 @@ template<typename _Real>
   }
 
 /**
- * 
+ * Compute the power mean of a sequence of non-negative numbers
+ * with non-negative weights:
+ * @f[
+ *    M_p((x_1, w_1), (x_2, w_2), ..., (n_n, w_n)
+ *        = \left( \prod_{k=1}^{n} x_k^p \right)^{1/p}
+ * @f]
  */
 template<typename _Real>
   _Real
@@ -139,7 +151,8 @@ template<typename _Real>
   {
     using _Tp = decltype(*__val.begin() * *__weight.begin());
     if (__weight.size() != __val.size())
-      std::__throw_domain_error("number of weights not equal to number of values.");
+      std::__throw_domain_error("power_mean: number of weights"
+				" must equal number of values.");
     return __impl_power_mean<_Tp>(__p, __val.begin(), __val.end(),
 				  __weight.begin());
   }
