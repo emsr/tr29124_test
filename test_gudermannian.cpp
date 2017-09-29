@@ -12,16 +12,32 @@ $HOME/bin/bin/g++ -std=c++17 -g -I. -Wall -Wextra -o test_gudermannian test_gude
 
 template<typename _Tp>
   _Tp
+  invgd_series(_Tp x)
+  {
+    const auto xx = -x * x;
+    auto term = x;
+    auto sum = term;
+    for (int i = 1; i < 20; ++i)
+      {
+	term *= xx
+	     / _Tp(2 * i) / _Tp(2 * i + 1);
+	sum += term * __gnu_cxx::euler<_Tp>(2 * i);
+      }
+    return sum;
+  }
+
+template<typename _Tp>
+  _Tp
   gd_series(_Tp x)
   {
     const auto xx = x * x;
     auto term = x;
     auto sum = term;
-    for (int i = 1; i < 10; ++i)
+    for (int i = 1; i < 20; ++i)
       {
-	term *= xx * __gnu_cxx::euler<_Tp>(2 * i)
+	term *= xx
 	     / _Tp(2 * i) / _Tp(2 * i + 1);
-	sum += term;
+	sum += term * __gnu_cxx::euler<_Tp>(2 * i);
       }
     return sum;
   }
@@ -75,5 +91,5 @@ template<typename _Tp>
 int
 main()
 {
-  test_gudermannian<float>();
+  test_gudermannian<double>();
 }
