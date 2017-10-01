@@ -80,10 +80,14 @@ template<typename _Tp>
 	auto gd_trig = gd_asin(x);
 	auto gd_ser = gd_series(x);
 	auto gd_diff = gd_ser - gd_trig;
+	auto igd_ser = invgd_series(x);
+	auto test_gd = invgd_series(gd_trig) - x;
 	std::cout << ' ' << std::setw(w) << x
 		  << ' ' << std::setw(w) << gd_ser
 		  << ' ' << std::setw(w) << gd_trig
 		  << ' ' << std::setw(w) << gd_diff
+		  << ' ' << std::setw(w) << igd_ser
+		  << ' ' << std::setw(w) << test_gd
 		  << '\n';
       }
   }
