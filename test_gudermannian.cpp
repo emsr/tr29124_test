@@ -10,6 +10,28 @@ $HOME/bin/bin/g++ -std=c++17 -g -I. -Wall -Wextra -o test_gudermannian test_gude
 
 #include "ext/math_const.h"
 
+/**
+ * Compute the inverse Gudermann function relating a circular argument
+ * to a hyperbolic argument using the functional definition:
+ * @f[
+ *    invgd(\phi) = asinh(tan(\phi))
+ * @f]
+ */
+template<typename _Tp>
+  _Tp
+  invgd_trig(_Tp phi)
+  {
+    return std::asinh(std::tan(phi));
+  }
+
+/**
+ * Compute the inverse Gudermann function relating a circular argument
+ * to a hyperbolic argument using the series:
+ * @f[
+ *    invgd(\phi) = \sum_{k=0}^{\infty}\frac{(-1)^kE_{2k}}{(2k+1)!}
+ * @f]
+ * wnere @f$ E_n @f$ are the Euler numbers.
+ */
 template<typename _Tp>
   _Tp
   invgd_series(_Tp x)
@@ -26,13 +48,28 @@ template<typename _Tp>
     return sum;
   }
 
+/**
+ * Compute the Gudermann function relating a hyperbolic argument
+ * to a circular argument using the functional definition:
+ * @f[
+ *    gd(x) = atan(sinh(x))
+ * @f]
+ */
 template<typename _Tp>
   _Tp
-  invgd_asin(_Tp phi)
+  gd_trig(_Tp x)
   {
-    return std::sin(std::atanh(phi));
+    return std::atan(std::sinh(x));
   }
 
+/**
+ * Compute the inverse Gudermann function relating a circular argument
+ * to a hyperbolic argument using the series:
+ * @f[
+ *    gd(x) = \sum_{k=0}^{\infty}\frac{E_{2k}}{(2k+1)!}
+ * @f]
+ * wnere @f$ E_n @f$ are the Euler numbers.
+ */
 template<typename _Tp>
   _Tp
   gd_series(_Tp x)
@@ -51,13 +88,6 @@ template<typename _Tp>
 
 template<typename _Tp>
   _Tp
-  gd_asin(_Tp x)
-  {
-    return std::asin(std::tanh(x));
-  }
-
-template<typename _Tp>
-  _Tp
   gd(_Tp x)
   {
     const auto _S_pi = __const_2_pi(x);
@@ -69,7 +99,7 @@ template<typename _Tp>
     else if (x == +std::numeric_limits<_Tp>::infinity())
       return +_S_pi / _Tp{2};
     else
-      return gd_asin(x);
+      return gd_trig(x);
   }
 
 template<typename _Tp>
@@ -84,18 +114,18 @@ template<typename _Tp>
     for (int i = -200; i <= 200; ++i)
       {
 	auto x = i * del;
-	auto gd_trig = gd_asin(x);
+	auto gd_fun = gd_trig(x);
 	auto gd_ser = gd_series(x);
-	auto gd_diff = gd_ser - gd_trig;
-	auto igd_trig = invgd_asin(x);
+	auto gd_diff = gd_ser - gd_fun;
+	auto igd_fun = invgd_trig(x);
 	auto igd_ser = invgd_series(x);
-	auto test_gd = invgd_series(gd_trig) - x;
+	auto test_gd = invgd_series(gd_fun) - x;
 	std::cout << ' ' << std::setw(w) << x
 		  << ' ' << std::setw(w) << gd_ser
-		  << ' ' << std::setw(w) << gd_trig
+		  << ' ' << std::setw(w) << gd_fun
 		  << ' ' << std::setw(w) << gd_diff
 		  << ' ' << std::setw(w) << igd_ser
-		  << ' ' << std::setw(w) << igd_trig
+		  << ' ' << std::setw(w) << igd_fun
 		  << ' ' << std::setw(w) << test_gd
 		  << '\n';
       }
