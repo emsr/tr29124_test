@@ -28,6 +28,13 @@ template<typename _Tp>
 
 template<typename _Tp>
   _Tp
+  invgd_asin(_Tp phi)
+  {
+    return std::sin(std::atanh(phi));
+  }
+
+template<typename _Tp>
+  _Tp
   gd_series(_Tp x)
   {
     const auto xx = x * x;
@@ -80,6 +87,7 @@ template<typename _Tp>
 	auto gd_trig = gd_asin(x);
 	auto gd_ser = gd_series(x);
 	auto gd_diff = gd_ser - gd_trig;
+	auto igd_trig = invgd_asin(x);
 	auto igd_ser = invgd_series(x);
 	auto test_gd = invgd_series(gd_trig) - x;
 	std::cout << ' ' << std::setw(w) << x
@@ -87,6 +95,7 @@ template<typename _Tp>
 		  << ' ' << std::setw(w) << gd_trig
 		  << ' ' << std::setw(w) << gd_diff
 		  << ' ' << std::setw(w) << igd_ser
+		  << ' ' << std::setw(w) << igd_trig
 		  << ' ' << std::setw(w) << test_gd
 		  << '\n';
       }
