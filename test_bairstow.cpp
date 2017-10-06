@@ -12,7 +12,7 @@ $HOME/bin/bin/g++ -std=c++17 -g -I. -o test_bairstow test_bairstow.cpp
 
 #include "bits/specfun_state.h"
 #include "ext/polynomial.h"
-#include "solver.h"
+#include "solver_low_degee.h"
 
 namespace __gnu_cxx
 {

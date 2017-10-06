@@ -306,6 +306,7 @@ test_jacobi_ellint
 test_jacobi_inv
 test_jacobi_theta
 test_jacobi_zeta
+test_jenkins_traub
 test_kelvin
 test_krawtchouk
 test_laguerre
