@@ -50,6 +50,8 @@ BINS = testcase \
        hankel_toy128 \
        hankel_toy_new \
        test_anger_weber \
+       test_appell \
+       test_bairstow \
        test_bernoulli \
        test_bessel \
        test_bessel_asymp \
@@ -59,6 +61,7 @@ BINS = testcase \
        test_binet \
        test_binet_float \
        test_bose_einstein \
+       test_charlier \
        test_chebyshev \
        test_chebyshev_trig \
        test_chebyshev_trig_pi \
@@ -70,11 +73,14 @@ BINS = testcase \
        test_conf_hyperg_limit \
        test_const \
        test_continued_fraction \
+       test_continuous_dual_hahn \
+       test_continuous_hahn \
        test_csint \
        test_cyl_hankel \
        test_dawson \
        test_debye \
        test_dilog \
+       test_dual_hahn \
        test_expint \
        test_factorial \
        test_faddeeva \
@@ -86,6 +92,8 @@ BINS = testcase \
        test_gamma_ratio \
        test_gamma_reciprocal \
        test_gegenbauer \
+       test_gudermannian \
+       test_hahn \
        test_hankel \
        test_hankel_real_arg \
        test_hermite \
@@ -100,13 +108,18 @@ BINS = testcase \
        test_jacobi_inv \
        test_jacobi_zeta \
        test_kelvin \
+       test_krawtchouk \
        test_laguerre \
        test_legendre \
        test_lentz_continued_fraction \
        test_lerch \
        test_limits \
        test_little_airy \
+       test_lommel \
        test_math_h \
+       test_meixner \
+       test_meixner_pollaczek \
+       test_mittag_leffler \
        test_mpreal \
        test_notsospecfun \
        test_nric_bessel \
@@ -120,6 +133,7 @@ BINS = testcase \
        test_power_mean \
        test_power_norm \
        test_psi \
+       test_racah \
        test_rational \
        test_ratpoly \
        test_recursion \
@@ -140,6 +154,8 @@ BINS = testcase \
        test_summation \
        test_theta \
        test_tricomi_u \
+       test_weierstrass_ellint \
+       test_wilson \
        test_wright_omega
 
 CHECKS = ${CHECK_DIR}/check_airy_ai \
@@ -601,6 +617,12 @@ test_cmath: test_cmath.cpp
 test_airy: wrappers_debug test_airy.cpp sf_airy.tcc
 	$(CXX) -o test_airy test_airy.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
+test_appell: test_appell.cpp appell.tcc
+	$(CXX17) -I. -o test_appell test_appell.cpp -lquadmath
+
+test_bairstow: test_bairstow.cpp bairstow.tcc
+	$(CXX17) -I. -o test_bairstow test_bairstow.cpp -lquadmath
+
 test_csint: test_csint.cpp csint.tcc
 	$(CXX17) -I. -o test_csint test_csint.cpp -lquadmath
 
@@ -646,6 +668,9 @@ test_binet_float: test_binet_float.cpp
 test_bose_einstein: test_bose_einstein.cpp
 	$(CXX17) -I. -o test_bose_einstein test_bose_einstein.cpp -lquadmath
 
+test_charlier: test_charlier.cpp charlier.tcc
+	$(CXX17) -I. -o test_charlier test_charlier.cpp -lquadmath
+
 test_chebyshev: test_chebyshev.cpp
 	$(CXX17) -I. -o test_chebyshev test_chebyshev.cpp -lquadmath
 
@@ -676,6 +701,12 @@ test_const: test_const.cpp
 test_continued_fraction: test_continued_fraction.cpp
 	$(CXX17) -I. -o test_continued_fraction test_continued_fraction.cpp -lquadmath
 
+test_continuous_dual_hahn: test_continuous_dual_hahn.cpp continuous_dual_hahn.tcc
+	$(CXX17) -I. -o test_continuous_dual_hahn test_continuous_dual_hahn.cpp -lquadmath
+
+test_continuous_hahn: test_continuous_hahn.cpp continuous_hahn.tcc
+	$(CXX17) -I. -o test_continuous_hahn test_continuous_hahn.cpp -lquadmath
+
 test_cyl_hankel: wrappers_debug test_cyl_hankel.cpp
 	$(CXX17) -I. -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
@@ -687,6 +718,9 @@ test_debye: wrappers_debug test_debye.cpp
 
 test_dilog: test_dilog.cpp
 	$(CXX17) -I. -o test_dilog test_dilog.cpp -lquadmath
+
+test_dual_hahn: test_dual_hahn.cpp dual_hahn.tcc
+	$(CXX17) -I. -o test_dual_hahn test_dual_hahn.cpp -lquadmath
 
 test_expint: wrappers_debug test_expint.cpp
 	$(CXX17) -I. -o test_expint test_expint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
@@ -717,6 +751,9 @@ test_gamma_reciprocal: test_gamma_reciprocal.cpp
 
 test_gegenbauer: test_gegenbauer.cpp
 	$(CXX17) -I. -o test_gegenbauer test_gegenbauer.cpp -lquadmath
+
+test_dual_gudermannian: test_dual_gudermannian.cpp dual_gudermannian.tcc
+	$(CXX17) -I. -o test_dual_gudermannian test_dual_gudermannian.cpp -lquadmath
 
 test_hankel: test_hankel.cpp
 	$(CXX17) -I. -o test_hankel test_hankel.cpp -lquadmath
@@ -757,6 +794,9 @@ test_jacobi_zeta: wrappers_debug test_jacobi_zeta.cpp
 test_kelvin: test_kelvin.cpp
 	$(CXX17) -I. -o test_kelvin test_kelvin.cpp -lquadmath
 
+test_krawtchouk: test_krawtchouk.cpp krawtchouk.tcc
+	$(CXX17) -I. -o test_krawtchouk test_krawtchouk.cpp -lquadmath
+
 test_laguerre: test_laguerre.cpp
 	$(CXX17) -I. -o test_laguerre test_laguerre.cpp -lquadmath
 
@@ -772,8 +812,20 @@ test_lerch: test_lerch.cpp
 test_little_airy: wrappers_debug test_little_airy.cpp
 	$(CXX17) -I. -o test_little_airy test_little_airy.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
+test_lommel: wrappers_debug test_lommel.cpp
+	$(CXX17) -I. -o test_lommel test_lommel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+
 test_math_h: test_math_h.cpp
 	$(CXX17) -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_math_h test_math_h.cpp -lquadmath
+
+test_meixner: test_meixner.cpp meixner.tcc
+	$(CXX17) -I. -o test_meixner test_meixner.cpp -lquadmath
+
+test_meixner_pollaczek: test_meixner_pollaczek.cpp meixner_pollaczek.tcc
+	$(CXX17) -I. -o test_meixner_pollaczek test_meixner_pollaczek.cpp -lquadmath
+
+test_mittag_leffler: test_mittag_leffler.cpp meixner_pollaczek.tcc
+	$(CXX17) -I. -o test_mittag_leffler test_mittag_leffler.cpp -lquadmath
 
 test_mpreal: test_mpreal.cpp
 	$(CXX17) -I. -I../mpreal -o test_mpreal test_mpreal.cpp -lquadmath -lmpfr -lgmp
@@ -810,6 +862,9 @@ test_power_norm: test_power_norm.cpp
 
 test_psi: wrappers_debug test_psi.cpp
 	$(CXX17) -I. -o test_psi test_psi.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+
+test_racah: test_racah.cpp racah.tcc
+	$(CXX17) -I. -o test_racah test_racah.cpp -lquadmath
 
 test_rational: test_rational.cpp
 	$(CXX17) -I. -o test_rational test_rational.cpp -lquadmath
@@ -873,6 +928,9 @@ test_tricomi_u: test_tricomi_u.cpp
 
 test_weierstrass_ellint: test_weierstrass_ellint.cpp
 	$(CXX17) -I. -o test_weierstrass_ellint test_weierstrass_ellint.cpp -lquadmath
+
+test_wilson: test_wilson.cpp wilson.tcc
+	$(CXX17) -I. -o test_wilson test_wilson.cpp -lquadmath
 
 test_wright_omega: test_wright_omega.cpp
 	$(CXX17) -I. -o test_wright_omega test_wright_omega.cpp -lquadmath
