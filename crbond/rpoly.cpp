@@ -756,3 +756,35 @@ void quad(double a,double b1,double c,double *sr,double *si,
 	}
 }
 
+
+int
+main()
+{
+  const int MAX_TERMS = 21;
+  int i, n, order = 0;
+  double tmp;
+
+  while ((order < 2) || (order > MAX_TERMS - 1))
+  {
+    printf("Polynomial order (2-20): ");
+    scanf("%d", &order);
+  }
+  double a[MAX_TERMS];
+
+  printf("Enter coefficients, high order to low order.\n");
+  for (i = 0; i <= order; i++)
+  {
+    printf("a(%d) = ", i);
+    scanf("%lf", &a[i]);
+  }
+
+  double zeror[MAX_TERMS - 1], zeroi[MAX_TERMS - 1];
+  int info[MAX_TERMS];
+  int ret = rpoly(a, order, zeror, zeroi, info);
+  printf("The zeros are:\n");
+  for (int i = 0; i < order; ++i)
+    printf("z_%d = (%+.15lg, %+.15lg)\n", i, zeror[i], zeroi[i]);
+
+  return 0;
+}
+
