@@ -3,10 +3,11 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -I. -o test_solvers test_solvers.cpp -lquadmat
 ./test_solvers > test_solvers.txt
 */
 
-#include "solver.h"
 #include <iostream>
 #include <iomanip>
 #include <bits/numeric_limits.h>
+
+#include "solver_low_degee.h"
 
 template<typename _Real, unsigned long int _Dim>
   bool

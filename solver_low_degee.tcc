@@ -1,5 +1,5 @@
-#ifndef SOLVER_TCC
-#define SOLVER_TCC 1
+#ifndef SOLVER_LOW_DEGEE_TCC
+#define SOLVER_LOW_DEGEE_TCC 1
 
 #include <ext/cmath>
 
@@ -306,4 +306,4 @@ namespace __gnu_cxx
 
 } // namespace __gnu_cxx
 
-#endif  //  SOLVER_TCC
+#endif // SOLVER_LOW_DEGEE_TCC
