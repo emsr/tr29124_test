@@ -1,5 +1,5 @@
-#ifndef SOLVER_LOW_DEGEE_H
-#define SOLVER_LOW_DEGEE_H 1
+#ifndef SOLVER_LOW_DEGREE_H
+#define SOLVER_LOW_DEGREE_H 1
 
 #include <experimental/array>
 
@@ -51,7 +51,7 @@ namespace __gnu_cxx
 } // namespace __gnu_cxx
 
 
-#include "solver_low_degee.tcc"
+#include "solver_low_degree.tcc"
 
 
-#endif // SOLVER_LOW_DEGEE_H
+#endif // SOLVER_LOW_DEGREE_H
