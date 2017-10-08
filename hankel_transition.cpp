@@ -13,7 +13,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o hankel_transition hankel_
 #include <cmath>
 #include <bits/specfun.h>
 //#include <bits/float128.h>
-#include <ext/polynomial.h>
+#include <polynomial/polynomial.h>
 #include <rational.h>
 //#include <bits/numeric_limits.h>
 
