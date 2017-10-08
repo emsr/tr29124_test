@@ -40,7 +40,7 @@
 #include <iosfwd>
 #include <limits>
 #include <array>
-#include <bits/specfun_util.h> // For exchange
+#include <utility> // For exchange.
 
 namespace std {
   template<typename _Tp>
@@ -846,7 +846,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
-#include <ext/polynomial.tcc>
+#include "polynomial.tcc"
 
 #endif // C++11
 

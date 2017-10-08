@@ -1,6 +1,7 @@
 
 #include <iostream>
-#include <ext/polynomial.h>
+
+#include "polynomial.h"
 
 #ifndef _EXT_RATPOLY_HPP
 #define _EXT_RATPOLY_HPP 1

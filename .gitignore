@@ -235,7 +235,6 @@ test_arith_geom_mean
 test_airy
 test_anger_weber
 test_appell
-test_bairstow
 test_bernoulli
 test_bessel
 test_bessel_asymp
@@ -306,7 +305,6 @@ test_jacobi_ellint
 test_jacobi_inv
 test_jacobi_theta
 test_jacobi_zeta
-test_jenkins_traub
 test_kelvin
 test_krawtchouk
 test_laguerre
@@ -335,8 +333,6 @@ test_owens_t
 test_parab_cyl
 test_polygamma
 test_polylog
-test_polynomial
-test_polynomial_root
 test_pow_funs
 test_pow_bits
 test_power_mean
@@ -346,7 +342,6 @@ test_psi
 test_quadratic
 test_racah
 test_rational
-test_ratpoly
 test_recursion
 test_reperiodized_hyper
 test_reperiodized_trig
@@ -359,7 +354,6 @@ test_solvers
 test_special_function
 test_sph_bessel
 test_sph_hankel
-test_static_polynomial
 test_steed_continued_fraction
 test_struve
 test_struve_old

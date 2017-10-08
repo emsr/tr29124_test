@@ -1,0 +1,26 @@
+# Build files...
+*.so
+*.a
+*.o
+*.exe
+*.dll
+a.out
+*.ppu
+
+# Tarballs...
+*.gz
+*.bz2
+
+# Images...
+*.png
+*.jpg
+
+obj
+
+test_bairstow
+test_jenkins_traub
+test_polynomial
+test_polynomial_root
+test_ratpoly
+test_solvers
+test_static_polynomial
