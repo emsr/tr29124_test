@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -g -I. -o test_bairstow test_bairstow.cpp
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bairstow test_bairstow.cpp
 ./test_bairstow < test_bairstow.in > test_bairstow.txt
 */
 
@@ -10,8 +10,8 @@ $HOME/bin/bin/g++ -std=c++17 -g -I. -o test_bairstow test_bairstow.cpp
 #include <algorithm>
 #include <random>
 
-#include "bits/specfun_state.h"
-#include "ext/polynomial.h"
+//#include "bits/specfun_state.h"
+#include "polynomial.h"
 #include "solver_low_degree.h"
 
 namespace __gnu_cxx
@@ -211,7 +211,7 @@ template<typename _Real>
 
     const auto eq = bairstow.equations();
     std::cout << "\nThe quadratic factors are:\n";
-    for (int p = 0; p < eq.size() / 2; ++p)
+    for (unsigned int p = 0; p < eq.size() / 2; ++p)
       std::cout << "t^2 + " << eq[2 * p + 1] << " t + " << eq[2 * p] << '\n';
     if ((eq.size() % 2) == 1)
       std::cout << "The linear term is: \nt - " << eq.back() << '\n';

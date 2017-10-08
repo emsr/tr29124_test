@@ -1,7 +1,7 @@
 #ifndef SOLVER_LOW_DEGREE_TCC
 #define SOLVER_LOW_DEGREE_TCC 1
 
-#include <ext/cmath>
+#include <ext/math_const.h>
 
 namespace __gnu_cxx
 {

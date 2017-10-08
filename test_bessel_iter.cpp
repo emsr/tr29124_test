@@ -10,7 +10,7 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bessel_iter
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include <ext/polynomial.h>
+#include <polynomial/polynomial.h>
 
 // This thing1 will develop a set of rational functions to express
 // Cylinder functions of order nu in terms to rational functions of nu and 2/z
