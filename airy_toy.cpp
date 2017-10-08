@@ -27,7 +27,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 #include <string>
 #include <bits/float128_io.h>
 #include <bits/summation.h>
-#include <ext/polynomial.h>
+#include <polynomial/polynomial.h>
 
 
   /**

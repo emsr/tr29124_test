@@ -14,7 +14,7 @@ $HOME/bin/bin/g++ -std=gnu++14 -Wall -Wextra -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -
 #include <iomanip>
 #include <ext/cmath>
 #include <bits/specfun.h>
-#include <ext/polynomial.h>
+#include <polynomial/polynomial.h>
 #include "LentzContinuedFraction.tcc"
 
 template<typename _Tp>

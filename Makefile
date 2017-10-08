@@ -51,7 +51,6 @@ BINS = testcase \
        hankel_toy_new \
        test_anger_weber \
        test_appell \
-       test_bairstow \
        test_bernoulli \
        test_bessel \
        test_bessel_asymp \
@@ -128,14 +127,11 @@ BINS = testcase \
        test_parab_cyl \
        test_polygamma \
        test_polylog \
-       test_polynomial \
-       test_polynomial_root \
        test_power_mean \
        test_power_norm \
        test_psi \
        test_racah \
        test_rational \
-       test_ratpoly \
        test_recursion \
        test_reperiodized_hyper \
        test_reperiodized_trig \
@@ -147,7 +143,6 @@ BINS = testcase \
        test_solvers \
        test_sph_bessel \
        test_sph_hankel \
-       test_static_polynomial \
        test_steed_continued_fraction \
        test_struve \
        test_struve_old \
@@ -620,9 +615,6 @@ test_airy: wrappers_debug test_airy.cpp sf_airy.tcc
 test_appell: test_appell.cpp appell.tcc
 	$(CXX17) -I. -o test_appell test_appell.cpp -lquadmath
 
-test_bairstow: test_bairstow.cpp bairstow.tcc
-	$(CXX17) -I. -o test_bairstow test_bairstow.cpp -lquadmath
-
 test_csint: test_csint.cpp csint.tcc
 	$(CXX17) -I. -o test_csint test_csint.cpp -lquadmath
 
@@ -848,12 +840,6 @@ test_polylog: wrappers_debug test_polylog.cpp
 test_polygamma: test_polygamma.cpp
 	$(CXX17) -I. -o test_polygamma test_polygamma.cpp -lquadmath
 
-test_polynomial: test_polynomial.cpp
-	$(CXX17) -I. -o test_polynomial test_polynomial.cpp -lquadmath
-
-test_polynomial_root: test_polynomial_root.cpp
-	$(CXX17) -I. -o test_polynomial_root test_polynomial_root.cpp -lquadmath
-
 test_power_mean: test_power_mean.cpp
 	$(CXX17) -I. -o test_power_mean test_power_mean.cpp -lquadmath
 
@@ -868,9 +854,6 @@ test_racah: test_racah.cpp racah.tcc
 
 test_rational: test_rational.cpp
 	$(CXX17) -I. -o test_rational test_rational.cpp -lquadmath
-
-test_ratpoly: test_ratpoly.cpp
-	$(CXX17) -I. -o test_ratpoly test_ratpoly.cpp -lquadmath
 
 test_recursion: test_recursion.cpp
 	$(CXX17) -I. -o test_recursion test_recursion.cpp -lquadmath
@@ -904,9 +887,6 @@ test_sph_bessel: test_sph_bessel.cpp
 
 test_sph_hankel: wrappers_debug test_sph_hankel.cpp
 	$(CXX17) -I. -o test_sph_hankel test_sph_hankel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
-
-test_static_polynomial: test_static_polynomial.cpp
-	$(CXX17) -I. -o test_static_polynomial test_static_polynomial.cpp -lquadmath
 
 test_steed_continued_fraction: test_steed_continued_fraction.cpp
 	$(CXX17) -I. -o test_steed_continued_fraction test_steed_continued_fraction.cpp -lquadmath

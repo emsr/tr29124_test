@@ -4,7 +4,7 @@ $HOME/bin/bin/g++ -g -Wall -Wextra -Wno-psabi -I. -o test_rational test_rational
 */
 
 #include "rational.h"
-#include <ext/polynomial.h>
+#include <polynomial.h>
 
 int
 main()
