@@ -57,11 +57,11 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_le
 		      };
       const auto __epsabs = _Tp{100} * _S_eps;
       const auto __epsrel = _Tp{0};
-      auto __ws = __gnu_test::cquad_workspace<_Tp>();
-      auto __requad = __gnu_test::cquad_integrate(__ws, __refunc,
+      auto __ws = __gnu_cxx::cquad_workspace<_Tp>();
+      auto __requad = __gnu_cxx::cquad_integrate(__ws, __refunc,
 					 __chi_min, __chi_max,
 					 __epsabs, __epsrel);
-      auto __imquad = __gnu_test::cquad_integrate(__ws, __imfunc,
+      auto __imquad = __gnu_cxx::cquad_integrate(__ws, __imfunc,
 					 __chi_min, __chi_max,
 					 __epsabs, __epsrel);
       return std::complex<_Tp>(std::get<0>(__requad), std::get<0>(__imquad));
@@ -108,11 +108,11 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_le
 		      };
       const auto __epsabs = _Tp{100} * _S_eps;
       const auto __epsrel = _Tp{0};
-      auto __ws = __gnu_test::cquad_workspace<_Tp>();
-      auto __requad = __gnu_test::cquad_integrate(__ws, __refunc,
+      auto __ws = __gnu_cxx::cquad_workspace<_Tp>();
+      auto __requad = __gnu_cxx::cquad_integrate(__ws, __refunc,
 					 __phi_min, __phi_max,
 					 __epsabs, __epsrel);
-      auto __imquad = __gnu_test::cquad_integrate(__ws, __imfunc,
+      auto __imquad = __gnu_cxx::cquad_integrate(__ws, __imfunc,
 					 __phi_min, __phi_max,
 					 __epsabs, __epsrel);
       return std::complex<_Tp>(std::get<0>(__requad), std::get<0>(__imquad));
