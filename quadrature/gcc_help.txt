@@ -1,3 +1,0 @@
-export CC=/home/ed/bin/bin/gcc
-export CXX=/home/ed/bin/bin/g++
-cmake .

@@ -1,0 +1,6 @@
+[submodule "polynomial"]
+	path = polynomial
+	url = https://github.com/emsr/polynomial.git
+[submodule "quadrature"]
+	path = quadrature
+	url = https://github.com/emsr/quadrature.git
