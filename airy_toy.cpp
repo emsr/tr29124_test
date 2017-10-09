@@ -4422,7 +4422,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 
       _Val _Fp1d3, _Fm1d3, _Fp2d3, _Fm2d3;
 
-      if (std::abs(__zzz) < _Real{10} * __gnu_cxx::__min<_Real>())
+      if (std::abs(__zzz) < _Real{10} * __gnu_cxx::__lim_min<_Real>())
 	return __airy_t<_Val, _Val>{__z, _S_Ai0, _S_Aip0, _S_Bi0, _S_Bip0};
       else
 	{

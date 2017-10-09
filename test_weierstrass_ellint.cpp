@@ -10,7 +10,7 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_weierstrass_ellint > test
 #include <complex>
 #include <iostream>
 #include <iomanip>
-#include "solver_low_degree.h"
+#include "polynomial/solver_low_degree.h"
 
   /**
    * Return the elliptic modular function by product expansion:
