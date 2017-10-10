@@ -744,8 +744,8 @@ test_gamma_reciprocal: test_gamma_reciprocal.cpp
 test_gegenbauer: test_gegenbauer.cpp
 	$(CXX17) -I. -o test_gegenbauer test_gegenbauer.cpp -lquadmath
 
-test_dual_gudermannian: test_dual_gudermannian.cpp
-	$(CXX17) -I. -o test_dual_gudermannian test_dual_gudermannian.cpp -lquadmath
+test_gudermannian: test_gudermannian.cpp
+	$(CXX17) -I. -o test_gudermannian test_gudermannian.cpp -lquadmath
 
 test_hankel: test_hankel.cpp
 	$(CXX17) -I. -o test_hankel test_hankel.cpp -lquadmath
