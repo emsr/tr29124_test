@@ -53,6 +53,7 @@
 namespace std
 {
   bool isnan(__float128);
+  bool isinf(__float128);
 }
 #    endif
 #  endif
