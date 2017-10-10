@@ -140,7 +140,6 @@ BINS = testcase \
        test_root_finding \
        test_sincos \
        test_sinus_cardinal \
-       test_solvers \
        test_sph_bessel \
        test_sph_hankel \
        test_steed_continued_fraction \
@@ -589,19 +588,19 @@ mpfrcalc: mpfr_gexpr.c
 
 
 test_special_function: wrappers_debug test_special_function.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -o test_special_function test_special_function.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
+	$(CXX17) -I. -o test_special_function test_special_function.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
 diff_special_function: wrappers_debug diff_special_function.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -o diff_special_function diff_special_function.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
+	$(CXX17) -I. -o diff_special_function diff_special_function.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
 testcase2: wrappers_debug testcase2.cpp testcase2.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -o testcase2 testcase2.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
+	$(CXX17) -I. -o testcase2 testcase2.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
 testcase: wrappers_debug testcase.cpp testcase.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -UTR1 -I. -o testcase testcase.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
+	$(CXX17) -UTR1 -I. -o testcase testcase.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
 testcase_tr1: wrappers_debug testcase.cpp testcase.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -DTR1 -I. -o testcase_tr1 testcase.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
+	$(CXX17) -DTR1 -I. -o testcase_tr1 testcase.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
 test_limits: test_limits.cpp
 	$(CXX17) -I. -o test_limits test_limits.cpp -lquadmath
@@ -811,7 +810,7 @@ test_math_h: test_math_h.cpp
 	$(CXX17) -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_math_h test_math_h.cpp -lquadmath
 
 test_meixner: test_meixner.cpp
-	$(CXX17) -I. -o test_meixner test_meixner.cpp -lquadmath
+	$(CXX17) -I. -o test_meixner test_meixner.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
 test_meixner_pollaczek: test_meixner_pollaczek.cpp
 	$(CXX17) -I. -o test_meixner_pollaczek test_meixner_pollaczek.cpp -lquadmath
@@ -865,7 +864,7 @@ test_reperiodized_trig: wrappers_debug test_reperiodized_trig.cpp
 	$(CXX17) -I. -o test_reperiodized_trig test_reperiodized_trig.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 test_riemann_zeta: test_riemann_zeta.cpp
-	$(CXX17) -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath
+	$(CXX17) -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
 test_rising_factorial: wrappers_debug test_rising_factorial.cpp
 	$(CXX17) -I. -o test_rising_factorial test_rising_factorial.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
@@ -879,9 +878,6 @@ test_sincos: test_sincos.cpp
 test_sinus_cardinal: wrappers_debug test_sinus_cardinal.cpp
 	$(CXX17) -I. -o test_sinus_cardinal test_sinus_cardinal.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost
 
-test_solvers: test_solvers.cpp
-	$(CXX17) -I. -o test_solvers test_solvers.cpp -lquadmath
-
 test_sph_bessel: test_sph_bessel.cpp
 	$(CXX17) -I. -o test_sph_bessel test_sph_bessel.cpp -lquadmath
 
@@ -892,7 +888,7 @@ test_steed_continued_fraction: test_steed_continued_fraction.cpp
 	$(CXX17) -I. -o test_steed_continued_fraction test_steed_continued_fraction.cpp -lquadmath
 
 test_struve: test_struve.cpp
-	$(CXX17) -I. -o test_struve test_struve.cpp -lquadmath
+	$(CXX17) -I. -o test_struve test_struve.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
 test_struve_old: test_struve_old.cpp
 	$(CXX17) -I. -o test_struve_old test_struve_old.cpp -lquadmath
