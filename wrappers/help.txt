@@ -1,12 +1,10 @@
 
-cd debug
-rm -rf *
+cd debug && rm -rf *
 cmake ../../ -DCMAKE_BUILD_TYPE=DEBUG
 make
 cd ..
 
-cd release
-rm -rf *
+cd release && rm -rf *
 cmake ../../ -DCMAKE_BUILD_TYPE=RELEASE
 make
 cd ..
