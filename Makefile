@@ -74,17 +74,20 @@ BINS = testcase \
        test_continued_fraction \
        test_continuous_dual_hahn \
        test_continuous_hahn \
+       test_coulomb \
        test_csint \
        test_cyl_hankel \
        test_dawson \
        test_debye \
        test_dilog \
+       test_dirichlet_eta \
        test_dual_hahn \
        test_expint \
        test_factorial \
        test_faddeeva \
        test_falling_factorial \
        test_fermi_dirac \
+       test_fibonacci \
        test_float128 \
        test_fresnel \
        test_gamma \
@@ -110,11 +113,14 @@ BINS = testcase \
        test_krawtchouk \
        test_laguerre \
        test_legendre \
+       test_legendre_ellint \
        test_lentz_continued_fraction \
        test_lerch \
        test_limits \
        test_little_airy \
+       test_lobatto \
        test_lommel \
+       test_marcum_q \
        test_math_h \
        test_meixner \
        test_meixner_pollaczek \
@@ -698,6 +704,9 @@ test_continuous_dual_hahn: test_continuous_dual_hahn.cpp
 test_continuous_hahn: test_continuous_hahn.cpp
 	$(CXX17) -I. -o test_continuous_hahn test_continuous_hahn.cpp -lquadmath
 
+test_coulomb: test_coulomb.cpp
+	$(CXX17) -I. -o test_coulomb test_coulomb.cpp -lquadmath
+
 test_cyl_hankel: wrappers_debug test_cyl_hankel.cpp
 	$(CXX17) -I. -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
@@ -709,6 +718,9 @@ test_debye: wrappers_debug test_debye.cpp
 
 test_dilog: test_dilog.cpp
 	$(CXX17) -I. -o test_dilog test_dilog.cpp -lquadmath
+
+test_dirichlet_eta: test_dirichlet_eta.cpp
+	$(CXX17) -I. -o test_dirichlet_eta test_dirichlet_eta.cpp -lquadmath
 
 test_dual_hahn: test_dual_hahn.cpp
 	$(CXX17) -I. -o test_dual_hahn test_dual_hahn.cpp -lquadmath
@@ -727,6 +739,9 @@ test_falling_factorial: wrappers_debug test_falling_factorial.cpp
 
 test_fermi_dirac: wrappers_debug test_fermi_dirac.cpp
 	$(CXX17) -I. -o test_fermi_dirac test_fermi_dirac.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+
+test_fibonacci: wrappers_debug test_fibonacci.cpp
+	$(CXX17) -I. -o test_fibonacci test_fibonacci.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
 test_float128: test_float128.cpp
 	$(CXX17) -I. -o test_float128 test_float128.cpp -lquadmath
@@ -794,6 +809,9 @@ test_laguerre: test_laguerre.cpp
 test_legendre: test_legendre.cpp
 	$(CXX17) -I. -o test_legendre test_legendre.cpp -lquadmath
 
+test_legendre_ellint: test_legendre_ellint.cpp
+	$(CXX17) -I. -o test_legendre_ellint test_legendre_ellint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+
 test_lentz_continued_fraction: test_lentz_continued_fraction.cpp
 	$(CXX17) -I. -o test_lentz_continued_fraction test_lentz_continued_fraction.cpp -lquadmath
 
@@ -803,8 +821,14 @@ test_lerch: test_lerch.cpp
 test_little_airy: wrappers_debug test_little_airy.cpp
 	$(CXX17) -I. -o test_little_airy test_little_airy.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
+test_lobatto: wrappers_debug test_lobatto.cpp
+	$(CXX17) -I. -o test_lobatto test_lobatto.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+
 test_lommel: wrappers_debug test_lommel.cpp
 	$(CXX17) -I. -o test_lommel test_lommel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+
+test_marcum_q: test_marcum_q.cpp
+	$(CXX17) -I. -o test_marcum_q test_marcum_q.cpp -lquadmath
 
 test_math_h: test_math_h.cpp
 	$(CXX17) -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_math_h test_math_h.cpp -lquadmath
