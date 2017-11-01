@@ -111,6 +111,7 @@ BINS = testcase \
        test_kelvin \
        test_krawtchouk \
        test_laguerre \
+       test_large_order_bessel \
        test_legendre \
        test_legendre_ellint \
        test_lentz_continued_fraction \
@@ -901,6 +902,9 @@ test_krawtchouk: test_krawtchouk.cpp
 
 test_laguerre: test_laguerre.cpp
 	$(CXX17) -I. -o test_laguerre test_laguerre.cpp -lquadmath
+
+test_large_order_bessel: test_large_order_bessel.cpp
+	$(CXX17) -I. -o test_large_order_bessel test_large_order_bessel.cpp -lquadmath
 
 test_legendre: test_legendre.cpp
 	$(CXX17) -I. -o test_legendre test_legendre.cpp -lquadmath
