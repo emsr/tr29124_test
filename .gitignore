@@ -309,6 +309,7 @@ test_kelvin
 test_krawtchouk
 test_laguerre
 test_lambert_w
+test_large_order_bessel
 test_legendre
 test_legendre_ellint
 test_lentz_continued_fraction
