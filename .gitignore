@@ -26,9 +26,6 @@ test_cyl_hankel.txt
 test_sph_hankel.txt
 test_owens_t.txt
 
-# Another git repo
-zeta
-
 # A nasty bug with variant and the solver type?
 variant_help
 
