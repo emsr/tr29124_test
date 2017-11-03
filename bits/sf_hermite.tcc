@@ -287,7 +287,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       for (auto __i = 1u; __i <= __m; ++__i)
 	{
 	  _Tp __z;
-	  _Tp __w;
+	  _Tp __w = _Tp{0};
 	  if (__i == 1)
 	    __z = std::sqrt(_Tp(2 * __n + 1))
 		- 1.85575 * std::pow(_Tp(2 * __n + 1), -0.166667);
@@ -315,7 +315,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __z = __z1 - __H / __Hp;
 	      if (std::abs(__z - __z1) <= _S_eps)
 		{
-		  __w = 2.0 / (__Hp * __Hp);
+		  __w = _Tp{2} / (__Hp * __Hp);
 		  break;
 		}
 	      if (__its > _S_maxit)
