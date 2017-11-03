@@ -7,15 +7,15 @@
  *
  * SYNOPSIS:
  *
- * double x, sine, cosine, flg, sincos();
+ * double x, sine, cosine, flg, sincosdg();
  *
- * sincos( x, &sine, &cosine, flg );
+ * sincosdg( x, &sine, &cosine, flg );
  *
  *
  *
  * DESCRIPTION:
  *
- * Returns both the sine and the cosine of the argument x.
+ * Returns both the sine and the cosine of the argument x IN DEGREES.
  * Several different compile time options and minimax
  * approximations are supplied to permit tailoring the
  * tradeoff between computation speed and accuracy.
@@ -68,13 +68,13 @@
  * sin(), cos()		1.0	1.0	1.0	1.0
  *
  * In-line 8087 (/FPi)
- * sincos()		1.1	1.4	1.9	3.0
+ * sincosdg()		1.1	1.4	1.9	3.0
  *
  * Software (/FPa)
  * sin(), cos()		0.19	0.19	0.19	0.19
  *
  * Software (/FPa)
- * sincos()		0.39	0.50	0.73	1.7
+ * sincosdg()		0.39	0.50	0.73	1.7
  *
  *
  *
@@ -231,11 +231,14 @@ double floor ( double );
 #else
 double floor();
 #endif
-
+/* Rename this so it doesn't surprise anyone else!
 int sincos(x, s, c, flg)
 double x;
 double *s, *c;
 int flg;
+*/
+int
+sincosdg(double x, double *s, double *c, int flg)
 {
 int ix, ssign, csign, xsign;
 double y, z, sx, sz, cx, cz;

@@ -124,9 +124,10 @@ int sici(double x, double *si, double *ci);
 double simpsn(double f[], double delta);
 int simq(double A[], double B[], double X[], int n, int flag, int IPS[]);
 double radian(double d, double m, double s);
-/*
+/* Rename to avoid ugly surprises.
 int sincos(double x, double *s, double *c, int flg);
 */
+int sincosdg(double x, double *s, double *c, int flg);
 double sindg(double x);
 double cosdg(double x);
 double sinh(double);

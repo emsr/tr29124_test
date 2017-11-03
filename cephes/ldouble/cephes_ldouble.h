@@ -138,9 +138,10 @@ int sicil(long double x, long double *si, long double *ci);
 long double simpsnl(long double f[], long double delta);
 int simql(long double A[], long double B[], long double X[], int n, int flag, int IPS[]);
 long double radianl(long double d, long double m, long double s);
-/*
+/* Rename to avoid ugly surprises.
 int sincosl(long double x, long double *s, long double *c, int flg);
 */
+int sincosdgl(long double x, long double *s, long double *c, int flg);
 long double sindgl(long double x);
 long double cosdgl(long double x);
 long double sinhl(long double);
