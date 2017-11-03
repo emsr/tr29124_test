@@ -88,6 +88,7 @@ add_library(wrap_cephes SHARED
 	    cephes/cmath/round.c
 	    cephes/cmath/setprec.c
 	    cephes/cmath/sin.c
+	    cephes/cmath/sincos.c
 	    cephes/cmath/sindg.c
 	    cephes/cmath/sinh.c
 	    cephes/cmath/sqrt.c
