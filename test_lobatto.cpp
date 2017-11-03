@@ -107,7 +107,7 @@ template<typename _Tp>
 	for (int i = -100; i <= 100; ++i)
 	  {
 	    auto x = i * _Tp{0.01Q};
-	    _Tp Lo;
+	    std::pair<_Tp, _Tp> Lo;
 	    try
 	      {
 		Lo = __lobatto(l, x);
@@ -117,7 +117,8 @@ template<typename _Tp>
 		std::cerr << err.what() << '\n';
 	      }
 	    std::cout << "  " << std::setw(width) << x;
-	    std::cout << "  " << std::setw(width) << Lo;
+	    std::cout << "  " << std::setw(width) << Lo.first;
+	    std::cout << "  " << std::setw(width) << Lo.second;
 	    std::cout << '\n';
 	  }
       }

@@ -45,20 +45,20 @@
  * @f[
  */
   template <typename _Tp>
-    _Tp
+    std::pair<_Tp, _Tp>
     __lobatto(unsigned int __l, _Tp __x)
     {
       if (__x == _Tp{-1} || __x == _Tp{+1})
-	return _Tp{0};
+	return std::make_pair(_Tp{0}, _Tp{0}); // FIXME deriv!
       else
 	{
 	  auto _Lo_lm2 = _Tp{0};
 	  if (__l == 0)
-	    return _Lo_lm2;
+	    return std::make_pair(_Lo_lm2, _Tp{0});
 
 	  auto _Lo_lm1 = _Tp{1} - __x * __x;
 	  if (__l == 1)
-	    return _Lo_lm1;
+	    return std::make_pair(_Lo_lm1, -_Tp{2} * __x);
 
 	  auto _P_lm2 = _Tp{1};
 	  auto _P_lm1 = __x;
@@ -79,6 +79,6 @@
 	      _P_lm2 = _P_lm1;
 	      _P_lm1 = _P_l;
 	    }
-	  return _Lo_l;
+	  return std::make_pair(_Lo_l, _Lop_l);
 	}
     }
