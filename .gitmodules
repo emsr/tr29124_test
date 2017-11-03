@@ -10,3 +10,6 @@
 [submodule "zeta"]
 	path = zeta
 	url = https://github.com/emsr/zeta.git
+[submodule "burkhardt"]
+	path = burkhardt
+	url = https://github.com/emsr/maths_burkhardt.git
