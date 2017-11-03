@@ -1173,5 +1173,19 @@ charlier(int n, double a, double x)
   return v[n];
 }
 
+/// Gudermannian function.
+double
+gd(double x)
+{
+  return ::gud(x);
+}
+
+/// Inverse Gudermannian function.
+double
+agd(double g)
+{
+  return agud(g);
+}
+
 } // namespace burkhardt
 

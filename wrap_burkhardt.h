@@ -455,6 +455,12 @@ krawtchouk(int n, double p, double x, int m);
 double
 charlier(int n, double a, double x);
 
+/// Gudermannian function.
+double gd(double x);
+
+/// Inverse Gudermannian function.
+double agd(double g);
+
 } // namespace burkhardt
 
 #endif // WRAP_BURKHARDT_H
