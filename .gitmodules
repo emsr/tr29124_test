@@ -13,3 +13,6 @@
 [submodule "burkhardt"]
 	path = burkhardt
 	url = https://github.com/emsr/maths_burkhardt.git
+[submodule "cephes"]
+	path = cephes
+	url = https://github.com/emsr/maths_cephes.git
