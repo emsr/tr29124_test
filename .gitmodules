@@ -4,3 +4,6 @@
 [submodule "quadrature"]
 	path = quadrature
 	url = https://github.com/emsr/quadrature.git
+[submodule "LambertW"]
+	path = LambertW
+	url = https://github.com/emsr/LambertW.git
