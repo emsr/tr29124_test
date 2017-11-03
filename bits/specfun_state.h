@@ -71,6 +71,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp
       deriv() const
       { return _Tp(2 * __n) * __H_nm1; }
+
+      _Tp
+      deriv2() const
+      { return _Tp(2 * __n) * (_Tp{2} * __x * __H_nm1 - __H_n); }
     };
 
   /**
@@ -165,6 +169,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp
       deriv() const
       { return _Tp(__n) * (__T_nm1 - __x * __T_n) / (_Tp{1} - __x * __x); }
+
+      _Tp
+      deriv2() const
+      {
+	const auto __xx = __x * __x;
+	const auto __num = _Tp{1} - __xx;
+	return _Tp(__n)
+	     * (__x * __T_nm1 + (_Tp(__n - 1) * __xx - _Tp(__n)) * __T_n)
+	     / __num / __num;
+      }
     };
 
   /**
@@ -451,7 +465,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tx __x_arg;
 
       /// The integral order of the modified spherical Bessel functions.
-      _Tn n_arg;
+      _Tn __n_arg;
 
       /// The value of the modified spherical Bessel function
       /// of the first kind.
