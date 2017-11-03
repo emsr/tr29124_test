@@ -73,6 +73,11 @@ extern "C" {
 namespace std
 {
 
+// Pre-declare some real __float128 functions in std.
+  __float128 log(__float128 __x) _GLIBCXX_USE_NOEXCEPT;
+  __float128 sin(__float128 __x) _GLIBCXX_USE_NOEXCEPT;
+  __float128 cos(__float128 __x) _GLIBCXX_USE_NOEXCEPT;
+
 #if _GLIBCXX_USE_C99_COMPLEX
 
   inline __float128
