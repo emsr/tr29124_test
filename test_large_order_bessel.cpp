@@ -17,7 +17,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
 
     const auto pi = _Tp{3.1415926535897932384626433832795029L};
-    auto wronski = [pi](_Tp nu, _Tp x) ->_Tp { return 2 / (pi * x); };
+    auto wronski = [pi](_Tp, _Tp x) ->_Tp { return 2 / (pi * x); };
 
     std::vector<_Tp> nu_vals{120, 128, 136, 160, 200};
     for (auto nu : nu_vals)
