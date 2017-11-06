@@ -231,7 +231,7 @@ testcase2
 test_arith_geom_mean
 test_airy
 test_anger_weber
-test_appell
+test_appell_f1
 test_bernoulli
 test_bessel
 test_bessel_asymp

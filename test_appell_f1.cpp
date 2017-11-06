@@ -1,6 +1,6 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_appell test_appell.cpp
-./test_appell > test_appell.txt
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_appell_f1 test_appell_f1.cpp
+./test_appell_f1 > test_appell_f1.txt
 */
 
 #include <iostream>
@@ -52,7 +52,7 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  test_appell(_Tp alpha, _Tp betax, _Tp betay, _Tp gamma)
+  test_appell_f1(_Tp alpha, _Tp betax, _Tp betay, _Tp gamma)
   {
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     auto w = 8 + std::cout.precision();
@@ -77,6 +77,6 @@ template<typename _Tp>
 int
 main()
 {
-  test_appell(1.0, 1.5, -0.5, 0.5);
+  test_appell_f1(1.0, 1.5, -0.5, 0.5);
 }
 

@@ -49,7 +49,7 @@ BINS = testcase \
        hankel_toy128 \
        hankel_toy_new \
        test_anger_weber \
-       test_appell \
+       test_appell_f1 \
        test_bernoulli \
        test_bessel \
        test_bessel_asymp \
@@ -421,7 +421,7 @@ test: $(BINS)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./hankel_toy128 > hankel_toy128.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./hankel_toy_new > hankel_toy_new.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_anger_weber > test_anger_weber.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_appell > test_appell.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_appell_f1 > test_appell_f1.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_bernoulli > test_bernoulli.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_bessel > test_bessel.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_bessel_asymp > test_bessel_asymp.txt
@@ -714,8 +714,8 @@ test_Faddeeva: $(FAD_DIR)/Faddeeva.hh $(FAD_DIR)/Faddeeva.cc
 test_anger_weber: test_anger_weber.cpp
 	$(CXX17) -I. -o test_anger_weber test_anger_weber.cpp -lquadmath
 
-test_appell: test_appell.cpp
-	$(CXX17) -I. -o test_appell test_appell.cpp -lquadmath
+test_appell_f1: test_appell_f1.cpp
+	$(CXX17) -I. -o test_appell_f1 test_appell_f1.cpp -lquadmath
 
 test_bernoulli: wrappers_debug test_bernoulli.cpp
 	$(CXX17) -I. -o test_bernoulli test_bernoulli.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
