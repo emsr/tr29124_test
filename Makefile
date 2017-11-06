@@ -760,7 +760,7 @@ test_clausen: wrappers_debug test_clausen.cpp
 	$(CXX17) -I. -o test_clausen test_clausen.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
 test_cmath: test_cmath.cpp
-	$(CXX) -o test_cmath test_cmath.cpp -lquadmath
+	$(CXX) -I. -o test_cmath test_cmath.cpp -lquadmath
 
 test_comp_ellint_1: test_comp_ellint_1.cpp
 	$(CXX17) -I. -o test_comp_ellint_1 test_comp_ellint_1.cpp -lquadmath
@@ -848,6 +848,9 @@ test_gegenbauer: test_gegenbauer.cpp
 
 test_gudermannian: test_gudermannian.cpp
 	$(CXX17) -I. -o test_gudermannian test_gudermannian.cpp -lquadmath
+
+test_hahn: test_hahn.cpp
+	$(CXX17) -I. -o test_hahn test_hahn.cpp -lquadmath
 
 test_hankel: test_hankel.cpp
 	$(CXX17) -I. -o test_hankel test_hankel.cpp -lquadmath
@@ -946,7 +949,7 @@ test_notsospecfun: test_notsospecfun.cpp
 	$(CXX17) -I. -o test_notsospecfun test_notsospecfun.cpp -lquadmath
 
 test_nric_bessel: test_nric_bessel.cpp nric_bessel.tcc
-	$(CXX) -o test_nric_bessel test_nric_bessel.cpp -lquadmath
+	$(CXX) -I. -o test_nric_bessel test_nric_bessel.cpp -lquadmath
 
 test_numeric_limits: test_numeric_limits.cpp
 	$(CXX17) -I. -I../mpreal -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr -lgmp
