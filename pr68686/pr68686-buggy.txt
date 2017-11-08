@@ -1,0 +1,2 @@
+pr68686: pr68686.c:8: test_alt_signs: Assertion `result > 0.0Q' failed.
+Aborted (core dumped)
