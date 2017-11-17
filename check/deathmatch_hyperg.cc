@@ -143,7 +143,7 @@ template<typename Tp>
 	auto hyp = __gnu_cxx::hyperg(-Tp(n), Tp(1 + n) + alpha + beta, Tp{1} + alpha, z);
 	auto P = __gnu_cxx::factorial<Tp>(n)
 	       * __gnu_cxx::jacobi(n, alpha, beta, Tp{1} - Tp{2} * z)
-	       / __gnu_cxx::pochhammer(alpha + Tp{1}, int(n));
+	       / __gnu_cxx::rising_factorial(alpha + Tp{1}, int(n));
 	stats << std::make_pair(hyp, P);
       }
     VERIFY(stats.max_abs_frac < toler);
