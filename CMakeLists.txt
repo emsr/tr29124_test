@@ -234,6 +234,13 @@ add_library(wrap_burkhardt SHARED
 	    burkhardt/toms462.cpp
 	    burkhardt/toms917.cpp
 	    burkhardt/quadrule.cpp
+	    burkhardt/line_monte_carlo.cpp
+	    burkhardt/line_ncc_rule.cpp
+	    burkhardt/line_nco_rule.cpp
+	    burkhardt/tetrahedron_monte_carlo.cpp
+	    burkhardt/triangle_fekete_rule.cpp
+	    burkhardt/triangle_felippa_rule.cpp
+	    burkhardt/triangle_monte_carlo.cpp
            )
 target_link_libraries(wrap_burkhardt gfortran)
 
