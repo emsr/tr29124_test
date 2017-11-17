@@ -41,7 +41,7 @@
 
 namespace std
 {
-_GLIBCXX_BEGIN_NAMESPACE(tr1)
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // [5.2] Special functions
 
@@ -389,7 +389,7 @@ _GLIBCXX_BEGIN_NAMESPACE(tr1)
 
   /* @} */ // group tr1_math_spec_func
 
-_GLIBCXX_END_NAMESPACE
+_GLIBCXX_END_NAMESPACE_VERSION
 }
 
 #endif // _TR1_MODIFIED_BESSEL_FUNC_TCC

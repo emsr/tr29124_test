@@ -52,11 +52,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   /**
    *  @brief  Return the Hurwitz zeta function @f$ \zeta(x,s) @f$
    *  	for all s != 1 and x > -1.
@@ -220,9 +220,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
           return __result;
         }
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
 }
 
 #endif // _GLIBCXX_BITS_SF_PSI_TCC

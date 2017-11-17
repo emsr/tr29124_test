@@ -13,7 +13,7 @@ $HOME/bin/bin/g++ -g -std=c++14 -o carlson2 carlson2.cpp
 
 namespace __gnu_cxx
 {
-//_GLIBCXX_BEGIN_NAMESPACE(__gnu_cxx)
+//_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   //  They recently poisoned __promote in ext/type_traits.h to prevent usage of math functions with weird types
   template<>
@@ -28,7 +28,7 @@ namespace __gnu_cxx
     struct __promote<std::complex<float>>
     { typedef std::complex<float> __type; };
 
-//_GLIBCXX_END_NAMESPACE
+//_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
 // From bits/specfun_util.h
@@ -818,7 +818,7 @@ namespace __detail
 
 namespace __gnu_cxx
 {
-//_GLIBCXX_BEGIN_NAMESPACE(__gnu_cxx)
+//_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   inline float
   ellint_rff(float __x, float __y, float __z)
@@ -900,7 +900,7 @@ namespace __gnu_cxx
       return std::__detail::__ellint_rg<__type>(__x, __y, __z);
     }
 
-//_GLIBCXX_END_NAMESPACE
+//_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
 
