@@ -172,16 +172,25 @@ template<typename _Tp>
 	  for (int i = i_min; i <= +99; ++i)
 	    {
 	      auto z = _Tp{0.01Q} * i;
-	      auto hyperg0 = __gnu_cxx::hyperg(a, b, c, z);
-	      auto hyperg = __hyperg(a, b, c, z);
-	      std::cout << ' ' << std::setw(width) << a
-			<< ' ' << std::setw(width) << b
-			<< ' ' << std::setw(width) << c
-			<< ' ' << std::setw(width) << z
-			<< ' ' << std::setw(width) << hyperg0
-			<< ' ' << std::setw(width) << hyperg
-			<< ' ' << std::setw(width) << hyperg - hyperg0
-			<< '\n';
+	      try
+		{
+		  auto hyperg0 = __gnu_cxx::hyperg(a, b, c, z);
+		  auto hyperg = __hyperg(a, b, c, z);
+		  std::cout << ' ' << std::setw(width) << a
+			    << ' ' << std::setw(width) << b
+			    << ' ' << std::setw(width) << c
+			    << ' ' << std::setw(width) << z
+			    << ' ' << std::setw(width) << hyperg0
+			    << ' ' << std::setw(width) << hyperg
+			    << ' ' << std::setw(width) << hyperg - hyperg0
+			    << '\n';
+		}
+	      catch(std::exception& err)
+		{
+		  std::cerr << "Error in test_hyperg"
+			    << " at z = " << z << "; a = " << a << "; b = " << b << "; c = " << c
+			    << ": " << err.what() << '\n';
+		}
 	    }
   }
 
@@ -221,7 +230,7 @@ template<typename _Tp>
 int
 main()
 {
-  test_gsl_issue(1.0);
+  //test_gsl_issue(1.0);
 
   test_hyperg(1.0F);
 
