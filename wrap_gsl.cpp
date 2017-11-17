@@ -150,8 +150,7 @@ comp_ellint_3(double k, double nu)
   //double phi = _S_pi / 2.0;
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
-  //int stat = gsl_sf_ellint_P_e(phi, k, nu, mode, &result);
-  int stat = gsl_sf_ellint_Pcomp_e(k, nu, mode, &result);
+  int stat = gsl_sf_ellint_Pcomp_e(k, -nu, mode, &result);
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in comp_ellint_3:");
@@ -321,7 +320,7 @@ ellint_3(double k, double nu, double phi)
 {
   const gsl_mode_t mode = GSL_PREC_DOUBLE;
   gsl_sf_result result;
-  int stat = gsl_sf_ellint_P_e(phi, k, nu, mode, &result);
+  int stat = gsl_sf_ellint_P_e(phi, k, -nu, mode, &result);
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in ellint_3:");

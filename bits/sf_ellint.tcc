@@ -296,7 +296,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (std::abs(__x) + std::abs(__y) < _S_lolim
 	    || std::abs(__x) + std::abs(__z) < _S_lolim
 	    || std::abs(__y) + std::abs(__z) < _S_lolim)
-        std::__throw_domain_error(__N("Argument too small in __ellint_rf"));
+        std::__throw_domain_error(__N("__ellint_rf: argument too small"));
 
       if (std::abs(__z) < _S_eps)
         return __comp_ellint_rf(__x, __y);
@@ -607,7 +607,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
 	{
 	  // Reduce phi to -pi/2 < phi < +pi/2.
-	  const int __n = std::floor(__phi / _S_pi + _Real{0.5L});
+	  const int __n = std::floor(std::real(__phi) / _S_pi + _Real{0.5L});
 	  const auto __phi_red = __phi - __n * _S_pi;
 
 	  const auto __s = std::sin(__phi_red);
@@ -688,7 +688,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
 	{
 	  // Reduce phi to -pi/2 < phi < +pi/2.
-	  const int __n = std::floor(std::abs(__phi) / _S_pi + _Real{0.5L});
+	  const int __n = std::floor(std::real(__phi) / _S_pi + _Real{0.5L});
 	  const auto __phi_red = __phi - __n * _S_pi;
 
 	  const auto __kk = __k * __k;
@@ -742,12 +742,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	std::__throw_domain_error(__N("__comp_ellint_3: bad argument"));
       else
 	{
-	  const auto __kk = __k * __k;
+	  const auto __mc = _Tp{1} - __k * __k;
 
-	  return __ellint_rf(_Tp{0}, _Tp{1} - __kk, _Tp{1})
-	     - __nu
-	     * __ellint_rj(_Tp{0}, _Tp{1} - __kk, _Tp{1}, _Tp{1} + __nu)
-	     / _Tp{3};
+	  return __ellint_rf(_Tp{0}, __mc, _Tp{1})
+	     + __nu * __ellint_rj(_Tp{0}, __mc, _Tp{1}, _Tp{1} - __nu) / _Tp{3};
 	}
     }
 
@@ -795,9 +793,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 	  const auto _Pi = __s
 			 * __ellint_rf(__cc, _Tp{1} - __kk * __ss, _Tp{1})
-			 - __nu * __sss
+			 + __nu * __sss
 			 * __ellint_rj(__cc, _Tp{1} - __kk * __ss, _Tp{1},
-				       _Tp{1} + __nu * __ss) / _Tp{3};
+				       _Tp{1} - __nu * __ss) / _Tp{3};
 
 	  if (__n == 0)
 	    return _Pi;

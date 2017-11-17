@@ -396,11 +396,11 @@ template<typename Real>
     basename = "comp_ellint_1";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_comp_ellint_1(filename);
-    maketest(comp_ellint_1, gsl::comp_ellint_1,
+    maketest(comp_ellint_1, beast::comp_ellint_1,
 	     "testcase_comp_ellint_1", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
-	     "GSL",
+	     "Boost",
 	     file_comp_ellint_1);
 
     // Complete elliptic integrals of the second kind.
@@ -409,11 +409,11 @@ template<typename Real>
     basename = "comp_ellint_2";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_comp_ellint_2(filename);
-    maketest(comp_ellint_2, gsl::comp_ellint_2,
+    maketest(comp_ellint_2, beast::comp_ellint_2,
 	     "testcase_comp_ellint_2", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
-	     "GSL",
+	     "Boost",
 	     file_comp_ellint_2);
 
     // Complete elliptic integrals of the third kind.
@@ -422,13 +422,13 @@ template<typename Real>
     basename = "comp_ellint_3";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_comp_ellint_3(filename);
-    maketest(comp_ellint_3, gsl::comp_ellint_3,
+    maketest(comp_ellint_3, beast::comp_ellint_3,
 	     "testcase_comp_ellint_3", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
 	     "nu", fill_argument(std::make_pair(Real{0}, Real{1}),
 				 std::make_pair(true, false), 11),
-	     "GSL",
+	     "Boost",
 	     file_comp_ellint_3);
 
 #if STD
@@ -589,12 +589,12 @@ template<typename Real>
     basename = "ellint_1";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_1(filename);
-    maketest(ellint_1, gsl::ellint_1,
+    maketest(ellint_1, beast::ellint_1,
 	     "testcase_ellint_1", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
 	     "phi", vphid,
-	     "GSL",
+	     "Boost",
 	     file_ellint_1);
 
     // Elliptic integrals of the second kind.
@@ -603,12 +603,12 @@ template<typename Real>
     basename = "ellint_2";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_2(filename);
-    maketest(ellint_2, gsl::ellint_2,
+    maketest(ellint_2, beast::ellint_2,
 	     "testcase_ellint_2", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
 	     "phi", vphid,
-	     "GSL",
+	     "Boost",
 	     file_ellint_2);
 
     // Elliptic integrals of the third kind.
@@ -617,14 +617,14 @@ template<typename Real>
     basename = "ellint_3";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_ellint_3(filename);
-    maketest(ellint_3, gsl::ellint_3,
+    maketest(ellint_3, beast::ellint_3,
 	     "testcase_ellint_3", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
 	     "nu", fill_argument(std::make_pair(Real{0}, Real{1}),
 				 std::make_pair(true, false), 11),
 	     "phi", vphid,
-	     "GSL",
+	     "Boost",
 	     file_ellint_3);
 
     // Exponential integral.
@@ -831,13 +831,13 @@ template<typename Real>
     basename = "ellint_rc";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rc(filename);
-    maketest(ellint_rc, gsl::ellint_rc,
+    maketest(ellint_rc, beast::ellint_rc,
 	     "testcase_ellint_rc", "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(false, true), 11),
 	     "y", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(false, true), 11),
-	     "GSL",
+	     "Boost",
 	     file_ellint_rc);
 
     // Carlson elliptic functions R_D.
@@ -845,7 +845,7 @@ template<typename Real>
     basename = "ellint_rd";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rd(filename);
-    maketest(ellint_rd, gsl::ellint_rd,
+    maketest(ellint_rd, beast::ellint_rd,
 	     "testcase_ellint_rd", "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(false, true), 11),
@@ -853,7 +853,7 @@ template<typename Real>
 				std::make_pair(true, true), 11),
 	     "z", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(true, true), 11),
-	     "GSL",
+	     "Boost",
 	     file_ellint_rd);
 
     // Carlson elliptic functions R_F.
@@ -861,7 +861,7 @@ template<typename Real>
     basename = "ellint_rf";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rf(filename);
-    maketest(ellint_rf, gsl::ellint_rf,
+    maketest(ellint_rf, beast::ellint_rf,
 	     "testcase_ellint_rf", "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(false, true), 11),
@@ -869,7 +869,7 @@ template<typename Real>
 				std::make_pair(true, true), 11),
 	     "z", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(true, true), 11),
-	     "GSL",
+	     "Boost",
 	     file_ellint_rf);
 
     // Carlson elliptic functions R_G.
@@ -893,7 +893,7 @@ template<typename Real>
     basename = "ellint_rj";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rj(filename);
-    maketest(ellint_rj, gsl::ellint_rj,
+    maketest(ellint_rj, beast::ellint_rj,
 	     "testcase_ellint_rj", "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(false, true), 11),
@@ -903,7 +903,7 @@ template<typename Real>
 				std::make_pair(true, true), 11),
 	     "p", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(false, true), 11),
-	     "GSL",
+	     "Boost",
 	     file_ellint_rj);
 
     // Dilogarithm functions.
