@@ -39,9 +39,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 /// Implementation-space details.
 namespace __detail
 {
-**
- *
- */
+/**
+  *
+  */
 template<typename _Tp>
   _Tp
   __znorm2(_Tp __x)
