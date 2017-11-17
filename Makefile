@@ -358,6 +358,7 @@ WRAP_RELEASE_LIBS = \
   $(WRAP_RELEASE_DIR)/libwrap_lerchphi.so
 
 wrappers_debug: $(WRAP_DEBUG_DIR) $(WRAP_DEBUG_LIBS)
+	touch wrappers_debug
 
 $(WRAP_DEBUG_LIBS): $(WRAP_DEBUG_DIR)/Makefile $(WRAPPER_INCS) $(WRAPPER_SRCS)
 	$(MAKE) -C $(WRAP_DEBUG_DIR)
@@ -371,6 +372,7 @@ $(WRAP_DEBUG_DIR):
 	fi
 
 wrappers_release: $(WRAP_RELEASE_DIR) $(WRAP_RELEASE_LIBS)
+	touch wrappers_release
 
 $(WRAP_RELEASE_LIBS): $(WRAP_RELEASE_DIR)/Makefile $(WRAPPER_INCS) $(WRAPPER_SRCS)
 	$(MAKE) -C $(WRAP_RELEASE_DIR)
