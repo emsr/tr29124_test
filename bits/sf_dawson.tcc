@@ -36,11 +36,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   /**
    * @brief Compute the Dawson integral using the series expansion.
    */
@@ -244,9 +244,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
 	return __dawson_cont_frac(__x);
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
-}
+} // namespace std
 
 #endif // _GLIBCXX_BITS_SF_DAWSON_TCC

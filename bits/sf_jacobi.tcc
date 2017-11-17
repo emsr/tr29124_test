@@ -36,11 +36,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   /**
    * Compute the Jacobi polynomial by recursion on @c n:
    * @f[
@@ -320,9 +320,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return __poly_radial_jacobi(__n, std::abs(__m), __rho)
 	     * (__m >= 0 ? std::cos(__m * __phi) : std::sin(__m * __phi));
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
 } // namespace std
 
 #endif // _GLIBCXX_BITS_SF_JACOBI_TCC

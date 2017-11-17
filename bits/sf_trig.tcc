@@ -36,11 +36,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   /**
    * Return the reperiodized sine of argument x:
    * @f[
@@ -412,9 +412,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::complex<_Tp>(__rho * __sc.__cos_v,
 			       __rho * __sc.__sin_v);
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
 } // namespace std
 
 #endif // _GLIBCXX_BITS_SF_TRIG_TCC

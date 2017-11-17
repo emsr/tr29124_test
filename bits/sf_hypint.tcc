@@ -37,11 +37,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   /**
    *  @brief This function computes the hyperbolic cosine @f$ Chi(x) @f$
    *    and hyperbolic sine @f$ Shi(x) @f$ integrals
@@ -185,9 +185,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       return std::make_pair(_Chi, _Shi);
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
-}
+} // namespace std
 
 #endif // _GLIBCXX_BITS_SF_HYPINT_TCC

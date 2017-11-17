@@ -36,11 +36,14 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
+/**
+ * 
+ */
 template<typename _Tp>
   _Tp
   __coulomb_norm(unsigned int __l, _Tp __eta)
@@ -283,9 +286,9 @@ template<typename _Tp>
 	  return __psi;
 	}
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
-}
+} // namespace std
 
 #endif // _GLIBCXX_BITS_SF_COULOMB_TCC

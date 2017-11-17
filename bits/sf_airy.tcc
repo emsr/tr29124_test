@@ -38,12 +38,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-
   /**
    * This struct defines the Airy function state with two presumably
    * numerically useful Airy functions and their derivatives.
@@ -2643,9 +2642,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __airy = _Airy<std::complex<_Tp>>()(__z);
       return __airy.__Bi_value;
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
 } // namespace std
 
 #endif // _GLIBCXX_BITS_SF_AIRY_TCC

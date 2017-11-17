@@ -53,11 +53,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   /**
    * @brief  Return the Carlson elliptic function
    * 	     @f$ R_C(x,y) = R_F(x,y,y) @f$ where @f$ R_F(x,y,z) @f$
@@ -1027,9 +1027,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	       + __comp_ellint_1(__k) * __jacobi_zeta(__kc, __phi) / _S_pi_2;
 	}
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
 } // namespace std
 
 #endif // _GLIBCXX_BITS_SF_ELLINT_TCC

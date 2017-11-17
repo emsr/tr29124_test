@@ -47,11 +47,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   /**
    * @brief This routine returns the Hermite polynomial
    * 	    of order n: @f$ H_n(x) @f$ by recursion on n.
@@ -330,9 +330,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       return __pt;
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
 } // namespace std
 
 #endif // _GLIBCXX_BITS_SF_HERMITE_TCC

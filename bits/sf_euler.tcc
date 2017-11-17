@@ -40,11 +40,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   /**
    * Return the Euler number from lookup or by series expansion.
    *
@@ -253,9 +253,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline _Tp
     __eulerian_2(unsigned int __n, unsigned int __m)
     { return __eulerian_2_recur<_Tp>(__n, __m); }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
 } // namespace std
 
 #endif // _GLIBCXX_BITS_SF_EULER_TCC

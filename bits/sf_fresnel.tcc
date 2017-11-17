@@ -37,11 +37,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   /**
    *  @brief This function returns the Fresnel cosine and sine integrals
    *    as a pair by series expansion for positive argument.
@@ -197,9 +197,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       return std::complex<_Tp>(_Cf, _Sf);
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
-}
+} // namespace std
 
 #endif // _GLIBCXX_BITS_SF_FRESNEL_TCC
