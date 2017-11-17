@@ -49,6 +49,19 @@ template<typename _Tp>
   }
 
 /**
+ * 
+ * @f[
+ *    invgd(\phi) = F(1,\phi)
+ * @f]
+ */
+template<typename _Tp>
+  _Tp
+  invgd_ellint_2(_Tp x)
+  {
+    return std::ellint_2(_Tp{1}, x);
+  }
+
+/**
  * Compute the Gudermann function relating a hyperbolic argument
  * to a circular argument using the functional definition:
  * @f[
@@ -119,6 +132,7 @@ template<typename _Tp>
 	auto gd_diff = gd_ser - gd_fun;
 	auto igd_fun = invgd_trig(x);
 	auto igd_ser = invgd_series(x);
+	auto igd_F   = invgd_ellint_2(x);
 	auto test_gd = invgd_series(gd_fun) - x;
 	std::cout << ' ' << std::setw(w) << x
 		  << ' ' << std::setw(w) << gd_ser
@@ -126,6 +140,7 @@ template<typename _Tp>
 		  << ' ' << std::setw(w) << gd_diff
 		  << ' ' << std::setw(w) << igd_ser
 		  << ' ' << std::setw(w) << igd_fun
+		  << ' ' << std::setw(w) << igd_F
 		  << ' ' << std::setw(w) << test_gd
 		  << '\n';
       }
