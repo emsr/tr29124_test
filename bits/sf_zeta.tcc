@@ -51,11 +51,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   /**
    * Make exp2 available to complex and real types.
    */
@@ -907,9 +907,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  return __sum;
 	}
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
 } // namespace std
 
 #endif // _GLIBCXX_BITS_SF_ZETA_TCC

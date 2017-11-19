@@ -50,11 +50,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   /**
    * @brief This routine returns the associated Laguerre polynomial
    *        of order @f$ n @f$, degree @f$ \alpha > -1 @f$ for large n.
@@ -386,8 +386,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __laguerre(unsigned int __n, _Tp __x)
     { return __laguerre<unsigned int, _Tp>(__n, 0, __x); }
 
-_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail
+
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
 
 #endif // _GLIBCXX_BITS_SF_LAGUERRE_TCC

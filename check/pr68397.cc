@@ -21,9 +21,19 @@
 // for some long double arguments due to low __max_iter value
 
 #include <cmath>
-#include <testsuite_hooks.h>
+#if defined(__TEST_DEBUG)
+#  include <iostream>
+#  define VERIFY(A) \
+  if (!(A)) \
+    { \
+      std::cout << "line " << __LINE__ \
+	<< std::endl; \
+    }
+#else
+#  include <testsuite_hooks.h>
+#endif
 
-int
+void
 test01()
 {
   // Answers from Wolfram Alpha.

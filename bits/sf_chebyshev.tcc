@@ -37,11 +37,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   /**
    * Return a Chebyshev polynomial of non-negative order @f$ n @f$
    * and real argument @f$ x @f$ by the recursion
@@ -188,9 +188,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       return std::get<0>(__chebyshev_recur(__n, __x, _W0, _W1));
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
-}
+} // namespace std
 
 #endif // _GLIBCXX_BITS_SF_CHEBYSHEV_TCC

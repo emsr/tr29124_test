@@ -52,11 +52,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   template<typename _Tp> _Tp __expint_E1(_Tp);
 
   /**
@@ -588,9 +588,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
 	return (__expint_Ei(__x) + __expint_E1(__x)) / _Tp{2};
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
 } // namespace std
 
 #endif // _GLIBCXX_BITS_SF_EXPINT_TCC

@@ -40,12 +40,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-
   /**
    * Compute the Debye region in te complex plane.
    */
@@ -1331,9 +1330,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __sph_hankel(__n, __z, _H1, _H1p, _H2, _H2p);
       return (_H1 - _H2) / std::complex<_Tp>{0, 2};
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
 } // namespace std
 
 #endif // _GLIBCXX_BITS_SF_HANKEL_OLD_TCC

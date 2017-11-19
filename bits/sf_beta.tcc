@@ -54,11 +54,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   /**
    * @brief  Return the beta function: @f$ B(a,b) @f$.
    *
@@ -348,9 +348,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 		 - __fact * __ibeta_cont_frac(__b, __a, _Tp{1} - __x) / __b;
 	}
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
 } // namespace std
 
 #endif // __GLIBCXX_BITS_SF_BETA_TCC

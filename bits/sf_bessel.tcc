@@ -53,11 +53,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   /**
    * @brief This routine computes the asymptotic cylindrical Bessel
    * 	    and Neumann functions of order nu: @f$ J_{\nu}(x) @f$,
@@ -871,9 +871,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  return _Cmplx{_Bess.__j_value, -_Bess.__n_value};
 	}
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
 } // namespace std
 
 #endif // _GLIBCXX_BITS_SF_BESSEL_TCC

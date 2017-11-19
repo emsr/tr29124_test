@@ -37,11 +37,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   /**
    *  @brief This function computes the sine @f$ Si(x) @f$
    *         and cosine @f$ Ci(x) @f$ integrals by continued fraction
@@ -248,9 +248,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       return std::make_pair(_Si, _Ci);
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
 } // namespace std
 
 #endif // _GLIBCXX_BITS_SF_TRIGINT_TCC

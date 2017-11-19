@@ -39,11 +39,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   /**
    * @brief This returns Bernoulli numbers from a table or by summation
    * for larger values.
@@ -182,9 +182,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  return _B_n;
 	}
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
 } // namespace std
 
 #endif // _GLIBCXX_BITS_SF_BERNOULLI_TCC

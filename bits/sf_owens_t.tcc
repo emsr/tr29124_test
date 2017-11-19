@@ -34,14 +34,14 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
-// Implementation-space details.
-namespace __detail
-{
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
+/// Implementation-space details.
+namespace __detail
+{
 /**
- *
- */
+  *
+  */
 template<typename _Tp>
   _Tp
   __znorm2(_Tp __x)
@@ -388,9 +388,9 @@ template<typename _Tp>
 	return _Tp{0};
       }
   }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
 } // namespace std
 
 #endif // _GLIBCXX_BITS_SF_OWENS_T_TCC

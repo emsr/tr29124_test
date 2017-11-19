@@ -38,6 +38,20 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
+  /** 
+   * \brief Enumeration gor differing types of Gauss quadrature.
+   * The gauss_quad_type is used to determine the boundary condition
+   * modifications applied to orthogonal polynomials for quadrature
+   * rules.
+   */
+  enum gauss_quad_type
+  {
+    Gauss,             ///< Gauss quadrature
+    Gauss_Lobatto,     ///< Gauss-Lobatto quadrature
+    Gauss_Radau_lower, ///< Gauss-Radau quadrature including the node -1
+    Gauss_Radau_upper  ///< Gauss-Radau quadrature including the node +1
+  };
+
   /**
    * A struct to store a cosine and a sine value.
    * A return for sincos-type functions.

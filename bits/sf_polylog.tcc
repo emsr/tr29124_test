@@ -48,12 +48,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-
   /**
    * This class manages the termination of series.
    * Termination conditions involve both a maximum iteration count
@@ -1469,9 +1468,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else
 	return std::real(__polylog_exp(__s + _Sp{1}, __x));
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
 } // namespace std
 
 #endif // _GLIBCXX_BITS_SF_POLYLOG_TCC

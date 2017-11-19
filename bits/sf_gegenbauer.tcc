@@ -36,11 +36,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
   /**
    * Return the Gegenbauer polynomial @f$ C_n^{\alpha}(x) @f$ of degree @c n
    * and real order @f$ \alpha @f$ and argument @c x.
@@ -193,8 +193,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       return __pt;
     }
-
 } // namespace __detail
+
+_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
 
 #endif // _GLIBCXX_BITS_SF_GEGENBAUER_TCC

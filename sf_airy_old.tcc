@@ -36,12 +36,11 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+_GLIBCXX_BEGIN_NAMESPACE_VERSION
+
 // Implementation-space details.
 namespace __detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-
   /**
    * @brief This function evaluates @f$ Ai(z) @f$ and @f$ Ai'(z) @f$ from their asymptotic
    * expansions for @f$ |arg(z)| < 2*\pi/3 @f$.  For speed, the number
@@ -1157,9 +1156,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       __airy(__z, _Ai, _Aip, _Bi, _Bip);
       return _Bi;
     }
+} // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
 } // namespace std
 
 #endif // _GLIBCXX_BITS_SF_AIRY_TCC
