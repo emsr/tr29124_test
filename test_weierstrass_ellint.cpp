@@ -92,7 +92,7 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_weierstrass_ellint > test
     __weierstrass_p(_Tp1 __omega1, _Tp3 __omega3, _Tp __z)
     {
       // @todo Include the arg type _Tp.
-      using _Type = typename std::__detail::__jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome;
+      //using _Type = typename std::__detail::__jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome;
       using _Real = std::__detail::__num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
       const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
