@@ -91,7 +91,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_lolim = _Real{5} * _S_min;
       const auto _S_uplim = _S_max / _Real{5};
 
-      if (__isnan(__x) || __isnan(__y))
+      if (std::isnan(__x) || std::isnan(__y))
 	return _S_NaN;
       else if (std::imag(__x) == _Real{0} && std::real(__x) < _Real{0})
 	std::__throw_domain_error(__N("__ellint_rc: argument less than zero"));
@@ -173,7 +173,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_lolim = _Real{5} * _S_min;
       const auto _S_uplim = _S_max / _Real{5};
 
-      if (__isnan(__x) || __isnan(__y) || __isnan(__z))
+      if (std::isnan(__x) || std::isnan(__y) || std::isnan(__z))
 	return _S_NaN;
       else if ((std::imag(__x) == _Real{0} && std::real(__x) < _Real{0})
 	    || (std::imag(__y) == _Real{0} && std::real(__y) < _Real{0})
@@ -243,7 +243,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__x));
       const auto _S_tolfact = _Real{2.7L} * __gnu_cxx::__sqrt_eps(std::real(__x));
 
-      if (__isnan(__x) || __isnan(__y))
+      if (std::isnan(__x) || std::isnan(__y))
 	return _S_NaN;
       else
 	{
@@ -287,7 +287,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_lolim = _Real(5) * _S_min;
       const auto _S_uplim = _S_max / _Real(5);
 
-      if (__isnan(__x) || __isnan(__y) || __isnan(__z))
+      if (std::isnan(__x) || std::isnan(__y) || std::isnan(__z))
 	return _S_NaN;
       else if (std::imag(__x) == _Real{0} && std::real(__x) < _Real{0}
 	    || std::imag(__y) == _Real{0} && std::real(__y) < _Real{0}
@@ -354,7 +354,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__x));
       const auto _S_tolfact = _Real{2.7L} * __gnu_cxx::__sqrt_eps(std::real(__x));
 
-      if (__isnan(__x) || __isnan(__y))
+      if (std::isnan(__x) || std::isnan(__y))
 	return _S_NaN;
       else if (__x == _Tp{0} && __y == _Tp{})
 	return _Tp{};
@@ -413,7 +413,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__x));
 
-      if (__isnan(__x) || __isnan(__y) || __isnan(__z))
+      if (std::isnan(__x) || std::isnan(__y) || std::isnan(__z))
 	return _S_NaN;
       else if (__z == _Tp{0})
 	return __comp_ellint_rg(__x, __y);
@@ -466,7 +466,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_lolim = _Real(5) * _S_min;
       const auto _S_uplim = _S_max / _Real(5);
 
-      if (__isnan(__x) || __isnan(__y) || __isnan(__z) || __isnan(__p))
+      if (std::isnan(__x) || std::isnan(__y) || std::isnan(__z) || std::isnan(__p))
 	return _S_NaN;
       else if (std::imag(__x) == _Real{0} && std::real(__x) < _Real{0}
 	    || std::imag(__y) == _Real{0} && std::real(__y) < _Real{0}
@@ -570,7 +570,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
 
-      if (__isnan(__k))
+      if (std::isnan(__k))
 	return _S_NaN;
       else if (std::abs(__k) == _Real{1})
 	return _S_NaN;
@@ -600,7 +600,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
       const auto _S_pi = __gnu_cxx::__const_pi(__k);
 
-      if (__isnan(__k) || __isnan(__phi))
+      if (std::isnan(__k) || std::isnan(__phi))
 	return _S_NaN;
       else if (std::abs(__k) > _Real{1})
 	std::__throw_domain_error(__N("__ellint_1: bad argument"));
@@ -644,7 +644,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
 
-      if (__isnan(__k))
+      if (std::isnan(__k))
 	return _S_NaN;
       else if (std::abs(__k) == _Real{1})
 	return _Tp{1};
@@ -681,7 +681,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
       const auto _S_pi = __gnu_cxx::__const_pi(__k);
 
-      if (__isnan(__k) || __isnan(__phi))
+      if (std::isnan(__k) || std::isnan(__phi))
 	return _S_NaN;
       else if (std::abs(__k) > _Real{1})
 	std::__throw_domain_error(__N("__ellint_2: bad argument"));
@@ -734,7 +734,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
 
-      if (__isnan(__k) || __isnan(__nu))
+      if (std::isnan(__k) || std::isnan(__nu))
 	return _S_NaN;
       else if (__nu == _Tp{1})
 	return __gnu_cxx::__infinity(__k);
@@ -774,7 +774,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
       const auto _S_pi = __gnu_cxx::__const_pi(__k);
 
-      if (__isnan(__k) || __isnan(__nu) || __isnan(__phi))
+      if (std::isnan(__k) || std::isnan(__nu) || std::isnan(__phi))
 	return _S_NaN;
       else if (std::abs(__k) > _Real{1})
 	std::__throw_domain_error(__N("__ellint_3: bad argument"));
@@ -814,7 +814,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
 
-      if (__isnan(__k) || __isnan(__phi))
+      if (std::isnan(__k) || std::isnan(__phi))
 	return _S_NaN;
       else if (std::abs(__k) > _Real{1})
 	std::__throw_domain_error(__N("__ellint_d: bad argument"));
@@ -840,7 +840,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
 
-      if (__isnan(__k))
+      if (std::isnan(__k))
 	return _S_NaN;
       else
 	return __ellint_rd(_Tp{0}, _Tp{1} - __k * __k, _Tp{1}) / _Real{3};
@@ -856,7 +856,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__x));
 
-      if (__isnan(__x) || __isnan(__k_c))
+      if (std::isnan(__x) || std::isnan(__k_c))
 	return _S_NaN;
       else
 	{
@@ -877,7 +877,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__x));
 
-      if (__isnan(__x) || __isnan(__k_c) || __isnan(__a) || __isnan(__b))
+      if (std::isnan(__x) || std::isnan(__k_c) || std::isnan(__a) || std::isnan(__b))
 	return _S_NaN;
       else
 	{
@@ -902,7 +902,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__x));
 
-      if (__isnan(__x) || __isnan(__k_c) || __isnan(__p))
+      if (std::isnan(__x) || std::isnan(__k_c) || std::isnan(__p))
 	return _S_NaN;
       else
 	{
@@ -928,7 +928,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k_c);
 
-      if (__isnan(__k_c) || __isnan(__p) || __isnan(__a) || __isnan(__b))
+      if (std::isnan(__k_c) || std::isnan(__p) || std::isnan(__a) || std::isnan(__b))
 	return _S_NaN;
       else
 	{
@@ -951,7 +951,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__k);
       const auto _S_eps = __gnu_cxx::__epsilon(__k);
 
-      if (__isnan(__k) || __isnan(__phi))
+      if (std::isnan(__k) || std::isnan(__phi))
 	return _S_NaN;
       else if (std::abs(__k) > _Real{1})
 	std::__throw_domain_error(__N("__jacobi_zeta: bad argument"));
@@ -989,7 +989,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__k);
       const auto _S_eps = __gnu_cxx::__epsilon(__k);
 
-      if (__isnan(__k) || __isnan(__phi))
+      if (std::isnan(__k) || std::isnan(__phi))
 	return _S_NaN;
       else if (std::abs(__k) > _Tp{1})
 	std::__throw_domain_error(__N("__heuman_lambda: bad argument"));

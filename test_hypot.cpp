@@ -32,7 +32,7 @@ namespace __detail
     constexpr _Tp
     __hypot3(_Tp __x, _Tp __y, _Tp __z)
     {
-      if (__isnan(__x) || __isnan(__y) || __isnan(__z))
+      if (std::isnan(__x) || std::isnan(__y) || std::isnan(__z))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	{
@@ -76,7 +76,7 @@ namespace __detail
     constexpr _Tp
     __hypot3(_Tp __x, _Tp __y, _Tp __z)
     {
-      if (__isnan(__x) || __isnan(__y) || __isnan(__z))
+      if (std::isnan(__x) || std::isnan(__y) || std::isnan(__z))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	{
@@ -111,7 +111,7 @@ namespace __detail
     constexpr __gnu_cxx::__promote_fp_t<_Tp>
     __hypot3(std::complex<_Tp>& __x, std::complex<_Tp>& __y)
     {
-      if (__isnan(__x) || __isnan(__y))
+      if (std::isnan(__x) || std::isnan(__y))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	{
@@ -144,7 +144,7 @@ namespace __detail
     __hypot3(std::complex<_Tp>& __x, std::complex<_Tp>& __y,
 	     std::complex<_Tp>& __z)
     {
-      if (__isnan(__x) || __isnan(__y))
+      if (std::isnan(__x) || std::isnan(__y))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	{

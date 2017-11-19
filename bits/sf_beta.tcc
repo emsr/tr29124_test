@@ -214,7 +214,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __beta(_Tp __a, _Tp __b)
     {
-      if (__isnan(__a) || __isnan(__b))
+      if (std::isnan(__a) || std::isnan(__b))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
       else if (std::abs(__a) < _S_num_factorials<_Tp>
 	    && std::abs(__b) < _S_num_factorials<_Tp>
@@ -315,7 +315,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       if (__x < _Tp{0} || __x > _Tp{1})
 	std::__throw_domain_error(__N("__beta_inc: argument out of range"));
-      else if (__isnan(__x) || __isnan(__a) || __isnan(__b))
+      else if (std::isnan(__x) || std::isnan(__a) || std::isnan(__b))
 	return _S_NaN;
       else if (__a == _Tp{0} && __b == _Tp{0})
 	return _S_NaN;

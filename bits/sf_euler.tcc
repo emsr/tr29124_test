@@ -136,7 +136,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __euler(unsigned int __n, _Tp __x)
     {
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	{

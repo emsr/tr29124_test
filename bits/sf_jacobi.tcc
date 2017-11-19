@@ -60,7 +60,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
 
-      if (__isnan(__alpha1) || __isnan(__beta1) || __isnan(__x))
+      if (std::isnan(__alpha1) || std::isnan(__beta1) || std::isnan(__x))
 	return {__n, __alpha1, __beta1, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
 
       auto __P_nm2 = _Tp{1};
@@ -265,7 +265,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__rho);
 
-      if (__isnan(__rho))
+      if (std::isnan(__rho))
 	return _S_NaN;
 
       if (__m > __n)
@@ -314,7 +314,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__rho);
 
-      if (__isnan(__rho) || __isnan(__phi))
+      if (std::isnan(__rho) || std::isnan(__phi))
 	return _S_NaN;
       else
 	return __poly_radial_jacobi(__n, std::abs(__m), __rho)

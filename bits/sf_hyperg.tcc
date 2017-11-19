@@ -109,7 +109,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __conf_hyperg_lim(_Tp __c, _Tp __x)
     {
       const _Tp __c_nint = std::nearbyint(__c);
-      if (__isnan(__c) || __isnan(__x))
+      if (std::isnan(__c) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__c_nint == __c && __c_nint <= 0)
 	return __gnu_cxx::__infinity(__x);
@@ -281,7 +281,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __conf_hyperg(_Tp __a, _Tp __c, _Tp __x)
     {
       const _Tp __c_nint = std::nearbyint(__c);
-      if (__isnan(__a) || __isnan(__c) || __isnan(__x))
+      if (std::isnan(__a) || std::isnan(__c) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__c_nint == __c && __c_nint <= 0)
 	return __gnu_cxx::__infinity(__x);
@@ -844,8 +844,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       else if (std::abs(__x) >= _Tp{1})
 	std::__throw_domain_error(__N("__hyperg: "
 				      "argument outside unit circle"));
-      else if (__isnan(__a) || __isnan(__b)
-	    || __isnan(__c) || __isnan(__x))
+      else if (std::isnan(__a) || std::isnan(__b)
+	    || std::isnan(__c) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__c_nint == __c && __c_nint <= _Tp{0})
 	return __gnu_cxx::__infinity(__x);

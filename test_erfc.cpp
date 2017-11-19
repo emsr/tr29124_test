@@ -193,7 +193,7 @@ namespace __detail
       using _Cmplx = std::complex<_Real>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__z));
       const auto _S_i = _Cmplx{0, 1};
-      if (__isnan(__z))
+      if (std::isnan(__z))
 	return _Cmplx{_S_NaN, _S_NaN};
       else if (std::real(__z) < _Real{0})
 	return _Real{2} * std::exp(-__z * __z) - __fadeeva(-__z);

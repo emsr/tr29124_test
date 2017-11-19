@@ -64,7 +64,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
 
-      if (__isnan(__alpha1) || __isnan(__x))
+      if (std::isnan(__alpha1) || std::isnan(__x))
 	return _S_NaN;
 
       auto __C_nm2 = _Tp{1};

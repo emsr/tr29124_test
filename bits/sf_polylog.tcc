@@ -988,7 +988,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __gnu_cxx::__promote_fp_t<std::complex<_Tp>, _ArgType>
     __polylog_exp(_Tp __s, _ArgType __w)
     {
-      if (__isnan(__s) || __isnan(__w))
+      if (std::isnan(__s) || std::isnan(__w))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__s > _Tp{25})
 	// Cutoff chosen by some testing on the real axis.
@@ -1024,7 +1024,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __polylog(_Tp __s, _Tp __x)
     {
-      if (__isnan(__s) || __isnan(__x))
+      if (std::isnan(__s) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__s);
       else if (__gnu_cxx::__fp_is_zero(__x))
 	return _Tp{0};
@@ -1065,7 +1065,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __polylog(_Tp __s, std::complex<_Tp> __w)
     {
-      if (__isnan(__s) || __isnan(__w))
+      if (std::isnan(__s) || std::isnan(__w))
 	return __gnu_cxx::__quiet_NaN(__s);
       else if (__gnu_cxx::__fp_is_real(__w))
 	return __polylog(__s, std::real(__w));
@@ -1129,7 +1129,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __dirichlet_eta(std::complex<_Tp> __s)
     {
-      if (__isnan(__s))
+      if (std::isnan(__s))
 	return __gnu_cxx::__quiet_NaN(std::imag(__s));
       else if (__gnu_cxx::__fp_is_real(__s))
 	return -__polylog(std::real(__s), _Tp{-1});
@@ -1153,7 +1153,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __dirichlet_eta(_Tp __s)
     {
-      if (__isnan(__s))
+      if (std::isnan(__s))
 	return __gnu_cxx::__quiet_NaN(__s);
       else if (__s < _Tp{0})
 	{
@@ -1194,7 +1194,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __dirichlet_beta(std::complex<_Tp> __s)
     {
       const auto _S_i = std::complex<_Tp>{0, 1};
-      if (__isnan(__s))
+      if (std::isnan(__s))
 	return __gnu_cxx::__quiet_NaN(std::imag(__s));
       else if (__gnu_cxx::__fp_is_real(__s))
 	return std::imag(__polylog(__s.real(), _S_i));
@@ -1219,7 +1219,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __dirichlet_beta(_Tp __s)
     {
       const auto _S_i = std::complex<_Tp>{0, 1};
-      if (__isnan(__s))
+      if (std::isnan(__s))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	return std::imag(__polylog(__s, _S_i));
@@ -1238,7 +1238,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __dirichlet_lambda(_Tp __s)
     {
-      if (__isnan(__s))
+      if (std::isnan(__s))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	return (__riemann_zeta(__s) + __dirichlet_eta(__s)) / _Tp{2};
@@ -1256,7 +1256,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __clausen(unsigned int __m, std::complex<_Tp> __z)
     {
-      if (__isnan(__z))
+      if (std::isnan(__z))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
 	std::__throw_domain_error(__N("__clausen: Non-positive order"));
@@ -1283,7 +1283,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __clausen(unsigned int __m, _Tp __x)
     {
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
 	std::__throw_domain_error(__N("__clausen: Non-positive order"));
@@ -1311,7 +1311,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __clausen_sl(unsigned int __m, std::complex<_Tp> __z)
     {
-      if (__isnan(__z))
+      if (std::isnan(__z))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
 	std::__throw_domain_error(__N("__clausen_sl: Non-positive order"));
@@ -1339,7 +1339,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __clausen_sl(unsigned int __m, _Tp __x)
     {
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
 	std::__throw_domain_error(__N("__clausen_sl: Non-positive order"));
@@ -1367,7 +1367,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __clausen_cl(unsigned int __m, std::complex<_Tp> __z)
     {
-      if (__isnan(__z))
+      if (std::isnan(__z))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
 	std::__throw_domain_error(__N("__clausen_cl: Non-positive order"));
@@ -1395,7 +1395,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __clausen_cl(unsigned int __m, _Tp __x)
     {
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
 	std::__throw_domain_error(__N("__clausen_cl: Non-positive order"));
@@ -1429,7 +1429,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __fermi_dirac(_Sp __s, _Tp __x)
     {
-      if (__isnan(__s) || __isnan(__x))
+      if (std::isnan(__s) || std::isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__s <= _Sp{-1})
 	std::__throw_domain_error(__N("__fermi_dirac: "
@@ -1461,7 +1461,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __bose_einstein(_Sp __s, _Tp __x)
     {
-      if (__isnan(__s) || __isnan(__x))
+      if (std::isnan(__s) || std::isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__s <= _Sp{0} && __x < _Tp{0})
 	std::__throw_domain_error(__N("__bose_einstein: "

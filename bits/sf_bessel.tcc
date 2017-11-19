@@ -561,7 +561,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_j: bad argument"));
-      else if (__isnan(__nu) || __isnan(__x))
+      else if (std::isnan(__nu) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__nu >= _Tp{0} && __x * __x < _Tp{10} * (__nu + _Tp{1}))
 	return __cyl_bessel_ij_series(__nu, __x, -_Tp{1}, 200);
@@ -592,7 +592,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_neumann_n: bad argument"));
-      else if (__isnan(__nu) || __isnan(__x))
+      else if (std::isnan(__nu) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else
 	return __cyl_bessel_jn(__nu, __x).__N_value;
@@ -623,7 +623,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__nu < _Tp{0})
 	return __polar_pi(_Tp{1}, -__nu)
 	     * __cyl_hankel_1(-__nu, __x);
-      else if (__isnan(__x))
+      else if (std::isnan(__x))
 	return _Cmplx{_S_nan, _S_nan};
       else if (__x < _Tp{0})
 	{
@@ -662,7 +662,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__nu < _Tp{0})
 	return __polar_pi(_Tp{1}, __nu)
 	     * __cyl_hankel_2(-__nu, __x);
-      else if (__isnan(__x))
+      else if (std::isnan(__x))
 	return _Cmplx{_S_nan, _S_nan};
       else if (__x < _Tp{0})
 	{
@@ -761,7 +761,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__sph_bessel: bad argument"));
-      else if (__isnan(__x))
+      else if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x == _Tp{0})
 	{
@@ -794,7 +794,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__sph_neumann: bad argument"));
-      else if (__isnan(__x))
+      else if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x == _Tp{0})
 	return -__gnu_cxx::__infinity(__x);
@@ -823,7 +823,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Cmplx = std::complex<_Tp>;
       constexpr _Cmplx _S_i{0, 1};
       const auto _S_nan = __gnu_cxx::__quiet_NaN(__x);
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return _Cmplx{_S_nan, _S_nan};
       else if (__x < _Tp{0})
 	{
@@ -858,7 +858,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using _Cmplx = std::complex<_Tp>;
       constexpr _Cmplx _S_i{0, 1};
       const auto _S_nan = __gnu_cxx::__quiet_NaN(__x);
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return _Cmplx{_S_nan, _S_nan};
       else if (__x < _Tp{0})
 	{

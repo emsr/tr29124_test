@@ -248,7 +248,8 @@ template<typename _Tp>
     {
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__r);
 
-      if (__isnan(__Z) || __isnan(__r) || __isnan(__theta) || __isnan(__phi))
+      if (std::isnan(__Z) || std::isnan(__r)
+	 || std::isnan(__theta) || std::isnan(__phi))
 	return std::complex<_Tp>{_S_NaN, _S_NaN};
       else if(__n < 1)
 	std::__throw_domain_error(__N("__hydrogen: "

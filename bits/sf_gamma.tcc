@@ -2247,7 +2247,7 @@ _S_neg_double_factorial_table[999]
     {
       using _Real = std::__detail::__num_traits_t<_Tp>;
 
-      if (std::__detail::__isnan(__a))
+      if (std::isnan(__a))
 	return __gnu_cxx::__quiet_NaN(__a);
       else
 	{
@@ -2578,7 +2578,7 @@ _S_neg_double_factorial_table[999]
       using _Real = std::__detail::__num_traits_t<_Val>;
       // Max e exponent before overflow.
       auto __n = int(std::nearbyint(__nu));
-      if (__isnan(__nu))
+      if (std::isnan(__nu))
 	return __gnu_cxx::__quiet_NaN(__nu);
       else if (__nu == __n && __n >= 0 && __n < _S_num_factorials<_Real>)
 	return __binomial<_Tp>((unsigned int)__n, __k);
@@ -2746,7 +2746,7 @@ _S_neg_double_factorial_table[999]
       using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__a);
 
-      if (__isnan(__a) || __isnan(__x))
+      if (std::isnan(__a) || std::isnan(__x))
 	return std::make_pair(_S_NaN, _S_NaN);
 
       auto __ia = __gnu_cxx::__fp_is_integer(__a);
@@ -2785,7 +2785,7 @@ _S_neg_double_factorial_table[999]
       using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__a);
 
-      if (__isnan(__a) || __isnan(__x))
+      if (std::isnan(__a) || std::isnan(__x))
 	return _S_NaN;
 
       auto __ia = __gnu_cxx::__fp_is_integer(__a);
@@ -2819,7 +2819,7 @@ _S_neg_double_factorial_table[999]
       using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__a);
 
-      if (__isnan(__a) || __isnan(__x))
+      if (std::isnan(__a) || std::isnan(__x))
 	return _S_NaN;
 
       auto __ia = __gnu_cxx::__fp_is_integer(__a);
@@ -2848,7 +2848,7 @@ _S_neg_double_factorial_table[999]
       using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__a);
 
-      if (__isnan(__a) || __isnan(__x))
+      if (std::isnan(__a) || std::isnan(__x))
 	return _S_NaN;
 
       auto __ia = __gnu_cxx::__fp_is_integer(__a);
@@ -2883,7 +2883,7 @@ _S_neg_double_factorial_table[999]
       using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__a);
 
-      if (__isnan(__a) || __isnan(__x))
+      if (std::isnan(__a) || std::isnan(__x))
 	return _S_NaN;
 
       auto __ia = __gnu_cxx::__fp_is_integer(__a);
@@ -2922,7 +2922,7 @@ _S_neg_double_factorial_table[999]
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
       const auto __ia = __gnu_cxx::__fp_is_integer(__a);
 
-      if (__isnan(__a))
+      if (std::isnan(__a))
 	return __gnu_cxx::__quiet_NaN(std::real(__a));
       else if (__n == 0)
 	return _Tp{1};
@@ -2979,7 +2979,7 @@ _S_neg_double_factorial_table[999]
       const auto __inu = __gnu_cxx::__fp_is_integer(__nu);
       const auto __ia = __gnu_cxx::__fp_is_integer(__a);
 
-      if (__isnan(__nu) || __isnan(__a))
+      if (std::isnan(__nu) || std::isnan(__a))
 	return __gnu_cxx::__quiet_NaN(std::real(__a));
       else if (__nu == _Tp{0})
 	return _Tp{1};
@@ -3034,7 +3034,7 @@ _S_neg_double_factorial_table[999]
       const auto __inu = __gnu_cxx::__fp_is_integer(__nu);
       const auto __ia = __gnu_cxx::__fp_is_integer(__a);
 
-      if (__isnan(__nu) || __isnan(__a))
+      if (std::isnan(__nu) || std::isnan(__a))
 	return _S_NaN;
       else if (__nu == _Tp{0})
 	return _Tp{0};
@@ -3080,7 +3080,7 @@ _S_neg_double_factorial_table[999]
       using _Real = std::__detail::__num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
 
-      if (__isnan(__a))
+      if (std::isnan(__a))
 	return __gnu_cxx::__quiet_NaN(std::real(__a));
       else if (__n == 0)
 	return _Tp{1};
@@ -3133,7 +3133,7 @@ _S_neg_double_factorial_table[999]
     {
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
 
-      if (__isnan(__nu) || __isnan(__a))
+      if (std::isnan(__nu) || std::isnan(__a))
 	return __gnu_cxx::__quiet_NaN(__a);
       else if (__nu == _Tp{0})
 	return _Tp{1};
@@ -3178,7 +3178,7 @@ _S_neg_double_factorial_table[999]
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
 
-      if (__isnan(__nu) || __isnan(__a))
+      if (std::isnan(__nu) || std::isnan(__a))
 	return __gnu_cxx::__quiet_NaN(__a);
       else if (__nu == _Tp{0})
 	return _Tp{0};

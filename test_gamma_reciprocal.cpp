@@ -181,7 +181,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_rec
     {
       using _Real = std::__detail::__num_traits_t<_Tp>;
 
-      if (std::__detail::__isnan(__a))
+      if (std::isnan(__a))
 	return __gnu_cxx::__quiet_NaN(__a);
       else
 	{

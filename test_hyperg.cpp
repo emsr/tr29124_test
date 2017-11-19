@@ -23,7 +23,7 @@ PATH=wrappers/debug:$PATH ./test_hyperg > test_hyperg.txt
 
   template<typename _Tp>
     bool
-    __isnan(_Tp __x)
+    std::isnan(_Tp __x)
     { return std::isnan(__x); }
 
   /**
@@ -92,7 +92,8 @@ PATH=wrappers/debug:$PATH ./test_hyperg > test_hyperg.txt
       auto __dint = __gnu_cxx::__fp_is_integer(__d);
       const auto __toler = _Tp{1000} * __gnu_cxx::__epsilon(__x);
 
-      if (__isnan(__a) || __isnan(__b) || __isnan(__c) || __isnan(__x))
+      if (std::isnan(__a) || std::isnan(__b)
+	 || std::isnan(__c) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__cint && __cint() <= 0)
 	return __gnu_cxx::__infinity(__x);

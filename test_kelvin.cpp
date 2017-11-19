@@ -557,7 +557,7 @@ namespace __detail
     __kelvin_ber(_Real __x)
     {
       const auto _S_switch = _Real{26};
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Real>();
       else if (std::abs(__x) < _S_switch)
 	return __kelvin_ber_series(__x);
@@ -573,7 +573,7 @@ namespace __detail
     __kelvin_bei(_Real __x)
     {
       const auto _S_switch = _Real{26};
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Real>();
       else if (std::abs(__x) < _S_switch)
 	return __kelvin_bei_series(__x);
@@ -589,7 +589,7 @@ namespace __detail
     __kelvin_ker(_Real __x)
     {
       const auto _S_switch = _Real{5};
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Real>();
       else if (std::abs(__x) < _S_switch)
 	return __kelvin_ker_series(__x);
@@ -605,7 +605,7 @@ namespace __detail
     __kelvin_kei(_Real __x)
     {
       const auto _S_switch = _Real{5};
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Real>();
       else if (std::abs(__x) < _S_switch)
 	return __kelvin_kei_series(__x);
@@ -621,7 +621,7 @@ namespace __detail
     __kelvin_ber(_Real __nu, _Real __x)
     {
       const auto _S_switch = _Real{26};
-      if (__isnan(__nu) || __isnan(__x))
+      if (std::isnan(__nu) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Real>();
       else if (std::abs(__x) < _S_switch)
 	return __kelvin_series(__nu, __x).__ber;
@@ -637,7 +637,7 @@ namespace __detail
     __kelvin_bei(_Real __nu, _Real __x)
     {
       const auto _S_switch = _Real{26};
-      if (__isnan(__nu) || __isnan(__x))
+      if (std::isnan(__nu) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Real>();
       else if (std::abs(__x) < _S_switch)
 	return __kelvin_series(__nu, __x).__bei;
@@ -653,7 +653,7 @@ namespace __detail
     __kelvin_ker(_Real __nu, _Real __x)
     {
       const auto _S_switch = _Real{5};
-      if (__isnan(__nu) || __isnan(__x))
+      if (std::isnan(__nu) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Real>();
       else if (std::abs(__x) < _S_switch)
 	return __kelvin_series(__nu, __x).__ker;
@@ -669,7 +669,7 @@ namespace __detail
     __kelvin_kei(_Real __nu, _Real __x)
     {
       const auto _S_switch = _Real{5};
-      if (__isnan(__nu) || __isnan(__x))
+      if (std::isnan(__nu) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN<_Real>();
       else if (std::abs(__x) < _S_switch)
 	return __kelvin_series(__nu, __x).__kei;

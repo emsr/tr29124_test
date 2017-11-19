@@ -93,40 +93,10 @@ namespace __detail
     };
 
 
-#if _GLIBCXX_USE_C99_MATH && !_GLIBCXX_USE_C99_FP_MACROS_DYNAMIC
-
-  /// This is a wrapper for the isnan function. Otherwise, for NaN,
-  /// all comparisons result in false. If/when we build a std::isnan
-  /// out of intrinsics, this will disappear completely in favor of
-  /// std::isnan.
-  template<typename _Tp>
-    inline bool
-    __isnan(const _Tp __x)
-    { return std::isnan(__x); }
-
-#else
-
-  template<typename _Tp>
-    inline bool
-    __isnan(const _Tp __x)
-    { return __builtin_isnan(__x); }
-
-  template<>
-    inline bool
-    __isnan<float>(const float __x)
-    { return __builtin_isnanf(__x); }
-
-  template<>
-    inline bool
-    __isnan<long double>(const long double __x)
-    { return __builtin_isnanl(__x); }
-
-#endif
-
   template<typename _Tp>
     inline bool
     __isnan(const std::complex<_Tp>& __x)
-    { return __isnan(std::real(__x)) || __isnan(std::imag(__x)); }
+    { return std::isnan(std::real(__x)) || std::isnan(std::imag(__x)); }
 
 
   template<typename _Tp>
@@ -591,7 +561,7 @@ namespace __detail
     _Tp
     __comp_ellint_1(const _Tp __k)
     {
-      if (__isnan(__k))
+      if (std::isnan(__k))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       //else if (std::abs(__k) >= _Tp(1))
 	//return std::numeric_limits<_Tp>::quiet_NaN();
@@ -617,7 +587,7 @@ namespace __detail
     _Tp
     __ellint_1(const _Tp __k, const _Tp __phi)
     {
-      if (__isnan(__k) || __isnan(__phi))
+      if (std::isnan(__k) || std::isnan(__phi))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (std::abs(__k) > _Tp(1))
 	std::__throw_domain_error(__N("Bad argument in __ellint_1."));
@@ -659,7 +629,7 @@ namespace __detail
     _Tp
     __comp_ellint_2(const _Tp __k)
     {
-      if (__isnan(__k))
+      if (std::isnan(__k))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (std::abs(__k) == 1)
 	return _Tp(1);
@@ -691,7 +661,7 @@ namespace __detail
     _Tp
     __ellint_2(const _Tp __k, const _Tp __phi)
     {
-      if (__isnan(__k) || __isnan(__phi))
+      if (std::isnan(__k) || std::isnan(__phi))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (std::abs(__k) > _Tp(1))
 	std::__throw_domain_error(__N("Bad argument in __ellint_2."));
@@ -743,7 +713,7 @@ namespace __detail
     _Tp
     __comp_ellint_3(const _Tp __k, const _Tp __nu)
     {
-      if (__isnan(__k) || __isnan(__nu))
+      if (std::isnan(__k) || std::isnan(__nu))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__nu == _Tp(1))
 	return std::numeric_limits<_Tp>::infinity();
@@ -781,7 +751,7 @@ namespace __detail
     _Tp
     __ellint_3(const _Tp __k, const _Tp __nu, const _Tp __phi)
     {
-      if (__isnan(__k) || __isnan(__nu) || __isnan(__phi))
+      if (std::isnan(__k) || std::isnan(__nu) || std::isnan(__phi))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (std::abs(__k) > _Tp(1))
 	std::__throw_domain_error(__N("Bad argument in __ellint_3."));

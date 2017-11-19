@@ -373,7 +373,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_i: bad argument"));
-      else if (__isnan(__nu) || __isnan(__x))
+      else if (std::isnan(__nu) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__nu >= _Tp{0} && __x * __x < _Tp{10} * (__nu + _Tp{1}))
 	return __cyl_bessel_ij_series(__nu, __x, +_Tp{1}, 200);
@@ -407,7 +407,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_k: Bad argument"));
-      else if (__isnan(__nu) || __isnan(__x))
+      else if (std::isnan(__nu) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else
 	return __cyl_bessel_ik(__nu, __x).__K_value;
@@ -431,7 +431,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using __sph_t = __gnu_cxx::__sph_mod_bessel_t<unsigned int, _Tp, _Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
 
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return __sph_t{__n, __x, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
       else if (__x == _Tp{0})
 	{
@@ -484,7 +484,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __rootz = std::sqrt(__absz);
       const auto __xi = _Tp{2} * __absz * __rootz / _Tp{3};
 
-      if (__isnan(__z))
+      if (std::isnan(__z))
 	return __ai_t{__z, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
       else if (__z == _S_inf)
 	return __ai_t{__z, _Tp{0}, _Tp{0}, _S_inf, _S_inf};

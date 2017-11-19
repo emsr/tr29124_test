@@ -166,7 +166,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __chshint(_Tp __x, _Tp& _Chi, _Tp& _Shi)
     {
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return std::make_pair(_S_NaN, _S_NaN);
 
       auto __t = std::abs(__x);

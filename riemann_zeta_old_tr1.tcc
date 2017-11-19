@@ -294,7 +294,7 @@ namespace tr1
     _Tp
     __riemann_zeta(_Tp __s)
     {
-      if (__isnan(__s))
+      if (std::isnsn(__s))
         return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__s == _Tp(1))
         return std::numeric_limits<_Tp>::infinity();

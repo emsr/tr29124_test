@@ -234,7 +234,7 @@ namespace __detail
       const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
       const auto _S_eps = __gnu_cxx::__epsilon(__s);
 
-      if (__isnan(__z) || __isnan(__s) || __isnan(__a))
+      if (std::isnan(__z) || std::isnan(__s) || std::isnan(__a))
 	return _S_nan;
       else if (std::abs(std::abs(__z) - _Tp{1}) < _S_eps
 		&& std::real(__s) <= _Tp{1} + _S_eps)

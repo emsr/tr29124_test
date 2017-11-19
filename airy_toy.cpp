@@ -4681,7 +4681,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
       using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
       //using _InnerSum = __gnu_cxx::_AitkenDeltaSquaredSum<_OuterSum>;
 
-      if (std::__detail::__isnan(__y))
+      if (std::isnan(__y))
 	return __airy_t<_Cmplx, _Cmplx>{__y, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
 
       auto __absargy = std::abs(std::arg(__y));
@@ -4893,7 +4893,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
       using _OuterSum = __gnu_cxx::_KahanSum<_Val>;
       using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
 
-      if (std::__detail::__isnan(__y))
+      if (std::isnan(__y))
 	return __scorer_t<_Val, _Val>{__y, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
 
       auto __absargy = std::abs(std::arg(__y));
@@ -6058,7 +6058,7 @@ namespace __detail
 
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__scorer_gi: bad argument"));
-      else if (__isnan(__x))
+      else if (std::isnan(__x))
 	return _S_nan;
       else
 	{
@@ -6078,7 +6078,7 @@ namespace __detail
 
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__scorer_hi: bad argument"));
-      else if (__isnan(__x))
+      else if (std::isnan(__x))
 	return _S_nan;
       else
 	{

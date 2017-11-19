@@ -475,7 +475,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint(unsigned int __n, _Tp __x)
     {
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__n <= 1 && __x == _Tp{0})
 	return __gnu_cxx::__infinity(__x);
@@ -516,7 +516,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __expint(_Tp __x)
     {
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else
 	return __expint_Ei(__x);
@@ -537,7 +537,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __logint(const _Tp __x)
     {
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (std::abs(__x) == _Tp{1})
 	return __gnu_cxx::__infinity(__x);
@@ -560,7 +560,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __coshint(const _Tp __x)
     {
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x == _Tp{0})
 	return _Tp{0};
@@ -583,7 +583,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __sinhint(const _Tp __x)
     {
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else
 	return (__expint_Ei(__x) + __expint_E1(__x)) / _Tp{2};
