@@ -1386,7 +1386,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the confluent hypergeometric function @f$ {}_1F_1(a;c;x) @f$
-   * of @c float numeratorial parameter @f$ a @f$, denominatorial parameter @f$ c @f$,
+   * of @c float numerator parameter @f$ a @f$, denominator parameter @f$ c @f$,
    * and argument @f$ x @f$.
    *
    * @see conf_hyperg for details.
@@ -1397,8 +1397,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the confluent hypergeometric function @f$ {}_1F_1(a;c;x) @f$
-   * of <tt>long double</tt> numeratorial parameter @f$ a @f$,
-   * denominatorial parameter @f$ c @f$, and argument @f$ x @f$.
+   * of <tt>long double</tt> numerator parameter @f$ a @f$,
+   * denominator parameter @f$ c @f$, and argument @f$ x @f$.
    *
    * @see conf_hyperg for details.
    */
@@ -1408,7 +1408,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the confluent hypergeometric function @f$ {}_1F_1(a;c;x) @f$
-   * of real numeratorial parameter @f$ a @f$, denominatorial parameter @f$ c @f$,
+   * of real numerator parameter @f$ a @f$, denominator parameter @f$ c @f$,
    * and argument @f$ x @f$.
    *
    * The confluent hypergeometric function is defined by
@@ -1418,8 +1418,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * where the Pochhammer symbol is @f$ (x)_k = (x)(x+1)...(x+k-1) @f$,
    * @f$ (x)_0 = 1 @f$
    *
-   * @param __a The numeratorial parameter
-   * @param __c The denominatorial parameter
+   * @param __a The numerator parameter
+   * @param __c The denominator parameter
    * @param __x The argument
    */
   template<typename _Tpa, typename _Tpc, typename _Tp>
@@ -1434,7 +1434,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Tricomi confluent hypergeometric function @f$ U(a,c,x) @f$
-   * of @c float numeratorial parameter @f$ a @f$, denominatorial parameter @f$ c @f$,
+   * of @c float numerator parameter @f$ a @f$, denominator parameter @f$ c @f$,
    * and argument @f$ x @f$.
    *
    * @see tricomi_u for details.
@@ -1445,8 +1445,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Tricomi confluent hypergeometric function @f$ U(a,c,x) @f$
-   * of <tt>long double</tt> numeratorial parameter @f$ a @f$,
-   * denominatorial parameter @f$ c @f$, and argument @f$ x @f$.
+   * of <tt>long double</tt> numerator parameter @f$ a @f$,
+   * denominator parameter @f$ c @f$, and argument @f$ x @f$.
    *
    * @see tricomi_u for details.
    */
@@ -1456,7 +1456,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Tricomi confluent hypergeometric function @f$ U(a,c,x) @f$
-   * of real numeratorial parameter @f$ a @f$, denominatorial parameter @f$ c @f$,
+   * of real numerator parameter @f$ a @f$, denominator parameter @f$ c @f$,
    * and argument @f$ x @f$.
    *
    * The Tricomi confluent hypergeometric function is defined by
@@ -1468,8 +1468,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @see conf_hyperg.
    *
-   * @param __a The numeratorial parameter
-   * @param __c The denominatorial parameter
+   * @param __a The numerator parameter
+   * @param __c The denominator parameter
    * @param __x The argument
    */
   template<typename _Tpa, typename _Tpc, typename _Tp>
@@ -1484,8 +1484,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$
-   * of @ float numeratorial parameters @f$ a @f$ and @f$ b @f$,
-   * denominatorial parameter @f$ c @f$, and argument @f$ x @f$.
+   * of @ float numerator parameters @f$ a @f$ and @f$ b @f$,
+   * denominator parameter @f$ c @f$, and argument @f$ x @f$.
    *
    * @see hyperg for details.
    */
@@ -1495,8 +1495,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$
-   * of <tt>long double</tt> numeratorial parameters @f$ a @f$ and @f$ b @f$,
-   * denominatorial parameter @f$ c @f$, and argument @f$ x @f$.
+   * of <tt>long double</tt> numerator parameters @f$ a @f$ and @f$ b @f$,
+   * denominator parameter @f$ c @f$, and argument @f$ x @f$.
    *
    * @see hyperg for details.
    */
@@ -1506,8 +1506,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$
-   * of real numeratorial parameters @f$ a @f$ and @f$ b @f$,
-   * denominatorial parameter @f$ c @f$, and argument @f$ x @f$.
+   * of real numerator parameters @f$ a @f$ and @f$ b @f$,
+   * denominator parameter @f$ c @f$, and argument @f$ x @f$.
    *
    * The hypergeometric function is defined by
    * @f[
@@ -1516,9 +1516,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * where the Pochhammer symbol is @f$ (x)_k = (x)(x+1)...(x+k-1) @f$,
    * @f$ (x)_0 = 1 @f$
    *
-   * @param __a The first numeratorial parameter
-   * @param __b The second numeratorial parameter
-   * @param __c The denominatorial parameter
+   * @param __a The first numerator parameter
+   * @param __b The second numerator parameter
+   * @param __c The denominator parameter
    * @param __x The argument
    */
   template<typename _Tpa, typename _Tpb, typename _Tpc, typename _Tp>
@@ -1535,7 +1535,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the confluent hypergeometric limit function @f$ {}_0F_1(;c;x) @f$
-   * of @c float numeratorial parameter @f$ c @f$ and argument @f$ x @f$.
+   * of @c float numerator parameter @f$ c @f$ and argument @f$ x @f$.
    *
    * @see conf_hyperg_lim for details.
    */
@@ -1545,7 +1545,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the confluent hypergeometric limit function @f$ {}_0F_1(;c;x) @f$
-   * of <tt>long double</tt> numeratorial parameter @f$ c @f$ and argument @f$ x @f$.
+   * of <tt>long double</tt> numerator parameter @f$ c @f$ and argument @f$ x @f$.
    *
    * @see conf_hyperg_lim for details.
    */
@@ -1555,7 +1555,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the confluent hypergeometric limit function @f$ {}_0F_1(;c;x) @f$
-   * of real numeratorial parameter @f$ c @f$ and argument @f$ x @f$.
+   * of real numerator parameter @f$ c @f$ and argument @f$ x @f$.
    *
    * The confluent hypergeometric limit function is defined by
    * @f[
@@ -1564,7 +1564,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * where the Pochhammer symbol is @f$ (x)_k = (x)(x+1)...(x+k-1) @f$,
    * @f$ (x)_0 = 1 @f$
    *
-   * @param __c The denominatorial parameter
+   * @param __c The denominator parameter
    * @param __x The argument
    */
   template<typename _Tpc, typename _Tp>
