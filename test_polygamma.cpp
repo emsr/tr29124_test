@@ -123,7 +123,7 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  __test_trigamma(_Tp __proto)
+  test_trigamma(_Tp __proto)
   {
     std::cout.precision(__gnu_cxx::__digits10(__proto));
     std::cout << std::showpoint << std::scientific;
@@ -151,7 +151,7 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  __test_tetragamma(_Tp __proto)
+  test_tetragamma(_Tp __proto)
   {
     std::cout.precision(__gnu_cxx::__digits10(__proto));
     std::cout << std::showpoint << std::scientific;
@@ -177,6 +177,32 @@ template<typename _Tp>
       }
   }
 
+/**
+ * Get the polygamma reflection polynomial.
+ *
+ * From boost (c = cos(pi*x), polynomials are even - i.e. in c*c):
+ *  {-1}
+ *  c * {2}
+ *  { -2, -4 }
+ *  c * { 16, 8 }
+ *  { -16, -88, -16 }
+ *  c * { 272, 416, 32 }
+ *  { -272, -2880, -1824, -64 }
+ *  c * { 7936, 24576, 7680, 128 }
+ *  { -7936, -137216, -185856, -31616, -256 }
+ *  c * { 353792, 1841152, 1304832, 128512, 512 }
+ *  { -353792, -9061376, -21253376, -8728576, -518656, -1024}
+ *  c * { 22368256, 175627264, 222398464, 56520704, 2084864, 2048 }
+ *  // if have long long
+ *  { -22368256LL, -795300864LL, -2868264960LL, -2174832640LL, -357888000LL, -8361984LL, -4096LL }
+ *  c * { 1903757312LL, 21016670208LL, 41731645440LL, 20261765120LL, 2230947840LL, 33497088LL, 8192LL }
+ *  { -1903757312LL, -89702612992LL, -460858269696LL, -559148810240LL, -182172651520LL, -13754155008LL, -134094848LL, -16384LL }
+ *  c * { 209865342976LL, 3099269660672LL, 8885192097792LL, 7048869314560LL, 1594922762240LL, 84134068224LL, 536608768LL, 32768LL }
+ *  { -209865342976LL, -12655654469632LL, -87815735738368LL, -155964390375424LL, -84842998005760LL, -13684856848384LL, -511780323328LL, -2146926592LL, -65536LL }
+ *  c * { 29088885112832LL, 553753414467584LL, 2165206642589696LL, 2550316668551168LL, 985278548541440LL, 115620218667008LL, 3100738912256LL, 8588754944LL, 131072LL }
+ *  { -29088885112832LL, -2184860175433728LL, -19686087844429824LL, -48165109676113920LL, -39471306959486976LL, -11124607890751488LL, -965271355195392LL, -18733264797696LL, -34357248000LL, -262144LL }
+ *  c * { 4951498053124096LL, 118071834535526400LL, 603968063567560704LL, 990081991141490688LL, 584901762421358592LL, 122829335169859584LL, 7984436548730880LL, 112949304754176LL, 137433710592LL, 524288LL }
+ */
 template<typename _Tp>
   __gnu_cxx::_Polynomial<_Tp>
   __polygamma_poly(unsigned int __n)
@@ -188,18 +214,38 @@ template<typename _Tp>
     else
       {
 	auto __P = __a;
-	auto __Pp = __P.deriv();
+	auto __Pp = __P.derivative();
 	for (unsigned int __k = 0; __k < __n; ++__k)
-	{
-	  __P = -(_Tp(__k + 1) * __a * __P + __b * __Pp);
-	  __Pp = __P.deriv();
-	}
+	  {
+	    __P = -(_Tp(__k + 1) * __a * __P + __b * __Pp);
+	    __Pp = __P.derivative();
+	  }
+	return __P;
       }
   }
+
+template<typename _Tp>
+  void
+  test_polygamma_poly(_Tp __proto)
+  {
+    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout << std::showpoint << std::scientific;
+    //auto w = 8 + std::cout.precision();
+
+    for (int n = 0; n <= 20; ++n)
+      {
+	auto P = __polygamma_poly<_Tp>(n);
+	std::cout << P << '\n';
+      }
+  }
+
 
 int
 main()
 {
-  __test_trigamma(1.0);
-  __test_tetragamma(1.0);
+  test_trigamma(1.0);
+
+  test_tetragamma(1.0);
+
+  test_polygamma_poly(1LL);
 }
