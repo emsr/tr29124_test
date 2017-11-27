@@ -330,7 +330,11 @@ namespace __gnu_cxx
 
   inline __float128
   psiq(__float128 __x)
-  { return std::__detail::__psi<__float128>(__x); }
+  { return std::__detail::__digamma<__float128>(__x); }
+
+  inline __float128
+  polygammaq(unsigned int __m, __float128 __x)
+  { return std::__detail::__polygamma<__float128>(__m, __x); }
 
   inline __float128
   ibetaq(__float128 __a, __float128 __b, __float128 __x)
