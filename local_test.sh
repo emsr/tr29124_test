@@ -110,6 +110,7 @@ ${makedir} ${text_dir}/eulerian_1
 ${makedir} ${text_dir}/eulerian_2
 ${makedir} ${text_dir}/expint
 ${makedir} ${text_dir}/factorial
+${makedir} ${text_dir}/falling_factorial
 ${makedir} ${text_dir}/fresnel_c
 ${makedir} ${text_dir}/fresnel_s
 ${makedir} ${text_dir}/gamma_reciprocal
@@ -127,16 +128,16 @@ ${makedir} ${text_dir}/lbinomial
 ${makedir} ${text_dir}/ldouble_factorial
 ${makedir} ${text_dir}/legendre_q
 ${makedir} ${text_dir}/lfactorial
-${makedir} ${text_dir}/lgamma
 ${makedir} ${text_dir}/lfalling_factorial
+${makedir} ${text_dir}/lgamma
 ${makedir} ${text_dir}/lrising_factorial
 ${makedir} ${text_dir}/owens_t
 ${makedir} ${text_dir}/pgamma
-${makedir} ${text_dir}/falling_factorial
-${makedir} ${text_dir}/rising_factorial
+${makedir} ${text_dir}/polygamma
 ${makedir} ${text_dir}/psi
 ${makedir} ${text_dir}/qgamma
 ${makedir} ${text_dir}/radpoly
+${makedir} ${text_dir}/rising_factorial
 ${makedir} ${text_dir}/sinc
 ${makedir} ${text_dir}/sinc_pi
 ${makedir} ${text_dir}/sinhint
