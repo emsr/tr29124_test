@@ -396,7 +396,7 @@ namespace __detail
 	    }
 
 	  __gnu_cxx::_BasicSum<_Cmplx> __ke2;
-	  auto __hsum2 = __psi<_Real>(1) + __psi<_Real>(1 + __n);
+	  auto __hsum2 = __digamma<_Real>(1) + __digamma<_Real>(1 + __n);
 	  auto __kterm2 = _Real{1};
 	  auto __karg2 = _S_3pi_4 * _Real(__n);
 	  __ke2 += std::polar(__hsum2 * __kterm2, __karg2);

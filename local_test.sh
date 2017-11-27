@@ -225,6 +225,7 @@ ${tool} check/check_lrising_factorial.cc  ${text_dir}/lrising_factorial/check_va
 ${tool} check/check_owens_t.cc            ${text_dir}/owens_t/check_value.cc
 ${tool} check/check_pgamma.cc             ${text_dir}/pgamma/check_value.cc
 ${tool} check/check_psi.cc                ${text_dir}/psi/check_value.cc
+${tool} check/check_polygamma.cc          ${text_dir}/polygamma/check_value.cc
 ${tool} check/check_qgamma.cc             ${text_dir}/qgamma/check_value.cc
 ${tool} check/check_radpoly.cc            ${text_dir}/radpoly/check_value.cc
 ${tool} check/check_rising_factorial.cc   ${text_dir}/rising_factorial/check_value.cc

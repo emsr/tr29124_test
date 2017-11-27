@@ -30,10 +30,8 @@ check_cyl_neumann
 check_dawson
 check_dilog
 check_dirichlet_beta
-line 274  max_abs_frac = 0.0411383
 check_dirichlet_eta
 check_dirichlet_lambda
-line 274  max_abs_frac = inf
 check_double_factorial
 check_ellint_1
 check_ellint_2

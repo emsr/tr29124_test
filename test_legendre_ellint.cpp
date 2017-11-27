@@ -3,7 +3,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_l
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_legendre_ellint > test_legendre_ellint.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_legendre_ellint test_legendre_ellint.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-PATH=wrappers/debug:$PATH ./test_legendre_ellint > test_legendre_ellint.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_legendre_ellint > test_legendre_ellint.txt
 */
 
 #include <cmath>

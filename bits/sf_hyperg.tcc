@@ -641,9 +641,9 @@ namespace __detail
 	      // Proceed with evaluation.
 	      const int __maxiter = 2000;
 	      const auto __psi_1 = -__gnu_cxx::__const_gamma_e(__x);
-	      const auto __psi_1pd = __psi(_Tp{1} + __ad);
-	      const auto __psi_apd1 = __psi(__a + __d1);
-	      const auto __psi_bpd1 = __psi(__b + __d1);
+	      const auto __psi_1pd = __digamma(_Tp{1} + __ad);
+	      const auto __psi_apd1 = __digamma(__a + __d1);
+	      const auto __psi_bpd1 = __digamma(__b + __d1);
 
 	      auto __psi_term = __psi_1 + __psi_1pd - __psi_apd1
 			      - __psi_bpd1 - __ln_omx;

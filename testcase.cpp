@@ -191,6 +191,7 @@ template<typename Real>
     using       std::expint;
     using __gnu_cxx::expint;
     using __gnu_cxx::factorial;
+    using __gnu_cxx::falling_factorial;
     using __gnu_cxx::fresnel_c;
     using __gnu_cxx::fresnel_s;
     using __gnu_cxx::gegenbauer;
@@ -215,12 +216,12 @@ template<typename Real>
     using __gnu_cxx::lrising_factorial;
     using __gnu_cxx::owens_t;
     using __gnu_cxx::pgamma;
-    using __gnu_cxx::falling_factorial;
-    using __gnu_cxx::rising_factorial;
+    using __gnu_cxx::polygamma;
     using __gnu_cxx::psi;
     using __gnu_cxx::qgamma;
     using __gnu_cxx::radpoly;
     using       std::riemann_zeta;
+    using __gnu_cxx::rising_factorial;
     using __gnu_cxx::sinc;
     using __gnu_cxx::sinc_pi;
     using __gnu_cxx::sinhc;
@@ -1035,21 +1036,42 @@ template<typename Real>
     std::cout << "psi" << std::endl;
     basename = "psi";
     filename = get_filename(path, prefix, basename, "",  ".cc");
-    std::ofstream file_psi(filename);
+    std::ofstream file_digamma(filename);
     const auto skip = Real{1} / Real{16};
     test =
     maketest(psi, beast::psi,
 	     "testcase_psi", "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{-10} + skip, Real{+10} + skip),
-				std::make_pair(true, true), 801),
+				std::make_pair(true, true), 201),
 	     "Boost",
-	     file_psi, true, false);
+	     file_digamma, true, false);
     maketest(psi, beast::psi,
 	     "testcase_psi", "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{1}, Real{100}),
 				std::make_pair(true, true), 199),
 	     "Boost",
-	     file_psi, false, true, test);
+	     file_digamma, false, true, test);
+
+    // Polygamma or psi functions.
+    std::cout << "polygamma" << std::endl;
+    basename = "polygamma";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_polygamma(filename);
+    test =
+    maketest(polygamma, beast::polygamma,
+	     "testcase_polygamma", "__gnu_cxx", basename,
+	     "m", {0U, 1U, 2U, 3U, 5U, 10U},
+	     "x", fill_argument(std::make_pair(Real{-10} + skip, Real{+10} + skip),
+				std::make_pair(true, true), 201),
+	     "Boost",
+	     file_polygamma, true, false);
+    maketest(polygamma, beast::polygamma,
+	     "testcase_polygamma", "__gnu_cxx", basename,
+	     "m", {0U, 1U, 2U, 3U, 5U, 10U},
+	     "x", fill_argument(std::make_pair(Real{1}, Real{100}),
+				std::make_pair(true, true), 199),
+	     "Boost",
+	     file_polygamma, false, true, test);
 
     // Sine integral or Si functions.
     std::cout << "sinint" << std::endl;
@@ -1403,7 +1425,7 @@ template<typename Real>
     basename = "gegenbauer";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_gegenbauer(filename);
-    maketest(gegenbauer, gsl::gegenpoly_n,
+    maketest(gegenbauer, gsl::gegenbauer,
 	     "testcase_gegenbauer", "__gnu_cxx", basename,
 	     "n", vorder,
 	     "alpha", fill_argument(std::make_pair(Real{0}, Real{5}),

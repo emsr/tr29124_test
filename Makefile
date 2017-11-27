@@ -504,7 +504,7 @@ test: $(BINS)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_numeric_limits > test_numeric_limits.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_owens_t > test_owens_t.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_parab_cyl > test_parab_cyl.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_polygamma > test_polygamma.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_polygamma > test_polygamma.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_power_mean > test_power_mean.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_power_norm > test_power_norm.txt
@@ -963,7 +963,7 @@ test_parab_cyl: test_parab_cyl.cpp
 	$(CXX17) -I. -o test_parab_cyl test_parab_cyl.cpp -lquadmath
 
 test_polygamma: test_polygamma.cpp
-	$(CXX17) -I. -o test_polygamma test_polygamma.cpp -lquadmath
+	$(CXX17) -I. -o test_polygamma test_polygamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 test_polylog: wrappers_debug test_polylog.cpp
 	$(CXX17) -I. -o test_polylog test_polylog.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_cephes

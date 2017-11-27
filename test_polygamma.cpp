@@ -5,8 +5,8 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_p
 g++ -std=gnu++14 -Wall -Wextra -I. -o test_polygamma test_polygamma.cpp -lquadmath
 ./test_polygamma > test_polygamma.txt
 
-$HOME/bin/bin/g++ -std=gnu++14 -Wall -Wextra -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_polygamma test_polygamma.cpp -lquadmath
-./test_polygamma > test_polygamma.txt
+$HOME/bin/bin/g++ -std=gnu++17 -Wall -Wextra -I. -o test_polygamma test_polygamma.cpp -lquadmath -Lwrappers/debug -lwrap_boost
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_polygamma > test_polygamma.txt
 */
 
 #include <limits>
@@ -15,25 +15,33 @@ $HOME/bin/bin/g++ -std=gnu++14 -Wall -Wextra -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -
 #include <ext/cmath>
 #include <bits/specfun.h>
 #include <polynomial/polynomial.h>
+#include <polynomial/horner.h>
 #include "LentzContinuedFraction.tcc"
+#include "wrap_boost.h"
 
+/**
+ * 
+ */
 template<typename _Tp>
   _Tp
-  __polygamma_series(unsigned int __n, _Tp __x)
+  __polygamma_series(unsigned int __m, _Tp __x)
   {
     constexpr int _S_max_iter = 1000;
     const auto _S_eps = __gnu_cxx::__epsilon(__x);
     auto __sum = _Tp{0};
     for (int __k = 0; __k < _S_max_iter; ++__k)
       {
-	auto __term = std::pow(__x + _Tp(__k), _Tp(__n + 1));
+	auto __term = std::pow(__x + _Tp(__k), _Tp(__m + 1));
 	__sum += __term;
 	if (std::abs(__term) < _S_eps * std::abs(__sum))
 	  break;
       }
-    return (__n & 1 ? +1 : -1) * __gnu_cxx::factorial<_Tp>(__n) * __sum;
+    return (__m & 1 ? +1 : -1) * __gnu_cxx::factorial<_Tp>(__m) * __sum;
   }
 
+/**
+ * 
+ */
 template<typename _Tp>
   _Tp
   __trigamma_cont_frac(_Tp __x)
@@ -76,6 +84,9 @@ template<typename _Tp>
     return __rx + __rx * __rx / _Tp{2} + _S_2pi * __rx * __g1;
   }
 
+/**
+ * 
+ */
 template<typename _Tp>
   _Tp
   __tetragamma_cont_frac(_Tp __x)
@@ -121,6 +132,9 @@ template<typename _Tp>
     return -__xm2 - __xm2 / __x - __fg * __fg * __g2;
   }
 
+/**
+ * 
+ */
 template<typename _Tp>
   void
   test_trigamma(_Tp __proto)
@@ -149,6 +163,9 @@ template<typename _Tp>
       }
   }
 
+/**
+ * 
+ */
 template<typename _Tp>
   void
   test_tetragamma(_Tp __proto)
@@ -205,17 +222,17 @@ template<typename _Tp>
  */
 template<typename _Tp>
   __gnu_cxx::_Polynomial<_Tp>
-  __polygamma_poly(unsigned int __n)
+  __polygamma_poly(unsigned int __m)
   {
     __gnu_cxx::_Polynomial<_Tp> __a{_Tp{0}, _Tp{1}};
     __gnu_cxx::_Polynomial<_Tp> __b{_Tp{1}, _Tp{0}, _Tp{-1}};
-    if (__n == 0)
+    if (__m == 0)
       return __a;
     else
       {
 	auto __P = __a;
 	auto __Pp = __P.derivative();
-	for (unsigned int __k = 0; __k < __n; ++__k)
+	for (unsigned int __k = 0; __k < __m; ++__k)
 	  {
 	    __P = -(_Tp(__k + 1) * __a * __P + __b * __Pp);
 	    __Pp = __P.derivative();
@@ -224,18 +241,171 @@ template<typename _Tp>
       }
   }
 
+/**
+ * 
+ */
 template<typename _Tp>
   void
   test_polygamma_poly(_Tp __proto)
   {
     std::cout.precision(__gnu_cxx::__digits10(__proto));
     std::cout << std::showpoint << std::scientific;
-    //auto w = 8 + std::cout.precision();
 
-    for (int n = 0; n <= 20; ++n)
+    std::cout << '\n' << '\n';
+    for (int m = 0; m <= 20; ++m)
       {
-	auto P = __polygamma_poly<_Tp>(n);
+	auto P = __polygamma_poly<_Tp>(m);
 	std::cout << P << '\n';
+      }
+  }
+
+  /**
+   * Return
+   * @f[
+   *    \frac{\pi^{m+1}}{sin^{m+1}(\pi x)} \frac{d^m}{dx^m} cot(\pi x)
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __polygamma_reflect(unsigned int __m, _Tp __x)
+    {
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto __c = std::__detail::__cos_pi(__x);
+      const auto __cc = __c * __c;
+      const auto __s = std::__detail::__sin_pi(__x);
+      const auto __fact = std::pow(_S_pi / __s, _Tp(__m + 1));
+      if (__m == 0)
+	return __c * __fact
+	     * __gnu_cxx::horner(__cc, -1LL);
+      else if (__m == 1)
+	return __fact
+	     * __gnu_cxx::horner(__cc, 2LL);
+      else if (__m == 2)
+	return __c * __fact
+	     * __gnu_cxx::horner(__cc, -2LL, -4LL);
+      else if (__m == 3)
+	return __fact
+	     * __gnu_cxx::horner(__cc, 16LL, 8LL);
+      else if (__m == 4)
+	return __c * __fact
+	     * __gnu_cxx::horner(__cc, -16LL, -88LL, -16LL);
+      else if (__m == 5)
+	return __fact
+	     * __gnu_cxx::horner(__cc, 272LL, 416LL, 32LL);
+      else if (__m == 6)
+	return __c * __fact
+	     * __gnu_cxx::horner(__cc, -272LL, -2880LL, -1824LL, -64LL);
+      else
+	{
+	  auto __poly = __polygamma_poly<long long>(__m);
+	  return __fact
+		* (__m & 1 ? __poly.eval_odd(__c) : __poly.eval_even(__c));
+	}
+    }
+
+  /**
+   *
+   */
+  template<typename _Tp>
+    _Tp
+    __polygamma_hurwitz(unsigned int __m, _Tp __x)
+    {
+      const auto __hzeta = std::__detail::__hurwitz_zeta(_Tp(__m + 1), __x);
+      const auto __ln_nfact = std::__detail::__log_gamma(_Tp(__m + 1));
+      auto __result = std::exp(__ln_nfact) * __hzeta;
+      if (__m % 2 == 1)
+	__result = -__result;
+      return __result;
+    }
+
+  /**
+   * @brief  Return the polygamma function @f$ \psi^{(m)}(x) @f$.
+   *
+   * The polygamma function is related to the Hurwitz zeta function:
+   * @f[
+   *   \psi^{(m)}(x) = (-1)^{m+1} m! \zeta(m+1,x)
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __polygamma(unsigned int __m, _Tp __x)
+    {
+      if (__x <= _Tp{0})
+	{
+	  if (const auto __n = __gnu_cxx::__fp_is_integer(__x); __n)
+	    return __gnu_cxx::__infinity(__x);
+	  else
+	    return _Tp(__m & 1 ? -1 : +1) * __polygamma(__m, _Tp{1} - __x)
+		 + __polygamma_reflect(__m, __x);
+	}
+      else if (__m == 0)
+	return std::__detail::__digamma(__x);
+      else
+	return __polygamma_hurwitz(__m, __x);
+    }
+
+/**
+ * 
+ */
+template<typename _Tp>
+  void
+  test_polygamma(_Tp __proto)
+  {
+    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout << std::showpoint << std::scientific;
+    auto w = 8 + std::cout.precision();
+
+    std::cout << '\n' << '\n';
+    for (int i = -400; i <= 400; ++i)
+      {
+	auto x = i * 0.01;
+	std::cout << ' ' << std::setw(w) << x;
+	for (int m = 0; m <= 10; ++m)
+	  {
+	    auto P = __polygamma(m, x);
+	    std::cout << ' ' << std::setw(w) << P;
+	  }
+	std::cout << '\n';
+      }
+  }
+
+/**
+ * 
+ */
+template<typename _Tp>
+  void
+  test_polygamma_reflect_vs_hurwitz(_Tp __proto)
+  {
+    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout << std::showpoint << std::scientific;
+    auto w = 8 + std::cout.precision();
+
+    std::cout << '\n';
+    for (int m = 0; m <= 10; ++m)
+      {
+	std::cout << '\n';
+	std::cout << " m = " << m << '\n';
+	for (int i = -40; i <= 0; ++i)
+	  {
+	    auto x = i * 0.1;
+	    auto psi_reflect = __polygamma(m, x);
+	    auto psi_hurwitz = __polygamma_hurwitz(m, x);
+	    auto psi_boost = _Tp{0};
+	    try
+	      {
+	        psi_boost = beast::polygamma(m, x);
+	      }
+	    catch (...)
+	      {
+	        psi_boost = __gnu_cxx::__quiet_NaN(__proto);
+	      }
+	    std::cout << ' ' << std::setw(w) << x
+		      << ' ' << std::setw(w) << psi_reflect
+		      << ' ' << std::setw(w) << psi_hurwitz
+		      << ' ' << std::setw(w) << psi_boost
+		      << ' ' << std::setw(w) << (psi_reflect - psi_hurwitz) / psi_hurwitz
+		      << '\n';
+	  }
       }
   }
 
@@ -248,4 +418,8 @@ main()
   test_tetragamma(1.0);
 
   test_polygamma_poly(1LL);
+
+  test_polygamma(1.0);
+
+  test_polygamma_reflect_vs_hurwitz(1.0);
 }

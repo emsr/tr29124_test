@@ -3533,7 +3533,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   psif(float __x)
-  { return std::__detail::__psi<float>(__x); }
+  { return std::__detail::__digamma<float>(__x); }
 
   /**
    * Return the psi or digamma function of <tt>long double</tt> argument
@@ -3543,7 +3543,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline long double
   psil(long double __x)
-  { return std::__detail::__psi<long double>(__x); }
+  { return std::__detail::__digamma<long double>(__x); }
 
   /**
    * Return the psi or digamma function of argument @f$ x @f$.
@@ -3561,7 +3561,47 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     psi(_Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__psi<__type>(__x);
+      return std::__detail::__digamma<__type>(__x);
+    }
+
+  // Polygamma or psi functions
+
+  /**
+   * Return the polygamma function of @c float argument @f$ x @f$.
+   *
+   * @see polygamma for details.
+   */
+  inline float
+  polygammaf(unsigned int __m, float __x)
+  { return std::__detail::__polygamma<float>(__m, __x); }
+
+  /**
+   * Return the polygamma function of <tt>long double</tt> argument
+   * @f$ x @f$.
+   *
+   * @see polygamma for details.
+   */
+  inline long double
+  polygammal(unsigned int __m, long double __x)
+  { return std::__detail::__polygamma<long double>(__m, __x); }
+
+  /**
+   * Return the polygamma function of argument @f$ x @f$.
+   *
+   * The the polygamma or digamma function is defined by
+   * @f[
+   *    \polygamma(x) = \frac{d}{dx}log\left(\Gamma(x)\right)
+   *            = \frac{\Gamma'(x)}{\Gamma(x)}
+   * @f]
+   *
+   * @param __x The parameter
+   */
+  template<typename _Tp>
+    inline __gnu_cxx::__promote_fp_t<_Tp>
+    polygamma(unsigned int __m, _Tp __x)
+    {
+      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      return std::__detail::__polygamma<__type>(__m, __x);
     }
 
   /**

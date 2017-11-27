@@ -53,6 +53,7 @@
 #include <array>
 #include <ext/math_const.h>
 #include <bits/complex_util.h>
+#include <polynomial/horner.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -3292,13 +3293,13 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __psi(unsigned int __n)
+    __digamma(unsigned int __n)
     {
-      constexpr _Tp __gamma_E = __gnu_cxx::__const_gamma_e(_Tp{});
+      constexpr _Tp _S_gamma_E = __gnu_cxx::__const_gamma_e(_Tp{});
       if (__n > 1)
-	return -__gamma_E + __harmonic_number<_Tp>(__n - 1);
+	return -_S_gamma_E + __harmonic_number<_Tp>(__n - 1);
       else
-	return -__gamma_E;
+	return -_S_gamma_E;
     }
 
   /**
@@ -3316,7 +3317,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __psi_series(_Tp __x)
+    __digamma_series(_Tp __x)
     {
       _Tp __sum = -__gnu_cxx::__const_gamma_e(std::real(__x));
       const unsigned int _S_max_iter = 100000;
@@ -3347,7 +3348,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __psi_asymp(_Tp __x)
+    __digamma_asymp(_Tp __x)
     {
       auto __sum = std::log(__x) - _Tp{0.5L} / __x;
       const auto __xx = __x * __x;
@@ -3378,36 +3379,34 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __psi(_Tp __x)
+    __digamma(_Tp __x)
     {
       const auto _S_eps = _Tp{4} * __gnu_cxx::__epsilon(__x);
       const auto _S_x_asymp = _Tp{20};
-      const auto __gamma_E = __gnu_cxx::__const_gamma_e(__x);
-      const auto __2_ln_2 = _Tp{2} * __gnu_cxx::__const_ln_2(__x);
+      const auto _S_gamma_E = __gnu_cxx::__const_gamma_e(__x);
+      const auto _S_2_ln_2 = _Tp{2} * __gnu_cxx::__const_ln_2(__x);
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
 
       const auto __n = __gnu_cxx::__fp_is_integer(__x);
       const auto __m = __gnu_cxx::__fp_is_half_odd_integer(__x);
-      if (__x < _Tp{0})
+      if (__x <= _Tp{0})
 	{
-	  const auto __pi = __gnu_cxx::__const_pi(__x);
-	  return __psi(_Tp{1} - __x) - __pi / __tan_pi(__x);
-	}
-      else if (__n)
-	{
-	  if (__n() <= 0)
+	  if (__n)
 	    return __gnu_cxx::__quiet_NaN(__x);
 	  else
-	    return __psi<_Tp>(__n());
+	    return __digamma(_Tp{1} - __x) - _S_pi / __tan_pi(__x);
 	}
+      else if (__n)
+	return __digamma<_Tp>(__n());
       else if (__m)
 	{
-	  _Tp __sum = -__gamma_E - __2_ln_2;
+	  _Tp __sum = -_S_gamma_E - _S_2_ln_2;
 	  for (int __k = 1; __k <= __m(); ++__k)
 	    __sum += _Tp{2} / _Tp(2 * __k - 1);
 	  return __sum;
 	}
       else if (__x > _S_x_asymp)
-	return __psi_asymp(__x);
+	return __digamma_asymp(__x);
       else
 	{
 	  // The series does not converge quickly enough.
@@ -3416,36 +3415,41 @@ _S_neg_double_factorial_table[999]
 	  auto __y = __x;
 	  while (__y <= _S_x_asymp)
 	    {
-	      __w += 1 / __y;
-	      __y += 1;
+	      __w += _Tp{1} / __y;
+	      __y += _Tp{1};
 	    }
-	  return __psi_asymp(__y) - __w;
+	  return __digamma_asymp(__y) - __w;
 	}
     }
 
+  template<typename _Tp>
+    _Tp
+    __hurwitz_zeta(_Tp __s, _Tp __a);
 
   /**
-   * @brief  Return the polygamma function @f$ \psi^{(n)}(x) @f$.
+   * @brief  Return the polygamma function @f$ \psi^{(m)}(x) @f$.
    *
    * The polygamma function is related to the Hurwitz zeta function:
    * @f[
-   *   \psi^{(n)}(x) = (-1)^{n+1} m! \zeta(m+1,x)
+   *   \psi^{(m)}(x) = (-1)^{m+1} m! \zeta(m+1,x)
    * @f]
    */
   template<typename _Tp>
     _Tp
-    __psi(unsigned int __n, _Tp __x)
+    __polygamma(unsigned int __m, _Tp __x)
     {
-      if (__x <= _Tp{0})
-	std::__throw_domain_error(__N("__psi: argument out of range"));
-      else if (__n == 0)
-	return __psi(__x);
+      if (__m == 0)
+	return __digamma(__x);
+      else if (const auto __n = __gnu_cxx::__fp_is_integer(__x); __n && __n() <= 0)
+	{
+	  return __gnu_cxx::__quiet_NaN(__x);
+	}
       else
 	{
-	  const auto __hzeta = __hurwitz_zeta(_Tp{__n + 1}, __x);
-	  const auto __ln_nfact = __log_gamma(_Tp{__n + 1});
+	  const auto __hzeta = __hurwitz_zeta(_Tp(__m + 1), __x);
+	  const auto __ln_nfact = __log_gamma(_Tp(__m + 1));
 	  auto __result = std::exp(__ln_nfact) * __hzeta;
-	  if (__n % 2 == 1)
+	  if (__m % 2 == 0)
 	    __result = -__result;
 	  return __result;
 	}

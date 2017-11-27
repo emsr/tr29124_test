@@ -98,9 +98,9 @@ PATH=wrappers/debug:$PATH ./test_tricomi_u > test_tricomi_u.txt
 	   / std::pow(__z, _Tp(__m - 1));
 
       const auto __b = __a + _Tp(1 - __m);
-      auto __psi2 = std::__detail::__psi(__a)
-		  - std::__detail::__psi<_Tp>(1)
-		  - std::__detail::__psi<_Tp>(__m)
+      auto __psi2 = std::__detail::__digamma(__a)
+		  - std::__detail::__digamma<_Tp>(1)
+		  - std::__detail::__digamma<_Tp>(__m)
 		  + std::log(__z);
       auto __fact2 = _Tp{1};
       auto _U2 = __psi2;

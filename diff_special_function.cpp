@@ -839,7 +839,7 @@ main()
     // Gegenbauer polynomials.
     std::cout << "gegenbauer" << '\n';
     basename = "diff_gegenbauer";
-    rundiff(gegenbauer, gsl::gegenpoly_n, basename,
+    rundiff(gegenbauer, gsl::gegenbauer, basename,
 	    "n", vorder,
 	    "alpha", fill_argument(std::make_pair(Real{0}, Real{5}),
 				   std::make_pair(true, true), 11),
