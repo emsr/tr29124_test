@@ -422,6 +422,15 @@ template<typename _Tp>
   };
 
 template<typename _Tp>
+  struct testcase_polygamma
+  {
+    unsigned int m;
+    _Tp x;
+    _Tp f0;
+    _Tp f;
+  };
+
+template<typename _Tp>
   struct testcase_sinint
   {
     _Tp x;
