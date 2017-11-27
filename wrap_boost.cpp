@@ -448,9 +448,9 @@ psi(double x)
 
 /// Polygamma functions.
 double
-polygamma(int n, double x)
+polygamma(unsigned int m, double x)
 {
-  return boost::math::polygamma(n, x);
+  return boost::math::polygamma(m, x);
 }
 
 /// Sine integral.
@@ -483,7 +483,7 @@ coshint(double /*x*/)
 
 /// Gegenbauer polynomials.
 double
-gegenpoly_n(unsigned int /*n*/, double /*lambda*/, double /*x*/)
+gegenbauer(unsigned int /*n*/, double /*lambda*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }

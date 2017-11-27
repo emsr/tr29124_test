@@ -242,7 +242,7 @@ coshint(double x)
 
 /// Gegenbauer polynomials.
 double
-gegenpoly_n(int n, double lambda, double x)
+gegenbauer(unsigned int n, double lambda, double x)
 { return gegenbauer_poly(n, lambda, x); }
 
 /// Hydrogen wave functions.

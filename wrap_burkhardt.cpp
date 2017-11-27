@@ -410,14 +410,14 @@ dilog(double /*x*/)
 
 /// Digamma or psi function.
 double
-psi(double /*x*/)
+psi(double x)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  return ::psi(&x);
 }
 
 /// Polygamma functions.
 double
-polygamma(int /*n*/, double /*x*/)
+polygamma(int /*m*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
@@ -452,9 +452,11 @@ coshint(double /*x*/)
 
 /// Gegenbauer polynomials.
 double
-gegenpoly_n(unsigned int /*n*/, double /*lambda*/, double /*x*/)
+gegenbauer(unsigned int n, double lambda, double x)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  double C[n + 1];
+  ::gegenbauer_poly(n, lambda, x, C);
+  return C[n];
 }
 
 /// Hydrogen wave functions.

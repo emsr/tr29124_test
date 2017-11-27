@@ -167,7 +167,7 @@ double dilog(double x);
 double psi(double x);
 
 /// Polygamma functions.
-double polygamma(int n, double x);
+double polygamma(unsigned int m, double x);
 
 /// Sine integral.
 double sinint(double x);
@@ -182,7 +182,7 @@ double sinhint(double x);
 double coshint(double x);
 
 /// Gegenbauer polynomials.
-double gegenpoly_n(unsigned int n, double lambda, double x);
+double gegenbauer(unsigned int n, double lambda, double x);
 
 /// Hydrogen wave functions.
 double hydrogen(int n, double l, double Z, double r);

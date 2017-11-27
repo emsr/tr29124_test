@@ -370,6 +370,13 @@ psi(double x)
   return ::spence(x);
 }
 
+/// Polygamma functions.
+double
+polygamma(unsigned int /*m*/, double /*x*/)
+{
+  return std::numeric_limits<double>::quiet_NaN();
+}
+
 /// Sine integral.
 double
 sinint(double x)
@@ -408,7 +415,7 @@ coshint(double x)
 
 /// Gegenbauer polynomials.
 double
-gegenpoly_n(unsigned int /*n*/, double /*lambda*/, double /*x*/)
+gegenbauer(unsigned int /*n*/, double /*lambda*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }

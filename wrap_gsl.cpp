@@ -755,6 +755,22 @@ psi(double x)
     return result.val;
 }
 
+/// Polygamma functions.
+double
+polygamma(unsigned int m, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_psi_n_e (m, x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in polygamma:");
+      msg << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
 /// Sine integral.
 double
 sinint(double x)
@@ -821,13 +837,13 @@ coshint(double x)
 
 /// Gegenbauer polynomials.
 double
-gegenpoly_n(unsigned int n, double lambda, double x)
+gegenbauer(unsigned int n, double lambda, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_gegenpoly_n_e(n, lambda, x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in gegenpoly_n:");
+      std::ostringstream msg("Error in gegenbauer:");
       msg << " n=" << n << " lambda=" << lambda << " x=" << x;
       throw std::runtime_error(msg.str());
     }

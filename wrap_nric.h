@@ -139,7 +139,7 @@ double sinhint(double x);
 double coshint(double x);
 
 /// Gegenbauer polynomials.
-double gegenpoly_n(int n, double lambda, double x);
+double gegenbauer(unsigned int n, double lambda, double x);
 
 /// Hydrogen wave functions.
 double hydrogen(int n, double l, double Z, double r);
