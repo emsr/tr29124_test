@@ -184,7 +184,7 @@ namespace __detail
     _Tp
     __hermite(unsigned int __n, _Tp __x)
     {
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return (__n % 2 == 1 ? -1 : +1) * __hermite(__n, -__x);

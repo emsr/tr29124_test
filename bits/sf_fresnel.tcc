@@ -172,7 +172,7 @@ namespace __detail
       const auto _S_fp_min = __gnu_cxx::__lim_min(__x);
       const auto _S_x_min = _Tp{1.5L};
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return std::complex<_Tp>{_S_NaN, _S_NaN};
 
       auto _Cf = _Tp{0};

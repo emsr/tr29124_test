@@ -6989,9 +6989,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     constexpr _Tp
     __hypot3(_Tp __x, _Tp __y, _Tp __z)
     {
-      if (std::__detail::__isnan(__x)
-       || std::__detail::__isnan(__y)
-       || std::__detail::__isnan(__z))
+      if (std::isnan(__x)
+       || std::isnan(__y)
+       || std::isnan(__z))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	{

@@ -58,7 +58,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_lommel test_lommel.c
     __lommel_1(_Tp __mu, _Tp __nu, _Tp __z)
     {
       auto _S_NaN = __gnu_cxx::__quiet_NaN(__z);
-      if (__isnan(__mu) || __isnan(__nu) || __isnan(__z))
+      if (std::isnan(__mu) || std::isnan(__nu) || std::isnan(__z))
 	return _S_NaN;
       else if (__nu < _Tp{0})
 	return __lommel_1(__mu, -__nu, __z);
@@ -82,7 +82,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_lommel test_lommel.c
     __lommel_2(_Tp __mu, _Tp __nu, _Tp __z)
     {
       auto _S_NaN = __gnu_cxx::__quiet_NaN(__z);
-      if (__isnan(__mu) || __isnan(__nu) || __isnan(__z))
+      if (std::isnan(__mu) || std::isnan(__nu) || std::isnan(__z))
 	return _S_NaN;
       else if (__nu < _Tp{0})
 	return __lommel_2(__mu, -__nu, __z);

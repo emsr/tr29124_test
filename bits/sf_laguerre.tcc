@@ -316,7 +316,7 @@ namespace __detail
     __laguerre(unsigned int __n, _Tpa __alpha1, _Tp __x)
     {
       const unsigned int __max_iter = 10000000;
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__n == 0)
 	return _Tp{1};

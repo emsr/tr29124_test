@@ -130,7 +130,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
     _Tp
     __bernoulli(unsigned int __n, _Tp __x)
     {
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	{
@@ -160,7 +160,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
     _Tp
     __bernoulli(unsigned int __n, _Tp __a, _Tp __x)
     {
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	{
@@ -289,7 +289,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
     _Tp
     __euler(unsigned int __n, _Tp __x)
     {
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	{

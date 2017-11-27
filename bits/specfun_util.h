@@ -106,43 +106,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       { return std::numeric_limits<_Tp>::quiet_NaN(); }
     };
 
-#if _GLIBCXX_USE_C99_MATH && !_GLIBCXX_USE_C99_FP_MACROS_DYNAMIC
-
-  /// This is a wrapper for the isnan function. Otherwise, for NaN,
-  /// all comparisons result in false. If/when we build a std::isnan
-  /// out of intrinsics, this will disappear completely in favor of
-  /// std::isnan.
-  template<typename _Tp>
-    inline bool
-    __isnan(_Tp __x)
-    { return std::isnan(__x); }
-
-#else
-
-  template<typename _Tp>
-    inline bool
-    __isnan(_Tp __x)
-    { return __builtin_isnan(__x); }
-
-  template<>
-    inline bool
-    __isnan<float>(float __x)
-    { return __builtin_isnanf(__x); }
-
-  template<>
-    inline bool
-    __isnan<long double>(long double __x)
-    { return __builtin_isnanl(__x); }
-
-#if _GLIBCXX_HAVE_FLOAT128_MATH
-  template<>
-    inline bool
-    __isnan<__float128>(__float128 __x)
-    { return __builtin_isnanq(__x); }
-#endif
-
-#endif // _GLIBCXX_USE_C99_MATH && !_GLIBCXX_USE_C99_FP_MACROS_DYNAMIC
-
   /**
    * Return true if the number is inf.
    * This is overloaded elsewhere for complex.

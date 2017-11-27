@@ -141,7 +141,7 @@ namespace __detail
 
       if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_h: bad argument"));
-      else if (__isnan(__nu) || __isnan(__x))
+      else if (std::isnan(__nu) || std::isnan(__x))
 	return _S_nan;
       else if (std::abs(__x) < _S_max)
 	return __struve_series<_StruveH>(__nu, __x);
@@ -168,7 +168,7 @@ namespace __detail
 
       if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_k: bad argument"));
-      else if (__isnan(__nu) || __isnan(__x))
+      else if (std::isnan(__nu) || std::isnan(__x))
 	return _S_nan;
       else if (std::abs(__x) >= _S_max)
 	return __struve_asymp<_StruveK>(__nu, __x);
@@ -195,7 +195,7 @@ namespace __detail
 
       if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_l: bad argument"));
-      else if (__isnan(__nu) || __isnan(__x))
+      else if (std::isnan(__nu) || std::isnan(__x))
 	return _S_nan;
       else if (std::abs(__x) < _S_max)
 	return __struve_series<_StruveL>(__nu, __x);
@@ -222,7 +222,7 @@ namespace __detail
 
       if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_k: bad argument"));
-      else if (__isnan(__nu) || __isnan(__x))
+      else if (std::isnan(__nu) || std::isnan(__x))
 	return _S_nan;
       else if (std::abs(__x) >= _S_max)
 	return __struve_asymp<_StruveM>(__nu, __x);

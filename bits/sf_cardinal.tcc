@@ -51,7 +51,7 @@ namespace __detail
     __gnu_cxx::__promote_fp_t<_Tp>
     __sinc(_Tp __x)
     {
-      if (__isnan(__x))
+      if (std::isnan(__x))
         return __gnu_cxx::__quiet_NaN(__x);
       else if (std::abs(__x) == __gnu_cxx::__infinity(__x))
 	return _Tp{0};
@@ -72,7 +72,7 @@ namespace __detail
     __sinc_pi(_Tp __x)
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
-      if (__isnan(__x))
+      if (std::isnan(__x))
         return __gnu_cxx::__quiet_NaN(__x);
       else if (std::abs(__x) == __gnu_cxx::__infinity(__x))
 	return _Tp{0};
@@ -96,7 +96,7 @@ namespace __detail
     __gnu_cxx::__promote_fp_t<_Tp>
     __sinhc(_Tp __x)
     {
-      if (__isnan(__x))
+      if (std::isnan(__x))
         return __gnu_cxx::__quiet_NaN(__x);
       else if (std::abs(__x) < _Tp{4} * __gnu_cxx::__sqrt_min(__x))
         return _Tp{1} + __x * __x / _Tp{6};
@@ -115,7 +115,7 @@ namespace __detail
     __sinhc_pi(_Tp __x)
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
-      if (__isnan(__x))
+      if (std::isnan(__x))
         return __gnu_cxx::__quiet_NaN(__x);
       else
 	{

@@ -74,7 +74,7 @@ namespace __detail
     _Tp
     __chi_squared_pdf(_Tp __chi2, unsigned int __nu)
     {
-      if (__isnan(__chi2))
+      if (std::isnan(__chi2))
 	return __gnu_cxx::__quiet_NaN(__chi2);
       else if (__chi2 < _Tp{0})
 	std::__throw_domain_error(__N("__chi_squared_cdf: "
@@ -98,7 +98,7 @@ namespace __detail
     _Tp
     __chi_squared_pdfc(_Tp __chi2, unsigned int __nu)
     {
-      if (__isnan(__chi2) || __isnan(__nu))
+      if (std::isnan(__chi2) || std::isnan(__nu))
 	return __gnu_cxx::__quiet_NaN(__chi2);
       else if (__chi2 < _Tp{0})
 	std::__throw_domain_error(__N("__chi_square_pdfc: "
@@ -120,7 +120,7 @@ namespace __detail
     _Tp
     __gamma_pdf(_Tp __alpha, _Tp __beta, _Tp __x)
     {
-      if (__isnan(__alpha) || __isnan(__beta) || __isnan(__x))
+      if (std::isnan(__alpha) || std::isnan(__beta) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else
 	return std::pow(__beta, __alpha) * std::pow(__x, __alpha - _Tp{1})
@@ -140,7 +140,7 @@ namespace __detail
     _Tp
     __gamma_cdf(_Tp __alpha, _Tp __beta, _Tp __x)
     {
-      if (__isnan(__alpha) || __isnan(__beta) || __isnan(__x))
+      if (std::isnan(__alpha) || std::isnan(__beta) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else
 	return __tgamma_lower(__alpha, __beta * __x)
@@ -161,7 +161,7 @@ namespace __detail
     _Tp
     __gamma_cdfc(_Tp __alpha, _Tp __beta, _Tp __x)
     {
-      if (__isnan(__alpha) || __isnan(__beta) || __isnan(__x))
+      if (std::isnan(__alpha) || std::isnan(__beta) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else
 	return __tgamma(__alpha, __beta * __x)
@@ -185,7 +185,7 @@ namespace __detail
     _Tp
     __rice_pdf(_Tp __nu, _Tp __sigma, _Tp __x)
     {
-      if (__isnan(__nu) || __isnan(__sigma))
+      if (std::isnan(__nu) || std::isnan(__sigma))
 	return __gnu_cxx::__quiet_NaN(__x);
       else
 	{
@@ -212,7 +212,7 @@ namespace __detail
       const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
       const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(__x);
       const auto _S_sqrt_2pi = _S_sqrt_2 * _S_sqrt_pi;
-      if (__isnan(__mu) || __isnan(__sigma))
+      if (std::isnan(__mu) || std::isnan(__sigma))
 	return __gnu_cxx::__quiet_NaN(__x);
       else
 	{
@@ -238,7 +238,7 @@ namespace __detail
     __normal_cdf(_Tp __mu, _Tp __sigma, _Tp __x)
     {
       const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
-      if (__isnan(__mu) || __isnan(__sigma) || __isnan(__x))
+      if (std::isnan(__mu) || std::isnan(__sigma) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else
 	return _Tp{0.5L}
@@ -261,7 +261,7 @@ namespace __detail
       const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
       const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(__x);
       const auto _S_sqrt_2pi = _S_sqrt_2 * _S_sqrt_pi;
-      if (__isnan(__nu) || __isnan(__sigma))
+      if (std::isnan(__nu) || std::isnan(__sigma))
 	return __gnu_cxx::__quiet_NaN(__x);
       else
 	{
@@ -287,7 +287,7 @@ namespace __detail
     __lognormal_cdf(_Tp __mu, _Tp __sigma, _Tp __x)
     {
       const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
-      if (__isnan(__mu) || __isnan(__sigma) || __isnan(__x))
+      if (std::isnan(__mu) || std::isnan(__sigma) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else
 	return _Tp{0.5L} * (_Tp{1} + std::erf((std::log(__x) - __mu)
@@ -307,7 +307,7 @@ namespace __detail
     _Tp
     __exponential_pdf(_Tp __lambda, _Tp __x)
     {
-      if (__isnan(__lambda) || __isnan(__x))
+      if (std::isnan(__lambda) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return _Tp{0};
@@ -327,7 +327,7 @@ namespace __detail
     _Tp
     __exponential_cdf(_Tp __lambda, _Tp __x)
     {
-      if (__isnan(__lambda) || __isnan(__x))
+      if (std::isnan(__lambda) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return _Tp{0};
@@ -349,7 +349,7 @@ namespace __detail
     _Tp
     __exponential_cdfc(_Tp __lambda, _Tp __x)
     {
-      if (__isnan(__lambda) || __isnan(__x))
+      if (std::isnan(__lambda) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return _Tp{0};
@@ -373,7 +373,7 @@ namespace __detail
     _Tp
     __weibull_pdf(_Tp __a, _Tp __b, _Tp __x)
     {
-      if (__isnan(__a) || __isnan(__b) || __isnan(__x))
+      if (std::isnan(__a) || std::isnan(__b) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return _Tp{0};
@@ -394,7 +394,7 @@ namespace __detail
     _Tp
     __weibull_cdf(_Tp __a, _Tp __b, _Tp __x)
     {
-      if (__isnan(__a) || __isnan(__b) || __isnan(__x))
+      if (std::isnan(__a) || std::isnan(__b) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return _Tp{0};
@@ -419,7 +419,7 @@ namespace __detail
     __student_t_pdf(_Tp __t, unsigned int __nu)
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__t);
-      if (__isnan(__t))
+      if (std::isnan(__t))
 	return __gnu_cxx::__quiet_NaN(__t);
       else
 	return __gamma(_Tp(__nu + 1) / _Tp{2})
@@ -443,7 +443,7 @@ namespace __detail
     _Tp
     __student_t_cdf(_Tp __t, unsigned int __nu)
     {
-      if (__isnan(__t))
+      if (std::isnan(__t))
 	return __gnu_cxx::__quiet_NaN(__t);
       else
 	return __beta_inc(_Tp{0.5L}, _Tp(__nu) / _Tp{2},
@@ -466,7 +466,7 @@ namespace __detail
     _Tp
     __student_t_cdfc(_Tp __t, unsigned int __nu)
     {
-      if (__isnan(__t))
+      if (std::isnan(__t))
 	return __gnu_cxx::__quiet_NaN(__t);
       else
 	return __beta_inc(_Tp(__nu) / _Tp{2}, _Tp{0.5L},
@@ -492,7 +492,7 @@ namespace __detail
     _Tp
     __fisher_f_pdf(_Tp __F, unsigned int __nu1, unsigned int __nu2)
     {
-      if (__isnan(__F))
+      if (std::isnan(__F))
 	return __gnu_cxx::__quiet_NaN(__F);
       else if (__F < _Tp{0})
 	std::__throw_domain_error(__N("__f_cdf: F is negative"));
@@ -522,7 +522,7 @@ namespace __detail
     _Tp
     __fisher_f_cdf(_Tp __F, unsigned int __nu1, unsigned int __nu2)
     {
-      if (__isnan(__F))
+      if (std::isnan(__F))
 	return __gnu_cxx::__quiet_NaN(__F);
       else if (__F < _Tp{0})
 	std::__throw_domain_error(__N("__f_cdf: F is negative"));
@@ -551,7 +551,7 @@ namespace __detail
     _Tp
     __fisher_f_cdfc(_Tp __F, unsigned int __nu1, unsigned int __nu2)
     {
-      if (__isnan(__F))
+      if (std::isnan(__F))
 	return __gnu_cxx::__quiet_NaN(__F);
       else if (__F < _Tp{0})
 	std::__throw_domain_error(__N("__f_cdfc: F is negative"));
@@ -577,7 +577,7 @@ namespace __detail
     _Tp
     __binomial_pdf(_Tp __p, unsigned int __n, unsigned int __k)
     {
-      if (__isnan(__p))
+      if (std::isnan(__p))
 	return __gnu_cxx::__quiet_NaN(__p);
       else if (__p < _Tp{0} || __p > _Tp{1})
 	std::__throw_domain_error(__N("__binomial_cdf: "
@@ -613,7 +613,7 @@ namespace __detail
     _Tp
     __binomial_cdf(_Tp __p, unsigned int __n, unsigned int __k)
     {
-      if (__isnan(__p))
+      if (std::isnan(__p))
 	return __gnu_cxx::__quiet_NaN(__p);
       else if (__p < _Tp{0} || __p > _Tp{1})
 	std::__throw_domain_error(__N("__binomial_cdf: "
@@ -643,7 +643,7 @@ namespace __detail
     _Tp
     __binomial_cdfc(_Tp __p, unsigned int __n, unsigned int __k)
     {
-      if (__isnan(__p))
+      if (std::isnan(__p))
 	return __gnu_cxx::__quiet_NaN(__p);
       else if (__p < _Tp{0} || __p > _Tp{1})
 	std::__throw_domain_error(__N("__binomial_cdfc: "

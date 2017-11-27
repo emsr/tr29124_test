@@ -211,7 +211,7 @@ namespace __detail
       constexpr unsigned long long _S_maxit = 100000ULL;
       const auto _S_eps = 10 * __gnu_cxx::__epsilon(std::real(__x));
       const auto _S_pipio6 = __gnu_cxx::__const_pi_sqr_div_6(std::real(__x));
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(std::real(__x));
       else if (__x > _Tp{+1})
 	std::__throw_range_error(__N("dilog: argument greater than one"));
@@ -682,7 +682,7 @@ namespace __detail
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__s));
       const auto _S_inf = __gnu_cxx::__infinity(std::real(__s));
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__s));
-      if (__isnan(__s))
+      if (std::isnan(__s))
 	return _S_NaN;
       else if (__s == _Val{1})
 	return _S_inf;
@@ -791,7 +791,7 @@ namespace __detail
       using _Real = __num_traits_t<_Val>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__s));
       const auto _S_inf = __gnu_cxx::__infinity(std::real(__s));
-      if (__isnan(__s) || __isnan(__a))
+      if (std::isnan(__s) || std::isnan(__a))
 	return _S_NaN;
       else if (__a == _Real{1})
 	{

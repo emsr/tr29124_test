@@ -171,7 +171,7 @@ namespace __detail
     _Tp
     __parabolic_cyl_u(_Tp __a, _Tp __z)
     {
-      if (__isnan(__a) || __isnan(__z))
+      if (std::isnan(__a) || std::isnan(__z))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
       else
         return __parabolic_cylinder(__a, __z).first;
@@ -184,7 +184,7 @@ namespace __detail
     _Tp
     __parabolic_cyl_v(_Tp __a, _Tp __z)
     {
-      if (__isnan(__a) || __isnan(__z))
+      if (std::isnan(__a) || std::isnan(__z))
 	return __gnu_cxx::__quiet_NaN<_Tp>();
       else
         return __parabolic_cylinder(__a, __z).second;

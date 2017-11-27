@@ -2540,7 +2540,7 @@ namespace __detail
       using _OuterSum = __gnu_cxx::_KahanSum<_Cmplx>;
       using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
 
-      if (std::__detail::__isnan(__y))
+      if (std::isnan(__y))
 	return _AiryState<_Tp>{__y, _S_cNaN, _S_cNaN, _S_cNaN, _S_cNaN};
 
       auto __absargy = std::abs(std::arg(__y));

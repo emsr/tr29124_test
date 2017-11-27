@@ -187,7 +187,7 @@ namespace __detail
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
 
-      if (__isnan(__nu) || __isnan(__x))
+      if (std::isnan(__nu) || std::isnan(__x))
 	return _S_NaN;
       else if (std::abs(__x) <= _Real{1} / _S_pi)
 	return __theta_2_sum(__nu, __x);
@@ -215,7 +215,7 @@ namespace __detail
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
 
-      if (__isnan(__nu) || __isnan(__x))
+      if (std::isnan(__nu) || std::isnan(__x))
 	return _S_NaN;
       else if (__gnu_cxx::__fp_is_zero(__x))
 	return _Tp{0};
@@ -243,7 +243,7 @@ namespace __detail
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
 
-      if (__isnan(__nu) || __isnan(__x))
+      if (std::isnan(__nu) || std::isnan(__x))
 	return _S_NaN;
       else if (std::abs(__x) <= _Real{1} / _S_pi)
 	return __theta_3_sum(__nu, __x);
@@ -271,7 +271,7 @@ namespace __detail
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi = __gnu_cxx::__const_pi(std::abs(__x));
 
-      if (__isnan(__nu) || __isnan(__x))
+      if (std::isnan(__nu) || std::isnan(__x))
 	return _S_NaN;
       else
 	return __theta_3(__nu + _Tp{0.5L}, __x);
@@ -329,7 +329,7 @@ namespace __detail
     __ellnome(_Tp __k)
     {
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      if (__isnan(__k))
+      if (std::isnan(__k))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (std::abs(__k) > _Tp{1})
 	std::__throw_domain_error(__N("__ellnome:"
@@ -355,7 +355,7 @@ namespace __detail
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::abs(__x));
 
-      if (__isnan(__k) || __isnan(__x))
+      if (std::isnan(__k) || std::isnan(__x))
 	return _S_NaN;
       else if (std::abs(__k) > _Tp{1})
 	std::__throw_domain_error(__N("__theta_s:"
@@ -385,7 +385,7 @@ namespace __detail
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::abs(__x));
 
-      if (__isnan(__k) || __isnan(__x))
+      if (std::isnan(__k) || std::isnan(__x))
 	return _S_NaN;
       else if (std::abs(__k) > _Tp{1})
 	std::__throw_domain_error(__N("__theta_c:"
@@ -414,7 +414,7 @@ namespace __detail
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::abs(__x));
 
-      if (__isnan(__k) || __isnan(__x))
+      if (std::isnan(__k) || std::isnan(__x))
 	return _S_NaN;
       else if (std::abs(__k) > _Tp{1})
 	std::__throw_domain_error(__N("__theta_d:"
@@ -445,7 +445,7 @@ namespace __detail
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::abs(__x));
 
-      if (__isnan(__k) || __isnan(__x))
+      if (std::isnan(__k) || std::isnan(__x))
 	return _S_NaN;
       else if (std::abs(__k) > _Tp{1})
 	std::__throw_domain_error(__N("__theta_n:"
@@ -510,7 +510,7 @@ namespace __detail
       : _M_omega_1(__omega1),
         _M_omega_3(__omega3)
       {
-	if (__isnan(_M_omega_1) || __isnan(_M_omega_3))
+	if (std::isnan(_M_omega_1) || std::isnan(_M_omega_3))
 	  std::__throw_domain_error("Invalid input");
 	else if (std::imag(this->__tau().__val) <= _Real{0})
 	  std::__throw_domain_error("__jacobi_lattice_t: "
@@ -531,7 +531,7 @@ namespace __detail
       : _M_omega_1(2 * _S_pi),
         _M_omega_3(2 * _S_pi)
       {
-	if (__isnan(__tau.__val))
+	if (std::isnan(__tau.__val))
 	  std::__throw_domain_error("Invalid input");
 	else if (std::imag(__tau.__val) <= _Real{0})
 	  std::__throw_domain_error("__jacobi_lattice_t: "
@@ -987,7 +987,7 @@ namespace __detail
       constexpr auto _S_q_min = _Real{0.001L};
       constexpr auto _S_q_max = _Real{0.95e-1L};
 
-      if (__isnan(__q) || __isnan(__x))
+      if (std::isnan(__q) || std::isnan(__x))
 	return _Tp{_S_NaN};
       else if (std::abs(__q) >= _Real{1})
 	std::__throw_domain_error(__N("__jacobi_theta_1:"
@@ -1183,7 +1183,7 @@ namespace __detail
       constexpr auto _S_q_min = _Real{0.001L};
       constexpr auto _S_q_max = _Real{0.95e-1L};
 
-      if (__isnan(__q) || __isnan(__x))
+      if (std::isnan(__q) || std::isnan(__x))
 	return _Tp{_S_NaN};
       else if (std::abs(__q) >= _Real{1})
 	std::__throw_domain_error(__N("__jacobi_theta_2:"
@@ -1372,7 +1372,7 @@ namespace __detail
       constexpr auto _S_q_min = _Real{0.001L};
       constexpr auto _S_q_max = _Real{0.95e-1L};
 
-      if (__isnan(__q) || __isnan(__x))
+      if (std::isnan(__q) || std::isnan(__x))
 	return _Tp{_S_NaN};
       else if (std::abs(__q) >= _Real{1})
 	std::__throw_domain_error(__N("__jacobi_theta_3:"
@@ -1558,7 +1558,7 @@ namespace __detail
       constexpr auto _S_q_min = _Real{0.001L};
       constexpr auto _S_q_max = _Real{0.95e-1L};
 
-      if (__isnan(__q) || __isnan(__x))
+      if (std::isnan(__q) || std::isnan(__x))
 	return _Tp{_S_NaN};
       else if (std::abs(__q) >= _Real{1})
 	std::__throw_domain_error(__N("__jacobi_theta_4:"
@@ -1651,7 +1651,7 @@ namespace __detail
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__u));
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__u));
 
-      if (__isnan(__k) || __isnan(__u))
+      if (std::isnan(__k) || std::isnan(__u))
 	return __gnu_cxx::__jacobi_ellint_t<_Tp>{_S_NaN, _S_NaN, _S_NaN};
       else if (std::abs(__k) > _Tp{1})
 	std::__throw_domain_error(__N("__jacobi_ellint:"

@@ -36,7 +36,7 @@
 #include <vector>
 #include <array>
 #include <bits/c++config.h>
-#include <bits/complex_util.h> // for complex __isnan, __isinf
+#include <bits/complex_util.h> // for complex std::isnan, __isinf
 
 #pragma GCC system_header
 
@@ -77,7 +77,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (!this->_M_converged)
 	  {
-	    if (std::__detail::__isnan(__term))
+	    if (std::isnan(__term))
 	      std::__throw_runtime_error(__N("_BasicSum: bad term"));
 	    if (std::__detail::__isinf(__term))
 	      std::__throw_runtime_error(__N("_BasicSum: infinite term"));
@@ -167,7 +167,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (!this->_M_converged)
 	  {
-	    if (std::__detail::__isnan(__term))
+	    if (std::isnan(__term))
 	      std::__throw_runtime_error(__N("_KahanSum: bad term"));
 	    if (std::__detail::__isinf(__term))
 	      std::__throw_runtime_error(__N("_KahanSum: infinite term"));
@@ -373,7 +373,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (!this->_M_converged)
 	  {
-	    if (std::__detail::__isnan(__term))
+	    if (std::isnan(__term))
 	      std::__throw_runtime_error(__N("_AitkenDeltaSquaredSum: bad term"));
 	    if (std::__detail::__isinf(__term))
 	      std::__throw_runtime_error(__N("_AitkenDeltaSquaredSum: infinite term"));
@@ -464,7 +464,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (!this->_M_converged)
 	  {
-	    if (std::__detail::__isnan(__term))
+	    if (std::isnan(__term))
 	      std::__throw_runtime_error(__N("_WinnEpsilonSum: bad term"));
 	    if (std::__detail::__isinf(__term))
 	      std::__throw_runtime_error(__N("_WinnEpsilonSum: infinite term"));
@@ -555,7 +555,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (!this->_M_converged)
 	  {
-	    if (std::__detail::__isnan(__term))
+	    if (std::isnan(__term))
 	      std::__throw_runtime_error(__N("_BrezinskiThetaSum: bad term"));
 	    if (std::__detail::__isinf(__term))
 	      std::__throw_runtime_error(__N("_BrezinskiThetaSum: infinite term"));
@@ -983,7 +983,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (!this->_M_converged)
 	  {
-	    if (std::__detail::__isnan(__term))
+	    if (std::isnan(__term))
 	      std::__throw_runtime_error(__N("_LevinSum: bad term"));
 	    if (std::__detail::__isinf(__term))
 	      std::__throw_runtime_error(__N("_LevinSum: infinite term"));
@@ -1110,7 +1110,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       {
 	if (!this->_M_converged)
 	  {
-	    if (std::__detail::__isnan(__term))
+	    if (std::isnan(__term))
 	      std::__throw_runtime_error(__N("_WenigerSum: bad term"));
 	    if (std::__detail::__isinf(__term))
 	      std::__throw_runtime_error(__N("_WenigerSum: infinite term"));

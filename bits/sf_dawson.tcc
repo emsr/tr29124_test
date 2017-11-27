@@ -237,7 +237,7 @@ namespace __detail
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
       constexpr _Tp _S_x_min{0.2L};
 
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return _S_NaN;
       else if (std::abs(__x) < _S_x_min)
 	return __dawson_series(__x);

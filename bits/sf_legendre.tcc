@@ -87,7 +87,7 @@ namespace __detail
       const auto __lge2 = __l >= 2 ? _Tp{+1} : _Tp{0};
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
 
-      if (__isnan(__x))
+      if (std::isnan(__x))
 	return {__l, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
       else if (__x == _Tp{+1})
 	return {__l, __x, _Tp{+1}, __lge1, __lge2};
@@ -144,7 +144,7 @@ namespace __detail
       const auto _S_inf = __gnu_cxx::__infinity(__x);
       if ((__x < -_Tp{1}) || (__x > +_Tp{1}))
 	std::__throw_domain_error(__N("__legendre_q: argument out of range"));
-      else if (__isnan(__x))
+      else if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (std::abs(__x - _Tp{1}) < _S_eps)
 	return _S_inf;
@@ -197,7 +197,7 @@ namespace __detail
       if (__m > __l)
 	std::__throw_domain_error(__N("__assoc_legendre_p: "
 				      "degree out of range"));
-      else if (__isnan(__x))
+      else if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__m == 0)
 	return __legendre_p(__l, __x).__P_l;
@@ -270,7 +270,7 @@ namespace __detail
     _Tp
     __sph_legendre(unsigned int __l, unsigned int __m, _Tp __theta)
     {
-      if (__isnan(__theta))
+      if (std::isnan(__theta))
 	return __gnu_cxx::__quiet_NaN(__theta);
 
       const auto __x = std::cos(__theta);
@@ -368,7 +368,7 @@ namespace __detail
     __sph_harmonic(unsigned int __l, int __m, _Tp __theta, _Tp __phi)
     {
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__theta);
-      if (__isnan(__theta) || __isnan(__phi))
+      if (std::isnan(__theta) || std::isnan(__phi))
 	return std::complex<_Tp>{_S_NaN, _S_NaN};
 
       return __sph_legendre(__l, std::abs(__m), __theta)

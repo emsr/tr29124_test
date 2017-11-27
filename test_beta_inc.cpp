@@ -77,7 +77,7 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_beta_inc te
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
       if (__x < _Tp{0} || __x > _Tp{1})
 	std::__throw_domain_error(__N("__ibeta: argument out of range"));
-      else if (__isnan(__x) || __isnan(__a) || __isnan(__b))
+      else if (std::isnan(__x) || std::isnan(__a) || std::isnan(__b))
 	return _S_NaN;
       else if (__a == _Tp{0} && __b == _Tp{0})
 	return _S_NaN;

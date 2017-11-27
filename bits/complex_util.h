@@ -41,13 +41,23 @@
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
+
+  /**
+   * We need isnan to be extended to std::complex.
+   * Return true if one component of a complex number is NaN.
+   */
+  template<typename _Tp>
+    inline bool
+    isnan(const std::complex<_Tp>& __z)
+    { return std::isnan(std::real(__z)) || std::isnan(std::imag(__z)); }
+
 namespace __detail
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 //
-// The base definitions of __num_traits, __promote_fp,
-// and __isnan reside in ext/specfun_util.h
+// The base definitions of __num_traits and __promote_fp,
+// reside in ext/specfun_util.h
 //
 
   /**
@@ -75,14 +85,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  return std::complex<_Tp>{__NaN, __NaN};
 	}
       };
-
-  /**
-   * Return true if one component of a complex number is NaN.
-   */
-  template<typename _Tp>
-    inline bool
-    __isnan(const std::complex<_Tp>& __z)
-    { return __isnan(std::real(__z)) || __isnan(std::imag(__z)); }
 
   /**
    * Return true if one component of a complex number is inf.
@@ -442,14 +444,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
 #if __cplusplus >= 201103L
-
-  /**
-   * We need isnan to be extended to std::complex.
-   */
-  template<typename _Tp>
-    bool
-    isnan(const std::complex<_Tp>& __z)
-    { return std::__detail::__isnan(__z); }
 
   /**
    * This is a more modern version of __promote_N in ext/type_traits

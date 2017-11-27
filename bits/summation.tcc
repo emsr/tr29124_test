@@ -46,7 +46,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _VanWijngaardenSum<_Tp>&
     _VanWijngaardenSum<_Tp>::operator+=(value_type __term)
     {
-      if (std::__detail::__isnan(__term))
+      if (std::isnan(__term))
 	std::__throw_runtime_error(__N("_VanWijngaardenSum: bad term"));
       if (std::__detail::__isinf(__term))
 	std::__throw_runtime_error(__N("_VanWijngaardenSum: infinite term"));

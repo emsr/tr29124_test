@@ -10,5 +10,5 @@ main()
 {
   unsigned int n = 3;
   double x = 4.5;
-  double jn = sph_bessel(n, x);
+  double jn [[maybe_unused]] = sph_bessel(n, x);
 }
