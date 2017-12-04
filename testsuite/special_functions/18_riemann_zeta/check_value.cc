@@ -1,6 +1,6 @@
 // { dg-do run { target c++11 } }
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
-//
+
 // Copyright (C) 2016-2017 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
@@ -21,7 +21,7 @@
 //  riemann_zeta
 
 // This can take long on simulators, timing out the test.
-// { dg-options "-DMAX_ITERATIONS=5" { target simulator } }
+// { dg-additional-options "-DMAX_ITERATIONS=5" { target simulator } }
 
 #ifndef MAX_ITERATIONS
 #define MAX_ITERATIONS (sizeof(data001) / sizeof(testcase_riemann_zeta<double>))
@@ -114,7 +114,7 @@ const double toler001 = 2.5000000000000020e-13;
 //  riemann_zeta
 
 // This can take long on simulators, timing out the test.
-// { dg-options "-DMAX_ITERATIONS=5" { target simulator } }
+// { dg-additional-options "-DMAX_ITERATIONS=5" { target simulator } }
 
 #ifndef MAX_ITERATIONS
 #define MAX_ITERATIONS (sizeof(data001) / sizeof(testcase_riemann_zeta<double>))
