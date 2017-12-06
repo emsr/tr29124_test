@@ -3,7 +3,7 @@ $HOME/bin_tr29124/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_rie
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_riemann_zeta > test_riemann_zeta.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-PATH=wrappers/debug:$PATH ./test_riemann_zeta > test_riemann_zeta.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_riemann_zeta > test_riemann_zeta.txt
 */
 
 #include <ext/cmath>
@@ -343,7 +343,7 @@ main()
 
   test_nontrivial_zeros<long double>();
 
-  std::cout << "\n\nRiemann zeta\n\n";
+  std::cout << "\n\nRiemann zeta\n\n" << std::flush;
 
   std::cout << "\nriemann_zeta<float>\n";
   plot_riemann_zeta<float>("plot/riemann_zeta_float.txt");
