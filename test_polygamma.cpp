@@ -313,7 +313,7 @@ template<typename _Tp>
       const auto __hzeta = std::__detail::__hurwitz_zeta(_Tp(__m + 1), __x);
       const auto __ln_nfact = std::__detail::__log_gamma(_Tp(__m + 1));
       auto __result = std::exp(__ln_nfact) * __hzeta;
-      if (__m % 2 == 1)
+      if (__m % 2 == 0)
 	__result = -__result;
       return __result;
     }
