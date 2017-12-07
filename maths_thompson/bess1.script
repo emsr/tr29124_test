@@ -1,0 +1,535 @@
+_MODIFIED BESSEL FUNCTIONS I*v*(z) and K*v*(z)
+OF REAL ORDER AND COMPLEX ARGUMENT, TO ANY REQUIRED ACCURACY_
+I.J. Thompson,  Department of Engineering Mathematics,
+University of Bristol, Bristol BS8 1TR, U.K.,
+and   A.R. Barnett    Department of Physics, Manchester University,
+Manchester M13 9PL, U.K.
+       to be submitted to Computer Physics Communications
+ _Title of Program_: BESSCC
+ _Catalogue Number_:
+ _Program  obtainable  from_:  CPC  Program  Library,  Queen's  University,
+        Belfast
+ _Computer_: NAS 7000 at Daresbury Laboratory.
+       Also tested on CRAY-1, ATLAS-10, IBM  3081,  CYBER 205, GEC 4190,
+       CDC 7600, VAX 750, and IBM PC/AT.
+ _Operating system_: MVS
+ 
+ _Programming  language  used_:  FORTRAN  77 with complex arithmetic in the
+       required precision.
+ _High speed storage required_: 360kbytes, with 10520 bytes for BESSCC.
+ _No. of bits in a real number_: 64
+ _Overlay structure_: None
+ _No. of magnetic tapes required_: None
+ _Other peripherals used_: reader, printer (neither used in BESSCC itself)
+ _No. of cards in combined program and test deck_: 527
+ _Card punching code_: EBCDIC
+ _Keywords_:   general   purpose,   Bessel,   continued   fraction,  Temme,
+       cylindrical,   Miller's   algorithm,  backward  recurrence,  Airy,
+       Steed's method.
+ 
+ _Nature  of  physical  problem_:
+ The  BESSCC  subroutine  calculates  the modified Bessel functions I*v*(z)
+and K*v*(z) (and derivatives) for  complex  argument  z  and  a sequence of
+real  orders  v,v+1,...,v+N-1  for integer N _>_ 1.   These functions arise
+in the solutions of  potential  problems  in  spherical  and  cylindrical
+coordinates.   They  can  also  be  used  to  calculate  ordinary Bessels
+J*v*(z), Y*v*(z), spherical Bessels j*v*(z), y*v*(z), and Airy functions.
+ 
+ _Method of solution_:
+ For large arguments z, Temme's algorithm  [1]  is  used  to find K*v*, K*v*'
+and I*v*, I*v*'.  The I*v*(z) values are recurred upward while stable.
+ For  moderate  z,  K*v*  &  K*v*'   are  found  using  Temme's  method,  and
+Miller's  method  is  used  to  find  I*v*'/I*v*,  with  the I*v* normalised by
+the Wronksian with K*v*.
+ For small z, Miller's  method  is  again  used for the I*v*, and a Neumann
+series for the K*v*(z).
+ Upward  recurrence  of  the K*v* is always stable, and downward recurrence
+for the I*v* is used in the second and third cases.
+ 
+ 
+ _Restrictions on the complexity of the problem_
+ The functions are determined only  for  real order v > -1/2.  Reflection
+formulae are given for v _<_ -1/2,  and  for complex order  v the procedure
+COULCC of ref. [2] is available.  The routines are  less  efficient  when
+both  order  and argument are large, becoming noticeable when
+v+N > |z|/2 > 1000.
+ 
+ _Typical running time_
+ The test deck takes 0.44 secs of execution time on a NAS 7000.
+ _Accuracy_
+ In general, results  within  two  digits  of  machine  accuracy  may  be
+obtained,  subject  to  the correct set of constants being included.  The
+code  is  released  with  constants  allowing  accuracies  of  up  to  24
+significant digits.  For calculations  of  arbitrary  precision and/or of
+more than 24 digits, an appended program  ZETA  can  be  easily  used  to
+calculate the required constants.
+ On  IBM  machines,  BESSCC has been compared with the similar package of
+Campbell [3] and with  the  larger  suite of programs of Amos [4], and no
+discrepancies are found greater than 10*-14*.  A  table  is  given  of  the
+accuracies obtainable with different machines.
+ _References_
+ [1]  N.M.  Temme,  Numer.  Math.  _41_  (1983) 63; J. Comput.  Physics  _19_
+       (1975) 324.
+ [2] I.J. Thompson and A.R. Barnett, Comput. Physics. Commun.  _36_ (1985)
+     363.
+ [3] J.B. Campbell, Comput. Phys. Commun. _24_ (1981) 97.
+ [4] D.E. Amos, Sandia National Laboratories Report SAND85-1018 (May 1985).
+       _*LONG WRITE-UP*_
+1. _Introduction_
+    Algorithms are presented for the  computation of the modified Bessel
+functions I*v*(z) and K*v*(z), of real  order  v,  and  complex  argument z.
+The accompanying subroutine BESSCC is written in FORTRAN 77, and for the
+required  relative  accuracy  calculates  I*v*,  I*v*',  K*v*  and  K*v*'(z) for
+a specified sequence of orders v, v+1, ..., v+N-1.   An integer variable
+IFAIL returns the number of orders which could not be calculated because
+overflow or underflow would occur.   Optional exponential scaling may be
+employed to reduce the likelihood of this error occuring.
+ 
+    Stored constants in the program are given to 24 digits of precision,
+and  give  the continued fraction expansions for the functions g*1*(t) and
+g*2*(v)  (see  section  3.3).  The  number  of  these  terms  required  is
+proportional to the  required  number  of  digits of precision, over the
+range |v| _<_ 1/2.  Should greater precision  be  needed,  a small program
+ZETA   is   appended   to   the  accompanying  CPC  deck.   This program
+calculates  the BESSCC constants using a working precision approximately
+6 digits  greater  than  the  target  Bessel precision, and thus enables
+Bessel  calculations  of  arbitrary  accuracy  subject  to  the  machine
+arithmetic being available.   The ZETA routines could  have  been called
+directly  from  BESSCC,  but for the sake of the  speed  of  the  Bessel
+calculations they were separated in the above manner.
+ 
+   The subroutine BESSCC (with  associated  function CF2E) comprises 473
+lines of code and requires 10520 bytes of storage.  The remainder of the
+deck consists of a test program, and the program ZETA.
+2. _Bessel Function Expansions_
+ 
+2.1 _Temme's Algorithm for the Irregular Solutions_
+ 
+As explained in refs. [1,2], the sequence of values
+       P*k* = *2*F*0*(a+k,b+k;;u)
+ of  the  confluent  hypergeometric  function  satisfy   the  recurrence
+relations
+       P*k* = [1 - (a*k*+b*k*+1)u] P*k+1* - u_2_a*k*b*k* P*k+2*
+ where a*k* = a+k and b*k* = b+k,
+ and Temme's sum rule
+ 
+       _>_ C*k* P*k* = 1                                       (2.1)
+      _k=0_
+ where
+       C*0* = 1 and C*k+1* = - a*k*b*k*uC*k*/(k+1).
+ 
+    These sums are convergent when a > 0, 0 < b  < 1, and Re(u) < 0 with
+|u|  <<  1,  so  Miller's  backward  recurrence  method  can  be used to
+calculate   a  normalised  sequence  of  values  P*k*  for  k  from   some
+starting  order  M down to 0.  We use the extension of Steed's method of
+section 3.1, which  finds  the upper order M automatically.  As in [3],
+the  ratio  abP*1*/P*0*  is  the   logarithmic   derivative  of  *2*F*0*(a,b;;w)
+with with respect to w,  and  this  gives  [2]  the  continued fraction
+CF2(w) for w = _+_1 by
+       CF2_w_ = iw [ 1 + 2abu P*1*_w_/P*0*_w_],                (2.2)
+ 
+where  [4]  the  ratio  P*1*/P*0*  converges  to  a  given  accuracy  with
+approximately half as many terms as needed for the sum (2.1).
+ 
+    The   P*k*_w_  for  a  =  _1_/*2*-v,  b  =   _1_/*2*+v,  and  u  =  -w/(2z)  can
+be found  for  both w = +1 and -1, but when Re(z) > 0 the w=+1 Temme sum
+converges more quickly, giving
+       K*v* = pi/2 (pi/(2z))_1/2_ e_-z_ P*0*_+_                (2.3)
+ and
+       K*v*'/K*v* = i CF2_+_ - 1/(2z).                         (2.4)
+ 
+    When |z| >> 10,  the  P*k*_-_  also  converge  by  this method.  We need
+however   only   find   the   ratio  P*1*_-_/P*0*_-_  if  we  already  have  the
+P*k*_+_,    because    of   the   Wronksian   condition   P*0*_+_P*0*_-_   [CF2_+_   -
+CF2_-_]  =  2i. Then, guided by our Coulomb results [2,5] as to where we
+can calculate the  regular solution F as the difference of two irregular
+solutions H_+_ and H_-_, we have the new results
+       I*v*(z) = _1_/*2* (pi/(2z))_1/2_ e_z_ P*0*_-_ [1 - H_+_/H_-_]
+ and
+       I*v*'/I*v* = i[CF2_-_ - H_+_/H_-_ CF2_+_]/[1 - H_+_/H_-_] - 1/(2z)
+where the ratio H_+_/H_-_ of the Coulomb functions is
+       H_+_/H_-_ = exp(-2z + (v-_1_/*2*)pi i) P*0*_+_/P*0*_-_.
+ 
+ 
+2.2 _Recurrence relations, and Miller's method for I*v*'/I*v*_
+ 
+    The   I*v*   and  exp(v pi i)K*v*  functions  both  satisfy  the  same
+recurrence relations [6, eqs. 9.6.26]:
+       I*v*(z) = I*v+1*'(z) + (v+1)/z I*v+1*(z)
+ and
+       I*v*'(z) = v/z I*v*(z) + I*v+1*(z),
+ 
+with equivalent relations for  upward  recurrences.    These  are stable
+provided  that  the  functions  do  not  monotonically decrease  in  the
+direction of recurrence. This is always the case for downward recurrence
+of the I*v*(z) throughout the complex z  plane,  and for upward recurrence
+of  K*v*(z)  in the right-hand half plane Re(z) _>_  0.   Furthermore,  when
+|z| is large,  the  I*v*(z)  decrease only very slowly as v increases from
+near zero until approximately  as  far   as  0.6|z|. For large |z|, this
+enables BESSCC (in contrast to [1,8])  to  recur  the  I*v*  upward  for
+some  distance with very little loss  of  accuracy,  provided the moduli
+|I*v*| are  monitored  to  avoid  the  errors  rising by more than say one
+order of magnitude.
+ 
+    From   the  downward  recurrence  relations  for  the  I*v*,  we  have
+Miller's  backward  recurrence  method, as extended by  Gautschi [9] to
+iterate on f*v* = I*v*'/I*v*.  For starting order M it uses
+        f*v+k-1* = (v+k-1)/z + 1/[(v+k)/z + f*v+k*]
+ for k from M down to 1, beginning with say f*v+M* = (v+M)/z + z/[2(v+M+1)].
+ 
+    Sookne's  method  [10]  is  used  to  find  the starting order M, by
+performing  a preliminary upward recurrence of p*j* from  J  =  max(v,|z|)
+and p*J-1*=0, p*J*=1, using
+       p*j+1* = 2j/z p*j* - p*j-1*
+ until  a modulus |p*v+M*| is found  that  is  greater  than  eps_-1/2_  for
+relative accuracy   eps   in  the  resulting  ratio  f*v*.   Although this
+method requires more work than the use of pre-computed  starting  orders
+(as  is  done  in  refs.  [7] and [8]), it does enable calculations to
+attain any required precision.  We found  Sookne's  method to be quicker
+than using the extended Steed's method of section  3.1.
+ 
+2.3 _Small z sum rules for I*v*, and Neumann series for K*v*_
+ 
+    For |Re(z)| < 2, the normalising series
+ 
+       _>_  u*m* I*v+2m*(z) = 1                                (2.5)
+       _m=0_
+ can be used, with  u*m* = (-1)_m_(2/z)_v_(v+2m) Gamma(v+m)/m!,
+ that is, with u*0* = (2/z)_v_ Gamma(1+v)
+          and  u*m* = - u*m-1* (v+2m)/(v+2m-2) (v+m)/m.
+ 
+    The same I*v+2m*(z) values can be used in  a  Neumann  series  to give
+the  irregular  function  K*v*(z), following Goldstein and Thaler [11] and
+Campbell  [7],  but with  simplifications  that  arise  because  BESSCC
+calculates the I and K Bessels together :
+ 
+    K*v*(z) = d*0*I*v*(z) +  _>_  (v+2m) D*m* I*v+2m*(z),      (2.6)
+                      _m=1_
+ with
+    d*0* = g*1*(pi.z) + u*0* sinh[v(g*2*(v)+ln(2/z))]/v,
+ 
+    g*1*(t) = pi/2 [ t_-1_ - cosec(t)],
+ 
+    g*2*(v) = v_-1_ ln Gamma(1+v)
+ 
+    D*1* = u*0*_2_ (v+2)/(1-v)
+ and
+    D*m* = D*m-1* (2v+m-1)(v+m-1) / (m(m-v))  for m _>_ 2.
+ 
+2.4 _The Wronksian relation_
+ 
+    At each order v, the functions satisfy the relation
+       I*v*'K*v*  -  K*v*'I*v*  =  1/z,                        (2.7)
+ and  this  is  used  in  BESSCC  to calculate  K*v*'  from  I*v*,  I*v*'  and
+K*v*. This is provided that I*v* is  not  near  a  zero,  as otherwise there
+would be significant cancellation errors: in such cases BESSCC evaluates
+K*v*'  from  K*v*  and  K*v*'/K*v*  via  the  continued  fraction  CF2_+_  that is
+already coded as in section 2.1.
+ 
+2.5 _Analytic continuations to Re(z) < 0 and v < 0_
+ 
+    The analytic continuation to Re(z) < 0 is given by eqs 9.6.30 and 31
+of ref.[6]:
+       I*v*(tz) = t_v_ I*v*(z)
+ and
+       K*v*(tz) = t_-v_ K*v*(z) - pi i Im(t_v_) cosec(v pi) I*v*(z)
+ where
+       t = exp(_+_pi i). These transformations are included in the code.
+ 
+    For negative v one can use
+       I*-v*(z) = I*v*(z) + 2/pi sin(v pi) K*v*(z)
+ and
+       K*-v*(z) = K*v*(z).
+ 
+2.6 _Other Bessel in terms of I*v*(z) and K*v*(z)_
+ 
+...
+ 
+    For spherical Bessels  of integer order and complex argument, Figure
+3 gives a simpler  and  self-contained  program  SBESJH. For integer n _>_ 0,
+this   procedure   computes   the   regular    j*n*(z)    and    irregular
+h*n*_(1)_(z)  (and  their  derivatives  with respect to z) in the half-plane
+Im(z) > -3 where h*0*_(1)_(z)  is  exponentially  decaying.   The  remaining
+spherical Bessels may be found by
+-1-
+ 
+       h*n*_(2)_(z) = h*n*_(1)_(z) - 2i y*n*(z)
+ and
+       y*n*(z) = i [j*n*(z) - h*n*_(1)_(z)].
+3. _Numerical Methods_
+ 
+3.1 _Forward evaluation of continued fractions and Temme's sum_
+ 
+    Given a recurrence relation P*k-1* = b*k*P*k* + a*k+1*P*k+1* such as
+that in section 2.1,  Steed's algorithm [3] can be used to evaluate the
+continued fraction
+ 
+       P*1*/P*0* = 1/(b*1* + a*2*/(b*2* + a*3*/ ... ))
+ 
+forwards from  k=0  as  the  successive  sum  P*1*/P*0*  =  _>_  h*k*,  a method
+not  requiring  a   precalculated   starting   order  determined  by the
+accuracy desired.   The method has been extended to  calculate a forward
+approximation to the sum required in Temme's method
+ 
+       S*N* = >*k=1*_N_ C*k* P*k*/P*0*
+ as
+       S*N* = >*i=1*_N_ Q*i* h*i*
+ where
+       Q*i* = >*k=1*_i_ C*k* q*k*
+ 
+  and  q*k*  is  the  forward   sequence   q*k* = (q*k-1* - b*k*q*k*)/a*k+1*
+starting from q*0* = 0 and q*1* = 1.
+ 
+3.2 _Calculation cases by (z,v) region_
+ 
+    There are three `cases'  for  combining  the  various  expansions of
+section  2.  First, the argument z is reflected if  necessary  into  the
+right-hand half  plane  Re(z)  _>_  0,  and  a  v*min*  is found with |v*min*|
+_<_  1/2   such   that   v - v*min* is integral.  The  following  rules  are
+chosen to minimise boundary errors  for  selections  of  v*min*  values in
+the range -0.5 to +0.5.
+ 
+    For  large  arguments  |z|  >  25 and v*max* <  0.6|z|,  case  1  uses
+Temme's    algorithm   for   both   the  P*k*_+_   and   P*k*_-_   sequences  at
+v*min*,   to   find  K*v*,  K*v*'  and  I*v*,  I*v*'.   The   I*v*(z)   values   are
+recurred upward while this is stable.  Should instabilities be detected,
+the remaining values are calculated by the slower method of case 2.
+ 
+    Case 2 is for moderate |z|  _>_  3, and 10|Re(z)| + |Im(z)| _>_ 20, when
+the   values   K*v*   and   K*v*'   are  found using  Temme's  algorithm  at
+v*min*  for the P*k*_+_ as in  case  1,  and  Miller's  method  used  to  find
+logarithmic  derivative   I*v*'/I*v*   at   v*max*.   The  I*v*  are  normalised
+using the Wronskian with the K*v* at v*min*.
+ 
+    For small  |z|  <  3,  or 10|Re(z)| + |Im(z)| < 20,  case 3 is used,
+with  Miller's method and the sum  rule  of  eqn.  (2.5)  for the I*v* and
+I*v*',    and   a   Neumann   series   for   the   K*v*(z)   at   v*min*.  The
+K*v*'  at v*min* is found by the Wronksian unless I*v*  is  near  a  zero,  in
+which case CF2 is called again.
+ 
+    Upward  recurrence  of  the  K*v* & K*v*' is always stable, and downward
+recurrence for the I*v* & I*v*' is used in the second and third cases.
+ 
+    The effects of these rules  for  calculations in the complex z plane
+are shown in figure 4, where it is assumed that the upward recurrence of
+I*v* in case 1 proves to be stable.
+ 
+3.3 _Continued fractions for g*1*(t) and g*2*(v) : the ZETA program_
+ 
+    The functions
+       g*1*(t) = pi/2 [ t_-1_ - cosec(t)] for t = pi.v
+ and
+       g*2*(v) = v_-1_ ln Gamma(1+v)
+ do not have closed form expressions over the range  |v|  _<_  1/2.    For
+that reason we start with their series expansions
+       g*1*(t) = pi/2 >*n=0* (-1)_n_2(2_2n-1_-1)B*2n* z_2n-1_/(2n)!
+ and
+       g*2*(v) = -gamma + >*n=1* (-z)_n_ zeta*n+1*/(n+1)
+ where
+       B*2n*  are  the  Bernoulli  numbers [6,table 23.2],
+ 
+       gamma = -psi_(0)_(1),
+  and
+       zeta*n+1*  =   (-1)_n+1_psi_(n)_(1)/n!   are  the  sums  of  reciprocal
+powers [6, table 23.3].
+ 
+    To calculate these functions to arbitrary accuracy, we use the facts
+that the Bernoulli numbers  have  exact  rational  values,  and that the
+polygamma  function  psi_(n)_(z)  has  an asymptotic expansion in terms of
+the same Bernoulli numbers.  We have  therefore  adapted a digamma (psi)
+code of Koelbig [12] to calculate polygamma functions of arbitrary order
+n,  in  order  to  calculate the series coefficients to  the  accuracies
+required.
+ 
+    Having  the series expansion for  the  required  function,  we  have
+calculated the  coefficients  of  the  corresponding  continued fraction
+using the transformations and code DFRACT of  ref.[13].    The continued
+fraction  coefficients  are calculated by the program ZETA, and inserted
+in BESSCC as  DATA statements.   From figure 5 we see that the number of
+terms required is a  linear function of the number of digits of accuracy
+required, and the equations giving  the straight lines in the figure are
+built into the BESSCC code.
+4. _Program Description_
+ 
+4.1 _The BESSCC calling sequence_
+ 
+    The calling sequence for the program is (see fig. 1)
+ 
+  CALL BESSCC(Z,XNU,NL, FI,FK,FIP,FKP, MODE,ACC,IFAIL)
+ 
+where the arguments have the following type and meaning
+ 
+ Z     complex         argument z, non-zero
+ XNU   real            minimum order v > -1/2
+ NL    integer         number of orders v, v+1, ..., v+NL-1 required
+ FI    complex array   dimension NL, regular Bessel I*v*(z)
+ FK    complex array   dimension NL, irregular Bessel  K*v*(z)
+ FIP   complex array   dimension NL, regular derivative I*v*'(z)
+ FKP   complex array   dimension NL, irregular derivative K*v*'(z)
+ MODE  integer         |MODE| gives the selection of I, K, I' and K',
+                       and MODE < 0 selects exponential scaling:
+       if |MODE|
+       = 1  I, K, I', K'
+       = 2  I, K
+       = 3  I, I'
+       = 4  I only.
+ 
+      if MODE < 0 then the values returned are scaled by an exponential
+                 factor (dependent only on z) to bring nearer unity
+                 the functions for large |z| and small |v| < |z| :
+           so FI = exp(-|Re(z)|) * I
+              FIP= exp(-|Re(z)|) * I'
+          and FK = exp(Re(z))    * K
+              FKP= exp(Re(z))    * K'
+ 
+ ACC   real            target relative accuracy
+                       If ACC > 0.0001,
+                         or the code finds that 1.0 + ACC = 1.0,
+                        then a default ACCDEF = 10_-6_ is used.
+ 
+ IFAIL integer         classification of errors on output :
+ 
+    IFAIL  in output:  -2 = argument out of range
+                       -1 = one of the continued fractions failed,
+                            or arithmetic check before final recursion
+                        0 = All Calculations satisfactory
+                        > 0 : results available for orders up to & at
+                              position NL-IFAIL in the output arrays.
+ 
+    Further  information  about  performance  of BESSCC is provided by a
+named common block /BSTEED/ containing  in  order ACCUR (REAL*8) and the
+integers NFP, NPQ(2) and KASE.
+ ACCUR = adopted target accuracy for the calculation, normally ACC.
+ NFP   = starting order M for Miller's method for regular solution
+ NPQ(1) = number of terms required for Temme's sum for P_+_
+ NPQ(2) = number of terms required for CF2_-_, and
+ KASE = 1, 2 or 3 according the case of section 3.2.
+ 
+4.2 _Test deck_
+ 
+    The  test  deck  contains  a  main program  to  call  BESSCC  for  a
+succession  of  z,  v*min* and NL combinations determined by the data read
+in.  The  output  with  IBM double precision is shown at the end of this
+article.
+ 
+    Prior to calling  BESSCC,  the  main  program finds the smallest ACC
+such that  1.0 + ACC = 1.0,  and and prints its value to remind the user
+of his machine's maximum precision. BESSCC requests this target accuracy
+in the Bessel calculations, though the achieved accuracy will be bounded
+by at best 20 to 50 times the ACC limit.
+ 
+4.3 _Operation of the ZETA program_
+ 
+    The  ZETA  program  included  at the  end  of  the  CPC  deck  is  a
+stand-alone program that calculates the  continued-fraction coefficients
+for the functions g*1*(t) and g*2*(v)  as  described  in  section  3.3.   In
+order  to  obtain  24  digits  of  accuracy  for these coefficients, the
+program  is  written to use the quadruple-precision  complex  arithmetic
+(COMPLEX*32)  that  is  available  for  example  with the IBM VS-FORTRAN
+compiler.
+ 
+    The inputs to  the  program  are  (in  free format) the real numbers
+ACCUR and ACC, where ACCUR is the relative  precision  available for the
+ZETA program to use (1Q-33 with VS FORTRAN as above),  and  ACC  is  the
+maximum  target  accuracy  that will be used in the BESSCC program (e.g.
+1Q-24).   The program then  outputs  on  a `punch' file 7 the DATA cards
+needed for BESSCC, provided that sufficient rational  Bernoulli  numbers
+have  been  included in the DATA statements of the subroutine LOGAM.  We
+have included 15 such numbers, sufficient for target accuracies ACC down
+to 10_-35_; another  15  numbers  are  given  in  table 23.2 of ref.[6] if
+required. Figure 6 shows the results of running  the  ZETA  program  for
+accuracies 10_-7_ and 10_-14_, in  a  FORTRAN  form  ready  for insertion in
+the BESSCC deck.
+5. _Machine Variants_
+ 
+5.1 _The version in the CPC program package_
+ 
+    The published version of BESSCC is for compilation  with  the IBM VS
+FORTRAN  77  compiler,  with  double-precision complex type (COMPLEX*16)
+available and the generic functions listed in figure 2.   Unfortunately,
+FORTRAN 77 does not define  a  DOUBLE COMPLEX or COMPLEX*16 standard, so
+for  convenience  statement  functions  for  AIMAG and  CMPLX  has  been
+defined.
+ 
+5.2 _Changes necessary for different machines and different precisions_
+ 
+    Variant  decks  have  been  prepared  for  the following systems and
+precisions:
+       (a) single precision for CRAY, CYBER 205  and  CDC  7600, with 14
+           digits of precision (ACC > 1E-14),
+       (b) single  precision with the pure FORTRAN 77 standard, for use
+           with IBM and GEC compilers and ACC > 1E-6,
+       (c) quadruple precision  for  IBM  VS  FORTRAN, ACC > 1Q-24,
+ and   (d) Microsoft  FORTRAN  77   for   the   IBM   PC/AT  and  Apollo
+           micro-computers.
+ 
+The  differences  between these decks (a) to (d) and the CPC  version  are  can  be
+summarised by:
+    (a,b) Remove AIMAG and CMPLX statement functions.
+          Change D+ and D- exponents to E+ and E-
+               (this can be done by a global string substitution)
+          Change REAL*8 to REAL and COMPLEX*16 to COMPLEX
+    (a)   Reduce PARAMETERs  NGAM  to 20 and NCSC to 9, deleting surplus
+               coefficients in the DATA statements.
+    (b)   Reduce PARAMETERs  NGAM  to 11 and NCSC to 6, deleting surplus
+               coefficients in the DATA statements.
+    (c)   Change D+ and D- exponents to Q+ and Q-
+               (this can be done by a global string substitution)
+          Change REAL*8 to REAL*16 and COMPLEX*16 to COMPLEX*32
+          Remove the CMPLX statement functions.
+ 
+and by changing the DATA  statements  for  FPMAX,  FPMIN,  FPHMIN,  and
+FPLMIN as shown in Table 1.
+ ...
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+-2-
+ 
+_Table 1: List of machines with target accuracies and exponent ranges_
+ 
+----------------------------------------------------------------------
+|  Machine    |  min  ACC   |  FPMAX  |  FPMIN  |  FPHMIN  |  FPLMIN  |
+|--------------------------------------------------------------------|
+| IBM VS  sp  |  9.6E-7    |  1E60   |  1E-60  |  1E-30   |  -140.   |
+|         dp  |  2.3D-16   |  1D60   |  1D-60  |  1D-30   |  -140.   |
+|         qp  |  3.5Q-33   |  1Q30   |  1Q-60  |  1Q-30   |  -140.   |
+ 
+ _References_
+ 
+[1]  N.M.  Temme,  Numer.  Math.  _41_  (1983)  63;  J. Comput. Physics _19_
+       (1975) 324.
+ 
+[2] I.J. Thompson and A.R. Barnett,  J. Comput. Physics _64_ (1986) 490.
+ 
+[3]  A.R.  Barnett, D.H. Feng, J.W. Steed and L.J.B.  Goldfarb,  Comput.
+       Phys. Commun. _8_ (1974) 377.
+ 
+[4] J.B. Campbell, ACM Trans. Math. Software _6_ (1980) 581.
+ 
+[5] I.J. Thompson and A.R. Barnett, Comput. Physics. Commun.  _36_ (1985)
+       363.
+ 
+[6] M. Abramowitz  "Handbook  of  Mathematical Functions" (M. Abramowitz

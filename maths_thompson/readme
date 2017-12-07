@@ -1,0 +1,11 @@
+
+    CRCWFN : Coupled Real Coulomb wavefunctions
+
+    J.A. Christley and I.J. Thompson (Surrey, 1994)
+
+    As described in Comp. Phys. Comm. 79 (1994) 143-155
+
+    crcwfn.f    -    copy of subroutine
+    crctest.f   -    copy of subroutine + test program
+
+
