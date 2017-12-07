@@ -1568,10 +1568,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tpc, typename _Tp>
-    inline typename __gnu_cxx::__promote_fp_t<_Tpc, _Tp>::__type
+    inline typename __gnu_cxx::__promote_fp_t<_Tpc, _Tp>
     conf_hyperg_lim(_Tpc __c, _Tp __x)
     {
-      typedef typename __gnu_cxx::__promote_fp_t<_Tpc, _Tp>::__type __type;
+      typedef typename __gnu_cxx::__promote_fp_t<_Tpc, _Tp> __type;
       return std::__detail::__conf_hyperg_lim<__type>(__c, __x);
     }
 

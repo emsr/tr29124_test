@@ -291,6 +291,45 @@ namespace __detail
 
   /**
    * @brief  Compute the Riemann zeta function @f$ \zeta(s) @f$
+   * 	     by Laurent expansion about s = 1.
+   *
+   * The Laurent expansion of the Riemann zeta function is given by:
+   *  @f[
+   * 	\zeta(s) = \frac{1}{s-1} + 
+   *      \sum_{k=0}^{\infty} \frac{(-1)^k}{k!}\gamma_k (s-1)^k
+   *  @f]
+   * Where @f$ \gamma_k @f$ are the Stieltjes constants,
+   * @f$ \gamma_0 = \gamma_E @f$ the Euler-Mascheroni constant.
+   *
+   * The Stieltjes constants can be found from a limiting process:
+   *  @f[
+   *    \gamma_k = \lim_{n\to\infty}\left{
+   *   \sum_{i=1}^{n}\frac{(ln i)^k}{i} - \frac{(ln n)^{k+1}}{k+1}\right}
+   *  @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __riemann_zeta_laurent(_Tp __s)
+    {
+      using _Val = _Tp;
+      using _Real = __num_traits_t<_Val>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
+      const auto __arg = __s - _Val{1};
+      auto __argk = _Val{1};
+      auto __zeta = _Val{1} / __arg + _S_Stieljes[0];
+      for (unsigned int __k = 1; __k < _Num_Stieljes; ++__k)
+	{
+	  __argk *= -__arg / __k;
+	  const auto __term = _S_Stieljes[__k] * __argk;
+	  __zeta += __term;
+	  if (std::abs(__term) < _S_eps * std::abs(__zeta))
+	    break;
+	}
+      return __zeta;
+    }
+
+  /**
+   * @brief  Compute the Riemann zeta function @f$ \zeta(s) @f$
    * 	     by summation for s > 1.
    *
    * The Riemann zeta function is defined by:
@@ -680,6 +719,7 @@ namespace __detail
     __riemann_zeta_m_1(_Tp __s)
     {
       using _Real = __num_traits_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__s));
       if (__s == _Real{1})
 	return __gnu_cxx::__infinity(std::real(__s));
@@ -687,6 +727,8 @@ namespace __detail
       auto __n = __gnu_cxx::__fp_is_integer(__s);
       if (__n && __n() >= 0 && __n() < _S_num_zetam1)
 	return _Tp(_S_zetam1[__n()]);
+      else if (std::abs(__s - __n()) < _Real{100} * _S_eps)
+	return __riemann_zeta_laurent(__s) - _Real{1};
       else if (std::real(__s) > _Real{0})
 	return __riemann_zeta_m_1_glob(__s);
       else // Re[s] < 0
