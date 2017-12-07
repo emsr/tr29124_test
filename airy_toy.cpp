@@ -3979,17 +3979,17 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 
       // Complete evaluation of the Airy functions.
       __zeta = _S_zone / __zeta;
-      auto _Ai = __coszeta * __cpoly.even(__zetam2)
-	       + __sinzeta * __cpoly.odd(__zetam2);
+      auto _Ai = __coszeta * __cpoly.eval_even(__zetam2)
+	       + __sinzeta * __cpoly.eval_odd(__zetam2);
       _Ai *= _S_pimh / __z1d4;
-      auto _Aip = __sinzeta * __dpoly.even(__zetam2)
-		- __coszeta * __dpoly.odd(__zetam2);
+      auto _Aip = __sinzeta * __dpoly.eval_even(__zetam2)
+		- __coszeta * __dpoly.eval_odd(__zetam2);
       _Aip *= _S_pimh * __z1d4;
-      auto _Bi = -__sinzeta * __cpoly.even(__zetam2)
-	       + __coszeta * __cpoly.odd(__zetam2);
+      auto _Bi = -__sinzeta * __cpoly.eval_even(__zetam2)
+	       + __coszeta * __cpoly.eval_odd(__zetam2);
       _Bi *= _S_pimh / __z1d4;
-      auto _Bip = __coszeta * __dpoly.even(__zetam2)
-		+ __sinzeta * __dpoly.odd(__zetam2);
+      auto _Bip = __coszeta * __dpoly.eval_even(__zetam2)
+		+ __sinzeta * __dpoly.eval_odd(__zetam2);
       _Bip *= _S_pimh * __z1d4;
 
       // I think we're computing d/d(-z) above.
