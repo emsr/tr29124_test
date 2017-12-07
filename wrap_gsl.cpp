@@ -1481,14 +1481,14 @@ gamma_reciprocal(unsigned int /*a*/)
 
 /// Coulomb normalization.
 double
-coulomb_norm(unsigned int l, double eta)
+coulomb_norm(double lambda, double eta)
 {
   gsl_sf_result result;
-  int stat = gsl_sf_coulomb_CL_e (double(l), eta, &result);
+  int stat = gsl_sf_coulomb_CL_e(lambda, eta, &result);
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in coulomb_norm:");
-      msg << " l=" << l << " eta=" << eta;
+      msg << " lambda=" << lambda << " eta=" << eta;
       throw std::runtime_error(msg.str());
     }
   else
@@ -1497,17 +1497,17 @@ coulomb_norm(unsigned int l, double eta)
 
 /// Coulomb F
 double
-coulomb_f(unsigned int l, double eta, double x)
+coulomb_f(double lambda, double eta, double x)
 {
   gsl_sf_result F, Fp, G, Gp;
   double exp_F, exp_G;
   int k = 0; // GSL can return G_{l - k}, Gp_{l - k}.
-  int stat = gsl_sf_coulomb_wave_FG_e(eta, x, double(l), k,
+  int stat = gsl_sf_coulomb_wave_FG_e(eta, x, lambda, k,
 				      &F, &Fp, &G, &Gp, &exp_F, &exp_G);
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in coulomb_f:");
-      msg << " l=" << l << " eta=" << eta << " x=" << x;
+      msg << " lambda=" << lambda << " eta=" << eta << " x=" << x;
       throw std::runtime_error(msg.str());
     }
   else
@@ -1516,17 +1516,17 @@ coulomb_f(unsigned int l, double eta, double x)
 
 /// Coulomb G
 double
-coulomb_g(unsigned int l, double eta, double x)
+coulomb_g(double lambda, double eta, double x)
 {
   gsl_sf_result F, Fp, G, Gp;
   double exp_F, exp_G;
   int k = 0; // GSL can return G_{l - k}, Gp_{l - k}.
-  int stat = gsl_sf_coulomb_wave_FG_e(eta, x, double(l), k,
+  int stat = gsl_sf_coulomb_wave_FG_e(eta, x, lambda, k,
 				      &F, &Fp, &G, &Gp, &exp_F, &exp_G);
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in coulomb_g:");
-      msg << " l=" << l << " eta=" << eta << " x=" << x;
+      msg << " lambda=" << lambda << " eta=" << eta << " x=" << x;
       throw std::runtime_error(msg.str());
     }
   else

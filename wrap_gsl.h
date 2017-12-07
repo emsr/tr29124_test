@@ -358,13 +358,13 @@ std::complex<double> polylog(unsigned int n, std::complex<double> x);
 double gamma_reciprocal(unsigned int a);
 
 /// Coulomb normalization.
-double coulomb_norm(unsigned int l, double eta);
+double coulomb_norm(double lambda, double eta);
 
 /// Coulomb F
-double coulomb_f(unsigned int l, double eta, double x);
+double coulomb_f(double lambda, double eta, double x);
 
 /// Coulomb G
-double coulomb_g(unsigned int l, double eta, double x);
+double coulomb_g(double lambda, double eta, double x);
 
 } // namespace gsl
 
