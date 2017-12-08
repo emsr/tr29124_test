@@ -939,6 +939,8 @@ namespace __detail
 	   */
 	  const std::size_t _S_max_iter = 100;
 	  auto __term = _Tp{0};
+	  const auto __xn = std::pow(__x, _Tp(__n));
+	  const auto __xnp1 = __x * __xn;
 	  for(unsigned int __k = 1; __k < _S_max_iter; ++__k)
 	    {
 	      const auto __xk = __x * __k;
@@ -948,10 +950,10 @@ namespace __detail
 		__ksum += std::exchange(__kterm,
 					_Tp(__n - __s) * __kterm / __xk);
 
-	      __term -= std::exp(-__xk) * __ksum * std::pow(__x, _Tp(__n + 1));
+	      __term -= std::exp(-__xk) * __ksum * __xnp1;
 	    }
 	  __sum += __term;
-	  return _Tp(__n) * __sum / std::pow(__x, _Tp(__n));
+	  return _Tp(__n) * __sum / __xn;
 	}
       else
 	{

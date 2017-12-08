@@ -3,7 +3,7 @@ $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_d
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_debye > test_debye.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_debye test_debye.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-PATH=wrappers/debug:$PATH ./test_debye > test_debye.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_debye > test_debye.txt
 */
 
 #include <iostream>
@@ -13,26 +13,28 @@ PATH=wrappers/debug:$PATH ./test_debye > test_debye.txt
 #include "wrap_gsl.h"
 
   /**
-   * Return the Debye function or the incomplete Riemann zeta function:
-   * @todo: We should return both the integral and it's complement.
+   * Return the Debye function.
+   * The Debye functions are related to the incomplete Riemann zeta function:
    * @f[
    *    \zeta_x(s) = \frac{1}{\Gamma(s)}\int_{0}^{x}\frac{t^{s-1}}{e^t-1}dt
-   *          = \sum{k=1}{\infty}k^{-s}P(s,kx)
+   *          = \sum_{k=1}^{\infty}\frac{P(s,kx)}{k^s}
    * @f]
    * @f[
-   *    \Zeta_x(s) = \frac{1}{\Gamma(s)}\int_{x}^{\infty}\frac{t^{s-1}}{e^t-1}dt
-   *          = \sum{k=1}{\infty}k^{-s}Q(s,kx)
+   *    Z_x(s) = \frac{1}{\Gamma(s)}\int_{x}^{\infty}\frac{t^{s-1}}{e^t-1}dt
+   *          = \sum_{k=1}^{\infty}\frac{Q(s,kx)}{k^s}
    * @f]
    * where @f$ P(a,x), Q(a,x) @f$ is the incomplete gamma function ratios.
    * The Debye functions are:
    * @f[
    *    D_n(x) = \frac{n}{x^n}\int_{0}^{x}\frac{t^n}{e^t-1}dt
-   *           = \Gamma(n+1)[\zeta(n+1)-\zeta_x(n+1)]
+   *           = \Gamma(n+1)\zeta_x(n+1)
    * @f]
    * and
    * @f[
    *    \int_{0}^{x}\frac{t^n}{e^t-1}dt = \Gamma(n+1)\zeta_x(n+1)
    * @f]
+   *
+   * @todo: We should return both the Debye function and it's complement.
    */
   template<typename _Tp>
     _Tp
@@ -66,6 +68,8 @@ PATH=wrappers/debug:$PATH ./test_debye > test_debye.txt
 	   */
 	  const std::size_t _S_max_iter = 100;
 	  auto __term = _Tp{0};
+	  const auto __xn = std::pow(__x, _Tp(__n));
+	  const auto __xnp1 = __x * __xn;
 	  for(unsigned int __k = 1; __k < _S_max_iter; ++__k)
 	    {
 	      const auto __xk = __x * __k;
@@ -75,10 +79,10 @@ PATH=wrappers/debug:$PATH ./test_debye > test_debye.txt
 		__ksum += std::exchange(__kterm,
 					_Tp(__n - __s) * __kterm / __xk);
 
-	      __term -= std::exp(-__xk) * __ksum * std::pow(__x, _Tp(__n + 1));
+	      __term -= std::exp(-__xk) * __ksum * __xnp1;
 	    }
 	  __sum += __term;
-	  return _Tp(__n) * __sum / std::pow(__x, _Tp(__n));
+	  return _Tp(__n) * __sum / __xn;
 	}
       else
 	{
