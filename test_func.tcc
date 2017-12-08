@@ -2,6 +2,7 @@
 #define TEST_FUNC_TCC 1
 
 #include <fstream>
+#include <complex>
 
 /**
  * A class to reach into compound numeric types to extract the
@@ -27,6 +28,33 @@ template<>
     {
       using value_type = typename std::complex<_Tp>::value_type;
     };
+
+  /**
+   * Type introspection for complex.
+   */
+  template<typename _Tp>
+    struct is_complex : public std::false_type
+    { };
+
+  /**
+   * Type introspection for complex.
+   */
+  template<>
+    template<typename _Tp>
+      struct is_complex<std::complex<_Tp>> : public std::true_type
+      { };
+
+  /**
+   * Type introspection for complex.
+   */
+  template<typename _Tp>
+    using is_complex_t = typename is_complex<_Tp>::type;
+
+  /**
+   * Type introspection for complex.
+   */
+  template<typename _Tp>
+    constexpr bool is_complex_v = is_complex<_Tp>::value;
 
 
 const std::string diffdirname = "diff/";
@@ -129,23 +157,28 @@ template<typename Tp, typename Tp1>
           const std::vector<Tp1> & argument1,
           bool verbose = false)
   {
+    using Val = num_traits_t<Tp>;
+
     std::string filename = testdirname + basename + filename_end<Tp>::suffix();
 
     std::ofstream output(filename);
-    output.precision(std::numeric_limits<Tp>::digits10);
+    output.precision(std::numeric_limits<Val>::digits10);
     output.flags(std::ios::showpoint);
-    int width = 8 + output.precision();
+    const auto w_real = 8 + output.precision();
+    const auto w_cmplx = 2 + 2 * w_real;
+    const auto w_arg1 = (is_complex_v<Tp1> ? w_cmplx : w_real);
+    const auto w_ret = (is_complex_v<Tp> ? w_cmplx : w_real);
 
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
 	auto x = argument1[i];
 
-	output << ' ' << std::setw(width) << x;
+	output << ' ' << std::setw(w_arg1) << x;
 
 	try
           {
             auto f = function(x);
-            output << ' ' << std::setw(width) << f;
+            output << ' ' << std::setw(w_ret) << f;
           }
 	catch (std::domain_error & err)
           {
@@ -183,25 +216,31 @@ template<typename Tp, typename Tp1, typename Tp2>
           const std::vector<Tp2> & argument2,
           bool verbose = false)
   {
+    using Val = num_traits_t<Tp>;
+
     std::string filename = testdirname + basename + filename_end<Tp>::suffix();
 
     std::ofstream output(filename);
-    output.precision(std::numeric_limits<Tp>::digits10);
+    output.precision(std::numeric_limits<Val>::digits10);
     output.flags(std::ios::showpoint);
-    int width = 8 + output.precision();
+    const auto w_real = 8 + output.precision();
+    const auto w_cmplx = 2 + 2 * w_real;
+    const auto w_arg1 = (is_complex_v<Tp1> ? w_cmplx : w_real);
+    const auto w_arg2 = (is_complex_v<Tp2> ? w_cmplx : w_real);
+    const auto w_ret = (is_complex_v<Tp> ? w_cmplx : w_real);
 
     for (unsigned int j = 0; j < argument2.size(); ++j)
       {
 	auto y = argument2[j];
 
-	output << "  arg2 = " << std::setw(width) << y << '\n';
+	output << "  arg2 = " << std::setw(w_arg2) << y << '\n';
 
-	output << ' ' << std::setw(width) << "arg1 = ";
+	output << ' ' << std::setw(w_arg1) << "arg1 = ";
 	for (unsigned int i = 0; i < argument1.size(); ++i)
           {
             auto x = argument1[i];
 
-            output << ' ' << std::setw(width) << x;
+            output << ' ' << std::setw(w_arg1) << x;
           }
 	output << '\n';
 
@@ -211,8 +250,8 @@ template<typename Tp, typename Tp1, typename Tp2>
 
             try
               {
-        	auto f = function(x, y);
-        	output << ' ' << std::setw(width) << f;
+		auto f = function(x, y);
+		output << ' ' << std::setw(w_ret) << f;
               }
             catch (std::domain_error & err)
               {
@@ -252,29 +291,36 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
           const std::vector<Tp3> & argument3,
           bool verbose = false)
   {
+    using Val = num_traits_t<Tp>;
+
     std::string filename = testdirname + basename + filename_end<Tp>::suffix();
 
     std::ofstream output(filename);
-    output.precision(std::numeric_limits<Tp>::digits10);
+    output.precision(std::numeric_limits<Val>::digits10);
     output.flags(std::ios::showpoint);
-    int width = 8 + output.precision();
+    const auto w_real = 8 + output.precision();
+    const auto w_cmplx = 2 + 2 * w_real;
+    const auto w_arg1 = (is_complex_v<Tp1> ? w_cmplx : w_real);
+    const auto w_arg2 = (is_complex_v<Tp2> ? w_cmplx : w_real);
+    const auto w_arg3 = (is_complex_v<Tp3> ? w_cmplx : w_real);
+    const auto w_ret = (is_complex_v<Tp> ? w_cmplx : w_real);
 
     for (unsigned int k = 0; k < argument3.size(); ++k)
       {
 	auto z = argument3[k];
-	output << "  arg3 = " << std::setw(width) << z << '\n';
+	output << "  arg3 = " << std::setw(w_arg3) << z << '\n';
 
 	for (unsigned int j = 0; j < argument2.size(); ++j)
           {
             auto y = argument2[j];
-            output << "  arg2 = " << std::setw(width) << y << '\n';
+            output << "  arg2 = " << std::setw(w_arg2) << y << '\n';
 
-            output << ' ' << std::setw(width) << "arg1 = ";
+            output << ' ' << std::setw(w_arg1) << "arg1 = ";
             for (unsigned int i = 0; i < argument1.size(); ++i)
               {
         	auto x = argument1[i];
 
-        	output << ' ' << std::setw(width) << x;
+        	output << ' ' << std::setw(w_arg1) << x;
               }
             output << '\n';
 
@@ -285,7 +331,7 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
         	try
                   {
                     auto f = function(x, y, z);
-                    output << ' ' << std::setw(width) << f;
+                    output << ' ' << std::setw(w_ret) << f;
                   }
         	catch (std::domain_error & err)
                   {
@@ -328,34 +374,42 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
           const std::vector<Tp4> & argument4,
           bool verbose = false)
   {
+    using Val = num_traits_t<Tp>;
+
     std::string filename = testdirname + basename + filename_end<Tp>::suffix();
 
     std::ofstream output(filename);
-    output.precision(std::numeric_limits<Tp>::digits10);
+    output.precision(std::numeric_limits<Val>::digits10);
     output.flags(std::ios::showpoint);
-    int width = 8 + output.precision();
+    const auto w_real = 8 + output.precision();
+    const auto w_cmplx = 2 + 2 * w_real;
+    const auto w_arg1 = (is_complex_v<Tp1> ? w_cmplx : w_real);
+    const auto w_arg2 = (is_complex_v<Tp2> ? w_cmplx : w_real);
+    const auto w_arg3 = (is_complex_v<Tp3> ? w_cmplx : w_real);
+    const auto w_arg4 = (is_complex_v<Tp4> ? w_cmplx : w_real);
+    const auto w_ret = (is_complex_v<Tp> ? w_cmplx : w_real);
 
     for (unsigned int l = 0; l < argument4.size(); ++l)
       {
 	auto w = argument4[l];
-	output << "  arg4 = " << std::setw(width) << w << '\n';
+	output << "  arg4 = " << std::setw(w_arg4) << w << '\n';
 
 	for (unsigned int k = 0; k < argument3.size(); ++k)
           {
             auto z = argument3[k];
-            output << "  arg3 = " << std::setw(width) << z << '\n';
+            output << "  arg3 = " << std::setw(w_arg3) << z << '\n';
 
             for (unsigned int j = 0; j < argument2.size(); ++j)
               {
         	auto y = argument2[j];
-        	output << "  arg2 = " << std::setw(width) << y << '\n';
+        	output << "  arg2 = " << std::setw(w_arg2) << y << '\n';
 
-        	output << ' ' << std::setw(width) << "arg1 = ";
+        	output << ' ' << std::setw(w_arg1) << "arg1 = ";
         	for (unsigned int i = 0; i < argument1.size(); ++i)
                   {
                     auto x = argument1[i];
 
-                    output << ' ' << std::setw(width) << x;
+                    output << ' ' << std::setw(w_arg1) << x;
                   }
         	output << '\n';
 
@@ -365,8 +419,8 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
 
                     try
                       {
-                	auto f = function(x, y, z, w);
-                	output << ' ' << std::setw(width) << f;
+			auto f = function(x, y, z, w);
+			output << ' ' << std::setw(w_ret) << f;
                       }
                     catch (std::domain_error & err)
                       {
@@ -414,15 +468,18 @@ template<typename Tp, typename Tp1>
     std::string filename = diffdirname + basename + filename_end<Tp>::suffix();
 
     std::ofstream output(filename);
-    output.precision(std::numeric_limits<Tp>::digits10);
+    output.precision(std::numeric_limits<Val>::digits10);
     output.flags(std::ios::showpoint);
-    int width = 8 + output.precision();
+    const auto w_real = 8 + output.precision();
+    const auto w_cmplx = 2 + 2 * w_real;
+    const auto w_arg1 = (is_complex_v<Tp1> ? w_cmplx : w_real);
+    const auto w_ret = (is_complex_v<Tp> ? w_cmplx : w_real);
 
-    output << std::setw(width) << arg1;
-    output << std::setw(width) << "f1";
-    output << std::setw(width) << "f2";
-    output << std::setw(width) << "delta";
-    output << std::setw(width) << "frac";
+    output << std::setw(w_arg1) << arg1;
+    output << std::setw(w_ret) << "f1";
+    output << std::setw(w_ret) << "f2";
+    output << std::setw(w_ret) << "delta";
+    output << std::setw(w_ret) << "frac";
     output << '\n';
 
     auto max_abs_diff = Val{-1};
@@ -438,19 +495,19 @@ template<typename Tp, typename Tp1>
             auto diff = f1 - f2;
             if (std::abs(diff) > max_abs_diff)
               max_abs_diff = std::abs(diff);
-            output << std::setw(width) << x;
-            output << std::setw(width) << f1;
-            output << std::setw(width) << f2;
-            output << std::setw(width) << diff;
+            output << std::setw(w_arg1) << x;
+            output << std::setw(w_ret) << f1;
+            output << std::setw(w_ret) << f2;
+            output << std::setw(w_ret) << diff;
             if (std::abs(f2) > 0)
               {
         	auto frac = diff / f2;
-        	output << std::setw(width) << frac;
+        	output << std::setw(w_ret) << frac;
         	if (std::abs(frac) > max_abs_frac)
                   max_abs_frac = std::abs(frac);
               }
             else
-              output << std::setw(width) << '-';
+              output << std::setw(w_ret) << '-';
             output << '\n';
           }
 	catch (std::domain_error & err)
@@ -472,13 +529,13 @@ template<typename Tp, typename Tp1>
           }
       }
     if (max_abs_diff >= Val(0))
-      output << "max(abs(diff)) = " << max_abs_diff << '\n';
+      output << "max(abs(diff)) = " << std::setw(w_real) << max_abs_diff << '\n';
     else
-      output << "max(abs(diff)) = -" << '\n';
+      output << "max(abs(diff)) = " << std::setw(w_real) << '-' << '\n';
     if (max_abs_frac >= Val(0))
-      output << "max(abs(frac)) = " << max_abs_frac << '\n';
+      output << "max(abs(frac)) = " << std::setw(w_real) << max_abs_frac << '\n';
     else
-      output << "max(abs(frac)) = -" << '\n';
+      output << "max(abs(frac)) = " << std::setw(w_real) << '-' << '\n';
 
     return;
   }
@@ -501,20 +558,24 @@ template<typename Tp, typename Tp1, typename Tp2>
     std::string filename = diffdirname + basename + filename_end<Tp>::suffix();
 
     std::ofstream output(filename);
-    output.precision(std::numeric_limits<Tp>::digits10);
+    output.precision(std::numeric_limits<Val>::digits10);
     output.flags(std::ios::showpoint);
-    int width = 8 + output.precision();
+    const auto w_real = 8 + output.precision();
+    const auto w_cmplx = 2 + 2 * w_real;
+    const auto w_arg1 = (is_complex_v<Tp1> ? w_cmplx : w_real);
+    const auto w_arg2 = (is_complex_v<Tp2> ? w_cmplx : w_real);
+    const auto w_ret = (is_complex_v<Tp> ? w_cmplx : w_real);
 
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
 	auto x = argument1[i];
-	output << "  " << arg1 << " = " << std::setw(width) << x << '\n';
+	output << "  " << arg1 << " = " << std::setw(w_arg1) << x << '\n';
 
-	output << std::setw(width) << arg2;
-	output << std::setw(width) << "f1";
-	output << std::setw(width) << "f2";
-	output << std::setw(width) << "delta";
-	output << std::setw(width) << "frac";
+	output << std::setw(w_arg2) << arg2;
+	output << std::setw(w_ret) << "f1";
+	output << std::setw(w_ret) << "f2";
+	output << std::setw(w_ret) << "delta";
+	output << std::setw(w_ret) << "frac";
 	output << '\n';
 
 	auto max_abs_diff = Val{-1};
@@ -530,19 +591,19 @@ template<typename Tp, typename Tp1, typename Tp2>
         	auto diff = f1 - f2;
         	if (std::abs(diff) > max_abs_diff)
                   max_abs_diff = std::abs(diff);
-        	output << std::setw(width) << y;
-        	output << std::setw(width) << f1;
-        	output << std::setw(width) << f2;
-        	output << std::setw(width) << diff;
+        	output << std::setw(w_arg2) << y;
+        	output << std::setw(w_ret) << f1;
+        	output << std::setw(w_ret) << f2;
+        	output << std::setw(w_ret) << diff;
         	if (std::abs(f2) > 0)
                   {
                     auto frac = diff / f2;
-                    output << std::setw(width) << frac;
+                    output << std::setw(w_ret) << frac;
                     if (std::abs(frac) > max_abs_frac)
                       max_abs_frac = std::abs(frac);
                   }
         	else
-                  output << std::setw(width) << '-';
+                  output << std::setw(w_ret) << '-';
         	output << '\n';
               }
             catch (std::domain_error & err)
@@ -564,13 +625,13 @@ template<typename Tp, typename Tp1, typename Tp2>
               }
           }
 	if (max_abs_diff >= Val(0))
-          output << "max(abs(diff)) = " << max_abs_diff << '\n';
+          output << "max(abs(diff)) = " << std::setw(w_real) << max_abs_diff << '\n';
 	else
-          output << "max(abs(diff)) = -" << '\n';
+          output << "max(abs(diff)) = " << std::setw(w_real) << '-' << '\n';
 	if (max_abs_frac >= Val(0))
-          output << "max(abs(frac)) = " << max_abs_frac << '\n';
+          output << "max(abs(frac)) = " << std::setw(w_real) << max_abs_frac << '\n';
 	else
-          output << "max(abs(frac)) = -" << '\n';
+          output << "max(abs(frac)) = " << std::setw(w_real) << '-' << '\n';
 	output << '\n';
       }
 
@@ -596,25 +657,30 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
     std::string filename = diffdirname + basename + filename_end<Tp>::suffix();
 
     std::ofstream output(filename);
-    output.precision(std::numeric_limits<Tp>::digits10);
+    output.precision(std::numeric_limits<Val>::digits10);
     output.flags(std::ios::showpoint);
-    int width = 8 + output.precision();
+    const auto w_real = 8 + output.precision();
+    const auto w_cmplx = 2 + 2 * w_real;
+    const auto w_arg1 = (is_complex_v<Tp1> ? w_cmplx : w_real);
+    const auto w_arg2 = (is_complex_v<Tp2> ? w_cmplx : w_real);
+    const auto w_arg3 = (is_complex_v<Tp3> ? w_cmplx : w_real);
+    const auto w_ret = (is_complex_v<Tp> ? w_cmplx : w_real);
 
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
 	auto x = argument1[i];
-	output << "  " << arg1 << " = " << std::setw(width) << x << '\n';
+	output << "  " << arg1 << " = " << std::setw(w_arg1) << x << '\n';
 
 	for (unsigned int j = 0; j < argument2.size(); ++j)
           {
             auto y = argument2[j];
-            output << "  " << arg2 << " = " << std::setw(width) << y << '\n';
+            output << "  " << arg2 << " = " << std::setw(w_arg2) << y << '\n';
 
-            output << std::setw(width) << arg3;
-            output << std::setw(width) << "f1";
-            output << std::setw(width) << "f2";
-            output << std::setw(width) << "delta";
-            output << std::setw(width) << "frac";
+            output << std::setw(w_arg3) << arg3;
+            output << std::setw(w_ret) << "f1";
+            output << std::setw(w_ret) << "f2";
+            output << std::setw(w_ret) << "delta";
+            output << std::setw(w_ret) << "frac";
             output << '\n';
 
 	    auto max_abs_diff = Val{-1};
@@ -630,19 +696,19 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
                     auto diff = f1 - f2;
                     if (std::abs(diff) > max_abs_diff)
                       max_abs_diff = std::abs(diff);
-                    output << std::setw(width) << z;
-                    output << std::setw(width) << f1;
-                    output << std::setw(width) << f2;
-                    output << std::setw(width) << diff;
+                    output << std::setw(w_arg3) << z;
+                    output << std::setw(w_ret) << f1;
+                    output << std::setw(w_ret) << f2;
+                    output << std::setw(w_ret) << diff;
                     if (std::abs(f2) > 0)
                       {
                 	auto frac = diff / f2;
-                	output << std::setw(width) << frac;
+                	output << std::setw(w_ret) << frac;
                 	if (std::abs(frac) > max_abs_frac)
                           max_abs_frac = std::abs(frac);
                       }
                     else
-                      output << std::setw(width) << '-';
+                      output << std::setw(w_ret) << '-';
                     output << '\n';
                   }
         	catch (std::domain_error & err)
@@ -664,13 +730,13 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3>
         	  }
               }
             if (max_abs_diff >= Val(0))
-              output << "max(abs(diff)) = " << max_abs_diff << '\n';
+              output << "max(abs(diff)) = " << std::setw(w_real) << max_abs_diff << '\n';
             else
-              output << "max(abs(diff)) = -" << '\n';
+              output << "max(abs(diff)) = " << std::setw(w_real) << '-' << '\n';
             if (max_abs_frac >= Val(0))
-              output << "max(abs(frac)) = " << max_abs_frac << '\n';
+              output << "max(abs(frac)) = " << std::setw(w_real) << max_abs_frac << '\n';
             else
-              output << "max(abs(frac)) = -" << '\n';
+              output << "max(abs(frac)) = " << std::setw(w_real) << '-' << '\n';
             output << '\n';
           }
 	output << '\n';
@@ -699,30 +765,36 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
     std::string filename = diffdirname + basename + filename_end<Tp>::suffix();
 
     std::ofstream output(filename);
-    output.precision(std::numeric_limits<Tp>::digits10);
+    output.precision(std::numeric_limits<Val>::digits10);
     output.flags(std::ios::showpoint);
-    int width = 8 + output.precision();
+    const auto w_real = 8 + output.precision();
+    const auto w_cmplx = 2 + 2 * w_real;
+    const auto w_arg1 = (is_complex_v<Tp1> ? w_cmplx : w_real);
+    const auto w_arg2 = (is_complex_v<Tp2> ? w_cmplx : w_real);
+    const auto w_arg3 = (is_complex_v<Tp3> ? w_cmplx : w_real);
+    const auto w_arg4 = (is_complex_v<Tp4> ? w_cmplx : w_real);
+    const auto w_ret = (is_complex_v<Tp> ? w_cmplx : w_real);
 
     for (unsigned int i = 0; i < argument1.size(); ++i)
       {
 	auto w = argument1[i];
-	output << "  " << arg1 << " = " << std::setw(width) << w << '\n';
+	output << "  " << arg1 << " = " << std::setw(w_arg1) << w << '\n';
 
 	for (unsigned int j = 0; j < argument2.size(); ++j)
           {
             auto x = argument2[j];
-            output << "  " << arg2 << " = " << std::setw(width) << x << '\n';
+            output << "  " << arg2 << " = " << std::setw(w_arg2) << x << '\n';
 
             for (unsigned int k = 0; k < argument3.size(); ++k)
               {
         	auto y = argument3[k];
-        	output << "  " << arg3 << " = " << std::setw(width) << y << '\n';
+        	output << "  " << arg3 << " = " << std::setw(w_arg3) << y << '\n';
 
-        	output << std::setw(width) << arg4;
-        	output << std::setw(width) << "f1";
-        	output << std::setw(width) << "f2";
-        	output << std::setw(width) << "delta";
-        	output << std::setw(width) << "frac";
+        	output << std::setw(w_arg3) << arg4;
+        	output << std::setw(w_ret) << "f1";
+        	output << std::setw(w_ret) << "f2";
+        	output << std::setw(w_ret) << "delta";
+        	output << std::setw(w_ret) << "frac";
         	output << '\n';
 
 		auto max_abs_diff = Val{-1};
@@ -738,19 +810,19 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
                 	auto diff = f1 - f2;
                 	if (std::abs(diff) > max_abs_diff)
                           max_abs_diff = std::abs(diff);
-                	output << std::setw(width) << z;
-                	output << std::setw(width) << f1;
-                	output << std::setw(width) << f2;
-                	output << std::setw(width) << diff;
+                	output << std::setw(w_arg4) << z;
+                	output << std::setw(w_ret) << f1;
+                	output << std::setw(w_ret) << f2;
+                	output << std::setw(w_ret) << diff;
                 	if (std::abs(f2) > 0)
                           {
                             auto frac = diff / f2;
-                            output << std::setw(width) << frac;
+                            output << std::setw(w_ret) << frac;
                             if (std::abs(frac) > max_abs_frac)
                               max_abs_frac = std::abs(frac);
                           }
                 	else
-                          output << std::setw(width) << '-';
+                          output << std::setw(w_ret) << '-';
                 	output << '\n';
                       }
                     catch (std::domain_error & err)
@@ -772,13 +844,13 @@ template<typename Tp, typename Tp1, typename Tp2, typename Tp3, typename Tp4>
         	      }
                   }
         	if (max_abs_diff >= Val(0))
-                  output << "max(abs(diff)) = " << max_abs_diff << '\n';
+                  output << "max(abs(diff)) = " << std::setw(w_real) << max_abs_diff << '\n';
         	else
-                  output << "max(abs(diff)) = -" << '\n';
+                  output << "max(abs(diff)) = " << std::setw(w_real) << '-' << '\n';
         	if (max_abs_frac >= Val(0))
-                  output << "max(abs(frac)) = " << max_abs_frac << '\n';
+                  output << "max(abs(frac)) = " << std::setw(w_real) << max_abs_frac << '\n';
         	else
-                  output << "max(abs(frac)) = -" << '\n';
+                  output << "max(abs(frac)) = " << std::setw(w_real) << '-' << '\n';
         	output << '\n';
               }
             output << '\n';
