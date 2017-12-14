@@ -32,17 +32,17 @@ template<typename _Tp, typename _TpX>
       return Mn;
 
     const auto cc = _Tp{1} - c;
-    auto nm1 = _Tp(1);
-    auto cbnm1 = c * (beta + nm1);
-    auto Mnp1 = ((cbnm1 + nm1 - cc * _Tp(x)) * Mn - nm1 * Mnm1) / cbnm1;
+    auto nn = _Tp{1};
+    auto cbnn = c * (beta + nn);
+    auto Mnp1 = ((cbnn + nn - cc * _Tp(x)) * Mn - nn * Mnm1) / cbnn;
 
     for (int k = 2; k < n; ++k)
       {
-	nm1 = _Tp(k - 1);
-	cbnm1 = c * (beta + nm1);
+	nn = _Tp(k);
+	cbnn = c * (beta + nn);
 	Mnm1 = Mn;
 	Mn = Mnp1;
-	Mnp1 = ((cbnm1 + nm1 - cc * _Tp(x)) * Mn - nm1 * Mnm1) / cbnm1;
+	Mnp1 = ((cbnn + nn - cc * _Tp(x)) * Mn - nn * Mnm1) / cbnn;
       }
 
     return Mnp1;
