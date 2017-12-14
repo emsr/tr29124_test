@@ -31,8 +31,15 @@ template<typename Tp>
     __gnu_cxx::_WinnEpsilonSum<__gnu_cxx::_BasicSum<Tp>> WBS;
     __gnu_cxx::_WinnEpsilonSum<__gnu_cxx::_KahanSum<Tp>> WKS;
     __gnu_cxx::_BrezinskiThetaSum<__gnu_cxx::_BasicSum<Tp>> BTS;
+
+    //__gnu_cxx::_LevinUSum<__gnu_cxx::_BasicSum<Tp>> LUS;
     __gnu_cxx::_LevinTSum<__gnu_cxx::_BasicSum<Tp>> LTS;
+    __gnu_cxx::_LevinDSum<__gnu_cxx::_BasicSum<Tp>> LDS;
+    __gnu_cxx::_LevinVSum<__gnu_cxx::_BasicSum<Tp>> LVS;
+
+    __gnu_cxx::_WenigerTauSum<__gnu_cxx::_BasicSum<Tp>> WTS;
     __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<Tp>> WDS;
+    __gnu_cxx::_WenigerPhiSum<__gnu_cxx::_BasicSum<Tp>> WPS;
     __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<Tp>> WDvW;
 
     auto s = Tp{1.2};
@@ -52,19 +59,27 @@ template<typename Tp>
 	      << std::setw(w) << "Winn-Kahan"
 	      << std::setw(w) << "BrezinskiT-Basic"
 	      << std::setw(w) << "LevinT-Basic"
-	      << std::setw(w) << "WenigerD-Basic"
+	      << std::setw(w) << "LevinD-Basic"
+	      << std::setw(w) << "LevinV-Basic"
+	      << std::setw(w) << "WenigerTau-Basic"
+	      << std::setw(w) << "WenigerDelta-Basic"
+	      << std::setw(w) << "WenigerPhi-Basic"
 	      << std::setw(w) << "WenigerD-vW"
 	      << '\n';
-    std::cout << std::setw(w) << "----------------"
-	      << std::setw(w) << "----------------"
-	      << std::setw(w) << "----------------"
-	      << std::setw(w) << "----------------"
-	      << std::setw(w) << "----------------"
-	      << std::setw(w) << "----------------"
-	      << std::setw(w) << "----------------"
-	      << std::setw(w) << "----------------"
-	      << std::setw(w) << "----------------"
-	      << std::setw(w) << "----------------"
+    std::cout << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
 	      << '\n';
     for (auto k = 0; k < 100; ++k)
       {
@@ -76,7 +91,11 @@ template<typename Tp>
 	WKS += term;
 	BTS += term;
 	LTS += term;
+	LDS += term;
+	LVS += term;
+	WTS += term;
 	WDS += term;
+	WPS += term;
 	WDvW += VwT[k];
 	std::cout << std::setw(w) << k
 		  << std::setw(w) << BS()
@@ -86,7 +105,11 @@ template<typename Tp>
 		  << std::setw(w) << WKS()
 		  << std::setw(w) << BTS()
 	  	  << std::setw(w) << LTS()
+	  	  << std::setw(w) << LDS()
+	  	  << std::setw(w) << LVS()
+	  	  << std::setw(w) << WTS()
 	  	  << std::setw(w) << WDS()
+	  	  << std::setw(w) << WPS()
 	  	  << std::setw(w) << WDvW()
 		  << '\n';
       }
@@ -104,7 +127,11 @@ template<typename Tp>
     WKS.reset(term);
     BTS.reset(term);
     LTS.reset(term);
+    LDS.reset(term);
+    LVS.reset(term);
+    WTS.reset(term);
     WDS.reset(term);
+    WPS.reset(term);
     std::cout << std::setw(w) << "k"
 	      << std::setw(w) << "Basic"
 	      << std::setw(w) << "Aitken-Basic"
@@ -113,17 +140,24 @@ template<typename Tp>
 	      << std::setw(w) << "Winn-Kahan"
 	      << std::setw(w) << "BrezinskiT-Basic"
 	      << std::setw(w) << "LevinT-Basic"
-	      << std::setw(w) << "WenigerD-Basic"
+	      << std::setw(w) << "LevinD-Basic"
+	      << std::setw(w) << "LevinV-Basic"
+	      << std::setw(w) << "WenigerTau-Basic"
+	      << std::setw(w) << "WenigerDelta-Basic"
+	      << std::setw(w) << "WenigerPhi-Basic"
 	      << '\n';
-    std::cout << std::setw(w) << "----------------"
-	      << std::setw(w) << "----------------"
-	      << std::setw(w) << "----------------"
-	      << std::setw(w) << "----------------"
-	      << std::setw(w) << "----------------"
-	      << std::setw(w) << "----------------"
-	      << std::setw(w) << "----------------"
-	      << std::setw(w) << "----------------"
-	      << std::setw(w) << "----------------"
+    std::cout << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
 	      << '\n';
     for (auto k = 1; k < 100; ++k)
       {
@@ -135,7 +169,11 @@ template<typename Tp>
 		  << std::setw(w) << WKS()
 		  << std::setw(w) << BTS()
 		  << std::setw(w) << LTS()
+		  << std::setw(w) << LDS()
+		  << std::setw(w) << LVS()
+		  << std::setw(w) << WTS()
 		  << std::setw(w) << WDS()
+		  << std::setw(w) << WPS()
 		  << '\n';
 	term *= (a + k - 1) * (b + k - 1) * z / k;
 	BS += term;
@@ -145,7 +183,11 @@ template<typename Tp>
 	WKS += term;
 	BTS += term;
 	LTS += term;
+	LDS += term;
+	LVS += term;
+	WTS += term;
 	WDS += term;
+	WPS += term;
       }
   }
 

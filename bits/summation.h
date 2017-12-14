@@ -726,7 +726,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       : _M_n{0}, _M_term{}, _M_beta{__beta}
       { }
 
-      /*constexpr*/ void
+      constexpr void
       operator<<(value_type __term)
       {
 	this->_M_term = __term;
@@ -737,7 +737,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // to start work on the sum.
       constexpr bool
       ready() const
-      { return this->_M_n >= 2; }
+      { return true; }
 
       // Return true if the remainder model has accumulated enough terms
       // to start work on the sum.
@@ -748,7 +748,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _RemainderTerm<value_type>
       constexpr operator()()
       {
-	this->_M_ok = false;
 	return _RemainderTerm<value_type>{this->_M_term,
 				(this->_M_n + this->_M_beta) * this->_M_term};
       }
@@ -781,26 +780,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using value_type = _Tp;
 
       constexpr _TRemainderModel()
-      : _M_ok{false}
       { }
 
       constexpr void
       operator<<(value_type __term)
       {
-	if (!this->_M_ok)
-	  {
-	    this->_M_term = __term;
-	    this->_M_ok = true;
-	  }
-	else
-	  /* error */;
+	this->_M_term = __term;
       }
 
       // Return true if the remainder model has accumulated enough terms
       // to start work on the sum.
       constexpr bool
       ready() const
-      { return this->_M_ok; }
+      { return true; }
 
       // Return true if the remainder model has accumulated enough terms
       // to start work on the sum.
@@ -810,21 +802,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       _RemainderTerm<value_type>
       constexpr operator()()
-      {
-	this->_M_ok = false;
-	return _RemainderTerm<value_type>{this->_M_term, this->_M_term};
-      }
+      { return _RemainderTerm<value_type>{this->_M_term, this->_M_term}; }
 
       _TRemainderModel&
       reset()
       {
-	this->_M_ok = false;
 	return *this;
       }
 
     private:
 
-      bool _M_ok;
       value_type _M_term;
     };
 
@@ -1072,6 +1059,36 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _RemainderModel _M_rem_mdl;
     };
 
+  // Specializations for specific remainder models.
+
+  /**
+   * The Levin U summation process.
+  template<typename _Sum>
+    using _LevinUSum
+      = _LevinSum<_Sum, _URemainderModel<typename _Sum::value_type>>;
+   */
+
+  /**
+   * The Levin T summation process.
+   */
+  template<typename _Sum>
+    using _LevinTSum
+      = _LevinSum<_Sum, _TRemainderModel<typename _Sum::value_type>>;
+
+  /**
+   * The Levin D summation process.
+   */
+  template<typename _Sum>
+    using _LevinDSum
+      = _LevinSum<_Sum, _DRemainderModel<typename _Sum::value_type>>;
+
+  /**
+   * The Levin V summation process.
+   */
+  template<typename _Sum>
+    using _LevinVSum
+      = _LevinSum<_Sum, _VRemainderModel<typename _Sum::value_type>>;
+
   /**
    * The Weniger summation process.
    */
@@ -1194,25 +1211,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Specializations for specific remainder models.
 
   /**
-   * The Levin T summation process.
-   */
+   * The Weniger Upsilon summation process.
   template<typename _Sum>
-    using _LevinTSum
-      = _LevinSum<_Sum, _TRemainderModel<typename _Sum::value_type>>;
-
-  /**
-   * The Levin D summation process.
+    using _WenigerUpsilonSum
+      = _WenigerSum<_Sum, _URemainderModel<typename _Sum::value_type>>;
    */
-  template<typename _Sum>
-    using _LevinDSum
-      = _LevinSum<_Sum, _DRemainderModel<typename _Sum::value_type>>;
-
-  /**
-   * The Levin V summation process.
-   */
-  template<typename _Sum>
-    using _LevinUSum
-      = _LevinSum<_Sum, _VRemainderModel<typename _Sum::value_type>>;
 
   /**
    * The Weniger Tau summation process.
