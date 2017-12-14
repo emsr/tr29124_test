@@ -334,7 +334,6 @@ main()
 			       std::make_pair(false, true), 1001));
 
 #if STD
-/*
     // Cylindrical Hankel functions of the first kind.
     std::cout << "cyl_hankel_1" << '\n';
     basename = "cyl_hankel_1";
@@ -354,7 +353,6 @@ main()
 					     std::make_pair(false, true), 21),
 			       fill_argument(std::make_pair(Real{0}, Real{100}),
 					     std::make_pair(false, true), 21)));
-*/
 #endif // STD
 
 
@@ -759,7 +757,7 @@ main()
 	    "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 			       std::make_pair(false, true), 21),
 	    "x", {Real{0}, Real{1}, Real{2}, Real{5}, Real{10}, Real{20}, Real{50}, Real{100}});
-/*
+
     // Regular modified spherical bessel functions.
     std::cout << "sph_bessel_i" << '\n';
     basename = "diff_sph_bessel_i";
@@ -781,7 +779,7 @@ main()
 			       std::make_pair(false, true), 21),
 			fill_argument(std::make_pair(Real{0}, Real{100}),
 			       std::make_pair(false, true), 21)));
-*/
+
     // Legendre functions of the second kind.
     std::cout << "legendre_q" << '\n';
     basename = "diff_legendre_q";
@@ -941,7 +939,6 @@ main()
 			       std::make_pair(false, false), 21),
 	    "phi", vphid);
 
-/*
     // Cylindrical Hankel functions of the first kind.
     std::cout << "cyl_hankel_1" << '\n';
     basename = "diff_cyl_hankel_1";
@@ -985,7 +982,6 @@ main()
 				     std::make_pair(true, true), 21),
 		       fill_argument(std::make_pair(Real{0}, Real{100}),
 				     std::make_pair(true, true), 21)));
-*/
 
     // Spherical harmonic functions.
     std::cout << "sph_harmonic" << '\n';
@@ -996,7 +992,6 @@ main()
 				   std::make_pair(true, true), 21),
 	    "phi", vphid);
 
-/*
     // Dirichlet eta function.
     std::cout << "dirichlet_eta" << '\n';
     // Skip the pole at 1.
@@ -1007,7 +1002,6 @@ main()
 				     std::make_pair(true, false), 56),
 		       fill_argument(std::make_pair(Real{1}, Real{30}),
 				     std::make_pair(false, true), 146)));
-*/
 
     // Owens T functions.
     std::cout << "owens_t" << '\n';

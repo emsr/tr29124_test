@@ -139,10 +139,12 @@ template<typename Tp>
 ///
 template<typename Tp>
   std::vector<Tp>
-  fill_argument(std::vector<Tp>&& test1, std::vector<Tp>&& test2)
+  fill_argument(std::vector<Tp>&& test1, const std::vector<Tp>& test2)
   {
     std::vector<Tp> ret(std::move(test1));
-    std::copy(test2.begin(), test2.end(), ret.end());
+    const auto ret_size = ret.size(); // test1 get clobbered by move!
+    ret.resize(ret_size + test2.size());
+    std::copy(test2.begin(), test2.end(), ret.begin() + ret_size);
     return ret;
   }
 
@@ -556,6 +558,7 @@ template<typename Tp, typename Tp1, typename Tp2>
     using Val = num_traits_t<Tp>;
 
     std::string filename = diffdirname + basename + filename_end<Tp>::suffix();
+std::cerr << filename << '\n';
 
     std::ofstream output(filename);
     output.precision(std::numeric_limits<Val>::digits10);

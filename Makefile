@@ -15,6 +15,7 @@ ifeq ("$(wildcard $(CXX_INST_DIR))","")
   endif
 endif
 
+#  -fsanitize=address
 GFORTRAN = $(CXX_INST_DIR)/bin/gfortran -g -Wall -Wextra -Wno-compare-reals
 GCC = $(CXX_INST_DIR)/bin/gcc -g -Wall -Wextra
 CXX = $(CXX_INST_DIR)/bin/g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -Wall -Wextra -Wno-psabi
