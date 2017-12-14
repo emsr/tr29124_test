@@ -101,7 +101,6 @@ LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_rising
 LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_root_finding > test_root_finding.txt
 LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_sincos > test_sincos.txt
 LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_sinus_cardinal > test_sinus_cardinal.txt
-LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_solvers > test_solvers.txt
 LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_sph_bessel > test_sph_bessel.txt
 LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_sph_hankel > test_sph_hankel.txt
 LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_steed_continued_fraction > test_steed_continued_fraction.txt
