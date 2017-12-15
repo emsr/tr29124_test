@@ -91,13 +91,22 @@ namespace __detail
       const auto _S_lolim = _Real{5} * _S_min;
       const auto _S_uplim = _S_max / _Real{5};
 
+      bool neg_x = false, neg_y = false;
+      if constexpr (!__gnu_cxx::is_complex_v<_Tp>)
+	{
+	  if (std::real(__x) < _Real{0})
+	    neg_x = true;
+	  if (std::real(__y) < _Real{0})
+	    neg_y = true;
+	}
+
       if (std::isnan(__x) || std::isnan(__y))
 	return _S_NaN;
-      else if (std::imag(__x) == _Real{0} && std::real(__x) < _Real{0})
+      else if (neg_x)
 	std::__throw_domain_error(__N("__ellint_rc: argument less than zero"));
       else if (std::abs(__x) + std::abs(__y) < _S_lolim)
         std::__throw_domain_error(__N("__ellint_rc: arguments too small"));
-      else if (std::imag(__y) == _Real{0} && std::real(__y) < _Real{0})
+      else if (neg_y)
 	{
 	  if (std::abs(__x) == _Real{0})
 	    return _Tp{};
@@ -173,12 +182,17 @@ namespace __detail
       const auto _S_lolim = _Real{5} * _S_min;
       const auto _S_uplim = _S_max / _Real{5};
 
+      bool neg_arg = false;
+      if constexpr (!__gnu_cxx::is_complex_v<_Tp>)
+	if (std::real(__x) < _Real{0}
+	 || std::real(__y) < _Real{0}
+	 || std::real(__z) < _Real{0})
+	  neg_arg = true;
+
       if (std::isnan(__x) || std::isnan(__y) || std::isnan(__z))
 	return _S_NaN;
-      else if ((std::imag(__x) == _Real{0} && std::real(__x) < _Real{0})
-	    || (std::imag(__y) == _Real{0} && std::real(__y) < _Real{0})
-	    || (std::imag(__z) == _Real{0} && std::real(__z) < _Real{0}))
-        std::__throw_domain_error(__N("__ellint_rd: argument less than zero"));
+      if (neg_arg)
+	std::__throw_domain_error(__N("__ellint_rd: argument less than zero"));
       else if (std::abs(__x) + std::abs(__y) < _S_lolim
 	    || std::abs(__z) < _S_lolim)
 	std::__throw_domain_error(__N("__ellint_rd: arguments too small"));
@@ -287,11 +301,16 @@ namespace __detail
       const auto _S_lolim = _Real(5) * _S_min;
       const auto _S_uplim = _S_max / _Real(5);
 
+      bool neg_arg = false;
+      if constexpr (!__gnu_cxx::is_complex_v<_Tp>)
+	if (std::real(__x) < _Real{0}
+	 || std::real(__y) < _Real{0}
+	 || std::real(__z) < _Real{0})
+	  neg_arg = true;
+
       if (std::isnan(__x) || std::isnan(__y) || std::isnan(__z))
 	return _S_NaN;
-      else if (std::imag(__x) == _Real{0} && std::real(__x) < _Real{0}
-	    || std::imag(__y) == _Real{0} && std::real(__y) < _Real{0}
-	    || std::imag(__z) == _Real{0} && std::real(__z) < _Real{0})
+      else if (neg_arg)
         std::__throw_domain_error(__N("__ellint_rf: argument less than zero"));
       else if (std::abs(__x) + std::abs(__y) < _S_lolim
 	    || std::abs(__x) + std::abs(__z) < _S_lolim
@@ -466,15 +485,20 @@ namespace __detail
       const auto _S_lolim = _Real(5) * _S_min;
       const auto _S_uplim = _S_max / _Real(5);
 
+      bool neg_arg = false;
+      if constexpr (!__gnu_cxx::is_complex_v<_Tp>)
+	if (std::real(__x) < _Real{0}
+	 || std::real(__y) < _Real{0}
+	 || std::real(__z) < _Real{0})
+	  neg_arg = true;
+
       if (std::isnan(__x) || std::isnan(__y) || std::isnan(__z) || std::isnan(__p))
 	return _S_NaN;
-      else if (std::imag(__x) == _Real{0} && std::real(__x) < _Real{0}
-	    || std::imag(__y) == _Real{0} && std::real(__y) < _Real{0}
-	    || std::imag(__z) == _Real{0} && std::real(__z) < _Real{0})
+      else if (neg_arg)
         std::__throw_domain_error(__N("__ellint_rj: argument less than zero"));
       else if (std::abs(__x) + std::abs(__y) < _S_lolim
-	    || std::abs(__x) + std::abs(__z) < _S_lolim
 	    || std::abs(__y) + std::abs(__z) < _S_lolim
+	    || std::abs(__z) + std::abs(__x) < _S_lolim
 	    || std::abs(__p) < _S_lolim)
         std::__throw_domain_error(__N("__ellint_rj: argument too small"));
       else if (std::abs(__p - __z) < _S_eps)
