@@ -1,6 +1,6 @@
 
 /*
-$HOME/bin/bin/g++ -g -std=c++14 -o carlson3 carlson3.cpp
+$HOME/bin/bin/g++ -std=c++14 -g -Wall -Wextra -Wno-psabi -o carlson3 carlson3.cpp
 ./carlson3 > carlson3.txt
 */
 
