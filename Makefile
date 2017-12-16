@@ -51,6 +51,7 @@ BINS = testcase \
        hankel_toy_new \
        test_anger_weber \
        test_appell_f1 \
+       test_arith_geom_mean \
        test_bernoulli \
        test_bessel \
        test_bessel_asymp \
@@ -69,11 +70,13 @@ BINS = testcase \
        test_comp_ellint_1 \
        test_complex128 \
        test_complex_gamma \
+       test_conf_hyperg \
        test_conf_hyperg_limit \
        test_const \
        test_continued_fraction \
        test_continuous_dual_hahn \
        test_continuous_hahn \
+       test_cordic \
        test_coulomb \
        test_csint \
        test_cyl_hankel \
@@ -102,11 +105,13 @@ BINS = testcase \
        test_heuman_lambda \
        test_hurwitz_zeta \
        test_hurwitz_zeta_new \
+       test_hydrogen \
        test_hyperg \
        test_hypot \
        test_inv_erf \
        test_inv_ibeta \
        test_jacobi \
+       test_jacobi_ellint \
        test_jacobi_inv \
        test_jacobi_zeta \
        test_kelvin \
@@ -123,9 +128,11 @@ BINS = testcase \
        test_lommel \
        test_marcum_q \
        test_math_h \
+       test_maxint \
        test_meixner \
        test_meixner_pollaczek \
        test_mittag_leffler \
+       test_mod2pi \
        test_mpreal \
        test_notsospecfun \
        test_nric_bessel \
@@ -155,9 +162,12 @@ BINS = testcase \
        test_summation \
        test_theta \
        test_tricomi_u \
+       test_trig \
        test_weierstrass_ellint \
        test_wilson \
-       test_wright_omega
+       test_wright_omega \
+       test_zeta_trig
+
 
 CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/check_airy_bi \
@@ -443,11 +453,13 @@ test: $(BINS)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_comp_ellint_1 > test_comp_ellint_1.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_complex128 > test_complex128.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_complex_gamma > test_complex_gamma.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_conf_hyperg > test_conf_hyperg.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_conf_hyperg_limit > test_conf_hyperg_limit.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_const > test_const.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_continued_fraction > test_continued_fraction.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_continuous_dual_hahn > test_continuous_dual_hahn.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_continuous_hahn > test_continuous_hahn.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_cordic > test_cordic.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_coulomb > test_coulomb.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_csint > test_csint.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_cyl_hankel > test_cyl_hankel.txt
@@ -476,11 +488,13 @@ test: $(BINS)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_heuman_lambda > test_heuman_lambda.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_hurwitz_zeta > test_hurwitz_zeta.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_hydrogen > test_hydrogen.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_hyperg > test_hyperg.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_hypot > test_hypot.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_inv_erf > test_inv_erf.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_inv_ibeta > test_inv_ibeta.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_jacobi > test_jacobi.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_jacobi_ellint > test_jacobi_ellint.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_jacobi_inv > test_jacobi_inv.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_jacobi_zeta > test_jacobi_zeta.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_kelvin > test_kelvin.txt
@@ -496,9 +510,11 @@ test: $(BINS)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_lommel > test_lommel.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_marcum_q > test_marcum_q.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_math_h > test_math_h.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_maxint > test_maxint.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_meixner > test_meixner.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_meixner_pollaczek > test_meixner_pollaczek.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_mittag_leffler > test_mittag_leffler.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_mod2pi > test_mod2pi.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_mpreal > test_mpreal.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_notsospecfun > test_notsospecfun.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_nric_bessel > test_nric_bessel.txt
@@ -528,9 +544,11 @@ test: $(BINS)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_summation > test_summation.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_theta > test_theta.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_tricomi_u > test_tricomi_u.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_trig > test_trig.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_weierstrass_ellint > test_weierstrass_ellint.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_wilson > test_wilson.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_wright_omega > test_wright_omega.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_zeta_trig > test_zeta_trig.txt
 
 check: $(CHECK_DIR) $(CHECKS)
 	echo "Beginning executions of checks..." > $(CHECK_DIR)/check_out.txt 2> $(CHECK_DIR)/check_err.txt
@@ -720,6 +738,9 @@ test_anger_weber: test_anger_weber.cpp
 test_appell_f1: test_appell_f1.cpp
 	$(CXX17) -I. -o test_appell_f1 test_appell_f1.cpp -lquadmath
 
+test_arith_geom_mean: test_arith_geom_mean.cpp
+	$(CXX17) -I. -o test_arith_geom_mean test_arith_geom_mean.cpp -lquadmath
+
 test_bernoulli: wrappers_debug test_bernoulli.cpp
 	$(CXX17) -I. -o test_bernoulli test_bernoulli.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
@@ -774,6 +795,9 @@ test_complex128: test_complex128.cpp
 test_complex_gamma: test_complex_gamma.cpp
 	$(CXX17) -I. -o test_complex_gamma test_complex_gamma.cpp -lquadmath
 
+test_conf_hyperg: test_conf_hyperg.cpp
+	$(CXX17) -I. -o test_conf_hyperg test_conf_hyperg.cpp -lquadmath
+
 test_conf_hyperg_limit: test_conf_hyperg_limit.cpp
 	$(CXX17) -I. -o test_conf_hyperg_limit test_conf_hyperg_limit.cpp -lquadmath
 
@@ -788,6 +812,9 @@ test_continuous_dual_hahn: test_continuous_dual_hahn.cpp
 
 test_continuous_hahn: test_continuous_hahn.cpp
 	$(CXX17) -I. -o test_continuous_hahn test_continuous_hahn.cpp -lquadmath
+
+test_cordic: test_cordic.cpp
+	$(CXX17) -I. -o test_cordic test_cordic.cpp -lquadmath
 
 test_coulomb: test_coulomb.cpp
 	$(CXX17) -I. -o test_coulomb test_coulomb.cpp -lquadmath
@@ -873,6 +900,9 @@ test_hurwitz_zeta: test_hurwitz_zeta.cpp
 test_hurwitz_zeta_new: test_hurwitz_zeta_new.cpp
 	$(CXX17) -I. -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 
+test_hydrogen: wrappers_debug test_hydrogen.cpp
+	$(CXX17) -I. -o test_hydrogen test_hydrogen.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+
 test_hyperg: wrappers_debug test_hyperg.cpp
 	$(CXX17) -I. -o test_hyperg test_hyperg.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
@@ -887,6 +917,9 @@ test_inv_ibeta: test_inv_ibeta.cpp
 
 test_jacobi: test_jacobi.cpp
 	$(CXX17) -I. -o test_jacobi test_jacobi.cpp -lquadmath
+
+test_jacobi_ellint: test_jacobi_ellint.cpp
+	$(CXX17) -I. -o test_jacobi_ellint test_jacobi_ellint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost
 
 test_jacobi_inv: test_jacobi_inv.cpp
 	$(CXX17) -I. -o test_jacobi_inv test_jacobi_inv.cpp -lquadmath
@@ -934,7 +967,10 @@ test_marcum_q: test_marcum_q.cpp
 	$(CXX17) -I. -o test_marcum_q test_marcum_q.cpp -lquadmath
 
 test_math_h: test_math_h.cpp
-	$(CXX17) -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_math_h test_math_h.cpp -lquadmath
+	$(CXX17) -I. -o test_math_h test_math_h.cpp -lquadmath
+
+test_maxint: test_maxint.cpp
+	$(CXX17) -I. -o test_maxint test_maxint.cpp -lquadmath -lmpfr
 
 test_meixner: test_meixner.cpp
 	$(CXX17) -I. -o test_meixner test_meixner.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
@@ -944,6 +980,9 @@ test_meixner_pollaczek: test_meixner_pollaczek.cpp
 
 test_mittag_leffler: test_mittag_leffler.cpp
 	$(CXX17) -I. -o test_mittag_leffler test_mittag_leffler.cpp -lquadmath
+
+test_mod2pi: test_mod2pi.cpp
+	$(CXX17) -I. -I../mpreal -o test_mod2pi test_mod2pi.cpp -lquadmath -lmpfr -lgmp
 
 test_mpreal: test_mpreal.cpp
 	$(CXX17) -I. -I../mpreal -o test_mpreal test_mpreal.cpp -lquadmath -lmpfr -lgmp
@@ -1032,6 +1071,9 @@ test_theta: test_theta.cpp
 test_tricomi_u: test_tricomi_u.cpp
 	$(CXX17) -I. -o test_tricomi_u test_tricomi_u.cpp -lquadmath
 
+test_trig: test_trig.cpp
+	$(CXX17) -I. -o test_trig test_trig.cpp -lquadmath
+
 test_weierstrass_ellint: test_weierstrass_ellint.cpp
 	$(CXX17) -I. -o test_weierstrass_ellint test_weierstrass_ellint.cpp -lquadmath
 
@@ -1040,6 +1082,9 @@ test_wilson: test_wilson.cpp
 
 test_wright_omega: test_wright_omega.cpp
 	$(CXX17) -I. -o test_wright_omega test_wright_omega.cpp -lquadmath
+
+test_zeta_trig: test_zeta_trig.cpp
+	$(CXX17) -I. -o test_zeta_trig test_zeta_trig.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
 
 airy_toy: airy_toy.cpp

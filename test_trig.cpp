@@ -6,6 +6,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_trig test
 ./test_trig > test_trig.txt
 */
 
+#include <ext/cmath>
+
 /**
  * naive Taylor-series implementation of sin(x).
  */
@@ -33,6 +35,10 @@ template<typename _Tp>
   _Tp
   __sin(_Tp __x)
   {
+    const auto _S_2pi = __gnu_cxx::__const_2_pi(__x);
+    const auto _S_pi = __gnu_cxx::__const_pi(__x);
+    const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__x);
+    const auto _S_pi_4 = __gnu_cxx::__const_pi_quarter(__x);
     int __sgn = 1;
     if (__x < _Tp{0})
       {
