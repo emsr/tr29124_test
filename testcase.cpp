@@ -327,7 +327,7 @@ template<typename Real>
 
 #if STD
     // Airy functions of the first kind.
-    std::cout << "airy_ai" << std::endl;
+    std::cout << "airy_ai\n" << std::flush;
     basename = "airy_ai";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_airy_ai(filename);
@@ -339,7 +339,7 @@ template<typename Real>
 	     file_airy_ai);
 
     // Airy functions of the second kind.
-    std::cout << "airy_bi" << std::endl;
+    std::cout << "airy_bi\n" << std::flush;
     basename = "airy_bi";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_airy_bi(filename);
@@ -352,7 +352,7 @@ template<typename Real>
 #endif // STD
 
     // Associated Laguerre polynomials.
-    std::cout << "assoc_laguerre" << std::endl;
+    std::cout << "assoc_laguerre\n" << std::flush;
     basename = "assoc_laguerre";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_assoc_laguerre(filename);
@@ -365,7 +365,7 @@ template<typename Real>
 	     file_assoc_laguerre);
 
     // Associated Legendre functions.
-    std::cout << "assoc_legendre" << std::endl;
+    std::cout << "assoc_legendre\n" << std::flush;
     basename = "assoc_legendre";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_assoc_legendre(filename);
@@ -378,7 +378,7 @@ template<typename Real>
 	     file_assoc_legendre);
 
     // Beta functions.
-    std::cout << "beta" << std::endl;
+    std::cout << "beta\n" << std::flush;
     basename = "beta";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_beta(filename);
@@ -393,7 +393,7 @@ template<typename Real>
 
     // Complete elliptic integrals of the first kind.
     // Avoid poles at |x| = 1.
-    std::cout << "comp_ellint_1" << std::endl;
+    std::cout << "comp_ellint_1\n" << std::flush;
     basename = "comp_ellint_1";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_comp_ellint_1(filename);
@@ -406,7 +406,7 @@ template<typename Real>
 
     // Complete elliptic integrals of the second kind.
     // Avoid poles at |x| = 1.
-    std::cout << "comp_ellint_2" << std::endl;
+    std::cout << "comp_ellint_2\n" << std::flush;
     basename = "comp_ellint_2";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_comp_ellint_2(filename);
@@ -419,7 +419,7 @@ template<typename Real>
 
     // Complete elliptic integrals of the third kind.
     // Avoid poles at |x| = 1 and at nu = 1.
-    std::cout << "comp_ellint_3" << std::endl;
+    std::cout << "comp_ellint_3\n" << std::flush;
     basename = "comp_ellint_3";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_comp_ellint_3(filename);
@@ -435,7 +435,7 @@ template<typename Real>
 #if STD
     // Confluent hypergeometric functions.
     // Skip the singularity at c = 0.
-    std::cout << "conf_hyperg" << std::endl;
+    std::cout << "conf_hyperg\n" << std::flush;
     basename = "conf_hyperg";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_conf_hyperg(filename);
@@ -451,7 +451,7 @@ template<typename Real>
 #else
     // Confluent hypergeometric functions.
     // Skip the singularity at c = 0.
-    std::cout << "conf_hyperg" << std::endl;
+    std::cout << "conf_hyperg\n" << std::flush;
     basename = "conf_hyperg";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_conf_hyperg(filename);
@@ -467,7 +467,7 @@ template<typename Real>
 #endif // STD
 
     // Regular modified cylindrical Bessel functions.
-    std::cout << "cyl_bessel_i" << std::endl;
+    std::cout << "cyl_bessel_i\n" << std::flush;
     basename = "cyl_bessel_i";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cyl_bessel_i(filename);
@@ -496,7 +496,7 @@ template<typename Real>
 	     file_cyl_bessel_i, false, true, test);
 
     // Cylindrical Bessel functions (of the first kind).
-    std::cout << "cyl_bessel_j" << std::endl;
+    std::cout << "cyl_bessel_j\n" << std::flush;
     basename = "cyl_bessel_j";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cyl_bessel_j(filename);
@@ -526,7 +526,7 @@ template<typename Real>
 
     // Irregular modified cylindrical Bessel functions.
     // Skip the pole at the origin.
-    std::cout << "cyl_bessel_k" << std::endl;
+    std::cout << "cyl_bessel_k\n" << std::flush;
     basename = "cyl_bessel_k";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cyl_bessel_k(filename);
@@ -556,7 +556,7 @@ template<typename Real>
 
     // Cylindrical Neumann functions.
     // Skip the pole at the origin.
-    std::cout << "cyl_neumann" << std::endl;
+    std::cout << "cyl_neumann\n" << std::flush;
     basename = "cyl_neumann";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cyl_neumann(filename);
@@ -586,7 +586,7 @@ template<typename Real>
 
     // Elliptic integrals of the first kind.
     // Avoid poles at |x| = 1.
-    std::cout << "ellint_1" << std::endl;
+    std::cout << "ellint_1\n" << std::flush;
     basename = "ellint_1";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_1(filename);
@@ -600,7 +600,7 @@ template<typename Real>
 
     // Elliptic integrals of the second kind.
     // Avoid poles at |x| = 1.
-    std::cout << "ellint_2" << std::endl;
+    std::cout << "ellint_2\n" << std::flush;
     basename = "ellint_2";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_2(filename);
@@ -614,7 +614,7 @@ template<typename Real>
 
     // Elliptic integrals of the third kind.
     // Avoid poles at |x| = 1 and at nu = 1.
-    std::cout << "ellint_3" << std::endl;
+    std::cout << "ellint_3\n" << std::flush;
     basename = "ellint_3";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_ellint_3(filename);
@@ -630,7 +630,7 @@ template<typename Real>
 
     // Exponential integral.
     // Skip the pole at 0.
-    std::cout << "expint" << std::endl;
+    std::cout << "expint\n" << std::flush;
     basename = "expint";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_expint(filename);
@@ -649,7 +649,7 @@ template<typename Real>
 	     file_expint, false, true, test);
 
     // Hermite polynomials
-    std::cout << "hermite" << std::endl;
+    std::cout << "hermite\n" << std::flush;
     basename = "hermite";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_hermite(filename);
@@ -673,7 +673,7 @@ template<typename Real>
     // Hypergeometric functions.
     // Skip the singularity at c = 0.
     // Skip the singularity at x = -1.
-    std::cout << "hyperg" << std::endl;
+    std::cout << "hyperg\n" << std::flush;
     basename = "hyperg";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_hyperg(filename);
@@ -691,7 +691,7 @@ template<typename Real>
     // Hypergeometric functions.
     // Skip the singularity at c = 0.
     // Skip the singularity at x = -1.
-    std::cout << "hyperg" << std::endl;
+    std::cout << "hyperg\n" << std::flush;
     basename = "hyperg";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_hyperg(filename);
@@ -708,7 +708,7 @@ template<typename Real>
 #endif // STD
 
     // Laguerre polynomials.
-    std::cout << "laguerre" << std::endl;
+    std::cout << "laguerre\n" << std::flush;
     basename = "laguerre";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_laguerre(filename);
@@ -721,7 +721,7 @@ template<typename Real>
 	     file_laguerre);
 
     // Legendre polynomials.
-    std::cout << "legendre" << std::endl;
+    std::cout << "legendre\n" << std::flush;
     basename = "legendre";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_legendre(filename);
@@ -734,7 +734,7 @@ template<typename Real>
 	     file_legendre);
 
     // Riemann zeta function.
-    std::cout << "riemann_zeta" << std::endl;
+    std::cout << "riemann_zeta\n" << std::flush;
     // Skip the pole at 1.
     basename = "riemann_zeta";
     filename = get_filename(path, prefix, basename, "", ".cc");
@@ -755,7 +755,7 @@ template<typename Real>
 
 #if STD
     // Hurwitz zeta functions.
-    std::cout << "hurwitz_zeta" << std::endl;
+    std::cout << "hurwitz_zeta\n" << std::flush;
     // Skip the pole at 1.
     basename = "hurwitz_zeta";
     filename = get_filename(path, prefix, basename, "", ".cc");
@@ -771,7 +771,7 @@ template<typename Real>
 #endif // STD
 
     // Spherical Bessel functions.
-    std::cout << "sph_bessel" << std::endl;
+    std::cout << "sph_bessel\n" << std::flush;
     basename = "sph_bessel";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_sph_bessel(filename);
@@ -792,7 +792,7 @@ template<typename Real>
 	     file_sph_bessel, false, true, test);
 
     // Spherical Legendre functions.
-    std::cout << "sph_legendre" << std::endl;
+    std::cout << "sph_legendre\n" << std::flush;
     basename = "sph_legendre";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_sph_legendre(filename);
@@ -806,7 +806,7 @@ template<typename Real>
 
     // Spherical Neumann functions.
     // Skip the pole at the origin.
-    std::cout << "sph_neumann" << std::endl;
+    std::cout << "sph_neumann\n" << std::flush;
     basename = "sph_neumann";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_sph_neumann(filename);
@@ -828,7 +828,7 @@ template<typename Real>
 
 #if STD
     // Carlson elliptic functions R_C.
-    std::cout << "ellint_rc" << std::endl;
+    std::cout << "ellint_rc\n" << std::flush;
     basename = "ellint_rc";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rc(filename);
@@ -842,7 +842,7 @@ template<typename Real>
 	     file_ellint_rc);
 
     // Carlson elliptic functions R_D.
-    std::cout << "ellint_rd" << std::endl;
+    std::cout << "ellint_rd\n" << std::flush;
     basename = "ellint_rd";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rd(filename);
@@ -858,7 +858,7 @@ template<typename Real>
 	     file_ellint_rd);
 
     // Carlson elliptic functions R_F.
-    std::cout << "ellint_rf" << std::endl;
+    std::cout << "ellint_rf\n" << std::flush;
     basename = "ellint_rf";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rf(filename);
@@ -874,7 +874,7 @@ template<typename Real>
 	     file_ellint_rf);
 
     // Carlson elliptic functions R_G.
-    std::cout << "ellint_rg" << std::endl;
+    std::cout << "ellint_rg\n" << std::flush;
     basename = "ellint_rg";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rg(filename);
@@ -890,7 +890,7 @@ template<typename Real>
 	     file_ellint_rg);
 
     // Carlson elliptic functions R_J.
-    std::cout << "ellint_rj" << std::endl;
+    std::cout << "ellint_rj\n" << std::flush;
     basename = "ellint_rj";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rj(filename);
@@ -908,7 +908,7 @@ template<typename Real>
 	     file_ellint_rj);
 
     // Dilogarithm functions.
-    std::cout << "dilog" << std::endl;
+    std::cout << "dilog\n" << std::flush;
     basename = "dilog";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_dilog(filename);
@@ -920,7 +920,7 @@ template<typename Real>
 	     file_dilog);
 
     // Log Gamma functions.
-    std::cout << "lgamma" << std::endl;
+    std::cout << "lgamma\n" << std::flush;
     basename = "lgamma";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_lgamma(filename);
@@ -933,7 +933,7 @@ template<typename Real>
 
     // Gamma functions.
 /*
-    std::cout << "tgamma" << std::endl;
+    std::cout << "tgamma\n" << std::flush;
     basename = "tgamma";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_tgamma(filename);
@@ -945,7 +945,7 @@ template<typename Real>
 	     file_tgamma);
 */
     // Upper incomplete Gamma functions.
-    std::cout << "tgamma" << std::endl;
+    std::cout << "tgamma\n" << std::flush;
     basename = "tgamma";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_tgamma(filename);
@@ -959,7 +959,7 @@ template<typename Real>
 	     file_tgamma);
 
     // Lower incomplete Gamma functions.
-    std::cout << "tgamma_lower" << std::endl;
+    std::cout << "tgamma_lower\n" << std::flush;
     basename = "tgamma_lower";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_tgamma_lower(filename);
@@ -973,7 +973,7 @@ template<typename Real>
 	     file_tgamma_lower);
 
     // Lower regularized incomplete Gamma functions.
-    std::cout << "pgamma" << std::endl;
+    std::cout << "pgamma\n" << std::flush;
     basename = "pgamma";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_pgamma(filename);
@@ -987,7 +987,7 @@ template<typename Real>
 	     file_pgamma);
 
     // Upper regularized incomplete Gamma functions.
-    std::cout << "qgamma" << std::endl;
+    std::cout << "qgamma\n" << std::flush;
     basename = "qgamma";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_qgamma(filename);
@@ -1001,7 +1001,7 @@ template<typename Real>
 	     file_qgamma);
 
     // Incomplete Beta functions.
-    std::cout << "ibeta" << std::endl;
+    std::cout << "ibeta\n" << std::flush;
     basename = "ibeta";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ibeta(filename);
@@ -1017,7 +1017,7 @@ template<typename Real>
 	     file_ibeta);
 
     // Complementary incomplete Beta functions.
-    std::cout << "ibetac" << std::endl;
+    std::cout << "ibetac\n" << std::flush;
     basename = "ibetac";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ibetac(filename);
@@ -1033,7 +1033,7 @@ template<typename Real>
 	     file_ibetac);
 
     // Digamma or digamma functions.
-    std::cout << "digamma" << std::endl;
+    std::cout << "digamma\n" << std::flush;
     basename = "digamma";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_digamma(filename);
@@ -1053,7 +1053,7 @@ template<typename Real>
 	     file_digamma, false, true, test);
 
     // Psi or digamma functions.
-    std::cout << "polygamma" << std::endl;
+    std::cout << "polygamma\n" << std::flush;
     basename = "polygamma";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_polygamma(filename);
@@ -1074,7 +1074,7 @@ template<typename Real>
 	     file_polygamma, false, true, test);
 
     // Sine integral or Si functions.
-    std::cout << "sinint" << std::endl;
+    std::cout << "sinint\n" << std::flush;
     basename = "sinint";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_sinint(filename);
@@ -1086,7 +1086,7 @@ template<typename Real>
 	     file_sinint);
 
     // Cosine integral or Ci functions.
-    std::cout << "cosint" << std::endl;
+    std::cout << "cosint\n" << std::flush;
     basename = "cosint";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cosint(filename);
@@ -1098,7 +1098,7 @@ template<typename Real>
 	     file_cosint);
 
     // Hyperbolic sine integral or Shi functions.
-    std::cout << "sinhint" << std::endl;
+    std::cout << "sinhint\n" << std::flush;
     basename = "sinhint";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_sinhint(filename);
@@ -1110,7 +1110,7 @@ template<typename Real>
 	     file_sinhint);
 
     // Hyperbolic cosine integral or Chi functions.
-    std::cout << "coshint" << std::endl;
+    std::cout << "coshint\n" << std::flush;
     basename = "coshint";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_coshint(filename);
@@ -1122,7 +1122,7 @@ template<typename Real>
 	     file_coshint);
 
     // Dawson integral.
-    std::cout << "dawson" << std::endl;
+    std::cout << "dawson\n" << std::flush;
     basename = "dawson";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_dawson(filename);
@@ -1134,7 +1134,7 @@ template<typename Real>
 	     file_dawson);
 
     // Jacobian elliptic sine amplitude integrals.
-    std::cout << "jacobi_sn" << std::endl;
+    std::cout << "jacobi_sn\n" << std::flush;
     basename = "jacobi_sn";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_jacobi_sn(filename);
@@ -1148,7 +1148,7 @@ template<typename Real>
 	     file_jacobi_sn);
 
     // Jacobian elliptic cosine amplitude integrals.
-    std::cout << "jacobi_cn" << std::endl;
+    std::cout << "jacobi_cn\n" << std::flush;
     basename = "jacobi_cn";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_jacobi_cn(filename);
@@ -1162,7 +1162,7 @@ template<typename Real>
 	     file_jacobi_cn);
 
     // Jacobian elliptic delta amplitude integrals.
-    std::cout << "jacobi_dn" << std::endl;
+    std::cout << "jacobi_dn\n" << std::flush;
     basename = "jacobi_dn";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_jacobi_dn(filename);
@@ -1177,7 +1177,7 @@ template<typename Real>
 
     // Exponential integral En.
     // Skip the pole at 0.
-    std::cout << "expint_en" << std::endl;
+    std::cout << "expint_en\n" << std::flush;
     basename = "expint";
     filename = get_filename(path, prefix, basename, "_en", ".cc");
     std::ofstream file_expint_en(filename);
@@ -1190,7 +1190,7 @@ template<typename Real>
 	     file_expint_en);
 
     // Fresnel cosine integral.
-    std::cout << "fresnel_c" << std::endl;
+    std::cout << "fresnel_c\n" << std::flush;
     basename = "fresnel_c";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_fresnel_c(filename);
@@ -1202,7 +1202,7 @@ template<typename Real>
 	     file_fresnel_c);
 
     // Fresnel sine integral.
-    std::cout << "fresnel_s" << std::endl;
+    std::cout << "fresnel_s\n" << std::flush;
     basename = "fresnel_s";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_fresnel_s(filename);
@@ -1214,7 +1214,7 @@ template<typename Real>
 	     file_fresnel_s);
 
     // Sinus cardinal function.
-    std::cout << "sinc" << std::endl;
+    std::cout << "sinc\n" << std::flush;
     basename = "sinc";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_sinc(filename);
@@ -1226,7 +1226,7 @@ template<typename Real>
 	     file_sinc);
 
     // Reperiodized sinus cardinal function.
-    std::cout << "sinc_pi" << std::endl;
+    std::cout << "sinc_pi\n" << std::flush;
     basename = "sinc_pi";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_sinc_pi(filename);
@@ -1238,7 +1238,7 @@ template<typename Real>
 	     file_sinc_pi);
 
     // Log rising factorials.
-    std::cout << "lrising_factorial" << std::endl;
+    std::cout << "lrising_factorial\n" << std::flush;
     basename = "lrising_factorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_lrising_factorial(filename);
@@ -1251,7 +1251,7 @@ template<typename Real>
 	     file_lrising_factorial, true, true);
 
     // Log falling factorials.
-    std::cout << "lfalling_factorial" << std::endl;
+    std::cout << "lfalling_factorial\n" << std::flush;
     basename = "lfalling_factorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_lfalling_factorial(filename);
@@ -1264,7 +1264,7 @@ template<typename Real>
 	     file_lfalling_factorial, true, true);
 
     // Rising factorials.
-    std::cout << "rising_factorial" << std::endl;
+    std::cout << "rising_factorial\n" << std::flush;
     basename = "rising_factorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_rising_factorial(filename);
@@ -1277,7 +1277,7 @@ template<typename Real>
 	     file_rising_factorial, true, true);
 
     // Falling factorials.
-    std::cout << "falling_factorial" << std::endl;
+    std::cout << "falling_factorial\n" << std::flush;
     basename = "falling_factorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_falling_factorial(filename);
@@ -1290,7 +1290,7 @@ template<typename Real>
 	     file_falling_factorial, true, true);
 
     // Regular modified spherical bessel functions.
-    std::cout << "sph_bessel_i" << std::endl;
+    std::cout << "sph_bessel_i\n" << std::flush;
     basename = "sph_bessel_i";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_sph_bessel_i(filename);
@@ -1311,7 +1311,7 @@ template<typename Real>
 	     file_sph_bessel_i, false, true, test);
 
     // Irregular modified spherical bessel functions.
-    std::cout << "sph_bessel_k" << std::endl;
+    std::cout << "sph_bessel_k\n" << std::flush;
     basename = "sph_bessel_k";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_sph_bessel_k(filename);
@@ -1332,7 +1332,7 @@ template<typename Real>
 	     file_sph_bessel_k, false, true, test);
 
     // Legendre functions of the second kind.
-    std::cout << "legendre_q" << std::endl;
+    std::cout << "legendre_q\n" << std::flush;
     basename = "legendre_q";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_legendre_q(filename);
@@ -1345,7 +1345,7 @@ template<typename Real>
 	     file_legendre_q);
 
     // Factorial.
-    std::cout << "factorial" << std::endl;
+    std::cout << "factorial\n" << std::flush;
     basename = "factorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_factorial(filename);
@@ -1357,7 +1357,7 @@ template<typename Real>
 	     file_factorial);
 
     // Log factorial.
-    std::cout << "lfactorial" << std::endl;
+    std::cout << "lfactorial\n" << std::flush;
     basename = "lfactorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_lfactorial(filename);
@@ -1369,7 +1369,7 @@ template<typename Real>
 	     file_lfactorial);
 
     // Double factorial.
-    std::cout << "double_factorial" << std::endl;
+    std::cout << "double_factorial\n" << std::flush;
     basename = "double_factorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_double_factorial(filename);
@@ -1381,7 +1381,7 @@ template<typename Real>
 	     file_double_factorial);
 
     // Log double factorial.
-    std::cout << "ldouble_factorial" << std::endl;
+    std::cout << "ldouble_factorial\n" << std::flush;
     basename = "ldouble_factorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_ldouble_factorial(filename);
@@ -1393,7 +1393,7 @@ template<typename Real>
 	     file_ldouble_factorial);
 
     // Binomial coefficient.
-    std::cout << "binomial" << std::endl;
+    std::cout << "binomial\n" << std::flush;
     basename = "binomial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_binomial(filename);
@@ -1407,7 +1407,7 @@ template<typename Real>
 	     file_binomial);
 
     // Log binomial coefficient.
-    std::cout << "lbinomial" << std::endl;
+    std::cout << "lbinomial\n" << std::flush;
     basename = "lbinomial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_lbinomial(filename);
@@ -1421,7 +1421,7 @@ template<typename Real>
 	     file_lbinomial);
 
     // Gegenbauer polynomials.
-    std::cout << "gegenbauer" << std::endl;
+    std::cout << "gegenbauer\n" << std::flush;
     basename = "gegenbauer";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_gegenbauer(filename);
@@ -1436,7 +1436,7 @@ template<typename Real>
 	     file_gegenbauer);
 
     // Chebyshev polynomials of the first kind.
-    std::cout << "chebyshev_t" << std::endl;
+    std::cout << "chebyshev_t\n" << std::flush;
     basename = "chebyshev_t";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_chebyshev_t(filename);
@@ -1449,7 +1449,7 @@ template<typename Real>
 	     file_chebyshev_t);
 
     // Chebyshev polynomials of the second kind.
-    std::cout << "chebyshev_u" << std::endl;
+    std::cout << "chebyshev_u\n" << std::flush;
     basename = "chebyshev_u";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_chebyshev_u(filename);
@@ -1462,7 +1462,7 @@ template<typename Real>
 	     file_chebyshev_u);
 
     // Chebyshev polynomials of the third kind.
-    std::cout << "chebyshev_v" << std::endl;
+    std::cout << "chebyshev_v\n" << std::flush;
     basename = "chebyshev_v";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_chebyshev_v(filename);
@@ -1475,7 +1475,7 @@ template<typename Real>
 	     file_chebyshev_v);
 
     // Chebyshev polynomials of the fourth kind.
-    std::cout << "chebyshev_w" << std::endl;
+    std::cout << "chebyshev_w\n" << std::flush;
     basename = "chebyshev_w";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_chebyshev_w(filename);
@@ -1488,7 +1488,7 @@ template<typename Real>
 	     file_chebyshev_w);
 
     // Jacobi polynomials.
-    std::cout << "jacobi" << std::endl;
+    std::cout << "jacobi\n" << std::flush;
     basename = "jacobi";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_jacobi(filename);
@@ -1505,7 +1505,7 @@ template<typename Real>
 	     file_jacobi);
 
     // Radial polynomials.
-    std::cout << "radpoly" << std::endl;
+    std::cout << "radpoly\n" << std::flush;
     basename = "radpoly";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_radpoly(filename);
@@ -1518,7 +1518,7 @@ template<typename Real>
 	     file_radpoly);
 
     // Zernike polynomials.
-    std::cout << "zernike" << std::endl;
+    std::cout << "zernike\n" << std::flush;
     basename = "zernike";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_zernike(filename);
@@ -1533,7 +1533,7 @@ template<typename Real>
 
     // Confluent hypergeometric limit functions.
     // Skip the singularity at c = 0.
-    std::cout << "conf_hyperg_lim" << std::endl;
+    std::cout << "conf_hyperg_lim\n" << std::flush;
     basename = "conf_hyperg_lim";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_conf_hyperg_lim(filename);
@@ -1548,7 +1548,7 @@ template<typename Real>
 
     // Heuman lambda functions.
     // Avoid poles at |x| = 1.
-    std::cout << "heuman_lambda" << std::endl;
+    std::cout << "heuman_lambda\n" << std::flush;
     basename = "heuman_lambda";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_heuman_lambda(filename);
@@ -1562,7 +1562,7 @@ template<typename Real>
 
     // Elliptic D integrals.
     // Avoid poles at |x| = 1.
-    std::cout << "ellint_d" << std::endl;
+    std::cout << "ellint_d\n" << std::flush;
     basename = "ellint_d";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_d(filename);
@@ -1576,7 +1576,7 @@ template<typename Real>
 
     // Complementary elliptic D integrals.
     // Avoid poles at |x| = 1.
-    std::cout << "comp_ellint_d" << std::endl;
+    std::cout << "comp_ellint_d\n" << std::flush;
     basename = "comp_ellint_d";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_comp_ellint_d(filename);
@@ -1589,7 +1589,7 @@ template<typename Real>
 
     // Jacobi zeta functions.
     // Avoid poles at |x| = 1.
-    std::cout << "jacobi_zeta" << std::endl;
+    std::cout << "jacobi_zeta\n" << std::flush;
     basename = "jacobi_zeta";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_jacobi_zeta(filename);
@@ -1602,7 +1602,7 @@ template<typename Real>
 	     file_jacobi_zeta);
 
     // Cylindrical Hankel functions of the first kind.
-    std::cout << "cyl_hankel_1" << std::endl;
+    std::cout << "cyl_hankel_1\n" << std::flush;
     basename = "cyl_hankel_1";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cyl_hankel_1(filename);
@@ -1638,7 +1638,7 @@ template<typename Real>
 	     file_cyl_hankel_1, false, true, test);
 
     // Cylindrical Hankel functions of the second kind.
-    std::cout << "cyl_hankel_2" << std::endl;
+    std::cout << "cyl_hankel_2\n" << std::flush;
     basename = "cyl_hankel_2";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cyl_hankel_2(filename);
@@ -1674,7 +1674,7 @@ template<typename Real>
 	     file_cyl_hankel_2, false, true, test);
 
     // Spherical Hankel functions of the first kind.
-    std::cout << "sph_hankel_1" << std::endl;
+    std::cout << "sph_hankel_1\n" << std::flush;
     basename = "sph_hankel_1";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_sph_hankel_1(filename);
@@ -1702,7 +1702,7 @@ template<typename Real>
 	     file_sph_hankel_1, false, true, test);
 
     // Spherical Hankel functions of the second kind.
-    std::cout << "sph_hankel_2" << std::endl;
+    std::cout << "sph_hankel_2\n" << std::flush;
     basename = "sph_hankel_2";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_sph_hankel_2(filename);
@@ -1730,7 +1730,7 @@ template<typename Real>
 	     file_sph_hankel_2, false, true, test);
 
     // Spherical harmonic functions.
-    std::cout << "sph_harmonic" << std::endl;
+    std::cout << "sph_harmonic\n" << std::flush;
     basename = "sph_harmonic";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_sph_harmonic(filename);
@@ -1744,7 +1744,7 @@ template<typename Real>
 	     file_sph_harmonic);
 
     // Dirichlet eta function.
-    std::cout << "dirichlet_eta" << std::endl;
+    std::cout << "dirichlet_eta\n" << std::flush;
     // Skip the pole at 1.
     basename = "dirichlet_eta";
     filename = get_filename(path, prefix, basename, "", ".cc");
@@ -1764,7 +1764,7 @@ template<typename Real>
 	     file_dirichlet_eta, false, true, test);
 
     // Owens T functions.
-    std::cout << "owens_t" << std::endl;
+    std::cout << "owens_t\n" << std::flush;
     basename = "owens_t";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_owens_t(filename);
@@ -1778,7 +1778,7 @@ template<typename Real>
 	     file_owens_t, true, true);
 
     // Clausen Cl function.
-    std::cout << "clausen_cl" << std::endl;
+    std::cout << "clausen_cl\n" << std::flush;
     basename = "clausen_cl";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_clausen_cl(filename);
@@ -1792,7 +1792,7 @@ template<typename Real>
 	     file_clausen_cl, true, true);
 
     // Bernoulli numbers.
-    std::cout << "bernoulli" << std::endl;
+    std::cout << "bernoulli\n" << std::flush;
     basename = "bernoulli";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_bernoulli(filename);
@@ -1804,7 +1804,7 @@ template<typename Real>
 	     file_bernoulli);
 
     // Euler numbers.
-    std::cout << "euler" << std::endl;
+    std::cout << "euler\n" << std::flush;
     basename = "euler";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_euler(filename);
@@ -1816,7 +1816,7 @@ template<typename Real>
 	     file_euler);
 
     // Eulerian numbers of the first kind.
-    std::cout << "eulerian_1" << std::endl;
+    std::cout << "eulerian_1\n" << std::flush;
     basename = "eulerian_1";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_eulerian_1(filename);
@@ -1830,7 +1830,7 @@ template<typename Real>
 	     file_eulerian_1);
 
     // Stirling numbers of the first kind.
-    std::cout << "stirling_1" << std::endl;
+    std::cout << "stirling_1\n" << std::flush;
     basename = "stirling_1";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_stirling_1(filename);
@@ -1844,7 +1844,7 @@ template<typename Real>
 	     file_stirling_1);
 
     // Stirling numbers of the first kind.
-    std::cout << "stirling_2" << std::endl;
+    std::cout << "stirling_2\n" << std::flush;
     basename = "stirling_2";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_stirling_2(filename);
@@ -1858,7 +1858,7 @@ template<typename Real>
 	     file_stirling_2);
 
     // Reperiodized sine function.
-    std::cout << "sin_pi" << std::endl;
+    std::cout << "sin_pi\n" << std::flush;
     basename = "sin_pi";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_sin_pi(filename);
@@ -1870,7 +1870,7 @@ template<typename Real>
 	     file_sin_pi);
 
     // Reperiodized cosine function.
-    std::cout << "cos_pi" << std::endl;
+    std::cout << "cos_pi\n" << std::flush;
     basename = "cos_pi";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cos_pi(filename);
@@ -1882,7 +1882,7 @@ template<typename Real>
 	     file_cos_pi);
 
     // Debye functions.
-    std::cout << "debye" << std::endl;
+    std::cout << "debye\n" << std::flush;
     basename = "debye";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_debye(filename);
