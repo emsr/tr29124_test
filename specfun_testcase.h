@@ -503,7 +503,7 @@ template<typename _Tp>
   };
 
 template<typename _Tp>
-  struct testcase_psi
+  struct testcase_digamma
   {
     _Tp f0;
     _Tp x;

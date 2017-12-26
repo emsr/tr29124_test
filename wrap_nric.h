@@ -124,7 +124,7 @@ double beta_inc(double a, double b, double x);
 double dilog(double x);
 
 /// Digamma or psi function.
-double psi(double x);
+double digamma(double x);
 
 /// Sine integral.
 double sinint(double x);

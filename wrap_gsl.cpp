@@ -741,13 +741,13 @@ dilog(double x)
 
 /// Digamma or psi function.
 double
-psi(double x)
+digamma(double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_psi_e(x, &result);
   if (stat != GSL_SUCCESS)
     {
-      std::ostringstream msg("Error in psi:");
+      std::ostringstream msg("Error in digamma:");
       msg << " x=" << x;
       throw std::runtime_error(msg.str());
     }

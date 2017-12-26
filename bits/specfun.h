@@ -197,6 +197,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::cyl_hankel_2 "cyl_hankel_2 - Cylindrical Hankel functions of the second kind"
    * - @ref __gnu_cxx::dawson "dawson - Dawson integrals"
    * - @ref __gnu_cxx::debye "debye - Debye functions"
+   * - @ref __gnu_cxx::digamma "digamma - Digamma or psi function"
    * - @ref __gnu_cxx::dilog "dilog - Dilogarithm functions"
    * - @ref __gnu_cxx::dirichlet_beta "dirichlet_beta - Dirichlet beta function"
    * - @ref __gnu_cxx::dirichlet_eta "dirichlet_eta - Dirichlet beta function"
@@ -242,7 +243,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::lrising_factorial "lrising_factorial - Log rising factorials"
    * - @ref __gnu_cxx::owens_t "owens_t - Owens T functions"
    * - @ref __gnu_cxx::pgamma "pgamma - Regularized lower incomplete gamma functions"
-   * - @ref __gnu_cxx::psi "psi - Psi or digamma function"
    * - @ref __gnu_cxx::qgamma "qgamma - Regularized upper incomplete gamma functions"
    * - @ref __gnu_cxx::radpoly "radpoly - Radial polynomials"
    * - @ref __gnu_cxx::rising_factorial "rising_factorial - Rising factorials"
@@ -3105,7 +3105,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Dilogarithm functions
 
   /**
-   * Return the dilogarithm function @f$ \psi(z) @f$
+   * Return the dilogarithm function @f$ Li_2(z) @f$
    * for @c float argument.
    *
    * @see dilog for details.
@@ -3115,7 +3115,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__dilog<float>(__x); }
 
   /**
-   * Return the dilogarithm function @f$ \psi(z) @f$
+   * Return the dilogarithm function @f$ Li_2(z) @f$
    * for <tt>long double</tt> argument.
    *
    * @see dilog for details.
@@ -3125,7 +3125,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__dilog<long double>(__x); }
 
   /**
-   * Return the dilogarithm function @f$ \psi(z) @f$
+   * Return the dilogarithm function @f$ Li_2(z) @f$
    * for real argument.
    *
    * The dilogarithm is defined by:
@@ -3527,38 +3527,39 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Digamma or psi functions
 
   /**
-   * Return the psi or digamma function of @c float argument @f$ x @f$.
+   * Return the digamma or psi function of @c float argument @f$ x @f$.
    *
-   * @see psi for details.
+   * @see digamma for details.
    */
   inline float
-  psif(float __x)
+  digammaf(float __x)
   { return std::__detail::__digamma<float>(__x); }
 
   /**
-   * Return the psi or digamma function of <tt>long double</tt> argument
+   * Return the digamma or psi function of <tt>long double</tt> argument
    * @f$ x @f$.
    *
-   * @see psi for details.
+   * @see digamma for details.
    */
   inline long double
-  psil(long double __x)
+  digammal(long double __x)
   { return std::__detail::__digamma<long double>(__x); }
 
   /**
-   * Return the psi or digamma function of argument @f$ x @f$.
+   * Return the digamma or psi function of argument @f$ x @f$.
    *
-   * The the psi or digamma function is defined by
+   * The the digamma or psi function is defined by
    * @f[
    *    \psi(x) = \frac{d}{dx}log\left(\Gamma(x)\right)
-   *            = \frac{\Gamma'(x)}{\Gamma(x)}
+   *            = \frac{\Gamma'(x)}{\Gamma(x)},
    * @f]
+   * the logarithmic derivative of the gamma function.
    *
    * @param __x The parameter
    */
   template<typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tp>
-    psi(_Tp __x)
+    digamma(_Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
       return std::__detail::__digamma<__type>(__x);
@@ -4345,7 +4346,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *             \left[\psi(l+1) - \psi(k+1)\right](x-1)^k
    * @f]
    * where @f$ P_l(x) @f$ is the Legendre polynomial of degree @f$ l @f$
-   * and @f$ \psi(x) @f$ is the psi or dilogarithm function.
+   * and @f$ \psi(x) @f$ is the digamma or psi function.
    *
    * @tparam _Tp The floating-point type of the argument @c __x.
    * @param __l The degree @f$ l >= 0 @f$

@@ -209,7 +209,7 @@ dilog(double x)
 
 /// Digamma or psi function.
 double
-psi(double x)
+digamma(double x)
 { std::numeric_limits<double>::quiet_NaN(); }
 
 /// Sine integral.

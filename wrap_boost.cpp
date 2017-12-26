@@ -441,7 +441,7 @@ dilog(double /*x*/)
 
 /// Digamma or psi function.
 double
-psi(double x)
+digamma(double x)
 {
   return boost::math::digamma(x);
 }

@@ -60,6 +60,7 @@ template<typename Real>
     using       std::cyl_neumann;
     using __gnu_cxx::dawson;
     using __gnu_cxx::debye;
+    using __gnu_cxx::digamma;
     using __gnu_cxx::dilog;
     using __gnu_cxx::dirichlet_beta;
     using __gnu_cxx::dirichlet_eta;
@@ -101,7 +102,6 @@ template<typename Real>
     using __gnu_cxx::owens_t;
     using __gnu_cxx::pgamma;
     using __gnu_cxx::polygamma;
-    using __gnu_cxx::psi;
     using __gnu_cxx::qgamma;
     using __gnu_cxx::radpoly;
     using       std::riemann_zeta;

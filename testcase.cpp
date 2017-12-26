@@ -217,7 +217,7 @@ template<typename Real>
     using __gnu_cxx::owens_t;
     using __gnu_cxx::pgamma;
     using __gnu_cxx::polygamma;
-    using __gnu_cxx::psi;
+    using __gnu_cxx::digamma;
     using __gnu_cxx::qgamma;
     using __gnu_cxx::radpoly;
     using       std::riemann_zeta;
@@ -1032,27 +1032,27 @@ template<typename Real>
 	     "Boost",
 	     file_ibetac);
 
-    // Digamma or psi functions.
-    std::cout << "psi" << std::endl;
-    basename = "psi";
+    // Digamma or digamma functions.
+    std::cout << "digamma" << std::endl;
+    basename = "digamma";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_digamma(filename);
     const auto skip = Real{1} / Real{16};
     test =
-    maketest(psi, beast::psi,
-	     "testcase_psi", "__gnu_cxx", basename,
+    maketest(digamma, beast::digamma,
+	     "testcase_digamma", "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{-10} + skip, Real{+10} + skip),
 				std::make_pair(true, true), 201),
 	     "Boost",
 	     file_digamma, true, false);
-    maketest(psi, beast::psi,
-	     "testcase_psi", "__gnu_cxx", basename,
+    maketest(digamma, beast::digamma,
+	     "testcase_digamma", "__gnu_cxx", basename,
 	     "x", fill_argument(std::make_pair(Real{1}, Real{100}),
 				std::make_pair(true, true), 199),
 	     "Boost",
 	     file_digamma, false, true, test);
 
-    // Polygamma or psi functions.
+    // Psi or digamma functions.
     std::cout << "polygamma" << std::endl;
     basename = "polygamma";
     filename = get_filename(path, prefix, basename, "",  ".cc");

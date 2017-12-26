@@ -89,6 +89,7 @@ ${makedir} ${ext_dir}/cyl_hankel_1
 ${makedir} ${ext_dir}/cyl_hankel_2
 ${makedir} ${ext_dir}/dawson
 ${makedir} ${ext_dir}/debye
+${makedir} ${ext_dir}/digamma
 ${makedir} ${ext_dir}/dilog
 ${makedir} ${ext_dir}/dirichlet_beta
 ${makedir} ${ext_dir}/dirichlet_eta
@@ -130,7 +131,6 @@ ${makedir} ${ext_dir}/lrising_factorial
 ${makedir} ${ext_dir}/owens_t
 ${makedir} ${ext_dir}/pgamma
 ${makedir} ${ext_dir}/polygamma
-${makedir} ${ext_dir}/psi
 ${makedir} ${ext_dir}/qgamma
 ${makedir} ${ext_dir}/radpoly
 ${makedir} ${ext_dir}/rising_factorial
@@ -180,6 +180,7 @@ ${tool} check/check_cyl_hankel_2.cc       ${ext_dir}/cyl_hankel_2/check_value.cc
 ${tool} check/pr56216_cyl_hankel_2.cc     ${ext_dir}/cyl_hankel_2/pr56216.cc
 ${tool} check/check_dawson.cc             ${ext_dir}/dawson/check_value.cc
 ${tool} check/check_debye.cc              ${ext_dir}/debye/check_value.cc
+${tool} check/check_digamma.cc            ${ext_dir}/digamma/check_value.cc
 ${tool} check/check_dilog.cc              ${ext_dir}/dilog/check_value.cc
 ${tool} check/check_dirichlet_beta.cc     ${ext_dir}/dirichlet_beta/check_value.cc
 ${tool} check/check_dirichlet_eta.cc      ${ext_dir}/dirichlet_eta/check_value.cc
@@ -220,7 +221,6 @@ ${tool} check/check_lgamma.cc             ${ext_dir}/lgamma/check_value.cc
 ${tool} check/check_lrising_factorial.cc  ${ext_dir}/lrising_factorial/check_value.cc
 ${tool} check/check_owens_t.cc            ${ext_dir}/owens_t/check_value.cc
 ${tool} check/check_pgamma.cc             ${ext_dir}/pgamma/check_value.cc
-${tool} check/check_psi.cc                ${ext_dir}/psi/check_value.cc
 ${tool} check/check_qgamma.cc             ${ext_dir}/qgamma/check_value.cc
 ${tool} check/check_radpoly.cc            ${ext_dir}/radpoly/check_value.cc
 ${tool} check/check_rising_factorial.cc   ${ext_dir}/rising_factorial/check_value.cc

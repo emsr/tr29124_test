@@ -22,7 +22,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/sf_psi.tcc
+/** @file bits/sf_polygamma.tcc
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{cmath}
  */
@@ -43,8 +43,8 @@
 //       W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
 //       2nd ed, pp. 240-245
 
-#ifndef _GLIBCXX_BITS_SF_PSI_TCC
-#define _GLIBCXX_BITS_SF_PSI_TCC 1
+#ifndef _GLIBCXX_BITS_SF_DIGAMMA_TCC
+#define _GLIBCXX_BITS_SF_DIGAMMA_TCC 1
 
 #include <limits>
 //#include <bits/specfun_util.h>
@@ -159,7 +159,7 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __psi(const _Tp __x)
+    __digamma(const _Tp __x)
     {
       ///  @todo Finish me!!!
     }
@@ -170,16 +170,16 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __psi_1(const _Tp __x)
+    __digamma_1(const _Tp __x)
     {
       int __n = std::nearbyint(__x);
 
       if (__x == _Tp(__n))
         {
-          _Tp __psi = -__numeric_constants<_Tp>::euler();
+          _Tp __digamma = -__numeric_constants<_Tp>::euler();
           for (int __i = 1; __i <= __n; ++__i )
-            __psi += _Tp(1) / __i;
-          return __psi;
+            __digamma += _Tp(1) / __i;
+          return __digamma;
         }
       else
         {
@@ -189,7 +189,7 @@ namespace __detail
 
 
   /**
-   *   @brief  Return the polygamma function @f$ psi^{(n)}(x) @f$.
+   *   @brief  Return the polygamma function @f$ polygamma^{(n)}(x) @f$.
    * 
    *   The polygamma function is related to the Hurwitz zeta function:
    *   @f[
@@ -198,14 +198,14 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __psi(const unsigned int __n, const _Tp __x)
+    __polygamma(const unsigned int __n, const _Tp __x)
     {
       if (__x <= _Tp(0))
-        __throw_domain_error("__psi: srgument out of range");
+        __throw_domain_error("__polygamma: srgument out of range");
       else if (__n == 0)
-        return __psi(__x);
+        return __polygamma(__x);
       else if (__n == 1)
-        return __psi_1(__x);
+        return __digamma_1(__x);
       else
         {
           const _Tp __hzeta = __hurwitz_zeta(_Tp(__n + 1), __x);
@@ -225,4 +225,4 @@ namespace __detail
 _GLIBCXX_END_NAMESPACE_VERSION
 }
 
-#endif // _GLIBCXX_BITS_SF_PSI_TCC
+#endif // _GLIBCXX_BITS_SF_DIGAMMA_TCC

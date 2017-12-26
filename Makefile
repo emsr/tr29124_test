@@ -82,6 +82,7 @@ BINS = testcase \
        test_cyl_hankel \
        test_dawson \
        test_debye \
+       test_digamma \
        test_dilog \
        test_dirichlet_eta \
        test_dual_hahn \
@@ -143,7 +144,6 @@ BINS = testcase \
        test_polylog \
        test_power_mean \
        test_power_norm \
-       test_psi \
        test_racah \
        test_rational \
        test_recursion \
@@ -197,6 +197,7 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/check_cyl_hankel_2 \
 	 ${CHECK_DIR}/check_cyl_neumann \
 	 ${CHECK_DIR}/check_dawson \
+	 ${CHECK_DIR}/check_digamma \
 	 ${CHECK_DIR}/check_dilog \
 	 ${CHECK_DIR}/check_dirichlet_beta \
 	 ${CHECK_DIR}/check_dirichlet_eta \
@@ -253,7 +254,6 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/check_pgamma \
 	 ${CHECK_DIR}/check_falling_factorial \
 	 ${CHECK_DIR}/check_rising_factorial \
-	 ${CHECK_DIR}/check_psi \
 	 ${CHECK_DIR}/check_qgamma \
 	 ${CHECK_DIR}/check_radpoly \
 	 ${CHECK_DIR}/check_riemann_zeta \
@@ -465,6 +465,7 @@ test: $(BINS)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_cyl_hankel > test_cyl_hankel.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_dawson > test_dawson.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_debye > test_debye.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_digamma > test_digamma.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_dilog > test_dilog.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_dirichlet_eta > test_dirichlet_eta.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_dual_hahn > test_dual_hahn.txt
@@ -525,7 +526,6 @@ test: $(BINS)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_power_mean > test_power_mean.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_power_norm > test_power_norm.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_psi > test_psi.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_racah > test_racah.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_rational > test_rational.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_recursion > test_recursion.txt
@@ -581,6 +581,7 @@ check: $(CHECK_DIR) $(CHECKS)
 	echo "check_cyl_hankel_2" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_cyl_hankel_2 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_cyl_neumann" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_cyl_neumann >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_dawson" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_dawson >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_digamma" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_digamma >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_dilog" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_dilog >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_dirichlet_beta" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_dirichlet_beta >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_dirichlet_eta" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_dirichlet_eta >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
@@ -637,7 +638,6 @@ check: $(CHECK_DIR) $(CHECKS)
 	echo "check_rising_factorial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_rising_factorial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_normal_cdf" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_normal_cdf >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_normal_pdf" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_normal_pdf >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
-	echo "check_psi" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_psi >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_qgamma" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_qgamma >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_radpoly" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_radpoly >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_riemann_zeta" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_riemann_zeta >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
@@ -831,6 +831,9 @@ test_dawson: test_dawson.cpp
 test_debye: wrappers_debug test_debye.cpp
 	$(CXX17) -I. -o test_debye test_debye.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
+test_digamma: wrappers_debug test_digamma.cpp
+	$(CXX17) -I. -o test_digamma test_digamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+
 test_dilog: test_dilog.cpp
 	$(CXX17) -I. -o test_dilog test_dilog.cpp -lquadmath
 
@@ -1014,9 +1017,6 @@ test_power_mean: test_power_mean.cpp
 test_power_norm: test_power_norm.cpp
 	$(CXX17) -I. -o test_power_norm test_power_norm.cpp -lquadmath
 
-test_psi: wrappers_debug test_psi.cpp
-	$(CXX17) -I. -o test_psi test_psi.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
-
 test_racah: test_racah.cpp
 	$(CXX17) -I. -o test_racah test_racah.cpp -lquadmath
 
@@ -1187,6 +1187,9 @@ ${CHECK_DIR}/check_cyl_neumann: ${CHECK_DIR}/check_cyl_neumann.cc
 ${CHECK_DIR}/check_dawson: ${CHECK_DIR}/check_dawson.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_dawson ${CHECK_DIR}/check_dawson.cc -lquadmath -lquadmath
 
+${CHECK_DIR}/check_digamma: ${CHECK_DIR}/check_digamma.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_digamma ${CHECK_DIR}/check_digamma.cc -lquadmath
+
 ${CHECK_DIR}/check_dilog: ${CHECK_DIR}/check_dilog.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_dilog ${CHECK_DIR}/check_dilog.cc -lquadmath -lquadmath
 
@@ -1348,9 +1351,6 @@ ${CHECK_DIR}/check_owens_t: ${CHECK_DIR}/check_owens_t.cc
 
 ${CHECK_DIR}/check_pgamma: ${CHECK_DIR}/check_pgamma.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_pgamma ${CHECK_DIR}/check_pgamma.cc -lquadmath
-
-${CHECK_DIR}/check_psi: ${CHECK_DIR}/check_psi.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_psi ${CHECK_DIR}/check_psi.cc -lquadmath
 
 ${CHECK_DIR}/check_qgamma: ${CHECK_DIR}/check_qgamma.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_qgamma ${CHECK_DIR}/check_qgamma.cc -lquadmath

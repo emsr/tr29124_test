@@ -53,6 +53,7 @@ ${tool} ${text_dir}/cosint/*             ${ext_dir}/cosint
 ${tool} ${text_dir}/cyl_hankel_1/*       ${ext_dir}/cyl_hankel_1
 ${tool} ${text_dir}/cyl_hankel_2/*       ${ext_dir}/cyl_hankel_2
 ${tool} ${text_dir}/dawson/*             ${ext_dir}/dawson
+${tool} ${text_dir}/digamma/*            ${ext_dir}/digamma
 ${tool} ${text_dir}/dilog/*              ${ext_dir}/dilog
 ${tool} ${text_dir}/dirichlet_beta/*     ${ext_dir}/dirichlet_beta
 ${tool} ${text_dir}/dirichlet_eta/*      ${ext_dir}/dirichlet_eta
@@ -93,9 +94,8 @@ ${tool} ${text_dir}/lrising_factorial/*  ${ext_dir}/lrising_factorial
 ${tool} ${text_dir}/owens_t/*            ${ext_dir}/owens_t
 ${tool} ${text_dir}/pgamma/*             ${ext_dir}/pgamma
 ${tool} ${text_dir}/polygamma/*          ${ext_dir}/polygamma
-${tool} ${text_dir}/psi/*                ${ext_dir}/psi
-${tool} ${text_dir}/qgamma/*           ${ext_dir}/qgamma
-${tool} ${text_dir}/radpoly/*           ${ext_dir}/radpoly
+${tool} ${text_dir}/qgamma/*             ${ext_dir}/qgamma
+${tool} ${text_dir}/radpoly/*            ${ext_dir}/radpoly
 ${tool} ${text_dir}/rising_factorial/*   ${ext_dir}/rising_factorial
 ${tool} ${text_dir}/sinc/*               ${ext_dir}/sinc
 ${tool} ${text_dir}/sinc_pi/*            ${ext_dir}/sinc_pi

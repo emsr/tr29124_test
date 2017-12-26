@@ -100,6 +100,7 @@ main()
     using       std::cyl_neumann;
     using __gnu_cxx::dawson;
     using __gnu_cxx::debye;
+    using __gnu_cxx::digamma;
     using __gnu_cxx::dilog;
     using __gnu_cxx::dirichlet_beta;
     using __gnu_cxx::dirichlet_eta;
@@ -116,6 +117,7 @@ main()
     using       std::expint;
     using __gnu_cxx::expint;
     using __gnu_cxx::factorial;
+    using __gnu_cxx::falling_factorial;
     using __gnu_cxx::fresnel_c;
     using __gnu_cxx::fresnel_s;
     using __gnu_cxx::gegenbauer;
@@ -140,12 +142,10 @@ main()
     using __gnu_cxx::lrising_factorial;
     using __gnu_cxx::owens_t;
     using __gnu_cxx::pgamma;
-    using __gnu_cxx::falling_factorial;
-    using __gnu_cxx::rising_factorial;
-    using __gnu_cxx::psi;
     using __gnu_cxx::qgamma;
     using __gnu_cxx::radpoly;
     using       std::riemann_zeta;
+    using __gnu_cxx::rising_factorial;
     using __gnu_cxx::sinhc;
     using __gnu_cxx::sinhc_pi;
     using __gnu_cxx::sinc;
@@ -614,9 +614,9 @@ main()
 			       std::make_pair(false, false), 21));
 
     //  Digamma or psi functions.
-    std::cout << "psi" << '\n';
-    basename = "diff_psi";
-    rundiff(psi, gsl::psi, basename,
+    std::cout << "digamma" << '\n';
+    basename = "diff_digamma";
+    rundiff(digamma, gsl::digamma, basename,
 	    "x", fill_argument(std::make_pair(_TpGSL{-9.9375Q}, _TpGSL{10.0625Q}),
 			       std::make_pair(true, true), 801));
 

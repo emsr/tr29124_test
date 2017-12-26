@@ -96,6 +96,7 @@ template<typename Real>
     using       std::cyl_neumann;
     using __gnu_cxx::dawson;
     using __gnu_cxx::debye;
+    using __gnu_cxx::digamma;
     using __gnu_cxx::dilog;
     using __gnu_cxx::dirichlet_beta;
     using __gnu_cxx::dirichlet_eta;
@@ -137,7 +138,6 @@ template<typename Real>
     using __gnu_cxx::pgamma;
     using __gnu_cxx::falling_factorial;
     using __gnu_cxx::rising_factorial;
-    using __gnu_cxx::psi;
     using __gnu_cxx::qgamma;
     using __gnu_cxx::radpoly;
     using       std::riemann_zeta;
@@ -623,11 +623,11 @@ template<typename Real>
 	    		  std::make_pair(false, false), 21));
 
     //  Digamma or psi functions.
-    std::cout << "psi" << std::endl;
-    runtest(gsl::psi, "gsl_psi",
+    std::cout << "digamma" << std::endl;
+    runtest(gsl::digamma, "gsl_digamma",
 	    fill_argument(std::make_pair(-9.875, 10.125),
 			  std::make_pair(true, true), 41));
-    runtest(psi, ns + "_psi",
+    runtest(digamma, ns + "_digamma",
 	    fill_argument(std::make_pair(Real{-9.9375}, Real{10.0625}),
 	        	  std::make_pair(true, true), 801));
 

@@ -39,7 +39,7 @@ tgamma
 tgamma_lower
 ibeta
 ibetac
-psi
+digamma
 sinint
 cosint
 sinhint

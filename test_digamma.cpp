@@ -1,9 +1,9 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_psi test_psi.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_psi > test_psi.txt
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_digamma test_digamma.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_digamma > test_digamma.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_psi test_psi.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-PATH=wrappers/debug:$PATH ./test_psi > test_psi.txt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_digamma test_digamma.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
+PATH=wrappers/debug:$PATH ./test_digamma > test_digamma.txt
 */
 
 #include <cmath>
@@ -13,7 +13,7 @@ PATH=wrappers/debug:$PATH ./test_psi > test_psi.txt
 
 template<typename _Tp>
   void
-  test_psi(_Tp __proto = _Tp{})
+  test_digamma(_Tp __proto = _Tp{})
   {
     std::cout.precision(__gnu_cxx::__digits10(__proto));
     auto w = 8 + std::cout.precision();
@@ -27,8 +27,8 @@ template<typename _Tp>
     for (unsigned int i = 0; i < max; ++i)
       {
 	_Tp x = x_start + i * delta;
-	_Tp y_gcc = __gnu_cxx::psi(x);
-	_Tp y_gsl = gsl::psi(x);
+	_Tp y_gcc = __gnu_cxx::digamma(x);
+	_Tp y_gsl = gsl::digamma(x);
 	std::cout << std::setw(5) << x
                   << ' ' << std::setw(w) << y_gcc
                   << ' ' << std::setw(w) << y_gsl
@@ -40,8 +40,8 @@ template<typename _Tp>
     for (unsigned int i = 1; i <= 200; ++i)
       {
 	_Tp x = i * 0.25;
-	_Tp y_gcc = __gnu_cxx::psi(x);
-	_Tp y_gsl = gsl::psi(x);
+	_Tp y_gcc = __gnu_cxx::digamma(x);
+	_Tp y_gsl = gsl::digamma(x);
 	std::cout << std::setw(5) << x
                   << ' ' << std::setw(w) << y_gcc
                   << ' ' << std::setw(w) << y_gsl
@@ -55,7 +55,7 @@ template<typename _Tp>
 int
 main()
 {
-  test_psi<double>();
+  test_digamma<double>();
 
   return 0;
 }

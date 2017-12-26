@@ -329,7 +329,7 @@ namespace __gnu_cxx
   { return std::__detail::__hurwitz_zeta<__float128>(__s, __a); }
 
   inline __float128
-  psiq(__float128 __x)
+  digammaq(__float128 __x)
   { return std::__detail::__digamma<__float128>(__x); }
 
   inline __float128
