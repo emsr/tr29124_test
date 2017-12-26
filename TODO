@@ -171,7 +171,7 @@ GSL extras has these - there was struggle there too.
 
 48. [] It would be a good idea to generate check_nan.cc and compile.cc with all combinations automatically.
 
-49. [] If numeratorial parameters in hypers are nonpositive integers,
+49. [] If numerator parameters in hypergeometric functions are nonpositive integers,
        * The sums are finite polynomials
        * Which can be summed by Horners rule
 
