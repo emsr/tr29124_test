@@ -425,7 +425,7 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hurwitz_zet
 
       int __k_max = std::min(1000000, int(std::pow(_Tp{1} / _S_eps, _Tp{1} / __s)));
 #ifdef DEBUG_SERIES
-      std::cerr << "s = " << __s << "  k_max = " << __k_max << std::endl;
+      std::cerr << "s = " << __s << "  k_max = " << __k_max << '\n';
 #endif
       auto __zeta_m_1 = _Tp{0};
       for (int __k = __k_max; __k >= 2; --__k)
@@ -451,7 +451,7 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hurwitz_zet
 
       int __k_max = std::min(1000000, int(std::pow(_Tp{1} / _S_eps, _Tp{1} / __s)));
 #ifdef DEBUG_SERIES
-      std::cerr << "s = " << __s << "  k_max = " << __k_max << std::endl;
+      std::cerr << "s = " << __s << "  k_max = " << __k_max << '\n';
 #endif
       auto __zeta_m_1 = _Tp{0};
       for (int __k = __k_max; __k >= 2; --__k)
@@ -478,7 +478,7 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hurwitz_zet
       __gnu_cxx::_KahanSum<_Tp> __zeta_m_1;
       int __k_max = std::min(1000000, int(std::pow(_Tp{1} / _S_eps, _Tp{1} / __s)));
 #ifdef DEBUG_SERIES
-      std::cerr << "s = " << __s << "  k_max = " << __k_max << std::endl;
+      std::cerr << "s = " << __s << "  k_max = " << __k_max << '\n';
 #endif
       for (int __k = __k_max; __k >= 2; --__k)
       //int __k_max = 10000;
@@ -506,14 +506,14 @@ template<typename _Tp>
     auto hn = _Tp{0};
     for (auto i = 1; i < 100; ++i)
       {
-	std::cout << (hn += _Tp{1} / i) << std::endl;
+	std::cout << (hn += _Tp{1} / i) << '\n';
       }
 
     // Build the B_{2j} numbers.
     std::cout << "\nBuild the B_{2j} numbers\n";
     for (auto i = 1; i < 100; ++i)
       {
-	std::cout << __bernoulli_series<_Tp>(2 * i) << std::endl;
+	std::cout << __bernoulli_series<_Tp>(2 * i) << '\n';
       }
 
     // Build the B_{2j}/(2j)! numbers.
@@ -522,7 +522,7 @@ template<typename _Tp>
     for (auto i = 1; i < 100; ++i)
       {
 	__fact /= (2 * i - 1) * (2 * i);
-	std::cout << __fact * __bernoulli_series<_Tp>(2 * i) << std::endl;
+	std::cout << __fact * __bernoulli_series<_Tp>(2 * i) << '\n';
       }
 
     // Test zeta - 1 function with both simple and Kahan summation.
@@ -536,7 +536,7 @@ template<typename _Tp>
 		  << ' ' << std::setw(width) << zetam1s
 		  << ' ' << std::setw(width) << zetam1k
 		  << ' ' << std::setw(width) << zetam1k - zetam1s
-		  << std::endl;
+		  << '\n';
       }
 
     // Test zeta - 1 function with both simple and Kahan summation.
@@ -550,7 +550,7 @@ template<typename _Tp>
 		  << ' ' << std::setw(width) << zetam1s
 		  << ' ' << std::setw(width) << zetam1k
 		  << ' ' << std::setw(width) << zetam1k - zetam1s
-		  << std::endl;
+		  << '\n';
       }
 
     // Test a Bernoulli thing for the regular zeta function.
@@ -564,22 +564,22 @@ template<typename _Tp>
 		  << ' ' << std::setw(width) << hzeta
 		  << ' ' << std::setw(width) << rzeta
 		  << ' ' << std::setw(width) << hzeta - rzeta
-		  << std::endl;
+		  << '\n';
       }
 
     // Test a Hurwitz zeta function.
     std::cout << "\nHurwitz zeta function\n";
-    std::cout << "\n a = " << _Tp{4} << std::endl;//'\n';
+    std::cout << "\n a = " << _Tp{4} << '\n';//'\n';
     std::cout << ' ' << std::setw(width) << _Tp{10}
 	      << ' ' << std::setw(width) << __hurwitz_zeta_euler_maclaurin(_Tp{10}, _Tp{4})
 	      << ' ' << std::setw(width) << __hurwitz_zeta_glob(_Tp{10}, _Tp{4})
-	      << std::endl;
+	      << '\n';
 
     std::cout << "\nHurwitz zeta function\n";
     for (auto ia = 1; ia < 100; ++ia)
       {
 	_Tp a = 0.1L * ia;
-	std::cout << "\n a = " << a << std::endl;//'\n';
+	std::cout << "\n a = " << a << '\n';//'\n';
 	for (auto is = 0; is < 100; ++is)
 	  {
 	    _Tp s = 0.1L * is;
@@ -588,7 +588,7 @@ template<typename _Tp>
 	    std::cout << ' ' << std::setw(width) << s
 		      << ' ' << std::setw(width) << __hurwitz_zeta_euler_maclaurin(s, a)
 		      << ' ' << std::setw(width) << __hurwitz_zeta_glob(s, a)
-		      << std::endl;
+		      << '\n';
 	  }
       }
   }

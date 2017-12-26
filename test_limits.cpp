@@ -37,42 +37,42 @@ template<typename Numeric>
 
     auto flags = std::cout.flags(std::ios_base::boolalpha);
     auto prec = std::cout.precision(std::numeric_limits<Numeric>::max_digits10);
-    std::cout << "  sizeof              " << sizeof(Numeric) << std::endl;
-    std::cout << "  alignof             " << alignof(Numeric) << std::endl;
+    std::cout << "  sizeof              " << sizeof(Numeric) << '\n';
+    std::cout << "  alignof             " << alignof(Numeric) << '\n';
 
-    std::cout << "  denorm_style        " << float_denorm_style[std::numeric_limits<Numeric>::has_denorm] << std::endl;
-    std::cout << "  has_denorm_loss     " << std::numeric_limits<Numeric>::has_denorm_loss << std::endl;
-    std::cout << "  has_infinity        " << std::numeric_limits<Numeric>::has_infinity << std::endl;
-    std::cout << "  has_quiet_NaN       " << std::numeric_limits<Numeric>::has_quiet_NaN << std::endl;
-    std::cout << "  has_signaling_NaN   " << std::numeric_limits<Numeric>::has_signaling_NaN << std::endl;
-    std::cout << "  is_bounded          " << std::numeric_limits<Numeric>::is_bounded << std::endl;
-    std::cout << "  is_exact            " << std::numeric_limits<Numeric>::is_exact << std::endl;
-    std::cout << "  is_iec559           " << std::numeric_limits<Numeric>::is_iec559 << std::endl;
-    std::cout << "  is_integer          " << std::numeric_limits<Numeric>::is_integer << std::endl;
-    std::cout << "  is_modulo           " << std::numeric_limits<Numeric>::is_modulo << std::endl;
-    std::cout << "  is_signed           " << std::numeric_limits<Numeric>::is_signed << std::endl;
-    std::cout << "  is_specialized      " << std::numeric_limits<Numeric>::is_specialized << std::endl;
-    std::cout << "  tinyness_before     " << std::numeric_limits<Numeric>::tinyness_before << std::endl;
-    std::cout << "  traps               " << std::numeric_limits<Numeric>::traps << std::endl;
-    std::cout << "  round_style         " << float_round_style[std::numeric_limits<Numeric>::round_style] << std::endl;
-    std::cout << "  digits              " << std::numeric_limits<Numeric>::digits << std::endl;
-    std::cout << "  digits10            " << std::numeric_limits<Numeric>::digits10 << std::endl;
-    std::cout << "  max_digits10        " << std::numeric_limits<Numeric>::max_digits10 << std::endl;
-    std::cout << "  max_exponent        " << std::numeric_limits<Numeric>::max_exponent << std::endl;
-    std::cout << "  max_exponent10      " << std::numeric_limits<Numeric>::max_exponent10 << std::endl;
-    std::cout << "  min_exponent        " << std::numeric_limits<Numeric>::min_exponent << std::endl;
-    std::cout << "  min_exponent10      " << std::numeric_limits<Numeric>::min_exponent10 << std::endl;
-    std::cout << "  radix               " << std::numeric_limits<Numeric>::radix << std::endl;
+    std::cout << "  denorm_style        " << float_denorm_style[std::numeric_limits<Numeric>::has_denorm] << '\n';
+    std::cout << "  has_denorm_loss     " << std::numeric_limits<Numeric>::has_denorm_loss << '\n';
+    std::cout << "  has_infinity        " << std::numeric_limits<Numeric>::has_infinity << '\n';
+    std::cout << "  has_quiet_NaN       " << std::numeric_limits<Numeric>::has_quiet_NaN << '\n';
+    std::cout << "  has_signaling_NaN   " << std::numeric_limits<Numeric>::has_signaling_NaN << '\n';
+    std::cout << "  is_bounded          " << std::numeric_limits<Numeric>::is_bounded << '\n';
+    std::cout << "  is_exact            " << std::numeric_limits<Numeric>::is_exact << '\n';
+    std::cout << "  is_iec559           " << std::numeric_limits<Numeric>::is_iec559 << '\n';
+    std::cout << "  is_integer          " << std::numeric_limits<Numeric>::is_integer << '\n';
+    std::cout << "  is_modulo           " << std::numeric_limits<Numeric>::is_modulo << '\n';
+    std::cout << "  is_signed           " << std::numeric_limits<Numeric>::is_signed << '\n';
+    std::cout << "  is_specialized      " << std::numeric_limits<Numeric>::is_specialized << '\n';
+    std::cout << "  tinyness_before     " << std::numeric_limits<Numeric>::tinyness_before << '\n';
+    std::cout << "  traps               " << std::numeric_limits<Numeric>::traps << '\n';
+    std::cout << "  round_style         " << float_round_style[std::numeric_limits<Numeric>::round_style] << '\n';
+    std::cout << "  digits              " << std::numeric_limits<Numeric>::digits << '\n';
+    std::cout << "  digits10            " << std::numeric_limits<Numeric>::digits10 << '\n';
+    std::cout << "  max_digits10        " << std::numeric_limits<Numeric>::max_digits10 << '\n';
+    std::cout << "  max_exponent        " << std::numeric_limits<Numeric>::max_exponent << '\n';
+    std::cout << "  max_exponent10      " << std::numeric_limits<Numeric>::max_exponent10 << '\n';
+    std::cout << "  min_exponent        " << std::numeric_limits<Numeric>::min_exponent << '\n';
+    std::cout << "  min_exponent10      " << std::numeric_limits<Numeric>::min_exponent10 << '\n';
+    std::cout << "  radix               " << std::numeric_limits<Numeric>::radix << '\n';
 
-    std::cout << "  denorm_min          " << std::numeric_limits<Numeric>::denorm_min() << std::endl;
-    std::cout << "  epsilon             " << std::numeric_limits<Numeric>::epsilon() << std::endl;
-    std::cout << "  infinity            " << std::numeric_limits<Numeric>::infinity() << std::endl;
-    std::cout << "  max                 " << std::numeric_limits<Numeric>::max() << std::endl;
-    std::cout << "  min                 " << std::numeric_limits<Numeric>::min() << std::endl;
-    std::cout << "  lowest              " << std::numeric_limits<Numeric>::lowest() << std::endl;
-    std::cout << "  quiet_NaN           " << std::numeric_limits<Numeric>::quiet_NaN() << std::endl;
-    std::cout << "  round_error         " << std::numeric_limits<Numeric>::round_error() << std::endl;
-    std::cout << "  signaling_NaN       " << std::numeric_limits<Numeric>::signaling_NaN() << std::endl;
+    std::cout << "  denorm_min          " << std::numeric_limits<Numeric>::denorm_min() << '\n';
+    std::cout << "  epsilon             " << std::numeric_limits<Numeric>::epsilon() << '\n';
+    std::cout << "  infinity            " << std::numeric_limits<Numeric>::infinity() << '\n';
+    std::cout << "  max                 " << std::numeric_limits<Numeric>::max() << '\n';
+    std::cout << "  min                 " << std::numeric_limits<Numeric>::min() << '\n';
+    std::cout << "  lowest              " << std::numeric_limits<Numeric>::lowest() << '\n';
+    std::cout << "  quiet_NaN           " << std::numeric_limits<Numeric>::quiet_NaN() << '\n';
+    std::cout << "  round_error         " << std::numeric_limits<Numeric>::round_error() << '\n';
+    std::cout << "  signaling_NaN       " << std::numeric_limits<Numeric>::signaling_NaN() << '\n';
 
     std::cout.precision(prec);
     std::cout.flags(flags);
@@ -83,71 +83,71 @@ template<typename Numeric>
 int
 main()
 {
-  std::cout << std::endl << "char" << std::endl;
+  std::cout << "\nchar\n" << std::flush;
   test_limits<char>();
 
-  std::cout << std::endl << "signed char" << std::endl;
+  std::cout << "\nsigned char\n" << std::flush;
   test_limits<signed char>();
 
-  std::cout << std::endl << "unsigned char" << std::endl;
+  std::cout << "\nunsigned char\n" << std::flush;
   test_limits<unsigned char>();
 
-  std::cout << std::endl << "wchar_t" << std::endl;
+  std::cout << "\nwchar_t\n" << std::flush;
   test_limits<wchar_t>();
 
-  std::cout << std::endl << "char16_t" << std::endl;
+  std::cout << "\nchar16_t\n" << std::flush;
   test_limits<char16_t>();
 
-  std::cout << std::endl << "char32_t" << std::endl;
+  std::cout << "\nchar32_t\n" << std::flush;
   test_limits<char32_t>();
 
-  std::cout << std::endl << "short" << std::endl;
+  std::cout << "\nshort\n" << std::flush;
   test_limits<short>();
 
-  std::cout << std::endl << "signed short" << std::endl;
+  std::cout << "\nsigned short\n" << std::flush;
   test_limits<signed short>();
 
-  std::cout << std::endl << "unsigned short" << std::endl;
+  std::cout << "\nunsigned short\n" << std::flush;
   test_limits<unsigned short>();
 
-  std::cout << std::endl << "int" << std::endl;
+  std::cout << "\nint\n" << std::flush;
   test_limits<int>();
 
-  std::cout << std::endl << "signed int" << std::endl;
+  std::cout << "\nsigned int\n" << std::flush;
   test_limits<signed int>();
 
-  std::cout << std::endl << "unsigned int" << std::endl;
+  std::cout << "\nunsigned int\n" << std::flush;
   test_limits<unsigned int>();
 
-  std::cout << std::endl << "long" << std::endl;
+  std::cout << "\nlong\n" << std::flush;
   test_limits<long>();
 
-  std::cout << std::endl << "signed long" << std::endl;
+  std::cout << "\nsigned long\n" << std::flush;
   test_limits<signed long>();
 
-  std::cout << std::endl << "unsigned long" << std::endl;
+  std::cout << "\nunsigned long\n" << std::flush;
   test_limits<unsigned long>();
 
-  std::cout << std::endl << "long long" << std::endl;
+  std::cout << "\nlong long\n" << std::flush;
   test_limits<long long>();
 
-  std::cout << std::endl << "signed long long" << std::endl;
+  std::cout << "\nsigned long long\n" << std::flush;
   test_limits<signed long long>();
 
-  std::cout << std::endl << "unsigned long long" << std::endl;
+  std::cout << "\nunsigned long long\n" << std::flush;
   test_limits<unsigned long long>();
 
-  std::cout << std::endl << "float" << std::endl;
+  std::cout << "\nfloat\n" << std::flush;
   test_limits<float>();
 
-  std::cout << std::endl << "double" << std::endl;
+  std::cout << "\ndouble\n" << std::flush;
   test_limits<double>();
 
-  std::cout << std::endl << "long double" << std::endl;
+  std::cout << "\nlong double\n" << std::flush;
   test_limits<long double>();
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  std::cout << std::endl << "__float128" << std::endl;
+  std::cout << "\n__float128\n" << std::flush;
   test_limits<__float128>();
 #endif
 

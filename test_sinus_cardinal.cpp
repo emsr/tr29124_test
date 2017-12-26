@@ -25,7 +25,7 @@ template<typename _Tp>
 
     const auto pi = __gnu_cxx::__const_pi(proto);
 
-    std::cout << std::endl;
+    std::cout << '\n';
     std::cout << std::setw(width) << "x"
 	      << std::setw(width) << "sinc"
 	      << std::setw(width) << "sinc GSL"
@@ -67,7 +67,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    std::cout << std::endl;
+    std::cout << '\n';
     std::cout << std::setw(width) << "x"
 	      << std::setw(width) << "sinc_pi"
 	      << std::setw(width) << "sinc_pi GSL"
@@ -109,7 +109,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    std::cout << std::endl;
+    std::cout << '\n';
     std::cout << std::setw(width) << "x"
 	      << std::setw(width) << "sinhc"
 	      << std::setw(width) << "sinhc GSL"
@@ -152,7 +152,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    std::cout << std::endl;
+    std::cout << '\n';
     std::cout << std::setw(width) << "x"
 	      << std::setw(width) << "sinhc_pi"
 	      << std::setw(width) << "sinhc_pi GSL"

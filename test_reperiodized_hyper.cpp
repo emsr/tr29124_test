@@ -23,7 +23,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 10 + std::cout.precision();
 
-    std::cout << std::endl;
+    std::cout << '\n';
     std::cout << std::setw(width) << " x"
 	      << std::setw(width) << " sinh_pi (GCC)"
 	      << std::setw(width) << " delta sinh(pi x)"
@@ -56,7 +56,7 @@ template<typename _Tp>
 		  << ' ' << std::setw(width) << tanh_pi_g - std::tanh(_S_pi * x)
 		  << '\n';
       }
-    std::cout << std::endl;
+    std::cout << '\n';
   }
 
 

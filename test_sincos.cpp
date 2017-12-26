@@ -146,7 +146,7 @@ template<typename _Tp>
 
     const auto pi = __gnu_cxx::__const_pi(proto);
 
-    std::cout << std::endl;
+    std::cout << '\n';
     std::cout << std::setw(width) << "x"
 	      << std::setw(width) << "sincos.sin"
 	      << std::setw(width) << "sincos_pi.sin"

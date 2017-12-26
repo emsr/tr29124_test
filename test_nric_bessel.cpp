@@ -25,7 +25,7 @@ main()
       std::cout << "  " << std::setw(16) << "N_" << n << "(x)";
       std::cout << "  " << std::setw(16) << "I_" << n << "(x)";
       std::cout << "  " << std::setw(16) << "K_" << n << "(x)";
-      std::cout << std::endl;
+      std::cout << '\n';
       for (int i = 0; i <= 1000; ++i)
         {
           double x = i * 0.1;
@@ -36,7 +36,7 @@ main()
             }
           catch (std::exception & err)
             {
-              std::cerr << err.what() << std::endl;
+              std::cerr << err.what() << '\n';
             }
           double I_nu, K_nu, Ip_nu, Kp_nu;
           try
@@ -45,7 +45,7 @@ main()
             }
           catch (std::exception & err)
             {
-              std::cerr << err.what() << std::endl;
+              std::cerr << err.what() << '\n';
             }
           if (i == 0)
             {
@@ -53,14 +53,14 @@ main()
               std::cout << "  Np_nu(0) = " << std::setw(16) << Np_nu;
               std::cout << "  Ip_nu(0) = " << std::setw(16) << Ip_nu;
               std::cout << "  Kp_nu(0) = " << std::setw(16) << Kp_nu;
-              std::cout << std::endl;
+              std::cout << '\n';
             }
           std::cout << "  " << std::setw(16) << x;
           std::cout << "  " << std::setw(16) << J_nu;
           std::cout << "  " << std::setw(16) << N_nu;
           std::cout << "  " << std::setw(16) << I_nu;
           std::cout << "  " << std::setw(16) << K_nu;
-          std::cout << std::endl;
+          std::cout << '\n';
         }
     }
   return 0;

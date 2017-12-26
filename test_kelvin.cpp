@@ -1061,7 +1061,7 @@ template<typename _Real>
 		  << std::setw(width) << kei
 		  << '\n';
       }
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
   }
 
 
@@ -1106,7 +1106,7 @@ template<typename _Real>
 		  << std::setw(width) << ke.__kei
 		  << '\n';
       }
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
   }
 
 
@@ -1162,7 +1162,7 @@ template<typename _Real>
 		  << "  " << std::setw(width) << kes.__kei
 		  << '\n';
       }
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
   }
 
 
@@ -1205,7 +1205,7 @@ template<typename _Real>
 		  << std::setw(width) << ke.__kei
 		  << '\n';
       }
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
   }
 
 
@@ -1249,7 +1249,7 @@ template<typename _Real>
 		  << "  " << std::setw(width) << (kea.__kei - kes.__kei) / std::abs(kes.__kei)
 		  << '\n';
       }
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
   }
 
 
@@ -1292,7 +1292,7 @@ template<typename _Real>
 		  << std::setw(width) << ke.__kei
 		  << '\n';
       }
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
   }
 
 

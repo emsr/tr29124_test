@@ -38,7 +38,7 @@ template<typename _Tp>
 		      << ' ' << std::setw(2 * width) << h1s
 		      << ' ' << std::setw(2 * width) << h1b
 		      << ' ' << std::setw(width) << abs_frac
-		      << std::endl;
+		      << '\n';
 	    if (abs_frac > max_abs_frac)
 	      max_abs_frac = abs_frac;
 	  }

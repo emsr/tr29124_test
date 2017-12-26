@@ -24,7 +24,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    std::cout << std::endl;
+    std::cout << '\n';
     std::cout << std::setw(width) << "x"
 	      << std::setw(width) << "sin_pi (GCC)"
 	      << std::setw(width) << "sin_pi (Boost)"
@@ -71,9 +71,9 @@ template<typename _Tp>
 		  << std::setw(width) << tan_pi_g - std::tan(_S_pi * x)
 		  << '\n';
       }
-    std::cout << std::endl;
+    std::cout << '\n';
 
-    std::cout << std::endl;
+    std::cout << '\n';
     std::cout << std::setw(width) << "x"
 	      << std::setw(width) << "sin_pi (GCC)"
 	      << std::setw(width) << "sin_pi (Boost)"
@@ -120,7 +120,7 @@ template<typename _Tp>
 		  << std::setw(width) << tan_pi_g - std::tan(_S_pi * x)
 		  << '\n';
       }
-    std::cout << std::endl;
+    std::cout << '\n';
   }
 
 

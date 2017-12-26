@@ -2533,7 +2533,7 @@ template<typename _Tp>
 		  << std::setw(width) << std::real(airy.__true_Wronskian())
 		  << '\n';
       }
-      std::cout << std::endl;
+      std::cout << '\n' << std::flush;
   }
 
 
@@ -2589,7 +2589,7 @@ template<typename _Sum>
 		  << std::setw(width) << std::real(airy.__true_Wronskian())
 		  << '\n';
       }
-      std::cout << std::endl;
+      std::cout << '\n' << std::flush;
   }
 
 
@@ -2651,7 +2651,7 @@ template<typename _Tp>
 		  << std::setw(width) << ""
 		  << '\n';
       }
-      std::cout << std::endl;
+      std::cout << '\n' << std::flush;
   }
 
 

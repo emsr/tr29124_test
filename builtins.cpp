@@ -46,17 +46,17 @@ int main(int, char **)
   if (__builtin_isnan(y))
     return 1;
 
-  std::cout << __isnan(1.0F) << std::endl;
-  std::cout << __isnan(1.0) << std::endl;
-  std::cout << __isnan(1.0L) << std::endl;
+  std::cout << __isnan(1.0F) << '\n';
+  std::cout << __isnan(1.0) << '\n';
+  std::cout << __isnan(1.0L) << '\n';
 
-  std::cout << __isnan(__builtin_nanf("0")) << std::endl;
-  std::cout << __isnan(__builtin_nan("0")) << std::endl;
-  std::cout << __isnan(__builtin_nanl("0")) << std::endl;
+  std::cout << __isnan(__builtin_nanf("0")) << '\n';
+  std::cout << __isnan(__builtin_nan("0")) << '\n';
+  std::cout << __isnan(__builtin_nanl("0")) << '\n';
 
-  std::cout << __oisnan(__builtin_nanf("0")) << std::endl;
-  std::cout << __oisnan(__builtin_nan("0")) << std::endl;
-  std::cout << __oisnan(__builtin_nanl("0")) << std::endl;
+  std::cout << __oisnan(__builtin_nanf("0")) << '\n';
+  std::cout << __oisnan(__builtin_nan("0")) << '\n';
+  std::cout << __oisnan(__builtin_nanl("0")) << '\n';
 
   return 0;
 }

@@ -26,7 +26,7 @@ main()
       double x = xpost + i * 0.1;
       jprev = jcurr;
       jcurr = std::tr1::cyl_bessel_j(nu, x);
-      std::cout << "x = " << x << "  j = " << jcurr << std::endl;
+      std::cout << "x = " << x << "  j = " << jcurr << '\n';
     }
 
   return 0;

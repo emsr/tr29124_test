@@ -207,12 +207,12 @@ template<typename _Tp>
 int
 main()
 {
-  std::cout << std::endl << "float" << '\n';
+  std::cout << "\nfloat\n" << std::flush;
   test_limits<float>();
 
-  std::cout << std::endl << "double" << '\n';
+  std::cout << "\ndouble\n" << std::flush;
   test_limits<double>();
 
-  std::cout << std::endl << "long double" << '\n';
+  std::cout << "\nlong double\n" << std::flush;
   test_limits<long double>();
 }

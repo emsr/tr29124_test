@@ -39,7 +39,7 @@ template<typename _Tp>
 		      << ' ' << std::setw(2 * width) << h1s
 		      << ' ' << std::setw(2 * width) << h1b
 		      << ' ' << std::setw(width) << std::abs((h1s - h1b) / h1b)
-		      << std::endl;
+		      << '\n';
 	    if (abs_frac > max_abs_frac)
 	      max_abs_frac = abs_frac;
 	  }

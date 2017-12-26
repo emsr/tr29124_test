@@ -316,7 +316,7 @@ main()
 		<< ' ' << std::setw(width) << nzeta
 		<< ' ' << std::setw(width) << nzeta - ozeta
 		<< ' ' << std::setw(width) << nzeta - gzeta
-		<< std::endl;
+		<< '\n';
     }
 
   std::cout << '\n';
@@ -334,7 +334,7 @@ main()
 		<< ' ' << std::setw(width) << hzeta
 		//<< ' ' << std::setw(width) << nzeta - ozeta
 		<< ' ' << std::setw(width) << hzeta - nzeta
-		<< std::endl;
+		<< '\n';
     }
 
   std::cout << '\n';
@@ -354,6 +354,6 @@ main()
 		<< ' ' << std::setw(width) << ozeta - gzeta
 		<< ' ' << std::setw(width) << hzeta - ozeta
 		<< ' ' << std::setw(width) << hzeta - gzeta
-		<< std::endl;
+		<< '\n';
     }
 }

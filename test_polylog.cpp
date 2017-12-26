@@ -550,7 +550,7 @@ template<typename Tp>
 		      << '\n';
 	  }
       }
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
   }
 
 template<typename Tp>
@@ -574,7 +574,7 @@ template<typename Tp>
 		  << ' ' << Lis_gnu
 		  << '\n';
       }
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
   }
 
 template<typename Tp>
@@ -598,7 +598,7 @@ template<typename Tp>
 		  << ' ' << Lis_gnu
 		  << '\n';
       }
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
   }
 
 template<typename Tp>
@@ -620,7 +620,7 @@ template<typename Tp>
 		  << ' ' << Ls_gnu
 		  << '\n';
       }
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
   }
 
 template<typename Tp>
@@ -647,7 +647,7 @@ template<typename Tp>
 		      << '\n';
 	  }
       }
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
   }
 
 template<typename Tp>
@@ -703,7 +703,7 @@ template<typename Tp>
       std::cout << std::__detail::__polylog_exp(-Tp{4}, w) << '\n';
       std::cout << std::__detail::__polylog_exp_sum(-Tp{4}, w) << '\n';
     }
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
 
     std::cout << '\n' << std::__detail::__polylog_exp_neg(Tp{-50.5}, std::complex<Tp>(Tp{1}, Tp{1})) << '\n';
     std::cout << '\n' << std::__detail::__polylog_exp_neg(Tp{-5}, std::complex<Tp>(Tp{1}, Tp{1})) << '\n';
@@ -732,7 +732,7 @@ template<typename Tp>
     test.precision(std::cout.precision());
     for (auto s = Tp{2.5}; s < Tp{3.5}; s += del01)
       test << s << ' ' << std::setw(w) << std::real(std::__detail::__polylog(s, Tp{2})) - Tp{2} << '\n';
-    test << std::endl;
+    test << '\n' << std::flush;
 
     std::cout << '\n' << std::__detail::__polylog(Tp{3.1}, Tp{2}) << '\n';
     std::cout << '\n' << std::__detail::__polylog_exp_pos(Tp{3.1}, std::complex<Tp>(std::log(Tp{2}))) << '\n';
@@ -744,7 +744,7 @@ template<typename Tp>
 		  << ' ' << x
 		  << ' ' << std::__detail::__polylog_exp_pos(k, std::polar(Tp{1}, _S_2pi * x))
 		  << '\n';
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
 
     std::cout << "\nTest function 2 [PolyLog_Exp_pos(k,x)]:\n";
     for (std::size_t k = 3; k < 8; ++k)
@@ -753,7 +753,7 @@ template<typename Tp>
 		  << ' ' << x
 		  << ' ' << std::__detail::__polylog_exp_pos(k, x)
 		  << '\n';
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
 
     std::cout << "\nTest function 3 [PolyLog_Exp_neg(s<0, exp(i2pik)]:\n";
     for (Tp k = -Tp{8}; k < Tp{0}; k += Tp{1} / Tp{13})
@@ -762,7 +762,7 @@ template<typename Tp>
 		  << ' ' << x
 		  << ' ' << std::__detail::__polylog_exp_neg(k, std::polar(Tp{1}, _S_2pi * x))
 		  << '\n';
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
 
     std::cout << "\nTest function 4 + 5 [PolyLog_Exp_neg(k<0, exp(i2pik]:\n";
     for (int k = -40; k < 0; ++k)
@@ -771,7 +771,7 @@ template<typename Tp>
 		  << ' ' << x
 		  << ' ' << std::__detail::__polylog_exp_neg(k, std::polar(Tp{1}, _S_2pi * x))
 		  << '\n';
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
 
     std::cout << "\nTest series 6 [PolyLog_Exp_pos(s, exp(i2pix)]:\n";
     for (Tp k = Tp{1} / Tp{7}; k < Tp{13}; k += Tp{1} / Tp{11})
@@ -780,7 +780,7 @@ template<typename Tp>
 		  << ' ' << x
 		  << ' ' << std::__detail::__polylog_exp_pos(k, std::polar(Tp{1}, _S_2pi * x))
 		  << '\n';
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
 
     std::cout << "\nTest series 7 [PolyLog_Exp_asym(k, 100 exp(i2pix))]:\n";
     for (Tp k = Tp{-13}; k < Tp{13}; k += Tp{1} / Tp{11})
@@ -789,7 +789,7 @@ template<typename Tp>
 		  << ' ' << x
 		  << ' ' << std::__detail::__polylog_exp_asymp(k, Tp{100} * std::polar(Tp{1}, _S_2pi * x))
 		  << '\n';
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
 
     std::cout << "\nTest series 8 [PolyLog_Exp_negative_real_part(k, x)]:\n";
     for (Tp k = -Tp{13}; k < Tp{13}; k += Tp{1} / Tp{11})
@@ -798,7 +798,7 @@ template<typename Tp>
 		  << ' ' << x
 		  << ' ' << std::__detail::__polylog_exp_sum(k, x)
 		  << '\n';
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
   }
 
 int

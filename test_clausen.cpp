@@ -58,7 +58,7 @@ template<typename _Tp>
 		  << std::setw(width) << __gnu_cxx::clausen_cl(2, std::real(w))
 		  << '\n';
       }
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
   }
 
 template<typename _Tp>
@@ -96,7 +96,7 @@ template<typename _Tp>
 		  << std::setw(width) << __gnu_cxx::clausen_cl(5, w)
 		  << '\n';
       }
-    std::cout << std::endl;
+    std::cout << '\n' << std::flush;
   }
 
 
