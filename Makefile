@@ -973,7 +973,7 @@ test_math_h: test_math_h.cpp
 	$(CXX17) -I. -o test_math_h test_math_h.cpp -lquadmath
 
 test_maxint: test_maxint.cpp
-	$(CXX17) -I. -o test_maxint test_maxint.cpp -lquadmath -lmpfr
+	$(CXX17) -I. -I../mpreal -o test_maxint test_maxint.cpp -lquadmath -lmpfr
 
 test_meixner: test_meixner.cpp
 	$(CXX17) -I. -o test_meixner test_meixner.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
