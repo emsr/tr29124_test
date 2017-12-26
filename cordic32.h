@@ -24,18 +24,18 @@ cordic32_atan_tab[cordic32_ntab]
   0x00000004, 0x00000002, 0x00000001, 0x00000000
 };
 
-short
-atan2_cordic(int n, short y0, short x0)
+int
+atan2_cordic(int n, int y0, int x0)
 {
-  short x = x0;
-  short y = y0;
-  short z = 0;
+  int x = x0;
+  int y = y0;
+  int z = 0;
   for (int k = 0; k < n; ++k)
     {
       // Get sign.
-      short d = y > 0 ? -1 : 0;
-      short tx = x - (((y >> k) ^ d) - d);
-      short ty = y + (((x >> k) ^ d) - d);
+      int d = y > 0 ? -1 : 0;
+      int tx = x - (((y >> k) ^ d) - d);
+      int ty = y + (((x >> k) ^ d) - d);
       z -= ((cordic32_atan_tab[k] ^ d) - d);
       x = tx;
       y = ty;
