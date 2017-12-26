@@ -2753,7 +2753,7 @@ _S_neg_double_factorial_table[999]
 
       auto __ia = __gnu_cxx::__fp_is_integer(__a);
       if (__ia && __ia() <= 0)
-	std::__throw_domain_error(__N("__pgamma: "
+	std::__throw_domain_error(__N("__gamma: "
 				      "non-positive integer argument a"));
       else if (std::real(__x) < std::real(__a + _Real{1}))
 	{
