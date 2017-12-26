@@ -31,7 +31,7 @@
     { \
       std::cout << "line " << __LINE__ \
 	<< "  max_abs_frac = " << max_abs_frac \
-	<< std::endl; \
+	<< '\n'; \
     }
 #else
 #  include <testsuite_hooks.h>
