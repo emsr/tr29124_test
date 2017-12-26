@@ -2226,15 +2226,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   2 n(\alpha + \beta + n) (\alpha + \beta + 2n - 2)
    *         P^{(\alpha, \beta)}_{n}(x)
    *     = (\alpha + \beta + 2n - 1)
-   *       ((\alpha^2 - \beta^2)
-   *        + x(\alpha + \beta + 2n - 2)(\alpha + \beta + 2n))
+   *       [(\alpha^2 - \beta^2)
+   *        + x(\alpha + \beta + 2n - 2)(\alpha + \beta + 2n)]
    *         P^{(\alpha, \beta)}_{n-1}(x)
    *     - 2 (\alpha + n - 1)(\beta + n - 1)(\alpha + \beta + 2n)
    *         P^{(\alpha, \beta)}_{n-2}(x)
    * @f]
    * where @f$ P_0^{(\alpha,\beta)}(x) = 1 @f$ and
    * @f$ P_1^{(\alpha,\beta)}(x)
-   *      = ((\alpha-\beta) + (2 + (\alpha+\beta)) * x) / 2 @f$.
+   *      = [(\alpha - \beta) + (\alpha + \beta + 2) x] / 2 @f$.
    *
    * @tparam _Talpha The real type of the order @f$ \alpha @f$
    * @tparam _Tbeta The real type of the order @f$ \beta @f$
