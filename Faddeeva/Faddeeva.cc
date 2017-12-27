@@ -194,16 +194,6 @@ static inline bool my_isinf(double x) { return 1/x == 0.; }
 #    define isinf std::isinf
 #  endif
 
-// copysign was introduced in C++11 (and is also in POSIX and C99)
-#  if defined(_WIN32) || defined(__WIN32__)
-#    define copysign _copysign // of course MS had to be different
-#  elif defined(GNULIB_NAMESPACE) // we are using using gnulib <cmath>
-#    define copysign GNULIB_NAMESPACE::copysign
-#  elif (__cplusplus < 201103L) && !defined(HAVE_COPYSIGN) && !defined(__linux__) && !(defined(__APPLE__) && defined(__MACH__)) && !defined(_AIX)
-static inline double my_copysign(double x, double y) { return x<0 != y<0 ? -x : x; }
-#    define copysign my_copysign
-#  endif
-
 // If we are using the gnulib <cmath> (e.g. in the GNU Octave sources),
 // gnulib generates a link warning if we use ::floor instead of gnulib::floor.
 // This warning is completely innocuous because the only difference between
@@ -1012,7 +1002,7 @@ cmplx FADDEEVA(w)(cmplx z, double relerr)
    compared to fitting the whole [0,1] interval with a single polynomial. */
 static double erfcx_y100(double y100)
 {
-  switch ((int) y100) {
+  switch (int (y100)) {
 case 0: {
 double t = 2*y100 - 1;
 return 0.70878032454106438663e-3 + (0.71234091047026302958e-3 + (0.35779077297597742384e-5 + (0.17403143962587937815e-7 + (0.81710660047307788845e-10 + (0.36885022360434957634e-12 + 0.15917038551111111111e-14 * t) * t) * t) * t) * t) * t;
@@ -1456,7 +1446,7 @@ double FADDEEVA_RE(erfcx)(double x)
    the Chebyshev polynomials to be of significantly lower degree (about 1/30)
    compared to fitting the whole [0,1] interval with a single polynomial. */
 static double w_im_y100(double y100, double x) {
-  switch ((int) y100) {
+  switch (int (y100)) {
     case 0: {
       double t = 2*y100 - 1;
       return 0.28351593328822191546e-2 + (0.28494783221378400759e-2 + (0.14427470563276734183e-4 + (0.10939723080231588129e-6 + (0.92474307943275042045e-9 + (0.89128907666450075245e-11 + 0.92974121935111111110e-13 * t) * t) * t) * t) * t) * t;
