@@ -149,7 +149,7 @@ namespace __detail
     __tan_pi(_Tp __x)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __num_traits_t<_Val>;
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
       return std::tan(_S_pi * (__x - std::floor(__x)));
     }
@@ -165,7 +165,7 @@ namespace __detail
     __tanh_pi(_Tp __x)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __num_traits_t<_Val>;
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
       return std::tanh(_S_pi * __x);
     }
@@ -183,7 +183,7 @@ namespace __detail
     __sin_pi(std::complex<_Tp> __z)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __num_traits_t<_Val>;
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
       const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
@@ -205,7 +205,7 @@ namespace __detail
     __sinh_pi(std::complex<_Tp> __z)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __num_traits_t<_Val>;
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
       const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
@@ -227,7 +227,7 @@ namespace __detail
     __cos_pi(std::complex<_Tp> __z)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __num_traits_t<_Val>;
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
       const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
@@ -249,7 +249,7 @@ namespace __detail
     __cosh_pi(std::complex<_Tp> __z)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __num_traits_t<_Val>;
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
       const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
@@ -271,7 +271,7 @@ namespace __detail
     __tan_pi(std::complex<_Tp> __z)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __num_traits_t<_Val>;
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
       const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
@@ -294,7 +294,7 @@ namespace __detail
     __tanh_pi(std::complex<_Tp> __z)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __num_traits_t<_Val>;
       const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
       const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);

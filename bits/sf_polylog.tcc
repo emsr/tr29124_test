@@ -463,8 +463,8 @@ namespace __detail
 	  const auto __w2 = __w * __w;
 	  auto __wp = __p & 1 ? std::complex<_Tp>{1} : __w;
 	  unsigned int __2k = __q;
-	  auto __gam = std::__detail::__factorial<_Tp>(__p + __2k);
-	  const auto __pfact = std::__detail::__factorial<_Tp>(__p);
+	  auto __gam = __factorial<_Tp>(__p + __2k);
+	  const auto __pfact = __factorial<_Tp>(__p);
 	  auto __res = __pfact * std::pow(-__w, _Tp(-__pp));
 	  auto __sum = std::complex<_Tp>{};
 	  constexpr unsigned int __maxit = 300;
@@ -472,10 +472,10 @@ namespace __detail
 	  while (true)
 	    {
 	      const auto __id = (__p + __2k + 1) / 2;
-	      if (__id == std::__detail::_Num_Euler_Maclaurin_zeta)
+	      if (__id == _Num_Euler_Maclaurin_zeta)
 		break;
 	      const auto __term = __gam * __wp
-			* _Tp(std::__detail::_S_Euler_Maclaurin_zeta[__id]);
+			* _Tp(_S_Euler_Maclaurin_zeta[__id]);
 	      __sum += __term;
 	      if (__done(__term, __sum))
 		break;

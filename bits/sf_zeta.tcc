@@ -923,9 +923,9 @@ namespace __detail
 
 	  // n!zeta(n) is the integral for x=inf, Abramowitz & Stegun 27.1.3
 	  auto __sum = _Tp{0};
-	  if (std::__detail::_S_num_factorials<_Tp>)
-	    __sum += std::__detail::__factorial<_Tp>(__n)
-		   * std::__detail::__riemann_zeta<_Tp>(__n + 1);
+	  if (_S_num_factorials<_Tp>)
+	    __sum += __factorial<_Tp>(__n)
+		   * __riemann_zeta<_Tp>(__n + 1);
 	  else
 	    return __gnu_cxx::__infinity(__x);
 
@@ -976,7 +976,7 @@ namespace __detail
 	  for(unsigned int __k = 1; __k < _S_max_iter; ++__k)
 	    {
 	      const auto __term = _Tp{2}
-				* std::__detail::__riemann_zeta<_Tp>(2 * __k)
+				* __riemann_zeta<_Tp>(2 * __k)
 				* __x2pi2k / _Tp(2 * __k + __n);
 	      __sum += __term;
 	      if (std::abs(__term) < _S_eps * std::abs(__sum))

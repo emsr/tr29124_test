@@ -261,12 +261,12 @@ namespace __detail
       // for large order.
       if (__n & 1)
 	{
-	  if (__n < std::__detail::_S_num_factorials<_Tp>)
+	  if (__n < _S_num_factorials<_Tp>)
 	    {
 	      auto __nm = __n - 1;
-	      auto __nmfact = std::__detail::__factorial<_Tp>(__nm);
+	      auto __nmfact = __factorial<_Tp>(__nm);
 	      auto __mm = __nm / 2;
-	      auto __mmfact = std::__detail::__factorial<_Tp>(__mm);
+	      auto __mmfact = __factorial<_Tp>(__mm);
 	      auto __Hnm1 = (__mm & 1 ? _Tp{-1} : _Tp{1}) / __mmfact;
 	      __pt[__m].__zero = _Tp{0};
 	      __pt[__m].__weight = _S_sqrt_pi * std::pow(_Tp{2}, _Tp(__n - 1))
@@ -275,9 +275,9 @@ namespace __detail
 	  else
 	    {
 	      auto __nm = __n - 1;
-	      auto __nmfact = std::__detail::__log_factorial<_Tp>(__nm);
+	      auto __nmfact = __log_factorial<_Tp>(__nm);
 	      auto __mm = __nm / 2;
-	      auto __mmfact = std::__detail::__log_factorial<_Tp>(__mm);
+	      auto __mmfact = __log_factorial<_Tp>(__mm);
 	      __pt[__m].__zero = _Tp{0};
 	      __pt[__m].__weight = _S_sqrt_pi * std::pow(_Tp{2}, _Tp(__n - 1))
 				 *std::exp(-(__nmfact - 2 * __mmfact)) / __n;

@@ -53,7 +53,7 @@ namespace __detail
   template<typename _Tp>
     struct _AiryState
     {
-      using _Real = std::__detail::__num_traits_t<_Tp>;
+      using _Real = __num_traits_t<_Tp>;
 
       _Tp __z;
       _Tp __Ai_value;
@@ -78,7 +78,7 @@ namespace __detail
   template<typename _Tp>
     struct _AiryAuxilliaryState
     {
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = __num_traits_t<_Tp>;
 
       _Tp __z;
       _Tp __fai_value;
@@ -2365,7 +2365,7 @@ namespace __detail
     public:
 
       using value_type = typename _Sum::value_type;
-      using scalar_type = std::__detail::__num_traits_t<value_type>;
+      using scalar_type = __num_traits_t<value_type>;
       static constexpr scalar_type _S_sqrt_pi
 	   = __gnu_cxx::__const_root_pi(scalar_type{});
 
@@ -2436,7 +2436,7 @@ namespace __detail
 		     * _Real(__k + _Real{5} / _Real{6})
 		     / __denom;
 	  if (__k > 1 && (std::abs(_M_Asum.term()) < std::abs(__numerAB)
-		|| std::__detail::__isinf(__numerAB)))
+		|| __isinf(__numerAB)))
 	    break;
 	  auto _Aterm = __sign * __numerAB;
 	  _M_Asum += _Aterm;
@@ -2446,7 +2446,7 @@ namespace __detail
 		     * _Real(__k + _Real{7} / _Real{6})
 		     / __denom;
 	  if (__k > 1 && (std::abs(_M_Csum.term()) < std::abs(__numerCD)
-		|| std::__detail::__isinf(__numerCD)))
+		|| __isinf(__numerCD)))
 	    break;
 	  auto _Cterm = __sign * __numerCD;
 	  _M_Csum += _Cterm;
@@ -2505,7 +2505,7 @@ namespace __detail
     public:
 
       using value_type = _Tp;
-      using scalar_type = std::__detail::__num_traits_t<value_type>;
+      using scalar_type = __num_traits_t<value_type>;
 
       constexpr _Airy() = default;
       _Airy(const _Airy&) = default;
