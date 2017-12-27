@@ -50,6 +50,7 @@ build_sqrt_table
 build_zetahalfm1_table
 build_zetam1_table
 build_zeta_trig_tables
+build_zeta_deriv_table
 
 carlson
 carlson1
@@ -90,6 +91,7 @@ check/check_cyl_hankel_2
 check/check_cyl_neumann
 check/check_dawson
 check/check_debye
+check/check_digamma
 check/check_dilog
 check/check_dirichlet_beta
 check/check_dirichlet_eta
@@ -145,7 +147,6 @@ check/check_normal_cdf
 check/check_normal_pdf
 check/check_owens_t
 check/check_pgamma
-check/check_psi
 check/check_qgamma
 check/check_radpoly
 check/check_riemann_zeta
