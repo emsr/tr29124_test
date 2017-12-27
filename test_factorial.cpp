@@ -49,7 +49,7 @@ template<typename Tp>
 
 	prev = fact;
 	fact *= i;
-	if (fact < prev || __isinf(fact))
+	if (fact < prev || std::isinf(fact))
 	  break;
       }
     std::cout << "};\n";
@@ -77,7 +77,7 @@ template<typename Tp>
 	i_o += 2LL;
 	prev_o = fact_o;
 	fact_o *= i_o;
-	if (fact_o < prev_o || __isinf(fact_o))
+	if (fact_o < prev_o || std::isinf(fact_o))
 	  break;
 
 	std::cout << "  {" << std::setw(4) << i_o
@@ -87,7 +87,7 @@ template<typename Tp>
 	i_e += 2LL;
 	prev_e = fact_e;
 	fact_e *= i_e;
-	if (fact_e < prev_e || __isinf(fact_e))
+	if (fact_e < prev_e || std::isinf(fact_e))
 	  break;
       }
     std::cout << "};\n";
@@ -111,7 +111,7 @@ template<typename Tp>
 		  << ", " << std::log(std::abs(fact_o)) << suffix<Tp>() << "},\n";
 	i_o -= 2LL;
 	fact_o /= i_o;
-	if (fact_o > prev_o || __isinf(fact_o) || std::abs(fact_o) < std::numeric_limits<Tp>::min())
+	if (fact_o > prev_o || std::isinf(fact_o) || std::abs(fact_o) < std::numeric_limits<Tp>::min())
 	  break;
       }
     std::cout << "};\n";
