@@ -11,7 +11,18 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_marcum_q 
 #include <utility>
 
 /**
- * @brief The Marcum Q function. a > 0, b >= 0.
+ * Return the Marcum Q function for integer order m and a > 0, b >= 0.
+ * The Marcum Q function is defined by
+ * @f[
+ *    Q_M(a,b) = \int_{b}^{\infty}x\left(\frac{x}{a}\right)
+ *        \exp\left(-\frac{x^2 + a^2}{2}\right) I_{M-1}(ax)dx
+ * @f]
+ * where @f$ I_{\nu}(x) @f$ is the modified Bessel function of the first kind.
+ * This routine uses the expansion in modified Bessel functions for integer M.
+ * @f[
+ *    Q_M(a,b) = \exp\left(-\frac{a^2 + b^2}{2}\right)
+ *        \sum_{k=1-M}^{\infty}\left(\frac{a}{b}\right)^k I_k(ab)
+ * @f]
  */
 template<typename _Tp>
   std::pair<_Tp, _Tp>
@@ -52,8 +63,21 @@ template<typename _Tp>
   }
 
 /**
- * Recent software developments for special functions
- * in the Santander-Amsterdam project
+ * Return the Marcum Q function for ral order m and a > 0, b >= 0.
+ * The Marcum Q function is defined by
+ * @f[
+ *    Q_M(a,b) = \int_{b}^{\infty}x\left(\frac{x}{a}\right)
+ *        \exp\left(-\frac{x^2 + a^2}{2}\right) I_{M-1}(ax)dx
+ * @f]
+ * where @f$ I_{\nu}(x) @f$ is the modified Bessel function of the first kind.
+ * This routine uses the expansion in normalized upper gamma functions.
+ * @f[
+ *    Q_M(a,b) = e^{-a^2/2} \sum_{k=0}^{\infty}
+ *       \left(\frac{a^2}{2}\right)^k \frac{Q(M + k, b^2/2)}{k!}
+ * @f]
+ *
+ * @see Recent software developments for special functions
+ * in the Santander-Amsterdam project.
  */
 template<typename _Tp>
   std::pair<_Tp, _Tp>
