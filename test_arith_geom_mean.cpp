@@ -9,6 +9,7 @@ PATH=wrappers/debug:$PATH ./test_arith_geom_mean > test_arith_geom_mean.txt
 #include <wrap_boost.h>
 #include <wrap_gsl.h>
 #include <bits/numeric_limits.h>
+#include <ext/cmath> // Constants.
 
   /**
    * Try complex (and negative real) values. Nope.
@@ -32,6 +33,9 @@ PATH=wrappers/debug:$PATH ./test_arith_geom_mean > test_arith_geom_mean.txt
 	}
     }
 
+  /**
+   * 
+   */
   template<typename _Tp>
     _Tp
     __arith_geom_mean(_Tp __x, _Tp __y)
@@ -51,6 +55,29 @@ PATH=wrappers/debug:$PATH ./test_arith_geom_mean > test_arith_geom_mean.txt
 	}
     }
 
+  /**
+   * 
+   */
+  template<typename _Tp>
+    _Tp
+    __log_agm(_Tp __x)
+    {
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      constexpr auto _S_log_10 = __gnu_cxx::__math_constants<_Tp>::__ln_10;
+      constexpr auto _S_log_2 = __gnu_cxx::__math_constants<_Tp>::__ln_2;
+      const auto __p = std::numeric_limits<_Tp>::digits;
+      const auto __b = std::numeric_limits<_Tp>::radix;
+      const auto __n = std::ilogb(__x);
+      const auto __m = __p / 2 - __n;
+      const auto __s = __x * std::ldexp(_Tp{1}, __m);
+      const auto __logb = (__b == 2 ? _S_log_2 : _S_log_10);
+      return _S_pi / __arith_geom_mean(_Tp{1}, _Tp{4} / __s) /  _Tp{2}
+	   - __m * __logb;
+    }
+
+/**
+ * 
+ */
 template<typename _Tp>
   void
   test_arith_geom_mean(_Tp __proto = _Tp{})
@@ -97,10 +124,30 @@ template<typename _Tp>
 	}
   }
 
+/**
+ * 
+ */
+template<typename _Tp>
+  void
+  test_log(_Tp __proto = _Tp{})
+  {
+    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    auto w = 8 + std::cout.precision();
+
+    for (int i = 1; i < 100; ++i)
+      {
+	auto x = i * _Tp{1};
+	std::cout << ' ' << std::setw(w) << x
+		  << ' ' << std::setw(w) << __log_agm(x)
+		  << ' ' << std::setw(w) << std::log(x) << '\n';
+      }
+  }
+
 int
 main()
 {
   test_arith_geom_mean(1.0);
   //test_arith_geom_mean_cmplx(1.0); Nope.
+  test_log(1.0);
 }
 
