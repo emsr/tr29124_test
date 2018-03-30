@@ -106,9 +106,9 @@ namespace __detail
 	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
 	  _Rsum += __bk_xk;
 	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
+	  //if (std::abs(__ak_xk) > __ak_xk_prev)
+	  //  break;
 	  _Psum += __ak_xk;
-	  if (std::abs(__ak_xk) > __ak_xk_prev)
-	    break;
 	  __ak_xk_prev = std::abs(__ak_xk);
 	  __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
 
@@ -117,24 +117,23 @@ namespace __detail
 	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
 	  _Ssum += __bk_xk;
 	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
-	  if (std::abs(__ak_xk) > __ak_xk_prev)
-	    break;
-	  __ak_xk_prev = std::abs(__ak_xk);
+	  //if (std::abs(__ak_xk) > __ak_xk_prev)
+	  //  break;
 	  _Qsum += __ak_xk;
+	  __ak_xk_prev = std::abs(__ak_xk);
 	  __convQ = std::abs(__ak_xk) < _S_eps * std::abs(_Qsum);
 
-	  if (__convP && __convQ && __k > (__nu / _Tp{2}))
-	    break;
+	  //if (__convP && __convQ && __k > (__nu / _Tp{2}))
+	  //  break;
 	}
-      while (__k < _Tp{100} * __nu);
+      while (__k < __nu / 2);//(__k < _Tp{100} * __nu);
 
       const auto __coef = std::sqrt(_Tp{1} / (_Tp{2} * _S_pi * __x));
-      const auto _Inu = __coef * std::exp(__x) * (_Psum - _Qsum);
-      const auto _Ipnu = __coef * std::exp(__x) * (_Rsum - _Ssum);
-      const auto _Knu = _S_pi * __coef * std::exp(-__x) * (_Psum + _Qsum);
-      const auto _Kpnu =  -_S_pi * __coef * std::exp(-__x) * (_Rsum + _Ssum);
-
-      return __bess_t{__nu, __x, _Inu, _Ipnu, _Knu, _Kpnu};
+      return __bess_t{__nu, __x,
+		      __coef * std::exp(__x) * (_Psum - _Qsum),
+		      __coef * std::exp(__x) * (_Rsum - _Ssum),
+		      _S_pi * __coef * std::exp(-__x) * (_Psum + _Qsum),
+		      -_S_pi * __coef * std::exp(-__x) * (_Rsum + _Ssum)};
     }
 
   /**
