@@ -332,6 +332,7 @@ test_owens_t
 test_parab_cyl
 test_polygamma
 test_polylog
+test_pow
 test_pow_funs
 test_pow_bits
 test_power_mean
