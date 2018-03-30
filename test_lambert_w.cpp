@@ -36,12 +36,12 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lambert_w
    */
   template<typename _Tp>
     _Tp
-    __lambert_w_newton(_Tp __z)
+    __lambert_w_newton(_Tp __z, _Tp _W = _Tp{1})
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__z);
       const auto _S_max_iter = 1000u;
 
-      auto __wk = _Tp{1};
+      auto __wk = _W;
       for (auto __k = 0u; __k < _S_max_iter; ++__k)
 	{
           const auto __expwk = std::exp(__wk);
@@ -61,12 +61,12 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lambert_w
    */
   template<typename _Tp>
     _Tp
-    __lambert_w_halley(_Tp __z)
+    __lambert_w_halley(_Tp __z, _Tp _W = _Tp{1})
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__z);
       const auto _S_max_iter = 1000u;
 
-      auto __wk = _Tp{1};
+      auto __wk = _W;
       for (auto __k = 0u; __k < _S_max_iter; ++__k)
 	{
           const auto __expwk = std::exp(__wk);
@@ -110,14 +110,18 @@ template<typename _Tp>
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    const int N = 100;
+    const int N0 = 100;
     const auto _S_e = __gnu_cxx::__const_e(proto);
     const auto _S_1_e = _Tp{1} / _S_e;
-    const auto del = (_S_e + _S_1_e) / N;
+    const auto del0 = (_S_e + _S_1_e) / N0;
 
-    for (int i = 0; i <= N; ++i)
+    const int Nm1 = 50;
+    const auto delm1 = _S_1_e / Nm1;
+
+    std::cout << '\n';
+    for (int i = 0; i <= N0; ++i)
       {
-	auto z = -_S_1_e  + del * i;
+	auto z = -_S_1_e  + del0 * i;
         auto W_newton = __lambert_w_newton(z);
         auto W_halley = __lambert_w_halley(z);
         auto W_series = __lambert_w_series(z);
@@ -126,6 +130,28 @@ template<typename _Tp>
 		  << ' ' << std::setw(w) << W_halley
 		  << ' ' << std::setw(w) << W_series
 		  << '\n';
+      }
+
+    std::cout << '\n';
+    std::cout << '\n';
+    for (int i = 0; i <= Nm1; ++i)
+      {
+	auto z = -_S_1_e  + delm1 * i;
+        auto W_newton = __lambert_w_newton(z, _Tp{-2});
+        auto W_halley = __lambert_w_halley(z, _Tp{-2});
+	std::cout << ' ' << std::setw(w) << z
+		  << ' ' << std::setw(w) << W_newton
+		  << ' ' << std::setw(w) << W_halley
+		  << '\n';
+      }
+
+    std::cout << '\n';
+    std::cout << '\n';
+    auto __term = _Tp{-1};
+    for (auto __k = 3u; __k < 50; ++__k)
+      {
+	__term *= -std::pow(_Tp(__k) / _Tp(__k - 1), __k - 2);
+	std::cout << ' ' << __term << '\n';
       }
   }
 

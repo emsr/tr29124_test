@@ -118,6 +118,7 @@ BINS = testcase \
        test_kelvin \
        test_krawtchouk \
        test_laguerre \
+       test_lambert_w \
        test_large_order_bessel \
        test_legendre \
        test_legendre_ellint \
@@ -501,6 +502,7 @@ test: $(BINS)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_kelvin > test_kelvin.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_krawtchouk > test_krawtchouk.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_laguerre > test_laguerre.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_lambert_w > test_lambert_w.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_legendre > test_legendre.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_legendre_ellint > test_legendre_ellint.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_lentz_continued_fraction > test_lentz_continued_fraction.txt
@@ -938,6 +940,9 @@ test_krawtchouk: test_krawtchouk.cpp
 
 test_laguerre: test_laguerre.cpp
 	$(CXX17) -I. -o test_laguerre test_laguerre.cpp -lquadmath
+
+test_lambert_w: test_lambert_w.cpp
+	$(CXX17) -I. -o test_lambert_w test_lambert_w.cpp -lquadmath
 
 test_large_order_bessel: test_large_order_bessel.cpp
 	$(CXX17) -I. -o test_large_order_bessel test_large_order_bessel.cpp -lquadmath
