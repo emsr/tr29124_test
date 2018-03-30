@@ -16,6 +16,7 @@ a.out
 *.jpg
 
 wrappers
+wrappers_debug
 
 obj
 
@@ -231,6 +232,7 @@ testcase_tr1
 testcase2
 test_arith_geom_mean
 test_airy
+test_airy_roots
 test_anger_weber
 test_appell_f1
 test_bernoulli
@@ -266,6 +268,7 @@ test_cyl_hankel
 test_dawson
 test_debye
 test_decimal
+test_digamma
 test_dilog
 test_dirichlet_eta
 test_dual_hahn
@@ -293,6 +296,7 @@ test_heuman_lambda
 test_heun
 test_hurwitz_zeta
 test_hurwitz_zeta_new
+test_hydrogen
 test_hyperg
 test_hypot
 test_inverse_gamma_distribution
