@@ -516,11 +516,19 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     "GSL",
 	     file_cyl_bessel_j, false, false, test);
+    test =
     maketest(cyl_bessel_j, gsl::cyl_bessel_j,
 	     "testcase_cyl_bessel_j", nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
+	     "GSL",
+	     file_cyl_bessel_j, false, false, test);
+    maketest(cyl_bessel_j, gsl::cyl_bessel_j,
+	     "testcase_cyl_bessel_j", nsname, basename,
+	     "nu", {100},
+	     "x", fill_argument(std::make_pair(Real{1000}, Real{2000}),
+				std::make_pair(true, true), 11),
 	     "GSL",
 	     file_cyl_bessel_j, false, true, test);
 
@@ -576,11 +584,19 @@ template<typename Real>
 				std::make_pair(false, true), 21),
 	     "GSL",
 	     file_cyl_neumann, false, false, test);
+    test =
     maketest(cyl_neumann, gsl::cyl_neumann,
 	     "testcase_cyl_neumann", nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(false, true), 21),
+	     "GSL",
+	     file_cyl_neumann, false, false, test);
+    maketest(cyl_neumann, gsl::cyl_neumann,
+	     "testcase_cyl_neumann", nsname, basename,
+	     "nu", {100},
+	     "x", fill_argument(std::make_pair(Real{1000}, Real{2000}),
+				std::make_pair(false, true), 11),
 	     "GSL",
 	     file_cyl_neumann, false, true, test);
 
