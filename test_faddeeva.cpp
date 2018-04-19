@@ -26,7 +26,7 @@ namespace __gnu_cxx
    * Compute the Faddeeva or scaled complex complementary error function
    * for real argument:
    * @f[
-   *    w(z) = exp(-z^2) erfc(-iz)
+   *    w(x) = exp(-x^2) erfc(-ix)
    * @f]
    */
   template<typename _Tp>
@@ -46,7 +46,7 @@ namespace __gnu_cxx
   /**
    * Compute the scaled complementary error function of real argument:
    * @f[
-   *    erfcx(z) = exp^{z^2} erfc(z).
+   *    erfcx(x) = exp^{x^2} erfc(x).
    * @f]
    */
   template<typename _Tp>
@@ -179,8 +179,104 @@ namespace __gnu_cxx
 
 } // namespace __gnu_cxx
 
+bool
+not_zero(double x)
+{
+  return std::abs(x) > std::numeric_limits<double>::epsilon();
+}
+
+bool
+is_zero(double x)
+{
+  return !not_zero(x);
+}
+
+/**
+ * Return the Faddeeva function - a complex scaled error function.
+ * Given a complex number z, this function returns
+ * @f[
+ *   w(z) = exp(-z^2)erfc(-iz)
+ * @f]
+ */
+std::complex<double>
+faddeeva_old(const std::complex<double>& z)
+{
+  constexpr double dconst = 1.12837916709551;
+
+  double x = std::real(z), y = std::imag(z);
+
+  int capn = 0;
+  int nu = 0;
+  double h = 0.0, h2 = 0.0, lambda = 0.0;
+  if (y < 4.29 && x < 5.33)
+    {
+      auto s = 2.0 * (1.0 - y / 4.29) * std::sqrt(1.0 - x * x / 28.41);
+      h = 1.6 * s;
+      h2 = 2.0 * h;
+      capn = int(12 + 23 * s);
+      lambda = std::pow(h2, capn);
+      nu = int(17 + 21 * s);
+    }
+  else
+    nu = 16;
+  bool b = is_zero(h) || is_zero(lambda);
+  auto r1 = 0.0;
+  auto r2 = 0.0;
+  auto s1 = 0.0;
+  auto s2 = 0.0;
+  for (auto n = nu; n >= 0; --n)
+    {
+      const auto np1 = n + 1;
+      auto t1 = y + h + np1 * r1;
+      auto t2 = x - np1 * r2;
+      const auto c = 0.5 / (t1 * t1 + t2 * t2);
+      r1 = c * t1;
+      r2 = c * t2;
+      if (h > 0.0 && n <= capn)
+	{
+	  t1 = lambda + s1;
+	  s1 = r1 * t1 - r2 * s2;
+	  s2 = r2 * t1 + r1 * s2;
+	  lambda /= h2;
+	}
+    }
+
+  double re, im;
+  if (is_zero(y))
+    re = std::exp(-x * x);
+  else
+    {
+      if (b)
+	re = dconst * r1;
+      else
+	re = dconst * s1;
+    }
+  if (b)
+    im = dconst * r2;
+  else
+    im = dconst * s2;
+
+  return std::complex<double>(re, im);
+}
+
 int
 main()
 {
+  for (int i = -100; i <= +100; ++i)
+    {
+      double x = 0.05 * i;
+      for (int j = -100; j <= +100; ++j)
+	{
+	  double y = 0.05 * j;
+	  std::complex<double> z(x, y);
+	  std::complex<double> w = faddeeva_old(z);
+	  std::cout << ' ' << x
+		    << ' ' << y
+		    << ' ' << std::real(w)
+		    << ' ' << std::imag(w)
+		    << '\n';
+	}
+      std::cout << '\n';
+    }
 }
 
