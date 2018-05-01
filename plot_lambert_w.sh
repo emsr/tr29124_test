@@ -1,5 +1,6 @@
 
 gnuplot
+
 set termoption enhanced
 set xzeroaxis
 set yzeroaxis
