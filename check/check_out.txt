@@ -28,6 +28,7 @@ check_cyl_hankel_1
 check_cyl_hankel_2
 check_cyl_neumann
 check_dawson
+check_digamma
 check_dilog
 check_dirichlet_beta
 check_dirichlet_eta
@@ -121,7 +122,6 @@ check_rising_factorial
 check_normal_cdf
 line 1045  max_abs_frac = 4.89615e-11
 check_normal_pdf
-check_psi
 check_qgamma
 check_radpoly
 check_riemann_zeta
