@@ -16,6 +16,7 @@ a.out
 *.jpg
 
 wrappers
+wrappers_debug
 
 obj
 
@@ -270,6 +271,7 @@ test_dilog
 test_dirichlet_eta
 test_dual_hahn
 test_erfc
+test_exp
 test_experfc
 test_expint
 test_factorial
@@ -293,6 +295,7 @@ test_heuman_lambda
 test_heun
 test_hurwitz_zeta
 test_hurwitz_zeta_new
+test_hydrogen
 test_hyperg
 test_hypot
 test_inverse_gamma_distribution
@@ -339,6 +342,8 @@ test_power_mean
 test_power_norm
 test_promote_num
 test_psi
+test_q_number
+test_q_pochhammer
 test_quadratic
 test_racah
 test_rational
