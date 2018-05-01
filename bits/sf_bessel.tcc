@@ -63,6 +63,27 @@ namespace __detail
    * 	    and Neumann functions of order nu: @f$ J_{\nu}(x) @f$,
    * 	    @f$ N_{\nu}(x) @f$.  Use this for @f$ x >> nu^2 + 1 @f$.
    *
+   * @f[
+   *   J_{\nu}(z) = \left(\frac{2}{\pi z}\right)^{1/2} \left(
+   *    \cos(\omega)\sum_{k=0}^{\infty}(-1)^k\frac{a_{2k}(\nu)}{z^{2k}}
+   *  - \sin(\omega)\sum_{k=0}^{\infty}(-1)^k\frac{a_{2k+1}(\nu)}{z^{2k+1}}
+   *    \right)
+   * @f]
+   * and
+   * @f[
+   *   N_{\nu}(z) = \left(\frac{2}{\pi z}\right)^{1/2} \left(
+   *    \sin(\omega)\sum_{k=0}^{\infty}(-1)^k\frac{a_{2k}(\nu)}{z^{2k}}
+   *  + \cos(\omega)\sum_{k=0}^{\infty}(-1)^k\frac{a_{2k+1}(\nu)}{z^{2k+1}}
+   *    \right)
+   * @f]
+   * where @f$ \omega = z - \nu\pi/2 - \pi/4 @f$ and
+   * @f[
+   *   a_{k}(\nu) = \frac{(4\nu^2 - 1^2)(4\nu^2 - 3^2)...(4\nu^2 - (2k-1)^2)}
+   *                     {8^k k!}
+   * @f]
+   * There sums work everywhere but on the negative real axis:
+   * @f$ |ph(z)| < \pi - \delta @f$.
+   *
    * References:
    *  (1) Handbook of Mathematical Functions,
    * 	  ed. Milton Abramowitz and Irene A. Stegun,
@@ -106,10 +127,10 @@ namespace __detail
 	  __bk_xk = -(__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
 	  _Rsum += __bk_xk;
 	  __ak_xk *= -(__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
-	  if (std::abs(__ak_xk) > __ak_xk_prev)
+	  if (__k > __nu / _Tp{2} && std::abs(__ak_xk) > __ak_xk_prev)
 	    break;
-	  __ak_xk_prev = std::abs(__ak_xk);
 	  _Psum += __ak_xk;
+	  __ak_xk_prev = std::abs(__ak_xk);
 	  __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
 
 	  ++__k;
@@ -117,18 +138,18 @@ namespace __detail
 	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
 	  _Ssum += __bk_xk;
 	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
-	  if (std::abs(__ak_xk) > __ak_xk_prev)
+	  if (__k > __nu / _Tp{2} && std::abs(__ak_xk) > __ak_xk_prev)
 	    break;
-	  __ak_xk_prev = std::abs(__ak_xk);
 	  _Qsum += __ak_xk;
+	  __ak_xk_prev = std::abs(__ak_xk);
 	  __convQ = std::abs(__ak_xk) < _S_eps * std::abs(_Qsum);
 
-	  if (__convP && __convQ && __k > (__nu / _Tp{2}))
+	  if (__convP && __convQ)
 	    break;
 	}
-      while (__k < _Tp{100} * __nu);
+      while (__k < _Tp{20} * __nu);
 
-      const auto __omega = __x - (__nu + 0.5L) * _S_pi_2;
+      const auto __omega = __x - (__nu + _Tp{0.5L}) * _S_pi_2;
       const auto __c = std::cos(__omega);
       const auto __s = std::sin(__omega);
 
