@@ -115,7 +115,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       // Constant @f$ \log_2(e) @f$.
       static constexpr _RealType __log2_e
 	= 1.442695040888963407359924681001892137427L;
-      // Constant @f$ \log_10(e) @f$.
+      // Constant @f$ \log_{10}(e) @f$.
       static constexpr _RealType __log10_e
 	= 0.434294481903251827651128918916605082294L;
       // Constant @f$ \ln(2) @f$.
