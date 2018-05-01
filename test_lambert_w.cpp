@@ -102,6 +102,46 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lambert_w
     }
 
 
+/**
+ * This is the asymptotic log series for @f$ W_0(z) @f$
+ * as @f$ z \rightarrow \infty @f$.
+ * @f[
+ *    W_0(z) = \xi - ln(\xi) + \frac{ln(\xi)}{\xi}
+ *           - \frac{ln(\xi)}{\xi^2} + \frac{(ln(\xi))^2}{\xi^2}
+ * @f]
+ * where @f$ \xi = ln(z) @f$
+ */
+template<typename _Tp>
+  _Tp
+  __lambert_w_0_log_series(_Tp __z)
+  {
+    const auto __xi = std::log(__z);
+    const auto __lnxi = std::log(__xi);
+    return __xi - __lnxi * (_Tp{1} - (_Tp{1} / __xi)
+		* (_Tp{1} - (_Tp{1} / __xi) * (_Tp{1} - __lnxi / _Tp{2})));
+  }
+
+
+/**
+ * This is the asymptotic log series for @f$ W_1(z) @f$
+ * as @f$ z \rightarrow 0- @f$.
+ * @f[
+ *    W_1(z) = -\eta - ln(\eta) - \frac{ln(\eta)}{\eta}
+ *           - \frac{ln(\eta)}{\eta^2} - \frac{(ln(\eta))^2}{\eta^2}
+ * @f]
+ * where @f$ \eta = ln(-1/z) @f$
+ */
+template<typename _Tp>
+  _Tp
+  __lambert_w_1_log_series(_Tp __z)
+  {
+    const auto __eta = std::log(-_Tp{1} / __z);
+    const auto __lneta = std::log(__eta);
+    return -__eta - __lneta * (_Tp{1} + (_Tp{1} / __eta)
+		* (_Tp{1} + (_Tp{1} / __eta) * (_Tp{1} + __lneta / _Tp{2})));
+  }
+
+
 template<typename _Tp>
   void
   test_lambert_w(_Tp proto = _Tp{})
