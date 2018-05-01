@@ -59,10 +59,11 @@ assoc_laguerre(unsigned int n, unsigned int m, double x)
 }
 
 /// Associated Legendre functions.
+/// Boost returns Condon-Shortley phase.
 double
 assoc_legendre(unsigned int l, unsigned int m, double x)
 {
-  return boost::math::legendre_p(l, m, x);
+  return (m & 1 ? -1 : +1) * boost::math::legendre_p(l, m, x);
 }
 
 /// Associated Legendre functions of the second kind.

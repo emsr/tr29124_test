@@ -65,6 +65,7 @@ assoc_laguerre(unsigned int n, unsigned int m, double x)
 }
 
 /// Associated Legendre functions.
+/// GSL returns Condon-Shortley phase.
 double
 assoc_legendre(unsigned int l, unsigned int m, double x)
 {
@@ -81,7 +82,7 @@ assoc_legendre(unsigned int l, unsigned int m, double x)
           throw std::runtime_error(msg.str());
         }
       else
-        return result.val;
+        return (m & 1 ? -1 : +1) * result.val;
     }
 }
 

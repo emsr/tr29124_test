@@ -61,9 +61,9 @@ namespace __detail
 {
   /**
    * @brief  Return the Legendre polynomial by upward recursion
-   * 	     on order @f$ l @f$.
+   * 	     on degree @f$ l @f$.
    *
-   * The Legendre function of order @f$ l @f$ and argument @f$ x @f$,
+   * The Legendre function of degree @f$ l @f$ and argument @f$ x @f$,
    * @f$ P_l(x) @f$, is defined by:
    * @f[
    *   P_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l}
@@ -74,7 +74,7 @@ namespace __detail
    *            \frac{(-1)^k(2l-2k)!}{k!(l-k)!(l-2k)!}x^{l-2k}
    * @f]
    *
-   * @param  __l  The order of the Legendre polynomial.  @f$ l >= 0 @f$.
+   * @param  __l  The degree of the Legendre polynomial.  @f$ l >= 0 @f$.
    * @param  __x  The argument of the Legendre polynomial.
    */
   template<typename _Tp>
@@ -125,15 +125,15 @@ namespace __detail
 
   /**
    * @brief Return the Legendre function of the second kind
-   *        by upward recursion on order @f$ l @f$.
+   *        by upward recursion on degree @f$ l @f$.
    *
-   * The Legendre function of the second kind of order @f$ l @f$
+   * The Legendre function of the second kind of degree @f$ l @f$
    * and argument @f$ x @f$, @f$ Q_l(x) @f$, is defined by:
    * @f[
    *   Q_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l}
    * @f]
    *
-   * @param __l The order of the Legendre function.  @f$l >= 0@f$.
+   * @param __l The degree of the Legendre function.  @f$l >= 0@f$.
    * @param __x The argument of the Legendre function.  @f$|x| <= 1@f$.
    */
   template<typename _Tp>
@@ -183,16 +183,21 @@ namespace __detail
    * @f[
    *   P_l^m(x) = (1 - x^2)^{m/2}\frac{d^m}{dx^m}P_l(x)
    * @f]
+   * @note The Condon-Shortley phase factor @f$ (-1)^m @f$ is absent
+   * by default.
    *
-   * @param  __l  The order of the associated Legendre function.
+   * @param  __l  The degree of the associated Legendre function.
    * 		@f$ l >= 0 @f$.
    * @param  __m  The order of the associated Legendre function.
    * 		@f$ m <= l @f$.
    * @param  __x  The argument of the associated Legendre function.
+   * @param  __phase  The phase of the associated Legendre function.
+   *                  Use -1 for the Condon-Shortley phase convention.
    */
   template<typename _Tp>
     _Tp
-    __assoc_legendre_p(unsigned int __l, unsigned int __m, _Tp __x)
+    __assoc_legendre_p(unsigned int __l, unsigned int __m, _Tp __x,
+		       _Tp __phase = _Tp{+1})
     {
       if (__m > __l)
 	std::__throw_domain_error(__N("__assoc_legendre_p: "
@@ -208,11 +213,12 @@ namespace __detail
 	    {
 	      // Two square roots seem more accurate more of the time
 	      // than just one.
-	      _Tp __root = std::sqrt(_Tp{1} - __x) * std::sqrt(_Tp{1} + __x);
-	      _Tp __fact = _Tp{1};
+	      auto __root = std::sqrt(_Tp{1} - __x) * std::sqrt(_Tp{1} + __x);
+	      auto __fact = _Tp{1};
 	      for (unsigned int __i = 1; __i <= __m; ++__i)
 		{
-		  _P_mm *= -__fact * __root;
+		  // N. B. Condon-Shortley would use __phase = -1 here.
+		  _P_mm *= __phase * __fact * __root;
 		  __fact += _Tp{2};
 		}
 	    }
@@ -223,10 +229,10 @@ namespace __detail
 	  if (__l == __m + 1)
 	    return _P_mp1m;
 
-	  _Tp _P_lm2m = _P_mm;
-	  _Tp _P_lm1m = _P_mp1m;
-	  _Tp _P_lm = (_Tp(2 * __m + 3) * __x * _P_lm1m
-		      - _Tp(2 * __m + 1) * _P_lm2m) / _Tp{2};
+	  auto _P_lm2m = _P_mm;
+	  auto _P_lm1m = _P_mp1m;
+	  auto _P_lm = (_Tp(2 * __m + 3) * __x * _P_lm1m
+		     - _Tp(2 * __m + 1) * _P_lm2m) / _Tp{2};
 	  for (unsigned int __j = __m + 3; __j <= __l; ++__j)
 	    {
 	      _P_lm2m = _P_lm1m;
@@ -258,8 +264,10 @@ namespace __detail
    * but this factor is rather large for large @f$ l @f$ and @f$ m @f$
    * and so this function is stable for larger differences of @f$ l @f$
    * and @f$ m @f$.
+   * @note Unlike the case for __assoc_legendre_p the Condon-Shortley
+   * phase factor @f$ (-1)^m @f$ is present here.
    *
-   * @param  __l  The order of the spherical associated Legendre function.
+   * @param  __l  The degree of the spherical associated Legendre function.
    * 		@f$ l >= 0 @f$.
    * @param  __m  The order of the spherical associated Legendre function.
    * 		@f$ m <= l @f$.
@@ -279,7 +287,7 @@ namespace __detail
 	std::__throw_domain_error(__N("__sph_legendre: bad argument"));
       else if (__m == 0)
 	{
-	  _Tp _P_l = __legendre_p(__l, __x).__P_l;
+	  auto _P_l = __legendre_p(__l, __x).__P_l;
 	  _Tp __fact = std::sqrt(_Tp(2 * __l + 1)
 		     / (_Tp{4} * __gnu_cxx::__const_pi(__theta)));
 	  _P_l *= __fact;
@@ -292,8 +300,8 @@ namespace __detail
 	  // m > 0 and |x| < 1 here
 
 	  // Starting value for recursion.
-	  // Y_m^m(x) = sqrt( (2m+1)/(4pi m) gamma(m+1/2)/gamma(m) )
-	  //           (-1)^m (1-x^2)^(m/2) / pi^(1/4)
+	  // Y_m^m(x) = \sqrt{ (2m+1)/(4pi m) \Gamma(m+1/2)/\Gamma(m) }
+	  //           (-1)^m (1-x^2)^(m/2) / \pi^(1/4)
 	  const auto __sgn = (__m % 2 == 1 ? -_Tp{1} : _Tp{1});
 	  const auto _Y_mp1m_factor = __x * std::sqrt(_Tp(2 * __m + 3));
 	  const auto __lncirc = std::log1p(-__x * __x);
@@ -303,22 +311,18 @@ namespace __detail
 	  const auto __lnpre_val =
 		     -_Tp{0.25L} * __gnu_cxx::__const_ln_pi(__theta)
 		     + _Tp{0.5L} * (__lnpoch + __m * __lncirc);
-	  _Tp __sr = std::sqrt((_Tp{2} + _Tp{1} / __m)
-		   / (_Tp{4} * __gnu_cxx::__const_pi(__theta)));
-	  _Tp _Y_mm = __sgn * __sr * std::exp(__lnpre_val);
-	  _Tp _Y_mp1m = _Y_mp1m_factor * _Y_mm;
+	  const auto __sr = std::sqrt((_Tp{2} + _Tp{1} / __m)
+			  / (_Tp{4} * __gnu_cxx::__const_pi(__theta)));
+	  auto _Y_mm = __sgn * __sr * std::exp(__lnpre_val);
+	  auto _Y_mp1m = _Y_mp1m_factor * _Y_mm;
 
 	  if (__l == __m)
-	    {
-	      return _Y_mm;
-	    }
+	    return _Y_mm;
 	  else if (__l == __m + 1)
-	    {
-	      return _Y_mp1m;
-	    }
+	    return _Y_mp1m;
 	  else
 	    {
-	      _Tp _Y_lm = _Tp{0};
+	      auto _Y_lm = _Tp{0};
 
 	      // Compute Y_l^m, l > m+1, upward recursion on l.
 	      for ( int __ll = __m + 2; __ll <= __l; ++__ll)
@@ -354,7 +358,7 @@ namespace __detail
    * 		       P_l^{|m|}(\cos\theta) \exp^{im\phi}
    * @f]
    *
-   * @param  __l  The order of the spherical harmonic function.
+   * @param  __l  The degree of the spherical harmonic function.
    * 		@f$ l >= 0 @f$.
    * @param  __m  The order of the spherical harmonic function.
    * 		@f$ m <= l @f$.
@@ -392,10 +396,10 @@ namespace __detail
 
       auto __m = __l / 2;
 
-      // Treat the central zero for odd order specially.
+      // Treat the central zero for odd degree specially.
       // Be careful to avoid overflow of the factorials.
       // An alternative would be to proceed with the recursion
-      // for large order.
+      // for large degree.
       if (__l & 1)
 	{
 	  if (__l < _S_num_factorials<_Tp>)
@@ -434,10 +438,11 @@ namespace __detail
 	  auto __w = _Tp{0};
 	  for (auto __its = 0u; __its < _S_maxit; ++__its)
 	    {
-	      // Compute __P, __P1, and __P2 the Legendre polynomials of order
+	      // Compute __P, __P1, and __P2 the Legendre polynomials of degree
 	      // l, l-1, l-2 respectively by iterating through the recursion
 	      // relation for the Legendre polynomials.
-	      // Compute __Pp the derivative of the Legendre polynomial of order l.
+	      // Compute __Pp the derivative of the Legendre polynomial
+	      // of degree l.
 	      auto __P1 = _Tp{0};
 	      auto __P = _Tp{1};
 	      for  (auto __k = 1u; __k <= __l; ++__k)
