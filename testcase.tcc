@@ -33,7 +33,7 @@ R"(// { dg-do run { target c++11 } }
 )";
 
 SVNS::string_view copyright = 
-R"(// Copyright (C) 2016-2017 Free Software Foundation, Inc.
+R"(// Copyright (C) 2016-2018 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -353,6 +353,11 @@ template<typename Ret, typename Arg1>
 
     bool riemann_zeta_limits = (funcname == "riemann_zeta");
 
+    bool tr1 = false;
+    std::regex tr1_ns("::tr1");
+    if (std::regex_search(nsname, tr1_ns))
+      tr1 = true;
+
     std::string templparm;
     if (!std::is_floating_point_v<Arg1>)
       templparm += "<Ret>";
@@ -364,9 +369,8 @@ template<typename Ret, typename Arg1>
       output << riemann_limits << '\n';
     if (write_header)
       {
-	std::regex tr1_ns("::tr1");
 	std::regex cmath_inc("CMATH_HEADER");
-	if (std::regex_search(nsname, tr1_ns))
+	if (tr1)
 	  output << std::regex_replace(header, cmath_inc, "<tr1/cmath>");
 	else
 	  output << std::regex_replace(header, cmath_inc, "<cmath>");
@@ -559,6 +563,11 @@ template<typename Ret, typename Arg1, typename Arg2>
     output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
 
+    bool tr1 = false;
+    std::regex tr1_ns("::tr1");
+    if (std::regex_search(nsname, tr1_ns))
+      tr1 = true;
+
     std::string templparm;
     if (!std::is_floating_point_v<Arg1>
      && !std::is_floating_point_v<Arg2>)
@@ -569,9 +578,8 @@ template<typename Ret, typename Arg1, typename Arg2>
     output << "//  " << funcname << '\n';
     if (write_header)
       {
-	std::regex tr1_ns("::tr1");
 	std::regex cmath_inc("CMATH_HEADER");
-	if (std::regex_search(nsname, tr1_ns))
+	if (tr1)
 	  output << std::regex_replace(header, cmath_inc, "<tr1/cmath>");
 	else
 	  output << std::regex_replace(header, cmath_inc, "<cmath>");
@@ -770,6 +778,11 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
     output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
 
+    bool tr1 = false;
+    std::regex tr1_ns("::tr1");
+    if (std::regex_search(nsname, tr1_ns))
+      tr1 = true;
+
     bool assoc_legendre_header = (funcname == "assoc_legendre");
 
     std::string templparm;
@@ -789,9 +802,8 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
     output << "//  " << funcname << '\n';
     if (write_header)
       {
-	std::regex tr1_ns("::tr1");
 	std::regex cmath_inc("CMATH_HEADER");
-	if (std::regex_search(nsname, tr1_ns))
+	if (tr1)
 	  output << std::regex_replace(header, cmath_inc, "<tr1/cmath>");
 	else
 	  output << std::regex_replace(header, cmath_inc, "<cmath>");
@@ -1002,6 +1014,11 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
     output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
 
+    bool tr1 = false;
+    std::regex tr1_ns("::tr1");
+    if (std::regex_search(nsname, tr1_ns))
+      tr1 = true;
+
     bool hyperg_header = (funcname == "hyperg");
 
     std::string templparm;
@@ -1022,9 +1039,8 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
     output << "//  " << funcname << '\n';
     if (write_header)
       {
-	std::regex tr1_ns("::tr1");
 	std::regex cmath_inc("CMATH_HEADER");
-	if (std::regex_search(nsname, tr1_ns))
+	if (tr1)
 	  output << std::regex_replace(header, cmath_inc, "<tr1/cmath>");
 	else
 	  output << std::regex_replace(header, cmath_inc, "<cmath>");
