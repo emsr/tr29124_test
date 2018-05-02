@@ -1,7 +1,7 @@
 // { dg-do run { target c++11 } }
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
 
-// Copyright (C) 2016-2017 Free Software Foundation, Inc.
+// Copyright (C) 2016-2018 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -30,7 +30,7 @@
     { \
       std::cout << "line " << __LINE__ \
 	<< "  max_abs_frac = " << max_abs_frac \
-	<< std::endl; \
+	<< '\n'; \
     }
 #else
 #  include <testsuite_hooks.h>
@@ -252,9 +252,9 @@ const double toler004 = 2.5000000000000020e-13;
 // Test data for n=5.
 // max(|f - f_GSL|): 3.8857805861880479e-16 at index 14
 // max(|f - f_GSL| / |f_GSL|): 2.2734421196828993e-15
-// mean(f - f_GSL): 3.9475536660642954e-17
-// variance(f - f_GSL): 3.8196398753243721e-35
-// stddev(f - f_GSL): 6.1803235152574106e-18
+// mean(f - f_GSL): 3.8460088772266286e-17
+// variance(f - f_GSL): 3.6213586350514252e-35
+// stddev(f - f_GSL): 6.0177725406095448e-18
 const testcase_debye<double>
 data005[41] =
 {
@@ -305,9 +305,9 @@ const double toler005 = 2.5000000000000020e-13;
 // Test data for n=6.
 // max(|f - f_GSL|): 1.9984014443252818e-15 at index 12
 // max(|f - f_GSL| / |f_GSL|): 9.1085152812495123e-15
-// mean(f - f_GSL): 5.8303632924293662e-17
-// variance(f - f_GSL): 8.9718419363922698e-35
-// stddev(f - f_GSL): 9.4719807518767000e-18
+// mean(f - f_GSL): 6.0334528701046999e-17
+// variance(f - f_GSL): 9.5982829453612127e-35
+// stddev(f - f_GSL): 9.7970827011724331e-18
 const testcase_debye<double>
 data006[41] =
 {

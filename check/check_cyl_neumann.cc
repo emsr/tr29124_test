@@ -1,7 +1,7 @@
 // { dg-do run { target c++11 } }
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
 
-// Copyright (C) 2016-2017 Free Software Foundation, Inc.
+// Copyright (C) 2016-2018 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -937,11 +937,11 @@ const double toler028 = 1.0000000000000006e-11;
 //  cyl_neumann
 
 // Test data for nu=100.00000000000000.
-// max(|f - f_GSL|): 3.0627844010977512e-14 at index 5
-// max(|f - f_GSL| / |f_GSL|): 1.1989932776976126e-11
-// mean(f - f_GSL): -6.2636527908832560e-16
-// variance(f - f_GSL): 6.7868310671118610e-29
-// stddev(f - f_GSL): 8.2382225431896781e-15
+// max(|f - f_GSL|): 3.0540240475440683e-14 at index 5
+// max(|f - f_GSL| / |f_GSL|): 1.1955638475955932e-11
+// mean(f - f_GSL): -6.1717124466564850e-16
+// variance(f - f_GSL): 6.7530293004394936e-29
+// stddev(f - f_GSL): 8.2176817293197064e-15
 const testcase_cyl_neumann<double>
 data029[10] =
 {

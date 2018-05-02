@@ -1,7 +1,7 @@
 // { dg-do run { target c++11 } }
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
 
-// Copyright (C) 2016-2017 Free Software Foundation, Inc.
+// Copyright (C) 2016-2018 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -896,11 +896,11 @@ const double toler026 = 1.0000000000000006e-11;
 //  cyl_bessel_j
 
 // Test data for nu=100.00000000000000.
-// max(|f - f_GSL|): 2.8677364302676089e-14 at index 4
-// max(|f - f_GSL| / |f_GSL|): 2.0260204137366189e-11
-// mean(f - f_GSL): 3.1677036309675122e-15
-// variance(f - f_GSL): 1.2292776854862779e-29
-// stddev(f - f_GSL): 3.5061056536936788e-15
+// max(|f - f_GSL|): 2.8581737671062868e-14 at index 4
+// max(|f - f_GSL| / |f_GSL|): 2.0192645101709910e-11
+// mean(f - f_GSL): 3.1572361518113338e-15
+// variance(f - f_GSL): 1.2224424456717922e-29
+// stddev(f - f_GSL): 3.4963444419447468e-15
 const testcase_cyl_bessel_j<double>
 data027[11] =
 {

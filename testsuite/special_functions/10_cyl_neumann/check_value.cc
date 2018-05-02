@@ -1,7 +1,7 @@
 // { dg-do run { target c++11 } }
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
 
-// Copyright (C) 2016-2017 Free Software Foundation, Inc.
+// Copyright (C) 2016-2018 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -30,7 +30,7 @@
     { \
       std::cout << "line " << __LINE__ \
 	<< "  max_abs_frac = " << max_abs_frac \
-	<< std::endl; \
+	<< '\n'; \
     }
 #else
 #  include <testsuite_hooks.h>
@@ -934,6 +934,29 @@ data028[20] =
   { -0.16692141141757652, 100.00000000000000, 100.00000000000000, 0.0 },
 };
 const double toler028 = 1.0000000000000006e-11;
+//  cyl_neumann
+
+// Test data for nu=100.00000000000000.
+// max(|f - f_GSL|): 3.0540240475440683e-14 at index 5
+// max(|f - f_GSL| / |f_GSL|): 1.1955638475955932e-11
+// mean(f - f_GSL): -6.1717124466564850e-16
+// variance(f - f_GSL): 6.7530293004394936e-29
+// stddev(f - f_GSL): 8.2176817293197064e-15
+const testcase_cyl_neumann<double>
+data029[10] =
+{
+  { -0.021077595159819992, 100.00000000000000, 1100.0000000000000, 0.0 },
+  { -0.0035299439206692585, 100.00000000000000, 1200.0000000000000, 0.0 },
+  { 0.014250019326536615, 100.00000000000000, 1300.0000000000000, 0.0 },
+  { 0.021304679089735663, 100.00000000000000, 1400.0000000000000, 0.0 },
+  { 0.015734395077905271, 100.00000000000000, 1500.0000000000000, 0.0 },
+  { 0.0025544633636137774, 100.00000000000000, 1600.0000000000000, 0.0 },
+  { -0.010722045524849367, 100.00000000000000, 1700.0000000000000, 0.0 },
+  { -0.018036919243226864, 100.00000000000000, 1800.0000000000000, 0.0 },
+  { -0.016958415593079763, 100.00000000000000, 1900.0000000000000, 0.0 },
+  { -0.0088788704566276667, 100.00000000000000, 2000.0000000000000, 0.0 },
+};
+const double toler029 = 1.0000000000000007e-09;
 
 template<typename Ret, unsigned int Num>
   void
@@ -993,5 +1016,6 @@ main()
   test(data026, toler026);
   test(data027, toler027);
   test(data028, toler028);
+  test(data029, toler029);
   return 0;
 }
