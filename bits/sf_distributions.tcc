@@ -691,6 +691,40 @@ namespace __detail
       const auto __exparg = std::exp(__arg);
       return __exparg / (_Tp{1} + __exparg);
     }
+
+  template<typename _Tp>
+    _Tp
+    __cauchy_cdf(_Tp __a, _Tp __b, _Tp __x)
+    {
+      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      return _Tp{0.5L} + std::atan((__x - __a) / __b) / _S_pi;
+    }
+
+  template<typename _Tp>
+    _Tp
+    __beta_cdf(_Tp __a, _Tp __b, _Tp __x)
+    {
+      if (__x < _Tp{0})
+	return _Tp{0};
+      else if (__x > _Tp{1})
+	return _Tp{1};
+      else
+	return __beta_inc(__a, __b, __x);
+    }
+
+  /**
+   * @f[
+   *     P(K <= x) = 1 - e^{-2x^2} + e^{-2 \cdot 4 x^2}
+   *            + e^{-2 \cdot 9 x^2} - e^{-2 \cdot 16 x^2} + ...
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __kolmogorov_cdf(_Tp __a, _Tp __b, _Tp __x)
+    {
+      return _Tp{1} - std::exp(-_Tp{2} * __x * __x);
+    }
+
 } // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
