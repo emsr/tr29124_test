@@ -265,7 +265,7 @@ ${makedir} ${tr1_dir}/06_comp_ellint_3
 ${makedir} ${tr1_dir}/07_conf_hyperg
 ${makedir} ${tr1_dir}/08_cyl_bessel_i
 ${makedir} ${tr1_dir}/09_cyl_bessel_j
-${makedir} ${tr1_dir}/10_cyl_bessel_k/airy.cc
+${makedir} ${tr1_dir}/10_cyl_bessel_k
 ${makedir} ${tr1_dir}/11_cyl_neumann
 ${makedir} ${tr1_dir}/12_ellint_1
 ${makedir} ${tr1_dir}/13_ellint_2
@@ -291,6 +291,7 @@ ${tool} check/check_tr1_conf_hyperg.cc      ${tr1_dir}/07_conf_hyperg/check_valu
 ${tool} check/check_tr1_cyl_bessel_i.cc     ${tr1_dir}/08_cyl_bessel_i/check_value.cc
 ${tool} check/check_tr1_cyl_bessel_j.cc     ${tr1_dir}/09_cyl_bessel_j/check_value.cc
 ${tool} check/check_tr1_cyl_bessel_k.cc     ${tr1_dir}/10_cyl_bessel_k/check_value.cc
+${tool} check/tr1_airy.cc                   ${tr1_dir}/10_cyl_bessel_k/airy.cc
 ${tool} check/check_tr1_cyl_neumann.cc      ${tr1_dir}/11_cyl_neumann/check_value.cc
 ${tool} check/check_tr1_ellint_1.cc	    ${tr1_dir}/12_ellint_1/check_value.cc
 ${tool} check/check_tr1_ellint_2.cc	    ${tr1_dir}/13_ellint_2/check_value.cc
