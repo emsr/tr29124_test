@@ -45,6 +45,7 @@ ${makedir} ${gcc_dir}/21_sph_neumann
 
 ${tool} check/check_assoc_laguerre.cc   ${gcc_dir}/01_assoc_laguerre/check_value.cc
 ${tool} check/check_assoc_legendre.cc   ${gcc_dir}/02_assoc_legendre/check_value.cc
+${tool} check/pr83140.cc                ${gcc_dir}/02_assoc_legendre/pr83140.cc
 ${tool} check/check_beta.cc             ${gcc_dir}/03_beta/check_value.cc
 ${tool} check/check_comp_ellint_1.cc    ${gcc_dir}/04_comp_ellint_1/check_value.cc
 ${tool} check/check_comp_ellint_2.cc    ${gcc_dir}/05_comp_ellint_2/check_value.cc

@@ -31,6 +31,8 @@ git checkout -- \
  check/origin_cyl_neumann.cc
 
 git checkout -- \
+ check/tr1_pr83140.cc \
+ check/pr83140.cc \
  check/tr1_pr68397.cc \
  check/pr68397.cc \
  check/pr56216_cyl_bessel_i.cc \

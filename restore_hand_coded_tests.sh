@@ -1,4 +1,6 @@
 git checkout -- \
+  testsuite/tr1/5_numerical_facilities/special_functions/02_assoc_legendre/pr83140.cc \
+  testsuite/special_functions/02_assoc_legendre/pr83140.cc \
   testsuite/tr1/5_numerical_facilities/special_functions/15_expint/pr68397.cc \
   testsuite/special_functions/14_expint/pr68397.cc \
   testsuite/special_functions/07_cyl_bessel_i/pr56216.cc \
@@ -18,6 +20,8 @@ git checkout -- \
   testsuite/ext/special_functions/gamma_reciprocal/check_value.cc \
   testsuite/ext/special_functions/eulerian_2/check_value.cc
 
+cp  testsuite/tr1/5_numerical_facilities/special_functions/02_assoc_legendre/pr83140.cc   check/tr1_pr83140.cc
+cp  testsuite/special_functions/02_assoc_legendre/pr83140.cc   check/pr83140.cc
 cp  testsuite/tr1/5_numerical_facilities/special_functions/15_expint/pr68397.cc   check/tr1_pr68397.cc
 cp  testsuite/special_functions/14_expint/pr68397.cc                  check/pr68397.cc
 cp  testsuite/special_functions/07_cyl_bessel_i/pr56216.cc            check/pr56216_cyl_bessel_i.cc
@@ -38,6 +42,8 @@ cp  testsuite/ext/special_functions/gamma_reciprocal/check_value.cc   check/chec
 cp  testsuite/ext/special_functions/eulerian_2/check_value.cc         check/check_eulerian_2.cc
 
 git add \
+  check/tr1_pr83140.cc \
+  check/pr83140.cc \
   check/tr1_pr68397.cc \
   check/pr68397.cc \
   check/pr56216_cyl_bessel_i.cc \

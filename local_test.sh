@@ -49,6 +49,7 @@ ${makedir} ${test_dir}/21_sph_neumann
 
 ${tool} check/check_assoc_laguerre.cc   ${test_dir}/01_assoc_laguerre/check_value.cc
 ${tool} check/check_assoc_legendre.cc   ${test_dir}/02_assoc_legendre/check_value.cc
+${tool} check/pr83140.cc                ${test_dir}/02_assoc_legendre/pr83140.cc
 ${tool} check/check_beta.cc             ${test_dir}/03_beta/check_value.cc
 ${tool} check/check_comp_ellint_1.cc    ${test_dir}/04_comp_ellint_1/check_value.cc
 ${tool} check/check_comp_ellint_2.cc    ${test_dir}/05_comp_ellint_2/check_value.cc
@@ -281,6 +282,7 @@ ${makedir} ${tr1_dir}/23_sph_neumann
 
 ${tool} check/check_tr1_assoc_laguerre.cc   ${tr1_dir}/01_assoc_laguerre/check_value.cc
 ${tool} check/check_tr1_assoc_legendre.cc   ${tr1_dir}/02_assoc_legendre/check_value.cc
+${tool} check/tr1_pr83140.cc                ${tr1_dir}/02_assoc_legendre/pr83140.cc
 ${tool} check/check_tr1_beta.cc	            ${tr1_dir}/03_beta/check_value.cc
 ${tool} check/check_tr1_comp_ellint_1.cc    ${tr1_dir}/04_comp_ellint_1/check_value.cc
 ${tool} check/check_tr1_comp_ellint_2.cc    ${tr1_dir}/05_comp_ellint_2/check_value.cc
