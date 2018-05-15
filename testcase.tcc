@@ -87,12 +87,11 @@ template<typename Tp>
     using __value_type = Tp;
   };
 
-template<>
-  template<typename Tp>
-    struct __num_traits<std::complex<Tp>>
-    {
-      using __value_type = typename std::complex<Tp>::value_type;
-    };
+template<typename Tp>
+  struct __num_traits<std::complex<Tp>>
+  {
+    using __value_type = typename std::complex<Tp>::value_type;
+  };
 
 template<typename Tp>
   using __num_traits_t = typename __num_traits<Tp>::__value_type;
