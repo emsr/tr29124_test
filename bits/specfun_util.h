@@ -188,10 +188,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     { using __type = decltype(__promote_fp_help_t<std::decay_t<_Tp>>{}
 		   + typename __promote_fp<_Tps...>::__type{}); };
 
-  template<>
-    template<typename _Tp>
-      struct __promote_fp<_Tp>
-      { using __type = decltype(__promote_fp_help_t<std::decay_t<_Tp>>{}); };
+  template<typename _Tp>
+    struct __promote_fp<_Tp>
+    { using __type = decltype(__promote_fp_help_t<std::decay_t<_Tp>>{}); };
 #endif
 
   template<typename... _Tps>

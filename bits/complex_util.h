@@ -64,27 +64,25 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * A class to reach into compound numeric types to extract the
    * value or element type - specialized for complex.
    */
-  template<>
-    template<typename _Tp>
-      struct __num_traits<std::complex<_Tp>>
-      {
-	using __value_type = typename std::complex<_Tp>::value_type;
-      };
+  template<typename _Tp>
+    struct __num_traits<std::complex<_Tp>>
+    {
+      using __value_type = typename std::complex<_Tp>::value_type;
+    };
 
   /**
    * Create a complex number NaN.
    */
-  template<>
-    template<typename _Tp>
-      struct __make_NaN<std::complex<_Tp>>
+  template<typename _Tp>
+    struct __make_NaN<std::complex<_Tp>>
+    {
+      constexpr std::complex<_Tp>
+      operator()()
       {
-	constexpr std::complex<_Tp>
-	operator()()
-	{
-	  auto __NaN = std::numeric_limits<_Tp>::quiet_NaN();
-	  return std::complex<_Tp>{__NaN, __NaN};
-	}
-      };
+	auto __NaN = std::numeric_limits<_Tp>::quiet_NaN();
+	return std::complex<_Tp>{__NaN, __NaN};
+      }
+    };
 
   /**
    * Return true if one component of a complex number is inf.
@@ -450,15 +448,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * specialized for complex.
    * This is used for numeric argument promotion of complex and cmath
    */
-  template<>
-    template<typename _Tp>
-      struct __promote_fp_help<std::complex<_Tp>, false>
-      {
-      private:
-	using __vtype = typename std::complex<_Tp>::value_type;
-      public:
-	using __type = decltype(std::complex<__promote_fp_help_t<__vtype>>{});
-      };
+  template<typename _Tp>
+    struct __promote_fp_help<std::complex<_Tp>, false>
+    {
+    private:
+      using __vtype = typename std::complex<_Tp>::value_type;
+    public:
+      using __type = decltype(std::complex<__promote_fp_help_t<__vtype>>{});
+    };
 
   /**
    * Type introspection for complex.
@@ -470,10 +467,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Type introspection for complex.
    */
-  template<>
-    template<typename _Tp>
-      struct is_complex<std::complex<_Tp>> : public std::true_type
-      { };
+  template<typename _Tp>
+    struct is_complex<std::complex<_Tp>> : public std::true_type
+    { };
 
   /**
    * Type introspection for complex.
