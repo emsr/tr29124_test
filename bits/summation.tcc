@@ -323,12 +323,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  this->_M_den[__n - 1] = this->_M_den[__n] - this->_M_den[__n - 1];
 	  if (__n > 1)
 	    {
-	      auto __bn1 = this->_M_beta + _Tp(__n - 2);
-	      auto __bn2 = this->_M_beta + _Tp(__n - 1);
+	      auto __bn1 = this->_M_beta + _Tp(__n - 1);
+	      auto __bn2 = this->_M_beta + _Tp(__n - 2);
 	      for (auto __j = 2; __j <= __n; ++__j)
 		{
-		  auto __fact = __bn1 * __bn2
-			   / ((__bn1 + _Tp(__j - 1)) * (__bn2 + _Tp(__j - 1)));
+		  auto __fact = (__bn1 / (__bn1 + _Tp(__j - 1)))
+			      * (__bn2 / (__bn2 + _Tp(__j - 1)));
 		  this->_M_num[__n - __j] = this->_M_num[__n - __j + 1]
 					  - __fact * this->_M_num[__n - __j];
 		  this->_M_den[__n - __j] = this->_M_den[__n - __j + 1]
