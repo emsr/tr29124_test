@@ -73,6 +73,7 @@
 #  include <bits/sf_jacobi.tcc>
 #  include <bits/sf_laguerre.tcc>
 #  include <bits/sf_legendre.tcc>
+#  include <bits/sf_lerch.tcc>
 #  include <bits/sf_mod_bessel.tcc>
 #  include <bits/sf_hermite.tcc>
 #  include <bits/sf_theta.tcc>
@@ -237,6 +238,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::lbinomial "lbinomial - Log binomial coefficients"
    * - @ref __gnu_cxx::ldouble_factorial "ldouble_factorial - Log double factorials"
    * - @ref __gnu_cxx::legendre_q "legendre_q - Legendre functions of the second kind"
+   * - @ref __gnu_cxx::lerch "lerch - The Lerch transcendent"
    * - @ref __gnu_cxx::lfactorial "lfactorial - Log factorials"
    * - @ref __gnu_cxx::lfalling_factorial "lfalling_factorial - Log falling factorials"
    * - @ref __gnu_cxx::lgamma "lgamma - Log gamma for complex arguments"
@@ -6961,6 +6963,41 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline _Tp
     stirling_2(unsigned int __n, unsigned int __m)
     { return std::__detail::__stirling_2<_Tp>(__n, __m); }
+
+  /**
+   * Return the Lerch transcendent @f$ \Phi(z,s,a) @f$ for @c float arguments.
+   *
+   * @see lerch for details.
+   */
+  inline float
+  lerchf(float __z, float __s, float __a)
+  { return std::__detail::__lerch<float>(__z, __s, __a); }
+
+  /**
+   * Return the Lerch transcendent @f$ \Phi(z,s,a) @f$
+   * for <tt> long double </tt> arguments.
+   *
+   * @see lerch for details.
+   */
+  inline long double
+  lerchl(long double __z, long double __s, long double __a)
+  { return std::__detail::__lerch<long double>(__z, __s, __a); }
+
+  /**
+   * Return the Lerch transcendent @f$ \Phi(z,s,a) @f$.
+   *
+   * The series is:
+   * @f[   *
+   *   \Phi(z,s,a) = \sum_{k=0}^{\infty}\frac{z^k}{(a+k^s}
+   * @f]
+   */
+  template<typename _Tp, typename _Ts, typename _Ta>
+    inline __gnu_cxx::__promote_fp_t<_Tp, _Ts, _Ta>
+    lerch(_Tp __z, _Ts __s, _Ta __a)
+    {
+      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Ts, _Ta>;
+      return std::__detail::__lerch<__type>(__z, __s, __a);
+    }
 
 #endif // __cplusplus >= 201103L
 

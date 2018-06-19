@@ -54,7 +54,7 @@ namespace __detail
     };
 
   /**
-   *  Blows on nonpositive integeral a.
+   * This function blows up on nonpositive integeral a.
    */
   template<typename _Tp>
     _Tp
@@ -89,7 +89,7 @@ namespace __detail
     }
 
   /**
-   *  Blows on nonpositive integeral a.
+   * This function blows up on nonpositive integeral a.
    */
   template<typename _Tp>
     _Tp
@@ -140,7 +140,7 @@ namespace __detail
     }
 
   /**
-   *  Blows on nonpositive integeral a.
+   * This function blows up on nonpositive integeral a.
    *  As usual, the binomial coefficient kills this for practical purposes.
    */
   template<typename _Tp>
@@ -186,7 +186,7 @@ namespace __detail
     }
 
   /**
-   *  Try the WenigerDelta<MonotoneVanWijngaarden> composition.
+   * Try the WenigerDelta<MonotoneVanWijngaarden> composition.
    */
   template<typename _Tp>
     _Tp
@@ -225,7 +225,7 @@ namespace __detail
     }
 
   /**
-   *  blows on nonpositive integeral a.
+   * This function blows up on nonpositive integeral a.
    */
   template<typename _Tp>
     _Tp
