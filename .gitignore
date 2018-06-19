@@ -252,6 +252,7 @@ test_clausen
 test_cmath
 test_comp_ellint_1
 test_complex_decomp
+test_complex_fma
 test_complex_gamma
 test_complex128
 test_conf_hyperg
