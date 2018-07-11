@@ -230,6 +230,7 @@ diff_local_special_function
 testcase
 testcase_tr1
 testcase2
+test_abs
 test_arith_geom_mean
 test_airy
 test_airy_roots
@@ -252,6 +253,7 @@ test_clausen
 test_cmath
 test_comp_ellint_1
 test_complex_decomp
+test_complex_fma
 test_complex_gamma
 test_complex128
 test_conf_hyperg
@@ -369,6 +371,7 @@ test_theta
 test_tricomi_u
 test_trig
 test_trigamma
+test_ulp
 test_weierstrass_ellint
 test_wilson
 test_wright_omega

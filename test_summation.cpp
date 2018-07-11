@@ -23,11 +23,15 @@ template<typename Tp>
   {
     const auto _S_max_log = __gnu_cxx::__log_max(proto);
 
+    using ABS_t = __gnu_cxx::_AitkenDeltaSquaredSum<__gnu_cxx::_BasicSum<Tp>>;
+    using ShankS_t = __gnu_cxx::_AitkenDeltaSquaredSum<ABS_t>;
+
     std::cout.precision(__gnu_cxx::__digits10(proto));
     auto w = 8 + std::cout.precision();
     __gnu_cxx::_BasicSum<Tp> BS;
     __gnu_cxx::_AitkenDeltaSquaredSum<__gnu_cxx::_BasicSum<Tp>> ABS;
     __gnu_cxx::_AitkenDeltaSquaredSum<__gnu_cxx::_KahanSum<Tp>> AKS;
+    ShankS_t ShankS;
     __gnu_cxx::_WinnEpsilonSum<__gnu_cxx::_BasicSum<Tp>> WBS;
     __gnu_cxx::_WinnEpsilonSum<__gnu_cxx::_KahanSum<Tp>> WKS;
     __gnu_cxx::_BrezinskiThetaSum<__gnu_cxx::_BasicSum<Tp>> BTS;
@@ -40,7 +44,7 @@ template<typename Tp>
     __gnu_cxx::_WenigerTauSum<__gnu_cxx::_BasicSum<Tp>> WTS;
     __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<Tp>> WDS;
     __gnu_cxx::_WenigerPhiSum<__gnu_cxx::_BasicSum<Tp>> WPS;
-    __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<Tp>> WDvW;
+    __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<Tp>> WDvW; // Start terma: (8)
 
     auto s = Tp{1.2};
     auto zetaterm = [s, _S_max_log](std::size_t k)
@@ -49,8 +53,8 @@ template<typename Tp>
 
     auto VwT = __gnu_cxx::_VanWijngaardenCompressor<decltype(zetaterm)>(zetaterm);
 
-    //auto zeta = Tp{5.591582441177750776536563193423143277642L};
-    std::cout << "\n\nzeta(1.2) = 5.59158244117775077653\n";
+    auto zeta = Tp{5.591582441177750776536563193423143277642L};
+    std::cout << "\n\nzeta(1.2) = " << std::setw(w) << zeta << '\n';
     std::cout << std::setw(w) << "k"
 	      << std::setw(w) << "Basic"
 	      << std::setw(w) << "Aitken-Basic"
@@ -65,8 +69,10 @@ template<typename Tp>
 	      << std::setw(w) << "WenigerDelta-Basic"
 	      << std::setw(w) << "WenigerPhi-Basic"
 	      << std::setw(w) << "WenigerD-vW"
+	      << std::setw(w) << "Shanks"
 	      << '\n';
     std::cout << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
 	      << std::setw(w) << "------------------"
 	      << std::setw(w) << "------------------"
 	      << std::setw(w) << "------------------"
@@ -97,6 +103,7 @@ template<typename Tp>
 	WDS += term;
 	WPS += term;
 	WDvW += VwT[k];
+	ShankS += term;
 	std::cout << std::setw(w) << k
 		  << std::setw(w) << BS()
 		  << std::setw(w) << ABS()
@@ -111,6 +118,7 @@ template<typename Tp>
 	  	  << std::setw(w) << WDS()
 	  	  << std::setw(w) << WPS()
 	  	  << std::setw(w) << WDvW()
+		  << std::setw(w) << ShankS()
 		  << '\n';
       }
 
@@ -132,6 +140,7 @@ template<typename Tp>
     WTS.reset(term);
     WDS.reset(term);
     WPS.reset(term);
+    ShankS.reset(term);
     std::cout << std::setw(w) << "k"
 	      << std::setw(w) << "Basic"
 	      << std::setw(w) << "Aitken-Basic"
@@ -145,8 +154,11 @@ template<typename Tp>
 	      << std::setw(w) << "WenigerTau-Basic"
 	      << std::setw(w) << "WenigerDelta-Basic"
 	      << std::setw(w) << "WenigerPhi-Basic"
+	      << std::setw(w) << "Shanks"
 	      << '\n';
     std::cout << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
+	      << std::setw(w) << "------------------"
 	      << std::setw(w) << "------------------"
 	      << std::setw(w) << "------------------"
 	      << std::setw(w) << "------------------"
@@ -174,6 +186,7 @@ template<typename Tp>
 		  << std::setw(w) << WTS()
 		  << std::setw(w) << WDS()
 		  << std::setw(w) << WPS()
+		  << std::setw(w) << ShankS()
 		  << '\n';
 	term *= (a + k - 1) * (b + k - 1) * z / k;
 	BS += term;
@@ -188,6 +201,7 @@ template<typename Tp>
 	WTS += term;
 	WDS += term;
 	WPS += term;
+	ShankS += term;
       }
   }
 

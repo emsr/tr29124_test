@@ -1,6 +1,6 @@
 // Special functions -*- C++ -*-
 
-// Copyright (C) 2006-2017 Free Software Foundation, Inc.
+// Copyright (C) 2006-2018 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -175,52 +175,52 @@ namespace __detail
     _Tp
     __conf_hyperg_luke(_Tp __a, _Tp __c, _Tp __xin)
     {
-      const _Tp __big = __gnu_cxx::__root_max(_Tp{6});
+      const auto __big = __gnu_cxx::__root_max(_Tp{6});
       const int __nmax = 20000;
-      const _Tp __eps = __gnu_cxx::__epsilon(__xin);
-      const _Tp __x  = -__xin;
-      const _Tp __x3 = __x * __x * __x;
-      const _Tp __t0 = __a / __c;
-      const _Tp __t1 = (__a + _Tp{1}) / (_Tp{2} * __c);
-      const _Tp __t2 = (__a + _Tp{2}) / (_Tp{2} * (__c + _Tp{1}));
-      _Tp __F = _Tp{1};
-      _Tp __prec;
+      const auto __eps = __gnu_cxx::__epsilon(__xin);
+      const auto __x  = -__xin;
+      const auto __x3 = __x * __x * __x;
+      const auto __t0 = __a / __c;
+      const auto __t1 = (__a + _Tp{1}) / (_Tp{2} * __c);
+      const auto __t2 = (__a + _Tp{2}) / (_Tp{2} * (__c + _Tp{1}));
 
-      _Tp __Bnm3 = _Tp{1};
-      _Tp __Bnm2 = _Tp{1} + __t1 * __x;
-      _Tp __Bnm1 = _Tp{1} + __t2 * __x * (_Tp{1} + __t1 / _Tp{3} * __x);
+      auto __F = _Tp{1};
 
-      _Tp __Anm3 = _Tp{1};
-      _Tp __Anm2 = __Bnm2 - __t0 * __x;
-      _Tp __Anm1 = __Bnm1 - __t0 * (_Tp{1} + __t2 * __x) * __x
-		 + __t0 * __t1 * (__c / (__c + _Tp{1})) * __x * __x;
+      auto __Bnm3 = _Tp{1};
+      auto __Bnm2 = _Tp{1} + __t1 * __x;
+      auto __Bnm1 = _Tp{1} + __t2 * __x * (_Tp{1} + __t1 / _Tp{3} * __x);
+
+      auto __Anm3 = _Tp{1};
+      auto __Anm2 = __Bnm2 - __t0 * __x;
+      auto __Anm1 = __Bnm1 - __t0 * (_Tp{1} + __t2 * __x) * __x
+		  + __t0 * __t1 * (__c / (__c + _Tp{1})) * __x * __x;
 
       int __n = 3;
       while(true)
 	{
-	  _Tp __npam1 = _Tp(__n - 1) + __a;
-	  _Tp __npcm1 = _Tp(__n - 1) + __c;
-	  _Tp __npam2 = _Tp(__n - 2) + __a;
-	  _Tp __npcm2 = _Tp(__n - 2) + __c;
-	  _Tp __tnm1  = _Tp(2 * __n - 1);
-	  _Tp __tnm3  = _Tp(2 * __n - 3);
-	  _Tp __tnm5  = _Tp(2 * __n - 5);
-	  _Tp __F1 =  (_Tp(__n - 2) - __a) / (_Tp{2} * __tnm3 * __npcm1);
-	  _Tp __F2 =  (_Tp(__n) + __a) * __npam1
-		   / (_Tp{4} * __tnm1 * __tnm3 * __npcm2 * __npcm1);
-	  _Tp __F3 = -__npam2 * __npam1 * (_Tp(__n - 2) - __a)
-		   / (_Tp{8} * __tnm3 * __tnm3 * __tnm5
-		   * (_Tp(__n - 3) + __c) * __npcm2 * __npcm1);
-	  _Tp __E  = -__npam1 * (_Tp(__n - 1) - __c)
-		   / (_Tp{2} * __tnm3 * __npcm2 * __npcm1);
+	  auto __npam1 = _Tp(__n - 1) + __a;
+	  auto __npcm1 = _Tp(__n - 1) + __c;
+	  auto __npam2 = _Tp(__n - 2) + __a;
+	  auto __npcm2 = _Tp(__n - 2) + __c;
+	  auto __tnm1  = _Tp(2 * __n - 1);
+	  auto __tnm3  = _Tp(2 * __n - 3);
+	  auto __tnm5  = _Tp(2 * __n - 5);
+	  auto __F1 =  (_Tp(__n - 2) - __a) / (_Tp{2} * __tnm3 * __npcm1);
+	  auto __F2 =  (_Tp(__n) + __a) * __npam1
+		    / (_Tp{4} * __tnm1 * __tnm3 * __npcm2 * __npcm1);
+	  auto __F3 = -__npam2 * __npam1 * (_Tp(__n - 2) - __a)
+		    / (_Tp{8} * __tnm3 * __tnm3 * __tnm5
+		    * (_Tp(__n - 3) + __c) * __npcm2 * __npcm1);
+	  auto __E  = -__npam1 * (_Tp(__n - 1) - __c)
+		    / (_Tp{2} * __tnm3 * __npcm2 * __npcm1);
 
-	  _Tp __An = (_Tp{1} + __F1 * __x) * __Anm1
-		   + (__E + __F2 * __x) * __x * __Anm2 + __F3 * __x3 * __Anm3;
-	  _Tp __Bn = (_Tp{1} + __F1 * __x) * __Bnm1
-		   + (__E + __F2 * __x) * __x * __Bnm2 + __F3 * __x3 * __Bnm3;
-	  _Tp __r = __An / __Bn;
+	  auto __An = (_Tp{1} + __F1 * __x) * __Anm1
+		    + (__E + __F2 * __x) * __x * __Anm2 + __F3 * __x3 * __Anm3;
+	  auto __Bn = (_Tp{1} + __F1 * __x) * __Bnm1
+		    + (__E + __F2 * __x) * __x * __Bnm2 + __F3 * __x3 * __Bnm3;
+	  auto __r = __An / __Bn;
 
-	  __prec = std::abs((__F - __r) / __F);
+	  const auto __prec = std::abs((__F - __r) / __F);
 	  __F = __r;
 
 	  if (__prec < __eps || __n > __nmax)
@@ -396,6 +396,45 @@ namespace __detail
 
 
   /**
+   * @brief Return the hypergeometric polynomial @f$ {}_2F_1(-m,b;c;x) @f$
+   * by Holm recursion.
+   *
+   * The hypergeometric function is defined by
+   * @f[
+   *   {}_2F_1(-m,b;c;x) = \frac{\Gamma(c)}{\Gamma(a)\Gamma(b)}
+   * 			\sum_{n=0}^{\infty}
+   * 			\frac{\Gamma(n-m)\Gamma(b+n)}{\Gamma(c+n)}
+   * 			\frac{x^n}{n!}
+   * @f]
+   *
+   * @f[
+   * @f]
+   *
+   * @param  __m  The first @a numerator parameter.
+   * @param  __b  The second @a numerator parameter.
+   * @param  __c  The @a denominator parameter.
+   * @param  __x  The argument of the confluent hypergeometric function.
+   * @return  The confluent hypergeometric function.
+   */
+  template<typename _Tp>
+    _Tp
+    __hyperg_recur(int __m, _Tp __b, _Tp __c, _Tp __x)
+    {
+      auto __term = _Tp{1};
+      auto __Fabc = _Tp{1};
+      for (int __i = 0; __i < -__m; ++__i)
+	{
+	  __term *= _Tp(__m + __i) * (__b + _Tp(__i)) * __x
+		  / ((__c + _Tp(__i)) * _Tp(1 + __i));
+	  __Fabc += __term;
+/// @fixme: go recur!
+	}
+
+      return __Fabc;
+    }
+
+
+  /**
    * @brief  Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$
    * 	     by an iterative procedure described in
    * 	     Luke, Algorithms for the Computation of Mathematical Functions.
@@ -431,12 +470,12 @@ namespace __detail
 	  const auto __npam1 = _Tp(__n - 1) + __a;
 	  const auto __npbm1 = _Tp(__n - 1) + __b;
 	  const auto __npcm1 = _Tp(__n - 1) + __c;
-	  const auto __npam2 = _Tp(__n - 2) + __a;
-	  const auto __npbm2 = _Tp(__n - 2) + __b;
-	  const auto __npcm2 = _Tp(__n - 2) + __c;
+	  const auto __npam2 = __npam1 - _Tp{1};
+	  const auto __npbm2 = __npbm1 - _Tp{1};
+	  const auto __npcm2 = __npcm1 - _Tp{1};
 	  const auto __tnm1  = _Tp(2 * __n - 1);
-	  const auto __tnm3  = _Tp(2 * __n - 3);
-	  const auto __tnm5  = _Tp(2 * __n - 5);
+	  const auto __tnm3  = __tnm1 - _Tp{2};
+	  const auto __tnm5  = __tnm3 - _Tp{2};
 	  const auto __n2 = __n * __n;
 	  const auto __F1 = (_Tp{3} * __n2 + (__a + __b - _Tp{6}) * __n
 			  + _Tp{2} - __a * __b - _Tp{2} * (__a + __b))
