@@ -1634,7 +1634,7 @@ _S_neg_double_factorial_table[999]
     _GLIBCXX14_CONSTEXPR _Tp
     __log_factorial(unsigned int __n)
     {
-      if (__n <= _S_num_factorials<_Tp>)
+      if (__n < _S_num_factorials<_Tp>)
 	return _S_factorial_table[__n].__log_factorial;
       else
 	return __log_gamma(_Tp(__n + 1));
@@ -1681,7 +1681,7 @@ _S_neg_double_factorial_table[999]
 	  else
 	    return std::exp(__log_double_factorial(_Tp(__n)));
 	}
-      else if (__n <= _S_num_double_factorials<_Tp>)
+      else if (__n < _S_num_double_factorials<_Tp>)
 	return _S_double_factorial_table[__n].__factorial;
       else
 	return __gnu_cxx::__quiet_NaN<_Tp>();
@@ -1718,7 +1718,7 @@ _S_neg_double_factorial_table[999]
 	  else
 	    return __log_double_factorial(_Tp(__n));
 	}
-      else if (__n <= _S_num_double_factorials<_Tp>)
+      else if (__n < _S_num_double_factorials<_Tp>)
 	return _S_double_factorial_table[__n].__log_factorial;
       else
 	return __log_double_factorial(_Tp(__n));
