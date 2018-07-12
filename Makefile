@@ -975,7 +975,7 @@ test_marcum_q: test_marcum_q.cpp
 	$(CXX17) -I. -o test_marcum_q test_marcum_q.cpp -lquadmath
 
 test_math_h: test_math_h.cpp
-	$(CXX17) -I. -o test_math_h test_math_h.cpp -lquadmath
+	$(CXX) -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_math_h test_math_h.cpp -lquadmath
 
 test_maxint: test_maxint.cpp
 	$(CXX17) -I. -I../mpreal -o test_maxint test_maxint.cpp -lquadmath -lmpfr
