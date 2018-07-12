@@ -18,10 +18,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch tes
 
 #include "lerchphi/Source/lerchphi.h"
 
-namespace std
-{
-namespace __detail
-{
+//namespace std
+//{
+//namespace __detail
+//{
 
   /**
    * A functor for a vanWijnGaarden compressor.
@@ -229,7 +229,7 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __lerch(_Tp __z, _Tp __s, _Tp __a)
+    __lerch_phi(_Tp __z, _Tp __s, _Tp __a)
     {
       const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
       const auto _S_eps = __gnu_cxx::__epsilon(__s);
@@ -421,27 +421,29 @@ namespace __detail
       return __expmu * __gamsp1 * __lerch(__expmu, _Tp{1} + __s, _Tp{1});
     }
 
-}
-}
+//}
+//}
 
-namespace __gnu_cxx
-{
+//namespace __gnu_cxx
+//{
+
   float
-  lerchf(float __z, float __s, float __a)
-  { return std::__detail::__lerch<float>(__z, __s, __a); }
+  lerch_phif(float __z, float __s, float __a)
+  { return __lerch_phi<float>(__z, __s, __a); }
 
   long double
-  lerchl(long double __z, long double __s, long double __a)
-  { return std::__detail::__lerch<long double>(__z, __s, __a); }
+  lerch_phil(long double __z, long double __s, long double __a)
+  { return __lerch_phi<long double>(__z, __s, __a); }
 
   template<typename _Tpz, typename _Tps, typename _Tpa>
     __gnu_cxx::__promote_fp_t<_Tpz, _Tps, _Tpa>
-    lerch(_Tpz __z, _Tps __s, _Tpa __a)
+    lerch_phi(_Tpz __z, _Tps __s, _Tpa __a)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tpz, _Tps, _Tpa>;
-      return std::__detail::__lerch<__type>(__z, __s, __a);
+      return __lerch_phi<__type>(__z, __s, __a);
     }
-}
+
+//} // namespace __gnu_cxx
 
 
 
@@ -516,7 +518,7 @@ main()
       auto phi = Tp{0};
       try
 	{
-	  phi = __gnu_cxx::lerch(tcase.z, tcase.s, tcase.a);
+	  phi = lerch_phi(tcase.z, tcase.s, tcase.a);
 	  auto test0 = phi - tcase.phi;
 	  std::cout << std::setw(width) << phi
                     << std::setw(width) << test0;
@@ -553,10 +555,10 @@ main()
   for (int iz = -99; iz <= +99; ++iz)
     {
       auto z = 0.01 * iz;
-      auto lerch1 = std::__detail::__lerch_sum(z, s, a);
-      auto lerch2 = std::__detail::__lerch_vanwijngaarden_sum(z, s, a);
+      auto lerch1 = __lerch_sum(z, s, a);
+      auto lerch2 = __lerch_vanwijngaarden_sum(z, s, a);
       //auto lerch3 = __lerch_double_sum(z, s, a);
-      auto lerch4 = std::__detail::__lerch_delta_vanwijngaarden_sum(z, s, a);
+      auto lerch4 = __lerch_delta_vanwijngaarden_sum(z, s, a);
       double acc = 2 * std::numeric_limits<Tp>::epsilon();
       double lphi = 0.0;
       int iter = 0;
@@ -582,10 +584,10 @@ main()
   for (int iz = -99; iz <= +99; ++iz)
     {
       auto z = 0.01 * iz;
-      auto lerch1 = std::__detail::__lerch_sum(z, s, a);
-      auto lerch2 = std::__detail::__lerch_vanwijngaarden_sum(z, s, a);
+      auto lerch1 = __lerch_sum(z, s, a);
+      auto lerch2 = __lerch_vanwijngaarden_sum(z, s, a);
       //auto lerch3 = __lerch_double_sum(z, s, a);
-      auto lerch4 = std::__detail::__lerch_delta_vanwijngaarden_sum(z, s, a);
+      auto lerch4 = __lerch_delta_vanwijngaarden_sum(z, s, a);
       double acc = 2 * std::numeric_limits<Tp>::epsilon();
       double lphi = 0.0;
       int iter = 0;
@@ -621,7 +623,7 @@ main()
       auto zlerch = _S_nan;
       try
 	{
-	  zlerch = z * __gnu_cxx::lerch(z, s, a);
+	  zlerch = z * lerch_phi(z, s, a);
 	}
       catch (...)
 	{
@@ -658,7 +660,7 @@ main()
       auto lerch = _S_nan;
       try
 	{
-	  lerch = __gnu_cxx::lerch(z, s, a);
+	  lerch = lerch_phi(z, s, a);
 	}
       catch (...)
 	{
@@ -696,7 +698,7 @@ main()
 	  auto lerch = _S_nan;
 	  try
 	    {
-	      lerch = __gnu_cxx::lerch(z, s, a);
+	      lerch = lerch_phi(z, s, a);
 	    }
 	  catch (...)
 	    {
@@ -727,10 +729,10 @@ main()
 	  for (int iz = -99; iz <= +99; ++iz)
 	    {
 	      auto z = 0.01 * iz;
-	      auto lerch1 = std::__detail::__lerch_sum(z, s, a);
-	      auto lerch2 = std::__detail::__lerch_vanwijngaarden_sum(z, s, a);
-	      //auto lerch3 = std::__detail::__lerch_double_sum(z, s, a);
-	      auto lerch4 = std::__detail::__lerch_delta_vanwijngaarden_sum(z, s, a);
+	      auto lerch1 = __lerch_sum(z, s, a);
+	      auto lerch2 = __lerch_vanwijngaarden_sum(z, s, a);
+	      //auto lerch3 = __lerch_double_sum(z, s, a);
+	      auto lerch4 = __lerch_delta_vanwijngaarden_sum(z, s, a);
 	      double acc = 2 * std::numeric_limits<Tp>::epsilon();
 	      double lphi = 0.0;
 	      int iter = 0;
