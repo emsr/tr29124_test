@@ -4,25 +4,24 @@
 #include <fstream>
 #include <complex>
 
-/**
- * A class to reach into compound numeric types to extract the
- * value or element type.  This will be specialized for complex
- * and other types as appropriate.
- */
-template<typename _Tp>
-  struct num_traits
-  {
-    using value_type = _Tp;
-  };
+  /**
+   * A class to reach into compound numeric types to extract the
+   * value or element type.  This will be specialized for complex
+   * and other types as appropriate.
+   */
+  template<typename _Tp>
+    struct num_traits
+    {
+      using value_type = _Tp;
+    };
 
-template<typename _Tp>
-  using num_traits_t = typename num_traits<_Tp>::value_type;
+  template<typename _Tp>
+    using num_traits_t = typename num_traits<_Tp>::value_type;
 
-/**
- * A class to reach into compound numeric types to extract the
- * value or element type - specialized for complex.
- */
-template<>
+  /**
+   * A class to reach into compound numeric types to extract the
+   * value or element type - specialized for complex.
+   */
   template<typename _Tp>
     struct num_traits<std::complex<_Tp>>
     {
@@ -39,10 +38,9 @@ template<>
   /**
    * Type introspection for complex.
    */
-  template<>
-    template<typename _Tp>
-      struct is_complex<std::complex<_Tp>> : public std::true_type
-      { };
+  template<typename _Tp>
+    struct is_complex<std::complex<_Tp>> : public std::true_type
+    { };
 
   /**
    * Type introspection for complex.
