@@ -411,7 +411,7 @@ namespace __detail
 	      auto __Plm1 = (__lm & 1 ? -1 : 1) * __lmfact / __mmfact / __mmfact
 			    / std::pow(_Tp{2}, __lm);
 	      auto __Ppl = __l * __Plm1;
-	      __pt[__m].__zero = _Tp{0};
+	      __pt[__m].__point = _Tp{0};
 	      __pt[__m].__weight = _Tp{2} / __Ppl / __Ppl;
 	    }
 	  else
@@ -424,7 +424,7 @@ namespace __detail
 	      auto __Plm1 = (__lm & 1 ? -1 : 1)
 			  * std::exp(__lmfact - 2 * __mmfact - __lm * _S_ln2);
 	      auto __Ppl = __l * __Plm1;
-	      __pt[__m].__zero = _Tp{0};
+	      __pt[__m].__point = _Tp{0};
 	      __pt[__m].__weight = _Tp{2} / __Ppl / __Ppl;
 	    }
 	}
@@ -468,8 +468,8 @@ namespace __detail
 					 "Too many iterations");
 	    }
 
-	  __pt[__i - 1].__zero = -__z;
-	  __pt[__l - __i].__zero = __z;
+	  __pt[__i - 1].__point = -__z;
+	  __pt[__l - __i].__point = __z;
 	  __pt[__i - 1].__weight = __w;
 	  __pt[__l - __i].__weight = __w;
 	}

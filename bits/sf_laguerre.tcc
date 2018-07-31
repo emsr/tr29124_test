@@ -244,7 +244,7 @@ namespace __detail
 	      auto __ai = __i - 2;
 	      __z += ((1.0 + 2.55 * __ai) / (1.9 * __ai)
 		     + 1.26 * __ai * __alpha1 / (1.0 + 3.5 * __ai))
-		   * (__z - __pt[__i - 3].__zero) / (1.0 + 0.3 * __alpha1);
+		   * (__z - __pt[__i - 3].__point) / (1.0 + 0.3 * __alpha1);
 	    }
 	  // Iterate TTRR for polynomial values
 	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
@@ -274,7 +274,7 @@ namespace __detail
 		std::__throw_logic_error("__laguerre_zeros: "
 					 "Too many iterations");
 	   }
-	  __pt[__i - 1].__zero = __z;
+	  __pt[__i - 1].__point = __z;
 	  __pt[__i - 1].__weight = __w;
 	}
     return __pt;

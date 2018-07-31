@@ -53,20 +53,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   };
 
   /**
-   * A struct to store a cosine and a sine value.
-   * A return for sincos-type functions.
+   * A structure to store quadrature rules.
    */
   template<typename _Tp>
     struct __quadrature_point_t
     {
-      _Tp __zero;
+      _Tp __point;
       _Tp __weight;
 
       __quadrature_point_t() = default;
 
-      __quadrature_point_t(_Tp __z, _Tp __w)
-      : __zero(__z),
-	__weight(__w)
+      __quadrature_point_t(_Tp __pt, _Tp __wt)
+      : __point(__pt),
+	__weight(__wt)
       { }
     };
 

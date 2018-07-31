@@ -268,7 +268,7 @@ namespace __detail
 	      auto __mm = __nm / 2;
 	      auto __mmfact = __factorial<_Tp>(__mm);
 	      auto __Hnm1 = (__mm & 1 ? _Tp{-1} : _Tp{1}) / __mmfact;
-	      __pt[__m].__zero = _Tp{0};
+	      __pt[__m].__point = _Tp{0};
 	      __pt[__m].__weight = _S_sqrt_pi * std::pow(_Tp{2}, _Tp(__n - 1))
 				 / __nmfact / __Hnm1 / __Hnm1 / __n;
 	    }
@@ -278,7 +278,7 @@ namespace __detail
 	      auto __nmfact = __log_factorial<_Tp>(__nm);
 	      auto __mm = __nm / 2;
 	      auto __mmfact = __log_factorial<_Tp>(__mm);
-	      __pt[__m].__zero = _Tp{0};
+	      __pt[__m].__point = _Tp{0};
 	      __pt[__m].__weight = _S_sqrt_pi * std::pow(_Tp{2}, _Tp(__n - 1))
 				 *std::exp(-(__nmfact - 2 * __mmfact)) / __n;
 	    }
@@ -294,11 +294,11 @@ namespace __detail
 	  else if (__i == 2)
 	    __z -= 1.14 * std::pow(_Tp(__n), 0.426) / __z;
 	  else if (__i == 3)
-	    __z = 1.86 * __z - 0.86 * __pt[0].__zero;
+	    __z = 1.86 * __z - 0.86 * __pt[0].__point;
 	  else if (__i == 4)
-	    __z = 1.91 * __z - 0.91 * __pt[1].__zero;
+	    __z = 1.91 * __z - 0.91 * __pt[1].__point;
 	  else
-	    __z = 2.0 * __z - __pt[__i - 3].__zero;
+	    __z = 2.0 * __z - __pt[__i - 3].__point;
 	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
 	    {
 	      auto __H = _S_pim4;
@@ -322,9 +322,9 @@ namespace __detail
 		std::__throw_logic_error("__hermite_zeros: "
 					 "Too many iterations");
 	    }
-	  __pt[__n - __i].__zero = -__z;
+	  __pt[__n - __i].__point = -__z;
 	  __pt[__n - __i].__weight = __w;
-	  __pt[__i - 1].__zero = __z;
+	  __pt[__i - 1].__point = __z;
 	  __pt[__i - 1].__weight = __w;
 	}
 

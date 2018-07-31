@@ -99,7 +99,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre 
 	    {
 	      auto __ai = __i - 2;
 	      __z += ((1.0 + 2.55 * __ai) / (1.9 * __ai))
-		   * (__z - __pt[__i - 3].__zero);
+		   * (__z - __pt[__i - 3].__point);
 	    }
 	  // Iterate TTRR for polynomial values
 	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
@@ -127,7 +127,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre 
 		std::__throw_logic_error("__laguerre_zeros: "
 					 "Too many iterations");
 	   }
-	  __pt[__i - 1].__zero = __z;
+	  __pt[__i - 1].__point = __z;
 	  __pt[__i - 1].__weight = __w;
 	}
       return __pt;
@@ -160,7 +160,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre 
 	      auto __ai = __i - 2;
 	      __z += ((1.0 + 2.55 * __ai) / (1.9 * __ai)
 		     + 1.26 * __ai * __alpha / (1.0 + 3.5 * __ai))
-		   * (__z - __pt[__i - 3].__zero) / (1.0 + 0.3 * __alpha);
+		   * (__z - __pt[__i - 3].__point) / (1.0 + 0.3 * __alpha);
 	    }
 	  // Iterate TTRR for polynomial values
 	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
@@ -190,7 +190,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_laguerre 
 		std::__throw_logic_error("__laguerre_zeros: "
 					 "Too many iterations");
 	   }
-	  __pt[__i - 1].__zero = __z;
+	  __pt[__i - 1].__point = __z;
 	  __pt[__i - 1].__weight = __w;
 	}
     return __pt;

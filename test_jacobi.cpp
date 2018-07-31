@@ -51,7 +51,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi te
 	      auto __r1 = (1.67 + 0.28 * __alpha) / (1.0 + 0.37 * __alpha);
 	      auto __r2 = 1.0 + 0.22 * (__n - 8.0) / __n;
 	      auto __r3 = 1.0 + 8.0 * __beta / ((6.28 + __beta) * __n * __n);
-	      __z -= (__pt[0].__zero - __z) * __r1 * __r2 * __r3;
+	      __z -= (__pt[0].__point - __z) * __r1 * __r2 * __r3;
 	    }
 	  else if (__i == __n - 1)
 	    {
@@ -60,7 +60,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi te
 						/ (1.0 + 0.71 * (__n - 4.0)));
 	      auto __r3 = 1.0 / (1.0 + 20.0 * __alpha
 				/ ((7.5 + __alpha) * __n * __n));
-	      __z += (__z - __pt[__n - 4].__zero) * __r1 * __r2 * __r3;
+	      __z += (__z - __pt[__n - 4].__point) * __r1 * __r2 * __r3;
 	    }
 	  else if (__i == __n)
 	    {
@@ -68,12 +68,12 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi te
 	      auto __r2 = 1.0 / (1.0 + 0.22 * (__n - 8.0) / __n);
 	      auto __r3 = 1.0 / (1.0 + 8.0 * __alpha
 				 / ((6.28 + __alpha) * __n * __n));
-	      __z += (__z - __pt[__n - 3].__zero) * __r1 * __r2 * __r3;
+	      __z += (__z - __pt[__n - 3].__point) * __r1 * __r2 * __r3;
 	    }
 	  else
 	    {
-	      __z = 3.0 * __pt[__i - 2].__zero
-		  - 3.0 * __pt[__i - 3].__zero + __pt[__i - 4].__zero;
+	      __z = 3.0 * __pt[__i - 2].__point
+		  - 3.0 * __pt[__i - 3].__point + __pt[__i - 4].__point;
 	    }
 
 	  auto __alphabeta = __alpha + __beta;
@@ -113,7 +113,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi te
 	      if (__its > _S_maxit)
 		std::__throw_logic_error("__jacobi_zeros: Too many iterations");
 	    }
-	  __pt[__i - 1].__zero = __z;
+	  __pt[__i - 1].__point = __z;
 	  __pt[__i - 1].__weight = __w;
 	}
 
