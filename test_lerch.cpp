@@ -18,7 +18,6 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch tes
 
 #include "lerchphi/Source/lerchphi.h"
 
-
   /**
    * A functor for a vanWijnGaarden compressor.
    * vanWijnGaarden requires:
@@ -225,7 +224,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch tes
    */
   template<typename _Tp>
     _Tp
-    __lerch(_Tp __z, _Tp __s, _Tp __a)
+    __lerch_phi(_Tp __z, _Tp __s, _Tp __a)
     {
       const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
       const auto _S_eps = __gnu_cxx::__epsilon(__s);
@@ -306,7 +305,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch tes
     _Tp
     __hurwitz_zeta_lerch(_Tp __s, _Tp __a)
     {
-      return __lerch(_Tp{1}, __s, __a);
+      return __lerch_phi(_Tp{1}, __s, __a);
     }
 
   /**
@@ -320,7 +319,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch tes
     _Tp
     __riemann_zeta_lerch(_Tp __s)
     {
-      return __lerch(_Tp{1}, __s, _Tp{1});
+      return __lerch_phi(_Tp{1}, __s, _Tp{1});
     }
 
   /**
@@ -334,7 +333,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch tes
     _Tp
     __dirichlet_beta_lerch(_Tp __s)
     {
-      return __lerch(_Tp{-1}, __s, _Tp{0.5L}) / std::pow(_Tp{2}, __s);
+      return __lerch_phi(_Tp{-1}, __s, _Tp{0.5L}) / std::pow(_Tp{2}, __s);
     }
 
   /**
@@ -348,7 +347,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch tes
     _Tp
     __dirichlet_eta_lerch(_Tp __s)
     {
-      return __lerch(_Tp{-1}, __s, _Tp{1});
+      return __lerch_phi(_Tp{-1}, __s, _Tp{1});
     }
 
   /**
@@ -362,7 +361,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch tes
     _Tp
     __dirichlet_lambda_lerch(_Tp __s)
     {
-      return __lerch(_Tp{1}, __s, _Tp{0.5L}) / std::pow(_Tp{2}, __s);
+      return __lerch_phi(_Tp{1}, __s, _Tp{0.5L}) / std::pow(_Tp{2}, __s);
     }
 
   /**
@@ -376,7 +375,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch tes
     _Tp
     __polylog_lerch(_Tp __s, _Tp __z)
     {
-      return __lerch(__z, __s, _Tp{1});
+      return __lerch_phi(__z, __s, _Tp{1});
     }
 
   /**
@@ -390,7 +389,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch tes
     _Tp
     __legendre_chi(_Tp __nu, _Tp __z)
     {
-      return __z * __lerch(__z * __z, __nu, _Tp{0.5L}) / std::pow(_Tp{2}, __nu);
+      return __z * __lerch_phi(__z * __z, __nu, _Tp{0.5L})
+	   / std::pow(_Tp{2}, __nu);
     }
 
   /**
@@ -402,7 +402,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch tes
     {
       auto __expmu = std::exp(-__mu);
       auto __gamsp1 = std::tgamma(_Tp{1} + __s);
-      return __gamsp1 * __lerch(-__expmu, _Tp{1} + __s, _Tp{1}) / __expmu;
+      return __gamsp1 * __lerch_phi(-__expmu, _Tp{1} + __s, _Tp{1}) / __expmu;
     }
 
   /**
@@ -414,26 +414,24 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch tes
     {
       auto __expmu = std::exp(__mu);
       auto __gamsp1 = std::tgamma(_Tp{1} + __s);
-      return __expmu * __gamsp1 * __lerch(__expmu, _Tp{1} + __s, _Tp{1});
+      return __expmu * __gamsp1 * __lerch_phi(__expmu, _Tp{1} + __s, _Tp{1});
     }
 
   float
-  lerchf(float __z, float __s, float __a)
-  { return __lerch<float>(__z, __s, __a); }
+  lerch_phif(float __z, float __s, float __a)
+  { return __lerch_phi<float>(__z, __s, __a); }
 
   long double
-  lerchl(long double __z, long double __s, long double __a)
-  { return __lerch<long double>(__z, __s, __a); }
+  lerch_phil(long double __z, long double __s, long double __a)
+  { return __lerch_phi<long double>(__z, __s, __a); }
 
   template<typename _Tpz, typename _Tps, typename _Tpa>
     __gnu_cxx::__promote_fp_t<_Tpz, _Tps, _Tpa>
-    lerch(_Tpz __z, _Tps __s, _Tpa __a)
+    lerch_phi(_Tpz __z, _Tps __s, _Tpa __a)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tpz, _Tps, _Tpa>;
-      return __lerch<__type>(__z, __s, __a);
+      return __lerch_phi<__type>(__z, __s, __a);
     }
-
-
 
 
 struct lerch_testcase
@@ -507,7 +505,7 @@ main()
       auto phi = Tp{0};
       try
 	{
-	  phi = lerch(tcase.z, tcase.s, tcase.a);
+	  phi = lerch_phi(tcase.z, tcase.s, tcase.a);
 	  auto test0 = phi - tcase.phi;
 	  std::cout << std::setw(width) << phi
                     << std::setw(width) << test0;
@@ -612,7 +610,7 @@ main()
       auto zlerch = _S_nan;
       try
 	{
-	  zlerch = z * lerch(z, s, a);
+	  zlerch = z * lerch_phi(z, s, a);
 	}
       catch (...)
 	{
@@ -649,7 +647,7 @@ main()
       auto lerch = _S_nan;
       try
 	{
-	  lerch = __gnu_cxx::lerch(z, s, a);
+	  lerch = lerch_phi(z, s, a);
 	}
       catch (...)
 	{
@@ -687,7 +685,7 @@ main()
 	  auto lerch = _S_nan;
 	  try
 	    {
-	      lerch = __gnu_cxx::lerch(z, s, a);
+	      lerch = lerch_phi(z, s, a);
 	    }
 	  catch (...)
 	    {

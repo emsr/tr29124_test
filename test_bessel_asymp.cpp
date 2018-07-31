@@ -356,8 +356,8 @@ template<typename _Tnu, typename _Tp>
 int
 main(int n_app_args, char ** app_arg)
 {
-  double nu = 20.0;
-  double x = 1000.0;
+  long double nu = 20.0L;
+  long double x = 1000.0L;
 
   bool use_internal = false;
   bool use_internal_old = false;
@@ -394,7 +394,11 @@ main(int n_app_args, char ** app_arg)
   std::cout << '\n';
   std::cout << "x  = " << x << '\n';
 
-  test_bessel_asymp<double, double>(nu, x, use_internal, use_internal_old);
+  test_bessel_asymp(float(nu), float(x), use_internal, use_internal_old);
+
+  test_bessel_asymp(double(nu), double(x), use_internal, use_internal_old);
+
+  test_bessel_asymp(nu, x, use_internal, use_internal_old);
 
   return 0;
 }

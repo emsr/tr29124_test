@@ -169,7 +169,7 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __lerch(_Tp __z, _Tp __s, _Tp __a)
+    __lerch_phi(_Tp __z, _Tp __s, _Tp __a)
     {
       const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
       const auto _S_eps = __gnu_cxx::__epsilon(__s);
@@ -200,8 +200,8 @@ namespace __detail
 		    return __sign * _Tp{1} / std::pow(std::abs(__a), __s);
 		  else
 		    {
-		      auto __m = -int(std::floor(__a));
-		      auto __a1 = __a + _Tp(__m);
+		      const auto __m = -int(std::floor(__a));
+		      const auto __a1 = __a + _Tp(__m);
 		      auto __sum1 = _Tp{0};
 		      for (int __i = 0; __i < __m; ++__i)
 			{

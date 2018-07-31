@@ -7,7 +7,7 @@ $HOME/bin/bin/g++ -g -Wall -Wextra -Wno-psabi -I. -o test_root_finding test_root
 */
 
 #include <ext/root_finding.h>
-#include <polynomial/polynomial.h>
+#include <polynomial/ext/polynomial.h>
 #include <bits/numeric_limits.h>
 #include <iostream>
 #include <iomanip>

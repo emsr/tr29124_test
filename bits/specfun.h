@@ -6967,21 +6967,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the Lerch transcendent @f$ \Phi(z,s,a) @f$ for @c float arguments.
    *
-   * @see lerch for details.
+   * @see lerch_phi for details.
    */
   inline float
-  lerchf(float __z, float __s, float __a)
-  { return std::__detail::__lerch<float>(__z, __s, __a); }
+  lerch_phif(float __z, float __s, float __a)
+  { return std::__detail::__lerch_phi<float>(__z, __s, __a); }
 
   /**
    * Return the Lerch transcendent @f$ \Phi(z,s,a) @f$
    * for <tt> long double </tt> arguments.
    *
-   * @see lerch for details.
+   * @see lerch_phi for details.
    */
   inline long double
-  lerchl(long double __z, long double __s, long double __a)
-  { return std::__detail::__lerch<long double>(__z, __s, __a); }
+  lerch_phil(long double __z, long double __s, long double __a)
+  { return std::__detail::__lerch_phi<long double>(__z, __s, __a); }
 
   /**
    * Return the Lerch transcendent @f$ \Phi(z,s,a) @f$.
@@ -6993,10 +6993,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp, typename _Ts, typename _Ta>
     inline __gnu_cxx::__promote_fp_t<_Tp, _Ts, _Ta>
-    lerch(_Tp __z, _Ts __s, _Ta __a)
+    lerch_phi(_Tp __z, _Ts __s, _Ta __a)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp, _Ts, _Ta>;
-      return std::__detail::__lerch<__type>(__z, __s, __a);
+      return std::__detail::__lerch_phi<__type>(__z, __s, __a);
     }
 
 #endif // __cplusplus >= 201103L

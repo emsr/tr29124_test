@@ -139,7 +139,7 @@ namespace tr1
     template<typename _Tp>
     _Tp
     __assoc_legendre_p(unsigned int __l, unsigned int __m, _Tp __x,
-		       _Tp __phase = _Tp{+1})
+		       _Tp __phase = _Tp(+1))
     {
 
       if (__x < _Tp(-1) || __x > _Tp(+1))

@@ -11,7 +11,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o hankel_toy_new
 #include <iomanip>
 #include <tuple>
 #include <bits/float128_io.h>
-#include <polynomial/polynomial.h>
+#include <polynomial/ext/polynomial.h>
 #include <ext/math_const.h>
 #include <bits/numeric_limits.h>
 

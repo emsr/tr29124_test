@@ -16,8 +16,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_continued
 #include <bits/numeric_limits.h>
 #include <bits/specfun_util.h>
 #include <bits/complex_util.h>
-#include <polynomial/polynomial.h>
 //#include "rational.h"
+#include <polynomial/ext/polynomial.h>
 
 /**
  * Convert a series to a continued fraction.
