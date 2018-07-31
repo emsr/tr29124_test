@@ -10,7 +10,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o hankel_toy128 
 #include <iostream>
 #include <iomanip>
 #include <bits/float128_io.h>
-#include <polynomial/polynomial.h>
+#include <polynomial/ext/polynomial.h>
 
 int
 main()

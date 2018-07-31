@@ -12,8 +12,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_binet_float test_bin
 #include <vector>
 #include <cmath>
 #include <bits/float128_io.h>
-#include <polynomial/polynomial.h>
 #include <complex>
+#include <polynomial/ext/polynomial.h>
 
 namespace std
 {
