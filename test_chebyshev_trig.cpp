@@ -59,7 +59,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev
       std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
       for (unsigned int __k = 0; __k < __n; ++__k)
 	{
-	  __pt[__k].__zero = __gnu_cxx::cos_pi(_Tp(__k + 0.5L) / _Tp(__n));
+	  __pt[__k].__point = __gnu_cxx::cos_pi(_Tp(__k + 0.5L) / _Tp(__n));
 	  __pt[__k].__weight = _S_pi / __n;
 	}
       return __pt;
@@ -123,7 +123,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev
 	  auto __half = __gnu_cxx::__fp_is_equal<_Tp>(__arg, _Tp{0.5L});
 	  auto __z = (__half ? _Tp{0} : __gnu_cxx::cos_pi(__arg));
 	  auto __w = _S_pi * (_Tp{1} - __z * __z) / _Tp(__n + 1);
-	  __pt[__k - 1].__zero = __z;
+	  __pt[__k - 1].__point = __z;
 	  __pt[__k - 1].__weight = __w;
 	}
       return __pt;
@@ -185,7 +185,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev
 	{
 	  auto __z = __gnu_cxx::cos_pi(_Tp(__k + 0.5L) / _Tp(__n + 0.5L));
 	  auto __w = _S_pi * (_Tp{1} + __z) / (_Tp(__n) + _Tp{1} / _Tp{2});
-	  __pt[__k].__zero = __z;
+	  __pt[__k].__point = __z;
 	  __pt[__k].__weight = __w;
 	}
       return __pt;
@@ -247,7 +247,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev
 	{
 	  auto __z = __gnu_cxx::cos_pi(_Tp(__k) / _Tp(__n + 0.5L));
 	  auto __w = _S_pi * (_Tp{1} - __z) / (_Tp(__n) + _Tp{1} / _Tp{2});
-	  __pt[__k - 1].__zero = __z;
+	  __pt[__k - 1].__point = __z;
 	  __pt[__k - 1].__weight = __w;
 	}
       return __pt;
@@ -317,9 +317,9 @@ template<typename Tp>
 	auto tz = __chebyshev_t_zeros<Tp>(n);
 	for (auto z : tz)
 	  {
-	    auto Tt = __chebyshev_t_trig(n, z.__zero);
-	    auto Tg = __gnu_cxx::chebyshev_t(n, z.__zero);
-	    std::cout << ' ' << std::setw(width) << z.__zero
+	    auto Tt = __chebyshev_t_trig(n, z.__point);
+	    auto Tg = __gnu_cxx::chebyshev_t(n, z.__point);
+	    std::cout << ' ' << std::setw(width) << z.__point
 		      << ' ' << std::setw(width) << z.__weight
 		      << ' ' << std::setw(width) << Tt
 		      << ' ' << std::setw(width) << Tg
@@ -334,9 +334,9 @@ template<typename Tp>
 	auto uz = __chebyshev_u_zeros<Tp>(n);
 	for (auto z : uz)
 	  {
-	    auto Ut = __chebyshev_u_trig(n, z.__zero);
-	    auto Ug = __gnu_cxx::chebyshev_u(n, z.__zero);
-	    std::cout << ' ' << std::setw(width) << z.__zero
+	    auto Ut = __chebyshev_u_trig(n, z.__point);
+	    auto Ug = __gnu_cxx::chebyshev_u(n, z.__point);
+	    std::cout << ' ' << std::setw(width) << z.__point
 		      << ' ' << std::setw(width) << z.__weight
 		      << ' ' << std::setw(width) << Ut
 		      << ' ' << std::setw(width) << Ug
@@ -351,9 +351,9 @@ template<typename Tp>
 	auto vz = __chebyshev_v_zeros<Tp>(n);
 	for (auto z : vz)
 	  {
-	    auto Vt = __chebyshev_v_trig(n, z.__zero);
-	    auto Vg = __gnu_cxx::chebyshev_v(n, z.__zero);
-	    std::cout << ' ' << std::setw(width) << z.__zero
+	    auto Vt = __chebyshev_v_trig(n, z.__point);
+	    auto Vg = __gnu_cxx::chebyshev_v(n, z.__point);
+	    std::cout << ' ' << std::setw(width) << z.__point
 		      << ' ' << std::setw(width) << z.__weight
 		      << ' ' << std::setw(width) << Vt
 		      << ' ' << std::setw(width) << Vg
@@ -368,9 +368,9 @@ template<typename Tp>
 	auto wz = __chebyshev_w_zeros<Tp>(n);
 	for (auto z : wz)
 	  {
-	    auto Wt = __chebyshev_w_trig(n, z.__zero);
-	    auto Wg = __gnu_cxx::chebyshev_w(n, z.__zero);
-	    std::cout << ' ' << std::setw(width) << z.__zero
+	    auto Wt = __chebyshev_w_trig(n, z.__point);
+	    auto Wg = __gnu_cxx::chebyshev_w(n, z.__point);
+	    std::cout << ' ' << std::setw(width) << z.__point
 		      << ' ' << std::setw(width) << z.__weight
 		      << ' ' << std::setw(width) << Wt
 		      << ' ' << std::setw(width) << Wg
@@ -395,7 +395,7 @@ main()
       auto uz = __chebyshev_u_zeros<Tp>(n);
       for (auto z : uz)
 	{
-	  std::cout << ' ' << std::setw(width) << z.__zero
+	  std::cout << ' ' << std::setw(width) << z.__point
 		    << ' ' << std::setw(width) << z.__weight
 		    << '\n';
 	}
