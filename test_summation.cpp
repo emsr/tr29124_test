@@ -122,89 +122,182 @@ template<typename Tp>
 		  << '\n';
       }
 
-    // 2F0(1,1;;-1/3)
-    std::cout << "\n\n2F0(1,1;;-1/3) = 0.78625122076596\n";
-    auto a = Tp{1};
-    auto b = Tp{1};
-    auto z = Tp{-1} / Tp{3};
-    auto term = Tp{1};
-    BS.reset(term);
-    ABS.reset(term);
-    AKS.reset(term);
-    WBS.reset(term);
-    WKS.reset(term);
-    BTS.reset(term);
-    LTS.reset(term);
-    LDS.reset(term);
-    LVS.reset(term);
-    WTS.reset(term);
-    WDS.reset(term);
-    WPS.reset(term);
-    ShankS.reset(term);
-    std::cout << std::setw(w) << "k"
-	      << std::setw(w) << "Basic"
-	      << std::setw(w) << "Aitken-Basic"
-	      << std::setw(w) << "Aitken-Kahan"
-	      << std::setw(w) << "Winn-Basic"
-	      << std::setw(w) << "Winn-Kahan"
-	      << std::setw(w) << "BrezinskiT-Basic"
-	      << std::setw(w) << "LevinT-Basic"
-	      << std::setw(w) << "LevinD-Basic"
-	      << std::setw(w) << "LevinV-Basic"
-	      << std::setw(w) << "WenigerTau-Basic"
-	      << std::setw(w) << "WenigerDelta-Basic"
-	      << std::setw(w) << "WenigerPhi-Basic"
-	      << std::setw(w) << "Shanks"
-	      << '\n';
-    std::cout << std::setw(w) << "------------------"
-	      << std::setw(w) << "------------------"
-	      << std::setw(w) << "------------------"
-	      << std::setw(w) << "------------------"
-	      << std::setw(w) << "------------------"
-	      << std::setw(w) << "------------------"
-	      << std::setw(w) << "------------------"
-	      << std::setw(w) << "------------------"
-	      << std::setw(w) << "------------------"
-	      << std::setw(w) << "------------------"
-	      << std::setw(w) << "------------------"
-	      << std::setw(w) << "------------------"
-	      << std::setw(w) << "------------------"
-	      << std::setw(w) << "------------------"
-	      << '\n';
-    for (auto k = 1; k < 100; ++k)
+    // 2F0(1,1;;-1/z) = z e^zE_1(z)
+    const auto expint_scaled
+      = [](Tp z)->Tp
+        { return z * std::exp(z)*__gnu_cxx::expint(1,z); };
+
+    // 2F0(1,1;;-1/z) = z e^zE_1(z)
+    for (auto z : {Tp{3}, Tp{0.5L}})
       {
-	std::cout << std::setw(w) << (k - 1)
-		  << std::setw(w) << BS()
-		  << std::setw(w) << ABS()
-		  << std::setw(w) << AKS()
-		  << std::setw(w) << WBS()
-		  << std::setw(w) << WKS()
-		  << std::setw(w) << BTS()
-		  << std::setw(w) << LTS()
-		  << std::setw(w) << LDS()
-		  << std::setw(w) << LVS()
-		  << std::setw(w) << WTS()
-		  << std::setw(w) << WDS()
-		  << std::setw(w) << WPS()
-		  << std::setw(w) << ShankS()
+	std::cout << "\n\n 2F0(1,1;;" << -1/z << ") = 0.78625122076596\n";
+	std::cout << "\n\n expint_scaled = " << expint_scaled(z) << '\n';
+	auto a = Tp{1};
+	auto b = Tp{1};
+	auto term = Tp{1};
+	BS.reset(term);
+	ABS.reset(term);
+	AKS.reset(term);
+	WBS.reset(term);
+	WKS.reset(term);
+	BTS.reset(term);
+	LTS.reset(term);
+	LDS.reset(term);
+	LVS.reset(term);
+	WTS.reset(term);
+	WDS.reset(term);
+	WPS.reset(term);
+	ShankS.reset(term);
+	std::cout << std::setw(w) << "k"
+		  << std::setw(w) << "Basic"
+		  << std::setw(w) << "Aitken-Basic"
+		  << std::setw(w) << "Aitken-Kahan"
+		  << std::setw(w) << "Winn-Basic"
+		  << std::setw(w) << "Winn-Kahan"
+		  << std::setw(w) << "BrezinskiT-Basic"
+		  << std::setw(w) << "LevinT-Basic"
+		  << std::setw(w) << "LevinD-Basic"
+		  << std::setw(w) << "LevinV-Basic"
+		  << std::setw(w) << "WenigerTau-Basic"
+		  << std::setw(w) << "WenigerDelta-Basic"
+		  << std::setw(w) << "WenigerPhi-Basic"
+		  << std::setw(w) << "Shanks"
 		  << '\n';
-	term *= (a + k - 1) * (b + k - 1) * z / k;
-	BS += term;
-	ABS += term;
-	AKS += term;
-	WBS += term;
-	WKS += term;
-	BTS += term;
-	LTS += term;
-	LDS += term;
-	LVS += term;
-	WTS += term;
-	WDS += term;
-	WPS += term;
-	ShankS += term;
+	std::cout << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << '\n';
+	for (auto k = 1; k < 100; ++k)
+	  {
+	    std::cout << std::setw(w) << (k - 1)
+		      << std::setw(w) << BS()
+		      << std::setw(w) << ABS()
+		      << std::setw(w) << AKS()
+		      << std::setw(w) << WBS()
+		      << std::setw(w) << WKS()
+		      << std::setw(w) << BTS()
+		      << std::setw(w) << LTS()
+		      << std::setw(w) << LDS()
+		      << std::setw(w) << LVS()
+		      << std::setw(w) << WTS()
+		      << std::setw(w) << WDS()
+		      << std::setw(w) << WPS()
+		      << std::setw(w) << ShankS()
+		      << '\n';
+	    term *= (a + k - 1) * (b + k - 1) * z / k;
+	    BS += term;
+	    ABS += term;
+	    AKS += term;
+	    WBS += term;
+	    WKS += term;
+	    BTS += term;
+	    LTS += term;
+	    LDS += term;
+	    LVS += term;
+	    WTS += term;
+	    WDS += term;
+	    WPS += term;
+	    ShankS += term;
+	  }
+      }
+
+    // 2F1(1,1;2;-z) = log(1+z)
+    for (auto z : {Tp{5}, Tp{1}, Tp{-0.9L}})
+      {
+	std::cout << "\n\n 2F0(1,1;2;" << -z << ") = 0.46145531624187\n";
+	std::cout << "\n\n log(1+" << z << ") = " << std::log1p(z) << '\n';
+	auto a = Tp{1};
+	auto b = Tp{1};
+	auto c = Tp{1};
+	auto term = Tp{1};
+	BS.reset(term);
+	ABS.reset(term);
+	AKS.reset(term);
+	WBS.reset(term);
+	WKS.reset(term);
+	BTS.reset(term);
+	LTS.reset(term);
+	LDS.reset(term);
+	LVS.reset(term);
+	WTS.reset(term);
+	WDS.reset(term);
+	WPS.reset(term);
+	ShankS.reset(term);
+	std::cout << std::setw(w) << "k"
+		  << std::setw(w) << "Basic"
+		  << std::setw(w) << "Aitken-Basic"
+		  << std::setw(w) << "Aitken-Kahan"
+		  << std::setw(w) << "Winn-Basic"
+		  << std::setw(w) << "Winn-Kahan"
+		  << std::setw(w) << "BrezinskiT-Basic"
+		  << std::setw(w) << "LevinT-Basic"
+		  << std::setw(w) << "LevinD-Basic"
+		  << std::setw(w) << "LevinV-Basic"
+		  << std::setw(w) << "WenigerTau-Basic"
+		  << std::setw(w) << "WenigerDelta-Basic"
+		  << std::setw(w) << "WenigerPhi-Basic"
+		  << std::setw(w) << "Shanks"
+		  << '\n';
+	std::cout << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << std::setw(w) << "------------------"
+		  << '\n';
+	for (auto k = 1; k < 100; ++k)
+	  {
+	    std::cout << std::setw(w) << (k - 1)
+		      << std::setw(w) << BS()
+		      << std::setw(w) << ABS()
+		      << std::setw(w) << AKS()
+		      << std::setw(w) << WBS()
+		      << std::setw(w) << WKS()
+		      << std::setw(w) << BTS()
+		      << std::setw(w) << LTS()
+		      << std::setw(w) << LDS()
+		      << std::setw(w) << LVS()
+		      << std::setw(w) << WTS()
+		      << std::setw(w) << WDS()
+		      << std::setw(w) << WPS()
+		      << std::setw(w) << ShankS()
+		      << '\n';
+	    term *= ((a + k - 1) / (c + k - 1)) * ((b + k - 1) / k) * z;
+	    BS += term;
+	    ABS += term;
+	    AKS += term;
+	    WBS += term;
+	    WKS += term;
+	    BTS += term;
+	    LTS += term;
+	    LDS += term;
+	    LVS += term;
+	    WTS += term;
+	    WDS += term;
+	    WPS += term;
+	    ShankS += term;
+	  }
       }
   }
-
 
 int
 main()
