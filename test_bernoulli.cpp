@@ -147,6 +147,24 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
     }
 
   /**
+   * Return the periodic Bernoulli polynomial @f$ \tilde{B}_n(x) @f$
+   * of order n at argument x.
+   * @f[
+   *   \tilde{B}_n(x) = B_n(x), 0 <= x < 1
+   * @f]
+   * @f[
+   *   \tilde{B}_n(x+1) = \tilde{B}_n(x), x >= 1
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __bernoulli_period(unsigned int __n, _Tp __x)
+    {
+      int __p = int(__x);
+      return __bernoulli(__n, __x - _Tp(__p));
+    }
+
+  /**
    * Return the generalized Bernoulli polynomial @f$ B^{(a)}_n(x) @f$
    * of order n, degree a, at argument x.
    *
@@ -301,6 +319,25 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
 
 	  return _E_n;
 	}
+    }
+
+  /**
+   * Return the periodic Euler polynomial @f$ \tilde{E}_n(x) @f$
+   * of order n at argument x.
+   *
+   * @f[
+   *   \tilde{E}_n(x) = E_n(x), 0 <= x < 1
+   * @f]
+   * @f[
+   *   \tilde{E}_n(x+1) = -\tilde{E}_n(x), x >= 1
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __euler_period(unsigned int __n, _Tp __x)
+    {
+      int __p = int(__x);
+      return (__p & 1 ? -1 : +1) * __euler(__n, __x - _Tp(__p));
     }
 
   /**
@@ -722,7 +759,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    std::cout << "\n Bell numbers\n";
+    std::cout << "\n\n Bell numbers\n";
     for (auto n = 1u; n <= 20; ++n)
       {
 	auto bell = __bell_series(n);
@@ -736,7 +773,7 @@ template<typename _Tp>
 		    << '\n';
       }
 
-    std::cout << "\n Lah numbers\n";
+    std::cout << "\n\n Lah numbers\n";
     for (auto n = 1u; n <= 20; ++n)
       for (auto k = 0u; k <= 20; ++k)
 	std::cout << ' ' << std::setw(4) << n
@@ -744,13 +781,13 @@ template<typename _Tp>
 		  << ' ' << std::setw(width) << __lah_recur<_Tp>(n, k)
 		  << '\n';
 
-    std::cout << "\n Bernoulli numbers\n";
+    std::cout << "\n\n Bernoulli numbers\n";
     for (auto n = 0u; n <= 200; ++n)
       std::cout << ' ' << std::setw(4) << n
 		<< ' ' << std::setw(width) << __bernoulli_series<_Tp>(n)
 		<< '\n';
 
-    std::cout << "\n Bernoulli polynomials\n";
+    std::cout << "\n\n Bernoulli polynomials\n";
     for (auto n = 0u; n <= 50; ++n)
       {
 	std::cout << '\n' << ' ' << std::setw(4) << n << '\n';
@@ -759,19 +796,21 @@ template<typename _Tp>
 	  {
 	    auto x = del * i;
 	    auto _B_n = __bernoulli(n, x);
+	    auto _tildeB_n = __bernoulli_period(n, x);
 	    std::cout << ' ' << std::setw(width) << x
 		      << ' ' << std::setw(width) << _B_n
+		      << ' ' << std::setw(width) << _tildeB_n
 		      << '\n';
 	  }
       }
 
-    std::cout << "\n Euler numbers\n";
+    std::cout << "\n\n Euler numbers\n";
     for (auto n = 0u; n <= 200; ++n)
       std::cout << ' ' << std::setw(4) << n
 		<< ' ' << std::setw(width) << __euler<_Tp>(n)
 		<< '\n';
 
-    std::cout << "\n Euler polynomials\n";
+    std::cout << "\n\n Euler polynomials\n";
     for (auto n = 0u; n <= 50; ++n)
       {
 	std::cout << '\n' << ' ' << std::setw(4) << n << '\n';
@@ -780,13 +819,15 @@ template<typename _Tp>
 	  {
 	    auto x = del * i;
 	    auto _E_n = __euler(n, x);
+	    auto _tildeE_n = __euler_period(n, x);
 	    std::cout << ' ' << std::setw(width) << x
 		      << ' ' << std::setw(width) << _E_n
+		      << ' ' << std::setw(width) << _tildeE_n
 		      << '\n';
 	  }
       }
 
-    std::cout << "\n Stirling numbers of the second kind";
+    std::cout << "\n\n Stirling numbers of the second kind";
     for (auto n = 0u; n <= 100; ++n)
       {
 	std::cout << '\n';
@@ -798,7 +839,7 @@ template<typename _Tp>
 		    << '\n';
       }
 
-    std::cout << "\n Stirling numbers of the first kind";
+    std::cout << "\n\n Stirling numbers of the first kind";
     for (auto n = 0u; n <= 100; ++n)
       {
 	std::cout << '\n';
@@ -810,7 +851,7 @@ template<typename _Tp>
 		    << '\n';
       }
 
-    std::cout << "\n Eulerian numbers of the first kind";
+    std::cout << "\n\n Eulerian numbers of the first kind";
     for (auto n = 1u; n <= 10; ++n)
       {
 	std::cout << '\n';
@@ -823,7 +864,7 @@ template<typename _Tp>
 		    << '\n';
       }
 
-    std::cout << "\n Eulerian numbers of the second kind";
+    std::cout << "\n\n Eulerian numbers of the second kind";
     for (auto n = 1u; n <= 10; ++n)
       {
 	std::cout << '\n';
@@ -893,7 +934,7 @@ int
 main()
 {
   {
-    std::cout << "\neulerian_1" << '\n';
+    std::cout << "\n\neulerian_1" << '\n';
     int n = 10;
     std::vector<int> e(n * n);
     ::eulerian(n, e.data());
@@ -910,7 +951,7 @@ main()
   }
 
   {
-    std::cout << "\nstirling_1" << '\n';
+    std::cout << "\n\nstirling_1" << '\n';
     int n = 10;
     int m = 8;
     std::unique_ptr<int[]> s1(::stirling1(n, m));
@@ -927,7 +968,7 @@ main()
   }
 
   {
-    std::cout << "\nstirling_2" << '\n';
+    std::cout << "\n\nstirling_2" << '\n';
     int n = 10;
     int m = 8;
     std::unique_ptr<int[]> s2(::stirling2(n, m));
