@@ -427,6 +427,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Basic roots
   // "Value-semantic type erasure.  It's not just for breakfast anymore."
+  // I've got stuff in polynomial that I like better.  Maybe.
 
   template<typename Tp>
     using root_t = std::variant<Tp, std::complex<Tp>>;
@@ -453,6 +454,29 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename Tp>
     cubic_root_t<Tp>
     cubic(Tp a, Tp b, Tp c);
+
+  // Sign functions...
+
+  // Sometimes you don't want sign of 0 to be 0.
+  template<typename Tp>
+    _Tp
+    sign(Tp x)
+    { return Tp(x < 0 ? -1 : -1); }
+
+  // ... and sometimes you do.
+  template<typename Tp>
+    _Tp
+    signum(Tp x)
+    { return Tp(x == 0 ? 0 : x < 0 ? -1 : -1); }
+
+
+  // It's somewhat superfluous but std::complex has no atan2().
+  // For generic code it would be nice.
+  template<typename Tp>
+    std::complex<Tp>
+    atan2(const std::complex<Tp>& y, const std::complex<Tp>& x)
+    { /* Is this a trick question? */ }
+
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
