@@ -576,7 +576,7 @@ namespace __detail
 
   /**
    * Table of zeta(n) - 1 from 0 - 120.
-   * MPFR @ 128 bits.
+   * MPFR @ 128 bits precision.
    */
   constexpr size_t
   _S_num_zetam1 = 121;
@@ -725,8 +725,14 @@ namespace __detail
 	return __gnu_cxx::__infinity(std::real(__s));
 
       auto __n = __gnu_cxx::__fp_is_integer(__s);
-      if (__n && __n() >= 0 && __n() < _S_num_zetam1)
-	return _Tp(_S_zetam1[__n()]);
+      if (__n && __n() >= 0)
+	{
+	  // @todo See if we can do better for zetam1 large int.
+	  if (__n() < _S_num_zetam1)
+	    return _Tp(_S_zetam1[__n()]);
+	  else
+	    return _Tp{0};
+	}
       else if (std::abs(__s - __n()) < _Real{100} * _S_eps)
 	return __riemann_zeta_laurent(__s) - _Real{1};
       else if (std::real(__s) > _Real{0})
