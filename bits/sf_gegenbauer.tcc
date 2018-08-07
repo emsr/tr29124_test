@@ -59,21 +59,21 @@ namespace __detail
    * @param __x The real argument
    */
   template<typename _Tp>
-    _Tp
+    __gnu_cxx::__gegenbauer_t<_Tp>
     __gegenbauer_poly(unsigned int __n, _Tp __alpha1, _Tp __x)
     {
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
 
       if (std::isnan(__alpha1) || std::isnan(__x))
-	return _S_NaN;
+	return {__n, __alpha1, __x, _S_NaN, _S_NaN, _S_NaN};
 
       auto __C_nm2 = _Tp{1};
       if (__n == 0)
-	return __C_nm2;
+	return {__n, __alpha1, __x, __C_nm2, _Tp{0}, _Tp{0}};
 
       auto __C_nm1 = _Tp{2} * __alpha1 * __x;
       if (__n == 1)
-	return __C_nm1;
+	return {__n, __alpha1, __x, __C_nm1, __C_nm2, _Tp{0}};
 
       auto __C_n = (_Tp{2} * (_Tp{1} + __alpha1) * __x * __C_nm1
 		 - _Tp{2} * __alpha1 * __C_nm2) / _Tp(2);
@@ -85,7 +85,7 @@ namespace __detail
 		- (_Tp(__nn) - _Tp{2} + _Tp{2} * __alpha1) * __C_nm2)
 	      / _Tp(__nn);
 	}
-      return __C_n;
+      return {__n, __alpha1, __x, __C_n, __C_nm1, __C_nm2};
     }
 
   /**
@@ -161,8 +161,8 @@ namespace __detail
 		{
 		  auto __C3 = __C2;
 		  __C2 = __C1;
-		  __temp = _Tp{2} * __j + __2alpha;
-		  auto __a = _Tp{2} * __j * (__j + __2alpha)
+		  __temp = _Tp(2 * __j) + __2alpha;
+		  auto __a = _Tp(2 * __j) * (__j + __2alpha)
 			   * (__temp - _Tp{2});
 		  auto __b = (__temp - _Tp{1})
 			   * __temp * (__temp - _Tp{2}) * __z;

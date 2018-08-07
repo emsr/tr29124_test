@@ -2107,7 +2107,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   chebyshev_vf(unsigned int __n, float __x)
-  { return std::__detail::__chebyshev_v<float>(__n, __x); }
+  { return std::__detail::__chebyshev_v<float>(__n, __x).__V_n; }
 
   /**
    * Return the Chebyshev polynomials of the third kind @f$ V_n(x) @f$
@@ -2117,7 +2117,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline long double
   chebyshev_vl(unsigned int __n, long double __x)
-  { return std::__detail::__chebyshev_v<long double>(__n, __x); }
+  { return std::__detail::__chebyshev_v<long double>(__n, __x).__V_n; }
 
   /**
    * Return the Chebyshev polynomial of the third kind @f$ V_n(x) @f$
@@ -2139,7 +2139,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     chebyshev_v(unsigned int __n, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__chebyshev_v<__type>(__n, __x);
+      return std::__detail::__chebyshev_v<__type>(__n, __x).__V_n;
     }
 
   // Chebyshev polynomials of the fourth kind
@@ -2152,7 +2152,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   chebyshev_wf(unsigned int __n, float __x)
-  { return std::__detail::__chebyshev_w<float>(__n, __x); }
+  { return std::__detail::__chebyshev_w<float>(__n, __x).__W_n; }
 
   /**
    * Return the Chebyshev polynomials of the fourth kind @f$ W_n(x) @f$
@@ -2162,7 +2162,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline long double
   chebyshev_wl(unsigned int __n, long double __x)
-  { return std::__detail::__chebyshev_w<long double>(__n, __x); }
+  { return std::__detail::__chebyshev_w<long double>(__n, __x).__W_n; }
 
   /**
    * Return the Chebyshev polynomial of the fourth kind @f$ W_n(x) @f$
@@ -2184,7 +2184,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     chebyshev_w(unsigned int __n, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__chebyshev_w<__type>(__n, __x);
+      return std::__detail::__chebyshev_w<__type>(__n, __x).__W_n;
     }
 
   // Jacobi polynomials
@@ -2266,7 +2266,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   gegenbauerf(unsigned int __n, float __alpha, float __x)
-  { return std::__detail::__gegenbauer_poly<float>(__n, __alpha, __x); }
+  { return std::__detail::__gegenbauer_poly<float>(__n, __alpha, __x).__C_n; }
 
   /**
    * Return the Gegenbauer polynomial @f$ C_n^{\alpha}(x) @f$ of degree @c n
@@ -2277,7 +2277,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline long double
   gegenbauerl(unsigned int __n, long double __alpha, long double __x)
-  { return std::__detail::__gegenbauer_poly<long double>(__n, __alpha, __x); }
+  {
+    return std::__detail::__gegenbauer_poly<long double>(__n, __alpha, __x)
+				.__C_n;
+  }
 
   /**
    * Return the Gegenbauer polynomial @f$ C_n^{\alpha}(x) @f$ of degree @c n
@@ -2301,7 +2304,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     gegenbauer(unsigned int __n, _Talpha __alpha, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Talpha, _Tp>;
-      return std::__detail::__gegenbauer_poly<__type>(__n, __alpha, __x);
+      return std::__detail::__gegenbauer_poly<__type>(__n, __alpha, __x).__C_n;
     }
 
   // Zernike polynomials

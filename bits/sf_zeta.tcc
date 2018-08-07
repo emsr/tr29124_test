@@ -894,21 +894,21 @@ namespace __detail
    * The Debye functions are related to the incomplete Riemann zeta function:
    * @f[
    *    \zeta_x(s) = \frac{1}{\Gamma(s)}\int_{0}^{x}\frac{t^{s-1}}{e^t-1}dt
-   *          = \sum_{k=1}^{\infty}\frac{P(s,kx)}{k^s}
+   *               = \sum_{k=1}^{\infty}\frac{P(s,kx)}{k^s}
    * @f]
    * @f[
    *    Z_x(s) = \frac{1}{\Gamma(s)}\int_{x}^{\infty}\frac{t^{s-1}}{e^t-1}dt
-   *          = \sum_{k=1}^{\infty}\frac{Q(s,kx)}{k^s}
+   *           = \sum_{k=1}^{\infty}\frac{Q(s,kx)}{k^s}
    * @f]
    * where @f$ P(a,x), Q(a,x) @f$ is the incomplete gamma function ratios.
-   * The Debye functions are:
+   * The Debye function is:
    * @f[
    *    D_n(x) = \frac{n}{x^n}\int_{0}^{x}\frac{t^n}{e^t-1}dt
    *           = \Gamma(n+1)\zeta_x(n+1)
    * @f]
-   * and
+   * Note the infinite limit:
    * @f[
-   *    \int_{0}^{x}\frac{t^n}{e^t-1}dt = \Gamma(n+1)\zeta_x(n+1)
+   *    D_n(\infty) = \int_{0}^{\infty}\frac{t^n}{e^t-1}dt = n!\zeta(n+1)
    * @f]
    *
    * @todo: We should return both the Debye function and it's complement.
@@ -929,9 +929,9 @@ namespace __detail
 
 	  // n!zeta(n) is the integral for x=inf, Abramowitz & Stegun 27.1.3
 	  auto __sum = _Tp{0};
-	  if (_S_num_factorials<_Tp>)
-	    __sum += __factorial<_Tp>(__n)
-		   * __riemann_zeta<_Tp>(__n + 1);
+	  if (__n < std::__detail::_S_num_factorials<_Tp>)
+	    __sum += std::__detail::__factorial<_Tp>(__n)
+		   * std::__detail::__riemann_zeta<_Tp>(__n + 1);
 	  else
 	    return __gnu_cxx::__infinity(__x);
 
@@ -945,23 +945,25 @@ namespace __detail
 	   */
 	  const std::size_t _S_max_iter = 100;
 	  auto __term = _Tp{0};
+	  const auto __expmx = std::exp(-__x);
+	  auto __expmkx = _Tp{1};
 	  const auto __xn = std::pow(__x, _Tp(__n));
-	  const auto __xnp1 = __x * __xn;
 	  for(unsigned int __k = 1; __k < _S_max_iter; ++__k)
 	    {
-	      const auto __xk = __x * __k;
-	      auto __ksum = _Tp{1} / __xk;
-	      auto __kterm = _Tp(__n) * __ksum / __xk;  // n / (xk)^2
-	      for (unsigned int __s = 1; __s <= __n; ++__s)
+	      const auto __kx = __k * __x;
+	      __expmkx *= __expmx;
+	      auto __ksum = _Tp{1};
+	      auto __kterm = _Tp(__n) * __ksum / __kx;  // n / (xk)^2
+	      for (unsigned int __m = 1; __m <= __n; ++__m)
 		__ksum += std::exchange(__kterm,
-					_Tp(__n - __s) * __kterm / __xk);
+					_Tp(__n - __m) * __kterm / __kx);
 
-	      __term -= std::exp(-__xk) * __ksum * __xnp1;
+	      __term -= __expmkx * __ksum * __xn / _Tp(__k);
 	    }
 	  __sum += __term;
 	  return _Tp(__n) * __sum / __xn;
 	}
-      else
+      else if (std::abs(__x) < _Tp{2} * __gnu_cxx::__const_pi(__x))
 	{
 	  /**
 	   * Compute the Debye function:
@@ -982,7 +984,7 @@ namespace __detail
 	  for(unsigned int __k = 1; __k < _S_max_iter; ++__k)
 	    {
 	      const auto __term = _Tp{2}
-				* __riemann_zeta<_Tp>(2 * __k)
+				* std::__detail::__riemann_zeta<_Tp>(2 * __k)
 				* __x2pi2k / _Tp(2 * __k + __n);
 	      __sum += __term;
 	      if (std::abs(__term) < _S_eps * std::abs(__sum))
@@ -990,9 +992,11 @@ namespace __detail
 	      __x2pi2k *= -__x2pi2;
 	    }
 	  __sum *= _Tp(__n);
-	  __sum += _Tp{1} - _Tp(__n) * __x / _Tp(2 * (1 + __n));
+	  __sum += _Tp{1} - _Tp(__n) * __x / _Tp(2 * (__n + 1));
 	  return __sum;
 	}
+      else
+	return _Tp{0}; /// @todo Find Debye for x < -2pi!
     }
 } // namespace __detail
 

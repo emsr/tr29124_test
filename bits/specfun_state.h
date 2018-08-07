@@ -164,9 +164,32 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp
       deriv() const
       {
-	auto __apbp2k = __alpha1 + __beta1 + _Tp{2} * __n;
+	auto __apbp2k = __alpha1 + __beta1 + _Tp(2 * __n);
 	return (__n * (__alpha1 - __beta1 - __apbp2k * __x) * __P_nm1
 		   + _Tp{2} * (__n + __alpha1) * (__n + __beta1) * __P_nm2)
+		/ (__apbp2k * (_Tp{1} - __x * __x));
+      }
+    };
+
+  /**
+   * A struct to store the state of a Gegenbauer polynomial.
+   */
+  template<typename _Tp>
+    struct __gegenbauer_t
+    {
+      std::size_t __n;
+      _Tp __alpha1;
+      _Tp __x;
+      _Tp __C_n;
+      _Tp __C_nm1;
+      _Tp __C_nm2;
+
+      _Tp
+      deriv() const
+      {
+	auto __apbp2k = _Tp{2} * __alpha1 + _Tp(2 * __n);
+	return (__n * (-__apbp2k * __x) * __C_nm1
+		   + _Tp{2} * (__n + __alpha1) * (__n + __alpha1) * __C_nm2)
 		/ (__apbp2k * (_Tp{1} - __x * __x));
       }
     };
@@ -212,8 +235,54 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       _Tp
       deriv() const
-      { return (_Tp(__n + 1) * __U_nm1 - _Tp(__n) * __x * __U_n)
-		/ (_Tp{1} - __x * __x); }
+      {
+	return (_Tp(__n + 1) * __U_nm1 - _Tp(__n) * __x * __U_n)
+		/ (_Tp{1} - __x * __x);
+      }
+    };
+
+  /**
+   * A struct to store the state of a Chebyshev polynomial of the third kind.
+   */
+  template<typename _Tp>
+    struct __chebyshev_v_t
+    {
+      std::size_t __n;
+      _Tp __x;
+      _Tp __V_n;
+      _Tp __V_nm1;
+      _Tp __V_nm2;
+
+      _Tp
+      deriv() const
+      {
+	auto __apbp2k = _Tp(2 * __n);
+	return (__n * (_Tp{1} - __apbp2k * __x) * __V_nm1
+		   + _Tp(2 * (__n + 0.5L) * (__n + -0.5L)) * __V_nm2)
+		/ (__apbp2k * (_Tp{1} - __x * __x));
+      }
+    };
+
+  /**
+   * A struct to store the state of a Chebyshev polynomial of the fourth kind.
+   */
+  template<typename _Tp>
+    struct __chebyshev_w_t
+    {
+      std::size_t __n;
+      _Tp __x;
+      _Tp __W_n;
+      _Tp __W_nm1;
+      _Tp __W_nm2;
+
+      _Tp
+      deriv() const
+      {
+	auto __apbp2k = _Tp(2 * __n);
+	return (__n * (_Tp{-1} - __apbp2k * __x) * __W_nm1
+		   + _Tp(2 * (__n - 0.5L) * (__n + 0.5L)) * __W_nm2)
+		/ (__apbp2k * (_Tp{1} - __x * __x));
+      }
     };
 
   /**

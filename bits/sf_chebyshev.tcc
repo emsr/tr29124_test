@@ -125,8 +125,8 @@ namespace __detail
       if (__n == 1)
 	return {__n, __x, _U1, _U0, _Tp{0}};
 
-      auto _Cs = __chebyshev_recur(__n, __x, _U0, _U1);
-      return {__n, __x, std::get<0>(_Cs), std::get<1>(_Cs), std::get<2>(_Cs)};
+      auto _Us = __chebyshev_recur(__n, __x, _U0, _U1);
+      return {__n, __x, std::get<0>(_Us), std::get<1>(_Us), std::get<2>(_Us)};
     }
 
   /**
@@ -145,18 +145,19 @@ namespace __detail
    * @param __x The real argument @f$ -1 <= x <= +1 @f$
    */
   template<typename _Tp>
-    _Tp
+    __gnu_cxx::__chebyshev_v_t<_Tp>
     __chebyshev_v(unsigned int __n, _Tp __x)
     {
       auto _V0 = _Tp{1};
       if (__n == 0)
-	return _V0;
+	return {__n, __x, _V0, _Tp{0}, _Tp{0}};
 
       auto _V1 = _Tp{2} * __x - _Tp{1};
       if (__n == 1)
-	return _V1;
+	return {__n, __x, _V1, _V0, _Tp{0}};
 
-      return std::get<0>(__chebyshev_recur(__n, __x, _V0, _V1));
+      auto _Vs = __chebyshev_recur(__n, __x, _V0, _V1);
+      return {__n, __x, std::get<0>(_Vs), std::get<1>(_Vs), std::get<2>(_Vs)};
     }
 
   /**
@@ -175,18 +176,19 @@ namespace __detail
    * @param __x The real argument @f$ -1 <= x <= +1 @f$
    */
   template<typename _Tp>
-    _Tp
+    __gnu_cxx::__chebyshev_w_t<_Tp>
     __chebyshev_w(unsigned int __n, _Tp __x)
     {
       auto _W0 = _Tp{1};
       if (__n == 0)
-	return _W0;
+	return {__n, __x, _W0, _Tp{0}, _Tp{0}};
 
       auto _W1 = _Tp{2} * __x + _Tp{1};
       if (__n == 1)
-	return _W1;
+	return {__n, __x, _W1, _W0, _Tp{0}};
 
-      return std::get<0>(__chebyshev_recur(__n, __x, _W0, _W1));
+      auto _Ws = __chebyshev_recur(__n, __x, _W0, _W1);
+      return {__n, __x, std::get<0>(_Ws), std::get<1>(_Ws), std::get<2>(_Ws)};
     }
 } // namespace __detail
 
