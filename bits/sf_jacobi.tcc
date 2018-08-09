@@ -61,7 +61,7 @@ namespace __detail
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
 
       if (std::isnan(__alpha1) || std::isnan(__beta1) || std::isnan(__x))
-	return {__n, __alpha1, __beta1, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
+	return {__n, __alpha1, __beta1, __x, _S_NaN, _S_NaN, _S_NaN};
 
       auto __P_nm2 = _Tp{1};
       if (__n == 0)

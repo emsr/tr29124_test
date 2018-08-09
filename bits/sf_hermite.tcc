@@ -61,6 +61,21 @@ namespace __detail
    *   H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
    * @f]
    *
+   * The Hermite polynomial has first and second derivatives:
+   * @f[
+   *    H'_n(x) = 2n H_{n-1}(x)
+   * @f]
+   * and
+   * @f[
+   *    H''_n(x) = 4n(n - 1) H_{n-2}(x)
+   * @f]
+   *
+   * The Physicists Hermite polynomials have highest-order coefficient
+   * @f$ 2^n @f$ and are orthogonal with respect to the weight function
+   * @f[
+   *   w(x) = e^{x^2}
+   * @f]
+   *
    * @param __n The order of the Hermite polynomial.
    * @param __x The argument of the Hermite polynomial.
    * @return The value of the Hermite polynomial of order n
@@ -80,6 +95,19 @@ namespace __detail
       if (__n == 1)
 	return {__n, __x, __H_nm1, __H_nm2, _Tp{0}};
 
+      // Try to detect blowup.
+      /// @todo Collect a table of Hermite blowup values.
+      {
+	constexpr auto _S_inf = std::numeric_limits<_Tp>::infinity();
+	constexpr auto _S_max = std::numeric_limits<_Tp>::max();
+	const auto __arg = std::log2(_S_max) / __n - _Tp{1};
+	//const auto __xm = std::exp2(__arg);
+	const auto __xm = std::pow(_Tp{2}, __arg) / _Tp{2}; // extra safety.
+	const auto __hinf = _Tp(__n & 1 ? -1 : +1) * _S_inf;
+	if (std::abs(__x) > __xm)
+	  return {__n, __x, __hinf, -__hinf, __hinf};
+      }
+
       // Compute H_n.
       auto __H_n = _Tp{2} * (__x * __H_nm1 - __H_nm2);
       for (unsigned int __i = 3; __i <= __n; ++__i)
@@ -89,7 +117,6 @@ namespace __detail
 	  __H_n = _Tp{2} * (__x * __H_nm1 - _Tp(__i - 1) * __H_nm2);
 	}
 
-      //auto __Hp_n = std::sqrt(_Tp(2 * __n)) * __H_nm1;
       return {__n, __x, __H_n, __H_nm1, __H_nm2};
     }
 
@@ -198,7 +225,7 @@ namespace __detail
    * @brief This routine returns the Probabilists Hermite polynomial
    * 	    of order n: @f$ He_n(x) @f$ by recursion on n.
    *
-   * The Hermite polynomial is defined by:
+   * The Probabilists Hermite polynomial is defined by:
    * @f[
    *   He_n(x) = (-1)^n e^{x^2/2} \frac{d^n}{dx^n} e^{-x^2/2}
    * @f]
@@ -207,6 +234,21 @@ namespace __detail
    *   He_n(x) = \frac{1}{2^{-n/2}}H_n\left(\frac{x}{\sqrt{2}}\right)
    * @f]
    * where @f$ H_n(x) @f$ is the Physicists Hermite function.
+   *
+   * The Probabilists Hermite polynomial has first and second derivatives:
+   * @f[
+   *    He'_n(x) = n He_{n-1}(x)
+   * @f]
+   * and
+   * @f[
+   *    He''_n(x) = n(n - 1) He_{n-2}(x)
+   * @f]
+   *
+   * The Probabilists Hermite polynomial are monic and are orthogonal
+   * with respect to the weight function
+   * @f[
+   *   w(x) = e^{x^2/2}
+   * @f]
    *
    * @param __n The order of the Hermite polynomial.
    * @param __x The argument of the Hermite polynomial.
@@ -226,6 +268,19 @@ namespace __detail
       auto __He_nm1 = __x;
       if (__n == 1)
 	return {__n, __x, __He_nm1, __He_nm2, _Tp{0}};
+
+      // Try to detect blowup.
+      /// @todo Collect a table of Hermite blowup values.
+      {
+	constexpr auto _S_inf = std::numeric_limits<_Tp>::infinity();
+	constexpr auto _S_max = std::numeric_limits<_Tp>::max();
+	const auto __arg = std::log2(_S_max) / __n;
+	//const auto __xm = std::exp2(__arg);
+	const auto __xm = std::pow(_Tp{2}, __arg) / _Tp{2}; // extra safety.
+	const auto __hinf = _Tp(__n & 1 ? -1 : +1) * _S_inf;
+	if (std::abs(__x) > __xm)
+	  return {__n, __x, __hinf, -__hinf, __hinf};
+      }
 
       // Compute He_n.
       auto __He_n = __x * __He_nm1 - __He_nm2;
