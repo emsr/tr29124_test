@@ -363,6 +363,7 @@ test_solvers
 test_special_function
 test_sph_bessel
 test_sph_hankel
+test_sqrt
 test_steed_continued_fraction
 test_struve
 test_struve_old
