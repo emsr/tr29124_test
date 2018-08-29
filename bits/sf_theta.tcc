@@ -1672,7 +1672,7 @@ namespace __detail
 	}
       else
 	{
-	  const auto _S_CA = std::sqrt(_S_eps);
+	  const auto _S_CA = std::sqrt(_S_eps * _Tp{0.01});
 	  const auto _S_N = 100;
 	  std::vector<_Tp> __m;
 	  std::vector<_Tp> __n;
@@ -1684,7 +1684,7 @@ namespace __detail
 	  if (__bo)
 	    {
 	      __d = __k * __k;
-	      __mc /= -_Tp{1} / __d;
+	      __mc /= -__d;
 	      __u *= (__d = __k);
 	    }
 	  auto __a = _Tp{1};
@@ -1695,8 +1695,8 @@ namespace __detail
 	      __l = __i;
 	      __m.push_back(__a);
 	      __n.push_back(__mc = std::sqrt(__mc));
-	      __c = 0.5 * (__a + __mc);
-	      if (std::abs(__a - __mc) <= _S_CA * __a)
+	      __c = (__a + __mc) / _Tp{2};
+	      if (std::abs(__a - __mc) < _S_CA * __a)
 		break;
 	      __mc *= __a;
 	      __a = __c;
@@ -1710,7 +1710,7 @@ namespace __detail
 	      __c *= __a;
 	      for (auto __ii = __l; __ii >= 0; --__ii)
 		{
-		  _Tp __b = __m[__ii];
+		  const auto __b = __m[__ii];
 		  __a *= __c;
 		  __c *= __dn;
 		  __dn = (__n[__ii] + __a) / (__b + __a);
