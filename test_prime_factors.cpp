@@ -1,0 +1,76 @@
+// A function to print all prime factors of a given number n
+/*
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_prime_factors test_prime_factors.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_prime_factors
+*/
+
+#include <cmath>
+#include <iostream>
+
+#include "primes.h"
+
+void
+print_prime_factors(unsigned int n)
+{
+  // Print the number of 2s that divide n
+  while (n % 2 == 0)
+    {
+      std::cout << ' ' << 2;
+      n /= 2;
+    }
+  const int n_max = std::sqrt(n);
+  // n must be odd at this point.  So we can skip
+  // one element (Note i = i +2)
+  for (int i = 3; i <= n_max; i += 2)
+    {
+      // While i divides n, print i and divide n
+      while (n % i == 0)
+        {
+          std::cout << ' ' << i;
+          n /= i;
+        }
+    }
+
+  // This condition is to handle the case when n
+  // is a prime number greater than 2
+  if (n > 2)
+    std::cout << ' ' << n;
+  std::cout << '\n';
+}
+
+void
+__prime_factors(unsigned int n)
+{
+  // Guess what!  Not all primes are listed in this array!
+  //extern const unsigned long __prime_list[];
+  const unsigned long p_max = std::sqrt(n);
+  unsigned long i = 0;
+  auto p = _S_prime[i];
+  while (i < _S_num_primes && p <= p_max)
+    {
+      while (n % p == 0)
+        {
+          std::cout << ' ' << p;
+          n /= p;
+        }
+      p = _S_prime[++i];
+    }
+  if (n > 2)
+    std::cout << ' ' << n;
+  std::cout << '\n';
+}
+
+int
+main()
+{
+  while (true)
+    {
+      std::cout << "\nEnter integer: ";
+      unsigned int n;
+      std::cin >> n;
+      if (std::cin.bad() || std::cin.fail())
+	break;
+      print_prime_factors(n);
+      __prime_factors(n);
+    }
+}
