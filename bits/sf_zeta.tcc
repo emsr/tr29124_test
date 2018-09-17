@@ -552,17 +552,17 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      extern const unsigned long __prime_list[];
 
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
       constexpr unsigned long
         _S_num_primes = sizeof(unsigned long) != 8 ? 256 : 256 + 48;
 
       auto __zeta = _Val{1};
-      for (unsigned long __i = 0; __i < _S_num_primes; ++__i)
+      for (unsigned long __i = 0;
+	   __i < __gnu_cxx::__detail::_S_num_primes; ++__i)
 	{
 	  const auto __fact = _Val{1}
-			    - std::pow(_Real(__prime_list[__i]), -__s);
+			    - std::pow(_Real(__gnu_cxx::prime(__i)), -__s);
 	  __zeta *= __fact;
 	  if (std::abs(_Tp{1} - __fact) < _S_eps) // Assume zeta near 1.
 	    break;

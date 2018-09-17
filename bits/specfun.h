@@ -53,6 +53,7 @@
 #  include <type_traits>
 #  include <bits/numeric_limits.h>
 #  include <bits/complex_util.h>
+#  include <bits/sf_prime.tcc>
 #  include <bits/sf_trig.tcc>
 #  include <bits/sf_bernoulli.tcc>
 #  include <bits/sf_gamma.tcc>
