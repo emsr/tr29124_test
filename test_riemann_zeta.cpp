@@ -63,6 +63,55 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_riemann_zeta > test_riema
     }
 
   /**
+   * @brief  Compute the Riemann zeta function @f$ \zeta(s) @f$
+   * 	 using the product over prime factors.
+   *
+   * @f[
+   * 	\zeta(s) = \Pi_{i=1}^\infty \frac{1}{1 - p_i^{-s}}
+   * @f]
+   * where @f$ {p_i} @f$ are the prime numbers.
+   *
+   * The Riemann zeta function is defined by:
+   * @f[
+   *    \renewcommand\Re{\operatorname{Re}}
+   *    \renewcommand\Im{\operatorname{Im}}
+   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for \Re{s} > 1
+   * @f]
+   * For \Re(s) < 1 use the reflection formula:
+   * @f[
+   * 	\zeta(s) = (2\pi)^s \Gamma(1-s) \zeta(1-s) / \pi
+   * @f]
+   *
+   * @param __s The argument
+   */
+  template<typename _Tp>
+    _Tp
+    __riemann_zeta_product(_Tp __s)
+    {
+      using _Val = _Tp;
+      using _Real = std::__detail::__num_traits_t<_Val>;
+
+      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
+      constexpr unsigned long
+        _S_num_primes = sizeof(unsigned long) != 8 ? 256 : 256 + 48;
+
+      auto __zeta = _Val{1};
+      for (unsigned long __i = 0;
+	   __i < __gnu_cxx::__detail::_S_num_primes; ++__i)
+	{
+	  const auto __fact = _Val{1}
+			    - std::pow(_Real(__gnu_cxx::prime(__i)), -__s);
+	  __zeta *= __fact;
+	  if (std::abs(_Tp{1} - __fact) < _S_eps) // Assume zeta near 1.
+	    break;
+	}
+
+      __zeta = _Tp{1} / __zeta;
+
+      return __zeta;
+    }
+
+  /**
    * @brief  Return the Riemann zeta function @f$ \zeta(s) - 1 @f$
    * by summation for \Re(s) > 1.  This is a small remainder for large s.
    *
