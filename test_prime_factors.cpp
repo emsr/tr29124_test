@@ -7,7 +7,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_prime_factors
 #include <cmath>
 #include <iostream>
 
-#include "primes.h"
+#include "bits/sf_prime.tcc"
 
 void
 print_prime_factors(unsigned int n)
@@ -45,19 +45,42 @@ __prime_factors(unsigned int n)
   //extern const unsigned long __prime_list[];
   const unsigned long p_max = std::sqrt(n);
   unsigned long i = 0;
-  auto p = _S_prime[i];
-  while (i < _S_num_primes && p <= p_max)
+  auto p = __gnu_cxx::prime(i);
+  while (p > 0 && p <= p_max)
     {
       while (n % p == 0)
         {
           std::cout << ' ' << p;
           n /= p;
         }
-      p = _S_prime[++i];
+      p = __gnu_cxx::prime(++i);
     }
   if (n > 2)
     std::cout << ' ' << n;
   std::cout << '\n';
+}
+
+// Write 16-bit compressed primes.
+void
+write_primes()
+{
+  const auto max = std::numeric_limits<unsigned short>::max();
+  unsigned short index = 0;
+  for (unsigned int i = 0; i < __gnu_cxx::__detail::_S_num_primes; ++i)
+    {
+      auto p = __gnu_cxx::prime(i);
+      if (p >= max)
+	{
+	  if (index == 0)
+	    index = i;
+	  p -= max;
+	}
+      std::cout << std::setw(7) << p
+		<< "u,";
+      if ((i + 1) % 8 == 0)
+        std::cout << '\n';
+    }
+  std::cout << index << '\n';
 }
 
 int
@@ -73,4 +96,6 @@ main()
       print_prime_factors(n);
       __prime_factors(n);
     }
+
+  //write_primes();
 }
