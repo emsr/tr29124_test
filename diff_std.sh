@@ -19,8 +19,6 @@ ${tool} limits                     ${inc_dir}/std/limits
 ${tool} complex                    ${inc_dir}/std/complex
 ${tool} ext/math_const.h           ${ext_dir}/math_const.h
 ${tool} ext/math_util.h            ${ext_dir}/math_util.h
-${tool} ext/polynomial.h           ${ext_dir}/polynomial.h
-${tool} ext/polynomial.tcc         ${ext_dir}/polynomial.tcc
 ${tool} ext/cmath                  ${gcc_dir}/cmath
 ${tool} bits/specfun_util.h        ${gcc_dir}/specfun_util.h
 ${tool} bits/specfun_state.h       ${gcc_dir}/specfun_state.h

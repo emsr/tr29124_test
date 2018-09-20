@@ -30,8 +30,6 @@ ${tool} "${src_dir}/complex"                    "${dst_std_dir}"
 ${tool} "${src_ext_dir}/cmath"                  "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/math_const.h"           "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/math_util.h"            "${dst_ext_dir}"
-${tool} "${src_ext_dir}/polynomial.h"           "${dst_ext_dir}"
-${tool} "${src_ext_dir}/polynomial.tcc"         "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/type_traits.h"          "${dst_ext_dir}"
 
 ${tool} "${src_impl_dir}/specfun.h"             "${dst_impl_dir}"

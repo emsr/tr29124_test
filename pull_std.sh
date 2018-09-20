@@ -29,8 +29,6 @@ ${tool} "${src_std_dir}/complex"		"${dst_dir}"
 ${tool} "${src_ext_dir}/cmath"                  "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/math_const.h"           "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/math_util.h"            "${dst_ext_dir}"
-${tool} "${src_ext_dir}/polynomial.h"           "${dst_ext_dir}"
-${tool} "${src_ext_dir}/polynomial.tcc"         "${dst_ext_dir}"
 ${tool} "${src_ext_dir}/type_traits.h"          "${dst_ext_dir}"
 
 ${tool} "${src_impl_dir}/complex_util.h"        "${dst_impl_dir}"
