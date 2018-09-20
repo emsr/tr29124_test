@@ -1269,7 +1269,11 @@ namespace __detail
 
 } // namespace __detail
 
-uint32_t
+  constexpr uint32_t
+  num_primes()
+  { return __detail::_S_num_primes; }
+
+  constexpr uint32_t
   prime(uint16_t __i)
   {
     if (__i < __detail::_S_num_primes)
