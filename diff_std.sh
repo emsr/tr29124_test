@@ -57,6 +57,7 @@ ${tool} bits/sf_legendre.tcc       ${gcc_dir}/sf_legendre.tcc
 ${tool} bits/sf_mod_bessel.tcc     ${gcc_dir}/sf_mod_bessel.tcc
 ${tool} bits/sf_owens_t.tcc        ${gcc_dir}/sf_owens_t.tcc
 ${tool} bits/sf_polylog.tcc        ${gcc_dir}/sf_polylog.tcc
+${tool} bits/sf_prime.tcc          ${gcc_dir}/sf_prime.tcc
 ${tool} bits/sf_stirling.tcc       ${gcc_dir}/sf_stirling.tcc
 ${tool} bits/sf_theta.tcc          ${gcc_dir}/sf_theta.tcc
 ${tool} bits/sf_trig.tcc           ${gcc_dir}/sf_trig.tcc
