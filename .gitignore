@@ -221,6 +221,7 @@ clamp_2
 debug_airy
 debug_bessel
 debug_polylog
+debug_odd_legendre
 
 poly_root
 
