@@ -402,31 +402,15 @@ namespace __detail
       // for large degree.
       if (__l & 1)
 	{
-	  if (__l < _S_num_factorials<_Tp>)
-	    {
-	      const auto __lm = __l - 1;
-	      const auto __lmfact = __factorial<_Tp>(__lm);
-	      const auto __mm = __lm / 2;
-	      const auto __mmfact = __factorial<_Tp>(__mm);
-	      auto __Plm1 = (__lm & 1 ? -1 : 1) * __lmfact / __mmfact / __mmfact
-			    / std::pow(_Tp{2}, __lm);
-	      auto __Ppl = __l * __Plm1;
-	      __pt[__m].__point = _Tp{0};
-	      __pt[__m].__weight = _Tp{2} / __Ppl / __Ppl;
-	    }
-	  else
-	    {
-	      const auto _S_ln2 = __gnu_cxx::__const_ln_2(proto);
-	      const auto __lm = __l - 1;
-	      const auto __lmfact = __log_factorial<_Tp>(__lm);
-	      const auto __mm = __lm / 2;
-	      const auto __mmfact = __log_factorial<_Tp>(__mm);
-	      auto __Plm1 = (__lm & 1 ? -1 : 1)
-			  * std::exp(__lmfact - 2 * __mmfact - __lm * _S_ln2);
-	      auto __Ppl = __l * __Plm1;
-	      __pt[__m].__point = _Tp{0};
-	      __pt[__m].__weight = _Tp{2} / __Ppl / __Ppl;
-	    }
+	  const auto __lm = __l - 1;
+	  const auto __mm = __lm / 2;
+	  auto _Am = _Tp{1};
+	  for (auto __m = 1u; __m <= __mm; ++__m)
+	    _Am *= -_Tp(2 * __m - 1) / _Tp(2 * __m);
+	  auto __Plm1 = _Am;
+	  auto __Ppl = __l * __Plm1;
+	  __pt[__m].__point = _Tp{0};
+	  __pt[__m].__weight = _Tp{2} / __Ppl / __Ppl;
 	}
 
       for (auto __i = 1u; __i <= __m; ++__i)
