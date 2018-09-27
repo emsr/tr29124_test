@@ -41,8 +41,6 @@ print_prime_factors(unsigned int n)
 void
 __prime_factors(unsigned int n)
 {
-  // Guess what!  Not all primes are listed in this array!
-  //extern const unsigned long __prime_list[];
   const unsigned long p_max = std::sqrt(n);
   unsigned long i = 0;
   auto p = __gnu_cxx::prime(i);
@@ -55,7 +53,7 @@ __prime_factors(unsigned int n)
         }
       p = __gnu_cxx::prime(++i);
     }
-  if (n > 2)
+  if (n > 1)
     std::cout << ' ' << n;
   std::cout << '\n';
 }
@@ -66,7 +64,7 @@ write_primes()
 {
   const auto max = std::numeric_limits<unsigned short>::max();
   unsigned short index = 0;
-  for (unsigned int i = 0; i < __gnu_cxx::__detail::_S_num_primes; ++i)
+  for (unsigned int i = 0; i < __gnu_cxx::num_primes(); ++i)
     {
       auto p = __gnu_cxx::prime(i);
       if (p >= max)
