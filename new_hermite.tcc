@@ -358,7 +358,7 @@
    */
   template<typename _Tp>
     _Tp
-    __poly_hermite_asymp(unsigned int __n, _Tp __x)
+    __poly_hermite_asymp_old(unsigned int __n, _Tp __x)
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
       const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
@@ -406,25 +406,27 @@
    */
   template<typename _Tp>
     _Tp
-    __poly_hermite_asymp2(unsigned int __n, _Tp __x)
+    __poly_hermite_asymp(unsigned int __n, _Tp __x)
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
       const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
       const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(__x);
       const auto _S_Ai0 = _Tp{-2.3381074104597670384891972524467L};
-      bool __n_odd = __n % 2 == 1;
-      auto __z = std::abs(__x);
-      auto __z_turn = std::sqrt(_Tp(2 * __n + 1));
-      auto __delta = _S_Ai0 / _S_sqrt_2 / std::pow(__n, _Tp{1} / _Tp{6});
-      auto __sign = __n_odd && (__x < _Tp{0}) ? _Tp{-1} : _Tp{1};
+      const bool __n_odd = __n % 2 == 1;
+      const auto __z = std::abs(__x);
+      const auto __z_turn = std::sqrt(_Tp(2 * __n + 1));
+      // delta < 0
+      const auto __delta = _S_Ai0 / _S_sqrt_2 / std::pow(__n, _Tp{1} / _Tp{6});
+      const auto __sign = __n_odd && (__x < _Tp{0}) ? _Tp{-1} : _Tp{1};
+      /// @todo Speed up the sqrt(factorial) here.
       auto __f = _Tp{1};
       for (int __j = 1; __j <= __n; ++__j)
         __f *= std::sqrt(_Tp(__j));
 
       if (__z < __z_turn + __delta)
 	{
-	  auto __phi = std::acos(__z / __z_turn);
-	  auto __2phi = _Tp{2} * __phi;
+	  const auto __phi = std::acos(__z / __z_turn);
+	  const auto __2phi = _Tp{2} * __phi;
 	  return __f * __sign
 		     * std::pow(_S_sqrt_2, _Tp(__n))
 		     * std::pow(_Tp{2} / _Tp(__n) / _S_pi, _Tp{0.25})
@@ -435,7 +437,7 @@
 	}
       else if (__z > __z_turn - __delta)
 	{
-	  auto __phi = std::acosh(__z / __z_turn);
+	  const auto __phi = std::acosh(__z / __z_turn);
 	  return __f * __sign
 		     * std::pow(_S_sqrt_2, _Tp(__n))
 		     * std::pow(_Tp(__n), _Tp{-0.25})
@@ -446,9 +448,9 @@
 	}
       else
 	{
-	  auto __arg = (__z - __z_turn)
-		     * _S_sqrt_2 * std::pow(_Tp(__n), _Tp{1} / _Tp{6});
-	  auto __airy = std::__detail::__airy(__arg);
+	  const auto __arg = (__z - __z_turn)
+			   * _S_sqrt_2 * std::pow(_Tp(__n), _Tp{1} / _Tp{6});
+	  const auto __airy = std::__detail::__airy(__arg);
 	  return __f * __sign
 		     * std::sqrt(_S_sqrt_pi * _S_sqrt_2)
 		     * std::pow(_S_sqrt_2, _Tp(__n))

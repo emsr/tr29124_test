@@ -2,7 +2,7 @@
 $HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hermite test_hermite.cpp -lquadmath
 ./test_hermite > test_hermite.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hermite test_hermite.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hermite test_hermite.cpp -lquadmath
 ./test_hermite > test_hermite.txt
 */
 
@@ -150,6 +150,8 @@ template<typename _Tp>
   test_hermite(_Tp proto = _Tp{})
   {
     const auto _S_pi = __gnu_cxx::__const_pi(proto);
+    const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(proto);
+    const auto _S_Ai0 = _Tp{-2.3381074104597670384891972524467L};
 
     auto fname = [](std::string_view front, int n, std::string_view back)
 		 {
@@ -182,7 +184,8 @@ template<typename _Tp>
     std::cout << "  ====================================\n";
     for (int n = 4; n <= 200; ++n)
       {
-	auto xt = std::sqrt(_Tp{2} * n);
+	auto xt = std::sqrt(_Tp(2 * n + 1));
+        auto delta = _S_Ai0 / _S_sqrt_2 / std::pow(n, _Tp{1} / _Tp{6});
 	std::cout << "  " << std::setw(6) << "n   = " << std::setw(4) << n << '\n';
 	std::cout << "  " << std::setw(6) << "x_t = " << std::setw(width) << xt << '\n';
 	std::cout << "  " << std::setw(width) << "x";
@@ -208,13 +211,15 @@ template<typename _Tp>
           {
             auto x = _Tp{3} * xt / _Tp{4} + i * del;
             auto h = __poly_hermite_recursion(n, x);
-            auto ht = __poly_hermite_asymp(n, x);
-            auto h2 = __poly_hermite_asymp2(n, x);
+            // This sorta works... I think the old asymp is for He_n(x).
+            //auto ht = std::exp2(n - 1) * __poly_hermite_asymp_old(n, x / _S_sqrt_2);
+            auto ht = __poly_hermite_asymp_old(n, x);
+            auto h2 = __poly_hermite_asymp(n, x);
 	    if (std::abs(x - xt) < del)
 	      std::cout << ">>";
-	    else if (std::abs(x - (_Tp{1} - _Tp{1}/_Tp{20}) * xt) < del)
+	    else if (std::abs(x - xt - delta) < del)
 	      std::cout << "> ";
-	    else if (std::abs(x - (_Tp{1} + _Tp{1}/_Tp{20}) * xt) < del)
+	    else if (std::abs(x - xt + delta) < del)
 	      std::cout << "> ";
             else
               std::cout << "  ";
@@ -234,7 +239,8 @@ template<typename _Tp>
     std::cout << "  ====================================\n";
     for (int n : {1000, 2000, 5000, 10000})
       {
-	auto xt = std::sqrt(_Tp{2} * n);
+	auto xt = std::sqrt(_Tp(2 * n + 1));
+        auto delta = _S_Ai0 / _S_sqrt_2 / std::pow(n, _Tp{1} / _Tp{6});
 	std::cout << "  " << std::setw(6) << "n   = " << std::setw(4) << n << '\n';
 	std::cout << "  " << std::setw(6) << "x_t = " << std::setw(width) << xt << '\n';
 	std::cout << "  " << std::setw(width) << "x";
@@ -260,13 +266,13 @@ template<typename _Tp>
           {
             auto x = _Tp{3} * xt / _Tp{4} + i * del;
             auto h = __poly_hermite_recursion(n, x);
-            auto ht = __poly_hermite_asymp(n, x);
-            auto h2 = __poly_hermite_asymp2(n, x);
+            auto ht = __poly_hermite_asymp_old(n, x);
+            auto h2 = __poly_hermite_asymp(n, x);
 	    if (std::abs(x - xt) < del)
 	      std::cout << ">>";
-	    else if (std::abs(x - (_Tp{1} - _Tp{1} / _Tp{20}) * xt) < del)
+	    else if (std::abs(x - xt - delta) < del)
 	      std::cout << "> ";
-	    else if (std::abs(x - (_Tp{1} + _Tp{1} / _Tp{20}) * xt) < del)
+	    else if (std::abs(x - xt + delta) < del)
 	      std::cout << "> ";
             else
               std::cout << "  ";
@@ -286,7 +292,8 @@ template<typename _Tp>
     std::cout << "  ================================\n";
     for (int n = 0; n <= 50; ++n)
       {
-	auto xt = std::sqrt(_Tp{2} * n);
+	auto xt = std::sqrt(_Tp(2 * n + 1));
+        auto delta = _S_Ai0 / _S_sqrt_2 / std::pow(n, _Tp{1} / _Tp{6});
 	std::cout << "  " << std::setw(6) << "n   = " << std::setw(4) << n << '\n';;
 	std::cout << "  " << std::setw(6) << "x_t = " << std::setw(width) << xt << '\n';;
 	std::cout << "  " << std::setw(width) << "x";
@@ -309,9 +316,9 @@ template<typename _Tp>
             auto ht = __poly_hermite_asymp(n, x);
 	    if (std::abs(x - xt) < del)
 	      std::cout << ">>";
-	    else if (std::abs(x - (_Tp{1} - _Tp{1} / _Tp{20}) * xt) < del)
+	    else if (std::abs(x - xt - delta) < del)
 	      std::cout << "> ";
-	    else if (std::abs(x - (_Tp{1} + _Tp{1} / _Tp{20}) * xt) < del)
+	    else if (std::abs(x - xt + delta) < del)
 	      std::cout << "> ";
             else
               std::cout << "  ";
