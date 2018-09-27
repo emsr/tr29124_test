@@ -162,6 +162,7 @@ BINS = testcase \
        test_struve_old \
        test_summation \
        test_theta \
+       test_tr1_cmath \
        test_tricomi_u \
        test_trig \
        test_weierstrass_ellint \
@@ -545,6 +546,7 @@ test: $(BINS)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_struve_old > test_struve_old.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_summation > test_summation.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_theta > test_theta.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_tr1_cmath > test_tr1_cmath.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_tricomi_u > test_tricomi_u.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_trig > test_trig.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_weierstrass_ellint > test_weierstrass_ellint.txt
@@ -1072,6 +1074,9 @@ test_summation: test_summation.cpp
 
 test_theta: test_theta.cpp
 	$(CXX17) -I. -o test_theta test_theta.cpp -lquadmath
+
+test_tr1_cmath: test_tr1_cmath.cpp
+	$(CXX) -I. -o test_tr1_cmath test_tr1_cmath.cpp -lquadmath
 
 test_tricomi_u: test_tricomi_u.cpp
 	$(CXX17) -I. -o test_tricomi_u test_tricomi_u.cpp -lquadmath

@@ -371,6 +371,7 @@ test_struve
 test_struve_old
 test_summation
 test_theta
+test_tr1_cmath
 test_tricomi_u
 test_trig
 test_trigamma
