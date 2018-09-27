@@ -14,179 +14,183 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev
 #include <bits/float128_io.h>
 
 /**
- * Return a reperiodized arccosine:
- * @f[
- *   acos_pi(x) = \frac{1}{\pi}acos(x)
- * @f]
+ * @todo return derivatives from these.
  */
-template<typename _Tp>
-  inline _Tp
-  __acos_pi(_Tp __x)
-  { return std::acos(__x) / __gnu_cxx::__const_pi(__x); }
 
-/**
- * Return the Chebyshev polynomial of the first kind
- * of order @f$ n @f$, @f$ T_n(x) @f$ by trigonometric identity:
- * @f[
- *   T_n(x) = \cos(n\theta)
- * @f]
- * where @f$ \theta = \acos(x) @f$.
- */
-template<typename _Tp>
-  _Tp
-  __chebyshev_t_trig(unsigned int __n, _Tp __x)
-  {
-    auto __theta_pi = __acos_pi(__x);
-    return std::__detail::__cos_pi(__n * __theta_pi);
-  }
+  /**
+   * Return a reperiodized arccosine:
+   * @f[
+   *   acos_pi(x) = \frac{1}{\pi}acos(x)
+   * @f]
+   */
+  template<typename _Tp>
+    inline _Tp
+    __acos_pi(_Tp __x)
+    { return std::acos(__x) / __gnu_cxx::__const_pi(__x); }
 
-/**
- * Return a vector of zeros of the Chebyshev function of the first kind
- * of order @f$ n @f$, @f$ T_n(x) @f$.
- * The zeros are given by:
- * @f[
- *   x_k = \cos\left(\frac{(k+\frac{1}{2})\pi}{n+1}\right),
- *     k \elem {1, ..., n}
- * @f]
- */
-template<typename _Tp>
-  std::vector<_Tp>
-  __chebyshev_t_zeros(unsigned int __n)
-  {
-    std::vector<_Tp> __zero;
-    for (unsigned int __k = 0; __k < __n; ++__k)
-      __zero.push_back(__gnu_cxx::cos_pi(_Tp(__k + 0.5L) / _Tp(__n)));
-    return __zero;
-  }
+  /**
+   * Return the Chebyshev polynomial of the first kind
+   * of order @f$ n @f$, @f$ T_n(x) @f$ by trigonometric identity:
+   * @f[
+   *   T_n(x) = \cos(n\theta)
+   * @f]
+   * where @f$ \theta = \acos(x) @f$.
+   */
+  template<typename _Tp>
+    _Tp
+    __chebyshev_t_trig(unsigned int __n, _Tp __x)
+    {
+      auto __theta_pi = __acos_pi(__x);
+      return std::__detail::__cos_pi(__n * __theta_pi);
+    }
 
-/**
- * Return the Chebyshev polynomial of the second kind
- * of order @f$ n @f$, @f$ U_n(x) @f$ by trigonometric identity:
- * @f[
- *   U_n(x) = \frac{\sin((n + 1)\theta)}{\sin(\theta)}
- * @f]
- * where @f$ \theta = \acos(x) @f$.
- */
-template<typename _Tp>
-  _Tp
-  __chebyshev_u_trig(unsigned int __n, _Tp __x)
-  {
-    const auto _S_eps = __gnu_cxx::__epsilon(__x);
-    if (std::abs(__x + _Tp{1}) < _S_eps)
-      return (__n % 2 == 0 ? +1 : -1) * _Tp(__n + 1);
-    else if (std::abs(__x - _Tp{1}) < _S_eps)
-      return _Tp(__n + 1);
-    else
-      {
-	auto __theta_pi = __acos_pi(__x);
-	return std::__detail::__sin_pi(_Tp(__n + 1) * __theta_pi)
-	     / std::__detail::__sin_pi(__theta_pi);
-      }
-  }
+  /**
+   * Return a vector of zeros of the Chebyshev function of the first kind
+   * of order @f$ n @f$, @f$ T_n(x) @f$.
+   * The zeros are given by:
+   * @f[
+   *   x_k = \cos\left(\frac{(k+\frac{1}{2})\pi}{n+1}\right),
+   *     k \elem {1, ..., n}
+   * @f]
+   */
+  template<typename _Tp>
+    std::vector<_Tp>
+    __chebyshev_t_zeros(unsigned int __n)
+    {
+      std::vector<_Tp> __zero;
+      for (unsigned int __k = 0; __k < __n; ++__k)
+	__zero.push_back(__gnu_cxx::cos_pi(_Tp(__k + 0.5L) / _Tp(__n)));
+      return __zero;
+    }
 
-/**
- * Return a vector of zeros of the Chebyshev function of the second kind
- * of order @f$ n @f$, @f$ U_n(x) @f$.
- * The zeros are given by:
- * @f[
- *   x_k = \cos\left(\frac{k\pi}{n+1}\right), k \elem {1, ..., n}
- * @f]
- */
-template<typename _Tp>
-  std::vector<_Tp>
-  __chebyshev_u_zeros(unsigned int __n)
-  {
-    std::vector<_Tp> __zero;
-    for (unsigned int __k = 1; __k <= __n; ++__k)
-      __zero.push_back(__gnu_cxx::cos_pi(_Tp(__k) / _Tp(__n + 1)));
-    return __zero;
-  }
+  /**
+   * Return the Chebyshev polynomial of the second kind
+   * of order @f$ n @f$, @f$ U_n(x) @f$ by trigonometric identity:
+   * @f[
+   *   U_n(x) = \frac{\sin((n + 1)\theta)}{\sin(\theta)}
+   * @f]
+   * where @f$ \theta = \acos(x) @f$.
+   */
+  template<typename _Tp>
+    _Tp
+    __chebyshev_u_trig(unsigned int __n, _Tp __x)
+    {
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      if (std::abs(__x + _Tp{1}) < _S_eps)
+	return (__n % 2 == 0 ? +1 : -1) * _Tp(__n + 1);
+      else if (std::abs(__x - _Tp{1}) < _S_eps)
+	return _Tp(__n + 1);
+      else
+	{
+	  const auto __theta_pi = __acos_pi(__x);
+	  return std::__detail::__sin_pi(_Tp(__n + 1) * __theta_pi)
+	       / std::__detail::__sin_pi(__theta_pi);
+	}
+    }
 
-/**
- * Return the Chebyshev polynomial of the third kind
- * of order @f$ n @f$, @f$ V_n(x) @f$ by trigonometric identity:
- * @f[
- *   V_n(x) = \frac{\cos((n + \frac{1}{2})\theta)}
- *                 {cos(\frac{1}{2}\theta)}
- * @f]
- * where @f$ \theta = \acos(x) @f$.
- */
-template<typename _Tp>
-  _Tp
-  __chebyshev_v_trig(unsigned int __n, _Tp __x)
-  {
-    const auto _S_eps = __gnu_cxx::__epsilon(__x);
-    if (std::abs(__x + _Tp{1}) < _S_eps)
-      return (__n % 2 == 0 ? +1 : -1) * _Tp(2 * __n + 1);
-    else
-      {
-	auto __theta_pi = __acos_pi(__x);
-	return std::__detail::__cos_pi(_Tp(__n + 0.5L) * __theta_pi)
-	     / std::__detail::__cos_pi(_Tp{0.5L} * __theta_pi);
-      }
-  }
+  /**
+   * Return a vector of zeros of the Chebyshev function of the second kind
+   * of order @f$ n @f$, @f$ U_n(x) @f$.
+   * The zeros are given by:
+   * @f[
+   *   x_k = \cos\left(\frac{k\pi}{n+1}\right), k \elem {1, ..., n}
+   * @f]
+   */
+  template<typename _Tp>
+    std::vector<_Tp>
+    __chebyshev_u_zeros(unsigned int __n)
+    {
+      std::vector<_Tp> __zero;
+      for (unsigned int __k = 1; __k <= __n; ++__k)
+	__zero.push_back(__gnu_cxx::cos_pi(_Tp(__k) / _Tp(__n + 1)));
+      return __zero;
+    }
 
-/**
- * Return a vector of zeros of the Chebyshev function of the third kind
- * of order @f$ n @f$, @f$ V_n(x) @f$.
- * The zeros are given by:
- * @f[
- *   x_k = \cos\left(\frac{\left(k+\frac{1}{2}\right)\pi}{n+\frac{1}{2}}\right),
- *       k \elem {1, ..., n}
- * @f]
- */
-template<typename _Tp>
-  std::vector<_Tp>
-  __chebyshev_v_zeros(unsigned int __n)
-  {
-    std::vector<_Tp> __zero;
-    for (unsigned int __k = 0; __k < __n; ++__k)
-      __zero.push_back(__gnu_cxx::cos_pi(_Tp(__k + 0.5L) / _Tp(__n + 0.5L)));
-    return __zero;
-  }
+  /**
+   * Return the Chebyshev polynomial of the third kind
+   * of order @f$ n @f$, @f$ V_n(x) @f$ by trigonometric identity:
+   * @f[
+   *   V_n(x) = \frac{\cos((n + \frac{1}{2})\theta)}
+   *                 {cos(\frac{1}{2}\theta)}
+   * @f]
+   * where @f$ \theta = \acos(x) @f$.
+   */
+  template<typename _Tp>
+    _Tp
+    __chebyshev_v_trig(unsigned int __n, _Tp __x)
+    {
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      if (std::abs(__x + _Tp{1}) < _S_eps)
+	return (__n % 2 == 0 ? +1 : -1) * _Tp(2 * __n + 1);
+      else
+	{
+	  const auto __theta_pi = __acos_pi(__x);
+	  return std::__detail::__cos_pi(_Tp(__n + 0.5L) * __theta_pi)
+	       / std::__detail::__cos_pi(_Tp{0.5L} * __theta_pi);
+	}
+    }
 
-/**
- * Return the Chebyshev polynomial of the fourth kind
- * of order @f$ n @f$, @f$ W_n(x) @f$ by trigonometric identity:
- * @f[
- *   W_n(x) = \frac{\sin((n + \frac{1}{2})\theta)}
- *                 {\sin(\frac{1}{2}\theta)}
- * @f]
- * where @f$ \theta = \acos(x) @f$.
- */
-template<typename _Tp>
-  _Tp
-  __chebyshev_w_trig(unsigned int __n, _Tp __x)
-  {
-    const auto _S_eps = __gnu_cxx::__epsilon(__x);
-    if (std::abs(__x - _Tp{1}) < _S_eps)
-      return _Tp(2 * __n + 1);
-    else
-      {
-	auto __theta_pi = __acos_pi(__x);
-	return std::__detail::__sin_pi(_Tp(__n + 0.5L) * __theta_pi)
-	     / std::__detail::__sin_pi(_Tp{0.5L} * __theta_pi);
-      }
-  }
+  /**
+   * Return a vector of zeros of the Chebyshev function of the third kind
+   * of order @f$ n @f$, @f$ V_n(x) @f$.
+   * The zeros are given by:
+   * @f[
+   *   x_k = \cos\left(\frac{\left(k+\frac{1}{2}\right)\pi}{n+\frac{1}{2}}\right),
+   *       k \elem {1, ..., n}
+   * @f]
+   */
+  template<typename _Tp>
+    std::vector<_Tp>
+    __chebyshev_v_zeros(unsigned int __n)
+    {
+      std::vector<_Tp> __zero;
+      for (unsigned int __k = 0; __k < __n; ++__k)
+	__zero.push_back(__gnu_cxx::cos_pi(_Tp(__k + 0.5L) / _Tp(__n + 0.5L)));
+      return __zero;
+    }
 
-/**
- * Return a vector of zeros of the Chebyshev function of the fourth kind
- * of order @f$ n @f$, @f$ W_n(x) @f$.
- * The zeros are given by:
- * @f[
- *   x_k = \cos\left(\frac{k\pi}{n+\frac{1}{2}}\right),
- *       k \elem {1, ..., n}
- * @f]
- */
-template<typename _Tp>
-  std::vector<_Tp>
-  __chebyshev_w_zeros(unsigned int __n)
-  {
-    std::vector<_Tp> __zero;
-    for (unsigned int __k = 1; __k <= __n; ++__k)
-      __zero.push_back(__gnu_cxx::cos_pi(_Tp(__k) / _Tp(__n + 0.5L)));
-    return __zero;
-  }
+  /**
+   * Return the Chebyshev polynomial of the fourth kind
+   * of order @f$ n @f$, @f$ W_n(x) @f$ by trigonometric identity:
+   * @f[
+   *   W_n(x) = \frac{\sin((n + \frac{1}{2})\theta)}
+   *                 {\sin(\frac{1}{2}\theta)}
+   * @f]
+   * where @f$ \theta = \acos(x) @f$.
+   */
+  template<typename _Tp>
+    _Tp
+    __chebyshev_w_trig(unsigned int __n, _Tp __x)
+    {
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      if (std::abs(__x - _Tp{1}) < _S_eps)
+	return _Tp(2 * __n + 1);
+      else
+	{
+	  const auto __theta_pi = __acos_pi(__x);
+	  return std::__detail::__sin_pi(_Tp(__n + 0.5L) * __theta_pi)
+	       / std::__detail::__sin_pi(_Tp{0.5L} * __theta_pi);
+	}
+    }
+
+  /**
+   * Return a vector of zeros of the Chebyshev function of the fourth kind
+   * of order @f$ n @f$, @f$ W_n(x) @f$.
+   * The zeros are given by:
+   * @f[
+   *   x_k = \cos\left(\frac{k\pi}{n+\frac{1}{2}}\right),
+   *       k \elem {1, ..., n}
+   * @f]
+   */
+  template<typename _Tp>
+    std::vector<_Tp>
+    __chebyshev_w_zeros(unsigned int __n)
+    {
+      std::vector<_Tp> __zero;
+      for (unsigned int __k = 1; __k <= __n; ++__k)
+	__zero.push_back(__gnu_cxx::cos_pi(_Tp(__k) / _Tp(__n + 0.5L)));
+      return __zero;
+    }
 
 template<typename Tp>
   void

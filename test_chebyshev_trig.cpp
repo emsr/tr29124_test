@@ -13,6 +13,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev
 
 #include <bits/float128_io.h>
 
+/**
+ * @todo return derivatives from these.
+ */
+
   /**
    * Return the Chebyshev polynomial of the first kind
    * of order @f$ n @f$, @f$ T_n(x) @f$ by trigonometric identity:
@@ -27,17 +31,17 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev
     {
       if (std::abs(__x) <= _Tp{1})
 	{
-	  auto __theta = std::acos(__x);
+	  const auto __theta = std::acos(__x);
 	  return std::cos(__n * __theta);
 	}
       else if (__x > _Tp{1})
 	{
-	  auto __theta = std::acosh(__x);
+	  const auto __theta = std::acosh(__x);
 	  return std::cosh(__n * __theta);
 	}
       else
 	{
-	  auto __theta = std::acosh(-__x);
+	  const auto __theta = std::acosh(-__x);
 	  return (__n & 1 ? _Tp{-1} : _Tp{+1}) * std::cosh(__n * __theta);
 	}
     }
@@ -84,19 +88,19 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev
 	return _Tp(__n + 1);
       else if (std::abs(__x) < _Tp{1})
 	{
-	  auto __theta = std::acos(__x);
+	  const auto __theta = std::acos(__x);
 	  return std::sin(_Tp(__n + 1) * __theta)
 	       / std::sin(__theta);
 	}
       else if (__x > _Tp{1})
 	{
-	  auto __theta = std::acosh(__x);
+	  const auto __theta = std::acosh(__x);
 	  return std::sinh(_Tp(__n + 1) * __theta)
 	       / std::sinh(__theta);
 	}
       else
 	{
-	  auto __theta = std::acosh(-__x);
+	  const auto __theta = std::acosh(-__x);
 	  return (__n & 1 ? _Tp{-1} : _Tp{+1})
 	       * std::sinh(_Tp(__n + 1) * __theta)
 	       / std::sinh(__theta);
@@ -119,10 +123,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev
       std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
       for (unsigned int __k = 1; __k <= __n; ++__k)
 	{
-	  auto __arg = _Tp(__k) / _Tp(__n + 1);
-	  auto __half = __gnu_cxx::__fp_is_equal<_Tp>(__arg, _Tp{0.5L});
-	  auto __z = (__half ? _Tp{0} : __gnu_cxx::cos_pi(__arg));
-	  auto __w = _S_pi * (_Tp{1} - __z * __z) / _Tp(__n + 1);
+	  const auto __arg = _Tp(__k) / _Tp(__n + 1);
+	  const auto __half = __gnu_cxx::__fp_is_equal<_Tp>(__arg, _Tp{0.5L});
+	  const auto __z = (__half ? _Tp{0} : __gnu_cxx::cos_pi(__arg));
+	  const auto __w = _S_pi * (_Tp{1} - __z * __z) / _Tp(__n + 1);
 	  __pt[__k - 1].__point = __z;
 	  __pt[__k - 1].__weight = __w;
 	}
@@ -147,19 +151,19 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev
 	return (__n % 2 == 0 ? +1 : -1) * _Tp(2 * __n + 1);
       else if (std::abs(__x) <= _Tp{1})
 	{
-	  auto __theta = std::acos(__x);
+	  const auto __theta = std::acos(__x);
 	  return std::cos(_Tp(__n + 0.5L) * __theta)
 	       / std::cos(_Tp{0.5L} * __theta);
 	}
       else if (__x > _Tp{1})
 	{
-	  auto __theta = std::acosh(__x);
+	  const auto __theta = std::acosh(__x);
 	  return std::cosh(_Tp(__n + 0.5L) * __theta)
 	       / std::cosh(_Tp{0.5L} * __theta);
 	}
       else
 	{
-	  auto __theta = std::acosh(-__x);
+	  const auto __theta = std::acosh(-__x);
 	  return (__n % 2 == 0 ? +1 : -1)
 	       * std::sinh(_Tp(__n + 0.5L) * __theta)
 	       / std::sinh(_Tp{0.5L} * __theta);
@@ -183,8 +187,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev
       std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
       for (unsigned int __k = 0; __k < __n; ++__k)
 	{
-	  auto __z = __gnu_cxx::cos_pi(_Tp(__k + 0.5L) / _Tp(__n + 0.5L));
-	  auto __w = _S_pi * (_Tp{1} + __z) / (_Tp(__n) + _Tp{1} / _Tp{2});
+	  const auto __z = __gnu_cxx::cos_pi(_Tp(__k + 0.5L) / _Tp(__n + 0.5L));
+	  const auto __w = _S_pi * (_Tp{1} + __z) / (_Tp(__n) + _Tp{1} / _Tp{2});
 	  __pt[__k].__point = __z;
 	  __pt[__k].__weight = __w;
 	}
@@ -209,19 +213,19 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev
 	return _Tp(2 * __n + 1);
       else if (std::abs(__x) <= _Tp{1})
 	{
-	  auto __theta = std::acos(__x);
+	  const auto __theta = std::acos(__x);
 	  return std::sin(_Tp(__n + 0.5L) * __theta)
 	       / std::sin(_Tp{0.5L} * __theta);
 	}
       else if (__x > _Tp{1})
 	{
-	  auto __theta = std::acosh(__x);
+	  const auto __theta = std::acosh(__x);
 	  return std::sinh(_Tp(__n + 0.5L) * __theta)
 	       / std::sinh(_Tp{0.5L} * __theta);
 	}
       else
 	{
-	  auto __theta = std::acosh(-__x);
+	  const auto __theta = std::acosh(-__x);
 	  return (__n % 2 == 0 ? +1 : -1)
 	       * std::cosh(_Tp(__n + 0.5L) * __theta)
 	       / std::cosh(_Tp{0.5L} * __theta);
@@ -245,8 +249,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev
       std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
       for (unsigned int __k = 1; __k <= __n; ++__k)
 	{
-	  auto __z = __gnu_cxx::cos_pi(_Tp(__k) / _Tp(__n + 0.5L));
-	  auto __w = _S_pi * (_Tp{1} - __z) / (_Tp(__n) + _Tp{1} / _Tp{2});
+	  const auto __z = __gnu_cxx::cos_pi(_Tp(__k) / _Tp(__n + 0.5L));
+	  const auto __w = _S_pi * (_Tp{1} - __z) / (_Tp(__n) + _Tp{1} / _Tp{2});
 	  __pt[__k - 1].__point = __z;
 	  __pt[__k - 1].__weight = __w;
 	}
