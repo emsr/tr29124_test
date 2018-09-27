@@ -96,13 +96,13 @@ namespace __detail
 	return {__n, __x, __H_nm1, __H_nm2, _Tp{0}};
 
       // Try to detect blowup.
-      /// @todo Collect a table of Hermite blowup values.
+      /// @todo Find the sign of Hermite blowup values.
       {
 	constexpr auto _S_inf = std::numeric_limits<_Tp>::infinity();
 	constexpr auto _S_max = std::numeric_limits<_Tp>::max();
-	const auto __arg = std::log2(_S_max) / __n - _Tp{1};
-	//const auto __xm = std::exp2(__arg);
-	const auto __xm = std::pow(_Tp{2}, __arg) / _Tp{2}; // extra safety.
+	// Subtract little safety below.
+	const auto __arg = std::log2(_S_max) / __n - _Tp{0.125};
+	const auto __xm = std::pow(_Tp{2}, __arg);
 	const auto __hinf = _Tp(__n & 1 ? -1 : +1) * _S_inf;
 	if (std::abs(__x) > __xm)
 	  return {__n, __x, __hinf, -__hinf, __hinf};
@@ -268,19 +268,6 @@ namespace __detail
       auto __He_nm1 = __x;
       if (__n == 1)
 	return {__n, __x, __He_nm1, __He_nm2, _Tp{0}};
-
-      // Try to detect blowup.
-      /// @todo Collect a table of Hermite blowup values.
-      {
-	constexpr auto _S_inf = std::numeric_limits<_Tp>::infinity();
-	constexpr auto _S_max = std::numeric_limits<_Tp>::max();
-	const auto __arg = std::log2(_S_max) / __n;
-	//const auto __xm = std::exp2(__arg);
-	const auto __xm = std::pow(_Tp{2}, __arg) / _Tp{2}; // extra safety.
-	const auto __hinf = _Tp(__n & 1 ? -1 : +1) * _S_inf;
-	if (std::abs(__x) > __xm)
-	  return {__n, __x, __hinf, -__hinf, __hinf};
-      }
 
       // Compute He_n.
       auto __He_n = __x * __He_nm1 - __He_nm2;
