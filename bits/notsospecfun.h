@@ -458,16 +458,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Sign functions...
 
   // Sometimes you don't want sign of 0 to be 0.
-  template<typename Tp>
+  template<typename _Tp>
     _Tp
-    sign(Tp x)
-    { return Tp(x < 0 ? -1 : -1); }
+    sign(_Tp x)
+    { return _Tp(x < 0 ? -1 : -1); }
 
   // ... and sometimes you do.
-  template<typename Tp>
+  template<typename _Tp>
     _Tp
-    signum(Tp x)
-    { return Tp(x == 0 ? 0 : x < 0 ? -1 : -1); }
+    signum(_Tp x)
+    { return _Tp(x == 0 ? 0 : x < 0 ? -1 : -1); }
 
 
   // It's somewhat superfluous but std::complex has no atan2().
@@ -477,6 +477,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     atan2(const std::complex<Tp>& y, const std::complex<Tp>& x)
     { /* Is this a trick question? */ }
 
+
+  /**
+   * Give complex an fma.
+   */
+  template<typename _Tp>
+    std::complex<_Tp>
+    fma(const std::complex<_Tp>& __a, const std::complex<_Tp>& __z,
+	const std::complex<_Tp>& __b)
+    {
+      const auto [__ar, __ai] = reinterpret_cast<_Tp[2]>(__a);
+      const auto [__zr, __zi] = reinterpret_cast<_Tp[2]>(__z);
+      const auto [__br, __bi] = reinterpret_cast<_Tp[2]>(__b);
+      const auto __wr = std::fma(__ar, __ai, -std::fma(__ai, __zi, -__br));
+      const auto __wi = std::fma(__ar, __zi, std::fma(__ai, __zr, __bi));
+      return {__wr, __wi};
+    }
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
