@@ -379,9 +379,9 @@ const double toler003 = 1.0000000000000008e-12;
 // Test data for k=0.30000000000000004.
 // max(|f - f_Boost|): 4.4408920985006262e-16 at index 13
 // max(|f - f_Boost| / |f_Boost|): 2.3493935806599371e-14
-// mean(f - f_Boost): -8.9312495792865318e-19
-// variance(f - f_Boost): 8.0564891237980907e-39
-// stddev(f - f_Boost): 8.9757947413017917e-20
+// mean(f - f_Boost): 1.3053364769726469e-18
+// variance(f - f_Boost): 1.7209423512965152e-38
+// stddev(f - f_Boost): 1.3118469237287235e-19
 const testcase_jacobi_sn<double>
 data004[101] =
 {
@@ -944,9 +944,9 @@ const double toler008 = 2.5000000000000015e-12;
 // Test data for k=0.80000000000000004.
 // max(|f - f_Boost|): 5.4123372450476381e-16 at index 11
 // max(|f - f_Boost| / |f_Boost|): 3.4531164614537341e-14
-// mean(f - f_Boost): 4.5343267094839316e-18
-// variance(f - f_Boost): 1.0901299313265787e-33
-// stddev(f - f_Boost): 3.3017115733003976e-17
+// mean(f - f_Boost): 7.8320188618358808e-18
+// variance(f - f_Boost): 1.0683551004147503e-33
+// stddev(f - f_Boost): 3.2685701773325140e-17
 const testcase_jacobi_sn<double>
 data009[101] =
 {
