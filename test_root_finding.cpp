@@ -115,6 +115,9 @@ template<typename _Tp>
 	    auto x_newton = __gnu_cxx::__root_newton(cos_state<_Tp>, x_lower, x_upper, eps);
 	    std::cout << "cos root (newton)        : x = " << std::setw(width) << x_newton << '\n';
 
+	    auto x_steffensen = __gnu_cxx::__root_steffensen((fun_t)&std::cos, x_lower, x_upper, eps);
+	    std::cout << "cos root (steffensen)    : x = " << std::setw(width) << x_steffensen << '\n';
+
 	    auto x_safe = __gnu_cxx::__root_safe(cos_state<_Tp>, x_lower, x_upper, eps);
 	    std::cout << "cos root (safe)          : x = " << std::setw(width) << x_safe << '\n';
 	  }

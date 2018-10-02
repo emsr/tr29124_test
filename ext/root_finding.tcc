@@ -452,7 +452,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The returned root is refined until its accuracy is
    * within <tt>+/- __eps</tt>.
    *
-   * @param __func A routine that provides both the function
+   * @f[
+   *    x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
+   * @f]
+   *
+   * @param __func A routine that provides both the function value
    *               and the first derivative of the function at the point x.
    * @param __x_lower  The lower end of the interval
    * @param __x_upper  The upper end of the interval
@@ -477,6 +481,51 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    return __x;
 	}
       std::__throw_runtime_error(__N("__root_newton: "
+				     "Maximum number of iterations exceeded"));
+    }
+
+  /**
+   * Using the Steffensen method, find the root of a function @c __func
+   * known to lie in the interval @c __x_lower to @c __x_upper.
+   * The returned root is refined until its accuracy is
+   * within <tt>+/- __eps</tt>.
+   *
+   * @f[
+   *    x_{n+1} = x_n - \frac{f(x_n)}{\frac{f(x_n + f(x_n))}{f(x_n)} - 1}
+   * @f]
+   *
+   * The Steffensen method amounts to estimating the derivative using the
+   * previous function value as a stepsize and applying the Newton iteration.
+   *
+   * This method is supposed to have quadratic convergence like Newton's
+   * method but it only required te function values.  On the other hand,
+   * the initial estimate generally must be tighter than for Newton's method.
+   *
+   * @param __func A routine that provides the function value at the point x.
+   * @param __x_lower  The lower end of the interval
+   * @param __x_upper  The upper end of the interval
+   * @param __eps  The tolerance
+   * @param __max_iter  The maximum number of iterations
+   */
+  template<typename _Tp, typename _Func>
+    _Tp
+    __root_steffensen(_Func __func, _Tp __x_lower, _Tp __x_upper,
+    		      _Tp __eps, std::size_t __max_iter)
+    {
+      auto __x = (__x_lower + __x_upper) / _Tp{2};
+      for (std::size_t __i = 0; __i < __max_iter; ++__i)
+	{
+	  auto __fval = __func(__x);
+	  auto __gval = __func(__x + __fval) / __fval - _Tp{1};
+	  auto __dx = __fval / __gval;
+	  __x -= __dx;
+	  if ((__x_lower - __x) * (__x - __x_upper) < _Tp{0})
+	    std::__throw_runtime_error(__N("__root_steffensen: "
+					   "Jumped out of brackets"));
+	  if (std::abs(__dx) < __eps)
+	    return __x;
+	}
+      std::__throw_runtime_error(__N("__root_steffensen: "
 				     "Maximum number of iterations exceeded"));
     }
 
