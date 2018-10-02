@@ -135,10 +135,10 @@ template<typename Real>
     using __gnu_cxx::lfalling_factorial;
     using __gnu_cxx::lrising_factorial;
     using __gnu_cxx::owens_t;
-    using __gnu_cxx::pgamma;
+    using __gnu_cxx::gamma_p;
     using __gnu_cxx::falling_factorial;
     using __gnu_cxx::rising_factorial;
-    using __gnu_cxx::qgamma;
+    using __gnu_cxx::gamma_q;
     using __gnu_cxx::radpoly;
     using       std::riemann_zeta;
     using __gnu_cxx::sinhc;

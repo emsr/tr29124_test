@@ -330,14 +330,14 @@ tgamma(double a, double x)
 
 /// Normalized incomlete gamma functions.
 double
-qgamma(double a, double x)
+gamma_q(double a, double x)
 {
   return igamc(a, x);
 }
 
 /// Normalized incomlete gamma functions.
 double
-pgamma(double a, double x)
+gamma_p(double a, double x)
 {
   return ::igam(a, x);
 }

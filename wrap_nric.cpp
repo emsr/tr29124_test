@@ -184,12 +184,12 @@ sph_neumann(unsigned int n, double x)
 
 /// Normalized incomplete gamma functions.
 double
-qgamma(double a, double x)
+gamma_q(double a, double x)
 { return gamma_q(a, x); }
 
 /// Complementary normalized incomplete gamma functions.
 double
-pgamma(double a, double x)
+gamma_p(double a, double x)
 { return gamma_p(a, x); }
 
 /// Non-normalized incomplete gamma functions.

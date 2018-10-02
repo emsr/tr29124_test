@@ -605,13 +605,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
   template<typename _Tp>
-    struct __pqgamma_t
+    struct __gappa_pq_t
     {
       /// 
-      _Tp __pgamma_value;
+      _Tp __gappa_p_value;
 
       /// 
-      _Tp __qgamma_value;
+      _Tp __gappa_q_value;
     };
 
   /**

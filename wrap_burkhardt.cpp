@@ -347,42 +347,42 @@ tgamma_lower(double /*a*/, double /*x*/)
 
 /// Normalized upper incomplete gamma functions.
 double
-qgamma(double /*a*/, double /*x*/)
+gamma_q(double /*a*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Inverse normalized upper incomplete gamma functions.
 double
-qgamma_inv(double /*a*/, double /*q*/)
+gamma_q_inv(double /*a*/, double /*q*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Inverse parameter normalized upper incomplete gamma functions.
 double
-qgamma_inva(double /*x*/, double /*q*/)
+gamma_q_inva(double /*x*/, double /*q*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Normalized lower incomplete gamma functions.
 double
-pgamma(double /*a*/, double /*x*/)
+gamma_p(double /*a*/, double /*x*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Inverse normalized lower incomplete gamma functions.
 double
-pgamma_inv(double /*a*/, double /*p*/)
+gamma_p_inv(double /*a*/, double /*p*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }
 
 /// Inverse parameter normalized lower incomplete gamma functions.
 double
-pgamma_inva(double /*x*/, double /*p*/)
+gamma_p_inva(double /*x*/, double /*p*/)
 {
   return std::numeric_limits<double>::quiet_NaN();
 }

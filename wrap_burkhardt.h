@@ -130,22 +130,22 @@ double sph_legendre(unsigned int l, unsigned int m, double theta);
 double sph_neumann(unsigned int n, double x);
 
 /// Normalized upper incomplete gamma functions.
-double qgamma(double a, double x);
+double gamma_q(double a, double x);
 
 /// Inverse normalized upper incomplete gamma functions.
-double qgamma_inv(double a, double q);
+double gamma_q_inv(double a, double q);
 
 /// Inverse parameter normalized upper incomplete gamma functions.
-double qgamma_inva(double x, double q);
+double gamma_q_inva(double x, double q);
 
 /// Normalized lower incomplete gamma functions.
-double pgamma(double a, double x);
+double gamma_p(double a, double x);
 
 /// Inverse normalized lower incomplete gamma functions.
-double pgamma_inv(double a, double p);
+double gamma_p_inv(double a, double p);
 
 /// Inverse parameter normalized lower incomplete gamma functions.
-double pgamma_inva(double x, double p);
+double gamma_p_inva(double x, double p);
 
 /// Non-normalized (upper) incomplete gamma functions.
 double tgamma(double a, double x);

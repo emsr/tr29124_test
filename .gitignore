@@ -147,8 +147,8 @@ check/check_lrising_factorial
 check/check_normal_cdf
 check/check_normal_pdf
 check/check_owens_t
-check/check_pgamma
-check/check_qgamma
+check/check_gamma_p
+check/check_gamma_q
 check/check_radpoly
 check/check_riemann_zeta
 check/check_rising_factorial

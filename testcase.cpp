@@ -215,10 +215,10 @@ template<typename Real>
     using __gnu_cxx::lfalling_factorial;
     using __gnu_cxx::lrising_factorial;
     using __gnu_cxx::owens_t;
-    using __gnu_cxx::pgamma;
+    using __gnu_cxx::gamma_p;
     using __gnu_cxx::polygamma;
     using __gnu_cxx::digamma;
-    using __gnu_cxx::qgamma;
+    using __gnu_cxx::gamma_q;
     using __gnu_cxx::radpoly;
     using       std::riemann_zeta;
     using __gnu_cxx::rising_factorial;
@@ -989,32 +989,32 @@ template<typename Real>
 	     file_tgamma_lower);
 
     // Lower regularized incomplete Gamma functions.
-    std::cout << "pgamma\n" << std::flush;
-    basename = "pgamma";
+    std::cout << "gamma_p\n" << std::flush;
+    basename = "gamma_p";
     filename = get_filename(path, prefix, basename, "", ".cc");
-    std::ofstream file_pgamma(filename);
-    maketest(pgamma, gsl::pgamma,
-	     "testcase_pgamma", "__gnu_cxx", basename,
+    std::ofstream file_gamma_p(filename);
+    maketest(gamma_p, gsl::gamma_p,
+	     "testcase_gamma_p", "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 11),
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 11),
 	     "GSL",
-	     file_pgamma);
+	     file_gamma_p);
 
     // Upper regularized incomplete Gamma functions.
-    std::cout << "qgamma\n" << std::flush;
-    basename = "qgamma";
+    std::cout << "gamma_q\n" << std::flush;
+    basename = "gamma_q";
     filename = get_filename(path, prefix, basename, "", ".cc");
-    std::ofstream file_qgamma(filename);
-    maketest(qgamma, gsl::qgamma,
-	     "testcase_qgamma", "__gnu_cxx", basename,
+    std::ofstream file_gamma_q(filename);
+    maketest(gamma_q, gsl::gamma_q,
+	     "testcase_gamma_q", "__gnu_cxx", basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 11),
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 11),
 	     "GSL",
-	     file_qgamma);
+	     file_gamma_q);
 
     // Incomplete Beta functions.
     std::cout << "ibeta\n" << std::flush;

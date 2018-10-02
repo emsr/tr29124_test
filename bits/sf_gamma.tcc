@@ -2781,7 +2781,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __pgamma(_Tp __a, _Tp __x)
+    __gamma_p(_Tp __a, _Tp __x)
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
@@ -2792,7 +2792,7 @@ _S_neg_double_factorial_table[999]
 
       auto __ia = __gnu_cxx::__fp_is_integer(__a);
       if (__ia && __ia() <= 0)
-	std::__throw_domain_error(__N("__pgamma: "
+	std::__throw_domain_error(__N("__gamma_p: "
 				      "non-positive integer argument a"));
       else if (std::real(__x) < std::real(__a + _Real{1}))
 	return __gamma_series(__a, __x).first;
@@ -2815,7 +2815,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __qgamma(_Tp __a, _Tp __x)
+    __gamma_q(_Tp __a, _Tp __x)
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
@@ -2826,7 +2826,7 @@ _S_neg_double_factorial_table[999]
 
       auto __ia = __gnu_cxx::__fp_is_integer(__a);
       if (__ia && __ia() <= 0)
-	std::__throw_domain_error(__N("__qgamma: "
+	std::__throw_domain_error(__N("__gamma_q: "
 				      "non-positive integer argument a"));
       else if (std::real(__x) < std::real(__a + _Real{1}))
 	return _Val{1} - __gamma_series(__a, __x).first;

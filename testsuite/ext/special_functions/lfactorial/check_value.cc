@@ -39,11 +39,11 @@
 #include <specfun_testcase.h>
 
 // Test data.
-// max(|f - f_GSL|): 711.71472580228999 at index 171
+// max(|f - f_GSL|): 1.9850858734571375e-09 at index 184
 // max(|f - f_GSL| / |f_GSL|): 2.5480034333324759e-12
-// mean(f - f_GSL): -1.4205882747123555
-// variance(f - f_GSL): inf
-// stddev(f - f_GSL): inf
+// mean(f - f_GSL): 3.4282844560534529e-10
+// variance(f - f_GSL): 2.9388543908239870e-22
+// stddev(f - f_GSL): 1.7143087209788051e-11
 const testcase_lfactorial<double>
 data001[501] =
 {
