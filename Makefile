@@ -45,6 +45,7 @@ BINS = testcase \
        testcase_tr1 \
        mpfrcalc \
        diff_special_function \
+       test_special_function \
        airy_toy \
        hankel_toy \
        hankel_toy128 \
