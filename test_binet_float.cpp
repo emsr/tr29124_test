@@ -2,7 +2,7 @@
 $HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_binet_float test_binet_float.cpp -lquadmath
 ./test_binet_float > test_binet_float.txt 2> test_binet_float.err
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_binet_float test_binet_float.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_binet_float test_binet_float.cpp -lquadmath
 ./test_binet_float > test_binet_float.txt 2> test_binet_float.err
  */
 
@@ -59,12 +59,12 @@ namespace __detail
       using _Val = _Tp;
       using _Real = std::__detail::__num_traits_t<_Val>;
 
-      const int __N = 100;
+      const int _N = 100;
 
       std::vector<_Real> __F;
       _Tp _Fprev{1}, _Gprev{0}, _Hprev{0};
       __F.push_back(_Fprev);
-      for (int __n = __N; __n > 0; --__n)
+      for (int __n = _N; __n > 0; --__n)
 	{
 	  auto _Fcurr = _Fprev + _Hprev * __c / (2 * __n);
 	  auto _Gcurr = ((2 * __n) * _Gprev + __c * _Fcurr) / (2 * __n - 1);
@@ -569,6 +569,27 @@ std::cerr << std::setw(12) << __c[__k - __i] * __d[__i] << '\t' << std::setw(12)
         __J = _S_a[__k] / (__z + __J);
 
       return __J;
+    }
+
+  /**
+   * Use the recurrance formula for the Binet function to evaluate the function
+   * where asymptotic evaluations work well.
+   *
+   * @f[
+   *    J(z) = J(z+1) + z + \frac{1}{2}ln(1+\frac{1}{z}) - 1
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __binet_recur(_Tp __z)
+    {
+      _Tp stuff{};
+      while (std::real(__z) < _Tp{10})
+        {
+	  stuff += __z + _Tp{0.5} * std::log1p(_Tp{1} / __z) - _Tp{1};
+	  __z += _Tp{1};
+        }
+      return stuff + __binet_cont_frac(__z);
     }
 
   /**

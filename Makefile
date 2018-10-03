@@ -110,6 +110,7 @@ BINS = testcase \
        test_hyperg \
        test_hypot \
        test_inv_erf \
+       test_inv_gamma \
        test_inv_ibeta \
        test_jacobi \
        test_jacobi_ellint \
@@ -127,6 +128,7 @@ BINS = testcase \
        test_limits \
        test_little_airy \
        test_lobatto \
+       test_logsumexp \
        test_lommel \
        test_marcum_q \
        test_math_h \
@@ -495,6 +497,7 @@ test: $(BINS)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_hyperg > test_hyperg.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_hypot > test_hypot.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_inv_erf > test_inv_erf.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_inv_gamma > test_inv_gamma.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_inv_ibeta > test_inv_ibeta.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_jacobi > test_jacobi.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_jacobi_ellint > test_jacobi_ellint.txt
@@ -511,6 +514,7 @@ test: $(BINS)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_limits > test_limits.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_little_airy > test_little_airy.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_lobatto > test_lobatto.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_logsumexp > test_logsumexp.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_lommel > test_lommel.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_marcum_q > test_marcum_q.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_math_h > test_math_h.txt
@@ -919,6 +923,9 @@ test_hypot: test_hypot.cpp
 test_inv_erf: test_inv_erf.cpp
 	$(CXX17) -I. -o test_inv_erf test_inv_erf.cpp -lquadmath
 
+test_inv_gamma: test_inv_gamma.cpp
+	$(CXX17) -I. -o test_inv_gamma test_inv_gamma.cpp -lquadmath
+
 test_inv_ibeta: test_inv_ibeta.cpp
 	$(CXX17) -I. -o test_inv_ibeta test_inv_ibeta.cpp -lquadmath
 
@@ -972,6 +979,9 @@ test_lobatto: wrappers_debug test_lobatto.cpp
 
 test_lommel: wrappers_debug test_lommel.cpp
 	$(CXX17) -I. -o test_lommel test_lommel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+
+test_logsumexp: test_logsumexp.cpp
+	$(CXX17) -I. -o test_logsumexp test_logsumexp.cpp -lquadmath
 
 test_marcum_q: test_marcum_q.cpp
 	$(CXX17) -I. -o test_marcum_q test_marcum_q.cpp -lquadmath

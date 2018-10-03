@@ -5,6 +5,31 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_inv_gamma t
 #include <ext/cmath>
 #include <limits>
 
+// From test_inv_erf.cpp
+template<typename _Tp>
+  _Tp
+  __erfc_inv(_Tp __p);
+
+template<typename RealTp>
+  RealTp
+  inv_erfc(RealTp p)
+  {
+    return __erfc_inv(p);
+  }
+
+// A fake Binet function.
+template<typename RealTp>
+  RealTp
+  gamma_scaled(RealTp x)
+  {
+    constexpr auto _S_ln2pi
+      = __gnu_cxx::__math_constants<RealTp>::__ln_2
+      + __gnu_cxx::__math_constants<RealTp>::__ln_pi;
+    constexpr auto half = RealTp{1} / RealTp{2};
+    return std::lgamma(x)
+	 - (x - half) * std::log(x) + x - _S_ln2pi / RealTp{2};
+  }
+
 /**
  * Return the inverse of the incomplete gamma functions equations
  *  P(a,xr) = p and Q(a,xr) = q

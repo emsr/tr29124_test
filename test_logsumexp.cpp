@@ -1,4 +1,7 @@
 
+#include <algorithm>
+#include <cmath>
+
 template<class T>
   constexpr const T&
   logsumexp(const T& a, const T& b)
@@ -52,3 +55,8 @@ template<class T>
 	return z / (T{1} + z);
       }
   }
+
+int
+main()
+{
+}

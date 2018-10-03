@@ -21,11 +21,6 @@ PATH=wrappers/debug:$PATH ./test_hyperg > test_hyperg.txt
 
 #include <wrap_gsl.h>
 
-  template<typename _Tp>
-    bool
-    std::isnan(_Tp __x)
-    { return std::isnan(__x); }
-
   /**
    *   @brief Return the hypergeometric function @f$ _2F_1(a,b;c;x) @f$
    *   by series expansion.
@@ -77,6 +72,33 @@ PATH=wrappers/debug:$PATH ./test_hyperg > test_hyperg.txt
 
       return __Fabc;
     }
+
+  /**
+   * Do Buhring's analytic continuation.
+   */
+  template<typename _Tp>
+    _Tp
+    __hyperg_buhring(_Tp __a, _Tp __b, _Tp __c, _Tp __z)
+    {
+      auto __danm2 = _Tp{0};
+      auto __danm1 = _Tp{1};
+      auto __dan = (_Tp(__n - 1) + __s)
+		 * (__z0 * (_Tp{1} - __z0) * (_Tp(__n - 2) + __s) * __danm2
+		  + ((_Tp(__n) + __s) * (_Tp{1} - _Tp{2} * __z0)
+		   + (__a + __b + _Tp{1}) * __z0 - __c) * __danm1)
+		 / _Tp(__n) / _Tp(__n + _Tp{2} * __s - __a - __b);
+      for (__n = 2; __n < _N; ++__n)
+	{
+	  auto __danm2 = __danm1;
+	  auto __danm1 = __dan;
+	  auto __dan = (_Tp(__n - 1) + __s)
+		     * (__z0 * (_Tp{1} - __z0) * (_Tp(__n - 2) + __s) * __danm2
+		      + ((_Tp(__n) + __s) * (_Tp{1} - _Tp{2} * __z0)
+		       + (__a + __b + _Tp{1}) * __z0 - __c) * __danm1)
+		     / _Tp(__n) / _Tp(__n + _Tp{2} * __s - __a - __b);
+	}
+    }
+
 
   /**
    * @brief Return the hypergeometric function @f$ _2F_1(a,b;c;x) @f$.
