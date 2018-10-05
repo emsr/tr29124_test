@@ -438,6 +438,7 @@ test: $(BINS)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./hankel_toy > hankel_toy.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./hankel_toy128 > hankel_toy128.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./hankel_toy_new > hankel_toy_new.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_airy_roots > test_airy_roots.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_anger_weber > test_anger_weber.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_appell_f1 > test_appell_f1.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_bernoulli > test_bernoulli.txt
@@ -740,6 +741,9 @@ testcase_tr1: wrappers_debug testcase.cpp testcase.tcc $(INC_DIR)/*.h $(INC_DIR)
 
 test_Faddeeva: $(FAD_DIR)/Faddeeva.hh $(FAD_DIR)/Faddeeva.cc
 	$(CXX) -DTEST_FADDEEVA -o $(FAD_DIR)/test_Faddeeva $(FAD_DIR)/Faddeeva.cc -lquadmath
+
+test_airy_roots: test_airy_roots.cpp
+	$(CXX17) -I. -o test_airy_roots test_airy_roots.cpp -lquadmath
 
 test_anger_weber: test_anger_weber.cpp
 	$(CXX17) -I. -o test_anger_weber test_anger_weber.cpp -lquadmath
