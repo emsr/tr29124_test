@@ -49,6 +49,7 @@ BINS = testcase \
        hankel_toy \
        hankel_toy128 \
        hankel_toy_new \
+       test_airy_roots \
        test_anger_weber \
        test_appell_f1 \
        test_arith_geom_mean \

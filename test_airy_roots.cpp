@@ -53,7 +53,7 @@ template<typename _Tp>
 	      << '\n';
     for (unsigned i = 0; i < zai.size(); ++i)
       {
-	auto xai = _Tp(-zai[i]);
+	auto xai = -zai[i];
 	auto xai_prev = xai;
 	auto aip_prev = _Tp(0);
 	auto ai_prev = _Tp(0);
@@ -80,7 +80,7 @@ template<typename _Tp>
 	      << '\n';
     for (unsigned i = 0; i < zai.size(); ++i)
       {
-	auto xaip = _Tp(-zaip[i]);
+	auto xaip = -zaip[i];
 	auto xaip_prev = xaip;
 	auto ai_prev = _Tp(0);
 	auto aip_prev = _Tp(0);
@@ -100,16 +100,18 @@ template<typename _Tp>
 		  << '\n';
       }
 
-    // The roots of Bi(x) interlace those of Ai(x).
+    // The roots of Bi(x) interlace those of Ai(x)
+    // and are close to the roots of Ai'(x).
     std::vector<_Tp> zbi;
     std::cout << '\n'
 	      << ' ' << std::setw(w) << "x"
 	      << ' ' << std::setw(w) << "Bi'(x)"
 	      << ' ' << std::setw(w) << "Bi(x)"
 	      << '\n';
+    auto zai_lower = _Tp(0);
     for (unsigned i = 0; i < zai.size() - 1; ++i)
       {
-	auto xbi = _Tp(-zai[i] - zai[i+1]) / 2;
+	auto xbi = (-zai_lower - zai[i]) / 2;
 	auto xbi_prev = xbi;
 	auto bip_prev = _Tp(0);
 	auto bi_prev = _Tp(0);
@@ -127,18 +129,20 @@ template<typename _Tp>
 		  << ' ' << std::setw(w) << bip_prev
 		  << ' ' << std::setw(w) << bi_prev
 		  << '\n';
+	zai_lower = zai[i];
       }
 
-    // The roots of Bi'(x) interlace those of Ai'(x).
+    // The roots of Bi'(x) interlace those of Ai'(x)
+    // and are close to the roots of Ai(x).
     std::vector<_Tp> zbip;
     std::cout << '\n'
-	      << ' ' << std::setw(w) << "x"
-	      << ' ' << std::setw(w) << "Bi(x)"
-	      << ' ' << std::setw(w) << "Bi'(x)"
+	      << ' ' << std::setw(w) << "x'"
+	      << ' ' << std::setw(w) << "Bi(x')"
+	      << ' ' << std::setw(w) << "Bi'(x')"
 	      << '\n';
     for (unsigned i = 0; i < zai.size() - 1; ++i)
       {
-	auto xbip = _Tp(-zaip[i] - zaip[i+1]) / 2;
+	auto xbip = -zai[i];
 	auto xbip_prev = xbip;
 	auto bi_prev = _Tp(0);
 	auto bip_prev = _Tp(0);
