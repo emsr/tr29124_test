@@ -458,6 +458,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @param __func A routine that provides both the function value
    *               and the first derivative of the function at the point x.
+   *               The return type must be decomposable into [value, deriv].
    * @param __x_lower  The lower end of the interval
    * @param __x_upper  The upper end of the interval
    * @param __eps  The tolerance
@@ -471,8 +472,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __x = (__x_lower + __x_upper) / _Tp{2};
       for (std::size_t __i = 0; __i < __max_iter; ++__i)
 	{
-	  auto __sf = __func(__x);
-	  auto __dx = __sf.__value / __sf.__deriv;
+	  auto [__value, __deriv] = __func(__x);
+	  auto __dx = __value / __deriv;
 	  __x -= __dx;
 	  if ((__x_lower - __x) * (__x - __x_upper) < _Tp{0})
 	    std::__throw_runtime_error(__N("__root_newton: "
@@ -483,6 +484,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       std::__throw_runtime_error(__N("__root_newton: "
 				     "Maximum number of iterations exceeded"));
     }
+
 
   /**
    * Using the Steffensen method, find the root of a function @c __func
