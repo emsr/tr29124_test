@@ -130,9 +130,9 @@ ${makedir} ${ext_dir}/lfalling_factorial
 ${makedir} ${ext_dir}/lgamma
 ${makedir} ${ext_dir}/lrising_factorial
 ${makedir} ${ext_dir}/owens_t
-${makedir} ${ext_dir}/pgamma
+${makedir} ${ext_dir}/gamma_p
 ${makedir} ${ext_dir}/polygamma
-${makedir} ${ext_dir}/qgamma
+${makedir} ${ext_dir}/gamma_q
 ${makedir} ${ext_dir}/radpoly
 ${makedir} ${ext_dir}/rising_factorial
 ${makedir} ${ext_dir}/sinc
@@ -221,8 +221,8 @@ ${tool} check/check_lfalling_factorial.cc ${ext_dir}/lfalling_factorial/check_va
 ${tool} check/check_lgamma.cc             ${ext_dir}/lgamma/check_value.cc
 ${tool} check/check_lrising_factorial.cc  ${ext_dir}/lrising_factorial/check_value.cc
 ${tool} check/check_owens_t.cc            ${ext_dir}/owens_t/check_value.cc
-${tool} check/check_pgamma.cc             ${ext_dir}/pgamma/check_value.cc
-${tool} check/check_qgamma.cc             ${ext_dir}/qgamma/check_value.cc
+${tool} check/check_gamma_p.cc            ${ext_dir}/gamma_p/check_value.cc
+${tool} check/check_gamma_q.cc            ${ext_dir}/gamma_q/check_value.cc
 ${tool} check/check_radpoly.cc            ${ext_dir}/radpoly/check_value.cc
 ${tool} check/check_rising_factorial.cc   ${ext_dir}/rising_factorial/check_value.cc
 ${tool} check/check_shi.cc                ${ext_dir}/sinhint/check_shi.cc

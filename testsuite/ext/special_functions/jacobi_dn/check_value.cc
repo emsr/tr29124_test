@@ -377,11 +377,11 @@ data003[101] =
 const double toler003 = 2.5000000000000020e-13;
 
 // Test data for k=0.30000000000000004.
-// max(|f - f_Boost|): 2.2204460492503131e-16 at index 27
-// max(|f - f_Boost| / |f_Boost|): 2.3043212738875068e-16
-// mean(f - f_Boost): 6.5953843047038999e-18
-// variance(f - f_Boost): 4.3934085068001897e-37
-// stddev(f - f_Boost): 6.6282791935767077e-19
+// max(|f - f_Boost|): 2.2204460492503131e-16 at index 30
+// max(|f - f_Boost| / |f_Boost|): 2.3123903496327878e-16
+// mean(f - f_Boost): 4.3969228698026002e-18
+// variance(f - f_Boost): 1.9526260030223066e-37
+// stddev(f - f_Boost): 4.4188527957178051e-19
 const testcase_jacobi_dn<double>
 data004[101] =
 {
@@ -944,9 +944,9 @@ const double toler008 = 2.5000000000000020e-13;
 // Test data for k=0.80000000000000004.
 // max(|f - f_Boost|): 3.3306690738754696e-16 at index 20
 // max(|f - f_Boost| / |f_Boost|): 4.6395716331335382e-16
-// mean(f - f_Boost): -4.9465382285279253e-17
-// variance(f - f_Boost): 2.6013859925264679e-34
-// stddev(f - f_Boost): 1.6128812704369989e-17
+// mean(f - f_Boost): -4.8366151567828602e-17
+// variance(f - f_Boost): 2.5658726070964997e-34
+// stddev(f - f_Boost): 1.6018341384477044e-17
 const testcase_jacobi_dn<double>
 data009[101] =
 {

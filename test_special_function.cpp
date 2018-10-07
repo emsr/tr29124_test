@@ -135,10 +135,10 @@ template<typename Real>
     using __gnu_cxx::lfalling_factorial;
     using __gnu_cxx::lrising_factorial;
     using __gnu_cxx::owens_t;
-    using __gnu_cxx::pgamma;
+    using __gnu_cxx::gamma_p;
     using __gnu_cxx::falling_factorial;
     using __gnu_cxx::rising_factorial;
-    using __gnu_cxx::qgamma;
+    using __gnu_cxx::gamma_q;
     using __gnu_cxx::radpoly;
     using       std::riemann_zeta;
     using __gnu_cxx::sinhc;
@@ -203,7 +203,7 @@ template<typename Real>
     runtest(gsl::airy_ai, "gsl_airy_ai",
 	    fill_argument(std::make_pair(-10.0, +10.0),
 			  std::make_pair(true, true), 41));
-    runtest(airy_ai, ns + "_airy_ai",
+    runtest<Real>(airy_ai, ns + "_airy_ai",
 	    fill_argument(std::make_pair(Real{-10}, Real{+10}),
 	        	  std::make_pair(true, true), 41));
 
@@ -212,18 +212,17 @@ template<typename Real>
     runtest(gsl::airy_bi, "gsl_airy_bi",
 	    fill_argument(std::make_pair(-10.0, +10.0),
 			  std::make_pair(true, true), 41));
-    runtest(airy_bi, ns + "_airy_bi",
+    runtest<Real>(airy_bi, ns + "_airy_bi",
 	    fill_argument(std::make_pair(Real{-10}, Real{+10}),
 	        	  std::make_pair(true, true), 41));
 #endif // STD
 
     //  Associated Laguerre polynomials.
-    //  double gsl_sf_laguerre_n(int n, double a, double x);
     std::cout << "assoc_laguerre\n" << std::flush;
-    runtest(gsl_sf_laguerre_n, "gsl_assoc_laguerre", iorder, dorder,
+    runtest(gsl::assoc_laguerre, "gsl_assoc_laguerre", uiorder, uiorder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 	   		  std::make_pair(true, true)));
-    runtest(assoc_laguerre, ns + "_assoc_laguerre", uiorder, uiorder,
+    runtest<Real>(assoc_laguerre, ns + "_assoc_laguerre", uiorder, uiorder,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 		  	  std::make_pair(true, true)));
 
@@ -233,7 +232,7 @@ template<typename Real>
     runtest(gsl::assoc_legendre, "gsl_assoc_legendre", uiorder, uiorder,
 	    fill_argument(std::make_pair(-1.0, 1.0),
 	    		  std::make_pair(true, true), 1001));
-    runtest(assoc_legendre, ns + "_assoc_legendre", uiorder, uiorder,
+    runtest<Real>(assoc_legendre, ns + "_assoc_legendre", uiorder, uiorder,
 	    fill_argument(std::make_pair(Real{-1}, Real{1}),
 		  	  std::make_pair(true, true), 1001));
 
@@ -245,7 +244,7 @@ template<typename Real>
 			  std::make_pair(false, true)),
 	    fill_argument(std::make_pair(0.0, 100.0),
 			  std::make_pair(false, true)));
-    runtest(beta, ns + "_beta",
+    runtest<Real>(beta, ns + "_beta",
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 		 	  std::make_pair(false, true), 101),
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -257,7 +256,7 @@ template<typename Real>
     runtest(gsl::comp_ellint_1, "gsl_comp_ellint_1",
 	    fill_argument(std::make_pair(-1.0, 1.0),
 			  std::make_pair(false, false), 101));  //  Avoid poles at |x| = 1.
-    runtest(comp_ellint_1, ns + "_comp_ellint_1",
+    runtest<Real>(comp_ellint_1, ns + "_comp_ellint_1",
 	    fill_argument(std::make_pair(Real{-1}, Real{1}),
 	        	  std::make_pair(true, true), 101));
 
@@ -267,7 +266,7 @@ template<typename Real>
     runtest(gsl::comp_ellint_2, "gsl_comp_ellint_2",
 	    fill_argument(std::make_pair(-1.0, 1.0),
 			  std::make_pair(false, false), 101));  //  Avoid poles at |x| = 1.
-    runtest(comp_ellint_2, ns + "_comp_ellint_2",
+    runtest<Real>(comp_ellint_2, ns + "_comp_ellint_2",
 	    fill_argument(std::make_pair(Real{-1}, Real{1}),
 	        	  std::make_pair(true, true), 101));
 
@@ -280,7 +279,7 @@ template<typename Real>
 			  std::make_pair(false, false)),
 	    fill_argument(std::make_pair(0.0, 1.0),
 			  std::make_pair(true, false), 11));
-    runtest(comp_ellint_3, ns + "_comp_ellint_3",
+    runtest<Real>(comp_ellint_3, ns + "_comp_ellint_3",
 	    fill_argument(std::make_pair(Real{-1}, Real{1}),
 		 	  std::make_pair(true, true)),
 	    fill_argument(std::make_pair(Real{0}, Real{1}),
@@ -289,7 +288,7 @@ template<typename Real>
 
     //  Confluent hypergeometric functions.
     std::cout << "conf_hyperg\n" << std::flush;
-    runtest(gsl_sf_hyperg_1F1,
+    runtest(gsl::conf_hyperg,
 	    "gsl_conf_hyperg",
 	    fill_argument(std::make_pair(0.0, 10.0),
 			  std::make_pair(true, true), 11),
@@ -297,7 +296,7 @@ template<typename Real>
 			  std::make_pair(false, true), 11),  //  Skip the singularity
 	    fill_argument(std::make_pair(-10.0, 10.0),
 			  std::make_pair(true, true), 201));
-    runtest(conf_hyperg, ns + "_conf_hyperg",
+    runtest<Real>(conf_hyperg, ns + "_conf_hyperg",
 	    fill_argument(std::make_pair(Real{0}, Real{10}),
 	    		  std::make_pair(true, true), 11),
 	    fill_argument(std::make_pair(Real{0}, Real{10}),
@@ -311,7 +310,7 @@ template<typename Real>
     runtest(gsl::cyl_bessel_i, "gsl_cyl_bessel_i", dborder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 			  std::make_pair(true, true), 1001));
-    runtest(cyl_bessel_i, ns + "_cyl_bessel_i", border,
+    runtest<Real>(cyl_bessel_i, ns + "_cyl_bessel_i", border,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 		 	  std::make_pair(true, true), 1001));
 
@@ -321,7 +320,7 @@ template<typename Real>
     runtest(gsl::cyl_bessel_j, "gsl_cyl_bessel_j", dborder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 			  std::make_pair(true, true), 1001));
-    runtest(cyl_bessel_j, ns + "_cyl_bessel_j", border,
+    runtest<Real>(cyl_bessel_j, ns + "_cyl_bessel_j", border,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 		 	  std::make_pair(true, true), 1001));
 
@@ -332,7 +331,7 @@ template<typename Real>
 	    fill_argument(std::make_pair(0.0, 100.0),
 			  std::make_pair(false, true),  // Skip the pole at the origin.
 			  1001));
-    runtest(cyl_bessel_k, ns + "_cyl_bessel_k", border,
+    runtest<Real>(cyl_bessel_k, ns + "_cyl_bessel_k", border,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 		 	  std::make_pair(true, true), 1001));
 
@@ -343,7 +342,7 @@ template<typename Real>
 	    fill_argument(std::make_pair(0.0, 100.0),
 			  std::make_pair(false, true),  // Skip the pole at the origin.
 			  1001));
-    runtest(cyl_neumann, ns + "_cyl_neumann", border,
+    runtest<Real>(cyl_neumann, ns + "_cyl_neumann", border,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 		 	  std::make_pair(true, true), 1001));
 
@@ -354,7 +353,7 @@ template<typename Real>
 	    fill_argument(std::make_pair(-1.0, 1.0),
 	        	  std::make_pair(false, false), 101),  //  Avoid poles at |x| = 1.
 	        	  vphid);
-    runtest(ellint_1, ns + "_ellint_1",
+    runtest<Real>(ellint_1, ns + "_ellint_1",
 	    fill_argument(std::make_pair(Real{-1}, Real{1}),
 		 	  std::make_pair(true, true), 101), vphi);
 
@@ -365,7 +364,7 @@ template<typename Real>
 	    fill_argument(std::make_pair(-1.0, 1.0),
 			  std::make_pair(false, false), 101),  //  Avoid poles at |x| = 1.
 			  vphid);
-    runtest(ellint_2, ns + "_ellint_2",
+    runtest<Real>(ellint_2, ns + "_ellint_2",
 	    fill_argument(std::make_pair(Real{-1}, Real{1}),
 		 		   std::make_pair(true, true), 101), vphi);
 
@@ -378,7 +377,7 @@ template<typename Real>
 			  std::make_pair(false, false)),
 	    fill_argument(std::make_pair(0.0, 1.0),
 			  std::make_pair(true, false), 11), vphid);
-    runtest(ellint_3, ns + "_ellint_3",
+    runtest<Real>(ellint_3, ns + "_ellint_3",
 	    fill_argument(std::make_pair(Real{-1}, Real{1}),
 	    		  std::make_pair(true, true)),
 	    fill_argument(std::make_pair(Real{0}, Real{1}),
@@ -394,7 +393,7 @@ template<typename Real>
     runtest(gsl::expint, "gsl_expint_pos",
 	    fill_argument(std::make_pair(0.0, 50.0),
 			  std::make_pair(false, true), 51));
-    runtest(expint, ns + "_expint",
+    runtest<Real>(expint, ns + "_expint",
 	    fill_argument(std::make_pair(Real{-50}, Real{50}),
 	        	  std::make_pair(true, true), 101));
 
@@ -404,14 +403,14 @@ template<typename Real>
     runtest(gsl::hermite, "gsl_hermite", uiorder,
     	    fill_argument(std::make_pair(-10.0, 10.0),
     			  std::make_pair(true, true), 101));
-    runtest(hermite, ns + "_hermite", uiorder,
+    runtest<Real>(hermite, ns + "_hermite", uiorder,
 	    fill_argument(std::make_pair(Real{-10}, Real{10}),
 			  std::make_pair(true, true), 101));
 
 
     //  Hypergeometric functions.
     std::cout << "hyperg\n" << std::flush;
-    runtest(gsl_sf_hyperg_2F1, "gsl_hyperg",
+    runtest(gsl::hyperg, "gsl_hyperg",
 	    fill_argument(std::make_pair(0.0, 10.0),
 			  std::make_pair(true, true), 11),
 	    fill_argument(std::make_pair(0.0, 10.0),
@@ -420,7 +419,7 @@ template<typename Real>
 			  std::make_pair(false, true), 11),  //  Skip the singularity
 	    fill_argument(std::make_pair(-1.0, 1.0),
 			  std::make_pair(true, false), 21));
-    runtest(hyperg, ns + "_hyperg",
+    runtest<Real>(hyperg, ns + "_hyperg",
 	    fill_argument(std::make_pair(Real{0}, Real{10}),
 	        	  std::make_pair(true, true), 11),
 	    fill_argument(std::make_pair(Real{0}, Real{10}),
@@ -437,17 +436,17 @@ template<typename Real>
 	    uiorder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 		  	  std::make_pair(true, true), 101));
-    runtest(laguerre, ns + "_laguerre", uiorder,
+    runtest<Real>(laguerre, ns + "_laguerre", uiorder,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 			  std::make_pair(true, true), 101));
 
 
     ///  Legendre polynomials
     std::cout << "legendre\n" << std::flush;
-    runtest(gsl_sf_legendre_Pl, "gsl_legendre", iorder,
+    runtest(gsl::legendre_p, "gsl_legendre", uiorder,
 	    fill_argument(std::make_pair(-1.0, 1.0),
 	   		  std::make_pair(true, true), 1001));
-    runtest(legendre, ns + "_legendre", uiorder,
+    runtest<Real>(legendre, ns + "_legendre", uiorder,
 	    fill_argument(std::make_pair(Real{-1}, Real{1}),
 			  std::make_pair(true, true), 1001));
 
@@ -461,7 +460,7 @@ template<typename Real>
     runtest(gsl::riemann_zeta, "gsl_riemann_zeta_pos",
 	    fill_argument(std::make_pair(1.0, 30.0),
 			  std::make_pair(false, true), 146));
-    runtest(riemann_zeta, ns + "_riemann_zeta",
+    runtest<Real>(riemann_zeta, ns + "_riemann_zeta",
 	    fill_argument(std::make_pair(Real{-10}, Real{30}),
 	        	  std::make_pair(true, true), 201));
 
@@ -474,7 +473,7 @@ template<typename Real>
 			  std::make_pair(false, true), 146),
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 26));
-    runtest(hurwitz_zeta, ns + "_hurwitz_zeta",
+    runtest<Real>(hurwitz_zeta, ns + "_hurwitz_zeta",
 	    fill_argument(std::make_pair(Real{1}, Real{30}),
 		 	  std::make_pair(true, true), 146),
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -484,19 +483,19 @@ template<typename Real>
 
     //  Spherical Bessel functions.
     std::cout << "sph_bessel\n" << std::flush;
-    runtest(gsl_sf_bessel_jl, "gsl_sph_bessel", isborder,
+    runtest(gsl::sph_bessel, "gsl_sph_bessel", uisborder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 	   		  std::make_pair(true, true), 1001));
-    runtest(sph_bessel, ns + "_sph_bessel", uisborder,
+    runtest<Real>(sph_bessel, ns + "_sph_bessel", uisborder,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 			  std::make_pair(true, true), 1001));
 
     //  Spherical Legendre functions.
     std::cout << "sph_legendre\n" << std::flush;
     runtest(gsl::sph_legendre, "gsl_sph_legendre", uiorder, uiorder,
-	    fill_argument(std::make_pair(0.0, _S_pi),
+	    fill_argument(std::make_pair(0.0, 100.0),
 	    		  std::make_pair(true, true), 1001));
-    runtest(sph_legendre, ns + "_sph_legendre", uiorder, uiorder,
+    runtest<Real>(sph_legendre, ns + "_sph_legendre", uiorder, uiorder,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 		  	  std::make_pair(true, true), 1001));
 
@@ -504,11 +503,11 @@ template<typename Real>
 
     //  Spherical Neumann functions.
     std::cout << "sph_neumann\n" << std::flush;
-    runtest(gsl_sf_bessel_yl, "gsl_sph_neumann", isborder,
+    runtest(gsl::sph_neumann, "gsl_sph_neumann", uisborder,
 	    fill_argument(std::make_pair(0.0, 100.0),
 	   		  std::make_pair(false, true),  // Skip the pole at the origin.
 	   		  1001));
-    runtest(sph_neumann, ns + "_sph_neumann", uisborder,
+    runtest<Real>(sph_neumann, ns + "_sph_neumann", uisborder,
 	    fill_argument(std::make_pair(Real{0}, Real{100}),
 			  std::make_pair(true, true), 1001));
 
@@ -520,7 +519,7 @@ template<typename Real>
 			  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11));
-    runtest(ellint_rc, ns + "_ellint_rc",
+    runtest<Real>(ellint_rc, ns + "_ellint_rc",
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
 		 	  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -535,7 +534,7 @@ template<typename Real>
 			  std::make_pair(true, true), 11),
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11));
-    runtest(ellint_rd, ns + "_ellint_rd",
+    runtest<Real>(ellint_rd, ns + "_ellint_rd",
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
 	    		  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -552,7 +551,7 @@ template<typename Real>
 			  std::make_pair(true, true), 11),
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11));
-    runtest(ellint_rf, ns + "_ellint_rf",
+    runtest<Real>(ellint_rf, ns + "_ellint_rf",
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
 	    		  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -571,7 +570,7 @@ template<typename Real>
 			  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(false, true), 11));
-    runtest(ellint_rj, ns + "_ellint_rj",
+    runtest<Real>(ellint_rj, ns + "_ellint_rj",
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
 	        	  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -599,7 +598,7 @@ template<typename Real>
 	    fill_argument(std::make_pair(0.0, 5.0),
 			  std::make_pair(true, true), 11));
 
-    runtest(tgamma, ns + "_tgamma",
+    runtest<Real>(tgamma, ns + "_tgamma",
 	    fill_argument(std::make_pair(Real{0}, Real{+5}),
 		 	  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(Real{0}, Real{+5}),
@@ -614,7 +613,7 @@ template<typename Real>
 			  std::make_pair(true, false), 11),
 	    fill_argument(std::make_pair(0.0, 1.0),
 			  std::make_pair(false, false), 21));
-    runtest(ibeta, ns + "_ibeta",
+    runtest<Real>(ibeta, ns + "_ibeta",
 	    fill_argument(std::make_pair(Real{0}, Real{5}),
 	    		  std::make_pair(false, true), 11),
 	    fill_argument(std::make_pair(Real{5}, Real{0}),
@@ -627,43 +626,43 @@ template<typename Real>
     runtest(gsl::digamma, "gsl_digamma",
 	    fill_argument(std::make_pair(-9.875, 10.125),
 			  std::make_pair(true, true), 41));
-    runtest(digamma, ns + "_digamma",
+    runtest<Real>(digamma, ns + "_digamma",
 	    fill_argument(std::make_pair(Real{-9.9375}, Real{10.0625}),
 	        	  std::make_pair(true, true), 801));
 
     //  Sine integral or Si functions.
     std::cout << "gsl_sinint\n" << std::flush;
-    runtest(gsl_sf_Si, "sinint",
+    runtest(gsl::sinint, "sinint",
 	    fill_argument(std::make_pair(0.0, +10.0),
 			  std::make_pair(false, true), 101));
-    runtest(sinint, ns + "_sinint",
+    runtest<Real>(sinint, ns + "_sinint",
 	    fill_argument(std::make_pair(Real{0}, Real{+10}),
 	        	  std::make_pair(false, true), 101));
 
     //  Cosine integral or Ci functions.
     std::cout << "gsl_cosint\n" << std::flush;
-    runtest(gsl_sf_Ci, "cosint",
+    runtest(gsl::cosint, "cosint",
 	    fill_argument(std::make_pair(0.0, +10.0),
 			  std::make_pair(false, true), 101));
-    runtest(cosint, ns + "_cosint",
+    runtest<Real>(cosint, ns + "_cosint",
 	    fill_argument(std::make_pair(Real{0}, Real{+10}),
 	        	  std::make_pair(false, true), 101));
 
     //  Hyperbolic sine integral or Shi functions.
     std::cout << "gsl_sinhint\n" << std::flush;
-    runtest(gsl_sf_Shi, "sinhint",
+    runtest(gsl::sinhint, "sinhint",
 	    fill_argument(std::make_pair(0.0, +5.0),
 			  std::make_pair(false, true), 101));
-    runtest(sinhint, ns + "_sinhint",
+    runtest<Real>(sinhint, ns + "_sinhint",
 	    fill_argument(std::make_pair(Real{0}, Real{+5}),
 	        	  std::make_pair(false, true), 101));
 
     //  Hyperbolic cosine integral or Chi functions.
     std::cout << "gsl_coshint\n" << std::flush;
-    runtest(gsl_sf_Chi, "coshint",
+    runtest(gsl::coshint, "coshint",
 	    fill_argument(std::make_pair(0.0, +5.0),
 			  std::make_pair(false, true), 101));
-    runtest(coshint, ns + "_coshint",
+    runtest<Real>(coshint, ns + "_coshint",
 	    fill_argument(std::make_pair(Real{0}, Real{+5}),
 	        	  std::make_pair(false, true), 101));
 
@@ -672,7 +671,7 @@ template<typename Real>
     runtest(gsl::dawson, "dawson",
 	    fill_argument(std::make_pair(0.0, +5.0),
 			  std::make_pair(false, true), 101));
-    runtest(dawson, ns + "_dawson",
+    runtest<Real>(dawson, ns + "_dawson",
 	    fill_argument(std::make_pair(Real{0}, Real{+5}),
 	        	  std::make_pair(false, true), 101));
 
@@ -681,7 +680,7 @@ template<typename Real>
     runtest(gsl::expint, "expint_en",
 	    fill_argument(std::make_pair(0.0, +5.0),
 			  std::make_pair(false, true), 101));
-    runtest(expint, ns + "_expint_en",
+    runtest<Real>(expint, ns + "_expint_en",
 	    fill_argument(std::make_pair(Real{0}, Real{+5}),
 	        	  std::make_pair(false, true), 101));
 
@@ -690,7 +689,7 @@ template<typename Real>
     runtest(gsl::sinc, "sinc",
 	    fill_argument(std::make_pair(-20.0, +20.0),
 			  std::make_pair(false, true), 401));
-    runtest(sinc, ns + "_sinc",
+    runtest<Real>(sinc, ns + "_sinc",
 	    fill_argument(std::make_pair(Real{20}, Real{+20}),
 	        	  std::make_pair(false, true), 401));
 
@@ -699,7 +698,7 @@ template<typename Real>
     runtest(gsl::sinc_pi, "sinc_pi",
 	    fill_argument(std::make_pair(-20.0, +20.0),
 			  std::make_pair(false, true), 401));
-    runtest(sinc_pi, ns + "_sinc_pi",
+    runtest<Real>(sinc_pi, ns + "_sinc_pi",
 	    fill_argument(std::make_pair(Real{20}, Real{+20}),
 	        	  std::make_pair(false, true), 401));
 

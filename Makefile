@@ -45,6 +45,7 @@ BINS = testcase \
        testcase_tr1 \
        mpfrcalc \
        diff_special_function \
+       test_special_function \
        airy_toy \
        hankel_toy \
        hankel_toy128 \
@@ -247,19 +248,19 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/check_legendre_q \
 	 ${CHECK_DIR}/check_lfactorial \
 	 ${CHECK_DIR}/check_lgamma \
-	 ${CHECK_DIR}/check_logistic_cdf \
+	 ${CHECK_DIR}/check_logistic_p \
 	 ${CHECK_DIR}/check_logistic_pdf \
 	 ${CHECK_DIR}/check_lfalling_factorial \
 	 ${CHECK_DIR}/check_lrising_factorial \
-	 ${CHECK_DIR}/check_lognormal_cdf \
+	 ${CHECK_DIR}/check_lognormal_p \
 	 ${CHECK_DIR}/check_lognormal_pdf \
-	 ${CHECK_DIR}/check_normal_cdf \
+	 ${CHECK_DIR}/check_normal_p \
 	 ${CHECK_DIR}/check_normal_pdf \
 	 ${CHECK_DIR}/check_owens_t \
-	 ${CHECK_DIR}/check_pgamma \
+	 ${CHECK_DIR}/check_gamma_p \
 	 ${CHECK_DIR}/check_falling_factorial \
 	 ${CHECK_DIR}/check_rising_factorial \
-	 ${CHECK_DIR}/check_qgamma \
+	 ${CHECK_DIR}/check_gamma_q \
 	 ${CHECK_DIR}/check_radpoly \
 	 ${CHECK_DIR}/check_riemann_zeta \
 	 ${CHECK_DIR}/check_shi \
@@ -636,19 +637,19 @@ check: $(CHECK_DIR) $(CHECKS)
 	echo "check_legendre_q" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_legendre_q >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_lfactorial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lfactorial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_lgamma" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lgamma >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
-	echo "check_logistic_cdf" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_logistic_cdf >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_logistic_p" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_logistic_p >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_logistic_pdf" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_logistic_pdf >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
-	echo "check_lognormal_cdf" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lognormal_cdf >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_lognormal_p" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lognormal_p >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_lognormal_pdf" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lognormal_pdf >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_lfalling_factorial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lfalling_factorial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_lrising_factorial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_lrising_factorial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_owens_t" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_owens_t >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
-	echo "check_pgamma" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_pgamma >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_gamma_p" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_gamma_p >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_falling_factorial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_falling_factorial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_rising_factorial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_rising_factorial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
-	echo "check_normal_cdf" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_normal_cdf >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_normal_p" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_normal_p >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_normal_pdf" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_normal_pdf >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
-	echo "check_qgamma" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_qgamma >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_gamma_q" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_gamma_q >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_radpoly" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_radpoly >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_riemann_zeta" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_riemann_zeta >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_shi" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_shi >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
@@ -1350,14 +1351,14 @@ ${CHECK_DIR}/check_lfalling_factorial: ${CHECK_DIR}/check_lfalling_factorial.cc
 ${CHECK_DIR}/check_lgamma: ${CHECK_DIR}/check_lgamma.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lgamma ${CHECK_DIR}/check_lgamma.cc -lquadmath
 
-${CHECK_DIR}/check_logistic_cdf: ${CHECK_DIR}/check_logistic_cdf.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_logistic_cdf ${CHECK_DIR}/check_logistic_cdf.cc -lquadmath
+${CHECK_DIR}/check_logistic_p: ${CHECK_DIR}/check_logistic_p.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_logistic_p ${CHECK_DIR}/check_logistic_p.cc -lquadmath
 
 ${CHECK_DIR}/check_logistic_pdf: ${CHECK_DIR}/check_logistic_pdf.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_logistic_pdf ${CHECK_DIR}/check_logistic_pdf.cc -lquadmath
 
-${CHECK_DIR}/check_lognormal_cdf: ${CHECK_DIR}/check_lognormal_cdf.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lognormal_cdf ${CHECK_DIR}/check_lognormal_cdf.cc -lquadmath
+${CHECK_DIR}/check_lognormal_p: ${CHECK_DIR}/check_lognormal_p.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lognormal_p ${CHECK_DIR}/check_lognormal_p.cc -lquadmath
 
 ${CHECK_DIR}/check_lognormal_pdf: ${CHECK_DIR}/check_lognormal_pdf.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lognormal_pdf ${CHECK_DIR}/check_lognormal_pdf.cc -lquadmath
@@ -1365,8 +1366,8 @@ ${CHECK_DIR}/check_lognormal_pdf: ${CHECK_DIR}/check_lognormal_pdf.cc
 ${CHECK_DIR}/check_lrising_factorial: ${CHECK_DIR}/check_lrising_factorial.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_lrising_factorial ${CHECK_DIR}/check_lrising_factorial.cc -lquadmath
 
-${CHECK_DIR}/check_normal_cdf: ${CHECK_DIR}/check_normal_cdf.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_normal_cdf ${CHECK_DIR}/check_normal_cdf.cc -lquadmath
+${CHECK_DIR}/check_normal_p: ${CHECK_DIR}/check_normal_p.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_normal_p ${CHECK_DIR}/check_normal_p.cc -lquadmath
 
 ${CHECK_DIR}/check_normal_pdf: ${CHECK_DIR}/check_normal_pdf.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_normal_pdf ${CHECK_DIR}/check_normal_pdf.cc -lquadmath
@@ -1374,11 +1375,11 @@ ${CHECK_DIR}/check_normal_pdf: ${CHECK_DIR}/check_normal_pdf.cc
 ${CHECK_DIR}/check_owens_t: ${CHECK_DIR}/check_owens_t.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_owens_t ${CHECK_DIR}/check_owens_t.cc -lquadmath
 
-${CHECK_DIR}/check_pgamma: ${CHECK_DIR}/check_pgamma.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_pgamma ${CHECK_DIR}/check_pgamma.cc -lquadmath
+${CHECK_DIR}/check_gamma_p: ${CHECK_DIR}/check_gamma_p.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_gamma_p ${CHECK_DIR}/check_gamma_p.cc -lquadmath
 
-${CHECK_DIR}/check_qgamma: ${CHECK_DIR}/check_qgamma.cc
-	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_qgamma ${CHECK_DIR}/check_qgamma.cc -lquadmath
+${CHECK_DIR}/check_gamma_q: ${CHECK_DIR}/check_gamma_q.cc
+	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_gamma_q ${CHECK_DIR}/check_gamma_q.cc -lquadmath
 
 ${CHECK_DIR}/check_radpoly: ${CHECK_DIR}/check_radpoly.cc
 	$(CXX) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_radpoly ${CHECK_DIR}/check_radpoly.cc -lquadmath

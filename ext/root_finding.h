@@ -51,7 +51,7 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
-  // This struct contains bothe the value and the derivative at a point.
+  // This struct contains both the value and the derivative at a point.
   template<typename _Tp>
     struct __root_state
     {
@@ -98,6 +98,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _Tp
     __root_newton(_StateFunc __func, _Tp __x_lower, _Tp __x_upper,
     		  _Tp __eps, std::size_t __max_iter = 40);
+
+  template<typename _Tp, typename _Func>
+    _Tp
+    __root_steffensen(_Func __func, _Tp __x_lower, _Tp __x_upper,
+    		      _Tp __eps, std::size_t __max_iter = 40);
 
   template<typename _Tp, typename _StateFunc>
     _Tp

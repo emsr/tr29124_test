@@ -46,7 +46,7 @@ PATH=wrappers/debug:$PATH ./test_inverse_gamma_distribution > test_inverse_gamma
    * Where @f$ Q(a,x) @f$ is the incomplete gamma function ratio.
    */
   template<typename _Tp>
-    inverse_gamma_cdf(_Tp __alpha, _Tp __beta, _Tp __x)
+    inverse_gamma_p(_Tp __alpha, _Tp __beta, _Tp __x)
     {
       if (__x == _Tp{0})
 	return _Tp{0};

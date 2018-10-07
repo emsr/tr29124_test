@@ -5,6 +5,7 @@ cos root (false position): x =   1.570796326794897e+00
 cos root (ridder)        : x =   1.570796326794899e+00
 cos root (brent)         : x =   1.570796326794897e+00
 cos root (newton)        : x =   1.570796326794897e+00
+cos root (steffensen)    : x =   1.570796326794897e+00
 cos root (safe)          : x =   1.570796326794897e+00
 cos root bracket:   3.819660112501051e-01 <= x <=   3.000000000000000e+00
 cos root brackets:

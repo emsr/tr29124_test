@@ -35,7 +35,7 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_fermi_dirac > test_fermi_
    */
   template<typename _Tp>
     _Tp
-    __fermi_dirac_cdf(_Tp __mu, _Tp __beta, _Tp __x)
+    __fermi_dirac_p(_Tp __mu, _Tp __beta, _Tp __x)
     {
       ;
     }

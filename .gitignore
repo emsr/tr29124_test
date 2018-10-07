@@ -17,6 +17,7 @@ a.out
 
 wrappers
 wrappers_debug
+wrappers_release
 
 obj
 
@@ -147,8 +148,8 @@ check/check_lrising_factorial
 check/check_normal_cdf
 check/check_normal_pdf
 check/check_owens_t
-check/check_pgamma
-check/check_qgamma
+check/check_gamma_p
+check/check_gamma_q
 check/check_radpoly
 check/check_riemann_zeta
 check/check_rising_factorial
@@ -324,6 +325,7 @@ test_limits
 test_little_airy
 test_lobatto
 test_local_special_function
+test_logsumexp
 test_lommel
 test_marcum_q
 test_math_h

@@ -409,12 +409,12 @@ namespace __gnu_cxx
   { return std::__detail::__legendre_q<__float128>(__n, __x); }
 
   inline __float128
-  pgammaq(__float128 __a, __float128 __x)
-  { return std::__detail::__pgamma<__float128>(__a, __x); }
+  gamma_pq(__float128 __a, __float128 __x)
+  { return std::__detail::__gamma_p<__float128>(__a, __x); }
 
   inline __float128
-  qgammaq(__float128 __a, __float128 __x)
-  { return std::__detail::__qgamma<__float128>(__a, __x); }
+  gamma_qq(__float128 __a, __float128 __x)
+  { return std::__detail::__gamma_q<__float128>(__a, __x); }
 
   inline __float128
   jacobi_zetaq(__float128 __k, __float128 __phi)
