@@ -75,18 +75,26 @@ PATH=wrappers/debug:$PATH ./test_hyperg > test_hyperg.txt
 
   /**
    * Do Buhring's analytic continuation.
+   * @param __s  The numerator parameter, (a or b)
+   * @todo This could be written to grow an existing array.
    */
   template<typename _Tp>
-    _Tp
-    __hyperg_buhring(_Tp __a, _Tp __b, _Tp __c, _Tp __z)
+    std::vector<_Tp>
+    __hyperg_buhring_d(int __ss, _Tp __a, _Tp __b, _Tp __c, _Tp __z0)
     {
+      const int _N = 20; // ?
+      std::vector<_Tp> __d(_N);
+      const auto __s = __ss = 0 ? __a : __b;
+      int __n = 1;
       auto __danm2 = _Tp{0};
       auto __danm1 = _Tp{1};
+      __d[0] = __danm1;
       auto __dan = (_Tp(__n - 1) + __s)
 		 * (__z0 * (_Tp{1} - __z0) * (_Tp(__n - 2) + __s) * __danm2
 		  + ((_Tp(__n) + __s) * (_Tp{1} - _Tp{2} * __z0)
 		   + (__a + __b + _Tp{1}) * __z0 - __c) * __danm1)
 		 / _Tp(__n) / _Tp(__n + _Tp{2} * __s - __a - __b);
+      __d[1] = __danm1;
       for (__n = 2; __n < _N; ++__n)
 	{
 	  auto __danm2 = __danm1;
@@ -96,9 +104,58 @@ PATH=wrappers/debug:$PATH ./test_hyperg > test_hyperg.txt
 		      + ((_Tp(__n) + __s) * (_Tp{1} - _Tp{2} * __z0)
 		       + (__a + __b + _Tp{1}) * __z0 - __c) * __danm1)
 		     / _Tp(__n) / _Tp(__n + _Tp{2} * __s - __a - __b);
+	  __d[__n] = __dan;
 	}
     }
 
+  /**
+   * Do Buhring's analytic continuation.
+   * @param __s  The numerator parameter, (a or b)
+   * @todo This could be written to grow an existing array.
+   */
+  template<typename _Tp>
+    std::vector<_Tp>
+    __hyperg_buhring(_Tp __a, _Tp __b, _Tp __c, _Tp __z)
+    {
+      /// Find nearest z0 @f$ z_0 = e^{\plusminus i\pi/3} @f$
+      constexpr auto _S_pi_3 = __gnu_cxx::__math_constants<_Tp>::__pi_third;
+      const auto __z0p = __z - std::polar(_Tp{1}, +_S_pi_3);
+      const auto __z0m = __z - std::polar(_Tp{1}, -_S_pi_3);
+      const auto __z0 = std::abs(__z0m) < std::abs(__z0p) ? __z0m : __z0p;
+
+      auto __da = __hyperg_buhring_d(0, __a, __b, __c, __z0);
+      auto __db = __hyperg_buhring_d(1, __a, __b, __c, __z0);
+      auto __dz = __z - __z0;
+      auto __rdz = _Tp{1} / __dz;
+
+      auto __suma = __da[0];
+      decltype(__rdz) __terma(1);
+      for (int __n = 1; __n < __da.size(); ++__n)
+	{
+	  __terma *= __rdz;
+	  __suma += __da[__n] * __terma;
+	}
+
+      auto __sumb = __db[0];
+      decltype(__rdz) __termb(1);
+      for (int __n = 1; __n < __db.size(); ++__n)
+	{
+	  __termb *= __rdz;
+	  __sumb += __db[__n] * __termb;
+	}
+
+      // This is where Buhring's gamma ratio might come in handy.
+      const auto _Gama = std::__detail::__gamma(__a);
+      const auto _Gamb = std::__detail::__gamma(__b);
+      const auto _Gamc = std::__detail::__gamma(__c);
+      const auto _Gambma = std::__detail::__gamma(__b - __a);
+      const auto _Gamamb = std::__detail::__gamma(__a - __b);
+      const auto _Gamcma = std::__detail::__gamma(__c - __a);
+      const auto _Gamcmb = std::__detail::__gamma(__c - __b);
+
+      return (_Gamc * _Gambma / _Gamb / _Gamcma) * std::pow(__dz, -__a) * __suma
+	  + (_Gamc * _Gamamb / _Gama / _Gamcmb) * std::pow(__dz, -__b) * __sumb;
+    }
 
   /**
    * @brief Return the hypergeometric function @f$ _2F_1(a,b;c;x) @f$.
