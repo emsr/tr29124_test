@@ -472,8 +472,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __x = (__x_lower + __x_upper) / _Tp{2};
       for (std::size_t __i = 0; __i < __max_iter; ++__i)
 	{
-	  auto [__value, __deriv] = __func(__x);
-	  auto __dx = __value / __deriv;
+	  const auto [__value, __deriv] = __func(__x);
+	  const auto __dx = __value / __deriv;
 	  __x -= __dx;
 	  if ((__x_lower - __x) * (__x - __x_upper) < _Tp{0})
 	    std::__throw_runtime_error(__N("__root_newton: "
@@ -482,6 +482,53 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    return __x;
 	}
       std::__throw_runtime_error(__N("__root_newton: "
+				     "Maximum number of iterations exceeded"));
+    }
+
+
+  /**
+   * Using the Halley method, find the root of a function @c __func
+   * known to lie in the interval @c __x_lower to @c __x_upper.
+   * The returned root is refined until its accuracy is
+   * within <tt>+/- __eps</tt>.
+   *
+   * @f[
+   *    x_{n+1} - x_n = -\frac{2 f(x_n) f'(x_n)}
+   *                    {2 [f'(x_n)]^2 - f(x_n) f''(x_n)}
+   * @f]
+   * This form indicates the close relationship to the Newton method:
+   * @f[
+   *    x_{n+1} - x_n = -\frac{f'(x_n)}
+   *                    {f'(x_n) - [f(x_n) f''(x_n)]/[2f'(x_n)]}
+   * @f]
+   *
+   * @param __func A routine that provides both the function value, and the
+   *               first and second derivative of the function at the point x.
+   *               The return type must be decomposable into [val, der, der2].
+   * @param __x_lower  The lower end of the interval
+   * @param __x_upper  The upper end of the interval
+   * @param __eps  The tolerance
+   * @param __max_iter  The maximum number of iterations
+   */
+  template<typename _Tp, typename _StateFunc>
+    _Tp
+    __root_halley(_StateFunc __func, _Tp __x_lower, _Tp __x_upper,
+		  _Tp __eps, std::size_t __max_iter)
+    {
+      auto __x = (__x_lower + __x_upper) / _Tp{2};
+      for (std::size_t __i = 0; __i < __max_iter; ++__i)
+	{
+	  const auto [__f, __df, __d2f] = __func(__x);
+	  const auto __dx = _Tp{2} * __f * __df
+			   / (_Tp{2} * __df * __df - __f * __d2f);
+	  __x -= __dx;
+	  if ((__x_lower - __x) * (__x - __x_upper) < _Tp{0})
+	    std::__throw_runtime_error(__N("__root_halley: "
+					   "Jumped out of brackets"));
+	  if (std::abs(__dx) < __eps)
+	    return __x;
+	}
+      std::__throw_runtime_error(__N("__root_halley: "
 				     "Maximum number of iterations exceeded"));
     }
 

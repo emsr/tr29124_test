@@ -99,6 +99,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __root_newton(_StateFunc __func, _Tp __x_lower, _Tp __x_upper,
     		  _Tp __eps, std::size_t __max_iter = 40);
 
+  template<typename _Tp, typename _StateFunc>
+    _Tp
+    __root_halley(_StateFunc __func, _Tp __x_lower, _Tp __x_upper,
+    		  _Tp __eps, std::size_t __max_iter = 40);
+
   template<typename _Tp, typename _Func>
     _Tp
     __root_steffensen(_Func __func, _Tp __x_lower, _Tp __x_upper,
