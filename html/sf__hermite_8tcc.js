@@ -5,5 +5,5 @@ var sf__hermite_8tcc =
     [ "__hermite_asymp", "sf__hermite_8tcc.html#ae44761bc16e62979edeccf4535ec553a", null ],
     [ "__hermite_recur", "sf__hermite_8tcc.html#addad9d3f5ca8a7ddae63c9e7c5374e70", null ],
     [ "__hermite_zeros", "sf__hermite_8tcc.html#a34e064cf8ddf0680ce559ba3f976c6dd", null ],
-    [ "__prob_hermite_recursion", "sf__hermite_8tcc.html#aada7dabf929dbb464ef559feddf0ddc9", null ]
+    [ "__prob_hermite_recur", "sf__hermite_8tcc.html#a15e668e86c18d01134aded2a1657b1b2", null ]
 ];

@@ -1,13 +1,18 @@
 var searchData=
 [
-  ['dawson',['dawson',['../group__gnu__math__spec__func.html#ga0623ddcbfdce696781e19648fde6f33a',1,'__gnu_cxx']]],
+  ['dawson',['dawson',['../group__gnu__math__spec__func.html#gabc97cbc04fdd23593e8dccbc1421dad5',1,'__gnu_cxx']]],
   ['dawsonf',['dawsonf',['../group__gnu__math__spec__func.html#ga0a1b8e6760b8c7869127d41d96209318',1,'__gnu_cxx']]],
   ['dawsonl',['dawsonl',['../group__gnu__math__spec__func.html#ga6647a7444ff9c7c1f2a8ed36761bfeb2',1,'__gnu_cxx']]],
-  ['debye',['debye',['../group__gnu__math__spec__func.html#ga4bd3029fcde3afdeee5f313b2ebc6b0d',1,'__gnu_cxx']]],
+  ['debye',['debye',['../group__gnu__math__spec__func.html#ga0b14de47c011de3ebf771c9f29b2b78c',1,'__gnu_cxx']]],
   ['debyef',['debyef',['../group__gnu__math__spec__func.html#ga683d3a885913b52db128aa5d624984a4',1,'__gnu_cxx']]],
   ['debyel',['debyel',['../group__gnu__math__spec__func.html#ga2db11e767b89bbd36be6ebfadda3401f',1,'__gnu_cxx']]],
-  ['deriv',['deriv',['../struct____gnu__cxx_1_1____hermite__t.html#aa92fd4096ca98fedad08b95187bb7a34',1,'__gnu_cxx::__hermite_t::deriv()'],['../struct____gnu__cxx_1_1____hermite__he__t.html#a19c1df6940043e1b106b8cf70bddd60e',1,'__gnu_cxx::__hermite_he_t::deriv()'],['../struct____gnu__cxx_1_1____legendre__p__t.html#a91e1b4e4049e5085b52342db2afbad9d',1,'__gnu_cxx::__legendre_p_t::deriv()'],['../struct____gnu__cxx_1_1____laguerre__t.html#aed1a4e46a049188de5ca6c2cc9bc5cdf',1,'__gnu_cxx::__laguerre_t::deriv()'],['../struct____gnu__cxx_1_1____jacobi__t.html#a2b1a1fc42308cb293dfcb1fa4a8202a6',1,'__gnu_cxx::__jacobi_t::deriv()']]],
-  ['dilog',['dilog',['../group__gnu__math__spec__func.html#ga7a95a3cb9a53aca2a1ff9752ce9d5e3c',1,'__gnu_cxx']]],
+  ['dedekind_5feta',['dedekind_eta',['../structstd_1_1____detail_1_1____jacobi__theta__0__t.html#a7d1ad96ae4b231ad460f2ba3ce9b5061',1,'std::__detail::__jacobi_theta_0_t']]],
+  ['deriv',['deriv',['../struct____gnu__cxx_1_1____hermite__t.html#aa92fd4096ca98fedad08b95187bb7a34',1,'__gnu_cxx::__hermite_t::deriv()'],['../struct____gnu__cxx_1_1____hermite__he__t.html#a19c1df6940043e1b106b8cf70bddd60e',1,'__gnu_cxx::__hermite_he_t::deriv()'],['../struct____gnu__cxx_1_1____legendre__p__t.html#a91e1b4e4049e5085b52342db2afbad9d',1,'__gnu_cxx::__legendre_p_t::deriv()'],['../struct____gnu__cxx_1_1____laguerre__t.html#aed1a4e46a049188de5ca6c2cc9bc5cdf',1,'__gnu_cxx::__laguerre_t::deriv()'],['../struct____gnu__cxx_1_1____jacobi__t.html#a2b1a1fc42308cb293dfcb1fa4a8202a6',1,'__gnu_cxx::__jacobi_t::deriv()'],['../struct____gnu__cxx_1_1____gegenbauer__t.html#a7f67b4bddba90569373b9a7b67492f08',1,'__gnu_cxx::__gegenbauer_t::deriv()'],['../struct____gnu__cxx_1_1____chebyshev__t__t.html#a56cbd3597ee48e612b596c9982d23e79',1,'__gnu_cxx::__chebyshev_t_t::deriv()'],['../struct____gnu__cxx_1_1____chebyshev__u__t.html#ad850788d0ce4eb967c52692f599073cd',1,'__gnu_cxx::__chebyshev_u_t::deriv()'],['../struct____gnu__cxx_1_1____chebyshev__v__t.html#a3ac7c3f4a04b5ec272f73c5dde89f218',1,'__gnu_cxx::__chebyshev_v_t::deriv()'],['../struct____gnu__cxx_1_1____chebyshev__w__t.html#a12989ea093bebe65f3d35dbfe3a6dc92',1,'__gnu_cxx::__chebyshev_w_t::deriv()']]],
+  ['deriv2',['deriv2',['../struct____gnu__cxx_1_1____hermite__t.html#a2deb14d149cf302151ae1d318adec995',1,'__gnu_cxx::__hermite_t::deriv2()'],['../struct____gnu__cxx_1_1____hermite__he__t.html#a4d885a96a96b12e9e8b6ad62628cfff3',1,'__gnu_cxx::__hermite_he_t::deriv2()'],['../struct____gnu__cxx_1_1____chebyshev__t__t.html#a7b8086b8c304f7cca7cd971c7be8c2c5',1,'__gnu_cxx::__chebyshev_t_t::deriv2()']]],
+  ['digamma',['digamma',['../group__gnu__math__spec__func.html#ga7b87300edf8754d959e1d94fe0c9246e',1,'__gnu_cxx']]],
+  ['digammaf',['digammaf',['../group__gnu__math__spec__func.html#ga65b58ffe1d02ccda1113539b62d87b94',1,'__gnu_cxx']]],
+  ['digammal',['digammal',['../group__gnu__math__spec__func.html#gaaa1bf1503709175915cb81bcd4355ccf',1,'__gnu_cxx']]],
+  ['dilog',['dilog',['../group__gnu__math__spec__func.html#ga4185ee1a0f9189a18085f65d52b6bc9b',1,'__gnu_cxx']]],
   ['dilogf',['dilogf',['../group__gnu__math__spec__func.html#ga901091e0e7ce7d6113ae6a86f4865a92',1,'__gnu_cxx']]],
   ['dilogl',['dilogl',['../group__gnu__math__spec__func.html#gae90c13ee690ebaf10a18a900fe2646f9',1,'__gnu_cxx']]],
   ['dirichlet_5fbeta',['dirichlet_beta',['../group__gnu__math__spec__func.html#ga87466a2d429a2815d794acc21c882b08',1,'__gnu_cxx']]],
@@ -19,7 +24,7 @@ var searchData=
   ['dirichlet_5flambda',['dirichlet_lambda',['../group__gnu__math__spec__func.html#ga06842a81bdcabf9c62252dde992d42ee',1,'__gnu_cxx']]],
   ['dirichlet_5flambdaf',['dirichlet_lambdaf',['../group__gnu__math__spec__func.html#gaafd3ca6b0d71d55d3835536396eece8f',1,'__gnu_cxx']]],
   ['dirichlet_5flambdal',['dirichlet_lambdal',['../group__gnu__math__spec__func.html#gab28d06c4e3c7457f1fa3663168678fb2',1,'__gnu_cxx']]],
-  ['double_5ffactorial',['double_factorial',['../group__gnu__math__spec__func.html#ga08c31a5dd1686a7633b46f923c47af46',1,'__gnu_cxx']]],
+  ['double_5ffactorial',['double_factorial',['../group__gnu__math__spec__func.html#ga1e62c47f84f9782828f8830b4fedc13c',1,'__gnu_cxx']]],
   ['double_5ffactorialf',['double_factorialf',['../group__gnu__math__spec__func.html#ga85ec284e603f32d18970bbdbb12d5150',1,'__gnu_cxx']]],
   ['double_5ffactoriall',['double_factoriall',['../group__gnu__math__spec__func.html#ga0366730a4a775256217ef1cd9d0c3a04',1,'__gnu_cxx']]]
 ];

@@ -21,7 +21,7 @@ var sf__polylog_8tcc =
     [ "__hurwitz_zeta_polylog", "sf__polylog_8tcc.html#a7c45415c3ec0e137eea2364a6dd3af4e", null ],
     [ "__polylog", "sf__polylog_8tcc.html#a17fb8cea11706f319aaea277188a29c8", null ],
     [ "__polylog", "sf__polylog_8tcc.html#aa14e3ca6e4bee5ac1f1e5e1c2cee1d5a", null ],
-    [ "__polylog_exp", "sf__polylog_8tcc.html#a31327d726731b1aad5502da2fb93b0e9", null ],
+    [ "__polylog_exp", "sf__polylog_8tcc.html#a0f6f2fc92d4ccec43975a6b9aca9851a", null ],
     [ "__polylog_exp_asymp", "sf__polylog_8tcc.html#af3684fc449da490e9a43985245618a90", null ],
     [ "__polylog_exp_neg", "sf__polylog_8tcc.html#a07b26b8c7ff467310e4e1df6e3efd893", null ],
     [ "__polylog_exp_neg", "sf__polylog_8tcc.html#a313ae48e1c4ed3c5296c8e45614af3d5", null ],
