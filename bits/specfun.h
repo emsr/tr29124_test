@@ -2374,7 +2374,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   radpolyf(unsigned int __n, unsigned int __m, float __rho)
-  { return std::__detail::__poly_radial_jacobi(__n, __m, __rho); }
+  { return std::__detail::__radial_jacobi(__n, __m, __rho); }
 
   /**
    * Return the radial polynomial @f$ R_n^m(\rho) @f$ for non-negative
@@ -2385,7 +2385,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline long double
   radpolyl(unsigned int __n, unsigned int __m, long double __rho)
-  { return std::__detail::__poly_radial_jacobi(__n, __m, __rho); }
+  { return std::__detail::__radial_jacobi(__n, __m, __rho); }
 
   /**
    * Return the radial polynomial @f$ R_n^m(\rho) @f$ for non-negative
@@ -2415,7 +2415,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     radpoly(unsigned int __n, unsigned int __m, _Tp __rho)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__poly_radial_jacobi<__type>(__n, __m, __rho);
+      return std::__detail::__radial_jacobi<__type>(__n, __m, __rho);
     }
 
   // Unnormalized hyperbolic sinus cardinal functions
