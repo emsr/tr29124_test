@@ -108,10 +108,11 @@ namespace __detail
     _Tp
     __conf_hyperg_lim(_Tp __c, _Tp __x)
     {
-      const _Tp __c_nint = std::nearbyint(__c);
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+      const auto __c_nint = __gnu_cxx::__fp_is_integer(__c);
       if (std::isnan(__c) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
-      else if (__c_nint == __c && __c_nint <= 0)
+      else if (__c_nint && __c_nint() <= 0)
 	return __gnu_cxx::__infinity(__x);
       //else if (__x < _Tp{0})
 	//return __conf_hyperg_lim_luke(__c, __x);
@@ -142,8 +143,8 @@ namespace __detail
     {
       const auto __eps = __gnu_cxx::__epsilon(__x);
 
-      _Tp __term = _Tp{1};
-      _Tp __Fac = _Tp{1};
+      auto __term = _Tp{1};
+      auto __Fac = _Tp{1};
       const unsigned int __max_iter = 100000;
       unsigned int __i;
       for (__i = 0; __i < __max_iter; ++__i)
@@ -175,48 +176,49 @@ namespace __detail
     _Tp
     __conf_hyperg_luke(_Tp __a, _Tp __c, _Tp __xin)
     {
-      const auto __big = __gnu_cxx::__root_max(_Tp{6});
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+      const auto __big = __gnu_cxx::__root_max(_Val{6});
       const int __nmax = 20000;
-      const auto __eps = __gnu_cxx::__epsilon(__xin);
+      const auto __eps = __gnu_cxx::__epsilon<_Val>();
       const auto __x  = -__xin;
       const auto __x3 = __x * __x * __x;
       const auto __t0 = __a / __c;
-      const auto __t1 = (__a + _Tp{1}) / (_Tp{2} * __c);
-      const auto __t2 = (__a + _Tp{2}) / (_Tp{2} * (__c + _Tp{1}));
+      const auto __t1 = (__a + _Val{1}) / (_Val{2} * __c);
+      const auto __t2 = (__a + _Val{2}) / (_Val{2} * (__c + _Val{1}));
 
       auto __F = _Tp{1};
 
       auto __Bnm3 = _Tp{1};
       auto __Bnm2 = _Tp{1} + __t1 * __x;
-      auto __Bnm1 = _Tp{1} + __t2 * __x * (_Tp{1} + __t1 / _Tp{3} * __x);
+      auto __Bnm1 = _Tp{1} + __t2 * __x * (_Val{1} + __t1 / _Val{3} * __x);
 
       auto __Anm3 = _Tp{1};
       auto __Anm2 = __Bnm2 - __t0 * __x;
       auto __Anm1 = __Bnm1 - __t0 * (_Tp{1} + __t2 * __x) * __x
-		  + __t0 * __t1 * (__c / (__c + _Tp{1})) * __x * __x;
+		  + __t0 * __t1 * (__c / (__c + _Val{1})) * __x * __x;
 
       int __n = 3;
       while(true)
 	{
-	  auto __npam1 = _Tp(__n - 1) + __a;
-	  auto __npcm1 = _Tp(__n - 1) + __c;
-	  auto __npam2 = _Tp(__n - 2) + __a;
-	  auto __npcm2 = _Tp(__n - 2) + __c;
-	  auto __tnm1  = _Tp(2 * __n - 1);
-	  auto __tnm3  = _Tp(2 * __n - 3);
-	  auto __tnm5  = _Tp(2 * __n - 5);
-	  auto __F1 =  (_Tp(__n - 2) - __a) / (_Tp{2} * __tnm3 * __npcm1);
-	  auto __F2 =  (_Tp(__n) + __a) * __npam1
-		    / (_Tp{4} * __tnm1 * __tnm3 * __npcm2 * __npcm1);
-	  auto __F3 = -__npam2 * __npam1 * (_Tp(__n - 2) - __a)
-		    / (_Tp{8} * __tnm3 * __tnm3 * __tnm5
-		    * (_Tp(__n - 3) + __c) * __npcm2 * __npcm1);
-	  auto __E  = -__npam1 * (_Tp(__n - 1) - __c)
-		    / (_Tp{2} * __tnm3 * __npcm2 * __npcm1);
+	  auto __npam1 = _Val(__n - 1) + __a;
+	  auto __npcm1 = _Val(__n - 1) + __c;
+	  auto __npam2 = _Val(__n - 2) + __a;
+	  auto __npcm2 = _Val(__n - 2) + __c;
+	  auto __tnm1  = _Val(2 * __n - 1);
+	  auto __tnm3  = _Val(2 * __n - 3);
+	  auto __tnm5  = _Val(2 * __n - 5);
+	  auto __F1 =  (_Val(__n - 2) - __a) / (_Val(2 * __tnm3) * __npcm1);
+	  auto __F2 =  (_Val(__n) + __a) * __npam1
+		    / (_Val(4 * __tnm1 * __tnm3) * __npcm2 * __npcm1);
+	  auto __F3 = -__npam2 * __npam1 * (_Val(__n - 2) - __a)
+		    / (_Val(8 * __tnm3 * __tnm3 * __tnm5)
+		    * (_Val(__n - 3) + __c) * __npcm2 * __npcm1);
+	  auto __E  = -__npam1 * (_Val(__n - 1) - __c)
+		    / (_Val(2 * __tnm3) * __npcm2 * __npcm1);
 
-	  auto __An = (_Tp{1} + __F1 * __x) * __Anm1
+	  auto __An = (_Val{1} + __F1 * __x) * __Anm1
 		    + (__E + __F2 * __x) * __x * __Anm2 + __F3 * __x3 * __Anm3;
-	  auto __Bn = (_Tp{1} + __F1 * __x) * __Bnm1
+	  auto __Bn = (_Val{1} + __F1 * __x) * __Bnm1
 		    + (__E + __F2 * __x) * __x * __Bnm2 + __F3 * __x3 * __Bnm3;
 	  auto __r = __An / __Bn;
 
@@ -280,10 +282,10 @@ namespace __detail
     _Tp
     __conf_hyperg(_Tp __a, _Tp __c, _Tp __x)
     {
-      const _Tp __c_nint = std::nearbyint(__c);
+      const auto __c_nint = __gnu_cxx::__fp_is_integer(__c);
       if (std::isnan(__a) || std::isnan(__c) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
-      else if (__c_nint == __c && __c_nint <= 0)
+      else if (__c_nint && __c_nint() <= 0)
 	return __gnu_cxx::__infinity(__x);
       else if (__a == _Tp{0})
 	return _Tp{1};
@@ -373,7 +375,8 @@ namespace __detail
     _Tp
     __hyperg_series(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      const auto __eps = __gnu_cxx::__epsilon(__x);
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+      const auto __eps = __gnu_cxx::__epsilon<_Val>();
 
       auto __term = _Tp{1};
       auto __Fabc = _Tp{1};
@@ -443,9 +446,10 @@ namespace __detail
     _Tp
     __hyperg_luke(_Tp __a, _Tp __b, _Tp __c, _Tp __xin)
     {
-      const auto __big = __gnu_cxx::__root_max(_Tp{6});
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+      const auto __big = __gnu_cxx::__root_max(_Val{6});
       const int __nmax = 20000;
-      const auto __eps = __gnu_cxx::__epsilon(__xin);
+      const auto __eps = __gnu_cxx::__epsilon<_Val>();
       const auto __x  = -__xin;
       const auto __x3 = __x * __x * __x;
       const auto __t0 = __a * __b / __c;
@@ -467,32 +471,32 @@ namespace __detail
       int __n = 3;
       while (true)
 	{
-	  const auto __npam1 = _Tp(__n - 1) + __a;
-	  const auto __npbm1 = _Tp(__n - 1) + __b;
-	  const auto __npcm1 = _Tp(__n - 1) + __c;
-	  const auto __npam2 = __npam1 - _Tp{1};
-	  const auto __npbm2 = __npbm1 - _Tp{1};
-	  const auto __npcm2 = __npcm1 - _Tp{1};
-	  const auto __tnm1  = _Tp(2 * __n - 1);
-	  const auto __tnm3  = __tnm1 - _Tp{2};
-	  const auto __tnm5  = __tnm3 - _Tp{2};
+	  const auto __npam1 = _Val(__n - 1) + __a;
+	  const auto __npbm1 = _Val(__n - 1) + __b;
+	  const auto __npcm1 = _Val(__n - 1) + __c;
+	  const auto __npam2 = __npam1 - _Val{1};
+	  const auto __npbm2 = __npbm1 - _Val{1};
+	  const auto __npcm2 = __npcm1 - _Val{1};
+	  const auto __tnm1  = _Val(2 * __n - 1);
+	  const auto __tnm3  = __tnm1 - _Val{2};
+	  const auto __tnm5  = __tnm3 - _Val{2};
 	  const auto __n2 = __n * __n;
-	  const auto __F1 = (_Tp{3} * __n2 + (__a + __b - _Tp{6}) * __n
-			  + _Tp{2} - __a * __b - _Tp{2} * (__a + __b))
-			  / (_Tp{2} * __tnm3 * __npcm1);
-	  const auto __F2 = -(_Tp{3} * __n2 - (__a + __b + _Tp{6}) * __n
-			  + _Tp{2} - __a * __b) * __npam1 * __npbm1
-			  / (_Tp{4} * __tnm1 * __tnm3 * __npcm2 * __npcm1);
+	  const auto __F1 = (_Val(3 * __n2) + (__a + __b - _Val{6}) * _Val(__n)
+			    + _Val{2} - __a * __b - _Val{2} * (__a + __b))
+			  / (_Val(2 * __tnm3) * __npcm1);
+	  const auto __F2 = -(_Val(3 * __n2) - (__a + __b + _Val{6}) * _Val(__n)
+			    + _Val{2} - __a * __b) * __npam1 * __npbm1
+			  / (_Val(4 * __tnm1 * __tnm3) * __npcm2 * __npcm1);
 	  const auto __F3 = (__npam2 * __npam1 * __npbm2 * __npbm1
-			  * (_Tp(__n - 2) - __a) * (_Tp(__n - 2) - __b))
-			  / (_Tp{8} * __tnm3 * __tnm3 * __tnm5
-			  * (_Tp(__n - 3) + __c) * __npcm2 * __npcm1);
-	  const auto __E  = -__npam1 * __npbm1 * (_Tp(__n - 1) - __c)
-			  / (_Tp{2} * __tnm3 * __npcm2 * __npcm1);
+			  * (_Val(__n - 2) - __a) * (_Val(__n - 2) - __b))
+			  / (_Val(8 * __tnm3 * __tnm3 * __tnm5)
+			  * (_Val(__n - 3) + __c) * __npcm2 * __npcm1);
+	  const auto __E  = -__npam1 * __npbm1 * (_Val(__n - 1) - __c)
+			  / (_Val(2 * __tnm3) * __npcm2 * __npcm1);
 
-	  auto __An = (_Tp{1} + __F1 * __x) * __Anm1
+	  auto __An = (_Val{1} + __F1 * __x) * __Anm1
 		    + (__E + __F2 * __x) * __x * __Anm2 + __F3 * __x3 * __Anm3;
-	  auto __Bn = (_Tp{1} + __F1 * __x) * __Bnm1
+	  auto __Bn = (_Val{1} + __F1 * __x) * __Bnm1
 		    + (__E + __F2 * __x) * __x * __Bnm2 + __F3 * __x3 * __Bnm3;
 	  const auto __r = __An / __Bn;
 
@@ -513,8 +517,8 @@ namespace __detail
 	      __Anm3 /= __big;
 	      __Bnm3 /= __big;
 	    }
-	  else if (std::abs(__An) < _Tp{1} / __big
-		|| std::abs(__Bn) < _Tp{1} / __big)
+	  else if (std::abs(__An) < _Val{1} / __big
+		|| std::abs(__Bn) < _Val{1} / __big)
 	    {
 	      __An   *= __big;
 	      __Bn   *= __big;
@@ -578,21 +582,22 @@ namespace __detail
     _Tp
     __hyperg_reflect(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      const auto _S_log_max = __gnu_cxx::__log_max(__x);
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+      const auto _S_log_max = __gnu_cxx::__log_max<_Val>();
+      const auto __eps = __gnu_cxx::__epsilon<_Val>();
+      const auto __epsfact = _Val{1000};
+      const auto __toler = __epsfact * __eps;
       const auto __d = __c - __a - __b;
-      const int __intd  = std::floor(__d + _Tp{0.5L});
-      const auto __eps = __gnu_cxx::__epsilon(__x);
-      const auto __toler = _Tp{1000} * __eps;
-      const bool __d_integer = (std::abs(__d - __intd) < __toler);
+      const auto __d_nint = __gnu_cxx::__fp_is_integer(__d, __epsfact);
 
-      if (__d_integer)
+      if (__d_nint)
 	{
 	  const auto __ln_omx = std::log1p(-__x);
 	  const auto __ad = std::abs(__d);
 	  _Tp __F1, __F2;
 
 	  _Tp __d1, __d2;
-	  if (__d >= _Tp{0})
+	  if (std::real(__d) >= _Val{0})
 	    {
 	      __d1 = __d;
 	      __d2 = _Tp{0};
@@ -603,7 +608,7 @@ namespace __detail
 	      __d2 = __d;
 	    }
 
-	  const _Tp __lng_c = __log_gamma(__c);
+	  const auto __lng_c = __log_gamma(__c);
 
 	  // Evaluate F1.
 	  if (__ad < __eps)
@@ -642,12 +647,13 @@ namespace __detail
 		  for (int __i = 1; __i < __ad; ++__i)
 		    {
 		      const int __j = __i - 1;
-		      __term *= (__a + __d2 + __j) * (__b + __d2 + __j)
-			      / (_Tp{1} + __d2 + __j) / __i * (_Tp{1} - __x);
+		      __term *= (__a + __d2 + _Val(__j)) * (__b + __d2 + _Val(__j))
+			     / (_Val{1} + __d2 + _Val(__j))
+			     / _Val(__i) * (_Val{1} - __x);
 		      __sum1 += __term;
 		    }
 
-		  if (__ln_pre1 > _S_log_max)
+		  if (std::abs(__ln_pre1) > _S_log_max)
 		    std::__throw_runtime_error(__N("__hyperg_reflect: "
 						   "overflow of gamma functions"));
 		  else
@@ -680,7 +686,7 @@ namespace __detail
 	      // Proceed with evaluation.
 	      const int __maxiter = 2000;
 	      const auto __psi_1 = -__gnu_cxx::__const_gamma_e(__x);
-	      const auto __psi_1pd = __digamma(_Tp{1} + __ad);
+	      const auto __psi_1pd = __digamma(_Val{1} + __ad);
 	      const auto __psi_apd1 = __digamma(__a + __d1);
 	      const auto __psi_bpd1 = __digamma(__b + __d1);
 
@@ -726,7 +732,7 @@ namespace __detail
 	      __F2 = _Tp{0};
 	    } // end F2 evaluation
 
-	  const auto __sgn_2 = (__intd % 2 == 1 ? -_Tp{1} : _Tp{1});
+	  const auto __sgn_2 = (__d_nint() % 2 == 1 ? -_Tp{1} : _Tp{1});
 	  const auto __F = __F1 + __sgn_2 * __F2;
 
 	  return __F;
@@ -781,7 +787,8 @@ namespace __detail
 	      auto __ln_pre1 = __ln_gc + __ln_gd  - __ln_g1ca - __ln_g1cb;
 	      auto __ln_pre2 = __ln_gc + __ln_gmd - __ln_g2a  - __ln_g2b
 			    + __d * std::log(_Tp{1} - __x);
-	      if (__ln_pre1 < _S_log_max && __ln_pre2 < _S_log_max)
+	      if (std::abs(__ln_pre1) < _S_log_max
+		&& std::abs(__ln_pre2) < _S_log_max)
 		{
 		  __pre1 = __sgn1 * std::exp(__ln_pre1);
 		  __pre2 = __sgn2 * std::exp(__ln_pre2);
@@ -793,7 +800,7 @@ namespace __detail
 	  else if (__ok1 && !__ok2)
 	    {
 	      auto __ln_pre1 = __ln_gc + __ln_gd - __ln_g1ca - __ln_g1cb;
-	      if (__ln_pre1 < _S_log_max)
+	      if (std::abs(__ln_pre1) < _S_log_max)
 		{
 		  __pre1 = __sgn1 * std::exp(__ln_pre1);
 		  __pre2 = _Tp{0};
@@ -806,7 +813,7 @@ namespace __detail
 	    {
 	      auto __ln_pre2 = __ln_gc + __ln_gmd - __ln_g2a - __ln_g2b
 			     + __d * std::log(_Tp{1} - __x);
-	      if (__ln_pre2 < _S_log_max)
+	      if (std::abs(__ln_pre2) < _S_log_max)
 		{
 		  __pre1 = _Tp{0};
 		  __pre2 = __sgn2 * std::exp(__ln_pre2);
@@ -852,15 +859,15 @@ namespace __detail
     _Tp
     __hyperg(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      const auto _S_log_max = __gnu_cxx::__log_max(__x);
-      const _Tp __a_nint = std::nearbyint(__a);
-      const _Tp __b_nint = std::nearbyint(__b);
-      const _Tp __c_nint = std::nearbyint(__c);
-      const _Tp __toler = _Tp{1000} * __gnu_cxx::__epsilon(__x);
-      const bool __c_neg_integer
-		  = (__c < _Tp{0} && std::abs(__c - __c_nint) < __toler );
-      if (std::abs(__x - _Tp{1}) < __toler && __c - __b - __a > _Tp{0}
-       && __c != _Tp{0} && !__c_neg_integer)
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+      const auto _S_log_max = __gnu_cxx::__log_max<_Val>();
+      const auto __epsfact = _Val{1000};
+      const auto __toler = __epsfact * __gnu_cxx::__epsilon<_Val>();
+      const auto __a_nint = __gnu_cxx::__fp_is_integer(__a, __epsfact);
+      const auto __b_nint = __gnu_cxx::__fp_is_integer(__b, __epsfact);
+      const auto __c_nint = __gnu_cxx::__fp_is_integer(__c, __epsfact);
+      if (std::abs(__x - _Tp{1}) < __toler && std::abs(__c - __b - __a) > _Val{0}
+       && !(__c_nint && __c_nint() <= 0))
 	{
 	  const auto __log_gamc = __log_gamma(__c);
 	  const auto __sign_gamc = __log_gamma_sign(__c);
@@ -872,40 +879,41 @@ namespace __detail
 	  const auto __log_pre = __log_gamc + __log_gamcab
 			       - __log_gamca - __log_gamcb;
 	  const auto __sign = __sign_gamc * __sign_gamca * __sign_gamcb;
-	  if (__sign == _Tp{0})
+	  if (__sign == _Val{0})
 	    return __gnu_cxx::__quiet_NaN(__x);
-	  if (__log_pre < _S_log_max)
+	  if (std::abs(__log_pre) < _S_log_max)
 	    return __sign * std::exp(__log_pre);
 	  else
 	    std::__throw_domain_error(__N("__hyperg: "
 					  "overflow of gamma functions"));
 	}
-      else if (std::abs(__x) >= _Tp{1})
+      else if (std::abs(__x) >= _Val{1})
 	std::__throw_domain_error(__N("__hyperg: "
 				      "argument outside unit circle"));
       else if (std::isnan(__a) || std::isnan(__b)
 	    || std::isnan(__c) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
-      else if (__c_nint == __c && __c_nint <= _Tp{0})
+      else if (__c_nint && __c_nint() <= 0)
 	return __gnu_cxx::__infinity(__x);
       else if (std::abs(__c - __b) < __toler || std::abs(__c - __a) < __toler)
 	return std::pow(_Tp{1} - __x, __c - __a - __b);
-      else if (__a >= _Tp{0} && __b >= _Tp{0} && __c >= _Tp{0}
-	    && __x >= _Tp{0} && __x < _Tp{0.995L})
+      else if (std::real(__a) >= _Val{0}
+	    && std::real(__b) >= _Val{0} && std::real(__c) >= _Val{0}
+	    && std::real(__x) >= _Val{0} && std::abs(__x) < _Val{0.995L})
 	return __hyperg_series(__a, __b, __c, __x);
-      else if (std::abs(__a) < _Tp{10} && std::abs(__b) < _Tp{10})
+      else if (std::abs(__a) < _Val{10} && std::abs(__b) < _Val{10})
 	{
 	  // For integer a and b the hypergeometric function is a
 	  // finite polynomial.
-	  if (__a < _Tp{0}  &&  std::abs(__a - __a_nint) < __toler)
-	    return __hyperg_series(__a_nint, __b, __c, __x);
-	  else if (__b < _Tp{0}  &&  std::abs(__b - __b_nint) < __toler)
-	    return __hyperg_series(__a, __b_nint, __c, __x);
-	  else if (__x < -_Tp{0.25L})
+	  if (__a_nint && __a_nint() < 0)
+	    return __hyperg_series(_Tp(__a_nint()), __b, __c, __x);
+	  else if (__b_nint && __b_nint() < 0)
+	    return __hyperg_series(_Tp(__b_nint()), __a, __c, __x);
+	  else if (std::real(__x) < -_Val{0.25L})
 	    return __hyperg_luke(__a, __b, __c, __x);
-	  else if (__x < _Tp{0.5L})
+	  else if (std::abs(__x) < _Val{0.5L})
 	    return __hyperg_series(__a, __b, __c, __x);
-	  else if (std::abs(__c) > _Tp{10})
+	  else if (std::abs(__c) > _Val{10})
 	    return __hyperg_series(__a, __b, __c, __x);
 	  else
 	    return __hyperg_reflect(__a, __b, __c, __x);
