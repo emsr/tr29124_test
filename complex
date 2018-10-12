@@ -114,6 +114,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /// Return complex hyperbolic tangent of @a z.
   template<typename _Tp> complex<_Tp> tanh(const complex<_Tp>&);
 
+/*
+ * I, Edward Smith-Rowland, am about to declare unilaterally
+ * the following things as standard:
+ * 1. multiplying and dividing complex by integer types.
+ * 2. Parity with floating functions 
+      a. tgamma, lgamma
+      b. erf, erfc
+      c. log1p
+      d. nearbyint
+ */
 
   // 26.2.2  Primary template class complex
   /**
