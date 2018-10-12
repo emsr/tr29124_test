@@ -878,10 +878,10 @@ namespace __gnu_cxx
    * @param __x The real argument
    */
   template<typename _Real>
-    inline __gnu_cxx::__promote_fp_t<_Real>
+    inline __gnu_cxx::fp_promote_t<_Real>
     kelvin_ber(_Real __nu, _Real __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Real>;
+      using __type = __gnu_cxx::fp_promote_t<_Real>;
       return std::__detail::__kelvin_ber<__type>(__nu, __x);
     }
 
@@ -921,10 +921,10 @@ namespace __gnu_cxx
    * @param __x The real argument
    */
   template<typename _Real>
-    inline __gnu_cxx::__promote_fp_t<_Real>
+    inline __gnu_cxx::fp_promote_t<_Real>
     kelvin_bei(_Real __nu, _Real __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Real>;
+      using __type = __gnu_cxx::fp_promote_t<_Real>;
       return std::__detail::__kelvin_bei<__type>(__nu, __x);
     }
 
@@ -964,10 +964,10 @@ namespace __gnu_cxx
    * @param __x The real argument
    */
   template<typename _Real>
-    inline __gnu_cxx::__promote_fp_t<_Real>
+    inline __gnu_cxx::fp_promote_t<_Real>
     kelvin_ker(_Real __nu, _Real __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Real>;
+      using __type = __gnu_cxx::fp_promote_t<_Real>;
       return std::__detail::__kelvin_ker<__type>(__nu, __x);
     }
 
@@ -1007,10 +1007,10 @@ namespace __gnu_cxx
    * @param __x The real argument
    */
   template<typename _Real>
-    inline __gnu_cxx::__promote_fp_t<_Real>
+    inline __gnu_cxx::fp_promote_t<_Real>
     kelvin_kei(_Real __nu, _Real __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Real>;
+      using __type = __gnu_cxx::fp_promote_t<_Real>;
       return std::__detail::__kelvin_kei<__type>(__nu, __x);
     }
 

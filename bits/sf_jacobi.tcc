@@ -376,7 +376,7 @@ namespace __detail
    * @param __phi The azimuthal angle
    */
   template<typename _Tp>
-    __gnu_cxx::__promote_fp_t<_Tp>
+    __gnu_cxx::fp_promote_t<_Tp>
     __zernike(unsigned int __n, int __m, _Tp __rho, _Tp __phi)
     {
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__rho);

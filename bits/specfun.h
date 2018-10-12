@@ -418,10 +418,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if <tt>__x < 0</tt>.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     assoc_laguerre(unsigned int __n, unsigned int __m, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return __detail::__assoc_laguerre<__type>(__n, __m, __x);
     }
 
@@ -466,10 +466,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if <tt>abs(__x) > 1</tt>.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     assoc_legendre(unsigned int __l, unsigned int __m, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return __detail::__assoc_legendre_p<__type>(__l, __m, __x);
     }
 
@@ -511,10 +511,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if <tt> __a < 0 </tt> or <tt> __b < 0 </tt>.
    */
   template<typename _Tpa, typename _Tpb>
-    inline __gnu_cxx::__promote_fp_t<_Tpa, _Tpb>
+    inline __gnu_cxx::fp_promote_t<_Tpa, _Tpb>
     beta(_Tpa __a, _Tpb __b)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpa, _Tpb>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpa, _Tpb>;
       return __detail::__beta<__type>(__a, __b);
     }
 
@@ -559,10 +559,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if <tt> abs(__k) > 1 </tt>.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     comp_ellint_1(_Tp __k)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return __detail::__comp_ellint_1<__type>(__k);
     }
 
@@ -606,10 +606,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if @c abs(__k) > 1.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     comp_ellint_2(_Tp __k)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return __detail::__comp_ellint_2<__type>(__k);
     }
 
@@ -657,10 +657,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if @c abs(__k) > 1.
    */
   template<typename _Tp, typename _Tpn>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Tpn>
+    inline __gnu_cxx::fp_promote_t<_Tp, _Tpn>
     comp_ellint_3(_Tp __k, _Tpn __nu)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tpn>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Tpn>;
       return __detail::__comp_ellint_3<__type>(__k, __nu);
     }
 
@@ -703,10 +703,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tpnu, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpnu, _Tp>
     cyl_bessel_i(_Tpnu __nu, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpnu, _Tp>;
       return __detail::__cyl_bessel_i<__type>(__nu, __x);
     }
 
@@ -749,10 +749,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tpnu, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpnu, _Tp>
     cyl_bessel_j(_Tpnu __nu, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpnu, _Tp>;
       return __detail::__cyl_bessel_j<__type>(__nu, __x);
     }
 
@@ -801,10 +801,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tpnu, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpnu, _Tp>
     cyl_bessel_k(_Tpnu __nu, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpnu, _Tp>;
       return __detail::__cyl_bessel_k<__type>(__nu, __x);
     }
 
@@ -849,10 +849,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tpnu, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpnu, _Tp>
     cyl_neumann(_Tpnu __nu, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpnu, _Tp>;
       return __detail::__cyl_neumann_n<__type>(__nu, __x);
     }
 
@@ -897,10 +897,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if <tt> abs(__k) > 1 </tt>.
    */
   template<typename _Tp, typename _Tpp>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Tpp>
+    inline __gnu_cxx::fp_promote_t<_Tp, _Tpp>
     ellint_1(_Tp __k, _Tpp __phi)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tpp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Tpp>;
       return __detail::__ellint_1<__type>(__k, __phi);
     }
 
@@ -945,10 +945,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if <tt> abs(__k) > 1 </tt>.
    */
   template<typename _Tp, typename _Tpp>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Tpp>
+    inline __gnu_cxx::fp_promote_t<_Tp, _Tpp>
     ellint_2(_Tp __k, _Tpp __phi)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tpp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Tpp>;
       return __detail::__ellint_2<__type>(__k, __phi);
     }
 
@@ -998,10 +998,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if <tt> abs(__k) > 1 </tt>.
    */
   template<typename _Tp, typename _Tpn, typename _Tpp>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Tpn, _Tpp>
+    inline __gnu_cxx::fp_promote_t<_Tp, _Tpn, _Tpp>
     ellint_3(_Tp __k, _Tpn __nu, _Tpp __phi)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tpn, _Tpp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Tpn, _Tpp>;
       return __detail::__ellint_3<__type>(__k, __nu, __phi);
     }
 
@@ -1038,10 +1038,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param  __x  The argument of the exponential integral function.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     expint(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return __detail::__expint<__type>(__x);
     }
 
@@ -1086,10 +1086,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     hermite(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return __detail::__hermite<__type>(__n, __x);
     }
 
@@ -1130,10 +1130,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     laguerre(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return __detail::__laguerre<__type>(__n, __x);
     }
 
@@ -1175,10 +1175,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if @c abs(__x) > 1
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     legendre(unsigned int __l, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return __detail::__legendre_p<__type>(__l, __x).__P_l;
     }
 
@@ -1226,10 +1226,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __s The argument <tt> s != 1 </tt>
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     riemann_zeta(_Tp __s)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return __detail::__riemann_zeta<__type>(__s);
     }
 
@@ -1270,10 +1270,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     sph_bessel(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return __detail::__sph_bessel<__type>(__n, __x);
     }
 
@@ -1317,10 +1317,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __theta The radian polar angle argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     sph_legendre(unsigned int __l, unsigned int __m, _Tp __theta)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return __detail::__sph_legendre<__type>(__l, __m, __theta);
     }
 
@@ -1361,10 +1361,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     sph_neumann(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return __detail::__sph_neumann<__type>(__n, __x);
     }
 
@@ -1426,10 +1426,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tpa, typename _Tpc, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tpa, _Tpc, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpa, _Tpc, _Tp>
     conf_hyperg(_Tpa __a, _Tpc __c, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpa, _Tpc, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpa, _Tpc, _Tp>;
       return std::__detail::__conf_hyperg<__type>(__a, __c, __x);
     }
 
@@ -1476,10 +1476,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tpa, typename _Tpc, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tpa, _Tpc, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpa, _Tpc, _Tp>
     tricomi_u(_Tpa __a, _Tpc __c, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpa, _Tpc, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpa, _Tpc, _Tp>;
       return std::__detail::__tricomi_u<__type>(__a, __c, __x);
     }
 
@@ -1525,10 +1525,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tpa, typename _Tpb, typename _Tpc, typename _Tp>
-    inline typename __gnu_cxx::__promote_fp_t<_Tpa, _Tpb, _Tpc, _Tp>
+    inline typename __gnu_cxx::fp_promote_t<_Tpa, _Tpb, _Tpc, _Tp>
     hyperg(_Tpa __a, _Tpb __b, _Tpc __c, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpa, _Tpb, _Tpc, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpa, _Tpb, _Tpc, _Tp>;
       return std::__detail::__hyperg<__type>(__a, __b, __c, __x);
     }
 
@@ -1571,10 +1571,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tpc, typename _Tp>
-    inline typename __gnu_cxx::__promote_fp_t<_Tpc, _Tp>
+    inline typename __gnu_cxx::fp_promote_t<_Tpc, _Tp>
     conf_hyperg_lim(_Tpc __c, _Tp __x)
     {
-      typedef typename __gnu_cxx::__promote_fp_t<_Tpc, _Tp> __type;
+      typedef typename __gnu_cxx::fp_promote_t<_Tpc, _Tp> __type;
       return std::__detail::__conf_hyperg_lim<__type>(__c, __x);
     }
 
@@ -1612,10 +1612,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     sinc(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__sinc<__type>(__x);
     }
 
@@ -1653,10 +1653,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     sinc_pi(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__sinc_pi<__type>(__x);
     }
 
@@ -1691,10 +1691,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The real upper integration limit
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     logint(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__logint<__type>(__x);
     }
 
@@ -1730,10 +1730,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The real upper integration limit
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     sinint(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__sincosint<__type>(__x).first;
     }
 
@@ -1770,10 +1770,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The real upper integration limit
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     cosint(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__sincosint<__type>(__x).second;
     }
 
@@ -1811,10 +1811,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     sinhint(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__sinhint<__type>(__x);
     }
 
@@ -1853,10 +1853,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The real argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     coshint(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__coshint<__type>(__x);
     }
 
@@ -1903,10 +1903,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __u The real argument
    */
   template<typename _Kp, typename _Up>
-    inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
+    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
     jacobi_sn(_Kp __k, _Up __u)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
+      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
       return std::__detail::__jacobi_ellint<__type>(__k, __u).__sn_value;
     }
 
@@ -1953,10 +1953,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __u The real argument
    */
   template<typename _Kp, typename _Up>
-    inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
+    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
     jacobi_cn(_Kp __k, _Up __u)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
+      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
       return std::__detail::__jacobi_ellint<__type>(__k, __u).__cn_value;
     }
 
@@ -2003,10 +2003,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __u The real argument
    */
   template<typename _Kp, typename _Up>
-    inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
+    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
     jacobi_dn(_Kp __k, _Up __u)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
+      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
       return std::__detail::__jacobi_ellint<__type>(__k, __u).__dn_value;
     }
 
@@ -2047,10 +2047,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The real argument @f$ -1 <= x <= +1 @f$
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     chebyshev_t(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__chebyshev_t<__type>(__n, __x).__T_n;
     }
 
@@ -2091,10 +2091,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The real argument @f$ -1 <= x <= +1 @f$
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     chebyshev_u(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__chebyshev_u<__type>(__n, __x).__U_n;
     }
 
@@ -2136,10 +2136,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The real argument @f$ -1 <= x <= +1 @f$
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     chebyshev_v(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__chebyshev_v<__type>(__n, __x).__V_n;
     }
 
@@ -2181,10 +2181,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The real argument @f$ -1 <= x <= +1 @f$
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     chebyshev_w(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__chebyshev_w<__type>(__n, __x).__W_n;
     }
 
@@ -2248,10 +2248,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The real argument
    */
   template<typename _Talpha, typename _Tbeta, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Talpha, _Tbeta, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Talpha, _Tbeta, _Tp>
     jacobi(unsigned __n, _Talpha __alpha, _Tbeta __beta, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Talpha, _Tbeta, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Talpha, _Tbeta, _Tp>;
       return std::__detail::__jacobi_recur<__type>(__n, __alpha, __beta,
 						   __x).__P_n;
     }
@@ -2301,10 +2301,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The real argument
    */
   template<typename _Talpha, typename _Tp>
-    inline typename __gnu_cxx::__promote_fp_t<_Talpha, _Tp>
+    inline typename __gnu_cxx::fp_promote_t<_Talpha, _Tp>
     gegenbauer(unsigned int __n, _Talpha __alpha, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Talpha, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Talpha, _Tp>;
       return std::__detail::__gegenbauer_poly<__type>(__n, __alpha, __x).__C_n;
     }
 
@@ -2356,10 +2356,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __phi The azimuthal angle
    */
   template<typename _Trho, typename _Tphi>
-    inline __gnu_cxx::__promote_fp_t<_Trho, _Tphi>
+    inline __gnu_cxx::fp_promote_t<_Trho, _Tphi>
     zernike(unsigned int __n, int __m, _Trho __rho, _Tphi __phi)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Trho, _Tphi>;
+      using __type = __gnu_cxx::fp_promote_t<_Trho, _Tphi>;
       return std::__detail::__zernike<__type>(__n, __m, __rho, __phi);
     }
 
@@ -2411,10 +2411,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __rho The radial argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     radpoly(unsigned int __n, unsigned int __m, _Tp __rho)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__radial_jacobi<__type>(__n, __m, __rho);
     }
 
@@ -2452,10 +2452,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     sinhc_pi(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__sinhc_pi<__type>(__x);
     }
 
@@ -2493,10 +2493,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     sinhc(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__sinhc<__type>(__x);
     }
 
@@ -2541,10 +2541,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __z The real argument
    */
   template<typename _Tpnu, typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_fp_t<_Tpnu, _Tp>>
+    inline std::complex<__gnu_cxx::fp_promote_t<_Tpnu, _Tp>>
     cyl_hankel_1(_Tpnu __nu, _Tp __z)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpnu, _Tp>;
       return std::__detail::__cyl_hankel_1<__type>(__nu, __z);
     }
 
@@ -2589,10 +2589,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __z The real argument
    */
   template<typename _Tpnu, typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_fp_t<_Tpnu, _Tp>>
+    inline std::complex<__gnu_cxx::fp_promote_t<_Tpnu, _Tp>>
     cyl_hankel_2(_Tpnu __nu, _Tp __z)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpnu, _Tp>;
       return std::__detail::__cyl_hankel_2<__type>(__nu, __z);
     }
 
@@ -2637,10 +2637,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __z The real argument
    */
   template<typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp>>
+    inline std::complex<__gnu_cxx::fp_promote_t<_Tp>>
     sph_hankel_1(unsigned int __n, _Tp __z)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__sph_hankel_1<__type>(__n, __z);
     }
 
@@ -2685,10 +2685,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __z The real argument
    */
   template<typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp>>
+    inline std::complex<__gnu_cxx::fp_promote_t<_Tp>>
     sph_hankel_2(unsigned int __n, _Tp __z)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__sph_hankel_2<__type>(__n, __z);
     }
 
@@ -2729,10 +2729,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     sph_bessel_i(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__sph_bessel_ik<__type>(__n, __x).__i_value;
     }
 
@@ -2773,10 +2773,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     sph_bessel_k(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__sph_bessel_ik<__type>(__n, __x).__k_value;
     }
 
@@ -2814,10 +2814,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     airy_ai(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__airy<__type>(__x).__Ai_value;
     }
 
@@ -2834,10 +2834,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The complex argument
    */
   template<typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp>>
+    inline std::complex<__gnu_cxx::fp_promote_t<_Tp>>
     airy_ai(std::complex<_Tp> __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__airy_ai<__type>(__x);
     }
 
@@ -2876,10 +2876,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     airy_bi(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__airy<__type>(__x).__Bi_value;
     }
 
@@ -2897,10 +2897,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The complex argument
    */
   template<typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp>>
+    inline std::complex<__gnu_cxx::fp_promote_t<_Tp>>
     airy_bi(std::complex<_Tp> __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__airy_bi<__type>(__x);
     }
 
@@ -2930,10 +2930,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the logarithm of the gamma function for real argument.
    */
   template<typename _Ta>
-    inline __gnu_cxx::__promote_fp_t<_Ta>
+    inline __gnu_cxx::fp_promote_t<_Ta>
     lgamma(_Ta __a)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Ta>;
+      using __type = __gnu_cxx::fp_promote_t<_Ta>;
       return std::__detail::__log_gamma<__type>(__a);
     }
 
@@ -2963,10 +2963,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the logarithm of the gamma function for complex argument.
    */
   template<typename _Ta>
-    inline std::complex<__gnu_cxx::__promote_fp_t<_Ta>>
+    inline std::complex<__gnu_cxx::fp_promote_t<_Ta>>
     lgamma(std::complex<_Ta> __a)
     {
-      using __type = std::complex<__gnu_cxx::__promote_fp_t<_Ta>>;
+      using __type = std::complex<__gnu_cxx::fp_promote_t<_Ta>>;
       return std::__detail::__log_gamma<__type>(__a);
     }
 
@@ -2995,10 +2995,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the gamma function for real argument.
    */
   template<typename _Ta>
-    inline __gnu_cxx::__promote_fp_t<_Ta>
+    inline __gnu_cxx::fp_promote_t<_Ta>
     tgamma(_Ta __a)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Ta>;
+      using __type = __gnu_cxx::fp_promote_t<_Ta>;
       return std::__detail::__gamma<__type>(__a);
     }
 
@@ -3027,10 +3027,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the gamma function for complex argument.
    */
   template<typename _Ta>
-    inline std::complex<__gnu_cxx::__promote_fp_t<_Ta>>
+    inline std::complex<__gnu_cxx::fp_promote_t<_Ta>>
     tgamma(std::complex<_Ta> __a)
     {
-      using __type = std::complex<__gnu_cxx::__promote_fp_t<_Ta>>;
+      using __type = std::complex<__gnu_cxx::fp_promote_t<_Ta>>;
       return std::__detail::__gamma<__type>(__a);
     }
 
@@ -3064,10 +3064,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Ta, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Ta, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Ta, _Tp>
     tgamma(_Ta __a, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Ta, _Tp>;
       return std::__detail::__tgamma<__type>(__a, __x);
     }
 
@@ -3101,10 +3101,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Ta, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Ta, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Ta, _Tp>
     tgamma_lower(_Ta __a, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Ta, _Tp>;
       return std::__detail::__tgamma_lower<__type>(__a, __x);
     }
 
@@ -3142,10 +3142,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     dilog(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__dilog<__type>(__x);
     }
 
@@ -3185,10 +3185,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param  __y  The second argument.
    */
   template<typename _Tx, typename _Ty>
-    inline __gnu_cxx::__promote_fp_t<_Tx, _Ty>
+    inline __gnu_cxx::fp_promote_t<_Tx, _Ty>
     comp_ellint_rf(_Tx __x, _Ty __y)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tx, _Ty>;
+      using __type = __gnu_cxx::fp_promote_t<_Tx, _Ty>;
       return std::__detail::__comp_ellint_rf<__type>(__x, __y);
     }
 
@@ -3229,10 +3229,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param  __z  The third of three symmetric arguments.
    */
   template<typename _Tp, typename _Up, typename _Vp>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Up, _Vp>
+    inline __gnu_cxx::fp_promote_t<_Tp, _Up, _Vp>
     ellint_rf(_Tp __x, _Up __y, _Vp __z)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Up, _Vp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Up, _Vp>;
       return std::__detail::__ellint_rf<__type>(__x, __y, __z);
     }
 
@@ -3277,10 +3277,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param  __y  The second argument.
    */
   template<typename _Tp, typename _Up>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Up>
+    inline __gnu_cxx::fp_promote_t<_Tp, _Up>
     ellint_rc(_Tp __x, _Up __y)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Up>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Up>;
       return std::__detail::__ellint_rc<__type>(__x, __y);
     }
 
@@ -3326,10 +3326,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param  __p  The fourth argument.
    */
   template<typename _Tp, typename _Up, typename _Vp, typename _Wp>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Up, _Vp, _Wp>
+    inline __gnu_cxx::fp_promote_t<_Tp, _Up, _Vp, _Wp>
     ellint_rj(_Tp __x, _Up __y, _Vp __z, _Wp __p)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Up, _Vp, _Wp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Up, _Vp, _Wp>;
       return std::__detail::__ellint_rj<__type>(__x, __y, __z, __p);
     }
 
@@ -3376,10 +3376,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param  __z  The third argument.
    */
   template<typename _Tp, typename _Up, typename _Vp>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Up, _Vp>
+    inline __gnu_cxx::fp_promote_t<_Tp, _Up, _Vp>
     ellint_rd(_Tp __x, _Up __y, _Vp __z)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Up, _Vp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Up, _Vp>;
       return std::__detail::__ellint_rd<__type>(__x, __y, __z);
     }
 
@@ -3418,10 +3418,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param  __y  The second argument.
    */
   template<typename _Tx, typename _Ty>
-    inline __gnu_cxx::__promote_fp_t<_Tx, _Ty>
+    inline __gnu_cxx::fp_promote_t<_Tx, _Ty>
     comp_ellint_rg(_Tx __x, _Ty __y)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tx, _Ty>;
+      using __type = __gnu_cxx::fp_promote_t<_Tx, _Ty>;
       return std::__detail::__comp_ellint_rg<__type>(__x, __y);
     }
 
@@ -3467,10 +3467,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param  __z  The third of three symmetric arguments.
    */
   template<typename _Tp, typename _Up, typename _Vp>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Up, _Vp>
+    inline __gnu_cxx::fp_promote_t<_Tp, _Up, _Vp>
     ellint_rg(_Tp __x, _Up __y, _Vp __z)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Up, _Vp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Up, _Vp>;
       return std::__detail::__ellint_rg<__type>(__x, __y, __z);
     }
 
@@ -3509,10 +3509,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __a The parameter
    */
   template<typename _Tp, typename _Up>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Up>
+    inline __gnu_cxx::fp_promote_t<_Tp, _Up>
     hurwitz_zeta(_Tp __s, _Up __a)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Up>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Up>;
       return std::__detail::__hurwitz_zeta<__type>(__s, __a);
     }
 
@@ -3526,7 +3526,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     hurwitz_zeta(_Tp __s, std::complex<_Up> __a)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Up>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Up>;
       return std::__detail::__hurwitz_zeta_polylog<__type>(__s, __a);
     }
 
@@ -3564,10 +3564,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The parameter
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     digamma(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__digamma<__type>(__x);
     }
 
@@ -3604,10 +3604,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The parameter
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     polygamma(unsigned int __m, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__polygamma<__type>(__m, __x);
     }
 
@@ -3622,10 +3622,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __n The parameter
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     harmonic(unsigned int __n)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__harmonic_number<__type>(__n);
     }
 
@@ -3671,10 +3671,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Ta, typename _Tb, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Ta, _Tb, _Tp>
     ibeta(_Ta __a, _Tb __b, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Ta, _Tb, _Tp>;
       return std::__detail::__beta_inc<__type>(__a, __b, __x);
     }
 
@@ -3702,10 +3702,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Ta, typename _Tb, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Ta, _Tb, _Tp>
     ibetac(_Ta __a, _Tb __b, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Ta, _Tb, _Tp>;
       return __type(1) - ibeta<__type>(__a, __b, __x);
     }
 
@@ -3730,10 +3730,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     fresnel_s(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::imag(std::__detail::__fresnel<__type>(__x));
     }
 
@@ -3758,10 +3758,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     fresnel_c(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::real(std::__detail::__fresnel<__type>(__x));
     }
 
@@ -3801,10 +3801,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument @f$ -inf < x < inf @f$.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     dawson(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__dawson<__type>(__x);
     }
 
@@ -3847,10 +3847,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The real argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     expint(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__expint<__type>(__n, __x);
     }
 
@@ -3896,10 +3896,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *	  \nu \end{array} \right] @f], and others.
    */
   template<typename _Tp, typename _Tnu>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Tnu>
+    inline __gnu_cxx::fp_promote_t<_Tp, _Tnu>
     lrising_factorial(_Tp __a, _Tnu __nu)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tnu>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Tnu>;
       return std::__detail::__log_rising_factorial<__type>(__a, __nu);
     }
 
@@ -3946,10 +3946,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f], and others.
    */
   template<typename _Tp, typename _Tnu>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Tnu>
+    inline __gnu_cxx::fp_promote_t<_Tp, _Tnu>
     lfalling_factorial(_Tp __a, _Tnu __nu)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tnu>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Tnu>;
       return std::__detail::__log_falling_factorial<__type>(__a, __nu);
     }
 
@@ -3989,10 +3989,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *	  n \end{array} \right] @f], and others.
    */
   template<typename _Tp, typename _Tnu>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Tnu>
+    inline __gnu_cxx::fp_promote_t<_Tp, _Tnu>
     rising_factorial(_Tp __a, _Tnu __nu)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tnu>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Tnu>;
       return std::__detail::__rising_factorial<__type>(__a, __nu);
     }
 
@@ -4030,10 +4030,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * In particular, @f$ n^{\underline{n}} = n! @f$.
    */
   template<typename _Tp, typename _Tnu>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Tnu>
+    inline __gnu_cxx::fp_promote_t<_Tp, _Tnu>
     falling_factorial(_Tp __a, _Tnu __nu)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tnu>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Tnu>;
       return std::__detail::__falling_factorial<__type>(__a, __nu);
     }
 
@@ -4064,10 +4064,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     factorial(unsigned int __n)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__factorial<__type>(__n);
     }
 
@@ -4105,10 +4105,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * for odd @f$ n @f$.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     double_factorial(int __n)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__double_factorial<__type>(__n);
     }
 
@@ -4142,10 +4142,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     lfactorial(unsigned int __n)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__log_factorial<__type>(__n);
     }
 
@@ -4184,10 +4184,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * for odd @f$ n @f$.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     ldouble_factorial(int __n)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__log_double_factorial<__type>(__n);
     }
 
@@ -4227,10 +4227,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return  The binomial coefficient.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     binomial(unsigned int __n, unsigned int __k)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__binomial<__type>(__n, __k);
     }
 
@@ -4270,10 +4270,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return  The logarithm of the binomial coefficient.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     lbinomial(unsigned int __n, unsigned int __k)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__log_binomial<__type>(__n, __k);
     }
 
@@ -4311,10 +4311,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __n The order.
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     bernoulli(unsigned int __n)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__bernoulli<__type>(__n);
     }
 
@@ -4360,10 +4360,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @throw std::domain_error if @c abs(__x) > 1
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     legendre_q(unsigned int __l, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__legendre_q<__type>(__l, __x);
     }
 
@@ -4388,10 +4388,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Ta, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Ta, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Ta, _Tp>
     gamma_p(_Ta __a, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Ta, _Tp>;
       return std::__detail::__gamma_p<__type>(__a, __x);
     }
 
@@ -4416,10 +4416,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Ta, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Ta, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Ta, _Tp>
     gamma_q(_Ta __a,_Tp  __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Ta, _Tp>;
       return std::__detail::__gamma_q<__type>(__a, __x);
     }
 
@@ -4450,10 +4450,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __phi The angle
    */
   template<typename _Tk, typename _Tphi>
-    inline __gnu_cxx::__promote_fp_t<_Tk, _Tphi>
+    inline __gnu_cxx::fp_promote_t<_Tk, _Tphi>
     jacobi_zeta(_Tk __k, _Tphi __phi)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tk, _Tphi>;
+      using __type = __gnu_cxx::fp_promote_t<_Tk, _Tphi>;
       return std::__detail::__jacobi_zeta<__type>(__k, __phi);
     }
 
@@ -4485,10 +4485,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __phi The angle
    */
   template<typename _Tk, typename _Tphi>
-    inline __gnu_cxx::__promote_fp_t<_Tk, _Tphi>
+    inline __gnu_cxx::fp_promote_t<_Tk, _Tphi>
     heuman_lambda(_Tk __k, _Tphi __phi)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tk, _Tphi>;
+      using __type = __gnu_cxx::fp_promote_t<_Tk, _Tphi>;
       return std::__detail::__heuman_lambda<__type>(__k, __phi);
     }
 
@@ -4527,10 +4527,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __k The modulus <tt>-1 <= __k <= +1</tt>
    */
   template<typename _Tk>
-    inline __gnu_cxx::__promote_fp_t<_Tk>
+    inline __gnu_cxx::fp_promote_t<_Tk>
     comp_ellint_d(_Tk __k)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tk>;
+      using __type = __gnu_cxx::fp_promote_t<_Tk>;
       return std::__detail::__comp_ellint_d<__type>(__k);
     }
 
@@ -4570,10 +4570,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __phi The angle
    */
   template<typename _Tk, typename _Tphi>
-    inline __gnu_cxx::__promote_fp_t<_Tk, _Tphi>
+    inline __gnu_cxx::fp_promote_t<_Tk, _Tphi>
     ellint_d(_Tk __k, _Tphi __phi)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tk, _Tphi>;
+      using __type = __gnu_cxx::fp_promote_t<_Tk, _Tphi>;
       return std::__detail::__ellint_d<__type>(__k, __phi);
     }
 
@@ -4616,10 +4616,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __k_c The complementary modulus @f$ k_c = \sqrt{1 - k^2} @f$
    */
   template<typename _Tp, typename _Tk>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Tk>
+    inline __gnu_cxx::fp_promote_t<_Tp, _Tk>
     ellint_el1(_Tp __x, _Tk __k_c)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tk>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Tk>;
       return std::__detail::__ellint_el1<__type>(__x, __k_c);
     }
 
@@ -4662,10 +4662,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __b The  parameter
    */
   template<typename _Tp, typename _Tk, typename _Ta, typename _Tb>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Tk, _Ta, _Tb>
+    inline __gnu_cxx::fp_promote_t<_Tp, _Tk, _Ta, _Tb>
     ellint_el2(_Tp __x, _Tk __k_c, _Ta __a, _Tb __b)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Tk, _Ta, _Tb>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Tk, _Ta, _Tb>;
       return std::__detail::__ellint_el2<__type>(__x, __k_c, __a, __b);
     }
 
@@ -4709,10 +4709,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __p The paramenter
    */
   template<typename _Tx, typename _Tk, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tx, _Tk, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tx, _Tk, _Tp>
     ellint_el3(_Tx __x, _Tk __k_c, _Tp __p)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tx, _Tk, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tx, _Tk, _Tp>;
       return std::__detail::__ellint_el3<__type>(__x, __k_c, __p);
     }
 
@@ -4757,10 +4757,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __b The  parameter
    */
   template<typename _Tk, typename _Tp, typename _Ta, typename _Tb>
-    inline __gnu_cxx::__promote_fp_t<_Tk, _Tp, _Ta, _Tb>
+    inline __gnu_cxx::fp_promote_t<_Tk, _Tp, _Ta, _Tb>
     ellint_cel(_Tk __k_c, _Tp __p, _Ta __a, _Tb __b)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tk, _Tp, _Ta, _Tb>;
+      using __type = __gnu_cxx::fp_promote_t<_Tk, _Tp, _Ta, _Tb>;
       return std::__detail::__ellint_cel<__type>(__k_c, __p, __a, __b);
     }
 
@@ -4804,10 +4804,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The complex argument
    */
   template<typename _Tpnu, typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_fp_t<_Tpnu, _Tp>>
+    inline std::complex<__gnu_cxx::fp_promote_t<_Tpnu, _Tp>>
     cyl_hankel_1(std::complex<_Tpnu> __nu, std::complex<_Tp> __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpnu, _Tp>;
       return std::__detail::__cyl_hankel_1<__type>(__nu, __x);
     }
 
@@ -4851,10 +4851,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The complex argument
    */
   template<typename _Tpnu, typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_fp_t<_Tpnu, _Tp>>
+    inline std::complex<__gnu_cxx::fp_promote_t<_Tpnu, _Tp>>
     cyl_hankel_2(std::complex<_Tpnu> __nu, std::complex<_Tp> __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpnu, _Tp>;
       return std::__detail::__cyl_hankel_2<__type>(__nu, __x);
     }
 
@@ -4899,10 +4899,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The complex argument
    */
   template<typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp>>
+    inline std::complex<__gnu_cxx::fp_promote_t<_Tp>>
     sph_hankel_1(unsigned int __n, std::complex<_Tp> __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__sph_hankel_1<__type>(__n, __x);
     }
 
@@ -4947,10 +4947,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The complex argument
    */
   template<typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp>>
+    inline std::complex<__gnu_cxx::fp_promote_t<_Tp>>
     sph_hankel_2(unsigned int __n, std::complex<_Tp> __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__sph_hankel_2<__type>(__n, __x);
     }
 
@@ -4999,10 +4999,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __phi The azimuth angle in radians
    */
   template<typename _Ttheta, typename _Tphi>
-    inline std::complex<__gnu_cxx::__promote_fp_t<_Ttheta, _Tphi>>
+    inline std::complex<__gnu_cxx::fp_promote_t<_Ttheta, _Tphi>>
     sph_harmonic(unsigned int __l, int __m, _Ttheta __theta, _Tphi __phi)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Ttheta, _Tphi>;
+      using __type = __gnu_cxx::fp_promote_t<_Ttheta, _Tphi>;
       return std::__detail::__sph_harmonic<__type>(__l, __m, __theta, __phi);
     }
 
@@ -5041,10 +5041,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __w 
    */
   template<typename _Tp, typename _Wp>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Wp>
+    inline __gnu_cxx::fp_promote_t<_Tp, _Wp>
     polylog(_Tp __s, _Wp __w)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Wp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Wp>;
       return std::__detail::__polylog<__type>(__s, __w);
     }
 
@@ -5081,10 +5081,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __w 
    */
   template<typename _Tp, typename _Wp>
-    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp, _Wp>>
+    inline std::complex<__gnu_cxx::fp_promote_t<_Tp, _Wp>>
     polylog(_Tp __s, std::complex<_Tp> __w)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Wp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Wp>;
       return std::__detail::__polylog<__type>(__s, __w);
     }
 
@@ -5134,7 +5134,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline _Tp
     dirichlet_eta(_Tp __s)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__dirichlet_eta<__type>(__s);
     }
 
@@ -5183,7 +5183,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline _Tp
     dirichlet_beta(_Tp __s)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__dirichlet_beta<__type>(__s);
     }
 
@@ -5226,7 +5226,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline _Tp
     dirichlet_lambda(_Tp __s)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__dirichlet_lambda<__type>(__s);
     }
 
@@ -5266,10 +5266,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The real argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     clausen_sl(unsigned int __m, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__clausen_sl<__type>(__m, __x);
     }
 
@@ -5309,10 +5309,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The real argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     clausen_cl(unsigned int __m, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__clausen_cl<__type>(__m, __x);
     }
 
@@ -5354,10 +5354,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The real argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     clausen(unsigned int __m, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__clausen<__type>(__m, __x);
     }
 
@@ -5398,10 +5398,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __z The complex argument
    */
   template<typename _Tp>
-    inline std::complex<__gnu_cxx::__promote_fp_t<_Tp>>
+    inline std::complex<__gnu_cxx::fp_promote_t<_Tp>>
     clausen(unsigned int __m, std::complex<_Tp> __z)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__clausen<__type>(__m, __z);
     }
 
@@ -5441,10 +5441,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tpnu, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpnu, _Tp>
     theta_1(_Tpnu __nu, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpnu, _Tp>;
       return std::__detail::__theta_1<__type>(__nu, __x);
     }
 
@@ -5484,10 +5484,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tpnu, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpnu, _Tp>
     theta_2(_Tpnu __nu, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpnu, _Tp>;
       return std::__detail::__theta_2<__type>(__nu, __x);
     }
 
@@ -5527,10 +5527,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tpnu, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpnu, _Tp>
     theta_3(_Tpnu __nu, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpnu, _Tp>;
       return std::__detail::__theta_3<__type>(__nu, __x);
     }
 
@@ -5570,10 +5570,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tpnu, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpnu, _Tp>
     theta_4(_Tpnu __nu, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpnu, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpnu, _Tp>;
       return std::__detail::__theta_4<__type>(__nu, __x);
     }
 
@@ -5615,7 +5615,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     inline _Tp
     ellnome(_Tp __k)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__ellnome<__type>(__k);
     }
 
@@ -5659,10 +5659,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tpk, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tpk, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpk, _Tp>
     theta_s(_Tpk __k, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpk, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpk, _Tp>;
       return std::__detail::__theta_s<__type>(__k, __x);
     }
 
@@ -5706,10 +5706,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tpk, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tpk, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpk, _Tp>
     theta_c(_Tpk __k, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpk, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpk, _Tp>;
       return std::__detail::__theta_c<__type>(__k, __x);
     }
 
@@ -5753,10 +5753,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tpk, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tpk, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpk, _Tp>
     theta_d(_Tpk __k, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpk, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpk, _Tp>;
       return std::__detail::__theta_d<__type>(__k, __x);
     }
 
@@ -5800,10 +5800,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tpk, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tpk, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpk, _Tp>
     theta_n(_Tpk __k, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpk, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpk, _Tp>;
       return std::__detail::__theta_n<__type>(__k, __x);
     }
 
@@ -5843,10 +5843,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tpq, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tpq, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpq, _Tp>
     jacobi_theta_1(_Tpq __q, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpq, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpq, _Tp>;
       return std::__detail::__jacobi_theta_1<__type>(__q, __x);
     }
 
@@ -5886,10 +5886,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tpq, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tpq, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpq, _Tp>
     jacobi_theta_2(_Tpq __q, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpq, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpq, _Tp>;
       return std::__detail::__jacobi_theta_2<__type>(__q, __x);
     }
 
@@ -5929,10 +5929,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tpq, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tpq, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpq, _Tp>
     jacobi_theta_3(_Tpq __q, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpq, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpq, _Tp>;
       return std::__detail::__jacobi_theta_3<__type>(__q, __x);
     }
 
@@ -5972,10 +5972,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tpq, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tpq, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpq, _Tp>
     jacobi_theta_4(_Tpq __q, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpq, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpq, _Tp>;
       return std::__detail::__jacobi_theta_4<__type>(__q, __x);
     }
 
@@ -6015,10 +6015,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __a The integration limit
    */
   template<typename _Tph, typename _Tpa>
-    inline __gnu_cxx::__promote_fp_t<_Tph, _Tpa>
+    inline __gnu_cxx::fp_promote_t<_Tph, _Tpa>
     owens_t(_Tph __h, _Tpa __a)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tph, _Tpa>;
+      using __type = __gnu_cxx::fp_promote_t<_Tph, _Tpa>;
       return std::__detail::__owens_t<__type>(__h, __a);
     }
 
@@ -6059,10 +6059,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return  The real Fermi-Dirac integral F_s(x),
    */
   template<typename _Tps, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tps, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tps, _Tp>
     fermi_dirac(_Tps __s, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tps, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tps, _Tp>;
       return std::__detail::__fermi_dirac<__type>(__s, __x);
     }
 
@@ -6103,10 +6103,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return  The real Bose-Einstein integral G_s(x),
    */
   template<typename _Tps, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tps, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tps, _Tp>
     bose_einstein(_Tps __s, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tps, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tps, _Tp>;
       return std::__detail::__bose_einstein<__type>(__s, __x);
     }
 
@@ -6145,10 +6145,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     sin_pi(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__sin_pi<__type>(__x);
     }
 
@@ -6187,10 +6187,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     sinh_pi(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__sinh_pi<__type>(__x);
     }
 
@@ -6229,10 +6229,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     cos_pi(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__cos_pi<__type>(__x);
     }
 
@@ -6271,10 +6271,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     cosh_pi(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__cosh_pi<__type>(__x);
     }
 
@@ -6313,10 +6313,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     tan_pi(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__tan_pi<__type>(__x);
     }
 
@@ -6355,10 +6355,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The argument
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     tanh_pi(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__tanh_pi<__type>(__x);
     }
 
@@ -6394,10 +6394,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Tp>
-    inline __gnu_cxx::__sincos_t<__gnu_cxx::__promote_fp_t<_Tp>>
+    inline __gnu_cxx::__sincos_t<__gnu_cxx::fp_promote_t<_Tp>>
     sincos(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__sincos<__type>(__x);
     }
 
@@ -6428,10 +6428,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Tp>
-    inline __gnu_cxx::__sincos_t<__gnu_cxx::__promote_fp_t<_Tp>>
+    inline __gnu_cxx::__sincos_t<__gnu_cxx::fp_promote_t<_Tp>>
     sincos_pi(_Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__sincos_pi<__type>(__x);
     }
 
@@ -6445,10 +6445,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Ta, typename _Tb, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Ta, _Tb, _Tp>
     gamma_pdf(_Ta __alpha, _Tb __beta, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Ta, _Tb, _Tp>;
       return std::__detail::__gamma_pdf<__type>(__alpha, __beta, __x);
     }
 
@@ -6461,10 +6461,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *                             (x/\beta)^{\alpha - 1} e^{-x/\beta}
    * @f]
   template<typename _Ta, typename _Tb, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Ta, _Tb, _Tp>
     gamma_p(_Ta __alpha, _Tb __beta, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Ta, _Tb, _Tp>;
       return std::__detail::__gamma_p<__type>(__alpha, __beta, __x);
     }
    */
@@ -6478,10 +6478,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Tmu, typename _Tsig, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tmu, _Tsig, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tmu, _Tsig, _Tp>
     normal_pdf(_Tmu __mu, _Tsig __sigma, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tmu, _Tsig, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tmu, _Tsig, _Tp>;
       return std::__detail::__normal_pdf<__type>(__mu, __sigma, __x);
     }
 
@@ -6495,10 +6495,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Tmu, typename _Tsig, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tmu, _Tsig, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tmu, _Tsig, _Tp>
     normal_p(_Tmu __mu, _Tsig __sigma, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tmu, _Tsig, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tmu, _Tsig, _Tp>;
       return std::__detail::__normal_p<__type>(__mu, __sigma, __x);
     }
 
@@ -6511,10 +6511,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Tmu, typename _Tsig, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tmu, _Tsig, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tmu, _Tsig, _Tp>
     lognormal_pdf(_Tmu __mu, _Tsig __sigma, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tmu, _Tsig, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tmu, _Tsig, _Tp>;
       return std::__detail::__lognormal_pdf<__type>(__mu, __sigma, __x);
     }
 
@@ -6528,10 +6528,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Tmu, typename _Tsig, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tmu, _Tsig, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tmu, _Tsig, _Tp>
     lognormal_p(_Tmu __mu, _Tsig __sigma, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tmu, _Tsig, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tmu, _Tsig, _Tp>;
       return std::__detail::__lognormal_p<__type>(__mu, __sigma, __x);
     }
 
@@ -6544,10 +6544,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Tlam, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tlam, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tlam, _Tp>
     exponential_pdf(_Tlam __lambda, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tlam, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tlam, _Tp>;
       return std::__detail::__exponential_pdf<__type>(__lambda, __x);
     }
 
@@ -6560,10 +6560,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Tlam, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tlam, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tlam, _Tp>
     exponential_p(_Tlam __lambda, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tlam, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tlam, _Tp>;
       return std::__detail::__exponential_p<__type>(__lambda, __x);
     }
 
@@ -6579,10 +6579,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Ta, typename _Tb, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Ta, _Tb, _Tp>
     weibull_pdf(_Ta __a, _Tb __b, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Ta, _Tb, _Tp>;
       return std::__detail::__weibull_pdf<__type>(__a, __b, __x);
     }
 
@@ -6595,10 +6595,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Ta, typename _Tb, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Ta, _Tb, _Tp>
     weibull_p(_Ta __a, _Tb __b, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Ta, _Tb, _Tp>;
       return std::__detail::__weibull_p<__type>(__a, __b, __x);
     }
 
@@ -6615,10 +6615,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __nu 
    */
   template<typename _Tt, typename _Tp>
-    __gnu_cxx::__promote_fp_t<_Tp>
+    __gnu_cxx::fp_promote_t<_Tp>
     student_t_p(_Tt __t, unsigned int __nu)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__student_t_p<__type>(__t, __nu);
     }
 
@@ -6635,10 +6635,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __nu 
    */
   template<typename _Tt, typename _Tp>
-    __gnu_cxx::__promote_fp_t<_Tp>
+    __gnu_cxx::fp_promote_t<_Tp>
     student_t_pdf(_Tt __t, unsigned int __nu)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__student_t_pdf<__type>(__t, __nu);
     }
 
@@ -6658,10 +6658,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __F The F statistic
    */
   template<typename _Tp>
-    __gnu_cxx::__promote_fp_t<_Tp>
+    __gnu_cxx::fp_promote_t<_Tp>
     fisher_f_p(_Tp __F, unsigned int __nu1, unsigned int __nu2)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__fisher_f_p<__type>(__F, __nu1, __nu2);
     }
 
@@ -6683,10 +6683,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __nu2 
    */
   template<typename _Tp>
-    __gnu_cxx::__promote_fp_t<_Tp>
+    __gnu_cxx::fp_promote_t<_Tp>
     fisher_f_pdf(_Tp __F, unsigned int __nu1, unsigned int __nu2)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__fisher_f_pdf<__type>(__F, __nu1, __nu2);
     }
 
@@ -6704,10 +6704,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __k 
    */
   template<typename _Tp>
-    __gnu_cxx::__promote_fp_t<_Tp>
+    __gnu_cxx::fp_promote_t<_Tp>
     binomial_pdf(_Tp __p, unsigned int __n, unsigned int __k)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__binomial_pdf<__type>(__p, __n, __k);
     }
 
@@ -6725,10 +6725,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __k 
    */
   template<typename _Tp>
-    __gnu_cxx::__promote_fp_t<_Tp>
+    __gnu_cxx::fp_promote_t<_Tp>
     binomial_p(_Tp __p, unsigned int __n, unsigned int __k)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__binomial_p<__type>(__p, __n, __k);
     }
 
@@ -6742,10 +6742,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * where @f$b > 0@f$.
    */
   template<typename _Ta, typename _Tb, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Ta, _Tb, _Tp>
     logistic_pdf(_Ta __a, _Tb __b, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Ta, _Tb, _Tp>;
       return std::__detail::__logistic_pdf<__type>(__a, __b, __x);
     }
 
@@ -6759,10 +6759,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * where @f$b > 0@f$.
    */
   template<typename _Ta, typename _Tb, typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>
+    inline __gnu_cxx::fp_promote_t<_Ta, _Tb, _Tp>
     logistic_p(_Ta __a, _Tb __b, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Ta, _Tb, _Tp>;
       return std::__detail::__logistic_p<__type>(__a, __b, __x);
     }
 
@@ -6798,10 +6798,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * and is exponentially decreasing for increasing argument.
    */
   template<typename _Ta>
-    inline __gnu_cxx::__promote_fp_t<_Ta>
+    inline __gnu_cxx::fp_promote_t<_Ta>
     gamma_reciprocal(_Ta __a)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Ta>;
+      using __type = __gnu_cxx::fp_promote_t<_Ta>;
       return std::__detail::__gamma_reciprocal<__type>(__a);
     }
 
@@ -6841,10 +6841,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __x The real argument @f$ x >= 0 @f$
    */
   template<typename _Tp>
-    inline __gnu_cxx::__promote_fp_t<_Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
     debye(unsigned int __n, _Tp __x)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__debye<__type>(__n, __x);
     }
 
@@ -7010,10 +7010,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    */
   template<typename _Tp, typename _Ts, typename _Ta>
-    inline __gnu_cxx::__promote_fp_t<_Tp, _Ts, _Ta>
+    inline __gnu_cxx::fp_promote_t<_Tp, _Ts, _Ta>
     lerch_phi(_Tp __z, _Ts __s, _Ta __a)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tp, _Ts, _Ta>;
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Ts, _Ta>;
       return std::__detail::__lerch_phi<__type>(__z, __s, __a);
     }
 

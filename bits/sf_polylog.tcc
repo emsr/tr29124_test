@@ -984,7 +984,7 @@ namespace __detail
    * @return  The real or complex value of Li_s(e^w).
    */
   template<typename _Tp, typename _ArgType>
-    __gnu_cxx::__promote_fp_t<std::complex<_Tp>, _ArgType>
+    __gnu_cxx::fp_promote_t<std::complex<_Tp>, _ArgType>
     __polylog_exp(_Tp __s, _ArgType __w)
     {
       if (std::isnan(__s) || std::isnan(__w))

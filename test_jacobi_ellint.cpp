@@ -27,10 +27,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see Consult jacobi_sn for more details.
    */
   template<typename _Kp, typename _Up>
-    inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
+    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
     jacobi_am(_Kp __k, _Up __u)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
+      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
       return std::__detail::__jacobi_ellint<__type>(__k, __u).__am();
     }
 
@@ -42,10 +42,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see Consult jacobi_sn and jacobi_cn for more details.
    */
   template<typename _Kp, typename _Up>
-    inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
+    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
     jacobi_sc(_Kp __k, _Up __u)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
+      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
       return std::__detail::__jacobi_ellint<__type>(__k, __u).__sc();
     }
 
@@ -57,10 +57,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see Consult jacobi_sn and jacobi_dn for more details.
    */
   template<typename _Kp, typename _Up>
-    inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
+    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
     jacobi_sd(_Kp __k, _Up __u)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
+      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
       return std::__detail::__jacobi_ellint<__type>(__k, __u).__sd();
     }
 
@@ -72,10 +72,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see Consult jacobi_cn and jacobi_dn for more details.
    */
   template<typename _Kp, typename _Up>
-    inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
+    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
     jacobi_cd(_Kp __k, _Up __u)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
+      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
       return std::__detail::__jacobi_ellint<__type>(__k, __u).__cd();
     }
 
@@ -87,10 +87,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see Consult jacobi_cn and jacobi_sn for more details.
    */
   template<typename _Kp, typename _Up>
-    inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
+    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
     jacobi_cs(_Kp __k, _Up __u)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
+      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
       return std::__detail::__jacobi_ellint<__type>(__k, __u).__cs();
     }
 
@@ -102,10 +102,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see Consult jacobi_dn and jacobi_cn for more details.
    */
   template<typename _Kp, typename _Up>
-    inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
+    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
     jacobi_dc(_Kp __k, _Up __u)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
+      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
       return std::__detail::__jacobi_ellint<__type>(__k, __u).__dc();
     }
 
@@ -117,10 +117,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see Consult jacobi_dn and jacobi_sn for more details.
    */
   template<typename _Kp, typename _Up>
-    inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
+    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
     jacobi_ds(_Kp __k, _Up __u)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
+      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
       return std::__detail::__jacobi_ellint<__type>(__k, __u).__ds();
     }
 
@@ -132,10 +132,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see Consult jacobi_cn for more details.
    */
   template<typename _Kp, typename _Up>
-    inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
+    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
     jacobi_nc(_Kp __k, _Up __u)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
+      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
       return std::__detail::__jacobi_ellint<__type>(__k, __u).__nc();
     }
 
@@ -147,10 +147,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see Consult jacobi_dn for more details.
    */
   template<typename _Kp, typename _Up>
-    inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
+    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
     jacobi_nd(_Kp __k, _Up __u)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
+      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
       return std::__detail::__jacobi_ellint<__type>(__k, __u).__nd();
     }
 
@@ -162,10 +162,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see Consult jacobi_sn for more details.
    */
   template<typename _Kp, typename _Up>
-    inline __gnu_cxx::__promote_fp_t<_Kp, _Up>
+    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
     jacobi_ns(_Kp __k, _Up __u)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Kp, _Up>;
+      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
       return std::__detail::__jacobi_ellint<__type>(__k, __u).__ns();
     }
 
