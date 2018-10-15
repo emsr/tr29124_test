@@ -305,6 +305,7 @@ test_hyperg
 test_hypot
 test_inverse_gamma_distribution
 test_inv_erf
+test_inv_gamma
 test_inv_ibeta
 test_jacobi
 test_jacobi_ellint
@@ -324,6 +325,7 @@ test_limits
 test_little_airy
 test_lobatto
 test_local_special_function
+test_logsumexp
 test_lommel
 test_marcum_q
 test_math_h
