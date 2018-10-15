@@ -63,7 +63,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const _Tp __golden = __gnu_cxx::__math_constants<_Tp>::__phi;
 
       if (__x_lower >= __x_upper)
-	std::__throw_logic_error(__N("__root_bracket: bad initial range"));
+	std::__throw_domain_error(__N("__root_bracket: "
+				      "Initial range must be ordered"));
       auto __f_lower = __func(__x_lower);
       auto __f_upper = __func(__x_upper);
       for (std::size_t __i = 0; __i < __max_iter; ++__i)
@@ -132,8 +133,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __f = __func(__x_lower);
       auto __f_mid = __func(__x_upper);
       if (__f * __f_mid > _Tp{0})
-	std::__throw_logic_error(__N("__root_bisect: "
-				 "Root must be bracketed for bisection"));
+	std::__throw_domain_error(__N("__root_bisect: "
+				      "Root must be bracketed for bisection"));
       //  Orient search so that f > _Tp{0} lies at x + dx.
       _Tp __dx;
       auto __x = __f < _Tp{0}
@@ -150,8 +151,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    return __x;
 	}
 
-      std::__throw_logic_error(__N("__root_bisect: "
-			       "Maximum number of bisections exceeded"));
+      std::__throw_runtime_error(__N("__root_bisect: "
+				     "Maximum number of bisections exceeded"));
     }
 
 
@@ -198,8 +199,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    return __x;
 	}
 
-      std::__throw_logic_error(__N("__root_secant: "
-			       "Maximum number of iterations exceeded"));
+      std::__throw_runtime_error(__N("__root_secant: "
+				     "Maximum number of iterations exceeded"));
     }
 
 
@@ -222,8 +223,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __f_lo = __func(__x_lower);
       auto __f_hi = __func(__x_upper);
       if (__f_lo * __f_hi > _Tp{0})
-	std::__throw_logic_error(__N("__root_false_position: "
-				    "Root must be bracketed"));
+	std::__throw_domain_error(__N("__root_false_position: "
+				      "Root must be bracketed"));
 
       _Tp __x_lo, __x_hi;
       if (__f_lo < _Tp{0})
@@ -261,8 +262,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    return __x;
 	}
 
-      std::__throw_logic_error(__N("__root_false_position: "
-			       "Maximum number of iterations exceeded"));
+      std::__throw_runtime_error(__N("__root_false_position: "
+				     "Maximum number of iterations exceeded"));
     }
 
 
@@ -288,7 +289,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __x_lo = __x_lower;
 
       if (__f_lo * __f_hi > _Tp{0})
-	std::__throw_logic_error(__N("__root_ridder: Root must be bracketed"));
+	std::__throw_domain_error(__N("__root_ridder: Root must be bracketed"));
 
       if (__f_lo == _Tp{0})
 	return __x_lower;
@@ -331,15 +332,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      __f_lo = __fnew;
 	    }
 	  else
-	    std::__throw_logic_error(__N("__root_ridder: "
-				     "Some major malfunction"));
+	    std::__throw_runtime_error(__N("__root_ridder: "
+					   "Some major malfunction"));
 
 	  if (std::abs(__x_hi - __x_lo) < __eps)
 	    return __ans;
 	}
 
-      std::__throw_logic_error(__N("__root_ridder: "
-			       "Maximum number of iterations exceeded"));
+      std::__throw_runtime_error(__N("__root_ridder: "
+				     "Maximum number of iterations exceeded"));
     }
 
 
@@ -368,7 +369,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
 
       if (__f_a * __f_b > _Tp{0})
-	std::__throw_logic_error(__N("__root_brent: Root must be bracketed"));
+	std::__throw_domain_error(__N("__root_brent: Root must be bracketed"));
 
       auto __f_c = __f_b;
       for (std::size_t __iter = 0; __iter < __max_iter; ++__iter)
@@ -440,8 +441,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  __f_b = __func(__x_b);
 	}
 
-      std::__throw_logic_error(__N("__root_brent: "
-			       "Maximum number of iterations exceeded"));
+      std::__throw_runtime_error(__N("__root_brent: "
+				     "Maximum number of iterations exceeded"));
     }
 
 
@@ -451,8 +452,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The returned root is refined until its accuracy is
    * within <tt>+/- __eps</tt>.
    *
-   * @param __func A routine that provides both the function
+   * @f[
+   *    x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
+   * @f]
+   *
+   * @param __func A routine that provides both the function value
    *               and the first derivative of the function at the point x.
+   *               The return type must be decomposable into [value, deriv].
    * @param __x_lower  The lower end of the interval
    * @param __x_upper  The upper end of the interval
    * @param __eps  The tolerance
@@ -466,17 +472,110 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __x = (__x_lower + __x_upper) / _Tp{2};
       for (std::size_t __i = 0; __i < __max_iter; ++__i)
 	{
-	  auto __sf = __func(__x);
-	  auto __dx = __sf.__value / __sf.__deriv;
+	  const auto [__value, __deriv] = __func(__x);
+	  const auto __dx = __value / __deriv;
 	  __x -= __dx;
 	  if ((__x_lower - __x) * (__x - __x_upper) < _Tp{0})
-	    std::__throw_logic_error(__N("__root_newton: "
-				     "Jumped out of brackets"));
+	    std::__throw_runtime_error(__N("__root_newton: "
+					   "Jumped out of brackets"));
 	  if (std::abs(__dx) < __eps)
 	    return __x;
 	}
-      std::__throw_logic_error(__N("__root_newton: "
-			       "Maximum number of iterations exceeded"));
+      std::__throw_runtime_error(__N("__root_newton: "
+				     "Maximum number of iterations exceeded"));
+    }
+
+
+  /**
+   * Using the Halley method, find the root of a function @c __func
+   * known to lie in the interval @c __x_lower to @c __x_upper.
+   * The returned root is refined until its accuracy is
+   * within <tt>+/- __eps</tt>.
+   *
+   * @f[
+   *    x_{n+1} - x_n = -\frac{2 f(x_n) f'(x_n)}
+   *                    {2 [f'(x_n)]^2 - f(x_n) f''(x_n)}
+   * @f]
+   * This form indicates the close relationship to the Newton method:
+   * @f[
+   *    x_{n+1} - x_n = -\frac{f'(x_n)}
+   *                    {f'(x_n) - [f(x_n) f''(x_n)]/[2f'(x_n)]}
+   * @f]
+   *
+   * @param __func A routine that provides both the function value, and the
+   *               first and second derivative of the function at the point x.
+   *               The return type must be decomposable into [val, der, der2].
+   * @param __x_lower  The lower end of the interval
+   * @param __x_upper  The upper end of the interval
+   * @param __eps  The tolerance
+   * @param __max_iter  The maximum number of iterations
+   */
+  template<typename _Tp, typename _StateFunc>
+    _Tp
+    __root_halley(_StateFunc __func, _Tp __x_lower, _Tp __x_upper,
+		  _Tp __eps, std::size_t __max_iter)
+    {
+      auto __x = (__x_lower + __x_upper) / _Tp{2};
+      for (std::size_t __i = 0; __i < __max_iter; ++__i)
+	{
+	  const auto [__f, __df, __d2f] = __func(__x);
+	  const auto __dx = _Tp{2} * __f * __df
+			   / (_Tp{2} * __df * __df - __f * __d2f);
+	  __x -= __dx;
+	  if ((__x_lower - __x) * (__x - __x_upper) < _Tp{0})
+	    std::__throw_runtime_error(__N("__root_halley: "
+					   "Jumped out of brackets"));
+	  if (std::abs(__dx) < __eps)
+	    return __x;
+	}
+      std::__throw_runtime_error(__N("__root_halley: "
+				     "Maximum number of iterations exceeded"));
+    }
+
+
+  /**
+   * Using the Steffensen method, find the root of a function @c __func
+   * known to lie in the interval @c __x_lower to @c __x_upper.
+   * The returned root is refined until its accuracy is
+   * within <tt>+/- __eps</tt>.
+   *
+   * @f[
+   *    x_{n+1} = x_n - \frac{f(x_n)}{\frac{f(x_n + f(x_n))}{f(x_n)} - 1}
+   * @f]
+   *
+   * The Steffensen method amounts to estimating the derivative using the
+   * previous function value as a stepsize and applying the Newton iteration.
+   *
+   * This method is supposed to have quadratic convergence like Newton's
+   * method but it only required te function values.  On the other hand,
+   * the initial estimate generally must be tighter than for Newton's method.
+   *
+   * @param __func A routine that provides the function value at the point x.
+   * @param __x_lower  The lower end of the interval
+   * @param __x_upper  The upper end of the interval
+   * @param __eps  The tolerance
+   * @param __max_iter  The maximum number of iterations
+   */
+  template<typename _Tp, typename _Func>
+    _Tp
+    __root_steffensen(_Func __func, _Tp __x_lower, _Tp __x_upper,
+    		      _Tp __eps, std::size_t __max_iter)
+    {
+      auto __x = (__x_lower + __x_upper) / _Tp{2};
+      for (std::size_t __i = 0; __i < __max_iter; ++__i)
+	{
+	  auto __fval = __func(__x);
+	  auto __gval = __func(__x + __fval) / __fval - _Tp{1};
+	  auto __dx = __fval / __gval;
+	  __x -= __dx;
+	  if ((__x_lower - __x) * (__x - __x_upper) < _Tp{0})
+	    std::__throw_runtime_error(__N("__root_steffensen: "
+					   "Jumped out of brackets"));
+	  if (std::abs(__dx) < __eps)
+	    return __x;
+	}
+      std::__throw_runtime_error(__N("__root_steffensen: "
+				     "Maximum number of iterations exceeded"));
     }
 
 
@@ -503,7 +602,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __sf_hi = __func(__x_upper);
 
       if (__sf_lo.__value * __sf_hi.__value > _Tp{0})
-	std::__throw_logic_error(__N("__root_safe: Root must be bracketed"));
+	std::__throw_domain_error(__N("__root_safe: Root must be bracketed"));
 
       if (__sf_lo.__value == _Tp{0})
 	return __x_lower;
@@ -558,120 +657,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	    __x_hi = __x;
 	}
 
-      std::__throw_logic_error(__N("__root_safe: "
-			       "Maximum number of iterations exceeded"));
+      std::__throw_runtime_error(__N("__root_safe: "
+				     "Maximum number of iterations exceeded"));
     }
-
-/*
-  template<typename _Tp>
-    void
-    __root_laguerre(_Polymomial<std::complex<_Tp>>& __a, std::complex<_Tp>& __x,
-		    int& __its)
-    {
-      // Estimated fractional roundoff error.
-      constexpr _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
-
-      // Number of fractional values.
-      constexpr int MR = 8;
-      // Fractions used to break a limit cycle.
-      static const _Tp
-      _S_frac[MR + 1]
-      {0.0, 0.5, 0.25, 0.75, 0.13, 0.38, 0.62, 0.88, 1.0};
-
-      // Number of steps taken before trying a new fraction.
-      constexpr int MT = 10;
-
-      constexpr int _S_max_iter = MT * MR;
-
-      Complex d, f;
-      int __m = __a.degree();
-      for (int __iter = 1;__iter <= _S_max_iter; ++__iter)
-	{ // Loop over iterations up to allowed maximum.
-	  __its = __iter;
-	  auto __b = __a[__m];
-	  auto __err = std::abs(__b);
-	  std::complex<_Tp> __d{}, __f{};
-	  auto __abx = std::abs(__x);
-	  for (int __j = __m - 1; __j >= 0; --__j)
-	    {
-	      // Efficient computation of the polynomial and its first two derivatives.
-	      // f stores P''(x)/2.
-	      __f = __x * __f + __d;
-	      __d = __x * __d + __b;
-	      __b = __x * __b + __a[__j];
-	      __err = __abx * __err + std::abs(__b);
-	    }
-	  __err *= ___S_eps;
-	  // Estimate of roundoff error in evaluating polynomial.
-	  if (std::abs(__b) <= __err) // We have the root.
-	    return;
-	  // Use Laguerre's formula.
-	  auto __g = __d / __b;
-	  auto __g2 = __g * __g;
-	  auto __h = __g2 - _Tp{2} * __f / __b;
-	  auto __sq = std::sqrt(_Tp(__m - 1) * (_Tp(__m) * __h - __g2));
-	  auto __gp = __g + __sq;
-	  auto __gm = __g - __sq;
-	  auto __abp = std::abs(__gp);
-	  auto __abm = std::abs(__gm);
-	  if (__abp < __abm)
-	    __gp = __gm;
-	  auto __dx = std::max(__abp, __abm) > _Tp{0}
-		    ? _Tp(__m) / __gp
-		    : std::polar(_Tp{1} + __abx, _Tp(__iter));
-	  auto __x1 = __x - __dx;
-	  if (__x == __x1)
-	    return;
-	  if (__iter % MT != 0)
-	    __x = __x1;
-	  else
-	    __x -= ___S_frac[__iter / MT] * __dx;
-	}
-      std::__throwlogic_error("__root_laguerre: "
-			      "Maximum number of iterations exceeded");
-    }
-
-  template<typename _Tp>
-    void
-    qroot(_Polynomial<std::complex<_Tp>>& __p, _Tp& __b, _Tp& __c, _Tp __eps)
-    {
-      using _Poly = _Polynomial<std::complex<_Tp>>;
-      constexpr int _S_max_iter = 20;
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      constexpr auto _S_tiny = _Tp{100} * _S_eps;
-      auto __n = __p.order();
-      _Poly __q, __qq, __rem;
-      for (int __iter = 0; __iter < _S_max_iter; ++__iter)
-	{
-	  _Poly __d(__c, __b, _Tp{1});
-
-	  // First division: r, s.
-	  divmod(__p, __d, __q, __rem);
-	  auto __s = __rem[0];
-	  auto __r = __rem[1];
-	  // Second division: partial r, s with respect to c.
-	  divmod(__q, __d, __qq, __rem);
-	  auto __sc = -__rem[0];
-	  auto __rc = -__rem[1];
-	  auto __sb = -__c * __rc;
-	  auto __rb = -__b * __rc + __sc;
-	  // Solve 2x2 equation.
-	  auto __dv = _Tp{1} / (__sb * __rc - __sc * __rb);
-	  auto __delb = ( __r * __sc - __s * __rc) * __dv;
-	  auto __delc = (-__r * __sb + __s * __rb) * __dv;
-	  __b += __delb;
-	  __delc = (-__r * __sb + __s * __rb) * __dv;
-	  __c += __delc;
-	  if ((std::abs(__delb) <= eps * std::abs(__b)
-	      || std::abs(__b) < _S_tiny)
-           && (std::abs(__delc) <= eps * std::abs(__c)
-	      || std::abs(__c) < _S_tiny))
-	    return;
-	}
-      std::__throw_logic_error("qroot: "
-			       "Maximum number of iterations exceeded");
-    }
-*/
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx

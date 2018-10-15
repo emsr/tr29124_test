@@ -35,7 +35,7 @@ PATH=wrappers/debug:$PATH ./test_bose_einstein > test_bose_einstein.txt
    */
   template<typename _Tp>
     _Tp
-    __bose_einstein_cdf(_Tp __mu, _Tp __beta, _Tp __x)
+    __bose_einstein_p(_Tp __mu, _Tp __beta, _Tp __x)
     {
       ;
     }

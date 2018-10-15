@@ -377,11 +377,11 @@ data003[101] =
 const double toler003 = 1.0000000000000008e-12;
 
 // Test data for k=0.30000000000000004.
-// max(|f - f_Boost|): 7.2511441295830537e-16 at index 98
-// max(|f - f_Boost| / |f_Boost|): 3.1483120615030623e-14
-// mean(f - f_Boost): 3.7253616033600937e-17
-// variance(f - f_Boost): 4.3548224556723288e-33
-// stddev(f - f_Boost): 6.5991078606674775e-17
+// max(|f - f_Boost|): 7.2858385991025898e-16 at index 98
+// max(|f - f_Boost| / |f_Boost|): 3.1633757555772392e-14
+// mean(f - f_Boost): 4.9121872686075924e-17
+// variance(f - f_Boost): 4.1988240340588232e-33
+// stddev(f - f_Boost): 6.4798333574705633e-17
 const testcase_jacobi_cn<double>
 data004[101] =
 {

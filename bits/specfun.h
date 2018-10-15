@@ -245,8 +245,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::lgamma "lgamma - Log gamma for complex arguments"
    * - @ref __gnu_cxx::lrising_factorial "lrising_factorial - Log rising factorials"
    * - @ref __gnu_cxx::owens_t "owens_t - Owens T functions"
-   * - @ref __gnu_cxx::pgamma "pgamma - Regularized lower incomplete gamma functions"
-   * - @ref __gnu_cxx::qgamma "qgamma - Regularized upper incomplete gamma functions"
+   * - @ref __gnu_cxx::gamma_p "gamma_p - Regularized lower incomplete gamma functions"
+   * - @ref __gnu_cxx::gamma_q "gamma_q - Regularized upper incomplete gamma functions"
    * - @ref __gnu_cxx::radpoly "radpoly - Radial polynomials"
    * - @ref __gnu_cxx::rising_factorial "rising_factorial - Rising factorials"
    * - @ref __gnu_cxx::sinhc "sinhc - Hyperbolic sinus cardinal function"
@@ -4370,43 +4370,57 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Scaled lower incomplete gamma
 
   inline float
-  pgammaf(float __a, float __x)
-  { return std::__detail::__pgamma<float>(__a, __x); }
+  gamma_pf(float __a, float __x)
+  { return std::__detail::__gamma_p<float>(__a, __x); }
 
   inline long double
-  pgammal(long double __a, long double __x)
-  { return std::__detail::__pgamma<long double>(__a, __x); }
+  gamma_pl(long double __a, long double __x)
+  { return std::__detail::__gamma_p<long double>(__a, __x); }
 
   /**
-   * 
+   * @brief Return the gamma cumulative propability distribution function
+   * or the regularized lower incomplete gamma function.
+   *
+   * The formula for the gamma probability density function is:
+   * @f[
+   *    \Gamma(x|\alpha,\beta) = \frac{1}{\beta\Gamma(\alpha)}
+   *                             (x/\beta)^{\alpha - 1} e^{-x/\beta}
+   * @f]
    */
   template<typename _Ta, typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Ta, _Tp>
-    pgamma(_Ta __a, _Tp __x)
+    gamma_p(_Ta __a, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tp>;
-      return std::__detail::__pgamma<__type>(__a, __x);
+      return std::__detail::__gamma_p<__type>(__a, __x);
     }
 
   // Scaled upper incomplete gamma
 
   inline float
-  qgammaf(float __a, float __x)
-  { return std::__detail::__qgamma<float>(__a, __x); }
+  gamma_qf(float __a, float __x)
+  { return std::__detail::__gamma_q<float>(__a, __x); }
 
   inline long double
-  qgammal(long double __a, long double __x)
-  { return std::__detail::__qgamma<long double>(__a, __x); }
+  gamma_ql(long double __a, long double __x)
+  { return std::__detail::__gamma_q<long double>(__a, __x); }
 
   /**
-   * 
+   * @brief Return the gamma complementary cumulative propability distribution
+   * (or survival) function or the regularized upper incomplete gamma function.
+   *
+   * The formula for the gamma probability density function is:
+   * @f[
+   *    \Gamma(x|\alpha,\beta) = \frac{1}{\beta\Gamma(\alpha)}
+   *                             (x/\beta)^{\alpha - 1} e^{-x/\beta}
+   * @f]
    */
   template<typename _Ta, typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Ta, _Tp>
-    qgamma(_Ta __a,_Tp  __x)
+    gamma_q(_Ta __a,_Tp  __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tp>;
-      return std::__detail::__qgamma<__type>(__a, __x);
+      return std::__detail::__gamma_q<__type>(__a, __x);
     }
 
   // Jacobi zeta functions.
@@ -6446,14 +6460,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    \Gamma(x|\alpha,\beta) = \frac{1}{\beta\Gamma(\alpha)}
    *                             (x/\beta)^{\alpha - 1} e^{-x/\beta}
    * @f]
-   */
   template<typename _Ta, typename _Tb, typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>
-    gamma_cdf(_Ta __alpha, _Tb __beta, _Tp __x)
+    gamma_p(_Ta __alpha, _Tb __beta, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>;
-      return std::__detail::__gamma_cdf<__type>(__alpha, __beta, __x);
+      return std::__detail::__gamma_p<__type>(__alpha, __beta, __x);
     }
+   */
 
   /**
    * @brief Return the normal probability density function.
@@ -6482,10 +6496,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tmu, typename _Tsig, typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tmu, _Tsig, _Tp>
-    normal_cdf(_Tmu __mu, _Tsig __sigma, _Tp __x)
+    normal_p(_Tmu __mu, _Tsig __sigma, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tmu, _Tsig, _Tp>;
-      return std::__detail::__normal_cdf<__type>(__mu, __sigma, __x);
+      return std::__detail::__normal_p<__type>(__mu, __sigma, __x);
     }
 
   /**
@@ -6515,10 +6529,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tmu, typename _Tsig, typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tmu, _Tsig, _Tp>
-    lognormal_cdf(_Tmu __mu, _Tsig __sigma, _Tp __x)
+    lognormal_p(_Tmu __mu, _Tsig __sigma, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tmu, _Tsig, _Tp>;
-      return std::__detail::__lognormal_cdf<__type>(__mu, __sigma, __x);
+      return std::__detail::__lognormal_p<__type>(__mu, __sigma, __x);
     }
 
   /**
@@ -6547,10 +6561,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tlam, typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Tlam, _Tp>
-    exponential_cdf(_Tlam __lambda, _Tp __x)
+    exponential_p(_Tlam __lambda, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tlam, _Tp>;
-      return std::__detail::__exponential_cdf<__type>(__lambda, __x);
+      return std::__detail::__exponential_p<__type>(__lambda, __x);
     }
 
   /**
@@ -6582,10 +6596,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Ta, typename _Tb, typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>
-    weibull_cdf(_Ta __a, _Tb __b, _Tp __x)
+    weibull_p(_Ta __a, _Tb __b, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>;
-      return std::__detail::__weibull_cdf<__type>(__a, __b, __x);
+      return std::__detail::__weibull_p<__type>(__a, __b, __x);
     }
 
   /**
@@ -6602,10 +6616,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tt, typename _Tp>
     __gnu_cxx::__promote_fp_t<_Tp>
-    student_t_cdf(_Tt __t, unsigned int __nu)
+    student_t_p(_Tt __t, unsigned int __nu)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__student_t_cdf<__type>(__t, __nu);
+      return std::__detail::__student_t_p<__type>(__t, __nu);
     }
 
   /**
@@ -6645,10 +6659,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     __gnu_cxx::__promote_fp_t<_Tp>
-    fisher_f_cdf(_Tp __F, unsigned int __nu1, unsigned int __nu2)
+    fisher_f_p(_Tp __F, unsigned int __nu1, unsigned int __nu2)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__fisher_f_cdf<__type>(__F, __nu1, __nu2);
+      return std::__detail::__fisher_f_p<__type>(__F, __nu1, __nu2);
     }
 
   /**
@@ -6712,10 +6726,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     __gnu_cxx::__promote_fp_t<_Tp>
-    binomial_cdf(_Tp __p, unsigned int __n, unsigned int __k)
+    binomial_p(_Tp __p, unsigned int __n, unsigned int __k)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Tp>;
-      return std::__detail::__binomial_cdf<__type>(__p, __n, __k);
+      return std::__detail::__binomial_p<__type>(__p, __n, __k);
     }
 
   /**
@@ -6746,10 +6760,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Ta, typename _Tb, typename _Tp>
     inline __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>
-    logistic_cdf(_Ta __a, _Tb __b, _Tp __x)
+    logistic_p(_Ta __a, _Tb __b, _Tp __x)
     {
       using __type = __gnu_cxx::__promote_fp_t<_Ta, _Tb, _Tp>;
-      return std::__detail::__logistic_cdf<__type>(__a, __b, __x);
+      return std::__detail::__logistic_p<__type>(__a, __b, __x);
     }
 
   // Reciprocal Gamma function.

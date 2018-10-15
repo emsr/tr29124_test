@@ -77,10 +77,10 @@ namespace __detail
       if (std::isnan(__chi2))
 	return __gnu_cxx::__quiet_NaN(__chi2);
       else if (__chi2 < _Tp{0})
-	std::__throw_domain_error(__N("__chi_squared_cdf: "
+	std::__throw_domain_error(__N("__chi_squared_p: "
 				      "chi-squared is negative"));
       else
-	return __pgamma(_Tp(__nu) / _Tp{2}, __chi2 / _Tp{2});
+	return __gamma_p(_Tp(__nu) / _Tp{2}, __chi2 / _Tp{2});
     }
 
   /**
@@ -104,7 +104,7 @@ namespace __detail
 	std::__throw_domain_error(__N("__chi_square_pdfc: "
 				      "chi-squared is negative"));
       else
-	return __qgamma(_Tp(__nu) / _Tp{2}, __chi2 / _Tp{2});
+	return __gamma_q(_Tp(__nu) / _Tp{2}, __chi2 / _Tp{2});
     }
 
   /**
@@ -138,7 +138,7 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __gamma_cdf(_Tp __alpha, _Tp __beta, _Tp __x)
+    __gamma_p(_Tp __alpha, _Tp __beta, _Tp __x)
     {
       if (std::isnan(__alpha) || std::isnan(__beta) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
@@ -159,7 +159,7 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __gamma_cdfc(_Tp __alpha, _Tp __beta, _Tp __x)
+    __gamma_q(_Tp __alpha, _Tp __beta, _Tp __x)
     {
       if (std::isnan(__alpha) || std::isnan(__beta) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
@@ -235,7 +235,7 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __normal_cdf(_Tp __mu, _Tp __sigma, _Tp __x)
+    __normal_p(_Tp __mu, _Tp __sigma, _Tp __x)
     {
       const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
       if (std::isnan(__mu) || std::isnan(__sigma) || std::isnan(__x))
@@ -284,7 +284,7 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __lognormal_cdf(_Tp __mu, _Tp __sigma, _Tp __x)
+    __lognormal_p(_Tp __mu, _Tp __sigma, _Tp __x)
     {
       const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
       if (std::isnan(__mu) || std::isnan(__sigma) || std::isnan(__x))
@@ -325,7 +325,7 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __exponential_cdf(_Tp __lambda, _Tp __x)
+    __exponential_p(_Tp __lambda, _Tp __x)
     {
       if (std::isnan(__lambda) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
@@ -347,7 +347,7 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __exponential_cdfc(_Tp __lambda, _Tp __x)
+    __exponential_q(_Tp __lambda, _Tp __x)
     {
       if (std::isnan(__lambda) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
@@ -392,7 +392,7 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __weibull_cdf(_Tp __a, _Tp __b, _Tp __x)
+    __weibull_p(_Tp __a, _Tp __b, _Tp __x)
     {
       if (std::isnan(__a) || std::isnan(__b) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
@@ -441,7 +441,7 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __student_t_cdf(_Tp __t, unsigned int __nu)
+    __student_t_p(_Tp __t, unsigned int __nu)
     {
       if (std::isnan(__t))
 	return __gnu_cxx::__quiet_NaN(__t);
@@ -464,7 +464,7 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __student_t_cdfc(_Tp __t, unsigned int __nu)
+    __student_t_q(_Tp __t, unsigned int __nu)
     {
       if (std::isnan(__t))
 	return __gnu_cxx::__quiet_NaN(__t);
@@ -495,7 +495,7 @@ namespace __detail
       if (std::isnan(__F))
 	return __gnu_cxx::__quiet_NaN(__F);
       else if (__F < _Tp{0})
-	std::__throw_domain_error(__N("__f_cdf: F is negative"));
+	std::__throw_domain_error(__N("__f_p: F is negative"));
       else
 	return std::sqrt(std::pow(_Tp(__nu1) * __F, _Tp(__nu1))
 		       * std::pow(_Tp(__nu2), _Tp(__nu2))
@@ -520,12 +520,12 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __fisher_f_cdf(_Tp __F, unsigned int __nu1, unsigned int __nu2)
+    __fisher_f_p(_Tp __F, unsigned int __nu1, unsigned int __nu2)
     {
       if (std::isnan(__F))
 	return __gnu_cxx::__quiet_NaN(__F);
       else if (__F < _Tp{0})
-	std::__throw_domain_error(__N("__f_cdf: F is negative"));
+	std::__throw_domain_error(__N("__f_p: F is negative"));
       else
 	return __beta_inc(_Tp(__nu2) / _Tp{2}, _Tp(__nu1) / _Tp{2},
 			  _Tp(__nu2) / (_Tp(__nu2) + __nu1 * __F));
@@ -549,12 +549,12 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __fisher_f_cdfc(_Tp __F, unsigned int __nu1, unsigned int __nu2)
+    __fisher_f_q(_Tp __F, unsigned int __nu1, unsigned int __nu2)
     {
       if (std::isnan(__F))
 	return __gnu_cxx::__quiet_NaN(__F);
       else if (__F < _Tp{0})
-	std::__throw_domain_error(__N("__f_cdfc: F is negative"));
+	std::__throw_domain_error(__N("__f_q: F is negative"));
       else
 	return __beta_inc(_Tp(__nu1) / _Tp{2}, _Tp(__nu2) / _Tp{2},
 			  __nu1 * __F / (_Tp(__nu2) + __nu1 * __F));
@@ -580,7 +580,7 @@ namespace __detail
       if (std::isnan(__p))
 	return __gnu_cxx::__quiet_NaN(__p);
       else if (__p < _Tp{0} || __p > _Tp{1})
-	std::__throw_domain_error(__N("__binomial_cdf: "
+	std::__throw_domain_error(__N("__binomial_p: "
 				      "probability is out of range"));
       else if (__k > __n)
 	return _Tp{0};
@@ -611,12 +611,12 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __binomial_cdf(_Tp __p, unsigned int __n, unsigned int __k)
+    __binomial_p(_Tp __p, unsigned int __n, unsigned int __k)
     {
       if (std::isnan(__p))
 	return __gnu_cxx::__quiet_NaN(__p);
       else if (__p < _Tp{0} || __p > _Tp{1})
-	std::__throw_domain_error(__N("__binomial_cdf: "
+	std::__throw_domain_error(__N("__binomial_p: "
 				      "probability is out of range"));
       else if (__k == 0)
 	return _Tp{1};
@@ -641,12 +641,12 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __binomial_cdfc(_Tp __p, unsigned int __n, unsigned int __k)
+    __binomial_q(_Tp __p, unsigned int __n, unsigned int __k)
     {
       if (std::isnan(__p))
 	return __gnu_cxx::__quiet_NaN(__p);
       else if (__p < _Tp{0} || __p > _Tp{1})
-	std::__throw_domain_error(__N("__binomial_cdfc: "
+	std::__throw_domain_error(__N("__binomial_q: "
 				      "probability is out of range"));
       else if (__k == 0)
 	return _Tp{1};
@@ -685,7 +685,7 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __logistic_cdf(_Tp __a, _Tp __b, _Tp __x)
+    __logistic_p(_Tp __a, _Tp __b, _Tp __x)
     {
       const auto __arg = (__x - __a) / __b;
       const auto __exparg = std::exp(__arg);
@@ -694,7 +694,7 @@ namespace __detail
 
   template<typename _Tp>
     _Tp
-    __cauchy_cdf(_Tp __a, _Tp __b, _Tp __x)
+    __cauchy_p(_Tp __a, _Tp __b, _Tp __x)
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__x);
       return _Tp{0.5L} + std::atan((__x - __a) / __b) / _S_pi;
@@ -702,7 +702,7 @@ namespace __detail
 
   template<typename _Tp>
     _Tp
-    __beta_cdf(_Tp __a, _Tp __b, _Tp __x)
+    __beta_p(_Tp __a, _Tp __b, _Tp __x)
     {
       if (__x < _Tp{0})
 	return _Tp{0};
@@ -720,7 +720,7 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __kolmogorov_cdf(_Tp __a, _Tp __b, _Tp __x)
+    __kolmogorov_p(_Tp __a, _Tp __b, _Tp __x)
     {
       return _Tp{1} - std::exp(-_Tp{2} * __x * __x);
     }

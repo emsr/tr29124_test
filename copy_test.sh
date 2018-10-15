@@ -92,9 +92,9 @@ ${tool} ${text_dir}/lfalling_factorial/* ${ext_dir}/lfalling_factorial
 ${tool} ${text_dir}/lgamma/*             ${ext_dir}/lgamma
 ${tool} ${text_dir}/lrising_factorial/*  ${ext_dir}/lrising_factorial
 ${tool} ${text_dir}/owens_t/*            ${ext_dir}/owens_t
-${tool} ${text_dir}/pgamma/*             ${ext_dir}/pgamma
+${tool} ${text_dir}/gamma_p/*            ${ext_dir}/gamma_p
 ${tool} ${text_dir}/polygamma/*          ${ext_dir}/polygamma
-${tool} ${text_dir}/qgamma/*             ${ext_dir}/qgamma
+${tool} ${text_dir}/gamma_q/*            ${ext_dir}/gamma_q
 ${tool} ${text_dir}/radpoly/*            ${ext_dir}/radpoly
 ${tool} ${text_dir}/rising_factorial/*   ${ext_dir}/rising_factorial
 ${tool} ${text_dir}/sinc/*               ${ext_dir}/sinc

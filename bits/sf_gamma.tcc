@@ -1636,19 +1636,31 @@ _S_neg_double_factorial_table[999]
     {
       if (__n < _S_num_factorials<_Tp>)
 	return _S_factorial_table[__n].__log_factorial;
+      else if (__n < _S_num_double_factorials<_Tp>)
+	return _S_double_factorial_table[__n].__log_factorial
+	     + _S_double_factorial_table[__n - 1].__log_factorial;
       else
 	return __log_gamma(_Tp(__n + 1));
     }
 
+  /**
+   * Extend double factorial to non-integer arguments.
+   * Arkken,
+   * @f[
+   *   log(\nu!!) = \frac{\nu}{2} log(2)
+   *     + \left(\cos(\pi\nu) - 1\right) log(\pi/2) / 4
+   *     + \log(\Gamma(1 + \nu/2))
+   * @f]
+   */
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
-    __log_double_factorial(_Tp __x)
+    __log_double_factorial(_Tp __nu)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
-      return (__x / _Tp{2}) * std::log(_Tp{2})
-	   + (__cos_pi(__x) - _Tp{1})
-		* std::log(_S_pi / 2) / _Tp{4}
-	   + __log_gamma(_Tp{1} + __x / _Tp{2});
+      const auto _S_pi = __gnu_cxx::__const_pi(__nu);
+      return (__nu / _Tp{2}) * std::log(_Tp{2})
+	   + (__cos_pi(__nu) - _Tp{1})
+		* std::log(_S_pi / _Tp{2}) / _Tp{4}
+	   + __log_gamma(_Tp{1} + __nu / _Tp{2});
     }
 
   /**
@@ -1674,17 +1686,22 @@ _S_neg_double_factorial_table[999]
     _GLIBCXX14_CONSTEXPR _Tp
     __double_factorial(int __n)
     {
-      if (__n < 0 && __n % 2 == 1)
+      if (__n < 0)
 	{
-	  if (-__n <= _S_num_neg_double_factorials<_Tp>)
-	    return _S_neg_double_factorial_table[-(1 + __n) / 2].__factorial;
+	  if (__n % 2 == 1)
+	    {
+	      if (-__n <= _S_num_neg_double_factorials<_Tp>)
+		return _S_neg_double_factorial_table[-(1 + __n) / 2].__factorial;
+	      else
+		return std::exp(__log_double_factorial(_Tp(__n)));
+	    }
 	  else
-	    return std::exp(__log_double_factorial(_Tp(__n)));
+	    return __gnu_cxx::__quiet_NaN<_Tp>();
 	}
       else if (__n < _S_num_double_factorials<_Tp>)
 	return _S_double_factorial_table[__n].__factorial;
       else
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return __gnu_cxx::__infinity<_Tp>();
     }
 
   /**
@@ -1705,18 +1722,22 @@ _S_neg_double_factorial_table[999]
    * @f]
    * for $f[ n = -2m - 1 $f].
    */
-  // I should do a signed version.  Or do the log_t thing.
   template<typename _Tp>
     _GLIBCXX14_CONSTEXPR _Tp
     __log_double_factorial(int __n)
     {
-      if (__n < 0 && __n % 2 == 1)
+      if (__n < 0)
 	{
-	  if (-__n <= _S_num_neg_double_factorials<_Tp>)
-	    return _S_neg_double_factorial_table[-(1 + __n) / 2]
+	  if (__n % 2 == 1)
+	    {
+	      if (-__n <= _S_num_neg_double_factorials<_Tp>)
+		return _S_neg_double_factorial_table[-(1 + __n) / 2]
 				.__log_factorial;
+	      else
+		return __log_double_factorial(_Tp(__n));
+	    }
 	  else
-	    return __log_double_factorial(_Tp(__n));
+	    return __gnu_cxx::__quiet_NaN<_Tp>();
 	}
       else if (__n < _S_num_double_factorials<_Tp>)
 	return _S_double_factorial_table[__n].__log_factorial;
@@ -1946,9 +1967,9 @@ _S_neg_double_factorial_table[999]
    *   \epsilon(a) < a^{-1/2}(2\pi)^{-a-1/2}
    * @f]
    *
-   * If the argument is real, the log of the absolute value of the Gamma function
-   * is returned.  The sign to be applied to the exponential of this log Gamma
-   * can be recovered with a call to __log_gamma_sign.
+   * If the argument is real, the log of the absolute value of the Gamma
+   * function is returned.  The sign to be applied to the exponential of this
+   * log Gamma can be recovered with a call to __log_gamma_sign.
    *
    * For complex argument the fully complex log of the gamma function is returned.
    *
@@ -2781,7 +2802,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __pgamma(_Tp __a, _Tp __x)
+    __gamma_p(_Tp __a, _Tp __x)
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
@@ -2792,7 +2813,7 @@ _S_neg_double_factorial_table[999]
 
       auto __ia = __gnu_cxx::__fp_is_integer(__a);
       if (__ia && __ia() <= 0)
-	std::__throw_domain_error(__N("__pgamma: "
+	std::__throw_domain_error(__N("__gamma_p: "
 				      "non-positive integer argument a"));
       else if (std::real(__x) < std::real(__a + _Real{1}))
 	return __gamma_series(__a, __x).first;
@@ -2815,7 +2836,7 @@ _S_neg_double_factorial_table[999]
    */
   template<typename _Tp>
     _Tp
-    __qgamma(_Tp __a, _Tp __x)
+    __gamma_q(_Tp __a, _Tp __x)
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
@@ -2826,7 +2847,7 @@ _S_neg_double_factorial_table[999]
 
       auto __ia = __gnu_cxx::__fp_is_integer(__a);
       if (__ia && __ia() <= 0)
-	std::__throw_domain_error(__N("__qgamma: "
+	std::__throw_domain_error(__N("__gamma_q: "
 				      "non-positive integer argument a"));
       else if (std::real(__x) < std::real(__a + _Real{1}))
 	return _Val{1} - __gamma_series(__a, __x).first;
