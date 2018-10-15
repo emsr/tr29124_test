@@ -340,6 +340,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       _Tp __dc() const
       { return __dn_value / __cn_value; }
+
+      _Tp __sn_deriv() const
+      { return __cn_value * __dn_value; }
+
+      _Tp __cn_deriv() const
+      { return -__sn_value * __dn_value; }
     };
 
   template<typename _Tx, typename _Tp>
