@@ -1,5 +1,6 @@
 // { dg-do run { target c++11 } }
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
+// { dg-skip-if "no extensions in strict dialects" { *-*-* } { "-std=c++*" } }
 
 // Copyright (C) 2016-2018 Free Software Foundation, Inc.
 //
@@ -39,11 +40,11 @@
 #include <specfun_testcase.h>
 
 // Test data.
-// max(|f - f_GSL|): 1.9850858734571375e-09 at index 184
-// max(|f - f_GSL| / |f_GSL|): 2.5480034333324759e-12
-// mean(f - f_GSL): 3.4282844560534529e-10
-// variance(f - f_GSL): 2.9388543908239870e-22
-// stddev(f - f_GSL): 1.7143087209788051e-11
+// max(|f - f_GSL|): 1.5495515981456265e-09 at index 383
+// max(|f - f_GSL| / |f_GSL|): 8.7285121008973025e-13
+// mean(f - f_GSL): 1.8140357435309605e-10
+// variance(f - f_GSL): 5.9386972537817974e-22
+// stddev(f - f_GSL): 2.4369442451114466e-11
 const testcase_lfactorial<double>
 data001[501] =
 {
@@ -549,7 +550,7 @@ data001[501] =
   { 2605.1158503617335, 499, 0.0 },
   { 2611.3304584601556, 500, 0.0 },
 };
-const double toler001 = 2.5000000000000017e-10;
+const double toler001 = 5.0000000000000028e-11;
 
 template<typename Ret, unsigned int Num>
   void

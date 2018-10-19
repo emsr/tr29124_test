@@ -389,7 +389,7 @@ template<typename _Tp>
 
 // Regularized upper incomplete gamma functions.
 template<typename _Tp>
-  struct testcase_qgamma
+  struct testcase_gamma_q
   {
     _Tp f0;
     _Tp a;
@@ -399,7 +399,7 @@ template<typename _Tp>
 
 // Regularized lower incomplete gamma functions.
 template<typename _Tp>
-  struct testcase_pgamma
+  struct testcase_gamma_p
   {
     _Tp f0;
     _Tp a;
@@ -1056,7 +1056,7 @@ template<typename _Tp>
 
 //
 template<typename _Tp>
-  struct testcase_boltzmann_cdf
+  struct testcase_boltzmann_p
   {
     _Tp f0;
     _Tp mu;
@@ -1076,7 +1076,7 @@ template<typename _Tp>
 
 //
 template<typename _Tp>
-  struct testcase_laplace_cdf
+  struct testcase_laplace_p
   {
     _Tp f0;
     _Tp mu;
@@ -1098,7 +1098,7 @@ template<typename _Tp>
 
 //
 template<typename _Tp>
-  struct testcase_maxwell_cdf
+  struct testcase_maxwell_p
   {
     _Tp f0;
     _Tp mu;
@@ -1116,7 +1116,7 @@ template<typename _Tp>
 
 //
 template<typename _Tp>
-  struct testcase_normal_cdf
+  struct testcase_normal_p
   {
     _Tp f0;
     _Tp mu;
@@ -1138,7 +1138,7 @@ template<typename _Tp>
 
 //
 template<typename _Tp>
-  struct testcase_rayleigh_cdf
+  struct testcase_rayleigh_p
   {
     _Tp f0;
     _Tp mu;
@@ -1158,7 +1158,7 @@ template<typename _Tp>
 
 //
 template<typename _Tp>
-  struct testcase_lognormal_cdf
+  struct testcase_lognormal_p
   {
     _Tp f0;
     _Tp mu;
@@ -1180,7 +1180,7 @@ template<typename _Tp>
 
 //
 template<typename _Tp>
-  struct testcase_logistic_cdf
+  struct testcase_logistic_p
   {
     _Tp f0;
     _Tp mu;

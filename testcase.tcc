@@ -21,6 +21,10 @@ R"(// { dg-do run { target c++11 } }
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__" }
 )";
 
+SVNS::string_view ext_boilerplate = 
+R"(// { dg-skip-if "no extensions in strict dialects" { *-*-* } { "-std=c++*" } }
+)";
+
 SVNS::string_view assoc_legendre_boilerplate = 
 R"(// { dg-do run { target c++11 } }
 // { dg-options "-D__STDCPP_WANT_MATH_SPEC_FUNCS__ -ffp-contract=off" }
@@ -362,7 +366,12 @@ template<typename Ret, typename Arg1>
       templparm += "<Ret>";
 
     if (write_header)
-      output << boilerplate << '\n' << copyright << '\n';
+      {
+	output << boilerplate;
+	if (nsname == "__gnu_cxx")
+	  output << ext_boilerplate;
+        output << '\n' << copyright << '\n';
+      }
     output << "//  " << funcname << '\n' << '\n';
     if (riemann_zeta_limits)
       output << riemann_limits << '\n';
@@ -573,7 +582,12 @@ template<typename Ret, typename Arg1, typename Arg2>
       templparm += "<Ret>";
 
     if (write_header)
-      output << boilerplate << '\n' << copyright << '\n';
+      {
+	output << boilerplate;
+	if (nsname == "__gnu_cxx")
+	  output << ext_boilerplate;
+        output << '\n' << copyright << '\n';
+      }
     output << "//  " << funcname << '\n';
     if (write_header)
       {
@@ -793,10 +807,12 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
     if (write_header)
       {
 	if (assoc_legendre_header)
-	  output << assoc_legendre_boilerplate << '\n';
+	  output << assoc_legendre_boilerplate;
 	else
-	  output << boilerplate << '\n';
-	output << copyright << '\n';
+	  output << boilerplate;
+	if (nsname == "__gnu_cxx")
+	  output << ext_boilerplate;
+	output << '\n' << copyright << '\n';
       }
     output << "//  " << funcname << '\n';
     if (write_header)
@@ -1030,10 +1046,12 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
     if (write_header)
       {
 	if (hyperg_header)
-	  output << hyperg_boilerplate << '\n';
+	  output << hyperg_boilerplate;
 	else
-	  output << boilerplate << '\n';
-	output << copyright << '\n';
+	  output << boilerplate;
+	if (nsname == "__gnu_cxx")
+	  output << ext_boilerplate;
+	output << '\n' << copyright << '\n';
       }
     output << "//  " << funcname << '\n';
     if (write_header)
