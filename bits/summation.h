@@ -36,7 +36,7 @@
 #include <vector>
 #include <array>
 #include <bits/c++config.h>
-#include <bits/complex_util.h> // for complex std::isnan, __isinf
+#include <bits/complex_util.h> // for complex std::isnan, std::isinf
 
 #pragma GCC system_header
 
@@ -79,7 +79,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  {
 	    if (std::isnan(__term))
 	      std::__throw_runtime_error(__N("_BasicSum: bad term"));
-	    if (std::__detail::__isinf(__term))
+	    if (std::isinf(__term))
 	      std::__throw_runtime_error(__N("_BasicSum: infinite term"));
 	    ++this->_M_num_terms;
 	    this->_M_term = __term;
@@ -169,7 +169,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  {
 	    if (std::isnan(__term))
 	      std::__throw_runtime_error(__N("_KahanSum: bad term"));
-	    if (std::__detail::__isinf(__term))
+	    if (std::isinf(__term))
 	      std::__throw_runtime_error(__N("_KahanSum: infinite term"));
 	    ++this->_M_num_terms;
 	    this->_M_term = __term - this->_M_temp;
@@ -375,7 +375,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  {
 	    if (std::isnan(__term))
 	      std::__throw_runtime_error(__N("_AitkenDeltaSquaredSum: bad term"));
-	    if (std::__detail::__isinf(__term))
+	    if (std::isinf(__term))
 	      std::__throw_runtime_error(__N("_AitkenDeltaSquaredSum: infinite term"));
 	    this->_M_part_sum += __term;
 	    this->_M_update();
@@ -466,7 +466,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  {
 	    if (std::isnan(__term))
 	      std::__throw_runtime_error(__N("_WinnEpsilonSum: bad term"));
-	    if (std::__detail::__isinf(__term))
+	    if (std::isinf(__term))
 	      std::__throw_runtime_error(__N("_WinnEpsilonSum: infinite term"));
 	    this->_M_part_sum += __term;
 	    this->_M_update();
@@ -557,7 +557,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  {
 	    if (std::isnan(__term))
 	      std::__throw_runtime_error(__N("_BrezinskiThetaSum: bad term"));
-	    if (std::__detail::__isinf(__term))
+	    if (std::isinf(__term))
 	      std::__throw_runtime_error(__N("_BrezinskiThetaSum: infinite term"));
 	    this->_M_part_sum += __term;
 	    this->_M_update();
@@ -972,7 +972,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  {
 	    if (std::isnan(__term))
 	      std::__throw_runtime_error(__N("_LevinSum: bad term"));
-	    if (std::__detail::__isinf(__term))
+	    if (std::isinf(__term))
 	      std::__throw_runtime_error(__N("_LevinSum: infinite term"));
 	    this->_M_rem_mdl << __term;
 	    if (this->_M_rem_mdl.ready())
@@ -1129,7 +1129,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  {
 	    if (std::isnan(__term))
 	      std::__throw_runtime_error(__N("_WenigerSum: bad term"));
-	    if (std::__detail::__isinf(__term))
+	    if (std::isinf(__term))
 	      std::__throw_runtime_error(__N("_WenigerSum: infinite term"));
 	    this->_M_rem_mdl << __term;
 	    if (this->_M_rem_mdl.ready())

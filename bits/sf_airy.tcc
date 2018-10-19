@@ -2436,7 +2436,7 @@ namespace __detail
 		     * _Real(__k + _Real{5} / _Real{6})
 		     / __denom;
 	  if (__k > 1 && (std::abs(_M_Asum.term()) < std::abs(__numerAB)
-		|| __isinf(__numerAB)))
+		|| std::isinf(__numerAB)))
 	    break;
 	  auto _Aterm = __sign * __numerAB;
 	  _M_Asum += _Aterm;
@@ -2446,7 +2446,7 @@ namespace __detail
 		     * _Real(__k + _Real{7} / _Real{6})
 		     / __denom;
 	  if (__k > 1 && (std::abs(_M_Csum.term()) < std::abs(__numerCD)
-		|| __isinf(__numerCD)))
+		|| std::isinf(__numerCD)))
 	    break;
 	  auto _Cterm = __sign * __numerCD;
 	  _M_Csum += _Cterm;

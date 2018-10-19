@@ -51,6 +51,14 @@ namespace std _GLIBCXX_VISIBILITY(default)
     isnan(const std::complex<_Tp>& __z)
     { return std::isnan(std::real(__z)) || std::isnan(std::imag(__z)); }
 
+  /**
+   * Return true if one component of a complex number is inf.
+   */
+  template<typename _Tp>
+    inline bool
+    isinf(const std::complex<_Tp>& __z)
+    { return isinf(std::real(__z)) || isinf(std::imag(__z)); }
+
 namespace __detail
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
@@ -83,14 +91,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::complex<_Tp>{__NaN, __NaN};
       }
     };
-
-  /**
-   * Return true if one component of a complex number is inf.
-   */
-  template<typename _Tp>
-    inline bool
-    __isinf(const std::complex<_Tp>& __z)
-    { return __isinf(std::real(__z)) || __isinf(std::imag(__z)); }
 
 
   /**

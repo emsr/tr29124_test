@@ -7057,7 +7057,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  const auto __amax = __fmax3(__x, __y, __z);
 	  if (__amax == _Tp{0})
 	    return _Tp{0};
-	  else if (std::__detail::__isinf(__amax))
+	  else if (std::isinf(__amax))
 	    return std::numeric_limits<_Tp>::infinity();
 	  else
 	    {

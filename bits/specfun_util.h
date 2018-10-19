@@ -38,7 +38,6 @@
 
 #if __cplusplus >= 201103L
 #  include <ratio>
-#  include <complex>
 #endif
 #if __cplusplus >= 201402L
 #  include <utility> // For exchange
@@ -105,15 +104,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       operator()()
       { return std::numeric_limits<_Tp>::quiet_NaN(); }
     };
-
-  /**
-   * Return true if the number is inf.
-   * This is overloaded elsewhere for complex.
-   */
-  template<typename _Tp>
-    inline bool
-    __isinf(const _Tp __x)
-    { return std::isinf(__x); }
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __detail

@@ -43,7 +43,7 @@ namespace __detail
 	  const auto __amax = std::max({__x, __y, __z}, __abs_max);
 	  if (__amax == _Tp{0})
 	    return _Tp{0};
-	  else if (__isinf(__amax))
+	  else if (std::isinf(__amax))
 	    return std::numeric_limits<_Tp>::infinity();
 	  else
 	    {
@@ -86,7 +86,7 @@ namespace __detail
 	  const auto __amax = __max3(__x, __y, __z);
 	  if (__amax == _Tp{0})
 	    return _Tp{0};
-	  else if (__isinf(__amax))
+	  else if (std::isinf(__amax))
 	    return std::numeric_limits<_Tp>::infinity();
 	  else
 	    {
@@ -120,7 +120,7 @@ namespace __detail
 	  const auto __amax = std::max<_Tp>(__ax, __ay);
 	  if (__amax == _Tp{0})
 	    return _Tp{0};
-	  else if (__isinf(__amax))
+	  else if (std::isinf(__amax))
 	    return std::numeric_limits<_Tp>::infinity();
 	  else
 	    {
@@ -154,7 +154,7 @@ namespace __detail
 	  const auto __amax = std::max<_Tp>({__ax, __ay, __az});
 	  if (__amax == _Tp{0})
 	    return _Tp{0};
-	  else if (__isinf(__amax))
+	  else if (std::isinf(__amax))
 	    return std::numeric_limits<_Tp>::infinity();
 	  else
 	    {

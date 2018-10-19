@@ -4559,14 +4559,14 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 		     * _Real(__k + _Real{7} / _Real{6})
 		     / __denom;
 	  if (__k > 1 && (std::abs(_M_Asum.term()) < std::abs(__numerAB)
-		|| std::__detail::__isinf(__numerAB)))
+		|| std::isinf(__numerAB)))
 	    break;
 	  auto _Aterm = __sign * __numerAB;
 	  _M_Asum += _Aterm;
 	  auto _Bterm = __numerAB;
 	  _M_Bsum += _Bterm;
 	  if (__k > 1 && (std::abs(_M_Csum.term()) < std::abs(__numerCD)
-		|| std::__detail::__isinf(__numerCD)))
+		|| std::isinf(__numerCD)))
 	    break;
 	  auto _Cterm = __sign * __numerCD;
 	  _M_Csum += _Cterm;
