@@ -186,10 +186,10 @@ PATH=wrappers/debug:$PATH ./test_hyperg > test_hyperg.txt
 	  if (__dint)
             {
 	      auto __m = __dint();
-	      auto __gammam = std::__detail::__gamma(_Tp(__m));
-	      auto __gammaabm = std::__detail::__gamma(__a + __b + _Tp(__m));
-	      auto __gammaam = std::__detail::__gamma(__a + _Tp(__m));
-	      auto __gammabm = std::__detail::__gamma(__b + _Tp(__m));
+	      auto _Gamm = std::__detail::__gamma(_Tp(__m));
+	      auto _Gamabm = std::__detail::__gamma(__a + __b + _Tp(__m));
+	      auto _Gamam = std::__detail::__gamma(__a + _Tp(__m));
+	      auto _Gambm = std::__detail::__gamma(__b + _Tp(__m));
 	      auto __sum = _Tp{1};
 	      auto __term = _Tp{1};
 	      for (int __k = 0; __k < __m; ++__k)
@@ -198,24 +198,24 @@ PATH=wrappers/debug:$PATH ./test_hyperg > test_hyperg.txt
 			  / _Tp(1 - __m + __k) / _Tp(__k) * (_Tp{1} - __x);
 		  __sum += __term;
 		}
-	      return __sum * __gammam * __gammaabm / __gammaam / __gammabm;
+	      return __sum * _Gamm * _Gamabm / _Gamam / _Gambm;
 	    }
 	  else
             {
 	      // This is where Buhring's gamma ratio might come in handy.
-	      auto __gammaa = std::__detail::__gamma(__a);
-	      auto __gammab = std::__detail::__gamma(__b);
-	      auto __gammac = std::__detail::__gamma(__c);
-	      auto __gammad = std::__detail::__gamma(__d);
-	      auto __gammamd = std::__detail::__gamma(-__d);
-	      auto __gammacma = std::__detail::__gamma(__c - __a);
-	      auto __gammacmb = std::__detail::__gamma(__c - __b);
-	      return __gammac * __gammad
+	      auto _Gama = std::__detail::__gamma(__a);
+	      auto _Gamb = std::__detail::__gamma(__b);
+	      auto _Gamc = std::__detail::__gamma(__c);
+	      auto _Gamd = std::__detail::__gamma(__d);
+	      auto _Gammd = std::__detail::__gamma(-__d);
+	      auto _Gamcma = std::__detail::__gamma(__c - __a);
+	      auto _Gamcmb = std::__detail::__gamma(__c - __b);
+	      return _Gamc * _Gamd
 		   * __hyperg_series(__a, __b, _Tp{1} - __d, _Tp{1} - __x)
-		   / __gammacma / __gammacmb
-		  + __gammac * __gammamd
+		   / _Gamcma / _Gamcmb
+		  + _Gamc * _Gammd
 		   * __hyperg_series(__c - __a, __c - __b, _Tp{1} + __d, _Tp{1} - __x)
-		   / __gammaa / __gammab;
+		   / _Gama / _Gamb;
 	    }
 	}
       else
