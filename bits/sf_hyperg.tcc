@@ -54,6 +54,59 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 // Implementation-space details.
 namespace __detail
 {
+/*
+  template<typename _Tp, typename _Iter>
+    _Tp
+    __gamma_ratio(_Iter __a, _Iter __b)
+    {
+      auto _sign_F = _Tp{1};
+      auto _F = _Tp{0};
+      for (auto __bb : __b)
+	{
+	  bool ok = true;
+	  const auto __int_b  = std::floor(__bb + _Tp{0.5L});
+	  const auto __b_integer = std::abs(__bb - __intd) < __toler;
+	  if (__b_integer && __int_b <= _Tp{0})
+	    return _Tp{0};
+	  else
+	    {
+	      __try
+		{
+		  _sign_F *= __log_gamma_sign(__bb);
+		  _F -= __log_gamma(__bb);
+		}
+	      __catch (...)
+		{
+		  ok = false;
+		  break;
+		}
+	    }
+	}
+      for (auto __aa : __a)
+	{
+	  const auto __int_a  = std::floor(__aa + _Tp{0.5L});
+	  const auto __a_integer = std::abs(__aa - __intd) < __toler;
+	  if (__a_integer && __int_a <= _Tp{0})
+	    return _S_inf;
+	  else
+	    {
+	      __try
+		{
+		  _sign_F *= __log_gamma_sign(__aa);
+		  _F += __log_gamma(__aa);
+		}
+	      __catch (...)
+		{
+		  ok = false;
+		  break;
+		}
+	    }
+	}
+      if (_F > _S_log_max)
+	std::__throw_runtime_error(__N("__gamma_ratio: "
+				       "overflow of gamma function ratios"));
+    }
+*/
   /**
    * @brief This routine returns the confluent hypergeometric limit function
    * 	    by series expansion.
@@ -610,7 +663,6 @@ namespace __detail
 
 	  const auto __lng_c = __log_gamma(__c);
 
-	  // Evaluate F1.
 	  if (__ad < __eps)
 	    {
 	      // d = c - a - b = 0.
@@ -621,10 +673,14 @@ namespace __detail
 
 	      bool __ok_d1 = true;
 	      _Tp __lng_ad, __lng_ad1, __lng_bd1;
+	      _Tp __sgn_ad, __sgn_ad1, __sgn_bd1;
 	      __try
 		{
+		  __sgn_ad = __log_gamma_sign(__ad);
 		  __lng_ad = __log_gamma(__ad);
+		  __sgn_ad1 = __log_gamma_sign(__a + __d1);
 		  __lng_ad1 = __log_gamma(__a + __d1);
+		  __sgn_bd1 = __log_gamma_sign(__b + __d1);
 		  __lng_bd1 = __log_gamma(__b + __d1);
 		}
 	      __catch(...)
@@ -642,6 +698,10 @@ namespace __detail
 		  auto __ln_pre1 = __lng_ad + __lng_c + __d2 * __ln_omx
 				 - __lng_ad1 - __lng_bd1;
 
+		  if (__ln_pre1 > _S_log_max)
+		    std::__throw_runtime_error(__N("__hyperg_reflect: "
+						   "overflow of gamma functions"));
+
 		  /* Do F1 sum.
 		   */
 		  for (int __i = 1; __i < __ad; ++__i)
@@ -657,22 +717,25 @@ namespace __detail
 		    std::__throw_runtime_error(__N("__hyperg_reflect: "
 						   "overflow of gamma functions"));
 		  else
-		    __F1 = std::exp(__ln_pre1) * __sum1;
+		    __F1 = __sgn_ad * __sgn_ad1 * __sgn_bd1
+			 * std::exp(__ln_pre1) * __sum1;
 		}
 	      else
 		{
-		  // Gamma functions in the denominator were not ok.
+		  // Gamma functions in the denominator were not ok (they diverged).
 		  // So the F1 term is zero.
 		  __F1 = _Tp{0};
 		}
-	    } // end F1 evaluation
+	    }
 
-	  // Evaluate F2.
 	  bool __ok_d2 = true;
 	  _Tp __lng_ad2, __lng_bd2;
+	  _Tp __sgn_ad2, __sgn_bd2;
 	  __try
 	    {
+	      __sgn_ad2 = __log_gamma_sign(__a + __d2);
 	      __lng_ad2 = __log_gamma(__a + __d2);
+	      __sgn_bd2 = __log_gamma_sign(__b + __d2);
 	      __lng_bd2 = __log_gamma(__b + __d2);
 	    }
 	  __catch(...)
@@ -697,7 +760,10 @@ namespace __detail
 	      auto __ln_pre2 = __lng_c + __d1 * __ln_omx
 			     - __lng_ad2 - __lng_bd2;
 
-	      // Do F2 sum.
+	      if (__ln_pre2 > _S_log_max)
+		std::__throw_runtime_error(__N("__hyperg_reflect: "
+					       "overflow of gamma functions"));
+
 	      int __j;
 	      for (__j = 1; __j < __maxiter; ++__j)
 		{
@@ -723,14 +789,14 @@ namespace __detail
 	      if (__sum2 == _Tp{0})
 		__F2 = _Tp{0};
 	      else
-		__F2 = std::exp(__ln_pre2) * __sum2;
+		__F2 = __sgn_ad2 * __sgn_bd2 * std::exp(__ln_pre2) * __sum2;
 	    }
 	  else
 	    {
-	      // Gamma functions in the denominator not ok.
+	      // Gamma functions in the denominator not ok (they diverge).
 	      // So the F2 term is zero.
 	      __F2 = _Tp{0};
-	    } // end F2 evaluation
+	    }
 
 	  const auto __sgn_2 = (__d_nint() % 2 == 1 ? -_Tp{1} : _Tp{1});
 	  const auto __F = __F1 + __sgn_2 * __F2;
@@ -903,8 +969,8 @@ namespace __detail
 	return __hyperg_series(__a, __b, __c, __x);
       else if (std::abs(__a) < _Val{10} && std::abs(__b) < _Val{10})
 	{
-	  // For integer a and b the hypergeometric function is a
-	  // finite polynomial.
+	  // For non-positive integer a and b the hypergeometric function
+	  // is a finite polynomial.
 	  if (__a_nint && __a_nint() < 0)
 	    return __hyperg_series(_Tp(__a_nint()), __b, __c, __x);
 	  else if (__b_nint && __b_nint() < 0)
