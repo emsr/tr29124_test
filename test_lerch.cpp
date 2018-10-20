@@ -426,10 +426,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch tes
   { return __lerch_phi<long double>(__z, __s, __a); }
 
   template<typename _Tpz, typename _Tps, typename _Tpa>
-    __gnu_cxx::__promote_fp_t<_Tpz, _Tps, _Tpa>
+    __gnu_cxx::fp_promote_t<_Tpz, _Tps, _Tpa>
     lerch_phi(_Tpz __z, _Tps __s, _Tpa __a)
     {
-      using __type = __gnu_cxx::__promote_fp_t<_Tpz, _Tps, _Tpa>;
+      using __type = __gnu_cxx::fp_promote_t<_Tpz, _Tps, _Tpa>;
       return __lerch_phi<__type>(__z, __s, __a);
     }
 

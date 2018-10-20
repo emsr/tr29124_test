@@ -64,7 +64,7 @@ namespace __detail
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 //
-// The base definitions of __num_traits and __promote_fp,
+// The base definitions of __num_traits and fp_promote,
 // reside in ext/specfun_util.h
 //
 
@@ -449,12 +449,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * This is used for numeric argument promotion of complex and cmath
    */
   template<typename _Tp>
-    struct __promote_fp_help<std::complex<_Tp>, false>
+    struct fp_promote_help<std::complex<_Tp>, false>
     {
     private:
       using __vtype = typename std::complex<_Tp>::value_type;
     public:
-      using __type = decltype(std::complex<__promote_fp_help_t<__vtype>>{});
+      using __type = decltype(std::complex<fp_promote_help_t<__vtype>>{});
     };
 
   /**

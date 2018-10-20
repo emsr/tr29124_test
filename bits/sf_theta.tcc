@@ -474,7 +474,7 @@ namespace __detail
 		    "One frequecy type must be complex.");
       using _Real_Omega1 = __num_traits_t<_Tp_Omega1>;
       using _Real_Omega3 = __num_traits_t<_Tp_Omega3>;
-      using _Real = __gnu_cxx::__promote_fp_t<_Real_Omega1, _Real_Omega3>;
+      using _Real = __gnu_cxx::fp_promote_t<_Real_Omega1, _Real_Omega3>;
       using _Cmplx = std::complex<_Real>;
       using _Tp_Nome = std::conditional_t<__gnu_cxx::is_complex_v<_Tp_Omega1>
 				       && __gnu_cxx::is_complex_v<_Tp_Omega3>,

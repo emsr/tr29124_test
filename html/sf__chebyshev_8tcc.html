@@ -88,7 +88,8 @@ $(document).ready(function(){initNavTree('sf__chebyshev_8tcc.html','');});
 <div class="title">sf_chebyshev.tcc File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;ext/math_const.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;tuple&gt;</code><br />
+<code>#include &lt;ext/math_const.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for sf_chebyshev.tcc:</div>
 <div class="dyncontent">
@@ -112,6 +113,7 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespacestd"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacestd.html">std</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacestd_1_1____detail"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html">std::__detail</a></td></tr>
+<tr class="memdesc:namespacestd_1_1____detail"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation-space details. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -121,21 +123,21 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a3a893b4c60f3245af5db4ca792c4b2cf"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:a3a893b4c60f3245af5db4ca792c4b2cf"><td class="memTemplItemLeft" align="right" valign="top">_Tp&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a3a893b4c60f3245af5db4ca792c4b2cf">std::__detail::__chebyshev_recur</a> (unsigned int __n, _Tp __x, _Tp _C0, _Tp _C1)</td></tr>
-<tr class="separator:a3a893b4c60f3245af5db4ca792c4b2cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4ba1015e914cdd23d9e5d2be69740c1"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:af4ba1015e914cdd23d9e5d2be69740c1"><td class="memTemplItemLeft" align="right" valign="top">_Tp&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#af4ba1015e914cdd23d9e5d2be69740c1">std::__detail::__chebyshev_t</a> (unsigned int __n, _Tp __x)</td></tr>
-<tr class="separator:af4ba1015e914cdd23d9e5d2be69740c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3289db0a53f55007bc10dc94f15c1f7"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:aa3289db0a53f55007bc10dc94f15c1f7"><td class="memTemplItemLeft" align="right" valign="top">_Tp&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#aa3289db0a53f55007bc10dc94f15c1f7">std::__detail::__chebyshev_u</a> (unsigned int __n, _Tp __x)</td></tr>
-<tr class="separator:aa3289db0a53f55007bc10dc94f15c1f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a684b312a311bbe2065a2633220f4507d"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:a684b312a311bbe2065a2633220f4507d"><td class="memTemplItemLeft" align="right" valign="top">_Tp&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a684b312a311bbe2065a2633220f4507d">std::__detail::__chebyshev_v</a> (unsigned int __n, _Tp __x)</td></tr>
-<tr class="separator:a684b312a311bbe2065a2633220f4507d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae220390e755bdc4908e040fd68426d14"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:ae220390e755bdc4908e040fd68426d14"><td class="memTemplItemLeft" align="right" valign="top">_Tp&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#ae220390e755bdc4908e040fd68426d14">std::__detail::__chebyshev_w</a> (unsigned int __n, _Tp __x)</td></tr>
-<tr class="separator:ae220390e755bdc4908e040fd68426d14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fa9d67b4e0af4e0e018a06d198f0280"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
+<tr class="memitem:a5fa9d67b4e0af4e0e018a06d198f0280"><td class="memTemplItemLeft" align="right" valign="top">std::tuple&lt; _Tp, _Tp, _Tp &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a5fa9d67b4e0af4e0e018a06d198f0280">std::__detail::__chebyshev_recur</a> (unsigned int __n, _Tp __x, _Tp _C0, _Tp _C1)</td></tr>
+<tr class="separator:a5fa9d67b4e0af4e0e018a06d198f0280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac23b4d357a95f4ba24503350999fd52d"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
+<tr class="memitem:ac23b4d357a95f4ba24503350999fd52d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="struct____gnu__cxx_1_1____chebyshev__t__t.html">__gnu_cxx::__chebyshev_t_t</a>&lt; _Tp &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#ac23b4d357a95f4ba24503350999fd52d">std::__detail::__chebyshev_t</a> (unsigned int __n, _Tp __x)</td></tr>
+<tr class="separator:ac23b4d357a95f4ba24503350999fd52d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ed32bbc4a1eaf32dc1dc5f423527008"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
+<tr class="memitem:a0ed32bbc4a1eaf32dc1dc5f423527008"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="struct____gnu__cxx_1_1____chebyshev__u__t.html">__gnu_cxx::__chebyshev_u_t</a>&lt; _Tp &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a0ed32bbc4a1eaf32dc1dc5f423527008">std::__detail::__chebyshev_u</a> (unsigned int __n, _Tp __x)</td></tr>
+<tr class="separator:a0ed32bbc4a1eaf32dc1dc5f423527008"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ed217a1032c75d07ff34949de36d653"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
+<tr class="memitem:a2ed217a1032c75d07ff34949de36d653"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="struct____gnu__cxx_1_1____chebyshev__v__t.html">__gnu_cxx::__chebyshev_v_t</a>&lt; _Tp &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#a2ed217a1032c75d07ff34949de36d653">std::__detail::__chebyshev_v</a> (unsigned int __n, _Tp __x)</td></tr>
+<tr class="separator:a2ed217a1032c75d07ff34949de36d653"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2a0ec347e56c0fae435c8da507c578c"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
+<tr class="memitem:ab2a0ec347e56c0fae435c8da507c578c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="struct____gnu__cxx_1_1____chebyshev__w__t.html">__gnu_cxx::__chebyshev_w_t</a>&lt; _Tp &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1____detail.html#ab2a0ec347e56c0fae435c8da507c578c">std::__detail::__chebyshev_w</a> (unsigned int __n, _Tp __x)</td></tr>
+<tr class="separator:ab2a0ec347e56c0fae435c8da507c578c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is an internal header file, included by other library headers. Do not attempt to use it directly. Instead, include &lt;cmath&gt;. </p>

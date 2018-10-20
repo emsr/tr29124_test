@@ -6130,10 +6130,10 @@ namespace __gnu_cxx
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tp>
-    inline __promote_fp_t<_Tp>
+    inline fp_promote_t<_Tp>
     scorer_gi(_Tp __x)
     {
-      using __type = __promote_fp_t<_Tp>;
+      using __type = fp_promote_t<_Tp>;
       return std::__detail::__scorer_gi<__type>(__x);
     }
 
@@ -6174,10 +6174,10 @@ namespace __gnu_cxx
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tp>
-    inline __promote_fp_t<_Tp>
+    inline fp_promote_t<_Tp>
     scorer_hi(_Tp __x)
     {
-      using __type = __promote_fp_t<_Tp>;
+      using __type = fp_promote_t<_Tp>;
       return std::__detail::__scorer_hi<__type>(__x);
     }
 

@@ -1,6 +1,10 @@
 var namespace____gnu__cxx =
 [
     [ "__airy_t", "struct____gnu__cxx_1_1____airy__t.html", "struct____gnu__cxx_1_1____airy__t" ],
+    [ "__chebyshev_t_t", "struct____gnu__cxx_1_1____chebyshev__t__t.html", "struct____gnu__cxx_1_1____chebyshev__t__t" ],
+    [ "__chebyshev_u_t", "struct____gnu__cxx_1_1____chebyshev__u__t.html", "struct____gnu__cxx_1_1____chebyshev__u__t" ],
+    [ "__chebyshev_v_t", "struct____gnu__cxx_1_1____chebyshev__v__t.html", "struct____gnu__cxx_1_1____chebyshev__v__t" ],
+    [ "__chebyshev_w_t", "struct____gnu__cxx_1_1____chebyshev__w__t.html", "struct____gnu__cxx_1_1____chebyshev__w__t" ],
     [ "__cyl_bessel_t", "struct____gnu__cxx_1_1____cyl__bessel__t.html", "struct____gnu__cxx_1_1____cyl__bessel__t" ],
     [ "__cyl_coulomb_t", "struct____gnu__cxx_1_1____cyl__coulomb__t.html", "struct____gnu__cxx_1_1____cyl__coulomb__t" ],
     [ "__cyl_hankel_t", "struct____gnu__cxx_1_1____cyl__hankel__t.html", "struct____gnu__cxx_1_1____cyl__hankel__t" ],
@@ -9,6 +13,8 @@ var namespace____gnu__cxx =
     [ "__fp_is_integer_t", "struct____gnu__cxx_1_1____fp__is__integer__t.html", "struct____gnu__cxx_1_1____fp__is__integer__t" ],
     [ "__gamma_inc_t", "struct____gnu__cxx_1_1____gamma__inc__t.html", "struct____gnu__cxx_1_1____gamma__inc__t" ],
     [ "__gamma_temme_t", "struct____gnu__cxx_1_1____gamma__temme__t.html", "struct____gnu__cxx_1_1____gamma__temme__t" ],
+    [ "__gappa_pq_t", "struct____gnu__cxx_1_1____gappa__pq__t.html", "struct____gnu__cxx_1_1____gappa__pq__t" ],
+    [ "__gegenbauer_t", "struct____gnu__cxx_1_1____gegenbauer__t.html", "struct____gnu__cxx_1_1____gegenbauer__t" ],
     [ "__hermite_he_t", "struct____gnu__cxx_1_1____hermite__he__t.html", "struct____gnu__cxx_1_1____hermite__he__t" ],
     [ "__hermite_t", "struct____gnu__cxx_1_1____hermite__t.html", "struct____gnu__cxx_1_1____hermite__t" ],
     [ "__jacobi_ellint_t", "struct____gnu__cxx_1_1____jacobi__ellint__t.html", "struct____gnu__cxx_1_1____jacobi__ellint__t" ],
@@ -16,7 +22,6 @@ var namespace____gnu__cxx =
     [ "__laguerre_t", "struct____gnu__cxx_1_1____laguerre__t.html", "struct____gnu__cxx_1_1____laguerre__t" ],
     [ "__legendre_p_t", "struct____gnu__cxx_1_1____legendre__p__t.html", "struct____gnu__cxx_1_1____legendre__p__t" ],
     [ "__lgamma_t", "struct____gnu__cxx_1_1____lgamma__t.html", "struct____gnu__cxx_1_1____lgamma__t" ],
-    [ "__pqgamma_t", "struct____gnu__cxx_1_1____pqgamma__t.html", "struct____gnu__cxx_1_1____pqgamma__t" ],
     [ "__quadrature_point_t", "struct____gnu__cxx_1_1____quadrature__point__t.html", "struct____gnu__cxx_1_1____quadrature__point__t" ],
     [ "__sincos_t", "struct____gnu__cxx_1_1____sincos__t.html", "struct____gnu__cxx_1_1____sincos__t" ],
     [ "__sph_bessel_t", "struct____gnu__cxx_1_1____sph__bessel__t.html", "struct____gnu__cxx_1_1____sph__bessel__t" ],

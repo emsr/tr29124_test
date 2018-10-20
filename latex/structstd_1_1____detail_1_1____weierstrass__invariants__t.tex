@@ -1,0 +1,172 @@
+\hypertarget{structstd_1_1____detail_1_1____weierstrass__invariants__t}{}\section{std\+:\+:\+\_\+\+\_\+detail\+:\+:\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$ Struct Template Reference}
+\label{structstd_1_1____detail_1_1____weierstrass__invariants__t}\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$}}
+
+
+Collaboration diagram for std\+:\+:\+\_\+\+\_\+detail\+:\+:\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{structstd_1_1____detail_1_1____weierstrass__invariants__t__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a611ce9f1f3676ff9615d4205b6115528}{\+\_\+\+Cmplx} = std\+::complex$<$ \hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a7990bba8f3b3d155a80d051c86de1460}{\+\_\+\+Real} $>$
+\item 
+using \hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a7990bba8f3b3d155a80d051c86de1460}{\+\_\+\+Real} = \+\_\+\+\_\+num\+\_\+traits\+\_\+t$<$ \hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a9992ab3f07a514203487c0760d76173f}{\+\_\+\+Type} $>$
+\item 
+using \hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a9992ab3f07a514203487c0760d76173f}{\+\_\+\+Type} = typename \hyperlink{structstd_1_1____detail_1_1____jacobi__lattice__t}{\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::\+\_\+\+Tp\+\_\+\+Nome
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_aeef3f4f3bbb7a950efea23f7c9168091}{\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t} (const \hyperlink{structstd_1_1____detail_1_1____jacobi__lattice__t}{\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$ \&)
+\item 
+\hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a9992ab3f07a514203487c0760d76173f}{\+\_\+\+Type} \hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a8fac51b07dfd6b547eef672d222fda96}{\+\_\+\+\_\+delta} () const
+\begin{DoxyCompactList}\small\item\em Return the discriminant $ \Delta = g_2^3 - 27 g_3^2 $. \end{DoxyCompactList}\item 
+\hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a9992ab3f07a514203487c0760d76173f}{\+\_\+\+Type} \hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a629804c1a1116b22659cca253c4ee117}{\+\_\+\+\_\+klein\+\_\+j} () const
+\begin{DoxyCompactList}\small\item\em Return Klein\textquotesingle{}s invariant $ J = 1738 g_2^3 / (g_2^3 - 27 g_3^2) $. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a9992ab3f07a514203487c0760d76173f}{\+\_\+\+Type} \hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_aca0be8978b83ec9a892cf9b5b39019ec}{\+\_\+\+\_\+g\+\_\+2}
+\item 
+\hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a9992ab3f07a514203487c0760d76173f}{\+\_\+\+Type} \hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a585d9c21b0b189782b58f121cd101289}{\+\_\+\+\_\+g\+\_\+3}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Tp1, typename \+\_\+\+Tp3$>$\newline
+struct std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$}
+
+A struct of the Weierstrass elliptic function invariants. \[ g_2 = 2(e_1 e_2 + e_2 e_3 + e_3 e_1) \] \[ g_3 = 4(e_1 e_2 e_3) \] 
+
+Definition at line 826 of file sf\+\_\+theta.\+tcc.
+
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{structstd_1_1____detail_1_1____weierstrass__invariants__t_a611ce9f1f3676ff9615d4205b6115528}\label{structstd_1_1____detail_1_1____weierstrass__invariants__t_a611ce9f1f3676ff9615d4205b6115528}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}!\+\_\+\+Cmplx@{\+\_\+\+Cmplx}}
+\index{\+\_\+\+Cmplx@{\+\_\+\+Cmplx}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}}
+\subsubsection{\texorpdfstring{\+\_\+\+Cmplx}{\_Cmplx}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+Tp3 $>$ \\
+using \hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::\hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a611ce9f1f3676ff9615d4205b6115528}{\+\_\+\+Cmplx} =  std\+::complex$<$\hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a7990bba8f3b3d155a80d051c86de1460}{\+\_\+\+Real}$>$}
+
+
+
+Definition at line 830 of file sf\+\_\+theta.\+tcc.
+
+\mbox{\Hypertarget{structstd_1_1____detail_1_1____weierstrass__invariants__t_a7990bba8f3b3d155a80d051c86de1460}\label{structstd_1_1____detail_1_1____weierstrass__invariants__t_a7990bba8f3b3d155a80d051c86de1460}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}!\+\_\+\+Real@{\+\_\+\+Real}}
+\index{\+\_\+\+Real@{\+\_\+\+Real}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}}
+\subsubsection{\texorpdfstring{\+\_\+\+Real}{\_Real}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+Tp3 $>$ \\
+using \hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::\hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a7990bba8f3b3d155a80d051c86de1460}{\+\_\+\+Real} =  \+\_\+\+\_\+num\+\_\+traits\+\_\+t$<$\hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a9992ab3f07a514203487c0760d76173f}{\+\_\+\+Type}$>$}
+
+
+
+Definition at line 829 of file sf\+\_\+theta.\+tcc.
+
+\mbox{\Hypertarget{structstd_1_1____detail_1_1____weierstrass__invariants__t_a9992ab3f07a514203487c0760d76173f}\label{structstd_1_1____detail_1_1____weierstrass__invariants__t_a9992ab3f07a514203487c0760d76173f}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}!\+\_\+\+Type@{\+\_\+\+Type}}
+\index{\+\_\+\+Type@{\+\_\+\+Type}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}}
+\subsubsection{\texorpdfstring{\+\_\+\+Type}{\_Type}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+Tp3 $>$ \\
+using \hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::\hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a9992ab3f07a514203487c0760d76173f}{\+\_\+\+Type} =  typename \hyperlink{structstd_1_1____detail_1_1____jacobi__lattice__t}{\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}$<$\+\_\+\+Tp1, \+\_\+\+Tp3$>$\+::\+\_\+\+Tp\+\_\+\+Nome}
+
+
+
+Definition at line 828 of file sf\+\_\+theta.\+tcc.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structstd_1_1____detail_1_1____weierstrass__invariants__t_aeef3f4f3bbb7a950efea23f7c9168091}\label{structstd_1_1____detail_1_1____weierstrass__invariants__t_aeef3f4f3bbb7a950efea23f7c9168091}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}!\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t@{\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}}
+\index{\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t@{\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t()}{\_\_weierstrass\_invariants\_t()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+Tp3 $>$ \\
+\hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::\hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t}{\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t} (\begin{DoxyParamCaption}\item[{const \hyperlink{structstd_1_1____detail_1_1____jacobi__lattice__t}{\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$ \&}]{\+\_\+\+\_\+lattice }\end{DoxyParamCaption})}
+
+Constructor for the Weierstrass invariants. \[ g_2 = 2(e_1 e_2 + e_2 e_3 + e_3 e_1) \] \[ g_3 = 4(e_1 e_2 e_3) \] 
+
+Definition at line 864 of file sf\+\_\+theta.\+tcc.
+
+
+
+References std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+roots\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::\+\_\+\+\_\+e1.
+
+
+
+Referenced by std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::\+\_\+\+\_\+klein\+\_\+j().
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structstd_1_1____detail_1_1____weierstrass__invariants__t_a8fac51b07dfd6b547eef672d222fda96}\label{structstd_1_1____detail_1_1____weierstrass__invariants__t_a8fac51b07dfd6b547eef672d222fda96}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}!\+\_\+\+\_\+delta@{\+\_\+\+\_\+delta}}
+\index{\+\_\+\+\_\+delta@{\+\_\+\+\_\+delta}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+delta()}{\_\_delta()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+Tp3 $>$ \\
+\hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a9992ab3f07a514203487c0760d76173f}{\+\_\+\+Type} \hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::\+\_\+\+\_\+delta (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the discriminant $ \Delta = g_2^3 - 27 g_3^2 $. 
+
+
+
+Definition at line 838 of file sf\+\_\+theta.\+tcc.
+
+\mbox{\Hypertarget{structstd_1_1____detail_1_1____weierstrass__invariants__t_a629804c1a1116b22659cca253c4ee117}\label{structstd_1_1____detail_1_1____weierstrass__invariants__t_a629804c1a1116b22659cca253c4ee117}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}!\+\_\+\+\_\+klein\+\_\+j@{\+\_\+\+\_\+klein\+\_\+j}}
+\index{\+\_\+\+\_\+klein\+\_\+j@{\+\_\+\+\_\+klein\+\_\+j}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+klein\+\_\+j()}{\_\_klein\_j()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+Tp3 $>$ \\
+\hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a9992ab3f07a514203487c0760d76173f}{\+\_\+\+Type} \hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::\+\_\+\+\_\+klein\+\_\+j (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return Klein\textquotesingle{}s invariant $ J = 1738 g_2^3 / (g_2^3 - 27 g_3^2) $. 
+
+
+
+Definition at line 846 of file sf\+\_\+theta.\+tcc.
+
+
+
+References std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t().
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structstd_1_1____detail_1_1____weierstrass__invariants__t_aca0be8978b83ec9a892cf9b5b39019ec}\label{structstd_1_1____detail_1_1____weierstrass__invariants__t_aca0be8978b83ec9a892cf9b5b39019ec}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}!\+\_\+\+\_\+g\+\_\+2@{\+\_\+\+\_\+g\+\_\+2}}
+\index{\+\_\+\+\_\+g\+\_\+2@{\+\_\+\+\_\+g\+\_\+2}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+g\+\_\+2}{\_\_g\_2}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+Tp3 $>$ \\
+\hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a9992ab3f07a514203487c0760d76173f}{\+\_\+\+Type} \hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::\+\_\+\+\_\+g\+\_\+2}
+
+
+
+Definition at line 832 of file sf\+\_\+theta.\+tcc.
+
+\mbox{\Hypertarget{structstd_1_1____detail_1_1____weierstrass__invariants__t_a585d9c21b0b189782b58f121cd101289}\label{structstd_1_1____detail_1_1____weierstrass__invariants__t_a585d9c21b0b189782b58f121cd101289}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}!\+\_\+\+\_\+g\+\_\+3@{\+\_\+\+\_\+g\+\_\+3}}
+\index{\+\_\+\+\_\+g\+\_\+3@{\+\_\+\+\_\+g\+\_\+3}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+g\+\_\+3}{\_\_g\_3}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+Tp3 $>$ \\
+\hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t_a9992ab3f07a514203487c0760d76173f}{\+\_\+\+Type} \hyperlink{structstd_1_1____detail_1_1____weierstrass__invariants__t}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::\+\_\+\+\_\+g\+\_\+3}
+
+
+
+Definition at line 832 of file sf\+\_\+theta.\+tcc.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+bits/\hyperlink{sf__theta_8tcc}{sf\+\_\+theta.\+tcc}\end{DoxyCompactItemize}

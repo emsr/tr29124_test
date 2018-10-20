@@ -8,6 +8,7 @@ var sf__hyperg_8tcc =
     [ "__conf_hyperg_series", "sf__hyperg_8tcc.html#a5f701a63e17238132405dd209660fc1d", null ],
     [ "__hyperg", "sf__hyperg_8tcc.html#a316589a60d5e5f50201c2d42b980678c", null ],
     [ "__hyperg_luke", "sf__hyperg_8tcc.html#a0c1ec62b5c39c93ad70a8229a7a6d84d", null ],
+    [ "__hyperg_recur", "sf__hyperg_8tcc.html#a945aec89969c51a4778c63eba8741fab", null ],
     [ "__hyperg_reflect", "sf__hyperg_8tcc.html#a3c3baddc93bfaf1cb368d4b74e53542d", null ],
     [ "__hyperg_series", "sf__hyperg_8tcc.html#ad234e0d31f55cd3748169dccb2533c6a", null ],
     [ "__tricomi_u", "sf__hyperg_8tcc.html#ae67133e463041158ebbffe6c54af6e0a", null ],

@@ -239,7 +239,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     constexpr _RealType __math_constants<_RealType>::__one_div_root_2;
 
   // The following functions mirror the constants abobe but also
-  // admit generic programming with non-findamental types.
+  // admit generic programming with non-fundamental types.
   // For fundamental types, these constexpr functions return
   // the appropriate constant above.
   // Developers of multi-precision types are encouraged to overload

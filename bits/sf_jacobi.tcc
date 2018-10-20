@@ -42,6 +42,68 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 namespace __detail
 {
   /**
+   * Return the Jacobi polynomial coefficients as a vector.
+   * @param[in]  n  The order of the Jacobi polynomial
+   * @param[in]  alpha1  The first parameter of the Jacobi polynomial
+   * @param[in]  beta1  The second parameter of the Jacobi polynomial
+   * @param[in]  x  The optional scaling of the coordinate; default 1.
+   */
+  template<typename _Tp>
+    std::vector<_Tp>
+    __jacobi_poly(unsigned int __n, _Tp __alpha1, _Tp __beta1)
+    {
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__alpha1);
+      const auto __x = _Tp{1};
+      std::vector<_Tp> __poly;
+
+      if (std::isnan(__alpha1) || std::isnan(__beta1))
+	return __poly;
+
+      auto __P_nm2 = _Tp{1};
+      __poly.push_back(__P_nm2);
+      if (__n == 0)
+	return __poly;
+
+      const auto __apb = __alpha1 + __beta1;
+      const auto __amb = __alpha1 - __beta1;
+      auto __P_nm1 = (__amb + (__apb + _Tp{2}) * __x) / _Tp{2};
+      __poly.push_back(__P_nm1);
+      if (__n == 1)
+	return __poly;
+
+      const auto __a2mb2 = __amb * __apb;
+      const auto __bah = ((__apb + _Tp{2}) + _Tp{2});
+      const auto __poo = (__bah - _Tp{1});
+      auto __P_n = (((__poo * __a2mb2)
+		     + ((__poo - _Tp{1}) * __poo * __bah) * __x)
+		    * __P_nm1 - (_Tp{2} * (__alpha1 + _Tp{1})
+			    * (__beta1 + _Tp{1}) * __bah) * __P_nm2)
+		 / (_Tp{4} * (__apb + _Tp{2}) * (__poo - _Tp{1}));
+      __poly.push_back(__P_n);
+      for (auto __k = 3; __k <= __n; ++__k )
+	{
+	  const auto __apbpk = __apb + _Tp(__k);
+	  const auto __apbp2k = __apbpk + _Tp(__k);
+	  const auto __apbp2km1 = __apbp2k - _Tp{1};
+	  const auto __apbp2km2 = __apbp2km1 - _Tp{1};
+	  const auto __d = _Tp{2} * __k * __apbpk * __apbp2km2;
+	  const auto __a = __apbp2km2 * __apbp2km1 * __apbp2k;
+	  const auto __b = __apbp2km1 * __a2mb2;
+	  const auto __c = _Tp{2} * (__alpha1 + _Tp(__k - 1))
+				  * (__beta1 + _Tp(__k - 1)) * __apbp2k;
+	  if (__d == _Tp{0})
+	    std::__throw_runtime_error(__N("__jacobi_poly: "
+					   "Failure in recursion"));
+	  __P_nm2 = __P_nm1;
+	  __P_nm1 = __P_n;
+	  __P_n = ((__b + __a * __x) * __P_nm1 - __c * __P_nm2) / __d;
+	  __poly.push_back(__P_n);
+	}
+
+      return __poly;
+    }
+
+  /**
    * Compute the Jacobi polynomial by recursion on @c n:
    * @f[
    *   2 n(\alpha + \beta + n) (\alpha + \beta + 2n - 2)
@@ -83,15 +145,15 @@ namespace __detail
 		 / (_Tp{4} * (__apb + _Tp{2}) * (__poo - _Tp{1}));
       for (auto __k = 3; __k <= __n; ++__k )
 	{
-	  auto __apbpk = __apb + _Tp(__k);
-	  auto __apbp2k = __apbpk + _Tp(__k);
-	  auto __apbp2km1 = __apbp2k - _Tp{1};
-	  auto __apbp2km2 = __apbp2km1 - _Tp{1};
-	  auto __d = _Tp{2} * __k * __apbpk * __apbp2km2;
-	  auto __a = __apbp2km2 * __apbp2km1 * __apbp2k;
-	  auto __b = __apbp2km1 * __a2mb2;
-	  auto __c = _Tp{2} * (__alpha1 + _Tp(__k - 1))
-			    * (__beta1 + _Tp(__k - 1)) * __apbp2k;
+	  const auto __apbpk = __apb + _Tp(__k);
+	  const auto __apbp2k = __apbpk + _Tp(__k);
+	  const auto __apbp2km1 = __apbp2k - _Tp{1};
+	  const auto __apbp2km2 = __apbp2km1 - _Tp{1};
+	  const auto __d = _Tp{2} * __k * __apbpk * __apbp2km2;
+	  const auto __a = __apbp2km2 * __apbp2km1 * __apbp2k;
+	  const auto __b = __apbp2km1 * __a2mb2;
+	  const auto __c = _Tp{2} * (__alpha1 + _Tp(__k - 1))
+				  * (__beta1 + _Tp(__k - 1)) * __apbp2k;
 	  if (__d == _Tp{0})
 	    std::__throw_runtime_error(__N("__jacobi_recur: "
 					   "Failure in recursion"));
@@ -137,46 +199,51 @@ namespace __detail
 	{
 	  if (__i == 1)
 	    {
-	      auto __an = __alpha1 / __n;
-	      auto __bn = __beta1 / __n;
-	      auto __r1 = (1.0 + __alpha1) * (2.78 / (4.0 + __n * __n)
+	      const auto __an = __alpha1 / __n;
+	      const auto __bn = __beta1 / __n;
+	      const auto __r1 = (1.0 + __alpha1) * (2.78 / (4.0 + __n * __n)
 			+ 0.768 * __an / __n);
-	      auto __r2 = 1.0 + 1.48 * __an + 0.96 * __bn
-			+ 0.452 * __an * __an + 0.83 * __an * __bn;
+	      const auto __r2 = 1.0 + 1.48 * __an + 0.96 * __bn
+			      + 0.452 * __an * __an + 0.83 * __an * __bn;
 	      __z = 1.0 - __r1 / __r2;
 	    }
 	  else if (__i == 2)
 	    {
-	      auto __r1 = (4.1 + __alpha1)
+	      const auto __r1 = (4.1 + __alpha1)
 			/ ((1.0 + __alpha1) * (1.0 + 0.156 * __alpha1));
-	      auto __r2 = 1.0
+	      const auto __r2 = 1.0
 			+ 0.06 * (__n - 8.0) * (1.0 + 0.12 * __alpha1) / __n;
-	      auto __r3 = 1.0
-		    + 0.012 * __beta1 * (1.0 + 0.25 * std::abs(__alpha1)) / __n;
+	      const auto __r3 = 1.0
+			+ 0.012 * __beta1 * (1.0 + 0.25 * std::abs(__alpha1))
+			/ __n;
 	      __z -= (1.0 - __z) * __r1 * __r2 * __r3;
 	    }
 	  else if (__i == 3)
 	    {
-	      auto __r1 = (1.67 + 0.28 * __alpha1) / (1.0 + 0.37 * __alpha1);
-	      auto __r2 = 1.0 + 0.22 * (__n - 8.0) / __n;
-	      auto __r3 = 1.0 + 8.0 * __beta1 / ((6.28 + __beta1) * __n * __n);
+	      const auto __r1 = (1.67 + 0.28 * __alpha1)
+			      / (1.0 + 0.37 * __alpha1);
+	      const auto __r2 = 1.0 + 0.22 * (__n - 8.0) / __n;
+	      const auto __r3 = 1.0 + 8.0 * __beta1
+				/ ((6.28 + __beta1) * __n * __n);
 	      __z -= (__pt[0].__point - __z) * __r1 * __r2 * __r3;
 	    }
 	  else if (__i == __n - 1)
 	    {
-	      auto __r1 = (1.0 + 0.235 * __beta1) / (0.766 + 0.119 * __beta1);
-	      auto __r2 = 1.0 / (1.0 + 0.639 * (__n - 4.0)
+	      const auto __r1 = (1.0 + 0.235 * __beta1)
+			      / (0.766 + 0.119 * __beta1);
+	      const auto __r2 = 1.0 / (1.0 + 0.639 * (__n - 4.0)
 						/ (1.0 + 0.71 * (__n - 4.0)));
-	      auto __r3 = 1.0 / (1.0 + 20.0 * __alpha1
+	      const auto __r3 = 1.0 / (1.0 + 20.0 * __alpha1
 				/ ((7.5 + __alpha1) * __n * __n));
 	      __z += (__z - __pt[__n - 4].__point) * __r1 * __r2 * __r3;
 	    }
 	  else if (__i == __n)
 	    {
-	      auto __r1 = (1.0 + 0.37 * __beta1) / (1.67 + 0.28 * __beta1);
-	      auto __r2 = 1.0 / (1.0 + 0.22 * (__n - 8.0) / __n);
-	      auto __r3 = 1.0 / (1.0 + 8.0 * __alpha1
-				 / ((6.28 + __alpha1) * __n * __n));
+	      const auto __r1 = (1.0 + 0.37 * __beta1)
+			      / (1.67 + 0.28 * __beta1);
+	      const auto __r2 = 1.0 / (1.0 + 0.22 * (__n - 8.0) / __n);
+	      const auto __r3 = 1.0 / (1.0 + 8.0 * __alpha1
+				/ ((6.28 + __alpha1) * __n * __n));
 	      __z += (__z - __pt[__n - 3].__point) * __r1 * __r2 * __r3;
 	    }
 	  else
@@ -261,7 +328,7 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __poly_radial_jacobi(unsigned int __n, unsigned int __m, _Tp __rho)
+    __radial_jacobi(unsigned int __n, unsigned int __m, _Tp __rho)
     {
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__rho);
 
@@ -269,7 +336,7 @@ namespace __detail
 	return _S_NaN;
 
       if (__m > __n)
-	std::__throw_range_error(__N("poly_radial_jacobi: order > degree"));
+	std::__throw_range_error(__N("radial_jacobi: order > degree"));
       else if ((__n - __m) % 2 == 1)
 	return _Tp{0};
       else
@@ -297,7 +364,7 @@ namespace __detail
    * @f]
    * for non-negative degree @f$ m @f$ and @f$ m <= n @f$
    * and where @f$ R_n^m(\rho) @f$ is the radial polynomial
-   * (@see __poly_radial_jacobi).
+   * (@see __radial_jacobi).
    *
    * @see Principals of Optics, 7th edition, Max Born and Emil Wolf,
    * Cambridge University Press, 1999, pp 523-525 and 905-910.
@@ -309,7 +376,7 @@ namespace __detail
    * @param __phi The azimuthal angle
    */
   template<typename _Tp>
-    __gnu_cxx::__promote_fp_t<_Tp>
+    __gnu_cxx::fp_promote_t<_Tp>
     __zernike(unsigned int __n, int __m, _Tp __rho, _Tp __phi)
     {
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__rho);
@@ -317,7 +384,7 @@ namespace __detail
       if (std::isnan(__rho) || std::isnan(__phi))
 	return _S_NaN;
       else
-	return __poly_radial_jacobi(__n, std::abs(__m), __rho)
+	return __radial_jacobi(__n, std::abs(__m), __rho)
 	     * (__m >= 0 ? std::cos(__m * __phi) : std::sin(__m * __phi));
     }
 } // namespace __detail

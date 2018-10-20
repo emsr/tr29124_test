@@ -424,11 +424,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   lgamma_t<double> slgamma(double x);
   lgamma_t<long double> slgammal(long double x);
 
-
+#ifdef __cpp_lib_variant
   // Basic roots
   // "Value-semantic type erasure.  It's not just for breakfast anymore."
   // I've got stuff in polynomial that I like better.  Maybe.
-
   template<typename Tp>
     using root_t = std::variant<Tp, std::complex<Tp>>;
 
@@ -454,6 +453,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename Tp>
     cubic_root_t<Tp>
     cubic(Tp a, Tp b, Tp c);
+#endif
 
   // Sign functions...
 

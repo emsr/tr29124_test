@@ -121,70 +121,70 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * This is used for numeric argument promotion of complex and cmath.
    */
   template<typename _Tp, bool = std::is_integral<_Tp>::value>
-    struct __promote_fp_help
+    struct fp_promote_help
     { using __type = double; };
 
   // No nested __type member for non-integer non-floating point types,
   // allows this type to be used for SFINAE to constrain overloads in
   // <cmath> and <complex> to only the intended types.
   template<typename _Tp>
-    struct __promote_fp_help<_Tp, false>
+    struct fp_promote_help<_Tp, false>
     { };
 
   template<>
-    struct __promote_fp_help<float>
+    struct fp_promote_help<float>
     { using __type = float; };
 
   template<>
-    struct __promote_fp_help<double>
+    struct fp_promote_help<double>
     { using __type = double; };
 
   template<>
-    struct __promote_fp_help<long double>
+    struct fp_promote_help<long double>
     { using __type = long double; };
 
 #if _GLIBCXX_HAVE_FLOAT128_MATH
   template<>
-    struct __promote_fp_help<__float128>
+    struct fp_promote_help<__float128>
     { using __type = __float128; };
 #endif
 
   template<typename... _Tps>
-    using __promote_fp_help_t = typename __promote_fp_help<_Tps...>::__type;
+    using fp_promote_help_t = typename fp_promote_help<_Tps...>::__type;
 
 #if __cplusplus < 201402L
   // Decay refs and cv...
   // Alternatively we could decay refs and propagate cv to promoted type.
   template<typename _Tp, typename... _Tps>
-    struct __promote_fp
+    struct fp_promote
     {
       using __decaytype = typename std::decay<_Tp>::type;
-      using __type = decltype(__promote_fp_help_t<__decaytype>{}
-		   + typename __promote_fp<_Tps...>::__type{});
+      using __type = decltype(fp_promote_help_t<__decaytype>{}
+		   + typename fp_promote<_Tps...>::__type{});
     };
 
   template<>
     template<typename _Tp>
-      struct __promote_fp<_Tp>
+      struct fp_promote<_Tp>
       {
 	using __decaytype = typename std::decay<_Tp>::type;
-	using __type = decltype(__promote_fp_help_t<__decaytype>{});
+	using __type = decltype(fp_promote_help_t<__decaytype>{});
       };
 #else
   // Decay refs and cv...
   // Alternatively we could decay refs and propagate cv to promoted type.
   template<typename _Tp, typename... _Tps>
-    struct __promote_fp
-    { using __type = decltype(__promote_fp_help_t<std::decay_t<_Tp>>{}
-		   + typename __promote_fp<_Tps...>::__type{}); };
+    struct fp_promote
+    { using __type = decltype(fp_promote_help_t<std::decay_t<_Tp>>{}
+		   + typename fp_promote<_Tps...>::__type{}); };
 
   template<typename _Tp>
-    struct __promote_fp<_Tp>
-    { using __type = decltype(__promote_fp_help_t<std::decay_t<_Tp>>{}); };
+    struct fp_promote<_Tp>
+    { using __type = decltype(fp_promote_help_t<std::decay_t<_Tp>>{}); };
 #endif
 
   template<typename... _Tps>
-    using __promote_fp_t = typename __promote_fp<_Tps...>::__type;
+    using fp_promote_t = typename fp_promote<_Tps...>::__type;
 
 // Need an exchange utility.
 #if __cplusplus < 201402L
