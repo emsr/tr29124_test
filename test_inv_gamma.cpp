@@ -10,24 +10,98 @@ template<typename _Tp>
   _Tp
   __erfc_inv(_Tp __p);
 
-template<typename RealTp>
-  RealTp
-  inv_erfc(RealTp p)
+template<typename _Tp>
+  _Tp
+  inv_erfc(_Tp p)
   {
     return __erfc_inv(p);
   }
 
 // A fake Binet function.
-template<typename RealTp>
-  RealTp
-  gamma_scaled(RealTp x)
+template<typename _Tp>
+  _Tp
+  gamma_scaled(_Tp x)
   {
     constexpr auto _S_ln2pi
-      = __gnu_cxx::__math_constants<RealTp>::__ln_2
-      + __gnu_cxx::__math_constants<RealTp>::__ln_pi;
-    constexpr auto half = RealTp{1} / RealTp{2};
+      = __gnu_cxx::__math_constants<_Tp>::__ln_2
+      + __gnu_cxx::__math_constants<_Tp>::__ln_pi;
+    constexpr auto half = _Tp{1} / _Tp{2};
     return std::lgamma(x)
-	 - (x - half) * std::log(x) + x - _S_ln2pi / RealTp{2};
+	 - (x - half) * std::log(x) + x - _S_ln2pi / _Tp{2};
+  }
+
+/**
+ * Get lambda from eta by Newton's method.
+ */
+template<typename _Tp>
+  _Tp
+  lambda(_Tp eta)
+  {
+    auto func = [eta](_Tp lambdac)
+		-> _Tp
+		{
+		  auto sum = _Tp{1 / _Tp{10}};
+		  for (int n = 9; n >= 2; --n)
+		    sum += _Tp(n % 1 ? -1 : +1) / _Tp(n) + lambdac * sum;
+		  return lambdac * lambdac * sum - eta * eta / _Tp{2};
+		};
+    auto funcp = [eta](_Tp lambdac)
+		-> _Tp
+		{
+		  auto sum = _Tp{1};
+		  for (int n = 9; n >= 2; --n)
+		    sum += _Tp(n % 1 ? -1 : +1) + lambdac * sum;
+		  return lambdac * sum;
+		};
+
+    auto lambdac = eta;
+    for (int i = 0; i < 20; ++i)
+      lambdac -= func(eta) / funcp(eta);
+
+    return _Tp{1} + lambdac;
+  }
+
+
+template<typename _Tp>
+  _Tp
+  epsilon1(_Tp eta)
+  {
+    return _Tp{-1.0L} / _Tp{3.0L}
+	 + eta * (_Tp{1.0L} / _Tp{36.0L}
+ 	 + eta * (_Tp{1.0L} / _Tp{1'620.0L}
+	 + eta * (_Tp{-7.0L} / _Tp{6'480.0L}
+	 + eta * (_Tp{5.0L} / _Tp{18'144.0L}
+	 + eta * _Tp{-11.0L} / _Tp{382'725.0L}))));
+  }
+
+template<typename _Tp>
+  _Tp
+  epsilon2(_Tp eta)
+  {
+    return _Tp{-7.0L} / _Tp{405.0L}
+	 + eta * (_Tp{-7.0L} / _Tp{2'592.0L}
+	 + eta * (_Tp{533.0L} / _Tp{204'120.0L}
+	 + eta * (_Tp{-1'579.0L} / _Tp{2'099'520.0L}
+	 + eta * (_Tp{109.0L} / _Tp{1'749'600.0L}))));
+  }
+
+template<typename _Tp>
+  _Tp
+  epsilon3(_Tp eta)
+  {
+    return _Tp{449.0L} / _Tp{102'060.0L}
+	 + eta * (_Tp{-63'149.0L} / _Tp{20'995'200.0L}
+	 + eta * (_Tp{29'233.0L} /_Tp{36'741'600.0L} 
+	 + eta * (_Tp{346'793.0L} / _Tp{5'290'790'400.0L})));
+  }
+
+template<typename _Tp>
+  _Tp
+  epsilon4(_Tp eta)
+  {
+    return _Tp{319.0L} / _Tp{183'708.0L}
+	 + eta * (_Tp{-269'383.0L} / _Tp{4'232'632'320.0L}
+	 + eta * (_Tp{-449'882'243.0L} / _Tp{982'102'968'000.0L}));
   }
 
 /**
@@ -44,16 +118,16 @@ template<typename RealTp>
  * @param[in] q The function value Q(a,x).
  * @return The argument x.
  */
-template<typename RealTp>
-  RealTp
-  inv_gamma(RealTp a, RealTp p, RealTp q)
+template<typename _Tp>
+  _Tp
+  inv_gamma(_Tp a, _Tp p, _Tp q)
   {
-    constexpr auto _S_giant = std::numeric_limits<RealTp>::max() / RealTp{10};
-    constexpr auto _S_sqrt_2 = __gnu_cxx::__const_root_2<RealTp>();
-    constexpr auto _S_sqrt_pi = __gnu_cxx::__const_root_pi<RealTp>();
+    constexpr auto _S_giant = std::numeric_limits<_Tp>::max() / _Tp{10};
+    constexpr auto _S_sqrt_2 = __gnu_cxx::__const_root_2<_Tp>();
+    constexpr auto _S_sqrt_pi = __gnu_cxx::__const_root_pi<_Tp>();
     constexpr auto _S_sqrt_2pi = _S_sqrt_2 * _S_sqrt_pi;
     bool pcase;
-    RealTp porq, s;
+    _Tp porq, s;
     if (p < 0.5)
       {
 	pcase = true;
@@ -67,11 +141,11 @@ template<typename RealTp>
 	s = 1;
       }
 
-    const auto ra = RealTp{1} / a;
-    const auto ap1 = a + RealTp{1};
-    RealTp ck[5];
-    RealTp eta{};
-    RealTp x0{};
+    const auto ra = _Tp{1} / a;
+    const auto ap1 = a + _Tp{1};
+    _Tp ck[5];
+    _Tp eta{};
+    _Tp x0{};
     int m{};
     const auto logr = ra * (std::log(p) + std::lgamma(ap1));
     if (logr < std::log(0.2 * ap1))
@@ -84,97 +158,100 @@ template<typename RealTp>
 	const auto ap12 = ap1 * ap1;
 	const auto ap13 = ap1 * ap12;
 	const auto ap14 = ap12 * ap12;
-	const auto ap2 = a + RealTp{2};
+	const auto ap2 = a + _Tp{2};
 	const auto ap22 = ap2 * ap2;
-	ck[0] = RealTp{1};
-	ck[1] = RealTp{1} / ap1;
-	ck[2] = RealTp{0.5L} * (3 * a + 5) / (ap12 * (a + 2));
-	ck[3] = (RealTp{1} / RealTp{3})
+	ck[0] = _Tp{1};
+	ck[1] = _Tp{1} / ap1;
+	ck[2] = _Tp{0.5L} * (3 * a + 5) / (ap12 * (a + 2));
+	ck[3] = (_Tp{1} / _Tp{3})
 	      * (31 + 8 * a2 + 33 * a)
 	      / (ap13 * ap2 * (a + 3));
-	ck[4] = (RealTp{1} / RealTp{24})
+	ck[4] = (_Tp{1} / _Tp{24})
 	      * (2888 + 1179 * a3 + 125 * a4 + 3971 * a2 + 5661 * a)
 	      / (ap14 * ap22 * (a + 3) * (a + 4));
 	x0 = r * (1 + r * (ck[1] + r * (ck[2] + r * (ck[3] + r * ck[4]))));
       }
-    else if (q < std::min(RealTp{0.02L}, std::exp(-1.5 * a) / std::tgamma(a))
+    else if (q < std::min(_Tp{0.02L}, std::exp(-1.5 * a) / std::tgamma(a))
 	     && (a < 10))
       {
 	m = 0;
-	const auto b = RealTp{1} - a;
+	const auto b = _Tp{1} - a;
 	const auto b2 = b * b;
 	const auto b3 = b2 * b;
 	eta = std::sqrt(-2 / a * std::log(q * gamma_scaled(a) * _S_sqrt_2pi / std::sqrt(a)));
-	x0 = a * lambdaeta(eta);
+	x0 = a * lambda(eta);
 	const auto L = std::log(x0);
-	if ((a > RealTp{0.12L}) || (x0 > RealTp{5}))
+	if ((a > _Tp{0.12L}) || (x0 > _Tp{5}))
 	  {
 	    const auto L2 = L * L;
 	    const auto L3 = L * L2;
 	    const auto L4 = L * L3;
-	    const auto r = RealTp{1} / x0;
+	    const auto r = _Tp{1} / x0;
 	    ck[0] = L - 1;
-	    ck[1] = (3 * b - 2 * b * L + L2 - 2 * L + 2) / RealTp{2};
+	    ck[1] = (3 * b - 2 * b * L + L2 - 2 * L + 2) / _Tp{2};
 	    ck[2] = (24 * b * L - 11 * b2 - 24 * b - 6 * L2 + 12 * L
 		     - 12 - 9 * b * L2 + 6 * b2 * L + 2 * L3)
-		  / RealTp{6};
+		  / _Tp{6};
 	    ck[3] = (-12 * b3 * L + 84 * b * L2
 		     - 114 * b2 * L + 72 + 36 * L2 + 3 * L4
 		     - 72 * L + 162 * b - 168 * b * L -12 * L3 + 25 * b3
-		     - 22 * b * L3 + 36 * b2 * L2 + 120 * b2) / RealTp{12};
+		     - 22 * b * L3 + 36 * b2 * L2 + 120 * b2) / _Tp{12};
 	    x0 = x0 - L + b * r * (ck[0] + r * (ck[1] + r * (ck[2] + r * ck[3])));
 	  }
 	else
 	  {
-	    const auto rx0 = RealTp{1} / x0;
-	    ck[0] = L - RealTp{1};
+	    const auto rx0 = _Tp{1} / x0;
+	    ck[0] = L - _Tp{1};
 	    x0 = x0 - L + b * rx0 * ck[0];
 	  }
       }
-    else if (std::abs(porq - 0.5) < RealTp{1.0e-5L})
+    else if (std::abs(porq - 0.5) < _Tp{1.0e-5L})
       {
 	m = 0;
-	x0 = a - RealTp{1} / RealTp{3}
-	   + (RealTp{8} / RealTp{405} + RealTp{184} / RealTp{25515} * ra) * ra;
+	x0 = a - _Tp{1} / _Tp{3}
+	   + (_Tp{8} / _Tp{405} + _Tp{184} / _Tp{25515} * ra) * ra;
       }
-    else if (std::abs(a - RealTp{1}) < RealTp{1.0e-4L})
+    else if (std::abs(a - _Tp{1}) < _Tp{1.0e-4L})
       {
 	m = 0;
 	if (pcase)
-	  x0 = -std::log(RealTp{1} - p);
+	  x0 = -std::log(_Tp{1} - p);
 	else
 	  x0 = -std::log(q);
       }
-    else if (a < RealTp{1})
+    else if (a < _Tp{1})
       {
 	m = 0;
 	if (pcase)
 	  x0 = std::exp(ra * (std::log(porq) + std::lgamma(ap1)));
 	else
-	  x0 = std::exp(ra * (std::log(RealTp{1} - porq) + std::lgamma(ap1)));
+	  x0 = std::exp(ra * (std::log(_Tp{1} - porq) + std::lgamma(ap1)));
       }
     else
       {
 	m = 1;
 	const auto r = inv_erfc(2 * porq);
-	eta = s * r / std::sqrt(a * RealTp{0.5L});
-	eta += (eps1(eta) + (eps2(eta) + eps3(eta) * ra) * ra) * ra;
-	x0 = a * lambdaeta(eta);
+	eta = s * r / std::sqrt(a * _Tp{0.5L});
+	eta += ra * (epsilon1(eta)
+	     + ra * (epsilon2(eta)
+	     + ra * (epsilon3(eta)
+	     + ra * epsilon4(eta))));
+	x0 = a * lambda(eta);
       }
 
-    auto delta = RealTp{1};
+    auto delta = _Tp{1};
     auto x = x0;
     int n = 0;
     const auto a2 = a * a;
-    const auto a3 = a * a2;
+    //const auto a3 = a * a2;
     // Implementation of the high order Newton-like method
-    while (delta > RealTp{1.0e-15L} && n < 15)
+    while (delta > _Tp{1.0e-15L} && n < 15)
       {
 	x = x0;
 	const auto x2 = x * x;
 	if (m == 0)
 	{
-	  const auto dlnr = (RealTp{1} - a) * std::log(x) + x + std::lgamma(a);
+	  const auto dlnr = (_Tp{1} - a) * std::log(x) + x + std::lgamma(a);
 	  if (dlnr > std::log(_S_giant))
 	    std::__throw_runtime_error("inv_gamma: Overflow in computation");
 	  else
@@ -185,16 +262,16 @@ template<typename RealTp>
 		ck[0] = -r * (px - p);
 	      else
 		ck[0] = r * (qx - q);
-	      ck[1] = (x - a + RealTp{1}) / (RealTp{2} * x);
+	      ck[1] = (x - a + _Tp{1}) / (_Tp{2} * x);
 	      ck[2] = (2 * x2 - 4 * x * a + 4 * x + 2 * a2 - 3 * a + 1)
 		    / (6 * x2);
 
 	      r = ck[0];
-	      if (a > RealTp{0.1L})
+	      if (a > _Tp{0.1L})
 		x0 = x + r * (1 + r * (ck[1] + r * ck[2]));
 	      else
 		{
-		  if (a > RealTp{0.05L})
+		  if (a > _Tp{0.05L})
 		    x0 = x + r * (1 + r * (ck[1]));
 		  else
 		    x0 = x + r;
@@ -213,22 +290,22 @@ template<typename RealTp>
 	    ck[0] = -r * (px - p);
 	  else
 	    ck[0] = r * (qx - q);
-	  ck[1] = (x - a + RealTp{1}) / (RealTp{2} * x);
+	  ck[1] = (x - a + _Tp{1}) / (_Tp{2} * x);
 	  ck[2] = (2 * x2 - 4 * x * a + 4 * x + 2 * a2 - 3 * a + 1)
 		/ (6 * x2);
 
 	  r = ck[0];
-	  if (a > RealTp{0.1L})
+	  if (a > _Tp{0.1L})
 	    x0 = x + r * (1 + r * (ck[1] + r * ck[2]));
 	  else
 	    {
-	      if (a > RealTp{0.05L})
+	      if (a > _Tp{0.05L})
 		x0 = x + r * (1 + r * ck[1]);
 	      else
 		x0 = x + r;
 	    }
 	}
-	delta = std::abs(x / x0 - RealTp{1});
+	delta = std::abs(x / x0 - _Tp{1});
 	x = x0;
 	++n;
       }
@@ -250,6 +327,12 @@ main()
 	  auto x = ix * 0.1;
 	  const auto [p, q] = std::__detail::__gamma(a, x);
 	  const auto xr = inv_gamma(a, p, q);
+	  std::cout << ' ' << x
+		    << ' ' << p
+		    << ' ' << q
+		    << ' ' << xr
+		    << ' ' << xr - x
+		    << '\n';
 	}
     }
 }
