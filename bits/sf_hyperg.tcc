@@ -46,6 +46,7 @@
 #pragma GCC system_header
 
 #include <ext/math_const.h>
+#include <bits/notsospecfun.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -698,7 +699,7 @@ namespace __detail
 		  auto __ln_pre1 = __lng_ad + __lng_c + __d2 * __ln_omx
 				 - __lng_ad1 - __lng_bd1;
 
-		  if (__ln_pre1 > _S_log_max)
+		  if (std::abs(__ln_pre1) > _S_log_max)
 		    std::__throw_runtime_error(__N("__hyperg_reflect: "
 						   "overflow of gamma functions"));
 
@@ -748,7 +749,7 @@ namespace __detail
 	      // Gamma functions in the denominator are ok.
 	      // Proceed with evaluation.
 	      const int __maxiter = 2000;
-	      const auto __psi_1 = -__gnu_cxx::__const_gamma_e(__x);
+	      const auto __psi_1 = -__gnu_cxx::__const_gamma_e<_Val>();
 	      const auto __psi_1pd = __digamma(_Val{1} + __ad);
 	      const auto __psi_apd1 = __digamma(__a + __d1);
 	      const auto __psi_bpd1 = __digamma(__b + __d1);
@@ -760,7 +761,7 @@ namespace __detail
 	      auto __ln_pre2 = __lng_c + __d1 * __ln_omx
 			     - __lng_ad2 - __lng_bd2;
 
-	      if (__ln_pre2 > _S_log_max)
+	      if (std::abs(__ln_pre2) > _S_log_max)
 		std::__throw_runtime_error(__N("__hyperg_reflect: "
 					       "overflow of gamma functions"));
 

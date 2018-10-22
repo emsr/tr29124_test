@@ -3316,9 +3316,10 @@ _S_neg_double_factorial_table[999]
     _Tp
     __digamma(unsigned int __n)
     {
-      constexpr _Tp _S_gamma_E = __gnu_cxx::__const_gamma_e(_Tp{});
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+      constexpr auto _S_gamma_E = __gnu_cxx::__const_gamma_e<_Val>();
       if (__n > 1)
-	return -_S_gamma_E + __harmonic_number<_Tp>(__n - 1);
+	return -_S_gamma_E + __harmonic_number<_Val>(__n - 1);
       else
 	return -_S_gamma_E;
     }
@@ -3340,14 +3341,15 @@ _S_neg_double_factorial_table[999]
     _Tp
     __digamma_series(_Tp __x)
     {
-      _Tp __sum = -__gnu_cxx::__const_gamma_e(std::real(__x));
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+      _Tp __sum = -__gnu_cxx::__const_gamma_e<_Val>();
       const unsigned int _S_max_iter = 100000;
       for (unsigned int __k = 0; __k < _S_max_iter; ++__k)
 	{
 	  const auto __term = (__x - _Tp{1})
 			    / (_Tp(__k + 1) * (_Tp(__k) + __x));
 	  __sum += __term;
-	  if (std::abs(__term) < __gnu_cxx::__epsilon(__x))
+	  if (std::abs(__term) < __gnu_cxx::__epsilon<_Val>())
 	    break;
 	}
       return __sum;
@@ -3371,15 +3373,17 @@ _S_neg_double_factorial_table[999]
     _Tp
     __digamma_asymp(_Tp __x)
     {
-      auto __sum = std::log(__x) - _Tp{0.5L} / __x;
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+      auto __sum = std::log(__x) - _Val{0.5L} / __x;
       const auto __xx = __x * __x;
       auto __xp = __xx;
       const unsigned int __max_iter = 100;
       for (unsigned int __k = 1; __k < __max_iter; ++__k)
 	{
-	  const _Tp __term = __bernoulli<_Tp>(2 * __k) / (2 * __k * __xp);
+	  const _Tp __term = __bernoulli<_Val>(2 * __k)
+			   / (_Val(2 * __k) * __xp);
 	  __sum -= __term;
-	  if (std::abs(__term / __sum) < __gnu_cxx::__epsilon(__x))
+	  if (std::abs(__term / __sum) < __gnu_cxx::__epsilon<_Val>())
 	    break;
 	  __xp *= __xx;
 	}
@@ -3402,20 +3406,21 @@ _S_neg_double_factorial_table[999]
     _Tp
     __digamma(_Tp __x)
     {
-      const auto _S_eps = _Tp{4} * __gnu_cxx::__epsilon(__x);
-      const auto _S_x_asymp = _Tp{20};
-      const auto _S_gamma_E = __gnu_cxx::__const_gamma_e(__x);
-      const auto _S_2_ln_2 = _Tp{2} * __gnu_cxx::__const_ln_2(__x);
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+      const auto _S_eps = _Val{4} * __gnu_cxx::__epsilon<_Val>();
+      const auto _S_x_asymp = _Val{20};
+      const auto _S_gamma_E = __gnu_cxx::__const_gamma_e<_Val>();
+      const auto _S_2_ln_2 = _Tp{2} * __gnu_cxx::__const_ln_2<_Val>();
+      const auto _S_pi = __gnu_cxx::__const_pi<_Val>();
 
       const auto __n = __gnu_cxx::__fp_is_integer(__x);
       const auto __m = __gnu_cxx::__fp_is_half_odd_integer(__x);
-      if (__x <= _Tp{0})
+      if (std::real(__x) <= _Val{0})
 	{
 	  if (__n)
 	    return __gnu_cxx::__quiet_NaN(__x);
 	  else
-	    return __digamma(_Tp{1} - __x) - _S_pi / __tan_pi(__x);
+	    return __digamma(_Val{1} - __x) - _S_pi / __tan_pi(__x);
 	}
       else if (__n)
 	return __digamma<_Tp>(__n());
@@ -3426,7 +3431,7 @@ _S_neg_double_factorial_table[999]
 	    __sum += _Tp{2} / _Tp(2 * __k - 1);
 	  return __sum;
 	}
-      else if (__x > _S_x_asymp)
+      else if (std::real(__x) > _S_x_asymp)
 	return __digamma_asymp(__x);
       else
 	{
@@ -3434,10 +3439,10 @@ _S_neg_double_factorial_table[999]
 	  // Reflect to larger argument and use asymptotic expansion.
 	  auto __w = _Tp{0};
 	  auto __y = __x;
-	  while (__y <= _S_x_asymp)
+	  while (std::real(__y) <= _S_x_asymp)
 	    {
-	      __w += _Tp{1} / __y;
-	      __y += _Tp{1};
+	      __w += _Val{1} / __y;
+	      __y += _Val{1};
 	    }
 	  return __digamma_asymp(__y) - __w;
 	}

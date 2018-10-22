@@ -278,7 +278,7 @@ namespace __detail
       auto __y = std::imag(__z);
       auto __tan = __tan_pi(__x);
       auto __tanh = std::tanh(_S_pi * __y);
-      return (__tan + _S_i * __tanh) / (1 - _S_i * __tan * __tanh);
+      return (__tan + _S_i * __tanh) / (_Val{1} - _S_i * __tan * __tanh);
     }
 
   /**
@@ -301,7 +301,7 @@ namespace __detail
       auto __y = std::imag(__z);
       auto __tanh = std::tanh(_S_pi * __x);
       auto __tan = __tan_pi(__y);
-      return (__tanh + _S_i * __tan) / (1 + _S_i * __tanh * __tan);
+      return (__tanh + _S_i * __tan) / (_Val{1} + _S_i * __tanh * __tan);
     }
 
   /**
