@@ -1,1 +1,19 @@
-/home/ed/tr29124_test/bits/sf_zeta.tcc:450: warning: Found unknown command `\Re'
+/home/ed/tr29124_test/bits/specfun.h:3608: warning: The following parameters of __gnu_cxx::polygamma(unsigned int __m, _Tp __x) are not documented:
+  parameter '__m'
+/home/ed/tr29124_test/bits/sf_hyperg.tcc:433: warning: Found unknown command `\fixme'
+/home/ed/tr29124_test/bits/sf_jacobi.tcc:45: warning: argument 'n' of command @param is not found in the argument list of std::__detail::__jacobi_poly(unsigned int __n, _Tp __alpha1, _Tp __beta1)
+/home/ed/tr29124_test/bits/sf_jacobi.tcc:45: warning: argument 'alpha1' of command @param is not found in the argument list of std::__detail::__jacobi_poly(unsigned int __n, _Tp __alpha1, _Tp __beta1)
+/home/ed/tr29124_test/bits/sf_jacobi.tcc:45: warning: argument 'beta1' of command @param is not found in the argument list of std::__detail::__jacobi_poly(unsigned int __n, _Tp __alpha1, _Tp __beta1)
+/home/ed/tr29124_test/bits/sf_jacobi.tcc:45: warning: argument 'x' of command @param is not found in the argument list of std::__detail::__jacobi_poly(unsigned int __n, _Tp __alpha1, _Tp __beta1)
+/home/ed/tr29124_test/bits/sf_jacobi.tcc:53: warning: The following parameters of std::__detail::__jacobi_poly(unsigned int __n, _Tp __alpha1, _Tp __beta1) are not documented:
+  parameter '__n'
+  parameter '__alpha1'
+  parameter '__beta1'
+/home/ed/tr29124_test/bits/sf_zeta.tcc:539: warning: Found unknown command `\Re'
+/home/ed/tr29124_test/bits/sf_theta.tcc:793: warning: argument '__lattice' of command @param is not found in the argument list of std::__detail::__weierstrass_roots_t< _Tp1, _Tp3 >::__weierstrass_roots_t(const __jacobi_theta_0_t< _Tp1, _Tp3 > &__theta0, _Tp1 __omega_1)
+/home/ed/tr29124_test/bits/sf_theta.tcc:758: warning: The following parameters of std::__detail::__weierstrass_roots_t::__weierstrass_roots_t(const __jacobi_theta_0_t< _Tp1, _Tp3 > &__theta0, _Tp1 __omega_1) are not documented:
+  parameter '__theta0'
+  parameter '__omega_1'
+error: Problems running latex. Check your installation or look for typos in _formulas.tex and check _formulas.log!
+/home/ed/tr29124_test/bits/specfun.h:242: warning: unable to resolve reference to `__gnu_cxx::lerch' for \ref command
+/home/ed/tr29124_test/bits/specfun.h:242: warning: unable to resolve reference to `__gnu_cxx::lerch' for \ref command

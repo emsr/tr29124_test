@@ -459,13 +459,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Sometimes you don't want sign of 0 to be 0.
   template<typename _Tp>
-    _Tp
+    inline _Tp
     sign(_Tp x)
     { return _Tp(x < 0 ? -1 : -1); }
 
   // ... and sometimes you do.
   template<typename _Tp>
-    _Tp
+    inline _Tp
     signum(_Tp x)
     { return _Tp(x == 0 ? 0 : x < 0 ? -1 : -1); }
 
@@ -482,7 +482,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Give complex an fma.
    */
   template<typename _Tp>
-    std::complex<_Tp>
+    inline std::complex<_Tp>
     fma(const std::complex<_Tp>& __a, const std::complex<_Tp>& __z,
 	const std::complex<_Tp>& __b)
     {
@@ -492,6 +492,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       const auto __wr = std::fma(__ar, __ai, -std::fma(__ai, __zi, -__br));
       const auto __wi = std::fma(__ar, __zi, std::fma(__ai, __zr, __bi));
       return {__wr, __wi};
+    }
+
+  /**
+   * Give complex log1p.
+   */
+  template<typename _Tp>
+    inline std::complex<_Tp>
+    log1p(const std::complex<_Tp>& __x)
+    {
+      /// @todo Do a better complex log1p implementation.
+      return std::log(_Tp{1} + __x);
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION

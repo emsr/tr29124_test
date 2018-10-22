@@ -6,9 +6,10 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hyperg te
 ./test_hyperg > test_hyperg.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_hyperg test_hyperg.cpp -lquadmath -Lwrappers -lwrap_gsl
-PATH=wrappers/debug:$PATH ./test_hyperg > test_hyperg.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_hyperg > test_hyperg.txt
 */
 
+#include <bits/complex_util.h>
 #include <bits/specfun.h>
 #include <bits/float128_io.h>
 #include <limits>
@@ -18,6 +19,7 @@ PATH=wrappers/debug:$PATH ./test_hyperg > test_hyperg.txt
 #include <vector>
 #include <string>
 #include <complex>
+#include <bits/notsospecfun.h> // For complex log1p.
 
 #include <wrap_gsl.h>
 
@@ -45,7 +47,8 @@ PATH=wrappers/debug:$PATH ./test_hyperg > test_hyperg.txt
     _Tp
     __hyperg_series(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      const auto __eps = __gnu_cxx::__epsilon(__x);
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+      const auto __eps = __gnu_cxx::__epsilon<_Val>();
       const unsigned int _S_max_iter = 100000u;
       auto __aint = __gnu_cxx::__fp_is_integer(__a);
       auto __bint = __gnu_cxx::__fp_is_integer(__b);
@@ -82,10 +85,10 @@ PATH=wrappers/debug:$PATH ./test_hyperg > test_hyperg.txt
     std::vector<_Tp>
     __hyperg_buhring_d(int __ss, _Tp __a, _Tp __b, _Tp __c, _Tp __z0)
     {
-      const int _N = 20; // ?
+      const unsigned int _N = 20; // ?
       std::vector<_Tp> __d(_N);
-      const auto __s = __ss = 0 ? __a : __b;
-      int __n = 1;
+      const auto __s = __ss == 0 ? __a : __b;
+      unsigned int __n = 1;
       auto __danm2 = _Tp{0};
       auto __danm1 = _Tp{1};
       __d[0] = __danm1;
@@ -93,8 +96,8 @@ PATH=wrappers/debug:$PATH ./test_hyperg > test_hyperg.txt
 		 * (__z0 * (_Tp{1} - __z0) * (_Tp(__n - 2) + __s) * __danm2
 		  + ((_Tp(__n) + __s) * (_Tp{1} - _Tp{2} * __z0)
 		   + (__a + __b + _Tp{1}) * __z0 - __c) * __danm1)
-		 / _Tp(__n) / _Tp(__n + _Tp{2} * __s - __a - __b);
-      __d[1] = __danm1;
+		 / _Tp(__n) / (_Tp(__n) + _Tp{2} * __s - __a - __b);
+      __d[1] = __dan;
       for (__n = 2; __n < _N; ++__n)
 	{
 	  auto __danm2 = __danm1;
@@ -103,9 +106,10 @@ PATH=wrappers/debug:$PATH ./test_hyperg > test_hyperg.txt
 		     * (__z0 * (_Tp{1} - __z0) * (_Tp(__n - 2) + __s) * __danm2
 		      + ((_Tp(__n) + __s) * (_Tp{1} - _Tp{2} * __z0)
 		       + (__a + __b + _Tp{1}) * __z0 - __c) * __danm1)
-		     / _Tp(__n) / _Tp(__n + _Tp{2} * __s - __a - __b);
+		     / _Tp(__n) / (_Tp(__n) + _Tp{2} * __s - __a - __b);
 	  __d[__n] = __dan;
 	}
+      return __d;
     }
 
   /**
@@ -114,31 +118,32 @@ PATH=wrappers/debug:$PATH ./test_hyperg > test_hyperg.txt
    * @todo This could be written to grow an existing array.
    */
   template<typename _Tp>
-    std::vector<_Tp>
+    _Tp
     __hyperg_buhring(_Tp __a, _Tp __b, _Tp __c, _Tp __z)
     {
       /// Find nearest z0 @f$ z_0 = e^{\plusminus i\pi/3} @f$
-      constexpr auto _S_pi_3 = __gnu_cxx::__math_constants<_Tp>::__pi_third;
-      const auto __z0p = __z - std::polar(_Tp{1}, +_S_pi_3);
-      const auto __z0m = __z - std::polar(_Tp{1}, -_S_pi_3);
+      using _Val = std::__detail::__num_traits_t<_Tp>;
+      constexpr auto _S_pi_3 = __gnu_cxx::__math_constants<_Val>::__pi_third;
+      const auto __z0p = __z - std::polar(_Val{1}, +_S_pi_3);
+      const auto __z0m = __z - std::polar(_Val{1}, -_S_pi_3);
       const auto __z0 = std::abs(__z0m) < std::abs(__z0p) ? __z0m : __z0p;
 
-      auto __da = __hyperg_buhring_d(0, __a, __b, __c, __z0);
-      auto __db = __hyperg_buhring_d(1, __a, __b, __c, __z0);
       auto __dz = __z - __z0;
       auto __rdz = _Tp{1} / __dz;
 
+      auto __da = __hyperg_buhring_d(0, __a, __b, __c, __z0);
       auto __suma = __da[0];
       decltype(__rdz) __terma(1);
-      for (int __n = 1; __n < __da.size(); ++__n)
+      for (unsigned int __n = 1; __n < __da.size(); ++__n)
 	{
 	  __terma *= __rdz;
 	  __suma += __da[__n] * __terma;
 	}
 
+      auto __db = __hyperg_buhring_d(1, __a, __b, __c, __z0);
       auto __sumb = __db[0];
       decltype(__rdz) __termb(1);
-      for (int __n = 1; __n < __db.size(); ++__n)
+      for (unsigned int __n = 1; __n < __db.size(); ++__n)
 	{
 	  __termb *= __rdz;
 	  __sumb += __db[__n] * __termb;
@@ -307,6 +312,53 @@ template<typename _Tp>
       }
   }
 
+template<typename _Tp>
+  void
+  test_complex(_Tp proto = _Tp{})
+  {
+    using namespace std::literals::complex_literals;
+
+    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout << std::showpoint << std::scientific;
+    auto w = 8 + std::cout.precision();
+
+    using cmplx = std::complex<_Tp>;
+    constexpr auto _S_pi_3 = __gnu_cxx::__math_constants<_Tp>::__pi_third;
+    const auto z0p = std::polar(_Tp{1}, +_S_pi_3);
+    const auto z0m = std::polar(_Tp{1}, -_S_pi_3);
+
+    cmplx a = 1, b = 2, c = 3;
+    auto f0p = __hyperg_buhring(a, b, c, z0p);
+    std::cout << ' ' << z0p << ' ' << f0p << '\n';
+    auto f0m = __hyperg_buhring(a, b, c, z0m);
+    std::cout << ' ' << z0m << ' ' << f0m << '\n';
+
+    for (auto aa : {0.25l + 0.25il, 1.0l + 0.0il, 4.0l - 1.0il})
+      {
+	for (auto bb : {0.25l + 0.25il, 1.0l + 0.0il, 4.0l - 1.0il})
+	  {
+	    for (auto cc : {0.25l + 0.25il, 1.0l + 0.0il, 4.0l - 1.0il})
+	      {
+		for (int n = 1; n <= 20; ++n)
+		  {
+		    auto a = cmplx(aa);
+		    auto b = cmplx(bb);
+		    auto c = cmplx(cc);
+		    auto z = cmplx(n * 0.05l + 0.0il);
+		    auto gnu = __gnu_cxx::hyperg(a, b, c, z);
+		    std::cout << ' ' << std::setw(w) << a
+			      << ' ' << std::setw(w) << b
+			      << ' ' << std::setw(w) << c
+			      << ' ' << std::setw(w) << z
+			      << ' ' << std::setw(w) << gnu
+			      << '\n';
+		  }
+	      }
+	  }
+      }
+    __hyperg_series(a, b, c, z0p);
+  }
+
 int
 main()
 {
@@ -317,4 +369,6 @@ main()
   test_hyperg(1.0);
 
   test_hyperg(1.0L);
+
+  test_complex(1.0L);
 }

@@ -28,7 +28,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 #include <bits/float128_io.h>
 #include <bits/summation.h>
 #include <polynomial/ext/polynomial.h>
-
+#include <bits/notsospecfun.h> // For complex fma.
 
   /**
    * This computes @f$ zeta = \frac{2}{3}y^{3/2} @f$ for real y >= 0.
