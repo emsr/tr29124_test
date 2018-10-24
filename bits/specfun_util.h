@@ -42,6 +42,7 @@
 #if __cplusplus >= 201402L
 #  include <utility> // For exchange
 #endif
+#include <limits>
 
 #define _GLIBCXX_HAVE_FLOAT128_MATH 0
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)

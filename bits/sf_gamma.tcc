@@ -2942,7 +2942,7 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
+      const auto _S_eps = __gnu_cxx::__epsilon<_Val>();
       const auto __ia = __gnu_cxx::__fp_is_integer(__a);
 
       if (std::isnan(__a))
@@ -2997,8 +2997,8 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
-      const auto _S_inf = __gnu_cxx::__infinity(std::real(__a));
+      const auto _S_eps = __gnu_cxx::__epsilon<_Val>();
+      const auto _S_inf = __gnu_cxx::__infinity<_Val>();
       const auto __inu = __gnu_cxx::__fp_is_integer(__nu);
       const auto __ia = __gnu_cxx::__fp_is_integer(__a);
 
@@ -3051,9 +3051,9 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__a));
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
-      const auto _S_inf = __gnu_cxx::__infinity(std::real(__a));
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
+      const auto _S_eps = __gnu_cxx::__epsilon<_Val>();
+      const auto _S_inf = __gnu_cxx::__infinity<_Val>();
       const auto __inu = __gnu_cxx::__fp_is_integer(__nu);
       const auto __ia = __gnu_cxx::__fp_is_integer(__a);
 
@@ -3101,7 +3101,7 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
+      const auto _S_eps = __gnu_cxx::__epsilon<_Real>();
 
       if (std::isnan(__a))
 	return __gnu_cxx::__quiet_NaN(std::real(__a));
@@ -3466,7 +3466,8 @@ _S_neg_double_factorial_table[999]
     {
       if (__m == 0)
 	return __digamma(__x);
-      else if (const auto __n = __gnu_cxx::__fp_is_integer(__x); __n && __n() <= 0)
+      else if (const auto __n = __gnu_cxx::__fp_is_integer(__x);
+		__n && __n() <= 0)
 	{
 	  return __gnu_cxx::__quiet_NaN(__x);
 	}

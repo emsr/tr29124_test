@@ -51,7 +51,8 @@ namespace __detail
     _Tp
     __sin_pi(_Tp __x)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      using _Val = __num_traits_t<_Tp>;
+      const auto _S_pi = __gnu_cxx::__const_pi<_Val>();
       if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
@@ -82,7 +83,8 @@ namespace __detail
     _Tp
     __sinh_pi(_Tp __x)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      using _Val = __num_traits_t<_Tp>;
+      const auto _S_pi = __gnu_cxx::__const_pi<_Val>();
       if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
@@ -101,7 +103,8 @@ namespace __detail
     _Tp
     __cos_pi(_Tp __x)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      using _Val = __num_traits_t<_Tp>;
+      const auto _S_pi = __gnu_cxx::__const_pi<_Val>();
       if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
@@ -129,7 +132,8 @@ namespace __detail
     _Tp
     __cosh_pi(_Tp __x)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      using _Val = __num_traits_t<_Tp>;
+      const auto _S_pi = __gnu_cxx::__const_pi<_Val>();
       if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
@@ -166,7 +170,7 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
       return std::tanh(_S_pi * __x);
     }
 
@@ -184,7 +188,7 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
+      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
       const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
       auto __y = std::imag(__z);
@@ -206,7 +210,7 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
+      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
       const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
       auto __y = std::imag(__z);
@@ -228,7 +232,7 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
+      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
       const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
       auto __y = std::imag(__z);
@@ -250,7 +254,7 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
+      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
       const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
       auto __y = std::imag(__z);
@@ -272,7 +276,7 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
+      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
       const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
       auto __y = std::imag(__z);
@@ -295,7 +299,7 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
+      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
       const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
       auto __y = std::imag(__z);
