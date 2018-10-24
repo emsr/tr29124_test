@@ -197,6 +197,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return fabsq(__x); }
 
   inline __float128
+  abs(__float128 __x) _GLIBCXX_USE_NOEXCEPT
+  { return fabs(__x); }
+
+  inline __float128
   fdim(__float128 __x, __float128 __y) _GLIBCXX_USE_NOEXCEPT
   { return fdimq(__x, __y); }
 
@@ -258,7 +262,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   inline __float128
   lgamma(__float128 __x) _GLIBCXX_USE_NOEXCEPT
-  { return lgammaq(__x); }
+  {
+#ifdef GOOD_LGAMMAQ
+    return lgammaq(__x);
+#else
+    // Fix the error in lgammaq for x < 0.
+    const auto __lgq = lgammaq(__x);
+    if (__x >= 0.0Q || ((long long)(-__x) & 1) == 1)
+      return fabsq(__lgq);
+    else
+      return -fabsq(__lgq);
+#endif
+  }
 
   inline long long int
   llrint(__float128 __x) _GLIBCXX_USE_NOEXCEPT
