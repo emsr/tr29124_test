@@ -1,33 +1,38 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_inv_gamma test_inv_gamma.cpp
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_inv_gamma test_inv_gamma.cpp test_inv_erf.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_inv_gamma
 */
 
 #include <ext/cmath>
 #include <limits>
 
-// From test_inv_erf.cpp
-template<typename _Tp>
-  _Tp
-  __erfc_inv(_Tp __p);
-
-template<typename _Tp>
-  _Tp
-  inv_erfc(_Tp p)
-  {
-    return __erfc_inv(p);
-  }
+#undef STANDALONE
+#include "test_inv_erf.cpp"
 
 // A fake Binet function.
 template<typename _Tp>
   _Tp
-  gamma_scaled(_Tp x)
+  lgamma_scaled(_Tp a)
   {
     constexpr auto _S_ln2pi
       = __gnu_cxx::__math_constants<_Tp>::__ln_2
       + __gnu_cxx::__math_constants<_Tp>::__ln_pi;
     constexpr auto half = _Tp{1} / _Tp{2};
-    return std::lgamma(x)
-	 - (x - half) * std::log(x) + x - _S_ln2pi / _Tp{2};
+    return std::lgamma(a)
+	 - (a - half) * std::log(a) + a - half * _S_ln2pi;
+  }
+
+// A fake Binet function.
+template<typename _Tp>
+  _Tp
+  tgamma_scaled(_Tp a)
+  {
+    constexpr auto _S_sqrt2pi
+      = __gnu_cxx::__math_constants<_Tp>::__root_2
+      + __gnu_cxx::__math_constants<_Tp>::__root_pi;
+    constexpr auto half = _Tp{1} / _Tp{2};
+    return std::tgamma(a) * std::pow(a, -a + _Tp{0.5}) * std::exp(a)
+	 / _S_sqrt2pi;
   }
 
 /**
@@ -42,20 +47,21 @@ template<typename _Tp>
 		{
 		  auto sum = _Tp{1 / _Tp{10}};
 		  for (int n = 9; n >= 2; --n)
-		    sum += _Tp(n % 1 ? -1 : +1) / _Tp(n) + lambdac * sum;
+		    sum += _Tp((n & 1) ? -1 : +1) / _Tp(n) + lambdac * sum;
 		  return lambdac * lambdac * sum - eta * eta / _Tp{2};
 		};
     auto funcp = [eta](_Tp lambdac)
 		-> _Tp
 		{
-		  auto sum = _Tp{1};
-		  for (int n = 9; n >= 2; --n)
-		    sum += _Tp(n % 1 ? -1 : +1) + lambdac * sum;
-		  return lambdac * sum;
+		  //auto sum = _Tp{1};
+		  //for (int n = 9; n >= 2; --n)
+		  //  sum += _Tp((n & 1) ? -1 : +1) + lambdac * sum;
+		  //return lambdac * sum;
+		  return lambdac / (_Tp{1} + lambdac);
 		};
 
     auto lambdac = eta;
-    for (int i = 0; i < 20; ++i)
+    for (int i = 0; i < 50; ++i)
       lambdac -= func(eta) / funcp(eta);
 
     return _Tp{1} + lambdac;
@@ -148,7 +154,9 @@ template<typename _Tp>
     _Tp x0{};
     int m{};
     const auto logr = ra * (std::log(p) + std::lgamma(ap1));
-    if (logr < std::log(0.2 * ap1))
+    if (porq == _Tp{0})
+      return _Tp(s) * std::numeric_limits<_Tp>::infinity();
+    else if (logr < std::log(0.2 * ap1))
       {
 	const auto r = std::exp(logr);
 	m = 0;
@@ -178,7 +186,7 @@ template<typename _Tp>
 	const auto b = _Tp{1} - a;
 	const auto b2 = b * b;
 	const auto b3 = b2 * b;
-	eta = std::sqrt(-2 / a * std::log(q * gamma_scaled(a) * _S_sqrt_2pi / std::sqrt(a)));
+	eta = std::sqrt(-2 / a * std::log(q * tgamma_scaled(a) * _S_sqrt_2pi / std::sqrt(a)));
 	x0 = a * lambda(eta);
 	const auto L = std::log(x0);
 	if ((a > _Tp{0.12L}) || (x0 > _Tp{5}))
@@ -187,22 +195,22 @@ template<typename _Tp>
 	    const auto L3 = L * L2;
 	    const auto L4 = L * L3;
 	    const auto r = _Tp{1} / x0;
-	    ck[0] = L - 1;
+	    ck[0] = L - _Tp{1};
 	    ck[1] = (3 * b - 2 * b * L + L2 - 2 * L + 2) / _Tp{2};
 	    ck[2] = (24 * b * L - 11 * b2 - 24 * b - 6 * L2 + 12 * L
 		     - 12 - 9 * b * L2 + 6 * b2 * L + 2 * L3)
 		  / _Tp{6};
 	    ck[3] = (-12 * b3 * L + 84 * b * L2
 		     - 114 * b2 * L + 72 + 36 * L2 + 3 * L4
-		     - 72 * L + 162 * b - 168 * b * L -12 * L3 + 25 * b3
+		     - 72 * L + 162 * b - 168 * b * L - 12 * L3 + 25 * b3
 		     - 22 * b * L3 + 36 * b2 * L2 + 120 * b2) / _Tp{12};
-	    x0 = x0 - L + b * r * (ck[0] + r * (ck[1] + r * (ck[2] + r * ck[3])));
+	    x0 += -L + b * r * (ck[0] + r * (ck[1] + r * (ck[2] + r * ck[3])));
 	  }
 	else
 	  {
 	    const auto rx0 = _Tp{1} / x0;
 	    ck[0] = L - _Tp{1};
-	    x0 = x0 - L + b * rx0 * ck[0];
+	    x0 += -L + b * rx0 * ck[0];
 	  }
       }
     else if (std::abs(porq - 0.5) < _Tp{1.0e-5L})
@@ -243,73 +251,74 @@ template<typename _Tp>
     auto x = x0;
     int n = 0;
     const auto a2 = a * a;
-    //const auto a3 = a * a2;
+    const int max_num_iter = 50;
+    const auto max_delta = 50 * std::numeric_limits<_Tp>::epsilon();
     // Implementation of the high order Newton-like method
-    while (delta > _Tp{1.0e-15L} && n < 15)
+    while (delta > max_delta && n < max_num_iter)
       {
 	x = x0;
 	const auto x2 = x * x;
 	if (m == 0)
-	{
-	  const auto dlnr = (_Tp{1} - a) * std::log(x) + x + std::lgamma(a);
-	  if (dlnr > std::log(_S_giant))
-	    std::__throw_runtime_error("inv_gamma: Overflow in computation");
-	  else
-	    {
-	      auto r = std::exp(dlnr);
-	      const auto [px, qx] = std::__detail::__gamma(a, x);
-	      if (pcase)
-		ck[0] = -r * (px - p);
-	      else
-		ck[0] = r * (qx - q);
-	      ck[1] = (x - a + _Tp{1}) / (_Tp{2} * x);
-	      ck[2] = (2 * x2 - 4 * x * a + 4 * x + 2 * a2 - 3 * a + 1)
-		    / (6 * x2);
+	  {
+	    const auto dlnr = (_Tp{1} - a) * std::log(x) + x + std::lgamma(a);
+	    if (dlnr > std::log(_S_giant))
+	      std::__throw_runtime_error("inv_gamma: Overflow in computation");
+	    else
+	      {
+		auto r = std::exp(dlnr);
+		const auto [px, qx] = std::__detail::__gamma(a, x);
+		if (pcase)
+		  ck[0] = -r * (px - p);
+		else
+		  ck[0] = r * (qx - q);
+		ck[1] = (x - a + _Tp{1}) / (_Tp{2} * x);
+		ck[2] = (2 * x2 - 4 * x * a + 4 * x + 2 * a2 - 3 * a + 1)
+		      / (6 * x2);
 
-	      r = ck[0];
-	      if (a > _Tp{0.1L})
-		x0 = x + r * (1 + r * (ck[1] + r * ck[2]));
-	      else
-		{
-		  if (a > _Tp{0.05L})
-		    x0 = x + r * (1 + r * (ck[1]));
-		  else
-		    x0 = x + r;
-		}
-	    }
-	}
+		r = ck[0];
+		if (a > _Tp{0.1L})
+		  x0 = x + r * (1 + r * (ck[1] + r * ck[2]));
+		else
+		  {
+		    if (a > _Tp{0.05L})
+		      x0 = x + r * (1 + r * (ck[1]));
+		    else
+		      x0 = x + r;
+		  }
+	      }
+	  }
 	else
-	{
-	  const auto y = eta;
-	  const auto fp = -std::sqrt(a) / _S_sqrt_2pi
-			* std::exp(-0.5 * a * y * y)
-			/ gamma_scaled(a);
-	  auto r = -x / fp;
-	  const auto [px, qx] = std::__detail::__gamma(a, x);
-	  if (pcase)
-	    ck[0] = -r * (px - p);
-	  else
-	    ck[0] = r * (qx - q);
-	  ck[1] = (x - a + _Tp{1}) / (_Tp{2} * x);
-	  ck[2] = (2 * x2 - 4 * x * a + 4 * x + 2 * a2 - 3 * a + 1)
-		/ (6 * x2);
+	  {
+	    const auto y = eta;
+	    const auto fp = -std::sqrt(a) / _S_sqrt_2pi
+			  * std::exp(-0.5 * a * y * y)
+			  / tgamma_scaled(a);
+	    auto r = -x / fp;
+	    const auto [px, qx] = std::__detail::__gamma(a, x);
+	    if (pcase)
+	      ck[0] = -r * (px - p);
+	    else
+	      ck[0] = r * (qx - q);
+	    ck[1] = (x - a + _Tp{1}) / (_Tp{2} * x);
+	    ck[2] = (2 * x2 - 4 * x * a + 4 * x + 2 * a2 - 3 * a + 1)
+		  / (6 * x2);
 
-	  r = ck[0];
-	  if (a > _Tp{0.1L})
-	    x0 = x + r * (1 + r * (ck[1] + r * ck[2]));
-	  else
-	    {
-	      if (a > _Tp{0.05L})
-		x0 = x + r * (1 + r * ck[1]);
-	      else
-		x0 = x + r;
-	    }
-	}
+	    r = ck[0];
+	    if (a > _Tp{0.1L})
+	      x0 = x + r * (1 + r * (ck[1] + r * ck[2]));
+	    else
+	      {
+		if (a > _Tp{0.05L})
+		  x0 = x + r * (1 + r * ck[1]);
+		else
+		  x0 = x + r;
+	      }
+	  }
 	delta = std::abs(x / x0 - _Tp{1});
 	x = x0;
 	++n;
       }
-    if (n == 15)
+    if (n == max_num_iter)
       std::__throw_runtime_error("inv_gamma:"
 				" Too many iterations in Newton root search.");
 
@@ -322,6 +331,7 @@ main()
   for (int ia = 1; ia <= 100; ++ia)
     {
       auto a = ia * 0.1;
+      std::cout << "\na = " << a << '\n';
       for (int ix = 0; ix <= 100; ++ix)
 	{
 	  auto x = ix * 0.1;

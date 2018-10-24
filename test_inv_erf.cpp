@@ -1,9 +1,9 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_inv_erf test_inv_erf.cpp -lquadmath -lmpfr
+$HOME/bin_tr29124/bin/g++ -std=gnu++17 -DSTANDALONE -g -Wall -Wextra -Wno-psabi -I. -o test_inv_erf test_inv_erf.cpp -lquadmath -lmpfr
 LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_inv_erf > test_inv_erf.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_inv_erf test_inv_erf.cpp -lquadmath -lmpfr
-./test_inv_erf > test_inv_erf.txt
+$HOME/bin/bin/g++ -std=gnu++17 -DSTANDALONE -g -Wall -Wextra -Wno-psabi -I. -o test_inv_erf test_inv_erf.cpp -lquadmath -lmpfr
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_inv_erf > test_inv_erf.txt
 */
 
 // AAOF pp. 408-409.
@@ -234,27 +234,60 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_inv_erf t
 
   /**
    * Return the inverse complementary error function.
+   * @todo Don't fall back on inv_erf(1-p)
    */
   template<typename _Tp>
     _Tp
-    __erfc_inv(_Tp __p)
+    __erfc_inv(_Tp __q)
     {
-      const auto _S_inf = __gnu_cxx::__infinity(__p);
-      if (std::isnan(__p))
-	return __p;
-      else if (__p < _Tp(0) || __p > _Tp(2))
+      const auto _S_inf = __gnu_cxx::__infinity(__q);
+      if (std::isnan(__q))
+	return __q;
+      else if (__q < _Tp(0) || __q > _Tp(2))
 	std::__throw_domain_error("__erf_inv: Argument must be within"
 				  " the domain of erfc: [0,2].");
-      else if (__p == _Tp{0})
+      else if (__q == _Tp{0})
 	return +_S_inf;
-      else if (__p == _Tp{2})
+      else if (__q == _Tp{2})
 	return -_S_inf;
-      else if (std::abs(_Tp{1} - __p) > _Tp{0.95})
-	return __erf_inv_recur(_Tp{1} - __p);
-      else if (std::abs(_Tp{1} - __p) > _Tp{0.75})
-	return __erf_inv_recur(_Tp{1} - __p, __erf_inv_series(_Tp{1} - __p));
+      else if (std::abs(_Tp{1} - __q) > _Tp{0.95})
+	return __erf_inv_recur(_Tp{1} - __q);
+      else if (std::abs(_Tp{1} - __q) > _Tp{0.75})
+	return __erf_inv_recur(_Tp{1} - __q, __erf_inv_series(_Tp{1} - __q));
       else
-	return __erf_inv_series(_Tp{1} - __p);
+	return __erf_inv_series(_Tp{1} - __q);
+    }
+
+  float
+  inline erf_invf(float __p)
+  { return __erf_inv<float>(__p); }
+
+  long double
+  inline erf_invl(long double __p)
+  { return __erf_inv<long double>(__p); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
+    erf_inv(_Tp __p)
+    {
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
+      return __erf_inv<__type>(__p);
+    }
+
+  float
+  inline erfc_invf(float __q)
+  { return __erfc_inv<float>(__q); }
+
+  long double
+  inline erfc_invl(long double __q)
+  { return __erfc_inv<long double>(__q); }
+
+  template<typename _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
+    erfc_inv(_Tp __q)
+    {
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
+      return __erfc_inv<__type>(__q);
     }
 
 /**
@@ -431,6 +464,7 @@ template<typename _Tp>
       }
   }
 
+#ifdef STANDALONE
 int
 main()
 {
@@ -452,3 +486,4 @@ main()
   std::cout << "  ==========\n";
   test_inv_erf<__float128>();
 }
+#endif

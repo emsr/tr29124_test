@@ -308,6 +308,7 @@ test_inverse_gamma_distribution
 test_inv_erf
 test_inv_gamma
 test_inv_ibeta
+test_inv_lgamma
 test_jacobi
 test_jacobi_ellint
 test_jacobi_inv

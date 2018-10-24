@@ -929,9 +929,9 @@ test_hypot: test_hypot.cpp
 	$(CXX17) -I. -o test_hypot test_hypot.cpp -lquadmath
 
 test_inv_erf: test_inv_erf.cpp
-	$(CXX17) -I. -o test_inv_erf test_inv_erf.cpp -lquadmath
+	$(CXX17) -I. -DSTANDALONE -o test_inv_erf test_inv_erf.cpp -lquadmath
 
-test_inv_gamma: test_inv_gamma.cpp
+test_inv_gamma: test_inv_gamma.cpp test_inv_erf.cpp
 	$(CXX17) -I. -o test_inv_gamma test_inv_gamma.cpp -lquadmath
 
 test_inv_ibeta: test_inv_ibeta.cpp
