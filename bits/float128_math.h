@@ -34,6 +34,10 @@
 
 #if _GLIBCXX_HAVE_FLOAT128_MATH
 
+#ifndef GOOD_LGAMMAQ
+#  include <limits>
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -197,10 +201,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return fabsq(__x); }
 
   inline __float128
-  abs(__float128 __x) _GLIBCXX_USE_NOEXCEPT
-  { return fabs(__x); }
-
-  inline __float128
   fdim(__float128 __x, __float128 __y) _GLIBCXX_USE_NOEXCEPT
   { return fdimq(__x, __y); }
 
@@ -267,8 +267,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     return lgammaq(__x);
 #else
     // Fix the error in lgammaq for x < 0.
+    const auto __max_ull = std::numeric_limits<unsigned long long>::max();
     const auto __lgq = lgammaq(__x);
-    if (__x >= 0.0Q || ((long long)(-__x) & 1) == 1)
+    if (isnanq(__lgq))
+      return __lgq;
+    else if (__x < 0.0Q && -__x > __max_ull)
+      return nanq("lgammaq");
+    else if (__x >= 0.0Q || ((unsigned long long)(-__x) & 1) == 1)
       return fabsq(__lgq);
     else
       return -fabsq(__lgq);
