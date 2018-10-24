@@ -30,7 +30,6 @@ template<typename _Tp>
     constexpr auto _S_sqrt2pi
       = __gnu_cxx::__math_constants<_Tp>::__root_2
       + __gnu_cxx::__math_constants<_Tp>::__root_pi;
-    constexpr auto half = _Tp{1} / _Tp{2};
     return std::tgamma(a) * std::pow(a, -a + _Tp{0.5}) * std::exp(a)
 	 / _S_sqrt2pi;
   }
@@ -238,7 +237,7 @@ template<typename _Tp>
     else
       {
 	m = 1;
-	const auto r = inv_erfc(2 * porq);
+	const auto r = erfc_inv(_Tp{2} * porq);
 	eta = s * r / std::sqrt(a * _Tp{0.5L});
 	eta += ra * (epsilon1(eta)
 	     + ra * (epsilon2(eta)
