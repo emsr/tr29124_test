@@ -8,7 +8,7 @@ c
       integer mode, kfn, ifail
       integer ih, ir
       double precision eta, lam, rho
-      double precision fc(1), gc(1), fcp(1), gcp(1)
+      double precision fc(100), gc(100), fcp(100), gcp(100)
 
       integer nfp, npq, iexp, m1
       double precision paccq
