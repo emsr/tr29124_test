@@ -736,19 +736,19 @@ mpfrcalc: mpfr_gexpr.c
 
 
 test_special_function: wrappers_debug test_special_function.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -o test_special_function test_special_function.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
+	$(CXX17) -I. -o test_special_function test_special_function.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
 diff_special_function: wrappers_debug diff_special_function.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -o diff_special_function diff_special_function.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
+	$(CXX17) -I. -o diff_special_function diff_special_function.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
 testcase2: wrappers_debug testcase2.cpp testcase2.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -I. -o testcase2 testcase2.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
+	$(CXX17) -I. -o testcase2 testcase2.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
 testcase: wrappers_debug testcase.cpp testcase.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -UTR1 -I. -o testcase testcase.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
+	$(CXX17) -UTR1 -I. -o testcase testcase.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
 testcase_tr1: wrappers_debug testcase.cpp testcase.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -DTR1 -I. -o testcase_tr1 testcase.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
+	$(CXX17) -DTR1 -I. -o testcase_tr1 testcase.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
 test_Faddeeva: $(FAD_DIR)/Faddeeva.hh $(FAD_DIR)/Faddeeva.cc
 	$(CXX) -DTEST_FADDEEVA -o $(FAD_DIR)/test_Faddeeva $(FAD_DIR)/Faddeeva.cc -lquadmath
@@ -766,7 +766,7 @@ test_arith_geom_mean: test_arith_geom_mean.cpp
 	$(CXX17) -I. -o test_arith_geom_mean test_arith_geom_mean.cpp -lquadmath
 
 test_bernoulli: wrappers_debug test_bernoulli.cpp
-	$(CXX17) -I. -o test_bernoulli test_bernoulli.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt
+	$(CXX17) -I. -o test_bernoulli test_bernoulli.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
 test_bessel: test_bessel.cpp new_bessel.tcc
 	$(CXX17) -I. -o test_bessel test_bessel.cpp -lquadmath
@@ -793,7 +793,7 @@ test_bose_einstein: test_bose_einstein.cpp
 	$(CXX17) -I. -o test_bose_einstein test_bose_einstein.cpp -lquadmath
 
 test_charlier: test_charlier.cpp
-	$(CXX17) -I. -o test_charlier test_charlier.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt
+	$(CXX17) -I. -o test_charlier test_charlier.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
 test_chebyshev: test_chebyshev.cpp
 	$(CXX17) -I. -o test_chebyshev test_chebyshev.cpp -lquadmath
@@ -871,7 +871,7 @@ test_erfc: wrappers_debug test_erfc.cpp
 	$(CXX17) -I. -o test_erfc test_erfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 test_experfc: wrappers_debug test_experfc.cpp
-	$(CXX17) -I. -o test_experfc test_experfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost -lmpfr -lgmp
+	$(CXX17) -I. -I../mpreal -o test_experfc test_experfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost -lmpfr -lgmp
 
 test_expint: wrappers_debug test_expint.cpp
 	$(CXX17) -I. -o test_expint test_expint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
@@ -970,7 +970,7 @@ test_kelvin: test_kelvin.cpp
 	$(CXX17) -I. -o test_kelvin test_kelvin.cpp -lquadmath
 
 test_krawtchouk: test_krawtchouk.cpp
-	$(CXX17) -I. -o test_krawtchouk test_krawtchouk.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt
+	$(CXX17) -I. -o test_krawtchouk test_krawtchouk.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
 test_laguerre: test_laguerre.cpp
 	$(CXX17) -I. -o test_laguerre test_laguerre.cpp -lquadmath
@@ -1018,7 +1018,7 @@ test_maxint: test_maxint.cpp
 	$(CXX17) -I. -I../mpreal -o test_maxint test_maxint.cpp -lquadmath -lmpfr
 
 test_meixner: test_meixner.cpp
-	$(CXX17) -I. -o test_meixner test_meixner.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt
+	$(CXX17) -I. -o test_meixner test_meixner.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
 test_meixner_pollaczek: test_meixner_pollaczek.cpp
 	$(CXX17) -I. -o test_meixner_pollaczek test_meixner_pollaczek.cpp -lquadmath
@@ -1099,7 +1099,7 @@ test_steed_continued_fraction: test_steed_continued_fraction.cpp
 	$(CXX17) -I. -o test_steed_continued_fraction test_steed_continued_fraction.cpp -lquadmath
 
 test_struve: test_struve.cpp
-	$(CXX17) -I. -o test_struve test_struve.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt
+	$(CXX17) -I. -o test_struve test_struve.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
 test_struve_old: test_struve_old.cpp
 	$(CXX17) -I. -o test_struve_old test_struve_old.cpp -lquadmath
