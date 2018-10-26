@@ -793,17 +793,17 @@ test_binet_float: laboratories/gamma_functions/test_binet_float.cpp
 test_bose_einstein: test_bose_einstein.cpp
 	$(CXX17) -I. -o test_bose_einstein test_bose_einstein.cpp -lquadmath
 
-test_charlier: laboratories/orthononal_polynomials/test_charlier.cpp
-	$(CXX17) -I. -o test_charlier laboratories/orthononal_polynomials/test_charlier.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
+test_charlier: laboratories/orthogonal_polynomials/test_charlier.cpp
+	$(CXX17) -I. -o test_charlier laboratories/orthogonal_polynomials/test_charlier.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
-test_chebyshev: laboratories/orthononal_polynomials/test_chebyshev.cpp
-	$(CXX17) -I. -o test_chebyshev laboratories/orthononal_polynomials/test_chebyshev.cpp -lquadmath
+test_chebyshev: laboratories/orthogonal_polynomials/test_chebyshev.cpp
+	$(CXX17) -I. -o test_chebyshev laboratories/orthogonal_polynomials/test_chebyshev.cpp -lquadmath
 
-test_chebyshev_trig: laboratories/orthononal_polynomials/test_chebyshev_trig.cpp
-	$(CXX17) -I. -o test_chebyshev_trig laboratories/orthononal_polynomials/test_chebyshev_trig.cpp -lquadmath
+test_chebyshev_trig: laboratories/orthogonal_polynomials/test_chebyshev_trig.cpp
+	$(CXX17) -I. -o test_chebyshev_trig laboratories/orthogonal_polynomials/test_chebyshev_trig.cpp -lquadmath
 
-test_chebyshev_trig_pi: laboratories/orthononal_polynomials/test_chebyshev_trig_pi.cpp
-	$(CXX17) -I. -o test_chebyshev_trig_pi laboratories/orthononal_polynomials/test_chebyshev_trig_pi.cpp -lquadmath
+test_chebyshev_trig_pi: laboratories/orthogonal_polynomials/test_chebyshev_trig_pi.cpp
+	$(CXX17) -I. -o test_chebyshev_trig_pi laboratories/orthogonal_polynomials/test_chebyshev_trig_pi.cpp -lquadmath
 
 test_clausen: wrappers_debug test_clausen.cpp
 	$(CXX17) -I. -o test_clausen test_clausen.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
@@ -832,11 +832,11 @@ test_const: test_const.cpp
 test_continued_fraction: test_continued_fraction.cpp
 	$(CXX17) -I. -o test_continued_fraction test_continued_fraction.cpp -lquadmath
 
-test_continuous_dual_hahn: laboratories/orthononal_polynomials/test_continuous_dual_hahn.cpp
-	$(CXX17) -I. -o test_continuous_dual_hahn laboratories/orthononal_polynomials/test_continuous_dual_hahn.cpp -lquadmath
+test_continuous_dual_hahn: laboratories/orthogonal_polynomials/test_continuous_dual_hahn.cpp
+	$(CXX17) -I. -o test_continuous_dual_hahn laboratories/orthogonal_polynomials/test_continuous_dual_hahn.cpp -lquadmath
 
-test_continuous_hahn: laboratories/orthononal_polynomials/test_continuous_hahn.cpp
-	$(CXX17) -I. -o test_continuous_hahn laboratories/orthononal_polynomials/test_continuous_hahn.cpp -lquadmath
+test_continuous_hahn: laboratories/orthogonal_polynomials/test_continuous_hahn.cpp
+	$(CXX17) -I. -o test_continuous_hahn laboratories/orthogonal_polynomials/test_continuous_hahn.cpp -lquadmath
 
 test_cordic: test_cordic.cpp
 	$(CXX17) -I. -o test_cordic test_cordic.cpp -lquadmath
@@ -865,8 +865,8 @@ test_dilog: test_dilog.cpp
 test_dirichlet_eta: laboratories/zeta_functions/test_dirichlet_eta.cpp
 	$(CXX17) -I. -o test_dirichlet_eta laboratories/zeta_functions/test_dirichlet_eta.cpp -lquadmath
 
-test_dual_hahn: laboratories/orthononal_polynomials/test_dual_hahn.cpp
-	$(CXX17) -I. -o test_dual_hahn laboratories/orthononal_polynomials/test_dual_hahn.cpp -lquadmath
+test_dual_hahn: laboratories/orthogonal_polynomials/test_dual_hahn.cpp
+	$(CXX17) -I. -o test_dual_hahn laboratories/orthogonal_polynomials/test_dual_hahn.cpp -lquadmath
 
 test_erfc: wrappers_debug laboratories/error_functions/test_erfc.cpp
 	$(CXX17) -I. -o test_erfc laboratories/error_functions/test_erfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
@@ -907,14 +907,14 @@ test_gamma_ratio: wrappers_debug laboratories/gamma_functions/test_gamma_ratio.c
 test_gamma_reciprocal: laboratories/gamma_functions/test_gamma_reciprocal.cpp
 	$(CXX17) -I. -o test_gamma_reciprocal laboratories/gamma_functions/test_gamma_reciprocal.cpp -lquadmath
 
-test_gegenbauer: laboratories/orthononal_polynomials/test_gegenbauer.cpp
-	$(CXX17) -I. -o test_gegenbauer laboratories/orthononal_polynomials/test_gegenbauer.cpp -lquadmath
+test_gegenbauer: laboratories/orthogonal_polynomials/test_gegenbauer.cpp
+	$(CXX17) -I. -o test_gegenbauer laboratories/orthogonal_polynomials/test_gegenbauer.cpp -lquadmath
 
 test_gudermannian: laboratories/elementary_functions/test_gudermannian.cpp
 	$(CXX17) -I. -o test_gudermannian laboratories/elementary_functions/test_gudermannian.cpp -lquadmath
 
-test_hahn: laboratories/orthononal_polynomials/test_hahn.cpp
-	$(CXX17) -I. -o test_hahn laboratories/orthononal_polynomials/test_hahn.cpp -lquadmath
+test_hahn: laboratories/orthogonal_polynomials/test_hahn.cpp
+	$(CXX17) -I. -o test_hahn laboratories/orthogonal_polynomials/test_hahn.cpp -lquadmath
 
 test_hankel: laboratories/bessel_functions/test_hankel.cpp
 	$(CXX17) -I. -o test_hankel laboratories/bessel_functions/test_hankel.cpp -lquadmath
@@ -922,8 +922,8 @@ test_hankel: laboratories/bessel_functions/test_hankel.cpp
 test_hankel_real_arg: wrappers_debug laboratories/bessel_functions/test_hankel_real_arg.cpp
 	$(CXX17) -I. -o test_hankel_real_arg laboratories/bessel_functions/test_hankel_real_arg.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_hermite: laboratories/orthononal_polynomials/test_hermite.cpp laboratories/orthononal_polynomials/new_hermite.tcc
-	$(CXX17) -I. -Ilaboratories/orthononal_polynomials -o test_hermite laboratories/orthononal_polynomials/test_hermite.cpp -lquadmath
+test_hermite: laboratories/orthogonal_polynomials/test_hermite.cpp laboratories/orthogonal_polynomials/new_hermite.tcc
+	$(CXX17) -I. -Ilaboratories/orthogonal_polynomials -o test_hermite laboratories/orthogonal_polynomials/test_hermite.cpp -lquadmath
 
 test_heuman_lambda: wrappers_debug laboratories/elliptic_integrals/test_heuman_lambda.cpp
 	$(CXX17) -I. -o test_heuman_lambda laboratories/elliptic_integrals/test_heuman_lambda.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
@@ -952,8 +952,8 @@ test_inv_gamma: laboratories/gamma_functions/test_inv_gamma.cpp test_inv_erf.cpp
 test_inv_ibeta: laboratories/beta_functions/test_inv_ibeta.cpp
 	$(CXX17) -I. -o test_inv_ibeta laboratories/beta_functions/test_inv_ibeta.cpp -lquadmath
 
-test_jacobi: laboratories/orthononal_polynomials/test_jacobi.cpp
-	$(CXX17) -I. -o test_jacobi laboratories/orthononal_polynomials/test_jacobi.cpp -lquadmath
+test_jacobi: laboratories/orthogonal_polynomials/test_jacobi.cpp
+	$(CXX17) -I. -o test_jacobi laboratories/orthogonal_polynomials/test_jacobi.cpp -lquadmath
 
 test_jacobi_ellint: laboratories/theta_functions/test_jacobi_ellint.cpp
 	$(CXX17) -I. -o test_jacobi_ellint laboratories/theta_functions/test_jacobi_ellint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost
@@ -970,11 +970,11 @@ test_jacobi_zeta: wrappers_debug laboratories/elliptic_integrals/test_jacobi_zet
 test_kelvin: laboratories/bessel_functions/test_kelvin.cpp
 	$(CXX17) -I. -o test_kelvin laboratories/bessel_functions/test_kelvin.cpp -lquadmath
 
-test_krawtchouk: laboratories/orthononal_polynomials/test_krawtchouk.cpp
-	$(CXX17) -I. -o test_krawtchouk laboratories/orthononal_polynomials/test_krawtchouk.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
+test_krawtchouk: laboratories/orthogonal_polynomials/test_krawtchouk.cpp
+	$(CXX17) -I. -o test_krawtchouk laboratories/orthogonal_polynomials/test_krawtchouk.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
-test_laguerre: laboratories/orthononal_polynomials/test_laguerre.cpp
-	$(CXX17) -I. -o test_laguerre laboratories/orthononal_polynomials/test_laguerre.cpp -lquadmath
+test_laguerre: laboratories/orthogonal_polynomials/test_laguerre.cpp
+	$(CXX17) -I. -o test_laguerre laboratories/orthogonal_polynomials/test_laguerre.cpp -lquadmath
 
 test_lambert_w: laboratories/elementary_functions/test_lambert_w.cpp
 	$(CXX17) -I. -o test_lambert_w laboratories/elementary_functions/test_lambert_w.cpp -lquadmath
@@ -982,8 +982,8 @@ test_lambert_w: laboratories/elementary_functions/test_lambert_w.cpp
 test_large_order_bessel: laboratories/bessel_functions/test_large_order_bessel.cpp
 	$(CXX17) -I. -o test_large_order_bessel laboratories/bessel_functions/test_large_order_bessel.cpp -lquadmath
 
-test_legendre: laboratories/orthononal_polynomials/test_legendre.cpp
-	$(CXX17) -I. -o test_legendre laboratories/orthononal_polynomials/test_legendre.cpp -lquadmath
+test_legendre: laboratories/orthogonal_polynomials/test_legendre.cpp
+	$(CXX17) -I. -o test_legendre laboratories/orthogonal_polynomials/test_legendre.cpp -lquadmath
 
 test_legendre_ellint: laboratories/elliptic_integrals/test_legendre_ellint.cpp
 	$(CXX17) -I. -o test_legendre_ellint laboratories/elliptic_integrals/test_legendre_ellint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
@@ -1000,8 +1000,8 @@ test_limits: test_limits.cpp
 test_little_airy: wrappers_debug laboratories/airy_functions/test_little_airy.cpp
 	$(CXX17) -I. -o test_little_airy laboratories/airy_functions/test_little_airy.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-test_lobatto: wrappers_debug laboratories/orthononal_polynomials/test_lobatto.cpp
-	$(CXX17) -I. -o test_lobatto laboratories/orthononal_polynomials/test_lobatto.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+test_lobatto: wrappers_debug laboratories/orthogonal_polynomials/test_lobatto.cpp
+	$(CXX17) -I. -o test_lobatto laboratories/orthogonal_polynomials/test_lobatto.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
 test_lommel: wrappers_debug laboratories/bessel_functions/test_lommel.cpp
 	$(CXX17) -I. -o test_lommel laboratories/bessel_functions/test_lommel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
@@ -1018,11 +1018,11 @@ test_math_h: test_math_h.cpp
 test_maxint: test_maxint.cpp
 	$(CXX17) -I. -I../mpreal -o test_maxint test_maxint.cpp -lquadmath -lmpfr
 
-test_meixner: laboratories/orthononal_polynomials/test_meixner.cpp
-	$(CXX17) -I. -o test_meixner laboratories/orthononal_polynomials/test_meixner.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
+test_meixner: laboratories/orthogonal_polynomials/test_meixner.cpp
+	$(CXX17) -I. -o test_meixner laboratories/orthogonal_polynomials/test_meixner.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
-test_meixner_pollaczek: laboratories/orthononal_polynomials/test_meixner_pollaczek.cpp
-	$(CXX17) -I. -o test_meixner_pollaczek laboratories/orthononal_polynomials/test_meixner_pollaczek.cpp -lquadmath
+test_meixner_pollaczek: laboratories/orthogonal_polynomials/test_meixner_pollaczek.cpp
+	$(CXX17) -I. -o test_meixner_pollaczek laboratories/orthogonal_polynomials/test_meixner_pollaczek.cpp -lquadmath
 
 test_mittag_leffler: laboratories/mittag_leffler_functions/test_mittag_leffler.cpp
 	$(CXX17) -I. -o test_mittag_leffler laboratories/mittag_leffler_functions/test_mittag_leffler.cpp -lquadmath
@@ -1060,8 +1060,8 @@ test_power_mean: laboratories/norm_functions/test_power_mean.cpp
 test_power_norm: laboratories/norm_functions/test_power_norm.cpp
 	$(CXX17) -I. -o test_power_norm laboratories/norm_functions/test_power_norm.cpp -lquadmath
 
-test_racah: laboratories/orthononal_polynomials/test_racah.cpp
-	$(CXX17) -I. -o test_racah laboratories/orthononal_polynomials/test_racah.cpp -lquadmath
+test_racah: laboratories/orthogonal_polynomials/test_racah.cpp
+	$(CXX17) -I. -o test_racah laboratories/orthogonal_polynomials/test_racah.cpp -lquadmath
 
 test_rational: test_rational.cpp
 	$(CXX17) -I. -o test_rational test_rational.cpp -lquadmath
@@ -1123,8 +1123,8 @@ test_trig: test_trig.cpp
 test_weierstrass_ellint: laboratories/theta_functions/test_weierstrass_ellint.cpp
 	$(CXX17) -I. -o test_weierstrass_ellint laboratories/theta_functions/test_weierstrass_ellint.cpp -lquadmath
 
-test_wilson: laboratories/orthononal_polynomials/test_wilson.cpp
-	$(CXX17) -I. -o test_wilson laboratories/orthononal_polynomials/test_wilson.cpp -lquadmath
+test_wilson: laboratories/orthogonal_polynomials/test_wilson.cpp
+	$(CXX17) -I. -o test_wilson laboratories/orthogonal_polynomials/test_wilson.cpp -lquadmath
 
 test_wright_omega: laboratories/elementary_functions/test_wright_omega.cpp
 	$(CXX17) -I. -o test_wright_omega laboratories/elementary_functions/test_wright_omega.cpp -lquadmath
