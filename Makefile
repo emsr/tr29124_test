@@ -768,7 +768,7 @@ test_arith_geom_mean: test_arith_geom_mean.cpp
 test_bernoulli: wrappers_debug test_bernoulli.cpp
 	$(CXX17) -I. -o test_bernoulli test_bernoulli.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
-test_bessel: test_bessel.cpp new_bessel.tcc
+test_bessel: test_bessel.cpp laboratories/bessel_functions/new_bessel.tcc
 	$(CXX17) -I. -o test_bessel test_bessel.cpp -lquadmath
 
 test_bessel_asymp: test_bessel_asymp.cpp
