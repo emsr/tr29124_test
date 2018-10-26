@@ -9,6 +9,15 @@ void
 JWKB(double XX, double ETA1, double XL,
      double& FJWKB, double& GJWKB, int& IEXP);
 
+struct steed_info
+{
+  double paccq = 0.0;
+  int nfp = 0;
+  int npq = 0;
+  int iexp = 0;
+  int m1 = 0;
+};
+
 /**
  *  REVISED COULOMB WAVEFUNCTION PROGRAM USING STEED'S METHOD
  *
@@ -47,26 +56,20 @@ JWKB(double XX, double ETA1, double XL,
 void
 coulfg(double XX,double ETA1,double XLMIN,double XLMAX,
        double (&FC)[100], double (&GC)[100], double (&FCP)[100], double (&GCP)[100],
-       int MODE1, int KFN, int& IFAIL)
+       int MODE1, int KFN, int& IFAIL, steed_info& steed)
 {
       bool ETANE0, XLTURN;
 
-      // Common block is for information only.  Not required in code
-      int NFP, NPQ, IEXP, M1;
-      double PACCQ;
-      //COMMON /STEED/ PACCQ, NFP, NPQ, IEXP, M1
-
-      constexpr double ZERO = 0.0e0;
-      constexpr double ONE = 1.0e0;
-      constexpr double TWO = 2.0e0;
+      constexpr double ZERO = 0.0;
+      constexpr double ONE = 1.0;
+      constexpr double TWO = 2.0;
       constexpr double TEN2 = 1.0e2;
       constexpr double ABORT = 2.0e4;
-      constexpr double HALF = 0.5e0;
+      constexpr double HALF = 0.5;
       constexpr double TM30 = 1.0e-30;
 
-      constexpr double RT2EPI = 0.79788'45608'02865e0;
-      // THIS CONSTANT IS  DSQRT(TWO/PI)&  USE Q0 FOR IBM REAL*16& D0 FOR
-      //  double + CDC DOUBLE P&  E0 FOR CDC SINGLE P; AND TRUNCATE VALUE.
+      // This constant is sqrt(two/pi).
+      constexpr double RT2EPI = 0.79788'45608'02865;
 
       double ACCH, ACC4, ACC;
       double X, ETA, XLM, FJWKB, GJWKB, E2MM1, DELL, XLL;
@@ -76,17 +79,17 @@ coulfg(double XX,double ETA1,double XLMIN,double XLMAX,
       double ALPHA, BETA, GCL;
       int MAXL, L, L1, LXTRA, LP;
 
-      // CHANGE ACCUR TO SUIT MACHINE AND PRECISION REQUIRED
+      // Change accur to suit machine and precision required
       double ACCUR = std::numeric_limits<double>::epsilon();
       int MODE = 1;
       if (MODE1 == 2 || MODE1 == 3)
         MODE = MODE1;
       IFAIL = 0;
-      IEXP = 1;
-      NPQ = 0;
+      steed.iexp = 1;
+      steed.npq = 0;
       ETA = ETA1;
       GJWKB = ZERO;
-      PACCQ = ONE;
+      steed.paccq = ONE;
       if (KFN != 0)
         ETA = ZERO;
       ETANE0 = ETA != ZERO;
@@ -106,14 +109,16 @@ coulfg(double XX,double ETA1,double XLMIN,double XLMAX,
       XLTURN = X * (X - TWO * ETA) < XLM * XLM + XLM;
       DELL = XLMAX - XLMIN + ACC;
       if (std::abs(std::fmod(DELL, ONE)) > ACC)
-        ;//WRITE(6,2040)XLMAX,XLMIN,DELL;
+        {
+	  ;//WRITE(6,2040)XLMAX,XLMIN,DELL;
+	}
       // LXTRA is number of additional lambda values to be computed.
       LXTRA = int(DELL);
       // XLL is max lambda value, or 0.5 smaller for J, Y Bessels.
       XLL = XLM + double(LXTRA);
-      // Determine starting array element (m1) from xlmin
-      M1 = std::max(int(XLMIN + ACC), 0) + 1;
-      L1 = M1 + LXTRA;
+      // Determine starting array element [m1] from xlmin
+      steed.m1 = std::max(int(XLMIN + ACC), 0) + 1;
+      L1 = steed.m1 + LXTRA;
 
       // Evaluate CF1 = f = F'(XL,ETA,X)/F(XL,ETA,X).
       XI = ONE / X;
@@ -164,7 +169,7 @@ coulfg(double XX,double ETA1,double XLMIN,double XLMAX,
           goto _110;
       }
 
-      NFP = PK - XLL - 1;
+      steed.nfp = PK - XLL - 1;
       if (LXTRA > 0)
       {
         // Downward recurrence to lambda = xlm. array gc,if present,stores rl
@@ -202,8 +207,8 @@ coulfg(double XX,double ETA1,double XLMIN,double XLMAX,
       // Evaluate CF2 = p + i.q  again using Steed's algorithm
       // See text for compact complex code for sp cdc or non-ANSI IBM
       if (XLTURN)
-        JWKB(X, ETA, std::max(XLM, ZERO), FJWKB, GJWKB, IEXP);
-      if (IEXP > 1 || GJWKB > ONE / (ACCH * TEN2))
+        JWKB(X, ETA, std::max(XLM, ZERO), FJWKB, GJWKB, steed.iexp);
+      if (steed.iexp > 1 || GJWKB > ONE / (ACCH * TEN2))
       {
         // Arrive here if G(XLM) > 10**6 or IEXP > 250 + XLTURN = true
         W = FJWKB;
@@ -249,10 +254,10 @@ coulfg(double XX,double ETA1,double XLMIN,double XLMAX,
             goto _120;
         }
         
-        NPQ = PK / TWO;
-        PACCQ = HALF * ACC / std::min(std::abs(Q), ONE);
+        steed.npq = PK / TWO;
+        steed.paccq = HALF * ACC / std::min(std::abs(Q), ONE);
         if (std::abs(P) > std::abs(Q))
-          PACCQ = PACCQ * std::abs(P);
+          steed.paccq = steed.paccq * std::abs(P);
 
         // Solve for fcm = f at lambda = xlm, then find norm factor w = w / fcm.
         GAM = (F - P) / Q;
@@ -274,7 +279,7 @@ coulfg(double XX,double ETA1,double XLMIN,double XLMAX,
         BETA = std::sqrt(XI) * RT2EPI;
 
       FCM = std::copysign(W, FCL) * BETA;
-      FC[M1] = FCM;
+      FC[steed.m1] = FCM;
       if (MODE == 3)
         goto _11;
       if (!XLTURN)
@@ -283,12 +288,12 @@ coulfg(double XX,double ETA1,double XLMIN,double XLMAX,
         GCL = GJWKB * BETA;
       if (KFN != 0)
         GCL = -GCL;
-      GC[M1] = GCL;
+      GC[steed.m1] = GCL;
       GPL = GCL * (P - Q / GAM) - ALPHA * GCL;
       if (MODE == 2)
         goto _11;
-      GCP[M1] = GPL;
-      FCP[M1] = FCM * (F - ALPHA);
+      GCP[steed.m1] = GPL;
+      FCP[steed.m1] = FCM * (F - ALPHA);
  _11: if (LXTRA == 0)
         return;
 
@@ -297,7 +302,7 @@ coulfg(double XX,double ETA1,double XLMIN,double XLMAX,
       // XL = XLM HERE  AND RL = ONE , EL = ZERO FOR BESSELS
       W = BETA * W / std::abs(FCL);
       MAXL = L1 - 1;
-      for (L = M1; L <= MAXL; ++L)
+      for (L = steed.m1; L <= MAXL; ++L)
       {
         if (MODE == 3)
           goto _12;
@@ -349,9 +354,9 @@ coulfg(double XX,double ETA1,double XLMIN,double XLMAX,
       return;
 
  _130: IFAIL =  3;
-//      WRITE (6,2030) P,Q,ACC,DELL,LXTRA,M1;
+//      WRITE (6,2030) P,Q,ACC,DELL,LXTRA,steed.m1;
 //_2030 FORMAT(' FINAL Q<= std::abs(P)*ACC*10**4 , P,Q,ACC = ',1P,3E12.3,4X,
-//      ' DELL,LXTRA,M1 = ',E12.3,2I5 /)
+//      ' DELL,LXTRA,steed.m1 = ',E12.3,2I5 /)
 //_2040 FORMAT(' XLMAX - XLMIN = DELL NOT AN INTEGER ',1P,3E20.10/)
 
       return;

@@ -178,6 +178,7 @@ BINS = testcase \
        test_wilson \
        test_wright_omega \
        test_zeta_trig \
+       run_coulfg \
        RUN_COULFG
 
 
@@ -568,6 +569,7 @@ test: $(BINS)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_wilson > test_wilson.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_wright_omega > test_wright_omega.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_zeta_trig > test_zeta_trig.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./run_coulfg > run_coulfg.txt
 	./RUN_COULFG > RUN_COULFG.TXT
 
 check: $(CHECK_DIR) $(CHECKS)
@@ -839,8 +841,8 @@ test_continuous_hahn: laboratories/orthononal_polynomials/test_continuous_hahn.c
 test_cordic: test_cordic.cpp
 	$(CXX17) -I. -o test_cordic test_cordic.cpp -lquadmath
 
-test_coulomb: test_coulomb.cpp
-	$(CXX17) -I. -o test_coulomb test_coulomb.cpp -lquadmath
+test_coulomb: laboratories/coulomb_functions/test_coulomb.cpp
+	$(CXX17) -I. -o test_coulomb laboratories/coulomb_functions/test_coulomb.cpp -lquadmath
 
 test_csint: test_csint.cpp csint.tcc
 	$(CXX17) -I. -o test_csint test_csint.cpp -lquadmath
@@ -932,8 +934,8 @@ test_hurwitz_zeta: test_hurwitz_zeta.cpp
 test_hurwitz_zeta_new: test_hurwitz_zeta_new.cpp
 	$(CXX17) -I. -o test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp -lquadmath
 
-test_hydrogen: wrappers_debug test_hydrogen.cpp
-	$(CXX17) -I. -o test_hydrogen test_hydrogen.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+test_hydrogen: wrappers_debug laboratories/coulomb_functions/test_hydrogen.cpp
+	$(CXX17) -I. -o test_hydrogen laboratories/coulomb_functions/test_hydrogen.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
 test_hyperg: wrappers_debug test_hyperg.cpp
 	$(CXX17) -I. -o test_hyperg test_hyperg.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
@@ -1131,8 +1133,11 @@ test_zeta_trig: test_zeta_trig.cpp
 	$(CXX17) -I. -o test_zeta_trig test_zeta_trig.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
 
-RUN_COULFG: COULFG.FOR RUN_COULFG.FOR
-	gfortran -o RUN_COULFG COULFG.FOR RUN_COULFG.FOR
+run_coulfg: laboratories/coulomb_functions/coulfg.cpp laboratories/coulomb_functions/run_coulfg.cpp
+	$(CXX17) -I. -o run_coulfg laboratories/coulomb_functions/coulfg.cpp laboratories/coulomb_functions/run_coulfg.cpp -lquadmath
+
+RUN_COULFG: laboratories/coulomb_functions/COULFG.FOR laboratories/coulomb_functions/RUN_COULFG.FOR
+	gfortran -o RUN_COULFG laboratories/coulomb_functions/COULFG.FOR laboratories/coulomb_functions/RUN_COULFG.FOR
 
 
 airy_toy: laboratories/airy_functions/airy_toy.cpp
