@@ -838,8 +838,8 @@ test_continuous_dual_hahn: laboratories/orthogonal_polynomials/test_continuous_d
 test_continuous_hahn: laboratories/orthogonal_polynomials/test_continuous_hahn.cpp
 	$(CXX17) -I. -o test_continuous_hahn laboratories/orthogonal_polynomials/test_continuous_hahn.cpp -lquadmath
 
-test_cordic: test_cordic.cpp
-	$(CXX17) -I. -o test_cordic test_cordic.cpp -lquadmath
+test_cordic: laboratories/elementary_functions/test_cordic.cpp
+	$(CXX17) -I. -o test_cordic laboratories/elementary_functions/test_cordic.cpp -lquadmath
 
 test_coulomb: laboratories/coulomb_functions/test_coulomb.cpp
 	$(CXX17) -I. -o test_coulomb laboratories/coulomb_functions/test_coulomb.cpp -lquadmath
@@ -1015,8 +1015,8 @@ test_marcum_q: laboratories/distributions/test_marcum_q.cpp
 test_math_h: test_math_h.cpp
 	$(CXX) -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -I. -o test_math_h test_math_h.cpp -lquadmath
 
-test_maxint: test_maxint.cpp
-	$(CXX17) -I. -I../mpreal -o test_maxint test_maxint.cpp -lquadmath -lmpfr
+test_maxint: laboratories/floating_point_tools/test_maxint.cpp
+	$(CXX17) -I. -I../mpreal -o test_maxint laboratories/floating_point_tools/test_maxint.cpp -lquadmath -lmpfr
 
 test_meixner: laboratories/orthogonal_polynomials/test_meixner.cpp
 	$(CXX17) -I. -o test_meixner laboratories/orthogonal_polynomials/test_meixner.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
@@ -1045,11 +1045,11 @@ test_numeric_limits: test_numeric_limits.cpp
 test_owens_t: wrappers_debug laboratories/error_functions/test_owens_t.cpp
 	$(CXX17) -I. -o test_owens_t laboratories/error_functions/test_owens_t.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_parab_cyl: test_parab_cyl.cpp
-	$(CXX17) -I. -o test_parab_cyl test_parab_cyl.cpp -lquadmath
+test_parab_cyl: laboratories/parabolic_cylinder_functions/test_parab_cyl.cpp
+	$(CXX17) -I. -o test_parab_cyl laboratories/parabolic_cylinder_functions/test_parab_cyl.cpp -lquadmath
 
-test_polygamma: test_polygamma.cpp
-	$(CXX17) -I. -o test_polygamma test_polygamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+test_polygamma: laboratories/gamma_functions/test_polygamma.cpp
+	$(CXX17) -I. -o test_polygamma laboratories/gamma_functions/test_polygamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 test_polylog: wrappers_debug test_polylog.cpp
 	$(CXX17) -I. -o test_polylog test_polylog.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_cephes
@@ -1087,8 +1087,8 @@ test_root_finding: test_root_finding.cpp
 test_sincos: laboratories/elementary_functions/test_sincos.cpp
 	$(CXX17) -I. -o test_sincos laboratories/elementary_functions/test_sincos.cpp -lquadmath
 
-test_sinus_cardinal: wrappers_debug test_sinus_cardinal.cpp
-	$(CXX17) -I. -o test_sinus_cardinal test_sinus_cardinal.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost
+test_sinus_cardinal: wrappers_debug laboratories/elementary_functions/test_sinus_cardinal.cpp
+	$(CXX17) -I. -o test_sinus_cardinal laboratories/elementary_functions/test_sinus_cardinal.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost
 
 test_sph_bessel: laboratories/bessel_functions/test_sph_bessel.cpp
 	$(CXX17) -I. -o test_sph_bessel laboratories/bessel_functions/test_sph_bessel.cpp -lquadmath
@@ -1117,8 +1117,8 @@ test_tr1_cmath: test_tr1_cmath.cpp
 test_tricomi_u: laboratories/hypergeometric_functions/test_tricomi_u.cpp
 	$(CXX17) -I. -o test_tricomi_u laboratories/hypergeometric_functions/test_tricomi_u.cpp -lquadmath
 
-test_trig: test_trig.cpp
-	$(CXX17) -I. -o test_trig test_trig.cpp -lquadmath
+test_trig: laboratories/elementary_functions/test_trig.cpp
+	$(CXX17) -I. -o test_trig laboratories/elementary_functions/test_trig.cpp -lquadmath
 
 test_weierstrass_ellint: laboratories/theta_functions/test_weierstrass_ellint.cpp
 	$(CXX17) -I. -o test_weierstrass_ellint laboratories/theta_functions/test_weierstrass_ellint.cpp -lquadmath
