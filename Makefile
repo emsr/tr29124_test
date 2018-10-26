@@ -859,8 +859,8 @@ test_debye: wrappers_debug laboratories/zeta_functions/test_debye.cpp
 test_digamma: wrappers_debug laboratories/gamma_functions/test_digamma.cpp
 	$(CXX17) -I. -Iwrappers -o test_digamma laboratories/gamma_functions/test_digamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-test_dilog: test_dilog.cpp
-	$(CXX17) -I. -o test_dilog test_dilog.cpp -lquadmath
+test_dilog: laboratories/zeta_functions/test_dilog.cpp
+	$(CXX17) -I. -o test_dilog laboratories/zeta_functions/test_dilog.cpp -lquadmath
 
 test_dirichlet_eta: laboratories/zeta_functions/test_dirichlet_eta.cpp
 	$(CXX17) -I. -o test_dirichlet_eta laboratories/zeta_functions/test_dirichlet_eta.cpp -lquadmath
@@ -1051,8 +1051,8 @@ test_parab_cyl: laboratories/parabolic_cylinder_functions/test_parab_cyl.cpp
 test_polygamma: laboratories/gamma_functions/test_polygamma.cpp
 	$(CXX17) -I. -Iwrappers -o test_polygamma laboratories/gamma_functions/test_polygamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_polylog: wrappers_debug test_polylog.cpp
-	$(CXX17) -I. -Iwrappers -o test_polylog test_polylog.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_cephes
+test_polylog: wrappers_debug laboratories/zeta_functions/test_polylog.cpp
+	$(CXX17) -I. -Iwrappers -o test_polylog laboratories/zeta_functions/test_polylog.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_cephes
 
 test_power_mean: laboratories/norm_functions/test_power_mean.cpp
 	$(CXX17) -I. -o test_power_mean laboratories/norm_functions/test_power_mean.cpp -lquadmath
@@ -1103,7 +1103,7 @@ test_struve: laboratories/bessel_functions/test_struve.cpp
 	$(CXX17) -I. -Iwrappers -o test_struve laboratories/bessel_functions/test_struve.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
 test_struve_old: laboratories/bessel_functions/test_struve_old.cpp
-	$(CXX17) -I. -o test_struve_old laboratories/bessel_functions/test_struve_old.cpp -lquadmath
+	$(CXX17) -I. -Ilaboratories/hypergeometric_functions -o test_struve_old laboratories/bessel_functions/test_struve_old.cpp -lquadmath
 
 test_summation: test_summation.cpp
 	$(CXX17) -I. -o test_summation test_summation.cpp -lquadmath
