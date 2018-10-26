@@ -472,6 +472,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // It's somewhat superfluous but std::complex has no atan2().
   // For generic code it would be nice.
+  // Look at the rules for special cases, 0/0, +-inf, etc.
   //template<typename Tp>
   //  std::complex<Tp>
   //  atan2(const std::complex<Tp>& y, const std::complex<Tp>& x)
@@ -499,10 +500,22 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   template<typename _Tp>
     inline std::complex<_Tp>
-    log1p(const std::complex<_Tp>& __x)
+    log1p(const std::complex<_Tp>& __z)
     {
       /// @todo Do a better complex log1p implementation.
-      return std::log(_Tp{1} + __x);
+      return std::log(_Tp{1} + __z);
+    }
+
+  /**
+   * Give complex expm1.
+   * This and log1p are inverses of each other.
+   */
+  template<typename _Tp>
+    inline std::complex<_Tp>
+    expm1(const std::complex<_Tp>& __z)
+    {
+      /// @todo Do a better complex log1p implementation.
+      return std::exp(__z) - _Tp{1};
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
