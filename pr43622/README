@@ -1,5 +1,0 @@
-This PR is for C++ lib support of __float128.
-
-I will start with <limits>
-
-This is hosted in my gcc (points to bleading edge trunk) directory.

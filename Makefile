@@ -440,7 +440,6 @@ tests: test_special_function
 
 # This will always build the executables!
 test: $(BINS)
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_nric_bessel > test_nric_bessel.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./airy_toy > airy_toy.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./hankel_toy > hankel_toy.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./hankel_toy128 > hankel_toy128.txt
@@ -753,11 +752,11 @@ testcase_tr1: wrappers_debug testcase.cpp testcase.tcc $(INC_DIR)/*.h $(INC_DIR)
 test_Faddeeva: $(FAD_DIR)/Faddeeva.hh $(FAD_DIR)/Faddeeva.cc
 	$(CXX) -DTEST_FADDEEVA -o $(FAD_DIR)/test_Faddeeva $(FAD_DIR)/Faddeeva.cc -lquadmath
 
-test_airy_roots: test_airy_roots.cpp
-	$(CXX17) -I. -o test_airy_roots test_airy_roots.cpp -lquadmath
+test_airy_roots: laboratories/airy_functions/test_airy_roots.cpp
+	$(CXX17) -I. -o test_airy_roots laboratories/airy_functions/test_airy_roots.cpp -lquadmath
 
-test_anger_weber: test_anger_weber.cpp
-	$(CXX17) -I. -o test_anger_weber test_anger_weber.cpp -lquadmath
+test_anger_weber: laboratories/bessel_functions/test_anger_weber.cpp
+	$(CXX17) -I. -o test_anger_weber laboratories/bessel_functions/test_anger_weber.cpp -lquadmath
 
 test_appell_f1: test_appell_f1.cpp
 	$(CXX17) -I. -o test_appell_f1 test_appell_f1.cpp -lquadmath
@@ -768,14 +767,14 @@ test_arith_geom_mean: test_arith_geom_mean.cpp
 test_bernoulli: wrappers_debug test_bernoulli.cpp
 	$(CXX17) -I. -o test_bernoulli test_bernoulli.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
-test_bessel: test_bessel.cpp laboratories/bessel_functions/new_bessel.tcc
-	$(CXX17) -I. -o test_bessel test_bessel.cpp -lquadmath
+test_bessel: laboratories/bessel_functions/test_bessel.cpp laboratories/bessel_functions/new_bessel.tcc
+	$(CXX17) -I. -o test_bessel laboratories/bessel_functions/test_bessel.cpp -lquadmath
 
-test_bessel_asymp: test_bessel_asymp.cpp
-	$(CXX17) -I. -o test_bessel_asymp test_bessel_asymp.cpp -lquadmath
+test_bessel_asymp: laboratories/bessel_functions/test_bessel_asymp.cpp
+	$(CXX17) -I. -o test_bessel_asymp laboratories/bessel_functions/test_bessel_asymp.cpp -lquadmath
 
-test_bessel_iter: test_bessel_iter.cpp
-	$(CXX17) -I. -o test_bessel_iter test_bessel_iter.cpp -lquadmath
+test_bessel_iter: laboratories/bessel_functions/test_bessel_iter.cpp
+	$(CXX17) -I. -o test_bessel_iter laboratories/bessel_functions/test_bessel_iter.cpp -lquadmath
 
 test_beta: wrappers_debug test_beta.cpp
 	$(CXX17) -I. -o test_beta test_beta.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
@@ -792,8 +791,8 @@ test_binet_float: test_binet_float.cpp
 test_bose_einstein: test_bose_einstein.cpp
 	$(CXX17) -I. -o test_bose_einstein test_bose_einstein.cpp -lquadmath
 
-test_charlier: test_charlier.cpp
-	$(CXX17) -I. -o test_charlier test_charlier.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
+test_charlier: laboratories/orthononal_polynomials/test_charlier.cpp
+	$(CXX17) -I. -o test_charlier laboratories/orthononal_polynomials/test_charlier.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
 test_chebyshev: test_chebyshev.cpp
 	$(CXX17) -I. -o test_chebyshev test_chebyshev.cpp -lquadmath
@@ -831,11 +830,11 @@ test_const: test_const.cpp
 test_continued_fraction: test_continued_fraction.cpp
 	$(CXX17) -I. -o test_continued_fraction test_continued_fraction.cpp -lquadmath
 
-test_continuous_dual_hahn: test_continuous_dual_hahn.cpp
-	$(CXX17) -I. -o test_continuous_dual_hahn test_continuous_dual_hahn.cpp -lquadmath
+test_continuous_dual_hahn: laboratories/orthononal_polynomials/test_continuous_dual_hahn.cpp
+	$(CXX17) -I. -o test_continuous_dual_hahn laboratories/orthononal_polynomials/test_continuous_dual_hahn.cpp -lquadmath
 
-test_continuous_hahn: test_continuous_hahn.cpp
-	$(CXX17) -I. -o test_continuous_hahn test_continuous_hahn.cpp -lquadmath
+test_continuous_hahn: laboratories/orthononal_polynomials/test_continuous_hahn.cpp
+	$(CXX17) -I. -o test_continuous_hahn laboratories/orthononal_polynomials/test_continuous_hahn.cpp -lquadmath
 
 test_cordic: test_cordic.cpp
 	$(CXX17) -I. -o test_cordic test_cordic.cpp -lquadmath
@@ -846,8 +845,8 @@ test_coulomb: test_coulomb.cpp
 test_csint: test_csint.cpp csint.tcc
 	$(CXX17) -I. -o test_csint test_csint.cpp -lquadmath
 
-test_cyl_hankel: wrappers_debug test_cyl_hankel.cpp
-	$(CXX17) -I. -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+test_cyl_hankel: wrappers_debug laboratories/bessel_functions/test_cyl_hankel.cpp
+	$(CXX17) -I. -o test_cyl_hankel laboratories/bessel_functions/test_cyl_hankel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 test_dawson: test_dawson.cpp
 	$(CXX17) -I. -o test_dawson test_dawson.cpp -lquadmath
@@ -864,8 +863,8 @@ test_dilog: test_dilog.cpp
 test_dirichlet_eta: test_dirichlet_eta.cpp
 	$(CXX17) -I. -o test_dirichlet_eta test_dirichlet_eta.cpp -lquadmath
 
-test_dual_hahn: test_dual_hahn.cpp
-	$(CXX17) -I. -o test_dual_hahn test_dual_hahn.cpp -lquadmath
+test_dual_hahn: laboratories/orthononal_polynomials/test_dual_hahn.cpp
+	$(CXX17) -I. -o test_dual_hahn laboratories/orthononal_polynomials/test_dual_hahn.cpp -lquadmath
 
 test_erfc: wrappers_debug test_erfc.cpp
 	$(CXX17) -I. -o test_erfc test_erfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
@@ -906,20 +905,20 @@ test_gamma_ratio: wrappers_debug test_gamma_ratio.cpp
 test_gamma_reciprocal: test_gamma_reciprocal.cpp
 	$(CXX17) -I. -o test_gamma_reciprocal test_gamma_reciprocal.cpp -lquadmath
 
-test_gegenbauer: test_gegenbauer.cpp
-	$(CXX17) -I. -o test_gegenbauer test_gegenbauer.cpp -lquadmath
+test_gegenbauer: laboratories/orthononal_polynomials/test_gegenbauer.cpp
+	$(CXX17) -I. -o test_gegenbauer laboratories/orthononal_polynomials/test_gegenbauer.cpp -lquadmath
 
 test_gudermannian: test_gudermannian.cpp
 	$(CXX17) -I. -o test_gudermannian test_gudermannian.cpp -lquadmath
 
-test_hahn: test_hahn.cpp
-	$(CXX17) -I. -o test_hahn test_hahn.cpp -lquadmath
+test_hahn: laboratories/orthononal_polynomials/test_hahn.cpp
+	$(CXX17) -I. -o test_hahn laboratories/orthononal_polynomials/test_hahn.cpp -lquadmath
 
-test_hankel: test_hankel.cpp
-	$(CXX17) -I. -o test_hankel test_hankel.cpp -lquadmath
+test_hankel: laboratories/bessel_functions/test_hankel.cpp
+	$(CXX17) -I. -o test_hankel laboratories/bessel_functions/test_hankel.cpp -lquadmath
 
-test_hankel_real_arg: wrappers_debug test_hankel_real_arg.cpp
-	$(CXX17) -I. -o test_hankel_real_arg test_hankel_real_arg.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+test_hankel_real_arg: wrappers_debug laboratories/bessel_functions/test_hankel_real_arg.cpp
+	$(CXX17) -I. -o test_hankel_real_arg laboratories/bessel_functions/test_hankel_real_arg.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 test_hermite: test_hermite.cpp new_hermite.tcc
 	$(CXX17) -I. -o test_hermite test_hermite.cpp -lquadmath
@@ -951,8 +950,8 @@ test_inv_gamma: test_inv_gamma.cpp test_inv_erf.cpp
 test_inv_ibeta: test_inv_ibeta.cpp
 	$(CXX17) -I. -o test_inv_ibeta test_inv_ibeta.cpp -lquadmath
 
-test_jacobi: test_jacobi.cpp
-	$(CXX17) -I. -o test_jacobi test_jacobi.cpp -lquadmath
+test_jacobi: laboratories/orthononal_polynomials/test_jacobi.cpp
+	$(CXX17) -I. -o test_jacobi laboratories/orthononal_polynomials/test_jacobi.cpp -lquadmath
 
 test_jacobi_ellint: test_jacobi_ellint.cpp
 	$(CXX17) -I. -o test_jacobi_ellint test_jacobi_ellint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost
@@ -969,8 +968,8 @@ test_jacobi_zeta: wrappers_debug test_jacobi_zeta.cpp
 test_kelvin: test_kelvin.cpp
 	$(CXX17) -I. -o test_kelvin test_kelvin.cpp -lquadmath
 
-test_krawtchouk: test_krawtchouk.cpp
-	$(CXX17) -I. -o test_krawtchouk test_krawtchouk.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
+test_krawtchouk: laboratories/orthononal_polynomials/test_krawtchouk.cpp
+	$(CXX17) -I. -o test_krawtchouk laboratories/orthononal_polynomials/test_krawtchouk.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
 test_laguerre: test_laguerre.cpp
 	$(CXX17) -I. -o test_laguerre test_laguerre.cpp -lquadmath
@@ -978,11 +977,11 @@ test_laguerre: test_laguerre.cpp
 test_lambert_w: test_lambert_w.cpp
 	$(CXX17) -I. -o test_lambert_w test_lambert_w.cpp -lquadmath
 
-test_large_order_bessel: test_large_order_bessel.cpp
-	$(CXX17) -I. -o test_large_order_bessel test_large_order_bessel.cpp -lquadmath
+test_large_order_bessel: laboratories/bessel_functions/test_large_order_bessel.cpp
+	$(CXX17) -I. -o test_large_order_bessel laboratories/bessel_functions/test_large_order_bessel.cpp -lquadmath
 
-test_legendre: test_legendre.cpp
-	$(CXX17) -I. -o test_legendre test_legendre.cpp -lquadmath
+test_legendre: laboratories/orthononal_polynomials/test_legendre.cpp
+	$(CXX17) -I. -o test_legendre laboratories/orthononal_polynomials/test_legendre.cpp -lquadmath
 
 test_legendre_ellint: test_legendre_ellint.cpp
 	$(CXX17) -I. -o test_legendre_ellint test_legendre_ellint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
@@ -996,8 +995,8 @@ test_lerch: test_lerch.cpp
 test_limits: test_limits.cpp
 	$(CXX17) -I. -o test_limits test_limits.cpp -lquadmath
 
-test_little_airy: wrappers_debug test_little_airy.cpp
-	$(CXX17) -I. -o test_little_airy test_little_airy.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+test_little_airy: wrappers_debug laboratories/airy_functions/test_little_airy.cpp
+	$(CXX17) -I. -o test_little_airy laboratories/airy_functions/test_little_airy.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
 test_lobatto: wrappers_debug test_lobatto.cpp
 	$(CXX17) -I. -o test_lobatto test_lobatto.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
@@ -1017,11 +1016,11 @@ test_math_h: test_math_h.cpp
 test_maxint: test_maxint.cpp
 	$(CXX17) -I. -I../mpreal -o test_maxint test_maxint.cpp -lquadmath -lmpfr
 
-test_meixner: test_meixner.cpp
-	$(CXX17) -I. -o test_meixner test_meixner.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
+test_meixner: laboratories/orthononal_polynomials/test_meixner.cpp
+	$(CXX17) -I. -o test_meixner laboratories/orthononal_polynomials/test_meixner.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
-test_meixner_pollaczek: test_meixner_pollaczek.cpp
-	$(CXX17) -I. -o test_meixner_pollaczek test_meixner_pollaczek.cpp -lquadmath
+test_meixner_pollaczek: laboratories/orthononal_polynomials/test_meixner_pollaczek.cpp
+	$(CXX17) -I. -o test_meixner_pollaczek laboratories/orthononal_polynomials/test_meixner_pollaczek.cpp -lquadmath
 
 test_mittag_leffler: test_mittag_leffler.cpp
 	$(CXX17) -I. -o test_mittag_leffler test_mittag_leffler.cpp -lquadmath
@@ -1035,8 +1034,8 @@ test_mpreal: test_mpreal.cpp
 test_notsospecfun: test_notsospecfun.cpp
 	$(CXX17) -I. -o test_notsospecfun test_notsospecfun.cpp -lquadmath
 
-test_nric_bessel: test_nric_bessel.cpp nric_bessel.tcc
-	$(CXX) -I. -o test_nric_bessel test_nric_bessel.cpp -lquadmath
+test_nric_bessel: laboratories/bessel_functions/test_nric_bessel.cpp laboratories/bessel_functions/nric_bessel.tcc
+	$(CXX) -I. -Ilaboratories/bessel_functions -o test_nric_bessel laboratories/bessel_functions/test_nric_bessel.cpp -lquadmath
 
 test_numeric_limits: test_numeric_limits.cpp
 	$(CXX17) -I. -I../mpreal -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr -lgmp
@@ -1059,8 +1058,8 @@ test_power_mean: test_power_mean.cpp
 test_power_norm: test_power_norm.cpp
 	$(CXX17) -I. -o test_power_norm test_power_norm.cpp -lquadmath
 
-test_racah: test_racah.cpp
-	$(CXX17) -I. -o test_racah test_racah.cpp -lquadmath
+test_racah: laboratories/orthononal_polynomials/test_racah.cpp
+	$(CXX17) -I. -o test_racah laboratories/orthononal_polynomials/test_racah.cpp -lquadmath
 
 test_rational: test_rational.cpp
 	$(CXX17) -I. -o test_rational test_rational.cpp -lquadmath
@@ -1089,20 +1088,20 @@ test_sincos: test_sincos.cpp
 test_sinus_cardinal: wrappers_debug test_sinus_cardinal.cpp
 	$(CXX17) -I. -o test_sinus_cardinal test_sinus_cardinal.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost
 
-test_sph_bessel: test_sph_bessel.cpp
-	$(CXX17) -I. -o test_sph_bessel test_sph_bessel.cpp -lquadmath
+test_sph_bessel: laboratories/bessel_functions/test_sph_bessel.cpp
+	$(CXX17) -I. -o test_sph_bessel laboratories/bessel_functions/test_sph_bessel.cpp -lquadmath
 
-test_sph_hankel: wrappers_debug test_sph_hankel.cpp
-	$(CXX17) -I. -o test_sph_hankel test_sph_hankel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+test_sph_hankel: wrappers_debug laboratories/bessel_functions/test_sph_hankel.cpp
+	$(CXX17) -I. -o test_sph_hankel laboratories/bessel_functions/test_sph_hankel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 test_steed_continued_fraction: test_steed_continued_fraction.cpp
 	$(CXX17) -I. -o test_steed_continued_fraction test_steed_continued_fraction.cpp -lquadmath
 
-test_struve: test_struve.cpp
-	$(CXX17) -I. -o test_struve test_struve.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
+test_struve: laboratories/bessel_functions/test_struve.cpp
+	$(CXX17) -I. -o test_struve laboratories/bessel_functions/test_struve.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
-test_struve_old: test_struve_old.cpp
-	$(CXX17) -I. -o test_struve_old test_struve_old.cpp -lquadmath
+test_struve_old: laboratories/bessel_functions/test_struve_old.cpp
+	$(CXX17) -I. -o test_struve_old laboratories/bessel_functions/test_struve_old.cpp -lquadmath
 
 test_summation: test_summation.cpp
 	$(CXX17) -I. -o test_summation test_summation.cpp -lquadmath
@@ -1122,8 +1121,8 @@ test_trig: test_trig.cpp
 test_weierstrass_ellint: test_weierstrass_ellint.cpp
 	$(CXX17) -I. -o test_weierstrass_ellint test_weierstrass_ellint.cpp -lquadmath
 
-test_wilson: test_wilson.cpp
-	$(CXX17) -I. -o test_wilson test_wilson.cpp -lquadmath
+test_wilson: laboratories/orthononal_polynomials/test_wilson.cpp
+	$(CXX17) -I. -o test_wilson laboratories/orthononal_polynomials/test_wilson.cpp -lquadmath
 
 test_wright_omega: test_wright_omega.cpp
 	$(CXX17) -I. -o test_wright_omega test_wright_omega.cpp -lquadmath
@@ -1136,17 +1135,17 @@ RUN_COULFG: COULFG.FOR RUN_COULFG.FOR
 	gfortran -o RUN_COULFG COULFG.FOR RUN_COULFG.FOR
 
 
-airy_toy: airy_toy.cpp
-	$(CXX17) -I. -o airy_toy airy_toy.cpp -lquadmath
+airy_toy: laboratories/airy_functions/airy_toy.cpp
+	$(CXX17) -I. -o airy_toy laboratories/airy_functions/airy_toy.cpp -lquadmath
 
-hankel_toy: hankel_toy.cpp
-	$(CXX17) -I. -o hankel_toy hankel_toy.cpp -lquadmath
+hankel_toy: laboratories/bessel_functions/hankel_toy.cpp
+	$(CXX17) -I. -o hankel_toy laboratories/bessel_functions/hankel_toy.cpp -lquadmath
 
-hankel_toy128: hankel_toy128.cpp
-	$(CXX17) -I. -o hankel_toy128 hankel_toy128.cpp -lquadmath
+hankel_toy128: laboratories/bessel_functions/hankel_toy128.cpp
+	$(CXX17) -I. -o hankel_toy128 laboratories/bessel_functions/hankel_toy128.cpp -lquadmath
 
-hankel_toy_new: hankel_toy_new.cpp
-	$(CXX17) -I. -o hankel_toy_new hankel_toy_new.cpp -lquadmath
+hankel_toy_new: laboratories/bessel_functions/hankel_toy_new.cpp
+	$(CXX17) -I. -o hankel_toy_new laboratories/bessel_functions/hankel_toy_new.cpp -lquadmath
 
 
 ${CHECK_DIR}/check_airy_ai: ${CHECK_DIR}/check_airy_ai.cc
