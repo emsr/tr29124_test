@@ -44,7 +44,7 @@ template<typename _Tp>
 		  _Tp& fc, _Tp& gc, _Tp& fcp, _Tp& gcp, int& ifail)
   {
     constexpr auto abort = _Tp{20000};
-    //constexpr auto _S_tiny = _Tp{1.0e-30};
+    constexpr auto _S_tiny = _Tp{1.0e-30};
     // This constant is  sqrt(_Tp{2}/pi)
     constexpr auto rt2epi = _Tp{0.79788'45608'02865e0};
     const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
@@ -229,12 +229,12 @@ template<typename _Tp>
     // Normalise for spherical or cylindrical Bessel functions
     auto alpha = _Tp{0};
     auto beta = _Tp{1};
-    if (func == 1)
+    if (func == SphBessel)
       {
 	alpha = xi;
 	beta = xi;
       }
-    else if (func == 2)
+    else if (func == CylBessel)
       {
 	alpha = _Tp{0.5} * xi;
 	beta = std::sqrt(xi) * rt2epi;
@@ -246,18 +246,16 @@ template<typename _Tp>
     if (func != Coulomb)
       gcl = -gcl;
     gc = gcl;
-    const auto gpl = gcl * (p - q / gam) - alpha * gcl;
+    auto gpl = gcl * (p - q / gam) - alpha * gcl;
     gcp = gpl;
     fcp = fcm * (f - alpha);
-  //  if (lxtra == 0)
-  //    return;
 /*
     // Upward recurrence from GC, G' stored value is rl
     // Renormalise FC, F' at each lambda and correct regular derivative
     //    xl = lambda here and rl = _Tp{1}, el = _Tp{0} for Bessels
     w *= beta / std::abs(fcl);
     xl += _Tp{1};
-    if (etane0)
+    if (eta != _Tp{0})
       {
 	el = eta / xl;
 	rl = gc;
@@ -293,8 +291,8 @@ template<typename _Tp>
     const auto rl2 = _Tp{1} + eta * eta / hll;
     const auto gh = std::sqrt(gh2 + hll) / rho;
     auto phi = rho * gh
-	   - _Tp{0.5} * (hl * std::log((gh + sl) * (gh + sl) / rl2)
-			- std::log(gh));
+	     - _Tp{0.5} * (hl * std::log((gh + sl) * (gh + sl) / rl2)
+			  - std::log(gh));
     phi -= eta * std::atan2(rho * gh, rho - eta);
     const auto phi10 = -phi;
     iexp = int(phi10);
@@ -317,18 +315,18 @@ template<typename _Tp>
     _Tp lambda = 0;
     for (auto eta : {_Tp{-2}, _Tp{0}, _Tp{2}, _Tp{10}})
       {
-	std::cout << '\n' << '\n';
+	std::cout << "\n\neta = " << eta << '\n';
 	for (int irho = 1; irho <= 200; ++irho)
 	  {
 	    auto rho = irho * _Tp{0.1};
 	    _Tp fc = 0, gc = 0, fcp = 0, gcp = 0;
 	    int ifail = 0;
 	    __coulomb_steed(func, lambda, eta, rho, fc, gc, fcp, gcp, ifail);
-	    std::cout << ' ' << std::setw(12) << rho
-		      << ' ' << std::setw(12) << fc
-		      << ' ' << std::setw(12) << gc
-		      << ' ' << std::setw(12) << fcp
-		      << ' ' << std::setw(12) << gcp
+	    std::cout << ' ' << std::setw(16) << rho
+		      << ' ' << std::setw(16) << fc
+		      << ' ' << std::setw(16) << gc
+		      << ' ' << std::setw(16) << fcp
+		      << ' ' << std::setw(16) << gcp
 		      << ' ' << std::setw(4) << ifail
 		      << '\n';
 	  }
