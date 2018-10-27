@@ -887,7 +887,7 @@ test_falling_factorial: wrappers_debug laboratories/gamma_functions/test_falling
 	$(CXX17) -I. -Iwrappers -o test_falling_factorial laboratories/gamma_functions/test_falling_factorial.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 test_fermi_dirac: wrappers_debug laboratories/zeta_functions/test_fermi_dirac.cpp
-	$(CXX17) -I. -Iwrappers -o laboratories/zeta_functions/test_fermi_dirac test_fermi_dirac.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+	$(CXX17) -I. -Iwrappers -o test_fermi_dirac laboratories/zeta_functions/test_fermi_dirac.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
 test_fibonacci: wrappers_debug laboratories/test_fibonacci.cpp
 	$(CXX17) -I. -Iwrappers -o test_fibonacci laboratories/test_fibonacci.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
