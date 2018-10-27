@@ -790,8 +790,8 @@ test_binet: laboratories/gamma_functions/test_binet.cpp
 test_binet_float: laboratories/gamma_functions/test_binet_float.cpp
 	$(CXX17) -I. -o test_binet_float laboratories/gamma_functions/test_binet_float.cpp -lquadmath
 
-test_bose_einstein: test_bose_einstein.cpp
-	$(CXX17) -I. -o test_bose_einstein test_bose_einstein.cpp -lquadmath
+test_bose_einstein: laboratories/zeta_functions/test_bose_einstein.cpp
+	$(CXX17) -I. -o test_bose_einstein laboratories/zeta_functions/test_bose_einstein.cpp -lquadmath
 
 test_charlier: laboratories/orthogonal_polynomials/test_charlier.cpp
 	$(CXX17) -I. -Iwrappers -o test_charlier laboratories/orthogonal_polynomials/test_charlier.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
@@ -805,8 +805,8 @@ test_chebyshev_trig: laboratories/orthogonal_polynomials/test_chebyshev_trig.cpp
 test_chebyshev_trig_pi: laboratories/orthogonal_polynomials/test_chebyshev_trig_pi.cpp
 	$(CXX17) -I. -o test_chebyshev_trig_pi laboratories/orthogonal_polynomials/test_chebyshev_trig_pi.cpp -lquadmath
 
-test_clausen: wrappers_debug test_clausen.cpp
-	$(CXX17) -I. -Iwrappers -o test_clausen test_clausen.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+test_clausen: wrappers_debug laboratories/zeta_functions/test_clausen.cpp
+	$(CXX17) -I. -Iwrappers -o test_clausen laboratories/zeta_functions/test_clausen.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
 test_cmath: test_cmath.cpp
 	$(CXX) -I. -o test_cmath test_cmath.cpp -lquadmath
@@ -886,11 +886,11 @@ test_faddeeva: wrappers_debug laboratories/error_functions/test_faddeeva.cpp
 test_falling_factorial: wrappers_debug laboratories/gamma_functions/test_falling_factorial.cpp
 	$(CXX17) -I. -Iwrappers -o test_falling_factorial laboratories/gamma_functions/test_falling_factorial.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_fermi_dirac: wrappers_debug test_fermi_dirac.cpp
-	$(CXX17) -I. -Iwrappers -o test_fermi_dirac test_fermi_dirac.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+test_fermi_dirac: wrappers_debug laboratories/zeta_functions/test_fermi_dirac.cpp
+	$(CXX17) -I. -Iwrappers -o laboratories/zeta_functions/test_fermi_dirac test_fermi_dirac.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-test_fibonacci: wrappers_debug test_fibonacci.cpp
-	$(CXX17) -I. -Iwrappers -o test_fibonacci test_fibonacci.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+test_fibonacci: wrappers_debug laboratories/test_fibonacci.cpp
+	$(CXX17) -I. -Iwrappers -o test_fibonacci laboratories/test_fibonacci.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
 test_float128: test_float128.cpp
 	$(CXX17) -I. -o test_float128 test_float128.cpp -lquadmath
