@@ -6,8 +6,8 @@ g++ -std=c++17 coulfg.cpp
 #include <cmath>
 
 void
-JWKB(double XX, double ETA1, double XL,
-     double& FJWKB, double& GJWKB, int& IEXP);
+jwkb(double xx, double eta1, double xl,
+     double& fjwkb, double& gjwkb, int& iexp);
 
 struct steed_info
 {
@@ -19,14 +19,9 @@ struct steed_info
 };
 
 /**
- *  REVISED COULOMB WAVEFUNCTION PROGRAM USING STEED'S METHOD
+ *  Compute the Coulomb wavefunction program using Steed's method.
  *
- *  A. R. BARNETT           MANCHESTER  MARCH   1981
- *
- *  ORIGINAL PROGRAM 'RCWFN'      IN    CPC  8 (1974) 377-395
- *                 + 'RCWFF'      IN    CPC 11 (1976) 141-142
- *  FULL DESCRIPTION OF ALGORITHM IN    CPC 21 (1981) 297-314
- *  THIS VERSION WRITTEN UP       IN    CPC XX (1982) YYY-ZZZ
+ *  A. R. Barnett           Manchester  March   1981
  *
  *  COULFG RETURNS F,G,F',G', FOR REAL XX>0,REAL ETA1 (INCLUDING 0),
  *   AND REAL LAMBDA(XLMIN) > -1 FOR INTEGER-SPACED LAMBDA VALUES
@@ -54,352 +49,352 @@ struct steed_info
  *   REASSIGN DSQRT=SQRT ETC.  SEE TEXT FOR COMPLEX ARITHMETIC VERSION
  */
 void
-coulfg(double XX,double ETA1,double XLMIN,double XLMAX,
-       double (&FC)[100], double (&GC)[100], double (&FCP)[100], double (&GCP)[100],
-       int MODE1, int KFN, int& IFAIL, steed_info& steed)
+coulfg(double xx,double eta1,double xlmin,double xlmax,
+       double (&fc)[100], double (&gc)[100], double (&fcp)[100], double (&gcp)[100],
+       int mode1, int kfn, int& ifail, steed_info& steed)
 {
-      bool ETANE0, XLTURN;
+      bool etane0, xlturn;
 
-      constexpr double ZERO = 0.0;
-      constexpr double ONE = 1.0;
-      constexpr double TWO = 2.0;
-      constexpr double TEN2 = 1.0e2;
-      constexpr double ABORT = 2.0e4;
-      constexpr double HALF = 0.5;
-      constexpr double TM30 = 1.0e-30;
+      constexpr double zero = 0.0;
+      constexpr double one = 1.0;
+      constexpr double two = 2.0;
+      constexpr double ten2 = 1.0e2;
+      constexpr double abort = 2.0e4;
+      constexpr double half = 0.5;
+      constexpr double tm30 = 1.0e-30;
 
       // This constant is sqrt(two/pi).
-      constexpr double RT2EPI = 0.79788'45608'02865;
+      constexpr double rt2epi = 0.79788'45608'02865;
 
-      double ACCH, ACC4, ACC;
-      double X, ETA, XLM, FJWKB, GJWKB, E2MM1, DELL, XLL;
-      double XL, XI, WI, W, TK, TA, SL, RL, P, Q, PX, PK1, PK;
-      double GCL1, GPL, GAM, FPL, FCM, FCL, FCL1, F, EL, EK;
-      double DR, DP, DQ, DI, DF, D, A, AR, AI, B, BR, BI, C;
-      double ALPHA, BETA, GCL;
-      int MAXL, L, L1, LXTRA, LP;
+      double acch, acc4, acc;
+      double x, eta, xlm, fjwkb, gjwkb, e2mm1, dell, xll;
+      double xl, xi, wi, w, tk, ta, sl, rl, p, q, px, pk1, pk;
+      double gcl1, gpl, gam, fpl, fcm, fcl, fcl1, f, el, ek;
+      double dr, dp, dq, di, df, d, a, ar, ai, b, br, bi, c;
+      double alpha, beta, gcl;
+      int maxl, l, l1, lxtra, lp;
 
-      // Change accur to suit machine and precision required
-      double ACCUR = std::numeric_limits<double>::epsilon();
-      int MODE = 1;
-      if (MODE1 == 2 || MODE1 == 3)
-        MODE = MODE1;
-      IFAIL = 0;
+      // change accur to suit machine and precision required
+      double accur = std::numeric_limits<double>::epsilon();
+      int mode = 1;
+      if (mode1 == 2 || mode1 == 3)
+        mode = mode1;
+      ifail = 0;
       steed.iexp = 1;
       steed.npq = 0;
-      ETA = ETA1;
-      GJWKB = ZERO;
-      steed.paccq = ONE;
-      if (KFN != 0)
-        ETA = ZERO;
-      ETANE0 = ETA != ZERO;
-      ACC = ACCUR;
-      ACC4 = ACC * TEN2 * TEN2;
-      ACCH = std::sqrt(ACC);
+      eta = eta1;
+      gjwkb = zero;
+      steed.paccq = one;
+      if (kfn != 0)
+        eta = zero;
+      etane0 = eta != zero;
+      acc = accur;
+      acc4 = acc * ten2 * ten2;
+      acch = std::sqrt(acc);
       // Test range of xx, exit if <= std::sqrt(accur) or if negative
-      if (XX <= ACCH)
+      if (xx <= acch)
         goto _100;
-      X = XX;
-      XLM = XLMIN;
-      if (KFN == 2)
-        XLM = XLM - HALF;
-      if (XLM <= -ONE || XLMAX < XLMIN)
+      x = xx;
+      xlm = xlmin;
+      if (kfn == 2)
+        xlm = xlm - half;
+      if (xlm <= -one || xlmax < xlmin)
         goto _105;
-      E2MM1 = ETA * ETA + XLM * XLM + XLM;
-      XLTURN = X * (X - TWO * ETA) < XLM * XLM + XLM;
-      DELL = XLMAX - XLMIN + ACC;
-      if (std::abs(std::fmod(DELL, ONE)) > ACC)
+      e2mm1 = eta * eta + xlm * xlm + xlm;
+      xlturn = x * (x - two * eta) < xlm * xlm + xlm;
+      dell = xlmax - xlmin + acc;
+      if (std::abs(std::fmod(dell, one)) > acc)
         {
-	  ;//WRITE(6,2040)XLMAX,XLMIN,DELL;
+	  ;//write(6,2040)xlmax,xlmin,dell;
 	}
-      // LXTRA is number of additional lambda values to be computed.
-      LXTRA = int(DELL);
-      // XLL is max lambda value, or 0.5 smaller for J, Y Bessels.
-      XLL = XLM + double(LXTRA);
-      // Determine starting array element [m1] from xlmin
-      steed.m1 = std::max(int(XLMIN + ACC), 0) + 1;
-      L1 = steed.m1 + LXTRA;
+      // lxtra is number of additional lambda values to be computed.
+      lxtra = int(dell);
+      // xll is max lambda value, or 0.5 smaller for j, y bessels.
+      xll = xlm + double(lxtra);
+      // determine starting array element [m1] from xlmin
+      steed.m1 = std::max(int(xlmin + acc), 0) + 1;
+      l1 = steed.m1 + lxtra;
 
       // Evaluate CF1 = f = F'(XL,ETA,X)/F(XL,ETA,X).
-      XI = ONE / X;
-      FCL = ONE;
-      PK = XLL + ONE;
-      PX = PK + ABORT;
+      xi = one / x;
+      fcl = one;
+      pk = xll + one;
+      px = pk + abort;
       while (true)
       {
-        EK = ETA / PK;
-        F = (EK + PK * XI) * FCL + (FCL - ONE) * XI;
-        PK1 = PK + ONE;
+        ek = eta / pk;
+        f = (ek + pk * xi) * fcl + (fcl - one) * xi;
+        pk1 = pk + one;
         // Test ensures B1 != ZERO for negative eta; Fixup is exact.
-        if (std::abs(ETA * X + PK * PK1) > ACC)
+        if (std::abs(eta * x + pk * pk1) > acc)
           break;
-        FCL = (ONE + EK * EK) / (ONE + (ETA / PK1)*(ETA / PK1));
-        PK = TWO + PK;
+        fcl = (one + ek * ek) / (one + (eta / pk1)*(eta / pk1));
+        pk = two + pk;
       }
-      D = ONE / ((PK + PK1) * (XI + EK / PK1));
-      DF = -FCL * (ONE + EK * EK) * D;
-      if (FCL != ONE)
-        FCL = -ONE;
-      if (D < ZERO)
-        FCL = -FCL;
-      F = F + DF;
+      d = one / ((pk + pk1) * (xi + ek / pk1));
+      df = -fcl * (one + ek * ek) * d;
+      if (fcl != one)
+        fcl = -one;
+      if (d < zero)
+        fcl = -fcl;
+      f += df;
 
       // Begin CF1 loop on pk = k = lambda + 1
-      P = ONE;
-      while (std::abs(DF) >= ACC * std::abs(F))
+      p = one;
+      while (std::abs(df) >= acc * std::abs(f))
       {
-        PK = PK1;
-        PK1 = PK1 + ONE;
-        EK = ETA / PK;
-        TK = (PK + PK1) * (XI + EK / PK1);
-        D = TK - D * (ONE + EK * EK);
-        if (std::abs(D) <= ACCH)
+        pk = pk1;
+        pk1 = pk1 + one;
+        ek = eta / pk;
+        tk = (pk + pk1) * (xi + ek / pk1);
+        d = tk - d * (one + ek * ek);
+        if (std::abs(d) <= acch)
         {
-          //WRITE (6,1000) D, DF, ACCH, PK, EK, ETA, X;
-          P = P + ONE;
-          if (P > TWO)
+          //write (6,1000) d, df, acch, pk, ek, eta, x;
+          p = p + one;
+          if (p > two)
             goto _110;
         }
-        D = ONE / D;
-        if (D < ZERO)
-          FCL = -FCL;
-        DF = DF * (D * TK - ONE);
-        F = F + DF;
-        if(PK > PX)
+        d = one / d;
+        if (d < zero)
+          fcl = -fcl;
+        df = df * (d * tk - one);
+        f = f + df;
+        if(pk > px)
           goto _110;
       }
 
-      steed.nfp = PK - XLL - 1;
-      if (LXTRA > 0)
+      steed.nfp = pk - xll - 1;
+      if (lxtra > 0)
       {
         // Downward recurrence to lambda = xlm. array gc,if present,stores rl
-        FCL *= TM30;
-        FPL = FCL * F;
-        if (MODE == 1)
-          FCP[L1] = FPL;
-        FC[L1] = FCL;
-        XL = XLL;
-        RL = ONE;
-        EL = ZERO;
-        for (LP = 1; LP <= LXTRA; ++LP)
+        fcl *= tm30;
+        fpl = fcl * f;
+        if (mode == 1)
+          fcp[l1] = fpl;
+        fc[l1] = fcl;
+        xl = xll;
+        rl = one;
+        el = zero;
+        for (lp = 1; lp <= lxtra; ++lp)
         {
-          if (ETANE0)
-            EL = ETA / XL;
-          if (ETANE0)
-            RL = std::sqrt(ONE + EL * EL);
-          SL = EL + XL * XI;
-          L = L1 - LP;
-          FCL1 = (FCL * SL + FPL) / RL;
-          FPL = FCL1 * SL - FCL * RL;
-          FCL = FCL1;
-          FC[L] = FCL;
-          if (MODE == 1)
-            FCP[L]  = FPL;
-          if (MODE != 3 && ETANE0)
-            GC[L + 1] = RL;
-          XL -= ONE;
+          if (etane0)
+            el = eta / xl;
+          if (etane0)
+            rl = std::sqrt(one + el * el);
+          sl = el + xl * xi;
+          l = l1 - lp;
+          fcl1 = (fcl * sl + fpl) / rl;
+          fpl = fcl1 * sl - fcl * rl;
+          fcl = fcl1;
+          fc[l] = fcl;
+          if (mode == 1)
+            fcp[l]  = fpl;
+          if (mode != 3 && etane0)
+            gc[l + 1] = rl;
+          xl -= one;
         }
-        if (FCL == ZERO)
-          FCL = ACC;
-        F = FPL / FCL;
+        if (fcl == zero)
+          fcl = acc;
+        f = fpl / fcl;
       }
       // Now we have reached lambda = xlmin = xlm
       // Evaluate CF2 = p + i.q  again using Steed's algorithm
       // See text for compact complex code for sp cdc or non-ANSI IBM
-      if (XLTURN)
-        JWKB(X, ETA, std::max(XLM, ZERO), FJWKB, GJWKB, steed.iexp);
-      if (steed.iexp > 1 || GJWKB > ONE / (ACCH * TEN2))
+      if (xlturn)
+        jwkb(x, eta, std::max(xlm, zero), fjwkb, gjwkb, steed.iexp);
+      if (steed.iexp > 1 || gjwkb > one / (acch * ten2))
       {
         // Arrive here if G(XLM) > 10**6 or IEXP > 250 + XLTURN = true
-        W = FJWKB;
-        GAM = GJWKB * W;
-        P = F;
-        Q = ONE;
+        w = fjwkb;
+        gam = gjwkb * w;
+        p = f;
+        q = one;
       }
       else
       {
-        XLTURN = false;
-        TA = TWO * ABORT;
-        PK = ZERO;
-        WI = ETA + ETA;
-        P = ZERO;
-        Q = ONE - ETA * XI;
-        AR = -E2MM1;
-        AI = ETA;
-        BR = TWO * (X - ETA);
-        BI = TWO;
-        DR = BR / (BR * BR + BI * BI);
-        DI = -BI / (BR * BR + BI * BI);
-        DP = -XI * (AR * DI + AI * DR);
-        DQ = XI * (AR * DR - AI * DI);
-        while (std::abs(DP) + std::abs(DQ) >= ACC * (std::abs(P) + std::abs(Q)))
+        xlturn = false;
+        ta = two * abort;
+        pk = zero;
+        wi = eta + eta;
+        p = zero;
+        q = one - eta * xi;
+        ar = -e2mm1;
+        ai = eta;
+        br = two * (x - eta);
+        bi = two;
+        dr = br / (br * br + bi * bi);
+        di = -bi / (br * br + bi * bi);
+        dp = -xi * (ar * di + ai * dr);
+        dq = xi * (ar * dr - ai * di);
+        while (std::abs(dp) + std::abs(dq) >= acc * (std::abs(p) + std::abs(q)))
         {
-          P = P + DP;
-          Q = Q + DQ;
-          PK = PK + TWO;
-          AR = AR + PK;
-          AI = AI + WI;
-          BI = BI + TWO;
-          D = AR * DR - AI * DI + BR;
-          DI = AI * DR + AR * DI + BI;
-          C = ONE / (D * D + DI * DI);
-          DR = C * D;
-          DI = -C * DI;
-          A = BR * DR - BI * DI - ONE;
-          B = BI * DR + BR * DI;
-          C = DP * A - DQ * B;
-          DQ = DP * B + DQ * A;
-          DP = C;
-          if (PK > TA)
+          p += dp;
+          q += dq;
+          pk += two;
+          ar += pk;
+          ai += wi;
+          bi += two;
+          d = ar * dr - ai * di + br;
+          di = ai * dr + ar * di + bi;
+          c = one / (d * d + di * di);
+          dr = c * d;
+          di = -c * di;
+          a = br * dr - bi * di - one;
+          b = bi * dr + br * di;
+          c = dp * a - dq * b;
+          dq = dp * b + dq * a;
+          dp = c;
+          if (pk > ta)
             goto _120;
         }
         
-        steed.npq = PK / TWO;
-        steed.paccq = HALF * ACC / std::min(std::abs(Q), ONE);
-        if (std::abs(P) > std::abs(Q))
-          steed.paccq = steed.paccq * std::abs(P);
+        steed.npq = pk / two;
+        steed.paccq = half * acc / std::min(std::abs(q), one);
+        if (std::abs(p) > std::abs(q))
+          steed.paccq = steed.paccq * std::abs(p);
 
         // Solve for fcm = f at lambda = xlm, then find norm factor w = w / fcm.
-        GAM = (F - P) / Q;
-        if (Q <= ACC4 * std::abs(P))
+        gam = (f - p) / q;
+        if (q <= acc4 * std::abs(p))
           goto _130;
-        W = ONE / std::sqrt((F - P) * GAM + Q);
+        w = one / std::sqrt((f - p) * gam + q);
       }
       // Normalise for spherical or cylindrical Bessel functions
-      ALPHA = ZERO;
-      if (KFN == 1)
-        ALPHA = XI;
-      if (KFN == 2)
-        ALPHA = XI * HALF;
+      alpha = zero;
+      if (kfn == 1)
+        alpha = xi;
+      if (kfn == 2)
+        alpha = xi * half;
 
-      BETA  = ONE;
-      if (KFN == 1)
-        BETA  = XI;
-      if (KFN == 2)
-        BETA = std::sqrt(XI) * RT2EPI;
+      beta  = one;
+      if (kfn == 1)
+        beta  = xi;
+      if (kfn == 2)
+        beta = std::sqrt(xi) * rt2epi;
 
-      FCM = std::copysign(W, FCL) * BETA;
-      FC[steed.m1] = FCM;
-      if (MODE == 3)
+      fcm = std::copysign(w, fcl) * beta;
+      fc[steed.m1] = fcm;
+      if (mode == 3)
         goto _11;
-      if (!XLTURN)
-        GCL = FCM * GAM;
-      if (XLTURN)
-        GCL = GJWKB * BETA;
-      if (KFN != 0)
-        GCL = -GCL;
-      GC[steed.m1] = GCL;
-      GPL = GCL * (P - Q / GAM) - ALPHA * GCL;
-      if (MODE == 2)
+      if (!xlturn)
+        gcl = fcm * gam;
+      if (xlturn)
+        gcl = gjwkb * beta;
+      if (kfn != 0)
+        gcl = -gcl;
+      gc[steed.m1] = gcl;
+      gpl = gcl * (p - q / gam) - alpha * gcl;
+      if (mode == 2)
         goto _11;
-      GCP[steed.m1] = GPL;
-      FCP[steed.m1] = FCM * (F - ALPHA);
- _11: if (LXTRA == 0)
+      gcp[steed.m1] = gpl;
+      fcp[steed.m1] = fcm * (f - alpha);
+ _11: if (lxtra == 0)
         return;
 
       // Upward recurrence from GC[m1],GCP[m1] stored value is rl
       // Renormalise FC,FCP at each lambda and correct regular derivative
       // XL = XLM HERE  AND RL = ONE , EL = ZERO FOR BESSELS
-      W = BETA * W / std::abs(FCL);
-      MAXL = L1 - 1;
-      for (L = steed.m1; L <= MAXL; ++L)
+      w = beta * w / std::abs(fcl);
+      maxl = l1 - 1;
+      for (l = steed.m1; l <= maxl; ++l)
       {
-        if (MODE == 3)
+        if (mode == 3)
           goto _12;
-        XL += ONE;
-        if (ETANE0)
-          EL = ETA / XL;
-        if (ETANE0)
-          RL = GC[L + 1];
-        SL = EL + XL * XI;
-        GCL1 = ((SL - ALPHA) * GCL - GPL) / RL;
-        GPL = RL * GCL - (SL + ALPHA) * GCL1;
-        GCL = GCL1;
-        GC[L + 1] = GCL1;
-        if (MODE == 2)
+        xl += one;
+        if (etane0)
+          el = eta / xl;
+        if (etane0)
+          rl = gc[l + 1];
+        sl = el + xl * xi;
+        gcl1 = ((sl - alpha) * gcl - gpl) / rl;
+        gpl = rl * gcl - (sl + alpha) * gcl1;
+        gcl = gcl1;
+        gc[l + 1] = gcl1;
+        if (mode == 2)
           goto _12;
-        GCP[L + 1] = GPL;
-        FCP[L + 1] = W * (FCP[L + 1] - ALPHA * FC[L + 1]);
- _12:   FC[L + 1] = W * FC[L + 1];
+        gcp[l + 1] = gpl;
+        fcp[l + 1] = w * (fcp[l + 1] - alpha * fc[l + 1]);
+ _12:   fc[l + 1] = w * fc[l + 1];
       }
       return;
 
-//_1000 FORMAT(/' CF1 ACCURACY LOSS& D,DF,ACCH,K,ETA/K,ETA,X = ',
-//      1P,7E9.2/)
+//_1000 format(/' cf1 accuracy loss& d,df,acch,k,eta/k,eta,x = ',
+//      1p,7e9.2/)
 
       // Error messages
 
- _100: IFAIL = -1;
-//      WRITE(6,2000) XX,ACCH;
-//_2000 FORMAT(' FOR XX = ',1PE12.3,' TRY SMALL-X  SOLUTIONS',
-//      ' OR X NEGATIVE'/ ,' SQUARE ROOT ACCURACY PARAMETER =  ',E12.3/)
+ _100: ifail = -1;
+//      write(6,2000) xx, acch;
+//_2000 format(' for xx = ',1pe12.3,' try small-x  solutions',
+//      ' or x negative'/ ,' square root accuracy parameter =  ',e12.3/)
       return;
 
- _105: IFAIL = -2;
-//      WRITE (6,2005) XLMAX,XLMIN,XLM;
-//_2005 FORMAT(/' PROBLEM WITH INPUT ORDER VALUES&XLMAX,XLMIN,XLM = ',
-//      1P,3E15.6/)
+ _105: ifail = -2;
+//      write (6,2005) xlmax, xlmin, xlm;
+//_2005 format(/' problem with input order values&xlmax,xlmin,xlm = ',
+//      1p,3e15.6/)
       return;
 
- _110: IFAIL =  1;
-//      WRITE (6,2010) ABORT, F,  DF, PK, PX, ACC;
-//_2010 FORMAT(' CF1 HAS FAILED TO CONVERGE AFTER ',F10.0,' ITERATIONS',/
-//      ' F,DF,PK,PX,ACCUR =  ',1P,5E12.3//)
+ _110: ifail =  1;
+//      write (6,2010) abort, f,  df, pk, px, acc;
+//_2010 format(' cf1 has failed to converge after ',f10.0,' iterations',/
+//      ' f,df,pk,px,accur =  ',1p,5e12.3//)
       return;
 
- _120: IFAIL =  2;
-//      WRITE (6,2020) ABORT,P,Q,DP,DQ,ACC;
-//_2020 FORMAT(' CF2 HAS FAILED TO CONVERGE AFTER ',F7.0,' ITERATIONS',/
-//      ' P,Q,DP,DQ,ACCUR =  ',1P,4E17.7,E12.3//)
+ _120: ifail =  2;
+//      write (6,2020) abort, p, q, dp, dq, acc;
+//_2020 format(' cf2 has failed to converge after ',f7.0,' iterations',/
+//      ' p,q,dp,dq,accur =  ',1p,4e17.7,e12.3//)
       return;
 
- _130: IFAIL =  3;
-//      WRITE (6,2030) P,Q,ACC,DELL,LXTRA,steed.m1;
-//_2030 FORMAT(' FINAL Q<= std::abs(P)*ACC*10**4 , P,Q,ACC = ',1P,3E12.3,4X,
-//      ' DELL,LXTRA,steed.m1 = ',E12.3,2I5 /)
-//_2040 FORMAT(' XLMAX - XLMIN = DELL NOT AN INTEGER ',1P,3E20.10/)
+ _130: ifail =  3;
+//      write (6,2030) p, q, acc, dell, lxtra, steed.m1;
+//_2030 format(' final q<= std::abs(p)*acc*10**4 , p,q,acc = ',1p,3e12.3,4x,
+//      ' dell,lxtra,steed.m1 = ',e12.3,2i5 /)
+//_2040 format(' xlmax - xlmin = dell not an integer ',1p,3e20.10/)
 
       return;
 }
 
 
-// COMPUTES JWKB APPROXIMATIONS TO COULOMB FUNCTIONS FOR XL >= 0
-// AS MODIFIED BY BIEDENHARN ET AL. PHYS REV 97 (1955) 542-554
+// Computes JWKB approximations to Coulomb functions for xl >= 0
+// as modified by Biedenharn et al. Phys Rev 97 (1955) 542-554
 void
-JWKB(double XX, double ETA1, double XL,
-     double& FJWKB, double& GJWKB, int& IEXP)
+jwkb(double xx, double eta1, double xl,
+     double& fjwkb, double& gjwkb, int& iexp)
 {
-  constexpr double ZERO = 0.0;
-  constexpr double HALF = 0.5;
-  constexpr double ONE = 1.0;
-  constexpr double SIX = 6.0;
-  constexpr double TEN = 10.0;
-  constexpr double RL35 = 35.0;
-  constexpr double ALOGE = 0.43429'45;
+  constexpr double zero = 0.0;
+  constexpr double half = 0.5;
+  constexpr double one = 1.0;
+  constexpr double six = 6.0;
+  constexpr double ten = 10.0;
+  constexpr double rl35 = 35.0;
+  constexpr double aloge = 0.43429'45;
 
-  auto X = XX;
-  auto ETA = ETA1;
-  auto GH2 = X * (ETA + ETA - X);
-  auto XLL1 = std::max(XL * XL + XL, ZERO);
-  if (GH2 + XLL1 <= ZERO)
+  auto x = xx;
+  auto eta = eta1;
+  auto gh2 = x * (eta + eta - x);
+  auto xll1 = std::max(xl * xl + xl, zero);
+  if (gh2 + xll1 <= zero)
     return;
-  auto HLL = XLL1 + SIX / RL35;
-  auto HL = std::sqrt(HLL);
-  auto SL = ETA / HL + HL / X;
-  auto RL2 = ONE + ETA * ETA / HLL;
-  auto GH = std::sqrt(GH2 + HLL) / X;
-  auto PHI = X * GH - HALF * (HL * std::log((GH + SL)*(GH + SL) / RL2) - std::log(GH));
-  if (ETA != ZERO)
-    PHI -= ETA * std::atan2(X * GH, X - ETA);
-  auto PHI10 = -PHI * ALOGE;
-  IEXP = int(PHI10);
-  if (IEXP > 250)
-    GJWKB = std::pow(TEN, PHI10 - double(IEXP));
-  if (IEXP <= 250)
-    GJWKB = std::exp(-PHI);
-  if (IEXP <= 250)
-    IEXP = 0;
-  FJWKB = HALF / (GH * GJWKB);
+  auto hll = xll1 + six / rl35;
+  auto hl = std::sqrt(hll);
+  auto sl = eta / hl + hl / x;
+  auto rl2 = one + eta * eta / hll;
+  auto gh = std::sqrt(gh2 + hll) / x;
+  auto phi = x * gh - half * (hl * std::log((gh + sl)*(gh + sl) / rl2) - std::log(gh));
+  if (eta != zero)
+    phi -= eta * std::atan2(x * gh, x - eta);
+  auto phi10 = -phi * aloge;
+  iexp = int(phi10);
+  if (iexp > 250)
+    gjwkb = std::pow(ten, phi10 - double(iexp));
+  if (iexp <= 250)
+    gjwkb = std::exp(-phi);
+  if (iexp <= 250)
+    iexp = 0;
+  fjwkb = half / (gh * gjwkb);
 
   return;
 }
