@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_nfact_zetanp1 build_nfact_zetanp1.cpp -lquadmath -lmpfr
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./build_nfact_zetanp1 > build_nfact_zetanp1.txt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_nfact_zetanp1 build_nfact_zetanp1.cpp -lquadmath -lmpfr
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./build_nfact_zetanp1 > build_nfact_zetanp1.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_nfact_zetanp1 build_nfact_zetanp1.cpp -lquadmath -lmpfr
 */

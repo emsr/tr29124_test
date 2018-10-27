@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_ratio test_gamma_ratio.cpp -lquadmath -Lwrappers/debug -lwrap_boost
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_ratio test_gamma_ratio.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_gamma_ratio > test_gamma_ratio.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_ratio test_gamma_ratio.cpp -lquadmath -Lwrappers/debug -lwrap_boost

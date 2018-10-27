@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_leffler test_mittag_leffler.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_leffler test_mittag_leffler.cpp -lquadmath
 ./test_mittag_leffler > test_mittag_leffler.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_leffler test_mittag_leffler.cpp -lquadmath
@@ -15,7 +15,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_le
 #include <bits/float128_io.h>
 #include <bits/specfun.h>
 
-#include "quadrature/integration.h"
+#include <ext/integration.h>
 
   /* Monotone integrand for the Mittag-Leffler function. */
   template<typename _Tp>

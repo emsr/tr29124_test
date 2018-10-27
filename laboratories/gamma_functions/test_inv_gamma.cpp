@@ -7,7 +7,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_inv_gamma
 #include <limits>
 
 #undef STANDALONE
-#include "test_inv_erf.cpp"
+#include "../error_functions/test_inv_erf.cpp"
 
 // A fake Binet function.
 template<typename _Tp>

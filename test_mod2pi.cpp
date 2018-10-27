@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mod2pi test_mod2pi.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mod2pi test_mod2pi.cpp -lquadmath
 ./test_mod2pi > test_mod2pi.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mod2pi test_mod2pi.cpp -lquadmath

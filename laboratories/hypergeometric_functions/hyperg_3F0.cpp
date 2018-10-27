@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o hyperg_3F0 hyperg_3F0.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./hyperg_3F0 > hyperg_3F0.txt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o hyperg_3F0 hyperg_3F0.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./hyperg_3F0 > hyperg_3F0.txt
 */
 
 #include <limits>

@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_expint test_expint.cpp -lquadmath -Lwrappers/debug -lwrap_boost
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_expint test_expint.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_expint > test_expint.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_expint test_expint.cpp -lquadmath -Lwrappers/debug -lwrap_boost

@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_wright_omega test_wright_omega.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_wright_omega test_wright_omega.cpp -lquadmath -lmpfr
 ./test_wright_omega > test_wright_omega.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_wright_omega test_wright_omega.cpp -lquadmath -lmpfr

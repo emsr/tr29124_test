@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_steed_continued_fraction test_steed_continued_fraction.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_steed_continued_fraction test_steed_continued_fraction.cpp -lquadmath
 ./test_steed_continued_fraction > test_steed_continued_fraction.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -I. -o test_steed_continued_fraction test_steed_continued_fraction.cpp -lquadmath

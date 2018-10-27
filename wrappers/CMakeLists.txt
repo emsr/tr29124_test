@@ -5,11 +5,7 @@ project(SpecfunWrappers LANGUAGES CXX C Fortran)
 set(SpecfunWrappers_VERSION_MAJOR 1)
 set(SpecfunWrappers_VERSION_MINOR 0)
 
-if (EXISTS "$ENV{HOME}/bin_tr29124")
-	set(CMAKE_C_COMPILER "$ENV{HOME}/bin_tr29124/bin/gcc")
-	set(CMAKE_CXX_COMPILER "$ENV{HOME}/bin_tr29124/bin/g++")
-	set(CMAKE_Fortran_COMPILER "$ENV{HOME}/bin_tr29124/bin/gfortran")
-elseif (EXISTS "$ENV{HOME}/bin")
+if (EXISTS "$ENV{HOME}/bin")
 	set(CMAKE_C_COMPILER "$ENV{HOME}/bin/bin/gcc")
 	set(CMAKE_CXX_COMPILER "$ENV{HOME}/bin/bin/g++")
 	set(CMAKE_Fortran_COMPILER "$ENV{HOME}/bin/bin/gfortran")
@@ -24,7 +20,7 @@ else ()
 endif ()
 
 set(CMAKE_C_FLAGS "-std=c11 -Wall -Wextra -I$ENV{HOME}/tr29124_test")
-set(CMAKE_CXX_FLAGS "-std=c++17 -Wall -Wextra -Wno-deprecated-declarations -Wold-style-cast -Wno-psabi -I$ENV{HOME}/tr29124_test")
+set(CMAKE_CXX_FLAGS "-std=c++17 -Wall -Wextra -Wno-deprecated-declarations -Wold-style-cast -Wno-psabi -I$ENV{HOME}/tr29124_test/include -I$ENV{HOME}/tr29124_test/3rdparty")
 set(CMAKE_Fortran_FLAGS "-Wall -Wextra -I$ENV{HOME}/tr29124_test")
 
 add_library(wrap_boost SHARED
@@ -39,177 +35,177 @@ find_library(GFORTRAN_LIBRARY NAMES gfortran)
 add_library(wrap_gsl SHARED
             wrap_gsl.h
             wrap_gsl.cpp
-	    ../gslextras/Fresnel/fresnel.c
-	    ../gslextras/Fresnel/fresnel.h
-	    ../gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c
-	    ../gslextras/Hermite/gsl_sf_hermite.c
+	    ../3rdparty/gslextras/Fresnel/fresnel.c
+	    ../3rdparty/gslextras/Fresnel/fresnel.h
+	    ../3rdparty/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c
+	    ../3rdparty/gslextras/Hermite/gsl_sf_hermite.c
 	   )
 target_link_libraries(wrap_gsl gsl gslcblas)
 
 add_library(wrap_cephes SHARED
             wrap_cephes.h
             wrap_cephes.cpp
-	    ../cephes/bessel/cephes_bessel.h
-	    ../cephes/bessel/mconf.h
-	    ../cephes/bessel/airy.c
-	    ../cephes/bessel/hyp2f1.c
-	    ../cephes/bessel/hyperg.c
-	    ../cephes/bessel/i0.c
-	    ../cephes/bessel/i1.c
-	    ../cephes/bessel/iv.c
-	    ../cephes/bessel/j0.c
-	    ../cephes/bessel/j1.c
-	    ../cephes/bessel/jn.c
-	    ../cephes/bessel/jv.c
-	    ../cephes/bessel/k0.c
-	    ../cephes/bessel/k1.c
-	    ../cephes/bessel/kn.c
-	    ../cephes/bessel/psi.c
-	    ../cephes/bessel/struve.c
-	    ../cephes/bessel/yn.c
-	    ../cephes/cmath/cephes_cmath.h
-	    ../cephes/cmath/mconf.h
-	    ../cephes/cmath/acosh.c
-	    ../cephes/cmath/asin.c
-	    ../cephes/cmath/asinh.c
-	    ../cephes/cmath/atan.c
-	    ../cephes/cmath/atanh.c
-	    ../cephes/cmath/cbrt.c
-	    ../cephes/cmath/const.c
-	    ../cephes/cmath/cosh.c
-	    ../cephes/cmath/exp.c
-	    ../cephes/cmath/exp10.c
-	    ../cephes/cmath/exp2.c
-	    ../cephes/cmath/fabs.c
-	    ../cephes/cmath/floor.c
-	    ../cephes/cmath/isnan.c
-	    ../cephes/cmath/log.c
-	    ../cephes/cmath/log10.c
-	    ../cephes/cmath/log2.c
-	    ../cephes/cmath/pow.c
-	    ../cephes/cmath/powi.c
-	    ../cephes/cmath/round.c
-	    ../cephes/cmath/setprec.c
-	    ../cephes/cmath/sin.c
-	    ../cephes/cmath/sincos.c
-	    ../cephes/cmath/sindg.c
-	    ../cephes/cmath/sinh.c
-	    ../cephes/cmath/sqrt.c
-	    ../cephes/cmath/tan.c
-	    ../cephes/cmath/tandg.c
-	    ../cephes/cmath/tanh.c
-	    ../cephes/cmath/unity.c
-	    ../cephes/cprob/cephes_cprob.h
-	    ../cephes/cprob/mconf.h
-	    ../cephes/cprob/bdtr.c
-	    ../cephes/cprob/btdtr.c
-	    ../cephes/cprob/chdtr.c
-	    ../cephes/cprob/drand.c
-	    ../cephes/cprob/expx2.c
-	    ../cephes/cprob/fdtr.c
-	    ../cephes/cprob/gamma.c
-	    ../cephes/cprob/gdtr.c
-	    ../cephes/cprob/igam.c
-	    ../cephes/cprob/igami.c
-	    ../cephes/cprob/incbet.c
-	    ../cephes/cprob/incbi.c
-	    ../cephes/cprob/kolmogorov.c
-	    ../cephes/cprob/nbdtr.c
-	    ../cephes/cprob/ndtr.c
-	    ../cephes/cprob/ndtri.c
-	    ../cephes/cprob/pdtr.c
-	    ../cephes/cprob/stdtr.c
-	    ../cephes/ellf/cephes_ellf.h
-	    ../cephes/ellf/mconf.h
-	    ../cephes/ellf/ellie.c
-	    ../cephes/ellf/ellik.c
-	    ../cephes/ellf/ellpe.c
-	    ../cephes/ellf/ellpj.c
-	    ../cephes/ellf/ellpk.c
-	    ../cephes/ldouble/cephes_ldouble.h
-	    ../cephes/ldouble/mconf.h
-	    ../cephes/ldouble/acoshl.c
-	    ../cephes/ldouble/asinl.c
-	    ../cephes/ldouble/asinhl.c
-	    ../cephes/ldouble/atanl.c
-	    ../cephes/ldouble/atanhl.c
-	    ../cephes/ldouble/bdtrl.c
-	    ../cephes/ldouble/btdtrl.c
-	    ../cephes/ldouble/cbrtl.c
-	    ../cephes/ldouble/coshl.c
-	    ../cephes/ldouble/econst.c
-	    ../cephes/ldouble/elliel.c
-	    ../cephes/ldouble/ellikl.c
-	    ../cephes/ldouble/ellpel.c
-	    ../cephes/ldouble/ellpjl.c
-	    ../cephes/ldouble/ellpkl.c
-	    ../cephes/ldouble/expl.c
-	    ../cephes/ldouble/expx2l.c
-	    ../cephes/ldouble/exp10l.c
-	    ../cephes/ldouble/exp2l.c
-	    ../cephes/ldouble/floorl.c
-	    ../cephes/ldouble/gammal.c
-	    ../cephes/ldouble/gdtrl.c
-	    ../cephes/ldouble/gelsl.c
-	    ../cephes/ldouble/ieee.c
-	    ../cephes/ldouble/igamil.c
-	    ../cephes/ldouble/igaml.c
-	    ../cephes/ldouble/incbetl.c
-	    ../cephes/ldouble/incbil.c
-	    ../cephes/ldouble/isnanl.c
-	    ../cephes/ldouble/j0l.c
-	    ../cephes/ldouble/j1l.c
-	    ../cephes/ldouble/jnl.c
-	    ../cephes/ldouble/logl.c
-	    ../cephes/ldouble/log10l.c
-	    ../cephes/ldouble/log2l.c
-	    ../cephes/ldouble/nbdtrl.c
-	    ../cephes/ldouble/ndtril.c
-	    ../cephes/ldouble/ndtrl.c
-	    ../cephes/ldouble/pdtrl.c
-	    ../cephes/ldouble/polevll.c
-	    ../cephes/ldouble/powl.c
-	    ../cephes/ldouble/powil.c
-	    ../cephes/ldouble/sinl.c
-	    ../cephes/ldouble/sinhl.c
-	    ../cephes/ldouble/sqrtl.c
-	    ../cephes/ldouble/stdtrl.c
-	    ../cephes/ldouble/tanl.c
-	    ../cephes/ldouble/tanhl.c
-	    ../cephes/ldouble/unityl.c
-	    ../cephes/ldouble/ynl.c
-	    ../cephes/misc/cephes_misc.h
-	    ../cephes/misc/mconf.h
-	    ../cephes/misc/beta.c
-	    ../cephes/misc/chbevl.c
-	    ../cephes/misc/dawsn.c
-	    ../cephes/misc/ei.c
-	    ../cephes/misc/expn.c
-	    ../cephes/misc/fac.c
-	    ../cephes/misc/fresnl.c
-	    ../cephes/misc/mtherr.c
-	    ../cephes/misc/planck.c
-	    ../cephes/misc/polevl.c
-	    ../cephes/misc/polylog.c
-	    ../cephes/misc/rgamma.c
-	    ../cephes/misc/shichi.c
-	    ../cephes/misc/sici.c
-	    ../cephes/misc/simpsn.c
-	    ../cephes/misc/spence.c
-	    ../cephes/misc/zeta.c
-	    ../cephes/misc/zetac.c
-	    ../cephes/polyn/cephes_polyn.h
-	    ../cephes/polyn/mconf.h
-	    ../cephes/polyn/euclid.c
-	    ../cephes/polyn/polmisc.c
-	    ../cephes/polyn/polrt.c
-	    ../cephes/polyn/polyn.c
-	    ../cephes/polyn/revers.c
-	    ../cephes/c9x-complex/cephes_cmplx.h
-	    ../cephes/c9x-complex/mconf.h
-	    ../cephes/c9x-complex/cmplx.c
-	    ../cephes/c9x-complex/cgamma.c
-	    ../cephes/c9x-complex/cpolylog.c
+	    ../3rdparty/cephes/bessel/cephes_bessel.h
+	    ../3rdparty/cephes/bessel/mconf.h
+	    ../3rdparty/cephes/bessel/airy.c
+	    ../3rdparty/cephes/bessel/hyp2f1.c
+	    ../3rdparty/cephes/bessel/hyperg.c
+	    ../3rdparty/cephes/bessel/i0.c
+	    ../3rdparty/cephes/bessel/i1.c
+	    ../3rdparty/cephes/bessel/iv.c
+	    ../3rdparty/cephes/bessel/j0.c
+	    ../3rdparty/cephes/bessel/j1.c
+	    ../3rdparty/cephes/bessel/jn.c
+	    ../3rdparty/cephes/bessel/jv.c
+	    ../3rdparty/cephes/bessel/k0.c
+	    ../3rdparty/cephes/bessel/k1.c
+	    ../3rdparty/cephes/bessel/kn.c
+	    ../3rdparty/cephes/bessel/psi.c
+	    ../3rdparty/cephes/bessel/struve.c
+	    ../3rdparty/cephes/bessel/yn.c
+	    ../3rdparty/cephes/cmath/cephes_cmath.h
+	    ../3rdparty/cephes/cmath/mconf.h
+	    ../3rdparty/cephes/cmath/acosh.c
+	    ../3rdparty/cephes/cmath/asin.c
+	    ../3rdparty/cephes/cmath/asinh.c
+	    ../3rdparty/cephes/cmath/atan.c
+	    ../3rdparty/cephes/cmath/atanh.c
+	    ../3rdparty/cephes/cmath/cbrt.c
+	    ../3rdparty/cephes/cmath/const.c
+	    ../3rdparty/cephes/cmath/cosh.c
+	    ../3rdparty/cephes/cmath/exp.c
+	    ../3rdparty/cephes/cmath/exp10.c
+	    ../3rdparty/cephes/cmath/exp2.c
+	    ../3rdparty/cephes/cmath/fabs.c
+	    ../3rdparty/cephes/cmath/floor.c
+	    ../3rdparty/cephes/cmath/isnan.c
+	    ../3rdparty/cephes/cmath/log.c
+	    ../3rdparty/cephes/cmath/log10.c
+	    ../3rdparty/cephes/cmath/log2.c
+	    ../3rdparty/cephes/cmath/pow.c
+	    ../3rdparty/cephes/cmath/powi.c
+	    ../3rdparty/cephes/cmath/round.c
+	    ../3rdparty/cephes/cmath/setprec.c
+	    ../3rdparty/cephes/cmath/sin.c
+	    ../3rdparty/cephes/cmath/sincos.c
+	    ../3rdparty/cephes/cmath/sindg.c
+	    ../3rdparty/cephes/cmath/sinh.c
+	    ../3rdparty/cephes/cmath/sqrt.c
+	    ../3rdparty/cephes/cmath/tan.c
+	    ../3rdparty/cephes/cmath/tandg.c
+	    ../3rdparty/cephes/cmath/tanh.c
+	    ../3rdparty/cephes/cmath/unity.c
+	    ../3rdparty/cephes/cprob/cephes_cprob.h
+	    ../3rdparty/cephes/cprob/mconf.h
+	    ../3rdparty/cephes/cprob/bdtr.c
+	    ../3rdparty/cephes/cprob/btdtr.c
+	    ../3rdparty/cephes/cprob/chdtr.c
+	    ../3rdparty/cephes/cprob/drand.c
+	    ../3rdparty/cephes/cprob/expx2.c
+	    ../3rdparty/cephes/cprob/fdtr.c
+	    ../3rdparty/cephes/cprob/gamma.c
+	    ../3rdparty/cephes/cprob/gdtr.c
+	    ../3rdparty/cephes/cprob/igam.c
+	    ../3rdparty/cephes/cprob/igami.c
+	    ../3rdparty/cephes/cprob/incbet.c
+	    ../3rdparty/cephes/cprob/incbi.c
+	    ../3rdparty/cephes/cprob/kolmogorov.c
+	    ../3rdparty/cephes/cprob/nbdtr.c
+	    ../3rdparty/cephes/cprob/ndtr.c
+	    ../3rdparty/cephes/cprob/ndtri.c
+	    ../3rdparty/cephes/cprob/pdtr.c
+	    ../3rdparty/cephes/cprob/stdtr.c
+	    ../3rdparty/cephes/ellf/cephes_ellf.h
+	    ../3rdparty/cephes/ellf/mconf.h
+	    ../3rdparty/cephes/ellf/ellie.c
+	    ../3rdparty/cephes/ellf/ellik.c
+	    ../3rdparty/cephes/ellf/ellpe.c
+	    ../3rdparty/cephes/ellf/ellpj.c
+	    ../3rdparty/cephes/ellf/ellpk.c
+	    ../3rdparty/cephes/ldouble/cephes_ldouble.h
+	    ../3rdparty/cephes/ldouble/mconf.h
+	    ../3rdparty/cephes/ldouble/acoshl.c
+	    ../3rdparty/cephes/ldouble/asinl.c
+	    ../3rdparty/cephes/ldouble/asinhl.c
+	    ../3rdparty/cephes/ldouble/atanl.c
+	    ../3rdparty/cephes/ldouble/atanhl.c
+	    ../3rdparty/cephes/ldouble/bdtrl.c
+	    ../3rdparty/cephes/ldouble/btdtrl.c
+	    ../3rdparty/cephes/ldouble/cbrtl.c
+	    ../3rdparty/cephes/ldouble/coshl.c
+	    ../3rdparty/cephes/ldouble/econst.c
+	    ../3rdparty/cephes/ldouble/elliel.c
+	    ../3rdparty/cephes/ldouble/ellikl.c
+	    ../3rdparty/cephes/ldouble/ellpel.c
+	    ../3rdparty/cephes/ldouble/ellpjl.c
+	    ../3rdparty/cephes/ldouble/ellpkl.c
+	    ../3rdparty/cephes/ldouble/expl.c
+	    ../3rdparty/cephes/ldouble/expx2l.c
+	    ../3rdparty/cephes/ldouble/exp10l.c
+	    ../3rdparty/cephes/ldouble/exp2l.c
+	    ../3rdparty/cephes/ldouble/floorl.c
+	    ../3rdparty/cephes/ldouble/gammal.c
+	    ../3rdparty/cephes/ldouble/gdtrl.c
+	    ../3rdparty/cephes/ldouble/gelsl.c
+	    ../3rdparty/cephes/ldouble/ieee.c
+	    ../3rdparty/cephes/ldouble/igamil.c
+	    ../3rdparty/cephes/ldouble/igaml.c
+	    ../3rdparty/cephes/ldouble/incbetl.c
+	    ../3rdparty/cephes/ldouble/incbil.c
+	    ../3rdparty/cephes/ldouble/isnanl.c
+	    ../3rdparty/cephes/ldouble/j0l.c
+	    ../3rdparty/cephes/ldouble/j1l.c
+	    ../3rdparty/cephes/ldouble/jnl.c
+	    ../3rdparty/cephes/ldouble/logl.c
+	    ../3rdparty/cephes/ldouble/log10l.c
+	    ../3rdparty/cephes/ldouble/log2l.c
+	    ../3rdparty/cephes/ldouble/nbdtrl.c
+	    ../3rdparty/cephes/ldouble/ndtril.c
+	    ../3rdparty/cephes/ldouble/ndtrl.c
+	    ../3rdparty/cephes/ldouble/pdtrl.c
+	    ../3rdparty/cephes/ldouble/polevll.c
+	    ../3rdparty/cephes/ldouble/powl.c
+	    ../3rdparty/cephes/ldouble/powil.c
+	    ../3rdparty/cephes/ldouble/sinl.c
+	    ../3rdparty/cephes/ldouble/sinhl.c
+	    ../3rdparty/cephes/ldouble/sqrtl.c
+	    ../3rdparty/cephes/ldouble/stdtrl.c
+	    ../3rdparty/cephes/ldouble/tanl.c
+	    ../3rdparty/cephes/ldouble/tanhl.c
+	    ../3rdparty/cephes/ldouble/unityl.c
+	    ../3rdparty/cephes/ldouble/ynl.c
+	    ../3rdparty/cephes/misc/cephes_misc.h
+	    ../3rdparty/cephes/misc/mconf.h
+	    ../3rdparty/cephes/misc/beta.c
+	    ../3rdparty/cephes/misc/chbevl.c
+	    ../3rdparty/cephes/misc/dawsn.c
+	    ../3rdparty/cephes/misc/ei.c
+	    ../3rdparty/cephes/misc/expn.c
+	    ../3rdparty/cephes/misc/fac.c
+	    ../3rdparty/cephes/misc/fresnl.c
+	    ../3rdparty/cephes/misc/mtherr.c
+	    ../3rdparty/cephes/misc/planck.c
+	    ../3rdparty/cephes/misc/polevl.c
+	    ../3rdparty/cephes/misc/polylog.c
+	    ../3rdparty/cephes/misc/rgamma.c
+	    ../3rdparty/cephes/misc/shichi.c
+	    ../3rdparty/cephes/misc/sici.c
+	    ../3rdparty/cephes/misc/simpsn.c
+	    ../3rdparty/cephes/misc/spence.c
+	    ../3rdparty/cephes/misc/zeta.c
+	    ../3rdparty/cephes/misc/zetac.c
+	    ../3rdparty/cephes/polyn/cephes_polyn.h
+	    ../3rdparty/cephes/polyn/mconf.h
+	    ../3rdparty/cephes/polyn/euclid.c
+	    ../3rdparty/cephes/polyn/polmisc.c
+	    ../3rdparty/cephes/polyn/polrt.c
+	    ../3rdparty/cephes/polyn/polyn.c
+	    ../3rdparty/cephes/polyn/revers.c
+	    ../3rdparty/cephes/c9x-complex/cephes_cmplx.h
+	    ../3rdparty/cephes/c9x-complex/mconf.h
+	    ../3rdparty/cephes/c9x-complex/cmplx.c
+	    ../3rdparty/cephes/c9x-complex/cgamma.c
+	    ../3rdparty/cephes/c9x-complex/cpolylog.c
            )
 
 # This was an interesting disaster!
@@ -219,32 +215,32 @@ add_library(wrap_cephes SHARED
 add_library(wrap_burkhardt SHARED
             wrap_burkhardt.h
             wrap_burkhardt.cpp
-	    ../burkhardt/special_functions.f90
-	    ../burkhardt/asa109.cpp
-	    ../burkhardt/asa243.cpp
-	    ../burkhardt/asa310.cpp
-	    ../burkhardt/bernstein_polynomial.cpp
-	    ../burkhardt/cdflib.cpp
-	    ../burkhardt/chebyshev_polynomial.cpp
-	    ../burkhardt/gegenbauer_polynomial.cpp
-	    ../burkhardt/hermite_polynomial.cpp
-	    ../burkhardt/jacobi_polynomial.cpp
-	    ../burkhardt/kronrod.cpp
-	    ../burkhardt/lobatto_polynomial.cpp
-	    ../burkhardt/minmax.cpp
-	    ../burkhardt/polpak.cpp
-	    ../burkhardt/timestamp.cpp
-	    ../burkhardt/toms443.cpp
-	    ../burkhardt/toms462.cpp
-	    ../burkhardt/toms917.cpp
-	    ../burkhardt/quadrule.cpp
-	    ../burkhardt/line_monte_carlo.cpp
-	    ../burkhardt/line_ncc_rule.cpp
-	    ../burkhardt/line_nco_rule.cpp
-	    ../burkhardt/tetrahedron_monte_carlo.cpp
-	    ../burkhardt/triangle_fekete_rule.cpp
-	    ../burkhardt/triangle_felippa_rule.cpp
-	    ../burkhardt/triangle_monte_carlo.cpp
+	    ../3rdparty/burkhardt/special_functions.f90
+	    ../3rdparty/burkhardt/asa109.cpp
+	    ../3rdparty/burkhardt/asa243.cpp
+	    ../3rdparty/burkhardt/asa310.cpp
+	    ../3rdparty/burkhardt/bernstein_polynomial.cpp
+	    ../3rdparty/burkhardt/cdflib.cpp
+	    ../3rdparty/burkhardt/chebyshev_polynomial.cpp
+	    ../3rdparty/burkhardt/gegenbauer_polynomial.cpp
+	    ../3rdparty/burkhardt/hermite_polynomial.cpp
+	    ../3rdparty/burkhardt/jacobi_polynomial.cpp
+	    ../3rdparty/burkhardt/kronrod.cpp
+	    ../3rdparty/burkhardt/lobatto_polynomial.cpp
+	    ../3rdparty/burkhardt/minmax.cpp
+	    ../3rdparty/burkhardt/polpak.cpp
+	    ../3rdparty/burkhardt/timestamp.cpp
+	    ../3rdparty/burkhardt/toms443.cpp
+	    ../3rdparty/burkhardt/toms462.cpp
+	    ../3rdparty/burkhardt/toms917.cpp
+	    ../3rdparty/burkhardt/quadrule.cpp
+	    ../3rdparty/burkhardt/line_monte_carlo.cpp
+	    ../3rdparty/burkhardt/line_ncc_rule.cpp
+	    ../3rdparty/burkhardt/line_nco_rule.cpp
+	    ../3rdparty/burkhardt/tetrahedron_monte_carlo.cpp
+	    ../3rdparty/burkhardt/triangle_fekete_rule.cpp
+	    ../3rdparty/burkhardt/triangle_felippa_rule.cpp
+	    ../3rdparty/burkhardt/triangle_monte_carlo.cpp
            )
 target_link_libraries(wrap_burkhardt gfortran)
 
@@ -252,23 +248,23 @@ target_link_libraries(wrap_burkhardt gfortran)
 add_library(wrap_lerchphi SHARED
             wrap_lerch.h
             wrap_lerch.cpp
-	    ../lerchphi/Source/lerchphi.h
-	    ../lerchphi/Source/lerchphi.cpp
+	    ../3rdparty/lerchphi/Source/lerchphi.h
+	    ../3rdparty/lerchphi/Source/lerchphi.cpp
 	   )
 
 
 add_library(wrap_faddeeva SHARED
             wrap_faddeeva.h
             wrap_faddeeva.cpp
-	    ../Faddeeva/Faddeeva.hh
-	    ../Faddeeva/Faddeeva.cc
+	    ../3rdparty/Faddeeva/Faddeeva.hh
+	    ../3rdparty/Faddeeva/Faddeeva.cc
 	   )
 
 
 add_library(wrap_lambert SHARED
             wrap_lambert.h
             wrap_lambert.cpp
-	    ../LambertW/Horner.h
-	    ../LambertW/LambertW.h
-	    ../LambertW/LambertW.cc
+	    ../3rdparty/LambertW/Horner.h
+	    ../3rdparty/LambertW/LambertW.h
+	    ../3rdparty/LambertW/LambertW.cc
 	   )

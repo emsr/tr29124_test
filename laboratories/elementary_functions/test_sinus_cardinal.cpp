@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sinus_cardinal test_sinus_cardinal.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sinus_cardinal test_sinus_cardinal.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_sinus_cardinal > test_sinus_cardinal.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sinus_cardinal test_sinus_cardinal.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl

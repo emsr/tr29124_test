@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_cordic build_cordic.cpp -lquadmath -lmpfr -lgmp
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_cordic build_cordic.cpp -lquadmath -lmpfr -lgmp
 ./build_cordic > build_cordic.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_cordic build_cordic.cpp -lquadmath -lmpfr -lgmp

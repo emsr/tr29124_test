@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_continued_fraction test_continued_fraction.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_continued_fraction test_continued_fraction.cpp -L$HOME/bin/lib64 -lquadmath
 ./test_continued_fraction > test_continued_fraction.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_continued_fraction test_continued_fraction.cpp -lquadmath
@@ -17,7 +17,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_continued
 #include <bits/specfun_util.h>
 #include <bits/complex_util.h>
 //#include "rational.h"
-#include <polynomial/ext/polynomial.h>
+#include <ext/polynomial.h>
 
 /**
  * Convert a series to a continued fraction.

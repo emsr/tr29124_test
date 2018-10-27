@@ -1,12 +1,12 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o plot_airy plot_airy.cpp -L$HOME/bin/lib64 -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./plot_airy > plot_airy.new
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o plot_airy plot_airy.cpp -L$HOME/bin/lib64 -lquadmath
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./plot_airy > plot_airy.new
 
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -DOLD -g -Wall -Wextra -Wno-psabi -I. -o plot_airy_old plot_airy.cpp -L$HOME/bin/lib64 -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./plot_airy_old > plot_airy.new.old
+$HOME/bin/bin/g++ -std=gnu++17 -DOLD -g -Wall -Wextra -Wno-psabi -I. -o plot_airy_old plot_airy.cpp -L$HOME/bin/lib64 -lquadmath
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./plot_airy_old > plot_airy.new.old
 
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -Wno-psabi -I. -o plot_airy_new plot_airy.cpp -L$HOME/bin/lib64 -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./plot_airy_new > plot_airy.new.new
+$HOME/bin/bin/g++ -std=gnu++17 -UOLD -g -Wall -Wextra -Wno-psabi -I. -o plot_airy_new plot_airy.cpp -L$HOME/bin/lib64 -lquadmath
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./plot_airy_new > plot_airy.new.new
 */
 
 #include <cmath>

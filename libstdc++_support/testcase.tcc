@@ -13,8 +13,8 @@
 #  define SVNS std::experimental
 #endif
 #include <regex>
-#include <complex_compare.h> // For the Statistics min/max (maybe rethink that there)
-#include <statistics.h>
+#include <../laboratories/complex_tools/complex_compare.h> // For the Statistics min/max (maybe rethink that there)
+#include <../statistics.h>
 
 SVNS::string_view boilerplate = 
 R"(// { dg-do run { target c++11 } }

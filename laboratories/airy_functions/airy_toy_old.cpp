@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o airy_toy_old airy_toy_old.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_old > airy_toy_old.new
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o airy_toy_old airy_toy_old.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy_old > airy_toy_old.new
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old.cpp -lquadmath
 ./airy_toy_old > airy_toy_old.txt

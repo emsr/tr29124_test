@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_tr1_cmath test_tr1_cmath.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_tr1_cmath test_tr1_cmath.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 ./test_tr1_cmath > test_tr1_cmath.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_tr1_cmath test_tr1_cmath.cpp -lquadmath -Lwrappers/debug -lwrap_gsl

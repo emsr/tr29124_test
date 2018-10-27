@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bessel_iter test_bessel_iter.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bessel_iter test_bessel_iter.cpp -lquadmath
 ./test_bessel_iter > test_bessel_iter.txt
 
 $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bessel_iter test_bessel_iter.cpp
@@ -10,7 +10,7 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bessel_iter
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include <polynomial/ext/polynomial.h>
+#include <ext/polynomial.h>
 
 // This thing1 will develop a set of rational functions to express
 // Cylinder functions of order nu in terms to rational functions of nu and 2/z

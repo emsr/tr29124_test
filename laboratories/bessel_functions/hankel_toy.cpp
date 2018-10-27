@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o hankel_toy hankel_toy.cpp /home/ed/tr29124_test/gslextras/Fresnel/fresnel.c -lquadmath -L/usr/local/lib -lgsl -lgslcblas -ljacobi
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./hankel_toy > hankel_toy.txt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o hankel_toy hankel_toy.cpp /home/ed/tr29124_test/gslextras/Fresnel/fresnel.c -lquadmath -L/usr/local/lib -lgsl -lgslcblas -ljacobi
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./hankel_toy > hankel_toy.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -o hankel_toy hankel_toy.cpp -L$HOME/bin/lib64
 ./hankel_toy > hankel_toy.txt
@@ -10,7 +10,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -o hankel_toy hankel_toy.cpp -L$HOME/bin/lib64
 #include <iostream>
 #include <iomanip>
 #include <bits/float128_io.h>
-#include <polynomial/ext/polynomial.h>
+#include <ext/polynomial.h>
 
 template<typename _Tp>
   void

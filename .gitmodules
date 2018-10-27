@@ -5,14 +5,14 @@
 	path = quadrature
 	url = https://github.com/emsr/quadrature.git
 [submodule "LambertW"]
-	path = LambertW
+	path = 3rdparty/LambertW
 	url = https://github.com/emsr/LambertW.git
 [submodule "zeta"]
-	path = zeta
+	path = 3rdparty/zeta
 	url = https://github.com/emsr/zeta.git
 [submodule "burkhardt"]
-	path = burkhardt
+	path = 3rdparty/burkhardt
 	url = https://github.com/emsr/maths_burkhardt.git
 [submodule "cephes"]
-	path = cephes
+	path = 3rdparty/cephes
 	url = https://github.com/emsr/maths_cephes.git

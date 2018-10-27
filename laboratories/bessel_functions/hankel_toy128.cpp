@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o hankel_toy128 hankel_toy128.cpp -L$HOME/bin/lib64 -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./hankel_toy128 > hankel_toy128.txt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o hankel_toy128 hankel_toy128.cpp -L$HOME/bin/lib64 -lquadmath
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./hankel_toy128 > hankel_toy128.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o hankel_toy128 hankel_toy128.cpp -L$HOME/bin/lib64 -lquadmath
 ./hankel_toy128 > hankel_toy128.txt
@@ -10,7 +10,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o hankel_toy128 
 #include <iostream>
 #include <iomanip>
 #include <bits/float128_io.h>
-#include <polynomial/ext/polynomial.h>
+#include <ext/polynomial.h>
 
 int
 main()

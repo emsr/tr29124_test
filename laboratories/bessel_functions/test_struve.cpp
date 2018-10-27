@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_struve test_struve.cpp -lquadmath -Lwrappers/debug -lwrap_burkhardt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_struve test_struve.cpp -lquadmath -Lwrappers/debug -lwrap_burkhardt
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_struve > test_struve.new
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_struve test_struve.cpp -lquadmath

@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch test_lerch.cpp lerchphi/Source/lerchphi.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch test_lerch.cpp lerchphi/Source/lerchphi.cpp -lquadmath
 ./test_lerch > test_lerch.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch test_lerch.cpp lerchphi/Source/lerchphi.cpp -lquadmath
@@ -16,7 +16,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lerch tes
 #include <bits/specfun_util.h>
 #include <statistics.h>
 
-#include "lerchphi/Source/lerchphi.h"
+#include "3rdparty/lerchphi/Source/lerchphi.h"
 
   /**
    * A functor for a vanWijnGaarden compressor.

@@ -1,12 +1,12 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o airy_toy airy_toy.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o airy_toy airy_toy.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -DOLD -o airy_toy_old airy_toy.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_old > airy_toy.new.old
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -DOLD -o airy_toy_old airy_toy.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy_old > airy_toy.new.old
 
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -UOLD -o airy_toy_new airy_toy.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_toy.new.new
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -UOLD -o airy_toy_new airy_toy.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_toy.new.new
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o airy_toy airy_toy.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
@@ -27,7 +27,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 #include <string>
 #include <bits/float128_io.h>
 #include <bits/summation.h>
-#include <polynomial/ext/polynomial.h>
+#include <ext/polynomial.h>
 #include <bits/notsospecfun.h> // For complex fma.
 
   /**

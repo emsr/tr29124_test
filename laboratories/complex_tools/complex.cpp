@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -o complex complex.cpp
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./complex
+$HOME/bin/bin/g++ -o complex complex.cpp
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./complex
 */
 
 #include <iostream>

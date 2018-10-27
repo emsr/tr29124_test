@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_fresnel test_fresnel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_fresnel test_fresnel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 ./test_fresnel > test_fresnel.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_fresnel test_fresnel.cpp -lquadmath -Lwrappers/debug -lwrap_boost

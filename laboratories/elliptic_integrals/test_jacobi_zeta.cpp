@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_zeta test_jacobi_zeta.cpp -lquadmath -Lwrappers/debug -lwrap_boost
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_zeta test_jacobi_zeta.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_jacobi_zeta > test_jacobi_zeta.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_zeta test_jacobi_zeta.cpp -lquadmath -Lwrappers/debug -lwrap_boost

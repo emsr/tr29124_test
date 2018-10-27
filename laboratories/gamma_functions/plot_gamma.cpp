@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o plot_gamma plot_gamma.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./plot_gamma
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o plot_gamma plot_gamma.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./plot_gamma
 
 $HOME/bin/bin/g++ -std=gnu++17 -I. -o plot_gamma plot_gamma.cpp -lquadmath
 ./plot_gamma > plot_gamma.txt

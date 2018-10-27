@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_owens_t test_owens_t.cpp -lquadmath -Lwrappers/debug -lwrap_boost
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_owens_t test_owens_t.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_owens_t > test_owens_t.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_owens_t test_owens_t.cpp -lquadmath -Lwrappers/debug -lwrap_boost

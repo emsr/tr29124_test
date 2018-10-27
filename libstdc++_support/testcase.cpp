@@ -17,9 +17,9 @@
 #include <tuple>
 
 #include "specfun_testcase.h"
-#include "wrappers/wrap_gsl.h"
-#include "wrappers/wrap_boost.h"
-#include "wrappers/wrap_burkhardt.h"
+#include "../wrappers/wrap_gsl.h"
+#include "../wrappers/wrap_boost.h"
+#include "../wrappers/wrap_burkhardt.h"
 
 #include "testcase.tcc"
 

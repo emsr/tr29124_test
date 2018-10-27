@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polygamma test_polygamma.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_polygamma test_polygamma.cpp -L$HOME/bin/lib64 -lquadmath
 ./test_polygamma > test_polygamma.txt
 
 g++ -std=gnu++14 -Wall -Wextra -I. -o test_polygamma test_polygamma.cpp -lquadmath

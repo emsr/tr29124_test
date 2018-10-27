@@ -1,6 +1,6 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_little_airy test_little_airy.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_burkhardt
-LD_LIBRARY_PATH=$HOME/bin_tr29124/lib64:$LD_LIBRARY_PATH ./test_little_airy > test_little_airy.txt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_little_airy test_little_airy.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_burkhardt
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_little_airy > test_little_airy.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_little_airy test_little_airy.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_burkhardt
 PATH=wrappers/debug:$PATH ./test_little_airy > test_little_airy.txt

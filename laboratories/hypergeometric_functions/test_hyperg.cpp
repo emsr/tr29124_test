@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hyperg test_hyperg.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hyperg test_hyperg.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_hyperg > test_hyperg.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hyperg test_hyperg.cpp -lquadmath -Lwrappers/debug -lwrap_gsl

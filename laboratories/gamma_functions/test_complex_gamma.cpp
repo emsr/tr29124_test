@@ -1,6 +1,6 @@
 
 /*
-$HOME/bin_tr29124/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_complex_gamma test_complex_gamma.cpp
+$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_complex_gamma test_complex_gamma.cpp
 ./test_complex_gamma > test_complex_gamma.txt
 
 $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_complex_gamma test_complex_gamma.cpp

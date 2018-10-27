@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_binet_float test_binet_float.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_binet_float test_binet_float.cpp -lquadmath
 ./test_binet_float > test_binet_float.txt 2> test_binet_float.err
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_binet_float test_binet_float.cpp -lquadmath
@@ -13,7 +13,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_binet_flo
 #include <cmath>
 #include <bits/float128_io.h>
 #include <complex>
-#include <polynomial/ext/polynomial.h>
+#include <ext/polynomial.h>
 
 namespace std
 {

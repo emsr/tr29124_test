@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sph_bessel test_sph_bessel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sph_bessel test_sph_bessel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
 ./test_sph_bessel > test_sph_bessel.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sph_bessel test_sph_bessel.cpp -lquadmath -Lwrappers/debug -lwrap_boost

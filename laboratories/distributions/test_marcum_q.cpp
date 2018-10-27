@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_marcum_q test_marcum_q.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_burkhardt
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_marcum_q test_marcum_q.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_burkhardt
 LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_marcum_q > test_marcum_q.txt
 
 $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_marcum_q test_marcum_q.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_burkhardt -lgfortran

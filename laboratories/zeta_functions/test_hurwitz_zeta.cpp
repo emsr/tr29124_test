@@ -1,5 +1,5 @@
 /*
-$HOME/bin_tr29124/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
 ./test_hurwitz_zeta > test_hurwitz_zeta.txt
 
 $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
