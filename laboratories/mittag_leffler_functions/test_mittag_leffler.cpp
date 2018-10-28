@@ -15,7 +15,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_le
 #include <bits/float128_io.h>
 #include <bits/specfun.h>
 
-#include <ext/integration.h>
+#include <integration.h>
 
   /* Monotone integrand for the Mittag-Leffler function. */
   template<typename _Tp>
