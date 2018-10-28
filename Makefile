@@ -38,148 +38,152 @@ OBJ_DIR = $(MATH_DIR)/obj
 
 LIB_DIR = $(MATH_DIR)
 
+TEST_BIN_DIR = laboratories/bin
+TEST_OUT_DIR = laboratories/output
+
 
 #       test_special_function \
 #       testcase2 \
 #
 
-BINS = libstdc++_support/testcase \
+BINS = $(TEST_BIN_DIR) \
+       libstdc++_support/testcase \
        libstdc++_support/testcase_tr1 \
-       mpfrcalc \
-       diff_special_function \
-       test_special_function \
-       airy_toy \
-       hankel_toy \
-       hankel_toy128 \
-       hankel_toy_new \
-       test_airy_roots \
-       test_anger_weber \
-       test_appell_f1 \
-       test_arith_geom_mean \
-       test_bernoulli \
-       test_bessel \
-       test_bessel_asymp \
-       test_bessel_iter \
-       test_beta \
-       test_beta_inc \
-       test_binet \
-       test_binet_float \
-       test_bose_einstein \
-       test_charlier \
-       test_chebyshev \
-       test_chebyshev_trig \
-       test_chebyshev_trig_pi \
-       test_clausen \
-       test_cmath \
-       test_comp_ellint_1 \
-       test_complex128 \
-       test_complex_gamma \
-       test_conf_hyperg \
-       test_conf_hyperg_limit \
-       test_const \
-       test_continued_fraction \
-       test_continuous_dual_hahn \
-       test_continuous_hahn \
-       test_cordic \
-       test_coulomb \
-       test_csint \
-       test_cyl_hankel \
-       test_dawson \
-       test_debye \
-       test_digamma \
-       test_dilog \
-       test_dirichlet_eta \
-       test_dual_hahn \
-       test_erfc \
-       test_experfc \
-       test_expint \
-       test_factorial \
-       test_faddeeva \
-       test_falling_factorial \
-       test_fermi_dirac \
-       test_fibonacci \
-       test_float128 \
-       test_fresnel \
-       test_gamma \
-       test_gamma_ratio \
-       test_gamma_reciprocal \
-       test_gegenbauer \
-       test_gudermannian \
-       test_hahn \
-       test_hankel \
-       test_hankel_real_arg \
-       test_hermite \
-       test_heuman_lambda \
-       test_hurwitz_zeta \
-       test_hurwitz_zeta_new \
-       test_hydrogen \
-       test_hyperg \
-       test_hypot \
-       test_inv_erf \
-       test_inv_gamma \
-       test_inv_ibeta \
-       test_jacobi \
-       test_jacobi_ellint \
-       test_jacobi_inv \
-       test_jacobi_theta \
-       test_jacobi_zeta \
-       test_kelvin \
-       test_krawtchouk \
-       test_laguerre \
-       test_lambert_w \
-       test_large_order_bessel \
-       test_legendre \
-       test_legendre_ellint \
-       test_lentz_continued_fraction \
-       test_lerch \
-       test_limits \
-       test_little_airy \
-       test_lobatto \
-       test_logsumexp \
-       test_lommel \
-       test_marcum_q \
-       test_math_h \
-       test_maxint \
-       test_meixner \
-       test_meixner_pollaczek \
-       test_mittag_leffler \
-       test_mod2pi \
-       test_mpreal \
-       test_notsospecfun \
-       test_nric_bessel \
-       test_numeric_limits \
-       test_owens_t \
-       test_parab_cyl \
-       test_polygamma \
-       test_polylog \
-       test_power_mean \
-       test_power_norm \
-       test_racah \
-       test_rational \
-       test_recursion \
-       test_reperiodized_hyper \
-       test_reperiodized_trig \
-       test_riemann_zeta \
-       test_rising_factorial \
-       test_root_finding \
-       test_sincos \
-       test_sinus_cardinal \
-       test_sph_bessel \
-       test_sph_hankel \
-       test_steed_continued_fraction \
-       test_struve \
-       test_struve_old \
-       test_summation \
-       test_theta \
-       test_tr1_cmath \
-       test_tricomi_u \
-       test_trig \
-       test_weierstrass_ellint \
-       test_wilson \
-       test_wright_omega \
-       test_zeta_trig \
-       run_coulfg \
-       RUN_COULFG
+       $(TEST_BIN_DIR)/mpfrcalc \
+       $(TEST_BIN_DIR)/diff_special_function \
+       $(TEST_BIN_DIR)/test_special_function \
+       $(TEST_BIN_DIR)/airy_toy \
+       $(TEST_BIN_DIR)/hankel_toy \
+       $(TEST_BIN_DIR)/hankel_toy128 \
+       $(TEST_BIN_DIR)/hankel_toy_new \
+       $(TEST_BIN_DIR)/test_airy_roots \
+       $(TEST_BIN_DIR)/test_anger_weber \
+       $(TEST_BIN_DIR)/test_appell_f1 \
+       $(TEST_BIN_DIR)/test_arith_geom_mean \
+       $(TEST_BIN_DIR)/test_bernoulli \
+       $(TEST_BIN_DIR)/test_bessel \
+       $(TEST_BIN_DIR)/test_bessel_asymp \
+       $(TEST_BIN_DIR)/test_bessel_iter \
+       $(TEST_BIN_DIR)/test_beta \
+       $(TEST_BIN_DIR)/test_beta_inc \
+       $(TEST_BIN_DIR)/test_binet \
+       $(TEST_BIN_DIR)/test_binet_float \
+       $(TEST_BIN_DIR)/test_bose_einstein \
+       $(TEST_BIN_DIR)/test_charlier \
+       $(TEST_BIN_DIR)/test_chebyshev \
+       $(TEST_BIN_DIR)/test_chebyshev_trig \
+       $(TEST_BIN_DIR)/test_chebyshev_trig_pi \
+       $(TEST_BIN_DIR)/test_clausen \
+       $(TEST_BIN_DIR)/test_cmath \
+       $(TEST_BIN_DIR)/test_comp_ellint_1 \
+       $(TEST_BIN_DIR)/test_complex128 \
+       $(TEST_BIN_DIR)/test_complex_gamma \
+       $(TEST_BIN_DIR)/test_conf_hyperg \
+       $(TEST_BIN_DIR)/test_conf_hyperg_limit \
+       $(TEST_BIN_DIR)/test_const \
+       $(TEST_BIN_DIR)/test_continued_fraction \
+       $(TEST_BIN_DIR)/test_continuous_dual_hahn \
+       $(TEST_BIN_DIR)/test_continuous_hahn \
+       $(TEST_BIN_DIR)/test_cordic \
+       $(TEST_BIN_DIR)/test_coulomb \
+       $(TEST_BIN_DIR)/test_csint \
+       $(TEST_BIN_DIR)/test_cyl_hankel \
+       $(TEST_BIN_DIR)/test_dawson \
+       $(TEST_BIN_DIR)/test_debye \
+       $(TEST_BIN_DIR)/test_digamma \
+       $(TEST_BIN_DIR)/test_dilog \
+       $(TEST_BIN_DIR)/test_dirichlet_eta \
+       $(TEST_BIN_DIR)/test_dual_hahn \
+       $(TEST_BIN_DIR)/test_erfc \
+       $(TEST_BIN_DIR)/test_experfc \
+       $(TEST_BIN_DIR)/test_expint \
+       $(TEST_BIN_DIR)/test_factorial \
+       $(TEST_BIN_DIR)/test_faddeeva \
+       $(TEST_BIN_DIR)/test_falling_factorial \
+       $(TEST_BIN_DIR)/test_fermi_dirac \
+       $(TEST_BIN_DIR)/test_fibonacci \
+       $(TEST_BIN_DIR)/test_float128 \
+       $(TEST_BIN_DIR)/test_fresnel \
+       $(TEST_BIN_DIR)/test_gamma \
+       $(TEST_BIN_DIR)/test_gamma_ratio \
+       $(TEST_BIN_DIR)/test_gamma_reciprocal \
+       $(TEST_BIN_DIR)/test_gegenbauer \
+       $(TEST_BIN_DIR)/test_gudermannian \
+       $(TEST_BIN_DIR)/test_hahn \
+       $(TEST_BIN_DIR)/test_hankel \
+       $(TEST_BIN_DIR)/test_hankel_real_arg \
+       $(TEST_BIN_DIR)/test_hermite \
+       $(TEST_BIN_DIR)/test_heuman_lambda \
+       $(TEST_BIN_DIR)/test_hurwitz_zeta \
+       $(TEST_BIN_DIR)/test_hurwitz_zeta_new \
+       $(TEST_BIN_DIR)/test_hydrogen \
+       $(TEST_BIN_DIR)/test_hyperg \
+       $(TEST_BIN_DIR)/test_hypot \
+       $(TEST_BIN_DIR)/test_inv_erf \
+       $(TEST_BIN_DIR)/test_inv_gamma \
+       $(TEST_BIN_DIR)/test_inv_ibeta \
+       $(TEST_BIN_DIR)/test_jacobi \
+       $(TEST_BIN_DIR)/test_jacobi_ellint \
+       $(TEST_BIN_DIR)/test_jacobi_inv \
+       $(TEST_BIN_DIR)/test_jacobi_theta \
+       $(TEST_BIN_DIR)/test_jacobi_zeta \
+       $(TEST_BIN_DIR)/test_kelvin \
+       $(TEST_BIN_DIR)/test_krawtchouk \
+       $(TEST_BIN_DIR)/test_laguerre \
+       $(TEST_BIN_DIR)/test_lambert_w \
+       $(TEST_BIN_DIR)/test_large_order_bessel \
+       $(TEST_BIN_DIR)/test_legendre \
+       $(TEST_BIN_DIR)/test_legendre_ellint \
+       $(TEST_BIN_DIR)/test_lentz_continued_fraction \
+       $(TEST_BIN_DIR)/test_lerch \
+       $(TEST_BIN_DIR)/test_limits \
+       $(TEST_BIN_DIR)/test_little_airy \
+       $(TEST_BIN_DIR)/test_lobatto \
+       $(TEST_BIN_DIR)/test_logsumexp \
+       $(TEST_BIN_DIR)/test_lommel \
+       $(TEST_BIN_DIR)/test_marcum_q \
+       $(TEST_BIN_DIR)/test_math_h \
+       $(TEST_BIN_DIR)/test_maxint \
+       $(TEST_BIN_DIR)/test_meixner \
+       $(TEST_BIN_DIR)/test_meixner_pollaczek \
+       $(TEST_BIN_DIR)/test_mittag_leffler \
+       $(TEST_BIN_DIR)/test_mod2pi \
+       $(TEST_BIN_DIR)/test_mpreal \
+       $(TEST_BIN_DIR)/test_notsospecfun \
+       $(TEST_BIN_DIR)/test_nric_bessel \
+       $(TEST_BIN_DIR)/test_numeric_limits \
+       $(TEST_BIN_DIR)/test_owens_t \
+       $(TEST_BIN_DIR)/test_parab_cyl \
+       $(TEST_BIN_DIR)/test_polygamma \
+       $(TEST_BIN_DIR)/test_polylog \
+       $(TEST_BIN_DIR)/test_power_mean \
+       $(TEST_BIN_DIR)/test_power_norm \
+       $(TEST_BIN_DIR)/test_racah \
+       $(TEST_BIN_DIR)/test_rational \
+       $(TEST_BIN_DIR)/test_recursion \
+       $(TEST_BIN_DIR)/test_reperiodized_hyper \
+       $(TEST_BIN_DIR)/test_reperiodized_trig \
+       $(TEST_BIN_DIR)/test_riemann_zeta \
+       $(TEST_BIN_DIR)/test_rising_factorial \
+       $(TEST_BIN_DIR)/test_root_finding \
+       $(TEST_BIN_DIR)/test_sincos \
+       $(TEST_BIN_DIR)/test_sinus_cardinal \
+       $(TEST_BIN_DIR)/test_sph_bessel \
+       $(TEST_BIN_DIR)/test_sph_hankel \
+       $(TEST_BIN_DIR)/test_steed_continued_fraction \
+       $(TEST_BIN_DIR)/test_struve \
+       $(TEST_BIN_DIR)/test_struve_old \
+       $(TEST_BIN_DIR)/test_summation \
+       $(TEST_BIN_DIR)/test_theta \
+       $(TEST_BIN_DIR)/test_tr1_cmath \
+       $(TEST_BIN_DIR)/test_tricomi_u \
+       $(TEST_BIN_DIR)/test_trig \
+       $(TEST_BIN_DIR)/test_weierstrass_ellint \
+       $(TEST_BIN_DIR)/test_wilson \
+       $(TEST_BIN_DIR)/test_wright_omega \
+       $(TEST_BIN_DIR)/test_zeta_trig \
+       $(TEST_BIN_DIR)/run_coulfg \
+       $(TEST_BIN_DIR)/RUN_COULFG
 
 
 CHECKS = ${CHECK_DIR}/check_airy_ai \
@@ -440,137 +444,137 @@ tests: test_special_function
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_special_function > test_special_function.txt
 
 # This will always build the executables!
-test: $(BINS)
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./airy_toy > airy_toy.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./hankel_toy > hankel_toy.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./hankel_toy128 > hankel_toy128.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./hankel_toy_new > hankel_toy_new.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_airy_roots > test_airy_roots.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_anger_weber > test_anger_weber.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_appell_f1 > test_appell_f1.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_bernoulli > test_bernoulli.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_bessel > test_bessel.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_bessel_asymp > test_bessel_asymp.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_bessel_iter > test_bessel_iter.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_beta > test_beta.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_beta_inc > test_beta_inc.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_binet > test_binet.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_binet_float > test_binet_float.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_bose_einstein > test_bose_einstein.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_charlier > test_charlier.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_chebyshev > test_chebyshev.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_chebyshev_trig > test_chebyshev_trig.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_chebyshev_trig_pi > test_chebyshev_trig_pi.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_clausen > test_clausen.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_cmath > test_cmath.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_comp_ellint_1 > test_comp_ellint_1.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_complex128 > test_complex128.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_complex_gamma > test_complex_gamma.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_conf_hyperg > test_conf_hyperg.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_conf_hyperg_limit > test_conf_hyperg_limit.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_const > test_const.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_continued_fraction > test_continued_fraction.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_continuous_dual_hahn > test_continuous_dual_hahn.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_continuous_hahn > test_continuous_hahn.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_cordic > test_cordic.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_coulomb > test_coulomb.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_csint > test_csint.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_cyl_hankel > test_cyl_hankel.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_dawson > test_dawson.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_debye > test_debye.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_digamma > test_digamma.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_dilog > test_dilog.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_dirichlet_eta > test_dirichlet_eta.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_dual_hahn > test_dual_hahn.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_erfc > test_erfc.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_experfc > test_experfc.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_expint > test_expint.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_factorial > test_factorial.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_faddeeva > test_faddeeva.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_falling_factorial > test_falling_factorial.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_fermi_dirac > test_fermi_dirac.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_fibonacci > test_fibonacci.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_float128 > test_float128.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_fresnel > test_fresnel.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_gamma > test_gamma.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_gamma_ratio > test_gamma_ratio.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_gamma_reciprocal > test_gamma_reciprocal.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_gegenbauer > test_gegenbauer.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_gudermannian > test_gudermannian.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_hahn > test_hahn.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_hankel > test_hankel.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_hankel_real_arg > test_hankel_real_arg.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_hermite > test_hermite.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_heuman_lambda > test_heuman_lambda.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_hurwitz_zeta > test_hurwitz_zeta.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_hydrogen > test_hydrogen.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_hyperg > test_hyperg.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_hypot > test_hypot.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_inv_erf > test_inv_erf.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_inv_gamma > test_inv_gamma.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_inv_ibeta > test_inv_ibeta.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_jacobi > test_jacobi.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_jacobi_ellint > test_jacobi_ellint.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_jacobi_inv > test_jacobi_inv.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_jacobi_theta > test_jacobi_theta.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_jacobi_zeta > test_jacobi_zeta.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_kelvin > test_kelvin.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_krawtchouk > test_krawtchouk.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_laguerre > test_laguerre.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_lambert_w > test_lambert_w.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_legendre > test_legendre.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_legendre_ellint > test_legendre_ellint.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_lentz_continued_fraction > test_lentz_continued_fraction.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_lerch > test_lerch.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_limits > test_limits.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_little_airy > test_little_airy.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_lobatto > test_lobatto.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_logsumexp > test_logsumexp.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_lommel > test_lommel.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_marcum_q > test_marcum_q.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_math_h > test_math_h.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_maxint > test_maxint.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_meixner > test_meixner.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_meixner_pollaczek > test_meixner_pollaczek.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_mittag_leffler > test_mittag_leffler.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_mod2pi > test_mod2pi.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_mpreal > test_mpreal.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_notsospecfun > test_notsospecfun.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_nric_bessel > test_nric_bessel.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_numeric_limits > test_numeric_limits.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_owens_t > test_owens_t.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_parab_cyl > test_parab_cyl.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_polygamma > test_polygamma.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_polylog > test_polylog.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_power_mean > test_power_mean.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_power_norm > test_power_norm.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_racah > test_racah.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_rational > test_rational.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_recursion > test_recursion.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_reperiodized_hyper > test_reperiodized_hyper.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_reperiodized_trig > test_reperiodized_trig.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_riemann_zeta > test_riemann_zeta.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_rising_factorial > test_rising_factorial.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_root_finding > test_root_finding.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_sincos > test_sincos.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_sinus_cardinal > test_sinus_cardinal.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_sph_bessel > test_sph_bessel.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_sph_hankel > test_sph_hankel.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_steed_continued_fraction > test_steed_continued_fraction.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_struve > test_struve.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_struve_old > test_struve_old.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_summation > test_summation.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_theta > test_theta.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_tr1_cmath > test_tr1_cmath.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_tricomi_u > test_tricomi_u.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_trig > test_trig.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_weierstrass_ellint > test_weierstrass_ellint.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_wilson > test_wilson.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH ./test_wright_omega > test_wright_omega.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./test_zeta_trig > test_zeta_trig.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./run_coulfg > run_coulfg.txt
-	./RUN_COULFG > RUN_COULFG.TXT
+test: $(BINS) $(TEST_OUT_DIR)
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/airy_toy > $(TEST_OUT_DIR)/airy_toy.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/hankel_toy > $(TEST_OUT_DIR)/hankel_toy.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/hankel_toy128 > $(TEST_OUT_DIR)/hankel_toy128.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/hankel_toy_new > $(TEST_OUT_DIR)/hankel_toy_new.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_airy_roots > $(TEST_OUT_DIR)/test_airy_roots.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_anger_weber > $(TEST_OUT_DIR)/test_anger_weber.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_appell_f1 > $(TEST_OUT_DIR)/test_appell_f1.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_bernoulli > $(TEST_OUT_DIR)/test_bernoulli.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_bessel > $(TEST_OUT_DIR)/test_bessel.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_bessel_asymp > $(TEST_OUT_DIR)/test_bessel_asymp.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_bessel_iter > $(TEST_OUT_DIR)/test_bessel_iter.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_beta > $(TEST_OUT_DIR)/test_beta.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_beta_inc > $(TEST_OUT_DIR)/test_beta_inc.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_binet > $(TEST_OUT_DIR)/test_binet.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_binet_float > $(TEST_OUT_DIR)/test_binet_float.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_bose_einstein > $(TEST_OUT_DIR)/test_bose_einstein.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_charlier > $(TEST_OUT_DIR)/test_charlier.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_chebyshev > $(TEST_OUT_DIR)/test_chebyshev.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_chebyshev_trig > $(TEST_OUT_DIR)/test_chebyshev_trig.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_chebyshev_trig_pi > $(TEST_OUT_DIR)/test_chebyshev_trig_pi.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_clausen > $(TEST_OUT_DIR)/test_clausen.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_cmath > $(TEST_OUT_DIR)/test_cmath.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_comp_ellint_1 > $(TEST_OUT_DIR)/test_comp_ellint_1.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_complex128 > $(TEST_OUT_DIR)/test_complex128.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_complex_gamma > $(TEST_OUT_DIR)/test_complex_gamma.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_conf_hyperg > $(TEST_OUT_DIR)/test_conf_hyperg.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_conf_hyperg_limit > $(TEST_OUT_DIR)/test_conf_hyperg_limit.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_const > $(TEST_OUT_DIR)/test_const.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_continued_fraction > $(TEST_OUT_DIR)/test_continued_fraction.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_continuous_dual_hahn > $(TEST_OUT_DIR)/test_continuous_dual_hahn.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_continuous_hahn > $(TEST_OUT_DIR)/test_continuous_hahn.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_cordic > $(TEST_OUT_DIR)/test_cordic.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_coulomb > $(TEST_OUT_DIR)/test_coulomb.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_csint > $(TEST_OUT_DIR)/test_csint.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_cyl_hankel > $(TEST_OUT_DIR)/test_cyl_hankel.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_dawson > $(TEST_OUT_DIR)/test_dawson.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_debye > $(TEST_OUT_DIR)/test_debye.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_digamma > $(TEST_OUT_DIR)/test_digamma.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_dilog > $(TEST_OUT_DIR)/test_dilog.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_dirichlet_eta > $(TEST_OUT_DIR)/test_dirichlet_eta.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_dual_hahn > $(TEST_OUT_DIR)/test_dual_hahn.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_erfc > $(TEST_OUT_DIR)/test_erfc.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_experfc > $(TEST_OUT_DIR)/test_experfc.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_expint > $(TEST_OUT_DIR)/test_expint.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_factorial > $(TEST_OUT_DIR)/test_factorial.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_faddeeva > $(TEST_OUT_DIR)/test_faddeeva.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_falling_factorial > $(TEST_OUT_DIR)/test_falling_factorial.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_fermi_dirac > $(TEST_OUT_DIR)/test_fermi_dirac.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_fibonacci > $(TEST_OUT_DIR)/test_fibonacci.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_float128 > $(TEST_OUT_DIR)/test_float128.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_fresnel > $(TEST_OUT_DIR)/test_fresnel.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_gamma > $(TEST_OUT_DIR)/test_gamma.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_gamma_ratio > $(TEST_OUT_DIR)/test_gamma_ratio.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_gamma_reciprocal > $(TEST_OUT_DIR)/test_gamma_reciprocal.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_gegenbauer > $(TEST_OUT_DIR)/test_gegenbauer.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_gudermannian > $(TEST_OUT_DIR)/test_gudermannian.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hahn > $(TEST_OUT_DIR)/test_hahn.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hankel > $(TEST_OUT_DIR)/test_hankel.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hankel_real_arg > $(TEST_OUT_DIR)/test_hankel_real_arg.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hermite > $(TEST_OUT_DIR)/test_hermite.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_heuman_lambda > $(TEST_OUT_DIR)/test_heuman_lambda.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hurwitz_zeta > $(TEST_OUT_DIR)/test_hurwitz_zeta.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hurwitz_zeta_new > $(TEST_OUT_DIR)/test_hurwitz_zeta_new.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hydrogen > $(TEST_OUT_DIR)/test_hydrogen.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hyperg > $(TEST_OUT_DIR)/test_hyperg.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hypot > $(TEST_OUT_DIR)/test_hypot.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_inv_erf > $(TEST_OUT_DIR)/test_inv_erf.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_inv_gamma > $(TEST_OUT_DIR)/test_inv_gamma.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_inv_ibeta > $(TEST_OUT_DIR)/test_inv_ibeta.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi > $(TEST_OUT_DIR)/test_jacobi.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi_ellint > $(TEST_OUT_DIR)/test_jacobi_ellint.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi_inv > $(TEST_OUT_DIR)/test_jacobi_inv.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi_theta > $(TEST_OUT_DIR)/test_jacobi_theta.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi_zeta > $(TEST_OUT_DIR)/test_jacobi_zeta.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_kelvin > $(TEST_OUT_DIR)/test_kelvin.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_krawtchouk > $(TEST_OUT_DIR)/test_krawtchouk.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_laguerre > $(TEST_OUT_DIR)/test_laguerre.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lambert_w > $(TEST_OUT_DIR)/test_lambert_w.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_legendre > $(TEST_OUT_DIR)/test_legendre.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_legendre_ellint > $(TEST_OUT_DIR)/test_legendre_ellint.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lentz_continued_fraction > $(TEST_OUT_DIR)/test_lentz_continued_fraction.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lerch > $(TEST_OUT_DIR)/test_lerch.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_limits > $(TEST_OUT_DIR)/test_limits.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_little_airy > $(TEST_OUT_DIR)/test_little_airy.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lobatto > $(TEST_OUT_DIR)/test_lobatto.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_logsumexp > $(TEST_OUT_DIR)/test_logsumexp.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lommel > $(TEST_OUT_DIR)/test_lommel.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_marcum_q > $(TEST_OUT_DIR)/test_marcum_q.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_math_h > $(TEST_OUT_DIR)/test_math_h.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_maxint > $(TEST_OUT_DIR)/test_maxint.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_meixner > $(TEST_OUT_DIR)/test_meixner.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_meixner_pollaczek > $(TEST_OUT_DIR)/test_meixner_pollaczek.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_mittag_leffler > $(TEST_OUT_DIR)/test_mittag_leffler.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_mod2pi > $(TEST_OUT_DIR)/test_mod2pi.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_mpreal > $(TEST_OUT_DIR)/test_mpreal.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_notsospecfun > $(TEST_OUT_DIR)/test_notsospecfun.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_nric_bessel > $(TEST_OUT_DIR)/test_nric_bessel.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_numeric_limits > $(TEST_OUT_DIR)/test_numeric_limits.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_owens_t > $(TEST_OUT_DIR)/test_owens_t.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_parab_cyl > $(TEST_OUT_DIR)/test_parab_cyl.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_polygamma > $(TEST_OUT_DIR)/test_polygamma.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_polylog > $(TEST_OUT_DIR)/test_polylog.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_power_mean > $(TEST_OUT_DIR)/test_power_mean.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_power_norm > $(TEST_OUT_DIR)/test_power_norm.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_racah > $(TEST_OUT_DIR)/test_racah.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_rational > $(TEST_OUT_DIR)/test_rational.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_recursion > $(TEST_OUT_DIR)/test_recursion.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_reperiodized_hyper > $(TEST_OUT_DIR)/test_reperiodized_hyper.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_reperiodized_trig > $(TEST_OUT_DIR)/test_reperiodized_trig.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_riemann_zeta > $(TEST_OUT_DIR)/test_riemann_zeta.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_rising_factorial > $(TEST_OUT_DIR)/test_rising_factorial.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_root_finding > $(TEST_OUT_DIR)/test_root_finding.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_sincos > $(TEST_OUT_DIR)/test_sincos.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_sinus_cardinal > $(TEST_OUT_DIR)/test_sinus_cardinal.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_sph_bessel > $(TEST_OUT_DIR)/test_sph_bessel.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_sph_hankel > $(TEST_OUT_DIR)/test_sph_hankel.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_steed_continued_fraction > $(TEST_OUT_DIR)/test_steed_continued_fraction.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_struve > $(TEST_OUT_DIR)/test_struve.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_struve_old > $(TEST_OUT_DIR)/test_struve_old.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_summation > $(TEST_OUT_DIR)/test_summation.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_theta > $(TEST_OUT_DIR)/test_theta.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_tr1_cmath > $(TEST_OUT_DIR)/test_tr1_cmath.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_tricomi_u > $(TEST_OUT_DIR)/test_tricomi_u.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_trig > $(TEST_OUT_DIR)/test_trig.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_weierstrass_ellint > $(TEST_OUT_DIR)/test_weierstrass_ellint.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_wilson > $(TEST_OUT_DIR)/test_wilson.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_wright_omega > $(TEST_OUT_DIR)/test_wright_omega.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_zeta_trig > $(TEST_OUT_DIR)/test_zeta_trig.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/run_coulfg > $(TEST_OUT_DIR)/run_coulfg.txt
+	./RUN_COULFG > $(TEST_OUT_DIR)/RUN_COULFG.TXT
 
 check: $(CHECK_DIR) $(CHECKS)
 	echo "Beginning executions of checks..." > $(CHECK_DIR)/check_out.txt 2> $(CHECK_DIR)/check_err.txt
@@ -732,16 +736,6 @@ check_tr1: $(CHECK_DIR) $(TR1_CHECKS)
 	echo "check_tr1_sph_neumann" >> $(CHECK_DIR)/check_tr1_out.txt 2> $(CHECK_DIR)/check_tr1_err.txt && ${CHECK_DIR}/check_tr1_sph_neumann >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 
 
-mpfrcalc: mpfr_gexpr.c
-	$(GCC) -Iinclude -o mpfrcalc mpfr_gexpr.c -lmpfr -lgmp -lm
-
-
-test_special_function: wrappers_debug test_special_function.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -Iinclude -Iwrappers -o test_special_function test_special_function.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
-
-diff_special_function: wrappers_debug diff_special_function.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
-	$(CXX17) -Iinclude -Iwrappers -o diff_special_function diff_special_function.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
-
 libstdc++_support/testcase2: wrappers_debug libstdc++_support/testcase2.cpp libstdc++_support/testcase2.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
 	$(CXX17) -Iinclude -o libstdc++_support/testcase2 libstdc++_support/testcase2.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
@@ -751,406 +745,416 @@ libstdc++_support/testcase: wrappers_debug libstdc++_support/testcase.cpp libstd
 libstdc++_support/testcase_tr1: wrappers_debug libstdc++_support/testcase.cpp libstdc++_support/testcase.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
 	$(CXX17) -DTR1 -Iinclude -o libstdc++_support/testcase_tr1 libstdc++_support/testcase.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
-test_Faddeeva: $(FAD_DIR)/Faddeeva.hh $(FAD_DIR)/Faddeeva.cc
-	$(CXX) -DTEST_FADDEEVA -o $(FAD_DIR)/test_Faddeeva $(FAD_DIR)/Faddeeva.cc -lquadmath
 
-test_airy_roots: laboratories/airy_functions/test_airy_roots.cpp
-	$(CXX17) -Iinclude -o test_airy_roots laboratories/airy_functions/test_airy_roots.cpp -lquadmath
+$(TEST_BIN_DIR)/mpfrcalc: mpfr_gexpr.c
+	$(GCC) -Iinclude -o $(TEST_BIN_DIR)/mpfrcalc mpfr_gexpr.c -lmpfr -lgmp -lm
 
-test_anger_weber: laboratories/bessel_functions/test_anger_weber.cpp
-	$(CXX17) -Iinclude -o test_anger_weber laboratories/bessel_functions/test_anger_weber.cpp -lquadmath
+$(TEST_BIN_DIR)/test_special_function: wrappers_debug test_special_function.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_special_function test_special_function.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
-test_appell_f1: laboratories/appell_functions/test_appell_f1.cpp
-	$(CXX17) -Iinclude -o test_appell_f1 laboratories/appell_functions/test_appell_f1.cpp -lquadmath
+$(TEST_BIN_DIR)/diff_special_function: wrappers_debug diff_special_function.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/diff_special_function diff_special_function.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
-test_arith_geom_mean: laboratories/norm_functions/test_arith_geom_mean.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_arith_geom_mean laboratories/norm_functions/test_arith_geom_mean.cpp -lquadmath
+$(TEST_BIN_DIR)/test_Faddeeva: $(FAD_DIR)/Faddeeva.hh $(FAD_DIR)/Faddeeva.cc
+	$(CXX) -DTEST_FADDEEVA -o $(TEST_BIN_DIR)/$(FAD_DIR)/test_Faddeeva $(FAD_DIR)/Faddeeva.cc -lquadmath
 
-test_bernoulli: wrappers_debug laboratories/bernoulli_functions/test_bernoulli.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_bernoulli laboratories/bernoulli_functions/test_bernoulli.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
+$(TEST_BIN_DIR)/test_airy_roots: laboratories/airy_functions/test_airy_roots.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_airy_roots laboratories/airy_functions/test_airy_roots.cpp -lquadmath
 
-test_bessel: laboratories/bessel_functions/test_bessel.cpp laboratories/bessel_functions/new_bessel.tcc
-	$(CXX17) -Iinclude -o test_bessel laboratories/bessel_functions/test_bessel.cpp -lquadmath
+$(TEST_BIN_DIR)/test_anger_weber: laboratories/bessel_functions/test_anger_weber.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_anger_weber laboratories/bessel_functions/test_anger_weber.cpp -lquadmath
 
-test_bessel_asymp: laboratories/bessel_functions/test_bessel_asymp.cpp
-	$(CXX17) -Iinclude -o test_bessel_asymp laboratories/bessel_functions/test_bessel_asymp.cpp -lquadmath
+$(TEST_BIN_DIR)/test_appell_f1: laboratories/appell_functions/test_appell_f1.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_appell_f1 laboratories/appell_functions/test_appell_f1.cpp -lquadmath
 
-test_bessel_iter: laboratories/bessel_functions/test_bessel_iter.cpp
-	$(CXX17) -Iinclude -Ipolynomial -o test_bessel_iter laboratories/bessel_functions/test_bessel_iter.cpp -lquadmath
+$(TEST_BIN_DIR)/test_arith_geom_mean: laboratories/norm_functions/test_arith_geom_mean.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_arith_geom_mean laboratories/norm_functions/test_arith_geom_mean.cpp -lquadmath
 
-test_beta: wrappers_debug laboratories/beta_functions/test_beta.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_beta laboratories/beta_functions/test_beta.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+$(TEST_BIN_DIR)/test_bernoulli: wrappers_debug laboratories/bernoulli_functions/test_bernoulli.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_bernoulli laboratories/bernoulli_functions/test_bernoulli.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
-test_beta_inc: laboratories/beta_functions/test_beta_inc.cpp
-	$(CXX17) -Iinclude -o test_beta_inc laboratories/beta_functions/test_beta_inc.cpp -lquadmath
+$(TEST_BIN_DIR)/test_bessel: laboratories/bessel_functions/test_bessel.cpp laboratories/bessel_functions/new_bessel.tcc
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_bessel laboratories/bessel_functions/test_bessel.cpp -lquadmath
 
-test_binet: laboratories/gamma_functions/test_binet.cpp
-	$(CXX17) -Iinclude -I. -o test_binet laboratories/gamma_functions/test_binet.cpp -lquadmath
+$(TEST_BIN_DIR)/test_bessel_asymp: laboratories/bessel_functions/test_bessel_asymp.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_bessel_asymp laboratories/bessel_functions/test_bessel_asymp.cpp -lquadmath
 
-test_binet_float: laboratories/gamma_functions/test_binet_float.cpp
-	$(CXX17) -Iinclude -Ipolynomial -o test_binet_float laboratories/gamma_functions/test_binet_float.cpp -lquadmath
+$(TEST_BIN_DIR)/test_bessel_iter: laboratories/bessel_functions/test_bessel_iter.cpp
+	$(CXX17) -Iinclude -Ipolynomial -o $(TEST_BIN_DIR)/test_bessel_iter laboratories/bessel_functions/test_bessel_iter.cpp -lquadmath
 
-test_bose_einstein: laboratories/zeta_functions/test_bose_einstein.cpp
-	$(CXX17) -Iinclude -o test_bose_einstein laboratories/zeta_functions/test_bose_einstein.cpp -lquadmath
+$(TEST_BIN_DIR)/test_beta: wrappers_debug laboratories/beta_functions/test_beta.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_beta laboratories/beta_functions/test_beta.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_charlier: laboratories/orthogonal_polynomials/test_charlier.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_charlier laboratories/orthogonal_polynomials/test_charlier.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
+$(TEST_BIN_DIR)/test_beta_inc: laboratories/beta_functions/test_beta_inc.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_beta_inc laboratories/beta_functions/test_beta_inc.cpp -lquadmath
 
-test_chebyshev: laboratories/orthogonal_polynomials/test_chebyshev.cpp
-	$(CXX17) -Iinclude -o test_chebyshev laboratories/orthogonal_polynomials/test_chebyshev.cpp -lquadmath
+$(TEST_BIN_DIR)/test_binet: laboratories/gamma_functions/test_binet.cpp
+	$(CXX17) -Iinclude -I. -o $(TEST_BIN_DIR)/test_binet laboratories/gamma_functions/test_binet.cpp -lquadmath
 
-test_chebyshev_trig: laboratories/orthogonal_polynomials/test_chebyshev_trig.cpp
-	$(CXX17) -Iinclude -o test_chebyshev_trig laboratories/orthogonal_polynomials/test_chebyshev_trig.cpp -lquadmath
+$(TEST_BIN_DIR)/test_binet_float: laboratories/gamma_functions/test_binet_float.cpp
+	$(CXX17) -Iinclude -Ipolynomial -o $(TEST_BIN_DIR)/test_binet_float laboratories/gamma_functions/test_binet_float.cpp -lquadmath
 
-test_chebyshev_trig_pi: laboratories/orthogonal_polynomials/test_chebyshev_trig_pi.cpp
-	$(CXX17) -Iinclude -o test_chebyshev_trig_pi laboratories/orthogonal_polynomials/test_chebyshev_trig_pi.cpp -lquadmath
+$(TEST_BIN_DIR)/test_bose_einstein: laboratories/zeta_functions/test_bose_einstein.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_bose_einstein laboratories/zeta_functions/test_bose_einstein.cpp -lquadmath
 
-test_clausen: wrappers_debug laboratories/zeta_functions/test_clausen.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_clausen laboratories/zeta_functions/test_clausen.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+$(TEST_BIN_DIR)/test_charlier: laboratories/orthogonal_polynomials/test_charlier.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_charlier laboratories/orthogonal_polynomials/test_charlier.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
-test_cmath: test_cmath.cpp
-	$(CXX) -Iinclude -o test_cmath test_cmath.cpp -lquadmath
+$(TEST_BIN_DIR)/test_chebyshev: laboratories/orthogonal_polynomials/test_chebyshev.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_chebyshev laboratories/orthogonal_polynomials/test_chebyshev.cpp -lquadmath
 
-test_comp_ellint_1: laboratories/elliptic_integrals/test_comp_ellint_1.cpp
-	$(CXX17) -Iinclude -o test_comp_ellint_1 laboratories/elliptic_integrals/test_comp_ellint_1.cpp -lquadmath
+$(TEST_BIN_DIR)/test_chebyshev_trig: laboratories/orthogonal_polynomials/test_chebyshev_trig.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_chebyshev_trig laboratories/orthogonal_polynomials/test_chebyshev_trig.cpp -lquadmath
 
-test_complex128: laboratories/complex_tools/test_complex128.cpp
-	$(CXX17) -Iinclude -o test_complex128 laboratories/complex_tools/test_complex128.cpp -lquadmath
+$(TEST_BIN_DIR)/test_chebyshev_trig_pi: laboratories/orthogonal_polynomials/test_chebyshev_trig_pi.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_chebyshev_trig_pi laboratories/orthogonal_polynomials/test_chebyshev_trig_pi.cpp -lquadmath
 
-test_complex_gamma: laboratories/gamma_functions/test_complex_gamma.cpp
-	$(CXX17) -Iinclude -o test_complex_gamma laboratories/gamma_functions/test_complex_gamma.cpp -lquadmath
+$(TEST_BIN_DIR)/test_clausen: wrappers_debug laboratories/zeta_functions/test_clausen.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_clausen laboratories/zeta_functions/test_clausen.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-test_conf_hyperg: laboratories/hypergeometric_functions/test_conf_hyperg.cpp
-	$(CXX17) -Iinclude -o test_conf_hyperg laboratories/hypergeometric_functions/test_conf_hyperg.cpp -lquadmath
+$(TEST_BIN_DIR)/test_cmath: test_cmath.cpp
+	$(CXX) -Iinclude -o $(TEST_BIN_DIR)/test_cmath test_cmath.cpp -lquadmath
 
-test_conf_hyperg_limit: laboratories/hypergeometric_functions/test_conf_hyperg_limit.cpp
-	$(CXX17) -Iinclude -o test_conf_hyperg_limit laboratories/hypergeometric_functions/test_conf_hyperg_limit.cpp -lquadmath
+$(TEST_BIN_DIR)/test_comp_ellint_1: laboratories/elliptic_integrals/test_comp_ellint_1.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_comp_ellint_1 laboratories/elliptic_integrals/test_comp_ellint_1.cpp -lquadmath
 
-test_const: test_const.cpp
-	$(CXX17) -Iinclude -I../mpreal -o test_const test_const.cpp -lquadmath -lmpfr -lgmp
+$(TEST_BIN_DIR)/test_complex128: laboratories/complex_tools/test_complex128.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_complex128 laboratories/complex_tools/test_complex128.cpp -lquadmath
 
-test_continued_fraction: test_continued_fraction.cpp
-	$(CXX17) -Iinclude -Ipolynomial -o test_continued_fraction test_continued_fraction.cpp -lquadmath
+$(TEST_BIN_DIR)/test_complex_gamma: laboratories/gamma_functions/test_complex_gamma.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_complex_gamma laboratories/gamma_functions/test_complex_gamma.cpp -lquadmath
 
-test_continuous_dual_hahn: laboratories/orthogonal_polynomials/test_continuous_dual_hahn.cpp
-	$(CXX17) -Iinclude -o test_continuous_dual_hahn laboratories/orthogonal_polynomials/test_continuous_dual_hahn.cpp -lquadmath
+$(TEST_BIN_DIR)/test_conf_hyperg: laboratories/hypergeometric_functions/test_conf_hyperg.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_conf_hyperg laboratories/hypergeometric_functions/test_conf_hyperg.cpp -lquadmath
 
-test_continuous_hahn: laboratories/orthogonal_polynomials/test_continuous_hahn.cpp
-	$(CXX17) -Iinclude -o test_continuous_hahn laboratories/orthogonal_polynomials/test_continuous_hahn.cpp -lquadmath
+$(TEST_BIN_DIR)/test_conf_hyperg_limit: laboratories/hypergeometric_functions/test_conf_hyperg_limit.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_conf_hyperg_limit laboratories/hypergeometric_functions/test_conf_hyperg_limit.cpp -lquadmath
 
-test_cordic: laboratories/elementary_functions/test_cordic.cpp
-	$(CXX17) -Iinclude -o test_cordic laboratories/elementary_functions/test_cordic.cpp -lquadmath
+$(TEST_BIN_DIR)/test_const: test_const.cpp
+	$(CXX17) -Iinclude -I../mpreal -o $(TEST_BIN_DIR)/test_const test_const.cpp -lquadmath -lmpfr -lgmp
 
-test_coulomb: laboratories/coulomb_functions/test_coulomb.cpp
-	$(CXX17) -Iinclude -o test_coulomb laboratories/coulomb_functions/test_coulomb.cpp -lquadmath
+$(TEST_BIN_DIR)/test_continued_fraction: test_continued_fraction.cpp
+	$(CXX17) -Iinclude -Ipolynomial -o $(TEST_BIN_DIR)/test_continued_fraction test_continued_fraction.cpp -lquadmath
 
-test_csint: laboratories/exponential_integrals/test_csint.cpp laboratories/exponential_integrals/csint.tcc
-	$(CXX17) -Iinclude -Ilaboratories/exponential_integrals -o test_csint laboratories/exponential_integrals/test_csint.cpp -lquadmath
+$(TEST_BIN_DIR)/test_continuous_dual_hahn: laboratories/orthogonal_polynomials/test_continuous_dual_hahn.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_continuous_dual_hahn laboratories/orthogonal_polynomials/test_continuous_dual_hahn.cpp -lquadmath
 
-test_cyl_hankel: wrappers_debug laboratories/bessel_functions/test_cyl_hankel.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_cyl_hankel laboratories/bessel_functions/test_cyl_hankel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+$(TEST_BIN_DIR)/test_continuous_hahn: laboratories/orthogonal_polynomials/test_continuous_hahn.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_continuous_hahn laboratories/orthogonal_polynomials/test_continuous_hahn.cpp -lquadmath
 
-test_dawson: laboratories/error_functions/test_dawson.cpp
-	$(CXX17) -Iinclude -o test_dawson laboratories/error_functions/test_dawson.cpp -lquadmath
+$(TEST_BIN_DIR)/test_cordic: laboratories/elementary_functions/test_cordic.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_cordic laboratories/elementary_functions/test_cordic.cpp -lquadmath
 
-test_debye: wrappers_debug laboratories/zeta_functions/test_debye.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_debye laboratories/zeta_functions/test_debye.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+$(TEST_BIN_DIR)/test_coulomb: laboratories/coulomb_functions/test_coulomb.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_coulomb laboratories/coulomb_functions/test_coulomb.cpp -lquadmath
 
-test_digamma: wrappers_debug laboratories/gamma_functions/test_digamma.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_digamma laboratories/gamma_functions/test_digamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+$(TEST_BIN_DIR)/test_csint: laboratories/exponential_integrals/test_csint.cpp laboratories/exponential_integrals/csint.tcc
+	$(CXX17) -Iinclude -Ilaboratories/exponential_integrals -o $(TEST_BIN_DIR)/test_csint laboratories/exponential_integrals/test_csint.cpp -lquadmath
 
-test_dilog: laboratories/zeta_functions/test_dilog.cpp
-	$(CXX17) -Iinclude -o test_dilog laboratories/zeta_functions/test_dilog.cpp -lquadmath
+$(TEST_BIN_DIR)/test_cyl_hankel: wrappers_debug laboratories/bessel_functions/test_cyl_hankel.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_cyl_hankel laboratories/bessel_functions/test_cyl_hankel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_dirichlet_eta: laboratories/zeta_functions/test_dirichlet_eta.cpp
-	$(CXX17) -Iinclude -o test_dirichlet_eta laboratories/zeta_functions/test_dirichlet_eta.cpp -lquadmath
+$(TEST_BIN_DIR)/test_dawson: laboratories/error_functions/test_dawson.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_dawson laboratories/error_functions/test_dawson.cpp -lquadmath
 
-test_dual_hahn: laboratories/orthogonal_polynomials/test_dual_hahn.cpp
-	$(CXX17) -Iinclude -o test_dual_hahn laboratories/orthogonal_polynomials/test_dual_hahn.cpp -lquadmath
+$(TEST_BIN_DIR)/test_debye: wrappers_debug laboratories/zeta_functions/test_debye.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_debye laboratories/zeta_functions/test_debye.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-test_erfc: wrappers_debug laboratories/error_functions/test_erfc.cpp
-	$(CXX17) -Iinclude -I. -Iwrappers -o test_erfc laboratories/error_functions/test_erfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+$(TEST_BIN_DIR)/test_digamma: wrappers_debug laboratories/gamma_functions/test_digamma.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_digamma laboratories/gamma_functions/test_digamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-test_experfc: wrappers_debug laboratories/error_functions/test_experfc.cpp
-	$(CXX17) -Iinclude -Iwrappers -I../mpreal -o test_experfc laboratories/error_functions/test_experfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost -lmpfr -lgmp
+$(TEST_BIN_DIR)/test_dilog: laboratories/zeta_functions/test_dilog.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_dilog laboratories/zeta_functions/test_dilog.cpp -lquadmath
 
-test_expint: wrappers_debug laboratories/exponential_integrals/test_expint.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_expint laboratories/exponential_integrals/test_expint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+$(TEST_BIN_DIR)/test_dirichlet_eta: laboratories/zeta_functions/test_dirichlet_eta.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_dirichlet_eta laboratories/zeta_functions/test_dirichlet_eta.cpp -lquadmath
 
-test_factorial: laboratories/gamma_functions/test_factorial.cpp
-	$(CXX17) -Iinclude -o test_factorial laboratories/gamma_functions/test_factorial.cpp -lquadmath
+$(TEST_BIN_DIR)/test_dual_hahn: laboratories/orthogonal_polynomials/test_dual_hahn.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_dual_hahn laboratories/orthogonal_polynomials/test_dual_hahn.cpp -lquadmath
 
-test_faddeeva: wrappers_debug laboratories/error_functions/test_faddeeva.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_faddeeva laboratories/error_functions/test_faddeeva.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_faddeeva
+$(TEST_BIN_DIR)/test_erfc: wrappers_debug laboratories/error_functions/test_erfc.cpp
+	$(CXX17) -Iinclude -I. -Iwrappers -o $(TEST_BIN_DIR)/test_erfc laboratories/error_functions/test_erfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_falling_factorial: wrappers_debug laboratories/gamma_functions/test_falling_factorial.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_falling_factorial laboratories/gamma_functions/test_falling_factorial.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+$(TEST_BIN_DIR)/test_experfc: wrappers_debug laboratories/error_functions/test_experfc.cpp
+	$(CXX17) -Iinclude -Iwrappers -I../mpreal -o $(TEST_BIN_DIR)/test_experfc laboratories/error_functions/test_experfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost -lmpfr -lgmp
 
-test_fermi_dirac: wrappers_debug laboratories/zeta_functions/test_fermi_dirac.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_fermi_dirac laboratories/zeta_functions/test_fermi_dirac.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+$(TEST_BIN_DIR)/test_expint: wrappers_debug laboratories/exponential_integrals/test_expint.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_expint laboratories/exponential_integrals/test_expint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_fibonacci: wrappers_debug laboratories/test_fibonacci.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_fibonacci laboratories/test_fibonacci.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+$(TEST_BIN_DIR)/test_factorial: laboratories/gamma_functions/test_factorial.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_factorial laboratories/gamma_functions/test_factorial.cpp -lquadmath
 
-test_float128: test_float128.cpp
-	$(CXX17) -Iinclude -o test_float128 test_float128.cpp -lquadmath
+$(TEST_BIN_DIR)/test_faddeeva: wrappers_debug laboratories/error_functions/test_faddeeva.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_faddeeva laboratories/error_functions/test_faddeeva.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_faddeeva
 
-test_fresnel: wrappers_debug laboratories/error_functions/test_fresnel.cpp laboratories/error_functions/fresnel.tcc
-	$(CXX17) -Iinclude -Iwrappers -Ilaboratories/error_functions -o test_fresnel laboratories/error_functions/test_fresnel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+$(TEST_BIN_DIR)/test_falling_factorial: wrappers_debug laboratories/gamma_functions/test_falling_factorial.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_falling_factorial laboratories/gamma_functions/test_falling_factorial.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_gamma: wrappers_debug laboratories/gamma_functions/test_gamma.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_gamma laboratories/gamma_functions/test_gamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+$(TEST_BIN_DIR)/test_fermi_dirac: wrappers_debug laboratories/zeta_functions/test_fermi_dirac.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_fermi_dirac laboratories/zeta_functions/test_fermi_dirac.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-test_gamma_ratio: wrappers_debug laboratories/gamma_functions/test_gamma_ratio.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_gamma_ratio laboratories/gamma_functions/test_gamma_ratio.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+$(TEST_BIN_DIR)/test_fibonacci: wrappers_debug laboratories/test_fibonacci.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_fibonacci laboratories/test_fibonacci.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-test_gamma_reciprocal: laboratories/gamma_functions/test_gamma_reciprocal.cpp
-	$(CXX17) -Iinclude -o test_gamma_reciprocal laboratories/gamma_functions/test_gamma_reciprocal.cpp -lquadmath
+$(TEST_BIN_DIR)/test_float128: test_float128.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_float128 test_float128.cpp -lquadmath
 
-test_gegenbauer: laboratories/orthogonal_polynomials/test_gegenbauer.cpp
-	$(CXX17) -Iinclude -o test_gegenbauer laboratories/orthogonal_polynomials/test_gegenbauer.cpp -lquadmath
+$(TEST_BIN_DIR)/test_fresnel: wrappers_debug laboratories/error_functions/test_fresnel.cpp laboratories/error_functions/fresnel.tcc
+	$(CXX17) -Iinclude -Iwrappers -Ilaboratories/error_functions -o $(TEST_BIN_DIR)/test_fresnel laboratories/error_functions/test_fresnel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_gudermannian: laboratories/elementary_functions/test_gudermannian.cpp
-	$(CXX17) -Iinclude -o test_gudermannian laboratories/elementary_functions/test_gudermannian.cpp -lquadmath
+$(TEST_BIN_DIR)/test_gamma: wrappers_debug laboratories/gamma_functions/test_gamma.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_gamma laboratories/gamma_functions/test_gamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_hahn: laboratories/orthogonal_polynomials/test_hahn.cpp
-	$(CXX17) -Iinclude -o test_hahn laboratories/orthogonal_polynomials/test_hahn.cpp -lquadmath
+$(TEST_BIN_DIR)/test_gamma_ratio: wrappers_debug laboratories/gamma_functions/test_gamma_ratio.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_gamma_ratio laboratories/gamma_functions/test_gamma_ratio.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_hankel: laboratories/bessel_functions/test_hankel.cpp
-	$(CXX17) -Iinclude -o test_hankel laboratories/bessel_functions/test_hankel.cpp -lquadmath
+$(TEST_BIN_DIR)/test_gamma_reciprocal: laboratories/gamma_functions/test_gamma_reciprocal.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_gamma_reciprocal laboratories/gamma_functions/test_gamma_reciprocal.cpp -lquadmath
 
-test_hankel_real_arg: wrappers_debug laboratories/bessel_functions/test_hankel_real_arg.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_hankel_real_arg laboratories/bessel_functions/test_hankel_real_arg.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+$(TEST_BIN_DIR)/test_gegenbauer: laboratories/orthogonal_polynomials/test_gegenbauer.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_gegenbauer laboratories/orthogonal_polynomials/test_gegenbauer.cpp -lquadmath
 
-test_hermite: laboratories/orthogonal_polynomials/test_hermite.cpp laboratories/orthogonal_polynomials/new_hermite.tcc
-	$(CXX17) -Iinclude -I. -Ilaboratories/orthogonal_polynomials -o test_hermite laboratories/orthogonal_polynomials/test_hermite.cpp -lquadmath
+$(TEST_BIN_DIR)/test_gudermannian: laboratories/elementary_functions/test_gudermannian.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_gudermannian laboratories/elementary_functions/test_gudermannian.cpp -lquadmath
 
-test_heuman_lambda: wrappers_debug laboratories/elliptic_integrals/test_heuman_lambda.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_heuman_lambda laboratories/elliptic_integrals/test_heuman_lambda.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+$(TEST_BIN_DIR)/test_hahn: laboratories/orthogonal_polynomials/test_hahn.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_hahn laboratories/orthogonal_polynomials/test_hahn.cpp -lquadmath
 
-test_hurwitz_zeta: laboratories/zeta_functions/test_hurwitz_zeta.cpp
-	$(CXX17) -Iinclude -o test_hurwitz_zeta laboratories/zeta_functions/test_hurwitz_zeta.cpp -lquadmath
+$(TEST_BIN_DIR)/test_hankel: laboratories/bessel_functions/test_hankel.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_hankel laboratories/bessel_functions/test_hankel.cpp -lquadmath
 
-test_hurwitz_zeta_new: laboratories/zeta_functions/test_hurwitz_zeta_new.cpp
-	$(CXX17) -Iinclude -o test_hurwitz_zeta_new laboratories/zeta_functions/test_hurwitz_zeta_new.cpp -lquadmath
+$(TEST_BIN_DIR)/test_hankel_real_arg: wrappers_debug laboratories/bessel_functions/test_hankel_real_arg.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_hankel_real_arg laboratories/bessel_functions/test_hankel_real_arg.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_hydrogen: wrappers_debug laboratories/coulomb_functions/test_hydrogen.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_hydrogen laboratories/coulomb_functions/test_hydrogen.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+$(TEST_BIN_DIR)/test_hermite: laboratories/orthogonal_polynomials/test_hermite.cpp laboratories/orthogonal_polynomials/new_hermite.tcc
+	$(CXX17) -Iinclude -I. -Ilaboratories/orthogonal_polynomials -o $(TEST_BIN_DIR)/test_hermite laboratories/orthogonal_polynomials/test_hermite.cpp -lquadmath
 
-test_hyperg: wrappers_debug laboratories/hypergeometric_functions/test_hyperg.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_hyperg laboratories/hypergeometric_functions/test_hyperg.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+$(TEST_BIN_DIR)/test_heuman_lambda: wrappers_debug laboratories/elliptic_integrals/test_heuman_lambda.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_heuman_lambda laboratories/elliptic_integrals/test_heuman_lambda.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_hypot: laboratories/norm_functions/test_hypot.cpp
-	$(CXX17) -Iinclude -o test_hypot laboratories/norm_functions/test_hypot.cpp -lquadmath
+$(TEST_BIN_DIR)/test_hurwitz_zeta: laboratories/zeta_functions/test_hurwitz_zeta.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_hurwitz_zeta laboratories/zeta_functions/test_hurwitz_zeta.cpp -lquadmath
 
-test_inv_erf: laboratories/error_functions/test_inv_erf.cpp
-	$(CXX17) -Iinclude -DSTANDALONE -o test_inv_erf laboratories/error_functions/test_inv_erf.cpp -lquadmath
+$(TEST_BIN_DIR)/test_hurwitz_zeta_new: laboratories/zeta_functions/test_hurwitz_zeta_new.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_hurwitz_zeta_new laboratories/zeta_functions/test_hurwitz_zeta_new.cpp -lquadmath
 
-test_inv_gamma: laboratories/gamma_functions/test_inv_gamma.cpp laboratories/error_functions/test_inv_erf.cpp
-	$(CXX17) -Iinclude -o test_inv_gamma laboratories/gamma_functions/test_inv_gamma.cpp -lquadmath
+$(TEST_BIN_DIR)/test_hydrogen: wrappers_debug laboratories/coulomb_functions/test_hydrogen.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_hydrogen laboratories/coulomb_functions/test_hydrogen.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-test_inv_ibeta: laboratories/beta_functions/test_inv_ibeta.cpp
-	$(CXX17) -Iinclude -o test_inv_ibeta laboratories/beta_functions/test_inv_ibeta.cpp -lquadmath
+$(TEST_BIN_DIR)/test_hyperg: wrappers_debug laboratories/hypergeometric_functions/test_hyperg.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_hyperg laboratories/hypergeometric_functions/test_hyperg.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-test_jacobi: laboratories/orthogonal_polynomials/test_jacobi.cpp
-	$(CXX17) -Iinclude -o test_jacobi laboratories/orthogonal_polynomials/test_jacobi.cpp -lquadmath
+$(TEST_BIN_DIR)/test_hypot: laboratories/norm_functions/test_hypot.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_hypot laboratories/norm_functions/test_hypot.cpp -lquadmath
 
-test_jacobi_ellint: laboratories/theta_functions/test_jacobi_ellint.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_jacobi_ellint laboratories/theta_functions/test_jacobi_ellint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost
+$(TEST_BIN_DIR)/test_inv_erf: laboratories/error_functions/test_inv_erf.cpp
+	$(CXX17) -Iinclude -DSTANDALONE -o $(TEST_BIN_DIR)/test_inv_erf laboratories/error_functions/test_inv_erf.cpp -lquadmath
 
-test_jacobi_inv: laboratories/theta_functions/test_jacobi_inv.cpp
-	$(CXX17) -Iinclude -o test_jacobi_inv laboratories/theta_functions/test_jacobi_inv.cpp -lquadmath
+$(TEST_BIN_DIR)/test_inv_gamma: laboratories/gamma_functions/test_inv_gamma.cpp laboratories/error_functions/test_inv_erf.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_inv_gamma laboratories/gamma_functions/test_inv_gamma.cpp -lquadmath
 
-test_jacobi_theta: wrappers_debug laboratories/theta_functions/test_jacobi_theta.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_jacobi_theta laboratories/theta_functions/test_jacobi_theta.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+$(TEST_BIN_DIR)/test_inv_ibeta: laboratories/beta_functions/test_inv_ibeta.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_inv_ibeta laboratories/beta_functions/test_inv_ibeta.cpp -lquadmath
 
-test_jacobi_zeta: wrappers_debug laboratories/elliptic_integrals/test_jacobi_zeta.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_jacobi_zeta laboratories/elliptic_integrals/test_jacobi_zeta.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+$(TEST_BIN_DIR)/test_jacobi: laboratories/orthogonal_polynomials/test_jacobi.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_jacobi laboratories/orthogonal_polynomials/test_jacobi.cpp -lquadmath
 
-test_kelvin: laboratories/bessel_functions/test_kelvin.cpp
-	$(CXX17) -Iinclude -o test_kelvin laboratories/bessel_functions/test_kelvin.cpp -lquadmath
+$(TEST_BIN_DIR)/test_jacobi_ellint: laboratories/theta_functions/test_jacobi_ellint.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_jacobi_ellint laboratories/theta_functions/test_jacobi_ellint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost
 
-test_krawtchouk: laboratories/orthogonal_polynomials/test_krawtchouk.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_krawtchouk laboratories/orthogonal_polynomials/test_krawtchouk.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
+$(TEST_BIN_DIR)/test_jacobi_inv: laboratories/theta_functions/test_jacobi_inv.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_jacobi_inv laboratories/theta_functions/test_jacobi_inv.cpp -lquadmath
 
-test_laguerre: laboratories/orthogonal_polynomials/test_laguerre.cpp
-	$(CXX17) -Iinclude -o test_laguerre laboratories/orthogonal_polynomials/test_laguerre.cpp -lquadmath
+$(TEST_BIN_DIR)/test_jacobi_theta: wrappers_debug laboratories/theta_functions/test_jacobi_theta.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_jacobi_theta laboratories/theta_functions/test_jacobi_theta.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_lambert_w: laboratories/elementary_functions/test_lambert_w.cpp
-	$(CXX17) -Iinclude -o test_lambert_w laboratories/elementary_functions/test_lambert_w.cpp -lquadmath
+$(TEST_BIN_DIR)/test_jacobi_zeta: wrappers_debug laboratories/elliptic_integrals/test_jacobi_zeta.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_jacobi_zeta laboratories/elliptic_integrals/test_jacobi_zeta.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_large_order_bessel: laboratories/bessel_functions/test_large_order_bessel.cpp
-	$(CXX17) -Iinclude -o test_large_order_bessel laboratories/bessel_functions/test_large_order_bessel.cpp -lquadmath
+$(TEST_BIN_DIR)/test_kelvin: laboratories/bessel_functions/test_kelvin.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_kelvin laboratories/bessel_functions/test_kelvin.cpp -lquadmath
 
-test_legendre: laboratories/orthogonal_polynomials/test_legendre.cpp
-	$(CXX17) -Iinclude -o test_legendre laboratories/orthogonal_polynomials/test_legendre.cpp -lquadmath
+$(TEST_BIN_DIR)/test_krawtchouk: laboratories/orthogonal_polynomials/test_krawtchouk.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_krawtchouk laboratories/orthogonal_polynomials/test_krawtchouk.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
-test_legendre_ellint: laboratories/elliptic_integrals/test_legendre_ellint.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_legendre_ellint laboratories/elliptic_integrals/test_legendre_ellint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+$(TEST_BIN_DIR)/test_laguerre: laboratories/orthogonal_polynomials/test_laguerre.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_laguerre laboratories/orthogonal_polynomials/test_laguerre.cpp -lquadmath
 
-test_lentz_continued_fraction: test_lentz_continued_fraction.cpp
-	$(CXX17) -Iinclude -o test_lentz_continued_fraction test_lentz_continued_fraction.cpp -lquadmath
+$(TEST_BIN_DIR)/test_lambert_w: laboratories/elementary_functions/test_lambert_w.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_lambert_w laboratories/elementary_functions/test_lambert_w.cpp -lquadmath
 
-test_lerch: laboratories/zeta_functions/test_lerch.cpp
-	$(CXX17) -Iinclude -I. -o test_lerch laboratories/zeta_functions/test_lerch.cpp 3rdparty/lerchphi/Source/lerchphi.cpp -lquadmath
+$(TEST_BIN_DIR)/test_large_order_bessel: laboratories/bessel_functions/test_large_order_bessel.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_large_order_bessel laboratories/bessel_functions/test_large_order_bessel.cpp -lquadmath
 
-test_limits: test_limits.cpp
-	$(CXX17) -Iinclude -o test_limits test_limits.cpp -lquadmath
+$(TEST_BIN_DIR)/test_legendre: laboratories/orthogonal_polynomials/test_legendre.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_legendre laboratories/orthogonal_polynomials/test_legendre.cpp -lquadmath
 
-test_little_airy: wrappers_debug laboratories/airy_functions/test_little_airy.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_little_airy laboratories/airy_functions/test_little_airy.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+$(TEST_BIN_DIR)/test_legendre_ellint: laboratories/elliptic_integrals/test_legendre_ellint.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_legendre_ellint laboratories/elliptic_integrals/test_legendre_ellint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-test_lobatto: wrappers_debug laboratories/orthogonal_polynomials/test_lobatto.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_lobatto laboratories/orthogonal_polynomials/test_lobatto.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+$(TEST_BIN_DIR)/test_lentz_continued_fraction: test_lentz_continued_fraction.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_lentz_continued_fraction test_lentz_continued_fraction.cpp -lquadmath
 
-test_lommel: wrappers_debug laboratories/bessel_functions/test_lommel.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_lommel laboratories/bessel_functions/test_lommel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+$(TEST_BIN_DIR)/test_lerch: laboratories/zeta_functions/test_lerch.cpp
+	$(CXX17) -Iinclude -I. -o $(TEST_BIN_DIR)/test_lerch laboratories/zeta_functions/test_lerch.cpp 3rdparty/lerchphi/Source/lerchphi.cpp -lquadmath
 
-test_logsumexp: laboratories/norm_functions/test_logsumexp.cpp
-	$(CXX17) -Iinclude -o test_logsumexp laboratories/norm_functions/test_logsumexp.cpp -lquadmath
+$(TEST_BIN_DIR)/test_limits: test_limits.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_limits test_limits.cpp -lquadmath
 
-test_marcum_q: laboratories/distributions/test_marcum_q.cpp
-	$(CXX17) -Iinclude -o test_marcum_q laboratories/distributions/test_marcum_q.cpp -lquadmath
+$(TEST_BIN_DIR)/test_little_airy: wrappers_debug laboratories/airy_functions/test_little_airy.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_little_airy laboratories/airy_functions/test_little_airy.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-test_math_h: test_math_h.cpp
-	$(CXX) -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -Iinclude -o test_math_h test_math_h.cpp -lquadmath
+$(TEST_BIN_DIR)/test_lobatto: wrappers_debug laboratories/orthogonal_polynomials/test_lobatto.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_lobatto laboratories/orthogonal_polynomials/test_lobatto.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-test_maxint: laboratories/floating_point_tools/test_maxint.cpp
-	$(CXX17) -Iinclude -I../mpreal -o test_maxint laboratories/floating_point_tools/test_maxint.cpp -lquadmath -lmpfr
+$(TEST_BIN_DIR)/test_lommel: wrappers_debug laboratories/bessel_functions/test_lommel.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_lommel laboratories/bessel_functions/test_lommel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-test_meixner: laboratories/orthogonal_polynomials/test_meixner.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_meixner laboratories/orthogonal_polynomials/test_meixner.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
+$(TEST_BIN_DIR)/test_logsumexp: laboratories/norm_functions/test_logsumexp.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_logsumexp laboratories/norm_functions/test_logsumexp.cpp -lquadmath
 
-test_meixner_pollaczek: laboratories/orthogonal_polynomials/test_meixner_pollaczek.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_meixner_pollaczek laboratories/orthogonal_polynomials/test_meixner_pollaczek.cpp -lquadmath
+$(TEST_BIN_DIR)/test_marcum_q: laboratories/distributions/test_marcum_q.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_marcum_q laboratories/distributions/test_marcum_q.cpp -lquadmath
 
-test_mittag_leffler: laboratories/mittag_leffler_functions/test_mittag_leffler.cpp
-	$(CXX17) -Iinclude -Iquadrature -o test_mittag_leffler laboratories/mittag_leffler_functions/test_mittag_leffler.cpp -lquadmath
+$(TEST_BIN_DIR)/test_math_h: test_math_h.cpp
+	$(CXX) -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -Iinclude -o $(TEST_BIN_DIR)/test_math_h test_math_h.cpp -lquadmath
 
-test_mod2pi: test_mod2pi.cpp
-	$(CXX17) -Iinclude -I../mpreal -o test_mod2pi test_mod2pi.cpp -lquadmath -lmpfr -lgmp
+$(TEST_BIN_DIR)/test_maxint: laboratories/floating_point_tools/test_maxint.cpp
+	$(CXX17) -Iinclude -I../mpreal -o $(TEST_BIN_DIR)/test_maxint laboratories/floating_point_tools/test_maxint.cpp -lquadmath -lmpfr
 
-test_mpreal: test_mpreal.cpp
-	$(CXX17) -Iinclude -I../mpreal -o test_mpreal test_mpreal.cpp -lquadmath -lmpfr -lgmp
+$(TEST_BIN_DIR)/test_meixner: laboratories/orthogonal_polynomials/test_meixner.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_meixner laboratories/orthogonal_polynomials/test_meixner.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
-test_notsospecfun: test_notsospecfun.cpp
-	$(CXX17) -Iinclude -o test_notsospecfun test_notsospecfun.cpp -lquadmath
+$(TEST_BIN_DIR)/test_meixner_pollaczek: laboratories/orthogonal_polynomials/test_meixner_pollaczek.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_meixner_pollaczek laboratories/orthogonal_polynomials/test_meixner_pollaczek.cpp -lquadmath
 
-test_nric_bessel: laboratories/bessel_functions/test_nric_bessel.cpp laboratories/bessel_functions/nric_bessel.tcc
-	$(CXX) -Iinclude -Ilaboratories/bessel_functions -o test_nric_bessel laboratories/bessel_functions/test_nric_bessel.cpp -lquadmath
+$(TEST_BIN_DIR)/test_mittag_leffler: laboratories/mittag_leffler_functions/test_mittag_leffler.cpp
+	$(CXX17) -Iinclude -Iquadrature -o $(TEST_BIN_DIR)/test_mittag_leffler laboratories/mittag_leffler_functions/test_mittag_leffler.cpp -lquadmath
 
-test_numeric_limits: test_numeric_limits.cpp
-	$(CXX17) -Iinclude -I../mpreal -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr -lgmp
+$(TEST_BIN_DIR)/test_mod2pi: test_mod2pi.cpp
+	$(CXX17) -Iinclude -I../mpreal -o $(TEST_BIN_DIR)/test_mod2pi test_mod2pi.cpp -lquadmath -lmpfr -lgmp
 
-test_owens_t: wrappers_debug laboratories/error_functions/test_owens_t.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_owens_t laboratories/error_functions/test_owens_t.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+$(TEST_BIN_DIR)/test_mpreal: test_mpreal.cpp
+	$(CXX17) -Iinclude -I../mpreal -o $(TEST_BIN_DIR)/test_mpreal test_mpreal.cpp -lquadmath -lmpfr -lgmp
 
-test_parab_cyl: laboratories/parabolic_cylinder_functions/test_parab_cyl.cpp
-	$(CXX17) -Iinclude -o test_parab_cyl laboratories/parabolic_cylinder_functions/test_parab_cyl.cpp -lquadmath
+$(TEST_BIN_DIR)/test_notsospecfun: test_notsospecfun.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_notsospecfun test_notsospecfun.cpp -lquadmath
 
-test_polygamma: laboratories/gamma_functions/test_polygamma.cpp
-	$(CXX17) -Iinclude -Iwrappers -I. -o test_polygamma laboratories/gamma_functions/test_polygamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+$(TEST_BIN_DIR)/test_nric_bessel: laboratories/bessel_functions/test_nric_bessel.cpp laboratories/bessel_functions/nric_bessel.tcc
+	$(CXX) -Iinclude -Ilaboratories/bessel_functions -o $(TEST_BIN_DIR)/test_nric_bessel laboratories/bessel_functions/test_nric_bessel.cpp -lquadmath
 
-test_polylog: wrappers_debug laboratories/zeta_functions/test_polylog.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_polylog laboratories/zeta_functions/test_polylog.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_cephes
+$(TEST_BIN_DIR)/test_numeric_limits: test_numeric_limits.cpp
+	$(CXX17) -Iinclude -I../mpreal -o $(TEST_BIN_DIR)/test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr -lgmp
 
-test_power_mean: laboratories/norm_functions/test_power_mean.cpp
-	$(CXX17) -Iinclude -o test_power_mean laboratories/norm_functions/test_power_mean.cpp -lquadmath
+$(TEST_BIN_DIR)/test_owens_t: wrappers_debug laboratories/error_functions/test_owens_t.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_owens_t laboratories/error_functions/test_owens_t.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_power_norm: laboratories/norm_functions/test_power_norm.cpp
-	$(CXX17) -Iinclude -o test_power_norm laboratories/norm_functions/test_power_norm.cpp -lquadmath
+$(TEST_BIN_DIR)/test_parab_cyl: laboratories/parabolic_cylinder_functions/test_parab_cyl.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_parab_cyl laboratories/parabolic_cylinder_functions/test_parab_cyl.cpp -lquadmath
 
-test_racah: laboratories/orthogonal_polynomials/test_racah.cpp
-	$(CXX17) -Iinclude -o test_racah laboratories/orthogonal_polynomials/test_racah.cpp -lquadmath
+$(TEST_BIN_DIR)/test_polygamma: laboratories/gamma_functions/test_polygamma.cpp
+	$(CXX17) -Iinclude -Iwrappers -I. -o $(TEST_BIN_DIR)/test_polygamma laboratories/gamma_functions/test_polygamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_rational: test_rational.cpp
-	$(CXX17) -Iinclude -o test_rational test_rational.cpp -lquadmath
+$(TEST_BIN_DIR)/test_polylog: wrappers_debug laboratories/zeta_functions/test_polylog.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_polylog laboratories/zeta_functions/test_polylog.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_cephes
 
-test_recursion: test_recursion.cpp
-	$(CXX17) -Iinclude -o test_recursion test_recursion.cpp -lquadmath
+$(TEST_BIN_DIR)/test_power_mean: laboratories/norm_functions/test_power_mean.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_power_mean laboratories/norm_functions/test_power_mean.cpp -lquadmath
 
-test_reperiodized_hyper: laboratories/elementary_functions/test_reperiodized_hyper.cpp
-	$(CXX17) -Iinclude -o test_reperiodized_hyper laboratories/elementary_functions/test_reperiodized_hyper.cpp -lquadmath
+$(TEST_BIN_DIR)/test_power_norm: laboratories/norm_functions/test_power_norm.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_power_norm laboratories/norm_functions/test_power_norm.cpp -lquadmath
 
-test_reperiodized_trig: wrappers_debug laboratories/elementary_functions/test_reperiodized_trig.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_reperiodized_trig laboratories/elementary_functions/test_reperiodized_trig.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+$(TEST_BIN_DIR)/test_racah: laboratories/orthogonal_polynomials/test_racah.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_racah laboratories/orthogonal_polynomials/test_racah.cpp -lquadmath
 
-test_riemann_zeta: laboratories/zeta_functions/test_riemann_zeta.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_riemann_zeta laboratories/zeta_functions/test_riemann_zeta.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+$(TEST_BIN_DIR)/test_rational: test_rational.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_rational test_rational.cpp -lquadmath
 
-test_rising_factorial: wrappers_debug laboratories/gamma_functions/test_rising_factorial.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_rising_factorial laboratories/gamma_functions/test_rising_factorial.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+$(TEST_BIN_DIR)/test_recursion: test_recursion.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_recursion test_recursion.cpp -lquadmath
 
-test_root_finding: test_root_finding.cpp
-	$(CXX17) -Iinclude -Ipolynomial -o test_root_finding test_root_finding.cpp -lquadmath
+$(TEST_BIN_DIR)/test_reperiodized_hyper: laboratories/elementary_functions/test_reperiodized_hyper.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_reperiodized_hyper laboratories/elementary_functions/test_reperiodized_hyper.cpp -lquadmath
 
-test_sincos: laboratories/elementary_functions/test_sincos.cpp
-	$(CXX17) -Iinclude -o test_sincos laboratories/elementary_functions/test_sincos.cpp -lquadmath
+$(TEST_BIN_DIR)/test_reperiodized_trig: wrappers_debug laboratories/elementary_functions/test_reperiodized_trig.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_reperiodized_trig laboratories/elementary_functions/test_reperiodized_trig.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_sinus_cardinal: wrappers_debug laboratories/elementary_functions/test_sinus_cardinal.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_sinus_cardinal laboratories/elementary_functions/test_sinus_cardinal.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost
+$(TEST_BIN_DIR)/test_riemann_zeta: laboratories/zeta_functions/test_riemann_zeta.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_riemann_zeta laboratories/zeta_functions/test_riemann_zeta.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-test_sph_bessel: laboratories/bessel_functions/test_sph_bessel.cpp
-	$(CXX17) -Iinclude -o test_sph_bessel laboratories/bessel_functions/test_sph_bessel.cpp -lquadmath
+$(TEST_BIN_DIR)/test_rising_factorial: wrappers_debug laboratories/gamma_functions/test_rising_factorial.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_rising_factorial laboratories/gamma_functions/test_rising_factorial.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_sph_hankel: wrappers_debug laboratories/bessel_functions/test_sph_hankel.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_sph_hankel laboratories/bessel_functions/test_sph_hankel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+$(TEST_BIN_DIR)/test_root_finding: test_root_finding.cpp
+	$(CXX17) -Iinclude -Ipolynomial -o $(TEST_BIN_DIR)/test_root_finding test_root_finding.cpp -lquadmath
 
-test_steed_continued_fraction: test_steed_continued_fraction.cpp
-	$(CXX17) -Iinclude -o test_steed_continued_fraction test_steed_continued_fraction.cpp -lquadmath
+$(TEST_BIN_DIR)/test_sincos: laboratories/elementary_functions/test_sincos.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_sincos laboratories/elementary_functions/test_sincos.cpp -lquadmath
 
-test_struve: laboratories/bessel_functions/test_struve.cpp
-	$(CXX17) -Iinclude -Iwrappers -o test_struve laboratories/bessel_functions/test_struve.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
+$(TEST_BIN_DIR)/test_sinus_cardinal: wrappers_debug laboratories/elementary_functions/test_sinus_cardinal.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_sinus_cardinal laboratories/elementary_functions/test_sinus_cardinal.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost
 
-test_struve_old: laboratories/bessel_functions/test_struve_old.cpp
-	$(CXX17) -Iinclude -Ilaboratories/hypergeometric_functions -o test_struve_old laboratories/bessel_functions/test_struve_old.cpp -lquadmath
+$(TEST_BIN_DIR)/test_sph_bessel: laboratories/bessel_functions/test_sph_bessel.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_sph_bessel laboratories/bessel_functions/test_sph_bessel.cpp -lquadmath
 
-test_summation: test_summation.cpp
-	$(CXX17) -Iinclude -o test_summation test_summation.cpp -lquadmath
+$(TEST_BIN_DIR)/test_sph_hankel: wrappers_debug laboratories/bessel_functions/test_sph_hankel.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_sph_hankel laboratories/bessel_functions/test_sph_hankel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-test_theta: laboratories/theta_functions/test_theta.cpp
-	$(CXX17) -Iinclude -o test_theta laboratories/theta_functions/test_theta.cpp -lquadmath
+$(TEST_BIN_DIR)/test_steed_continued_fraction: test_steed_continued_fraction.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_steed_continued_fraction test_steed_continued_fraction.cpp -lquadmath
 
-test_tr1_cmath: test_tr1_cmath.cpp
-	$(CXX) -Iinclude -o test_tr1_cmath test_tr1_cmath.cpp -lquadmath
+$(TEST_BIN_DIR)/test_struve: laboratories/bessel_functions/test_struve.cpp
+	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_struve laboratories/bessel_functions/test_struve.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
-test_tricomi_u: laboratories/hypergeometric_functions/test_tricomi_u.cpp
-	$(CXX17) -Iinclude -o test_tricomi_u laboratories/hypergeometric_functions/test_tricomi_u.cpp -lquadmath
+$(TEST_BIN_DIR)/test_struve_old: laboratories/bessel_functions/test_struve_old.cpp
+	$(CXX17) -Iinclude -Ilaboratories/hypergeometric_functions -o $(TEST_BIN_DIR)/test_struve_old laboratories/bessel_functions/test_struve_old.cpp -lquadmath
 
-test_trig: laboratories/elementary_functions/test_trig.cpp
-	$(CXX17) -Iinclude -o test_trig laboratories/elementary_functions/test_trig.cpp -lquadmath
+$(TEST_BIN_DIR)/test_summation: test_summation.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_summation test_summation.cpp -lquadmath
 
-test_weierstrass_ellint: laboratories/theta_functions/test_weierstrass_ellint.cpp
-	$(CXX17) -Iinclude -Ipolynomial -o test_weierstrass_ellint laboratories/theta_functions/test_weierstrass_ellint.cpp -lquadmath
+$(TEST_BIN_DIR)/test_theta: laboratories/theta_functions/test_theta.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_theta laboratories/theta_functions/test_theta.cpp -lquadmath
 
-test_wilson: laboratories/orthogonal_polynomials/test_wilson.cpp
-	$(CXX17) -Iinclude -o test_wilson laboratories/orthogonal_polynomials/test_wilson.cpp -lquadmath
+$(TEST_BIN_DIR)/test_tr1_cmath: test_tr1_cmath.cpp
+	$(CXX) -Iinclude -o $(TEST_BIN_DIR)/test_tr1_cmath test_tr1_cmath.cpp -lquadmath
 
-test_wright_omega: laboratories/elementary_functions/test_wright_omega.cpp
-	$(CXX17) -Iinclude -o test_wright_omega laboratories/elementary_functions/test_wright_omega.cpp -lquadmath
+$(TEST_BIN_DIR)/test_tricomi_u: laboratories/hypergeometric_functions/test_tricomi_u.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_tricomi_u laboratories/hypergeometric_functions/test_tricomi_u.cpp -lquadmath
 
-test_zeta_trig: laboratories/elementary_functions/test_zeta_trig.cpp
-	$(CXX17) -Iinclude -o test_zeta_trig laboratories/elementary_functions/test_zeta_trig.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+$(TEST_BIN_DIR)/test_trig: laboratories/elementary_functions/test_trig.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_trig laboratories/elementary_functions/test_trig.cpp -lquadmath
 
+$(TEST_BIN_DIR)/test_weierstrass_ellint: laboratories/theta_functions/test_weierstrass_ellint.cpp
+	$(CXX17) -Iinclude -Ipolynomial -o $(TEST_BIN_DIR)/test_weierstrass_ellint laboratories/theta_functions/test_weierstrass_ellint.cpp -lquadmath
 
-run_coulfg: laboratories/coulomb_functions/coulfg.cpp laboratories/coulomb_functions/run_coulfg.cpp
-	$(CXX17) -Iinclude -o run_coulfg laboratories/coulomb_functions/coulfg.cpp laboratories/coulomb_functions/run_coulfg.cpp -lquadmath
+$(TEST_BIN_DIR)/test_wilson: laboratories/orthogonal_polynomials/test_wilson.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_wilson laboratories/orthogonal_polynomials/test_wilson.cpp -lquadmath
 
-RUN_COULFG: laboratories/coulomb_functions/COULFG.FOR laboratories/coulomb_functions/RUN_COULFG.FOR
-	gfortran -o RUN_COULFG laboratories/coulomb_functions/COULFG.FOR laboratories/coulomb_functions/RUN_COULFG.FOR
+$(TEST_BIN_DIR)/test_wright_omega: laboratories/elementary_functions/test_wright_omega.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_wright_omega laboratories/elementary_functions/test_wright_omega.cpp -lquadmath
 
+$(TEST_BIN_DIR)/test_zeta_trig: laboratories/elementary_functions/test_zeta_trig.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_zeta_trig laboratories/elementary_functions/test_zeta_trig.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-airy_toy: laboratories/airy_functions/airy_toy.cpp
-	$(CXX17) -Iinclude -Ipolynomial -o airy_toy laboratories/airy_functions/airy_toy.cpp -lquadmath
 
-hankel_toy: laboratories/bessel_functions/hankel_toy.cpp
-	$(CXX17) -Iinclude -Ipolynomial -o hankel_toy laboratories/bessel_functions/hankel_toy.cpp -lquadmath
+$(TEST_BIN_DIR)/run_coulfg: laboratories/coulomb_functions/coulfg.cpp laboratories/coulomb_functions/run_coulfg.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/run_coulfg laboratories/coulomb_functions/coulfg.cpp laboratories/coulomb_functions/run_coulfg.cpp -lquadmath
 
-hankel_toy128: laboratories/bessel_functions/hankel_toy128.cpp
-	$(CXX17) -Iinclude -Ipolynomial -o hankel_toy128 laboratories/bessel_functions/hankel_toy128.cpp -lquadmath
+$(TEST_BIN_DIR)/RUN_COULFG: laboratories/coulomb_functions/COULFG.FOR laboratories/coulomb_functions/RUN_COULFG.FOR
+	gfortran -o $(TEST_BIN_DIR)/RUN_COULFG laboratories/coulomb_functions/COULFG.FOR laboratories/coulomb_functions/RUN_COULFG.FOR
 
-hankel_toy_new: laboratories/bessel_functions/hankel_toy_new.cpp
-	$(CXX17) -Iinclude -Ipolynomial -o hankel_toy_new laboratories/bessel_functions/hankel_toy_new.cpp -lquadmath
+
+$(TEST_BIN_DIR)/airy_toy: laboratories/airy_functions/airy_toy.cpp
+	$(CXX17) -Iinclude -Ipolynomial -o $(TEST_BIN_DIR)/airy_toy laboratories/airy_functions/airy_toy.cpp -lquadmath
+
+$(TEST_BIN_DIR)/hankel_toy: laboratories/bessel_functions/hankel_toy.cpp
+	$(CXX17) -Iinclude -Ipolynomial -o $(TEST_BIN_DIR)/hankel_toy laboratories/bessel_functions/hankel_toy.cpp -lquadmath
+
+$(TEST_BIN_DIR)/hankel_toy128: laboratories/bessel_functions/hankel_toy128.cpp
+	$(CXX17) -Iinclude -Ipolynomial -o $(TEST_BIN_DIR)/hankel_toy128 laboratories/bessel_functions/hankel_toy128.cpp -lquadmath
+
+$(TEST_BIN_DIR)/hankel_toy_new: laboratories/bessel_functions/hankel_toy_new.cpp
+	$(CXX17) -Iinclude -Ipolynomial -o $(TEST_BIN_DIR)/hankel_toy_new laboratories/bessel_functions/hankel_toy_new.cpp -lquadmath
 
 
 ${CHECK_DIR}/check_airy_ai: ${CHECK_DIR}/check_airy_ai.cc
@@ -1610,6 +1614,17 @@ ${CHECK_DIR}/check_tr1_sph_neumann: ${CHECK_DIR}/check_tr1_sph_neumann.cc
 $(CHECK_DIR): $(CHECK_DIR)
 	if test ! -d $(CHECK_DIR); then \
 	  mkdir $(CHECK_DIR); \
+	fi
+
+
+$(TEST_BIN_DIR): $(TEST_BIN_DIR)
+	if test ! -d $(TEST_BIN_DIR); then \
+	  mkdir $(TEST_BIN_DIR); \
+	fi
+
+$(TEST_OUT_DIR): $(TEST_OUT_DIR)
+	if test ! -d $(TEST_OUT_DIR); then \
+	  mkdir $(TEST_OUT_DIR); \
 	fi
 
 
