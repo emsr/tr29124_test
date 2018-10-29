@@ -1036,8 +1036,8 @@ $(TEST_BIN_DIR)/test_meixner_pollaczek: laboratories/orthogonal_polynomials/test
 $(TEST_BIN_DIR)/test_mittag_leffler: laboratories/mittag_leffler_functions/test_mittag_leffler.cpp
 	$(CXX17) -Iinclude -Iquadrature -o $(TEST_BIN_DIR)/test_mittag_leffler laboratories/mittag_leffler_functions/test_mittag_leffler.cpp -lquadmath
 
-$(TEST_BIN_DIR)/test_mod2pi: test_mod2pi.cpp
-	$(CXX17) -Iinclude -I../mpreal -o $(TEST_BIN_DIR)/test_mod2pi test_mod2pi.cpp -lquadmath -lmpfr -lgmp
+$(TEST_BIN_DIR)/test_mod2pi: laboratories/floating_point_tools/test_mod2pi.cpp
+	$(CXX17) -Iinclude -I../mpreal -o $(TEST_BIN_DIR)/test_mod2pi laboratories/floating_point_tools/test_mod2pi.cpp -lquadmath -lmpfr -lgmp
 
 $(TEST_BIN_DIR)/test_mpreal: multiprecision/test_mpreal.cpp
 	$(CXX17) -Iinclude -I../mpreal -o $(TEST_BIN_DIR)/test_mpreal multiprecision/test_mpreal.cpp -lquadmath -lmpfr -lgmp
