@@ -14,10 +14,10 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_polygamma > test_polygamm
 #include <iomanip>
 #include <ext/cmath>
 #include <bits/specfun.h>
-#include "LentzContinuedFraction.tcc"
+#include "continued_fractions/LentzContinuedFraction.tcc"
 #include "wrap_boost.h"
-#include <polynomial/ext/polynomial.h>
-#include <polynomial/ext/horner.h>
+#include <ext/polynomial.h>
+#include <ext/horner.h>
 
 /**
  * 
