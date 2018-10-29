@@ -46,7 +46,7 @@ TEST_OUT_DIR = laboratories/output
 #       testcase2 \
 #
 
-BINS = $(TEST_BIN_DIR) \
+BINS = \
        libstdc++_support/testcase \
        libstdc++_support/testcase_tr1 \
        $(TEST_BIN_DIR)/mpfrcalc \
@@ -343,7 +343,7 @@ TR1_CHECKS =  \
 	${CHECK_DIR}/check_tr1_sph_neumann
 
 
-all: $(BINS)
+all: $(TEST_BIN_DIR) $(BINS)
 
 
 WRAP_DIR = wrappers
