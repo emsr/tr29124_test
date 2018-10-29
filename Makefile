@@ -748,8 +748,8 @@ libstdc++_support/testcase_tr1: wrappers_debug libstdc++_support/testcase.cpp li
 	$(CXX17) -DTR1 -Iinclude -o libstdc++_support/testcase_tr1 libstdc++_support/testcase.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
 
-$(TEST_BIN_DIR)/mpfrcalc: mpfr_gexpr.c
-	$(GCC) -Iinclude -o $(TEST_BIN_DIR)/mpfrcalc mpfr_gexpr.c -lmpfr -lgmp -lm
+$(TEST_BIN_DIR)/mpfrcalc: multiprecision/mpfr_gexpr.c
+	$(GCC) -Iinclude -o $(TEST_BIN_DIR)/mpfrcalc multiprecision/mpfr_gexpr.c -lmpfr -lgmp -lm
 
 $(TEST_BIN_DIR)/test_special_function: wrappers_debug test_special_function.cpp test_func.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
 	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_special_function test_special_function.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
@@ -835,8 +835,8 @@ $(TEST_BIN_DIR)/test_conf_hyperg_limit: laboratories/hypergeometric_functions/te
 $(TEST_BIN_DIR)/test_const: test_const.cpp
 	$(CXX17) -Iinclude -I../mpreal -o $(TEST_BIN_DIR)/test_const test_const.cpp -lquadmath -lmpfr -lgmp
 
-$(TEST_BIN_DIR)/test_continued_fraction: test_continued_fraction.cpp
-	$(CXX17) -Iinclude -Ipolynomial -o $(TEST_BIN_DIR)/test_continued_fraction test_continued_fraction.cpp -lquadmath
+$(TEST_BIN_DIR)/test_continued_fraction: continued_fractions/test_continued_fraction.cpp
+	$(CXX17) -Iinclude -Ipolynomial -o $(TEST_BIN_DIR)/test_continued_fraction continued_fractions/test_continued_fraction.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_continuous_dual_hahn: laboratories/orthogonal_polynomials/test_continuous_dual_hahn.cpp
 	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_continuous_dual_hahn laboratories/orthogonal_polynomials/test_continuous_dual_hahn.cpp -lquadmath
@@ -898,8 +898,8 @@ $(TEST_BIN_DIR)/test_fermi_dirac: wrappers_debug laboratories/zeta_functions/tes
 $(TEST_BIN_DIR)/test_fibonacci: wrappers_debug laboratories/test_fibonacci.cpp
 	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_fibonacci laboratories/test_fibonacci.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-$(TEST_BIN_DIR)/test_float128: test_float128.cpp
-	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_float128 test_float128.cpp -lquadmath
+$(TEST_BIN_DIR)/test_float128: laboratories/floating_point_tools/test_float128.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_float128 laboratories/floating_point_tools/test_float128.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_fresnel: wrappers_debug laboratories/error_functions/test_fresnel.cpp laboratories/error_functions/fresnel.tcc
 	$(CXX17) -Iinclude -Iwrappers -Ilaboratories/error_functions -o $(TEST_BIN_DIR)/test_fresnel laboratories/error_functions/test_fresnel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
@@ -997,8 +997,8 @@ $(TEST_BIN_DIR)/test_legendre: laboratories/orthogonal_polynomials/test_legendre
 $(TEST_BIN_DIR)/test_legendre_ellint: laboratories/elliptic_integrals/test_legendre_ellint.cpp
 	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_legendre_ellint laboratories/elliptic_integrals/test_legendre_ellint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-$(TEST_BIN_DIR)/test_lentz_continued_fraction: test_lentz_continued_fraction.cpp
-	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_lentz_continued_fraction test_lentz_continued_fraction.cpp -lquadmath
+$(TEST_BIN_DIR)/test_lentz_continued_fraction: continued_fractions/test_lentz_continued_fraction.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_lentz_continued_fraction continued_fractions/test_lentz_continued_fraction.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_lerch: laboratories/zeta_functions/test_lerch.cpp
 	$(CXX17) -Iinclude -I. -o $(TEST_BIN_DIR)/test_lerch laboratories/zeta_functions/test_lerch.cpp 3rdparty/lerchphi/Source/lerchphi.cpp -lquadmath
@@ -1039,11 +1039,11 @@ $(TEST_BIN_DIR)/test_mittag_leffler: laboratories/mittag_leffler_functions/test_
 $(TEST_BIN_DIR)/test_mod2pi: test_mod2pi.cpp
 	$(CXX17) -Iinclude -I../mpreal -o $(TEST_BIN_DIR)/test_mod2pi test_mod2pi.cpp -lquadmath -lmpfr -lgmp
 
-$(TEST_BIN_DIR)/test_mpreal: test_mpreal.cpp
-	$(CXX17) -Iinclude -I../mpreal -o $(TEST_BIN_DIR)/test_mpreal test_mpreal.cpp -lquadmath -lmpfr -lgmp
+$(TEST_BIN_DIR)/test_mpreal: multiprecision/test_mpreal.cpp
+	$(CXX17) -Iinclude -I../mpreal -o $(TEST_BIN_DIR)/test_mpreal multiprecision/test_mpreal.cpp -lquadmath -lmpfr -lgmp
 
-$(TEST_BIN_DIR)/test_notsospecfun: test_notsospecfun.cpp
-	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_notsospecfun test_notsospecfun.cpp -lquadmath
+$(TEST_BIN_DIR)/test_notsospecfun: laboratories/elementary_functions/test_notsospecfun.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_notsospecfun laboratories/elementary_functions/test_notsospecfun.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_nric_bessel: laboratories/bessel_functions/test_nric_bessel.cpp laboratories/bessel_functions/nric_bessel.tcc
 	$(CXX) -Iinclude -Ilaboratories/bessel_functions -o $(TEST_BIN_DIR)/test_nric_bessel laboratories/bessel_functions/test_nric_bessel.cpp -lquadmath
@@ -1105,8 +1105,8 @@ $(TEST_BIN_DIR)/test_sph_bessel: laboratories/bessel_functions/test_sph_bessel.c
 $(TEST_BIN_DIR)/test_sph_hankel: wrappers_debug laboratories/bessel_functions/test_sph_hankel.cpp
 	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_sph_hankel laboratories/bessel_functions/test_sph_hankel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-$(TEST_BIN_DIR)/test_steed_continued_fraction: test_steed_continued_fraction.cpp
-	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_steed_continued_fraction test_steed_continued_fraction.cpp -lquadmath
+$(TEST_BIN_DIR)/test_steed_continued_fraction: continued_fractions/test_steed_continued_fraction.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_steed_continued_fraction continued_fractions/test_steed_continued_fraction.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_struve: laboratories/bessel_functions/test_struve.cpp
 	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_struve laboratories/bessel_functions/test_struve.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
