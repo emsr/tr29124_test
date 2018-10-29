@@ -5,7 +5,7 @@
 	path = quadrature
 	url = https://github.com/emsr/quadrature.git
 [submodule "LambertW"]
-	path = 3rdparty/LambertW
+	path = LambertW
 	url = https://github.com/emsr/LambertW.git
 [submodule "zeta"]
 	path = 3rdparty/zeta
