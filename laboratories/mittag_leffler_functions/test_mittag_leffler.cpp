@@ -15,7 +15,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_le
 #include <bits/float128_io.h>
 #include <bits/specfun.h>
 
-#include <integration.h>
+#include <ext/integration.h>
 
   /* Monotone integrand for the Mittag-Leffler function. */
   template<typename _Tp>
@@ -43,28 +43,19 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_le
 				std::complex<_Tp> __z)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__chi_min);
-      auto __refunc = [__alpha, __beta, __z](_Tp __chi)
-		      -> _Tp
-		      {
-			return std::real(__mittag_leffler_K(__alpha, __beta,
-							  __chi, __z));
-		      };
-      auto __imfunc = [__alpha, __beta, __z](_Tp __chi)
-		      -> _Tp
-		      {
-			return std::imag(__mittag_leffler_K(__alpha, __beta,
-							  __chi, __z));
-		      };
+      auto __func = [__alpha, __beta, __z](_Tp __chi)
+		    -> std::complex<_Tp>
+		    { return __mittag_leffler_K(__alpha, __beta, __chi, __z); };
+
       const auto __epsabs = _Tp{100} * _S_eps;
       const auto __epsrel = _Tp{0};
-      auto __ws = __gnu_cxx::cquad_workspace<_Tp>();
-      auto __requad = __gnu_cxx::cquad_integrate(__ws, __refunc,
-					 __chi_min, __chi_max,
-					 __epsabs, __epsrel);
-      auto __imquad = __gnu_cxx::cquad_integrate(__ws, __imfunc,
-					 __chi_min, __chi_max,
-					 __epsabs, __epsrel);
-      return std::complex<_Tp>(std::get<0>(__requad), std::get<0>(__imquad));
+      auto __ws = __gnu_cxx::cquad_workspace<_Tp, std::complex<_Tp>>();
+
+      auto __quad
+	= __gnu_cxx::cquad_integrate(__ws, __func, __chi_min, __chi_max,
+				     __epsabs, __epsrel);
+
+      return __quad.__result;
     }
 
   /* Oscillatory integrand for the Mittag-Leffler function. */
@@ -94,28 +85,22 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_le
 				std::complex<_Tp> __z)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__phi_min);
-      auto __refunc = [__alpha, __beta, __epsilon, __z](_Tp __phi)
-		      -> _Tp
-		      {
-			return std::real(__mittag_leffler_P(__alpha, __beta,
-						  __epsilon, __phi, __z));
-		      };
-      auto __imfunc = [__alpha, __beta, __epsilon, __z](_Tp __phi)
-		      -> _Tp
-		      {
-			return std::imag(__mittag_leffler_P(__alpha, __beta,
-						  __epsilon, __phi, __z));
-		      };
+      auto __func = [__alpha, __beta, __epsilon, __z](_Tp __phi)
+		    -> std::complex<_Tp>
+		    {
+		      return __mittag_leffler_P(__alpha, __beta,
+						__epsilon, __phi, __z);
+		    };
+
       const auto __epsabs = _Tp{100} * _S_eps;
       const auto __epsrel = _Tp{0};
-      auto __ws = __gnu_cxx::cquad_workspace<_Tp>();
-      auto __requad = __gnu_cxx::cquad_integrate(__ws, __refunc,
-					 __phi_min, __phi_max,
-					 __epsabs, __epsrel);
-      auto __imquad = __gnu_cxx::cquad_integrate(__ws, __imfunc,
-					 __phi_min, __phi_max,
-					 __epsabs, __epsrel);
-      return std::complex<_Tp>(std::get<0>(__requad), std::get<0>(__imquad));
+      auto __ws = __gnu_cxx::cquad_workspace<_Tp, std::complex<_Tp>>();
+
+      auto __quad
+	= __gnu_cxx::cquad_integrate(__ws, __func, __phi_min, __phi_max,
+				     __epsabs, __epsrel);
+
+      return __quad.__result;
     }
 
 
