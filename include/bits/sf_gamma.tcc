@@ -53,7 +53,7 @@
 #include <array>
 #include <ext/math_const.h>
 #include <bits/complex_util.h>
-#include <../polynomial/ext/horner.h>
+#include <ext/horner.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {

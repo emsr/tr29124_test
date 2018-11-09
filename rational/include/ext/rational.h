@@ -17,7 +17,8 @@
 namespace __gnu_cxx
 {
 
-  class _Bad_Rational : public std::domain_error
+  class _Bad_Rational
+  : public std::domain_error
   {
   public:
     explicit
