@@ -1,3 +1,5 @@
+#ifndef CFRAC_FORWARD_TCC
+#define CFRAC_FORWARD_TCC 1
 
 #include <stdexcept>
 #include <bits/numeric_limits.h>
@@ -46,8 +48,8 @@ template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
       std::size_t __k = 2;
       while (true)
 	{
-	  __a = _M_num(__i, __x);
-	  __b = _M_den(__i, __x);
+	  __a = _M_num(__k, __x);
+	  __b = _M_den(__k, __x);
 	  auto _Num = __b * _Num1 + __a * _Num2;
 	  auto _Den = __b * _Den1 + __a * _Den2;
 	  _Num2 = _Num1;
@@ -58,3 +60,4 @@ template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
     }
   };
 
+#endif // CFRAC_FORWARD_TCC

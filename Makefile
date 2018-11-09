@@ -875,7 +875,7 @@ $(TEST_BIN_DIR)/test_dual_hahn: laboratories/orthogonal_polynomials/test_dual_ha
 	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_dual_hahn laboratories/orthogonal_polynomials/test_dual_hahn.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_erfc: wrappers_debug laboratories/error_functions/test_erfc.cpp
-	$(CXX17) -Iinclude -I. -Iwrappers -o $(TEST_BIN_DIR)/test_erfc laboratories/error_functions/test_erfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+	$(CXX17) -Iinclude -Icontinued_fractions/include -Iwrappers -o $(TEST_BIN_DIR)/test_erfc laboratories/error_functions/test_erfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 $(TEST_BIN_DIR)/test_experfc: wrappers_debug laboratories/error_functions/test_experfc.cpp
 	$(CXX17) -Iinclude -Iwrappers -I../mpreal -o $(TEST_BIN_DIR)/test_experfc laboratories/error_functions/test_experfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost -lmpfr -lgmp
@@ -929,7 +929,7 @@ $(TEST_BIN_DIR)/test_hankel_real_arg: wrappers_debug laboratories/bessel_functio
 	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_hankel_real_arg laboratories/bessel_functions/test_hankel_real_arg.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 $(TEST_BIN_DIR)/test_hermite: laboratories/orthogonal_polynomials/test_hermite.cpp laboratories/orthogonal_polynomials/new_hermite.tcc
-	$(CXX17) -Iinclude -I. -Ilaboratories/orthogonal_polynomials -o $(TEST_BIN_DIR)/test_hermite laboratories/orthogonal_polynomials/test_hermite.cpp -lquadmath
+	$(CXX17) -Iinclude -Iquadrature/include -Icontinued_fractions/include -Ilaboratories/orthogonal_polynomials -o $(TEST_BIN_DIR)/test_hermite laboratories/orthogonal_polynomials/test_hermite.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_heuman_lambda: wrappers_debug laboratories/elliptic_integrals/test_heuman_lambda.cpp
 	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_heuman_lambda laboratories/elliptic_integrals/test_heuman_lambda.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
@@ -998,7 +998,7 @@ $(TEST_BIN_DIR)/test_legendre_ellint: laboratories/elliptic_integrals/test_legen
 	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_legendre_ellint laboratories/elliptic_integrals/test_legendre_ellint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
 $(TEST_BIN_DIR)/test_lentz_continued_fraction: continued_fractions/test_lentz_continued_fraction.cpp
-	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_lentz_continued_fraction continued_fractions/test_lentz_continued_fraction.cpp -lquadmath
+	$(CXX17) -Iinclude -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_lentz_continued_fraction continued_fractions/test_lentz_continued_fraction.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_lerch: laboratories/zeta_functions/test_lerch.cpp
 	$(CXX17) -Iinclude -I. -o $(TEST_BIN_DIR)/test_lerch laboratories/zeta_functions/test_lerch.cpp 3rdparty/lerchphi/Source/lerchphi.cpp -lquadmath
@@ -1034,7 +1034,7 @@ $(TEST_BIN_DIR)/test_meixner_pollaczek: laboratories/orthogonal_polynomials/test
 	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_meixner_pollaczek laboratories/orthogonal_polynomials/test_meixner_pollaczek.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_mittag_leffler: laboratories/mittag_leffler_functions/test_mittag_leffler.cpp
-	$(CXX17) -Iinclude -Iquadrature -o $(TEST_BIN_DIR)/test_mittag_leffler laboratories/mittag_leffler_functions/test_mittag_leffler.cpp -lquadmath
+	$(CXX17) -Iinclude -Iquadrature/include -o $(TEST_BIN_DIR)/test_mittag_leffler laboratories/mittag_leffler_functions/test_mittag_leffler.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_mod2pi: laboratories/floating_point_tools/test_mod2pi.cpp
 	$(CXX17) -Iinclude -I../mpreal -o $(TEST_BIN_DIR)/test_mod2pi laboratories/floating_point_tools/test_mod2pi.cpp -lquadmath -lmpfr -lgmp
@@ -1058,7 +1058,7 @@ $(TEST_BIN_DIR)/test_parab_cyl: laboratories/parabolic_cylinder_functions/test_p
 	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_parab_cyl laboratories/parabolic_cylinder_functions/test_parab_cyl.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_polygamma: laboratories/gamma_functions/test_polygamma.cpp
-	$(CXX17) -Iinclude -Iwrappers -Ipolynomial -I. -o $(TEST_BIN_DIR)/test_polygamma laboratories/gamma_functions/test_polygamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+	$(CXX17) -Iinclude -Iwrappers -Ipolynomial -Icontinued_fractions/include -I. -o $(TEST_BIN_DIR)/test_polygamma laboratories/gamma_functions/test_polygamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 $(TEST_BIN_DIR)/test_polylog: wrappers_debug laboratories/zeta_functions/test_polylog.cpp
 	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_polylog laboratories/zeta_functions/test_polylog.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_cephes
@@ -1106,7 +1106,7 @@ $(TEST_BIN_DIR)/test_sph_hankel: wrappers_debug laboratories/bessel_functions/te
 	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_sph_hankel laboratories/bessel_functions/test_sph_hankel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 $(TEST_BIN_DIR)/test_steed_continued_fraction: continued_fractions/test_steed_continued_fraction.cpp
-	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_steed_continued_fraction continued_fractions/test_steed_continued_fraction.cpp -lquadmath
+	$(CXX17) -Iinclude -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_steed_continued_fraction continued_fractions/test_steed_continued_fraction.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_struve: laboratories/bessel_functions/test_struve.cpp
 	$(CXX17) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_struve laboratories/bessel_functions/test_struve.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran

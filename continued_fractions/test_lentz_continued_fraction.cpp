@@ -11,7 +11,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_lentz_con
 #include <iostream>
 #include <iomanip>
 
-#include "LentzContinuedFraction.tcc"
+#include <ext/continued_fractions.h>
 
 template<typename _Tp>
   void

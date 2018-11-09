@@ -11,7 +11,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -I. -o test_steed_continued_fraction test_steed_c
 #include <iostream>
 #include <iomanip>
 
-#include "SteedContinuedFraction.tcc"
+#include <ext/continued_fractions.h>
 
 template<typename _Tp>
   void

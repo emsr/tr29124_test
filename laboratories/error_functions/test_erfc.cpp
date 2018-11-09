@@ -9,7 +9,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_erfc test
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-#include <continued_fractions/LentzContinuedFraction.tcc>
+#include <ext/continued_fractions.h>
 
 namespace std
 {

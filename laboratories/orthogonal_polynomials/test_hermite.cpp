@@ -14,9 +14,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hermite t
 
 #include <bits/float128_io.h>
 #include "new_hermite.tcc"
-#include <continued_fractions/LentzContinuedFraction.tcc>
-
-#include "quadrature/integration.h"
+#include <ext/continued_fractions.h>
+#include <ext/integration.h>
 
   /**
    * Compute the Hermite polynomial ratio by continued fraction:

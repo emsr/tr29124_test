@@ -1,5 +1,5 @@
-#ifndef STEEDCONTINUEDFRACTION_TCC
-#define STEEDCONTINUEDFRACTION_TCC 1
+#ifndef CFRAC_STEED_TCC
+#define CFRAC_STEED_TCC 1
 
 /**
  * A Steed continued fraction evaluator.
@@ -65,4 +65,4 @@ template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
     }
   };
 
-#endif // STEEDCONTINUEDFRACTION_TCC
+#endif // CFRAC_STEED_TCC

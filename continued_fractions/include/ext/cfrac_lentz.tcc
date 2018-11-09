@@ -1,5 +1,5 @@
-#ifndef LENTZCONTINUEDFRACTION_TCC
-#define LENTZCONTINUEDFRACTION_TCC 1
+#ifndef CFRAC_LENTZ_TCC
+#define CFRAC_LENTZ_TCC 1
 
 #include <stdexcept>
 #include <bits/numeric_limits.h>
@@ -70,4 +70,4 @@ template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
     }
   };
 
-#endif // LENTZCONTINUEDFRACTION_TCC
+#endif // CFRAC_LENTZ_TCC
