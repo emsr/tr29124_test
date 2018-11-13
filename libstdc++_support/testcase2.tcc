@@ -728,8 +728,8 @@ template<typename MaskFun, typename TestFun, typename BaselineFun,
     output << "  {\n";
     output << "    bool test __attribute__((unused)) = true;\n";
     output << "    const Ret eps = std::numeric_limits<Ret>::epsilon();\n";
-    output << "    Ret max_abs_diff = -Ret(1);\n";
-    output << "    Ret max_abs_frac = -Ret(1);\n";
+    output << "    Ret max_abs_diff = Ret(-1);\n";
+    output << "    Ret max_abs_frac = Ret(-1);\n";
     if (riemann_zeta_limits)
       output << "    unsigned int num_datum = MAX_ITERATIONS;\n";
     else

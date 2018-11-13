@@ -508,8 +508,8 @@ template<typename Ret, typename Arg1>
 	output << "  {\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
 	output << "    const Ret eps = std::numeric_limits<Ret>::epsilon();\n";
-	output << "    Ret max_abs_diff = -Ret(1);\n";
-	output << "    Ret max_abs_frac = -Ret(1);\n";
+	output << "    Ret max_abs_diff = Ret(-1);\n";
+	output << "    Ret max_abs_frac = Ret(-1);\n";
 	if (riemann_zeta_limits)
 	  output << "    unsigned int num_datum = MAX_ITERATIONS;\n";
 	else
@@ -729,8 +729,8 @@ template<typename Ret, typename Arg1, typename Arg2>
 	output << "  {\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
 	output << "    const Ret eps = std::numeric_limits<Ret>::epsilon();\n";
-	output << "    Ret max_abs_diff = -Ret(1);\n";
-	output << "    Ret max_abs_frac = -Ret(1);\n";
+	output << "    Ret max_abs_diff = Ret(-1);\n";
+	output << "    Ret max_abs_frac = Ret(-1);\n";
 	output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "      {\n";
@@ -965,8 +965,8 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
 	output << "  {\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
 	output << "    const Ret eps = std::numeric_limits<Ret>::epsilon();\n";
-	output << "    Ret max_abs_diff = -Ret(1);\n";
-	output << "    Ret max_abs_frac = -Ret(1);\n";
+	output << "    Ret max_abs_diff = Ret(-1);\n";
+	output << "    Ret max_abs_frac = Ret(-1);\n";
 	output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "  	 {\n";
@@ -1211,8 +1211,8 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
 	output << "  {\n";
 	output << "    bool test __attribute__((unused)) = true;\n";
 	output << "    const Ret eps = std::numeric_limits<Ret>::epsilon();\n";
-	output << "    Ret max_abs_diff = -Ret(1);\n";
-	output << "    Ret max_abs_frac = -Ret(1);\n";
+	output << "    Ret max_abs_diff = Ret(-1);\n";
+	output << "    Ret max_abs_frac = Ret(-1);\n";
 	output << "    unsigned int num_datum = Num;\n";
 	output << "    for (unsigned int i = 0; i < num_datum; ++i)\n";
 	output << "      {\n";
