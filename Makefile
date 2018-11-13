@@ -167,7 +167,7 @@ BINS = \
        $(TEST_BIN_DIR)/test_reperiodized_trig \
        $(TEST_BIN_DIR)/test_riemann_zeta \
        $(TEST_BIN_DIR)/test_rising_factorial \
-       $(TEST_BIN_DIR)/test_root_finding \
+       $(TEST_BIN_DIR)/test_root_search \
        $(TEST_BIN_DIR)/test_sincos \
        $(TEST_BIN_DIR)/test_sinus_cardinal \
        $(TEST_BIN_DIR)/test_sph_bessel \
@@ -559,7 +559,7 @@ test: $(BINS) $(TEST_OUT_DIR)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_reperiodized_trig > $(TEST_OUT_DIR)/test_reperiodized_trig.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_riemann_zeta > $(TEST_OUT_DIR)/test_riemann_zeta.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_rising_factorial > $(TEST_OUT_DIR)/test_rising_factorial.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_root_finding > $(TEST_OUT_DIR)/test_root_finding.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_root_search > $(TEST_OUT_DIR)/test_root_search.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_sincos > $(TEST_OUT_DIR)/test_sincos.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_sinus_cardinal > $(TEST_OUT_DIR)/test_sinus_cardinal.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_sph_bessel > $(TEST_OUT_DIR)/test_sph_bessel.txt
@@ -833,8 +833,8 @@ $(TEST_BIN_DIR)/test_conf_hyperg: laboratories/hypergeometric_functions/test_con
 $(TEST_BIN_DIR)/test_conf_hyperg_limit: laboratories/hypergeometric_functions/test_conf_hyperg_limit.cpp
 	$(CXX17) $(INCLUDES) -o $(TEST_BIN_DIR)/test_conf_hyperg_limit laboratories/hypergeometric_functions/test_conf_hyperg_limit.cpp -lquadmath
 
-$(TEST_BIN_DIR)/test_const: test_const.cpp
-	$(CXX17) $(INCLUDES) -I../mpreal -o $(TEST_BIN_DIR)/test_const test_const.cpp -lquadmath -lmpfr -lgmp
+$(TEST_BIN_DIR)/test_const: laboratories/constants/test_const.cpp
+	$(CXX17) $(INCLUDES) -I../mpreal -o $(TEST_BIN_DIR)/test_const laboratories/constants/test_const.cpp -lquadmath -lmpfr -lgmp
 
 $(TEST_BIN_DIR)/test_continued_fraction: continued_fractions/test_continued_fraction.cpp
 	$(CXX17) $(INCLUDES) -o $(TEST_BIN_DIR)/test_continued_fraction continued_fractions/test_continued_fraction.cpp -lquadmath
@@ -1004,8 +1004,8 @@ $(TEST_BIN_DIR)/test_lentz_continued_fraction: continued_fractions/test_lentz_co
 $(TEST_BIN_DIR)/test_lerch: laboratories/zeta_functions/test_lerch.cpp
 	$(CXX17) $(INCLUDES) -I. -o $(TEST_BIN_DIR)/test_lerch laboratories/zeta_functions/test_lerch.cpp 3rdparty/lerchphi/Source/lerchphi.cpp -lquadmath
 
-$(TEST_BIN_DIR)/test_limits: test_limits.cpp
-	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_limits test_limits.cpp -lquadmath
+$(TEST_BIN_DIR)/test_limits: laboratories/floating_point_tools/test_limits.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_limits laboratories/floating_point_tools/test_limits.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_little_airy: wrappers_debug laboratories/airy_functions/test_little_airy.cpp
 	$(CXX17) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_little_airy laboratories/airy_functions/test_little_airy.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
@@ -1049,8 +1049,8 @@ $(TEST_BIN_DIR)/test_notsospecfun: laboratories/elementary_functions/test_notsos
 $(TEST_BIN_DIR)/test_nric_bessel: laboratories/bessel_functions/test_nric_bessel.cpp laboratories/bessel_functions/nric_bessel.tcc
 	$(CXX) $(INCLUDES) -Ilaboratories/bessel_functions -o $(TEST_BIN_DIR)/test_nric_bessel laboratories/bessel_functions/test_nric_bessel.cpp -lquadmath
 
-$(TEST_BIN_DIR)/test_numeric_limits: test_numeric_limits.cpp
-	$(CXX17) $(INCLUDES) -I../mpreal -o $(TEST_BIN_DIR)/test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr -lgmp
+$(TEST_BIN_DIR)/test_numeric_limits: laboratories/floating_point_tools/test_numeric_limits.cpp
+	$(CXX17) $(INCLUDES) -I../mpreal -o $(TEST_BIN_DIR)/test_numeric_limits laboratories/floating_point_tools/test_numeric_limits.cpp -lquadmath -lmpfr -lgmp
 
 $(TEST_BIN_DIR)/test_owens_t: wrappers_debug laboratories/error_functions/test_owens_t.cpp
 	$(CXX17) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_owens_t laboratories/error_functions/test_owens_t.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
@@ -1091,8 +1091,8 @@ $(TEST_BIN_DIR)/test_riemann_zeta: laboratories/zeta_functions/test_riemann_zeta
 $(TEST_BIN_DIR)/test_rising_factorial: wrappers_debug laboratories/gamma_functions/test_rising_factorial.cpp
 	$(CXX17) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_rising_factorial laboratories/gamma_functions/test_rising_factorial.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-$(TEST_BIN_DIR)/test_root_finding: test_root_finding.cpp
-	$(CXX17) $(INCLUDES) -o $(TEST_BIN_DIR)/test_root_finding test_root_finding.cpp -lquadmath
+$(TEST_BIN_DIR)/test_root_search: test_root_search.cpp
+	$(CXX17) $(INCLUDES) -o $(TEST_BIN_DIR)/test_root_search test_root_search.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_sincos: laboratories/elementary_functions/test_sincos.cpp
 	$(CXX17) $(INCLUDES) -o $(TEST_BIN_DIR)/test_sincos laboratories/elementary_functions/test_sincos.cpp -lquadmath
