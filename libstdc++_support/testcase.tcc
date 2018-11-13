@@ -351,6 +351,9 @@ template<typename Ret, typename Arg1>
   {
     using Val = __num_traits_t<Ret>;
 
+    if (output.bad() || output.fail())
+      throw std::runtime_error("maketest: Bad output stream.");
+
     output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
 
@@ -567,6 +570,9 @@ template<typename Ret, typename Arg1, typename Arg2>
 	   bool write_header = true, bool write_main = true, unsigned int start_test = 1)
   {
     using Val = __num_traits_t<Ret>;
+
+    if (output.bad() || output.fail())
+      throw std::runtime_error("maketest: Bad output stream.");
 
     output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
@@ -787,6 +793,9 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
 	   bool write_header = true, bool write_main = true, unsigned int start_test = 1)
   {
     using Val = __num_traits_t<Ret>;
+
+    if (output.bad() || output.fail())
+      throw std::runtime_error("maketest: Bad output stream.");
 
     output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
@@ -1025,6 +1034,9 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
 	   bool write_header = true, bool write_main = true, unsigned int start_test = 1)
   {
     using Val = __num_traits_t<Ret>;
+
+    if (output.bad() || output.fail())
+      throw std::runtime_error("maketest: Bad output stream.");
 
     output.precision(std::numeric_limits<Val>::max_digits10);
     output.flags(std::ios::showpoint);
