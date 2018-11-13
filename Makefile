@@ -202,6 +202,7 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/check_chebyshev_v \
 	 ${CHECK_DIR}/check_chebyshev_w \
 	 ${CHECK_DIR}/check_chi \
+	 ${CHECK_DIR}/check_clausen_cl \
 	 ${CHECK_DIR}/check_comp_ellint_1 \
 	 ${CHECK_DIR}/check_comp_ellint_2 \
 	 ${CHECK_DIR}/check_comp_ellint_3 \
@@ -218,6 +219,7 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/check_cyl_hankel_2 \
 	 ${CHECK_DIR}/check_cyl_neumann \
 	 ${CHECK_DIR}/check_dawson \
+	 ${CHECK_DIR}/check_debye \
 	 ${CHECK_DIR}/check_digamma \
 	 ${CHECK_DIR}/check_dilog \
 	 ${CHECK_DIR}/check_dirichlet_beta \
@@ -313,7 +315,6 @@ CHECKS = ${CHECK_DIR}/check_airy_ai \
 	 ${CHECK_DIR}/deathmatch_conf_hyperg \
 	 ${CHECK_DIR}/deathmatch_conf_hyperg_lim \
 	 ${CHECK_DIR}/deathmatch_hyperg \
-	 ${CHECK_DIR}/check_clausen_cl \
 	 ${CHECK_DIR}/pr56216_cyl_hankel_1 \
 	 ${CHECK_DIR}/pr56216_cyl_hankel_2 \
 	 ${CHECK_DIR}/pr56216_cyl_bessel_i \
@@ -613,6 +614,7 @@ check: $(CHECK_DIR) $(CHECKS)
 	echo "check_cyl_hankel_2" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_cyl_hankel_2 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_cyl_neumann" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_cyl_neumann >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_dawson" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_dawson >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_debye" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_debye >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_digamma" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_digamma >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_dilog" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_dilog >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_dirichlet_beta" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && $(CHECK_DIR)/check_dirichlet_beta >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
@@ -1253,6 +1255,9 @@ ${CHECK_DIR}/check_cyl_neumann: ${CHECK_DIR}/check_cyl_neumann.cc
 
 ${CHECK_DIR}/check_dawson: ${CHECK_DIR}/check_dawson.cc
 	$(CXX) -Iinclude -Ipolynomial/include -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_dawson ${CHECK_DIR}/check_dawson.cc -lquadmath -lquadmath
+
+${CHECK_DIR}/check_debye: ${CHECK_DIR}/check_debye.cc
+	$(CXX) -Iinclude -Ipolynomial/include -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_debye ${CHECK_DIR}/check_debye.cc -lquadmath -lquadmath
 
 ${CHECK_DIR}/check_digamma: ${CHECK_DIR}/check_digamma.cc
 	$(CXX) -Iinclude -Ipolynomial/include -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o ${CHECK_DIR}/check_digamma ${CHECK_DIR}/check_digamma.cc -lquadmath

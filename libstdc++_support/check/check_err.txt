@@ -1,3 +1,0 @@
-terminate called after throwing an instance of 'std::domain_error'
-  what():  Bad argument in __cyl_bessel_i.
-Aborted (core dumped)
