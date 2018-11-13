@@ -166,23 +166,60 @@ mpfr_expr (mpfr_t ret)
   mpfr_clear (tmp);
 }
 
+struct log_functions
+{
+  char *spelling;
+  int (* evalfn) (mpfr_ptr, int *, mpfr_srcptr, mpfr_rnd_t);
+};
+
+struct log_functions log_fns[] =
+{
+#if (MPFR_VERSION >= MPFR_VERSION_NUM(2,3,0))
+  {"lgamma", mpfr_lgamma}
+#endif
+};
+
+struct int_functions
+{
+  char *spelling;
+  int (* evalfn) (mpfr_ptr, mpfr_srcptr);
+};
+
+struct int_functions int_fns[] =
+{
+  {"ceil", mpfr_ceil},
+  {"floor", mpfr_floor}
+};
+
+struct int_arg_function
+{
+  char *spelling;
+  int (* evalfn) (mpfr_ptr, long int, mpfr_srcptr, mp_rnd_t);
+};
+
+struct int_arg_function int_arg_fns[] =
+{
+  {"jn", mpfr_jn},
+  {"yn", mpfr_yn}
+};
+
+struct twoarg_functions
+{
+  char *spelling;
+  int (* evalfn) (mpfr_ptr, mpfr_srcptr, mpfr_srcptr, mp_rnd_t);
+};
+
+struct twoarg_functions twoarg_fns[] =
+{
+  {"atan2", mpfr_atan2},
+  {"pow", mpfr_pow}
+};
+
 struct functions
 {
   char *spelling;
   int (* evalfn) (mpfr_ptr, mpfr_srcptr, mp_rnd_t);
 };
-
-static int
-mpfr_floor_dummy (mpfr_ptr rop, mpfr_srcptr op, mp_rnd_t rmode)
-{
-  return mpfr_floor (rop, op);
-}
-
-static int
-mpfr_ceil_dummy (mpfr_ptr rop, mpfr_srcptr op, mp_rnd_t rmode)
-{
-  return mpfr_ceil (rop, op);
-}
 
 struct functions fns[] =
 {
@@ -193,19 +230,16 @@ struct functions fns[] =
   {"asinh", mpfr_asinh},
   {"atan", mpfr_atan},
   {"atanh", mpfr_atanh},
-  {"atan2", mpfr_atan2},
-  {"ceil", mpfr_ceil_dummy},
   {"cos", mpfr_cos},
   {"cosh", mpfr_cosh},
   {"exp", mpfr_exp},
   {"erf", mpfr_erf},
   {"expm1", mpfr_expm1},
-  {"floor", mpfr_floor_dummy},
   {"gamma", mpfr_gamma},
+  {"lngamma", mpfr_lngamma},
   {"log", mpfr_log},
   {"log10", mpfr_log10},
   {"log2", mpfr_log2},
-  {"pow", mpfr_pow},
   {"sin", mpfr_sin},
   {"sinh", mpfr_sinh},
   {"sqrt", mpfr_sqrt},
@@ -221,19 +255,14 @@ struct functions fns[] =
   {"csch", mpfr_csch},
   {"eint", mpfr_eint},
   {"erfc", mpfr_erfc},
-  {"lngamma", mpfr_lngamma},
-  {"root", mpfr_root},
   {"sec", mpfr_sec},
   {"sech", mpfr_sech},
 #endif
 #if (MPFR_VERSION >= MPFR_VERSION_NUM(2,3,0))
   {"j0", mpfr_j0},
   {"j1", mpfr_j1},
-  {"jn", mpfr_jn},
-  {"lgamma", mpfr_lgamma},
   {"y0", mpfr_y0},
   {"y1", mpfr_y1},
-  {"yn", mpfr_yn},
 #endif
   {"expm1", mpfr_expm1},
   {"exp10", mpfr_exp10},
@@ -251,7 +280,7 @@ struct functions fns[] =
 static void
 mpfr_factor (mpfr_t ret)
 {
-  mpfr_t tmp;
+  mpfr_t tmp, tmp2;
   int i;
 
   mpfr_init2 (tmp, mpfr_get_prec (ret));
@@ -263,16 +292,159 @@ mpfr_factor (mpfr_t ret)
       if (strncmp (spelling, bp - 1, len) == 0 && ! isalnum (bp[-1 + len]))
 	{
 	  bp += len - 1;
+
 	  skip ();
 	  if (ch != '(')
 	    new_error ("mpfr_factor 1");
+
 	  skip ();
 	  mpfr_expr (tmp);
+
 	  if (ch != ')')
 	    new_error ("mpfr_factor 2");
+
 	  skip ();
+
 	  (fns[i].evalfn) (ret, tmp, default_rmode);
+
           mpfr_clear (tmp);
+
+	  return;
+	}
+    }
+
+  for (i = 0; int_fns[i].spelling != 0; i++)
+    {
+      char *spelling = int_fns[i].spelling;
+      int len = strlen (spelling);
+      if (strncmp (spelling, bp - 1, len) == 0 && ! isalnum (bp[-1 + len]))
+	{
+	  bp += len - 1;
+
+	  skip ();
+	  if (ch != '(')
+	    new_error ("mpfr_factor 1");
+
+	  skip ();
+	  mpfr_expr (tmp);
+
+	  if (ch != ')')
+	    new_error ("mpfr_factor 2");
+
+	  skip ();
+
+	  (int_fns[i].evalfn) (ret, tmp);
+
+          mpfr_clear (tmp);
+
+	  return;
+	}
+    }
+
+  for (i = 0; twoarg_fns[i].spelling != 0; i++)
+    {
+      char *spelling = twoarg_fns[i].spelling;
+      int len = strlen (spelling);
+      if (strncmp (spelling, bp - 1, len) == 0 && ! isalnum (bp[-1 + len]))
+	{
+	  bp += len - 1;
+
+	  skip ();
+	  if (ch != '(')
+	    new_error ("mpfr_factor 1");
+
+	  skip ();
+	  mpfr_expr (tmp);
+
+	  skip ();
+	  if (ch != ',')
+	    new_error ("mpfr_factor 2");
+
+	  skip ();
+	  mpfr_expr (tmp);
+
+	  skip ();
+	  if (ch != ')')
+	    new_error ("mpfr_factor 3");
+
+	  skip ();
+
+	  (twoarg_fns[i].evalfn) (ret, tmp, tmp2, default_rmode);
+
+          mpfr_clear (tmp);
+          mpfr_clear (tmp2);
+
+	  return;
+	}
+    }
+
+  for (i = 0; int_arg_fns[i].spelling != 0; i++)
+    {
+      char *spelling = int_arg_fns[i].spelling;
+      int len = strlen (spelling);
+      if (strncmp (spelling, bp - 1, len) == 0 && ! isalnum (bp[-1 + len]))
+	{
+	  long int n;
+
+	  bp += len - 1;
+
+	  skip ();
+	  if (ch != '(')
+	    new_error ("mpfr_factor 1");
+
+	  skip ();
+	  //mpfr_expr (tmp);
+	  sscanf(bp, "%ld", &n);
+
+	  skip ();
+	  if (ch != ',')
+	    new_error ("mpfr_factor 2");
+
+	  skip ();
+	  mpfr_expr (tmp2);
+
+	  skip ();
+	  if (ch != ')')
+	    new_error ("mpfr_factor 3");
+
+	  skip ();
+
+	  (int_arg_fns[i].evalfn) (ret, n, tmp2, default_rmode);
+
+          mpfr_clear (tmp);
+          mpfr_clear (tmp2);
+
+	  return;
+	}
+    }
+
+  for (i = 0; log_fns[i].spelling != 0; i++)
+    {
+      char *spelling = log_fns[i].spelling;
+      int len = strlen (spelling);
+      if (strncmp (spelling, bp - 1, len) == 0 && ! isalnum (bp[-1 + len]))
+	{
+	  int sign;
+
+	  bp += len - 1;
+
+	  skip ();
+	  if (ch != '(')
+	    new_error ("mpfr_factor 1");
+
+	  skip ();
+	  mpfr_expr (tmp);
+
+	  skip ();
+	  if (ch != ')')
+	    new_error ("mpfr_factor 2");
+
+	  skip ();
+
+	  (log_fns[i].evalfn) (ret, &sign, tmp, default_rmode);
+
+          mpfr_clear (tmp);
+
 	  return;
 	}
     }
