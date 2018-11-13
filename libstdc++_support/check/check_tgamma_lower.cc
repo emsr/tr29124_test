@@ -274,8 +274,8 @@ template<typename Ret, unsigned int Num>
   {
     bool test __attribute__((unused)) = true;
     const Ret eps = std::numeric_limits<Ret>::epsilon();
-    Ret max_abs_diff = -Ret(1);
-    Ret max_abs_frac = -Ret(1);
+    Ret max_abs_diff = Ret(-1);
+    Ret max_abs_frac = Ret(-1);
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {

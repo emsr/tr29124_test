@@ -10,7 +10,7 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_binet test_
 #include <iostream>
 #include <iomanip>
 #include <vector>
-#include "rational.h"
+#include <ext/rational.h>
 #include <cmath>
 
 namespace std
