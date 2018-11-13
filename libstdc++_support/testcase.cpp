@@ -312,7 +312,7 @@ template<typename Real>
 
     unsigned int test = 1;
 
-    const std::string path = "check";
+    const std::string path = "libstdc++_support/check/";
 
 #if STD
     std::string nsname = "std";
