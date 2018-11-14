@@ -45,9 +45,9 @@ template<typename _Tp, typename _Bessel>
 int
 main()
 {
-  plot_bessel<float>("plot/cyl_bessel_j_float.txt", std::cyl_bessel_jf);
-  plot_bessel<double>("plot/cyl_bessel_j_double.txt", std::cyl_bessel_j<double, double>);
+  plot_bessel<float>("plot_data/cyl_bessel_j_float.txt", std::cyl_bessel_jf);
+  plot_bessel<double>("plot_data/cyl_bessel_j_double.txt", std::cyl_bessel_j<double, double>);
 
-  plot_bessel<float>("plot/cyl_neumann_float.txt", std::cyl_neumannf);
-  plot_bessel<double>("plot/cyl_neumann_double.txt", std::cyl_neumann<double, double>);
+  plot_bessel<float>("plot_data/cyl_neumann_float.txt", std::cyl_neumannf);
+  plot_bessel<double>("plot_data/cyl_neumann_double.txt", std::cyl_neumann<double, double>);
 }

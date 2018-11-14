@@ -395,16 +395,16 @@ main()
   std::cout << "\n\nRiemann zeta\n\n" << std::flush;
 
   std::cout << "\nriemann_zeta<float>\n";
-  plot_riemann_zeta<float>("plot/riemann_zeta_float.txt");
+  plot_riemann_zeta<float>("plot_data/riemann_zeta_float.txt");
 
   std::cout << "\nriemann_zeta<double>\n";
-  plot_riemann_zeta<double>("plot/riemann_zeta_double.txt");
+  plot_riemann_zeta<double>("plot_data/riemann_zeta_double.txt");
 
   std::cout << "\nriemann_zeta<long double>\n";
-  plot_riemann_zeta<long double>("plot/riemann_zeta_long_double.txt");
+  plot_riemann_zeta<long double>("plot_data/riemann_zeta_long_double.txt");
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   std::cout << "\nriemann_zeta<__float128>\n";
-  plot_riemann_zeta<__float128>("plot/riemann_zeta__float128.txt");
+  plot_riemann_zeta<__float128>("plot_data/riemann_zeta__float128.txt");
 #endif
 }
