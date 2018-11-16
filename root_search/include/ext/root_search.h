@@ -26,8 +26,8 @@
  *  This file is a GNU extension to the Standard C++ Library.
  */
 
-#ifndef _EXT_ROOT_FINDING_H
-#define _EXT_ROOT_FINDING_H 1
+#ifndef _EXT_ROOT_SEARCH_H
+#define _EXT_ROOT_SEARCH_H 1
 
 #pragma GCC system_header
 
@@ -117,6 +117,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
-#include <ext/root_finding.tcc>
+#include <ext/root_search.tcc>
 
-#endif // _EXT_ROOT_FINDING_H
+#endif // _EXT_ROOT_SEARCH_H

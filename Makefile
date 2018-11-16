@@ -162,6 +162,7 @@ BINS = \
        $(TEST_BIN_DIR)/test_polylog \
        $(TEST_BIN_DIR)/test_power_mean \
        $(TEST_BIN_DIR)/test_power_norm \
+       $(TEST_BIN_DIR)/test_pow_limits \
        $(TEST_BIN_DIR)/test_racah \
        $(TEST_BIN_DIR)/test_rational \
        $(TEST_BIN_DIR)/test_recursion \
@@ -556,6 +557,7 @@ test: $(BINS) $(TEST_OUT_DIR)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_polylog > $(TEST_OUT_DIR)/test_polylog.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_power_mean > $(TEST_OUT_DIR)/test_power_mean.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_power_norm > $(TEST_OUT_DIR)/test_power_norm.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_pow_limits > $(TEST_OUT_DIR)/test_pow_limits.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_racah > $(TEST_OUT_DIR)/test_racah.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_rational > $(TEST_OUT_DIR)/test_rational.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_recursion > $(TEST_OUT_DIR)/test_recursion.txt
@@ -821,8 +823,8 @@ $(TEST_BIN_DIR)/test_chebyshev_trig_pi: laboratories/orthogonal_polynomials/test
 $(TEST_BIN_DIR)/test_clausen: wrappers_debug laboratories/zeta_functions/test_clausen.cpp
 	$(CXX17) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_clausen laboratories/zeta_functions/test_clausen.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-$(TEST_BIN_DIR)/test_cmath: test_cmath.cpp
-	$(CXX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_cmath test_cmath.cpp -lquadmath
+$(TEST_BIN_DIR)/test_cmath: test_std_maths/test_cmath.cpp
+	$(CXX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_cmath test_std_maths/test_cmath.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_comp_ellint_1: laboratories/elliptic_integrals/test_comp_ellint_1.cpp
 	$(CXX17) $(INCLUDES) -o $(TEST_BIN_DIR)/test_comp_ellint_1 laboratories/elliptic_integrals/test_comp_ellint_1.cpp -lquadmath
@@ -1028,8 +1030,8 @@ $(TEST_BIN_DIR)/test_logsumexp: laboratories/norm_functions/test_logsumexp.cpp
 $(TEST_BIN_DIR)/test_marcum_q: laboratories/distributions/test_marcum_q.cpp
 	$(CXX17) $(INCLUDES) -o $(TEST_BIN_DIR)/test_marcum_q laboratories/distributions/test_marcum_q.cpp -lquadmath
 
-$(TEST_BIN_DIR)/test_math_h: test_math_h.cpp
-	$(CXX) $(INCLUDES) -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o $(TEST_BIN_DIR)/test_math_h test_math_h.cpp -lquadmath
+$(TEST_BIN_DIR)/test_math_h: test_std_maths/test_math_h.cpp
+	$(CXX) $(INCLUDES) -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o $(TEST_BIN_DIR)/test_math_h test_std_maths/test_math_h.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_maxint: laboratories/floating_point_tools/test_maxint.cpp
 	$(CXX17) $(INCLUDES) -I../mpreal -o $(TEST_BIN_DIR)/test_maxint laboratories/floating_point_tools/test_maxint.cpp -lquadmath -lmpfr
@@ -1076,14 +1078,17 @@ $(TEST_BIN_DIR)/test_power_mean: laboratories/norm_functions/test_power_mean.cpp
 $(TEST_BIN_DIR)/test_power_norm: laboratories/norm_functions/test_power_norm.cpp
 	$(CXX17) $(INCLUDES) -o $(TEST_BIN_DIR)/test_power_norm laboratories/norm_functions/test_power_norm.cpp -lquadmath
 
+$(TEST_BIN_DIR)/test_pow_limits: test_std_maths/test_pow_limits.cpp
+	$(CXX17) -DBIT -o $(TEST_BIN_DIR)/test_pow_limits test_std_maths/test_pow_limits.cpp -lquadmath
+
 $(TEST_BIN_DIR)/test_racah: laboratories/orthogonal_polynomials/test_racah.cpp
 	$(CXX17) $(INCLUDES) -o $(TEST_BIN_DIR)/test_racah laboratories/orthogonal_polynomials/test_racah.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_rational: rational/test_rational.cpp
 	$(CXX17) -Irational/include $(INCLUDES) -o $(TEST_BIN_DIR)/test_rational rational/test_rational.cpp -lquadmath
 
-$(TEST_BIN_DIR)/test_recursion: test_recursion.cpp
-	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_recursion test_recursion.cpp -lquadmath
+$(TEST_BIN_DIR)/test_recursion: recursion/test_recursion.cpp
+	$(CXX17) -Iinclude -o $(TEST_BIN_DIR)/test_recursion recursion/test_recursion.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_reperiodized_hyper: laboratories/elementary_functions/test_reperiodized_hyper.cpp
 	$(CXX17) $(INCLUDES) -o $(TEST_BIN_DIR)/test_reperiodized_hyper laboratories/elementary_functions/test_reperiodized_hyper.cpp -lquadmath
@@ -1097,8 +1102,8 @@ $(TEST_BIN_DIR)/test_riemann_zeta: laboratories/zeta_functions/test_riemann_zeta
 $(TEST_BIN_DIR)/test_rising_factorial: wrappers_debug laboratories/gamma_functions/test_rising_factorial.cpp
 	$(CXX17) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_rising_factorial laboratories/gamma_functions/test_rising_factorial.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-$(TEST_BIN_DIR)/test_root_search: test_root_search.cpp
-	$(CXX17) $(INCLUDES) -o $(TEST_BIN_DIR)/test_root_search test_root_search.cpp -lquadmath
+$(TEST_BIN_DIR)/test_root_search: root_search/test_root_search.cpp root_search/include/ext/*
+	$(CXX17) $(INCLUDES) -Iroot_search/include -o $(TEST_BIN_DIR)/test_root_search root_search/test_root_search.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_sincos: laboratories/elementary_functions/test_sincos.cpp
 	$(CXX17) $(INCLUDES) -o $(TEST_BIN_DIR)/test_sincos laboratories/elementary_functions/test_sincos.cpp -lquadmath
@@ -1127,8 +1132,8 @@ $(TEST_BIN_DIR)/test_summation: summation/test_summation.cpp
 $(TEST_BIN_DIR)/test_theta: laboratories/theta_functions/test_theta.cpp
 	$(CXX17) $(INCLUDES) -o $(TEST_BIN_DIR)/test_theta laboratories/theta_functions/test_theta.cpp -lquadmath
 
-$(TEST_BIN_DIR)/test_tr1_cmath: test_tr1_cmath.cpp
-	$(CXX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_tr1_cmath test_tr1_cmath.cpp -lquadmath
+$(TEST_BIN_DIR)/test_tr1_cmath: test_std_maths/test_tr1_cmath.cpp
+	$(CXX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_tr1_cmath test_std_maths/test_tr1_cmath.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_tricomi_u: laboratories/hypergeometric_functions/test_tricomi_u.cpp
 	$(CXX17) $(INCLUDES) -o $(TEST_BIN_DIR)/test_tricomi_u laboratories/hypergeometric_functions/test_tricomi_u.cpp -lquadmath

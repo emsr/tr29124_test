@@ -1436,13 +1436,13 @@ main()
   run_kelvin2<long double>();
   run_kelvin1<long double>();
 
-  plot_kelvin<float>("plot/kelvin_float.txt");
-  plot_kelvin<double>("plot/kelvin_double.txt");
-  plot_kelvin<long double>("plot/kelvin_long_double.txt");
+  plot_kelvin<float>("plot_data/kelvin_float.txt");
+  plot_kelvin<double>("plot_data/kelvin_double.txt");
+  plot_kelvin<long double>("plot_data/kelvin_long_double.txt");
 
-  plot_kelvin_order<float>("plot/kelvin_order_float.txt");
-  plot_kelvin_order<double>("plot/kelvin_order_double.txt");
-  plot_kelvin_order<long double>("plot/kelvin_order_long_double.txt");
+  plot_kelvin_order<float>("plot_data/kelvin_order_float.txt");
+  plot_kelvin_order<double>("plot_data/kelvin_order_double.txt");
+  plot_kelvin_order<long double>("plot_data/kelvin_order_long_double.txt");
 
   diff_kelvin2<long double>();
   diff_kelvin3<long double>();

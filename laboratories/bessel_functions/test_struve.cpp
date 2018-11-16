@@ -566,9 +566,9 @@ main()
   test_struve_transition<__float128>();
 
   //using cmplx = std::complex<double>;
-  plot_struve<float>("plot/struve_float.txt");
-  plot_struve<double>("plot/struve_double.txt");
-  plot_struve<long double>("plot/struve_long_double.txt");
+  plot_struve<float>("plot_data/struve_float.txt");
+  plot_struve<double>("plot_data/struve_double.txt");
+  plot_struve<long double>("plot_data/struve_long_double.txt");
 
   test_struve();
 

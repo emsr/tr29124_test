@@ -214,25 +214,25 @@ main()
 {
   std::cout << "\n\nLanczos Algorithm\n\n";
   std::cout << "\nlanczos<float>\n";
-  plot_lanczos<float>("plot/log_gamma_lanczos_float.txt");
+  plot_lanczos<float>("plot_data/log_gamma_lanczos_float.txt");
   std::cout << "\nlanczos<double>\n";
-  plot_lanczos<double>("plot/log_gamma_lanczos_double.txt");
+  plot_lanczos<double>("plot_data/log_gamma_lanczos_double.txt");
   std::cout << "\nlanczos<long double>\n";
-  plot_lanczos<long double>("plot/log_gamma_lanczos_long_double.txt");
+  plot_lanczos<long double>("plot_data/log_gamma_lanczos_long_double.txt");
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   std::cout << "\nlanczos<__float128>\n";
-  plot_lanczos<__float128>("plot/log_gamma_lanczos__float128.txt");
+  plot_lanczos<__float128>("plot_data/log_gamma_lanczos__float128.txt");
 #endif
 
   std::cout << "\n\nSpouge Algorithm\n\n";
   std::cout << "\nspouge<float>\n";
-  plot_spouge<float>("plot/log_gamma_spouge_float.txt");
+  plot_spouge<float>("plot_data/log_gamma_spouge_float.txt");
   std::cout << "\nspouge<double>\n";
-  plot_spouge<double>("plot/log_gamma_spouge_double.txt");
+  plot_spouge<double>("plot_data/log_gamma_spouge_double.txt");
   std::cout << "\nspouge<long double>\n";
-  plot_spouge<long double>("plot/log_gamma_spouge_long_double.txt");
+  plot_spouge<long double>("plot_data/log_gamma_spouge_long_double.txt");
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   std::cout << "\nspouge<__float128>\n";
-  plot_spouge<__float128>("plot/log_gamma_spouge__float128.txt");
+  plot_spouge<__float128>("plot_data/log_gamma_spouge__float128.txt");
 #endif
 }

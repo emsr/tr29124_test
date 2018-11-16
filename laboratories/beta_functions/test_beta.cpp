@@ -103,5 +103,5 @@ main()
 
   // Beta seems to be either really tiny or really huge.
   // Maybe graph log_beta.
-  plot_beta<double>("plot/beta_double.txt");
+  plot_beta<double>("plot_data/beta_double.txt");
 }
