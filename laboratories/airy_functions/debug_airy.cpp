@@ -96,10 +96,10 @@ old_bessel_chunk(double xnu, double x, double& rj, double& ry, double& rjp, doub
     const double  PI     =  3.14159265358979;
 
     int i, isign, l, n;
-    double b, c, d, del, del1, e, f, fact, fact2,
-           fact3, ff, gam1, gam2, gammi, gampl, h, p, pimu, pimu2, q, r, rjl,
-           rjl1, rjmu, rjp1, rjpl, rjtemp, ry1, rymu, rymup, rytemp, sum, sum1,
-           w, x2, xi, xi2, xmu, xmu2;
+    double b, c, d, del, e, f, fact, fact2,
+           ff, gam1, gam2, gammi, gampl, h, p, pimu, pimu2, q, r, rjl,
+           rjl1, rjp1, rjpl, rjtemp, ry1, rymu, rymup, rytemp, sum, sum1,
+           w, xi, xi2, xmu, xmu2;
 
     if ( x <= 0.0 || xnu < 0.0 ) std::cout << "Bad arguments in bessel_jy.\n";
 std::cout << '\n';
@@ -161,7 +161,7 @@ std::cout << "Jpnu1  =" << rjp1 << '\n';
     f= rjpl/rjl;
 std::cout << "f   =" << f << '\n';
     if ( x < XMIN ) {
-        x2 = 0.5*x;
+        double x2 = 0.5*x;
         pimu = PI*xmu;
         fact = ( abs(pimu) < EPS ? 1.0 : pimu/sin(pimu) );
         d = -log(x2);
@@ -173,7 +173,7 @@ std::cout << "f   =" << f << '\n';
         p = e/(PI*gampl);
         q = 1.0/(e*PI*gammi);
         pimu2 = 0.5*pimu;
-        fact3 = (abs(pimu2) < EPS ? 1.0 : sin(pimu2)/pimu2 );
+        double fact3 = (abs(pimu2) < EPS ? 1.0 : sin(pimu2)/pimu2 );
         r = PI*pimu2*fact3*fact3;
         c = 1.0;
         d = -x2*x2;
@@ -201,7 +201,7 @@ std::cout << "r     =" << r << '\n';
             q /= i + xmu;
             del = c*(ff + r*q);
             sum += del; 
-            del1 = c*p - i*del;
+            double del1 = c*p - i*del;
             sum1 += del1;
 std::cout << "  i =" << i <<  "  del = " << del <<  "  del1 = " << del1 << '\n';
             if ( abs(del) < EPS*(1.0 + abs(sum)) ) break;
@@ -217,7 +217,7 @@ std::cout << "sum1  =" << sum1 << '\n';
         rymu = -sum;
         ry1 = -sum1*xi2;
         rymup = xmu*xi*rymu - ry1;
-        rjmu = w/(rymup - f*rymu);
+        double rjmu = w/(rymup - f*rymu);
 std::cout << "Nmu   =" << rymu << '\n';
 std::cout << "Nnu1  =" << ry1 << '\n';
 std::cout << "Npmu  =" << rymup << '\n';

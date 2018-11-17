@@ -37,7 +37,7 @@ template<typename _Tp>
       _M_imz(__imz)
     { }
 
-    _ComplexTie(std::complex<_Tp>& __z)
+    explicit _ComplexTie(std::complex<_Tp>& __z)
     : _M_rez(reinterpret_cast<_Tp(&)[2]>(__z)[0]),
       _M_imz(reinterpret_cast<_Tp(&)[2]>(__z)[1])
     { }

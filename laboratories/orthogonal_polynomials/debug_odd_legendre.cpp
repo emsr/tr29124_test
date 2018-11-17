@@ -29,7 +29,7 @@ template<typename _Tp>
 	    const auto __lmfact = std::__detail::__factorial<_Tp>(__lm);
 	    const auto __mm = __lm / 2;
 	    const auto __mmfact = std::__detail::__factorial<_Tp>(__mm);
-	    auto __Plm1 = (__mm & 1 ? -1 : 1) * __lmfact / __mmfact / __mmfact
+	    auto __Plm1 = ((__mm & 1) ? -1 : 1) * __lmfact / __mmfact / __mmfact
 			  / std::pow(_Tp{2}, __lm);
 	    auto __Ppl = __l * __Plm1;
 	    auto __weight = _Tp{2} / __Ppl / __Ppl;
@@ -41,7 +41,7 @@ template<typename _Tp>
 	    const auto __lmfact = std::__detail::__log_factorial<_Tp>(__lm);
 	    const auto __mm = __lm / 2;
 	    const auto __mmfact = std::__detail::__log_factorial<_Tp>(__mm);
-	    auto __Plm1 = (__mm & 1 ? -1 : 1)
+	    auto __Plm1 = ((__mm & 1) ? -1 : 1)
 			* std::exp(__lmfact - 2 * __mmfact - __lm * _S_ln2);
 
 	    auto __Ppl = __l * __Plm1;

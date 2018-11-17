@@ -10,8 +10,9 @@ def _lambert_w(z):
   """
   eps=4.0e-16
   em1=0.3678794411714423215955237701614608
-  assert z>=-em1, 'LambertW.py: bad argument %g, exiting.'%z
-  if 0.0==z: 
+  if z<-em1:
+      raise AssertionError, 'LambertW.py: bad argument %g, exiting.'%z
+  if 0.0==z:
       return 0.0
   if z<-em1+1e-4:
       q=z+em1
@@ -33,15 +34,15 @@ def _lambert_w(z):
       w=-1.0+p*(1.0+p*(-0.333333333333333333333+p*0.152777777777777777777777))
   else:
       w=math.log(z)
-  if z>3.0: 
+  if z>3.0:
       w-=math.log(w)
-  for i in xrange(10):
+  for _ in xrange(10):
       e=math.exp(w)
       t=w*e-z
       p=w+1.0
       t/=e*p-0.5*(p+1.0)*t/p
       w-=t
-      if abs(t)<eps*(1.0+abs(w)): 
+      if abs(t)<eps*(1.0+abs(w)):
           return w
   raise AssertionError, 'Unhandled value %1.2f'%z
 
@@ -56,4 +57,3 @@ def _gamma_inverse(x):
   L=np.log((x+C)/np.sqrt(2*np.pi))
   gamma_inv = 0.5+L/_lambert_w(L/np.e)
   return gamma_inv
-  

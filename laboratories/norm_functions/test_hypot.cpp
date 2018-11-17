@@ -109,7 +109,7 @@ namespace __detail
    */
   template<typename _Tp>
     constexpr __gnu_cxx::fp_promote_t<_Tp>
-    __hypot3(std::complex<_Tp>& __x, std::complex<_Tp>& __y)
+    __hypot3(const std::complex<_Tp>& __x, const std::complex<_Tp>& __y)
     {
       if (std::isnan(__x) || std::isnan(__y))
 	return std::numeric_limits<_Tp>::quiet_NaN();
@@ -141,8 +141,8 @@ namespace __detail
    */
   template<typename _Tp>
     constexpr __gnu_cxx::fp_promote_t<_Tp>
-    __hypot3(std::complex<_Tp>& __x, std::complex<_Tp>& __y,
-	     std::complex<_Tp>& __z)
+    __hypot3(const std::complex<_Tp>& __x, const std::complex<_Tp>& __y,
+	     const std::complex<_Tp>& __z)
     {
       if (std::isnan(__x) || std::isnan(__y))
 	return std::numeric_limits<_Tp>::quiet_NaN();
@@ -192,44 +192,46 @@ namespace __detail
 
 
   constexpr inline float
-  hypot(std::complex<float> __x, std::complex<float> __y)
+  hypot(const std::complex<float>& __x, const std::complex<float>& __y)
   { return std::__detail::__hypot3<float>(__x, __y); }
 
   constexpr inline double
-  hypot(std::complex<double> __x, std::complex<double> __y)
+  hypot(const std::complex<double>& __x, const std::complex<double>& __y)
   { return std::__detail::__hypot3<double>(__x, __y); }
 
   constexpr inline long double
-  hypot(std::complex<long double> __x, std::complex<long double> __y)
+  hypot(const std::complex<long double>& __x,
+	const std::complex<long double>& __y)
   { return std::__detail::__hypot3<long double>(__x, __y); }
 
   template<typename _Tpx, typename _Tpy>
     constexpr inline __gnu_cxx::fp_promote_t<_Tpx, _Tpy>
-    hypot(std::complex<_Tpx> __x, std::complex<_Tpy> __y)
+    hypot(const std::complex<_Tpx>& __x, const std::complex<_Tpy>& __y)
     {
       using __type = __gnu_cxx::fp_promote_t<_Tpx, _Tpy>;
       return std::__detail::__hypot3<__type>(__x, __y);
     }
 
   constexpr inline float
-  hypot(std::complex<float> __x, std::complex<float> __y,
-	std::complex<float> __z)
+  hypot(const std::complex<float>& __x, const std::complex<float>& __y,
+	const std::complex<float>& __z)
   { return std::__detail::__hypot3<float>(__x, __y, __z); }
 
   constexpr inline double
-  hypot(std::complex<double> __x, std::complex<double> __y,
-	std::complex<double> __z)
+  hypot(const std::complex<double>& __x, const std::complex<double>& __y,
+	const std::complex<double>& __z)
   { return std::__detail::__hypot3<double>(__x, __y, __z); }
 
   constexpr inline long double
-  hypot(std::complex<long double> __x, std::complex<long double> __y,
-	std::complex<long double> __z)
+  hypot(const std::complex<long double>& __x,
+	const std::complex<long double>& __y,
+	const std::complex<long double>& __z)
   { return std::__detail::__hypot3<long double>(__x, __y, __z); }
 
   template<typename _Tpx, typename _Tpy, typename _Tpz>
     constexpr inline __gnu_cxx::fp_promote_t<_Tpx, _Tpy, _Tpz>
-    hypot(std::complex<_Tpx> __x, std::complex<_Tpy> __y,
-	  std::complex<_Tpz> __z)
+    hypot(const std::complex<_Tpx>& __x, const std::complex<_Tpy>& __y,
+	  const std::complex<_Tpz>& __z)
     {
       using __type = __gnu_cxx::fp_promote_t<_Tpx, _Tpy, _Tpz>;
       return std::__detail::__hypot3<__type>(__x, __y, __z);

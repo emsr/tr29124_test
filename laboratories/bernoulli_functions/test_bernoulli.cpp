@@ -337,7 +337,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
     __euler_period(unsigned int __n, _Tp __x)
     {
       int __p = int(__x);
-      return (__p & 1 ? -1 : +1) * __euler(__n, __x - _Tp(__p));
+      return ((__p & 1) ? -1 : +1) * __euler(__n, __x - _Tp(__p));
     }
 
   /**
@@ -360,7 +360,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
 	    {
 	      auto __lf1 = std::__detail::__log_factorial<_Tp>(__k);
 	      auto __lf2 = std::__detail::__log_factorial<_Tp>(__m - __k);
-	      _S2 += ((__m - __k) & 1 ? _Tp{-1} : _Tp{1})
+	      _S2 += (((__m - __k) & 1) ? _Tp{-1} : _Tp{1})
 		   * std::exp(__n * std::log(__k) - __lf1 - __lf2);
 	    }
 	  return _S2;
@@ -370,7 +370,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
 	  auto _S2 = _Tp{0};
 	  for (auto __k = 0u; __k <= __m; ++__k)
 	    {
-	      _S2 += ((__m - __k) & 1 ? _Tp{-1} : _Tp{1})
+	      _S2 += (((__m - __k) & 1) ? _Tp{-1} : _Tp{1})
 		   * std::pow(__k, __n)
 		   / std::__detail::__factorial<_Tp>(__k)
 		   / std::__detail::__factorial<_Tp>(__m - __k);
@@ -484,7 +484,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
 	      auto __slbc1 = std::__detail::__log_binomial_sign<_Tp>(__n - 1 + __k, __nmk);
 	      auto __lbc2 = std::__detail::__log_binomial<_Tp>(2 * __n - __m, __nmk);
 	      auto __slbc2 = std::__detail::__log_binomial_sign<_Tp>(2 * __n - __m, __nmk);
-	      _S1 += (__k & 1 ? _Tp{-1} : _Tp{1}) * __slbc1 * __slbc2
+	      _S1 += ((__k & 1) ? _Tp{-1} : _Tp{1}) * __slbc1 * __slbc2
 		   * std::exp(__lbc1 + __lbc2 + __log_stirling_2<_Tp>(__nmk, __k));
 	    }
 	  return _S1;
@@ -495,7 +495,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
 	  for (auto __k = 0u; __k <= __n - __m; ++__k)
 	    {
 	      auto __nmk = __n - __m + __k;
-	      _S1 += (__k & 1 ? _Tp{-1} : _Tp{1})
+	      _S1 += ((__k & 1) ? _Tp{-1} : _Tp{1})
 		   * std::__detail::__binomial<_Tp>(__n - 1 + __k, __nmk)
 		   * std::__detail::__binomial<_Tp>(2 * __n - __m, __nmk)
 		   * __stirling_2<_Tp>(__nmk, __k);
@@ -609,7 +609,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
   template<typename _Tp>
     inline _Tp
     __log_stirling_1_sign(unsigned int __n, unsigned int __m)
-    { return (__n + __m) & 1 ? _Tp{-1} : _Tp{+1}; }
+    { return ((__n + __m) & 1) ? _Tp{-1} : _Tp{+1}; }
 
   /**
    * Return the Eulerian number of the first kind by recursion.
