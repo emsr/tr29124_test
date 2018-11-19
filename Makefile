@@ -965,7 +965,7 @@ $(TEST_BIN_DIR)/test_inv_gamma: laboratories/gamma_functions/test_inv_gamma.cpp 
 	$(CXX17) $(INCLUDES) -o $(TEST_BIN_DIR)/test_inv_gamma laboratories/gamma_functions/test_inv_gamma.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_inv_ibeta: laboratories/beta_functions/test_inv_ibeta.cpp
-	$(CXX17) $(INCLUDES) -o $(TEST_BIN_DIR)/test_inv_ibeta laboratories/beta_functions/test_inv_ibeta.cpp -lquadmath
+	$(CXX17) $(INCLUDES) -Iroot_search/include -o $(TEST_BIN_DIR)/test_inv_ibeta laboratories/beta_functions/test_inv_ibeta.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_inv_lgamma: laboratories/gamma_functions/test_inv_lgamma.cpp
 	$(CXX17) $(INCLUDES) -o $(TEST_BIN_DIR)/test_inv_lgamma laboratories/gamma_functions/test_inv_lgamma.cpp -lquadmath

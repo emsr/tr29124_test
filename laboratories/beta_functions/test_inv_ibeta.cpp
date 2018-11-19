@@ -10,7 +10,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_inv_ibeta
 #include <iostream>
 #include <iomanip>
 #include <bits/specfun.h>
-#include <ext/root_finding.h>
+#include <ext/root_search.h>
 
 template<typename _Tp>
   _Tp
