@@ -1,3 +1,4 @@
+#!/bin/bash
 
 suffix="_tr29124"
 if [ $# -ge 1 ]; then

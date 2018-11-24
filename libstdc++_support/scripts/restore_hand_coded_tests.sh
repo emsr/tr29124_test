@@ -1,3 +1,5 @@
+#!/bin/bash
+
 git checkout -- \
   testsuite/tr1/5_numerical_facilities/special_functions/02_assoc_legendre/pr83140.cc \
   testsuite/special_functions/02_assoc_legendre/pr83140.cc \

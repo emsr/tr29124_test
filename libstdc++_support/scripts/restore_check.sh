@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # If the handcrafted tests get clobbered...
 
