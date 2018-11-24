@@ -21,7 +21,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_le
   template<typename _Tp>
     std::complex<_Tp>
     __mittag_leffler_K(_Tp __alpha, _Tp __beta, _Tp __chi,
-		       std::complex<_Tp> __z)
+		       const std::complex<_Tp>& __z)
     {
       const auto _S_pi = __gnu_cxx::__const_pi(__alpha);
       const auto __chip1 = std::pow(__chi, _Tp{1} / __alpha);
@@ -40,7 +40,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_le
     std::complex<_Tp>
     __mittag_leffler_K_integral(_Tp __alpha, _Tp __beta,
 				_Tp __chi_min, _Tp __chi_max,
-				std::complex<_Tp> __z)
+				const std::complex<_Tp>& __z)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__chi_min);
       auto __func = [__alpha, __beta, __z](_Tp __chi)
@@ -62,7 +62,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_le
   template<typename _Tp>
     std::complex<_Tp>
     __mittag_leffler_P(_Tp __alpha, _Tp __beta, _Tp __epsilon, _Tp __phi,
-		       std::complex<_Tp> __z)
+		       const std::complex<_Tp>& __z)
     {
       const auto _S_i = std::complex<_Tp>{0, 1};
       const auto _S_pi = __gnu_cxx::__const_pi(__alpha);
@@ -82,7 +82,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_le
     std::complex<_Tp>
     __mittag_leffler_P_integral(_Tp __alpha, _Tp __beta, _Tp __epsilon,
 				_Tp __phi_min, _Tp __phi_max,
-				std::complex<_Tp> __z)
+				const std::complex<_Tp>& __z)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__phi_min);
       auto __func = [__alpha, __beta, __epsilon, __z](_Tp __phi)
@@ -116,7 +116,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_le
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __mittag_leffler(_Tp __alpha, _Tp __beta, std::complex<_Tp> __z)
+    __mittag_leffler(_Tp __alpha, _Tp __beta, const std::complex<_Tp>& __z)
     {
       using _Cmplx = std::complex<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__alpha);
@@ -259,7 +259,8 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mittag_le
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __mittag_leffler_deriv(_Tp __alpha, _Tp __beta, std::complex<_Tp> __z)
+    __mittag_leffler_deriv(_Tp __alpha, _Tp __beta,
+			   const std::complex<_Tp>& __z)
     {
       using _Cmplx = std::complex<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__alpha);
