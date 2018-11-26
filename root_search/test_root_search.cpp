@@ -28,7 +28,7 @@ template<typename _Tp>
 template<typename _Tp>
   __gnu_cxx::__root_state<_Tp>
   func1_state(_Tp x)
-  { return {std::pow(x, _Tp{20}) - 1, _Tp{20} * std::pow(x, _Tp{19})}; }
+  { return {std::pow(x, _Tp{20}) - _Tp{1}, _Tp{20} * std::pow(x, _Tp{19})}; }
 
 template<typename _Tp>
   __gnu_cxx::__root_state<_Tp>

@@ -94,7 +94,7 @@ namespace __detail
       using _AFun = decltype(__a);
       const auto __b = [](size_t __k, _Tp __z)
 		 ->_Tp
-		 { return __k == 0 ? _Tp{0} : __k & 1 ? __z * __z : _Tp{1}; };
+		 { return __k == 0 ? _Tp{0} : (__k & 1) ? __z * __z : _Tp{1}; };
       using _BFun = decltype(__b);
       const auto __w = [__b](size_t __k, _Tp __z)
 		 ->_Tp
@@ -131,7 +131,7 @@ namespace __detail
       using _AFun = decltype(__a);
       const auto __b = [](size_t __k, _Tp __z)
 		 ->_Tp
-		 { return __k == 0 ? _Tp{0} : __k & 1 ? __z * __z : _Tp{1}; };
+		 { return __k == 0 ? _Tp{0} : (__k & 1) ? __z * __z : _Tp{1}; };
       using _BFun = decltype(__b);
       const auto __w = [__b](size_t __k, _Tp __z)
 		 ->_Tp
@@ -163,13 +163,13 @@ namespace __detail
 		 ->_Tp
 		 { return __k == 1
 			 ? _Tp{2} * __z
-			 : __k & 1 ? __z * __z : _Tp{1}; };
+			 : (__k & 1) ? __z * __z : _Tp{1}; };
       using _AFun = decltype(__a);
       const auto __b = [](size_t __k, _Tp __z)
 		 ->_Tp
 		 { return __k == 0
 			? _Tp{0}
-			: __k & 1 ? _Tp{2} * __z * __z
+			: (__k & 1) ? _Tp{2} * __z * __z
 				  : _Tp{1}; };
       using _BFun = decltype(__b);
       const auto __w = [__b](size_t, _Tp)->_Tp{ return _Tp{0}; };

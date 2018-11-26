@@ -26,7 +26,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_anger_web
   template<typename _Tp>
     struct _GammaReciprocal
     {
-      _GammaReciprocal(_Tp __a)
+      explicit _GammaReciprocal(_Tp __a)
       : _M_arg(__a),
         _M_int(__gnu_cxx::__fp_is_integer(__a))
       { }

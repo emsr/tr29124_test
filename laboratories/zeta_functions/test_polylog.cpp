@@ -254,9 +254,9 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_polylog > test_polylog.tx
 	{
 	  const int __p = -__n;
 	  const int __pp = 1 + __p;
-	  const int __q = __p & 1 ? 0 : 1;
+	  const int __q = (__p & 1) ? 0 : 1;
 	  const auto __w2 = __w * __w;
-	  auto __wp = __p & 1 ? std::complex<_Tp>{1} : __w;
+	  auto __wp = (__p & 1) ? std::complex<_Tp>{1} : __w;
 	  unsigned int __2k = __q;
 	  auto __gam = std::__detail::__factorial<_Tp>(__p + __2k);
 	  const auto __pfact = std::__detail::__factorial<_Tp>(__p);

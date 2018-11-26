@@ -92,10 +92,10 @@ get_output(int testindex, int rmodeindex, int negative)
 static void
 test_nearby(int testindex)
 {
-	float in, out;
-	int i;
+	float in;
 
-	for (i = 0; i < sizeof(rmodes) / sizeof(rmodes[0]); i++) {
+	for (int i = 0; i < sizeof(rmodes) / sizeof(rmodes[0]); i++) {
+		float out;
 		fesetround(rmodes[i]);
 		feclearexcept(ALL_STD_EXCEPT);
 
@@ -120,13 +120,15 @@ test_nearby(int testindex)
 static void
 test_modf(int testindex)
 {
-	float in, out;
-	float ipartf, ipart_expected;
+	float out;
+	float ipartf;
 	double ipart;
 	long double ipartl;
 	int i;
 
 	for (i = 0; i < sizeof(rmodes) / sizeof(rmodes[0]); i++) {
+		float out, ipart_expected;
+
 		fesetround(rmodes[i]);
 		feclearexcept(ALL_STD_EXCEPT);
 

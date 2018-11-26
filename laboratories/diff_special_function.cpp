@@ -855,15 +855,15 @@ main()
 */
     // Chebyshev polynomials of the second kind.
     std::cout << "chebyshev_u - UNTESTED" << '\n';
-    basename = "diff_chebyshev_u";
+//    basename = "diff_chebyshev_u";
 
     // Chebyshev polynomials of the third kind.
     std::cout << "chebyshev_v - UNTESTED" << '\n';
-    basename = "diff_chebyshev_v";
+//    basename = "diff_chebyshev_v";
 
     // Chebyshev polynomials of the fourth kind.
     std::cout << "chebyshev_w - UNTESTED" << '\n';
-    basename = "diff_chebyshev_w";
+//    basename = "diff_chebyshev_w";
 
     // Jacobi polynomials.
     std::cout << "jacobi" << '\n';

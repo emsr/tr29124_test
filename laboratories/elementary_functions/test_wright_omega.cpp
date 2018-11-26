@@ -431,8 +431,6 @@ burkhadt_test()
 void
 test_burkhardt_boundary()
 {
-  double a;
-  double b;
   std::complex<double> cond;
   std::complex<double> e;
   double exp_num = 160.0;
@@ -652,9 +650,9 @@ test_burkhardt_boundary()
 
   for ( i = 0; i < n; i++ )
   {
-    a = std::nextafter ( pi, -1.0 ) * cos ( x[0] - td *double(i) ) 
-      + std::nextafter ( 1.0, - 1.0 );
-    b = std::nextafter ( pi, -1.0 ) * sin ( x[0] - td *double(i) );
+    double a = std::nextafter ( pi, -1.0 ) * cos ( x[0] - td *double(i) ) 
+             + std::nextafter ( 1.0, - 1.0 );
+    double b = std::nextafter ( pi, -1.0 ) * sin ( x[0] - td *double(i) );
     z = std::complex<double> ( a, b );
     w = __wright_omega( z,  e, r, cond );
     fp << std::real ( z ) << " " 
