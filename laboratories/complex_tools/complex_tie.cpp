@@ -1,5 +1,5 @@
 /*
-/home/ESmith-rowland/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -o complex_tie complex_tie.cpp 
+/home/ESmith-rowland/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -o complex_tie complex_tie.cpp 
 ./complex_tie
 */
 #include <iostream>

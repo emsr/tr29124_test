@@ -1,7 +1,7 @@
 /*
 $HOME/bin/bin/g++ -std=c++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o carlson_std carlson_std.cpp
 
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o carlson_std carlson_std.cpp
+$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o carlson_std carlson_std.cpp
 */
 
 #include <ext/cmath>

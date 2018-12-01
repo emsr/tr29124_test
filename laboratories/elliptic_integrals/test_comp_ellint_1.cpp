@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_comp_ellint_1 test_comp_ellint_1.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_comp_ellint_1 test_comp_ellint_1.cpp -lquadmath
 ./test_comp_ellint_1 > test_comp_ellint_1.txt
 
-$HOME/bin/bin/g++ -std=gnu++17  -g -Wall -Wextra -I. -o test_comp_ellint_1 test_comp_ellint_1.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a  -g -Wall -Wextra -I. -o test_comp_ellint_1 test_comp_ellint_1.cpp -lquadmath
 ./test_comp_ellint_1 > test_comp_ellint_1.txt
 */
 

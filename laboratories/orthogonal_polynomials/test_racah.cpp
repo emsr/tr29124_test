@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_racah test_racah.cpp
+$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -o test_racah test_racah.cpp
 ./test_racah > test_racah.txt
 */
 

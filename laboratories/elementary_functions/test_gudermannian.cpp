@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -g -I. -Wall -Wextra -o test_gudermannian test_gudermannian.cpp
+$HOME/bin/bin/g++ -std=c++2a -g -I. -Wall -Wextra -o test_gudermannian test_gudermannian.cpp
 ./test_gudermannian > test_gudermannian.txt
 */
 

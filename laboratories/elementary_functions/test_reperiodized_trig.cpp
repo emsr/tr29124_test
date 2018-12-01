@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_reperiodized_trig test_reperiodized_trig.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_reperiodized_trig test_reperiodized_trig.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_reperiodized_trig > test_reperiodized_trig.txt
 
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_reperiodized_trig test_reperiodized_trig.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
+$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o test_reperiodized_trig test_reperiodized_trig.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
 PATH=wrappers/debug:$PATH ./test_reperiodized_trig > test_reperiodized_trig.txt
 */
 

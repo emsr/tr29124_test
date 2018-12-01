@@ -1,5 +1,5 @@
 /*
-g++ -std=c++17 -o run_coulfg coulfg.cpp run_coulfg.cpp
+g++ -std=c++2a -o run_coulfg coulfg.cpp run_coulfg.cpp
 */
 
 struct steed_info

@@ -1,8 +1,8 @@
 /*
-$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi test_jacobi.cpp -lquadmath
+$HOME/bin_specfun/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi test_jacobi.cpp -lquadmath
 ./test_jacobi > test_jacobi.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi test_jacobi.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi test_jacobi.cpp -lquadmath
 ./test_jacobi > test_jacobi.txt
 */
 

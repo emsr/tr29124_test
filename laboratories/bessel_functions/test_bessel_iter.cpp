@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bessel_iter test_bessel_iter.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_bessel_iter test_bessel_iter.cpp -lquadmath
 ./test_bessel_iter > test_bessel_iter.txt
 
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bessel_iter test_bessel_iter.cpp
+$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o test_bessel_iter test_bessel_iter.cpp
 ./test_bessel_iter > test_bessel_iter.txt
 */
 

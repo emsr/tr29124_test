@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o plot_bessel plot_bessel.cpp -lquadmath
+$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o plot_bessel plot_bessel.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./plot_bessel
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o plot_bessel plot_bessel.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o plot_bessel plot_bessel.cpp -lquadmath
 ./plot_bessel > plot_bessel.txt
 */
 

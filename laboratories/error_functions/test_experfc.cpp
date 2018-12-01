@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_experfc test_experfc.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_experfc test_experfc.cpp -lquadmath -lmpfr
 LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_experfc > test_experfc.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_experfc test_experfc.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_experfc test_experfc.cpp -lquadmath -lmpfr
 ./test_experfc > test_experfc.txt
 */
 

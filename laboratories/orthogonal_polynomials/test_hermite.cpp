@@ -1,8 +1,8 @@
 /*
-$HOME/bin_specfun/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hermite test_hermite.cpp -lquadmath
+$HOME/bin_specfun/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_hermite test_hermite.cpp -lquadmath
 ./test_hermite > test_hermite.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hermite test_hermite.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_hermite test_hermite.cpp -lquadmath
 ./test_hermite > test_hermite.txt
 */
 

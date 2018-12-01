@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_kelvin test_kelvin.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_kelvin test_kelvin.cpp -lquadmath
 ./test_kelvin > test_kelvin.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_kelvin test_kelvin.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_kelvin test_kelvin.cpp -lquadmath
 ./test_kelvin > test_kelvin.txt
 */
 
@@ -441,7 +441,7 @@ namespace __detail
       const auto _S_3pi_4 = _Real{3} * _S_pi_4;
       constexpr auto _S_maxiter = 1000;
 
-      // I have to try C++17 init-select!
+      // I have to try C++2a init-select!
 /*
       if (auto __nuint = __gnu_cxx::__fp_is_integer(__nu); __nuint)
 	return __kelvin_series(__nuint(), __x);

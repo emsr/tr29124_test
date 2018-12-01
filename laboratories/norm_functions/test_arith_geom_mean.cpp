@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_arith_geom_mean test_arith_geom_mean.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o test_arith_geom_mean test_arith_geom_mean.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_arith_geom_mean > test_arith_geom_mean.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_arith_geom_mean test_arith_geom_mean.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o test_arith_geom_mean test_arith_geom_mean.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
 PATH=wrappers/debug:$PATH ./test_arith_geom_mean > test_arith_geom_mean.txt
 */
 

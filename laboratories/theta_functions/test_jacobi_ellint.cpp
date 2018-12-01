@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_ellint test_jacobi_ellint.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_ellint test_jacobi_ellint.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_jacobi_ellint > test_jacobi_ellint.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_ellint test_jacobi_ellint.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
+$HOME/bin/bin/g++ -std=gnu++2a -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_ellint test_jacobi_ellint.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
 PATH=wrappers/debug:$PATH ./test_jacobi_ellint > test_jacobi_ellint.txt
 */
 

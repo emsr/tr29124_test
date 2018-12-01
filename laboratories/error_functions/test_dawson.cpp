@@ -1,6 +1,6 @@
 
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_dawson test_dawson.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_dawson test_dawson.cpp -L$HOME/bin/lib64 -lquadmath
 ./test_dawson > test_dawson.txt
 */
 

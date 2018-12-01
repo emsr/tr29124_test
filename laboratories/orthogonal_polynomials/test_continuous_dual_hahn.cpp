@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_continuous_dual_hahn test_continuous_dual_hahn.cpp
+$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -o test_continuous_dual_hahn test_continuous_dual_hahn.cpp
 ./test_continuous_dual_hahn > test_continuous_dual_hahn.txt
 */
 

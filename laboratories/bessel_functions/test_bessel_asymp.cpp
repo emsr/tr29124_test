@@ -1,8 +1,8 @@
  /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bessel_asymp test_bessel_asymp.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_bessel_asymp test_bessel_asymp.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_bessel_asymp
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_bessel_asymp test_bessel_asymp.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_bessel_asymp test_bessel_asymp.cpp -lquadmath
 PATH=$HOME/bin/lib64:$PATH ./test_bessel_asymp
 */
 

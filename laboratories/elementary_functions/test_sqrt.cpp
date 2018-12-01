@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_sqrt test_sqrt.cpp
+$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o test_sqrt test_sqrt.cpp
 */
 
 #include <iostream>

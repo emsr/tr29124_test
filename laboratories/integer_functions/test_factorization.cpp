@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -I. -o test_factorization test_factorization.cpp
+$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -I. -o test_factorization test_factorization.cpp
 */
 
 #include <iostream>

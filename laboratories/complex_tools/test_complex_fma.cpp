@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_complex_fma test_complex_fma.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_complex_fma test_complex_fma.cpp -lquadmath
 ./test_complex_fma > test_complex_fma.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -Wall -Wextra -Wno-psabi -I. -o test_complex_fma test_complex_fma.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -Wall -Wextra -Wno-psabi -I. -o test_complex_fma test_complex_fma.cpp -lquadmath
 ./test_complex_fma > test_complex_fma.txt
 */
 

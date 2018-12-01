@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_parab_cyl test_parab_cyl.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_parab_cyl test_parab_cyl.cpp -lquadmath
 ./test_parab_cyl > test_parab_cyl.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_parab_cyl test_parab_cyl.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_parab_cyl test_parab_cyl.cpp -lquadmath
 ./test_parab_cyl > test_parab_cyl.txt
 */
 

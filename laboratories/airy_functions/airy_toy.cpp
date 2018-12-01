@@ -1,20 +1,20 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o airy_toy airy_toy.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o airy_toy airy_toy.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -DOLD -o airy_toy_old airy_toy.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -DOLD -o airy_toy_old airy_toy.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy_old > airy_toy.new.old
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -UOLD -o airy_toy_new airy_toy.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -UOLD -o airy_toy_new airy_toy.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_toy.new.new
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o airy_toy airy_toy.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o airy_toy airy_toy.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 */
 
 
 
-// g++ -std=gnu++17 -g -Wall -Wextra -I. -o airy_toy airy_toy.cpp -lquadmath
+// g++ -std=gnu++2a -g -Wall -Wextra -I. -o airy_toy airy_toy.cpp -lquadmath
 
 // ./airy_toy > airy_toy.txt
 

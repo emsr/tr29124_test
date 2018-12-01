@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_limits test_limits.cpp src/c++11/limits.cc -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_limits test_limits.cpp src/c++11/limits.cc -lquadmath
 ./test_limits > test_limits.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_limits test_limits.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_limits test_limits.cpp -lquadmath
 ./test_limits > test_limits.txt
 */
 
