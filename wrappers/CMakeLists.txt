@@ -20,7 +20,7 @@ else ()
 endif ()
 
 set(CMAKE_C_FLAGS "-std=c11 -Wall -Wextra -I$ENV{HOME}/tr29124_test")
-set(CMAKE_CXX_FLAGS "-std=c++17 -Wall -Wextra -Wno-deprecated-declarations -Wold-style-cast -Wno-psabi -I$ENV{HOME}/tr29124_test/include -I$ENV{HOME}/tr29124_test/3rdparty")
+set(CMAKE_CXX_FLAGS "-std=c++17 -Wall -Wextra -Wno-deprecated-declarations -Wold-style-cast -Wno-psabi -I$ENV{HOME}/tr29124_test/include -I$ENV{HOME}/tr29124_test/polynomial/include -I$ENV{HOME}/tr29124_test/3rdparty")
 set(CMAKE_Fortran_FLAGS "-Wall -Wextra -I$ENV{HOME}/tr29124_test")
 
 add_library(wrap_boost SHARED
