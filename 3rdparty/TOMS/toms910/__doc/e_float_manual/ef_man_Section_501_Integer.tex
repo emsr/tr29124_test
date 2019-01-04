@@ -1,0 +1,156 @@
+\lstsetCPlusPlus
+\begin{lstlisting}
+const e_float& zero         (void);
+const e_float& one          (void);
+const e_float& two          (void);
+const e_float& three        (void);
+const e_float& four         (void);
+const e_float& five         (void);
+const e_float& six          (void);
+const e_float& seven        (void);
+const e_float& eight        (void);
+const e_float& nine         (void);
+const e_float& ten          (void);
+const e_float& twenty       (void);
+const e_float& thirty       (void);
+const e_float& forty        (void);
+const e_float& fifty        (void);
+const e_float& hundred      (void);
+const e_float& two_hundred  (void);
+const e_float& three_hundred(void);
+const e_float& four_hundred (void);
+const e_float& five_hundred (void);
+const e_float& thousand     (void);
+const e_float& two_k        (void);
+const e_float& three_k      (void);
+const e_float& four_k       (void);
+const e_float& five_k       (void);
+const e_float& ten_k        (void);
+const e_float& twenty_k     (void);
+const e_float& thirty_k     (void);
+const e_float& forty_k      (void);
+const e_float& fifty_k      (void);
+const e_float& hundred_k    (void);
+const e_float& million      (void);
+const e_float& ten_M        (void);
+const e_float& hundred_M    (void);
+const e_float& billion      (void);
+const e_float& int32max     (void);
+const e_float& int32min     (void);
+const e_float& int64max     (void);
+const e_float& int64min     (void);
+const e_float& one_minus    (void);
+const e_float& tenth        (void);
+const e_float& fifth        (void);
+const e_float& quarter      (void);
+const e_float& third        (void);
+const e_float& half         (void);
+const e_float& two_third    (void);
+const e_float& four_third   (void);
+const e_float& three_half   (void);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} These functions return a static constant
+reference to the precomputed value of the respective rational number.
+
+\lstsetCPlusPlus
+\begin{lstlisting}
+const e_float& sqrt2        (void);
+const e_float& sqrt3        (void);
+const e_float& pi           (void);
+const e_float& pi_half      (void);
+const e_float& pi_quarter   (void);
+const e_float& pi_squared   (void);
+const e_float& two_pi       (void);
+const e_float& sqrt_pi      (void);
+const e_float& degree       (void);
+const e_float& exp1         (void);
+const e_float& ln2          (void);
+const e_float& ln3          (void);
+const e_float& ln10         (void);
+const e_float& log10_2      (void);
+const e_float& golden_ratio (void);
+const e_float& euler_gamma  (void);
+const e_float& catalan      (void);
+const e_float& khinchin     (void);
+const e_float& glaisher     (void);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} These functions return a static constant
+reference to the precomputed value of the respective mathematical constant.
+
+\vspace{6.0pt}
+
+\lstsetCPlusPlus
+\begin{lstlisting}
+void prime(const UINT32 n, std::deque<UINT32>& primes);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Effects:} This function calculates the first {\courier n}
+prime numbers and stores them in the container {\courier primes}.
+
+\lstsetCPlusPlus
+\begin{lstlisting}
+void integer_factors(const UINT32 n, std::deque<Util::point_nm>& pf);
+\end{lstlisting}
+
+\noindent {\it Effects:} This function calculates the prime
+factorization of the unsigned integer {\courier n} and
+stores the results as ordered sequence of integer pairs in
+the container {\courier pf}.
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} The functions {\courier prime} and
+{\courier integer\underline\ factors} are implemented as utility functions.
+They are not intended for high-performance use.
+
+\vspace{6.0pt}
+
+\lstsetCPlusPlus
+\begin{lstlisting}
+e_float euler    (const UINT32 n);
+e_float bernoulli(const UINT32 n);
+e_float stirling2(const UINT32 n, const UINT32 k);
+\end{lstlisting}
+
+\noindent {\it Effects:} These functions calculate the integer function
+of the respective arguments.
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier euler} function returns the signed integer
+number which can be defined by the identity \cite{wiki:website}
+
+\vspace{6.0pt}
+
+\begin{equation}
+\frac{1}{\cosh(x)} = \frac{2}{e^{x}+e^{-x}}
+\equiv \sum_{n=0}^{\infty} \frac{E_{n}x^{n}}{n!}.
+\end{equation}
+
+\noindent {\it Returns:} The {\courier bernoulli} function returns the signed rational
+number which can be defined by the identity \cite{wolframfunctions:website}
+
+\vspace{6.0pt}
+
+\begin{equation}
+\frac{x}{e^{x}-1}\equiv \sum_{n=0}^{\infty} \frac{B_{n}x^{n}}{n!}.
+\end{equation}
+
+\noindent {\it Returns:} The {\courier stirling2} function returns the unsigned integer
+Stirling number of the second kind given by the formula \cite{wiki:website}
+
+\vspace{6.0pt}
+
+\begin{equation}
+S(n, k) = {\genfrac{\{}{\}}{0pt}{}{n}{k}} = \frac{1}{k!}
+\sum_{j=0}^{k}(-1)^{k-j}\binom{k}{j} j^{n}.
+\end{equation}
+

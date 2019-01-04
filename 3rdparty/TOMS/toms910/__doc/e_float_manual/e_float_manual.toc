@@ -1,0 +1,53 @@
+\contentsline {section}{\numberline {1}About e{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }float}{4}{section.1}
+\contentsline {subsection}{\numberline {1.1}Introduction}{4}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Configurations}{5}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}The e{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }float\ System Architecture}{6}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}MP Types}{9}{subsection.1.4}
+\contentsline {section}{\numberline {2}Building e{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }float}{10}{section.2}
+\contentsline {subsection}{\numberline {2.1}Compiler Systems}{10}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Windows{\relax \fontsize {10}{12}\selectfont \par@update \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 5\p@ plus2.5\p@ minus\p@ \topsep 10\p@ plus4\p@ minus6\p@ \itemsep 5\p@ plus2.5\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {ftns}{\textregistered }} Environment}{11}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Building the Configurations `efx', `gmp', `mpfr' and `f90' in Windows{\relax \fontsize {10}{12}\selectfont \par@update \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 5\p@ plus2.5\p@ minus\p@ \topsep 10\p@ plus4\p@ minus6\p@ \itemsep 5\p@ plus2.5\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {ftns}{\textregistered }}}{11}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Building the Configuration `clr' in Windows{\relax \fontsize {10}{12}\selectfont \par@update \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 5\p@ plus2.5\p@ minus\p@ \topsep 10\p@ plus4\p@ minus6\p@ \itemsep 5\p@ plus2.5\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {ftns}{\textregistered }}}{12}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Building the Configuration `pyd' in Windows{\relax \fontsize {10}{12}\selectfont \par@update \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 5\p@ plus2.5\p@ minus\p@ \topsep 10\p@ plus4\p@ minus6\p@ \itemsep 5\p@ plus2.5\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {ftns}{\textregistered }}}{12}{subsubsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.4}Building the Configuration `cas' in Windows{\relax \fontsize {10}{12}\selectfont \par@update \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 5\p@ plus2.5\p@ minus\p@ \topsep 10\p@ plus4\p@ minus6\p@ \itemsep 5\p@ plus2.5\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {ftns}{\textregistered }}}{12}{subsubsection.2.2.4}
+\contentsline {subsection}{\numberline {2.3}UNIX--like Environment}{13}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Building the Configurations `efx', `gmp' and `mpfr' in UNIX}{13}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Building the Configuration `clr' in UNIX}{14}{subsubsection.2.3.2}
+\contentsline {subsubsection}{\numberline {2.3.3}Building the Configuration `pyd' in UNIX}{14}{subsubsection.2.3.3}
+\contentsline {subsubsection}{\numberline {2.3.4}Building the Configuration `cas' in Windows{\relax \fontsize {10}{12}\selectfont \par@update \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 5\p@ plus2.5\p@ minus\p@ \topsep 10\p@ plus4\p@ minus6\p@ \itemsep 5\p@ plus2.5\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {ftns}{\textregistered }}}{14}{subsubsection.2.3.4}
+\contentsline {section}{\numberline {3}Using e{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }float}{15}{section.3}
+\contentsline {subsection}{\numberline {3.1}Real--Numbered Arithmetic with e{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }float}{15}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Mixed--Mode Arithmetic with e{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }float}{16}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Complex--Numbered Arithmetic with e{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }float}{17}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Using the e{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }float\ Functions}{18}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Using the STL with e{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }float\ objects}{19}{subsection.3.5}
+\contentsline {subsection}{\numberline {3.6}Additional Examples Using e{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }float}{19}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}Interoperability In Detail}{20}{subsection.3.7}
+\contentsline {subsubsection}{\numberline {3.7.1}Python\nobreakspace {}Export}{20}{subsubsection.3.7.1}
+\contentsline {subsubsection}{\numberline {3.7.2}Microsoft{\relax \fontsize {10}{12}\selectfont \par@update \abovedisplayskip 10\p@ plus2\p@ minus5\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6\p@ plus3\p@ minus3\p@ \def \leftmargin \leftmargini \parsep 5\p@ plus2.5\p@ minus\p@ \topsep 10\p@ plus4\p@ minus6\p@ \itemsep 5\p@ plus2.5\p@ minus\p@ {\leftmargin \leftmargini \topsep 6\p@ plus2\p@ minus2\p@ \parsep 3\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip \add@extra@listi {ftns}{\textregistered }}\nobreakspace {}CLR\nobreakspace {}Export}{20}{subsubsection.3.7.2}
+\contentsline {subsubsection}{\numberline {3.7.3}Computer Algebra Systems}{21}{subsubsection.3.7.3}
+\contentsline {section}{\numberline {4}The e{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }float\ Class Architecture}{22}{section.4}
+\contentsline {subsection}{\numberline {4.1}The e{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }float{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }base\ Class}{22}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}The e{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }float\ Class}{24}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}The e{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }float\ Global Arithmetic Interface}{26}{subsection.4.3}
+\contentsline {subsection}{\numberline {4.4}Numeric Limits of the e{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }float\ Class}{27}{subsection.4.4}
+\contentsline {subsection}{\numberline {4.5}Adapting Another MP Implementation for use with e{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }float}{27}{subsection.4.5}
+\contentsline {subsection}{\numberline {4.6}The Complex Class Interface}{28}{subsection.4.6}
+\contentsline {section}{\numberline {5}The e{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }float\ Functions}{30}{section.5}
+\contentsline {subsection}{\numberline {5.1}Supported Functions and Known Limitations}{30}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Function Details}{32}{subsection.5.2}
+\contentsline {subsubsection}{\numberline {5.2.1}Integer and Constant Functions}{32}{subsubsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2}Elementary Functions}{34}{subsubsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.3}Airy Functions}{36}{subsubsection.5.2.3}
+\contentsline {subsubsection}{\numberline {5.2.4}Bessel Functions}{37}{subsubsection.5.2.4}
+\contentsline {subsubsection}{\numberline {5.2.5}Orthogonal Polynomials}{38}{subsubsection.5.2.5}
+\contentsline {subsubsection}{\numberline {5.2.6}Gamma and Related Functions}{38}{subsubsection.5.2.6}
+\contentsline {subsubsection}{\numberline {5.2.7}Hypergeometric Series}{40}{subsubsection.5.2.7}
+\contentsline {subsubsection}{\numberline {5.2.8}Generalized Legendre Functions}{41}{subsubsection.5.2.8}
+\contentsline {subsubsection}{\numberline {5.2.9}Laguerre, Parabolic Cylinder and Hermite Functions}{42}{subsubsection.5.2.9}
+\contentsline {subsubsection}{\numberline {5.2.10}Elliptic Integrals}{43}{subsubsection.5.2.10}
+\contentsline {subsubsection}{\numberline {5.2.11}Zeta Functions}{44}{subsubsection.5.2.11}
+\contentsline {subsubsection}{\numberline {5.2.12}Polylogarithms}{44}{subsubsection.5.2.12}
+\contentsline {section}{\numberline {6}Testing e{\ttfamily \relax $\@@underline {\hbox {\ }}\mathsurround \z@ $\relax }float}{45}{section.6}
+\contentsline {subsection}{\numberline {6.1}The Test System}{45}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Extending the Test System}{46}{subsection.6.2}

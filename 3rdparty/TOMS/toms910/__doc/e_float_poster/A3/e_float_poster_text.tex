@@ -1,0 +1,39 @@
+\textbf{Calculations} use high-performance multiple precision floating
+point programs designed for numbers with about $10^2...10^7$ decimal digits of precision.
+Certain integer functions and coefficients use symbolic math.
+\textbf{Multiplication} uses $O \left ( N^2 \right )$ traditional
+and $O \left ( N^{\log_2 \left ( 3 \right ) } \right )$ Karatsuba
+as well as $O \left ( N\log_2 \left ( N \right ) \right )$ Sch\"onhage-Strassen FFT algorithms.
+\textbf{Fast Fourier Transforms} use the ``Fastest Fourier Transform in the West'' (FFTW)
+with the calculations distributed among $2^N$ CPU cores using parallel threads.
+\textbf{Integer Power} {\large{$^{\left ( \heartsuit \right )}$}} uses exponentiation by squaring.
+\textbf{Integer Root} {\large{$^{\left ( \spadesuit \right )}$}} uses quadratically
+convergent Newton iteration.
+\textbf{Constants} {\large{$^{\left ( \clubsuit \right )}$}} such as $\pi$, $e$ and $\gamma$
+use Gauss arithmetic-geometric algorithms and binary splitting for computation of up to
+32 million decimal digits.
+The calculation of one million decimal digits of $\pi$ takes less than 10 seconds on
+a modern dual-core system.
+\textbf{Elementary Transcendental Functions} {\large{$^{\left ( \diamondsuit \right )}$}} use
+Taylor series, argument scaling, recursion and Newton iteration.
+\textbf{Orthogonal Polynomials} use generating functions and recursion.
+\textbf{Primes} and \textbf{Prime Factorization} use sieves and divide-and-conquer.
+\textbf{Elliptic Integrals} {\large{$^{\left ( \bullet \right )}$}} use arithmetic-geometric methods.
+\textbf{Gamma} {\large{$^{\left ( \ast \right )}$}} uses recursion and asymptotic series.
+\textbf{Polygamma} {\large{$^{\left ( \star \right )}$}} uses recursion, asymptotic series
+and Euler-Maclaurin summation.
+\textbf{Zeta} {\large{$^{\left ( \ddag \right )}$}} uses the product over all primes, an
+accelerated sum of reciprocal powers, and Euler-Maclaurin summation.
+\textbf{Airy} uses Taylor series, asymptotic series and Bessel function representation.
+\textbf{Bessel} {\large{$^{\left ( \triangle \right )}$}} uses Taylor series, recursion,
+asymptotic hyper\-geometric series and uniform asymptotic Airy type expansions.
+\textbf{Hypergeometric} including \textbf{Legendre} {\large{$^{\left ( \circ \right )}$}}
+uses Taylor series, recursion and various asymptotic series.
+\textbf{Software design} uses Microsoft{\footnotesize {\textregistered}}
+Visual Studio{\footnotesize {\textregistered}} 2008,
+GNU Compiler Collection (GCC) 4.3.3, GNUmake 3.81,
+Intel{\footnotesize {\textregistered}} C++ 11.0.066,
+Mathematica{\footnotesize {\textregistered}} 7.0.1, the C++ programs
+{\tt e\underline\ float} and {\tt mp\underline\ cpp} (\url{ckormanyos@yahoo.com}),
+GNU Multiple Precision (GMP) 4.2.4, and FFTW 2.15. 
+\textbf{Visualization} uses \LaTeX\/.

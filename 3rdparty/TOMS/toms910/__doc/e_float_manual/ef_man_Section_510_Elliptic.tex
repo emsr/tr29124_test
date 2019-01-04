@@ -1,0 +1,54 @@
+\lstsetCPlusPlus
+\begin{lstlisting}
+e_float comp_ellint_1(const e_float& m);
+e_float comp_ellint_2(const e_float& m);
+e_float      ellint_1(const e_float& m, const e_float& phi);
+e_float      ellint_2(const e_float& m, const e_float& phi);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Effects:} These functions compute the complete elliptic integrals
+and the incomplete elliptic integrals of the first and second kinds
+for their respective arguments
+{\courier phi}, {\courier m},
+with {\courier phi}, {\courier m}~$\in\mathbb{R}$ and $|m| \leq 1$.
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier comp\underline\ ellint\underline\ 1} function
+returns~\cite{wolframfunctions:website}
+
+\begin{equation}
+K(m) = F(m, \pi/2)\quad .
+\end{equation}
+
+\noindent {\it Returns:} The {\courier comp\underline\ ellint\underline\ 2} function
+returns~\cite{wolframfunctions:website}
+
+\begin{equation}
+E(m) = E(m, \pi/2)\quad .
+\end{equation}
+
+\noindent {\it Returns:} The {\courier ellint\underline\ 1} function
+returns~\cite{wolframfunctions:website}
+
+\begin{equation}
+F(m, \phi) = \int_{0}^{\phi} \frac{d\theta}{\sqrt{1 - m \sin^2\theta}}\quad .
+\end{equation}
+
+\noindent {\it Returns:} The {\courier ellint\underline\ 2} function
+returns~\cite{wolframfunctions:website}
+
+\begin{equation}
+E(m, \phi) = \int_{0}^{\phi} \sqrt{1 - m \sin^2\theta} \ d\theta\quad .
+\end{equation}
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} There are several popular parameter conventions in use.
+The naming convention with $|m| = k^2$ is used. The parameter naming convention
+and the parameter order for the incomplete elliptic integrals in \efloat\
+are identical to those used in the C++ special functions
+draft \cite{isoiec29123:textbook}.
+

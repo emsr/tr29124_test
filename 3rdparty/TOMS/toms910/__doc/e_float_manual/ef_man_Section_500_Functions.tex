@@ -1,0 +1,48 @@
+\subsection{Supported Functions and Known Limitations}
+
+\input{ef_man_Section_500_TableFunctions.tex}
+
+The functions supported by \efloat\ including parameter ranges and
+known limitations are listed in Table~\ref{table:functions}.
+There is support for many functions and also
+for wide ranges of function parameters.
+Several functions such as Bessel functions and Legendre functions
+include very large parameter ranges, unavailable from other systems.
+The \efloat\ system has been designed for $30$ to $300$ decimal digits of precision.
+Complex arithmetic is supported and elementary
+functions are implemented for real and complex numbers.
+The special functions are implemented primarily for real parameters,
+but some also accept complex parameters.
+
+\pagebreak
+
+\subsection{Function Details}
+
+The following sections briefly describe the functions which are implemented in
+the \efloat\ library. Only very terse mathematical descriptions of the functions
+are provided, for example the primary function definition or a single series
+expansion at one point such as zero or one. The brief descriptions and
+remarks are only meant to uniquely define the functions and do not provide
+complete descriptions of the algorithms and computations. The actual calculations
+in the \efloat\ library use many additional algorithms and function representations,
+often involving hyper\-geometric series or precomputed tables, to calculate function
+values over wide parameter ranges. Real valued functions are defined
+within the name\-space `{\courier ef}'. Utility functions are defined
+within the name\-space `{\courier ef}'. Complex valued functions are defined
+within the name\-space `{\courier efz}'.
+
+\subsubsection{Integer and Constant Functions} \input{ef_man_Section_501_Integer.tex}
+\subsubsection{Elementary Functions}           \input{ef_man_Section_502_Elementary.tex}
+\subsubsection{Airy Functions}                 \input{ef_man_Section_503_Airy.tex}
+\subsubsection{Bessel Functions}               \input{ef_man_Section_504_Bessel.tex}
+\subsubsection{Orthogonal Polynomials}         \input{ef_man_Section_505_Polynomials.tex}
+\subsubsection{Gamma and Related Functions}    \input{ef_man_Section_506_Gamma.tex}
+\subsubsection{Hypergeometric Series}          \input{ef_man_Section_507_Hypergeometric.tex}
+\subsubsection{Generalized Legendre Functions} \input{ef_man_Section_508_Legendre.tex}
+\subsubsection{Laguerre, Parabolic Cylinder and Hermite Functions}
+                                            \input{ef_man_Section_509_LaguerrePfcHermite.tex}
+\subsubsection{Elliptic Integrals}             \input{ef_man_Section_510_Elliptic.tex}
+\subsubsection{Zeta Functions}                 \input{ef_man_Section_511_Zeta.tex}
+\subsubsection{Polylogarithms}                 \input{ef_man_Section_512_Polylog.tex}
+
+

@@ -1,0 +1,400 @@
+#
+# e_float files
+#
+FILES_EF        = e_float/e_float \
+                  e_float/e_float_base
+
+#
+# Utility files
+#
+FILES_UTILITY   = utility/util_digit_scale \
+                  utility/util_power_j_pow_x \
+                  utility/util_timer
+
+#
+# Function files
+#
+FILES_FUNCTIONS = functions/bessel/airy_a \
+                  functions/bessel/airy_a_prime \
+                  functions/bessel/airy_b \
+                  functions/bessel/airy_b_prime \
+                  functions/bessel/airy_util \
+                  functions/bessel/airy_zero \
+                  functions/bessel/bessel_asymp \
+                  functions/bessel/bessel_convergence_limits \
+                  functions/bessel/bessel_in \
+                  functions/bessel/bessel_iv \
+                  functions/bessel/bessel_j_zero \
+                  functions/bessel/bessel_jn \
+                  functions/bessel/bessel_jv \
+                  functions/bessel/bessel_kn \
+                  functions/bessel/bessel_kv \
+                  functions/bessel/bessel_recursion \
+                  functions/bessel/bessel_recursion_order \
+                  functions/bessel/bessel_yn \
+                  functions/bessel/bessel_yv \
+                  functions/complex/e_float_complex \
+                  functions/constants/constants \
+                  functions/elementary/elementary_complex \
+                  functions/elementary/elementary_hyper_g \
+                  functions/elementary/elementary_math \
+                  functions/elementary/elementary_trans \
+                  functions/elementary/elementary_trig \
+                  functions/elliptic/elliptic \
+                  functions/gamma/beta \
+                  functions/gamma/factorial \
+                  functions/gamma/factorial2 \
+                  functions/gamma/gamma \
+                  functions/gamma/gamma_util \
+                  functions/gamma/pochhammer \
+                  functions/gamma/polygamma \
+                  functions/hypergeometric/hermite_v \
+                  functions/hypergeometric/hypergeometric_0f0 \
+                  functions/hypergeometric/hypergeometric_0f1 \
+                  functions/hypergeometric/hypergeometric_1f0 \
+                  functions/hypergeometric/hypergeometric_1f1 \
+                  functions/hypergeometric/hypergeometric_2f0 \
+                  functions/hypergeometric/hypergeometric_2f1 \
+                  functions/hypergeometric/hypergeometric_pfq \
+                  functions/hypergeometric/hypergeometric_util \
+                  functions/hypergeometric/laguerre_vl \
+                  functions/hypergeometric/legendre_pnm \
+                  functions/hypergeometric/legendre_pnu \
+                  functions/hypergeometric/legendre_pv \
+                  functions/hypergeometric/legendre_pvm \
+                  functions/hypergeometric/legendre_pvu \
+                  functions/hypergeometric/legendre_qnm \
+                  functions/hypergeometric/legendre_qnu \
+                  functions/hypergeometric/legendre_qv \
+                  functions/hypergeometric/legendre_qvm \
+                  functions/hypergeometric/legendre_qvu \
+                  functions/hypergeometric/legendre_xnm \
+                  functions/hypergeometric/legendre_xnu \
+                  functions/hypergeometric/legendre_xvm \
+                  functions/hypergeometric/legendre_xv \
+                  functions/hypergeometric/legendre_xvu \
+                  functions/hypergeometric/parabolic_cylinder_d \
+                  functions/hypergeometric/parabolic_cylinder_d_asymp \
+                  functions/integer/bernoulli_b \
+                  functions/integer/euler_e \
+                  functions/integer/prime \
+                  functions/integer/prime_factor \
+                  functions/integer/stirling_s \
+                  functions/polynomials/polynomials \
+                  functions/polynomials/legendre_pn \
+                  functions/polynomials/legendre_qn \
+                  functions/tables/A000142 \
+                  functions/tables/A000364 \
+                  functions/tables/A000367 \
+                  functions/tables/A001164 \
+                  functions/tables/A002445 \
+                  functions/tables/A006882 \
+                  functions/tables/A007318 \
+                  functions/tables/A008277 \
+                  functions/tables/A144617 \
+                  functions/tables/A144618 \
+                  functions/tables/A144622 \
+                  functions/tables/A158503 \
+                  functions/zeta/polylog \
+                  functions/zeta/hurwitz_zeta \
+                  functions/zeta/zeta
+
+#
+# Example files
+#
+FILES_EXAMPLES  = examples/example_001_basic_usage_real             \
+                  examples/example_002_basic_usage_imag             \
+                  examples/example_003_jahnke_emden_lambda          \
+                  examples/example_004_numerical_derivative         \
+                  examples/example_005_recursive_trapezoid_integral \
+                  examples/example_006_luke_ccoef_hyperg            \
+                  examples/example_007_poly_gamma_mathematica
+
+#
+# Interop files
+#
+FILES_INTEROP   = interop/cas/dummy/ef_cas_object_dummy
+
+#
+# Test files
+#
+FILES_TEST      = test/test \
+                  test/test_case_base
+
+#
+# Spot test files
+#
+FILES_TEST_SPOT = test/spot/test_spot
+
+#
+# Real test files
+#
+FILES_TEST_REAL = test/real/test_real                                       \
+                  test/real/cases/test_case_0000x_overflow_underflow        \
+                  test/real/cases/test_case_00011_various_elem_math         \
+                  test/real/cases/test_case_00021_bernoulli                 \
+                  test/real/cases/test_case_00022_euler                     \
+                  test/real/cases/test_case_00023_stirling2                 \
+                  test/real/cases/test_case_00051_factorial                 \
+                  test/real/cases/test_case_00052_factorial2                \
+                  test/real/cases/test_case_00071_various_int_func          \
+                  test/real/cases/test_case_00101_sin                       \
+                  test/real/cases/test_case_00102_cos                       \
+                  test/real/cases/test_case_00103_exp                       \
+                  test/real/cases/test_case_00104_log                       \
+                  test/real/cases/test_case_00105_sqrt                      \
+                  test/real/cases/test_case_00106_rootn                     \
+                  test/real/cases/test_case_00111_sin_small_x               \
+                  test/real/cases/test_case_00112_cos_x_near_pi_half        \
+                  test/real/cases/test_case_00113_atan_x_small_to_large     \
+                  test/real/cases/test_case_00114_various_trig              \
+                  test/real/cases/test_case_00115_various_elem_trans        \
+                  test/real/cases/test_case_00121_sinh                      \
+                  test/real/cases/test_case_00122_cosh                      \
+                  test/real/cases/test_case_00123_tanh                      \
+                  test/real/cases/test_case_00124_asinh                     \
+                  test/real/cases/test_case_00125_acosh                     \
+                  test/real/cases/test_case_00126_atanh                     \
+                  test/real/cases/test_case_00201_gamma                     \
+                  test/real/cases/test_case_00202_gamma_medium_x            \
+                  test/real/cases/test_case_00203_gamma_small_x             \
+                  test/real/cases/test_case_00204_gamma_tiny_x              \
+                  test/real/cases/test_case_00205_gamma_near_neg_n          \
+                  test/real/cases/test_case_00221_various_gamma_func        \
+                  test/real/cases/test_case_00307_polygamma                 \
+                  test/real/cases/test_case_00308_polygamma_fixed_n         \
+                  test/real/cases/test_case_00411_bessel_iv                 \
+                  test/real/cases/test_case_00412_bessel_jv                 \
+                  test/real/cases/test_case_00413_bessel_kv                 \
+                  test/real/cases/test_case_00414_bessel_yv                 \
+                  test/real/cases/test_case_00415_bessel_jv_negative_v      \
+                  test/real/cases/test_case_00416_bessel_yv_negative_v      \
+                  test/real/cases/test_case_00421_bessel_iv_medium_v        \
+                  test/real/cases/test_case_00422_bessel_jv_medium_v        \
+                  test/real/cases/test_case_00423_bessel_kv_medium_v        \
+                  test/real/cases/test_case_00424_bessel_yv_medium_v        \
+                  test/real/cases/test_case_00431_bessel_iv_small_v_small_x \
+                  test/real/cases/test_case_00432_bessel_jv_small_v_small_x \
+                  test/real/cases/test_case_00433_bessel_kv_small_v_small_x \
+                  test/real/cases/test_case_00434_bessel_yv_small_v_small_x \
+                  test/real/cases/test_case_00441_bessel_jv_zeros           \
+                  test/real/cases/test_case_00442_bessel_jn_zeros           \
+                  test/real/cases/test_case_00443_bessel_jv_small_v_zeros   \
+                  test/real/cases/test_case_00451_bessel_in                 \
+                  test/real/cases/test_case_00452_bessel_jn                 \
+                  test/real/cases/test_case_00453_bessel_kn                 \
+                  test/real/cases/test_case_00454_bessel_yn                 \
+                  test/real/cases/test_case_00460_bessel_jv_yv_asymp        \
+                  test/real/cases/test_case_00461_bessel_jv_asymp           \
+                  test/real/cases/test_case_00462_bessel_yv_asymp           \
+                  test/real/cases/test_case_00463_bessel_iv_kv_asymp        \
+                  test/real/cases/test_case_00471_bessel_jn_asymp           \
+                  test/real/cases/test_case_00472_bessel_yn_asymp           \
+                  test/real/cases/test_case_00481_bessel_iv_at_v_1_3        \
+                  test/real/cases/test_case_00482_bessel_jv_at_v_1_3        \
+                  test/real/cases/test_case_00483_bessel_kv_at_v_1_3        \
+                  test/real/cases/test_case_00484_bessel_yv_at_v_1_3        \
+                  test/real/cases/test_case_00486_bessel_iv_at_v_301_3      \
+                  test/real/cases/test_case_00487_bessel_jv_at_v_301_3      \
+                  test/real/cases/test_case_00488_bessel_kv_at_v_301_3      \
+                  test/real/cases/test_case_00489_bessel_yv_at_v_301_3      \
+                  test/real/cases/test_case_00491_bessel_iv_large_x         \
+                  test/real/cases/test_case_00492_bessel_jv_large_x         \
+                  test/real/cases/test_case_00493_bessel_kv_large_x         \
+                  test/real/cases/test_case_00494_bessel_yv_large_x         \
+                  test/real/cases/test_case_00501_bessel_iv_order0_v        \
+                  test/real/cases/test_case_00502_bessel_jv_order0_v        \
+                  test/real/cases/test_case_00503_bessel_kv_order0_v        \
+                  test/real/cases/test_case_00504_bessel_yv_order0_v        \
+                  test/real/cases/test_case_00511_bessel_iv_order1_v        \
+                  test/real/cases/test_case_00512_bessel_jv_order1_v        \
+                  test/real/cases/test_case_00513_bessel_kv_order1_v        \
+                  test/real/cases/test_case_00514_bessel_yv_order1_v        \
+                  test/real/cases/test_case_00521_bessel_iv_order2_v        \
+                  test/real/cases/test_case_00522_bessel_jv_order2_v        \
+                  test/real/cases/test_case_00523_bessel_kv_order2_v        \
+                  test/real/cases/test_case_00524_bessel_yv_order2_v        \
+                  test/real/cases/test_case_00531_bessel_iv_order3_v        \
+                  test/real/cases/test_case_00532_bessel_jv_order3_v        \
+                  test/real/cases/test_case_00533_bessel_kv_order3_v        \
+                  test/real/cases/test_case_00534_bessel_yv_order3_v        \
+                  test/real/cases/test_case_00541_bessel_iv_order4_v        \
+                  test/real/cases/test_case_00542_bessel_jv_order4_v        \
+                  test/real/cases/test_case_00543_bessel_kv_order4_v        \
+                  test/real/cases/test_case_00544_bessel_yv_order4_v        \
+                  test/real/cases/test_case_00551_various_bessel            \
+                  test/real/cases/test_case_00571_airy_ai                   \
+                  test/real/cases/test_case_00572_airy_ai_prime             \
+                  test/real/cases/test_case_00573_airy_bi                   \
+                  test/real/cases/test_case_00574_airy_bi_prime             \
+                  test/real/cases/test_case_00581_airy_ai_small_x           \
+                  test/real/cases/test_case_00582_airy_ai_prime_small_x     \
+                  test/real/cases/test_case_00583_airy_bi_small_x           \
+                  test/real/cases/test_case_00584_airy_bi_prime_small_x     \
+                  test/real/cases/test_case_00591_airy_ai_zeros             \
+                  test/real/cases/test_case_00592_airy_bi_zeros             \
+                  test/real/cases/test_case_00601_legendre_pvu_vary_01      \
+                  test/real/cases/test_case_00602_legendre_pvu_vary_02      \
+                  test/real/cases/test_case_00603_legendre_pvu_vary_03      \
+                  test/real/cases/test_case_00604_legendre_pvu_vary_04      \
+                  test/real/cases/test_case_00605_legendre_pvu_vary_05      \
+                  test/real/cases/test_case_00606_legendre_pvu_vary_06      \
+                  test/real/cases/test_case_00607_legendre_pvu_vary_07      \
+                  test/real/cases/test_case_00608_legendre_pvu_vary_08      \
+                  test/real/cases/test_case_00609_legendre_pvu_vary_09      \
+                  test/real/cases/test_case_00610_legendre_pvu_vary_10      \
+                  test/real/cases/test_case_00611_legendre_pvu_vary_11      \
+                  test/real/cases/test_case_00612_legendre_pvu_vary_12      \
+                  test/real/cases/test_case_00613_legendre_pvu_vary_13      \
+                  test/real/cases/test_case_00614_legendre_pvu_vary_14      \
+                  test/real/cases/test_case_00615_legendre_pvu_vary_15      \
+                  test/real/cases/test_case_00616_legendre_pvu_vary_16      \
+                  test/real/cases/test_case_00621_legendre_qvu_vary_01      \
+                  test/real/cases/test_case_00622_legendre_qvu_vary_02      \
+                  test/real/cases/test_case_00623_legendre_qvu_vary_03      \
+                  test/real/cases/test_case_00624_legendre_qvu_vary_04      \
+                  test/real/cases/test_case_00625_legendre_qvu_vary_05      \
+                  test/real/cases/test_case_00626_legendre_qvu_vary_06      \
+                  test/real/cases/test_case_00627_legendre_qvu_vary_07      \
+                  test/real/cases/test_case_00628_legendre_qvu_vary_08      \
+                  test/real/cases/test_case_00629_legendre_qvu_vary_09      \
+                  test/real/cases/test_case_00630_legendre_qvu_vary_10      \
+                  test/real/cases/test_case_00631_legendre_qvu_vary_11      \
+                  test/real/cases/test_case_00632_legendre_qvu_vary_12      \
+                  test/real/cases/test_case_00633_legendre_qvu_vary_13      \
+                  test/real/cases/test_case_00634_legendre_qvu_vary_14      \
+                  test/real/cases/test_case_00635_legendre_qvu_vary_15      \
+                  test/real/cases/test_case_00636_legendre_qvu_vary_16      \
+                  test/real/cases/test_case_00641_legendre_pvm_vary_01      \
+                  test/real/cases/test_case_00642_legendre_pvm_vary_02      \
+                  test/real/cases/test_case_00644_legendre_pvm_vary_04      \
+                  test/real/cases/test_case_00645_legendre_pvm_vary_05      \
+                  test/real/cases/test_case_00648_legendre_pvm_vary_08      \
+                  test/real/cases/test_case_00649_legendre_pvm_vary_09      \
+                  test/real/cases/test_case_00652_legendre_pvm_vary_12      \
+                  test/real/cases/test_case_00653_legendre_pvm_vary_13      \
+                  test/real/cases/test_case_00656_legendre_pvm_vary_16      \
+                  test/real/cases/test_case_00661_legendre_qvm_vary_01      \
+                  test/real/cases/test_case_00662_legendre_qvm_vary_02      \
+                  test/real/cases/test_case_00664_legendre_qvm_vary_04      \
+                  test/real/cases/test_case_00665_legendre_qvm_vary_05      \
+                  test/real/cases/test_case_00668_legendre_qvm_vary_08      \
+                  test/real/cases/test_case_00669_legendre_qvm_vary_09      \
+                  test/real/cases/test_case_00672_legendre_qvm_vary_12      \
+                  test/real/cases/test_case_00673_legendre_qvm_vary_13      \
+                  test/real/cases/test_case_00676_legendre_qvm_vary_16      \
+                  test/real/cases/test_case_00681_legendre_pnu_vary_01      \
+                  test/real/cases/test_case_00682_legendre_pnu_vary_02      \
+                  test/real/cases/test_case_00683_legendre_pnu_vary_03      \
+                  test/real/cases/test_case_00684_legendre_pnu_vary_04      \
+                  test/real/cases/test_case_00685_legendre_pnu_vary_05      \
+                  test/real/cases/test_case_00689_legendre_pnu_vary_09      \
+                  test/real/cases/test_case_00691_legendre_qnu_vary_01      \
+                  test/real/cases/test_case_00692_legendre_qnu_vary_02      \
+                  test/real/cases/test_case_00693_legendre_qnu_vary_03      \
+                  test/real/cases/test_case_00694_legendre_qnu_vary_04      \
+                  test/real/cases/test_case_00695_legendre_qnu_vary_05      \
+                  test/real/cases/test_case_00699_legendre_qnu_vary_09      \
+                  test/real/cases/test_case_00701_legendre_pnm_vary_01      \
+                  test/real/cases/test_case_00702_legendre_pnm_vary_02      \
+                  test/real/cases/test_case_00703_legendre_pnm_vary_03      \
+                  test/real/cases/test_case_00704_legendre_pnm_vary_04      \
+                  test/real/cases/test_case_00709_legendre_pnm_vary_09      \
+                  test/real/cases/test_case_00721_legendre_qnm_vary_01      \
+                  test/real/cases/test_case_00729_legendre_qnm_vary_09      \
+                  test/real/cases/test_case_00733_legendre_qnm_vary_13      \
+                  test/real/cases/test_case_00741_legendre_pv_vary_01       \
+                  test/real/cases/test_case_00742_legendre_pv_vary_02       \
+                  test/real/cases/test_case_00751_legendre_qv_vary_01       \
+                  test/real/cases/test_case_00752_legendre_qv_vary_02       \
+                  test/real/cases/test_case_00761_various_legendre_pnm_qnm  \
+                  test/real/cases/test_case_00771_legendre_pvu_zero_x       \
+                  test/real/cases/test_case_00772_legendre_pvm_zero_x       \
+                  test/real/cases/test_case_00773_legendre_pnm_zero_x       \
+                  test/real/cases/test_case_00781_legendre_qvu_zero_x       \
+                  test/real/cases/test_case_00782_legendre_qvm_zero_x       \
+                  test/real/cases/test_case_00783_legendre_qnm_zero_x       \
+                  test/real/cases/test_case_00788_legendre_qvm_tiny_x       \
+                  test/real/cases/test_case_00791_legendre_pv_zero_x        \
+                  test/real/cases/test_case_00792_legendre_qv_zero_x        \
+                  test/real/cases/test_case_00801_conf_hyperg_vary1_mpx     \
+                  test/real/cases/test_case_00802_conf_hyperg_vary2_mpx     \
+                  test/real/cases/test_case_00803_conf_hyperg_vary3_mpx     \
+                  test/real/cases/test_case_00804_conf_hyperg_vary4_mpx     \
+                  test/real/cases/test_case_00811_conf_hyperg_vary1_mnx     \
+                  test/real/cases/test_case_00821_conf_hyperg_pos_x         \
+                  test/real/cases/test_case_00826_various_conf_hyperg       \
+                  test/real/cases/test_case_00831_laguerre_vary1_mpx        \
+                  test/real/cases/test_case_00832_laguerre_vary2_mpx        \
+                  test/real/cases/test_case_00833_laguerre_vary3_mpx        \
+                  test/real/cases/test_case_00834_laguerre_vary4_mpx        \
+                  test/real/cases/test_case_00835_various_laguerre          \
+                  test/real/cases/test_case_00851_weber_d_pos_x_pos_v       \
+                  test/real/cases/test_case_00852_weber_d_neg_x_neg_v       \
+                  test/real/cases/test_case_00853_weber_d_neg_x_pos_v       \
+                  test/real/cases/test_case_00854_weber_d_pos_x_neg_v       \
+                  test/real/cases/test_case_00855_weber_d_med_x_med_v       \
+                  test/real/cases/test_case_00861_weber_d_asymp_v           \
+                  test/real/cases/test_case_00871_hermite_pos_x_pos_v       \
+                  test/real/cases/test_case_00901_zeta_small_x              \
+                  test/real/cases/test_case_00902_zeta_all_x                \
+                  test/real/cases/test_case_00903_zeta_neg_x                \
+                  test/real/cases/test_case_00931_hurw_zeta_all_x_small_a   \
+                  test/real/cases/test_case_00932_hurw_zeta_all_x_large_a   \
+                  test/real/cases/test_case_00936_various_hurw_zeta         \
+                  test/real/cases/test_case_00951_polylog_med_x_med_pos_n   \
+                  test/real/cases/test_case_00952_polylog_med_x_small_pos_n \
+                  test/real/cases/test_case_00953_polylog_neg_x_pos_n       \
+                  test/real/cases/test_case_00954_polylog_neg_x_neg_n       \
+                  test/real/cases/test_case_00955_polylog_pos_x_neg_n       \
+                  test/real/cases/test_case_00956_polylog_x_small_neg_n     \
+                  test/real/cases/test_case_00957_polylog_x_large_neg_n     \
+                  test/real/cases/test_case_00958_polylog_x_one_neg_n       \
+                  test/real/cases/test_case_01001_comp_ellint_1             \
+                  test/real/cases/test_case_01002_ellint_1                  \
+                  test/real/cases/test_case_01003_comp_ellint_2             \
+                  test/real/cases/test_case_01004_ellint_2                  \
+                  test/real/cases/test_case_01021_poly_legendre_p           \
+                  test/real/cases/test_case_01022_poly_legendre_q           \
+                  test/real/cases/test_case_01023_poly_chebyshev_t          \
+                  test/real/cases/test_case_01024_poly_chebyshev_u          \
+                  test/real/cases/test_case_01025_poly_hermite_h            \
+                  test/real/cases/test_case_01026_poly_laguerre_l           \
+                  test/real/cases/test_case_01027_various_poly_legendre_p   \
+                  test/real/cases/test_case_01028_various_poly
+
+#
+# Imag test files
+#
+FILES_TEST_IMAG = test/imag/test_imag                                       \
+                  test/imag/cases/test_case_02101_z_sin                     \
+                  test/imag/cases/test_case_02102_z_cos                     \
+                  test/imag/cases/test_case_02103_z_exp                     \
+                  test/imag/cases/test_case_02104_z_log                     \
+                  test/imag/cases/test_case_02105_z_sqrt                    \
+                  test/imag/cases/test_case_02106_z_rootn                   \
+                  test/imag/cases/test_case_02111_z_asin                    \
+                  test/imag/cases/test_case_02112_z_acos                    \
+                  test/imag/cases/test_case_02113_z_atan                    \
+                  test/imag/cases/test_case_02114_z_various_trig            \
+                  test/imag/cases/test_case_02115_z_various_elem_trans_log  \
+                  test/imag/cases/test_case_02116_z_various_elem            \
+                  test/imag/cases/test_case_02121_z_sinh                    \
+                  test/imag/cases/test_case_02122_z_cosh                    \
+                  test/imag/cases/test_case_02123_z_tanh                    \
+                  test/imag/cases/test_case_02124_z_asinh                   \
+                  test/imag/cases/test_case_02125_z_acosh                   \
+                  test/imag/cases/test_case_02126_z_atanh                   \
+                  test/imag/cases/test_case_02201_z_gamma                   \
+                  test/imag/cases/test_case_02202_z_gamma_medium_x          \
+                  test/imag/cases/test_case_02901_z_zeta_small_x            \
+                  test/imag/cases/test_case_02902_z_zeta_all_x              \
+                  test/imag/cases/test_case_02903_z_zeta_neg_x              \
+                  test/imag/cases/test_case_02911_z_zeta_crit_strip         \
+                  test/imag/cases/test_case_02931_z_hurw_zeta_all_x_small_a \
+                  test/imag/cases/test_case_02932_z_hurw_zeta_all_x_large_a \
+                  test/imag/cases/test_case_02936_z_various_hurw_zeta       \
+                  test/imag/cases/test_case_03023_z_poly_chebyshev_t        \
+                  test/imag/cases/test_case_03024_z_poly_chebyshev_u        \
+                  test/imag/cases/test_case_03025_z_poly_hermite_h          \
+                  test/imag/cases/test_case_03026_z_poly_laguerre_l
