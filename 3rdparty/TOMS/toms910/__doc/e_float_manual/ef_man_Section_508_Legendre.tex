@@ -1,0 +1,102 @@
+\lstsetCPlusPlus
+\begin{lstlisting}
+e_float legendre_p(const e_float& v, const e_float& x);
+e_float legendre_p(const e_float& v, const e_float& u, const e_float& x);
+e_float legendre_p(const e_float& v, const INT32    m, const e_float& x);
+e_float legendre_p(const INT32    n, const e_float& u, const e_float& x);
+e_float legendre_p(const INT32    n, const INT32    m, const e_float& x);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Effects:} These functions compute the associated Legendre functions
+of type 1 for their respective arguments {\courier v}, {\courier u},
+{\courier n}, {\courier m}, {\courier x},
+with {\courier v}, {\courier u}, {\courier x}~$\in\mathbb{R}$;
+{\courier n}, {\courier m}~$\in\mathbb{N}$.
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier assoc\underline\ legendre\underline\ p} function
+of non-integer degree and non-integer order
+returns~\cite{wolframfunctions:website}
+
+\begin{equation}
+P_{\nu}^{\mu}(x) =
+\frac{1}{\Gamma(1-\mu)}
+\left(\frac{1+x}{1-x}\right)^{\mu/2}
+\sum_{k=0}^{\infty}
+\frac{(-\nu)_{k}(\nu+1)_{k}}{(1 - \mu)_{k} \ k!}
+\left(\frac{1-x}{2}\right)^k.
+\end{equation}
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier assoc\underline\ legendre\underline\ p} function
+of pure integer order and pure integer degree
+returns~\cite{wolframmathworld:website}
+
+\begin{equation}
+P_{n}^{m}(x) =
+\frac{(-1)^m}{2^{n}n!} (1-x^{2})^{m/2}
+\frac{d^{n+m}}{dx^{n+m}} (x^{2}-1)^{n}\quad.
+\end{equation}
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} The functions $P_{\nu}^{\mu}(x)$, $P_{n}^{\mu}(x)$ and $P_{\nu}^{m}(x)$
+are only implemented for real values of $x$ with $|x|\leq 1$.
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} There are specialized series representations for Legendre
+functions with mixed integer, non-integer combinations of degree and order.
+
+\lstsetCPlusPlus
+\begin{lstlisting}
+e_float legendre_q(const e_float& v, const e_float& x);
+e_float legendre_q(const e_float& v, const e_float& u, const e_float& x);
+e_float legendre_q(const e_float& v, const INT32    m, const e_float& x);
+e_float legendre_q(const INT32    n, const e_float& u, const e_float& x);
+e_float legendre_q(const INT32    n, const INT32    m, const e_float& x);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Effects:} These functions compute the associated Legendre functions
+of the second kind of type 1 for their respective arguments {\courier v}, {\courier u},
+{\courier n}, {\courier m}, {\courier x},
+with {\courier v}, {\courier u}, {\courier x}~$\in\mathbb{R}$;
+{\courier n}, {\courier m}~$\in\mathbb{N}$.
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier assoc\underline\ legendre\underline\ q} function
+of non-integer degree and non-integer order
+returns~\cite{wolframfunctions:website}
+
+\begin{eqnarray}
+Q_{\nu}^{\mu}(x) & = & 
+\frac{\pi\csc(\mu\pi)}{2}
+\Biggl\{
+\frac{\cos(\mu\pi)}{\Gamma(1-\mu)}
+\left(\frac{1+x}{1-x}\right)^{\mu/2}
+\sum_{k=0}^{\infty}
+\frac{(-\nu)_{k}(\nu+1)_{k}}{(1 - \mu)_{k} \ k!}
+\left(\frac{1-x}{2}\right)^k
+\nonumber\\
+& & - \ \ 
+\frac{(\nu-\mu+1)_{2\mu}}{\Gamma(1+\mu)}
+\left(\frac{1-x}{1+x}\right)^{\mu/2}
+\sum_{k=0}^{\infty}
+\frac{(-\nu)_{k}(\nu+1)_{k}}{(\mu+1)_{k} \ k!}
+\left(\frac{1-x}{2}\right)^k
+\Biggr\}.
+\end{eqnarray}
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} There are specialized series representations for Legendre
+functions of the second kind with mixed integer, non-integer combinations of
+degree and order.
+

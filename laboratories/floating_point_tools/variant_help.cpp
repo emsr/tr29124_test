@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -I. -o variant_help variant_help.cpp
+$HOME/bin/bin/g++ -std=c++2a -I. -o variant_help variant_help.cpp
 ./variant_help
 */
 

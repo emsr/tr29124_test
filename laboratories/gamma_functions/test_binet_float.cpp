@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_binet_float test_binet_float.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_binet_float test_binet_float.cpp -lquadmath
 ./test_binet_float > test_binet_float.txt 2> test_binet_float.err
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_binet_float test_binet_float.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_binet_float test_binet_float.cpp -lquadmath
 ./test_binet_float > test_binet_float.txt 2> test_binet_float.err
  */
 

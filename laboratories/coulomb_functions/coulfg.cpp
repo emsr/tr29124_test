@@ -1,5 +1,5 @@
 /*
-g++ -std=c++17 coulfg.cpp 
+g++ -std=c++2a coulfg.cpp 
 */
 
 #include <limits>

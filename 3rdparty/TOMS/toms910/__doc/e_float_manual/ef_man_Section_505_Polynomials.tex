@@ -1,0 +1,21 @@
+\lstsetCPlusPlus
+\begin{lstlisting}
+e_float    chebyshev_t(const INT32 n, const e_float& x);
+ef_complex chebyshev_t(const INT32 n, const ef_complex& z);
+e_float    chebyshev_u(const INT32 n, const e_float& x);
+ef_complex chebyshev_u(const INT32 n, const ef_complex& z);
+e_float    hermite    (const INT32 n, const e_float& x);
+ef_complex hermite    (const INT32 n, const ef_complex& z);
+e_float    laguerre   (const INT32 n, const e_float& x);
+ef_complex laguerre   (const INT32 n, const ef_complex& z);
+e_float    legendre_p (const INT32 n, const e_float& x);
+e_float    legendre_q (const INT32 n, const e_float& x);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Effects:} These functions compute the orthogonal polynomials
+for their respective arguments {\courier n}, {\courier x}, {\courier z},
+with {\courier x}~$\in\mathbb{R}$; {\courier z}~$\in\mathbb{Z}$;
+and {\courier n}~$\in\mathbb{N}^{+}$.
+

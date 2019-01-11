@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev_trig_pi test_chebyshev_trig_pi.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev_trig_pi test_chebyshev_trig_pi.cpp -lquadmath
 ./test_chebyshev_trig_pi > test_chebyshev_trig_pi.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev_trig_pi test_chebyshev_trig_pi.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev_trig_pi test_chebyshev_trig_pi.cpp -lquadmath
 ./test_chebyshev_trig_pi > test_chebyshev_trig_pi.txt
 */
 

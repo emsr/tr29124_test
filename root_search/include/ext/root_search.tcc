@@ -50,9 +50,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Success is guaranteed for a function which has opposite signs
    * for sufficiently large and small arguments.
    *
-   * @param __func  A function
-   * @param __x_lower  The lower end of the interval
-   * @param __x_upper  The upper end of the interval
+   * @param __func  A simple one-argument function returning a value.
+   * @param __x_lower  The lower end of the search interval.
+   * @param __x_upper  The upper end of the search interval.
    * @param __max_iter  The maximum number of iterations
    */
   template<typename _Tp, typename _Func>
@@ -86,9 +86,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * into @c n equally-spaced segments and searches for zero crossings
    * of the function.
    *
-   * @param __func  A function
-   * @param __x_lower  The lower end of the interval
-   * @param __x_upper  The upper end of the interval
+   * @param __func  A simple one-argument function returning a value.
+   * @param __x_lower  The lower end of the search interval.
+   * @param __x_upper  The upper end of the search interval.
    * @param __n  The number of subdivisions of the interval
    * @param __xb  The output vector of root bounds
    */
@@ -119,9 +119,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * known to lie between @c __x_lower and @c __x_upper.
    * The returned root is refined until its accuracy is <tt>+/- __eps</tt>.
    *
-   * @param __func  A function
-   * @param __x_lower  The lower end of the interval
-   * @param __x_upper  The upper end of the interval
+   * @param __func  A simple one-argument function returning a value.
+   * @param __x_lower  The lower end of the search interval.
+   * @param __x_upper  The upper end of the search interval.
    * @param __eps  The tolerance
    * @param __max_iter  The maximum number of iterations
    */
@@ -161,9 +161,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * known to lie between @c __x_lower and @c __x_upper.
    * The returned root is refined until its accuracy is <tt>+/- __eps</tt>.
    *
-   * @param __func  A function
-   * @param __x_lower  The lower end of the interval
-   * @param __x_upper  The upper end of the interval
+   * @param __func  A simple one-argument function returning a value.
+   * @param __x_lower  The lower end of the search interval.
+   * @param __x_upper  The upper end of the search interval.
    * @param __eps  The tolerance
    * @param __max_iter  The maximum number of iterations
    */
@@ -209,9 +209,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * known to lie between @c __x_lower and @c __x_upper.
    * The returned root is refined until its accuracy is <tt>+/- __eps</tt>.
    *
-   * @param __func  A function
-   * @param __x_lower  The lower end of the interval
-   * @param __x_upper  The upper end of the interval
+   * @param __func  A simple one-argument function returning a value.
+   * @param __x_lower  The lower end of the search interval.
+   * @param __x_upper  The upper end of the search interval.
    * @param __eps  The tolerance
    * @param __max_iter  The maximum number of iterations
    */
@@ -272,9 +272,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * to lie between @c __x_lower and @c __x_upper.
    * The returned root is refined until its accuracy is <tt>+/- __eps</tt>.
    *
-   * @param __func  A function
-   * @param __x_lower  The lower end of the interval
-   * @param __x_upper  The upper end of the interval
+   * @param __func  A simple one-argument function returning a value.
+   * @param __x_lower  The lower end of the search interval.
+   * @param __x_upper  The upper end of the search interval.
    * @param __eps  The tolerance
    * @param __max_iter  The maximum number of iterations
    */
@@ -349,9 +349,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * to lie between @c __x_lower and @c __x_upper.
    * The returned root is refined until it's accuracy is <tt>+/- __eps</tt>.
    *
-   * @param __func  A function
-   * @param __x_lower  The lower end of the interval
-   * @param __x_upper  The upper end of the interval
+   * @param __func  A simple one-argument function returning a value.
+   * @param __x_lower  The lower end of the search interval.
+   * @param __x_upper  The upper end of the search interval.
    * @param __eps  The tolerance
    * @param __max_iter  The maximum number of iterations
    */
@@ -459,8 +459,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __func A routine that provides both the function value
    *               and the first derivative of the function at the point x.
    *               The return type must be decomposable into [value, deriv].
-   * @param __x_lower  The lower end of the interval
-   * @param __x_upper  The upper end of the interval
+   * @param __x_lower  The lower end of the search interval.
+   * @param __x_upper  The upper end of the search interval.
    * @param __eps  The tolerance
    * @param __max_iter  The maximum number of iterations
    */
@@ -505,8 +505,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __func A routine that provides both the function value, and the
    *               first and second derivative of the function at the point x.
    *               The return type must be decomposable into [val, der, der2].
-   * @param __x_lower  The lower end of the interval
-   * @param __x_upper  The upper end of the interval
+   * @param __x_lower  The lower end of the search interval.
+   * @param __x_upper  The upper end of the search interval.
    * @param __eps  The tolerance
    * @param __max_iter  The maximum number of iterations
    */
@@ -551,8 +551,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * the initial estimate generally must be tighter than for Newton's method.
    *
    * @param __func A routine that provides the function value at the point x.
-   * @param __x_lower  The lower end of the interval
-   * @param __x_upper  The upper end of the interval
+   * @param __x_lower  The lower end of the search interval.
+   * @param __x_upper  The upper end of the search interval.
    * @param __eps  The tolerance
    * @param __max_iter  The maximum number of iterations
    */
@@ -588,8 +588,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @param __func  A routine that provides both the function
    *                and the first derivative of the function at the point x.
-   * @param __x_lower  The lower end of the interval
-   * @param __x_upper  The upper end of the interval
+   * @param __x_lower  The lower end of the search interval.
+   * @param __x_upper  The upper end of the search interval.
    * @param __eps  The tolerance
    * @param __max_iter  The maximum number of iterations
    */

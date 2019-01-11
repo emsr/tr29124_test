@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_maxint test_maxint.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_maxint test_maxint.cpp -lquadmath -lmpfr
 ./test_maxint > test_maxint.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_maxint test_maxint.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_maxint test_maxint.cpp -lquadmath -lmpfr
 ./test_maxint > test_maxint.txt
 */
 

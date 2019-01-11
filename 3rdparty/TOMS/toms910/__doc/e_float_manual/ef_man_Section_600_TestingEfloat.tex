@@ -1,0 +1,153 @@
+\subsection{The Test System}
+
+Testing is essential for establishing the reliability of a system
+with such high complexity and exactness.
+Consequently, a great deal of effort has been invested in testing
+and verification of \efloat.
+
+Testing has been performed using several test methods.
+During the development and verification stages of \efloat,
+there have been countless spot--checks,
+Wronskian analyses, comparisons among the different
+\efloatclass\ implementations, as well as comparisons with
+\mathematica\ and MPFR. At times, some algorithms have been verified
+by temporarily deactivating them via source code modification,
+subsequently forcing a different computation method
+such as recursion to be used instead.
+For example, asymptotic Bessel function calculations have been
+verified in part by forcing stable recursion over many orders
+to be used instead of asymptotic expansion and verifying that the
+results computed from both methods agree to full precision.
+
+A large--scale dedicated automatic test system has been developed
+to provide for reproducible testing of \efloat\ in combination with
+detailed performance and code coverage analyses.
+The automatic test system consists of
+three parts --- the automatic test case generator,
+the test suite and the test execution system
+(see Figure~\ref{figure:architecture}).
+
+The test case generator creates test cases in the form of
+source code which are subsequently manually added
+to the test suite, and then compiled and executed by the
+test execution system. Every test case is designed to test
+one or several functions, algorithms or convergence zones.
+In order to improve function and block coverage in testing,
+the design of the test cases has been partially guided by
+code coverage analyses using
+Intel{\footnotesize {\textregistered}}'s ``codecov'' tool.
+Each test case contains a short, automatically generated
+C++ code sequence, usually involving a loop calculation,
+which calculates test values and compares these directly with
+control values, themselves pre--computed to $400$ digits with
+\mathematica\ and directly written in the test case as strings.
+
+The test suite contains about $250$ real--num\-ber\-ed test cases
+and about $30$ com\-plex--num\-ber\-ed test cases. Each test case
+computes $\sim$$1$--$100$ individual numerical values,
+resulting in a total of $\sim$$10$,$000$ test results.
+In addition to automatic verification, the test results
+are written to log files upon test execution.
+A test case passes its execution if there is full agreement
+between each individual numerical result and its corresponding
+control value, up to and including the very last digit of precision
+given by the precision setting. If any single digit of any single
+result does not agree with that of its control value, then the
+whole test case fails.
+
+All test cases in the entire test suite pass fully for each one
+of the main three
+\efloatclass\ classes \efxefloatclass, \gmpefloatclass\ and
+\mpfrefloatclass\ at $30$, $50$, $100$, $200$ and $300$ digits
+of precision, using each compiler system listed in
+Table~\ref{table:compilers}.
+The afore--mentioned test result is a very significant technical result.
+All testing evidence indicates
+that \efloat\ correctly calculates all of the function values for the
+parameter ranges listed in Table~\ref{table:functions} to full precision
+ranging from $30$ to $300$ digits using any one of the main three
+\efloatclass\ classes \efxefloatclass, \gmpefloatclass\ or \mpfrefloatclass.
+
+Certainly, a great deal of effort has gone into verification of \efloat.
+Nonetheless, some function values and parameter ranges remain
+poorly tested. The author was not able to find independent
+control data --- or even found conflicting results --- for some
+parameter regions. Several non--confirmed values which have been
+computed with \efloat\ are shown below.
+
+\vspace{5.0pt}
+
+{\raggedright
+$P_{\pi+{\mbox{\tiny{20,000}}}}^{\gamma+{\mbox{\tiny{10,000}}}}\left(\frac{2}{3}\right)\,\approx\,$
+{\courierNine -5.9808839017059291250180839952610805896015696701604662259639540559236
+\nopagebreak
+\\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 
+14936288067418735478313503042667}\courierNineMakeTenPowX{42814}
+}
+
+\vspace{5.0pt}
+
+{\raggedright
+$Q_{{\mbox{\tiny{2347}}}}^{{\mbox{\tiny{-2099}}}}\left(\gamma\right)\,\approx\,$
+{\courierNine 5.13447421240962834386055286923384862133503967053295289159821523454450314
+\nopagebreak
+\\ \ \ \ \ \ \ \ \ \ \ \ \ 
+9892985668770122300019211348}\courierNineMakeTenPowX{-6860}
+}
+
+\vspace{5.0pt}
+
+{\raggedright
+$J_{\pi+10^{8}}\left(G\cdot 10^{8}\right)\,\approx\,$
+{\courierNine 0.0000710158786472151060060900254513645945033058828414017520190813
+\nopagebreak
+\\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 
+5062824517495900855118876479980481012041}
+}
+
+\vspace{5.0pt}
+
+{\raggedright
+$K_{{\mbox{\tiny{690}}}}\left(\pi+310\right)\,\approx\,$
+{\courierNine 2.473093134580761699282091225752444991289365302904873098822780430687
+\nopagebreak
+\\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 
+162258158192556310616234787924259}\courierNineMakeTenPowX{128}
+}
+
+\vspace{5.0pt}
+
+{\raggedright
+$D_{\frac{1201}{12}}\left(40\right)\,\approx\,$
+{\courierNine 1.524674031836673520032956906376264551740269827916850281507352611567663
+\nopagebreak
+\\ \ \ \ \ \ \ \ \ \ \ \ \ \ 
+272230385469253930112335260440}\courierNineMakeTenPowX{-15}
+}
+
+\subsection{Extending the Test System}
+
+The test system can be extended by adding a dedicated test case.
+
+\begin{itemize}
+\item Each individual test case must be implemented in its own individual
+automatically generated source file.
+\item The test case sources are generated with a standalone project
+called ``Test\-Case\-Generator'' located in the directory
+{\courier{\underline\ \underline\ Test\-Case\-Generator}}.
+\item Test case generation is only supported for
+Windows{\footnotesize {\textregistered}} platforms.
+\item Design the parameters of the test case and add the relevant
+source code the the test case generator project. Use the many examples
+of this in the source code in order to add the new case.
+Note that it takes a long time to generate all of the test case
+sources. Therefore, a judicious use of commenting can be used to
+comment--out the test cases which do not need to be generated.
+\item When the desired new test case file has been generated, add it
+to the \efloat\ project in the appropriate directory and add it to the
+solution either in Developer Studio or the the relevant file list
+for GNUmake.
+\item The new test case can now be compiled and the call of the
+test case function can be added to the list of test cases, for example
+in {\courier{test\underline\ real.cpp}} or {\courier{test\underline\ imag.cpp}}.
+\end{itemize}

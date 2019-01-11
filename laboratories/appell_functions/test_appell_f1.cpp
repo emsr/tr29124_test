@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_appell_f1 test_appell_f1.cpp
+$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -o test_appell_f1 test_appell_f1.cpp
 ./test_appell_f1 > test_appell_f1.txt
 */
 

@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 CXX = $(HOME)/bin/bin/g++
-CPPFLAGS := -I. -std=c++17
+CPPFLAGS := -I. -std=c++2a
 #CXXFLAGS := -Wall -Wextra -ggdb3 -O0 -fno-inline -pipe
 CXXFLAGS := -O2
 #CXXFLAGS := -Wall -Wextra -ggdb3 -O2 -pipe

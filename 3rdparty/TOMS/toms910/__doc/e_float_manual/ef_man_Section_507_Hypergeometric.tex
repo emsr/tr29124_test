@@ -1,0 +1,64 @@
+\lstsetCPlusPlus
+\begin{lstlisting}
+e_float hyperg_0f0    (const e_float& x);
+e_float hyperg_0f1    (const e_float& b, const e_float& x);
+e_float hyperg_0f1_reg(const e_float& a, const e_float& x);
+e_float hyperg_1f0    (const e_float& a, const e_float& x);
+e_float hyperg_1f1    (const e_float& a, const e_float& b, const e_float& x);
+e_float hyperg_1f1_reg(const e_float& a, const e_float& b, const e_float& x);
+e_float hyperg_2f0    (const e_float& a, const e_float& b, const e_float& x);
+e_float hyperg_2f1    (const e_float& a, const e_float& b, const e_float& c,
+                       const e_float& x);
+e_float hyperg_2f1_reg(const e_float& a, const e_float& b, const e_float& c,
+                       const e_float& x);
+e_float hyperg_pfq    (const std::deque<e_float>& a, const 
+                             std::deque<e_float>& b, const e_float& x);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Effects:} These functions compute the hypergeometric series
+for their respective real valued arguments.
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} There is support for hyper\-geometric functions,
+but these are primarily implemented as utilities for other calculations
+and not intended to cover the complete parameter ranges. These series
+have limited convergence, generally only for arguments less than unity
+in magnitude. Some of the series do not check for negative integer
+numerator parameters. Others do.
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} The suffix `{\courier \underline\ reg}' denotes a
+`regularized' hyper\-geometric function. For example the function
+{\courier hyperg\underline\ 2f1\underline\ reg} is the regularized
+hyper\-geometric function, defined in \cite{wolfram:textbook} and
+\cite{wolframfunctions:website} by
+
+\begin{equation}
+_{2}\widetilde{F}_{1}(a, b; c; x) = {_{2}F_{1}}(a, b; c; x)/\Gamma(c).
+\end{equation}
+
+\lstsetCPlusPlus
+\begin{lstlisting}
+e_float conf_hyperg(const e_float& a, const e_float& c,
+                    const e_float& x);
+e_float      hyperg(const e_float& a, const e_float& b, const e_float& c,
+                    const e_float& x);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} The function name of the hyper\-geometric series
+{\courier conf\underline\ hyperg} is synonymous with the function name of
+the hyper\-geometric series {\courier hyperg\underline\ 1f1}.
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} The function name of the hyper\-geometric series
+{\courier hyperg} is synonymous with the function name of the hyper\-geometric
+series {\courier hyperg\underline\ 2f1}.
+
+

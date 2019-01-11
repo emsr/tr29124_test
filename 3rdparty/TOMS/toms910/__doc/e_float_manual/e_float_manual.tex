@@ -1,0 +1,233 @@
+%% Based on a TeXnicCenter-Template, which was
+%% created by Christoph B�rensen
+%% and slightly modified by Tino Weinkauf.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,12pt]{scrartcl} %This is a special class provided by the KOMA script, which does a lot of adjustments to adapt the standard LaTeX classes to european habits, change to [a4paper,12pt,twoside] for doublesided layout
+
+
+%########################### Preferences #################################
+
+% ******** vmargin settings *********
+\usepackage{vmargin} %This give you full control over the used page arae, it maybe not the idea od Latex to do so, but I wanted to reduce to amount of white space on the page
+\setpapersize{A4}
+\setmargins{2.2cm}%     %linker Rand, left edge
+					 {1.4cm}%     %oberer Rand, top edge
+           {16.7cm}%    %Textbreite, text width
+           {24.2cm}%    %Texthoehe, text hight
+           {14pt}%      %Kopfzeilenh�he, header hight
+           {1cm}%       %Kopfzeilenabstand, header distance
+           {0pt}%       %Fu�zeilenhoehe footer hight
+           {2cm}%       %Fusszeilenabstand, footer distance         
+
+% ********* Font definiton ************
+\usepackage{t1enc} % as usual
+\usepackage[latin1]{inputenc} % as usual
+\usepackage{times}		
+\usepackage[T1]{fontenc}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage{url}
+\usepackage[dvipsnames,usenames]{color}
+\usepackage{multirow}
+
+
+\def\courierFive   {\fontfamily{pcr}\fontsize{5.0}{ 6.25pt}\selectfont}
+\def\courierSix    {\fontfamily{pcr}\fontsize{6.0}{ 7.50pt}\selectfont}
+\def\courierSeven  {\fontfamily{pcr}\fontsize{7.0}{ 8.75pt}\selectfont}
+\def\courierEight  {\fontfamily{pcr}\fontsize{8.0}{10.00pt}\selectfont}
+\def\courierNine   {\fontfamily{pcr}\fontsize{9.0}{11.25pt}\selectfont}
+\def\courier       {\fontfamily{pcr}\selectfont}
+
+\newcommand{\courierNineMakeTenPowX}[1]{\ensuremath{\times}{\courierNine 10}\ensuremath{^{\text{\courierSeven{#1}}}}}
+
+
+\def\efloat          {e{\ttfamily\underline\ }float}
+\def\efloatbase      {e{\ttfamily\underline\ }float{\ttfamily\underline\ }base}
+\def\efloatbaseclass {{\courier{e{\ttfamily\underline\ }float{\ttfamily\underline\ }base}}}
+\def\efloatclass     {{\courier{e{\ttfamily\underline\ }float}}}
+\def\efxefloatclass  {{\courier{efx::e{\ttfamily\underline\ }float}}}
+\def\mpfrefloatclass {{\courier{mpfr::e{\ttfamily\underline\ }float}}}
+\def\gmpefloatclass  {{\courier{gmp::e{\ttfamily\underline\ }float}}}
+\def\forefloatclass  {{\courier{f90::e{\ttfamily\underline\ }float}}}
+\def\efcomplexclass  {{\courier{ef{\ttfamily\underline\ }complex}}}
+
+\def\efloathyperref     {\texorpdfstring{\efloat}{e\_float}}
+\def\efloatbasehyperref {\texorpdfstring{\efloatbase}{e\_float\_base}}
+
+
+\def\mathematica {Math\-e\-ma\-tica{\footnotesize {\textregistered}}}
+
+\renewcommand\Re{\operatorname{\mathfrak{Re}}}
+\renewcommand\Im{\operatorname{\mathfrak{Im}}}
+
+
+% ********* Graphics definition *******
+\usepackage[pdftex]{graphicx} % required to import graphic files
+\usepackage[dvipsnames,usenames]{color}
+\usepackage{eso-pic} % these two are required to add the little picture on top of every page
+\usepackage{everyshi} % these two are required to add the little picture on top of every page
+\renewcommand{\floatpagefraction}{0.7} %default:0.5 allows two big pictures on one page
+
+% ********* Source code highlighting *******
+\usepackage{listings}
+\usepackage{textcomp}
+
+\definecolor{CodeBackgroundColor}{rgb}{0.90,0.90,0.90}
+\definecolor{IdentifyerColor}{rgb}{0.10,0.10,0.50}
+
+\def\lstsetCPlusPlus{
+\lstset{
+language=[ISO]C++,
+  keywordstyle=\bfseries\courier\color[rgb]{0,0,1},
+  identifierstyle=\color{IdentifyerColor},
+  commentstyle=\itshape\color{OliveGreen},
+  stringstyle=\color{BrickRed},
+  showstringspaces=false,
+  basicstyle=\courierEight,
+  numberstyle=\tiny,
+  numbers=left,
+  stepnumber=1,
+  numbersep=6pt,
+  tabsize=2,
+  breaklines=true,
+  prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+  breakatwhitespace=false,
+  aboveskip={1.5\baselineskip},
+  columns=fixed,
+  upquote=true,
+  extendedchars=true,
+  frame=tlrb,
+  backgroundcolor=\color{CodeBackgroundColor},
+}
+}
+
+\def\lstsetBash{
+\lstset{
+  language=bash,
+  basicstyle=\ttfamily,
+  keywordstyle=\ttfamily,
+  frame=tlrb,
+  backgroundcolor=\color{CodeBackgroundColor},
+}
+}
+
+%********** Enable Hyperlinks *******
+\usepackage[pdfborder=000,pdftex=true]{hyperref}% this enables jumping from a reference and table of content in the pdf file to its target
+
+% ********* Table layout **************
+\usepackage{booktabs}	  	%design of table, has an excellent documentation
+%\usepackage{lscape}			%use this if you want to rotate the table together with the lines around the table
+
+% ********* Caption Layout ************
+\usepackage{ccaption} % allows special formating of the captions
+\captionnamefont{\bf\footnotesize\sffamily} % defines the font of the caption name (e.g. Figure: or Table:)
+\captiontitlefont{\footnotesize\sffamily} % defines the font of the caption text (same as above, but not bold)
+\setlength{\abovecaptionskip}{0mm} %lowers the distace of captions to the figure
+
+
+% ********* Header and Footer **********
+% This is something to play with forever. I use here the advanced settings of the KOMA script
+
+\usepackage{scrpage} %header and footer using the options for the KOMA script
+\renewcommand{\headfont}{\footnotesize\sffamily} % font for the header
+\renewcommand{\pnumfont}{\footnotesize\sffamily} % font for the pagenumbers
+
+%the following lines define the pagestyle for the main document
+\defpagestyle{cb}{%
+(\textwidth,0pt)% sets the border line above the header
+{\pagemark\hfill\headmark\hfill}% doublesided, left page
+{\hfill\headmark\hfill\pagemark}% doublesided, right page
+{\hfill\headmark\hfill\pagemark}%  onesided
+(\textwidth,1pt)}% sets the border line below the header
+%
+{(\textwidth,1pt)% sets the border line above the footer
+{{\it e\underline float@yahoo.com}\hfill Christopher Kormanyos}% doublesided, left page
+{Christopher Kormanyos\hfill{\it e\underline\ float@yahoo.com}}% doublesided, right page
+{Christopher Kormanyos\hfill{\it e\underline\ float@yahoo.com}} % one sided printing
+(\textwidth,0pt)% sets the border line below the footer
+}
+
+%this defines the page style for the first pages: all empty
+\renewpagestyle{plain}%
+	{(\textwidth,0pt)%
+		{\hfill}{\hfill}{\hfill}%
+	(\textwidth,0pt)}%
+	{(\textwidth,0pt)%	
+		{\hfill}{\hfill}{\hfill}%
+	(\textwidth,0pt)}
+
+%********** Footnotes **********
+\renewcommand{\footnoterule}{\rule{5cm}{0.2mm} \vspace{0.3cm}} %increases the distance of footnotes from the text
+\deffootnote[1em]{1em}{1em}{\textsuperscript{\normalfont\thefootnotemark}} %some moe formattion on footnotes
+
+%################ End Preferences, Begin Document #####################
+
+\pagestyle{plain} % on headers or footers on the first page
+
+\begin{document}
+
+% There might be better solutions for the title page, giving all distances
+% and sizes manually was simply the easiest solution
+
+\begin{center}
+
+{\Huge\bf\sf \efloat\ User's Manual}
+
+\vspace{2cm}
+
+{\Large\bf\sf Christopher Kormanyos}%as this is an english text I didn't load the german package, this would ease the use of special characters
+\vspace{2cm}
+
+{\Large\bf\sf Version 1.0 from \today} %adds the current date
+
+\vspace{\fill}
+
+e\underline\ float@yahoo.com
+
+\end{center}
+
+\newpage
+
+%%The following loads the picture on top of every page, the numbers in \put() define the position on the page:
+%\AddToShipoutPicture{\setlength\unitlength{0.1mm}\put(604,2522){\includegraphics[width=1.5cm]{logo.jpg}}}
+
+\pagestyle{cb} % now we want to have headers and footers
+
+\tableofcontents
+
+\newpage
+
+\section   {About \efloathyperref}                   \label{sec:about}
+                                                     \input{ef_man_Section_100_AboutEfloat.tex}
+
+\pagebreak
+
+\section   {Building \efloathyperref}                \label{sec:build}
+                                                     \input{ef_man_Section_200_BuildingEfloat.tex}
+
+\pagebreak
+
+\section   {Using \efloathyperref}                   \label{sec:using}
+                                                     \input{ef_man_Section_300_UsingEfloat.tex}
+
+\pagebreak
+
+\section   {The \efloathyperref\ Class Architecture} \label{chapter:classarch}
+                                                     \input{ef_man_Section_400_ClassArchitecture.tex}
+
+\pagebreak
+
+\section   {The \efloathyperref\ Functions}          \label{sec:functions}
+                                                     \input{ef_man_Section_500_Functions.tex}
+
+
+\section   {Testing \efloathyperref}                 \label{sec:testing}
+                                                     \input{ef_man_Section_600_TestingEfloat.tex}
+
+\pagebreak
+
+\bibliographystyle{plain}
+\bibliography{e_float_manual}
+
+\end{document}
+

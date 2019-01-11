@@ -1,6 +1,6 @@
 // Special functions -*- C++ -*-
 
-// Copyright (C) 2006-2018 Free Software Foundation, Inc.
+// Copyright (C) 2006-2019 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -207,7 +207,7 @@ namespace tr1
               __bincoeff *= -incr;
               if(std::fabs(__bincoeff) > __max_bincoeff )
                 {
-                  // This only gets hit for x << 0.
+                  // This only gets hit for s << 0.
                   __punt = true;
                   break;
                 }
@@ -388,7 +388,7 @@ namespace tr1
 #endif
               if (__bincoeff > __max_bincoeff)
                 {
-                  //  This only gets hit for x << 0.
+                  //  This only gets hit for s << 0.
                   __punt = true;
                   break;
                 }

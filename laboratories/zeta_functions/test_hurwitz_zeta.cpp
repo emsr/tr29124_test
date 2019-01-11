@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
 ./test_hurwitz_zeta > test_hurwitz_zeta.txt
 
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
+$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
 ./test_hurwitz_zeta > test_hurwitz_zeta.txt
 */
 
@@ -17,8 +17,9 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hurwitz_zet
     _Tp
     __bernoulli_series(unsigned int __n)
     {
+      constexpr std::size_t __num_bernoulli_numbers = 24;
       constexpr _Tp
-      __bernoulli_numbers[24]
+      __bernoulli_numbers[__num_bernoulli_numbers]
       {
 	 _Tp{1UL},	                 -_Tp{1UL} / _Tp{2UL},
 	 _Tp{1UL} / _Tp{6UL},             _Tp{0UL},
@@ -40,7 +41,8 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hurwitz_zet
 	return -_Tp{1} / _Tp{2};
       else if (__n % 2 == 1) // Take care of the rest of the odd ones.
 	return _Tp{0};
-      else if (__n < 28) // Return small evens that are painful for the series.
+      else if (__n < __num_bernoulli_numbers)
+	// Return small evens that are painful for the series.
 	return __bernoulli_numbers[__n];
       else
 	{
@@ -187,7 +189,7 @@ $HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hurwitz_zet
 
       auto __fact = __pmax * __s / (_S_N + __a);
       auto __delta_prev = std::numeric_limits<_Tp>::max();
-      for(auto __j = 0; __j <= _S_jmax; ++__j)
+      for(auto __j = 0; __j < _S_jmax; ++__j)
         {
 	  auto __delta = _S_hzeta_c[__j + 1] * __fact;
 	  if (std::abs(__delta) > __delta_prev)

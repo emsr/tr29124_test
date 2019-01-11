@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_theta test_jacobi_theta.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_theta test_jacobi_theta.cpp -lquadmath
 ./test_jacobi_theta > test_jacobi_theta.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_theta test_jacobi_theta.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_theta test_jacobi_theta.cpp -lquadmath
 ./test_jacobi_theta > test_jacobi_theta.txt
 */
 

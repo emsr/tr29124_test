@@ -610,7 +610,8 @@ static inline double sqr(double x) { return x*x; }
 
 // precomputed table of expa2n2[n-1] = exp(-a2*n*n)
 // for double-precision a2 = 0.26865... in FADDEEVA(w), below.
-static const double expa2n2[] = {
+static const int num_expa2n2 = 52;
+static const double expa2n2[num_expa2n2] = {
   7.64405281671221563e-01,
   3.41424527166548425e-01,
   8.91072646929412548e-02,
@@ -825,7 +826,7 @@ cmplx FADDEEVA(w)(cmplx z, double relerr)
           1 + ax2 * (1 + ax2 * (0.5 + 0.166666666666666666667*ax2));
         const double expm2ax =
           1 - ax2 * (1 - ax2 * (0.5 - 0.166666666666666666667*ax2));
-        for (int n = 1; 1; ++n) {
+        for (int n = 1; n < num_expa2n2; ++n) {
           const double coef = expa2n2[n-1] * expx2 / (a2*(n*n) + y*y);
           prod2ax *= exp2ax;
           prodm2ax *= expm2ax;
@@ -843,7 +844,7 @@ cmplx FADDEEVA(w)(cmplx z, double relerr)
       else { // x > 5e-4, compute sum4 and sum5 separately
         expx2 = exp(-x*x);
         const double exp2ax = exp((2*a)*x), expm2ax = 1 / exp2ax;
-        for (int n = 1; 1; ++n) {
+        for (int n = 1; n < num_expa2n2; ++n) {
           const double coef = expa2n2[n-1] * expx2 / (a2*(n*n) + y*y);
           prod2ax *= exp2ax;
           prodm2ax *= expm2ax;

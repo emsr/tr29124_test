@@ -1,6 +1,6 @@
 // Special functions -*- C++ -*-
 
-// Copyright (C) 2006-2018 Free Software Foundation, Inc.
+// Copyright (C) 2006-2019 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -458,10 +458,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   P_l^m(x) = (1 - x^2)^{m/2}\frac{d^m}{dx^m}P_l(x)
    * @f]
    * @see legendre for details of the Legendre function of degree @c l
+   * @note @f$ P_l^m(x) = 0 @f$ if @f$ m > l @f$.
    *
    * @tparam _Tp The floating-point type of the argument @c __x.
    * @param  __l  The degree <tt>__l >= 0</tt>.
-   * @param  __m  The order <tt>__m <= l</tt>.
+   * @param  __m  The order <tt>__m</tt>.
    * @param  __x  The argument, <tt>abs(__x) <= 1</tt>.
    * @throw std::domain_error if <tt>abs(__x) > 1</tt>.
    */
@@ -4992,6 +4993,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    Y_l^m(\theta,\phi) = (-1)^m\frac{(2l+1)}{4\pi} \frac{(l-m)!}{(l+m)!}
    *                     P_l^{|m|}(\cos\theta) \exp^{im\phi}
    * @f]
+   * @note @f$ Y_l^m(\theta,\phi) = 0 @f$ if @f$ |m| > l @f$.
    *
    * @param __l The order
    * @param __m The degree

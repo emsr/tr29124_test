@@ -1,6 +1,6 @@
 // Special functions -*- C++ -*-
 
-// Copyright (C) 2006-2018 Free Software Foundation, Inc.
+// Copyright (C) 2006-2019 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -126,11 +126,11 @@ namespace tr1
      *   @f[
      *     P_l^m(x) = (1 - x^2)^{m/2}\frac{d^m}{dx^m}P_l(x)
      *   @f]
+     *   @note @f$ P_l^m(x) = 0 @f$ if @f$ m > l @f$.
      * 
      *   @param  l  The degree of the associated Legendre function.
      *              @f$ l >= 0 @f$.
      *   @param  m  The order of the associated Legendre function.
-     *              @f$ m <= l @f$.
      *   @param  x  The argument of the associated Legendre function.
      *              @f$ |x| <= 1 @f$.
      *   @param  phase  The phase of the associated Legendre function.
@@ -146,8 +146,7 @@ namespace tr1
         std::__throw_domain_error(__N("Argument out of range"
                                       " in __assoc_legendre_p."));
       else if (__m > __l)
-        std::__throw_domain_error(__N("Degree out of range"
-                                      " in __assoc_legendre_p."));
+        return _Tp(0);
       else if (__isnan(__x))
         return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__m == 0)
@@ -209,12 +208,12 @@ namespace tr1
      *   and so this function is stable for larger differences of @f$ l @f$
      *   and @f$ m @f$.
      *   @note Unlike the case for __assoc_legendre_p the Condon-Shortley
-     *   phase factor @f$ (-1)^m @f$ is present here.
+     *         phase factor @f$ (-1)^m @f$ is present here.
+     *   @note @f$ Y_l^m(\theta) = 0 @f$ if @f$ m > l @f$.
      * 
      *   @param  l  The degree of the spherical associated Legendre function.
      *              @f$ l >= 0 @f$.
      *   @param  m  The order of the spherical associated Legendre function.
-     *              @f$ m <= l @f$.
      *   @param  theta  The radian angle argument of the spherical associated
      *                  Legendre function.
      */
@@ -227,11 +226,8 @@ namespace tr1
 
       const _Tp __x = std::cos(__theta);
 
-      if (__l < __m)
-        {
-          std::__throw_domain_error(__N("Bad argument "
-                                        "in __sph_legendre."));
-        }
+      if (__m > __l)
+        return _Tp(0);
       else if (__m == 0)
         {
           _Tp __P = __poly_legendre_p(__l, __x);

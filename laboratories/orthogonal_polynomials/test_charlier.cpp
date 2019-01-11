@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_charlier test_charlier.cpp -Lwrappers/debug -lwrap_burkhardt -lgfortran
+$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -o test_charlier test_charlier.cpp -Lwrappers/debug -lwrap_burkhardt -lgfortran
 LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_charlier > test_charlier.txt
 */
 

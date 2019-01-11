@@ -1,0 +1,73 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "e_float", "e_float.vcproj", "{79DD124E-E120-40F3-B2F1-127419BDC295}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		debug-efx|Win32 = debug-efx|Win32
+		debug-efx|x64 = debug-efx|x64
+		debug-f90|Win32 = debug-f90|Win32
+		debug-f90|x64 = debug-f90|x64
+		debug-gmp|Win32 = debug-gmp|Win32
+		debug-gmp|x64 = debug-gmp|x64
+		debug-mpfr|Win32 = debug-mpfr|Win32
+		debug-mpfr|x64 = debug-mpfr|x64
+		release-clr|Win32 = release-clr|Win32
+		release-clr|x64 = release-clr|x64
+		release-efx|Win32 = release-efx|Win32
+		release-efx|x64 = release-efx|x64
+		release-f90|Win32 = release-f90|Win32
+		release-f90|x64 = release-f90|x64
+		release-gmp|Win32 = release-gmp|Win32
+		release-gmp|x64 = release-gmp|x64
+		release-mpfr|Win32 = release-mpfr|Win32
+		release-mpfr|x64 = release-mpfr|x64
+		release-pyd|Win32 = release-pyd|Win32
+		release-pyd|x64 = release-pyd|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.debug-efx|Win32.ActiveCfg = debug-efx|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.debug-efx|Win32.Build.0 = debug-efx|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.debug-efx|x64.ActiveCfg = debug-efx|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.debug-efx|x64.Build.0 = debug-efx|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.debug-f90|Win32.ActiveCfg = debug-f90|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.debug-f90|Win32.Build.0 = debug-f90|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.debug-f90|x64.ActiveCfg = debug-f90|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.debug-f90|x64.Build.0 = debug-f90|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.debug-gmp|Win32.ActiveCfg = debug-gmp|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.debug-gmp|Win32.Build.0 = debug-gmp|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.debug-gmp|x64.ActiveCfg = debug-gmp|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.debug-gmp|x64.Build.0 = debug-gmp|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.debug-mpfr|Win32.ActiveCfg = debug-mpfr|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.debug-mpfr|Win32.Build.0 = debug-mpfr|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.debug-mpfr|x64.ActiveCfg = debug-mpfr|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.debug-mpfr|x64.Build.0 = debug-mpfr|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-clr|Win32.ActiveCfg = release-clr|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-clr|Win32.Build.0 = release-clr|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-clr|x64.ActiveCfg = release-clr|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-clr|x64.Build.0 = release-clr|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-efx|Win32.ActiveCfg = release-efx|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-efx|Win32.Build.0 = release-efx|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-efx|x64.ActiveCfg = release-efx|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-efx|x64.Build.0 = release-efx|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-f90|Win32.ActiveCfg = release-f90|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-f90|Win32.Build.0 = release-f90|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-f90|x64.ActiveCfg = release-f90|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-f90|x64.Build.0 = release-f90|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-gmp|Win32.ActiveCfg = release-gmp|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-gmp|Win32.Build.0 = release-gmp|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-gmp|x64.ActiveCfg = release-gmp|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-gmp|x64.Build.0 = release-gmp|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-mpfr|Win32.ActiveCfg = release-mpfr|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-mpfr|Win32.Build.0 = release-mpfr|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-mpfr|x64.ActiveCfg = release-mpfr|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-mpfr|x64.Build.0 = release-mpfr|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-pyd|Win32.ActiveCfg = release-pyd|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-pyd|Win32.Build.0 = release-pyd|Win32
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-pyd|x64.ActiveCfg = release-pyd|x64
+		{79DD124E-E120-40F3-B2F1-127419BDC295}.release-pyd|x64.Build.0 = release-pyd|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

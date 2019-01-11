@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -DSTANDALONE -g -Wall -Wextra -Wno-psabi -I. -o test_inv_erf test_inv_erf.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++2a -DSTANDALONE -g -Wall -Wextra -Wno-psabi -I. -o test_inv_erf test_inv_erf.cpp -lquadmath -lmpfr
 LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_inv_erf > test_inv_erf.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -DSTANDALONE -g -Wall -Wextra -Wno-psabi -I. -o test_inv_erf test_inv_erf.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++2a -DSTANDALONE -g -Wall -Wextra -Wno-psabi -I. -o test_inv_erf test_inv_erf.cpp -lquadmath -lmpfr
 LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_inv_erf > test_inv_erf.txt
 */
 

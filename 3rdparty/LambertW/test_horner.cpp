@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -o test_horner test_horner.cpp
+$HOME/bin/bin/g++ -std=c++2a -o test_horner test_horner.cpp
 
 clang++ -std=c++1z -stdlib=libc++ -o test_horner test_horner.cpp
 */

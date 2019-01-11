@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_complex_decomp test_complex_decomp.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_complex_decomp test_complex_decomp.cpp -lquadmath
 ./test_complex_decomp > test_complex_decomp.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_complex_decomp test_complex_decomp.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_complex_decomp test_complex_decomp.cpp -lquadmath
 ./test_complex_decomp
 */
 

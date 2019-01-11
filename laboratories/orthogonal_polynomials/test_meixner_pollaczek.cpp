@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -o test_meixner_pollaczek test_meixner_pollaczek.cpp
+$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -o test_meixner_pollaczek test_meixner_pollaczek.cpp
 ./test_meixner_pollaczek > test_meixner_pollaczek.txt
 */
 

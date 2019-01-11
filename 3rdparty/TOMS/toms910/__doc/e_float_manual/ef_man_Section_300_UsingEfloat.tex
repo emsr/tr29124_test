@@ -1,0 +1,349 @@
+Using and adapting the \efloat\ system is intuitive and straightforward.
+Simple operations used for testing and benchmarking the \efloat\
+library can be carried out by modifying the test file {\courier test.cpp}
+and rebuilding \efloat, as described in Section \ref{sec:build} above.
+Integration of \efloat\ in another independent project would, however,
+require a separate build.
+
+\subsection{Real--Numbered Arithmetic with \efloathyperref}
+
+Using {\courier e\underline\ float} objects while coding is natural and
+intuitive because {\courier e\underline\ float} objects can be used in
+the same way as conventional plain--old--data (POD) floating-point data
+types are used. Complete compatibility with the usual C++ semantics for
+real--numbered arithmetic has been implemented.
+There are also some extra utilities designed for standard situations
+which commonly arise in numerical programming. For example, there is as a
+globally defined digit tolerance called {\courier ef::tol(void)} within
+the name\-space `{\courier ef}'. There is also a convenient
+{\courier e\underline\ float} class member function called {\courier order},
+which returns the base--$10$ `{big--O}' order of an
+{\courier e\underline\ float} object.
+
+The interface to real--numbered arithmetic with \efloat\ objects
+is defined in the C++ header file
+{\courier <e\underline\ float/e\underline\ float.h>}.
+Real valued functions are defined within the name\-space `{\courier ef}'.
+A complete synopsis of the \efloat\ class syntax is shown
+in Chapter~\ref{chapter:classarch}.
+There is no real valued arithmetic interface to any language other than C++.
+There is no real valued arithmetic interface to the C language.
+The code chunk below illustrates an example of non-trivial,
+real valued arithmetic with \efloat\ by showing a possible implementation
+of the small-argument Taylor series expansion of $\sin(x)$, $x\in\mathbb{R}$.
+Common arithmetic operations and usage of some of the utility functions
+are displayed.
+
+\vspace{4.0pt}
+
+\lstsetCPlusPlus
+\lstinputlisting{CodeSample_ArithmeticReal.cpp}
+
+\vspace{4.0pt}
+
+The number of decimal digits is fixed at compile--time. The precision can be
+dynamically changed during run--time for intermediate calculation steps,
+but never increased to more than the fixed number of digits. The
+number of digits is set by setting the value of
+the preprocessor symbol {\courier E\underline\ FLOAT \underline\ DIGITS10}
+which is used to initialize the value of
+{\courier ef\underline\ \-digits10\underline\ \-setting},
+which is a static constant 32-bit signed integer defined in the
+public interface of \efloatbaseclass.
+
+A specialization of the template class
+{\courier std::\-nu\-me\-ric\underline\ lim\-its<e\underline\ float>}
+has been defined using the usual semantics. This means that it is possible to
+query details such as the number of decimal digits of precision or the
+maximum \efloatclass\ value in the `usual' manner for the C++ language.
+Support for formatted string output using {\courier std::o\-stream}
+objects is defined using the usual semantics.
+The output stream must be appropriately set
+in order to display full precision. A code sample showing numeric limits,
+setting output stream precision and printing to output stream is shown below.
+
+\vspace{4.0pt}
+
+\lstsetCPlusPlus
+\lstinputlisting{CodeSample_OutputPrecision.cpp}
+
+\vspace{4.0pt}
+
+\subsection{Mixed--Mode Arithmetic with \efloathyperref}
+
+All single--argument \efloatclass\ class constructors have been declared
+with the {\courier explicit} qualifier. This prevents unwanted
+side--effects such as the automatic compile--time conversion between
+POD types and \efloatclass\ objects.
+If, for example, the single--argument \efloatclass\ class constructor for
+{\courier double} were non--explicit, then this
+
+\vspace{4.0pt}
+
+\lstsetCPlusPlus
+\lstinputlisting{CodeSample_ArithmeticAmbiguousCtor.cpp}
+
+\vspace{4.0pt}
+
+\noindent would be ambiguous because the compiler would use conventional
+double--precision for the sin function and subsequently convert to
+an \efloatclass\ result. This would compromise the precision of the final
+result because one of its intermediate calculation values would only have
+the precision of {\courier double}.
+
+However, even though all constructors \efloatclass\ class constructors
+from POD types are explicit, there is support for global operators
+for multiplication and division with constant {\courier INT32}.
+These operations are exact and non--ambiguous because the representation
+of {\courier INT32} is exact and non--ambiguous. Using the global
+{\courier INT32} multiplication operator is shown in the code sample below.
+
+\vspace{4.0pt}
+
+\lstsetCPlusPlus
+\lstinputlisting{CodeSample_ArithmeticMixedMode.cpp}
+
+\vspace{4.0pt}
+
+\noindent Remarking further on the code sample above, some users might expect
+\efloatclass\ class constructors from integer types to be non--explicit
+because the representation of integer types is exact and non--ambiguous.
+However, the \efloatclass\ class constructors from integer types are
+nonetheless declared explicit. Otherwise some common C++ code sequences would
+lead to non--intuitive, confusing results. For example, this sequence
+
+\vspace{4.0pt}
+
+\lstsetCPlusPlus
+\lstinputlisting{CodeSample_ArithmeticConfusingIfNonexplicitIntCtor.cpp}
+
+\vspace{4.0pt}
+
+\noindent might be expected to produce the value of $\frac{1}{7}$ to full precision.
+This might be expected from the perspective of a symbolic system such as a
+computer algebra system. But in fact, the C++ compiler actually reduces the value
+of $\frac{1}{7}$ to $0$ in this case. The subsequent C++ initialization is
+carried out with the pure--integer value $0$ instead of the full decimal
+value of $\frac{1}{7}$. This situation is somewhat non--intuitive and confusing.
+In order to facilitate non--ambiguity in these kinds of situations and to
+avoid unexpected compiler side--efects, all \efloatclass\ constructors
+from integer types are declared {\courier explicit}. Therefore when writing
+code for these kinds of situations, the proper way to initialize fractions
+such as $\frac{1}{7}$ or $\frac{1}{12}$ is like this
+
+\vspace{4.0pt}
+
+\lstsetCPlusPlus
+\lstinputlisting{CodeSample_ArithmeticInitOneSeventh.cpp}
+
+\vspace{4.0pt}
+
+\noindent The strict use of the C++ style static cast could
+be considered optional from a stylistic point of view.
+Nonetheless, the author prefers to include the static cast
+because this improves code portability by reducing
+the degrees of freedom which exist for compiler interpretation
+of the plain integer data type.
+
+
+\subsection{Complex--Numbered Arithmetic with \efloathyperref}
+
+Complex valued arithmetic is supported with the class {\courier ef\underline\ complex},
+which has the same public interface as the STL template class
+{\courier std::complex<{\it typename T}>}.
+Complex valued functions are defined within the name\-space `{\courier efz}'.
+The interface to complex valued arithmetic with {\courier ef\underline\ complex}
+objects is defined in the C++ header file
+{\courier <e\underline\ float/e\underline\ float\underline\ z.h>}.
+Complex {\ttfamily ef\underline\ complex} objects can be used with each other
+in normal arithmetic expressions and also mixed together with real
+{\courier e\underline\ float} objects.
+There is no complex valued arithmetic interface to any language other than C++.
+There is no complex valued arithmetic interface to the C language.
+The following code snippet displays the basic
+use of {\ttfamily ef\underline\ complex} objects.
+
+\vspace{4.0pt}
+
+\lstsetCPlusPlus
+\lstinputlisting{CodeSample_ArithmeticComplex.cpp}
+
+\vspace{4.0pt}
+
+\subsection{Using the \efloathyperref\ Functions}
+
+\vspace{3.0pt}
+
+Using the \efloat\ library of functions is straightforward. All of the
+function prototypes are declared in C++ header files.
+These have been collected in a single header file called
+{\courier <func\-tions/\-func\-tions.h>} which contains
+both real valued functions as well as complex valued
+functions. The function prototypes are C++ function prototypes written in the
+C++ language. There is no functional interface to any language other than C++.
+There is no functional interface to the C language. A complete listing of the
+functions supported by \efloat\ is provided in Section \ref{sec:functions}.
+A use of functions is shown in the code snippet below.
+
+\vspace{4.0pt}
+
+\lstsetCPlusPlus
+\lstinputlisting{CodeSample_Functions.cpp}
+
+\vspace{4.0pt}
+
+\subsection{Using the STL with \efloathyperref\ objects}
+
+Real \efloat\ objects and complex
+{\courier ef\underline\ complex} objects can be used
+without limitation in standard STL containers and algorithms.
+Both \efloat\ and {\courier ef\underline\ complex}
+objects as well as pointers to these objects can be stored in all standard
+STL and TR1 containers such as STL's template
+{\courier std::\-vec\-tor<{\it typename T}>} class or TR1's template
+{\courier std::\-tr1::\-array<{\it typename T}, {\courier std::\-size\underline\ t} {\it N}>}
+class. This provides for powerful manipulation with STL algorithms such as
+sorting, accumulating, streaming to output streams, etc. A use of
+\efloat\ with a container, an algorithm, iterators, and stream output
+is shown in the code sample below.
+
+\vspace{4.0pt}
+
+\lstsetCPlusPlus
+\lstinputlisting{CodeSample_STL_Use.cpp}
+
+\vspace{4.0pt}
+
+\subsection{Additional Examples Using \efloathyperref}
+
+Additional practical applications of \efloat\ are provided by seven
+hand--written example files. The example files are stored in
+{\courier{examples/example}}$\ast${\courier{.cpp}}, and they are
+part of the tools block.
+
+Example $1$ shows real--numbered usage in combination
+with a timing measurement. It calculates $21$ non--trivial
+values of $P_{\nu}^{\mu}(x)$, with $\nu$,$\,\mu$,$\,x\in\mathbb{R}$.
+Example $2$ shows complex--num\-ber\-ed usage in combination
+with a timing measurement. It calculates $21$ non--trivial
+values of $\zeta(s)$, with $s\in\mathbb{Z}$.
+
+Example $3$ shows mixed mode, real/integer operation by calculating the
+real--num\-ber\-ed Jahnke--Emden--Lambda function,
+$\Lambda_{\nu}(x)=\left\{\Gamma(\nu+1)\,J_{\nu}(x)\right\}\,/\,\left(\frac{1}{2}x\right)^{\nu}$
+\cite{jahnkeemden:textbook}.
+The small--argument series expansion employs arithmetic
+operations as well as mixed--mode calculations.
+It also shows how to effectively use STL containers of
+{\courier{e{\ttfamily\underline\ }float}}
+objects with STL algorithms.
+
+Examples $4$ and $5$ use template utilities from the tools block.
+Example $4$ performs a numerical differentiation,
+$\frac{\partial}{\partial\nu}\,J_{\nu}(151+\gamma)\big|_{(\nu=123+C)}\,$,
+where $\gamma$ is Euler's constant and $C$ is Catalan's constant.
+The derivative central difference rule is ill--conditioned
+and does not maintain full precision.
+Example $5$ calculates a numerical integral,
+$J_{0}(x)=\frac{1}{\pi}\int_{0}^{\pi}\,\cos(x\,\sin t)\,dt$, with $x=\left(12+\gamma\right)$
+using a recursive trapezoid rule.
+The utilities in Examples 4 and 5 make use of advanced
+object--oriented templates. These examples show how static and dynamic
+polymorphism can be combined to make efficient, elegant implementations
+for standard numerical tasks.
+
+In example~$6$, some well--known conventional algorithms are extended
+to high precision and redesigned for use with real as well as complex
+numbers. Luke~\cite{lukealgo:textbook} developed quadruple--precision
+algorithms in For\-tran~$77$ which calculate coefficients for expansions
+of hy\-per\-ge\-o\-me\-tric functions in series of Cheb\-y\-shev polynomials.
+Luke's algorithms
+{\courier{CCOEF2}} for $_{2}F_{1}(a, b; c; z)$ on page 59,
+{\courier{CCOEF3}} for $_{1}F_{1}(a; b; z)$ on page 74,
+and
+{\courier{CCOEF6}} for $_{1}F_{2}(a; b, c; z)$ on page 85
+have been extended to high precision. The inner loops have been
+simplified through analyses with a computer algebra system.
+Furthermore, these algorithms have been implemented as templates
+for simultaneous use with real as well as complex pa\-ra\-me\-ters.
+Table~\ref{table:functions} shows that \efloat's implementations
+of hy\-per\-ge\-o\-me\-tric functions have strong limitations on their
+parameter ranges. Example $6$ takes a promising first step toward
+extending these parameter ranges.
+
+Example~$7$ shows \efloat's interoperability with
+the Math\-Link{\footnotesize {\textregistered}} facility of \mathematica.
+Template programs combined with \efloat's
+interface to computer algebra systems are used to
+implement the generalized complex poly\-gam\-ma function
+$\psi_{\nu}(x)$, with $\nu$,$\,x\in\mathbb{R}$ or $\mathbb{Z}$.
+This extends the functionality of \efloat\ since its native al\-go\-rithm,
+$\psi_{n}(x)$, only supports real parameters.
+
+\subsection{Interoperability In Detail}
+
+\subsubsection{Python~Export}
+The \efloat\ export to Python produces a dynamic,
+shared library. It is called
+``{\courier{e{\ttfamily\underline\ }float{\ttfamily\underline\ }pyd.}}$\ast$'',
+where the file ending will be either ``{\courier{pyd}}''
+or ``{\courier{so}}'' for Windows{\footnotesize {\textregistered}} or
+Unix/Linux--GNU systems respectively.
+The shared library can be loaded into Python and the functions and classes of
+\efloat\ can be used with its high level scripting capabilities
+such as list manipulation. Interoperability with
+mpmath~\cite{mpmath:website} can be achieved with Python strings.
+The Python session below shows how to load the shared library and
+generate a list of function values.
+The final print command needs two carriage returns.
+
+\lstset{language=python, basicstyle=\courierEight, keywordstyle=\ttfamily}
+\begin{lstlisting}
+>>> import e_float_pyd
+>>> from e_float_pyd import(e_float, ef_complex, ef, efz)
+>>> lst=[ef.cyl_bessel_j(ef.third(), k + ef.quarter()) for k in range(10)]
+>>> for y in lst: print y
+\end{lstlisting}
+
+\subsubsection{Microsoft{\footnotesize {\textregistered}}~CLR~Export}
+The \efloat\ export to the Microsoft{\footnotesize {\textregistered}} CLR
+creates a CLR assembly for the Microsoft{\footnotesize {\textregistered}}.net Framework.
+The name of the assembly is 
+``{\courier{e{\ttfamily\underline\ }float{\ttfamily\underline\ }clr}}.{\courier{dll}}''.
+It can be used with
+all Microsoft{\footnotesize {\textregistered}} CLR
+languages including C\#, managed C++/CLI, IronPython, {\emph{etc}}.
+The code below illustrates the syntax of \efloat\ in the C\# language.
+
+\lstset{language=[ISO]C++,basicstyle=\courierEight,commentstyle=\itshape,
+keywordstyle=\bfseries,extendedchars=true}
+\begin{lstlisting}
+using e_float_clr.cli;
+namespace test
+{
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      e_float x = ef.half();
+      e_float y = new e_float(123);
+      ef_complex z = efz.riemann_zeta(new ef_complex(x, y));
+
+      System.Console.WriteLine(z.get_str());
+    }
+  }
+}
+\end{lstlisting}
+
+
+\subsubsection{Computer Algebra Systems}
+Using a computer algebra system from within \efloat, in particular
+extending \efloat\ with \mathematica, has
+been discussed previously in Example~7.
+The architecture for this is in the directory
+{\courier{interop/cas}}. It uses an abstract base class called
+{\courier{Com\-pu\-ter\-Al\-ge\-bra\-Sys\-tem\-Ob\-ject}} whose public interface
+defines generic methods which exchange information with a
+computer algebra system using STL strings and containers of \efloatclass\ objects.
+The other interoperability direction,
+using \efloat\ from within \mathematica, is not yet supported.

@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mpreal test_mpreal.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_mpreal test_mpreal.cpp -lquadmath -lmpfr
 ./test_mpreal > test_mpreal.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_mpreal test_mpreal.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_mpreal test_mpreal.cpp -lquadmath -lmpfr
 ./test_mpreal > test_mpreal.txt
 */
 

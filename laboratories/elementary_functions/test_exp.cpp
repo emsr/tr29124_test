@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_exp test_exp.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o test_exp test_exp.cpp -lquadmath
 ./test_exp > test_exp.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -o test_exp test_exp.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o test_exp test_exp.cpp -lquadmath
 ./test_exp > test_exp.txt
 */
 

@@ -1,0 +1,191 @@
+\lstsetCPlusPlus
+\begin{lstlisting}
+// Utility functions for real and complex valued arguments.
+bool isnan(const double x);
+bool isnan(const e_float& x);
+bool isnan(const ef_complex& z);
+
+bool finite(const double x);
+bool finite(const e_float& x);
+bool finite(const ef_complex& z);
+
+bool isneg(const double x);
+bool isneg(const e_float& x);
+bool isneg(const ef_complex& z);
+
+e_float fabs(const e_float& x);
+e_float abs (const e_float& x);
+e_float abs (const ef_complex& z);
+e_float real(const e_float& x);
+e_float real(const ef_complex& z);
+e_float imag(const e_float& x);
+e_float imag(const ef_complex& z);
+
+bool ispos(const double x);
+bool ispos(const e_float& x);
+bool ispos(const ef_complex& z);
+
+bool isint(const double x);
+bool isint(const e_float& x);
+bool isint(const ef_complex& z);
+
+bool isone(const double x);
+bool isone(const e_float& x);
+bool isone(const ef_complex& z);
+
+bool iszero(const double x);
+bool iszero(const e_float& x);
+bool iszero(const ef_complex& z);
+
+double to_double(const double& x);
+double to_double(const e_float& x);
+
+INT64 to_int64(const double x);
+INT64 to_int64(const e_float& x);
+INT64 to_int64(const ef_complex& z);
+
+bool small_arg(const double x);
+bool small_arg(const e_float& x);
+bool small_arg(const ef_complex& z);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} These functions return the given utility function
+for their respective arguments.
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} The real valued {\courier real} function returns its argument
+and the real valued {\courier imag} function returns zero.
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} The functions {\courier isint} and {\courier isone}
+test for integer values within a tolerance.
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} The {\courier small\underline\ arg} function
+tests if $|${\courier x}$|$~$\stackrel{?}{\lesssim} 10^{-d/6}$, where
+$d$ is the number of decimal digits of precision of the underlying type.
+
+\lstsetCPlusPlus
+\begin{lstlisting}
+// Elementary real valued functions using the C++ naming convention.
+e_float floor     (const e_float& x);
+e_float ceil      (const e_float& x);
+e_float pow2      (const INT64 p);
+e_float pown      (const e_float& x, const INT64 p);
+e_float inv       (const e_float& x);
+e_float sqrt      (const e_float& x);
+e_float sqrt1pm1  (const e_float& x);
+e_float cbrt      (const e_float& x);
+e_float rootn     (const e_float& x, const INT32 p);
+e_float exp       (const e_float& x);
+e_float log       (const e_float& x);
+e_float log10     (const e_float& x);
+e_float loga      (const e_float& x, const e_float& a);
+e_float log1p     (const e_float& x);
+e_float log101p   (const e_float& x);
+e_float loga1p    (const e_float& x, const e_float& a);
+e_float log1p1m2  (const e_float& x);
+e_float pow       (const e_float& x, const e_float& a);
+e_float powm1     (const e_float& x, const e_float& a);
+void    sincos    (const e_float& x, e_float* const p_sin,
+                                     e_float* const p_cos);
+e_float sin       (const e_float& x);
+e_float cos       (const e_float& x);
+e_float tan       (const e_float& x);
+e_float csc       (const e_float& x);
+e_float sec       (const e_float& x);
+e_float cot       (const e_float& x);
+e_float asin      (const e_float& x);
+e_float acos      (const e_float& x);
+e_float atan      (const e_float& x);
+e_float atan2     (const e_float& y, const e_float& x);
+void    sinhcosh  (const e_float& x, e_float* const p_sin,
+                                     e_float* const p_cos);
+e_float sinh      (const e_float& x);
+e_float cosh      (const e_float& x);
+e_float tanh      (const e_float& x);
+e_float asinh     (const e_float& x);
+e_float acosh     (const e_float& x);
+e_float atanh     (const e_float& x);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} These functions return the real value of the corresponding
+elementary function for their respective real valued arguments.
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} Not every function has a counterpart function in C or C++.
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} The {\courier sqrt1pm1} function returns $\sqrt{1 + x} - 1$,
+for small $x$.
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} The {\courier log1p} function returns $\log(1 + x)$.
+The {\courier log101p} function returns $\log_{10}(1 + x)$.
+The {\courier loga1p} function returns $\log_{a}(1 + x)$.
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} The {\courier log1p1m2} function returns
+$(1/2)\log\left[(1+x)/(1-x)\right]$.
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} The {\courier powm1} function returns $x^{a} - 1$ for
+$x$ near one.
+
+\lstsetCPlusPlus
+\begin{lstlisting}
+// Elementary complex valued functions using the C++ naming convention.
+ef_complex polar   (const e_float& mod, const e_float& arg);
+ef_complex conj    (const ef_complex& z);
+ef_complex iz      (const ef_complex& z);
+ef_complex sin     (const ef_complex& z);
+ef_complex cos     (const ef_complex& z);
+ef_complex tan     (const ef_complex& z);
+void       sincos  (const ef_complex& z, ef_complex* const p_sin,
+                                         ef_complex* const p_cos);
+ef_complex csc     (const ef_complex& z);
+ef_complex sec     (const ef_complex& z);
+ef_complex cot     (const ef_complex& z);
+ef_complex asin    (const ef_complex& z);
+ef_complex acos    (const ef_complex& z);
+ef_complex atan    (const ef_complex& z);
+ef_complex inv     (const ef_complex& z);
+ef_complex sqrt    (const ef_complex& z);
+ef_complex exp     (const ef_complex& z);
+ef_complex log     (const ef_complex& z);
+ef_complex log10   (const ef_complex& z);
+ef_complex loga    (const ef_complex& z, const ef_complex& a);
+ef_complex pown    (const ef_complex& z, const INT64 p);
+ef_complex pow     (const ef_complex& z, const ef_complex& a);
+ef_complex rootn   (const ef_complex& z, const INT32 p);
+ef_complex sinh    (const ef_complex& z);
+ef_complex cosh    (const ef_complex& z);
+ef_complex tanh    (const ef_complex& z);
+void       sinhcosh(const ef_complex& z, ef_complex* const p_sinh,
+                                         ef_complex* const p_cosh);
+ef_complex asinh   (const ef_complex& z);
+ef_complex acosh   (const ef_complex& z);
+ef_complex atanh   (const ef_complex& z);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} These functions return the complex value of the corresponding
+elementary function for their respective complex valued arguments.
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} Not every function has a counterpart function in C or C++.
+

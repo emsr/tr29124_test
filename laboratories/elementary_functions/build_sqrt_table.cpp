@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_sqrt_table build_sqrt_table.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_sqrt_table build_sqrt_table.cpp -lquadmath -lmpfr
 LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./build_sqrt_table > build_sqrt_table.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_sqrt_table build_sqrt_table.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_sqrt_table build_sqrt_table.cpp -lquadmath -lmpfr
 ./build_sqrt_table
 */
 

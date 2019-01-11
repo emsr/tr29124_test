@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o hankel_toy_new hankel_toy_new.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o hankel_toy_new hankel_toy_new.cpp -L$HOME/bin/lib64 -lquadmath
 LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./hankel_toy_new > hankel_toy_new.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o hankel_toy_new hankel_toy_new.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o hankel_toy_new hankel_toy_new.cpp -lquadmath
 ./hankel_toy_new > hankel_toy_new.txt
 */
 

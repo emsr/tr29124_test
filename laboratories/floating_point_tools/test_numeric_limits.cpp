@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I../mpreal -I. -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I../mpreal -I. -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr
 ./test_numeric_limits > test_numeric_limits.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I../mpreal -I. -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I../mpreal -I. -o test_numeric_limits test_numeric_limits.cpp -lquadmath -lmpfr
 ./test_numeric_limits > test_numeric_limits.txt
 */
 

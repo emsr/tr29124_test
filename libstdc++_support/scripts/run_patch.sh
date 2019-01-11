@@ -1,3 +1,4 @@
+#!/bin/bash
 
 
 cp ../tr1_mathN.diff.bz2 .

@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=c++17 -o test_static_root test_static_root.cpp
+$HOME/bin/bin/g++ -std=c++2a -o test_static_root test_static_root.cpp
 */
 
 #include <limits>

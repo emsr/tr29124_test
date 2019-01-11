@@ -1,0 +1,207 @@
+\begin{thebibliography}{10}
+
+\bibitem{boostpython:website}
+David Abrahams.
+\newblock {\em boost.python Index}.
+\newblock boost, \url{http://www.boost.org/doc/libs/1_42_0/libs/python/}, 2008.
+
+\bibitem{abramowitz:textbook}
+Milton {Abramowitz} and Irene~A. Stegun.
+\newblock {\em Handbook of Mathematical Functions, 9$^{th}$ Printing}.
+\newblock Dover Publications, New York, 1972.
+
+\bibitem{becker:textbook}
+Pete Becker.
+\newblock {\em The C++ Standard Library Extensions: A Tutorial and Reference}.
+\newblock Addison Wesley, Reading Massachusetts, 2006.
+
+\bibitem{boostlic:website}
+boost{}.
+\newblock {\em Boost Software License Version 1.0}.
+\newblock Boost, \url{http://www.boost.org/users/license/}, 2003.
+
+\bibitem{coplien:textbook}
+James~O. Coplien.
+\newblock {\em Advanced C++ Programming Styles and Idioms}.
+\newblock Addison Wesley, Reading Massachusetts, 1992.
+
+\bibitem{foord:textbook}
+Michael~J. Foord and Christian Muirhead.
+\newblock {\em IronPython in Action}.
+\newblock Manning Publications, Greenwich, CT, 2009.
+
+\bibitem{33:2:1}
+Laurent Fousse, Guillaume Hanrot, Vincent Lef\`evre, Patrick P\'elissier, and
+  Paul Zimmermann.
+\newblock {M}{P}{F}{R}: A multiple--precision binary floating--point library
+  with correct rounding.
+\newblock {\em ACM Trans. Math. Soft.}, 33(2):1--15, 2007.
+
+\bibitem{gcc:website}
+GCC{}.
+\newblock {\em The GNU Compiler Collection Version 4.3.3}.
+\newblock Free Software Foundation, \url{http://gcc.gnu.org/}, 2008.
+
+\bibitem{gladman:ports}
+Brian {Gladman}.
+\newblock {\em Building GMP and MPFR with Microsoft Visual Studio 2008 and
+  YASM}.
+\newblock Brian Gladman,
+  \url{http://gladman.plushost.co.uk/oldsite/computing/gmp4win.php}, 2008.
+
+\bibitem{gmp:website}
+GMP{}.
+\newblock {\em GNU Multiple Precision Arithmetic Library Version 4.2.4}.
+\newblock Free Software Foundation, \url{http://gmplib.org/}, 2008.
+
+\bibitem{gnulic:website}
+GNU{}.
+\newblock {\em GNU General Public License}.
+\newblock Free Software Foundation, \url{http://www.gnu.org/copyleft/gpl.html},
+  2007.
+
+\bibitem{gnumake:website}
+GNUmake{}.
+\newblock {\em GNUmake Version 3.81}.
+\newblock Free Software Foundation, \url{http://www.gnu.org/software/make/},
+  2006.
+
+\bibitem{icc:website}
+Intel{}.
+\newblock {\em Intel{\footnotesize {\textregistered}} C++ Compiler Professional
+  Edition}.
+\newblock Intel, \url{http://software.intel.com/en-us/intel-compilers/}, 2008.
+
+\bibitem{isoiec14882:textbook}
+ISO{}.
+\newblock {\em ISO/IEC 14882:2003 - Programming languages -- C++}.
+\newblock International Organization for Standardization, Geneva, Switzerland,
+  2003.
+
+\bibitem{isoiec19768:textbook}
+ISO{}.
+\newblock {\em ISO/IEC 19768:2005 C++ Library Extensions TR1}.
+\newblock International Organization for Standardization, Geneva, Switzerland,
+  2005.
+\newblock (Draft).
+
+\bibitem{isoiec23270:textbook}
+ISO{}.
+\newblock {\em ISO/IEC 23270:2006 : Information Technology Programming
+  Languages -- C\#}.
+\newblock International Organization for Standardization, Geneva, Switzerland,
+  2006.
+
+\bibitem{isoiec23271:textbook}
+ISO{}.
+\newblock {\em ISO/IEC 23271:2006 : Information Technology Programming
+  Languages -- Common Language Infrastructure (CLI) Partitions I to VI}.
+\newblock International Organization for Standardization, Geneva, Switzerland,
+  2006.
+
+\bibitem{isoiec29123:textbook}
+ISO{}.
+\newblock {\em ISO/IEC 29123:draft Extensions to the C++ Library to Support
+  Mathematical Special Functions}.
+\newblock International Organization for Standardization, Geneva, Switzerland,
+  2009.
+\newblock (Draft).
+
+\bibitem{jahnkeemden:textbook}
+E.~Jahnke and F.~Emden.
+\newblock {\em Tables of Functions with Formulae and Curves}.
+\newblock Dover, New York, NY, 4 edition, 1945.
+
+\bibitem{josuttis:textbook}
+Nicolai~M. Josuttis.
+\newblock {\em The C++ Standard Library: A Tutorial and Reference}.
+\newblock Addison Wesley, Reading Massachusetts, 1999.
+
+\bibitem{lukealgo:textbook}
+Yudell~L. Luke.
+\newblock {\em Algorithms for the Computation of Mathematical Functions}.
+\newblock Academic Press, New York, NY, 1977.
+
+\bibitem{microsoft:vs2008}
+Microsoft{}.
+\newblock {\em Microsoft{\footnotesize {\textregistered}} Visual Studio
+  Professional 2008 with Service Pack 1}.
+\newblock Microsoft, \url{http://www.microsoft.com/visualstudio/}, 2008.
+
+\bibitem{ironpython:website}
+Microsoft{}.
+\newblock {\em IronPython}.
+\newblock Microsoft Corporation, \url{http://www.ironpython.net/}, 2009.
+
+\bibitem{microsoft:nmake}
+Microsoft{}.
+\newblock {\em NMAKE Reference}.
+\newblock Microsoft,
+  \url{http://msdn.microsoft.com/en-us/library/dd9y37ha(VS.71).aspx}, 2009.
+
+\bibitem{microsoft:clr}
+Microsoft{}.
+\newblock {\em Common Language Runtime Overview}.
+\newblock Microsoft,
+  \url{http://msdn.microsoft.com/en-us/library/ddk909ch.aspx}, 2010.
+
+\bibitem{misra:misrac}
+MISRA{}.
+\newblock {\em MISRA--C 2004: Guidelines for the Use of the C Language in
+  Critical Systems}.
+\newblock MISRA Consortium, \url{http://www.misra.org.uk/}, 2004.
+
+\bibitem{misra:misracpp}
+MISRA{}.
+\newblock {\em MISRA--C++ 2008: Guidelines for the Use of the C++ Language in
+  Critical Systems}.
+\newblock MISRA Consortium, \url{http://www.misra-cpp.org/}, 2008.
+
+\bibitem{mpmath:website}
+MPMATH{}.
+\newblock {\em Python library for arbitrary--precision floating--point
+  arithmetic}.
+\newblock mpmath Project, \url{http://code.google.com/p/mpmath/}, 2009.
+
+\bibitem{python:website}
+PSF{}.
+\newblock {\em Python Programming Language --- Official Website}.
+\newblock Python Software Foundation, \url{http://www.python.org/}, 2009.
+
+\bibitem{richterclr:textbook}
+Jeffrey Richter.
+\newblock {\em {CLR} Via {C}\#}.
+\newblock Microsoft Press, Redmond, WA, 2 edition, 2006.
+
+\bibitem{vandevoorde:textbook}
+David Vandevoorde and Nicolai~M. Josuttis.
+\newblock {\em C++ Templates: The Complete Guide}.
+\newblock Addison Wesley, Boston, 2003.
+
+\bibitem{wolframmathworld:website}
+Eric Weisstein.
+\newblock {\em Wolfram Mathworld{\footnotesize {\textregistered}} Website}.
+\newblock Wolfram Research, \url{http://mathworld.wolfram.com/}, 2009.
+
+\bibitem{wiki:website}
+Wikipedia{}.
+\newblock {\em Wikipedia --- The Free Encyclopedia}.
+\newblock Wikipedia, \url{http://en.wikipedia.org/wiki/}, 2009.
+
+\bibitem{wolfram:textbook}
+Stephen {Wolfram}.
+\newblock {\em The Mathematica{\footnotesize {\textregistered}} Book}.
+\newblock Cambridge University Press, Cambridge, UK, 4 edition, 1999.
+
+\bibitem{wolframfunctions:website}
+{Wolfram Research}.
+\newblock {\em The Wolfram Functions Site}.
+\newblock Wolfram Research, \url{http://functions.wolfram.com/}, 2009.
+
+\bibitem{yang:textbook}
+Daoqi {Yang}.
+\newblock {\em C++ and Object Oriented Numeric Computing for Scientists and
+  Engineers}.
+\newblock Springer, New York, 2001.
+
+\end{thebibliography}

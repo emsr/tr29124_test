@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_hypot test_hypot.cpp -L$HOME/bin/lib64 -lquadmath
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_hypot test_hypot.cpp -L$HOME/bin/lib64 -lquadmath
 ./test_hypot > test_hypot.txt
 
 g++ -std=gnu++14 -Wall -Wextra -I. -o test_hypot test_hypot.cpp -lquadmath

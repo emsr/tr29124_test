@@ -1,0 +1,99 @@
+\lstsetCPlusPlus
+\begin{lstlisting}
+e_float cyl_bessel_i(const INT32 n,    const e_float& x);
+e_float cyl_bessel_i(const e_float& v, const e_float& x);
+e_float cyl_bessel_j(const INT32 n,    const e_float& x);
+e_float cyl_bessel_j(const e_float& v, const e_float& x);
+e_float cyl_bessel_k(const INT32 n,    const e_float& x);
+e_float cyl_bessel_k(const e_float& v, const e_float& x);
+e_float cyl_neumann (const INT32 n,    const e_float& x);
+e_float cyl_neumann (const e_float& v, const e_float& x);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Effects:} These functions compute the cylindrical Bessel functions
+for their respective arguments {\courier v}, {\courier n}, {\courier x},
+with {\courier v}, {\courier x}~$\in\mathbb{R}$;
+{\courier n}~$\in\mathbb{N}$.
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier cyl\underline\ bessel\underline\ i} function
+returns~\cite{wolframfunctions:website}
+
+\begin{equation}
+I_{\nu}(x) \ = \ \frac{1}{\Gamma(\nu+1)}
+\left(\frac{x}{2}\right)^{\nu}
+\sum_{k=0}^{\infty} \frac{(x/2)^{2k}}{(\nu+1)_{k}\ k!}\quad.
+\end{equation}
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier cyl\underline\ bessel\underline\ j} function
+returns~\cite{wolframfunctions:website}
+
+\begin{equation}
+J_{\nu}(x) \ = \ \frac{1}{\Gamma(\nu+1)}
+\left(\frac{x}{2}\right)^{\nu}
+\sum_{k=0}^{\infty} \frac{(-1)^{k}(x/2)^{2k}}{(\nu+1)_{k}\ k!}\quad.
+\end{equation}
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier cyl\underline\ bessel\underline\ k} function
+returns~\cite{wolframfunctions:website}
+
+\begin{equation}
+K_{\nu}(x) \ = \ 
+\frac{\Gamma(\nu)}{2}\left(\frac{x}{2}\right)^{-\nu}
+\sum_{k=0}^{\infty} \frac{(x/2)^{2k}}{(1-\nu)_{k}\ k!}
+\ +\ 
+\frac{\Gamma(-\nu)}{2}\left(\frac{x}{2}\right)^{\nu}
+\sum_{k=0}^{\infty} \frac{(x/2)^{2k}}{(\nu+1)_{k}\ k!}\quad.
+\end{equation}
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier cyl\underline\ neumann} function
+returns~\cite{wolframfunctions:website}
+
+\begin{eqnarray}
+Y_{\nu}(x) \ =
+&\ -\ &\frac{\Gamma(\nu)}{\pi}\left(\frac{x}{2}\right)^{-\nu}
+\sum_{k=0}^{\infty} \frac{(-1)^k (x/2)^{2k}}{(1-\nu)_{k}\ k!}
+\nonumber\\
+&\ -\ &
+\frac{\Gamma(-\nu)\cos(\nu\pi)}{\pi}\left(\frac{x}{2}\right)^{\nu}
+\sum_{k=0}^{\infty} \frac{(-1)^k (x/2)^{2k}}{(\nu+1)_{k}\ k!}\quad.
+\end{eqnarray}
+
+\lstsetCPlusPlus
+\begin{lstlisting}
+e_float cyl_bessel_i_prime(const e_float& v, const e_float& x);
+e_float cyl_bessel_i_prime(const INT32 n,    const e_float& x);
+e_float cyl_bessel_j_prime(const e_float& v, const e_float& x);
+e_float cyl_bessel_j_prime(const INT32 n,    const e_float& x);
+e_float cyl_bessel_k_prime(const e_float& v, const e_float& x);
+e_float cyl_bessel_k_prime(const INT32 n,    const e_float& x);
+e_float cyl_neumann_prime (const e_float& v, const e_float& x);
+e_float cyl_neumann_prime (const INT32 n,    const e_float& x);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Effects:} These functions compute the derivatives of the cylindrical
+Bessel functions for their respective arguments {\courier v}, {\courier n}, {\courier x},
+with {\courier v}, {\courier x}~$\in\mathbb{R}$; {\courier n}~$\in\mathbb{N}$.
+
+\lstsetCPlusPlus
+\begin{lstlisting}
+void cyl_bessel_j_zero(const e_float& v, const UINT32 k, std::deque<e_float>& zeros);
+void cyl_bessel_j_zero(const INT32 n,    const UINT32 k, std::deque<e_float>& zeros);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Effects:} These functions compute the first {\courier k} positive
+zeros of the cylindrical Bessel functions $J_{\nu}(x)$ and $J_{n}(x)$,
+with results stored in the container {\courier zeros}.

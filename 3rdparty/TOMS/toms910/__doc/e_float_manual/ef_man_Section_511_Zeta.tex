@@ -1,0 +1,39 @@
+\lstsetCPlusPlus
+\begin{lstlisting}
+e_float    riemann_zeta(const INT32 n);
+e_float    riemann_zeta(const e_float& s);
+ef_complex riemann_zeta(const ef_complex& s);
+e_float    hurwitz_zeta(const e_float& s,    const INT32 n);
+ef_complex hurwitz_zeta(const ef_complex& s, const INT32 n);
+e_float    hurwitz_zeta(const e_float& s,    const e_float& a);
+ef_complex hurwitz_zeta(const ef_complex& s, const ef_complex& a);
+\end{lstlisting}
+
+\noindent {\it Effects:} These functions compute the zeta functions
+for their respective arguments
+{\courier s}, {\courier a}, {\courier n},
+with {\courier s}, {\courier a}~$\in\mathbb{Z}$ and {\courier n}~$\in\mathbb{N}^{+}$.
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier riemann\underline\ zeta} function
+returns~\cite{wolframfunctions:website}
+
+\begin{equation}
+\zeta(s) = \sum_{k=0}^{\infty} \frac{1}{k^{s}}\quad .
+\end{equation}
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier hurwitz\underline\ zeta} function
+returns~\cite{wolframfunctions:website}
+
+\begin{equation}
+\zeta(s,a) =
+\sum_{k=0}^{\infty} \frac{1}{\left[\left(a + k\right)^{2}\right]^{s/2}}\quad .
+\end{equation}
+
+\vspace{6.0pt}
+
+\noindent {\it Remark:} The {\courier hurwitz\underline\ zeta} function
+can be inaccurate for negative values of {\courier s} with $\Re(\text{{\courier s}}) < -10$.

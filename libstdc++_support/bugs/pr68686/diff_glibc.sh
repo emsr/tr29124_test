@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # We need to diff gcc/libquadmath/math/ and glibc/sysdeps/ieee754/ldbl-128/
 
 set gcc_dir=$HOME/gcc/libquadmath/math

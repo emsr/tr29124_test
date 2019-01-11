@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_reperiodized_hyper test_reperiodized_hyper.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_reperiodized_hyper test_reperiodized_hyper.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
 ./test_reperiodized_hyper > test_reperiodized_hyper.txt
 
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -I. -DNO_SINH_COSH_PI -I. -o test_reperiodized_hyper test_reperiodized_hyper.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -DNO_SINH_COSH_PI -I. -o test_reperiodized_hyper test_reperiodized_hyper.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
 ./test_reperiodized_hyper > test_reperiodized_hyper.txt
 */
 

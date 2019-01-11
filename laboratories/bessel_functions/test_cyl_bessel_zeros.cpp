@@ -1,8 +1,8 @@
 /*
-$HOME/bin_specfun/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_cyl_bessel_zeros test_cyl_bessel_zeros.cpp
+$HOME/bin_specfun/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o test_cyl_bessel_zeros test_cyl_bessel_zeros.cpp
 ./test_cyl_bessel_zeros > test_cyl_bessel_zeros.txt
 
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_cyl_bessel_zeros test_cyl_bessel_zeros.cpp
+$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o test_cyl_bessel_zeros test_cyl_bessel_zeros.cpp
 ./test_cyl_bessel_zeros > test_cyl_bessel_zeros.txt
 */
 

@@ -1,0 +1,53 @@
+\BOOKMARK [1][-]{section.1}{About e\137float}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Introduction}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Configurations}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{The e\137float System Architecture}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{MP Types}{section.1}% 5
+\BOOKMARK [1][-]{section.2}{Building e\137float}{}% 6
+\BOOKMARK [2][-]{subsection.2.1}{Compiler Systems}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.2}{Windows\256 Environment}{section.2}% 8
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Building the Configurations `efx', `gmp', `mpfr' and `f90' in Windows\256}{subsection.2.2}% 9
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Building the Configuration `clr' in Windows\256}{subsection.2.2}% 10
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Building the Configuration `pyd' in Windows\256}{subsection.2.2}% 11
+\BOOKMARK [3][-]{subsubsection.2.2.4}{Building the Configuration `cas' in Windows\256}{subsection.2.2}% 12
+\BOOKMARK [2][-]{subsection.2.3}{UNIX\205like Environment}{section.2}% 13
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Building the Configurations `efx', `gmp' and `mpfr' in UNIX}{subsection.2.3}% 14
+\BOOKMARK [3][-]{subsubsection.2.3.2}{Building the Configuration `clr' in UNIX}{subsection.2.3}% 15
+\BOOKMARK [3][-]{subsubsection.2.3.3}{Building the Configuration `pyd' in UNIX}{subsection.2.3}% 16
+\BOOKMARK [3][-]{subsubsection.2.3.4}{Building the Configuration `cas' in Windows\256}{subsection.2.3}% 17
+\BOOKMARK [1][-]{section.3}{Using e\137float}{}% 18
+\BOOKMARK [2][-]{subsection.3.1}{Real\205Numbered Arithmetic with e\137float}{section.3}% 19
+\BOOKMARK [2][-]{subsection.3.2}{Mixed\205Mode Arithmetic with e\137float}{section.3}% 20
+\BOOKMARK [2][-]{subsection.3.3}{Complex\205Numbered Arithmetic with e\137float}{section.3}% 21
+\BOOKMARK [2][-]{subsection.3.4}{Using the e\137float Functions}{section.3}% 22
+\BOOKMARK [2][-]{subsection.3.5}{Using the STL with e\137float objects}{section.3}% 23
+\BOOKMARK [2][-]{subsection.3.6}{Additional Examples Using e\137float}{section.3}% 24
+\BOOKMARK [2][-]{subsection.3.7}{Interoperability In Detail}{section.3}% 25
+\BOOKMARK [3][-]{subsubsection.3.7.1}{Python Export}{subsection.3.7}% 26
+\BOOKMARK [3][-]{subsubsection.3.7.2}{Microsoft\256 CLR Export}{subsection.3.7}% 27
+\BOOKMARK [3][-]{subsubsection.3.7.3}{Computer Algebra Systems}{subsection.3.7}% 28
+\BOOKMARK [1][-]{section.4}{The e\137float Class Architecture}{}% 29
+\BOOKMARK [2][-]{subsection.4.1}{The e\137float\137base Class}{section.4}% 30
+\BOOKMARK [2][-]{subsection.4.2}{The e\137float Class}{section.4}% 31
+\BOOKMARK [2][-]{subsection.4.3}{The e\137float Global Arithmetic Interface}{section.4}% 32
+\BOOKMARK [2][-]{subsection.4.4}{Numeric Limits of the e\137float Class}{section.4}% 33
+\BOOKMARK [2][-]{subsection.4.5}{Adapting Another MP Implementation for use with e\137float}{section.4}% 34
+\BOOKMARK [2][-]{subsection.4.6}{The Complex Class Interface}{section.4}% 35
+\BOOKMARK [1][-]{section.5}{The e\137float Functions}{}% 36
+\BOOKMARK [2][-]{subsection.5.1}{Supported Functions and Known Limitations}{section.5}% 37
+\BOOKMARK [2][-]{subsection.5.2}{Function Details}{section.5}% 38
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Integer and Constant Functions}{subsection.5.2}% 39
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Elementary Functions}{subsection.5.2}% 40
+\BOOKMARK [3][-]{subsubsection.5.2.3}{Airy Functions}{subsection.5.2}% 41
+\BOOKMARK [3][-]{subsubsection.5.2.4}{Bessel Functions}{subsection.5.2}% 42
+\BOOKMARK [3][-]{subsubsection.5.2.5}{Orthogonal Polynomials}{subsection.5.2}% 43
+\BOOKMARK [3][-]{subsubsection.5.2.6}{Gamma and Related Functions}{subsection.5.2}% 44
+\BOOKMARK [3][-]{subsubsection.5.2.7}{Hypergeometric Series}{subsection.5.2}% 45
+\BOOKMARK [3][-]{subsubsection.5.2.8}{Generalized Legendre Functions}{subsection.5.2}% 46
+\BOOKMARK [3][-]{subsubsection.5.2.9}{Laguerre, Parabolic Cylinder and Hermite Functions}{subsection.5.2}% 47
+\BOOKMARK [3][-]{subsubsection.5.2.10}{Elliptic Integrals}{subsection.5.2}% 48
+\BOOKMARK [3][-]{subsubsection.5.2.11}{Zeta Functions}{subsection.5.2}% 49
+\BOOKMARK [3][-]{subsubsection.5.2.12}{Polylogarithms}{subsection.5.2}% 50
+\BOOKMARK [1][-]{section.6}{Testing e\137float}{}% 51
+\BOOKMARK [2][-]{subsection.6.1}{The Test System}{section.6}% 52
+\BOOKMARK [2][-]{subsection.6.2}{Extending the Test System}{section.6}% 53

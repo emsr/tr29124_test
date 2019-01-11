@@ -1,6 +1,6 @@
 // Special functions -*- C++ -*-
 
-// Copyright (C) 2006-2018 Free Software Foundation, Inc.
+// Copyright (C) 2006-2019 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -367,7 +367,7 @@ namespace tr1
       _Tp __P = _Tp(0);
       _Tp __Q = _Tp(0);
 
-      _Tp k = _Tp(0);
+      _Tp __k = _Tp(0);
       _Tp __term = _Tp(1);
 
       int __epsP = 0;
@@ -377,22 +377,23 @@ namespace tr1
 
       do
         {
-          __term *= (k == 0) ? _Tp(1) : -(__mu - (2 * k - 1) * (2 * k - 1)) / (k * __8x);
+          __term *= (__k == 0) ? _Tp(1)
+		  : -(__mu - (2 * __k - 1) * (2 * __k - 1)) / (__k * __8x);
           __epsP = std::abs(__term) < std::abs(__eps * __P);
           __P += __term;
 
-          k++;
+          __k++;
 
-          __term *= (__mu - (2 * k - 1) * (2 * k - 1)) / (k * __8x);
+          __term *= (__mu - (2 * __k - 1) * (2 * __k - 1)) / (__k * __8x);
           __epsQ = std::abs(__term) < std::abs(__eps * __Q);
           __Q += __term;
 
-          if (__epsP && __epsQ && k > __nu / 2.)
+          if (__epsP && __epsQ && __k > __nu / 2.)
             break;
 
-          k++;
+          __k++;
         }
-      while (k < 1000);
+      while (__k < 1000);
 
 
       const _Tp __chi = __x - (__nu + _Tp(0.5L))

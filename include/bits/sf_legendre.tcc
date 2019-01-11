@@ -1,6 +1,6 @@
 // Special functions -*- C++ -*-
 
-// Copyright (C) 2006-2018 Free Software Foundation, Inc.
+// Copyright (C) 2006-2019 Free Software Foundation, Inc.
 //
 // This file is part of the GNU ISO C++ Library.  This library is free
 // software; you can redistribute it and/or modify it under the
@@ -184,12 +184,12 @@ namespace __detail
    *   P_l^m(x) = (1 - x^2)^{m/2}\frac{d^m}{dx^m}P_l(x)
    * @f]
    * @note The Condon-Shortley phase factor @f$ (-1)^m @f$ is absent
-   * by default.
+   *       by default.
+   * @note @f$ P_l^m(x) = 0 @f$ if @f$ m > l @f$.
    *
    * @param  __l  The degree of the associated Legendre function.
    * 		@f$ l >= 0 @f$.
    * @param  __m  The order of the associated Legendre function.
-   * 		@f$ m <= l @f$.
    * @param  __x  The argument of the associated Legendre function.
    * @param  __phase  The phase of the associated Legendre function.
    *                  Use -1 for the Condon-Shortley phase convention.
@@ -200,8 +200,7 @@ namespace __detail
 		       _Tp __phase = _Tp{+1})
     {
       if (__m > __l)
-	std::__throw_domain_error(__N("__assoc_legendre_p: "
-				      "degree out of range"));
+	return _Tp{0};
       else if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__m == 0)
@@ -265,12 +264,12 @@ namespace __detail
    * and so this function is stable for larger differences of @f$ l @f$
    * and @f$ m @f$.
    * @note Unlike the case for __assoc_legendre_p the Condon-Shortley
-   * phase factor @f$ (-1)^m @f$ is present here.
+   *       phase factor @f$ (-1)^m @f$ is present here.
+   * @note @f$ Y_l^m(\theta) = 0 @f$ if @f$ m > l @f$.
    *
    * @param  __l  The degree of the spherical associated Legendre function.
    * 		@f$ l >= 0 @f$.
    * @param  __m  The order of the spherical associated Legendre function.
-   * 		@f$ m <= l @f$.
    * @param  __theta  The radian polar angle argument
    * 		    of the spherical associated Legendre function.
    */
@@ -283,8 +282,8 @@ namespace __detail
 
       const auto __x = std::cos(__theta);
 
-      if (__l < __m)
-	std::__throw_domain_error(__N("__sph_legendre: bad argument"));
+      if (__m > __l)
+	return _Tp{0};
       else if (__m == 0)
 	{
 	  auto _P_l = __legendre_p(__l, __x).__P_l;
@@ -357,11 +356,11 @@ namespace __detail
    * 				    \frac{(l-m)!}{(l+m)!}]
    * 		       P_l^{|m|}(\cos\theta) \exp^{im\phi}
    * @f]
+   * @note @f$ Y_l^m(\theta,\phi) = 0 @f$ if @f$ |m| > l @f$.
    *
    * @param  __l  The degree of the spherical harmonic function.
    * 		@f$ l >= 0 @f$.
    * @param  __m  The order of the spherical harmonic function.
-   * 		@f$ m <= l @f$.
    * @param  __theta  The radian polar angle argument
    * 		    of the spherical harmonic function.
    * @param  __phi    The radian azimuthal angle argument
@@ -374,9 +373,11 @@ namespace __detail
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__theta);
       if (std::isnan(__theta) || std::isnan(__phi))
 	return std::complex<_Tp>{_S_NaN, _S_NaN};
-
-      return __sph_legendre(__l, std::abs(__m), __theta)
-	   * std::polar(_Tp{1}, _Tp(__m) * __phi);
+      else if (std::abs(__m) > __l)
+	return std::complex<_Tp>{0, 0};
+      else
+	return __sph_legendre(__l, std::abs(__m), __theta)
+		* std::polar(_Tp{1}, _Tp(__m) * __phi);
     }
 
 

@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++17 -g -Wall -Wextra -Wno-psabi -I. -o test_clausen test_clausen.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_clausen test_clausen.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_clausen > test_clausen.txt
 
-$HOME/bin/bin/g++ -std=c++17 -std=gnu++17 -g -Wall -Wextra -I. -o test_clausen test_clausen.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
+$HOME/bin/bin/g++ -std=c++2a -std=gnu++2a -g -Wall -Wextra -I. -o test_clausen test_clausen.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
 PATH=wrappers/debug:$PATH ./test_clausen > test_clausen.txt
 */
 

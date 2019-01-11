@@ -1,8 +1,8 @@
 /*
-$HOME/bin_specfun/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_power_norm test_power_norm.cpp
+$HOME/bin_specfun/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o test_power_norm test_power_norm.cpp
 ./test_power_norm > test_power_norm.txt
 
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I. -o test_power_norm test_power_norm.cpp
+$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o test_power_norm test_power_norm.cpp
 ./test_power_norm > test_power_norm.txt
 */
 

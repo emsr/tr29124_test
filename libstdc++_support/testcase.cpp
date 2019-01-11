@@ -369,12 +369,12 @@ template<typename Real>
     basename = "assoc_legendre";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_assoc_legendre(filename);
-    maketest(assoc_legendre, gsl::assoc_legendre,
+    maketest(assoc_legendre, beast::assoc_legendre,
 	     "testcase_assoc_legendre", nsname, basename,
 	     "l", vorder, "m", vorder,
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(true, true), 21),
-	     "GSL",
+	     "Boost",
 	     file_assoc_legendre);
 
     // Beta functions.
@@ -812,12 +812,12 @@ template<typename Real>
     basename = "sph_legendre";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_sph_legendre(filename);
-    maketest(sph_legendre, gsl::sph_legendre,
+    maketest(sph_legendre, beast::sph_legendre,
 	     "testcase_sph_legendre", nsname, basename,
 	     "l", vorder, "m", vorder,
 	     "theta", fill_argument(std::make_pair(Real{0}, _S_pi),
 				    std::make_pair(true, true), 21),
-	     "GSL",
+	     "Boost",
 	     file_sph_legendre);
 
     // Spherical Neumann functions.
