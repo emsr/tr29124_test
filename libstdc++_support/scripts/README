@@ -1,0 +1,3 @@
+These scripts should be invoked from the containing directory as
+
+$ ./scripts/dothething.sh
