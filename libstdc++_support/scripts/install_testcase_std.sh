@@ -45,7 +45,7 @@ ${makedir} ${gcc_dir}/21_sph_neumann
 
 ${tool} check/check_assoc_laguerre.cc   ${gcc_dir}/01_assoc_laguerre/check_value.cc
 ${tool} check/check_assoc_legendre.cc   ${gcc_dir}/02_assoc_legendre/check_value.cc
-${tool} check/pr88204_assoc_legendre.cc ${gcc_dir}/02_assoc_legendre/pr88204.cc
+${tool} check/pr86655_assoc_legendre.cc ${gcc_dir}/02_assoc_legendre/pr86655.cc
 ${tool} check/pr83140.cc                ${gcc_dir}/02_assoc_legendre/pr83140.cc
 ${tool} check/check_beta.cc             ${gcc_dir}/03_beta/check_value.cc
 ${tool} check/check_comp_ellint_1.cc    ${gcc_dir}/04_comp_ellint_1/check_value.cc
@@ -69,7 +69,7 @@ ${tool} check/check_legendre.cc         ${gcc_dir}/17_legendre/check_value.cc
 ${tool} check/check_riemann_zeta.cc     ${gcc_dir}/18_riemann_zeta/check_value.cc
 ${tool} check/check_sph_bessel.cc       ${gcc_dir}/19_sph_bessel/check_value.cc
 ${tool} check/check_sph_legendre.cc     ${gcc_dir}/20_sph_legendre/check_value.cc
-${tool} check/pr88204_sph_legendre.cc   ${gcc_dir}/20_sph_legendre/pr88204.cc
+${tool} check/pr86655_sph_legendre.cc   ${gcc_dir}/20_sph_legendre/pr86655.cc
 ${tool} check/check_sph_neumann.cc      ${gcc_dir}/21_sph_neumann/check_value.cc
 
 
