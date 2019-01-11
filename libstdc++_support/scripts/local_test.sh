@@ -50,6 +50,7 @@ ${makedir} ${test_dir}/21_sph_neumann
 ${tool} check/check_assoc_laguerre.cc   ${test_dir}/01_assoc_laguerre/check_value.cc
 ${tool} check/check_assoc_legendre.cc   ${test_dir}/02_assoc_legendre/check_value.cc
 ${tool} check/pr83140.cc                ${test_dir}/02_assoc_legendre/pr83140.cc
+${tool} check/pr88204_assoc_legendre.cc ${test_dir}/02_assoc_legendre/pr88204.cc
 ${tool} check/check_beta.cc             ${test_dir}/03_beta/check_value.cc
 ${tool} check/check_comp_ellint_1.cc    ${test_dir}/04_comp_ellint_1/check_value.cc
 ${tool} check/check_comp_ellint_2.cc    ${test_dir}/05_comp_ellint_2/check_value.cc
@@ -72,6 +73,7 @@ ${tool} check/check_legendre.cc         ${test_dir}/17_legendre/check_value.cc
 ${tool} check/check_riemann_zeta.cc     ${test_dir}/18_riemann_zeta/check_value.cc
 ${tool} check/check_sph_bessel.cc       ${test_dir}/19_sph_bessel/check_value.cc
 ${tool} check/check_sph_legendre.cc     ${test_dir}/20_sph_legendre/check_value.cc
+${tool} check/pr88204_sph_legendre.cc   ${test_dir}/20_sph_legendre/pr88204.cc
 ${tool} check/check_sph_neumann.cc      ${test_dir}/21_sph_neumann/check_value.cc
 
 
@@ -283,6 +285,7 @@ ${makedir} ${tr1_dir}/23_sph_neumann
 ${tool} check/check_tr1_assoc_laguerre.cc   ${tr1_dir}/01_assoc_laguerre/check_value.cc
 ${tool} check/check_tr1_assoc_legendre.cc   ${tr1_dir}/02_assoc_legendre/check_value.cc
 ${tool} check/tr1_pr83140.cc                ${tr1_dir}/02_assoc_legendre/pr83140.cc
+${tool} check/pr88204_tr1_assoc_legendre.cc ${tr1_dir}/02_assoc_legendre/pr88204.cc
 ${tool} check/check_tr1_beta.cc	            ${tr1_dir}/03_beta/check_value.cc
 ${tool} check/check_tr1_comp_ellint_1.cc    ${tr1_dir}/04_comp_ellint_1/check_value.cc
 ${tool} check/check_tr1_comp_ellint_2.cc    ${tr1_dir}/05_comp_ellint_2/check_value.cc
@@ -305,4 +308,5 @@ ${tool} check/check_tr1_legendre.cc	    ${tr1_dir}/19_legendre/check_value.cc
 ${tool} check/check_tr1_riemann_zeta.cc     ${tr1_dir}/20_riemann_zeta/check_value_neg.cc
 ${tool} check/check_tr1_sph_bessel.cc       ${tr1_dir}/21_sph_bessel/check_value.cc
 ${tool} check/check_tr1_sph_legendre.cc     ${tr1_dir}/22_sph_legendre/check_value.cc
+${tool} check/pr88204_tr1_sph_legendre.cc   ${tr1_dir}/22_sph_legendre/pr88204.cc
 ${tool} check/check_tr1_sph_neumann.cc      ${tr1_dir}/23_sph_neumann/check_value.cc
