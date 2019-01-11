@@ -324,7 +324,7 @@ namespace __detail
 	      auto _Y_lm = _Tp{0};
 
 	      // Compute Y_l^m, l > m+1, upward recursion on l.
-	      for ( int __ll = __m + 2; __ll <= __l; ++__ll)
+	      for (int __ll = __m + 2; __ll <= __l; ++__ll)
 		{
 		  const auto __rat1 = _Tp(__ll - __m) / _Tp(__ll + __m);
 		  const auto __rat2 = _Tp(__ll - __m - 1) / _Tp(__ll + __m - 1);
