@@ -10,14 +10,6 @@ test_dir="testsuite/special_functions"
 text_dir="testsuite/ext/special_functions"
 tr1_dir="testsuite/tr1/5_numerical_facilities/special_functions"
 
-suffix="_tr29124"
-if [ $# -ge 1 ]; then
-  suffix="$1"
-fi
-
-#src_dir="$HOME/gcc${suffix}/libstdc++-v3"
-src_dir=.
-
 
 ${makedir} ${utildir}
 
