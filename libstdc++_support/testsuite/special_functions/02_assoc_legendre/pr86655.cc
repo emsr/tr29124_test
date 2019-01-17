@@ -26,7 +26,7 @@
   if (!(A)) \
     { \
       std::cout << "line " << __LINE__ \
-	<< "  max_abs_frac = " << max_abs_frac \
+	<< "  std::assoc_legendre(l, m, x) == 0: " << (A) \
 	<< '\n'; \
     }
 #else

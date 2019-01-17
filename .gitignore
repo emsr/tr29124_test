@@ -194,6 +194,8 @@ libstdc++_support/check/pr56216_cyl_bessel_i
 libstdc++_support/check/pr68397
 libstdc++_support/check/origin_cyl_bessel_j
 libstdc++_support/check/origin_cyl_neumann
+libstdc++_support/check/pr86655_assoc_legendre
+libstdc++_support/check/pr86655_sph_legendre
 libstdc++_support/check/check_tr1_assoc_laguerre
 libstdc++_support/check/check_tr1_assoc_legendre
 libstdc++_support/check/check_tr1_beta
@@ -217,6 +219,8 @@ libstdc++_support/check/check_tr1_riemann_zeta
 libstdc++_support/check/check_tr1_sph_bessel
 libstdc++_support/check/check_tr1_sph_legendre
 libstdc++_support/check/check_tr1_sph_neumann
+libstdc++_support/check/pr86655_tr1_assoc_legendre
+libstdc++_support/check/pr86655_tr1_sph_legendre
 
 clamp_2
 

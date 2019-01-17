@@ -1,5 +1,5 @@
-// { dg-do run { target c++98 } }
-// { dg-options "-ffp-contract=off" }
+// { dg-do run }
+// { dg-options "-std=c++98 -ffp-contract=off" }
 
 // Copyright (C) 2019 Free Software Foundation, Inc.
 //
@@ -25,7 +25,7 @@
   if (!(A)) \
     { \
       std::cout << "line " << __LINE__ \
-	<< "  max_abs_frac = " << max_abs_frac \
+	<< "  std::sph_legendre(l, m, x) == 0: " << (A) \
 	<< '\n'; \
     }
 #else
@@ -39,7 +39,7 @@ template<typename _Tp>
     bool test __attribute__((unused)) = true;
     unsigned int larr[4] = {0u, 1u, 2u, 5u};
     for (unsigned int l = 0; l < 4; ++l)
-      for (unsigned int m = l + 1u; m <= l + 2u; ++m)
+      for (unsigned int m = larr[l] + 1u; m <= larr[l] + 2u; ++m)
 	for (int i = -2; i <= +2; ++i)
 	  {
 	    _Tp theta = std::acos(_Tp(i * 0.5L));

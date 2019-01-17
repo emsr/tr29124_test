@@ -219,3 +219,5 @@ pr56216_cyl_bessel_i
 pr68397
 origin_bessel_j
 origin_cyl_neumann
+pr86655_assoc_legendre
+pr86655_sph_legendre
