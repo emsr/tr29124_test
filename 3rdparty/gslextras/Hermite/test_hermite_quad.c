@@ -1,6 +1,6 @@
 // test_hermite_quad.c
 
-//*----------------------------------------------------------------------*
+/*----------------------------------------------------------------------*
 //* This program is free software: you can redistribute it and/or modify *
 //* it under the terms of the GNU General Public License as published by *
 //* the Free Software Foundation, either version 3 of the License, or    *
@@ -19,7 +19,7 @@
 //* Test function for Hermite quadrature                                 *
 //* Copyright 2013-2014 Konrad Griessinger                               *
 //* (konradg(at)gmx.net)                                                 *
-//*----------------------------------------------------------------------*
+//*----------------------------------------------------------------------*/
 
 
 // #include <config.h>
