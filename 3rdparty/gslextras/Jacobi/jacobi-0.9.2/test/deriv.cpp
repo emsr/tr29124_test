@@ -1,11 +1,10 @@
 // Function to calculate the derivative. It will output the maximum error of the derivatives
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cmath>
 
 #include "../src/jacobi.h"
-
 
 
 double 

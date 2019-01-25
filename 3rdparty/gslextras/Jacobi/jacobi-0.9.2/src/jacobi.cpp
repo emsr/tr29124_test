@@ -90,7 +90,7 @@
  
 
 
-#include <stdlib.h>
+#include <cstdlib>
 
 
 #include <gsl/gsl_math.h>

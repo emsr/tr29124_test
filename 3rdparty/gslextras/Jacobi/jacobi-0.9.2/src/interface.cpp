@@ -21,7 +21,7 @@
 /** \file  Wrappers to basic functions defined in gauss_quad.c
  */
 
-#include <stdlib.h>
+#include <cstdlib>
 #include <gsl/gsl_errno.h>
 #include <gsl/gsl_cblas.h>
 #include "jacobi.h"

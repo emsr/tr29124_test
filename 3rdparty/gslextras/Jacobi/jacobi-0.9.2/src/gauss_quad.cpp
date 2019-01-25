@@ -29,9 +29,9 @@
     
 
 */
-#include <math.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include <cmath>
+#include <cstdlib>
+#include <cstdio>
 
 #include <gsl/gsl_math.h>
 //#include <gsl/gsl_sf_result.h>

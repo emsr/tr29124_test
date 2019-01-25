@@ -1,11 +1,10 @@
 // Function to interpolate a function. It will output the interpolation and error
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cmath>
 
 #include "../src/jacobi.h"
-
 
 
 double 
