@@ -9,8 +9,8 @@ static double fs01 = 0.0005236; /* =S(0.1) */
 
 int main(void)
 {
-/*  FILE *out;
-*/
+  FILE *out;
+
   double x;
   time_t t_beg, t_end;
 
@@ -26,7 +26,7 @@ int main(void)
    fresnel_c(x);
   }
   time(&t_end);
-  printf("Time of calculation in seconds of 1000000 values of fresnel_c(x) = %d\n",
+  printf("Time of calculation in seconds of 1000000 values of fresnel_c(x) = %ld\n",
                t_end-t_beg);
 
   time(&t_beg);
@@ -35,16 +35,16 @@ int main(void)
    fresnel_s(x);
   }
   time(&t_end);
-  printf("Time of calculation in seconds of 1000000 values of fresnel_s(x) = %d\n",
+  printf("Time of calculation in seconds of 1000000 values of fresnel_s(x) = %ld\n",
                t_end-t_beg);
 
   /* Table of calculated values*/
-/*
+
   if ((out = fopen("fresnel_c.dat", "wt")) == NULL)
-   {
+  {
       fprintf(stderr, "Cannot open output file.\n");
       return 1;
-   }
+  }
   for (x=0.; x<=10.; x+=0.1)
   {
       fprintf(out,"%2.1f \t %2.15f\n", x, fresnel_c(x));
@@ -60,8 +60,7 @@ int main(void)
       fprintf(out,"%2.1f \t %2.15f\n", x, fresnel_s(x));
   }
   fclose(out);
-*/  
-  getchar();
+
   return 0;
 }
 //---------------------------------------------------------------------------
