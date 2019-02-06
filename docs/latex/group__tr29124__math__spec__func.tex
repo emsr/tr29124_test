@@ -222,6 +222,9 @@ Return the associated Legendre function $ P_l^m(x) $ of degree $ l $, order $ m 
 The associated Legendre function is derived from the Legendre function $ P_l(x) $ by the Rodrigues formula\+: \[ P_l^m(x) = (1 - x^2)^{m/2}\frac{d^m}{dx^m}P_l(x) \] \begin{DoxySeeAlso}{See also}
 \hyperlink{group__tr29124__math__spec__func_gad06811f4e139b0ba84235c1f0d34d86e}{legendre} for details of the Legendre function of degree {\ttfamily l} 
 \end{DoxySeeAlso}
+\begin{DoxyNote}{Note}
+$ P_l^m(x) = 0 $ if $ m > l $.
+\end{DoxyNote}
 
 \begin{DoxyTemplParams}{Template Parameters}
 {\em \+\_\+\+Tp} & The floating-\/point type of the argument {\ttfamily \+\_\+\+\_\+x}. \\
@@ -231,7 +234,7 @@ The associated Legendre function is derived from the Legendre function $ P_l(x) 
 \begin{DoxyParams}{Parameters}
 {\em \+\_\+\+\_\+l} & The degree {\ttfamily \+\_\+\+\_\+l $>$= 0}. \\
 \hline
-{\em \+\_\+\+\_\+m} & The order {\ttfamily \+\_\+\+\_\+m $<$= l}. \\
+{\em \+\_\+\+\_\+m} & The order {\ttfamily \+\_\+\+\_\+m}. \\
 \hline
 {\em \+\_\+\+\_\+x} & The argument, {\ttfamily abs(\+\_\+\+\_\+x) $<$= 1}. \\
 \hline
@@ -243,7 +246,7 @@ The associated Legendre function is derived from the Legendre function $ P_l(x) 
 \end{DoxyExceptions}
 
 
-Definition at line 470 of file specfun.\+h.
+Definition at line 471 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga3ced07ddd24bf4af56e2712d148e7f57}\label{group__tr29124__math__spec__func_ga3ced07ddd24bf4af56e2712d148e7f57}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!assoc\+\_\+legendref@{assoc\+\_\+legendref}}
@@ -307,7 +310,7 @@ The beta function is defined by \[ B(a,b) = \int_0^1 t^{a - 1} (1 - t)^{b - 1} d
 \end{DoxyExceptions}
 
 
-Definition at line 515 of file specfun.\+h.
+Definition at line 516 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga12dc61ee4c09172151cf092ed387e203}\label{group__tr29124__math__spec__func_ga12dc61ee4c09172151cf092ed387e203}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!betaf@{betaf}}
@@ -322,7 +325,7 @@ Return the beta function, $ B(a,b) $, for {\ttfamily float} parameters $ a $, $ 
 \end{DoxySeeAlso}
 
 
-Definition at line 484 of file specfun.\+h.
+Definition at line 485 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga8caca1cef099f41a88111209c36ce06c}\label{group__tr29124__math__spec__func_ga8caca1cef099f41a88111209c36ce06c}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!betal@{betal}}
@@ -337,7 +340,7 @@ Return the beta function, $B(a,b)$, for long double parameters $ a $, $ b $.
 \end{DoxySeeAlso}
 
 
-Definition at line 494 of file specfun.\+h.
+Definition at line 495 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gad559217fb01e7a8b7a6e23eeedda64be}\label{group__tr29124__math__spec__func_gad559217fb01e7a8b7a6e23eeedda64be}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!comp\+\_\+ellint\+\_\+1@{comp\+\_\+ellint\+\_\+1}}
@@ -368,7 +371,7 @@ The complete elliptic integral of the first kind is defined as \[ K(k) = F(k,\pi
 \end{DoxyExceptions}
 
 
-Definition at line 563 of file specfun.\+h.
+Definition at line 564 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga7fb5be999a8125cf7e55e630eb8444a1}\label{group__tr29124__math__spec__func_ga7fb5be999a8125cf7e55e630eb8444a1}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!comp\+\_\+ellint\+\_\+1f@{comp\+\_\+ellint\+\_\+1f}}
@@ -383,7 +386,7 @@ Return the complete elliptic integral of the first kind $ E(k) $ for {\ttfamily 
 \end{DoxySeeAlso}
 
 
-Definition at line 530 of file specfun.\+h.
+Definition at line 531 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga7247d3dd77c1ff5df3c059fed862dc48}\label{group__tr29124__math__spec__func_ga7247d3dd77c1ff5df3c059fed862dc48}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!comp\+\_\+ellint\+\_\+1l@{comp\+\_\+ellint\+\_\+1l}}
@@ -398,7 +401,7 @@ Return the complete elliptic integral of the first kind $ E(k) $ for {\ttfamily 
 \end{DoxySeeAlso}
 
 
-Definition at line 540 of file specfun.\+h.
+Definition at line 541 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gaadf288465eea84ec609d93de96200aaa}\label{group__tr29124__math__spec__func_gaadf288465eea84ec609d93de96200aaa}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!comp\+\_\+ellint\+\_\+2@{comp\+\_\+ellint\+\_\+2}}
@@ -429,7 +432,7 @@ The complete elliptic integral of the second kind is defined as \[ E(k) = E(k,\p
 \end{DoxyExceptions}
 
 
-Definition at line 610 of file specfun.\+h.
+Definition at line 611 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga21700f2f125c42b1f1da1f9c7eea1135}\label{group__tr29124__math__spec__func_ga21700f2f125c42b1f1da1f9c7eea1135}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!comp\+\_\+ellint\+\_\+2f@{comp\+\_\+ellint\+\_\+2f}}
@@ -444,7 +447,7 @@ Return the complete elliptic integral of the second kind $ E(k) $ for {\ttfamily
 \end{DoxySeeAlso}
 
 
-Definition at line 578 of file specfun.\+h.
+Definition at line 579 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga47b647ec386c8d4b18a030c97842df18}\label{group__tr29124__math__spec__func_ga47b647ec386c8d4b18a030c97842df18}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!comp\+\_\+ellint\+\_\+2l@{comp\+\_\+ellint\+\_\+2l}}
@@ -459,7 +462,7 @@ Return the complete elliptic integral of the second kind $ E(k) $ for {\ttfamily
 \end{DoxySeeAlso}
 
 
-Definition at line 588 of file specfun.\+h.
+Definition at line 589 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga80419d323d3231870bd588525e818974}\label{group__tr29124__math__spec__func_ga80419d323d3231870bd588525e818974}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!comp\+\_\+ellint\+\_\+3@{comp\+\_\+ellint\+\_\+3}}
@@ -494,7 +497,7 @@ The complete elliptic integral of the third kind is defined as \[ \Pi(k,\nu) = \
 \end{DoxyExceptions}
 
 
-Definition at line 661 of file specfun.\+h.
+Definition at line 662 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga76834d3112f777703330892303267a39}\label{group__tr29124__math__spec__func_ga76834d3112f777703330892303267a39}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!comp\+\_\+ellint\+\_\+3f@{comp\+\_\+ellint\+\_\+3f}}
@@ -511,7 +514,7 @@ Return the complete elliptic integral of the third kind $ \Pi(k,\nu) $ for {\ttf
 \end{DoxySeeAlso}
 
 
-Definition at line 625 of file specfun.\+h.
+Definition at line 626 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga1ca081fee102cd0d4d6b091285e495e5}\label{group__tr29124__math__spec__func_ga1ca081fee102cd0d4d6b091285e495e5}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!comp\+\_\+ellint\+\_\+3l@{comp\+\_\+ellint\+\_\+3l}}
@@ -528,7 +531,7 @@ Return the complete elliptic integral of the third kind $ \Pi(k,\nu) $ for {\ttf
 \end{DoxySeeAlso}
 
 
-Definition at line 635 of file specfun.\+h.
+Definition at line 636 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga29504b6008798072b0b8d6ea5a50ec60}\label{group__tr29124__math__spec__func_ga29504b6008798072b0b8d6ea5a50ec60}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!cyl\+\_\+bessel\+\_\+i@{cyl\+\_\+bessel\+\_\+i}}
@@ -562,7 +565,7 @@ The regular modified cylindrical Bessel function is\+: \[ I_{\nu}(x) = i^{-\nu}J
 \end{DoxyExceptions}
 
 
-Definition at line 707 of file specfun.\+h.
+Definition at line 708 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gaaf738427d4da0bda66bc2274dfb853a7}\label{group__tr29124__math__spec__func_gaaf738427d4da0bda66bc2274dfb853a7}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!cyl\+\_\+bessel\+\_\+if@{cyl\+\_\+bessel\+\_\+if}}
@@ -577,7 +580,7 @@ Return the regular modified Bessel function $ I_{\nu}(x) $ for {\ttfamily float}
 \end{DoxySeeAlso}
 
 
-Definition at line 676 of file specfun.\+h.
+Definition at line 677 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gab7962629216d03efb8ecaa3f70c6878f}\label{group__tr29124__math__spec__func_gab7962629216d03efb8ecaa3f70c6878f}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!cyl\+\_\+bessel\+\_\+il@{cyl\+\_\+bessel\+\_\+il}}
@@ -592,7 +595,7 @@ Return the regular modified Bessel function $ I_{\nu}(x) $ for {\ttfamily long d
 \end{DoxySeeAlso}
 
 
-Definition at line 686 of file specfun.\+h.
+Definition at line 687 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga644f7eb975809674db88768f2f115744}\label{group__tr29124__math__spec__func_ga644f7eb975809674db88768f2f115744}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!cyl\+\_\+bessel\+\_\+j@{cyl\+\_\+bessel\+\_\+j}}
@@ -626,7 +629,7 @@ The cylindrical Bessel function is\+: \[ J_{\nu}(x) = \sum_{k=0}^{\infty} \frac{
 \end{DoxyExceptions}
 
 
-Definition at line 753 of file specfun.\+h.
+Definition at line 754 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga15731a7bccd6351d28353e3c4c2a2d23}\label{group__tr29124__math__spec__func_ga15731a7bccd6351d28353e3c4c2a2d23}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!cyl\+\_\+bessel\+\_\+jf@{cyl\+\_\+bessel\+\_\+jf}}
@@ -641,7 +644,7 @@ Return the Bessel function of the first kind $ J_{\nu}(x) $ for {\ttfamily float
 \end{DoxySeeAlso}
 
 
-Definition at line 722 of file specfun.\+h.
+Definition at line 723 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gade8e94a80520a8b628b2d658755b25c0}\label{group__tr29124__math__spec__func_gade8e94a80520a8b628b2d658755b25c0}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!cyl\+\_\+bessel\+\_\+jl@{cyl\+\_\+bessel\+\_\+jl}}
@@ -656,7 +659,7 @@ Return the Bessel function of the first kind $ J_{\nu}(x) $ for {\ttfamily long 
 \end{DoxySeeAlso}
 
 
-Definition at line 732 of file specfun.\+h.
+Definition at line 733 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gac73d664b8e7ceba7f8e786c93e97a084}\label{group__tr29124__math__spec__func_gac73d664b8e7ceba7f8e786c93e97a084}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!cyl\+\_\+bessel\+\_\+k@{cyl\+\_\+bessel\+\_\+k}}
@@ -690,7 +693,7 @@ The irregular modified Bessel function is defined by\+: \[ K_{\nu}(x) = \frac{\p
 \end{DoxyExceptions}
 
 
-Definition at line 805 of file specfun.\+h.
+Definition at line 806 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga1f50047f9aab0ec8b1a1615fe9fbe32f}\label{group__tr29124__math__spec__func_ga1f50047f9aab0ec8b1a1615fe9fbe32f}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!cyl\+\_\+bessel\+\_\+kf@{cyl\+\_\+bessel\+\_\+kf}}
@@ -705,7 +708,7 @@ Return the irregular modified Bessel function $ K_{\nu}(x) $ for {\ttfamily floa
 \end{DoxySeeAlso}
 
 
-Definition at line 768 of file specfun.\+h.
+Definition at line 769 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gac35194b926270d7857d651e06198c7d3}\label{group__tr29124__math__spec__func_gac35194b926270d7857d651e06198c7d3}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!cyl\+\_\+bessel\+\_\+kl@{cyl\+\_\+bessel\+\_\+kl}}
@@ -720,7 +723,7 @@ Return the irregular modified Bessel function $ K_{\nu}(x) $ for {\ttfamily long
 \end{DoxySeeAlso}
 
 
-Definition at line 778 of file specfun.\+h.
+Definition at line 779 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga1e4bef23704469b0704cf15c5f04e29e}\label{group__tr29124__math__spec__func_ga1e4bef23704469b0704cf15c5f04e29e}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!cyl\+\_\+neumann@{cyl\+\_\+neumann}}
@@ -754,7 +757,7 @@ The Neumann function is defined by\+: \[ N_{\nu}(x) = \frac{J_{\nu}(x) \cos \nu\
 \end{DoxyExceptions}
 
 
-Definition at line 853 of file specfun.\+h.
+Definition at line 854 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga604c13e8f2bb7cd3c7c91d8b19d6b13a}\label{group__tr29124__math__spec__func_ga604c13e8f2bb7cd3c7c91d8b19d6b13a}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!cyl\+\_\+neumannf@{cyl\+\_\+neumannf}}
@@ -769,7 +772,7 @@ Return the Neumann function $ N_{\nu}(x) $ of {\ttfamily float} order $ \nu $ an
 \end{DoxySeeAlso}
 
 
-Definition at line 820 of file specfun.\+h.
+Definition at line 821 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gaf8986bae9a523c48d861d233835bda8f}\label{group__tr29124__math__spec__func_gaf8986bae9a523c48d861d233835bda8f}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!cyl\+\_\+neumannl@{cyl\+\_\+neumannl}}
@@ -784,7 +787,7 @@ Return the Neumann function $ N_{\nu}(x) $ of {\ttfamily long double} order $ \n
 \end{DoxySeeAlso}
 
 
-Definition at line 830 of file specfun.\+h.
+Definition at line 831 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga1550d6947bbbeee9865aabd398102a36}\label{group__tr29124__math__spec__func_ga1550d6947bbbeee9865aabd398102a36}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!ellint\+\_\+1@{ellint\+\_\+1}}
@@ -819,7 +822,7 @@ The incomplete elliptic integral of the first kind is defined as \[ F(k,\phi) = 
 \end{DoxyExceptions}
 
 
-Definition at line 901 of file specfun.\+h.
+Definition at line 902 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga308d23d70f4b5e848eb7a4173628ef3b}\label{group__tr29124__math__spec__func_ga308d23d70f4b5e848eb7a4173628ef3b}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!ellint\+\_\+1f@{ellint\+\_\+1f}}
@@ -834,7 +837,7 @@ Return the incomplete elliptic integral of the first kind $ E(k,\phi) $ for {\tt
 \end{DoxySeeAlso}
 
 
-Definition at line 868 of file specfun.\+h.
+Definition at line 869 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga795383fa51e02351000b410b478d824f}\label{group__tr29124__math__spec__func_ga795383fa51e02351000b410b478d824f}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!ellint\+\_\+1l@{ellint\+\_\+1l}}
@@ -849,7 +852,7 @@ Return the incomplete elliptic integral of the first kind $ E(k,\phi) $ for {\tt
 \end{DoxySeeAlso}
 
 
-Definition at line 878 of file specfun.\+h.
+Definition at line 879 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gad64cb9babb7837d585912b1a94b2cb7d}\label{group__tr29124__math__spec__func_gad64cb9babb7837d585912b1a94b2cb7d}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!ellint\+\_\+2@{ellint\+\_\+2}}
@@ -887,7 +890,7 @@ The elliptic function of the second kind.
 \end{DoxyExceptions}
 
 
-Definition at line 949 of file specfun.\+h.
+Definition at line 950 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga594a730163c6228c75b152462700062b}\label{group__tr29124__math__spec__func_ga594a730163c6228c75b152462700062b}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!ellint\+\_\+2f@{ellint\+\_\+2f}}
@@ -904,7 +907,7 @@ Return the incomplete elliptic integral of the second kind $ E(k,\phi) $ for {\t
 \end{DoxySeeAlso}
 
 
-Definition at line 916 of file specfun.\+h.
+Definition at line 917 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga5c791332d374a809d8ca16c69a1a30f5}\label{group__tr29124__math__spec__func_ga5c791332d374a809d8ca16c69a1a30f5}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!ellint\+\_\+2l@{ellint\+\_\+2l}}
@@ -921,7 +924,7 @@ Return the incomplete elliptic integral of the second kind $ E(k,\phi) $.
 \end{DoxySeeAlso}
 
 
-Definition at line 926 of file specfun.\+h.
+Definition at line 927 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gaac0240d1e7e401e652b9d1adf4c7e029}\label{group__tr29124__math__spec__func_gaac0240d1e7e401e652b9d1adf4c7e029}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!ellint\+\_\+3@{ellint\+\_\+3}}
@@ -965,7 +968,7 @@ The elliptic function of the third kind.
 \end{DoxyExceptions}
 
 
-Definition at line 1002 of file specfun.\+h.
+Definition at line 1003 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga1a80bd2c15bc9fbecda2630a9e9409e7}\label{group__tr29124__math__spec__func_ga1a80bd2c15bc9fbecda2630a9e9409e7}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!ellint\+\_\+3f@{ellint\+\_\+3f}}
@@ -982,7 +985,7 @@ Return the incomplete elliptic integral of the third kind $ \Pi(k,\nu,\phi) $ fo
 \end{DoxySeeAlso}
 
 
-Definition at line 964 of file specfun.\+h.
+Definition at line 965 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gaa8c0e5864df8769021a7f3e21a30c5d2}\label{group__tr29124__math__spec__func_gaa8c0e5864df8769021a7f3e21a30c5d2}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!ellint\+\_\+3l@{ellint\+\_\+3l}}
@@ -999,7 +1002,7 @@ Return the incomplete elliptic integral of the third kind $ \Pi(k,\nu,\phi) $.
 \end{DoxySeeAlso}
 
 
-Definition at line 974 of file specfun.\+h.
+Definition at line 975 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga0e9ac717a106ef54184b5f058c451782}\label{group__tr29124__math__spec__func_ga0e9ac717a106ef54184b5f058c451782}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!expint@{expint}}
@@ -1024,7 +1027,7 @@ The exponential integral is given by \[ Ei(x) = -\int_{-x}^\infty \frac{e^t}{t} 
 \end{DoxyParams}
 
 
-Definition at line 1042 of file specfun.\+h.
+Definition at line 1043 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga5842816f6eed2594e0a327df4e4a2a47}\label{group__tr29124__math__spec__func_ga5842816f6eed2594e0a327df4e4a2a47}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!expintf@{expintf}}
@@ -1039,7 +1042,7 @@ Return the exponential integral $ Ei(x) $ for {\ttfamily float} argument $ x $.
 \end{DoxySeeAlso}
 
 
-Definition at line 1016 of file specfun.\+h.
+Definition at line 1017 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga1329130b32328d0666e290ee5931fa4f}\label{group__tr29124__math__spec__func_ga1329130b32328d0666e290ee5931fa4f}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!expintl@{expintl}}
@@ -1054,7 +1057,7 @@ Return the exponential integral $ Ei(x) $ for {\ttfamily long double} argument $
 \end{DoxySeeAlso}
 
 
-Definition at line 1026 of file specfun.\+h.
+Definition at line 1027 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga8bd1626f1e3f7256c4fd13579f881183}\label{group__tr29124__math__spec__func_ga8bd1626f1e3f7256c4fd13579f881183}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!hermite@{hermite}}
@@ -1083,7 +1086,7 @@ The Hermite polynomial obeys a reflection formula\+: \[ H_n(-x) = (-1)^n H_n(x) 
 \end{DoxyParams}
 
 
-Definition at line 1090 of file specfun.\+h.
+Definition at line 1091 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga94dae7444bb349e33057a92932db8abe}\label{group__tr29124__math__spec__func_ga94dae7444bb349e33057a92932db8abe}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!hermitef@{hermitef}}
@@ -1098,7 +1101,7 @@ Return the Hermite polynomial $ H_n(x) $ of nonnegative order n and float argume
 \end{DoxySeeAlso}
 
 
-Definition at line 1057 of file specfun.\+h.
+Definition at line 1058 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga21f8e312ee3e65286f86bf141b0f32e0}\label{group__tr29124__math__spec__func_ga21f8e312ee3e65286f86bf141b0f32e0}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!hermitel@{hermitel}}
@@ -1113,7 +1116,7 @@ Return the Hermite polynomial $ H_n(x) $ of nonnegative order n and {\ttfamily l
 \end{DoxySeeAlso}
 
 
-Definition at line 1067 of file specfun.\+h.
+Definition at line 1068 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga9d7b24a11dad27690387405548973ef9}\label{group__tr29124__math__spec__func_ga9d7b24a11dad27690387405548973ef9}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!laguerre@{laguerre}}
@@ -1145,7 +1148,7 @@ The Laguerre polynomial is defined by\+: \[ L_n(x) = \frac{e^x}{n!} \frac{d^n}{d
 \end{DoxyExceptions}
 
 
-Definition at line 1134 of file specfun.\+h.
+Definition at line 1135 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gada763419b0e21b38e38daa8b6eb56a8c}\label{group__tr29124__math__spec__func_gada763419b0e21b38e38daa8b6eb56a8c}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!laguerref@{laguerref}}
@@ -1160,7 +1163,7 @@ Returns the Laguerre polynomial $ L_n(x) $ of nonnegative degree {\ttfamily n} a
 \end{DoxySeeAlso}
 
 
-Definition at line 1105 of file specfun.\+h.
+Definition at line 1106 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gaaf8b141edf9163b37ea4f2ed3e0191fc}\label{group__tr29124__math__spec__func_gaaf8b141edf9163b37ea4f2ed3e0191fc}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!laguerrel@{laguerrel}}
@@ -1175,7 +1178,7 @@ Returns the Laguerre polynomial $ L_n(x) $ of nonnegative degree {\ttfamily n} a
 \end{DoxySeeAlso}
 
 
-Definition at line 1115 of file specfun.\+h.
+Definition at line 1116 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gad06811f4e139b0ba84235c1f0d34d86e}\label{group__tr29124__math__spec__func_gad06811f4e139b0ba84235c1f0d34d86e}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!legendre@{legendre}}
@@ -1207,7 +1210,7 @@ The Legendre function of order $ l $ and argument $ x $, $ P_l(x) $, is defined 
 \end{DoxyExceptions}
 
 
-Definition at line 1179 of file specfun.\+h.
+Definition at line 1180 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gaed94e3c664c99f5204da75be75aeac21}\label{group__tr29124__math__spec__func_gaed94e3c664c99f5204da75be75aeac21}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!legendref@{legendref}}
@@ -1222,7 +1225,7 @@ Return the Legendre polynomial $ P_l(x) $ of nonnegative degree $ l $ and {\ttfa
 \end{DoxySeeAlso}
 
 
-Definition at line 1149 of file specfun.\+h.
+Definition at line 1150 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga1b39bc22e3cc4860d08eb54099460391}\label{group__tr29124__math__spec__func_ga1b39bc22e3cc4860d08eb54099460391}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!legendrel@{legendrel}}
@@ -1237,7 +1240,7 @@ Return the Legendre polynomial $ P_l(x) $ of nonnegative degree $ l $ and {\ttfa
 \end{DoxySeeAlso}
 
 
-Definition at line 1159 of file specfun.\+h.
+Definition at line 1160 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gac4ef9d52ee583c77937c3a420b7c72ca}\label{group__tr29124__math__spec__func_gac4ef9d52ee583c77937c3a420b7c72ca}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!riemann\+\_\+zeta@{riemann\+\_\+zeta}}
@@ -1262,7 +1265,7 @@ The Riemann zeta function is defined by\+: \[ \zeta(s) = \sum_{k=1}^{\infty} k^{
 \end{DoxyParams}
 
 
-Definition at line 1230 of file specfun.\+h.
+Definition at line 1231 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gaf92063315061a56d3e2c4053156d968e}\label{group__tr29124__math__spec__func_gaf92063315061a56d3e2c4053156d968e}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!riemann\+\_\+zetaf@{riemann\+\_\+zetaf}}
@@ -1277,7 +1280,7 @@ Return the Riemann zeta function $ \zeta(s) $ for {\ttfamily float} argument $ s
 \end{DoxySeeAlso}
 
 
-Definition at line 1194 of file specfun.\+h.
+Definition at line 1195 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga1e92da3b878d75270f38d3ec9b513086}\label{group__tr29124__math__spec__func_ga1e92da3b878d75270f38d3ec9b513086}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!riemann\+\_\+zetal@{riemann\+\_\+zetal}}
@@ -1292,7 +1295,7 @@ Return the Riemann zeta function $ \zeta(s) $ for {\ttfamily long double} argume
 \end{DoxySeeAlso}
 
 
-Definition at line 1204 of file specfun.\+h.
+Definition at line 1205 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gad125841d7c85e461cb8954952e3a17c8}\label{group__tr29124__math__spec__func_gad125841d7c85e461cb8954952e3a17c8}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!sph\+\_\+bessel@{sph\+\_\+bessel}}
@@ -1324,7 +1327,7 @@ The spherical Bessel function is defined by\+: \[ j_n(x) = \left(\frac{\pi}{2x} 
 \end{DoxyExceptions}
 
 
-Definition at line 1274 of file specfun.\+h.
+Definition at line 1275 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga534e36e1dcefad8daec98920db16eec4}\label{group__tr29124__math__spec__func_ga534e36e1dcefad8daec98920db16eec4}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!sph\+\_\+besself@{sph\+\_\+besself}}
@@ -1339,7 +1342,7 @@ Return the spherical Bessel function $ j_n(x) $ of nonnegative order n and {\ttf
 \end{DoxySeeAlso}
 
 
-Definition at line 1245 of file specfun.\+h.
+Definition at line 1246 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga11d72b1af81ce9da3c878a25087ee927}\label{group__tr29124__math__spec__func_ga11d72b1af81ce9da3c878a25087ee927}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!sph\+\_\+bessell@{sph\+\_\+bessell}}
@@ -1354,7 +1357,7 @@ Return the spherical Bessel function $ j_n(x) $ of nonnegative order n and {\ttf
 \end{DoxySeeAlso}
 
 
-Definition at line 1255 of file specfun.\+h.
+Definition at line 1256 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gacef0d41a7ce572a9ace3437498794ed0}\label{group__tr29124__math__spec__func_gacef0d41a7ce572a9ace3437498794ed0}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!sph\+\_\+legendre@{sph\+\_\+legendre}}
@@ -1383,7 +1386,7 @@ The spherical Legendre function is defined by \[ Y_l^m(\theta,\phi) = (-1)^m\fra
 \end{DoxyParams}
 
 
-Definition at line 1321 of file specfun.\+h.
+Definition at line 1322 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_gaae635d28c06a3be2679901b382090852}\label{group__tr29124__math__spec__func_gaae635d28c06a3be2679901b382090852}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!sph\+\_\+legendref@{sph\+\_\+legendref}}
@@ -1398,7 +1401,7 @@ Return the spherical Legendre function of nonnegative integral degree $ l $ and 
 \end{DoxySeeAlso}
 
 
-Definition at line 1289 of file specfun.\+h.
+Definition at line 1290 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga2f6618dea1847f09fd67f3c974c1910d}\label{group__tr29124__math__spec__func_ga2f6618dea1847f09fd67f3c974c1910d}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!sph\+\_\+legendrel@{sph\+\_\+legendrel}}
@@ -1413,7 +1416,7 @@ Return the spherical Legendre function of nonnegative integral degree $ l $ and 
 \end{DoxySeeAlso}
 
 
-Definition at line 1300 of file specfun.\+h.
+Definition at line 1301 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga01cdd716aaca8ff3c08f307800fd5220}\label{group__tr29124__math__spec__func_ga01cdd716aaca8ff3c08f307800fd5220}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!sph\+\_\+neumann@{sph\+\_\+neumann}}
@@ -1445,7 +1448,7 @@ The spherical Neumann function is defined by \[ n_n(x) = \left(\frac{\pi}{2x} \r
 \end{DoxyExceptions}
 
 
-Definition at line 1365 of file specfun.\+h.
+Definition at line 1366 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga789143122fa99536329bc2d1b1aac2f0}\label{group__tr29124__math__spec__func_ga789143122fa99536329bc2d1b1aac2f0}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!sph\+\_\+neumannf@{sph\+\_\+neumannf}}
@@ -1460,7 +1463,7 @@ Return the spherical Neumann function of integral order $ n >= 0 $ and {\ttfamil
 \end{DoxySeeAlso}
 
 
-Definition at line 1336 of file specfun.\+h.
+Definition at line 1337 of file specfun.\+h.
 
 \mbox{\Hypertarget{group__tr29124__math__spec__func_ga3cededa9b6e4601f190c3811e6aabfd6}\label{group__tr29124__math__spec__func_ga3cededa9b6e4601f190c3811e6aabfd6}} 
 \index{C++17/\+I\+S29124 Mathematical Special Functions@{C++17/\+I\+S29124 Mathematical Special Functions}!sph\+\_\+neumannl@{sph\+\_\+neumannl}}
@@ -1475,5 +1478,5 @@ Return the spherical Neumann function of integral order $ n >= 0 $ and {\ttfamil
 \end{DoxySeeAlso}
 
 
-Definition at line 1346 of file specfun.\+h.
+Definition at line 1347 of file specfun.\+h.
 

@@ -15,8 +15,8 @@ var searchData=
   ['gauss_5fquad_5ftype',['gauss_quad_type',['../namespace____gnu__cxx.html#a2ed4d746fa11452ef08bae893e031cb3',1,'__gnu_cxx']]],
   ['gauss_5fradau_5flower',['Gauss_Radau_lower',['../namespace____gnu__cxx.html#a2ed4d746fa11452ef08bae893e031cb3a901202872614ca163f6351106b642981',1,'__gnu_cxx']]],
   ['gauss_5fradau_5fupper',['Gauss_Radau_upper',['../namespace____gnu__cxx.html#a2ed4d746fa11452ef08bae893e031cb3ab93f55d4c8c412ce64cc234d8eedccbd',1,'__gnu_cxx']]],
-  ['gegenbauer',['gegenbauer',['../group__gnu__math__spec__func.html#ga173ae710f76407f5997a4caa5c3c060e',1,'__gnu_cxx']]],
-  ['gegenbauerf',['gegenbauerf',['../group__gnu__math__spec__func.html#ga0f16dd9c771c8c177f377381b6e3387c',1,'__gnu_cxx']]],
-  ['gegenbauerl',['gegenbauerl',['../group__gnu__math__spec__func.html#gabf1644841deefbb162ade9fa508591cb',1,'__gnu_cxx']]],
+  ['gegenbauer',['gegenbauer',['../group__gnu__math__spec__func.html#ga512e7981e328d6184f604de1892048b6',1,'__gnu_cxx']]],
+  ['gegenbauerf',['gegenbauerf',['../group__gnu__math__spec__func.html#ga3eda0a3546848c5b3a2d4d9b5910d6b1',1,'__gnu_cxx']]],
+  ['gegenbauerl',['gegenbauerl',['../group__gnu__math__spec__func.html#ga1f1110d7a116bd5636924bb96d24ecc3',1,'__gnu_cxx']]],
   ['gnu_20extended_20mathematical_20special_20functions',['GNU Extended Mathematical Special Functions',['../group__gnu__math__spec__func.html',1,'']]]
 ];

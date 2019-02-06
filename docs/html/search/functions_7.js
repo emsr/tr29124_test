@@ -10,7 +10,7 @@ var searchData=
   ['gamma_5freciprocal',['gamma_reciprocal',['../group__gnu__math__spec__func.html#ga641f9bcdb8fc32a9a0ce7a15b5040076',1,'__gnu_cxx']]],
   ['gamma_5freciprocalf',['gamma_reciprocalf',['../group__gnu__math__spec__func.html#ga10cccd5045490ac24590c094c43107d8',1,'__gnu_cxx']]],
   ['gamma_5freciprocall',['gamma_reciprocall',['../group__gnu__math__spec__func.html#ga73bfcace13daa8b50e7e7e3f583a2eb0',1,'__gnu_cxx']]],
-  ['gegenbauer',['gegenbauer',['../group__gnu__math__spec__func.html#ga173ae710f76407f5997a4caa5c3c060e',1,'__gnu_cxx']]],
-  ['gegenbauerf',['gegenbauerf',['../group__gnu__math__spec__func.html#ga0f16dd9c771c8c177f377381b6e3387c',1,'__gnu_cxx']]],
-  ['gegenbauerl',['gegenbauerl',['../group__gnu__math__spec__func.html#gabf1644841deefbb162ade9fa508591cb',1,'__gnu_cxx']]]
+  ['gegenbauer',['gegenbauer',['../group__gnu__math__spec__func.html#ga512e7981e328d6184f604de1892048b6',1,'__gnu_cxx']]],
+  ['gegenbauerf',['gegenbauerf',['../group__gnu__math__spec__func.html#ga3eda0a3546848c5b3a2d4d9b5910d6b1',1,'__gnu_cxx']]],
+  ['gegenbauerl',['gegenbauerl',['../group__gnu__math__spec__func.html#ga1f1110d7a116bd5636924bb96d24ecc3',1,'__gnu_cxx']]]
 ];

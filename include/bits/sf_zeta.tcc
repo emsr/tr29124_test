@@ -294,18 +294,18 @@ namespace __detail
    * 	     by Laurent expansion about s = 1.
    *
    * The Laurent expansion of the Riemann zeta function is given by:
-   *  @f[
+   * @f[
    * 	\zeta(s) = \frac{1}{s-1} + 
    *      \sum_{k=0}^{\infty} \frac{(-1)^k}{k!}\gamma_k (s-1)^k
-   *  @f]
+   * @f]
    * Where @f$ \gamma_k @f$ are the Stieltjes constants,
    * @f$ \gamma_0 = \gamma_E @f$ the Euler-Mascheroni constant.
    *
    * The Stieltjes constants can be found from a limiting process:
-   *  @f[
-   *    \gamma_k = \lim_{n\to\infty}\left{
-   *   \sum_{i=1}^{n}\frac{(ln i)^k}{i} - \frac{(ln n)^{k+1}}{k+1}\right}
-   *  @f]
+   * @f[
+   *   \gamma_k = \lim_{n \to \infty} \left\{
+   *   \sum_{i=1}^{n}\frac{(ln i)^k}{i} - \frac{(ln n)^{k+1}}{k+1} \right\}
+   * @f]
    */
   template<typename _Tp>
     _Tp

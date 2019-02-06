@@ -1,5 +1,8 @@
 var NAVTREEINDEX7 =
 {
+"structstd_1_1____detail_1_1__AiryState.html#ad4a37f92020588e84a18fc1e93b02af6":[4,0,1,0,25,4],
+"structstd_1_1____detail_1_1__Airy__asymp__data.html":[4,0,1,0,14],
+"structstd_1_1____detail_1_1__Airy__asymp__data_3_01double_01_4.html":[4,0,1,0,15],
 "structstd_1_1____detail_1_1__Airy__asymp__data_3_01float_01_4.html":[4,0,1,0,16],
 "structstd_1_1____detail_1_1__Airy__asymp__data_3_01long_01double_01_4.html":[4,0,1,0,17],
 "structstd_1_1____detail_1_1__Airy__default__radii.html":[4,0,1,0,19],

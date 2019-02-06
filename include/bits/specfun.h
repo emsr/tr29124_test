@@ -3600,7 +3600,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The the polygamma or digamma function is defined by
    * @f[
-   *    \polygamma(x) = \frac{d}{dx}log\left(\Gamma(x)\right)
+   *    psi(x) = \frac{d}{dx}log\left(\Gamma(x)\right)
    *            = \frac{\Gamma'(x)}{\Gamma(x)}
    * @f]
    *

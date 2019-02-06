@@ -1,0 +1,4241 @@
+\begin{theindex}
+
+  \item {\+\_\+\+Airy}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy}, 
+		\hyperpage{535}
+  \item {\+\_\+\+Airy\+\_\+asymp}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}, 
+		\hyperpage{538}
+  \item {\+\_\+\+Airy\+\_\+asymp\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}, 
+		\hyperpage{545}
+  \item {\+\_\+\+Asymp\+Terminator}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}, 
+		\hyperpage{563}
+  \item {\+\_\+\+Cmplx}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}, 
+		\hyperpage{514}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}, 
+		\hyperpage{523}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}, 
+		\hyperpage{528}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+roots\+\_\+t}, 
+		\hyperpage{531}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}, 
+		\hyperpage{538}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{550}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+A\+I\+R\+Y\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+airy.\+tcc}, \hyperpage{571}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+B\+E\+R\+N\+O\+U\+L\+L\+I\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+bernoulli.\+tcc}, \hyperpage{572}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+B\+E\+S\+S\+E\+L\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+bessel.\+tcc}, \hyperpage{575}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+B\+E\+T\+A\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+beta.\+tcc}, \hyperpage{576}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+C\+A\+R\+D\+I\+N\+A\+L\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+cardinal.\+tcc}, \hyperpage{578}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+C\+H\+E\+B\+Y\+S\+H\+E\+V\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+chebyshev.\+tcc}, \hyperpage{580}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+C\+O\+U\+L\+O\+M\+B\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+coulomb.\+tcc}, \hyperpage{582}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+D\+A\+W\+S\+O\+N\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+dawson.\+tcc}, \hyperpage{583}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+O\+N\+S\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+distributions.\+tcc}, \hyperpage{587}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+L\+L\+I\+N\+T\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+ellint.\+tcc}, \hyperpage{589}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+U\+L\+E\+R\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+euler.\+tcc}, \hyperpage{591}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+X\+P\+I\+N\+T\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+expint.\+tcc}, \hyperpage{593}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+F\+R\+E\+S\+N\+E\+L\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+fresnel.\+tcc}, \hyperpage{595}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+G\+A\+M\+M\+A\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+gamma.\+tcc}, \hyperpage{603}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+G\+E\+G\+E\+N\+B\+A\+U\+E\+R\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+gegenbauer.\+tcc}, \hyperpage{604}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+A\+N\+K\+E\+L\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+hankel.\+tcc}, \hyperpage{607}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+E\+R\+M\+I\+T\+E\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+hermite.\+tcc}, \hyperpage{609}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+E\+R\+G\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+hyperg.\+tcc}, \hyperpage{612}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+I\+N\+T\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+hypint.\+tcc}, \hyperpage{613}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+J\+A\+C\+O\+B\+I\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+jacobi.\+tcc}, \hyperpage{615}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+A\+G\+U\+E\+R\+R\+E\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+laguerre.\+tcc}, \hyperpage{617}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+E\+G\+E\+N\+D\+R\+E\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+legendre.\+tcc}, \hyperpage{619}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+M\+O\+D\+\_\+\+B\+E\+S\+S\+E\+L\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+mod\+\_\+bessel.\+tcc}, \hyperpage{621}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+O\+W\+E\+N\+S\+\_\+\+T\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+owens\+\_\+t.\+tcc}, \hyperpage{622}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+P\+O\+L\+Y\+L\+O\+G\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+polylog.\+tcc}, \hyperpage{625}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+S\+T\+I\+R\+L\+I\+N\+G\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+stirling.\+tcc}, \hyperpage{627}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+H\+E\+T\+A\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+theta.\+tcc}, \hyperpage{630}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+R\+I\+G\+I\+N\+T\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+trigint.\+tcc}, \hyperpage{634}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+R\+I\+G\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+trig.\+tcc}, \hyperpage{632}
+  \item {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+Z\+E\+T\+A\+\_\+\+T\+CC}
+    \subitem {sf\+\_\+zeta.\+tcc}, \hyperpage{637}
+  \item {\+\_\+\+M\+\_\+omega\+\_\+1}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}, 
+		\hyperpage{518}
+  \item {\+\_\+\+M\+\_\+omega\+\_\+3}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}, 
+		\hyperpage{518}
+  \item {\+\_\+\+N\+\_\+\+F\+GH}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{555}
+  \item {\+\_\+\+Num\+\_\+\+Euler\+\_\+\+Maclaurin\+\_\+zeta}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{440}
+  \item {\+\_\+\+Num\+\_\+\+Stieljes}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{441}
+  \item {\+\_\+\+Real}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}, 
+		\hyperpage{514}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}, 
+		\hyperpage{523}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}, 
+		\hyperpage{528}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+roots\+\_\+t}, 
+		\hyperpage{531}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}, 
+		\hyperpage{561}
+  \item {\+\_\+\+Real\+\_\+\+Omega1}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}, 
+		\hyperpage{514}
+  \item {\+\_\+\+Real\+\_\+\+Omega3}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}, 
+		\hyperpage{514}
+  \item {\+\_\+\+S\+\_\+\+Ai}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{551}
+  \item {\+\_\+\+S\+\_\+\+Ai0}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{555}
+  \item {\+\_\+\+S\+\_\+\+Aip0}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{555}
+  \item {\+\_\+\+S\+\_\+\+Airy}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{551}
+  \item {\+\_\+\+S\+\_\+\+Bi}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{552}
+  \item {\+\_\+\+S\+\_\+\+Bi0}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{555}
+  \item {\+\_\+\+S\+\_\+\+Bip0}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{556}
+  \item {\+\_\+\+S\+\_\+\+Euler\+\_\+\+Maclaurin\+\_\+zeta}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{441}
+  \item {\+\_\+\+S\+\_\+\+F\+GH}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{552}
+  \item {\+\_\+\+S\+\_\+\+Fock}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{553}
+  \item {\+\_\+\+S\+\_\+\+Gi0}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{556}
+  \item {\+\_\+\+S\+\_\+\+Gip0}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{556}
+  \item {\+\_\+\+S\+\_\+\+Hi0}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{556}
+  \item {\+\_\+\+S\+\_\+\+Hip0}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{557}
+  \item {\+\_\+\+S\+\_\+\+Scorer}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{553}
+  \item {\+\_\+\+S\+\_\+\+Scorer2}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{554}
+  \item {\+\_\+\+S\+\_\+\+Stieljes}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{445}
+  \item {\+\_\+\+S\+\_\+absarg\+\_\+ge\+\_\+pio3}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}, 
+		\hyperpage{538}
+  \item {\+\_\+\+S\+\_\+absarg\+\_\+lt\+\_\+pio3}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}, 
+		\hyperpage{539}
+  \item {\+\_\+\+S\+\_\+c}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+data$<$ double $>$}, 
+		\hyperpage{541}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+data$<$ float $>$}, 
+		\hyperpage{542}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+data$<$ long double $>$}, 
+		\hyperpage{543}
+  \item {\+\_\+\+S\+\_\+cheby}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+lanczos\+\_\+data$<$ double $>$}, 
+		\hyperpage{506}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+lanczos\+\_\+data$<$ float $>$}, 
+		\hyperpage{507}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+lanczos\+\_\+data$<$ long double $>$}, 
+		\hyperpage{508}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+spouge\+\_\+data$<$ double $>$}, 
+		\hyperpage{509}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+spouge\+\_\+data$<$ float $>$}, 
+		\hyperpage{510}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+spouge\+\_\+data$<$ long double $>$}, 
+		\hyperpage{511}
+  \item {\+\_\+\+S\+\_\+d}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+data$<$ double $>$}, 
+		\hyperpage{541}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+data$<$ float $>$}, 
+		\hyperpage{542}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+data$<$ long double $>$}, 
+		\hyperpage{543}
+  \item {\+\_\+\+S\+\_\+double\+\_\+factorial\+\_\+table}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{441}
+  \item {\+\_\+\+S\+\_\+eps}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{556}
+  \item {\+\_\+\+S\+\_\+factorial\+\_\+table}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{441}
+  \item {\+\_\+\+S\+\_\+g}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+lanczos\+\_\+data$<$ double $>$}, 
+		\hyperpage{506}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+lanczos\+\_\+data$<$ float $>$}, 
+		\hyperpage{507}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+lanczos\+\_\+data$<$ long double $>$}, 
+		\hyperpage{508}
+  \item {\+\_\+\+S\+\_\+harmonic\+\_\+denom}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{442}
+  \item {\+\_\+\+S\+\_\+harmonic\+\_\+numer}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{442}
+  \item {\+\_\+\+S\+\_\+i}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{557}
+  \item {\+\_\+\+S\+\_\+max\+\_\+cd}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+data$<$ double $>$}, 
+		\hyperpage{541}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+data$<$ float $>$}, 
+		\hyperpage{542}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+data$<$ long double $>$}, 
+		\hyperpage{543}
+  \item {\+\_\+\+S\+\_\+neg\+\_\+double\+\_\+factorial\+\_\+table}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{442}
+  \item {\+\_\+\+S\+\_\+num\+\_\+double\+\_\+factorials}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{442}
+  \item {\+\_\+\+S\+\_\+num\+\_\+double\+\_\+factorials$<$ double $>$}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{442}
+  \item {\+\_\+\+S\+\_\+num\+\_\+double\+\_\+factorials$<$ float $>$}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{443}
+  \item {\+\_\+\+S\+\_\+num\+\_\+double\+\_\+factorials$<$ long double $>$}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{443}
+  \item {\+\_\+\+S\+\_\+num\+\_\+factorials}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{443}
+  \item {\+\_\+\+S\+\_\+num\+\_\+factorials$<$ double $>$}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{443}
+  \item {\+\_\+\+S\+\_\+num\+\_\+factorials$<$ float $>$}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{443}
+  \item {\+\_\+\+S\+\_\+num\+\_\+factorials$<$ long double $>$}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{444}
+  \item {\+\_\+\+S\+\_\+num\+\_\+harmonic\+\_\+numer}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{444}
+  \item {\+\_\+\+S\+\_\+num\+\_\+neg\+\_\+double\+\_\+factorials}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{444}
+  \item {\+\_\+\+S\+\_\+num\+\_\+neg\+\_\+double\+\_\+factorials$<$ double $>$}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{444}
+  \item {\+\_\+\+S\+\_\+num\+\_\+neg\+\_\+double\+\_\+factorials$<$ float $>$}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{444}
+  \item {\+\_\+\+S\+\_\+num\+\_\+neg\+\_\+double\+\_\+factorials$<$ long double $>$}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{445}
+  \item {\+\_\+\+S\+\_\+num\+\_\+zetam1}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{445}
+  \item {\+\_\+\+S\+\_\+pi}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}, 
+		\hyperpage{518}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{557}
+  \item {\+\_\+\+S\+\_\+sqrt\+\_\+pi}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}, 
+		\hyperpage{546}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}, 
+		\hyperpage{557}
+  \item {\+\_\+\+S\+\_\+zetam1}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{445}
+  \item {\+\_\+\+Terminator}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator}, 
+		\hyperpage{566}
+  \item {\+\_\+\+Tp\+\_\+\+Nome}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}, 
+		\hyperpage{515}
+  \item {\+\_\+\+Type}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}, 
+		\hyperpage{523}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}, 
+		\hyperpage{528}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+roots\+\_\+t}, 
+		\hyperpage{531}
+  \item {\+\_\+\+Val}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+Auxilliary\+State}, 
+		\hyperpage{558}
+  \item {\+\_\+\+\_\+\+Ai\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+airy\+\_\+t}, 
+		\hyperpage{448}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}, 
+		\hyperpage{562}
+  \item {\+\_\+\+\_\+\+Ai\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+airy\+\_\+t}, 
+		\hyperpage{448}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}, 
+		\hyperpage{562}
+  \item {\+\_\+\+\_\+\+Bi\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+airy\+\_\+t}, 
+		\hyperpage{448}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}, 
+		\hyperpage{562}
+  \item {\+\_\+\+\_\+\+Bi\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+airy\+\_\+t}, 
+		\hyperpage{448}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}, 
+		\hyperpage{562}
+  \item {\+\_\+\+\_\+\+C\+\_\+n}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gegenbauer\+\_\+t}, 
+		\hyperpage{477}
+  \item {\+\_\+\+\_\+\+C\+\_\+nm1}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gegenbauer\+\_\+t}, 
+		\hyperpage{478}
+  \item {\+\_\+\+\_\+\+C\+\_\+nm2}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gegenbauer\+\_\+t}, 
+		\hyperpage{478}
+  \item {\+\_\+\+\_\+\+F\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+coulomb\+\_\+t}, 
+		\hyperpage{461}
+  \item {\+\_\+\+\_\+\+F\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+coulomb\+\_\+t}, 
+		\hyperpage{461}
+  \item {\+\_\+\+\_\+\+G\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+coulomb\+\_\+t}, 
+		\hyperpage{462}
+  \item {\+\_\+\+\_\+\+G\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+coulomb\+\_\+t}, 
+		\hyperpage{462}
+  \item {\+\_\+\+\_\+\+H1\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+t}, 
+		\hyperpage{464}
+  \item {\+\_\+\+\_\+\+H1\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+t}, 
+		\hyperpage{464}
+  \item {\+\_\+\+\_\+\+H2\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+t}, 
+		\hyperpage{464}
+  \item {\+\_\+\+\_\+\+H2\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+t}, 
+		\hyperpage{464}
+  \item {\+\_\+\+\_\+\+H\+\_\+n}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+t}, 
+		\hyperpage{482}
+  \item {\+\_\+\+\_\+\+H\+\_\+nm1}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+t}, 
+		\hyperpage{482}
+  \item {\+\_\+\+\_\+\+H\+\_\+nm2}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+t}, 
+		\hyperpage{482}
+  \item {\+\_\+\+\_\+\+He\+\_\+n}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+he\+\_\+t}, 
+		\hyperpage{480}
+  \item {\+\_\+\+\_\+\+He\+\_\+nm1}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+he\+\_\+t}, 
+		\hyperpage{480}
+  \item {\+\_\+\+\_\+\+He\+\_\+nm2}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+he\+\_\+t}, 
+		\hyperpage{480}
+  \item {\+\_\+\+\_\+\+I\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+mod\+\_\+bessel\+\_\+t}, 
+		\hyperpage{466}
+  \item {\+\_\+\+\_\+\+I\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+mod\+\_\+bessel\+\_\+t}, 
+		\hyperpage{467}
+  \item {\+\_\+\+\_\+\+J\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+t}, 
+		\hyperpage{459}
+  \item {\+\_\+\+\_\+\+J\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+t}, 
+		\hyperpage{459}
+  \item {\+\_\+\+\_\+\+K\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+mod\+\_\+bessel\+\_\+t}, 
+		\hyperpage{467}
+  \item {\+\_\+\+\_\+\+K\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+mod\+\_\+bessel\+\_\+t}, 
+		\hyperpage{467}
+  \item {\+\_\+\+\_\+\+L\+\_\+n}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+laguerre\+\_\+t}, 
+		\hyperpage{491}
+  \item {\+\_\+\+\_\+\+L\+\_\+nm1}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+laguerre\+\_\+t}, 
+		\hyperpage{491}
+  \item {\+\_\+\+\_\+\+L\+\_\+nm2}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+laguerre\+\_\+t}, 
+		\hyperpage{491}
+  \item {\+\_\+\+\_\+\+N\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+t}, 
+		\hyperpage{459}
+  \item {\+\_\+\+\_\+\+N\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+t}, 
+		\hyperpage{459}
+  \item {\+\_\+\+\_\+\+P\+\_\+l}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}, 
+		\hyperpage{493}
+  \item {\+\_\+\+\_\+\+P\+\_\+lm1}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}, 
+		\hyperpage{493}
+  \item {\+\_\+\+\_\+\+P\+\_\+lm2}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}, 
+		\hyperpage{493}
+  \item {\+\_\+\+\_\+\+P\+\_\+n}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+t}, 
+		\hyperpage{489}
+  \item {\+\_\+\+\_\+\+P\+\_\+nm1}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+t}, 
+		\hyperpage{489}
+  \item {\+\_\+\+\_\+\+P\+\_\+nm2}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+t}, 
+		\hyperpage{489}
+  \item {\+\_\+\+\_\+\+S\+T\+D\+C\+P\+P\+\_\+\+M\+A\+T\+H\+\_\+\+S\+P\+E\+C\+\_\+\+F\+U\+N\+C\+S\+\_\+\+\_\+}
+    \subitem {specfun.\+h}, \hyperpage{653}
+  \item {\+\_\+\+\_\+\+T\+\_\+n}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+t\+\_\+t}, 
+		\hyperpage{450}
+  \item {\+\_\+\+\_\+\+T\+\_\+nm1}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+t\+\_\+t}, 
+		\hyperpage{451}
+  \item {\+\_\+\+\_\+\+T\+\_\+nm2}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+t\+\_\+t}, 
+		\hyperpage{451}
+  \item {\+\_\+\+\_\+\+U\+\_\+n}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+u\+\_\+t}, 
+		\hyperpage{452}
+  \item {\+\_\+\+\_\+\+U\+\_\+nm1}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+u\+\_\+t}, 
+		\hyperpage{453}
+  \item {\+\_\+\+\_\+\+U\+\_\+nm2}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+u\+\_\+t}, 
+		\hyperpage{453}
+  \item {\+\_\+\+\_\+\+V\+\_\+n}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+v\+\_\+t}, 
+		\hyperpage{454}
+  \item {\+\_\+\+\_\+\+V\+\_\+nm1}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+v\+\_\+t}, 
+		\hyperpage{455}
+  \item {\+\_\+\+\_\+\+V\+\_\+nm2}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+v\+\_\+t}, 
+		\hyperpage{455}
+  \item {\+\_\+\+\_\+\+W\+\_\+n}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+w\+\_\+t}, 
+		\hyperpage{456}
+  \item {\+\_\+\+\_\+\+W\+\_\+nm1}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+w\+\_\+t}, 
+		\hyperpage{457}
+  \item {\+\_\+\+\_\+\+W\+\_\+nm2}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+w\+\_\+t}, 
+		\hyperpage{457}
+  \item {\+\_\+\+\_\+\+Wronskian}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+airy\+\_\+t}, 
+		\hyperpage{448}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+t}, 
+		\hyperpage{458}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+coulomb\+\_\+t}, 
+		\hyperpage{461}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+t}, 
+		\hyperpage{464}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+mod\+\_\+bessel\+\_\+t}, 
+		\hyperpage{466}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fock\+\_\+airy\+\_\+t}, 
+		\hyperpage{469}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+bessel\+\_\+t}, 
+		\hyperpage{498}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+hankel\+\_\+t}, 
+		\hyperpage{501}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+mod\+\_\+bessel\+\_\+t}, 
+		\hyperpage{503}
+  \item {\+\_\+\+\_\+airy}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{262}
+  \item {\+\_\+\+\_\+airy\+\_\+ai}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{262}
+  \item {\+\_\+\+\_\+airy\+\_\+arg}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{262}
+  \item {\+\_\+\+\_\+airy\+\_\+bi}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{263}
+  \item {\+\_\+\+\_\+alpha1}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gegenbauer\+\_\+t}, 
+		\hyperpage{477}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+t}, 
+		\hyperpage{488}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+laguerre\+\_\+t}, 
+		\hyperpage{490}
+  \item {\+\_\+\+\_\+am}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t}, 
+		\hyperpage{484}
+  \item {\+\_\+\+\_\+assoc\+\_\+laguerre}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{263}
+  \item {\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{264}
+  \item {\+\_\+\+\_\+bernoulli}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{265}
+  \item {\+\_\+\+\_\+bernoulli\+\_\+2n}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{265}
+  \item {\+\_\+\+\_\+bernoulli\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{266}
+  \item {\+\_\+\+\_\+beta}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{267}
+  \item {\+\_\+\+\_\+beta1}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+t}, 
+		\hyperpage{488}
+  \item {\+\_\+\+\_\+beta\+\_\+gamma}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{267}
+  \item {\+\_\+\+\_\+beta\+\_\+inc}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{268}
+  \item {\+\_\+\+\_\+beta\+\_\+lgamma}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{269}
+  \item {\+\_\+\+\_\+beta\+\_\+p}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{269}
+  \item {\+\_\+\+\_\+beta\+\_\+product}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{269}
+  \item {\+\_\+\+\_\+binomial}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{270, 271}
+  \item {\+\_\+\+\_\+binomial\+\_\+p}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{271}
+  \item {\+\_\+\+\_\+binomial\+\_\+pdf}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{272}
+  \item {\+\_\+\+\_\+binomial\+\_\+q}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{273}
+  \item {\+\_\+\+\_\+bose\+\_\+einstein}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{273}
+  \item {\+\_\+\+\_\+cauchy\+\_\+p}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{274}
+  \item {\+\_\+\+\_\+cd}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t}, 
+		\hyperpage{484}
+  \item {\+\_\+\+\_\+chebyshev\+\_\+recur}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{274}
+  \item {\+\_\+\+\_\+chebyshev\+\_\+t}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{275}
+  \item {\+\_\+\+\_\+chebyshev\+\_\+u}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{275}
+  \item {\+\_\+\+\_\+chebyshev\+\_\+v}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{276}
+  \item {\+\_\+\+\_\+chebyshev\+\_\+w}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{277}
+  \item {\+\_\+\+\_\+chi\+\_\+squared\+\_\+pdf}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{277}
+  \item {\+\_\+\+\_\+chi\+\_\+squared\+\_\+pdfc}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{278}
+  \item {\+\_\+\+\_\+chshint}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{278}
+  \item {\+\_\+\+\_\+chshint\+\_\+cont\+\_\+frac}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{279}
+  \item {\+\_\+\+\_\+chshint\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{279}
+  \item {\+\_\+\+\_\+clamp\+\_\+0\+\_\+m2pi}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{279}
+  \item {\+\_\+\+\_\+clamp\+\_\+pi}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{280}
+  \item {\+\_\+\+\_\+clausen}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{280, 281}
+  \item {\+\_\+\+\_\+clausen\+\_\+cl}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{281, 282}
+  \item {\+\_\+\+\_\+clausen\+\_\+sl}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{282, 283}
+  \item {\+\_\+\+\_\+cn\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t}, 
+		\hyperpage{484}
+  \item {\+\_\+\+\_\+cn\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t}, 
+		\hyperpage{486}
+  \item {\+\_\+\+\_\+comp\+\_\+ellint\+\_\+1}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{284}
+  \item {\+\_\+\+\_\+comp\+\_\+ellint\+\_\+2}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{284}
+  \item {\+\_\+\+\_\+comp\+\_\+ellint\+\_\+3}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{286}
+  \item {\+\_\+\+\_\+comp\+\_\+ellint\+\_\+d}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{286}
+  \item {\+\_\+\+\_\+comp\+\_\+ellint\+\_\+rf}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{287}
+  \item {\+\_\+\+\_\+comp\+\_\+ellint\+\_\+rg}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{287}
+  \item {\+\_\+\+\_\+conf\+\_\+hyperg}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{287}
+  \item {\+\_\+\+\_\+conf\+\_\+hyperg\+\_\+lim}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{288}
+  \item {\+\_\+\+\_\+conf\+\_\+hyperg\+\_\+lim\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{288}
+  \item {\+\_\+\+\_\+conf\+\_\+hyperg\+\_\+luke}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{289}
+  \item {\+\_\+\+\_\+conf\+\_\+hyperg\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{289}
+  \item {\+\_\+\+\_\+cos\+\_\+pi}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{290}
+  \item {\+\_\+\+\_\+cos\+\_\+v}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}, 
+		\hyperpage{497}
+  \item {\+\_\+\+\_\+cosh\+\_\+pi}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{291}
+  \item {\+\_\+\+\_\+coshint}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{291}
+  \item {\+\_\+\+\_\+coulomb\+\_\+\+C\+F1}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{292}
+  \item {\+\_\+\+\_\+coulomb\+\_\+\+C\+F2}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{292}
+  \item {\+\_\+\+\_\+coulomb\+\_\+f\+\_\+recur}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{292}
+  \item {\+\_\+\+\_\+coulomb\+\_\+g\+\_\+recur}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{293}
+  \item {\+\_\+\+\_\+coulomb\+\_\+norm}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{293}
+  \item {\+\_\+\+\_\+cpp\+\_\+lib\+\_\+math\+\_\+special\+\_\+functions}
+    \subitem {specfun.\+h}, \hyperpage{652}
+  \item {\+\_\+\+\_\+cs}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t}, 
+		\hyperpage{484}
+  \item {\+\_\+\+\_\+cyl\+\_\+bessel}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{293}
+  \item {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+i}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{294}
+  \item {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+ij\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{295}
+  \item {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+ik}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{295}
+  \item {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+ik\+\_\+asymp}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{296}
+  \item {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+ik\+\_\+steed}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{297}
+  \item {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+j}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{297}
+  \item {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+jn}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{298}
+  \item {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+jn\+\_\+asymp}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{298}
+  \item {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+jn\+\_\+neg\+\_\+arg}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{299}
+  \item {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+jn\+\_\+steed}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{299}
+  \item {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+k}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{300}
+  \item {\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+1}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{300, 301}
+  \item {\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+2}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{302}
+  \item {\+\_\+\+\_\+cyl\+\_\+neumann}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{303}
+  \item {\+\_\+\+\_\+cyl\+\_\+neumann\+\_\+n}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{303}
+  \item {\+\_\+\+\_\+dawson}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{304}
+  \item {\+\_\+\+\_\+dawson\+\_\+cont\+\_\+frac}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{304}
+  \item {\+\_\+\+\_\+dawson\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{305}
+  \item {\+\_\+\+\_\+dc}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t}, 
+		\hyperpage{484}
+  \item {\+\_\+\+\_\+debye}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{305}
+  \item {\+\_\+\+\_\+debye\+\_\+region}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{306}
+  \item {\+\_\+\+\_\+delta}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}, 
+		\hyperpage{529}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+roots\+\_\+t}, 
+		\hyperpage{532}
+  \item {\+\_\+\+\_\+digamma}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{306}
+  \item {\+\_\+\+\_\+digamma\+\_\+asymp}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{307}
+  \item {\+\_\+\+\_\+digamma\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{307}
+  \item {\+\_\+\+\_\+dilog}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{308}
+  \item {\+\_\+\+\_\+dirichlet\+\_\+beta}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{308, 309}
+  \item {\+\_\+\+\_\+dirichlet\+\_\+eta}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{309, 310}
+  \item {\+\_\+\+\_\+dirichlet\+\_\+lambda}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{311}
+  \item {\+\_\+\+\_\+dn\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t}, 
+		\hyperpage{486}
+  \item {\+\_\+\+\_\+double\+\_\+factorial}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{311}
+  \item {\+\_\+\+\_\+ds}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t}, 
+		\hyperpage{485}
+  \item {\+\_\+\+\_\+e1}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+roots\+\_\+t}, 
+		\hyperpage{533}
+  \item {\+\_\+\+\_\+e2}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+roots\+\_\+t}, 
+		\hyperpage{533}
+  \item {\+\_\+\+\_\+e3}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+roots\+\_\+t}, 
+		\hyperpage{533}
+  \item {\+\_\+\+\_\+ellint\+\_\+1}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{312}
+  \item {\+\_\+\+\_\+ellint\+\_\+2}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{312}
+  \item {\+\_\+\+\_\+ellint\+\_\+3}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{313}
+  \item {\+\_\+\+\_\+ellint\+\_\+cel}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{314}
+  \item {\+\_\+\+\_\+ellint\+\_\+d}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{314}
+  \item {\+\_\+\+\_\+ellint\+\_\+el1}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{314}
+  \item {\+\_\+\+\_\+ellint\+\_\+el2}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{314}
+  \item {\+\_\+\+\_\+ellint\+\_\+el3}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{315}
+  \item {\+\_\+\+\_\+ellint\+\_\+rc}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{315}
+  \item {\+\_\+\+\_\+ellint\+\_\+rd}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{316}
+  \item {\+\_\+\+\_\+ellint\+\_\+rf}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{317}
+  \item {\+\_\+\+\_\+ellint\+\_\+rg}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{317}
+  \item {\+\_\+\+\_\+ellint\+\_\+rj}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{318}
+  \item {\+\_\+\+\_\+ellnome}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{319}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}, 
+		\hyperpage{516}
+  \item {\+\_\+\+\_\+ellnome\+\_\+k}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{320}
+  \item {\+\_\+\+\_\+ellnome\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{320}
+  \item {\+\_\+\+\_\+eta\+\_\+arg}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+coulomb\+\_\+t}, 
+		\hyperpage{461}
+  \item {\+\_\+\+\_\+euler}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{320, 321}
+  \item {\+\_\+\+\_\+euler\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{321}
+  \item {\+\_\+\+\_\+eulerian\+\_\+1}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{321}
+  \item {\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{322}
+  \item {\+\_\+\+\_\+eulerian\+\_\+2}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{322}
+  \item {\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{322}
+  \item {\+\_\+\+\_\+exp2}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{323}
+  \item {\+\_\+\+\_\+expint}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{323, 324}
+  \item {\+\_\+\+\_\+expint\+\_\+\+E1}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{324}
+  \item {\+\_\+\+\_\+expint\+\_\+\+E1\+\_\+asymp}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{325}
+  \item {\+\_\+\+\_\+expint\+\_\+\+E1\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{326}
+  \item {\+\_\+\+\_\+expint\+\_\+\+Ei}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{326}
+  \item {\+\_\+\+\_\+expint\+\_\+\+Ei\+\_\+asymp}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{327}
+  \item {\+\_\+\+\_\+expint\+\_\+\+Ei\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{327}
+  \item {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+asymp}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{328}
+  \item {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+cont\+\_\+frac}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{329}
+  \item {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+large\+\_\+n}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{329}
+  \item {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+recursion}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{330}
+  \item {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{330}
+  \item {\+\_\+\+\_\+exponential\+\_\+p}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{331}
+  \item {\+\_\+\+\_\+exponential\+\_\+pdf}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{331}
+  \item {\+\_\+\+\_\+exponential\+\_\+q}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{332}
+  \item {\+\_\+\+\_\+factorial}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{332}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Factorial\+\_\+table}, 
+		\hyperpage{565}
+  \item {\+\_\+\+\_\+fai\+\_\+deriv}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+Auxilliary\+State}, 
+		\hyperpage{558}
+  \item {\+\_\+\+\_\+fai\+\_\+value}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+Auxilliary\+State}, 
+		\hyperpage{559}
+  \item {\+\_\+\+\_\+falling\+\_\+factorial}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{332, 333}
+  \item {\+\_\+\+\_\+fermi\+\_\+dirac}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{333}
+  \item {\+\_\+\+\_\+fisher\+\_\+f\+\_\+p}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{334}
+  \item {\+\_\+\+\_\+fisher\+\_\+f\+\_\+pdf}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{334}
+  \item {\+\_\+\+\_\+fisher\+\_\+f\+\_\+q}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{335}
+  \item {\+\_\+\+\_\+fock\+\_\+airy}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{336}
+  \item {\+\_\+\+\_\+fp\+\_\+is\+\_\+equal}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx}, \hyperpage{231}
+  \item {\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx}, \hyperpage{232}
+  \item {\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx}, \hyperpage{232}
+  \item {\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx}, \hyperpage{233}
+  \item {\+\_\+\+\_\+fp\+\_\+is\+\_\+integer}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx}, \hyperpage{233}
+  \item {\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx}, \hyperpage{234}
+  \item {\+\_\+\+\_\+fp\+\_\+is\+\_\+zero}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx}, \hyperpage{234}
+  \item {\+\_\+\+\_\+fp\+\_\+max\+\_\+abs}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx}, \hyperpage{235}
+  \item {\+\_\+\+\_\+fresnel}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{336}
+  \item {\+\_\+\+\_\+fresnel\+\_\+cont\+\_\+frac}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{337}
+  \item {\+\_\+\+\_\+fresnel\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{337}
+  \item {\+\_\+\+\_\+g\+\_\+2}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}, 
+		\hyperpage{529}
+  \item {\+\_\+\+\_\+g\+\_\+3}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}, 
+		\hyperpage{529}
+  \item {\+\_\+\+\_\+gai\+\_\+deriv}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+Auxilliary\+State}, 
+		\hyperpage{559}
+  \item {\+\_\+\+\_\+gai\+\_\+value}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+Auxilliary\+State}, 
+		\hyperpage{559}
+  \item {\+\_\+\+\_\+gamma}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{337, 338}
+  \item {\+\_\+\+\_\+gamma\+\_\+1\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}, 
+		\hyperpage{474}
+  \item {\+\_\+\+\_\+gamma\+\_\+2\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}, 
+		\hyperpage{474}
+  \item {\+\_\+\+\_\+gamma\+\_\+cont\+\_\+frac}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{338}
+  \item {\+\_\+\+\_\+gamma\+\_\+minus\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}, 
+		\hyperpage{474}
+  \item {\+\_\+\+\_\+gamma\+\_\+p}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{338, 339}
+  \item {\+\_\+\+\_\+gamma\+\_\+pdf}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{339}
+  \item {\+\_\+\+\_\+gamma\+\_\+plus\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}, 
+		\hyperpage{475}
+  \item {\+\_\+\+\_\+gamma\+\_\+q}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{340}
+  \item {\+\_\+\+\_\+gamma\+\_\+reciprocal}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{341}
+  \item {\+\_\+\+\_\+gamma\+\_\+reciprocal\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{341}
+  \item {\+\_\+\+\_\+gamma\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{342}
+  \item {\+\_\+\+\_\+gamma\+\_\+temme}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{342}
+  \item {\+\_\+\+\_\+gappa\+\_\+p\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gappa\+\_\+pq\+\_\+t}, 
+		\hyperpage{476}
+  \item {\+\_\+\+\_\+gappa\+\_\+q\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gappa\+\_\+pq\+\_\+t}, 
+		\hyperpage{476}
+  \item {\+\_\+\+\_\+gauss}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{343}
+  \item {\+\_\+\+\_\+gegenbauer\+\_\+recur}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{343}
+  \item {\+\_\+\+\_\+gegenbauer\+\_\+zeros}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{344}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx}, \hyperpage{217}
+    \subitem {\+\_\+\+\_\+fp\+\_\+is\+\_\+equal}, \hyperpage{231}
+    \subitem {\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer}, 
+		\hyperpage{232}
+    \subitem {\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer}, 
+		\hyperpage{232}
+    \subitem {\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer}, 
+		\hyperpage{233}
+    \subitem {\+\_\+\+\_\+fp\+\_\+is\+\_\+integer}, \hyperpage{233}
+    \subitem {\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer}, 
+		\hyperpage{234}
+    \subitem {\+\_\+\+\_\+fp\+\_\+is\+\_\+zero}, \hyperpage{234}
+    \subitem {\+\_\+\+\_\+fp\+\_\+max\+\_\+abs}, \hyperpage{235}
+    \subitem {\+\_\+\+\_\+parity}, \hyperpage{235}
+    \subitem {gauss\+\_\+quad\+\_\+type}, \hyperpage{231}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+airy\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+Ai\+\_\+deriv}, \hyperpage{448}
+    \subitem {\+\_\+\+\_\+\+Ai\+\_\+value}, \hyperpage{448}
+    \subitem {\+\_\+\+\_\+\+Bi\+\_\+deriv}, \hyperpage{448}
+    \subitem {\+\_\+\+\_\+\+Bi\+\_\+value}, \hyperpage{448}
+    \subitem {\+\_\+\+\_\+\+Wronskian}, \hyperpage{448}
+    \subitem {\+\_\+\+\_\+x\+\_\+arg}, \hyperpage{449}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+airy\+\_\+t$<$ \+\_\+\+Tx, \+\_\+\+Tp $>$}, 
+		\hyperpage{447}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+t\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+T\+\_\+n}, \hyperpage{450}
+    \subitem {\+\_\+\+\_\+\+T\+\_\+nm1}, \hyperpage{451}
+    \subitem {\+\_\+\+\_\+\+T\+\_\+nm2}, \hyperpage{451}
+    \subitem {\+\_\+\+\_\+n}, \hyperpage{450}
+    \subitem {\+\_\+\+\_\+x}, \hyperpage{451}
+    \subitem {deriv}, \hyperpage{450}
+    \subitem {deriv2}, \hyperpage{450}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+t\+\_\+t$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{449}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+u\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+U\+\_\+n}, \hyperpage{452}
+    \subitem {\+\_\+\+\_\+\+U\+\_\+nm1}, \hyperpage{453}
+    \subitem {\+\_\+\+\_\+\+U\+\_\+nm2}, \hyperpage{453}
+    \subitem {\+\_\+\+\_\+n}, \hyperpage{452}
+    \subitem {\+\_\+\+\_\+x}, \hyperpage{453}
+    \subitem {deriv}, \hyperpage{452}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+u\+\_\+t$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{451}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+v\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+V\+\_\+n}, \hyperpage{454}
+    \subitem {\+\_\+\+\_\+\+V\+\_\+nm1}, \hyperpage{455}
+    \subitem {\+\_\+\+\_\+\+V\+\_\+nm2}, \hyperpage{455}
+    \subitem {\+\_\+\+\_\+n}, \hyperpage{454}
+    \subitem {\+\_\+\+\_\+x}, \hyperpage{455}
+    \subitem {deriv}, \hyperpage{454}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+v\+\_\+t$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{453}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+w\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+W\+\_\+n}, \hyperpage{456}
+    \subitem {\+\_\+\+\_\+\+W\+\_\+nm1}, \hyperpage{457}
+    \subitem {\+\_\+\+\_\+\+W\+\_\+nm2}, \hyperpage{457}
+    \subitem {\+\_\+\+\_\+n}, \hyperpage{456}
+    \subitem {\+\_\+\+\_\+x}, \hyperpage{457}
+    \subitem {deriv}, \hyperpage{456}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+w\+\_\+t$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{455}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+J\+\_\+deriv}, \hyperpage{459}
+    \subitem {\+\_\+\+\_\+\+J\+\_\+value}, \hyperpage{459}
+    \subitem {\+\_\+\+\_\+\+N\+\_\+deriv}, \hyperpage{459}
+    \subitem {\+\_\+\+\_\+\+N\+\_\+value}, \hyperpage{459}
+    \subitem {\+\_\+\+\_\+\+Wronskian}, \hyperpage{458}
+    \subitem {\+\_\+\+\_\+nu\+\_\+arg}, \hyperpage{459}
+    \subitem {\+\_\+\+\_\+x\+\_\+arg}, \hyperpage{460}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+t$<$ \+\_\+\+Tnu, \+\_\+\+Tx, \+\_\+\+Tp $>$}, 
+		\hyperpage{457}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+coulomb\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+F\+\_\+deriv}, \hyperpage{461}
+    \subitem {\+\_\+\+\_\+\+F\+\_\+value}, \hyperpage{461}
+    \subitem {\+\_\+\+\_\+\+G\+\_\+deriv}, \hyperpage{462}
+    \subitem {\+\_\+\+\_\+\+G\+\_\+value}, \hyperpage{462}
+    \subitem {\+\_\+\+\_\+\+Wronskian}, \hyperpage{461}
+    \subitem {\+\_\+\+\_\+eta\+\_\+arg}, \hyperpage{461}
+    \subitem {\+\_\+\+\_\+l}, \hyperpage{462}
+    \subitem {\+\_\+\+\_\+rho\+\_\+arg}, \hyperpage{462}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+coulomb\+\_\+t$<$ \+\_\+\+Teta, \+\_\+\+Trho, \+\_\+\+Tp $>$}, 
+		\hyperpage{460}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+H1\+\_\+deriv}, \hyperpage{464}
+    \subitem {\+\_\+\+\_\+\+H1\+\_\+value}, \hyperpage{464}
+    \subitem {\+\_\+\+\_\+\+H2\+\_\+deriv}, \hyperpage{464}
+    \subitem {\+\_\+\+\_\+\+H2\+\_\+value}, \hyperpage{464}
+    \subitem {\+\_\+\+\_\+\+Wronskian}, \hyperpage{464}
+    \subitem {\+\_\+\+\_\+nu\+\_\+arg}, \hyperpage{465}
+    \subitem {\+\_\+\+\_\+x\+\_\+arg}, \hyperpage{465}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+t$<$ \+\_\+\+Tnu, \+\_\+\+Tx, \+\_\+\+Tp $>$}, 
+		\hyperpage{463}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+mod\+\_\+bessel\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+I\+\_\+deriv}, \hyperpage{466}
+    \subitem {\+\_\+\+\_\+\+I\+\_\+value}, \hyperpage{467}
+    \subitem {\+\_\+\+\_\+\+K\+\_\+deriv}, \hyperpage{467}
+    \subitem {\+\_\+\+\_\+\+K\+\_\+value}, \hyperpage{467}
+    \subitem {\+\_\+\+\_\+\+Wronskian}, \hyperpage{466}
+    \subitem {\+\_\+\+\_\+nu\+\_\+arg}, \hyperpage{467}
+    \subitem {\+\_\+\+\_\+x\+\_\+arg}, \hyperpage{468}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+mod\+\_\+bessel\+\_\+t$<$ \+\_\+\+Tnu, \+\_\+\+Tx, \+\_\+\+Tp $>$}, 
+		\hyperpage{465}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fock\+\_\+airy\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+Wronskian}, \hyperpage{469}
+    \subitem {\+\_\+\+\_\+w1\+\_\+deriv}, \hyperpage{469}
+    \subitem {\+\_\+\+\_\+w1\+\_\+value}, \hyperpage{469}
+    \subitem {\+\_\+\+\_\+w2\+\_\+deriv}, \hyperpage{469}
+    \subitem {\+\_\+\+\_\+w2\+\_\+value}, \hyperpage{470}
+    \subitem {\+\_\+\+\_\+x\+\_\+arg}, \hyperpage{470}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fock\+\_\+airy\+\_\+t$<$ \+\_\+\+Tx, \+\_\+\+Tp $>$}, 
+		\hyperpage{468}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t}, 
+		\hyperpage{470}
+    \subitem {\+\_\+\+\_\+is\+\_\+integral}, \hyperpage{471}
+    \subitem {\+\_\+\+\_\+value}, \hyperpage{471}
+    \subitem {operator bool}, \hyperpage{471}
+    \subitem {operator()}, \hyperpage{471}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+inc\+\_\+t}
+    \subitem {\+\_\+\+\_\+lgamma\+\_\+value}, \hyperpage{472}
+    \subitem {\+\_\+\+\_\+tgamma\+\_\+value}, \hyperpage{472}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+inc\+\_\+t$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{472}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}
+    \subitem {\+\_\+\+\_\+gamma\+\_\+1\+\_\+value}, \hyperpage{474}
+    \subitem {\+\_\+\+\_\+gamma\+\_\+2\+\_\+value}, \hyperpage{474}
+    \subitem {\+\_\+\+\_\+gamma\+\_\+minus\+\_\+value}, \hyperpage{474}
+    \subitem {\+\_\+\+\_\+gamma\+\_\+plus\+\_\+value}, \hyperpage{475}
+    \subitem {\+\_\+\+\_\+mu\+\_\+arg}, \hyperpage{475}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{473}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gappa\+\_\+pq\+\_\+t}
+    \subitem {\+\_\+\+\_\+gappa\+\_\+p\+\_\+value}, \hyperpage{476}
+    \subitem {\+\_\+\+\_\+gappa\+\_\+q\+\_\+value}, \hyperpage{476}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gappa\+\_\+pq\+\_\+t$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{475}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gegenbauer\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+C\+\_\+n}, \hyperpage{477}
+    \subitem {\+\_\+\+\_\+\+C\+\_\+nm1}, \hyperpage{478}
+    \subitem {\+\_\+\+\_\+\+C\+\_\+nm2}, \hyperpage{478}
+    \subitem {\+\_\+\+\_\+alpha1}, \hyperpage{477}
+    \subitem {\+\_\+\+\_\+n}, \hyperpage{478}
+    \subitem {\+\_\+\+\_\+x}, \hyperpage{478}
+    \subitem {deriv}, \hyperpage{477}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gegenbauer\+\_\+t$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{476}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+he\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+He\+\_\+n}, \hyperpage{480}
+    \subitem {\+\_\+\+\_\+\+He\+\_\+nm1}, \hyperpage{480}
+    \subitem {\+\_\+\+\_\+\+He\+\_\+nm2}, \hyperpage{480}
+    \subitem {\+\_\+\+\_\+n}, \hyperpage{480}
+    \subitem {\+\_\+\+\_\+x}, \hyperpage{480}
+    \subitem {deriv}, \hyperpage{479}
+    \subitem {deriv2}, \hyperpage{479}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+he\+\_\+t$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{479}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+H\+\_\+n}, \hyperpage{482}
+    \subitem {\+\_\+\+\_\+\+H\+\_\+nm1}, \hyperpage{482}
+    \subitem {\+\_\+\+\_\+\+H\+\_\+nm2}, \hyperpage{482}
+    \subitem {\+\_\+\+\_\+n}, \hyperpage{482}
+    \subitem {\+\_\+\+\_\+x}, \hyperpage{483}
+    \subitem {deriv}, \hyperpage{481}
+    \subitem {deriv2}, \hyperpage{482}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+t$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{481}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t}
+    \subitem {\+\_\+\+\_\+am}, \hyperpage{484}
+    \subitem {\+\_\+\+\_\+cd}, \hyperpage{484}
+    \subitem {\+\_\+\+\_\+cn\+\_\+deriv}, \hyperpage{484}
+    \subitem {\+\_\+\+\_\+cn\+\_\+value}, \hyperpage{486}
+    \subitem {\+\_\+\+\_\+cs}, \hyperpage{484}
+    \subitem {\+\_\+\+\_\+dc}, \hyperpage{484}
+    \subitem {\+\_\+\+\_\+dn\+\_\+value}, \hyperpage{486}
+    \subitem {\+\_\+\+\_\+ds}, \hyperpage{485}
+    \subitem {\+\_\+\+\_\+nc}, \hyperpage{485}
+    \subitem {\+\_\+\+\_\+nd}, \hyperpage{485}
+    \subitem {\+\_\+\+\_\+ns}, \hyperpage{485}
+    \subitem {\+\_\+\+\_\+sc}, \hyperpage{485}
+    \subitem {\+\_\+\+\_\+sd}, \hyperpage{486}
+    \subitem {\+\_\+\+\_\+sn\+\_\+deriv}, \hyperpage{486}
+    \subitem {\+\_\+\+\_\+sn\+\_\+value}, \hyperpage{487}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{483}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+P\+\_\+n}, \hyperpage{489}
+    \subitem {\+\_\+\+\_\+\+P\+\_\+nm1}, \hyperpage{489}
+    \subitem {\+\_\+\+\_\+\+P\+\_\+nm2}, \hyperpage{489}
+    \subitem {\+\_\+\+\_\+alpha1}, \hyperpage{488}
+    \subitem {\+\_\+\+\_\+beta1}, \hyperpage{488}
+    \subitem {\+\_\+\+\_\+n}, \hyperpage{488}
+    \subitem {\+\_\+\+\_\+x}, \hyperpage{489}
+    \subitem {deriv}, \hyperpage{488}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+t$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{487}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+laguerre\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+L\+\_\+n}, \hyperpage{491}
+    \subitem {\+\_\+\+\_\+\+L\+\_\+nm1}, \hyperpage{491}
+    \subitem {\+\_\+\+\_\+\+L\+\_\+nm2}, \hyperpage{491}
+    \subitem {\+\_\+\+\_\+alpha1}, \hyperpage{490}
+    \subitem {\+\_\+\+\_\+n}, \hyperpage{491}
+    \subitem {\+\_\+\+\_\+x}, \hyperpage{491}
+    \subitem {deriv}, \hyperpage{490}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+laguerre\+\_\+t$<$ \+\_\+\+Tpa, \+\_\+\+Tp $>$}, 
+		\hyperpage{490}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+P\+\_\+l}, \hyperpage{493}
+    \subitem {\+\_\+\+\_\+\+P\+\_\+lm1}, \hyperpage{493}
+    \subitem {\+\_\+\+\_\+\+P\+\_\+lm2}, \hyperpage{493}
+    \subitem {\+\_\+\+\_\+l}, \hyperpage{493}
+    \subitem {\+\_\+\+\_\+z}, \hyperpage{493}
+    \subitem {deriv}, \hyperpage{492}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{492}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+lgamma\+\_\+t}
+    \subitem {\+\_\+\+\_\+lgamma\+\_\+sign}, \hyperpage{494}
+    \subitem {\+\_\+\+\_\+lgamma\+\_\+value}, \hyperpage{494}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+lgamma\+\_\+t$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{494}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+quadrature\+\_\+point\+\_\+t}
+    \subitem {\+\_\+\+\_\+point}, \hyperpage{496}
+    \subitem {\+\_\+\+\_\+quadrature\+\_\+point\+\_\+t}, 
+		\hyperpage{495, 496}
+    \subitem {\+\_\+\+\_\+weight}, \hyperpage{496}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+quadrature\+\_\+point\+\_\+t$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{495}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}
+    \subitem {\+\_\+\+\_\+cos\+\_\+v}, \hyperpage{497}
+    \subitem {\+\_\+\+\_\+sin\+\_\+v}, \hyperpage{497}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{496}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+bessel\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+Wronskian}, \hyperpage{498}
+    \subitem {\+\_\+\+\_\+j\+\_\+deriv}, \hyperpage{499}
+    \subitem {\+\_\+\+\_\+j\+\_\+value}, \hyperpage{499}
+    \subitem {\+\_\+\+\_\+n\+\_\+arg}, \hyperpage{499}
+    \subitem {\+\_\+\+\_\+n\+\_\+deriv}, \hyperpage{499}
+    \subitem {\+\_\+\+\_\+n\+\_\+value}, \hyperpage{499}
+    \subitem {\+\_\+\+\_\+x\+\_\+arg}, \hyperpage{500}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+bessel\+\_\+t$<$ \+\_\+\+Tn, \+\_\+\+Tx, \+\_\+\+Tp $>$}, 
+		\hyperpage{498}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+hankel\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+Wronskian}, \hyperpage{501}
+    \subitem {\+\_\+\+\_\+h1\+\_\+deriv}, \hyperpage{501}
+    \subitem {\+\_\+\+\_\+h1\+\_\+value}, \hyperpage{501}
+    \subitem {\+\_\+\+\_\+h2\+\_\+deriv}, \hyperpage{501}
+    \subitem {\+\_\+\+\_\+h2\+\_\+value}, \hyperpage{502}
+    \subitem {\+\_\+\+\_\+n\+\_\+arg}, \hyperpage{502}
+    \subitem {\+\_\+\+\_\+x\+\_\+arg}, \hyperpage{502}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+hankel\+\_\+t$<$ \+\_\+\+Tn, \+\_\+\+Tx, \+\_\+\+Tp $>$}, 
+		\hyperpage{500}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+mod\+\_\+bessel\+\_\+t}
+    \subitem {\+\_\+\+\_\+\+Wronskian}, \hyperpage{503}
+    \subitem {\+\_\+\+\_\+i\+\_\+deriv}, \hyperpage{504}
+    \subitem {\+\_\+\+\_\+i\+\_\+value}, \hyperpage{504}
+    \subitem {\+\_\+\+\_\+k\+\_\+deriv}, \hyperpage{504}
+    \subitem {\+\_\+\+\_\+k\+\_\+value}, \hyperpage{504}
+    \subitem {\+\_\+\+\_\+n\+\_\+arg}, \hyperpage{504}
+    \subitem {\+\_\+\+\_\+x\+\_\+arg}, \hyperpage{505}
+  \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+mod\+\_\+bessel\+\_\+t$<$ \+\_\+\+Tn, \+\_\+\+Tx, \+\_\+\+Tp $>$}, 
+		\hyperpage{503}
+  \item {\+\_\+\+\_\+h1\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+hankel\+\_\+t}, 
+		\hyperpage{501}
+  \item {\+\_\+\+\_\+h1\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+hankel\+\_\+t}, 
+		\hyperpage{501}
+  \item {\+\_\+\+\_\+h2\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+hankel\+\_\+t}, 
+		\hyperpage{501}
+  \item {\+\_\+\+\_\+h2\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+hankel\+\_\+t}, 
+		\hyperpage{502}
+  \item {\+\_\+\+\_\+hai\+\_\+deriv}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+Auxilliary\+State}, 
+		\hyperpage{559}
+  \item {\+\_\+\+\_\+hai\+\_\+value}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+Auxilliary\+State}, 
+		\hyperpage{559}
+  \item {\+\_\+\+\_\+hankel}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{344}
+  \item {\+\_\+\+\_\+hankel\+\_\+debye}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{345}
+  \item {\+\_\+\+\_\+hankel\+\_\+params}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{345}
+  \item {\+\_\+\+\_\+hankel\+\_\+uniform}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{346}
+  \item {\+\_\+\+\_\+hankel\+\_\+uniform\+\_\+olver}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{347}
+  \item {\+\_\+\+\_\+hankel\+\_\+uniform\+\_\+outer}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{347}
+  \item {\+\_\+\+\_\+hankel\+\_\+uniform\+\_\+sum}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{348}
+  \item {\+\_\+\+\_\+harmonic\+\_\+number}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{349}
+  \item {\+\_\+\+\_\+hermite}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{349}
+  \item {\+\_\+\+\_\+hermite\+\_\+asymp}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{350}
+  \item {\+\_\+\+\_\+hermite\+\_\+recur}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{351}
+  \item {\+\_\+\+\_\+hermite\+\_\+zeros}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{352}
+  \item {\+\_\+\+\_\+heuman\+\_\+lambda}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{352}
+  \item {\+\_\+\+\_\+hurwitz\+\_\+zeta}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{352}
+  \item {\+\_\+\+\_\+hurwitz\+\_\+zeta\+\_\+euler\+\_\+maclaurin}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{353}
+  \item {\+\_\+\+\_\+hurwitz\+\_\+zeta\+\_\+polylog}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{353}
+  \item {\+\_\+\+\_\+hydrogen}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{354}
+  \item {\+\_\+\+\_\+hyperg}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{354}
+  \item {\+\_\+\+\_\+hyperg\+\_\+luke}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{355}
+  \item {\+\_\+\+\_\+hyperg\+\_\+recur}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{355}
+  \item {\+\_\+\+\_\+hyperg\+\_\+reflect}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{356}
+  \item {\+\_\+\+\_\+hyperg\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{357}
+  \item {\+\_\+\+\_\+i\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+mod\+\_\+bessel\+\_\+t}, 
+		\hyperpage{504}
+  \item {\+\_\+\+\_\+i\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+mod\+\_\+bessel\+\_\+t}, 
+		\hyperpage{504}
+  \item {\+\_\+\+\_\+ibeta\+\_\+cont\+\_\+frac}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{358}
+  \item {\+\_\+\+\_\+is\+\_\+integral}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t}, 
+		\hyperpage{471}
+  \item {\+\_\+\+\_\+j\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+bessel\+\_\+t}, 
+		\hyperpage{499}
+  \item {\+\_\+\+\_\+j\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+bessel\+\_\+t}, 
+		\hyperpage{499}
+  \item {\+\_\+\+\_\+jacobi\+\_\+ellint}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{358}
+  \item {\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}, 
+		\hyperpage{515}
+  \item {\+\_\+\+\_\+jacobi\+\_\+recur}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{359}
+  \item {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}, 
+		\hyperpage{523}
+  \item {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+1}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{359, 360}
+  \item {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+1\+\_\+prod}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{361}
+  \item {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+1\+\_\+sum}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{361}
+  \item {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+2}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{362, 363}
+  \item {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+2\+\_\+prod}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{363}
+  \item {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+2\+\_\+sum}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{364}
+  \item {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+3}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{365}
+  \item {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+3\+\_\+prod}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{366}
+  \item {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+3\+\_\+sum}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{367}
+  \item {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+4}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{367, 368}
+  \item {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+4\+\_\+prod}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{369}
+  \item {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+4\+\_\+sum}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{369}
+  \item {\+\_\+\+\_\+jacobi\+\_\+zeros}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{370}
+  \item {\+\_\+\+\_\+jacobi\+\_\+zeta}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{370}
+  \item {\+\_\+\+\_\+k\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+mod\+\_\+bessel\+\_\+t}, 
+		\hyperpage{504}
+  \item {\+\_\+\+\_\+k\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+mod\+\_\+bessel\+\_\+t}, 
+		\hyperpage{504}
+  \item {\+\_\+\+\_\+klein\+\_\+j}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}, 
+		\hyperpage{529}
+  \item {\+\_\+\+\_\+kolmogorov\+\_\+p}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{371}
+  \item {\+\_\+\+\_\+l}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+coulomb\+\_\+t}, 
+		\hyperpage{462}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}, 
+		\hyperpage{493}
+  \item {\+\_\+\+\_\+laguerre}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{371, 372}
+  \item {\+\_\+\+\_\+laguerre\+\_\+hyperg}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{372}
+  \item {\+\_\+\+\_\+laguerre\+\_\+large\+\_\+n}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{373}
+  \item {\+\_\+\+\_\+laguerre\+\_\+recur}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{374}
+  \item {\+\_\+\+\_\+laguerre\+\_\+zeros}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{375}
+  \item {\+\_\+\+\_\+lanczos\+\_\+binet1p}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{375}
+  \item {\+\_\+\+\_\+lanczos\+\_\+log\+\_\+gamma1p}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{376}
+  \item {\+\_\+\+\_\+legendre\+\_\+p}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{376}
+  \item {\+\_\+\+\_\+legendre\+\_\+q}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{377}
+  \item {\+\_\+\+\_\+legendre\+\_\+zeros}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{378}
+  \item {\+\_\+\+\_\+lgamma\+\_\+sign}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+lgamma\+\_\+t}, 
+		\hyperpage{494}
+  \item {\+\_\+\+\_\+lgamma\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+inc\+\_\+t}, 
+		\hyperpage{472}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+lgamma\+\_\+t}, 
+		\hyperpage{494}
+  \item {\+\_\+\+\_\+log\+\_\+binomial}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{378, 379}
+  \item {\+\_\+\+\_\+log\+\_\+binomial\+\_\+sign}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{379, 380}
+  \item {\+\_\+\+\_\+log\+\_\+double\+\_\+factorial}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{380}
+  \item {\+\_\+\+\_\+log\+\_\+factorial}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{381}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Factorial\+\_\+table}, 
+		\hyperpage{565}
+  \item {\+\_\+\+\_\+log\+\_\+falling\+\_\+factorial}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{381}
+  \item {\+\_\+\+\_\+log\+\_\+gamma}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{382, 383}
+  \item {\+\_\+\+\_\+log\+\_\+gamma\+\_\+bernoulli}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{383}
+  \item {\+\_\+\+\_\+log\+\_\+gamma\+\_\+sign}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{384}
+  \item {\+\_\+\+\_\+log\+\_\+rising\+\_\+factorial}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{384}
+  \item {\+\_\+\+\_\+log\+\_\+stirling\+\_\+1}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{385}
+  \item {\+\_\+\+\_\+log\+\_\+stirling\+\_\+1\+\_\+sign}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{385}
+  \item {\+\_\+\+\_\+log\+\_\+stirling\+\_\+2}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{385}
+  \item {\+\_\+\+\_\+logint}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{386}
+  \item {\+\_\+\+\_\+logistic\+\_\+p}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{386}
+  \item {\+\_\+\+\_\+logistic\+\_\+pdf}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{387}
+  \item {\+\_\+\+\_\+lognormal\+\_\+p}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{387}
+  \item {\+\_\+\+\_\+lognormal\+\_\+pdf}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{387}
+  \item {\+\_\+\+\_\+m}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t\+::\+\_\+\+\_\+arg\+\_\+t}, 
+		\hyperpage{519}
+  \item {\+\_\+\+\_\+max\+\_\+\+F\+GH}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{440}
+  \item {\+\_\+\+\_\+max\+\_\+\+F\+G\+H$<$ double $>$}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{440}
+  \item {\+\_\+\+\_\+max\+\_\+\+F\+G\+H$<$ float $>$}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{440}
+  \item {\+\_\+\+\_\+mu\+\_\+arg}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t}, 
+		\hyperpage{475}
+  \item {\+\_\+\+\_\+n}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+t\+\_\+t}, 
+		\hyperpage{450}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+u\+\_\+t}, 
+		\hyperpage{452}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+v\+\_\+t}, 
+		\hyperpage{454}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+w\+\_\+t}, 
+		\hyperpage{456}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gegenbauer\+\_\+t}, 
+		\hyperpage{478}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+he\+\_\+t}, 
+		\hyperpage{480}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+t}, 
+		\hyperpage{482}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+t}, 
+		\hyperpage{488}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+laguerre\+\_\+t}, 
+		\hyperpage{491}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t\+::\+\_\+\+\_\+arg\+\_\+t}, 
+		\hyperpage{520}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Factorial\+\_\+table}, 
+		\hyperpage{565}
+  \item {\+\_\+\+\_\+n\+\_\+arg}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+bessel\+\_\+t}, 
+		\hyperpage{499}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+hankel\+\_\+t}, 
+		\hyperpage{502}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+mod\+\_\+bessel\+\_\+t}, 
+		\hyperpage{504}
+  \item {\+\_\+\+\_\+n\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+bessel\+\_\+t}, 
+		\hyperpage{499}
+  \item {\+\_\+\+\_\+n\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+bessel\+\_\+t}, 
+		\hyperpage{499}
+  \item {\+\_\+\+\_\+nc}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t}, 
+		\hyperpage{485}
+  \item {\+\_\+\+\_\+nd}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t}, 
+		\hyperpage{485}
+  \item {\+\_\+\+\_\+normal\+\_\+p}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{388}
+  \item {\+\_\+\+\_\+normal\+\_\+pdf}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{388}
+  \item {\+\_\+\+\_\+ns}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t}, 
+		\hyperpage{485}
+  \item {\+\_\+\+\_\+nu\+\_\+arg}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+t}, 
+		\hyperpage{459}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+t}, 
+		\hyperpage{465}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+mod\+\_\+bessel\+\_\+t}, 
+		\hyperpage{467}
+  \item {\+\_\+\+\_\+omega\+\_\+1}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}, 
+		\hyperpage{516}
+  \item {\+\_\+\+\_\+omega\+\_\+2}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}, 
+		\hyperpage{516}
+  \item {\+\_\+\+\_\+omega\+\_\+3}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}, 
+		\hyperpage{517}
+  \item {\+\_\+\+\_\+owens\+\_\+t}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{388}
+  \item {\+\_\+\+\_\+parity}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx}, \hyperpage{235}
+  \item {\+\_\+\+\_\+point}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+quadrature\+\_\+point\+\_\+t}, 
+		\hyperpage{496}
+  \item {\+\_\+\+\_\+polar\+\_\+pi}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{389}
+  \item {\+\_\+\+\_\+polygamma}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{390}
+  \item {\+\_\+\+\_\+polylog}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{390, 391}
+  \item {\+\_\+\+\_\+polylog\+\_\+exp}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{391}
+  \item {\+\_\+\+\_\+polylog\+\_\+exp\+\_\+asymp}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{392}
+  \item {\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{393}
+  \item {\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg\+\_\+int}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{394, 395}
+  \item {\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg\+\_\+real}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{395, 396}
+  \item {\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{396--398}
+  \item {\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos\+\_\+int}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{398, 399}
+  \item {\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos\+\_\+real}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{400}
+  \item {\+\_\+\+\_\+polylog\+\_\+exp\+\_\+sum}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{401}
+  \item {\+\_\+\+\_\+prob\+\_\+hermite\+\_\+recur}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{401}
+  \item {\+\_\+\+\_\+quadrature\+\_\+point\+\_\+t}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+quadrature\+\_\+point\+\_\+t}, 
+		\hyperpage{495, 496}
+  \item {\+\_\+\+\_\+radial\+\_\+jacobi}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{402}
+  \item {\+\_\+\+\_\+radial\+\_\+jacobi\+\_\+zeros}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{403}
+  \item {\+\_\+\+\_\+reduce}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}, 
+		\hyperpage{517}
+  \item {\+\_\+\+\_\+rho\+\_\+arg}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+coulomb\+\_\+t}, 
+		\hyperpage{462}
+  \item {\+\_\+\+\_\+rice\+\_\+pdf}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{404}
+  \item {\+\_\+\+\_\+riemann\+\_\+zeta}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{404}
+  \item {\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+euler\+\_\+maclaurin}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{405}
+  \item {\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+glob}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{405}
+  \item {\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+laurent}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{406}
+  \item {\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+m\+\_\+1}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{406}
+  \item {\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+m\+\_\+1\+\_\+glob}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{407}
+  \item {\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+product}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{407}
+  \item {\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+sum}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{409}
+  \item {\+\_\+\+\_\+rising\+\_\+factorial}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{409}
+  \item {\+\_\+\+\_\+sc}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t}, 
+		\hyperpage{485}
+  \item {\+\_\+\+\_\+sd}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t}, 
+		\hyperpage{486}
+  \item {\+\_\+\+\_\+sin\+\_\+pi}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{410}
+  \item {\+\_\+\+\_\+sin\+\_\+v}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}, 
+		\hyperpage{497}
+  \item {\+\_\+\+\_\+sinc}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{410}
+  \item {\+\_\+\+\_\+sinc\+\_\+pi}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{411}
+  \item {\+\_\+\+\_\+sincos}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{411, 412}
+  \item {\+\_\+\+\_\+sincos\+\_\+pi}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{412}
+  \item {\+\_\+\+\_\+sincosint}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{412}
+  \item {\+\_\+\+\_\+sincosint\+\_\+asymp}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{413}
+  \item {\+\_\+\+\_\+sincosint\+\_\+cont\+\_\+frac}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{413}
+  \item {\+\_\+\+\_\+sincosint\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{413}
+  \item {\+\_\+\+\_\+sinh\+\_\+pi}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{414}
+  \item {\+\_\+\+\_\+sinhc}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{414}
+  \item {\+\_\+\+\_\+sinhc\+\_\+pi}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{415}
+  \item {\+\_\+\+\_\+sinhint}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{415}
+  \item {\+\_\+\+\_\+sn\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t}, 
+		\hyperpage{486}
+  \item {\+\_\+\+\_\+sn\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t}, 
+		\hyperpage{487}
+  \item {\+\_\+\+\_\+sph\+\_\+bessel}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{416}
+  \item {\+\_\+\+\_\+sph\+\_\+bessel\+\_\+ik}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{417}
+  \item {\+\_\+\+\_\+sph\+\_\+bessel\+\_\+jn}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{418}
+  \item {\+\_\+\+\_\+sph\+\_\+bessel\+\_\+jn\+\_\+neg\+\_\+arg}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{418}
+  \item {\+\_\+\+\_\+sph\+\_\+hankel}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{418}
+  \item {\+\_\+\+\_\+sph\+\_\+hankel\+\_\+1}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{419, 420}
+  \item {\+\_\+\+\_\+sph\+\_\+hankel\+\_\+2}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{420, 421}
+  \item {\+\_\+\+\_\+sph\+\_\+harmonic}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{421}
+  \item {\+\_\+\+\_\+sph\+\_\+legendre}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{422}
+  \item {\+\_\+\+\_\+sph\+\_\+neumann}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{423}
+  \item {\+\_\+\+\_\+spouge\+\_\+binet1p}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{424}
+  \item {\+\_\+\+\_\+spouge\+\_\+log\+\_\+gamma1p}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{425}
+  \item {\+\_\+\+\_\+stirling\+\_\+1}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{426}
+  \item {\+\_\+\+\_\+stirling\+\_\+1\+\_\+recur}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{426}
+  \item {\+\_\+\+\_\+stirling\+\_\+1\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{426}
+  \item {\+\_\+\+\_\+stirling\+\_\+2}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{427}
+  \item {\+\_\+\+\_\+stirling\+\_\+2\+\_\+recur}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{427}
+  \item {\+\_\+\+\_\+stirling\+\_\+2\+\_\+series}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{427}
+  \item {\+\_\+\+\_\+student\+\_\+t\+\_\+p}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{428}
+  \item {\+\_\+\+\_\+student\+\_\+t\+\_\+pdf}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{428}
+  \item {\+\_\+\+\_\+student\+\_\+t\+\_\+q}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{429}
+  \item {\+\_\+\+\_\+tan\+\_\+pi}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{429, 430}
+  \item {\+\_\+\+\_\+tanh\+\_\+pi}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{430}
+  \item {\+\_\+\+\_\+tau}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}, 
+		\hyperpage{518}
+  \item {\+\_\+\+\_\+tau\+\_\+t}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t\+::\+\_\+\+\_\+tau\+\_\+t}, 
+		\hyperpage{521}
+  \item {\+\_\+\+\_\+tgamma}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{431}
+  \item {\+\_\+\+\_\+tgamma\+\_\+lower}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{431}
+  \item {\+\_\+\+\_\+tgamma\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+inc\+\_\+t}, 
+		\hyperpage{472}
+  \item {\+\_\+\+\_\+theta\+\_\+1}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{431}
+  \item {\+\_\+\+\_\+theta\+\_\+2}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{432}
+  \item {\+\_\+\+\_\+theta\+\_\+2\+\_\+asymp}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{433}
+  \item {\+\_\+\+\_\+theta\+\_\+2\+\_\+sum}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{433}
+  \item {\+\_\+\+\_\+theta\+\_\+3}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{433}
+  \item {\+\_\+\+\_\+theta\+\_\+3\+\_\+asymp}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{434}
+  \item {\+\_\+\+\_\+theta\+\_\+3\+\_\+sum}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{434}
+  \item {\+\_\+\+\_\+theta\+\_\+4}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{434}
+  \item {\+\_\+\+\_\+theta\+\_\+c}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{435}
+  \item {\+\_\+\+\_\+theta\+\_\+d}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{435}
+  \item {\+\_\+\+\_\+theta\+\_\+n}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{436}
+  \item {\+\_\+\+\_\+theta\+\_\+s}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{436}
+  \item {\+\_\+\+\_\+tricomi\+\_\+u}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{436}
+  \item {\+\_\+\+\_\+tricomi\+\_\+u\+\_\+naive}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{437}
+  \item {\+\_\+\+\_\+val}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t\+::\+\_\+\+\_\+tau\+\_\+t}, 
+		\hyperpage{521}
+  \item {\+\_\+\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t}, 
+		\hyperpage{471}
+  \item {\+\_\+\+\_\+w1\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fock\+\_\+airy\+\_\+t}, 
+		\hyperpage{469}
+  \item {\+\_\+\+\_\+w1\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fock\+\_\+airy\+\_\+t}, 
+		\hyperpage{469}
+  \item {\+\_\+\+\_\+w2\+\_\+deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fock\+\_\+airy\+\_\+t}, 
+		\hyperpage{469}
+  \item {\+\_\+\+\_\+w2\+\_\+value}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fock\+\_\+airy\+\_\+t}, 
+		\hyperpage{470}
+  \item {\+\_\+\+\_\+weibull\+\_\+p}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{438}
+  \item {\+\_\+\+\_\+weibull\+\_\+pdf}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{438}
+  \item {\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}, 
+		\hyperpage{528}
+  \item {\+\_\+\+\_\+weierstrass\+\_\+roots\+\_\+t}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+roots\+\_\+t}, 
+		\hyperpage{532}
+  \item {\+\_\+\+\_\+weight}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+quadrature\+\_\+point\+\_\+t}, 
+		\hyperpage{496}
+  \item {\+\_\+\+\_\+x}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+t\+\_\+t}, 
+		\hyperpage{451}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+u\+\_\+t}, 
+		\hyperpage{453}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+v\+\_\+t}, 
+		\hyperpage{455}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+w\+\_\+t}, 
+		\hyperpage{457}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gegenbauer\+\_\+t}, 
+		\hyperpage{478}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+he\+\_\+t}, 
+		\hyperpage{480}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+t}, 
+		\hyperpage{483}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+t}, 
+		\hyperpage{489}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+laguerre\+\_\+t}, 
+		\hyperpage{491}
+  \item {\+\_\+\+\_\+x\+\_\+arg}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+airy\+\_\+t}, 
+		\hyperpage{449}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+t}, 
+		\hyperpage{460}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+t}, 
+		\hyperpage{465}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+mod\+\_\+bessel\+\_\+t}, 
+		\hyperpage{468}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fock\+\_\+airy\+\_\+t}, 
+		\hyperpage{470}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+bessel\+\_\+t}, 
+		\hyperpage{500}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+hankel\+\_\+t}, 
+		\hyperpage{502}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+mod\+\_\+bessel\+\_\+t}, 
+		\hyperpage{505}
+  \item {\+\_\+\+\_\+z}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}, 
+		\hyperpage{493}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t\+::\+\_\+\+\_\+arg\+\_\+t}, 
+		\hyperpage{520}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+Auxilliary\+State}, 
+		\hyperpage{560}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}, 
+		\hyperpage{562}
+  \item {\+\_\+\+\_\+zernike}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{438}
+  \item {\+\_\+\+\_\+znorm1}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{439}
+  \item {\+\_\+\+\_\+znorm2}
+    \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{440}
+
+  \indexspace
+
+  \item {airy\+\_\+ai}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{65}
+  \item {airy\+\_\+aif}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{66}
+  \item {airy\+\_\+ail}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{66}
+  \item {airy\+\_\+bi}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{66, 67}
+  \item {airy\+\_\+bif}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{67}
+  \item {airy\+\_\+bil}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{68}
+  \item {assoc\+\_\+laguerre}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{22}
+  \item {assoc\+\_\+laguerref}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{23}
+  \item {assoc\+\_\+laguerrel}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{23}
+  \item {assoc\+\_\+legendre}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{23}
+  \item {assoc\+\_\+legendref}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{24}
+  \item {assoc\+\_\+legendrel}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{25}
+
+  \indexspace
+
+  \item {bernoulli}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{68}
+  \item {bernoullif}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{69}
+  \item {bernoullil}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{69}
+  \item {beta}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{25}
+  \item {betaf}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{26}
+  \item {betal}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{26}
+  \item {binomial}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{70}
+  \item {binomial\+\_\+p}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{70}
+  \item {binomial\+\_\+pdf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{71}
+  \item {binomialf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{72}
+  \item {binomiall}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{72}
+  \item {bose\+\_\+einstein}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{72}
+  \item {bose\+\_\+einsteinf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{73}
+  \item {bose\+\_\+einsteinl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{73}
+
+  \indexspace
+
+  \item {C++ Mathematical Special Functions}, \hyperpage{19}
+  \item {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{20}
+    \subitem {assoc\+\_\+laguerre}, \hyperpage{22}
+    \subitem {assoc\+\_\+laguerref}, \hyperpage{23}
+    \subitem {assoc\+\_\+laguerrel}, \hyperpage{23}
+    \subitem {assoc\+\_\+legendre}, \hyperpage{23}
+    \subitem {assoc\+\_\+legendref}, \hyperpage{24}
+    \subitem {assoc\+\_\+legendrel}, \hyperpage{25}
+    \subitem {beta}, \hyperpage{25}
+    \subitem {betaf}, \hyperpage{26}
+    \subitem {betal}, \hyperpage{26}
+    \subitem {comp\+\_\+ellint\+\_\+1}, \hyperpage{26}
+    \subitem {comp\+\_\+ellint\+\_\+1f}, \hyperpage{27}
+    \subitem {comp\+\_\+ellint\+\_\+1l}, \hyperpage{27}
+    \subitem {comp\+\_\+ellint\+\_\+2}, \hyperpage{28}
+    \subitem {comp\+\_\+ellint\+\_\+2f}, \hyperpage{29}
+    \subitem {comp\+\_\+ellint\+\_\+2l}, \hyperpage{29}
+    \subitem {comp\+\_\+ellint\+\_\+3}, \hyperpage{29}
+    \subitem {comp\+\_\+ellint\+\_\+3f}, \hyperpage{30}
+    \subitem {comp\+\_\+ellint\+\_\+3l}, \hyperpage{30}
+    \subitem {cyl\+\_\+bessel\+\_\+i}, \hyperpage{30}
+    \subitem {cyl\+\_\+bessel\+\_\+if}, \hyperpage{31}
+    \subitem {cyl\+\_\+bessel\+\_\+il}, \hyperpage{31}
+    \subitem {cyl\+\_\+bessel\+\_\+j}, \hyperpage{32}
+    \subitem {cyl\+\_\+bessel\+\_\+jf}, \hyperpage{32}
+    \subitem {cyl\+\_\+bessel\+\_\+jl}, \hyperpage{33}
+    \subitem {cyl\+\_\+bessel\+\_\+k}, \hyperpage{33}
+    \subitem {cyl\+\_\+bessel\+\_\+kf}, \hyperpage{34}
+    \subitem {cyl\+\_\+bessel\+\_\+kl}, \hyperpage{34}
+    \subitem {cyl\+\_\+neumann}, \hyperpage{34}
+    \subitem {cyl\+\_\+neumannf}, \hyperpage{35}
+    \subitem {cyl\+\_\+neumannl}, \hyperpage{35}
+    \subitem {ellint\+\_\+1}, \hyperpage{36}
+    \subitem {ellint\+\_\+1f}, \hyperpage{37}
+    \subitem {ellint\+\_\+1l}, \hyperpage{37}
+    \subitem {ellint\+\_\+2}, \hyperpage{37}
+    \subitem {ellint\+\_\+2f}, \hyperpage{38}
+    \subitem {ellint\+\_\+2l}, \hyperpage{38}
+    \subitem {ellint\+\_\+3}, \hyperpage{38}
+    \subitem {ellint\+\_\+3f}, \hyperpage{39}
+    \subitem {ellint\+\_\+3l}, \hyperpage{40}
+    \subitem {expint}, \hyperpage{40}
+    \subitem {expintf}, \hyperpage{41}
+    \subitem {expintl}, \hyperpage{41}
+    \subitem {hermite}, \hyperpage{41}
+    \subitem {hermitef}, \hyperpage{42}
+    \subitem {hermitel}, \hyperpage{42}
+    \subitem {laguerre}, \hyperpage{43}
+    \subitem {laguerref}, \hyperpage{43}
+    \subitem {laguerrel}, \hyperpage{44}
+    \subitem {legendre}, \hyperpage{44}
+    \subitem {legendref}, \hyperpage{45}
+    \subitem {legendrel}, \hyperpage{45}
+    \subitem {riemann\+\_\+zeta}, \hyperpage{45}
+    \subitem {riemann\+\_\+zetaf}, \hyperpage{46}
+    \subitem {riemann\+\_\+zetal}, \hyperpage{46}
+    \subitem {sph\+\_\+bessel}, \hyperpage{47}
+    \subitem {sph\+\_\+besself}, \hyperpage{47}
+    \subitem {sph\+\_\+bessell}, \hyperpage{48}
+    \subitem {sph\+\_\+legendre}, \hyperpage{48}
+    \subitem {sph\+\_\+legendref}, \hyperpage{49}
+    \subitem {sph\+\_\+legendrel}, \hyperpage{49}
+    \subitem {sph\+\_\+neumann}, \hyperpage{49}
+    \subitem {sph\+\_\+neumannf}, \hyperpage{50}
+    \subitem {sph\+\_\+neumannl}, \hyperpage{50}
+  \item {chebyshev\+\_\+t}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{73}
+  \item {chebyshev\+\_\+tf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{75}
+  \item {chebyshev\+\_\+tl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{75}
+  \item {chebyshev\+\_\+u}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{75}
+  \item {chebyshev\+\_\+uf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{76}
+  \item {chebyshev\+\_\+ul}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{76}
+  \item {chebyshev\+\_\+v}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{77}
+  \item {chebyshev\+\_\+vf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{77}
+  \item {chebyshev\+\_\+vl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{78}
+  \item {chebyshev\+\_\+w}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{78}
+  \item {chebyshev\+\_\+wf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{79}
+  \item {chebyshev\+\_\+wl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{79}
+  \item {clausen}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{79, 80}
+  \item {clausen\+\_\+cl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{81}
+  \item {clausen\+\_\+clf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{81}
+  \item {clausen\+\_\+cll}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{82}
+  \item {clausen\+\_\+sl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{82}
+  \item {clausen\+\_\+slf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{83}
+  \item {clausen\+\_\+sll}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{83}
+  \item {clausenf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{83}
+  \item {clausenl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{84}
+  \item {comp\+\_\+ellint\+\_\+1}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{26}
+  \item {comp\+\_\+ellint\+\_\+1f}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{27}
+  \item {comp\+\_\+ellint\+\_\+1l}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{27}
+  \item {comp\+\_\+ellint\+\_\+2}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{28}
+  \item {comp\+\_\+ellint\+\_\+2f}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{29}
+  \item {comp\+\_\+ellint\+\_\+2l}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{29}
+  \item {comp\+\_\+ellint\+\_\+3}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{29}
+  \item {comp\+\_\+ellint\+\_\+3f}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{30}
+  \item {comp\+\_\+ellint\+\_\+3l}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{30}
+  \item {comp\+\_\+ellint\+\_\+d}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{84}
+  \item {comp\+\_\+ellint\+\_\+df}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{85}
+  \item {comp\+\_\+ellint\+\_\+dl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{85}
+  \item {comp\+\_\+ellint\+\_\+rf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{85, 86}
+  \item {comp\+\_\+ellint\+\_\+rg}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{87}
+  \item {conf\+\_\+hyperg}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{88}
+  \item {conf\+\_\+hyperg\+\_\+lim}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{88}
+  \item {conf\+\_\+hyperg\+\_\+limf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{89}
+  \item {conf\+\_\+hyperg\+\_\+liml}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{89}
+  \item {conf\+\_\+hypergf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{89}
+  \item {conf\+\_\+hypergl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{90}
+  \item {cos\+\_\+pi}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{90}
+  \item {cos\+\_\+pif}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{91}
+  \item {cos\+\_\+pil}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{91}
+  \item {cosh\+\_\+pi}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{91}
+  \item {cosh\+\_\+pif}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{92}
+  \item {cosh\+\_\+pil}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{92}
+  \item {coshint}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{92}
+  \item {coshintf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{93}
+  \item {coshintl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{93}
+  \item {cosint}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{93}
+  \item {cosintf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{94}
+  \item {cosintl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{94}
+  \item {cyl\+\_\+bessel\+\_\+i}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{30}
+  \item {cyl\+\_\+bessel\+\_\+if}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{31}
+  \item {cyl\+\_\+bessel\+\_\+il}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{31}
+  \item {cyl\+\_\+bessel\+\_\+j}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{32}
+  \item {cyl\+\_\+bessel\+\_\+jf}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{32}
+  \item {cyl\+\_\+bessel\+\_\+jl}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{33}
+  \item {cyl\+\_\+bessel\+\_\+k}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{33}
+  \item {cyl\+\_\+bessel\+\_\+kf}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{34}
+  \item {cyl\+\_\+bessel\+\_\+kl}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{34}
+  \item {cyl\+\_\+hankel\+\_\+1}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{94, 95}
+  \item {cyl\+\_\+hankel\+\_\+1f}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{95, 96}
+  \item {cyl\+\_\+hankel\+\_\+1l}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{96}
+  \item {cyl\+\_\+hankel\+\_\+2}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{97}
+  \item {cyl\+\_\+hankel\+\_\+2f}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{98}
+  \item {cyl\+\_\+hankel\+\_\+2l}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{99}
+  \item {cyl\+\_\+neumann}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{34}
+  \item {cyl\+\_\+neumannf}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{35}
+  \item {cyl\+\_\+neumannl}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{35}
+
+  \indexspace
+
+  \item {dawson}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{99}
+  \item {dawsonf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{100}
+  \item {dawsonl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{100}
+  \item {debye}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{100}
+  \item {debyef}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{101}
+  \item {debyel}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{101}
+  \item {dedekind\+\_\+eta}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}, 
+		\hyperpage{524}
+  \item {deriv}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+t\+\_\+t}, 
+		\hyperpage{450}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+u\+\_\+t}, 
+		\hyperpage{452}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+v\+\_\+t}, 
+		\hyperpage{454}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+w\+\_\+t}, 
+		\hyperpage{456}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gegenbauer\+\_\+t}, 
+		\hyperpage{477}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+he\+\_\+t}, 
+		\hyperpage{479}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+t}, 
+		\hyperpage{481}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+t}, 
+		\hyperpage{488}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+laguerre\+\_\+t}, 
+		\hyperpage{490}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}, 
+		\hyperpage{492}
+  \item {deriv2}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+t\+\_\+t}, 
+		\hyperpage{450}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+he\+\_\+t}, 
+		\hyperpage{479}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+t}, 
+		\hyperpage{482}
+  \item {digamma}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{102}
+  \item {digammaf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{102}
+  \item {digammal}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{103}
+  \item {dilog}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{103}
+  \item {dilogf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{103}
+  \item {dilogl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{104}
+  \item {dirichlet\+\_\+beta}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{104}
+  \item {dirichlet\+\_\+betaf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{105}
+  \item {dirichlet\+\_\+betal}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{105}
+  \item {dirichlet\+\_\+eta}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{105}
+  \item {dirichlet\+\_\+etaf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{106}
+  \item {dirichlet\+\_\+etal}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{106}
+  \item {dirichlet\+\_\+lambda}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{106}
+  \item {dirichlet\+\_\+lambdaf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{107}
+  \item {dirichlet\+\_\+lambdal}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{107}
+  \item {double\+\_\+factorial}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{107}
+  \item {double\+\_\+factorialf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{107}
+  \item {double\+\_\+factoriall}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{108}
+
+  \indexspace
+
+  \item {ellint\+\_\+1}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{36}
+  \item {ellint\+\_\+1f}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{37}
+  \item {ellint\+\_\+1l}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{37}
+  \item {ellint\+\_\+2}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{37}
+  \item {ellint\+\_\+2f}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{38}
+  \item {ellint\+\_\+2l}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{38}
+  \item {ellint\+\_\+3}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{38}
+  \item {ellint\+\_\+3f}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{39}
+  \item {ellint\+\_\+3l}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{40}
+  \item {ellint\+\_\+cel}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{108}
+  \item {ellint\+\_\+celf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{109}
+  \item {ellint\+\_\+cell}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{109}
+  \item {ellint\+\_\+d}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{109}
+  \item {ellint\+\_\+df}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{110}
+  \item {ellint\+\_\+dl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{110}
+  \item {ellint\+\_\+el1}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{110}
+  \item {ellint\+\_\+el1f}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{111}
+  \item {ellint\+\_\+el1l}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{111}
+  \item {ellint\+\_\+el2}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{111}
+  \item {ellint\+\_\+el2f}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{112}
+  \item {ellint\+\_\+el2l}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{112}
+  \item {ellint\+\_\+el3}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{113}
+  \item {ellint\+\_\+el3f}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{113}
+  \item {ellint\+\_\+el3l}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{114}
+  \item {ellint\+\_\+rc}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{114}
+  \item {ellint\+\_\+rcf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{115}
+  \item {ellint\+\_\+rcl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{115}
+  \item {ellint\+\_\+rd}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{115}
+  \item {ellint\+\_\+rdf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{116}
+  \item {ellint\+\_\+rdl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{116}
+  \item {ellint\+\_\+rf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{117}
+  \item {ellint\+\_\+rff}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{117}
+  \item {ellint\+\_\+rfl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{118}
+  \item {ellint\+\_\+rg}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{118}
+  \item {ellint\+\_\+rgf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{119}
+  \item {ellint\+\_\+rgl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{119}
+  \item {ellint\+\_\+rj}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{119}
+  \item {ellint\+\_\+rjf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{120}
+  \item {ellint\+\_\+rjl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{121}
+  \item {ellnome}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{121}
+  \item {ellnomef}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{122}
+  \item {ellnomel}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{122}
+  \item {eta\+\_\+1}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}, 
+		\hyperpage{524}
+  \item {eta\+\_\+2}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}, 
+		\hyperpage{524}
+  \item {eta\+\_\+3}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}, 
+		\hyperpage{525}
+  \item {euler}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{122}
+  \item {eulerian\+\_\+1}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{123}
+  \item {eulerian\+\_\+2}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{123}
+  \item {expint}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{40}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{123}
+  \item {expintf}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{41}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{124}
+  \item {expintl}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{41}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{124}
+  \item {exponential\+\_\+p}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{125}
+  \item {exponential\+\_\+pdf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{125}
+
+  \indexspace
+
+  \item {factorial}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{125}
+  \item {factorialf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{126}
+  \item {factoriall}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{126}
+  \item {falling\+\_\+factorial}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{126}
+  \item {falling\+\_\+factorialf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{127}
+  \item {falling\+\_\+factoriall}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{127}
+  \item {fermi\+\_\+dirac}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{127}
+  \item {fermi\+\_\+diracf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{128}
+  \item {fermi\+\_\+diracl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{128}
+  \item {fisher\+\_\+f\+\_\+p}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{129}
+  \item {fisher\+\_\+f\+\_\+pdf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{129}
+  \item {fresnel\+\_\+c}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{130}
+  \item {fresnel\+\_\+cf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{130}
+  \item {fresnel\+\_\+cl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{131}
+  \item {fresnel\+\_\+s}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{131}
+  \item {fresnel\+\_\+sf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{131}
+  \item {fresnel\+\_\+sl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{131}
+
+  \indexspace
+
+  \item {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{52}
+    \subitem {airy\+\_\+ai}, \hyperpage{65}
+    \subitem {airy\+\_\+aif}, \hyperpage{66}
+    \subitem {airy\+\_\+ail}, \hyperpage{66}
+    \subitem {airy\+\_\+bi}, \hyperpage{66, 67}
+    \subitem {airy\+\_\+bif}, \hyperpage{67}
+    \subitem {airy\+\_\+bil}, \hyperpage{68}
+    \subitem {bernoulli}, \hyperpage{68}
+    \subitem {bernoullif}, \hyperpage{69}
+    \subitem {bernoullil}, \hyperpage{69}
+    \subitem {binomial}, \hyperpage{70}
+    \subitem {binomial\+\_\+p}, \hyperpage{70}
+    \subitem {binomial\+\_\+pdf}, \hyperpage{71}
+    \subitem {binomialf}, \hyperpage{72}
+    \subitem {binomiall}, \hyperpage{72}
+    \subitem {bose\+\_\+einstein}, \hyperpage{72}
+    \subitem {bose\+\_\+einsteinf}, \hyperpage{73}
+    \subitem {bose\+\_\+einsteinl}, \hyperpage{73}
+    \subitem {chebyshev\+\_\+t}, \hyperpage{73}
+    \subitem {chebyshev\+\_\+tf}, \hyperpage{75}
+    \subitem {chebyshev\+\_\+tl}, \hyperpage{75}
+    \subitem {chebyshev\+\_\+u}, \hyperpage{75}
+    \subitem {chebyshev\+\_\+uf}, \hyperpage{76}
+    \subitem {chebyshev\+\_\+ul}, \hyperpage{76}
+    \subitem {chebyshev\+\_\+v}, \hyperpage{77}
+    \subitem {chebyshev\+\_\+vf}, \hyperpage{77}
+    \subitem {chebyshev\+\_\+vl}, \hyperpage{78}
+    \subitem {chebyshev\+\_\+w}, \hyperpage{78}
+    \subitem {chebyshev\+\_\+wf}, \hyperpage{79}
+    \subitem {chebyshev\+\_\+wl}, \hyperpage{79}
+    \subitem {clausen}, \hyperpage{79, 80}
+    \subitem {clausen\+\_\+cl}, \hyperpage{81}
+    \subitem {clausen\+\_\+clf}, \hyperpage{81}
+    \subitem {clausen\+\_\+cll}, \hyperpage{82}
+    \subitem {clausen\+\_\+sl}, \hyperpage{82}
+    \subitem {clausen\+\_\+slf}, \hyperpage{83}
+    \subitem {clausen\+\_\+sll}, \hyperpage{83}
+    \subitem {clausenf}, \hyperpage{83}
+    \subitem {clausenl}, \hyperpage{84}
+    \subitem {comp\+\_\+ellint\+\_\+d}, \hyperpage{84}
+    \subitem {comp\+\_\+ellint\+\_\+df}, \hyperpage{85}
+    \subitem {comp\+\_\+ellint\+\_\+dl}, \hyperpage{85}
+    \subitem {comp\+\_\+ellint\+\_\+rf}, \hyperpage{85, 86}
+    \subitem {comp\+\_\+ellint\+\_\+rg}, \hyperpage{87}
+    \subitem {conf\+\_\+hyperg}, \hyperpage{88}
+    \subitem {conf\+\_\+hyperg\+\_\+lim}, \hyperpage{88}
+    \subitem {conf\+\_\+hyperg\+\_\+limf}, \hyperpage{89}
+    \subitem {conf\+\_\+hyperg\+\_\+liml}, \hyperpage{89}
+    \subitem {conf\+\_\+hypergf}, \hyperpage{89}
+    \subitem {conf\+\_\+hypergl}, \hyperpage{90}
+    \subitem {cos\+\_\+pi}, \hyperpage{90}
+    \subitem {cos\+\_\+pif}, \hyperpage{91}
+    \subitem {cos\+\_\+pil}, \hyperpage{91}
+    \subitem {cosh\+\_\+pi}, \hyperpage{91}
+    \subitem {cosh\+\_\+pif}, \hyperpage{92}
+    \subitem {cosh\+\_\+pil}, \hyperpage{92}
+    \subitem {coshint}, \hyperpage{92}
+    \subitem {coshintf}, \hyperpage{93}
+    \subitem {coshintl}, \hyperpage{93}
+    \subitem {cosint}, \hyperpage{93}
+    \subitem {cosintf}, \hyperpage{94}
+    \subitem {cosintl}, \hyperpage{94}
+    \subitem {cyl\+\_\+hankel\+\_\+1}, \hyperpage{94, 95}
+    \subitem {cyl\+\_\+hankel\+\_\+1f}, \hyperpage{95, 96}
+    \subitem {cyl\+\_\+hankel\+\_\+1l}, \hyperpage{96}
+    \subitem {cyl\+\_\+hankel\+\_\+2}, \hyperpage{97}
+    \subitem {cyl\+\_\+hankel\+\_\+2f}, \hyperpage{98}
+    \subitem {cyl\+\_\+hankel\+\_\+2l}, \hyperpage{99}
+    \subitem {dawson}, \hyperpage{99}
+    \subitem {dawsonf}, \hyperpage{100}
+    \subitem {dawsonl}, \hyperpage{100}
+    \subitem {debye}, \hyperpage{100}
+    \subitem {debyef}, \hyperpage{101}
+    \subitem {debyel}, \hyperpage{101}
+    \subitem {digamma}, \hyperpage{102}
+    \subitem {digammaf}, \hyperpage{102}
+    \subitem {digammal}, \hyperpage{103}
+    \subitem {dilog}, \hyperpage{103}
+    \subitem {dilogf}, \hyperpage{103}
+    \subitem {dilogl}, \hyperpage{104}
+    \subitem {dirichlet\+\_\+beta}, \hyperpage{104}
+    \subitem {dirichlet\+\_\+betaf}, \hyperpage{105}
+    \subitem {dirichlet\+\_\+betal}, \hyperpage{105}
+    \subitem {dirichlet\+\_\+eta}, \hyperpage{105}
+    \subitem {dirichlet\+\_\+etaf}, \hyperpage{106}
+    \subitem {dirichlet\+\_\+etal}, \hyperpage{106}
+    \subitem {dirichlet\+\_\+lambda}, \hyperpage{106}
+    \subitem {dirichlet\+\_\+lambdaf}, \hyperpage{107}
+    \subitem {dirichlet\+\_\+lambdal}, \hyperpage{107}
+    \subitem {double\+\_\+factorial}, \hyperpage{107}
+    \subitem {double\+\_\+factorialf}, \hyperpage{107}
+    \subitem {double\+\_\+factoriall}, \hyperpage{108}
+    \subitem {ellint\+\_\+cel}, \hyperpage{108}
+    \subitem {ellint\+\_\+celf}, \hyperpage{109}
+    \subitem {ellint\+\_\+cell}, \hyperpage{109}
+    \subitem {ellint\+\_\+d}, \hyperpage{109}
+    \subitem {ellint\+\_\+df}, \hyperpage{110}
+    \subitem {ellint\+\_\+dl}, \hyperpage{110}
+    \subitem {ellint\+\_\+el1}, \hyperpage{110}
+    \subitem {ellint\+\_\+el1f}, \hyperpage{111}
+    \subitem {ellint\+\_\+el1l}, \hyperpage{111}
+    \subitem {ellint\+\_\+el2}, \hyperpage{111}
+    \subitem {ellint\+\_\+el2f}, \hyperpage{112}
+    \subitem {ellint\+\_\+el2l}, \hyperpage{112}
+    \subitem {ellint\+\_\+el3}, \hyperpage{113}
+    \subitem {ellint\+\_\+el3f}, \hyperpage{113}
+    \subitem {ellint\+\_\+el3l}, \hyperpage{114}
+    \subitem {ellint\+\_\+rc}, \hyperpage{114}
+    \subitem {ellint\+\_\+rcf}, \hyperpage{115}
+    \subitem {ellint\+\_\+rcl}, \hyperpage{115}
+    \subitem {ellint\+\_\+rd}, \hyperpage{115}
+    \subitem {ellint\+\_\+rdf}, \hyperpage{116}
+    \subitem {ellint\+\_\+rdl}, \hyperpage{116}
+    \subitem {ellint\+\_\+rf}, \hyperpage{117}
+    \subitem {ellint\+\_\+rff}, \hyperpage{117}
+    \subitem {ellint\+\_\+rfl}, \hyperpage{118}
+    \subitem {ellint\+\_\+rg}, \hyperpage{118}
+    \subitem {ellint\+\_\+rgf}, \hyperpage{119}
+    \subitem {ellint\+\_\+rgl}, \hyperpage{119}
+    \subitem {ellint\+\_\+rj}, \hyperpage{119}
+    \subitem {ellint\+\_\+rjf}, \hyperpage{120}
+    \subitem {ellint\+\_\+rjl}, \hyperpage{121}
+    \subitem {ellnome}, \hyperpage{121}
+    \subitem {ellnomef}, \hyperpage{122}
+    \subitem {ellnomel}, \hyperpage{122}
+    \subitem {euler}, \hyperpage{122}
+    \subitem {eulerian\+\_\+1}, \hyperpage{123}
+    \subitem {eulerian\+\_\+2}, \hyperpage{123}
+    \subitem {expint}, \hyperpage{123}
+    \subitem {expintf}, \hyperpage{124}
+    \subitem {expintl}, \hyperpage{124}
+    \subitem {exponential\+\_\+p}, \hyperpage{125}
+    \subitem {exponential\+\_\+pdf}, \hyperpage{125}
+    \subitem {factorial}, \hyperpage{125}
+    \subitem {factorialf}, \hyperpage{126}
+    \subitem {factoriall}, \hyperpage{126}
+    \subitem {falling\+\_\+factorial}, \hyperpage{126}
+    \subitem {falling\+\_\+factorialf}, \hyperpage{127}
+    \subitem {falling\+\_\+factoriall}, \hyperpage{127}
+    \subitem {fermi\+\_\+dirac}, \hyperpage{127}
+    \subitem {fermi\+\_\+diracf}, \hyperpage{128}
+    \subitem {fermi\+\_\+diracl}, \hyperpage{128}
+    \subitem {fisher\+\_\+f\+\_\+p}, \hyperpage{129}
+    \subitem {fisher\+\_\+f\+\_\+pdf}, \hyperpage{129}
+    \subitem {fresnel\+\_\+c}, \hyperpage{130}
+    \subitem {fresnel\+\_\+cf}, \hyperpage{130}
+    \subitem {fresnel\+\_\+cl}, \hyperpage{131}
+    \subitem {fresnel\+\_\+s}, \hyperpage{131}
+    \subitem {fresnel\+\_\+sf}, \hyperpage{131}
+    \subitem {fresnel\+\_\+sl}, \hyperpage{131}
+    \subitem {gamma\+\_\+p}, \hyperpage{132}
+    \subitem {gamma\+\_\+pdf}, \hyperpage{132}
+    \subitem {gamma\+\_\+pf}, \hyperpage{132}
+    \subitem {gamma\+\_\+pl}, \hyperpage{133}
+    \subitem {gamma\+\_\+q}, \hyperpage{133}
+    \subitem {gamma\+\_\+qf}, \hyperpage{133}
+    \subitem {gamma\+\_\+ql}, \hyperpage{133}
+    \subitem {gamma\+\_\+reciprocal}, \hyperpage{134}
+    \subitem {gamma\+\_\+reciprocalf}, \hyperpage{134}
+    \subitem {gamma\+\_\+reciprocall}, \hyperpage{134}
+    \subitem {gegenbauer}, \hyperpage{135}
+    \subitem {gegenbauerf}, \hyperpage{135}
+    \subitem {gegenbauerl}, \hyperpage{136}
+    \subitem {harmonic}, \hyperpage{136}
+    \subitem {heuman\+\_\+lambda}, \hyperpage{137}
+    \subitem {heuman\+\_\+lambdaf}, \hyperpage{137}
+    \subitem {heuman\+\_\+lambdal}, \hyperpage{137}
+    \subitem {hurwitz\+\_\+zeta}, \hyperpage{138}
+    \subitem {hurwitz\+\_\+zetaf}, \hyperpage{138}
+    \subitem {hurwitz\+\_\+zetal}, \hyperpage{139}
+    \subitem {hyperg}, \hyperpage{139}
+    \subitem {hypergf}, \hyperpage{140}
+    \subitem {hypergl}, \hyperpage{140}
+    \subitem {ibeta}, \hyperpage{140}
+    \subitem {ibetac}, \hyperpage{141}
+    \subitem {ibetacf}, \hyperpage{142}
+    \subitem {ibetacl}, \hyperpage{142}
+    \subitem {ibetaf}, \hyperpage{142}
+    \subitem {ibetal}, \hyperpage{142}
+    \subitem {jacobi}, \hyperpage{143}
+    \subitem {jacobi\+\_\+cn}, \hyperpage{144}
+    \subitem {jacobi\+\_\+cnf}, \hyperpage{144}
+    \subitem {jacobi\+\_\+cnl}, \hyperpage{145}
+    \subitem {jacobi\+\_\+dn}, \hyperpage{145}
+    \subitem {jacobi\+\_\+dnf}, \hyperpage{146}
+    \subitem {jacobi\+\_\+dnl}, \hyperpage{146}
+    \subitem {jacobi\+\_\+sn}, \hyperpage{146}
+    \subitem {jacobi\+\_\+snf}, \hyperpage{147}
+    \subitem {jacobi\+\_\+snl}, \hyperpage{147}
+    \subitem {jacobi\+\_\+theta\+\_\+1}, \hyperpage{148}
+    \subitem {jacobi\+\_\+theta\+\_\+1f}, \hyperpage{148}
+    \subitem {jacobi\+\_\+theta\+\_\+1l}, \hyperpage{149}
+    \subitem {jacobi\+\_\+theta\+\_\+2}, \hyperpage{149}
+    \subitem {jacobi\+\_\+theta\+\_\+2f}, \hyperpage{150}
+    \subitem {jacobi\+\_\+theta\+\_\+2l}, \hyperpage{150}
+    \subitem {jacobi\+\_\+theta\+\_\+3}, \hyperpage{150}
+    \subitem {jacobi\+\_\+theta\+\_\+3f}, \hyperpage{151}
+    \subitem {jacobi\+\_\+theta\+\_\+3l}, \hyperpage{151}
+    \subitem {jacobi\+\_\+theta\+\_\+4}, \hyperpage{151}
+    \subitem {jacobi\+\_\+theta\+\_\+4f}, \hyperpage{152}
+    \subitem {jacobi\+\_\+theta\+\_\+4l}, \hyperpage{152}
+    \subitem {jacobi\+\_\+zeta}, \hyperpage{152}
+    \subitem {jacobi\+\_\+zetaf}, \hyperpage{153}
+    \subitem {jacobi\+\_\+zetal}, \hyperpage{153}
+    \subitem {jacobif}, \hyperpage{153}
+    \subitem {jacobil}, \hyperpage{153}
+    \subitem {lbinomial}, \hyperpage{154}
+    \subitem {lbinomialf}, \hyperpage{155}
+    \subitem {lbinomiall}, \hyperpage{155}
+    \subitem {ldouble\+\_\+factorial}, \hyperpage{155}
+    \subitem {ldouble\+\_\+factorialf}, \hyperpage{155}
+    \subitem {ldouble\+\_\+factoriall}, \hyperpage{156}
+    \subitem {legendre\+\_\+q}, \hyperpage{156}
+    \subitem {legendre\+\_\+qf}, \hyperpage{157}
+    \subitem {legendre\+\_\+ql}, \hyperpage{157}
+    \subitem {lerch\+\_\+phi}, \hyperpage{157}
+    \subitem {lerch\+\_\+phif}, \hyperpage{158}
+    \subitem {lerch\+\_\+phil}, \hyperpage{158}
+    \subitem {lfactorial}, \hyperpage{158}
+    \subitem {lfactorialf}, \hyperpage{159}
+    \subitem {lfactoriall}, \hyperpage{159}
+    \subitem {lfalling\+\_\+factorial}, \hyperpage{159}
+    \subitem {lfalling\+\_\+factorialf}, \hyperpage{160}
+    \subitem {lfalling\+\_\+factoriall}, \hyperpage{160}
+    \subitem {lgamma}, \hyperpage{160, 161}
+    \subitem {lgammaf}, \hyperpage{161}
+    \subitem {lgammal}, \hyperpage{162}
+    \subitem {logint}, \hyperpage{162}
+    \subitem {logintf}, \hyperpage{163}
+    \subitem {logintl}, \hyperpage{163}
+    \subitem {logistic\+\_\+p}, \hyperpage{163}
+    \subitem {logistic\+\_\+pdf}, \hyperpage{164}
+    \subitem {lognormal\+\_\+p}, \hyperpage{164}
+    \subitem {lognormal\+\_\+pdf}, \hyperpage{164}
+    \subitem {lrising\+\_\+factorial}, \hyperpage{165}
+    \subitem {lrising\+\_\+factorialf}, \hyperpage{165}
+    \subitem {lrising\+\_\+factoriall}, \hyperpage{165}
+    \subitem {normal\+\_\+p}, \hyperpage{166}
+    \subitem {normal\+\_\+pdf}, \hyperpage{166}
+    \subitem {owens\+\_\+t}, \hyperpage{166}
+    \subitem {owens\+\_\+tf}, \hyperpage{167}
+    \subitem {owens\+\_\+tl}, \hyperpage{167}
+    \subitem {polygamma}, \hyperpage{167}
+    \subitem {polygammaf}, \hyperpage{168}
+    \subitem {polygammal}, \hyperpage{168}
+    \subitem {polylog}, \hyperpage{168, 169}
+    \subitem {polylogf}, \hyperpage{169, 170}
+    \subitem {polylogl}, \hyperpage{170}
+    \subitem {radpoly}, \hyperpage{171}
+    \subitem {radpolyf}, \hyperpage{172}
+    \subitem {radpolyl}, \hyperpage{172}
+    \subitem {rising\+\_\+factorial}, \hyperpage{172}
+    \subitem {rising\+\_\+factorialf}, \hyperpage{173}
+    \subitem {rising\+\_\+factoriall}, \hyperpage{173}
+    \subitem {sin\+\_\+pi}, \hyperpage{173}
+    \subitem {sin\+\_\+pif}, \hyperpage{174}
+    \subitem {sin\+\_\+pil}, \hyperpage{174}
+    \subitem {sinc}, \hyperpage{174}
+    \subitem {sinc\+\_\+pi}, \hyperpage{175}
+    \subitem {sinc\+\_\+pif}, \hyperpage{175}
+    \subitem {sinc\+\_\+pil}, \hyperpage{176}
+    \subitem {sincf}, \hyperpage{176}
+    \subitem {sincl}, \hyperpage{176}
+    \subitem {sincos}, \hyperpage{177}
+    \subitem {sincos\+\_\+pi}, \hyperpage{177}
+    \subitem {sincos\+\_\+pif}, \hyperpage{178}
+    \subitem {sincos\+\_\+pil}, \hyperpage{178}
+    \subitem {sincosf}, \hyperpage{178}
+    \subitem {sincosl}, \hyperpage{179}
+    \subitem {sinh\+\_\+pi}, \hyperpage{179}
+    \subitem {sinh\+\_\+pif}, \hyperpage{180}
+    \subitem {sinh\+\_\+pil}, \hyperpage{180}
+    \subitem {sinhc}, \hyperpage{180}
+    \subitem {sinhc\+\_\+pi}, \hyperpage{181}
+    \subitem {sinhc\+\_\+pif}, \hyperpage{181}
+    \subitem {sinhc\+\_\+pil}, \hyperpage{182}
+    \subitem {sinhcf}, \hyperpage{182}
+    \subitem {sinhcl}, \hyperpage{182}
+    \subitem {sinhint}, \hyperpage{182}
+    \subitem {sinhintf}, \hyperpage{183}
+    \subitem {sinhintl}, \hyperpage{183}
+    \subitem {sinint}, \hyperpage{183}
+    \subitem {sinintf}, \hyperpage{184}
+    \subitem {sinintl}, \hyperpage{184}
+    \subitem {sph\+\_\+bessel\+\_\+i}, \hyperpage{184}
+    \subitem {sph\+\_\+bessel\+\_\+if}, \hyperpage{185}
+    \subitem {sph\+\_\+bessel\+\_\+il}, \hyperpage{185}
+    \subitem {sph\+\_\+bessel\+\_\+k}, \hyperpage{186}
+    \subitem {sph\+\_\+bessel\+\_\+kf}, \hyperpage{187}
+    \subitem {sph\+\_\+bessel\+\_\+kl}, \hyperpage{187}
+    \subitem {sph\+\_\+hankel\+\_\+1}, \hyperpage{187, 188}
+    \subitem {sph\+\_\+hankel\+\_\+1f}, \hyperpage{188, 189}
+    \subitem {sph\+\_\+hankel\+\_\+1l}, \hyperpage{189}
+    \subitem {sph\+\_\+hankel\+\_\+2}, \hyperpage{190, 191}
+    \subitem {sph\+\_\+hankel\+\_\+2f}, \hyperpage{191}
+    \subitem {sph\+\_\+hankel\+\_\+2l}, \hyperpage{192}
+    \subitem {sph\+\_\+harmonic}, \hyperpage{192}
+    \subitem {sph\+\_\+harmonicf}, \hyperpage{193}
+    \subitem {sph\+\_\+harmonicl}, \hyperpage{193}
+    \subitem {stirling\+\_\+1}, \hyperpage{194}
+    \subitem {stirling\+\_\+2}, \hyperpage{194}
+    \subitem {student\+\_\+t\+\_\+p}, \hyperpage{195}
+    \subitem {student\+\_\+t\+\_\+pdf}, \hyperpage{195}
+    \subitem {tan\+\_\+pi}, \hyperpage{196}
+    \subitem {tan\+\_\+pif}, \hyperpage{196}
+    \subitem {tan\+\_\+pil}, \hyperpage{197}
+    \subitem {tanh\+\_\+pi}, \hyperpage{197}
+    \subitem {tanh\+\_\+pif}, \hyperpage{198}
+    \subitem {tanh\+\_\+pil}, \hyperpage{198}
+    \subitem {tgamma}, \hyperpage{198, 199}
+    \subitem {tgamma\+\_\+lower}, \hyperpage{199}
+    \subitem {tgamma\+\_\+lowerf}, \hyperpage{199}
+    \subitem {tgamma\+\_\+lowerl}, \hyperpage{200}
+    \subitem {tgammaf}, \hyperpage{200, 201}
+    \subitem {tgammal}, \hyperpage{201, 202}
+    \subitem {theta\+\_\+1}, \hyperpage{202}
+    \subitem {theta\+\_\+1f}, \hyperpage{203}
+    \subitem {theta\+\_\+1l}, \hyperpage{203}
+    \subitem {theta\+\_\+2}, \hyperpage{203}
+    \subitem {theta\+\_\+2f}, \hyperpage{204}
+    \subitem {theta\+\_\+2l}, \hyperpage{204}
+    \subitem {theta\+\_\+3}, \hyperpage{204}
+    \subitem {theta\+\_\+3f}, \hyperpage{205}
+    \subitem {theta\+\_\+3l}, \hyperpage{205}
+    \subitem {theta\+\_\+4}, \hyperpage{205}
+    \subitem {theta\+\_\+4f}, \hyperpage{206}
+    \subitem {theta\+\_\+4l}, \hyperpage{206}
+    \subitem {theta\+\_\+c}, \hyperpage{206}
+    \subitem {theta\+\_\+cf}, \hyperpage{207}
+    \subitem {theta\+\_\+cl}, \hyperpage{207}
+    \subitem {theta\+\_\+d}, \hyperpage{208}
+    \subitem {theta\+\_\+df}, \hyperpage{208}
+    \subitem {theta\+\_\+dl}, \hyperpage{209}
+    \subitem {theta\+\_\+n}, \hyperpage{209}
+    \subitem {theta\+\_\+nf}, \hyperpage{210}
+    \subitem {theta\+\_\+nl}, \hyperpage{210}
+    \subitem {theta\+\_\+s}, \hyperpage{210}
+    \subitem {theta\+\_\+sf}, \hyperpage{211}
+    \subitem {theta\+\_\+sl}, \hyperpage{211}
+    \subitem {tricomi\+\_\+u}, \hyperpage{212}
+    \subitem {tricomi\+\_\+uf}, \hyperpage{213}
+    \subitem {tricomi\+\_\+ul}, \hyperpage{213}
+    \subitem {weibull\+\_\+p}, \hyperpage{213}
+    \subitem {weibull\+\_\+pdf}, \hyperpage{213}
+    \subitem {zernike}, \hyperpage{214}
+    \subitem {zernikef}, \hyperpage{215}
+    \subitem {zernikel}, \hyperpage{215}
+  \item {gamma\+\_\+p}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{132}
+  \item {gamma\+\_\+pdf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{132}
+  \item {gamma\+\_\+pf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{132}
+  \item {gamma\+\_\+pl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{133}
+  \item {gamma\+\_\+q}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{133}
+  \item {gamma\+\_\+qf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{133}
+  \item {gamma\+\_\+ql}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{133}
+  \item {gamma\+\_\+reciprocal}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{134}
+  \item {gamma\+\_\+reciprocalf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{134}
+  \item {gamma\+\_\+reciprocall}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{134}
+  \item {gauss\+\_\+quad\+\_\+type}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx}, \hyperpage{231}
+  \item {gegenbauer}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{135}
+  \item {gegenbauerf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{135}
+  \item {gegenbauerl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{136}
+
+  \indexspace
+
+  \item {harmonic}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{136}
+  \item {hermite}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{41}
+  \item {hermitef}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{42}
+  \item {hermitel}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{42}
+  \item {heuman\+\_\+lambda}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{137}
+  \item {heuman\+\_\+lambdaf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{137}
+  \item {heuman\+\_\+lambdal}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{137}
+  \item {hurwitz\+\_\+zeta}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{138}
+  \item {hurwitz\+\_\+zetaf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{138}
+  \item {hurwitz\+\_\+zetal}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{139}
+  \item {hyperg}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{139}
+  \item {hypergf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{140}
+  \item {hypergl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{140}
+
+  \indexspace
+
+  \item {ibeta}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{140}
+  \item {ibetac}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{141}
+  \item {ibetacf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{142}
+  \item {ibetacl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{142}
+  \item {ibetaf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{142}
+  \item {ibetal}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{142}
+  \item {include/bits/sf\+\_\+airy.\+tcc}, \hyperpage{569}
+  \item {include/bits/sf\+\_\+bernoulli.\+tcc}, \hyperpage{571}
+  \item {include/bits/sf\+\_\+bessel.\+tcc}, \hyperpage{572}
+  \item {include/bits/sf\+\_\+beta.\+tcc}, \hyperpage{575}
+  \item {include/bits/sf\+\_\+cardinal.\+tcc}, \hyperpage{577}
+  \item {include/bits/sf\+\_\+chebyshev.\+tcc}, \hyperpage{579}
+  \item {include/bits/sf\+\_\+coulomb.\+tcc}, \hyperpage{580}
+  \item {include/bits/sf\+\_\+dawson.\+tcc}, \hyperpage{582}
+  \item {include/bits/sf\+\_\+distributions.\+tcc}, \hyperpage{584}
+  \item {include/bits/sf\+\_\+ellint.\+tcc}, \hyperpage{587}
+  \item {include/bits/sf\+\_\+euler.\+tcc}, \hyperpage{590}
+  \item {include/bits/sf\+\_\+expint.\+tcc}, \hyperpage{591}
+  \item {include/bits/sf\+\_\+fresnel.\+tcc}, \hyperpage{594}
+  \item {include/bits/sf\+\_\+gamma.\+tcc}, \hyperpage{595}
+  \item {include/bits/sf\+\_\+gegenbauer.\+tcc}, \hyperpage{603}
+  \item {include/bits/sf\+\_\+hankel.\+tcc}, \hyperpage{605}
+  \item {include/bits/sf\+\_\+hermite.\+tcc}, \hyperpage{608}
+  \item {include/bits/sf\+\_\+hyperg.\+tcc}, \hyperpage{609}
+  \item {include/bits/sf\+\_\+hypint.\+tcc}, \hyperpage{612}
+  \item {include/bits/sf\+\_\+jacobi.\+tcc}, \hyperpage{614}
+  \item {include/bits/sf\+\_\+laguerre.\+tcc}, \hyperpage{615}
+  \item {include/bits/sf\+\_\+legendre.\+tcc}, \hyperpage{617}
+  \item {include/bits/sf\+\_\+mod\+\_\+bessel.\+tcc}, \hyperpage{619}
+  \item {include/bits/sf\+\_\+owens\+\_\+t.\+tcc}, \hyperpage{621}
+  \item {include/bits/sf\+\_\+polylog.\+tcc}, \hyperpage{623}
+  \item {include/bits/sf\+\_\+stirling.\+tcc}, \hyperpage{626}
+  \item {include/bits/sf\+\_\+theta.\+tcc}, \hyperpage{627}
+  \item {include/bits/sf\+\_\+trig.\+tcc}, \hyperpage{631}
+  \item {include/bits/sf\+\_\+trigint.\+tcc}, \hyperpage{633}
+  \item {include/bits/sf\+\_\+zeta.\+tcc}, \hyperpage{635}
+  \item {include/bits/specfun.\+h}, \hyperpage{637}
+  \item {include/bits/specfun\+\_\+state.\+h}, \hyperpage{653}
+  \item {include/ext/math\+\_\+util.\+h}, \hyperpage{655}
+  \item {inner\+\_\+radius}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy}, 
+		\hyperpage{536}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+default\+\_\+radii$<$ double $>$}, 
+		\hyperpage{547}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+default\+\_\+radii$<$ float $>$}, 
+		\hyperpage{548}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+default\+\_\+radii$<$ long double $>$}, 
+		\hyperpage{549}
+
+  \indexspace
+
+  \item {jacobi}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{143}
+  \item {jacobi\+\_\+cn}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{144}
+  \item {jacobi\+\_\+cnf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{144}
+  \item {jacobi\+\_\+cnl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{145}
+  \item {jacobi\+\_\+dn}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{145}
+  \item {jacobi\+\_\+dnf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{146}
+  \item {jacobi\+\_\+dnl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{146}
+  \item {jacobi\+\_\+sn}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{146}
+  \item {jacobi\+\_\+snf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{147}
+  \item {jacobi\+\_\+snl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{147}
+  \item {jacobi\+\_\+theta\+\_\+1}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{148}
+  \item {jacobi\+\_\+theta\+\_\+1f}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{148}
+  \item {jacobi\+\_\+theta\+\_\+1l}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{149}
+  \item {jacobi\+\_\+theta\+\_\+2}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{149}
+  \item {jacobi\+\_\+theta\+\_\+2f}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{150}
+  \item {jacobi\+\_\+theta\+\_\+2l}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{150}
+  \item {jacobi\+\_\+theta\+\_\+3}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{150}
+  \item {jacobi\+\_\+theta\+\_\+3f}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{151}
+  \item {jacobi\+\_\+theta\+\_\+3l}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{151}
+  \item {jacobi\+\_\+theta\+\_\+4}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{151}
+  \item {jacobi\+\_\+theta\+\_\+4f}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{152}
+  \item {jacobi\+\_\+theta\+\_\+4l}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{152}
+  \item {jacobi\+\_\+zeta}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{152}
+  \item {jacobi\+\_\+zetaf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{153}
+  \item {jacobi\+\_\+zetal}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{153}
+  \item {jacobif}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{153}
+  \item {jacobil}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{153}
+
+  \indexspace
+
+  \item {laguerre}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{43}
+  \item {laguerref}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{43}
+  \item {laguerrel}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{44}
+  \item {lbinomial}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{154}
+  \item {lbinomialf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{155}
+  \item {lbinomiall}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{155}
+  \item {ldouble\+\_\+factorial}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{155}
+  \item {ldouble\+\_\+factorialf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{155}
+  \item {ldouble\+\_\+factoriall}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{156}
+  \item {legendre}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{44}
+  \item {legendre\+\_\+q}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{156}
+  \item {legendre\+\_\+qf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{157}
+  \item {legendre\+\_\+ql}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{157}
+  \item {legendref}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{45}
+  \item {legendrel}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{45}
+  \item {lerch\+\_\+phi}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{157}
+  \item {lerch\+\_\+phif}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{158}
+  \item {lerch\+\_\+phil}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{158}
+  \item {lfactorial}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{158}
+  \item {lfactorialf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{159}
+  \item {lfactoriall}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{159}
+  \item {lfalling\+\_\+factorial}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{159}
+  \item {lfalling\+\_\+factorialf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{160}
+  \item {lfalling\+\_\+factoriall}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{160}
+  \item {lgamma}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{160, 161}
+  \item {lgammaf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{161}
+  \item {lgammal}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{162}
+  \item {logint}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{162}
+  \item {logintf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{163}
+  \item {logintl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{163}
+  \item {logistic\+\_\+p}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{163}
+  \item {logistic\+\_\+pdf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{164}
+  \item {lognormal\+\_\+p}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{164}
+  \item {lognormal\+\_\+pdf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{164}
+  \item {lrising\+\_\+factorial}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{165}
+  \item {lrising\+\_\+factorialf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{165}
+  \item {lrising\+\_\+factoriall}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{165}
+
+  \indexspace
+
+  \item {normal\+\_\+p}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{166}
+  \item {normal\+\_\+pdf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{166}
+  \item {num\+\_\+terms}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}, 
+		\hyperpage{564}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator}, 
+		\hyperpage{567}
+
+  \indexspace
+
+  \item {operator bool}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t}, 
+		\hyperpage{471}
+  \item {operator$<$$<$}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}, 
+		\hyperpage{564}
+  \item {operator()}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t}, 
+		\hyperpage{471}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy}, 
+		\hyperpage{535}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}, 
+		\hyperpage{539}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}, 
+		\hyperpage{546}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}, 
+		\hyperpage{564}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator}, 
+		\hyperpage{567}
+  \item {outer\+\_\+radius}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy}, 
+		\hyperpage{536}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+default\+\_\+radii$<$ double $>$}, 
+		\hyperpage{547}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+default\+\_\+radii$<$ float $>$}, 
+		\hyperpage{548}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+default\+\_\+radii$<$ long double $>$}, 
+		\hyperpage{549}
+  \item {owens\+\_\+t}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{166}
+  \item {owens\+\_\+tf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{167}
+  \item {owens\+\_\+tl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{167}
+
+  \indexspace
+
+  \item {polygamma}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{167}
+  \item {polygammaf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{168}
+  \item {polygammal}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{168}
+  \item {polylog}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{168, 169}
+  \item {polylogf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{169, 170}
+  \item {polylogl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{170}
+
+  \indexspace
+
+  \item {radpoly}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{171}
+  \item {radpolyf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{172}
+  \item {radpolyl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{172}
+  \item {riemann\+\_\+zeta}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{45}
+  \item {riemann\+\_\+zetaf}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{46}
+  \item {riemann\+\_\+zetal}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{46}
+  \item {rising\+\_\+factorial}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{172}
+  \item {rising\+\_\+factorialf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{173}
+  \item {rising\+\_\+factoriall}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{173}
+
+  \indexspace
+
+  \item {scalar\+\_\+type}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy}, 
+		\hyperpage{534}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}, 
+		\hyperpage{545}
+  \item {sf\+\_\+airy.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+A\+I\+R\+Y\+\_\+\+T\+CC}, 
+		\hyperpage{571}
+  \item {sf\+\_\+bernoulli.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+B\+E\+R\+N\+O\+U\+L\+L\+I\+\_\+\+T\+CC}, 
+		\hyperpage{572}
+  \item {sf\+\_\+bessel.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+B\+E\+S\+S\+E\+L\+\_\+\+T\+CC}, 
+		\hyperpage{575}
+  \item {sf\+\_\+beta.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+B\+E\+T\+A\+\_\+\+T\+CC}, 
+		\hyperpage{576}
+  \item {sf\+\_\+cardinal.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+C\+A\+R\+D\+I\+N\+A\+L\+\_\+\+T\+CC}, 
+		\hyperpage{578}
+  \item {sf\+\_\+chebyshev.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+C\+H\+E\+B\+Y\+S\+H\+E\+V\+\_\+\+T\+CC}, 
+		\hyperpage{580}
+  \item {sf\+\_\+coulomb.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+C\+O\+U\+L\+O\+M\+B\+\_\+\+T\+CC}, 
+		\hyperpage{582}
+  \item {sf\+\_\+dawson.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+D\+A\+W\+S\+O\+N\+\_\+\+T\+CC}, 
+		\hyperpage{583}
+  \item {sf\+\_\+distributions.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+D\+I\+S\+T\+R\+I\+B\+U\+T\+I\+O\+N\+S\+\_\+\+T\+CC}, 
+		\hyperpage{587}
+  \item {sf\+\_\+ellint.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+L\+L\+I\+N\+T\+\_\+\+T\+CC}, 
+		\hyperpage{589}
+  \item {sf\+\_\+euler.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+U\+L\+E\+R\+\_\+\+T\+CC}, 
+		\hyperpage{591}
+  \item {sf\+\_\+expint.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+X\+P\+I\+N\+T\+\_\+\+T\+CC}, 
+		\hyperpage{593}
+  \item {sf\+\_\+fresnel.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+F\+R\+E\+S\+N\+E\+L\+\_\+\+T\+CC}, 
+		\hyperpage{595}
+  \item {sf\+\_\+gamma.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+G\+A\+M\+M\+A\+\_\+\+T\+CC}, 
+		\hyperpage{603}
+  \item {sf\+\_\+gegenbauer.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+G\+E\+G\+E\+N\+B\+A\+U\+E\+R\+\_\+\+T\+CC}, 
+		\hyperpage{604}
+  \item {sf\+\_\+hankel.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+A\+N\+K\+E\+L\+\_\+\+T\+CC}, 
+		\hyperpage{607}
+  \item {sf\+\_\+hermite.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+E\+R\+M\+I\+T\+E\+\_\+\+T\+CC}, 
+		\hyperpage{609}
+  \item {sf\+\_\+hyperg.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+E\+R\+G\+\_\+\+T\+CC}, 
+		\hyperpage{612}
+  \item {sf\+\_\+hypint.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+I\+N\+T\+\_\+\+T\+CC}, 
+		\hyperpage{613}
+  \item {sf\+\_\+jacobi.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+J\+A\+C\+O\+B\+I\+\_\+\+T\+CC}, 
+		\hyperpage{615}
+  \item {sf\+\_\+laguerre.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+A\+G\+U\+E\+R\+R\+E\+\_\+\+T\+CC}, 
+		\hyperpage{617}
+  \item {sf\+\_\+legendre.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+E\+G\+E\+N\+D\+R\+E\+\_\+\+T\+CC}, 
+		\hyperpage{619}
+  \item {sf\+\_\+mod\+\_\+bessel.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+M\+O\+D\+\_\+\+B\+E\+S\+S\+E\+L\+\_\+\+T\+CC}, 
+		\hyperpage{621}
+  \item {sf\+\_\+owens\+\_\+t.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+O\+W\+E\+N\+S\+\_\+\+T\+\_\+\+T\+CC}, 
+		\hyperpage{622}
+  \item {sf\+\_\+polylog.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+P\+O\+L\+Y\+L\+O\+G\+\_\+\+T\+CC}, 
+		\hyperpage{625}
+  \item {sf\+\_\+stirling.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+S\+T\+I\+R\+L\+I\+N\+G\+\_\+\+T\+CC}, 
+		\hyperpage{627}
+  \item {sf\+\_\+theta.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+H\+E\+T\+A\+\_\+\+T\+CC}, 
+		\hyperpage{630}
+  \item {sf\+\_\+trig.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+R\+I\+G\+\_\+\+T\+CC}, 
+		\hyperpage{632}
+  \item {sf\+\_\+trigint.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+R\+I\+G\+I\+N\+T\+\_\+\+T\+CC}, 
+		\hyperpage{634}
+  \item {sf\+\_\+zeta.\+tcc}
+    \subitem {\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+Z\+E\+T\+A\+\_\+\+T\+CC}, 
+		\hyperpage{637}
+  \item {sin\+\_\+pi}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{173}
+  \item {sin\+\_\+pif}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{174}
+  \item {sin\+\_\+pil}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{174}
+  \item {sinc}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{174}
+  \item {sinc\+\_\+pi}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{175}
+  \item {sinc\+\_\+pif}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{175}
+  \item {sinc\+\_\+pil}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{176}
+  \item {sincf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{176}
+  \item {sincl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{176}
+  \item {sincos}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{177}
+  \item {sincos\+\_\+pi}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{177}
+  \item {sincos\+\_\+pif}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{178}
+  \item {sincos\+\_\+pil}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{178}
+  \item {sincosf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{178}
+  \item {sincosl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{179}
+  \item {sinh\+\_\+pi}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{179}
+  \item {sinh\+\_\+pif}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{180}
+  \item {sinh\+\_\+pil}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{180}
+  \item {sinhc}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{180}
+  \item {sinhc\+\_\+pi}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{181}
+  \item {sinhc\+\_\+pif}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{181}
+  \item {sinhc\+\_\+pil}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{182}
+  \item {sinhcf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{182}
+  \item {sinhcl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{182}
+  \item {sinhint}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{182}
+  \item {sinhintf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{183}
+  \item {sinhintl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{183}
+  \item {sinint}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{183}
+  \item {sinintf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{184}
+  \item {sinintl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{184}
+  \item {specfun.\+h}
+    \subitem {\+\_\+\+\_\+\+S\+T\+D\+C\+P\+P\+\_\+\+M\+A\+T\+H\+\_\+\+S\+P\+E\+C\+\_\+\+F\+U\+N\+C\+S\+\_\+\+\_\+}, 
+		\hyperpage{653}
+    \subitem {\+\_\+\+\_\+cpp\+\_\+lib\+\_\+math\+\_\+special\+\_\+functions}, 
+		\hyperpage{652}
+  \item {sph\+\_\+bessel}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{47}
+  \item {sph\+\_\+bessel\+\_\+i}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{184}
+  \item {sph\+\_\+bessel\+\_\+if}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{185}
+  \item {sph\+\_\+bessel\+\_\+il}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{185}
+  \item {sph\+\_\+bessel\+\_\+k}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{186}
+  \item {sph\+\_\+bessel\+\_\+kf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{187}
+  \item {sph\+\_\+bessel\+\_\+kl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{187}
+  \item {sph\+\_\+besself}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{47}
+  \item {sph\+\_\+bessell}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{48}
+  \item {sph\+\_\+hankel\+\_\+1}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{187, 188}
+  \item {sph\+\_\+hankel\+\_\+1f}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{188, 189}
+  \item {sph\+\_\+hankel\+\_\+1l}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{189}
+  \item {sph\+\_\+hankel\+\_\+2}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{190, 191}
+  \item {sph\+\_\+hankel\+\_\+2f}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{191}
+  \item {sph\+\_\+hankel\+\_\+2l}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{192}
+  \item {sph\+\_\+harmonic}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{192}
+  \item {sph\+\_\+harmonicf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{193}
+  \item {sph\+\_\+harmonicl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{193}
+  \item {sph\+\_\+legendre}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{48}
+  \item {sph\+\_\+legendref}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{49}
+  \item {sph\+\_\+legendrel}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{49}
+  \item {sph\+\_\+neumann}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{49}
+  \item {sph\+\_\+neumannf}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{50}
+  \item {sph\+\_\+neumannl}
+    \subitem {C++17/\+I\+S29124 Mathematical Special Functions}, 
+		\hyperpage{50}
+  \item {std}, \hyperpage{236}
+  \item {std\+::\+\_\+\+\_\+detail}, \hyperpage{238}
+    \subitem {\+\_\+\+Num\+\_\+\+Euler\+\_\+\+Maclaurin\+\_\+zeta}, 
+		\hyperpage{440}
+    \subitem {\+\_\+\+Num\+\_\+\+Stieljes}, \hyperpage{441}
+    \subitem {\+\_\+\+S\+\_\+\+Euler\+\_\+\+Maclaurin\+\_\+zeta}, 
+		\hyperpage{441}
+    \subitem {\+\_\+\+S\+\_\+\+Stieljes}, \hyperpage{445}
+    \subitem {\+\_\+\+S\+\_\+double\+\_\+factorial\+\_\+table}, 
+		\hyperpage{441}
+    \subitem {\+\_\+\+S\+\_\+factorial\+\_\+table}, \hyperpage{441}
+    \subitem {\+\_\+\+S\+\_\+harmonic\+\_\+denom}, \hyperpage{442}
+    \subitem {\+\_\+\+S\+\_\+harmonic\+\_\+numer}, \hyperpage{442}
+    \subitem {\+\_\+\+S\+\_\+neg\+\_\+double\+\_\+factorial\+\_\+table}, 
+		\hyperpage{442}
+    \subitem {\+\_\+\+S\+\_\+num\+\_\+double\+\_\+factorials}, 
+		\hyperpage{442}
+    \subitem {\+\_\+\+S\+\_\+num\+\_\+double\+\_\+factorials$<$ double $>$}, 
+		\hyperpage{442}
+    \subitem {\+\_\+\+S\+\_\+num\+\_\+double\+\_\+factorials$<$ float $>$}, 
+		\hyperpage{443}
+    \subitem {\+\_\+\+S\+\_\+num\+\_\+double\+\_\+factorials$<$ long double $>$}, 
+		\hyperpage{443}
+    \subitem {\+\_\+\+S\+\_\+num\+\_\+factorials}, \hyperpage{443}
+    \subitem {\+\_\+\+S\+\_\+num\+\_\+factorials$<$ double $>$}, 
+		\hyperpage{443}
+    \subitem {\+\_\+\+S\+\_\+num\+\_\+factorials$<$ float $>$}, 
+		\hyperpage{443}
+    \subitem {\+\_\+\+S\+\_\+num\+\_\+factorials$<$ long double $>$}, 
+		\hyperpage{444}
+    \subitem {\+\_\+\+S\+\_\+num\+\_\+harmonic\+\_\+numer}, 
+		\hyperpage{444}
+    \subitem {\+\_\+\+S\+\_\+num\+\_\+neg\+\_\+double\+\_\+factorials}, 
+		\hyperpage{444}
+    \subitem {\+\_\+\+S\+\_\+num\+\_\+neg\+\_\+double\+\_\+factorials$<$ double $>$}, 
+		\hyperpage{444}
+    \subitem {\+\_\+\+S\+\_\+num\+\_\+neg\+\_\+double\+\_\+factorials$<$ float $>$}, 
+		\hyperpage{444}
+    \subitem {\+\_\+\+S\+\_\+num\+\_\+neg\+\_\+double\+\_\+factorials$<$ long double $>$}, 
+		\hyperpage{445}
+    \subitem {\+\_\+\+S\+\_\+num\+\_\+zetam1}, \hyperpage{445}
+    \subitem {\+\_\+\+S\+\_\+zetam1}, \hyperpage{445}
+    \subitem {\+\_\+\+\_\+airy}, \hyperpage{262}
+    \subitem {\+\_\+\+\_\+airy\+\_\+ai}, \hyperpage{262}
+    \subitem {\+\_\+\+\_\+airy\+\_\+arg}, \hyperpage{262}
+    \subitem {\+\_\+\+\_\+airy\+\_\+bi}, \hyperpage{263}
+    \subitem {\+\_\+\+\_\+assoc\+\_\+laguerre}, \hyperpage{263}
+    \subitem {\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p}, \hyperpage{264}
+    \subitem {\+\_\+\+\_\+bernoulli}, \hyperpage{265}
+    \subitem {\+\_\+\+\_\+bernoulli\+\_\+2n}, \hyperpage{265}
+    \subitem {\+\_\+\+\_\+bernoulli\+\_\+series}, \hyperpage{266}
+    \subitem {\+\_\+\+\_\+beta}, \hyperpage{267}
+    \subitem {\+\_\+\+\_\+beta\+\_\+gamma}, \hyperpage{267}
+    \subitem {\+\_\+\+\_\+beta\+\_\+inc}, \hyperpage{268}
+    \subitem {\+\_\+\+\_\+beta\+\_\+lgamma}, \hyperpage{269}
+    \subitem {\+\_\+\+\_\+beta\+\_\+p}, \hyperpage{269}
+    \subitem {\+\_\+\+\_\+beta\+\_\+product}, \hyperpage{269}
+    \subitem {\+\_\+\+\_\+binomial}, \hyperpage{270, 271}
+    \subitem {\+\_\+\+\_\+binomial\+\_\+p}, \hyperpage{271}
+    \subitem {\+\_\+\+\_\+binomial\+\_\+pdf}, \hyperpage{272}
+    \subitem {\+\_\+\+\_\+binomial\+\_\+q}, \hyperpage{273}
+    \subitem {\+\_\+\+\_\+bose\+\_\+einstein}, \hyperpage{273}
+    \subitem {\+\_\+\+\_\+cauchy\+\_\+p}, \hyperpage{274}
+    \subitem {\+\_\+\+\_\+chebyshev\+\_\+recur}, \hyperpage{274}
+    \subitem {\+\_\+\+\_\+chebyshev\+\_\+t}, \hyperpage{275}
+    \subitem {\+\_\+\+\_\+chebyshev\+\_\+u}, \hyperpage{275}
+    \subitem {\+\_\+\+\_\+chebyshev\+\_\+v}, \hyperpage{276}
+    \subitem {\+\_\+\+\_\+chebyshev\+\_\+w}, \hyperpage{277}
+    \subitem {\+\_\+\+\_\+chi\+\_\+squared\+\_\+pdf}, \hyperpage{277}
+    \subitem {\+\_\+\+\_\+chi\+\_\+squared\+\_\+pdfc}, \hyperpage{278}
+    \subitem {\+\_\+\+\_\+chshint}, \hyperpage{278}
+    \subitem {\+\_\+\+\_\+chshint\+\_\+cont\+\_\+frac}, \hyperpage{279}
+    \subitem {\+\_\+\+\_\+chshint\+\_\+series}, \hyperpage{279}
+    \subitem {\+\_\+\+\_\+clamp\+\_\+0\+\_\+m2pi}, \hyperpage{279}
+    \subitem {\+\_\+\+\_\+clamp\+\_\+pi}, \hyperpage{280}
+    \subitem {\+\_\+\+\_\+clausen}, \hyperpage{280, 281}
+    \subitem {\+\_\+\+\_\+clausen\+\_\+cl}, \hyperpage{281, 282}
+    \subitem {\+\_\+\+\_\+clausen\+\_\+sl}, \hyperpage{282, 283}
+    \subitem {\+\_\+\+\_\+comp\+\_\+ellint\+\_\+1}, \hyperpage{284}
+    \subitem {\+\_\+\+\_\+comp\+\_\+ellint\+\_\+2}, \hyperpage{284}
+    \subitem {\+\_\+\+\_\+comp\+\_\+ellint\+\_\+3}, \hyperpage{286}
+    \subitem {\+\_\+\+\_\+comp\+\_\+ellint\+\_\+d}, \hyperpage{286}
+    \subitem {\+\_\+\+\_\+comp\+\_\+ellint\+\_\+rf}, \hyperpage{287}
+    \subitem {\+\_\+\+\_\+comp\+\_\+ellint\+\_\+rg}, \hyperpage{287}
+    \subitem {\+\_\+\+\_\+conf\+\_\+hyperg}, \hyperpage{287}
+    \subitem {\+\_\+\+\_\+conf\+\_\+hyperg\+\_\+lim}, \hyperpage{288}
+    \subitem {\+\_\+\+\_\+conf\+\_\+hyperg\+\_\+lim\+\_\+series}, 
+		\hyperpage{288}
+    \subitem {\+\_\+\+\_\+conf\+\_\+hyperg\+\_\+luke}, \hyperpage{289}
+    \subitem {\+\_\+\+\_\+conf\+\_\+hyperg\+\_\+series}, 
+		\hyperpage{289}
+    \subitem {\+\_\+\+\_\+cos\+\_\+pi}, \hyperpage{290}
+    \subitem {\+\_\+\+\_\+cosh\+\_\+pi}, \hyperpage{291}
+    \subitem {\+\_\+\+\_\+coshint}, \hyperpage{291}
+    \subitem {\+\_\+\+\_\+coulomb\+\_\+\+C\+F1}, \hyperpage{292}
+    \subitem {\+\_\+\+\_\+coulomb\+\_\+\+C\+F2}, \hyperpage{292}
+    \subitem {\+\_\+\+\_\+coulomb\+\_\+f\+\_\+recur}, \hyperpage{292}
+    \subitem {\+\_\+\+\_\+coulomb\+\_\+g\+\_\+recur}, \hyperpage{293}
+    \subitem {\+\_\+\+\_\+coulomb\+\_\+norm}, \hyperpage{293}
+    \subitem {\+\_\+\+\_\+cyl\+\_\+bessel}, \hyperpage{293}
+    \subitem {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+i}, \hyperpage{294}
+    \subitem {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+ij\+\_\+series}, 
+		\hyperpage{295}
+    \subitem {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+ik}, \hyperpage{295}
+    \subitem {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+ik\+\_\+asymp}, 
+		\hyperpage{296}
+    \subitem {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+ik\+\_\+steed}, 
+		\hyperpage{297}
+    \subitem {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+j}, \hyperpage{297}
+    \subitem {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+jn}, \hyperpage{298}
+    \subitem {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+jn\+\_\+asymp}, 
+		\hyperpage{298}
+    \subitem {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+jn\+\_\+neg\+\_\+arg}, 
+		\hyperpage{299}
+    \subitem {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+jn\+\_\+steed}, 
+		\hyperpage{299}
+    \subitem {\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+k}, \hyperpage{300}
+    \subitem {\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+1}, \hyperpage{300, 301}
+    \subitem {\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+2}, \hyperpage{302}
+    \subitem {\+\_\+\+\_\+cyl\+\_\+neumann}, \hyperpage{303}
+    \subitem {\+\_\+\+\_\+cyl\+\_\+neumann\+\_\+n}, \hyperpage{303}
+    \subitem {\+\_\+\+\_\+dawson}, \hyperpage{304}
+    \subitem {\+\_\+\+\_\+dawson\+\_\+cont\+\_\+frac}, \hyperpage{304}
+    \subitem {\+\_\+\+\_\+dawson\+\_\+series}, \hyperpage{305}
+    \subitem {\+\_\+\+\_\+debye}, \hyperpage{305}
+    \subitem {\+\_\+\+\_\+debye\+\_\+region}, \hyperpage{306}
+    \subitem {\+\_\+\+\_\+digamma}, \hyperpage{306}
+    \subitem {\+\_\+\+\_\+digamma\+\_\+asymp}, \hyperpage{307}
+    \subitem {\+\_\+\+\_\+digamma\+\_\+series}, \hyperpage{307}
+    \subitem {\+\_\+\+\_\+dilog}, \hyperpage{308}
+    \subitem {\+\_\+\+\_\+dirichlet\+\_\+beta}, \hyperpage{308, 309}
+    \subitem {\+\_\+\+\_\+dirichlet\+\_\+eta}, \hyperpage{309, 310}
+    \subitem {\+\_\+\+\_\+dirichlet\+\_\+lambda}, \hyperpage{311}
+    \subitem {\+\_\+\+\_\+double\+\_\+factorial}, \hyperpage{311}
+    \subitem {\+\_\+\+\_\+ellint\+\_\+1}, \hyperpage{312}
+    \subitem {\+\_\+\+\_\+ellint\+\_\+2}, \hyperpage{312}
+    \subitem {\+\_\+\+\_\+ellint\+\_\+3}, \hyperpage{313}
+    \subitem {\+\_\+\+\_\+ellint\+\_\+cel}, \hyperpage{314}
+    \subitem {\+\_\+\+\_\+ellint\+\_\+d}, \hyperpage{314}
+    \subitem {\+\_\+\+\_\+ellint\+\_\+el1}, \hyperpage{314}
+    \subitem {\+\_\+\+\_\+ellint\+\_\+el2}, \hyperpage{314}
+    \subitem {\+\_\+\+\_\+ellint\+\_\+el3}, \hyperpage{315}
+    \subitem {\+\_\+\+\_\+ellint\+\_\+rc}, \hyperpage{315}
+    \subitem {\+\_\+\+\_\+ellint\+\_\+rd}, \hyperpage{316}
+    \subitem {\+\_\+\+\_\+ellint\+\_\+rf}, \hyperpage{317}
+    \subitem {\+\_\+\+\_\+ellint\+\_\+rg}, \hyperpage{317}
+    \subitem {\+\_\+\+\_\+ellint\+\_\+rj}, \hyperpage{318}
+    \subitem {\+\_\+\+\_\+ellnome}, \hyperpage{319}
+    \subitem {\+\_\+\+\_\+ellnome\+\_\+k}, \hyperpage{320}
+    \subitem {\+\_\+\+\_\+ellnome\+\_\+series}, \hyperpage{320}
+    \subitem {\+\_\+\+\_\+euler}, \hyperpage{320, 321}
+    \subitem {\+\_\+\+\_\+euler\+\_\+series}, \hyperpage{321}
+    \subitem {\+\_\+\+\_\+eulerian\+\_\+1}, \hyperpage{321}
+    \subitem {\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur}, \hyperpage{322}
+    \subitem {\+\_\+\+\_\+eulerian\+\_\+2}, \hyperpage{322}
+    \subitem {\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur}, \hyperpage{322}
+    \subitem {\+\_\+\+\_\+exp2}, \hyperpage{323}
+    \subitem {\+\_\+\+\_\+expint}, \hyperpage{323, 324}
+    \subitem {\+\_\+\+\_\+expint\+\_\+\+E1}, \hyperpage{324}
+    \subitem {\+\_\+\+\_\+expint\+\_\+\+E1\+\_\+asymp}, \hyperpage{325}
+    \subitem {\+\_\+\+\_\+expint\+\_\+\+E1\+\_\+series}, 
+		\hyperpage{326}
+    \subitem {\+\_\+\+\_\+expint\+\_\+\+Ei}, \hyperpage{326}
+    \subitem {\+\_\+\+\_\+expint\+\_\+\+Ei\+\_\+asymp}, \hyperpage{327}
+    \subitem {\+\_\+\+\_\+expint\+\_\+\+Ei\+\_\+series}, 
+		\hyperpage{327}
+    \subitem {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+asymp}, \hyperpage{328}
+    \subitem {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+cont\+\_\+frac}, 
+		\hyperpage{329}
+    \subitem {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+large\+\_\+n}, 
+		\hyperpage{329}
+    \subitem {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+recursion}, 
+		\hyperpage{330}
+    \subitem {\+\_\+\+\_\+expint\+\_\+\+En\+\_\+series}, 
+		\hyperpage{330}
+    \subitem {\+\_\+\+\_\+exponential\+\_\+p}, \hyperpage{331}
+    \subitem {\+\_\+\+\_\+exponential\+\_\+pdf}, \hyperpage{331}
+    \subitem {\+\_\+\+\_\+exponential\+\_\+q}, \hyperpage{332}
+    \subitem {\+\_\+\+\_\+factorial}, \hyperpage{332}
+    \subitem {\+\_\+\+\_\+falling\+\_\+factorial}, \hyperpage{332, 333}
+    \subitem {\+\_\+\+\_\+fermi\+\_\+dirac}, \hyperpage{333}
+    \subitem {\+\_\+\+\_\+fisher\+\_\+f\+\_\+p}, \hyperpage{334}
+    \subitem {\+\_\+\+\_\+fisher\+\_\+f\+\_\+pdf}, \hyperpage{334}
+    \subitem {\+\_\+\+\_\+fisher\+\_\+f\+\_\+q}, \hyperpage{335}
+    \subitem {\+\_\+\+\_\+fock\+\_\+airy}, \hyperpage{336}
+    \subitem {\+\_\+\+\_\+fresnel}, \hyperpage{336}
+    \subitem {\+\_\+\+\_\+fresnel\+\_\+cont\+\_\+frac}, \hyperpage{337}
+    \subitem {\+\_\+\+\_\+fresnel\+\_\+series}, \hyperpage{337}
+    \subitem {\+\_\+\+\_\+gamma}, \hyperpage{337, 338}
+    \subitem {\+\_\+\+\_\+gamma\+\_\+cont\+\_\+frac}, \hyperpage{338}
+    \subitem {\+\_\+\+\_\+gamma\+\_\+p}, \hyperpage{338, 339}
+    \subitem {\+\_\+\+\_\+gamma\+\_\+pdf}, \hyperpage{339}
+    \subitem {\+\_\+\+\_\+gamma\+\_\+q}, \hyperpage{340}
+    \subitem {\+\_\+\+\_\+gamma\+\_\+reciprocal}, \hyperpage{341}
+    \subitem {\+\_\+\+\_\+gamma\+\_\+reciprocal\+\_\+series}, 
+		\hyperpage{341}
+    \subitem {\+\_\+\+\_\+gamma\+\_\+series}, \hyperpage{342}
+    \subitem {\+\_\+\+\_\+gamma\+\_\+temme}, \hyperpage{342}
+    \subitem {\+\_\+\+\_\+gauss}, \hyperpage{343}
+    \subitem {\+\_\+\+\_\+gegenbauer\+\_\+recur}, \hyperpage{343}
+    \subitem {\+\_\+\+\_\+gegenbauer\+\_\+zeros}, \hyperpage{344}
+    \subitem {\+\_\+\+\_\+hankel}, \hyperpage{344}
+    \subitem {\+\_\+\+\_\+hankel\+\_\+debye}, \hyperpage{345}
+    \subitem {\+\_\+\+\_\+hankel\+\_\+params}, \hyperpage{345}
+    \subitem {\+\_\+\+\_\+hankel\+\_\+uniform}, \hyperpage{346}
+    \subitem {\+\_\+\+\_\+hankel\+\_\+uniform\+\_\+olver}, 
+		\hyperpage{347}
+    \subitem {\+\_\+\+\_\+hankel\+\_\+uniform\+\_\+outer}, 
+		\hyperpage{347}
+    \subitem {\+\_\+\+\_\+hankel\+\_\+uniform\+\_\+sum}, 
+		\hyperpage{348}
+    \subitem {\+\_\+\+\_\+harmonic\+\_\+number}, \hyperpage{349}
+    \subitem {\+\_\+\+\_\+hermite}, \hyperpage{349}
+    \subitem {\+\_\+\+\_\+hermite\+\_\+asymp}, \hyperpage{350}
+    \subitem {\+\_\+\+\_\+hermite\+\_\+recur}, \hyperpage{351}
+    \subitem {\+\_\+\+\_\+hermite\+\_\+zeros}, \hyperpage{352}
+    \subitem {\+\_\+\+\_\+heuman\+\_\+lambda}, \hyperpage{352}
+    \subitem {\+\_\+\+\_\+hurwitz\+\_\+zeta}, \hyperpage{352}
+    \subitem {\+\_\+\+\_\+hurwitz\+\_\+zeta\+\_\+euler\+\_\+maclaurin}, 
+		\hyperpage{353}
+    \subitem {\+\_\+\+\_\+hurwitz\+\_\+zeta\+\_\+polylog}, 
+		\hyperpage{353}
+    \subitem {\+\_\+\+\_\+hydrogen}, \hyperpage{354}
+    \subitem {\+\_\+\+\_\+hyperg}, \hyperpage{354}
+    \subitem {\+\_\+\+\_\+hyperg\+\_\+luke}, \hyperpage{355}
+    \subitem {\+\_\+\+\_\+hyperg\+\_\+recur}, \hyperpage{355}
+    \subitem {\+\_\+\+\_\+hyperg\+\_\+reflect}, \hyperpage{356}
+    \subitem {\+\_\+\+\_\+hyperg\+\_\+series}, \hyperpage{357}
+    \subitem {\+\_\+\+\_\+ibeta\+\_\+cont\+\_\+frac}, \hyperpage{358}
+    \subitem {\+\_\+\+\_\+jacobi\+\_\+ellint}, \hyperpage{358}
+    \subitem {\+\_\+\+\_\+jacobi\+\_\+recur}, \hyperpage{359}
+    \subitem {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+1}, 
+		\hyperpage{359, 360}
+    \subitem {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+1\+\_\+prod}, 
+		\hyperpage{361}
+    \subitem {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+1\+\_\+sum}, 
+		\hyperpage{361}
+    \subitem {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+2}, 
+		\hyperpage{362, 363}
+    \subitem {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+2\+\_\+prod}, 
+		\hyperpage{363}
+    \subitem {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+2\+\_\+sum}, 
+		\hyperpage{364}
+    \subitem {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+3}, \hyperpage{365}
+    \subitem {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+3\+\_\+prod}, 
+		\hyperpage{366}
+    \subitem {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+3\+\_\+sum}, 
+		\hyperpage{367}
+    \subitem {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+4}, 
+		\hyperpage{367, 368}
+    \subitem {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+4\+\_\+prod}, 
+		\hyperpage{369}
+    \subitem {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+4\+\_\+sum}, 
+		\hyperpage{369}
+    \subitem {\+\_\+\+\_\+jacobi\+\_\+zeros}, \hyperpage{370}
+    \subitem {\+\_\+\+\_\+jacobi\+\_\+zeta}, \hyperpage{370}
+    \subitem {\+\_\+\+\_\+kolmogorov\+\_\+p}, \hyperpage{371}
+    \subitem {\+\_\+\+\_\+laguerre}, \hyperpage{371, 372}
+    \subitem {\+\_\+\+\_\+laguerre\+\_\+hyperg}, \hyperpage{372}
+    \subitem {\+\_\+\+\_\+laguerre\+\_\+large\+\_\+n}, \hyperpage{373}
+    \subitem {\+\_\+\+\_\+laguerre\+\_\+recur}, \hyperpage{374}
+    \subitem {\+\_\+\+\_\+laguerre\+\_\+zeros}, \hyperpage{375}
+    \subitem {\+\_\+\+\_\+lanczos\+\_\+binet1p}, \hyperpage{375}
+    \subitem {\+\_\+\+\_\+lanczos\+\_\+log\+\_\+gamma1p}, 
+		\hyperpage{376}
+    \subitem {\+\_\+\+\_\+legendre\+\_\+p}, \hyperpage{376}
+    \subitem {\+\_\+\+\_\+legendre\+\_\+q}, \hyperpage{377}
+    \subitem {\+\_\+\+\_\+legendre\+\_\+zeros}, \hyperpage{378}
+    \subitem {\+\_\+\+\_\+log\+\_\+binomial}, \hyperpage{378, 379}
+    \subitem {\+\_\+\+\_\+log\+\_\+binomial\+\_\+sign}, 
+		\hyperpage{379, 380}
+    \subitem {\+\_\+\+\_\+log\+\_\+double\+\_\+factorial}, 
+		\hyperpage{380}
+    \subitem {\+\_\+\+\_\+log\+\_\+factorial}, \hyperpage{381}
+    \subitem {\+\_\+\+\_\+log\+\_\+falling\+\_\+factorial}, 
+		\hyperpage{381}
+    \subitem {\+\_\+\+\_\+log\+\_\+gamma}, \hyperpage{382, 383}
+    \subitem {\+\_\+\+\_\+log\+\_\+gamma\+\_\+bernoulli}, 
+		\hyperpage{383}
+    \subitem {\+\_\+\+\_\+log\+\_\+gamma\+\_\+sign}, \hyperpage{384}
+    \subitem {\+\_\+\+\_\+log\+\_\+rising\+\_\+factorial}, 
+		\hyperpage{384}
+    \subitem {\+\_\+\+\_\+log\+\_\+stirling\+\_\+1}, \hyperpage{385}
+    \subitem {\+\_\+\+\_\+log\+\_\+stirling\+\_\+1\+\_\+sign}, 
+		\hyperpage{385}
+    \subitem {\+\_\+\+\_\+log\+\_\+stirling\+\_\+2}, \hyperpage{385}
+    \subitem {\+\_\+\+\_\+logint}, \hyperpage{386}
+    \subitem {\+\_\+\+\_\+logistic\+\_\+p}, \hyperpage{386}
+    \subitem {\+\_\+\+\_\+logistic\+\_\+pdf}, \hyperpage{387}
+    \subitem {\+\_\+\+\_\+lognormal\+\_\+p}, \hyperpage{387}
+    \subitem {\+\_\+\+\_\+lognormal\+\_\+pdf}, \hyperpage{387}
+    \subitem {\+\_\+\+\_\+max\+\_\+\+F\+GH}, \hyperpage{440}
+    \subitem {\+\_\+\+\_\+max\+\_\+\+F\+G\+H$<$ double $>$}, 
+		\hyperpage{440}
+    \subitem {\+\_\+\+\_\+max\+\_\+\+F\+G\+H$<$ float $>$}, 
+		\hyperpage{440}
+    \subitem {\+\_\+\+\_\+normal\+\_\+p}, \hyperpage{388}
+    \subitem {\+\_\+\+\_\+normal\+\_\+pdf}, \hyperpage{388}
+    \subitem {\+\_\+\+\_\+owens\+\_\+t}, \hyperpage{388}
+    \subitem {\+\_\+\+\_\+polar\+\_\+pi}, \hyperpage{389}
+    \subitem {\+\_\+\+\_\+polygamma}, \hyperpage{390}
+    \subitem {\+\_\+\+\_\+polylog}, \hyperpage{390, 391}
+    \subitem {\+\_\+\+\_\+polylog\+\_\+exp}, \hyperpage{391}
+    \subitem {\+\_\+\+\_\+polylog\+\_\+exp\+\_\+asymp}, \hyperpage{392}
+    \subitem {\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg}, \hyperpage{393}
+    \subitem {\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg\+\_\+int}, 
+		\hyperpage{394, 395}
+    \subitem {\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg\+\_\+real}, 
+		\hyperpage{395, 396}
+    \subitem {\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos}, 
+		\hyperpage{396--398}
+    \subitem {\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos\+\_\+int}, 
+		\hyperpage{398, 399}
+    \subitem {\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos\+\_\+real}, 
+		\hyperpage{400}
+    \subitem {\+\_\+\+\_\+polylog\+\_\+exp\+\_\+sum}, \hyperpage{401}
+    \subitem {\+\_\+\+\_\+prob\+\_\+hermite\+\_\+recur}, 
+		\hyperpage{401}
+    \subitem {\+\_\+\+\_\+radial\+\_\+jacobi}, \hyperpage{402}
+    \subitem {\+\_\+\+\_\+radial\+\_\+jacobi\+\_\+zeros}, 
+		\hyperpage{403}
+    \subitem {\+\_\+\+\_\+rice\+\_\+pdf}, \hyperpage{404}
+    \subitem {\+\_\+\+\_\+riemann\+\_\+zeta}, \hyperpage{404}
+    \subitem {\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+euler\+\_\+maclaurin}, 
+		\hyperpage{405}
+    \subitem {\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+glob}, \hyperpage{405}
+    \subitem {\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+laurent}, 
+		\hyperpage{406}
+    \subitem {\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+m\+\_\+1}, 
+		\hyperpage{406}
+    \subitem {\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+m\+\_\+1\+\_\+glob}, 
+		\hyperpage{407}
+    \subitem {\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+product}, 
+		\hyperpage{407}
+    \subitem {\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+sum}, \hyperpage{409}
+    \subitem {\+\_\+\+\_\+rising\+\_\+factorial}, \hyperpage{409}
+    \subitem {\+\_\+\+\_\+sin\+\_\+pi}, \hyperpage{410}
+    \subitem {\+\_\+\+\_\+sinc}, \hyperpage{410}
+    \subitem {\+\_\+\+\_\+sinc\+\_\+pi}, \hyperpage{411}
+    \subitem {\+\_\+\+\_\+sincos}, \hyperpage{411, 412}
+    \subitem {\+\_\+\+\_\+sincos\+\_\+pi}, \hyperpage{412}
+    \subitem {\+\_\+\+\_\+sincosint}, \hyperpage{412}
+    \subitem {\+\_\+\+\_\+sincosint\+\_\+asymp}, \hyperpage{413}
+    \subitem {\+\_\+\+\_\+sincosint\+\_\+cont\+\_\+frac}, 
+		\hyperpage{413}
+    \subitem {\+\_\+\+\_\+sincosint\+\_\+series}, \hyperpage{413}
+    \subitem {\+\_\+\+\_\+sinh\+\_\+pi}, \hyperpage{414}
+    \subitem {\+\_\+\+\_\+sinhc}, \hyperpage{414}
+    \subitem {\+\_\+\+\_\+sinhc\+\_\+pi}, \hyperpage{415}
+    \subitem {\+\_\+\+\_\+sinhint}, \hyperpage{415}
+    \subitem {\+\_\+\+\_\+sph\+\_\+bessel}, \hyperpage{416}
+    \subitem {\+\_\+\+\_\+sph\+\_\+bessel\+\_\+ik}, \hyperpage{417}
+    \subitem {\+\_\+\+\_\+sph\+\_\+bessel\+\_\+jn}, \hyperpage{418}
+    \subitem {\+\_\+\+\_\+sph\+\_\+bessel\+\_\+jn\+\_\+neg\+\_\+arg}, 
+		\hyperpage{418}
+    \subitem {\+\_\+\+\_\+sph\+\_\+hankel}, \hyperpage{418}
+    \subitem {\+\_\+\+\_\+sph\+\_\+hankel\+\_\+1}, \hyperpage{419, 420}
+    \subitem {\+\_\+\+\_\+sph\+\_\+hankel\+\_\+2}, \hyperpage{420, 421}
+    \subitem {\+\_\+\+\_\+sph\+\_\+harmonic}, \hyperpage{421}
+    \subitem {\+\_\+\+\_\+sph\+\_\+legendre}, \hyperpage{422}
+    \subitem {\+\_\+\+\_\+sph\+\_\+neumann}, \hyperpage{423}
+    \subitem {\+\_\+\+\_\+spouge\+\_\+binet1p}, \hyperpage{424}
+    \subitem {\+\_\+\+\_\+spouge\+\_\+log\+\_\+gamma1p}, 
+		\hyperpage{425}
+    \subitem {\+\_\+\+\_\+stirling\+\_\+1}, \hyperpage{426}
+    \subitem {\+\_\+\+\_\+stirling\+\_\+1\+\_\+recur}, \hyperpage{426}
+    \subitem {\+\_\+\+\_\+stirling\+\_\+1\+\_\+series}, \hyperpage{426}
+    \subitem {\+\_\+\+\_\+stirling\+\_\+2}, \hyperpage{427}
+    \subitem {\+\_\+\+\_\+stirling\+\_\+2\+\_\+recur}, \hyperpage{427}
+    \subitem {\+\_\+\+\_\+stirling\+\_\+2\+\_\+series}, \hyperpage{427}
+    \subitem {\+\_\+\+\_\+student\+\_\+t\+\_\+p}, \hyperpage{428}
+    \subitem {\+\_\+\+\_\+student\+\_\+t\+\_\+pdf}, \hyperpage{428}
+    \subitem {\+\_\+\+\_\+student\+\_\+t\+\_\+q}, \hyperpage{429}
+    \subitem {\+\_\+\+\_\+tan\+\_\+pi}, \hyperpage{429, 430}
+    \subitem {\+\_\+\+\_\+tanh\+\_\+pi}, \hyperpage{430}
+    \subitem {\+\_\+\+\_\+tgamma}, \hyperpage{431}
+    \subitem {\+\_\+\+\_\+tgamma\+\_\+lower}, \hyperpage{431}
+    \subitem {\+\_\+\+\_\+theta\+\_\+1}, \hyperpage{431}
+    \subitem {\+\_\+\+\_\+theta\+\_\+2}, \hyperpage{432}
+    \subitem {\+\_\+\+\_\+theta\+\_\+2\+\_\+asymp}, \hyperpage{433}
+    \subitem {\+\_\+\+\_\+theta\+\_\+2\+\_\+sum}, \hyperpage{433}
+    \subitem {\+\_\+\+\_\+theta\+\_\+3}, \hyperpage{433}
+    \subitem {\+\_\+\+\_\+theta\+\_\+3\+\_\+asymp}, \hyperpage{434}
+    \subitem {\+\_\+\+\_\+theta\+\_\+3\+\_\+sum}, \hyperpage{434}
+    \subitem {\+\_\+\+\_\+theta\+\_\+4}, \hyperpage{434}
+    \subitem {\+\_\+\+\_\+theta\+\_\+c}, \hyperpage{435}
+    \subitem {\+\_\+\+\_\+theta\+\_\+d}, \hyperpage{435}
+    \subitem {\+\_\+\+\_\+theta\+\_\+n}, \hyperpage{436}
+    \subitem {\+\_\+\+\_\+theta\+\_\+s}, \hyperpage{436}
+    \subitem {\+\_\+\+\_\+tricomi\+\_\+u}, \hyperpage{436}
+    \subitem {\+\_\+\+\_\+tricomi\+\_\+u\+\_\+naive}, \hyperpage{437}
+    \subitem {\+\_\+\+\_\+weibull\+\_\+p}, \hyperpage{438}
+    \subitem {\+\_\+\+\_\+weibull\+\_\+pdf}, \hyperpage{438}
+    \subitem {\+\_\+\+\_\+zernike}, \hyperpage{438}
+    \subitem {\+\_\+\+\_\+znorm1}, \hyperpage{439}
+    \subitem {\+\_\+\+\_\+znorm2}, \hyperpage{440}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+lanczos\+\_\+data$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{505}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+lanczos\+\_\+data$<$ double $>$}, 
+		\hyperpage{505}
+    \subitem {\+\_\+\+S\+\_\+cheby}, \hyperpage{506}
+    \subitem {\+\_\+\+S\+\_\+g}, \hyperpage{506}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+lanczos\+\_\+data$<$ float $>$}, 
+		\hyperpage{506}
+    \subitem {\+\_\+\+S\+\_\+cheby}, \hyperpage{507}
+    \subitem {\+\_\+\+S\+\_\+g}, \hyperpage{507}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+lanczos\+\_\+data$<$ long double $>$}, 
+		\hyperpage{507}
+    \subitem {\+\_\+\+S\+\_\+cheby}, \hyperpage{508}
+    \subitem {\+\_\+\+S\+\_\+g}, \hyperpage{508}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+spouge\+\_\+data$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{509}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+spouge\+\_\+data$<$ double $>$}, 
+		\hyperpage{509}
+    \subitem {\+\_\+\+S\+\_\+cheby}, \hyperpage{509}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+spouge\+\_\+data$<$ float $>$}, 
+		\hyperpage{510}
+    \subitem {\+\_\+\+S\+\_\+cheby}, \hyperpage{510}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+spouge\+\_\+data$<$ long double $>$}, 
+		\hyperpage{511}
+    \subitem {\+\_\+\+S\+\_\+cheby}, \hyperpage{511}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}
+    \subitem {\+\_\+\+Cmplx}, \hyperpage{514}
+    \subitem {\+\_\+\+M\+\_\+omega\+\_\+1}, \hyperpage{518}
+    \subitem {\+\_\+\+M\+\_\+omega\+\_\+3}, \hyperpage{518}
+    \subitem {\+\_\+\+Real}, \hyperpage{514}
+    \subitem {\+\_\+\+Real\+\_\+\+Omega1}, \hyperpage{514}
+    \subitem {\+\_\+\+Real\+\_\+\+Omega3}, \hyperpage{514}
+    \subitem {\+\_\+\+S\+\_\+pi}, \hyperpage{518}
+    \subitem {\+\_\+\+Tp\+\_\+\+Nome}, \hyperpage{515}
+    \subitem {\+\_\+\+\_\+ellnome}, \hyperpage{516}
+    \subitem {\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t}, \hyperpage{515}
+    \subitem {\+\_\+\+\_\+omega\+\_\+1}, \hyperpage{516}
+    \subitem {\+\_\+\+\_\+omega\+\_\+2}, \hyperpage{516}
+    \subitem {\+\_\+\+\_\+omega\+\_\+3}, \hyperpage{517}
+    \subitem {\+\_\+\+\_\+reduce}, \hyperpage{517}
+    \subitem {\+\_\+\+\_\+tau}, \hyperpage{518}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t$<$ \+\_\+\+Tp\+\_\+\+Omega1, \+\_\+\+Tp\+\_\+\+Omega3 $>$}, 
+		\hyperpage{512}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t$<$ \+\_\+\+Tp\+\_\+\+Omega1, \+\_\+\+Tp\+\_\+\+Omega3 $>$\+::\+\_\+\+\_\+arg\+\_\+t}, 
+		\hyperpage{519}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t$<$ \+\_\+\+Tp\+\_\+\+Omega1, \+\_\+\+Tp\+\_\+\+Omega3 $>$\+::\+\_\+\+\_\+tau\+\_\+t}, 
+		\hyperpage{520}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t\+::\+\_\+\+\_\+arg\+\_\+t}
+    \subitem {\+\_\+\+\_\+m}, \hyperpage{519}
+    \subitem {\+\_\+\+\_\+n}, \hyperpage{520}
+    \subitem {\+\_\+\+\_\+z}, \hyperpage{520}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+lattice\+\_\+t\+::\+\_\+\+\_\+tau\+\_\+t}
+    \subitem {\+\_\+\+\_\+tau\+\_\+t}, \hyperpage{521}
+    \subitem {\+\_\+\+\_\+val}, \hyperpage{521}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}
+    \subitem {\+\_\+\+Cmplx}, \hyperpage{523}
+    \subitem {\+\_\+\+Real}, \hyperpage{523}
+    \subitem {\+\_\+\+Type}, \hyperpage{523}
+    \subitem {\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}, 
+		\hyperpage{523}
+    \subitem {dedekind\+\_\+eta}, \hyperpage{524}
+    \subitem {eta\+\_\+1}, \hyperpage{524}
+    \subitem {eta\+\_\+2}, \hyperpage{524}
+    \subitem {eta\+\_\+3}, \hyperpage{525}
+    \subitem {th1p}, \hyperpage{525}
+    \subitem {th1ppp}, \hyperpage{525}
+    \subitem {th2}, \hyperpage{525}
+    \subitem {th2pp}, \hyperpage{525}
+    \subitem {th3}, \hyperpage{526}
+    \subitem {th3pp}, \hyperpage{526}
+    \subitem {th4}, \hyperpage{526}
+    \subitem {th4pp}, \hyperpage{526}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$}, 
+		\hyperpage{522}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}
+    \subitem {\+\_\+\+Cmplx}, \hyperpage{528}
+    \subitem {\+\_\+\+Real}, \hyperpage{528}
+    \subitem {\+\_\+\+Type}, \hyperpage{528}
+    \subitem {\+\_\+\+\_\+delta}, \hyperpage{529}
+    \subitem {\+\_\+\+\_\+g\+\_\+2}, \hyperpage{529}
+    \subitem {\+\_\+\+\_\+g\+\_\+3}, \hyperpage{529}
+    \subitem {\+\_\+\+\_\+klein\+\_\+j}, \hyperpage{529}
+    \subitem {\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t}, 
+		\hyperpage{528}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+invariants\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$}, 
+		\hyperpage{527}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+roots\+\_\+t}
+    \subitem {\+\_\+\+Cmplx}, \hyperpage{531}
+    \subitem {\+\_\+\+Real}, \hyperpage{531}
+    \subitem {\+\_\+\+Type}, \hyperpage{531}
+    \subitem {\+\_\+\+\_\+delta}, \hyperpage{532}
+    \subitem {\+\_\+\+\_\+e1}, \hyperpage{533}
+    \subitem {\+\_\+\+\_\+e2}, \hyperpage{533}
+    \subitem {\+\_\+\+\_\+e3}, \hyperpage{533}
+    \subitem {\+\_\+\+\_\+weierstrass\+\_\+roots\+\_\+t}, 
+		\hyperpage{532}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+weierstrass\+\_\+roots\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$}, 
+		\hyperpage{530}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy}
+    \subitem {\+\_\+\+Airy}, \hyperpage{535}
+    \subitem {inner\+\_\+radius}, \hyperpage{536}
+    \subitem {operator()}, \hyperpage{535}
+    \subitem {outer\+\_\+radius}, \hyperpage{536}
+    \subitem {scalar\+\_\+type}, \hyperpage{534}
+    \subitem {value\+\_\+type}, \hyperpage{534}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{534}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp}
+    \subitem {\+\_\+\+Airy\+\_\+asymp}, \hyperpage{538}
+    \subitem {\+\_\+\+Cmplx}, \hyperpage{538}
+    \subitem {\+\_\+\+S\+\_\+absarg\+\_\+ge\+\_\+pio3}, \hyperpage{538}
+    \subitem {\+\_\+\+S\+\_\+absarg\+\_\+lt\+\_\+pio3}, \hyperpage{539}
+    \subitem {operator()}, \hyperpage{539}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{536}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+data$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{540}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+data$<$ double $>$}, 
+		\hyperpage{541}
+    \subitem {\+\_\+\+S\+\_\+c}, \hyperpage{541}
+    \subitem {\+\_\+\+S\+\_\+d}, \hyperpage{541}
+    \subitem {\+\_\+\+S\+\_\+max\+\_\+cd}, \hyperpage{541}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+data$<$ float $>$}, 
+		\hyperpage{542}
+    \subitem {\+\_\+\+S\+\_\+c}, \hyperpage{542}
+    \subitem {\+\_\+\+S\+\_\+d}, \hyperpage{542}
+    \subitem {\+\_\+\+S\+\_\+max\+\_\+cd}, \hyperpage{542}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+data$<$ long double $>$}, 
+		\hyperpage{543}
+    \subitem {\+\_\+\+S\+\_\+c}, \hyperpage{543}
+    \subitem {\+\_\+\+S\+\_\+d}, \hyperpage{543}
+    \subitem {\+\_\+\+S\+\_\+max\+\_\+cd}, \hyperpage{543}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}
+    \subitem {\+\_\+\+Airy\+\_\+asymp\+\_\+series}, \hyperpage{545}
+    \subitem {\+\_\+\+S\+\_\+sqrt\+\_\+pi}, \hyperpage{546}
+    \subitem {operator()}, \hyperpage{546}
+    \subitem {scalar\+\_\+type}, \hyperpage{545}
+    \subitem {value\+\_\+type}, \hyperpage{545}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series$<$ \+\_\+\+Sum $>$}, 
+		\hyperpage{544}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+default\+\_\+radii$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{547}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+default\+\_\+radii$<$ double $>$}, 
+		\hyperpage{547}
+    \subitem {inner\+\_\+radius}, \hyperpage{547}
+    \subitem {outer\+\_\+radius}, \hyperpage{547}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+default\+\_\+radii$<$ float $>$}, 
+		\hyperpage{548}
+    \subitem {inner\+\_\+radius}, \hyperpage{548}
+    \subitem {outer\+\_\+radius}, \hyperpage{548}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+default\+\_\+radii$<$ long double $>$}, 
+		\hyperpage{549}
+    \subitem {inner\+\_\+radius}, \hyperpage{549}
+    \subitem {outer\+\_\+radius}, \hyperpage{549}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series}
+    \subitem {\+\_\+\+Cmplx}, \hyperpage{550}
+    \subitem {\+\_\+\+N\+\_\+\+F\+GH}, \hyperpage{555}
+    \subitem {\+\_\+\+S\+\_\+\+Ai}, \hyperpage{551}
+    \subitem {\+\_\+\+S\+\_\+\+Ai0}, \hyperpage{555}
+    \subitem {\+\_\+\+S\+\_\+\+Aip0}, \hyperpage{555}
+    \subitem {\+\_\+\+S\+\_\+\+Airy}, \hyperpage{551}
+    \subitem {\+\_\+\+S\+\_\+\+Bi}, \hyperpage{552}
+    \subitem {\+\_\+\+S\+\_\+\+Bi0}, \hyperpage{555}
+    \subitem {\+\_\+\+S\+\_\+\+Bip0}, \hyperpage{556}
+    \subitem {\+\_\+\+S\+\_\+\+F\+GH}, \hyperpage{552}
+    \subitem {\+\_\+\+S\+\_\+\+Fock}, \hyperpage{553}
+    \subitem {\+\_\+\+S\+\_\+\+Gi0}, \hyperpage{556}
+    \subitem {\+\_\+\+S\+\_\+\+Gip0}, \hyperpage{556}
+    \subitem {\+\_\+\+S\+\_\+\+Hi0}, \hyperpage{556}
+    \subitem {\+\_\+\+S\+\_\+\+Hip0}, \hyperpage{557}
+    \subitem {\+\_\+\+S\+\_\+\+Scorer}, \hyperpage{553}
+    \subitem {\+\_\+\+S\+\_\+\+Scorer2}, \hyperpage{554}
+    \subitem {\+\_\+\+S\+\_\+eps}, \hyperpage{556}
+    \subitem {\+\_\+\+S\+\_\+i}, \hyperpage{557}
+    \subitem {\+\_\+\+S\+\_\+pi}, \hyperpage{557}
+    \subitem {\+\_\+\+S\+\_\+sqrt\+\_\+pi}, \hyperpage{557}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+series$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{549}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+Auxilliary\+State}
+    \subitem {\+\_\+\+Val}, \hyperpage{558}
+    \subitem {\+\_\+\+\_\+fai\+\_\+deriv}, \hyperpage{558}
+    \subitem {\+\_\+\+\_\+fai\+\_\+value}, \hyperpage{559}
+    \subitem {\+\_\+\+\_\+gai\+\_\+deriv}, \hyperpage{559}
+    \subitem {\+\_\+\+\_\+gai\+\_\+value}, \hyperpage{559}
+    \subitem {\+\_\+\+\_\+hai\+\_\+deriv}, \hyperpage{559}
+    \subitem {\+\_\+\+\_\+hai\+\_\+value}, \hyperpage{559}
+    \subitem {\+\_\+\+\_\+z}, \hyperpage{560}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+Auxilliary\+State$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{558}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}
+    \subitem {\+\_\+\+Real}, \hyperpage{561}
+    \subitem {\+\_\+\+\_\+\+Ai\+\_\+deriv}, \hyperpage{562}
+    \subitem {\+\_\+\+\_\+\+Ai\+\_\+value}, \hyperpage{562}
+    \subitem {\+\_\+\+\_\+\+Bi\+\_\+deriv}, \hyperpage{562}
+    \subitem {\+\_\+\+\_\+\+Bi\+\_\+value}, \hyperpage{562}
+    \subitem {\+\_\+\+\_\+z}, \hyperpage{562}
+    \subitem {true\+\_\+\+Wronskian}, \hyperpage{561}
+    \subitem {Wronskian}, \hyperpage{561}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{560}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator}
+    \subitem {\+\_\+\+Asymp\+Terminator}, \hyperpage{563}
+    \subitem {num\+\_\+terms}, \hyperpage{564}
+    \subitem {operator$<$$<$}, \hyperpage{564}
+    \subitem {operator()}, \hyperpage{564}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Asymp\+Terminator$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{563}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Factorial\+\_\+table}
+    \subitem {\+\_\+\+\_\+factorial}, \hyperpage{565}
+    \subitem {\+\_\+\+\_\+log\+\_\+factorial}, \hyperpage{565}
+    \subitem {\+\_\+\+\_\+n}, \hyperpage{565}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Factorial\+\_\+table$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{565}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator}
+    \subitem {\+\_\+\+Terminator}, \hyperpage{566}
+    \subitem {num\+\_\+terms}, \hyperpage{567}
+    \subitem {operator()}, \hyperpage{567}
+  \item {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Terminator$<$ \+\_\+\+Tp $>$}, 
+		\hyperpage{566}
+  \item {stirling\+\_\+1}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{194}
+  \item {stirling\+\_\+2}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{194}
+  \item {student\+\_\+t\+\_\+p}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{195}
+  \item {student\+\_\+t\+\_\+pdf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{195}
+
+  \indexspace
+
+  \item {tan\+\_\+pi}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{196}
+  \item {tan\+\_\+pif}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{196}
+  \item {tan\+\_\+pil}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{197}
+  \item {tanh\+\_\+pi}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{197}
+  \item {tanh\+\_\+pif}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{198}
+  \item {tanh\+\_\+pil}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{198}
+  \item {tgamma}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{198, 199}
+  \item {tgamma\+\_\+lower}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{199}
+  \item {tgamma\+\_\+lowerf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{199}
+  \item {tgamma\+\_\+lowerl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{200}
+  \item {tgammaf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{200, 201}
+  \item {tgammal}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{201, 202}
+  \item {th1p}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}, 
+		\hyperpage{525}
+  \item {th1ppp}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}, 
+		\hyperpage{525}
+  \item {th2}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}, 
+		\hyperpage{525}
+  \item {th2pp}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}, 
+		\hyperpage{525}
+  \item {th3}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}, 
+		\hyperpage{526}
+  \item {th3pp}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}, 
+		\hyperpage{526}
+  \item {th4}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}, 
+		\hyperpage{526}
+  \item {th4pp}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+theta\+\_\+0\+\_\+t}, 
+		\hyperpage{526}
+  \item {theta\+\_\+1}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{202}
+  \item {theta\+\_\+1f}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{203}
+  \item {theta\+\_\+1l}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{203}
+  \item {theta\+\_\+2}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{203}
+  \item {theta\+\_\+2f}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{204}
+  \item {theta\+\_\+2l}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{204}
+  \item {theta\+\_\+3}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{204}
+  \item {theta\+\_\+3f}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{205}
+  \item {theta\+\_\+3l}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{205}
+  \item {theta\+\_\+4}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{205}
+  \item {theta\+\_\+4f}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{206}
+  \item {theta\+\_\+4l}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{206}
+  \item {theta\+\_\+c}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{206}
+  \item {theta\+\_\+cf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{207}
+  \item {theta\+\_\+cl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{207}
+  \item {theta\+\_\+d}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{208}
+  \item {theta\+\_\+df}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{208}
+  \item {theta\+\_\+dl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{209}
+  \item {theta\+\_\+n}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{209}
+  \item {theta\+\_\+nf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{210}
+  \item {theta\+\_\+nl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{210}
+  \item {theta\+\_\+s}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{210}
+  \item {theta\+\_\+sf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{211}
+  \item {theta\+\_\+sl}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{211}
+  \item {tricomi\+\_\+u}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{212}
+  \item {tricomi\+\_\+uf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{213}
+  \item {tricomi\+\_\+ul}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{213}
+  \item {true\+\_\+\+Wronskian}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}, 
+		\hyperpage{561}
+
+  \indexspace
+
+  \item {value\+\_\+type}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy}, 
+		\hyperpage{534}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp\+\_\+series}, 
+		\hyperpage{545}
+
+  \indexspace
+
+  \item {weibull\+\_\+p}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{213}
+  \item {weibull\+\_\+pdf}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{213}
+  \item {Wronskian}
+    \subitem {std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}, 
+		\hyperpage{561}
+
+  \indexspace
+
+  \item {zernike}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{214}
+  \item {zernikef}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{215}
+  \item {zernikel}
+    \subitem {G\+N\+U Extended Mathematical Special Functions}, 
+		\hyperpage{215}
+
+\end{theindex}

@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"group__gnu__math__spec__func.html#ga5f01f17ae8859129860118b09d51791c":[2,0,1,70],
+"group__gnu__math__spec__func.html#ga5f12f60afe9a47f4ca04964f642bbf0d":[2,0,1,245],
 "group__gnu__math__spec__func.html#ga609879a370bc4e9fc70563806bc49cb9":[2,0,1,55],
 "group__gnu__math__spec__func.html#ga60feac5a8bd733abee6610adf15208f2":[2,0,1,230],
 "group__gnu__math__spec__func.html#ga6230131ce5679e0936a16a6b029d6342":[2,0,1,116],
@@ -145,7 +147,6 @@ var NAVTREEINDEX1 =
 "group__gnu__math__spec__func.html#gabd18e600aa78c3f2b2f835039506c810":[2,0,1,57],
 "group__gnu__math__spec__func.html#gabd7fa090deead18b167c26b8994b9f53":[2,0,1,191],
 "group__gnu__math__spec__func.html#gabebff9ffba6acf55f3a3cd716ef5007a":[2,0,1,349],
-"group__gnu__math__spec__func.html#gabf1644841deefbb162ade9fa508591cb":[2,0,1,177],
 "group__gnu__math__spec__func.html#gabfa5aeba56edfa110846fc8e76963bc2":[2,0,1,222],
 "group__gnu__math__spec__func.html#gac1fb313fba5639d4168b6ee682507688":[2,0,1,18],
 "group__gnu__math__spec__func.html#gac24d32e9b072c4953654d5559f992871":[2,0,1,259],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "group__tr29124__math__spec__func.html#ga21f8e312ee3e65286f86bf141b0f32e0":[2,0,0,44],
 "group__tr29124__math__spec__func.html#ga29504b6008798072b0b8d6ea5a50ec60":[2,0,0,18],
 "group__tr29124__math__spec__func.html#ga2f6618dea1847f09fd67f3c974c1910d":[2,0,0,59],
-"group__tr29124__math__spec__func.html#ga308d23d70f4b5e848eb7a4173628ef3b":[2,0,0,31],
-"group__tr29124__math__spec__func.html#ga3ced07ddd24bf4af56e2712d148e7f57":[2,0,0,4]
+"group__tr29124__math__spec__func.html#ga308d23d70f4b5e848eb7a4173628ef3b":[2,0,0,31]
 };
