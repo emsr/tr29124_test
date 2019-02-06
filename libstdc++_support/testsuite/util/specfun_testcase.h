@@ -739,7 +739,7 @@ template<typename _Tp>
   {
     _Tp f0;
     unsigned int n;
-    _Tp alpha;
+    _Tp lambda;
     _Tp x;
     _Tp f;
   };

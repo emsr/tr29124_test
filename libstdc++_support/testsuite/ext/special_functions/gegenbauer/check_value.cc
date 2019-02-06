@@ -38,7 +38,7 @@
 #endif
 #include <specfun_testcase.h>
 
-// Test data for n=0, alpha=0.0000000000000000.
+// Test data for n=0, lambda=0.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -132,7 +132,7 @@ data001[41] =
 };
 const double toler001 = 2.5000000000000020e-13;
 
-// Test data for n=0, alpha=0.50000000000000000.
+// Test data for n=0, lambda=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -226,7 +226,7 @@ data002[41] =
 };
 const double toler002 = 2.5000000000000020e-13;
 
-// Test data for n=0, alpha=1.0000000000000000.
+// Test data for n=0, lambda=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -320,7 +320,7 @@ data003[41] =
 };
 const double toler003 = 2.5000000000000020e-13;
 
-// Test data for n=0, alpha=1.5000000000000000.
+// Test data for n=0, lambda=1.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -414,7 +414,7 @@ data004[41] =
 };
 const double toler004 = 2.5000000000000020e-13;
 
-// Test data for n=0, alpha=2.0000000000000000.
+// Test data for n=0, lambda=2.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -508,7 +508,7 @@ data005[41] =
 };
 const double toler005 = 2.5000000000000020e-13;
 
-// Test data for n=0, alpha=2.5000000000000000.
+// Test data for n=0, lambda=2.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -602,7 +602,7 @@ data006[41] =
 };
 const double toler006 = 2.5000000000000020e-13;
 
-// Test data for n=0, alpha=3.0000000000000000.
+// Test data for n=0, lambda=3.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -696,7 +696,7 @@ data007[41] =
 };
 const double toler007 = 2.5000000000000020e-13;
 
-// Test data for n=0, alpha=3.5000000000000000.
+// Test data for n=0, lambda=3.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -790,7 +790,7 @@ data008[41] =
 };
 const double toler008 = 2.5000000000000020e-13;
 
-// Test data for n=0, alpha=4.0000000000000000.
+// Test data for n=0, lambda=4.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -884,7 +884,7 @@ data009[41] =
 };
 const double toler009 = 2.5000000000000020e-13;
 
-// Test data for n=0, alpha=4.5000000000000000.
+// Test data for n=0, lambda=4.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -978,7 +978,7 @@ data010[41] =
 };
 const double toler010 = 2.5000000000000020e-13;
 
-// Test data for n=0, alpha=5.0000000000000000.
+// Test data for n=0, lambda=5.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -1072,7 +1072,7 @@ data011[41] =
 };
 const double toler011 = 2.5000000000000020e-13;
 
-// Test data for n=1, alpha=0.50000000000000000.
+// Test data for n=1, lambda=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -1166,7 +1166,7 @@ data012[41] =
 };
 const double toler012 = 2.5000000000000020e-13;
 
-// Test data for n=1, alpha=1.0000000000000000.
+// Test data for n=1, lambda=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -1260,7 +1260,7 @@ data013[41] =
 };
 const double toler013 = 2.5000000000000020e-13;
 
-// Test data for n=1, alpha=1.5000000000000000.
+// Test data for n=1, lambda=1.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -1354,7 +1354,7 @@ data014[41] =
 };
 const double toler014 = 2.5000000000000020e-13;
 
-// Test data for n=1, alpha=2.0000000000000000.
+// Test data for n=1, lambda=2.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -1448,7 +1448,7 @@ data015[41] =
 };
 const double toler015 = 2.5000000000000020e-13;
 
-// Test data for n=1, alpha=2.5000000000000000.
+// Test data for n=1, lambda=2.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -1542,7 +1542,7 @@ data016[41] =
 };
 const double toler016 = 2.5000000000000020e-13;
 
-// Test data for n=1, alpha=3.0000000000000000.
+// Test data for n=1, lambda=3.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -1636,7 +1636,7 @@ data017[41] =
 };
 const double toler017 = 2.5000000000000020e-13;
 
-// Test data for n=1, alpha=3.5000000000000000.
+// Test data for n=1, lambda=3.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -1730,7 +1730,7 @@ data018[41] =
 };
 const double toler018 = 2.5000000000000020e-13;
 
-// Test data for n=1, alpha=4.0000000000000000.
+// Test data for n=1, lambda=4.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -1824,7 +1824,7 @@ data019[41] =
 };
 const double toler019 = 2.5000000000000020e-13;
 
-// Test data for n=1, alpha=4.5000000000000000.
+// Test data for n=1, lambda=4.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -1918,7 +1918,7 @@ data020[41] =
 };
 const double toler020 = 2.5000000000000020e-13;
 
-// Test data for n=1, alpha=5.0000000000000000.
+// Test data for n=1, lambda=5.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -2012,7 +2012,7 @@ data021[41] =
 };
 const double toler021 = 2.5000000000000020e-13;
 
-// Test data for n=2, alpha=0.50000000000000000.
+// Test data for n=2, lambda=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -2106,7 +2106,7 @@ data022[41] =
 };
 const double toler022 = 2.5000000000000020e-13;
 
-// Test data for n=2, alpha=1.0000000000000000.
+// Test data for n=2, lambda=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -2200,7 +2200,7 @@ data023[41] =
 };
 const double toler023 = 2.5000000000000020e-13;
 
-// Test data for n=2, alpha=1.5000000000000000.
+// Test data for n=2, lambda=1.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -2294,7 +2294,7 @@ data024[41] =
 };
 const double toler024 = 2.5000000000000020e-13;
 
-// Test data for n=2, alpha=2.0000000000000000.
+// Test data for n=2, lambda=2.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -2388,7 +2388,7 @@ data025[41] =
 };
 const double toler025 = 2.5000000000000020e-13;
 
-// Test data for n=2, alpha=2.5000000000000000.
+// Test data for n=2, lambda=2.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -2482,7 +2482,7 @@ data026[41] =
 };
 const double toler026 = 2.5000000000000020e-13;
 
-// Test data for n=2, alpha=3.0000000000000000.
+// Test data for n=2, lambda=3.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -2576,7 +2576,7 @@ data027[41] =
 };
 const double toler027 = 2.5000000000000020e-13;
 
-// Test data for n=2, alpha=3.5000000000000000.
+// Test data for n=2, lambda=3.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -2670,7 +2670,7 @@ data028[41] =
 };
 const double toler028 = 2.5000000000000020e-13;
 
-// Test data for n=2, alpha=4.0000000000000000.
+// Test data for n=2, lambda=4.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -2764,7 +2764,7 @@ data029[41] =
 };
 const double toler029 = 2.5000000000000020e-13;
 
-// Test data for n=2, alpha=4.5000000000000000.
+// Test data for n=2, lambda=4.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -2858,7 +2858,7 @@ data030[41] =
 };
 const double toler030 = 2.5000000000000020e-13;
 
-// Test data for n=2, alpha=5.0000000000000000.
+// Test data for n=2, lambda=5.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -2952,7 +2952,7 @@ data031[41] =
 };
 const double toler031 = 2.5000000000000020e-13;
 
-// Test data for n=5, alpha=0.50000000000000000.
+// Test data for n=5, lambda=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -3046,7 +3046,7 @@ data032[41] =
 };
 const double toler032 = 2.5000000000000020e-13;
 
-// Test data for n=5, alpha=1.0000000000000000.
+// Test data for n=5, lambda=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -3140,7 +3140,7 @@ data033[41] =
 };
 const double toler033 = 2.5000000000000020e-13;
 
-// Test data for n=5, alpha=1.5000000000000000.
+// Test data for n=5, lambda=1.5000000000000000.
 // max(|f - f_GSL|): 5.9604644775390625e-08 at index 38
 // max(|f - f_GSL| / |f_GSL|): 2.8070977365520616e-16
 // mean(f - f_GSL): -1.4992465588786617e-09
@@ -3234,7 +3234,7 @@ data034[41] =
 };
 const double toler034 = 2.5000000000000020e-13;
 
-// Test data for n=5, alpha=2.0000000000000000.
+// Test data for n=5, lambda=2.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -3328,7 +3328,7 @@ data035[41] =
 };
 const double toler035 = 2.5000000000000020e-13;
 
-// Test data for n=5, alpha=2.5000000000000000.
+// Test data for n=5, lambda=2.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -3422,7 +3422,7 @@ data036[41] =
 };
 const double toler036 = 2.5000000000000020e-13;
 
-// Test data for n=5, alpha=3.0000000000000000.
+// Test data for n=5, lambda=3.0000000000000000.
 // max(|f - f_GSL|): 2.3841857910156250e-07 at index 37
 // max(|f - f_GSL| / |f_GSL|): 1.6406622327630309e-16
 // mean(f - f_GSL): 5.8150872951600612e-09
@@ -3516,7 +3516,7 @@ data037[41] =
 };
 const double toler037 = 2.5000000000000020e-13;
 
-// Test data for n=5, alpha=3.5000000000000000.
+// Test data for n=5, lambda=3.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -3610,7 +3610,7 @@ data038[41] =
 };
 const double toler038 = 2.5000000000000020e-13;
 
-// Test data for n=5, alpha=4.0000000000000000.
+// Test data for n=5, lambda=4.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -3704,7 +3704,7 @@ data039[41] =
 };
 const double toler039 = 2.5000000000000020e-13;
 
-// Test data for n=5, alpha=4.5000000000000000.
+// Test data for n=5, lambda=4.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -3798,7 +3798,7 @@ data040[41] =
 };
 const double toler040 = 2.5000000000000020e-13;
 
-// Test data for n=5, alpha=5.0000000000000000.
+// Test data for n=5, lambda=5.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -3892,7 +3892,7 @@ data041[41] =
 };
 const double toler041 = 2.5000000000000020e-13;
 
-// Test data for n=10, alpha=0.50000000000000000.
+// Test data for n=10, lambda=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -3986,7 +3986,7 @@ data042[41] =
 };
 const double toler042 = 2.5000000000000020e-13;
 
-// Test data for n=10, alpha=1.0000000000000000.
+// Test data for n=10, lambda=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -4080,7 +4080,7 @@ data043[41] =
 };
 const double toler043 = 2.5000000000000020e-13;
 
-// Test data for n=10, alpha=1.5000000000000000.
+// Test data for n=10, lambda=1.5000000000000000.
 // max(|f - f_GSL|): 4.0000000000000000 at index 38
 // max(|f - f_GSL| / |f_GSL|): 2.9638421359086884e-16
 // mean(f - f_GSL): -0.097656250181721471
@@ -4174,7 +4174,7 @@ data044[41] =
 };
 const double toler044 = 2.5000000000000020e-13;
 
-// Test data for n=10, alpha=2.0000000000000000.
+// Test data for n=10, lambda=2.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -4268,7 +4268,7 @@ data045[41] =
 };
 const double toler045 = 2.5000000000000020e-13;
 
-// Test data for n=10, alpha=2.5000000000000000.
+// Test data for n=10, lambda=2.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -4362,7 +4362,7 @@ data046[41] =
 };
 const double toler046 = 2.5000000000000020e-13;
 
-// Test data for n=10, alpha=3.0000000000000000.
+// Test data for n=10, lambda=3.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -4456,7 +4456,7 @@ data047[41] =
 };
 const double toler047 = 2.5000000000000020e-13;
 
-// Test data for n=10, alpha=3.5000000000000000.
+// Test data for n=10, lambda=3.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -4550,7 +4550,7 @@ data048[41] =
 };
 const double toler048 = 2.5000000000000020e-13;
 
-// Test data for n=10, alpha=4.0000000000000000.
+// Test data for n=10, lambda=4.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -4644,7 +4644,7 @@ data049[41] =
 };
 const double toler049 = 2.5000000000000020e-13;
 
-// Test data for n=10, alpha=4.5000000000000000.
+// Test data for n=10, lambda=4.5000000000000000.
 // max(|f - f_GSL|): 2.8421709430404007e-14 at index 1
 // max(|f - f_GSL| / |f_GSL|): 3.1501914963904476e-16
 // mean(f - f_GSL): 6.9321242513180508e-16
@@ -4738,7 +4738,7 @@ data050[41] =
 };
 const double toler050 = 2.5000000000000020e-13;
 
-// Test data for n=10, alpha=5.0000000000000000.
+// Test data for n=10, lambda=5.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -4832,7 +4832,7 @@ data051[41] =
 };
 const double toler051 = 2.5000000000000020e-13;
 
-// Test data for n=20, alpha=0.50000000000000000.
+// Test data for n=20, lambda=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -4926,7 +4926,7 @@ data052[41] =
 };
 const double toler052 = 2.5000000000000020e-13;
 
-// Test data for n=20, alpha=1.0000000000000000.
+// Test data for n=20, lambda=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -5020,7 +5020,7 @@ data053[41] =
 };
 const double toler053 = 2.5000000000000020e-13;
 
-// Test data for n=20, alpha=1.5000000000000000.
+// Test data for n=20, lambda=1.5000000000000000.
 // max(|f - f_GSL|): 68719476736.000000 at index 19
 // max(|f - f_GSL| / |f_GSL|): 3.7446948466155815e-16
 // mean(f - f_GSL): -1676084798.4390244
@@ -5114,7 +5114,7 @@ data054[41] =
 };
 const double toler054 = 2.5000000000000020e-13;
 
-// Test data for n=20, alpha=2.0000000000000000.
+// Test data for n=20, lambda=2.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -5208,7 +5208,7 @@ data055[41] =
 };
 const double toler055 = 2.5000000000000020e-13;
 
-// Test data for n=20, alpha=2.5000000000000000.
+// Test data for n=20, lambda=2.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -5302,7 +5302,7 @@ data056[41] =
 };
 const double toler056 = 2.5000000000000020e-13;
 
-// Test data for n=20, alpha=3.0000000000000000.
+// Test data for n=20, lambda=3.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -5396,7 +5396,7 @@ data057[41] =
 };
 const double toler057 = 2.5000000000000020e-13;
 
-// Test data for n=20, alpha=3.5000000000000000.
+// Test data for n=20, lambda=3.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -5490,7 +5490,7 @@ data058[41] =
 };
 const double toler058 = 2.5000000000000020e-13;
 
-// Test data for n=20, alpha=4.0000000000000000.
+// Test data for n=20, lambda=4.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -5584,7 +5584,7 @@ data059[41] =
 };
 const double toler059 = 2.5000000000000020e-13;
 
-// Test data for n=20, alpha=4.5000000000000000.
+// Test data for n=20, lambda=4.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -5678,7 +5678,7 @@ data060[41] =
 };
 const double toler060 = 2.5000000000000020e-13;
 
-// Test data for n=20, alpha=5.0000000000000000.
+// Test data for n=20, lambda=5.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -5772,7 +5772,7 @@ data061[41] =
 };
 const double toler061 = 2.5000000000000020e-13;
 
-// Test data for n=50, alpha=0.50000000000000000.
+// Test data for n=50, lambda=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -5866,7 +5866,7 @@ data062[41] =
 };
 const double toler062 = 2.5000000000000020e-13;
 
-// Test data for n=50, alpha=1.0000000000000000.
+// Test data for n=50, lambda=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -5960,7 +5960,7 @@ data063[41] =
 };
 const double toler063 = 2.5000000000000020e-13;
 
-// Test data for n=50, alpha=1.5000000000000000.
+// Test data for n=50, lambda=1.5000000000000000.
 // max(|f - f_GSL|): 4.6768052394588893e+49 at index 19
 // max(|f - f_GSL| / |f_GSL|): 7.6859484603900303e-16
 // mean(f - f_GSL): -1.1406842047460706e+48
@@ -6054,7 +6054,7 @@ data064[41] =
 };
 const double toler064 = 2.5000000000000020e-13;
 
-// Test data for n=50, alpha=2.0000000000000000.
+// Test data for n=50, lambda=2.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -6148,7 +6148,7 @@ data065[41] =
 };
 const double toler065 = 2.5000000000000020e-13;
 
-// Test data for n=50, alpha=2.5000000000000000.
+// Test data for n=50, lambda=2.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -6242,7 +6242,7 @@ data066[41] =
 };
 const double toler066 = 2.5000000000000020e-13;
 
-// Test data for n=50, alpha=3.0000000000000000.
+// Test data for n=50, lambda=3.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -6336,7 +6336,7 @@ data067[41] =
 };
 const double toler067 = 2.5000000000000020e-13;
 
-// Test data for n=50, alpha=3.5000000000000000.
+// Test data for n=50, lambda=3.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -6430,7 +6430,7 @@ data068[41] =
 };
 const double toler068 = 2.5000000000000020e-13;
 
-// Test data for n=50, alpha=4.0000000000000000.
+// Test data for n=50, lambda=4.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -6524,7 +6524,7 @@ data069[41] =
 };
 const double toler069 = 2.5000000000000020e-13;
 
-// Test data for n=50, alpha=4.5000000000000000.
+// Test data for n=50, lambda=4.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -6618,7 +6618,7 @@ data070[41] =
 };
 const double toler070 = 2.5000000000000020e-13;
 
-// Test data for n=50, alpha=5.0000000000000000.
+// Test data for n=50, lambda=5.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -6712,7 +6712,7 @@ data071[41] =
 };
 const double toler071 = 2.5000000000000020e-13;
 
-// Test data for n=100, alpha=0.50000000000000000.
+// Test data for n=100, lambda=0.50000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -6806,7 +6806,7 @@ data072[41] =
 };
 const double toler072 = 2.5000000000000020e-13;
 
-// Test data for n=100, alpha=1.0000000000000000.
+// Test data for n=100, lambda=1.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -6900,7 +6900,7 @@ data073[41] =
 };
 const double toler073 = 2.5000000000000020e-13;
 
-// Test data for n=100, alpha=1.5000000000000000.
+// Test data for n=100, lambda=1.5000000000000000.
 // max(|f - f_GSL|): 7.6957043352332967e+113 at index 19
 // max(|f - f_GSL| / |f_GSL|): 1.1907157132220968e-15
 // mean(f - f_GSL): -1.8770010573739748e+112
@@ -6994,7 +6994,7 @@ data074[41] =
 };
 const double toler074 = 2.5000000000000020e-13;
 
-// Test data for n=100, alpha=2.0000000000000000.
+// Test data for n=100, lambda=2.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -7088,7 +7088,7 @@ data075[41] =
 };
 const double toler075 = 2.5000000000000020e-13;
 
-// Test data for n=100, alpha=2.5000000000000000.
+// Test data for n=100, lambda=2.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -7182,7 +7182,7 @@ data076[41] =
 };
 const double toler076 = 2.5000000000000020e-13;
 
-// Test data for n=100, alpha=3.0000000000000000.
+// Test data for n=100, lambda=3.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -7276,7 +7276,7 @@ data077[41] =
 };
 const double toler077 = 2.5000000000000020e-13;
 
-// Test data for n=100, alpha=3.5000000000000000.
+// Test data for n=100, lambda=3.5000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -7370,7 +7370,7 @@ data078[41] =
 };
 const double toler078 = 2.5000000000000020e-13;
 
-// Test data for n=100, alpha=4.0000000000000000.
+// Test data for n=100, lambda=4.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -7464,7 +7464,7 @@ data079[41] =
 };
 const double toler079 = 2.5000000000000020e-13;
 
-// Test data for n=100, alpha=4.5000000000000000.
+// Test data for n=100, lambda=4.5000000000000000.
 // max(|f - f_GSL|): 5.8207660913467407e-11 at index 1
 // max(|f - f_GSL| / |f_GSL|): 1.1440071291628769e-15
 // mean(f - f_GSL): 1.4196990466699368e-12
@@ -7558,7 +7558,7 @@ data080[41] =
 };
 const double toler080 = 2.5000000000000020e-13;
 
-// Test data for n=100, alpha=5.0000000000000000.
+// Test data for n=100, lambda=5.0000000000000000.
 // max(|f - f_GSL|): 0.0000000000000000 at index 0
 // max(|f - f_GSL| / |f_GSL|): 0.0000000000000000
 // mean(f - f_GSL): 0.0000000000000000
@@ -7663,7 +7663,7 @@ template<typename Ret, unsigned int Num>
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
   	 {
-	const Ret f = __gnu_cxx::gegenbauer(data[i].n, data[i].alpha,
+	const Ret f = __gnu_cxx::gegenbauer(data[i].n, data[i].lambda,
 		     data[i].x);
 	const Ret f0 = data[i].f0;
 	const Ret diff = f - f0;

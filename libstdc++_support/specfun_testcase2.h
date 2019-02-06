@@ -578,7 +578,7 @@ template<typename _Tp>
   struct testcase_gegenbauer
   {
     unsigned int n;
-    _Tp alpha;
+    _Tp lambda;
     _Tp x;
     _Tp f0;
     _Tp f;

@@ -1071,11 +1071,11 @@ gauss_jacobi_rule(std::size_t n, double alpha, double beta)
 
 /// Gauss-Gegenbauer rule.
 std::vector<__gnu_cxx::__quadrature_point_t<double>>
-gauss_gegenbauer_rule(std::size_t n, double alpha)
+gauss_gegenbauer_rule(std::size_t n, double lambda)
 {
   std::vector<double> x(n);
   std::vector<double> w(n);
-  gegenbauer_ss_compute(n, alpha, x.data(), w.data());
+  gegenbauer_ss_compute(n, lambda, x.data(), w.data());
   std::vector<__gnu_cxx::__quadrature_point_t<double>> rule;
   rule.reserve(n);
   for (auto i = 0u; i < n; ++i)

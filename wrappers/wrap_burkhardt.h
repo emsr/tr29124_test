@@ -421,7 +421,7 @@ gauss_jacobi_rule(std::size_t n, double alpha, double beta);
 
 /// Gauss-Gegenbauer rule.
 std::vector<__gnu_cxx::__quadrature_point_t<double>>
-gauss_gegenbauer_rule(std::size_t n, double alpha);
+gauss_gegenbauer_rule(std::size_t n, double lambda);
 
 /// Gauss-Hermite rule.
 std::vector<__gnu_cxx::__quadrature_point_t<double>>
