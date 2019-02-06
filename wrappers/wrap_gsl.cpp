@@ -1243,11 +1243,14 @@ jacobi(unsigned int n, double alpha, double beta, double x)
 double
 radpoly(unsigned int n, unsigned int m, double rho)
 {
-  if ((n - m) % 2 == 1)
+  const int nmm = int(n) - int(m);
+  if (nmm < 0)
+    return 0.0;
+  else if (nmm % 2 == 1)
     return 0.0;
   else
     {
-      auto k = (n - m) / 2;
+      auto k = nmm / 2;
       return (k % 2 == 0 ? +1 : -1) * std::pow(rho, double(m))
 	   * jacobi(k, double(m), 0.0, 1.0 - 2.0 * rho * rho);
     }
@@ -1263,30 +1266,30 @@ zernike(unsigned int n, int m, double rho, double phi)
 
 /// Cylindrical Hankel functions of the first kind.
 std::complex<double>
-cyl_hankel_1(double /*nu*/, double /*x*/)
+cyl_hankel_1(double nu, double x)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  return std::complex<double>{gsl_sf_bessel_Jnu(nu, x), gsl_sf_bessel_Ynu(nu, x)};
 }
 
 /// Cylindrical Hankel functions of the second kind.
 std::complex<double>
-cyl_hankel_2(double /*nu*/, double /*x*/)
+cyl_hankel_2(double nu, double x)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  return {gsl_sf_bessel_Jnu(nu, x), -gsl_sf_bessel_Ynu(nu, x)};
 }
 
 /// Spherical Hankel functions of the first kind.
 std::complex<double>
-sph_hankel_1(unsigned int /*n*/, double /*x*/)
+sph_hankel_1(unsigned int n, double x)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  return {gsl_sf_bessel_jl(n, x), gsl_sf_bessel_yl(n, x)};
 }
 
 /// Spherical Hankel functions of the second kind.
 std::complex<double>
-sph_hankel_2(unsigned int /*n*/, double /*x*/)
+sph_hankel_2(unsigned int n, double x)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  return {gsl_sf_bessel_jl(n, x), -gsl_sf_bessel_yl(n, x)};
 }
 
 /// Heuman lambda functions.

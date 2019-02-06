@@ -296,11 +296,14 @@ namespace __detail
       if (std::isnan(__rho))
 	return _S_NaN;
 
-      if ((__n - __m) % 2 == 1)
+      const int __nmm = int(__n) - int(__m);
+      if (__nmm < 0)
+	return _Tp{0}; // FIXME: Is this true?
+      else if (__nmm % 2 == 1)
 	return _Tp{0};
       else
 	{
-	  auto __k = (__n - __m) / 2;
+	  auto __k = __nmm / 2;
 	  return (__k % 2 == 0 ? +1 : -1) * std::pow(__rho, __m)
 	       * __jacobi_recur(__k, _Tp(__m), _Tp{0},
 				_Tp{1} - _Tp{2} * __rho * __rho).__P_n;
@@ -320,11 +323,12 @@ namespace __detail
     std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
     __radial_jacobi_zeros(unsigned int __n, unsigned int __m)
     {
-      if ((__n - __m) % 2 == 1)
+      const int __nmm = int(__n) - int(__m);
+      if (__nmm % 2 != 0)
 	return std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>();
       else
 	{
-	  auto __k = (__n - __m) / 2;
+	  auto __k = (int(__n) - int(__m)) / 2;
           auto __roots = __jacobi_zeros(__k, _Tp(__m), _Tp{0});
 	  for (auto& __z : __roots)
 	    {
