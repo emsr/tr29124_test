@@ -297,12 +297,12 @@ template&lt;typename _Tp &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Return the associated Laguerre polynomial <img class="formulaInl" alt="$ L_n^m(x) $" src="form_1.png"/> of nonnegative order <img class="formulaInl" alt="$ n $" src="form_2.png"/>, nonnegative degree <img class="formulaInl" alt="$ m $" src="form_3.png"/> and real argument <img class="formulaInl" alt="$ x $" src="form_4.png"/>.</p>
-<p>The associated Laguerre function of real degree <img class="formulaInl" alt="$ \alpha $" src="form_5.png"/>, <img class="formulaInl" alt="$ L_n^\alpha(x) $" src="form_6.png"/>, is defined by </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!} {}_1F_1(-n; \alpha + 1; x) \]" src="form_7.png"/>
+<p>Return the associated Laguerre polynomial <img class="formulaInl" alt="$ L_n^m(x) $" src="form_1.png"/> of nonnegative degree <img class="formulaInl" alt="$ n $" src="form_2.png"/>, nonnegative order <img class="formulaInl" alt="$ m $" src="form_3.png"/> and real argument <img class="formulaInl" alt="$ x $" src="form_4.png"/>.</p>
+<p>The associated Laguerre function of real order <img class="formulaInl" alt="$ \alpha $" src="form_5.png"/>, <img class="formulaInl" alt="$ L_n^{(\alpha)}(x) $" src="form_6.png"/>, is defined by </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ L_n^{(\alpha)}(x) = \frac{(\alpha + 1)_n}{n!} {}_1F_1(-n; \alpha + 1; x) \]" src="form_7.png"/>
 </p>
 <p> where <img class="formulaInl" alt="$ (\alpha)_n $" src="form_8.png"/> is the Pochhammer symbol and <img class="formulaInl" alt="$ {}_1F_1(a; c; x) $" src="form_9.png"/> is the confluent hypergeometric function.</p>
-<p>The associated Laguerre polynomial is defined for integral degree <img class="formulaInl" alt="$ \alpha = m $" src="form_10.png"/> by: </p><p class="formulaDsp">
+<p>The associated Laguerre polynomial is defined for integral order <img class="formulaInl" alt="$ \alpha = m $" src="form_10.png"/> by: </p><p class="formulaDsp">
 <img class="formulaDsp" alt="\[ L_n^m(x) = (-1)^m \frac{d^m}{dx^m} L_{n + m}(x) \]" src="form_11.png"/>
 </p>
 <p> where the Laguerre polynomial is defined by: </p><p class="formulaDsp">
@@ -317,8 +317,8 @@ template&lt;typename _Tp &gt; </div>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">__n</td><td>The order of the Laguerre function, <code>__n &gt;= 0</code>. </td></tr>
-    <tr><td class="paramname">__m</td><td>The degree of the Laguerre function, <code>__m &gt;= 0</code>. </td></tr>
+    <tr><td class="paramname">__n</td><td>The degree of the Laguerre function, <code>__n &gt;= 0</code>. </td></tr>
+    <tr><td class="paramname">__m</td><td>The order of the Laguerre function, <code>__m &gt;= 0</code>. </td></tr>
     <tr><td class="paramname">__x</td><td>The argument of the Laguerre function, <code>__x &gt;= 0</code>. </td></tr>
   </table>
   </dd>

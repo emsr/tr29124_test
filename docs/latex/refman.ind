@@ -308,7 +308,7 @@
 		\hyperpage{477}
   \item {\+\_\+\+\_\+\+C\+\_\+nm1}
     \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gegenbauer\+\_\+t}, 
-		\hyperpage{478}
+		\hyperpage{477}
   \item {\+\_\+\+\_\+\+C\+\_\+nm2}
     \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gegenbauer\+\_\+t}, 
 		\hyperpage{478}
@@ -471,8 +471,6 @@
   \item {\+\_\+\+\_\+airy\+\_\+bi}
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{263}
   \item {\+\_\+\+\_\+alpha1}
-    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gegenbauer\+\_\+t}, 
-		\hyperpage{477}
     \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+t}, 
 		\hyperpage{488}
     \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+laguerre\+\_\+t}, 
@@ -999,9 +997,9 @@
 		\hyperpage{475}
   \item {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gegenbauer\+\_\+t}
     \subitem {\+\_\+\+\_\+\+C\+\_\+n}, \hyperpage{477}
-    \subitem {\+\_\+\+\_\+\+C\+\_\+nm1}, \hyperpage{478}
+    \subitem {\+\_\+\+\_\+\+C\+\_\+nm1}, \hyperpage{477}
     \subitem {\+\_\+\+\_\+\+C\+\_\+nm2}, \hyperpage{478}
-    \subitem {\+\_\+\+\_\+alpha1}, \hyperpage{477}
+    \subitem {\+\_\+\+\_\+lambda}, \hyperpage{478}
     \subitem {\+\_\+\+\_\+n}, \hyperpage{478}
     \subitem {\+\_\+\+\_\+x}, \hyperpage{478}
     \subitem {deriv}, \hyperpage{477}
@@ -1265,6 +1263,9 @@
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{374}
   \item {\+\_\+\+\_\+laguerre\+\_\+zeros}
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{375}
+  \item {\+\_\+\+\_\+lambda}
+    \subitem {\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gegenbauer\+\_\+t}, 
+		\hyperpage{478}
   \item {\+\_\+\+\_\+lanczos\+\_\+binet1p}
     \subitem {std\+::\+\_\+\+\_\+detail}, \hyperpage{375}
   \item {\+\_\+\+\_\+lanczos\+\_\+log\+\_\+gamma1p}

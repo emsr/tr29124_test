@@ -178,7 +178,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     struct __gegenbauer_t
     {
       std::size_t __n;
-      _Tp __alpha1;
+      _Tp __lambda;
       _Tp __x;
       _Tp __C_n;
       _Tp __C_nm1;
@@ -187,9 +187,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp
       deriv() const
       {
-	auto __apbp2k = _Tp{2} * __alpha1 + _Tp(2 * __n);
+	auto __apbp2k = _Tp{2} * __lambda + _Tp(2 * __n);
 	return (__n * (-__apbp2k * __x) * __C_nm1
-		   + _Tp{2} * (__n + __alpha1) * (__n + __alpha1) * __C_nm2)
+		   + _Tp{2} * (__n + __lambda) * (__n + __lambda) * __C_nm2)
 		/ (__apbp2k * (_Tp{1} - __x * __x));
       }
     };

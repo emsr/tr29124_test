@@ -387,20 +387,20 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the associated Laguerre polynomial @f$ L_n^m(x) @f$
-   * of nonnegative order @f$ n @f$, nonnegative degree @f$ m @f$
+   * of nonnegative degree @f$ n @f$, nonnegative order @f$ m @f$
    * and real argument @f$ x @f$.
    *
-   * The associated Laguerre function of real degree @f$ \alpha @f$,
-   * @f$ L_n^\alpha(x) @f$, is defined by
+   * The associated Laguerre function of real order @f$ \alpha @f$,
+   * @f$ L_n^{(\alpha)}(x) @f$, is defined by
    * @f[
-   * 	 L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!}
+   * 	 L_n^{(\alpha)}(x) = \frac{(\alpha + 1)_n}{n!}
    * 			 {}_1F_1(-n; \alpha + 1; x)
    * @f]
    * where @f$ (\alpha)_n @f$ is the Pochhammer symbol and
    * @f$ {}_1F_1(a; c; x) @f$ is the confluent hypergeometric function.
    *
    * The associated Laguerre polynomial is defined for integral
-   * degree @f$ \alpha = m @f$ by:
+   * order @f$ \alpha = m @f$ by:
    * @f[
    * 	 L_n^m(x) = (-1)^m \frac{d^m}{dx^m} L_{n + m}(x)
    * @f]
@@ -412,8 +412,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see laguerre for details of the Laguerre function of degree @c n
    *
    * @tparam _Tp The floating-point type of the argument @c __x.
-   * @param __n The order of the Laguerre function, <tt>__n >= 0</tt>.
-   * @param __m The degree of the Laguerre function, <tt>__m >= 0</tt>.
+   * @param __n The degree of the Laguerre function, <tt>__n >= 0</tt>.
+   * @param __m The order of the Laguerre function, <tt>__m >= 0</tt>.
    * @param __x The argument of the Laguerre function, <tt>__x >= 0</tt>.
    * @throw std::domain_error if <tt>__x < 0</tt>.
    */

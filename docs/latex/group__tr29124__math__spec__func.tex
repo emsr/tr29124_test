@@ -150,11 +150,11 @@ A collection of advanced mathematical special functions for C++17 and I\+S29124.
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
 \+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$\+\_\+\+Tp$>$ std\+::assoc\+\_\+laguerre (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n,  }\item[{unsigned int}]{\+\_\+\+\_\+m,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Return the associated Laguerre polynomial $ L_n^m(x) $ of nonnegative order $ n $, nonnegative degree $ m $ and real argument $ x $.
+Return the associated Laguerre polynomial $ L_n^m(x) $ of nonnegative degree $ n $, nonnegative order $ m $ and real argument $ x $.
 
-The associated Laguerre function of real degree $ \alpha $, $ L_n^\alpha(x) $, is defined by \[ L_n^\alpha(x) = \frac{(\alpha + 1)_n}{n!} {}_1F_1(-n; \alpha + 1; x) \] where $ (\alpha)_n $ is the Pochhammer symbol and $ {}_1F_1(a; c; x) $ is the confluent hypergeometric function.
+The associated Laguerre function of real order $ \alpha $, $ L_n^{(\alpha)}(x) $, is defined by \[ L_n^{(\alpha)}(x) = \frac{(\alpha + 1)_n}{n!} {}_1F_1(-n; \alpha + 1; x) \] where $ (\alpha)_n $ is the Pochhammer symbol and $ {}_1F_1(a; c; x) $ is the confluent hypergeometric function.
 
-The associated Laguerre polynomial is defined for integral degree $ \alpha = m $ by\+: \[ L_n^m(x) = (-1)^m \frac{d^m}{dx^m} L_{n + m}(x) \] where the Laguerre polynomial is defined by\+: \[ L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x}) \] and $ x >= 0 $. \begin{DoxySeeAlso}{See also}
+The associated Laguerre polynomial is defined for integral order $ \alpha = m $ by\+: \[ L_n^m(x) = (-1)^m \frac{d^m}{dx^m} L_{n + m}(x) \] where the Laguerre polynomial is defined by\+: \[ L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x}) \] and $ x >= 0 $. \begin{DoxySeeAlso}{See also}
 \hyperlink{group__tr29124__math__spec__func_ga9d7b24a11dad27690387405548973ef9}{laguerre} for details of the Laguerre function of degree {\ttfamily n} 
 \end{DoxySeeAlso}
 
@@ -164,9 +164,9 @@ The associated Laguerre polynomial is defined for integral degree $ \alpha = m $
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+n} & The order of the Laguerre function, {\ttfamily \+\_\+\+\_\+n $>$= 0}. \\
+{\em \+\_\+\+\_\+n} & The degree of the Laguerre function, {\ttfamily \+\_\+\+\_\+n $>$= 0}. \\
 \hline
-{\em \+\_\+\+\_\+m} & The degree of the Laguerre function, {\ttfamily \+\_\+\+\_\+m $>$= 0}. \\
+{\em \+\_\+\+\_\+m} & The order of the Laguerre function, {\ttfamily \+\_\+\+\_\+m $>$= 0}. \\
 \hline
 {\em \+\_\+\+\_\+x} & The argument of the Laguerre function, {\ttfamily \+\_\+\+\_\+x $>$= 0}. \\
 \hline
