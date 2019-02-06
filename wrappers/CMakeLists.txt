@@ -37,7 +37,7 @@ add_library(wrap_gsl SHARED
             wrap_gsl.cpp
 	    ../3rdparty/gslextras/Fresnel/fresnel.c
 	    ../3rdparty/gslextras/Fresnel/fresnel.h
-	    ../3rdparty/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.c
+	    ../3rdparty/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.cpp
 	    ../3rdparty/gslextras/Hermite/gsl_sf_hermite.c
 	   )
 target_link_libraries(wrap_gsl gsl gslcblas)
