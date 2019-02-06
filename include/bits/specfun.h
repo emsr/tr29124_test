@@ -2268,7 +2268,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   gegenbauerf(unsigned int __n, float __alpha, float __x)
-  { return std::__detail::__gegenbauer_poly<float>(__n, __alpha, __x).__C_n; }
+  { return std::__detail::__gegenbauer_recur<float>(__n, __alpha, __x).__C_n; }
 
   /**
    * Return the Gegenbauer polynomial @f$ C_n^{\alpha}(x) @f$ of degree @c n
@@ -2280,7 +2280,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   inline long double
   gegenbauerl(unsigned int __n, long double __alpha, long double __x)
   {
-    return std::__detail::__gegenbauer_poly<long double>(__n, __alpha, __x)
+    return std::__detail::__gegenbauer_recur<long double>(__n, __alpha, __x)
 				.__C_n;
   }
 
@@ -2306,7 +2306,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     gegenbauer(unsigned int __n, _Talpha __alpha, _Tp __x)
     {
       using __type = __gnu_cxx::fp_promote_t<_Talpha, _Tp>;
-      return std::__detail::__gegenbauer_poly<__type>(__n, __alpha, __x).__C_n;
+      return std::__detail::__gegenbauer_recur<__type>(__n, __alpha, __x).__C_n;
     }
 
   // Zernike polynomials
