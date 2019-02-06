@@ -1243,10 +1243,8 @@ jacobi(unsigned int n, double alpha, double beta, double x)
 double
 radpoly(unsigned int n, unsigned int m, double rho)
 {
-  if (m > n)
-    throw std::range_error("radpoly: m > n");
-  else if ((n - m) % 2 == 1)
-    return std::numeric_limits<double>::quiet_NaN();
+  if ((n - m) % 2 == 1)
+    return 0.0;
   else
     {
       auto k = (n - m) / 2;
