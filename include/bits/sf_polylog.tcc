@@ -1014,8 +1014,13 @@ namespace __detail
 
   /**
    * Return the polylog Li_s(x) for two real arguments.
+   * 
+   * The polylog is defined by
+   * @f[
+   *    Li_s(x) = \sum_{k=1}^{\infty} \frac{x^k}{k^s}
+   * @f]
    *
-   * @param __s  The real index.
+   * @param __s  The real order.
    * @param __x  The real argument.
    * @return The complex value of the polylogarithm.
    */
@@ -1056,7 +1061,7 @@ namespace __detail
   /**
    * Return the polylog in those cases where we can calculate it.
    *
-   * @param __s  The real index.
+   * @param __s  The real order.
    * @param __w  The complex argument.
    * @return  The complex value of the polylogarithm.
    */

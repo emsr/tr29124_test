@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.18)  6 FEB 2019 15:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.10.18)  7 FEB 2019 10:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -3730,169 +3730,153 @@ Underfull \hbox (badness 10000) detected at line 6949
 [][][]
  []
 
-[389]
-Overfull \vbox (17.8651pt too high) has occurred while \output is active []
-
-
-[390]
-Underfull \hbox (badness 10000) detected at line 7029
+[389] [390]
+Underfull \hbox (badness 10000) detected at line 7031
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 7060
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 7080
+Underfull \hbox (badness 10000) detected at line 7062
 [][][]
  []
 
 [391]
-Underfull \hbox (badness 10000) detected at line 7090
+Underfull \hbox (badness 10000) detected at line 7082
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 7123
+Underfull \hbox (badness 10000) detected at line 7092
 [][][]
  []
 
 [392]
-Underfull \hbox (badness 10000) detected at line 7152
+Underfull \hbox (badness 10000) detected at line 7125
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 7154
 [][][]
  []
 
 [393]
-Underfull \hbox (badness 10000) detected at line 7183
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 7210
+Underfull \hbox (badness 10000) detected at line 7185
 [][][]
  []
 
 [394]
-Underfull \hbox (badness 10000) detected at line 7241
+Underfull \hbox (badness 10000) detected at line 7212
 [][][]
  []
 
 
-Overfull \vbox (14.53275pt too high) has occurred while \output is active []
-
+Underfull \hbox (badness 10000) detected at line 7243
+[][][]
+ []
 
 [395]
-Underfull \hbox (badness 10000) detected at line 7268
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 7299
+Underfull \hbox (badness 10000) detected at line 7270
 [][][]
  []
 
 [396]
-Underfull \hbox (badness 10000) detected at line 7328
+Underfull \hbox (badness 10000) detected at line 7301
 [][][]
  []
 
 
-Overfull \vbox (12.82787pt too high) has occurred while \output is active []
-
+Underfull \hbox (badness 10000) detected at line 7330
+[][][]
+ []
 
 [397]
-Underfull \hbox (badness 10000) detected at line 7361
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 7390
+Underfull \hbox (badness 10000) detected at line 7363
 [][][]
  []
 
 [398]
-Underfull \hbox (badness 10000) detected at line 7417
+Underfull \hbox (badness 10000) detected at line 7392
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 7448
+Underfull \hbox (badness 10000) detected at line 7419
 [][][]
  []
 
 [399]
-Underfull \hbox (badness 10000) detected at line 7475
+Underfull \hbox (badness 10000) detected at line 7450
 [][][]
  []
 
 
-Overfull \vbox (27.5543pt too high) has occurred while \output is active []
-
+Underfull \hbox (badness 10000) detected at line 7477
+[][][]
+ []
 
 [400]
-Underfull \hbox (badness 10000) detected at line 7506
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 7535
+Underfull \hbox (badness 10000) detected at line 7508
 [][][]
  []
 
 [401]
-Underfull \hbox (badness 10000) detected at line 7570
+Underfull \hbox (badness 10000) detected at line 7537
 [][][]
  []
 
 [402]
-Underfull \hbox (badness 10000) detected at line 7590
+Underfull \hbox (badness 10000) detected at line 7572
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 7592
 [][][]
  []
 
 [403] [404]
-Underfull \hbox (badness 1546) in paragraph at lines 7699--7700
+Underfull \hbox (badness 1546) in paragraph at lines 7701--7702
 []\T1/phv/m/n/10 References []_[][]_[]exp2(), []_[][]_[]gnu[]_[]cxx[]::[]_[][]_
 []fp[]_[]is[]_[]integer(), []_[][]_[]gamma(), []_[][]_[]log[]_[]gamma(), []_[][
 ]_[]riemann[]_[]zeta[]_[]glob(), []_[][]_[]
  []
 
-[405] [406] [407] [408] [409]
-Underfull \hbox (badness 995) in paragraph at lines 7908--7909
+[405] [406] [407] [408]
+Underfull \hbox (badness 995) in paragraph at lines 7910--7911
 []\T1/phv/m/n/10 References []_[][]_[]log[]_[]gamma(), []_[][]_[]log[]_[]gamma[
 ]_[]sign(), std[]::[]_[][]_[]detail[]::[]_[][]Factorial[]_[]table$\OML/cmm/m/it
 /10 <$ []\T1/phv/m/n/10 _[][]Tp $\OML/cmm/m/it/10 >$[]\T1/phv/m/n/10 ::[]_[][]_
 []n, and []_[][]_[]rising[]_[]
  []
 
-[410] [411] [412] [413] [414] [415]
-Underfull \hbox (badness 10000) detected at line 8201
+[409] [410] [411] [412] [413] [414]
+Underfull \hbox (badness 10000) detected at line 8203
 [][][]
  []
 
-
-Underfull \hbox (badness 10000) detected at line 8232
+[415]
+Underfull \hbox (badness 10000) detected at line 8234
 [][][]
  []
 
 [416]
-Underfull \hbox (badness 10000) detected at line 8261
+Underfull \hbox (badness 10000) detected at line 8263
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 8290
+Underfull \hbox (badness 10000) detected at line 8292
 [][][]
  []
 
 [417]
-Underfull \hbox (badness 10000) detected at line 8319
+Underfull \hbox (badness 10000) detected at line 8321
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8338--8340
+Underfull \hbox (badness 10000) in paragraph at lines 8340--8342
 [][][]\T1/pcr/bc/n/8 _[][]_[]gnu[]_[]cxx[]::[]_[][]_[]sph[]_[]bessel[]_[]t[][]$
 \OML/cmm/m/it/8 <$\T1/pcr/bc/n/8 unsigned int, []_[][]Tp, std[]::complex$\OML/c
 mm/m/it/8 <$[]\T1/pcr/bc/n/8 _[][]Tp$\OML/cmm/m/it/8 >$ $>$ \T1/pcr/bc/n/8 std[
@@ -3900,7 +3884,7 @@ mm/m/it/8 <$[]\T1/pcr/bc/n/8 _[][]Tp$\OML/cmm/m/it/8 >$ $>$ \T1/pcr/bc/n/8 std[
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8357--8359
+Underfull \hbox (badness 10000) in paragraph at lines 8359--8361
 [][][]\T1/pcr/bc/n/8 _[][]_[]gnu[]_[]cxx[]::[]_[][]_[]sph[]_[]hankel[]_[]t[][]$
 \OML/cmm/m/it/8 <$\T1/pcr/bc/n/8 unsigned int, std[]::complex$\OML/cmm/m/it/8 <
 $[]\T1/pcr/bc/n/8 _[][]Tp$\OML/cmm/m/it/8 >$\T1/pcr/bc/n/8 , std[]::complex$\OM
@@ -3909,65 +3893,65 @@ td[]::[]_[][]_[]detail[]::[]
  []
 
 [418]
-Underfull \hbox (badness 10000) detected at line 8371
+Underfull \hbox (badness 10000) detected at line 8373
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 8408
+[][][]
+ []
+
+[419]
+Underfull \hbox (badness 10000) detected at line 8437
+[][][]
+ []
+
+[420]
+Underfull \hbox (badness 10000) detected at line 8468
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 8497
+[][][]
+ []
+
+[421]
+Underfull \hbox (badness 10000) detected at line 8519
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 8554
 [][][]
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [419]
-Underfull \hbox (badness 10000) detected at line 8406
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 8435
-[][][]
- []
-
-[420]
-Underfull \hbox (badness 10000) detected at line 8466
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 8495
-[][][]
- []
-
-[421]
-Underfull \hbox (badness 10000) detected at line 8517
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 8552
-[][][]
- []
-
-[422]
-Underfull \hbox (badness 10000) detected at line 8598
+ [422]
+Underfull \hbox (badness 10000) detected at line 8600
 [][][]
  []
 
 [423]
-Underfull \hbox (badness 10000) detected at line 8627
+Underfull \hbox (badness 10000) detected at line 8629
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 8656
 [][][]
  []
 
 [424]
-Underfull \hbox (badness 10000) detected at line 8654
+Underfull \hbox (badness 10000) detected at line 8682
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 8680
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 8688
+Underfull \hbox (badness 10000) detected at line 8690
 [][][]
  []
 
@@ -3976,17 +3960,17 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [432]
 [433] [434] [435] [436]
-Underfull \hbox (badness 10000) detected at line 9247
+Underfull \hbox (badness 10000) detected at line 9249
 [][][]
  []
 
 [437]
-Underfull \hbox (badness 10000) detected at line 9278
+Underfull \hbox (badness 10000) detected at line 9280
 [][][]
  []
 
 [438]
-Underfull \hbox (badness 10000) detected at line 9332
+Underfull \hbox (badness 10000) detected at line 9334
 [][][]
  []
 
@@ -5892,33 +5876,33 @@ n/10 ,
  []
 
 [680] [681] [682] [683] [684]
-Underfull \hbox (badness 1163) in paragraph at lines 3841--3843
+Underfull \hbox (badness 1163) in paragraph at lines 3842--3844
 []\T1/phv/m/n/10 std[]::[]_[][]_[]detail[]::[]_[][]_[]gamma[]_[]lanczos[]_[]dat
 a$\OML/cmm/m/it/10 <$ \T1/phv/m/n/10 long dou-ble $\OML/cmm/m/it/10 >$\T1/phv/m
 /n/10 ,
  []
 
 
-Underfull \hbox (badness 1484) in paragraph at lines 3853--3855
+Underfull \hbox (badness 1484) in paragraph at lines 3854--3856
 []\T1/phv/m/n/10 std[]::[]_[][]_[]detail[]::[]_[][]_[]gamma[]_[]spouge[]_[]data
 $\OML/cmm/m/it/10 <$ \T1/phv/m/n/10 long dou-ble $\OML/cmm/m/it/10 >$\T1/phv/m/
 n/10 ,
  []
 
 
-Underfull \hbox (badness 1424) in paragraph at lines 3872--3874
+Underfull \hbox (badness 1424) in paragraph at lines 3873--3875
 []\T1/phv/m/n/10 std[]::[]_[][]_[]detail[]::[]_[][]_[]jacobi[]_[]lattice[]_[]t$
 \OML/cmm/m/it/10 <$ []\T1/phv/m/n/10 _[][]Tp[]_[][]Omega1, []_[][]Tp[]_[][]
  []
 
 
-Underfull \hbox (badness 1424) in paragraph at lines 3874--3876
+Underfull \hbox (badness 1424) in paragraph at lines 3875--3877
 []\T1/phv/m/n/10 std[]::[]_[][]_[]detail[]::[]_[][]_[]jacobi[]_[]lattice[]_[]t$
 \OML/cmm/m/it/10 <$ []\T1/phv/m/n/10 _[][]Tp[]_[][]Omega1, []_[][]Tp[]_[][]
  []
 
 
-Underfull \hbox (badness 1424) in paragraph at lines 3876--3878
+Underfull \hbox (badness 1424) in paragraph at lines 3877--3879
 []\T1/phv/m/n/10 std[]::[]_[][]_[]detail[]::[]_[][]_[]jacobi[]_[]lattice[]_[]t$
 \OML/cmm/m/it/10 <$ []\T1/phv/m/n/10 _[][]Tp[]_[][]Omega1, []_[][]Tp[]_[][]
  []
@@ -5933,7 +5917,7 @@ ec__func.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 272.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 272.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 9FA2B3550BCDCEB65883E91351404670;341874.
+(rerunfilecheck)             Checksum: C72E00E7C15E35615899613F3D314364;341884.
 
 
 
@@ -5944,7 +5928,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 272.
 Here is how much of TeX's memory you used:
  23609 strings out of 492982
  490068 string characters out of 6134895
- 497793 words of memory out of 5000000
+ 497797 words of memory out of 5000000
  22292 multiletter control sequences out of 15000+600000
  76949 words of font info for 106 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -5979,10 +5963,10 @@ live/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/hel
 vetic/uhvro8a.pfb>
-Output written on refman.pdf (746 pages, 2046415 bytes).
+Output written on refman.pdf (746 pages, 2047890 bytes).
 PDF statistics:
- 21003 PDF objects out of 22161 (max. 8388607)
- 19870 compressed objects within 199 object streams
+ 21009 PDF objects out of 22161 (max. 8388607)
+ 19876 compressed objects within 199 object streams
  4321 named destinations out of 5155 (max. 500000)
  12572 words of extra memory for PDF output out of 14400 (max. 10000000)
 

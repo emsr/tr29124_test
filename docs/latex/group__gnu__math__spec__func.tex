@@ -5477,15 +5477,15 @@ Definition at line 3595 of file specfun.\+h.
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+Wp $>$ \\
 \+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$\+\_\+\+Tp, \+\_\+\+Wp$>$ \+\_\+\+\_\+gnu\+\_\+cxx\+::polylog (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+s,  }\item[{\+\_\+\+Wp}]{\+\_\+\+\_\+w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Return the complex polylogarithm function of real thing {\ttfamily s} and complex argument $ w $.
+Return the polylogarithm function of real order $ s $ and real argument $ w $.
 
-The polylogarithm function is defined by \[ \]
+The polylogarithm function is defined by \[ Li_s(w) = \sum_{k=1}^{\infty} \frac{w^k}{k^s} \]
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+s} & \\
+{\em \+\_\+\+\_\+s} & Order. \\
 \hline
-{\em \+\_\+\+\_\+w} & \\
+{\em \+\_\+\+\_\+w} & Argument. \\
 \hline
 \end{DoxyParams}
 
@@ -5499,15 +5499,15 @@ Definition at line 5049 of file specfun.\+h.
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+Wp $>$ \\
 std\+::complex$<$\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$\+\_\+\+Tp, \+\_\+\+Wp$>$ $>$ \+\_\+\+\_\+gnu\+\_\+cxx\+::polylog (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+s,  }\item[{std\+::complex$<$ \+\_\+\+Tp $>$}]{\+\_\+\+\_\+w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Return the complex polylogarithm function of real thing {\ttfamily s} and complex argument $ w $.
+Return the complex polylogarithm function of real order $ s $ and complex argument $ w $.
 
-The polylogarithm function is defined by \[ \]
+The polylogarithm function is defined by \[ Li_s(x) = \sum_{k=1}^{\infty} \frac{w^k}{k^s} \]
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+s} & \\
+{\em \+\_\+\+\_\+s} & Order. \\
 \hline
-{\em \+\_\+\+\_\+w} & \\
+{\em \+\_\+\+\_\+w} & Argument. \\
 \hline
 \end{DoxyParams}
 
@@ -5520,7 +5520,7 @@ Definition at line 5089 of file specfun.\+h.
 \subsubsection{\texorpdfstring{polylogf()}{polylogf()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily float \+\_\+\+\_\+gnu\+\_\+cxx\+::polylogf (\begin{DoxyParamCaption}\item[{float}]{\+\_\+\+\_\+s,  }\item[{float}]{\+\_\+\+\_\+w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Return the real polylogarithm function of real thing {\ttfamily s} and real argument $ w $.
+Return the real polylogarithm function of real order $ s $ and real argument $ w $.
 
 \begin{DoxySeeAlso}{See also}
 \hyperlink{group__gnu__math__spec__func_gabcc5480ad739561c2debd6a8a352084f}{polylog} for details. 
@@ -5535,7 +5535,7 @@ Definition at line 5022 of file specfun.\+h.
 \subsubsection{\texorpdfstring{polylogf()}{polylogf()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily std\+::complex$<$float$>$ \+\_\+\+\_\+gnu\+\_\+cxx\+::polylogf (\begin{DoxyParamCaption}\item[{float}]{\+\_\+\+\_\+s,  }\item[{std\+::complex$<$ float $>$}]{\+\_\+\+\_\+w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Return the complex polylogarithm function of real thing {\ttfamily s} and complex argument $ w $.
+Return the complex polylogarithm function of real order $ s $ and complex argument $ w $.
 
 \begin{DoxySeeAlso}{See also}
 \hyperlink{group__gnu__math__spec__func_gabcc5480ad739561c2debd6a8a352084f}{polylog} for details. 
@@ -5550,7 +5550,7 @@ Definition at line 5062 of file specfun.\+h.
 \subsubsection{\texorpdfstring{polylogl()}{polylogl()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily long double \+\_\+\+\_\+gnu\+\_\+cxx\+::polylogl (\begin{DoxyParamCaption}\item[{long double}]{\+\_\+\+\_\+s,  }\item[{long double}]{\+\_\+\+\_\+w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Return the complex polylogarithm function of real thing {\ttfamily s} and complex argument $ w $.
+Return the complex polylogarithm function of real order $ s $ and argument $ w $.
 
 \begin{DoxySeeAlso}{See also}
 \hyperlink{group__gnu__math__spec__func_gabcc5480ad739561c2debd6a8a352084f}{polylog} for details. 
@@ -5565,7 +5565,7 @@ Definition at line 5032 of file specfun.\+h.
 \subsubsection{\texorpdfstring{polylogl()}{polylogl()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily std\+::complex$<$long double$>$ \+\_\+\+\_\+gnu\+\_\+cxx\+::polylogl (\begin{DoxyParamCaption}\item[{long double}]{\+\_\+\+\_\+s,  }\item[{std\+::complex$<$ long double $>$}]{\+\_\+\+\_\+w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Return the complex polylogarithm function of real thing {\ttfamily s} and complex argument $ w $.
+Return the complex polylogarithm function of real order $ s $ and complex argument $ w $.
 
 \begin{DoxySeeAlso}{See also}
 \hyperlink{group__gnu__math__spec__func_gabcc5480ad739561c2debd6a8a352084f}{polylog} for details. 

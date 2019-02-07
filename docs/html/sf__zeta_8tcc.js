@@ -15,9 +15,9 @@ var sf__zeta_8tcc =
     [ "__riemann_zeta_product", "sf__zeta_8tcc.html#a917935f42a21af90b78a19ea81349129", null ],
     [ "__riemann_zeta_sum", "sf__zeta_8tcc.html#a417dc216465f02bb7ef055fa0e4e1f0b", null ],
     [ "_Num_Euler_Maclaurin_zeta", "sf__zeta_8tcc.html#ab27e687e1052be7a72de187e0dead124", null ],
-    [ "_Num_Stieljes", "sf__zeta_8tcc.html#ab80ca58ee274bce962adc6208bfe4e2d", null ],
+    [ "_Num_Stieltjes", "sf__zeta_8tcc.html#a20c3b4334b0ffa9a5da21768d7830894", null ],
     [ "_S_Euler_Maclaurin_zeta", "sf__zeta_8tcc.html#acd941b49595dd03e93c88107ad2f68c2", null ],
     [ "_S_num_zetam1", "sf__zeta_8tcc.html#a807e36c2aec3a9f27fdb21726cd464e2", null ],
-    [ "_S_Stieljes", "sf__zeta_8tcc.html#aca60d4f73c51098c997f11692bacbcfe", null ],
+    [ "_S_Stieltjes", "sf__zeta_8tcc.html#acc0b5ea5ffcc30a404893f434f17a865", null ],
     [ "_S_zetam1", "sf__zeta_8tcc.html#a22ed80d9e5c3bc79e61a3cdb8e79a462", null ]
 ];

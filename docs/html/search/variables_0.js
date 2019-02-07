@@ -107,7 +107,7 @@ var searchData=
   ['_5fm_5fomega_5f3',['_M_omega_3',['../structstd_1_1____detail_1_1____jacobi__lattice__t.html#a0366b0bfc6b0a6033a5cd8f295d105c7',1,'std::__detail::__jacobi_lattice_t']]],
   ['_5fn_5ffgh',['_N_FGH',['../classstd_1_1____detail_1_1__Airy__series.html#a01e903f238d8c10c82cea4c115612ad8',1,'std::__detail::_Airy_series']]],
   ['_5fnum_5feuler_5fmaclaurin_5fzeta',['_Num_Euler_Maclaurin_zeta',['../namespacestd_1_1____detail.html#ab27e687e1052be7a72de187e0dead124',1,'std::__detail']]],
-  ['_5fnum_5fstieljes',['_Num_Stieljes',['../namespacestd_1_1____detail.html#ab80ca58ee274bce962adc6208bfe4e2d',1,'std::__detail']]],
+  ['_5fnum_5fstieltjes',['_Num_Stieltjes',['../namespacestd_1_1____detail.html#a20c3b4334b0ffa9a5da21768d7830894',1,'std::__detail']]],
   ['_5fs_5fai0',['_S_Ai0',['../classstd_1_1____detail_1_1__Airy__series.html#a530108939a1c52d530e1d2ff577195b2',1,'std::__detail::_Airy_series']]],
   ['_5fs_5faip0',['_S_Aip0',['../classstd_1_1____detail_1_1__Airy__series.html#a9a0a96224f581add2488a885f08c810f',1,'std::__detail::_Airy_series']]],
   ['_5fs_5fbi0',['_S_Bi0',['../classstd_1_1____detail_1_1__Airy__series.html#a9ad4abe8477f8b28acc85d305f378f82',1,'std::__detail::_Airy_series']]],
@@ -145,6 +145,6 @@ var searchData=
   ['_5fs_5fnum_5fzetam1',['_S_num_zetam1',['../namespacestd_1_1____detail.html#a807e36c2aec3a9f27fdb21726cd464e2',1,'std::__detail']]],
   ['_5fs_5fpi',['_S_pi',['../classstd_1_1____detail_1_1__Airy__series.html#a9de354dae47d41acc60824681d864184',1,'std::__detail::_Airy_series::_S_pi()'],['../structstd_1_1____detail_1_1____jacobi__lattice__t.html#ab89d6e32a9058989923774c3cf5a8c9a',1,'std::__detail::__jacobi_lattice_t::_S_pi()']]],
   ['_5fs_5fsqrt_5fpi',['_S_sqrt_pi',['../classstd_1_1____detail_1_1__Airy__series.html#a3fd1fba37ef8beb0d89854d4e58b8a38',1,'std::__detail::_Airy_series::_S_sqrt_pi()'],['../classstd_1_1____detail_1_1__Airy__asymp__series.html#a0a4d017f86429e22f5939e689e7b93ca',1,'std::__detail::_Airy_asymp_series::_S_sqrt_pi()']]],
-  ['_5fs_5fstieljes',['_S_Stieljes',['../namespacestd_1_1____detail.html#aca60d4f73c51098c997f11692bacbcfe',1,'std::__detail']]],
+  ['_5fs_5fstieltjes',['_S_Stieltjes',['../namespacestd_1_1____detail.html#acc0b5ea5ffcc30a404893f434f17a865',1,'std::__detail']]],
   ['_5fs_5fzetam1',['_S_zetam1',['../namespacestd_1_1____detail.html#a22ed80d9e5c3bc79e61a3cdb8e79a462',1,'std::__detail']]]
 ];

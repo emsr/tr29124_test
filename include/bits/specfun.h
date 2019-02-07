@@ -5013,7 +5013,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Polylogarithm functions
 
   /**
-   * Return the real polylogarithm function of real thing @c s
+   * Return the real polylogarithm function of real order @f$ s @f$
    * and real argument @f$ w @f$.
    *
    * @see polylog for details.
@@ -5023,8 +5023,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__polylog<float>(__s, __w); }
 
   /**
-   * Return the complex polylogarithm function of real thing @c s
-   * and complex argument @f$ w @f$.
+   * Return the complex polylogarithm function of real order @f$ s @f$
+   * and argument @f$ w @f$.
    *
    * @see polylog for details.
    */
@@ -5033,16 +5033,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__polylog<long double>(__s, __w); }
 
   /**
-   * Return the complex polylogarithm function of real thing @c s
-   * and complex argument @f$ w @f$.
+   * Return the polylogarithm function of real order @f$ s @f$
+   * and real argument @f$ w @f$.
    *
    * The polylogarithm function is defined by
    * @f[
-   *    
+   *    Li_s(w) = \sum_{k=1}^{\infty} \frac{w^k}{k^s}
    * @f]
    *
-   * @param __s 
-   * @param __w 
+   * @param __s Order.
+   * @param __w Argument.
    */
   template<typename _Tp, typename _Wp>
     inline __gnu_cxx::fp_promote_t<_Tp, _Wp>
@@ -5053,7 +5053,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the complex polylogarithm function of real thing @c s
+   * Return the complex polylogarithm function of real order @f$ s @f$
    * and complex argument @f$ w @f$.
    *
    * @see polylog for details.
@@ -5063,7 +5063,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__polylog<float>(__s, __w); }
 
   /**
-   * Return the complex polylogarithm function of real thing @c s
+   * Return the complex polylogarithm function of real order @f$ s @f$
    * and complex argument @f$ w @f$.
    *
    * @see polylog for details.
@@ -5073,16 +5073,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__polylog<long double>(__s, __w); }
 
   /**
-   * Return the complex polylogarithm function of real thing @c s
+   * Return the complex polylogarithm function of real order @f$ s @f$
    * and complex argument @f$ w @f$.
    *
    * The polylogarithm function is defined by
    * @f[
-   *    
+   *    Li_s(x) = \sum_{k=1}^{\infty} \frac{w^k}{k^s}
    * @f]
    *
-   * @param __s 
-   * @param __w 
+   * @param __s Order.
+   * @param __w Argument.
    */
   template<typename _Tp, typename _Wp>
     inline std::complex<__gnu_cxx::fp_promote_t<_Tp, _Wp>>

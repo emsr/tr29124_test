@@ -80,9 +80,9 @@ namespace __detail
    *
    * http://www.plouffe.fr/simon/constants/stieltjesgamma.txt
    */
-  constexpr size_t _Num_Stieljes = 21;
+  constexpr size_t _Num_Stieltjes = 21;
   constexpr long double
-  _S_Stieljes[_Num_Stieljes]
+  _S_Stieltjes[_Num_Stieltjes]
   {
     +0.5772156649015328606065120900824024310421593359L, // A001620
     -0.0728158454836767248605863758749013191377363383L, // A082633
@@ -316,11 +316,11 @@ namespace __detail
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
       const auto __arg = __s - _Val{1};
       auto __argk = _Val{1};
-      auto __zeta = _Val{1} / __arg + _S_Stieljes[0];
-      for (unsigned int __k = 1; __k < _Num_Stieljes; ++__k)
+      auto __zeta = _Val{1} / __arg + _S_Stieltjes[0];
+      for (unsigned int __k = 1; __k < _Num_Stieltjes; ++__k)
 	{
 	  __argk *= -__arg / __k;
-	  const auto __term = _S_Stieljes[__k] * __argk;
+	  const auto __term = _S_Stieltjes[__k] * __argk;
 	  __zeta += __term;
 	  if (std::abs(__term) < _S_eps * std::abs(__zeta))
 	    break;
