@@ -1,0 +1,91 @@
+Polynomial order (2-20): Enter coefficients, high order to low order.
+a(0)=a(1)=a(2)=a(3)=a(4)=a(5)=The quadratic factors are:
+t^2  +0.58300901106055 t  +0.58221879993311
+t^2  -1.05683347849418 t  +0.627556604326359
+The linear term is: 
+t  +5.47382446743363
+Polynomial order (2-20): Enter coefficients, high order to low order.
+a(0)=a(1)=a(2)=a(3)=a(4)=a(5)=The quadratic factors are:
+t^2  +1 t  +1
+t^2  -1 t  +1
+The linear term is: 
+t  +1
+Polynomial order (2-20): Enter coefficients, high order to low order.
+a(0)=a(1)=a(2)=a(3)=a(4)=a(5)=The quadratic factors are:
+t^2  -2.00000095145551 t  +1.00000095145642
+t^2  -10.9999990485445 t  +9.99999048544488
+The linear term is: 
+t  -100
+Polynomial order (2-20): Enter coefficients, high order to low order.
+a(0)=a(1)=a(2)=a(3)=a(4)=a(5)=a(6)=Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+The quadratic factors are:
+t^2  +1.9999999855479 t  +0.999860943939715
+t^2  +2.01444183311477 t  +1.01465039938196
+t^2  +1.98555817963949 t  +0.985766746090945
+Polynomial order (2-20): Enter coefficients, high order to low order.
+a(0)=a(1)=a(2)=a(3)=a(4)=The quadratic factors are:
+t^2  -1.73205080756888 t  +1
+t^2  +1.73205080756888 t  +1
+Polynomial order (2-20): Enter coefficients, high order to low order.
+a(0)=a(1)=a(2)=a(3)=a(4)=a(5)=a(6)=Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+The quadratic factors are:
+t^2  +2.99366408510665e-17 t  +0.999860952038442
+t^2  -0.00018061853185917 t  +1.00010430190749
+t^2  +0.00018061853247374 t  +1.00010430190749
+Polynomial order (2-20): Enter coefficients, high order to low order.
+a(0)=a(1)=a(2)=a(3)=a(4)=a(5)=a(6)=a(7)=a(8)=a(9)=a(10)=The quadratic factors are:
+t^2  +1.17557050458495 t  +1
+t^2  -1.90211303259031 t  +1
+t^2  +1.90211303259031 t  +1
+t^2  -1.17557050458495 t  +1
+t^2  +2.22044604925031e-16 t  +1
+Polynomial order (2-20): Enter coefficients, high order to low order.
+a(0)=a(1)=a(2)=a(3)=a(4)=a(5)=a(6)=a(7)=a(8)=a(9)=The quadratic factors are:
+t^2  -23.0000000001196 t  +120.000000000879
+t^2  -22.9999999994951 t  +125.999999996054
+t^2  -23.0000000008067 t  +130.000000006537
+t^2  -22.9999999995786 t  +131.99999999653
+The linear term is: 
+t  -1000000
+Polynomial order (2-20): Enter coefficients, high order to low order.
+a(0)=a(1)=a(2)=a(3)=a(4)=a(5)=a(6)=a(7)=Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+Loss of precision
+The quadratic factors are:
+t^2  +2.46662951097979 t  +1.51938902785376
+t^2  +2.41647737869571 t  +1.46173248386621
+t^2  +2.51679883121137 t  +1.58546119401073
+The linear term is: 
+t  +1.23809279945017
