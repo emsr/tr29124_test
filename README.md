@@ -39,9 +39,9 @@ I strive for type genericity.  I want C++ numerics to follow
 the containers + algorithms by having numeriic algorithms that will
 work for any type for which numeric_limits, and the basic math functions
 are available.  These functions have been tested with float, double, long double,
-and __float128.  Some have been tested with mpreal and efforts are underway to
+and \_\_float128.  Some have been tested with mpreal and efforts are underway to
 allow full multiprecision usage.
 
 I generally strive towards accuracy first and speed second.
 
-Check out the [manual](https://rawgit.com/emsr/tr29124_test/master/html/index.html)
+Check out the [API documentation](https://emsr.github.io/tr29124_test/html/index.html).
