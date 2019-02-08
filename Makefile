@@ -189,7 +189,23 @@ BINS = \
        $(TEST_BIN_DIR)/test_wright_omega \
        $(TEST_BIN_DIR)/test_zeta_trig \
        $(TEST_BIN_DIR)/run_coulfg \
-       $(TEST_BIN_DIR)/RUN_COULFG
+       $(TEST_BIN_DIR)/RUN_COULFG \
+       $(TEST_BIN_DIR)/build_bernoulli_2n_table \
+       $(TEST_BIN_DIR)/build_zeta_trig_tables \
+       $(TEST_BIN_DIR)/build_zeta_deriv_table \
+       $(TEST_BIN_DIR)/build_etam1_table \
+       $(TEST_BIN_DIR)/build_zetam1_table \
+       $(TEST_BIN_DIR)/build_nfact_zetanp1 \
+       $(TEST_BIN_DIR)/build_zetahalfm1_table \
+       $(TEST_BIN_DIR)/build_gamma_lanczos \
+       $(TEST_BIN_DIR)/build_gamma_spouge \
+       $(TEST_BIN_DIR)/build_gamma_recip \
+       $(TEST_BIN_DIR)/build_inv_erf_coefs \
+       $(TEST_BIN_DIR)/build_sqrt_table \
+       $(TEST_BIN_DIR)/build_sincos_tables \
+       $(TEST_BIN_DIR)/build_atan_table \
+       $(TEST_BIN_DIR)/build_cordic \
+       $(TEST_BIN_DIR)/build_log_table
 
 
 CHECKS = $(CHECK_DIR)/check_airy_ai \
@@ -1181,6 +1197,55 @@ $(TEST_BIN_DIR)/hankel_toy128: laboratories/bessel_functions/hankel_toy128.cpp
 
 $(TEST_BIN_DIR)/hankel_toy_new: laboratories/bessel_functions/hankel_toy_new.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/hankel_toy_new laboratories/bessel_functions/hankel_toy_new.cpp -lquadmath
+
+
+$(TEST_BIN_DIR)/build_bernoulli_2n_table: laboratories/bernoulli_functions/build_bernoulli_2n_table.cpp
+	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_bernoulli_2n_table laboratories/bernoulli_functions/build_bernoulli_2n_table.cpp -lquadmath -lmpfr
+
+$(TEST_BIN_DIR)/build_zeta_trig_tables: laboratories/zeta_functions/build_zeta_trig_tables.cpp
+	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_zeta_trig_tables laboratories/zeta_functions/build_zeta_trig_tables.cpp -lquadmath -lmpfr
+
+$(TEST_BIN_DIR)/build_zeta_deriv_table: laboratories/zeta_functions/build_zeta_deriv_table.cpp
+	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_zeta_deriv_table laboratories/zeta_functions/build_zeta_deriv_table.cpp -lquadmath -lmpfr
+
+$(TEST_BIN_DIR)/build_etam1_table: laboratories/zeta_functions/build_etam1_table.cpp
+	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_etam1_table laboratories/zeta_functions/build_etam1_table.cpp -lquadmath -lmpfr
+
+$(TEST_BIN_DIR)/build_zetam1_table: laboratories/zeta_functions/build_zetam1_table.cpp
+	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_zetam1_table laboratories/zeta_functions/build_zetam1_table.cpp -lquadmath -lmpfr
+
+$(TEST_BIN_DIR)/build_nfact_zetanp1: laboratories/zeta_functions/build_nfact_zetanp1.cpp
+	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_nfact_zetanp1 laboratories/zeta_functions/build_nfact_zetanp1.cpp -lquadmath -lmpfr
+
+$(TEST_BIN_DIR)/build_zetahalfm1_table: laboratories/zeta_functions/build_zetahalfm1_table.cpp
+	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_zetahalfm1_table laboratories/zeta_functions/build_zetahalfm1_table.cpp -lquadmath -lmpfr
+
+$(TEST_BIN_DIR)/build_gamma_lanczos: laboratories/gamma_functions/build_gamma_lanczos.cpp
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/build_gamma_lanczos laboratories/gamma_functions/build_gamma_lanczos.cpp -lquadmath -lmpfr
+
+$(TEST_BIN_DIR)/build_gamma_spouge: laboratories/gamma_functions/build_gamma_spouge.cpp
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/build_gamma_spouge laboratories/gamma_functions/build_gamma_spouge.cpp -lquadmath -lmpfr
+
+$(TEST_BIN_DIR)/build_gamma_recip: laboratories/gamma_functions/build_gamma_recip.cpp
+	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_gamma_recip laboratories/gamma_functions/build_gamma_recip.cpp -lquadmath -lmpfr
+
+$(TEST_BIN_DIR)/build_inv_erf_coefs: laboratories/error_functions/build_inv_erf_coefs.cpp
+	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_inv_erf_coefs laboratories/error_functions/build_inv_erf_coefs.cpp -lquadmath -lmpfr
+
+$(TEST_BIN_DIR)/build_sqrt_table: laboratories/elementary_functions/build_sqrt_table.cpp
+	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_sqrt_table laboratories/elementary_functions/build_sqrt_table.cpp -lquadmath -lmpfr
+
+$(TEST_BIN_DIR)/build_sincos_tables: laboratories/elementary_functions/build_sincos_tables.cpp
+	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_sincos_tables laboratories/elementary_functions/build_sincos_tables.cpp -lquadmath -lmpfr
+
+$(TEST_BIN_DIR)/build_atan_table: laboratories/elementary_functions/build_atan_table.cpp
+	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_atan_table laboratories/elementary_functions/build_atan_table.cpp -lquadmath -lmpfr
+
+$(TEST_BIN_DIR)/build_cordic: laboratories/elementary_functions/build_cordic.cpp
+	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_cordic laboratories/elementary_functions/build_cordic.cpp -lquadmath -lmpfr -lgmp
+
+$(TEST_BIN_DIR)/build_log_table: laboratories/elementary_functions/build_log_table.cpp
+	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_log_table laboratories/elementary_functions/build_log_table.cpp -lquadmath -lmpfr
 
 
 $(CHECK_DIR)/check_airy_ai: $(CHECK_DIR)/check_airy_ai.cc
