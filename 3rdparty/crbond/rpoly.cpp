@@ -756,6 +756,53 @@ void quad(double a,double b1,double c,double *sr,double *si,
 	}
 }
 
+#include <complex>
+
+void
+scale(int n, double p[])
+{
+  const auto base = 2.0;
+  const auto eta = 2.22e-16;
+  const auto infin = 3.4e38;
+  const auto smalno = 1.2e-38;
+  const auto lo = smalno / eta;
+
+  // Find largest and smallest moduli of coefficients.
+  auto max = 0.0;
+  auto min = infin;
+  for (int i = 0; i <= n; ++i)
+    {
+      auto x = fabs(p[i]);
+      if (x > max)
+        max = x;
+      if (x != 0.0 && x < min)
+        min = x;
+    }
+
+  /*  Scale if there are large or very small coefficients.
+   *  Computes a scale factor to multiply the coefficients of the
+   *  polynomial. The scaling si done to avoid overflow and to
+   *  avoid undetected underflow interfering with the convergence
+   *  criterion. The factor is a power of the base.
+   */
+  auto sc = lo / min;
+  if (sc > 1.0 && infin / sc < max)
+    return;
+  if (sc <= 1.0)
+    {
+      if (max < 10.0)
+        return;
+      if (sc == 0.0)
+        sc = smalno;
+    }
+  auto l = (int)(std::log(sc) / std::log(base) + 0.5);
+  auto factor = std::pow(base * 1.0, l);
+  if (factor != 1.0)
+    {
+      for (int i = 0; i <= n; ++i) 
+	p[i] *= factor;
+    }
+}
 
 int
 main()
@@ -765,18 +812,18 @@ main()
   double tmp;
 
   while ((order < 2) || (order > MAX_TERMS - 1))
-  {
-    printf("Polynomial order (2-20): ");
-    scanf("%d", &order);
-  }
+    {
+      printf("\nPolynomial order (2-20): ");
+      scanf("%d", &order);
+    }
   double a[MAX_TERMS];
 
   printf("Enter coefficients, high order to low order.\n");
-  for (i = 0; i <= order; i++)
-  {
-    printf("a(%d) = ", i);
-    scanf("%lf", &a[i]);
-  }
+  for (i = 0; i <= order; ++i)
+    {
+      printf("a(%d) = ", i);
+      scanf("%lf", &a[i]);
+    }
 
   double zeror[MAX_TERMS - 1], zeroi[MAX_TERMS - 1];
   int info[MAX_TERMS];
@@ -784,6 +831,18 @@ main()
   printf("The zeros are:\n");
   for (int i = 0; i < order; ++i)
     printf("z_%d = (%+.15lg, %+.15lg)\n", i, zeror[i], zeroi[i]);
+
+  scale(order, a);
+
+  // Test roots.
+  for (int i = 0; i < order; ++i)
+    {
+      std::complex<double> pv = a[0];
+      for (int i = 1; i <= order; ++i)
+	pv = a[i] + pv * std::complex<double>(zeror[i-1], zeroi[i-1]);
+      printf("P(z_%d) = (%+.15lg, %+.15lg)\n", i, pv.real(), pv.imag());
+    }
+  printf("\n");
 
   return 0;
 }
