@@ -758,6 +758,11 @@ void quad(double a,double b1,double c,double *sr,double *si,
 
 #include <complex>
 
+/*
+  We need not just the scaling but the shifting also!
+  I think these strategies need to become part of the polynomial!
+*/
+
 void
 scale(int n, double p[])
 {
@@ -805,11 +810,14 @@ scale(int n, double p[])
 }
 
 int
-main()
+main(int n_app_args, char** app_args)
 {
   const int MAX_TERMS = 21;
   int i, n, order = 0;
   double tmp;
+  bool do_scaling = false;
+  if (n_app_args > 1)
+    do_scaling = true;
 
   while ((order < 2) || (order > MAX_TERMS - 1))
     {
@@ -832,7 +840,8 @@ main()
   for (int i = 0; i < order; ++i)
     printf("z_%d = (%+.15lg, %+.15lg)\n", i, zeror[i], zeroi[i]);
 
-  scale(order, a);
+  //if (do_scaling)
+  //  scale(order, a);
 
   // Test roots.
   for (int i = 0; i < order; ++i)
