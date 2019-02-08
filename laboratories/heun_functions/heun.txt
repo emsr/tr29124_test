@@ -1,0 +1,22 @@
+
+heun(a, q_m, alpha, beta, gamma, delta, z);
+
+// series converges for  |z| < 1
+conf_heun(alpha, beta, gamma, delta, eta, z);
+
+// series converges everywhere except infty
+biconf_heun(alpha, beta, gamma, delta, z);
+
+
+// series
+triconf_heun(alpha, beta, gamma, z);
+
+// series for |z| < 1,
+dbl_conf_heun(alpha, beta, gamma, delta, z);
+
+
+
+// analytic cont:
+
+dbl_conf_heun(alpha, beta, gamma, delta, z)
+  = dbl_conf_heun(-alpha, -delta, -gamma, -beta, 1 / z);
