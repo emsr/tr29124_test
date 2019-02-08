@@ -23,7 +23,6 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o bu
       auto width = 8 + std::cout.precision();
 
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      const auto _S_pi  = __gnu_cxx::__math_constants<_Tp>::__pi;
       const auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
       auto __a = _Tp{1};
       const auto __fact = _Tp{1} / std::sqrt(_S_2pi);
@@ -38,7 +37,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o bu
       auto __factc = _Tp{1};
       __c.push_back(__factc * std::sqrt(__a - 1) * std::exp(__a - 1));
       std::cout << "c_0 = " << __c.back() << '\n';
-      auto __sum = __factc * std::exp(__a - 1);
+      //auto __sum = __factc * std::exp(__a - 1);
       for (int __k = 1; __k < std::ceil(__a); ++__k)
 	{
 	  __factc *= -_Tp{1} / _Tp(__k);
@@ -56,18 +55,16 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o bu
 	  //  return std::log(_S_pi) - std::log(__sin_pi(__z)) - __log_gamma1p_spouge(_Tp{1} - __z);
 	  //else
 	    {
-try {
 	      //using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Tp>;
 	      //_WijnSum __sum;
 	      using _BasicSum = __gnu_cxx::_BasicSum<_Tp>;
 	      _BasicSum __sum;
 	      __sum += std::sqrt(_S_2pi);
-	      for (int __k = 0; __k < __c.size(); ++__k)
+	      for (unsigned int __k = 0; __k < __c.size(); ++__k)
 		__sum += __c[__k] / (__z + __k + 1);
 	      return std::log(__sum())
 		   + (__z + _Tp{0.5Q}) * std::log(__z + __a)
 		   - (__z + __a);
-} catch (...) {}
 	    }
 	};
 
@@ -115,12 +112,13 @@ try {
       for (int i = 0; i <= 500; ++i)
 	{
 	  auto z = _Tp{0.01Q} * i;
-	  _Tp x, y;
+	  auto y = __log_gamma1p_spouge(z - _Tp{1});
+	  auto x = __log_gamma_inv(y);
 	  std::cout << ' ' << std::setw(width) << z
-		    << ' ' << std::setw(width) << (y = __log_gamma1p_spouge(z - _Tp{1}))
+		    << ' ' << std::setw(width) << y
 		    << ' ' << std::setw(width) << std::lgamma(z)
 		    << ' ' << std::setw(width) << __log_gamma1p_spouge(z - _Tp{1}) - std::lgamma(z)
-		    << ' ' << std::setw(width) << (x = __log_gamma_inv(y))
+		    << ' ' << std::setw(width) << x
 		    << ' ' << std::setw(width) << x - z
 		    << '\n';
 	}
