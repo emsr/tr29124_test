@@ -3,7 +3,7 @@ INPUT_DIR = test_input
 OUTPUT_DIR = test_output
 BIN_DIR = .
 
-all: test_rpoly test_bairstow test_broyden test_broyden_cmplx test_newton test_newton_cmplx
+all: test_rpoly test_bairstow test_broyden test_broyden_cmplx test_nlnewt test_cnlnewt
 
 test_rpoly: rpoly.cpp
 	g++ -g -o test_rpoly rpoly.cpp
@@ -17,11 +17,11 @@ test_broyden: broyden/broyden.cpp broyden/btst.cpp broyden/ged.cpp
 test_broyden_cmplx: broyden_cmplx/cbroyden.cpp broyden_cmplx/cbtst.cpp broyden_cmplx/cged.cpp
 	g++ -g -o test_broyden_cmplx broyden_cmplx/cbroyden.cpp broyden_cmplx/cbtst.cpp broyden_cmplx/cged.cpp
 
-test_newton: newton/newt.h newton/ged.cpp newton/nlnewt.cpp
-	g++ -g -o test_newton newton/ged.cpp newton/nlnewt.cpp
+test_nlnewt: newton/newt.h newton/ged.cpp newton/nlnewt.cpp newton/test_nlnewt.cpp
+	g++ -g -o test_nlnewt newton/ged.cpp newton/nlnewt.cpp newton/test_nlnewt.cpp
 
-test_newton_cmplx: newton_cmplx/newt.h newton_cmplx/cged.cpp newton_cmplx/cnlnewt.cpp
-	g++ -g -o test_newton_cmplx newton_cmplx/cged.cpp newton_cmplx/cnlnewt.cpp
+test_cnlnewt: newton_cmplx/newt.h newton_cmplx/cged.cpp newton_cmplx/cnlnewt.cpp newton_cmplx/test_cnlnewt.cpp
+	g++ -g -o test_cnlnewt newton_cmplx/cged.cpp newton_cmplx/cnlnewt.cpp newton_cmplx/test_cnlnewt.cpp
 
 
 test: $(OUTPUT_DIR)

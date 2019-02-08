@@ -48,7 +48,7 @@ double eta,are,mre;
 int n,nn,nmi,zerok;
 static int itercnt;
 
-int rpoly(double *op, int degree, double *zeror, double *zeroi, int info[] ) 
+int rpoly(const double *op, int degree, double *zeror, double *zeroi, int info[] ) 
 {
     double t,aa,bb,cc,*temp,factor,rot;
     double *pt;
@@ -766,10 +766,10 @@ void quad(double a,double b1,double c,double *sr,double *si,
 void
 scale(int n, double p[])
 {
-  const auto base = 2.0;
-  const auto eta = 2.22e-16;
-  const auto infin = 3.4e38;
-  const auto smalno = 1.2e-38;
+  const auto base = 2.0;       // ::radix
+  const auto eta = 2.22e-16;   // ::epsilon()
+  const auto infin = 3.4e38;   // ::max()?
+  const auto smalno = 1.2e-38; // ::
   const auto lo = smalno / eta;
 
   // Find largest and smallest moduli of coefficients.
@@ -832,6 +832,10 @@ main(int n_app_args, char** app_args)
       printf("a(%d) = ", i);
       scanf("%lf", &a[i]);
     }
+  printf("\nP : ( ");
+  for (i = 0; i < order; ++i)
+    printf("%+.15lg, ", a[i]);
+  printf("%+.15lg )\n", a[order]);
 
   double zeror[MAX_TERMS - 1], zeroi[MAX_TERMS - 1];
   int info[MAX_TERMS];
@@ -841,7 +845,7 @@ main(int n_app_args, char** app_args)
     printf("z_%d = (%+.15lg, %+.15lg)\n", i, zeror[i], zeroi[i]);
 
   //if (do_scaling)
-  //  scale(order, a);
+    scale(order, a);
 
   // Test roots.
   for (int i = 0; i < order; ++i)
