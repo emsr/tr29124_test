@@ -13,35 +13,36 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o bu
 #include <ext/cmath>
 #include <bits/float128_io.h>
 
-   //  Checbyshev coefficient matrix.
-   constexpr int
-   __cheby(unsigned int __n, unsigned int __k)
-   {
-     if (__k > __n)
-       return 0;
-     else if (__n == 1)
-       return 1;
-     else if (__n == 2)
-       {
-	 if (__k == 1)
-	   return 0;
-	 else if (__k == 2)
-	   return 1;
-       }
-     else
-       {
-	 if (__k == 1)
-	   return -__cheby(__n - 2, 1);
-	 else if (__k == __n)
-	   return 2 * __cheby(__n - 1, __k - 1);
-	 else
-	   return 2 * __cheby(__n - 1, __k - 1) - __cheby(__n - 2, __k);
-       }
-   }
+  //  Checbyshev coefficient matrix.
+  constexpr int
+  __cheby(unsigned int __n, unsigned int __k)
+  {
+    if (__k > __n)
+      return 0;
+    else if (__n == 1)
+      return 1;
+    else if (__n == 2)
+      {
+	if (__k == 1)
+	  return 0;
+	else if (__k == 2)
+	  return 1;
+      }
+    else
+      {
+	if (__k == 1)
+	  return -__cheby(__n - 2, 1);
+	else if (__k == __n)
+	  return 2 * __cheby(__n - 1, __k - 1);
+	else
+	  return 2 * __cheby(__n - 1, __k - 1) - __cheby(__n - 2, __k);
+      }
+    return -1;
+  }
 
   template<typename _Tp>
     _Tp
-    __p(unsigned int __k, _Tp __g)
+    __p(int __k, _Tp __g)
     {
       const auto _S_pi  = __gnu_cxx::__math_constants<_Tp>::__pi;
       auto __fact = std::sqrt(_Tp{2} / _S_pi);
@@ -77,9 +78,9 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o bu
 	{
 	  std::cout << '\n';
 	  std::vector<_Tp> __a;
-	  for (unsigned int k = 1; k <= __n; ++k)
+	  for (int k = 1; k <= __n; ++k)
 	    {
-	      for (unsigned int j = 1; j <= k; ++j)
+	      for (int j = 1; j <= k; ++j)
         	std::cout << "  C(" << std::setw(2) << k
 			    << ", " << std::setw(2) << j
 			    << ") = " << std::setw(4) << __cheby(k, j);
@@ -88,7 +89,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o bu
 
 	  std::cout << '\n';
 	  auto __prev = std::numeric_limits<_Tp>::max();
-	  for (unsigned int __k = 0; __k <= __n + 5; ++__k)
+	  for (int __k = 0; __k <= __n + 5; ++__k)
 	    {
 	      auto __curr = __p(__k, __g);
 	      if (std::abs(__curr) > std::abs(__prev))
@@ -113,7 +114,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o bu
 	  constexpr auto _S_log_sqrt_2pi = (_S_ln_2 + _S_ln_pi) / _Tp{2};
 	  auto __fact = _Tp{1};
 	  auto __sum = _Tp{0.5Q} * __p(0, __g);
-	  for (unsigned int __k = 1; __k < __n; ++__k)
+	  for (int __k = 1; __k < __n; ++__k)
 	    {
 	      __fact *= (__z - __k + 1) / (__z + __k);
 	      __sum += __fact * __p(__k, __g);
