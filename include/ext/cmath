@@ -36,8 +36,8 @@
 #else
 
 #include <cmath>
-#include "math_const.h"
-#include "math_util.h"
+#include <ext/math_const.h>
+#include <ext/math_util.h>
 
 #endif // C++11
 
