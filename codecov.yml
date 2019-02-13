@@ -1,0 +1,8 @@
+coverage:
+  ignore:
+  - "3rdparty/*"
+  - "polynomial/*"
+  - "quadrature/*"
+  - "multiprecision/*"
+
+comment: off
