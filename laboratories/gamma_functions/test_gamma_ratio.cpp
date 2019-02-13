@@ -580,7 +580,7 @@ template<typename _Tp>
 	if (std::abs(__term) < _S_eps * std::abs(__sum))
 	  break;
       }
-    return _Tp(__k & 1 ? -1 : +1) / std::pow(__powarg, __pocharg)
+    return _Tp((__k & 1) ? -1 : +1) / std::pow(__powarg, __pocharg)
 	 * __sum * __gamma_recip(-__nu);
   }
 

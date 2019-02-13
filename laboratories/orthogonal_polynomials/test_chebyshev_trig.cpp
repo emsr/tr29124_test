@@ -42,7 +42,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev
       else
 	{
 	  const auto __theta = std::acosh(-__x);
-	  return (__n & 1 ? _Tp{-1} : _Tp{+1}) * std::cosh(__n * __theta);
+	  return ((__n & 1) ? _Tp{-1} : _Tp{+1}) * std::cosh(__n * __theta);
 	}
     }
 
