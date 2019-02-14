@@ -1,2 +1,12 @@
+sudo: require
 language: cpp
 compiler: gcc
+
+install: 
+  - sudo apt-get install -qq g++-8
+
+script: 
+  - make
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
