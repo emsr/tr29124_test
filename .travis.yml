@@ -8,8 +8,7 @@ before_install:
 
 install: 
   - sudo apt-get install -qq gfortran
-  - sudo apt-get install -qq g++-8
-  - sudo apt-get install -qq gfortran-8
+  - sudo apt-get install -qq libgsl-dev
 
 script: 
   - make
