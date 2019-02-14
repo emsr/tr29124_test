@@ -11,14 +11,16 @@ namespace __gnu_cxx
 {
 
   /**
-   *  @brief  _Chebyshev represents a Chebyshev fit of a function.
-   *  Given a function @c func, the lower limit @c a, the upper limit @c b,
-   *  and the number of points @c n _Chebyshev contains the coefficients
-   *  of a Chebyshev polynomial expansion such that
-   *    func(x) =~ kSum_0^{n-1} c_k T_k(x) - c_0/2.
-   *  Use these constructors with moderately large n of 30 or 50.
-   *  Then truncate the Chebyshev fit to a smaller number of terms to satisfy
-   *  the accuracy requirements.
+   * @brief  _Chebyshev represents a Chebyshev fit of a function.
+   * Given a function @c func, the lower limit @c a, the upper limit @c b,
+   * and the number of points @c n _Chebyshev contains the coefficients
+   * of a Chebyshev polynomial expansion such that
+   * @f[
+   *    f(x) = k\sum_{0}^{n-1} c_k T_k(x) - c_0/2.
+   * @f]
+   * Use these constructors with moderately large n of 30 or 50.
+   * Then truncate the Chebyshev fit to a smaller number of terms to satisfy
+   * the accuracy requirements.
    */
   template<typename _Tp>
     class _Chebyshev
@@ -89,6 +91,6 @@ namespace __gnu_cxx
 
 } // namespace __gnu_cxx
 
-#include "chebyshev.tcc"
+#include <ext/chebyshev.tcc>
 
 #endif // _CHEBYSHEV_H

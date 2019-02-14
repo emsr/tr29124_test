@@ -9,14 +9,16 @@ namespace __gnu_cxx
 {
 
   /**
-   *  @brief  Construct a Chebyshev fit of a function.
-   *  Given a function @c func, the lower limit @c a, the upper limit @c b,
-   *  and the number of points @c n this routine computes the coefficients
-   *  of a Chebyshev polynomial expansion such that
-   *    func(x) =~ kSum_0^n-1 c_k T_k(x) - c_0/2.
-   *  Use this routine with moderately large n of 30 or 50.
-   *  Then truncate the series to a smaller number of terms to satisfy
-   *  the accuracy requirements.
+   * @brief  Construct a Chebyshev fit of a function.
+   * Given a function @c func, the lower limit @c a, the upper limit @c b,
+   * and the number of points @c n this routine computes the coefficients
+   * of a Chebyshev polynomial expansion such that
+   * @f[
+   *    f(x) = k\sum_{0}^{n-1} c_k T_k(x) - c_0/2.
+   * @f]
+   * Use this routine with moderately large n of 30 or 50.
+   * Then truncate the series to a smaller number of terms to satisfy
+   * the accuracy requirements.
    */
   template<typename _Tp>
     _Chebyshev<_Tp>::_Chebyshev(_Tp __a, _Tp __b, unsigned __n, _Tp __func(_Tp))
