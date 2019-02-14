@@ -2,7 +2,6 @@
 # -Wconversion
 
 # Don't look for this gcc anymore.
-#SUFFIX = _tr29124
 # This will start with $(HOME)/bin...
 CXX_INST_DIR = $(HOME)/bin$(SUFFIX)
 ifeq ("$(wildcard $(CXX_INST_DIR))","")
