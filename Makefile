@@ -824,7 +824,7 @@ $(TEST_BIN_DIR)/test_beta_inc: laboratories/beta_functions/test_beta_inc.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_beta_inc laboratories/beta_functions/test_beta_inc.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_binet: laboratories/gamma_functions/test_binet.cpp
-	$(CXXMAX) $(INCLUDES) -I. -Irational/include -o $(TEST_BIN_DIR)/test_binet laboratories/gamma_functions/test_binet.cpp -lquadmath
+	$(CXXMAX) $(INCLUDES) -I. -Icxx_rational/include -o $(TEST_BIN_DIR)/test_binet laboratories/gamma_functions/test_binet.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_binet_float: laboratories/gamma_functions/test_binet_float.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_binet_float laboratories/gamma_functions/test_binet_float.cpp -lquadmath
@@ -1108,8 +1108,8 @@ $(TEST_BIN_DIR)/test_pow_limits: test_std_maths/test_pow_limits.cpp
 $(TEST_BIN_DIR)/test_racah: laboratories/orthogonal_polynomials/test_racah.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_racah laboratories/orthogonal_polynomials/test_racah.cpp -lquadmath
 
-$(TEST_BIN_DIR)/test_rational: rational/test_rational.cpp
-	$(CXXMAX) -Irational/include $(INCLUDES) -o $(TEST_BIN_DIR)/test_rational rational/test_rational.cpp -lquadmath
+$(TEST_BIN_DIR)/test_rational: cxx_rational/test_rational.cpp
+	$(CXXMAX) -Icxx_rational/include $(INCLUDES) -o $(TEST_BIN_DIR)/test_rational cxx_rational/test_rational.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_recursion: recursion/test_recursion.cpp
 	$(CXXMAX) -Iinclude -o $(TEST_BIN_DIR)/test_recursion recursion/test_recursion.cpp -lquadmath
