@@ -2,6 +2,10 @@ sudo: require
 language: cpp
 compiler: gcc
 
+before_install:
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
+
 install: 
   - sudo apt-get install -qq g++-8
 
@@ -9,4 +13,4 @@ script:
   - make
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -t 1af5a35c-cce4-4611-878a-7f0e78841353
