@@ -5,7 +5,7 @@
 #include <vector>
 #include <iosfwd>
 
-#include <polynomial/ext/polynomial.h>
+#include <ext/polynomial.h>
 
 namespace __gnu_cxx
 {
