@@ -2,6 +2,9 @@ sudo: require
 language: cpp
 compiler: gcc
 
+os: linux
+dist: bionic
+
 before_install:
   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
   - sudo apt-get update -qq
