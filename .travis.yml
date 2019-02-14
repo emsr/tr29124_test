@@ -7,6 +7,7 @@ before_install:
   - sudo apt-get update -qq
 
 install: 
+  - sudo apt-get install -qq gfortran
   - sudo apt-get install -qq g++-8
   - sudo apt-get install -qq gfortran-8
 
