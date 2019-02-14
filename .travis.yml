@@ -9,11 +9,12 @@ before_install:
   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
   - sudo apt-get update -qq
 
-install: 
+install:
   - sudo apt-get install -qq gfortran
   - sudo apt-get install -qq libgsl-dev
+  - sudo apt-get install -qq libboost-all-dev
 
-script: 
+script:
   - make
 
 after_success:
