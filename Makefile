@@ -1,14 +1,14 @@
 
 # -Wconversion
 
-# Don't look for this gcc anymore.
-# This will start with $(HOME)/bin...
+CXX_VER = -std=gnu++17
 CXX_INST_DIR = $(HOME)/bin$(SUFFIX)
-ifeq ("$(wildcard $(CXX_INST_DIR))","")
-  SUFFIX = 
+ifeq ("$(wildcard $(CXX_INST_DIR)/bin/g++)","")
+  CXX_VER = -std=gnu++2a
   CXX_INST_DIR = $(HOME)/bin
-  ifeq ("$(wildcard $(CXX_INST_DIR))","")
-    ifneq ($(wildcard "/mingw64"),"")
+  ifeq ("$(wildcard $(CXX_INST_DIR)/bin/g++)","")
+    CXX_VER = -std=gnu++17
+    ifeq ($(wildcard "/mingw64"),"")
       CXX_INST_DIR = /mingw64
     else
       CXX_INST_DIR = /usr
@@ -22,7 +22,8 @@ GCC = $(CXX_INST_DIR)/bin/gcc -g -Wall -Wextra
 CXX14 = $(CXX_INST_DIR)/bin/g++ -std=gnu++14 -g -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -Wall -Wextra -Wno-psabi
 CXX17 = $(CXX_INST_DIR)/bin/g++ -std=gnu++17 -fconcepts -g -Wall -Wextra -Wno-psabi
 CXX2A = $(CXX_INST_DIR)/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi
-CXXMAX = $(CXX17)
+#CXXMAX = $(CXX17)
+CXXMAX = $(CXX_INST_DIR)/bin/g++ $(CXX_VER) -g -Wall -Wextra -Wno-psabi
 CXX_LIB_DIR = $(CXX_INST_DIR)/lib64
 CXX_TEST_INC_DIR = libstdc++_support
 
