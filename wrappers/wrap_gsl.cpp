@@ -4,12 +4,12 @@
 #include <sstream>
 #include <stdexcept>
 
-#include "wrap_gsl.h"
-
 #include <gsl/gsl_sf.h>
-#include "gslextras/Fresnel/fresnel.h"
-#include "gslextras/Jacobi/jacobi-0.9.2/src/jacobi.h"
-#include "gslextras/Hermite/gsl_sf_hermite.h"
+#include <Fresnel/fresnel.h>
+#include <Jacobi/jacobi-0.9.2/src/jacobi.h>
+#include <Hermite/gsl_sf_hermite.h>
+
+#include "wrap_gsl.h"
 
 namespace gsl
 {

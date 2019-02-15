@@ -1,9 +1,9 @@
 
-#include "wrap_faddeeva.h"
-
 #include <ext/cmath>
 
-#include "Faddeeva/Faddeeva.hh"
+#include <Faddeeva.hh>
+
+#include "wrap_faddeeva.h"
 
 namespace faddeeva
 {

@@ -1,7 +1,7 @@
 
-#include "wrap_lambert.h"
+#include <LambertW.h>
 
-#include "LambertW/LambertW.h"
+#include "wrap_lambert.h"
 
 namespace lambert
 {

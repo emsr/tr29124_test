@@ -4,28 +4,26 @@
 #include <cmath>
 #include <memory>
 
-#include "burkhardt/special_functions.h"
-
+#include <special_functions.h>
+#include <asa109.hpp>
+#include <asa243.hpp>
+#include <asa310.hpp>
+#include <bernstein_polynomial.hpp>
+#include <beta_nc.hpp>
+#include <cdflib.hpp>
+#include <chebyshev_polynomial.hpp>
+#include <gegenbauer_polynomial.hpp>
+#include <hermite_polynomial.hpp>
+#include <jacobi_polynomial.hpp>
+#include <kronrod.hpp>
+#include <lobatto_polynomial.hpp>
+#include <polpak.hpp>
+#include <quadrule.hpp>
+#include <toms443.hpp>
+#include <toms462.hpp>
+#include <toms917.hpp>
 
 #include "wrap_burkhardt.h"
-
-#include "burkhardt/asa109.hpp"
-#include "burkhardt/asa243.hpp"
-#include "burkhardt/asa310.hpp"
-#include "burkhardt/bernstein_polynomial.hpp"
-#include "burkhardt/beta_nc.hpp"
-#include "burkhardt/cdflib.hpp"
-#include "burkhardt/chebyshev_polynomial.hpp"
-#include "burkhardt/gegenbauer_polynomial.hpp"
-#include "burkhardt/hermite_polynomial.hpp"
-#include "burkhardt/jacobi_polynomial.hpp"
-#include "burkhardt/kronrod.hpp"
-#include "burkhardt/lobatto_polynomial.hpp"
-#include "burkhardt/polpak.hpp"
-#include "burkhardt/quadrule.hpp"
-#include "burkhardt/toms443.hpp"
-#include "burkhardt/toms462.hpp"
-#include "burkhardt/toms917.hpp"
 
 namespace burkhardt
 {

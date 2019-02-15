@@ -38,6 +38,7 @@ add_library(wrap_gsl SHARED
 	    ../3rdparty/gslextras/Hermite/gsl_sf_hermite.c
 	   )
 target_link_libraries(wrap_gsl gsl gslcblas)
+target_include_directories(wrap_gsl PRIVATE ../3rdparty/gslextras)
 
 add_library(wrap_cephes SHARED
             wrap_cephes.cpp
@@ -187,6 +188,7 @@ add_library(wrap_cephes SHARED
 	    ../3rdparty/cephes/c9x-complex/cgamma.c
 	    ../3rdparty/cephes/c9x-complex/cpolylog.c
            )
+target_include_directories(wrap_cephes PRIVATE ../3rdparty/cephes)
 
 # This was an interesting disaster!
 #	    ../cephes/cmath/sincos.c
@@ -222,21 +224,25 @@ add_library(wrap_burkhardt SHARED
 	    ../3rdparty/burkhardt/triangle_monte_carlo.cpp
            )
 target_link_libraries(wrap_burkhardt gfortran)
+target_include_directories(wrap_burkhardt PRIVATE ../3rdparty/burkhardt)
 
 
 add_library(wrap_lerchphi SHARED
             wrap_lerch.cpp
 	    ../3rdparty/lerchphi/Source/lerchphi.cpp
 	   )
+target_include_directories(wrap_lerchphi PRIVATE ../3rdparty/lerchphi/Source)
 
 
 add_library(wrap_faddeeva SHARED
             wrap_faddeeva.cpp
 	    ../3rdparty/Faddeeva/Faddeeva.cc
 	   )
+target_include_directories(wrap_faddeeva PRIVATE ../3rdparty/Faddeeva)
 
 
 add_library(wrap_lambert SHARED
             wrap_lambert.cpp
 	    ../3rdparty/LambertW/LambertW.cc
 	   )
+target_include_directories(wrap_lambert PRIVATE ../3rdparty/LambertW)

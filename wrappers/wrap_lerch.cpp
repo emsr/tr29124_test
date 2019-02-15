@@ -1,7 +1,9 @@
 
 #include <limits>
+
+#include <lerchphi.h>
+
 #include "wrap_lerch.h"
-#include "lerchphi/Source/lerchphi.h"
 
 namespace lurch
 {
