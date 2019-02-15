@@ -46,5 +46,6 @@ I generally strive towards accuracy first and speed second.
 
 Check out the [API documentation](https://emsr.github.io/tr29124_test/html/index.html).
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bee73172954646a0bf287bdcdd269553)](https://app.codacy.com/app/emsr/tr29124_test?utm_source=github.com&utm_medium=referral&utm_content=emsr/tr29124_test&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://travis-ci.org/emsr/tr29124_test.svg?branch=master)](https://travis-ci.org/emsr/tr29124_test)
 [![Coverage Status](https://codecov.io/gh/emsr/tr29124_test/branch/master/graph/badge.svg)](https://codecov.io/gh/emsr/tr29124_test)
