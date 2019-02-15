@@ -116,7 +116,7 @@
   
  */
 int
-jac_jacobi_P0_e (double x, double a, double b, gsl_sf_result *result)
+jac_jacobi_P0_e (double /*x*/, double /*a*/, double /*b*/, gsl_sf_result *result)
 {
     result->val = 1.0;
     result->err = 0.0;
@@ -203,7 +203,7 @@ jac_jacobi_e (double x, int n, double a, double b, gsl_sf_result *result)
   
  */
 double
-jac_jacobi_P0(double x, double a, double b)
+jac_jacobi_P0(double /*x*/, double /*a*/, double /*b*/)
 {
     return 1.0;
 }
@@ -283,7 +283,7 @@ jac_jacobi (double x, int n, double a, double b)
   
  */
 int
-jac_djacobi_P0_e (double x, double a, double b, gsl_sf_result *result)
+jac_djacobi_P0_e (double /*x*/, double /*a*/, double /*b*/, gsl_sf_result *result)
 {
     result->val = 0.0;
     result->err = 0.0;
@@ -300,7 +300,7 @@ jac_djacobi_P0_e (double x, double a, double b, gsl_sf_result *result)
   
  */
 int
-jac_djacobi_P1_e (double x, double a, double b, gsl_sf_result *result)
+jac_djacobi_P1_e (double /*x*/, double a, double b, gsl_sf_result *result)
 {
     result->val = 0.5 * (a + b + 2.0);
     result->err = 0.0;
@@ -339,7 +339,7 @@ jac_djacobi_e (double x, int n, double a, double b, gsl_sf_result *result)
   
  */
 double
-jac_djacobi_P0(double x, double a, double b)
+jac_djacobi_P0(double /*x*/, double /*a*/, double /*b*/)
 {
     return 0.0;
 }
@@ -353,7 +353,7 @@ jac_djacobi_P0(double x, double a, double b)
   
  */
 double
-jac_djacobi_P1(double x, double a, double b)
+jac_djacobi_P1(double /*x*/, double a, double b)
 {
     return 0.5 * (a + b + 2.0);
 }
@@ -429,7 +429,7 @@ jac_jacobi_array (int np, const double *x, int n, double * result_array,
     int mem_allocated=0;
     if (ws==NULL)
     {
-	pnm1 = (double *) malloc(2*np*sizeof(double));
+	pnm1 = static_cast<double*>(malloc(2*np*sizeof(double)));
 	if (!pnm1) return GSL_ENOMEM;
 	
 	mem_allocated = 1;
