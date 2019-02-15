@@ -23,8 +23,7 @@ set(CMAKE_C_FLAGS "-std=c11 -Wall -Wextra -I$ENV{HOME}/tr29124_test")
 set(CMAKE_CXX_FLAGS "-std=c++17 -Wall -Wextra -Wno-deprecated-declarations -Wold-style-cast -Wno-psabi -I$ENV{HOME}/tr29124_test/include -I$ENV{HOME}/tr29124_test/polynomial/include -I$ENV{HOME}/tr29124_test/3rdparty")
 set(CMAKE_Fortran_FLAGS "-Wall -Wextra -I$ENV{HOME}/tr29124_test")
 
-add_library(wrap_boost SHARED
-            wrap_boost.h wrap_boost.cpp)
+add_library(wrap_boost SHARED wrap_boost.cpp)
 
 
 set(GSL_ROOT_DIR /usr/local)
@@ -33,20 +32,15 @@ find_package(GSL REQUIRED)
 find_library(GFORTRAN_LIBRARY NAMES gfortran)
 
 add_library(wrap_gsl SHARED
-            wrap_gsl.h
             wrap_gsl.cpp
 	    ../3rdparty/gslextras/Fresnel/fresnel.c
-	    ../3rdparty/gslextras/Fresnel/fresnel.h
 	    ../3rdparty/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.cpp
 	    ../3rdparty/gslextras/Hermite/gsl_sf_hermite.c
 	   )
 target_link_libraries(wrap_gsl gsl gslcblas)
 
 add_library(wrap_cephes SHARED
-            wrap_cephes.h
             wrap_cephes.cpp
-	    ../3rdparty/cephes/bessel/cephes_bessel.h
-	    ../3rdparty/cephes/bessel/mconf.h
 	    ../3rdparty/cephes/bessel/airy.c
 	    ../3rdparty/cephes/bessel/hyp2f1.c
 	    ../3rdparty/cephes/bessel/hyperg.c
@@ -63,8 +57,6 @@ add_library(wrap_cephes SHARED
 	    ../3rdparty/cephes/bessel/psi.c
 	    ../3rdparty/cephes/bessel/struve.c
 	    ../3rdparty/cephes/bessel/yn.c
-	    ../3rdparty/cephes/cmath/cephes_cmath.h
-	    ../3rdparty/cephes/cmath/mconf.h
 	    ../3rdparty/cephes/cmath/acosh.c
 	    ../3rdparty/cephes/cmath/asin.c
 	    ../3rdparty/cephes/cmath/asinh.c
@@ -95,8 +87,6 @@ add_library(wrap_cephes SHARED
 	    ../3rdparty/cephes/cmath/tandg.c
 	    ../3rdparty/cephes/cmath/tanh.c
 	    ../3rdparty/cephes/cmath/unity.c
-	    ../3rdparty/cephes/cprob/cephes_cprob.h
-	    ../3rdparty/cephes/cprob/mconf.h
 	    ../3rdparty/cephes/cprob/bdtr.c
 	    ../3rdparty/cephes/cprob/btdtr.c
 	    ../3rdparty/cephes/cprob/chdtr.c
@@ -115,15 +105,11 @@ add_library(wrap_cephes SHARED
 	    ../3rdparty/cephes/cprob/ndtri.c
 	    ../3rdparty/cephes/cprob/pdtr.c
 	    ../3rdparty/cephes/cprob/stdtr.c
-	    ../3rdparty/cephes/ellf/cephes_ellf.h
-	    ../3rdparty/cephes/ellf/mconf.h
 	    ../3rdparty/cephes/ellf/ellie.c
 	    ../3rdparty/cephes/ellf/ellik.c
 	    ../3rdparty/cephes/ellf/ellpe.c
 	    ../3rdparty/cephes/ellf/ellpj.c
 	    ../3rdparty/cephes/ellf/ellpk.c
-	    ../3rdparty/cephes/ldouble/cephes_ldouble.h
-	    ../3rdparty/cephes/ldouble/mconf.h
 	    ../3rdparty/cephes/ldouble/acoshl.c
 	    ../3rdparty/cephes/ldouble/asinl.c
 	    ../3rdparty/cephes/ldouble/asinhl.c
@@ -174,8 +160,6 @@ add_library(wrap_cephes SHARED
 	    ../3rdparty/cephes/ldouble/tanhl.c
 	    ../3rdparty/cephes/ldouble/unityl.c
 	    ../3rdparty/cephes/ldouble/ynl.c
-	    ../3rdparty/cephes/misc/cephes_misc.h
-	    ../3rdparty/cephes/misc/mconf.h
 	    ../3rdparty/cephes/misc/beta.c
 	    ../3rdparty/cephes/misc/chbevl.c
 	    ../3rdparty/cephes/misc/dawsn.c
@@ -194,15 +178,11 @@ add_library(wrap_cephes SHARED
 	    ../3rdparty/cephes/misc/spence.c
 	    ../3rdparty/cephes/misc/zeta.c
 	    ../3rdparty/cephes/misc/zetac.c
-	    ../3rdparty/cephes/polyn/cephes_polyn.h
-	    ../3rdparty/cephes/polyn/mconf.h
 	    ../3rdparty/cephes/polyn/euclid.c
 	    ../3rdparty/cephes/polyn/polmisc.c
 	    ../3rdparty/cephes/polyn/polrt.c
 	    ../3rdparty/cephes/polyn/polyn.c
 	    ../3rdparty/cephes/polyn/revers.c
-	    ../3rdparty/cephes/c9x-complex/cephes_cmplx.h
-	    ../3rdparty/cephes/c9x-complex/mconf.h
 	    ../3rdparty/cephes/c9x-complex/cmplx.c
 	    ../3rdparty/cephes/c9x-complex/cgamma.c
 	    ../3rdparty/cephes/c9x-complex/cpolylog.c
@@ -213,7 +193,6 @@ add_library(wrap_cephes SHARED
 
 
 add_library(wrap_burkhardt SHARED
-            wrap_burkhardt.h
             wrap_burkhardt.cpp
 	    ../3rdparty/burkhardt/special_functions.f90
 	    ../3rdparty/burkhardt/asa109.cpp
@@ -246,25 +225,18 @@ target_link_libraries(wrap_burkhardt gfortran)
 
 
 add_library(wrap_lerchphi SHARED
-            wrap_lerch.h
             wrap_lerch.cpp
-	    ../3rdparty/lerchphi/Source/lerchphi.h
 	    ../3rdparty/lerchphi/Source/lerchphi.cpp
 	   )
 
 
 add_library(wrap_faddeeva SHARED
-            wrap_faddeeva.h
             wrap_faddeeva.cpp
-	    ../3rdparty/Faddeeva/Faddeeva.hh
 	    ../3rdparty/Faddeeva/Faddeeva.cc
 	   )
 
 
 add_library(wrap_lambert SHARED
-            wrap_lambert.h
             wrap_lambert.cpp
-	    ../3rdparty/LambertW/Horner.h
-	    ../3rdparty/LambertW/LambertW.h
 	    ../3rdparty/LambertW/LambertW.cc
 	   )
