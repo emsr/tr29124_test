@@ -44,7 +44,7 @@ template<typename _Tp>
 		  _Tp& fc, _Tp& gc, _Tp& fcp, _Tp& gcp, int& ifail)
   {
     constexpr auto abort = _Tp{20000};
-    constexpr auto _S_tiny = _Tp{1.0e-30};
+    //constexpr auto _S_tiny = _Tp{1.0e-30};
     // This constant is  sqrt(_Tp{2}/pi)
     constexpr auto rt2epi = _Tp{0.79788'45608'02865e0};
     const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
