@@ -50,7 +50,7 @@ template<std::size_t _NumBits>
       mpfr::mpreal one(1, 4 * _NumBits);
       mpfr::mpreal two(2, 4 * _NumBits);
       mpfr::mpreal K(1, 4 * _NumBits);
-      for (int k = 0; k < _NumBits; ++k)
+      for (auto k = 0u; k < _NumBits; ++k)
 	K *= mpfr::sqrt(one + mpfr::pow(two, -2 * k));
       return K;
     }
@@ -61,9 +61,9 @@ template<std::size_t _NumBits>
       mpfr::mpreal one(1, 4 * _NumBits);
       mpfr::mpreal two(2, 4 * _NumBits);
       mpfr::mpreal K(1, 4 * _NumBits);
-      for (int k = 1; k < _NumBits; ++k)
+      for (auto k = 1u; k < _NumBits; ++k)
 	K *= mpfr::sqrt(one - mpfr::pow(two, -2 * k));
-      for (int k = 1, i = 3*k + 1; i < _NumBits; ++k, i = 3*i + 1)
+      for (auto k = 1u, i = 3*k + 1u; i < _NumBits; ++k, i = 3*i + 1)
 	K *= mpfr::sqrt(one - mpfr::pow(two, -2 * i));
       return K;
     }
@@ -78,7 +78,7 @@ template<std::size_t _NumBits>
       mpq_t p;
       mpq_init(p);
       unsigned long int i = 1;
-      for (int k = 0; k < _NumBits; ++k)
+      for (auto k = 0u; k < _NumBits; ++k)
 	{
 	  mpq_set_ui(p, 1ul, i);
 	  mpfr::mpreal x(p, 2 * _NumBits);
@@ -101,7 +101,7 @@ template<std::size_t _NumBits>
       mpq_t p;
       mpq_init(p);
       unsigned long int i = 1;
-      for (int k = 0; k < _NumBits; ++k)
+      for (auto k = 0u; k < _NumBits; ++k)
 	{
 	  mpq_set_ui(p, 1ul, i);
 	  mpfr::mpreal x(p, 2 * _NumBits);
