@@ -33,6 +33,7 @@
 #pragma GCC system_header
 
 #include <ext/math_const.h>
+#include <ext/math_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -80,6 +81,11 @@ namespace __detail
       if (__n == 1)
 	return {__n, __alpha1, __beta1, __x, __P_nm1, __P_nm2, _Tp{0}};
 
+      auto _Max = int(__n);
+      const auto _Maybe = __gnu_cxx::__fp_is_integer(_Max + __apb);
+      if (_Maybe && _Maybe() < 0 && -_Maybe() < _Max)
+	_Max = -_Maybe();
+
       const auto __a2mb2 = __amb * __apb;
       const auto __bah = ((__apb + _Tp{2}) + _Tp{2});
       const auto __poo = (__bah - _Tp{1});
@@ -88,7 +94,7 @@ namespace __detail
 		    * __P_nm1 - (_Tp{2} * (__alpha1 + _Tp{1})
 			    * (__beta1 + _Tp{1}) * __bah) * __P_nm2)
 		 / (_Tp{4} * (__apb + _Tp{2}) * (__poo - _Tp{1}));
-      for (auto __k = 3u; __k <= __n; ++__k )
+      for (auto __k = 3; __k <= _Max; ++__k )
 	{
 	  const auto __apbpk = __apb + _Tp(__k);
 	  const auto __apbp2k = __apbpk + _Tp(__k);
@@ -128,6 +134,7 @@ namespace __detail
   /**
    * Return a vector containing the zeros of the Jacobi polynomial
    * @f$ P_n^{(\alpha,\beta)}(x) @f$.
+   * Thias works for @f$ \alpha, \beta > -1 @f$.
    *
    * @tparam _Tp The real type of the radial coordinate
    * @param[in]  n  The order of the Jacobi polynomial

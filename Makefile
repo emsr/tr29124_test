@@ -28,7 +28,7 @@ CXX_LIB_DIR = $(CXX_INST_DIR)/lib64
 CXX_TEST_INC_DIR = libstdc++_support
 
 INC_DIR = include/bits
-INCLUDES = -Iinclude -Ipolynomial/include
+INCLUDES = -Iinclude -Icxx_fp_utils/include -Ipolynomial/include
 
 FAD_DIR = 3rdparty/Faddeeva
 
@@ -804,7 +804,7 @@ $(TEST_BIN_DIR)/test_appell_f1: laboratories/appell_functions/test_appell_f1.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_appell_f1 laboratories/appell_functions/test_appell_f1.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_arith_geom_mean: laboratories/norm_functions/test_arith_geom_mean.cpp
-	$(CXXMAX) -Iinclude -Iwrappers -o $(TEST_BIN_DIR)/test_arith_geom_mean laboratories/norm_functions/test_arith_geom_mean.cpp -lquadmath
+	$(CXXMAX) -Iinclude -Icxx_fp_utils/include -Iwrappers -o $(TEST_BIN_DIR)/test_arith_geom_mean laboratories/norm_functions/test_arith_geom_mean.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_bernoulli: wrappers_debug laboratories/bernoulli_functions/test_bernoulli.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_bernoulli laboratories/bernoulli_functions/test_bernoulli.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
@@ -1077,7 +1077,7 @@ $(TEST_BIN_DIR)/test_mpreal: multiprecision/test_mpreal.cpp
 	$(CXXMAX) $(INCLUDES) -I../mpreal -o $(TEST_BIN_DIR)/test_mpreal multiprecision/test_mpreal.cpp -lquadmath -lmpfr -lgmp
 
 $(TEST_BIN_DIR)/test_notsospecfun: laboratories/elementary_functions/test_notsospecfun.cpp
-	$(CXXMAX) -Iinclude -o $(TEST_BIN_DIR)/test_notsospecfun laboratories/elementary_functions/test_notsospecfun.cpp -lquadmath
+	$(CXXMAX) -Iinclude -Icxx_fp_utils/include -o $(TEST_BIN_DIR)/test_notsospecfun laboratories/elementary_functions/test_notsospecfun.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_nric_bessel: laboratories/bessel_functions/test_nric_bessel.cpp laboratories/bessel_functions/nric_bessel.tcc
 	$(CXX14) $(INCLUDES) -Ilaboratories/bessel_functions -o $(TEST_BIN_DIR)/test_nric_bessel laboratories/bessel_functions/test_nric_bessel.cpp -lquadmath

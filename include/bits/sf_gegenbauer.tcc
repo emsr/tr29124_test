@@ -33,6 +33,7 @@
 #pragma GCC system_header
 
 #include <ext/math_const.h>
+#include <ext/math_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -75,15 +76,21 @@ namespace __detail
       if (__n == 1)
 	return {__n, __lambda, __x, __C_nm1, __C_nm2, _Tp{0}};
 
+      auto _Max = int(__n);
+      const auto
+	_Maybe = __gnu_cxx::__fp_is_integer(_Max - 1 + _Tp{2} * __lambda);
+      if (_Maybe && _Maybe() < 0 && -_Maybe() < _Max)
+	_Max = -_Maybe();
+
       auto __C_n = (_Tp{2} * (_Tp{1} + __lambda) * __x * __C_nm1
 		 - _Tp{2} * __lambda * __C_nm2) / _Tp(2);
-      for (unsigned int __nn = 3; __nn <= __n; ++__nn)
+      for (unsigned int __k = 3; __k <= _Max; ++__k)
 	{
 	  __C_nm2 = __C_nm1;
 	  __C_nm1 = __C_n;
-	  __C_n = (_Tp{2} * (_Tp(__nn) - _Tp{1} + __lambda) * __x * __C_nm1
-		- (_Tp(__nn) - _Tp{2} + _Tp{2} * __lambda) * __C_nm2)
-	      / _Tp(__nn);
+	  __C_n = (_Tp{2} * (_Tp(__k) - _Tp{1} + __lambda) * __x * __C_nm1
+		- (_Tp(__k) - _Tp{2} + _Tp{2} * __lambda) * __C_nm2)
+	      / _Tp(__k);
 	}
       return {__n, __lambda, __x, __C_n, __C_nm1, __C_nm2};
     }
@@ -185,7 +192,7 @@ namespace __detail
 		  break;
 		}
 	      if (__its > _S_maxit)
-		std::__throw_logic_error("__jacobi_zeros: Too many iterations");
+		std::__throw_logic_error("__gegenbauer_zeros: Too many iterations");
 	    }
 	  __pt[__i - 1].__point = __z;
 	  __pt[__i - 1].__weight = __w;
