@@ -112,6 +112,7 @@ BINS = \
        $(TEST_BIN_DIR)/test_gamma_ratio \
        $(TEST_BIN_DIR)/test_gamma_reciprocal \
        $(TEST_BIN_DIR)/test_gegenbauer \
+       $(TEST_BIN_DIR)/test_gegenbauer_neg_parm \
        $(TEST_BIN_DIR)/test_gudermannian \
        $(TEST_BIN_DIR)/test_hahn \
        $(TEST_BIN_DIR)/test_hankel \
@@ -128,6 +129,8 @@ BINS = \
        $(TEST_BIN_DIR)/test_inv_ibeta \
        $(TEST_BIN_DIR)/test_inv_lgamma \
        $(TEST_BIN_DIR)/test_jacobi \
+       $(TEST_BIN_DIR)/test_jacobi_neg_parm \
+       $(TEST_BIN_DIR)/test_jacobi_neg_roots \
        $(TEST_BIN_DIR)/test_jacobi_ellint \
        $(TEST_BIN_DIR)/test_jacobi_inv \
        $(TEST_BIN_DIR)/test_jacobi_theta \
@@ -528,6 +531,7 @@ test: $(BINS) $(TEST_OUT_DIR)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_gamma_ratio > $(TEST_OUT_DIR)/test_gamma_ratio.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_gamma_reciprocal > $(TEST_OUT_DIR)/test_gamma_reciprocal.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_gegenbauer > $(TEST_OUT_DIR)/test_gegenbauer.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_gegenbauer_neg_parm > $(TEST_OUT_DIR)/test_gegenbauer_neg_parm.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_gudermannian > $(TEST_OUT_DIR)/test_gudermannian.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hahn > $(TEST_OUT_DIR)/test_hahn.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hankel > $(TEST_OUT_DIR)/test_hankel.txt
@@ -544,6 +548,8 @@ test: $(BINS) $(TEST_OUT_DIR)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_inv_ibeta > $(TEST_OUT_DIR)/test_inv_ibeta.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_inv_lgamma > $(TEST_OUT_DIR)/test_inv_lgamma.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi > $(TEST_OUT_DIR)/test_jacobi.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi_neg_parm > $(TEST_OUT_DIR)/test_jacobi_neg_parm.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi_neg_roots > $(TEST_OUT_DIR)/test_jacobi_neg_roots.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi_ellint > $(TEST_OUT_DIR)/test_jacobi_ellint.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi_inv > $(TEST_OUT_DIR)/test_jacobi_inv.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi_theta > $(TEST_OUT_DIR)/test_jacobi_theta.txt
@@ -950,6 +956,9 @@ $(TEST_BIN_DIR)/test_gamma_reciprocal: laboratories/gamma_functions/test_gamma_r
 $(TEST_BIN_DIR)/test_gegenbauer: laboratories/orthogonal_polynomials/test_gegenbauer.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_gegenbauer laboratories/orthogonal_polynomials/test_gegenbauer.cpp -lquadmath
 
+$(TEST_BIN_DIR)/test_gegenbauer_neg_parm: laboratories/orthogonal_polynomials/test_gegenbauer_neg_parm.cpp
+	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_gegenbauer_neg_parm laboratories/orthogonal_polynomials/test_gegenbauer_neg_parm.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
+
 $(TEST_BIN_DIR)/test_gudermannian: laboratories/elementary_functions/test_gudermannian.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_gudermannian laboratories/elementary_functions/test_gudermannian.cpp -lquadmath
 
@@ -997,6 +1006,12 @@ $(TEST_BIN_DIR)/test_inv_lgamma: laboratories/gamma_functions/test_inv_lgamma.cp
 
 $(TEST_BIN_DIR)/test_jacobi: laboratories/orthogonal_polynomials/test_jacobi.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_jacobi laboratories/orthogonal_polynomials/test_jacobi.cpp -lquadmath
+
+$(TEST_BIN_DIR)/test_jacobi_neg_parm: laboratories/orthogonal_polynomials/test_jacobi_neg_parm.cpp
+	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_jacobi_neg_parm laboratories/orthogonal_polynomials/test_jacobi_neg_parm.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
+
+$(TEST_BIN_DIR)/test_jacobi_neg_roots: laboratories/orthogonal_polynomials/test_jacobi_neg_roots.cpp
+	$(CXXMAX) $(INCLUDES) -Ipolynomial/include -Iwrappers -o $(TEST_BIN_DIR)/test_jacobi_neg_roots laboratories/orthogonal_polynomials/test_jacobi_neg_roots.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
 $(TEST_BIN_DIR)/test_jacobi_ellint: laboratories/theta_functions/test_jacobi_ellint.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_jacobi_ellint laboratories/theta_functions/test_jacobi_ellint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost
