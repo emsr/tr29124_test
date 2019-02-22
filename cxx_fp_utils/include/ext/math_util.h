@@ -35,6 +35,10 @@
 # include <bits/c++0x_warning.h>
 #else
 
+#include <bits/c++config.h>
+#include <limits>
+#include <cmath>
+
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
@@ -43,9 +47,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return -1 if the integer argument is odd and +1 if it is even.
    */
   template<typename _Tp, typename _IntTp>
-    inline _Tp
-    __parity(_IntTp __k)
-    { return __k & 1 ? _Tp{-1} : _Tp{+1}; }
+    inline constexpr _Tp
+    __parity(_IntTp __k) noexcept
+    { return (__k & 1) ? _Tp{-1} : _Tp{+1}; }
 
   /**
    * A function to return the maximum of the absolute values of two numbers
@@ -54,8 +58,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @param __b The right hand side
    */
   template<typename _Tp>
-    inline _Tp
-    __fp_max_abs(_Tp __a, _Tp __b)
+    inline constexpr _Tp
+    __fp_max_abs(_Tp __a, _Tp __b) noexcept
     {
       if (std::isnan(__a) || std::isnan(__b))
 	return std::numeric_limits<_Tp>::quiet_NaN();
@@ -77,8 +81,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *         or differ only by @f$ max(a,b) * mul * epsilon @f$
    */
   template<typename _Tp>
-    inline bool
-    __fp_is_equal(_Tp __a, _Tp __b, _Tp __mul = _Tp{1})
+    inline constexpr bool
+    __fp_is_equal(_Tp __a, _Tp __b, _Tp __mul = _Tp{1}) noexcept
     {
       if (std::isnan(__a) || std::isnan(__b) || std::isnan(__mul))
 	return false;
@@ -102,8 +106,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *         or differ only by @f$ max(a,b) * mul * epsilon @f$
    */
   template<typename _Tp>
-    inline bool
-    __fp_is_zero(_Tp __a, _Tp __mul = _Tp{1})
+    inline constexpr bool
+    __fp_is_zero(_Tp __a, _Tp __mul = _Tp{1}) noexcept
     {
       if (std::isnan(__a) || std::isnan(__mul))
 	return false;
@@ -123,18 +127,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   struct __fp_is_integer_t
   {
     // A flag indicating whether the floating point number is integralish.
-    bool __is_integral;
+    bool __is_integral = false;
 
     // An integer related to the floating point integral value.
-    int __value;
+    int __value = 0;
 
     // Return __is_integral in a boolean context.
-    operator bool() const
+    constexpr operator bool() const noexcept
     { return this->__is_integral; }
 
     // Return __value.
-    int
-    operator()() const
+    constexpr int
+    operator()() const noexcept
     { return this->__value; }
   };
 
@@ -146,8 +150,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return @c true if a is an integer within mul * epsilon.
    */
   template<typename _Tp>
-    inline __fp_is_integer_t
-    __fp_is_integer(_Tp __a, _Tp __mul = _Tp{1})
+    inline constexpr __fp_is_integer_t
+    __fp_is_integer(_Tp __a, _Tp __mul = _Tp{1}) noexcept
     {
       if (std::isnan(__a) || std::isnan(__mul))
 	return __fp_is_integer_t{false, 0};
@@ -168,8 +172,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *            and the returned value is half the integer, int(a) / 2. 
    */
   template<typename _Tp>
-    inline __fp_is_integer_t
-    __fp_is_half_integer(_Tp __a, _Tp __mul = _Tp{1})
+    inline constexpr __fp_is_integer_t
+    __fp_is_half_integer(_Tp __a, _Tp __mul = _Tp{1}) noexcept
     {
       if (std::isnan(__a) || std::isnan(__mul))
 	return __fp_is_integer_t{false, 0};
@@ -191,8 +195,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *            and the returned value is int(a - 1) / 2.
    */
   template<typename _Tp>
-    inline __fp_is_integer_t
-    __fp_is_half_odd_integer(_Tp __a, _Tp __mul = _Tp{1})
+    inline constexpr __fp_is_integer_t
+    __fp_is_half_odd_integer(_Tp __a, _Tp __mul = _Tp{1}) noexcept
     {
       if (std::isnan(__a) || std::isnan(__mul))
 	return __fp_is_integer_t{false, 0};
@@ -200,7 +204,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	{
 	  const auto __n = static_cast<int>(std::nearbyint(_Tp{2} * __a));
 	  const bool __halfodd = (__n & 1 == 1)
-			       && __fp_is_equal(_Tp{2} * __a, _Tp(__n), __mul);
+				&& __fp_is_equal(_Tp{2} * __a, _Tp(__n), __mul);
 	  return __fp_is_integer_t{__halfodd, (__n - 1) / 2};
 	}
     }
@@ -213,8 +217,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return @c true if a is an even integer within mul * epsilon.
    */
   template<typename _Tp>
-    inline __fp_is_integer_t
-    __fp_is_even_integer(_Tp __a, _Tp __mul = _Tp{1})
+    inline constexpr __fp_is_integer_t
+    __fp_is_even_integer(_Tp __a, _Tp __mul = _Tp{1}) noexcept
     {
       if (std::isnan(__a) || std::isnan(__mul))
 	return __fp_is_integer_t{false, 0};
@@ -233,8 +237,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @return @c true if a is an odd integer within mul * epsilon.
    */
   template<typename _Tp>
-    inline __fp_is_integer_t
-    __fp_is_odd_integer(_Tp __a, _Tp __mul = _Tp{1})
+    inline constexpr __fp_is_integer_t
+    __fp_is_odd_integer(_Tp __a, _Tp __mul = _Tp{1}) noexcept
     {
       if (std::isnan(__a) || std::isnan(__mul))
 	return __fp_is_integer_t{false, 0};
