@@ -442,7 +442,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
 	return _Tp{0};
       else if (__m == __n)
 	return _Tp{1};
-      else if (__m == 0 && __n >= 10)
+      else if (__m == 0 && __n >= 1)
 	return _Tp{0};
       else
 	return __stirling_2_recur<_Tp>(__n, __m);
@@ -894,7 +894,7 @@ template<typename _Tp>
       {
 	auto bell = __bell_series(n);
         auto bellv = burkhardt::bell(n);
-
+	std::cout << '\n';
 	for (auto k = 0u; k <= n; ++k)
 	  std::cout << ' ' << std::setw(4) << n
 	       	    << ' ' << std::setw(4) << k
@@ -907,6 +907,7 @@ template<typename _Tp>
     for (auto n = 1u; n <= 20; ++n)
       {
 	const auto lahv = __lah<_Tp>(n);
+	std::cout << '\n';
 	for (auto k = 0u; k <= 20; ++k)
 	  std::cout << ' ' << std::setw(4) << n
 	       	    << ' ' << std::setw(4) << k

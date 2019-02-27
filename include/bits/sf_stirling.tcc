@@ -162,7 +162,7 @@ namespace __detail
 	return _Tp{0};
       else if (__m == __n)
 	return _Tp{1};
-      else if (__m == 0 && __n >= 10)
+      else if (__m == 0 && __n >= 1)
 	return _Tp{0};
       else
 	return __stirling_2_recur<_Tp>(__n, __m);
