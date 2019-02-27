@@ -957,7 +957,10 @@ $(TEST_BIN_DIR)/test_gegenbauer: laboratories/orthogonal_polynomials/test_gegenb
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_gegenbauer laboratories/orthogonal_polynomials/test_gegenbauer.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_gegenbauer_neg_parm: laboratories/orthogonal_polynomials/test_gegenbauer_neg_parm.cpp
-	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_gegenbauer_neg_parm laboratories/orthogonal_polynomials/test_gegenbauer_neg_parm.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
+	$(CXXMAX) $(INCLUDES) -Ilaboratories/orthogonal_polynomials -Iwrappers -o $(TEST_BIN_DIR)/test_gegenbauer_neg_parm laboratories/orthogonal_polynomials/test_gegenbauer_neg_parm.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
+
+$(TEST_BIN_DIR)/test_gegenbauer_neg_roots: laboratories/orthogonal_polynomials/test_gegenbauer_neg_roots.cpp
+	$(CXXMAX) $(INCLUDES) -Ilaboratories/orthogonal_polynomials -Ipolynomial/include -Iwrappers -o $(TEST_BIN_DIR)/test_gegenbauer_neg_roots laboratories/orthogonal_polynomials/test_gegenbauer_neg_roots.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
 $(TEST_BIN_DIR)/test_gudermannian: laboratories/elementary_functions/test_gudermannian.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_gudermannian laboratories/elementary_functions/test_gudermannian.cpp -lquadmath
@@ -1008,10 +1011,10 @@ $(TEST_BIN_DIR)/test_jacobi: laboratories/orthogonal_polynomials/test_jacobi.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_jacobi laboratories/orthogonal_polynomials/test_jacobi.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_jacobi_neg_parm: laboratories/orthogonal_polynomials/test_jacobi_neg_parm.cpp
-	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_jacobi_neg_parm laboratories/orthogonal_polynomials/test_jacobi_neg_parm.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
+	$(CXXMAX) $(INCLUDES) -Ilaboratories/orthogonal_polynomials -Iwrappers -o $(TEST_BIN_DIR)/test_jacobi_neg_parm laboratories/orthogonal_polynomials/test_jacobi_neg_parm.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
 $(TEST_BIN_DIR)/test_jacobi_neg_roots: laboratories/orthogonal_polynomials/test_jacobi_neg_roots.cpp
-	$(CXXMAX) $(INCLUDES) -Ipolynomial/include -Iwrappers -o $(TEST_BIN_DIR)/test_jacobi_neg_roots laboratories/orthogonal_polynomials/test_jacobi_neg_roots.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
+	$(CXXMAX) $(INCLUDES) -Ilaboratories/orthogonal_polynomials -Ipolynomial/include -Iwrappers -o $(TEST_BIN_DIR)/test_jacobi_neg_roots laboratories/orthogonal_polynomials/test_jacobi_neg_roots.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
 $(TEST_BIN_DIR)/test_jacobi_ellint: laboratories/theta_functions/test_jacobi_ellint.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_jacobi_ellint laboratories/theta_functions/test_jacobi_ellint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost

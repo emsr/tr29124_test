@@ -1,6 +1,6 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -o test_jacobi_neg_roots test_jacobi_neg_roots.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_jacobi_neg_roots > test_jacobi_neg_roots.txt
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -o test_gegenbauer_neg_roots test_gegenbauer_neg_roots.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_gegenbauer_neg_roots > test_gegenbauer_neg_roots.txt
 */
 
 #include <vector>
@@ -17,7 +17,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_jacobi_neg_roots > test_
 #include <bits/float128_io.h>
 #include <bits/float128_math.h>
 
-#include <sf_jacobi_neg_params.tcc>
+#include <sf_gegenbauer_neg_params.tcc>
 
 namespace std
 {
@@ -25,24 +25,23 @@ namespace __detail
 {
 
   /**
-   * Return the Jacobi polynomial as a polynomial:
+   * Return the Gegenbauer polynomial as a polynomial:
    * @f[
-   *    P_n^{(\alpha,\beta)}(x) = \frac{(\alpha + 1)_n}{n!}
-   *      {}_2F_1(-n, n + 1 + \alpha + \beta; \alpha + 1; \frac{1-x}{2})
+   *    C_n^{(\lambda)}(x) = \frac{(2\lambda)_n}{n!}
+   *      {}_2F_1(-n, n + 2\lambda; \lambda + 1/2; \frac{1-x}{2})
    * @f]
    *
    * @tparam _Tp The real type of the argument and degree parameters.
-   * @param[in]  n  The degree of the Jacobi polynomial
-   * @param[in]  alpha1  The first parameter of the Jacobi polynomial
-   * @param[in]  beta1  The second parameter of the Jacobi polynomial
+   * @param[in]  n  The degree of the Gegenbauer polynomial
+   * @param[in]  lambda  The order of the Gegenbauer polynomial
    */
   template<typename _Tp>
     __gnu_cxx::_Polynomial<_Tp>
-    __jacobi_poly(unsigned int __n, _Tp __alpha1, _Tp __beta1)
+    __gegenbauer_poly(unsigned int __n, _Tp __lambda)
     {
       __gnu_cxx::_Polynomial<_Tp> __poly;
 
-      if (std::isnan(__alpha1) || std::isnan(__beta1))
+      if (std::isnan(__lambda))
 	return __poly;
 
       auto __term = __gnu_cxx::_Polynomial<_Tp>{1};
@@ -50,10 +49,11 @@ namespace __detail
       if (__n == 0)
 	return __poly;
 
-      const auto __apb = __alpha1 + __beta1;
+      const auto __2l = _Tp{2} * __lambda;
+      const auto __lph = __lambda + _Tp{1} / _Tp{2};
 
       auto __m = int(__n);
-      if (const auto __pint = __gnu_cxx::__fp_is_integer(__n + 1 + __apb);
+      if (const auto __pint = __gnu_cxx::__fp_is_integer(__n + __2l);
 	  __pint && __pint() <= 0 && -__pint() < __m)
 	__m = -__pint();
 
@@ -61,13 +61,14 @@ namespace __detail
 
       auto __fact = _Tp{1};
       for (unsigned int __k = 1; __k <= __n; ++__k)
-	__fact *= _Tp(__alpha1 + __k) / _Tp(__k);
+	__fact *= _Tp(__2l + _Tp(__k - 1)) / _Tp(__k);
 
       for (int __k = 1; __k <= __m; ++__k)
 	{
+	  const auto __km1 = _Tp(__k - 1);
 
-	  __term *= (_Tp(-int(__n) + __k - 1) / _Tp(__k))
-		  * (_Tp(__n + __k + __apb) / _Tp(__alpha1 + __k))
+	  __term *= (_Tp(-int(__n) + __km1) / _Tp(__k))
+		  * (_Tp(__n + __2l + __km1) / (__lph + __km1))
 		  * __arg;
 
 	  __poly += __term;
@@ -81,11 +82,11 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __jacobi_norm(unsigned int __n, _Tp __alpha1, _Tp __beta1)
+    __gegenbauer_norm(unsigned int __n, _Tp __lambda)
     {
       int sgam1, sgam2;
-      const auto lgam1 = lgamma_r(_Tp(2 * __n + __alpha1 + __beta1 + 1), &sgam1);
-      const auto lgam2 = lgamma_r(_Tp(__n + __alpha1 + __beta1 + 1), &sgam2);
+      const auto lgam1 = lgamma_r(_Tp(2 * __n + 2 * __lambda), &sgam1);
+      const auto lgam2 = lgamma_r(_Tp(__n + 2 * __lambda), &sgam2);
       return sgam1 * sgam2 * std::exp(lgam1 - std::lgamma(_Tp(__n + 1))
    				    - lgam2 - _Tp(__n) * std::log(_Tp{2}));
     }
@@ -95,7 +96,7 @@ namespace __detail
 
 template<typename _Tp>
   void
-  test_neg_parm_jacobi_roots(unsigned n, _Tp alpha1, _Tp beta1, std::ofstream& gp)
+  test_neg_parm_gegenbauer_roots(unsigned n, _Tp lambda, std::ofstream& gp)
   {
     const auto prec = std::numeric_limits<_Tp>::digits10;
     const auto w = 6 + prec;
@@ -103,16 +104,15 @@ template<typename _Tp>
     std::cout << std::setprecision(prec);
     std::cout << "\n\n";
     std::cout << " n = " << n
-	      << "; alpha = " << alpha1
-	      << "; beta = " << beta1
+	      << "; lambda = " << lambda
 	      << '\n';
 
-    const auto poly = std::__detail::__jacobi_poly(n, alpha1, beta1);
+    const auto poly = std::__detail::__gegenbauer_poly(n, lambda);
     auto coef = poly.coefficients();
     std::cout << "\nThe polynomial coefficients are:\n";
     for (const auto& c : coef)
       std::cout << std::setw(w) << c << '\n';
-    std::cout << "\nMax coefficient: " << std::__detail::__jacobi_norm(n, alpha1, beta1) << '\n';
+    std::cout << "\nMax coefficient: " << std::__detail::__gegenbauer_norm(n, lambda) << '\n';
     std::cout << std::flush;
 
     std::reverse(coef.begin(), coef.end());
@@ -139,8 +139,7 @@ template<typename _Tp>
     gp << std::setprecision(prec);
     gp << "\n\n";
     gp << "# n = " << n
-       << "; alpha = " << alpha1
-       << "; beta = " << beta1 << '\n';
+       << "; lambda = " << lambda << '\n';
     for (const auto& z : roots)
       {
 	if (z.index() == 0)
@@ -164,41 +163,15 @@ template<typename _Tp>
   void
   run()
   {
-    std::ofstream gp("jacobi_roots.gp");
+    std::ofstream gp("gegenbauer_roots.gp");
 
     unsigned n = 50;
-    _Tp alpha1, beta1;
+    _Tp lambda;
 
-    alpha1 = _Tp{2};
-    beta1 = _Tp{-83} / _Tp{2};
-    test_neg_parm_jacobi_roots(n, alpha1, beta1, gp);
-
-    alpha1 = _Tp{2};
-    beta1 = _Tp{-52};
-    test_neg_parm_jacobi_roots(n, alpha1, beta1, gp);
-
-    alpha1 = _Tp{2};
-    beta1 = _Tp{-127} / _Tp{2};
-    test_neg_parm_jacobi_roots(n, alpha1, beta1, gp);
-
-    // Flip alpha and beta.
-
-    alpha1 = _Tp{2};
-    beta1 = _Tp{-83} / _Tp{2};
-    test_neg_parm_jacobi_roots(n, beta1, alpha1, gp);
-
-    alpha1 = _Tp{2};
-    beta1 = _Tp{-52};
-    test_neg_parm_jacobi_roots(n, beta1, alpha1, gp);
-
-    alpha1 = _Tp{2};
-    beta1 = _Tp{-127} / _Tp{2};
-    test_neg_parm_jacobi_roots(n, beta1, alpha1, gp);
+    lambda = _Tp(1 - int(n)) / _Tp{2};
+    test_neg_parm_gegenbauer_roots(n, lambda, gp);
   }
 
-/*
- * Test polynomial evaluations against good ol' recursion.
- */
 template<typename _Tp>
   void
   test_poly()
@@ -207,48 +180,23 @@ template<typename _Tp>
     const auto w = 6 + prec;
 
     std::cout << std::setprecision(prec);
-__gnu_cxx::jacobi(10, 2.0, -12.0, -1.0);
     std::cout << "\n\n";
-    for (int n : {10, 15, 20})
-      for (_Tp alpha : {1, 2})
-	for (_Tp beta : {1, 2})
-	  {
-	    auto P = std::__detail::__jacobi_poly(n, alpha, beta);
-	    std::cout << " n = " << n
-		      << "; alpha = " << alpha
-		      << "; beta = " << beta
-		      << "; P = " << P
-		      << '\n';
-	    for (int i = -10; i <= +10; ++i)
-	      {
-		const auto x = _Tp(i * 0.1L);
-		std::cout << ' ' << x
-			  << ' ' << std::setw(w) << P(x)
-			  << ' ' << std::setw(w) << __gnu_cxx::jacobi(n, alpha, beta, x)
-			  << '\n';
-	      }
-	    std::cout << '\n';
-	  }
 
-    std::cout << "\n\n";
-    const auto alpha = _Tp{2};
     for (int n : {10, 15, 20})
       for (int m : {0, 1, 2, 3})
 	{
-	  const auto beta = -n - m - alpha;
-	  auto P = std::__detail::__jacobi_poly(n, alpha, beta);
+	  const auto lambda = (1 - n - m) / _Tp{2};
+	  auto P = std::__detail::__gegenbauer_poly(n, lambda);
 	  std::cout << " n = " << n
-		    << "; alpha = " << alpha
-		    << "; beta = " << beta
-		    << "; P = " << P
+		    << "; lambda = " << lambda
 		    << '\n';
 	  for (int i = -10; i <= +10; ++i)
 	    {
 	      const auto x = _Tp(i * 0.1L);
 	      std::cout << ' ' << x
 			<< ' ' << std::setw(w) << P(x)
-			//<< ' ' << std::setw(w) << __gnu_cxx::jacobi(n, alpha, beta, x)
-			<< ' ' << std::setw(w) << lab::__jacobi_recur(n, alpha, beta, x).__P_n
+			//<< ' ' << std::setw(w) << __gnu_cxx::gegenbauer(n, lambda, x)
+			<< ' ' << std::setw(w) << lab::gegenbauer(n, lambda, x)
 			<< '\n';
 	    }
 	  std::cout << '\n';

@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=c++2a -g -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -Wall -Wextra -Wno-psabi -o test_jacobi_neg_parm test_jacobi_neg_parm.cpp
+$HOME/bin/bin/g++ -std=c++2a -g -I. -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -Wall -Wextra -Wno-psabi -o test_jacobi_neg_parm test_jacobi_neg_parm.cpp
 ./test_jacobi_neg_parm > test_jacobi_neg_parm.txt
 */
 
@@ -9,6 +9,7 @@ $HOME/bin/bin/g++ -std=c++2a -g -I../../include -I../../cxx_fp_utils/include -I.
 #include <limits>
 #include <cmath>
 #include <complex>
+#include <sf_jacobi_neg_params.tcc>
 
 template<typename Tp>
   void
@@ -22,9 +23,9 @@ template<typename Tp>
       {
 	auto x = i * Tp{0.01L};
 	std::cout << ' ' << std::setw(w) << x
-		  << ' ' << std::setw(w) << __gnu_cxx::jacobi(n, alpha - 0.01, beta, x)
-		  << ' ' << std::setw(w) << __gnu_cxx::jacobi(n, alpha, beta, x)
-		  << ' ' << std::setw(w) << __gnu_cxx::jacobi(n, alpha + 0.01, beta, x)
+		  << ' ' << std::setw(w) << lab::__jacobi_recur(n, alpha - 0.001, beta, x).__P_n
+		  << ' ' << std::setw(w) << lab::__jacobi_recur(n, alpha, beta, x).__P_n
+		  << ' ' << std::setw(w) << lab::__jacobi_recur(n, alpha + 0.001, beta, x).__P_n
 		  << '\n';
       }
   }

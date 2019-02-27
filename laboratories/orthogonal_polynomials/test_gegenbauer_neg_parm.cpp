@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=c++2a -g -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -Wall -Wextra -Wno-psabi -o test_gegenbauer_neg_parm test_gegenbauer_neg_parm.cpp
+$HOME/bin/bin/g++ -std=c++2a -g -I. -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -Wall -Wextra -Wno-psabi -o test_gegenbauer_neg_parm test_gegenbauer_neg_parm.cpp
 ./test_gegenbauer_neg_parm > test_gegenbauer_neg_parm.txt
 */
 
@@ -9,6 +9,8 @@ $HOME/bin/bin/g++ -std=c++2a -g -I../../include -I../../cxx_fp_utils/include -I.
 #include <limits>
 #include <cmath>
 #include <complex>
+
+#include <sf_gegenbauer_neg_params.tcc>
 
 
 template<typename Tp>
@@ -23,9 +25,9 @@ template<typename Tp>
       {
 	auto x = i * Tp{0.01L};
 	std::cout << ' ' << std::setw(w) << x
-		  << ' ' << std::setw(w) << __gnu_cxx::gegenbauer(n, lambda - 0.01, x)
-		  << ' ' << std::setw(w) << __gnu_cxx::gegenbauer(n, lambda, x)
-		  << ' ' << std::setw(w) << __gnu_cxx::gegenbauer(n, lambda + 0.01, x)
+		  << ' ' << std::setw(w) << lab::__gegenbauer_recur(n, lambda - 0.01, x).__C_n
+		  << ' ' << std::setw(w) << lab::__gegenbauer_recur(n, lambda, x).__C_n
+		  << ' ' << std::setw(w) << lab::__gegenbauer_recur(n, lambda + 0.01, x).__C_n
 		  << '\n';
       }
   }
