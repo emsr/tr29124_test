@@ -55,12 +55,13 @@ namespace __detail
    *     - 2 (\alpha + n - 1)(\beta + n - 1)(\alpha + \beta + 2n)
    *         P^{(\alpha, \beta)}_{n-2}(x)
    * @f]
+   * This works for @f$ \alpha,\beta > -1 @f$
    *
-   * @tparam _Tp The real type of the radial coordinate
-   * @param[in]  n  The order of the Jacobi polynomial
-   * @param[in]  alpha1  The first parameter of the Jacobi polynomial
-   * @param[in]  beta1  The second parameter of the Jacobi polynomial
-   * @param[in]  x  The optional scaling of the coordinate; default 1.
+   * @tparam  _Tp  The real type of the argument
+   * @param[in]  n  The degree of the Jacobi polynomial
+   * @param[in]  alpha1  The first order parameter of the Jacobi polynomial
+   * @param[in]  beta1  The second order parameter of the Jacobi polynomial
+   * @param[in]  x  The argument
    */
   template<typename _Tp>
     __gnu_cxx::__jacobi_t<_Tp>
@@ -81,11 +82,6 @@ namespace __detail
       if (__n == 1)
 	return {__n, __alpha1, __beta1, __x, __P_nm1, __P_nm2, _Tp{0}};
 
-      auto _Max = int(__n);
-      const auto _Maybe = __gnu_cxx::__fp_is_integer(_Max + __apb);
-      if (_Maybe && _Maybe() < 0 && -_Maybe() < _Max)
-	_Max = -_Maybe();
-
       const auto __a2mb2 = __amb * __apb;
       const auto __bah = ((__apb + _Tp{2}) + _Tp{2});
       const auto __poo = (__bah - _Tp{1});
@@ -94,7 +90,7 @@ namespace __detail
 		    * __P_nm1 - (_Tp{2} * (__alpha1 + _Tp{1})
 			    * (__beta1 + _Tp{1}) * __bah) * __P_nm2)
 		 / (_Tp{4} * (__apb + _Tp{2}) * (__poo - _Tp{1}));
-      for (auto __k = 3; __k <= _Max; ++__k )
+      for (auto __k = 3; __k <= __n; ++__k )
 	{
 	  const auto __apbpk = __apb + _Tp(__k);
 	  const auto __apbp2k = __apbpk + _Tp(__k);
@@ -136,10 +132,10 @@ namespace __detail
    * @f$ P_n^{(\alpha,\beta)}(x) @f$.
    * Thias works for @f$ \alpha, \beta > -1 @f$.
    *
-   * @tparam _Tp The real type of the radial coordinate
-   * @param[in]  n  The order of the Jacobi polynomial
-   * @param[in]  alpha1  The first parameter of the Jacobi polynomial
-   * @param[in]  beta1  The second parameter of the Jacobi polynomial
+   * @tparam  _Tp  The real type of the parameters
+   * @param[in]  n  The degree of the Jacobi polynomial
+   * @param[in]  alpha1  The first order parameter of the Jacobi polynomial
+   * @param[in]  beta1  The second order parameter of the Jacobi polynomial
    */
   template<typename _Tp>
     std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>

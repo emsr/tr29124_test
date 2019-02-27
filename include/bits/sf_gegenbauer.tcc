@@ -53,11 +53,12 @@ namespace __detail
    *     - (n + 2\lambda-2)C_{n-2}^{(\lambda)}(x) \right]
    * @f]
    * and @f$ C_0^{(\lambda)}(x) = 1 @f$, @f$ C_1^{(\lambda)}(x) = 2\lambda x @f$.
+   * This works for @f$ \lambda > -1/2 @f$
    *
-   * @tparam _Tp The real type of the argument
-   * @param __n The non-negative integral degree
-   * @param __lambda The order
-   * @param __x The real argument
+   * @tparam  _Tp  The real type of the argument and order
+   * @param  __n  The non-negative integral degree
+   * @param  __lambda  The order of the Gegenbauer polynomial
+   * @param  __x  The real argument
    */
   template<typename _Tp>
     __gnu_cxx::__gegenbauer_t<_Tp>
@@ -76,15 +77,9 @@ namespace __detail
       if (__n == 1)
 	return {__n, __lambda, __x, __C_nm1, __C_nm2, _Tp{0}};
 
-      auto _Max = int(__n);
-      const auto
-	_Maybe = __gnu_cxx::__fp_is_integer(_Max - 1 + _Tp{2} * __lambda);
-      if (_Maybe && _Maybe() < 0 && -_Maybe() < _Max)
-	_Max = -_Maybe();
-
       auto __C_n = (_Tp{2} * (_Tp{1} + __lambda) * __x * __C_nm1
 		 - _Tp{2} * __lambda * __C_nm2) / _Tp(2);
-      for (unsigned int __k = 3; __k <= _Max; ++__k)
+      for (unsigned int __k = 3; __k <= __n; ++__k)
 	{
 	  __C_nm2 = __C_nm1;
 	  __C_nm1 = __C_n;
@@ -98,6 +93,11 @@ namespace __detail
   /**
    * Return a vector containing the zeros of the Gegenbauer or ultraspherical
    * polynomial @f$ C_n^{(\lambda)}@f$.
+   * This works for @f$ \lambda > -1/2 @f$
+   *
+   * @tparam  _Tp  The real type of the order
+   * @param[in]  n  The degree of the Gegenbauer polynomial
+   * @param[in]  lambda  The order of the Gegenbauer polynomial
    */
   template<typename _Tp>
     std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
