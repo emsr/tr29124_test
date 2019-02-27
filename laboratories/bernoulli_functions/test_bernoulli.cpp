@@ -662,6 +662,52 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
     { return __eulerian_1_recur<_Tp>(__n, __m); }
 
   /**
+   * Return a vector Eulerian numbers of the first kind by recursion.
+   * The recursion is
+   * @f[
+   *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
+   * @f]
+   */
+  template<typename _Tp>
+    std::vector<_Tp>
+    __eulerian_1_recur(unsigned int __n)
+    {
+      if (__n == 0)
+	return std::vector<_Tp>(1, _Tp{1});
+      //else if (__m == __n - 1)
+	//return _Tp{1};
+      //else if (__n - __m - 1 < __m) // Symmetry.
+	//return __eulerian_1_recur<_Tp>(__n, __n - __m - 1);
+      else
+	{
+	  // Start recursion with n == 2 (already returned above).
+	  std::vector<_Tp> _Aold(__n + 1), _Anew(__n + 1);
+	  _Aold[0] = _Anew[0] = _Tp{1};
+	  _Anew[1] = _Tp{1};
+	  for (auto __in = 3u; __in <= __n; ++__in)
+	    {
+	      std::swap(_Aold, _Anew);
+	      for (auto __im = 1u; __im <= __n; ++__im)
+		_Anew[__im] = (__in - __im) * _Aold[__im - 1]
+			    + (__im + 1) * _Aold[__im];
+	    }
+	  return _Anew;
+	}
+    }
+
+  /**
+   * Return a vector Eulerian numbers of the first kind.
+   * The Eulerian numbers are defined by recursion:
+   * @f[
+   *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
+   * @f]
+   */
+  template<typename _Tp>
+    inline std::vector<_Tp>
+    __eulerian_1(unsigned int __n)
+    { return __eulerian_1_recur<_Tp>(__n); }
+
+  /**
    * Return the Eulerian number of the second kind by recursion.
    * The recursion is:
    * @f[
@@ -709,6 +755,52 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
     { return __eulerian_2_recur<_Tp>(__n, __m); }
 
   /**
+   * Return the Eulerian number of the second kind by recursion.
+   * The recursion is:
+   * @f[
+   *   A(n,m) = (2n-m-1)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
+   * @f]
+   */
+  template<typename _Tp>
+    std::vector<_Tp>
+    __eulerian_2_recur(unsigned int __n)
+    {
+      if (__n == 0)
+	return std::vector<_Tp>(1, _Tp{1});
+      //else if (__m >= __n)
+	//return _Tp{0};
+      //else if (__n == 0)
+	//return _Tp{1};
+      else
+	{
+	  // Start recursion with n == 2 (already returned above).
+	  std::vector<_Tp> _Aold(__n + 1), _Anew(__n + 1);
+	  _Aold[0] = _Anew[0] = _Tp{1};
+	  _Anew[1] = _Tp{2};
+	  for (auto __in = 3u; __in <= __n; ++__in)
+	    {
+	      std::swap(_Aold, _Anew);
+	      for (auto __im = 1u; __im <= __n; ++__im)
+		_Anew[__im] = (2 * __in - __im - 1) * _Aold[__im - 1]
+			    + (__im + 1) * _Aold[__im];
+	    }
+	  return _Anew;
+	}
+    }
+
+  /**
+   * Return the Eulerian number of the second kind.
+   * The Eulerian numbers of the second kind are defined by recursion:
+   * @f[
+   *   A(n,m) = (2n-m-1)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
+   * @f]
+   */
+  template<typename _Tp>
+    inline std::vector<_Tp>
+    __eulerian_2(unsigned int __n)
+    { return __eulerian_2_recur<_Tp>(__n); }
+
+  /**
    * Return the Lah number by downward recurrence.
    * @f[
    *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
@@ -724,12 +816,49 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
 	return (__k == 0 ? _Tp{1} : _Tp{0});
       else
 	{
-	  _Tp __Lnn = 1;
-	  for (unsigned int __i = 0; __i < __n - __k; ++__i)
-	    __Lnn *= (__n - __i) * (__n - __i - 1) / (__i + 1);
-	  return __Lnn;
+	  _Tp _Lnn = 1;
+	  for (unsigned int __i = 1u; __i <= __n - __k; ++__i)
+	    _Lnn *= _Tp(__n - __i + 1) * _Tp(__n - __i) / _Tp(__i);
+	  return _Lnn;
 	}
     }
+
+  /**
+   * Return a vector of Lah numbers by downward recurrence.
+   * @f[
+   *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
+   * @f]
+   */
+  template<typename _Tp>
+    std::vector<_Tp>
+    __lah_recur(unsigned int __n)
+    {
+      if (__n == 0)
+	return std::vector<_Tp>(1, _Tp{1});
+      else
+	{
+	  std::vector<_Tp> _L(__n + 1);
+	  _Tp _Lnn = 1;
+	  _L[__n] = _Lnn;
+	  for (unsigned int __i = 1u; __i <= __n; ++__i)
+	    {
+	      _Lnn *= _Tp(__n - __i + 1) * _Tp(__n - __i) / _Tp(__i);
+	      _L[__n - __i] = _Lnn;
+	    }
+	  return _L;
+	}
+    }
+
+  /**
+   * Return a vector of Lah numbers.
+   * @f[
+   *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
+   * @f]
+   */
+  template<typename _Tp>
+    inline std::vector<_Tp>
+    __lah(unsigned int __n)
+    { return __lah_recur<_Tp>(__n); }
 
   /**
    * Return the Bell number by summation.
@@ -764,23 +893,27 @@ template<typename _Tp>
     for (auto n = 1u; n <= 20; ++n)
       {
 	auto bell = __bell_series(n);
-        auto bell_test = burkhardt::bell(n);
+        auto bellv = burkhardt::bell(n);
 
 	for (auto k = 0u; k <= n; ++k)
 	  std::cout << ' ' << std::setw(4) << n
 	       	    << ' ' << std::setw(4) << k
 		    << ' ' << std::setw(width) << bell[k]
-		    << ' ' << std::setw(width) << bell_test[k]
+		    << ' ' << std::setw(width) << bellv[k]
 		    << '\n';
       }
 
     std::cout << "\n\n Lah numbers\n";
     for (auto n = 1u; n <= 20; ++n)
-      for (auto k = 0u; k <= 20; ++k)
-	std::cout << ' ' << std::setw(4) << n
-	       	  << ' ' << std::setw(4) << k
-		  << ' ' << std::setw(width) << __lah_recur<_Tp>(n, k)
-		  << '\n';
+      {
+	const auto lahv = __lah<_Tp>(n);
+	for (auto k = 0u; k <= 20; ++k)
+	  std::cout << ' ' << std::setw(4) << n
+	       	    << ' ' << std::setw(4) << k
+		    << ' ' << std::setw(width) << __lah_recur<_Tp>(n, k)
+		    << ' ' << std::setw(width) << (k <= n ? lahv[k] : 0)
+		    << '\n';
+      }
 
     std::cout << "\n\n Bernoulli numbers\n";
     for (auto n = 0u; n <= 200; ++n)
@@ -859,6 +992,7 @@ template<typename _Tp>
     std::cout << "\n\n Eulerian numbers of the first kind";
     for (auto n = 1u; n <= 10; ++n)
       {
+        const auto e1v = __eulerian_1<_Tp>(n);
 	std::cout << '\n';
 	for (auto m = 0u; m < n; ++m)
 	  std::cout << ' ' << std::setw(4) << n
@@ -866,18 +1000,22 @@ template<typename _Tp>
 		  //  << ' ' << std::setw(width) << __eulerian_1_series<_Tp>(n, m)
 		    << ' ' << std::setw(width) << __eulerian_1_recur<_Tp>(n, m)
 		    << ' ' << std::setw(width) << burkhardt::eulerian_1(n, m)
+		    << ' ' << std::setw(width) << e1v[m]
 		    << '\n';
       }
 
     std::cout << "\n\n Eulerian numbers of the second kind";
     for (auto n = 1u; n <= 10; ++n)
       {
+        const auto e2v = __eulerian_2<_Tp>(n);
 	std::cout << '\n';
 	for (auto m = 0u; m < n; ++m)
 	  std::cout << ' ' << std::setw(4) << n
 		    << ' ' << std::setw(4) << m
-		  //  << ' ' << std::setw(width) << __eulerian_1_series<_Tp>(n, m)
+		  //  << ' ' << std::setw(width) << __eulerian_2_series<_Tp>(n, m)
 		    << ' ' << std::setw(width) << __eulerian_2_recur<_Tp>(n, m)
+		  //  << ' ' << std::setw(width) << burkhardt::eulerian_2(n, m)
+		    << ' ' << std::setw(width) << e2v[m]
 		    << '\n';
       }
   }
