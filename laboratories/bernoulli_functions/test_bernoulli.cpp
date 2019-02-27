@@ -202,6 +202,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
     _Tp
     __euler_series(unsigned int __n)
     {
+      using std::__detail::__binomial;
       static constexpr std::size_t _S_len = 22;
       static constexpr _Tp
       _S_num[_S_len]
@@ -242,7 +243,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
 	      if (__i % 2 == 0)
 		{
 		  for (auto __j = 2u; __j <= __i; __j += 2u)
-		    _En[__i] -= std::__detail::__binomial<_Tp>(__i, __j)
+		    _En[__i] -= __binomial<_Tp>(__i, __j)
 			      * _En[__i - __j];
 		}
 	    }
@@ -348,19 +349,22 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
    *   \sigma_n^{(m)} = \sum_{k=0}^{m}\frac{(-1)^{m-k}k^n}{(m-k)!k!}
    * @f]
    *
-   * @todo Find a way to predict the maximum Stirling number for a type.
+   * @todo Find a way to predict the maximum Stirling number supported
+   *       for a given type.
    */
   template<typename _Tp>
     _Tp
     __stirling_2_series(unsigned int __n, unsigned int __m)
     {
+      using std::__detail::__log_factorial;
+      using std::__detail::__factorial;
       if (__m > std::__detail::_S_num_factorials<_Tp>)
 	{
 	  auto _S2 = _Tp{0};
 	  for (auto __k = 0u; __k <= __m; ++__k)
 	    {
-	      auto __lf1 = std::__detail::__log_factorial<_Tp>(__k);
-	      auto __lf2 = std::__detail::__log_factorial<_Tp>(__m - __k);
+	      auto __lf1 = __log_factorial<_Tp>(__k);
+	      auto __lf2 = __log_factorial<_Tp>(__m - __k);
 	      _S2 += (((__m - __k) & 1) ? _Tp{-1} : _Tp{1})
 		   * std::exp(__n * std::log(__k) - __lf1 - __lf2);
 	    }
@@ -373,8 +377,8 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
 	    {
 	      _S2 += (((__m - __k) & 1) ? _Tp{-1} : _Tp{1})
 		   * std::pow(__k, __n)
-		   / std::__detail::__factorial<_Tp>(__k)
-		   / std::__detail::__factorial<_Tp>(__m - __k);
+		   / __factorial<_Tp>(__k)
+		   / __factorial<_Tp>(__m - __k);
 	    }
 	  // @todo Only round if the sum is less than
 	  // the maximum representable integer.
@@ -387,16 +391,23 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
    * Return the Stirling number of the second kind by recursion.
    * The recursion is
    * @f[
-   *   \sigma_n^{(m)} = m \sigma_{n-1}^{(m)} + \sigma_{n-1}^{(m-1)}
+   *   \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}}
+   *   \stirling{n}{m} = m \stirling{n-1}{m} + \stirling{n-1}{m-1}
    * @f]
    * with starting values
    * @f[
-   *   \sigma_0^{(0\rightarrow m)} = {1, 0, 0, ..., 0}
+   *   \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}}
+   *   \stirling{0}{0\rightarrow m} = {1, 0, 0, ..., 0}
    * @f]
    * and
    * @f[
-   *   \sigma_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0}
+   *   \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}}
+   *   \stirling{0\rightarrow n}{0} = {1, 0, 0, ..., 0}
    * @f]
+   *
+   * The Stirling number of the second kind is denoted by other symbols
+   * in the literature: 
+   * @f$ \sigma_n^{(m)} @f$, @f$ \textit{S}_n^{(m)} @f$ and others.
    */
   template<typename _Tp>
     _Tp
@@ -432,7 +443,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
    *   \sigma_n^{(m)} = \sum_{k=0}^{m}\frac{(-1)^{m-k}k^n}{(m-k)!k!}
    * @f]
    *
-   * @todo Look into asymptotic solutions for the Stirling numbers.
+   * @todo Find asymptotic expressions for the Stirling numbers.
    */
   template<typename _Tp>
     _Tp
@@ -451,7 +462,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
   /**
    * Return the Stirling number of the second kind.
    *
-   * @todo Look into asymptotic solutions.
+   * @todo Find asymptotic expressions for the Stirling numbers.
    */
   template<typename _Tp>
     _Tp
@@ -475,18 +486,21 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
     _Tp
     __stirling_1_series(unsigned int __n, unsigned int __m)
     {
+      using std::__detail::__log_binomial;
+      using std::__detail::__log_binomial_sign;
+      using std::__detail::__binomial;
       if (2 * __n - __m > std::__detail::_S_num_factorials<_Tp> / 2)
 	{
 	  auto _S1 = _Tp{0};
 	  for (auto __k = 0u; __k <= __n - __m; ++__k)
 	    {
-	      auto __nmk = __n - __m + __k;
-	      auto __lbc1 = std::__detail::__log_binomial<_Tp>(__n - 1 + __k, __nmk);
-	      auto __slbc1 = std::__detail::__log_binomial_sign<_Tp>(__n - 1 + __k, __nmk);
-	      auto __lbc2 = std::__detail::__log_binomial<_Tp>(2 * __n - __m, __nmk);
-	      auto __slbc2 = std::__detail::__log_binomial_sign<_Tp>(2 * __n - __m, __nmk);
+	      const auto __nmpk = __n - __m + __k;
+	      const auto __lbc1 = __log_binomial<_Tp>(__n - 1 + __k, __nmpk);
+	      const auto __slbc1 = __log_binomial_sign<_Tp>(__n - 1 + __k, __nmpk);
+	      const auto __lbc2 = __log_binomial<_Tp>(2 * __n - __m, __nmpk);
+	      const auto __slbc2 = __log_binomial_sign<_Tp>(2 * __n - __m, __nmpk);
 	      _S1 += ((__k & 1) ? _Tp{-1} : _Tp{1}) * __slbc1 * __slbc2
-		   * std::exp(__lbc1 + __lbc2 + __log_stirling_2<_Tp>(__nmk, __k));
+		   * std::exp(__lbc1 + __lbc2 + __log_stirling_2<_Tp>(__nmpk, __k));
 	    }
 	  return _S1;
 	}
@@ -495,11 +509,11 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
 	  auto _S1 = _Tp{0};
 	  for (auto __k = 0u; __k <= __n - __m; ++__k)
 	    {
-	      auto __nmk = __n - __m + __k;
+	      auto __nmpk = __n - __m + __k;
 	      _S1 += ((__k & 1) ? _Tp{-1} : _Tp{1})
-		   * std::__detail::__binomial<_Tp>(__n - 1 + __k, __nmk)
-		   * std::__detail::__binomial<_Tp>(2 * __n - __m, __nmk)
-		   * __stirling_2<_Tp>(__nmk, __k);
+		   * __binomial<_Tp>(__n - 1 + __k, __nmpk)
+		   * __binomial<_Tp>(2 * __n - __m, __nmpk)
+		   * __stirling_2<_Tp>(__nmpk, __k);
 	    }
 	  // @todo Only round if the sum is less than
 	  // the maximum representable integer.
@@ -569,7 +583,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
    *   S_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0}
    * @f]
    *
-   * @todo Look into asymptotic solutions for the Stirling numbers.
+   * @todo Find asymptotic expressions for the Stirling numbers.
    */
   template<typename _Tp>
     _Tp

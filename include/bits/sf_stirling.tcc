@@ -60,7 +60,8 @@ namespace __detail
    * in the literature: 
    * @f$ \sigma_n^{(m)} @f$, @f$ \textit{S}_n^{(m)} @f$ and others.
    *
-   * @todo Find a way to predict the maximum Stirling number for a type.
+   * @todo Find a way to predict the maximum Stirling number supported
+   *       for a given type.
    */
   template<typename _Tp>
     _Tp
@@ -151,8 +152,7 @@ namespace __detail
    *   \sigma_n^{(m)} = \sum_{k=0}^{m}\frac{(-1)^{m-k}k^n}{(m-k)!k!}
    * @f]
    *
-   * @todo Find asymptotic solutions for Stirling numbers of the second kind.
-   * @todo Develop an iterator model for Stirling numbers of the second kind.
+   * @todo Find asymptotic expressions for the Stirling numbers.
    */
   template<typename _Tp>
     _Tp
@@ -223,8 +223,7 @@ namespace __detail
    *   \sigma_n^{(m)} = \sum_{k=0}^{m}\frac{(-1)^{m-k}k^n}{(m-k)!k!}
    * @f]
    *
-   * @todo Find asymptotic solutions for Stirling numbers of the second kind.
-   * @todo Develop an iterator model for Stirling numbers of the second kind.
+   * @todo Find asymptotic expressions for the Stirling numbers.
    */
   template<typename _Tp>
     std::vector<_Tp>
@@ -234,7 +233,7 @@ namespace __detail
   /**
    * Return the Stirling number of the second kind.
    *
-   * @todo Look into asymptotic solutions.
+   * @todo Find asymptotic expressions for the Stirling numbers.
    */
   template<typename _Tp>
     _Tp
@@ -355,8 +354,7 @@ namespace __detail
    *   S_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0}
    * @f]
    *
-   * @todo Find asymptotic solutions for the Stirling numbers of the first kind.
-   * @todo Develop an iterator model for Stirling numbers of the first kind.
+   * @todo Find asymptotic expressions for the Stirling numbers.
    */
   template<typename _Tp>
     _Tp
