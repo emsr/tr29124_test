@@ -169,6 +169,69 @@ namespace __detail
     }
 
   /**
+   * Return a vector of Stirling numbers of the second kind by recursion.
+   * The recursion is
+   * @f[
+   *   \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}}
+   *   \stirling{n}{m} = m \stirling{n-1}{m} + \stirling{n-1}{m-1}
+   * @f]
+   * with starting values
+   * @f[
+   *   \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}}
+   *   \stirling{0}{0\rightarrow m} = {1, 0, 0, ..., 0}
+   * @f]
+   * and
+   * @f[
+   *   \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}}
+   *   \stirling{0\rightarrow n}{0} = {1, 0, 0, ..., 0}
+   * @f]
+   *
+   * The Stirling number of the second kind is denoted by other symbols
+   * in the literature: 
+   * @f$ \sigma_n^{(m)} @f$, @f$ \textit{S}_n^{(m)} @f$ and others.
+   */
+  template<typename _Tp>
+    std::vector<_Tp>
+    __stirling_2_recur(unsigned int __n)
+    {
+      if (__n == 0)
+	return std::vector<_Tp>(1, _Tp{1});
+      else
+	{
+	  std::vector<_Tp> __sigold(__n + 1), __signew(__n + 1);
+	  __sigold[0] = __signew[0] = _Tp{1};
+	  __sigold[1] = _Tp{1};
+	  if (__n == 1)
+	    return __sigold;
+	  for (auto __in = 1u; __in <= __n; ++__in)
+	    {
+	      __signew[1] = __sigold[1];
+	      for (auto __im = 2u; __im <= __n; ++__im)
+		__signew[__im] = __im * __sigold[__im] + __sigold[__im - 1];
+	      std::swap(__sigold, __signew);
+	    }
+	  return __signew;
+	}
+    }
+
+  /**
+   * Return a vector of Stirling numbers of the second kind.
+   * or by series expansion.
+   *
+   * The series is:
+   * @f[
+   *   \sigma_n^{(m)} = \sum_{k=0}^{m}\frac{(-1)^{m-k}k^n}{(m-k)!k!}
+   * @f]
+   *
+   * @todo Find asymptotic solutions for Stirling numbers of the second kind.
+   * @todo Develop an iterator model for Stirling numbers of the second kind.
+   */
+  template<typename _Tp>
+    std::vector<_Tp>
+    __stirling_2(unsigned int __n)
+    { return __stirling_2_recur<_Tp>(__n); }
+
+  /**
    * Return the Stirling number of the second kind.
    *
    * @todo Look into asymptotic solutions.
@@ -308,6 +371,64 @@ namespace __detail
       else
         return __stirling_1_recur<_Tp>(__n, __m);
     }
+
+  /**
+   * Return a vector of Stirling numbers of the first kind by recursion.
+   * The recursion is
+   * @f[
+   *   S_{n+1}^{(m)} = S_n^{(m-1)} - n S_n^{(m)} \mbox{ or }
+   * @f]
+   * with starting values
+   * @f[
+   *   S_0^{(0\rightarrow m)} = {1, 0, 0, ..., 0}
+   * @f]
+   * and
+   * @f[
+   *   S_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0}
+   * @f]
+   */
+  template<typename _Tp>
+    std::vector<_Tp>
+    __stirling_1_recur(unsigned int __n)
+    {
+      if (__n == 0)
+	return std::vector<_Tp>(1, _Tp{1});
+      else
+	{
+	  std::vector<_Tp> _Sold(__n + 1), _Snew(__n + 1);
+	  _Sold[0] = _Snew[0] = _Tp{0};
+	  _Sold[1] = _Tp{1};
+	  if (__n == 1)
+	    return _Sold;
+	  for (auto __in = 1u; __in <= __n; ++__in)
+	    {
+	      for (auto __im = 1u; __im <= __n; ++__im)
+		_Snew[__im] = _Sold[__im - 1] - __in * _Sold[__im];
+	      std::swap(_Sold, _Snew);
+	    }
+	  return _Snew;
+	}
+    }
+
+  /**
+   * Return a vector of Stirling numbers of the first kind.
+   * The recursion is
+   * @f[
+   *   S_{n+1}^{(m)} = S_n^{(m-1)} - n S_n^{(m)} \mbox{ or }
+   * @f]
+   * with starting values
+   * @f[
+   *   S_0^{(0\rightarrow m)} = {1, 0, 0, ..., 0}
+   * @f]
+   * and
+   * @f[
+   *   S_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0}
+   * @f]
+   */
+  template<typename _Tp>
+    std::vector<_Tp>
+    __stirling_1(unsigned int __n)
+    { return __stirling_1_recur<_Tp>(__n); }
 
   /**
    * Return the logarithm of the absolute value of Stirling number

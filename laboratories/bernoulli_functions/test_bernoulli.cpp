@@ -16,6 +16,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
 // Why no math stuff without this?
 #include <ext/math_const.h>
 #include <bits/sf_gamma.tcc>
+#include <bits/sf_stirling.tcc>
 
 #include "wrap_burkhardt.h"
 
@@ -830,24 +831,28 @@ template<typename _Tp>
     std::cout << "\n\n Stirling numbers of the second kind";
     for (auto n = 0u; n <= 100; ++n)
       {
+        const auto s2v = std::__detail::__stirling_2<_Tp>(n);
 	std::cout << '\n';
 	for (auto m = 0u; m <= n; ++m)
 	  std::cout << ' ' << std::setw(4) << n
 		    << ' ' << std::setw(4) << m
 		    << ' ' << std::setw(width) << __stirling_2_series<_Tp>(n, m)
 		    << ' ' << std::setw(width) << __stirling_2_recur<_Tp>(n, m)
+		    << ' ' << std::setw(width) << s2v[m]
 		    << '\n';
       }
 
     std::cout << "\n\n Stirling numbers of the first kind";
     for (auto n = 0u; n <= 100; ++n)
       {
+        const auto s1v = std::__detail::__stirling_1<_Tp>(n);
 	std::cout << '\n';
 	for (auto m = 0u; m <= n; ++m)
 	  std::cout << ' ' << std::setw(4) << n
 		    << ' ' << std::setw(4) << m
 		    << ' ' << std::setw(width) << __stirling_1_series<_Tp>(n, m)
 		    << ' ' << std::setw(width) << __stirling_1_recur<_Tp>(n, m)
+		    << ' ' << std::setw(width) << s1v[m]
 		    << '\n';
       }
 
