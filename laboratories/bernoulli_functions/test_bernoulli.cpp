@@ -922,11 +922,11 @@ template<typename _Tp>
       {
 	const auto lahv = __lah<_Tp>(n);
 	std::cout << '\n';
-	for (auto k = 0u; k <= 20; ++k)
+	for (auto k = 0u; k <= n; ++k)
 	  std::cout << ' ' << std::setw(4) << n
 	       	    << ' ' << std::setw(4) << k
 		    << ' ' << std::setw(width) << __lah_recur<_Tp>(n, k)
-		    << ' ' << std::setw(width) << (k <= n ? lahv[k] : 0)
+		    << ' ' << std::setw(width) << lahv[k]
 		    << '\n';
       }
 
@@ -1035,115 +1035,9 @@ template<typename _Tp>
       }
   }
 
-void eulerian(int n, int e[]);
-int *stirling1(int n, int m);
-int *stirling2(int n, int m);
-
-double
-my_eulerian1(unsigned int n, unsigned int m)
-{
-  if (m == 0)
-    return 1.0;
-  else if (m >= n)
-    return 0.0;
-  else if (m == n - 1)
-    return 1.0;
-  else
-    {
-      std::vector<int> e(n * n);
-      ::eulerian(n, e.data());
-      return 1.0 * e[m * n + n - 1];
-    }
-}
-
-double
-my_stirling1(unsigned int n, unsigned int m)
-{
-  if (m > n)
-    return 0.0;
-  else if (m == n)
-    return 1.0;
-  else if (m == 0 && n >= 1)
-    return 0.0;
-  else
-    {
-      std::unique_ptr<int[]> s1(::stirling1(n, m));
-      return 1.0 * s1[(m - 1) * n + (n - 1)];
-    }
-}
-
-double
-my_stirling2(unsigned int n, unsigned int m)
-{
-  if (m > n)
-    return 0.0;
-  else if (m == n)
-    return 1.0;
-  else if (m == 0 && n >= 1)
-    return 0.0;
-  else
-    {
-      std::unique_ptr<int[]> s2(::stirling2(n, m));
-      return 1.0 * s2[(m - 1) * n + (n - 1)];
-    }
-}
-
 int
 main()
 {
-  {
-    std::cout << "\n\neulerian_1" << '\n';
-    int n = 10;
-    std::vector<int> e(n * n);
-    ::eulerian(n, e.data());
-    for (auto i = 0; i < n; ++i)
-      {
-	std::cout << '\n';
-	for (auto j = 0; j < n; ++j)
-	  std::cout << ' ' << std::setw(4) << i
-		    << ' ' << std::setw(4) << j
- 		    << ' ' << std::setw(20) << e[j * n + i]
- 		    << ' ' << std::setw(20) << my_eulerian1(i + 1, j)
-		    << '\n';
-      }
-  }
-
-  {
-    std::cout << "\n\nstirling_1" << '\n';
-    int n = 10;
-    int m = 8;
-    std::unique_ptr<int[]> s1(::stirling1(n, m));
-    for (auto i = 0; i < n; ++i)
-      {
-	std::cout << '\n';
-	for (auto j = 0; j < m; ++j)
-	  std::cout << ' ' << std::setw(4) << i
-		    << ' ' << std::setw(4) << j
- 		    << ' ' << std::setw(20) << s1[j * n + i]
- 		    << ' ' << std::setw(20) << my_stirling1(i + 1, j + 1)
-		    << '\n';
-      }
-  }
-
-  {
-    std::cout << "\n\nstirling_2" << '\n';
-    int n = 10;
-    int m = 8;
-    std::unique_ptr<int[]> s2(::stirling2(n, m));
-    for (auto i = 0; i < n; ++i)
-      {
-	std::cout << '\n';
-	for (auto j = 0; j < m; ++j)
-	  std::cout << ' ' << std::setw(4) << i
-		    << ' ' << std::setw(4) << j
-		    << ' ' << std::setw(20) << s2[j * n + i]
- 		    << ' ' << std::setw(20) << my_stirling2(i + 1, j + 1)
-		    << '\n';
-      }
-  }
-
-  //return 0;
-
   //test_bernoulli(0.0F);
 
   test_bernoulli(0.0);

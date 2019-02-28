@@ -199,7 +199,7 @@ namespace __detail
       else
 	{
 	  std::vector<_Tp> __sigold(__n + 1), __signew(__n + 1);
-	  __sigold[0] = __signew[0] = _Tp{1};
+	  __sigold[0] = __signew[0] = _Tp{0};
 	  __sigold[1] = _Tp{1};
 	  if (__n == 1)
 	    return __sigold;
