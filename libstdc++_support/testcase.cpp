@@ -146,6 +146,7 @@ template<typename Real>
     using __gnu_cxx::airy_bi;
     using       std::assoc_laguerre;
     using       std::assoc_legendre;
+    using __gnu_cxx::bell;
     using __gnu_cxx::bernoulli;
     using       std::beta;
     using __gnu_cxx::binomial;
@@ -207,6 +208,7 @@ template<typename Real>
     using __gnu_cxx::jacobi_dn;
     using __gnu_cxx::jacobi_zeta;
     using       std::laguerre;
+    using __gnu_cxx::lah;
     using __gnu_cxx::lbinomial;
     using __gnu_cxx::ldouble_factorial;
     using       std::legendre;
@@ -377,6 +379,24 @@ template<typename Real>
 	     "Boost",
 	     file_assoc_legendre);
 
+    // Bell numbers.
+    std::cout << "bell - UNTESTED\n" << std::flush;
+/* I need a nice way to diff vectors - it should be easy but my harness isn't set up that way.
+    basename = "bell";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_bell(filename);
+    maketest(bell<unsigned int>, burkhardt::bell,
+	     "testcase_bell", "__gnu_cxx", basename,
+	     "n", fill_argument(std::make_pair(0U, 10U),
+				std::make_pair(true, true), 11),
+	     "Burkhardt",
+	     file_bell);
+*/
+
+    // Lah numbers.
+    std::cout << "lah - UNTESTED\n" << std::flush;
+/* I need a nice way to diff vectors - it should be easy but my harness isn't set up that way.
+*/
     // Beta functions.
     std::cout << "beta\n" << std::flush;
     basename = "beta";

@@ -455,6 +455,128 @@ namespace __detail
     __log_stirling_1_sign(unsigned int __n, unsigned int __m)
     { return (__n + __m) & 1 ? _Tp{-1} : _Tp{+1}; }
 
+  /**
+   * Return the Lah number by downward recurrence:
+   * @f[
+   *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
+   * @f]
+   */
+  template<typename _Tp>
+    _Tp
+    __lah_recur(unsigned int __n, unsigned int __k)
+    {
+      if (__k > __n)
+	return _Tp{0};
+      else if (__n == 0)
+	return (__k == 0 ? _Tp{1} : _Tp{0});
+      else
+	{
+	  _Tp _Lnn = 1;
+	  for (unsigned int __i = 1u; __i <= __n - __k; ++__i)
+	    _Lnn *= _Tp(__n - __i + 1) * _Tp(__n - __i) / _Tp(__i);
+	  return _Lnn;
+	}
+    }
+
+  /**
+   * Return the Lah number.
+   * Lah numbers are defined by downward recurrence:
+   * @f[
+   *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
+   * @f]
+   */
+  template<typename _Tp>
+    inline _Tp
+    __lah(unsigned int __n, unsigned int __k)
+    { return __lah_recur<_Tp>(__n, __k); }
+
+  /**
+   * Return a vector of Lah numbers defined by downward recurrence:
+   * @f[
+   *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
+   * @f]
+   */
+  template<typename _Tp>
+    std::vector<_Tp>
+    __lah_recur(unsigned int __n)
+    {
+      if (__n == 0)
+	return std::vector<_Tp>(1, _Tp{1});
+      else
+	{
+	  std::vector<_Tp> _L(__n + 1);
+	  _Tp _Lnn = 1;
+	  _L[__n] = _Lnn;
+	  for (unsigned int __i = 1u; __i <= __n; ++__i)
+	    {
+	      _Lnn *= _Tp(__n - __i + 1) * _Tp(__n - __i) / _Tp(__i);
+	      _L[__n - __i] = _Lnn;
+	    }
+	  return _L;
+	}
+    }
+
+  /**
+   * Return a vector of Lah numbers.
+   * Lah numbers are defined by downward recurrence:
+   * @f[
+   *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
+   * @f]
+   */
+  template<typename _Tp>
+    inline std::vector<_Tp>
+    __lah(unsigned int __n)
+    { return __lah_recur<_Tp>(__n); }
+
+  /**
+   * Return a vector of the Bell numbers by summation.
+   * @f[
+   *   B(n) = \sum_{k=0}^{n}S_n^{(k)} = \sum_{k=1}^{n}{n-1 \choose k-1}B(n-k)
+   * @f]
+   * where @f$ S_n^{(k)} @f$ are the Stirling numbers of the second kind.
+   */
+  template<typename _Tp>
+    std::vector<_Tp>
+    __bell_series(unsigned int __n)
+    {
+      std::vector<_Tp> __bell(__n + 1);
+      __bell[0] = _Tp{1};
+
+      /// @todo Test for blowup in Bell number summation.
+      for (unsigned int __i = 1; __i <= __n; ++__i)
+	for (unsigned int __j = 1; __j <= __i; ++__j)
+	  __bell[__i] += __bell[__i - __j]
+		       * std::__detail::__binomial<_Tp>(__i - 1, __j - 1);
+
+      return __bell;
+    }
+
+  /**
+   * Return a vector of the Bell numbers.
+   */
+  template<typename _Tp>
+    inline std::vector<_Tp>
+    __bell(unsigned int __n)
+    { return __bell_series<_Tp>(__n); }
+
+  /**
+   * Evaluate the Bell polynomial
+   * @f[
+   *   B(n) = \sum_{k=0}^{n}S_n^{(k)}x^k
+   * @f]
+   * where @f$ S_n^{(k)} @f$ are the Stirling numbers of the second kind.
+   */
+  template<typename _Tp, typename _Up>
+    inline _Up
+    __bell(unsigned int __n, _Up __x)
+    {
+      const auto _Sn = __stirling_2<_Tp>(__n);
+      auto __bell = _Sn[__n];
+      for (unsigned int __i = 1; __i < __n; ++__i)
+	__bell = _Sn[__n - __i] + __x * __bell;
+      return __bell;
+    }
+
 } // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION

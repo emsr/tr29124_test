@@ -179,6 +179,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * In addition a large number of new functions are added as extensions:
    * - @ref __gnu_cxx::airy_ai "airy_ai - Airy functions of the first kind"
    * - @ref __gnu_cxx::airy_bi "airy_bi - Airy functions of the second kind"
+   * - @ref __gnu_cxx::bell "bell - Bell numbers and polynomials"
    * - @ref __gnu_cxx::bernoulli "bernoulli - Bernoulli polynomials"
    * - @ref __gnu_cxx::binomial "binomial - Binomial coefficients"
    * - @ref __gnu_cxx::bose_einstein "bose_einstein - Bose-Einstein integrals"
@@ -236,6 +237,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::jacobi_theta_3 "theta_3 - Jacobi theta function 3"
    * - @ref __gnu_cxx::jacobi_theta_4 "theta_4 - Jacobi theta function 4"
    * - @ref __gnu_cxx::jacobi_zeta "jacobi_zeta - Jacobi zeta functions"
+   * - @ref __gnu_cxx::lah "lah - Lah numbers"
    * - @ref __gnu_cxx::lbinomial "lbinomial - Log binomial coefficients"
    * - @ref __gnu_cxx::ldouble_factorial "ldouble_factorial - Log double factorials"
    * - @ref __gnu_cxx::legendre_q "legendre_q - Legendre functions of the second kind"
@@ -6895,14 +6897,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the Eulerian number of the first kind.
    * The Eulerian numbers of the first kind are defined by recursion:
    * @f[
-   *   \newcommand{\eulerian}[2]{\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}}
+   *   \newcommand{\eulerian1}[2]{\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}}
    *
-   *   \eulerian{n}{m} = (n-m)\eulerian{n-1}{m-1} + (m+1)\eulerian{n-1}{m}
+   *   \eulerian1{n}{m} = (n-m)\eulerian1{n-1}{m-1} + (m+1)\eulerian1{n-1}{m}
    *   \mbox{ for } n > 0
    * @f]
    * Note that @f$ A(n,m) @f$ is a common older notation.
-   *
-   * @todo Develop an iterator model for Eulerian numbers of the first kind.
    */
   template<typename _Tp>
     inline _Tp
@@ -6910,17 +6910,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     { return std::__detail::__eulerian_1<_Tp>(__n, __m); }
 
   /**
+   * Return a vector of Eulerian numbers of the first kind.
+   */
+  template<typename _Tp>
+    inline std::vector<_Tp>
+    eulerian_1(unsigned int __n)
+    { return std::__detail::__eulerian_1<_Tp>(__n); }
+
+  /**
    * Return the Eulerian number of the second kind.
    * The Eulerian numbers of the second kind are defined by recursion:
    * @f[
-   *   \newcommand{\eulerian}[2]
+   *   \newcommand{\eulerian2}[2]
    *   {\left\langle\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}\right\rangle}
    *
-   *   \eulerian{n}{m} = (2n-m-1)\eulerian{n-1}{m-1} + (m+1)\eulerian{n-1}{m}
+   *   \eulerian2{n}{m} = (2n-m-1)\eulerian2{n-1}{m-1} + (m+1)\eulerian2{n-1}{m}
    *       \mbox{ for } n > 0
    * @f]
-   *
-   * @todo Develop an iterator model for Eulerian numbers of the second kind.
    */
   template<typename _Tp>
     inline _Tp
@@ -6955,13 +6961,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * The Stirling number of the first kind is denoted by other symbols
    * in the literature, usually @f$ S_n^{(m)} @f$.
-   *
-   * @todo Develop an iterator model for Stirling numbers of the first kind.
    */
   template<typename _Tp>
     inline _Tp
     stirling_1(unsigned int __n, unsigned int __m)
     { return std::__detail::__stirling_1<_Tp>(__n, __m); }
+
+  /**
+   * Return a vector of Stirling numbers of the first kind.
+   */
+  template<typename _Tp>
+    inline std::vector<_Tp>
+    stirling_1(unsigned int __n)
+    { return std::__detail::__stirling_1<_Tp>(__n); }
 
   /**
    * Return the Stirling number of the second kind by series expansion
@@ -6978,13 +6990,67 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The Stirling number of the second kind is denoted by other symbols
    * in the literature: 
    * @f$ \sigma_n^{(m)} @f$, @f$ \textit{S}_n^{(m)} @f$ and others.
-   *
-   * @todo Develop an iterator model for Stirling numbers of the second kind.
    */
   template<typename _Tp>
     inline _Tp
     stirling_2(unsigned int __n, unsigned int __m)
     { return std::__detail::__stirling_2<_Tp>(__n, __m); }
+
+  /**
+   * Return a vector of Stirling numbers of the second kind.
+   */
+  template<typename _Tp>
+    inline std::vector<_Tp>
+    stirling_2(unsigned int __n)
+    { return std::__detail::__stirling_2<_Tp>(__n); }
+
+  /**
+   * Return the Lah number.
+   * Lah numbers are defined by downward recurrence:
+   * @f[
+   *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
+   * @f]
+   */
+  template<typename _Tp>
+    inline _Tp
+    lah(unsigned int __n, unsigned int __k)
+    { return std::__detail::__lah<_Tp>(__n, __k); }
+
+  /**
+   * Return a vector of Lah numbers.
+   * Lah numbers are defined by downward recurrence:
+   * @f[
+   *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
+   * @f]
+   */
+  template<typename _Tp>
+    inline std::vector<_Tp>
+    lah(unsigned int __n)
+    { return std::__detail::__lah<_Tp>(__n); }
+
+  /**
+   * Return a vector of the Bell numbers
+   * @f[
+   *   B(n) = \sum_{k=0}^{n}S_n^{(k)}
+   * @f]
+   * where @f$ S_n^{(k)} @f$ are the Stirling numbers of the second kind.
+   */
+  template<typename _Tp>
+    inline std::vector<_Tp>
+    bell(unsigned int __n)
+    { return std::__detail::__bell<_Tp>(__n); }
+
+  /**
+   * Evaluate the Bell polynomial
+   * @f[
+   *   B(n,x) = \sum_{k=0}^{n}S_n^{(k)}x^k
+   * @f]
+   * where @f$ S_n^{(k)} @f$ are the Stirling numbers of the second kind.
+   */
+  template<typename _Tp, typename _Up>
+    inline _Up
+    bell(unsigned int __n, _Up __x)
+    { return std::__detail::__bell(__n, __x); }
 
   /**
    * Return the Lerch transcendent @f$ \Phi(z,s,a) @f$ for @c float arguments.

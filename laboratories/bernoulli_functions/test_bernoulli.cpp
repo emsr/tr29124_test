@@ -875,25 +875,53 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
     { return __lah_recur<_Tp>(__n); }
 
   /**
-   * Return the Bell number by summation.
+   * Return a vector of the Bell numbers by summation.
    * @f[
-   *   B(n) = \sum_{}^{}
+   *   B(n) = \sum_{k=0}^{n}S_n^{(k)}
    * @f]
+   * where @f$ S_n^{(k)} @f$ are the Stirling numbers of the second kind.
    */
-  std::vector<unsigned int>
-  __bell_series(unsigned int __n)
-  {
-    std::vector<unsigned int> __bell(__n + 1);
-    __bell[0] = 1;
+  template<typename _Tp>
+    std::vector<_Tp>
+    __bell_series(unsigned int __n)
+    {
+      std::vector<_Tp> __bell(__n + 1);
+      __bell[0] = _Tp{1};
 
-    /// @todo Test for blowup in Bell number summation.
-    for (unsigned int __i = 1; __i <= __n; ++__i)
-      for (unsigned int __j = 1; __j <= __i; ++__j)
-	__bell[__i] += __bell[__i - __j]
-		     * __gnu_cxx::binomial<long double>(__i - 1, __j - 1);
+      /// @todo Test for blowup in Bell number summation.
+      for (unsigned int __i = 1; __i <= __n; ++__i)
+	for (unsigned int __j = 1; __j <= __i; ++__j)
+	  __bell[__i] += __bell[__i - __j]
+		       * __gnu_cxx::binomial<_Tp>(__i - 1, __j - 1);
 
-    return __bell;
-  }
+      return __bell;
+    }
+
+  /**
+   * Return a vector of the Bell numbers.
+   */
+  template<typename _Tp>
+    inline std::vector<_Tp>
+    __bell(unsigned int __n)
+    { return __bell_series<_Tp>(__n); }
+
+  /**
+   * Evaluate the Bell polynomial
+   * @f[
+   *   B(n) = \sum_{k=0}^{n}S_n^{(k)}x^k
+   * @f]
+   * where @f$ S_n^{(k)} @f$ are the Stirling numbers of the second kind.
+   */
+  template<typename _Tp, typename _Up>
+    inline _Up
+    __bell(unsigned int __n, _Up __x)
+    {
+      const auto _Sn = __stirling_2<_Tp>(__n);
+      auto __bell = _Sn[__n];
+      for (unsigned int __i = 1; __i < __n; ++__i)
+	__bell = _Sn[__n - __i] + __x * __bell;
+      return __bell;
+    }
 
 template<typename _Tp>
   void
@@ -906,7 +934,7 @@ template<typename _Tp>
     std::cout << "\n\n Bell numbers\n";
     for (auto n = 1u; n <= 20; ++n)
       {
-	auto bell = __bell_series(n);
+	auto bell = __bell_series<long long>(n);
         auto bellv = burkhardt::bell(n);
 	std::cout << '\n';
 	for (auto k = 0u; k <= n; ++k)

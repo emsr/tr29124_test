@@ -154,9 +154,9 @@ namespace __detail
    * Return the Eulerian number of the first kind.
    * The Eulerian numbers of the first kind are defined by recursion:
    * @f[
-   *   \newcommand{\eulerian}[2]{\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}}
+   *   \newcommand{\eulerian1}[2]{\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}}
    *
-   *   \eulerian{n}{m} = (n-m)\eulerian{n-1}{m-1} + (m+1)\eulerian{n-1}{m}
+   *   \eulerian1{n}{m} = (n-m)\eulerian1{n-1}{m-1} + (m+1)\eulerian1{n-1}{m}
    *   \mbox{ for } n > 0
    * @f]
    * Note that @f$ A(n,m) @f$ is a common older notation.
@@ -195,10 +195,10 @@ namespace __detail
    * Return the Eulerian number of the first kind.
    * The Eulerian numbers of the first kind are defined by recursion:
    * @f[
-   *    \genfrac\langle\rangle{0pt}{0}{n}{m}
-   *       = (n-m)\genfrac\langle\rangle{0pt}{0}{n-1}{m-1}
-   *       + (m+1)\genfrac\langle\rangle{0pt}{0}{n-1}{m}
-   *    \mbox{ for } n > 0
+   *   \newcommand{\eulerian1}[2]{\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}}
+   *
+   *   \eulerian1{n}{m} = (n-m)\eulerian1{n-1}{m-1} + (m+1)\eulerian1{n-1}{m}
+   *   \mbox{ for } n > 0
    * @f]
    * Note that @f$ A(n,m) @f$ is a common older notation.
    */
@@ -208,10 +208,59 @@ namespace __detail
     { return __eulerian_1_recur<_Tp>(__n, __m); }
 
   /**
-   * Return the Eulerian number of the second kind by recursion.
-   * The recursion is:
+   * Return a vector Eulerian numbers of the first kind by recursion.
+   * The recursion is
    * @f[
-   *   A(n,m) = (2n-m-1)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
+   *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
+   * @f]
+   */
+  template<typename _Tp>
+    std::vector<_Tp>
+    __eulerian_1_recur(unsigned int __n)
+    {
+      if (__n == 0)
+	return std::vector<_Tp>(1, _Tp{1});
+      //else if (__m == __n - 1)
+	//return _Tp{1};
+      //else if (__n - __m - 1 < __m) // Symmetry.
+	//return __eulerian_1_recur<_Tp>(__n, __n - __m - 1);
+      else
+	{
+	  // Start recursion with n == 2 (already returned above).
+	  std::vector<_Tp> _Aold(__n + 1), _Anew(__n + 1);
+	  _Aold[0] = _Anew[0] = _Tp{1};
+	  _Anew[1] = _Tp{1};
+	  for (auto __in = 3u; __in <= __n; ++__in)
+	    {
+	      std::swap(_Aold, _Anew);
+	      for (auto __im = 1u; __im <= __n; ++__im)
+		_Anew[__im] = (__in - __im) * _Aold[__im - 1]
+			    + (__im + 1) * _Aold[__im];
+	    }
+	  return _Anew;
+	}
+    }
+
+  /**
+   * Return a vector Eulerian numbers of the first kind.
+   * The Eulerian numbers are defined by recursion:
+   * @f[
+   *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
+   * @f]
+   */
+  template<typename _Tp>
+    inline std::vector<_Tp>
+    __eulerian_1(unsigned int __n)
+    { return __eulerian_1_recur<_Tp>(__n); }
+
+  /**
+   * Return the Eulerian number of the second kind by recursion:
+   * @f[
+   *   \newcommand{\eulerian2}[2]
+   *   {\left\langle\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}\right\rangle}
+   *
+   *   \eulerian2{n}{m} = (2n-m-1)\eulerian2{n-1}{m-1} + (m+1)\eulerian2{n-1}{m}
+   *       \mbox{ for } n > 0
    * @f]
    */
   template<typename _Tp>
@@ -246,13 +295,70 @@ namespace __detail
    * Return the Eulerian number of the second kind.
    * The Eulerian numbers of the second kind are defined by recursion:
    * @f[
-   *   A(n,m) = (2n-m-1)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
+   *   \newcommand{\eulerian2}[2]
+   *   {\left\langle\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}\right\rangle}
+   *
+   *   \eulerian2{n}{m} = (2n-m-1)\eulerian2{n-1}{m-1} + (m+1)\eulerian2{n-1}{m}
+   *       \mbox{ for } n > 0
    * @f]
    */
   template<typename _Tp>
     inline _Tp
     __eulerian_2(unsigned int __n, unsigned int __m)
     { return __eulerian_2_recur<_Tp>(__n, __m); }
+
+  /**
+   * Return a vector of Eulerian numbers of the second kind.
+   * @f[
+   *   \newcommand{\eulerian2}[2]
+   *   {\left\langle\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}\right\rangle}
+   *
+   *   \eulerian2{n}{m} = (2n-m-1)\eulerian2{n-1}{m-1} + (m+1)\eulerian2{n-1}{m}
+   *       \mbox{ for } n > 0
+   * @f]
+   */
+  template<typename _Tp>
+    std::vector<_Tp>
+    __eulerian_2_recur(unsigned int __n)
+    {
+      if (__n == 0)
+	return std::vector<_Tp>(1, _Tp{1});
+      //else if (__m >= __n)
+	//return _Tp{0};
+      //else if (__n == 0)
+	//return _Tp{1};
+      else
+	{
+	  // Start recursion with n == 2 (already returned above).
+	  std::vector<_Tp> _Aold(__n + 1), _Anew(__n + 1);
+	  _Aold[0] = _Anew[0] = _Tp{1};
+	  _Anew[1] = _Tp{2};
+	  for (auto __in = 3u; __in <= __n; ++__in)
+	    {
+	      std::swap(_Aold, _Anew);
+	      for (auto __im = 1u; __im <= __n; ++__im)
+		_Anew[__im] = (2 * __in - __im - 1) * _Aold[__im - 1]
+			    + (__im + 1) * _Aold[__im];
+	    }
+	  return _Anew;
+	}
+    }
+
+  /**
+   * Return a vector of Eulerian numbers of the second kind.
+   * @f[
+   *   \newcommand{\eulerian2}[2]
+   *   {\left\langle\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}\right\rangle}
+   *
+   *   \eulerian2{n}{m} = (2n-m-1)\eulerian2{n-1}{m-1} + (m+1)\eulerian2{n-1}{m}
+   *       \mbox{ for } n > 0
+   * @f]
+   */
+  template<typename _Tp>
+    inline std::vector<_Tp>
+    __eulerian_2(unsigned int __n)
+    { return __eulerian_2_recur<_Tp>(__n); }
+
 } // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION

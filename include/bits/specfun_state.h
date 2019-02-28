@@ -33,6 +33,7 @@
 #pragma GCC system_header
 
 #include <cmath>
+#include <vector>
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
@@ -682,6 +683,48 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       /// The output function @f$ \Gamma_2(\mu) @f$
       _Tp __gamma_2_value;
+    };
+
+  /**
+   * @brief A structure for Stirling numbers of the first kind.
+   */
+  template<typename _Tp>
+    struct __stirling_1_t
+    {
+      using iterator = typename std::vector<_Tp>::iterator;
+      using reverse_iterator = typename std::vector<_Tp>::reverse_iterator;
+
+      std::vector<_Tp> __sigma;
+
+      _Tp
+      operator[](unsigned int __k) const noexcept
+      { return __k < __sigma.size() ? __sigma[__k] : _Tp{0}; }
+
+      template<typename _Up>
+	auto
+	operator()(_Up __x)
+	{
+	  const auto __n = __sigma.size() - 1;
+	  auto __poly = __sigma[__n];
+	  for (unsigned int __i = 1; __i < __n; ++__i)
+	    __poly = __sigma[__n - __i] + __x * __poly;
+	}
+
+      iterator
+      begin() const
+      { return __sigma.begin(); }
+
+      iterator
+      end() const
+      { return __sigma.end(); }
+
+      reverse_iterator
+      rbegin() const
+      { return __sigma.rbegin(); }
+
+      reverse_iterator
+      rend() const
+      { return __sigma.rend(); }
     };
 
 _GLIBCXX_END_NAMESPACE_VERSION
