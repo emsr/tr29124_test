@@ -250,50 +250,6 @@ namespace __detail
     }
 
   /**
-   * Return the Stirling number of the first kind by series expansion.
-   * N.B. This seems to be a total disaster.
-   */
-  template<typename _Tp>
-    _Tp
-    __stirling_1_series(unsigned int __n, unsigned int __m)
-    {
-      using __gnu_cxx::__parity;
-      if (2 * __n - __m > _S_num_factorials<_Tp> / 2)
-	{
-	  auto _S1 = _Tp{0};
-	  for (auto __k = 0u; __k <= __n - __m; ++__k)
-	    {
-	      const auto __nmpk = __n - __m + __k;
-	      const auto __nmmk = __n - __m - __k;
-	      const auto __lbc1 = __log_binomial<_Tp>(__n - 1 + __k, __nmpk);
-	      const auto __slbc1 = __log_binomial_sign<_Tp>(__n - 1 + __k, __nmpk);
-	      const auto __lbc2 = __log_binomial<_Tp>(2 * __n - __m, __nmmk);
-	      const auto __slbc2 = __log_binomial_sign<_Tp>(2 * __n - __m, __nmmk);
-	      _S1 += __parity<_Tp>(__k) * __slbc1 * __slbc2
-		   * std::exp(__lbc1 + __lbc2 + __log_stirling_2<_Tp>(__nmpk, __k));
-	    }
-	  return _S1;
-	}
-      else
-	{
-	  auto _S1 = _Tp{0};
-	  for (auto __k = 0u; __k <= __n - __m; ++__k)
-	    {
-	      const auto __nmpk = __n - __m + __k;
-	      const auto __nmmk = __n - __m - __k;
-	      _S1 += __parity<_Tp>(__k)
-		   * __binomial<_Tp>(__n - 1 + __k, __nmpk)
-		   * __binomial<_Tp>(2 * __n - __m, __nmmk)
-		   * __stirling_2<_Tp>(__nmpk, __k);
-	    }
-	  // @todo Only round if the sum is less than
-	  // the maximum representable integer.
-	  // Find or make a tool for this.
-	  return std::nearbyint(_S1);
-	}
-    }
-
-  /**
    * Return the Stirling number of the first kind by recursion.
    * The recursion is
    * @f[

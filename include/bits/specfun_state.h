@@ -692,9 +692,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     struct __stirling_1_t
     {
       using iterator = typename std::vector<_Tp>::iterator;
-      using reverse_iterator = typename std::vector<_Tp>::reverse_iterator;
+      using const_iterator = typename std::vector<_Tp>::const_iterator;
 
       std::vector<_Tp> __sigma;
+
+      std::size_t
+      degree() const noexcept
+      { return __sigma.size() - 1; }
 
       _Tp
       operator[](unsigned int __k) const noexcept
@@ -702,7 +706,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       template<typename _Up>
 	auto
-	operator()(_Up __x)
+	operator()(_Up __x) const noexcept
 	{
 	  const auto __n = __sigma.size() - 1;
 	  auto __poly = __sigma[__n];
@@ -711,20 +715,67 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	}
 
       iterator
-      begin() const
+      begin() noexcept
       { return __sigma.begin(); }
 
       iterator
-      end() const
+      end() noexcept
       { return __sigma.end(); }
 
-      reverse_iterator
-      rbegin() const
-      { return __sigma.rbegin(); }
+      const_iterator
+      begin() const noexcept
+      { return this->__sigma.begin(); }
 
-      reverse_iterator
-      rend() const
-      { return __sigma.rend(); }
+      const_iterator
+      end() const noexcept
+      { return this->__sigma.end(); }
+    };
+
+  /**
+   * @brief A structure for Stirling numbers of the first kind.
+   */
+  template<typename _Tp>
+    struct __stirling_2_t
+    {
+      using iterator = typename std::vector<_Tp>::iterator;
+      using const_iterator = typename std::vector<_Tp>::const_iterator;
+
+      std::vector<_Tp> _S;
+
+      std::size_t
+      degree() const noexcept
+      { return _S.size() - 1; }
+
+      _Tp
+      operator[](unsigned int __k) const noexcept
+      { return __k < _S.size() ? _S[__k] : _Tp{0}; }
+
+      /// Return the Bell polynomial.
+      template<typename _Up>
+	auto
+	operator()(_Up __x) const noexcept
+	{
+	  const auto __n = _S.size() - 1;
+	  auto __poly = _S[__n];
+	  for (unsigned int __i = 1; __i < __n; ++__i)
+	    __poly = _S[__n - __i] + __x * __poly;
+	}
+
+      iterator
+      begin() noexcept
+      { return _S.begin(); }
+
+      iterator
+      end() noexcept
+      { return _S.end(); }
+
+      const_iterator
+      begin() const noexcept
+      { return this->_S.begin(); }
+
+      const_iterator
+      end() const noexcept
+      { return this->_S.end(); }
     };
 
 _GLIBCXX_END_NAMESPACE_VERSION

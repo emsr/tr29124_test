@@ -481,6 +481,8 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
   /**
    * Return the Stirling number of the first kind by series expansion.
    * N.B. This seems to be a total disaster.
+   * Maybe accumulate the positive and negative terms separately
+   * and add them att the end.
    */
   template<typename _Tp>
     _Tp
@@ -489,17 +491,19 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
       using std::__detail::__log_binomial;
       using std::__detail::__log_binomial_sign;
       using std::__detail::__binomial;
+      using __gnu_cxx::__parity;
       if (2 * __n - __m > std::__detail::_S_num_factorials<_Tp> / 2)
 	{
 	  auto _S1 = _Tp{0};
 	  for (auto __k = 0u; __k <= __n - __m; ++__k)
 	    {
 	      const auto __nmpk = __n - __m + __k;
+	      const auto __nmmk = __n - __m - __k;
 	      const auto __lbc1 = __log_binomial<_Tp>(__n - 1 + __k, __nmpk);
 	      const auto __slbc1 = __log_binomial_sign<_Tp>(__n - 1 + __k, __nmpk);
-	      const auto __lbc2 = __log_binomial<_Tp>(2 * __n - __m, __nmpk);
-	      const auto __slbc2 = __log_binomial_sign<_Tp>(2 * __n - __m, __nmpk);
-	      _S1 += ((__k & 1) ? _Tp{-1} : _Tp{1}) * __slbc1 * __slbc2
+	      const auto __lbc2 = __log_binomial<_Tp>(2 * __n - __m, __nmmk);
+	      const auto __slbc2 = __log_binomial_sign<_Tp>(2 * __n - __m, __nmmk);
+	      _S1 += __parity<_Tp>(__k) * __slbc1 * __slbc2
 		   * std::exp(__lbc1 + __lbc2 + __log_stirling_2<_Tp>(__nmpk, __k));
 	    }
 	  return _S1;
@@ -509,10 +513,11 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
 	  auto _S1 = _Tp{0};
 	  for (auto __k = 0u; __k <= __n - __m; ++__k)
 	    {
-	      auto __nmpk = __n - __m + __k;
-	      _S1 += ((__k & 1) ? _Tp{-1} : _Tp{1})
+	      const auto __nmpk = __n - __m + __k;
+	      const auto __nmmk = __n - __m - __k;
+	      _S1 += __parity<_Tp>(__k)
 		   * __binomial<_Tp>(__n - 1 + __k, __nmpk)
-		   * __binomial<_Tp>(2 * __n - __m, __nmpk)
+		   * __binomial<_Tp>(2 * __n - __m, __nmmk)
 		   * __stirling_2<_Tp>(__nmpk, __k);
 	    }
 	  // @todo Only round if the sum is less than
