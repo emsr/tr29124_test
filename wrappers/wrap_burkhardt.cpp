@@ -1139,7 +1139,7 @@ fejer_2_rule(std::size_t n)
 
 // Bell numbers.
 std::vector<unsigned int>
-bell(int n)
+bell(unsigned int n)
 {
   std::vector<unsigned int> b(n + 1);
   ::bell(n, reinterpret_cast<int*>(b.data()));

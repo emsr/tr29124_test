@@ -441,7 +441,7 @@ fejer_2_rule(std::size_t n);
 
 // Bell numbers.
 std::vector<unsigned int>
-bell(int n);
+bell(unsigned int n);
 
 /// Meixner polynomials.
 double
