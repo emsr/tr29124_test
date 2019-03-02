@@ -1076,7 +1076,30 @@ namespace __detail
       else
 	return __polylog_exp(__s, std::log(__w));
     }
-
+ /**
+   * Return the polylog Li_s(x) for two real arguments.
+   * 
+   * The periodic zeta function is defined by
+   * @f[
+   *    Li_s(x) = \sum_{k=1}^{\infty} \frac{e^{i2\pi kx}}{k^s} = Li_s(e^{i2\pi kx})
+   * @f]
+   *
+   * @param __s  The real order.
+   * @param __x  The real argument.
+   * @return The complex value of the polylogarithm.
+   */
+  template<typename _Tp>
+    _Tp
+    __periodic_zeta(_Tp __s, _Tp __x)
+    {
+      const auto _S_pi = __gnu_cxx::__const_pi(__s);
+      if (std::isnan(__s) || std::isnan(__x))
+	return __gnu_cxx::__quiet_NaN(__s);
+      else if (__gnu_cxx::__fp_is_zero(__x))
+	return __gnu_cxx::hurwitz_zeta(__s, _Tp{1});
+      else
+	return __polylog_exp(_S_i * 2 * _S_pi * x);
+    }
   /**
    * Return the Hurwitz Zeta function for real s and complex a.
    * This uses Jonquiere's identity:
