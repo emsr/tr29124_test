@@ -75,6 +75,7 @@
 #  include <bits/sf_laguerre.tcc>
 #  include <bits/sf_legendre.tcc>
 #  include <bits/sf_lerch.tcc>
+#  include <bits/sf_mittag_leffler.tcc>
 #  include <bits/sf_mod_bessel.tcc>
 #  include <bits/sf_hermite.tcc>
 #  include <bits/sf_theta.tcc>
@@ -248,6 +249,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::lfalling_factorial "lfalling_factorial - Log falling factorials"
    * - @ref __gnu_cxx::lgamma "lgamma - Log gamma for complex arguments"
    * - @ref __gnu_cxx::lrising_factorial "lrising_factorial - Log rising factorials"
+   * - @ref __gnu_cxx::mittag_leffler "mittag_leffler - Mittag-Leffler functions"
    * - @ref __gnu_cxx::owens_t "owens_t - Owens T functions"
    * - @ref __gnu_cxx::periodic_zeta "periodic_zeta - Periodic zeta functions"
    * - @ref __gnu_cxx::radpoly "radpoly - Radial polynomials"
@@ -7142,6 +7144,24 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using __type = __gnu_cxx::fp_promote_t<_Tp, _Ts, _Ta>;
       return std::__detail::__lerch_phi<__type>(__z, __s, __a);
+    }
+
+  /**
+   * Compute the Mittag-Leffer function:
+   * @f[
+   *   E_{\alpha,\beta}(z) = \sum_{k=0}^{\infty}\frac{z^k}{\beta + \alpha k},
+   *   \mbox{  } \alpha > 0, \beta \elem \complex, z \elem \complex
+   * @f]
+   *
+   * @see COMPUTATION OF THE MITTAG-LEFFLER FUNCTION @f$ E_{\alpha,\beta}(z) @f$
+   * AND ITS DERIVATIVE, Rudolf Gorenflo, Joulia Loutchko & Yuri Luchko
+   */
+  template<typename _Tp, typename _Ta, typename _Tb>
+    inline std::complex<__gnu_cxx::fp_promote_t<_Tp, _Ta, _Tb>>
+    mittag_leffler(_Ta __alpha, _Tb __beta, const std::complex<_Tp>& __z)
+    {
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Ta, _Tb>;
+      return std::__detail::__mittag_leffler<__type>(__alpha, __beta, __z);
     }
 
 #endif // __cplusplus >= 201103L

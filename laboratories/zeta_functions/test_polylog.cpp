@@ -713,17 +713,18 @@ template<typename Tp>
 
     auto l = Tp{2};
     auto p = std::atan(l);
-    Tp alpha[] = {0.5, 1, 1.5, 4};
-    std::ofstream data("el20.txt");
+    std::ofstream data("polylog_el20.txt");
     for(auto alpha : {Tp{0.5}, Tp{1}, Tp{1.5}, Tp{4}})
       {
 	for(int s : {-1, 1})
 	  {
 	    for(auto k = -_S_pi; k < _S_pi; k += Tp{0.002})
-	      data << k << ' ' << std::sqrt(Tp{1} + l * l)
+	      {
+		data << k << ' ' << std::sqrt(Tp{1} + l * l)
 				* real(std::exp(std::complex<Tp>(0, -s * p))
 				/ (std::exp(std::complex<Tp>(0, k)) - std::exp(-alpha))) << '\n';
-	      data << "&" << '\n';
+		data << "&" << '\n';
+	      }
 	  }
       }
 
