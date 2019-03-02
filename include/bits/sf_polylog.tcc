@@ -1076,30 +1076,34 @@ namespace __detail
       else
 	return __polylog_exp(__s, std::log(__w));
     }
+
  /**
-   * Return the polylog Li_s(x) for two real arguments.
-   * 
-   * The periodic zeta function is defined by
-   * @f[
-   *    Li_s(x) = \sum_{k=1}^{\infty} \frac{e^{i2\pi kx}}{k^s} = Li_s(e^{i2\pi kx})
-   * @f]
-   *
-   * @param __s  The real order.
-   * @param __x  The real argument.
-   * @return The complex value of the polylogarithm.
-   */
-  template<typename _Tp>
-    _Tp
-    __periodic_zeta(_Tp __s, _Tp __x)
+  * Return the periodic zeta function F(z,s) for two real arguments.
+  *
+  * The periodic zeta function is defined by
+  * @f[
+  *    F(z,s) = \sum_{k=1}^{\infty} \frac{e^{i2\pi kz}}{k^s} = Li_s(e^{i2\pi kz})
+  * @f]
+  *
+  * @param __s  The real order.
+  * @param __z  The real or complex argument.
+  * @return The complex value of the periodic zeta function.
+  */
+  template<typename _Tp, typename _ArgType>
+    __gnu_cxx::fp_promote_t<std::complex<_Tp>, _ArgType>
+    __periodic_zeta(_ArgType __z, _Tp __s)
     {
+      using _Cmplx = std::complex<_Tp>;
+      const auto _S_i = _Cmplx{0, 1};
       const auto _S_pi = __gnu_cxx::__const_pi(__s);
-      if (std::isnan(__s) || std::isnan(__x))
+      if (std::isnan(__s) || std::isnan(__z))
 	return __gnu_cxx::__quiet_NaN(__s);
-      else if (__gnu_cxx::__fp_is_zero(__x))
-	return __gnu_cxx::hurwitz_zeta(__s, _Tp{1});
+      else if (__gnu_cxx::__fp_is_zero(__z))
+	return __riemann_zeta(__s);
       else
-	return __polylog_exp(_S_i * 2 * _S_pi * x);
+	return __polylog_exp(__s, _S_i * _Tp{2} * _S_pi * __z);
     }
+
   /**
    * Return the Hurwitz Zeta function for real s and complex a.
    * This uses Jonquiere's identity:

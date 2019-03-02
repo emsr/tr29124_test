@@ -685,24 +685,24 @@ template<typename Tp>
     std::cout << std::__detail::__polylog_exp(Tp{2.5}, std::complex<Tp>(Tp{15}, Tp{1})) << '\n';
 
     for(std::size_t k = 0; k < 32; ++k)
-    {
-      std::cout << "=======  " << k << "  ==========" << '\n';
-      auto w = std::complex<Tp>(Tp{0}, _S_2pi * k / Tp{32});
-      std::cout << std::__detail::__polylog_exp(Tp{4}, w) << '\n';
-      std::cout << std::__detail::__polylog_exp(-Tp{4}, w) << '\n';
-      std::cout << std::__detail::__polylog_exp(Tp{2.6}, w) << '\n';
-      std::cout << std::__detail::__polylog_exp(Tp{-2.6}, w) << '\n';
-    }
+      {
+	auto w = std::complex<Tp>(Tp{0}, _S_2pi * k / Tp{32});
+	std::cout << "=======  " << k << "  ==========" << '\n';
+	std::cout << std::__detail::__polylog_exp(Tp{4}, w) << '\n';
+	std::cout << std::__detail::__polylog_exp(Tp{-4}, w) << '\n';
+	std::cout << std::__detail::__polylog_exp(Tp{2.6}, w) << '\n';
+	std::cout << std::__detail::__polylog_exp(Tp{-2.6}, w) << '\n';
+      }
     std::cout << '\n';
 
     std::cout << '\n' << std::__detail::__polylog_exp(Tp{2.6}, std::complex<Tp>(_S_pi, _S_pi)) << '\n';
 
     for(std::size_t k = 0; k < 10; ++k)
-    {
-      auto w = std::complex<Tp>(-_S_pi / 2 - _S_pi / 5, 0);
-      std::cout << std::__detail::__polylog_exp(-Tp{4}, w) << '\n';
-      std::cout << std::__detail::__polylog_exp_sum(-Tp{4}, w) << '\n';
-    }
+      {
+	auto w = std::complex<Tp>(-_S_pi / 2 - _S_pi / 5, 0);
+	std::cout << std::__detail::__polylog_exp(Tp{-4}, w) << '\n';
+	std::cout << std::__detail::__polylog_exp_sum(Tp{-4}, w) << '\n';
+      }
     std::cout << '\n' << std::flush;
 
     std::cout << '\n' << std::__detail::__polylog_exp_neg(Tp{-50.5}, std::complex<Tp>(Tp{1}, Tp{1})) << '\n';
@@ -711,19 +711,21 @@ template<typename Tp>
     //Don't trust Mathematica for small s
     std::cout << '\n' << std::__detail::__polylog_exp_asymp(Tp{60.4}, std::complex<Tp>(Tp{30}, Tp{0})) << '\n';
 
-    // auto l = 2;
-    // auto p = std::atan(l);
-    // Tp alpha[] = {0.5, 1, 1.5, 4};
-    // std::ofstream data("el20.txt");
-    // for(std::size_t a = 0; a < sizeof(alpha) / sizeof(Tp); ++a)
-    // {
-    //   for(int s = -1 ; s <= 1; s += 2)
-    //   {
-    //     for(auto k = -_S_pi; k < _S_pi; k += Tp{0.002})
-    //       data << k << ' ' << std::sqrt(Tp{1} + l * l) * real(std::exp(std::complex<Tp>(0, -s * p)) / (std::exp(std::complex<Tp>(0, k)) - std::exp(-alpha[a]))) << '\n';
-    //     data << "&" << '\n';
-    //   }
-    // }
+    auto l = Tp{2};
+    auto p = std::atan(l);
+    Tp alpha[] = {0.5, 1, 1.5, 4};
+    std::ofstream data("el20.txt");
+    for(auto alpha : {Tp{0.5}, Tp{1}, Tp{1.5}, Tp{4}})
+      {
+	for(int s : {-1, 1})
+	  {
+	    for(auto k = -_S_pi; k < _S_pi; k += Tp{0.002})
+	      data << k << ' ' << std::sqrt(Tp{1} + l * l)
+				* real(std::exp(std::complex<Tp>(0, -s * p))
+				/ (std::exp(std::complex<Tp>(0, k)) - std::exp(-alpha))) << '\n';
+	      data << "&" << '\n';
+	  }
+      }
 
     const auto del01 = Tp{1} / Tp{100};
     const auto del05 = Tp{1} / Tp{20};
@@ -756,7 +758,7 @@ template<typename Tp>
     std::cout << '\n' << std::flush;
 
     std::cout << "\nTest function 3 [PolyLog_Exp_neg(s<0, exp(i2pik)]:\n";
-    for (Tp k = -Tp{8}; k < Tp{0}; k += Tp{1} / Tp{13})
+    for (Tp k = Tp{-8}; k < Tp{0}; k += Tp{1} / Tp{13})
       for(Tp x = 0; x < Tp{1}; x += del05)
 	std::cout << k
 		  << ' ' << x
@@ -792,8 +794,8 @@ template<typename Tp>
     std::cout << '\n' << std::flush;
 
     std::cout << "\nTest series 8 [PolyLog_Exp_negative_real_part(k, x)]:\n";
-    for (Tp k = -Tp{13}; k < Tp{13}; k += Tp{1} / Tp{11})
-      for (Tp x = -Tp{7} / Tp{10} * _S_pi; x > -_S_2pi; x -= del05)
+    for (Tp k = Tp{-13}; k < Tp{13}; k += Tp{1} / Tp{11})
+      for (Tp x = Tp{-7} / Tp{10} * _S_pi; x > -_S_2pi; x -= del05)
 	std::cout << k
 		  << ' ' << x
 		  << ' ' << std::__detail::__polylog_exp_sum(k, x)

@@ -223,6 +223,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::fermi_dirac "fermi_dirac - Fermi-Dirac integrals"
    * - @ref __gnu_cxx::fresnel_c "fresnel_c - Fresnel cosine integrals"
    * - @ref __gnu_cxx::fresnel_s "fresnel_s - Fresnel sine integrals"
+   * - @ref __gnu_cxx::gamma_p "gamma_p - Regularized lower incomplete gamma functions"
+   * - @ref __gnu_cxx::gamma_q "gamma_q - Regularized upper incomplete gamma functions"
    * - @ref __gnu_cxx::gamma_reciprocal "gamma_reciprocal - Reciprocal gamma function"
    * - @ref __gnu_cxx::gegenbauer "gegenbauer - Gegenbauer polynomials"
    * - @ref __gnu_cxx::heuman_lambda "heuman_lambda - Heuman lambda functions"
@@ -241,14 +243,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::lbinomial "lbinomial - Log binomial coefficients"
    * - @ref __gnu_cxx::ldouble_factorial "ldouble_factorial - Log double factorials"
    * - @ref __gnu_cxx::legendre_q "legendre_q - Legendre functions of the second kind"
-   * - @ref __gnu_cxx::lerch "lerch - The Lerch transcendent"
+   * - @ref __gnu_cxx::lerch_phi "lerch_phi - The Lerch transcendent"
    * - @ref __gnu_cxx::lfactorial "lfactorial - Log factorials"
    * - @ref __gnu_cxx::lfalling_factorial "lfalling_factorial - Log falling factorials"
    * - @ref __gnu_cxx::lgamma "lgamma - Log gamma for complex arguments"
    * - @ref __gnu_cxx::lrising_factorial "lrising_factorial - Log rising factorials"
    * - @ref __gnu_cxx::owens_t "owens_t - Owens T functions"
-   * - @ref __gnu_cxx::gamma_p "gamma_p - Regularized lower incomplete gamma functions"
-   * - @ref __gnu_cxx::gamma_q "gamma_q - Regularized upper incomplete gamma functions"
+   * - @ref __gnu_cxx::periodic_zeta "periodic_zeta - Periodic zeta functions"
    * - @ref __gnu_cxx::radpoly "radpoly - Radial polynomials"
    * - @ref __gnu_cxx::rising_factorial "rising_factorial - Rising factorials"
    * - @ref __gnu_cxx::sinhc "sinhc - Hyperbolic sinus cardinal function"
@@ -3533,6 +3534,62 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using __type = __gnu_cxx::fp_promote_t<_Tp, _Up>;
       return std::__detail::__hurwitz_zeta_polylog<__type>(__s, __a);
+    }
+
+  // Periodic zeta functions
+
+  /**
+   * Return the periodic zeta function of @c float argument @f$ x @f$,
+   * and parameter @f$ s @f$.
+   *
+   * @see periodic_zeta for details.
+   */
+  inline std::complex<float>
+  periodic_zetaf(float __x, float __s)
+  { return std::__detail::__periodic_zeta<float>(__x, __s); }
+
+  /**
+   * Return the periodic zeta function of <tt>long double</tt>
+   * argument @f$ x @f$, and parameter @f$ s @f$.
+   *
+   * @see periodic_zeta for details.
+   */
+  inline std::complex<long double>
+  periodic_zetal(long double __x, long double __s)
+  { return std::__detail::__periodic_zeta<long double>(__x, __s); }
+
+  /**
+   * Return the periodic zeta function of real argument @f$ x @f$,
+   * and parameter @f$ s @f$.
+   *
+   * The the periodic zeta function is defined by
+   * @f[
+   *    F(x, s) = \sum_{n=1}^{\infty}\frac{e^{i2\pi nx}}{n^s}
+   * @f]
+   *
+   * @param __x The argument
+   * @param __s The parameter
+   */
+  template<typename _Tp, typename _Up>
+    inline __gnu_cxx::fp_promote_t<std::complex<_Tp>, _Up>
+    periodic_zeta(_Tp __x, _Up __s)
+    {
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Up>;
+      return std::__detail::__periodic_zeta<__type>(__x, __s);
+    }
+
+  /**
+   * Return the periodic zeta function of complex argument @f$ z @f$,
+   * and real parameter @f$ s @f$.
+   *
+   * @see periodic_zeta for details.
+   */
+  template<typename _Tp, typename _Up>
+    inline __gnu_cxx::fp_promote_t<std::complex<_Tp>, std::complex<_Up>>
+    periodic_zeta(std::complex<_Up> __z, _Tp __s)
+    {
+      using __type = __gnu_cxx::fp_promote_t<_Tp, _Up>;
+      return std::__detail::__periodic_zeta<__type>(__z, __s);
     }
 
   // Digamma or psi functions
