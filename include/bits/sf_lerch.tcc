@@ -206,7 +206,7 @@ namespace __detail
 		      for (int __i = 0; __i < __m; ++__i)
 			{
 			  __sum1 += __sign * std::pow(std::abs(__z), __i)
-				  / std::pow(std::abs(__a + __i), _Tp(__sint()));
+				 / std::pow(std::abs(__a + __i), _Tp(__sint()));
 			  if (__z < _Tp{0})
 			    __sign = -__sign;
 			}
