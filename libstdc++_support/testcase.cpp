@@ -761,12 +761,12 @@ template<typename Real>
     basename = "legendre";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_legendre(filename);
-    maketest(legendre, gsl::legendre_p,
+    maketest(legendre, beast::legendre_p,
 	     "testcase_legendre", nsname, basename,
 	     "l", vorder,
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(true, true), 21),
-	     "GSL",
+	     "Boost",
 	     file_legendre);
 
     // Riemann zeta function.
