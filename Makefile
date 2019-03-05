@@ -1002,7 +1002,7 @@ $(TEST_BIN_DIR)/test_inv_gamma: laboratories/gamma_functions/test_inv_gamma.cpp 
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_inv_gamma laboratories/gamma_functions/test_inv_gamma.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_inv_ibeta: laboratories/beta_functions/test_inv_ibeta.cpp
-	$(CXXMAX) $(INCLUDES) -Iroot_search/include -o $(TEST_BIN_DIR)/test_inv_ibeta laboratories/beta_functions/test_inv_ibeta.cpp -lquadmath
+	$(CXXMAX) $(INCLUDES) -Icxx_root_search/include -o $(TEST_BIN_DIR)/test_inv_ibeta laboratories/beta_functions/test_inv_ibeta.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_inv_lgamma: laboratories/gamma_functions/test_inv_lgamma.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_inv_lgamma laboratories/gamma_functions/test_inv_lgamma.cpp -lquadmath
@@ -1145,8 +1145,8 @@ $(TEST_BIN_DIR)/test_riemann_zeta: laboratories/zeta_functions/test_riemann_zeta
 $(TEST_BIN_DIR)/test_rising_factorial: wrappers_debug laboratories/gamma_functions/test_rising_factorial.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_rising_factorial laboratories/gamma_functions/test_rising_factorial.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-$(TEST_BIN_DIR)/test_root_search: root_search/test_root_search.cpp root_search/include/ext/*
-	$(CXXMAX) $(INCLUDES) -Iroot_search/include -o $(TEST_BIN_DIR)/test_root_search root_search/test_root_search.cpp -lquadmath
+$(TEST_BIN_DIR)/test_root_search: cxx_root_search/test_root_search.cpp cxx_root_search/include/ext/*
+	$(CXXMAX) $(INCLUDES) -Icxx_root_search/include -o $(TEST_BIN_DIR)/test_root_search cxx_root_search/test_root_search.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_sincos: laboratories/elementary_functions/test_sincos.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_sincos laboratories/elementary_functions/test_sincos.cpp -lquadmath

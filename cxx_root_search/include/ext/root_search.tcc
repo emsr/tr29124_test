@@ -33,6 +33,7 @@
 
 #include <stdexcept>
 #include <cmath>
+#include <tuple> // For tie.
 
 #include <ext/math_const.h>
 
@@ -135,11 +136,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       if (__f * __f_mid > _Tp{0})
 	std::__throw_domain_error(__N("__root_bisect: "
 				      "Root must be bracketed for bisection"));
-      //  Orient search so that f > _Tp{0} lies at x + dx.
-      _Tp __dx;
-      auto __x = __f < _Tp{0}
-	       ? (__dx = __x_upper - __x_lower, __x_lower)
-	       : (__dx = __x_lower - __x_upper, __x_upper);
+      //  Orient search so that f > 0 lies at x + dx.
+      auto __dx = __f < _Tp{0} ? __x_upper - __x_lower : __x_lower - __x_upper;
+      auto __x = __f < _Tp{0} ? __x_lower : __x_upper;
       for (std::size_t __i = 0; __i < __max_iter; ++__i)
 	{
 	  __dx /= _Tp{2};
@@ -148,7 +147,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (__f_mid < _Tp{0})
 	    __x = __x_mid;
 	  if (std::abs(__dx) < __eps || __f_mid == _Tp{0})
-	    return __x;
+	    return __x_mid;
 	}
 
       std::__throw_runtime_error(__N("__root_bisect: "
@@ -598,19 +597,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __root_safe(_StateFunc __func, _Tp __x_lower, _Tp __x_upper,
 		_Tp __eps, std::size_t __max_iter)
     {
-      auto __sf_lo = __func(__x_lower);
-      auto __sf_hi = __func(__x_upper);
+      auto [__value_lower, __deriv_lower] = __func(__x_lower);
+      auto [__value_upper, __deriv_upper] = __func(__x_upper);
 
-      if (__sf_lo.__value * __sf_hi.__value > _Tp{0})
+      if (__value_lower * __value_upper > _Tp{0})
 	std::__throw_domain_error(__N("__root_safe: Root must be bracketed"));
 
-      if (__sf_lo.__value == _Tp{0})
+      if (__value_lower == _Tp{0})
 	return __x_lower;
-      if (__sf_hi.__value == _Tp{0})
+      if (__value_upper == _Tp{0})
 	return __x_upper;
 
       _Tp __x_hi, __x_lo;
-      if (__sf_lo.__value < _Tp{0})
+      if (__value_lower < _Tp{0})
 	{
 	  __x_lo = __x_lower;
 	  __x_hi = __x_upper;
@@ -624,13 +623,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       auto __x = (__x_lower + __x_upper) / _Tp{2};
       auto __dxold = std::abs(__x_upper - __x_lower);
       auto __dx = __dxold;
-      auto __sf = __func(__x);
+      auto [__value, __deriv] = __func(__x);
       for (std::size_t __i = 0; __i < __max_iter; ++__i)
 	{
-	  if (((__x - __x_hi) * __sf.__deriv - __sf.__value)
-	    * ((__x - __x_lo) * __sf.__deriv - __sf.__value) > _Tp{0}
-	   || std::abs(_Tp{2} * __sf.__value)
-	    > std::abs(__dxold * __sf.__deriv))
+	  if (((__x - __x_hi) * __deriv - __value)
+	    * ((__x - __x_lo) * __deriv - __value) > _Tp{0}
+	   || std::abs(_Tp{2} * __value)
+	    > std::abs(__dxold * __deriv))
 	    {
 	      __dxold = __dx;
 	      __dx = (__x_hi - __x_lo) / _Tp{2};
@@ -641,7 +640,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  else
 	    {
 	      __dxold = __dx;
-	      __dx = __sf.__value / __sf.__deriv;
+	      __dx = __value / __deriv;
 	      auto __temp = __x;
 	      __x -= __dx;
 	      if (__temp == __x)
@@ -650,8 +649,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	  if (std::abs(__dx) < __eps)
 	    return __x;
 
-	  __sf = __func(__x);
-	  if (__sf.__value < _Tp{0})
+	  auto [__val, __der] = __func(__x);
+	  __value = __val;
+	  __deriv = __der;
+
+	  if (__value < _Tp{0})
 	    __x_lo = __x;
 	  else
 	    __x_hi = __x;
