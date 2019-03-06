@@ -3,13 +3,13 @@
 ===============
 
 cos root bracket:   1.000000e+00 <= x <=   2.000000e+00
+epsilon                  : e =   1.858136e-02
 cos root (bisect)        : x =   1.578125e+00
 cos root (secant)        : x =   1.570979e+00
 cos root (false position): x =   1.570796e+00
 cos root (ridder)        : x =   1.573773e+00
 cos root (brent)         : x =   1.574195e+00
 cos root (newton)        : x =   1.570796e+00
-
 Error: __root_steffensen: Jumped out of brackets
 cos root bracket:   3.819660e-01 <= x <=   3.000000e+00
 cos root brackets:
@@ -32,6 +32,7 @@ root brackets:
 ===============
 
 cos root bracket:   1.000000000000000e+00 <= x <=   2.000000000000000e+00
+epsilon                  : e =   1.220703125000000e-04
 cos root (bisect)        : x =   1.570739746093750e+00
 cos root (secant)        : x =   1.570796326794897e+00
 cos root (false position): x =   1.570796326794897e+00
@@ -61,6 +62,7 @@ root brackets:
 ===============
 
 cos root bracket:   1.000000000000000000e+00 <= x <=   2.000000000000000000e+00
+epsilon                  : e =   1.814586051945069987e-05
 cos root (bisect)        : x =   1.570785522460937500e+00
 cos root (secant)        : x =   1.570796326794896625e+00
 cos root (false position): x =   1.570796326794896619e+00
@@ -85,3 +87,531 @@ cos root brackets:
 root brackets:
     1.199999999999999996e+00 <= x <=   1.333333333333333330e+00: x =   1.251546223958333330e+00
 
+
+  moar float
+====================
+
+
+sin(x)
+epsilon       : e =   3.452670e-04
+exact         : x =   3.141593e+00
+bisect        : x =   3.141357e+00
+secant        : x =   3.141593e+00
+false position: x =   3.141593e+00
+ridder        : x =   3.141515e+00
+brent         : x =   3.141546e+00
+steffensen    : x =   3.141593e+00
+
+sin(x)
+epsilon       : e =   3.452670e-04
+exact         : x =  -3.141593e+00
+bisect        : x =  -3.141357e+00
+secant        : x =  -3.141593e+00
+false position: x =  -3.141593e+00
+ridder        : x =  -3.141515e+00
+brent         : x =  -3.141546e+00
+steffensen    : x =  -3.141593e+00
+
+sin(x)
+epsilon       : e =   3.452670e-04
+exact         : x =   0.000000e+00
+bisect        : x =   0.000000e+00
+secant        : x =  -1.421085e-14
+false position: x =   0.000000e+00
+ridder        : x =  -1.697207e-04
+brent         : x =   1.724111e-07
+steffensen    : x =   0.000000e+00
+
+cos(x)
+epsilon       : e =   3.452670e-04
+exact         : x =   1.570796e+00
+bisect        : x =   1.570862e+00
+secant        : x =   1.570796e+00
+false position: x =   1.570796e+00
+ridder        : x =   1.570804e+00
+brent         : x =   1.570786e+00
+Error: __root_steffensen: Jumped out of brackets
+
+cos(x)
+epsilon       : e =   3.452670e-04
+exact         : x =  -1.570796e+00
+bisect        : x =  -1.570862e+00
+secant        : x =  -1.570796e+00
+false position: x =  -1.570796e+00
+ridder        : x =  -1.570804e+00
+brent         : x =  -1.570786e+00
+steffensen    : x =  -1.570796e+00
+
+x^20 - 1
+epsilon       : e =   3.452670e-04
+exact         : x =   1.000000e+00
+bisect        : x =   1.000134e+00
+secant        : x =   1.000018e-01
+false position: x =   1.000018e-01
+ridder        : x =   1.000038e+00
+brent         : x =   1.000002e+00
+steffensen    : x =   1.050000e+00
+
+1/sqrt(abs(x))
+epsilon       : e =   3.452670e-04
+exact         : x =   0.000000e+00
+bisect        : x =   0.000000e+00
+secant        : x =   1.966721e-04
+false position: x =   2.866643e-05
+ridder        : x =  -1.207494e-05
+brent         : x =  -1.091836e-05
+Error: __root_steffensen: Jumped out of brackets
+
+x^2 - 1e-8
+epsilon       : e =   3.452670e-04
+exact         : x =   1.000000e-04
+bisect        : x =   2.441406e-04
+secant        : x =   1.000000e-08
+false position: x =   1.000000e-08
+ridder        : x =   2.980232e-08
+brent         : x =   0.000000e+00
+steffensen    : x =   2.121120e-04
+
+x exp(-x)
+epsilon       : e =   3.452670e-04
+exact         : x =   0.000000e+00
+bisect        : x =   2.034292e-04
+Error: __root_secant: Maximum number of iterations exceeded
+false position: x =   9.578466e-05
+ridder        : x =   8.688571e-08
+brent         : x =   2.131856e-06
+Error: __root_steffensen: Jumped out of brackets
+
+(x - 1)^7
+epsilon       : e =   3.452670e-04
+exact         : x =   1.000000e+00
+bisect        : x =   1.000025e+00
+secant        : x =   1.000199e+00
+false position: x =   1.000199e+00
+ridder        : x =  -1.000000e+30
+brent         : x =   1.000200e+00
+Error: __root_steffensen: Jumped out of brackets
+
+sin(x)
+epsilon       : e =   3.452670e-04
+exact         : x =   3.141593e+00
+newton        : x =   3.141593e+00
+safe          : x =   3.141593e+00
+
+sin(x)
+epsilon       : e =   3.452670e-04
+exact         : x =  -3.141593e+00
+newton        : x =  -3.141593e+00
+safe          : x =  -3.141593e+00
+
+sin(x)
+epsilon       : e =   3.452670e-04
+exact         : x =   0.000000e+00
+newton        : x =   0.000000e+00
+safe          : x =   0.000000e+00
+
+cos(x)
+epsilon       : e =   3.452670e-04
+exact         : x =   1.570796e+00
+newton        : x =   1.570796e+00
+safe          : x =   1.570796e+00
+
+cos(x)
+epsilon       : e =   3.452670e-04
+exact         : x =  -1.570796e+00
+newton        : x =  -1.570796e+00
+safe          : x =  -1.570796e+00
+
+x^20 - 1
+epsilon       : e =   3.452670e-04
+exact         : x =   1.000000e+00
+newton        : x =   1.000000e+00
+safe          : x =   1.000000e+00
+
+x^20 - 1
+epsilon       : e =   3.452670e-04
+exact         : x =   1.000000e+00
+newton        : x =   1.000000e+00
+safe          : x =   1.000000e+00
+
+1/sqrt(abs(x))
+epsilon       : e =   3.452670e-04
+exact         : x =   0.000000e+00
+newton        : x =   0.000000e+00
+safe          : x =   0.000000e+00
+
+x^2 - 1e-8
+epsilon       : e =   3.452670e-04
+exact         : x =   1.000000e-04
+newton        : x =   2.576437e-04
+safe          : x =   2.576437e-04
+
+x exp(-x)
+epsilon       : e =   3.452670e-04
+exact         : x =   0.000000e+00
+Error: __root_newton: Jumped out of brackets
+safe          : x =  -1.669832e-09
+
+1 / (1 + exp(x))
+epsilon       : e =   3.452670e-04
+exact         : x =   0.000000e+00
+Error: __root_newton: Jumped out of brackets
+Error: __root_safe: Root must be bracketed
+
+-pi x + e
+epsilon       : e =   3.452670e-04
+exact         : x =   8.652560e-01
+Error: __root_newton: Jumped out of brackets
+Error: __root_safe: Root must be bracketed
+
+  moar double
+====================
+
+
+sin(x)
+epsilon       : e =   1.490116119384766e-08
+exact         : x =   3.141592653589793e+00
+bisect        : x =   3.141592659056187e+00
+secant        : x =   3.141592653589793e+00
+false position: x =   3.141592653589793e+00
+ridder        : x =   3.141592653461339e+00
+brent         : x =   3.141592655458965e+00
+Error: __root_steffensen: Jumped out of brackets
+
+sin(x)
+epsilon       : e =   1.490116119384766e-08
+exact         : x =  -3.141592653589793e+00
+bisect        : x =  -3.141592659056187e+00
+secant        : x =  -3.141592653589793e+00
+false position: x =  -3.141592653589793e+00
+ridder        : x =  -3.141592653461339e+00
+brent         : x =  -3.141592655458965e+00
+Error: __root_steffensen: Jumped out of brackets
+
+sin(x)
+epsilon       : e =   1.490116119384766e-08
+exact         : x =   0.000000000000000e+00
+bisect        : x =   0.000000000000000e+00
+secant        : x =   5.995342879679690e-29
+false position: x =   0.000000000000000e+00
+ridder        : x =  -1.783418412948379e-10
+brent         : x =  -1.245970239993849e-14
+steffensen    : x =   0.000000000000000e+00
+
+cos(x)
+epsilon       : e =   1.490116119384766e-08
+exact         : x =   1.570796326794897e+00
+bisect        : x =   1.570796336978674e+00
+secant        : x =   1.570796326794897e+00
+false position: x =   1.570796326794897e+00
+ridder        : x =   1.570796326985919e+00
+brent         : x =   1.570796327978109e+00
+steffensen    : x =   1.570796326794897e+00
+
+cos(x)
+epsilon       : e =   1.490116119384766e-08
+exact         : x =  -1.570796326794897e+00
+bisect        : x =  -1.570796336978674e+00
+secant        : x =  -1.570796326794897e+00
+false position: x =  -1.570796326794897e+00
+ridder        : x =  -1.570796326985919e+00
+brent         : x =  -1.570796327978109e+00
+steffensen    : x =  -1.570796326794897e+00
+
+x^20 - 1
+epsilon       : e =   1.490116119384766e-08
+exact         : x =   1.000000000000000e+00
+bisect        : x =   1.000000006705523e+00
+Error: __root_secant: Maximum number of iterations exceeded
+Error: __root_false_position: Maximum number of iterations exceeded
+ridder        : x =   9.999999977002422e-01
+brent         : x =   1.000000001622896e+00
+steffensen    : x =   1.049999993707480e+00
+
+1/sqrt(abs(x))
+epsilon       : e =   1.490116119384766e-08
+exact         : x =   0.000000000000000e+00
+bisect        : x =   0.000000000000000e+00
+secant        : x =   1.896038519628701e-09
+false position: x =   2.013042205882759e-09
+ridder        : x =  -1.999057202662379e-09
+brent         : x =   2.710508706903281e-09
+Error: __root_steffensen: Jumped out of brackets
+
+x^2 - 1e-8
+epsilon       : e =   1.490116119384766e-08
+exact         : x =   1.000000000000000e-04
+bisect        : x =   9.999424219131470e-05
+secant        : x =   1.000000000000000e-08
+false position: x =   1.000000000000000e-08
+ridder        : x =   9.999966751903319e-05
+brent         : x =   1.000003085507228e-04
+steffensen    : x =   9.999999999997991e-05
+
+x exp(-x)
+epsilon       : e =   1.490116119384766e-08
+exact         : x =   0.000000000000000e+00
+bisect        : x =   6.208817203754013e-09
+Error: __root_secant: Maximum number of iterations exceeded
+false position: x =   3.993287200909634e-09
+ridder        : x =   1.110223024625157e-16
+brent         : x =  -6.803117671307345e-12
+Error: __root_steffensen: Jumped out of brackets
+
+(x - 1)^7
+epsilon       : e =   1.490116119384766e-08
+exact         : x =   1.000000000000000e+00
+bisect        : x =   9.999999954223633e-01
+Error: __root_secant: Maximum number of iterations exceeded
+Error: __root_false_position: Maximum number of iterations exceeded
+ridder        : x =   1.000000173396363e+00
+brent         : x =   9.999999990143049e-01
+Error: __root_steffensen: Jumped out of brackets
+
+sin(x)
+epsilon       : e =   1.490116119384766e-08
+exact         : x =   3.141592653589793e+00
+newton        : x =   3.141592653589793e+00
+safe          : x =   3.141592653589793e+00
+
+sin(x)
+epsilon       : e =   1.490116119384766e-08
+exact         : x =  -3.141592653589793e+00
+newton        : x =  -3.141592653589793e+00
+safe          : x =  -3.141592653589793e+00
+
+sin(x)
+epsilon       : e =   1.490116119384766e-08
+exact         : x =   0.000000000000000e+00
+newton        : x =   0.000000000000000e+00
+safe          : x =   0.000000000000000e+00
+
+cos(x)
+epsilon       : e =   1.490116119384766e-08
+exact         : x =   1.570796326794897e+00
+newton        : x =   1.570796326794897e+00
+safe          : x =   1.570796326794897e+00
+
+cos(x)
+epsilon       : e =   1.490116119384766e-08
+exact         : x =  -1.570796326794897e+00
+newton        : x =  -1.570796326794897e+00
+safe          : x =  -1.570796326794897e+00
+
+x^20 - 1
+epsilon       : e =   1.490116119384766e-08
+exact         : x =   1.000000000000000e+00
+newton        : x =   1.000000000000000e+00
+safe          : x =   1.000000000000000e+00
+
+x^20 - 1
+epsilon       : e =   1.490116119384766e-08
+exact         : x =   1.000000000000000e+00
+newton        : x =   1.000000000000000e+00
+safe          : x =   1.000000000000000e+00
+
+1/sqrt(abs(x))
+epsilon       : e =   1.490116119384766e-08
+exact         : x =   0.000000000000000e+00
+newton        : x =   0.000000000000000e+00
+safe          : x =   0.000000000000000e+00
+
+x^2 - 1e-8
+epsilon       : e =   1.490116119384766e-08
+exact         : x =   1.000000000000000e-04
+newton        : x =   1.000000000008246e-04
+safe          : x =   1.000000000008246e-04
+
+x exp(-x)
+epsilon       : e =   1.490116119384766e-08
+exact         : x =   0.000000000000000e+00
+Error: __root_newton: Jumped out of brackets
+safe          : x =  -2.778865704986675e-18
+
+1 / (1 + exp(x))
+epsilon       : e =   1.490116119384766e-08
+exact         : x =   0.000000000000000e+00
+Error: __root_newton: Jumped out of brackets
+Error: __root_safe: Root must be bracketed
+
+-pi x + e
+epsilon       : e =   1.490116119384766e-08
+exact         : x =   8.652559794322651e-01
+Error: __root_newton: Jumped out of brackets
+Error: __root_safe: Root must be bracketed
+
+  moar long double
+====================
+
+
+sin(x)
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =   3.141592653589793239e+00
+bisect        : x =   3.141592653701081872e+00
+secant        : x =   3.141592653589793239e+00
+false position: x =   3.141592653589793239e+00
+ridder        : x =   3.141592653461339170e+00
+brent         : x =   3.141592653589793238e+00
+steffensen    : x =   3.141592653589793239e+00
+
+sin(x)
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =  -3.141592653589793239e+00
+bisect        : x =  -3.141592653701081872e+00
+secant        : x =  -3.141592653589793239e+00
+false position: x =  -3.141592653589793239e+00
+ridder        : x =  -3.141592653461339170e+00
+brent         : x =  -3.141592653589793238e+00
+steffensen    : x =  -3.141592653589793239e+00
+
+sin(x)
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =   0.000000000000000000e+00
+bisect        : x =   0.000000000000000000e+00
+secant        : x =   6.174454364507702655e-29
+false position: x =   7.703719777548943412e-34
+ridder        : x =  -1.783418496059251557e-10
+brent         : x =  -1.245970240201936526e-14
+steffensen    : x =   0.000000000000000000e+00
+
+cos(x)
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =   1.570796326794896619e+00
+bisect        : x =   1.570796326675917953e+00
+secant        : x =   1.570796326794896619e+00
+false position: x =   1.570796326794896619e+00
+ridder        : x =   1.570796326985918650e+00
+brent         : x =   1.570796326794896619e+00
+Error: __root_steffensen: Jumped out of brackets
+
+cos(x)
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =  -1.570796326794896619e+00
+bisect        : x =  -1.570796326675917953e+00
+secant        : x =  -1.570796326794896619e+00
+false position: x =  -1.570796326794896619e+00
+ridder        : x =  -1.570796326985918650e+00
+brent         : x =  -1.570796326794896619e+00
+steffensen    : x =  -1.570796326794896619e+00
+
+x^20 - 1
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =   1.000000000000000000e+00
+bisect        : x =   9.999999998486600816e-01
+Error: __root_secant: Maximum number of iterations exceeded
+Error: __root_false_position: Maximum number of iterations exceeded
+ridder        : x =   1.000000000000000020e+00
+brent         : x =   9.999999999999065706e-01
+Error: __root_steffensen: Maximum number of iterations exceeded
+
+1/sqrt(abs(x))
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =   0.000000000000000000e+00
+bisect        : x =   0.000000000000000000e+00
+secant        : x =   4.035952389359787439e-11
+false position: x =   5.212787620182077379e-11
+ridder        : x =   3.866490145061468887e-11
+brent         : x =  -8.146052240689332125e-11
+Error: __root_steffensen: Jumped out of brackets
+
+x^2 - 1e-8
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =   1.000000000000000000e-04
+bisect        : x =   1.000000629574060440e-04
+secant        : x =   1.000000000057143657e-04
+Error: __root_false_position: Maximum number of iterations exceeded
+ridder        : x =   9.999999906898977390e-05
+brent         : x =   9.999999972509310819e-05
+steffensen    : x =   1.000000000000011967e-04
+
+x exp(-x)
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =   0.000000000000000000e+00
+bisect        : x =  -3.880510729500569123e-11
+Error: __root_secant: Maximum number of iterations exceeded
+false position: x =   9.095903373492093824e-11
+ridder        : x =  -5.421010862427522170e-20
+brent         : x =  -6.803117671070358206e-12
+Error: __root_steffensen: Jumped out of brackets
+
+(x - 1)^7
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =   1.000000000000000000e+00
+bisect        : x =   9.999999999284744262e-01
+Error: __root_secant: Maximum number of iterations exceeded
+Error: __root_false_position: Maximum number of iterations exceeded
+ridder        : x =   1.000000173396363049e+00
+brent         : x =   9.999999999410084193e-01
+Error: __root_steffensen: Jumped out of brackets
+
+sin(x)
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =   3.141592653589793239e+00
+newton        : x =   3.141592653589793239e+00
+safe          : x =   3.141592653589793239e+00
+
+sin(x)
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =  -3.141592653589793239e+00
+newton        : x =  -3.141592653589793239e+00
+safe          : x =  -3.141592653589793239e+00
+
+sin(x)
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =   0.000000000000000000e+00
+newton        : x =   0.000000000000000000e+00
+safe          : x =   0.000000000000000000e+00
+
+cos(x)
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =   1.570796326794896619e+00
+newton        : x =   1.570796326794896619e+00
+safe          : x =   1.570796326794896619e+00
+
+cos(x)
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =  -1.570796326794896619e+00
+newton        : x =  -1.570796326794896619e+00
+safe          : x =  -1.570796326794896619e+00
+
+x^20 - 1
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =   1.000000000000000000e+00
+newton        : x =   1.000000000000000000e+00
+safe          : x =   1.000000000000000000e+00
+
+x^20 - 1
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =   1.000000000000000000e+00
+newton        : x =   1.000000000000000000e+00
+safe          : x =   1.000000000000000000e+00
+
+1/sqrt(abs(x))
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =   0.000000000000000000e+00
+newton        : x =   0.000000000000000000e+00
+safe          : x =   0.000000000000000000e+00
+
+x^2 - 1e-8
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =   1.000000000000000000e-04
+newton        : x =   1.000000000000000010e-04
+safe          : x =   1.000000000000000010e-04
+
+x exp(-x)
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =   0.000000000000000000e+00
+Error: __root_newton: Jumped out of brackets
+safe          : x =  -7.711242941394206052e-36
+
+1 / (1 + exp(x))
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =   0.000000000000000000e+00
+Error: __root_newton: Jumped out of brackets
+Error: __root_safe: Root must be bracketed
+
+-pi x + e
+epsilon       : e =   3.292722539913596233e-10
+exact         : x =   8.652559794322650872e-01
+Error: __root_newton: Jumped out of brackets
+Error: __root_safe: Root must be bracketed

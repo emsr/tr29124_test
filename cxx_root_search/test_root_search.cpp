@@ -98,7 +98,7 @@ template<typename _Tp>
 	  {
 	    std::cout << "cos root bracket: " << std::setw(w) << x_lower << " <= x <= " << std::setw(w) << x_upper << '\n';
 
-	    std::cout << "epsilon                  : e = " << eps << '\n';
+	    std::cout << "epsilon                  : e = " << std::setw(w) << eps << '\n';
 
 	    auto x_bisect = __gnu_cxx::__root_bisect((fun_t)&std::cos, x_lower, x_upper, eps);
 	    std::cout << "cos root (bisect)        : x = " << std::setw(w) << x_bisect << '\n';
@@ -200,6 +200,9 @@ template<typename _Tp, typename _Searcher, typename _Test>
       }
   }
 
+/*
+ * Run the GSL-derived tests.
+ */
 template<typename _Tp>
   void
   test_moar(_Tp proto = _Tp{})
@@ -215,7 +218,9 @@ template<typename _Tp>
       {
 	std::cout << '\n' << test.str << '\n';
 	std::cout << "epsilon       : e = " << std::setw(w) << eps << '\n';
+	std::cout << "exact         : x = " << std::setw(w) << test.root << '\n';
 
+	//FIXME: run_test<_Tp>(&__gnu_cxx::__root_bisect, test, "bisect        : x = ");
 	try
 	  {
 	    auto x_bisect = __gnu_cxx::__root_bisect(test.func, test.lower, test.upper, eps);
@@ -225,7 +230,6 @@ template<typename _Tp>
 	  {
 	    std::cout << "Error: " << err.what() << '\n';
 	  }
-	//FIXME: run_test<_Tp>(&__gnu_cxx::__root_bisect, test, "bisect        : x = ");
 
 	try
 	  {
@@ -282,6 +286,7 @@ template<typename _Tp>
       {
 	std::cout << '\n' << test.str << '\n';
 	std::cout << "epsilon       : e = " << std::setw(w) << eps << '\n';
+	std::cout << "exact         : x = " << std::setw(w) << test.root << '\n';
 
 	try
 	  {
