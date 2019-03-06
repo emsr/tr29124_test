@@ -71,6 +71,7 @@ ${tool} check/check_sph_neumann.cc      ${test_dir}/21_sph_neumann/check_value.c
 
 ${makedir} ${text_dir}/airy_ai
 ${makedir} ${text_dir}/airy_bi
+${makedir} ${text_dir}/bell
 ${makedir} ${text_dir}/bernoulli
 ${makedir} ${text_dir}/binomial
 ${makedir} ${text_dir}/chebyshev_t
@@ -159,6 +160,7 @@ ${tool} check/deathmatch_hyperg.cc        ${text_dir}/deathmatch_hyperg.cc
 
 ${tool} check/check_airy_ai.cc            ${text_dir}/airy_ai/check_value.cc
 ${tool} check/check_airy_bi.cc            ${text_dir}/airy_bi/check_value.cc
+${tool} check/check_bell.cc               ${text_dir}/bell/check_value.cc
 ${tool} check/check_bernoulli.cc          ${text_dir}/bernoulli/check_value.cc
 ${tool} check/check_binomial.cc           ${text_dir}/binomial/check_value.cc
 ${tool} check/check_chebyshev_t.cc        ${text_dir}/chebyshev_t/check_value.cc

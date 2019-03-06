@@ -38,6 +38,7 @@ ext_dir="$HOME/gcc${suffix}/libstdc++-v3/testsuite/ext/special_functions"
 
 ${tool} ${text_dir}/airy_ai/*            ${ext_dir}/airy_ai
 ${tool} ${text_dir}/airy_bi/*            ${ext_dir}/airy_bi
+${tool} ${text_dir}/bell/*               ${ext_dir}/bell
 ${tool} ${text_dir}/bernoulli/*          ${ext_dir}/bernoulli
 ${tool} ${text_dir}/binomial/*           ${ext_dir}/binomial
 ${tool} ${text_dir}/chebyshev_t/*        ${ext_dir}/chebyshev_t

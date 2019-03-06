@@ -2,6 +2,7 @@
 
 LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_anger_weber > test_anger_weber.txt
 LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_appell_f1 > test_appell_f1.txt
+LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bell > test_bell.txt
 LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli > test_bernoulli.txt
 LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bessel > test_bessel.txt
 LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bessel_asymp > test_bessel_asymp.txt

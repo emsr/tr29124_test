@@ -360,7 +360,7 @@ template<typename Real>
     std::ofstream file_assoc_laguerre(filename);
     maketest(assoc_laguerre, gsl::assoc_laguerre,
 	     "testcase_assoc_laguerre", nsname, basename,
-	     "n", vorder, "m", vorder,
+	     "n", vorder, "alpha", vorder,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 11),
 	     "GSL",
@@ -379,24 +379,6 @@ template<typename Real>
 	     "Boost",
 	     file_assoc_legendre);
 
-    // Bell numbers.
-    std::cout << "bell - UNTESTED\n" << std::flush;
-/* I need a nice way to diff vectors - it should be easy but my harness isn't set up that way.
-    basename = "bell";
-    filename = get_filename(path, prefix, basename, "",  ".cc");
-    std::ofstream file_bell(filename);
-    maketest(bell<unsigned int>, burkhardt::bell,
-	     "testcase_bell", "__gnu_cxx", basename,
-	     "n", fill_argument(std::make_pair(0U, 10U),
-				std::make_pair(true, true), 11),
-	     "Burkhardt",
-	     file_bell);
-*/
-
-    // Lah numbers.
-    std::cout << "lah - UNTESTED\n" << std::flush;
-/* I need a nice way to diff vectors - it should be easy but my harness isn't set up that way.
-*/
     // Beta functions.
     std::cout << "beta\n" << std::flush;
     basename = "beta";
