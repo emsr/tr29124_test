@@ -78,7 +78,7 @@ namespace lab
 
       auto __C_n = (_Tp{2} * (_Tp{1} + __lambda) * __x * __C_nm1
 		 - _Tp{2} * __lambda * __C_nm2) / _Tp(2);
-      for (auto __k = 3u; __k <= __m; ++__k)
+      for (auto __k = 3; __k <= __m; ++__k)
 	{
 	  __C_nm2 = __C_nm1;
 	  __C_nm1 = __C_n;
