@@ -125,6 +125,7 @@ ${makedir} ${ext_dir}/jacobi
 ${makedir} ${ext_dir}/jacobi_sn
 ${makedir} ${ext_dir}/jacobi_cn
 ${makedir} ${ext_dir}/jacobi_dn
+${makedir} ${ext_dir}/lah
 ${makedir} ${ext_dir}/lbinomial
 ${makedir} ${ext_dir}/ldouble_factorial
 ${makedir} ${ext_dir}/legendre_q
@@ -217,6 +218,7 @@ ${tool} check/check_jacobi.cc             ${ext_dir}/jacobi/check_value.cc
 ${tool} check/check_jacobi_sn.cc          ${ext_dir}/jacobi_sn/check_value.cc
 ${tool} check/check_jacobi_cn.cc          ${ext_dir}/jacobi_cn/check_value.cc
 ${tool} check/check_jacobi_dn.cc          ${ext_dir}/jacobi_dn/check_value.cc
+${tool} check/check_lah.cc                ${ext_dir}/lah/check_value.cc
 ${tool} check/check_lbinomial.cc          ${ext_dir}/lbinomial/check_value.cc
 ${tool} check/check_ldouble_factorial.cc  ${ext_dir}/ldouble_factorial/check_value.cc
 ${tool} check/check_legendre_q.cc         ${ext_dir}/legendre_q/check_value.cc

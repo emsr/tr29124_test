@@ -76,6 +76,7 @@ check/check_jacobi_dn
 check/check_jacobi_sn
 check/check_jacobi_zeta
 check/check_laguerre
+check/check_lah
 check/check_lbinomial
 check/check_ldouble_factorial
 check/check_legendre

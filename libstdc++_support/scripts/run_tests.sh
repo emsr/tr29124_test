@@ -70,6 +70,7 @@ LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_jacobi
 LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_kelvin > test_kelvin.txt
 LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_krawtchouk > test_krawtchouk.txt
 LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_laguerre > test_laguerre.txt
+LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_lah > test_lah.txt
 LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_large_order_bessel > test_large_order_bessel.txt
 LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_legendre > test_legendre.txt
 LD_LIBRARY_PATH=/home/ed/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_legendre_ellint > test_legendre_ellint.txt

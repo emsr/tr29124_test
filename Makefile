@@ -283,6 +283,7 @@ CHECKS = $(CHECK_DIR)/check_airy_ai \
 	 $(CHECK_DIR)/check_jacobi_sn \
 	 $(CHECK_DIR)/check_jacobi_zeta \
 	 $(CHECK_DIR)/check_laguerre \
+	 $(CHECK_DIR)/check_lah \
 	 $(CHECK_DIR)/check_lbinomial \
 	 $(CHECK_DIR)/check_ldouble_factorial \
 	 $(CHECK_DIR)/check_legendre \
@@ -688,6 +689,7 @@ check: $(CHECK_DIR) $(CHECKS)
 	echo "check_jacobi_zeta" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(CHECK_DIR)/check_jacobi_zeta >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_laguerre" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(CHECK_DIR)/check_laguerre >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_lbinomial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(CHECK_DIR)/check_lbinomial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_lah" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(CHECK_DIR)/check_lah >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_ldouble_factorial" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(CHECK_DIR)/check_ldouble_factorial >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_legendre" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(CHECK_DIR)/check_legendre >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_legendre" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(CHECK_DIR)/check_legendre >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
@@ -1483,6 +1485,9 @@ $(CHECK_DIR)/check_jacobi_zeta: $(CHECK_DIR)/check_jacobi_zeta.cc
 
 $(CHECK_DIR)/check_laguerre: $(CHECK_DIR)/check_laguerre.cc
 	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_laguerre $(CHECK_DIR)/check_laguerre.cc -lquadmath
+
+$(CHECK_DIR)/check_lah: $(CHECK_DIR)/check_lah.cc
+	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_lah $(CHECK_DIR)/check_lah.cc -lquadmath
 
 $(CHECK_DIR)/check_lbinomial: $(CHECK_DIR)/check_lbinomial.cc
 	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_lbinomial $(CHECK_DIR)/check_lbinomial.cc -lquadmath

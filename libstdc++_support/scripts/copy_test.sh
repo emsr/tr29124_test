@@ -85,6 +85,7 @@ ${tool} ${text_dir}/ibetac/*             ${ext_dir}/ibetac
 ${tool} ${text_dir}/jacobi_sn/*          ${ext_dir}/jacobi_sn
 ${tool} ${text_dir}/jacobi_cn/*          ${ext_dir}/jacobi_cn
 ${tool} ${text_dir}/jacobi_dn/*          ${ext_dir}/jacobi_dn
+${tool} ${text_dir}/lah/*                ${ext_dir}/lah
 ${tool} ${text_dir}/lbinomial/*          ${ext_dir}/lbinomial
 ${tool} ${text_dir}/ldouble_factorial/*  ${ext_dir}/ldouble_factorial
 ${tool} ${text_dir}/legendre_q/*         ${ext_dir}/legendre_q
