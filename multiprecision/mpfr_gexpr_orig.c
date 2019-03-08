@@ -35,8 +35,8 @@
 #include <math.h>
 #include <ctype.h> /* for isalnum */
 
-#include <gmp.h>
-#include <mpfr.h>
+#include "gmp.h"
+#include "mpfr.h"
 
 #if (MPFR_VERSION <= MPFR_VERSION_NUM(2,1,0))
 #error "mpfr version should be >= 2.1.0"
@@ -166,115 +166,61 @@ mpfr_expr (mpfr_t ret)
   mpfr_clear (tmp);
 }
 
-struct log_functions
-{
-  char *spelling;
-  int (* evalfn) (mpfr_ptr, int *, mpfr_srcptr, mpfr_rnd_t);
-};
-
-struct log_functions log_fns[] =
-{
-#if (MPFR_VERSION >= MPFR_VERSION_NUM(2,3,0))
-  {"lgamma", mpfr_lgamma}
-#endif
-};
-
-struct int_functions
-{
-  char *spelling;
-  int (* evalfn) (mpfr_ptr, mpfr_srcptr);
-};
-
-struct int_functions int_fns[] =
-{
-  {"ceil", mpfr_ceil},
-  {"floor", mpfr_floor}
-};
-
-struct int_arg_function
-{
-  char *spelling;
-  int (* evalfn) (mpfr_ptr, long int, mpfr_srcptr, mp_rnd_t);
-};
-
-struct int_arg_function int_arg_fns[] =
-{
-  {"jn", mpfr_jn},
-  {"yn", mpfr_yn}
-};
-
-struct twoarg_functions
-{
-  char *spelling;
-  int (* evalfn) (mpfr_ptr, mpfr_srcptr, mpfr_srcptr, mp_rnd_t);
-};
-
-struct twoarg_functions twoarg_fns[] =
-{
-  {"agm", mpfr_agm},
-  {"hypot", mpfr_hypot},
-  {"atan2", mpfr_atan2},
-  {"pow", mpfr_pow}
-};
-
 struct functions
 {
   char *spelling;
   int (* evalfn) (mpfr_ptr, mpfr_srcptr, mp_rnd_t);
 };
 
+static int
+mpfr_floor_dummy (mpfr_ptr rop, mpfr_srcptr op, mp_rnd_t rmode)
+{
+  return mpfr_floor (rop, op);
+}
+
+static int
+mpfr_ceil_dummy (mpfr_ptr rop, mpfr_srcptr op, mp_rnd_t rmode)
+{
+  return mpfr_ceil (rop, op);
+}
+
 struct functions fns[] =
 {
   {"abs", mpfr_abs},
-  {"acos", mpfr_acos},
-  {"acosh", mpfr_acosh},
-  {"asin", mpfr_asin},
-  {"asinh", mpfr_asinh},
-  {"atan", mpfr_atan},
-  {"atanh", mpfr_atanh},
-  {"cos", mpfr_cos},
-  {"cosh", mpfr_cosh},
+  {"log2", mpfr_log2},
+  {"log10", mpfr_log10},
+  {"log", mpfr_log},
   {"exp", mpfr_exp},
-  {"erf", mpfr_erf},
+  {"sqrt", mpfr_sqrt},
+  {"floor", mpfr_floor_dummy},
+  {"ceil", mpfr_ceil_dummy},
+  {"sin", mpfr_sin},
+  {"cos", mpfr_cos},
+  {"tan", mpfr_tan},
+  {"asin", mpfr_asin},
+  {"acos", mpfr_acos},
+  {"atan", mpfr_atan},
+  {"sinh", mpfr_sinh},
+  {"cosh", mpfr_cosh},
+  {"tanh", mpfr_tanh},
+  {"asinh", mpfr_asinh},
+  {"acosh", mpfr_acosh},
+  {"atanh", mpfr_atanh},
   {"expm1", mpfr_expm1},
   {"gamma", mpfr_gamma},
-  {"lngamma", mpfr_lngamma},
-  {"log", mpfr_log},
-  {"log10", mpfr_log10},
-  {"log2", mpfr_log2},
-  {"sin", mpfr_sin},
-  {"sinh", mpfr_sinh},
-  {"sqrt", mpfr_sqrt},
-  {"tan", mpfr_tan},
-  {"tanh", mpfr_tanh},
   {"zeta", mpfr_zeta},
+  {"erf", mpfr_erf},
 // 2005.0922
 // appended functions to mpfr-2.2.0
-#if (MPFR_VERSION >= MPFR_VERSION_NUM(2,2,0))
-  {"cot", mpfr_cot},
-  {"coth", mpfr_coth},
-  {"csc", mpfr_csc},
-  {"csch", mpfr_csch},
-  {"eint", mpfr_eint},
-  {"erfc", mpfr_erfc},
   {"sec", mpfr_sec},
+  {"csc", mpfr_csc},
+  {"cot", mpfr_cot},
   {"sech", mpfr_sech},
-#endif
-#if (MPFR_VERSION >= MPFR_VERSION_NUM(2,3,0))
-  {"j0", mpfr_j0},
-  {"j1", mpfr_j1},
-  {"y0", mpfr_y0},
-  {"y1", mpfr_y1},
-#endif
-  {"expm1", mpfr_expm1},
-  {"exp10", mpfr_exp10},
-  {"exp2", mpfr_exp2},
-  {"li2", mpfr_li2}, // 2.4
-#if (MPFR_VERSION >= MPFR_VERSION_NUM(3,0,0))
-  {"ai", mpfr_ai}, // 3.0
-  //{"bi", mpfr_bi},
-  {"digamma", mpfr_digamma}, // 3.0
-#endif
+  {"csch", mpfr_csch},
+  {"coth", mpfr_coth},
+  {"eint", mpfr_eint},
+  {"lngamma", mpfr_lngamma},
+  {"erfc", mpfr_erfc},
   {0, 0}
 };
 
@@ -282,171 +228,28 @@ struct functions fns[] =
 static void
 mpfr_factor (mpfr_t ret)
 {
-  mpfr_t tmp, tmp2;
+  mpfr_t tmp;
+  int i;
 
   mpfr_init2 (tmp, mpfr_get_prec (ret));
-  mpfr_init2 (tmp2, mpfr_get_prec (ret));
 
-  for (int i = 0; fns[i].spelling != 0; i++)
+  for (i = 0; fns[i].spelling != 0; i++)
     {
       char *spelling = fns[i].spelling;
       int len = strlen (spelling);
       if (strncmp (spelling, bp - 1, len) == 0 && ! isalnum (bp[-1 + len]))
 	{
 	  bp += len - 1;
-
 	  skip ();
 	  if (ch != '(')
 	    new_error ("mpfr_factor 1");
-
 	  skip ();
 	  mpfr_expr (tmp);
-
 	  if (ch != ')')
 	    new_error ("mpfr_factor 2");
-
 	  skip ();
-
 	  (fns[i].evalfn) (ret, tmp, default_rmode);
-
           mpfr_clear (tmp);
-
-	  return;
-	}
-    }
-
-  for (int i = 0; int_fns[i].spelling != 0; i++)
-    {
-      char *spelling = int_fns[i].spelling;
-      int len = strlen (spelling);
-      if (strncmp (spelling, bp - 1, len) == 0 && ! isalnum (bp[-1 + len]))
-	{
-	  bp += len - 1;
-
-	  skip ();
-	  if (ch != '(')
-	    new_error ("mpfr_factor 1");
-
-	  skip ();
-	  mpfr_expr (tmp);
-
-	  if (ch != ')')
-	    new_error ("mpfr_factor 2");
-
-	  skip ();
-
-	  (int_fns[i].evalfn) (ret, tmp);
-
-          mpfr_clear (tmp);
-
-	  return;
-	}
-    }
-
-  for (int i = 0; twoarg_fns[i].spelling != 0; i++)
-    {
-      char *spelling = twoarg_fns[i].spelling;
-      int len = strlen (spelling);
-      if (strncmp (spelling, bp - 1, len) == 0 && ! isalnum (bp[-1 + len]))
-	{
-	  bp += len - 1;
-
-	  skip ();
-	  if (ch != '(')
-	    new_error ("mpfr_factor 1");
-
-	  skip ();
-	  mpfr_expr (tmp);
-
-	  skip ();
-	  if (ch != ',')
-	    new_error ("mpfr_factor 2");
-
-	  skip ();
-	  mpfr_expr (tmp2);
-
-	  skip ();
-	  if (ch != ')')
-	    new_error ("mpfr_factor 3");
-
-	  skip ();
-
-	  (twoarg_fns[i].evalfn) (ret, tmp, tmp2, default_rmode);
-
-          mpfr_clear (tmp);
-          mpfr_clear (tmp2);
-
-	  return;
-	}
-    }
-
-  for (int i = 0; int_arg_fns[i].spelling != 0; i++)
-    {
-      char *spelling = int_arg_fns[i].spelling;
-      int len = strlen (spelling);
-      if (strncmp (spelling, bp - 1, len) == 0 && ! isalnum (bp[-1 + len]))
-	{
-	  long int n;
-
-	  bp += len - 1;
-
-	  skip ();
-	  if (ch != '(')
-	    new_error ("mpfr_factor 1");
-
-	  skip ();
-	  mpfr_expr (tmp);
-	  n = mpfr_get_ui (tmp, default_rmode);
-
-	  skip ();
-	  if (ch != ',')
-	    new_error ("mpfr_factor 2");
-
-	  skip ();
-	  mpfr_expr (tmp2);
-
-	  skip ();
-	  if (ch != ')')
-	    new_error ("mpfr_factor 3");
-
-	  skip ();
-
-	  (int_arg_fns[i].evalfn) (ret, n, tmp2, default_rmode);
-
-          mpfr_clear (tmp);
-          mpfr_clear (tmp2);
-
-	  return;
-	}
-    }
-
-  for (int i = 0; log_fns[i].spelling != 0; i++)
-    {
-      char *spelling = log_fns[i].spelling;
-      int len = strlen (spelling);
-      if (strncmp (spelling, bp - 1, len) == 0 && ! isalnum (bp[-1 + len]))
-	{
-	  int sign;
-
-	  bp += len - 1;
-
-	  skip ();
-	  if (ch != '(')
-	    new_error ("mpfr_factor 1");
-
-	  skip ();
-	  mpfr_expr (tmp);
-
-	  skip ();
-	  if (ch != ')')
-	    new_error ("mpfr_factor 2");
-
-	  skip ();
-
-	  (log_fns[i].evalfn) (ret, &sign, tmp, default_rmode);
-
-          mpfr_clear (tmp);
-
 	  return;
 	}
     }
@@ -477,11 +280,6 @@ static void
 mpfr_number (mpfr_t ret)
 {
   char *endp;
-
-  /* Exit */
-  if (strncmp ("exit", bp - 1, 4) == 0 || strncmp ("x", bp - 1, 1) == 0
-	|| strncmp ("quit", bp - 1, 4) == 0 || strncmp ("q", bp - 1, 1) == 0)
-    exit(0);
 
   /* Pi */
   if (strncmp ("pi", bp - 1, 2) == 0 && ! isalnum (bp[1]))
@@ -516,7 +314,7 @@ mpfr_number (mpfr_t ret)
       return;
     }
   if (ch != '.' && (ch < '0' || ch > '9'))
-    new_error ("mpfr_number 2");
+   new_error ("mpfr_number 2");
   mpfr_strtofr (ret, bp - 1, &endp, 10, default_rmode);
   if (endp == bp - 1)
     new_error ("mpfr_number 3");
@@ -536,7 +334,7 @@ main (int argc, char *argv[])
                       /* tmp_long[1].prec = prec + 2 * ZIV_PREC */
   mp_exp_t tmp_long_exp[2];
 //  char tmp_long_str[2][2500]; /* ceil(8192 * log10(2)) = 2467 */
-  char *tmp_long_str[2] = {0, 0}; /* ceil(8192 * log10(2)) = 2467 */
+  char *tmp_long_str[2]; /* ceil(8192 * log10(2)) = 2467 */
 
   while (argc >= 2)
     {
@@ -569,10 +367,6 @@ main (int argc, char *argv[])
       else
 	break;
     }
-  if (tmp_long_str[0] == 0)
-    tmp_long_str[0] = (char *)malloc(sizeof(char) * ceil((prec + ZIV_PREC) * log10(2)));
-  if (tmp_long_str[1] == 0)
-    tmp_long_str[1] = (char *)malloc(sizeof(char) * ceil((prec + ZIV_PREC) * log10(2)));
 
   if (argc >= 2)
     {
@@ -646,4 +440,3 @@ main (int argc, char *argv[])
 
   exit (0);
 }
-
