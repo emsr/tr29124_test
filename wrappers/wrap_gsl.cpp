@@ -50,14 +50,14 @@ airy_bi(double x)
 
 /// Associated Laguerre polynomials.
 double
-assoc_laguerre(unsigned int n, unsigned int m, double x)
+assoc_laguerre(unsigned int n, unsigned int alpha, double x)
 {
   gsl_sf_result result;
-  int stat = gsl_sf_laguerre_n_e(static_cast<int>(n), static_cast<int>(m), x, &result);
+  int stat = gsl_sf_laguerre_n_e(static_cast<int>(n), static_cast<double>(alpha), x, &result);
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in assoc_laguerre:");
-      msg << " n=" << n << " m=" << m << " x=" << x;
+      msg << " n=" << n << " alpha=" << alpha << " x=" << x;
       throw std::runtime_error(msg.str());
     }
   else

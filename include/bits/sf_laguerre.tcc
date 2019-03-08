@@ -60,7 +60,7 @@ namespace __detail
    *        of degree @f$ n @f$, order @f$ \alpha > -1 @f$ for large n.
    * Abramowitz & Stegun, 13.5.21
    *
-   * @tparam _Tpa The type of the degree.
+   * @tparam _Tpa The type of the order.
    * @tparam _Tp The type of the parameter.
    * @param __n The degree of the Laguerre function.
    * @param __alpha1 The order of the Laguerre function.
@@ -118,7 +118,7 @@ namespace __detail
    *
    * This is from the GNU Scientific Library.
    *
-   * @tparam _Tpa The type of the degree.
+   * @tparam _Tpa The type of the order.
    * @tparam _Tp The type of the parameter.
    * @param __n The degree of the Laguerre function.
    * @param __alpha1 The order of the Laguerre function.
@@ -176,7 +176,7 @@ namespace __detail
    *    L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
    * @f]
    *
-   * @tparam _Tpa The type of the degree.
+   * @tparam _Tpa The type of the order.
    * @tparam _Tp The type of the parameter.
    * @param __n The degree of the Laguerre function.
    * @param __alpha1 The order of the Laguerre function.
@@ -303,7 +303,7 @@ namespace __detail
    * 	 L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
    * @f]
    *
-   * @tparam _Tpa The type of the degree.
+   * @tparam _Tpa The type of the order.
    * @tparam _Tp The type of the parameter.
    * @param __n The degree of the Laguerre function.
    * @param __alpha1 The order of the Laguerre function.
@@ -315,7 +315,7 @@ namespace __detail
     _Tp
     __laguerre(unsigned int __n, _Tpa __alpha1, _Tp __x)
     {
-      const unsigned int __max_iter = 10000000;
+      const unsigned int __n_huge = 10000000;
       if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__n == 0)
@@ -329,7 +329,7 @@ namespace __detail
 	    __prod *= (_Tp(__alpha1) + _Tp(__k)) / _Tp(__k);
 	  return __prod;
 	}
-      else if (__n > __max_iter && _Tp(__alpha1) > -_Tp{1}
+      else if (__n > __n_huge && _Tp(__alpha1) > -_Tp{1}
 	    && __x < _Tp{2} * (_Tp(__alpha1) + _Tp{1}) + _Tp(4 * __n))
 	return __laguerre_large_n(__n, __alpha1, __x);
       else if (_Tp(__alpha1) >= _Tp{0}
@@ -354,6 +354,7 @@ namespace __detail
    * 	 L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
    * @f]
    *
+   * @tparam _Tpa The type of the order.
    * @tparam _Tp The type of the parameter
    * @param __n The degree
    * @param __m The order
@@ -361,10 +362,10 @@ namespace __detail
    * @return The value of the associated Laguerre polynomial of order n,
    *         degree m, and argument x.
    */
-  template<typename _Tp>
+  template<typename _Tpa, typename _Tp>
     _Tp
-    __assoc_laguerre(unsigned int __n, unsigned int __m, _Tp __x)
-    { return __laguerre<unsigned int, _Tp>(__n, __m, __x); }
+    __assoc_laguerre(unsigned int __n, _Tpa __alpha, _Tp __x)
+    { return __laguerre<_Tpa, _Tp>(__n, __alpha, __x); }
 
 
   /**

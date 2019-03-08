@@ -3,6 +3,7 @@ check_airy_ai
 check_airy_bi
 check_assoc_laguerre
 check_assoc_legendre
+check_bell
 check_bernoulli
 check_beta
 check_binomial
@@ -71,6 +72,7 @@ check_jacobi_sn
 check_jacobi_zeta
 check_laguerre
 check_lbinomial
+check_lah
 check_ldouble_factorial
 check_legendre
 check_legendre

@@ -13,7 +13,7 @@ double airy_ai(double x);
 double airy_bi(double x);
 
 /// Associated Laguerre polynomials.
-double assoc_laguerre(unsigned int n, unsigned int m, double x);
+double assoc_laguerre(unsigned int n, unsigned int alpha, double x);
 
 /// Associated Legendre functions.
 double assoc_legendre(unsigned int l, unsigned int m, double x);

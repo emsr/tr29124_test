@@ -807,6 +807,8 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
 
     bool assoc_legendre_header = (funcname == "assoc_legendre");
 
+    bool do_assoc_laguerre = (funcname == "assoc_laguerre");
+
     std::string templparm;
     if (!std::is_floating_point_v<Arg1>
      && !std::is_floating_point_v<Arg2>
@@ -840,7 +842,10 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
     std::string numname(type_strings<Val>::type());
 
     std::string structname = test_struct_name;
-    structname += '<' + numname + '>';
+    if (do_assoc_laguerre)
+      structname += "<unsigned int, " + numname + '>';
+    else
+      structname += '<' + numname + '>';
 
     for (const auto x : argument1)
       {
@@ -959,7 +964,10 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
     if (write_main)
       {
 	std::string structname = test_struct_name;
-	structname += "<Ret>";
+	if (do_assoc_laguerre)
+	  structname += "<unsigned int, Ret>";
+	else
+	  structname += "<Ret>";
 
 	std::string tname = "Ret";
 	if (ret_complex)

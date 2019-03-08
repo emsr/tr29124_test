@@ -28,11 +28,11 @@
 #include <complex>
 
 // Associated Laguerre polynomials.
-template<typename _Tp>
+template<typename _Tpa, typename _Tp>
   struct testcase_assoc_laguerre
   {
     unsigned int n;
-    unsigned int m;
+    _Tpa alpha;
     _Tp x;
     _Tp f0;
     _Tp f;

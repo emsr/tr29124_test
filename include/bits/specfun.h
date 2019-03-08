@@ -370,7 +370,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Associated Laguerre polynomials
 
   /**
-   * Return the associated Laguerre polynomial @f$ L_n^m(x) @f$
+   * Return the associated Laguerre polynomial @f$ L_n^{(m)}(x) @f$
    * of order @f$ n @f$, degree @f$ m @f$, and @c float argument @f$ x @f$.
    *
    * @see assoc_laguerre for more details.
@@ -380,7 +380,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__assoc_laguerre<float>(__n, __m, __x); }
 
   /**
-   * Return the associated Laguerre polynomial @f$ L_n^m(x) @f$
+   * Return the associated Laguerre polynomial @f$ L_n^{(m)}(x) @f$
    * of order @f$ n @f$, degree @f$ m @f$ and <tt>long double</tt>
    * argument @f$ x @f$.
    *
@@ -391,7 +391,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__assoc_laguerre<long double>(__n, __m, __x); }
 
   /**
-   * Return the associated Laguerre polynomial @f$ L_n^m(x) @f$
+   * Return the associated Laguerre polynomial @f$ L_n^{(m)}(x) @f$
    * of nonnegative degree @f$ n @f$, nonnegative order @f$ m @f$
    * and real argument @f$ x @f$.
    *
@@ -407,7 +407,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The associated Laguerre polynomial is defined for integral
    * order @f$ \alpha = m @f$ by:
    * @f[
-   * 	 L_n^m(x) = (-1)^m \frac{d^m}{dx^m} L_{n + m}(x)
+   * 	 L_n^{(m)}(x) = (-1)^m \frac{d^m}{dx^m} L_{n + m}(x)
    * @f]
    * where the Laguerre polynomial is defined by:
    * @f[
@@ -428,6 +428,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return __detail::__assoc_laguerre<__type>(__n, __m, __x);
+    }
+
+  /**
+   * Return the associated Laguerre polynomial @f$ L_n^{(\alpha)}(x) @f$
+   * of nonnegative degree @f$ n @f$, order @f$ \alpha @f$
+   * and real argument @f$ x @f$.
+   *
+   * @tparam _Talpha The (signed integer or floating-point) type
+   *                 of the degree @c __alpha1.
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   */
+  template<typename _Talpha, typename _Tp>
+    inline __gnu_cxx::fp_promote_t<_Talpha, _Tp>
+    assoc_laguerre(unsigned int __n, _Talpha __alpha1, _Tp __x)
+    {
+      using __type = __gnu_cxx::fp_promote_t<_Talpha, _Tp>;
+      return __detail::__assoc_laguerre<__type>(__n, __alpha1, __x);
     }
 
   // Associated Legendre functions
@@ -6668,26 +6685,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * @brief  Return the Students T probability function.
-   *
-   * The students T propability function is related to the incomplete beta function:
-   * @f[
-   *   A(t|\nu) = 1 - I_{\frac{\nu}{\nu + t^2}}(\frac{\nu}{2}, \frac{1}{2})
-   *   A(t|\nu) = 
-   * @f]
-   *
-   * @param __t 
-   * @param __nu 
-   */
-  template<typename _Tt, typename _Tp>
-    __gnu_cxx::fp_promote_t<_Tp>
-    student_t_p(_Tt __t, unsigned int __nu)
-    {
-      using __type = __gnu_cxx::fp_promote_t<_Tp>;
-      return std::__detail::__student_t_p<__type>(__t, __nu);
-    }
-
-  /**
    * @brief  Return the complement of the Students T probability function.
    *
    * The complement of the students T propability function is:
@@ -6708,26 +6705,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * @brief  Return the F-distribution propability function.
-   * This returns the probability that the observed chi-square for a correct model
-   * exceeds the value @f$ \chi^2 @f$.
+   * @brief  Return the Students T probability function.
    *
-   * The f-distribution propability function is related to the incomplete beta function:
+   * The students T propability function is related to the incomplete beta function:
    * @f[
-   *   Q(F|\nu_1, \nu_2) = I_{\frac{\nu_2}{\nu_2 + \nu_1 F}}
-   * 			     (\frac{\nu_2}{2}, \frac{\nu_1}{2})
+   *   A(t|\nu) = 1 - I_{\frac{\nu}{\nu + t^2}}(\frac{\nu}{2}, \frac{1}{2})
+   *   A(t|\nu) = 
    * @f]
    *
-   * @param __nu1 The number of degrees of freedom of sample 1
-   * @param __nu2 The number of degrees of freedom of sample 2
-   * @param __F The F statistic
+   * @param __t 
+   * @param __nu 
    */
-  template<typename _Tp>
+  template<typename _Tt, typename _Tp>
     __gnu_cxx::fp_promote_t<_Tp>
-    fisher_f_p(_Tp __F, unsigned int __nu1, unsigned int __nu2)
+    student_t_p(_Tt __t, unsigned int __nu)
     {
       using __type = __gnu_cxx::fp_promote_t<_Tp>;
-      return std::__detail::__fisher_f_p<__type>(__F, __nu1, __nu2);
+      return std::__detail::__student_t_p<__type>(__t, __nu);
     }
 
   /**
@@ -6753,6 +6747,29 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       using __type = __gnu_cxx::fp_promote_t<_Tp>;
       return std::__detail::__fisher_f_pdf<__type>(__F, __nu1, __nu2);
+    }
+
+  /**
+   * @brief  Return the F-distribution propability function.
+   * This returns the probability that the observed chi-square for a correct model
+   * exceeds the value @f$ \chi^2 @f$.
+   *
+   * The f-distribution propability function is related to the incomplete beta function:
+   * @f[
+   *   Q(F|\nu_1, \nu_2) = I_{\frac{\nu_2}{\nu_2 + \nu_1 F}}
+   * 			     (\frac{\nu_2}{2}, \frac{\nu_1}{2})
+   * @f]
+   *
+   * @param __nu1 The number of degrees of freedom of sample 1
+   * @param __nu2 The number of degrees of freedom of sample 2
+   * @param __F The F statistic
+   */
+  template<typename _Tp>
+    __gnu_cxx::fp_promote_t<_Tp>
+    fisher_f_p(_Tp __F, unsigned int __nu1, unsigned int __nu2)
+    {
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
+      return std::__detail::__fisher_f_p<__type>(__F, __nu1, __nu2);
     }
 
   /**

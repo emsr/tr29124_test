@@ -29,6 +29,7 @@ CXX_TEST_INC_DIR = libstdc++_support
 
 INC_DIR = include/bits
 INCLUDES = -Iinclude -Icxx_fp_utils/include -Ipolynomial/include -Iquadrature/include
+MPREAL_INCLUDES = -I$(HOME)/mpreal
 
 FAD_DIR = 3rdparty/Faddeeva
 
@@ -64,6 +65,7 @@ BINS = \
        $(TEST_BIN_DIR)/test_anger_weber \
        $(TEST_BIN_DIR)/test_appell_f1 \
        $(TEST_BIN_DIR)/test_arith_geom_mean \
+       $(TEST_BIN_DIR)/test_assoc_laguerre \
        $(TEST_BIN_DIR)/test_bernoulli \
        $(TEST_BIN_DIR)/test_bessel \
        $(TEST_BIN_DIR)/test_bessel_asymp \
@@ -485,6 +487,7 @@ test: $(BINS) $(TEST_OUT_DIR)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_airy_roots > $(TEST_OUT_DIR)/test_airy_roots.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_anger_weber > $(TEST_OUT_DIR)/test_anger_weber.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_appell_f1 > $(TEST_OUT_DIR)/test_appell_f1.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_assoc_laguerre > $(TEST_OUT_DIR)/test_assoc_laguerre.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_bernoulli > $(TEST_OUT_DIR)/test_bernoulli.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_bessel > $(TEST_OUT_DIR)/test_bessel.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_bessel_asymp > $(TEST_OUT_DIR)/test_bessel_asymp.txt
@@ -816,6 +819,9 @@ $(TEST_BIN_DIR)/test_appell_f1: laboratories/appell_functions/test_appell_f1.cpp
 $(TEST_BIN_DIR)/test_arith_geom_mean: laboratories/norm_functions/test_arith_geom_mean.cpp
 	$(CXXMAX) -Iinclude -Icxx_fp_utils/include -Iwrappers -o $(TEST_BIN_DIR)/test_arith_geom_mean laboratories/norm_functions/test_arith_geom_mean.cpp -lquadmath
 
+$(TEST_BIN_DIR)/test_assoc_laguerre: laboratories/orthogonal_polynomials/test_assoc_laguerre.cpp
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_assoc_laguerre laboratories/orthogonal_polynomials/test_assoc_laguerre.cpp -lquadmath
+
 $(TEST_BIN_DIR)/test_bernoulli: wrappers_debug laboratories/bernoulli_functions/test_bernoulli.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_bernoulli laboratories/bernoulli_functions/test_bernoulli.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
@@ -835,7 +841,7 @@ $(TEST_BIN_DIR)/test_beta_inc: laboratories/beta_functions/test_beta_inc.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_beta_inc laboratories/beta_functions/test_beta_inc.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_binet: laboratories/gamma_functions/test_binet.cpp
-	$(CXXMAX) $(INCLUDES) -I. -Icxx_rational/include -o $(TEST_BIN_DIR)/test_binet laboratories/gamma_functions/test_binet.cpp -lquadmath
+	$(CXXMAX) $(INCLUDES) -Icxx_rational/include -o $(TEST_BIN_DIR)/test_binet laboratories/gamma_functions/test_binet.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_binet_float: laboratories/gamma_functions/test_binet_float.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_binet_float laboratories/gamma_functions/test_binet_float.cpp -lquadmath
@@ -877,7 +883,7 @@ $(TEST_BIN_DIR)/test_conf_hyperg_limit: laboratories/hypergeometric_functions/te
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_conf_hyperg_limit laboratories/hypergeometric_functions/test_conf_hyperg_limit.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_const: laboratories/constants/test_const.cpp
-	$(CXXMAX) $(INCLUDES) -I../mpreal -o $(TEST_BIN_DIR)/test_const laboratories/constants/test_const.cpp -lquadmath -lmpfr -lgmp
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/test_const laboratories/constants/test_const.cpp -lquadmath -lmpfr -lgmp
 
 $(TEST_BIN_DIR)/test_continued_fraction: continued_fractions/test_continued_fraction.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_continued_fraction continued_fractions/test_continued_fraction.cpp -lquadmath
@@ -922,7 +928,7 @@ $(TEST_BIN_DIR)/test_erfc: wrappers_debug laboratories/error_functions/test_erfc
 	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -Iwrappers -o $(TEST_BIN_DIR)/test_erfc laboratories/error_functions/test_erfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 $(TEST_BIN_DIR)/test_experfc: wrappers_debug laboratories/error_functions/test_experfc.cpp
-	$(CXXMAX) $(INCLUDES) -Iwrappers -I../mpreal -o $(TEST_BIN_DIR)/test_experfc laboratories/error_functions/test_experfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost -lmpfr -lgmp
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_experfc laboratories/error_functions/test_experfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost -lmpfr -lgmp
 
 $(TEST_BIN_DIR)/test_expint: wrappers_debug laboratories/exponential_integrals/test_expint.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_expint laboratories/exponential_integrals/test_expint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
@@ -1057,7 +1063,7 @@ $(TEST_BIN_DIR)/test_lentz_continued_fraction: continued_fractions/test_lentz_co
 	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_lentz_continued_fraction continued_fractions/test_lentz_continued_fraction.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_lerch: laboratories/zeta_functions/test_lerch.cpp
-	$(CXXMAX) $(INCLUDES) -I. -o $(TEST_BIN_DIR)/test_lerch laboratories/zeta_functions/test_lerch.cpp 3rdparty/lerchphi/Source/lerchphi.cpp -lquadmath
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_lerch laboratories/zeta_functions/test_lerch.cpp 3rdparty/lerchphi/Source/lerchphi.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_limits: laboratories/floating_point_tools/test_limits.cpp
 	$(CXXMAX) -Iinclude -o $(TEST_BIN_DIR)/test_limits laboratories/floating_point_tools/test_limits.cpp -lquadmath
@@ -1081,7 +1087,7 @@ $(TEST_BIN_DIR)/test_math_h: test_std_maths/test_math_h.cpp
 	$(CXX14) $(INCLUDES) -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o $(TEST_BIN_DIR)/test_math_h test_std_maths/test_math_h.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_maxint: laboratories/floating_point_tools/test_maxint.cpp
-	$(CXXMAX) $(INCLUDES) -I../mpreal -o $(TEST_BIN_DIR)/test_maxint laboratories/floating_point_tools/test_maxint.cpp -lquadmath -lmpfr
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/test_maxint laboratories/floating_point_tools/test_maxint.cpp -lquadmath -lmpfr
 
 $(TEST_BIN_DIR)/test_meixner: laboratories/orthogonal_polynomials/test_meixner.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_meixner laboratories/orthogonal_polynomials/test_meixner.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
@@ -1093,10 +1099,10 @@ $(TEST_BIN_DIR)/test_mittag_leffler: laboratories/mittag_leffler_functions/test_
 	$(CXXMAX) $(INCLUDES) -Iquadrature/include -o $(TEST_BIN_DIR)/test_mittag_leffler laboratories/mittag_leffler_functions/test_mittag_leffler.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_mod2pi: laboratories/floating_point_tools/test_mod2pi.cpp
-	$(CXXMAX) $(INCLUDES) -I../mpreal -o $(TEST_BIN_DIR)/test_mod2pi laboratories/floating_point_tools/test_mod2pi.cpp -lquadmath -lmpfr -lgmp
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/test_mod2pi laboratories/floating_point_tools/test_mod2pi.cpp -lquadmath -lmpfr -lgmp
 
 $(TEST_BIN_DIR)/test_mpreal: multiprecision/test_mpreal.cpp
-	$(CXXMAX) $(INCLUDES) -I../mpreal -o $(TEST_BIN_DIR)/test_mpreal multiprecision/test_mpreal.cpp -lquadmath -lmpfr -lgmp
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/test_mpreal multiprecision/test_mpreal.cpp -lquadmath -lmpfr -lgmp
 
 $(TEST_BIN_DIR)/test_notsospecfun: laboratories/elementary_functions/test_notsospecfun.cpp
 	$(CXXMAX) -Iinclude -Icxx_fp_utils/include -o $(TEST_BIN_DIR)/test_notsospecfun laboratories/elementary_functions/test_notsospecfun.cpp -lquadmath
@@ -1105,7 +1111,7 @@ $(TEST_BIN_DIR)/test_nric_bessel: laboratories/bessel_functions/test_nric_bessel
 	$(CXX14) $(INCLUDES) -Ilaboratories/bessel_functions -o $(TEST_BIN_DIR)/test_nric_bessel laboratories/bessel_functions/test_nric_bessel.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_numeric_limits: laboratories/floating_point_tools/test_numeric_limits.cpp
-	$(CXXMAX) $(INCLUDES) -I../mpreal -o $(TEST_BIN_DIR)/test_numeric_limits laboratories/floating_point_tools/test_numeric_limits.cpp -lquadmath -lmpfr -lgmp
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/test_numeric_limits laboratories/floating_point_tools/test_numeric_limits.cpp -lquadmath -lmpfr -lgmp
 
 $(TEST_BIN_DIR)/test_owens_t: wrappers_debug laboratories/error_functions/test_owens_t.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_owens_t laboratories/error_functions/test_owens_t.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
@@ -1114,7 +1120,7 @@ $(TEST_BIN_DIR)/test_parab_cyl: laboratories/parabolic_cylinder_functions/test_p
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_parab_cyl laboratories/parabolic_cylinder_functions/test_parab_cyl.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_polygamma: laboratories/gamma_functions/test_polygamma.cpp
-	$(CXXMAX) $(INCLUDES) -Iwrappers -Icontinued_fractions/include -I. -o $(TEST_BIN_DIR)/test_polygamma laboratories/gamma_functions/test_polygamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+	$(CXXMAX) $(INCLUDES) -Iwrappers -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_polygamma laboratories/gamma_functions/test_polygamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 $(TEST_BIN_DIR)/test_polylog: wrappers_debug laboratories/zeta_functions/test_polylog.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_polylog laboratories/zeta_functions/test_polylog.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_cephes
@@ -1222,25 +1228,25 @@ $(TEST_BIN_DIR)/hankel_toy_new: laboratories/bessel_functions/hankel_toy_new.cpp
 
 
 $(TEST_BIN_DIR)/build_bernoulli_2n_table: laboratories/bernoulli_functions/build_bernoulli_2n_table.cpp
-	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_bernoulli_2n_table laboratories/bernoulli_functions/build_bernoulli_2n_table.cpp -lquadmath -lmpfr
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/build_bernoulli_2n_table laboratories/bernoulli_functions/build_bernoulli_2n_table.cpp -lquadmath -lmpfr
 
 $(TEST_BIN_DIR)/build_zeta_trig_tables: laboratories/zeta_functions/build_zeta_trig_tables.cpp
-	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_zeta_trig_tables laboratories/zeta_functions/build_zeta_trig_tables.cpp -lquadmath -lmpfr
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/build_zeta_trig_tables laboratories/zeta_functions/build_zeta_trig_tables.cpp -lquadmath -lmpfr
 
 $(TEST_BIN_DIR)/build_zeta_deriv_table: laboratories/zeta_functions/build_zeta_deriv_table.cpp
-	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_zeta_deriv_table laboratories/zeta_functions/build_zeta_deriv_table.cpp -lquadmath -lmpfr
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/build_zeta_deriv_table laboratories/zeta_functions/build_zeta_deriv_table.cpp -lquadmath -lmpfr
 
 $(TEST_BIN_DIR)/build_etam1_table: laboratories/zeta_functions/build_etam1_table.cpp
-	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_etam1_table laboratories/zeta_functions/build_etam1_table.cpp -lquadmath -lmpfr
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/build_etam1_table laboratories/zeta_functions/build_etam1_table.cpp -lquadmath -lmpfr
 
 $(TEST_BIN_DIR)/build_zetam1_table: laboratories/zeta_functions/build_zetam1_table.cpp
-	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_zetam1_table laboratories/zeta_functions/build_zetam1_table.cpp -lquadmath -lmpfr
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/build_zetam1_table laboratories/zeta_functions/build_zetam1_table.cpp -lquadmath -lmpfr
 
 $(TEST_BIN_DIR)/build_nfact_zetanp1: laboratories/zeta_functions/build_nfact_zetanp1.cpp
-	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_nfact_zetanp1 laboratories/zeta_functions/build_nfact_zetanp1.cpp -lquadmath -lmpfr
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/build_nfact_zetanp1 laboratories/zeta_functions/build_nfact_zetanp1.cpp -lquadmath -lmpfr
 
 $(TEST_BIN_DIR)/build_zetahalfm1_table: laboratories/zeta_functions/build_zetahalfm1_table.cpp
-	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_zetahalfm1_table laboratories/zeta_functions/build_zetahalfm1_table.cpp -lquadmath -lmpfr
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/build_zetahalfm1_table laboratories/zeta_functions/build_zetahalfm1_table.cpp -lquadmath -lmpfr
 
 $(TEST_BIN_DIR)/build_gamma_lanczos: laboratories/gamma_functions/build_gamma_lanczos.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/build_gamma_lanczos laboratories/gamma_functions/build_gamma_lanczos.cpp -lquadmath -lmpfr
@@ -1249,503 +1255,503 @@ $(TEST_BIN_DIR)/build_gamma_spouge: laboratories/gamma_functions/build_gamma_spo
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/build_gamma_spouge laboratories/gamma_functions/build_gamma_spouge.cpp -lquadmath -lmpfr
 
 $(TEST_BIN_DIR)/build_gamma_recip: laboratories/gamma_functions/build_gamma_recip.cpp
-	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_gamma_recip laboratories/gamma_functions/build_gamma_recip.cpp -lquadmath -lmpfr
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/build_gamma_recip laboratories/gamma_functions/build_gamma_recip.cpp -lquadmath -lmpfr
 
 $(TEST_BIN_DIR)/build_inv_erf_coefs: laboratories/error_functions/build_inv_erf_coefs.cpp
-	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_inv_erf_coefs laboratories/error_functions/build_inv_erf_coefs.cpp -lquadmath -lmpfr
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/build_inv_erf_coefs laboratories/error_functions/build_inv_erf_coefs.cpp -lquadmath -lmpfr
 
 $(TEST_BIN_DIR)/build_sqrt_table: laboratories/elementary_functions/build_sqrt_table.cpp
-	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_sqrt_table laboratories/elementary_functions/build_sqrt_table.cpp -lquadmath -lmpfr
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/build_sqrt_table laboratories/elementary_functions/build_sqrt_table.cpp -lquadmath -lmpfr
 
 $(TEST_BIN_DIR)/build_sincos_tables: laboratories/elementary_functions/build_sincos_tables.cpp
-	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_sincos_tables laboratories/elementary_functions/build_sincos_tables.cpp -lquadmath -lmpfr
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/build_sincos_tables laboratories/elementary_functions/build_sincos_tables.cpp -lquadmath -lmpfr
 
 $(TEST_BIN_DIR)/build_atan_table: laboratories/elementary_functions/build_atan_table.cpp
-	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_atan_table laboratories/elementary_functions/build_atan_table.cpp -lquadmath -lmpfr
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/build_atan_table laboratories/elementary_functions/build_atan_table.cpp -lquadmath -lmpfr
 
 $(TEST_BIN_DIR)/build_cordic: laboratories/elementary_functions/build_cordic.cpp
-	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_cordic laboratories/elementary_functions/build_cordic.cpp -lquadmath -lmpfr -lgmp
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/build_cordic laboratories/elementary_functions/build_cordic.cpp -lquadmath -lmpfr -lgmp
 
 $(TEST_BIN_DIR)/build_log_table: laboratories/elementary_functions/build_log_table.cpp
-	$(CXXMAX) $(INCLUDES) -I$(HOME)/mpreal -o $(TEST_BIN_DIR)/build_log_table laboratories/elementary_functions/build_log_table.cpp -lquadmath -lmpfr
+	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/build_log_table laboratories/elementary_functions/build_log_table.cpp -lquadmath -lmpfr
 
 
 $(CHECK_DIR)/check_airy_ai: $(CHECK_DIR)/check_airy_ai.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_airy_ai $(CHECK_DIR)/check_airy_ai.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_airy_ai $(CHECK_DIR)/check_airy_ai.cc -lquadmath
 
 $(CHECK_DIR)/check_airy_bi: $(CHECK_DIR)/check_airy_bi.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_airy_bi $(CHECK_DIR)/check_airy_bi.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_airy_bi $(CHECK_DIR)/check_airy_bi.cc -lquadmath
 
 $(CHECK_DIR)/check_assoc_laguerre: $(CHECK_DIR)/check_assoc_laguerre.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_assoc_laguerre $(CHECK_DIR)/check_assoc_laguerre.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_assoc_laguerre $(CHECK_DIR)/check_assoc_laguerre.cc -lquadmath
 
 $(CHECK_DIR)/check_assoc_legendre: $(CHECK_DIR)/check_assoc_legendre.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_assoc_legendre $(CHECK_DIR)/check_assoc_legendre.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_assoc_legendre $(CHECK_DIR)/check_assoc_legendre.cc -lquadmath
 
 $(CHECK_DIR)/check_bell: $(CHECK_DIR)/check_bell.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_bell $(CHECK_DIR)/check_bell.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_bell $(CHECK_DIR)/check_bell.cc -lquadmath
 
 $(CHECK_DIR)/check_bernoulli: $(CHECK_DIR)/check_bernoulli.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_bernoulli $(CHECK_DIR)/check_bernoulli.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_bernoulli $(CHECK_DIR)/check_bernoulli.cc -lquadmath
 
 $(CHECK_DIR)/check_beta: $(CHECK_DIR)/check_beta.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_beta $(CHECK_DIR)/check_beta.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_beta $(CHECK_DIR)/check_beta.cc -lquadmath
 
 $(CHECK_DIR)/check_binomial: $(CHECK_DIR)/check_binomial.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_binomial $(CHECK_DIR)/check_binomial.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_binomial $(CHECK_DIR)/check_binomial.cc -lquadmath
 
 $(CHECK_DIR)/check_chebyshev_t: $(CHECK_DIR)/check_chebyshev_t.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_chebyshev_t $(CHECK_DIR)/check_chebyshev_t.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_chebyshev_t $(CHECK_DIR)/check_chebyshev_t.cc -lquadmath
 
 $(CHECK_DIR)/check_chebyshev_u: $(CHECK_DIR)/check_chebyshev_u.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_chebyshev_u $(CHECK_DIR)/check_chebyshev_u.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_chebyshev_u $(CHECK_DIR)/check_chebyshev_u.cc -lquadmath
 
 $(CHECK_DIR)/check_chebyshev_v: $(CHECK_DIR)/check_chebyshev_v.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_chebyshev_v $(CHECK_DIR)/check_chebyshev_v.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_chebyshev_v $(CHECK_DIR)/check_chebyshev_v.cc -lquadmath
 
 $(CHECK_DIR)/check_chebyshev_w: $(CHECK_DIR)/check_chebyshev_w.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_chebyshev_w $(CHECK_DIR)/check_chebyshev_w.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_chebyshev_w $(CHECK_DIR)/check_chebyshev_w.cc -lquadmath
 
 $(CHECK_DIR)/check_chi: $(CHECK_DIR)/check_chi.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_chi $(CHECK_DIR)/check_chi.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_chi $(CHECK_DIR)/check_chi.cc -lquadmath
 
 $(CHECK_DIR)/check_clausen_cl: $(CHECK_DIR)/check_clausen_cl.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_clausen_cl $(CHECK_DIR)/check_clausen_cl.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_clausen_cl $(CHECK_DIR)/check_clausen_cl.cc -lquadmath
 
 $(CHECK_DIR)/check_comp_ellint_1: $(CHECK_DIR)/check_comp_ellint_1.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_comp_ellint_1 $(CHECK_DIR)/check_comp_ellint_1.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_comp_ellint_1 $(CHECK_DIR)/check_comp_ellint_1.cc -lquadmath
 
 $(CHECK_DIR)/check_comp_ellint_2: $(CHECK_DIR)/check_comp_ellint_2.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_comp_ellint_2 $(CHECK_DIR)/check_comp_ellint_2.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_comp_ellint_2 $(CHECK_DIR)/check_comp_ellint_2.cc -lquadmath
 
 $(CHECK_DIR)/check_comp_ellint_3: $(CHECK_DIR)/check_comp_ellint_3.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_comp_ellint_3 $(CHECK_DIR)/check_comp_ellint_3.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_comp_ellint_3 $(CHECK_DIR)/check_comp_ellint_3.cc -lquadmath
 
 $(CHECK_DIR)/check_comp_ellint_d: $(CHECK_DIR)/check_comp_ellint_d.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_comp_ellint_d $(CHECK_DIR)/check_comp_ellint_d.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_comp_ellint_d $(CHECK_DIR)/check_comp_ellint_d.cc -lquadmath
 
 $(CHECK_DIR)/check_conf_hyperg: $(CHECK_DIR)/check_conf_hyperg.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_conf_hyperg $(CHECK_DIR)/check_conf_hyperg.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_conf_hyperg $(CHECK_DIR)/check_conf_hyperg.cc -lquadmath
 
 $(CHECK_DIR)/check_conf_hyperg_lim: $(CHECK_DIR)/check_conf_hyperg_lim.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_conf_hyperg_lim $(CHECK_DIR)/check_conf_hyperg_lim.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_conf_hyperg_lim $(CHECK_DIR)/check_conf_hyperg_lim.cc -lquadmath
 
 $(CHECK_DIR)/check_coshint: $(CHECK_DIR)/check_coshint.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_coshint $(CHECK_DIR)/check_coshint.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_coshint $(CHECK_DIR)/check_coshint.cc -lquadmath
 
 $(CHECK_DIR)/check_cosint: $(CHECK_DIR)/check_cosint.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cosint $(CHECK_DIR)/check_cosint.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cosint $(CHECK_DIR)/check_cosint.cc -lquadmath
 
 $(CHECK_DIR)/check_cos_pi: $(CHECK_DIR)/check_cos_pi.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cos_pi $(CHECK_DIR)/check_cos_pi.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cos_pi $(CHECK_DIR)/check_cos_pi.cc -lquadmath
 
 $(CHECK_DIR)/check_cyl_bessel_i: $(CHECK_DIR)/check_cyl_bessel_i.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cyl_bessel_i $(CHECK_DIR)/check_cyl_bessel_i.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cyl_bessel_i $(CHECK_DIR)/check_cyl_bessel_i.cc -lquadmath
 
 $(CHECK_DIR)/check_cyl_bessel_j: $(CHECK_DIR)/check_cyl_bessel_j.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cyl_bessel_j $(CHECK_DIR)/check_cyl_bessel_j.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cyl_bessel_j $(CHECK_DIR)/check_cyl_bessel_j.cc -lquadmath
 
 $(CHECK_DIR)/check_cyl_bessel_k: $(CHECK_DIR)/check_cyl_bessel_k.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cyl_bessel_k $(CHECK_DIR)/check_cyl_bessel_k.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cyl_bessel_k $(CHECK_DIR)/check_cyl_bessel_k.cc -lquadmath
 
 $(CHECK_DIR)/check_cyl_hankel_1: $(CHECK_DIR)/check_cyl_hankel_1.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cyl_hankel_1 $(CHECK_DIR)/check_cyl_hankel_1.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cyl_hankel_1 $(CHECK_DIR)/check_cyl_hankel_1.cc -lquadmath
 
 $(CHECK_DIR)/check_cyl_hankel_2: $(CHECK_DIR)/check_cyl_hankel_2.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cyl_hankel_2 $(CHECK_DIR)/check_cyl_hankel_2.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cyl_hankel_2 $(CHECK_DIR)/check_cyl_hankel_2.cc -lquadmath
 
 $(CHECK_DIR)/check_cyl_neumann: $(CHECK_DIR)/check_cyl_neumann.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cyl_neumann $(CHECK_DIR)/check_cyl_neumann.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cyl_neumann $(CHECK_DIR)/check_cyl_neumann.cc -lquadmath
 
 $(CHECK_DIR)/check_dawson: $(CHECK_DIR)/check_dawson.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_dawson $(CHECK_DIR)/check_dawson.cc -lquadmath -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_dawson $(CHECK_DIR)/check_dawson.cc -lquadmath -lquadmath
 
 $(CHECK_DIR)/check_debye: $(CHECK_DIR)/check_debye.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_debye $(CHECK_DIR)/check_debye.cc -lquadmath -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_debye $(CHECK_DIR)/check_debye.cc -lquadmath -lquadmath
 
 $(CHECK_DIR)/check_digamma: $(CHECK_DIR)/check_digamma.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_digamma $(CHECK_DIR)/check_digamma.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_digamma $(CHECK_DIR)/check_digamma.cc -lquadmath
 
 $(CHECK_DIR)/check_dilog: $(CHECK_DIR)/check_dilog.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_dilog $(CHECK_DIR)/check_dilog.cc -lquadmath -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_dilog $(CHECK_DIR)/check_dilog.cc -lquadmath -lquadmath
 
 $(CHECK_DIR)/check_dirichlet_beta: $(CHECK_DIR)/check_dirichlet_beta.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_dirichlet_beta $(CHECK_DIR)/check_dirichlet_beta.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_dirichlet_beta $(CHECK_DIR)/check_dirichlet_beta.cc -lquadmath
 
 $(CHECK_DIR)/check_dirichlet_eta: $(CHECK_DIR)/check_dirichlet_eta.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_dirichlet_eta $(CHECK_DIR)/check_dirichlet_eta.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_dirichlet_eta $(CHECK_DIR)/check_dirichlet_eta.cc -lquadmath
 
 $(CHECK_DIR)/check_dirichlet_lambda: $(CHECK_DIR)/check_dirichlet_lambda.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_dirichlet_lambda $(CHECK_DIR)/check_dirichlet_lambda.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_dirichlet_lambda $(CHECK_DIR)/check_dirichlet_lambda.cc -lquadmath
 
 $(CHECK_DIR)/check_double_factorial: $(CHECK_DIR)/check_double_factorial.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_double_factorial $(CHECK_DIR)/check_double_factorial.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_double_factorial $(CHECK_DIR)/check_double_factorial.cc -lquadmath
 
 $(CHECK_DIR)/check_ellint_1: $(CHECK_DIR)/check_ellint_1.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellint_1 $(CHECK_DIR)/check_ellint_1.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellint_1 $(CHECK_DIR)/check_ellint_1.cc -lquadmath
 
 $(CHECK_DIR)/check_ellint_2: $(CHECK_DIR)/check_ellint_2.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellint_2 $(CHECK_DIR)/check_ellint_2.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellint_2 $(CHECK_DIR)/check_ellint_2.cc -lquadmath
 
 $(CHECK_DIR)/check_ellint_3: $(CHECK_DIR)/check_ellint_3.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellint_3 $(CHECK_DIR)/check_ellint_3.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellint_3 $(CHECK_DIR)/check_ellint_3.cc -lquadmath
 
 $(CHECK_DIR)/check_ellint_d: $(CHECK_DIR)/check_ellint_d.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellint_d $(CHECK_DIR)/check_ellint_d.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellint_d $(CHECK_DIR)/check_ellint_d.cc -lquadmath
 
 $(CHECK_DIR)/check_ellint_rc: $(CHECK_DIR)/check_ellint_rc.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellint_rc $(CHECK_DIR)/check_ellint_rc.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellint_rc $(CHECK_DIR)/check_ellint_rc.cc -lquadmath
 
 $(CHECK_DIR)/check_ellint_rd: $(CHECK_DIR)/check_ellint_rd.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellint_rd $(CHECK_DIR)/check_ellint_rd.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellint_rd $(CHECK_DIR)/check_ellint_rd.cc -lquadmath
 
 $(CHECK_DIR)/check_ellint_rf: $(CHECK_DIR)/check_ellint_rf.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellint_rf $(CHECK_DIR)/check_ellint_rf.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellint_rf $(CHECK_DIR)/check_ellint_rf.cc -lquadmath
 
 $(CHECK_DIR)/check_ellint_rg: $(CHECK_DIR)/check_ellint_rg.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellint_rg $(CHECK_DIR)/check_ellint_rg.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellint_rg $(CHECK_DIR)/check_ellint_rg.cc -lquadmath
 
 $(CHECK_DIR)/check_ellint_rj: $(CHECK_DIR)/check_ellint_rj.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellint_rj $(CHECK_DIR)/check_ellint_rj.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellint_rj $(CHECK_DIR)/check_ellint_rj.cc -lquadmath
 
 $(CHECK_DIR)/check_ellnome: $(CHECK_DIR)/check_ellnome.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellnome $(CHECK_DIR)/check_ellnome.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ellnome $(CHECK_DIR)/check_ellnome.cc -lquadmath
 
 $(CHECK_DIR)/check_euler: $(CHECK_DIR)/check_euler.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_euler $(CHECK_DIR)/check_euler.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_euler $(CHECK_DIR)/check_euler.cc -lquadmath
 
 $(CHECK_DIR)/check_eulerian_1: $(CHECK_DIR)/check_eulerian_1.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_eulerian_1 $(CHECK_DIR)/check_eulerian_1.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_eulerian_1 $(CHECK_DIR)/check_eulerian_1.cc -lquadmath
 
 $(CHECK_DIR)/check_eulerian_2: $(CHECK_DIR)/check_eulerian_2.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_eulerian_2 $(CHECK_DIR)/check_eulerian_2.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_eulerian_2 $(CHECK_DIR)/check_eulerian_2.cc -lquadmath
 
 $(CHECK_DIR)/check_expint: $(CHECK_DIR)/check_expint.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_expint $(CHECK_DIR)/check_expint.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_expint $(CHECK_DIR)/check_expint.cc -lquadmath
 
 $(CHECK_DIR)/check_expint_en: $(CHECK_DIR)/check_expint_en.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_expint_en $(CHECK_DIR)/check_expint_en.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_expint_en $(CHECK_DIR)/check_expint_en.cc -lquadmath
 
 $(CHECK_DIR)/check_factorial: $(CHECK_DIR)/check_factorial.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_factorial $(CHECK_DIR)/check_factorial.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_factorial $(CHECK_DIR)/check_factorial.cc -lquadmath
 
 $(CHECK_DIR)/check_falling_factorial: $(CHECK_DIR)/check_falling_factorial.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_falling_factorial $(CHECK_DIR)/check_falling_factorial.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_falling_factorial $(CHECK_DIR)/check_falling_factorial.cc -lquadmath
 
 $(CHECK_DIR)/check_fresnel_c: $(CHECK_DIR)/check_fresnel_c.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_fresnel_c $(CHECK_DIR)/check_fresnel_c.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_fresnel_c $(CHECK_DIR)/check_fresnel_c.cc -lquadmath
 
 $(CHECK_DIR)/check_fresnel_s: $(CHECK_DIR)/check_fresnel_s.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_fresnel_s $(CHECK_DIR)/check_fresnel_s.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_fresnel_s $(CHECK_DIR)/check_fresnel_s.cc -lquadmath
 
 $(CHECK_DIR)/check_gamma_p: $(CHECK_DIR)/check_gamma_p.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_gamma_p $(CHECK_DIR)/check_gamma_p.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_gamma_p $(CHECK_DIR)/check_gamma_p.cc -lquadmath
 
 $(CHECK_DIR)/check_gamma_q: $(CHECK_DIR)/check_gamma_q.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_gamma_q $(CHECK_DIR)/check_gamma_q.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_gamma_q $(CHECK_DIR)/check_gamma_q.cc -lquadmath
 
 $(CHECK_DIR)/check_gamma_reciprocal: $(CHECK_DIR)/check_gamma_reciprocal.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_gamma_reciprocal $(CHECK_DIR)/check_gamma_reciprocal.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_gamma_reciprocal $(CHECK_DIR)/check_gamma_reciprocal.cc -lquadmath
 
 $(CHECK_DIR)/check_gegenbauer: $(CHECK_DIR)/check_gegenbauer.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_gegenbauer $(CHECK_DIR)/check_gegenbauer.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_gegenbauer $(CHECK_DIR)/check_gegenbauer.cc -lquadmath
 
 $(CHECK_DIR)/check_hermite: $(CHECK_DIR)/check_hermite.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_hermite $(CHECK_DIR)/check_hermite.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_hermite $(CHECK_DIR)/check_hermite.cc -lquadmath
 
 $(CHECK_DIR)/check_heuman_lambda: $(CHECK_DIR)/check_heuman_lambda.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_heuman_lambda $(CHECK_DIR)/check_heuman_lambda.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_heuman_lambda $(CHECK_DIR)/check_heuman_lambda.cc -lquadmath
 
 $(CHECK_DIR)/check_hurwitz_zeta: $(CHECK_DIR)/check_hurwitz_zeta.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_hurwitz_zeta $(CHECK_DIR)/check_hurwitz_zeta.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_hurwitz_zeta $(CHECK_DIR)/check_hurwitz_zeta.cc -lquadmath
 
 $(CHECK_DIR)/check_hyperg: $(CHECK_DIR)/check_hyperg.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_hyperg $(CHECK_DIR)/check_hyperg.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_hyperg $(CHECK_DIR)/check_hyperg.cc -lquadmath
 
 $(CHECK_DIR)/check_ibeta: $(CHECK_DIR)/check_ibeta.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ibeta $(CHECK_DIR)/check_ibeta.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ibeta $(CHECK_DIR)/check_ibeta.cc -lquadmath
 
 $(CHECK_DIR)/check_ibetac: $(CHECK_DIR)/check_ibetac.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ibetac $(CHECK_DIR)/check_ibetac.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ibetac $(CHECK_DIR)/check_ibetac.cc -lquadmath
 
 $(CHECK_DIR)/check_jacobi: $(CHECK_DIR)/check_jacobi.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_jacobi $(CHECK_DIR)/check_jacobi.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_jacobi $(CHECK_DIR)/check_jacobi.cc -lquadmath
 
 $(CHECK_DIR)/check_jacobi_cn: $(CHECK_DIR)/check_jacobi_cn.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_jacobi_cn $(CHECK_DIR)/check_jacobi_cn.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_jacobi_cn $(CHECK_DIR)/check_jacobi_cn.cc -lquadmath
 
 $(CHECK_DIR)/check_jacobi_dn: $(CHECK_DIR)/check_jacobi_dn.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_jacobi_dn $(CHECK_DIR)/check_jacobi_dn.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_jacobi_dn $(CHECK_DIR)/check_jacobi_dn.cc -lquadmath
 
 $(CHECK_DIR)/check_jacobi_sn: $(CHECK_DIR)/check_jacobi_sn.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_jacobi_sn $(CHECK_DIR)/check_jacobi_sn.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_jacobi_sn $(CHECK_DIR)/check_jacobi_sn.cc -lquadmath
 
 $(CHECK_DIR)/check_jacobi_zeta: $(CHECK_DIR)/check_jacobi_zeta.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_jacobi_zeta $(CHECK_DIR)/check_jacobi_zeta.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_jacobi_zeta $(CHECK_DIR)/check_jacobi_zeta.cc -lquadmath
 
 $(CHECK_DIR)/check_laguerre: $(CHECK_DIR)/check_laguerre.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_laguerre $(CHECK_DIR)/check_laguerre.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_laguerre $(CHECK_DIR)/check_laguerre.cc -lquadmath
 
 $(CHECK_DIR)/check_lah: $(CHECK_DIR)/check_lah.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_lah $(CHECK_DIR)/check_lah.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_lah $(CHECK_DIR)/check_lah.cc -lquadmath
 
 $(CHECK_DIR)/check_lbinomial: $(CHECK_DIR)/check_lbinomial.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_lbinomial $(CHECK_DIR)/check_lbinomial.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_lbinomial $(CHECK_DIR)/check_lbinomial.cc -lquadmath
 
 $(CHECK_DIR)/check_ldouble_factorial: $(CHECK_DIR)/check_ldouble_factorial.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ldouble_factorial $(CHECK_DIR)/check_ldouble_factorial.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_ldouble_factorial $(CHECK_DIR)/check_ldouble_factorial.cc -lquadmath
 
 $(CHECK_DIR)/check_legendre: $(CHECK_DIR)/check_legendre.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_legendre $(CHECK_DIR)/check_legendre.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_legendre $(CHECK_DIR)/check_legendre.cc -lquadmath
 
 $(CHECK_DIR)/check_legendre_q: $(CHECK_DIR)/check_legendre_q.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_legendre_q $(CHECK_DIR)/check_legendre_q.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_legendre_q $(CHECK_DIR)/check_legendre_q.cc -lquadmath
 
 $(CHECK_DIR)/check_lfactorial: $(CHECK_DIR)/check_lfactorial.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_lfactorial $(CHECK_DIR)/check_lfactorial.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_lfactorial $(CHECK_DIR)/check_lfactorial.cc -lquadmath
 
 $(CHECK_DIR)/check_lfalling_factorial: $(CHECK_DIR)/check_lfalling_factorial.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_lfalling_factorial $(CHECK_DIR)/check_lfalling_factorial.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_lfalling_factorial $(CHECK_DIR)/check_lfalling_factorial.cc -lquadmath
 
 $(CHECK_DIR)/check_lgamma: $(CHECK_DIR)/check_lgamma.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_lgamma $(CHECK_DIR)/check_lgamma.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_lgamma $(CHECK_DIR)/check_lgamma.cc -lquadmath
 
 $(CHECK_DIR)/check_logistic_p: $(CHECK_DIR)/check_logistic_p.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_logistic_p $(CHECK_DIR)/check_logistic_p.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_logistic_p $(CHECK_DIR)/check_logistic_p.cc -lquadmath
 
 $(CHECK_DIR)/check_logistic_pdf: $(CHECK_DIR)/check_logistic_pdf.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_logistic_pdf $(CHECK_DIR)/check_logistic_pdf.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_logistic_pdf $(CHECK_DIR)/check_logistic_pdf.cc -lquadmath
 
 $(CHECK_DIR)/check_lognormal_p: $(CHECK_DIR)/check_lognormal_p.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_lognormal_p $(CHECK_DIR)/check_lognormal_p.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_lognormal_p $(CHECK_DIR)/check_lognormal_p.cc -lquadmath
 
 $(CHECK_DIR)/check_lognormal_pdf: $(CHECK_DIR)/check_lognormal_pdf.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_lognormal_pdf $(CHECK_DIR)/check_lognormal_pdf.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_lognormal_pdf $(CHECK_DIR)/check_lognormal_pdf.cc -lquadmath
 
 $(CHECK_DIR)/check_lrising_factorial: $(CHECK_DIR)/check_lrising_factorial.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_lrising_factorial $(CHECK_DIR)/check_lrising_factorial.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_lrising_factorial $(CHECK_DIR)/check_lrising_factorial.cc -lquadmath
 
 $(CHECK_DIR)/check_normal_p: $(CHECK_DIR)/check_normal_p.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_normal_p $(CHECK_DIR)/check_normal_p.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_normal_p $(CHECK_DIR)/check_normal_p.cc -lquadmath
 
 $(CHECK_DIR)/check_normal_pdf: $(CHECK_DIR)/check_normal_pdf.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_normal_pdf $(CHECK_DIR)/check_normal_pdf.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_normal_pdf $(CHECK_DIR)/check_normal_pdf.cc -lquadmath
 
 $(CHECK_DIR)/check_owens_t: $(CHECK_DIR)/check_owens_t.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_owens_t $(CHECK_DIR)/check_owens_t.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_owens_t $(CHECK_DIR)/check_owens_t.cc -lquadmath
 
 $(CHECK_DIR)/check_polygamma: $(CHECK_DIR)/check_polygamma.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_polygamma $(CHECK_DIR)/check_polygamma.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_polygamma $(CHECK_DIR)/check_polygamma.cc -lquadmath
 
 $(CHECK_DIR)/check_radpoly: $(CHECK_DIR)/check_radpoly.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_radpoly $(CHECK_DIR)/check_radpoly.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_radpoly $(CHECK_DIR)/check_radpoly.cc -lquadmath
 
 $(CHECK_DIR)/check_riemann_zeta: $(CHECK_DIR)/check_riemann_zeta.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_riemann_zeta $(CHECK_DIR)/check_riemann_zeta.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_riemann_zeta $(CHECK_DIR)/check_riemann_zeta.cc -lquadmath
 
 $(CHECK_DIR)/check_rising_factorial: $(CHECK_DIR)/check_rising_factorial.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_rising_factorial $(CHECK_DIR)/check_rising_factorial.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_rising_factorial $(CHECK_DIR)/check_rising_factorial.cc -lquadmath
 
 $(CHECK_DIR)/check_shi: $(CHECK_DIR)/check_shi.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_shi $(CHECK_DIR)/check_shi.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_shi $(CHECK_DIR)/check_shi.cc -lquadmath
 
 $(CHECK_DIR)/check_sinc: $(CHECK_DIR)/check_sinc.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sinc $(CHECK_DIR)/check_sinc.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sinc $(CHECK_DIR)/check_sinc.cc -lquadmath
 
 $(CHECK_DIR)/check_sinc_pi: $(CHECK_DIR)/check_sinc_pi.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sinc_pi $(CHECK_DIR)/check_sinc_pi.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sinc_pi $(CHECK_DIR)/check_sinc_pi.cc -lquadmath
 
 $(CHECK_DIR)/check_sinhint: $(CHECK_DIR)/check_sinhint.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sinhint $(CHECK_DIR)/check_sinhint.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sinhint $(CHECK_DIR)/check_sinhint.cc -lquadmath
 
 $(CHECK_DIR)/check_sinint: $(CHECK_DIR)/check_sinint.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sinint $(CHECK_DIR)/check_sinint.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sinint $(CHECK_DIR)/check_sinint.cc -lquadmath
 
 $(CHECK_DIR)/check_sin_pi: $(CHECK_DIR)/check_sin_pi.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sin_pi $(CHECK_DIR)/check_sin_pi.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sin_pi $(CHECK_DIR)/check_sin_pi.cc -lquadmath
 
 $(CHECK_DIR)/check_sph_bessel: $(CHECK_DIR)/check_sph_bessel.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sph_bessel $(CHECK_DIR)/check_sph_bessel.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sph_bessel $(CHECK_DIR)/check_sph_bessel.cc -lquadmath
 
 $(CHECK_DIR)/check_sph_bessel_i: $(CHECK_DIR)/check_sph_bessel_i.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sph_bessel_i $(CHECK_DIR)/check_sph_bessel_i.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sph_bessel_i $(CHECK_DIR)/check_sph_bessel_i.cc -lquadmath
 
 $(CHECK_DIR)/check_sph_bessel_k: $(CHECK_DIR)/check_sph_bessel_k.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sph_bessel_k $(CHECK_DIR)/check_sph_bessel_k.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sph_bessel_k $(CHECK_DIR)/check_sph_bessel_k.cc -lquadmath
 
 $(CHECK_DIR)/check_sph_hankel_1: $(CHECK_DIR)/check_sph_hankel_1.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sph_hankel_1 $(CHECK_DIR)/check_sph_hankel_1.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sph_hankel_1 $(CHECK_DIR)/check_sph_hankel_1.cc -lquadmath
 
 $(CHECK_DIR)/check_sph_hankel_2: $(CHECK_DIR)/check_sph_hankel_2.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sph_hankel_2 $(CHECK_DIR)/check_sph_hankel_2.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sph_hankel_2 $(CHECK_DIR)/check_sph_hankel_2.cc -lquadmath
 
 $(CHECK_DIR)/check_sph_harmonic: $(CHECK_DIR)/check_sph_harmonic.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sph_harmonic $(CHECK_DIR)/check_sph_harmonic.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sph_harmonic $(CHECK_DIR)/check_sph_harmonic.cc -lquadmath
 
 $(CHECK_DIR)/check_sph_legendre: $(CHECK_DIR)/check_sph_legendre.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sph_legendre $(CHECK_DIR)/check_sph_legendre.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sph_legendre $(CHECK_DIR)/check_sph_legendre.cc -lquadmath
 
 $(CHECK_DIR)/check_sph_neumann: $(CHECK_DIR)/check_sph_neumann.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sph_neumann $(CHECK_DIR)/check_sph_neumann.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_sph_neumann $(CHECK_DIR)/check_sph_neumann.cc -lquadmath
 
 $(CHECK_DIR)/check_stirling_1: $(CHECK_DIR)/check_stirling_1.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_stirling_1 $(CHECK_DIR)/check_stirling_1.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_stirling_1 $(CHECK_DIR)/check_stirling_1.cc -lquadmath
 
 $(CHECK_DIR)/check_stirling_2: $(CHECK_DIR)/check_stirling_2.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_stirling_2 $(CHECK_DIR)/check_stirling_2.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_stirling_2 $(CHECK_DIR)/check_stirling_2.cc -lquadmath
 
 $(CHECK_DIR)/check_tgamma_lower: $(CHECK_DIR)/check_tgamma_lower.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tgamma_lower $(CHECK_DIR)/check_tgamma_lower.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tgamma_lower $(CHECK_DIR)/check_tgamma_lower.cc -lquadmath
 
 $(CHECK_DIR)/check_tgamma: $(CHECK_DIR)/check_tgamma.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tgamma $(CHECK_DIR)/check_tgamma.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tgamma $(CHECK_DIR)/check_tgamma.cc -lquadmath
 
 $(CHECK_DIR)/check_theta_1: $(CHECK_DIR)/check_theta_1.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_theta_1 $(CHECK_DIR)/check_theta_1.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_theta_1 $(CHECK_DIR)/check_theta_1.cc -lquadmath
 
 $(CHECK_DIR)/check_theta_2: $(CHECK_DIR)/check_theta_2.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_theta_2 $(CHECK_DIR)/check_theta_2.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_theta_2 $(CHECK_DIR)/check_theta_2.cc -lquadmath
 
 $(CHECK_DIR)/check_theta_3: $(CHECK_DIR)/check_theta_3.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_theta_3 $(CHECK_DIR)/check_theta_3.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_theta_3 $(CHECK_DIR)/check_theta_3.cc -lquadmath
 
 $(CHECK_DIR)/check_theta_4: $(CHECK_DIR)/check_theta_4.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_theta_4 $(CHECK_DIR)/check_theta_4.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_theta_4 $(CHECK_DIR)/check_theta_4.cc -lquadmath
 
 $(CHECK_DIR)/check_zernike: $(CHECK_DIR)/check_zernike.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_zernike $(CHECK_DIR)/check_zernike.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_zernike $(CHECK_DIR)/check_zernike.cc -lquadmath
 
 $(CHECK_DIR)/complex_ellint_rc: $(CHECK_DIR)/complex_ellint_rc.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/complex_ellint_rc $(CHECK_DIR)/complex_ellint_rc.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/complex_ellint_rc $(CHECK_DIR)/complex_ellint_rc.cc -lquadmath
 
 $(CHECK_DIR)/complex_ellint_rd: $(CHECK_DIR)/complex_ellint_rd.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/complex_ellint_rd $(CHECK_DIR)/complex_ellint_rd.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/complex_ellint_rd $(CHECK_DIR)/complex_ellint_rd.cc -lquadmath
 
 $(CHECK_DIR)/complex_ellint_rf: $(CHECK_DIR)/complex_ellint_rf.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/complex_ellint_rf $(CHECK_DIR)/complex_ellint_rf.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/complex_ellint_rf $(CHECK_DIR)/complex_ellint_rf.cc -lquadmath
 
 $(CHECK_DIR)/complex_ellint_rg: $(CHECK_DIR)/complex_ellint_rg.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/complex_ellint_rg $(CHECK_DIR)/complex_ellint_rg.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/complex_ellint_rg $(CHECK_DIR)/complex_ellint_rg.cc -lquadmath
 
 $(CHECK_DIR)/complex_ellint_rj: $(CHECK_DIR)/complex_ellint_rj.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/complex_ellint_rj $(CHECK_DIR)/complex_ellint_rj.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/complex_ellint_rj $(CHECK_DIR)/complex_ellint_rj.cc -lquadmath
 
 $(CHECK_DIR)/complex_airy_ai: $(CHECK_DIR)/complex_airy_ai.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/complex_airy_ai $(CHECK_DIR)/complex_airy_ai.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/complex_airy_ai $(CHECK_DIR)/complex_airy_ai.cc -lquadmath
 
 $(CHECK_DIR)/complex_airy_bi: $(CHECK_DIR)/complex_airy_bi.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/complex_airy_bi $(CHECK_DIR)/complex_airy_bi.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/complex_airy_bi $(CHECK_DIR)/complex_airy_bi.cc -lquadmath
 
 $(CHECK_DIR)/deathmatch_comp_ellint: $(CHECK_DIR)/deathmatch_comp_ellint.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/deathmatch_comp_ellint $(CHECK_DIR)/deathmatch_comp_ellint.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/deathmatch_comp_ellint $(CHECK_DIR)/deathmatch_comp_ellint.cc -lquadmath
 
 $(CHECK_DIR)/deathmatch_conf_hyperg: $(CHECK_DIR)/deathmatch_conf_hyperg.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/deathmatch_conf_hyperg $(CHECK_DIR)/deathmatch_conf_hyperg.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/deathmatch_conf_hyperg $(CHECK_DIR)/deathmatch_conf_hyperg.cc -lquadmath
 
 $(CHECK_DIR)/deathmatch_conf_hyperg_lim: $(CHECK_DIR)/deathmatch_conf_hyperg_lim.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/deathmatch_conf_hyperg_lim $(CHECK_DIR)/deathmatch_conf_hyperg_lim.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/deathmatch_conf_hyperg_lim $(CHECK_DIR)/deathmatch_conf_hyperg_lim.cc -lquadmath
 
 $(CHECK_DIR)/deathmatch_hyperg: $(CHECK_DIR)/deathmatch_hyperg.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/deathmatch_hyperg $(CHECK_DIR)/deathmatch_hyperg.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/deathmatch_hyperg $(CHECK_DIR)/deathmatch_hyperg.cc -lquadmath
 
 $(CHECK_DIR)/pr56216_cyl_hankel_1: $(CHECK_DIR)/pr56216_cyl_hankel_1.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/pr56216_cyl_hankel_1 $(CHECK_DIR)/pr56216_cyl_hankel_1.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/pr56216_cyl_hankel_1 $(CHECK_DIR)/pr56216_cyl_hankel_1.cc -lquadmath
 
 $(CHECK_DIR)/pr56216_cyl_hankel_2: $(CHECK_DIR)/pr56216_cyl_hankel_2.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/pr56216_cyl_hankel_2 $(CHECK_DIR)/pr56216_cyl_hankel_2.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/pr56216_cyl_hankel_2 $(CHECK_DIR)/pr56216_cyl_hankel_2.cc -lquadmath
 
 $(CHECK_DIR)/pr56216_cyl_bessel_i: $(CHECK_DIR)/pr56216_cyl_bessel_i.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/pr56216_cyl_bessel_i $(CHECK_DIR)/pr56216_cyl_bessel_i.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/pr56216_cyl_bessel_i $(CHECK_DIR)/pr56216_cyl_bessel_i.cc -lquadmath
 
 $(CHECK_DIR)/pr86655_assoc_legendre: $(CHECK_DIR)/pr86655_assoc_legendre.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/pr86655_assoc_legendre $(CHECK_DIR)/pr86655_assoc_legendre.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/pr86655_assoc_legendre $(CHECK_DIR)/pr86655_assoc_legendre.cc -lquadmath
 
 $(CHECK_DIR)/pr86655_sph_legendre: $(CHECK_DIR)/pr86655_sph_legendre.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/pr86655_sph_legendre $(CHECK_DIR)/pr86655_sph_legendre.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/pr86655_sph_legendre $(CHECK_DIR)/pr86655_sph_legendre.cc -lquadmath
 
 $(CHECK_DIR)/pr68397: $(CHECK_DIR)/pr68397.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/pr68397 $(CHECK_DIR)/pr68397.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/pr68397 $(CHECK_DIR)/pr68397.cc -lquadmath
 
 $(CHECK_DIR)/origin_cyl_bessel_j: $(CHECK_DIR)/origin_cyl_bessel_j.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/origin_cyl_bessel_j $(CHECK_DIR)/origin_cyl_bessel_j.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/origin_cyl_bessel_j $(CHECK_DIR)/origin_cyl_bessel_j.cc -lquadmath
 
 $(CHECK_DIR)/origin_cyl_neumann: $(CHECK_DIR)/origin_cyl_neumann.cc
-	$(CXX17) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/origin_cyl_neumann $(CHECK_DIR)/origin_cyl_neumann.cc -lquadmath
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/origin_cyl_neumann $(CHECK_DIR)/origin_cyl_neumann.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_assoc_laguerre: $(CHECK_DIR)/check_tr1_assoc_laguerre.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_assoc_laguerre $(CHECK_DIR)/check_tr1_assoc_laguerre.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_assoc_laguerre $(CHECK_DIR)/check_tr1_assoc_laguerre.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_assoc_legendre: $(CHECK_DIR)/check_tr1_assoc_legendre.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_assoc_legendre $(CHECK_DIR)/check_tr1_assoc_legendre.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_assoc_legendre $(CHECK_DIR)/check_tr1_assoc_legendre.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_beta: $(CHECK_DIR)/check_tr1_beta.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_beta $(CHECK_DIR)/check_tr1_beta.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_beta $(CHECK_DIR)/check_tr1_beta.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_comp_ellint_1: $(CHECK_DIR)/check_tr1_comp_ellint_1.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_comp_ellint_1 $(CHECK_DIR)/check_tr1_comp_ellint_1.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_comp_ellint_1 $(CHECK_DIR)/check_tr1_comp_ellint_1.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_comp_ellint_2: $(CHECK_DIR)/check_tr1_comp_ellint_2.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_comp_ellint_2 $(CHECK_DIR)/check_tr1_comp_ellint_2.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_comp_ellint_2 $(CHECK_DIR)/check_tr1_comp_ellint_2.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_comp_ellint_3: $(CHECK_DIR)/check_tr1_comp_ellint_3.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_comp_ellint_3 $(CHECK_DIR)/check_tr1_comp_ellint_3.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_comp_ellint_3 $(CHECK_DIR)/check_tr1_comp_ellint_3.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_conf_hyperg: $(CHECK_DIR)/check_tr1_conf_hyperg.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_conf_hyperg $(CHECK_DIR)/check_tr1_conf_hyperg.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_conf_hyperg $(CHECK_DIR)/check_tr1_conf_hyperg.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_cyl_bessel_i: $(CHECK_DIR)/check_tr1_cyl_bessel_i.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_cyl_bessel_i $(CHECK_DIR)/check_tr1_cyl_bessel_i.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_cyl_bessel_i $(CHECK_DIR)/check_tr1_cyl_bessel_i.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_cyl_bessel_j: $(CHECK_DIR)/check_tr1_cyl_bessel_j.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_cyl_bessel_j $(CHECK_DIR)/check_tr1_cyl_bessel_j.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_cyl_bessel_j $(CHECK_DIR)/check_tr1_cyl_bessel_j.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_cyl_bessel_k: $(CHECK_DIR)/check_tr1_cyl_bessel_k.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_cyl_bessel_k $(CHECK_DIR)/check_tr1_cyl_bessel_k.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_cyl_bessel_k $(CHECK_DIR)/check_tr1_cyl_bessel_k.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_cyl_neumann: $(CHECK_DIR)/check_tr1_cyl_neumann.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_cyl_neumann $(CHECK_DIR)/check_tr1_cyl_neumann.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_cyl_neumann $(CHECK_DIR)/check_tr1_cyl_neumann.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_ellint_1: $(CHECK_DIR)/check_tr1_ellint_1.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_ellint_1 $(CHECK_DIR)/check_tr1_ellint_1.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_ellint_1 $(CHECK_DIR)/check_tr1_ellint_1.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_ellint_2: $(CHECK_DIR)/check_tr1_ellint_2.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_ellint_2 $(CHECK_DIR)/check_tr1_ellint_2.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_ellint_2 $(CHECK_DIR)/check_tr1_ellint_2.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_ellint_3: $(CHECK_DIR)/check_tr1_ellint_3.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_ellint_3 $(CHECK_DIR)/check_tr1_ellint_3.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_ellint_3 $(CHECK_DIR)/check_tr1_ellint_3.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_expint: $(CHECK_DIR)/check_tr1_expint.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_expint $(CHECK_DIR)/check_tr1_expint.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_expint $(CHECK_DIR)/check_tr1_expint.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_hermite: $(CHECK_DIR)/check_tr1_hermite.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_hermite $(CHECK_DIR)/check_tr1_hermite.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_hermite $(CHECK_DIR)/check_tr1_hermite.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_hyperg: $(CHECK_DIR)/check_tr1_hyperg.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_hyperg $(CHECK_DIR)/check_tr1_hyperg.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_hyperg $(CHECK_DIR)/check_tr1_hyperg.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_laguerre: $(CHECK_DIR)/check_tr1_laguerre.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_laguerre $(CHECK_DIR)/check_tr1_laguerre.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_laguerre $(CHECK_DIR)/check_tr1_laguerre.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_legendre: $(CHECK_DIR)/check_tr1_legendre.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_legendre $(CHECK_DIR)/check_tr1_legendre.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_legendre $(CHECK_DIR)/check_tr1_legendre.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_riemann_zeta: $(CHECK_DIR)/check_tr1_riemann_zeta.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_riemann_zeta $(CHECK_DIR)/check_tr1_riemann_zeta.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_riemann_zeta $(CHECK_DIR)/check_tr1_riemann_zeta.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_sph_bessel: $(CHECK_DIR)/check_tr1_sph_bessel.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_sph_bessel $(CHECK_DIR)/check_tr1_sph_bessel.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_sph_bessel $(CHECK_DIR)/check_tr1_sph_bessel.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_sph_legendre: $(CHECK_DIR)/check_tr1_sph_legendre.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_sph_legendre $(CHECK_DIR)/check_tr1_sph_legendre.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_sph_legendre $(CHECK_DIR)/check_tr1_sph_legendre.cc -lquadmath
 
 $(CHECK_DIR)/check_tr1_sph_neumann: $(CHECK_DIR)/check_tr1_sph_neumann.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_sph_neumann $(CHECK_DIR)/check_tr1_sph_neumann.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_tr1_sph_neumann $(CHECK_DIR)/check_tr1_sph_neumann.cc -lquadmath
 
 $(CHECK_DIR)/pr86655_tr1_assoc_legendre: $(CHECK_DIR)/pr86655_tr1_assoc_legendre.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/pr86655_tr1_assoc_legendre $(CHECK_DIR)/pr86655_tr1_assoc_legendre.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/pr86655_tr1_assoc_legendre $(CHECK_DIR)/pr86655_tr1_assoc_legendre.cc -lquadmath
 
 $(CHECK_DIR)/pr86655_tr1_sph_legendre: $(CHECK_DIR)/pr86655_tr1_sph_legendre.cc
-	$(CXX14) -I$(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/pr86655_tr1_sph_legendre $(CHECK_DIR)/pr86655_tr1_sph_legendre.cc -lquadmath
+	$(CXX14) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/pr86655_tr1_sph_legendre $(CHECK_DIR)/pr86655_tr1_sph_legendre.cc -lquadmath
 
 
 $(CHECK_DIR):
