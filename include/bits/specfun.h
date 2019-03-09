@@ -150,17 +150,28 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The following functions are implemented in namespace @c std:
    * - @ref std::assoc_laguerre "assoc_laguerre - Associated Laguerre functions"
    * - @ref std::assoc_legendre "assoc_legendre - Associated Legendre functions"
+   * - @ref __gnu_cxx::assoc_legendre_q
+   *        "assoc_legendre_q - Associated Legendre functions of the second kind"
    * - @ref std::beta "beta - Beta functions"
-   * - @ref std::comp_ellint_1 "comp_ellint_1 - Complete elliptic functions of the first kind"
-   * - @ref std::comp_ellint_2 "comp_ellint_2 - Complete elliptic functions of the second kind"
+   * - @ref std::comp_ellint_1
+   *        "comp_ellint_1 - Complete elliptic functions of the first kind"
+   * - @ref std::comp_ellint_2
+   *        "comp_ellint_2 - Complete elliptic functions of the second kind"
    * - @ref std::comp_ellint_3 "comp_ellint_3 - Complete elliptic functions of the third kind"
-   * - @ref std::cyl_bessel_i "cyl_bessel_i - Regular modified cylindrical Bessel functions"
-   * - @ref std::cyl_bessel_j "cyl_bessel_j - Cylindrical Bessel functions of the first kind"
-   * - @ref std::cyl_bessel_k "cyl_bessel_k - Irregular modified cylindrical Bessel functions"
-   * - @ref std::cyl_neumann "cyl_neumann - Cylindrical Neumann functions or Cylindrical Bessel functions of the second kind"
-   * - @ref std::ellint_1 "ellint_1 - Incomplete elliptic functions of the first kind"
-   * - @ref std::ellint_2 "ellint_2 - Incomplete elliptic functions of the second kind"
-   * - @ref std::ellint_3 "ellint_3 - Incomplete elliptic functions of the third kind"
+   * - @ref std::cyl_bessel_i
+   *        "cyl_bessel_i - Regular modified cylindrical Bessel functions"
+   * - @ref std::cyl_bessel_j
+   *        "cyl_bessel_j - Cylindrical Bessel functions of the first kind"
+   * - @ref std::cyl_bessel_k
+   *        "cyl_bessel_k - Irregular modified cylindrical Bessel functions"
+   * - @ref std::cyl_neumann
+   *        "cyl_neumann - Cylindrical Neumann functions or Cylindrical Bessel functions of the second kind"
+   * - @ref std::ellint_1
+   *        "ellint_1 - Incomplete elliptic functions of the first kind"
+   * - @ref std::ellint_2
+   *        "ellint_2 - Incomplete elliptic functions of the second kind"
+   * - @ref std::ellint_3
+   *        "ellint_3 - Incomplete elliptic functions of the third kind"
    * - @ref std::expint "expint - The exponential integral"
    * - @ref std::hermite "hermite - Hermite polynomials"
    * - @ref std::laguerre "laguerre - Laguerre functions"
@@ -174,7 +185,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * versions of this math library because of implementation concerns.
    * However, since they were in the TR1 version and since they are popular
    * we kept them as an extension in namespace @c __gnu_cxx:
-   * - @ref __gnu_cxx::conf_hyperg "conf_hyperg - Confluent hypergeometric functions"
+   * - @ref __gnu_cxx::conf_hyperg
+   *        "conf_hyperg - Confluent hypergeometric functions"
    * - @ref __gnu_cxx::hyperg "hyperg - Hypergeometric functions"
    *
    * In addition a large number of new functions are added as extensions:
@@ -184,28 +196,38 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::bernoulli "bernoulli - Bernoulli polynomials"
    * - @ref __gnu_cxx::binomial "binomial - Binomial coefficients"
    * - @ref __gnu_cxx::bose_einstein "bose_einstein - Bose-Einstein integrals"
-   * - @ref __gnu_cxx::chebyshev_t "chebyshev_t - Chebyshev polynomials of the first kind"
-   * - @ref __gnu_cxx::chebyshev_u "chebyshev_u - Chebyshev polynomials of the second kind"
-   * - @ref __gnu_cxx::chebyshev_v "chebyshev_v - Chebyshev polynomials of the third kind"
-   * - @ref __gnu_cxx::chebyshev_w "chebyshev_w - Chebyshev polynomials of the fourth kind"
+   * - @ref __gnu_cxx::chebyshev_t
+   *        "chebyshev_t - Chebyshev polynomials of the first kind"
+   * - @ref __gnu_cxx::chebyshev_u
+   *        "chebyshev_u - Chebyshev polynomials of the second kind"
+   * - @ref __gnu_cxx::chebyshev_v
+   *        "chebyshev_v - Chebyshev polynomials of the third kind"
+   * - @ref __gnu_cxx::chebyshev_w
+   *        "chebyshev_w - Chebyshev polynomials of the fourth kind"
    * - @ref __gnu_cxx::clausen "clausen - Clausen integrals"
    * - @ref __gnu_cxx::clausen_cl "clausen_cl - Clausen cosine integrals"
    * - @ref __gnu_cxx::clausen_sl "clausen_sl - Clausen sine integrals"
-   * - @ref __gnu_cxx::comp_ellint_d "comp_ellint_d - Incomplete Legendre D elliptic integral"
-   * - @ref __gnu_cxx::conf_hyperg_lim "conf_hyperg_lim - Confluent hypergeometric limit functions"
+   * - @ref __gnu_cxx::comp_ellint_d
+   *        "comp_ellint_d - Incomplete Legendre D elliptic integral"
+   * - @ref __gnu_cxx::conf_hyperg_lim
+   *        "conf_hyperg_lim - Confluent hypergeometric limit functions"
    * - @ref __gnu_cxx::cos_pi "cos_pi - Reperiodized cosine function."
-   * - @ref __gnu_cxx::cosh_pi "cosh_pi - Reperiodized hyperbolic cosine function."
+   * - @ref __gnu_cxx::cosh_pi
+   *        "cosh_pi - Reperiodized hyperbolic cosine function."
    * - @ref __gnu_cxx::coshint "coshint - Hyperbolic cosine integral"
    * - @ref __gnu_cxx::cosint "cosint - Cosine integral"
-   * - @ref __gnu_cxx::cyl_hankel_1 "cyl_hankel_1 - Cylindrical Hankel functions of the first kind"
-   * - @ref __gnu_cxx::cyl_hankel_2 "cyl_hankel_2 - Cylindrical Hankel functions of the second kind"
+   * - @ref __gnu_cxx::cyl_hankel_1
+   *        "cyl_hankel_1 - Cylindrical Hankel functions of the first kind"
+   * - @ref __gnu_cxx::cyl_hankel_2
+   *        "cyl_hankel_2 - Cylindrical Hankel functions of the second kind"
    * - @ref __gnu_cxx::dawson "dawson - Dawson integrals"
    * - @ref __gnu_cxx::debye "debye - Debye functions"
    * - @ref __gnu_cxx::digamma "digamma - Digamma or psi function"
    * - @ref __gnu_cxx::dilog "dilog - Dilogarithm functions"
    * - @ref __gnu_cxx::dirichlet_beta "dirichlet_beta - Dirichlet beta function"
    * - @ref __gnu_cxx::dirichlet_eta "dirichlet_eta - Dirichlet beta function"
-   * - @ref __gnu_cxx::dirichlet_lambda "dirichlet_lambda - Dirichlet lambda function"
+   * - @ref __gnu_cxx::dirichlet_lambda
+   *        "dirichlet_lambda - Dirichlet lambda function"
    * - @ref __gnu_cxx::double_factorial "double_factorial - Double factorials"
    * - @ref __gnu_cxx::ellint_d "ellint_d - Legendre D elliptic integrals"
    * - @ref __gnu_cxx::ellint_rc "ellint_rc - Carlson elliptic functions R_C"
@@ -216,17 +238,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::ellnome "ellnome - Elliptic nome"
    * - @ref __gnu_cxx::euler "euler - Euler numbers"
    * - @ref __gnu_cxx::euler "euler - Euler polynomials"
-   * - @ref __gnu_cxx::eulerian_1 "eulerian_1 - Eulerian numbers of the first kind"
-   * - @ref __gnu_cxx::eulerian_2 "eulerian_2 - Eulerian numbers of the second kind"
+   * - @ref __gnu_cxx::eulerian_1
+   *        "eulerian_1 - Eulerian numbers of the first kind"
+   * - @ref __gnu_cxx::eulerian_2
+   *        "eulerian_2 - Eulerian numbers of the second kind"
    * - @ref __gnu_cxx::expint "expint - Exponential integrals"
    * - @ref __gnu_cxx::factorial "factorial - Factorials"
-   * - @ref __gnu_cxx::falling_factorial "falling_factorial - Falling factorials"
+   * - @ref __gnu_cxx::falling_factorial
+   *        "falling_factorial - Falling factorials"
    * - @ref __gnu_cxx::fermi_dirac "fermi_dirac - Fermi-Dirac integrals"
    * - @ref __gnu_cxx::fresnel_c "fresnel_c - Fresnel cosine integrals"
    * - @ref __gnu_cxx::fresnel_s "fresnel_s - Fresnel sine integrals"
-   * - @ref __gnu_cxx::gamma_p "gamma_p - Regularized lower incomplete gamma functions"
-   * - @ref __gnu_cxx::gamma_q "gamma_q - Regularized upper incomplete gamma functions"
-   * - @ref __gnu_cxx::gamma_reciprocal "gamma_reciprocal - Reciprocal gamma function"
+   * - @ref __gnu_cxx::gamma_p
+   *        "gamma_p - Regularized lower incomplete gamma functions"
+   * - @ref __gnu_cxx::gamma_q
+   *        "gamma_q - Regularized upper incomplete gamma functions"
+   * - @ref __gnu_cxx::gamma_reciprocal
+   *        "gamma_reciprocal - Reciprocal gamma function"
    * - @ref __gnu_cxx::gegenbauer "gegenbauer - Gegenbauer polynomials"
    * - @ref __gnu_cxx::heuman_lambda "heuman_lambda - Heuman lambda functions"
    * - @ref __gnu_cxx::hurwitz_zeta "hurwitz_zeta - Hurwitz zeta functions"
@@ -242,45 +270,62 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * - @ref __gnu_cxx::jacobi_zeta "jacobi_zeta - Jacobi zeta functions"
    * - @ref __gnu_cxx::lah "lah - Lah numbers"
    * - @ref __gnu_cxx::lbinomial "lbinomial - Log binomial coefficients"
-   * - @ref __gnu_cxx::ldouble_factorial "ldouble_factorial - Log double factorials"
-   * - @ref __gnu_cxx::legendre_q "legendre_q - Legendre functions of the second kind"
+   * - @ref __gnu_cxx::ldouble_factorial
+   *        "ldouble_factorial - Log double factorials"
+   * - @ref __gnu_cxx::legendre_q
+   *        "legendre_q - Legendre functions of the second kind"
    * - @ref __gnu_cxx::lerch_phi "lerch_phi - The Lerch transcendent"
    * - @ref __gnu_cxx::lfactorial "lfactorial - Log factorials"
-   * - @ref __gnu_cxx::lfalling_factorial "lfalling_factorial - Log falling factorials"
+   * - @ref __gnu_cxx::lfalling_factorial
+   *        "lfalling_factorial - Log falling factorials"
    * - @ref __gnu_cxx::lgamma "lgamma - Log gamma for complex arguments"
-   * - @ref __gnu_cxx::lrising_factorial "lrising_factorial - Log rising factorials"
-   * - @ref __gnu_cxx::mittag_leffler "mittag_leffler - Mittag-Leffler functions"
+   * - @ref __gnu_cxx::lrising_factorial
+   *        "lrising_factorial - Log rising factorials"
+   * - @ref __gnu_cxx::mittag_leffler
+   *        "mittag_leffler - Mittag-Leffler functions"
    * - @ref __gnu_cxx::owens_t "owens_t - Owens T functions"
    * - @ref __gnu_cxx::periodic_zeta "periodic_zeta - Periodic zeta functions"
    * - @ref __gnu_cxx::radpoly "radpoly - Radial polynomials"
    * - @ref __gnu_cxx::rising_factorial "rising_factorial - Rising factorials"
    * - @ref __gnu_cxx::sinhc "sinhc - Hyperbolic sinus cardinal function"
-   * - @ref __gnu_cxx::sinhc_pi "sinhc_pi - Reperiodized hyperbolic sinus cardinal function"
+   * - @ref __gnu_cxx::sinhc_pi
+   *        "sinhc_pi - Reperiodized hyperbolic sinus cardinal function"
    * - @ref __gnu_cxx::sinc "sinc - Normalized sinus cardinal function"
    * - @ref __gnu_cxx::sincos "sincos - Sine + cosine function"
-   * - @ref __gnu_cxx::sincos_pi "sincos_pi - Reperiodized sine + cosine function"
+   * - @ref __gnu_cxx::sincos_pi
+   *        "sincos_pi - Reperiodized sine + cosine function"
    * - @ref __gnu_cxx::sin_pi "sin_pi - Reperiodized sine function."
-   * - @ref __gnu_cxx::sinh_pi "sinh_pi - Reperiodized hyperbolic sine function."
+   * - @ref __gnu_cxx::sinh_pi
+   *        "sinh_pi - Reperiodized hyperbolic sine function."
    * - @ref __gnu_cxx::sinc_pi "sinc_pi - Sinus cardinal function"
    * - @ref __gnu_cxx::sinhint "sinhint - Hyperbolic sine integral"
    * - @ref __gnu_cxx::sinint "sinint - Sine integral"
-   * - @ref __gnu_cxx::sph_bessel_i "sph_bessel_i - Spherical regular modified Bessel functions"
-   * - @ref __gnu_cxx::sph_bessel_k "sph_bessel_k - Spherical iregular modified Bessel functions"
-   * - @ref __gnu_cxx::sph_hankel_1 "sph_hankel_1 - Spherical Hankel functions of the first kind"
-   * - @ref __gnu_cxx::sph_hankel_2 "sph_hankel_2 - Spherical Hankel functions of the first kind"
+   * - @ref __gnu_cxx::sph_bessel_i
+   *        "sph_bessel_i - Spherical regular modified Bessel functions"
+   * - @ref __gnu_cxx::sph_bessel_k
+   *        "sph_bessel_k - Spherical iregular modified Bessel functions"
+   * - @ref __gnu_cxx::sph_hankel_1
+   *        "sph_hankel_1 - Spherical Hankel functions of the first kind"
+   * - @ref __gnu_cxx::sph_hankel_2
+   *        "sph_hankel_2 - Spherical Hankel functions of the first kind"
    * - @ref __gnu_cxx::sph_harmonic "sph_harmonic - Spherical"
-   * - @ref __gnu_cxx::stirling_1 "stirling_1 - Stirling numbers of the first kind"
-   * - @ref __gnu_cxx::stirling_2 "stirling_2 - Stirling numbers of the second kind"
+   * - @ref __gnu_cxx::stirling_1
+   *        "stirling_1 - Stirling numbers of the first kind"
+   * - @ref __gnu_cxx::stirling_2
+   *        "stirling_2 - Stirling numbers of the second kind"
    * - @ref __gnu_cxx::tan_pi "tan_pi - Reperiodized tangent function."
-   * - @ref __gnu_cxx::tanh_pi "tanh_pi - Reperiodized hyperbolic tangent function."
+   * - @ref __gnu_cxx::tanh_pi
+   *        "tanh_pi - Reperiodized hyperbolic tangent function."
    * - @ref __gnu_cxx::tgamma "tgamma - Gamma for complex arguments"
    * - @ref __gnu_cxx::tgamma "tgamma - Upper incomplete gamma functions"
-   * - @ref __gnu_cxx::tgamma_lower "tgamma_lower - Lower incomplete gamma functions"
+   * - @ref __gnu_cxx::tgamma_lower
+   *        "tgamma_lower - Lower incomplete gamma functions"
    * - @ref __gnu_cxx::theta_1 "theta_1 - Exponential theta function 1"
    * - @ref __gnu_cxx::theta_2 "theta_2 - Exponential theta function 2"
    * - @ref __gnu_cxx::theta_3 "theta_3 - Exponential theta function 3"
    * - @ref __gnu_cxx::theta_4 "theta_4 - Exponential theta function 4"
-   * - @ref __gnu_cxx::tricomi_u "tricomi_u - Tricomi confluent hypergeometric function"
+   * - @ref __gnu_cxx::tricomi_u
+   *        "tricomi_u - Tricomi confluent hypergeometric function"
    * - @ref __gnu_cxx::zernike "zernike - Zernike polynomials"
    *
    * @section general General Features
@@ -316,13 +361,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * These functions have been tested against equivalent implementations
    * from the <a href="http://www.gnu.org/software/gsl">
    * Gnu Scientific Library, GSL</a> and
-   * <a href="http://www.boost.org/doc/libs/1_60_0/libs/math/doc/html/index.html>Boost</a>
+   * <a href="http://www.boost.org/doc/libs/1_60_0/libs/
+   *          math/doc/html/index.html>Boost</a>
    * and the ratio
    * @f[
    *   \frac{|f - f_{test}|}{|f_{test}|}
    * @f]
-   * is generally found to be within 10^-15 for 64-bit double on linux-x86_64 systems
-   * over most of the ranges of validity.
+   * is generally found to be within 10^-15 for 64-bit double
+   * on linux-x86_64 systems over most of the ranges of validity.
    * 
    * @todo Provide accuracy comparisons on a per-function basis for a small
    *       number of targets.
@@ -359,7 +405,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /** @} */ // math_spec_func
 
   /**
-   * @defgroup tr29124_math_spec_func C++17/IS29124 Mathematical Special Functions
+   * @defgroup tr29124_math_spec_func
+   *           C++17/IS29124 Mathematical Special Functions
    * @ingroup math_spec_func
    *
    * A collection of advanced mathematical special functions for C++17
@@ -457,7 +504,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   assoc_legendref(unsigned int __l, unsigned int __m, float __x)
-  { return __detail::__assoc_legendre_p<float>(__l, __m, __x); }
+  { return __detail::__assoc_legendre_p<float>(__l, __m, __x).__P_lm; }
 
   /**
    * Return the associated Legendre function @f$ P_l^m(x) @f$
@@ -468,7 +515,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline long double
   assoc_legendrel(unsigned int __l, unsigned int __m, long double __x)
-  { return __detail::__assoc_legendre_p<long double>(__l, __m, __x); }
+  { return __detail::__assoc_legendre_p<long double>(__l, __m, __x).__P_lm; }
 
   /**
    * Return the associated Legendre function @f$ P_l^m(x) @f$
@@ -493,7 +540,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     assoc_legendre(unsigned int __l, unsigned int __m, _Tp __x)
     {
       using __type = __gnu_cxx::fp_promote_t<_Tp>;
-      return __detail::__assoc_legendre_p<__type>(__l, __m, __x);
+      return __detail::__assoc_legendre_p<__type>(__l, __m, __x).__P_lm;
     }
 
   // Beta functions
@@ -518,7 +565,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__beta<long double>(__a, __b); }
 
   /**
-   * Return the beta function, @f$B(a,b)@f$, for real parameters @f$ a @f$, @f$ b @f$.
+   * Return the beta function, @f$B(a,b)@f$, for real parameters
+   * @f$ a @f$, @f$ b @f$.
    *
    * The beta function is defined by
    * @f[
@@ -4409,7 +4457,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline float
   legendre_qf(unsigned int __l, float __x)
-  { return std::__detail::__legendre_q<float>(__l, __x); }
+  { return std::__detail::__legendre_q<float>(__l, __x).__Q_l; }
 
   /**
    * Return the Legendre function of the second kind @f$ Q_l(x) @f$
@@ -4419,7 +4467,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    */
   inline long double
   legendre_ql(unsigned int __l, long double __x)
-  { return std::__detail::__legendre_q<long double>(__l, __x); }
+  { return std::__detail::__legendre_q<long double>(__l, __x).__Q_l; }
 
   /**
    * Return the Legendre function of the second kind @f$ Q_l(x) @f$ of
@@ -4445,7 +4493,58 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     legendre_q(unsigned int __l, _Tp __x)
     {
       using __type = __gnu_cxx::fp_promote_t<_Tp>;
-      return std::__detail::__legendre_q<__type>(__l, __x);
+      return std::__detail::__legendre_q<__type>(__l, __x).__Q_l;
+    }
+
+  // Associated Legendre functions of the second kind
+
+  /**
+   * Return the associated Legendre function @f$ Q_l^m(x) @f$
+   * of degree @f$ l @f$, order @f$ m @f$, and @c float argument @f$ x @f$.
+   *
+   * @see assoc_legendre_q for more details.
+   */
+  inline float
+  assoc_legendre_qf(unsigned int __l, unsigned int __m, float __x)
+  { return std::__detail::__assoc_legendre_q<float>(__l, __m, __x).__Q_lm; }
+
+  /**
+   * Return the associated Legendre function @f$ Q_l^m(x) @f$
+   * of degree @f$ l @f$, order @f$ m @f$, and @c <tt>long double</tt>
+   * argument @f$ x @f$.
+   *
+   * @see assoc_legendre_q for more details.
+   */
+  inline long double
+  assoc_legendre_ql(unsigned int __l, unsigned int __m, long double __x)
+  {
+    return std::__detail::__assoc_legendre_q<long double>(__l, __m, __x).__Q_lm;
+  }
+
+  /**
+   * Return the associated Legendre function @f$ Q_l^m(x) @f$
+   * of degree @f$ l @f$, order @f$ m @f$, and real argument @f$ x @f$.
+   *
+   * The associated Legendre function is derived from the Legendre function
+   * @f$ Q_l(x) @f$ by the Rodrigues formula:
+   * @f[
+   *   Q_l^m(x) = (1 - x^2)^{m/2}\frac{d^m}{dx^m}Q_l(x)
+   * @f]
+   * @see legendre for details of the Legendre function of degree @c l
+   * @note @f$ Q_l^m(x) != 0 @f$ if @f$ m > l @f$.
+   *
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __l  The degree <tt>__l >= 0</tt>.
+   * @param  __m  The order <tt>__m</tt>.
+   * @param  __x  The argument, <tt>abs(__x) <= 1</tt>.
+   * @throw std::domain_error if <tt>abs(__x) > 1</tt>.
+   */
+  template<typename _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tp>
+    assoc_legendre_q(unsigned int __l, unsigned int __m, _Tp __x)
+    {
+      using __type = __gnu_cxx::fp_promote_t<_Tp>;
+      return std::__detail::__assoc_legendre_q<__type>(__l, __m, __x).__Q_lm;
     }
 
   // Scaled lower incomplete gamma

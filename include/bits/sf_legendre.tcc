@@ -137,7 +137,7 @@ namespace __detail
    * @param __x The argument of the Legendre function.  @f$|x| <= 1@f$.
    */
   template<typename _Tp>
-    _Tp
+    __gnu_cxx::__legendre_q_t<_Tp>
     __legendre_q(unsigned int __l, _Tp __x)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
@@ -145,19 +145,25 @@ namespace __detail
       if ((__x < -_Tp{1}) || (__x > +_Tp{1}))
 	std::__throw_domain_error(__N("__legendre_q: argument out of range"));
       else if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	{
+	  const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+	  return {__l, __x, _S_NaN, _S_NaN, _S_NaN};
+	}
       else if (std::abs(__x - _Tp{1}) < _S_eps)
-	return _S_inf;
+	return {__l, __x, _S_inf, _S_inf, _S_inf};
       else if (std::abs(__x + _Tp{1}) < _S_eps)
-	return (__l & 1 ? +1 : -1) * _S_inf;
+	{
+	  const auto __sgn = (__l & 1 ? +1 : -1);
+	  return {__l, __x, __sgn * _S_inf, -__sgn * _S_inf, __sgn * _S_inf};
+	}
       else
 	{
 	  auto _Q_lm2 = _Tp{0.5L} * std::log((_Tp{1} + __x) / (_Tp{1} - __x));
 	  if (__l == 0)
-	    return _Q_lm2;
+	    return {__l, __x, _Q_lm2, _Tp{0}, _Tp{0}};
 	  auto _Q_lm1 = __x * _Q_lm2 - _Tp{1};
 	  if (__l == 1)
-	    return _Q_lm1;
+	    return {__l, __x, _Q_lm1, _Q_lm2, _Tp{0}};
 	  auto _Q_l = _Tp{2} * __x * _Q_lm1 - _Q_lm2
 		    - (__x * _Q_lm1 - _Q_lm2) / _Tp{2};
 	  for (unsigned int __ll = 3; __ll <= __l; ++__ll)
@@ -170,7 +176,7 @@ namespace __detail
 		    - (__x * _Q_lm1 - _Q_lm2) / _Tp(__ll);
 	    }
 
-	  return _Q_l;
+	  return {__l, __x, _Q_l, _Q_lm1, _Q_lm2};
 	}
     }
 
@@ -195,16 +201,22 @@ namespace __detail
    *                  Use -1 for the Condon-Shortley phase convention.
    */
   template<typename _Tp>
-    _Tp
+    __gnu_cxx::__assoc_legendre_p_t<_Tp>
     __assoc_legendre_p(unsigned int __l, unsigned int __m, _Tp __x,
 		       _Tp __phase = _Tp{+1})
     {
       if (__m > __l)
-	return _Tp{0};
+	return {__l, __m, __x, _Tp{0}, _Tp{0}, _Tp{0}};
       else if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	{
+	  const auto _NaN = __gnu_cxx::__quiet_NaN(__x);
+	  return {__l, __m, __x, _NaN, _NaN, _NaN};
+	}
       else if (__m == 0)
-	return __legendre_p(__l, __x).__P_l;
+	{
+	  const auto _P_l = __legendre_p(__l, __x);
+	  return {__l, __m, __x, _P_l.__P_l, _P_l.__P_lm1, _P_l.__P_lm2};
+	}
       else
 	{
 	  _Tp _P_mm = _Tp{1};
@@ -222,11 +234,11 @@ namespace __detail
 		}
 	    }
 	  if (__l == __m)
-	    return _P_mm;
+	    return {__l, __m, __x, _P_mm, _Tp{0}, _Tp{0}};
 
 	  _Tp _P_mp1m = _Tp(2 * __m + 1) * __x * _P_mm;
 	  if (__l == __m + 1)
-	    return _P_mp1m;
+	    return {__l, __m, __x, _P_mp1m, _P_mm, _Tp{0}};
 
 	  auto _P_lm2m = _P_mm;
 	  auto _P_lm1m = _P_mp1m;
@@ -239,11 +251,92 @@ namespace __detail
 	      _P_lm = (_Tp(2 * __j - 1) * __x * _P_lm1m
 		      - _Tp(__j + __m - 1) * _P_lm2m) / _Tp(__j - __m);
 	    }
-
-	  return _P_lm;
+	  //_Pp_lm = ((__l + __m) * _P_lm1m - __l * __x * _P_lm)
+	  //       / ((_Tp{1} - __x) * (_Tp{1} + __x));
+	  return {__l, __m, __x, _P_lm, _P_lm1m, _P_lm2m};
 	}
     }
 
+  template<typename _Tp>
+    __gnu_cxx::__assoc_legendre_q_t<_Tp>
+    __assoc_legendre_q(unsigned int __l, unsigned int __m, _Tp __x,
+		       _Tp __phase = _Tp{+1})
+    {
+      if (std::isnan(__x))
+	{
+	  const auto _NaN = __gnu_cxx::__quiet_NaN(__x);
+	  return {__l, __m, __x, _NaN, _NaN, _NaN};
+	}
+      else if (std::abs(__x) < _Tp{1})
+	{
+	  // Find Q_l^0 and Q_l^1 by upward recurrence on l.
+	  const auto __fact = (_Tp{1} - __x) * (_Tp{1} + __x);
+	  const auto __root = std::sqrt(_Tp{1} - __x) * std::sqrt(_Tp{1} + __x);
+	  const auto __log = std::log((_Tp{1} + __x) / (_Tp{1} - __x)) / _Tp{2};
+
+	  const auto _Q_00 = __log;
+	  const auto _Q_01 = __phase / __root;
+	  if (__l == 0)
+	    {
+	      if (__m == 0)
+		return {__l, __m, __x, _Q_00, _Tp{0}, _Tp{0}}; // FIXME?
+	      else if (__m == 1)
+		return {__l, __m, __x, _Q_01, _Q_00, _Tp{0}}; // FIXME?
+	    }
+
+	  const auto _Q_10 = __x * _Q_00 - _Tp{1};
+	  const auto _Q_11 = __phase * __root * (__log + __x / __fact);
+	  if (__l == 1)
+	    {
+	      if (__m == 0)
+		return {__l, __m, __x, _Q_10, _Tp{0}, _Tp{0}}; // FIXME?
+	      else if (__m == 1)
+		return {__l, __m, __x, _Q_11, _Q_10, _Tp{0}}; // FIXME?
+	    }
+
+	  auto _Q_lm20 = _Q_00;
+	  auto _Q_lm10 = _Q_10;
+	  auto _Q_lm21 = _Q_01;
+	  auto _Q_lm11 = _Q_11;
+	  auto _Q_l0 = (_Tp{3} * __x * _Q_lm10 - _Tp{1} * _Q_lm20) / _Tp{2};
+	  auto _Q_l1 = (_Tp{3} * __x * _Q_lm11 - _Tp{2} * _Q_lm21);
+	  for (int __k = 3; __k <= __l; ++__k)
+	    {
+	      _Q_lm20 = _Q_lm10;
+	      _Q_lm10 = _Q_l0;
+	      _Q_l0 = (_Tp(2 * __k - 1) * __x * _Q_lm10
+		    - _Tp(__k - 1) * _Q_lm20) / _Tp(__k);
+
+	      _Q_lm21 = _Q_lm11;
+	      _Q_lm11 = _Q_l1;
+	      _Q_l1 = (_Tp(2 * __k - 1) * __x * _Q_lm11
+		    - _Tp(__k) * _Q_lm21) / _Tp(__k - 1);
+	    }
+	  if (__m == 0)
+	    return {__l, __m, __x, _Q_l0, _Tp{0}, _Tp{0}}; // FIXME?
+	  else if (__m == 1)
+	    return {__l, __m, __x, _Q_l1, _Q_l0, _Tp{0}}; // FIXME?
+
+	  // Find Q_l^m by upward recurrence on m.
+	  auto _Q_lmm2 = _Q_l0;
+	  auto _Q_lmm1 = _Q_l1;
+	  auto _Q_lm = __phase * (_Tp{2} * __x * _Q_lmm1 / __root
+				+ _Tp(__l + 1) * _Tp(__l) * _Q_l0);
+	  for (int __k = 3; __k <= __m; ++__k)
+	    {
+	      _Q_lmm2 = _Q_lmm1;
+	      _Q_lmm1 = _Q_lm;
+	      _Q_lm = __phase * (_Tp(2 * (__k - 1)) * __x * _Q_lmm1 / __root
+			      - _Tp(__l + __k - 1) * _Tp(__l - __k + 2) * _Q_l0);
+	    }
+	  //_Qp_lm = _Tp(__m) * __x * _Q_lm / __fact
+	  //       + _Tp(__l + __m) * _Tp(__l - __m + 1) * _Q_lmm1 / __root;
+	  return {__l, __m, __x, _Q_lm, _Q_lmm1, _Q_lmm2};
+	}
+      else
+	{
+	}
+    }
 
   /**
    * @brief  Return the spherical associated Legendre function.

@@ -71,7 +71,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
   /**
-   * A struct to store the state of a Hermite polynomial.
+   * A type describing the state of a Hermite polynomial.
    */
   template<typename _Tp>
     struct __hermite_t
@@ -92,7 +92,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
   /**
-   * A struct to store the state of a probabilists Hermite polynomial.
+   * A type describing the state of a probabilists Hermite polynomial.
    */
   template<typename _Tp>
     struct __hermite_he_t
@@ -113,25 +113,94 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
   /**
-   * A struct to store the state of a Legendre polynomial.
+   * A type describing the state of a Legendre polynomial.
    */
   template<typename _Tp>
     struct __legendre_p_t
     {
       std::size_t __l;
-      _Tp __z;
-      _Tp __P_l;
-      _Tp __P_lm1;
-      _Tp __P_lm2;
+      _Tp __x;
+      _Tp __P_l;   /// P_l(x)
+      _Tp __P_lm1; /// P_{l-1}(x)
+      _Tp __P_lm2; /// P_{l-2}(x)
 
       // @todo endpoints?
       _Tp
       deriv() const
-      { return __l * (__z * __P_l - __P_lm1) / (__z * __z - _Tp{1}); }
+      {
+	return __l * (__x * __P_l - __P_lm1)
+	     / ((__x - _Tp{1}) * (__x - _Tp{1}));
+      }
     };
 
   /**
-   * A struct to store the state of a Laguerre polynomial.
+   * A type describing the state of an associated Legendre function.
+   */
+  template<typename _Tp>
+    struct __assoc_legendre_p_t
+    {
+      std::size_t __l;
+      std::size_t __m;
+      _Tp __x;
+      _Tp __P_lm;   /// P_l^{(m)}(x)
+      _Tp __P_lm1m; /// P_{l-1}^{(m)}(x)
+      _Tp __P_lm2m; /// P_{l-2}^{(m)}(x)
+
+      // @todo endpoints?
+      _Tp
+      deriv() const
+      {
+	return ((__l + __m) * __P_lm1m - __l * __x * __P_lm)
+	     / ((_Tp{1} - __x) * (_Tp{1} + __x));
+      }
+    };
+
+  /**
+   * A type describing the state of a Legendre function of the second kind.
+   */
+  template<typename _Tp>
+    struct __legendre_q_t
+    {
+      std::size_t __l;
+      _Tp __x;
+      _Tp __Q_l;   /// Q_l(x)
+      _Tp __Q_lm1; /// Q_{l-1}(x)
+      _Tp __Q_lm2; /// Q_{l-2}(x)
+
+      _Tp
+      deriv() const
+      {
+	return _Tp(__l) * (__x * __Q_l - __Q_lm1)
+	     / ((_Tp{1} - __x) * (_Tp{1} + __x));
+      }
+    };
+
+  /**
+   * A type describing the state of an associated Legendre function
+   * of the second kind.
+   */
+  template<typename _Tp>
+    struct __assoc_legendre_q_t
+    {
+      std::size_t __l; /// degree
+      std::size_t __m; /// order
+      _Tp __x; /// argument
+      _Tp __Q_lm;   /// Q_l^{(m)}(x)
+      _Tp __Q_lmm1; /// Q_l^{(m-1)}(x)
+      _Tp __Q_lmm2; /// Q_l^{(m-2)}(x)
+
+      _Tp
+      deriv() const
+      {
+	const auto __fact = (_Tp{1} - __x) * (_Tp{1} + __x);
+	const auto __root = std::sqrt(_Tp{1} - __x) * std::sqrt(_Tp{1} + __x);
+	return _Tp(__m) * __x * __Q_lm / __fact
+	     + _Tp(__l + __m) * _Tp(__l - __m + 1) * __Q_lmm1 / __root;
+      }
+    };
+
+  /**
+   * A type describing the state of a Laguerre polynomial.
    */
   template<typename _Tpa, typename _Tp>
     struct __laguerre_t
@@ -149,7 +218,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
   /**
-   * A struct to store the state of a Jacobi polynomial.
+   * A type describing the state of a Jacobi polynomial.
    */
   template<typename _Tp>
     struct __jacobi_t
@@ -173,7 +242,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
   /**
-   * A struct to store the state of a Gegenbauer polynomial.
+   * A type describing the state of a Gegenbauer polynomial.
    */
   template<typename _Tp>
     struct __gegenbauer_t
@@ -196,7 +265,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
   /**
-   * A struct to store the state of a Chebyshev polynomial of the first kind.
+   * A type describing the state of a Chebyshev polynomial of the first kind.
    */
   template<typename _Tp>
     struct __chebyshev_t_t
@@ -223,7 +292,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
   /**
-   * A struct to store the state of a Chebyshev polynomial of the second kind.
+   * A type describing the state of a Chebyshev polynomial of the second kind.
    */
   template<typename _Tp>
     struct __chebyshev_u_t
@@ -243,7 +312,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
   /**
-   * A struct to store the state of a Chebyshev polynomial of the third kind.
+   * A type describing the state of a Chebyshev polynomial of the third kind.
    */
   template<typename _Tp>
     struct __chebyshev_v_t
@@ -265,7 +334,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
   /**
-   * A struct to store the state of a Chebyshev polynomial of the fourth kind.
+   * A type describing the state of a Chebyshev polynomial of the fourth kind.
    */
   template<typename _Tp>
     struct __chebyshev_w_t
@@ -287,7 +356,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     };
 
   /**
-   * A struct to store a cosine and a sine value.
+   * A type describing a cosine and a sine value.
    * A return for sincos-type functions.
    */
   template<typename _Tp>
