@@ -24,7 +24,7 @@ set(CMAKE_CXX_FLAGS "-std=c++17 -Wall -Wextra -Wno-deprecated-declarations -Wold
 set(CMAKE_Fortran_FLAGS "-Wall -Wextra -I$ENV{HOME}/tr29124_test")
 
 add_library(wrap_boost SHARED wrap_boost.cpp)
-target_include_directories(wrap_boost PRIVATE ../cxx_fp_utils/include)
+target_include_directories(wrap_boost PRIVATE ../cxx_fp_utils/include ../cxx_summation/include)
 
 
 set(GSL_ROOT_DIR /usr/local)
@@ -39,7 +39,7 @@ add_library(wrap_gsl SHARED
 	    ../3rdparty/gslextras/Hermite/gsl_sf_hermite.c
 	   )
 target_link_libraries(wrap_gsl gsl gslcblas)
-target_include_directories(wrap_gsl PRIVATE ../cxx_fp_utils/include ../3rdparty/gslextras)
+target_include_directories(wrap_gsl PRIVATE ../cxx_fp_utils/include ../cxx_summation/include ../3rdparty/gslextras)
 
 add_library(wrap_cephes SHARED
             wrap_cephes.cpp
@@ -189,7 +189,7 @@ add_library(wrap_cephes SHARED
 	    ../3rdparty/cephes/c9x-complex/cgamma.c
 	    ../3rdparty/cephes/c9x-complex/cpolylog.c
            )
-target_include_directories(wrap_cephes PRIVATE ../cxx_fp_utils/include ../3rdparty/cephes)
+target_include_directories(wrap_cephes PRIVATE ../cxx_fp_utils/include ../cxx_summation/include ../3rdparty/cephes)
 
 # This was an interesting disaster!
 #	    ../cephes/cmath/sincos.c
@@ -225,25 +225,25 @@ add_library(wrap_burkhardt SHARED
 	    ../3rdparty/burkhardt/triangle_monte_carlo.cpp
            )
 target_link_libraries(wrap_burkhardt gfortran)
-target_include_directories(wrap_burkhardt PRIVATE ../cxx_fp_utils/include ../3rdparty/burkhardt)
+target_include_directories(wrap_burkhardt PRIVATE ../cxx_fp_utils/include ../cxx_summation/include ../3rdparty/burkhardt)
 
 
 add_library(wrap_lerchphi SHARED
             wrap_lerch.cpp
 	    ../3rdparty/lerchphi/Source/lerchphi.cpp
 	   )
-target_include_directories(wrap_lerchphi PRIVATE ../cxx_fp_utils/include ../3rdparty/lerchphi/Source)
+target_include_directories(wrap_lerchphi PRIVATE ../cxx_fp_utils/include ../cxx_summation/include ../3rdparty/lerchphi/Source)
 
 
 add_library(wrap_faddeeva SHARED
             wrap_faddeeva.cpp
 	    ../3rdparty/Faddeeva/Faddeeva.cc
 	   )
-target_include_directories(wrap_faddeeva PRIVATE ../cxx_fp_utils/include ../3rdparty/Faddeeva)
+target_include_directories(wrap_faddeeva PRIVATE ../cxx_fp_utils/include ../cxx_summation/include ../3rdparty/Faddeeva)
 
 
 add_library(wrap_lambert SHARED
             wrap_lambert.cpp
 	    ../3rdparty/LambertW/LambertW.cc
 	   )
-target_include_directories(wrap_lambert PRIVATE ../cxx_fp_utils/include ../3rdparty/LambertW)
+target_include_directories(wrap_lambert PRIVATE ../cxx_fp_utils/include ../cxx_summation/include ../3rdparty/LambertW)
