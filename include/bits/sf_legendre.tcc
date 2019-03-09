@@ -142,9 +142,7 @@ namespace __detail
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const auto _S_inf = __gnu_cxx::__infinity(__x);
-      if ((__x < -_Tp{1}) || (__x > +_Tp{1}))
-	std::__throw_domain_error(__N("__legendre_q: argument out of range"));
-      else if (std::isnan(__x))
+      if (std::isnan(__x))
 	{
 	  const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
 	  return {__l, __x, _S_NaN, _S_NaN, _S_NaN};
@@ -156,7 +154,7 @@ namespace __detail
 	  const auto __sgn = (__l & 1 ? +1 : -1);
 	  return {__l, __x, __sgn * _S_inf, -__sgn * _S_inf, __sgn * _S_inf};
 	}
-      else
+      else if (std::abs(__x) < _Tp{1})
 	{
 	  auto _Q_lm2 = _Tp{0.5L} * std::log((_Tp{1} + __x) / (_Tp{1} - __x));
 	  if (__l == 0)
@@ -177,6 +175,11 @@ namespace __detail
 	    }
 
 	  return {__l, __x, _Q_l, _Q_lm1, _Q_lm2};
+	}
+      else
+	{
+	  /// @todo Build the series rep for Ql and recur down.
+	  return {__l, __x, 0, 0, 0}; // FIXME!
 	}
     }
 
