@@ -28,7 +28,7 @@ CXX_LIB_DIR = $(CXX_INST_DIR)/lib64
 CXX_TEST_INC_DIR = libstdc++_support
 
 INC_DIR = include/bits
-INCLUDES = -Iinclude -Icxx_fp_utils/include -Ipolynomial/include -Iquadrature/include
+INCLUDES = -Iinclude -Icxx_fp_utils/include -Icxx_summation/include -Ipolynomial/include -Iquadrature/include
 MPREAL_INCLUDES = -I$(HOME)/mpreal
 
 FAD_DIR = 3rdparty/Faddeeva
@@ -865,7 +865,7 @@ $(TEST_BIN_DIR)/test_clausen: wrappers_debug laboratories/zeta_functions/test_cl
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_clausen laboratories/zeta_functions/test_clausen.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
 $(TEST_BIN_DIR)/test_cmath: test_std_maths/test_cmath.cpp
-	$(CXX14) $(INCLUDES) -o $(TEST_BIN_DIR)/test_cmath test_std_maths/test_cmath.cpp -lquadmath
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_cmath test_std_maths/test_cmath.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_comp_ellint_1: laboratories/elliptic_integrals/test_comp_ellint_1.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_comp_ellint_1 laboratories/elliptic_integrals/test_comp_ellint_1.cpp -lquadmath
@@ -1063,7 +1063,7 @@ $(TEST_BIN_DIR)/test_lentz_continued_fraction: continued_fractions/test_lentz_co
 	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_lentz_continued_fraction continued_fractions/test_lentz_continued_fraction.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_lerch: laboratories/zeta_functions/test_lerch.cpp
-	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_lerch laboratories/zeta_functions/test_lerch.cpp 3rdparty/lerchphi/Source/lerchphi.cpp -lquadmath
+	$(CXXMAX) $(INCLUDES) -I. -o $(TEST_BIN_DIR)/test_lerch laboratories/zeta_functions/test_lerch.cpp 3rdparty/lerchphi/Source/lerchphi.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_limits: laboratories/floating_point_tools/test_limits.cpp
 	$(CXXMAX) -Iinclude -o $(TEST_BIN_DIR)/test_limits laboratories/floating_point_tools/test_limits.cpp -lquadmath
@@ -1084,7 +1084,7 @@ $(TEST_BIN_DIR)/test_marcum_q: laboratories/distributions/test_marcum_q.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_marcum_q laboratories/distributions/test_marcum_q.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_math_h: test_std_maths/test_math_h.cpp
-	$(CXX14) $(INCLUDES) -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o $(TEST_BIN_DIR)/test_math_h test_std_maths/test_math_h.cpp -lquadmath
+	$(CXXMAX) $(INCLUDES) -D__STDCPP_WANT_MATH_SPEC_FUNCS__ -o $(TEST_BIN_DIR)/test_math_h test_std_maths/test_math_h.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_maxint: laboratories/floating_point_tools/test_maxint.cpp
 	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/test_maxint laboratories/floating_point_tools/test_maxint.cpp -lquadmath -lmpfr
@@ -1108,7 +1108,7 @@ $(TEST_BIN_DIR)/test_notsospecfun: laboratories/elementary_functions/test_notsos
 	$(CXXMAX) -Iinclude -Icxx_fp_utils/include -o $(TEST_BIN_DIR)/test_notsospecfun laboratories/elementary_functions/test_notsospecfun.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_nric_bessel: laboratories/bessel_functions/test_nric_bessel.cpp laboratories/bessel_functions/nric_bessel.tcc
-	$(CXX14) $(INCLUDES) -Ilaboratories/bessel_functions -o $(TEST_BIN_DIR)/test_nric_bessel laboratories/bessel_functions/test_nric_bessel.cpp -lquadmath
+	$(CXXMAX) $(INCLUDES) -Ilaboratories/bessel_functions -o $(TEST_BIN_DIR)/test_nric_bessel laboratories/bessel_functions/test_nric_bessel.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_numeric_limits: laboratories/floating_point_tools/test_numeric_limits.cpp
 	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/test_numeric_limits laboratories/floating_point_tools/test_numeric_limits.cpp -lquadmath -lmpfr -lgmp
@@ -1179,14 +1179,14 @@ $(TEST_BIN_DIR)/test_struve: laboratories/bessel_functions/test_struve.cpp
 $(TEST_BIN_DIR)/test_struve_old: laboratories/bessel_functions/test_struve_old.cpp
 	$(CXXMAX) $(INCLUDES) -Ilaboratories/hypergeometric_functions -o $(TEST_BIN_DIR)/test_struve_old laboratories/bessel_functions/test_struve_old.cpp -lquadmath
 
-$(TEST_BIN_DIR)/test_summation: summation/test_summation.cpp
-	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_summation summation/test_summation.cpp -lquadmath
+$(TEST_BIN_DIR)/test_summation: cxx_summation/test_summation.cpp
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_summation cxx_summation/test_summation.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_theta: laboratories/theta_functions/test_theta.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_theta laboratories/theta_functions/test_theta.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_tr1_cmath: test_std_maths/test_tr1_cmath.cpp
-	$(CXX14) $(INCLUDES) -o $(TEST_BIN_DIR)/test_tr1_cmath test_std_maths/test_tr1_cmath.cpp -lquadmath
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_tr1_cmath test_std_maths/test_tr1_cmath.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_tricomi_u: laboratories/hypergeometric_functions/test_tricomi_u.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_tricomi_u laboratories/hypergeometric_functions/test_tricomi_u.cpp -lquadmath

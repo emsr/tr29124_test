@@ -42,7 +42,7 @@
 #pragma GCC system_header
 
 #include <ext/cmath>
-#include <bits/summation.h>
+#include <ext/summation.h>
 #include <bits/specfun_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)

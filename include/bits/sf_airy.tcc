@@ -33,7 +33,7 @@
 #pragma GCC system_header
 
 #include <bits/complex_util.h>
-#include <bits/summation.h>
+#include <ext/summation.h>
 #include <ext/polynomial.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)

@@ -12,7 +12,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_kelvin te
 #include <iomanip>
 #include <complex>
 #include <cmath>
-#include <bits/summation.h>
+#include <ext/summation.h>
 #include <bits/numeric_limits.h>
 #include <bits/specfun.h>
 

@@ -12,7 +12,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_lerch tes
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include <bits/summation.h>
+#include <ext/summation.h>
 #include <bits/specfun_util.h>
 #include <statistics.h>
 

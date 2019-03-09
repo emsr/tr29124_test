@@ -27,8 +27,8 @@
  * Do not attempt to use it directly. @headername{cmath}
  */
 
-#ifndef _GLIBCXX_BITS_SUMMATION_H
-#define _GLIBCXX_BITS_SUMMATION_H 1
+#ifndef _GLIBCXX_EXT_SUMMATION_H
+#define _GLIBCXX_EXT_SUMMATION_H 1
 
 #pragma GCC visibility push(default)
 
@@ -1243,6 +1243,6 @@ _GLIBCXX_END_NAMESPACE_VERSION
 
 #pragma GCC visibility pop
 
-#include <bits/summation.tcc>
+#include <ext/summation.tcc>
 
-#endif // _GLIBCXX_BITS_SUMMATION_H
+#endif // _GLIBCXX_EXT_SUMMATION_H
