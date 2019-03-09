@@ -143,6 +143,7 @@ BINS = \
        $(TEST_BIN_DIR)/test_lambert_w \
        $(TEST_BIN_DIR)/test_large_order_bessel \
        $(TEST_BIN_DIR)/test_legendre \
+       $(TEST_BIN_DIR)/test_legendre_q \
        $(TEST_BIN_DIR)/test_legendre_ellint \
        $(TEST_BIN_DIR)/test_lentz_continued_fraction \
        $(TEST_BIN_DIR)/test_lerch \
@@ -564,6 +565,7 @@ test: $(BINS) $(TEST_OUT_DIR)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_laguerre > $(TEST_OUT_DIR)/test_laguerre.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lambert_w > $(TEST_OUT_DIR)/test_lambert_w.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_legendre > $(TEST_OUT_DIR)/test_legendre.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_legendre_q > $(TEST_OUT_DIR)/test_legendre_q.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_legendre_ellint > $(TEST_OUT_DIR)/test_legendre_ellint.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lentz_continued_fraction > $(TEST_OUT_DIR)/test_lentz_continued_fraction.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lerch > $(TEST_OUT_DIR)/test_lerch.txt
@@ -1055,6 +1057,9 @@ $(TEST_BIN_DIR)/test_large_order_bessel: laboratories/bessel_functions/test_larg
 
 $(TEST_BIN_DIR)/test_legendre: laboratories/orthogonal_polynomials/test_legendre.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_legendre laboratories/orthogonal_polynomials/test_legendre.cpp -lquadmath
+
+$(TEST_BIN_DIR)/test_legendre_q: laboratories/orthogonal_polynomials/test_legendre_q.cpp
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_legendre_q laboratories/orthogonal_polynomials/test_legendre_q.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_legendre_ellint: laboratories/elliptic_integrals/test_legendre_ellint.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_legendre_ellint laboratories/elliptic_integrals/test_legendre_ellint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
