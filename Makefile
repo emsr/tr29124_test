@@ -66,6 +66,8 @@ BINS = \
        $(TEST_BIN_DIR)/test_appell_f1 \
        $(TEST_BIN_DIR)/test_arith_geom_mean \
        $(TEST_BIN_DIR)/test_assoc_laguerre \
+       $(TEST_BIN_DIR)/test_assoc_legendre \
+       $(TEST_BIN_DIR)/test_assoc_legendre_q \
        $(TEST_BIN_DIR)/test_bernoulli \
        $(TEST_BIN_DIR)/test_bessel \
        $(TEST_BIN_DIR)/test_bessel_asymp \
@@ -489,6 +491,8 @@ test: $(BINS) $(TEST_OUT_DIR)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_anger_weber > $(TEST_OUT_DIR)/test_anger_weber.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_appell_f1 > $(TEST_OUT_DIR)/test_appell_f1.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_assoc_laguerre > $(TEST_OUT_DIR)/test_assoc_laguerre.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_assoc_legendre > $(TEST_OUT_DIR)/test_assoc_legendre.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_assoc_legendre_q > $(TEST_OUT_DIR)/test_assoc_legendre_q.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_bernoulli > $(TEST_OUT_DIR)/test_bernoulli.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_bessel > $(TEST_OUT_DIR)/test_bessel.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_bessel_asymp > $(TEST_OUT_DIR)/test_bessel_asymp.txt
@@ -823,6 +827,12 @@ $(TEST_BIN_DIR)/test_arith_geom_mean: laboratories/norm_functions/test_arith_geo
 
 $(TEST_BIN_DIR)/test_assoc_laguerre: laboratories/orthogonal_polynomials/test_assoc_laguerre.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_assoc_laguerre laboratories/orthogonal_polynomials/test_assoc_laguerre.cpp -lquadmath
+
+$(TEST_BIN_DIR)/test_assoc_legendre: laboratories/orthogonal_polynomials/test_assoc_legendre.cpp
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_assoc_legendre laboratories/orthogonal_polynomials/test_assoc_legendre.cpp -lquadmath
+
+$(TEST_BIN_DIR)/test_assoc_legendre_q: laboratories/orthogonal_polynomials/test_assoc_legendre_q.cpp
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_assoc_legendre_q laboratories/orthogonal_polynomials/test_assoc_legendre_q.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_bernoulli: wrappers_debug laboratories/bernoulli_functions/test_bernoulli.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_bernoulli laboratories/bernoulli_functions/test_bernoulli.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran

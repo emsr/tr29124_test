@@ -1,9 +1,6 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_legendre test_legendre.cpp -lquadmath
-./test_legendre > test_legendre.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_legendre test_legendre.cpp -lquadmath
-./test_legendre > test_legendre.txt
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -I../../quadrature/include -I../../cxx_summation/include -o test_legendre test_legendre.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin/lib64:LD_LIBRARY_PATH$ ./test_legendre > test_legendre.txt
 */
 
 #include <iostream>
@@ -13,8 +10,8 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_legendre 
 #include <limits>
 #include <vector>
 
-#include "legendre.tcc"
-#include "bits/sf_legendre.tcc"
+//#include "legendre.tcc"
+//#include "bits/sf_legendre.tcc"
 
   /**
    * Build a list of zeros and weights for the Gauss-Legendre integration rule
@@ -112,40 +109,36 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_legendre 
       return __pt;
     }
 
+/**
+ * 
+ */
 template<typename _Tp>
   void
   test_legendre(_Tp proto = _Tp{})
   {
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
-    auto width = 8 + std::cout.precision();
+    auto w = 8 + std::cout.precision();
 
     for (int l = 0; l <= 50; ++l)
       {
-	std::cout << "  " << std::setw(width) << "x";
-	std::cout << "  " << std::setw(width) << "P_" << l << "(x)";
+	std::cout << "\n\n";
+	std::cout << ' ' << std::setw(w) << "x";
+	std::cout << ' ' << std::setw(w) << "P_" << l << "(x)";
 	std::cout << '\n';
 	const auto del = _Tp{1} / _Tp{100};
 	for (int i = -100; i <= 100; ++i)
 	  {
 	    auto x = i * del;
-	    _Tp P, P_l, P_l0;
-	    try
-	      {
-		P = __legendre_p(l, x);
-		P_l = std::__detail::__legendre_p(l, x).__P_l;
-		P_l0 = std::__detail::__assoc_legendre_p(l, 0, x);
-	      }
-	    catch (std::exception & err)
-	      {
-		std::cerr << err.what() << '\n';
-	      }
-	    std::cout << "  " << std::setw(width) << x;
-	    std::cout << "  " << std::setw(width) << P;
-	    std::cout << "  " << std::setw(width) << P_l;
-	    std::cout << "  " << std::setw(width) << P_l0;
-	    std::cout << "  " << std::setw(width) << P_l - P;
-	    std::cout << '\n';
+	    const auto P_l = std::__detail::__legendre_p(l, x);
+	    const auto P_l0 = std::__detail::__assoc_legendre_p(l, 0, x);
+	    std::cout << ' ' << std::setw(w) << x
+		      << ' ' << std::setw(w) << P_l.__P_l
+		      << ' ' << std::setw(w) << P_l0.__P_lm
+		      << ' ' << std::setw(w) << P_l.__P_l - P_l0.__P_lm
+		      << ' ' << std::setw(w) << P_l.deriv()
+		      << ' ' << std::setw(w) << P_l0.deriv()
+		      << '\n';
 	  }
       }
 
@@ -153,26 +146,19 @@ template<typename _Tp>
       {
 	for (unsigned int m = l; m <= l; --m)
 	  {
-	    std::cout << "  " << std::setw(width) << "x";
-	    std::cout << "  " << std::setw(width) << "P_" << l << "_" << m << "(x)";
+	    std::cout << "\n\n";
+	    std::cout << ' ' << std::setw(w) << "x";
+	    std::cout << ' ' << std::setw(w) << "P_" << l << "_" << m << "(x)";
 	    std::cout << '\n';
 	    const auto del = _Tp{1} / _Tp{100};
 	    for (int i = -100; i <= 100; ++i)
 	      {
-		auto x = i * del;
-		_Tp P_lm;
-		try
-		  {
-		    P_lm = std::__detail::__assoc_legendre_p(l, m, x);
-
-		  }
-		catch (std::exception & err)
-		  {
-		    std::cerr << err.what() << '\n';
-		  }
-		std::cout << "  " << std::setw(width) << x;
-		std::cout << "  " << std::setw(width) << P_lm;
-		std::cout << '\n';
+		const auto x = i * del;
+		const auto P = std::__detail::__assoc_legendre_p(l, m, x);
+		std::cout << ' ' << std::setw(w) << x
+			  << ' ' << std::setw(w) << P.__P_lm
+			  << ' ' << std::setw(w) << P.deriv()
+			  << '\n';
 	      }
 	  }
       }
@@ -182,8 +168,8 @@ template<typename _Tp>
 	auto pt = __legendre_zeros(l, proto);
 	std::cout << "\nl = " << std::setw(4) << l << ":\n";
 	for (auto [z, w] : pt)
-	  std::cout << ' ' << std::setw(width) << z
-		    << ' ' << std::setw(width) << w
+	  std::cout << ' ' << std::setw(w) << z
+		    << ' ' << std::setw(w) << w
 		    << '\n';
       }
   }

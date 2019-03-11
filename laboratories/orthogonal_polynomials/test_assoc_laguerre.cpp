@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -I../../quadrature/include -o test_assoc_laguerre test_assoc_laguerre.cpp
+$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -I../../quadrature/include -I../../cxx_summation/include -o test_assoc_laguerre test_assoc_laguerre.cpp
 */
 
 #include <cmath>

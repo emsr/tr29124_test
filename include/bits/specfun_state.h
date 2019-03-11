@@ -76,7 +76,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     struct __hermite_t
     {
-      std::size_t __n;
+      unsigned int __n;
       _Tp __x;
       _Tp __H_n;
       _Tp __H_nm1;
@@ -97,7 +97,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     struct __hermite_he_t
     {
-      std::size_t __n;
+      unsigned int __n;
       _Tp __x;
       _Tp __He_n;
       _Tp __He_nm1;
@@ -114,22 +114,39 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * A type describing the state of a Legendre polynomial.
+   *
+   * The method lobatto() will return the Lobatto polynomial:
+   * @f[
+   *   Lo_l(x) = (1 - x^2)P'_l(x) = l \left[ P_{l - 1}(x) - x P_l(x) \right]
+   * @f[
    */
   template<typename _Tp>
     struct __legendre_p_t
     {
-      std::size_t __l;
+      unsigned int __l;
       _Tp __x;
       _Tp __P_l;   /// P_l(x)
       _Tp __P_lm1; /// P_{l-1}(x)
       _Tp __P_lm2; /// P_{l-2}(x)
 
-      // @todo endpoints?
+      // Return the Lobatto polynomial.
+      _Tp
+      lobatto() const
+      { return __l * (__P_l - __x * __P_lm1); }
+
       _Tp
       deriv() const
       {
-	return __l * (__x * __P_l - __P_lm1)
-	     / ((__x - _Tp{1}) * (__x - _Tp{1}));
+	if (std::abs(__x) == _Tp{1})
+	  {
+	    const auto __sgn = __x == _Tp{+1}
+			     ? _Tp{+1}
+			     : (__l % 2 == 0 ? _Tp{-1} : _Tp{+1});
+	    return __sgn * _Tp(__l) * _Tp(__l + 1) / _Tp{2};
+	  }
+	else
+	  return __l * (__x * __P_l - __P_lm1)
+	       / ((_Tp{1} - __x) * (_Tp{1} + __x));
       }
     };
 
@@ -139,19 +156,40 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     struct __assoc_legendre_p_t
     {
-      std::size_t __l;
-      std::size_t __m;
+      unsigned int __l;
+      unsigned int __m;
       _Tp __x;
       _Tp __P_lm;   /// P_l^{(m)}(x)
       _Tp __P_lm1m; /// P_{l-1}^{(m)}(x)
       _Tp __P_lm2m; /// P_{l-2}^{(m)}(x)
 
-      // @todo endpoints?
       _Tp
       deriv() const
       {
-	return ((__l + __m) * __P_lm1m - __l * __x * __P_lm)
-	     / ((_Tp{1} - __x) * (_Tp{1} + __x));
+	const auto __phase = _Tp{+1}; // -1 For Condon-Shortley.
+	if (std::abs(__x) == _Tp{1})
+	  {
+	    const auto __sgn = __x == _Tp{+1}
+			     ? _Tp{+1}
+			     : (__l % 2 == 0 ? _Tp{-1} : _Tp{+1});
+	    if (__m == 0)
+	      return __sgn *  _Tp(__l) * _Tp(__l + 1) / _Tp{2};
+	    else if (__m == 1)
+	      {
+		const auto __sgn = __x == _Tp{+1}
+				 ? _Tp{+1}
+				 : (__l % 2 == 0 ? _Tp{+1} : _Tp{-1});
+		return -__phase * __sgn * std::numeric_limits<_Tp>::infinity();
+	      }
+	    else if (__m == 2)
+	      return -__sgn * _Tp(__l + 2) * _Tp(__l + 1) / _Tp{2}
+		   * _Tp(__l) * _Tp(int(__l) - 1) / _Tp{2};
+	    else
+	      return _Tp{0};
+	  }
+	else
+	  return __phase * ((__l + __m) * __P_lm1m - __l * __x * __P_lm)
+	       / ((_Tp{1} - __x) * (_Tp{1} + __x));
       }
     };
 
@@ -161,7 +199,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     struct __legendre_q_t
     {
-      std::size_t __l;
+      unsigned int __l;
       _Tp __x;
       _Tp __Q_l;   /// Q_l(x)
       _Tp __Q_lm1; /// Q_{l-1}(x)
@@ -170,8 +208,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp
       deriv() const
       {
-	return _Tp(__l) * (__x * __Q_l - __Q_lm1)
-	     / ((_Tp{1} - __x) * (_Tp{1} + __x));
+	if (std::abs(__x) == _Tp{1})
+	  return _Tp(__l % 2 == 1 ? -1 : +1)
+		* std::numeric_limits<_Tp>::infinity();
+	else
+	  return _Tp(__l) * (__x * __Q_l - __Q_lm1)
+	       / ((_Tp{1} - __x) * (_Tp{1} + __x));
       }
     };
 
@@ -182,8 +224,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     struct __assoc_legendre_q_t
     {
-      std::size_t __l; /// degree
-      std::size_t __m; /// order
+      unsigned int __l; /// degree
+      unsigned int __m; /// order
       _Tp __x; /// argument
       _Tp __Q_lm;   /// Q_l^{(m)}(x)
       _Tp __Q_lmm1; /// Q_l^{(m-1)}(x)
@@ -192,10 +234,17 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp
       deriv() const
       {
-	const auto __fact = (_Tp{1} - __x) * (_Tp{1} + __x);
-	const auto __root = std::sqrt(_Tp{1} - __x) * std::sqrt(_Tp{1} + __x);
-	return _Tp(__m) * __x * __Q_lm / __fact
-	     + _Tp(__l + __m) * _Tp(__l - __m + 1) * __Q_lmm1 / __root;
+	if (std::abs(__x) == 1)
+	  return _Tp(__l % 2 == 1 ? -1 : +1)
+		* std::numeric_limits<_Tp>::infinity();
+	else
+	  {
+	    const auto __fact = (_Tp{1} - __x) * (_Tp{1} + __x);
+	    const auto __root = std::sqrt(_Tp{1} - __x)
+			      * std::sqrt(_Tp{1} + __x);
+	    return _Tp(__m) * __x * __Q_lm / __fact
+		 + _Tp(__l + __m) * _Tp(__l - __m + 1) * __Q_lmm1 / __root;
+	  }
       }
     };
 
@@ -205,7 +254,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tpa, typename _Tp>
     struct __laguerre_t
     {
-      std::size_t __n;
+      unsigned int __n;
       _Tpa __alpha1;
       _Tp __x;
       _Tp __L_n;
@@ -223,7 +272,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     struct __jacobi_t
     {
-      std::size_t __n;
+      unsigned int __n;
       _Tp __alpha1;
       _Tp __beta1;
       _Tp __x;
@@ -247,7 +296,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     struct __gegenbauer_t
     {
-      std::size_t __n;
+      unsigned int __n;
       _Tp __lambda;
       _Tp __x;
       _Tp __C_n;
@@ -270,7 +319,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     struct __chebyshev_t_t
     {
-      std::size_t __n;
+      unsigned int __n;
       _Tp __x;
       _Tp __T_n;
       _Tp __T_nm1;
@@ -297,7 +346,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     struct __chebyshev_u_t
     {
-      std::size_t __n;
+      unsigned int __n;
       _Tp __x;
       _Tp __U_n;
       _Tp __U_nm1;
@@ -317,7 +366,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     struct __chebyshev_v_t
     {
-      std::size_t __n;
+      unsigned int __n;
       _Tp __x;
       _Tp __V_n;
       _Tp __V_nm1;
@@ -339,7 +388,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename _Tp>
     struct __chebyshev_w_t
     {
-      std::size_t __n;
+      unsigned int __n;
       _Tp __x;
       _Tp __W_n;
       _Tp __W_nm1;
@@ -502,7 +551,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * at a given order and argument.
    */
   template<typename _Teta, typename _Trho, typename _Tp>
-    struct __cyl_coulomb_t
+    struct __coulomb_t
     {
       /// The nonnegative order of the Coulomb functions.
       unsigned int __l;
@@ -765,7 +814,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       std::vector<_Tp> __sigma;
 
-      std::size_t
+      unsigned int
       degree() const noexcept
       { return __sigma.size() - 1; }
 
@@ -811,7 +860,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       std::vector<_Tp> _S;
 
-      std::size_t
+      unsigned int
       degree() const noexcept
       { return _S.size() - 1; }
 

@@ -117,7 +117,7 @@ namespace __detail
 		    - (__x * _P_lm1 - _P_lm2) / _Tp(__ll);
 	    }
 	  // Recursion for the derivative of The Legendre polynomial.
-	  //auto __Pp_l = __l * (__z * _P_l - _P_lm1) / (__z * __z - _Tp{1});
+	  //auto __Pp_l = __l * (_P_lm1 - __x * _P_l) / (_Tp{1} - __x) / (_Tp{1} + __x);
 
 	  return {__l, __x, _P_l, _P_lm1, _P_lm2};
 	}
