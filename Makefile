@@ -152,6 +152,7 @@ BINS = \
        $(TEST_BIN_DIR)/test_limits \
        $(TEST_BIN_DIR)/test_little_airy \
        $(TEST_BIN_DIR)/test_lobatto \
+       $(TEST_BIN_DIR)/test_log \
        $(TEST_BIN_DIR)/test_logsumexp \
        $(TEST_BIN_DIR)/test_lommel \
        $(TEST_BIN_DIR)/test_marcum_q \
@@ -576,6 +577,7 @@ test: $(BINS) $(TEST_OUT_DIR)
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_limits > $(TEST_OUT_DIR)/test_limits.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_little_airy > $(TEST_OUT_DIR)/test_little_airy.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lobatto > $(TEST_OUT_DIR)/test_lobatto.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_log > $(TEST_OUT_DIR)/test_log.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_logsumexp > $(TEST_OUT_DIR)/test_logsumexp.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lommel > $(TEST_OUT_DIR)/test_lommel.txt
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_marcum_q > $(TEST_OUT_DIR)/test_marcum_q.txt
@@ -1091,6 +1093,9 @@ $(TEST_BIN_DIR)/test_lobatto: wrappers_debug laboratories/orthogonal_polynomials
 
 $(TEST_BIN_DIR)/test_lommel: wrappers_debug laboratories/bessel_functions/test_lommel.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_lommel laboratories/bessel_functions/test_lommel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+
+$(TEST_BIN_DIR)/test_log: laboratories/elementary_functions/test_log.cpp
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_log laboratories/elementary_functions/test_log.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_logsumexp: laboratories/norm_functions/test_logsumexp.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_logsumexp laboratories/norm_functions/test_logsumexp.cpp -lquadmath
