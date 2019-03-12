@@ -162,11 +162,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __P_lm;   /// P_l^{(m)}(x)
       _Tp __P_lm1m; /// P_{l-1}^{(m)}(x)
       _Tp __P_lm2m; /// P_{l-2}^{(m)}(x)
+      _Tp __phase = 1; // -1 For Condon-Shortley.
 
       _Tp
       deriv() const
       {
-	const auto __phase = _Tp{+1}; // -1 For Condon-Shortley.
 	if (std::abs(__x) == _Tp{1})
 	  {
 	    const auto __sgn = __x == _Tp{+1}
@@ -230,6 +230,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __Q_lm;   /// Q_l^{(m)}(x)
       _Tp __Q_lmm1; /// Q_l^{(m-1)}(x)
       _Tp __Q_lmm2; /// Q_l^{(m-2)}(x)
+      _Tp __phase = 1; // -1 For Condon-Shortley.
 
       _Tp
       deriv() const

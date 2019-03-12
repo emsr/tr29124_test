@@ -124,6 +124,37 @@ namespace __detail
     }
 
   /**
+   * Legendre q series.
+   */
+  template<typename _Tp>
+    __legendre_q_series(unsigned int __l, _Tp __x)
+    {
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_max_iter = 1000;
+      const auto __xx = _Tp{1} / (__x * __x);
+      auto __num1 = _Tp(__l + 1) / _Tp{2};
+      auto __num2 = _Tp(__l + 2) / _Tp{2};
+      auto __den = _Tp(2 * __l + 3) / _Tp{2};
+      auto __term = _Tp{1};
+      auto __sum = _Tp{1};
+      for (int __k = 1; __k <= _S_max_iter; ++__k)
+	{
+	  __term *= (__num1 + __k) / _Tp(__k)
+		  * (__num2 + __k) / (__den + __k)
+		  * __xx;
+	  __sum += __term;
+	  if (std::abs(__term) < _S_eps * std::abs(__sum))
+	    break;
+	}
+
+      auto __fact = _Tp{1};
+      for (int __k = 1; __k <= __l; ++__k)
+	__fact *= _Tp(__k) / _Tp(2 * __k - 1);
+
+      return __fact * __sum;
+    }
+
+  /**
    * @brief Return the Legendre function of the second kind
    *        by upward recursion on degree @f$ l @f$.
    *
@@ -179,7 +210,11 @@ namespace __detail
       else
 	{
 	  /// @todo Build the series rep for Ql and recur down.
-	  return {__l, __x, 0, 0, 0}; // FIXME!
+	  const auto _Q_l = __legendre_q_series(__l, __x);
+	  const auto _Q_lm1 = __legendre_q_series(__l - 1, __x);
+	  const auto _Q_lm2 = (_Tp(2 * __l - 1) * __x * _Q_lm1
+			     - _Tp(__l) * _Q_l) / _Tp(__l - 1);
+	  return {__l, __x, _Q_l, _Q_lm1, _Q_lm2};
 	}
     }
 
@@ -213,12 +248,13 @@ namespace __detail
       else if (std::isnan(__x))
 	{
 	  const auto _NaN = __gnu_cxx::__quiet_NaN(__x);
-	  return {__l, __m, __x, _NaN, _NaN, _NaN};
+	  return {__l, __m, __x, _NaN, _NaN, _NaN, __phase};
 	}
       else if (__m == 0)
 	{
 	  const auto _P_l = __legendre_p(__l, __x);
-	  return {__l, __m, __x, _P_l.__P_l, _P_l.__P_lm1, _P_l.__P_lm2};
+	  return {__l, __m, __x, _P_l.__P_l, _P_l.__P_lm1, _P_l.__P_lm2,
+		  __phase};
 	}
       else
 	{
@@ -237,11 +273,11 @@ namespace __detail
 		}
 	    }
 	  if (__l == __m)
-	    return {__l, __m, __x, _P_mm, _Tp{0}, _Tp{0}};
+	    return {__l, __m, __x, _P_mm, _Tp{0}, _Tp{0}, __phase};
 
 	  _Tp _P_mp1m = _Tp(2 * __m + 1) * __x * _P_mm;
 	  if (__l == __m + 1)
-	    return {__l, __m, __x, _P_mp1m, _P_mm, _Tp{0}};
+	    return {__l, __m, __x, _P_mp1m, _P_mm, _Tp{0}, __phase};
 
 	  auto _P_lm2m = _P_mm;
 	  auto _P_lm1m = _P_mp1m;
@@ -268,7 +304,7 @@ namespace __detail
       if (std::isnan(__x))
 	{
 	  const auto _NaN = __gnu_cxx::__quiet_NaN(__x);
-	  return {__l, __m, __x, _NaN, _NaN, _NaN};
+	  return {__l, __m, __x, _NaN, _NaN, _NaN, __phase};
 	}
       else if (std::abs(__x) < _Tp{1})
 	{
@@ -282,9 +318,9 @@ namespace __detail
 	  if (__l == 0)
 	    {
 	      if (__m == 0)
-		return {__l, __m, __x, _Q_00, _Tp{0}, _Tp{0}}; // FIXME?
+		return {__l, __m, __x, _Q_00, _Tp{0}, _Tp{0}, __phase}; // FIXME?
 	      else if (__m == 1)
-		return {__l, __m, __x, _Q_01, _Q_00, _Tp{0}}; // FIXME?
+		return {__l, __m, __x, _Q_01, _Q_00, _Tp{0}, __phase}; // FIXME?
 	    }
 
 	  const auto _Q_10 = __x * _Q_00 - _Tp{1};
@@ -292,9 +328,9 @@ namespace __detail
 	  if (__l == 1)
 	    {
 	      if (__m == 0)
-		return {__l, __m, __x, _Q_10, _Tp{0}, _Tp{0}}; // FIXME?
+		return {__l, __m, __x, _Q_10, _Tp{0}, _Tp{0}, __phase}; // FIXME?
 	      else if (__m == 1)
-		return {__l, __m, __x, _Q_11, _Q_10, _Tp{0}}; // FIXME?
+		return {__l, __m, __x, _Q_11, _Q_10, _Tp{0}, __phase}; // FIXME?
 	    }
 
 	  auto _Q_lm20 = _Q_00;
@@ -316,9 +352,9 @@ namespace __detail
 		    - _Tp(__k) * _Q_lm21) / _Tp(__k - 1);
 	    }
 	  if (__m == 0)
-	    return {__l, __m, __x, _Q_l0, _Tp{0}, _Tp{0}}; // FIXME?
+	    return {__l, __m, __x, _Q_l0, _Tp{0}, _Tp{0}, __phase}; // FIXME?
 	  else if (__m == 1)
-	    return {__l, __m, __x, _Q_l1, _Q_l0, _Tp{0}}; // FIXME?
+	    return {__l, __m, __x, _Q_l1, _Q_l0, _Tp{0}, __phase}; // FIXME?
 
 	  // Find Q_l^m by upward recurrence on m.
 	  auto _Q_lmm2 = _Q_l0;
@@ -334,7 +370,7 @@ namespace __detail
 	    }
 	  //_Qp_lm = _Tp(__m) * __x * _Q_lm / __fact
 	  //       + _Tp(__l + __m) * _Tp(__l - __m + 1) * _Q_lmm1 / __root;
-	  return {__l, __m, __x, _Q_lm, _Q_lmm1, _Q_lmm2};
+	  return {__l, __m, __x, _Q_lm, _Q_lmm1, _Q_lmm2, __phase};
 	}
       else
 	{
