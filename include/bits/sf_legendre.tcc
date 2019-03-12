@@ -129,27 +129,17 @@ namespace __detail
   template<typename _Tp>
     __legendre_q_series(unsigned int __l, _Tp __x)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_max_iter = 1000;
-      const auto __xx = _Tp{1} / (__x * __x);
-      auto __num1 = _Tp(__l + 1) / _Tp{2};
-      auto __num2 = _Tp(__l + 2) / _Tp{2};
-      auto __den = _Tp(2 * __l + 3) / _Tp{2};
-      auto __term = _Tp{1};
-      auto __sum = _Tp{1};
-      for (int __k = 1; __k <= _S_max_iter; ++__k)
-	{
-	  __term *= (__num1 + __k) / _Tp(__k)
-		  * (__num2 + __k) / (__den + __k)
-		  * __xx;
-	  __sum += __term;
-	  if (std::abs(__term) < _S_eps * std::abs(__sum))
-	    break;
-	}
+      const auto __num1 = _Tp(__l + 1) / _Tp{2};
+      const auto __num2 = _Tp(__l + 2) / _Tp{2};
+      const auto __den = _Tp(2 * __l + 3) / _Tp{2};
+      const auto __rx = _Tp{1} / __x;
+      const auto __rx2 = __rx * __rx;
+
+      const auto __sum = std::__detail::__hyperg(__num1, __num2, __den, __rx2);
 
       auto __fact = _Tp{1};
       for (int __k = 1; __k <= __l; ++__k)
-	__fact *= _Tp(__k) / _Tp(2 * __k - 1);
+	__fact *= _Tp(__k) * __rx / _Tp(2 * __k - 1);
 
       return __fact * __sum;
     }
