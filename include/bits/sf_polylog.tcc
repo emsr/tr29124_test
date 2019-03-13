@@ -170,7 +170,8 @@ namespace __detail
     std::complex<_Tp>
     __clamp_pi(std::complex<_Tp> __z)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_pi = __gnu_cxx::__const_pi(_Real{});
       const auto _S_i2pi = std::complex<_Tp>{0, _Tp{2} * _S_pi};
       while (__z.imag() > _S_pi)
 	__z -= _S_i2pi;
@@ -183,7 +184,8 @@ namespace __detail
     std::complex<_Tp>
     __clamp_0_m2pi(std::complex<_Tp> __z)
     {
-      const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__z));
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_2pi = __gnu_cxx::__const_2_pi(_Real{});
       const auto _S_i2pi = std::complex<_Tp>{0, _S_2pi};
       while (__z.imag() > _Tp{0})
 	__z = std::complex<_Tp>(__z.real(), __z.imag() - _S_2pi);
@@ -216,10 +218,10 @@ namespace __detail
     std::complex<_Tp>
     __polylog_exp_pos(unsigned int __s, std::complex<_Tp> __w)
     {
-      const auto __proto = std::real(__w);
-      const auto _S_2pi = __gnu_cxx::__const_2_pi(__proto);
-      const auto _S_pi = __gnu_cxx::__const_pi(__proto);
-      const auto _S_pipio6 = __gnu_cxx::__const_pi_sqr_div_6(__proto);
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_2pi = __gnu_cxx::__const_2_pi(_Real{});
+      const auto _S_pi = __gnu_cxx::__const_pi(_Real{});
+      const auto _S_pipio6 = __gnu_cxx::__const_pi_sqr_div_6(_Real{});
       std::complex<_Tp> __res = __riemann_zeta<_Tp>(__s);
       auto __wk = __w;
       auto __fact = _Tp{1};
@@ -292,10 +294,10 @@ namespace __detail
     std::complex<_Tp>
     __polylog_exp_pos(unsigned int __s, _Tp __w)
     {
-      const auto __proto = std::real(__w);
-      const auto _S_2pi = __gnu_cxx::__const_2_pi(__proto);
-      const auto _S_pi = __gnu_cxx::__const_pi(__proto);
-      const auto _S_pipio6 = __gnu_cxx::__const_pi_sqr_div_6(__proto);
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_2pi = __gnu_cxx::__const_2_pi(_Real{});
+      const auto _S_pi = __gnu_cxx::__const_pi(_Real{});
+      const auto _S_pipio6 = __gnu_cxx::__const_pi_sqr_div_6(_Real{});
       auto __res = __riemann_zeta<_Tp>(__s);
       auto __wk = __w;
       auto __fact = _Tp{1};
@@ -675,9 +677,11 @@ namespace __detail
     std::complex<_Tp>
     __polylog_exp_pos_int(unsigned int __s, std::complex<_Tp> __w)
     {
-      const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
-      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__w));
+      using _Val = _Tp;
+      using _Real = __num_traits_t<_Val>;
+      const auto _S_2pi = __gnu_cxx::__const_2_pi(_Real{});
+      const auto _S_pi = __gnu_cxx::__const_pi(_Real{});
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(_Real{});
       const auto _S_max_asymp = _Tp{5};
       const auto __rw = __w.real();
       const auto __iw = __w.imag();
@@ -734,8 +738,10 @@ namespace __detail
     std::complex<_Tp>
     __polylog_exp_pos_int(unsigned int __s, _Tp __w)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
-      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__w));
+      using _Val = _Tp;
+      using _Real = __num_traits_t<_Val>;
+      const auto _S_pi = __gnu_cxx::__const_pi(_Real{});
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(_Real{});
       const auto _S_max_asymp = _Tp{5};
       if (__gnu_cxx::__fp_is_zero(__w))
 	{
@@ -782,9 +788,11 @@ namespace __detail
     std::complex<_Tp>
     __polylog_exp_neg_int(int __s, std::complex<_Tp> __w)
     {
-      const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__w));
-      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__w));
+      using _Val = _Tp;
+      using _Real = __num_traits_t<_Val>;
+      const auto _S_2pi = __gnu_cxx::__const_2_pi(_Real{});
+      const auto _S_pi = __gnu_cxx::__const_pi(_Real{});
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(_Real{});
       const auto _S_max_asymp = _Tp{5};
       if ((((-__s) & 1) == 0) && __gnu_cxx::__fp_is_imag(__w))
 	{

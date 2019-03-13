@@ -52,7 +52,7 @@ namespace __detail
     void
     __debye_region(std::complex<_Tp> __alpha, int& __indexr, char& __aorb)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__alpha));
+      const auto _S_pi = __gnu_cxx::__const_pi(_Tp{});
 
       __aorb = ' ';
 
@@ -115,21 +115,21 @@ namespace __detail
     {
       using _Cmplx = std::complex<_Tp>;
 
-      const auto _S_inf = __gnu_cxx::__lim_max(std::real(__zhat));
+      const auto _S_inf = __gnu_cxx::__lim_max(_Tp{});
 
       const auto _S_1d4   = _Tp{0.25L};
       const auto _S_1d3   = _Tp{1} / _Tp{3};
       const auto _S_1d2   = _Tp{0.5L};
       const auto _S_2d3   = _Tp{2} / _Tp{3};
-      const auto _S_2pi   = __gnu_cxx::__const_2_pi(std::real(__zhat));
+      const auto _S_2pi   = __gnu_cxx::__const_2_pi(_Tp{});
       const auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152L}; // -(2/3)ln(2/3)
-      const auto _S_sqrt2 = __gnu_cxx::__const_root_2(std::real(__zhat));
+      const auto _S_sqrt2 = __gnu_cxx::__const_root_2(_Tp{});
       const auto _S_4d3   = _Tp{4} / _Tp{3};
 
       const _Cmplx __zone{_Tp{1}, _Tp{0}};
       const _Cmplx _S_j{_Tp{0}, _Tp{1}};
 
-      const auto _S_sqrt_max = __gnu_cxx::__sqrt_max(std::real(__zhat));
+      const auto _S_sqrt_max = __gnu_cxx::__sqrt_max(_Tp{});
 
       // Separate real and imaginary parts of zhat.
       auto __rezhat = std::real(__zhat);
@@ -217,7 +217,7 @@ namespace __detail
       using _Cmplx = std::complex<_Tp>;
 
       // expp and expm are exp(2*pi*i/3) and its reciprocal, respectively.
-      const auto _S_sqrt3d2 = __gnu_cxx::__const_root_3_div_2(std::real(__zeta));
+      const auto _S_sqrt3d2 = __gnu_cxx::__const_root_3_div_2(_Tp{});
       const auto __expp = _Cmplx{-0.5L,  _S_sqrt3d2};
       const auto __expm = _Cmplx{-0.5L, -_S_sqrt3d2};
 
@@ -256,7 +256,7 @@ namespace __detail
     {
       using _Cmplx = std::complex<_Tp>;
 
-      const auto _S_sqrt3d2 = __gnu_cxx::__const_root_3_div_2(std::real(__z));
+      const auto _S_sqrt3d2 = __gnu_cxx::__const_root_3_div_2(_Tp{});
       const _Cmplx __e2pd3{-0.5L,  _S_sqrt3d2};
       const _Cmplx __d2pd3{-0.5L, -_S_sqrt3d2};
 
@@ -780,9 +780,9 @@ namespace __detail
 
       using __hank_t = __gnu_cxx::__cyl_hankel_t<_Cmplx, _Cmplx, _Cmplx>;
 
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
-      const auto _S_pi_3 = __gnu_cxx::__const_pi_third(std::real(__z));
-      const auto _S_sqrt_3 = __gnu_cxx::__const_root_3(std::real(__z));
+      const auto _S_pi = __gnu_cxx::__const_pi(_Tp{});
+      const auto _S_pi_3 = __gnu_cxx::__const_pi_third(_Tp{});
+      const auto _S_sqrt_3 = __gnu_cxx::__const_root_3(_Tp{});
       const _Cmplx _S_j{1il};
       const _Cmplx __con1p{ _Tp{1}, _S_sqrt_3}; // 2*exp( pi*j/3) (1,sqrt(3))
       const _Cmplx __con1m{ _Tp{1},-_S_sqrt_3}; // 2*exp(-pi*j/3)
@@ -1079,7 +1079,7 @@ namespace __detail
 			      std::complex<_Tp>>
     __hankel(std::complex<_Tp> __nu, std::complex<_Tp> __z)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
+      const auto _S_pi = __gnu_cxx::__const_pi(_Tp{});
 
       int __indexr;
 
@@ -1210,7 +1210,7 @@ namespace __detail
     {
       using _Cmplx = std::complex<_Tp>;
       using __hank_t = __gnu_cxx::__sph_hankel_t<unsigned int, _Cmplx, _Cmplx>;
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__z));
+      const auto _S_pi = __gnu_cxx::__const_pi(_Tp{});
       _Cmplx __nu(__n + _Tp{0.5});
       auto __hank = __hankel(__nu, __z);
       _Cmplx __fact = std::sqrt(_S_pi / (_Tp{2} * __z));
