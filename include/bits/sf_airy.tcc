@@ -67,7 +67,7 @@ namespace __detail
 
       _Real
       true_Wronskian()
-      { return _Real{1} / __gnu_cxx::__const_pi(std::real(__z)); }
+      { return _Real{1} / __gnu_cxx::__const_pi(_Real{}); }
     };
 
 
@@ -2211,7 +2211,8 @@ namespace __detail
     _Airy_asymp<_Tp>::_S_absarg_ge_pio3_help(std::complex<_Tp> __z,
 					     int __sign) const
     {
-      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(std::real(__z));
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(_Real{});
       const auto _S_pmhd2 = _Tp{1} / (_Tp{2} * _S_sqrt_pi);
 
       constexpr int _S_num_nterms = 5;

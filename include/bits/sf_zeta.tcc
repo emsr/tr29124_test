@@ -245,11 +245,13 @@ namespace __detail
     _Tp
     __dilog(_Tp __x)
     {
+      using _Val = _Tp;
+      using _Real = __num_traits_t<_Val>;
       constexpr unsigned long long _S_maxit = 100000ULL;
-      const auto _S_eps = 10 * __gnu_cxx::__epsilon(std::real(__x));
-      const auto _S_pipio6 = __gnu_cxx::__const_pi_sqr_div_6(std::real(__x));
+      const auto _S_eps = 10 * __gnu_cxx::__epsilon(_Real{});
+      const auto _S_pipio6 = __gnu_cxx::__const_pi_sqr_div_6(_Real{});
       if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(std::real(__x));
+	return __gnu_cxx::__quiet_NaN(_Real{});
       else if (__x > _Tp{+1})
 	std::__throw_range_error(__N("dilog: argument greater than one"));
       else if (__x < _Tp{-1})
@@ -313,7 +315,7 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
+      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
       const auto __arg = __s - _Val{1};
       auto __argk = _Val{1};
       auto __zeta = _Val{1} / __arg + _S_Stieltjes[0];
@@ -354,7 +356,7 @@ namespace __detail
       else if (std::real(__s) > _Real{1})
 	{
 	  constexpr unsigned int _S_max_iter = 10000;
-	  const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
+	  const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
 	  auto __zeta = _Val{1};
 	  for (unsigned int __k = 2; __k < _S_max_iter; ++__k)
 	    {
@@ -369,7 +371,7 @@ namespace __detail
 	}
       else
 	{
-	  const auto _S_pi = __gnu_cxx::__const_pi(std::real(__s));
+	  const auto _S_pi = __gnu_cxx::__const_pi(_Real{});
 	  auto __zeta = std::pow(_Real{2} * _S_pi, __s)
 		      * __sin_pi(_Real{0.5L} * __s) * __gamma(_Val{1} - __s)
 		      * __riemann_zeta_sum(_Val{1} - __s) / _S_pi;
@@ -390,8 +392,8 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
-      const auto _S_N = 10 + __gnu_cxx::__digits10(std::real(__s)) / _Tp{2};
+      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
+      const auto _S_N = 10 + __gnu_cxx::__digits10(_Real{}) / _Tp{2};
       const auto _S_jmax = _Num_Euler_Maclaurin_zeta - 1;
 
       const auto __pmax  = std::pow(_Val{_S_N + 1}, -__s);
@@ -449,10 +451,10 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
+      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
       //  Max e exponent before overflow.
       const auto __max_binom
-		 = std::exp(__gnu_cxx::__max_exponent10(std::real(__s))
+		 = std::exp(__gnu_cxx::__max_exponent10(_Real{})
 			    * std::log(_Real{10}) - _Real{1});
 
       auto __zeta_m_1 = _Val{0};
@@ -501,8 +503,8 @@ namespace __detail
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
 
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__s));
-      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(std::real(__s));
+      const auto _S_pi = __gnu_cxx::__const_pi(_Real{});
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(_Real{});
 
       //  This series works until the binomial coefficient blows up
       //  so use reflection.
@@ -553,7 +555,7 @@ namespace __detail
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
 
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
+      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
 
       auto __zeta = _Val{1};
       for (unsigned long __i = 0;
@@ -717,10 +719,10 @@ namespace __detail
     __riemann_zeta_m_1(_Tp __s)
     {
       using _Real = __num_traits_t<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__s));
+      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
+      const auto _S_pi = __gnu_cxx::__const_pi(_Real{});
       if (__s == _Real{1})
-	return __gnu_cxx::__infinity(std::real(__s));
+	return __gnu_cxx::__infinity(_Real{});
 
       auto __n = __gnu_cxx::__fp_is_integer(__s);
       if (__n && __n() >= 0)
@@ -762,16 +764,16 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__s));
-      const auto _S_inf = __gnu_cxx::__infinity(std::real(__s));
-      const auto _S_pi = __gnu_cxx::__const_pi(std::real(__s));
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
+      const auto _S_inf = __gnu_cxx::__infinity(_Real{});
+      const auto _S_pi = __gnu_cxx::__const_pi(_Real{});
       if (std::isnan(__s))
 	return _S_NaN;
       else if (__s == _Val{1})
 	return _S_inf;
       else
 	{
-	  const auto __S_max = __gnu_cxx::__digits(std::real(__s));
+	  const auto __S_max = __gnu_cxx::__digits(_Real{});
 	  const auto __p = __gnu_cxx::__fp_is_integer(__s);
 	  if (__p && __p() >= 0)
 	    return _Real{1} + __riemann_zeta_m_1(_Real(__p()));
@@ -824,8 +826,8 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
-      const int _S_N = 10 + __gnu_cxx::__digits10(std::real(__s)) / 2;
+      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
+      const int _S_N = 10 + __gnu_cxx::__digits10(_Real{}) / 2;
       const int _S_jmax = _Num_Euler_Maclaurin_zeta - 1;
 
       const auto __pmax  = std::pow(_Val{_S_N} + __a, -__s);
@@ -872,8 +874,8 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__s));
-      const auto _S_inf = __gnu_cxx::__infinity(std::real(__s));
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
+      const auto _S_inf = __gnu_cxx::__infinity(_Real{});
       if (std::isnan(__s) || std::isnan(__a))
 	return _S_NaN;
       else if (__a == _Real{1})
