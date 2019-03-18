@@ -483,146 +483,566 @@ tests: $(TEST_SF_OUT_DIR) laboratories/bin/test_special_function
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH ./laboratories/bin/test_special_function > $(TEST_SF_OUT_DIR)/test_special_function.txt
 
 # This will always build the executables!
-test: $(BINS) $(TEST_OUT_DIR)
+test: $(TEST_OUT_DIR) \
+  run_airy_toy \
+  run_hankel_toy \
+  run_hankel_toy128 \
+  run_hankel_toy_new \
+  run_test_airy_roots \
+  run_test_anger_weber \
+  run_test_appell_f1 \
+  run_test_assoc_laguerre \
+  run_test_assoc_legendre \
+  run_test_assoc_legendre_q \
+  run_test_bernoulli \
+  run_test_bessel \
+  run_test_bessel_asymp \
+  run_test_bessel_iter \
+  run_test_beta \
+  run_test_beta_inc \
+  run_test_binet \
+  run_test_binet_float \
+  run_test_bose_einstein \
+  run_test_charlier \
+  run_test_chebyshev \
+  run_test_chebyshev_trig \
+  run_test_chebyshev_trig_pi \
+  run_test_clausen \
+  run_test_cmath \
+  run_test_comp_ellint_1 \
+  run_test_complex128 \
+  run_test_complex_gamma \
+  run_test_conf_hyperg \
+  run_test_conf_hyperg_limit \
+  run_test_const \
+  run_test_continued_fraction \
+  run_test_continuous_dual_hahn \
+  run_test_continuous_hahn \
+  run_test_cordic \
+  run_test_coulomb \
+  run_test_csint \
+  run_test_cyl_hankel \
+  run_test_dawson \
+  run_test_debye \
+  run_test_digamma \
+  run_test_dilog \
+  run_test_dirichlet_eta \
+  run_test_dual_hahn \
+  run_test_erfc \
+  run_test_experfc \
+  run_test_expint \
+  run_test_factorial \
+  run_test_faddeeva \
+  run_test_falling_factorial \
+  run_test_fermi_dirac \
+  run_test_fibonacci \
+  run_test_float128 \
+  run_test_fresnel \
+  run_test_gamma \
+  run_test_gamma_ratio \
+  run_test_gamma_reciprocal \
+  run_test_gegenbauer \
+  run_test_gegenbauer_neg_parm \
+  run_test_gudermannian \
+  run_test_hahn \
+  run_test_hankel \
+  run_test_hankel_real_arg \
+  run_test_hermite \
+  run_test_heuman_lambda \
+  run_test_hurwitz_zeta \
+  run_test_hurwitz_zeta_new \
+  run_test_hydrogen \
+  run_test_hyperg \
+  run_test_hypot \
+  run_test_inv_erf \
+  run_test_inv_gamma \
+  run_test_inv_ibeta \
+  run_test_inv_lgamma \
+  run_test_jacobi \
+  run_test_jacobi_neg_parm \
+  run_test_jacobi_neg_roots \
+  run_test_jacobi_ellint \
+  run_test_jacobi_inv \
+  run_test_jacobi_theta \
+  run_test_jacobi_zeta \
+  run_test_kelvin \
+  run_test_krawtchouk \
+  run_test_laguerre \
+  run_test_lambert_w \
+  run_test_legendre \
+  run_test_legendre_q \
+  run_test_legendre_ellint \
+  run_test_lentz_continued_fraction \
+  run_test_lerch \
+  run_test_limits \
+  run_test_little_airy \
+  run_test_lobatto \
+  run_test_log \
+  run_test_logsumexp \
+  run_test_lommel \
+  run_test_marcum_q \
+  run_test_math_h \
+  run_test_maxint \
+  run_test_meixner \
+  run_test_meixner_pollaczek \
+  run_test_mittag_leffler \
+  run_test_mod2pi \
+  run_test_mpreal \
+  run_test_notsospecfun \
+  run_test_nric_bessel \
+  run_test_numeric_limits \
+  run_test_owens_t \
+  run_test_parab_cyl \
+  run_test_polygamma \
+  run_test_polylog \
+  run_test_power_mean \
+  run_test_power_norm \
+  run_test_pow_limits \
+  run_test_racah \
+  run_test_rational \
+  run_test_recursion \
+  run_test_reperiodized_hyper \
+  run_test_reperiodized_trig \
+  run_test_riemann_zeta \
+  run_test_rising_factorial \
+  run_test_root_search \
+  run_test_sincos \
+  run_test_sinus_cardinal \
+  run_test_sph_bessel \
+  run_test_sph_hankel \
+  run_test_steed_continued_fraction \
+  run_test_struve \
+  run_test_struve_old \
+  run_test_summation \
+  run_test_theta \
+  run_test_tr1_cmath \
+  run_test_tricomi_u \
+  run_test_trig \
+  run_test_weierstrass_ellint \
+  run_test_wilson \
+  run_test_wright_omega \
+  run_test_zeta_trig \
+  run_run_coulfg \
+  run_RUN_COULFG
+
+run_airy_toy: $(TEST_BIN_DIR)/airy_toy
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/airy_toy > $(TEST_OUT_DIR)/airy_toy.txt
+
+run_hankel_toy: $(TEST_BIN_DIR)/hankel_toy
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/hankel_toy > $(TEST_OUT_DIR)/hankel_toy.txt
+
+run_hankel_toy128: $(TEST_BIN_DIR)/hankel_toy128
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/hankel_toy128 > $(TEST_OUT_DIR)/hankel_toy128.txt
+
+run_hankel_toy_new: $(TEST_BIN_DIR)/hankel_toy_new
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/hankel_toy_new > $(TEST_OUT_DIR)/hankel_toy_new.txt
+
+run_test_airy_roots: $(TEST_BIN_DIR)/test_airy_roots
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_airy_roots > $(TEST_OUT_DIR)/test_airy_roots.txt
+
+run_test_anger_weber: $(TEST_BIN_DIR)/test_anger_weber
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_anger_weber > $(TEST_OUT_DIR)/test_anger_weber.txt
+
+run_test_appell_f1: $(TEST_BIN_DIR)/test_appell_f1
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_appell_f1 > $(TEST_OUT_DIR)/test_appell_f1.txt
+
+run_test_assoc_laguerre: $(TEST_BIN_DIR)/test_assoc_laguerre
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_assoc_laguerre > $(TEST_OUT_DIR)/test_assoc_laguerre.txt
+
+run_test_assoc_legendre: $(TEST_BIN_DIR)/test_assoc_legendre
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_assoc_legendre > $(TEST_OUT_DIR)/test_assoc_legendre.txt
+
+run_test_assoc_legendre_q: $(TEST_BIN_DIR)/test_assoc_legendre_q
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_assoc_legendre_q > $(TEST_OUT_DIR)/test_assoc_legendre_q.txt
+
+run_test_bernoulli: $(TEST_BIN_DIR)/test_bernoulli
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_bernoulli > $(TEST_OUT_DIR)/test_bernoulli.txt
+
+run_test_bessel: $(TEST_BIN_DIR)/test_bessel
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_bessel > $(TEST_OUT_DIR)/test_bessel.txt
+
+run_test_bessel_asymp: $(TEST_BIN_DIR)/test_bessel_asymp
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_bessel_asymp > $(TEST_OUT_DIR)/test_bessel_asymp.txt
+
+run_test_bessel_iter: $(TEST_BIN_DIR)/test_bessel_iter
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_bessel_iter > $(TEST_OUT_DIR)/test_bessel_iter.txt
+
+run_test_beta: $(TEST_BIN_DIR)/test_beta
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_beta > $(TEST_OUT_DIR)/test_beta.txt
+
+run_test_beta_inc: $(TEST_BIN_DIR)/test_beta_inc
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_beta_inc > $(TEST_OUT_DIR)/test_beta_inc.txt
+
+run_test_binet: $(TEST_BIN_DIR)/test_binet
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_binet > $(TEST_OUT_DIR)/test_binet.txt
+
+run_test_binet_float: $(TEST_BIN_DIR)/test_binet_float
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_binet_float > $(TEST_OUT_DIR)/test_binet_float.txt
+
+run_test_bose_einstein: $(TEST_BIN_DIR)/test_bose_einstein
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_bose_einstein > $(TEST_OUT_DIR)/test_bose_einstein.txt
+
+run_test_charlier: $(TEST_BIN_DIR)/test_charlier
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_charlier > $(TEST_OUT_DIR)/test_charlier.txt
+
+run_test_chebyshev: $(TEST_BIN_DIR)/test_chebyshev
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_chebyshev > $(TEST_OUT_DIR)/test_chebyshev.txt
+
+run_test_chebyshev_trig: $(TEST_BIN_DIR)/test_chebyshev_trig
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_chebyshev_trig > $(TEST_OUT_DIR)/test_chebyshev_trig.txt
+
+run_test_chebyshev_trig_pi: $(TEST_BIN_DIR)/test_chebyshev_trig_pi
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_chebyshev_trig_pi > $(TEST_OUT_DIR)/test_chebyshev_trig_pi.txt
+
+run_test_clausen: $(TEST_BIN_DIR)/test_clausen
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_clausen > $(TEST_OUT_DIR)/test_clausen.txt
+
+run_test_cmath: $(TEST_BIN_DIR)/test_cmath
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_cmath > $(TEST_OUT_DIR)/test_cmath.txt
+
+run_test_comp_ellint_1: $(TEST_BIN_DIR)/test_comp_ellint_1
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_comp_ellint_1 > $(TEST_OUT_DIR)/test_comp_ellint_1.txt
+
+run_test_complex128: $(TEST_BIN_DIR)/test_complex128
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_complex128 > $(TEST_OUT_DIR)/test_complex128.txt
+
+run_test_complex_gamma: $(TEST_BIN_DIR)/test_complex_gamma
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_complex_gamma > $(TEST_OUT_DIR)/test_complex_gamma.txt
+
+run_test_conf_hyperg: $(TEST_BIN_DIR)/test_conf_hyperg
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_conf_hyperg > $(TEST_OUT_DIR)/test_conf_hyperg.txt
+
+run_test_conf_hyperg_limit: $(TEST_BIN_DIR)/test_conf_hyperg_limit
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_conf_hyperg_limit > $(TEST_OUT_DIR)/test_conf_hyperg_limit.txt
+
+run_test_const: $(TEST_BIN_DIR)/test_const
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_const > $(TEST_OUT_DIR)/test_const.txt
+
+run_test_continued_fraction: $(TEST_BIN_DIR)/test_continued_fraction
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_continued_fraction > $(TEST_OUT_DIR)/test_continued_fraction.txt
+
+run_test_continuous_dual_hahn: $(TEST_BIN_DIR)/test_continuous_dual_hahn
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_continuous_dual_hahn > $(TEST_OUT_DIR)/test_continuous_dual_hahn.txt
+
+run_test_continuous_hahn: $(TEST_BIN_DIR)/test_continuous_hahn
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_continuous_hahn > $(TEST_OUT_DIR)/test_continuous_hahn.txt
+
+run_test_cordic: $(TEST_BIN_DIR)/test_cordic
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_cordic > $(TEST_OUT_DIR)/test_cordic.txt
+
+run_test_coulomb: $(TEST_BIN_DIR)/test_coulomb
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_coulomb > $(TEST_OUT_DIR)/test_coulomb.txt
+
+run_test_csint: $(TEST_BIN_DIR)/test_csint
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_csint > $(TEST_OUT_DIR)/test_csint.txt
+
+run_test_cyl_hankel: $(TEST_BIN_DIR)/test_cyl_hankel
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_cyl_hankel > $(TEST_OUT_DIR)/test_cyl_hankel.txt
+
+run_test_dawson: $(TEST_BIN_DIR)/test_dawson
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_dawson > $(TEST_OUT_DIR)/test_dawson.txt
+
+run_test_debye: $(TEST_BIN_DIR)/test_debye
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_debye > $(TEST_OUT_DIR)/test_debye.txt
+
+run_test_digamma: $(TEST_BIN_DIR)/test_digamma
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_digamma > $(TEST_OUT_DIR)/test_digamma.txt
+
+run_test_dilog: $(TEST_BIN_DIR)/test_dilog
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_dilog > $(TEST_OUT_DIR)/test_dilog.txt
+
+run_test_dirichlet_eta: $(TEST_BIN_DIR)/test_dirichlet_eta
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_dirichlet_eta > $(TEST_OUT_DIR)/test_dirichlet_eta.txt
+
+run_test_dual_hahn: $(TEST_BIN_DIR)/test_dual_hahn
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_dual_hahn > $(TEST_OUT_DIR)/test_dual_hahn.txt
+
+run_test_erfc: $(TEST_BIN_DIR)/test_erfc
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_erfc > $(TEST_OUT_DIR)/test_erfc.txt
+
+run_test_experfc: $(TEST_BIN_DIR)/test_experfc
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_experfc > $(TEST_OUT_DIR)/test_experfc.txt
+
+run_test_expint: $(TEST_BIN_DIR)/test_expint
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_expint > $(TEST_OUT_DIR)/test_expint.txt
+
+run_test_factorial: $(TEST_BIN_DIR)/test_factorial
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_factorial > $(TEST_OUT_DIR)/test_factorial.txt
+
+run_test_faddeeva: $(TEST_BIN_DIR)/test_faddeeva
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_faddeeva > $(TEST_OUT_DIR)/test_faddeeva.txt
+
+run_test_falling_factorial: $(TEST_BIN_DIR)/test_falling_factorial
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_falling_factorial > $(TEST_OUT_DIR)/test_falling_factorial.txt
+
+run_test_fermi_dirac: $(TEST_BIN_DIR)/test_fermi_dirac
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_fermi_dirac > $(TEST_OUT_DIR)/test_fermi_dirac.txt
+
+run_test_fibonacci: $(TEST_BIN_DIR)/test_fibonacci
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_fibonacci > $(TEST_OUT_DIR)/test_fibonacci.txt
+
+run_test_float128: $(TEST_BIN_DIR)/test_float128
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_float128 > $(TEST_OUT_DIR)/test_float128.txt
+
+run_test_fresnel: $(TEST_BIN_DIR)/test_fresnel
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_fresnel > $(TEST_OUT_DIR)/test_fresnel.txt
+
+run_test_gamma: $(TEST_BIN_DIR)/test_gamma
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_gamma > $(TEST_OUT_DIR)/test_gamma.txt
+
+run_test_gamma_ratio: $(TEST_BIN_DIR)/test_gamma_ratio
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_gamma_ratio > $(TEST_OUT_DIR)/test_gamma_ratio.txt
+
+run_test_gamma_reciprocal: $(TEST_BIN_DIR)/test_gamma_reciprocal
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_gamma_reciprocal > $(TEST_OUT_DIR)/test_gamma_reciprocal.txt
+
+run_test_gegenbauer: $(TEST_BIN_DIR)/test_gegenbauer
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_gegenbauer > $(TEST_OUT_DIR)/test_gegenbauer.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_gegenbauer_neg_parm > $(TEST_OUT_DIR)/test_gegenbauer_neg_parm.txt
+
+run_test_gegenbauer_neg_parm: $(TEST_BIN_DIR)/test_gegenbauer_neg_parm
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_gegenbauer_neg_parm > $(TEST_OUT_DIR)/test_gegenbauer_neg_parm.txt
+
+run_test_gudermannian: $(TEST_BIN_DIR)/test_gudermannian
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_gudermannian > $(TEST_OUT_DIR)/test_gudermannian.txt
+
+run_test_hahn: $(TEST_BIN_DIR)/test_hahn
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hahn > $(TEST_OUT_DIR)/test_hahn.txt
+
+run_test_hankel: $(TEST_BIN_DIR)/test_hankel
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hankel > $(TEST_OUT_DIR)/test_hankel.txt
+
+run_test_hankel_real_arg: $(TEST_BIN_DIR)/test_hankel_real_arg
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hankel_real_arg > $(TEST_OUT_DIR)/test_hankel_real_arg.txt
+
+run_test_hermite: $(TEST_BIN_DIR)/test_hermite
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hermite > $(TEST_OUT_DIR)/test_hermite.txt
+
+run_test_heuman_lambda: $(TEST_BIN_DIR)/test_heuman_lambda
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_heuman_lambda > $(TEST_OUT_DIR)/test_heuman_lambda.txt
+
+run_test_hurwitz_zeta: $(TEST_BIN_DIR)/test_hurwitz_zeta
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hurwitz_zeta > $(TEST_OUT_DIR)/test_hurwitz_zeta.txt
+
+run_test_hurwitz_zeta_new: $(TEST_BIN_DIR)/test_hurwitz_zeta_new
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hurwitz_zeta_new > $(TEST_OUT_DIR)/test_hurwitz_zeta_new.txt
+
+run_test_hydrogen: $(TEST_BIN_DIR)/test_hydrogen
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hydrogen > $(TEST_OUT_DIR)/test_hydrogen.txt
+
+run_test_hyperg: $(TEST_BIN_DIR)/test_hyperg
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hyperg > $(TEST_OUT_DIR)/test_hyperg.txt
+
+run_test_hypot: $(TEST_BIN_DIR)/test_hypot
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hypot > $(TEST_OUT_DIR)/test_hypot.txt
+
+run_test_inv_erf: $(TEST_BIN_DIR)/test_inv_erf
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_inv_erf > $(TEST_OUT_DIR)/test_inv_erf.txt
+
+run_test_inv_gamma: $(TEST_BIN_DIR)/test_inv_gamma
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_inv_gamma > $(TEST_OUT_DIR)/test_inv_gamma.txt
+
+run_test_inv_ibeta: $(TEST_BIN_DIR)/test_inv_ibeta
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_inv_ibeta > $(TEST_OUT_DIR)/test_inv_ibeta.txt
+
+run_test_inv_lgamma: $(TEST_BIN_DIR)/test_inv_lgamma
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_inv_lgamma > $(TEST_OUT_DIR)/test_inv_lgamma.txt
+
+run_test_jacobi: $(TEST_BIN_DIR)/test_jacobi
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi > $(TEST_OUT_DIR)/test_jacobi.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi_neg_parm > $(TEST_OUT_DIR)/test_jacobi_neg_parm.txt
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi_neg_roots > $(TEST_OUT_DIR)/test_jacobi_neg_roots.txt
+
+run_test_jacobi_neg_parm: $(TEST_BIN_DIR)/test_jacobi_neg_parm
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi_neg_parm > $(TEST_OUT_DIR)/test_jacobi_neg_parm.txt
+
+run_test_jacobi_neg_roots: $(TEST_BIN_DIR)/test_jacobi_neg_roots
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi_neg_roots > $(TEST_OUT_DIR)/test_jacobi_neg_roots.txt
+
+run_test_jacobi_ellint: $(TEST_BIN_DIR)/test_jacobi_ellint
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi_ellint > $(TEST_OUT_DIR)/test_jacobi_ellint.txt
+
+run_test_jacobi_inv: $(TEST_BIN_DIR)/test_jacobi_inv
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi_inv > $(TEST_OUT_DIR)/test_jacobi_inv.txt
+
+run_test_jacobi_theta: $(TEST_BIN_DIR)/test_jacobi_theta
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi_theta > $(TEST_OUT_DIR)/test_jacobi_theta.txt
+
+run_test_jacobi_zeta: $(TEST_BIN_DIR)/test_jacobi_zeta
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_jacobi_zeta > $(TEST_OUT_DIR)/test_jacobi_zeta.txt
+
+run_test_kelvin: $(TEST_BIN_DIR)/test_kelvin
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_kelvin > $(TEST_OUT_DIR)/test_kelvin.txt
+
+run_test_krawtchouk: $(TEST_BIN_DIR)/test_krawtchouk
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_krawtchouk > $(TEST_OUT_DIR)/test_krawtchouk.txt
+
+run_test_laguerre: $(TEST_BIN_DIR)/test_laguerre
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_laguerre > $(TEST_OUT_DIR)/test_laguerre.txt
+
+run_test_lambert_w: $(TEST_BIN_DIR)/test_lambert_w
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lambert_w > $(TEST_OUT_DIR)/test_lambert_w.txt
+
+run_test_legendre: $(TEST_BIN_DIR)/test_legendre
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_legendre > $(TEST_OUT_DIR)/test_legendre.txt
+
+run_test_legendre_q: $(TEST_BIN_DIR)/test_legendre_q
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_legendre_q > $(TEST_OUT_DIR)/test_legendre_q.txt
+
+run_test_legendre_ellint: $(TEST_BIN_DIR)/test_legendre_ellint
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_legendre_ellint > $(TEST_OUT_DIR)/test_legendre_ellint.txt
+
+run_test_lentz_continued_fraction: $(TEST_BIN_DIR)/test_lentz_continued_fraction
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lentz_continued_fraction > $(TEST_OUT_DIR)/test_lentz_continued_fraction.txt
+
+run_test_lerch: $(TEST_BIN_DIR)/test_lerch
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lerch > $(TEST_OUT_DIR)/test_lerch.txt
+
+run_test_limits: $(TEST_BIN_DIR)/test_limits
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_limits > $(TEST_OUT_DIR)/test_limits.txt
+
+run_test_little_airy: $(TEST_BIN_DIR)/test_little_airy
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_little_airy > $(TEST_OUT_DIR)/test_little_airy.txt
+
+run_test_lobatto: $(TEST_BIN_DIR)/test_lobatto
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lobatto > $(TEST_OUT_DIR)/test_lobatto.txt
+
+run_test_log: $(TEST_BIN_DIR)/test_log
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_log > $(TEST_OUT_DIR)/test_log.txt
+
+run_test_logsumexp: $(TEST_BIN_DIR)/test_logsumexp
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_logsumexp > $(TEST_OUT_DIR)/test_logsumexp.txt
+
+run_test_lommel: $(TEST_BIN_DIR)/test_lommel
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lommel > $(TEST_OUT_DIR)/test_lommel.txt
+
+run_test_marcum_q: $(TEST_BIN_DIR)/test_marcum_q
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_marcum_q > $(TEST_OUT_DIR)/test_marcum_q.txt
+
+run_test_math_h: $(TEST_BIN_DIR)/test_math_h
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_math_h > $(TEST_OUT_DIR)/test_math_h.txt
+
+run_test_maxint: $(TEST_BIN_DIR)/test_maxint
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_maxint > $(TEST_OUT_DIR)/test_maxint.txt
+
+run_test_meixner: $(TEST_BIN_DIR)/test_meixner
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_meixner > $(TEST_OUT_DIR)/test_meixner.txt
+
+run_test_meixner_pollaczek: $(TEST_BIN_DIR)/test_meixner_pollaczek
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_meixner_pollaczek > $(TEST_OUT_DIR)/test_meixner_pollaczek.txt
+
+run_test_mittag_leffler: $(TEST_BIN_DIR)/test_mittag_leffler
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_mittag_leffler > $(TEST_OUT_DIR)/test_mittag_leffler.txt
+
+run_test_mod2pi: $(TEST_BIN_DIR)/test_mod2pi
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_mod2pi > $(TEST_OUT_DIR)/test_mod2pi.txt
+
+run_test_mpreal: $(TEST_BIN_DIR)/test_mpreal
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_mpreal > $(TEST_OUT_DIR)/test_mpreal.txt
+
+run_test_notsospecfun: $(TEST_BIN_DIR)/test_notsospecfun
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_notsospecfun > $(TEST_OUT_DIR)/test_notsospecfun.txt
+
+run_test_nric_bessel: $(TEST_BIN_DIR)/test_nric_bessel
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_nric_bessel > $(TEST_OUT_DIR)/test_nric_bessel.txt
+
+run_test_numeric_limits: $(TEST_BIN_DIR)/test_numeric_limits
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_numeric_limits > $(TEST_OUT_DIR)/test_numeric_limits.txt
+
+run_test_owens_t: $(TEST_BIN_DIR)/test_owens_t
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_owens_t > $(TEST_OUT_DIR)/test_owens_t.txt
+
+run_test_parab_cyl: $(TEST_BIN_DIR)/test_parab_cyl
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_parab_cyl > $(TEST_OUT_DIR)/test_parab_cyl.txt
+
+run_test_polygamma: $(TEST_BIN_DIR)/test_polygamma
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_polygamma > $(TEST_OUT_DIR)/test_polygamma.txt
+
+run_test_polylog: $(TEST_BIN_DIR)/test_polylog
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_polylog > $(TEST_OUT_DIR)/test_polylog.txt
+
+run_test_power_mean: $(TEST_BIN_DIR)/test_power_mean
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_power_mean > $(TEST_OUT_DIR)/test_power_mean.txt
+
+run_test_power_norm: $(TEST_BIN_DIR)/test_power_norm
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_power_norm > $(TEST_OUT_DIR)/test_power_norm.txt
+
+run_test_pow_limits: $(TEST_BIN_DIR)/test_pow_limits
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_pow_limits > $(TEST_OUT_DIR)/test_pow_limits.txt
+
+run_test_racah: $(TEST_BIN_DIR)/test_racah
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_racah > $(TEST_OUT_DIR)/test_racah.txt
+
+run_test_rational: $(TEST_BIN_DIR)/test_rational
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_rational > $(TEST_OUT_DIR)/test_rational.txt
+
+run_test_recursion: $(TEST_BIN_DIR)/test_recursion
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_recursion > $(TEST_OUT_DIR)/test_recursion.txt
+
+run_test_reperiodized_hyper: $(TEST_BIN_DIR)/test_reperiodized_hyper
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_reperiodized_hyper > $(TEST_OUT_DIR)/test_reperiodized_hyper.txt
+
+run_test_reperiodized_trig: $(TEST_BIN_DIR)/test_reperiodized_trig
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_reperiodized_trig > $(TEST_OUT_DIR)/test_reperiodized_trig.txt
+
+run_test_riemann_zeta: $(TEST_BIN_DIR)/test_riemann_zeta
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_riemann_zeta > $(TEST_OUT_DIR)/test_riemann_zeta.txt
+
+run_test_rising_factorial: $(TEST_BIN_DIR)/test_rising_factorial
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_rising_factorial > $(TEST_OUT_DIR)/test_rising_factorial.txt
+
+run_test_root_search: $(TEST_BIN_DIR)/test_root_search
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_root_search > $(TEST_OUT_DIR)/test_root_search.txt
+
+run_test_sincos: $(TEST_BIN_DIR)/test_sincos
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_sincos > $(TEST_OUT_DIR)/test_sincos.txt
+
+run_test_sinus_cardinal: $(TEST_BIN_DIR)/test_sinus_cardinal
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_sinus_cardinal > $(TEST_OUT_DIR)/test_sinus_cardinal.txt
+
+run_test_sph_bessel: $(TEST_BIN_DIR)/test_sph_bessel
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_sph_bessel > $(TEST_OUT_DIR)/test_sph_bessel.txt
+
+run_test_sph_hankel: $(TEST_BIN_DIR)/test_sph_hankel
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_sph_hankel > $(TEST_OUT_DIR)/test_sph_hankel.txt
+
+run_test_steed_continued_fraction: $(TEST_BIN_DIR)/test_steed_continued_fraction
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_steed_continued_fraction > $(TEST_OUT_DIR)/test_steed_continued_fraction.txt
+
+run_test_struve: $(TEST_BIN_DIR)/test_struve
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_struve > $(TEST_OUT_DIR)/test_struve.txt
+
+run_test_struve_old: $(TEST_BIN_DIR)/test_struve_old
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_struve_old > $(TEST_OUT_DIR)/test_struve_old.txt
+
+run_test_summation: $(TEST_BIN_DIR)/test_summation
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_summation > $(TEST_OUT_DIR)/test_summation.txt
+
+run_test_theta: $(TEST_BIN_DIR)/test_theta
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_theta > $(TEST_OUT_DIR)/test_theta.txt
+
+run_test_tr1_cmath: $(TEST_BIN_DIR)/test_tr1_cmath
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_tr1_cmath > $(TEST_OUT_DIR)/test_tr1_cmath.txt
+
+run_test_tricomi_u: $(TEST_BIN_DIR)/test_tricomi_u
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_tricomi_u > $(TEST_OUT_DIR)/test_tricomi_u.txt
+
+run_test_trig: $(TEST_BIN_DIR)/test_trig
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_trig > $(TEST_OUT_DIR)/test_trig.txt
+
+run_test_weierstrass_ellint: $(TEST_BIN_DIR)/test_weierstrass_ellint
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_weierstrass_ellint > $(TEST_OUT_DIR)/test_weierstrass_ellint.txt
+
+run_test_wilson: $(TEST_BIN_DIR)/test_wilson
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_wilson > $(TEST_OUT_DIR)/test_wilson.txt
+
+run_test_wright_omega: $(TEST_BIN_DIR)/test_wright_omega
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_wright_omega > $(TEST_OUT_DIR)/test_wright_omega.txt
+
+run_test_zeta_trig: $(TEST_BIN_DIR)/test_zeta_trig
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_zeta_trig > $(TEST_OUT_DIR)/test_zeta_trig.txt
+
+run_run_coulfg: $(TEST_BIN_DIR)/run_coulfg
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/run_coulfg > $(TEST_OUT_DIR)/run_coulfg.txt
+
+run_RUN_COULFG: ./RUN_COULFG
 	./RUN_COULFG > $(TEST_OUT_DIR)/RUN_COULFG.TXT
 
 check: $(CHECK_DIR) $(CHECKS)
