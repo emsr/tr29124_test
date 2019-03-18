@@ -23,7 +23,12 @@
 #include <bits/complex_util.h>
 
 /**
- *  Incremental computation of statistics.
+ * Incremental computation of statistics.
+ *
+ * @todo Make an insertion operator (operator<<) that takes an object
+ * decomposable into two parts. The first part will be the value
+ * and the second part will be the weight.  Then _M_count or something
+ * will need to be of type _Tp rather than unsigned integral.
  */
 template<typename _Tp>
   struct _Statistics
