@@ -19,7 +19,7 @@ template<typename _Tp>
     for (unsigned int l : {0, 1, 2, 3, 4, 5})
       {
 	std::cout << "\n\n l = " << std::setw(2) << l << '\n';
-	for (int i = -100; i <= +100; ++i)
+	for (int i = -120; i <= +120; ++i)
 	  {
 	    auto x = _Tp(0.01L * i);
 	    std::cout << ' ' << std::setw(w) << x

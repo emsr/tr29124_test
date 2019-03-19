@@ -127,7 +127,7 @@ template<typename _Tp>
 	std::cout << ' ' << std::setw(w) << "P_" << l << "(x)";
 	std::cout << '\n';
 	const auto del = _Tp{1} / _Tp{100};
-	for (int i = -100; i <= 100; ++i)
+	for (int i = -120; i <= 120; ++i)
 	  {
 	    auto x = i * del;
 	    const auto P_l = std::__detail::__legendre_p(l, x);
@@ -151,7 +151,7 @@ template<typename _Tp>
 	    std::cout << ' ' << std::setw(w) << "P_" << l << "_" << m << "(x)";
 	    std::cout << '\n';
 	    const auto del = _Tp{1} / _Tp{100};
-	    for (int i = -100; i <= 100; ++i)
+	    for (int i = -120; i <= 120; ++i)
 	      {
 		const auto x = i * del;
 		const auto P = std::__detail::__assoc_legendre_p(l, m, x);
