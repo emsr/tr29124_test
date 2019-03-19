@@ -81,17 +81,18 @@ namespace __detail
     __gnu_cxx::__legendre_p_t<_Tp>
     __legendre_p(unsigned int __l, _Tp __x)
     {
+      using _Real = __num_traits_t<_Tp>;
       using __ret_t = __gnu_cxx::__legendre_p_t<_Tp>;
 
       const auto __lge1 = __l >= 1 ? _Tp{+1} : _Tp{0};
       const auto __lge2 = __l >= 2 ? _Tp{+1} : _Tp{0};
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
 
       if (std::isnan(__x))
 	return {__l, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
-      else if (__x == _Tp{+1})
+      else if (__x == _Real{+1})
 	return {__l, __x, _Tp{+1}, __lge1, __lge2};
-      else if (__x == _Tp{-1})
+      else if (__x == _Real{-1})
 	return __l % 2 == 1
 		? __ret_t{__l, __x, _Tp{-1}, +__lge1, -__lge2}
 		: __ret_t{__l, __x, _Tp{+1}, -__lge1, +__lge2};
@@ -127,9 +128,11 @@ namespace __detail
    * Legendre q series.
    */
   template<typename _Tp>
+    _Tp
     __legendre_q_series(unsigned int __l, _Tp __x)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
       const auto _S_max_iter = 1000;
       const auto __xx = _Tp{1} / (__x * __x);
       auto __num1 = _Tp(__l + 1) / _Tp{2};
@@ -139,8 +142,8 @@ namespace __detail
       auto __sum = _Tp{1};
       for (int __k = 1; __k <= _S_max_iter; ++__k)
 	{
-	  __term *= (__num1 + __k) / _Tp(__k)
-		  * (__num2 + __k) / (__den + __k)
+	  __term *= (__num1 + _Tp(__k)) / _Tp(__k)
+		  * (__num2 + _Tp(__k)) / (__den + _Tp(__k))
 		  * __xx;
 	  __sum += __term;
 	  if (std::abs(__term) < _S_eps * std::abs(__sum))
@@ -171,21 +174,22 @@ namespace __detail
     __gnu_cxx::__legendre_q_t<_Tp>
     __legendre_q(unsigned int __l, _Tp __x)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_inf = __gnu_cxx::__infinity(__x);
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
+      const auto _S_inf = __gnu_cxx::__infinity(_Real{});
       if (std::isnan(__x))
 	{
-	  const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+	  const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
 	  return {__l, __x, _S_NaN, _S_NaN, _S_NaN};
 	}
-      else if (std::abs(__x - _Tp{1}) < _S_eps)
+      else if (std::abs(__x - _Real{1}) < _S_eps)
 	return {__l, __x, _S_inf, _S_inf, _S_inf};
-      else if (std::abs(__x + _Tp{1}) < _S_eps)
+      else if (std::abs(__x + _Real{1}) < _S_eps)
 	{
 	  const auto __sgn = (__l & 1 ? +1 : -1);
 	  return {__l, __x, __sgn * _S_inf, -__sgn * _S_inf, __sgn * _S_inf};
 	}
-      else if (std::abs(__x) < _Tp{1})
+      else if (std::abs(__x) < _Real{1})
 	{
 	  auto _Q_lm2 = _Tp{0.5L} * std::log((_Tp{1} + __x) / (_Tp{1} - __x));
 	  if (__l == 0)
@@ -243,11 +247,12 @@ namespace __detail
     __assoc_legendre_p(unsigned int __l, unsigned int __m, _Tp __x,
 		       _Tp __phase = _Tp{+1})
     {
+      using _Real = __num_traits_t<_Tp>;
       if (__m > __l)
 	return {__l, __m, __x, _Tp{0}, _Tp{0}, _Tp{0}};
       else if (std::isnan(__x))
 	{
-	  const auto _NaN = __gnu_cxx::__quiet_NaN(__x);
+	  const auto _NaN = __gnu_cxx::__quiet_NaN(_Real{});
 	  return {__l, __m, __x, _NaN, _NaN, _NaN, __phase};
 	}
       else if (__m == 0)
@@ -258,7 +263,7 @@ namespace __detail
 	}
       else
 	{
-	  _Tp _P_mm = _Tp{1};
+	  auto _P_mm = _Tp{1};
 	  if (__m > 0)
 	    {
 	      // Two square roots seem more accurate more of the time
@@ -275,7 +280,7 @@ namespace __detail
 	  if (__l == __m)
 	    return {__l, __m, __x, _P_mm, _Tp{0}, _Tp{0}, __phase};
 
-	  _Tp _P_mp1m = _Tp(2 * __m + 1) * __x * _P_mm;
+	  auto _P_mp1m = _Tp(2 * __m + 1) * __x * _P_mm;
 	  if (__l == __m + 1)
 	    return {__l, __m, __x, _P_mp1m, _P_mm, _Tp{0}, __phase};
 
@@ -301,12 +306,13 @@ namespace __detail
     __assoc_legendre_q(unsigned int __l, unsigned int __m, _Tp __x,
 		       _Tp __phase = _Tp{+1})
     {
+      using _Real = __num_traits_t<_Tp>;
       if (std::isnan(__x))
 	{
-	  const auto _NaN = __gnu_cxx::__quiet_NaN(__x);
+	  const auto _NaN = __gnu_cxx::__quiet_NaN(_Real{});
 	  return {__l, __m, __x, _NaN, _NaN, _NaN, __phase};
 	}
-      else if (std::abs(__x) < _Tp{1})
+      else if (std::abs(__x) < _Real{1})
 	{
 	  // Find Q_l^0 and Q_l^1 by upward recurrence on l.
 	  const auto __fact = (_Tp{1} - __x) * (_Tp{1} + __x);
