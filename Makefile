@@ -1319,8 +1319,8 @@ $(TEST_BIN_DIR)/test_conf_hyperg_limit: laboratories/hypergeometric_functions/te
 $(TEST_BIN_DIR)/test_const: laboratories/constants/test_const.cpp
 	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/test_const laboratories/constants/test_const.cpp -lquadmath -lmpfr -lgmp
 
-$(TEST_BIN_DIR)/test_continued_fraction: continued_fractions/test_continued_fraction.cpp
-	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_continued_fraction continued_fractions/test_continued_fraction.cpp -lquadmath
+$(TEST_BIN_DIR)/test_continued_fraction: cxx_continued_fractions/test_continued_fraction.cpp
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_continued_fraction cxx_continued_fractions/test_continued_fraction.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_continuous_dual_hahn: laboratories/orthogonal_polynomials/test_continuous_dual_hahn.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_continuous_dual_hahn laboratories/orthogonal_polynomials/test_continuous_dual_hahn.cpp -lquadmath
@@ -1359,7 +1359,7 @@ $(TEST_BIN_DIR)/test_dual_hahn: laboratories/orthogonal_polynomials/test_dual_ha
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_dual_hahn laboratories/orthogonal_polynomials/test_dual_hahn.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_erfc: wrappers_debug laboratories/error_functions/test_erfc.cpp
-	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -Iwrappers -o $(TEST_BIN_DIR)/test_erfc laboratories/error_functions/test_erfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+	$(CXXMAX) $(INCLUDES) -Icxx_continued_fractions/include -Iwrappers -o $(TEST_BIN_DIR)/test_erfc laboratories/error_functions/test_erfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 $(TEST_BIN_DIR)/test_experfc: wrappers_debug laboratories/error_functions/test_experfc.cpp
 	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_experfc laboratories/error_functions/test_experfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost -lmpfr -lgmp
@@ -1419,7 +1419,7 @@ $(TEST_BIN_DIR)/test_hankel_real_arg: wrappers_debug laboratories/bessel_functio
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_hankel_real_arg laboratories/bessel_functions/test_hankel_real_arg.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 $(TEST_BIN_DIR)/test_hermite: laboratories/orthogonal_polynomials/test_hermite.cpp laboratories/orthogonal_polynomials/new_hermite.tcc
-	$(CXXMAX) $(INCLUDES) -Iquadrature/include -Icontinued_fractions/include -Ilaboratories/orthogonal_polynomials -o $(TEST_BIN_DIR)/test_hermite laboratories/orthogonal_polynomials/test_hermite.cpp -lquadmath
+	$(CXXMAX) $(INCLUDES) -Iquadrature/include -Icxx_continued_fractions/include -Ilaboratories/orthogonal_polynomials -o $(TEST_BIN_DIR)/test_hermite laboratories/orthogonal_polynomials/test_hermite.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_heuman_lambda: wrappers_debug laboratories/elliptic_integrals/test_heuman_lambda.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_heuman_lambda laboratories/elliptic_integrals/test_heuman_lambda.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
@@ -1496,8 +1496,8 @@ $(TEST_BIN_DIR)/test_legendre_q: laboratories/orthogonal_polynomials/test_legend
 $(TEST_BIN_DIR)/test_legendre_ellint: laboratories/elliptic_integrals/test_legendre_ellint.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_legendre_ellint laboratories/elliptic_integrals/test_legendre_ellint.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
-$(TEST_BIN_DIR)/test_lentz_continued_fraction: continued_fractions/test_lentz_continued_fraction.cpp
-	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_lentz_continued_fraction continued_fractions/test_lentz_continued_fraction.cpp -lquadmath
+$(TEST_BIN_DIR)/test_lentz_continued_fraction: cxx_continued_fractions/test_lentz_continued_fraction.cpp
+	$(CXXMAX) $(INCLUDES) -Icxx_continued_fractions/include -o $(TEST_BIN_DIR)/test_lentz_continued_fraction cxx_continued_fractions/test_lentz_continued_fraction.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_lerch: laboratories/zeta_functions/test_lerch.cpp
 	$(CXXMAX) $(INCLUDES) -I. -o $(TEST_BIN_DIR)/test_lerch laboratories/zeta_functions/test_lerch.cpp 3rdparty/lerchphi/Source/lerchphi.cpp -lquadmath
@@ -1560,7 +1560,7 @@ $(TEST_BIN_DIR)/test_parab_cyl: laboratories/parabolic_cylinder_functions/test_p
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_parab_cyl laboratories/parabolic_cylinder_functions/test_parab_cyl.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_polygamma: laboratories/gamma_functions/test_polygamma.cpp
-	$(CXXMAX) $(INCLUDES) -Iwrappers -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_polygamma laboratories/gamma_functions/test_polygamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+	$(CXXMAX) $(INCLUDES) -Iwrappers -Icxx_continued_fractions/include -o $(TEST_BIN_DIR)/test_polygamma laboratories/gamma_functions/test_polygamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 $(TEST_BIN_DIR)/test_polylog: wrappers_debug laboratories/zeta_functions/test_polylog.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_polylog laboratories/zeta_functions/test_polylog.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_cephes
@@ -1610,8 +1610,8 @@ $(TEST_BIN_DIR)/test_sph_bessel: laboratories/bessel_functions/test_sph_bessel.c
 $(TEST_BIN_DIR)/test_sph_hankel: wrappers_debug laboratories/bessel_functions/test_sph_hankel.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_sph_hankel laboratories/bessel_functions/test_sph_hankel.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
-$(TEST_BIN_DIR)/test_steed_continued_fraction: continued_fractions/test_steed_continued_fraction.cpp
-	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_steed_continued_fraction continued_fractions/test_steed_continued_fraction.cpp -lquadmath
+$(TEST_BIN_DIR)/test_steed_continued_fraction: cxx_continued_fractions/test_steed_continued_fraction.cpp
+	$(CXXMAX) $(INCLUDES) -Icxx_continued_fractions/include -o $(TEST_BIN_DIR)/test_steed_continued_fraction cxx_continued_fractions/test_steed_continued_fraction.cpp -lquadmath
 
 $(TEST_BIN_DIR)/test_struve: laboratories/bessel_functions/test_struve.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_struve laboratories/bessel_functions/test_struve.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
