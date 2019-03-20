@@ -1,6 +1,13 @@
 
 #include <type_traits>
 
+#if __cpp_lib_type_trait_variable_templates < 201510
+namespace std
+{
+  template<typename _Tp>
+    inline constexpr bool is_integral_v = is_integral<_Tp>::value;
+}
+#endif
 
 template<typename _ArgT, typename _Coef0>
   constexpr std::conditional_t<std::is_integral_v<_ArgT>, double, _ArgT>
