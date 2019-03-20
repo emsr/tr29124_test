@@ -25,7 +25,7 @@ template<typename _Tp>
 	  {
 	    std::cout << "\n\n l = " << std::setw(2) << l
 		      << "  m = " << std::setw(2) << m << '\n';
-	    for (int i = -100; i <= 100; ++i)
+	    for (int i = -120; i <= 120; ++i)
 	      {
 		const auto x = _Tp(0.01 * i);
 		//const auto P = std::assoc_legendre(l, m, x);

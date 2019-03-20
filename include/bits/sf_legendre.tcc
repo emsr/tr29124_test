@@ -34,14 +34,17 @@
 // Written by Edward Smith-Rowland.
 //
 // References:
-// (1) Handbook of Mathematical Functions,
+// (1) https://dlmf.nist.gov/14 - Chapter 14 Legendre and Related Functions
+// (2) Handbook of Mathematical Functions,
 //     ed. Milton Abramowitz and Irene A. Stegun,
 //     Dover Publications,
 //     Section 8, pp. 331-341
-// (2) The Gnu Scientific Library, http://www.gnu.org/software/gsl
-// (3) Numerical Recipes in C, by W. H. Press, S. A. Teukolsky,
+// (3) The Gnu Scientific Library, http://www.gnu.org/software/gsl
+// (4) Numerical Recipes in C, by W. H. Press, S. A. Teukolsky,
 //     W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
 //     2nd ed, pp. 252-254
+// (5) Computation of Special Functions, Shanjie Zhang, Jianming Jin,
+//     John Wiley & Sons (1996)
 
 #ifndef _GLIBCXX_BITS_SF_LEGENDRE_TCC
 #define _GLIBCXX_BITS_SF_LEGENDRE_TCC 1
@@ -117,8 +120,6 @@ namespace __detail
 	      _P_l = _Tp{2} * __x * _P_lm1 - _P_lm2
 		    - (__x * _P_lm1 - _P_lm2) / _Tp(__ll);
 	    }
-	  // Recursion for the derivative of The Legendre polynomial.
-	  //auto __Pp_l = __l * (_P_lm1 - __x * _P_l) / (_Tp{1} - __x) / (_Tp{1} + __x);
 
 	  return {__l, __x, _P_l, _P_lm1, _P_lm2};
 	}
@@ -131,28 +132,17 @@ namespace __detail
     _Tp
     __legendre_q_series(unsigned int __l, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
-      const auto _S_max_iter = 1000;
-      const auto __xx = _Tp{1} / (__x * __x);
-      auto __num1 = _Tp(__l + 1) / _Tp{2};
-      auto __num2 = _Tp(__l + 2) / _Tp{2};
-      auto __den = _Tp(2 * __l + 3) / _Tp{2};
-      auto __term = _Tp{1};
-      auto __sum = _Tp{1};
-      for (int __k = 1; __k <= _S_max_iter; ++__k)
-	{
-	  __term *= (__num1 + _Tp(__k)) / _Tp(__k)
-		  * (__num2 + _Tp(__k)) / (__den + _Tp(__k))
-		  * __xx;
-	  __sum += __term;
-	  if (std::abs(__term) < _S_eps * std::abs(__sum))
-	    break;
-	}
+      const auto __num1 = _Tp(__l + 1) / _Tp{2};
+      const auto __num2 = _Tp(__l + 2) / _Tp{2};
+      const auto __den = _Tp(2 * __l + 3) / _Tp{2};
+      const auto __rx = _Tp{1} / __x;
+      const auto __rx2 = __rx * __rx;
 
-      auto __fact = _Tp{1};
+      const auto __sum = std::__detail::__hyperg(__num1, __num2, __den, __rx2);
+
+      auto __fact = __rx;
       for (int __k = 1; __k <= __l; ++__k)
-	__fact *= _Tp(__k) / _Tp(2 * __k - 1);
+	__fact *= _Tp(__k) * __rx / _Tp(2 * __k - 1);
 
       return __fact * __sum;
     }
@@ -167,8 +157,8 @@ namespace __detail
    *   Q_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l}
    * @f]
    *
-   * @param __l The degree of the Legendre function.  @f$l >= 0@f$.
-   * @param __x The argument of the Legendre function.  @f$|x| <= 1@f$.
+   * @param __l The degree of the Legendre function.  @f$ l >= 0 @f$.
+   * @param __x The argument of the Legendre function.  @f$ |x| <= 1 @f$.
    */
   template<typename _Tp>
     __gnu_cxx::__legendre_q_t<_Tp>
@@ -205,6 +195,7 @@ namespace __detail
 	      _Q_lm1 = _Q_l;
 	      // This arrangement is supposed to be better for roundoff
 	      // protection, Arfken, 2nd Ed, Eq 12.17a.
+	      // Is this still true for Q?
 	      _Q_l = _Tp{2} * __x * _Q_lm1 - _Q_lm2
 		    - (__x * _Q_lm1 - _Q_lm2) / _Tp(__ll);
 	    }
@@ -213,9 +204,12 @@ namespace __detail
 	}
       else
 	{
-	  /// @todo Build the series rep for Ql and recur down.
 	  const auto _Q_l = __legendre_q_series(__l, __x);
+	  if (__l == 0)
+	    return {__l, __x, _Q_l, _Tp{0}, _Tp{0}};
 	  const auto _Q_lm1 = __legendre_q_series(__l - 1, __x);
+	  if (__l == 1)
+	    return {__l, __x, _Q_l, _Q_lm1, _Tp{0}};
 	  const auto _Q_lm2 = (_Tp(2 * __l - 1) * __x * _Q_lm1
 			     - _Tp(__l) * _Q_l) / _Tp(__l - 1);
 	  return {__l, __x, _Q_l, _Q_lm1, _Q_lm2};
@@ -295,8 +289,7 @@ namespace __detail
 	      _P_lm = (_Tp(2 * __j - 1) * __x * _P_lm1m
 		      - _Tp(__j + __m - 1) * _P_lm2m) / _Tp(__j - __m);
 	    }
-	  //_Pp_lm = ((__l + __m) * _P_lm1m - __l * __x * _P_lm)
-	  //       / ((_Tp{1} - __x) * (_Tp{1} + __x));
+
 	  return {__l, __m, __x, _P_lm, _P_lm1m, _P_lm2m};
 	}
     }
@@ -374,12 +367,12 @@ namespace __detail
 	      _Q_lm = __phase * (_Tp(2 * (__k - 1)) * __x * _Q_lmm1 / __root
 			      - _Tp(__l + __k - 1) * _Tp(__l - __k + 2) * _Q_l0);
 	    }
-	  //_Qp_lm = _Tp(__m) * __x * _Q_lm / __fact
-	  //       + _Tp(__l + __m) * _Tp(__l - __m + 1) * _Q_lmm1 / __root;
+
 	  return {__l, __m, __x, _Q_lm, _Q_lmm1, _Q_lmm2, __phase};
 	}
       else
-	{
+	{ // FIXME!
+	  return {__l, __m, __x, _Tp{0}, _Tp{0}, _Tp{0}, __phase};
 	}
     }
 

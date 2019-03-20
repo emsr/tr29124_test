@@ -188,7 +188,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	      return _Tp{0};
 	  }
 	else
-	  return __phase * ((__l + __m) * __P_lm1m - __l * __x * __P_lm)
+	  return -__phase * ((__l + __m) * __P_lm1m - __l * __x * __P_lm)
 	       / ((_Tp{1} - __x) * (_Tp{1} + __x));
       }
     };
