@@ -2,6 +2,8 @@ cmake_minimum_required (VERSION 3.2)
 
 project(SpecfunWrappers LANGUAGES CXX C Fortran)
 
+set(CMAKE_CXX_STANDARD 17)
+
 set(SpecfunWrappers_VERSION_MAJOR 1)
 set(SpecfunWrappers_VERSION_MINOR 0)
 
