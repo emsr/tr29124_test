@@ -84,13 +84,16 @@ template<typename _Tp>
 	auto xaip_prev = xaip;
 	auto ai_prev = _Tp(0);
 	auto aip_prev = _Tp(0);
+	auto aipp_prev = _Tp(0);
 	do
 	  {
 	    xaip_prev = xaip;
 	    auto [x, ai, aip, bi, bip] = std::__detail::__airy(xaip);
-	    xaip -= aip / (xaip * ai); // Ai''(x) = xAi(x)
+	    auto aipp = xaip * ai; // Ai''(x) = xAi(x)
+	    xaip -= aip / aipp;
 	    ai_prev = ai;
 	    aip_prev = aip;
+	    aipp_prev = aipp;
 	  }
 	while (std::abs(xaip - xaip_prev) >= 2 * _S_eps * std::abs(xaip));
 	zaip[i] = -xaip;
@@ -146,13 +149,16 @@ template<typename _Tp>
 	auto xbip_prev = xbip;
 	auto bi_prev = _Tp(0);
 	auto bip_prev = _Tp(0);
+	auto bipp_prev = _Tp(0);
 	do
 	  {
 	    xbip_prev = xbip;
 	    auto [x, ai, aip, bi, bip] = std::__detail::__airy(xbip);
-	    xbip -= bip / (xbip * bi); // Bi''(x) = xBi(x)
+	    auto bipp = xbip * bi; // Bi''(x) = xBi(x)
+	    xbip -= bip / xbip;
 	    bi_prev = bi;
 	    bip_prev = bip;
+	    bipp_prev = bipp;
 	  }
 	while (std::abs(xbip - xbip_prev) >= _S_eps * std::abs(xbip));
 	zbip.push_back(-xbip);
