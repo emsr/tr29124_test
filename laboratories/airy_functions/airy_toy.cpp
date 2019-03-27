@@ -4684,9 +4684,10 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
       if (std::isnan(__y))
 	return __airy_t<_Cmplx, _Cmplx>{__y, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
 
-      auto __absargy = std::abs(std::arg(__y));
+      auto __argy = std::arg(__y);
+      auto __absargy = std::abs(__argy);
       auto __absy = std::abs(__y);
-      auto __sign = std::copysign(_Real{1}, std::arg(__y));
+      auto __sign = std::copysign(_Real{1}, __argy);
 
       __airy_t<_Val, _Val> __sums{_Val{}, _Val{}, _Val{}, _Val{}, _Val{}};
       if (__absy >= inner_radius)
@@ -4695,7 +4696,6 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
 	    {
 	      auto __beta = _Real{1};
 	      _Airy_asymp_series<_InnerSum> __asymp(_InnerSum{__beta});
-	      //_Airy_asymp_series<_InnerSum> __asymp(_InnerSum{});
 	      __sums = __asymp(__y);
 	    }
 	  else
