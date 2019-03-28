@@ -153,7 +153,7 @@ namespace __gnu_cxx
    */
   inline float
   lommel_1f(float __mu, float __nu, float __z)
-  { return lommel_1<float>(__mu, __nu, __z); }
+  { return std::__detail::__lommel_1<float>(__mu, __nu, __z); }
 
   /**
    * Return the Lommel function of the first kind @f$ s_{\mu,nu}(z) @f$
@@ -163,7 +163,7 @@ namespace __gnu_cxx
    */
   inline long double
   lommel_1l(float __mu, long double __nu, long double __z)
-  { return lommel_1<long double>(__mu, __nu, __z); }
+  { return std::__detail::__lommel_1<long double>(__mu, __nu, __z); }
 
   /**
    * Return the Lommel function of the first kind.
@@ -176,7 +176,7 @@ namespace __gnu_cxx
    *    a_{k+1}(\mu,\nu) = \prod_{m=1}^{k}\left[(\mu+2m-1)^2-\nu^2\right]
    * @f]
    */
-  template<typename _Tmu, _Tnu, _Tp>
+  template<typename _Tmu, typename _Tnu, typename _Tp>
     inline __gnu_cxx::fp_promote_t<_Tmu, _Tnu, _Tp>
     lommel_1(_Tmu __mu, _Tnu __nu, _Tp __z)
     {
@@ -192,7 +192,7 @@ namespace __gnu_cxx
    */
   inline float
   lommel_2f(float __mu, float __nu, float __z)
-  { return lommel_2<float>(__mu, __nu, __z); }
+  { return std::__detail::__lommel_2<float>(__mu, __nu, __z); }
 
   /**
    * Return the Lommel function of the second kind @f$ S_{\mu,nu}(z) @f$
@@ -202,7 +202,7 @@ namespace __gnu_cxx
    */
   inline long double
   lommel_2l(float __mu, long double __nu, long double __z)
-  { return lommel_2<long double>(__mu, __nu, __z); }
+  { return std::__detail::__lommel_2<long double>(__mu, __nu, __z); }
 
   /**
    * Return the Lommel function of the second kind.
@@ -218,7 +218,7 @@ namespace __gnu_cxx
    * @see cyl_bessel_j and @f$ N_\nu(z) @f$ is the cylindrical Neumann function
    * @see cyl_neumann.
    */
-  template<typename _Tmu, _Tnu, _Tp>
+  template<typename _Tmu, typename _Tnu, typename _Tp>
     inline __gnu_cxx::fp_promote_t<_Tmu, _Tnu, _Tp>
     lommel_2(_Tmu __mu, _Tnu __nu, _Tp __z)
     {
@@ -244,7 +244,7 @@ template<typename _Tp>
     {
       auto z = del * i;
       std::cout << ' ' << std::setw(6) << z
-		<< ' ' << std::setw(width) << std::detail::__lommel_1(mu, nu, z)
+		<< ' ' << std::setw(width) << __gnu_cxx::lommel_1(mu, nu, z)
 		<< '\n';
     }
   }
@@ -265,7 +265,7 @@ template<typename _Tp>
     {
       auto z = del * i;
       std::cout << ' ' << std::setw(6) << z
-		<< ' ' << std::setw(width) << std::detail::__lommel_2(mu, nu, z)
+		<< ' ' << std::setw(width) << __gnu_cxx::lommel_2(mu, nu, z)
 		<< '\n';
     }
   }
