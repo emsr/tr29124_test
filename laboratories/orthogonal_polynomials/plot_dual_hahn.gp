@@ -2,7 +2,7 @@
 
 gnuplot
 
-load 'settings.gp'
+load '../plotting_tools/settings.gp'
 
 set title "Dual Hahn Polynomial R_n({/Symbol l}(x); {/Symbol g}, {/Symbol d}, N)"
 set xlabel "{/Symbol l}(x)"

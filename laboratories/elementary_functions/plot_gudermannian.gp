@@ -1,7 +1,7 @@
 
 gnuplot
 
-load 'settings.gp'
+load '../plotting_tools/settings.gp'
 
 set title "Gudermannian gd(x)"
 set xlabel "x"

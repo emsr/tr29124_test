@@ -1,6 +1,6 @@
 gnuplot
 
-load 'settings.gp'
+load '../plotting_tools/settings.gp'
 
 set title "Legendre function P_l^{(m)}(x)"
 set xlabel "x"

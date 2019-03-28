@@ -11,10 +11,10 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o test_lommel test_lommel.c
 #include <iostream>
 #include <iomanip>
 
-//namespace std
-//{
-//namespace __detail
-//{
+namespace std
+{
+namespace __detail
+{
 
   /**
    * 
@@ -92,11 +92,11 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o test_lommel test_lommel.c
 	  const auto ip = __gnu_cxx::__fp_is_odd_integer(__mu + __nu);
 	  if (im && im() < 0)
             {
-	      return 0;
+	      return _Tp{0};
 	    }
 	  else if (ip && ip() < 0)
             {
-	      return 0;
+	      return _Tp{0};
 	    }
 	  else
             {
@@ -139,8 +139,94 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o test_lommel test_lommel.c
       _S2 *= std::pow(__z, __mu - 1);
     }
 
-//} // namespace __detail
-//} // namespace std
+} // namespace __detail
+} // namespace std
+
+namespace __gnu_cxx
+{
+
+  /**
+   * Return the Lommel function of the first kind @f$ s_{\mu,nu}(z) @f$
+   * for @c float arguments.
+   *
+   * @see lommel_1 for details.
+   */
+  inline float
+  lommel_1f(float __mu, float __nu, float __z)
+  { return std::__detail::__lommel_1<float>(__mu, __nu, __z); }
+
+  /**
+   * Return the Lommel function of the first kind @f$ s_{\mu,nu}(z) @f$
+   * for <tt> long double </tt> arguments.
+   *
+   * @see lommel_1 for details.
+   */
+  inline long double
+  lommel_1l(float __mu, long double __nu, long double __z)
+  { return std::__detail::__lommel_1<long double>(__mu, __nu, __z); }
+
+  /**
+   * Return the Lommel function of the first kind.
+   * @f[
+   *    s_{\mu,\nu}(z) = z^{\mu+1}\sum_{k=0}^{\infty}
+   *             \frac{(-1)^kz^{2k}}{a_{k+1}(\mu,\nu)}
+   * @f]
+   * where
+   * @f[
+   *    a_{k+1}(\mu,\nu) = \prod_{m=1}^{k}\left[(\mu+2m-1)^2-\nu^2\right]
+   * @f]
+   */
+  template<typename _Tmu, typename _Tnu, typename _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tmu, _Tnu, _Tp>
+    lommel_1(_Tmu __mu, _Tnu __nu, _Tp __z)
+    {
+      using __type = __gnu_cxx::fp_promote_t<_Tmu, _Tnu, _Tp>;
+      return std::__detail::__lommel_1<__type>(__mu, __nu, __z);
+    }
+
+  /**
+   * Return the Lommel function of the second kind @f$ S_{\mu,nu}(z) @f$
+   * for @c float arguments.
+   *
+   * @see lommel_2 for details.
+   */
+  inline float
+  lommel_2f(float __mu, float __nu, float __z)
+  { return std::__detail::__lommel_2<float>(__mu, __nu, __z); }
+
+  /**
+   * Return the Lommel function of the second kind @f$ S_{\mu,nu}(z) @f$
+   * for <tt> long double </tt> arguments.
+   *
+   * @see lommel_2 for details.
+   */
+  inline long double
+  lommel_2l(float __mu, long double __nu, long double __z)
+  { return std::__detail::__lommel_2<long double>(__mu, __nu, __z); }
+
+  /**
+   * Return the Lommel function of the second kind.
+   * @f[
+   *   S_{\mu,\nu}(z) = s_{\mu,\nu}(z)
+   *        + 2^{\mu-1}\Gamma\left(\frac{\mu+\nu+1}{2}\right)
+   *                   \Gamma\left(\frac{\mu-\nu+1}{2}\right)
+   *    \left[\sin\left(\frac{(\mu-\nu)\pi}{2}\right)J_\nu(z)
+   *        - \cos\left(\frac{(\mu-\nu)\pi}{2}\right)N_\nu(z0  \right]
+   * @f]
+   * where @f$ s_{\mu,\nu}(z) @f$ is the Lommel function of the first kind
+   * @see lommel_1 and @f$ J_\nu(z) @f$ is the cylindrical Bessel function
+   * @see cyl_bessel_j and @f$ N_\nu(z) @f$ is the cylindrical Neumann function
+   * @see cyl_neumann.
+   */
+  template<typename _Tmu, typename _Tnu, typename _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tmu, _Tnu, _Tp>
+    lommel_2(_Tmu __mu, _Tnu __nu, _Tp __z)
+    {
+      using __type = __gnu_cxx::fp_promote_t<_Tmu, _Tnu, _Tp>;
+      return std::__detail::__lommel_2<__type>(__mu, __nu, __z);
+    }
+
+} // namespace __gnu_cxx
 
 template<typename _Tp>
   void
@@ -158,7 +244,7 @@ template<typename _Tp>
     {
       auto z = del * i;
       std::cout << ' ' << std::setw(6) << z
-		<< ' ' << std::setw(width) << __lommel_1(mu, nu, z)
+		<< ' ' << std::setw(width) << __gnu_cxx::lommel_1(mu, nu, z)
 		<< '\n';
     }
   }
@@ -179,7 +265,7 @@ template<typename _Tp>
     {
       auto z = del * i;
       std::cout << ' ' << std::setw(6) << z
-		<< ' ' << std::setw(width) << __lommel_2(mu, nu, z)
+		<< ' ' << std::setw(width) << __gnu_cxx::lommel_2(mu, nu, z)
 		<< '\n';
     }
   }

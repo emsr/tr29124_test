@@ -6245,23 +6245,23 @@ main()
   std::cout << "\nlong double\n======\n";
   diff_zeta<long double>();
 
-  plot_airy<__fcmplx_t>("plot_data/airy_float.txt");
-  plot_airy<_Cmplx>("plot_data/airy_double.txt");
-  plot_airy<__lcmplx_t>("plot_data/airy_long_double.txt");
+  plot_airy<__fcmplx_t>("../plot_data/airy_float.txt");
+  plot_airy<_Cmplx>("../plot_data/airy_double.txt");
+  plot_airy<__lcmplx_t>("../plot_data/airy_long_double.txt");
 
-  splot_airy<__fcmplx_t>("plot_data/airy_complex_float.txt");
-  splot_airy<_Cmplx>("plot_data/airy_complex_double.txt");
-  splot_airy<__lcmplx_t>("plot_data/airy_complex_long_double.txt");
+  splot_airy<__fcmplx_t>("../plot_data/airy_complex_float.txt");
+  splot_airy<_Cmplx>("../plot_data/airy_complex_double.txt");
+  splot_airy<__lcmplx_t>("../plot_data/airy_complex_long_double.txt");
 
   std::cout << "\ndouble\n======\n";
   run_scorer<_Cmplx>();
-  plot_scorer<__fcmplx_t>("plot_data/scorer_float.txt");
-  plot_scorer<_Cmplx>("plot_data/scorer_double.txt");
-  plot_scorer<__lcmplx_t>("plot_data/scorer_long_double.txt");
+  plot_scorer<__fcmplx_t>("../plot_data/scorer_float.txt");
+  plot_scorer<_Cmplx>("../plot_data/scorer_double.txt");
+  plot_scorer<__lcmplx_t>("../plot_data/scorer_long_double.txt");
 
-  plot_fgh<__fcmplx_t>("plot_data/fgh_float.txt");
-  plot_fgh<_Cmplx>("plot_data/fgh_double.txt");
-  plot_fgh<__lcmplx_t>("plot_data/fgh_long_double.txt");
+  plot_fgh<__fcmplx_t>("../plot_data/fgh_float.txt");
+  plot_fgh<_Cmplx>("../plot_data/fgh_double.txt");
+  plot_fgh<__lcmplx_t>("../plot_data/fgh_long_double.txt");
 
   run_scorer_series<double>();
 

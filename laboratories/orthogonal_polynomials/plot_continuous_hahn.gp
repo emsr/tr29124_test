@@ -2,7 +2,7 @@
 
 gnuplot
 
-load 'settings.gp'
+load '../plotting_tools/settings.gp'
 
 set title "Continuous Hahn Polynomial p_n(x; a, b, c, d)"
 set xlabel "x"

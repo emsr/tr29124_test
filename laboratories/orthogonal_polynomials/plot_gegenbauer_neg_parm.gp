@@ -1,7 +1,7 @@
 
 gnuplot
 
-load 'settings.gp'
+load '../plotting_tools/settings.gp'
 
 set title "gegenbauer polynomial P_n^{({/Symbol l})}(x)"
 set xlabel "x"

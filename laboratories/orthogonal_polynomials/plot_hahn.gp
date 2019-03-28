@@ -2,7 +2,7 @@
 
 gnuplot
 
-load 'settings.gp'
+load '../plotting_tools/settings.gp'
 
 set title "Hahn Polynomial Q_n(x; {/Symbol a}, {/Symbol b}, N)"
 set xlabel "x"
