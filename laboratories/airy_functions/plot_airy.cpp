@@ -323,14 +323,14 @@ main()
   using cmplx = std::complex<double>;
   using lcmplx = std::complex<long double>;
 
-  //plot_airy<fcmplx>("plot_data/airy_float_new.txt");
-  //plot_airy<cmplx>("plot_data/airy_double_new.txt");
-  //plot_airy<lcmplx>("plot_data/airy_long_double_new.txt");
+  //plot_airy<fcmplx>("../plot_data/airy_float_new.txt");
+  //plot_airy<cmplx>("../plot_data/airy_double_new.txt");
+  //plot_airy<lcmplx>("../plot_data/airy_long_double_new.txt");
 
-  splot_airy<fcmplx>("plot_data/airy_complex_float_new.txt");
-  splot_airy<cmplx>("plot_data/airy_complex_double_new.txt");
-  splot_airy<lcmplx>("plot_data/airy_complex_long_double_new.txt");
+  splot_airy<fcmplx>("../plot_data/airy_complex_float_new.txt");
+  splot_airy<cmplx>("../plot_data/airy_complex_double_new.txt");
+  splot_airy<lcmplx>("../plot_data/airy_complex_long_double_new.txt");
 
-  //plot_scorer<cmplx>("plot_data/scorer_double_new.txt");
-  //plot_fgh<cmplx>("plot_data/fgh_double_new.txt");
+  //plot_scorer<cmplx>("../plot_data/scorer_double_new.txt");
+  //plot_fgh<cmplx>("../plot_data/fgh_double_new.txt");
 }
