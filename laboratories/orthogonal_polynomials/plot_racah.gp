@@ -2,7 +2,7 @@
 
 gnuplot
 
-load 'settings.gp'
+load '../plotting_tools/settings.gp'
 
 set title "Racah polynomial R_n({/Symbol l}(x); a, b, c, d)"
 set xlabel "x"

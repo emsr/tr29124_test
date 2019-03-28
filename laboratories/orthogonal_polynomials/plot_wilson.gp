@@ -2,7 +2,7 @@
 
 gnuplot
 
-load 'settings.gp'
+load '../plotting_tools/settings.gp'
 
 set title "Wilson polynomial W_n(x^2; a, b, c, d)"
 set xlabel "x"

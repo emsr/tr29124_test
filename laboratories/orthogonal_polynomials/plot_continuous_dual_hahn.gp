@@ -2,7 +2,7 @@
 
 gnuplot
 
-load 'settings.gp'
+load '../plotting_tools/settings.gp'
 
 set title "Continuous Dual Hahn Polynomial S_n(x^2; a, b, c)"
 set xlabel "x"

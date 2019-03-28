@@ -2,7 +2,7 @@
 
 gnuplot
 
-load 'settings.gp'
+load '../plotting_tools/settings.gp'
 
 set title "Meixner-Pollaczek Polynomial P^{({/Symbol l})}_0(x; {/Symbol f})"
 set xlabel "x"

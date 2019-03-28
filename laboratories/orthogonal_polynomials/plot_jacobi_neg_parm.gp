@@ -1,7 +1,7 @@
 
 gnuplot
 
-load 'settings.gp'
+load '../plotting_tools/settings.gp'
 
 set title "Jacobi polynomial P_n^{({/Symbol a},{/Symbol b})}(x)"
 set xlabel "x"
