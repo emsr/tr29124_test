@@ -193,6 +193,7 @@ BINS = \
        $(TEST_BIN_DIR)/test_tr1_cmath \
        $(TEST_BIN_DIR)/test_tricomi_u \
        $(TEST_BIN_DIR)/test_trig \
+       $(TEST_BIN_DIR)/test_ulp \
        $(TEST_BIN_DIR)/test_weierstrass_ellint \
        $(TEST_BIN_DIR)/test_wilson \
        $(TEST_BIN_DIR)/test_wright_omega \
@@ -618,6 +619,7 @@ test: $(TEST_OUT_DIR) \
   run_test_tr1_cmath \
   run_test_tricomi_u \
   run_test_trig \
+  run_test_ulp \
   run_test_weierstrass_ellint \
   run_test_wilson \
   run_test_wright_omega \
@@ -1606,6 +1608,12 @@ $(TEST_BIN_DIR)/test_trig: laboratories/elementary_functions/test_trig.cpp
 
 run_test_trig: $(TEST_BIN_DIR)/test_trig
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_trig > $(TEST_OUT_DIR)/test_trig.txt
+
+$(TEST_BIN_DIR)/test_ulp: cxx_fp_utils/test_ulp.cpp
+	$(CXXMAX) -o $(TEST_BIN_DIR)/test_ulp cxx_fp_utils/test_ulp.cpp
+
+run_test_ulp: $(TEST_BIN_DIR)/test_ulp
+	$(TEST_BIN_DIR)/test_ulp > $(TEST_OUT_DIR)/test_ulp.txt
 
 $(TEST_BIN_DIR)/test_weierstrass_ellint: laboratories/theta_functions/test_weierstrass_ellint.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_weierstrass_ellint laboratories/theta_functions/test_weierstrass_ellint.cpp -lquadmath

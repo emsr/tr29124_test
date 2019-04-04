@@ -21,7 +21,7 @@ main()
   x = 0.00001;
   for (int i = -5; i <= 5; ++i)
     {
-      std::cout << ' ' << i << ' ' << x << ' ' << ulp(x) << '\n';
+      std::cout << ' ' << i << ' ' << x << ' ' << __gnu_cxx::ulp(x) << '\n';
       x *= 10.0;
     }
 }
