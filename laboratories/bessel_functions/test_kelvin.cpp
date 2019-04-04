@@ -207,7 +207,7 @@ namespace __detail
 
       const auto _S_gamma_e = __gnu_cxx::__const_gamma_e(__x);
       const auto _S_pi_4 = __gnu_cxx::__const_pi_quarter(__x);
-      const auto _S_eps = __gnu_cxx::__epsilon(__x) / _Real{100};
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
       constexpr auto _S_maxiter = 1000;
       const auto __xd2 = __x / _Real{2};
       const auto __xxd4 = __xd2 * __xd2;
@@ -237,7 +237,8 @@ namespace __detail
 	  _H_n += _Real{1} / _Real(2 * __k + 1);
 	  __kei += __termi * _H_n();
 
-	  if (std::abs(__termr) < _S_eps * std::abs(__ber()))
+	  if (std::abs(__termr) < _S_eps * std::abs(__ber())
+	   && std::abs(__termi) < _S_eps * std::abs(__bei()))
 	    break;
 	}
       auto __ln = std::log(__x / _Real{2}) + _S_gamma_e;
