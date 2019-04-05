@@ -661,7 +661,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using value_type = _Tp;
 
       constexpr _ExplicitRemainderModel()
-      : _M_n{0}
+      : _M_n{0}, _M_term{{_Tp{}, _Tp{}}}
       { }
 
       void
@@ -780,6 +780,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using value_type = _Tp;
 
       constexpr _TRemainderModel()
+      : _M_term{}
       { }
 
       constexpr void
@@ -829,7 +830,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using value_type = _Tp;
 
       constexpr _DRemainderModel()
-      : _M_n{0}
+      : _M_n{0}, _M_term{{_Tp{}, _Tp{}}}
       { }
 
       void
@@ -887,7 +888,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using value_type = _Tp;
 
       constexpr _VRemainderModel()
-      : _M_n{0}
+      : _M_n{0}, _M_term{{_Tp{}, _Tp{}}}
       { }
 
       void
