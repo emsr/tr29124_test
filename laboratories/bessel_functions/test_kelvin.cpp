@@ -1,9 +1,9 @@
 /*
 $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_kelvin test_kelvin.cpp -lquadmath
-./test_kelvin > test_kelvin.txt
+./test_kelvin ../plot_data > ../output/test_kelvin.txt
 
 $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_kelvin test_kelvin.cpp -lquadmath
-./test_kelvin > test_kelvin.txt
+./test_kelvin ../plot_data > ../output/test_kelvin.txt
 */
 
 #include <limits>
@@ -1430,20 +1430,24 @@ template<typename _Real>
 
 
 int
-main()
+main(int n_app_args, char** arg)
 {
+  std::string plot_data_dir = ".";
+  if (n_app_args > 1)
+    plot_data_dir = arg[1];
+
   run_kelvin4<long double>();
   run_kelvin3<long double>();
   run_kelvin2<long double>();
   run_kelvin1<long double>();
 
-  plot_kelvin<float>("../plot_data/kelvin_float.txt");
-  plot_kelvin<double>("../plot_data/kelvin_double.txt");
-  plot_kelvin<long double>("../plot_data/kelvin_long_double.txt");
+  plot_kelvin<float>(plot_data_dir + '/' + "kelvin_float.txt");
+  plot_kelvin<double>(plot_data_dir + '/' + "kelvin_double.txt");
+  plot_kelvin<long double>(plot_data_dir + '/' + "kelvin_long_double.txt");
 
-  plot_kelvin_order<float>("../plot_data/kelvin_order_float.txt");
-  plot_kelvin_order<double>("../plot_data/kelvin_order_double.txt");
-  plot_kelvin_order<long double>("../plot_data/kelvin_order_long_double.txt");
+  plot_kelvin_order<float>(plot_data_dir + '/' + "kelvin_order_float.txt");
+  plot_kelvin_order<double>(plot_data_dir + '/' + "kelvin_order_double.txt");
+  plot_kelvin_order<long double>(plot_data_dir + '/' + "kelvin_order_long_double.txt");
 
   diff_kelvin2<long double>();
   diff_kelvin3<long double>();

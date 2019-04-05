@@ -1,9 +1,9 @@
 /*
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o plot_bessel plot_bessel.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./plot_bessel
+$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -I../../cxx_summation/include -I../../quadrature/include -o plot_bessel plot_bessel.cpp -lquadmath
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./plot_bessel ../plot_data > ../output/plot_bessel.txt
 
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o plot_bessel plot_bessel.cpp -lquadmath
-./plot_bessel > plot_bessel.txt
+$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -I../../cxx_summation/include -I../../quadrature/include -o plot_bessel plot_bessel.cpp -lquadmath
+./plot_bessel ../plot_data > ../output/plot_bessel.txt
 */
 
 #include <limits>
@@ -24,7 +24,7 @@ template<typename _Tp, typename _Bessel>
 
     data.precision(std::numeric_limits<_Tp>::digits10);
     data << std::showpoint << std::scientific;
-    auto width = 8 + data.precision();
+    auto w = 8 + data.precision();
 
     for (int n = 0; n <= 300; ++n)
       {
@@ -33,9 +33,9 @@ template<typename _Tp, typename _Bessel>
 	  {
 	    auto x = _Tp(0.10L * i);
 	    auto j = __bessel(nu, x);
-	    data << ' ' << std::setw(width) << nu
-		 << ' ' << std::setw(width) << x
-		 << ' ' << std::setw(width) << j << '\n';
+	    data << ' ' << std::setw(w) << nu
+		 << ' ' << std::setw(w) << x
+		 << ' ' << std::setw(w) << j << '\n';
 	  }
 	data << '\n';
       }
@@ -43,11 +43,15 @@ template<typename _Tp, typename _Bessel>
   }
 
 int
-main()
+main(int n_app_args, char** arg)
 {
-  plot_bessel<float>("../plot_data/cyl_bessel_j_float.txt", std::cyl_bessel_jf);
-  plot_bessel<double>("../plot_data/cyl_bessel_j_double.txt", std::cyl_bessel_j<double, double>);
+  std::string plot_data_dir = ".";
+  if (n_app_args > 1)
+    plot_data_dir = arg[1];
 
-  plot_bessel<float>("../plot_data/cyl_neumann_float.txt", std::cyl_neumannf);
-  plot_bessel<double>("../plot_data/cyl_neumann_double.txt", std::cyl_neumann<double, double>);
+  plot_bessel<float>(plot_data_dir + '/' + "cyl_bessel_j_float.txt", std::cyl_bessel_jf);
+  plot_bessel<double>(plot_data_dir + '/' + "cyl_bessel_j_double.txt", std::cyl_bessel_j<double, double>);
+
+  plot_bessel<float>(plot_data_dir + '/' + "cyl_neumann_float.txt", std::cyl_neumannf);
+  plot_bessel<double>(plot_data_dir + '/' + "cyl_neumann_double.txt", std::cyl_neumann<double, double>);
 }

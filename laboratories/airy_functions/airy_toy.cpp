@@ -1,15 +1,9 @@
 /*
 $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o airy_toy airy_toy.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy ../plot_data > ../output/airy_toy.txt
 
 $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -DOLD -o airy_toy_old airy_toy.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy_old > airy_toy.new.old
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -UOLD -o airy_toy_new airy_toy.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy_new > airy_toy.new.new
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o airy_toy airy_toy.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy > airy_toy.new
+LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy_old ../plot_data > ../output/airy_toy_old.txt
 */
 
 
@@ -6184,8 +6178,18 @@ namespace __gnu_cxx
 } // namespace __gnu_cxx
 
 int
-main()
+main(int n_app_args, char** arg)
 {
+  std::string plot_data_dir = ".";
+  if (n_app_args > 1)
+    plot_data_dir = arg[1];
+
+#ifdef OLD
+  std::string ext = "_old";
+#else
+  std::string ext = "";
+#endif
+
   run_toy<float>();
   run_airy_asymp_m<float>();
   run_airy_series<float>();
@@ -6245,23 +6249,23 @@ main()
   std::cout << "\nlong double\n======\n";
   diff_zeta<long double>();
 
-  plot_airy<__fcmplx_t>("../plot_data/airy_float.txt");
-  plot_airy<_Cmplx>("../plot_data/airy_double.txt");
-  plot_airy<__lcmplx_t>("../plot_data/airy_long_double.txt");
+  plot_airy<__fcmplx_t>(plot_data_dir + '/' + "airy_float" + ext + ".txt");
+  plot_airy<_Cmplx>(plot_data_dir + '/' + "airy_double" + ext + ".txt");
+  plot_airy<__lcmplx_t>(plot_data_dir + '/' + "airy_long_double" + ext + ".txt");
 
-  splot_airy<__fcmplx_t>("../plot_data/airy_complex_float.txt");
-  splot_airy<_Cmplx>("../plot_data/airy_complex_double.txt");
-  splot_airy<__lcmplx_t>("../plot_data/airy_complex_long_double.txt");
+  splot_airy<__fcmplx_t>(plot_data_dir + '/' + "airy_complex_float" + ext + ".txt");
+  splot_airy<_Cmplx>(plot_data_dir + '/' + "airy_complex_double" + ext + ".txt");
+  splot_airy<__lcmplx_t>(plot_data_dir + '/' + "airy_complex_long_double" + ext + ".txt");
 
   std::cout << "\ndouble\n======\n";
   run_scorer<_Cmplx>();
-  plot_scorer<__fcmplx_t>("../plot_data/scorer_float.txt");
-  plot_scorer<_Cmplx>("../plot_data/scorer_double.txt");
-  plot_scorer<__lcmplx_t>("../plot_data/scorer_long_double.txt");
+  plot_scorer<__fcmplx_t>(plot_data_dir + '/' + "scorer_float" + ext + ".txt");
+  plot_scorer<_Cmplx>(plot_data_dir + '/' + "scorer_double" + ext + ".txt");
+  plot_scorer<__lcmplx_t>(plot_data_dir + '/' + "scorer_long_double" + ext + ".txt");
 
-  plot_fgh<__fcmplx_t>("../plot_data/fgh_float.txt");
-  plot_fgh<_Cmplx>("../plot_data/fgh_double.txt");
-  plot_fgh<__lcmplx_t>("../plot_data/fgh_long_double.txt");
+  plot_fgh<__fcmplx_t>(plot_data_dir + '/' + "fgh_float" + ext + ".txt");
+  plot_fgh<_Cmplx>(plot_data_dir + '/' + "fgh_double" + ext + ".txt");
+  plot_fgh<__lcmplx_t>(plot_data_dir + '/' + "fgh_long_double" + ext + ".txt");
 
   run_scorer_series<double>();
 

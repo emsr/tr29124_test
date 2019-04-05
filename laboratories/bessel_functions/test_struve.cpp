@@ -1,9 +1,9 @@
 /*
 $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_struve test_struve.cpp -lquadmath -Lwrappers/debug -lwrap_burkhardt
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_struve > test_struve.new
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_struve ../plot_data > ../output/test_struve.new
 
 $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_struve test_struve.cpp -lquadmath
-PATH=wrappers/debug:$PATH ./test_struve > test_struve.txt
+PATH=wrappers/debug:$PATH ./test_struve ../plot_data > ../output/test_struve.txt
 */
 
 #include <cassert>
@@ -155,17 +155,21 @@ test_struve()
 }
 
 int
-main()
+main(int n_app_args, char** arg)
 {
+  std::string plot_data_dir = ".";
+  if (n_app_args > 1)
+    plot_data_dir = arg[1];
+
   test_struve_transition<float>();
   test_struve_transition<double>();
   test_struve_transition<long double>();
   test_struve_transition<__float128>();
 
   //using cmplx = std::complex<double>;
-  plot_struve<float>("../plot_data/struve_float.txt");
-  plot_struve<double>("../plot_data/struve_double.txt");
-  plot_struve<long double>("../plot_data/struve_long_double.txt");
+  plot_struve<float>(plot_data_dir + '/' + "struve_float.txt");
+  plot_struve<double>(plot_data_dir + '/' + "struve_double.txt");
+  plot_struve<long double>(plot_data_dir + '/' + "struve_long_double.txt");
 
   test_struve();
 
