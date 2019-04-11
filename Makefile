@@ -980,8 +980,8 @@ $(TEST_BIN_DIR)/test_const: laboratories/constants/test_const.cpp
 run_test_const: $(TEST_BIN_DIR)/test_const
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_const > $(TEST_OUT_DIR)/test_const.txt
 
-$(TEST_BIN_DIR)/test_continued_fraction: continued_fractions/test_continued_fraction.cpp
-	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_continued_fraction continued_fractions/test_continued_fraction.cpp -lquadmath
+$(TEST_BIN_DIR)/test_continued_fraction: cxx_continued_fractions/test_continued_fraction.cpp
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_continued_fraction cxx_continued_fractions/test_continued_fraction.cpp -lquadmath
 
 run_test_continued_fraction: $(TEST_BIN_DIR)/test_continued_fraction
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_continued_fraction > $(TEST_OUT_DIR)/test_continued_fraction.txt
@@ -1331,8 +1331,8 @@ $(TEST_BIN_DIR)/test_legendre_ellint: laboratories/elliptic_integrals/test_legen
 run_test_legendre_ellint: $(TEST_BIN_DIR)/test_legendre_ellint
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_legendre_ellint > $(TEST_OUT_DIR)/test_legendre_ellint.txt
 
-$(TEST_BIN_DIR)/test_lentz_continued_fraction: continued_fractions/test_lentz_continued_fraction.cpp
-	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_lentz_continued_fraction continued_fractions/test_lentz_continued_fraction.cpp -lquadmath
+$(TEST_BIN_DIR)/test_lentz_continued_fraction: cxx_continued_fractions/test_lentz_continued_fraction.cpp
+	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_lentz_continued_fraction cxx_continued_fractions/test_lentz_continued_fraction.cpp -lquadmath
 
 run_test_lentz_continued_fraction: $(TEST_BIN_DIR)/test_lentz_continued_fraction
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lentz_continued_fraction > $(TEST_OUT_DIR)/test_lentz_continued_fraction.txt
@@ -1559,8 +1559,8 @@ $(TEST_BIN_DIR)/test_sph_hankel: wrappers_debug laboratories/bessel_functions/te
 run_test_sph_hankel: $(TEST_BIN_DIR)/test_sph_hankel
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_sph_hankel > $(TEST_OUT_DIR)/test_sph_hankel.txt
 
-$(TEST_BIN_DIR)/test_steed_continued_fraction: continued_fractions/test_steed_continued_fraction.cpp
-	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_steed_continued_fraction continued_fractions/test_steed_continued_fraction.cpp -lquadmath
+$(TEST_BIN_DIR)/test_steed_continued_fraction: cxx_continued_fractions/test_steed_continued_fraction.cpp
+	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_steed_continued_fraction cxx_continued_fractions/test_steed_continued_fraction.cpp -lquadmath
 
 run_test_steed_continued_fraction: $(TEST_BIN_DIR)/test_steed_continued_fraction
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_steed_continued_fraction > $(TEST_OUT_DIR)/test_steed_continued_fraction.txt
