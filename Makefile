@@ -61,6 +61,9 @@ BINS = \
        $(TEST_BIN_DIR)/hankel_toy \
        $(TEST_BIN_DIR)/hankel_toy128 \
        $(TEST_BIN_DIR)/hankel_toy_new \
+       $(TEST_BIN_DIR)/plot_airy \
+       $(TEST_BIN_DIR)/plot_bessel \
+       $(TEST_BIN_DIR)/plot_gamma \
        $(TEST_BIN_DIR)/test_airy_roots \
        $(TEST_BIN_DIR)/test_anger_weber \
        $(TEST_BIN_DIR)/test_appell_f1 \
@@ -193,6 +196,7 @@ BINS = \
        $(TEST_BIN_DIR)/test_tr1_cmath \
        $(TEST_BIN_DIR)/test_tricomi_u \
        $(TEST_BIN_DIR)/test_trig \
+       $(TEST_BIN_DIR)/test_ulp \
        $(TEST_BIN_DIR)/test_weierstrass_ellint \
        $(TEST_BIN_DIR)/test_wilson \
        $(TEST_BIN_DIR)/test_wright_omega \
@@ -618,12 +622,24 @@ test: $(TEST_OUT_DIR) \
   run_test_tr1_cmath \
   run_test_tricomi_u \
   run_test_trig \
+  run_test_ulp \
   run_test_weierstrass_ellint \
   run_test_wilson \
   run_test_wright_omega \
   run_test_zeta_trig \
   run_run_coulfg \
   run_RUN_COULFG
+
+plot: \
+  run_airy_toy \
+  run_airy_toy_old \
+  run_plot_airy \
+  run_plot_bessel \
+  run_test_kelvin \
+  run_test_struve \
+  run_plot_gamma \
+  run_test_beta \
+  run_test_riemann_zeta
 
 check: $(CHECK_DIR) $(CHECKS)
 	echo "Beginning executions of checks..." > $(CHECK_DIR)/check_out.txt 2> $(CHECK_DIR)/check_err.txt
@@ -802,6 +818,23 @@ libstdc++_support/testcase: wrappers_debug libstdc++_support/testcase.cpp libstd
 libstdc++_support/testcase_tr1: wrappers_debug libstdc++_support/testcase.cpp libstdc++_support/testcase.tcc $(INC_DIR)/*.h $(INC_DIR)/sf_*.tcc
 	$(CXXMAX) -DTR1 $(INCLUDES) -o libstdc++_support/testcase_tr1 libstdc++_support/testcase.cpp -Wl,-rpath,$(CXX_LIB_DIR) -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl -lwrap_boost -lwrap_burkhardt -lgfortran -lwrap_cephes -lwrap_lerchphi -lwrap_faddeeva
 
+$(TEST_BIN_DIR)/plot_airy: laboratories/airy_functions/plot_airy.cpp
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/plot_airy laboratories/airy_functions/plot_airy.cpp -lquadmath
+
+run_plot_airy: $(TEST_BIN_DIR)/plot_airy
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/plot_airy laboratories/plot_data > $(TEST_OUT_DIR)/plot_airy.txt
+
+$(TEST_BIN_DIR)/plot_bessel: laboratories/bessel_functions/plot_bessel.cpp
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/plot_bessel laboratories/bessel_functions/plot_bessel.cpp -lquadmath
+
+run_plot_bessel: $(TEST_BIN_DIR)/plot_bessel
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/plot_bessel laboratories/plot_data > $(TEST_OUT_DIR)/plot_data.txt
+
+$(TEST_BIN_DIR)/plot_gamma: laboratories/gamma_functions/plot_gamma.cpp
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/plot_gamma laboratories/gamma_functions/plot_gamma.cpp -lquadmath
+
+run_plot_gamma: $(TEST_BIN_DIR)/plot_gamma
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/plot_gamma laboratories/plot_data > $(TEST_OUT_DIR)/plot_data.txt
 
 $(TEST_BIN_DIR)/mpfrcalc: multiprecision/mpfr_gexpr.c
 	$(GCC) -Iinclude -o $(TEST_BIN_DIR)/mpfrcalc multiprecision/mpfr_gexpr.c -lmpfr -lgmp -lm
@@ -882,7 +915,7 @@ $(TEST_BIN_DIR)/test_beta: wrappers_debug laboratories/beta_functions/test_beta.
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_beta laboratories/beta_functions/test_beta.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 run_test_beta: $(TEST_BIN_DIR)/test_beta
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_beta > $(TEST_OUT_DIR)/test_beta.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_beta laboratories/plot_data > $(TEST_OUT_DIR)/test_beta.txt
 
 $(TEST_BIN_DIR)/test_beta_inc: laboratories/beta_functions/test_beta_inc.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_beta_inc laboratories/beta_functions/test_beta_inc.cpp -lquadmath
@@ -1290,7 +1323,7 @@ $(TEST_BIN_DIR)/test_kelvin: laboratories/bessel_functions/test_kelvin.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_kelvin laboratories/bessel_functions/test_kelvin.cpp -lquadmath
 
 run_test_kelvin: $(TEST_BIN_DIR)/test_kelvin
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_kelvin > $(TEST_OUT_DIR)/test_kelvin.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_kelvin laboratories/plot_data > $(TEST_OUT_DIR)/test_kelvin.txt
 
 $(TEST_BIN_DIR)/test_krawtchouk: laboratories/orthogonal_polynomials/test_krawtchouk.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_krawtchouk laboratories/orthogonal_polynomials/test_krawtchouk.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
@@ -1521,7 +1554,7 @@ $(TEST_BIN_DIR)/test_riemann_zeta: laboratories/zeta_functions/test_riemann_zeta
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_riemann_zeta laboratories/zeta_functions/test_riemann_zeta.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
 run_test_riemann_zeta: $(TEST_BIN_DIR)/test_riemann_zeta
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_riemann_zeta > $(TEST_OUT_DIR)/test_riemann_zeta.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_riemann_zeta laboratories/plot_data > $(TEST_OUT_DIR)/test_riemann_zeta.txt
 
 $(TEST_BIN_DIR)/test_rising_factorial: wrappers_debug laboratories/gamma_functions/test_rising_factorial.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_rising_factorial laboratories/gamma_functions/test_rising_factorial.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
@@ -1569,7 +1602,7 @@ $(TEST_BIN_DIR)/test_struve: laboratories/bessel_functions/test_struve.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_struve laboratories/bessel_functions/test_struve.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_burkhardt -lgfortran
 
 run_test_struve: $(TEST_BIN_DIR)/test_struve
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_struve > $(TEST_OUT_DIR)/test_struve.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_struve laboratories/plot_data > $(TEST_OUT_DIR)/test_struve.txt
 
 $(TEST_BIN_DIR)/test_struve_old: laboratories/bessel_functions/test_struve_old.cpp
 	$(CXXMAX) $(INCLUDES) -Ilaboratories/hypergeometric_functions -o $(TEST_BIN_DIR)/test_struve_old laboratories/bessel_functions/test_struve_old.cpp -lquadmath
@@ -1606,6 +1639,12 @@ $(TEST_BIN_DIR)/test_trig: laboratories/elementary_functions/test_trig.cpp
 
 run_test_trig: $(TEST_BIN_DIR)/test_trig
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_trig > $(TEST_OUT_DIR)/test_trig.txt
+
+$(TEST_BIN_DIR)/test_ulp: cxx_fp_utils/test_ulp.cpp
+	$(CXXMAX) -o $(TEST_BIN_DIR)/test_ulp cxx_fp_utils/test_ulp.cpp
+
+run_test_ulp: $(TEST_BIN_DIR)/test_ulp
+	$(TEST_BIN_DIR)/test_ulp > $(TEST_OUT_DIR)/test_ulp.txt
 
 $(TEST_BIN_DIR)/test_weierstrass_ellint: laboratories/theta_functions/test_weierstrass_ellint.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_weierstrass_ellint laboratories/theta_functions/test_weierstrass_ellint.cpp -lquadmath
@@ -1649,7 +1688,13 @@ $(TEST_BIN_DIR)/airy_toy: laboratories/airy_functions/airy_toy.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/airy_toy laboratories/airy_functions/airy_toy.cpp -lquadmath
 
 run_airy_toy: $(TEST_BIN_DIR)/airy_toy
-	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/airy_toy > $(TEST_OUT_DIR)/airy_toy.txt
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/airy_toy laboratories/plot_data > $(TEST_OUT_DIR)/airy_toy.txt
+
+$(TEST_BIN_DIR)/airy_toy_old: laboratories/airy_functions/airy_toy.cpp
+	$(CXXMAX) $(INCLUDES) -DOLD -o $(TEST_BIN_DIR)/airy_toy_old laboratories/airy_functions/airy_toy.cpp -lquadmath
+
+run_airy_toy_old: $(TEST_BIN_DIR)/airy_toy_old
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/airy_toy_old laboratories/plot_data > $(TEST_OUT_DIR)/airy_toy_old.txt
 
 $(TEST_BIN_DIR)/hankel_toy: laboratories/bessel_functions/hankel_toy.cpp
 	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/hankel_toy laboratories/bessel_functions/hankel_toy.cpp -lquadmath

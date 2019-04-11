@@ -1,9 +1,9 @@
 /*
 $HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_riemann_zeta > test_riemann_zeta.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_riemann_zeta ../plot_data > ../output/test_riemann_zeta.txt
 
 $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_riemann_zeta test_riemann_zeta.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_riemann_zeta > test_riemann_zeta.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_riemann_zeta ../plot_data > ../output/test_riemann_zeta.txt
 */
 
 #include <ext/cmath>
@@ -376,7 +376,7 @@ template<typename _Tp>
   }
 
 int
-main()
+main(int n_app_args, char** arg)
 {
   using namespace std::literals::complex_literals;
 
@@ -394,17 +394,21 @@ main()
 
   std::cout << "\n\nRiemann zeta\n\n" << std::flush;
 
+  std::string plot_data_dir = ".";
+  if (n_app_args > 1)
+    plot_data_dir = arg[1];
+
   std::cout << "\nriemann_zeta<float>\n";
-  plot_riemann_zeta<float>("../plot_data/riemann_zeta_float.txt");
+  plot_riemann_zeta<float>(plot_data_dir + '/' + "riemann_zeta_float.txt");
 
   std::cout << "\nriemann_zeta<double>\n";
-  plot_riemann_zeta<double>("../plot_data/riemann_zeta_double.txt");
+  plot_riemann_zeta<double>(plot_data_dir + '/' + "riemann_zeta_double.txt");
 
   std::cout << "\nriemann_zeta<long double>\n";
-  plot_riemann_zeta<long double>("../plot_data/riemann_zeta_long_double.txt");
+  plot_riemann_zeta<long double>(plot_data_dir + '/' + "riemann_zeta_long_double.txt");
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   std::cout << "\nriemann_zeta<__float128>\n";
-  plot_riemann_zeta<__float128>("../plot_data/riemann_zeta__float128.txt");
+  plot_riemann_zeta<__float128>(plot_data_dir + '/' + "riemann_zeta__float128.txt");
 #endif
 }

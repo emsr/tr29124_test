@@ -44,7 +44,7 @@ template<typename Tp>
     __gnu_cxx::_WenigerTauSum<__gnu_cxx::_BasicSum<Tp>> WTS;
     __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<Tp>> WDS;
     __gnu_cxx::_WenigerPhiSum<__gnu_cxx::_BasicSum<Tp>> WPS;
-    __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<Tp>> WDvW; // Start terma: (8)
+    __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<Tp>> WDvW; // Start term: (8)
 
     auto s = Tp{1.2};
     auto zetaterm = [s, _S_max_log](std::size_t k)
@@ -122,7 +122,7 @@ template<typename Tp>
 		  << '\n';
       }
 
-    // 2F0(1,1;;-1/z) = z e^zE_1(z)
+    // 2F0(1,1;;-1/z) = z e^z E_1(z)
     const auto expint_scaled
       = [](Tp z)->Tp
         { return z * std::exp(z)*__gnu_cxx::expint(1,z); };
@@ -130,10 +130,11 @@ template<typename Tp>
     // 2F0(1,1;;-1/z) = z e^zE_1(z)
     for (auto z : {Tp{3}, Tp{0.5L}})
       {
-	std::cout << "\n\n 2F0(1,1;;" << -1/z << ") = 0.78625122076596\n";
-	std::cout << "\n\n expint_scaled = " << expint_scaled(z) << '\n';
+	std::cout << "\n\n";
 	auto a = Tp{1};
 	auto b = Tp{1};
+	std::cout << "  2F0(1,1;;" << -1/z << ") = 0.78625122076596\n";
+	std::cout << "  expint_scaled = " << expint_scaled(z) << '\n';
 	auto term = Tp{1};
 	BS.reset(term);
 	ABS.reset(term);
@@ -195,7 +196,7 @@ template<typename Tp>
 		      << std::setw(w) << WPS()
 		      << std::setw(w) << ShankS()
 		      << '\n';
-	    term *= (a + k - 1) * (b + k - 1) * z / k;
+	    term *= -(a + k - 1) * (b + k - 1) / z / k; // 2F0(1,1;;-1/z)
 	    BS += term;
 	    ABS += term;
 	    AKS += term;
@@ -215,11 +216,12 @@ template<typename Tp>
     // 2F1(1,1;2;-z) = log(1+z)
     for (auto z : {Tp{5}, Tp{1}, Tp{-0.9L}})
       {
-	std::cout << "\n\n 2F0(1,1;2;" << -z << ") = 0.46145531624187\n";
-	std::cout << "\n\n log(1+" << z << ") = " << std::log1p(z) << '\n';
 	auto a = Tp{1};
 	auto b = Tp{1};
-	auto c = Tp{1};
+	auto c = Tp{2};
+	std::cout << "\n\n";
+	//std::cout << "  2F1(1,1;2;" << -z << ") = " << std::setw(w) << __gnu_cxx::hyperg(a, b, c, z) << "\n";
+	std::cout << "  log(1 + " << z << ") / (" << z << ") = " << std::log1p(z) / z << '\n';
 	auto term = Tp{1};
 	BS.reset(term);
 	ABS.reset(term);
@@ -281,7 +283,7 @@ template<typename Tp>
 		      << std::setw(w) << WPS()
 		      << std::setw(w) << ShankS()
 		      << '\n';
-	    term *= ((a + k - 1) / (c + k - 1)) * ((b + k - 1) / k) * z;
+	    term *= -((a + k - 1) / (c + k - 1)) * ((b + k - 1) / k) * z; // 2F1(1,1;2;-z)
 	    BS += term;
 	    ABS += term;
 	    AKS += term;

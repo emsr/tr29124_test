@@ -1,4 +1,6 @@
 
+# Output from airy_toy -UOLD.
+
 gnuplot --persist -e \
     "plot [-20.0:5.0][-1.5:+1.5] \
  'plot_data/airy_float.txt' using 1:2 with lines title 'Ai', \

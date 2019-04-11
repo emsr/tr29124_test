@@ -1,9 +1,9 @@
 /*
 $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_beta test_beta.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_beta > test_beta.txt
+LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_beta ../plot_data > ../output/test_beta.txt
 
 $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o test_beta test_beta.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-./test_beta > test_beta.txt
+./test_beta ../plot_data > ../output/test_beta.txt
 */
 
 #include <cmath>
@@ -88,8 +88,12 @@ template<typename _Tp>
   }
 
 int
-main()
+main(int n_app_args, char** arg)
 {
+  std::string plot_data_dir = ".";
+  if (n_app_args > 1)
+    plot_data_dir = arg[1];
+
   std::__detail::__beta(0.1F, 1.9F);
   std::__detail::__beta(0.1F, 35.1F);
 
@@ -103,5 +107,5 @@ main()
 
   // Beta seems to be either really tiny or really huge.
   // Maybe graph log_beta.
-  plot_beta<double>("../plot_data/beta_double.txt");
+  plot_beta<double>(plot_data_dir + '/' + "beta_double.txt");
 }

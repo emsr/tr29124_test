@@ -1,9 +1,9 @@
 /*
 $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_kelvin test_kelvin.cpp -lquadmath
-./test_kelvin > test_kelvin.txt
+./test_kelvin ../plot_data > ../output/test_kelvin.txt
 
 $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_kelvin test_kelvin.cpp -lquadmath
-./test_kelvin > test_kelvin.txt
+./test_kelvin ../plot_data > ../output/test_kelvin.txt
 */
 
 #include <limits>
@@ -207,7 +207,7 @@ namespace __detail
 
       const auto _S_gamma_e = __gnu_cxx::__const_gamma_e(__x);
       const auto _S_pi_4 = __gnu_cxx::__const_pi_quarter(__x);
-      const auto _S_eps = __gnu_cxx::__epsilon(__x) / _Real{100};
+      const auto _S_eps = __gnu_cxx::__epsilon(__x);
       constexpr auto _S_maxiter = 1000;
       const auto __xd2 = __x / _Real{2};
       const auto __xxd4 = __xd2 * __xd2;
@@ -237,7 +237,8 @@ namespace __detail
 	  _H_n += _Real{1} / _Real(2 * __k + 1);
 	  __kei += __termi * _H_n();
 
-	  if (std::abs(__termr) < _S_eps * std::abs(__ber()))
+	  if (std::abs(__termr) < _S_eps * std::abs(__ber())
+	   && std::abs(__termi) < _S_eps * std::abs(__bei()))
 	    break;
 	}
       auto __ln = std::log(__x / _Real{2}) + _S_gamma_e;
@@ -1429,20 +1430,24 @@ template<typename _Real>
 
 
 int
-main()
+main(int n_app_args, char** arg)
 {
+  std::string plot_data_dir = ".";
+  if (n_app_args > 1)
+    plot_data_dir = arg[1];
+
   run_kelvin4<long double>();
   run_kelvin3<long double>();
   run_kelvin2<long double>();
   run_kelvin1<long double>();
 
-  plot_kelvin<float>("../plot_data/kelvin_float.txt");
-  plot_kelvin<double>("../plot_data/kelvin_double.txt");
-  plot_kelvin<long double>("../plot_data/kelvin_long_double.txt");
+  plot_kelvin<float>(plot_data_dir + '/' + "kelvin_float.txt");
+  plot_kelvin<double>(plot_data_dir + '/' + "kelvin_double.txt");
+  plot_kelvin<long double>(plot_data_dir + '/' + "kelvin_long_double.txt");
 
-  plot_kelvin_order<float>("../plot_data/kelvin_order_float.txt");
-  plot_kelvin_order<double>("../plot_data/kelvin_order_double.txt");
-  plot_kelvin_order<long double>("../plot_data/kelvin_order_long_double.txt");
+  plot_kelvin_order<float>(plot_data_dir + '/' + "kelvin_order_float.txt");
+  plot_kelvin_order<double>(plot_data_dir + '/' + "kelvin_order_double.txt");
+  plot_kelvin_order<long double>(plot_data_dir + '/' + "kelvin_order_long_double.txt");
 
   diff_kelvin2<long double>();
   diff_kelvin3<long double>();
