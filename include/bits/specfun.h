@@ -1294,7 +1294,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    *
    * @tparam _Tp The floating-point type of the argument @c __s.
-   * @param __s The argument <tt> s != 1 </tt>
+   * @param __s The order <tt> s != 1 </tt>
    */
   template<typename _Tp>
     inline __gnu_cxx::fp_promote_t<_Tp>
@@ -3578,8 +3578,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    \zeta(s, a) = \sum_{n=0}^{\infty}\frac{1}{(a + n)^s}
    * @f]
    *
-   * @param __s The argument
-   * @param __a The parameter
+   * @param __s The order.
+   * @param __a The parameter.
    */
   template<typename _Tp, typename _Up>
     inline __gnu_cxx::fp_promote_t<_Tp, _Up>
@@ -3590,7 +3590,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the Hurwitz zeta function of real argument @f$ s @f$,
+   * Return the Hurwitz zeta function of real order @f$ s @f$,
    * and complex parameter @f$ a @f$.
    *
    * @see hurwitz_zeta for details.
@@ -3634,8 +3634,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    F(x, s) = \sum_{n=1}^{\infty}\frac{e^{i2\pi nx}}{n^s}
    * @f]
    *
-   * @param __x The argument
-   * @param __s The parameter
+   * @param __x The argument.
+   * @param __s The order.
    */
   template<typename _Tp, typename _Up>
     inline __gnu_cxx::fp_promote_t<std::complex<_Tp>, _Up>
@@ -7253,6 +7253,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[   *
    *   \Phi(z,s,a) = \sum_{k=0}^{\infty}\frac{z^k}{(a+k^s}
    * @f]
+   *
+   * @param __z The argument.
+   * @param __s The order @f$ s != 1 @f$.
+   * @param __a The scale parameter @f$ a > -1 @f$.
    */
   template<typename _Tp, typename _Ts, typename _Ta>
     inline __gnu_cxx::fp_promote_t<_Tp, _Ts, _Ta>

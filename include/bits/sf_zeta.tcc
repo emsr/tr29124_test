@@ -546,7 +546,7 @@ namespace __detail
    * 	\zeta(s) = (2\pi)^s \Gamma(1-s) \zeta(1-s) / \pi
    * @f]
    *
-   * @param __s The argument
+   * @param __s The order.
    */
   template<typename _Tp>
     _Tp
@@ -712,7 +712,7 @@ namespace __detail
    * @brief  Return the Riemann zeta function @f$ \zeta(s) - 1 @f$
    *
    *
-   * @param __s The argument @f$ s != 1 @f$
+   * @param __s The order @f$ s != 1 @f$
    */
   template<typename _Tp>
     _Tp
@@ -756,7 +756,7 @@ namespace __detail
    * 		   \Gamma(1 - s) \zeta(1 - s) \mbox{ for } \Re(s) < 1
    * @f]
    *
-   * @param __s The argument
+   * @param __s The order
    */
   template<typename _Tp>
     _Tp
@@ -817,7 +817,7 @@ namespace __detail
    * 	  of oscillatory series, useful for computing the
    * 	  polylogarithm and Hurwitz zeta functions, Linas Vep"0160tas
    *
-   * @param __s The argument @f$ s != 1 @f$
+   * @param __s The order @f$ s != 1 @f$
    * @param __a The scale parameter @f$ a > -1 @f$
    */
   template<typename _Tp>
@@ -865,7 +865,7 @@ namespace __detail
    *   \zeta(s) = \zeta(s,1)
    * @f]
    *
-   * @param __s The argument @f$ s != 1 @f$
+   * @param __s The order @f$ s != 1 @f$
    * @param __a The scale parameter @f$ a > -1 @f$
    */
   template<typename _Tp>
