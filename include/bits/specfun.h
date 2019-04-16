@@ -2384,7 +2384,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Zernike polynomials
 
   /**
-   * Return the Zernicke polynomial @f$ Z_n^m(\rho,\phi) @f$
+   * Return the Zernike polynomial @f$ Z_n^m(\rho,\phi) @f$
    * for non-negative degree @f$ n @f$, signed order @f$ m @f$,
    * and real radial argument @f$ \rho @f$ and azimuthal angle @f$ \phi @f$.
    *
@@ -2395,7 +2395,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__zernike<float>(__n, __m, __rho, __phi); }
 
   /**
-   * Return the Zernicke polynomial @f$ Z_n^m(\rho,\phi) @f$
+   * Return the Zernike polynomial @f$ Z_n^m(\rho,\phi) @f$
    * for non-negative degree @f$ n @f$, signed order @f$ m @f$,
    * and real radial argument @f$ \rho @f$ and azimuthal angle @f$ \phi @f$.
    *
@@ -2406,15 +2406,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__zernike<long double>(__n, __m, __rho, __phi); }
 
   /**
-   * Return the Zernicke polynomial @f$ Z_n^m(\rho,\phi) @f$
+   * Return the Zernike polynomial @f$ Z_n^m(\rho,\phi) @f$
    * for non-negative degree @f$ n @f$, signed order @f$ m @f$,
    * and real radial argument @f$ \rho @f$ and azimuthal angle @f$ \phi @f$.
    *
-   * The even Zernicke polynomials are defined by:
+   * The even Zernike polynomials are defined by:
    * @f[
    *    Z_n^m(\rho,\phi) = R_n^m(\rho)\cos(m\phi)
    * @f]
-   * and the odd Zernicke polynomials are defined by:
+   * and the odd Zernike polynomials are defined by:
    * @f[
    *    Z_n^{-m}(\rho,\phi) = R_n^m(\rho)\sin(m\phi)
    * @f]

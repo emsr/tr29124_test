@@ -345,16 +345,16 @@ break;
     }
 
   /**
-   * Return the Zernicke polynomial @f$ Z_n^m(\rho,\phi) @f$
+   * Return the Zernike polynomial @f$ Z_n^m(\rho,\phi) @f$
    * for non-negative integral degree @f$ n @f$, signed integral order
    * @f$ m @f$, and real radial argument @f$ \rho @f$ and azimuthal angle
    * @f$ \phi @f$.
    *
-   * The even Zernicke polynomials are defined by:
+   * The even Zernike polynomials are defined by:
    * @f[
    *    Z_n^m(\rho,\phi) = R_n^m(\rho)\cos(m\phi)
    * @f]
-   * and the odd Zernicke polynomials are defined by:
+   * and the odd Zernike polynomials are defined by:
    * @f[
    *    Z_n^{-m}(\rho,\phi) = R_n^m(\rho)\sin(m\phi)
    * @f]
