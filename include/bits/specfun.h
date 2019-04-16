@@ -1294,7 +1294,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    *
    * @tparam _Tp The floating-point type of the argument @c __s.
-   * @param __s The argument <tt> s != 1 </tt>
+   * @param __s The order <tt> s != 1 </tt>
    */
   template<typename _Tp>
     inline __gnu_cxx::fp_promote_t<_Tp>
@@ -3578,8 +3578,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    \zeta(s, a) = \sum_{n=0}^{\infty}\frac{1}{(a + n)^s}
    * @f]
    *
-   * @param __s The argument
-   * @param __a The parameter
+   * @param __s The order.
+   * @param __a The parameter.
    */
   template<typename _Tp, typename _Up>
     inline __gnu_cxx::fp_promote_t<_Tp, _Up>
@@ -3635,7 +3635,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    *
    * @param __x The argument
-   * @param __s The parameter
+   * @param __s The order.
    */
   template<typename _Tp, typename _Up>
     inline __gnu_cxx::fp_promote_t<std::complex<_Tp>, _Up>
@@ -5218,7 +5218,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    Li_s(w) = \sum_{k=1}^{\infty} \frac{w^k}{k^s}
    * @f]
    *
-   * @param __s Order.
+   * @param __s The order.
    * @param __w Argument.
    */
   template<typename _Tp, typename _Wp>
@@ -5258,7 +5258,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    Li_s(x) = \sum_{k=1}^{\infty} \frac{w^k}{k^s}
    * @f]
    *
-   * @param __s Order.
+   * @param __s The order.
    * @param __w Argument.
    */
   template<typename _Tp, typename _Wp>
@@ -5309,7 +5309,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   \eta(s) = -\Re{Li_s(-1)}
    * @f]
    *
-   * @param __s 
+   * @param __s The order.
    */
   template<typename _Tp>
     inline _Tp
@@ -5358,7 +5358,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   \beta(s) = \Im{Li_s(i)}
    * @f]
    *
-   * @param __s 
+   * @param __s The order.
    */
   template<typename _Tp>
     inline _Tp
@@ -5401,7 +5401,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   \lambda(s) = \frac{1}{2}(\zeta(s) + \eta(s))
    * @f]
    *
-   * @param __s 
+   * @param __s The order.
    */
   template<typename _Tp>
     inline _Tp
