@@ -96,8 +96,8 @@ namespace __detail
    * This works for @f$ \lambda > -1/2 @f$
    *
    * @tparam  _Tp  The real type of the order
-   * @param[in]  n  The degree of the Gegenbauer polynomial
-   * @param[in]  lambda  The order of the Gegenbauer polynomial
+   * @param[in]  __n  The degree of the Gegenbauer polynomial
+   * @param[in]  __lambda  The order of the Gegenbauer polynomial
    */
   template<typename _Tp>
     std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>

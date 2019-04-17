@@ -774,7 +774,7 @@ namespace __detail
   /**
    * Constructor for the Weierstrass roots.
    *
-   * @param __lattice The Jacobi latticce.
+   * @param __lattice The Jacobi lattice.
    */
   template<typename _Tp1, typename _Tp3>
     __weierstrass_roots_t<_Tp1, _Tp3>::
@@ -792,7 +792,8 @@ namespace __detail
   /**
    * Constructor for the Weierstrass roots.
    *
-   * @param __lattice The Jacobi latticce.
+   * @param __theta0 Exponential theta functions of argument 0.
+   * @param __omega_1 The first lattice parameter.
    */
   template<typename _Tp1, typename _Tp3>
     __weierstrass_roots_t<_Tp1, _Tp3>::

@@ -612,7 +612,7 @@ namespace __detail
    * 				     {\sqrt{1 - k^2 sin^2\theta}}
    * @f]
    *
-   * @param  __k  The argument of the elliptic function.
+   * @param  __k  The elliptic modulus.
    * @param  __phi  The integral limit argument of the elliptic function.
    * @return  The elliptic function of the first kind.
    */
@@ -693,7 +693,7 @@ namespace __detail
    *   E(k,\phi) = \int_0^{\phi} \sqrt{1 - k^2 sin^2\theta}
    * @f]
    *
-   * @param  __k  The argument of the elliptic function.
+   * @param  __k  The elliptic modulus.
    * @param  __phi  The integral limit argument of the elliptic function.
    * @return  The elliptic function of the second kind.
    */
@@ -747,8 +747,8 @@ namespace __detail
    * 		   {(1 - \nu \sin^2\theta)\sqrt{1 - k^2 \sin^2\theta}}
    * @f]
    *
-   * @param  __k  The argument of the elliptic function.
-   * @param  __nu  The second argument of the elliptic function.
+   * @param  __k  The elliptic modulus.
+   * @param  __nu  The characteristic.
    * @return  The complete elliptic function of the third kind.
    */
   template<typename _Tp>
@@ -785,8 +785,8 @@ namespace __detail
    * 			       \sqrt{1 - k^2 \sin^2\theta}}
    * @f]
    *
-   * @param  __k  The argument of the elliptic function.
-   * @param  __nu  The second argument of the elliptic function.
+   * @param  __k  The elliptic modulus.
+   * @param  __nu  The characteristic.
    * @param  __phi  The integral limit argument of the elliptic function.
    * @return  The elliptic function of the third kind.
    */

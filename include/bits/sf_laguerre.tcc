@@ -357,7 +357,7 @@ namespace __detail
    * @tparam _Tpa The type of the order.
    * @tparam _Tp The type of the parameter
    * @param __n The degree
-   * @param __m The order
+   * @param __alpha The order
    * @param __x The argument
    * @return The value of the associated Laguerre polynomial of order n,
    *         degree m, and argument x.

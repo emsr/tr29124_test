@@ -465,7 +465,7 @@ mpreal:
 	cd $(HOME) && hg clone https://bitbucket.org/advanpix/mpreal
 
 
-docs: include/bits/*
+docs: Doxyfile include/bits/*
 	rm -rf docs/html/*
 	rm -rf docs/latex/*
 	doxygen
@@ -1013,8 +1013,8 @@ $(TEST_BIN_DIR)/test_const: laboratories/constants/test_const.cpp
 run_test_const: $(TEST_BIN_DIR)/test_const
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_const > $(TEST_OUT_DIR)/test_const.txt
 
-$(TEST_BIN_DIR)/test_continued_fraction: continued_fractions/test_continued_fraction.cpp
-	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_continued_fraction continued_fractions/test_continued_fraction.cpp -lquadmath
+$(TEST_BIN_DIR)/test_continued_fraction: cxx_continued_fractions/test_continued_fraction.cpp
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_continued_fraction cxx_continued_fractions/test_continued_fraction.cpp -lquadmath
 
 run_test_continued_fraction: $(TEST_BIN_DIR)/test_continued_fraction
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_continued_fraction > $(TEST_OUT_DIR)/test_continued_fraction.txt
@@ -1092,7 +1092,7 @@ run_test_dual_hahn: $(TEST_BIN_DIR)/test_dual_hahn
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_dual_hahn > $(TEST_OUT_DIR)/test_dual_hahn.txt
 
 $(TEST_BIN_DIR)/test_erfc: wrappers_debug laboratories/error_functions/test_erfc.cpp
-	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -Iwrappers -o $(TEST_BIN_DIR)/test_erfc laboratories/error_functions/test_erfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+	$(CXXMAX) $(INCLUDES) -Icxx_continued_fractions/include -Iwrappers -o $(TEST_BIN_DIR)/test_erfc laboratories/error_functions/test_erfc.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 run_test_erfc: $(TEST_BIN_DIR)/test_erfc
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_erfc > $(TEST_OUT_DIR)/test_erfc.txt
@@ -1212,7 +1212,7 @@ run_test_hankel_real_arg: $(TEST_BIN_DIR)/test_hankel_real_arg
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hankel_real_arg > $(TEST_OUT_DIR)/test_hankel_real_arg.txt
 
 $(TEST_BIN_DIR)/test_hermite: laboratories/orthogonal_polynomials/test_hermite.cpp laboratories/orthogonal_polynomials/new_hermite.tcc
-	$(CXXMAX) $(INCLUDES) -Iquadrature/include -Icontinued_fractions/include -Ilaboratories/orthogonal_polynomials -o $(TEST_BIN_DIR)/test_hermite laboratories/orthogonal_polynomials/test_hermite.cpp -lquadmath
+	$(CXXMAX) $(INCLUDES) -Iquadrature/include -Icxx_continued_fractions/include -Ilaboratories/orthogonal_polynomials -o $(TEST_BIN_DIR)/test_hermite laboratories/orthogonal_polynomials/test_hermite.cpp -lquadmath
 
 run_test_hermite: $(TEST_BIN_DIR)/test_hermite
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_hermite > $(TEST_OUT_DIR)/test_hermite.txt
@@ -1364,8 +1364,8 @@ $(TEST_BIN_DIR)/test_legendre_ellint: laboratories/elliptic_integrals/test_legen
 run_test_legendre_ellint: $(TEST_BIN_DIR)/test_legendre_ellint
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_legendre_ellint > $(TEST_OUT_DIR)/test_legendre_ellint.txt
 
-$(TEST_BIN_DIR)/test_lentz_continued_fraction: continued_fractions/test_lentz_continued_fraction.cpp
-	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_lentz_continued_fraction continued_fractions/test_lentz_continued_fraction.cpp -lquadmath
+$(TEST_BIN_DIR)/test_lentz_continued_fraction: cxx_continued_fractions/test_lentz_continued_fraction.cpp
+	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_lentz_continued_fraction cxx_continued_fractions/test_lentz_continued_fraction.cpp -lquadmath
 
 run_test_lentz_continued_fraction: $(TEST_BIN_DIR)/test_lentz_continued_fraction
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lentz_continued_fraction > $(TEST_OUT_DIR)/test_lentz_continued_fraction.txt
@@ -1491,7 +1491,7 @@ run_test_parab_cyl: $(TEST_BIN_DIR)/test_parab_cyl
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_parab_cyl > $(TEST_OUT_DIR)/test_parab_cyl.txt
 
 $(TEST_BIN_DIR)/test_polygamma: laboratories/gamma_functions/test_polygamma.cpp
-	$(CXXMAX) $(INCLUDES) -Iwrappers -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_polygamma laboratories/gamma_functions/test_polygamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
+	$(CXXMAX) $(INCLUDES) -Iwrappers -Icxx_continued_fractions/include -o $(TEST_BIN_DIR)/test_polygamma laboratories/gamma_functions/test_polygamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_boost
 
 run_test_polygamma: $(TEST_BIN_DIR)/test_polygamma
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_polygamma > $(TEST_OUT_DIR)/test_polygamma.txt
@@ -1592,8 +1592,8 @@ $(TEST_BIN_DIR)/test_sph_hankel: wrappers_debug laboratories/bessel_functions/te
 run_test_sph_hankel: $(TEST_BIN_DIR)/test_sph_hankel
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_sph_hankel > $(TEST_OUT_DIR)/test_sph_hankel.txt
 
-$(TEST_BIN_DIR)/test_steed_continued_fraction: continued_fractions/test_steed_continued_fraction.cpp
-	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_steed_continued_fraction continued_fractions/test_steed_continued_fraction.cpp -lquadmath
+$(TEST_BIN_DIR)/test_steed_continued_fraction: cxx_continued_fractions/test_steed_continued_fraction.cpp
+	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_steed_continued_fraction cxx_continued_fractions/test_steed_continued_fraction.cpp -lquadmath
 
 run_test_steed_continued_fraction: $(TEST_BIN_DIR)/test_steed_continued_fraction
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_steed_continued_fraction > $(TEST_OUT_DIR)/test_steed_continued_fraction.txt

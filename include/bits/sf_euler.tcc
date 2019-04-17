@@ -154,9 +154,9 @@ namespace __detail
    * Return the Eulerian number of the first kind.
    * The Eulerian numbers of the first kind are defined by recursion:
    * @f[
-   *   \newcommand{\eulerian1}[2]{\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}}
-   *
-   *   \eulerian1{n}{m} = (n-m)\eulerian1{n-1}{m-1} + (m+1)\eulerian1{n-1}{m}
+   *   \genfrac{\langle}{\rangle}{0pt}{0}{n}{m}
+   *     = (n-m)\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m-1}
+   *     + (m+1)\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m}
    *   \mbox{ for } n > 0
    * @f]
    * Note that @f$ A(n,m) @f$ is a common older notation.
@@ -195,9 +195,9 @@ namespace __detail
    * Return the Eulerian number of the first kind.
    * The Eulerian numbers of the first kind are defined by recursion:
    * @f[
-   *   \newcommand{\eulerian1}[2]{\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}}
-   *
-   *   \eulerian1{n}{m} = (n-m)\eulerian1{n-1}{m-1} + (m+1)\eulerian1{n-1}{m}
+   *   \genfrac{\langle}{\rangle}{0pt}{0}{n}{m}
+   *     = (n-m)\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m-1}
+   *     + (m+1)\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m}
    *   \mbox{ for } n > 0
    * @f]
    * Note that @f$ A(n,m) @f$ is a common older notation.
@@ -256,10 +256,11 @@ namespace __detail
   /**
    * Return the Eulerian number of the second kind by recursion:
    * @f[
-   *   \newcommand{\eulerian2}[2]
-   *   {\left\langle\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}\right\rangle}
-   *
-   *   \eulerian2{n}{m} = (2n-m-1)\eulerian2{n-1}{m-1} + (m+1)\eulerian2{n-1}{m}
+   *   \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n}{m}\right\rangle
+   *   = (2n-m-1)
+   *     \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m-1}\right\rangle
+   *   + (m+1)
+   *     \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m}\right\rangle
    *       \mbox{ for } n > 0
    * @f]
    */
@@ -295,10 +296,11 @@ namespace __detail
    * Return the Eulerian number of the second kind.
    * The Eulerian numbers of the second kind are defined by recursion:
    * @f[
-   *   \newcommand{\eulerian2}[2]
-   *   {\left\langle\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}\right\rangle}
-   *
-   *   \eulerian2{n}{m} = (2n-m-1)\eulerian2{n-1}{m-1} + (m+1)\eulerian2{n-1}{m}
+   *   \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n}{m}\right\rangle
+   *   = (2n-m-1)
+   *     \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m-1}\right\rangle
+   *   + (m+1)
+   *     \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m}\right\rangle
    *       \mbox{ for } n > 0
    * @f]
    */
@@ -310,10 +312,11 @@ namespace __detail
   /**
    * Return a vector of Eulerian numbers of the second kind.
    * @f[
-   *   \newcommand{\eulerian2}[2]
-   *   {\left\langle\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}\right\rangle}
-   *
-   *   \eulerian2{n}{m} = (2n-m-1)\eulerian2{n-1}{m-1} + (m+1)\eulerian2{n-1}{m}
+   *   \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n}{m}\right\rangle
+   *   = (2n-m-1)
+   *     \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m-1}\right\rangle
+   *   + (m+1)
+   *     \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m}\right\rangle
    *       \mbox{ for } n > 0
    * @f]
    */
@@ -347,10 +350,11 @@ namespace __detail
   /**
    * Return a vector of Eulerian numbers of the second kind.
    * @f[
-   *   \newcommand{\eulerian2}[2]
-   *   {\left\langle\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}\right\rangle}
-   *
-   *   \eulerian2{n}{m} = (2n-m-1)\eulerian2{n-1}{m-1} + (m+1)\eulerian2{n-1}{m}
+   *   \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n}{m}\right\rangle
+   *   = (2n-m-1)
+   *     \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m-1}\right\rangle
+   *   + (m+1)
+   *     \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m}\right\rangle
    *       \mbox{ for } n > 0
    * @f]
    */

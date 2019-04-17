@@ -43,6 +43,8 @@
 // (4) Numerical Recipes in C, by W. H. Press, S. A. Teukolsky,
 //     W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
 //     2nd ed, pp. 252-254
+// (5) Computation of Special Functions, Shanjie Zhang, Jianming Jin,
+//     John Wiley & Sons (1996)
 
 #ifndef _GLIBCXX_BITS_SF_LEGENDRE_TCC
 #define _GLIBCXX_BITS_SF_LEGENDRE_TCC 1
@@ -82,17 +84,18 @@ namespace __detail
     __gnu_cxx::__legendre_p_t<_Tp>
     __legendre_p(unsigned int __l, _Tp __x)
     {
+      using _Real = __num_traits_t<_Tp>;
       using __ret_t = __gnu_cxx::__legendre_p_t<_Tp>;
 
       const auto __lge1 = __l >= 1 ? _Tp{+1} : _Tp{0};
       const auto __lge2 = __l >= 2 ? _Tp{+1} : _Tp{0};
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
 
       if (std::isnan(__x))
 	return {__l, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
-      else if (__x == _Tp{+1})
+      else if (__x == _Real{+1})
 	return {__l, __x, _Tp{+1}, __lge1, __lge2};
-      else if (__x == _Tp{-1})
+      else if (__x == _Real{-1})
 	return __l % 2 == 1
 		? __ret_t{__l, __x, _Tp{-1}, +__lge1, -__lge2}
 		: __ret_t{__l, __x, _Tp{+1}, -__lge1, +__lge2};
@@ -161,21 +164,22 @@ namespace __detail
     __gnu_cxx::__legendre_q_t<_Tp>
     __legendre_q(unsigned int __l, _Tp __x)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_inf = __gnu_cxx::__infinity(__x);
+      using _Real = __num_traits_t<_Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
+      const auto _S_inf = __gnu_cxx::__infinity(_Real{});
       if (std::isnan(__x))
 	{
-	  const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+	  const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
 	  return {__l, __x, _S_NaN, _S_NaN, _S_NaN};
 	}
-      else if (std::abs(__x - _Tp{1}) < _S_eps)
+      else if (std::abs(__x - _Real{1}) < _S_eps)
 	return {__l, __x, _S_inf, _S_inf, _S_inf};
-      else if (std::abs(__x + _Tp{1}) < _S_eps)
+      else if (std::abs(__x + _Real{1}) < _S_eps)
 	{
 	  const auto __sgn = (__l & 1 ? +1 : -1);
 	  return {__l, __x, __sgn * _S_inf, -__sgn * _S_inf, __sgn * _S_inf};
 	}
-      else if (std::abs(__x) < _Tp{1})
+      else if (std::abs(__x) < _Real{1})
 	{
 	  auto _Q_lm2 = _Tp{0.5L} * std::log((_Tp{1} + __x) / (_Tp{1} - __x));
 	  if (__l == 0)
@@ -237,11 +241,12 @@ namespace __detail
     __assoc_legendre_p(unsigned int __l, unsigned int __m, _Tp __x,
 		       _Tp __phase = _Tp{+1})
     {
+      using _Real = __num_traits_t<_Tp>;
       if (__m > __l)
 	return {__l, __m, __x, _Tp{0}, _Tp{0}, _Tp{0}};
       else if (std::isnan(__x))
 	{
-	  const auto _NaN = __gnu_cxx::__quiet_NaN(__x);
+	  const auto _NaN = __gnu_cxx::__quiet_NaN(_Real{});
 	  return {__l, __m, __x, _NaN, _NaN, _NaN, __phase};
 	}
       else if (__m == 0)
@@ -252,7 +257,7 @@ namespace __detail
 	}
       else
 	{
-	  _Tp _P_mm = _Tp{1};
+	  auto _P_mm = _Tp{1};
 	  if (__m > 0)
 	    {
 	      // Two square roots seem more accurate more of the time
@@ -269,7 +274,7 @@ namespace __detail
 	  if (__l == __m)
 	    return {__l, __m, __x, _P_mm, _Tp{0}, _Tp{0}, __phase};
 
-	  _Tp _P_mp1m = _Tp(2 * __m + 1) * __x * _P_mm;
+	  auto _P_mp1m = _Tp(2 * __m + 1) * __x * _P_mm;
 	  if (__l == __m + 1)
 	    return {__l, __m, __x, _P_mp1m, _P_mm, _Tp{0}, __phase};
 
@@ -294,12 +299,13 @@ namespace __detail
     __assoc_legendre_q(unsigned int __l, unsigned int __m, _Tp __x,
 		       _Tp __phase = _Tp{+1})
     {
+      using _Real = __num_traits_t<_Tp>;
       if (std::isnan(__x))
 	{
-	  const auto _NaN = __gnu_cxx::__quiet_NaN(__x);
+	  const auto _NaN = __gnu_cxx::__quiet_NaN(_Real{});
 	  return {__l, __m, __x, _NaN, _NaN, _NaN, __phase};
 	}
-      else if (std::abs(__x) < _Tp{1})
+      else if (std::abs(__x) < _Real{1})
 	{
 	  // Find Q_l^0 and Q_l^1 by upward recurrence on l.
 	  const auto __fact = (_Tp{1} - __x) * (_Tp{1} + __x);

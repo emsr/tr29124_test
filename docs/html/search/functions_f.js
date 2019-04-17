@@ -1,12 +1,12 @@
 var searchData=
 [
-  ['radpoly',['radpoly',['../group__gnu__math__spec__func.html#ga195db2592888b7a8df870d9eaeff8d05',1,'__gnu_cxx']]],
-  ['radpolyf',['radpolyf',['../group__gnu__math__spec__func.html#ga8a98d7c7c14f1aadff90123a114fa2c9',1,'__gnu_cxx']]],
-  ['radpolyl',['radpolyl',['../group__gnu__math__spec__func.html#ga377febebd1096400897170bb7a76cd3a',1,'__gnu_cxx']]],
-  ['riemann_5fzeta',['riemann_zeta',['../group__tr29124__math__spec__func.html#gac4ef9d52ee583c77937c3a420b7c72ca',1,'std']]],
-  ['riemann_5fzetaf',['riemann_zetaf',['../group__tr29124__math__spec__func.html#gaf92063315061a56d3e2c4053156d968e',1,'std']]],
-  ['riemann_5fzetal',['riemann_zetal',['../group__tr29124__math__spec__func.html#ga1e92da3b878d75270f38d3ec9b513086',1,'std']]],
-  ['rising_5ffactorial',['rising_factorial',['../group__gnu__math__spec__func.html#gae8c36a0e1f60254cf212a3806f7c675c',1,'__gnu_cxx']]],
-  ['rising_5ffactorialf',['rising_factorialf',['../group__gnu__math__spec__func.html#ga10da05b995a42f0b0625e61186af7449',1,'__gnu_cxx']]],
-  ['rising_5ffactoriall',['rising_factoriall',['../group__gnu__math__spec__func.html#gac9a399ae01c315aa78a64b445795d974',1,'__gnu_cxx']]]
+  ['periodic_5fzeta',['periodic_zeta',['../group__gnu__math__spec__func.html#ga06b06216e87b868cb21c76d33ac560c8',1,'__gnu_cxx::periodic_zeta(_Tp __x, _Up __s)'],['../group__gnu__math__spec__func.html#gaf3704ce510319b5c4c5cedd55dfaa42f',1,'__gnu_cxx::periodic_zeta(std::complex&lt; _Up &gt; __z, _Tp __s)']]],
+  ['periodic_5fzetaf',['periodic_zetaf',['../group__gnu__math__spec__func.html#ga1308c2a5d1b263757485cb48eb2c19ff',1,'__gnu_cxx']]],
+  ['periodic_5fzetal',['periodic_zetal',['../group__gnu__math__spec__func.html#gab7573fb57ebaabac4432bb5e6b525151',1,'__gnu_cxx']]],
+  ['polygamma',['polygamma',['../group__gnu__math__spec__func.html#ga65e674e7fe1457e819897e0d608c18b8',1,'__gnu_cxx']]],
+  ['polygammaf',['polygammaf',['../group__gnu__math__spec__func.html#ga91861fadef76d4f73afacffcac66e312',1,'__gnu_cxx']]],
+  ['polygammal',['polygammal',['../group__gnu__math__spec__func.html#gaa6a37359a97ba43f32aa842705c416d4',1,'__gnu_cxx']]],
+  ['polylog',['polylog',['../group__gnu__math__spec__func.html#gabcc5480ad739561c2debd6a8a352084f',1,'__gnu_cxx::polylog(_Tp __s, _Wp __w)'],['../group__gnu__math__spec__func.html#ga817a208972a0200b667c68d199176d70',1,'__gnu_cxx::polylog(_Tp __s, std::complex&lt; _Tp &gt; __w)']]],
+  ['polylogf',['polylogf',['../group__gnu__math__spec__func.html#ga5bcdd35473144a6d8efc258a79bc82d8',1,'__gnu_cxx::polylogf(float __s, float __w)'],['../group__gnu__math__spec__func.html#ga5376edb72358b777035a78b929deb49f',1,'__gnu_cxx::polylogf(float __s, std::complex&lt; float &gt; __w)']]],
+  ['polylogl',['polylogl',['../group__gnu__math__spec__func.html#ga3aa007b4b4e345c30be015ab145d5598',1,'__gnu_cxx::polylogl(long double __s, long double __w)'],['../group__gnu__math__spec__func.html#ga9eb79e506eda210610bc59c1912b4d0f',1,'__gnu_cxx::polylogl(long double __s, std::complex&lt; long double &gt; __w)']]]
 ];

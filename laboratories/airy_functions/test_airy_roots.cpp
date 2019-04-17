@@ -10,11 +10,11 @@ $HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o test_airy_roots 
 
 template<typename _Tp>
   void
-  test_airy_ai_roots()
+  test_airy_roots()
   {
-    const auto _S_eps = _Tp(10) * std::numeric_limits<_Tp>::epsilon();
+    const auto _S_eps = _Tp{10} * std::numeric_limits<_Tp>::epsilon();
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
-    const auto w = 4 + std::cout.precision();
+    const auto w = 6 + std::cout.precision();
 
     // Roots of Ai(-x)
     std::vector<_Tp> zai
@@ -155,7 +155,7 @@ template<typename _Tp>
 	    xbip_prev = xbip;
 	    auto [x, ai, aip, bi, bip] = std::__detail::__airy(xbip);
 	    auto bipp = xbip * bi; // Bi''(x) = xBi(x)
-	    xbip -= bip / xbip;
+	    xbip -= bip / bipp;
 	    bi_prev = bi;
 	    bip_prev = bip;
 	    bipp_prev = bipp;
@@ -173,5 +173,5 @@ template<typename _Tp>
 int
 main()
 {
-  test_airy_ai_roots<double>();
+  test_airy_roots<double>();
 }

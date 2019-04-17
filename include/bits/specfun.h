@@ -405,8 +405,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /** @} */ // math_spec_func
 
   /**
-   * @defgroup tr29124_math_spec_func
-   *           C++17/IS29124 Mathematical Special Functions
+   * @defgroup cxx17_math_spec_func C++17/IS29124 Mathematical Special Functions
    * @ingroup math_spec_func
    *
    * A collection of advanced mathematical special functions for C++17
@@ -723,8 +722,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @tparam _Tp The floating-point type of the modulus @c __k.
    * @tparam _Tpn The floating-point type of the argument @c __nu.
-   * @param  __k  The modulus, @c abs(__k) <= 1
-   * @param  __nu  The argument
+   * @param  __k  The modulus, @c abs(__k) <= 1.
+   * @param  __nu  The characteristic.
    * @throw std::domain_error if @c abs(__k) > 1.
    */
   template<typename _Tp, typename _Tpn>
@@ -915,8 +914,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @tparam _Tpnu The floating-point type of the order @c __nu.
    * @tparam _Tp The floating-point type of the argument @c __x.
-   * @param  __nu  The order
-   * @param  __x   The argument, <tt> __x >= 0 </tt>
+   * @param  __nu  The order.
+   * @param  __x   The argument, <tt> __x >= 0 </tt>.
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tpnu, typename _Tp>
@@ -963,8 +962,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * @tparam _Tp The floating-point type of the modulus @c __k.
    * @tparam _Tpp The floating-point type of the angle @c __phi.
-   * @param  __k  The modulus, <tt> abs(__k) <= 1 </tt>
-   * @param  __phi  The integral limit argument in radians
+   * @param  __k  The modulus, <tt> abs(__k) <= 1 </tt>.
+   * @param  __phi  The integral limit argument in radians.
    * @throw std::domain_error if <tt> abs(__k) > 1 </tt>.
    */
   template<typename _Tp, typename _Tpp>
@@ -1062,9 +1061,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @tparam _Tp The floating-point type of the modulus @c __k.
    * @tparam _Tpn The floating-point type of the argument @c __nu.
    * @tparam _Tpp The floating-point type of the angle @c __phi.
-   * @param  __k  The modulus, <tt> abs(__k) <= 1 </tt>
-   * @param  __nu  The second argument
-   * @param  __phi  The integral limit argument in radians
+   * @param  __k  The modulus, <tt> abs(__k) <= 1 </tt>.
+   * @param  __nu  The characteristic.
+   * @param  __phi  The integral limit argument in radians.
    * @return  The elliptic function of the third kind.
    * @throw std::domain_error if <tt> abs(__k) > 1 </tt>.
    */
@@ -1378,14 +1377,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The spherical Legendre function is defined by
    * @f[
-   *  Y_l^m(\theta,\phi) = (-1)^m\frac{(2l+1)}{4\pi} \frac{(l-m)!}{(l+m)!}
-   *                   P_l^m(\cos\theta) \exp^{im\phi}
+   *    Y_l^m(\theta,0) = (-1)^m\frac{(2l+1)}{4\pi} \frac{(l-m)!}{(l+m)!}
+   *                         P_l^m(\cos\theta) e^{im\phi}
+   * @f]
+   * where @f$ P_l^m(x) @f$ is the associated Legendre polynomial.
+   * The full (complex) spherical harmonic function includes a phase factor
+   * in the azimuthal angle @f$ \phi @f$:
+   * @f[
+   *    Y_l^m(\theta,\phi) = Y_l^m(\theta,0) e^{im\phi}
    * @f]
    *
    * @tparam _Tp The floating-point type of the angle @c __theta.
    * @param __l The order <tt> __l >= 0 </tt>
    * @param __m The degree <tt> __m >= 0 </tt> and <tt> __m <= __l </tt>
    * @param __theta The radian polar angle argument
+   * @see assoc_legendre for the unnormalized associated Legendre polynomial.
    */
   template<typename _Tp>
     inline __gnu_cxx::fp_promote_t<_Tp>
@@ -1439,7 +1445,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__sph_neumann<__type>(__n, __x);
     }
 
-  /** @} */ // tr29124_math_spec_func
+  /** @} */ // cxx17_math_spec_func
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
@@ -1558,7 +1564,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$
-   * of @ float numerator parameters @f$ a @f$ and @f$ b @f$,
+   * of @c float numerator parameters @f$ a @f$ and @f$ b @f$,
    * denominator parameter @f$ c @f$, and argument @f$ x @f$.
    *
    * @see hyperg for details.
@@ -1756,8 +1762,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The logarithmic integral is defined by
    * @f[
-   *    li(x) = \int_0^x \frac{dt}{ln(t)}
+   *    li(x) = \int_0^x \frac{dt}{ln(t)} = Ei(ln(x))
    * @f]
+   * where @f$ Ei(x) @f$ is the exponential integral (see std::expint).
    *
    * @param __x The real upper integration limit
    */
@@ -1966,7 +1973,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    \sin(\phi) = sn(k, F(k,\phi))
    * @f]
    * where @f$ F(k,\phi) @f$ is the Legendre elliptic integral
-   * of the first kind (@see ellint_1).
+   * of the first kind (see ellint_1).
    *
    * @tparam _Kp The type of the real modulus
    * @tparam _Up The type of the real argument
@@ -2016,7 +2023,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    \cos(\phi) = cn(k, F(k,\phi))
    * @f]
    * where @f$ F(k,\phi) @f$ is the Legendre elliptic integral
-   * of the first kind (@see ellint_1).
+   * of the first kind (see ellint_1).
    *
    * @tparam _Kp The type of the real modulus
    * @tparam _Up The type of the real argument
@@ -2066,7 +2073,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    \sqrt{1 - k^2\sin(\phi)} = dn(k, F(k,\phi))
    * @f]
    * where @f$ F(k,\phi) @f$ is the Legendre elliptic integral
-   * of the first kind (@see ellint_1).
+   * of the first kind (see ellint_1).
    *
    * @tparam _Kp The type of the real modulus
    * @tparam _Up The type of the real argument
@@ -2419,7 +2426,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    Z_n^{-m}(\rho,\phi) = R_n^m(\rho)\sin(m\phi)
    * @f]
    * for non-negative degree @f$ m @f$ and @f$ m <= n @f$
-   * and where @f$ R_n^m(\rho) @f$ is the radial polynomial (@see radpoly).
+   * and where @f$ R_n^m(\rho) @f$ is the radial polynomial (see radpoly).
    *
    * @tparam _Trho The real type of the radial coordinate
    * @tparam _Tphi The real type of the azimuthal angle
@@ -2474,9 +2481,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * for @f$ n - m @f$ even and identically 0 for @f$ n - m @f$ odd.
    * The radial polynomials can be related to the Jacobi polynomials:
    * @f[
-   *    R_n^m(\rho) = 
+   *    R_n^m(\rho) = (-1)^{(n-m)/2} \rho^m P_{(n-m)/2}^{(m,0)}
    * @f]
-   * @see jacobi for details on the Jacobi polynomials.
+   * @see jacobi for details on the Jacobi polynomials (see jacobi).
    *
    * @tparam _Tp The real type of the radial coordinate
    * @param __n The non-negative degree.
@@ -2607,7 +2614,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    H^{(1)}_\nu(x) = J_\nu(x) + iN_\nu(x)
    * @f]
    * where @f$ J_\nu(x) @f$ and @f$ N_\nu(x) @f$ are the cylindrical Bessel
-   * and Neumann functions respectively (@see cyl_bessel and cyl_neumann).
+   * and Neumann functions respectively (see cyl_bessel and cyl_neumann).
    *
    * @tparam _Tp The real type of the argument
    * @param __nu The real order
@@ -2655,7 +2662,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    H^{(2)}_\nu(x) = J_\nu(x) - iN_\nu(x)
    * @f]
    * where @f$ J_\nu(x) @f$ and @f$ N_\nu(x) @f$ are the cylindrical Bessel
-   * and Neumann functions respectively (@see cyl_bessel and cyl_neumann).
+   * and Neumann functions respectively (see cyl_bessel and cyl_neumann).
    *
    * @tparam _Tp The real type of the argument
    * @param __nu The real order
@@ -3484,7 +3491,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *    R_G(x,y) = R_G(x,y,y) = \frac{1}{4} \int_0^\infty
    *            dt t (t + x)^{-1/2}(t + y)^{-1}
-   *         (\frac{x}{t + x} + \frac{2y}{t + y})
+   *         \left(\frac{x}{t + x} + \frac{2y}{t + y}\right)
    * @f]
    *
    * @param  __x  The first argument.
@@ -3590,7 +3597,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the Hurwitz zeta function of real argument @f$ s @f$,
+   * Return the Hurwitz zeta function of real order @f$ s @f$,
    * and complex parameter @f$ a @f$.
    *
    * @see hurwitz_zeta for details.
@@ -3634,7 +3641,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    F(x, s) = \sum_{n=1}^{\infty}\frac{e^{i2\pi nx}}{n^s}
    * @f]
    *
-   * @param __x The argument
+   * @param __x The argument.
    * @param __s The order.
    */
   template<typename _Tp, typename _Up>
@@ -3726,10 +3733,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The the polygamma or digamma function is defined by
    * @f[
-   *    psi(x) = \frac{d}{dx}log\left(\Gamma(x)\right)
+   *    \psi(x) = \frac{d}{dx}log\left(\Gamma(x)\right)
    *            = \frac{\Gamma'(x)}{\Gamma(x)}
    * @f]
    *
+   * @param __m The order
    * @param __x The parameter
    */
   template<typename _Tp>
@@ -4011,18 +4019,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The rising factorial function is defined for integer order by
    * @f[
    *   a^{\overline{\nu}} = \Gamma(a + \nu) / \Gamma(n)
-   *	     = \prod_{k=0}^{\nu-1} (a + k), \overline{0} = 1
+   *	     = \prod_{k=0}^{\nu-1} (a + k), \overline{0} \equiv 1
    * @f]
    * Thus this function returns
    * @f[
    *   ln[a^{\overline{\nu}}] = ln[\Gamma(a + \nu)] - ln[\Gamma(\nu)],
-   *      ln[a^{\overline{0}}] = 0
+   *      ln[a^{\overline{0}}] \equiv 0
    * @f]
-   * Many notations exist for this function: @f$ (a)_\nu @f$
-   * (especially in the literature of special functions),
-   *  @f[ \left[ \begin{array}{c}
+   * Many notations exist for this function: @f$ (a)_\nu @f$, called
+   * the Pochhammer function (esp. in the literature of special functions), and
+   * @f[ \left[ \begin{array}{c}
    *	  a \\
-   *	  \nu \end{array} \right] @f], and others.
+   *	  \nu \end{array} \right]
+   * @f], and others.
    */
   template<typename _Tp, typename _Tnu>
     inline __gnu_cxx::fp_promote_t<_Tp, _Tnu>
@@ -4059,17 +4068,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * or the lower Pochhammer symbol.
    * The falling factorial function is defined by
    * @f[
-   *   a^{\underline{n}} = \Gamma(a + 1) / \Gamma(a - \nu + 1)
-   *	     = \prod_{k=0}^{n-1} (a - k), a^{\underline{0}} = 1
+   *   a^{\underline{n}} = \frac{\Gamma(a + 1)}{\Gamma(a - \nu + 1)}
+   *	     = \prod_{k=0}^{n-1} (a - k)
    * @f]
+   * where @f$ a^{\underline{0}} \equiv 1 @f$.
    * In particular, @f$ n^{\underline{n}} = n! @f$.
    * Thus this function returns
    * @f[
-   *   ln[a^{\underline{n}}] = ln[\Gamma(a + 1)] - ln[\Gamma(a - \nu + 1)],
-   *      ln[a^{\underline{0}}] = 0
+   *   ln[a^{\underline{n}}] = ln[\Gamma(a + 1)] - ln[\Gamma(a - \nu + 1)]
    * @f]
+   * where @f$ ln[a^{\underline{0}}] \equiv 0 @f$.
    * Many notations exist for this function: @f$ (a)_\nu @f$,
-   * @f[ \{ \begin{array}{c}
+   * @f[
+   *    \{ \begin{array}{c}
    *	  a \\
    *	  \nu \end{array} \}
    * @f], and others.
@@ -4111,11 +4122,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *   a^{\overline{\nu}} = \Gamma(a + \nu) / \Gamma(\nu)
    * @f]
-   * Many notations exist for this function: @f$ (a)_\nu @f$,
-   * (especially in the literature of special functions),
-   *  @f[ \left[ \begin{array}{c}
+   * Many notations exist for this function: @f$ (a)_\nu @f$, called
+   * the Pochhammer function (esp. in the literature of special functions), and
+   * @f[ \left[ \begin{array}{c}
    *	  a \\
-   *	  n \end{array} \right] @f], and others.
+   *	  \nu \end{array} \right]
+   * @f], and others.
    */
   template<typename _Tp, typename _Tnu>
     inline __gnu_cxx::fp_promote_t<_Tp, _Tnu>
@@ -4153,9 +4165,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * and integral order @f$ n @f$.
    * The falling factorial function is defined by
    * @f[
-   *   a^{\underline{n}} = \prod_{k=0}^{n-1} (a - k), a^{\underline{0}} = 1
+   *   a^{\underline{n}} = \prod_{k=0}^{n-1} (a - k)
    *	     = \Gamma(a + 1) / \Gamma(a - n + 1)
    * @f]
+   * where @f$ a^{\underline{0}} \equiv 1 @f$.
    * In particular, @f$ n^{\underline{n}} = n! @f$.
    */
   template<typename _Tp, typename _Tnu>
@@ -4477,11 +4490,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * and argument @f$ x @f$, @f$ Q_l(x) @f$, is defined by:
    * @f[
    *   Q_l(x) = \frac{1}{2} \log{\frac{x+1}{x-1}} P_l(x)
-   *           - \sum_{k=0}^{l-1}\frac{(l+k)!}{(l-k)!(k!)^2s^k}
+   *           - \sum_{k=0}^{l-1}\frac{(l+k)!}{(l-k)!(k!)^2 s^k}
    *             \left[\psi(l+1) - \psi(k+1)\right](x-1)^k
    * @f]
    * where @f$ P_l(x) @f$ is the Legendre polynomial of degree @f$ l @f$
-   * and @f$ \psi(x) @f$ is the digamma or psi function.
+   * and @f$ \psi(x) @f$ is the digamma or psi function which for integral
+   * argument is related to the harmonic number:
+   * @f$ \psi(n) = -\gamma_E + H_n @f$.
    *
    * @tparam _Tp The floating-point type of the argument @c __x.
    * @param __l The degree @f$ l >= 0 @f$
@@ -5255,7 +5270,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The polylogarithm function is defined by
    * @f[
-   *    Li_s(x) = \sum_{k=1}^{\infty} \frac{w^k}{k^s}
+   *    Li_s(w) = \sum_{k=1}^{\infty} \frac{w^k}{k^s}
    * @f]
    *
    * @param __s The order.
@@ -5304,9 +5319,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * The Dirichlet eta function, in terms of the polylogarithm, is
    * @f[
-   *   \renewcommand\Re{\operatorname{Re}}
-   *   \renewcommand\Im{\operatorname{Im}}
-   *   \eta(s) = -\Re{Li_s(-1)}
+   *   \eta(s) = -\Re[Li_s(-1)]
    * @f]
    *
    * @param __s The order.
@@ -5353,9 +5366,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * The Dirichlet beta function, in terms of the polylogarithm, is
    * @f[
-   *   \renewcommand\Re{\operatorname{Re}}
-   *   \renewcommand\Im{\operatorname{Im}}
-   *   \beta(s) = \Im{Li_s(i)}
+   *   \beta(s) = \Im[Li_s(i)]
    * @f]
    *
    * @param __s The order.
@@ -5570,8 +5581,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The Clausen function is defined by
    * @f[
-   *    C_m(z) = Sl_m(z) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^m} \mbox{ for even } m
-   *           = Cl_m(z) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^m} \mbox{ for odd } m
+   *    C_m(z) = Sl_m(z) = \sum_{k=1}^\infty\frac{\sin(kz)}{k^m} \mbox{ for even } m
+   *           = Cl_m(z) = \sum_{k=1}^\infty\frac{\cos(kz)}{k^m} \mbox{ for odd } m
    * @f]
    *
    * @tparam _Tp The real type of the complex components
@@ -6705,7 +6716,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The formula for the lognormal cumulative probability density function is
    * @f[
    *   F(x|\mu,\sigma)
-   *     = \frac{1}{2}\left[ 1-erf(\frac{\ln{x}-\mu}{\sqrt{2}\sigma}) \right]
+   *     = \frac{1}{2}\left[1-erf\left(
+   *                  \frac{\ln{x}-\mu}{\sqrt{2}\sigma}\right)\right]
    * @f]
    */
   template<typename _Tmu, typename _Tsig, typename _Tp>
@@ -6809,8 +6821,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The students T propability function is related to the incomplete beta function:
    * @f[
    *   A(t|\nu) = 1 - I_{\frac{\nu}{\nu + t^2}}(\frac{\nu}{2}, \frac{1}{2})
-   *   A(t|\nu) = 
    * @f]
+   * (see ibeta).
    *
    * @param __t 
    * @param __nu 
@@ -7039,7 +7051,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The derivative is proportional to the previous polynomial:
    * @f[
-   *   B_n'(x) = n * B_{n-1}(x)
+   *   B_n'(x) = n B_{n-1}(x)
    * @f]
    *
    * The series expansion for the Bernoulli polynomials is:
@@ -7049,7 +7061,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * A useful argument promotion is:
    * @f[
-   *   B_n(x+1) - B_n(x) = n * x^{n-1}
+   *   B_n(x+1) - B_n(x) = n x^{n-1}
    * @f]
    */
   template<typename _Tp>
@@ -7072,9 +7084,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the Eulerian number of the first kind.
    * The Eulerian numbers of the first kind are defined by recursion:
    * @f[
-   *   \newcommand{\eulerian1}[2]{\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}}
-   *
-   *   \eulerian1{n}{m} = (n-m)\eulerian1{n-1}{m-1} + (m+1)\eulerian1{n-1}{m}
+   *   \genfrac{\langle}{\rangle}{0pt}{0}{n}{m}
+   *     = (n-m)\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m-1}
+   *     + (m+1)\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m}
    *   \mbox{ for } n > 0
    * @f]
    * Note that @f$ A(n,m) @f$ is a common older notation.
@@ -7096,10 +7108,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the Eulerian number of the second kind.
    * The Eulerian numbers of the second kind are defined by recursion:
    * @f[
-   *   \newcommand{\eulerian2}[2]
-   *   {\left\langle\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}\right\rangle}
-   *
-   *   \eulerian2{n}{m} = (2n-m-1)\eulerian2{n-1}{m-1} + (m+1)\eulerian2{n-1}{m}
+   *   \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n}{m}\right\rangle
+   *   = (2n-m-1)
+   *     \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m-1}\right\rangle
+   *   + (m+1)
+   *     \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m}\right\rangle
    *       \mbox{ for } n > 0
    * @f]
    */
@@ -7114,25 +7127,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The Stirling numbers of the first kind are the coefficients of
    * the Pocchammer polynomials or the rising factorials:
    * @f[
-   *   \newcommand{\stirling}[2]{\genfrac{[}{]}{0pt}{0}{#1}{#2}}
-   *   (x)_n = \sum_{k=0}^{n} \stirling{n}{k} x^k
+   *   (x)_n = \sum_{k=0}^{n} \genfrac{[}{]}{0pt}{0}{n}{k} x^k
    * @f]
    *
    * The recursion is
    * @f[
-   *   \newcommand{\stirling}[2]{\genfrac{[}{]}{0pt}{0}{#1}{#2}}
-   *
-   *   \stirling{n+1}{m} = \stirling{n}{m-1} - n \stirling{n}{m}
+   *   \genfrac{[}{]}{0pt}{0}{n+1}{m} = \genfrac{[}{]}{0pt}{0}{n}{m-1}
+   *                  - n \genfrac{[}{]}{0pt}{0}{n}{m}
    * @f]
    * with starting values
    * @f[
-   *   \newcommand{\stirling}[2]{\genfrac{[}{]}{0pt}{0}{#1}{#2}}
-   *   \stirling{0}{0\rightarrow m} = {1, 0, 0, ..., 0}
+   *   \genfrac{[}{]}{0pt}{0}{0}{0\rightarrow m} = {1, 0, 0, ..., 0}
    * @f]
    * and
    * @f[
-   *   \newcommand{\stirling}[2]{\genfrac{[}{]}{0pt}{0}{#1}{#2}}
-   *   \stirling{0\rightarrow n}{0} = {1, 0, 0, ..., 0}
+   *   \genfrac{[}{]}{0pt}{0}{0\rightarrow n}{0} = {1, 0, 0, ..., 0}
    * @f]
    * The Stirling number of the first kind is denoted by other symbols
    * in the literature, usually @f$ S_n^{(m)} @f$.
@@ -7156,9 +7165,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *
    * The series is:
    * @f[
-   *   \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}}
-   *
-   *   \sigma_n^{(m)} = \stirling{n}{m}
+   *   \sigma_n^{(m)} = \genfrac{\{}{\}}{0pt}{0}{n}{m}
    *      = \sum_{k=0}^{m}\frac{(-1)^{m-k}k^n}{(m-k)!k!}
    * @f]
    *
@@ -7250,9 +7257,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Return the Lerch transcendent @f$ \Phi(z,s,a) @f$.
    *
    * The series is:
-   * @f[   *
-   *   \Phi(z,s,a) = \sum_{k=0}^{\infty}\frac{z^k}{(a+k^s}
+   * @f[
+   *   \Phi(z,s,a) = \sum_{k=0}^{\infty}\frac{z^k}{(k+a)^s}
    * @f]
+   *
+   * @param __z The argument.
+   * @param __s The order @f$ s != 1 @f$.
+   * @param __a The scale parameter @f$ a > -1 @f$.
    */
   template<typename _Tp, typename _Ts, typename _Ta>
     inline __gnu_cxx::fp_promote_t<_Tp, _Ts, _Ta>
@@ -7265,8 +7276,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Compute the Mittag-Leffer function:
    * @f[
-   *   E_{\alpha,\beta}(z) = \sum_{k=0}^{\infty}\frac{z^k}{\beta + \alpha k},
-   *   \mbox{  } \alpha > 0, \beta \elem \complex, z \elem \complex
+   *   E_{\alpha,\beta}(z) = \sum_{k=0}^\infty \frac{z^k}{\beta + \alpha k},
+   *   \mbox{  } \alpha > 0, \beta \in \$\mathbb{C}\$, z \in \$\mathbb{C}\$
    * @f]
    *
    * @see COMPUTATION OF THE MITTAG-LEFFLER FUNCTION @f$ E_{\alpha,\beta}(z) @f$

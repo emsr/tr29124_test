@@ -132,8 +132,8 @@ namespace __detail
   /**
    * Compute the Mittag-Leffer function:
    * @f[
-   *   E_{\alpha,\beta}(z) = \sum_{k=0}^{\infty}\frac{z^k}{\beta + \alpha k},
-   *   \mbox{  } \alpha > 0, \beta \elem \complex, z \elem \complex
+   *   E_{\alpha,\beta}(z) = \sum_{k=0}^\infty \frac{z^k}{\beta + \alpha k},
+   *   \mbox{  } \alpha > 0, \beta \in \$\mathbb{C}\$, z \in \$\mathbb{C}\$
    * @f]
    *
    * @see COMPUTATION OF THE MITTAG-LEFFLER FUNCTION @f$ E_{\alpha,\beta}(z) @f$

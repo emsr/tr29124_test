@@ -792,7 +792,7 @@ INPUT                  = include/bits/specfun.h \
 			 include/bits/sf_trigint.tcc \
 			 include/bits/sf_trig.tcc \
 			 include/bits/sf_zeta.tcc \
-			 include/ext/math_util.h
+			 cxx_fp_utils/include/ext/math_util.h
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses

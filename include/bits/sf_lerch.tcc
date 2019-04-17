@@ -84,7 +84,11 @@ namespace __detail
     };
 
   /**
-   * This function blows up on nonpositive integeral a.
+   * This function blows up on nonpositive integeral parameter a.
+   *
+   * @param __z The argument.
+   * @param __s The order @f$ s != 1 @f$.
+   * @param __a The scale parameter @f$ a > -1 @f$.
    */
   template<typename _Tp>
     _Tp
@@ -120,6 +124,10 @@ namespace __detail
 
   /**
    * Try the WenigerDelta<MonotoneVanWijngaarden> composition.
+   *
+   * @param __z The argument.
+   * @param __s The order @f$ s != 1 @f$.
+   * @param __a The scale parameter @f$ a > -1 @f$.
    */
   template<typename _Tp>
     _Tp
@@ -165,7 +173,11 @@ namespace __detail
    *   \Phi(z,s,a) = \sum_{k=0}^{\infty}\frac{z^k}{(a+k^s}
    * @f]
    *
-   * This function blows up on nonpositive integeral a.
+   * This function blows up on nonpositive integeral parameter a.
+   *
+   * @param __z The argument.
+   * @param __s The order @f$ s != 1 @f$.
+   * @param __a The scale parameter @f$ a > -1 @f$.
    */
   template<typename _Tp>
     _Tp

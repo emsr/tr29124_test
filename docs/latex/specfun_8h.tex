@@ -30,6 +30,7 @@
 {\ttfamily \#include $<$bits/sf\+\_\+laguerre.\+tcc$>$}\newline
 {\ttfamily \#include $<$bits/sf\+\_\+legendre.\+tcc$>$}\newline
 {\ttfamily \#include $<$bits/sf\+\_\+lerch.\+tcc$>$}\newline
+{\ttfamily \#include $<$bits/sf\+\_\+mittag\+\_\+leffler.\+tcc$>$}\newline
 {\ttfamily \#include $<$bits/sf\+\_\+mod\+\_\+bessel.\+tcc$>$}\newline
 {\ttfamily \#include $<$bits/sf\+\_\+hermite.\+tcc$>$}\newline
 {\ttfamily \#include $<$bits/sf\+\_\+theta.\+tcc$>$}\newline
@@ -81,17 +82,29 @@ float \hyperlink{group__gnu__math__spec__func_ga2ade465827bdba7370abbcce78e54912
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga59240b3f40177e5187f3f194f624f0f8}{\+\_\+\+\_\+gnu\+\_\+cxx\+::airy\+\_\+bil} (long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__tr29124__math__spec__func_ga0b33e0ac3066f2353861ce2f34b43f57}{std\+::assoc\+\_\+laguerre} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__cxx17__math__spec__func_ga0b33e0ac3066f2353861ce2f34b43f57}{std\+::assoc\+\_\+laguerre} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_gaf83d98f350a1cfcebee6a1f723cf90d2}{std\+::assoc\+\_\+laguerref} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m, float \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Talpha , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Talpha, \+\_\+\+Tp $>$ \hyperlink{group__cxx17__math__spec__func_gab135b6cb6154e6eccb7825ae939602db}{std\+::assoc\+\_\+laguerre} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Talpha \+\_\+\+\_\+alpha1, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_gac8e245671fb2df5de5fd978d03081f6c}{std\+::assoc\+\_\+laguerrel} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m, long double \+\_\+\+\_\+x)
+float \hyperlink{group__cxx17__math__spec__func_gaf83d98f350a1cfcebee6a1f723cf90d2}{std\+::assoc\+\_\+laguerref} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m, float \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__tr29124__math__spec__func_ga7aa4182446f687094b12688078517d53}{std\+::assoc\+\_\+legendre} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+x)
+long double \hyperlink{group__cxx17__math__spec__func_gac8e245671fb2df5de5fd978d03081f6c}{std\+::assoc\+\_\+laguerrel} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m, long double \+\_\+\+\_\+x)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_ga3ced07ddd24bf4af56e2712d148e7f57}{std\+::assoc\+\_\+legendref} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, float \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__cxx17__math__spec__func_ga7aa4182446f687094b12688078517d53}{std\+::assoc\+\_\+legendre} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_ga55977b425a539146f060dec1c8003344}{std\+::assoc\+\_\+legendrel} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, long double \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga96a1223727fa71ffbf520a98ac3dc885}{\+\_\+\+\_\+gnu\+\_\+cxx\+::assoc\+\_\+legendre\+\_\+q} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
+float \hyperlink{group__gnu__math__spec__func_ga61d651dc8b3c42fe47a02b36e95f72c0}{\+\_\+\+\_\+gnu\+\_\+cxx\+::assoc\+\_\+legendre\+\_\+qf} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, float \+\_\+\+\_\+x)
+\item 
+long double \hyperlink{group__gnu__math__spec__func_ga07a9e571759c6d24e96da8cc8268f91e}{\+\_\+\+\_\+gnu\+\_\+cxx\+::assoc\+\_\+legendre\+\_\+ql} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, long double \+\_\+\+\_\+x)
+\item 
+float \hyperlink{group__cxx17__math__spec__func_ga3ced07ddd24bf4af56e2712d148e7f57}{std\+::assoc\+\_\+legendref} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, float \+\_\+\+\_\+x)
+\item 
+long double \hyperlink{group__cxx17__math__spec__func_ga55977b425a539146f060dec1c8003344}{std\+::assoc\+\_\+legendrel} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, long double \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gac07286d722248a7f3c65a13b49b1fef5}{\+\_\+\+\_\+gnu\+\_\+cxx\+::bell} (unsigned int \+\_\+\+\_\+n)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up $>$ }\\\+\_\+\+Up \hyperlink{group__gnu__math__spec__func_ga1e87244cb33a10de204856cafb19046f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::bell} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Up \+\_\+\+\_\+x)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gad339f0011df1967ec6c9e55bd1547bf4}{\+\_\+\+\_\+gnu\+\_\+cxx\+::bernoulli} (unsigned int \+\_\+\+\_\+n)
 \item 
@@ -101,11 +114,11 @@ float \hyperlink{group__gnu__math__spec__func_gabcd77f012ae74989c4bb9ca61978481d
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gaac8f04abfdd6b744d11cb73ec1f564b1}{\+\_\+\+\_\+gnu\+\_\+cxx\+::bernoullil} (unsigned int \+\_\+\+\_\+n)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tpa , typename \+\_\+\+Tpb $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tpa, \+\_\+\+Tpb $>$ \hyperlink{group__tr29124__math__spec__func_gacd36403ae64b89840b1504f97024dcee}{std\+::beta} (\+\_\+\+Tpa \+\_\+\+\_\+a, \+\_\+\+Tpb \+\_\+\+\_\+b)
+{\footnotesize template$<$typename \+\_\+\+Tpa , typename \+\_\+\+Tpb $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tpa, \+\_\+\+Tpb $>$ \hyperlink{group__cxx17__math__spec__func_gacd36403ae64b89840b1504f97024dcee}{std\+::beta} (\+\_\+\+Tpa \+\_\+\+\_\+a, \+\_\+\+Tpb \+\_\+\+\_\+b)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_ga12dc61ee4c09172151cf092ed387e203}{std\+::betaf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+b)
+float \hyperlink{group__cxx17__math__spec__func_ga12dc61ee4c09172151cf092ed387e203}{std\+::betaf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+b)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_ga8caca1cef099f41a88111209c36ce06c}{std\+::betal} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+b)
+long double \hyperlink{group__cxx17__math__spec__func_ga8caca1cef099f41a88111209c36ce06c}{std\+::betal} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+b)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gabd0cf6e3f1e1d36c4c45f118e34a5ca2}{\+\_\+\+\_\+gnu\+\_\+cxx\+::binomial} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
 \begin{DoxyCompactList}\small\item\em Return the binomial coefficient as a real number. The binomial coefficient is given by\+: \[ \binom{n}{k} = \frac{n!}{(n-k)! k!} \] The binomial coefficients are generated by\+: \[ \left(1 + t\right)^n = \sum_{k=0}^n \binom{n}{k} t^k \]. \end{DoxyCompactList}\item 
@@ -171,23 +184,23 @@ long double \hyperlink{group__gnu__math__spec__func_ga33132bab39c8d78dde807b45fc
 \item 
 std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_gae39368808280f5c1b80dce7c2f4a67a7}{\+\_\+\+\_\+gnu\+\_\+cxx\+::clausenl} (unsigned int \+\_\+\+\_\+m, std\+::complex$<$ long double $>$ \+\_\+\+\_\+z)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__tr29124__math__spec__func_gad559217fb01e7a8b7a6e23eeedda64be}{std\+::comp\+\_\+ellint\+\_\+1} (\+\_\+\+Tp \+\_\+\+\_\+k)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__cxx17__math__spec__func_gad559217fb01e7a8b7a6e23eeedda64be}{std\+::comp\+\_\+ellint\+\_\+1} (\+\_\+\+Tp \+\_\+\+\_\+k)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_ga7fb5be999a8125cf7e55e630eb8444a1}{std\+::comp\+\_\+ellint\+\_\+1f} (float \+\_\+\+\_\+k)
+float \hyperlink{group__cxx17__math__spec__func_ga7fb5be999a8125cf7e55e630eb8444a1}{std\+::comp\+\_\+ellint\+\_\+1f} (float \+\_\+\+\_\+k)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_ga7247d3dd77c1ff5df3c059fed862dc48}{std\+::comp\+\_\+ellint\+\_\+1l} (long double \+\_\+\+\_\+k)
+long double \hyperlink{group__cxx17__math__spec__func_ga7247d3dd77c1ff5df3c059fed862dc48}{std\+::comp\+\_\+ellint\+\_\+1l} (long double \+\_\+\+\_\+k)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__tr29124__math__spec__func_gaadf288465eea84ec609d93de96200aaa}{std\+::comp\+\_\+ellint\+\_\+2} (\+\_\+\+Tp \+\_\+\+\_\+k)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__cxx17__math__spec__func_gaadf288465eea84ec609d93de96200aaa}{std\+::comp\+\_\+ellint\+\_\+2} (\+\_\+\+Tp \+\_\+\+\_\+k)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_ga21700f2f125c42b1f1da1f9c7eea1135}{std\+::comp\+\_\+ellint\+\_\+2f} (float \+\_\+\+\_\+k)
+float \hyperlink{group__cxx17__math__spec__func_ga21700f2f125c42b1f1da1f9c7eea1135}{std\+::comp\+\_\+ellint\+\_\+2f} (float \+\_\+\+\_\+k)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_ga47b647ec386c8d4b18a030c97842df18}{std\+::comp\+\_\+ellint\+\_\+2l} (long double \+\_\+\+\_\+k)
+long double \hyperlink{group__cxx17__math__spec__func_ga47b647ec386c8d4b18a030c97842df18}{std\+::comp\+\_\+ellint\+\_\+2l} (long double \+\_\+\+\_\+k)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tpn $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tpn $>$ \hyperlink{group__tr29124__math__spec__func_ga80419d323d3231870bd588525e818974}{std\+::comp\+\_\+ellint\+\_\+3} (\+\_\+\+Tp \+\_\+\+\_\+k, \+\_\+\+Tpn \+\_\+\+\_\+nu)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tpn $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tpn $>$ \hyperlink{group__cxx17__math__spec__func_ga80419d323d3231870bd588525e818974}{std\+::comp\+\_\+ellint\+\_\+3} (\+\_\+\+Tp \+\_\+\+\_\+k, \+\_\+\+Tpn \+\_\+\+\_\+nu)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_ga76834d3112f777703330892303267a39}{std\+::comp\+\_\+ellint\+\_\+3f} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+nu)
+float \hyperlink{group__cxx17__math__spec__func_ga76834d3112f777703330892303267a39}{std\+::comp\+\_\+ellint\+\_\+3f} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+nu)
 \begin{DoxyCompactList}\small\item\em Return the complete elliptic integral of the third kind $ \Pi(k,\nu) $ for {\ttfamily float} modulus $ k $. \end{DoxyCompactList}\item 
-long double \hyperlink{group__tr29124__math__spec__func_ga1ca081fee102cd0d4d6b091285e495e5}{std\+::comp\+\_\+ellint\+\_\+3l} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+nu)
+long double \hyperlink{group__cxx17__math__spec__func_ga1ca081fee102cd0d4d6b091285e495e5}{std\+::comp\+\_\+ellint\+\_\+3l} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+nu)
 \begin{DoxyCompactList}\small\item\em Return the complete elliptic integral of the third kind $ \Pi(k,\nu) $ for {\ttfamily long double} modulus $ k $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tk $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tk $>$ \hyperlink{group__gnu__math__spec__func_ga3fe79a91524b43ffc5ffb83c0eb2bd00}{\+\_\+\+\_\+gnu\+\_\+cxx\+::comp\+\_\+ellint\+\_\+d} (\+\_\+\+Tk \+\_\+\+\_\+k)
 \item 
@@ -243,23 +256,23 @@ float \hyperlink{group__gnu__math__spec__func_ga87202351dc97d2c69e42bf58f911fb5a
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga5f01f17ae8859129860118b09d51791c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cosintl} (long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ \hyperlink{group__tr29124__math__spec__func_ga29504b6008798072b0b8d6ea5a50ec60}{std\+::cyl\+\_\+bessel\+\_\+i} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ \hyperlink{group__cxx17__math__spec__func_ga29504b6008798072b0b8d6ea5a50ec60}{std\+::cyl\+\_\+bessel\+\_\+i} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_gaaf738427d4da0bda66bc2274dfb853a7}{std\+::cyl\+\_\+bessel\+\_\+if} (float \+\_\+\+\_\+nu, float \+\_\+\+\_\+x)
+float \hyperlink{group__cxx17__math__spec__func_gaaf738427d4da0bda66bc2274dfb853a7}{std\+::cyl\+\_\+bessel\+\_\+if} (float \+\_\+\+\_\+nu, float \+\_\+\+\_\+x)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_gab7962629216d03efb8ecaa3f70c6878f}{std\+::cyl\+\_\+bessel\+\_\+il} (long double \+\_\+\+\_\+nu, long double \+\_\+\+\_\+x)
+long double \hyperlink{group__cxx17__math__spec__func_gab7962629216d03efb8ecaa3f70c6878f}{std\+::cyl\+\_\+bessel\+\_\+il} (long double \+\_\+\+\_\+nu, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ \hyperlink{group__tr29124__math__spec__func_ga644f7eb975809674db88768f2f115744}{std\+::cyl\+\_\+bessel\+\_\+j} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ \hyperlink{group__cxx17__math__spec__func_ga644f7eb975809674db88768f2f115744}{std\+::cyl\+\_\+bessel\+\_\+j} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_ga15731a7bccd6351d28353e3c4c2a2d23}{std\+::cyl\+\_\+bessel\+\_\+jf} (float \+\_\+\+\_\+nu, float \+\_\+\+\_\+x)
+float \hyperlink{group__cxx17__math__spec__func_ga15731a7bccd6351d28353e3c4c2a2d23}{std\+::cyl\+\_\+bessel\+\_\+jf} (float \+\_\+\+\_\+nu, float \+\_\+\+\_\+x)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_gade8e94a80520a8b628b2d658755b25c0}{std\+::cyl\+\_\+bessel\+\_\+jl} (long double \+\_\+\+\_\+nu, long double \+\_\+\+\_\+x)
+long double \hyperlink{group__cxx17__math__spec__func_gade8e94a80520a8b628b2d658755b25c0}{std\+::cyl\+\_\+bessel\+\_\+jl} (long double \+\_\+\+\_\+nu, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ \hyperlink{group__tr29124__math__spec__func_gac73d664b8e7ceba7f8e786c93e97a084}{std\+::cyl\+\_\+bessel\+\_\+k} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ \hyperlink{group__cxx17__math__spec__func_gac73d664b8e7ceba7f8e786c93e97a084}{std\+::cyl\+\_\+bessel\+\_\+k} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_ga1f50047f9aab0ec8b1a1615fe9fbe32f}{std\+::cyl\+\_\+bessel\+\_\+kf} (float \+\_\+\+\_\+nu, float \+\_\+\+\_\+x)
+float \hyperlink{group__cxx17__math__spec__func_ga1f50047f9aab0ec8b1a1615fe9fbe32f}{std\+::cyl\+\_\+bessel\+\_\+kf} (float \+\_\+\+\_\+nu, float \+\_\+\+\_\+x)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_gac35194b926270d7857d651e06198c7d3}{std\+::cyl\+\_\+bessel\+\_\+kl} (long double \+\_\+\+\_\+nu, long double \+\_\+\+\_\+x)
+long double \hyperlink{group__cxx17__math__spec__func_gac35194b926270d7857d651e06198c7d3}{std\+::cyl\+\_\+bessel\+\_\+kl} (long double \+\_\+\+\_\+nu, long double \+\_\+\+\_\+x)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga5329bba77d10a9d2f15d9bbe43a70db3}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cyl\+\_\+hankel\+\_\+1} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+z)
 \item 
@@ -285,11 +298,11 @@ std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_ga4bab
 \item 
 std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_ga1ac6434925254bd02e108f5a4e52b34d}{\+\_\+\+\_\+gnu\+\_\+cxx\+::cyl\+\_\+hankel\+\_\+2l} (std\+::complex$<$ long double $>$ \+\_\+\+\_\+nu, std\+::complex$<$ long double $>$ \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ \hyperlink{group__tr29124__math__spec__func_ga1e4bef23704469b0704cf15c5f04e29e}{std\+::cyl\+\_\+neumann} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tpnu , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tpnu, \+\_\+\+Tp $>$ \hyperlink{group__cxx17__math__spec__func_ga1e4bef23704469b0704cf15c5f04e29e}{std\+::cyl\+\_\+neumann} (\+\_\+\+Tpnu \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_ga604c13e8f2bb7cd3c7c91d8b19d6b13a}{std\+::cyl\+\_\+neumannf} (float \+\_\+\+\_\+nu, float \+\_\+\+\_\+x)
+float \hyperlink{group__cxx17__math__spec__func_ga604c13e8f2bb7cd3c7c91d8b19d6b13a}{std\+::cyl\+\_\+neumannf} (float \+\_\+\+\_\+nu, float \+\_\+\+\_\+x)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_gaf8986bae9a523c48d861d233835bda8f}{std\+::cyl\+\_\+neumannl} (long double \+\_\+\+\_\+nu, long double \+\_\+\+\_\+x)
+long double \hyperlink{group__cxx17__math__spec__func_gaf8986bae9a523c48d861d233835bda8f}{std\+::cyl\+\_\+neumannl} (long double \+\_\+\+\_\+nu, long double \+\_\+\+\_\+x)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gabc97cbc04fdd23593e8dccbc1421dad5}{\+\_\+\+\_\+gnu\+\_\+cxx\+::dawson} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
@@ -339,23 +352,23 @@ float \hyperlink{group__gnu__math__spec__func_ga85ec284e603f32d18970bbdbb12d5150
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga0366730a4a775256217ef1cd9d0c3a04}{\+\_\+\+\_\+gnu\+\_\+cxx\+::double\+\_\+factoriall} (int \+\_\+\+\_\+n)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tpp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tpp $>$ \hyperlink{group__tr29124__math__spec__func_ga1550d6947bbbeee9865aabd398102a36}{std\+::ellint\+\_\+1} (\+\_\+\+Tp \+\_\+\+\_\+k, \+\_\+\+Tpp \+\_\+\+\_\+phi)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tpp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tpp $>$ \hyperlink{group__cxx17__math__spec__func_ga1550d6947bbbeee9865aabd398102a36}{std\+::ellint\+\_\+1} (\+\_\+\+Tp \+\_\+\+\_\+k, \+\_\+\+Tpp \+\_\+\+\_\+phi)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_ga308d23d70f4b5e848eb7a4173628ef3b}{std\+::ellint\+\_\+1f} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+phi)
+float \hyperlink{group__cxx17__math__spec__func_ga308d23d70f4b5e848eb7a4173628ef3b}{std\+::ellint\+\_\+1f} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+phi)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_ga795383fa51e02351000b410b478d824f}{std\+::ellint\+\_\+1l} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+phi)
+long double \hyperlink{group__cxx17__math__spec__func_ga795383fa51e02351000b410b478d824f}{std\+::ellint\+\_\+1l} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+phi)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tpp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tpp $>$ \hyperlink{group__tr29124__math__spec__func_gad64cb9babb7837d585912b1a94b2cb7d}{std\+::ellint\+\_\+2} (\+\_\+\+Tp \+\_\+\+\_\+k, \+\_\+\+Tpp \+\_\+\+\_\+phi)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tpp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tpp $>$ \hyperlink{group__cxx17__math__spec__func_gad64cb9babb7837d585912b1a94b2cb7d}{std\+::ellint\+\_\+2} (\+\_\+\+Tp \+\_\+\+\_\+k, \+\_\+\+Tpp \+\_\+\+\_\+phi)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_ga594a730163c6228c75b152462700062b}{std\+::ellint\+\_\+2f} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+phi)
+float \hyperlink{group__cxx17__math__spec__func_ga594a730163c6228c75b152462700062b}{std\+::ellint\+\_\+2f} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+phi)
 \begin{DoxyCompactList}\small\item\em Return the incomplete elliptic integral of the second kind $ E(k,\phi) $ for {\ttfamily float} argument. \end{DoxyCompactList}\item 
-long double \hyperlink{group__tr29124__math__spec__func_ga5c791332d374a809d8ca16c69a1a30f5}{std\+::ellint\+\_\+2l} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+phi)
+long double \hyperlink{group__cxx17__math__spec__func_ga5c791332d374a809d8ca16c69a1a30f5}{std\+::ellint\+\_\+2l} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+phi)
 \begin{DoxyCompactList}\small\item\em Return the incomplete elliptic integral of the second kind $ E(k,\phi) $. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tpn , typename \+\_\+\+Tpp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tpn, \+\_\+\+Tpp $>$ \hyperlink{group__tr29124__math__spec__func_gaac0240d1e7e401e652b9d1adf4c7e029}{std\+::ellint\+\_\+3} (\+\_\+\+Tp \+\_\+\+\_\+k, \+\_\+\+Tpn \+\_\+\+\_\+nu, \+\_\+\+Tpp \+\_\+\+\_\+phi)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tpn , typename \+\_\+\+Tpp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tpn, \+\_\+\+Tpp $>$ \hyperlink{group__cxx17__math__spec__func_gaac0240d1e7e401e652b9d1adf4c7e029}{std\+::ellint\+\_\+3} (\+\_\+\+Tp \+\_\+\+\_\+k, \+\_\+\+Tpn \+\_\+\+\_\+nu, \+\_\+\+Tpp \+\_\+\+\_\+phi)
 \begin{DoxyCompactList}\small\item\em Return the incomplete elliptic integral of the third kind $ \Pi(k,\nu,\phi) $. \end{DoxyCompactList}\item 
-float \hyperlink{group__tr29124__math__spec__func_ga1a80bd2c15bc9fbecda2630a9e9409e7}{std\+::ellint\+\_\+3f} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+nu, float \+\_\+\+\_\+phi)
+float \hyperlink{group__cxx17__math__spec__func_ga1a80bd2c15bc9fbecda2630a9e9409e7}{std\+::ellint\+\_\+3f} (float \+\_\+\+\_\+k, float \+\_\+\+\_\+nu, float \+\_\+\+\_\+phi)
 \begin{DoxyCompactList}\small\item\em Return the incomplete elliptic integral of the third kind $ \Pi(k,\nu,\phi) $ for {\ttfamily float} argument. \end{DoxyCompactList}\item 
-long double \hyperlink{group__tr29124__math__spec__func_gaa8c0e5864df8769021a7f3e21a30c5d2}{std\+::ellint\+\_\+3l} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+nu, long double \+\_\+\+\_\+phi)
+long double \hyperlink{group__cxx17__math__spec__func_gaa8c0e5864df8769021a7f3e21a30c5d2}{std\+::ellint\+\_\+3l} (long double \+\_\+\+\_\+k, long double \+\_\+\+\_\+nu, long double \+\_\+\+\_\+phi)
 \begin{DoxyCompactList}\small\item\em Return the incomplete elliptic integral of the third kind $ \Pi(k,\nu,\phi) $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tk , typename \+\_\+\+Tp , typename \+\_\+\+Ta , typename \+\_\+\+Tb $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tk, \+\_\+\+Tp, \+\_\+\+Ta, \+\_\+\+Tb $>$ \hyperlink{group__gnu__math__spec__func_ga6e44a0d90500e56ef4b3aba6efd7e2b0}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ellint\+\_\+cel} (\+\_\+\+Tk \+\_\+\+\_\+k\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+p, \+\_\+\+Ta \+\_\+\+\_\+a, \+\_\+\+Tb \+\_\+\+\_\+b)
 \item 
@@ -427,17 +440,19 @@ long double \hyperlink{group__gnu__math__spec__func_ga0774570b24f654f8ae39e18656
 \begin{DoxyCompactList}\small\item\em This returns Euler number $ E_n $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{group__gnu__math__spec__func_gadfd8810a97655d2cdd1b0e3af68a79d3}{\+\_\+\+\_\+gnu\+\_\+cxx\+::eulerian\+\_\+1} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga6597229d2557ccf12fd9c50a66919ceb}{\+\_\+\+\_\+gnu\+\_\+cxx\+::eulerian\+\_\+1} (unsigned int \+\_\+\+\_\+n)
+\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{group__gnu__math__spec__func_ga9bc456941d5e35cf54ec9c50f2e52884}{\+\_\+\+\_\+gnu\+\_\+cxx\+::eulerian\+\_\+2} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__tr29124__math__spec__func_ga0e9ac717a106ef54184b5f058c451782}{std\+::expint} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__cxx17__math__spec__func_ga0e9ac717a106ef54184b5f058c451782}{std\+::expint} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gadaf9317953b826975da72d1858f01ea5}{\+\_\+\+\_\+gnu\+\_\+cxx\+::expint} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_ga5842816f6eed2594e0a327df4e4a2a47}{std\+::expintf} (float \+\_\+\+\_\+x)
+float \hyperlink{group__cxx17__math__spec__func_ga5842816f6eed2594e0a327df4e4a2a47}{std\+::expintf} (float \+\_\+\+\_\+x)
 \item 
 float \hyperlink{group__gnu__math__spec__func_ga85751691a29807d99e990fcba61312f3}{\+\_\+\+\_\+gnu\+\_\+cxx\+::expintf} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_ga1329130b32328d0666e290ee5931fa4f}{std\+::expintl} (long double \+\_\+\+\_\+x)
+long double \hyperlink{group__cxx17__math__spec__func_ga1329130b32328d0666e290ee5931fa4f}{std\+::expintl} (long double \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga720ca0b275784c8b82193f427a2b3553}{\+\_\+\+\_\+gnu\+\_\+cxx\+::expintl} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
 \item 
@@ -452,7 +467,7 @@ float \hyperlink{group__gnu__math__spec__func_ga5a288283a8ed63e1d2b0145f313a5378
 long double \hyperlink{group__gnu__math__spec__func_ga0904e504fdc3c8b9b6f5c66a73531584}{\+\_\+\+\_\+gnu\+\_\+cxx\+::factoriall} (unsigned int \+\_\+\+\_\+n)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tnu $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tnu $>$ \hyperlink{group__gnu__math__spec__func_ga3cc8eb6068c7155ec48b40e20160c5c0}{\+\_\+\+\_\+gnu\+\_\+cxx\+::falling\+\_\+factorial} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tnu \+\_\+\+\_\+nu)
-\begin{DoxyCompactList}\small\item\em Return the falling factorial function or the lower Pochhammer symbol for real argument $ a $ and integral order $ n $. The falling factorial function is defined by \[ a^{\underline{n}} = \prod_{k=0}^{n-1} (a - k), a^{\underline{0}} = 1 = \Gamma(a + 1) / \Gamma(a - n + 1) \] In particular, $ n^{\underline{n}} = n! $. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Return the falling factorial function or the lower Pochhammer symbol for real argument $ a $ and integral order $ n $. The falling factorial function is defined by \[ a^{\underline{n}} = \prod_{k=0}^{n-1} (a - k) = \Gamma(a + 1) / \Gamma(a - n + 1) \] where $ a^{\underline{0}} \equiv 1 $. In particular, $ n^{\underline{n}} = n! $. \end{DoxyCompactList}\item 
 float \hyperlink{group__gnu__math__spec__func_gaf32abbc790bfa870725728e5470de532}{\+\_\+\+\_\+gnu\+\_\+cxx\+::falling\+\_\+factorialf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+nu)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gab816c3bcbe00595881799ce969475085}{\+\_\+\+\_\+gnu\+\_\+cxx\+::falling\+\_\+factoriall} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+nu)
@@ -507,11 +522,11 @@ long double \hyperlink{group__gnu__math__spec__func_ga1f1110d7a116bd5636924bb96d
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gab052b72af9c7ec030bcea81965390614}{\+\_\+\+\_\+gnu\+\_\+cxx\+::harmonic} (unsigned int \+\_\+\+\_\+n)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__tr29124__math__spec__func_ga8bd1626f1e3f7256c4fd13579f881183}{std\+::hermite} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__cxx17__math__spec__func_ga8bd1626f1e3f7256c4fd13579f881183}{std\+::hermite} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_ga94dae7444bb349e33057a92932db8abe}{std\+::hermitef} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
+float \hyperlink{group__cxx17__math__spec__func_ga94dae7444bb349e33057a92932db8abe}{std\+::hermitef} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_ga21f8e312ee3e65286f86bf141b0f32e0}{std\+::hermitel} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
+long double \hyperlink{group__cxx17__math__spec__func_ga21f8e312ee3e65286f86bf141b0f32e0}{std\+::hermitel} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tk , typename \+\_\+\+Tphi $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tk, \+\_\+\+Tphi $>$ \hyperlink{group__gnu__math__spec__func_ga7537f96eedc8571ed1987481b2863e89}{\+\_\+\+\_\+gnu\+\_\+cxx\+::heuman\+\_\+lambda} (\+\_\+\+Tk \+\_\+\+\_\+k, \+\_\+\+Tphi \+\_\+\+\_\+phi)
 \item 
@@ -599,11 +614,15 @@ float \hyperlink{group__gnu__math__spec__func_ga450db12e06d6993d169afab5b3f6d0b8
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga2898a5ebf451eaf259ecfcdd171aa72b}{\+\_\+\+\_\+gnu\+\_\+cxx\+::jacobil} (unsigned \+\_\+\+\_\+n, long double \+\_\+\+\_\+alpha, long double \+\_\+\+\_\+beta, long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__tr29124__math__spec__func_ga9d7b24a11dad27690387405548973ef9}{std\+::laguerre} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__cxx17__math__spec__func_ga9d7b24a11dad27690387405548973ef9}{std\+::laguerre} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_gada763419b0e21b38e38daa8b6eb56a8c}{std\+::laguerref} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
+float \hyperlink{group__cxx17__math__spec__func_gada763419b0e21b38e38daa8b6eb56a8c}{std\+::laguerref} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_gaaf8b141edf9163b37ea4f2ed3e0191fc}{std\+::laguerrel} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
+long double \hyperlink{group__cxx17__math__spec__func_gaaf8b141edf9163b37ea4f2ed3e0191fc}{std\+::laguerrel} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{group__gnu__math__spec__func_gaa3491fabb0a6ef54a946a7a23ca866c7}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lah} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga161fe80a0d88f67a5a16ef2dcc3d4645}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lah} (unsigned int \+\_\+\+\_\+n)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gabfa5aeba56edfa110846fc8e76963bc2}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lbinomial} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
 \begin{DoxyCompactList}\small\item\em Return the logarithm of the binomial coefficient as a real number. The binomial coefficient is given by\+: \[ \binom{n}{k} = \frac{n!}{(n-k)! k!} \] The binomial coefficients are generated by\+: \[ \left(1 + t\right)^n = \sum_{k=0}^n \binom{n}{k} t^k \]. \end{DoxyCompactList}\item 
@@ -617,7 +636,7 @@ float \hyperlink{group__gnu__math__spec__func_ga33ecc59a7ff139b483cebf42ecd4fe79
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gae8fa4b4866cfd20349c985b33ed2936e}{\+\_\+\+\_\+gnu\+\_\+cxx\+::ldouble\+\_\+factoriall} (int \+\_\+\+\_\+n)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__tr29124__math__spec__func_gad06811f4e139b0ba84235c1f0d34d86e}{std\+::legendre} (unsigned int \+\_\+\+\_\+l, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__cxx17__math__spec__func_gad06811f4e139b0ba84235c1f0d34d86e}{std\+::legendre} (unsigned int \+\_\+\+\_\+l, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gadad5b22d0075dca31690907668af568f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::legendre\+\_\+q} (unsigned int \+\_\+\+\_\+l, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
@@ -625,9 +644,9 @@ float \hyperlink{group__gnu__math__spec__func_ga46cf4d58886af402c6776bc090b4e4a7
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga60feac5a8bd733abee6610adf15208f2}{\+\_\+\+\_\+gnu\+\_\+cxx\+::legendre\+\_\+ql} (unsigned int \+\_\+\+\_\+l, long double \+\_\+\+\_\+x)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_gaed94e3c664c99f5204da75be75aeac21}{std\+::legendref} (unsigned int \+\_\+\+\_\+l, float \+\_\+\+\_\+x)
+float \hyperlink{group__cxx17__math__spec__func_gaed94e3c664c99f5204da75be75aeac21}{std\+::legendref} (unsigned int \+\_\+\+\_\+l, float \+\_\+\+\_\+x)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_ga1b39bc22e3cc4860d08eb54099460391}{std\+::legendrel} (unsigned int \+\_\+\+\_\+l, long double \+\_\+\+\_\+x)
+long double \hyperlink{group__cxx17__math__spec__func_ga1b39bc22e3cc4860d08eb54099460391}{std\+::legendrel} (unsigned int \+\_\+\+\_\+l, long double \+\_\+\+\_\+x)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Ts , typename \+\_\+\+Ta $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Ts, \+\_\+\+Ta $>$ \hyperlink{group__gnu__math__spec__func_ga31d7cfc601a99d72e58f654d0c890fd6}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lerch\+\_\+phi} (\+\_\+\+Tp \+\_\+\+\_\+z, \+\_\+\+Ts \+\_\+\+\_\+s, \+\_\+\+Ta \+\_\+\+\_\+a)
 \item 
@@ -642,7 +661,7 @@ float \hyperlink{group__gnu__math__spec__func_ga65af05c4093d4895a564a8d67e389a9b
 long double \hyperlink{group__gnu__math__spec__func_ga3a0c196f34916dc68c29c89f26cbe1ee}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lfactoriall} (unsigned int \+\_\+\+\_\+n)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tnu $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tnu $>$ \hyperlink{group__gnu__math__spec__func_ga2032c10640d5010666d60d9faec86c32}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lfalling\+\_\+factorial} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tnu \+\_\+\+\_\+nu)
-\begin{DoxyCompactList}\small\item\em Return the logarithm of the falling factorial function or the lower Pochhammer symbol. The falling factorial function is defined by \[ a^{\underline{n}} = \Gamma(a + 1) / \Gamma(a - \nu + 1) = \prod_{k=0}^{n-1} (a - k), a^{\underline{0}} = 1 \] In particular, $ n^{\underline{n}} = n! $. Thus this function returns \[ ln[a^{\underline{n}}] = ln[\Gamma(a + 1)] - ln[\Gamma(a - \nu + 1)], ln[a^{\underline{0}}] = 0 \] Many notations exist for this function\+: $ (a)_\nu $, \[ \{ \begin{array}{c} a \\ \nu \end{array} \} \], and others. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Return the logarithm of the falling factorial function or the lower Pochhammer symbol. The falling factorial function is defined by \[ a^{\underline{n}} = \frac{\Gamma(a + 1)}{\Gamma(a - \nu + 1)} = \prod_{k=0}^{n-1} (a - k) \] where $ a^{\underline{0}} \equiv 1 $. In particular, $ n^{\underline{n}} = n! $. Thus this function returns \[ ln[a^{\underline{n}}] = ln[\Gamma(a + 1)] - ln[\Gamma(a - \nu + 1)] \] where $ ln[a^{\underline{0}}] \equiv 0 $. Many notations exist for this function\+: $ (a)_\nu $, \[ \{ \begin{array}{c} a \\ \nu \end{array} \} \], and others. \end{DoxyCompactList}\item 
 float \hyperlink{group__gnu__math__spec__func_ga59ad7045c90aa1e3bc671e2eb6b8a2a7}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lfalling\+\_\+factorialf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+nu)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gaa69b6c70e000b073d7f0f17199b1feb0}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lfalling\+\_\+factoriall} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+nu)
@@ -674,10 +693,12 @@ long double \hyperlink{group__gnu__math__spec__func_gab17f5cadc8f77ba2666d0d5ecc
 {\footnotesize template$<$typename \+\_\+\+Tmu , typename \+\_\+\+Tsig , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tmu, \+\_\+\+Tsig, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaef4db41e58e53144df2ddcc834d88e0b}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lognormal\+\_\+pdf} (\+\_\+\+Tmu \+\_\+\+\_\+mu, \+\_\+\+Tsig \+\_\+\+\_\+sigma, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Return the lognormal probability density function. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tnu $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tnu $>$ \hyperlink{group__gnu__math__spec__func_ga8912b75b2f7592fb61128c766e7313b9}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lrising\+\_\+factorial} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tnu \+\_\+\+\_\+nu)
-\begin{DoxyCompactList}\small\item\em Return the logarithm of the rising factorial function or the (upper) Pochhammer symbol. The rising factorial function is defined for integer order by \[ a^{\overline{\nu}} = \Gamma(a + \nu) / \Gamma(n) = \prod_{k=0}^{\nu-1} (a + k), \overline{0} = 1 \] Thus this function returns \[ ln[a^{\overline{\nu}}] = ln[\Gamma(a + \nu)] - ln[\Gamma(\nu)], ln[a^{\overline{0}}] = 0 \] Many notations exist for this function\+: $ (a)_\nu $ (especially in the literature of special functions), \[ \left[ \begin{array}{c} a \\ \nu \end{array} \right] \], and others. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Return the logarithm of the rising factorial function or the (upper) Pochhammer symbol. The rising factorial function is defined for integer order by \[ a^{\overline{\nu}} = \Gamma(a + \nu) / \Gamma(n) = \prod_{k=0}^{\nu-1} (a + k), \overline{0} \equiv 1 \] Thus this function returns \[ ln[a^{\overline{\nu}}] = ln[\Gamma(a + \nu)] - ln[\Gamma(\nu)], ln[a^{\overline{0}}] \equiv 0 \] Many notations exist for this function\+: $ (a)_\nu $, called the Pochhammer function (esp. in the literature of special functions), and \[ \left[ \begin{array}{c} a \\ \nu \end{array} \right] \], and others. \end{DoxyCompactList}\item 
 float \hyperlink{group__gnu__math__spec__func_ga68c64f4e44d03b5b3f75f90dbe2e0819}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lrising\+\_\+factorialf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+nu)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga1ac811f56f38f7ea7a1e035ec0157f6b}{\+\_\+\+\_\+gnu\+\_\+cxx\+::lrising\+\_\+factoriall} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+nu)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Ta , typename \+\_\+\+Tb $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Ta, \+\_\+\+Tb $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga1a51079e00fbe5473d8cf9ad3304c5c6}{\+\_\+\+\_\+gnu\+\_\+cxx\+::mittag\+\_\+leffler} (\+\_\+\+Ta \+\_\+\+\_\+alpha, \+\_\+\+Tb \+\_\+\+\_\+beta, const std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+z)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tmu , typename \+\_\+\+Tsig , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tmu, \+\_\+\+Tsig, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaeb735b0fb98c7684ba61b8940f50193c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::normal\+\_\+p} (\+\_\+\+Tmu \+\_\+\+\_\+mu, \+\_\+\+Tsig \+\_\+\+\_\+sigma, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Return the normal cumulative probability density function. \end{DoxyCompactList}\item 
@@ -688,6 +709,14 @@ long double \hyperlink{group__gnu__math__spec__func_ga1ac811f56f38f7ea7a1e035ec0
 float \hyperlink{group__gnu__math__spec__func_gac24d32e9b072c4953654d5559f992871}{\+\_\+\+\_\+gnu\+\_\+cxx\+::owens\+\_\+tf} (float \+\_\+\+\_\+h, float \+\_\+\+\_\+a)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga7a8bc60dc0ef4a009586872eb7cac2d0}{\+\_\+\+\_\+gnu\+\_\+cxx\+::owens\+\_\+tl} (long double \+\_\+\+\_\+h, long double \+\_\+\+\_\+a)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ std\+::complex$<$ \+\_\+\+Tp $>$, \+\_\+\+Up $>$ \hyperlink{group__gnu__math__spec__func_ga06b06216e87b868cb21c76d33ac560c8}{\+\_\+\+\_\+gnu\+\_\+cxx\+::periodic\+\_\+zeta} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Up \+\_\+\+\_\+s)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ std\+::complex$<$ \+\_\+\+Tp $>$, std\+::complex$<$ \+\_\+\+Up $>$ $>$ \hyperlink{group__gnu__math__spec__func_gaf3704ce510319b5c4c5cedd55dfaa42f}{\+\_\+\+\_\+gnu\+\_\+cxx\+::periodic\+\_\+zeta} (std\+::complex$<$ \+\_\+\+Up $>$ \+\_\+\+\_\+z, \+\_\+\+Tp \+\_\+\+\_\+s)
+\item 
+std\+::complex$<$ float $>$ \hyperlink{group__gnu__math__spec__func_ga1308c2a5d1b263757485cb48eb2c19ff}{\+\_\+\+\_\+gnu\+\_\+cxx\+::periodic\+\_\+zetaf} (float \+\_\+\+\_\+x, float \+\_\+\+\_\+s)
+\item 
+std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_gab7573fb57ebaabac4432bb5e6b525151}{\+\_\+\+\_\+gnu\+\_\+cxx\+::periodic\+\_\+zetal} (long double \+\_\+\+\_\+x, long double \+\_\+\+\_\+s)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga65e674e7fe1457e819897e0d608c18b8}{\+\_\+\+\_\+gnu\+\_\+cxx\+::polygamma} (unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
@@ -713,14 +742,14 @@ float \hyperlink{group__gnu__math__spec__func_ga8a98d7c7c14f1aadff90123a114fa2c9
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga377febebd1096400897170bb7a76cd3a}{\+\_\+\+\_\+gnu\+\_\+cxx\+::radpolyl} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m, long double \+\_\+\+\_\+rho)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__tr29124__math__spec__func_gac4ef9d52ee583c77937c3a420b7c72ca}{std\+::riemann\+\_\+zeta} (\+\_\+\+Tp \+\_\+\+\_\+s)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__cxx17__math__spec__func_gac4ef9d52ee583c77937c3a420b7c72ca}{std\+::riemann\+\_\+zeta} (\+\_\+\+Tp \+\_\+\+\_\+s)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_gaf92063315061a56d3e2c4053156d968e}{std\+::riemann\+\_\+zetaf} (float \+\_\+\+\_\+s)
+float \hyperlink{group__cxx17__math__spec__func_gaf92063315061a56d3e2c4053156d968e}{std\+::riemann\+\_\+zetaf} (float \+\_\+\+\_\+s)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_ga1e92da3b878d75270f38d3ec9b513086}{std\+::riemann\+\_\+zetal} (long double \+\_\+\+\_\+s)
+long double \hyperlink{group__cxx17__math__spec__func_ga1e92da3b878d75270f38d3ec9b513086}{std\+::riemann\+\_\+zetal} (long double \+\_\+\+\_\+s)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tnu $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tnu $>$ \hyperlink{group__gnu__math__spec__func_gae8c36a0e1f60254cf212a3806f7c675c}{\+\_\+\+\_\+gnu\+\_\+cxx\+::rising\+\_\+factorial} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tnu \+\_\+\+\_\+nu)
-\begin{DoxyCompactList}\small\item\em Return the rising factorial function or the (upper) Pochhammer function. The rising factorial function is defined by \[ a^{\overline{\nu}} = \Gamma(a + \nu) / \Gamma(\nu) \] Many notations exist for this function\+: $ (a)_\nu $, (especially in the literature of special functions), \[ \left[ \begin{array}{c} a \\ n \end{array} \right] \], and others. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Return the rising factorial function or the (upper) Pochhammer function. The rising factorial function is defined by \[ a^{\overline{\nu}} = \Gamma(a + \nu) / \Gamma(\nu) \] Many notations exist for this function\+: $ (a)_\nu $, called the Pochhammer function (esp. in the literature of special functions), and \[ \left[ \begin{array}{c} a \\ \nu \end{array} \right] \], and others. \end{DoxyCompactList}\item 
 float \hyperlink{group__gnu__math__spec__func_ga10da05b995a42f0b0625e61186af7449}{\+\_\+\+\_\+gnu\+\_\+cxx\+::rising\+\_\+factorialf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+nu)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gac9a399ae01c315aa78a64b445795d974}{\+\_\+\+\_\+gnu\+\_\+cxx\+::rising\+\_\+factoriall} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+nu)
@@ -787,7 +816,7 @@ float \hyperlink{group__gnu__math__spec__func_ga8b63406fec50d7e00470521b82fb32a2
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga3ff83e5c5f1435064b6942ca8b7c8779}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sinintl} (long double \+\_\+\+\_\+x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__tr29124__math__spec__func_gad125841d7c85e461cb8954952e3a17c8}{std\+::sph\+\_\+bessel} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__cxx17__math__spec__func_gad125841d7c85e461cb8954952e3a17c8}{std\+::sph\+\_\+bessel} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga156b8154b27b7898c8b2abf4284f7323}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+bessel\+\_\+i} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
@@ -801,9 +830,9 @@ float \hyperlink{group__gnu__math__spec__func_gaf886e8f8dfd2af0c4a9c5929d193d12f
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga22f6a73e50e7020a7c2fa64ce1b9be41}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+bessel\+\_\+kl} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_ga534e36e1dcefad8daec98920db16eec4}{std\+::sph\+\_\+besself} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
+float \hyperlink{group__cxx17__math__spec__func_ga534e36e1dcefad8daec98920db16eec4}{std\+::sph\+\_\+besself} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_ga11d72b1af81ce9da3c878a25087ee927}{std\+::sph\+\_\+bessell} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
+long double \hyperlink{group__cxx17__math__spec__func_ga11d72b1af81ce9da3c878a25087ee927}{std\+::sph\+\_\+bessell} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga4424f565fb224ab88b177beb65d08305}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+hankel\+\_\+1} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+z)
 \item 
@@ -835,21 +864,25 @@ std\+::complex$<$ float $>$ \hyperlink{group__gnu__math__spec__func_ga062b1156f5
 \item 
 std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_ga414c8374b4579aa14e38f5401304b6fa}{\+\_\+\+\_\+gnu\+\_\+cxx\+::sph\+\_\+harmonicl} (unsigned int \+\_\+\+\_\+l, int \+\_\+\+\_\+m, long double \+\_\+\+\_\+theta, long double \+\_\+\+\_\+phi)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__tr29124__math__spec__func_gacef0d41a7ce572a9ace3437498794ed0}{std\+::sph\+\_\+legendre} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+theta)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__cxx17__math__spec__func_gacef0d41a7ce572a9ace3437498794ed0}{std\+::sph\+\_\+legendre} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+theta)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_gaae635d28c06a3be2679901b382090852}{std\+::sph\+\_\+legendref} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, float \+\_\+\+\_\+theta)
+float \hyperlink{group__cxx17__math__spec__func_gaae635d28c06a3be2679901b382090852}{std\+::sph\+\_\+legendref} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, float \+\_\+\+\_\+theta)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_ga2f6618dea1847f09fd67f3c974c1910d}{std\+::sph\+\_\+legendrel} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, long double \+\_\+\+\_\+theta)
+long double \hyperlink{group__cxx17__math__spec__func_ga2f6618dea1847f09fd67f3c974c1910d}{std\+::sph\+\_\+legendrel} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, long double \+\_\+\+\_\+theta)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__tr29124__math__spec__func_ga01cdd716aaca8ff3c08f307800fd5220}{std\+::sph\+\_\+neumann} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__cxx17__math__spec__func_ga01cdd716aaca8ff3c08f307800fd5220}{std\+::sph\+\_\+neumann} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
-float \hyperlink{group__tr29124__math__spec__func_ga789143122fa99536329bc2d1b1aac2f0}{std\+::sph\+\_\+neumannf} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
+float \hyperlink{group__cxx17__math__spec__func_ga789143122fa99536329bc2d1b1aac2f0}{std\+::sph\+\_\+neumannf} (unsigned int \+\_\+\+\_\+n, float \+\_\+\+\_\+x)
 \item 
-long double \hyperlink{group__tr29124__math__spec__func_ga3cededa9b6e4601f190c3811e6aabfd6}{std\+::sph\+\_\+neumannl} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
+long double \hyperlink{group__cxx17__math__spec__func_ga3cededa9b6e4601f190c3811e6aabfd6}{std\+::sph\+\_\+neumannl} (unsigned int \+\_\+\+\_\+n, long double \+\_\+\+\_\+x)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{group__gnu__math__spec__func_ga2b955dac7d2c5125f2091eaeb25c8ad2}{\+\_\+\+\_\+gnu\+\_\+cxx\+::stirling\+\_\+1} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaff3d42b2ec5364d24c1ad0ef4b374a8d}{\+\_\+\+\_\+gnu\+\_\+cxx\+::stirling\+\_\+1} (unsigned int \+\_\+\+\_\+n)
+\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{group__gnu__math__spec__func_ga3761c0e467cbe45cbda66a4e796adcd3}{\+\_\+\+\_\+gnu\+\_\+cxx\+::stirling\+\_\+2} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga6a2386b3e0940935f10a163baa925656}{\+\_\+\+\_\+gnu\+\_\+cxx\+::stirling\+\_\+2} (unsigned int \+\_\+\+\_\+n)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tt , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga5a84386b009ac57a726d5d0314fdf7ce}{\+\_\+\+\_\+gnu\+\_\+cxx\+::student\+\_\+t\+\_\+p} (\+\_\+\+Tt \+\_\+\+\_\+t, unsigned int \+\_\+\+\_\+nu)
 \begin{DoxyCompactList}\small\item\em Return the Students T probability function. \end{DoxyCompactList}\item 

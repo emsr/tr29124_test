@@ -1155,9 +1155,7 @@ namespace __detail
    * Otherwise std::domain_error is thrown.
    * The Dirichlet eta function, in terms of the polylogarithm, is
    * @f[
-   *   \renewcommand\Re{\operatorname{Re}}
-   *   \renewcommand\Im{\operatorname{Im}}
-   *   \eta(s) = -\Re{Li_s(-1)}
+   *   \eta(s) = -\Re[Li_s(-1)]
    * @f]
    *
    * @param __s  The complex (but on-real-axis) argument.
@@ -1180,9 +1178,7 @@ namespace __detail
    * Return the Dirichlet eta function for real argument.
    * The Dirichlet eta function, in terms of the polylogarithm, is
    * @f[
-   *   \renewcommand\Re{\operatorname{Re}}
-   *   \renewcommand\Im{\operatorname{Im}}
-   *   \eta(s) = -\Re{Li_s(-1)}
+   *   \eta(s) = -\Re[Li_s(-1)]
    * @f]
    *
    * @param __s  The real argument.
@@ -1219,9 +1215,7 @@ namespace __detail
    * Otherwise std::domain_error is thrown.
    * The Dirichlet beta function, in terms of the polylogarithm, is
    * @f[
-   *   \renewcommand\Re{\operatorname{Re}}
-   *   \renewcommand\Im{\operatorname{Im}}
-   *   \beta(s) = \Im{Li_s(i)}
+   *   \beta(s) = \Im[Li_s(i)]
    * @f]
    *
    * @param __s  The complex (but on-real-axis) argument.
@@ -1245,9 +1239,7 @@ namespace __detail
    * Return the Dirichlet beta function for real argument.
    * The Dirichlet beta function, in terms of the polylogarithm, is
    * @f[
-   *   \renewcommand\Re{\operatorname{Re}}
-   *   \renewcommand\Im{\operatorname{Im}}
-   *   \beta(s) = \Im{Li_s(i)}
+   *   \beta(s) = \Im[Li_s(i)]
    * @f]
    *
    * @param __s  The real argument.
