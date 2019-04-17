@@ -5,7 +5,7 @@
 namespace std
 {
   template<typename _Tp>
-    inline constexpr bool is_integral_v = is_integral<_Tp>::value;
+    constexpr bool is_integral_v = is_integral<_Tp>::value;
 }
 #endif
 
