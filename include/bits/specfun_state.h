@@ -118,7 +118,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The method lobatto() will return the Lobatto polynomial:
    * @f[
    *   Lo_l(x) = (1 - x^2)P'_l(x) = l \left[ P_{l - 1}(x) - x P_l(x) \right]
-   * @f[
+   * @f]
    */
   template<typename _Tp>
     struct __legendre_p_t

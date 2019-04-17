@@ -77,10 +77,18 @@ class \hyperlink{classstd_1_1____detail_1_1__Terminator}{\+\_\+\+Terminator}
 \begin{DoxyCompactList}\small\item\em Compute the arguments for the Airy function evaluations carefully to prevent premature overflow. Note that the major work here is in {\ttfamily safe\+\_\+div}. A faster, but less safe implementation can be obtained without use of safe\+\_\+div. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_ae5536305d721e393efe1a74f0e57653e}{\+\_\+\+\_\+airy\+\_\+bi} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z)
 \begin{DoxyCompactList}\small\item\em Return the complex Airy Bi function. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a7d47c4512f7c6914f5504fde6ffa31fb}{\+\_\+\+\_\+assoc\+\_\+laguerre} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tpa , typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a85319f12c991f6b19511d17413400b52}{\+\_\+\+\_\+assoc\+\_\+laguerre} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tpa \+\_\+\+\_\+alpha, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em This routine returns the associated Laguerre polynomial of degree n, order m\+: $ L_n^{(m)}(x) $. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_afd2b7e1cb349f144f5527f4f415bc324}{\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \+\_\+\+\_\+phase=\+\_\+\+Tp\{+1\})
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____assoc__legendre__p__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p\+\_\+t}$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a34054ec9dd56cd3807582d0725f80088}{\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \+\_\+\+\_\+phase=\+\_\+\+Tp\{+1\})
 \begin{DoxyCompactList}\small\item\em Return the associated Legendre function by recursion on $ l $ and downward recursion on m. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____assoc__legendre__q__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+q\+\_\+t}$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_abc21e6e1aa5290b46dbec04a81d14eec}{\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+q} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \+\_\+\+\_\+phase=\+\_\+\+Tp\{+1\})
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_ae2c2fdeec1af50db0d274cae70168dc9}{\+\_\+\+\_\+bell} (unsigned int \+\_\+\+\_\+n)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up $>$ }\\\+\_\+\+Up \hyperlink{namespacestd_1_1____detail_a416c4b8a894dc8755484a8ad8740453a}{\+\_\+\+\_\+bell} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Up \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_acab68a50669a465d6bddc7a54a649819}{\+\_\+\+\_\+bell\+\_\+series} (unsigned int \+\_\+\+\_\+n)
+\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+G\+L\+I\+B\+C\+X\+X14\+\_\+\+C\+O\+N\+S\+T\+E\+X\+PR \+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a68ae2aecb4cdf37b72cd60409cdc500c}{\+\_\+\+\_\+bernoulli} (unsigned int \+\_\+\+\_\+n)
 \begin{DoxyCompactList}\small\item\em This returns Bernoulli number $ B_n $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a1171e65b7fb7712f0181fe7288acb343}{\+\_\+\+\_\+bernoulli} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
@@ -301,11 +309,19 @@ class \hyperlink{classstd_1_1____detail_1_1__Terminator}{\+\_\+\+Terminator}
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a4556229d8792527574bfc6fa135908dd}{\+\_\+\+\_\+eulerian\+\_\+1} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_ad0759105350d0c440c1b5e8957223438}{\+\_\+\+\_\+eulerian\+\_\+1} (unsigned int \+\_\+\+\_\+n)
+\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_afab99319465d188432fa8357d65129e0}{\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_acab0c44030d62f8ff1576a33b90aa9e3}{\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur} (unsigned int \+\_\+\+\_\+n)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_aa93423478ed5fd1fc260cc30466bef73}{\+\_\+\+\_\+eulerian\+\_\+2} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a9c1abae84b487289ce8f798bcfe4b7e0}{\+\_\+\+\_\+eulerian\+\_\+2} (unsigned int \+\_\+\+\_\+n)
+\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a8a2a09c66c530759ae98ac1f3c1d93e5}{\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a5609870200a041b3ace18c15e212a275}{\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur} (unsigned int \+\_\+\+\_\+n)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a51c70764063ef329a4ab96f837c99faf}{\+\_\+\+\_\+exp2} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
@@ -493,14 +509,24 @@ class \hyperlink{classstd_1_1____detail_1_1__Terminator}{\+\_\+\+Terminator}
 \begin{DoxyCompactList}\small\item\em This routine returns the associated Laguerre polynomial of degree {\ttfamily n}, order {\ttfamily $ \alpha $}\+: $ L_n^{(\alpha)}(x) $ by recursion. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \hyperlink{struct____gnu__cxx_1_1____quadrature__point__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+quadrature\+\_\+point\+\_\+t}$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{namespacestd_1_1____detail_a12f5145d6544afee991b30a30020e86b}{\+\_\+\+\_\+laguerre\+\_\+zeros} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+alpha1)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_ac124597fd6b7d77f4474d62dda0b5715}{\+\_\+\+\_\+lah} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_af6d01a95dbd0418929960fa127e01b99}{\+\_\+\+\_\+lah} (unsigned int \+\_\+\+\_\+n)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_ac3e6ae56f6e6e31636f0bc46a11d9b8e}{\+\_\+\+\_\+lah\+\_\+recur} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a335ad35b2674153db0fe4da6d025afae}{\+\_\+\+\_\+lah\+\_\+recur} (unsigned int \+\_\+\+\_\+n)
+\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+G\+L\+I\+B\+C\+X\+X14\+\_\+\+C\+O\+N\+S\+T\+E\+X\+PR \+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a84722b82d6d614aa4653eb7559f7d508}{\+\_\+\+\_\+lanczos\+\_\+binet1p} (\+\_\+\+Tp \+\_\+\+\_\+z)
 \begin{DoxyCompactList}\small\item\em Return the Binet function $ J(1+z) $ by the Lanczos method. The Binet function is the log of the scaled Gamma function $ log(\Gamma^*(z)) $ defined by \[ J(z) = log(\Gamma^*(z)) = log\left(\Gamma(z)\right) + z - \left(z-\frac{1}{2}\right) log(z) - log(2\pi) \] or \[ \Gamma(z) = \sqrt{2\pi}z^{z-\frac{1}{2}}e^{-z}e^{J(z)} \] where $ \Gamma(z) $ is the gamma function. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+G\+L\+I\+B\+C\+X\+X14\+\_\+\+C\+O\+N\+S\+T\+E\+X\+PR \+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a4586aeea80ba556ab8d6393dadb05c5c}{\+\_\+\+\_\+lanczos\+\_\+log\+\_\+gamma1p} (\+\_\+\+Tp \+\_\+\+\_\+z)
 \begin{DoxyCompactList}\small\item\em Return the logarithm of the gamma function $ log(\Gamma(1+z)) $ by the Lanczos method. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____legendre__p__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_ab06b50bbac9758b5a2cc7d3d8213daa9}{\+\_\+\+\_\+legendre\+\_\+p} (unsigned int \+\_\+\+\_\+l, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Return the Legendre polynomial by upward recursion on degree $ l $. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a0643760e0d1701df4db880b2ad969055}{\+\_\+\+\_\+legendre\+\_\+q} (unsigned int \+\_\+\+\_\+l, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____legendre__q__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+q\+\_\+t}$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_aa3260951fa25185d757b65145fb1d3c9}{\+\_\+\+\_\+legendre\+\_\+q} (unsigned int \+\_\+\+\_\+l, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Return the Legendre function of the second kind by upward recursion on degree $ l $. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a8a1a46e206545e8c7d3cae2a508833aa}{\+\_\+\+\_\+legendre\+\_\+q\+\_\+series} (unsigned int \+\_\+\+\_\+l, \+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \hyperlink{struct____gnu__cxx_1_1____quadrature__point__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+quadrature\+\_\+point\+\_\+t}$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{namespacestd_1_1____detail_a9d53ac0fd39232190e7564fa067a878d}{\+\_\+\+\_\+legendre\+\_\+zeros} (unsigned int \+\_\+\+\_\+l, \+\_\+\+Tp proto=\+\_\+\+Tp\{\})
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a087d65f98ba6a6709b4d62fa32445e59}{\+\_\+\+\_\+log\+\_\+binomial} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
@@ -552,6 +578,8 @@ class \hyperlink{classstd_1_1____detail_1_1__Terminator}{\+\_\+\+Terminator}
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a6211a0741c8e2dfb219fb52d072295f4}{\+\_\+\+\_\+normal\+\_\+pdf} (\+\_\+\+Tp \+\_\+\+\_\+mu, \+\_\+\+Tp \+\_\+\+\_\+sigma, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Return the normal probability density function. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a5b50a9d8beaca5a637c8293ab01bf124}{\+\_\+\+\_\+owens\+\_\+t} (\+\_\+\+Tp \+\_\+\+\_\+h, \+\_\+\+Tp \+\_\+\+\_\+a)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Arg\+Type $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ std\+::complex$<$ \+\_\+\+Tp $>$, \+\_\+\+Arg\+Type $>$ \hyperlink{namespacestd_1_1____detail_a1d65d34f43558441e4ed83d84dbc9ddf}{\+\_\+\+\_\+periodic\+\_\+zeta} (\+\_\+\+Arg\+Type \+\_\+\+\_\+z, \+\_\+\+Tp \+\_\+\+\_\+s)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_ac69e259ad511fcc7a54c6ec315adcfa4}{\+\_\+\+\_\+polar\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+rho, \+\_\+\+Tp \+\_\+\+\_\+phi\+\_\+pi)
 \item 
@@ -693,13 +721,19 @@ class \hyperlink{classstd_1_1____detail_1_1__Terminator}{\+\_\+\+Terminator}
 \begin{DoxyCompactList}\small\item\em Return the logarithm of the gamma function $ log(\Gamma(1+z)) $ by the Spouge algorithm\+: \[ \Gamma(z+1) = (z+a)^{z+1/2}e^{-z-a}\left[ \sqrt{2\pi} + \sum_{k=1}^{\lceil a \rceil + 1}\frac{c_k(a)}{z+k}\right] \] where \[ c_k(a) = \frac{(-1)^{k-1}}{(k-1)!}(a-k)^{k-1/2}e^{a-k} \] and the error is bounded by \[ \epsilon(a) < a^{-1/2}(2\pi)^{-a-1/2} \]. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a8b215e4ca28ec9b7b078d7f3d9aecc17}{\+\_\+\+\_\+stirling\+\_\+1} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a8d1c581fb8fddd354f7f1cbbdbe6f2d2}{\+\_\+\+\_\+stirling\+\_\+1} (unsigned int \+\_\+\+\_\+n)
+\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a0a47b5d34956a55f438f2ba079680acd}{\+\_\+\+\_\+stirling\+\_\+1\+\_\+recur} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_adb65db9b399228c604c5f72156695965}{\+\_\+\+\_\+stirling\+\_\+1\+\_\+series} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a2fe6ac62307cb1aded6ffae4dcc81f0b}{\+\_\+\+\_\+stirling\+\_\+1\+\_\+recur} (unsigned int \+\_\+\+\_\+n)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a4589d459a7a9d1d9e19b33601238a4af}{\+\_\+\+\_\+stirling\+\_\+2} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a286c6f5a5de7aa8493aa5a8bf491b26e}{\+\_\+\+\_\+stirling\+\_\+2} (unsigned int \+\_\+\+\_\+n)
+\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a23c6eb236cd8ddcfbe43e66ac23324db}{\+\_\+\+\_\+stirling\+\_\+2\+\_\+recur} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_aa7c6f36dc1f75cd38af10ca232e62f06}{\+\_\+\+\_\+stirling\+\_\+2\+\_\+recur} (unsigned int \+\_\+\+\_\+n)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a8408f17699eb43a14447c7e4795b277f}{\+\_\+\+\_\+stirling\+\_\+2\+\_\+series} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
 \item 
@@ -866,7 +900,7 @@ Return the complex Airy Ai function.
 
 
 
-Definition at line 2628 of file sf\+\_\+airy.\+tcc.
+Definition at line 2629 of file sf\+\_\+airy.\+tcc.
 
 
 
@@ -920,18 +954,18 @@ Return the complex Airy Bi function.
 
 
 
-Definition at line 2640 of file sf\+\_\+airy.\+tcc.
+Definition at line 2641 of file sf\+\_\+airy.\+tcc.
 
 
 
 References \+\_\+\+\_\+airy().
 
-\mbox{\Hypertarget{namespacestd_1_1____detail_a7d47c4512f7c6914f5504fde6ffa31fb}\label{namespacestd_1_1____detail_a7d47c4512f7c6914f5504fde6ffa31fb}} 
+\mbox{\Hypertarget{namespacestd_1_1____detail_a85319f12c991f6b19511d17413400b52}\label{namespacestd_1_1____detail_a85319f12c991f6b19511d17413400b52}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+assoc\+\_\+laguerre@{\+\_\+\+\_\+assoc\+\_\+laguerre}}
 \index{\+\_\+\+\_\+assoc\+\_\+laguerre@{\+\_\+\+\_\+assoc\+\_\+laguerre}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
 \subsubsection{\texorpdfstring{\+\_\+\+\_\+assoc\+\_\+laguerre()}{\_\_assoc\_laguerre()}}
-{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
-\+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+assoc\+\_\+laguerre (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n,  }\item[{unsigned int}]{\+\_\+\+\_\+m,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tpa , typename \+\_\+\+Tp $>$ \\
+\+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+assoc\+\_\+laguerre (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n,  }\item[{\+\_\+\+Tpa}]{\+\_\+\+\_\+alpha,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x }\end{DoxyParamCaption})}
 
 
 
@@ -941,6 +975,8 @@ The associated Laguerre polynomial is defined for integral order $ \alpha = m $ 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Tpa} & The type of the order. \\
+\hline
 {\em \+\_\+\+Tp} & The type of the parameter \\
 \hline
 \end{DoxyTemplParams}
@@ -948,7 +984,7 @@ The associated Laguerre polynomial is defined for integral order $ \alpha = m $ 
 \begin{DoxyParams}{Parameters}
 {\em \+\_\+\+\_\+n} & The degree \\
 \hline
-{\em \+\_\+\+\_\+m} & The order \\
+{\em \+\_\+\+\_\+alpha} & The order \\
 \hline
 {\em \+\_\+\+\_\+x} & The argument \\
 \hline
@@ -958,18 +994,18 @@ The value of the associated Laguerre polynomial of order n, degree m, and argume
 \end{DoxyReturn}
 
 
-Definition at line 366 of file sf\+\_\+laguerre.\+tcc.
+Definition at line 367 of file sf\+\_\+laguerre.\+tcc.
 
 
 
 Referenced by \+\_\+\+\_\+hydrogen().
 
-\mbox{\Hypertarget{namespacestd_1_1____detail_afd2b7e1cb349f144f5527f4f415bc324}\label{namespacestd_1_1____detail_afd2b7e1cb349f144f5527f4f415bc324}} 
+\mbox{\Hypertarget{namespacestd_1_1____detail_a34054ec9dd56cd3807582d0725f80088}\label{namespacestd_1_1____detail_a34054ec9dd56cd3807582d0725f80088}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p@{\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p}}
 \index{\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p@{\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
 \subsubsection{\texorpdfstring{\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p()}{\_\_assoc\_legendre\_p()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
-\+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+l,  }\item[{unsigned int}]{\+\_\+\+\_\+m,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+phase = {\ttfamily \+\_\+Tp\{+1\}} }\end{DoxyParamCaption})}
+\hyperlink{struct____gnu__cxx_1_1____assoc__legendre__p__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p\+\_\+t}$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+l,  }\item[{unsigned int}]{\+\_\+\+\_\+m,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+phase = {\ttfamily \+\_\+Tp\{+1\}} }\end{DoxyParamCaption})}
 
 
 
@@ -993,11 +1029,69 @@ $ P_l^m(x) = 0 $ if $ m > l $.
 \end{DoxyParams}
 
 
-Definition at line 199 of file sf\+\_\+legendre.\+tcc.
+Definition at line 241 of file sf\+\_\+legendre.\+tcc.
 
 
 
 References \+\_\+\+\_\+legendre\+\_\+p().
+
+\mbox{\Hypertarget{namespacestd_1_1____detail_abc21e6e1aa5290b46dbec04a81d14eec}\label{namespacestd_1_1____detail_abc21e6e1aa5290b46dbec04a81d14eec}} 
+\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+q@{\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+q}}
+\index{\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+q@{\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+q}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+q()}{\_\_assoc\_legendre\_q()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\hyperlink{struct____gnu__cxx_1_1____assoc__legendre__q__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+q\+\_\+t}$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+q (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+l,  }\item[{unsigned int}]{\+\_\+\+\_\+m,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+phase = {\ttfamily \+\_\+Tp\{+1\}} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 299 of file sf\+\_\+legendre.\+tcc.
+
+\mbox{\Hypertarget{namespacestd_1_1____detail_ae2c2fdeec1af50db0d274cae70168dc9}\label{namespacestd_1_1____detail_ae2c2fdeec1af50db0d274cae70168dc9}} 
+\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+bell@{\+\_\+\+\_\+bell}}
+\index{\+\_\+\+\_\+bell@{\+\_\+\+\_\+bell}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+bell()}{\_\_bell()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+std\+::vector$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+bell (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return a vector of the Bell numbers. 
+
+Definition at line 509 of file sf\+\_\+stirling.\+tcc.
+
+
+
+Referenced by \+\_\+\+\_\+bell(), \+\_\+\+\_\+bell\+\_\+series(), and \+\_\+\+\_\+gnu\+\_\+cxx\+::bell().
+
+\mbox{\Hypertarget{namespacestd_1_1____detail_a416c4b8a894dc8755484a8ad8740453a}\label{namespacestd_1_1____detail_a416c4b8a894dc8755484a8ad8740453a}} 
+\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+bell@{\+\_\+\+\_\+bell}}
+\index{\+\_\+\+\_\+bell@{\+\_\+\+\_\+bell}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+bell()}{\_\_bell()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up $>$ \\
+\+\_\+\+Up std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+bell (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n,  }\item[{\+\_\+\+Up}]{\+\_\+\+\_\+x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Evaluate the Bell polynomial \[ B(n) = \sum_{k=0}^{n}S_n^{(k)}x^k \] where $ S_n^{(k)} $ are the Stirling numbers of the second kind. 
+
+Definition at line 521 of file sf\+\_\+stirling.\+tcc.
+
+
+
+References \+\_\+\+\_\+bell().
+
+\mbox{\Hypertarget{namespacestd_1_1____detail_acab68a50669a465d6bddc7a54a649819}\label{namespacestd_1_1____detail_acab68a50669a465d6bddc7a54a649819}} 
+\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+bell\+\_\+series@{\+\_\+\+\_\+bell\+\_\+series}}
+\index{\+\_\+\+\_\+bell\+\_\+series@{\+\_\+\+\_\+bell\+\_\+series}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+bell\+\_\+series()}{\_\_bell\_series()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+std\+::vector$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+bell\+\_\+series (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n }\end{DoxyParamCaption})}
+
+Return a vector of the Bell numbers by summation. \[ B(n) = \sum_{k=0}^{n}S_n^{(k)} = \sum_{k=1}^{n}{n-1 \choose k-1}B(n-k) \] where $ S_n^{(k)} $ are the Stirling numbers of the second kind. \begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000016}{Todo}]Test for blowup in Bell number summation. \end{DoxyRefDesc}
+
+
+Definition at line 490 of file sf\+\_\+stirling.\+tcc.
+
+
+
+References \+\_\+\+\_\+bell().
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a68ae2aecb4cdf37b72cd60409cdc500c}\label{namespacestd_1_1____detail_a68ae2aecb4cdf37b72cd60409cdc500c}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+bernoulli@{\+\_\+\+\_\+bernoulli}}
@@ -1130,7 +1224,7 @@ References \+\_\+\+\_\+beta\+\_\+gamma(), and \+\_\+\+\_\+beta\+\_\+lgamma().
 
 
 
-Referenced by \+\_\+\+\_\+fisher\+\_\+f\+\_\+pdf(), \+\_\+\+\_\+gnu\+\_\+cxx\+::gamma\+\_\+pdf(), \+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi(), \+\_\+\+\_\+gnu\+\_\+cxx\+::jacobif(), \+\_\+\+\_\+gnu\+\_\+cxx\+::jacobil(), and std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy$<$ \+\_\+\+Tp $>$\+::operator()().
+Referenced by \+\_\+\+\_\+fisher\+\_\+f\+\_\+pdf(), \+\_\+\+\_\+gnu\+\_\+cxx\+::gamma\+\_\+pdf(), \+\_\+\+\_\+gnu\+\_\+cxx\+::jacobi(), \+\_\+\+\_\+gnu\+\_\+cxx\+::jacobif(), \+\_\+\+\_\+gnu\+\_\+cxx\+::jacobil(), \+\_\+\+\_\+gnu\+\_\+cxx\+::mittag\+\_\+leffler(), and std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy$<$ \+\_\+\+Tp $>$\+::operator()().
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a93cfa67cc3f14564925ed3153e055cd1}\label{namespacestd_1_1____detail_a93cfa67cc3f14564925ed3153e055cd1}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+beta\+\_\+gamma@{\+\_\+\+\_\+beta\+\_\+gamma}}
@@ -1299,7 +1393,7 @@ The binomial coefficient.
 \end{DoxyReturn}
 
 
-Definition at line 2538 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2540 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -1332,7 +1426,7 @@ The binomial coefficient.
 \end{DoxyReturn}
 
 
-Definition at line 2598 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2600 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -1450,7 +1544,7 @@ The real Bose-\/\+Einstein integral G\+\_\+s(x),
 \end{DoxyReturn}
 
 
-Definition at line 1466 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1493 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -1730,7 +1824,7 @@ std\+::complex$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+clamp\+\
 
 
 
-Definition at line 184 of file sf\+\_\+polylog.\+tcc.
+Definition at line 185 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -1772,7 +1866,7 @@ The complex Clausen function.
 \end{DoxyReturn}
 
 
-Definition at line 1261 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1288 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -1799,7 +1893,7 @@ The Clausen function.
 \end{DoxyReturn}
 
 
-Definition at line 1288 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1315 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -1827,7 +1921,7 @@ The Clausen cosine sum Cl\+\_\+m(w),
 \end{DoxyReturn}
 
 
-Definition at line 1372 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1399 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -1855,7 +1949,7 @@ The real Clausen cosine sum Cl\+\_\+m(w),
 \end{DoxyReturn}
 
 
-Definition at line 1400 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1427 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -1883,7 +1977,7 @@ The Clausen sine sum Sl\+\_\+m(w),
 \end{DoxyReturn}
 
 
-Definition at line 1316 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1343 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -1911,7 +2005,7 @@ The Clausen sine sum Sl\+\_\+m(w),
 \end{DoxyReturn}
 
 
-Definition at line 1344 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1371 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -1998,9 +2092,9 @@ The complete elliptic integral of the third kind is defined as \[ \Pi(k,\nu) = \
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+k} & The argument of the elliptic function. \\
+{\em \+\_\+\+\_\+k} & The elliptic modulus. \\
 \hline
-{\em \+\_\+\+\_\+nu} & The second argument of the elliptic function. \\
+{\em \+\_\+\+\_\+nu} & The characteristic. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -2982,13 +3076,13 @@ Referenced by \+\_\+\+\_\+dawson().
 Return the Debye function. The Debye functions are related to the incomplete Riemann zeta function\+: \[ \zeta_x(s) = \frac{1}{\Gamma(s)}\int_{0}^{x}\frac{t^{s-1}}{e^t-1}dt = \sum_{k=1}^{\infty}\frac{P(s,kx)}{k^s} \] \[ Z_x(s) = \frac{1}{\Gamma(s)}\int_{x}^{\infty}\frac{t^{s-1}}{e^t-1}dt = \sum_{k=1}^{\infty}\frac{Q(s,kx)}{k^s} \] where $ P(a,x), Q(a,x) $ is the incomplete gamma function ratios. The Debye function is\+: \[ D_n(x) = \frac{n}{x^n}\int_{0}^{x}\frac{t^n}{e^t-1}dt = \Gamma(n+1)\zeta_x(n+1) \] Note the infinite limit\+: \[ D_n(\infty) = \int_{0}^{\infty}\frac{t^n}{e^t-1}dt = n!\zeta(n+1) \]
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000020}{Todo}]\+: We should return both the Debye function and it\textquotesingle{}s complement. \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000018}{Todo}]\+: We should return both the Debye function and it\textquotesingle{}s complement. \end{DoxyRefDesc}
 Compute the Debye function\+: \[ D_n(x) = 1 - \sum_{k = 1}^{\infty} e^{-kx} \frac{n}{k}\sum_{m=0}^{n}\frac{n!}{(n-m)!}frac{1}{(kx)^m} \] Abramowitz \& Stegun 27.\+1.\+2
 
 Compute the Debye function\+: \[ D_n(x) = 1 - \frac{n x}{2(n+1)} + n \sum_{k = 1}^{\infty} \frac{B_{2k} x^{2k}}{(2k + n)(2k)!} \] for $ |x| < 2\pi $. Abramowitz-\/\+Stegun 27.\+1.\+1
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000021}{Todo}]Find Debye for x $<$ -\/2pi! \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000019}{Todo}]Find Debye for x $<$ -\/2pi! \end{DoxyRefDesc}
 
 
 Definition at line 916 of file sf\+\_\+zeta.\+tcc.
@@ -3021,7 +3115,7 @@ Return the digamma function of integral argument. The digamma or $ \psi(x) $ fun
 
 
 
-Definition at line 3317 of file sf\+\_\+gamma.\+tcc.
+Definition at line 3319 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -3040,7 +3134,7 @@ Return the digamma function. The digamma or $ \psi(x) $ function is defined by \
 
 
 
-Definition at line 3407 of file sf\+\_\+gamma.\+tcc.
+Definition at line 3409 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -3059,7 +3153,7 @@ Return the digamma function for large argument. The digamma or $ \psi(x) $ funct
 
 The asymptotic series is given by\+: \[ \psi(x) = \ln(x) - \frac{1}{2x} - \sum_{n=1}^{\infty} \frac{B_{2n}}{2 n x^{2n}} \] 
 
-Definition at line 3374 of file sf\+\_\+gamma.\+tcc.
+Definition at line 3376 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -3078,7 +3172,7 @@ Return the digamma function by series expansion. The digamma or $ \psi(x) $ func
 
 The series is given by\+: \[ \psi(x) = -\gamma_E - \frac{1}{x} \sum_{k=1}^{\infty} \frac{x - 1}{(k + 1)(x + k)} \] 
 
-Definition at line 3342 of file sf\+\_\+gamma.\+tcc.
+Definition at line 3344 of file sf\+\_\+gamma.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a5083a0c9fce3299593ca22e7dbaeaf19}\label{namespacestd_1_1____detail_a5083a0c9fce3299593ca22e7dbaeaf19}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+dilog@{\+\_\+\+\_\+dilog}}
@@ -3102,7 +3196,7 @@ Definition at line 246 of file sf\+\_\+zeta.\+tcc.
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
 \+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+dirichlet\+\_\+beta (\begin{DoxyParamCaption}\item[{std\+::complex$<$ \+\_\+\+Tp $>$}]{\+\_\+\+\_\+s }\end{DoxyParamCaption})}
 
-Return the Dirichlet beta function. Currently, s must be real (complex type but negligible imaginary part.) Otherwise std\+::domain\+\_\+error is thrown. The Dirichlet beta function, in terms of the polylogarithm, is \[ \renewcommand\Re{\operatorname{Re}} \renewcommand\Im{\operatorname{Im}} \beta(s) = \Im{Li_s(i)} \]
+Return the Dirichlet beta function. Currently, s must be real (complex type but negligible imaginary part.) Otherwise std\+::domain\+\_\+error is thrown. The Dirichlet beta function, in terms of the polylogarithm, is \[ \beta(s) = \Im[Li_s(i)] \]
 
 
 \begin{DoxyParams}{Parameters}
@@ -3119,7 +3213,7 @@ The Dirichlet Beta function of real argument.
 \end{DoxyExceptions}
 
 
-Definition at line 1198 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1227 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -3132,7 +3226,7 @@ References \+\_\+\+\_\+polylog().
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
 \+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+dirichlet\+\_\+beta (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+s }\end{DoxyParamCaption})}
 
-Return the Dirichlet beta function for real argument. The Dirichlet beta function, in terms of the polylogarithm, is \[ \renewcommand\Re{\operatorname{Re}} \renewcommand\Im{\operatorname{Im}} \beta(s) = \Im{Li_s(i)} \]
+Return the Dirichlet beta function for real argument. The Dirichlet beta function, in terms of the polylogarithm, is \[ \beta(s) = \Im[Li_s(i)] \]
 
 
 \begin{DoxyParams}{Parameters}
@@ -3144,7 +3238,7 @@ The Dirichlet Beta function of real argument.
 \end{DoxyReturn}
 
 
-Definition at line 1223 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1250 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -3157,7 +3251,7 @@ References \+\_\+\+\_\+polylog().
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
 std\+::complex$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+dirichlet\+\_\+eta (\begin{DoxyParamCaption}\item[{std\+::complex$<$ \+\_\+\+Tp $>$}]{\+\_\+\+\_\+s }\end{DoxyParamCaption})}
 
-Return the Dirichlet eta function. Currently, s must be real (complex type but negligible imaginary part.) Otherwise std\+::domain\+\_\+error is thrown. The Dirichlet eta function, in terms of the polylogarithm, is \[ \renewcommand\Re{\operatorname{Re}} \renewcommand\Im{\operatorname{Im}} \eta(s) = -\Re{Li_s(-1)} \]
+Return the Dirichlet eta function. Currently, s must be real (complex type but negligible imaginary part.) Otherwise std\+::domain\+\_\+error is thrown. The Dirichlet eta function, in terms of the polylogarithm, is \[ \eta(s) = -\Re[Li_s(-1)] \]
 
 
 \begin{DoxyParams}{Parameters}
@@ -3174,7 +3268,7 @@ The complex Dirichlet eta function.
 \end{DoxyExceptions}
 
 
-Definition at line 1134 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1167 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -3191,7 +3285,7 @@ Referenced by \+\_\+\+\_\+dirichlet\+\_\+eta(), and \+\_\+\+\_\+dirichlet\+\_\+l
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
 \+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+dirichlet\+\_\+eta (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+s }\end{DoxyParamCaption})}
 
-Return the Dirichlet eta function for real argument. The Dirichlet eta function, in terms of the polylogarithm, is \[ \renewcommand\Re{\operatorname{Re}} \renewcommand\Im{\operatorname{Im}} \eta(s) = -\Re{Li_s(-1)} \]
+Return the Dirichlet eta function for real argument. The Dirichlet eta function, in terms of the polylogarithm, is \[ \eta(s) = -\Re[Li_s(-1)] \]
 
 
 \begin{DoxyParams}{Parameters}
@@ -3203,7 +3297,7 @@ The Dirichlet eta function.
 \end{DoxyReturn}
 
 
-Definition at line 1158 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1189 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -3228,7 +3322,7 @@ The Dirichlet lambda function.
 \end{DoxyReturn}
 
 
-Definition at line 1243 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1270 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -3268,7 +3362,7 @@ The incomplete elliptic integral of the first kind is defined as \[ F(k,\phi) = 
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+k} & The argument of the elliptic function. \\
+{\em \+\_\+\+\_\+k} & The elliptic modulus. \\
 \hline
 {\em \+\_\+\+\_\+phi} & The integral limit argument of the elliptic function. \\
 \hline
@@ -3303,7 +3397,7 @@ The incomplete elliptic integral of the second kind is defined as \[ E(k,\phi) =
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+k} & The argument of the elliptic function. \\
+{\em \+\_\+\+\_\+k} & The elliptic modulus. \\
 \hline
 {\em \+\_\+\+\_\+phi} & The integral limit argument of the elliptic function. \\
 \hline
@@ -3334,9 +3428,9 @@ The incomplete elliptic integral of the third kind is defined as \[ \Pi(k,\nu,\p
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+k} & The argument of the elliptic function. \\
+{\em \+\_\+\+\_\+k} & The elliptic modulus. \\
 \hline
-{\em \+\_\+\+\_\+nu} & The second argument of the elliptic function. \\
+{\em \+\_\+\+\_\+nu} & The characteristic. \\
 \hline
 {\em \+\_\+\+\_\+phi} & The integral limit argument of the elliptic function. \\
 \hline
@@ -3735,7 +3829,7 @@ Return the Euler number from lookup or by series expansion.
 The Euler numbers are given by the recursive sum\+: \[ E_n = B_n(1) = B_n \] where $ E_0 = 1 $, $ E_1 = 0 $, $ E_2 = -1 $
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000008}{Todo}]Find a way to predict the maximum Euler number for a type. \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000004}{Todo}]Find a way to predict the maximum Euler number for a type. \end{DoxyRefDesc}
 
 
 Definition at line 61 of file sf\+\_\+euler.\+tcc.
@@ -3743,46 +3837,90 @@ Definition at line 61 of file sf\+\_\+euler.\+tcc.
 \mbox{\Hypertarget{namespacestd_1_1____detail_a4556229d8792527574bfc6fa135908dd}\label{namespacestd_1_1____detail_a4556229d8792527574bfc6fa135908dd}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+eulerian\+\_\+1@{\+\_\+\+\_\+eulerian\+\_\+1}}
 \index{\+\_\+\+\_\+eulerian\+\_\+1@{\+\_\+\+\_\+eulerian\+\_\+1}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
-\subsubsection{\texorpdfstring{\+\_\+\+\_\+eulerian\+\_\+1()}{\_\_eulerian\_1()}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+eulerian\+\_\+1()}{\_\_eulerian\_1()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
 \+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+eulerian\+\_\+1 (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n,  }\item[{unsigned int}]{\+\_\+\+\_\+m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Return the Eulerian number of the first kind. The Eulerian numbers of the first kind are defined by recursion\+: \[ \genfrac\langle\rangle{0pt}{0}{n}{m} = (n-m)\genfrac\langle\rangle{0pt}{0}{n-1}{m-1} + (m+1)\genfrac\langle\rangle{0pt}{0}{n-1}{m} \mbox{ for } n > 0 \] Note that $ A(n,m) $ is a common older notation. 
+Return the Eulerian number of the first kind. The Eulerian numbers of the first kind are defined by recursion\+: \[ \genfrac{\langle}{\rangle}{0pt}{0}{n}{m} = (n-m)\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m-1} + (m+1)\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m} \mbox{ for } n > 0 \] Note that $ A(n,m) $ is a common older notation. 
 
 Definition at line 207 of file sf\+\_\+euler.\+tcc.
+
+\mbox{\Hypertarget{namespacestd_1_1____detail_ad0759105350d0c440c1b5e8957223438}\label{namespacestd_1_1____detail_ad0759105350d0c440c1b5e8957223438}} 
+\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+eulerian\+\_\+1@{\+\_\+\+\_\+eulerian\+\_\+1}}
+\index{\+\_\+\+\_\+eulerian\+\_\+1@{\+\_\+\+\_\+eulerian\+\_\+1}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+eulerian\+\_\+1()}{\_\_eulerian\_1()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+std\+::vector$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+eulerian\+\_\+1 (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return a vector Eulerian numbers of the first kind. The Eulerian numbers are defined by recursion\+: \[ A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0 \] 
+
+Definition at line 253 of file sf\+\_\+euler.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_afab99319465d188432fa8357d65129e0}\label{namespacestd_1_1____detail_afab99319465d188432fa8357d65129e0}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur@{\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur}}
 \index{\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur@{\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
-\subsubsection{\texorpdfstring{\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur()}{\_\_eulerian\_1\_recur()}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur()}{\_\_eulerian\_1\_recur()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
 \+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n,  }\item[{unsigned int}]{\+\_\+\+\_\+m }\end{DoxyParamCaption})}
 
-Return the Eulerian number of the first kind. The Eulerian numbers of the first kind are defined by recursion\+: \[ \newcommand{\eulerian}[2]{\genfrac{\langle}{\rangle}{0pt}{0}{#1}{#2}} \eulerian{n}{m} = (n-m)\eulerian{n-1}{m-1} + (m+1)\eulerian{n-1}{m} \mbox{ for } n > 0 \] Note that $ A(n,m) $ is a common older notation. 
+Return the Eulerian number of the first kind. The Eulerian numbers of the first kind are defined by recursion\+: \[ \genfrac{\langle}{\rangle}{0pt}{0}{n}{m} = (n-m)\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m-1} + (m+1)\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m} \mbox{ for } n > 0 \] Note that $ A(n,m) $ is a common older notation. 
 
 Definition at line 166 of file sf\+\_\+euler.\+tcc.
+
+\mbox{\Hypertarget{namespacestd_1_1____detail_acab0c44030d62f8ff1576a33b90aa9e3}\label{namespacestd_1_1____detail_acab0c44030d62f8ff1576a33b90aa9e3}} 
+\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur@{\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur}}
+\index{\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur@{\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur()}{\_\_eulerian\_1\_recur()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+std\+::vector$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n }\end{DoxyParamCaption})}
+
+Return a vector Eulerian numbers of the first kind by recursion. The recursion is \[ A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0 \] 
+
+Definition at line 219 of file sf\+\_\+euler.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_aa93423478ed5fd1fc260cc30466bef73}\label{namespacestd_1_1____detail_aa93423478ed5fd1fc260cc30466bef73}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+eulerian\+\_\+2@{\+\_\+\+\_\+eulerian\+\_\+2}}
 \index{\+\_\+\+\_\+eulerian\+\_\+2@{\+\_\+\+\_\+eulerian\+\_\+2}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
-\subsubsection{\texorpdfstring{\+\_\+\+\_\+eulerian\+\_\+2()}{\_\_eulerian\_2()}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+eulerian\+\_\+2()}{\_\_eulerian\_2()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
 \+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+eulerian\+\_\+2 (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n,  }\item[{unsigned int}]{\+\_\+\+\_\+m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Return the Eulerian number of the second kind. The Eulerian numbers of the second kind are defined by recursion\+: \[ A(n,m) = (2n-m-1)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0 \] 
+Return the Eulerian number of the second kind. The Eulerian numbers of the second kind are defined by recursion\+: \[ \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n}{m}\right\rangle = (2n-m-1) \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m-1}\right\rangle + (m+1) \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m}\right\rangle \mbox{ for } n > 0 \] 
 
-Definition at line 254 of file sf\+\_\+euler.\+tcc.
+Definition at line 309 of file sf\+\_\+euler.\+tcc.
+
+\mbox{\Hypertarget{namespacestd_1_1____detail_a9c1abae84b487289ce8f798bcfe4b7e0}\label{namespacestd_1_1____detail_a9c1abae84b487289ce8f798bcfe4b7e0}} 
+\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+eulerian\+\_\+2@{\+\_\+\+\_\+eulerian\+\_\+2}}
+\index{\+\_\+\+\_\+eulerian\+\_\+2@{\+\_\+\+\_\+eulerian\+\_\+2}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+eulerian\+\_\+2()}{\_\_eulerian\_2()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+std\+::vector$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+eulerian\+\_\+2 (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return a vector of Eulerian numbers of the second kind. \[ \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n}{m}\right\rangle = (2n-m-1) \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m-1}\right\rangle + (m+1) \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m}\right\rangle \mbox{ for } n > 0 \] 
+
+Definition at line 363 of file sf\+\_\+euler.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a8a2a09c66c530759ae98ac1f3c1d93e5}\label{namespacestd_1_1____detail_a8a2a09c66c530759ae98ac1f3c1d93e5}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur@{\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur}}
 \index{\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur@{\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
-\subsubsection{\texorpdfstring{\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur()}{\_\_eulerian\_2\_recur()}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur()}{\_\_eulerian\_2\_recur()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
 \+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n,  }\item[{unsigned int}]{\+\_\+\+\_\+m }\end{DoxyParamCaption})}
 
-Return the Eulerian number of the second kind by recursion. The recursion is\+: \[ A(n,m) = (2n-m-1)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0 \] 
+Return the Eulerian number of the second kind by recursion\+: \[ \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n}{m}\right\rangle = (2n-m-1) \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m-1}\right\rangle + (m+1) \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m}\right\rangle \mbox{ for } n > 0 \] 
 
-Definition at line 219 of file sf\+\_\+euler.\+tcc.
+Definition at line 269 of file sf\+\_\+euler.\+tcc.
+
+\mbox{\Hypertarget{namespacestd_1_1____detail_a5609870200a041b3ace18c15e212a275}\label{namespacestd_1_1____detail_a5609870200a041b3ace18c15e212a275}} 
+\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur@{\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur}}
+\index{\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur@{\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur()}{\_\_eulerian\_2\_recur()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+std\+::vector$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n }\end{DoxyParamCaption})}
+
+Return a vector of Eulerian numbers of the second kind. \[ \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n}{m}\right\rangle = (2n-m-1) \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m-1}\right\rangle + (m+1) \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m}\right\rangle \mbox{ for } n > 0 \] 
+
+Definition at line 325 of file sf\+\_\+euler.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a51c70764063ef329a4ab96f837c99faf}\label{namespacestd_1_1____detail_a51c70764063ef329a4ab96f837c99faf}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+exp2@{\+\_\+\+\_\+exp2}}
@@ -3823,11 +3961,11 @@ The exponential integral is given by \[ E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{
 The exponential integral. 
 \end{DoxyReturn}
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000011}{Todo}]Study arbitrary switch to large-\/n $ E_n(x) $. \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000007}{Todo}]Study arbitrary switch to large-\/n $ E_n(x) $. \end{DoxyRefDesc}
 
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000012}{Todo}]Find a good asymptotic switch point in $ E_n(x) $. \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000008}{Todo}]Find a good asymptotic switch point in $ E_n(x) $. \end{DoxyRefDesc}
 
 
 Definition at line 476 of file sf\+\_\+expint.\+tcc.
@@ -3891,11 +4029,11 @@ The exponential integral is given by \[ E_1(x) = \int_{1}^\infty \frac{e^{-xt}}{
 The exponential integral. 
 \end{DoxyReturn}
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000010}{Todo}]Find a good asymptotic switch point in $ E_1(x) $. \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000006}{Todo}]Find a good asymptotic switch point in $ E_1(x) $. \end{DoxyRefDesc}
 
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000010}{Todo}]Find a good asymptotic switch point in $ E_1(x) $. \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000006}{Todo}]Find a good asymptotic switch point in $ E_1(x) $. \end{DoxyRefDesc}
 
 
 Definition at line 381 of file sf\+\_\+expint.\+tcc.
@@ -4174,7 +4312,7 @@ The exponential integral is given by \[ E_n(x) = \int_{1}^\infty \frac{e^{-xt}}{
 The exponential integral. 
 \end{DoxyReturn}
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000009}{Todo}]Find a principled starting number for the $ E_n(x) $ downward recursion. \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000005}{Todo}]Find a principled starting number for the $ E_n(x) $ downward recursion. \end{DoxyRefDesc}
 
 
 Definition at line 244 of file sf\+\_\+expint.\+tcc.
@@ -4291,7 +4429,7 @@ Return the logarithm of the falling factorial function or the lower Pochhammer s
 
 
 
-Definition at line 2941 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2943 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -4314,7 +4452,7 @@ Return the logarithm of the falling factorial function or the lower Pochhammer s
 
 
 
-Definition at line 2996 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2998 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -4346,7 +4484,7 @@ The real Fermi-\/\+Dirac integral F\+\_\+s(x),
 \end{DoxyReturn}
 
 
-Definition at line 1434 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1461 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -4556,7 +4694,7 @@ The gamma function.
 \end{DoxyReturn}
 
 
-Definition at line 2639 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2641 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -4579,7 +4717,7 @@ Return the incomplete gamma functions.
 
 
 
-Definition at line 2766 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2768 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -4598,7 +4736,7 @@ Return the incomplete gamma function by continued fraction.
 
 
 
-Definition at line 2721 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2723 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -4644,7 +4782,7 @@ Return the regularized lower incomplete gamma function. The regularized lower in
 
 
 
-Definition at line 2805 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2807 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -4705,7 +4843,7 @@ Return the regularized upper incomplete gamma function. The regularized upper in
 
 
 
-Definition at line 2839 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2841 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -4730,7 +4868,7 @@ The reciprocal of the gamma function.
 \end{DoxyReturn}
 
 
-Definition at line 2269 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2271 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -4782,7 +4920,7 @@ Return the incomplete gamma function by series summation. \[ \gamma(a,x) = x^a e
 
 
 
-Definition at line 2676 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2678 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -4845,25 +4983,25 @@ Definition at line 70 of file sf\+\_\+owens\+\_\+t.\+tcc.
 
 Return the Gegenbauer polynomial $ C_n^{(\lambda)}(x) $ of degree {\ttfamily n} and real order $ \lambda $ and argument {\ttfamily x}.
 
-The Gegenbauer polynomials are generated by a three-\/term recursion relation\+: \[ C_n^{(\lambda)}(x) = \frac{1}{n}\left[ 2x(n+\lambda-1)C_{n-1}^{(\lambda)}(x) - (n + 2\lambda-2)C_{n-2}^{(\lambda)}(x) \right] \] and $ C_0^{(\lambda)}(x) = 1 $, $ C_1^{(\lambda)}(x) = 2\lambda x $.
+The Gegenbauer polynomials are generated by a three-\/term recursion relation\+: \[ C_n^{(\lambda)}(x) = \frac{1}{n}\left[ 2x(n+\lambda-1)C_{n-1}^{(\lambda)}(x) - (n + 2\lambda-2)C_{n-2}^{(\lambda)}(x) \right] \] and $ C_0^{(\lambda)}(x) = 1 $, $ C_1^{(\lambda)}(x) = 2\lambda x $. This works for $ \lambda > -1/2 $
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em \+\_\+\+Tp} & The real type of the argument \\
+{\em \+\_\+\+Tp} & The real type of the argument and order \\
 \hline
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
 {\em \+\_\+\+\_\+n} & The non-\/negative integral degree \\
 \hline
-{\em \+\_\+\+\_\+lambda} & The order \\
+{\em \+\_\+\+\_\+lambda} & The order of the Gegenbauer polynomial \\
 \hline
 {\em \+\_\+\+\_\+x} & The real argument \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 63 of file sf\+\_\+gegenbauer.\+tcc.
+Definition at line 65 of file sf\+\_\+gegenbauer.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_ae009135e8f2dfd9e97694c778a15ce08}\label{namespacestd_1_1____detail_ae009135e8f2dfd9e97694c778a15ce08}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+gegenbauer\+\_\+zeros@{\+\_\+\+\_\+gegenbauer\+\_\+zeros}}
@@ -4872,9 +5010,23 @@ Definition at line 63 of file sf\+\_\+gegenbauer.\+tcc.
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
 std\+::vector$<$\hyperlink{struct____gnu__cxx_1_1____quadrature__point__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+quadrature\+\_\+point\+\_\+t}$<$\+\_\+\+Tp$>$ $>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gegenbauer\+\_\+zeros (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+lambda }\end{DoxyParamCaption})}
 
-Return a vector containing the zeros of the Gegenbauer or ultraspherical polynomial $ C_n^{(\lambda)}$. 
+Return a vector containing the zeros of the Gegenbauer or ultraspherical polynomial $ C_n^{(\lambda)}$. This works for $ \lambda > -1/2 $
 
-Definition at line 97 of file sf\+\_\+gegenbauer.\+tcc.
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Tp} & The real type of the order \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em \+\_\+\+\_\+n} & The degree of the Gegenbauer polynomial \\
+\hline
+\mbox{\tt in}  & {\em \+\_\+\+\_\+lambda} & The order of the Gegenbauer polynomial \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 104 of file sf\+\_\+gegenbauer.\+tcc.
 
 
 
@@ -5119,7 +5271,7 @@ Referenced by \+\_\+\+\_\+hankel\+\_\+uniform\+\_\+olver().
 
 
 
-Definition at line 3286 of file sf\+\_\+gamma.\+tcc.
+Definition at line 3288 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -5225,7 +5377,7 @@ The Physicists Hermite polynomials have highest-\/order coefficient $ 2^n $ and 
 The value of the Hermite polynomial of order n and argument x. 
 \end{DoxyReturn}
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000013}{Todo}]Find the sign of Hermite blowup values. \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000009}{Todo}]Find the sign of Hermite blowup values. \end{DoxyRefDesc}
 
 
 Definition at line 86 of file sf\+\_\+hermite.\+tcc.
@@ -5275,7 +5427,7 @@ The Hurwitz zeta function is defined by\+: \[ \zeta(s,a) = \sum_{n=0}^{\infty} \
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+s} & The argument $ s != 1 $ \\
+{\em \+\_\+\+\_\+s} & The order $ s != 1 $ \\
 \hline
 {\em \+\_\+\+\_\+a} & The scale parameter $ a > -1 $ \\
 \hline
@@ -5308,7 +5460,7 @@ An efficient algorithm for accelerating the convergence of oscillatory series, u
 \end{DoxySeeAlso}
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+s} & The argument $ s != 1 $ \\
+{\em \+\_\+\+\_\+s} & The order $ s != 1 $ \\
 \hline
 {\em \+\_\+\+\_\+a} & The scale parameter $ a > -1 $ \\
 \hline
@@ -5340,10 +5492,10 @@ Return the Hurwitz Zeta function for real s and complex a. This uses Jonquiere\t
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000014}{Todo}]This \+\_\+\+\_\+hurwitz\+\_\+zeta\+\_\+polylog prefactor is prone to overflow. positive integer orders s? \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000010}{Todo}]This \+\_\+\+\_\+hurwitz\+\_\+zeta\+\_\+polylog prefactor is prone to overflow. positive integer orders s? \end{DoxyRefDesc}
 
 
-Definition at line 1092 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1127 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -5398,6 +5550,10 @@ Definition at line 927 of file sf\+\_\+hyperg.\+tcc.
 
 
 References \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+integer(), \+\_\+\+\_\+hyperg\+\_\+luke(), \+\_\+\+\_\+hyperg\+\_\+reflect(), \+\_\+\+\_\+hyperg\+\_\+series(), \+\_\+\+\_\+log\+\_\+gamma(), and \+\_\+\+\_\+log\+\_\+gamma\+\_\+sign().
+
+
+
+Referenced by \+\_\+\+\_\+legendre\+\_\+q\+\_\+series().
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a0c1ec62b5c39c93ad70a8229a7a6d84d}\label{namespacestd_1_1____detail_a0c1ec62b5c39c93ad70a8229a7a6d84d}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+hyperg\+\_\+luke@{\+\_\+\+\_\+hyperg\+\_\+luke}}
@@ -5562,7 +5718,7 @@ An object containing the three principal Jacobi elliptic functions, $ sn(k, u), 
 \end{DoxyReturn}
 
 
-Definition at line 1648 of file sf\+\_\+theta.\+tcc.
+Definition at line 1649 of file sf\+\_\+theta.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a35edf888e09012d7059e690507ef42ad}\label{namespacestd_1_1____detail_a35edf888e09012d7059e690507ef42ad}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+jacobi\+\_\+recur@{\+\_\+\+\_\+jacobi\+\_\+recur}}
@@ -5571,27 +5727,27 @@ Definition at line 1648 of file sf\+\_\+theta.\+tcc.
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
 \hyperlink{struct____gnu__cxx_1_1____jacobi__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+t}$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+recur (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+alpha1,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+beta1,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x }\end{DoxyParamCaption})}
 
-Compute the Jacobi polynomial by recursion on {\ttfamily n\+:} \[ 2 n(\alpha + \beta + n) (\alpha + \beta + 2n - 2) P^{(\alpha, \beta)}_{n}(x) = (\alpha + \beta + 2n - 1) ((\alpha^2 - \beta^2) + x(\alpha + \beta + 2n - 2)(\alpha + \beta + 2n)) P^{(\alpha, \beta)}_{n-1}(x) - 2 (\alpha + n - 1)(\beta + n - 1)(\alpha + \beta + 2n) P^{(\alpha, \beta)}_{n-2}(x) \]
+Compute the Jacobi polynomial by recursion on {\ttfamily n\+:} \[ 2 n(\alpha + \beta + n) (\alpha + \beta + 2n - 2) P^{(\alpha, \beta)}_{n}(x) = (\alpha + \beta + 2n - 1) ((\alpha^2 - \beta^2) + x(\alpha + \beta + 2n - 2)(\alpha + \beta + 2n)) P^{(\alpha, \beta)}_{n-1}(x) - 2 (\alpha + n - 1)(\beta + n - 1)(\alpha + \beta + 2n) P^{(\alpha, \beta)}_{n-2}(x) \] This works for $ \alpha,\beta > -1 $
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em \+\_\+\+Tp} & The real type of the radial coordinate \\
+{\em \+\_\+\+Tp} & The real type of the argument \\
 \hline
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em n} & The order of the Jacobi polynomial \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+n} & The degree of the Jacobi polynomial \\
 \hline
-\mbox{\tt in}  & {\em alpha1} & The first parameter of the Jacobi polynomial \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+alpha1} & The first order parameter of the Jacobi polynomial \\
 \hline
-\mbox{\tt in}  & {\em beta1} & The second parameter of the Jacobi polynomial \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+beta1} & The second order parameter of the Jacobi polynomial \\
 \hline
-\mbox{\tt in}  & {\em x} & The optional scaling of the coordinate; default 1. \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+x} & The argument \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 66 of file sf\+\_\+jacobi.\+tcc.
+Definition at line 68 of file sf\+\_\+jacobi.\+tcc.
 
 
 
@@ -5621,7 +5777,7 @@ The argument is reduced with \[ \theta_1(q, x+(m+n\tau)\pi) = (-1)^{m+n}q^{-n^2}
 \end{DoxyParams}
 
 
-Definition at line 979 of file sf\+\_\+theta.\+tcc.
+Definition at line 980 of file sf\+\_\+theta.\+tcc.
 
 
 
@@ -5651,7 +5807,7 @@ The Jacobi or elliptic theta function is defined by \[ \theta_1(q,x) = 2\sum_{n=
 \end{DoxyParams}
 
 
-Definition at line 1047 of file sf\+\_\+theta.\+tcc.
+Definition at line 1048 of file sf\+\_\+theta.\+tcc.
 
 
 
@@ -5677,7 +5833,7 @@ The Jacobi or elliptic theta-\/1 function is defined by \[ \theta_1(q,x) = 2 q^{
 \end{DoxyParams}
 
 
-Definition at line 922 of file sf\+\_\+theta.\+tcc.
+Definition at line 923 of file sf\+\_\+theta.\+tcc.
 
 
 
@@ -5703,7 +5859,7 @@ The Jacobi or elliptic theta-\/1 function is defined by \[ \theta_1(q,x) = 2\sum
 \end{DoxyParams}
 
 
-Definition at line 887 of file sf\+\_\+theta.\+tcc.
+Definition at line 888 of file sf\+\_\+theta.\+tcc.
 
 
 
@@ -5733,7 +5889,7 @@ The argument is reduced with \[ \theta_2(q, x + (m+n\tau)\pi) = (-1)^{m}q^{-n^2}
 \end{DoxyParams}
 
 
-Definition at line 1175 of file sf\+\_\+theta.\+tcc.
+Definition at line 1176 of file sf\+\_\+theta.\+tcc.
 
 
 
@@ -5763,7 +5919,7 @@ The Jacobi or elliptic theta function is defined by \[ \theta_2(q,x) = 2\sum_{n=
 \end{DoxyParams}
 
 
-Definition at line 1248 of file sf\+\_\+theta.\+tcc.
+Definition at line 1249 of file sf\+\_\+theta.\+tcc.
 
 
 
@@ -5789,7 +5945,7 @@ The Jacobi or elliptic theta-\/2 function is defined by \[ \theta_2(q,x) = 2 q^{
 \end{DoxyParams}
 
 
-Definition at line 1108 of file sf\+\_\+theta.\+tcc.
+Definition at line 1109 of file sf\+\_\+theta.\+tcc.
 
 
 
@@ -5819,7 +5975,7 @@ The Jacobi or elliptic theta-\/2 function is defined by \[ \theta_2(q,x) = 2\sum
 \end{DoxyParams}
 
 
-Definition at line 1076 of file sf\+\_\+theta.\+tcc.
+Definition at line 1077 of file sf\+\_\+theta.\+tcc.
 
 
 
@@ -5849,7 +6005,7 @@ The argument is reduced with \[ \theta_3(q, x + (m+n\tau)\pi) = q^{-n^2} e^{-2in
 \end{DoxyParams}
 
 
-Definition at line 1364 of file sf\+\_\+theta.\+tcc.
+Definition at line 1365 of file sf\+\_\+theta.\+tcc.
 
 
 
@@ -5879,7 +6035,7 @@ The Jacobi or elliptic theta function is defined by \[ \theta_3(q,x) = 1 + 2\sum
 \end{DoxyParams}
 
 
-Definition at line 1432 of file sf\+\_\+theta.\+tcc.
+Definition at line 1433 of file sf\+\_\+theta.\+tcc.
 
 
 
@@ -5905,7 +6061,7 @@ The Jacobi or elliptic theta-\/3 function is defined by \[ \theta_3(q,x) = \prod
 \end{DoxyParams}
 
 
-Definition at line 1308 of file sf\+\_\+theta.\+tcc.
+Definition at line 1309 of file sf\+\_\+theta.\+tcc.
 
 
 
@@ -5931,7 +6087,7 @@ The Jacobi or elliptic theta-\/3 function is defined by \[ \theta_3(q,x) = 1 + 2
 \end{DoxyParams}
 
 
-Definition at line 1276 of file sf\+\_\+theta.\+tcc.
+Definition at line 1277 of file sf\+\_\+theta.\+tcc.
 
 
 
@@ -5961,7 +6117,7 @@ The argument is reduced with \[ \theta_4(q, z+(m + n\tau)\pi) = (-1)^n q^{-n^2}e
 \end{DoxyParams}
 
 
-Definition at line 1550 of file sf\+\_\+theta.\+tcc.
+Definition at line 1551 of file sf\+\_\+theta.\+tcc.
 
 
 
@@ -5991,7 +6147,7 @@ The Jacobi or elliptic theta function is defined by \[ \theta_4(q,x) = 1 + 2\sum
 \end{DoxyParams}
 
 
-Definition at line 1621 of file sf\+\_\+theta.\+tcc.
+Definition at line 1622 of file sf\+\_\+theta.\+tcc.
 
 
 
@@ -6017,7 +6173,7 @@ The Jacobi or elliptic theta-\/4 function is defined by \[ \theta_4(q,x) = \prod
 \end{DoxyParams}
 
 
-Definition at line 1494 of file sf\+\_\+theta.\+tcc.
+Definition at line 1495 of file sf\+\_\+theta.\+tcc.
 
 
 
@@ -6043,7 +6199,7 @@ The Jacobi or elliptic theta function is defined by \[ \theta_4(q,x) = 1 + 2\sum
 \end{DoxyParams}
 
 
-Definition at line 1460 of file sf\+\_\+theta.\+tcc.
+Definition at line 1461 of file sf\+\_\+theta.\+tcc.
 
 
 
@@ -6056,25 +6212,25 @@ Referenced by \+\_\+\+\_\+jacobi\+\_\+theta\+\_\+2(), \+\_\+\+\_\+jacobi\+\_\+th
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
 std\+::vector$<$\hyperlink{struct____gnu__cxx_1_1____quadrature__point__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+quadrature\+\_\+point\+\_\+t}$<$\+\_\+\+Tp$>$ $>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+zeros (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+alpha1,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+beta1 }\end{DoxyParamCaption})}
 
-Return a vector containing the zeros of the Jacobi polynomial $ P_n^{(\alpha,\beta)}(x) $.
+Return a vector containing the zeros of the Jacobi polynomial $ P_n^{(\alpha,\beta)}(x) $. Thias works for $ \alpha, \beta > -1 $.
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em \+\_\+\+Tp} & The real type of the radial coordinate \\
+{\em \+\_\+\+Tp} & The real type of the parameters \\
 \hline
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em n} & The order of the Jacobi polynomial \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+n} & The degree of the Jacobi polynomial \\
 \hline
-\mbox{\tt in}  & {\em alpha1} & The first parameter of the Jacobi polynomial \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+alpha1} & The first order parameter of the Jacobi polynomial \\
 \hline
-\mbox{\tt in}  & {\em beta1} & The second parameter of the Jacobi polynomial \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+beta1} & The second order parameter of the Jacobi polynomial \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 139 of file sf\+\_\+jacobi.\+tcc.
+Definition at line 142 of file sf\+\_\+jacobi.\+tcc.
 
 
 
@@ -6131,7 +6287,7 @@ The associated Laguerre polynomial is defined for integral order $ \alpha = m $ 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em \+\_\+\+Tpa} & The type of the degree. \\
+{\em \+\_\+\+Tpa} & The type of the order. \\
 \hline
 {\em \+\_\+\+Tp} & The type of the parameter. \\
 \hline
@@ -6181,7 +6337,7 @@ The value of the Laguerre polynomial of order n and argument x.
 \end{DoxyReturn}
 
 
-Definition at line 386 of file sf\+\_\+laguerre.\+tcc.
+Definition at line 387 of file sf\+\_\+laguerre.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a7908be328a4546d77802076196ae4396}\label{namespacestd_1_1____detail_a7908be328a4546d77802076196ae4396}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+laguerre\+\_\+hyperg@{\+\_\+\+\_\+laguerre\+\_\+hyperg}}
@@ -6202,7 +6358,7 @@ This is from the G\+NU Scientific Library.
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em \+\_\+\+Tpa} & The type of the degree. \\
+{\em \+\_\+\+Tpa} & The type of the order. \\
 \hline
 {\em \+\_\+\+Tp} & The type of the parameter. \\
 \hline
@@ -6240,7 +6396,7 @@ This routine returns the associated Laguerre polynomial of degree $ n $, order $
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em \+\_\+\+Tpa} & The type of the degree. \\
+{\em \+\_\+\+Tpa} & The type of the order. \\
 \hline
 {\em \+\_\+\+Tp} & The type of the parameter. \\
 \hline
@@ -6286,7 +6442,7 @@ The associated Laguerre polynomial is defined for integral order $ \alpha = m $ 
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em \+\_\+\+Tpa} & The type of the degree. \\
+{\em \+\_\+\+Tpa} & The type of the order. \\
 \hline
 {\em \+\_\+\+Tp} & The type of the parameter. \\
 \hline
@@ -6325,6 +6481,50 @@ Definition at line 225 of file sf\+\_\+laguerre.\+tcc.
 
 
 References \+\_\+\+\_\+gnu\+\_\+cxx\+::lgamma().
+
+\mbox{\Hypertarget{namespacestd_1_1____detail_ac124597fd6b7d77f4474d62dda0b5715}\label{namespacestd_1_1____detail_ac124597fd6b7d77f4474d62dda0b5715}} 
+\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+lah@{\+\_\+\+\_\+lah}}
+\index{\+\_\+\+\_\+lah@{\+\_\+\+\_\+lah}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+lah()}{\_\_lah()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+lah (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n,  }\item[{unsigned int}]{\+\_\+\+\_\+k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the Lah number. Lah numbers are defined by downward recurrence\+: \[ L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k); L(n,n) = 1 \] 
+
+Definition at line 440 of file sf\+\_\+stirling.\+tcc.
+
+\mbox{\Hypertarget{namespacestd_1_1____detail_af6d01a95dbd0418929960fa127e01b99}\label{namespacestd_1_1____detail_af6d01a95dbd0418929960fa127e01b99}} 
+\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+lah@{\+\_\+\+\_\+lah}}
+\index{\+\_\+\+\_\+lah@{\+\_\+\+\_\+lah}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+lah()}{\_\_lah()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+std\+::vector$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+lah (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return a vector of Lah numbers. Lah numbers are defined by downward recurrence\+: \[ L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k); L(n,n) = 1 \] 
+
+Definition at line 478 of file sf\+\_\+stirling.\+tcc.
+
+\mbox{\Hypertarget{namespacestd_1_1____detail_ac3e6ae56f6e6e31636f0bc46a11d9b8e}\label{namespacestd_1_1____detail_ac3e6ae56f6e6e31636f0bc46a11d9b8e}} 
+\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+lah\+\_\+recur@{\+\_\+\+\_\+lah\+\_\+recur}}
+\index{\+\_\+\+\_\+lah\+\_\+recur@{\+\_\+\+\_\+lah\+\_\+recur}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+lah\+\_\+recur()}{\_\_lah\_recur()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+lah\+\_\+recur (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n,  }\item[{unsigned int}]{\+\_\+\+\_\+k }\end{DoxyParamCaption})}
+
+Return the Lah number by downward recurrence\+: \[ L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k); L(n,n) = 1 \] 
+
+Definition at line 416 of file sf\+\_\+stirling.\+tcc.
+
+\mbox{\Hypertarget{namespacestd_1_1____detail_a335ad35b2674153db0fe4da6d025afae}\label{namespacestd_1_1____detail_a335ad35b2674153db0fe4da6d025afae}} 
+\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+lah\+\_\+recur@{\+\_\+\+\_\+lah\+\_\+recur}}
+\index{\+\_\+\+\_\+lah\+\_\+recur@{\+\_\+\+\_\+lah\+\_\+recur}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+lah\+\_\+recur()}{\_\_lah\_recur()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+std\+::vector$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+lah\+\_\+recur (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n }\end{DoxyParamCaption})}
+
+Return a vector of Lah numbers defined by downward recurrence\+: \[ L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k); L(n,n) = 1 \] 
+
+Definition at line 451 of file sf\+\_\+stirling.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a84722b82d6d614aa4653eb7559f7d508}\label{namespacestd_1_1____detail_a84722b82d6d614aa4653eb7559f7d508}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+lanczos\+\_\+binet1p@{\+\_\+\+\_\+lanczos\+\_\+binet1p}}
@@ -6410,18 +6610,18 @@ The Legendre function of degree $ l $ and argument $ x $, $ P_l(x) $, is defined
 \end{DoxyParams}
 
 
-Definition at line 82 of file sf\+\_\+legendre.\+tcc.
+Definition at line 85 of file sf\+\_\+legendre.\+tcc.
 
 
 
 Referenced by \+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p(), and \+\_\+\+\_\+sph\+\_\+legendre().
 
-\mbox{\Hypertarget{namespacestd_1_1____detail_a0643760e0d1701df4db880b2ad969055}\label{namespacestd_1_1____detail_a0643760e0d1701df4db880b2ad969055}} 
+\mbox{\Hypertarget{namespacestd_1_1____detail_aa3260951fa25185d757b65145fb1d3c9}\label{namespacestd_1_1____detail_aa3260951fa25185d757b65145fb1d3c9}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+legendre\+\_\+q@{\+\_\+\+\_\+legendre\+\_\+q}}
 \index{\+\_\+\+\_\+legendre\+\_\+q@{\+\_\+\+\_\+legendre\+\_\+q}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
 \subsubsection{\texorpdfstring{\+\_\+\+\_\+legendre\+\_\+q()}{\_\_legendre\_q()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
-\+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+legendre\+\_\+q (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+l,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x }\end{DoxyParamCaption})}
+\hyperlink{struct____gnu__cxx_1_1____legendre__q__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+q\+\_\+t}$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+legendre\+\_\+q (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+l,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x }\end{DoxyParamCaption})}
 
 
 
@@ -6431,14 +6631,37 @@ The Legendre function of the second kind of degree $ l $ and argument $ x $, $ Q
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+l} & The degree of the Legendre function. $l >= 0$. \\
+{\em \+\_\+\+\_\+l} & The degree of the Legendre function. $ l >= 0 $. \\
 \hline
-{\em \+\_\+\+\_\+x} & The argument of the Legendre function. $|x| <= 1$. \\
+{\em \+\_\+\+\_\+x} & The argument of the Legendre function. $ |x| <= 1 $. \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 141 of file sf\+\_\+legendre.\+tcc.
+Definition at line 165 of file sf\+\_\+legendre.\+tcc.
+
+
+
+References \+\_\+\+\_\+legendre\+\_\+q\+\_\+series().
+
+\mbox{\Hypertarget{namespacestd_1_1____detail_a8a1a46e206545e8c7d3cae2a508833aa}\label{namespacestd_1_1____detail_a8a1a46e206545e8c7d3cae2a508833aa}} 
+\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+legendre\+\_\+q\+\_\+series@{\+\_\+\+\_\+legendre\+\_\+q\+\_\+series}}
+\index{\+\_\+\+\_\+legendre\+\_\+q\+\_\+series@{\+\_\+\+\_\+legendre\+\_\+q\+\_\+series}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+legendre\+\_\+q\+\_\+series()}{\_\_legendre\_q\_series()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+legendre\+\_\+q\+\_\+series (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+l,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x }\end{DoxyParamCaption})}
+
+Legendre q series. 
+
+Definition at line 133 of file sf\+\_\+legendre.\+tcc.
+
+
+
+References \+\_\+\+\_\+hyperg().
+
+
+
+Referenced by \+\_\+\+\_\+legendre\+\_\+q().
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a9d53ac0fd39232190e7564fa067a878d}\label{namespacestd_1_1____detail_a9d53ac0fd39232190e7564fa067a878d}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+legendre\+\_\+zeros@{\+\_\+\+\_\+legendre\+\_\+zeros}}
@@ -6449,7 +6672,7 @@ std\+::vector$<$\hyperlink{struct____gnu__cxx_1_1____quadrature__point__t}{\+\_\
 
 Build a list of zeros and weights for the Gauss-\/\+Legendre integration rule for the Legendre polynomial of degree {\ttfamily l}. 
 
-Definition at line 390 of file sf\+\_\+legendre.\+tcc.
+Definition at line 521 of file sf\+\_\+legendre.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a087d65f98ba6a6709b4d62fa32445e59}\label{namespacestd_1_1____detail_a087d65f98ba6a6709b4d62fa32445e59}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+log\+\_\+binomial@{\+\_\+\+\_\+log\+\_\+binomial}}
@@ -6474,7 +6697,7 @@ The logarithm of the binomial coefficient.
 \end{DoxyReturn}
 
 
-Definition at line 2434 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2436 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -6507,7 +6730,7 @@ The logarithm of the binomial coefficient.
 \end{DoxyReturn}
 
 
-Definition at line 2471 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2473 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -6536,7 +6759,7 @@ The sign of the gamma function.
 \end{DoxyReturn}
 
 
-Definition at line 2502 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2504 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -6555,7 +6778,7 @@ std\+::complex$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+log\+\_\
 
 
 
-Definition at line 2517 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2519 of file sf\+\_\+gamma.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_ad7606a8224ac0c2256996b91051a48a5}\label{namespacestd_1_1____detail_ad7606a8224ac0c2256996b91051a48a5}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+log\+\_\+double\+\_\+factorial@{\+\_\+\+\_\+log\+\_\+double\+\_\+factorial}}
@@ -6627,7 +6850,7 @@ Return the logarithm of the falling factorial function or the lower Pochhammer s
 
 
 
-Definition at line 3050 of file sf\+\_\+gamma.\+tcc.
+Definition at line 3052 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -6654,7 +6877,7 @@ The logarithm of the gamma function.
 \end{DoxyReturn}
 
 
-Definition at line 2325 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2327 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -6685,7 +6908,7 @@ The complex logarithm of the gamma function.
 \end{DoxyReturn}
 
 
-Definition at line 2360 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2362 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -6735,7 +6958,7 @@ The sign of the gamma function.
 \end{DoxyReturn}
 
 
-Definition at line 2401 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2403 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -6750,7 +6973,7 @@ std\+::complex$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+log\+\_\
 
 
 
-Definition at line 2413 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2415 of file sf\+\_\+gamma.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a48998bae6619c9f63574af354b205074}\label{namespacestd_1_1____detail_a48998bae6619c9f63574af354b205074}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+log\+\_\+rising\+\_\+factorial@{\+\_\+\+\_\+log\+\_\+rising\+\_\+factorial}}
@@ -6765,7 +6988,7 @@ Return the logarithm of the rising factorial function or the (upper) Pochhammer 
 
 
 
-Definition at line 3199 of file sf\+\_\+gamma.\+tcc.
+Definition at line 3201 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -6780,7 +7003,7 @@ References \+\_\+\+\_\+log\+\_\+gamma(), and \+\_\+\+\_\+rising\+\_\+factorial()
 
 Return the logarithm of the absolute value of Stirling number of the first kind. 
 
-Definition at line 318 of file sf\+\_\+stirling.\+tcc.
+Definition at line 387 of file sf\+\_\+stirling.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_af804ed0eecfca835d1338a48892460b0}\label{namespacestd_1_1____detail_af804ed0eecfca835d1338a48892460b0}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+log\+\_\+stirling\+\_\+1\+\_\+sign@{\+\_\+\+\_\+log\+\_\+stirling\+\_\+1\+\_\+sign}}
@@ -6791,7 +7014,7 @@ Definition at line 318 of file sf\+\_\+stirling.\+tcc.
 
 Return the sign of the exponent of the logarithm of the Stirling number of the first kind. 
 
-Definition at line 336 of file sf\+\_\+stirling.\+tcc.
+Definition at line 405 of file sf\+\_\+stirling.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a7ba1fde0547236676d579b6405f2fb25}\label{namespacestd_1_1____detail_a7ba1fde0547236676d579b6405f2fb25}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+log\+\_\+stirling\+\_\+2@{\+\_\+\+\_\+log\+\_\+stirling\+\_\+2}}
@@ -6803,10 +7026,10 @@ Definition at line 336 of file sf\+\_\+stirling.\+tcc.
 Return the Stirling number of the second kind.
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000017}{Todo}]Look into asymptotic solutions. \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000014}{Todo}]Find asymptotic expressions for the Stirling numbers. \end{DoxyRefDesc}
 
 
-Definition at line 178 of file sf\+\_\+stirling.\+tcc.
+Definition at line 234 of file sf\+\_\+stirling.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a4d5f8cb2b4e6e192faba9418ec14149f}\label{namespacestd_1_1____detail_a4d5f8cb2b4e6e192faba9418ec14149f}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+logint@{\+\_\+\+\_\+logint}}
@@ -6957,6 +7180,35 @@ Definition at line 92 of file sf\+\_\+owens\+\_\+t.\+tcc.
 
 References \+\_\+\+\_\+znorm1(), and \+\_\+\+\_\+znorm2().
 
+\mbox{\Hypertarget{namespacestd_1_1____detail_a1d65d34f43558441e4ed83d84dbc9ddf}\label{namespacestd_1_1____detail_a1d65d34f43558441e4ed83d84dbc9ddf}} 
+\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+periodic\+\_\+zeta@{\+\_\+\+\_\+periodic\+\_\+zeta}}
+\index{\+\_\+\+\_\+periodic\+\_\+zeta@{\+\_\+\+\_\+periodic\+\_\+zeta}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+periodic\+\_\+zeta()}{\_\_periodic\_zeta()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+Arg\+Type $>$ \\
+\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$std\+::complex$<$\+\_\+\+Tp$>$, \+\_\+\+Arg\+Type$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+periodic\+\_\+zeta (\begin{DoxyParamCaption}\item[{\+\_\+\+Arg\+Type}]{\+\_\+\+\_\+z,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+s }\end{DoxyParamCaption})}
+
+Return the periodic zeta function F(z,s) for two real arguments.
+
+The periodic zeta function is defined by \[ F(z,s) = \sum_{k=1}^{\infty} \frac{e^{i2\pi kz}}{k^s} = Li_s(e^{i2\pi kz}) \]
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+s} & The real order. \\
+\hline
+{\em \+\_\+\+\_\+z} & The real or complex argument. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The complex value of the periodic zeta function. 
+\end{DoxyReturn}
+
+
+Definition at line 1102 of file sf\+\_\+polylog.\+tcc.
+
+
+
+References \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+zero(), \+\_\+\+\_\+polylog\+\_\+exp(), and \+\_\+\+\_\+riemann\+\_\+zeta().
+
 \mbox{\Hypertarget{namespacestd_1_1____detail_ac69e259ad511fcc7a54c6ec315adcfa4}\label{namespacestd_1_1____detail_ac69e259ad511fcc7a54c6ec315adcfa4}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+polar\+\_\+pi@{\+\_\+\+\_\+polar\+\_\+pi}}
 \index{\+\_\+\+\_\+polar\+\_\+pi@{\+\_\+\+\_\+polar\+\_\+pi}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
@@ -7004,7 +7256,7 @@ Return the polygamma function $ \psi^{(m)}(x) $.
 
 The polygamma function is related to the Hurwitz zeta function\+: \[ \psi^{(m)}(x) = (-1)^{m+1} m! \zeta(m+1,x) \] 
 
-Definition at line 3465 of file sf\+\_\+gamma.\+tcc.
+Definition at line 3467 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -7033,7 +7285,7 @@ The complex value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 1029 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1037 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -7064,7 +7316,7 @@ The complex value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 1070 of file sf\+\_\+polylog.\+tcc.
+Definition at line 1078 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -7094,7 +7346,7 @@ The real or complex value of Li\+\_\+s(e$^\wedge$w).
 \end{DoxyReturn}
 
 
-Definition at line 988 of file sf\+\_\+polylog.\+tcc.
+Definition at line 996 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -7102,7 +7354,7 @@ References \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+integer(), \+
 
 
 
-Referenced by \+\_\+\+\_\+bose\+\_\+einstein(), \+\_\+\+\_\+clausen(), \+\_\+\+\_\+clausen\+\_\+cl(), \+\_\+\+\_\+clausen\+\_\+sl(), \+\_\+\+\_\+fermi\+\_\+dirac(), \+\_\+\+\_\+hurwitz\+\_\+zeta\+\_\+polylog(), and \+\_\+\+\_\+polylog().
+Referenced by \+\_\+\+\_\+bose\+\_\+einstein(), \+\_\+\+\_\+clausen(), \+\_\+\+\_\+clausen\+\_\+cl(), \+\_\+\+\_\+clausen\+\_\+sl(), \+\_\+\+\_\+fermi\+\_\+dirac(), \+\_\+\+\_\+hurwitz\+\_\+zeta\+\_\+polylog(), \+\_\+\+\_\+periodic\+\_\+zeta(), and \+\_\+\+\_\+polylog().
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_af3684fc449da490e9a43985245618a90}\label{namespacestd_1_1____detail_af3684fc449da490e9a43985245618a90}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+polylog\+\_\+exp\+\_\+asymp@{\+\_\+\+\_\+polylog\+\_\+exp\+\_\+asymp}}
@@ -7127,7 +7379,7 @@ the value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 601 of file sf\+\_\+polylog.\+tcc.
+Definition at line 603 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -7156,7 +7408,7 @@ The value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 365 of file sf\+\_\+polylog.\+tcc.
+Definition at line 367 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -7187,7 +7439,7 @@ the value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 451 of file sf\+\_\+polylog.\+tcc.
+Definition at line 453 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -7214,7 +7466,7 @@ the value of the polylogarith,.
 \end{DoxyReturn}
 
 
-Definition at line 783 of file sf\+\_\+polylog.\+tcc.
+Definition at line 789 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -7245,7 +7497,7 @@ the value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 827 of file sf\+\_\+polylog.\+tcc.
+Definition at line 835 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -7272,7 +7524,7 @@ The value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 928 of file sf\+\_\+polylog.\+tcc.
+Definition at line 936 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -7303,7 +7555,7 @@ The value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 959 of file sf\+\_\+polylog.\+tcc.
+Definition at line 967 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -7332,7 +7584,7 @@ the value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 217 of file sf\+\_\+polylog.\+tcc.
+Definition at line 219 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -7365,7 +7617,7 @@ the value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 293 of file sf\+\_\+polylog.\+tcc.
+Definition at line 295 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -7394,7 +7646,7 @@ the value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 514 of file sf\+\_\+polylog.\+tcc.
+Definition at line 516 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -7421,7 +7673,7 @@ The value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 676 of file sf\+\_\+polylog.\+tcc.
+Definition at line 678 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -7452,7 +7704,7 @@ the value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 735 of file sf\+\_\+polylog.\+tcc.
+Definition at line 739 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -7479,7 +7731,7 @@ The value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 854 of file sf\+\_\+polylog.\+tcc.
+Definition at line 862 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -7510,7 +7762,7 @@ The value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 894 of file sf\+\_\+polylog.\+tcc.
+Definition at line 902 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -7539,7 +7791,7 @@ the value of the polylogarithm.
 \end{DoxyReturn}
 
 
-Definition at line 645 of file sf\+\_\+polylog.\+tcc.
+Definition at line 647 of file sf\+\_\+polylog.\+tcc.
 
 
 
@@ -7612,7 +7864,7 @@ Zernike Polynomials\+: Evaluation, Quadrature, and Interpolation Philip Greengar
 \end{DoxyParams}
 
 
-Definition at line 292 of file sf\+\_\+jacobi.\+tcc.
+Definition at line 295 of file sf\+\_\+jacobi.\+tcc.
 
 
 
@@ -7638,16 +7890,14 @@ Return a vector containing the zeros of the radial Jacobi polynomial $ P_n^{(\al
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em n} & The order of the Jacobi polynomial \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+n} & The degree of the radial Jacobi polynomial \\
 \hline
-\mbox{\tt in}  & {\em alpha1} & The first parameter of the Jacobi polynomial \\
-\hline
-\mbox{\tt in}  & {\em beta1} & The second parameter of the Jacobi polynomial \\
+\mbox{\tt in}  & {\em \+\_\+\+\_\+m} & The order of the radial Jacobi polynomial \\
 \hline
 \end{DoxyParams}
 
 
-Definition at line 324 of file sf\+\_\+jacobi.\+tcc.
+Definition at line 326 of file sf\+\_\+jacobi.\+tcc.
 
 
 
@@ -7687,11 +7937,11 @@ The Riemann zeta function is defined by\+: \[ \zeta(s) = \sum_{k=1}^{\infty} k^{
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+s} & The argument \\
+{\em \+\_\+\+\_\+s} & The order \\
 \hline
 \end{DoxyParams}
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000019}{Todo}]Global double sum or Mac\+Laurin series in riemann\+\_\+zeta? \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000017}{Todo}]Global double sum or Mac\+Laurin series in riemann\+\_\+zeta? \end{DoxyRefDesc}
 
 
 Definition at line 761 of file sf\+\_\+zeta.\+tcc.
@@ -7702,7 +7952,7 @@ References \+\_\+\+\_\+exp2(), \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+i
 
 
 
-Referenced by \+\_\+\+\_\+dirichlet\+\_\+lambda(), \+\_\+\+\_\+hurwitz\+\_\+zeta(), \+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos(), and \+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos\+\_\+real().
+Referenced by \+\_\+\+\_\+dirichlet\+\_\+lambda(), \+\_\+\+\_\+hurwitz\+\_\+zeta(), \+\_\+\+\_\+periodic\+\_\+zeta(), \+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos(), and \+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos\+\_\+real().
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a84ac805996c4eeb8cbfa181e6e47f0ae}\label{namespacestd_1_1____detail_a84ac805996c4eeb8cbfa181e6e47f0ae}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+euler\+\_\+maclaurin@{\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+euler\+\_\+maclaurin}}
@@ -7717,7 +7967,7 @@ Evaluate the Riemann zeta function $ \zeta(s) $ by an alternate series for s $>$
 
 This is a specialization of the code for the Hurwitz zeta function. 
 
-Definition at line 389 of file sf\+\_\+zeta.\+tcc.
+Definition at line 391 of file sf\+\_\+zeta.\+tcc.
 
 
 
@@ -7732,7 +7982,7 @@ References \+\_\+\+S\+\_\+\+Euler\+\_\+\+Maclaurin\+\_\+zeta.
 
 
 
-Definition at line 499 of file sf\+\_\+zeta.\+tcc.
+Definition at line 501 of file sf\+\_\+zeta.\+tcc.
 
 
 
@@ -7757,7 +8007,7 @@ The Laurent expansion of the Riemann zeta function is given by\+: \[ \zeta(s) = 
 
 The Stieltjes constants can be found from a limiting process\+: \[ \gamma_k = \lim_{n \to \infty} \left\{ \sum_{i=1}^{n}\frac{(ln i)^k}{i} - \frac{(ln n)^{k+1}}{k+1} \right\} \] 
 
-Definition at line 312 of file sf\+\_\+zeta.\+tcc.
+Definition at line 314 of file sf\+\_\+zeta.\+tcc.
 
 
 
@@ -7780,7 +8030,7 @@ Return the Riemann zeta function $ \zeta(s) - 1 $.
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+s} & The argument $ s != 1 $ \\
+{\em \+\_\+\+\_\+s} & The order $ s != 1 $ \\
 \hline
 \end{DoxyParams}
 
@@ -7810,7 +8060,7 @@ The series is\+: \[ \zeta(s) = \frac{1}{1-2^{1-s}} \sum_{n=0}^{\infty} \frac{1}{
 
 The Riemann zeta function is defined by\+: \[ \zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1 \] For s $<$ 1 use the reflection formula\+: \[ \zeta(s) = (2\pi)^s \Gamma(1-s) \zeta(1-s) / \pi \] 
 
-Definition at line 448 of file sf\+\_\+zeta.\+tcc.
+Definition at line 450 of file sf\+\_\+zeta.\+tcc.
 
 
 
@@ -7829,11 +8079,11 @@ Compute the Riemann zeta function $ \zeta(s) $ using the product over prime fact
 
 \[ \zeta(s) = \Pi_{i=1}^\infty \frac{1}{1 - p_i^{-s}} \] where $ {p_i} $ are the prime numbers.
 
-The Riemann zeta function is defined by\+: \[ \renewcommand\Re{\operatorname{Re}} \renewcommand\Im{\operatorname{Im}} \zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for \Re{s} > 1 \] For (s) $<$ 1 use the reflection formula\+: \[ \zeta(s) = (2\pi)^s \Gamma(1-s) \zeta(1-s) / \pi \]
+The Riemann zeta function is defined by\+: \[ \zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} \mbox{ for } \Re(s) > 1 \] For (s) $<$ 1 use the reflection formula\+: \[ \zeta(s) = (2\pi)^s \Gamma(1-s) \zeta(1-s) / \pi \]
 
 
 \begin{DoxyParams}{Parameters}
-{\em \+\_\+\+\_\+s} & The argument \\
+{\em \+\_\+\+\_\+s} & The order. \\
 \hline
 \end{DoxyParams}
 
@@ -7857,7 +8107,7 @@ Compute the Riemann zeta function $ \zeta(s) $ by summation for s $>$ 1.
 
 The Riemann zeta function is defined by\+: \[ \zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for s > 1 \] For s $<$ 1 use the reflection formula\+: \[ \zeta(s) = (2\pi)^s \Gamma(1-s) \zeta(1-s) / \pi \] 
 
-Definition at line 346 of file sf\+\_\+zeta.\+tcc.
+Definition at line 348 of file sf\+\_\+zeta.\+tcc.
 
 
 
@@ -7880,7 +8130,7 @@ Return the (upper) Pochhammer function or the rising factorial function. The Poc
 
 
 
-Definition at line 3100 of file sf\+\_\+gamma.\+tcc.
+Definition at line 3102 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -7903,7 +8153,7 @@ Return the rising factorial function or the (upper) Pochhammer function. The ris
 
 
 
-Definition at line 3155 of file sf\+\_\+gamma.\+tcc.
+Definition at line 3157 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -8532,7 +8782,7 @@ $ Y_l^m(\theta,\phi) = 0 $ if $ |m| > l $.
 \end{DoxyParams}
 
 
-Definition at line 371 of file sf\+\_\+legendre.\+tcc.
+Definition at line 502 of file sf\+\_\+legendre.\+tcc.
 
 
 
@@ -8567,7 +8817,7 @@ $ Y_l^m(\theta) = 0 $ if $ m > l $.
 \end{DoxyParams}
 
 
-Definition at line 278 of file sf\+\_\+legendre.\+tcc.
+Definition at line 409 of file sf\+\_\+legendre.\+tcc.
 
 
 
@@ -8705,7 +8955,7 @@ Referenced by \+\_\+\+\_\+log\+\_\+gamma().
 \mbox{\Hypertarget{namespacestd_1_1____detail_a8b215e4ca28ec9b7b078d7f3d9aecc17}\label{namespacestd_1_1____detail_a8b215e4ca28ec9b7b078d7f3d9aecc17}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+stirling\+\_\+1@{\+\_\+\+\_\+stirling\+\_\+1}}
 \index{\+\_\+\+\_\+stirling\+\_\+1@{\+\_\+\+\_\+stirling\+\_\+1}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
-\subsubsection{\texorpdfstring{\+\_\+\+\_\+stirling\+\_\+1()}{\_\_stirling\_1()}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+stirling\+\_\+1()}{\_\_stirling\_1()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
 \+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+stirling\+\_\+1 (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n,  }\item[{unsigned int}]{\+\_\+\+\_\+m }\end{DoxyParamCaption})}
 
@@ -8716,43 +8966,48 @@ The Stirling numbers of the first kind are the coefficients of the Pocchammer po
 The recursion is \[ S_{n+1}^{(m)} = S_n^{(m-1)} - n S_n^{(m)} \mbox{ or } \] with starting values \[ S_0^{(0\rightarrow m)} = {1, 0, 0, ..., 0} \] and \[ S_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0} \]
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000018}{Todo}]Find asymptotic solutions for the Stirling numbers of the first kind. 
-
-Develop an iterator model for Stirling numbers of the first kind. \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000015}{Todo}]Find asymptotic expressions for the Stirling numbers. \end{DoxyRefDesc}
 
 
-Definition at line 300 of file sf\+\_\+stirling.\+tcc.
+Definition at line 311 of file sf\+\_\+stirling.\+tcc.
+
+\mbox{\Hypertarget{namespacestd_1_1____detail_a8d1c581fb8fddd354f7f1cbbdbe6f2d2}\label{namespacestd_1_1____detail_a8d1c581fb8fddd354f7f1cbbdbe6f2d2}} 
+\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+stirling\+\_\+1@{\+\_\+\+\_\+stirling\+\_\+1}}
+\index{\+\_\+\+\_\+stirling\+\_\+1@{\+\_\+\+\_\+stirling\+\_\+1}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+stirling\+\_\+1()}{\_\_stirling\_1()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+std\+::vector$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+stirling\+\_\+1 (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n }\end{DoxyParamCaption})}
+
+Return a vector of Stirling numbers of the first kind. The recursion is \[ S_{n+1}^{(m)} = S_n^{(m-1)} - n S_n^{(m)} \mbox{ or } \] with starting values \[ S_0^{(0\rightarrow m)} = {1, 0, 0, ..., 0} \] and \[ S_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0} \] 
+
+Definition at line 378 of file sf\+\_\+stirling.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a0a47b5d34956a55f438f2ba079680acd}\label{namespacestd_1_1____detail_a0a47b5d34956a55f438f2ba079680acd}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+stirling\+\_\+1\+\_\+recur@{\+\_\+\+\_\+stirling\+\_\+1\+\_\+recur}}
 \index{\+\_\+\+\_\+stirling\+\_\+1\+\_\+recur@{\+\_\+\+\_\+stirling\+\_\+1\+\_\+recur}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
-\subsubsection{\texorpdfstring{\+\_\+\+\_\+stirling\+\_\+1\+\_\+recur()}{\_\_stirling\_1\_recur()}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+stirling\+\_\+1\+\_\+recur()}{\_\_stirling\_1\_recur()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
 \+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+stirling\+\_\+1\+\_\+recur (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n,  }\item[{unsigned int}]{\+\_\+\+\_\+m }\end{DoxyParamCaption})}
 
 Return the Stirling number of the first kind by recursion. The recursion is \[ S_{n+1}^{(m)} = S_n^{(m-1)} - n S_n^{(m)} \mbox{ or } \] with starting values \[ S_0^{(0\rightarrow m)} = {1, 0, 0, ..., 0} \] and \[ S_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0} \] 
 
-Definition at line 251 of file sf\+\_\+stirling.\+tcc.
+Definition at line 263 of file sf\+\_\+stirling.\+tcc.
 
-\mbox{\Hypertarget{namespacestd_1_1____detail_adb65db9b399228c604c5f72156695965}\label{namespacestd_1_1____detail_adb65db9b399228c604c5f72156695965}} 
-\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+stirling\+\_\+1\+\_\+series@{\+\_\+\+\_\+stirling\+\_\+1\+\_\+series}}
-\index{\+\_\+\+\_\+stirling\+\_\+1\+\_\+series@{\+\_\+\+\_\+stirling\+\_\+1\+\_\+series}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
-\subsubsection{\texorpdfstring{\+\_\+\+\_\+stirling\+\_\+1\+\_\+series()}{\_\_stirling\_1\_series()}}
+\mbox{\Hypertarget{namespacestd_1_1____detail_a2fe6ac62307cb1aded6ffae4dcc81f0b}\label{namespacestd_1_1____detail_a2fe6ac62307cb1aded6ffae4dcc81f0b}} 
+\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+stirling\+\_\+1\+\_\+recur@{\+\_\+\+\_\+stirling\+\_\+1\+\_\+recur}}
+\index{\+\_\+\+\_\+stirling\+\_\+1\+\_\+recur@{\+\_\+\+\_\+stirling\+\_\+1\+\_\+recur}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+stirling\+\_\+1\+\_\+recur()}{\_\_stirling\_1\_recur()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
-\+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+stirling\+\_\+1\+\_\+series (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n,  }\item[{unsigned int}]{\+\_\+\+\_\+m }\end{DoxyParamCaption})}
+std\+::vector$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+stirling\+\_\+1\+\_\+recur (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n }\end{DoxyParamCaption})}
 
-Return the Stirling number of the first kind by series expansion. N.\+B. This seems to be a total disaster. 
+Return a vector of Stirling numbers of the first kind by recursion. The recursion is \[ S_{n+1}^{(m)} = S_n^{(m-1)} - n S_n^{(m)} \mbox{ or } \] with starting values \[ S_0^{(0\rightarrow m)} = {1, 0, 0, ..., 0} \] and \[ S_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0} \] 
 
-Definition at line 196 of file sf\+\_\+stirling.\+tcc.
-
-
-
-References \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+parity().
+Definition at line 340 of file sf\+\_\+stirling.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a4589d459a7a9d1d9e19b33601238a4af}\label{namespacestd_1_1____detail_a4589d459a7a9d1d9e19b33601238a4af}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+stirling\+\_\+2@{\+\_\+\+\_\+stirling\+\_\+2}}
 \index{\+\_\+\+\_\+stirling\+\_\+2@{\+\_\+\+\_\+stirling\+\_\+2}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
-\subsubsection{\texorpdfstring{\+\_\+\+\_\+stirling\+\_\+2()}{\_\_stirling\_2()}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+stirling\+\_\+2()}{\_\_stirling\_2()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
 \+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+stirling\+\_\+2 (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n,  }\item[{unsigned int}]{\+\_\+\+\_\+m }\end{DoxyParamCaption})}
 
@@ -8761,25 +9016,53 @@ Return the Stirling number of the second kind from lookup or by series expansion
 The series is\+: \[ \sigma_n^{(m)} = \sum_{k=0}^{m}\frac{(-1)^{m-k}k^n}{(m-k)!k!} \]
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000016}{Todo}]Find asymptotic solutions for Stirling numbers of the second kind. 
-
-Develop an iterator model for Stirling numbers of the second kind. \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000012}{Todo}]Find asymptotic expressions for the Stirling numbers. \end{DoxyRefDesc}
 
 
-Definition at line 159 of file sf\+\_\+stirling.\+tcc.
+Definition at line 155 of file sf\+\_\+stirling.\+tcc.
+
+\mbox{\Hypertarget{namespacestd_1_1____detail_a286c6f5a5de7aa8493aa5a8bf491b26e}\label{namespacestd_1_1____detail_a286c6f5a5de7aa8493aa5a8bf491b26e}} 
+\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+stirling\+\_\+2@{\+\_\+\+\_\+stirling\+\_\+2}}
+\index{\+\_\+\+\_\+stirling\+\_\+2@{\+\_\+\+\_\+stirling\+\_\+2}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+stirling\+\_\+2()}{\_\_stirling\_2()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+std\+::vector$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+stirling\+\_\+2 (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n }\end{DoxyParamCaption})}
+
+Return a vector of Stirling numbers of the second kind. or by series expansion.
+
+The series is\+: \[ \sigma_n^{(m)} = \sum_{k=0}^{m}\frac{(-1)^{m-k}k^n}{(m-k)!k!} \]
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000013}{Todo}]Find asymptotic expressions for the Stirling numbers. \end{DoxyRefDesc}
+
+
+Definition at line 224 of file sf\+\_\+stirling.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a23c6eb236cd8ddcfbe43e66ac23324db}\label{namespacestd_1_1____detail_a23c6eb236cd8ddcfbe43e66ac23324db}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+stirling\+\_\+2\+\_\+recur@{\+\_\+\+\_\+stirling\+\_\+2\+\_\+recur}}
 \index{\+\_\+\+\_\+stirling\+\_\+2\+\_\+recur@{\+\_\+\+\_\+stirling\+\_\+2\+\_\+recur}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
-\subsubsection{\texorpdfstring{\+\_\+\+\_\+stirling\+\_\+2\+\_\+recur()}{\_\_stirling\_2\_recur()}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+stirling\+\_\+2\+\_\+recur()}{\_\_stirling\_2\_recur()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
 \+\_\+\+Tp std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+stirling\+\_\+2\+\_\+recur (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n,  }\item[{unsigned int}]{\+\_\+\+\_\+m }\end{DoxyParamCaption})}
 
-Return the Stirling number of the second kind by recursion. The recursion is \[ \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}} \stirling{n}{m} = m \stirling{n-1}{m} + \stirling{n-1}{m-1} \] with starting values \[ \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}} \stirling{0}{0\rightarrow m} = {1, 0, 0, ..., 0} \] and \[ \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}} \stirling{0\rightarrow n}{0} = {1, 0, 0, ..., 0} \]
+Return the Stirling number of the second kind by recursion. The recursion is \[ \genfrac{\{}{\}}{0pt}{0}{n}{m} = m \genfrac{\{}{\}}{0pt}{0}{n-1}{m} + \genfrac{\{}{\}}{0pt}{0}{n-1}{m-1} \] with starting values \[ \genfrac{\{}{\}}{0pt}{0}{0}{0\rightarrow m} = {1, 0, 0, ..., 0} \] and \[ \genfrac{\{}{\}}{0pt}{0}{0\rightarrow n}{0} = {1, 0, 0, ..., 0} \]
 
 The Stirling number of the second kind is denoted by other symbols in the literature\+: $ \sigma_n^{(m)} $, $ \textit{S}_n^{(m)} $ and others. 
 
-Definition at line 122 of file sf\+\_\+stirling.\+tcc.
+Definition at line 119 of file sf\+\_\+stirling.\+tcc.
+
+\mbox{\Hypertarget{namespacestd_1_1____detail_aa7c6f36dc1f75cd38af10ca232e62f06}\label{namespacestd_1_1____detail_aa7c6f36dc1f75cd38af10ca232e62f06}} 
+\index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+stirling\+\_\+2\+\_\+recur@{\+\_\+\+\_\+stirling\+\_\+2\+\_\+recur}}
+\index{\+\_\+\+\_\+stirling\+\_\+2\+\_\+recur@{\+\_\+\+\_\+stirling\+\_\+2\+\_\+recur}!std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+stirling\+\_\+2\+\_\+recur()}{\_\_stirling\_2\_recur()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+std\+::vector$<$\+\_\+\+Tp$>$ std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+stirling\+\_\+2\+\_\+recur (\begin{DoxyParamCaption}\item[{unsigned int}]{\+\_\+\+\_\+n }\end{DoxyParamCaption})}
+
+Return a vector of Stirling numbers of the second kind by recursion. The recursion is \[ \genfrac{\{}{\}}{0pt}{0}{n}{m} = m \genfrac{\{}{\}}{0pt}{0}{n-1}{m} + \genfrac{\{}{\}}{0pt}{0}{n-1}{m-1} \] with starting values \[ \genfrac{\{}{\}}{0pt}{0}{0}{0\rightarrow m} = {1, 0, 0, ..., 0} \] and \[ \genfrac{\{}{\}}{0pt}{0}{0\rightarrow n}{0} = {1, 0, 0, ..., 0} \]
+
+The Stirling number of the second kind is denoted by other symbols in the literature\+: $ \sigma_n^{(m)} $, $ \textit{S}_n^{(m)} $ and others. 
+
+Definition at line 189 of file sf\+\_\+stirling.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_a8408f17699eb43a14447c7e4795b277f}\label{namespacestd_1_1____detail_a8408f17699eb43a14447c7e4795b277f}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+stirling\+\_\+2\+\_\+series@{\+\_\+\+\_\+stirling\+\_\+2\+\_\+series}}
@@ -8790,13 +9073,13 @@ Definition at line 122 of file sf\+\_\+stirling.\+tcc.
 
 Return the Stirling number of the second kind from lookup or by series expansion.
 
-The series is\+: \[ \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}} \sigma_n^{(m)} = \stirling{n}{m} = \sum_{k=0}^{m}\frac{(-1)^{m-k}k^n}{(m-k)!k!} \] The Stirling number of the second kind is denoted by other symbols in the literature\+: $ \sigma_n^{(m)} $, $ \textit{S}_n^{(m)} $ and others.
+The series is\+: \[ \sigma_n^{(m)} = \genfrac{\{}{\}}{0pt}{0}{n}{m} = \sum_{k=0}^{m}\frac{(-1)^{m-k}k^n}{(m-k)!k!} \] The Stirling number of the second kind is denoted by other symbols in the literature\+: $ \sigma_n^{(m)} $, $ \textit{S}_n^{(m)} $ and others.
 
 \begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000015}{Todo}]Find a way to predict the maximum Stirling number for a type. \end{DoxyRefDesc}
+\item[\hyperlink{todo__todo000011}{Todo}]Find a way to predict the maximum Stirling number supported for a given type. \end{DoxyRefDesc}
 
 
-Definition at line 67 of file sf\+\_\+stirling.\+tcc.
+Definition at line 66 of file sf\+\_\+stirling.\+tcc.
 
 \mbox{\Hypertarget{namespacestd_1_1____detail_ab9bb02e26c61e3d9dda4738ed4174338}\label{namespacestd_1_1____detail_ab9bb02e26c61e3d9dda4738ed4174338}} 
 \index{std\+::\+\_\+\+\_\+detail@{std\+::\+\_\+\+\_\+detail}!\+\_\+\+\_\+student\+\_\+t\+\_\+p@{\+\_\+\+\_\+student\+\_\+t\+\_\+p}}
@@ -8951,7 +9234,7 @@ Return the upper incomplete gamma function. The lower incomplete gamma function 
 
 
 
-Definition at line 2903 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2905 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -8974,7 +9257,7 @@ Return the lower incomplete gamma function. The lower incomplete gamma function 
 
 
 
-Definition at line 2868 of file sf\+\_\+gamma.\+tcc.
+Definition at line 2870 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -9354,7 +9637,7 @@ Principals of Optics, 7th edition, Max Born and Emil Wolf, Cambridge University 
 \end{DoxyParams}
 
 
-Definition at line 371 of file sf\+\_\+jacobi.\+tcc.
+Definition at line 373 of file sf\+\_\+jacobi.\+tcc.
 
 
 
@@ -9506,7 +9789,7 @@ Referenced by \+\_\+\+\_\+factorial(), \+\_\+\+\_\+gamma(), \+\_\+\+\_\+gamma\+\
 
 
 
-Definition at line 3252 of file sf\+\_\+gamma.\+tcc.
+Definition at line 3254 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -9520,7 +9803,7 @@ Referenced by \+\_\+\+\_\+harmonic\+\_\+number().
 
 
 
-Definition at line 3219 of file sf\+\_\+gamma.\+tcc.
+Definition at line 3221 of file sf\+\_\+gamma.\+tcc.
 
 
 
@@ -9636,7 +9919,7 @@ Definition at line 82 of file sf\+\_\+gamma.\+tcc.
 
 
 
-Definition at line 3216 of file sf\+\_\+gamma.\+tcc.
+Definition at line 3218 of file sf\+\_\+gamma.\+tcc.
 
 
 

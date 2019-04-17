@@ -114,7 +114,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a032b7fead8c0379bcaf4594f40b78c28"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1____detail_1_1____weierstrass__roots__t.html#a032b7fead8c0379bcaf4594f40b78c28">__weierstrass_roots_t</a> (const <a class="el" href="structstd_1_1____detail_1_1____jacobi__theta__0__t.html">__jacobi_theta_0_t</a>&lt; _Tp1, _Tp3 &gt; &amp;__theta0, _Tp1 __omega1)</td></tr>
 <tr class="separator:a032b7fead8c0379bcaf4594f40b78c28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03182b9fb82a1895dde603836e659776"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structstd_1_1____detail_1_1____weierstrass__roots__t.html#acda3e0386962aea322dea870977b67ed">_Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1____detail_1_1____weierstrass__roots__t.html#a03182b9fb82a1895dde603836e659776">__delta</a> () const</td></tr>
-<tr class="memdesc:a03182b9fb82a1895dde603836e659776"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the discriminant <img class="formulaInl" alt="$ \Delta = 16(e_2 - e_3)^2(e_3 - e_1)^2(e_1 - e_2)^2 $" src="form_693.png"/>.  <a href="#a03182b9fb82a1895dde603836e659776">More...</a><br /></td></tr>
+<tr class="memdesc:a03182b9fb82a1895dde603836e659776"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the discriminant <img class="formulaInl" alt="$ \Delta = 16(e_2 - e_3)^2(e_3 - e_1)^2(e_1 - e_2)^2 $" src="form_715.png"/>.  <a href="#a03182b9fb82a1895dde603836e659776">More...</a><br /></td></tr>
 <tr class="separator:a03182b9fb82a1895dde603836e659776"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -131,15 +131,15 @@ Public Attributes</h2></td></tr>
 struct std::__detail::__weierstrass_roots_t&lt; _Tp1, _Tp3 &gt;</h3>
 
 <p>A struct of the Weierstrass elliptic function roots. </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ e_1 = \frac{\pi^2}{12\omega_1^2}(\theta_2^4(q,0) + 2\theta_4^4(q,0)) \]" src="form_659.png"/>
+<img class="formulaDsp" alt="\[ e_1 = \frac{\pi^2}{12\omega_1^2}(\theta_2^4(q,0) + 2\theta_4^4(q,0)) \]" src="form_681.png"/>
 </p>
  <p class="formulaDsp">
-<img class="formulaDsp" alt="\[ e_2 = \frac{\pi^2}{12\omega_1^2}(\theta_2^4(q,0) - \theta_4^4(q,0)) \]" src="form_660.png"/>
+<img class="formulaDsp" alt="\[ e_2 = \frac{\pi^2}{12\omega_1^2}(\theta_2^4(q,0) - \theta_4^4(q,0)) \]" src="form_682.png"/>
 </p>
  <p class="formulaDsp">
-<img class="formulaDsp" alt="\[ e_3 = \frac{\pi^2}{12\omega_1^2}(-2\theta_2^4(q,0) - \theta_4^4(q,0)) \]" src="form_661.png"/>
+<img class="formulaDsp" alt="\[ e_3 = \frac{\pi^2}{12\omega_1^2}(-2\theta_2^4(q,0) - \theta_4^4(q,0)) \]" src="form_683.png"/>
 </p>
-<p> Note that <img class="formulaInl" alt="$ e_1 + e_2 + e_3 = 0 $" src="form_662.png"/> </p>
+<p> Note that <img class="formulaInl" alt="$ e_1 + e_2 + e_3 = 0 $" src="form_684.png"/> </p>
 
 <p class="definition">Definition at line <a class="el" href="sf__theta_8tcc_source.html#l00747">747</a> of file <a class="el" href="sf__theta_8tcc_source.html">sf_theta.tcc</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
@@ -226,7 +226,7 @@ template&lt;typename _Tp1 , typename _Tp3 &gt; </div>
 <p>Constructor for the Weierstrass roots.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">__lattice</td><td>The Jacobi latticce. </td></tr>
+    <tr><td class="paramname">__lattice</td><td>The Jacobi lattice. </td></tr>
   </table>
   </dd>
 </dl>
@@ -267,12 +267,13 @@ template&lt;typename _Tp1 , typename _Tp3 &gt; </div>
 <p>Constructor for the Weierstrass roots.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">__lattice</td><td>The Jacobi latticce. </td></tr>
+    <tr><td class="paramname">__theta0</td><td>Exponential theta functions of argument 0. </td></tr>
+    <tr><td class="paramname">__omega_1</td><td>The first lattice parameter. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="sf__theta_8tcc_source.html#l00799">799</a> of file <a class="el" href="sf__theta_8tcc_source.html">sf_theta.tcc</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sf__theta_8tcc_source.html#l00800">800</a> of file <a class="el" href="sf__theta_8tcc_source.html">sf_theta.tcc</a>.</p>
 
 <p class="reference">References <a class="el" href="sf__theta_8tcc_source.html#l00564">std::__detail::__jacobi_lattice_t&lt; _Tp_Omega1, _Tp_Omega3 &gt;::__omega_1()</a>, <a class="el" href="sf__theta_8tcc_source.html#l00583">std::__detail::__jacobi_lattice_t&lt; _Tp_Omega1, _Tp_Omega3 &gt;::_S_pi</a>, <a class="el" href="sf__theta_8tcc_source.html#l00653">std::__detail::__jacobi_theta_0_t&lt; _Tp1, _Tp3 &gt;::th2</a>, and <a class="el" href="sf__theta_8tcc_source.html#l00657">std::__detail::__jacobi_theta_0_t&lt; _Tp1, _Tp3 &gt;::th4</a>.</p>
 
@@ -304,7 +305,7 @@ template&lt;typename _Tp1, typename _Tp3 = std::complex&lt;_Tp1&gt;&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Return the discriminant <img class="formulaInl" alt="$ \Delta = 16(e_2 - e_3)^2(e_3 - e_1)^2(e_1 - e_2)^2 $" src="form_693.png"/>. </p>
+<p>Return the discriminant <img class="formulaInl" alt="$ \Delta = 16(e_2 - e_3)^2(e_3 - e_1)^2(e_1 - e_2)^2 $" src="form_715.png"/>. </p>
 
 <p class="definition">Definition at line <a class="el" href="sf__theta_8tcc_source.html#l00764">764</a> of file <a class="el" href="sf__theta_8tcc_source.html">sf_theta.tcc</a>.</p>
 
@@ -329,7 +330,7 @@ template&lt;typename _Tp1, typename _Tp3 = std::complex&lt;_Tp1&gt;&gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="sf__theta_8tcc_source.html#l00753">753</a> of file <a class="el" href="sf__theta_8tcc_source.html">sf_theta.tcc</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="sf__theta_8tcc_source.html#l00864">std::__detail::__weierstrass_invariants_t&lt; _Tp1, _Tp3 &gt;::__weierstrass_invariants_t()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="sf__theta_8tcc_source.html#l00865">std::__detail::__weierstrass_invariants_t&lt; _Tp1, _Tp3 &gt;::__weierstrass_invariants_t()</a>.</p>
 
 </div>
 </div>

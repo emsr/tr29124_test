@@ -537,9 +537,7 @@ namespace __detail
    *
    * The Riemann zeta function is defined by:
    * @f[
-   *    \renewcommand\Re{\operatorname{Re}}
-   *    \renewcommand\Im{\operatorname{Im}}
-   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} for \Re{s} > 1
+   * 	\zeta(s) = \sum_{k=1}^{\infty} \frac{1}{k^{s}} \mbox{ for } \Re(s) > 1
    * @f]
    * For \Re(s) < 1 use the reflection formula:
    * @f[

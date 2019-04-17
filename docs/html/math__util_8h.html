@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>C++ Special Math Functions: include/ext/math_util.h File Reference</title>
+<title>C++ Special Math Functions: cxx_fp_utils/include/ext/math_util.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -88,7 +88,27 @@ $(document).ready(function(){initNavTree('math__util_8h.html','');});
 <div class="title">math_util.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
+<div class="textblock"><code>#include &lt;bits/c++config.h&gt;</code><br />
+<code>#include &lt;limits&gt;</code><br />
+<code>#include &lt;cmath&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for math_util.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="math__util_8h__incl.png" border="0" usemap="#cxx__fp__utils_2include_2ext_2math__util_8h" alt=""/></div>
+<map name="cxx__fp__utils_2include_2ext_2math__util_8h" id="cxx__fp__utils_2include_2ext_2math__util_8h">
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="math__util_8h__dep__incl.png" border="0" usemap="#cxx__fp__utils_2include_2ext_2math__util_8hdep" alt=""/></div>
+<map name="cxx__fp__utils_2include_2ext_2math__util_8hdep" id="cxx__fp__utils_2include_2ext_2math__util_8hdep">
+<area shape="rect" id="node2" href="sf__gegenbauer_8tcc.html" title="include/bits/sf_gegenbauer.tcc" alt="" coords="5,95,204,121"/>
+<area shape="rect" id="node4" href="sf__jacobi_8tcc.html" title="include/bits/sf_jacobi.tcc" alt="" coords="228,95,395,121"/>
+<area shape="rect" id="node3" href="specfun_8h.html" title="include/bits/specfun.h" alt="" coords="133,169,282,196"/>
+</map>
+</div>
+</div>
 <p><a href="math__util_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
@@ -103,33 +123,33 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a586fa80a2f00ea60e6bed5e4f267bfd4"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:a586fa80a2f00ea60e6bed5e4f267bfd4"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace____gnu__cxx.html#a586fa80a2f00ea60e6bed5e4f267bfd4">__gnu_cxx::__fp_is_equal</a> (_Tp __a, _Tp __b, _Tp __mul=_Tp{1})</td></tr>
-<tr class="separator:a586fa80a2f00ea60e6bed5e4f267bfd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa78dac4c2812a060d30efa5a3c99977c"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:aa78dac4c2812a060d30efa5a3c99977c"><td class="memTemplItemLeft" align="right" valign="top">__fp_is_integer_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace____gnu__cxx.html#aa78dac4c2812a060d30efa5a3c99977c">__gnu_cxx::__fp_is_even_integer</a> (_Tp __a, _Tp __mul=_Tp{1})</td></tr>
-<tr class="separator:aa78dac4c2812a060d30efa5a3c99977c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b5e889240854b8a4452ac49593fdc74"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:a5b5e889240854b8a4452ac49593fdc74"><td class="memTemplItemLeft" align="right" valign="top">__fp_is_integer_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace____gnu__cxx.html#a5b5e889240854b8a4452ac49593fdc74">__gnu_cxx::__fp_is_half_integer</a> (_Tp __a, _Tp __mul=_Tp{1})</td></tr>
-<tr class="separator:a5b5e889240854b8a4452ac49593fdc74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4f5d1b815527e3d8587bdbbef9470e3"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:af4f5d1b815527e3d8587bdbbef9470e3"><td class="memTemplItemLeft" align="right" valign="top">__fp_is_integer_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace____gnu__cxx.html#af4f5d1b815527e3d8587bdbbef9470e3">__gnu_cxx::__fp_is_half_odd_integer</a> (_Tp __a, _Tp __mul=_Tp{1})</td></tr>
-<tr class="separator:af4f5d1b815527e3d8587bdbbef9470e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75c2c5ab6f25d41dddd3d00235593211"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:a75c2c5ab6f25d41dddd3d00235593211"><td class="memTemplItemLeft" align="right" valign="top">__fp_is_integer_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace____gnu__cxx.html#a75c2c5ab6f25d41dddd3d00235593211">__gnu_cxx::__fp_is_integer</a> (_Tp __a, _Tp __mul=_Tp{1})</td></tr>
-<tr class="separator:a75c2c5ab6f25d41dddd3d00235593211"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfc2607bd5aebd90ba6af2d4d4365bef"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:adfc2607bd5aebd90ba6af2d4d4365bef"><td class="memTemplItemLeft" align="right" valign="top">__fp_is_integer_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace____gnu__cxx.html#adfc2607bd5aebd90ba6af2d4d4365bef">__gnu_cxx::__fp_is_odd_integer</a> (_Tp __a, _Tp __mul=_Tp{1})</td></tr>
-<tr class="separator:adfc2607bd5aebd90ba6af2d4d4365bef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d30fc0f2348283e00f56c16d5713fc9"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:a8d30fc0f2348283e00f56c16d5713fc9"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace____gnu__cxx.html#a8d30fc0f2348283e00f56c16d5713fc9">__gnu_cxx::__fp_is_zero</a> (_Tp __a, _Tp __mul=_Tp{1})</td></tr>
-<tr class="separator:a8d30fc0f2348283e00f56c16d5713fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adebbf99919675806def929327e724a53"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
-<tr class="memitem:adebbf99919675806def929327e724a53"><td class="memTemplItemLeft" align="right" valign="top">_Tp&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace____gnu__cxx.html#adebbf99919675806def929327e724a53">__gnu_cxx::__fp_max_abs</a> (_Tp __a, _Tp __b)</td></tr>
-<tr class="separator:adebbf99919675806def929327e724a53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc155473831db12736006150c0ad42b6"><td class="memTemplParams" colspan="2">template&lt;typename _Tp , typename _IntTp &gt; </td></tr>
-<tr class="memitem:abc155473831db12736006150c0ad42b6"><td class="memTemplItemLeft" align="right" valign="top">_Tp&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace____gnu__cxx.html#abc155473831db12736006150c0ad42b6">__gnu_cxx::__parity</a> (_IntTp __k)</td></tr>
-<tr class="separator:abc155473831db12736006150c0ad42b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8b87759dc0b043b46f9e7f0dec88a79"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
+<tr class="memitem:af8b87759dc0b043b46f9e7f0dec88a79"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace____gnu__cxx.html#af8b87759dc0b043b46f9e7f0dec88a79">__gnu_cxx::__fp_is_equal</a> (_Tp __a, _Tp __b, _Tp __mul=_Tp{1}) noexcept</td></tr>
+<tr class="separator:af8b87759dc0b043b46f9e7f0dec88a79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab12d5d801c39cd185e31bf2ed6ce94ff"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
+<tr class="memitem:ab12d5d801c39cd185e31bf2ed6ce94ff"><td class="memTemplItemLeft" align="right" valign="top">constexpr __fp_is_integer_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace____gnu__cxx.html#ab12d5d801c39cd185e31bf2ed6ce94ff">__gnu_cxx::__fp_is_even_integer</a> (_Tp __a, _Tp __mul=_Tp{1}) noexcept</td></tr>
+<tr class="separator:ab12d5d801c39cd185e31bf2ed6ce94ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f53ff9c9325c6bd9f4ababf5f7e62e4"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
+<tr class="memitem:a1f53ff9c9325c6bd9f4ababf5f7e62e4"><td class="memTemplItemLeft" align="right" valign="top">constexpr __fp_is_integer_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace____gnu__cxx.html#a1f53ff9c9325c6bd9f4ababf5f7e62e4">__gnu_cxx::__fp_is_half_integer</a> (_Tp __a, _Tp __mul=_Tp{1}) noexcept</td></tr>
+<tr class="separator:a1f53ff9c9325c6bd9f4ababf5f7e62e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d99c5dcab15b6837c2a60f2b367ed2c"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
+<tr class="memitem:a6d99c5dcab15b6837c2a60f2b367ed2c"><td class="memTemplItemLeft" align="right" valign="top">constexpr __fp_is_integer_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace____gnu__cxx.html#a6d99c5dcab15b6837c2a60f2b367ed2c">__gnu_cxx::__fp_is_half_odd_integer</a> (_Tp __a, _Tp __mul=_Tp{1}) noexcept</td></tr>
+<tr class="separator:a6d99c5dcab15b6837c2a60f2b367ed2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab425c7f3a50b494efaa2e6bdb6e55f08"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
+<tr class="memitem:ab425c7f3a50b494efaa2e6bdb6e55f08"><td class="memTemplItemLeft" align="right" valign="top">constexpr __fp_is_integer_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace____gnu__cxx.html#ab425c7f3a50b494efaa2e6bdb6e55f08">__gnu_cxx::__fp_is_integer</a> (_Tp __a, _Tp __mul=_Tp{1}) noexcept</td></tr>
+<tr class="separator:ab425c7f3a50b494efaa2e6bdb6e55f08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09bf2941743c58db8b086da401473c16"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
+<tr class="memitem:a09bf2941743c58db8b086da401473c16"><td class="memTemplItemLeft" align="right" valign="top">constexpr __fp_is_integer_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace____gnu__cxx.html#a09bf2941743c58db8b086da401473c16">__gnu_cxx::__fp_is_odd_integer</a> (_Tp __a, _Tp __mul=_Tp{1}) noexcept</td></tr>
+<tr class="separator:a09bf2941743c58db8b086da401473c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea3be1eb8940437aa8571ab8654af660"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
+<tr class="memitem:aea3be1eb8940437aa8571ab8654af660"><td class="memTemplItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace____gnu__cxx.html#aea3be1eb8940437aa8571ab8654af660">__gnu_cxx::__fp_is_zero</a> (_Tp __a, _Tp __mul=_Tp{1}) noexcept</td></tr>
+<tr class="separator:aea3be1eb8940437aa8571ab8654af660"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85d72dd4ca7056d3a5979d03251ec38a"><td class="memTemplParams" colspan="2">template&lt;typename _Tp &gt; </td></tr>
+<tr class="memitem:a85d72dd4ca7056d3a5979d03251ec38a"><td class="memTemplItemLeft" align="right" valign="top">constexpr _Tp&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace____gnu__cxx.html#a85d72dd4ca7056d3a5979d03251ec38a">__gnu_cxx::__fp_max_abs</a> (_Tp __a, _Tp __b) noexcept</td></tr>
+<tr class="separator:a85d72dd4ca7056d3a5979d03251ec38a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35c2cbd743275d2ba01b42aeb5e65201"><td class="memTemplParams" colspan="2">template&lt;typename _Tp , typename _IntTp &gt; </td></tr>
+<tr class="memitem:a35c2cbd743275d2ba01b42aeb5e65201"><td class="memTemplItemLeft" align="right" valign="top">constexpr _Tp&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace____gnu__cxx.html#a35c2cbd743275d2ba01b42aeb5e65201">__gnu_cxx::__parity</a> (_IntTp __k) noexcept</td></tr>
+<tr class="separator:a35c2cbd743275d2ba01b42aeb5e65201"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file is a GNU extension to the Standard C++ Library. </p>
@@ -140,7 +160,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_106756a8ee71bdde7f7b779a3a0a52e4.html">ext</a></li><li class="navelem"><a class="el" href="math__util_8h.html">math_util.h</a></li>
+    <li class="navelem"><a class="el" href="dir_ace97f7e8200984b1103a47bda2e279d.html">cxx_fp_utils</a></li><li class="navelem"><a class="el" href="dir_66cc5394c7caa14e2fc76b7a51faea68.html">include</a></li><li class="navelem"><a class="el" href="dir_7b28cf6f41627c919a5241d1cbfa39ac.html">ext</a></li><li class="navelem"><a class="el" href="math__util_8h.html">math_util.h</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>

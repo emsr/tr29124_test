@@ -465,7 +465,7 @@ mpreal:
 	cd $(HOME) && hg clone https://bitbucket.org/advanpix/mpreal
 
 
-docs: include/bits/*
+docs: Doxyfile include/bits/*
 	rm -rf docs/html/*
 	rm -rf docs/latex/*
 	doxygen

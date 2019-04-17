@@ -1,12 +1,13 @@
 \hypertarget{specfun__state_8h}{}\section{include/bits/specfun\+\_\+state.h File Reference}
 \label{specfun__state_8h}\index{include/bits/specfun\+\_\+state.\+h@{include/bits/specfun\+\_\+state.\+h}}
 {\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
 Include dependency graph for specfun\+\_\+state.\+h\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=184pt]{specfun__state_8h__incl}
+\includegraphics[width=186pt]{specfun__state_8h__incl}
 \end{center}
 \end{figure}
 This graph shows which files directly or indirectly include this file\+:
@@ -22,6 +23,10 @@ This graph shows which files directly or indirectly include this file\+:
 \item 
 struct \hyperlink{struct____gnu__cxx_1_1____airy__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+airy\+\_\+t$<$ \+\_\+\+Tx, \+\_\+\+Tp $>$}
 \item 
+struct \hyperlink{struct____gnu__cxx_1_1____assoc__legendre__p__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p\+\_\+t$<$ \+\_\+\+Tp $>$}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____assoc__legendre__q__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+q\+\_\+t$<$ \+\_\+\+Tp $>$}
+\item 
 struct \hyperlink{struct____gnu__cxx_1_1____chebyshev__t__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+t\+\_\+t$<$ \+\_\+\+Tp $>$}
 \item 
 struct \hyperlink{struct____gnu__cxx_1_1____chebyshev__u__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+u\+\_\+t$<$ \+\_\+\+Tp $>$}
@@ -30,9 +35,9 @@ struct \hyperlink{struct____gnu__cxx_1_1____chebyshev__v__t}{\+\_\+\+\_\+gnu\+\_
 \item 
 struct \hyperlink{struct____gnu__cxx_1_1____chebyshev__w__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+w\+\_\+t$<$ \+\_\+\+Tp $>$}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____cyl__bessel__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+t$<$ \+\_\+\+Tnu, \+\_\+\+Tx, \+\_\+\+Tp $>$}
+struct \hyperlink{struct____gnu__cxx_1_1____coulomb__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+coulomb\+\_\+t$<$ \+\_\+\+Teta, \+\_\+\+Trho, \+\_\+\+Tp $>$}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____cyl__coulomb__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+coulomb\+\_\+t$<$ \+\_\+\+Teta, \+\_\+\+Trho, \+\_\+\+Tp $>$}
+struct \hyperlink{struct____gnu__cxx_1_1____cyl__bessel__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+t$<$ \+\_\+\+Tnu, \+\_\+\+Tx, \+\_\+\+Tp $>$}
 \item 
 struct \hyperlink{struct____gnu__cxx_1_1____cyl__hankel__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+t$<$ \+\_\+\+Tnu, \+\_\+\+Tx, \+\_\+\+Tp $>$}
 \item 
@@ -60,6 +65,8 @@ struct \hyperlink{struct____gnu__cxx_1_1____laguerre__t}{\+\_\+\+\_\+gnu\+\_\+cx
 \item 
 struct \hyperlink{struct____gnu__cxx_1_1____legendre__p__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t$<$ \+\_\+\+Tp $>$}
 \item 
+struct \hyperlink{struct____gnu__cxx_1_1____legendre__q__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+q\+\_\+t$<$ \+\_\+\+Tp $>$}
+\item 
 struct \hyperlink{struct____gnu__cxx_1_1____lgamma__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+lgamma\+\_\+t$<$ \+\_\+\+Tp $>$}
 \item 
 struct \hyperlink{struct____gnu__cxx_1_1____quadrature__point__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+quadrature\+\_\+point\+\_\+t$<$ \+\_\+\+Tp $>$}
@@ -71,7 +78,11 @@ struct \hyperlink{struct____gnu__cxx_1_1____sph__bessel__t}{\+\_\+\+\_\+gnu\+\_\
 struct \hyperlink{struct____gnu__cxx_1_1____sph__hankel__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+hankel\+\_\+t$<$ \+\_\+\+Tn, \+\_\+\+Tx, \+\_\+\+Tp $>$}
 \item 
 struct \hyperlink{struct____gnu__cxx_1_1____sph__mod__bessel__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+mod\+\_\+bessel\+\_\+t$<$ \+\_\+\+Tn, \+\_\+\+Tx, \+\_\+\+Tp $>$}
-\end{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____stirling__1__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+stirling\+\_\+1\+\_\+t$<$ \+\_\+\+Tp $>$}
+\begin{DoxyCompactList}\small\item\em A structure for Stirling numbers of the first kind. \end{DoxyCompactList}\item 
+struct \hyperlink{struct____gnu__cxx_1_1____stirling__2__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+stirling\+\_\+2\+\_\+t$<$ \+\_\+\+Tp $>$}
+\begin{DoxyCompactList}\small\item\em A structure for Stirling numbers of the first kind. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 

@@ -1,9 +1,9 @@
 var searchData=
 [
   ['harmonic',['harmonic',['../group__gnu__math__spec__func.html#gab052b72af9c7ec030bcea81965390614',1,'__gnu_cxx']]],
-  ['hermite',['hermite',['../group__tr29124__math__spec__func.html#ga8bd1626f1e3f7256c4fd13579f881183',1,'std']]],
-  ['hermitef',['hermitef',['../group__tr29124__math__spec__func.html#ga94dae7444bb349e33057a92932db8abe',1,'std']]],
-  ['hermitel',['hermitel',['../group__tr29124__math__spec__func.html#ga21f8e312ee3e65286f86bf141b0f32e0',1,'std']]],
+  ['hermite',['hermite',['../group__cxx17__math__spec__func.html#ga8bd1626f1e3f7256c4fd13579f881183',1,'std']]],
+  ['hermitef',['hermitef',['../group__cxx17__math__spec__func.html#ga94dae7444bb349e33057a92932db8abe',1,'std']]],
+  ['hermitel',['hermitel',['../group__cxx17__math__spec__func.html#ga21f8e312ee3e65286f86bf141b0f32e0',1,'std']]],
   ['heuman_5flambda',['heuman_lambda',['../group__gnu__math__spec__func.html#ga7537f96eedc8571ed1987481b2863e89',1,'__gnu_cxx']]],
   ['heuman_5flambdaf',['heuman_lambdaf',['../group__gnu__math__spec__func.html#ga10cf5d54d985aa3a58cb197601040ac8',1,'__gnu_cxx']]],
   ['heuman_5flambdal',['heuman_lambdal',['../group__gnu__math__spec__func.html#gadadaeb83b3d9c2fccd33ab8ec3188df5',1,'__gnu_cxx']]],

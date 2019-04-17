@@ -8,19 +8,21 @@
 \begin{DoxyCompactItemize}
 \item 
 \+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____legendre__p__t_a91e1b4e4049e5085b52342db2afbad9d}{deriv} () const
-\end{DoxyCompactItemize}
+\item 
+\+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____legendre__p__t_a46721d510114bf2b37204916611c4134}{lobatto} () const
+\begin{DoxyCompactList}\small\item\em P\+\_\+\{l-\/2\}(x) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::size\+\_\+t \hyperlink{struct____gnu__cxx_1_1____legendre__p__t_a1dc68f604d546cb75e4009a7da9cc152}{\+\_\+\+\_\+l}
+unsigned int \hyperlink{struct____gnu__cxx_1_1____legendre__p__t_a77414fd857c52a303a3cd1a0f4085527}{\+\_\+\+\_\+l}
 \item 
 \+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____legendre__p__t_a76c0a4fa069deeed203214f5e282d7d9}{\+\_\+\+\_\+\+P\+\_\+l}
 \item 
 \+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____legendre__p__t_a8c8218ef16c4d7d980c94dba241b1682}{\+\_\+\+\_\+\+P\+\_\+lm1}
-\item 
+\begin{DoxyCompactList}\small\item\em P\+\_\+l(x) \end{DoxyCompactList}\item 
 \+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____legendre__p__t_a9090dfe57d4b5993828510fd0202c888}{\+\_\+\+\_\+\+P\+\_\+lm2}
-\item 
-\+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____legendre__p__t_ad1ee2ca27099d0f3c75220247a0779f6}{\+\_\+\+\_\+z}
+\begin{DoxyCompactList}\small\item\em P\+\_\+\{l-\/1\}(x) \end{DoxyCompactList}\item 
+\+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____legendre__p__t_ab71bc6febb6c33ca7be6beb0f30edd83}{\+\_\+\+\_\+x}
 \end{DoxyCompactItemize}
 
 
@@ -28,9 +30,11 @@ std\+::size\+\_\+t \hyperlink{struct____gnu__cxx_1_1____legendre__p__t_a1dc68f60
 \subsubsection*{template$<$typename \+\_\+\+Tp$>$\newline
 struct \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t$<$ \+\_\+\+Tp $>$}
 
-A struct to store the state of a Legendre polynomial. 
+A type describing the state of a Legendre polynomial.
 
-Definition at line 118 of file specfun\+\_\+state.\+h.
+The method \hyperlink{struct____gnu__cxx_1_1____legendre__p__t_a46721d510114bf2b37204916611c4134}{lobatto()} will return the Lobatto polynomial\+: \[ Lo_l(x) = (1 - x^2)P'_l(x) = l \left[ P_{l - 1}(x) - x P_l(x) \right] \] 
+
+Definition at line 124 of file specfun\+\_\+state.\+h.
 
 
 
@@ -44,21 +48,36 @@ Definition at line 118 of file specfun\+\_\+state.\+h.
 
 
 
-Definition at line 128 of file specfun\+\_\+state.\+h.
+Definition at line 138 of file specfun\+\_\+state.\+h.
+
+\mbox{\Hypertarget{struct____gnu__cxx_1_1____legendre__p__t_a46721d510114bf2b37204916611c4134}\label{struct____gnu__cxx_1_1____legendre__p__t_a46721d510114bf2b37204916611c4134}} 
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}!lobatto@{lobatto}}
+\index{lobatto@{lobatto}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}}
+\subsubsection{\texorpdfstring{lobatto()}{lobatto()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____legendre__p__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}$<$ \+\_\+\+Tp $>$\+::lobatto (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+P\+\_\+\{l-\/2\}(x) 
+
+
+
+Definition at line 134 of file specfun\+\_\+state.\+h.
 
 
 
 \subsection{Member Data Documentation}
-\mbox{\Hypertarget{struct____gnu__cxx_1_1____legendre__p__t_a1dc68f604d546cb75e4009a7da9cc152}\label{struct____gnu__cxx_1_1____legendre__p__t_a1dc68f604d546cb75e4009a7da9cc152}} 
+\mbox{\Hypertarget{struct____gnu__cxx_1_1____legendre__p__t_a77414fd857c52a303a3cd1a0f4085527}\label{struct____gnu__cxx_1_1____legendre__p__t_a77414fd857c52a303a3cd1a0f4085527}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}!\+\_\+\+\_\+l@{\+\_\+\+\_\+l}}
 \index{\+\_\+\+\_\+l@{\+\_\+\+\_\+l}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}}
 \subsubsection{\texorpdfstring{\+\_\+\+\_\+l}{\_\_l}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
-std\+::size\+\_\+t \hyperlink{struct____gnu__cxx_1_1____legendre__p__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+l}
+unsigned int \hyperlink{struct____gnu__cxx_1_1____legendre__p__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+l}
 
 
 
-Definition at line 120 of file specfun\+\_\+state.\+h.
+Definition at line 126 of file specfun\+\_\+state.\+h.
 
 \mbox{\Hypertarget{struct____gnu__cxx_1_1____legendre__p__t_a76c0a4fa069deeed203214f5e282d7d9}\label{struct____gnu__cxx_1_1____legendre__p__t_a76c0a4fa069deeed203214f5e282d7d9}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}!\+\_\+\+\_\+\+P\+\_\+l@{\+\_\+\+\_\+\+P\+\_\+l}}
@@ -69,7 +88,7 @@ Definition at line 120 of file specfun\+\_\+state.\+h.
 
 
 
-Definition at line 122 of file specfun\+\_\+state.\+h.
+Definition at line 128 of file specfun\+\_\+state.\+h.
 
 \mbox{\Hypertarget{struct____gnu__cxx_1_1____legendre__p__t_a8c8218ef16c4d7d980c94dba241b1682}\label{struct____gnu__cxx_1_1____legendre__p__t_a8c8218ef16c4d7d980c94dba241b1682}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}!\+\_\+\+\_\+\+P\+\_\+lm1@{\+\_\+\+\_\+\+P\+\_\+lm1}}
@@ -80,7 +99,11 @@ Definition at line 122 of file specfun\+\_\+state.\+h.
 
 
 
-Definition at line 123 of file specfun\+\_\+state.\+h.
+P\+\_\+l(x) 
+
+
+
+Definition at line 129 of file specfun\+\_\+state.\+h.
 
 \mbox{\Hypertarget{struct____gnu__cxx_1_1____legendre__p__t_a9090dfe57d4b5993828510fd0202c888}\label{struct____gnu__cxx_1_1____legendre__p__t_a9090dfe57d4b5993828510fd0202c888}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}!\+\_\+\+\_\+\+P\+\_\+lm2@{\+\_\+\+\_\+\+P\+\_\+lm2}}
@@ -91,18 +114,22 @@ Definition at line 123 of file specfun\+\_\+state.\+h.
 
 
 
-Definition at line 124 of file specfun\+\_\+state.\+h.
+P\+\_\+\{l-\/1\}(x) 
 
-\mbox{\Hypertarget{struct____gnu__cxx_1_1____legendre__p__t_ad1ee2ca27099d0f3c75220247a0779f6}\label{struct____gnu__cxx_1_1____legendre__p__t_ad1ee2ca27099d0f3c75220247a0779f6}} 
-\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}!\+\_\+\+\_\+z@{\+\_\+\+\_\+z}}
-\index{\+\_\+\+\_\+z@{\+\_\+\+\_\+z}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}}
-\subsubsection{\texorpdfstring{\+\_\+\+\_\+z}{\_\_z}}
+
+
+Definition at line 130 of file specfun\+\_\+state.\+h.
+
+\mbox{\Hypertarget{struct____gnu__cxx_1_1____legendre__p__t_ab71bc6febb6c33ca7be6beb0f30edd83}\label{struct____gnu__cxx_1_1____legendre__p__t_ab71bc6febb6c33ca7be6beb0f30edd83}} 
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}!\+\_\+\+\_\+x@{\+\_\+\+\_\+x}}
+\index{\+\_\+\+\_\+x@{\+\_\+\+\_\+x}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+x}{\_\_x}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
-\+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____legendre__p__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+z}
+\+\_\+\+Tp \hyperlink{struct____gnu__cxx_1_1____legendre__p__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+x}
 
 
 
-Definition at line 121 of file specfun\+\_\+state.\+h.
+Definition at line 127 of file specfun\+\_\+state.\+h.
 
 
 

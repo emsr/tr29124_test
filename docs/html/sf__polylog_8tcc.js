@@ -19,6 +19,7 @@ var sf__polylog_8tcc =
     [ "__dirichlet_lambda", "sf__polylog_8tcc.html#a6ee8ae93ba65207de8ef3d6bb162b192", null ],
     [ "__fermi_dirac", "sf__polylog_8tcc.html#a470e563c4e88c433f94dca391814dc61", null ],
     [ "__hurwitz_zeta_polylog", "sf__polylog_8tcc.html#a7c45415c3ec0e137eea2364a6dd3af4e", null ],
+    [ "__periodic_zeta", "sf__polylog_8tcc.html#a1d65d34f43558441e4ed83d84dbc9ddf", null ],
     [ "__polylog", "sf__polylog_8tcc.html#a17fb8cea11706f319aaea277188a29c8", null ],
     [ "__polylog", "sf__polylog_8tcc.html#aa14e3ca6e4bee5ac1f1e5e1c2cee1d5a", null ],
     [ "__polylog_exp", "sf__polylog_8tcc.html#a0f6f2fc92d4ccec43975a6b9aca9851a", null ],

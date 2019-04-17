@@ -5,6 +5,10 @@
 \item 
 struct \hyperlink{struct____gnu__cxx_1_1____airy__t}{\+\_\+\+\_\+airy\+\_\+t}
 \item 
+struct \hyperlink{struct____gnu__cxx_1_1____assoc__legendre__p__t}{\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p\+\_\+t}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____assoc__legendre__q__t}{\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+q\+\_\+t}
+\item 
 struct \hyperlink{struct____gnu__cxx_1_1____chebyshev__t__t}{\+\_\+\+\_\+chebyshev\+\_\+t\+\_\+t}
 \item 
 struct \hyperlink{struct____gnu__cxx_1_1____chebyshev__u__t}{\+\_\+\+\_\+chebyshev\+\_\+u\+\_\+t}
@@ -13,9 +17,9 @@ struct \hyperlink{struct____gnu__cxx_1_1____chebyshev__v__t}{\+\_\+\+\_\+chebysh
 \item 
 struct \hyperlink{struct____gnu__cxx_1_1____chebyshev__w__t}{\+\_\+\+\_\+chebyshev\+\_\+w\+\_\+t}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____cyl__bessel__t}{\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+t}
+struct \hyperlink{struct____gnu__cxx_1_1____coulomb__t}{\+\_\+\+\_\+coulomb\+\_\+t}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____cyl__coulomb__t}{\+\_\+\+\_\+cyl\+\_\+coulomb\+\_\+t}
+struct \hyperlink{struct____gnu__cxx_1_1____cyl__bessel__t}{\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+t}
 \item 
 struct \hyperlink{struct____gnu__cxx_1_1____cyl__hankel__t}{\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+t}
 \item 
@@ -45,6 +49,8 @@ struct \hyperlink{struct____gnu__cxx_1_1____laguerre__t}{\+\_\+\+\_\+laguerre\+\
 \item 
 struct \hyperlink{struct____gnu__cxx_1_1____legendre__p__t}{\+\_\+\+\_\+legendre\+\_\+p\+\_\+t}
 \item 
+struct \hyperlink{struct____gnu__cxx_1_1____legendre__q__t}{\+\_\+\+\_\+legendre\+\_\+q\+\_\+t}
+\item 
 struct \hyperlink{struct____gnu__cxx_1_1____lgamma__t}{\+\_\+\+\_\+lgamma\+\_\+t}
 \item 
 struct \hyperlink{struct____gnu__cxx_1_1____quadrature__point__t}{\+\_\+\+\_\+quadrature\+\_\+point\+\_\+t}
@@ -56,7 +62,11 @@ struct \hyperlink{struct____gnu__cxx_1_1____sph__bessel__t}{\+\_\+\+\_\+sph\+\_\
 struct \hyperlink{struct____gnu__cxx_1_1____sph__hankel__t}{\+\_\+\+\_\+sph\+\_\+hankel\+\_\+t}
 \item 
 struct \hyperlink{struct____gnu__cxx_1_1____sph__mod__bessel__t}{\+\_\+\+\_\+sph\+\_\+mod\+\_\+bessel\+\_\+t}
-\end{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct____gnu__cxx_1_1____stirling__1__t}{\+\_\+\+\_\+stirling\+\_\+1\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A structure for Stirling numbers of the first kind. \end{DoxyCompactList}\item 
+struct \hyperlink{struct____gnu__cxx_1_1____stirling__2__t}{\+\_\+\+\_\+stirling\+\_\+2\+\_\+t}
+\begin{DoxyCompactList}\small\item\em A structure for Stirling numbers of the first kind. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
@@ -69,23 +79,23 @@ enum \hyperlink{namespace____gnu__cxx_a2ed4d746fa11452ef08bae893e031cb3}{gauss\+
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\bool \hyperlink{namespace____gnu__cxx_a586fa80a2f00ea60e6bed5e4f267bfd4}{\+\_\+\+\_\+fp\+\_\+is\+\_\+equal} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\})
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\constexpr bool \hyperlink{namespace____gnu__cxx_af8b87759dc0b043b46f9e7f0dec88a79}{\+\_\+\+\_\+fp\+\_\+is\+\_\+equal} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\}) noexcept
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \hyperlink{namespace____gnu__cxx_aa78dac4c2812a060d30efa5a3c99977c}{\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\})
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\constexpr \hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \hyperlink{namespace____gnu__cxx_ab12d5d801c39cd185e31bf2ed6ce94ff}{\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\}) noexcept
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \hyperlink{namespace____gnu__cxx_a5b5e889240854b8a4452ac49593fdc74}{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\})
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\constexpr \hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \hyperlink{namespace____gnu__cxx_a1f53ff9c9325c6bd9f4ababf5f7e62e4}{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\}) noexcept
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \hyperlink{namespace____gnu__cxx_af4f5d1b815527e3d8587bdbbef9470e3}{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\})
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\constexpr \hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \hyperlink{namespace____gnu__cxx_a6d99c5dcab15b6837c2a60f2b367ed2c}{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\}) noexcept
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \hyperlink{namespace____gnu__cxx_a75c2c5ab6f25d41dddd3d00235593211}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\})
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\constexpr \hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \hyperlink{namespace____gnu__cxx_ab425c7f3a50b494efaa2e6bdb6e55f08}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\}) noexcept
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \hyperlink{namespace____gnu__cxx_adfc2607bd5aebd90ba6af2d4d4365bef}{\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\})
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\constexpr \hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \hyperlink{namespace____gnu__cxx_a09bf2941743c58db8b086da401473c16}{\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\}) noexcept
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\bool \hyperlink{namespace____gnu__cxx_a8d30fc0f2348283e00f56c16d5713fc9}{\+\_\+\+\_\+fp\+\_\+is\+\_\+zero} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\})
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\constexpr bool \hyperlink{namespace____gnu__cxx_aea3be1eb8940437aa8571ab8654af660}{\+\_\+\+\_\+fp\+\_\+is\+\_\+zero} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+mul=\+\_\+\+Tp\{1\}) noexcept
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespace____gnu__cxx_adebbf99919675806def929327e724a53}{\+\_\+\+\_\+fp\+\_\+max\+\_\+abs} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b)
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\constexpr \+\_\+\+Tp \hyperlink{namespace____gnu__cxx_a85d72dd4ca7056d3a5979d03251ec38a}{\+\_\+\+\_\+fp\+\_\+max\+\_\+abs} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b) noexcept
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Int\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespace____gnu__cxx_abc155473831db12736006150c0ad42b6}{\+\_\+\+\_\+parity} (\+\_\+\+Int\+Tp \+\_\+\+\_\+k)
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Int\+Tp $>$ }\\constexpr \+\_\+\+Tp \hyperlink{namespace____gnu__cxx_a35c2cbd743275d2ba01b42aeb5e65201}{\+\_\+\+\_\+parity} (\+\_\+\+Int\+Tp \+\_\+\+\_\+k) noexcept
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gac84f8c4ad00ee677ad4d0b785925d983}{airy\+\_\+ai} (\+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
@@ -102,6 +112,16 @@ long double \hyperlink{group__gnu__math__spec__func_ga800fdb61c672ae1831f4ca4250
 float \hyperlink{group__gnu__math__spec__func_ga2ade465827bdba7370abbcce78e54912}{airy\+\_\+bif} (float \+\_\+\+\_\+x)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga59240b3f40177e5187f3f194f624f0f8}{airy\+\_\+bil} (long double \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga96a1223727fa71ffbf520a98ac3dc885}{assoc\+\_\+legendre\+\_\+q} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+x)
+\item 
+float \hyperlink{group__gnu__math__spec__func_ga61d651dc8b3c42fe47a02b36e95f72c0}{assoc\+\_\+legendre\+\_\+qf} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, float \+\_\+\+\_\+x)
+\item 
+long double \hyperlink{group__gnu__math__spec__func_ga07a9e571759c6d24e96da8cc8268f91e}{assoc\+\_\+legendre\+\_\+ql} (unsigned int \+\_\+\+\_\+l, unsigned int \+\_\+\+\_\+m, long double \+\_\+\+\_\+x)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gac07286d722248a7f3c65a13b49b1fef5}{bell} (unsigned int \+\_\+\+\_\+n)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up $>$ }\\\+\_\+\+Up \hyperlink{group__gnu__math__spec__func_ga1e87244cb33a10de204856cafb19046f}{bell} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Up \+\_\+\+\_\+x)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gad339f0011df1967ec6c9e55bd1547bf4}{bernoulli} (unsigned int \+\_\+\+\_\+n)
 \item 
@@ -371,6 +391,8 @@ long double \hyperlink{group__gnu__math__spec__func_ga0774570b24f654f8ae39e18656
 \begin{DoxyCompactList}\small\item\em This returns Euler number $ E_n $. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{group__gnu__math__spec__func_gadfd8810a97655d2cdd1b0e3af68a79d3}{eulerian\+\_\+1} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga6597229d2557ccf12fd9c50a66919ceb}{eulerian\+\_\+1} (unsigned int \+\_\+\+\_\+n)
+\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{group__gnu__math__spec__func_ga9bc456941d5e35cf54ec9c50f2e52884}{eulerian\+\_\+2} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gadaf9317953b826975da72d1858f01ea5}{expint} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
@@ -390,7 +412,7 @@ float \hyperlink{group__gnu__math__spec__func_ga5a288283a8ed63e1d2b0145f313a5378
 long double \hyperlink{group__gnu__math__spec__func_ga0904e504fdc3c8b9b6f5c66a73531584}{factoriall} (unsigned int \+\_\+\+\_\+n)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tnu $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tnu $>$ \hyperlink{group__gnu__math__spec__func_ga3cc8eb6068c7155ec48b40e20160c5c0}{falling\+\_\+factorial} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tnu \+\_\+\+\_\+nu)
-\begin{DoxyCompactList}\small\item\em Return the falling factorial function or the lower Pochhammer symbol for real argument $ a $ and integral order $ n $. The falling factorial function is defined by \[ a^{\underline{n}} = \prod_{k=0}^{n-1} (a - k), a^{\underline{0}} = 1 = \Gamma(a + 1) / \Gamma(a - n + 1) \] In particular, $ n^{\underline{n}} = n! $. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Return the falling factorial function or the lower Pochhammer symbol for real argument $ a $ and integral order $ n $. The falling factorial function is defined by \[ a^{\underline{n}} = \prod_{k=0}^{n-1} (a - k) = \Gamma(a + 1) / \Gamma(a - n + 1) \] where $ a^{\underline{0}} \equiv 1 $. In particular, $ n^{\underline{n}} = n! $. \end{DoxyCompactList}\item 
 float \hyperlink{group__gnu__math__spec__func_gaf32abbc790bfa870725728e5470de532}{falling\+\_\+factorialf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+nu)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gab816c3bcbe00595881799ce969475085}{falling\+\_\+factoriall} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+nu)
@@ -531,6 +553,10 @@ float \hyperlink{group__gnu__math__spec__func_ga450db12e06d6993d169afab5b3f6d0b8
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga2898a5ebf451eaf259ecfcdd171aa72b}{jacobil} (unsigned \+\_\+\+\_\+n, long double \+\_\+\+\_\+alpha, long double \+\_\+\+\_\+beta, long double \+\_\+\+\_\+x)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{group__gnu__math__spec__func_gaa3491fabb0a6ef54a946a7a23ca866c7}{lah} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga161fe80a0d88f67a5a16ef2dcc3d4645}{lah} (unsigned int \+\_\+\+\_\+n)
+\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gabfa5aeba56edfa110846fc8e76963bc2}{lbinomial} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
 \begin{DoxyCompactList}\small\item\em Return the logarithm of the binomial coefficient as a real number. The binomial coefficient is given by\+: \[ \binom{n}{k} = \frac{n!}{(n-k)! k!} \] The binomial coefficients are generated by\+: \[ \left(1 + t\right)^n = \sum_{k=0}^n \binom{n}{k} t^k \]. \end{DoxyCompactList}\item 
 float \hyperlink{group__gnu__math__spec__func_ga2fe55bab4211fb240e1eb01341914129}{lbinomialf} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+k)
@@ -562,7 +588,7 @@ float \hyperlink{group__gnu__math__spec__func_ga65af05c4093d4895a564a8d67e389a9b
 long double \hyperlink{group__gnu__math__spec__func_ga3a0c196f34916dc68c29c89f26cbe1ee}{lfactoriall} (unsigned int \+\_\+\+\_\+n)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tnu $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tnu $>$ \hyperlink{group__gnu__math__spec__func_ga2032c10640d5010666d60d9faec86c32}{lfalling\+\_\+factorial} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tnu \+\_\+\+\_\+nu)
-\begin{DoxyCompactList}\small\item\em Return the logarithm of the falling factorial function or the lower Pochhammer symbol. The falling factorial function is defined by \[ a^{\underline{n}} = \Gamma(a + 1) / \Gamma(a - \nu + 1) = \prod_{k=0}^{n-1} (a - k), a^{\underline{0}} = 1 \] In particular, $ n^{\underline{n}} = n! $. Thus this function returns \[ ln[a^{\underline{n}}] = ln[\Gamma(a + 1)] - ln[\Gamma(a - \nu + 1)], ln[a^{\underline{0}}] = 0 \] Many notations exist for this function\+: $ (a)_\nu $, \[ \{ \begin{array}{c} a \\ \nu \end{array} \} \], and others. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Return the logarithm of the falling factorial function or the lower Pochhammer symbol. The falling factorial function is defined by \[ a^{\underline{n}} = \frac{\Gamma(a + 1)}{\Gamma(a - \nu + 1)} = \prod_{k=0}^{n-1} (a - k) \] where $ a^{\underline{0}} \equiv 1 $. In particular, $ n^{\underline{n}} = n! $. Thus this function returns \[ ln[a^{\underline{n}}] = ln[\Gamma(a + 1)] - ln[\Gamma(a - \nu + 1)] \] where $ ln[a^{\underline{0}}] \equiv 0 $. Many notations exist for this function\+: $ (a)_\nu $, \[ \{ \begin{array}{c} a \\ \nu \end{array} \} \], and others. \end{DoxyCompactList}\item 
 float \hyperlink{group__gnu__math__spec__func_ga59ad7045c90aa1e3bc671e2eb6b8a2a7}{lfalling\+\_\+factorialf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+nu)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gaa69b6c70e000b073d7f0f17199b1feb0}{lfalling\+\_\+factoriall} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+nu)
@@ -594,10 +620,12 @@ long double \hyperlink{group__gnu__math__spec__func_gab17f5cadc8f77ba2666d0d5ecc
 {\footnotesize template$<$typename \+\_\+\+Tmu , typename \+\_\+\+Tsig , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tmu, \+\_\+\+Tsig, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaef4db41e58e53144df2ddcc834d88e0b}{lognormal\+\_\+pdf} (\+\_\+\+Tmu \+\_\+\+\_\+mu, \+\_\+\+Tsig \+\_\+\+\_\+sigma, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Return the lognormal probability density function. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tnu $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tnu $>$ \hyperlink{group__gnu__math__spec__func_ga8912b75b2f7592fb61128c766e7313b9}{lrising\+\_\+factorial} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tnu \+\_\+\+\_\+nu)
-\begin{DoxyCompactList}\small\item\em Return the logarithm of the rising factorial function or the (upper) Pochhammer symbol. The rising factorial function is defined for integer order by \[ a^{\overline{\nu}} = \Gamma(a + \nu) / \Gamma(n) = \prod_{k=0}^{\nu-1} (a + k), \overline{0} = 1 \] Thus this function returns \[ ln[a^{\overline{\nu}}] = ln[\Gamma(a + \nu)] - ln[\Gamma(\nu)], ln[a^{\overline{0}}] = 0 \] Many notations exist for this function\+: $ (a)_\nu $ (especially in the literature of special functions), \[ \left[ \begin{array}{c} a \\ \nu \end{array} \right] \], and others. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Return the logarithm of the rising factorial function or the (upper) Pochhammer symbol. The rising factorial function is defined for integer order by \[ a^{\overline{\nu}} = \Gamma(a + \nu) / \Gamma(n) = \prod_{k=0}^{\nu-1} (a + k), \overline{0} \equiv 1 \] Thus this function returns \[ ln[a^{\overline{\nu}}] = ln[\Gamma(a + \nu)] - ln[\Gamma(\nu)], ln[a^{\overline{0}}] \equiv 0 \] Many notations exist for this function\+: $ (a)_\nu $, called the Pochhammer function (esp. in the literature of special functions), and \[ \left[ \begin{array}{c} a \\ \nu \end{array} \right] \], and others. \end{DoxyCompactList}\item 
 float \hyperlink{group__gnu__math__spec__func_ga68c64f4e44d03b5b3f75f90dbe2e0819}{lrising\+\_\+factorialf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+nu)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga1ac811f56f38f7ea7a1e035ec0157f6b}{lrising\+\_\+factoriall} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+nu)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Ta , typename \+\_\+\+Tb $>$ }\\std\+::complex$<$ \+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Ta, \+\_\+\+Tb $>$ $>$ \hyperlink{group__gnu__math__spec__func_ga1a51079e00fbe5473d8cf9ad3304c5c6}{mittag\+\_\+leffler} (\+\_\+\+Ta \+\_\+\+\_\+alpha, \+\_\+\+Tb \+\_\+\+\_\+beta, const std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+z)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tmu , typename \+\_\+\+Tsig , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tmu, \+\_\+\+Tsig, \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaeb735b0fb98c7684ba61b8940f50193c}{normal\+\_\+p} (\+\_\+\+Tmu \+\_\+\+\_\+mu, \+\_\+\+Tsig \+\_\+\+\_\+sigma, \+\_\+\+Tp \+\_\+\+\_\+x)
 \begin{DoxyCompactList}\small\item\em Return the normal cumulative probability density function. \end{DoxyCompactList}\item 
@@ -608,6 +636,14 @@ long double \hyperlink{group__gnu__math__spec__func_ga1ac811f56f38f7ea7a1e035ec0
 float \hyperlink{group__gnu__math__spec__func_gac24d32e9b072c4953654d5559f992871}{owens\+\_\+tf} (float \+\_\+\+\_\+h, float \+\_\+\+\_\+a)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_ga7a8bc60dc0ef4a009586872eb7cac2d0}{owens\+\_\+tl} (long double \+\_\+\+\_\+h, long double \+\_\+\+\_\+a)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ std\+::complex$<$ \+\_\+\+Tp $>$, \+\_\+\+Up $>$ \hyperlink{group__gnu__math__spec__func_ga06b06216e87b868cb21c76d33ac560c8}{periodic\+\_\+zeta} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Up \+\_\+\+\_\+s)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Up $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ std\+::complex$<$ \+\_\+\+Tp $>$, std\+::complex$<$ \+\_\+\+Up $>$ $>$ \hyperlink{group__gnu__math__spec__func_gaf3704ce510319b5c4c5cedd55dfaa42f}{periodic\+\_\+zeta} (std\+::complex$<$ \+\_\+\+Up $>$ \+\_\+\+\_\+z, \+\_\+\+Tp \+\_\+\+\_\+s)
+\item 
+std\+::complex$<$ float $>$ \hyperlink{group__gnu__math__spec__func_ga1308c2a5d1b263757485cb48eb2c19ff}{periodic\+\_\+zetaf} (float \+\_\+\+\_\+x, float \+\_\+\+\_\+s)
+\item 
+std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_gab7573fb57ebaabac4432bb5e6b525151}{periodic\+\_\+zetal} (long double \+\_\+\+\_\+x, long double \+\_\+\+\_\+s)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga65e674e7fe1457e819897e0d608c18b8}{polygamma} (unsigned int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+x)
 \item 
@@ -634,7 +670,7 @@ float \hyperlink{group__gnu__math__spec__func_ga8a98d7c7c14f1aadff90123a114fa2c9
 long double \hyperlink{group__gnu__math__spec__func_ga377febebd1096400897170bb7a76cd3a}{radpolyl} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m, long double \+\_\+\+\_\+rho)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+Tnu $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp, \+\_\+\+Tnu $>$ \hyperlink{group__gnu__math__spec__func_gae8c36a0e1f60254cf212a3806f7c675c}{rising\+\_\+factorial} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tnu \+\_\+\+\_\+nu)
-\begin{DoxyCompactList}\small\item\em Return the rising factorial function or the (upper) Pochhammer function. The rising factorial function is defined by \[ a^{\overline{\nu}} = \Gamma(a + \nu) / \Gamma(\nu) \] Many notations exist for this function\+: $ (a)_\nu $, (especially in the literature of special functions), \[ \left[ \begin{array}{c} a \\ n \end{array} \right] \], and others. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Return the rising factorial function or the (upper) Pochhammer function. The rising factorial function is defined by \[ a^{\overline{\nu}} = \Gamma(a + \nu) / \Gamma(\nu) \] Many notations exist for this function\+: $ (a)_\nu $, called the Pochhammer function (esp. in the literature of special functions), and \[ \left[ \begin{array}{c} a \\ \nu \end{array} \right] \], and others. \end{DoxyCompactList}\item 
 float \hyperlink{group__gnu__math__spec__func_ga10da05b995a42f0b0625e61186af7449}{rising\+\_\+factorialf} (float \+\_\+\+\_\+a, float \+\_\+\+\_\+nu)
 \item 
 long double \hyperlink{group__gnu__math__spec__func_gac9a399ae01c315aa78a64b445795d974}{rising\+\_\+factoriall} (long double \+\_\+\+\_\+a, long double \+\_\+\+\_\+nu)
@@ -745,7 +781,11 @@ std\+::complex$<$ long double $>$ \hyperlink{group__gnu__math__spec__func_ga414c
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{group__gnu__math__spec__func_ga2b955dac7d2c5125f2091eaeb25c8ad2}{stirling\+\_\+1} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
 \item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_gaff3d42b2ec5364d24c1ad0ef4b374a8d}{stirling\+\_\+1} (unsigned int \+\_\+\+\_\+n)
+\item 
 {\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{group__gnu__math__spec__func_ga3761c0e467cbe45cbda66a4e796adcd3}{stirling\+\_\+2} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga6a2386b3e0940935f10a163baa925656}{stirling\+\_\+2} (unsigned int \+\_\+\+\_\+n)
 \item 
 {\footnotesize template$<$typename \+\_\+\+Tt , typename \+\_\+\+Tp $>$ }\\\+\_\+\+\_\+gnu\+\_\+cxx\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tp $>$ \hyperlink{group__gnu__math__spec__func_ga5a84386b009ac57a726d5d0314fdf7ce}{student\+\_\+t\+\_\+p} (\+\_\+\+Tt \+\_\+\+\_\+t, unsigned int \+\_\+\+\_\+nu)
 \begin{DoxyCompactList}\small\item\em Return the Students T probability function. \end{DoxyCompactList}\item 
@@ -884,17 +924,17 @@ Gauss\+\_\+\+Radau\+\_\+upper&Gauss-\/\+Radau quadrature including the node +1. 
 \end{DoxyEnumFields}
 
 
-Definition at line 47 of file specfun\+\_\+state.\+h.
+Definition at line 48 of file specfun\+\_\+state.\+h.
 
 
 
 \subsection{Function Documentation}
-\mbox{\Hypertarget{namespace____gnu__cxx_a586fa80a2f00ea60e6bed5e4f267bfd4}\label{namespace____gnu__cxx_a586fa80a2f00ea60e6bed5e4f267bfd4}} 
+\mbox{\Hypertarget{namespace____gnu__cxx_af8b87759dc0b043b46f9e7f0dec88a79}\label{namespace____gnu__cxx_af8b87759dc0b043b46f9e7f0dec88a79}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+equal@{\+\_\+\+\_\+fp\+\_\+is\+\_\+equal}}
 \index{\+\_\+\+\_\+fp\+\_\+is\+\_\+equal@{\+\_\+\+\_\+fp\+\_\+is\+\_\+equal}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
 \subsubsection{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+equal()}{\_\_fp\_is\_equal()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
-bool \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+equal (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+b,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+constexpr bool \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+equal (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+b,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 A function to reliably compare two floating point numbers.
 
@@ -912,7 +952,7 @@ A function to reliably compare two floating point numbers.
 \end{DoxyReturn}
 
 
-Definition at line 81 of file math\+\_\+util.\+h.
+Definition at line 85 of file math\+\_\+util.\+h.
 
 
 
@@ -922,12 +962,12 @@ References \+\_\+\+\_\+fp\+\_\+max\+\_\+abs().
 
 Referenced by \+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer(), \+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer(), \+\_\+\+\_\+fp\+\_\+is\+\_\+integer(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg\+\_\+int(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos\+\_\+int(), and std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos\+\_\+real().
 
-\mbox{\Hypertarget{namespace____gnu__cxx_aa78dac4c2812a060d30efa5a3c99977c}\label{namespace____gnu__cxx_aa78dac4c2812a060d30efa5a3c99977c}} 
+\mbox{\Hypertarget{namespace____gnu__cxx_ab12d5d801c39cd185e31bf2ed6ce94ff}\label{namespace____gnu__cxx_ab12d5d801c39cd185e31bf2ed6ce94ff}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer}}
 \index{\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
 \subsubsection{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer()}{\_\_fp\_is\_even\_integer()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
-\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+constexpr \hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 A function to reliably detect if a floating point number is an even integer.
 
@@ -943,7 +983,7 @@ A function to reliably detect if a floating point number is an even integer.
 \end{DoxyReturn}
 
 
-Definition at line 217 of file math\+\_\+util.\+h.
+Definition at line 221 of file math\+\_\+util.\+h.
 
 
 
@@ -953,12 +993,12 @@ References \+\_\+\+\_\+fp\+\_\+is\+\_\+integer().
 
 Referenced by std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+glob().
 
-\mbox{\Hypertarget{namespace____gnu__cxx_a5b5e889240854b8a4452ac49593fdc74}\label{namespace____gnu__cxx_a5b5e889240854b8a4452ac49593fdc74}} 
+\mbox{\Hypertarget{namespace____gnu__cxx_a1f53ff9c9325c6bd9f4ababf5f7e62e4}\label{namespace____gnu__cxx_a1f53ff9c9325c6bd9f4ababf5f7e62e4}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer}}
 \index{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
 \subsubsection{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer()}{\_\_fp\_is\_half\_integer()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
-\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+constexpr \hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+integer (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 A function to reliably detect if a floating point number is a half-\/integer.
 
@@ -974,18 +1014,18 @@ A function to reliably detect if a floating point number is a half-\/integer.
 \end{DoxyReturn}
 
 
-Definition at line 172 of file math\+\_\+util.\+h.
+Definition at line 176 of file math\+\_\+util.\+h.
 
 
 
 References \+\_\+\+\_\+fp\+\_\+is\+\_\+equal().
 
-\mbox{\Hypertarget{namespace____gnu__cxx_af4f5d1b815527e3d8587bdbbef9470e3}\label{namespace____gnu__cxx_af4f5d1b815527e3d8587bdbbef9470e3}} 
+\mbox{\Hypertarget{namespace____gnu__cxx_a6d99c5dcab15b6837c2a60f2b367ed2c}\label{namespace____gnu__cxx_a6d99c5dcab15b6837c2a60f2b367ed2c}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer}}
 \index{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
 \subsubsection{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer()}{\_\_fp\_is\_half\_odd\_integer()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
-\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+constexpr \hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+half\+\_\+odd\+\_\+integer (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 A function to reliably detect if a floating point number is a half-\/odd-\/integer.
 
@@ -1001,7 +1041,7 @@ A function to reliably detect if a floating point number is a half-\/odd-\/integ
 \end{DoxyReturn}
 
 
-Definition at line 195 of file math\+\_\+util.\+h.
+Definition at line 199 of file math\+\_\+util.\+h.
 
 
 
@@ -1011,12 +1051,12 @@ References \+\_\+\+\_\+fp\+\_\+is\+\_\+equal().
 
 Referenced by std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+digamma().
 
-\mbox{\Hypertarget{namespace____gnu__cxx_a75c2c5ab6f25d41dddd3d00235593211}\label{namespace____gnu__cxx_a75c2c5ab6f25d41dddd3d00235593211}} 
+\mbox{\Hypertarget{namespace____gnu__cxx_ab425c7f3a50b494efaa2e6bdb6e55f08}\label{namespace____gnu__cxx_ab425c7f3a50b494efaa2e6bdb6e55f08}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer}}
 \index{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
 \subsubsection{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer()}{\_\_fp\_is\_integer()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
-\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+integer (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+constexpr \hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+integer (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 A function to reliably detect if a floating point number is an integer.
 
@@ -1032,7 +1072,7 @@ A function to reliably detect if a floating point number is an integer.
 \end{DoxyReturn}
 
 
-Definition at line 150 of file math\+\_\+util.\+h.
+Definition at line 154 of file math\+\_\+util.\+h.
 
 
 
@@ -1042,12 +1082,12 @@ References \+\_\+\+\_\+fp\+\_\+is\+\_\+equal().
 
 Referenced by std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+conf\+\_\+hyperg(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+conf\+\_\+hyperg\+\_\+lim(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+digamma(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+dirichlet\+\_\+eta(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+falling\+\_\+factorial(), \+\_\+\+\_\+fp\+\_\+is\+\_\+even\+\_\+integer(), \+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+p(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+q(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+reciprocal(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+gamma\+\_\+series(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+hyperg(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+hyperg\+\_\+reflect(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+log\+\_\+falling\+\_\+factorial(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+log\+\_\+gamma(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polygamma(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+riemann\+\_\+zeta(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+riemann\+\_\+zeta\+\_\+m\+\_\+1(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+tgamma(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+tgamma\+\_\+lower(), and std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+tricomi\+\_\+u\+\_\+naive().
 
-\mbox{\Hypertarget{namespace____gnu__cxx_adfc2607bd5aebd90ba6af2d4d4365bef}\label{namespace____gnu__cxx_adfc2607bd5aebd90ba6af2d4d4365bef}} 
+\mbox{\Hypertarget{namespace____gnu__cxx_a09bf2941743c58db8b086da401473c16}\label{namespace____gnu__cxx_a09bf2941743c58db8b086da401473c16}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer}}
 \index{\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer@{\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
 \subsubsection{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer()}{\_\_fp\_is\_odd\_integer()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
-\hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+constexpr \hyperlink{struct____gnu__cxx_1_1____fp__is__integer__t}{\+\_\+\+\_\+fp\+\_\+is\+\_\+integer\+\_\+t} \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+odd\+\_\+integer (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 A function to reliably detect if a floating point number is an odd integer.
 
@@ -1063,18 +1103,18 @@ A function to reliably detect if a floating point number is an odd integer.
 \end{DoxyReturn}
 
 
-Definition at line 237 of file math\+\_\+util.\+h.
+Definition at line 241 of file math\+\_\+util.\+h.
 
 
 
 References \+\_\+\+\_\+fp\+\_\+is\+\_\+integer().
 
-\mbox{\Hypertarget{namespace____gnu__cxx_a8d30fc0f2348283e00f56c16d5713fc9}\label{namespace____gnu__cxx_a8d30fc0f2348283e00f56c16d5713fc9}} 
+\mbox{\Hypertarget{namespace____gnu__cxx_aea3be1eb8940437aa8571ab8654af660}\label{namespace____gnu__cxx_aea3be1eb8940437aa8571ab8654af660}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+is\+\_\+zero@{\+\_\+\+\_\+fp\+\_\+is\+\_\+zero}}
 \index{\+\_\+\+\_\+fp\+\_\+is\+\_\+zero@{\+\_\+\+\_\+fp\+\_\+is\+\_\+zero}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
 \subsubsection{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+is\+\_\+zero()}{\_\_fp\_is\_zero()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
-bool \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+zero (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+constexpr bool \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+is\+\_\+zero (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+mul = {\ttfamily \+\_\+Tp\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 A function to reliably compare a floating point number with zero.
 
@@ -1090,18 +1130,18 @@ A function to reliably compare a floating point number with zero.
 \end{DoxyReturn}
 
 
-Definition at line 106 of file math\+\_\+util.\+h.
+Definition at line 110 of file math\+\_\+util.\+h.
 
 
 
-Referenced by std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg\+\_\+int(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos\+\_\+int(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos\+\_\+real(), and std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+theta\+\_\+1().
+Referenced by std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+periodic\+\_\+zeta(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+neg\+\_\+int(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos\+\_\+int(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polylog\+\_\+exp\+\_\+pos\+\_\+real(), and std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+theta\+\_\+1().
 
-\mbox{\Hypertarget{namespace____gnu__cxx_adebbf99919675806def929327e724a53}\label{namespace____gnu__cxx_adebbf99919675806def929327e724a53}} 
+\mbox{\Hypertarget{namespace____gnu__cxx_a85d72dd4ca7056d3a5979d03251ec38a}\label{namespace____gnu__cxx_a85d72dd4ca7056d3a5979d03251ec38a}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+fp\+\_\+max\+\_\+abs@{\+\_\+\+\_\+fp\+\_\+max\+\_\+abs}}
 \index{\+\_\+\+\_\+fp\+\_\+max\+\_\+abs@{\+\_\+\+\_\+fp\+\_\+max\+\_\+abs}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
 \subsubsection{\texorpdfstring{\+\_\+\+\_\+fp\+\_\+max\+\_\+abs()}{\_\_fp\_max\_abs()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
-\+\_\+\+Tp \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+max\+\_\+abs (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+constexpr \+\_\+\+Tp \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fp\+\_\+max\+\_\+abs (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 A function to return the maximum of the absolute values of two numbers ... so we won\textquotesingle{}t include everything. 
 \begin{DoxyParams}{Parameters}
@@ -1112,24 +1152,20 @@ A function to return the maximum of the absolute values of two numbers ... so we
 \end{DoxyParams}
 
 
-Definition at line 58 of file math\+\_\+util.\+h.
+Definition at line 62 of file math\+\_\+util.\+h.
 
 
 
 Referenced by \+\_\+\+\_\+fp\+\_\+is\+\_\+equal().
 
-\mbox{\Hypertarget{namespace____gnu__cxx_abc155473831db12736006150c0ad42b6}\label{namespace____gnu__cxx_abc155473831db12736006150c0ad42b6}} 
+\mbox{\Hypertarget{namespace____gnu__cxx_a35c2cbd743275d2ba01b42aeb5e65201}\label{namespace____gnu__cxx_a35c2cbd743275d2ba01b42aeb5e65201}} 
 \index{\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}!\+\_\+\+\_\+parity@{\+\_\+\+\_\+parity}}
 \index{\+\_\+\+\_\+parity@{\+\_\+\+\_\+parity}!\+\_\+\+\_\+gnu\+\_\+cxx@{\+\_\+\+\_\+gnu\+\_\+cxx}}
 \subsubsection{\texorpdfstring{\+\_\+\+\_\+parity()}{\_\_parity()}}
 {\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+Int\+Tp $>$ \\
-\+\_\+\+Tp \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+parity (\begin{DoxyParamCaption}\item[{\+\_\+\+Int\+Tp}]{\+\_\+\+\_\+k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+constexpr \+\_\+\+Tp \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+parity (\begin{DoxyParamCaption}\item[{\+\_\+\+Int\+Tp}]{\+\_\+\+\_\+k }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 Return -\/1 if the integer argument is odd and +1 if it is even. 
 
-Definition at line 47 of file math\+\_\+util.\+h.
-
-
-
-Referenced by std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+stirling\+\_\+1\+\_\+series().
+Definition at line 51 of file math\+\_\+util.\+h.
 

@@ -58,10 +58,10 @@ namespace __detail
    * This works for @f$ \alpha,\beta > -1 @f$
    *
    * @tparam  _Tp  The real type of the argument
-   * @param[in]  n  The degree of the Jacobi polynomial
-   * @param[in]  alpha1  The first order parameter of the Jacobi polynomial
-   * @param[in]  beta1  The second order parameter of the Jacobi polynomial
-   * @param[in]  x  The argument
+   * @param[in]  __n  The degree of the Jacobi polynomial
+   * @param[in]  __alpha1  The first order parameter of the Jacobi polynomial
+   * @param[in]  __beta1  The second order parameter of the Jacobi polynomial
+   * @param[in]  __x  The argument
    */
   template<typename _Tp>
     __gnu_cxx::__jacobi_t<_Tp>
@@ -133,9 +133,9 @@ namespace __detail
    * Thias works for @f$ \alpha, \beta > -1 @f$.
    *
    * @tparam  _Tp  The real type of the parameters
-   * @param[in]  n  The degree of the Jacobi polynomial
-   * @param[in]  alpha1  The first order parameter of the Jacobi polynomial
-   * @param[in]  beta1  The second order parameter of the Jacobi polynomial
+   * @param[in]  __n  The degree of the Jacobi polynomial
+   * @param[in]  __alpha1  The first order parameter of the Jacobi polynomial
+   * @param[in]  __beta1  The second order parameter of the Jacobi polynomial
    */
   template<typename _Tp>
     std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
@@ -318,9 +318,8 @@ namespace __detail
    * @f$ P_n^{(\alpha,\beta)}(1 - 2\rho^2) @f$.
    *
    * @tparam _Tp The real type of the radial coordinate
-   * @param[in]  n  The order of the Jacobi polynomial
-   * @param[in]  alpha1  The first parameter of the Jacobi polynomial
-   * @param[in]  beta1  The second parameter of the Jacobi polynomial
+   * @param[in]  __n  The degree of the radial Jacobi polynomial
+   * @param[in]  __m  The order of the radial Jacobi polynomial
    */
   template<typename _Tp>
     std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>

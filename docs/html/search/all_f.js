@@ -1,5 +1,8 @@
 var searchData=
 [
+  ['periodic_5fzeta',['periodic_zeta',['../group__gnu__math__spec__func.html#ga06b06216e87b868cb21c76d33ac560c8',1,'__gnu_cxx::periodic_zeta(_Tp __x, _Up __s)'],['../group__gnu__math__spec__func.html#gaf3704ce510319b5c4c5cedd55dfaa42f',1,'__gnu_cxx::periodic_zeta(std::complex&lt; _Up &gt; __z, _Tp __s)']]],
+  ['periodic_5fzetaf',['periodic_zetaf',['../group__gnu__math__spec__func.html#ga1308c2a5d1b263757485cb48eb2c19ff',1,'__gnu_cxx']]],
+  ['periodic_5fzetal',['periodic_zetal',['../group__gnu__math__spec__func.html#gab7573fb57ebaabac4432bb5e6b525151',1,'__gnu_cxx']]],
   ['polygamma',['polygamma',['../group__gnu__math__spec__func.html#ga65e674e7fe1457e819897e0d608c18b8',1,'__gnu_cxx']]],
   ['polygammaf',['polygammaf',['../group__gnu__math__spec__func.html#ga91861fadef76d4f73afacffcac66e312',1,'__gnu_cxx']]],
   ['polygammal',['polygammal',['../group__gnu__math__spec__func.html#gaa6a37359a97ba43f32aa842705c416d4',1,'__gnu_cxx']]],

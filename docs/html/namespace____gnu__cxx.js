@@ -1,12 +1,14 @@
 var namespace____gnu__cxx =
 [
     [ "__airy_t", "struct____gnu__cxx_1_1____airy__t.html", "struct____gnu__cxx_1_1____airy__t" ],
+    [ "__assoc_legendre_p_t", "struct____gnu__cxx_1_1____assoc__legendre__p__t.html", "struct____gnu__cxx_1_1____assoc__legendre__p__t" ],
+    [ "__assoc_legendre_q_t", "struct____gnu__cxx_1_1____assoc__legendre__q__t.html", "struct____gnu__cxx_1_1____assoc__legendre__q__t" ],
     [ "__chebyshev_t_t", "struct____gnu__cxx_1_1____chebyshev__t__t.html", "struct____gnu__cxx_1_1____chebyshev__t__t" ],
     [ "__chebyshev_u_t", "struct____gnu__cxx_1_1____chebyshev__u__t.html", "struct____gnu__cxx_1_1____chebyshev__u__t" ],
     [ "__chebyshev_v_t", "struct____gnu__cxx_1_1____chebyshev__v__t.html", "struct____gnu__cxx_1_1____chebyshev__v__t" ],
     [ "__chebyshev_w_t", "struct____gnu__cxx_1_1____chebyshev__w__t.html", "struct____gnu__cxx_1_1____chebyshev__w__t" ],
+    [ "__coulomb_t", "struct____gnu__cxx_1_1____coulomb__t.html", "struct____gnu__cxx_1_1____coulomb__t" ],
     [ "__cyl_bessel_t", "struct____gnu__cxx_1_1____cyl__bessel__t.html", "struct____gnu__cxx_1_1____cyl__bessel__t" ],
-    [ "__cyl_coulomb_t", "struct____gnu__cxx_1_1____cyl__coulomb__t.html", "struct____gnu__cxx_1_1____cyl__coulomb__t" ],
     [ "__cyl_hankel_t", "struct____gnu__cxx_1_1____cyl__hankel__t.html", "struct____gnu__cxx_1_1____cyl__hankel__t" ],
     [ "__cyl_mod_bessel_t", "struct____gnu__cxx_1_1____cyl__mod__bessel__t.html", "struct____gnu__cxx_1_1____cyl__mod__bessel__t" ],
     [ "__fock_airy_t", "struct____gnu__cxx_1_1____fock__airy__t.html", "struct____gnu__cxx_1_1____fock__airy__t" ],
@@ -21,10 +23,13 @@ var namespace____gnu__cxx =
     [ "__jacobi_t", "struct____gnu__cxx_1_1____jacobi__t.html", "struct____gnu__cxx_1_1____jacobi__t" ],
     [ "__laguerre_t", "struct____gnu__cxx_1_1____laguerre__t.html", "struct____gnu__cxx_1_1____laguerre__t" ],
     [ "__legendre_p_t", "struct____gnu__cxx_1_1____legendre__p__t.html", "struct____gnu__cxx_1_1____legendre__p__t" ],
+    [ "__legendre_q_t", "struct____gnu__cxx_1_1____legendre__q__t.html", "struct____gnu__cxx_1_1____legendre__q__t" ],
     [ "__lgamma_t", "struct____gnu__cxx_1_1____lgamma__t.html", "struct____gnu__cxx_1_1____lgamma__t" ],
     [ "__quadrature_point_t", "struct____gnu__cxx_1_1____quadrature__point__t.html", "struct____gnu__cxx_1_1____quadrature__point__t" ],
     [ "__sincos_t", "struct____gnu__cxx_1_1____sincos__t.html", "struct____gnu__cxx_1_1____sincos__t" ],
     [ "__sph_bessel_t", "struct____gnu__cxx_1_1____sph__bessel__t.html", "struct____gnu__cxx_1_1____sph__bessel__t" ],
     [ "__sph_hankel_t", "struct____gnu__cxx_1_1____sph__hankel__t.html", "struct____gnu__cxx_1_1____sph__hankel__t" ],
-    [ "__sph_mod_bessel_t", "struct____gnu__cxx_1_1____sph__mod__bessel__t.html", "struct____gnu__cxx_1_1____sph__mod__bessel__t" ]
+    [ "__sph_mod_bessel_t", "struct____gnu__cxx_1_1____sph__mod__bessel__t.html", "struct____gnu__cxx_1_1____sph__mod__bessel__t" ],
+    [ "__stirling_1_t", "struct____gnu__cxx_1_1____stirling__1__t.html", "struct____gnu__cxx_1_1____stirling__1__t" ],
+    [ "__stirling_2_t", "struct____gnu__cxx_1_1____stirling__2__t.html", "struct____gnu__cxx_1_1____stirling__2__t" ]
 ];

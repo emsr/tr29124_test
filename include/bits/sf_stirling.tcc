@@ -51,9 +51,7 @@ namespace __detail
    *
    * The series is:
    * @f[
-   *   \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}}
-   *
-   *   \sigma_n^{(m)} = \stirling{n}{m}
+   *   \sigma_n^{(m)} = \genfrac{\{}{\}}{0pt}{0}{n}{m}
    *      = \sum_{k=0}^{m}\frac{(-1)^{m-k}k^n}{(m-k)!k!}
    * @f]
    * The Stirling number of the second kind is denoted by other symbols
@@ -100,18 +98,16 @@ namespace __detail
    * Return the Stirling number of the second kind by recursion.
    * The recursion is
    * @f[
-   *   \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}}
-   *   \stirling{n}{m} = m \stirling{n-1}{m} + \stirling{n-1}{m-1}
+   *   \genfrac{\{}{\}}{0pt}{0}{n}{m} = m \genfrac{\{}{\}}{0pt}{0}{n-1}{m}
+   *                                    + \genfrac{\{}{\}}{0pt}{0}{n-1}{m-1}
    * @f]
    * with starting values
    * @f[
-   *   \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}}
-   *   \stirling{0}{0\rightarrow m} = {1, 0, 0, ..., 0}
+   *   \genfrac{\{}{\}}{0pt}{0}{0}{0\rightarrow m} = {1, 0, 0, ..., 0}
    * @f]
    * and
    * @f[
-   *   \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}}
-   *   \stirling{0\rightarrow n}{0} = {1, 0, 0, ..., 0}
+   *   \genfrac{\{}{\}}{0pt}{0}{0\rightarrow n}{0} = {1, 0, 0, ..., 0}
    * @f]
    *
    * The Stirling number of the second kind is denoted by other symbols
@@ -172,18 +168,16 @@ namespace __detail
    * Return a vector of Stirling numbers of the second kind by recursion.
    * The recursion is
    * @f[
-   *   \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}}
-   *   \stirling{n}{m} = m \stirling{n-1}{m} + \stirling{n-1}{m-1}
+   *   \genfrac{\{}{\}}{0pt}{0}{n}{m} = m \genfrac{\{}{\}}{0pt}{0}{n-1}{m}
+   *                                    + \genfrac{\{}{\}}{0pt}{0}{n-1}{m-1}
    * @f]
    * with starting values
    * @f[
-   *   \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}}
-   *   \stirling{0}{0\rightarrow m} = {1, 0, 0, ..., 0}
+   *   \genfrac{\{}{\}}{0pt}{0}{0}{0\rightarrow m} = {1, 0, 0, ..., 0}
    * @f]
    * and
    * @f[
-   *   \newcommand{\stirling}[2]{\genfrac{\{}{\}}{0pt}{0}{#1}{#2}}
-   *   \stirling{0\rightarrow n}{0} = {1, 0, 0, ..., 0}
+   *   \genfrac{\{}{\}}{0pt}{0}{0\rightarrow n}{0} = {1, 0, 0, ..., 0}
    * @f]
    *
    * The Stirling number of the second kind is denoted by other symbols

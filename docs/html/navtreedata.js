@@ -48,13 +48,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"group__gnu__math__spec__func.html#ga5f01f17ae8859129860118b09d51791c",
-"group__tr29124__math__spec__func.html#ga3ced07ddd24bf4af56e2712d148e7f57",
-"sf__ellint_8tcc_source.html",
-"sf__theta_8tcc.html#a07e080795e7f80c5a0b733d6bac49675",
-"specfun_8h.html#ga57dcc5ae4b1a3d1e38adccad85204bca",
-"specfun_8h.html#gae8135b6861a48f2cee2e692093a17102",
-"structstd_1_1____detail_1_1__AiryState.html#ad4a37f92020588e84a18fc1e93b02af6"
+"group__gnu__math__spec__func.html#ga3546906a5bb8f128c893dddef72e2f20",
+"group__gnu__math__spec__func.html#gacf7f49b2b7bf50fd37d939236712cbe2",
+"sf__ellint_8tcc.html#a26b35b5d72366d30ac4644db8f2f8be4",
+"sf__polylog_8tcc.html#a84081b0dd494f4601f2d40768e71b7b4",
+"specfun_8h.html#ga3e9d889d8f2e4792e892b12b1f5948b9",
+"specfun_8h.html#gac9a399ae01c315aa78a64b445795d974",
+"struct____gnu__cxx_1_1____jacobi__t.html#ab81da2815aa171345bf3893855b8c9a6"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
