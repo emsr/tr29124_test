@@ -1378,7 +1378,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The spherical Legendre function is defined by
    * @f[
    *    Y_l^m(\theta,0) = (-1)^m\frac{(2l+1)}{4\pi} \frac{(l-m)!}{(l+m)!}
-   *                         P_l^m(\cos\theta) e^{im\phi}
+   *                         P_l^m(\cos\theta)
    * @f]
    * where @f$ P_l^m(x) @f$ is the associated Legendre polynomial.
    * The full (complex) spherical harmonic function includes a phase factor
