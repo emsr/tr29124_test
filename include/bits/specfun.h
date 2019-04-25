@@ -387,6 +387,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * NIST Digital Library of Mathematical Functions: http://dlmf.nist.gov/
    * This version is far more navigable and includes more recent work.
    *
+   * @see The PlanetMath website has a wealth of material.  In particular
+   * https://planetmath.org/msc.html#33_Special_functions
+   *
    * @see An Atlas of Functions: with Equator, the Atlas Function Calculator
    * 2nd Edition, by Oldham, Keith B., Myland, Jan, Spanier, Jerome
    *
