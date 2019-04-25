@@ -1566,7 +1566,7 @@ namespace __detail
     };
 
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
+#ifdef _GLIBCXX_USE_FLOAT128
   template<>
     struct _Airy_asymp_data<__float128>
     {
@@ -1984,7 +1984,7 @@ namespace __detail
 	-3.909325877634014064587453253641059e+311Q,
       };
     };
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
+#endif // _GLIBCXX_USE_FLOAT128
 
 
   /**

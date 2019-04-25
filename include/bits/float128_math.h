@@ -32,7 +32,7 @@
 
 #pragma GCC system_header
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
+#ifdef _GLIBCXX_USE_FLOAT128
 
 #ifdef __cplusplus
 extern "C" {
@@ -393,6 +393,6 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
 } // extern "C++"
 
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
+#endif // _GLIBCXX_USE_FLOAT128
 
 #endif // _GLIBCXX_BITS_FLOAT128_MATH_H

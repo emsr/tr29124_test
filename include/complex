@@ -46,9 +46,9 @@
 #undef _GLIBCXX_NO_SPECFUN
 #include <sstream>
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
+#ifdef _GLIBCXX_USE_FLOAT128
 #  include <bits/complex128_math.h>
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
+#endif // _GLIBCXX_USE_FLOAT128
 
 // Get rid of a macro possibly defined in <complex.h>
 #undef complex
@@ -1112,9 +1112,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       explicit _GLIBCXX_CONSTEXPR complex(const complex<double>&);
       explicit _GLIBCXX_CONSTEXPR complex(const complex<long double>&);
-#if _GLIBCXX_HAVE_FLOAT128_MATH
+#ifdef _GLIBCXX_USE_FLOAT128
       explicit _GLIBCXX_CONSTEXPR complex(const complex<__float128>&);
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
+#endif // _GLIBCXX_USE_FLOAT128
 
 #if __cplusplus >= 201103L
       // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -1261,9 +1261,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       : _M_value(__z.__rep()) { }
 
       explicit _GLIBCXX_CONSTEXPR complex(const complex<long double>&);
-#if _GLIBCXX_HAVE_FLOAT128_MATH
+#ifdef _GLIBCXX_USE_FLOAT128
       explicit _GLIBCXX_CONSTEXPR complex(const complex<__float128>&);
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
+#endif // _GLIBCXX_USE_FLOAT128
 
 #if __cplusplus >= 201103L
       // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -1412,9 +1412,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _GLIBCXX_CONSTEXPR complex(const complex<double>& __z)
       : _M_value(__z.__rep()) { }
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
+#ifdef _GLIBCXX_USE_FLOAT128
       explicit _GLIBCXX_CONSTEXPR complex(const complex<__float128>&);
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
+#endif // _GLIBCXX_USE_FLOAT128
 
 #if __cplusplus >= 201103L
       // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -2025,8 +2025,8 @@ _GLIBCXX_END_NAMESPACE_VERSION
 #include <bits/specfun_util.h>
 #include <bits/complex_util.h>
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
+#ifdef _GLIBCXX_USE_FLOAT128
 #  include <bits/complex128.h>
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
+#endif // _GLIBCXX_USE_FLOAT128
 
 #endif  /* _GLIBCXX_COMPLEX */

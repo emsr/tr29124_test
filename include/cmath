@@ -412,7 +412,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 #endif
 #endif
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
+#ifdef _GLIBCXX_USE_FLOAT128
   // Prevent infinite recursion with pow for __float128.
   inline __float128 pow(__float128 __x, __float128 __y);
 #endif
@@ -1858,7 +1858,7 @@ _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
 } // extern "C++"
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
+#ifdef _GLIBCXX_USE_FLOAT128
 #  include <bits/float128_math.h>
 #endif
 

@@ -32,7 +32,7 @@
 
 #pragma GCC system_header
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
+#ifdef _GLIBCXX_USE_FLOAT128
 
 #include <iostream>
 #include <iomanip> // For setw().
