@@ -20,6 +20,9 @@ main()
   std::cout.precision(std::numeric_limits<__float128>::max_digits10);
   std::complex<__float128> w{0.125Q, -0.5Q}, z{3.5Q, 1.5Q};
 
+  const __float128 infq = std::numeric_limits<__float128>::infinity();
+  std::complex<__float128> pz{infq, -1.0Q};
+
   std::cout << "abs(z)    = " << std::abs(z) << '\n';
   std::cout << "arg(z)    = " << std::arg(z) << '\n';
   std::cout << "imag(z)   = " << std::imag(z) << '\n';
@@ -35,10 +38,12 @@ main()
   std::cout << "exp(z)    = " << std::exp(z) << '\n';
   //std::cout << "expi(x)   = " << std::expi(x) << '\n';
   std::cout << "log(z)    = " << std::log(z) << '\n';
+  //std::cout << "log2(z)    = " << std::log2(z) << '\n';
   std::cout << "log10(z)  = " << std::log10(z) << '\n';
   std::cout << "conj(z)   = " << std::conj(z) << '\n';
   std::cout << "pow(z, w) = " << std::pow(z, w) << '\n';
   std::cout << "proj(z)   = " << std::proj(z) << '\n';
+  std::cout << "proj(p)   = " << std::proj(pz) << '\n';
   std::cout << "sin(z)    = " << std::sin(z) << '\n';
   std::cout << "sinh(z)   = " << std::sinh(z) << '\n';
   std::cout << "sqrt(z)   = " << std::sqrt(z) << '\n';
@@ -62,9 +67,11 @@ main()
   //std::cout << "cexpiq(x)   = " << cexpiq(x) << '\n';
   std::cout << "clogq(z)    = " << clogq(z) << '\n';
   std::cout << "clog10q(z)  = " << clog10q(z) << '\n';
+  //std::cout << "clog2q(z)   = " << clog2q(z) << '\n';
   std::cout << "conjq(z)    = " << conjq(z) << '\n';
   std::cout << "cpowq(z, w) = " << cpowq(z, w) << '\n';
   std::cout << "cprojq(z)   = " << cprojq(z) << '\n';
+  std::cout << "cprojq(p)   = " << cprojq(pz) << '\n';
   std::cout << "csinq(z)    = " << csinq(z) << '\n';
   std::cout << "csinhq(z)   = " << csinhq(z) << '\n';
   std::cout << "csqrtq(z)   = " << csqrtq(z) << '\n';
