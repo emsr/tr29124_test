@@ -49,6 +49,9 @@ int main()
   test_denorm_min<float>();
   test_denorm_min<double>();
   test_denorm_min<long double>();
+#if _GLIBCXX_USE_FLOAT128
+  test_denorm_min<__float128>();
+#endif // _GLIBCXX_USE_FLOAT128
 
   return 0;
 }

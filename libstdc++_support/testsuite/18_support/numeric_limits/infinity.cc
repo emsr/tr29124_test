@@ -49,6 +49,9 @@ int main()
   test_infinity<float>();
   test_infinity<double>();
   test_infinity<long double>();
+#if _GLIBCXX_USE_FLOAT128
+  test_infinity<__float128>();
+#endif // _GLIBCXX_USE_FLOAT128
 
   return 0;
 }

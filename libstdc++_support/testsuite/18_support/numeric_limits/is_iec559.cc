@@ -69,6 +69,9 @@ int main()
   test_is_iec559<float>();
   test_is_iec559<double>();
   test_is_iec559<long double>();
+#if _GLIBCXX_USE_FLOAT128
+  test_is_iec559<__float128>();
+#endif // _GLIBCXX_USE_FLOAT128
 
   test04();
 

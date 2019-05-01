@@ -82,6 +82,9 @@ void test01()
   do_test<float>();
   do_test<double>();
   do_test<long double>();
+#if _GLIBCXX_USE_FLOAT128
+  do_test<__float128>();
+#endif // _GLIBCXX_USE_FLOAT128
 }
 
 int main()

@@ -55,6 +55,9 @@ DEFINE_EXTREMA(wchar_t, WCHAR_MIN, WCHAR_MAX);
 DEFINE_EXTREMA(float, FLT_MIN, FLT_MAX);
 DEFINE_EXTREMA(double, DBL_MIN, DBL_MAX);
 DEFINE_EXTREMA(long double, LDBL_MIN, LDBL_MAX);
+#if _GLIBCXX_USE_FLOAT128
+DEFINE_EXTREMA(__float128, FLT128_MIN, FLT128_MAX);
+#endif // _GLIBCXX_USE_FLOAT128
 
 #undef DEFINE_EXTREMA
 
@@ -87,6 +90,9 @@ int main()
   test_extrema<float>();
   test_extrema<double>();
   test_extrema<long double>();
+#if _GLIBCXX_USE_FLOAT128
+  test_extrema<__float128>();
+#endif // _GLIBCXX_USE_FLOAT128
 
   return 0;
 }

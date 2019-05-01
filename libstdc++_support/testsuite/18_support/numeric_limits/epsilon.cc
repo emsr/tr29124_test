@@ -41,6 +41,9 @@ int main()
   test_epsilon<float>();
   test_epsilon<double>();
   test_epsilon<long double>();
+#if _GLIBCXX_USE_FLOAT128
+  test_epsilon<__float128>();
+#endif // _GLIBCXX_USE_FLOAT128
 
   return 0;
 }

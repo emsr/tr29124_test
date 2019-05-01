@@ -49,6 +49,9 @@ int main()
   test_qnan<float>();
   test_qnan<double>();
   test_qnan<long double>();
+#ifdef _GLIBCXX_USE_FLOAT128
+  test_qnan<__float128>();
+#endif // _GLIBCXX_USE_FLOAT128
 
   return 0;
 }

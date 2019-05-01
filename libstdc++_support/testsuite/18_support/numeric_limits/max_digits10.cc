@@ -65,6 +65,12 @@ test01()
   const int ld_max_digits10 = (2 + std::numeric_limits<long double>::digits
 			       * 643 / 2136);
   VERIFY( std::numeric_limits<long double>::max_digits10 == ld_max_digits10 );
+
+#if _GLIBCXX_USE_FLOAT128
+  const int q_max_digits10 = (2 + std::numeric_limits<__float128>::digits
+			       * 643 / 2136);
+  VERIFY( std::numeric_limits<__float128>::max_digits10 == q_max_digits10 );
+#endif // _GLIBCXX_USE_FLOAT128
 }
 
 int main()
