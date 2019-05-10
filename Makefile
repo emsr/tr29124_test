@@ -1365,7 +1365,7 @@ run_test_legendre_ellint: $(TEST_BIN_DIR)/test_legendre_ellint
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_legendre_ellint > $(TEST_OUT_DIR)/test_legendre_ellint.txt
 
 $(TEST_BIN_DIR)/test_lentz_continued_fraction: cxx_continued_fractions/test_lentz_continued_fraction.cpp
-	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_lentz_continued_fraction cxx_continued_fractions/test_lentz_continued_fraction.cpp -lquadmath
+	$(CXXMAX) $(INCLUDES) -Icxx_continued_fractions/include -o $(TEST_BIN_DIR)/test_lentz_continued_fraction cxx_continued_fractions/test_lentz_continued_fraction.cpp -lquadmath
 
 run_test_lentz_continued_fraction: $(TEST_BIN_DIR)/test_lentz_continued_fraction
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lentz_continued_fraction > $(TEST_OUT_DIR)/test_lentz_continued_fraction.txt
@@ -1593,7 +1593,7 @@ run_test_sph_hankel: $(TEST_BIN_DIR)/test_sph_hankel
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_sph_hankel > $(TEST_OUT_DIR)/test_sph_hankel.txt
 
 $(TEST_BIN_DIR)/test_steed_continued_fraction: cxx_continued_fractions/test_steed_continued_fraction.cpp
-	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_steed_continued_fraction cxx_continued_fractions/test_steed_continued_fraction.cpp -lquadmath
+	$(CXXMAX) $(INCLUDES) -Icxx_continued_fractions/include -o $(TEST_BIN_DIR)/test_steed_continued_fraction cxx_continued_fractions/test_steed_continued_fraction.cpp -lquadmath
 
 run_test_steed_continued_fraction: $(TEST_BIN_DIR)/test_steed_continued_fraction
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_steed_continued_fraction > $(TEST_OUT_DIR)/test_steed_continued_fraction.txt
@@ -1641,7 +1641,7 @@ run_test_trig: $(TEST_BIN_DIR)/test_trig
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_trig > $(TEST_OUT_DIR)/test_trig.txt
 
 $(TEST_BIN_DIR)/test_ulp: cxx_fp_utils/test_ulp.cpp
-	$(CXXMAX) -o $(TEST_BIN_DIR)/test_ulp cxx_fp_utils/test_ulp.cpp
+	$(CXXMAX) -Icxx_fp_utils/include -o $(TEST_BIN_DIR)/test_ulp cxx_fp_utils/test_ulp.cpp
 
 run_test_ulp: $(TEST_BIN_DIR)/test_ulp
 	$(TEST_BIN_DIR)/test_ulp > $(TEST_OUT_DIR)/test_ulp.txt
