@@ -165,6 +165,7 @@ BINS = \
        $(TEST_BIN_DIR)/test_meixner_pollaczek \
        $(TEST_BIN_DIR)/test_mittag_leffler \
        $(TEST_BIN_DIR)/test_mod2pi \
+       $(TEST_BIN_DIR)/test_mod_bessel_asymp \
        $(TEST_BIN_DIR)/test_mpreal \
        $(TEST_BIN_DIR)/test_notsospecfun \
        $(TEST_BIN_DIR)/test_nric_bessel \
@@ -591,6 +592,7 @@ test: $(TEST_OUT_DIR) \
   run_test_meixner_pollaczek \
   run_test_mittag_leffler \
   run_test_mod2pi \
+  run_test_mod_bessel_asymp \
   run_test_mpreal \
   run_test_notsospecfun \
   run_test_nric_bessel \
@@ -1453,6 +1455,12 @@ $(TEST_BIN_DIR)/test_mod2pi: laboratories/floating_point_tools/test_mod2pi.cpp
 
 run_test_mod2pi: $(TEST_BIN_DIR)/test_mod2pi
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_mod2pi > $(TEST_OUT_DIR)/test_mod2pi.txt
+
+$(TEST_BIN_DIR)/test_mod_bessel_asymp: laboratories/bessel_functions/test_mod_bessel_asymp.cpp
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_mod_bessel_asymp laboratories/bessel_functions/test_mod_bessel_asymp.cpp -lquadmath
+
+run_test_mod_bessel_asymp: $(TEST_BIN_DIR)/test_mod_bessel_asymp
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_mod_bessel_asymp > $(TEST_OUT_DIR)/test_mod_bessel_asymp.txt
 
 $(TEST_BIN_DIR)/test_mpreal: multiprecision/test_mpreal.cpp
 	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/test_mpreal multiprecision/test_mpreal.cpp -lquadmath -lmpfr -lgmp

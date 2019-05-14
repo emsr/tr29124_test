@@ -1,9 +1,6 @@
  /*
 $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -I../../quadrature/include -I../../cxx_summation/include -o test_mod_bessel_asymp test_mod_bessel_asymp.cpp -lquadmath
 LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_mod_bessel_asymp
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_mod_bessel_asymp test_mod_bessel_asymp.cpp -lquadmath
-PATH=$HOME/bin/lib64:$PATH ./test_mod_bessel_asymp
 */
 
 #include <iostream>
@@ -35,7 +32,5 @@ template<typename _Tnu, typename _Tp>
 int
 main()
 {
-  double nu = 20.0L;
-
   test_mod_bessel_asymp<double, double>(100);
 }
