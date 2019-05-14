@@ -233,6 +233,22 @@ cyl_bessel_i(double nu, double x)
     return result.val;
 }
 
+/// Regular modified cylindrical Bessel functions (scaled).
+double
+cyl_bessel_i_scaled(double nu, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_bessel_Inu_scaled_e(nu, x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in cyl_bessel_i_scaled:");
+      msg << " nu=" << nu << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
 /// Cylindrical Bessel functions (of the first kind).
 double
 cyl_bessel_j(double nu, double x)
@@ -258,6 +274,22 @@ cyl_bessel_k(double nu, double x)
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in cyl_bessel_k:");
+      msg << " nu=" << nu << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+/// Irregular modified cylindrical Bessel functions (scaled).
+double
+cyl_bessel_k_scaled(double nu, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_bessel_Knu_scaled_e(nu, x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in cyl_bessel_scaled_k:");
       msg << " nu=" << nu << " x=" << x;
       throw std::runtime_error(msg.str());
     }
