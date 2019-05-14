@@ -61,7 +61,7 @@ namespace __detail
   /**
    * @brief This routine computes the asymptotic modified cylindrical
    * 	    Bessel and functions of order nu: @f$ I_{\nu}(x) @f$,
-   * 	    @f$ N_{\nu}(x) @f$.  Use this for @f$ x >> nu^2 + 1 @f$.
+   * 	    @f$ N_{\nu}(x) @f$.  Use this for @f$ x >> \nu^2 + 1 @f$.
    *
    * References:
    *  (1) Handbook of Mathematical Functions,
@@ -74,66 +74,87 @@ namespace __detail
    * @return A struct containing the modified cylindrical Bessel functions
    *         of the first and second kinds and their derivatives.
    */
-  template<typename _Tp>
-    __gnu_cxx::__cyl_mod_bessel_t<_Tp, _Tp, _Tp>
-    __cyl_bessel_ik_asymp(_Tp __nu, _Tp __x)
+  template<typename _Tnu, typename _Tp>
+    constexpr __gnu_cxx::__cyl_mod_bessel_t<_Tnu, _Tp, _Tp>
+    __cyl_bessel_ik_scaled_asymp(_Tnu __nu, _Tp __x)
     {
-      using __bess_t = __gnu_cxx::__cyl_mod_bessel_t<_Tp, _Tp, _Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
-      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__x);
-      const auto __2nu = _Tp{2} * __nu;
+      // FIXME: This will promote float to double if _Tnu is integral.
+      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
+      using _Real = __num_traits_t<_Val>;
+      using __bess_t = __gnu_cxx::__cyl_mod_bessel_t<_Tnu, _Tp, _Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon<_Real>();
+      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half<_Real>();
+      const auto __2nu = _Real{2} * __nu;
       const auto __4nu2 = __2nu * __2nu;
-      const auto __8x = _Tp{8} * __x;
+      const auto __r8x = _Tp{1} / (_Real{8} * __x);
+      const auto __nu_min = std::real(__nu / _Real{2});
+      const auto __nu_max = std::abs(_Real{100} * (__nu + _Tnu{1}));
       auto __k = 0;
-      auto __bk_xk = _Tp{1};
+      auto __bk_xk = _Val{1};
       auto _Rsum = __bk_xk;
-      auto __ak_xk = _Tp{1};
+      auto __ak_xk = _Val{1};
       auto _Psum = __ak_xk;
       auto __convP = false;
       ++__k;
       auto __2km1 = 1;
-      __bk_xk *= (__4nu2 + __2km1 * (__2km1 + 2)) / __8x;
+      __bk_xk *= (__4nu2 + 3) * __r8x;
       auto _Ssum = __bk_xk;
-      __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / __8x;
+      __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) * __r8x;
       auto _Qsum = __ak_xk;
       auto __convQ = false;
       auto __ak_xk_prev = std::abs(__ak_xk);
       do
 	{
 	  ++__k;
+	  auto __rk8x = __r8x / _Real(__k);
 	  __2km1 += 2;
-	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
+	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk * __rk8x;
 	  _Rsum += __bk_xk;
-	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
-	  //if (std::abs(__ak_xk) > __ak_xk_prev)
-	  //  break;
+	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) * __rk8x;
+	  if (__k > __nu_min && std::abs(__ak_xk) > __ak_xk_prev)
+	    break;
 	  _Psum += __ak_xk;
 	  __ak_xk_prev = std::abs(__ak_xk);
 	  __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
 
 	  ++__k;
+	  __rk8x = __r8x / _Real(__k);
 	  __2km1 += 2;
-	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
+	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk * __rk8x;
 	  _Ssum += __bk_xk;
-	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
-	  //if (std::abs(__ak_xk) > __ak_xk_prev)
-	  //  break;
+	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) * __rk8x;
+	  if (__k > __nu_min && std::abs(__ak_xk) > __ak_xk_prev)
+	    break;
 	  _Qsum += __ak_xk;
 	  __ak_xk_prev = std::abs(__ak_xk);
 	  __convQ = std::abs(__ak_xk) < _S_eps * std::abs(_Qsum);
 
-	  //if (__convP && __convQ && __k > (__nu / _Tp{2}))
-	  //  break;
+	  if (__convP && __convQ)
+	    break;
 	}
-      while (__k < __nu / 2);//(__k < _Tp{100} * __nu);
+      while (__k < __nu_max);
 
-      const auto __coef = std::sqrt(_Tp{1} / (_Tp{2} * _S_pi * __x));
+      const auto __coef = std::sqrt(_Real{1} / (_Real{2} * _S_pi * __x));
       return __bess_t{__nu, __x,
-		      __coef * std::exp(__x) * (_Psum - _Qsum),
-		      __coef * std::exp(__x) * (_Rsum - _Ssum),
-		      _S_pi * __coef * std::exp(-__x) * (_Psum + _Qsum),
-		      -_S_pi * __coef * std::exp(-__x) * (_Rsum + _Ssum)};
+		      __coef * (_Psum - _Qsum),
+		      __coef * (_Rsum - _Ssum),
+		      __coef * _S_pi * (_Psum + _Qsum),
+		     -__coef * _S_pi * (_Rsum + _Ssum)};
+    }
+
+  template<typename _Tnu, typename _Tp>
+    constexpr __gnu_cxx::__cyl_mod_bessel_t<_Tnu, _Tp, _Tp>
+    __cyl_bessel_ik_asymp(_Tnu __nu, _Tp __x)
+    {
+      using __bess_t = __gnu_cxx::__cyl_mod_bessel_t<_Tnu, _Tp, _Tp>;
+      auto __ik = __cyl_bessel_ik_scaled_asymp(__nu, __x);
+      const auto __exp = std::exp(__x);
+      const auto __iexp = _Tp{1} / __exp;
+      // @todo Check for over/under-flow in __cyl_bessel_ik_asymp.
+      return __bess_t{__ik.__nu_arg, __ik.__x_arg,
+		      __exp * __ik.__I_value, __exp * __ik.__I_deriv,
+		      __iexp * __ik.__K_value, __iexp * __ik.__K_deriv};
     }
 
   /**
@@ -375,7 +396,7 @@ namespace __detail
       else if (std::isnan(__nu) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__nu >= _Tp{0} && __x * __x < _Tp{10} * (__nu + _Tp{1}))
-	return __cyl_bessel_ij_series(__nu, __x, +_Tp{1}, 200);
+	return __cyl_bessel_ij_series(__nu, __x, +1, 200);
       else
 	return __cyl_bessel_ik(__nu, __x).__I_value;
     }

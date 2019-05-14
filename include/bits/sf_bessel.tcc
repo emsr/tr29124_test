@@ -55,13 +55,79 @@ namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
-// Implementation-space details.
 namespace __detail
 {
+
+  /**
+   * @brief This routine returns the cylindrical Bessel functions
+   * 	    of order @f$ \nu @f$: @f$ J_{\nu}(z) @f$ or @f$ I_{\nu}(z) @f$
+   * 	    by series expansion.
+   *
+   * The modified cylindrical Bessel function is:
+   * @f[
+   *  Z_{\nu}(x) = \sum_{k=0}^{\infty}
+   * 		\frac{\sigma^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
+   * @f]
+   * where @f$ \sigma = +1 @f$ or @f$ -1 @f$ for
+   * @f$ Z = I @f$ or @f$ J @f$ respectively.
+   *
+   * See Abramowitz & Stegun, 9.1.10
+   * 	 Abramowitz & Stegun, 9.6.7
+   *  (1) Handbook of Mathematical Functions,
+   * 	  ed. Milton Abramowitz and Irene A. Stegun,
+   * 	  Dover Publications,
+   * 	  Equation 9.1.10 p. 360 and Equation 9.6.10 p. 375
+   *
+   * @param  __nu  The order of the Bessel function.
+   * @param  __x   The argument of the Bessel function.
+   * @param  __sgn  The sign of the alternate terms
+   * 		    -1 for the Bessel function of the first kind.
+   * 		    +1 for the modified Bessel function of the first kind.
+   * @param  __max_iter  The maximum number of iterations for sum.
+   * @return  The output Bessel function.
+   */
+  template<typename _Tnu, typename _Tp>
+    constexpr _Tp
+    __cyl_bessel_ij_series(_Tnu __nu, _Tp __x, int __sgn,
+			   unsigned int __max_iter)
+    {
+      // FIXME: This will promote float to double if _Tnu is integral.
+      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
+      using _Real = __num_traits_t<_Val>;
+      const auto _S_eps = __gnu_cxx::__epsilon<_Real>();
+      if (std::abs(__x) < _S_eps)
+	{
+	  if (__nu == _Tnu{0})
+	    return _Tp{1};
+	  else
+	    return _Tp{0};
+	}
+      else
+	{
+	  const auto __x2 = __x / _Real{2};
+
+	  const auto __xx4 = _Val(__sgn) * __x2 * __x2;
+	  auto _Jn = _Val{1};
+	  auto __term = _Val{1};
+	  for (unsigned int __i = 1; __i < __max_iter; ++__i)
+	    {
+	      __term *= __xx4 / (_Val(__i) * (_Val(__nu) + _Val(__i)));
+	      _Jn += __term;
+	      if (std::abs(__term / _Jn) < _S_eps)
+		break;
+	    }
+
+	  auto __fact = _Val(__nu) * std::log(__x2);
+	  __fact -= __log_gamma(_Real{1} + __nu);
+	  __fact = std::exp(__fact);
+	  return __fact * _Jn;
+	}
+    }
+
   /**
    * @brief This routine computes the asymptotic cylindrical Bessel
-   * 	    and Neumann functions of order nu: @f$ J_{\nu}(x) @f$,
-   * 	    @f$ N_{\nu}(x) @f$.  Use this for @f$ x >> nu^2 + 1 @f$.
+   * 	    and Neumann functions of order nu: @f$ J_{\nu}(z) @f$,
+   * 	    @f$ N_{\nu}(z) @f$.  Use this for @f$ z >> \nu^2 + 1 @f$.
    *
    * @f[
    *   J_{\nu}(z) = \left(\frac{2}{\pi z}\right)^{1/2} \left(
@@ -81,7 +147,27 @@ namespace __detail
    *   a_{k}(\nu) = \frac{(4\nu^2 - 1^2)(4\nu^2 - 3^2)...(4\nu^2 - (2k-1)^2)}
    *                     {8^k k!}
    * @f]
-   * There sums work everywhere but on the negative real axis:
+   * The derivatives are also computed:
+   * @f[
+   *   J'_{\nu}(z) = -\left(\frac{2}{\pi z}\right)^{1/2} \left(
+   *    \sin(\omega)\sum_{k=0}^{\infty}(-1)^k\frac{b_{2k}(\nu)}{z^{2k}}
+   *  + \cos(\omega)\sum_{k=0}^{\infty}(-1)^k\frac{b_{2k+1}(\nu)}{z^{2k+1}}
+   *    \right)
+   * @f]
+   * and
+   * @f[
+   *   N'_{\nu}(z) = \left(\frac{2}{\pi z}\right)^{1/2} \left(
+   *    \cos(\omega)\sum_{k=0}^{\infty}(-1)^k\frac{b_{2k}(\nu)}{z^{2k}}
+   *  - \sin(\omega)\sum_{k=0}^{\infty}(-1)^k\frac{b_{2k+1}(\nu)}{z^{2k+1}}
+   *    \right)
+   * @f]
+   * where
+   * @f[
+   *   b_{k}(\nu) = \frac{(4\nu^2 - 1^2)(4\nu^2 - 3^2)...(4\nu^2 - (2k-3)^2)}
+   *                     {8^k k!}
+   * @f]
+   *
+   * These sums work everywhere but on the negative real axis:
    * @f$ |ph(z)| < \pi - \delta @f$.
    *
    * References:
@@ -89,56 +175,65 @@ namespace __detail
    * 	  ed. Milton Abramowitz and Irene A. Stegun,
    * 	  Dover Publications,
    * 	  Section 9 p. 364, Equations 9.2.5-9.2.10
+   *  (2) Digital Library of Mathematical Fundtions
+   *      https://dlmf.nist.gov/10.17
    *
    * @param  __nu  The order of the Bessel functions.
    * @param  __x   The argument of the Bessel functions.
    * @return A struct containing the cylindrical Bessel functions
    *         of the first and second kinds and their derivatives.
    */
-  template<typename _Tp>
-    __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Tp>
-    __cyl_bessel_jn_asymp(_Tp __nu, _Tp __x)
+  template<typename _Tnu, typename _Tp>
+    constexpr __gnu_cxx::__cyl_bessel_t<_Tnu, _Tp, _Tp>
+    __cyl_bessel_jn_asymp(_Tnu __nu, _Tp __x)
     {
-      using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
-      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__x);
-      const auto __2nu = _Tp{2} * __nu;
+      // FIXME: This will promote float to double if _Tnu is integral.
+      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
+      using _Real = __num_traits_t<_Val>;
+      using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tnu, _Tp, _Tp>;
+      const auto _S_eps = __gnu_cxx::__epsilon<_Real>();
+      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half<_Real>();
+      const auto __2nu = _Real{2} * __nu;
       const auto __4nu2 = __2nu * __2nu;
-      const auto __8x = _Tp{8} * __x;
+      const auto __r8x = _Tp{1} / (_Real{8} * __x);
+      const auto __nu_min = std::real(__nu / _Real{2});
+      const auto __nu_max = std::abs(_Real{100} * (__nu + _Tnu{1}));
       auto __k = 0;
-      auto __bk_xk = _Tp{1};
+      auto __bk_xk = _Val{1};
       auto _Rsum = __bk_xk;
-      auto __ak_xk = _Tp{1};
+      auto __ak_xk = _Val{1};
       auto _Psum = __ak_xk;
       auto __convP = false;
       ++__k;
       auto __2km1 = 1;
-      __bk_xk *= (__4nu2 + __2km1 * (__2km1 + 2)) / __8x;
+      __bk_xk *= (__4nu2 + 3) * __r8x;
       auto _Ssum = __bk_xk;
-      __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / __8x;
+      __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) * __r8x;
       auto _Qsum = __ak_xk;
       auto __convQ = false;
       auto __ak_xk_prev = std::abs(__ak_xk);
       do
 	{
 	  ++__k;
+	  auto __rk8x = __r8x / _Real(__k);
 	  __2km1 += 2;
-	  __bk_xk = -(__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
+	  __bk_xk = -(__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk * __rk8x;
 	  _Rsum += __bk_xk;
-	  __ak_xk *= -(__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
-	  if (__k > __nu / _Tp{2} && std::abs(__ak_xk) > __ak_xk_prev)
+	  __ak_xk *= -(__2nu - __2km1) * (__2nu + __2km1) * __rk8x;
+	  if (__k > __nu_min && std::abs(__ak_xk) > __ak_xk_prev)
 	    break;
 	  _Psum += __ak_xk;
 	  __ak_xk_prev = std::abs(__ak_xk);
 	  __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
 
 	  ++__k;
+	  __rk8x = __r8x / _Real(__k);
 	  __2km1 += 2;
-	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
+	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk * __rk8x;
 	  _Ssum += __bk_xk;
-	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
-	  if (__k > __nu / _Tp{2} && std::abs(__ak_xk) > __ak_xk_prev)
+	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) * __rk8x;
+	  if (__k > __nu_min && std::abs(__ak_xk) > __ak_xk_prev)
 	    break;
 	  _Qsum += __ak_xk;
 	  __ak_xk_prev = std::abs(__ak_xk);
@@ -147,18 +242,18 @@ namespace __detail
 	  if (__convP && __convQ)
 	    break;
 	}
-      while (__k < _Tp{20} * __nu);
+      while (__k < __nu_max);
 
-      const auto __omega = __x - (__nu + _Tp{0.5L}) * _S_pi_2;
+      const auto __omega = __x - (__nu + _Real{0.5L}) * _S_pi_2;
       const auto __c = std::cos(__omega);
       const auto __s = std::sin(__omega);
 
-      const auto __coef = std::sqrt(_Tp{2} / (_S_pi * __x));
+      const auto __coef = std::sqrt(_Real{2} / (_S_pi * __x));
       return __bess_t{__nu, __x,
-		__coef * (__c * _Psum - __s * _Qsum),
+		 __coef * (__c * _Psum - __s * _Qsum),
 		-__coef * (__s * _Rsum + __c * _Ssum),
-		__coef * (__s * _Psum + __c * _Qsum),
-		__coef * (__c * _Rsum - __s * _Ssum)};
+		 __coef * (__s * _Psum + __c * _Qsum),
+		 __coef * (__c * _Rsum - __s * _Ssum)};
     }
 
   /**
@@ -246,7 +341,7 @@ namespace __detail
 		    : std::max(0,
 			       static_cast<int>(__nu - __x + _Tp{1.5L})));
 
-      const auto __mu = __nu - __n;
+      const auto __mu = __nu - _Tp(__n);
       const auto __mu2 = __mu * __mu;
       const auto __xi = _Tp{1} / __x;
       const auto __xi2 = _Tp{2} * __xi;
@@ -263,10 +358,10 @@ namespace __detail
 	  __d = __b - __d;
 	  if (std::abs(__d) < _S_fp_min)
 	    __d = _S_fp_min;
+	  __d = _Tp{1} / __d;
 	  __c = __b - _Tp{1} / __c;
 	  if (std::abs(__c) < _S_fp_min)
 	    __c = _S_fp_min;
-	  __d = _Tp{1} / __d;
 	  const auto __del = __c * __d;
 	  __h *= __del;
 	  if (__d < _Tp{0})
@@ -400,70 +495,6 @@ namespace __detail
 	return __bess_t{__nu, __x, _Jnu, _Jpnu, -_S_inf, _S_inf};
     }
 
-
-  /**
-   * @brief This routine returns the cylindrical Bessel functions
-   * 	    of order @f$ \nu @f$: @f$ J_{\nu} @f$ or @f$ I_{\nu} @f$
-   * 	    by series expansion.
-   *
-   * The modified cylindrical Bessel function is:
-   * @f[
-   *  Z_{\nu}(x) = \sum_{k=0}^{\infty}
-   * 		\frac{\sigma^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
-   * @f]
-   * where @f$ \sigma = +1 @f$ or@f$  -1 @f$ for
-   * @f$ Z = I @f$ or @f$ J @f$ respectively.
-   *
-   * See Abramowitz & Stegun, 9.1.10
-   * 	 Abramowitz & Stegun, 9.6.7
-   *  (1) Handbook of Mathematical Functions,
-   * 	  ed. Milton Abramowitz and Irene A. Stegun,
-   * 	  Dover Publications,
-   * 	  Equation 9.1.10 p. 360 and Equation 9.6.10 p. 375
-   *
-   * @param  __nu  The order of the Bessel function.
-   * @param  __x   The argument of the Bessel function.
-   * @param  __sgn  The sign of the alternate terms
-   * 		    -1 for the Bessel function of the first kind.
-   * 		    +1 for the modified Bessel function of the first kind.
-   * @param  __max_iter  The maximum number of iterations for sum.
-   * @return  The output Bessel function.
-   */
-  template<typename _Tp>
-    _Tp
-    __cyl_bessel_ij_series(_Tp __nu, _Tp __x, _Tp __sgn,
-			   unsigned int __max_iter)
-    {
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      if (__x < _S_eps)
-	{
-	  if (__nu == _Tp{0})
-	    return _Tp{1};
-	  else
-	    return _Tp{0};
-	}
-      else
-	{
-	  const auto __x2 = __x / _Tp{2};
-
-	  _Tp __fact = __nu * std::log(__x2);
-	  __fact -= __log_gamma(_Tp{1} + __nu);
-	  __fact = std::exp(__fact);
-	  const auto __xx4 = __sgn * __x2 * __x2;
-	  _Tp _Jn = _Tp{1};
-	  _Tp __term = _Tp{1};
-	  for (unsigned int __i = 1; __i < __max_iter; ++__i)
-	    {
-	      __term *= __xx4 / (_Tp(__i) * (__nu + _Tp(__i)));
-	      _Jn += __term;
-	      if (std::abs(__term / _Jn) < _S_eps)
-		break;
-	    }
-
-	  return __fact * _Jn;
-	}
-    }
-
   /**
    * @brief  Return the cylindrical Bessel functions and their derivatives
    * of order @f$ \nu @f$ by various means.
@@ -585,7 +616,7 @@ namespace __detail
       else if (std::isnan(__nu) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__nu >= _Tp{0} && __x * __x < _Tp{10} * (__nu + _Tp{1}))
-	return __cyl_bessel_ij_series(__nu, __x, -_Tp{1}, 200);
+	return __cyl_bessel_ij_series(__nu, __x, -1, 200);
       else
 	return __cyl_bessel_jn(__nu, __x).__J_value;
     }
@@ -892,6 +923,7 @@ namespace __detail
 	  return _Cmplx{_Bess.__j_value, -_Bess.__n_value};
 	}
     }
+
 } // namespace __detail
 
 _GLIBCXX_END_NAMESPACE_VERSION
