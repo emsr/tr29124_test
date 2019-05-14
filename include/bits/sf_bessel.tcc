@@ -125,6 +125,20 @@ namespace __detail
     }
 
   /**
+   * A type for Bessel asymptotic sums.
+   */
+  template<typename _Tnu, typename _Tp>
+    struct __cyl_bessel_asymp_sums_t
+    {
+      // FIXME: This will promote float to double if _Tnu is integral.
+      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
+      _Val _Psum;
+      _Val _Qsum;
+      _Val _Rsum;
+      _Val _Ssum;
+    };
+
+  /**
    * @brief This routine computes the asymptotic cylindrical Bessel
    * 	    and Neumann functions of order nu: @f$ J_{\nu}(z) @f$,
    * 	    @f$ N_{\nu}(z) @f$.  Use this for @f$ z >> \nu^2 + 1 @f$.
@@ -184,16 +198,14 @@ namespace __detail
    *         of the first and second kinds and their derivatives.
    */
   template<typename _Tnu, typename _Tp>
-    constexpr __gnu_cxx::__cyl_bessel_t<_Tnu, _Tp, _Tp>
-    __cyl_bessel_jn_asymp(_Tnu __nu, _Tp __x)
+    constexpr __cyl_bessel_asymp_sums_t<_Tnu, _Tp>
+    __cyl_bessel_asymp_sums(_Tnu __nu, _Tp __x, int __sgn)
     {
       // FIXME: This will promote float to double if _Tnu is integral.
       using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
       using _Real = __num_traits_t<_Val>;
-      using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tnu, _Tp, _Tp>;
+      using __bess_t = __cyl_bessel_asymp_sums_t<_Tnu, _Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon<_Real>();
-      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
-      const auto _S_pi_2 = __gnu_cxx::__const_pi_half<_Real>();
       const auto __2nu = _Real{2} * __nu;
       const auto __4nu2 = __2nu * __2nu;
       const auto __r8x = _Tp{1} / (_Real{8} * __x);
@@ -218,9 +230,9 @@ namespace __detail
 	  ++__k;
 	  auto __rk8x = __r8x / _Real(__k);
 	  __2km1 += 2;
-	  __bk_xk = -(__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk * __rk8x;
+	  __bk_xk = __sgn * (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk * __rk8x;
 	  _Rsum += __bk_xk;
-	  __ak_xk *= -(__2nu - __2km1) * (__2nu + __2km1) * __rk8x;
+	  __ak_xk *= __sgn * (__2nu - __2km1) * (__2nu + __2km1) * __rk8x;
 	  if (__k > __nu_min && std::abs(__ak_xk) > __ak_xk_prev)
 	    break;
 	  _Psum += __ak_xk;
@@ -244,16 +256,35 @@ namespace __detail
 	}
       while (__k < __nu_max);
 
+      return __bess_t{_Psum, _Qsum, _Rsum, _Ssum};
+    }
+
+  /**
+   *
+   */
+  template<typename _Tnu, typename _Tp>
+    constexpr __gnu_cxx::__cyl_bessel_t<_Tnu, _Tp, _Tp>
+    __cyl_bessel_jn_asymp(_Tnu __nu, _Tp __x)
+    {
+      // FIXME: This will promote float to double if _Tnu is integral.
+      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
+      using _Real = __num_traits_t<_Val>;
+      using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tnu, _Tp, _Tp>;
+      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
+      const auto _S_pi_2 = __gnu_cxx::__const_pi_half<_Real>();
+
+      const auto __sums = __cyl_bessel_asymp_sums(__nu, __x, -1);
+
       const auto __omega = __x - (__nu + _Real{0.5L}) * _S_pi_2;
       const auto __c = std::cos(__omega);
       const auto __s = std::sin(__omega);
 
       const auto __coef = std::sqrt(_Real{2} / (_S_pi * __x));
       return __bess_t{__nu, __x,
-		 __coef * (__c * _Psum - __s * _Qsum),
-		-__coef * (__s * _Rsum + __c * _Ssum),
-		 __coef * (__s * _Psum + __c * _Qsum),
-		 __coef * (__c * _Rsum - __s * _Ssum)};
+		 __coef * (__c * __sums._Psum - __s * __sums._Qsum),
+		-__coef * (__s * __sums._Rsum + __c * __sums._Ssum),
+		 __coef * (__s * __sums._Psum + __c * __sums._Qsum),
+		 __coef * (__c * __sums._Rsum - __s * __sums._Ssum)};
     }
 
   /**

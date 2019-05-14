@@ -82,65 +82,16 @@ namespace __detail
       using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
       using _Real = __num_traits_t<_Val>;
       using __bess_t = __gnu_cxx::__cyl_mod_bessel_t<_Tnu, _Tp, _Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon<_Real>();
       const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
-      const auto _S_pi_2 = __gnu_cxx::__const_pi_half<_Real>();
-      const auto __2nu = _Real{2} * __nu;
-      const auto __4nu2 = __2nu * __2nu;
-      const auto __r8x = _Tp{1} / (_Real{8} * __x);
-      const auto __nu_min = std::real(__nu / _Real{2});
-      const auto __nu_max = std::abs(_Real{100} * (__nu + _Tnu{1}));
-      auto __k = 0;
-      auto __bk_xk = _Val{1};
-      auto _Rsum = __bk_xk;
-      auto __ak_xk = _Val{1};
-      auto _Psum = __ak_xk;
-      auto __convP = false;
-      ++__k;
-      auto __2km1 = 1;
-      __bk_xk *= (__4nu2 + 3) * __r8x;
-      auto _Ssum = __bk_xk;
-      __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) * __r8x;
-      auto _Qsum = __ak_xk;
-      auto __convQ = false;
-      auto __ak_xk_prev = std::abs(__ak_xk);
-      do
-	{
-	  ++__k;
-	  auto __rk8x = __r8x / _Real(__k);
-	  __2km1 += 2;
-	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk * __rk8x;
-	  _Rsum += __bk_xk;
-	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) * __rk8x;
-	  if (__k > __nu_min && std::abs(__ak_xk) > __ak_xk_prev)
-	    break;
-	  _Psum += __ak_xk;
-	  __ak_xk_prev = std::abs(__ak_xk);
-	  __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
 
-	  ++__k;
-	  __rk8x = __r8x / _Real(__k);
-	  __2km1 += 2;
-	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk * __rk8x;
-	  _Ssum += __bk_xk;
-	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) * __rk8x;
-	  if (__k > __nu_min && std::abs(__ak_xk) > __ak_xk_prev)
-	    break;
-	  _Qsum += __ak_xk;
-	  __ak_xk_prev = std::abs(__ak_xk);
-	  __convQ = std::abs(__ak_xk) < _S_eps * std::abs(_Qsum);
-
-	  if (__convP && __convQ)
-	    break;
-	}
-      while (__k < __nu_max);
+      const auto __sums = __cyl_bessel_asymp_sums(__nu, __x, +1);
 
       const auto __coef = std::sqrt(_Real{1} / (_Real{2} * _S_pi * __x));
       return __bess_t{__nu, __x,
-		      __coef * (_Psum - _Qsum),
-		      __coef * (_Rsum - _Ssum),
-		      __coef * _S_pi * (_Psum + _Qsum),
-		     -__coef * _S_pi * (_Rsum + _Ssum)};
+		      __coef * (__sums._Psum - __sums._Qsum),
+		      __coef * (__sums._Rsum - __sums._Ssum),
+		      __coef * _S_pi * (__sums._Psum + __sums._Qsum),
+		     -__coef * _S_pi * (__sums._Rsum + __sums._Ssum)};
     }
 
   template<typename _Tnu, typename _Tp>
@@ -148,7 +99,9 @@ namespace __detail
     __cyl_bessel_ik_asymp(_Tnu __nu, _Tp __x)
     {
       using __bess_t = __gnu_cxx::__cyl_mod_bessel_t<_Tnu, _Tp, _Tp>;
+
       auto __ik = __cyl_bessel_ik_scaled_asymp(__nu, __x);
+
       const auto __exp = std::exp(__x);
       const auto __iexp = _Tp{1} / __exp;
       // @todo Check for over/under-flow in __cyl_bessel_ik_asymp.
