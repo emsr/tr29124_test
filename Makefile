@@ -165,6 +165,7 @@ BINS = \
        $(TEST_BIN_DIR)/test_meixner_pollaczek \
        $(TEST_BIN_DIR)/test_mittag_leffler \
        $(TEST_BIN_DIR)/test_mod2pi \
+       $(TEST_BIN_DIR)/test_mod_bessel_asymp \
        $(TEST_BIN_DIR)/test_mpreal \
        $(TEST_BIN_DIR)/test_notsospecfun \
        $(TEST_BIN_DIR)/test_nric_bessel \
@@ -591,6 +592,7 @@ test: $(TEST_OUT_DIR) \
   run_test_meixner_pollaczek \
   run_test_mittag_leffler \
   run_test_mod2pi \
+  run_test_mod_bessel_asymp \
   run_test_mpreal \
   run_test_notsospecfun \
   run_test_nric_bessel \
@@ -1365,7 +1367,7 @@ run_test_legendre_ellint: $(TEST_BIN_DIR)/test_legendre_ellint
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_legendre_ellint > $(TEST_OUT_DIR)/test_legendre_ellint.txt
 
 $(TEST_BIN_DIR)/test_lentz_continued_fraction: cxx_continued_fractions/test_lentz_continued_fraction.cpp
-	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_lentz_continued_fraction cxx_continued_fractions/test_lentz_continued_fraction.cpp -lquadmath
+	$(CXXMAX) $(INCLUDES) -Icxx_continued_fractions/include -o $(TEST_BIN_DIR)/test_lentz_continued_fraction cxx_continued_fractions/test_lentz_continued_fraction.cpp -lquadmath
 
 run_test_lentz_continued_fraction: $(TEST_BIN_DIR)/test_lentz_continued_fraction
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_lentz_continued_fraction > $(TEST_OUT_DIR)/test_lentz_continued_fraction.txt
@@ -1453,6 +1455,12 @@ $(TEST_BIN_DIR)/test_mod2pi: laboratories/floating_point_tools/test_mod2pi.cpp
 
 run_test_mod2pi: $(TEST_BIN_DIR)/test_mod2pi
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_mod2pi > $(TEST_OUT_DIR)/test_mod2pi.txt
+
+$(TEST_BIN_DIR)/test_mod_bessel_asymp: laboratories/bessel_functions/test_mod_bessel_asymp.cpp
+	$(CXXMAX) $(INCLUDES) -o $(TEST_BIN_DIR)/test_mod_bessel_asymp laboratories/bessel_functions/test_mod_bessel_asymp.cpp -lquadmath
+
+run_test_mod_bessel_asymp: $(TEST_BIN_DIR)/test_mod_bessel_asymp
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_mod_bessel_asymp > $(TEST_OUT_DIR)/test_mod_bessel_asymp.txt
 
 $(TEST_BIN_DIR)/test_mpreal: multiprecision/test_mpreal.cpp
 	$(CXXMAX) $(INCLUDES) $(MPREAL_INCLUDES) -o $(TEST_BIN_DIR)/test_mpreal multiprecision/test_mpreal.cpp -lquadmath -lmpfr -lgmp
@@ -1593,7 +1601,7 @@ run_test_sph_hankel: $(TEST_BIN_DIR)/test_sph_hankel
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_sph_hankel > $(TEST_OUT_DIR)/test_sph_hankel.txt
 
 $(TEST_BIN_DIR)/test_steed_continued_fraction: cxx_continued_fractions/test_steed_continued_fraction.cpp
-	$(CXXMAX) $(INCLUDES) -Icontinued_fractions/include -o $(TEST_BIN_DIR)/test_steed_continued_fraction cxx_continued_fractions/test_steed_continued_fraction.cpp -lquadmath
+	$(CXXMAX) $(INCLUDES) -Icxx_continued_fractions/include -o $(TEST_BIN_DIR)/test_steed_continued_fraction cxx_continued_fractions/test_steed_continued_fraction.cpp -lquadmath
 
 run_test_steed_continued_fraction: $(TEST_BIN_DIR)/test_steed_continued_fraction
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_steed_continued_fraction > $(TEST_OUT_DIR)/test_steed_continued_fraction.txt
@@ -1641,7 +1649,7 @@ run_test_trig: $(TEST_BIN_DIR)/test_trig
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_trig > $(TEST_OUT_DIR)/test_trig.txt
 
 $(TEST_BIN_DIR)/test_ulp: cxx_fp_utils/test_ulp.cpp
-	$(CXXMAX) -o $(TEST_BIN_DIR)/test_ulp cxx_fp_utils/test_ulp.cpp
+	$(CXXMAX) -Icxx_fp_utils/include -o $(TEST_BIN_DIR)/test_ulp cxx_fp_utils/test_ulp.cpp
 
 run_test_ulp: $(TEST_BIN_DIR)/test_ulp
 	$(TEST_BIN_DIR)/test_ulp > $(TEST_OUT_DIR)/test_ulp.txt

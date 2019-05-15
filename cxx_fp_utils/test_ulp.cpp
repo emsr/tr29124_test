@@ -1,9 +1,9 @@
 /*
-g++ -std=c++14 -o test_ulp test_ulp.cpp
+g++ -std=c++14 -Iinclude -o test_ulp test_ulp.cpp
 ./test_ulp 
 */
 
-#include "ulp.h"
+#include <ext/ulp.h>
 #include <iostream>
 
 int

@@ -75,7 +75,9 @@
 #  include <bits/sf_laguerre.tcc>
 #  include <bits/sf_legendre.tcc>
 #  include <bits/sf_lerch.tcc>
-#  include <bits/sf_mittag_leffler.tcc>
+#  if __cplusplus > 201402L
+#    include <bits/sf_mittag_leffler.tcc>
+#  endif
 #  include <bits/sf_mod_bessel.tcc>
 #  include <bits/sf_hermite.tcc>
 #  include <bits/sf_theta.tcc>
@@ -1381,7 +1383,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The spherical Legendre function is defined by
    * @f[
    *    Y_l^m(\theta,0) = (-1)^m\frac{(2l+1)}{4\pi} \frac{(l-m)!}{(l+m)!}
-   *                         P_l^m(\cos\theta) e^{im\phi}
+   *                         P_l^m(\cos\theta)
    * @f]
    * where @f$ P_l^m(x) @f$ is the associated Legendre polynomial.
    * The full (complex) spherical harmonic function includes a phase factor
@@ -7277,6 +7279,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::__detail::__lerch_phi<__type>(__z, __s, __a);
     }
 
+#if __cplusplus > 201402L
   /**
    * Compute the Mittag-Leffer function:
    * @f[
@@ -7295,6 +7298,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       using __type = __gnu_cxx::fp_promote_t<_Tp, _Ta, _Tb>;
       return std::__detail::__mittag_leffler<__type>(__alpha, __beta, __z);
     }
+#endif
 
 #endif // __cplusplus >= 201103L
 

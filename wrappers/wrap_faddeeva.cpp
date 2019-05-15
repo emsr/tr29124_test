@@ -153,7 +153,7 @@ namespace faddeeva
   {
     const auto _S_sqrt_pi = 2 * __gnu_cxx::__math_constants<double>::__root_pi_div_2;
     auto s = 1.0 / (2.0 * std::sqrt(t));
-    std::complex z(s, -s * x);
+    std::complex<double> z(s, -s * x);
     return _S_sqrt_pi * s * faddeeva(z);
   }
 

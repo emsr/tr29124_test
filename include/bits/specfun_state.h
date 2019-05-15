@@ -40,10 +40,10 @@ namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /** 
-   * \brief Enumeration gor differing types of Gauss quadrature.
-   * The gauss_quad_type is used to determine the boundary condition
-   * modifications applied to orthogonal polynomials for quadrature
-   * rules.
+   * \brief Enumeration for differing types of Gauss quadrature.
+   *        The gauss_quad_type is used to determine the boundary condition
+   *        modifications applied to orthogonal polynomials for quadrature
+   *        rules.
    */
   enum gauss_quad_type
   {
@@ -62,9 +62,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __point;
       _Tp __weight;
 
-      __quadrature_point_t() = default;
+      constexpr __quadrature_point_t() = default;
 
-      __quadrature_point_t(_Tp __pt, _Tp __wt)
+      constexpr __quadrature_point_t(_Tp __pt, _Tp __wt)
       : __point(__pt),
 	__weight(__wt)
       { }
@@ -82,12 +82,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __H_nm1;
       _Tp __H_nm2;
 
-      _Tp
-      deriv() const
+      constexpr _Tp
+      deriv() const noexcept
       { return _Tp(2 * __n) * __H_nm1; }
 
-      _Tp
-      deriv2() const
+      constexpr _Tp
+      deriv2() const noexcept
       { return _Tp(4 * __n * (__n - 1)) * __H_nm2; }
     };
 
@@ -103,12 +103,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __He_nm1;
       _Tp __He_nm2;
 
-      _Tp
-      deriv() const
+      constexpr _Tp
+      deriv() const noexcept
       { return _Tp(__n) * __He_nm1; }
 
-      _Tp
-      deriv2() const
+      constexpr _Tp
+      deriv2() const noexcept
       { return _Tp(__n * (__n - 1)) * __He_nm2; }
     };
 
@@ -130,12 +130,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __P_lm2; /// P_{l-2}(x)
 
       // Return the Lobatto polynomial.
-      _Tp
-      lobatto() const
+      constexpr _Tp
+      lobatto() const noexcept
       { return __l * (__P_l - __x * __P_lm1); }
 
-      _Tp
-      deriv() const
+      constexpr _Tp
+      deriv() const noexcept
       {
 	if (std::abs(__x) == _Tp{1})
 	  {
@@ -164,8 +164,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __P_lm2m; /// P_{l-2}^{(m)}(x)
       _Tp __phase = 1; // -1 For Condon-Shortley.
 
-      _Tp
-      deriv() const
+      constexpr _Tp
+      deriv() const noexcept
       {
 	if (std::abs(__x) == _Tp{1})
 	  {
@@ -205,8 +205,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __Q_lm1; /// Q_{l-1}(x)
       _Tp __Q_lm2; /// Q_{l-2}(x)
 
-      _Tp
-      deriv() const
+      constexpr _Tp
+      deriv() const noexcept
       {
 	if (std::abs(__x) == _Tp{1})
 	  return _Tp(__l % 2 == 1 ? -1 : +1)
@@ -232,8 +232,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __Q_lmm2; /// Q_l^{(m-2)}(x)
       _Tp __phase = 1; // -1 For Condon-Shortley.
 
-      _Tp
-      deriv() const
+      constexpr _Tp
+      deriv() const noexcept
       {
 	if (std::abs(__x) == 1)
 	  return _Tp(__l % 2 == 1 ? -1 : +1)
@@ -262,8 +262,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __L_nm1;
       _Tp __L_nm2;
 
-      _Tp
-      deriv() const
+      constexpr _Tp
+      deriv() const noexcept
       { return (_Tp(__n) * __L_nm1 - _Tp(__n + __alpha1) * __L_nm2) / __x; }
     };
 
@@ -281,8 +281,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __P_nm1;
       _Tp __P_nm2;
 
-      _Tp
-      deriv() const
+      constexpr _Tp
+      deriv() const noexcept
       {
 	auto __apbp2k = __alpha1 + __beta1 + _Tp(2 * __n);
 	return (__n * (__alpha1 - __beta1 - __apbp2k * __x) * __P_nm1
@@ -304,8 +304,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __C_nm1;
       _Tp __C_nm2;
 
-      _Tp
-      deriv() const
+      constexpr _Tp
+      deriv() const noexcept
       {
 	auto __apbp2k = _Tp{2} * __lambda + _Tp(2 * __n);
 	return (__n * (-__apbp2k * __x) * __C_nm1
@@ -326,12 +326,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __T_nm1;
       _Tp __T_nm2;
 
-      _Tp
-      deriv() const
+      constexpr _Tp
+      deriv() const noexcept
       { return _Tp(__n) * (__T_nm1 - __x * __T_n) / (_Tp{1} - __x * __x); }
 
-      _Tp
-      deriv2() const
+      constexpr _Tp
+      deriv2() const noexcept
       {
 	const auto __xx = __x * __x;
 	const auto __num = _Tp{1} - __xx;
@@ -353,8 +353,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __U_nm1;
       _Tp __U_nm2;
 
-      _Tp
-      deriv() const
+      constexpr _Tp
+      deriv() const noexcept
       {
 	return (_Tp(__n + 1) * __U_nm1 - _Tp(__n) * __x * __U_n)
 		/ (_Tp{1} - __x * __x);
@@ -373,8 +373,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __V_nm1;
       _Tp __V_nm2;
 
-      _Tp
-      deriv() const
+      constexpr _Tp
+      deriv() const noexcept
       {
 	auto __apbp2k = _Tp(2 * __n);
 	return (__n * (_Tp{1} - __apbp2k * __x) * __V_nm1
@@ -395,8 +395,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __W_nm1;
       _Tp __W_nm2;
 
-      _Tp
-      deriv() const
+      constexpr _Tp
+      deriv() const noexcept
       {
 	auto __apbp2k = _Tp(2 * __n);
 	return (__n * (_Tp{-1} - __apbp2k * __x) * __W_nm1
@@ -431,40 +431,52 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       /// Jacobi delta amplitude value.
       _Tp __dn_value;
 
-      _Tp __am() const
+      constexpr _Tp
+      __am() const noexcept
       { return std::asin(__sn_value); }
 
-      _Tp __ns() const
+      constexpr _Tp
+      __ns() const noexcept
       { return _Tp{1} / __sn_value; }
 
-      _Tp __nc() const
+      constexpr _Tp
+      __nc() const noexcept
       { return _Tp{1} / __cn_value; }
 
-      _Tp __nd() const
+      constexpr _Tp
+      __nd() const noexcept
       { return _Tp{1} / __dn_value; }
 
-      _Tp __sc() const
+      constexpr _Tp
+      __sc() const noexcept
       { return __sn_value / __cn_value; }
 
-      _Tp __sd() const
+      constexpr _Tp
+      __sd() const noexcept
       { return __sn_value / __dn_value; }
 
-      _Tp __cd() const
+      constexpr _Tp
+      __cd() const noexcept
       { return __cn_value / __dn_value; }
 
-      _Tp __cs() const
+      constexpr _Tp
+      __cs() const noexcept
       { return __cn_value / __sn_value; }
 
-      _Tp __ds() const
+      constexpr _Tp
+      __ds() const noexcept
       { return __dn_value / __sn_value; }
 
-      _Tp __dc() const
+      constexpr _Tp
+      __dc() const noexcept
       { return __dn_value / __cn_value; }
 
-      _Tp __sn_deriv() const
+      constexpr _Tp
+      __sn_deriv() const noexcept
       { return __cn_value * __dn_value; }
 
-      _Tp __cn_deriv() const
+      constexpr _Tp
+      __cn_deriv() const noexcept
       { return -__sn_value * __dn_value; }
     };
 
@@ -487,7 +499,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __Bi_deriv;
 
       /// Return the Wronskian of this Airy function state.
-      _Tp __Wronskian() const
+      constexpr _Tp
+      __Wronskian() const noexcept
       { return __Ai_value * __Bi_deriv - __Bi_value * __Ai_deriv; }
     };
 
@@ -513,7 +526,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __w2_deriv;
 
       /// Return the Wronskian of this Fock-type Airy function state.
-      _Tp __Wronskian() const
+      constexpr _Tp
+      __Wronskian() const noexcept
       { return __w1_value * __w2_deriv - __w2_value * __w1_deriv; }
     };
 
@@ -543,7 +557,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __N_deriv;
 
       /// Return the Wronskian of this cylindrical Bessel function state.
-      _Tp __Wronskian() const
+      constexpr _Tp
+      __Wronskian() const noexcept
       { return __J_value * __N_deriv - __N_value * __J_deriv; }
     };
 
@@ -576,7 +591,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __G_deriv;
 
       /// Return the Wronskian of this Coulomb function state.
-      _Tp __Wronskian() const
+      constexpr _Tp
+      __Wronskian() const noexcept
       { return __F_value * __G_deriv - __G_value * __F_deriv; }
     };
 
@@ -611,7 +627,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       /// Return the Wronskian of this modified cylindrical Bessel function
       /// state.
-      _Tp __Wronskian() const
+      constexpr _Tp
+      __Wronskian() const noexcept
       { return __I_value * __K_deriv - __K_value * __I_deriv; }
     };
 
@@ -640,7 +657,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __H2_deriv;
 
       /// Return the Wronskian of this cylindrical Hankel function state.
-      _Tp __Wronskian() const
+      constexpr _Tp
+      __Wronskian() const noexcept
       { return __H1_value * __H2_deriv - __H2_value * __H1_deriv; }
     };
 
@@ -666,7 +684,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __n_deriv;
 
       /// Return the Wronskian of this spherical Bessel function state.
-      _Tp __Wronskian() const
+      constexpr _Tp
+      __Wronskian() const noexcept
       { return __j_value * __n_deriv - __n_value * __j_deriv; }
     };
 
@@ -697,7 +716,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
       /// Return the Wronskian of this modified cylindrical Bessel function
       /// state.
-      _Tp __Wronskian() const
+      constexpr _Tp
+      __Wronskian() const noexcept
       { return __i_value * __k_deriv - __k_value * __i_deriv; }
     };
 
@@ -726,7 +746,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       _Tp __h2_deriv;
 
       /// Return the Wronskian of this cylindrical Hankel function state.
-      _Tp __Wronskian() const
+      constexpr _Tp
+      __Wronskian() const noexcept
       { return __h1_value * __h2_deriv - __h2_value * __h1_deriv; }
     };
 

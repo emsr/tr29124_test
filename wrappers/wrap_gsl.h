@@ -51,11 +51,17 @@ double conf_hyperg_lim(double c, double x);
 /// Regular modified cylindrical Bessel functions.
 double cyl_bessel_i(double nu, double x);
 
+/// Regular modified cylindrical Bessel functions.
+double cyl_bessel_i_scaled(double nu, double x);
+
 /// Cylindrical Bessel functions (of the first kind).
 double cyl_bessel_j(double nu, double x);
 
 /// Irregular modified cylindrical Bessel functions.
 double cyl_bessel_k(double nu, double x);
+
+/// Irregular modified cylindrical Bessel functions.
+double cyl_bessel_k_scaled(double nu, double x);
 
 /// Cylindrical Neumann functions.
 double cyl_neumann(double nu, double x);

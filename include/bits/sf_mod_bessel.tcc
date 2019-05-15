@@ -61,7 +61,7 @@ namespace __detail
   /**
    * @brief This routine computes the asymptotic modified cylindrical
    * 	    Bessel and functions of order nu: @f$ I_{\nu}(x) @f$,
-   * 	    @f$ N_{\nu}(x) @f$.  Use this for @f$ x >> nu^2 + 1 @f$.
+   * 	    @f$ N_{\nu}(x) @f$.  Use this for @f$ x >> \nu^2 + 1 @f$.
    *
    * References:
    *  (1) Handbook of Mathematical Functions,
@@ -74,66 +74,50 @@ namespace __detail
    * @return A struct containing the modified cylindrical Bessel functions
    *         of the first and second kinds and their derivatives.
    */
-  template<typename _Tp>
-    __gnu_cxx::__cyl_mod_bessel_t<_Tp, _Tp, _Tp>
-    __cyl_bessel_ik_asymp(_Tp __nu, _Tp __x)
+  template<typename _Tnu, typename _Tp>
+    constexpr __gnu_cxx::__cyl_mod_bessel_t<_Tnu, _Tp, _Tp>
+    __cyl_bessel_ik_scaled_asymp(_Tnu __nu, _Tp __x)
     {
-      using __bess_t = __gnu_cxx::__cyl_mod_bessel_t<_Tp, _Tp, _Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
-      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__x);
-      const auto __2nu = _Tp{2} * __nu;
-      const auto __4nu2 = __2nu * __2nu;
-      const auto __8x = _Tp{8} * __x;
-      auto __k = 0;
-      auto __bk_xk = _Tp{1};
-      auto _Rsum = __bk_xk;
-      auto __ak_xk = _Tp{1};
-      auto _Psum = __ak_xk;
-      auto __convP = false;
-      ++__k;
-      auto __2km1 = 1;
-      __bk_xk *= (__4nu2 + __2km1 * (__2km1 + 2)) / __8x;
-      auto _Ssum = __bk_xk;
-      __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / __8x;
-      auto _Qsum = __ak_xk;
-      auto __convQ = false;
-      auto __ak_xk_prev = std::abs(__ak_xk);
-      do
-	{
-	  ++__k;
-	  __2km1 += 2;
-	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
-	  _Rsum += __bk_xk;
-	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
-	  //if (std::abs(__ak_xk) > __ak_xk_prev)
-	  //  break;
-	  _Psum += __ak_xk;
-	  __ak_xk_prev = std::abs(__ak_xk);
-	  __convP = std::abs(__ak_xk) < _S_eps * std::abs(_Psum);
+      // FIXME: This will promote float to double if _Tnu is integral.
+      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
+      using _Real = __num_traits_t<_Val>;
+      using __bess_t = __gnu_cxx::__cyl_mod_bessel_t<_Tnu, _Tp, _Tp>;
+      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
 
-	  ++__k;
-	  __2km1 += 2;
-	  __bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * __ak_xk / (__k * __8x);
-	  _Ssum += __bk_xk;
-	  __ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (__k * __8x);
-	  //if (std::abs(__ak_xk) > __ak_xk_prev)
-	  //  break;
-	  _Qsum += __ak_xk;
-	  __ak_xk_prev = std::abs(__ak_xk);
-	  __convQ = std::abs(__ak_xk) < _S_eps * std::abs(_Qsum);
+      const auto __sums = __cyl_bessel_asymp_sums(__nu, __x, +1);
 
-	  //if (__convP && __convQ && __k > (__nu / _Tp{2}))
-	  //  break;
-	}
-      while (__k < __nu / 2);//(__k < _Tp{100} * __nu);
-
-      const auto __coef = std::sqrt(_Tp{1} / (_Tp{2} * _S_pi * __x));
+      const auto __coef = std::sqrt(_Real{1} / (_Real{2} * _S_pi * __x));
       return __bess_t{__nu, __x,
-		      __coef * std::exp(__x) * (_Psum - _Qsum),
-		      __coef * std::exp(__x) * (_Rsum - _Ssum),
-		      _S_pi * __coef * std::exp(-__x) * (_Psum + _Qsum),
-		      -_S_pi * __coef * std::exp(-__x) * (_Rsum + _Ssum)};
+		      __coef * (__sums._Psum - __sums._Qsum),
+		      __coef * (__sums._Rsum - __sums._Ssum),
+		      __coef * _S_pi * (__sums._Psum + __sums._Qsum),
+		     -__coef * _S_pi * (__sums._Rsum + __sums._Ssum)};
+    }
+
+  /**
+   * @param  __nu  The order of the Bessel functions.
+   * @param  __x   The argument of the Bessel functions.
+   * @param  __do_scaled  If true, scale I, I' by exp(-x) and K, K' by exp(+x).
+   */
+  template<typename _Tnu, typename _Tp>
+    constexpr __gnu_cxx::__cyl_mod_bessel_t<_Tnu, _Tp, _Tp>
+    __cyl_bessel_ik_asymp(_Tnu __nu, _Tp __x, bool __do_scaled = false)
+    {
+      using __bess_t = __gnu_cxx::__cyl_mod_bessel_t<_Tnu, _Tp, _Tp>;
+
+      auto __ik = __cyl_bessel_ik_scaled_asymp(__nu, __x);
+
+      if (__do_scaled)
+	return __ik;
+      else
+	{
+	  const auto __exp = std::exp(__x);
+	  const auto __iexp = _Tp{1} / __exp;
+	  // @todo Check for over/under-flow in __cyl_bessel_ik_asymp.
+	  return __bess_t{__ik.__nu_arg, __ik.__x_arg,
+			  __exp * __ik.__I_value, __exp * __ik.__I_deriv,
+			  __iexp * __ik.__K_value, __iexp * __ik.__K_deriv};
+	}
     }
 
   /**
@@ -145,12 +129,13 @@ namespace __detail
    *
    * @param  __nu  The order of the Bessel functions.
    * @param  __x   The argument of the Bessel functions.
+   * @param  __do_scaled  If true, scale I, I' by exp(-x) and K, K' by exp(+x).
    * @return A struct containing the modified cylindrical Bessel functions
    *         of the first and second kinds and their derivatives.
    */
   template<typename _Tp>
     __gnu_cxx::__cyl_mod_bessel_t<_Tp, _Tp, _Tp>
-    __cyl_bessel_ik_steed(_Tp __nu, _Tp __x)
+    __cyl_bessel_ik_steed(_Tp __nu, _Tp __x, bool __do_scaled = false)
     {
       using __bess_t = __gnu_cxx::__cyl_mod_bessel_t<_Tp, _Tp, _Tp>;
       const auto _S_inf = __gnu_cxx::__infinity(__x);
@@ -199,6 +184,7 @@ namespace __detail
 	}
 
       const auto __f = _Ipnul / _Inul;
+      bool __scaled = false;
       _Tp _Kmu, _Knu1;
       if (__x < _S_x_min)
 	{
@@ -245,6 +231,7 @@ namespace __detail
 	}
       else
 	{
+	  __scaled = true;
 	  auto __b = _Tp{2} * (_Tp{1} + __x);
 	  auto __d = _Tp{1} / __b;
 	  auto __delh = __d;
@@ -277,20 +264,41 @@ namespace __detail
 	    std::__throw_runtime_error(__N("__cyl_bessel_ik_steed: "
 					   "Steed's method failed"));
 	  __h = __a1 * __h;
-	  _Kmu = std::sqrt(_S_pi / (_Tp{2} * __x))
-		* std::exp(-__x) / __s;
+	  // We are scaling this branch to prevent under/overflow. Removing...
+	  // * std::exp(-__x)
+	  _Kmu = std::sqrt(_S_pi / (_Tp{2} * __x)) / __s;
 	  _Knu1 = _Kmu * (__mu + __x + _Tp{0.5L} - __h) * __xi;
 	}
 
-      const auto _Kpmu = __mu * __xi * _Kmu - _Knu1;
-      const auto _Inumu = __xi / (__f * _Kmu - _Kpmu);
-      const auto _Inu = _Inumu * _Inul1 / _Inul;
-      const auto _Ipnu = _Inumu * _Ipnu1 / _Inul;
+      auto _Kpmu = __mu * __xi * _Kmu - _Knu1;
+      auto _Inumu = __xi / (__f * _Kmu - _Kpmu);
+      auto _Inu = _Inumu * _Inul1 / _Inul;
+      auto _Ipnu = _Inumu * _Ipnu1 / _Inul;
       for (int __i = 1; __i <= __n; ++__i)
 	_Kmu = __gnu_cxx::__exchange(_Knu1,
 				     (__mu + _Tp(__i)) * __xi2 * _Knu1 + _Kmu);
-      const auto _Knu = _Kmu;
-      const auto _Kpnu = __nu * __xi * _Kmu - _Knu1;
+      auto _Knu = _Kmu;
+      auto _Kpnu = __nu * __xi * _Kmu - _Knu1;
+
+      if (__do_scaled && !__scaled)
+	{
+	  const auto __exp = std::exp(__x);
+	  const auto __iexp = _Tp{1} / __exp;
+	  _Inu *= __iexp;
+	  _Ipnu *= __iexp;
+	  _Knu *= __exp;
+	  _Kpnu *= __exp;
+	}
+      else if (!__do_scaled && __scaled)
+	{
+	  const auto __exp = std::exp(__x);
+	  const auto __iexp = _Tp{1} / __exp;
+	  /// @todo Check for over/underflow for large-argument modified Bessel.
+	  _Inu *= __exp;
+	  _Ipnu *= __exp;
+	  _Knu *= __iexp;
+	  _Kpnu *= __iexp;
+	}
 
       return __bess_t{__nu, __x, _Inu, _Ipnu, _Knu, _Kpnu};
     }
@@ -306,7 +314,7 @@ namespace __detail
    */
   template<typename _Tp>
     __gnu_cxx::__cyl_mod_bessel_t<_Tp, _Tp, _Tp>
-    __cyl_bessel_ik(_Tp __nu, _Tp __x)
+    __cyl_bessel_ik(_Tp __nu, _Tp __x, bool __do_scaled = false)
     {
       using __bess_t = __gnu_cxx::__cyl_mod_bessel_t<_Tp, _Tp, _Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
@@ -347,9 +355,9 @@ namespace __detail
 	  return __bess_t{__nu, __x, _Inu, _Ipnu, _S_inf, -_S_inf};
 	}
       else if (__x > _Tp{1000})
-	return __cyl_bessel_ik_asymp(__nu, __x);
+	return __cyl_bessel_ik_asymp(__nu, __x, __do_scaled);
       else
-	return __cyl_bessel_ik_steed(__nu, __x);
+	return __cyl_bessel_ik_steed(__nu, __x, __do_scaled);
     }
 
   /**
@@ -375,7 +383,7 @@ namespace __detail
       else if (std::isnan(__nu) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__nu >= _Tp{0} && __x * __x < _Tp{10} * (__nu + _Tp{1}))
-	return __cyl_bessel_ij_series(__nu, __x, +_Tp{1}, 200);
+	return __cyl_bessel_ij_series(__nu, __x, +1, 200);
       else
 	return __cyl_bessel_ik(__nu, __x).__I_value;
     }
