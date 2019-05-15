@@ -7280,7 +7280,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Compute the Mittag-Leffer function:
    * @f[
-   *   E_{\alpha,\beta}(z) = \sum_{k=0}^\infty \frac{z^k}{\Gamma(\beta + \alpha k)},
+   *   E_{\alpha,\beta}(z)
+   *     = \sum_{k=0}^\infty \frac{z^k}{\Gamma(\beta + \alpha k)},
    *   \mbox{  } \alpha > 0, \beta \in \mathbb{C}, z \in \mathbb{C}
    * @f]
    *
