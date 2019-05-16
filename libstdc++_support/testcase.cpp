@@ -167,8 +167,10 @@ template<typename Real>
     using __gnu_cxx::cosint;
     using __gnu_cxx::cos_pi;
     using       std::cyl_bessel_i;
+    using __gnu_cxx::cyl_bessel_i_scaled;
     using       std::cyl_bessel_j;
     using       std::cyl_bessel_k;
+    using __gnu_cxx::cyl_bessel_k_scaled;
     using __gnu_cxx::cyl_hankel_1;
     using __gnu_cxx::cyl_hankel_2;
     using       std::cyl_neumann;
@@ -434,39 +436,26 @@ template<typename Real>
 	     "Boost",
 	     file_comp_ellint_3);
 
+    // Confluent hypergeometric functions.
+    // Skip the singularity at c = 0.
+    std::cout << "conf_hyperg\n" << std::flush;
+    basename = "conf_hyperg";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_conf_hyperg(filename);
+    maketest(conf_hyperg, gsl::conf_hyperg,
+	     "testcase_conf_hyperg",
 #if STD
-    // Confluent hypergeometric functions.
-    // Skip the singularity at c = 0.
-    std::cout << "conf_hyperg\n" << std::flush;
-    basename = "conf_hyperg";
-    filename = get_filename(path, prefix, basename, "",  ".cc");
-    std::ofstream file_conf_hyperg(filename);
-    maketest(conf_hyperg, gsl::conf_hyperg,
-	     "testcase_conf_hyperg", "__gnu_cxx", basename,
-	     "a", vab,
-	     "c", fill_argument(std::make_pair(Real{0}, Real{10}),
-				std::make_pair(false, true), 11),
-	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
-				std::make_pair(true, true), 21),
-	     "GSL",
-	     file_conf_hyperg);
+	     "__gnu_cxx",
 #else
-    // Confluent hypergeometric functions.
-    // Skip the singularity at c = 0.
-    std::cout << "conf_hyperg\n" << std::flush;
-    basename = "conf_hyperg";
-    filename = get_filename(path, prefix, basename, "",  ".cc");
-    std::ofstream file_conf_hyperg(filename);
-    maketest(conf_hyperg, gsl::conf_hyperg,
-	     "testcase_conf_hyperg", nsname, basename,
-	     "a", vab,
+	     nsname,
+#endif
+	      basename, "a", vab,
 	     "c", fill_argument(std::make_pair(Real{0}, Real{10}),
 				std::make_pair(false, true), 11),
 	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 				std::make_pair(true, true), 21),
 	     "GSL",
 	     file_conf_hyperg);
-#endif // STD
 
     // Regular modified cylindrical Bessel functions.
     std::cout << "cyl_bessel_i\n" << std::flush;
@@ -496,6 +485,22 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     "GSL",
 	     file_cyl_bessel_i, false, true, test);
+
+#if STD
+    // Scaled regular modified cylindrical Bessel functions.
+    std::cout << "cyl_bessel_i_scaled\n" << std::flush;
+    basename = "cyl_bessel_i_scaled";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_cyl_bessel_i_scaled(filename);
+    test =
+    maketest(cyl_bessel_i_scaled, gsl::cyl_bessel_i_scaled,
+	     "testcase_cyl_bessel_i_scaled", "__gnu_cxx", basename,
+	     "nu", {100},
+	     "x", fill_argument(std::make_pair(Real{1000}, Real{2000}),
+				std::make_pair(true, true), 11),
+	     "GSL",
+	     file_cyl_bessel_i_scaled);
+#endif // STD
 
     // Cylindrical Bessel functions (of the first kind).
     std::cout << "cyl_bessel_j\n" << std::flush;
@@ -563,6 +568,22 @@ template<typename Real>
 				std::make_pair(false, true), 21),
 	     "GSL",
 	     file_cyl_bessel_k, false, true, test);
+
+#if STD
+    // Scaled irregular modified cylindrical Bessel functions.
+    std::cout << "cyl_bessel_k_scaled\n" << std::flush;
+    basename = "cyl_bessel_k_scaled";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_cyl_bessel_k_scaled(filename);
+    test =
+    maketest(cyl_bessel_k_scaled, gsl::cyl_bessel_k_scaled,
+	     "testcase_cyl_bessel_k_scaled", "__gnu_cxx", basename,
+	     "nu", {100},
+	     "x", fill_argument(std::make_pair(Real{1000}, Real{2000}),
+				std::make_pair(true, true), 11),
+	     "GSL",
+	     file_cyl_bessel_k_scaled);
+#endif // STD
 
     // Cylindrical Neumann functions.
     // Skip the pole at the origin.
@@ -687,35 +708,20 @@ template<typename Real>
 	     "GSL",
 	     file_hermite, false, true, test);
 
+    // Hypergeometric functions.
+    // Skip the singularity at c = 0.
+    // Skip the singularity at x = -1.
+    std::cout << "hyperg\n" << std::flush;
+    basename = "hyperg";
+    filename = get_filename(path, prefix, basename, "", ".cc");
+    std::ofstream file_hyperg(filename);
+    maketest(hyperg, gsl::hyperg, "testcase_hyperg",
 #if STD
-    // Hypergeometric functions.
-    // Skip the singularity at c = 0.
-    // Skip the singularity at x = -1.
-    std::cout << "hyperg\n" << std::flush;
-    basename = "hyperg";
-    filename = get_filename(path, prefix, basename, "", ".cc");
-    std::ofstream file_hyperg(filename);
-    maketest(hyperg, gsl::hyperg,
-	     "testcase_hyperg", "__gnu_cxx", basename,
-	     "a", vab,
-	     "b", vab,
-	     "c", fill_argument(std::make_pair(Real{0}, Real{10}),
-				std::make_pair(false, true), 6),
-	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
-				std::make_pair(true, false), 21),
-	     "GSL",
-	     file_hyperg);
+	     "__gnu_cxx",
 #else
-    // Hypergeometric functions.
-    // Skip the singularity at c = 0.
-    // Skip the singularity at x = -1.
-    std::cout << "hyperg\n" << std::flush;
-    basename = "hyperg";
-    filename = get_filename(path, prefix, basename, "", ".cc");
-    std::ofstream file_hyperg(filename);
-    maketest(hyperg, gsl::hyperg,
-	     "testcase_hyperg", nsname, basename,
-	     "a", vab,
+	     nsname,
+#endif
+	     basename, "a", vab,
 	     "b", vab,
 	     "c", fill_argument(std::make_pair(Real{0}, Real{10}),
 				std::make_pair(false, true), 6),
@@ -723,7 +729,6 @@ template<typename Real>
 				std::make_pair(true, false), 21),
 	     "GSL",
 	     file_hyperg);
-#endif // STD
 
     // Laguerre polynomials.
     std::cout << "laguerre\n" << std::flush;

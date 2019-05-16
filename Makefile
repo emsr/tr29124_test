@@ -246,8 +246,10 @@ CHECKS = $(CHECK_DIR)/check_airy_ai \
 	 $(CHECK_DIR)/check_cosint \
 	 $(CHECK_DIR)/check_cos_pi \
 	 $(CHECK_DIR)/check_cyl_bessel_i \
+	 $(CHECK_DIR)/check_cyl_bessel_i_scaled \
 	 $(CHECK_DIR)/check_cyl_bessel_j \
 	 $(CHECK_DIR)/check_cyl_bessel_k \
+	 $(CHECK_DIR)/check_cyl_bessel_k_scaled \
 	 $(CHECK_DIR)/check_cyl_hankel_1 \
 	 $(CHECK_DIR)/check_cyl_hankel_2 \
 	 $(CHECK_DIR)/check_cyl_neumann \
@@ -669,8 +671,10 @@ check: $(CHECK_DIR) $(CHECKS)
 	echo "check_cosint" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(CHECK_DIR)/check_cosint >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_cos_pi" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(CHECK_DIR)/check_cos_pi >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_cyl_bessel_i" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(CHECK_DIR)/check_cyl_bessel_i >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_cyl_bessel_i_scaled" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(CHECK_DIR)/check_cyl_bessel_i_scaled >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_cyl_bessel_j" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(CHECK_DIR)/check_cyl_bessel_j >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_cyl_bessel_k" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(CHECK_DIR)/check_cyl_bessel_k >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
+	echo "check_cyl_bessel_k_scaled" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(CHECK_DIR)/check_cyl_bessel_k_scaled >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_cyl_hankel_1" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(CHECK_DIR)/check_cyl_hankel_1 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_cyl_hankel_2" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(CHECK_DIR)/check_cyl_hankel_2 >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
 	echo "check_cyl_neumann" >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt && LD_LIBRARY_PATH=$(CXX_LIB_DIR):$$LD_LIBRARY_PATH $(CHECK_DIR)/check_cyl_neumann >> $(CHECK_DIR)/check_out.txt 2>> $(CHECK_DIR)/check_err.txt
@@ -1844,11 +1848,17 @@ $(CHECK_DIR)/check_cos_pi: $(CHECK_DIR)/check_cos_pi.cc
 $(CHECK_DIR)/check_cyl_bessel_i: $(CHECK_DIR)/check_cyl_bessel_i.cc
 	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cyl_bessel_i $(CHECK_DIR)/check_cyl_bessel_i.cc -lquadmath
 
+$(CHECK_DIR)/check_cyl_bessel_i_scaled: $(CHECK_DIR)/check_cyl_bessel_i_scaled.cc
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cyl_bessel_i_scaled $(CHECK_DIR)/check_cyl_bessel_i_scaled.cc -lquadmath
+
 $(CHECK_DIR)/check_cyl_bessel_j: $(CHECK_DIR)/check_cyl_bessel_j.cc
 	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cyl_bessel_j $(CHECK_DIR)/check_cyl_bessel_j.cc -lquadmath
 
 $(CHECK_DIR)/check_cyl_bessel_k: $(CHECK_DIR)/check_cyl_bessel_k.cc
 	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cyl_bessel_k $(CHECK_DIR)/check_cyl_bessel_k.cc -lquadmath
+
+$(CHECK_DIR)/check_cyl_bessel_k_scaled: $(CHECK_DIR)/check_cyl_bessel_k_scaled.cc
+	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cyl_bessel_k_scaled $(CHECK_DIR)/check_cyl_bessel_k_scaled.cc -lquadmath
 
 $(CHECK_DIR)/check_cyl_hankel_1: $(CHECK_DIR)/check_cyl_hankel_1.cc
 	$(CXX17) $(INCLUDES) -I$(CXX_TEST_INC_DIR) -D_GLIBCXX_ASSERT -D__TEST_DEBUG -o $(CHECK_DIR)/check_cyl_hankel_1 $(CHECK_DIR)/check_cyl_hankel_1.cc -lquadmath

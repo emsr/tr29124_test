@@ -937,11 +937,11 @@ const double toler028 = 1.0000000000000006e-11;
 //  cyl_neumann
 
 // Test data for nu=100.00000000000000.
-// max(|f - f_GSL|): 3.0531133177191805e-14 at index 5
-// max(|f - f_GSL| / |f_GSL|): 1.1952073226839970e-11
-// mean(f - f_GSL): -6.1283443597570649e-16
-// variance(f - f_GSL): 6.7555339520846416e-29
-// stddev(f - f_GSL): 8.2192055285682219e-15
+// max(|f - f_GSL|): 3.0534168943274764e-14 at index 5
+// max(|f - f_GSL| / |f_GSL|): 1.1953261643211958e-11
+// mean(f - f_GSL): -6.1990343414031205e-16
+// variance(f - f_GSL): 6.7514516083455488e-29
+// stddev(f - f_GSL): 8.2167217357931425e-15
 const testcase_cyl_neumann<double>
 data029[10] =
 {

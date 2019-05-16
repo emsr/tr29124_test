@@ -896,11 +896,11 @@ const double toler026 = 1.0000000000000006e-11;
 //  cyl_bessel_j
 
 // Test data for nu=100.00000000000000.
-// max(|f - f_GSL|): 2.8565040957606591e-14 at index 4
-// max(|f - f_GSL| / |f_GSL|): 2.0180849079611197e-11
-// mean(f - f_GSL): 3.1623811839389467e-15
-// variance(f - f_GSL): 1.2208474047730384e-29
-// stddev(f - f_GSL): 3.4940626851461015e-15
+// max(|f - f_GSL|): 2.8574581936724464e-14 at index 4
+// max(|f - f_GSL| / |f_GSL|): 2.0187589663667605e-11
+// mean(f - f_GSL): 3.1621446307376773e-15
+// variance(f - f_GSL): 1.2209022312999974e-29
+// stddev(f - f_GSL): 3.4941411409672585e-15
 const testcase_cyl_bessel_j<double>
 data027[11] =
 {

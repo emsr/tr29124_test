@@ -137,6 +137,11 @@ template<typename _Tp>
     _Tp f;
   };
 
+// Scaled regular modified cylindrical Bessel functions.
+template<typename _Tp>
+  struct testcase_cyl_bessel_i_scaled : public testcase_cyl_bessel_i<_Tp>
+  { };
+
 // Cylindrical Bessel functions (of the first kind).
 template<typename _Tp>
   struct testcase_cyl_bessel_j
@@ -156,6 +161,11 @@ template<typename _Tp>
     _Tp x;
     _Tp f;
   };
+
+// Scaled irregular modified cylindrical Bessel functions.
+template<typename _Tp>
+  struct testcase_cyl_bessel_k_scaled : public testcase_cyl_bessel_k<_Tp>
+  { };
 
 // Cylindrical Neumann functions.
 template<typename _Tp>
