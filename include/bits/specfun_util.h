@@ -172,6 +172,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 #else
   // Decay refs and cv...
   // Alternatively we could decay refs and propagate cv to promoted type.
+  // @todo We use decay_t instead of remove_reference_t just in case _Tp
+  // is an array.
   template<typename _Tp, typename... _Tps>
     struct fp_promote
     { using __type = decltype(fp_promote_help_t<std::decay_t<_Tp>>{}
