@@ -85,6 +85,8 @@ ${makedir} ${text_dir}/conf_hyperg_lim
 ${makedir} ${text_dir}/coshint
 ${makedir} ${text_dir}/cosint
 ${makedir} ${text_dir}/cos_pi
+${makedir} ${text_dir}/cyl_bessel_i
+${makedir} ${text_dir}/cyl_bessel_k
 ${makedir} ${text_dir}/cyl_hankel_1
 ${makedir} ${text_dir}/cyl_hankel_2
 ${makedir} ${text_dir}/dawson
@@ -176,6 +178,8 @@ ${tool} check/check_conf_hyperg_lim.cc    ${text_dir}/conf_hyperg_lim/check_valu
 ${tool} check/check_coshint.cc            ${text_dir}/coshint/check_value.cc
 ${tool} check/check_cosint.cc             ${text_dir}/cosint/check_value.cc
 ${tool} check/check_cos_pi.cc             ${text_dir}/cos_pi/check_value.cc
+${tool} check/check_cyl_bessel_i_scaled.cc  ${text_dir}/cyl_bessel_i/check_scaled.cc
+${tool} check/check_cyl_bessel_k_scaled.cc  ${text_dir}/cyl_bessel_k/check_scaled.cc
 ${tool} check/check_cyl_hankel_1.cc       ${text_dir}/cyl_hankel_1/check_value.cc
 ${tool} check/pr56216_cyl_hankel_1.cc     ${text_dir}/cyl_hankel_1/pr56216.cc
 ${tool} check/check_cyl_hankel_2.cc       ${text_dir}/cyl_hankel_2/check_value.cc

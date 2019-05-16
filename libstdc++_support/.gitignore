@@ -27,8 +27,10 @@ check/check_coshint
 check/check_cosint
 check/check_cos_pi
 check/check_cyl_bessel_i
+check/check_cyl_bessel_i_scaled
 check/check_cyl_bessel_j
 check/check_cyl_bessel_k
+check/check_cyl_bessel_k_scaled
 check/check_cyl_hankel_1
 check/check_cyl_hankel_2
 check/check_cyl_neumann

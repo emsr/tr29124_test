@@ -379,13 +379,25 @@ namespace __detail
     __cyl_bessel_i(_Tp __nu, _Tp __x)
     {
       if (__x < _Tp{0})
-	std::__throw_domain_error(__N("__cyl_bessel_i: bad argument"));
+	std::__throw_domain_error(__N("__cyl_bessel_i: Argument < 0"));
       else if (std::isnan(__nu) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__nu >= _Tp{0} && __x * __x < _Tp{10} * (__nu + _Tp{1}))
 	return __cyl_bessel_ij_series(__nu, __x, +1, 200);
       else
 	return __cyl_bessel_ik(__nu, __x).__I_value;
+    }
+
+  template<typename _Tp>
+    _Tp
+    __cyl_bessel_i_scaled(_Tp __nu, _Tp __x)
+    {
+      if (__x < _Tp{0})
+	std::__throw_domain_error(__N("__cyl_bessel_i: Argument < 0"));
+      else if (std::isnan(__nu) || std::isnan(__x))
+	return __gnu_cxx::__quiet_NaN(__x);
+      else
+	return __cyl_bessel_ik(__nu, __x, true).__I_value;
     }
 
   /**
@@ -413,11 +425,23 @@ namespace __detail
     __cyl_bessel_k(_Tp __nu, _Tp __x)
     {
       if (__x < _Tp{0})
-	std::__throw_domain_error(__N("__cyl_bessel_k: Bad argument"));
+	std::__throw_domain_error(__N("__cyl_bessel_k: Argument < 0"));
       else if (std::isnan(__nu) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else
 	return __cyl_bessel_ik(__nu, __x).__K_value;
+    }
+
+  template<typename _Tp>
+    _Tp
+    __cyl_bessel_k_scaled(_Tp __nu, _Tp __x)
+    {
+      if (__x < _Tp{0})
+	std::__throw_domain_error(__N("__cyl_bessel_k_scaled: Argument < 0"));
+      else if (std::isnan(__nu) || std::isnan(__x))
+	return __gnu_cxx::__quiet_NaN(__x);
+      else
+	return __cyl_bessel_ik(__nu, __x, true).__K_value;
     }
 
   /**

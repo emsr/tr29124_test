@@ -2582,6 +2582,65 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return std::__detail::__sinhc<__type>(__x);
     }
 
+  // Scaled modified Bessel functions
+
+  /**
+   * Return the scaled regular modified Bessel function
+   * @f$ e^{-x} I_{\nu}(x) @f$
+   * for real order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
+   *
+   * The regular modified cylindrical Bessel function is:
+   * @f[
+   *  I_{\nu}(x) = i^{-\nu}J_\nu(ix) = \sum_{k=0}^{\infty}
+   * 		\frac{(x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
+   * @f]
+   *
+   * @tparam _Tpnu The floating-point type of the order @c __nu.
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __nu  The order
+   * @param  __x   The argument, <tt> __x >= 0 </tt>
+   * @throw std::domain_error if <tt> __x < 0 </tt>.
+   */
+  template<typename _Tpnu, typename _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpnu, _Tp>
+    cyl_bessel_i_scaled(_Tpnu __nu, _Tp __x)
+    {
+      using __type = __gnu_cxx::fp_promote_t<_Tpnu, _Tp>;
+      return std::__detail::__cyl_bessel_i_scaled<__type>(__nu, __x);
+    }
+
+  /**
+   * Return the scaled irregular modified Bessel function
+   * @f$ e^{x} K_{\nu}(x) @f$
+   * of real order @f$ \nu @f$ and argument @f$ x @f$.
+   *
+   * The irregular modified Bessel function is defined by:
+   * @f[
+   * 	K_{\nu}(x) = \frac{\pi}{2}
+   * 		     \frac{I_{-\nu}(x) - I_{\nu}(x)}{\sin \nu\pi}
+   * @f]
+   * where for integral @f$ \nu = n @f$ a limit is taken:
+   * @f$ lim_{\nu \to n} @f$.
+   * For negative argument we have simply:
+   * @f[
+   * 	K_{-\nu}(x) = K_{\nu}(x)
+   * @f]
+   *
+   * @tparam _Tpnu The floating-point type of the order @c __nu.
+   * @tparam _Tp The floating-point type of the argument @c __x.
+   * @param  __nu  The order
+   * @param  __x   The argument, <tt> __x >= 0 </tt>
+   * @throw std::domain_error if <tt> __x < 0 </tt>.
+   */
+  template<typename _Tpnu, typename _Tp>
+    inline __gnu_cxx::fp_promote_t<_Tpnu, _Tp>
+    cyl_bessel_k_scaled(_Tpnu __nu, _Tp __x)
+    {
+      using __type = __gnu_cxx::fp_promote_t<_Tpnu, _Tp>;
+      return std::__detail::__cyl_bessel_k_scaled<__type>(__nu, __x);
+    }
+
+
   // Cylindrical Hankel functions of the first kind
 
   /**
