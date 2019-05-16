@@ -132,7 +132,8 @@ namespace __detail
   /**
    * Compute the Mittag-Leffer function:
    * @f[
-   *   E_{\alpha,\beta}(z) = \sum_{k=0}^\infty \frac{z^k}{\beta + \alpha k},
+   *   E_{\alpha,\beta}(z)
+   *     = \sum_{k=0}^\infty \frac{z^k}{\Gamma(\beta + \alpha k)},
    *   \mbox{  } \alpha > 0, \beta \in \$\mathbb{C}\$, z \in \$\mathbb{C}\$
    * @f]
    *
@@ -149,7 +150,20 @@ namespace __detail
       const auto _S_pi = __gnu_cxx::__const_pi(__alpha);
 
       const auto __az = std::abs(__z);
-      if (__alpha > _Tp{1})
+      if (__alpha == _Tp{0})
+	{
+	  if (__az < _Tp{1})
+	    return __gamma_reciprocal(__beta) / (_Tp{1} - __z);
+	  else
+	    {
+	      const auto _S_inf = __gnu_cxx::__infinity(__alpha);
+	      return std::complex<_Tp>{_S_inf, _S_inf};
+	    }
+	}
+      else if (__alpha < _Tp{0})
+	return __gamma_reciprocal(__beta)
+	     - __mittag_leffler(-__alpha, __beta, _Tp{1} / __z);
+      else if (__alpha > _Tp{1})
 	{
           unsigned int __k0 = _Tp{1} + std::floor(__alpha);
 	  const auto __alpha0 = __alpha / __k0;
@@ -165,7 +179,7 @@ namespace __detail
 	  return __E / _Tp(__k0);
 	}
       else if (__az < _S_eps)
-	return std::__detail::__gamma_reciprocal(__beta);
+	return __gamma_reciprocal(__beta);
       else if (__az < _Tp{1})
 	{
 	  unsigned int __k0 = std::max(std::ceil((_Tp{1} - __beta) / __alpha),
@@ -176,8 +190,7 @@ namespace __detail
 	  for (auto __k = 0u; __k <= __k0; ++__k)
 	    {
 	      const auto __arg = __beta + __alpha * __k;
-	      const auto __term = __zk
-			* std::__detail::__gamma_reciprocal(__arg);
+	      const auto __term = __zk * __gamma_reciprocal(__arg);
 	      __E += __term;
 	      if (std::abs(__term) < _S_eps)
 		break;
@@ -193,7 +206,7 @@ namespace __detail
 	  for (auto __k = 1u; __k <= __k0; ++__k)
 	    {
 	      __zk /= __z;
-	      __E += __zk * std::__detail::__gamma_reciprocal(__beta - __alpha * __k);
+	      __E += __zk * __gamma_reciprocal(__beta - __alpha * __k);
 	    }
 	  if (std::arg(__z)
 	      < _S_pi * (__alpha / _Tp{4} + std::min(_Tp{1}, __alpha) / _Tp{2}))
@@ -319,8 +332,7 @@ namespace __detail
 	  for (auto __k = 0u; __k <= __k0; ++__k)
 	    {
 	      __Ep += _Tp(__k + 1) * __zk
-		    * std::__detail::__gamma_reciprocal(__beta
-						      + __alpha * _Tp(__k + 1));
+		    * __gamma_reciprocal(__beta + __alpha * _Tp(__k + 1));
 	      __zk *= __z;
 	    }
 	  return __Ep;
