@@ -5,7 +5,8 @@
     struct derivative_t
     {
       _Tp value;
-      _Tp error;
+      _Tp error_trunc;
+      _Tp error_round;
     };
 
   /**
