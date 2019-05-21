@@ -1,4 +1,10 @@
 
 test_derivative
-test_derivative.txt
-test_derivative2.txt
+
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+
+CTestTestfile.cmake
+Testing/
