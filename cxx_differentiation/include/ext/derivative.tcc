@@ -7,7 +7,7 @@
 
   /**
    * Compute the derivative using the 5-point rule
-   *   (x-h, x-h/2, x, x+h/2, x+h).
+   * (x-h, x-h/2, x, x+h/2, x+h).
    * Note that the central point is not used.
    *
    * Compute the error using the difference between the 5-point
@@ -22,22 +22,22 @@
 
       const auto __fmh = __func(__x - __h);
       const auto __fph = __func(__x + __h);
-      const auto __r3 = (__fph - __fmh) / _Tp{2};
+      const auto __r3 = (__fph - __fmh) / (_Tp{2} * __h);
 
       const auto __fmhh = __func(__x - __h / _Tp{2});
       const auto __fphh = __func(__x + __h / _Tp{2});
-      const auto __r5 = (_Tp{4} / _Tp{3}) * (__fphh - __fmhh)
+      const auto __r5 = (_Tp{4} / _Tp{3}) * (__fphh - __fmhh) / __h
 		      - (_Tp{1} / _Tp{3}) * __r3;
 
       const auto __e3 = (std::abs(__fph) + std::abs(__fmh)) * _S_eps;
       const auto __e5 = _Tp{2} * (std::abs(__fphh)
 				+ std::abs(__fmhh)) * _S_eps + __e3;
       // Rounding error:
-      const auto __dy = std::max(std::abs(__r3 / __h), std::abs(__r5 / __h))
-      		      * (std::abs(__x) / __h) * _S_eps;
+      const auto __dy = std::max(std::abs(__r3), std::abs(__r5))
+      		      * std::abs(__x / __h) * _S_eps;
       const auto __err_round = std::abs(__e5 / __h) + __dy;
 
-      return {__r5 / __h, std::abs((__r5 - __r3) / __h), __err_round};
+      return {__r5, std::abs(__r5 - __r3), __err_round};
     }
 
   /**
@@ -58,10 +58,10 @@
       const auto __f3 = __func(__x + _Tp{3} * __h / _Tp{4});
       const auto __f4 = __func(__x + __h);
 
-      const auto __r2 = _Tp{2} * (__f4 - __f2);
-      const auto __r4 = (_Tp{22} / _Tp{3}) * (__f4 - __f3)
-		      - (_Tp{62} / _Tp{3}) * (__f3 - __f2)
-		      + (_Tp{52} / _Tp{3}) * (__f2 - __f1);
+      const auto __r2 = _Tp{2} * (__f4 - __f2) / __h;
+      const auto __r4 = ((_Tp{22} / _Tp{3}) * (__f4 - __f3)
+		       - (_Tp{62} / _Tp{3}) * (__f3 - __f2)
+		       + (_Tp{52} / _Tp{3}) * (__f2 - __f1)) / __h;
 
 
       const auto __e4 = _Tp{2 * 20.67}
@@ -69,11 +69,11 @@
 		       + std::abs(__f2) + std::abs(__f1)) * _S_eps;
 
       // The next term is due to finite precision in x+h = O (eps * x).
-      const auto __dy = std::max(std::abs(__r2 / __h), std::abs(__r4 / __h))
+      const auto __dy = std::max(std::abs(__r2), std::abs(__r4))
 		      * std::abs(__x / __h) * _S_eps;
       const auto __err_round = std::abs(__e4 / __h) + __dy;
 
-      return {__r4 / __h, std::abs((__r4 - __r2) / __h), __err_round};
+      return {__r4, std::abs(__r4 - __r2), __err_round};
     }
 /* optimize stepsize.
 IMHO, this should take an initial stab at the stepsize.
@@ -120,9 +120,11 @@ IMHO, this should take an initial stab at the stepsize.
     derivative_t<_Tp>
     derivative_ridder(_Func __func, _Tp __x, _Tp __h)
     {
+      const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+
       constexpr _Tp _S_scale = _Tp{1.4};
       constexpr _Tp _S_scale2 = _S_scale * _S_scale;
-      constexpr _Tp _S_big = _Tp{1.0e30};
+      constexpr _Tp _S_big = std::numeric_limits<_Tp>::max();
       constexpr _Tp _S_safe = _Tp{2};
 
       if (__h <= _Tp{0})
@@ -131,48 +133,62 @@ IMHO, this should take an initial stab at the stepsize.
 
       constexpr int _Num = 10;
       std::array<std::array<_Tp, _Num>, _Num> __a;
+      std::array<_Tp, _Num> __rerr, __dy;
+      __rerr.fill(_Tp{0});
+      __dy.fill(_Tp{0});
 
       auto __hh = __h;
-      __a[0][0] = (__func(__x + __hh) - __func(__x - __hh)) / (_Tp{2} * __hh);
+      auto __fph = __func(__x + __hh);
+      auto __fmh = __func(__x - __hh);
+
+      __a[0][0] = (__fph - __fmh) / (_Tp{2} * __hh);
+      __rerr[0] += (std::abs(__fph) + std::abs(__fmh)) * _S_eps;
+      __dy[0] += std::abs(__a[0][0]);
 
       auto __ans = _Tp{0};
-      auto __err = _S_big;
+      auto __err_trunc = _S_big;
+      auto __err_round = _S_big;
       // Successive columns of the Neville tableau will go to smaller stepsizes
       // and to higher orders of extrapolation.
       for (int __j = 1; __j < _Num; ++__j)
 	{
 	  // Try a new, smaller stepsize.
 	  __hh /= _S_scale;
-	  __a[0][__j] = (__func(__x + __hh) - __func(__x - __hh))
-		      / (_Tp{2} * __hh);
-	  auto __fac = _S_scale2;
+	  __fph = __func(__x + __hh);
+	  __fmh = __func(__x - __hh);
+	  __a[0][__j] = (__fph - __fmh) / (_Tp{2} * __hh);
+	  __rerr[__j] += (std::abs(__fph) + std::abs(__fmh)) * _S_eps;
+	  __dy[__j] = std::abs(__a[0][__j]);//std::max(__dy[__j], std::abs(__a[0][__j]));
+	  auto __fac = _Tp{1};
 	  for (int __i = 1; __i <= __j; ++__i)
 	    {
 	      // Compute extrapolations of various orders, requiring
 	      // no new function evaluations.
+	      __fac *= _S_scale2;
 	      __a[__i][__j] = (__fac * __a[__i-1][__j] - __a[__i-1][__j-1])
 			    / (__fac - _Tp{1});
-	      __fac *= _S_scale2;
 	      // Compare each new extrapolation to one order lower,
 	      // both at the present stepsize and to the previous one.
 	      auto __errt = std::max(std::abs(__a[__i][__j] - __a[__i-1][__j]),
 				   std::abs(__a[__i][__j] - __a[__i-1][__j-1]));
-	      if (__errt <= __err)
+	      if (__errt <= __err_trunc)
 		{
-		  __err = __errt;
 		  __ans = __a[__i][__j];
+		  __err_trunc = __errt;
+		  __err_round = __rerr[__j] / __h
+			      + __dy[__j] * std::abs(__x / __h) * _S_eps;
 		}
 	    }
 
 	  // Quit if higher order is worse by a significant factor Safe.
 	  if (std::abs(__a[__j][__j])
-	    - std::abs(__a[__j - 1][__j - 1]) >= _S_safe * __err)
+	    - std::abs(__a[__j - 1][__j - 1]) >= _S_safe * __err_trunc)
 	    break;
 	}
 
       // @todo Figure out a rounding error for the Ridder derivative.
       // __e[__j] = (std::abs(__fp) + std::abs(__fm)) * _S_eps;
-      return {__ans, __err, _Tp{0}};
+      return {__ans, __err_trunc, __err_round};
     }
 
 #endif // DERIVATIVE_TCC

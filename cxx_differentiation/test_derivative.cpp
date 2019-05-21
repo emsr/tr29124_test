@@ -34,7 +34,7 @@ template<typename Tp>
   df2(Tp x)
   {
     if (x >= Tp{0})
-      return Tp{1.5} * std::sqrt(x);
+      return Tp{1.5L} * std::sqrt(x);
     else
       return Tp{0};
   }
@@ -107,6 +107,8 @@ template<typename Differ, typename Func, typename Deriv, typename Tp>
       std::cout << "PASS: ";
     std::cout << " (" << std::setw(w) << res << " observed vs "
 	      << std::setw(w) << exp << " expected)";
+    std::cout << " (" << std::setw(w) << err_trunc << " trunc and "
+	      << std::setw(w) << err_round << " round)";
     std::cout << ' ' << desc << '\n';
   }
 
@@ -120,20 +122,20 @@ template<typename Tp>
     test_derivative(derivative_backward<Func,Tp>, f1<Tp>, df1<Tp>, Tp{1}, "exp(x), x=1, backward deriv");
     test_derivative(derivative_ridder<Func,Tp>, f1<Tp>, df1<Tp>, Tp{1}, "exp(x), x=1, Ridder's deriv");
 
-    test_derivative(derivative_central<Func,Tp>, f2<Tp>, df2<Tp>, Tp{0.1}, "x^(3/2), x=0.1, central deriv");
-    test_derivative(derivative_forward<Func,Tp>, f2<Tp>, df2<Tp>, Tp{0.1}, "x^(3/2), x=0.1, forward deriv");
-    test_derivative(derivative_backward<Func,Tp>, f2<Tp>, df2<Tp>, Tp{0.1}, "x^(3/2), x=0.1, backward deriv");
-    test_derivative(derivative_ridder<Func,Tp>, f2<Tp>, df2<Tp>, Tp{0.1}, "x^(3/2), x=0.1, Ridder's deriv");
+    test_derivative(derivative_central<Func,Tp>, f2<Tp>, df2<Tp>, Tp{0.1L}, "x^(3/2), x=0.1, central deriv");
+    test_derivative(derivative_forward<Func,Tp>, f2<Tp>, df2<Tp>, Tp{0.1L}, "x^(3/2), x=0.1, forward deriv");
+    test_derivative(derivative_backward<Func,Tp>, f2<Tp>, df2<Tp>, Tp{0.1L}, "x^(3/2), x=0.1, backward deriv");
+    test_derivative(derivative_ridder<Func,Tp>, f2<Tp>, df2<Tp>, Tp{0.1L}, "x^(3/2), x=0.1, Ridder's deriv");
 
-    test_derivative(derivative_central<Func,Tp>, f3<Tp>, df3<Tp>, Tp{0.45}, "sin(1/x), x=0.45, central deriv");
-    test_derivative(derivative_forward<Func,Tp>, f3<Tp>, df3<Tp>, Tp{0.45}, "sin(1/x), x=0.45, forward deriv");
-    test_derivative(derivative_backward<Func,Tp>, f3<Tp>, df3<Tp>, Tp{0.45}, "sin(1/x), x=0.45, backward deriv");
-    test_derivative(derivative_ridder<Func,Tp>, f3<Tp>, df3<Tp>, Tp{0.45}, "sin(1/x), x=0.45, Ridder's deriv");
+    test_derivative(derivative_central<Func,Tp>, f3<Tp>, df3<Tp>, Tp{0.45L}, "sin(1/x), x=0.45, central deriv");
+    test_derivative(derivative_forward<Func,Tp>, f3<Tp>, df3<Tp>, Tp{0.45L}, "sin(1/x), x=0.45, forward deriv");
+    test_derivative(derivative_backward<Func,Tp>, f3<Tp>, df3<Tp>, Tp{0.45L}, "sin(1/x), x=0.45, backward deriv");
+    test_derivative(derivative_ridder<Func,Tp>, f3<Tp>, df3<Tp>, Tp{0.45L}, "sin(1/x), x=0.45, Ridder's deriv");
 
-    test_derivative(derivative_central<Func,Tp>, f4<Tp>, df4<Tp>, Tp{0.5}, "exp(-x^2), x=0.5, central deriv");
-    test_derivative(derivative_forward<Func,Tp>, f4<Tp>, df4<Tp>, Tp{0.5}, "exp(-x^2), x=0.5, forward deriv");
-    test_derivative(derivative_backward<Func,Tp>, f4<Tp>, df4<Tp>, Tp{0.5}, "exp(-x^2), x=0.5, backward deriv");
-    test_derivative(derivative_ridder<Func,Tp>, f4<Tp>, df4<Tp>, Tp{0.5}, "exp(-x^2), x=0.5, Ridder's deriv");
+    test_derivative(derivative_central<Func,Tp>, f4<Tp>, df4<Tp>, Tp{0.5L}, "exp(-x^2), x=0.5, central deriv");
+    test_derivative(derivative_forward<Func,Tp>, f4<Tp>, df4<Tp>, Tp{0.5L}, "exp(-x^2), x=0.5, forward deriv");
+    test_derivative(derivative_backward<Func,Tp>, f4<Tp>, df4<Tp>, Tp{0.5L}, "exp(-x^2), x=0.5, backward deriv");
+    test_derivative(derivative_ridder<Func,Tp>, f4<Tp>, df4<Tp>, Tp{0.5L}, "exp(-x^2), x=0.5, Ridder's deriv");
 
     test_derivative(derivative_central<Func,Tp>, f5<Tp>, df5<Tp>, Tp{0}, "x^2, x=0, central deriv");
     test_derivative(derivative_forward<Func,Tp>, f5<Tp>, df5<Tp>, Tp{0}, "x^2, x=0, forward deriv");
@@ -149,5 +151,12 @@ template<typename Tp>
 int
 main()
 {
+  std::cout << "\nfloat\n";
+  test_all<float>();
+
+  std::cout << "\ndouble\n";
   test_all<double>();
+
+  std::cout << "\nlong double\n";
+  test_all<long double>();
 }
