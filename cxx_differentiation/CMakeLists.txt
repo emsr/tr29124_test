@@ -15,8 +15,8 @@ list(APPEND cxx_differentiation_INCLUDES
   include/ext/derivative.tcc
 )
 
-include_directories(include)
 
 add_executable(test_derivative test_derivative.cpp)
+target_include_directories(test_derivative PRIVATE include)
 
 add_test(NAME derivative_test0 COMMAND bash -c "./test_derivative > test_derivative.txt")
