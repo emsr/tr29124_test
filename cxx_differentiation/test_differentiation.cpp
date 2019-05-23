@@ -1,8 +1,8 @@
 /*
-g++ -std=c++17 -g -Iinclude -o test_derivative test_derivative.cpp
+g++ -std=c++17 -g -Iinclude -o test_differentiation test_differentiation.cpp
 */
 
-#include <ext/derivative.h>
+#include <ext/differentiation.h>
 
 #include <cmath>
 #include <string_view>

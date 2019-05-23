@@ -11,15 +11,15 @@ set(CMAKE_CXX_STANDARD 17)
 enable_testing()
 
 list(APPEND cxx_differentiation_INCLUDES
-  include/ext/derivative.h
-  include/ext/derivative.tcc
+  include/ext/differentiation.h
+  include/ext/differentiation.tcc
 )
 
 
-add_executable(test_derivative test_derivative.cpp)
-target_include_directories(test_derivative PRIVATE include)
+add_executable(test_differentiation test_differentiation.cpp)
+target_include_directories(test_differentiation PRIVATE include)
 
-add_test(NAME derivative_test0 COMMAND bash -c "./test_derivative > test_derivative.txt")
+add_test(NAME differentiation_test0 COMMAND bash -c "./test_differentiation > test_differentiation.txt")
 
 find_package(Doxygen)
 if (DOXYGEN_FOUND)
