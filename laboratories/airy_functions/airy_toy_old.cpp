@@ -13,7 +13,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old
 #include <vector>
 #include <complex>
 #include <bits/float128_io.h>
-#include <bits/summation.h>
+#include <ext/summation.h>
 
 
   /**
@@ -2148,7 +2148,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o airy_toy_old airy_toy_old
 
       std::complex<_Tp> _Fp1d3, _Fm1d3, _Fp2d3, _Fm2d3;
 
-      if (std::abs(__zzz) < _Tp{10} * __gnu_cxx::__min<_Tp>())
+      if (std::abs(__zzz) < _Tp{10} * std::numeric_limits<_Tp>::min())
 	return __airy_t<std::complex<_Tp>>{__z, _S_Ai0, _S_Aip0, _S_Bi0, _S_Bip0};
       else
 	{

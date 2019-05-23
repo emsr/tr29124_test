@@ -11,7 +11,7 @@ $HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -I. -o debug_airy debug_airy.cpp -
 #include <limits>
 #include <ext/cmath>
 #include <bits/specfun.h>
-#include "wrap_gsl.h"
+#include <wrap_gsl.h>
 
 double
 chebyshev_eval(double a, double b, double * c, int m, double x)

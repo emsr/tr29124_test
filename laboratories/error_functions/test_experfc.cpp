@@ -19,8 +19,21 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_experfc t
     _Tp
     __experfc_func(_Tp __x)
     {
-      mpfr::mpreal __X((long double)__x, 256);
-      return (long double)(mpfr::exp(__X * __X) * mpfr::erfc(__X));
+      mpfr::mpreal __X((long double)__x, 1024);
+      if (__x < _Tp{20})
+	return (long double)(mpfr::exp(__X * __X) * mpfr::erfc(__X));
+      else
+	{
+return 0;
+/*
+	  constexpr auto __log2_e = 1.442695040888963407359924681001892137427L;
+	  auto lg = __X * __X + mpfr::log(mpfr::erfc(__X));
+	  if (lg * __log2_e < 1022)
+	    return (long double)(mpfr::exp(lg));
+	  else
+	    return _Tp{0};
+*/
+	}
     }
 
   /**

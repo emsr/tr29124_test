@@ -12,7 +12,7 @@ PATH=wrappers/debug:$PATH ./test_little_airy > test_little_airy.txt
 
 #include "airy.tcc"
 
-#include "wrap_gsl.h"
+#include <wrap_gsl.h>
 
 int
 main()

@@ -1,3 +1,8 @@
+CMakeCache.txt
+CMakeFiles/
+CTestTestfile.cmake
+Makefile
+cmake_install.cmake
 
 # These are not targets!
 build_atan_table

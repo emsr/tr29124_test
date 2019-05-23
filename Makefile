@@ -101,6 +101,7 @@ BINS = \
        $(TEST_BIN_DIR)/test_cyl_hankel \
        $(TEST_BIN_DIR)/test_dawson \
        $(TEST_BIN_DIR)/test_debye \
+       $(TEST_BIN_DIR)/test_derivative \
        $(TEST_BIN_DIR)/test_digamma \
        $(TEST_BIN_DIR)/test_dilog \
        $(TEST_BIN_DIR)/test_dirichlet_eta \
@@ -531,6 +532,7 @@ test: $(TEST_OUT_DIR) \
   run_test_cyl_hankel \
   run_test_dawson \
   run_test_debye \
+  run_test_derivative \
   run_test_digamma \
   run_test_dilog \
   run_test_dirichlet_eta \
@@ -1072,6 +1074,12 @@ $(TEST_BIN_DIR)/test_debye: wrappers_debug laboratories/zeta_functions/test_deby
 
 run_test_debye: $(TEST_BIN_DIR)/test_debye
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_debye > $(TEST_OUT_DIR)/test_debye.txt
+
+$(TEST_BIN_DIR)/test_derivative: wrappers_debug cxx_differentiation/test_derivative.cpp
+	$(CXXMAX) $(INCLUDES) -Iwrappers -Icxx_differentiation/include -o $(TEST_BIN_DIR)/test_derivative cxx_differentiation/test_derivative.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+
+run_test_derivative: $(TEST_BIN_DIR)/test_derivative
+	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_derivative > $(TEST_OUT_DIR)/test_derivative.txt
 
 $(TEST_BIN_DIR)/test_digamma: wrappers_debug laboratories/gamma_functions/test_digamma.cpp
 	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_digamma laboratories/gamma_functions/test_digamma.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
