@@ -13,6 +13,14 @@
    * Compute the error using the difference between the 5-point
    * and the 3-point rule (x-h, x, x+h).
    * Again the central point is not used.
+   *
+   * @tparam _Func A function type callable with a numeric type
+   *          and returning the same.
+   * @tparam _Tp  The foating point type of the argument and stepsize.
+   *
+   * @param __func The function to be differentated.
+   * @param __x The location at which the derivative is required.
+   * @param __h The stepsize.
    */
   template<typename _Func, typename _Tp>
     derivative_t<_Tp>
@@ -46,6 +54,14 @@
    *
    * Compute the error using the difference between the 4-point and
    * the 2-point rule (x + h/2, x+h).
+   *
+   * @tparam _Func A function type callable with a numeric type
+   *          and returning the same.
+   * @tparam _Tp  The foating point type of the argument and stepsize.
+   *
+   * @param __func The function to be differentated.
+   * @param __x The location at which the derivative is required.
+   * @param __h The stepsize.
    */
   template<typename _Func, typename _Tp>
     derivative_t<_Tp>
@@ -115,6 +131,14 @@ IMHO, this should take an initial stab at the stepsize.
    * The value h is input as an estimated stepsize; it should not be small
    * but rather it should be an interval over which the function changes
    * substantially.
+   *
+   * @tparam _Func A function type callable with a numeric type
+   *          and returning the same.
+   * @tparam _Tp  The foating point type of the argument and stepsize.
+   *
+   * @param __func The function to be differentated.
+   * @param __x The location at which the derivative is required.
+   * @param __h The initial stepsize.
    */
   template<typename _Func, typename _Tp>
     derivative_t<_Tp>
