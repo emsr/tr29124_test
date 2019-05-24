@@ -143,6 +143,29 @@
     derivative_t<_Tp>
     derivative_ridder(_Func __func, _Tp __x, _Tp __h);
 
+  /**
+   * Compute the derivative of a function func at a point x by automatic
+   * differentiation:
+   * @f[
+   *    f'(x) = Im[f(x + i\epsilon)] / \epsilon
+   * @f]
+   * This routine ignores the input stepsize and uses machine epsilon.
+   *
+   * If your function has complex overloads and works at least very near
+   * the real axis this is a very accurate routine.
+   *
+   * @tparam _Func A function type callable with a numeric type
+   *          and returning the same.
+   * @tparam _Tp  The foating point type of the argument and stepsize.
+   *
+   * @param __func The function to be differentated.
+   * @param __x The (real) location at which the derivative is required.
+   * @param __h The initial stepsize.
+   */
+  template<typename _Func, typename _Tp>
+    derivative_t<_Tp>
+    derivative_automatic(_Func __func, _Tp __x, _Tp);
+
 #include <ext/differentiation.tcc>
 
 #endif // DIFFERENTIATION_H

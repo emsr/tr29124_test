@@ -35,11 +35,19 @@
 #include <cmath>
 #include <limits>
 #include <array>
+#include <complex>
 
   /**
    * Compute the derivative using the 5-point rule
    * (x-h, x-h/2, x, x+h/2, x+h).
    * Note that the central point is not used.
+   * @f[
+   *   f'_3(x) = \frac{f(x + h) - f(x - h)}{2h}
+   * @f]
+   * @f[
+   *   f'_5(x) = \frac{4}{3}\frac{f(x + h/2) - f(x - h/2)}{2h}
+   *           - \frac{1}{3}f'_3(x)
+   * @f]
    *
    * Compute the error using the difference between the 5-point
    * and the 3-point rule (x-h, x, x+h).
@@ -82,6 +90,14 @@
   /**
    * Compute the derivative using the 4-point rule (x + h/4, x + h/2,
    * x + 3h/4, x + h).
+   * @f[
+   *    f'_2(x) = \frac{f(x + h) - f(x + h/2)}{h/2}
+   * @f]
+   * @f[
+   *    f'_4(x) = \frac{22(f(x + h) - f(x + 3h/4))
+   *                  - 62(f(x + 3h/4) - f(x + h/2))
+   *                  + 52(f(x + h/2 - f(x + h/4))}{3h}
+   * @f]
    *
    * Compute the error using the difference between the 4-point and
    * the 2-point rule (x + h/2, x+h).
@@ -106,9 +122,9 @@
       const auto __f4 = __func(__x + __h);
 
       const auto __r2 = _Tp{2} * (__f4 - __f2) / __h;
-      const auto __r4 = ((_Tp{22} / _Tp{3}) * (__f4 - __f3)
-		       - (_Tp{62} / _Tp{3}) * (__f3 - __f2)
-		       + (_Tp{52} / _Tp{3}) * (__f2 - __f1)) / __h;
+      const auto __r4 = (_Tp{22} * (__f4 - __f3)
+		       - _Tp{62} * (__f3 - __f2)
+		       + _Tp{52} * (__f2 - __f1)) / (_Tp{3} * __h);
 
 
       const auto __e4 = _Tp{2 * 20.67}
@@ -122,6 +138,7 @@
 
       return {__r4, std::abs(__r4 - __r2), __err_round};
     }
+
 /* optimize stepsize.
 IMHO, this should take an initial stab at the stepsize.
   template<typename _Func, typename _Tp>
@@ -158,6 +175,9 @@ IMHO, this should take an initial stab at the stepsize.
   /**
    * Compute the derivative of a function func at a point x by Ridder's method
    * of polynomial extrapolation.
+   * @f[
+   *
+   * @f]
    *
    * The value h is input as an estimated stepsize; it should not be small
    * but rather it should be an interval over which the function changes
@@ -244,6 +264,37 @@ IMHO, this should take an initial stab at the stepsize.
       // @todo Figure out a rounding error for the Ridder derivative.
       // __e[__j] = (std::abs(__fp) + std::abs(__fm)) * _S_eps;
       return {__ans, __err_trunc, __err_round};
+    }
+
+  /**
+   * Compute the derivative of a function func at a point x by automatic
+   * differentiation:
+   * @f[
+   *    f'(x) = Im[f(x + i\epsilon)] / \epsilon
+   * @f]
+   * This routine ignores the input stepsize and uses machine epsilon.
+   *
+   * If your function has complex overloads and works at least very near
+   * the real axis this is a very accurate routine.
+   *
+   * @tparam _Func A function type callable with a numeric type
+   *          and returning the same.
+   * @tparam _Tp  The foating point type of the argument and stepsize.
+   *
+   * @param __func The function to be differentated.
+   * @param __x The (real) location at which the derivative is required.
+   * @param __h The initial stepsize.
+   */
+  template<typename _Func, typename _Tp>
+    derivative_t<_Tp>
+    derivative_automatic(_Func __func, _Tp __x, _Tp)
+    {
+      using _Cmplx = std::complex<_Tp>;
+      constexpr auto _S_i = _Cmplx{0, 1};
+      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto __w = __x + _S_i * _S_eps;
+      const auto __ans = std::imag(__func(__w)) / _S_eps;
+      return {__ans, _S_eps, _S_eps};
     }
 
 #endif // DIFFERENTIATION_TCC

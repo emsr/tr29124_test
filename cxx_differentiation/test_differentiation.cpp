@@ -23,7 +23,7 @@ template<typename Tp>
   Tp
   f2(Tp x)
   {
-    if (x >= Tp{0})
+    if (std::real(x) >= 0)
       return x * std::sqrt(x);
     else
       return Tp{0};
@@ -33,7 +33,7 @@ template<typename Tp>
   Tp
   df2(Tp x)
   {
-    if (x >= Tp{0})
+    if (std::real(x) >= 0)
       return Tp{1.5L} * std::sqrt(x);
     else
       return Tp{0};
@@ -43,7 +43,7 @@ template<typename Tp>
   Tp
   f3(Tp x)
   {
-    if (x != Tp{0})
+    if (std::abs(x) != 0)
       return std::sin(Tp{1} / x);
     else
       return Tp{0};
@@ -53,7 +53,7 @@ template<typename Tp>
   Tp
   df3(Tp x)
   {
-    if (x != Tp{0})
+    if (std::abs(x) != 0)
       return -std::cos(Tp{1} / x) / (x * x);
     else
       return Tp{0};
@@ -117,35 +117,42 @@ template<typename Tp>
   test_all()
   {
     using Func = Tp(Tp);
+    using CFunc = std::complex<Tp>(std::complex<Tp>);
     test_derivative(derivative_central<Func,Tp>, f1<Tp>, df1<Tp>, Tp{1}, "exp(x), x=1, central deriv");
     test_derivative(derivative_forward<Func,Tp>, f1<Tp>, df1<Tp>, Tp{1}, "exp(x), x=1, forward deriv");
     test_derivative(derivative_backward<Func,Tp>, f1<Tp>, df1<Tp>, Tp{1}, "exp(x), x=1, backward deriv");
     test_derivative(derivative_ridder<Func,Tp>, f1<Tp>, df1<Tp>, Tp{1}, "exp(x), x=1, Ridder's deriv");
+    test_derivative(derivative_automatic<CFunc,Tp>, f1<std::complex<Tp>>, df1<Tp>, Tp{1}, "exp(x), x=1, automatic deriv");
 
     test_derivative(derivative_central<Func,Tp>, f2<Tp>, df2<Tp>, Tp{0.1L}, "x^(3/2), x=0.1, central deriv");
     test_derivative(derivative_forward<Func,Tp>, f2<Tp>, df2<Tp>, Tp{0.1L}, "x^(3/2), x=0.1, forward deriv");
     test_derivative(derivative_backward<Func,Tp>, f2<Tp>, df2<Tp>, Tp{0.1L}, "x^(3/2), x=0.1, backward deriv");
     test_derivative(derivative_ridder<Func,Tp>, f2<Tp>, df2<Tp>, Tp{0.1L}, "x^(3/2), x=0.1, Ridder's deriv");
+    test_derivative(derivative_automatic<CFunc,Tp>, f2<std::complex<Tp>>, df2<Tp>, Tp{0.1L}, "exp(x), x=1, automatic deriv");
 
     test_derivative(derivative_central<Func,Tp>, f3<Tp>, df3<Tp>, Tp{0.45L}, "sin(1/x), x=0.45, central deriv");
     test_derivative(derivative_forward<Func,Tp>, f3<Tp>, df3<Tp>, Tp{0.45L}, "sin(1/x), x=0.45, forward deriv");
     test_derivative(derivative_backward<Func,Tp>, f3<Tp>, df3<Tp>, Tp{0.45L}, "sin(1/x), x=0.45, backward deriv");
     test_derivative(derivative_ridder<Func,Tp>, f3<Tp>, df3<Tp>, Tp{0.45L}, "sin(1/x), x=0.45, Ridder's deriv");
+    test_derivative(derivative_automatic<CFunc,Tp>, f3<std::complex<Tp>>, df3<Tp>, Tp{0.45L}, "exp(x), x=1, automatic deriv");
 
     test_derivative(derivative_central<Func,Tp>, f4<Tp>, df4<Tp>, Tp{0.5L}, "exp(-x^2), x=0.5, central deriv");
     test_derivative(derivative_forward<Func,Tp>, f4<Tp>, df4<Tp>, Tp{0.5L}, "exp(-x^2), x=0.5, forward deriv");
     test_derivative(derivative_backward<Func,Tp>, f4<Tp>, df4<Tp>, Tp{0.5L}, "exp(-x^2), x=0.5, backward deriv");
     test_derivative(derivative_ridder<Func,Tp>, f4<Tp>, df4<Tp>, Tp{0.5L}, "exp(-x^2), x=0.5, Ridder's deriv");
+    test_derivative(derivative_automatic<CFunc,Tp>, f4<std::complex<Tp>>, df4<Tp>, Tp{0.5L}, "exp(x), x=1, automatic deriv");
 
     test_derivative(derivative_central<Func,Tp>, f5<Tp>, df5<Tp>, Tp{0}, "x^2, x=0, central deriv");
     test_derivative(derivative_forward<Func,Tp>, f5<Tp>, df5<Tp>, Tp{0}, "x^2, x=0, forward deriv");
     test_derivative(derivative_backward<Func,Tp>, f5<Tp>, df5<Tp>, Tp{0}, "x^2, x=0, backward deriv");
     test_derivative(derivative_ridder<Func,Tp>, f5<Tp>, df5<Tp>, Tp{0}, "x^2, x=0, Ridder's deriv");
+    test_derivative(derivative_automatic<CFunc,Tp>, f5<std::complex<Tp>>, df5<Tp>, Tp{0}, "exp(x), x=1, automatic deriv");
 
     test_derivative(derivative_central<Func,Tp>, f6<Tp>, df6<Tp>, Tp{10}, "1/x, x=10, central deriv");
     test_derivative(derivative_forward<Func,Tp>, f6<Tp>, df6<Tp>, Tp{10}, "1/x, x=10, forward deriv");
     test_derivative(derivative_backward<Func,Tp>, f6<Tp>, df6<Tp>, Tp{10}, "1/x, x=10, backward deriv");
     test_derivative(derivative_ridder<Func,Tp>, f6<Tp>, df6<Tp>, Tp{10}, "1/x, x=10, Ridder's deriv");
+    test_derivative(derivative_automatic<CFunc,Tp>, f6<std::complex<Tp>>, df6<Tp>, Tp{10}, "exp(x), x=1, automatic deriv");
   }
 
 int

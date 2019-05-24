@@ -75,7 +75,7 @@ Include dependency graph for differentiation.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="differentiation_8h__incl.png" border="0" usemap="#include_2ext_2differentiation_8h" alt=""/></div>
 <map name="include_2ext_2differentiation_8h" id="include_2ext_2differentiation_8h">
-<area shape="rect" id="node2" href="differentiation_8tcc.html" title="ext/differentiation.tcc" alt="" coords="43,80,187,107"/>
+<area shape="rect" id="node2" href="differentiation_8tcc.html" title="ext/differentiation.tcc" alt="" coords="80,80,224,107"/>
 </map>
 </div>
 </div>
@@ -100,10 +100,69 @@ Functions</h2></td></tr>
 <tr class="memitem:a3e9da1abac5e2d4a10e0eeca1812590d"><td class="memTemplParams" colspan="2">template&lt;typename _Func , typename _Tp &gt; </td></tr>
 <tr class="memitem:a3e9da1abac5e2d4a10e0eeca1812590d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structderivative__t.html">derivative_t</a>&lt; _Tp &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="differentiation_8h.html#a3e9da1abac5e2d4a10e0eeca1812590d">derivative_ridder</a> (_Func __func, _Tp __x, _Tp __h)</td></tr>
 <tr class="separator:a3e9da1abac5e2d4a10e0eeca1812590d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb69998cd2c44fb3f875be91939d61e4"><td class="memTemplParams" colspan="2">template&lt;typename _Func , typename _Tp &gt; </td></tr>
+<tr class="memitem:adb69998cd2c44fb3f875be91939d61e4"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structderivative__t.html">derivative_t</a>&lt; _Tp &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="differentiation_8h.html#adb69998cd2c44fb3f875be91939d61e4">derivative_automatic</a> (_Func __func, _Tp __x, _Tp)</td></tr>
+<tr class="separator:adb69998cd2c44fb3f875be91939d61e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file contains the declarations and the inline implementations of the differentiation data structures and routines. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="adb69998cd2c44fb3f875be91939d61e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb69998cd2c44fb3f875be91939d61e4">&#9670;&nbsp;</a></span>derivative_automatic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename _Func , typename _Tp &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structderivative__t.html">derivative_t</a>&lt;_Tp&gt; derivative_automatic </td>
+          <td>(</td>
+          <td class="paramtype">_Func&#160;</td>
+          <td class="paramname"><em>__func</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">_Tp&#160;</td>
+          <td class="paramname"><em>__x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">_Tp&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute the derivative of a function func at a point x by automatic differentiation: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ f'(x) = Im[f(x + i\epsilon)] / \epsilon \]" src="form_3.png"/>
+</p>
+<p> This routine ignores the input stepsize and uses machine epsilon.</p>
+<p>If your function has complex overloads and works at least very near the real axis this is a very accurate routine.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">_Func</td><td>A function type callable with a numeric type and returning the same. </td></tr>
+    <tr><td class="paramname">_Tp</td><td>The foating point type of the argument and stepsize.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__func</td><td>The function to be differentated. </td></tr>
+    <tr><td class="paramname">__x</td><td>The (real) location at which the derivative is required. </td></tr>
+    <tr><td class="paramname">__h</td><td>The initial stepsize. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="abf178afb597679c287a7f8269d89a394"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abf178afb597679c287a7f8269d89a394">&#9670;&nbsp;</a></span>derivative_backward()</h2>
 
@@ -212,6 +271,28 @@ template&lt;typename _Func , typename _Tp &gt; </div>
   <table class="params">
     <tr><td class="paramname">__func</td><td>The function to be differentated. </td></tr>
     <tr><td class="paramname">__x</td><td>The location at which the derivative is required. </td></tr>
+    <tr><td class="paramname">__h</td><td>The stepsize.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Compute the derivative using the 5-point rule (x-h, x-h/2, x, x+h/2, x+h). Note that the central point is not used. </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ f'_3(x) = \frac{f(x + h) - f(x - h)}{2h} \]" src="form_0.png"/>
+</p>
+ <p class="formulaDsp">
+<img class="formulaDsp" alt="\[ f'_5(x) = \frac{4}{3}\frac{f(x + h/2) - f(x - h/2)}{2h} - \frac{1}{3}f'_3(x) \]" src="form_1.png"/>
+</p>
+<p>Compute the error using the difference between the 5-point and the 3-point rule (x-h, x, x+h). Again the central point is not used.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">_Func</td><td>A function type callable with a numeric type and returning the same. </td></tr>
+    <tr><td class="paramname">_Tp</td><td>The foating point type of the argument and stepsize.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__func</td><td>The function to be differentated. </td></tr>
+    <tr><td class="paramname">__x</td><td>The location at which the derivative is required. </td></tr>
     <tr><td class="paramname">__h</td><td>The stepsize. </td></tr>
   </table>
   </dd>
@@ -265,6 +346,28 @@ template&lt;typename _Func , typename _Tp &gt; </div>
   <table class="params">
     <tr><td class="paramname">__func</td><td>The function to be differentated. </td></tr>
     <tr><td class="paramname">__x</td><td>The location at which the derivative is required. </td></tr>
+    <tr><td class="paramname">__h</td><td>The stepsize.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Compute the derivative using the 4-point rule (x + h/4, x + h/2, x + 3h/4, x + h). </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ f'_2(x) = \frac{f(x + h) - f(x + h/2)}{h/2} \]" src="form_4.png"/>
+</p>
+ <p class="formulaDsp">
+<img class="formulaDsp" alt="\[ f'_4(x) = \frac{22(f(x + h) - f(x + 3h/4)) - 62(f(x + 3h/4) - f(x + h/2)) + 52(f(x + h/2 - f(x + h/4))}{3h} \]" src="form_5.png"/>
+</p>
+<p>Compute the error using the difference between the 4-point and the 2-point rule (x + h/2, x+h).</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">_Func</td><td>A function type callable with a numeric type and returning the same. </td></tr>
+    <tr><td class="paramname">_Tp</td><td>The foating point type of the argument and stepsize.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__func</td><td>The function to be differentated. </td></tr>
+    <tr><td class="paramname">__x</td><td>The location at which the derivative is required. </td></tr>
     <tr><td class="paramname">__h</td><td>The stepsize. </td></tr>
   </table>
   </dd>
@@ -306,6 +409,25 @@ template&lt;typename _Func , typename _Tp &gt; </div>
       </table>
 </div><div class="memdoc">
 <p>Compute the derivative of a function func at a point x by Ridder's method of polynomial extrapolation.</p>
+<p>The value h is input as an estimated stepsize; it should not be small but rather it should be an interval over which the function changes substantially.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">_Func</td><td>A function type callable with a numeric type and returning the same. </td></tr>
+    <tr><td class="paramname">_Tp</td><td>The foating point type of the argument and stepsize.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">__func</td><td>The function to be differentated. </td></tr>
+    <tr><td class="paramname">__x</td><td>The location at which the derivative is required. </td></tr>
+    <tr><td class="paramname">__h</td><td>The initial stepsize.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Compute the derivative of a function func at a point x by Ridder's method of polynomial extrapolation. </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \]" src="form_2.png"/>
+</p>
 <p>The value h is input as an estimated stepsize; it should not be small but rather it should be an interval over which the function changes substantially.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
