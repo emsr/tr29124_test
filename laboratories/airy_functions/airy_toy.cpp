@@ -2184,7 +2184,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy_old ../plot_data > .
   template<>
     constexpr std::size_t
     _Airy_asymp_data<float>::_S_max<long double> = 43;
-#if _GLIBCXX_HAVE_FLOAT128_MATH
+#ifdef _GLIBCXX_USE_FLOAT128
   template<>
     constexpr std::size_t
     _Airy_asymp_data<float>::_S_max<__float128> = 43;
@@ -2642,7 +2642,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy_old ../plot_data > .
   template<>
     constexpr std::size_t
     _Airy_asymp_data<double>::_S_max<long double> = 198;
-#if _GLIBCXX_HAVE_FLOAT128_MATH
+#ifdef _GLIBCXX_USE_FLOAT128
   template<>
     constexpr std::size_t
     _Airy_asymp_data<double>::_S_max<__float128> = 198;
@@ -3106,7 +3106,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy_old ../plot_data > .
   template<>
     constexpr std::size_t
     _Airy_asymp_data<long double>::_S_max<long double> = 201;
-#if _GLIBCXX_HAVE_FLOAT128_MATH
+#ifdef _GLIBCXX_USE_FLOAT128
   template<>
     constexpr std::size_t
     _Airy_asymp_data<long double>::_S_max<__float128> = 201;
@@ -3118,7 +3118,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy_old ../plot_data > .
   constexpr long double
   _Airy_asymp_data<long double>::_S_d[_Airy_asymp_data<long double>::_S_max_cd];
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
+#ifdef _GLIBCXX_USE_FLOAT128
   template<>
     struct _Airy_asymp_data<__float128>
     {
@@ -6215,7 +6215,7 @@ main(int n_app_args, char** arg)
   diff_airy_asymp_m<long double>();
   diff_airy_series<long double>();
   diff_airy_asymp_p<long double>();
-#if _GLIBCXX_HAVE_FLOAT128_MATH
+#ifdef _GLIBCXX_USE_FLOAT128
   std::cout << "\n__float128\n==========\n";
   run_toy<__float128>();
   //run_airy_asymp_m<__float128>();

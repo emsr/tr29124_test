@@ -1,4 +1,4 @@
-// Special functions -*- C++ -*-
+// Mathematical Special Functions for -*- C++ -*-
 
 // Copyright (C) 2006-2019 Free Software Foundation, Inc.
 //
@@ -7,12 +7,12 @@
 // terms of the GNU General Public License as published by the
 // Free Software Foundation; either version 3, or (at your option)
 // any later version.
-//
+
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
-//
+
 // Under Section 7 of GPL version 3, you are granted additional
 // permissions described in the GCC Runtime Library Exception, version
 // 3.1, as published by the Free Software Foundation.
@@ -110,22 +110,21 @@ namespace std _GLIBCXX_VISIBILITY(default)
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   * @defgroup math_spec_func C++ Mathematical Special Functions
+   * @defgroup mathsf Mathematical Special Functions
    * @ingroup numerics
    *
-   * A collection of advanced mathematical special functions.
-   * @{
-   */
-
-  /**
-   * @mainpage Mathematical Special Functions
+   * @section mathsf_desc Mathematical Special Functions
    *
-   * @section intro Introduction and History
+   * A collection of advanced mathematical special functions,
+   * defined by ISO/IEC IS 29124 and then added to ISO C++ 2017.
+   *
+   *
+   * @subsection mathsf_intro Introduction and History
    * The first significant library upgrade on the road to C++2011,
    * <a href="http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2005/n1836.pdf">
    * TR1</a>, included a set of 23 mathematical functions that significantly
-   * extended the standard transcendental functions inherited from C and declared
-   * in @<cmath@>.
+   * extended the standard transcendental functions inherited from C and
+   * declared in @<cmath@>.
    *
    * Although most components from TR1 were eventually adopted for C++11 these
    * math functions were left behind out of concern for implementability.
@@ -148,7 +147,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
    * For C++17 these functions were incorporated into the main standard.
    *
-   * @section contents Contents
+   * @subsection mathsf_contents Contents
    * The following functions are implemented in namespace @c std:
    * - @ref std::assoc_laguerre "assoc_laguerre - Associated Laguerre functions"
    * - @ref std::assoc_legendre "assoc_legendre - Associated Legendre functions"
@@ -159,7 +158,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *        "comp_ellint_1 - Complete elliptic functions of the first kind"
    * - @ref std::comp_ellint_2
    *        "comp_ellint_2 - Complete elliptic functions of the second kind"
-   * - @ref std::comp_ellint_3 "comp_ellint_3 - Complete elliptic functions of the third kind"
+   * - @ref std::comp_ellint_3
+   *        "comp_ellint_3 - Complete elliptic functions of the third kind"
    * - @ref std::cyl_bessel_i
    *        "cyl_bessel_i - Regular modified cylindrical Bessel functions"
    * - @ref std::cyl_bessel_j
@@ -330,9 +330,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *        "tricomi_u - Tricomi confluent hypergeometric function"
    * - @ref __gnu_cxx::zernike "zernike - Zernike polynomials"
    *
-   * @section general General Features
+   * <!-- @subsection mathsf_general General Features -->
    *
-   * @subsection promotion Argument Promotion
+   * @subsection mathsf_promotion Argument Promotion
    * The arguments suppled to the non-suffixed functions will be promoted
    * according to the following rules:
    * 1. If any argument intended to be floating point is given an integral value
@@ -340,12 +340,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * 2. All floating point arguments are promoted up to the largest floating
    *    point precision among them.
    *
-   * @subsection NaN NaN Arguments
+   * @subsection mathsf_NaN NaN Arguments
    * If any of the floating point arguments supplied to these functions is
    * invalid or NaN (std::numeric_limits<Tp>::quiet_NaN),
    * the value NaN is returned.
    *
-   * @section impl Implementation
+   * @subsection mathsf_impl Implementation
    *
    * We strive to implement the underlying math with type generic algorithms
    * to the greatest extent possible.  In practice, the functions are thin
@@ -358,24 +358,23 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Similaryly, <tt>long double</tt> should give you more dynamic range
    * and slightly more pecision than @c double on many systems.
    *
-   * @section testing Testing
+   * @subsection mathsf_testing Testing
    *
    * These functions have been tested against equivalent implementations
    * from the <a href="http://www.gnu.org/software/gsl">
    * Gnu Scientific Library, GSL</a> and
-   * <a href="http://www.boost.org/doc/libs/1_60_0/libs/
-   *          math/doc/html/index.html>Boost</a>
+   * <a href="http://www.boost.org/doc/libs/1_60_0/libs/math/doc/html/index.html>Boost</a>
    * and the ratio
    * @f[
    *   \frac{|f - f_{test}|}{|f_{test}|}
    * @f]
-   * is generally found to be within 10^-15 for 64-bit double
+   * is generally found to be within 10<sup>-15</sup> for 64-bit double
    * on linux-x86_64 systems over most of the ranges of validity.
    * 
    * @todo Provide accuracy comparisons on a per-function basis for a small
    *       number of targets.
    *
-   * @section bibliography General Bibliography
+   * @subsection mathsf_bibliography General Bibliography
    *
    * @see Abramowitz and Stegun: Handbook of Mathematical Functions,
    * with Formulas, Graphs, and Mathematical Tables
@@ -388,6 +387,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @see The old A&S has been redone as the
    * NIST Digital Library of Mathematical Functions: http://dlmf.nist.gov/
    * This version is far more navigable and includes more recent work.
+   *
+   * @see The PlanetMath website has a wealth of material.  In particular
+   * https://planetmath.org/msc.html#33_Special_functions
    *
    * @see An Atlas of Functions: with Equator, the Atlas Function Calculator
    * 2nd Edition, by Oldham, Keith B., Myland, Jan, Spanier, Jerome
@@ -404,11 +406,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * by Yudell L. Luke, Academic Press, 1969
    */
 
-  /** @} */ // math_spec_func
+  /** @} */ // mathsf
 
   /**
-   * @defgroup cxx17_math_spec_func C++17/IS29124 Mathematical Special Functions
-   * @ingroup math_spec_func
+   * @defgroup mathsf_std C++17/IS29124 Mathematical Special Functions
+   * @ingroup mathsf
    *
    * A collection of advanced mathematical special functions for C++17
    * and IS29124.
@@ -419,7 +421,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the associated Laguerre polynomial @f$ L_n^{(m)}(x) @f$
-   * of order @f$ n @f$, degree @f$ m @f$, and @c float argument @f$ x @f$.
+   * of order @c n, degree @c m, and @c float argument @c x.
    *
    * @see assoc_laguerre for more details.
    */
@@ -429,8 +431,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the associated Laguerre polynomial @f$ L_n^{(m)}(x) @f$
-   * of order @f$ n @f$, degree @f$ m @f$ and <tt>long double</tt>
-   * argument @f$ x @f$.
+   * of order @c n, degree @c m and <tt>long double</tt>
+   * argument @c x.
    *
    * @see assoc_laguerre for more details.
    */
@@ -440,8 +442,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the associated Laguerre polynomial @f$ L_n^{(m)}(x) @f$
-   * of nonnegative degree @f$ n @f$, nonnegative order @f$ m @f$
-   * and real argument @f$ x @f$.
+   * of nonnegative degree @c n, nonnegative order @c m
+   * and real argument @c x.
    *
    * The associated Laguerre function of real order @f$ \alpha @f$,
    * @f$ L_n^{(\alpha)}(x) @f$, is defined by
@@ -480,8 +482,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the associated Laguerre polynomial @f$ L_n^{(\alpha)}(x) @f$
-   * of nonnegative degree @f$ n @f$, order @f$ \alpha @f$
-   * and real argument @f$ x @f$.
+   * of nonnegative degree @c n, order @f$ \alpha @f$
+   * and real argument @c x.
    *
    * @tparam _Talpha The (signed integer or floating-point) type
    *                 of the degree @c __alpha1.
@@ -499,7 +501,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the associated Legendre function @f$ P_l^m(x) @f$
-   * of degree @f$ l @f$, order @f$ m @f$, and @c float argument @f$ x @f$.
+   * of degree @c l, order @c m, and @c float argument @c x.
    *
    * @see assoc_legendre for more details.
    */
@@ -509,8 +511,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the associated Legendre function @f$ P_l^m(x) @f$
-   * of degree @f$ l @f$, order @f$ m @f$, and @c <tt>long double</tt>
-   * argument @f$ x @f$.
+   * of degree @c l, order @c m, and @c <tt>long double</tt>
+   * argument @c x.
    *
    * @see assoc_legendre for more details.
    */
@@ -520,7 +522,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the associated Legendre function @f$ P_l^m(x) @f$
-   * of degree @f$ l @f$, order @f$ m @f$, and real argument @f$ x @f$.
+   * of degree @c l, order @c m, and real argument @c x.
    *
    * The associated Legendre function is derived from the Legendre function
    * @f$ P_l(x) @f$ by the Rodrigues formula:
@@ -528,7 +530,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   P_l^m(x) = (1 - x^2)^{m/2}\frac{d^m}{dx^m}P_l(x)
    * @f]
    * @see legendre for details of the Legendre function of degree @c l
-   * @note @f$ P_l^m(x) = 0 @f$ if @f$ m > l @f$.
+   * @note @f$ P_l^m(x) = 0 @c if m > l @f$.
    *
    * @tparam _Tp The floating-point type of the argument @c __x.
    * @param  __l  The degree <tt>__l >= 0</tt>.
@@ -547,7 +549,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Beta functions
 
   /**
-   * Return the beta function, @f$ B(a,b) @f$, for @c float parameters @f$ a @f$, @f$ b @f$.
+   * Return the beta function, @f$ B(a,b) @f$, for @c float parameters
+   * @c a, @c b.
    *
    * @see beta for more details.
    */
@@ -557,7 +560,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the beta function, @f$B(a,b)@f$, for long double
-   * parameters @f$ a @f$, @f$ b @f$.
+   * parameters @c a, @c b.
    *
    * @see beta for more details.
    */
@@ -567,7 +570,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the beta function, @f$B(a,b)@f$, for real parameters
-   * @f$ a @f$, @f$ b @f$.
+   * @c a, @c b.
    *
    * The beta function is defined by
    * @f[
@@ -594,7 +597,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complete elliptic integral of the first kind @f$ E(k) @f$
-   * for @c float modulus @f$ k @f$.
+   * for @c float modulus @c k.
    *
    * @see comp_ellint_1 for details.
    */
@@ -604,7 +607,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complete elliptic integral of the first kind @f$ E(k) @f$
-   * for <tt>long double</tt> modulus @f$ k @f$.
+   * for <tt>long double</tt> modulus @c k.
    *
    * @see comp_ellint_1 for details.
    */
@@ -614,7 +617,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complete elliptic integral of the first kind
-   * @f$ K(k) @f$ for real modulus @f$ k @f$.
+   * @f$ K(k) @f$ for real modulus @c k.
    *
    * The complete elliptic integral of the first kind is defined as
    * @f[
@@ -642,7 +645,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complete elliptic integral of the second kind @f$ E(k) @f$
-   * for @c float modulus @f$ k @f$.
+   * for @c float modulus @c k.
    *
    * @see comp_ellint_2 for details.
    */
@@ -652,7 +655,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complete elliptic integral of the second kind @f$ E(k) @f$
-   * for <tt>long double</tt> modulus @f$ k @f$.
+   * for <tt>long double</tt> modulus @c k.
    *
    * @see comp_ellint_2 for details.
    */
@@ -662,7 +665,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complete elliptic integral of the second kind @f$ E(k) @f$
-   * for real modulus @f$ k @f$.
+   * for real modulus @c k.
    *
    * The complete elliptic integral of the second kind is defined as
    * @f[
@@ -689,7 +692,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief Return the complete elliptic integral of the third kind
-   * @f$ \Pi(k,\nu) @f$ for @c float modulus @f$ k @f$.
+   * @f$ \Pi(k,\nu) @f$ for @c float modulus @c k.
    *
    * @see comp_ellint_3 for details.
    */
@@ -699,7 +702,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief Return the complete elliptic integral of the third kind
-   * @f$ \Pi(k,\nu) @f$ for <tt>long double</tt> modulus @f$ k @f$.
+   * @f$ \Pi(k,\nu) @f$ for <tt>long double</tt> modulus @c k.
    *
    * @see comp_ellint_3 for details.
    */
@@ -709,7 +712,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complete elliptic integral of the third kind
-   * @f$ \Pi(k,\nu) = \Pi(k,\nu,\pi/2) @f$ for real modulus @f$ k @f$.
+   * @f$ \Pi(k,\nu) = \Pi(k,\nu,\pi/2) @f$ for real modulus @c k.
    *
    * The complete elliptic integral of the third kind is defined as
    * @f[
@@ -852,7 +855,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the irregular modified Bessel function @f$ K_{\nu}(x) @f$
-   * of real order @f$ \nu @f$ and argument @f$ x @f$.
+   * of real order @f$ \nu @f$ and argument @c x.
    *
    * The irregular modified Bessel function is defined by:
    * @f[
@@ -884,7 +887,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Neumann function @f$ N_{\nu}(x) @f$
-   * of @c float order @f$ \nu @f$ and argument @f$ x @f$.
+   * of @c float order @f$ \nu @f$ and argument @c x.
    *
    * @see cyl_neumann for setails.
    */
@@ -894,7 +897,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Neumann function @f$ N_{\nu}(x) @f$
-   * of <tt>long double</tt> order @f$ \nu @f$ and argument @f$ x @f$.
+   * of <tt>long double</tt> order @f$ \nu @f$ and argument @c x.
    *
    * @see cyl_neumann for setails.
    */
@@ -932,7 +935,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the incomplete elliptic integral of the first kind @f$ E(k,\phi) @f$
-   * for @c float modulus @f$ k @f$ and angle @f$ \phi @f$.
+   * for @c float modulus @c k and angle @f$ \phi @f$.
    *
    * @see ellint_1 for details.
    */
@@ -942,7 +945,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the incomplete elliptic integral of the first kind @f$ E(k,\phi) @f$
-   * for <tt>long double</tt> modulus @f$ k @f$ and angle @f$ \phi @f$.
+   * for <tt>long double</tt> modulus @c k and angle @f$ \phi @f$.
    *
    * @see ellint_1 for details.
    */
@@ -952,7 +955,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the incomplete elliptic integral of the first kind @f$ F(k,\phi) @f$
-   * for @c real modulus @f$ k @f$ and angle @f$ \phi @f$.
+   * for @c real modulus @c k and angle @f$ \phi @f$.
    *
    * The incomplete elliptic integral of the first kind is defined as
    * @f[
@@ -1080,7 +1083,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Exponential integrals
 
   /**
-   * Return the exponential integral @f$ Ei(x) @f$ for @c float argument @f$ x @f$.
+   * Return the exponential integral @f$ Ei(x) @f$ for @c float argument @c x.
    *
    * @see expint for details.
    */
@@ -1090,7 +1093,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential integral @f$ Ei(x) @f$
-   * for <tt>long double</tt> argument @f$ x @f$.
+   * for <tt>long double</tt> argument @c x.
    *
    * @see expint for details.
    */
@@ -1099,7 +1102,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return __detail::__expint<long double>(__x); }
 
   /**
-   * Return the exponential integral @f$ Ei(x) @f$ for @c real argument @f$ x @f$.
+   * Return the exponential integral @f$ Ei(x) @f$ for @c real argument @c x.
    *
    * The exponential integral is given by
    * \f[
@@ -1121,7 +1124,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Hermite polynomial @f$ H_n(x) @f$ of nonnegative order n
-   * and float argument @f$ x @f$.
+   * and float argument @c x.
    *
    * @see hermite for details.
    */
@@ -1131,7 +1134,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Hermite polynomial @f$ H_n(x) @f$ of nonnegative order n
-   * and <tt>long double</tt> argument @f$ x @f$.
+   * and <tt>long double</tt> argument @c x.
    *
    * @see hermite for details.
    */
@@ -1141,7 +1144,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Hermite polynomial @f$ H_n(x) @f$ of order n
-   * and @c real argument @f$ x @f$.
+   * and @c real argument @c x.
    *
    * The Hermite polynomial is defined by:
    * @f[
@@ -1189,7 +1192,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Returns the Laguerre polynomial @f$ L_n(x) @f$
-   * of nonnegative degree @f$ n @f$ and real argument @f$ x >= 0 @f$.
+   * of nonnegative degree @c n and real argument @f$ x >= 0 @f$.
    *
    * The Laguerre polynomial is defined by:
    * @f[
@@ -1213,7 +1216,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Legendre polynomial @f$ P_l(x) @f$ of nonnegative
-   * degree @f$ l @f$ and @c float argument @f$ |x| <= 0 @f$.
+   * degree @c l and @c float argument @f$ |x| <= 0 @f$.
    *
    * @see legendre for more details.
    */
@@ -1223,7 +1226,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Legendre polynomial @f$ P_l(x) @f$ of nonnegative
-   * degree @f$ l @f$ and <tt>long double</tt> argument @f$ |x| <= 0 @f$.
+   * degree @c l and <tt>long double</tt> argument @f$ |x| <= 0 @f$.
    *
    * @see legendre for more details.
    */
@@ -1233,9 +1236,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Legendre polynomial @f$ P_l(x) @f$ of nonnegative
-   * degree @f$ l @f$ and real argument @f$ |x| <= 0 @f$.
+   * degree @c l and real argument @f$ |x| <= 0 @f$.
    *
-   * The Legendre function of order @f$ l @f$ and argument @f$ x @f$,
+   * The Legendre function of order @c l and argument @c x,
    * @f$ P_l(x) @f$, is defined by:
    * @f[
    *   P_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l}
@@ -1258,7 +1261,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Riemann zeta function @f$ \zeta(s) @f$
-   * for @c float argument @f$ s @f$.
+   * for @c float argument @c s.
    *
    * @see riemann_zeta for more details.
    */
@@ -1268,7 +1271,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Riemann zeta function @f$ \zeta(s) @f$
-   * for <tt>long double</tt> argument @f$ s @f$.
+   * for <tt>long double</tt> argument @c s.
    *
    * @see riemann_zeta for more details.
    */
@@ -1278,7 +1281,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Riemann zeta function @f$ \zeta(s) @f$
-   * for real argument @f$ s @f$.
+   * for real argument @c s.
    *
    * The Riemann zeta function is defined by:
    * @f[
@@ -1353,7 +1356,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the spherical Legendre function of nonnegative integral
-   * degree @f$ l @f$ and order @f$ m @f$ and float angle @f$ \theta @f$ in radians.
+   * degree @c l and order @c m and float angle @f$ \theta @f$ in radians.
    *
    * @see sph_legendre for details.
    */
@@ -1363,7 +1366,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the spherical Legendre function of nonnegative integral
-   * degree @f$ l @f$ and order @f$ m @f$ and <tt>long double</tt> angle @f$ \theta @f$
+   * degree @c l and order @c m and <tt>long double</tt> angle @f$ \theta @f$
    * in radians.
    *
    * @see sph_legendre for details.
@@ -1374,7 +1377,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the spherical Legendre function of nonnegative integral
-   * degree @f$ l @f$ and order @f$ m @f$ and real angle @f$ \theta @f$
+   * degree @c l and order @c m and real angle @f$ \theta @f$
    * in radians.
    *
    * The spherical Legendre function is defined by
@@ -1447,18 +1450,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return __detail::__sph_neumann<__type>(__n, __x);
     }
 
-  /** @} */ // cxx17_math_spec_func
+  /** @} */ // group mathsf_std
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
 
+#ifndef __STRICT_ANSI__
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
-   * @defgroup gnu_math_spec_func GNU Extended Mathematical Special Functions
-   * @ingroup math_spec_func
+   * @defgroup mathsf_gnu GNU Extended Mathematical Special Functions
+   * @ingroup mathsf
    *
    * An extended collection of advanced mathematical special functions for GNU.
    * @{
@@ -1468,8 +1472,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the confluent hypergeometric function @f$ {}_1F_1(a;c;x) @f$
-   * of @c float numerator parameter @f$ a @f$, denominator parameter @f$ c @f$,
-   * and argument @f$ x @f$.
+   * of @c float numerator parameter @c a, denominator parameter @c c,
+   * and argument @c x.
    *
    * @see conf_hyperg for details.
    */
@@ -1479,8 +1483,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the confluent hypergeometric function @f$ {}_1F_1(a;c;x) @f$
-   * of <tt>long double</tt> numerator parameter @f$ a @f$,
-   * denominator parameter @f$ c @f$, and argument @f$ x @f$.
+   * of <tt>long double</tt> numerator parameter @c a,
+   * denominator parameter @c c, and argument @c x.
    *
    * @see conf_hyperg for details.
    */
@@ -1490,8 +1494,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the confluent hypergeometric function @f$ {}_1F_1(a;c;x) @f$
-   * of real numerator parameter @f$ a @f$, denominator parameter @f$ c @f$,
-   * and argument @f$ x @f$.
+   * of real numerator parameter @c a, denominator parameter @c c,
+   * and argument @c x.
    *
    * The confluent hypergeometric function is defined by
    * @f[
@@ -1516,8 +1520,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Tricomi confluent hypergeometric function @f$ U(a,c,x) @f$
-   * of @c float numerator parameter @f$ a @f$, denominator parameter @f$ c @f$,
-   * and argument @f$ x @f$.
+   * of @c float numerator parameter @c a, denominator parameter @c c,
+   * and argument @c x.
    *
    * @see tricomi_u for details.
    */
@@ -1527,8 +1531,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Tricomi confluent hypergeometric function @f$ U(a,c,x) @f$
-   * of <tt>long double</tt> numerator parameter @f$ a @f$,
-   * denominator parameter @f$ c @f$, and argument @f$ x @f$.
+   * of <tt>long double</tt> numerator parameter @c a,
+   * denominator parameter @c c, and argument @c x.
    *
    * @see tricomi_u for details.
    */
@@ -1538,8 +1542,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Tricomi confluent hypergeometric function @f$ U(a,c,x) @f$
-   * of real numerator parameter @f$ a @f$, denominator parameter @f$ c @f$,
-   * and argument @f$ x @f$.
+   * of real numerator parameter @c a, denominator parameter @c c,
+   * and argument @c x.
    *
    * The Tricomi confluent hypergeometric function is defined by
    * @f[
@@ -1566,8 +1570,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$
-   * of @c float numerator parameters @f$ a @f$ and @f$ b @f$,
-   * denominator parameter @f$ c @f$, and argument @f$ x @f$.
+   * of @c float numerator parameters @c a and @c b,
+   * denominator parameter @c c, and argument @c x.
    *
    * @see hyperg for details.
    */
@@ -1577,8 +1581,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$
-   * of <tt>long double</tt> numerator parameters @f$ a @f$ and @f$ b @f$,
-   * denominator parameter @f$ c @f$, and argument @f$ x @f$.
+   * of <tt>long double</tt> numerator parameters @c a and @c b,
+   * denominator parameter @c c, and argument @c x.
    *
    * @see hyperg for details.
    */
@@ -1588,8 +1592,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$
-   * of real numerator parameters @f$ a @f$ and @f$ b @f$,
-   * denominator parameter @f$ c @f$, and argument @f$ x @f$.
+   * of real numerator parameters @c a and @c b,
+   * denominator parameter @c c, and argument @c x.
    *
    * The hypergeometric function is defined by
    * @f[
@@ -1617,7 +1621,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the confluent hypergeometric limit function @f$ {}_0F_1(;c;x) @f$
-   * of @c float numerator parameter @f$ c @f$ and argument @f$ x @f$.
+   * of @c float numerator parameter @c c and argument @c x.
    *
    * @see conf_hyperg_lim for details.
    */
@@ -1627,7 +1631,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the confluent hypergeometric limit function @f$ {}_0F_1(;c;x) @f$
-   * of <tt>long double</tt> numerator parameter @f$ c @f$ and argument @f$ x @f$.
+   * of <tt>long double</tt> numerator parameter @c c and argument @c x.
    *
    * @see conf_hyperg_lim for details.
    */
@@ -1637,7 +1641,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the confluent hypergeometric limit function @f$ {}_0F_1(;c;x) @f$
-   * of real numerator parameter @f$ c @f$ and argument @f$ x @f$.
+   * of real numerator parameter @c c and argument @c x.
    *
    * The confluent hypergeometric limit function is defined by
    * @f[
@@ -1742,7 +1746,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Logarithmic integrals
 
   /**
-   * Return the logarithmic integral of argument @f$ x @f$.
+   * Return the logarithmic integral of argument @c x.
    *
    * @see logint for details.
    */
@@ -1751,7 +1755,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__logint<float>(__x); }
 
   /**
-   * Return the logarithmic integral of argument @f$ x @f$.
+   * Return the logarithmic integral of argument @c x.
    *
    * @see logint for details.
    */
@@ -1760,7 +1764,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__logint<long double>(__x); }
 
   /**
-   * Return the logarithmic integral of argument @f$ x @f$.
+   * Return the logarithmic integral of argument @c x.
    *
    * The logarithmic integral is defined by
    * @f[
@@ -1781,7 +1785,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Sine integrals
 
   /**
-   * Return the sine integral @f$ Si(x) @f$ of @c float argument @f$ x @f$.
+   * Return the sine integral @f$ Si(x) @f$ of @c float argument @c x.
    *
    * @see sinint for details.
    */
@@ -1791,7 +1795,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the sine integral @f$ Si(x) @f$ of <tt>long double</tt>
-   * argument @f$ x @f$.
+   * argument @c x.
    *
    * @see sinint for details.
    */
@@ -1800,7 +1804,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__sincosint<long double>(__x).first; }
 
   /**
-   * Return the sine integral @f$ Si(x) @f$ of real argument @f$ x @f$.
+   * Return the sine integral @f$ Si(x) @f$ of real argument @c x.
    *
    * The sine integral is defined by
    * @f[
@@ -1820,7 +1824,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Cosine integrals
 
   /**
-   * Return the cosine integral @f$ Ci(x) @f$ of @c float argument @f$ x @f$.
+   * Return the cosine integral @f$ Ci(x) @f$ of @c float argument @c x.
    *
    * @see cosint for details.
    */
@@ -1830,7 +1834,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the cosine integral @f$ Ci(x) @f$ of <tt>long double</tt>
-   * argument @f$ x @f$.
+   * argument @c x.
    *
    * @see cosint for details.
    */
@@ -1839,7 +1843,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__sincosint<long double>(__x).second; }
 
   /**
-   * Return the cosine integral @f$ Ci(x) @f$ of real argument @f$ x @f$.
+   * Return the cosine integral @f$ Ci(x) @f$ of real argument @c x.
    *
    * The cosine integral is defined by
    * @f[
@@ -1860,7 +1864,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Hyperbolic sine integrals
 
   /**
-   * Return the hyperbolic sine integral of @c float argument @f$ x @f$.
+   * Return the hyperbolic sine integral of @c float argument @c x.
    *
    * @see sinhint for details.
    */
@@ -1870,7 +1874,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the hyperbolic sine integral @f$ Shi(x) @f$ of <tt>long double</tt>
-   * argument @f$ x @f$.
+   * argument @c x.
    *
    * @see sinhint for details.
    */
@@ -1880,7 +1884,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the hyperbolic sine integral @f$ Shi(x) @f$
-   * of real argument @f$ x @f$.
+   * of real argument @c x.
    *
    * The hyperbolic sine integral is defined by
    * @f[
@@ -1901,7 +1905,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Hyperbolic cosine integrals
 
   /**
-   * Return the hyperbolic cosine integral of @c float argument @f$ x @f$.
+   * Return the hyperbolic cosine integral of @c float argument @c x.
    *
    * @see coshint for details.
    */
@@ -1911,7 +1915,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the hyperbolic cosine integral @f$ Chi(x) @f$
-   * of <tt>long double</tt> argument @f$ x @f$.
+   * of <tt>long double</tt> argument @c x.
    *
    * @see coshint for details.
    */
@@ -1921,7 +1925,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the hyperbolic cosine integral @f$ Chi(x) @f$
-   * of real argument @f$ x @f$.
+   * of real argument @c x.
    *
    * The hyperbolic cosine integral is defined by
    * @f[
@@ -1944,7 +1948,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi elliptic sine amplitude function @f$ sn(k,u) @f$
-   * of @c float modulus @f$ k @f$ and argument @f$ u @f$.
+   * of @c float modulus @c k and argument @c u.
    *
    * @see jacobi_sn for details.
    */
@@ -1956,7 +1960,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi elliptic sine amplitude function @f$ sn(k,u) @f$
-   * of <tt>long double</tt> modulus @f$ k @f$ and argument @f$ u @f$.
+   * of <tt>long double</tt> modulus @c k and argument @c u.
    *
    * @see jacobi_sn for details.
    */
@@ -1968,7 +1972,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi elliptic sine amplitude function @f$ sn(k,u) @f$
-   * of real modulus @f$ k @f$ and argument @f$ u @f$.
+   * of real modulus @c k and argument @c u.
    *
    * The Jacobi elliptic @c sn integral is defined by
    * @f[
@@ -1994,7 +1998,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi elliptic cosine amplitude function @f$ cn(k,u) @f$
-   * of @c float modulus @f$ k @f$ and argument @f$ u @f$.
+   * of @c float modulus @c k and argument @c u.
    *
    * @see jacobi_cn for details.
    */
@@ -2006,7 +2010,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi elliptic cosine amplitude function @f$ cn(k,u) @f$
-   * of <tt>long double</tt> modulus @f$ k @f$ and argument @f$ u @f$.
+   * of <tt>long double</tt> modulus @c k and argument @c u.
    *
    * @see jacobi_cn for details.
    */
@@ -2018,7 +2022,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi elliptic cosine amplitude function @f$ cn(k,u) @f$
-   * of real modulus @f$ k @f$ and argument @f$ u @f$.
+   * of real modulus @c k and argument @c u.
    *
    * The Jacobi elliptic @c cn integral is defined by
    * @f[
@@ -2044,7 +2048,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi elliptic delta amplitude function @f$ dn(k,u) @f$
-   * of @c float modulus @f$ k @f$ and argument @f$ u @f$.
+   * of @c float modulus @c k and argument @c u.
    *
    * @see jacobi_dn for details.
    */
@@ -2056,7 +2060,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi elliptic delta amplitude function @f$ dn(k,u) @f$
-   * of <tt>long double</tt> modulus @f$ k @f$ and argument @f$ u @f$.
+   * of <tt>long double</tt> modulus @c k and argument @c u.
    *
    * @see jacobi_dn for details.
    */
@@ -2068,7 +2072,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi elliptic delta amplitude function @f$ dn(k,u) @f$
-   * of real modulus @f$ k @f$ and argument @f$ u @f$.
+   * of real modulus @c k and argument @c u.
    *
    * The Jacobi elliptic @c dn integral is defined by
    * @f[
@@ -2094,7 +2098,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Chebyshev polynomials of the first kind @f$ T_n(x) @f$
-   * of non-negative order @f$ n @f$ and @c float argument @f$ x @f$.
+   * of non-negative order @c n and @c float argument @c x.
    *
    * @see chebyshev_t for details.
    */
@@ -2104,7 +2108,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Chebyshev polynomials of the first kind @f$ T_n(x) @f$
-   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
+   * of non-negative order @c n and real argument @c x.
    *
    * @see chebyshev_t for details.
    */
@@ -2114,7 +2118,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Chebyshev polynomial of the first kind @f$ T_n(x) @f$
-   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
+   * of non-negative order @c n and real argument @c x.
    *
    * The Chebyshev polynomial of the first kind is defined by:
    * @f[
@@ -2138,7 +2142,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Chebyshev polynomials of the second kind @f$ U_n(x) @f$
-   * of non-negative order @f$ n @f$ and @c float argument @f$ x @f$.
+   * of non-negative order @c n and @c float argument @c x.
    *
    * @see chebyshev_u for details.
    */
@@ -2148,7 +2152,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Chebyshev polynomials of the second kind  @f$ U_n(x) @f$
-   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
+   * of non-negative order @c n and real argument @c x.
    *
    * @see chebyshev_u for details.
    */
@@ -2158,7 +2162,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Chebyshev polynomial of the second kind @f$ U_n(x) @f$
-   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
+   * of non-negative order @c n and real argument @c x.
    *
    * The Chebyshev polynomial of the second kind is defined by:
    * @f[
@@ -2182,7 +2186,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Chebyshev polynomials of the third kind @f$ V_n(x) @f$
-   * of non-negative order @f$ n @f$ and @c float argument @f$ x @f$.
+   * of non-negative order @c n and @c float argument @c x.
    *
    * @see chebyshev_v for details.
    */
@@ -2192,7 +2196,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Chebyshev polynomials of the third kind @f$ V_n(x) @f$
-   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
+   * of non-negative order @c n and real argument @c x.
    *
    * @see chebyshev_v for details.
    */
@@ -2202,7 +2206,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Chebyshev polynomial of the third kind @f$ V_n(x) @f$
-   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
+   * of non-negative order @c n and real argument @c x.
    *
    * The Chebyshev polynomial of the third kind is defined by:
    * @f[
@@ -2227,7 +2231,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Chebyshev polynomials of the fourth kind @f$ W_n(x) @f$
-   * of non-negative order @f$ n @f$ and @c float argument @f$ x @f$.
+   * of non-negative order @c n and @c float argument @c x.
    *
    * @see chebyshev_w for details.
    */
@@ -2237,7 +2241,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Chebyshev polynomials of the fourth kind @f$ W_n(x) @f$
-   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
+   * of non-negative order @c n and real argument @c x.
    *
    * @see chebyshev_w for details.
    */
@@ -2247,7 +2251,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Chebyshev polynomial of the fourth kind @f$ W_n(x) @f$
-   * of non-negative order @f$ n @f$ and real argument @f$ x @f$.
+   * of non-negative order @c n and real argument @c x.
    *
    * The Chebyshev polynomial of the fourth kind is defined by:
    * @f[
@@ -2272,8 +2276,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi polynomial @f$ P_n^{(\alpha,\beta)}(x) @f$
-   * of degree @f$ n @f$ and @c float orders @f$ \alpha, \beta > -1 @f$
-   * and argument @f$ x @f$.
+   * of degree @c n and @c float orders @f$ \alpha, \beta > -1 @f$
+   * and argument @c x.
    *
    * @see jacobi for details.
    */
@@ -2286,8 +2290,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi polynomial @f$ P_n^{(\alpha,\beta)}(x) @f$
-   * of degree @f$ n @f$ and @c <tt>long double</tt> orders
-   * @f$ \alpha, \beta > -1 @f$ and argument @f$ x @f$.
+   * of degree @c n and @c <tt>long double</tt> orders
+   * @f$ \alpha, \beta > -1 @f$ and argument @c x.
    *
    * @see jacobi for details.
    */
@@ -2301,8 +2305,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi polynomial @f$ P_n^{(\alpha,\beta)}(x) @f$
-   * of degree @f$ n @f$ and @c float orders @f$ \alpha, \beta > -1 @f$
-   * and argument @f$ x @f$.
+   * of degree @c n and @c float orders @f$ \alpha, \beta > -1 @f$
+   * and argument @c x.
    *
    * The Jacobi polynomials are generated by a three-term recursion relation:
    * @f[
@@ -2341,7 +2345,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the Gegenbauer polynomial @f$ C_n^{(\lambda)}(x) @f$ of degree @c n
    * and @c float order @f$ \lambda > -1/2, \lambda \neq 0 @f$
-   * and argument @f$ x @f$.
+   * and argument @c x.
    *
    * @see gegenbauer for details.
    */
@@ -2352,7 +2356,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the Gegenbauer polynomial @f$ C_n^{\lambda}(x) @f$ of degree @c n
    * and <tt>long double</tt> order @f$ \lambda > -1/2, \lambda \neq 0 @f$
-   * and argument @f$ x @f$.
+   * and argument @c x.
    *
    * @see gegenbauer for details.
    */
@@ -2366,7 +2370,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the Gegenbauer polynomial @f$ C_n^{\lambda}(x) @f$ of degree @c n
    * and real order @f$ \lambda > -1/2, \lambda \neq 0 @f$ and argument
-   * @f$ x @f$.
+   * @c x.
    *
    * The Gegenbauer polynomial is generated by a three-term recursion relation:
    * @f[
@@ -2394,7 +2398,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Zernike polynomial @f$ Z_n^m(\rho,\phi) @f$
-   * for non-negative degree @f$ n @f$, signed order @f$ m @f$,
+   * for non-negative degree @c n, signed order @c m,
    * and real radial argument @f$ \rho @f$ and azimuthal angle @f$ \phi @f$.
    *
    * @see zernike for details.
@@ -2405,7 +2409,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Zernike polynomial @f$ Z_n^m(\rho,\phi) @f$
-   * for non-negative degree @f$ n @f$, signed order @f$ m @f$,
+   * for non-negative degree @c n, signed order @c m,
    * and real radial argument @f$ \rho @f$ and azimuthal angle @f$ \phi @f$.
    *
    * @see zernike for details.
@@ -2416,7 +2420,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Zernike polynomial @f$ Z_n^m(\rho,\phi) @f$
-   * for non-negative degree @f$ n @f$, signed order @f$ m @f$,
+   * for non-negative degree @c n, signed order @c m,
    * and real radial argument @f$ \rho @f$ and azimuthal angle @f$ \phi @f$.
    *
    * The even Zernike polynomials are defined by:
@@ -2427,7 +2431,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *    Z_n^{-m}(\rho,\phi) = R_n^m(\rho)\sin(m\phi)
    * @f]
-   * for non-negative degree @f$ m @f$ and @f$ m <= n @f$
+   * for non-negative degree @c m and @f$ m <= n @f$
    * and where @f$ R_n^m(\rho) @f$ is the radial polynomial (see radpoly).
    *
    * @tparam _Trho The real type of the radial coordinate
@@ -2449,7 +2453,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the radial polynomial @f$ R_n^m(\rho) @f$ for non-negative
-   * degree @f$ n @f$, order @f$ m <= n @f$, and @c float radial
+   * degree @c n, order @f$ m <= n @f$, and @c float radial
    * argument @f$ \rho @f$.
    *
    * @see radpoly for details.
@@ -2460,7 +2464,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the radial polynomial @f$ R_n^m(\rho) @f$ for non-negative
-   * degree @f$ n @f$, order @f$ m <= n @f$, and <tt>long double</tt> radial
+   * degree @c n, order @f$ m <= n @f$, and <tt>long double</tt> radial
    * argument @f$ \rho @f$.
    *
    * @see radpoly for details.
@@ -2471,7 +2475,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the radial polynomial @f$ R_n^m(\rho) @f$ for non-negative
-   * degree @f$ n @f$, order @f$ m <= n @f$, and real radial
+   * degree @c n, order @f$ m <= n @f$, and real radial
    * argument @f$ \rho @f$.
    *
    * The radial polynomials are defined by 
@@ -2674,7 +2678,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *    H^{(1)}_\nu(x) = J_\nu(x) + iN_\nu(x)
    * @f]
-   * where @f$ J_\nu(x) @f$ and @f$ N_\nu(x) @f$ are the cylindrical Bessel
+   * where @f$ J_\nu(x) @c and N_\nu(x) @f$ are the cylindrical Bessel
    * and Neumann functions respectively (see cyl_bessel and cyl_neumann).
    *
    * @tparam _Tp The real type of the argument
@@ -2722,7 +2726,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *    H^{(2)}_\nu(x) = J_\nu(x) - iN_\nu(x)
    * @f]
-   * where @f$ J_\nu(x) @f$ and @f$ N_\nu(x) @f$ are the cylindrical Bessel
+   * where @f$ J_\nu(x) @c and N_\nu(x) @f$ are the cylindrical Bessel
    * and Neumann functions respectively (see cyl_bessel and cyl_neumann).
    *
    * @tparam _Tp The real type of the argument
@@ -2761,7 +2765,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the spherical Hankel function of the first kind @f$ h^{(1)}_n(x) @f$
-   * of nonnegative order @f$ n @f$ and real argument @f$ x >= 0 @f$.
+   * of nonnegative order @c n and real argument @f$ x >= 0 @f$.
    *
    * The spherical Hankel function of the first kind is defined by:
    * @f[
@@ -2809,7 +2813,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the spherical Hankel function of the second kind @f$ h^{(2)}_n(x)@f$
-   * of nonnegative order @f$ n @f$ and real argument @f$ x >= 0 @f$.
+   * of nonnegative order @c n and real argument @f$ x >= 0 @f$.
    *
    * The spherical Hankel function of the second kind is defined by:
    * @f[
@@ -2924,7 +2928,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Airy functions of the first kind
 
   /**
-   * Return the Airy function @f$ Ai(x) @f$ for @c float argument @f$ x @f$.
+   * Return the Airy function @f$ Ai(x) @f$ for @c float argument @c x.
    *
    * @see airy_ai for details.
    */
@@ -2934,7 +2938,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Airy function @f$ Ai(x) @f$ for <tt>long double</tt>
-   * argument @f$ x @f$.
+   * argument @c x.
    *
    * @see airy_ai for details.
    */
@@ -2943,7 +2947,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__airy<long double>(__x).__Ai_value; }
 
   /**
-   * Return the Airy function @f$ Ai(x) @f$ of real argument @f$ x @f$.
+   * Return the Airy function @f$ Ai(x) @f$ of real argument @c x.
    *
    * The Airy function is defined by:
    * @f[
@@ -2963,7 +2967,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the Airy function @f$ Ai(x) @f$ of complex argument @f$ x @f$.
+   * Return the Airy function @f$ Ai(x) @f$ of complex argument @c x.
    *
    * The Airy function is defined by:
    * @f[
@@ -2985,7 +2989,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Airy functions of the second kind
 
   /**
-   * Return the Airy function @f$ Bi(x) @f$ for @c float argument @f$ x @f$.
+   * Return the Airy function @f$ Bi(x) @f$ for @c float argument @c x.
    *
    * @see airy_bi for details.
    */
@@ -2995,7 +2999,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Airy function @f$ Bi(x) @f$ for <tt>long double</tt>
-   * argument @f$ x @f$.
+   * argument @c x.
    *
    * @see airy_bi for details.
    */
@@ -3004,7 +3008,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__airy<long double>(__x).__Bi_value; }
 
   /**
-   * Return the Airy function @f$ Bi(x) @f$ of real argument @f$ x @f$.
+   * Return the Airy function @f$ Bi(x) @f$ of real argument @c x.
    *
    * The Airy function is defined by:
    * @f[
@@ -3025,7 +3029,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the Airy function @f$ Bi(x) @f$ of complex argument @f$ x @f$.
+   * Return the Airy function @f$ Bi(x) @f$ of complex argument @c x.
    *
    * The Airy function is defined by:
    * @f[
@@ -3618,8 +3622,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Hurwitz zeta functions
 
   /**
-   * Return the Hurwitz zeta function of @c float argument @f$ s @f$,
-   * and parameter @f$ a @f$.
+   * Return the Hurwitz zeta function of @c float argument @c s,
+   * and parameter @c a.
    *
    * @see hurwitz_zeta for details.
    */
@@ -3629,7 +3633,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Hurwitz zeta function of <tt>long double</tt>
-   * argument @f$ s @f$, and parameter @f$ a @f$.
+   * argument @c s, and parameter @c a.
    *
    * @see hurwitz_zeta for details.
    */
@@ -3638,8 +3642,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__hurwitz_zeta<long double>(__s, __a); }
 
   /**
-   * Return the Hurwitz zeta function of real argument @f$ s @f$,
-   * and parameter @f$ a @f$.
+   * Return the Hurwitz zeta function of real argument @c s,
+   * and parameter @c a.
    *
    * The the Hurwitz zeta function is defined by
    * @f[
@@ -3658,8 +3662,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the Hurwitz zeta function of real order @f$ s @f$,
-   * and complex parameter @f$ a @f$.
+   * Return the Hurwitz zeta function of real order @c s,
+   * and complex parameter @c a.
    *
    * @see hurwitz_zeta for details.
    */
@@ -3674,8 +3678,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Periodic zeta functions
 
   /**
-   * Return the periodic zeta function of @c float argument @f$ x @f$,
-   * and parameter @f$ s @f$.
+   * Return the periodic zeta function of @c float argument @c x,
+   * and parameter @c s.
    *
    * @see periodic_zeta for details.
    */
@@ -3685,7 +3689,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the periodic zeta function of <tt>long double</tt>
-   * argument @f$ x @f$, and parameter @f$ s @f$.
+   * argument @c x, and parameter @c s.
    *
    * @see periodic_zeta for details.
    */
@@ -3694,8 +3698,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__periodic_zeta<long double>(__x, __s); }
 
   /**
-   * Return the periodic zeta function of real argument @f$ x @f$,
-   * and parameter @f$ s @f$.
+   * Return the periodic zeta function of real argument @c x,
+   * and parameter @c s.
    *
    * The the periodic zeta function is defined by
    * @f[
@@ -3714,8 +3718,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the periodic zeta function of complex argument @f$ z @f$,
-   * and real parameter @f$ s @f$.
+   * Return the periodic zeta function of complex argument @c z,
+   * and real parameter @c s.
    *
    * @see periodic_zeta for details.
    */
@@ -3730,7 +3734,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Digamma or psi functions
 
   /**
-   * Return the digamma or psi function of @c float argument @f$ x @f$.
+   * Return the digamma or psi function of @c float argument @c x.
    *
    * @see digamma for details.
    */
@@ -3740,7 +3744,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the digamma or psi function of <tt>long double</tt> argument
-   * @f$ x @f$.
+   * @c x.
    *
    * @see digamma for details.
    */
@@ -3749,7 +3753,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__digamma<long double>(__x); }
 
   /**
-   * Return the digamma or psi function of argument @f$ x @f$.
+   * Return the digamma or psi function of argument @c x.
    *
    * The the digamma or psi function is defined by
    * @f[
@@ -3771,7 +3775,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Polygamma or psi functions
 
   /**
-   * Return the polygamma function of @c float argument @f$ x @f$.
+   * Return the polygamma function of @c float argument @c x.
    *
    * @see polygamma for details.
    */
@@ -3781,7 +3785,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the polygamma function of <tt>long double</tt> argument
-   * @f$ x @f$.
+   * @c x.
    *
    * @see polygamma for details.
    */
@@ -3790,7 +3794,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__polygamma<long double>(__m, __x); }
 
   /**
-   * Return the polygamma function of argument @f$ x @f$.
+   * Return the polygamma function of argument @c x.
    *
    * The the polygamma or digamma function is defined by
    * @f[
@@ -3831,7 +3835,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the regularized incomplete beta function of parameters
-   * @f$ a @f$, @f$ b @f$, and argument @f$ x @f$.
+   * @c a, @c b, and argument @c x.
    *
    * See ibeta for details.
    */
@@ -3840,8 +3844,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__beta_inc<float>(__a, __b, __x); }
 
   /**
-   * Return the regularized incomplete beta function of parameters @f$ a @f$, @f$ b @f$,
-   * and argument @f$ x @f$.
+   * Return the regularized incomplete beta function of parameters @c a, @c b,
+   * and argument @c x.
    *
    * See ibeta for details.
    */
@@ -3850,8 +3854,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__beta_inc<long double>(__a, __b, __x); }
 
   /**
-   * Return the regularized incomplete beta function of parameters @f$ a @f$, @f$ b @f$,
-   * and argument @f$ x @f$.
+   * Return the regularized incomplete beta function of parameters @c a, @c b,
+   * and argument @c x.
    *
    * The regularized incomplete beta function is defined by
    * @f[
@@ -3888,7 +3892,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the regularized complementary incomplete beta function
-   * of parameters @f$ a @f$, @f$ b @f$, and argument @f$ x @f$.
+   * of parameters @c a, @c b, and argument @c x.
    *
    * The regularized complementary incomplete beta function is defined by
    * @f[
@@ -3918,7 +3922,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::imag(std::__detail::__fresnel<long double>(__x)); }
 
   /**
-   * Return the Fresnel sine integral of argument @f$ x @f$.
+   * Return the Fresnel sine integral of argument @c x.
    *
    * The Fresnel sine integral is defined by
    * @f[
@@ -3946,7 +3950,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::real(std::__detail::__fresnel<long double>(__x)); }
 
   /**
-   * Return the Fresnel cosine integral of argument @f$ x @f$.
+   * Return the Fresnel cosine integral of argument @c x.
    *
    * The Fresnel cosine integral is defined by
    * @f[
@@ -3966,7 +3970,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Dawson integral
 
   /**
-   * Return the Dawson integral, @f$ F(x) @f$, for @c float argument @f$ x @f$.
+   * Return the Dawson integral, @f$ F(x) @f$, for @c float argument @c x.
    *
    * @see dawson for details.
    */
@@ -3976,7 +3980,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Dawson integral, @f$ F(x) @f$,
-   * for <tt>long double</tt> argument @f$ x @f$.
+   * for <tt>long double</tt> argument @c x.
    *
    * @see dawson for details.
    */
@@ -3985,7 +3989,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__dawson<long double>(__x); }
 
   /**
-   * Return the Dawson integral, @f$ F(x) @f$, for real argument @f$ x @f$.
+   * Return the Dawson integral, @f$ F(x) @f$, for real argument @c x.
    *
    * The Dawson integral is defined by:
    * @f[
@@ -4010,7 +4014,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential integral @f$ E_n(x) @f$ for integral
-   * order @f$ n @f$ and @c float argument @f$ x @f$.
+   * order @c n and @c float argument @c x.
    *
    * @see expint for details.
    */
@@ -4020,7 +4024,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential integral @f$ E_n(x) @f$ for integral
-   * order @f$ n @f$ and <tt>long double</tt> argument @f$ x @f$.
+   * order @c n and <tt>long double</tt> argument @c x.
    *
    * @see expint for details.
    */
@@ -4030,7 +4034,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential integral @f$ E_n(x) @f$ of integral
-   * order @f$ n @f$ and real argument @f$ x @f$.
+   * order @c n and real argument @c x.
    * The exponential integral is defined by:
    * @f[
    *    E_n(x) = \int_1^\infty \frac{e^{-tx}}{t^n}dt
@@ -4080,7 +4084,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * The rising factorial function is defined for integer order by
    * @f[
    *   a^{\overline{\nu}} = \Gamma(a + \nu) / \Gamma(n)
-   *	     = \prod_{k=0}^{\nu-1} (a + k), \overline{0} \equiv 1
+   *	     = \prod_{k=0}^{\nu-1} (a + k), a^{\overline{0}} \equiv 1
    * @f]
    * Thus this function returns
    * @f[
@@ -4222,8 +4226,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * @brief  Return the falling factorial function
-   * or the lower Pochhammer symbol for real argument @f$ a @f$
-   * and integral order @f$ n @f$.
+   * or the lower Pochhammer symbol for real argument @c a
+   * and integral order @c n.
    * The falling factorial function is defined by
    * @f[
    *   a^{\underline{n}} = \prod_{k=0}^{n-1} (a - k)
@@ -4301,11 +4305,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *   n!! = n(n-2)...(2), 0!! = 1
    * @f]
-   * for even @f$ n @f$ and
+   * for even @c n and
    * @f[
    *   n!! = n(n-2)...(1), (-1)!! = 1
    * @f]
-   * for odd @f$ n @f$.
+   * for odd @c n.
    */
   template<typename _Tp>
     inline __gnu_cxx::fp_promote_t<_Tp>
@@ -4380,11 +4384,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f[
    *   n!! = n(n-2)...(2), 0!! = 1
    * @f]
-   * for even @f$ n @f$ and
+   * for even @c n and
    * @f[
    *   n!! = n(n-2)...(1), (-1)!! = 1
    * @f]
-   * for odd @f$ n @f$.
+   * for odd @c n.
    */
   template<typename _Tp>
     inline __gnu_cxx::fp_promote_t<_Tp>
@@ -4483,7 +4487,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Bernoulli numbers
 
   /**
-   * Return the Bernoulli number of integer order @f$ n @f$ as a @c float.
+   * Return the Bernoulli number of integer order @c n as a @c float.
    *
    * @see bernoulli for details.
    */
@@ -4492,7 +4496,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__bernoulli<float>(__n); }
 
   /**
-   * Return the Bernoulli number of integer order @f$ n @f$ as a
+   * Return the Bernoulli number of integer order @c n as a
    * <tt>long double</tt>.
    *
    * @see bernoulli for details.
@@ -4502,7 +4506,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__bernoulli<long double>(__n); }
 
   /**
-   * Return the Bernoulli number of integer order @f$ n @f$.
+   * Return the Bernoulli number of integer order @c n.
    *
    * The Bernoulli numbers are defined by
    * @f[
@@ -4525,7 +4529,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Legendre function of the second kind @f$ Q_l(x) @f$
-   * of nonnegative degree @f$ l @f$ and @c float argument.
+   * of nonnegative degree @c l and @c float argument.
    *
    * @see legendre_q for details.
    */
@@ -4535,7 +4539,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Legendre function of the second kind @f$ Q_l(x) @f$
-   * of nonnegative degree @f$ l @f$ and <tt>long double</tt> argument.
+   * of nonnegative degree @c l and <tt>long double</tt> argument.
    *
    * @see legendre_q for details.
    */
@@ -4545,16 +4549,16 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Legendre function of the second kind @f$ Q_l(x) @f$ of
-   * nonnegative degree @f$ l @f$ and real argument @f$ |x| <= 0 @f$.
+   * nonnegative degree @c l and real argument @f$ |x| <= 0 @f$.
    *
-   * The Legendre function of the second kind of order @f$ l @f$
-   * and argument @f$ x @f$, @f$ Q_l(x) @f$, is defined by:
+   * The Legendre function of the second kind of order @c l
+   * and argument @c x, @f$ Q_l(x) @f$, is defined by:
    * @f[
    *   Q_l(x) = \frac{1}{2} \log{\frac{x+1}{x-1}} P_l(x)
    *           - \sum_{k=0}^{l-1}\frac{(l+k)!}{(l-k)!(k!)^2 s^k}
    *             \left[\psi(l+1) - \psi(k+1)\right](x-1)^k
    * @f]
-   * where @f$ P_l(x) @f$ is the Legendre polynomial of degree @f$ l @f$
+   * where @f$ P_l(x) @f$ is the Legendre polynomial of degree @c l
    * and @f$ \psi(x) @f$ is the digamma or psi function which for integral
    * argument is related to the harmonic number:
    * @f$ \psi(n) = -\gamma_E + H_n @f$.
@@ -4576,7 +4580,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the associated Legendre function @f$ Q_l^m(x) @f$
-   * of degree @f$ l @f$, order @f$ m @f$, and @c float argument @f$ x @f$.
+   * of degree @c l, order @c m, and @c float argument @c x.
    *
    * @see assoc_legendre_q for more details.
    */
@@ -4586,8 +4590,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the associated Legendre function @f$ Q_l^m(x) @f$
-   * of degree @f$ l @f$, order @f$ m @f$, and @c <tt>long double</tt>
-   * argument @f$ x @f$.
+   * of degree @c l, order @c m, and @c <tt>long double</tt>
+   * argument @c x.
    *
    * @see assoc_legendre_q for more details.
    */
@@ -4599,7 +4603,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the associated Legendre function @f$ Q_l^m(x) @f$
-   * of degree @f$ l @f$, order @f$ m @f$, and real argument @f$ x @f$.
+   * of degree @c l, order @c m, and real argument @c x.
    *
    * The associated Legendre function is derived from the Legendre function
    * @f$ Q_l(x) @f$ by the Rodrigues formula:
@@ -4607,7 +4611,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *   Q_l^m(x) = (1 - x^2)^{m/2}\frac{d^m}{dx^m}Q_l(x)
    * @f]
    * @see legendre for details of the Legendre function of degree @c l
-   * @note @f$ Q_l^m(x) != 0 @f$ if @f$ m > l @f$.
+   * @note @f$ Q_l^m(x) != 0 @c if m > l @f$.
    *
    * @tparam _Tp The floating-point type of the argument @c __x.
    * @param  __l  The degree <tt>__l >= 0</tt>.
@@ -4690,7 +4694,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__jacobi_zeta<long double>(__k, __phi); }
 
   /**
-   * Return the Jacobi zeta function of @f$ k @f$ and @f$ \phi @f$.
+   * Return the Jacobi zeta function of @c k and @f$ \phi @f$.
    *
    * The Jacobi zeta function is defined by
    * @f[
@@ -4725,7 +4729,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Heuman lambda function @f$ \Lambda(k,\phi) @f$
-   * of modulus @f$ k @f$ and angular limit @f$ \phi @f$.
+   * of modulus @c k and angular limit @f$ \phi @f$.
    *
    * The complete Heuman lambda function is defined by
    * @f[
@@ -4752,7 +4756,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complete Legendre elliptic integral @f$ D(k) @f$
-   * of @c float modulus @f$ k @f$.
+   * of @c float modulus @c k.
    *
    * @see comp_ellint_d for details.
    */
@@ -4762,7 +4766,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complete Legendre elliptic integral @f$ D(k) @f$
-   * of <tt>long double</tt> modulus @f$ k @f$.
+   * of <tt>long double</tt> modulus @c k.
    *
    * @see comp_ellint_d for details.
    */
@@ -4772,7 +4776,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complete Legendre elliptic integral @f$ D(k) @f$
-   * of real modulus @f$ k @f$.
+   * of real modulus @c k.
    *
    * The complete Legendre elliptic integral D is defined by
    * @f[
@@ -4794,7 +4798,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the incomplete Legendre elliptic integral @f$ D(k, \phi) @f$
-   * of @c float modulus @f$ k @f$ and angular limit @f$ \phi @f$.
+   * of @c float modulus @c k and angular limit @f$ \phi @f$.
    *
    * @see ellint_d for details.
    */
@@ -4804,7 +4808,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the incomplete Legendre elliptic integral @f$ D(k, \phi) @f$
-   * of <tt>long double</tt> modulus @f$ k @f$ and angular limit @f$ \phi @f$.
+   * of <tt>long double</tt> modulus @c k and angular limit @f$ \phi @f$.
    *
    * @see ellint_d for details.
    */
@@ -4814,7 +4818,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the incomplete Legendre elliptic integral @f$ D(k,\phi) @f$
-   * of real modulus @f$ k @f$ and angular limit @f$ \phi @f$.
+   * of real modulus @c k and angular limit @f$ \phi @f$.
    *
    * The Legendre elliptic integral D is defined by
    * @f[
@@ -4837,7 +4841,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Bulirsch elliptic integral @f$ el1(x,k_c) @f$
-   * of the first kind of @c float tangent limit @f$ x @f$
+   * of the first kind of @c float tangent limit @c x
    * and complementary modulus @f$ k_c @f$.
    *
    * @see ellint_el1 for details.
@@ -4848,7 +4852,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Bulirsch elliptic integral @f$ el1(x,k_c) @f$
-   * of the first kind of real tangent limit @f$ x @f$
+   * of the first kind of real tangent limit @c x
    * and complementary modulus @f$ k_c @f$.
    *
    * @see ellint_el1 for details.
@@ -4859,7 +4863,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Bulirsch elliptic integral @f$ el1(x,k_c) @f$
-   * of the first kind of real tangent limit @f$ x @f$
+   * of the first kind of real tangent limit @c x
    * and complementary modulus @f$ k_c @f$.
    *
    * The Bulirsch elliptic integral of the first kind is defined by
@@ -4929,8 +4933,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Bulirsch elliptic integral of the third kind
-   * @f$ el3(x,k_c,p) @f$ of @c float tangent limit @f$ x @f$,
-   * complementary modulus @f$ k_c @f$, and parameter @f$ p @f$.
+   * @f$ el3(x,k_c,p) @f$ of @c float tangent limit @c x,
+   * complementary modulus @f$ k_c @f$, and parameter @c p.
    *
    * @see ellint_el3 for details.
    */
@@ -4940,8 +4944,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Bulirsch elliptic integral of the third kind
-   * @f$ el3(x,k_c,p) @f$ of <tt>long double</tt> tangent limit @f$ x @f$,
-   * complementary modulus @f$ k_c @f$, and parameter @f$ p @f$.
+   * @f$ el3(x,k_c,p) @f$ of <tt>long double</tt> tangent limit @c x,
+   * complementary modulus @f$ k_c @f$, and parameter @c p.
    *
    * @see ellint_el3 for details.
    */
@@ -4951,8 +4955,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Bulirsch elliptic integral of the third kind
-   * @f$ el3(x,k_c,p) @f$ of real tangent limit @f$ x @f$,
-   * complementary modulus @f$ k_c @f$, and parameter @f$ p @f$.
+   * @f$ el3(x,k_c,p) @f$ of real tangent limit @c x,
+   * complementary modulus @f$ k_c @f$, and parameter @c p.
    *
    * The Bulirsch elliptic integral of the third kind is defined by
    * @f[
@@ -4976,8 +4980,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Bulirsch complete elliptic integral @f$ cel(k_c,p,a,b) @f$
-   * of real complementary modulus @f$ k_c @f$, and parameters @f$ p @f$,
-   * @f$ a @f$, and @f$ b @f$.
+   * of real complementary modulus @f$ k_c @f$, and parameters @c p,
+   * @c a, and @c b.
    *
    * @see ellint_cel for details.
    */
@@ -4997,8 +5001,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Bulirsch complete elliptic integral @f$ cel(k_c,p,a,b) @f$
-   * of real complementary modulus @f$ k_c @f$, and parameters @f$ p @f$,
-   * @f$ a @f$, and @f$ b @f$.
+   * of real complementary modulus @f$ k_c @f$, and parameters @c p,
+   * @c a, and @c b.
    *
    * The Bulirsch complete elliptic integral is defined by
    * @f[
@@ -5025,7 +5029,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the complex cylindrical Hankel function of the first kind
    * @f$ H^{(1)}_\nu(x) @f$ of <tt>std::complex<float></tt> order @f$ \nu @f$
-   * and argument @f$ x @f$.
+   * and argument @c x.
    *
    * @see cyl_hankel_1 for more details.
    */
@@ -5036,7 +5040,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the complex cylindrical Hankel function of the first kind
    * @f$ H^{(1)}_\nu(x) @f$ of <tt>std::complex<long double></tt>
-   * order @f$ \nu @f$ and argument @f$ x @f$.
+   * order @f$ \nu @f$ and argument @c x.
    *
    * @see cyl_hankel_1 for more details.
    */
@@ -5047,7 +5051,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the complex cylindrical Hankel function of the first kind
    * @f$ H^{(1)}_\nu(x) @f$ of complex order @f$ \nu @f$
-   * and argument @f$ x @f$.
+   * and argument @c x.
    *
    * The cylindrical Hankel function of the first kind is defined by
    * @f[
@@ -5072,7 +5076,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the complex cylindrical Hankel function of the second kind
    * @f$ H^{(2)}_\nu(x) @f$ of <tt>std::complex<float></tt> order @f$ \nu @f$
-   * and argument @f$ x @f$.
+   * and argument @c x.
    *
    * @see cyl_hankel_2 for more details.
    */
@@ -5083,7 +5087,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the complex cylindrical Hankel function of the second kind
    * @f$ H^{(2)}_\nu(x) @f$ of <tt>std::complex<long double></tt>
-   * order @f$ \nu @f$ and argument @f$ x @f$.
+   * order @f$ \nu @f$ and argument @c x.
    *
    * @see cyl_hankel_2 for more details.
    */
@@ -5094,7 +5098,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Return the complex cylindrical Hankel function of the second kind
    * @f$ H^{(2)}_\nu(x) @f$ of complex order @f$ \nu @f$
-   * and argument @f$ x @f$.
+   * and argument @c x.
    *
    * The cylindrical Hankel function of the second kind is defined by
    * @f[
@@ -5118,8 +5122,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complex spherical Hankel function of the first kind
-   * @f$ h^{(1)}_n(x) @f$ of non-negative integral @f$ n @f$
-   * and <tt>std::complex<float></tt> argument @f$ x @f$.
+   * @f$ h^{(1)}_n(x) @f$ of non-negative integral @c n
+   * and <tt>std::complex<float></tt> argument @c x.
    *
    * @see sph_hankel_1 for more details.
    */
@@ -5129,8 +5133,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complex spherical Hankel function of the first kind
-   * @f$ h^{(1)}_n(x) @f$ of non-negative integral @f$ n @f$
-   * and <tt>std::complex<long double></tt> argument @f$ x @f$.
+   * @f$ h^{(1)}_n(x) @f$ of non-negative integral @c n
+   * and <tt>std::complex<long double></tt> argument @c x.
    *
    * @see sph_hankel_1 for more details.
    */
@@ -5140,15 +5144,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complex spherical Hankel function of the first kind
-   * @f$ h^{(1)}_n(x) @f$ of non-negative integral @f$ n @f$
-   * and complex argument @f$ x @f$.
+   * @f$ h^{(1)}_n(x) @f$ of non-negative integral @c n
+   * and complex argument @c x.
    *
    * The spherical Hankel function of the first kind is defined by
    * @f[
    *    h^{(1)}_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} H^{(1)}_{n+1/2}(x)
    *                 = j_n(x) + i n_n(x)
    * @f]
-   * where @f$ j_n(x) @f$ and @f$ n_n(x) @f$ are the spherical Bessel
+   * where @f$ j_n(x) @c and n_n(x) @f$ are the spherical Bessel
    * and Neumann functions respectively.
    *
    * @param __n The integral order >= 0
@@ -5166,8 +5170,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complex spherical Hankel function of the second kind
-   * @f$ h^{(2)}_n(x) @f$ of non-negative integral @f$ n @f$
-   * and <tt>std::complex<float></tt> argument @f$ x @f$.
+   * @f$ h^{(2)}_n(x) @f$ of non-negative integral @c n
+   * and <tt>std::complex<float></tt> argument @c x.
    *
    * @see sph_hankel_2 for more details.
    */
@@ -5177,8 +5181,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complex spherical Hankel function of the second kind
-   * @f$ h^{(2)}_n(x) @f$ of non-negative integral @f$ n @f$
-   * and <tt>std::complex<long double></tt> argument @f$ x @f$.
+   * @f$ h^{(2)}_n(x) @f$ of non-negative integral @c n
+   * and <tt>std::complex<long double></tt> argument @c x.
    *
    * @see sph_hankel_2 for more details.
    */
@@ -5188,15 +5192,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the complex spherical Hankel function of the second kind
-   * @f$ h^{(2)}_n(x) @f$ of nonnegative order @f$ n @f$
-   * and complex argument @f$ x @f$.
+   * @f$ h^{(2)}_n(x) @f$ of nonnegative order @c n
+   * and complex argument @c x.
    *
    * The spherical Hankel function of the second kind is defined by
    * @f[
    *    h^{(2)}_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} H^{(2)}_{n+1/2}(x)
    *                 = j_n(x) - i n_n(x)
    * @f]
-   * where @f$ j_n(x) @f$ and @f$ n_n(x) @f$ are the spherical Bessel
+   * where @f$ j_n(x) @c and n_n(x) @f$ are the spherical Bessel
    * and Neumann functions respectively.
    *
    * @param __n The integral order >= 0
@@ -5213,8 +5217,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Spherical harmonic functions
 
   /**
-   * Return the complex spherical harmonic function of degree @f$ l @f$,
-   * order @f$ m @f$, and @c float zenith angle @f$ \theta @f$,
+   * Return the complex spherical harmonic function of degree @c l,
+   * order @c m, and @c float zenith angle @f$ \theta @f$,
    * and azimuth angle @f$ \phi @f$.
    *
    * @see sph_harmonic for details.
@@ -5225,8 +5229,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__sph_harmonic<float>(__l, __m, __theta, __phi); }
 
   /**
-   * Return the complex spherical harmonic function of degree @f$ l @f$,
-   * order @f$ m @f$, and <tt>long double</tt> zenith angle @f$ \theta @f$,
+   * Return the complex spherical harmonic function of degree @c l,
+   * order @c m, and <tt>long double</tt> zenith angle @f$ \theta @f$,
    * and azimuth angle @f$ \phi @f$.
    *
    * @see sph_harmonic for details.
@@ -5239,8 +5243,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   }
 
   /**
-   * Return the complex spherical harmonic function of degree @f$ l @f$,
-   * order @f$ m @f$, and real zenith angle @f$ \theta @f$,
+   * Return the complex spherical harmonic function of degree @c l,
+   * order @c m, and real zenith angle @f$ \theta @f$,
    * and azimuth angle @f$ \phi @f$.
    *
    * The spherical harmonic function is defined by:
@@ -5248,7 +5252,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    *    Y_l^m(\theta,\phi) = (-1)^m\frac{(2l+1)}{4\pi} \frac{(l-m)!}{(l+m)!}
    *                     P_l^{|m|}(\cos\theta) \exp^{im\phi}
    * @f]
-   * @note @f$ Y_l^m(\theta,\phi) = 0 @f$ if @f$ |m| > l @f$.
+   * @note @f$ Y_l^m(\theta,\phi) = 0 @c if |m| > l @f$.
    *
    * @param __l The order
    * @param __m The degree
@@ -5266,8 +5270,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Polylogarithm functions
 
   /**
-   * Return the real polylogarithm function of real order @f$ s @f$
-   * and real argument @f$ w @f$.
+   * Return the real polylogarithm function of real order @c s
+   * and real argument @c w.
    *
    * @see polylog for details.
    */
@@ -5276,8 +5280,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__polylog<float>(__s, __w); }
 
   /**
-   * Return the complex polylogarithm function of real order @f$ s @f$
-   * and argument @f$ w @f$.
+   * Return the complex polylogarithm function of real order @c s
+   * and argument @c w.
    *
    * @see polylog for details.
    */
@@ -5286,8 +5290,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__polylog<long double>(__s, __w); }
 
   /**
-   * Return the polylogarithm function of real order @f$ s @f$
-   * and real argument @f$ w @f$.
+   * Return the polylogarithm function of real order @c s
+   * and real argument @c w.
    *
    * The polylogarithm function is defined by
    * @f[
@@ -5306,8 +5310,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
   /**
-   * Return the complex polylogarithm function of real order @f$ s @f$
-   * and complex argument @f$ w @f$.
+   * Return the complex polylogarithm function of real order @c s
+   * and complex argument @c w.
    *
    * @see polylog for details.
    */
@@ -5316,8 +5320,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__polylog<float>(__s, __w); }
 
   /**
-   * Return the complex polylogarithm function of real order @f$ s @f$
-   * and complex argument @f$ w @f$.
+   * Return the complex polylogarithm function of real order @c s
+   * and complex argument @c w.
    *
    * @see polylog for details.
    */
@@ -5326,8 +5330,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__polylog<long double>(__s, __w); }
 
   /**
-   * Return the complex polylogarithm function of real order @f$ s @f$
-   * and complex argument @f$ w @f$.
+   * Return the complex polylogarithm function of real order @c s
+   * and complex argument @c w.
    *
    * The polylogarithm function is defined by
    * @f[
@@ -5348,7 +5352,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Dirichlet eta function
 
   /**
-   * Return the Dirichlet eta function of real argument @f$ s @f$.
+   * Return the Dirichlet eta function of real argument @c s.
    *
    * @see dirichlet_eta for details.
    */
@@ -5357,7 +5361,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__dirichlet_eta<float>(__s); }
 
   /**
-   * Return the Dirichlet eta function of real argument @f$ s @f$.
+   * Return the Dirichlet eta function of real argument @c s.
    *
    * @see dirichlet_eta for details.
    */
@@ -5366,7 +5370,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__dirichlet_eta<long double>(__s); }
 
   /**
-   * Return the Dirichlet eta function of real argument @f$ s @f$.
+   * Return the Dirichlet eta function of real argument @c s.
    *
    * The Dirichlet eta function is defined by
    * @f[
@@ -5396,7 +5400,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Dirichlet beta function
 
   /**
-   * Return the Dirichlet beta function of real argument @f$ s @f$.
+   * Return the Dirichlet beta function of real argument @c s.
    *
    * @see dirichlet_beta for details.
    */
@@ -5405,7 +5409,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__dirichlet_beta<float>(__s); }
 
   /**
-   * Return the Dirichlet beta function of real argument @f$ s @f$.
+   * Return the Dirichlet beta function of real argument @c s.
    *
    * @see dirichlet_beta for details.
    */
@@ -5414,7 +5418,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__dirichlet_beta<long double>(__s); }
 
   /**
-   * Return the Dirichlet beta function of real argument @f$ s @f$.
+   * Return the Dirichlet beta function of real argument @c s.
    *
    * The Dirichlet beta function is defined by:
    * @f[
@@ -5443,7 +5447,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Dirichlet lambda function
 
   /**
-   * Return the Dirichlet lambda function of real argument @f$ s @f$.
+   * Return the Dirichlet lambda function of real argument @c s.
    *
    * @see dirichlet_lambda for details.
    */
@@ -5452,7 +5456,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__dirichlet_lambda<float>(__s); }
 
   /**
-   * Return the Dirichlet lambda function of real argument @f$ s @f$.
+   * Return the Dirichlet lambda function of real argument @c s.
    *
    * @see dirichlet_lambda for details.
    */
@@ -5461,7 +5465,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__dirichlet_lambda<long double>(__s); }
 
   /**
-   * Return the Dirichlet lambda function of real argument @f$ s @f$.
+   * Return the Dirichlet lambda function of real argument @c s.
    *
    * The Dirichlet lambda function is defined by
    * @f[
@@ -5486,8 +5490,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Clausen Sl functions
 
   /**
-   * Return the Clausen sine function @f$ Sl_m(x) @f$ of order @f$ m @f$
-   * and @c float argument @f$ x @f$.
+   * Return the Clausen sine function @f$ Sl_m(x) @f$ of order @c m
+   * and @c float argument @c x.
    *
    * @see clausen_sl for details.
    */
@@ -5496,8 +5500,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__clausen_sl<float>(__m, __x); }
 
   /**
-   * Return the Clausen sine function @f$ Sl_m(x) @f$ of order @f$ m @f$
-   * and <tt>long double</tt> argument @f$ x @f$.
+   * Return the Clausen sine function @f$ Sl_m(x) @f$ of order @c m
+   * and <tt>long double</tt> argument @c x.
    *
    * @see clausen_sl for details.
    */
@@ -5506,8 +5510,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__clausen_sl<long double>(__m, __x); }
 
   /**
-   * Return the Clausen sine function @f$ Sl_m(x) @f$ of order @f$ m @f$
-   * and real argument @f$ x @f$.
+   * Return the Clausen sine function @f$ Sl_m(x) @f$ of order @c m
+   * and real argument @c x.
    *
    * The Clausen sine function is defined by
    * @f[
@@ -5529,8 +5533,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Clausen Cl functions
 
   /**
-   * Return the Clausen cosine function @f$ Cl_m(x) @f$ of order @f$ m @f$
-   * and @c float argument @f$ x @f$.
+   * Return the Clausen cosine function @f$ Cl_m(x) @f$ of order @c m
+   * and @c float argument @c x.
    *
    * @see clausen_cl for details.
    */
@@ -5539,8 +5543,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__clausen_cl<float>(__m, __x); }
 
   /**
-   * Return the Clausen cosine function @f$ Cl_m(x) @f$ of order @f$ m @f$
-   * and <tt>long double</tt> argument @f$ x @f$.
+   * Return the Clausen cosine function @f$ Cl_m(x) @f$ of order @c m
+   * and <tt>long double</tt> argument @c x.
    *
    * @see clausen_cl for details.
    */
@@ -5549,8 +5553,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__clausen_cl<long double>(__m, __x); }
 
   /**
-   * Return the Clausen cosine function @f$ Cl_m(x) @f$ of order @f$ m @f$
-   * and real argument @f$ x @f$.
+   * Return the Clausen cosine function @f$ Cl_m(x) @f$ of order @c m
+   * and real argument @c x.
    *
    * The Clausen cosine function is defined by
    * @f[
@@ -5572,8 +5576,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Clausen functions - real argument
 
   /**
-   * Return the Clausen function @f$ C_m(x) @f$ of integer order @f$ m @f$
-   * and @c float argument @f$ x @f$.
+   * Return the Clausen function @f$ C_m(x) @f$ of integer order @c m
+   * and @c float argument @c x.
    *
    * @see clausen for details.
    */
@@ -5582,8 +5586,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__clausen<float>(__m, __x); }
 
   /**
-   * Return the Clausen function @f$ C_m(x) @f$ of integer order @f$ m @f$
-   * and <tt>long double</tt> argument @f$ x @f$.
+   * Return the Clausen function @f$ C_m(x) @f$ of integer order @c m
+   * and <tt>long double</tt> argument @c x.
    *
    * @see clausen for details.
    */
@@ -5592,8 +5596,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__clausen<long double>(__m, __x); }
 
   /**
-   * Return the Clausen function @f$ C_m(x) @f$ of integer order @f$ m @f$
-   * and real argument @f$ x @f$.
+   * Return the Clausen function @f$ C_m(x) @f$ of integer order @c m
+   * and real argument @c x.
    *
    * The Clausen function is defined by
    * @f[
@@ -5617,8 +5621,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Clausen functions - complex argument
 
   /**
-   * Return the Clausen function @f$ C_m(z) @f$ of integer order @f$ m @f$
-   * and <tt>std::complex<float></tt> argument @f$ z @f$.
+   * Return the Clausen function @f$ C_m(z) @f$ of integer order @c m
+   * and <tt>std::complex<float></tt> argument @c z.
    *
    * @see clausen for details.
    */
@@ -5627,8 +5631,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__clausen<float>(__m, __z); }
 
   /**
-   * Return the Clausen function @f$ C_m(z) @f$ of integer order @f$ m @f$
-   * and <tt>std::complex<long double></tt> argument @f$ z @f$.
+   * Return the Clausen function @f$ C_m(z) @f$ of integer order @c m
+   * and <tt>std::complex<long double></tt> argument @c z.
    *
    * @see clausen for details.
    */
@@ -5637,8 +5641,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__clausen<long double>(__m, __z); }
 
   /**
-   * Return the Clausen function @f$ C_m(z) @f$ of integer order @f$ m @f$
-   * and complex argument @f$ z @f$.
+   * Return the Clausen function @f$ C_m(z) @f$ of integer order @c m
+   * and complex argument @c z.
    *
    * The Clausen function is defined by
    * @f[
@@ -5662,7 +5666,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-1 function @f$ \theta_1(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @c x.
    *
    * @see theta_1 for details.
    */
@@ -5672,7 +5676,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-1 function @f$ \theta_1(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @c x.
    *
    * @see theta_1 for details.
    */
@@ -5682,7 +5686,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-1 function @f$ \theta_1(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @c x.
    *
    * The exponential theta-1 function is defined by
    * @f[
@@ -5705,7 +5709,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-2 function @f$ \theta_2(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @c x.
    *
    * @see theta_2 for details.
    */
@@ -5715,7 +5719,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-2 function @f$ \theta_2(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @c x.
    *
    * @see theta_2 for details.
    */
@@ -5725,7 +5729,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-2 function @f$ \theta_2(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @c x.
    *
    * The exponential theta-2 function is defined by
    * @f[
@@ -5748,7 +5752,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-3 function @f$ \theta_3(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @c x.
    *
    * @see theta_3 for details.
    */
@@ -5758,7 +5762,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-3 function @f$ \theta_3(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @c x.
    *
    * @see theta_3 for details.
    */
@@ -5768,7 +5772,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-3 function @f$ \theta_3(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @c x.
    *
    * The exponential theta-3 function is defined by
    * @f[
@@ -5791,7 +5795,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-4 function @f$ \theta_4(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @c x.
    *
    * @see theta_4 for details.
    */
@@ -5801,7 +5805,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-4 function @f$ \theta_4(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @c x.
    *
    * @see theta_4 for details.
    */
@@ -5811,7 +5815,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the exponential theta-4 function @f$ \theta_4(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @f$ x @f$.
+   * of period @f$ \nu @f$ and argument @c x.
    *
    * The exponential theta-4 function is defined by
    * @f[
@@ -5834,7 +5838,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the elliptic nome function @f$ q(k) @f$
-   * of modulus @f$ k @f$.
+   * of modulus @c k.
    *
    * @see ellnome for details.
    */
@@ -5844,7 +5848,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the elliptic nome function @f$ q(k) @f$
-   * of <tt>long double</tt> modulus @f$ k @f$.
+   * of <tt>long double</tt> modulus @c k.
    *
    * @see ellnome for details.
    */
@@ -5853,7 +5857,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__ellnome<long double>(__k); }
 
   /**
-   * Return the elliptic nome function @f$ q(k) @f$ of modulus @f$ k @f$.
+   * Return the elliptic nome function @f$ q(k) @f$ of modulus @c k.
    *
    * The elliptic nome function is defined by
    * @f[
@@ -5876,7 +5880,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Neville theta-s function @f$ \theta_s(k,x) @f$
-   * of modulus @f$ k @f$ and argument @f$ x @f$.
+   * of modulus @c k and argument @c x.
    *
    * @see theta_s for details.
    */
@@ -5886,7 +5890,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Neville theta-s function @f$ \theta_s(k,x) @f$
-   * of <tt>long double</tt> modulus @f$ k @f$ and argument @f$ x @f$.
+   * of <tt>long double</tt> modulus @c k and argument @c x.
    *
    * @see theta_s for details.
    */
@@ -5896,7 +5900,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Neville theta-s function @f$ \theta_s(k,x) @f$
-   * of modulus @f$ k @f$ and argument @f$ x @f$.
+   * of modulus @c k and argument @c x.
    *
    * The Neville theta-s function is defined by
    * @f[
@@ -5923,7 +5927,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Neville theta-c function @f$ \theta_c(k,x) @f$
-   * of modulus @f$ k @f$ and argument @f$ x @f$.
+   * of modulus @c k and argument @c x.
    *
    * @see theta_c for details.
    */
@@ -5933,7 +5937,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Neville theta-c function @f$ \theta_c(k,x) @f$
-   * of <tt>long double</tt> modulus @f$ k @f$ and argument @f$ x @f$.
+   * of <tt>long double</tt> modulus @c k and argument @c x.
    *
    * @see theta_c for details.
    */
@@ -5943,7 +5947,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Neville theta-c function @f$ \theta_c(k,x) @f$
-   * of modulus @f$ k @f$ and argument @f$ x @f$.
+   * of modulus @c k and argument @c x.
    *
    * The Neville theta-c function is defined by
    * @f[
@@ -5970,7 +5974,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Neville theta-d function @f$ \theta_d(k,x) @f$
-   * of modulus @f$ k @f$ and argument @f$ x @f$.
+   * of modulus @c k and argument @c x.
    *
    * @see theta_d for details.
    */
@@ -5980,7 +5984,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Neville theta-d function @f$ \theta_d(k,x) @f$
-   * of <tt>long double</tt> modulus @f$ k @f$ and argument @f$ x @f$.
+   * of <tt>long double</tt> modulus @c k and argument @c x.
    *
    * @see theta_d for details.
    */
@@ -5990,7 +5994,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Neville theta-d function @f$ \theta_d(k,x) @f$
-   * of modulus @f$ k @f$ and argument @f$ x @f$.
+   * of modulus @c k and argument @c x.
    *
    * The Neville theta-d function is defined by
    * @f[
@@ -6017,7 +6021,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Neville theta-n function @f$ \theta_n(k,x) @f$
-   * of modulus @f$ k @f$ and argument @f$ x @f$.
+   * of modulus @c k and argument @c x.
    *
    * @see theta_n for details.
    */
@@ -6027,7 +6031,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Neville theta-n function @f$ \theta_n(k,x) @f$
-   * of <tt>long double</tt> modulus @f$ k @f$ and argument @f$ x @f$.
+   * of <tt>long double</tt> modulus @c k and argument @c x.
    *
    * @see theta_n for details.
    */
@@ -6037,7 +6041,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Neville theta-n function @f$ \theta_n(k,x) @f$
-   * of modulus @f$ k @f$ and argument @f$ x @f$.
+   * of modulus @c k and argument @c x.
    *
    * The Neville theta-n function is defined by
    * @f[
@@ -6064,7 +6068,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi theta-1 function @f$ \theta_1(q,x) @f$
-   * of nome @f$ q @f$ and argument @f$ x @f$.
+   * of nome @c q and argument @c x.
    *
    * @see jacobi_theta_1 for details.
    */
@@ -6074,7 +6078,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi theta-1 function @f$ \theta_1(q,x) @f$
-   * of nome @f$ q @f$ and argument @f$ x @f$.
+   * of nome @c q and argument @c x.
    *
    * @see jacobi_theta_1 for details.
    */
@@ -6084,7 +6088,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi theta-1 function @f$ \theta_1(q,x) @f$
-   * of nome @f$ q @f$ and argument @f$ x @f$.
+   * of nome @c q and argument @c x.
    *
    * The Jacobi theta-1 function is defined by
    * @f[
@@ -6107,7 +6111,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi theta-2 function @f$ \theta_2(q,x) @f$
-   * of nome @f$ q @f$ and argument @f$ x @f$.
+   * of nome @c q and argument @c x.
    *
    * @see jacobi_theta_2 for details.
    */
@@ -6117,7 +6121,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi theta-2 function @f$ \theta_2(q,x) @f$
-   * of nome @f$ q @f$ and argument @f$ x @f$.
+   * of nome @c q and argument @c x.
    *
    * @see jacobi_theta_2 for details.
    */
@@ -6127,7 +6131,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi theta-2 function @f$ \theta_2(q,x) @f$
-   * of nome @f$ q @f$ and argument @f$ x @f$.
+   * of nome @c q and argument @c x.
    *
    * The Jacobi theta-2 function is defined by
    * @f[
@@ -6150,7 +6154,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi theta-3 function @f$ \theta_3(q,x) @f$
-   * of nome @f$ q @f$ and argument @f$ x @f$.
+   * of nome @c q and argument @c x.
    *
    * @see jacobi_theta_3 for details.
    */
@@ -6160,7 +6164,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi theta-3 function @f$ \theta_3(q,x) @f$
-   * of nome @f$ q @f$ and argument @f$ x @f$.
+   * of nome @c q and argument @c x.
    *
    * @see jacobi_theta_3 for details.
    */
@@ -6170,7 +6174,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi theta-3 function @f$ \theta_3(q,x) @f$
-   * of nome @f$ q @f$ and argument @f$ x @f$.
+   * of nome @c q and argument @c x.
    *
    * The Jacobi theta-3 function is defined by
    * @f[
@@ -6193,7 +6197,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi theta-4 function @f$ \theta_4(q,x) @f$
-   * of nome @f$ q @f$ and argument @f$ x @f$.
+   * of nome @c q and argument @c x.
    *
    * @see jacobi_theta_4 for details.
    */
@@ -6203,7 +6207,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi theta-4 function @f$ \theta_4(q,x) @f$
-   * of nome @f$ q @f$ and argument @f$ x @f$.
+   * of nome @c q and argument @c x.
    *
    * @see jacobi_theta_4 for details.
    */
@@ -6213,7 +6217,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi theta-4 function @f$ \theta_4(q,x) @f$
-   * of nome @f$ q @f$ and argument @f$ x @f$.
+   * of nome @c q and argument @c x.
    *
    * The Jacobi theta-4 function is defined by
    * @f[
@@ -6236,7 +6240,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Owens T function @f$ T(h,a) @f$
-   * of shape factor @f$ h @f$ and integration limit @f$ a @f$.
+   * of shape factor @c h and integration limit @c a.
    *
    * @see owens_t for details.
    */
@@ -6246,7 +6250,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Owens T function @f$ T(h,a) @f$ of <tt>long double</tt>
-   * shape factor @f$ h @f$ and integration limit @f$ a @f$.
+   * shape factor @c h and integration limit @c a.
    *
    * @see owens_t for details.
    */
@@ -6255,8 +6259,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return std::__detail::__owens_t<long double>(__h, __a); }
 
   /**
-   * Return the Owens T function @f$ T(h,a) @f$ of shape factor @f$ h @f$
-   * and integration limit @f$ a @f$.
+   * Return the Owens T function @f$ T(h,a) @f$ of shape factor @c h
+   * and integration limit @c a.
    *
    * The Owens T function is defined by
    * @f[
@@ -6367,7 +6371,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the reperiodized sine function @f$ \sin_\pi(x) @f$
-   * for @c float argument @f$ x @f$.
+   * for @c float argument @c x.
    *
    * @see sin_pi for more details.
    */
@@ -6377,7 +6381,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the reperiodized sine function @f$ \sin_\pi(x) @f$
-   * for <tt>long double</tt> argument @f$ x @f$.
+   * for <tt>long double</tt> argument @c x.
    *
    * @see sin_pi for more details.
    */
@@ -6387,7 +6391,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the reperiodized sine function @f$ \sin_\pi(x) @f$
-   * for real argument @f$ x @f$.
+   * for real argument @c x.
    *
    * The reperiodized sine function is defined by:
    * @f[
@@ -6409,7 +6413,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the reperiodized hyperbolic sine function @f$ \sinh_\pi(x) @f$
-   * for @c float argument @f$ x @f$.
+   * for @c float argument @c x.
    *
    * @see sinh_pi for more details.
    */
@@ -6419,7 +6423,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the reperiodized hyperbolic sine function @f$ \sinh_\pi(x) @f$
-   * for <tt>long double</tt> argument @f$ x @f$.
+   * for <tt>long double</tt> argument @c x.
    *
    * @see sinh_pi for more details.
    */
@@ -6429,7 +6433,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the reperiodized hyperbolic sine function @f$ \sinh_\pi(x) @f$
-   * for real argument @f$ x @f$.
+   * for real argument @c x.
    *
    * The reperiodized hyperbolic sine function is defined by:
    * @f[
@@ -6451,7 +6455,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the reperiodized cosine function @f$ \cos_\pi(x) @f$
-   * for @c float argument @f$ x @f$.
+   * for @c float argument @c x.
    *
    * @see cos_pi for more details.
    */
@@ -6461,7 +6465,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the reperiodized cosine function @f$ \cos_\pi(x) @f$
-   * for <tt>long double</tt> argument @f$ x @f$.
+   * for <tt>long double</tt> argument @c x.
    *
    * @see cos_pi for more details.
    */
@@ -6471,7 +6475,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the reperiodized cosine function @f$ \cos_\pi(x) @f$
-   * for real argument @f$ x @f$.
+   * for real argument @c x.
    *
    * The reperiodized cosine function is defined by:
    * @f[
@@ -6493,7 +6497,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the reperiodized hyperbolic cosine function @f$ \cosh_\pi(x) @f$
-   * for @c float argument @f$ x @f$.
+   * for @c float argument @c x.
    *
    * @see cosh_pi for more details.
    */
@@ -6503,7 +6507,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the reperiodized hyperbolic cosine function @f$ \cosh_\pi(x) @f$
-   * for <tt>long double</tt> argument @f$ x @f$.
+   * for <tt>long double</tt> argument @c x.
    *
    * @see cosh_pi for more details.
    */
@@ -6513,7 +6517,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the reperiodized hyperbolic cosine function @f$ \cosh_\pi(x) @f$
-   * for real argument @f$ x @f$.
+   * for real argument @c x.
    *
    * The reperiodized hyperbolic cosine function is defined by:
    * @f[
@@ -6535,7 +6539,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the reperiodized tangent function @f$ \tan_\pi(x) @f$
-   * for @c float argument @f$ x @f$.
+   * for @c float argument @c x.
    *
    * @see tan_pi for more details.
    */
@@ -6545,7 +6549,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the reperiodized tangent function @f$ \tan_\pi(x) @f$
-   * for <tt>long double</tt> argument @f$ x @f$.
+   * for <tt>long double</tt> argument @c x.
    *
    * @see tan_pi for more details.
    */
@@ -6555,7 +6559,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the reperiodized tangent function @f$ \tan_\pi(x) @f$
-   * for real argument @f$ x @f$.
+   * for real argument @c x.
    *
    * The reperiodized tangent function is defined by:
    * @f[
@@ -6577,7 +6581,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the reperiodized hyperbolic tangent function @f$ \tanh_\pi(x) @f$
-   * for @c float argument @f$ x @f$.
+   * for @c float argument @c x.
    *
    * @see tanh_pi for more details.
    */
@@ -6587,7 +6591,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the reperiodized hyperbolic tangent function @f$ \tanh_\pi(x) @f$
-   * for <tt>long double</tt> argument @f$ x @f$.
+   * for <tt>long double</tt> argument @c x.
    *
    * @see tanh_pi for more details.
    */
@@ -6597,7 +6601,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the reperiodized hyperbolic tangent function @f$ \tanh_\pi(x) @f$
-   * for real argument @f$ x @f$.
+   * for real argument @c x.
    *
    * The reperiodized hyperbolic tangent function is defined by:
    * @f[
@@ -7063,7 +7067,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Debye function @f$ D_n(x) @f$
-   * of positive order @f$ n @f$ and @c float argument @f$ x @f$.
+   * of positive order @c n and @c float argument @c x.
    *
    * @see debye for details.
    */
@@ -7073,7 +7077,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Debye function @f$ D_n(x) @f$
-   * of positive order @f$ n @f$ and real argument @f$ x @f$.
+   * of positive order @c n and real argument @c x.
    *
    * @see debye for details.
    */
@@ -7083,7 +7087,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Debye function @f$ D_n(x) @f$
-   * of positive order @f$ n @f$ and real argument @f$ x @f$.
+   * of positive order @c n and real argument @c x.
    *
    * The Debye function is defined by:
    * @f[
@@ -7338,8 +7342,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   /**
    * Compute the Mittag-Leffer function:
    * @f[
-   *   E_{\alpha,\beta}(z) = \sum_{k=0}^\infty \frac{z^k}{\beta + \alpha k},
-   *   \mbox{  } \alpha > 0, \beta \in \$\mathbb{C}\$, z \in \$\mathbb{C}\$
+   *   E_{\alpha,\beta}(z)
+   *     = \sum_{k=0}^\infty \frac{z^k}{\Gamma(\beta + \alpha k)},
+   *   \mbox{  } \alpha > 0, \beta \in \mathbb{C}, z \in \mathbb{C}
    * @f]
    *
    * @see COMPUTATION OF THE MITTAG-LEFFLER FUNCTION @f$ E_{\alpha,\beta}(z) @f$
@@ -7356,10 +7361,11 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 #endif // __cplusplus >= 201103L
 
-  /** @} */ // gnu_math_spec_func
+  /** @} */ // mathsf_gnu
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
+#endif // __STRICT_ANSI__
 
 #if __cplusplus > 201402L
 

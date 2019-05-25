@@ -1,17 +1,6 @@
 var NAVTREE =
 [
   [ "C++ Special Math Functions", "index.html", [
-    [ "Mathematical Special Functions", "index.html", [
-      [ "Introduction and History", "index.html#intro", null ],
-      [ "Contents", "index.html#contents", null ],
-      [ "General Features", "index.html#general", [
-        [ "Argument Promotion", "index.html#promotion", null ],
-        [ "NaN Arguments", "index.html#NaN", null ]
-      ] ],
-      [ "Implementation", "index.html#impl", null ],
-      [ "Testing", "index.html#testing", null ],
-      [ "General Bibliography", "index.html#bibliography", null ]
-    ] ],
     [ "Todo List", "todo.html", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", null, [
@@ -48,13 +37,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"group__gnu__math__spec__func.html#ga3546906a5bb8f128c893dddef72e2f20",
-"group__gnu__math__spec__func.html#gacf7f49b2b7bf50fd37d939236712cbe2",
-"sf__ellint_8tcc.html#a26b35b5d72366d30ac4644db8f2f8be4",
-"sf__polylog_8tcc.html#a84081b0dd494f4601f2d40768e71b7b4",
-"specfun_8h.html#ga3e9d889d8f2e4792e892b12b1f5948b9",
-"specfun_8h.html#gac9a399ae01c315aa78a64b445795d974",
-"struct____gnu__cxx_1_1____jacobi__t.html#ab81da2815aa171345bf3893855b8c9a6"
+"group__mathsf__gnu.html#ga5a5d9c5e7ab822f84578415be8609f49",
+"group__mathsf__std.html#ga0b33e0ac3066f2353861ce2f34b43f57",
+"sf__ellint_8tcc.html#a82449d0f05d40ba2cef6b8fc57dd5bae",
+"sf__polylog_8tcc.html#ab7d250f236ef63ed8bd260881b73524d",
+"specfun_8h.html#ga414c8374b4579aa14e38f5401304b6fa",
+"specfun_8h.html#gacd36403ae64b89840b1504f97024dcee",
+"struct____gnu__cxx_1_1____laguerre__t.html#a8aa1b08deed3b739c3de21953f2c5494"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

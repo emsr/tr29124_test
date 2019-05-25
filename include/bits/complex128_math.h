@@ -32,7 +32,7 @@
 
 #pragma GCC system_header
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
+#ifdef _GLIBCXX_USE_FLOAT128
 
 typedef _Complex float __attribute__((mode(TC))) __complex128;
 
@@ -164,6 +164,6 @@ namespace std
 
 } // namespace std
 
-#endif // _GLIBCXX_HAVE_FLOAT128_MATH
+#endif // _GLIBCXX_USE_FLOAT128
 
 #endif // _GLIBCXX_BITS_COMPLEX128_MATH_H

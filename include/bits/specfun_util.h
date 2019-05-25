@@ -44,11 +44,9 @@
 #endif
 #include <limits>
 
-#define _GLIBCXX_HAVE_FLOAT128_MATH 0
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef _GLIBCXX_USE_FLOAT128
 #  if __has_include(<quadmath.h>)
 #    include <quadmath.h>
-#    define _GLIBCXX_HAVE_FLOAT128_MATH 1
 #    if _GLIBCXX_USE_C99_MATH && !_GLIBCXX_USE_C99_FP_MACROS_DYNAMIC
 namespace std
 {
@@ -57,7 +55,7 @@ namespace std
 }
 #    endif
 #  endif
-#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
+#endif // _GLIBCXX_USE_FLOAT128
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -144,7 +142,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     struct fp_promote_help<long double>
     { using __type = long double; };
 
-#if _GLIBCXX_HAVE_FLOAT128_MATH
+#ifdef _GLIBCXX_USE_FLOAT128
   template<>
     struct fp_promote_help<__float128>
     { using __type = __float128; };
@@ -174,6 +172,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 #else
   // Decay refs and cv...
   // Alternatively we could decay refs and propagate cv to promoted type.
+  // @todo We use decay_t instead of remove_reference_t just in case _Tp
+  // is an array.
   template<typename _Tp, typename... _Tps>
     struct fp_promote
     { using __type = decltype(fp_promote_help_t<std::decay_t<_Tp>>{}

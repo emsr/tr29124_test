@@ -1,0 +1,123 @@
+\hypertarget{derivative_8tcc}{}\section{include/ext/derivative.tcc File Reference}
+\label{derivative_8tcc}\index{include/ext/derivative.\+tcc@{include/ext/derivative.\+tcc}}
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$array$>$}\newline
+Include dependency graph for derivative.\+tcc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{derivative_8tcc__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{derivative_8tcc__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{derivative_8tcc_a54af6186cc76acd0ee53592c04a3d1fd}\label{derivative_8tcc_a54af6186cc76acd0ee53592c04a3d1fd}} 
+\#define {\bfseries D\+E\+R\+I\+V\+A\+T\+I\+V\+E\+\_\+\+T\+CC}~1
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename \+\_\+\+Func , typename \+\_\+\+Tp $>$ }\\\hyperlink{structderivative__t}{derivative\+\_\+t}$<$ \+\_\+\+Tp $>$ \hyperlink{derivative_8tcc_aef32000eba6743a6066fdd345ab72f17}{derivative\+\_\+central} (\+\_\+\+Func \+\_\+\+\_\+func, \+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \+\_\+\+\_\+h)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Func , typename \+\_\+\+Tp $>$ }\\\hyperlink{structderivative__t}{derivative\+\_\+t}$<$ \+\_\+\+Tp $>$ \hyperlink{derivative_8tcc_ac1cc760446a1455c0e97fe098dde2bc7}{derivative\+\_\+forward} (\+\_\+\+Func \+\_\+\+\_\+func, \+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \+\_\+\+\_\+h)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Func , typename \+\_\+\+Tp $>$ }\\\hyperlink{structderivative__t}{derivative\+\_\+t}$<$ \+\_\+\+Tp $>$ \hyperlink{derivative_8tcc_a3e9da1abac5e2d4a10e0eeca1812590d}{derivative\+\_\+ridder} (\+\_\+\+Func \+\_\+\+\_\+func, \+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \+\_\+\+\_\+h)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This file contains the outline implementation of the differentiation routines. 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{derivative_8tcc_aef32000eba6743a6066fdd345ab72f17}\label{derivative_8tcc_aef32000eba6743a6066fdd345ab72f17}} 
+\index{derivative.\+tcc@{derivative.\+tcc}!derivative\+\_\+central@{derivative\+\_\+central}}
+\index{derivative\+\_\+central@{derivative\+\_\+central}!derivative.\+tcc@{derivative.\+tcc}}
+\subsubsection{\texorpdfstring{derivative\+\_\+central()}{derivative\_central()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Func , typename \+\_\+\+Tp $>$ \\
+\hyperlink{structderivative__t}{derivative\+\_\+t}$<$\+\_\+\+Tp$>$ derivative\+\_\+central (\begin{DoxyParamCaption}\item[{\+\_\+\+Func}]{\+\_\+\+\_\+func,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+h }\end{DoxyParamCaption})}
+
+Compute the derivative using the 5-\/point rule (x-\/h, x-\/h/2, x, x+h/2, x+h). Note that the central point is not used.
+
+Compute the error using the difference between the 5-\/point and the 3-\/point rule (x-\/h, x, x+h). Again the central point is not used.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Func} & A function type callable with a numeric type and returning the same. \\
+\hline
+{\em \+\_\+\+Tp} & The foating point type of the argument and stepsize.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+func} & The function to be differentated. \\
+\hline
+{\em \+\_\+\+\_\+x} & The location at which the derivative is required. \\
+\hline
+{\em \+\_\+\+\_\+h} & The stepsize. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{derivative_8tcc_ac1cc760446a1455c0e97fe098dde2bc7}\label{derivative_8tcc_ac1cc760446a1455c0e97fe098dde2bc7}} 
+\index{derivative.\+tcc@{derivative.\+tcc}!derivative\+\_\+forward@{derivative\+\_\+forward}}
+\index{derivative\+\_\+forward@{derivative\+\_\+forward}!derivative.\+tcc@{derivative.\+tcc}}
+\subsubsection{\texorpdfstring{derivative\+\_\+forward()}{derivative\_forward()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Func , typename \+\_\+\+Tp $>$ \\
+\hyperlink{structderivative__t}{derivative\+\_\+t}$<$\+\_\+\+Tp$>$ derivative\+\_\+forward (\begin{DoxyParamCaption}\item[{\+\_\+\+Func}]{\+\_\+\+\_\+func,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+h }\end{DoxyParamCaption})}
+
+Compute the derivative using the 4-\/point rule (x + h/4, x + h/2, x + 3h/4, x + h).
+
+Compute the error using the difference between the 4-\/point and the 2-\/point rule (x + h/2, x+h).
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Func} & A function type callable with a numeric type and returning the same. \\
+\hline
+{\em \+\_\+\+Tp} & The foating point type of the argument and stepsize.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+func} & The function to be differentated. \\
+\hline
+{\em \+\_\+\+\_\+x} & The location at which the derivative is required. \\
+\hline
+{\em \+\_\+\+\_\+h} & The stepsize. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{derivative_8tcc_a3e9da1abac5e2d4a10e0eeca1812590d}\label{derivative_8tcc_a3e9da1abac5e2d4a10e0eeca1812590d}} 
+\index{derivative.\+tcc@{derivative.\+tcc}!derivative\+\_\+ridder@{derivative\+\_\+ridder}}
+\index{derivative\+\_\+ridder@{derivative\+\_\+ridder}!derivative.\+tcc@{derivative.\+tcc}}
+\subsubsection{\texorpdfstring{derivative\+\_\+ridder()}{derivative\_ridder()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Func , typename \+\_\+\+Tp $>$ \\
+\hyperlink{structderivative__t}{derivative\+\_\+t}$<$\+\_\+\+Tp$>$ derivative\+\_\+ridder (\begin{DoxyParamCaption}\item[{\+\_\+\+Func}]{\+\_\+\+\_\+func,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+h }\end{DoxyParamCaption})}
+
+Compute the derivative of a function func at a point x by Ridder\textquotesingle{}s method of polynomial extrapolation.
+
+The value h is input as an estimated stepsize; it should not be small but rather it should be an interval over which the function changes substantially.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Func} & A function type callable with a numeric type and returning the same. \\
+\hline
+{\em \+\_\+\+Tp} & The foating point type of the argument and stepsize.\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+\_\+func} & The function to be differentated. \\
+\hline
+{\em \+\_\+\+\_\+x} & The location at which the derivative is required. \\
+\hline
+{\em \+\_\+\+\_\+h} & The initial stepsize. \\
+\hline
+\end{DoxyParams}
