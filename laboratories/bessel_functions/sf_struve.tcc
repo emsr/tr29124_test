@@ -7,7 +7,7 @@ namespace __detail
   /**
    * An enum to dispatch Struve function summation.
    */
-  enum  _StruveType
+  enum _StruveType
   : int
   {
     _StruveH,
