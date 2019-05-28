@@ -9,12 +9,13 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
+set(CMAKE_FORTRAN_COMPILER "/home/ed/bin/bin/gfortran")
+set(CMAKE_CXX_FLAGS -Wno-psabi)
 
 enable_testing()
 
 add_executable(debug_bessel debug_bessel.cpp)
-#target_include_directories(debug_bessel PRIVATE )
-#target_link_libraries(debug_bessel )
 
 add_executable(hankel_toy128 hankel_toy128.cpp)
 target_include_directories(hankel_toy128 PRIVATE
@@ -102,16 +103,15 @@ target_include_directories(test_cyl_bessel_zeros PRIVATE
   ../../quadrature/include)
 target_link_libraries(test_cyl_bessel_zeros quadmath)
 
-# ./../wrappers/debug/libwrap_boost.so: undefined reference to `std::__cxx11::basic_ostringstream<char, std::char_traits<char>, std::allocator<char> >::basic_ostringstream()@GLIBCXX_3.4.26'
-#add_executable(test_cyl_hankel test_cyl_hankel.cpp)
-#target_include_directories(test_cyl_hankel PRIVATE
-#  ../../include
-#  ../../cxx_fp_utils/include
-#  ../../polynomial/include
-#  ../../cxx_summation/include
-#  ../../quadrature/include
-#  ../../wrappers)
-#target_link_libraries(test_cyl_hankel quadmath -L../../wrappers/debug -lwrap_boost)
+add_executable(test_cyl_hankel test_cyl_hankel.cpp)
+target_include_directories(test_cyl_hankel PRIVATE
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../polynomial/include
+  ../../cxx_summation/include
+  ../../quadrature/include
+  ../../wrappers)
+target_link_libraries(test_cyl_hankel quadmath -L../../wrappers/debug -lwrap_boost)
 
 add_executable(test_hankel test_hankel.cpp)
 target_include_directories(test_hankel PRIVATE
@@ -122,16 +122,15 @@ target_include_directories(test_hankel PRIVATE
   ../../quadrature/include)
 target_link_libraries(test_hankel quadmath)
 
-# ./../wrappers/debug/libwrap_boost.so: undefined reference to `std::__cxx11::basic_ostringstream<char, std::char_traits<char>, std::allocator<char> >::basic_ostringstream()@GLIBCXX_3.4.26'
-#add_executable(test_hankel_real_arg test_hankel_real_arg.cpp)
-#target_include_directories(test_hankel_real_arg PRIVATE
-#  ../../include
-#  ../../cxx_fp_utils/include
-#  ../../polynomial/include
-#  ../../cxx_summation/include
-#  ../../quadrature/include
-#  ../../wrappers)
-#target_link_libraries(test_hankel_real_arg quadmath -L../../wrappers/debug -lwrap_boost)
+add_executable(test_hankel_real_arg test_hankel_real_arg.cpp)
+target_include_directories(test_hankel_real_arg PRIVATE
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../polynomial/include
+  ../../cxx_summation/include
+  ../../quadrature/include
+  ../../wrappers)
+target_link_libraries(test_hankel_real_arg quadmath -L../../wrappers/debug -lwrap_boost)
 
 add_executable(test_kelvin test_kelvin.cpp)
 target_include_directories(test_kelvin PRIVATE
@@ -180,16 +179,15 @@ target_include_directories(test_sph_bessel PRIVATE
   ../../cxx_summation/include)
 target_link_libraries(test_sph_bessel quadmath)
 
-# ../../wrappers/debug/libwrap_boost.so: undefined reference to `std::__cxx11::basic_ostringstream<char, std::char_traits<char>, std::allocator<char> >::basic_ostringstream()@GLIBCXX_3.4.26'
-#add_executable(test_sph_hankel test_sph_hankel.cpp)
-#target_include_directories(test_sph_hankel PRIVATE
-#  ../../include
-#  ../../cxx_fp_utils/include
-#  ../../polynomial/include
-#  ../../quadrature/include
-#  ../../cxx_summation/include
-#  ../../wrappers)
-#target_link_libraries(test_sph_hankel quadmath -L../../wrappers/debug -lwrap_boost)
+add_executable(test_sph_hankel test_sph_hankel.cpp)
+target_include_directories(test_sph_hankel PRIVATE
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../polynomial/include
+  ../../quadrature/include
+  ../../cxx_summation/include
+  ../../wrappers)
+target_link_libraries(test_sph_hankel quadmath -L../../wrappers/debug -lwrap_boost)
 
 add_executable(test_struve test_struve.cpp)
 target_include_directories(test_struve PRIVATE
