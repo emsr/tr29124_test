@@ -16,7 +16,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o test_beta test_beta.cpp -
 #include <string>
 #include <complex>
 
-#include "wrap_boost.h"
+#include <wrap_boost.h>
 
 template<typename _Tp>
   void
