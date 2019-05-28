@@ -21,7 +21,7 @@ PATH=wrappers/debug:$PATH ./test_hydrogen > test_hydrogen.txt
 #include <bits/sf_bernoulli.tcc>
 #include <bits/sf_gamma.tcc>
 #include <bits/sf_coulomb.tcc>
-#include "wrap_gsl.h"
+#include <wrap_gsl.h>
 
 template <typename _Tp>
   void
