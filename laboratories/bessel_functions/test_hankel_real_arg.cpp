@@ -9,7 +9,7 @@ PATH=wrappers/debug:$PATH ./test_hankel_real_arg > test_hankel_real_arg.txt
 #include <iostream>
 #include <iomanip>
 #include <bits/specfun.h>
-#include "wrap_boost.h"
+#include <wrap_boost.h>
 
 int
 main()

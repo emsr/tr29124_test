@@ -9,9 +9,16 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
+set(CMAKE_CXX_FLAGS -Wno-psabi)
 
 enable_testing()
 
-#add_executable()
-#target_include_directories( PRIVATE )
-#target_link_libraries( )
+add_executable(test_marcum_q test_marcum_q.cpp)
+target_include_directories(test_marcum_q PRIVATE
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../polynomial/include
+  ../../cxx_summation/include
+  ../../quadrature/include)
+target_link_libraries(test_marcum_q quadmath)

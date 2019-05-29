@@ -17,7 +17,7 @@ PATH=wrappers/debug:$PATH ./test_struve ../plot_data > ../output/test_struve.txt
 #include <string>
 #include <bits/float128_io.h>
 
-#include "wrap_burkhardt.h"
+#include <wrap_burkhardt.h>
 #include "sf_struve.h"
 
 /**

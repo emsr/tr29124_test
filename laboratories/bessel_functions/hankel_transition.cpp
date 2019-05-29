@@ -12,10 +12,8 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o hankel_transition hankel_
 #include <tuple>
 #include <cmath>
 #include <bits/specfun.h>
-//#include <bits/float128.h>
-#include <rational.h>
-//#include <bits/numeric_limits.h>
-#include <polynomial/ext/polynomial.h>
+#include <ext/rational_polynomial.h>
+#include <ext/polynomial.h>
 
 template<typename _Tp>
   void
@@ -67,7 +65,9 @@ template<typename _Tp>
     for (const auto& b : B)
       std::cout << b << '\n';
 
-    std::vector<__gnu_cxx::_Polynomial<__gnu_cxx::_Rational<long long>>>
+    using _RPoly = __gnu_cxx::_RationalPolynomial<long long>;
+
+    std::vector<__gnu_cxx::_Polynomial<_RPoly>>
     P
     {
       {{1, 1}},
@@ -77,7 +77,7 @@ template<typename _Tp>
       {{}, {947, 346500}, {}, {}, {5903, 138600}, {}, {}, {-23573, 147000}, {}, {}, {27, 20000}}
     };
 
-    std::vector<__gnu_cxx::_Polynomial<__gnu_cxx::_Rational<long long>>>
+    std::vector<__gnu_cxx::_Polynomial<_RPoly>>
     Q
     {
       {{}, {}, {3, 10}},
@@ -86,7 +86,7 @@ template<typename _Tp>
       {{}, {}, {79, 12375}, {}, {}, {-110767, 693000}, {}, {}, {549, 28000}}
     };
 
-    std::vector<__gnu_cxx::_Polynomial<__gnu_cxx::_Rational<long long>>>
+    std::vector<__gnu_cxx::_Polynomial<_RPoly>>
     R
     {
       {{1, 1}},
@@ -96,7 +96,7 @@ template<typename _Tp>
       {{}, {-1159, 115500}, {}, {}, {3889, 4620}, {}, {}, {-46631, 147000}, {}, {}, {27, 20000}}
     };
 
-    std::vector<__gnu_cxx::_Polynomial<__gnu_cxx::_Rational<long long>>>
+    std::vector<__gnu_cxx::_Polynomial<_RPoly>>
     S
     {
       {{-1, 5}, {}, {}, {3, 5}},

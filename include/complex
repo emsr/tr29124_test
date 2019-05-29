@@ -46,6 +46,10 @@
 #undef _GLIBCXX_NO_SPECFUN
 #include <sstream>
 
+#ifndef _GLIBCXX20_CONSTEXPR
+#  define _GLIBCXX20_CONSTEXPR 
+#endif
+
 #ifdef _GLIBCXX_USE_FLOAT128
 #  include <bits/complex128_math.h>
 #endif // _GLIBCXX_USE_FLOAT128

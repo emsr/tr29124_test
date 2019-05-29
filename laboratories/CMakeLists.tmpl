@@ -9,6 +9,8 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
+set(CMAKE_CXX_FLAGS -Wno-psabi)
 
 enable_testing()
 
