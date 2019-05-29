@@ -44,15 +44,12 @@
 
 #pragma GCC system_header
 
-#include <limits>
 #include <bits/stl_algobase.h>
 #include <bits/specfun_state.h>
 #include <bits/specfun_util.h>
 
 #if __cplusplus >= 201103L
-#  include <type_traits>
 #  include <bits/numeric_limits.h>
-#  include <bits/complex_util.h>
 #  include <bits/sf_prime.tcc>
 #  include <bits/sf_trig.tcc>
 #  include <bits/sf_bernoulli.tcc>
@@ -89,7 +86,6 @@
 #  include <bits/sf_hankel.tcc>
 #  include <bits/sf_distributions.tcc>
 #else
-#  include <tr1/type_traits>
 #  include <tr1/cmath>
 #  define _GLIBCXX_MATH_NS ::std::tr1::
 #  include <tr1/gamma.tcc>

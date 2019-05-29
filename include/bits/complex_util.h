@@ -36,7 +36,6 @@
 #include <ratio>
 #include <limits>
 #include <bits/specfun_util.h>
-#include <bits/numeric_limits.h>
 #include <ext/math_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
@@ -145,7 +144,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Carefully compute @c z1/z2 avoiding overflow and destructive underflow.
-   * If the quotient is successfully computedit is returned.
+   * If the quotient is successfully computed it is returned.
    * Otherwise, std::runtime_error is thrown.
    */
   template<typename _Tp>
