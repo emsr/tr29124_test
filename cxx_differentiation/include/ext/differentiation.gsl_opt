@@ -22,6 +22,11 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
+/*
+This was an experiment trying out GSL's stepsize optimization.
+I fould the results to be so-so.
+*/
+
 #ifndef DIFFERENTIATION_TCC
 #define DIFFERENTIATION_TCC 1
 
@@ -63,7 +68,7 @@
    */
   template<typename _Func, typename _Tp>
     derivative_t<_Tp>
-    derivative_central(_Func __func, _Tp __x, _Tp __h)
+    derivative_central_step(_Func __func, _Tp __x, _Tp __h)
     {
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
 
@@ -112,7 +117,7 @@
    */
   template<typename _Func, typename _Tp>
     derivative_t<_Tp>
-    derivative_forward(_Func __func, _Tp __x, _Tp __h)
+    derivative_forward_step(_Func __func, _Tp __x, _Tp __h)
     {
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
 
@@ -139,11 +144,52 @@
       return {__r4, std::abs(__r4 - __r2), __err_round};
     }
 
+  template<typename _Stepper, typename _Func, typename _Tp>
+    derivative_t<_Tp>
+    derivative_opt(_Stepper __step, _Func __func, _Tp __x, _Tp __h)
+    {
+      auto [__result, __trunc, __round] = __step(__func, __x, __h);
+      auto __error = __round + __trunc;
+
+      if (__round < __trunc && (__round > 0 && __trunc > 0))
+	{
+	  // Compute an optimised stepsize to minimize the total error,
+	  // using the scaling of the truncation error (O(h^2)) and
+	  // rounding error (O(1/h)).
+	  auto __h_opt = __h * std::cbrt(__round / (_Tp{2} * __trunc));
+	  auto [__r_opt, __trunc_opt, __round_opt]
+		 = __step(__func, __x, __h_opt);
+	  auto __error_opt = __round_opt + __trunc_opt;
+
+	  // Check that the new error is smaller, and that the new derivative 
+	  // is consistent with the error bounds of the original estimate.
+	  if (__error_opt < __error
+	      && std::abs(__r_opt - __result) < _Tp{4} * __error)
+	    {
+	      __result = __r_opt;
+	      __trunc = __trunc_opt;
+	      __round = __round_opt;
+	    }
+	}
+
+      return {__result, __trunc, __round};
+    }
+
+  template<typename _Func, typename _Tp>
+    derivative_t<_Tp>
+    derivative_forward(_Func __func, _Tp __x, _Tp __h)
+    { return derivative_opt(derivative_forward_step<_Func, _Tp>, __func, __x, __h); }
+
+  template<typename _Func, typename _Tp>
+    derivative_t<_Tp>
+    derivative_central(_Func __func, _Tp __x, _Tp __h)
+    { return derivative_opt(derivative_central_step<_Func, _Tp>, __func, __x, __h); }
+
   /**
    * Compute the derivative of a function func at a point x by Ridder's method
    * of polynomial extrapolation.
    * @f[
-   *
+   *    
    * @f]
    *
    * The value h is input as an estimated stepsize; it should not be small
@@ -242,7 +288,7 @@
    * This routine ignores the input stepsize and uses machine epsilon.
    *
    * If your function has complex overloads and works at least very near
-   * the real axis this is a very accurate routine.
+   * the real axis then this is a very accurate routine.
    *
    * @tparam _Func A function type callable with a numeric type
    *          and returning the same.
@@ -261,8 +307,7 @@
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       const auto __w = __x + _S_i * _S_eps;
       const auto __ans = std::imag(__func(__w)) / _S_eps;
-      // The answer involves a function eval and a division - zero roundoff.
-      return {__ans, _S_eps, _Tp{0}};
+      return {__ans, _S_eps, _S_eps};
     }
 
 #endif // DIFFERENTIATION_TCC
