@@ -17,7 +17,7 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_gamma_ratio > test_gamma_
 #include <complex>
 #include <ext/summation.h>
 
-#include "wrap_boost.h"
+#include <wrap_boost.h>
 
 /**
  * @f[

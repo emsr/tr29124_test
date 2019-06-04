@@ -9,7 +9,7 @@ PATH=wrappers/debug:$PATH ./test_digamma > test_digamma.txt
 #include <cmath>
 #include <iostream>
 #include <iomanip>
-#include "wrap_gsl.h"
+#include <wrap_gsl.h>
 
 template<typename _Tp>
   void

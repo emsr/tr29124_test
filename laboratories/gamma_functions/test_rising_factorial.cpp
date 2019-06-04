@@ -12,7 +12,7 @@ PATH=wrappers/debug:$PATH ./test_rising_factorial > test_rising_factorial.txt
 #include <iomanip>
 #include <ext/cmath>
 
-#include "wrap_boost.h"
+#include <wrap_boost.h>
 
 namespace __gnu_cxx
 {

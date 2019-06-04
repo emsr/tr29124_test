@@ -16,7 +16,7 @@ PATH=wrappers/debug:$PATH ./test_gamma > test_gamma.txt
 #include <string>
 #include <complex>
 
-#include "wrap_boost.h"
+#include <wrap_boost.h>
 
 template<typename _Tp, typename _Gamma>
   void

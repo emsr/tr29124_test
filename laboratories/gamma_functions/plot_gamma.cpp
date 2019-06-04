@@ -6,7 +6,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I../../include -I../
 ./plot_gamma ../plot_data > ../output/plot_gamma.txt
 */
 
-#include <bits/specfun.h>
+#include <cmath>
 #include <limits>
 #include <iostream>
 #include <fstream>

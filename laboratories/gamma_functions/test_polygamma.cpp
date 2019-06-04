@@ -13,11 +13,13 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_polygamma > test_polygamm
 #include <iostream>
 #include <iomanip>
 #include <ext/cmath>
+
 #include <bits/specfun.h>
 #include <ext/continued_fractions.h>
-#include "wrap_boost.h"
 #include <ext/polynomial.h>
 #include <ext/horner.h>
+
+#include <wrap_boost.h>
 
 /**
  * 
