@@ -59,3 +59,9 @@
   template<typename _Tp>
     _Tp
     mathieu_mc(int __n, int __k, _Tp __q, _Tp __x);
+
+int
+main()
+{
+  return 0;
+}

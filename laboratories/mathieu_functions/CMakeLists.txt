@@ -12,6 +12,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 enable_testing()
 
-#add_executable()
-#target_include_directories( PRIVATE )
-#target_link_libraries( )
+add_executable(test_mathieu test_mathieu.cpp)
+target_include_directories(test_mathieu PRIVATE )
+target_link_libraries(test_mathieu quadmath)
