@@ -36,9 +36,9 @@
 #include <complex>
 //#include <bits/sf_airy.tcc>
 //#include <bits/sf_hankel.tcc>
-#include "complex128.h"
-#include "sf_airy.tcc"
-#include "sf_hankel_new.tcc"
+#include <bits/complex128.h>
+#include <bits/sf_airy.tcc>
+#include <bits/sf_hankel_new.tcc>
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {

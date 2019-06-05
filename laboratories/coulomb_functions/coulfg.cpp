@@ -1,6 +1,6 @@
-/*
-g++ -std=c++2a coulfg.cpp 
-*/
+/**
+ *
+ */
 
 #include <limits>
 #include <cmath>

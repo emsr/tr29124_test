@@ -1,8 +1,6 @@
-
-/*
-$HOME/bin/bin/g++ -std=c++14 -g -Wall -Wextra -Wno-psabi -o carlson2 carlson2.cpp
-./carlson2 > carlson2.txt
-*/
+/**
+ *
+ */
 
 #include <cmath>
 #include <iostream>

@@ -1,12 +1,11 @@
+/**
+ *
+ */
 
 //  This is to track the bomb in the bessel and neumann at x=8, nu=0
 //  When this was 10*min J_0 and Y_0 would tank at x = 8.
 //const _Tp __fp_min = _Tp(10) * std::numeric_limits<_Tp>::min();
 //  I bumped to 20*min but I should watch this!
-
-/*
-$HOME/bin/bin/g++ -o debug_bessel debug_bessel.cpp
-*/
 
 #include <iostream>
 #include <tr1/cmath>

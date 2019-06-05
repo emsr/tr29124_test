@@ -1,13 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_sph_bessel test_sph_bessel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-./test_sph_bessel > test_sph_bessel.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_sph_bessel test_sph_bessel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_sph_bessel > test_sph_bessel.txt
-
-g++ -std=gnu++2a -I. -o test_sph_bessel test_sph_bessel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_sph_bessel > test_sph_bessel.txt
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <iomanip>

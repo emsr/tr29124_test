@@ -1,12 +1,7 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_inv_ibeta test_inv_ibeta.cpp
-./test_inv_ibeta > test_inv_ibeta.txt
+/**
+ *
+ */
 
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_inv_ibeta test_inv_ibeta.cpp
-./test_inv_ibeta > test_inv_ibeta.txt
-*/
-
-//#include <ext/cmath>
 #include <iostream>
 #include <iomanip>
 #include <bits/specfun.h>

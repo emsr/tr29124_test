@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -I. -o test_large_order_bessel test_large_order_bessel.cpp 
-./test_large_order_bessel > test_large_order_bessel.txt
-*/
+/**
+ *
+ */
 
 #include <vector>
 #include <cmath>

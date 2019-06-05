@@ -44,7 +44,7 @@
 #ifndef _TR1_BESSEL_FUNCTION_TCC
 #define _TR1_BESSEL_FUNCTION_TCC 1
 
-#include "specfun_util.h"
+#include <bits/specfun_util.h>
 
 namespace std
 {

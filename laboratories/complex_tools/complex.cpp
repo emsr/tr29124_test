@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -o complex complex.cpp
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./complex
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <complex>

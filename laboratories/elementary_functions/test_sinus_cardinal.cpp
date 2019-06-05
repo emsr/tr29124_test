@@ -1,18 +1,14 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_sinus_cardinal test_sinus_cardinal.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_sinus_cardinal > test_sinus_cardinal.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_sinus_cardinal test_sinus_cardinal.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
-PATH=wrappers/debug:$PATH ./test_sinus_cardinal > test_sinus_cardinal.txt
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <iomanip>
 #include <cmath>
 #include <bits/float128_io.h>
 
-#include "wrap_boost.h"
-#include "wrap_gsl.h"
+#include <wrap_boost.h>
+#include <wrap_gsl.h>
 
 
 template<typename _Tp>

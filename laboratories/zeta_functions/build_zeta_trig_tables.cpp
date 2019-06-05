@@ -7,7 +7,7 @@ PATH=$HOME/bin/lib64:$PATH ./build_zeta_trig_tables > build_zeta_trig_tables.txt
 */
 
 #include <mpreal.h>
-#include "bits/numeric_limits_mpreal.h"
+#include <bits/numeric_limits_mpreal.h>
 
 int
 main()

@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_coulomb test_coulomb.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_coulomb > test_coulomb.txt
-
-g++ -std=gnu++2a -g -Wall -Wextra -o test_coulomb test_coulomb.cpp
-./test_coulomb > test_coulomb.txt
-*/
+/**
+ *
+ */
 
 #include <cmath>
 #include <iostream>

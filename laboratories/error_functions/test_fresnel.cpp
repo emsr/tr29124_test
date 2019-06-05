@@ -12,7 +12,7 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_fresnel > test_fresnel.tx
 #include <stdexcept>
 #include <bits/numeric_limits.h>
 
-#include "fresnel.tcc"
+#include <fresnel.tcc>
 
 template<typename _Tp>
   void

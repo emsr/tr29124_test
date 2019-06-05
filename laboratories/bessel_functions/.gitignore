@@ -21,5 +21,8 @@ test_nric_bessel
 test_sph_bessel
 test_sph_hankel
 test_struve
+test_cyl_bessel_nk_series
+test_cyl_bessel_ratio
+test_cyl_hankel_ratio
 
 err.txt

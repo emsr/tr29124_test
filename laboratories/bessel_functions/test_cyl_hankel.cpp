@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_cyl_hankel test_cyl_hankel.cpp  -lquadmath -Lwrappers/debug -lwrap_boost
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_cyl_hankel > test_cyl_hankel.txt
-
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o test_cyl_hankel test_cyl_hankel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-PATH=wrappers/debug:$PATH ./test_cyl_hankel > test_cyl_hankel.txt
-*/
+/**
+ *
+ */
 
 #define __STDCPP_WANT_MATH_SPEC_FUNCS__ 1
 
@@ -12,7 +8,7 @@ PATH=wrappers/debug:$PATH ./test_cyl_hankel > test_cyl_hankel.txt
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include "wrap_boost.h"
+#include <wrap_boost.h>
 
 template<typename _Tp>
   void

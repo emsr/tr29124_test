@@ -10,9 +10,11 @@ PATH=wrappers/debug:$PATH ./debug_polylog > debug_polylog.txt
 
 #include <ext/cmath>
 #include <iostream>
+#include <iomanip>
+#include <complex>
 
-#include "zeta/riemann_zeta.tcc"
-#include "zeta/PolyLog.h"
+#include <zeta/riemann_zeta.tcc>
+#include <zeta/PolyLog.h>
 
 int
 main()

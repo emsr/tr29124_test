@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_struve test_struve.cpp -lquadmath -Lwrappers/debug -lwrap_burkhardt
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_struve ../plot_data > ../output/test_struve.new
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_struve test_struve.cpp -lquadmath
-PATH=wrappers/debug:$PATH ./test_struve ../plot_data > ../output/test_struve.txt
-*/
+/**
+ *
+ */
 
 #include <cassert>
 #include <ext/cmath>
@@ -18,7 +14,7 @@ PATH=wrappers/debug:$PATH ./test_struve ../plot_data > ../output/test_struve.txt
 #include <bits/float128_io.h>
 
 #include <wrap_burkhardt.h>
-#include "sf_struve.h"
+#include <sf_struve.h>
 
 /**
  * Take a hard look at the series/asymptotic transition.

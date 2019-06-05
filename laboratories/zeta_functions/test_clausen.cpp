@@ -10,7 +10,7 @@ PATH=wrappers/debug:$PATH ./test_clausen > test_clausen.txt
 #include <iomanip>
 #include <ext/cmath>
 #include <limits>
-#include "wrap_gsl.h"
+#include <wrap_gsl.h>
 
 
 template<typename _Tp>

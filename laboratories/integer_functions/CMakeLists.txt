@@ -3,15 +3,32 @@ cmake_minimum_required (VERSION 3.10)
 include(CheckCXXCompilerFlag)
 
 project(
-  specfun_laboratories
+  lab_integer_functions
   VERSION 0.5
   LANGUAGES CXX
 )
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
+set(CMAKE_CXX_FLAGS -Wno-psabi)
+
+if (NOT MSVC)
+  if (NOT CMAKE_CROSSCOMPILING)
+    set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+  endif ()
+endif ()
 
 enable_testing()
 
-#add_executable()
-#target_include_directories( PRIVATE )
-#target_link_libraries( )
+add_executable(test_factorization test_factorization.cpp)
+#target_include_directories(test_factorization PRIVATE )
+#target_link_libraries(test_factorization )
+
+add_executable(test_prime_factors test_prime_factors.cpp)
+target_include_directories(test_prime_factors PRIVATE
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../polynomial/include
+  ../../cxx_summation/include
+  ../../quadrature/include)
+target_link_libraries(test_prime_factors quadmath)

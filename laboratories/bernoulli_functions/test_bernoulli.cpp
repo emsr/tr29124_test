@@ -1,10 +1,6 @@
-/*
-$HOME/bin_specfun/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli test_bernoulli.cpp -lquadmath -Lwrappers/debug -lwrap_burkhardt -lgfortran
-LD_LIBRARY_PATH=$HOME/bin_specfun/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli > test_bernoulli.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_bernoulli test_bernoulli.cpp -lquadmath -Lwrappers/debug -lwrap_burkhardt -lgfortran
-LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli > test_bernoulli.txt
-*/
+/**
+ *
+ */
 
 #include <cmath>
 //#include <complex>
@@ -18,7 +14,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_bernoulli
 #include <bits/sf_gamma.tcc>
 #include <bits/sf_stirling.tcc>
 
-#include "wrap_burkhardt.h"
+#include <wrap_burkhardt.h>
 
 
   template<typename _RealTp, typename _IntTp,

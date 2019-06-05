@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_bessel test_bessel.cpp -lquadmath
-./test_bessel > test_bessel.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_bessel test_bessel.cpp -lquadmath
-./test_bessel > test_bessel.txt
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <iomanip>

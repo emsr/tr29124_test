@@ -14,7 +14,7 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_riemann_zeta ../plot_data
 #include <vector>
 #include <bits/float128_io.h>
 
-#include "wrap_gsl.h"
+#include <wrap_gsl.h>
 
   /**
    * @brief  Evaluate the Riemann zeta function @f$ \zeta(s) @f$

@@ -1,21 +1,18 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_legendre_ellint test_legendre_ellint.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_legendre_ellint > test_legendre_ellint.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_legendre_ellint test_legendre_ellint.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_legendre_ellint > test_legendre_ellint.txt
-*/
+/**
+ *
+ */
 
 #include <cmath>
 #include <iostream>
 #include <iomanip>
-#include "wrap_gsl.h"
+#include <vector>
+#include <wrap_gsl.h>
 
 template<typename _Tp>
   void
-  test_comp_ellint_1(_Tp __proto = _Tp{})
+  test_comp_ellint_1()
   {
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
     const auto w = 8 + std::cout.precision();
 
     std::cout << '\n' << '\n';
@@ -34,9 +31,9 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  test_comp_ellint_2(_Tp __proto = _Tp{})
+  test_comp_ellint_2()
   {
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
     const auto w = 8 + std::cout.precision();
 
     std::cout << '\n' << '\n';
@@ -55,11 +52,11 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  test_ellint_1(_Tp __proto = _Tp{})
+  test_ellint_1()
   {
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
     const auto w = 8 + std::cout.precision();
-    const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__proto);
+    const auto _S_pi_2 = __gnu_cxx::__const_pi_half<_Tp>();
 
     const std::vector<_Tp> ks({0.0L, 0.5L, 0.75L, 0.9L, 0.95L, 0.99L});
     std::cout << '\n' << '\n';
@@ -81,11 +78,11 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  test_ellint_2(_Tp __proto = _Tp{})
+  test_ellint_2()
   {
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
     const auto w = 8 + std::cout.precision();
-    const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__proto);
+    const auto _S_pi_2 = __gnu_cxx::__const_pi_half<_Tp>();
 
     const std::vector<_Tp> ks({0.0L, 0.5L, 0.75L, 0.9L, 0.95L, 0.99L});
     std::cout << '\n' << '\n';
@@ -108,9 +105,9 @@ template<typename _Tp>
 int
 main()
 {
-  test_comp_ellint_1(1.0);
-  test_ellint_1(1.0);
+  test_comp_ellint_1<double>();
+  test_ellint_1<double>();
 
-  test_comp_ellint_2(1.0);
-  test_ellint_2(1.0);
+  test_comp_ellint_2<double>();
+  test_ellint_2<double>();
 }

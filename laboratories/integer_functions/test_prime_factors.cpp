@@ -7,7 +7,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_prime_factors
 #include <cmath>
 #include <iostream>
 
-#include "bits/sf_prime.tcc"
+#include <bits/sf_prime.tcc>
 
 void
 print_prime_factors(unsigned int n)

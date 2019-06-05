@@ -1,6 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -o test_static_root test_static_root.cpp
-*/
+/**
+ *
+ */
 
 #include <limits>
 #include <iostream>

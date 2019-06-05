@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -o test_q_pochhammer test_q_pochhammer.cpp
-./test_q_pochhammer > test_q_pochhammer.txt
-*/
+/**
+ *
+ */
 
 #include <cmath>
 #include <iostream>

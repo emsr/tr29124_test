@@ -1,7 +1,7 @@
-/*
-/home/ESmith-rowland/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -o complex_tie complex_tie.cpp 
-./complex_tie
-*/
+/**
+ *
+ */
+
 #include <iostream>
 #include <functional>
 #include <tuple>

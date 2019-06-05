@@ -20,9 +20,9 @@
 #include <gsl/gsl_sf.h>
 
 #include <bits/float128_io.h>
-#include "test_func.tcc"
-#include "wrap_gsl.h"
-#include "wrap_burkhardt.h"
+#include <test_func.tcc>
+#include <wrap_gsl.h>
+#include <wrap_burkhardt.h>
 
 
 ///

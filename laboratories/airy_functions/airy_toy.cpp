@@ -1,12 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o airy_toy airy_toy.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy ../plot_data > ../output/airy_toy.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -DOLD -o airy_toy_old airy_toy.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./airy_toy_old ../plot_data > ../output/airy_toy_old.txt
-*/
-
-
+/**
+ *
+ */
 
 // g++ -std=gnu++2a -g -Wall -Wextra -I. -o airy_toy airy_toy.cpp -lquadmath
 

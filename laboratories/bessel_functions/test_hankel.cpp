@@ -1,17 +1,13 @@
-/*
-$HOME/bin_specfun/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_hankel test_hankel.cpp -lquadmath
-./test_hankel > test_hankel.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_hankel test_hankel.cpp -lquadmath
-./test_hankel > test_hankel.txt
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <iomanip>
 
 #include <ext/cmath>
 #include <bits/complex_util.h>
-//#include "hankel.h"
+//#include <hankel.h>
 #include <bits/float128_io.h>
 
 

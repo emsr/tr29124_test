@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_hankel_real_arg test_hankel_real_arg.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_hankel_real_arg > test_hankel_real_arg.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_hankel_real_arg test_hankel_real_arg.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-PATH=wrappers/debug:$PATH ./test_hankel_real_arg > test_hankel_real_arg.txt
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <iomanip>

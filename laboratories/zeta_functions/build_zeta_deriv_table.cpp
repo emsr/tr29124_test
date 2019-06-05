@@ -7,7 +7,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./build_zeta_deriv_table > buil
 */
 
 #include <mpreal.h>
-#include "bits/numeric_limits_mpreal.h"
+#include <bits/numeric_limits_mpreal.h>
 
 int
 main()

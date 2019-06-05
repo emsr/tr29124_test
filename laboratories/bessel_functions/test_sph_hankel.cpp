@@ -1,17 +1,13 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_sph_hankel test_sph_hankel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_sph_hankel > test_sph_hankel.txt
-
-g++ -std=c++14 -g -Wall -Wextra -I. -o test_sph_hankel test_sph_hankel.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-./test_sph_hankel > test_sph_hankel.txt
-*/
+/**
+ *
+ */
 
 #include <limits>
 #include <iostream>
 #include <iomanip>
 #include <ext/cmath>
 #include <bits/float128_io.h>
-#include "wrap_boost.h"
+#include <wrap_boost.h>
 
 template<typename _Tp>
   void

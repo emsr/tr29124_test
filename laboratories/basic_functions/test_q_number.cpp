@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -o test_q_number test_q_number.cpp
-./test_q_number > test_q_number.txt
-*/
+/**
+ *
+ */
 
 #include <cmath>
 #include <iostream>

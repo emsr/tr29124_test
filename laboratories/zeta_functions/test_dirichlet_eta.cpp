@@ -8,6 +8,7 @@ PATH=wrappers/debug:$PATH ./test_dirichlet_eta > test_dirichlet_eta.txt
 
 #include <ext/cmath>
 #include <iostream>
+#include <iomanip>
 
 int
 main()

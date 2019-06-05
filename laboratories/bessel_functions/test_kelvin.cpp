@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_kelvin test_kelvin.cpp -lquadmath
-./test_kelvin ../plot_data > ../output/test_kelvin.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_kelvin test_kelvin.cpp -lquadmath
-./test_kelvin ../plot_data > ../output/test_kelvin.txt
-*/
+/**
+ *
+ */
 
 #include <limits>
 #include <iostream>

@@ -1,6 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o test_airy_roots test_airy_roots.cpp
-*/
+/**
+ *
+ */
 
 #include <limits>
 #include <vector>

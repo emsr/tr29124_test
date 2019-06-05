@@ -10,7 +10,7 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_debye > test_debye.txt
 #include <iomanip>
 #include <limits>
 #include <ext/cmath>
-#include "wrap_gsl.h"
+#include <wrap_gsl.h>
 
   /**
    * Return the Debye function.

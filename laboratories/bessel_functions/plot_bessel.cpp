@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -I../../cxx_summation/include -I../../quadrature/include -o plot_bessel plot_bessel.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./plot_bessel ../plot_data > ../output/plot_bessel.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -I../../cxx_summation/include -I../../quadrature/include -o plot_bessel plot_bessel.cpp -lquadmath
-./plot_bessel ../plot_data > ../output/plot_bessel.txt
-*/
+/**
+ *
+ */
 
 #include <limits>
 #include <iostream>

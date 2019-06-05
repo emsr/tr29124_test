@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -o test_appell_f1 test_appell_f1.cpp
-./test_appell_f1 > test_appell_f1.txt
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <iomanip>

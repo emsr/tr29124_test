@@ -1,5 +1,5 @@
 
-#include "sf_struve.tcc"
+#include <sf_struve.tcc>
 
 namespace __gnu_cxx
 {

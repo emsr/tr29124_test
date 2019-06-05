@@ -3,15 +3,91 @@ cmake_minimum_required (VERSION 3.10)
 include(CheckCXXCompilerFlag)
 
 project(
-  specfun_laboratories
+  lab_elliptic_integrals
   VERSION 0.5
   LANGUAGES CXX
 )
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
+set(CMAKE_CXX_FLAGS -Wno-psabi)
+
+if (NOT MSVC)
+  if (NOT CMAKE_CROSSCOMPILING)
+    set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+  endif ()
+endif ()
 
 enable_testing()
 
-#add_executable()
-#target_include_directories( PRIVATE )
-#target_link_libraries( )
+#add_executable(carlson1 carlson1.cpp)
+#target_include_directories(carlson1 PRIVATE )
+#target_link_libraries(carlson1 )
+
+#add_executable(carlson2 carlson2.cpp)
+#target_include_directories(carlson2 PRIVATE )
+#target_link_libraries(carlson2 )
+
+#add_executable(carlson3 carlson3.cpp)
+#target_include_directories(carlson3 PRIVATE )
+#target_link_libraries(carlson3 )
+
+#add_executable(carlson4 carlson4.cpp)
+#target_include_directories(carlson4 PRIVATE )
+#target_link_libraries(carlson4 )
+
+#add_executable(carlson carlson.cpp)
+#target_include_directories(carlson PRIVATE )
+#target_link_libraries(carlson )
+
+add_executable(carlson_std carlson_std.cpp)
+target_include_directories(carlson_std PRIVATE
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../cxx_summation/include
+  ../../polynomial/include
+  ../../quadrature/include)
+target_link_libraries(carlson_std quadmath)
+
+add_executable(test_comp_ellint_1 test_comp_ellint_1.cpp)
+target_include_directories(test_comp_ellint_1 PRIVATE
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../cxx_summation/include
+  ../../polynomial/include
+  ../../quadrature/include)
+target_link_libraries(test_comp_ellint_1 quadmath)
+
+add_executable(test_heuman_lambda test_heuman_lambda.cpp)
+target_include_directories(test_heuman_lambda PRIVATE
+  ../../wrappers
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../cxx_summation/include
+  ../../polynomial/include
+  ../../quadrature/include)
+target_link_libraries(test_heuman_lambda
+  quadmath
+  -L../../wrappers/debug -lwrap_boost)
+
+add_executable(test_jacobi_zeta test_jacobi_zeta.cpp)
+target_include_directories(test_jacobi_zeta PRIVATE
+  ../../wrappers
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../cxx_summation/include
+  ../../polynomial/include
+  ../../quadrature/include)
+target_link_libraries(test_jacobi_zeta quadmath -L../../wrappers/debug -lwrap_boost)
+
+add_executable(test_legendre_ellint test_legendre_ellint.cpp)
+target_include_directories(test_legendre_ellint PRIVATE
+  ../../wrappers
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../cxx_summation/include
+  ../../polynomial/include
+  ../../quadrature/include)
+target_link_libraries(test_legendre_ellint
+  quadmath
+  -L../../wrappers/debug -lwrap_gsl)

@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_anger_weber test_anger_weber.cpp -lquadmath
-./test_anger_weber > test_anger_weber.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_anger_weber test_anger_weber.cpp -lquadmath
-./test_anger_weber > test_anger_weber.txt
-*/
+/**
+ *
+ */
 
 #include <ext/cmath>
 #include <ext/math_util.h>

@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_cordic build_cordic.cpp -lquadmath -lmpfr -lgmp
-./build_cordic > build_cordic.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_cordic build_cordic.cpp -lquadmath -lmpfr -lgmp
-./build_cordic > build_cordic.txt
-*/
+/**
+ *
+ */
 
 #include <vector>
 #include <iostream>

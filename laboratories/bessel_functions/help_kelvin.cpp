@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=c++17 -g -Wall -Wextra -Wno-psabi -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -I../../cxx_summation/include -I../../quadrature/include -o help_kelvin help_kelvin.cpp
-./help_kelvin > help_kelvin.txt
-*/
+/**
+ *
+ */
 
 #include <cmath>
 #include <limits>

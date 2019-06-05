@@ -16,7 +16,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_lerch tes
 #include <bits/specfun_util.h>
 #include <statistics.h>
 
-#include "3rdparty/lerchphi/Source/lerchphi.h"
+#include <3rdparty/lerchphi/Source/lerchphi.h>
 
   /**
    * A functor for a vanWijnGaarden compressor.

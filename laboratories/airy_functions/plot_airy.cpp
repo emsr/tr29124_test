@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -I../../cxx_summation/include -I../../quadrature/include -o plot_airy plot_airy.cpp -L$HOME/bin/lib64 -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./plot_airy ../plot_data > ../output/plot_airy.txt
-*/
+/**
+ *
+ */
 
 #include <cmath>
 #include <iostream>

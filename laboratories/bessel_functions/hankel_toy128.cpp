@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o hankel_toy128 hankel_toy128.cpp -L$HOME/bin/lib64 -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./hankel_toy128 > hankel_toy128.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o hankel_toy128 hankel_toy128.cpp -L$HOME/bin/lib64 -lquadmath
-./hankel_toy128 > hankel_toy128.txt
-*/
+/**
+ *
+ */
 
 #include <limits>
 #include <iostream>

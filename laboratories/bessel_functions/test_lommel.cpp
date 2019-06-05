@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_lommel test_lommel.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_burkhardt
-LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH ./test_lommel > test_lommel.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o test_lommel test_lommel.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_burkhardt
-./test_lommel > test_lommel.txt
-*/
+/**
+ *
+ */
 
 #include <ext/cmath>
 #include <limits>

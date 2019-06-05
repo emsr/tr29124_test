@@ -1,11 +1,6 @@
-
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_struve_old test_struve_old.cpp -lquadmath
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_struve_old > test_struve_old.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_struve_old test_struve_old.cpp -lquadmath
-PATH=wrappers/debug:$PATH ./test_struve_old > test_struve_old.txt
-*/
+/**
+ *
+ */
 
 /*
 These are from cephes.
@@ -15,7 +10,7 @@ These are from cephes.
 #include <cmath>
 #include <stdexcept>
 #include <vector>
-#include "test_struve_old.h"
+#include <test_struve_old.h>
 
 static double stop = 1.37e-17;
 #include "hyperg_1F2.cpp"

@@ -1,3 +1,6 @@
+/**
+ *
+ */
 // Got these from Burkhardt.
 // They are used in cdflib.
 // These need to be made type generic.

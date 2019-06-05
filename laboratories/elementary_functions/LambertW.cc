@@ -24,7 +24,7 @@
 #include <iostream>
 #include <cmath>
 #include <limits>
-#include "LambertW.h"
+#include <LambertW.h>
 
 using namespace std;
 

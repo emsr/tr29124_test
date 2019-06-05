@@ -3,15 +3,76 @@ cmake_minimum_required (VERSION 3.10)
 include(CheckCXXCompilerFlag)
 
 project(
-  specfun_laboratories
+  lab_floating_point_tools
   VERSION 0.5
   LANGUAGES CXX
 )
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
+set(CMAKE_CXX_FLAGS -Wno-psabi)
+
+if (NOT MSVC)
+  if (NOT CMAKE_CROSSCOMPILING)
+    set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+  endif ()
+endif ()
 
 enable_testing()
 
-#add_executable()
-#target_include_directories( PRIVATE )
-#target_link_libraries( )
+add_executable(builtins builtins.cpp)
+
+add_executable(test_float128 test_float128.cpp)
+target_include_directories(test_float128 PRIVATE
+  ../../wrappers
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../polynomial/include
+  ../../cxx_summation/include
+  ../../quadrature/include)
+target_link_libraries(test_float128 quadmath)
+
+add_executable(test_limits test_limits.cpp)
+target_include_directories(test_limits PRIVATE
+  ../../wrappers
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../polynomial/include
+  ../../cxx_summation/include
+  ../../quadrature/include)
+target_link_libraries(test_limits quadmath)
+
+add_executable(test_maxint test_maxint.cpp)
+target_include_directories(test_maxint PRIVATE
+  $ENV{HOME}/mpreal
+  ../../wrappers
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../polynomial/include
+  ../../cxx_summation/include
+  ../../quadrature/include)
+target_link_libraries(test_maxint quadmath gmp mpfr)
+
+add_executable(test_mod2pi test_mod2pi.cpp)
+target_include_directories(test_mod2pi PRIVATE
+  ../../wrappers
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../polynomial/include
+  ../../cxx_summation/include
+  ../../quadrature/include)
+target_link_libraries(test_mod2pi quadmath)
+
+add_executable(test_numeric_limits test_numeric_limits.cpp)
+target_include_directories(test_numeric_limits PRIVATE
+  $ENV{HOME}/mpreal
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../polynomial/include
+  ../../cxx_summation/include
+  ../../quadrature/include)
+target_link_libraries(test_numeric_limits quadmath gmp mpfr)
+
+add_executable(test_ulp test_ulp.cpp)
+
+add_executable(variant_help variant_help.cpp)

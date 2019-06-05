@@ -1,15 +1,11 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_zeta test_jacobi_zeta.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_jacobi_zeta > test_jacobi_zeta.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_zeta test_jacobi_zeta.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-PATH=wrappers/debug:$PATH ./test_jacobi_zeta > test_jacobi_zeta.txt
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <iomanip>
 #include <bits/specfun.h>
-#include "wrap_boost.h"
+#include <wrap_boost.h>
 
 template<typename _Tp>
   void

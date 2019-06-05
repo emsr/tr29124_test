@@ -16,7 +16,7 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_polylog > test_polylog.tx
 #include <complex>
 #include <bits/float128_io.h>
 
-#include "wrap_cephes.h"
+#include <wrap_cephes.h>
 
   /**
    * This class manages the termination of series.

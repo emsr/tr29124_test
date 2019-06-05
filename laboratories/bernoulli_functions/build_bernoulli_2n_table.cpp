@@ -1,13 +1,9 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_bernoulli_2n_table build_bernoulli_2n_table.cpp -lquadmath -lmpfr
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./build_bernoulli_2n_table > build_bernoulli_2n_table.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_bernoulli_2n_table build_bernoulli_2n_table.cpp -lquadmath -lmpfr
-./build_bernoulli_2n_table > build_bernoulli_2n_table.txt
-*/
+/**
+ *
+ */
 
 #include <mpreal.h>
-#include "bits/numeric_limits_mpreal.h"
+#include <bits/numeric_limits_mpreal.h>
 
 int
 main()

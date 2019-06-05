@@ -1,14 +1,13 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -g -I. -Wall -Wextra -o test_gudermannian test_gudermannian.cpp
-./test_gudermannian > test_gudermannian.txt
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <iomanip>
 #include <limits>
 #include <cmath>
 
-#include "ext/math_const.h"
+#include <ext/math_const.h>
 
 /**
  * Compute the inverse Gudermann function relating a circular argument

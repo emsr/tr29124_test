@@ -1,6 +1,6 @@
-// g++ -std=c++14 -o complex_literal_bug complex_literal_bug.cpp
-
-// $HOME/bin/bin/g++ -std=c++14 -o complex_literal_bug complex_literal_bug.cpp
+/**
+ *
+ */
 
 #include <complex>
 

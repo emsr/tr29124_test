@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o debug_airy debug_airy.cpp -Lwrappers/debug -lwrap_gsl -lwrap_boost
-./debug_airy
-
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -I. -o debug_airy debug_airy.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_boost
-./debug_airy
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <iomanip>

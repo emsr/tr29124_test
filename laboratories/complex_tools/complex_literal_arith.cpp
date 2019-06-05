@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++14 -Wall -Wextra -Wno-psabi -o complex_literal_arith complex_literal_arith.cpp
-
-$HOME/bin/bin/g++ -std=gnu++14 -Wall -Wextra -o complex_literal_arith complex_literal_arith.cpp
-
-$HOME/bin-5/bin/g++ -std=gnu++14 -Wall -Wextra -o complex_literal_arith complex_literal_arith.cpp
-*/
+/**
+ *
+ */
 
 #include <complex>
 

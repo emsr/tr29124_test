@@ -40,7 +40,7 @@ __FBSDID("$FreeBSD: head/tools/regression/lib/msun/test-nearbyint.c 251241 2013-
 #include <math.h>
 #include <stdio.h>
 
-#include "test-utils.h"
+#include <test-utils.h>
 
 static int testnum;
 

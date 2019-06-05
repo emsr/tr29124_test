@@ -10,7 +10,8 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_parab_cyl
 #include <iomanip>
 #include <cmath>
 #include <limits>
-#include "sf_parab_cyl.tcc"
+
+#include <sf_parab_cyl.tcc>
 
 template<typename _Tp>
   void

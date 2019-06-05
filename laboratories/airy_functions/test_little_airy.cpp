@@ -1,16 +1,12 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_little_airy test_little_airy.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_burkhardt
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_little_airy > test_little_airy.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_little_airy test_little_airy.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_burkhardt
-PATH=wrappers/debug:$PATH ./test_little_airy > test_little_airy.txt
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <iomanip>
 #include <cmath>
 
-#include "airy.tcc"
+#include <airy.tcc>
 
 #include <wrap_gsl.h>
 

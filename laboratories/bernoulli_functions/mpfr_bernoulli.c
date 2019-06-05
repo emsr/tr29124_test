@@ -3,8 +3,7 @@
   ./mpfr_bernoulli
 */
 
-#include "mpfr.h"
-#include "mpfr.h"
+#include <mpfr.h>
 
 // \zeta(-s) = -B_{s+1} / (s + 1)
 // s+1 == 2n

@@ -1,7 +1,6 @@
-/*
-g++ -o test_nric_bessel test_nric_bessel.cpp
-./test_nric_bessel > test_nric_bessel.txt
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <iomanip>
@@ -9,7 +8,7 @@ g++ -o test_nric_bessel test_nric_bessel.cpp
 #include <stdexcept>
 #include <limits>
 
-#include "nric_bessel.tcc"
+#include <nric_bessel.tcc>
 
 int
 main()

@@ -3,7 +3,7 @@ cmake_minimum_required (VERSION 3.10)
 include(CheckCXXCompilerFlag)
 
 project(
-  specfun_laboratories
+  lab_bessel_functions
   VERSION 0.5
   LANGUAGES CXX
 )
@@ -13,9 +13,33 @@ set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
 set(CMAKE_FORTRAN_COMPILER "/home/ed/bin/bin/gfortran")
 set(CMAKE_CXX_FLAGS -Wno-psabi)
 
+if (NOT MSVC)
+  if (NOT CMAKE_CROSSCOMPILING)
+    set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+  endif ()
+endif ()
+
 enable_testing()
 
 add_executable(debug_bessel debug_bessel.cpp)
+
+add_executable(test_cyl_bessel_ratio test_cyl_bessel_ratio.cpp)
+target_include_directories(test_cyl_bessel_ratio PRIVATE
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../cxx_summation/include
+  ../../polynomial/include
+  ../../quadrature/include
+  ../../cxx_continued_fractions/include)
+
+add_executable(test_cyl_hankel_ratio test_cyl_hankel_ratio.cpp)
+target_include_directories(test_cyl_hankel_ratio PRIVATE
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../cxx_summation/include
+  ../../polynomial/include
+  ../../quadrature/include
+  ../../cxx_continued_fractions/include)
 
 add_executable(hankel_toy128 hankel_toy128.cpp)
 target_include_directories(hankel_toy128 PRIVATE
@@ -169,6 +193,9 @@ target_include_directories(test_mod_bessel_asymp PRIVATE
 target_link_libraries(test_mod_bessel_asymp quadmath)
 
 add_executable(test_nric_bessel test_nric_bessel.cpp)
+target_include_directories(test_nric_bessel PRIVATE
+  .
+)
 
 add_executable(test_sph_bessel test_sph_bessel.cpp)
 target_include_directories(test_sph_bessel PRIVATE
@@ -191,6 +218,7 @@ target_link_libraries(test_sph_hankel quadmath -L../../wrappers/debug -lwrap_boo
 
 add_executable(test_struve test_struve.cpp)
 target_include_directories(test_struve PRIVATE
+  .
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -199,7 +227,16 @@ target_include_directories(test_struve PRIVATE
   ../../wrappers)
 target_link_libraries(test_struve quadmath -L../../wrappers/debug -lwrap_burkhardt -L/home/ed/bin/lib64 -lgfortran)
 
-##include "hyperg_1F2.cpp"
+add_executable(test_cyl_bessel_nk_series test_cyl_bessel_nk_series.cpp)
+target_include_directories(test_cyl_bessel_nk_series PRIVATE
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../polynomial/include
+  ../../quadrature/include
+  ../../cxx_summation/include)
+target_link_libraries(test_cyl_bessel_nk_series quadmath)
+
+# Missing hyperg_1F2.cpp
 #add_executable(test_struve_old test_struve_old.cpp)
 #target_include_directories(test_struve_old PRIVATE )
 #target_link_libraries(test_struve_old )
