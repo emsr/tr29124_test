@@ -55,23 +55,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   };
 
   /**
-   * A structure to store quadrature rules.
-   */
-  template<typename _Tp>
-    struct __quadrature_point_t
-    {
-      _Tp __point;
-      _Tp __weight;
-
-      constexpr __quadrature_point_t() = default;
-
-      constexpr __quadrature_point_t(_Tp __pt, _Tp __wt)
-      : __point(__pt),
-	__weight(__wt)
-      { }
-    };
-
-  /**
    * A type describing the state of a Hermite polynomial.
    */
   template<typename _Tp>
