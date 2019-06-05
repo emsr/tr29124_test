@@ -1,0 +1,10 @@
+
+CMakeCache.txt
+CMakeFiles/
+CTestTestfile.cmake
+Makefile
+cmake_install.cmake
+
+test_continued_fraction
+test_lentz_continued_fraction
+test_steed_continued_fraction

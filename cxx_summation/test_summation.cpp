@@ -125,7 +125,7 @@ template<typename Tp>
     // 2F0(1,1;;-1/z) = z e^z E_1(z)
     const auto expint_scaled
       = [](Tp z)->Tp
-        { return z * std::exp(z)*__gnu_cxx::expint(1,z); };
+        { return z * std::exp(z)* __gnu_cxx::expint(1,z); };
 
     // 2F0(1,1;;-1/z) = z e^zE_1(z)
     for (auto z : {Tp{3}, Tp{0.5L}})
