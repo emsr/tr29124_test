@@ -34,6 +34,7 @@
 
 #include <ext/math_const.h>
 #include <ext/math_util.h>
+#include <bits/quadrature_point.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {

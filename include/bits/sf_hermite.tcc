@@ -44,6 +44,7 @@
 #pragma GCC system_header
 
 #include <ext/math_const.h>
+#include <bits/quadrature_point.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
