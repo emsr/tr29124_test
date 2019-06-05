@@ -15,8 +15,8 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_lobatto t
 #include <limits>
 #include <vector>
 
-#include "legendre.tcc"
-#include "bits/sf_legendre.tcc"
+#include <legendre.tcc>
+#include <bits/sf_legendre.tcc>
 
   template<typename _Tp>
     std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>

@@ -13,7 +13,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_hermite t
 #include <limits>
 
 #include <bits/float128_io.h>
-#include "new_hermite.tcc"
+#include <new_hermite.tcc>
 #include <ext/continued_fractions.h>
 #include <ext/integration.h>
 

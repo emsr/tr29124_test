@@ -8,6 +8,8 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:LD_LIBRARY_PATH$ ./test_legendre_q > test_legend
 #include <limits>
 #include <cmath>
 
+#include <bits/sf_legendre.tcc>
+
 template<typename _Tp>
   void
   test_legendre_q()

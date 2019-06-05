@@ -195,8 +195,8 @@ template<typename _Tp>
 	      const auto x = _Tp(i * 0.1L);
 	      std::cout << ' ' << x
 			<< ' ' << std::setw(w) << P(x)
-			//<< ' ' << std::setw(w) << __gnu_cxx::gegenbauer(n, lambda, x)
-			<< ' ' << std::setw(w) << lab::gegenbauer(n, lambda, x)
+			//<< ' ' << std::setw(w) << __gnu_cxx::gegenbauer(n, lambda, x).__C_n
+			<< ' ' << std::setw(w) << lab::__gegenbauer_recur(n, lambda, x).__C_n
 			<< '\n';
 	    }
 	  std::cout << '\n';

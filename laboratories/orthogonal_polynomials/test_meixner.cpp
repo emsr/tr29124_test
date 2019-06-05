@@ -8,7 +8,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_meixner >
 #include <limits>
 #include <cmath>
 
-#include "wrap_burkhardt.h"
+#include <wrap_burkhardt.h>
 
 /**
  * Compute the Meixner-Pollaczek polynomial by recursion:

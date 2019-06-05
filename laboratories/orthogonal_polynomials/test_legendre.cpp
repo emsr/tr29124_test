@@ -10,9 +10,6 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:LD_LIBRARY_PATH$ ./test_legendre > test_legendre
 #include <limits>
 #include <vector>
 
-//#include "legendre.tcc"
-//#include "bits/sf_legendre.tcc"
-
   /**
    * Build a list of zeros and weights for the Gauss-Legendre integration rule
    * for the Legendre polynomial of degree @c l.
