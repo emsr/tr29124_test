@@ -47,6 +47,11 @@ target_link_libraries(test_assoc_legendre_q quadmath)
 
 add_executable(test_charlier test_charlier.cpp)
 target_include_directories(test_charlier PRIVATE
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../polynomial/include
+  ../../cxx_summation/include
+  ../../quadrature/include
   ../../wrappers)
 target_link_libraries(test_charlier quadmath -L../../wrappers/debug -lwrap_burkhardt)
 
@@ -145,7 +150,12 @@ target_link_libraries(test_hermite quadmath)
 
 add_executable(test_jacobi test_jacobi.cpp)
 target_include_directories(test_jacobi PRIVATE
-  .)
+  .
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../polynomial/include
+  ../../cxx_summation/include
+  ../../quadrature/include)
 target_link_libraries(test_jacobi quadmath)
 
 add_executable(test_jacobi_neg_parm test_jacobi_neg_parm.cpp)
@@ -170,6 +180,11 @@ target_link_libraries(test_jacobi_neg_roots quadmath)
 
 add_executable(test_krawtchouk test_krawtchouk.cpp)
 target_include_directories(test_krawtchouk PRIVATE
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../polynomial/include
+  ../../cxx_summation/include
+  ../../quadrature/include
   ../../wrappers)
 target_link_libraries(test_krawtchouk quadmath -L../../wrappers/debug -lwrap_burkhardt)
 
@@ -212,6 +227,11 @@ target_link_libraries(test_lobatto quadmath)
 
 add_executable(test_meixner test_meixner.cpp)
 target_include_directories(test_meixner PRIVATE
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../polynomial/include
+  ../../cxx_summation/include
+  ../../quadrature/include
   ../../wrappers)
 target_link_libraries(test_meixner quadmath -L../../wrappers/debug -lwrap_burkhardt)
 
