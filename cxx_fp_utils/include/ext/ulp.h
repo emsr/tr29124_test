@@ -1,4 +1,7 @@
 
+#ifndef _EXT_ULP_H
+#define _EXT_ULP_H 1
+
 #include <limits>
 #include <cmath>
 #include <algorithm>
@@ -40,3 +43,5 @@ namespace __gnu_cxx
     }
 
 } // namespace __gnu_cxx
+
+#endif // _EXT_ULP_H
