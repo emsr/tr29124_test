@@ -1,1 +1,15 @@
 
+plot_gamma
+test_binet
+test_binet_float
+test_complex_gamma
+test_digamma
+test_factorial
+test_falling_factorial
+test_gamma
+test_gamma_ratio
+test_gamma_reciprocal
+test_inv_gamma
+test_inv_lgamma
+test_polygamma
+test_rising_factorial

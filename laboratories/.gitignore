@@ -4,4 +4,22 @@ CTestTestfile.cmake
 Makefile
 cmake_install.cmake
 
+# These are not targets!
+build_atan_table
+build_bernoulli_2n_table
+build_cordic
+build_etam1_table
+build_gamma_lanczos
+build_gamma_recip
+build_gamma_spouge
+build_inv_erf_coefs
+build_log_table
+build_nfact_zetanp1
+build_sincos_tables
+build_sqrt_table
+build_zetahalfm1_table
+build_zetam1_table
+build_zeta_trig_tables
+build_zeta_deriv_table
+
 bin

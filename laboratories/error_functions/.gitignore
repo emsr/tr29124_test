@@ -1,1 +1,8 @@
 
+test_dawson
+test_erfc
+test_experfc
+test_faddeeva
+test_fresnel
+test_inv_erf
+test_owens_t
