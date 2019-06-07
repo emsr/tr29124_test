@@ -27,11 +27,11 @@ add_executable(debug_bessel debug_bessel.cpp)
 add_executable(test_cyl_bessel_ratio test_cyl_bessel_ratio.cpp)
 target_include_directories(test_cyl_bessel_ratio PRIVATE
   ../../cxx_math_const/include
-  ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
+  ../../include
   ../../cxx_continued_fractions/include)
 
 add_executable(test_cyl_hankel_ratio test_cyl_hankel_ratio.cpp)

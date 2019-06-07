@@ -247,7 +247,13 @@ target_link_libraries(test_riemann_zeta
 
 add_executable(zeta_glob_deathmatch zeta_glob_deathmatch.cpp)
 target_include_directories(zeta_glob_deathmatch PRIVATE
-  ../../wrappers)
+  ../../wrappers
+  ../../cxx_math_const/include
+  ../../include
+  ../../cxx_fp_utils/include
+  ../../polynomial/include
+  ../../cxx_summation/include
+  ../../quadrature/include)
 target_link_libraries(zeta_glob_deathmatch
   quadmath
   -L../../wrappers/debug -lwrap_gsl)
