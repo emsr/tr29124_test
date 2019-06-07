@@ -7,6 +7,13 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+if (NOT MSVC)
+  if (NOT CMAKE_CROSSCOMPILING)
+    set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+  endif ()
+endif ()
 
 enable_testing()
 
@@ -19,7 +26,7 @@ list(APPEND cxx_differentiation_INCLUDES
 add_executable(test_differentiation test_differentiation.cpp)
 target_include_directories(test_differentiation PRIVATE include)
 
-add_test(NAME differentiation_test0 COMMAND bash -c "./test_differentiation > test_differentiation.txt")
+add_test(NAME differentiation_test0 COMMAND bash -c "./bin/test_differentiation > test_differentiation.txt")
 
 find_package(Doxygen)
 if (DOXYGEN_FOUND)
