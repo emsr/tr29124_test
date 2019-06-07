@@ -31,6 +31,7 @@ add_executable(test_coulomb test_coulomb.cpp)
 
 add_executable(test_hydrogen test_hydrogen.cpp)
 target_include_directories(test_hydrogen PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include

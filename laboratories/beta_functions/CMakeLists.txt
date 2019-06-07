@@ -23,6 +23,7 @@ enable_testing()
 
 add_executable(test_beta test_beta.cpp)
 target_include_directories(test_beta PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -33,6 +34,7 @@ target_link_libraries(test_beta quadmath -L../../wrappers/debug -lwrap_boost)
 
 add_executable(test_beta_inc test_beta_inc.cpp)
 target_include_directories(test_beta_inc PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -42,6 +44,7 @@ target_link_libraries(test_beta_inc quadmath)
 
 add_executable(test_inv_ibeta test_inv_ibeta.cpp)
 target_include_directories(test_inv_ibeta PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include

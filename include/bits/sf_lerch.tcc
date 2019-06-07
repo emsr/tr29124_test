@@ -41,7 +41,7 @@
 
 #pragma GCC system_header
 
-#include <ext/cmath>
+#include <cmath>
 #include <ext/summation.h>
 #include <bits/specfun_util.h>
 

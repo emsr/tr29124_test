@@ -6,7 +6,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o test_tricomi_u test_trico
 PATH=wrappers/debug:$PATH ./test_tricomi_u > test_tricomi_u.txt
 */
 
-#include <ext/cmath>
+#include <cmath>
 #include <limits>
 #include <iostream>
 #include <iomanip>

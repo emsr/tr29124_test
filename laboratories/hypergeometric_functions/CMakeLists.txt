@@ -37,6 +37,7 @@ target_compile_definitions(hyperg_3F0 PRIVATE MAIN_3F0)
 
 add_executable(test_conf_hyperg test_conf_hyperg.cpp)
 target_include_directories(test_conf_hyperg PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -46,6 +47,7 @@ target_link_libraries(test_conf_hyperg quadmath)
 
 add_executable(test_conf_hyperg_limit test_conf_hyperg_limit.cpp)
 target_include_directories(test_conf_hyperg_limit PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -56,6 +58,7 @@ target_link_libraries(test_conf_hyperg_limit quadmath)
 add_executable(test_hyperg test_hyperg.cpp)
 target_include_directories(test_hyperg PRIVATE
   ../../wrappers
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include

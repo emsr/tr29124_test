@@ -25,6 +25,7 @@ add_executable(builtins builtins.cpp)
 add_executable(test_float128 test_float128.cpp)
 target_include_directories(test_float128 PRIVATE
   ../../wrappers
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -35,6 +36,7 @@ target_link_libraries(test_float128 quadmath)
 add_executable(test_limits test_limits.cpp)
 target_include_directories(test_limits PRIVATE
   ../../wrappers
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -46,6 +48,7 @@ add_executable(test_maxint test_maxint.cpp)
 target_include_directories(test_maxint PRIVATE
   $ENV{HOME}/mpreal
   ../../wrappers
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -56,6 +59,7 @@ target_link_libraries(test_maxint quadmath gmp mpfr)
 add_executable(test_mod2pi test_mod2pi.cpp)
 target_include_directories(test_mod2pi PRIVATE
   ../../wrappers
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -66,6 +70,7 @@ target_link_libraries(test_mod2pi quadmath)
 add_executable(test_numeric_limits test_numeric_limits.cpp)
 target_include_directories(test_numeric_limits PRIVATE
   $ENV{HOME}/mpreal
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include

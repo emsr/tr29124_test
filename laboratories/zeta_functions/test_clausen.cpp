@@ -8,7 +8,7 @@ PATH=wrappers/debug:$PATH ./test_clausen > test_clausen.txt
 
 #include <iostream>
 #include <iomanip>
-#include <ext/cmath>
+#include <cmath>
 #include <limits>
 #include <wrap_gsl.h>
 

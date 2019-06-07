@@ -22,6 +22,7 @@ enable_testing()
 
 add_executable(test_mittag_leffler test_mittag_leffler.cpp)
 target_include_directories(test_mittag_leffler PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include

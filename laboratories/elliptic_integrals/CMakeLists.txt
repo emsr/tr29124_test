@@ -42,6 +42,7 @@ enable_testing()
 
 add_executable(carlson_std carlson_std.cpp)
 target_include_directories(carlson_std PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -51,6 +52,7 @@ target_link_libraries(carlson_std quadmath)
 
 add_executable(test_comp_ellint_1 test_comp_ellint_1.cpp)
 target_include_directories(test_comp_ellint_1 PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -61,6 +63,7 @@ target_link_libraries(test_comp_ellint_1 quadmath)
 add_executable(test_heuman_lambda test_heuman_lambda.cpp)
 target_include_directories(test_heuman_lambda PRIVATE
   ../../wrappers
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -73,6 +76,7 @@ target_link_libraries(test_heuman_lambda
 add_executable(test_jacobi_zeta test_jacobi_zeta.cpp)
 target_include_directories(test_jacobi_zeta PRIVATE
   ../../wrappers
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -83,6 +87,7 @@ target_link_libraries(test_jacobi_zeta quadmath -L../../wrappers/debug -lwrap_bo
 add_executable(test_legendre_ellint test_legendre_ellint.cpp)
 target_include_directories(test_legendre_ellint PRIVATE
   ../../wrappers
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include

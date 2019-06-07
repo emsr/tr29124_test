@@ -23,6 +23,7 @@ enable_testing()
 add_executable(build_atan_table build_atan_table.cpp)
 target_include_directories(build_atan_table PRIVATE
   $ENV{HOME}/mpreal
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -33,6 +34,7 @@ target_link_libraries(build_atan_table gmp mpfr quadmath)
 add_executable(build_cordic build_cordic.cpp)
 target_include_directories(build_cordic PRIVATE
   $ENV{HOME}/mpreal
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -43,6 +45,7 @@ target_link_libraries(build_cordic gmp mpfr quadmath)
 add_executable(build_log_table build_log_table.cpp)
 target_include_directories(build_log_table PRIVATE
   $ENV{HOME}/mpreal
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -53,6 +56,7 @@ target_link_libraries(build_log_table gmp mpfr quadmath)
 add_executable(build_sincos_tables build_sincos_tables.cpp)
 target_include_directories(build_sincos_tables PRIVATE
   $ENV{HOME}/mpreal
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -63,6 +67,7 @@ target_link_libraries(build_sincos_tables gmp mpfr quadmath)
 add_executable(build_sqrt_table build_sqrt_table.cpp)
 target_include_directories(build_sqrt_table PRIVATE
   $ENV{HOME}/mpreal
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -78,6 +83,7 @@ target_include_directories(test_cordic PRIVATE
 
 add_executable(test_exp test_exp.cpp)
 target_include_directories(test_exp PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -87,6 +93,7 @@ target_link_libraries(test_exp quadmath)
 
 add_executable(test_gudermannian test_gudermannian.cpp)
 target_include_directories(test_gudermannian PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -96,6 +103,7 @@ target_link_libraries(test_gudermannian quadmath)
 
 add_executable(test_lambert_w test_lambert_w.cpp)
 target_include_directories(test_lambert_w PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -109,6 +117,7 @@ add_executable(test_log test_log.cpp)
 
 add_executable(test_notsospecfun test_notsospecfun.cpp)
 target_include_directories(test_notsospecfun PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -122,6 +131,7 @@ add_executable(test_pow test_pow.cpp)
 
 add_executable(test_reperiodized_hyper test_reperiodized_hyper.cpp)
 target_include_directories(test_reperiodized_hyper PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -132,6 +142,7 @@ target_link_libraries(test_reperiodized_hyper quadmath)
 add_executable(test_reperiodized_trig test_reperiodized_trig.cpp)
 target_include_directories(test_reperiodized_trig PRIVATE
   ../../wrappers
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -141,6 +152,7 @@ target_link_libraries(test_reperiodized_trig quadmath -L../../wrappers/debug -lw
 
 add_executable(test_sincos test_sincos.cpp)
 target_include_directories(test_sincos PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -151,6 +163,7 @@ target_link_libraries(test_sincos quadmath)
 add_executable(test_sinus_cardinal test_sinus_cardinal.cpp)
 target_include_directories(test_sinus_cardinal PRIVATE
   ../../wrappers
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -170,6 +183,7 @@ add_executable(test_static_root test_static_root.cpp)
 
 add_executable(test_trig test_trig.cpp)
 target_include_directories(test_trig PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -179,6 +193,7 @@ target_link_libraries(test_trig quadmath)
 
 add_executable(test_wright_omega test_wright_omega.cpp)
 target_include_directories(test_wright_omega PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -188,6 +203,7 @@ target_link_libraries(test_wright_omega quadmath)
 
 add_executable(test_zeta_trig test_zeta_trig.cpp)
 target_include_directories(test_zeta_trig PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include

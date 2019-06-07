@@ -10,7 +10,8 @@ PATH=wrappers/debug:$PATH ./test_falling_factorial > test_falling_factorial.txt
 #include <vector>
 #include <iostream>
 #include <iomanip>
-#include <ext/cmath>
+#include <cmath>
+
 #include <wrap_boost.h>
 
 namespace __gnu_cxx

@@ -22,6 +22,7 @@ enable_testing()
 
 add_executable(test_marcum_q test_marcum_q.cpp)
 target_include_directories(test_marcum_q PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include

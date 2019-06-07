@@ -5,7 +5,7 @@ $HOME/bin/bin/g++ -std=c++2a -I. -Wall -Wextra -Wno-psabi -o debug_odd_legendre 
 
 #include <iostream>
 #include <iomanip>
-#include <ext/cmath>
+#include <cmath>
 
 template<typename _Tp>
   void

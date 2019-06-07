@@ -5,8 +5,7 @@
 #include <iostream>
 #include <iomanip>
 #include <limits>
-
-#include <ext/cmath>
+#include <cmath>
 
 #include <wrap_boost.h>
 

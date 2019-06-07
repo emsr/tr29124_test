@@ -22,6 +22,7 @@ enable_testing()
 
 add_executable(test_csint test_csint.cpp)
 target_include_directories(test_csint PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -32,6 +33,7 @@ target_link_libraries(test_csint quadmath)
 add_executable(test_expint test_expint.cpp)
 target_include_directories(test_expint PRIVATE
   ../../wrappers
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include

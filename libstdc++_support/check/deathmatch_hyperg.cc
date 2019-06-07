@@ -22,7 +22,7 @@
 //  Test relations between special functions.
 
 #include <limits>
-#include <ext/cmath>
+#include <cmath>
 
 #if defined(__TEST_DEBUG)
 #  include <iostream>

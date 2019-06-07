@@ -3,7 +3,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_inv_gamma
 LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_inv_gamma
 */
 
-#include <ext/cmath>
+#include <cmath>
 #include <limits>
 
 #undef STANDALONE

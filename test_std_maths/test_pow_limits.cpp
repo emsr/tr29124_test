@@ -9,7 +9,7 @@ g++ -DBITS -std=c++11 -o test_pow_bits test_pow_limits.cpp
 
 #include <iostream>
 #include <limits>
-#include <ext/cmath>
+#include <cmath>
 
 #if BITS
 

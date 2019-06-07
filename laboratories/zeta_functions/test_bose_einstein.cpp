@@ -9,7 +9,7 @@ PATH=wrappers/debug:$PATH ./test_bose_einstein > test_bose_einstein.txt
 #include <iostream>
 #include <iomanip>
 #include <limits>
-#include <ext/cmath>
+#include <cmath>
 #include <complex>
 #include <bits/float128_io.h>
 

@@ -6,7 +6,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_gamma_rat
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_gamma_ratio > test_gamma_ratio.txt
 */
 
-#include <ext/cmath>
+#include <cmath>
 #include <bits/float128_io.h>
 #include <limits>
 #include <iostream>
@@ -15,6 +15,7 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_gamma_ratio > test_gamma_
 #include <vector>
 #include <string>
 #include <complex>
+
 #include <ext/summation.h>
 
 #include <wrap_boost.h>

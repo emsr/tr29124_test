@@ -9,7 +9,7 @@ PATH=wrappers/debug:$PATH gdb ./debug_dirichlet_eta
 br 'std::__detail::__dirichlet_eta<double>(double)' 
 */
 
-#include <ext/cmath>
+#include <cmath>
 #include <iostream>
 
 int

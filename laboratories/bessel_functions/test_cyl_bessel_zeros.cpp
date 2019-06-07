@@ -2,7 +2,7 @@
  *
  */
 
-#include <ext/cmath>
+#include <cmath>
 
 template<typename _Tp, typename _Hfun>
   std::vector<_Tp>

@@ -6,10 +6,10 @@ $HOME/bin/bin/g++ -std=c++2a -Wall -Wextra -g -I. -o zeta_glob_deathmatch zeta_g
 ./zeta_glob_deathmatch > zeta_glob_deathmatch.txt
 */
 
-#include<ext/cmath>
-#include<limits>
-#include<iostream>
-#include<iomanip>
+#include <cmath>
+#include <limits>
+#include <iostream>
+#include <iomanip>
 
 #include <wrap_gsl.h>
 

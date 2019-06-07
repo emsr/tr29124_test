@@ -6,7 +6,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_riemann_z
 LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_riemann_zeta ../plot_data > ../output/test_riemann_zeta.txt
 */
 
-#include <ext/cmath>
+#include <cmath>
 #include <limits>
 #include <iostream>
 #include <iomanip>

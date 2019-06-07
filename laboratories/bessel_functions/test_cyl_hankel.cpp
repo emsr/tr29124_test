@@ -4,7 +4,7 @@
 
 #define __STDCPP_WANT_MATH_SPEC_FUNCS__ 1
 
-#include <ext/cmath>
+#include <cmath>
 #include <limits>
 #include <iostream>
 #include <iomanip>

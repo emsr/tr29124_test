@@ -23,6 +23,7 @@ enable_testing()
 add_executable(build_bernoulli_2n_table build_bernoulli_2n_table.cpp)
 target_include_directories(build_bernoulli_2n_table PRIVATE
   $ENV{HOME}/mpreal
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -33,6 +34,7 @@ target_link_libraries(build_bernoulli_2n_table quadmath mpfr)
 
 add_executable(test_bernoulli test_bernoulli.cpp)
 target_include_directories(test_bernoulli PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include

@@ -8,7 +8,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_th
 
 #include <iostream>
 #include <iomanip>
-#include <ext/cmath>
+#include <cmath>
 #include <bits/float128_io.h>
 
 /**

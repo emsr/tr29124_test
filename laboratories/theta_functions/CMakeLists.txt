@@ -22,6 +22,7 @@ enable_testing()
 
 add_executable(test_jacobi_ellint test_jacobi_ellint.cpp)
 target_include_directories(test_jacobi_ellint PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -32,6 +33,7 @@ target_link_libraries(test_jacobi_ellint quadmath -L../../wrappers/debug -lwrap_
 
 add_executable(test_jacobi_inv test_jacobi_inv.cpp)
 target_include_directories(test_jacobi_inv PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -41,6 +43,7 @@ target_link_libraries(test_jacobi_inv quadmath)
 
 add_executable(test_jacobi_theta test_jacobi_theta.cpp)
 target_include_directories(test_jacobi_theta PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -51,6 +54,7 @@ target_link_libraries(test_jacobi_theta quadmath -L../../wrappers/debug -lwrap_g
 
 add_executable(test_theta test_theta.cpp)
 target_include_directories(test_theta PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -60,6 +64,7 @@ target_link_libraries(test_theta quadmath)
 
 add_executable(test_weierstrass_ellint test_weierstrass_ellint.cpp)
 target_include_directories(test_weierstrass_ellint PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include

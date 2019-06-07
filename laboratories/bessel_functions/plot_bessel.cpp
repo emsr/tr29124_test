@@ -9,7 +9,7 @@
 #include <vector>
 #include <string>
 #include <complex>
-#include <ext/cmath>
+#include <cmath>
 #include <bits/specfun.h>
 
 template<typename _Tp, typename _Bessel>

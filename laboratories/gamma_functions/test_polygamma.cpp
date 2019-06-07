@@ -12,7 +12,7 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_polygamma > test_polygamm
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include <ext/cmath>
+#include <cmath>
 
 #include <bits/specfun.h>
 #include <ext/continued_fractions.h>

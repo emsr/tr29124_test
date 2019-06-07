@@ -6,7 +6,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -Izeta -o test_di
 PATH=wrappers/debug:$PATH ./test_dirichlet_eta > test_dirichlet_eta.txt
 */
 
-#include <ext/cmath>
+#include <cmath>
 #include <iostream>
 #include <iomanip>
 

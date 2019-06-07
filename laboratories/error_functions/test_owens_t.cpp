@@ -9,7 +9,7 @@ PATH=wrappers/debug:$PATH ./test_owens_t > test_owens_t.txt
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include <ext/cmath>
+#include <cmath>
 #include <wrap_boost.h>
 
 int

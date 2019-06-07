@@ -5,7 +5,7 @@
 #include <iostream>
 #include <iomanip>
 #include <limits>
-#include <ext/cmath>
+#include <cmath>
 #include <bits/specfun.h>
 #include <wrap_gsl.h>
 

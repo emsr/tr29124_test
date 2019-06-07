@@ -9,7 +9,7 @@ LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_fermi_dirac > test_fermi_
 #include <iostream>
 #include <iomanip>
 #include <limits>
-#include <ext/cmath>
+#include <cmath>
 #include <wrap_gsl.h>
 #include <bits/float128_io.h>
 

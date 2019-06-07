@@ -5,7 +5,7 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
-#include <ext/cmath>
+#include <cmath>
 
 bool VERBOSE = false;
 

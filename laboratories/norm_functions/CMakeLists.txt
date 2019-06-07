@@ -26,6 +26,7 @@ add_executable(test_abs test_abs.cpp)
 
 add_executable(test_arith_geom_mean test_arith_geom_mean.cpp)
 target_include_directories(test_arith_geom_mean PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../wrappers)
@@ -35,6 +36,7 @@ target_link_libraries(test_arith_geom_mean
 
 add_executable(test_hypot test_hypot.cpp)
 target_include_directories(test_hypot PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include

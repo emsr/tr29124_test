@@ -10,7 +10,7 @@ PATH=wrappers/debug:$PATH ./test_rising_factorial > test_rising_factorial.txt
 #include <vector>
 #include <iostream>
 #include <iomanip>
-#include <ext/cmath>
+#include <cmath>
 
 #include <wrap_boost.h>
 

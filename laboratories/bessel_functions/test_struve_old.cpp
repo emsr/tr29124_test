@@ -6,6 +6,8 @@
 These are from cephes.
 */
 
+#include <iostream>
+#include <iomanip>
 #include <limits>
 #include <cmath>
 #include <stdexcept>

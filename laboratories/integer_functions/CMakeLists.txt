@@ -26,6 +26,7 @@ add_executable(test_factorization test_factorization.cpp)
 
 add_executable(test_prime_factors test_prime_factors.cpp)
 target_include_directories(test_prime_factors PRIVATE
+  ../../cxx_math_const/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
