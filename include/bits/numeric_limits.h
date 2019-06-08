@@ -32,7 +32,9 @@
 
 #pragma GCC system_header
 
+#define _GLIBCXX_NO_SPECFUN 1
 #include <cmath>
+#undef _GLIBCXX_NO_SPECFUN
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
