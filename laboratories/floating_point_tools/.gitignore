@@ -1,9 +1,1 @@
 
-builtins
-test_float128
-test_limits
-test_maxint
-test_mod2pi
-test_numeric_limits
-test_ulp
-variant_help

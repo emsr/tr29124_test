@@ -11,6 +11,7 @@ project(
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
 set(CMAKE_CXX_FLAGS -Wno-psabi)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 if (NOT MSVC)
   if (NOT CMAKE_CROSSCOMPILING)
@@ -246,13 +247,7 @@ target_link_libraries(test_riemann_zeta
 
 add_executable(zeta_glob_deathmatch zeta_glob_deathmatch.cpp)
 target_include_directories(zeta_glob_deathmatch PRIVATE
-  ../../wrappers
-  ../../cxx_math_const/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../polynomial/include
-  ../../cxx_summation/include
-  ../../quadrature/include)
+  ../../wrappers)
 target_link_libraries(zeta_glob_deathmatch
   quadmath
   -L../../wrappers/debug -lwrap_gsl)

@@ -1,17 +1,1 @@
 
-test_cordic
-test_exp
-test_gudermannian
-test_lambert_w
-test_log
-test_notsospecfun
-test_pow
-test_reperiodized_hyper
-test_reperiodized_trig
-test_sincos
-test_sinus_cardinal
-test_sqrt
-test_static_root
-test_trig
-test_wright_omega
-test_zeta_trig

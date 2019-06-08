@@ -11,6 +11,7 @@ $HOME/bin/bin/g++ -std=c++2a -Wall -Wextra -g -I. -o zeta_glob_deathmatch zeta_g
 #include <iostream>
 #include <iomanip>
 
+#include <ext/math_const.h>
 #include <wrap_gsl.h>
 
 #define _GLIBCXX_MATH_NS std
