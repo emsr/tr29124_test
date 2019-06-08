@@ -22,9 +22,11 @@ list(APPEND cxx_differentiation_INCLUDES
   include/ext/differentiation.tcc
 )
 
+add_library(cxx_differentiation INTERFACE)
+target_include_directories(cxx_differentiation INTERFACE include)
 
 add_executable(test_differentiation test_differentiation.cpp)
-target_include_directories(test_differentiation PRIVATE include)
+target_link_libraries(test_differentiation cxx_differentiation)
 
 add_test(NAME differentiation_test0 COMMAND bash -c "./bin/test_differentiation > test_differentiation.txt")
 
