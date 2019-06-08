@@ -34,8 +34,6 @@
 #include <bits/c++config.h>
 #include <bits/cpp_type_traits.h>
 
-extern "C++" {
-
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
@@ -222,6 +220,5 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace
-} // extern "C++"
 
 #endif 
