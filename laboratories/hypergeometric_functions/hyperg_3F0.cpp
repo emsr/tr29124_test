@@ -24,8 +24,7 @@ template<typename _Tp>
     auto max = _Tp{0};
     auto conv = std::numeric_limits<_Tp>::max() / _Tp{2};
     auto conv1 = conv;
-    // This was lost and may not be the right number!
-    const auto stop = 1.0e-6;
+    const auto stop = std::numeric_limits<_Tp>::epsilon();
 
     do
       {

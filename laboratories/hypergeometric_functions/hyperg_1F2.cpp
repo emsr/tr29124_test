@@ -22,8 +22,7 @@ template<typename _Tp>
     auto n = 1;
     auto t = _Tp{1};
     auto max = _Tp{0};
-    // This was lost and may not be the right number!
-    const auto stop = 1.0e-6;
+    const auto stop = std::numeric_limits<_Tp>::epsilon();
 
     do
       {
