@@ -1,0 +1,7 @@
+has_value_type
+std::complex<double>: true
+int                 : false
+double a[3]         : false
+double == value_t<std::complex<double>>: false
+int    == value_t<int>                 : false
+double == value_t<double [3]>          : false

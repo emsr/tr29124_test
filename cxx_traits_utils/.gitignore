@@ -1,0 +1,10 @@
+
+bin/
+
+CMakeCache.txt
+CMakeFiles/
+CMakeLists.txt
+CTestTestfile.cmake
+Makefile
+cmake_install.cmake
+Testing/
