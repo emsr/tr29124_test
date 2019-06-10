@@ -5,12 +5,12 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_root_search > test_root_
 
 #include <ext/root_search.h>
 #include <ext/polynomial.h>
-#include <bits/numeric_limits.h>
+#include <limits>
 #include <iostream>
 #include <iomanip>
 #include <cmath>
 
-#include "test_function.h"
+#include <test_function.h>
 
 template<typename _Tp>
   _Tp
@@ -82,10 +82,10 @@ template<typename _Tp>
   void
   test_roots(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
-    auto eps = __gnu_cxx::__epsilon(proto);
+    auto eps = std::numeric_limits<_Tp>::epsilon();
     eps = std::sqrt(std::sqrt(eps));
 
     // We need to cast to resolve the ambiguity in overloads in std::cos.
@@ -207,11 +207,11 @@ template<typename _Tp>
   void
   test_moar(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
-    auto eps = __gnu_cxx::__epsilon(proto);
+    auto eps = std::numeric_limits<_Tp>::epsilon();
     eps = std::sqrt(eps);
 
     for (const auto test : test_value_funcs<_Tp>)

@@ -35,7 +35,7 @@
 #include <cmath>
 #include <tuple> // For tie.
 
-#include <ext/math_const.h>
+#include <ext/math_constants.h>
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
@@ -61,7 +61,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __root_bracket(_Func __func, _Tp& __x_lower, _Tp& __x_upper,
 		   std::size_t __max_iter)
     {
-      const _Tp __golden = __gnu_cxx::__math_constants<_Tp>::__phi;
+      const _Tp __golden = __gnu_cxx::math::__phi_v<_Tp>;
 
       if (__x_lower >= __x_upper)
 	std::__throw_domain_error(__N("__root_bracket: "
