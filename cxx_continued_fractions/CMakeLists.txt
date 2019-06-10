@@ -23,6 +23,7 @@ target_include_directories(test_continued_fraction PRIVATE
   ../polynomial/include
   ../quadrature/include)
 target_link_libraries(test_continued_fraction quadmath)
+add_test(NAME run_test_continued_fraction COMMAND bash -c "./bin/test_continued_fraction > test_continued_fraction.txt")
 
 add_executable(test_lentz_continued_fraction test_lentz_continued_fraction.cpp)
 target_include_directories(test_lentz_continued_fraction PRIVATE
@@ -33,6 +34,7 @@ target_include_directories(test_lentz_continued_fraction PRIVATE
   ../polynomial/include
   ../quadrature/include)
 target_link_libraries(test_lentz_continued_fraction quadmath)
+add_test(NAME run_test_lentz_continued_fraction COMMAND bash -c "./bin/test_lentz_continued_fraction > test_lentz_continued_fraction.txt")
 
 add_executable(test_steed_continued_fraction test_steed_continued_fraction.cpp)
 target_include_directories(test_steed_continued_fraction PRIVATE
@@ -43,3 +45,4 @@ target_include_directories(test_steed_continued_fraction PRIVATE
   ../polynomial/include
   ../quadrature/include)
 target_link_libraries(test_steed_continued_fraction quadmath)
+add_test(NAME run_test_steed_continued_fraction COMMAND bash -c "./bin/test_steed_continued_fraction > test_steed_continued_fraction.txt")
