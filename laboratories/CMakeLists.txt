@@ -6,6 +6,8 @@ project(
   LANGUAGES CXX
 )
 
+enable_testing()
+
 add_subdirectory(airy_functions)
 add_subdirectory(appell_functions)
 add_subdirectory(basic_functions)
@@ -32,3 +34,4 @@ add_subdirectory(orthogonal_polynomials)
 add_subdirectory(parabolic_cylinder_functions)
 add_subdirectory(theta_functions)
 add_subdirectory(zeta_functions)
+add_subdirectory(recursive_functions)
