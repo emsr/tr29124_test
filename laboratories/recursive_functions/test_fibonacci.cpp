@@ -10,6 +10,8 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o test_fibonacci test_fibon
 #include <limits>
 #include <iostream>
 #include <iomanip>
+#include <ext/math_constants.h>
+#include <ext/math_util.h>
 
 /**
  * @todo Test these relations between the Lucas and Fibonacci numbers
@@ -19,7 +21,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o test_fibonacci test_fibon
  * @f]
  * and
  * @f[
- *   i^n U(i/2) = F_{n+1}
+ *   i^n U_n(i/2) = F_{n+1}
  * @f]
  */
 
@@ -81,8 +83,8 @@ template<typename _Tp>
       }
     else if constexpr (std::is_floating_point_v<_Tp>)
       {
-	const auto _S_phi = __gnu_cxx::__const_phi(__nu);
-	const auto _S_sqrt5 = __gnu_cxx::__const_root_5(__nu);
+	const auto _S_phi = __gnu_cxx::math::__phi_v<_Tp>;
+	const auto _S_sqrt5 = __gnu_cxx::math::__root_5_v<_Tp>;
 	const auto __phinu = std::pow(_S_phi, __nu);
 	return (__phinu - __gnu_cxx::cos_pi(__nu) / __phinu) / _S_sqrt5;
       }
@@ -173,7 +175,7 @@ template<typename _Tp>
       }
     else if constexpr (std::is_floating_point_v<_Tp>)
       {
-	const auto _S_phi = __gnu_cxx::__const_phi(__nu);
+	const auto _S_phi = __gnu_cxx::math::__phi_v<_Tp>;
 	const auto __phinu = std::pow(_S_phi, __nu);
 	return __phinu + __gnu_cxx::cos_pi(__nu) / __phinu;
       }
@@ -211,9 +213,10 @@ template<typename _Tp>
   void
   test_fibonacci()
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    std::cout.precision(std::numeric_limits<_Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
+
     const auto max_number = 50ll;
     const auto delnu = _Tp{1} / _Tp{50};
     const auto max_order = 50ll;
@@ -237,7 +240,7 @@ template<typename _Tp>
 		  << '\n';
       }
 
-    //std::cout << "\n\n Fibonacci polynomials\n";
+    std::cout << "\n\n Fibonacci polynomials\n";
     for (auto n = 0; n <= max_order; ++n)
       {
 	std::cout << '\n' << '\n' << ' ' << std::setw(4) << n << '\n';
@@ -271,7 +274,7 @@ template<typename _Tp>
 		  << '\n';
       }
 
-    //std::cout << "\n\n Lucas polynomials\n";
+    std::cout << "\n\n Lucas polynomials\n";
     for (auto n = 0; n <= max_order; ++n)
       {
 	std::cout << '\n' << '\n' << ' ' << std::setw(4) << n << '\n';

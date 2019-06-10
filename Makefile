@@ -1147,8 +1147,8 @@ $(TEST_BIN_DIR)/test_fermi_dirac: wrappers_debug laboratories/zeta_functions/tes
 run_test_fermi_dirac: $(TEST_BIN_DIR)/test_fermi_dirac
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_fermi_dirac > $(TEST_OUT_DIR)/test_fermi_dirac.txt
 
-$(TEST_BIN_DIR)/test_fibonacci: wrappers_debug laboratories/test_fibonacci.cpp
-	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_fibonacci laboratories/test_fibonacci.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
+$(TEST_BIN_DIR)/test_fibonacci: wrappers_debug laboratories/recursive_functions/test_fibonacci.cpp
+	$(CXXMAX) $(INCLUDES) -Iwrappers -o $(TEST_BIN_DIR)/test_fibonacci laboratories/recursive_functions/test_fibonacci.cpp -lquadmath -L$(WRAP_DEBUG_DIR) -lwrap_gsl
 
 run_test_fibonacci: $(TEST_BIN_DIR)/test_fibonacci
 	LD_LIBRARY_PATH=$(CXX_LIB_DIR):$(WRAP_DEBUG_DIR):$$LD_LIBRARY_PATH $(TEST_BIN_DIR)/test_fibonacci > $(TEST_OUT_DIR)/test_fibonacci.txt
