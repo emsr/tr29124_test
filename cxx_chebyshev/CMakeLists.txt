@@ -27,7 +27,7 @@ target_include_directories(test_chebyshev PRIVATE
   ../polynomial/include
   ../cxx_fp_utils/include)
 
-add_test(NAME run_test_chebyshev COMMAND bash -c "./bin/test_chebyshev > test_output/test_chebyshev.txt")
+add_test(NAME run_test_chebyshev COMMAND bash -c "./bin/test_chebyshev > output/test_chebyshev.txt")
 
 find_package(Doxygen)
 if (DOXYGEN_FOUND)
