@@ -1,2 +1,12 @@
 
 bin/
+
+CMakeCache.txt
+CMakeDoxyfile.in
+CMakeDoxygenDefaults.cmake
+CMakeFiles/
+CTestTestfile.cmake
+Doxyfile
+Makefile
+Testing/
+cmake_install.cmake
