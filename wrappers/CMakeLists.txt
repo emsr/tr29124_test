@@ -7,23 +7,15 @@ set(CMAKE_CXX_STANDARD 17)
 set(SpecfunWrappers_VERSION_MAJOR 1)
 set(SpecfunWrappers_VERSION_MINOR 0)
 
-if (EXISTS "$ENV{HOME}/bin/bin/gfortran")
-	set(CMAKE_C_COMPILER "$ENV{HOME}/bin/bin/gcc")
-	set(CMAKE_CXX_COMPILER "$ENV{HOME}/bin/bin/g++")
-	set(CMAKE_Fortran_COMPILER "$ENV{HOME}/bin/bin/gfortran")
-elseif (EXISTS "/$ENV{MSYSTEM}/bin/bin/gfortran")
-	set(CMAKE_C_COMPILER "/$ENV{MSYSTEM}/bin/gcc")
-	set(CMAKE_CXX_COMPILER "/$ENV{MSYSTEM}/bin/g++")
-	set(CMAKE_Fortran_COMPILER "/$ENV{MSYSTEM}/bin/gfortran")
-else ()
-	set(CMAKE_C_COMPILER "/usr/bin/gcc")
-	set(CMAKE_CXX_COMPILER "/usr/bin/g++")
-	set(CMAKE_Fortran_COMPILER "/usr/bin/gfortran")
-endif ()
-
 set(CMAKE_C_FLAGS "-std=c11 -Wall -Wextra -I$ENV{HOME}/tr29124_test")
 set(CMAKE_CXX_FLAGS "-std=c++17 -Wall -Wextra -Wno-deprecated-declarations -Wold-style-cast -Wno-psabi -I$ENV{HOME}/tr29124_test/include -I$ENV{HOME}/tr29124_test/polynomial/include -I$ENV{HOME}/tr29124_test/quadrature/include -I$ENV{HOME}/tr29124_test/3rdparty")
 set(CMAKE_Fortran_FLAGS "-Wall -Wextra -I$ENV{HOME}/tr29124_test")
+
+if (NOT MSVC)
+  if (NOT CMAKE_CROSSCOMPILING)
+    set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+  endif ()
+endif ()
 
 add_library(wrap_boost SHARED wrap_boost.cpp)
 target_include_directories(wrap_boost PRIVATE
@@ -50,7 +42,7 @@ target_include_directories(wrap_gsl PRIVATE
   ../cxx_fp_utils/include
   ../cxx_summation/include
   ../3rdparty/gslextras)
-target_link_libraries(wrap_gsl gsl gslcblas)
+target_link_libraries(wrap_gsl quadmath gsl gslcblas)
 
 add_library(wrap_cephes SHARED
             wrap_cephes.cpp

@@ -4,7 +4,7 @@
 #include <vector>
 #include <complex>
 
-#include "bits/specfun_state.h"
+#include <bits/quadrature_point.h>
 
 namespace burkhardt
 {
@@ -460,7 +460,45 @@ double gd(double x);
 
 /// Inverse Gudermannian function.
 double agd(double g);
+/*
+/// Gamma probability density function.
+gamma_pdf(double alpha, double beta, double x);
 
+/// Gamma distribution.
+gamma_p(double alpha, double beta, double x);
+
+/// Normal probability density function.
+normal_pdf(double mu, double sigma, double x);
+normal_pdouble mu, double sigma, double x);
+
+/// Lognormal probability density function.
+lognormal_pdf(double mu, double sigma, double x);
+lognormal_pdouble mu, double sigma, double x);
+
+/// Exponential probability density function.
+exponential_pdf(double lambda, double x);
+exponential_p(double lambda, double x);
+
+/// Weibull probability density function.
+weibull_pdf(double a, double b, double x);
+weibull_p(double a, double b, double x);
+
+/// Student-T probability density function.
+student_t_pdf(double t, unsigned int nu);
+student_t_p(double t, unsigned int nu);
+
+/// Fisher-F probability density function.
+fisher_f_pdf(double F, unsigned int nu1, unsigned int nu2);
+fisher_f_p(double F, unsigned int nu1, unsigned int nu2);
+
+/// Binomial probability density function.
+binomial_pdf(double p, unsigned int n, unsigned int k);
+binomial_p(double p, unsigned int n, unsigned int k);
+
+/// Logistic probability density function.
+logistic_pdf(double a, double b, double x);
+logistic_p(double a, double b, double x);
+*/
 } // namespace burkhardt
 
 #endif // WRAP_BURKHARDT_H
