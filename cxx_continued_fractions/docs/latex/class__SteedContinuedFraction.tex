@@ -1,0 +1,73 @@
+\hypertarget{class__SteedContinuedFraction}{}\section{\+\_\+\+Steed\+Continued\+Fraction$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$ Class Template Reference}
+\label{class__SteedContinuedFraction}\index{\+\_\+\+Steed\+Continued\+Fraction$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$@{\+\_\+\+Steed\+Continued\+Fraction$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{class__SteedContinuedFraction_a52fc9abde4ea881c7b1cea53bd0e72ee}{\+\_\+\+A\+Ret} = decltype(\+\_\+\+M\+\_\+num(0ull, \+\_\+\+Tp\{\}))
+\item 
+using \hyperlink{class__SteedContinuedFraction_ab5af06efbdaf40ddcdfdd36a0872854e}{\+\_\+\+B\+Ret} = decltype(\+\_\+\+M\+\_\+den(0ull, \+\_\+\+Tp\{\}))
+\item 
+using \hyperlink{class__SteedContinuedFraction_a9dc0b4a835f6e3c7495889da047a3706}{\+\_\+\+Ret} = decltype(\+\_\+\+M\+\_\+num(0ull, \+\_\+\+Tp\{\})/\+\_\+\+M\+\_\+den(0ull, \+\_\+\+Tp\{\}))
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \hyperlink{class__SteedContinuedFraction_a4878a856bbc09caaea8fd4cf287d06c5}{\+\_\+\+Steed\+Continued\+Fraction} (\+\_\+\+A\+Fun \+\_\+\+\_\+a, \+\_\+\+B\+Fun \+\_\+\+\_\+b, \+\_\+\+Tail\+Fun \+\_\+\+\_\+w)
+\item 
+\hyperlink{class__SteedContinuedFraction_a9dc0b4a835f6e3c7495889da047a3706}{\+\_\+\+Ret} \hyperlink{class__SteedContinuedFraction_aa435e7908e7a2bbef90ef9f8aad464aa}{operator()} (\+\_\+\+Tp \+\_\+\+\_\+x) const
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Tp, typename \+\_\+\+A\+Fun, typename \+\_\+\+B\+Fun, typename \+\_\+\+Tail\+Fun$>$\newline
+class \+\_\+\+Steed\+Continued\+Fraction$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$}
+
+A Steed continued fraction evaluator. This class required three functors\+: A partial numerator function $ a_k(x) $ A partial denominator function $ b_k(x) $ A tail function $ w_n(x) $ 
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class__SteedContinuedFraction_a52fc9abde4ea881c7b1cea53bd0e72ee}\label{class__SteedContinuedFraction_a52fc9abde4ea881c7b1cea53bd0e72ee}} 
+\index{\+\_\+\+Steed\+Continued\+Fraction@{\+\_\+\+Steed\+Continued\+Fraction}!\+\_\+\+A\+Ret@{\+\_\+\+A\+Ret}}
+\index{\+\_\+\+A\+Ret@{\+\_\+\+A\+Ret}!\+\_\+\+Steed\+Continued\+Fraction@{\+\_\+\+Steed\+Continued\+Fraction}}
+\subsubsection{\texorpdfstring{\+\_\+\+A\+Ret}{\_ARet}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+A\+Fun , typename \+\_\+\+B\+Fun , typename \+\_\+\+Tail\+Fun $>$ \\
+using \hyperlink{class__SteedContinuedFraction}{\+\_\+\+Steed\+Continued\+Fraction}$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$\+::\hyperlink{class__SteedContinuedFraction_a52fc9abde4ea881c7b1cea53bd0e72ee}{\+\_\+\+A\+Ret} =  decltype(\+\_\+\+M\+\_\+num(0ull, \+\_\+\+Tp\{\}))}
+
+\mbox{\Hypertarget{class__SteedContinuedFraction_ab5af06efbdaf40ddcdfdd36a0872854e}\label{class__SteedContinuedFraction_ab5af06efbdaf40ddcdfdd36a0872854e}} 
+\index{\+\_\+\+Steed\+Continued\+Fraction@{\+\_\+\+Steed\+Continued\+Fraction}!\+\_\+\+B\+Ret@{\+\_\+\+B\+Ret}}
+\index{\+\_\+\+B\+Ret@{\+\_\+\+B\+Ret}!\+\_\+\+Steed\+Continued\+Fraction@{\+\_\+\+Steed\+Continued\+Fraction}}
+\subsubsection{\texorpdfstring{\+\_\+\+B\+Ret}{\_BRet}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+A\+Fun , typename \+\_\+\+B\+Fun , typename \+\_\+\+Tail\+Fun $>$ \\
+using \hyperlink{class__SteedContinuedFraction}{\+\_\+\+Steed\+Continued\+Fraction}$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$\+::\hyperlink{class__SteedContinuedFraction_ab5af06efbdaf40ddcdfdd36a0872854e}{\+\_\+\+B\+Ret} =  decltype(\+\_\+\+M\+\_\+den(0ull, \+\_\+\+Tp\{\}))}
+
+\mbox{\Hypertarget{class__SteedContinuedFraction_a9dc0b4a835f6e3c7495889da047a3706}\label{class__SteedContinuedFraction_a9dc0b4a835f6e3c7495889da047a3706}} 
+\index{\+\_\+\+Steed\+Continued\+Fraction@{\+\_\+\+Steed\+Continued\+Fraction}!\+\_\+\+Ret@{\+\_\+\+Ret}}
+\index{\+\_\+\+Ret@{\+\_\+\+Ret}!\+\_\+\+Steed\+Continued\+Fraction@{\+\_\+\+Steed\+Continued\+Fraction}}
+\subsubsection{\texorpdfstring{\+\_\+\+Ret}{\_Ret}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+A\+Fun , typename \+\_\+\+B\+Fun , typename \+\_\+\+Tail\+Fun $>$ \\
+using \hyperlink{class__SteedContinuedFraction}{\+\_\+\+Steed\+Continued\+Fraction}$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$\+::\hyperlink{class__SteedContinuedFraction_a9dc0b4a835f6e3c7495889da047a3706}{\+\_\+\+Ret} =  decltype(\+\_\+\+M\+\_\+num(0ull, \+\_\+\+Tp\{\}) / \+\_\+\+M\+\_\+den(0ull, \+\_\+\+Tp\{\}))}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class__SteedContinuedFraction_a4878a856bbc09caaea8fd4cf287d06c5}\label{class__SteedContinuedFraction_a4878a856bbc09caaea8fd4cf287d06c5}} 
+\index{\+\_\+\+Steed\+Continued\+Fraction@{\+\_\+\+Steed\+Continued\+Fraction}!\+\_\+\+Steed\+Continued\+Fraction@{\+\_\+\+Steed\+Continued\+Fraction}}
+\index{\+\_\+\+Steed\+Continued\+Fraction@{\+\_\+\+Steed\+Continued\+Fraction}!\+\_\+\+Steed\+Continued\+Fraction@{\+\_\+\+Steed\+Continued\+Fraction}}
+\subsubsection{\texorpdfstring{\+\_\+\+Steed\+Continued\+Fraction()}{\_SteedContinuedFraction()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+A\+Fun , typename \+\_\+\+B\+Fun , typename \+\_\+\+Tail\+Fun $>$ \\
+constexpr \hyperlink{class__SteedContinuedFraction}{\+\_\+\+Steed\+Continued\+Fraction}$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$\+::\hyperlink{class__SteedContinuedFraction}{\+\_\+\+Steed\+Continued\+Fraction} (\begin{DoxyParamCaption}\item[{\+\_\+\+A\+Fun}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+B\+Fun}]{\+\_\+\+\_\+b,  }\item[{\+\_\+\+Tail\+Fun}]{\+\_\+\+\_\+w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class__SteedContinuedFraction_aa435e7908e7a2bbef90ef9f8aad464aa}\label{class__SteedContinuedFraction_aa435e7908e7a2bbef90ef9f8aad464aa}} 
+\index{\+\_\+\+Steed\+Continued\+Fraction@{\+\_\+\+Steed\+Continued\+Fraction}!operator()@{operator()}}
+\index{operator()@{operator()}!\+\_\+\+Steed\+Continued\+Fraction@{\+\_\+\+Steed\+Continued\+Fraction}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+A\+Fun , typename \+\_\+\+B\+Fun , typename \+\_\+\+Tail\+Fun $>$ \\
+\hyperlink{class__SteedContinuedFraction_a9dc0b4a835f6e3c7495889da047a3706}{\+\_\+\+Ret} \hyperlink{class__SteedContinuedFraction}{\+\_\+\+Steed\+Continued\+Fraction}$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$\+::operator() (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/ext/\hyperlink{cfrac__steed_8tcc}{cfrac\+\_\+steed.\+tcc}\end{DoxyCompactItemize}

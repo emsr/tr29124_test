@@ -1,0 +1,73 @@
+\hypertarget{class__ForwardContinuedFraction}{}\section{\+\_\+\+Forward\+Continued\+Fraction$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$ Class Template Reference}
+\label{class__ForwardContinuedFraction}\index{\+\_\+\+Forward\+Continued\+Fraction$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$@{\+\_\+\+Forward\+Continued\+Fraction$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{class__ForwardContinuedFraction_aa3cd354821d01eff12c24f0c4283b6ee}{\+\_\+\+A\+Ret} = decltype(\+\_\+\+M\+\_\+num(0ull, \+\_\+\+Tp\{\}))
+\item 
+using \hyperlink{class__ForwardContinuedFraction_a0353d4790204b04fca698a26fa9a7d0b}{\+\_\+\+B\+Ret} = decltype(\+\_\+\+M\+\_\+den(0ull, \+\_\+\+Tp\{\}))
+\item 
+using \hyperlink{class__ForwardContinuedFraction_ab67bebe1ce3d9ab53ac76024af1b2007}{\+\_\+\+Ret} = decltype(\hyperlink{class__ForwardContinuedFraction_aa3cd354821d01eff12c24f0c4283b6ee}{\+\_\+\+A\+Ret}(0, \+\_\+\+Tp\{\})/\hyperlink{class__ForwardContinuedFraction_a0353d4790204b04fca698a26fa9a7d0b}{\+\_\+\+B\+Ret}(0, \+\_\+\+Tp\{\}))
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class__ForwardContinuedFraction_a0337894d9199abad9dbbfba007cf3dbd}{\+\_\+\+Forward\+Continued\+Fraction} (\+\_\+\+A\+Fun \+\_\+\+\_\+a, \+\_\+\+B\+Fun \+\_\+\+\_\+b, \+\_\+\+Tail\+Fun \+\_\+\+\_\+w)
+\item 
+\hyperlink{class__ForwardContinuedFraction_ab67bebe1ce3d9ab53ac76024af1b2007}{\+\_\+\+Ret} \hyperlink{class__ForwardContinuedFraction_a6fb6032d848099b493b23b8453fcb5e1}{operator()} (\+\_\+\+Tp \+\_\+\+\_\+x) const
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Tp, typename \+\_\+\+A\+Fun, typename \+\_\+\+B\+Fun, typename \+\_\+\+Tail\+Fun$>$\newline
+class \+\_\+\+Forward\+Continued\+Fraction$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$}
+
+You need a functor belching a, b an iterator pair for a and an iterator for b 
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class__ForwardContinuedFraction_aa3cd354821d01eff12c24f0c4283b6ee}\label{class__ForwardContinuedFraction_aa3cd354821d01eff12c24f0c4283b6ee}} 
+\index{\+\_\+\+Forward\+Continued\+Fraction@{\+\_\+\+Forward\+Continued\+Fraction}!\+\_\+\+A\+Ret@{\+\_\+\+A\+Ret}}
+\index{\+\_\+\+A\+Ret@{\+\_\+\+A\+Ret}!\+\_\+\+Forward\+Continued\+Fraction@{\+\_\+\+Forward\+Continued\+Fraction}}
+\subsubsection{\texorpdfstring{\+\_\+\+A\+Ret}{\_ARet}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+A\+Fun , typename \+\_\+\+B\+Fun , typename \+\_\+\+Tail\+Fun $>$ \\
+using \hyperlink{class__ForwardContinuedFraction}{\+\_\+\+Forward\+Continued\+Fraction}$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$\+::\hyperlink{class__ForwardContinuedFraction_aa3cd354821d01eff12c24f0c4283b6ee}{\+\_\+\+A\+Ret} =  decltype(\+\_\+\+M\+\_\+num(0ull, \+\_\+\+Tp\{\}))}
+
+\mbox{\Hypertarget{class__ForwardContinuedFraction_a0353d4790204b04fca698a26fa9a7d0b}\label{class__ForwardContinuedFraction_a0353d4790204b04fca698a26fa9a7d0b}} 
+\index{\+\_\+\+Forward\+Continued\+Fraction@{\+\_\+\+Forward\+Continued\+Fraction}!\+\_\+\+B\+Ret@{\+\_\+\+B\+Ret}}
+\index{\+\_\+\+B\+Ret@{\+\_\+\+B\+Ret}!\+\_\+\+Forward\+Continued\+Fraction@{\+\_\+\+Forward\+Continued\+Fraction}}
+\subsubsection{\texorpdfstring{\+\_\+\+B\+Ret}{\_BRet}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+A\+Fun , typename \+\_\+\+B\+Fun , typename \+\_\+\+Tail\+Fun $>$ \\
+using \hyperlink{class__ForwardContinuedFraction}{\+\_\+\+Forward\+Continued\+Fraction}$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$\+::\hyperlink{class__ForwardContinuedFraction_a0353d4790204b04fca698a26fa9a7d0b}{\+\_\+\+B\+Ret} =  decltype(\+\_\+\+M\+\_\+den(0ull, \+\_\+\+Tp\{\}))}
+
+\mbox{\Hypertarget{class__ForwardContinuedFraction_ab67bebe1ce3d9ab53ac76024af1b2007}\label{class__ForwardContinuedFraction_ab67bebe1ce3d9ab53ac76024af1b2007}} 
+\index{\+\_\+\+Forward\+Continued\+Fraction@{\+\_\+\+Forward\+Continued\+Fraction}!\+\_\+\+Ret@{\+\_\+\+Ret}}
+\index{\+\_\+\+Ret@{\+\_\+\+Ret}!\+\_\+\+Forward\+Continued\+Fraction@{\+\_\+\+Forward\+Continued\+Fraction}}
+\subsubsection{\texorpdfstring{\+\_\+\+Ret}{\_Ret}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+A\+Fun , typename \+\_\+\+B\+Fun , typename \+\_\+\+Tail\+Fun $>$ \\
+using \hyperlink{class__ForwardContinuedFraction}{\+\_\+\+Forward\+Continued\+Fraction}$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$\+::\hyperlink{class__ForwardContinuedFraction_ab67bebe1ce3d9ab53ac76024af1b2007}{\+\_\+\+Ret} =  decltype(\hyperlink{class__ForwardContinuedFraction_aa3cd354821d01eff12c24f0c4283b6ee}{\+\_\+\+A\+Ret}(0, \+\_\+\+Tp\{\}) / \hyperlink{class__ForwardContinuedFraction_a0353d4790204b04fca698a26fa9a7d0b}{\+\_\+\+B\+Ret}(0, \+\_\+\+Tp\{\}))}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class__ForwardContinuedFraction_a0337894d9199abad9dbbfba007cf3dbd}\label{class__ForwardContinuedFraction_a0337894d9199abad9dbbfba007cf3dbd}} 
+\index{\+\_\+\+Forward\+Continued\+Fraction@{\+\_\+\+Forward\+Continued\+Fraction}!\+\_\+\+Forward\+Continued\+Fraction@{\+\_\+\+Forward\+Continued\+Fraction}}
+\index{\+\_\+\+Forward\+Continued\+Fraction@{\+\_\+\+Forward\+Continued\+Fraction}!\+\_\+\+Forward\+Continued\+Fraction@{\+\_\+\+Forward\+Continued\+Fraction}}
+\subsubsection{\texorpdfstring{\+\_\+\+Forward\+Continued\+Fraction()}{\_ForwardContinuedFraction()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+A\+Fun , typename \+\_\+\+B\+Fun , typename \+\_\+\+Tail\+Fun $>$ \\
+\hyperlink{class__ForwardContinuedFraction}{\+\_\+\+Forward\+Continued\+Fraction}$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$\+::\hyperlink{class__ForwardContinuedFraction}{\+\_\+\+Forward\+Continued\+Fraction} (\begin{DoxyParamCaption}\item[{\+\_\+\+A\+Fun}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+B\+Fun}]{\+\_\+\+\_\+b,  }\item[{\+\_\+\+Tail\+Fun}]{\+\_\+\+\_\+w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class__ForwardContinuedFraction_a6fb6032d848099b493b23b8453fcb5e1}\label{class__ForwardContinuedFraction_a6fb6032d848099b493b23b8453fcb5e1}} 
+\index{\+\_\+\+Forward\+Continued\+Fraction@{\+\_\+\+Forward\+Continued\+Fraction}!operator()@{operator()}}
+\index{operator()@{operator()}!\+\_\+\+Forward\+Continued\+Fraction@{\+\_\+\+Forward\+Continued\+Fraction}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+A\+Fun , typename \+\_\+\+B\+Fun , typename \+\_\+\+Tail\+Fun $>$ \\
+\hyperlink{class__ForwardContinuedFraction_ab67bebe1ce3d9ab53ac76024af1b2007}{\+\_\+\+Ret} \hyperlink{class__ForwardContinuedFraction}{\+\_\+\+Forward\+Continued\+Fraction}$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$\+::operator() (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/ext/\hyperlink{cfrac__forward_8tcc}{cfrac\+\_\+forward.\+tcc}\end{DoxyCompactItemize}

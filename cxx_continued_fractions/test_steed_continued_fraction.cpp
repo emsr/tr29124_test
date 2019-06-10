@@ -6,7 +6,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -I. -o test_steed_continued_fraction test_steed_c
 ./test_steed_continued_fraction > test_steed_continued_fraction.txt
 */
 
-#include <ext/cmath>
+#include <cmath>
 #include <complex>
 #include <iostream>
 #include <iomanip>

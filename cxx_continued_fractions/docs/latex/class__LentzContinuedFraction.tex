@@ -1,0 +1,73 @@
+\hypertarget{class__LentzContinuedFraction}{}\section{\+\_\+\+Lentz\+Continued\+Fraction$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$ Class Template Reference}
+\label{class__LentzContinuedFraction}\index{\+\_\+\+Lentz\+Continued\+Fraction$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$@{\+\_\+\+Lentz\+Continued\+Fraction$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{class__LentzContinuedFraction_a44dee6f8bd3dfe70d76c85b518589dec}{\+\_\+\+A\+Ret} = decltype(\+\_\+\+M\+\_\+num(0ull, \+\_\+\+Tp\{\}))
+\item 
+using \hyperlink{class__LentzContinuedFraction_a97536abf4c68ac813d692d204ac47ba4}{\+\_\+\+B\+Ret} = decltype(\+\_\+\+M\+\_\+den(0ull, \+\_\+\+Tp\{\}))
+\item 
+using \hyperlink{class__LentzContinuedFraction_ae549d8853f57a08201bea3a926d30992}{\+\_\+\+Ret} = decltype(\+\_\+\+M\+\_\+num(0ull, \+\_\+\+Tp\{\})/\+\_\+\+M\+\_\+den(0ull, \+\_\+\+Tp\{\}))
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \hyperlink{class__LentzContinuedFraction_a329c859fde4ae8a79b4fdc04731a1901}{\+\_\+\+Lentz\+Continued\+Fraction} (\+\_\+\+A\+Fun \+\_\+\+\_\+a, \+\_\+\+B\+Fun \+\_\+\+\_\+b, \+\_\+\+Tail\+Fun \+\_\+\+\_\+w)
+\item 
+\hyperlink{class__LentzContinuedFraction_ae549d8853f57a08201bea3a926d30992}{\+\_\+\+Ret} \hyperlink{class__LentzContinuedFraction_a7b7d840c3192d56daf9b8b273f6166db}{operator()} (\+\_\+\+Tp \+\_\+\+\_\+x) const
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Tp, typename \+\_\+\+A\+Fun, typename \+\_\+\+B\+Fun, typename \+\_\+\+Tail\+Fun$>$\newline
+class \+\_\+\+Lentz\+Continued\+Fraction$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$}
+
+A modified Lentz continued fraction evaluator. This class required three functors\+: A partial numerator function $ a_k(x) $ A partial denominator function $ b_k(x) $ A tail function $ w_n(x) $ 
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class__LentzContinuedFraction_a44dee6f8bd3dfe70d76c85b518589dec}\label{class__LentzContinuedFraction_a44dee6f8bd3dfe70d76c85b518589dec}} 
+\index{\+\_\+\+Lentz\+Continued\+Fraction@{\+\_\+\+Lentz\+Continued\+Fraction}!\+\_\+\+A\+Ret@{\+\_\+\+A\+Ret}}
+\index{\+\_\+\+A\+Ret@{\+\_\+\+A\+Ret}!\+\_\+\+Lentz\+Continued\+Fraction@{\+\_\+\+Lentz\+Continued\+Fraction}}
+\subsubsection{\texorpdfstring{\+\_\+\+A\+Ret}{\_ARet}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+A\+Fun , typename \+\_\+\+B\+Fun , typename \+\_\+\+Tail\+Fun $>$ \\
+using \hyperlink{class__LentzContinuedFraction}{\+\_\+\+Lentz\+Continued\+Fraction}$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$\+::\hyperlink{class__LentzContinuedFraction_a44dee6f8bd3dfe70d76c85b518589dec}{\+\_\+\+A\+Ret} =  decltype(\+\_\+\+M\+\_\+num(0ull, \+\_\+\+Tp\{\}))}
+
+\mbox{\Hypertarget{class__LentzContinuedFraction_a97536abf4c68ac813d692d204ac47ba4}\label{class__LentzContinuedFraction_a97536abf4c68ac813d692d204ac47ba4}} 
+\index{\+\_\+\+Lentz\+Continued\+Fraction@{\+\_\+\+Lentz\+Continued\+Fraction}!\+\_\+\+B\+Ret@{\+\_\+\+B\+Ret}}
+\index{\+\_\+\+B\+Ret@{\+\_\+\+B\+Ret}!\+\_\+\+Lentz\+Continued\+Fraction@{\+\_\+\+Lentz\+Continued\+Fraction}}
+\subsubsection{\texorpdfstring{\+\_\+\+B\+Ret}{\_BRet}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+A\+Fun , typename \+\_\+\+B\+Fun , typename \+\_\+\+Tail\+Fun $>$ \\
+using \hyperlink{class__LentzContinuedFraction}{\+\_\+\+Lentz\+Continued\+Fraction}$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$\+::\hyperlink{class__LentzContinuedFraction_a97536abf4c68ac813d692d204ac47ba4}{\+\_\+\+B\+Ret} =  decltype(\+\_\+\+M\+\_\+den(0ull, \+\_\+\+Tp\{\}))}
+
+\mbox{\Hypertarget{class__LentzContinuedFraction_ae549d8853f57a08201bea3a926d30992}\label{class__LentzContinuedFraction_ae549d8853f57a08201bea3a926d30992}} 
+\index{\+\_\+\+Lentz\+Continued\+Fraction@{\+\_\+\+Lentz\+Continued\+Fraction}!\+\_\+\+Ret@{\+\_\+\+Ret}}
+\index{\+\_\+\+Ret@{\+\_\+\+Ret}!\+\_\+\+Lentz\+Continued\+Fraction@{\+\_\+\+Lentz\+Continued\+Fraction}}
+\subsubsection{\texorpdfstring{\+\_\+\+Ret}{\_Ret}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+A\+Fun , typename \+\_\+\+B\+Fun , typename \+\_\+\+Tail\+Fun $>$ \\
+using \hyperlink{class__LentzContinuedFraction}{\+\_\+\+Lentz\+Continued\+Fraction}$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$\+::\hyperlink{class__LentzContinuedFraction_ae549d8853f57a08201bea3a926d30992}{\+\_\+\+Ret} =  decltype(\+\_\+\+M\+\_\+num(0ull, \+\_\+\+Tp\{\}) / \+\_\+\+M\+\_\+den(0ull, \+\_\+\+Tp\{\}))}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class__LentzContinuedFraction_a329c859fde4ae8a79b4fdc04731a1901}\label{class__LentzContinuedFraction_a329c859fde4ae8a79b4fdc04731a1901}} 
+\index{\+\_\+\+Lentz\+Continued\+Fraction@{\+\_\+\+Lentz\+Continued\+Fraction}!\+\_\+\+Lentz\+Continued\+Fraction@{\+\_\+\+Lentz\+Continued\+Fraction}}
+\index{\+\_\+\+Lentz\+Continued\+Fraction@{\+\_\+\+Lentz\+Continued\+Fraction}!\+\_\+\+Lentz\+Continued\+Fraction@{\+\_\+\+Lentz\+Continued\+Fraction}}
+\subsubsection{\texorpdfstring{\+\_\+\+Lentz\+Continued\+Fraction()}{\_LentzContinuedFraction()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+A\+Fun , typename \+\_\+\+B\+Fun , typename \+\_\+\+Tail\+Fun $>$ \\
+constexpr \hyperlink{class__LentzContinuedFraction}{\+\_\+\+Lentz\+Continued\+Fraction}$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$\+::\hyperlink{class__LentzContinuedFraction}{\+\_\+\+Lentz\+Continued\+Fraction} (\begin{DoxyParamCaption}\item[{\+\_\+\+A\+Fun}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+B\+Fun}]{\+\_\+\+\_\+b,  }\item[{\+\_\+\+Tail\+Fun}]{\+\_\+\+\_\+w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class__LentzContinuedFraction_a7b7d840c3192d56daf9b8b273f6166db}\label{class__LentzContinuedFraction_a7b7d840c3192d56daf9b8b273f6166db}} 
+\index{\+\_\+\+Lentz\+Continued\+Fraction@{\+\_\+\+Lentz\+Continued\+Fraction}!operator()@{operator()}}
+\index{operator()@{operator()}!\+\_\+\+Lentz\+Continued\+Fraction@{\+\_\+\+Lentz\+Continued\+Fraction}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp , typename \+\_\+\+A\+Fun , typename \+\_\+\+B\+Fun , typename \+\_\+\+Tail\+Fun $>$ \\
+\hyperlink{class__LentzContinuedFraction_ae549d8853f57a08201bea3a926d30992}{\+\_\+\+Ret} \hyperlink{class__LentzContinuedFraction}{\+\_\+\+Lentz\+Continued\+Fraction}$<$ \+\_\+\+Tp, \+\_\+\+A\+Fun, \+\_\+\+B\+Fun, \+\_\+\+Tail\+Fun $>$\+::operator() (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+x }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/ext/\hyperlink{cfrac__lentz_8tcc}{cfrac\+\_\+lentz.\+tcc}\end{DoxyCompactItemize}

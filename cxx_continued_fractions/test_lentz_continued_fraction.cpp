@@ -6,7 +6,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_lentz_con
 ./test_lentz_continued_fraction > test_lentz_continued_fraction.txt
 */
 
-#include <ext/cmath>
+#include <cmath>
 #include <complex>
 #include <iostream>
 #include <iomanip>
