@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -g -I. -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -Wall -Wextra -Wno-psabi -o test_jacobi_neg_parm test_jacobi_neg_parm.cpp
-./test_jacobi_neg_parm > test_jacobi_neg_parm.txt
-*/
+/**
+ *
+ */
 
 #include <stdexcept>
 #include <iostream>

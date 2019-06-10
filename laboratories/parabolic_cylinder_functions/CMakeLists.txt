@@ -9,7 +9,6 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
 set(CMAKE_CXX_FLAGS -Wno-psabi)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
@@ -31,3 +30,4 @@ target_include_directories(test_parab_cyl PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_parab_cyl quadmath)
+add_test(NAME run_test_parab_cyl COMMAND bash -c "./bin/test_parab_cyl > test_parab_cyl.txt")

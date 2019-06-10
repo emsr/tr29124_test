@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_rising_factorial test_rising_factorial.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_rising_factorial > test_rising_factorial.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -I. -o test_rising_factorial test_rising_factorial.cpp -lquadmath -Lwrappers/debug -lwrap_boost -lwrap_gsl
-PATH=wrappers/debug:$PATH ./test_rising_factorial > test_rising_factorial.txt
-*/
+/**
+ *
+ */
 
 #include <limits>
 #include <vector>

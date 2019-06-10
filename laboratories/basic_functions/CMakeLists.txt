@@ -9,7 +9,6 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
 set(CMAKE_CXX_FLAGS -Wno-psabi)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
@@ -22,9 +21,7 @@ endif ()
 enable_testing()
 
 add_executable(test_q_number test_q_number.cpp)
-#target_include_directories(test_q_number PRIVATE )
-#target_link_libraries(test_q_number )
+add_test(NAME run_test_q_number COMMAND bash -c "./bin/test_q_number > test_q_number.txt")
 
 add_executable(test_q_pochhammer test_q_pochhammer.cpp)
-#target_include_directories(test_q_pochhammer PRIVATE )
-#target_link_libraries(test_q_pochhammer )
+add_test(NAME run_test_q_pochhammer COMMAND bash -c "./bin/test_q_pochhammer > test_q_pochhammer.txt")

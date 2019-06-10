@@ -1,11 +1,6 @@
-
-/*
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o test_complex_gamma test_complex_gamma.cpp
-./test_complex_gamma > test_complex_gamma.txt
-
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o test_complex_gamma test_complex_gamma.cpp
-./test_complex_gamma > test_complex_gamma.txt
-*/
+/**
+ *
+ */
 
 //  This works.  We could replace the lanczos in tr1 with this one.
 // You would define clgamma[f,,l], ctgamma[f,,l] also.

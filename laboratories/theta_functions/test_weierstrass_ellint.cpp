@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_weierstrass_ellint test_weierstrass_ellint.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_weierstrass_ellint > test_weierstrass_ellint.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o test_weierstrass_ellint test_weierstrass_ellint.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_weierstrass_ellint > test_weierstrass_ellint.txt
-*/
+/**
+ *
+ */
 
 #include <cmath>
 #include <complex>

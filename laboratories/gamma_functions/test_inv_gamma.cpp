@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_inv_gamma test_inv_gamma.cpp test_inv_erf.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_inv_gamma
-*/
+/**
+ *
+ */
 
 #include <cmath>
 #include <limits>

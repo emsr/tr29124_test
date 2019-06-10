@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -I../../quadrature/include -I../../cxx_summation/include -o test_assoc_legendre test_assoc_legendre.cpp -lquadmath
-./test_assoc_legendre > test_assoc_legendre.txt
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <iomanip>

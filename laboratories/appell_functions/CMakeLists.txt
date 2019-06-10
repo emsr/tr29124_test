@@ -9,7 +9,6 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
 set(CMAKE_CXX_FLAGS -Wno-psabi)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
@@ -22,5 +21,4 @@ endif ()
 enable_testing()
 
 add_executable(test_appell_f1 test_appell_f1.cpp)
-#target_include_directories(test_appell_f1 PRIVATE )
-#target_link_libraries( )
+add_test(NAME run_test_appell_f1 COMMAND bash -c "./bin/test_appell_f1 > test_appell_f1.txt")

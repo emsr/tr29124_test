@@ -1,13 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_polygamma test_polygamma.cpp -L$HOME/bin/lib64 -lquadmath
-./test_polygamma > test_polygamma.txt
-
-g++ -std=gnu++14 -Wall -Wextra -I. -o test_polygamma test_polygamma.cpp -lquadmath
-./test_polygamma > test_polygamma.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -Wall -Wextra -I. -o test_polygamma test_polygamma.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_polygamma > test_polygamma.txt
-*/
+/**
+ *
+ */
 
 #include <limits>
 #include <iostream>

@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_gamma_recip build_gamma_recip.cpp -lquadmath -lmpfr
-./build_gamma_recip > build_gamma_recip.txt
-*/
+/**
+ *
+ */
 
 #include <mpreal.h>
 #include <vector>

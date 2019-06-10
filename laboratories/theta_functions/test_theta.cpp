@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_theta test_theta.cpp -lquadmath
-./test_theta > test_theta.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_theta test_theta.cpp -lquadmath
-./test_theta > test_theta.txt
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <iomanip>

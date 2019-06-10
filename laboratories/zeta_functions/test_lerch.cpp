@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_lerch test_lerch.cpp lerchphi/Source/lerchphi.cpp -lquadmath
-./test_lerch > test_lerch.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_lerch test_lerch.cpp lerchphi/Source/lerchphi.cpp -lquadmath
-./test_lerch > test_lerch.txt
-*/
+/**
+ *
+ */
 
 #define __STDCPP_WANT_MATH_SPEC_FUNCS__ 1
 

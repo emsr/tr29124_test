@@ -1,9 +1,5 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o test_binet test_binet.cpp
-./test_binet > test_binet.txt
-
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o test_binet test_binet.cpp
-./test_binet > test_binet.txt
+/**
+ *
  */
 
 #include <limits>

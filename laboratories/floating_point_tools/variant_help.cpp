@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -I. -o variant_help variant_help.cpp
-./variant_help
-*/
+/**
+ *
+ */
 
 #include <complex>
 #include <type_traits>

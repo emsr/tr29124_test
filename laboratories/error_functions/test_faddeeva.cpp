@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_faddeeva test_faddeeva.cpp -lquadmath
-./test_faddeeva > test_faddeeva.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_faddeeva test_faddeeva.cpp -lquadmath
-./test_faddeeva > test_faddeeva.txt
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <wrap_faddeeva.h>

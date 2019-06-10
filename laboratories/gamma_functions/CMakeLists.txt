@@ -9,7 +9,6 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
 set(CMAKE_CXX_FLAGS -Wno-psabi)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
@@ -31,6 +30,7 @@ target_include_directories(build_gamma_lanczos PRIVATE
   ../../quadrature/include
 )
 target_link_libraries(build_gamma_lanczos quadmath)
+add_test(NAME run_build_gamma_lanczos COMMAND bash -c "./bin/build_gamma_lanczos > build_gamma_lanczos.txt")
 
 add_executable(build_gamma_recip build_gamma_recip.cpp)
 target_include_directories(build_gamma_recip PRIVATE
@@ -43,6 +43,7 @@ target_include_directories(build_gamma_recip PRIVATE
   $ENV{HOME}/mpreal
 )
 target_link_libraries(build_gamma_recip quadmath mpfr gmp)
+add_test(NAME run_build_gamma_recip COMMAND bash -c "./bin/build_gamma_recip > build_gamma_recip.txt")
 
 add_executable(build_gamma_spouge build_gamma_spouge.cpp)
 target_include_directories(build_gamma_spouge PRIVATE
@@ -54,6 +55,7 @@ target_include_directories(build_gamma_spouge PRIVATE
   ../../quadrature/include
 )
 target_link_libraries(build_gamma_spouge quadmath)
+add_test(NAME run_build_gamma_spouge COMMAND bash -c "./bin/build_gamma_spouge > build_gamma_spouge.txt")
 
 add_executable(plot_gamma plot_gamma.cpp)
 target_include_directories(plot_gamma PRIVATE
@@ -65,6 +67,7 @@ target_include_directories(plot_gamma PRIVATE
   ../../quadrature/include
 )
 target_link_libraries(plot_gamma quadmath)
+add_test(NAME run_plot_gamma COMMAND bash -c "./bin/plot_gamma > plot_gamma.txt")
 
 add_executable(test_binet test_binet.cpp)
 target_include_directories(test_binet PRIVATE
@@ -77,6 +80,7 @@ target_include_directories(test_binet PRIVATE
   ../../cxx_rational/include
 )
 target_link_libraries(test_binet quadmath)
+add_test(NAME run_test_binet COMMAND bash -c "./bin/test_binet > test_binet.txt")
 
 add_executable(test_binet_float test_binet_float.cpp)
 target_include_directories(test_binet_float PRIVATE
@@ -88,6 +92,7 @@ target_include_directories(test_binet_float PRIVATE
   ../../quadrature/include
 )
 target_link_libraries(test_binet_float quadmath)
+add_test(NAME run_test_binet_float COMMAND bash -c "./bin/test_binet_float > test_binet_float.txt")
 
 add_executable(test_complex_gamma test_complex_gamma.cpp)
 target_include_directories(test_complex_gamma PRIVATE
@@ -99,6 +104,7 @@ target_include_directories(test_complex_gamma PRIVATE
   ../../quadrature/include
 )
 target_link_libraries(test_complex_gamma quadmath)
+add_test(NAME run_test_complex_gamma COMMAND bash -c "./bin/test_complex_gamma > test_complex_gamma.txt")
 
 add_executable(test_digamma test_digamma.cpp)
 target_include_directories(test_digamma PRIVATE
@@ -110,7 +116,8 @@ target_include_directories(test_digamma PRIVATE
   ../../quadrature/include
   ../../wrappers
 )
-target_link_libraries(test_digamma quadmath -L../../wrappers/debug -lwrap_gsl)
+target_link_libraries(test_digamma quadmath -L../../wrappers -lwrap_gsl)
+add_test(NAME run_test_digamma COMMAND bash -c "./bin/test_digamma > test_digamma.txt")
 
 add_executable(test_factorial test_factorial.cpp)
 target_include_directories(test_factorial PRIVATE
@@ -122,6 +129,7 @@ target_include_directories(test_factorial PRIVATE
   ../../quadrature/include
 )
 target_link_libraries(test_factorial quadmath)
+add_test(NAME run_test_factorial COMMAND bash -c "./bin/test_factorial > test_factorial.txt")
 
 add_executable(test_falling_factorial test_falling_factorial.cpp)
 target_include_directories(test_falling_factorial PRIVATE
@@ -133,7 +141,8 @@ target_include_directories(test_falling_factorial PRIVATE
   ../../quadrature/include
   ../../wrappers
 )
-target_link_libraries(test_falling_factorial quadmath -L../../wrappers/debug -lwrap_boost)
+target_link_libraries(test_falling_factorial quadmath -L../../wrappers -lwrap_boost)
+add_test(NAME run_test_falling_factorial COMMAND bash -c "./bin/test_falling_factorial > test_falling_factorial.txt")
 
 add_executable(test_gamma test_gamma.cpp)
 target_include_directories(test_gamma PRIVATE
@@ -145,7 +154,8 @@ target_include_directories(test_gamma PRIVATE
   ../../quadrature/include
   ../../wrappers
 )
-target_link_libraries(test_gamma quadmath -L../../wrappers/debug -lwrap_boost)
+target_link_libraries(test_gamma quadmath -L../../wrappers -lwrap_boost)
+add_test(NAME run_test_gamma COMMAND bash -c "./bin/test_gamma > test_gamma.txt")
 
 add_executable(test_gamma_ratio test_gamma_ratio.cpp)
 target_include_directories(test_gamma_ratio PRIVATE
@@ -157,7 +167,8 @@ target_include_directories(test_gamma_ratio PRIVATE
   ../../quadrature/include
   ../../wrappers
 )
-target_link_libraries(test_gamma_ratio quadmath -L../../wrappers/debug -lwrap_boost)
+target_link_libraries(test_gamma_ratio quadmath -L../../wrappers -lwrap_boost)
+add_test(NAME run_test_gamma_ratio COMMAND bash -c "./bin/test_gamma_ratio > test_gamma_ratio.txt")
 
 add_executable(test_gamma_reciprocal test_gamma_reciprocal.cpp)
 target_include_directories(test_gamma_reciprocal PRIVATE
@@ -168,6 +179,7 @@ target_include_directories(test_gamma_reciprocal PRIVATE
   ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_gamma_reciprocal quadmath)
+add_test(NAME run_test_gamma_reciprocal COMMAND bash -c "./bin/test_gamma_reciprocal > test_gamma_reciprocal.txt")
 
 add_executable(test_inv_gamma test_inv_gamma.cpp)
 target_include_directories(test_inv_gamma PRIVATE
@@ -178,6 +190,7 @@ target_include_directories(test_inv_gamma PRIVATE
   ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_inv_gamma quadmath)
+add_test(NAME run_test_inv_gamma COMMAND bash -c "./bin/test_inv_gamma > test_inv_gamma.txt")
 
 add_executable(test_inv_lgamma test_inv_lgamma.cpp)
 target_include_directories(test_inv_lgamma PRIVATE
@@ -189,6 +202,7 @@ target_include_directories(test_inv_lgamma PRIVATE
   ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_inv_lgamma quadmath)
+add_test(NAME run_test_inv_lgamma COMMAND bash -c "./bin/test_inv_lgamma > test_inv_lgamma.txt")
 
 add_executable(test_polygamma test_polygamma.cpp)
 target_include_directories(test_polygamma PRIVATE
@@ -200,7 +214,8 @@ target_include_directories(test_polygamma PRIVATE
   ../../quadrature/include
   ../../cxx_continued_fractions/include
   ../../wrappers)
-target_link_libraries(test_polygamma quadmath -L../../wrappers/debug -lwrap_boost)
+target_link_libraries(test_polygamma quadmath -L../../wrappers -lwrap_boost)
+add_test(NAME run_test_polygamma COMMAND bash -c "./bin/test_polygamma > test_polygamma.txt")
 
 add_executable(test_rising_factorial test_rising_factorial.cpp)
 target_include_directories(test_rising_factorial PRIVATE
@@ -212,4 +227,5 @@ target_include_directories(test_rising_factorial PRIVATE
   ../../quadrature/include
   ../../wrappers
 )
-target_link_libraries(test_rising_factorial quadmath -L../../wrappers/debug -lwrap_boost)
+target_link_libraries(test_rising_factorial quadmath -L../../wrappers -lwrap_boost)
+add_test(NAME run_test_rising_factorial COMMAND bash -c "./bin/test_rising_factorial > test_rising_factorial.txt")

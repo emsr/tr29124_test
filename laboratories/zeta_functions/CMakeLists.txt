@@ -9,7 +9,6 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
 set(CMAKE_CXX_FLAGS -Wno-psabi)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
@@ -33,6 +32,7 @@ target_include_directories(build_etam1_table PRIVATE
 target_link_libraries(build_etam1_table
   quadmath
   mpfr gmp)
+add_test(NAME run_build_etam1_table COMMAND bash -c "./bin/build_etam1_table > build_etam1_table.txt")
 
 add_executable(build_nfact_zetanp1 build_nfact_zetanp1.cpp)
 target_include_directories(build_nfact_zetanp1 PRIVATE
@@ -46,6 +46,7 @@ target_include_directories(build_nfact_zetanp1 PRIVATE
 target_link_libraries(build_nfact_zetanp1
   quadmath
   mpfr gmp)
+add_test(NAME run_build_nfact_zetanp1 COMMAND bash -c "./bin/build_nfact_zetanp1 > build_nfact_zetanp1.txt")
 
 add_executable(build_zeta_deriv_table build_zeta_deriv_table.cpp)
 target_include_directories(build_zeta_deriv_table PRIVATE
@@ -59,6 +60,7 @@ target_include_directories(build_zeta_deriv_table PRIVATE
 target_link_libraries(build_zeta_deriv_table
   quadmath
   mpfr gmp)
+add_test(NAME run_build_zeta_deriv_table COMMAND bash -c "./bin/build_zeta_deriv_table > build_zeta_deriv_table.txt")
 
 add_executable(build_zetahalfm1_table build_zetahalfm1_table.cpp)
 target_include_directories(build_zetahalfm1_table PRIVATE
@@ -72,6 +74,7 @@ target_include_directories(build_zetahalfm1_table PRIVATE
 target_link_libraries(build_zetahalfm1_table
   quadmath
   mpfr gmp)
+add_test(NAME run_build_zetahalfm1_table COMMAND bash -c "./bin/build_zetahalfm1_table > build_zetahalfm1_table.txt")
 
 add_executable(build_zetam1_table build_zetam1_table.cpp)
 target_include_directories(build_zetam1_table PRIVATE
@@ -85,6 +88,7 @@ target_include_directories(build_zetam1_table PRIVATE
 target_link_libraries(build_zetam1_table
   quadmath
   mpfr gmp)
+add_test(NAME run_build_zetam1_table COMMAND bash -c "./bin/build_zetam1_table > build_zetam1_table.txt")
 
 add_executable(build_zeta_trig_tables build_zeta_trig_tables.cpp)
 target_include_directories(build_zeta_trig_tables PRIVATE
@@ -98,6 +102,7 @@ target_include_directories(build_zeta_trig_tables PRIVATE
 target_link_libraries(build_zeta_trig_tables
   quadmath
   mpfr gmp)
+add_test(NAME run_build_zeta_trig_tables COMMAND bash -c "./bin/build_zeta_trig_tables > build_zeta_trig_tables.txt")
 
 add_executable(debug_dirichlet_eta debug_dirichlet_eta.cpp)
 target_include_directories(debug_dirichlet_eta PRIVATE
@@ -108,11 +113,13 @@ target_include_directories(debug_dirichlet_eta PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(debug_dirichlet_eta quadmath)
+add_test(NAME run_debug_dirichlet_eta COMMAND bash -c "./bin/debug_dirichlet_eta > debug_dirichlet_eta.txt")
 
 #add_executable(debug_polylog debug_polylog.cpp)
 #target_include_directories(debug_polylog PRIVATE
 #  ../../3rdparty)
 #target_link_libraries(debug_polylog )
+#add_test(NAME run_debug_polylog COMMAND bash -c "./bin/debug_polylog > debug_polylog.txt")
 
 add_executable(test_bose_einstein test_bose_einstein.cpp)
 target_include_directories(test_bose_einstein PRIVATE
@@ -123,6 +130,7 @@ target_include_directories(test_bose_einstein PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_bose_einstein quadmath)
+add_test(NAME run_test_bose_einstein COMMAND bash -c "./bin/test_bose_einstein > test_bose_einstein.txt")
 
 add_executable(test_clausen test_clausen.cpp)
 target_include_directories(test_clausen PRIVATE
@@ -135,7 +143,8 @@ target_include_directories(test_clausen PRIVATE
   ../../quadrature/include)
 target_link_libraries(test_clausen
   quadmath
-  -L../../wrappers/debug -lwrap_gsl)
+  -L../../wrappers -lwrap_gsl)
+add_test(NAME run_test_clausen COMMAND bash -c "./bin/test_clausen > test_clausen.txt")
 
 add_executable(test_debye test_debye.cpp)
 target_include_directories(test_debye PRIVATE
@@ -148,7 +157,8 @@ target_include_directories(test_debye PRIVATE
   ../../quadrature/include)
 target_link_libraries(test_debye
   quadmath
-  -L../../wrappers/debug -lwrap_gsl)
+  -L../../wrappers -lwrap_gsl)
+add_test(NAME run_test_debye COMMAND bash -c "./bin/test_debye > test_debye.txt")
 
 add_executable(test_dilog test_dilog.cpp)
 target_include_directories(test_dilog PRIVATE
@@ -159,6 +169,7 @@ target_include_directories(test_dilog PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_dilog quadmath)
+add_test(NAME run_test_dilog COMMAND bash -c "./bin/test_dilog > test_dilog.txt")
 
 add_executable(test_dirichlet_eta test_dirichlet_eta.cpp)
 target_include_directories(test_dirichlet_eta PRIVATE
@@ -169,6 +180,7 @@ target_include_directories(test_dirichlet_eta PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_dirichlet_eta quadmath)
+add_test(NAME run_test_dirichlet_eta COMMAND bash -c "./bin/test_dirichlet_eta > test_dirichlet_eta.txt")
 
 add_executable(test_fermi_dirac test_fermi_dirac.cpp)
 target_include_directories(test_fermi_dirac PRIVATE
@@ -181,7 +193,8 @@ target_include_directories(test_fermi_dirac PRIVATE
   ../../quadrature/include)
 target_link_libraries(test_fermi_dirac
   quadmath
-  -L../../wrappers/debug -lwrap_gsl)
+  -L../../wrappers -lwrap_gsl)
+add_test(NAME run_test_fermi_dirac COMMAND bash -c "./bin/test_fermi_dirac > test_fermi_dirac.txt")
 
 add_executable(test_hurwitz_zeta test_hurwitz_zeta.cpp)
 target_include_directories(test_hurwitz_zeta PRIVATE
@@ -192,6 +205,7 @@ target_include_directories(test_hurwitz_zeta PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_hurwitz_zeta quadmath)
+add_test(NAME run_test_hurwitz_zeta COMMAND bash -c "./bin/test_hurwitz_zeta > test_hurwitz_zeta.txt")
 
 add_executable(test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp)
 target_include_directories(test_hurwitz_zeta_new PRIVATE
@@ -202,6 +216,7 @@ target_include_directories(test_hurwitz_zeta_new PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_hurwitz_zeta_new quadmath)
+add_test(NAME run_test_hurwitz_zeta_new COMMAND bash -c "./bin/test_hurwitz_zeta_new > test_hurwitz_zeta_new.txt")
 
 add_executable(test_lerch test_lerch.cpp)
 target_include_directories(test_lerch PRIVATE
@@ -217,7 +232,8 @@ target_include_directories(test_lerch PRIVATE
 target_link_libraries(test_lerch
   mpfr gmp
   quadmath
-  -L../../wrappers/debug -lwrap_lerchphi)
+  -L../../wrappers -lwrap_lerchphi)
+add_test(NAME run_test_lerch COMMAND bash -c "./bin/test_lerch > test_lerch.txt")
 
 add_executable(test_polylog test_polylog.cpp)
 target_include_directories(test_polylog PRIVATE
@@ -230,7 +246,8 @@ target_include_directories(test_polylog PRIVATE
   ../../quadrature/include)
 target_link_libraries(test_polylog
   quadmath
-  -L../../wrappers/debug -lwrap_cephes)
+  -L../../wrappers -lwrap_cephes)
+add_test(NAME run_test_polylog COMMAND bash -c "./bin/test_polylog > test_polylog.txt")
 
 add_executable(test_riemann_zeta test_riemann_zeta.cpp)
 target_include_directories(test_riemann_zeta PRIVATE
@@ -243,11 +260,14 @@ target_include_directories(test_riemann_zeta PRIVATE
   ../../quadrature/include)
 target_link_libraries(test_riemann_zeta
   quadmath
-  -L../../wrappers/debug -lwrap_gsl)
+  -L../../wrappers -lwrap_gsl)
+add_test(NAME run_test_riemann_zeta COMMAND bash -c "./bin/test_riemann_zeta > test_riemann_zeta.txt")
 
 add_executable(zeta_glob_deathmatch zeta_glob_deathmatch.cpp)
 target_include_directories(zeta_glob_deathmatch PRIVATE
-  ../../wrappers)
+  ../../wrappers
+  ../../cxx_math_const/include)
 target_link_libraries(zeta_glob_deathmatch
   quadmath
-  -L../../wrappers/debug -lwrap_gsl)
+  -L../../wrappers -lwrap_gsl)
+add_test(NAME run_zeta_glob_deathmatch COMMAND bash -c "./bin/zeta_glob_deathmatch > zeta_glob_deathmatch.txt")

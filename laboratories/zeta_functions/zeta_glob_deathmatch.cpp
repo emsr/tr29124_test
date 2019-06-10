@@ -1,18 +1,14 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -Wall -Wextra -Wno-psabi -g -I. -o zeta_glob_deathmatch zeta_glob_deathmatch.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./zeta_glob_deathmatch > zeta_glob_deathmatch.txt
-
-$HOME/bin/bin/g++ -std=c++2a -Wall -Wextra -g -I. -o zeta_glob_deathmatch zeta_glob_deathmatch.cpp -lquadmath -Lwrappers/debug -lwrap_gsl
-./zeta_glob_deathmatch > zeta_glob_deathmatch.txt
-*/
+/**
+ *
+ */
 
 #include <cmath>
 #include <limits>
 #include <iostream>
 #include <iomanip>
 
-#include <ext/math_const.h>
 #include <wrap_gsl.h>
+#include <ext/math_constants.h>
 
 #define _GLIBCXX_MATH_NS std
 
@@ -39,14 +35,14 @@ $HOME/bin/bin/g++ -std=c++2a -Wall -Wextra -g -I. -o zeta_glob_deathmatch zeta_g
             {
               _Tp __zeta = __riemann_zeta_glob_old(_Tp(1) - __s);
               __zeta *= std::pow(_Tp(2)
-                     * __gnu_cxx::__math_constants<_Tp>::__pi, __s)
-                     * std::sin(__gnu_cxx::__math_constants<_Tp>::__pi_half * __s)
+                     * __gnu_cxx::math::__pi_v<_Tp>, __s)
+                     * std::sin(__gnu_cxx::math::__pi_half_v<_Tp> * __s)
 #if _GLIBCXX_USE_C99_MATH_TR1
                      * std::exp(_GLIBCXX_MATH_NS::lgamma(_Tp(1) - __s))
 #else
                      * std::exp(__log_gamma(_Tp(1) - __s))
 #endif
-                     / __gnu_cxx::__math_constants<_Tp>::__pi;
+                     / __gnu_cxx::math::__pi_v<_Tp>;
               return __zeta;
             }
         }
@@ -169,14 +165,14 @@ $HOME/bin/bin/g++ -std=c++2a -Wall -Wextra -g -I. -o zeta_glob_deathmatch zeta_g
             {
               _Tp __zeta = __riemann_zeta_glob_new(_Tp(1) - __s);
               __zeta *= std::pow(_Tp(2)
-                     * __gnu_cxx::__math_constants<_Tp>::__pi, __s)
-                     * std::sin(__gnu_cxx::__math_constants<_Tp>::__pi_half * __s)
+                     * __gnu_cxx::math::__pi_v<_Tp>, __s)
+                     * std::sin(__gnu_cxx::math::__pi_half_v<_Tp> * __s)
 #if _GLIBCXX_USE_C99_MATH_TR1
                      * std::exp(_GLIBCXX_MATH_NS::lgamma(_Tp(1) - __s))
 #else
                      * std::exp(__log_gamma(_Tp(1) - __s))
 #endif
-                     / __gnu_cxx::__math_constants<_Tp>::__pi;
+                     / __gnu_cxx::math::__pi_v<_Tp>;
               return __zeta;
             }
         }
@@ -243,14 +239,14 @@ $HOME/bin/bin/g++ -std=c++2a -Wall -Wextra -g -I. -o zeta_glob_deathmatch zeta_g
             {
               _Tp __zeta = __hurwitz_zeta_glob_new(_Tp(1) - __s, __a);
               __zeta *= std::pow(_Tp(2)
-                     * __gnu_cxx::__math_constants<_Tp>::__pi, __s)
-                     * std::sin(__gnu_cxx::__math_constants<_Tp>::__pi_half * __s)
+                     * __gnu_cxx::math::__pi_v<_Tp>, __s)
+                     * std::sin(__gnu_cxx::math::__pi_half_v<_Tp> * __s)
 #if _GLIBCXX_USE_C99_MATH_TR1
                      * std::exp(_GLIBCXX_MATH_NS::lgamma(_Tp(1) - __s))
 #else
                      * std::exp(__log_gamma(_Tp(1) - __s))
 #endif
-                     / __gnu_cxx::__math_constants<_Tp>::__pi;
+                     / __gnu_cxx::math::__pi_v<_Tp>;
               return __zeta;
             }
         }

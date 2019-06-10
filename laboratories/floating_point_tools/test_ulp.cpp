@@ -1,6 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -o test_ulp test_ulp.cpp
-*/
+/**
+ *
+ */
 
 #include <cmath>
 #include <limits>

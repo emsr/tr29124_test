@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -o test_dual_hahn test_dual_hahn.cpp
-./test_dual_hahn > test_dual_hahn.txt
-*/
+/**
+ *
+ */
 
 #include <stdexcept>
 #include <iostream>

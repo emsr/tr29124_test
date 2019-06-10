@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
-./test_hurwitz_zeta > test_hurwitz_zeta.txt
-
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -Wno-psabi -I. -o test_hurwitz_zeta test_hurwitz_zeta.cpp -lquadmath
-./test_hurwitz_zeta > test_hurwitz_zeta.txt
-*/
+/**
+ *
+ */
 
 #include <cmath>
 #include <limits>

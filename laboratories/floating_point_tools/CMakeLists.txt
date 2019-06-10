@@ -9,7 +9,6 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
 set(CMAKE_CXX_FLAGS -Wno-psabi)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
@@ -22,6 +21,7 @@ endif ()
 enable_testing()
 
 add_executable(builtins builtins.cpp)
+add_test(NAME run_builtins COMMAND bash -c "./bin/builtins > builtins.txt")
 
 add_executable(test_float128 test_float128.cpp)
 target_include_directories(test_float128 PRIVATE
@@ -33,6 +33,7 @@ target_include_directories(test_float128 PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_float128 quadmath)
+add_test(NAME run_test_float128 COMMAND bash -c "./bin/test_float128 > test_float128.txt")
 
 add_executable(test_limits test_limits.cpp)
 target_include_directories(test_limits PRIVATE
@@ -44,6 +45,7 @@ target_include_directories(test_limits PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_limits quadmath)
+add_test(NAME run_test_limits COMMAND bash -c "./bin/test_limits > test_limits.txt")
 
 add_executable(test_maxint test_maxint.cpp)
 target_include_directories(test_maxint PRIVATE
@@ -56,6 +58,7 @@ target_include_directories(test_maxint PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_maxint quadmath gmp mpfr)
+add_test(NAME run_test_maxint COMMAND bash -c "./bin/test_maxint > test_maxint.txt")
 
 add_executable(test_mod2pi test_mod2pi.cpp)
 target_include_directories(test_mod2pi PRIVATE
@@ -67,6 +70,7 @@ target_include_directories(test_mod2pi PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_mod2pi quadmath)
+add_test(NAME run_test_mod2pi COMMAND bash -c "./bin/test_mod2pi > test_mod2pi.txt")
 
 add_executable(test_numeric_limits test_numeric_limits.cpp)
 target_include_directories(test_numeric_limits PRIVATE
@@ -80,5 +84,7 @@ target_include_directories(test_numeric_limits PRIVATE
 target_link_libraries(test_numeric_limits quadmath gmp mpfr)
 
 add_executable(test_ulp test_ulp.cpp)
+add_test(NAME run_test_ulp COMMAND bash -c "./bin/test_ulp > test_ulp.txt")
 
 add_executable(variant_help variant_help.cpp)
+add_test(NAME run_variant_help COMMAND bash -c "./bin/variant_help > variant_help.txt")

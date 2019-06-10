@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_inv test_jacobi_inv.cpp -L$HOME/bin/lib64 -lquadmath
-./test_jacobi_inv > test_jacobi_inv.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_jacobi_inv test_jacobi_inv.cpp -lquadmath
-./test_jacobi_inv > test_jacobi_inv.txt
-*/
+/**
+ *
+ */
 
 #include <cmath>
 #include <iostream>

@@ -14,7 +14,6 @@ These are from cephes.
 #include <vector>
 #include <test_struve_old.h>
 
-static double stop = 1.37e-17;
 #include "hyperg_1F2.cpp"
 #include "hyperg_2F0.cpp"
 #include "hyperg_3F0.cpp"

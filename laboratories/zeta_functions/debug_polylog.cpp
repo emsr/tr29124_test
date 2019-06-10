@@ -1,12 +1,6 @@
-/*
-$HOME/bin_specfun/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -Izeta -o debug_polylog debug_polylog.cpp -lquadmath -Lwrappers/debug -lwrap_cephes
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./debug_polylog > debug_polylog.txt
-
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH $HOME/bin_specfun/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o debug_polylog debug_polylog.cpp -lquadmath -Lwrappers/debug -lwrap_cephes
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -Izeta -o debug_polylog debug_polylog.cpp -lquadmath -Lwrappers/debug -lwrap_cephes
-PATH=wrappers/debug:$PATH ./debug_polylog > debug_polylog.txt
-*/
+/**
+ *
+ */
 
 #include <cmath>
 #include <iostream>

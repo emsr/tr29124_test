@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -o test_krawtchouk test_krawtchouk.cpp -Lwrappers/debug -lwrap_burkhardt -lgfortran
-LD_LIBRARY_PATH=$HOME/bin/lib64:wrappers/debug:$LD_LIBRARY_PATH ./test_krawtchouk > test_krawtchouk.txt
-*/
+/**
+ *
+ */
 
 #include <stdexcept>
 #include <iostream>

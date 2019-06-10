@@ -9,7 +9,6 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
 set(CMAKE_CXX_FLAGS -Wno-psabi)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
@@ -30,3 +29,4 @@ target_include_directories(test_mittag_leffler PRIVATE
   ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_mittag_leffler quadmath)
+add_test(NAME run_test_mittag_leffler COMMAND bash -c "./bin/test_mittag_leffler > test_mittag_leffler.txt")

@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -I../../quadrature/include -I../../cxx_summation/include -o test_legendre_q test_legendre_q.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:LD_LIBRARY_PATH$ ./test_legendre_q > test_legendre_q.txt
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <iomanip>

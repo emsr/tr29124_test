@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -o test_wilson test_wilson.cpp
-./test_wilson > test_wilson.txt
-*/
+/**
+ *
+ */
 
 #include <stdexcept>
 #include <iostream>

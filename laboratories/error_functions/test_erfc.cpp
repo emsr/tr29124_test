@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_erfc test_erfc.cpp -lquadmath
-./test_erfc > test_erfc.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_erfc test_erfc.cpp -lquadmath
-./test_erfc > test_erfc.txt
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <iomanip>

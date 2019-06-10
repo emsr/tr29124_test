@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_inv_erf_coefs build_inv_erf_coefs.cpp -lquadmath -lmpfr
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./build_inv_erf_coefs > build_inv_erf_coefs.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_inv_erf_coefs build_inv_erf_coefs.cpp -lquadmath -lmpfr
-./build_inv_erf_coefs > build_inv_erf_coefs.txt
-*/
+/**
+ *
+ */
 
 #include <mpreal.h>
 #include <bits/numeric_limits_mpreal.h>

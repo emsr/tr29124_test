@@ -9,7 +9,6 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
 set(CMAKE_CXX_FLAGS -Wno-psabi)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
@@ -30,7 +29,8 @@ target_include_directories(test_jacobi_ellint PRIVATE
   ../../polynomial/include
   ../../quadrature/include
   ../../wrappers)
-target_link_libraries(test_jacobi_ellint quadmath -L../../wrappers/debug -lwrap_gsl)
+target_link_libraries(test_jacobi_ellint quadmath -L../../wrappers -lwrap_gsl)
+add_test(NAME run_test_jacobi_ellint COMMAND bash -c "./bin/test_jacobi_ellint > test_jacobi_ellint.txt")
 
 add_executable(test_jacobi_inv test_jacobi_inv.cpp)
 target_include_directories(test_jacobi_inv PRIVATE
@@ -41,6 +41,7 @@ target_include_directories(test_jacobi_inv PRIVATE
   ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_jacobi_inv quadmath)
+add_test(NAME run_test_jacobi_inv COMMAND bash -c "./bin/test_jacobi_inv > test_jacobi_inv.txt")
 
 add_executable(test_jacobi_theta test_jacobi_theta.cpp)
 target_include_directories(test_jacobi_theta PRIVATE
@@ -51,7 +52,8 @@ target_include_directories(test_jacobi_theta PRIVATE
   ../../polynomial/include
   ../../quadrature/include
   ../../wrappers)
-target_link_libraries(test_jacobi_theta quadmath -L../../wrappers/debug -lwrap_gsl)
+target_link_libraries(test_jacobi_theta quadmath -L../../wrappers -lwrap_gsl)
+add_test(NAME run_test_jacobi_theta COMMAND bash -c "./bin/test_jacobi_theta > test_jacobi_theta.txt")
 
 add_executable(test_theta test_theta.cpp)
 target_include_directories(test_theta PRIVATE
@@ -62,6 +64,7 @@ target_include_directories(test_theta PRIVATE
   ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_theta quadmath)
+add_test(NAME run_test_theta COMMAND bash -c "./bin/test_theta > test_theta.txt")
 
 add_executable(test_weierstrass_ellint test_weierstrass_ellint.cpp)
 target_include_directories(test_weierstrass_ellint PRIVATE
@@ -72,3 +75,4 @@ target_include_directories(test_weierstrass_ellint PRIVATE
   ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_weierstrass_ellint quadmath)
+add_test(NAME run_test_weierstrass_ellint COMMAND bash -c "./bin/test_weierstrass_ellint > test_weierstrass_ellint.txt")

@@ -9,7 +9,6 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
 set(CMAKE_CXX_FLAGS -Wno-psabi)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
@@ -32,6 +31,7 @@ target_include_directories(build_bernoulli_2n_table PRIVATE
   ../../quadrature/include
 )
 target_link_libraries(build_bernoulli_2n_table quadmath mpfr)
+add_test(NAME run_build_bernoulli_2n_table COMMAND bash -c "./bin/build_bernoulli_2n_table > build_bernoulli_2n_table.txt")
 
 add_executable(test_bernoulli test_bernoulli.cpp)
 target_include_directories(test_bernoulli PRIVATE
@@ -44,5 +44,6 @@ target_include_directories(test_bernoulli PRIVATE
   ../../wrappers
 )
 target_link_libraries(test_bernoulli quadmath
-  -L../../wrappers/debug -lwrap_burkhardt
+  -L../../wrappers -lwrap_burkhardt
   -L/home/ed/bin/lib64 -lgfortran)
+add_test(NAME run_test_bernoulli COMMAND bash -c "./bin/test_bernoulli > test_bernoulli.txt")

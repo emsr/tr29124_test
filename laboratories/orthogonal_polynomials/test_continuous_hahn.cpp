@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -g -Wall -Wextra -o test_continuous_hahn test_continuous_hahn.cpp
-./test_continuous_hahn > test_continuous_hahn.txt
-*/
+/**
+ *
+ */
 
 #include <stdexcept>
 #include <iostream>

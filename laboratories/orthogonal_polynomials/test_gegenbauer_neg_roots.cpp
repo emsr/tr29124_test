@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../../include -I../../cxx_fp_utils/include -I../../polynomial/include -o test_gegenbauer_neg_roots test_gegenbauer_neg_roots.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_gegenbauer_neg_roots > test_gegenbauer_neg_roots.txt
-*/
+/**
+ *
+ */
 
 #include <vector>
 #include <algorithm>

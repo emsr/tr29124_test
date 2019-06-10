@@ -9,7 +9,6 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
 set(CMAKE_CXX_FLAGS -Wno-psabi)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
@@ -30,3 +29,5 @@ target_include_directories(test_marcum_q PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_marcum_q quadmath)
+add_test(NAME run_test_marcum_q COMMAND bash -c "./bin/test_marcum_q > test_marcum_q.txt")
+add_test(NAME run_run_test_marcum_q COMMAND bash -c "./bin/run_test_marcum_q > run_test_marcum_q.txt")

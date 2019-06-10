@@ -9,7 +9,6 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
 set(CMAKE_CXX_FLAGS -Wno-psabi)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
@@ -31,6 +30,7 @@ target_include_directories(build_atan_table PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(build_atan_table gmp mpfr quadmath)
+add_test(NAME run_build_atan_table COMMAND bash -c "./bin/build_atan_table > build_atan_table.txt")
 
 add_executable(build_cordic build_cordic.cpp)
 target_include_directories(build_cordic PRIVATE
@@ -42,6 +42,7 @@ target_include_directories(build_cordic PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(build_cordic gmp mpfr quadmath)
+add_test(NAME run_build_cordic COMMAND bash -c "./bin/build_cordic > build_cordic.txt")
 
 add_executable(build_log_table build_log_table.cpp)
 target_include_directories(build_log_table PRIVATE
@@ -53,6 +54,7 @@ target_include_directories(build_log_table PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(build_log_table gmp mpfr quadmath)
+add_test(NAME run_build_log_table COMMAND bash -c "./bin/build_log_table > build_log_table.txt")
 
 add_executable(build_sincos_tables build_sincos_tables.cpp)
 target_include_directories(build_sincos_tables PRIVATE
@@ -64,6 +66,7 @@ target_include_directories(build_sincos_tables PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(build_sincos_tables gmp mpfr quadmath)
+add_test(NAME run_build_sincos_tables COMMAND bash -c "./bin/build_sincos_tables > build_sincos_tables.txt")
 
 add_executable(build_sqrt_table build_sqrt_table.cpp)
 target_include_directories(build_sqrt_table PRIVATE
@@ -75,12 +78,12 @@ target_include_directories(build_sqrt_table PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(build_sqrt_table gmp mpfr quadmath)
+add_test(NAME run_build_sqrt_table COMMAND bash -c "./bin/build_sqrt_table > build_sqrt_table.txt")
 
 add_executable(test_cordic test_cordic.cpp)
 target_include_directories(test_cordic PRIVATE
-  .
-)
-#target_link_libraries(test_cordic )
+  .)
+add_test(NAME run_test_cordic COMMAND bash -c "./bin/test_cordic > test_cordic.txt")
 
 add_executable(test_exp test_exp.cpp)
 target_include_directories(test_exp PRIVATE
@@ -91,6 +94,7 @@ target_include_directories(test_exp PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_exp quadmath)
+add_test(NAME run_test_exp COMMAND bash -c "./bin/test_exp > test_exp.txt")
 
 add_executable(test_gudermannian test_gudermannian.cpp)
 target_include_directories(test_gudermannian PRIVATE
@@ -101,6 +105,7 @@ target_include_directories(test_gudermannian PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_gudermannian quadmath)
+add_test(NAME run_test_gudermannian COMMAND bash -c "./bin/test_gudermannian > test_gudermannian.txt")
 
 add_executable(test_lambert_w test_lambert_w.cpp)
 target_include_directories(test_lambert_w PRIVATE
@@ -111,10 +116,10 @@ target_include_directories(test_lambert_w PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_lambert_w quadmath)
+add_test(NAME run_test_lambert_w COMMAND bash -c "./bin/test_lambert_w > test_lambert_w.txt")
 
 add_executable(test_log test_log.cpp)
-#target_include_directories(test_log PRIVATE )
-#target_link_libraries(test_log )
+add_test(NAME run_test_log COMMAND bash -c "./bin/test_log > test_log.txt")
 
 add_executable(test_notsospecfun test_notsospecfun.cpp)
 target_include_directories(test_notsospecfun PRIVATE
@@ -125,10 +130,10 @@ target_include_directories(test_notsospecfun PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_notsospecfun quadmath)
+add_test(NAME run_test_notsospecfun COMMAND bash -c "./bin/test_notsospecfun > test_notsospecfun.txt")
 
 add_executable(test_pow test_pow.cpp)
-#target_include_directories(test_pow PRIVATE )
-#target_link_libraries(test_pow )
+add_test(NAME run_test_pow COMMAND bash -c "./bin/test_pow > test_pow.txt")
 
 add_executable(test_reperiodized_hyper test_reperiodized_hyper.cpp)
 target_include_directories(test_reperiodized_hyper PRIVATE
@@ -139,6 +144,7 @@ target_include_directories(test_reperiodized_hyper PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_reperiodized_hyper quadmath)
+add_test(NAME run_test_reperiodized_hyper COMMAND bash -c "./bin/test_reperiodized_hyper > test_reperiodized_hyper.txt")
 
 add_executable(test_reperiodized_trig test_reperiodized_trig.cpp)
 target_include_directories(test_reperiodized_trig PRIVATE
@@ -149,7 +155,8 @@ target_include_directories(test_reperiodized_trig PRIVATE
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
-target_link_libraries(test_reperiodized_trig quadmath -L../../wrappers/debug -lwrap_boost)
+target_link_libraries(test_reperiodized_trig quadmath -L../../wrappers -lwrap_boost)
+add_test(NAME run_test_reperiodized_trig COMMAND bash -c "./bin/test_reperiodized_trig > test_reperiodized_trig.txt")
 
 add_executable(test_sincos test_sincos.cpp)
 target_include_directories(test_sincos PRIVATE
@@ -160,6 +167,7 @@ target_include_directories(test_sincos PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_sincos quadmath)
+add_test(NAME run_test_sincos COMMAND bash -c "./bin/test_sincos > test_sincos.txt")
 
 add_executable(test_sinus_cardinal test_sinus_cardinal.cpp)
 target_include_directories(test_sinus_cardinal PRIVATE
@@ -172,15 +180,14 @@ target_include_directories(test_sinus_cardinal PRIVATE
   ../../quadrature/include)
 target_link_libraries(test_sinus_cardinal
    quadmath
-   -L../../wrappers/debug -lwrap_gsl -lwrap_boost)
+   -L../../wrappers -lwrap_gsl -lwrap_boost)
+add_test(NAME run_test_sinus_cardinal COMMAND bash -c "./bin/test_sinus_cardinal > test_sinus_cardinal.txt")
 
 add_executable(test_sqrt test_sqrt.cpp)
-#target_include_directories(test_sqrt PRIVATE )
-#target_link_libraries(test_sqrt )
+add_test(NAME run_test_sqrt COMMAND bash -c "./bin/test_sqrt > test_sqrt.txt")
 
 add_executable(test_static_root test_static_root.cpp)
-#target_include_directories(test_static_root PRIVATE )
-#target_link_libraries(test_static_root )
+add_test(NAME run_test_static_root COMMAND bash -c "./bin/test_static_root > test_static_root.txt")
 
 add_executable(test_trig test_trig.cpp)
 target_include_directories(test_trig PRIVATE
@@ -191,6 +198,7 @@ target_include_directories(test_trig PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_trig quadmath)
+add_test(NAME run_test_trig COMMAND bash -c "./bin/test_trig > test_trig.txt")
 
 add_executable(test_wright_omega test_wright_omega.cpp)
 target_include_directories(test_wright_omega PRIVATE
@@ -201,6 +209,7 @@ target_include_directories(test_wright_omega PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_wright_omega quadmath)
+add_test(NAME run_test_wright_omega COMMAND bash -c "./bin/test_wright_omega > test_wright_omega.txt")
 
 add_executable(test_zeta_trig test_zeta_trig.cpp)
 target_include_directories(test_zeta_trig PRIVATE
@@ -211,3 +220,4 @@ target_include_directories(test_zeta_trig PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_zeta_trig quadmath)
+add_test(NAME run_test_zeta_trig COMMAND bash -c "./bin/test_zeta_trig > test_zeta_trig.txt")

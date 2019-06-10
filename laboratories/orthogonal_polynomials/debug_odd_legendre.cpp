@@ -1,7 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=c++2a -I. -Wall -Wextra -Wno-psabi -o debug_odd_legendre debug_odd_legendre.cpp
-./debug_odd_legendre
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <iomanip>

@@ -1,8 +1,8 @@
-#include <cmath>
-/*
-$HOME/bin/bin/g++ -std=c++2a -o test_abs test_abs.cpp
-*/
+/**
+ *
+ */
 
+#include <cmath>
 #include <initializer_list>
 #include <algorithm>
 #include <iostream>

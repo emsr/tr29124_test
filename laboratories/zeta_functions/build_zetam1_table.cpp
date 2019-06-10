@@ -1,9 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_zetam1_table build_zetam1_table.cpp -lquadmath -lmpfr
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./build_zetam1_table > build_zetam1_table.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -I../mpreal -o build_zetam1_table build_zetam1_table.cpp -lquadmath -lmpfr
-*/
+/**
+ *
+ */
 
 #include <mpreal.h>
 #include <bits/numeric_limits_mpreal.h>

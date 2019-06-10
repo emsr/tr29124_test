@@ -1,8 +1,6 @@
-// A function to print all prime factors of a given number n
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_prime_factors test_prime_factors.cpp -lquadmath
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_prime_factors
-*/
+/**
+ * A function to print all prime factors of a given number n
+ */
 
 #include <cmath>
 #include <iostream>

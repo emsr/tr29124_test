@@ -1,10 +1,6 @@
-/*
-$HOME/bin_specfun/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -Izeta -o test_dirichlet_eta test_dirichlet_eta.cpp -lquadmath -Lwrappers/debug -lwrap_cephes
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_dirichlet_eta > test_dirichlet_eta.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -Izeta -o test_dirichlet_eta test_dirichlet_eta.cpp -lquadmath -Lwrappers/debug -lwrap_cephes
-PATH=wrappers/debug:$PATH ./test_dirichlet_eta > test_dirichlet_eta.txt
-*/
+/**
+ *
+ */
 
 #include <cmath>
 #include <iostream>

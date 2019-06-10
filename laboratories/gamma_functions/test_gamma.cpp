@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_gamma test_gamma.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-LD_LIBRARY_PATH=wrappers/debug:$LD_LIBRARY_PATH ./test_gamma > test_gamma.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_gamma test_gamma.cpp -lquadmath -Lwrappers/debug -lwrap_boost
-PATH=wrappers/debug:$PATH ./test_gamma > test_gamma.txt
-*/
+/**
+ *
+ */
 
 #include <bits/specfun.h>
 #include <bits/float128_io.h>

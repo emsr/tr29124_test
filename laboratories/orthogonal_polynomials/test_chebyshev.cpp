@@ -1,10 +1,6 @@
-/*
-$HOME/bin_specfun/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev test_chebyshev.cpp -lquadmath
-./test_chebyshev > test_chebyshev.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev test_chebyshev.cpp -lquadmath
-./test_chebyshev > test_chebyshev.txt
-*/
+/**
+ *
+ */
 
 #include <iostream>
 #include <iomanip>

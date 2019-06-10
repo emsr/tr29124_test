@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_fibonacci test_fibonacci.cpp -Lwrappers/debug -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_burkhardt -lgfortran
-LD_LIBRARY_PATH=wrappers/debug:$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_fibonacci > test_fibonacci.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -I. -o test_fibonacci test_fibonacci.cpp -lquadmath -Lwrappers/debug -lwrap_gsl -lwrap_burkhardt
-./test_fibonacci > test_fibonacci.txt
-*/
+/**
+ *
+ */
 
 #include <cmath>
 #include <limits>

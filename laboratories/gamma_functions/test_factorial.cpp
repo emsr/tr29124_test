@@ -1,10 +1,6 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_factorial test_factorial.cpp -lquadmath
-./test_factorial > test_factorial.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_factorial test_factorial.cpp -lquadmath
-./test_factorial > test_factorial.txt
-*/
+/**
+ *
+ */
 
 #include <cmath>
 #include <limits>
