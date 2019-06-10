@@ -5,16 +5,20 @@
 #include <iterator>
 #include <algorithm> // For find_if.
 
+/**
+ * @file chebyshev.tcc Implementation for C++ Chebyshev methods.
+ */
+
 namespace __gnu_cxx
 {
 
   /**
    * @brief  Construct a Chebyshev fit of a function.
-   * Given a function @c func, the lower limit @c a, the upper limit @c b,
-   * and the number of points @c n this routine computes the coefficients
-   * of a Chebyshev polynomial expansion such that
+   *         Given a function @c func, the lower limit @c a, the upper limit @c b,
+   *         and the number of points @c n this routine computes the coefficients
+   *         of a Chebyshev polynomial expansion such that
    * @f[
-   *    f(x) = k\sum_{0}^{n-1} c_k T_k(x) - c_0/2.
+   *   f(x) = k\sum_{0}^{n-1} c_k T_k(x) - c_0/2.
    * @f]
    * Use this routine with moderately large n of 30 or 50.
    * Then truncate the series to a smaller number of terms to satisfy
@@ -33,18 +37,18 @@ namespace __gnu_cxx
 
       std::vector<_Tp> __f(__n);
 
-      _Tp __bma = (_M_upper - _M_lower) / _Tp{2};
-      _Tp __bpa = (_M_upper + _M_lower) / _Tp{2};
+      const auto __bma = (_M_upper - _M_lower) / _Tp{2};
+      const auto __bpa = (_M_upper + _M_lower) / _Tp{2};
       for (unsigned int __k = 0; __k < __n; ++__k)
 	{
 	  _Tp __y = std::cos(_S_pi * (__k + _Tp(0.5L)) / __n);
 	  __f[__k] = __func(__bpa + __y * __bma);
 	}
 
-      _Tp __fac = _Tp{2} / __n;
+      const auto __fac = _Tp{2} / __n;
       for (unsigned int __j = 0; __j < __n; ++__j)
 	{
-	  _Tp __sum = _Tp{};
+	  auto __sum = _Tp{};
 	  for (unsigned int __k = 0; __k < __n; ++__k)
 	    __sum += __f[__k] * std::cos(_S_pi * __j * (__k + _Tp(0.5L)) / __n);
 	  _M_coef[__j] = __fac * __sum;
@@ -54,12 +58,12 @@ namespace __gnu_cxx
 
 
   /**
-   *  Constructs a Chebyshev expansion from a polynomial.
+   * Constructs a Chebyshev expansion from a polynomial.
    *
-   *  A polynomial valid in the range x=a to x=b is specified by coefficients d[0..m-1].
-   *  An equivalent array of Chebyshev coefficients, c[0..m-1], is output.
-   *  The index mfew will be set to the index of the first nonzero Chebyshev coefficient smaller than err.
-   *  Then the polynomial is approximated by the first mfew cefficients c[0..mfew-1].
+   * A polynomial valid in the range x=a to x=b is specified by coefficients d[0..m-1].
+   * An equivalent array of Chebyshev coefficients, c[0..m-1], is output.
+   * The index mfew will be set to the index of the first nonzero Chebyshev coefficient smaller than err.
+   * Then the polynomial is approximated by the first mfew cefficients c[0..mfew-1].
    */
   template<typename _Tp>
     template<typename _Up>
@@ -83,7 +87,7 @@ namespace __gnu_cxx
       for (int __k = 1; __k < __poly.size(); ++__k)
 	{
 	  this->_M_coef[__k] = _Tp{};
-	  _Tp __fac = __poly[__k] / __pow;
+	  auto __fac = __poly[__k] / __pow;
 	  int __jm = __k;
 	  int __jp = 1;
 	  for (int __j = __k; __j >= 0; __j -= 2, --__jm, ++__jp)
@@ -102,7 +106,7 @@ namespace __gnu_cxx
 
 
   /**
-   *  Chebyshev evaluation.
+   * Chebyshev evaluation.
    */
   template<typename _Tp>
     _Tp
@@ -127,7 +131,7 @@ namespace __gnu_cxx
 
 
   /**
-   *  This routine returns a Chebyshev fit of the derivative of this Chebyshev fit.
+   * This routine returns a Chebyshev fit of the derivative of this Chebyshev fit.
    */
   template<typename _Tp>
     _Chebyshev<_Tp>
@@ -152,8 +156,8 @@ namespace __gnu_cxx
 
 
   /**
-   *  This routine returns the Chebyshev fit of the integral of this Chebyshev fit.
-   *  The constant of integration is set so that the integral vanishes at a.
+   * This routine returns the Chebyshev fit of the integral of this Chebyshev fit.
+   * The constant of integration is set so that the integral vanishes at a.
    */
   template<typename _Tp>
     _Chebyshev<_Tp>
@@ -161,9 +165,9 @@ namespace __gnu_cxx
     {
       unsigned int __n = this->_M_coef.size();
       std::vector<_Tp> __cint(__n);
-      _Tp __sum = _Tp{};
-      _Tp __fact = _Tp{1};
-      _Tp __con = (this->upper() - this->lower()) / _Tp{4};
+      auto __sum = _Tp{};
+      auto __fact = _Tp{1};
+      const auto __con = (this->upper() - this->lower()) / _Tp{4};
       for (unsigned int __j = 1; __j < __n - 1; ++__j)
 	{
 	  //  Accumulate the constant of integration in sum.
@@ -184,8 +188,8 @@ namespace __gnu_cxx
 
 
   /**
-   *  This routine returns the array d[0..n-1], of coefficients of a polynomial
-   *  expansion which is equivalent to the Chebyshev fit.
+   * This routine returns the array d[0..n-1], of coefficients of a polynomial
+   * expansion which is equivalent to the Chebyshev fit.
    */
   template<typename _Tp>
     _Polynomial<_Tp>
@@ -215,9 +219,9 @@ namespace __gnu_cxx
 
 
   /**
-   *  Truncate the Chebyshev series so that the first nonzero neglected term
-   *  is less than eps.  Skipping zero coefficients takes care of series
-   *  with alternating zero and nonzero terms.
+   * Truncate the Chebyshev series so that the first nonzero neglected term
+   * is less than eps.  Skipping zero coefficients takes care of series
+   * with alternating zero and nonzero terms.
    */
   template<typename _Tp>
     template<typename _Up>
@@ -234,7 +238,7 @@ namespace __gnu_cxx
 
 
   /**
-   *  Write the Chebyshev expansion to an output stream.
+   * Write the Chebyshev expansion to an output stream.
    */
   template<typename _Tp,
 	   typename _CharT, typename _Traits = std::char_traits<_CharT>>
@@ -259,10 +263,10 @@ namespace __gnu_cxx
     }
 
   /**
-   *  Economize a polynomial poly over a range [a, b] by returning
-   *  a new lower-order polynomial so that evaluations of the new polynomial
-   *  will equal those of the old polynomial within the specified tolerance eps
-   *  over the requested range.
+   * Economize a polynomial poly over a range [a, b] by returning
+   * a new lower-order polynomial so that evaluations of the new polynomial
+   * will equal those of the old polynomial within the specified tolerance eps
+   * over the requested range.
    */
   template<typename _Tp>
     _Polynomial<_Tp>

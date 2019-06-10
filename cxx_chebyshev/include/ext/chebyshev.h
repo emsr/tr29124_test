@@ -7,6 +7,10 @@
 
 #include <ext/polynomial.h>
 
+/**
+ * @file chebyshev.h Interface for C++ Chebyshev methods.
+ */
+
 namespace __gnu_cxx
 {
 

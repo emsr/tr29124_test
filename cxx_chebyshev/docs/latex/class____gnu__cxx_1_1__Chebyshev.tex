@@ -1,0 +1,197 @@
+\hypertarget{class____gnu__cxx_1_1__Chebyshev}{}\section{\+\_\+\+\_\+gnu\+\_\+cxx\+:\+:\+\_\+\+Chebyshev$<$ \+\_\+\+Tp $>$ Class Template Reference}
+\label{class____gnu__cxx_1_1__Chebyshev}\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev$<$ \+\_\+\+Tp $>$@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev$<$ \+\_\+\+Tp $>$}}
+
+
+\hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+Chebyshev} represents a Chebyshev fit of a function. Given a function {\ttfamily func}, the lower limit {\ttfamily a}, the upper limit {\ttfamily b}, and the number of points {\ttfamily n} \hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+Chebyshev} contains the coefficients of a Chebyshev polynomial expansion such that \[ f(x) = k\sum_{0}^{n-1} c_k T_k(x) - c_0/2. \] Use these constructors with moderately large n of 30 or 50. Then truncate the Chebyshev fit to a smaller number of terms to satisfy the accuracy requirements.  
+
+
+
+
+{\ttfamily \#include $<$chebyshev.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{class____gnu__cxx_1_1__Chebyshev_a7346ba5843311126dc28cb905687c4a1}{value\+\_\+type} = \+\_\+\+Tp
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class____gnu__cxx_1_1__Chebyshev_aa68f563831ae3f7afb2596d38e078291}{\+\_\+\+Chebyshev} ()
+\item 
+\hyperlink{class____gnu__cxx_1_1__Chebyshev_a7ae17adff595fd004822d7434285ad26}{\+\_\+\+Chebyshev} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b, unsigned \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+func(\+\_\+\+Tp))
+\begin{DoxyCompactList}\small\item\em Construct a Chebyshev fit of a function. Given a function {\ttfamily func}, the lower limit {\ttfamily a}, the upper limit {\ttfamily b}, and the number of points {\ttfamily n} this routine computes the coefficients of a Chebyshev polynomial expansion such that \[ f(x) = k\sum_{0}^{n-1} c_k T_k(x) - c_0/2. \] Use this routine with moderately large n of 30 or 50. Then truncate the series to a smaller number of terms to satisfy the accuracy requirements. \end{DoxyCompactList}\item 
+\hyperlink{class____gnu__cxx_1_1__Chebyshev_a3bbf8155026331ee6a644253a4142d4e}{\+\_\+\+Chebyshev} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b, std\+::initializer\+\_\+list$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+il)
+\item 
+\hyperlink{class____gnu__cxx_1_1__Chebyshev_a284eef7cb9971d933d19e10703d2029c}{\+\_\+\+Chebyshev} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b, const std\+::vector$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+coeff)
+\item 
+\hyperlink{class____gnu__cxx_1_1__Chebyshev_a39f37ba2a90b4fe76ee08a348cfba173}{\+\_\+\+Chebyshev} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b, std\+::vector$<$ \+\_\+\+Tp $>$ \&\&\+\_\+\+\_\+coeff)
+\item 
+{\footnotesize template$<$typename \+\_\+\+Up $>$ }\\\hyperlink{class____gnu__cxx_1_1__Chebyshev_abc2b50080347414895d47e02a0543a2c}{\+\_\+\+Chebyshev} (\+\_\+\+Up \+\_\+\+\_\+a, \+\_\+\+Up \+\_\+\+\_\+b, const \+\_\+\+Polynomial$<$ \+\_\+\+Up $>$ \&\+\_\+\+\_\+poly)
+\item 
+\hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+Chebyshev} \hyperlink{class____gnu__cxx_1_1__Chebyshev_a690446e057539c62406212dea9d6f6c6}{derivative} () const
+\item 
+\hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+Chebyshev} \hyperlink{class____gnu__cxx_1_1__Chebyshev_ad6238062674a4ab03fda28c8d1e3774b}{integral} () const
+\item 
+std\+::size\+\_\+t \hyperlink{class____gnu__cxx_1_1__Chebyshev_a21041ae006b9d2c881868f0fe759ad05}{order} () const
+\item 
+\hyperlink{class____gnu__cxx_1_1__Chebyshev_a7346ba5843311126dc28cb905687c4a1}{value\+\_\+type} \hyperlink{class____gnu__cxx_1_1__Chebyshev_a1f3e70e588cfc837704461d2319b1e81}{lower} () const
+\item 
+\hyperlink{class____gnu__cxx_1_1__Chebyshev_a7346ba5843311126dc28cb905687c4a1}{value\+\_\+type} \hyperlink{class____gnu__cxx_1_1__Chebyshev_a7adf49552809774d062c892174491a3f}{upper} () const
+\item 
+\+\_\+\+Polynomial$<$ \+\_\+\+Tp $>$ \hyperlink{class____gnu__cxx_1_1__Chebyshev_a0039dec54cff971242eb501fd76eec81}{to\+\_\+polynomial} () const
+\item 
+\hyperlink{class____gnu__cxx_1_1__Chebyshev_a7346ba5843311126dc28cb905687c4a1}{value\+\_\+type} \hyperlink{class____gnu__cxx_1_1__Chebyshev_ab233a66fdf801389715273c560d1beb9}{operator()} (\hyperlink{class____gnu__cxx_1_1__Chebyshev_a7346ba5843311126dc28cb905687c4a1}{value\+\_\+type} \+\_\+\+\_\+x) const
+\item 
+{\footnotesize template$<$typename \+\_\+\+Up $>$ }\\void \hyperlink{class____gnu__cxx_1_1__Chebyshev_af50304bc19f6383599c4169720ef0a97}{truncate} (\+\_\+\+Up \+\_\+\+\_\+eps=std\+::numeric\+\_\+limits$<$ \+\_\+\+Up $>$\+::epsilon())
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+CharT , typename \+\_\+\+Traits $>$ }\\std\+::basic\+\_\+ostream$<$ \+\_\+\+CharT, \+\_\+\+Traits $>$ \& \hyperlink{class____gnu__cxx_1_1__Chebyshev_aa91d6f92fc41ecb09a2989f663ba7d9e}{operator$<$$<$} (std\+::basic\+\_\+ostream$<$ \+\_\+\+CharT, \+\_\+\+Traits $>$ \&\+\_\+\+\_\+os, const \hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp1 $>$ \&\+\_\+\+\_\+cheb)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Tp$>$\newline
+class \+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev$<$ \+\_\+\+Tp $>$}
+
+\hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+Chebyshev} represents a Chebyshev fit of a function. Given a function {\ttfamily func}, the lower limit {\ttfamily a}, the upper limit {\ttfamily b}, and the number of points {\ttfamily n} \hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+Chebyshev} contains the coefficients of a Chebyshev polynomial expansion such that \[ f(x) = k\sum_{0}^{n-1} c_k T_k(x) - c_0/2. \] Use these constructors with moderately large n of 30 or 50. Then truncate the Chebyshev fit to a smaller number of terms to satisfy the accuracy requirements. 
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class____gnu__cxx_1_1__Chebyshev_a7346ba5843311126dc28cb905687c4a1}\label{class____gnu__cxx_1_1__Chebyshev_a7346ba5843311126dc28cb905687c4a1}} 
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}!value\+\_\+type@{value\+\_\+type}}
+\index{value\+\_\+type@{value\+\_\+type}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}}
+\subsubsection{\texorpdfstring{value\+\_\+type}{value\_type}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+using \hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp $>$\+::\hyperlink{class____gnu__cxx_1_1__Chebyshev_a7346ba5843311126dc28cb905687c4a1}{value\+\_\+type} =  \+\_\+\+Tp}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class____gnu__cxx_1_1__Chebyshev_aa68f563831ae3f7afb2596d38e078291}\label{class____gnu__cxx_1_1__Chebyshev_aa68f563831ae3f7afb2596d38e078291}} 
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}!\+\_\+\+Chebyshev@{\+\_\+\+Chebyshev}}
+\index{\+\_\+\+Chebyshev@{\+\_\+\+Chebyshev}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}}
+\subsubsection{\texorpdfstring{\+\_\+\+Chebyshev()}{\_Chebyshev()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp $>$\+::\hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+Chebyshev} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class____gnu__cxx_1_1__Chebyshev_a7ae17adff595fd004822d7434285ad26}\label{class____gnu__cxx_1_1__Chebyshev_a7ae17adff595fd004822d7434285ad26}} 
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}!\+\_\+\+Chebyshev@{\+\_\+\+Chebyshev}}
+\index{\+\_\+\+Chebyshev@{\+\_\+\+Chebyshev}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}}
+\subsubsection{\texorpdfstring{\+\_\+\+Chebyshev()}{\_Chebyshev()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp $>$\+::\hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+Chebyshev} (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+b,  }\item[{unsigned}]{\+\_\+\+\_\+n,  }\item[{\+\_\+\+Tp }]{\+\_\+\+\_\+func\+\_\+\+Tp }\end{DoxyParamCaption})}
+
+
+
+Construct a Chebyshev fit of a function. Given a function {\ttfamily func}, the lower limit {\ttfamily a}, the upper limit {\ttfamily b}, and the number of points {\ttfamily n} this routine computes the coefficients of a Chebyshev polynomial expansion such that \[ f(x) = k\sum_{0}^{n-1} c_k T_k(x) - c_0/2. \] Use this routine with moderately large n of 30 or 50. Then truncate the series to a smaller number of terms to satisfy the accuracy requirements. 
+
+\mbox{\Hypertarget{class____gnu__cxx_1_1__Chebyshev_a3bbf8155026331ee6a644253a4142d4e}\label{class____gnu__cxx_1_1__Chebyshev_a3bbf8155026331ee6a644253a4142d4e}} 
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}!\+\_\+\+Chebyshev@{\+\_\+\+Chebyshev}}
+\index{\+\_\+\+Chebyshev@{\+\_\+\+Chebyshev}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}}
+\subsubsection{\texorpdfstring{\+\_\+\+Chebyshev()}{\_Chebyshev()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp $>$\+::\hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+Chebyshev} (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+b,  }\item[{std\+::initializer\+\_\+list$<$ \+\_\+\+Tp $>$}]{\+\_\+\+\_\+il }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class____gnu__cxx_1_1__Chebyshev_a284eef7cb9971d933d19e10703d2029c}\label{class____gnu__cxx_1_1__Chebyshev_a284eef7cb9971d933d19e10703d2029c}} 
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}!\+\_\+\+Chebyshev@{\+\_\+\+Chebyshev}}
+\index{\+\_\+\+Chebyshev@{\+\_\+\+Chebyshev}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}}
+\subsubsection{\texorpdfstring{\+\_\+\+Chebyshev()}{\_Chebyshev()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp $>$\+::\hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+Chebyshev} (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+b,  }\item[{const std\+::vector$<$ \+\_\+\+Tp $>$ \&}]{\+\_\+\+\_\+coeff }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class____gnu__cxx_1_1__Chebyshev_a39f37ba2a90b4fe76ee08a348cfba173}\label{class____gnu__cxx_1_1__Chebyshev_a39f37ba2a90b4fe76ee08a348cfba173}} 
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}!\+\_\+\+Chebyshev@{\+\_\+\+Chebyshev}}
+\index{\+\_\+\+Chebyshev@{\+\_\+\+Chebyshev}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}}
+\subsubsection{\texorpdfstring{\+\_\+\+Chebyshev()}{\_Chebyshev()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp $>$\+::\hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+Chebyshev} (\begin{DoxyParamCaption}\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Tp}]{\+\_\+\+\_\+b,  }\item[{std\+::vector$<$ \+\_\+\+Tp $>$ \&\&}]{\+\_\+\+\_\+coeff }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class____gnu__cxx_1_1__Chebyshev_abc2b50080347414895d47e02a0543a2c}\label{class____gnu__cxx_1_1__Chebyshev_abc2b50080347414895d47e02a0543a2c}} 
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}!\+\_\+\+Chebyshev@{\+\_\+\+Chebyshev}}
+\index{\+\_\+\+Chebyshev@{\+\_\+\+Chebyshev}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}}
+\subsubsection{\texorpdfstring{\+\_\+\+Chebyshev()}{\_Chebyshev()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+template$<$typename \+\_\+\+Up $>$ \\
+\hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp $>$\+::\hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+Chebyshev} (\begin{DoxyParamCaption}\item[{\+\_\+\+Up}]{\+\_\+\+\_\+a,  }\item[{\+\_\+\+Up}]{\+\_\+\+\_\+b,  }\item[{const \+\_\+\+Polynomial$<$ \+\_\+\+Up $>$ \&}]{\+\_\+\+\_\+poly }\end{DoxyParamCaption})}
+
+Constructs a Chebyshev expansion from a polynomial.
+
+A polynomial valid in the range x=a to x=b is specified by coefficients d\mbox{[}0..m-\/1\mbox{]}. An equivalent array of Chebyshev coefficients, c\mbox{[}0..m-\/1\mbox{]}, is output. The index mfew will be set to the index of the first nonzero Chebyshev coefficient smaller than err. Then the polynomial is approximated by the first mfew cefficients c\mbox{[}0..mfew-\/1\mbox{]}. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class____gnu__cxx_1_1__Chebyshev_a690446e057539c62406212dea9d6f6c6}\label{class____gnu__cxx_1_1__Chebyshev_a690446e057539c62406212dea9d6f6c6}} 
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}!derivative@{derivative}}
+\index{derivative@{derivative}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}}
+\subsubsection{\texorpdfstring{derivative()}{derivative()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp $>$ \hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp $>$\+::derivative (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+This routine returns a Chebyshev fit of the derivative of this Chebyshev fit. \mbox{\Hypertarget{class____gnu__cxx_1_1__Chebyshev_ad6238062674a4ab03fda28c8d1e3774b}\label{class____gnu__cxx_1_1__Chebyshev_ad6238062674a4ab03fda28c8d1e3774b}} 
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}!integral@{integral}}
+\index{integral@{integral}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}}
+\subsubsection{\texorpdfstring{integral()}{integral()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp $>$ \hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp $>$\+::integral (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+This routine returns the Chebyshev fit of the integral of this Chebyshev fit. The constant of integration is set so that the integral vanishes at a. \mbox{\Hypertarget{class____gnu__cxx_1_1__Chebyshev_a1f3e70e588cfc837704461d2319b1e81}\label{class____gnu__cxx_1_1__Chebyshev_a1f3e70e588cfc837704461d2319b1e81}} 
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}!lower@{lower}}
+\index{lower@{lower}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}}
+\subsubsection{\texorpdfstring{lower()}{lower()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\hyperlink{class____gnu__cxx_1_1__Chebyshev_a7346ba5843311126dc28cb905687c4a1}{value\+\_\+type} \hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp $>$\+::lower (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class____gnu__cxx_1_1__Chebyshev_ab233a66fdf801389715273c560d1beb9}\label{class____gnu__cxx_1_1__Chebyshev_ab233a66fdf801389715273c560d1beb9}} 
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}!operator()@{operator()}}
+\index{operator()@{operator()}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\+\_\+\+Tp \hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp $>$\+::operator() (\begin{DoxyParamCaption}\item[{\hyperlink{class____gnu__cxx_1_1__Chebyshev_a7346ba5843311126dc28cb905687c4a1}{value\+\_\+type}}]{\+\_\+\+\_\+x }\end{DoxyParamCaption}) const}
+
+Chebyshev evaluation. \mbox{\Hypertarget{class____gnu__cxx_1_1__Chebyshev_a21041ae006b9d2c881868f0fe759ad05}\label{class____gnu__cxx_1_1__Chebyshev_a21041ae006b9d2c881868f0fe759ad05}} 
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}!order@{order}}
+\index{order@{order}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}}
+\subsubsection{\texorpdfstring{order()}{order()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+std\+::size\+\_\+t \hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp $>$\+::order (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{class____gnu__cxx_1_1__Chebyshev_a0039dec54cff971242eb501fd76eec81}\label{class____gnu__cxx_1_1__Chebyshev_a0039dec54cff971242eb501fd76eec81}} 
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}!to\+\_\+polynomial@{to\+\_\+polynomial}}
+\index{to\+\_\+polynomial@{to\+\_\+polynomial}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}}
+\subsubsection{\texorpdfstring{to\+\_\+polynomial()}{to\_polynomial()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\+\_\+\+Polynomial$<$ \+\_\+\+Tp $>$ \hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp $>$\+::to\+\_\+polynomial (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+This routine returns the array d\mbox{[}0..n-\/1\mbox{]}, of coefficients of a polynomial expansion which is equivalent to the Chebyshev fit. \mbox{\Hypertarget{class____gnu__cxx_1_1__Chebyshev_af50304bc19f6383599c4169720ef0a97}\label{class____gnu__cxx_1_1__Chebyshev_af50304bc19f6383599c4169720ef0a97}} 
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}!truncate@{truncate}}
+\index{truncate@{truncate}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}}
+\subsubsection{\texorpdfstring{truncate()}{truncate()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+template$<$typename \+\_\+\+Up $>$ \\
+void \hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp $>$\+::truncate (\begin{DoxyParamCaption}\item[{\+\_\+\+Up}]{\+\_\+\+\_\+eps = {\ttfamily std\+:\+:numeric\+\_\+limits$<$\+\_\+Up$>$\+:\+:epsilon()} }\end{DoxyParamCaption})}
+
+Truncate the Chebyshev series so that the first nonzero neglected term is less than eps. Skipping zero coefficients takes care of series with alternating zero and nonzero terms. \mbox{\Hypertarget{class____gnu__cxx_1_1__Chebyshev_a7adf49552809774d062c892174491a3f}\label{class____gnu__cxx_1_1__Chebyshev_a7adf49552809774d062c892174491a3f}} 
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}!upper@{upper}}
+\index{upper@{upper}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}}
+\subsubsection{\texorpdfstring{upper()}{upper()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+\hyperlink{class____gnu__cxx_1_1__Chebyshev_a7346ba5843311126dc28cb905687c4a1}{value\+\_\+type} \hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp $>$\+::upper (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class____gnu__cxx_1_1__Chebyshev_aa91d6f92fc41ecb09a2989f663ba7d9e}\label{class____gnu__cxx_1_1__Chebyshev_aa91d6f92fc41ecb09a2989f663ba7d9e}} 
+\index{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev@{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp $>$ \\
+template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+CharT , typename \+\_\+\+Traits $>$ \\
+std\+::basic\+\_\+ostream$<$\+\_\+\+CharT, \+\_\+\+Traits$>$\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::basic\+\_\+ostream$<$ \+\_\+\+CharT, \+\_\+\+Traits $>$ \&}]{\+\_\+\+\_\+os,  }\item[{const \hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+Chebyshev}$<$ \+\_\+\+Tp1 $>$ \&}]{\+\_\+\+\_\+cheb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/ext/\hyperlink{chebyshev_8h}{chebyshev.\+h}\item 
+include/ext/\hyperlink{chebyshev_8tcc}{chebyshev.\+tcc}\end{DoxyCompactItemize}
