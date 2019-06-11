@@ -29,7 +29,7 @@ target_include_directories(test_csint PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_csint quadmath)
-add_test(NAME run_test_csint COMMAND bash -c "./bin/test_csint > test_csint.txt")
+add_test(NAME run_test_csint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_csint > test_csint.txt")
 
 add_executable(test_expint test_expint.cpp)
 target_include_directories(test_expint PRIVATE
@@ -43,4 +43,4 @@ target_include_directories(test_expint PRIVATE
 target_link_libraries(test_expint
   quadmath
   -L../../wrappers -lwrap_boost)
-add_test(NAME run_test_expint COMMAND bash -c "./bin/test_expint > test_expint.txt")
+add_test(NAME run_test_expint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_expint > test_expint.txt")

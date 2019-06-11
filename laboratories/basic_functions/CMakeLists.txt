@@ -21,7 +21,7 @@ endif ()
 enable_testing()
 
 add_executable(test_q_number test_q_number.cpp)
-add_test(NAME run_test_q_number COMMAND bash -c "./bin/test_q_number > test_q_number.txt")
+add_test(NAME run_test_q_number COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_q_number > test_q_number.txt")
 
 add_executable(test_q_pochhammer test_q_pochhammer.cpp)
-add_test(NAME run_test_q_pochhammer COMMAND bash -c "./bin/test_q_pochhammer > test_q_pochhammer.txt")
+add_test(NAME run_test_q_pochhammer COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_q_pochhammer > test_q_pochhammer.txt")

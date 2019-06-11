@@ -30,4 +30,4 @@ target_include_directories(test_parab_cyl PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_parab_cyl quadmath)
-add_test(NAME run_test_parab_cyl COMMAND bash -c "./bin/test_parab_cyl > test_parab_cyl.txt")
+add_test(NAME run_test_parab_cyl COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_parab_cyl > test_parab_cyl.txt")

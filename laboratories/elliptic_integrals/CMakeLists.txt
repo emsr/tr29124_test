@@ -49,7 +49,7 @@ target_include_directories(carlson_std PRIVATE
   ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(carlson_std quadmath)
-add_test(NAME run_carlson_std COMMAND bash -c "./bin/carlson_std > carlson_std.txt")
+add_test(NAME run_carlson_std COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/carlson_std > carlson_std.txt")
 
 add_executable(test_comp_ellint_1 test_comp_ellint_1.cpp)
 target_include_directories(test_comp_ellint_1 PRIVATE
@@ -60,7 +60,7 @@ target_include_directories(test_comp_ellint_1 PRIVATE
   ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_comp_ellint_1 quadmath)
-add_test(NAME run_test_comp_ellint_1 COMMAND bash -c "./bin/test_comp_ellint_1 > test_comp_ellint_1.txt")
+add_test(NAME run_test_comp_ellint_1 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_comp_ellint_1 > test_comp_ellint_1.txt")
 
 add_executable(test_heuman_lambda test_heuman_lambda.cpp)
 target_include_directories(test_heuman_lambda PRIVATE
@@ -74,7 +74,7 @@ target_include_directories(test_heuman_lambda PRIVATE
 target_link_libraries(test_heuman_lambda
   quadmath
   -L../../wrappers -lwrap_boost)
-add_test(NAME run_test_heuman_lambda COMMAND bash -c "./bin/test_heuman_lambda > test_heuman_lambda.txt")
+add_test(NAME run_test_heuman_lambda COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_heuman_lambda > test_heuman_lambda.txt")
 
 add_executable(test_jacobi_zeta test_jacobi_zeta.cpp)
 target_include_directories(test_jacobi_zeta PRIVATE
@@ -86,7 +86,7 @@ target_include_directories(test_jacobi_zeta PRIVATE
   ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_jacobi_zeta quadmath -L../../wrappers -lwrap_boost)
-add_test(NAME run_test_jacobi_zeta COMMAND bash -c "./bin/test_jacobi_zeta > test_jacobi_zeta.txt")
+add_test(NAME run_test_jacobi_zeta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_zeta > test_jacobi_zeta.txt")
 
 add_executable(test_legendre_ellint test_legendre_ellint.cpp)
 target_include_directories(test_legendre_ellint PRIVATE
@@ -100,4 +100,4 @@ target_include_directories(test_legendre_ellint PRIVATE
 target_link_libraries(test_legendre_ellint
   quadmath
   -L../../wrappers -lwrap_gsl)
-add_test(NAME run_test_legendre_ellint COMMAND bash -c "./bin/test_legendre_ellint > test_legendre_ellint.txt")
+add_test(NAME run_test_legendre_ellint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_legendre_ellint > test_legendre_ellint.txt")

@@ -21,4 +21,4 @@ endif ()
 enable_testing()
 
 add_executable(test_appell_f1 test_appell_f1.cpp)
-add_test(NAME run_test_appell_f1 COMMAND bash -c "./bin/test_appell_f1 > test_appell_f1.txt")
+add_test(NAME run_test_appell_f1 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_appell_f1 > test_appell_f1.txt")

@@ -30,7 +30,7 @@ target_include_directories(test_beta PRIVATE
   ../../quadrature/include
   ../../wrappers)
 target_link_libraries(test_beta quadmath -L../../wrappers -lwrap_boost)
-add_test(NAME run_test_beta COMMAND bash -c "./bin/test_beta > test_beta.txt")
+add_test(NAME run_test_beta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_beta > test_beta.txt")
 
 add_executable(test_beta_inc test_beta_inc.cpp)
 target_include_directories(test_beta_inc PRIVATE
@@ -41,7 +41,7 @@ target_include_directories(test_beta_inc PRIVATE
   ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_beta_inc quadmath)
-add_test(NAME run_test_beta_inc COMMAND bash -c "./bin/test_beta_inc > test_beta_inc.txt")
+add_test(NAME run_test_beta_inc COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_beta_inc > test_beta_inc.txt")
 
 add_executable(test_inv_ibeta test_inv_ibeta.cpp)
 target_include_directories(test_inv_ibeta PRIVATE
@@ -53,4 +53,4 @@ target_include_directories(test_inv_ibeta PRIVATE
   ../../quadrature/include
   ../../cxx_root_search/include)
 target_link_libraries(test_inv_ibeta quadmath)
-add_test(NAME run_test_inv_ibeta COMMAND bash -c "./bin/test_inv_ibeta > test_inv_ibeta.txt")
+add_test(NAME run_test_inv_ibeta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_inv_ibeta > test_inv_ibeta.txt")
