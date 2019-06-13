@@ -7,6 +7,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -o test_heun test_heun.cpp
 #include <complex>
 #include <cmath>
 #include <vector>
+#include <algorithm> // For minmax.
 
 template<typename _Tp>
   struct dist_t
@@ -14,6 +15,16 @@ template<typename _Tp>
     _Tp dist;
     bool isinside;
   };
+
+template<typename _Tp>
+  _Tp Heun_cont_coef = _Tp{0};
+
+template<typename... _Args>
+  void
+  HeunOpts(_Args... varargin);
+
+template<typename _Tp>
+  constexpr _Tp pi = _Tp{3.141592654};
 
 // distance from point P to AB
 template<typename _Tp>
@@ -361,7 +372,7 @@ template<typename _Tp, typename... _Args>
 	wrnmsg = "HeunL: z belongs to a possible branch cut; "; 
 	return ret;
       }
-    else if (std::abs(angle(z)) == pi)
+    else if (std::abs(angle(z)) == pi<_Tp>)
       return HeunL0(a, q, alpha, beta, gamma, delta, z);
     else
       {
@@ -393,9 +404,8 @@ template<typename _Tp>
   {
     using namespace std::complex_literals;
     const auto eps = std::numeric_limits<_Tp>::epsilon();
-    global Heun_cont_coef;
 
-    if (isempty(Heun_cont_coef == _Tp{0}))
+    if (Heun_cont_coef<_Tp> == _Tp{0})
       HeunOpts();
 
     bool isnonpositivegamma = std::abs(std::ceil(gamma - 5 * eps) + std::abs(gamma)) < 5 * eps;
@@ -412,7 +422,7 @@ template<typename _Tp>
 	wrnmsg = "HeunL0: z belongs to a possible branch cut; "; 
 	return ret;
       }
-    else if (std::min(std::abs(z - [_Tp{1} a])) < eps)
+    else if (std::min(std::abs(z - std::complex<_Tp>(_Tp{1}, a))) < eps)
       {
 	wrnmsg = "HeunL0: z is too close to one of the singular points; "; 
 	return ret;
@@ -421,7 +431,7 @@ template<typename _Tp>
       {
 	const auto R0 = std::min(_Tp{1}, std::abs(a));
 
-	if (std::abs(z) <= R0 * (Heun_cont_coef + 0.01))
+	if (std::abs(z) <= R0 * (Heun_cont_coef<_Tp> + 0.01))
 	  {
 	    if (isnonpositivegamma)
               return HeunL00log(a, q, alpha, beta, gamma, delta, z);
@@ -442,12 +452,12 @@ template<typename _Tp>
 
 	    auto [d, isinside] = dist(P1, _Tp{0}, z);
 	    if (isinside && (d < R1 / 2))
-              zz.push_back(P1 + std::exp(1i * (pi / 2 + angle(z)))
+              zz.push_back(P1 + std::exp(1i * (pi<_Tp> / 2 + angle(z)))
 				 * std::min(R1 / 2, std::abs(z - P1)) * sign(std::imag(z / P1)));
 
 	    auto [d, isinside] = dist(P2, _Tp{0}, z);
 	    if (isinside && (d < R2 / 2))
-              zz.push_back(P2 + std::exp(1i * (pi / 2 + angle(z)))
+              zz.push_back(P2 + std::exp(1i * (pi<_Tp> / 2 + angle(z)))
 				 * std::min(R2 / 2, std::abs(z - P2)) * sign(std::imag(z / P2)));
 
 	    zz.push_back(z);
@@ -457,11 +467,11 @@ template<typename _Tp>
 
 	    auto failure = false;
 
-	    for (k = 1 : (std::size(zz) - 1))
+	    for (int k = 1; k < std::size(zz); ++k)
 	      {
-        	z0 = zz[k];
-        	theta = angle(zz[k + 1] - z0);
-        	insearch = true;
+        	auto z0 = zz[k];
+        	auto theta = angle(zz[k + 1] - z0);
+        	auto insearch = true;
 
         	while (insearch && !failure)
         	  {
@@ -470,13 +480,13 @@ template<typename _Tp>
         	    else
         	      R = std::min({std::abs(z0), std::abs(z0 - 1), std::abs(z0 - a)});
 
-        	    if (std::abs(zz[k + 1] - z0) <= R * Heun_cont_coef)
+        	    if (std::abs(zz[k + 1] - z0) <= R * Heun_cont_coef<_Tp>)
         	      {
         		z1 = zz[k + 1];
         		insearch = false;
         	      }
         	    else
-        	      z1 = z0 + Heun_cont_coef * R * std::exp(1i * theta);
+        	      z1 = z0 + Heun_cont_coef<_Tp> * R * std::exp(1i * theta);
 
         	    if (z0 == _Tp{0})
         	      {
@@ -493,7 +503,7 @@ template<typename _Tp>
         		    st = "";
         		  }
 
-        		if (wrnmsg.std::size() != 0)
+        		if (wrnmsg.size() != 0)
         		  {
         		    wrnmsg = "HeunL0: "
 				     "problem invoking HeunL00" << st << "("<< a << ','
@@ -507,19 +517,14 @@ template<typename _Tp>
         	      {
         		[H0, dH0, error, num_terms, wrnmsg]
 			   = HeunGfromZ0(a, q, alpha, beta, gamma, delta, z1, z0, H0, dH0);
-        		if (wrnmsg.std::size() != 0)
+        		if (wrnmsg.size() != 0)
         		  {
         		    wrnmsg = "HeunL0: "
 				     "problem invoking HeunGfromZ0("
-				   << a << ','
-				   << q << ','
-				   << alpha << ','
-				   << beta << ','
-				   << gamma << ','
-				   << delta << ','
-				   << z0 << ','
-				   << H0 << ','
-				   << dH0
+				   << a << ',' << q
+				   << ',' << alpha << ',' << beta
+				   << ',' << gamma << ',' << delta
+				   << ',' << z0 << ',' << H0 << ',' << dH0
                 		   << "); warning: "<< wrnmsg<< "; ";
         		    failure = true;
         		  }
@@ -531,7 +536,7 @@ template<typename _Tp>
         	    z0 = z1;
         	  }
 
-        	if failure
+        	if (failure)
         	  break;
 
 	      }
@@ -544,34 +549,6 @@ template<typename _Tp>
 	  }
       }
   }
-
-// distance from point P to AB
-function [d, isinside]
-dist(P, A, B)
-{
-  isinside = true;
-  a = std::abs(P - A);
-  b = std::abs(P - B);
-  c = std::abs(A - B);
-
-  if (a * a >= b * b + c * c)
-    {
-      isinside = false;
-      d = b;
-      return;
-    }
-  if (b * b >= a * a + c * c)
-    {
-      isinside = false;
-      d = b;
-      return;
-    }
-
-  p = (a + b + c) / 2;
-  s = sqrt((p - a) * (p - b) * (p - c) * p);
-
-  d = s * 2 / c;
-}
 
 // local Heun function, by power series at z=0 for Hl(0)=1, Hl'(0)=q/(a*gamma)
 // the case when gamma is not equal to 0, -1, -2, 
@@ -860,7 +837,7 @@ template<typename _Tp>
 //
 template<typename _Tp, typename... _Args>
   __heun_t<_Tp>
-  HeunLS(numfunc, _Tp a, _Tp q, _Tp alpha, _Tp beta, _Tp gamma, _Tp delta, _Tp z,
+  HeunLS(int numfunc, _Tp a, _Tp q, _Tp alpha, _Tp beta, _Tp gamma, _Tp delta, _Tp z,
 	 _Args... varargin)
   {
     if (sizeof...(varargin) > 0)
@@ -949,7 +926,7 @@ template<typename _Tp, typename... _Args>
       }
     else if (std::abs(z) > Heun_proxcoinf * Rinf)
       {
-	ls = sort({-pi,_Tp{0},pi,angle(a)});
+	ls = sort({-pi<_Tp>,_Tp{0},pi<_Tp>,angle(a)});
 	idx = sum(angle(z)>ls);
 	singpt = 'I' << idx;
 	midarg = (ls(idx) +ls(idx+1))/2;
@@ -1120,9 +1097,8 @@ template<typename _Tp>
 	  const std::vector<_Tp>& path2z)
   {
     const auto eps = std::numeric_limits<_Tp>::epsilon();
-    global Heun_cont_coef;
 
-    if (isempty(Heun_cont_coef))
+    if (Heun_cont_coef<_Tp> == _Tp{0})
       HeunOpts();
 
     isnonpositivegamma = std::abs(std::ceil(gamma - 5 * eps) + std::abs(gamma)) < 5 * eps;
@@ -1146,7 +1122,7 @@ template<typename _Tp>
 	R0 = std::min(1, std::abs(a));
 	z = path2z.back();
 
-	if (std::abs(z) <= R0 * (Heun_cont_coef + 0.01))
+	if (std::abs(z) <= R0 * (Heun_cont_coef<_Tp> + 0.01))
 	  {
 	    if (isnonpositivegamma)
               return HeunL00log(a, q, alpha, beta, gamma, delta, z);
@@ -1173,13 +1149,13 @@ template<typename _Tp>
         	    else
         	      R = std::min({std::abs(z0), std::abs(z0 - 1), std::abs(z0 - a)});
 
-        	    if (std::abs(path2z[k + 1] - z0) <= R * Heun_cont_coef)
+        	    if (std::abs(path2z[k + 1] - z0) <= R * Heun_cont_coef<_Tp>)
 		      {
         		z1 = path2z[k + 1];
 			insearch = false;
 		      }
         	    else
-        	      z1 = z0 + Heun_cont_coef * R * std::exp(1i*theta);
+        	      z1 = z0 + Heun_cont_coef<_Tp> * R * std::exp(1i*theta);
 
         	    if (z0 == _Tp{0})
         	      {
@@ -1275,7 +1251,6 @@ template<typename... _Args>
   void
   HeunOpts(_Args... varargin)
   {
-    global Heun_cont_coef;
     int Heun_klimit = 200;
     poop Heun_proxco Heun_proxcoinf Heun_proxco1st Heun_proxcoinf1st;
 
@@ -1289,7 +1264,7 @@ template<typename... _Args>
 	else
 	  Heun_cont_coef = opts.cont_coef;
       }
-    else if (isempty(Heun_cont_coef))
+    else if (Heun_cont_coef<_Tp> == _Tp{0})
       Heun_cont_coef = 0.38;
 
     if (isfield(opts,"klimit"))
@@ -1397,9 +1372,8 @@ template<typename _Tp>
   HeunS0(_Tp a, _Tp q, _Tp alpha, _Tp beta, _Tp gamma, _Tp delta, _Tp z)
   {
     const auto eps = std::numeric_limits<_Tp>::epsilon();
-    global Heun_cont_coef;
 
-    if (isempty(Heun_cont_coef))
+    if (Heun_cont_coef<_Tp> == _Tp{0})
       HeunOpts();
 
     __heun_t<_Tp> ret;
@@ -1588,9 +1562,8 @@ template<typename _Tp>
   HeunS0gamma1(_Tp a, _Tp q, _Tp alpha, _Tp beta, _Tp delta, _Tp z)
   {
     const auto eps = std::numeric_limits<_Tp>::epsilon();
-    global Heun_cont_coef;
 
-    if (isempty(Heun_cont_coef))
+    if (Heun_cont_coef<_Tp> == _Tp{0})
       HeunOpts();
 
     __heun_t<_Tp> ret;
@@ -1612,7 +1585,7 @@ template<typename _Tp>
       {
 	auto R0 = std::min(_Tp{1}, std::abs(a));
 
-	if (std::abs(z) <= R0 * (Heun_cont_coef + 0.01))
+	if (std::abs(z) <= R0 * (Heun_cont_coef<_Tp> + 0.01))
 	  return HeunS00gamma1(a, q, alpha, beta, delta, z);
 	else
 	  {
@@ -1636,12 +1609,12 @@ template<typename _Tp>
 
 	    auto [d, isinside] = dist(P1, _Tp{0}, z);
 	    if (isinside && d < R1 / 2)
-              zz.push_back(P1 + std::exp(1i * (pi / 2 + angle(z)))
+              zz.push_back(P1 + std::exp(1i * (pi<_Tp> / 2 + angle(z)))
 			* std::min(R1 / 2, std::abs(z - P1)) * sign(std::imag(z / P1)));
 
 	    [d, isinside] = dist(P2, _Tp{0}, z);
 	    if (isinside && d < R2 / 2)
-              zz.push_backP2 + std::exp(1i * (pi / 2 + angle(z)))
+              zz.push_backP2 + std::exp(1i * (pi<_Tp> / 2 + angle(z)))
 			* std::min(R2 / 2, std::abs(z - P2)) * sign(std::imag(z / P2)));
 
 	    zz.push_back(z);
@@ -1671,7 +1644,7 @@ template<typename _Tp>
 			insearch = false;
 		      }
         	    else
-        	      z1 = z0 + Heun_cont_coef * R * std::exp(1i * theta);
+        	      z1 = z0 + Heun_cont_coef<_Tp> * R * std::exp(1i * theta);
 
         	    if (z0 == _Tp{0})
         	      {
@@ -1681,12 +1654,9 @@ template<typename _Tp>
 			  {
         		    wrnmsg = "HeunS0gamma1: "
 				     "problem invoking HeunS00gamma1("
-				   << a << ','
-                		   << q << ','
-                		   << alpha << ','
-                		   << beta << ','
-                		   << delta << ','
-                		   << z1
+				   << a << ',' << q
+                		   << ',' << alpha << ',' << beta
+                		   << ',' << delta << ',' << z1
                 		   << "); warning: "<< wrnmsg << "; ";
         		    failure = true;
         		  }
@@ -1699,16 +1669,11 @@ template<typename _Tp>
 			  {
         		    wrnmsg = "HeunS0gamma1: "
 				     "problem invoking HeunGfromZ0("
-				   << a << ','
-                		   << q << ','
-				   << alpha << ','
-				   << beta << ','
-                		   << gamma << ','
-				   << delta << ','
-				   << z1 << '<<'
-                		   << z0 << ','
-				   << H0 << ','
-				   << dH0
+				   << a << ',' << q
+				   << ',' << alpha << ',' << beta
+				   << ',' << gamma << ',' << delta
+				   << ',' << z1 << ',' << z0
+				   << ',' << H0 << ',' << dH0
                 		   << "); warning: " << wrnmsg << "; ";
         		    failure = true;
 			  }
@@ -1758,9 +1723,8 @@ template<typename _Tp>
   {
     using namespace std::complex_literals;
     const auto eps = std::numeric_limits<_Tp>::epsilon();
-    global Heun_cont_coef;
 
-    if (isempty(Heun_cont_coef))
+    if (Heun_cont_coef<_Tp> == _Tp{0})
       HeunOpts();
 
     __heun_t<_Tp> ret;
@@ -1836,9 +1800,8 @@ template<typename _Tp>
   {
     using namespace std::complex_literals;
     const auto eps = std::numeric_limits<_Tp>::epsilon();
-    global Heun_cont_coef;
 
-    if (isempty(Heun_cont_coef))
+    if (Heun_cont_coef<_Tp> == _Tp{0})
       HeunOpts();
 
     __heun_t<_Tp> ret;
@@ -1860,7 +1823,7 @@ template<typename _Tp>
 	auto R0 = std::min(_Tp{1}, std::abs(a));
 	auto z = path2z.back();
 
-	if (std::abs(z) <= R0 * (Heun_cont_coef + 0.01))
+	if (std::abs(z) <= R0 * (Heun_cont_coef<_Tp> + 0.01))
 	  return HeunS00gamma1(a, q, alpha, beta, delta, z);
 	else
 	  {
@@ -1893,7 +1856,7 @@ template<typename _Tp>
 			insearch = false;
 		      }
         	    else
-        	      z1 = z0 + Heun_cont_coef * R * std::exp(1i * theta);
+        	      z1 = z0 + Heun_cont_coef<_Tp> * R * std::exp(1i * theta);
 
         	    if (z0 == _Tp{0})
         	      {
@@ -1904,11 +1867,8 @@ template<typename _Tp>
         		  {
         		    wrnmsg = "HeunSmvgamma1: "
 				     "problem invoking HeunS00gamma1("
-				   << a << ','
-                		   << q << ','
-                		   << alpha << ','
-                		   << beta << ','
-                		   << delta << ','
+				   << a << ',' << q << ','
+                		   << alpha << ',' << beta << ',' << delta << ','
                 		   << z1
                 		   << "); warning: " << wrnmsg << "; ";
         		    failure = true;
@@ -1922,16 +1882,10 @@ template<typename _Tp>
         		  {
         		    wrnmsg = "HeunSmvgamma1: "
 				     "problem invoking HeunGfromZ0("
-				   << a << ','
-                		   << q << ','
-                		   << alpha << ','
-                		   << beta << ','
-                		   << gamma << ','
-                		   << delta << ','
-                		   << z1 << ','
-                		   << z0 << ','
-                		   << H0 << ','
-                		   << dH0
+				   << a << ',' << q << ','
+                		   << alpha << ',' << beta << ',' << gamma << ',' << delta << ','
+                		   << z1 << ',' << z0 << ','
+                		   << H0 << ',' << dH0
                 		   << "); warning: " << wrnmsg << "; ";
         		    failure = true;
         		  }
