@@ -17,5 +17,5 @@
 	path = 3rdparty/cephes
 	url = https://github.com/emsr/maths_cephes.git
 [submodule "cxx_math_const"]
-	path = cxx_math_const
+	path = cxx_math_constants
 	url = https://github.com/emsr/cxx_math_const.git
