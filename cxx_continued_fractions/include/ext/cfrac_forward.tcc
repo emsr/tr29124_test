@@ -5,9 +5,9 @@
 #include <bits/numeric_limits.h>
 
 /**
- * You need a functor belching a, b
+ * You need a functors returning the numerator and denominator a, b
  * an iterator pair for a and an iterator for b
- *  
+ *
  */
 template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
   class _ForwardContinuedFraction
@@ -23,6 +23,13 @@ template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
     using _ARet = decltype(_M_num(0ull, _Tp{}));
     using _BRet = decltype(_M_den(0ull, _Tp{}));
     using _Ret = decltype(_ARet(0, _Tp{}) / _BRet(0, _Tp{}));
+    using _Val = __gnu_cxx::fp_promote_t<_Tp, _ARet, _BRet>;
+    using _Real = std::__detail::__num_traits_t<_Val>;
+
+    const _Real _S_fp_min = std::numeric_limits<_Real>::min();
+
+    _Real _M_rel_error = std::numeric_limits<_Real>::epsilon();
+    int _M_max_iter = 1000;
 
     _ForwardContinuedFraction(_AFun __a, _BFun __b, _TailFun __w)
     : _M_num(__a),
@@ -33,10 +40,6 @@ template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
     _Ret
     operator()(_Tp __x) const
     {
-      const auto _S_fp_min = __gnu_cxx::__lim_min(__x);
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const int _S_max_iter = 1000;
-
       auto __b = _M_den(0, __x);
       auto _Den2 = __b;
       auto __a = _M_num(1, __x);
@@ -56,6 +59,10 @@ template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
 	  _Den2 = _Den1;
 	  _Num1 = _Num;
 	  _Den1 = _Den;
+	  ++__k;
+	  if (__k > _M_max_iter)
+	    throw std::runtime_error("_ForwardContinuedFraction: "
+				     "continued fraction evaluation failed");
 	}
     }
   };

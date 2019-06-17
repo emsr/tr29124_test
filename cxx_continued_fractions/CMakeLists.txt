@@ -29,7 +29,7 @@ add_test(NAME run_test_continued_fraction COMMAND bash -c "./bin/test_continued_
 
 add_executable(test_lentz_continued_fraction test_lentz_continued_fraction.cpp)
 target_include_directories(test_lentz_continued_fraction PRIVATE
-  ../cxx_math_const/include
+  ../cxx_math_constants/include
   ../include
   ../cxx_fp_utils/include
   ../cxx_summation/include
@@ -40,7 +40,7 @@ add_test(NAME run_test_lentz_continued_fraction COMMAND bash -c "./bin/test_lent
 
 add_executable(test_steed_continued_fraction test_steed_continued_fraction.cpp)
 target_include_directories(test_steed_continued_fraction PRIVATE
-  ../cxx_math_const/include
+  ../cxx_math_constants/include
   ../include
   ../cxx_fp_utils/include
   ../cxx_summation/include
