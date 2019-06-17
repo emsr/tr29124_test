@@ -22,7 +22,7 @@ enable_testing()
 
 add_executable(build_gamma_lanczos build_gamma_lanczos.cpp)
 target_include_directories(build_gamma_lanczos PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -34,7 +34,7 @@ add_test(NAME run_build_gamma_lanczos COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/b
 
 add_executable(build_gamma_recip build_gamma_recip.cpp)
 target_include_directories(build_gamma_recip PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -47,7 +47,7 @@ add_test(NAME run_build_gamma_recip COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/bui
 
 add_executable(build_gamma_spouge build_gamma_spouge.cpp)
 target_include_directories(build_gamma_spouge PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -59,7 +59,7 @@ add_test(NAME run_build_gamma_spouge COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/bu
 
 add_executable(plot_gamma plot_gamma.cpp)
 target_include_directories(plot_gamma PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -71,7 +71,7 @@ add_test(NAME run_plot_gamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/plot_gamma
 
 add_executable(test_binet test_binet.cpp)
 target_include_directories(test_binet PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -84,7 +84,7 @@ add_test(NAME run_test_binet COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_binet
 
 add_executable(test_binet_float test_binet_float.cpp)
 target_include_directories(test_binet_float PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -96,7 +96,7 @@ add_test(NAME run_test_binet_float COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test
 
 add_executable(test_complex_gamma test_complex_gamma.cpp)
 target_include_directories(test_complex_gamma PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -108,7 +108,7 @@ add_test(NAME run_test_complex_gamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/te
 
 add_executable(test_digamma test_digamma.cpp)
 target_include_directories(test_digamma PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -121,7 +121,7 @@ add_test(NAME run_test_digamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_dig
 
 add_executable(test_factorial test_factorial.cpp)
 target_include_directories(test_factorial PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -133,7 +133,7 @@ add_test(NAME run_test_factorial COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_f
 
 add_executable(test_falling_factorial test_falling_factorial.cpp)
 target_include_directories(test_falling_factorial PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -146,7 +146,7 @@ add_test(NAME run_test_falling_factorial COMMAND bash -c "${CMAKE_BINARY_DIR}/bi
 
 add_executable(test_gamma test_gamma.cpp)
 target_include_directories(test_gamma PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -159,7 +159,7 @@ add_test(NAME run_test_gamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_gamma
 
 add_executable(test_gamma_ratio test_gamma_ratio.cpp)
 target_include_directories(test_gamma_ratio PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -172,7 +172,7 @@ add_test(NAME run_test_gamma_ratio COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test
 
 add_executable(test_gamma_reciprocal test_gamma_reciprocal.cpp)
 target_include_directories(test_gamma_reciprocal PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -183,7 +183,7 @@ add_test(NAME run_test_gamma_reciprocal COMMAND bash -c "${CMAKE_BINARY_DIR}/bin
 
 add_executable(test_inv_gamma test_inv_gamma.cpp)
 target_include_directories(test_inv_gamma PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -195,7 +195,7 @@ add_test(NAME run_test_inv_gamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_i
 add_executable(test_inv_lgamma test_inv_lgamma.cpp)
 target_include_directories(test_inv_lgamma PRIVATE
   .
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -206,7 +206,7 @@ add_test(NAME run_test_inv_lgamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_
 
 add_executable(test_polygamma test_polygamma.cpp)
 target_include_directories(test_polygamma PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -219,7 +219,7 @@ add_test(NAME run_test_polygamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_p
 
 add_executable(test_rising_factorial test_rising_factorial.cpp)
 target_include_directories(test_rising_factorial PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include

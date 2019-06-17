@@ -22,7 +22,7 @@ enable_testing()
 
 add_executable(test_beta test_beta.cpp)
 target_include_directories(test_beta PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -34,7 +34,7 @@ add_test(NAME run_test_beta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_beta >
 
 add_executable(test_beta_inc test_beta_inc.cpp)
 target_include_directories(test_beta_inc PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -45,7 +45,7 @@ add_test(NAME run_test_beta_inc COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_be
 
 add_executable(test_inv_ibeta test_inv_ibeta.cpp)
 target_include_directories(test_inv_ibeta PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include

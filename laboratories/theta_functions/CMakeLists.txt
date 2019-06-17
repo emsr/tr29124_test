@@ -22,7 +22,7 @@ enable_testing()
 
 add_executable(test_jacobi_ellint test_jacobi_ellint.cpp)
 target_include_directories(test_jacobi_ellint PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -34,7 +34,7 @@ add_test(NAME run_test_jacobi_ellint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/te
 
 add_executable(test_jacobi_inv test_jacobi_inv.cpp)
 target_include_directories(test_jacobi_inv PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -45,7 +45,7 @@ add_test(NAME run_test_jacobi_inv COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_
 
 add_executable(test_jacobi_theta test_jacobi_theta.cpp)
 target_include_directories(test_jacobi_theta PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -57,7 +57,7 @@ add_test(NAME run_test_jacobi_theta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/tes
 
 add_executable(test_theta test_theta.cpp)
 target_include_directories(test_theta PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -68,7 +68,7 @@ add_test(NAME run_test_theta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_theta
 
 add_executable(test_weierstrass_ellint test_weierstrass_ellint.cpp)
 target_include_directories(test_weierstrass_ellint PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include

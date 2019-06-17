@@ -24,7 +24,7 @@ add_executable(build_inv_erf_coefs build_inv_erf_coefs.cpp)
 target_include_directories(build_inv_erf_coefs PRIVATE
   $ENV{HOME}/mpreal
   ../../wrappers
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -38,7 +38,7 @@ add_test(NAME run_build_inv_erf_coefs COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/b
 add_executable(test_dawson test_dawson.cpp)
 target_include_directories(test_dawson PRIVATE
   ../../wrappers
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -52,7 +52,7 @@ add_test(NAME run_test_dawson COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_daws
 add_executable(test_erfc test_erfc.cpp)
 target_include_directories(test_erfc PRIVATE
   ../../cxx_continued_fractions/include
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -65,7 +65,7 @@ add_executable(test_experfc test_experfc.cpp)
 target_include_directories(test_experfc PRIVATE
   $ENV{HOME}/mpreal
   ../../cxx_continued_fractions/include
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -85,7 +85,7 @@ add_test(NAME run_test_faddeeva COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_fa
 add_executable(test_fresnel test_fresnel.cpp)
 target_include_directories(test_fresnel PRIVATE
   .
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -97,7 +97,7 @@ add_test(NAME run_test_fresnel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_fre
 add_executable(test_inv_erf test_inv_erf.cpp)
 target_compile_definitions(test_inv_erf PRIVATE STANDALONE)
 target_include_directories(test_inv_erf PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -110,7 +110,7 @@ add_test(NAME run_test_inv_erf COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_inv
 add_executable(test_owens_t test_owens_t.cpp)
 target_include_directories(test_owens_t PRIVATE
   ../../wrappers
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include

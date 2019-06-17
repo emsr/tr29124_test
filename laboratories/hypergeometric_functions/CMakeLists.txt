@@ -34,7 +34,7 @@ add_test(NAME run_hyperg_3F0 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/hyperg_3F0
 
 add_executable(test_conf_hyperg test_conf_hyperg.cpp)
 target_include_directories(test_conf_hyperg PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -45,7 +45,7 @@ add_test(NAME run_test_conf_hyperg COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test
 
 add_executable(test_conf_hyperg_limit test_conf_hyperg_limit.cpp)
 target_include_directories(test_conf_hyperg_limit PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -57,7 +57,7 @@ add_test(NAME run_test_conf_hyperg_limit COMMAND bash -c "${CMAKE_BINARY_DIR}/bi
 add_executable(test_hyperg test_hyperg.cpp)
 target_include_directories(test_hyperg PRIVATE
   ../../wrappers
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include

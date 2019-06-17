@@ -25,7 +25,7 @@ add_test(NAME run_test_factorization COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/te
 
 add_executable(test_prime_factors test_prime_factors.cpp)
 target_include_directories(test_prime_factors PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include

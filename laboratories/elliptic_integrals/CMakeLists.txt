@@ -42,7 +42,7 @@ enable_testing()
 
 add_executable(carlson_std carlson_std.cpp)
 target_include_directories(carlson_std PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -53,7 +53,7 @@ add_test(NAME run_carlson_std COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/carlson_s
 
 add_executable(test_comp_ellint_1 test_comp_ellint_1.cpp)
 target_include_directories(test_comp_ellint_1 PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -65,7 +65,7 @@ add_test(NAME run_test_comp_ellint_1 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/te
 add_executable(test_heuman_lambda test_heuman_lambda.cpp)
 target_include_directories(test_heuman_lambda PRIVATE
   ../../wrappers
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -79,7 +79,7 @@ add_test(NAME run_test_heuman_lambda COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/te
 add_executable(test_jacobi_zeta test_jacobi_zeta.cpp)
 target_include_directories(test_jacobi_zeta PRIVATE
   ../../wrappers
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -91,7 +91,7 @@ add_test(NAME run_test_jacobi_zeta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test
 add_executable(test_legendre_ellint test_legendre_ellint.cpp)
 target_include_directories(test_legendre_ellint PRIVATE
   ../../wrappers
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include

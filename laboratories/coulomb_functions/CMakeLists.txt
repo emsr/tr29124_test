@@ -28,7 +28,7 @@ add_test(NAME run_test_coulomb COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_cou
 
 add_executable(test_hydrogen test_hydrogen.cpp)
 target_include_directories(test_hydrogen PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include

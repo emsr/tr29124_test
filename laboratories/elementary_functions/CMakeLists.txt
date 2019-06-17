@@ -23,7 +23,7 @@ enable_testing()
 add_executable(build_atan_table build_atan_table.cpp)
 target_include_directories(build_atan_table PRIVATE
   $ENV{HOME}/mpreal
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -35,7 +35,7 @@ add_test(NAME run_build_atan_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/buil
 add_executable(build_cordic build_cordic.cpp)
 target_include_directories(build_cordic PRIVATE
   $ENV{HOME}/mpreal
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -47,7 +47,7 @@ add_test(NAME run_build_cordic COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_co
 add_executable(build_log_table build_log_table.cpp)
 target_include_directories(build_log_table PRIVATE
   $ENV{HOME}/mpreal
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -59,7 +59,7 @@ add_test(NAME run_build_log_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build
 add_executable(build_sincos_tables build_sincos_tables.cpp)
 target_include_directories(build_sincos_tables PRIVATE
   $ENV{HOME}/mpreal
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -71,7 +71,7 @@ add_test(NAME run_build_sincos_tables COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/b
 add_executable(build_sqrt_table build_sqrt_table.cpp)
 target_include_directories(build_sqrt_table PRIVATE
   $ENV{HOME}/mpreal
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -87,7 +87,7 @@ add_test(NAME run_test_cordic COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_cord
 
 add_executable(test_exp test_exp.cpp)
 target_include_directories(test_exp PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -98,7 +98,7 @@ add_test(NAME run_test_exp COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_exp > t
 
 add_executable(test_gudermannian test_gudermannian.cpp)
 target_include_directories(test_gudermannian PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -109,7 +109,7 @@ add_test(NAME run_test_gudermannian COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/tes
 
 add_executable(test_lambert_w test_lambert_w.cpp)
 target_include_directories(test_lambert_w PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -123,7 +123,7 @@ add_test(NAME run_test_log COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_log > t
 
 add_executable(test_notsospecfun test_notsospecfun.cpp)
 target_include_directories(test_notsospecfun PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -137,7 +137,7 @@ add_test(NAME run_test_pow COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_pow > t
 
 add_executable(test_reperiodized_hyper test_reperiodized_hyper.cpp)
 target_include_directories(test_reperiodized_hyper PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -149,7 +149,7 @@ add_test(NAME run_test_reperiodized_hyper COMMAND bash -c "${CMAKE_BINARY_DIR}/b
 add_executable(test_reperiodized_trig test_reperiodized_trig.cpp)
 target_include_directories(test_reperiodized_trig PRIVATE
   ../../wrappers
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -160,7 +160,7 @@ add_test(NAME run_test_reperiodized_trig COMMAND bash -c "${CMAKE_BINARY_DIR}/bi
 
 add_executable(test_sincos test_sincos.cpp)
 target_include_directories(test_sincos PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -172,7 +172,7 @@ add_test(NAME run_test_sincos COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_sinc
 add_executable(test_sinus_cardinal test_sinus_cardinal.cpp)
 target_include_directories(test_sinus_cardinal PRIVATE
   ../../wrappers
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -184,6 +184,8 @@ target_link_libraries(test_sinus_cardinal
 add_test(NAME run_test_sinus_cardinal COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_sinus_cardinal > test_sinus_cardinal.txt")
 
 add_executable(test_sqrt test_sqrt.cpp)
+target_include_directories(test_sqrt PRIVATE
+  ../../cxx_math_constants/include)
 add_test(NAME run_test_sqrt COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_sqrt > test_sqrt.txt")
 
 add_executable(test_static_root test_static_root.cpp)
@@ -191,7 +193,7 @@ add_test(NAME run_test_static_root COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test
 
 add_executable(test_trig test_trig.cpp)
 target_include_directories(test_trig PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -202,7 +204,7 @@ add_test(NAME run_test_trig COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_trig >
 
 add_executable(test_wright_omega test_wright_omega.cpp)
 target_include_directories(test_wright_omega PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -213,7 +215,7 @@ add_test(NAME run_test_wright_omega COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/tes
 
 add_executable(test_zeta_trig test_zeta_trig.cpp)
 target_include_directories(test_zeta_trig PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include

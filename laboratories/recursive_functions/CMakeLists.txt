@@ -22,7 +22,7 @@ enable_testing()
 
 add_executable(test_fibonacci test_fibonacci.cpp)
 target_include_directories(test_fibonacci PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../cxx_fp_utils/include
   ../../include # All this rest for cos_pi.
   ../../polynomial/include

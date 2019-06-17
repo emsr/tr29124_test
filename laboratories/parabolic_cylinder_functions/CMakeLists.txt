@@ -23,7 +23,7 @@ enable_testing()
 add_executable(test_parab_cyl test_parab_cyl.cpp)
 target_include_directories(test_parab_cyl PRIVATE
   .
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include

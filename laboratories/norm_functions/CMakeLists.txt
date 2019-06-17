@@ -25,7 +25,7 @@ add_test(NAME run_test_abs COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_abs > t
 
 add_executable(test_arith_geom_mean test_arith_geom_mean.cpp)
 target_include_directories(test_arith_geom_mean PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../wrappers)
@@ -36,7 +36,7 @@ add_test(NAME run_test_arith_geom_mean COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/
 
 add_executable(test_hypot test_hypot.cpp)
 target_include_directories(test_hypot PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include

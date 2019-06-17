@@ -23,7 +23,7 @@ enable_testing()
 add_executable(build_bernoulli_2n_table build_bernoulli_2n_table.cpp)
 target_include_directories(build_bernoulli_2n_table PRIVATE
   $ENV{HOME}/mpreal
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
@@ -35,7 +35,7 @@ add_test(NAME run_build_bernoulli_2n_table COMMAND bash -c "${CMAKE_BINARY_DIR}/
 
 add_executable(test_bernoulli test_bernoulli.cpp)
 target_include_directories(test_bernoulli PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include

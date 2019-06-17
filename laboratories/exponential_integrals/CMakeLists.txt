@@ -22,7 +22,7 @@ enable_testing()
 
 add_executable(test_csint test_csint.cpp)
 target_include_directories(test_csint PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -34,7 +34,7 @@ add_test(NAME run_test_csint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_csint
 add_executable(test_expint test_expint.cpp)
 target_include_directories(test_expint PRIVATE
   ../../wrappers
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include

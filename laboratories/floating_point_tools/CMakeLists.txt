@@ -26,7 +26,7 @@ add_test(NAME run_builtins COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/builtins > b
 add_executable(test_float128 test_float128.cpp)
 target_include_directories(test_float128 PRIVATE
   ../../wrappers
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -38,7 +38,7 @@ add_test(NAME run_test_float128 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_fl
 add_executable(test_limits test_limits.cpp)
 target_include_directories(test_limits PRIVATE
   ../../wrappers
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -51,7 +51,7 @@ add_executable(test_maxint test_maxint.cpp)
 target_include_directories(test_maxint PRIVATE
   $ENV{HOME}/mpreal
   ../../wrappers
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -63,7 +63,7 @@ add_test(NAME run_test_maxint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_maxi
 add_executable(test_mod2pi test_mod2pi.cpp)
 target_include_directories(test_mod2pi PRIVATE
   ../../wrappers
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -75,7 +75,7 @@ add_test(NAME run_test_mod2pi COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_mod2
 add_executable(test_numeric_limits test_numeric_limits.cpp)
 target_include_directories(test_numeric_limits PRIVATE
   $ENV{HOME}/mpreal
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
