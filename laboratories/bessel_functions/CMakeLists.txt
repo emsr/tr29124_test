@@ -24,29 +24,31 @@ add_executable(debug_bessel debug_bessel.cpp)
 
 add_executable(test_cyl_bessel_ratio test_cyl_bessel_ratio.cpp)
 target_include_directories(test_cyl_bessel_ratio PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
   ../../cxx_continued_fractions/include)
+target_link_libraries(test_cyl_bessel_ratio quadmath)
 add_test(NAME run_test_cyl_bessel_ratio COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_cyl_bessel_ratio > test_cyl_bessel_ratio.txt")
 
 add_executable(test_cyl_hankel_ratio test_cyl_hankel_ratio.cpp)
 target_include_directories(test_cyl_hankel_ratio PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
   ../../cxx_continued_fractions/include)
+target_link_libraries(test_cyl_hankel_ratio quadmath)
 add_test(NAME run_test_cyl_hankel_ratio COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_cyl_hankel_ratio > test_cyl_hankel_ratio.txt")
 
 add_executable(hankel_toy128 hankel_toy128.cpp)
 target_include_directories(hankel_toy128 PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include)
@@ -55,7 +57,7 @@ add_test(NAME run_hankel_toy128 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/hankel_
 
 add_executable(hankel_toy hankel_toy.cpp)
 target_include_directories(hankel_toy PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include)
@@ -64,7 +66,7 @@ add_test(NAME run_hankel_toy COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/hankel_toy
 
 add_executable(hankel_toy_new hankel_toy_new.cpp)
 target_include_directories(hankel_toy_new PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include)
@@ -73,7 +75,7 @@ add_test(NAME run_hankel_toy_new COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/hankel
 
 #add_executable(hankel_transition hankel_transition.cpp)
 #target_include_directories(hankel_transition PRIVATE
-#  ../../cxx_math_const/include
+#  ../../cxx_math_constants/include
 #  ../../include
 #  ../../cxx_fp_utils/include
 #  ../../cxx_summation/include
@@ -84,7 +86,7 @@ add_test(NAME run_hankel_toy_new COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/hankel
 
 add_executable(help_kelvin help_kelvin.cpp)
 target_include_directories(help_kelvin PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -98,7 +100,7 @@ add_test(NAME run_plot_bessel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/plot_bess
 
 add_executable(test_anger_weber test_anger_weber.cpp)
 target_include_directories(test_anger_weber PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -109,7 +111,7 @@ add_test(NAME run_test_anger_weber COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test
 
 add_executable(test_bessel_asymp test_bessel_asymp.cpp)
 target_include_directories(test_bessel_asymp PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -120,7 +122,7 @@ add_test(NAME run_test_bessel_asymp COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/tes
 
 add_executable(test_bessel test_bessel.cpp)
 target_include_directories(test_bessel PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -131,7 +133,7 @@ add_test(NAME run_test_bessel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_bess
 
 add_executable(test_bessel_iter test_bessel_iter.cpp)
 target_include_directories(test_bessel_iter PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -142,7 +144,7 @@ add_test(NAME run_test_bessel_iter COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test
 
 add_executable(test_cyl_bessel_zeros test_cyl_bessel_zeros.cpp)
 target_include_directories(test_cyl_bessel_zeros PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -153,7 +155,7 @@ add_test(NAME run_test_cyl_bessel_zeros COMMAND bash -c "${CMAKE_BINARY_DIR}/bin
 
 add_executable(test_cyl_hankel test_cyl_hankel.cpp)
 target_include_directories(test_cyl_hankel PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -165,7 +167,7 @@ add_test(NAME run_test_cyl_hankel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_
 
 add_executable(test_hankel test_hankel.cpp)
 target_include_directories(test_hankel PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -176,7 +178,7 @@ add_test(NAME run_test_hankel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hank
 
 add_executable(test_hankel_real_arg test_hankel_real_arg.cpp)
 target_include_directories(test_hankel_real_arg PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -188,7 +190,7 @@ add_test(NAME run_test_hankel_real_arg COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/
 
 add_executable(test_kelvin test_kelvin.cpp)
 target_include_directories(test_kelvin PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -199,7 +201,7 @@ add_test(NAME run_test_kelvin COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_kelv
 
 add_executable(test_large_order_bessel test_large_order_bessel.cpp)
 target_include_directories(test_large_order_bessel PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -210,7 +212,7 @@ add_test(NAME run_test_large_order_bessel COMMAND bash -c "${CMAKE_BINARY_DIR}/b
 
 add_executable(test_lommel test_lommel.cpp)
 target_include_directories(test_lommel PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -221,7 +223,7 @@ add_test(NAME run_test_lommel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_lomm
 
 add_executable(test_mod_bessel_asymp test_mod_bessel_asymp.cpp)
 target_include_directories(test_mod_bessel_asymp PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -236,7 +238,7 @@ add_test(NAME run_test_nric_bessel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test
 
 add_executable(test_sph_bessel test_sph_bessel.cpp)
 target_include_directories(test_sph_bessel PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -247,7 +249,7 @@ add_test(NAME run_test_sph_bessel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_
 
 add_executable(test_sph_hankel test_sph_hankel.cpp)
 target_include_directories(test_sph_hankel PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -260,7 +262,7 @@ add_test(NAME run_test_sph_hankel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_
 add_executable(test_struve test_struve.cpp)
 target_include_directories(test_struve PRIVATE
   .
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../cxx_fp_utils/include
   ../../polynomial/include
   ../../quadrature/include
@@ -272,7 +274,7 @@ add_test(NAME run_test_struve COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_stru
 
 add_executable(test_cyl_bessel_nk_series test_cyl_bessel_nk_series.cpp)
 target_include_directories(test_cyl_bessel_nk_series PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../polynomial/include
@@ -285,7 +287,7 @@ add_executable(test_struve_old test_struve_old.cpp)
 target_include_directories(test_struve_old PRIVATE
   .
   ../hypergeometric_functions
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../cxx_fp_utils/include
   ../../polynomial/include
   ../../quadrature/include
