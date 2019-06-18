@@ -127,14 +127,14 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   struct __fp_is_integer_t
   {
     // A flag indicating whether the floating point number is integralish.
-    bool __is_integral = false;
+    bool __fp_is_integral = false;
 
     // An integer related to the floating point integral value.
     int __value = 0;
 
     // Return __is_integral in a boolean context.
     constexpr operator bool() const noexcept
-    { return this->__is_integral; }
+    { return this->__fp_is_integral; }
 
     // Return __value.
     constexpr int
