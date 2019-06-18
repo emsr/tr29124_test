@@ -35,6 +35,7 @@
 #include <complex>
 #include <ratio>
 #include <limits>
+#include <type_traits>
 #include <bits/specfun_util.h>
 #include <ext/math_util.h>
 
@@ -332,25 +333,33 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * Type introspection for complex.
    */
   template<typename _Tp>
-    struct is_complex : public std::false_type
+    struct is_complex
+    : public std::false_type
     { };
 
-  /**
-   * Type introspection for complex.
-   */
   template<typename _Tp>
-    struct is_complex<std::complex<_Tp>> : public std::true_type
+    struct is_complex<const _Tp>
+    : public is_complex<_Tp>
     { };
 
-  /**
-   * Type introspection for complex.
-   */
+  template<typename _Tp>
+    struct is_complex<volatile _Tp>
+    : public is_complex<_Tp>
+    { };
+
+  template<typename _Tp>
+    struct is_complex<const volatile _Tp>
+    : public is_complex<_Tp>
+    { };
+
+  template<typename _Tp>
+    struct is_complex<std::complex<_Tp>>
+    : public std::true_type
+    { };
+
   template<typename _Tp>
     using is_complex_t = typename is_complex<_Tp>::type;
 
-  /**
-   * Type introspection for complex.
-   */
   template<typename _Tp>
     constexpr bool is_complex_v = is_complex<_Tp>::value;
 
