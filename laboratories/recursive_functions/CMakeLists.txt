@@ -29,4 +29,4 @@ target_include_directories(test_fibonacci PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_fibonacci quadmath)
-add_test(NAME run_test_fibonacci COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_fibonacci > test_fibonacci.txt")
+add_test(NAME run_test_fibonacci COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_fibonacci > output/test_fibonacci.txt")

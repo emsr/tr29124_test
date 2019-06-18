@@ -30,7 +30,7 @@ target_include_directories(test_jacobi_ellint PRIVATE
   ../../quadrature/include
   ../../wrappers)
 target_link_libraries(test_jacobi_ellint quadmath -L../../wrappers -lwrap_gsl)
-add_test(NAME run_test_jacobi_ellint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_ellint > test_jacobi_ellint.txt")
+add_test(NAME run_test_jacobi_ellint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_ellint > output/test_jacobi_ellint.txt")
 
 add_executable(test_jacobi_inv test_jacobi_inv.cpp)
 target_include_directories(test_jacobi_inv PRIVATE
@@ -41,7 +41,7 @@ target_include_directories(test_jacobi_inv PRIVATE
   ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_jacobi_inv quadmath)
-add_test(NAME run_test_jacobi_inv COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_inv > test_jacobi_inv.txt")
+add_test(NAME run_test_jacobi_inv COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_inv > output/test_jacobi_inv.txt")
 
 add_executable(test_jacobi_theta test_jacobi_theta.cpp)
 target_include_directories(test_jacobi_theta PRIVATE
@@ -53,7 +53,7 @@ target_include_directories(test_jacobi_theta PRIVATE
   ../../quadrature/include
   ../../wrappers)
 target_link_libraries(test_jacobi_theta quadmath -L../../wrappers -lwrap_gsl)
-add_test(NAME run_test_jacobi_theta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_theta > test_jacobi_theta.txt")
+add_test(NAME run_test_jacobi_theta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_theta > output/test_jacobi_theta.txt")
 
 add_executable(test_theta test_theta.cpp)
 target_include_directories(test_theta PRIVATE
@@ -64,7 +64,7 @@ target_include_directories(test_theta PRIVATE
   ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_theta quadmath)
-add_test(NAME run_test_theta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_theta > test_theta.txt")
+add_test(NAME run_test_theta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_theta > output/test_theta.txt")
 
 add_executable(test_weierstrass_ellint test_weierstrass_ellint.cpp)
 target_include_directories(test_weierstrass_ellint PRIVATE
@@ -75,4 +75,4 @@ target_include_directories(test_weierstrass_ellint PRIVATE
   ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_weierstrass_ellint quadmath)
-add_test(NAME run_test_weierstrass_ellint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_weierstrass_ellint > test_weierstrass_ellint.txt")
+add_test(NAME run_test_weierstrass_ellint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_weierstrass_ellint > output/test_weierstrass_ellint.txt")

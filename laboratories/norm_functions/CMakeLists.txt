@@ -21,7 +21,7 @@ endif ()
 enable_testing()
 
 add_executable(test_abs test_abs.cpp)
-add_test(NAME run_test_abs COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_abs > test_abs.txt")
+add_test(NAME run_test_abs COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_abs > output/test_abs.txt")
 
 add_executable(test_arith_geom_mean test_arith_geom_mean.cpp)
 target_include_directories(test_arith_geom_mean PRIVATE
@@ -32,7 +32,7 @@ target_include_directories(test_arith_geom_mean PRIVATE
 target_link_libraries(test_arith_geom_mean
   quadmath
   -L../../wrappers -lwrap_boost)
-add_test(NAME run_test_arith_geom_mean COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_arith_geom_mean > test_arith_geom_mean.txt")
+add_test(NAME run_test_arith_geom_mean COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_arith_geom_mean > output/test_arith_geom_mean.txt")
 
 add_executable(test_hypot test_hypot.cpp)
 target_include_directories(test_hypot PRIVATE
@@ -43,13 +43,13 @@ target_include_directories(test_hypot PRIVATE
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_hypot quadmath)
-add_test(NAME run_test_hypot COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hypot > test_hypot.txt")
+add_test(NAME run_test_hypot COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hypot > output/test_hypot.txt")
 
 add_executable(test_logsumexp test_logsumexp.cpp)
-add_test(NAME run_test_logsumexp COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_logsumexp > test_logsumexp.txt")
+add_test(NAME run_test_logsumexp COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_logsumexp > output/test_logsumexp.txt")
 
 add_executable(test_power_mean test_power_mean.cpp)
-add_test(NAME run_test_power_mean COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_power_mean > test_power_mean.txt")
+add_test(NAME run_test_power_mean COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_power_mean > output/test_power_mean.txt")
 
 add_executable(test_power_norm test_power_norm.cpp)
-add_test(NAME run_test_power_norm COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_power_norm > test_power_norm.txt")
+add_test(NAME run_test_power_norm COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_power_norm > output/test_power_norm.txt")
