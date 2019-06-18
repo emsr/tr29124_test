@@ -7,6 +7,39 @@
 #include <cmath>
 #include <limits>
 
+#include <math> // For math constants.
+
+/**
+ * 
+ */
+template<typename _Tp>
+  constexpr _Tp
+  __sqrt_newton(_Tp __x)
+  {
+    const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+    const auto _S_digs = std::numeric_limits<_Tp>::digits;
+    constexpr auto __rsqrt2 = _Tp{1} / std::math::sqrt2_v<_Tp>;
+
+    if (__x == _Tp{0})
+      return _Tp{0};
+
+    int __e;
+    auto __xx = std::frexp(__x, &__e);
+
+    auto __f = 0.4 + 0.6 * __xx;
+
+    for (int i = 0; i < _S_digs; ++i)
+      {
+	__f -= _Tp{0.5L} * (__f - __xx / __f);
+	if (std::abs(__f * __f - __xx) < _S_eps * __f)
+	  break;
+      }
+    if (__e & 1)
+      return __rsqrt2 * std::ldexp(__f, (__e + 1) >> 1);
+    else
+      return std::ldexp(__f, __e >> 1);
+  }
+
 /**
  * 
  */
@@ -19,6 +52,8 @@ template<typename _Tp>
 
     if (__x == _Tp{0})
       return _Tp{0};
+
+    // TODO: Argument reduction...
 
     auto __f = 0.01;
     auto __ff = __f * __f;
@@ -47,12 +82,16 @@ template<typename _Tp>
       {
 	auto x = _Tp{1.0L} * i;
 	auto sqrtr = x * __sqrt_recip_newton(x);
+	auto sqrtcw = __sqrt_newton(x);
 	auto sqrt = std::sqrt(x);
-	auto delta = sqrtr - sqrt;
+	auto deltar = sqrtr - sqrt;
+	auto deltacw = sqrtcw - sqrt;
 	std::cout << ' ' << std::setw(w) << x
 		  << ' ' << std::setw(w) << sqrtr
+		  << ' ' << std::setw(w) << sqrtcw
 		  << ' ' << std::setw(w) << sqrt
-		  << ' ' << std::setw(w) << delta
+		  << ' ' << std::setw(w) << deltar
+		  << ' ' << std::setw(w) << deltacw
 		  << '\n';
       }
   }
