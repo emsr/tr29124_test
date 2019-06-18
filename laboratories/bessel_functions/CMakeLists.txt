@@ -27,6 +27,8 @@ target_include_directories(test_cyl_bessel_ratio PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
@@ -39,6 +41,8 @@ target_include_directories(test_cyl_hankel_ratio PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
@@ -51,6 +55,8 @@ target_include_directories(hankel_toy128 PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include)
 target_link_libraries(hankel_toy128 quadmath)
 add_test(NAME run_hankel_toy128 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/hankel_toy128 > output/hankel_toy128.txt")
@@ -60,6 +66,8 @@ target_include_directories(hankel_toy PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include)
 target_link_libraries(hankel_toy quadmath)
 add_test(NAME run_hankel_toy COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/hankel_toy > output/hankel_toy.txt")
@@ -69,6 +77,8 @@ target_include_directories(hankel_toy_new PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include)
 target_link_libraries(hankel_toy_new quadmath)
 add_test(NAME run_hankel_toy_new COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/hankel_toy_new > output/hankel_toy_new.txt")
@@ -89,6 +99,8 @@ target_include_directories(help_kelvin PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -103,6 +115,8 @@ target_include_directories(test_anger_weber PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -114,6 +128,8 @@ target_include_directories(test_bessel_asymp PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -125,6 +141,8 @@ target_include_directories(test_bessel PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -136,6 +154,8 @@ target_include_directories(test_bessel_iter PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -147,6 +167,8 @@ target_include_directories(test_cyl_bessel_zeros PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -158,6 +180,8 @@ target_include_directories(test_cyl_hankel PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include
@@ -170,6 +194,8 @@ target_include_directories(test_hankel PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -181,6 +207,8 @@ target_include_directories(test_hankel_real_arg PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include
@@ -193,6 +221,8 @@ target_include_directories(test_kelvin PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../quadrature/include
   ../../cxx_summation/include)
@@ -204,6 +234,8 @@ target_include_directories(test_large_order_bessel PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../quadrature/include
   ../../cxx_summation/include)
@@ -215,6 +247,8 @@ target_include_directories(test_lommel PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../quadrature/include
   ../../cxx_summation/include)
@@ -226,6 +260,8 @@ target_include_directories(test_mod_bessel_asymp PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../quadrature/include
   ../../cxx_summation/include)
@@ -241,6 +277,8 @@ target_include_directories(test_sph_bessel PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../quadrature/include
   ../../cxx_summation/include)
@@ -252,6 +290,8 @@ target_include_directories(test_sph_hankel PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../quadrature/include
   ../../cxx_summation/include
@@ -264,6 +304,8 @@ target_include_directories(test_struve PRIVATE
   .
   ../../cxx_math_constants/include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../quadrature/include
   ../../cxx_summation/include
@@ -277,6 +319,8 @@ target_include_directories(test_cyl_bessel_nk_series PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../quadrature/include
   ../../cxx_summation/include)
@@ -289,6 +333,8 @@ target_include_directories(test_struve_old PRIVATE
   ../hypergeometric_functions
   ../../cxx_math_constants/include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../quadrature/include
   ../../cxx_summation/include

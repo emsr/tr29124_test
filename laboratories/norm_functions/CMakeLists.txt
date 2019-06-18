@@ -28,6 +28,7 @@ target_include_directories(test_arith_geom_mean PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
   ../../wrappers)
 target_link_libraries(test_arith_geom_mean
   quadmath
@@ -39,6 +40,8 @@ target_include_directories(test_hypot PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)

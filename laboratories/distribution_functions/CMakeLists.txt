@@ -25,6 +25,8 @@ target_include_directories(test_marcum_q PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)

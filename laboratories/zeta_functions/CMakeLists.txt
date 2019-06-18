@@ -26,6 +26,8 @@ target_include_directories(build_etam1_table PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -40,6 +42,8 @@ target_include_directories(build_nfact_zetanp1 PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -54,6 +58,8 @@ target_include_directories(build_zeta_deriv_table PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -68,6 +74,8 @@ target_include_directories(build_zetahalfm1_table PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -82,6 +90,8 @@ target_include_directories(build_zetam1_table PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -96,6 +106,8 @@ target_include_directories(build_zeta_trig_tables PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -109,6 +121,8 @@ target_include_directories(debug_dirichlet_eta PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -126,6 +140,8 @@ target_include_directories(test_bose_einstein PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -138,6 +154,8 @@ target_include_directories(test_clausen PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -152,6 +170,8 @@ target_include_directories(test_debye PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -165,6 +185,8 @@ target_include_directories(test_dilog PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -176,6 +198,8 @@ target_include_directories(test_dirichlet_eta PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -188,6 +212,8 @@ target_include_directories(test_fermi_dirac PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -201,6 +227,8 @@ target_include_directories(test_hurwitz_zeta PRIVATE
   ../../include
   ../../cxx_math_constants/include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -212,6 +240,8 @@ target_include_directories(test_hurwitz_zeta_new PRIVATE
   ../../include
   ../../cxx_math_constants/include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -226,6 +256,8 @@ target_include_directories(test_lerch PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -241,6 +273,8 @@ target_include_directories(test_polylog PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -255,6 +289,8 @@ target_include_directories(test_riemann_zeta PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)

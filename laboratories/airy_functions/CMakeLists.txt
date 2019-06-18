@@ -25,6 +25,8 @@ target_include_directories(airy_toy PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
@@ -37,6 +39,8 @@ target_include_directories(airy_toy_old PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
@@ -49,6 +53,8 @@ target_include_directories(debug_airy PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
@@ -62,6 +68,8 @@ target_include_directories(plot_airy PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
@@ -74,6 +82,8 @@ target_include_directories(test_airy_roots PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
@@ -87,6 +97,8 @@ target_include_directories(test_little_airy PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include

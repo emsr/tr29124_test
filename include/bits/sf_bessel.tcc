@@ -49,7 +49,7 @@
 #pragma GCC system_header
 
 #include <complex>
-#include <ext/math_const.h>
+#include <ext/math_constants.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -270,8 +270,8 @@ namespace __detail
       using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
       using _Real = __num_traits_t<_Val>;
       using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tnu, _Tp, _Tp>;
-      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
-      const auto _S_pi_2 = __gnu_cxx::__const_pi_half<_Real>();
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Real>;
 
       const auto __sums = __cyl_bessel_asymp_sums(__nu, __x, -1);
 
@@ -315,7 +315,7 @@ namespace __detail
     {
       using __gammat_t = __gnu_cxx::__gamma_temme_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__mu);
-      const auto _S_gamma_E = __gnu_cxx::__const_gamma_e(__mu);
+      const auto _S_gamma_E = __gnu_cxx::math::__gamma_e_v<_Tp>;
 
       if (std::abs(__mu) < _S_eps)
 	return __gammat_t{__mu, _Tp{1}, _Tp{1}, -_S_gamma_E, _Tp{1}};
@@ -358,7 +358,7 @@ namespace __detail
       const auto _S_inf = __gnu_cxx::__infinity(__x);
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const auto _S_tiny = __gnu_cxx::__lim_min(__x);
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
       // When the multiplier is N i.e.
       // fp_min = N * min()
       // Then J_0 and N_0 tank at x = 8 * N (J_0 = 0 and N_0 = nan)!
@@ -537,7 +537,7 @@ namespace __detail
       using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const auto _S_inf = __gnu_cxx::__infinity(__x);
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
       if (__nu < _Tp{0})
 	{
 	  const auto _Bess = __cyl_bessel_jn(-__nu, __x);
@@ -594,7 +594,7 @@ namespace __detail
 
   /**
    * @brief  Return the cylindrical Bessel functions and their derivatives
-   * of order @f$ \nu @f$ and argument @f$ x < 0 @f$.
+   *         of real order @f$ \nu @f$ and argument @f$ x < 0 @f$.
    */
   template<typename _Tp>
     __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, std::complex<_Tp>>
@@ -602,7 +602,6 @@ namespace __detail
     {
       using _Cmplx = std::complex<_Tp>;
       using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Cmplx>;
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
       constexpr _Cmplx _S_i{0, 1};
       if (__x >= _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_jn_neg_arg: "
@@ -681,6 +680,47 @@ namespace __detail
 	return __cyl_bessel_jn(__nu, __x).__N_value;
     }
 
+  /**
+   * @brief  Return the cylindrical Hankel functions of the first
+   *         and second kinds and their derivatives.
+   *
+   */
+  template<typename _Tp>
+    __gnu_cxx::__cyl_hankel_t<_Tp, _Tp, std::complex<_Tp>>
+    __cyl_hankel_h1h2(_Tp __nu, _Tp __x)
+    {
+      using _Cmplx = std::complex<_Tp>;
+      constexpr _Cmplx _S_i{0, 1};
+
+      _Cmplx __ph1 = _Tp{1}, __ph2 = _Tp{1};
+      if (__nu < _Tp{0})
+	{
+	  __ph1 = __polar_pi(_Tp{1}, -__nu);
+	  __ph2 = __polar_pi(_Tp{1}, +__nu);
+	  __nu = -__nu;
+	}
+
+      // The two _Bess types are different.
+      // We might still be able to assign the real output to the complex one.
+      if (__x < _Tp{0})
+	{
+	  const auto _Bess = __cyl_bessel_jn_neg_arg(__nu, __x);
+	  const auto _H1 = __ph1 * (_Bess.__J_value + _S_i * _Bess.__N_value);
+	  const auto _dH1 = __ph1 * (_Bess.__J_deriv + _S_i * _Bess.__N_deriv);
+	  const auto _H2 = __ph2 * (_Bess.__J_value - _S_i * _Bess.__N_value);
+	  const auto _dH2 = __ph2 * (_Bess.__J_deriv - _S_i * _Bess.__N_deriv);
+	  return {__nu, __x, _H1, _dH1, _H2, _dH2};
+	}
+      else
+	{
+	  const auto _Bess = __cyl_bessel_jn(__nu, __x);
+	  const auto _H1 = __ph1 * _Cmplx{_Bess.__J_value, _Bess.__N_value};
+	  const auto _dH1 = __ph1 * _Cmplx{_Bess.__J_deriv, _Bess.__N_deriv};
+	  const auto _H2 = __ph2 * _Cmplx{_Bess.__J_value, -_Bess.__N_value};
+	  const auto _dH2 = __ph2 * _Cmplx{_Bess.__J_deriv, -_Bess.__N_deriv};
+	  return {__nu, __x, _H1, _dH1, _H2, _dH2};
+	}
+    }
 
   /**
    * @brief  Return the cylindrical Hankel function of the first kind
@@ -700,7 +740,6 @@ namespace __detail
     __cyl_hankel_1(_Tp __nu, _Tp __x)
     {
       using _Cmplx = std::complex<_Tp>;
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
       const auto _S_nan = __gnu_cxx::__quiet_NaN(__x);
       constexpr _Cmplx _S_i{0, 1};
       if (__nu < _Tp{0})
@@ -739,7 +778,6 @@ namespace __detail
     __cyl_hankel_2(_Tp __nu, _Tp __x)
     {
       using _Cmplx = std::complex<_Tp>;
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
       const auto _S_nan = __gnu_cxx::__quiet_NaN(__x);
       constexpr _Cmplx _S_i{0, 1};
       if (__nu < _Tp{0})
@@ -779,7 +817,7 @@ namespace __detail
 
       const auto _Bess = __cyl_bessel_jn(__nu, __x);
 
-      const auto __factor = __gnu_cxx::__const_root_pi_div_2(__x)
+      const auto __factor = __gnu_cxx::math::__root_pi_div_2_v<_Tp>
 			  / std::sqrt(__x);
 
       const auto __j_n = __factor * _Bess.__J_value;
@@ -810,7 +848,7 @@ namespace __detail
 	  const auto _Bess = __cyl_bessel_jn_neg_arg(__nu, __x);
 
 	  const auto __factor
-	    = __gnu_cxx::__const_root_pi_div_2(__x)
+	    = __gnu_cxx::math::__root_pi_div_2_v<_Tp>
 	      / std::sqrt(_Cmplx(__x));
 
 	  const auto __j_n = __factor * _Bess.__J_value;

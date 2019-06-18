@@ -33,6 +33,7 @@
 #pragma GCC system_header
 
 #include <complex>
+#include <ext/math_constants.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -48,7 +49,7 @@ template<typename _Tp>
   _Tp
   __coulomb_norm(unsigned int __l, _Tp __eta)
   {
-    const auto _S_2pi = __gnu_cxx::__const_2_pi(__eta);
+    const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
     auto _Ck = std::sqrt(_S_2pi * __eta / (std::exp(_S_2pi * __eta) - _Tp{1}));
     if (__l == 0)
       return _Ck;

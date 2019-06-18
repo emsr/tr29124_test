@@ -36,7 +36,7 @@
 #include <vector>
 #include <array>
 #include <bits/c++config.h>
-#include <bits/complex_util.h> // for complex std::isnan, std::isinf
+#include <ext/complex_util.h> // for complex std::isnan, std::isinf
 
 #pragma GCC system_header
 

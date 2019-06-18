@@ -43,7 +43,7 @@
 
 #pragma GCC system_header
 
-#include <ext/math_const.h>
+#include <ext/math_constants.h>
 #include <bits/quadrature_point.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
@@ -143,9 +143,9 @@ namespace __detail
     _Tp
     __hermite_asymp(unsigned int __n, _Tp __x)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
-      const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(__x);
-      const auto _S_sqrt_2pi = __gnu_cxx::__const_root_2_pi(__x);
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_sqrt_2 = __gnu_cxx::math::__root_2_v<_Tp>;
+      const auto _S_sqrt_2pi = __gnu_cxx::math::__root_2_pi_v<_Tp>;
       // __x >= 0 in this routine.
       const auto __xturn = std::sqrt(_Tp(2 * __n));
       if (std::abs(__x - __xturn) < _Tp{0.05L} * __xturn)
@@ -292,7 +292,7 @@ namespace __detail
       const auto _S_eps = __gnu_cxx::__epsilon(__proto);
       const unsigned int _S_maxit = 1000u;
       const auto _S_pim4 = _Tp{0.7511255444649424828587030047762276930510L};
-      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(__proto);
+      const auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Tp>;
 
       std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
 

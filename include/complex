@@ -2046,7 +2046,7 @@ _GLIBCXX_END_NAMESPACE_VERSION
 #endif  // C++11
 
 #include <bits/specfun_util.h>
-#include <bits/complex_util.h>
+#include <ext/complex_util.h>
 
 #ifdef _GLIBCXX_USE_FLOAT128
 #  include <bits/complex128.h>

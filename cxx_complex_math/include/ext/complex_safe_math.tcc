@@ -22,22 +22,20 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/complex_util.tcc
+/** @file ext/complex_safe_math.tcc
  * This is an internal header file, included by other library headers.
  * You should not attempt to use it directly.
  */
 
-#ifndef _GLIBCXX_BITS_COMPLEX_UTIL_TCC
-#define _GLIBCXX_BITS_COMPLEX_UTIL_TCC 1
+#ifndef _GLIBCXX_EXT_COMPLEX_SAFE_MATH_TCC
+#define _GLIBCXX_EXT_COMPLEX_SAFE_MATH_TCC 1
 
 #pragma GCC system_header
 
 #include <bits/numeric_limits.h>
-#include <ext/math_const.h>
+#include <ext/math_constants.h>
 
-namespace std _GLIBCXX_VISIBILITY(default)
-{
-namespace __detail
+namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
@@ -181,10 +179,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __safe_sqr(const std::complex<_Tp>& __z)
     {
-      const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(std::real(__z));
-      const auto _S_max = __gnu_cxx::__lim_max(std::real(__z));
+      const auto _S_sqrt_2 = __gnu_cxx::math::__root_2_v<_Tp>;
+      const auto _S_max = __gnu_cxx::__lim_max<_Tp>();
       const auto _S_hmax = _S_max / _Tp{2};
-      const auto _S_sqrt_max = __gnu_cxx::__sqrt_max(std::real(__z));
+      const auto _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();
       const auto _S_sqrt_hmax = _S_sqrt_max / _S_sqrt_2;
 
       auto __rez = std::real(__z);
@@ -225,7 +223,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     }
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
-} // namespace std
+} // namespace __gnu_cxx
 
-#endif // _GLIBCXX_BITS_COMPLEX_UTIL_TCC
+#endif // _GLIBCXX_EXT_COMPLEX_SAFE_MATH_TCC

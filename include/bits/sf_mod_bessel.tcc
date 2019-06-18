@@ -49,7 +49,7 @@
 #pragma GCC system_header
 
 #include <complex>
-#include <ext/math_const.h>
+#include <ext/math_constants.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -82,7 +82,7 @@ namespace __detail
       using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
       using _Real = __num_traits_t<_Val>;
       using __bess_t = __gnu_cxx::__cyl_mod_bessel_t<_Tnu, _Tp, _Tp>;
-      const auto _S_pi = __gnu_cxx::__const_pi<_Real>();
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
 
       const auto __sums = __cyl_bessel_asymp_sums(__nu, __x, +1);
 
@@ -141,7 +141,7 @@ namespace __detail
       const auto _S_inf = __gnu_cxx::__infinity(__x);
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const auto _S_tiny = __gnu_cxx::__lim_min(__x);
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
       const auto _S_fp_min = _Tp{10} * _S_eps;
       constexpr int _S_max_iter = 15000;
       const auto _S_x_min = _Tp{2};
@@ -319,7 +319,7 @@ namespace __detail
       using __bess_t = __gnu_cxx::__cyl_mod_bessel_t<_Tp, _Tp, _Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const auto _S_inf = __gnu_cxx::__infinity(__x);
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
       if (__nu < _Tp{0})
 	{
 	  const auto _Bessm = __cyl_bessel_ik(-__nu, __x);
@@ -477,7 +477,7 @@ namespace __detail
 	  const auto __nu = _Tp(__n + 0.5L);
 	  auto _Bess = __cyl_bessel_ik(__nu, __x);
 
-	  const auto __factor = __gnu_cxx::__const_root_pi_div_2(_Tp{})
+	  const auto __factor = __gnu_cxx::math::__root_pi_div_2_v<_Tp>
 			      / std::sqrt(__x);
 
 	  const auto __i_n = __factor * _Bess.__I_value;
@@ -509,8 +509,8 @@ namespace __detail
       using __ai_t = __gnu_cxx::__airy_t<_Tp, _Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__z);
       const auto _S_inf = __gnu_cxx::__infinity(__z);
-      const auto _S_pi = __gnu_cxx::__const_pi(__z);
-      const auto _S_sqrt3 = __gnu_cxx::__const_root_3(__z);
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_sqrt3 = __gnu_cxx::math::__root_3_v<_Tp>;
       const auto __absz = std::abs(__z);
       const auto __rootz = std::sqrt(__absz);
       const auto __xi = _Tp{2} * __absz * __rootz / _Tp{3};
@@ -593,7 +593,7 @@ namespace __detail
     {
       using _Cmplx = std::complex<_Tp>;
       using __fock_t = __gnu_cxx::__fock_airy_t<_Tp, _Cmplx>;
-      const auto _S_sqrtpi = __gnu_cxx::__const_root_pi(__x);
+      const auto _S_sqrtpi = __gnu_cxx::math::__root_pi_v<_Tp>;
 
       const auto _Ai = __airy(__x);
 

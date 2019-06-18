@@ -6,6 +6,7 @@
 #include <wrap_gsl.h>
 #include <bits/numeric_limits.h>
 #include <cmath>
+#include <ext/math_constants.h>
 
   /**
    * Try complex (and negative real) values. Nope.
@@ -58,9 +59,9 @@
     _Tp
     __log_agm(_Tp __x)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
-      constexpr auto _S_log_10 = __gnu_cxx::__math_constants<_Tp>::__ln_10;
-      constexpr auto _S_log_2 = __gnu_cxx::__math_constants<_Tp>::__ln_2;
+      constexpr auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      constexpr auto _S_log_10 = __gnu_cxx::math::__ln_10_v<_Tp>;
+      constexpr auto _S_log_2 = __gnu_cxx::math::__ln_2_v<_Tp>;
       const auto __p = std::numeric_limits<_Tp>::digits;
       const auto __b = std::numeric_limits<_Tp>::radix;
       const auto __n = std::ilogb(__x);

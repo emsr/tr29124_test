@@ -27,11 +27,13 @@ target_include_directories(testcase PRIVATE
   .
   ../wrappers
   ../include
+  ../cxx_math_constants/include
   ../cxx_fp_utils/include
+  ../cxx_complex_utils/include
+  ../cxx_complex_math/include
   ../polynomial/include
   ../cxx_summation/include
-  ../quadrature/include
-  ../cxx_math_const/include)
+  ../quadrature/include)
 
 add_executable(testcase_tr1 testcase.cpp)
 target_link_libraries(testcase_tr1 quadmath -L../wrappers -lwrap_gsl -lwrap_boost)
@@ -40,8 +42,10 @@ target_include_directories(testcase_tr1 PRIVATE
   .
   wrappers
   ../include
+  ../cxx_math_constants/include
   ../cxx_fp_utils/include
+  ../cxx_complex_utils/include
+  ../cxx_complex_math/include
   ../polynomial/include
   ../cxx_summation/include
-  ../quadrature/include
-  ../cxx_math_const/include)
+  ../quadrature/include)

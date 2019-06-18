@@ -11,7 +11,7 @@
 #include <ext/continued_fractions.h>
 #include <bits/specfun_util.h>
 #include <ext/math_constants.h>
-#include <bits/complex_util.h> // is_complex
+#include <ext/complex_util.h> // is_complex
 
   /**
    * This C-fraction is almost useless as AFAICT.

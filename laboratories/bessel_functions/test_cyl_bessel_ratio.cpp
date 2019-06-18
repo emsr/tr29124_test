@@ -7,7 +7,7 @@
 
 #include <ext/continued_fractions.h>
 #include <bits/specfun_util.h>
-#include <bits/complex_util.h> // is_complex
+#include <ext/complex_util.h> // is_complex
 
   template<typename _Tnu, typename _Tp, typename _Tzeta>
     std::complex<std::__detail::__num_traits_t<

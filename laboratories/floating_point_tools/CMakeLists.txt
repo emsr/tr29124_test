@@ -29,6 +29,8 @@ target_include_directories(test_float128 PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -41,6 +43,8 @@ target_include_directories(test_limits PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -54,6 +58,8 @@ target_include_directories(test_maxint PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -66,6 +72,8 @@ target_include_directories(test_mod2pi PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
@@ -78,13 +86,15 @@ target_include_directories(test_numeric_limits PRIVATE
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_numeric_limits quadmath gmp mpfr)
 
-add_executable(test_ulp test_ulp.cpp)
-add_test(NAME run_test_ulp COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_ulp > output/test_ulp.txt")
+add_executable(test_lab_ulp test_ulp.cpp)
+add_test(NAME run_test_lab_ulp COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_lab_ulp > output/test_lab_ulp.txt")
 
 add_executable(variant_help variant_help.cpp)
 add_test(NAME run_variant_help COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/variant_help > output/variant_help.txt")
