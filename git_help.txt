@@ -1,0 +1,10 @@
+# Fisrt time:
+
+git submodule update --recursive --remote
+
+# subsequently:
+
+git submodule update --recursive
+
+git pull --recurse-submodules
+
