@@ -52,7 +52,7 @@
 #pragma GCC system_header
 
 #include <complex>
-#include <ext/math_const.h>
+#include <ext/math_constants.h>
 #include <vector>
 
 namespace std _GLIBCXX_VISIBILITY(default)
@@ -419,7 +419,7 @@ namespace __detail
 	{
 	  auto _P_l = __legendre_p(__l, __x).__P_l;
 	  _Tp __fact = std::sqrt(_Tp(2 * __l + 1)
-		     / (_Tp{4} * __gnu_cxx::__const_pi(__theta)));
+		     / (_Tp{4} * __gnu_cxx::math::__pi_v<_Tp>));
 	  _P_l *= __fact;
 	  return _P_l;
 	}
@@ -439,10 +439,10 @@ namespace __detail
 	  const auto __lnpoch = __log_gamma(_Tp(__m + 0.5L))
 			      - __log_gamma(_Tp(__m));
 	  const auto __lnpre_val =
-		     -_Tp{0.25L} * __gnu_cxx::__const_ln_pi(__theta)
+		     -_Tp{0.25L} * __gnu_cxx::math::__ln_pi_v<_Tp>
 		     + _Tp{0.5L} * (__lnpoch + __m * __lncirc);
 	  const auto __sr = std::sqrt((_Tp{2} + _Tp{1} / __m)
-			  / (_Tp{4} * __gnu_cxx::__const_pi(__theta)));
+			  / (_Tp{4} * __gnu_cxx::math::__pi_v<_Tp>));
 	  auto _Y_mm = __sgn * __sr * std::exp(__lnpre_val);
 	  auto _Y_mp1m = _Y_mp1m_factor * _Y_mm;
 
@@ -521,7 +521,7 @@ namespace __detail
     __legendre_zeros(unsigned int __l, _Tp proto = _Tp{})
     {
       const auto _S_eps = __gnu_cxx::__epsilon(proto);
-      const auto _S_pi = __gnu_cxx::__const_pi(proto);
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
       const unsigned int _S_maxit = 1000u;
 
       std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__l);

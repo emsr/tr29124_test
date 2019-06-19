@@ -19,9 +19,11 @@ endif ()
 
 add_library(wrap_boost SHARED wrap_boost.cpp)
 target_include_directories(wrap_boost PRIVATE
-  ../cxx_math_const/include
+  ../cxx_math_constants/include
   ../include
   ../cxx_fp_utils/include
+  ../cxx_complex_utils/include
+  ../cxx_complex_math/include
   ../cxx_summation/include)
 
 
@@ -37,9 +39,11 @@ add_library(wrap_gsl SHARED
 	    ../3rdparty/gslextras/Hermite/gsl_sf_hermite.c
 	   )
 target_include_directories(wrap_gsl PRIVATE
-  ../cxx_math_const/include
+  ../cxx_math_constants/include
   ../include
   ../cxx_fp_utils/include
+  ../cxx_complex_utils/include
+  ../cxx_complex_math/include
   ../cxx_summation/include
   ../3rdparty/gslextras)
 target_link_libraries(wrap_gsl quadmath gsl gslcblas)
@@ -193,9 +197,11 @@ add_library(wrap_cephes SHARED
 	    ../3rdparty/cephes/c9x-complex/cpolylog.c
            )
 target_include_directories(wrap_cephes PRIVATE
-  ../cxx_math_const/include
+  ../cxx_math_constants/include
   ../include
   ../cxx_fp_utils/include
+  ../cxx_complex_utils/include
+  ../cxx_complex_math/include
   ../cxx_summation/include
   ../3rdparty/cephes)
 
@@ -234,9 +240,11 @@ add_library(wrap_burkhardt SHARED
            )
 target_link_libraries(wrap_burkhardt gfortran)
 target_include_directories(wrap_burkhardt PRIVATE
-  ../cxx_math_const/include
+  ../cxx_math_constants/include
   ../include
   ../cxx_fp_utils/include
+  ../cxx_complex_utils/include
+  ../cxx_complex_math/include
   ../cxx_summation/include
   ../3rdparty/burkhardt)
 
@@ -246,9 +254,11 @@ add_library(wrap_lerchphi SHARED
 	    ../3rdparty/lerchphi/Source/lerchphi.cpp
 	   )
 target_include_directories(wrap_lerchphi PRIVATE
-  ../cxx_math_const/include
+  ../cxx_math_constants/include
   ../include
   ../cxx_fp_utils/include
+  ../cxx_complex_utils/include
+  ../cxx_complex_math/include
   ../cxx_summation/include
   ../3rdparty/lerchphi/Source)
 
@@ -258,9 +268,11 @@ add_library(wrap_faddeeva SHARED
 	    ../3rdparty/Faddeeva/Faddeeva.cc
 	   )
 target_include_directories(wrap_faddeeva PRIVATE
-  ../cxx_math_const/include
+  ../cxx_math_constants/include
   ../include
   ../cxx_fp_utils/include
+  ../cxx_complex_utils/include
+  ../cxx_complex_math/include
   ../cxx_summation/include
   ../3rdparty/Faddeeva)
 
@@ -270,8 +282,10 @@ add_library(wrap_lambert SHARED
 	    ../3rdparty/LambertW/LambertW.cc
 	   )
 target_include_directories(wrap_lambert PRIVATE
-  ../cxx_math_const/include
+  ../cxx_math_constants/include
   ../include
   ../cxx_fp_utils/include
+  ../cxx_complex_utils/include
+  ../cxx_complex_math/include
   ../cxx_summation/include
   ../3rdparty/LambertW)

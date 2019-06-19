@@ -48,7 +48,7 @@
 
 #pragma GCC system_header
 
-#include <ext/math_const.h>
+#include <ext/math_constants.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -93,7 +93,7 @@ namespace __detail
 	}
 
       return - __esum - __osum
-	     - __gnu_cxx::__const_gamma_e(__x) - std::log(__x);
+	     - __gnu_cxx::math::__gamma_e_v<_Tp> - std::log(__x);
     }
 
 
@@ -152,7 +152,7 @@ namespace __detail
       const unsigned int _S_max_iter = 1000;
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const int __nm1 = __n - 1;
-      const auto _S_gamma_E = __gnu_cxx::__const_gamma_e(__x);
+      const auto _S_gamma_E = __gnu_cxx::math::__gamma_e_v<_Tp>;
       const auto __logx = std::log(__x);
       _Tp __sum = (__nm1 != 0
 		? _Tp{1} / __nm1
@@ -300,7 +300,7 @@ namespace __detail
 	    break;
 	}
 
-      return __gnu_cxx::__const_gamma_e(__x)
+      return __gnu_cxx::math::__gamma_e_v<_Tp>
 	   + __sum + std::log(__x);
     }
 

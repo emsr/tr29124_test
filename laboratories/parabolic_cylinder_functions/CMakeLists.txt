@@ -23,11 +23,13 @@ enable_testing()
 add_executable(test_parab_cyl test_parab_cyl.cpp)
 target_include_directories(test_parab_cyl PRIVATE
   .
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_parab_cyl quadmath)
-add_test(NAME run_test_parab_cyl COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_parab_cyl > test_parab_cyl.txt")
+add_test(NAME run_test_parab_cyl COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_parab_cyl > output/test_parab_cyl.txt")

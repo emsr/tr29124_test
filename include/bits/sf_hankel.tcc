@@ -36,7 +36,10 @@
 #include <limits>
 #include <vector>
 
-#include <bits/complex_util.h>
+#include <ext/math_constants.h>
+#include <ext/complex_util.h>
+#include <ext/complex_norms.h>
+#include <ext/complex_safe_math.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -52,7 +55,7 @@ namespace __detail
     void
     __debye_region(std::complex<_Tp> __alpha, int& __indexr, char& __aorb)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi(_Tp{});
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
 
       __aorb = ' ';
 
@@ -121,9 +124,9 @@ namespace __detail
       const auto _S_1d3   = _Tp{1} / _Tp{3};
       const auto _S_1d2   = _Tp{0.5L};
       const auto _S_2d3   = _Tp{2} / _Tp{3};
-      const auto _S_2pi   = __gnu_cxx::__const_2_pi(_Tp{});
+      const auto _S_2pi   = __gnu_cxx::math::__2_pi_v<_Tp>;
       const auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152L}; // -(2/3)ln(2/3)
-      const auto _S_sqrt2 = __gnu_cxx::__const_root_2(_Tp{});
+      const auto _S_sqrt2 = __gnu_cxx::math::__root_2_v<_Tp>;
       const auto _S_4d3   = _Tp{4} / _Tp{3};
 
       const _Cmplx __zone{_Tp{1}, _Tp{0}};
@@ -136,12 +139,12 @@ namespace __detail
       auto __imzhat = std::imag(__zhat);
 
       // Compute 1 - zhat^2 and related constants.
-      auto __w = _Cmplx{_Tp{1}} - __safe_sqr(__zhat);
+      auto __w = _Cmplx{_Tp{1}} - __gnu_cxx::__safe_sqr(__zhat);
       __w = std::sqrt(__w);
       __p = _Tp{1} / __w;
       __p2 = __p * __p;
 
-      __nup2 = __safe_sqr(__nu);
+      __nup2 = __gnu_cxx::__safe_sqr(__nu);
       __num2 = _Tp{1} / __nup2;
       // Compute nu^(-1/3), nu^(-2/3), nu^(-4/3).
       __num4d3 = -std::log(__nu);
@@ -217,13 +220,13 @@ namespace __detail
       using _Cmplx = std::complex<_Tp>;
 
       // expp and expm are exp(2*pi*i/3) and its reciprocal, respectively.
-      const auto _S_sqrt3d2 = __gnu_cxx::__const_root_3_div_2(_Tp{});
+      const auto _S_sqrt3d2 = __gnu_cxx::math::__root_3_div_2_v<_Tp>;
       const auto __expp = _Cmplx{-0.5L,  _S_sqrt3d2};
       const auto __expm = _Cmplx{-0.5L, -_S_sqrt3d2};
 
       try
 	{
-	  __argm = __safe_div(__num2d3, __zeta);
+	  __argm = __gnu_cxx::__safe_div(__num2d3, __zeta);
 	  __argp = __expp * __argm;
 	  __argm = __expm * __argm;
 	}
@@ -256,13 +259,13 @@ namespace __detail
     {
       using _Cmplx = std::complex<_Tp>;
 
-      const auto _S_sqrt3d2 = __gnu_cxx::__const_root_3_div_2(_Tp{});
+      const auto _S_sqrt3d2 = __gnu_cxx::math::__root_3_div_2_v<_Tp>;
       const _Cmplx __e2pd3{-0.5L,  _S_sqrt3d2};
       const _Cmplx __d2pd3{-0.5L, -_S_sqrt3d2};
 
       try
 	{
-	  __zhat = __safe_div(__z, __nu);
+	  __zhat = __gnu_cxx::__safe_div(__z, __nu);
 	  // Try to compute other nu and z dependent parameters except args to Airy functions.
 	  _Cmplx __num4d3, __nup2, __zeta, __zetaphf, __zetamhf;
 	  __hankel_params(__nu, __zhat, __p, __p2, __nup2,
@@ -780,9 +783,9 @@ namespace __detail
 
       using __hank_t = __gnu_cxx::__cyl_hankel_t<_Cmplx, _Cmplx, _Cmplx>;
 
-      const auto _S_pi = __gnu_cxx::__const_pi(_Tp{});
-      const auto _S_pi_3 = __gnu_cxx::__const_pi_third(_Tp{});
-      const auto _S_sqrt_3 = __gnu_cxx::__const_root_3(_Tp{});
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_pi_3 = __gnu_cxx::math::__pi_third_v<_Tp>;
+      const auto _S_sqrt_3 = __gnu_cxx::math::__root_3_v<_Tp>;
       const _Cmplx _S_j{1il};
       const _Cmplx __con1p{ _Tp{1}, _S_sqrt_3}; // 2*exp( pi*j/3) (1,sqrt(3))
       const _Cmplx __con1m{ _Tp{1},-_S_sqrt_3}; // 2*exp(-pi*j/3)
@@ -1079,7 +1082,7 @@ namespace __detail
 			      std::complex<_Tp>>
     __hankel(std::complex<_Tp> __nu, std::complex<_Tp> __z)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi(_Tp{});
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
 
       int __indexr;
 
@@ -1210,7 +1213,7 @@ namespace __detail
     {
       using _Cmplx = std::complex<_Tp>;
       using __hank_t = __gnu_cxx::__sph_hankel_t<unsigned int, _Cmplx, _Cmplx>;
-      const auto _S_pi = __gnu_cxx::__const_pi(_Tp{});
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
       _Cmplx __nu(__n + _Tp{0.5});
       auto __hank = __hankel(__nu, __z);
       _Cmplx __fact = std::sqrt(_S_pi / (_Tp{2} * __z));

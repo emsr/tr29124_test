@@ -45,7 +45,7 @@
 
 #pragma GCC system_header
 
-#include <ext/math_const.h>
+#include <ext/math_constants.h>
 #include <bits/notsospecfun.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
@@ -749,7 +749,7 @@ namespace __detail
 	      // Gamma functions in the denominator are ok.
 	      // Proceed with evaluation.
 	      const int __maxiter = 2000;
-	      const auto __psi_1 = -__gnu_cxx::__const_gamma_e<_Val>();
+	      const auto __psi_1 = -__gnu_cxx::math::__gamma_e_v<_Val>;
 	      const auto __psi_1pd = __digamma(_Val{1} + __ad);
 	      const auto __psi_apd1 = __digamma(__a + __d1);
 	      const auto __psi_bpd1 = __digamma(__b + __d1);

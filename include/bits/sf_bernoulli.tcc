@@ -36,6 +36,7 @@
 
 #pragma GCC system_header
 
+#include <ext/math_constants.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -95,7 +96,7 @@ namespace __detail
       else
 	{
 	  constexpr auto _S_eps = __gnu_cxx::__epsilon<>(_Tp{});
-	  constexpr auto _S_2pi = __gnu_cxx::__const_2_pi(_Tp{});
+	  constexpr auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
 	  auto __fact = _Tp{1};
 	  if ((__n / 2) % 2 == 0)
 	    __fact *= -_Tp{1};

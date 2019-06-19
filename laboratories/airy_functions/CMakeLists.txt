@@ -22,9 +22,11 @@ enable_testing()
 
 add_executable(airy_toy airy_toy.cpp)
 target_include_directories(airy_toy PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
@@ -34,9 +36,11 @@ add_test(NAME run_airy_toy COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/airy_toy > o
 
 add_executable(airy_toy_old airy_toy_old.cpp)
 target_include_directories(airy_toy_old PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
@@ -46,9 +50,11 @@ add_test(NAME run_airy_toy_old COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/airy_toy
 
 add_executable(debug_airy debug_airy.cpp)
 target_include_directories(debug_airy PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
@@ -59,9 +65,11 @@ add_test(NAME run_debug_airy COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/debug_airy
 
 add_executable(plot_airy plot_airy.cpp)
 target_include_directories(plot_airy PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
@@ -71,9 +79,11 @@ add_test(NAME run_plot_airy COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/plot_airy >
 
 add_executable(test_airy_roots test_airy_roots.cpp)
 target_include_directories(test_airy_roots PRIVATE
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
@@ -84,9 +94,11 @@ add_test(NAME run_test_airy_roots COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_
 add_executable(test_little_airy test_little_airy.cpp)
 target_include_directories(test_little_airy PRIVATE
   .
-  ../../cxx_math_const/include
+  ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include

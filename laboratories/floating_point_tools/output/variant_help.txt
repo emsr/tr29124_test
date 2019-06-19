@@ -1,0 +1,8 @@
+is_move_constructible_v<double> = 1
+is_swappable_v<double>          = 1
+is_move_constructible_v<complex<double>> = 1
+is_swappable_v<complex<double>>          = 1
+is_move_constructible_v<monostate> = 1
+is_swappable_v<monostate>          = 1
+is_move_constructible_v<solution_t<double>> = 1
+is_swappable_v<solution_t<double>>          = 1

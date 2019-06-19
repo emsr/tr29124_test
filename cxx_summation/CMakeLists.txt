@@ -18,7 +18,10 @@ add_executable(test_summation test_summation.cpp)
 target_include_directories(test_summation PRIVATE
   include
   ../include
+  ../cxx_math_constants/include
   ../cxx_fp_utils/include
+  ../cxx_complex_utils/include
+  ../cxx_complex_math/include
   ../polynomial/include
   ../quadrature/include)
 target_link_libraries(test_summation quadmath)

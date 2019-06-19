@@ -1,3 +1,14 @@
+
+CMakeCache.txt
+CMakeDoxyfile.in
+CMakeDoxygenDefaults.cmake
+CMakeFiles/
+CTestTestfile.cmake
+Makefile
+Testing/
+bin/
+cmake_install.cmake
+
 # Build files...
 *.so
 *.a

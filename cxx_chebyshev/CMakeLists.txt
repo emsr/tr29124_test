@@ -21,14 +21,14 @@ enable_testing()
 add_library(cxx_chebyshev INTERFACE)
 target_include_directories(cxx_chebyshev INTERFACE include)
 
-add_executable(test_chebyshev test_chebyshev.cpp)
-target_link_libraries(test_chebyshev cxx_chebyshev quadmath)
-target_include_directories(test_chebyshev PRIVATE
+add_executable(test_cxx_chebyshev test_chebyshev.cpp)
+target_link_libraries(test_cxx_chebyshev cxx_chebyshev quadmath)
+target_include_directories(test_cxx_chebyshev PRIVATE
   ../include # float128
   ../polynomial/include
   ../cxx_fp_utils/include)
 
-add_test(NAME run_test_chebyshev COMMAND bash -c "./bin/test_chebyshev > output/test_chebyshev.txt")
+add_test(NAME run_test_cxx_chebyshev COMMAND bash -c "./bin/test_cxx_chebyshev > output/test_cxx_chebyshev.txt")
 
 find_package(Doxygen)
 if (DOXYGEN_FOUND)

@@ -47,7 +47,7 @@
 
 #pragma GCC system_header
 
-#include <ext/math_const.h>
+#include <ext/math_constants.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -249,7 +249,7 @@ namespace __detail
       using _Real = __num_traits_t<_Val>;
       constexpr unsigned long long _S_maxit = 100000ULL;
       const auto _S_eps = 10 * __gnu_cxx::__epsilon(_Real{});
-      const auto _S_pipio6 = __gnu_cxx::__const_pi_sqr_div_6(_Real{});
+      const auto _S_pipio6 = __gnu_cxx::math::__pi_sqr_div_6_v<_Real>;
       if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(_Real{});
       else if (__x > _Tp{+1})
@@ -371,7 +371,7 @@ namespace __detail
 	}
       else
 	{
-	  const auto _S_pi = __gnu_cxx::__const_pi(_Real{});
+	  const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
 	  auto __zeta = std::pow(_Real{2} * _S_pi, __s)
 		      * __sin_pi(_Real{0.5L} * __s) * __gamma(_Val{1} - __s)
 		      * __riemann_zeta_sum(_Val{1} - __s) / _S_pi;
@@ -503,8 +503,8 @@ namespace __detail
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
 
-      const auto _S_pi = __gnu_cxx::__const_pi(_Real{});
-      const auto _S_pi_2 = __gnu_cxx::__const_pi_half(_Real{});
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Real>;
 
       //  This series works until the binomial coefficient blows up
       //  so use reflection.
@@ -718,7 +718,7 @@ namespace __detail
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
-      const auto _S_pi = __gnu_cxx::__const_pi(_Real{});
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
       if (__s == _Real{1})
 	return __gnu_cxx::__infinity(_Real{});
 
@@ -764,7 +764,7 @@ namespace __detail
       using _Real = __num_traits_t<_Val>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
       const auto _S_inf = __gnu_cxx::__infinity(_Real{});
-      const auto _S_pi = __gnu_cxx::__const_pi(_Real{});
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
       if (std::isnan(__s))
 	return _S_NaN;
       else if (__s == _Val{1})
@@ -961,7 +961,7 @@ namespace __detail
 	  __sum += __term;
 	  return _Tp(__n) * __sum / __xn;
 	}
-      else if (std::abs(__x) < _Tp{2} * __gnu_cxx::__const_pi(__x))
+      else if (std::abs(__x) < _Tp{2} * __gnu_cxx::math::__pi_v<_Tp>)
 	{
 	  /**
 	   * Compute the Debye function:
@@ -974,7 +974,7 @@ namespace __detail
 	   */
 	  const auto _S_eps = __gnu_cxx::__epsilon(__x);
 	  const std::size_t _S_max_iter = 200;
-	  const auto _S_1_2pi = __gnu_cxx::__const_one_div_2_pi(__x);
+	  const auto _S_1_2pi = __gnu_cxx::math::__one_div_2_pi_v<_Tp>;
 	  const auto __x2pi = __x * _S_1_2pi;
 	  const auto __x2pi2 = __x2pi * __x2pi;
 	  auto __x2pi2k = __x2pi2;

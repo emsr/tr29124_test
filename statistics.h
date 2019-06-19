@@ -20,7 +20,7 @@
 #ifndef STATISTICS_H
 #define STATISTICS_H 1
 
-#include <bits/complex_util.h>
+#include <ext/complex_util.h>
 
 /**
  * Incremental computation of statistics.
