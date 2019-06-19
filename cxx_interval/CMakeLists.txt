@@ -16,3 +16,4 @@ enable_testing()
 
 add_executable(test_interval test_interval.cpp)
 target_include_directories(test_interval PRIVATE include)
+add_test(NAME run_test_interval COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_interval > output/test_interval.txt")
