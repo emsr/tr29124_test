@@ -82,7 +82,7 @@
 	  __sum += __term;
 	  return _Tp(__n) * __sum / __xn;
 	}
-      else if (std::abs(__x) < _Tp{2} * __gnu_cxx::__const_pi(__x))
+      else if (std::abs(__x) < _Tp{2} * __gnu_cxx::math::__pi_v<_Tp>)
 	{
 	  /**
 	   * Compute the Debye function:
@@ -95,7 +95,7 @@
 	   */
 	  const auto _S_eps = __gnu_cxx::__epsilon(__x);
 	  const std::size_t _S_max_iter = 200;
-	  const auto _S_1_2pi = __gnu_cxx::__const_one_div_2_pi(__x);
+	  const auto _S_1_2pi = __gnu_cxx::math::__one_div_2_pi_v<_Tp>;
 	  const auto __x2pi = __x * _S_1_2pi;
 	  const auto __x2pi2 = __x2pi * __x2pi;
 	  auto __x2pi2k = __x2pi2;

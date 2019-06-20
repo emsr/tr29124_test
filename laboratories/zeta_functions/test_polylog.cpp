@@ -319,7 +319,7 @@
     std::complex<_Tp>
     __polylog_exp_neg_even(unsigned int __p, std::complex<_Tp> __w)
     {
-      const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
+      const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
       const int __pp = 1 + __p;
       const int __sigma = __p % 4 == 0 ? +1 : -1;
       const auto __lnp = std::__detail::__log_factorial<_Tp>(__p);
@@ -395,7 +395,7 @@
     std::complex<_Tp>
     __polylog_exp_neg_odd(unsigned int __p, std::complex<_Tp> __w)
     {
-      const auto _S_2pi = __gnu_cxx::__const_2_pi(std::real(__w));
+      const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
       const int __pp = 1 + __p;
       const int __sigma = __p % 4 == 1 ? +1 : -1;
       const auto __lnp = std::__detail::__log_factorial<_Tp>(__p);
@@ -475,7 +475,7 @@
     std::complex<_Tp>
     __polylog_exp_asymp(_Tp __s, std::complex<_Tp> __w)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi(__s);
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
       // wgamma = w^{s-1} / Gamma(s)
       auto __wgamma = std::pow(__w, __s - _Tp{1}) * std::__detail::__gamma_reciprocal(__s);
       auto __res = std::complex<_Tp>(_Tp{0}, -_S_pi) * __wgamma;
@@ -505,9 +505,9 @@
 /**
  * Compute the polylogarithm for negative integer order.
  */
-template<typename Tp>
+template<typename _Tp>
   void
-  test_polylog_neg_int(Tp proto = Tp{})
+  test_polylog_neg_int(_Tp proto = _Tp{})
   {
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::scientific;
@@ -516,22 +516,22 @@ template<typename Tp>
     for (auto n : {-1, -2, -3, -4, -5})
       {
 	std::cout << "\n\nNegative integer degree: n = " << n << '\n';
-	const auto del = Tp{1} / Tp{20};
+	const auto del = _Tp{1} / _Tp{20};
 	for (int i = -200; i <= 20; ++i)
 	  {
 	    auto x = del * i;
 	    auto Ls_rat1 = __polylog_nonpos_int_1(n, x);
 	    auto Ls_rat2 = __polylog_nonpos_int_2(n, x);
 	    auto Ls_rat3 = __polylog_nonpos_int_3(n, x);
-	    auto Ls_nint = x == Tp{0}
-			 ? Tp{0}
-			 : [n, x]() -> Tp
-			   { auto w = std::log(std::complex<Tp>(x));
+	    auto Ls_nint = x == _Tp{0}
+			 ? _Tp{0}
+			 : [n, x]() -> _Tp
+			   { auto w = std::log(std::complex<_Tp>(x));
 			     return std::real(std::__detail::__polylog_exp_neg(n, w)); }();
-	    auto Ls_gnu = x == Tp{0}
-			? Tp{0}
-			: [n, x]() -> Tp
-			  { auto w = std::log(std::complex<Tp>(x));
+	    auto Ls_gnu = x == _Tp{0}
+			? _Tp{0}
+			: [n, x]() -> _Tp
+			  { auto w = std::log(std::complex<_Tp>(x));
 			    return std::real(__polylog_exp_neg_old(n, w)); }();
 	    std::cout << ' ' << n
 		      << ' ' << x
@@ -546,22 +546,22 @@ template<typename Tp>
     std::cout << '\n' << std::flush;
   }
 
-template<typename Tp>
+template<typename _Tp>
   void
-  test_polylog_0(Tp proto = Tp{})
+  test_polylog_0(_Tp proto = _Tp{})
   {
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::scientific;
 
     std::cout << "\n\nTest against algebraic function for Li_0\n";
-    const auto del = Tp{1} / Tp{10};
+    const auto del = _Tp{1} / _Tp{10};
     for (int i = -200; i <= 10; ++i)
       {
 	auto x = del * i;
-	auto Li0 = __gnu_cxx::__fp_is_zero(Tp{1} - x)
-		 ? std::numeric_limits<Tp>::quiet_NaN()
-		 : x / (Tp{1} - x);
-	auto Lis_gnu = __gnu_cxx::polylog(Tp{0}, x);
+	auto Li0 = __gnu_cxx::__fp_is_zero(_Tp{1} - x)
+		 ? std::numeric_limits<_Tp>::quiet_NaN()
+		 : x / (_Tp{1} - x);
+	auto Lis_gnu = __gnu_cxx::polylog(_Tp{0}, x);
 	std::cout << ' ' << x
 		  << ' ' << Li0
 		  << ' ' << Lis_gnu
@@ -570,22 +570,22 @@ template<typename Tp>
     std::cout << '\n' << std::flush;
   }
 
-template<typename Tp>
+template<typename _Tp>
   void
-  test_polylog_1(Tp proto = Tp{})
+  test_polylog_1(_Tp proto = _Tp{})
   {
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::scientific;
 
     std::cout << "\n\nTest against algebraic function for Li_1\n";
-    const auto del = Tp{1} / Tp{10};
+    const auto del = _Tp{1} / _Tp{10};
     for (int i = -200; i <= 10; ++i)
       {
 	auto x = del * i;
-	auto Li1 = __gnu_cxx::__fp_is_zero(Tp{1} - x)
-		 ? std::numeric_limits<Tp>::quiet_NaN()
-		 : -std::log(Tp{1} - x);
-	auto Lis_gnu = __gnu_cxx::polylog(Tp{1}, x);
+	auto Li1 = __gnu_cxx::__fp_is_zero(_Tp{1} - x)
+		 ? std::numeric_limits<_Tp>::quiet_NaN()
+		 : -std::log(_Tp{1} - x);
+	auto Lis_gnu = __gnu_cxx::polylog(_Tp{1}, x);
 	std::cout << ' ' << x
 		  << ' ' << Li1
 		  << ' ' << Lis_gnu
@@ -594,20 +594,20 @@ template<typename Tp>
     std::cout << '\n' << std::flush;
   }
 
-template<typename Tp>
+template<typename _Tp>
   void
-  test_polylog_dilog(Tp proto = Tp{})
+  test_polylog_dilog(_Tp proto = _Tp{})
   {
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::scientific;
 
     std::cout << "\n\nTest against local dilog\n";
-    const auto del = Tp{1} / Tp{10};
+    const auto del = _Tp{1} / _Tp{10};
     for (int i = -200; i <= 10; ++i)
       {
 	auto x = del * i;
 	auto Ls_dilog = __gnu_cxx::dilog(x);
-	auto Ls_gnu = __gnu_cxx::polylog(Tp(2), x);
+	auto Ls_gnu = __gnu_cxx::polylog(_Tp(2), x);
 	std::cout << ' ' << x
 		  << ' ' << Ls_dilog
 		  << ' ' << Ls_gnu
@@ -616,9 +616,9 @@ template<typename Tp>
     std::cout << '\n' << std::flush;
   }
 
-template<typename Tp>
+template<typename _Tp>
   void
-  test_polylog_cephes(Tp proto = Tp{})
+  test_polylog_cephes(_Tp proto = _Tp{})
   {
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::scientific;
@@ -627,12 +627,12 @@ template<typename Tp>
     for (auto n : {0, 1, 2, 3, 4, 5})
       {
 	std::cout << "\n\nNon-negative integer degree: n = " << n << '\n';
-	const auto del = Tp{1} / Tp{10};
+	const auto del = _Tp{1} / _Tp{10};
 	for (int i = -200; i <= 10; ++i)
 	  {
 	    auto x = del * i;
 	    auto Ls_ceph = cephes::polylog(n, x);
-	    auto Ls_gnu = __gnu_cxx::polylog(Tp(n), x);
+	    auto Ls_gnu = __gnu_cxx::polylog(_Tp(n), x);
 	    std::cout << ' ' << n
 		      << ' ' << x
 		      << ' ' << Ls_ceph
@@ -643,12 +643,12 @@ template<typename Tp>
     std::cout << '\n' << std::flush;
   }
 
-template<typename Tp>
+template<typename _Tp>
   void
-  TestPolyLog(Tp proto = Tp{})
+  TestPolyLog(_Tp proto = _Tp{})
   {
-    const auto _S_pi = __gnu_cxx::__const_pi(proto);
-    const auto _S_2pi = __gnu_cxx::__const_2_pi(proto);
+    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+    const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
 
     std::cout.precision(__gnu_cxx::__digits10(proto) - 1);
     std::cout << std::scientific;
@@ -662,7 +662,7 @@ template<typename Tp>
     // the old implementation takes about 2.8s on my core2 and the new one 0.8s
     //     for(std::size_t i = 0; i < n; ++i)
     //     {
-    //       Tp x = Tp{10}* static_cast<Tp>(i)/n + 1.1;
+    //       _Tp x = _Tp{10}* static_cast<_Tp>(i)/n + 1.1;
     // //      std::cout << std::scientific<<x<<' '<<
     //       std::__detail::__riemann_zeta(x)
     // //      std::tr1::__detail::__riemann_zeta(x)
@@ -671,80 +671,80 @@ template<typename Tp>
     //     }
 
     // Something that didn't work in the original implementation
-    std::cout << std::riemann_zeta(std::complex<Tp>{5.1, 0.5}) << '\n';
-    std::cout << __gnu_cxx::hurwitz_zeta(Tp{5.1}, Tp{0.5}) << '\n';
-    std::cout << __gnu_cxx::hurwitz_zeta(Tp{5.1}, std::complex<Tp>{0.5}) << '\n';
-    std::cout << std::__detail::__hurwitz_zeta_polylog(Tp{5.1}, std::complex<Tp>{0.5}) << '\n';
-    std::cout << std::__detail::__polylog_exp(Tp{2.5}, std::complex<Tp>(Tp{15}, Tp{1})) << '\n';
+    std::cout << std::riemann_zeta(std::complex<_Tp>{5.1, 0.5}) << '\n';
+    std::cout << __gnu_cxx::hurwitz_zeta(_Tp{5.1}, _Tp{0.5}) << '\n';
+    std::cout << __gnu_cxx::hurwitz_zeta(_Tp{5.1}, std::complex<_Tp>{0.5}) << '\n';
+    std::cout << std::__detail::__hurwitz_zeta_polylog(_Tp{5.1}, std::complex<_Tp>{0.5}) << '\n';
+    std::cout << std::__detail::__polylog_exp(_Tp{2.5}, std::complex<_Tp>(_Tp{15}, _Tp{1})) << '\n';
 
     for(std::size_t k = 0; k < 32; ++k)
       {
-	auto w = std::complex<Tp>(Tp{0}, _S_2pi * k / Tp{32});
+	auto w = std::complex<_Tp>(_Tp{0}, _S_2pi * k / _Tp{32});
 	std::cout << "=======  " << k << "  ==========" << '\n';
-	std::cout << std::__detail::__polylog_exp(Tp{4}, w) << '\n';
-	std::cout << std::__detail::__polylog_exp(Tp{-4}, w) << '\n';
-	std::cout << std::__detail::__polylog_exp(Tp{2.6}, w) << '\n';
-	std::cout << std::__detail::__polylog_exp(Tp{-2.6}, w) << '\n';
+	std::cout << std::__detail::__polylog_exp(_Tp{4}, w) << '\n';
+	std::cout << std::__detail::__polylog_exp(_Tp{-4}, w) << '\n';
+	std::cout << std::__detail::__polylog_exp(_Tp{2.6}, w) << '\n';
+	std::cout << std::__detail::__polylog_exp(_Tp{-2.6}, w) << '\n';
       }
     std::cout << '\n';
 
-    std::cout << '\n' << std::__detail::__polylog_exp(Tp{2.6}, std::complex<Tp>(_S_pi, _S_pi)) << '\n';
+    std::cout << '\n' << std::__detail::__polylog_exp(_Tp{2.6}, std::complex<_Tp>(_S_pi, _S_pi)) << '\n';
 
     for(std::size_t k = 0; k < 10; ++k)
       {
-	auto w = std::complex<Tp>(-_S_pi / 2 - _S_pi / 5, 0);
-	std::cout << std::__detail::__polylog_exp(Tp{-4}, w) << '\n';
-	std::cout << std::__detail::__polylog_exp_sum(Tp{-4}, w) << '\n';
+	auto w = std::complex<_Tp>(-_S_pi / 2 - _S_pi / 5, 0);
+	std::cout << std::__detail::__polylog_exp(_Tp{-4}, w) << '\n';
+	std::cout << std::__detail::__polylog_exp_sum(_Tp{-4}, w) << '\n';
       }
     std::cout << '\n' << std::flush;
 
-    std::cout << '\n' << std::__detail::__polylog_exp_neg(Tp{-50.5}, std::complex<Tp>(Tp{1}, Tp{1})) << '\n';
-    std::cout << '\n' << std::__detail::__polylog_exp_neg(Tp{-5}, std::complex<Tp>(Tp{1}, Tp{1})) << '\n';
-    std::cout << '\n' << std::__detail::__polylog_exp_pos(Tp{2.3}, std::complex<Tp>(Tp{1}, Tp{1})) << '\n';
+    std::cout << '\n' << std::__detail::__polylog_exp_neg(_Tp{-50.5}, std::complex<_Tp>(_Tp{1}, _Tp{1})) << '\n';
+    std::cout << '\n' << std::__detail::__polylog_exp_neg(_Tp{-5}, std::complex<_Tp>(_Tp{1}, _Tp{1})) << '\n';
+    std::cout << '\n' << std::__detail::__polylog_exp_pos(_Tp{2.3}, std::complex<_Tp>(_Tp{1}, _Tp{1})) << '\n';
     //Don't trust Mathematica for small s
-    std::cout << '\n' << std::__detail::__polylog_exp_asymp(Tp{60.4}, std::complex<Tp>(Tp{30}, Tp{0})) << '\n';
+    std::cout << '\n' << std::__detail::__polylog_exp_asymp(_Tp{60.4}, std::complex<_Tp>(_Tp{30}, _Tp{0})) << '\n';
 
-    auto l = Tp{2};
+    auto l = _Tp{2};
     auto p = std::atan(l);
     std::ofstream data("polylog_el20.txt");
-    for(auto alpha : {Tp{0.5}, Tp{1}, Tp{1.5}, Tp{4}})
+    for(auto alpha : {_Tp{0.5}, _Tp{1}, _Tp{1.5}, _Tp{4}})
       {
 	for(int s : {-1, 1})
 	  {
-	    for(auto k = -_S_pi; k < _S_pi; k += Tp{0.002})
+	    for(auto k = -_S_pi; k < _S_pi; k += _Tp{0.002})
 	      {
-		data << k << ' ' << std::sqrt(Tp{1} + l * l)
-				* real(std::exp(std::complex<Tp>(0, -s * p))
-				/ (std::exp(std::complex<Tp>(0, k)) - std::exp(-alpha))) << '\n';
+		data << k << ' ' << std::sqrt(_Tp{1} + l * l)
+				* real(std::exp(std::complex<_Tp>(0, -s * p))
+				/ (std::exp(std::complex<_Tp>(0, k)) - std::exp(-alpha))) << '\n';
 		data << "&" << '\n';
 	      }
 	  }
       }
 
-    const auto del01 = Tp{1} / Tp{100};
-    const auto del05 = Tp{1} / Tp{20};
+    const auto del01 = _Tp{1} / _Tp{100};
+    const auto del05 = _Tp{1} / _Tp{20};
 
     std::ofstream test("test_polylog.dat");
     test.precision(std::cout.precision());
-    for (auto s = Tp{2.5}; s < Tp{3.5}; s += del01)
-      test << s << ' ' << std::setw(w) << std::real(std::__detail::__polylog(s, Tp{2})) - Tp{2} << '\n';
+    for (auto s = _Tp{2.5}; s < _Tp{3.5}; s += del01)
+      test << s << ' ' << std::setw(w) << std::real(std::__detail::__polylog(s, _Tp{2})) - _Tp{2} << '\n';
     test << '\n' << std::flush;
 
-    std::cout << '\n' << std::__detail::__polylog(Tp{3.1}, Tp{2}) << '\n';
-    std::cout << '\n' << std::__detail::__polylog_exp_pos(Tp{3.1}, std::complex<Tp>(std::log(Tp{2}))) << '\n';
+    std::cout << '\n' << std::__detail::__polylog(_Tp{3.1}, _Tp{2}) << '\n';
+    std::cout << '\n' << std::__detail::__polylog_exp_pos(_Tp{3.1}, std::complex<_Tp>(std::log(_Tp{2}))) << '\n';
 
     std::cout << "\nTest function 1 [PolyLog_Exp_pos(k,exp(i2pik)]:\n";
     for (std::size_t k = 3; k < 8; ++k)
-      for (Tp x = 0; x < Tp{1}; x += del05)
+      for (_Tp x = 0; x < _Tp{1}; x += del05)
 	std::cout << k
 		  << ' ' << x
-		  << ' ' << std::__detail::__polylog_exp_pos(k, std::polar(Tp{1}, _S_2pi * x))
+		  << ' ' << std::__detail::__polylog_exp_pos(k, std::polar(_Tp{1}, _S_2pi * x))
 		  << '\n';
     std::cout << '\n' << std::flush;
 
     std::cout << "\nTest function 2 [PolyLog_Exp_pos(k,x)]:\n";
     for (std::size_t k = 3; k < 8; ++k)
-      for (Tp x = 0; x < 6.28; x += del05)
+      for (_Tp x = 0; x < 6.28; x += del05)
 	std::cout << k
 		  << ' ' << x
 		  << ' ' << std::__detail::__polylog_exp_pos(k, x)
@@ -752,44 +752,44 @@ template<typename Tp>
     std::cout << '\n' << std::flush;
 
     std::cout << "\nTest function 3 [PolyLog_Exp_neg(s<0, exp(i2pik)]:\n";
-    for (Tp k = Tp{-8}; k < Tp{0}; k += Tp{1} / Tp{13})
-      for(Tp x = 0; x < Tp{1}; x += del05)
+    for (_Tp k = _Tp{-8}; k < _Tp{0}; k += _Tp{1} / _Tp{13})
+      for(_Tp x = 0; x < _Tp{1}; x += del05)
 	std::cout << k
 		  << ' ' << x
-		  << ' ' << std::__detail::__polylog_exp_neg(k, std::polar(Tp{1}, _S_2pi * x))
+		  << ' ' << std::__detail::__polylog_exp_neg(k, std::polar(_Tp{1}, _S_2pi * x))
 		  << '\n';
     std::cout << '\n' << std::flush;
 
     std::cout << "\nTest function 4 + 5 [PolyLog_Exp_neg(k<0, exp(i2pik]:\n";
     for (int k = -40; k < 0; ++k)
-      for (Tp x = 0; x < Tp{1}; x += del05)
+      for (_Tp x = 0; x < _Tp{1}; x += del05)
 	std::cout << k
 		  << ' ' << x
-		  << ' ' << std::__detail::__polylog_exp_neg(k, std::polar(Tp{1}, _S_2pi * x))
+		  << ' ' << std::__detail::__polylog_exp_neg(k, std::polar(_Tp{1}, _S_2pi * x))
 		  << '\n';
     std::cout << '\n' << std::flush;
 
     std::cout << "\nTest series 6 [PolyLog_Exp_pos(s, exp(i2pix)]:\n";
-    for (Tp k = Tp{1} / Tp{7}; k < Tp{13}; k += Tp{1} / Tp{11})
-      for (Tp x = Tp{0}; x < Tp{1}; x += del05)
+    for (_Tp k = _Tp{1} / _Tp{7}; k < _Tp{13}; k += _Tp{1} / _Tp{11})
+      for (_Tp x = _Tp{0}; x < _Tp{1}; x += del05)
 	std::cout << k
 		  << ' ' << x
-		  << ' ' << std::__detail::__polylog_exp_pos(k, std::polar(Tp{1}, _S_2pi * x))
+		  << ' ' << std::__detail::__polylog_exp_pos(k, std::polar(_Tp{1}, _S_2pi * x))
 		  << '\n';
     std::cout << '\n' << std::flush;
 
     std::cout << "\nTest series 7 [PolyLog_Exp_asym(k, 100 exp(i2pix))]:\n";
-    for (Tp k = Tp{-13}; k < Tp{13}; k += Tp{1} / Tp{11})
-      for (Tp x = Tp{0}; x < Tp{1}; x += del01)
+    for (_Tp k = _Tp{-13}; k < _Tp{13}; k += _Tp{1} / _Tp{11})
+      for (_Tp x = _Tp{0}; x < _Tp{1}; x += del01)
 	std::cout << k
 		  << ' ' << x
-		  << ' ' << std::__detail::__polylog_exp_asymp(k, Tp{100} * std::polar(Tp{1}, _S_2pi * x))
+		  << ' ' << std::__detail::__polylog_exp_asymp(k, _Tp{100} * std::polar(_Tp{1}, _S_2pi * x))
 		  << '\n';
     std::cout << '\n' << std::flush;
 
     std::cout << "\nTest series 8 [PolyLog_Exp_negative_real_part(k, x)]:\n";
-    for (Tp k = Tp{-13}; k < Tp{13}; k += Tp{1} / Tp{11})
-      for (Tp x = Tp{-7} / Tp{10} * _S_pi; x > -_S_2pi; x -= del05)
+    for (_Tp k = _Tp{-13}; k < _Tp{13}; k += _Tp{1} / _Tp{11})
+      for (_Tp x = _Tp{-7} / _Tp{10} * _S_pi; x > -_S_2pi; x -= del05)
 	std::cout << k
 		  << ' ' << x
 		  << ' ' << std::__detail::__polylog_exp_sum(k, x)

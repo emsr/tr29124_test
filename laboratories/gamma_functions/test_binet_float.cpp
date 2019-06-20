@@ -80,7 +80,7 @@ namespace __detail
     _Tp
     __binet_recursive(_Tp __z)
     {
-      const auto _S_2pi = __gnu_cxx::__math_constants<_Tp>::__2_pi;
+      const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
       const auto __c = _S_2pi * __z;
       for (int __k = 1; __k < 10; ++__k)
 	{
@@ -710,8 +710,8 @@ template<typename _Tp>
   {
     using _Real = _Tp;
     constexpr auto _S_ln2pi
-      = __gnu_cxx::__math_constants<_Real>::__ln_2
-      + __gnu_cxx::__math_constants<_Real>::__ln_pi;
+      = __gnu_cxx::math::__ln_2_v<_Real>
+      + __gnu_cxx::math::__ln_pi_v<_Real>;
 
     std::cout.precision(std::numeric_limits<_Real>::digits10);
     auto width = std::cout.precision() + 8;

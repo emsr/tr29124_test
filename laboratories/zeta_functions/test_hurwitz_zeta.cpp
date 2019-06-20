@@ -46,7 +46,7 @@
 	  if ((__n / 2) % 2 == 0)
 	    __fact *= -_Tp{1};
 	  for (unsigned int __k = 1; __k <= __n; ++__k)
-	    __fact *= __k / (_Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi);
+	    __fact *= __k / (_Tp{2} * __gnu_cxx::math::__pi_v<_Tp>);
 	  __fact *= _Tp{2};
 
 	  _Tp __sum = _Tp{0};

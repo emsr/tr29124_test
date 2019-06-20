@@ -17,7 +17,7 @@
     __lobatto_zeros(unsigned int __l, _Tp proto = _Tp{})
     {
       const auto _S_eps = __gnu_cxx::__epsilon(proto);
-      const auto _S_pi = __gnu_cxx::__const_pi(proto);
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
       const unsigned int _S_maxit = 1000u;
 
       std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__l);

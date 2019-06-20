@@ -31,12 +31,12 @@ template<typename _Tp>
 template<typename _Tp>
   constexpr _Tp
   log_max()
-  { return log2(std::numeric_limits<_Tp>::max_exponent * __gnu_cxx::__math_constants<_Tp>::__ln_2); }
+  { return log2(std::numeric_limits<_Tp>::max_exponent * __gnu_cxx::math::__ln_2_v<_Tp>); }
 
 template<typename _Tp>
   constexpr _Tp
   log10_max()
-  { return log2(std::numeric_limits<_Tp>::max_exponent10 * __gnu_cxx::__math_constants<_Tp>::__ln_2); }
+  { return log2(std::numeric_limits<_Tp>::max_exponent10 * __gnu_cxx::math::__ln_2_v<_Tp>); }
 
 
 template<typename _Tp>
@@ -57,12 +57,12 @@ template<typename _Tp>
 template<typename _Tp>
   constexpr _Tp
   log_min()
-  { return -log2(-std::numeric_limits<_Tp>::min_exponent * __gnu_cxx::__math_constants<_Tp>::__ln_2); }
+  { return -log2(-std::numeric_limits<_Tp>::min_exponent * __gnu_cxx::math::__ln_2_v<_Tp>); }
 
 template<typename _Tp>
   constexpr _Tp
   log10_min()
-  { return -log2(-std::numeric_limits<_Tp>::min_exponent10 * __gnu_cxx::__math_constants<_Tp>::__ln_2); }
+  { return -log2(-std::numeric_limits<_Tp>::min_exponent10 * __gnu_cxx::math::__ln_2_v<_Tp>); }
 
 
 template<typename _Tp>
@@ -83,12 +83,12 @@ template<typename _Tp>
 template<typename _Tp>
   constexpr _Tp
   log_eps()
-  { return -log2(std::numeric_limits<_Tp>::digits * __gnu_cxx::__math_constants<_Tp>::__ln_2); }
+  { return -log2(std::numeric_limits<_Tp>::digits * __gnu_cxx::math::__ln_2_v<_Tp>); }
 
 template<typename _Tp>
   constexpr _Tp
   log10_eps()
-  { return -log2(std::numeric_limits<_Tp>::digits10 * __gnu_cxx::__math_constants<_Tp>::__ln_2); }
+  { return -log2(std::numeric_limits<_Tp>::digits10 * __gnu_cxx::math::__ln_2_v<_Tp>); }
 
 #else
 

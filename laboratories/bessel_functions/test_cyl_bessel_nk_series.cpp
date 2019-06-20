@@ -12,7 +12,7 @@ template<typename _Tp>
   cyl_bessel_nk_series(_Tp __nu, _Tp __x, int __max_iter = 100)
   {
     const auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
-    const auto _S_pi = __gnu_cxx::__const_pi<_Tp>();
+    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
     const auto _S_fp_min = __gnu_cxx::__sqrt_min(__nu);
     const int __n = std::nearbyint(__nu);
     const auto __mu = __nu - _Tp(__n);

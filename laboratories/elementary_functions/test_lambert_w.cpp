@@ -149,7 +149,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
 
     const int N0 = 100;
-    const auto _S_e = __gnu_cxx::__const_e(proto);
+    const auto _S_e = __gnu_cxx::math::__e_v<_Tp>;
     const auto _S_1_e = _Tp{1} / _S_e;
     const auto del0 = (_S_e + _S_1_e) / N0;
 

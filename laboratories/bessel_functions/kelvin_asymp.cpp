@@ -25,9 +25,9 @@ template<typename _Tp>
     Kelvin<_Tp>
     __kelvin_asymp(_Tp __x)
     {
-      constexpr auto _S_sqrt2 = __gnu_cxx::__const_root_2<_Tp>();
-      constexpr auto _S_pi_4 = __gnu_cxx::__const_pi<_Tp>() / _Tp{4};
-      constexpr auto _S_pi_8 = __gnu_cxx::__const_pi<_Tp>() / _Tp{8};
+      constexpr auto _S_sqrt2 = __gnu_cxx::math::__root_2_v<_Tp>;
+      constexpr auto _S_pi_4 = __gnu_cxx::math::__pi_v<_Tp> / _Tp{4};
+      constexpr auto _S_pi_8 = __gnu_cxx::math::__pi_v<_Tp> / _Tp{8};
       constexpr auto _S_mix_iter = 100;
 
       const auto __xrt2 = __x / _S_sqrt2;

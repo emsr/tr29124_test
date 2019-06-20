@@ -41,7 +41,7 @@ template<typename _Tp>
   _Tp
   __trigamma_cont_frac(_Tp __x)
   {
-    const auto _S_2pi = __gnu_cxx::__const_2_pi(__x);
+    const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
     const auto _S_12pi = _Tp{1} / _S_2pi / _Tp{6};
 
     auto __a

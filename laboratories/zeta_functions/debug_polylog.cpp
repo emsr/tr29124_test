@@ -17,8 +17,8 @@ main()
   std::cout << std::scientific;
   const auto w = 8 + std::cout.precision();
 
-  //const auto _S_pi = __gnu_cxx::__const_pi(1.0);
-  const auto _S_2pi = __gnu_cxx::__const_2_pi(1.0);
+  //const auto _S_pi = __gnu_cxx::math::__pi;
+  const auto _S_2pi = __gnu_cxx::math::__2_pi;
 
   auto li_ok = std::__detail::__polylog(2.0, std::complex<double>(-12.1800));
   auto li_bad = std::__detail::__polylog(2.0, std::complex<double>(-12.1850));

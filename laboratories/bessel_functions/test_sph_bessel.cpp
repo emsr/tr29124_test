@@ -14,7 +14,7 @@ template<typename _Tp>
   void
   test_sph_bessel(_Tp proto = _Tp{})
   {
-    const auto _S_pi = __gnu_cxx::__const_pi(proto);
+    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
 
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;

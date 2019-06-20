@@ -121,7 +121,7 @@ template<typename _Tp>
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     auto w = std::cout.precision() + 8;
 
-    const auto _S_pi = __gnu_cxx::__const_2_pi<_Tp>();
+    const auto _S_pi = __gnu_cxx::math::__2_pi_v<_Tp>;
     const auto del = _S_pi / 400;
     for (int i = -200; i <= 200; ++i)
       {

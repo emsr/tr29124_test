@@ -8,7 +8,7 @@ template<typename _Tp, typename _Hfun>
   std::vector<_Tp>
   cyl_bessel_zeros(_Hfun __cyl_ratio, _Tp __nu, _Tp __a, _Tp __b)
   {
-    const auto _S_pi_2 = __gnu_cxx::__const_pi_half(__nu);
+    const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Tp>;
     const auto _S_eps = __gnu_cxx::__epsilon(__nu);
     auto _Delta = _S_pi_2;
     std::vector<_Tp> __zeros;

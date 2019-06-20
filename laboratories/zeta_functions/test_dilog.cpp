@@ -20,7 +20,7 @@ namespace __detail
     {
       static constexpr unsigned long long _S_maxit = 100000ULL;
       static const auto _S_eps = 10 * __gnu_cxx::__epsilon(__x);
-      static const auto _S_pipio6 = __gnu_cxx::__const_pi_sqr_div_6(__x);
+      static const auto _S_pipio6 = __gnu_cxx::math::__pi_sqr_div_6_v<_Tp>;
       if (std::isnan(__x))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else if (__x > _Tp(+1))

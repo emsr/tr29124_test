@@ -2,12 +2,14 @@
  *
  */
 
-#include <cmath>
 #include <limits>
 #include <iostream>
 #include <algorithm> // For clamp
 
+#include <quadmath.h>
 #include <bits/float128_io.h>
+#include <bits/float128_math.h> // Must come before <cmath>.
+#include <cmath>
 
 int
 main()

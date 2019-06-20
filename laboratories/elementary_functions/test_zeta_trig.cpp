@@ -94,7 +94,7 @@ template<typename _Tp>
   _Tp
   cot_pi_zeta(_Tp __x)
   {
-    const auto _S_pi = __gnu_cxx::__const_pi(__x);
+    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
     const auto __pi_x = _S_pi * __x;
     const auto __xx = __x * __x;
     auto __xxk = __xx;
@@ -120,7 +120,7 @@ template<typename _Tp>
   _Tp
   csc_pi_zeta(_Tp __x)
   {
-    const auto _S_pi = __gnu_cxx::__const_pi(__x);
+    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
     const auto __pi_x = _S_pi * __x;
     const auto __xx = __x * __x;
     auto __xxk = __xx;
@@ -145,7 +145,7 @@ template<typename _Tp>
   _Tp
   tan_pi_zeta(_Tp __x)
   {
-    const auto _S_pi = __gnu_cxx::__const_pi(__x);
+    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
     const auto __pi_x = _S_pi * __x;
     const auto __xx = __x * __x;
     auto __xxk = __xx;
@@ -170,7 +170,7 @@ template<typename _Tp>
   _Tp
   sec_pi_zeta(_Tp __x)
   {
-    const auto _S_pi = __gnu_cxx::__const_pi(__x);
+    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
     const auto __pi_x = _S_pi * __x;
     const auto __xx = __x * __x;
     auto __xxk = __x;
@@ -196,7 +196,7 @@ template<typename _Tp>
   _Tp
   coth_pi_zeta(_Tp __x)
   {
-    const auto _S_pi = __gnu_cxx::__const_pi(__x);
+    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
     const auto __pi_x = _S_pi * __x;
     const auto __xx = -__x * __x;
     auto __xxk = __xx;
@@ -222,7 +222,7 @@ template<typename _Tp>
   _Tp
   csch_pi_zeta(_Tp __x)
   {
-    const auto _S_pi = __gnu_cxx::__const_pi(__x);
+    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
     const auto __pi_x = _S_pi * __x;
     const auto __xx = -__x * __x;
     auto __xxk = __xx;
@@ -247,7 +247,7 @@ template<typename _Tp>
   _Tp
   tanh_pi_zeta(_Tp __x)
   {
-    const auto _S_pi = __gnu_cxx::__const_pi(__x);
+    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
     const auto __pi_x = _S_pi * __x;
     const auto __xx = -__x * __x;
     auto __xxk = __xx;
@@ -272,7 +272,7 @@ template<typename _Tp>
   _Tp
   sech_pi_zeta(_Tp __x)
   {
-    const auto _S_pi = __gnu_cxx::__const_pi(__x);
+    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
     const auto __pi_x = _S_pi * __x;
     const auto __xx = -__x * __x;
     auto __xxk = __x;

@@ -130,7 +130,7 @@
 
       static constexpr _Real
       __true_Wronskian()
-      { return _Real{1} / __gnu_cxx::__math_constants<_Real>::__pi; }
+      { return _Real{1} / __gnu_cxx::math::__pi_v<_Real>; }
     };
 
 
@@ -1025,8 +1025,8 @@
 				  bool __return_fock_airy) const
     {
       constexpr auto _S_eps = __gnu_cxx::__epsilon(_Tp{});
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
+      constexpr auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      constexpr auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Tp>;
       constexpr auto _S_Ai0 = _Tp{3.550280538878172392600631860041831763980e-1Q};
       constexpr auto _S_Aip0 = _Tp{2.588194037928067984051835601892039634793e-1Q};
       //constexpr auto _S_Bi0 = _Tp{6.149266274460007351509223690936135535960e-1Q};
@@ -1554,8 +1554,8 @@
     _Airy_asymp<_Tp>::operator()(std::complex<_Tp> __t,
 				 bool __return_fock_airy) const
     {
-      constexpr auto _S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Tp>::__root_pi;
+      constexpr auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      constexpr auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Tp>;
       constexpr auto _S_i = __cmplx(_Tp{0}, _Tp{1});
       if (std::real(__t) > _Tp{0})
 	{
@@ -1875,7 +1875,7 @@
       constexpr _Tp _S_2d3 {_Tp{2} / _Tp{3}};
       constexpr _Tp _S_9d4 {_Tp{9} / _Tp{4}};
       constexpr _Tp _S_pimh{5.641895835477562869480794515607725858438e-01L};
-      constexpr _Tp _S_pid4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
+      constexpr _Tp _S_pid4 = __gnu_cxx::math::__pi_quarter_v<_Tp>;
 
       constexpr std::complex<_Tp> _S_zone{1};
       constexpr int _S_ncoeffs = 9;
@@ -2206,8 +2206,8 @@ template<typename _Sum>
     using _Val = std::__detail::__num_traits_t<_Tp>;
     constexpr int _S_max_iter = 10000;
     constexpr auto _S_eps = std::numeric_limits<_Val>::epsilon();
-    constexpr auto _S_sqrt_pi = __gnu_cxx::__math_constants<_Val>::__root_pi;
-    constexpr auto _S_pi_3 = __gnu_cxx::__math_constants<_Val>::__pi_third;
+    constexpr auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Val>;
+    constexpr auto _S_pi_3 = __gnu_cxx::math::__pi_third_v<_Val>;
     constexpr auto _S_pi_6 = _S_pi_3 / _Val{2};
     constexpr auto _S_i = _Tp{0, 1};
 

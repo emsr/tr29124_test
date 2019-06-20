@@ -40,7 +40,7 @@
     _Tp
     __p(int __k, _Tp __g)
     {
-      const auto _S_pi  = __gnu_cxx::__math_constants<_Tp>::__pi;
+      const auto _S_pi  = __gnu_cxx::math::__pi_v<_Tp>;
       auto __fact = std::sqrt(_Tp{2} / _S_pi);
       auto __sum = __cheby(2 * __k + 1, 1) * __fact
 		 * std::exp(_Tp(__g + 0.5Q))
@@ -105,8 +105,8 @@
 	[=](_Tp __z)
 	-> _Tp
 	{
-	  constexpr auto _S_ln_2 = __gnu_cxx::__math_constants<_Tp>::__ln_2;
-	  constexpr auto _S_ln_pi = __gnu_cxx::__math_constants<_Tp>::__ln_pi;
+	  constexpr auto _S_ln_2 = __gnu_cxx::math::__ln_2_v<_Tp>;
+	  constexpr auto _S_ln_pi = __gnu_cxx::math::__ln_pi_v<_Tp>;
 	  constexpr auto _S_log_sqrt_2pi = (_S_ln_2 + _S_ln_pi) / _Tp{2};
 	  auto __fact = _Tp{1};
 	  auto __sum = _Tp{0.5Q} * __p(0, __g);

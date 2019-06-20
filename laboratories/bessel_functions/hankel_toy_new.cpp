@@ -6,6 +6,8 @@
 #include <iostream>
 #include <iomanip>
 #include <tuple>
+#include <bits/float128_math.h>
+#include <bits/complex128_math.h>
 #include <bits/float128_io.h>
 #include <ext/polynomial.h>
 #include <ext/math_const.h>

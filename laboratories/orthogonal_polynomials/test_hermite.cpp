@@ -58,7 +58,7 @@
       const auto _S_eps = __gnu_cxx::__epsilon(__proto);
       const unsigned int _S_maxit = 1000u;
       const auto _S_pim4 = _Tp{0.7511255444649424828587030047762276930510L};
-      const auto _S_sqrt_pi = __gnu_cxx::__const_root_pi(__proto);
+      const auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Tp>;
 
       std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
 
@@ -144,8 +144,8 @@ template<typename _Tp>
   void
   test_hermite(_Tp proto = _Tp{})
   {
-    const auto _S_pi = __gnu_cxx::__const_pi(proto);
-    const auto _S_sqrt_2 = __gnu_cxx::__const_root_2(proto);
+    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+    const auto _S_sqrt_2 = __gnu_cxx::math::__root_2_v<_Tp>;
     const auto _S_Ai0 = _Tp{-2.3381074104597670384891972524467L};
 
     auto fname = [](std::string_view front, int n, std::string_view back)
