@@ -7,7 +7,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_interval
 #include <iostream>
 #include <iomanip>
 
-#include "interval"
+#include <ext/interval>
 
 template<typename _Tp>
   void

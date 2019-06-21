@@ -360,7 +360,7 @@ template<typename _Tp, typename _CharT,
     __s.flags(__os.flags());
     __s.imbue(__os.getloc());
     __s.precision(__os.precision());
-    __s << '[' << __ivl.upper() << ',' << __ivl.lower() << ']';
+    __s << '[' << __ivl.lower() << ',' << __ivl.upper() << ']';
     return __os << __s.str();
   }
 
@@ -375,23 +375,23 @@ template<typename _Tp, typename _CharT,
       {
 	if (_Traits::eq(__ch, __is.widen('[')))
 	  {
-	    _Tp __u;
-	    if (__is >> __u >> __ch)
+	    _Tp __lower;
+	    if (__is >> __lower >> __ch)
 	      {
 		const _CharT __rbrace = __is.widen(']');
 		if (_Traits::eq(__ch, __rbrace))
 		  {
-		    __ivl = __u;
+		    __ivl = __lower;
 		    __fail = false;
 		  }
 		else if (_Traits::eq(__ch, __is.widen(',')))
 		  {
-		    _Tp __v;
-		    if (__is >> __v >> __ch)
+		    _Tp __upper;
+		    if (__is >> __upper >> __ch)
 		      {
 			if (_Traits::eq(__ch, __rbrace))
 			  {
-			    __ivl = interval<_Tp>(__u, __v);
+			    __ivl = interval<_Tp>(__lower, __upper);
 			    __fail = false;
 			  }
 			else
@@ -405,10 +405,10 @@ template<typename _Tp, typename _CharT,
 	else
 	  {
 	    __is.putback(__ch);
-	    _Tp __u;
-	    if (__is >> __u)
+	    _Tp __lower;
+	    if (__is >> __lower)
 	      {
-		__ivl = __u;
+		__ivl = __lower;
 		__fail = false;
 	      }
 	  }
