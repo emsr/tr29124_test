@@ -1,4 +1,5 @@
-sudo: require
+sudo: required
+dist: trusty
 language: cpp
 compiler: gcc
 
@@ -14,8 +15,14 @@ install:
   - sudo apt-get install -qq libgsl-dev
   - sudo apt-get install -qq libboost-all-dev
 
+install:
+  - sudo apt-get install -qq gcc-8
+  - sudo apt-get install -qq gfortran-8
+
 script:
+  - cmake .
   - make
+  - make -k test
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -t 1af5a35c-cce4-4611-878a-7f0e78841353

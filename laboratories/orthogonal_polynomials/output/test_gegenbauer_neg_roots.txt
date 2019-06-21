@@ -1,0 +1,58 @@
+
+
+ n = 50; lambda = -24.5
+
+The polynomial coefficients are:
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+                                   -nan
+
+Max coefficient:  8.88178419700114789283138076842453e-16
