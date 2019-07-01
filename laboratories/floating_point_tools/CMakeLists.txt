@@ -31,8 +31,9 @@ target_include_directories(test_float128 PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_float128 quadmath)
 add_test(NAME run_test_float128 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_float128 > output/test_float128.txt")
@@ -45,8 +46,9 @@ target_include_directories(test_limits PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_limits quadmath)
 add_test(NAME run_test_limits COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_limits > output/test_limits.txt")
@@ -60,8 +62,9 @@ target_include_directories(test_maxint PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_maxint quadmath gmp mpfr)
 add_test(NAME run_test_maxint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_maxint > output/test_maxint.txt")
@@ -74,8 +77,9 @@ target_include_directories(test_mod2pi PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_mod2pi quadmath)
 add_test(NAME run_test_mod2pi COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_mod2pi > output/test_mod2pi.txt")
@@ -88,8 +92,9 @@ target_include_directories(test_numeric_limits PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_numeric_limits quadmath gmp mpfr)
 

@@ -29,8 +29,9 @@ target_include_directories(build_inv_erf_coefs PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(build_inv_erf_coefs
   quadmath
@@ -45,8 +46,9 @@ target_include_directories(test_dawson PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_dawson
   quadmath
@@ -61,8 +63,9 @@ target_include_directories(test_erfc PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_erfc quadmath)
 add_test(NAME run_test_erfc COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_erfc > output/test_erfc.txt")
@@ -76,8 +79,9 @@ target_include_directories(test_experfc PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_experfc
   quadmath
@@ -98,8 +102,9 @@ target_include_directories(test_fresnel PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_fresnel quadmath)
 add_test(NAME run_test_fresnel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_fresnel > output/test_fresnel.txt")
@@ -112,8 +117,9 @@ target_include_directories(test_inv_erf PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include
 )
 target_link_libraries(test_inv_erf quadmath)
@@ -121,15 +127,16 @@ add_test(NAME run_test_inv_erf COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_inv
 
 add_executable(test_owens_t test_owens_t.cpp)
 target_include_directories(test_owens_t PRIVATE
-  ../../wrappers
   ../../cxx_math_constants/include
   ../../include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include
+  ../../wrappers
 )
 target_link_libraries(test_owens_t
   quadmath

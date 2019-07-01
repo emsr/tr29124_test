@@ -30,8 +30,9 @@ target_include_directories(test_prime_factors PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_prime_factors quadmath)
 add_test(NAME run_test_prime_factors COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_prime_factors > output/test_prime_factors.txt")

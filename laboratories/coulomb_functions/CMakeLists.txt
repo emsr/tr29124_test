@@ -33,8 +33,9 @@ target_include_directories(test_hydrogen PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include
   ../../wrappers)
 target_link_libraries(test_hydrogen quadmath)

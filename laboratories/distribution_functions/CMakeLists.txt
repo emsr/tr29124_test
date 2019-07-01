@@ -28,6 +28,7 @@ target_include_directories(test_marcum_q PRIVATE
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
   ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_marcum_q quadmath)

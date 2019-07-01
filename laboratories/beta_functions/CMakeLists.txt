@@ -27,6 +27,7 @@ target_include_directories(test_beta PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
@@ -41,6 +42,7 @@ target_include_directories(test_beta_inc PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include)
@@ -54,6 +56,7 @@ target_include_directories(test_inv_ibeta PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include

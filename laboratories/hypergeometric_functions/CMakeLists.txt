@@ -39,8 +39,9 @@ target_include_directories(test_conf_hyperg PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_conf_hyperg quadmath)
 add_test(NAME run_test_conf_hyperg COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_conf_hyperg > output/test_conf_hyperg.txt")
@@ -52,8 +53,9 @@ target_include_directories(test_conf_hyperg_limit PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_conf_hyperg_limit quadmath)
 add_test(NAME run_test_conf_hyperg_limit COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_conf_hyperg_limit > output/test_conf_hyperg_limit.txt")
@@ -66,8 +68,9 @@ target_include_directories(test_hyperg PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_hyperg
   quadmath

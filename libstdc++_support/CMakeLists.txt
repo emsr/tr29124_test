@@ -25,15 +25,16 @@ add_definitions(-D__TEST_DEBUG)
 
 set(tr29124_INCLUDE_DIRS
   .
-  ../wrappers
   ../include
   ../cxx_math_constants/include
   ../cxx_fp_utils/include
   ../cxx_complex_utils/include
   ../cxx_complex_math/include
-  ../polynomial/include
+  ../cxx_continued_fractions/include
   ../cxx_summation/include
-  ../quadrature/include)
+  ../polynomial/include
+  ../quadrature/include
+  ../wrappers)
 
 add_executable(testcase testcase.cpp)
 target_link_libraries(testcase -L../wrappers quadmath -lwrap_gsl -lwrap_boost -lwrap_burkhardt)

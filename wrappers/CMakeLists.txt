@@ -24,6 +24,7 @@ target_include_directories(wrap_boost PRIVATE
   ../cxx_fp_utils/include
   ../cxx_complex_utils/include
   ../cxx_complex_math/include
+  ../cxx_continued_fractions/include
   ../cxx_summation/include)
 
 
@@ -44,6 +45,7 @@ target_include_directories(wrap_gsl PRIVATE
   ../cxx_fp_utils/include
   ../cxx_complex_utils/include
   ../cxx_complex_math/include
+  ../cxx_continued_fractions/include
   ../cxx_summation/include
   ../3rdparty/gslextras)
 target_link_libraries(wrap_gsl quadmath gsl gslcblas)
@@ -202,6 +204,7 @@ target_include_directories(wrap_cephes PRIVATE
   ../cxx_fp_utils/include
   ../cxx_complex_utils/include
   ../cxx_complex_math/include
+  ../cxx_continued_fractions/include
   ../cxx_summation/include
   ../3rdparty/cephes)
 
@@ -245,6 +248,7 @@ target_include_directories(wrap_burkhardt PRIVATE
   ../cxx_fp_utils/include
   ../cxx_complex_utils/include
   ../cxx_complex_math/include
+  ../cxx_continued_fractions/include
   ../cxx_summation/include
   ../3rdparty/burkhardt)
 
@@ -259,6 +263,7 @@ target_include_directories(wrap_lerchphi PRIVATE
   ../cxx_fp_utils/include
   ../cxx_complex_utils/include
   ../cxx_complex_math/include
+  ../cxx_continued_fractions/include
   ../cxx_summation/include
   ../3rdparty/lerchphi/Source)
 
@@ -273,6 +278,7 @@ target_include_directories(wrap_faddeeva PRIVATE
   ../cxx_fp_utils/include
   ../cxx_complex_utils/include
   ../cxx_complex_math/include
+  ../cxx_continued_fractions/include
   ../cxx_summation/include
   ../3rdparty/Faddeeva)
 
@@ -287,5 +293,6 @@ target_include_directories(wrap_lambert PRIVATE
   ../cxx_fp_utils/include
   ../cxx_complex_utils/include
   ../cxx_complex_math/include
+  ../cxx_continued_fractions/include
   ../cxx_summation/include
   ../3rdparty/LambertW)

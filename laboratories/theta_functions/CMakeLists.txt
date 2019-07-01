@@ -27,6 +27,7 @@ target_include_directories(test_jacobi_ellint PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
@@ -41,6 +42,7 @@ target_include_directories(test_jacobi_inv PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include)
@@ -54,6 +56,7 @@ target_include_directories(test_jacobi_theta PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
@@ -68,6 +71,7 @@ target_include_directories(test_theta PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include)
@@ -81,6 +85,7 @@ target_include_directories(test_weierstrass_ellint PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include)
