@@ -70,6 +70,7 @@ target_include_directories(test_hyperg PRIVATE
   ../../cxx_complex_math/include
   ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include
   ../../wrappers)
 target_link_libraries(test_hyperg

@@ -329,6 +329,7 @@ add_executable(test_struve test_struve.cpp)
 target_include_directories(test_struve PRIVATE
   .
   ../../cxx_math_constants/include
+  ../../include
   ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include

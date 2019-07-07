@@ -209,6 +209,7 @@ target_include_directories(test_polylog PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../polynomial/include
   ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../quadrature/include

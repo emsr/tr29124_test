@@ -24,7 +24,7 @@ target_include_directories(cxx_chebyshev INTERFACE include)
 add_executable(test_cxx_chebyshev test_chebyshev.cpp)
 target_link_libraries(test_cxx_chebyshev cxx_chebyshev quadmath)
 target_include_directories(test_cxx_chebyshev PRIVATE
-  ../include # float128
+  ../cxx_float128/include
   ../cxx_complex_utils/include
   ../polynomial/include
   ../cxx_fp_utils/include)
