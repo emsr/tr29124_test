@@ -32,10 +32,8 @@
 
 #pragma GCC system_header
 
-#include <ext/complex_util.h>
 #include <ext/summation.h>
 #include <ext/polynomial.h>
-#include <ext/math_constants.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {

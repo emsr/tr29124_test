@@ -50,10 +50,6 @@
 #  define _GLIBCXX20_CONSTEXPR 
 #endif
 
-#ifdef _GLIBCXX_USE_FLOAT128
-#  include <bits/complex128_math.h>
-#endif // _GLIBCXX_USE_FLOAT128
-
 // Get rid of a macro possibly defined in <complex.h>
 #undef complex
 
@@ -2047,9 +2043,5 @@ _GLIBCXX_END_NAMESPACE_VERSION
 
 #include <bits/specfun_util.h>
 #include <ext/complex_util.h>
-
-#ifdef _GLIBCXX_USE_FLOAT128
-#  include <bits/complex128.h>
-#endif // _GLIBCXX_USE_FLOAT128
 
 #endif  /* _GLIBCXX_COMPLEX */

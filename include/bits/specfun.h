@@ -47,7 +47,14 @@
 #pragma GCC system_header
 
 #include <bits/stl_algobase.h>
+
+#include <complex>
+
+#include <ext/math_constants.h>
+#include <ext/math_util.h>
+#include <ext/complex_util.h>
 #include <bits/specfun_state.h>
+#include <bits/quadrature_point.h>
 #include <bits/specfun_util.h>
 
 #if __cplusplus >= 201103L

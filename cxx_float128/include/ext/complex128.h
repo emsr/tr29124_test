@@ -22,19 +22,19 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/complex128.h
+/** @file ext/complex128.h
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{xxxxx}
  */
 
-#ifndef _GLIBCXX_BITS_COMPLEX128_H
-#define _GLIBCXX_BITS_COMPLEX128_H 1
+#ifndef _GLIBCXX_EXT_COMPLEX128_H
+#define _GLIBCXX_EXT_COMPLEX128_H 1
 
 #pragma GCC system_header
 
 #ifdef _GLIBCXX_USE_FLOAT128
 
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 
 typedef _Complex float __attribute__((mode(TC))) __complex128;
 
@@ -276,4 +276,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 
 } // namespace std
 
-#endif // _GLIBCXX_BITS_COMPLEX128_H
+#endif // _GLIBCXX_EXT_COMPLEX128_H

@@ -27,8 +27,13 @@ add_executable(test_arith_geom_mean test_arith_geom_mean.cpp)
 target_include_directories(test_arith_geom_mean PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
+  ../../polynomial/include
+  ../../cxx_summation/include
+  ../../quadrature/include
+  ../../cxx_complex_math/include
   ../../wrappers)
 target_link_libraries(test_arith_geom_mean
   quadmath

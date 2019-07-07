@@ -8,7 +8,7 @@
 #include <limits>
 #include <cmath>
 
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 #include <mpreal.h>
 
 template<std::size_t _NumBits>

@@ -8,7 +8,7 @@
 #include <cmath>
 #include <stdexcept>
 #include <limits>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 
 template<typename _Tp>
   void
@@ -128,11 +128,11 @@ main()
   test_sph_bessel<float>();
   test_sph_bessel<double>();
   test_sph_bessel<long double>();
-  test_sph_bessel<__float128>();
+  //test_sph_bessel<__float128>();
 
   test_std_bessel<float>();
   test_std_bessel<double>();
   test_std_bessel<long double>();
-  test_std_bessel<__float128>();
+  //test_std_bessel<__float128>();
 }
 

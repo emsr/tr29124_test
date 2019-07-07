@@ -8,7 +8,7 @@
 #include <limits>
 #include <cmath>
 #include <complex>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 #include <mpreal.h>
 
   template<typename _Tp>
@@ -395,7 +395,7 @@ main()
   std::cout << "  ===========\n";
   test_experfc<long double>();
 
-  std::cout << "\n\n  __float128\n";
-  std::cout << "  ==========\n";
-  test_experfc<__float128>();
+  //std::cout << "\n\n  __float128\n";
+  //std::cout << "  ==========\n";
+  //test_experfc<__float128>();
 }

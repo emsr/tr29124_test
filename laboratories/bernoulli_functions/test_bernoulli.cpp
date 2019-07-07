@@ -3,16 +3,13 @@
  */
 
 #include <cmath>
-//#include <complex>
 #include <iostream>
 #include <iomanip>
 #include <stdexcept>
 #include <limits>
 #include <vector>
-// Why no math stuff without this?
-#include <ext/math_const.h>
-#include <bits/sf_gamma.tcc>
-#include <bits/sf_stirling.tcc>
+#include <ext/float128_math.h>
+#include <ext/float128_io.h>
 
 #include <wrap_burkhardt.h>
 
@@ -1073,7 +1070,7 @@ main()
 
   test_bernoulli(0.0L);
 
-  test_bernoulli(0.0Q);
+  //test_bernoulli(0.0Q);
 
   return 0;
 }

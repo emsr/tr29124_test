@@ -16,7 +16,7 @@
 #include <string>
 #include <complex>
 
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 
 //#include <mpreal.h>
 //#include <ext/math_const_mpreal.h>
@@ -453,7 +453,7 @@ main()
 
   test_gamma_reciprocal(1.0l);
 
-  test_gamma_reciprocal(1.0q);
+  //test_gamma_reciprocal(1.0q);
 
   //test_gamma_reciprocal(mpfr::mpreal(1,128));
 
@@ -463,5 +463,5 @@ main()
 
   test_gamma_temme(1.0l);
 
-  test_gamma_temme(1.0q);
+  //test_gamma_temme(1.0q);
 }

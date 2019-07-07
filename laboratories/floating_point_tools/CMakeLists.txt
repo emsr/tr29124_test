@@ -28,6 +28,7 @@ target_include_directories(test_float128 PRIVATE
   ../../wrappers
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -42,6 +43,7 @@ target_include_directories(test_limits PRIVATE
   ../../wrappers
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -85,6 +87,7 @@ target_include_directories(test_numeric_limits PRIVATE
   $ENV{HOME}/mpreal
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include

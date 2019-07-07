@@ -38,6 +38,7 @@ target_include_directories(test_expint PRIVATE
   ../../wrappers
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include

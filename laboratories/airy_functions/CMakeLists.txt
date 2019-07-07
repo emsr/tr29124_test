@@ -24,6 +24,7 @@ add_executable(airy_toy airy_toy.cpp)
 target_include_directories(airy_toy PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -36,8 +37,9 @@ add_test(NAME run_airy_toy COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/airy_toy > o
 
 add_executable(airy_toy_old airy_toy_old.cpp)
 target_include_directories(airy_toy_old PRIVATE
-  ../../cxx_math_constants/include
   ../../include
+  ../../cxx_math_constants/include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include

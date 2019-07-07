@@ -32,7 +32,6 @@
 
 #pragma GCC system_header
 
-#include <ext/math_constants.h>
 #include <ext/integration.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)

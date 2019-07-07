@@ -24,6 +24,7 @@ add_executable(test_mittag_leffler test_mittag_leffler.cpp)
 target_include_directories(test_mittag_leffler PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include

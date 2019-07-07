@@ -2,12 +2,13 @@
  *
  */
 
+#include <vector>
 #include <iostream>
 #include <iomanip>
 #include <limits>
 #include <cmath>
 #include <complex>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 
 
   /**
@@ -88,6 +89,6 @@ main()
 
 // This works but takes too long.
 #if 0 && !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  run_bose_einstein<__float128>();
+  //run_bose_einstein<__float128>();
 #endif
 }

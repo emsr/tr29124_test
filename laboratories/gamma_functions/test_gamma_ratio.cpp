@@ -3,7 +3,7 @@
  */
 
 #include <cmath>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 #include <limits>
 #include <iostream>
 #include <fstream>
@@ -592,7 +592,7 @@ main()
 
   test_gamma_ratio(1.0l);
 
-  test_gamma_ratio(1.0q);
+  //test_gamma_ratio(1.0q);
 
   test_bernoulli_2n_2x(1.0);
 }

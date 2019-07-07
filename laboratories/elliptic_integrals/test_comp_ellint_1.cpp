@@ -7,7 +7,7 @@
 #include <iomanip>
 #include <limits>
 #include <utility>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 
 //  Use AGM to do an ab initio calculation of K(k).
 template<typename _Tp>
@@ -102,6 +102,6 @@ main()
   std::cout << "\n\nlong double\n";
   test_K<long double>();
 
-  std::cout << "\n\n__float128\n";
-  test_K<__float128>();
+  //std::cout << "\n\n__float128\n";
+  //test_K<__float128>();
 }

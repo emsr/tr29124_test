@@ -6,7 +6,7 @@
 #include <limits>
 #include <string_view>
 #include <map>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 
 
 template<typename Numeric>
@@ -143,8 +143,8 @@ main()
   test_limits<long double>();
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  std::cout << "\n__float128\n" << std::flush;
-  test_limits<__float128>();
+  //std::cout << "\n__float128\n" << std::flush;
+  //test_limits<__float128>();
 #endif
 
   return 0;

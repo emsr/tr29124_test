@@ -26,6 +26,7 @@ target_include_directories(build_inv_erf_coefs PRIVATE
   ../../wrappers
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -42,6 +43,7 @@ target_include_directories(test_dawson PRIVATE
   ../../wrappers
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -58,6 +60,7 @@ target_include_directories(test_erfc PRIVATE
   ../../cxx_continued_fractions/include
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -73,6 +76,7 @@ target_include_directories(test_experfc PRIVATE
   ../../cxx_continued_fractions/include
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -95,6 +99,7 @@ target_include_directories(test_fresnel PRIVATE
   .
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -109,6 +114,7 @@ target_compile_definitions(test_inv_erf PRIVATE STANDALONE)
 target_include_directories(test_inv_erf PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -121,15 +127,16 @@ add_test(NAME run_test_inv_erf COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_inv
 
 add_executable(test_owens_t test_owens_t.cpp)
 target_include_directories(test_owens_t PRIVATE
-  ../../wrappers
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
   ../../quadrature/include
+  ../../wrappers
 )
 target_link_libraries(test_owens_t
   quadmath

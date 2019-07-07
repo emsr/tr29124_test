@@ -471,8 +471,8 @@ main()
   std::cout << "  ===========\n";
   test_erfc(1.0L);
 
-  std::cout << "\n\n  __float128\n";
-  std::cout << "  ==========\n";
-  test_erfc<__float128>();
+  //std::cout << "\n\n  __float128\n";
+  //std::cout << "  ==========\n";
+  //test_erfc<__float128>();
 }
 

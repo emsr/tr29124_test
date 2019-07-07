@@ -11,7 +11,8 @@
 #include <vector>
 #include <complex>
 #include <string>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
+#include <ext/float128_math.h>
 
 #include <wrap_burkhardt.h>
 #include <sf_struve.h>
@@ -160,7 +161,7 @@ main(int n_app_args, char** arg)
   test_struve_transition<float>();
   test_struve_transition<double>();
   test_struve_transition<long double>();
-  test_struve_transition<__float128>();
+  //test_struve_transition<__float128>();
 
   //using cmplx = std::complex<double>;
   plot_struve<float>(plot_data_dir + '/' + "struve_float.txt");

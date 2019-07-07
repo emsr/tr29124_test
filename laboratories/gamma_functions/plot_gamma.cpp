@@ -220,8 +220,8 @@ main(int n_app_args, char** arg)
   std::cout << "\nlanczos<long double>\n";
   plot_lanczos<long double>(plot_data_dir + '/' + "log_gamma_lanczos_long_double.txt");
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  std::cout << "\nlanczos<__float128>\n";
-  plot_lanczos<__float128>(plot_data_dir + '/' + "log_gamma_lanczos__float128.txt");
+  //std::cout << "\nlanczos<__float128>\n";
+  //plot_lanczos<__float128>(plot_data_dir + '/' + "log_gamma_lanczos__float128.txt");
 #endif
 
   std::cout << "\n\nSpouge Algorithm\n\n";
@@ -232,7 +232,7 @@ main(int n_app_args, char** arg)
   std::cout << "\nspouge<long double>\n";
   plot_spouge<long double>(plot_data_dir + '/' + "log_gamma_spouge_long_double.txt");
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  std::cout << "\nspouge<__float128>\n";
-  plot_spouge<__float128>(plot_data_dir + '/' + "log_gamma_spouge__float128.txt");
+  //std::cout << "\nspouge<__float128>\n";
+  //plot_spouge<__float128>(plot_data_dir + '/' + "log_gamma_spouge__float128.txt");
 #endif
 }

@@ -18,6 +18,7 @@ add_executable(test_summation test_summation.cpp)
 target_include_directories(test_summation PRIVATE
   include
   ../include
+  ../cxx_float128/include
   ../cxx_math_constants/include
   ../cxx_fp_utils/include
   ../cxx_complex_utils/include

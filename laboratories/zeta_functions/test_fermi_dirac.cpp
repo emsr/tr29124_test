@@ -2,12 +2,13 @@
  *
  */
 
+#include <vector>
 #include <iostream>
 #include <iomanip>
 #include <limits>
 #include <cmath>
 #include <wrap_gsl.h>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 
 
   /**
@@ -79,6 +80,6 @@ main()
 
 // This works but takes too long.
 #if 0 && !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  run_fermi_dirac<__float128>();
+  //run_fermi_dirac<__float128>();
 #endif
 }

@@ -39,6 +39,7 @@ target_include_directories(build_cordic PRIVATE
   $ENV{HOME}/mpreal
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -157,6 +158,7 @@ add_executable(test_reperiodized_hyper test_reperiodized_hyper.cpp)
 target_include_directories(test_reperiodized_hyper PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -171,6 +173,7 @@ target_include_directories(test_reperiodized_trig PRIVATE
   ../../wrappers
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -184,6 +187,7 @@ add_executable(test_sincos test_sincos.cpp)
 target_include_directories(test_sincos PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -198,6 +202,7 @@ target_include_directories(test_sinus_cardinal PRIVATE
   ../../wrappers
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include

@@ -179,7 +179,7 @@ main()
 
   test_legendre(1.0L);
 
-  test_legendre(1.0Q);
+  //test_legendre(1.0Q);
 
   return 0;
 }

@@ -48,9 +48,6 @@
 
 #pragma GCC system_header
 
-#include <complex>
-#include <ext/math_constants.h>
-
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION

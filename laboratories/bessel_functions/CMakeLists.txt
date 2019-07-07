@@ -54,6 +54,7 @@ add_executable(hankel_toy128 hankel_toy128.cpp)
 target_include_directories(hankel_toy128 PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -65,6 +66,7 @@ add_executable(hankel_toy hankel_toy.cpp)
 target_include_directories(hankel_toy PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -76,6 +78,7 @@ add_executable(hankel_toy_new hankel_toy_new.cpp)
 target_include_directories(hankel_toy_new PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -127,6 +130,7 @@ add_executable(test_bessel_asymp test_bessel_asymp.cpp)
 target_include_directories(test_bessel_asymp PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -140,6 +144,7 @@ add_executable(test_bessel test_bessel.cpp)
 target_include_directories(test_bessel PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -193,6 +198,7 @@ add_executable(test_hankel test_hankel.cpp)
 target_include_directories(test_hankel PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -246,6 +252,7 @@ add_executable(test_lommel test_lommel.cpp)
 target_include_directories(test_lommel PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -259,6 +266,7 @@ add_executable(test_mod_bessel_asymp test_mod_bessel_asymp.cpp)
 target_include_directories(test_mod_bessel_asymp PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -276,6 +284,7 @@ add_executable(test_sph_bessel test_sph_bessel.cpp)
 target_include_directories(test_sph_bessel PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -289,6 +298,7 @@ add_executable(test_sph_hankel test_sph_hankel.cpp)
 target_include_directories(test_sph_hankel PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -303,6 +313,7 @@ add_executable(test_struve test_struve.cpp)
 target_include_directories(test_struve PRIVATE
   .
   ../../cxx_math_constants/include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include

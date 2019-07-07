@@ -51,6 +51,7 @@ add_executable(test_jacobi_theta test_jacobi_theta.cpp)
 target_include_directories(test_jacobi_theta PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -65,6 +66,7 @@ add_executable(test_theta test_theta.cpp)
 target_include_directories(test_theta PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include

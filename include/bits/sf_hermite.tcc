@@ -43,9 +43,6 @@
 
 #pragma GCC system_header
 
-#include <ext/math_constants.h>
-#include <bits/quadrature_point.h>
-
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION

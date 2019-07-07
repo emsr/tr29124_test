@@ -95,6 +95,7 @@ add_executable(test_chebyshev_trig test_chebyshev_trig.cpp)
 target_include_directories(test_chebyshev_trig PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -108,6 +109,7 @@ add_executable(test_chebyshev_trig_pi test_chebyshev_trig_pi.cpp)
 target_include_directories(test_chebyshev_trig_pi PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -149,6 +151,7 @@ target_include_directories(test_gegenbauer PRIVATE
   .
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -175,8 +178,9 @@ add_test(NAME run_test_gegenbauer_neg_parm COMMAND bash -c "${CMAKE_BINARY_DIR}/
 add_executable(test_gegenbauer_neg_roots test_gegenbauer_neg_roots.cpp)
 target_include_directories(test_gegenbauer_neg_roots PRIVATE
   .
-  ../../cxx_math_constants/include
   ../../include
+  ../../cxx_math_constants/include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -194,8 +198,9 @@ add_test(NAME run_test_hahn COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hahn >
 add_executable(test_hermite test_hermite.cpp)
 target_include_directories(test_hermite PRIVATE
   .
-  ../../cxx_math_constants/include
   ../../include
+  ../../cxx_math_constants/include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -209,8 +214,9 @@ add_test(NAME run_test_hermite COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_her
 add_executable(test_jacobi test_jacobi.cpp)
 target_include_directories(test_jacobi PRIVATE
   .
-  ../../cxx_math_constants/include
   ../../include
+  ../../cxx_math_constants/include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -237,8 +243,9 @@ add_test(NAME run_test_jacobi_neg_parm COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/
 add_executable(test_jacobi_neg_roots test_jacobi_neg_roots.cpp)
 target_include_directories(test_jacobi_neg_roots PRIVATE
   .
-  ../../cxx_math_constants/include
   ../../include
+  ../../cxx_math_constants/include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
@@ -309,6 +316,7 @@ target_include_directories(test_lobatto PRIVATE
   .
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include

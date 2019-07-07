@@ -22,13 +22,13 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/numeric_limits_float128.h
+/** @file ext/numeric_limits_float128.h
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{xxxxx}
  */
 
-#ifndef _GLIBCXX_BITS_NUMERIC_LIMITS_FLOAT128_H
-#define _GLIBCXX_BITS_NUMERIC_LIMITS_FLOAT128_H 1
+#ifndef _GLIBCXX_EXT_NUMERIC_LIMITS_FLOAT128_H
+#define _GLIBCXX_EXT_NUMERIC_LIMITS_FLOAT128_H 1
 
 #pragma GCC system_header
 
@@ -42,7 +42,7 @@
 
 #ifdef _GLIBCXX_USE_FLOAT128
 
-#include <bits/float128_math.h>
+#include <ext/float128_math.h>
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
@@ -222,7 +222,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Extra bits to help with numerics...
   // These depend math functions which aren't constexpr for __float128.
-  // These are specializations of the functions in bits/numeric_limits.h
+  // These are specializations of the functions in ext/numeric_limits.h
 
   template<>
     inline __float128
@@ -310,4 +310,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 
 #endif // _GLIBCXX_USE_FLOAT128
 
-#endif // _GLIBCXX_BITS_NUMERIC_LIMITS_FLOAT128_H
+#endif // _GLIBCXX_EXT_NUMERIC_LIMITS_FLOAT128_H

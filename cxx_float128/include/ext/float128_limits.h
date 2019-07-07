@@ -22,13 +22,13 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/limits_float128.h
+/** @file ext/limits_float128.h
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{limits}
  */
 
-#ifndef _GLIBCXX_BITS_FLOAT128_LIMITS_H
-#define _GLIBCXX_BITS_FLOAT128_LIMITS_H 1
+#ifndef _GLIBCXX_EXT_FLOAT128_LIMITS_H
+#define _GLIBCXX_EXT_FLOAT128_LIMITS_H 1
 
 #pragma GCC system_header
 
@@ -126,4 +126,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 
 #endif // _GLIBCXX_USE_FLOAT128
 
-#endif // _GLIBCXX_BITS_FLOAT128_LIMITS_H
+#endif // _GLIBCXX_EXT_FLOAT128_LIMITS_H

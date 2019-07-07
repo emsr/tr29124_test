@@ -60,15 +60,16 @@ add_test(NAME run_test_conf_hyperg_limit COMMAND bash -c "${CMAKE_BINARY_DIR}/bi
 
 add_executable(test_hyperg test_hyperg.cpp)
 target_include_directories(test_hyperg PRIVATE
-  ../../wrappers
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
   ../../polynomial/include
   ../../cxx_summation/include
-  ../../quadrature/include)
+  ../../quadrature/include
+  ../../wrappers)
 target_link_libraries(test_hyperg
   quadmath
   -L../../wrappers -lwrap_gsl)

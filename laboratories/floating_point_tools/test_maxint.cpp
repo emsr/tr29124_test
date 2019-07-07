@@ -54,6 +54,6 @@ main()
   test_maxint<float>();
   test_maxint<double>();
   test_maxint<long double>();
-  test_maxint<__float128>();
+  //test_maxint<__float128>();
   test_maxint<mpfr::mpreal>(mpfr::mpreal(1,  256));
 }

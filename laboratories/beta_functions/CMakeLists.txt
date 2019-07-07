@@ -24,6 +24,7 @@ add_executable(test_beta test_beta.cpp)
 target_include_directories(test_beta PRIVATE
   ../../cxx_math_constants/include
   ../../include
+  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include

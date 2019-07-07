@@ -86,7 +86,7 @@ template<typename _Tp>
   _Tp
   __tetragamma_cont_frac(_Tp __x)
   {
-    const auto _S_2pi = __gnu_cxx::__const_2_pi(__x);
+    const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
     const auto _S_8pi2 = _Tp{1} / _S_2pi / _S_2pi / _Tp{2};
 
     auto __a
@@ -264,7 +264,7 @@ template<typename _Tp>
     _Tp
     __polygamma_reflect(unsigned int __m, _Tp __x)
     {
-      const auto _S_pi = __gnu_cxx::__const_pi(__x);
+      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
       const auto __c = std::__detail::__cos_pi(__x);
       const auto __cc = __c * __c;
       const auto __s = std::__detail::__sin_pi(__x);

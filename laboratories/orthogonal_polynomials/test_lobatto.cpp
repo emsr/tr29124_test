@@ -138,7 +138,7 @@ main()
 
   test_lobatto(1.0L);
 
-  test_lobatto(1.0Q);
+  //test_lobatto(1.0Q);
 
   return 0;
 }

@@ -51,8 +51,6 @@
 #pragma GCC system_header
 
 #include <array>
-#include <ext/math_constants.h>
-#include <ext/complex_util.h>
 #include <ext/horner.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)

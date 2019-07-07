@@ -4,7 +4,7 @@
 
 #include <stdexcept>
 #include <cmath>
-#include <ext/math_const.h>
+#include <ext/math_constants.h>
 #include <bits/numeric_limits.h>
 
 template<typename _Tp>

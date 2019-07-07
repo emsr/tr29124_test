@@ -7,7 +7,7 @@
 #include <iomanip>
 #include <vector>
 #include <cmath>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 #include <complex>
 #include <ext/polynomial.h>
 
@@ -850,8 +850,8 @@ main()
   std::cout << "\nTest polynomial inversion\n";
   test_exp<long double>();
 
-  std::cout << "\nTest polynomial inversion\n";
-  test_exp<__float128>();
+  //std::cout << "\nTest polynomial inversion\n";
+  //test_exp<__float128>();
 
   //std::cout << "\nfloat\n=====\n\n";
   //test<float>();
@@ -862,6 +862,6 @@ main()
   std::cout << "\nlong double\n===========\n";
   test<long double>();
 
-  std::cout << "\n__float128\n===========\n";
-  test<__float128>();
+  //std::cout << "\n__float128\n===========\n";
+  //test<__float128>();
 }
