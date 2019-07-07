@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang=""><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>p1050r1</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--adapted from https://github.com/Thiht/markdown-viewer/blob/master/chrome/lib/sss/sss.css-->
+  <style type="text/css">
+  body {
+      color: #333;
+      font-family: 'Segoe UI', 'Lucida Grande', Helvetica, sans-serif;
+      line-height: 1.5;
+      margin: auto;
+      max-width: 1000px;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+      line-height: 1em;
+      margin: 20px 0;
+  }
+  
+  h1 {
+      font-size: 2.25em;
+  }
+  
+  h2 {
+      font-size: 1.75em;
+  }
+  
+  h3 {
+      font-size: 1.5em;
+  }
+  
+  h4, h5, h6 {
+      font-size: 1.25em;
+  }
+  
+  a {
+      color: #08C;
+      text-decoration: none;
+  }
+  
+  a:hover, a:focus {
+      text-decoration: underline;
+  }
+  
+  a:visited {
+      color: #058;
+  }
+  
+  img {
+      max-width: 100%;
+  }
+  
+  li + li {
+      margin-top: 3px;
+  }
+  
+  dt {
+      font-weight: bold;
+  }
+  
+  code {
+      background: #EEE;
+      font-family: "Consolas", "Lucida Console", monospace;
+      padding: 1px 5px;
+  }
+  
+  pre {
+      background: #EEE;
+      padding: 5px 10px;
+      white-space: pre-wrap;
+  }
+  
+  pre code {
+      padding: 0;
+  }
+  
+  blockquote {
+      border-left: 5px solid #EEE;
+      margin: 0;
+      padding: 0 10px;
+  }
+  
+  table {
+      border-collapse: collapse;
+      width: 100%;
+  }
+  
+  table + table {
+      margin-top: 1em;
+  }
+  
+  thead {
+      background: #EEE;
+      text-align: left;
+  }
+  
+  th, td {
+      border: 1px solid #EEE;
+      padding: 5px 10px;
+  }
+  
+  hr {
+      background: #EEE;
+      border: 0;
+      height: 1px;
+  }
+  </style>
+</head>
+<body>
+<p><strong>Document number</strong>: P1050R1<br>
+<strong>Date</strong>: 2019-06-17<br>
+<strong>Reply-to</strong>: John McFarlane, <a href="mailto:fixed-point@john.mcfarlane.name">fixed-point@john.mcfarlane.name</a><br>
+<strong>Audience</strong>: SG6, LEWG</p>
+<h1>Fractional Numeric Type</h1>
+<h2>Abstract</h2>
+<p>This paper introduces a fractional number type which stores pairs of 
+integer numerators and denominators. It avoids precision loss commonly 
+associated with the storage of single-number quotients. It also helps 
+express intent when initializing fixed-point types with the results of 
+division operations.</p>
+<h2>Introduction</h2>
+<p>Rational numbers provide a headache for digital number types such as the fundamental scalars. We already have <code>std::ratio</code> -- mostly as a necessary way of expressing different static scales in <code>std::chrono</code>. There has previously been discussion of sophisticated, general purpose bounded [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0101r0.html#BoundOther">P0101</a>] and unbounded [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0101r0.html#UnboundRational">P0101</a>] rationals. [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p1438r0.html">P1438</a>] concentrates on unbounded rationals. Boost has a rational type [<a href="https://www.boost.org/doc/libs/release/libs/rational/rational.html">Boost</a>].</p>
+<p>This paper proposes a fractional type that is compatible with the compositional approach detailed in [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0554r0.html">P0554</a>].
+ As such it is designed to provide a zero-overhead abstraction over 
+pairs of integers while also being an expressive, user-friendly, 
+general-purpose statically-sized number type when combined with other 
+numeric components.</p>
+<p>The reason for proposing a fractional type at this time is because it
+ serves a specific role in initialization of the fixed-point numbers 
+described in [<a href="http://wg21.link/p0037">P0037</a>].</p>
+<h2>Motivation</h2>
+<p>Class template, <code>fixed_point&lt;&gt;</code> from [<a href="http://wg21.link/p0037">P0037</a>] can be initialized with integer and floating-point values. It is desirable that <code>fixed_point&lt;&gt;</code> values also be the quotient in a division operation. A <code>divide</code> function was previously proposed in [P0037]:</p>
+<pre><code>auto a = divide(1, 3);
+</code></pre>
+<p>Straight away the question arises: what should be the resolution of <code>a</code>? The solution proposed in [<a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0106r0.html#basic_operations">P0106</a>]
+ is to determine the number of fractional digits from the number of 
+fractional digits in the numerator and integer digits in the 
+denominator. In the example above, <code>a</code> has 31 fractional digits because literal, <code>3</code>, has 31 integer digits. The result has value, 0.333333333022892475128173828125.</p>
+<p>This solution is problematic when one considers all of the ways that <code>1</code> or <code>3</code> can be represented. For example, using <code>elastic_integer&lt;&gt;</code> [<a href="https://github.com/johnmcfarlane/papers/blob/master/wg21/p0828r0.md">P0828</a>] as the inputs</p>
+<pre><code>auto b = divide(elastic_integer&lt;1&gt;{1}, elastic_integer&lt;2&gt;{3}); 
+</code></pre>
+<p>results in a <code>fixed_point</code> type with only 2 fractional digits. The resultant approximation of <code>1/3</code> is <code>0.25</code>. This is unlikely to be the desired result in most cases.</p>
+<p>Specifying the output type is one solution:</p>
+<pre><code>auto c = divide&lt;fixed_point&lt;int, -16&gt;&gt;(1, 3);
+auto d = divide&lt;fixed_point&lt;int, -16&gt;&gt;(elastic_integer&lt;1&gt;{1}, elastic_integer&lt;2&gt;{3}); 
+</code></pre>
+<p>Both <code>c</code> and <code>d</code> have values, <code>0.3333282470703125</code>.
+ However, it is not entirely clear that introducing a named function 
+specifically for this purpose is necessary, nor whether the interface is
+ sufficiently intuitive.</p>
+<p>By introducing a fractional type, <code>fraction</code></p>
+<pre><code>template&lt;class Numerator, class Denominator&gt;
+struct fraction {
+    // ...
+    
+    Numerator numerator;
+    Denominator denominator;
+};
+</code></pre>
+<p>we can express the same intent using only types:</p>
+<pre><code>auto a = fixed_point{fraction{1, 3}};
+auto b = fixed_point{fraction{elastic_integer&lt;1&gt;{1}, elastic_integer&lt;2&gt;{3}}};
+auto c = fixed_point&lt;int, -16&gt;{fraction{1, 3}};
+auto d = fixed_point&lt;int, -16&gt;{fraction{elastic_integer&lt;1&gt;{1}, elastic_integer&lt;2&gt;{3}}};
+</code></pre>
+<h2>Overflow, Reduction and Normalization</h2>
+<p>A well understood problem with fraction arithmetic is that successive
+ operations often cause an exponential increase in the magnitude of both
+ the numerator and denominator.</p>
+<p>There is no silver bullet which solves this problem, other than 
+making both numbers unbounded. Mitigations include down-scaling, which 
+loses precision and reduction (<code>-3/-9</code> -&gt; <code>-1/-3</code>) or normalization (<code>-3/-9</code> -&gt; <code>1/3</code>),
+ which are more costly than the operations themselves. Reduction or 
+normalization can be applied lazily or periodically to reduce the cost 
+but no single strategy is optimal in all cases. This is a dillema which 
+must be exposed to the user. Otherwise they will implement their own, 
+lower-level solutions.</p>
+<p><code>fraction</code> is designed to support every conceivable 
+approach to solving this dilemma. Some solutions involve replacing 
+fundamental integers with types which detect or avoid overflow. Others 
+involve using <code>fractional</code> as the basis for a type with more complex behavior. Examples follow...</p>
+<h3>Don't Overflow</h3>
+<p>The zero-cost solution is to ensure that overflow never occurs:</p>
+<pre><code>fraction a{2, 3};
+auto b{a*a};
+</code></pre>
+<p>[<a href="https://godbolt.org/z/ldvlnw">example</a>]</p>
+<p>A 'safe integer' type or a sanitizer can be used to ensure correctness:</p>
+<pre><code>fraction&lt;overflow_integer&lt;int&gt;&gt; c{1, 1'000'000'000};
+auto d{c*c};  // traps
+</code></pre>
+<p>[<a href="https://godbolt.org/z/RMpfqu">example</a>]</p>
+<p>An auto-widening type avoids overflow:</p>
+<pre><code>fraction g{1_elastic, 3_elastic};
+
+// fraction with a 1-bit denominator and a 4-bit numerator
+auto h{g*g};
+</code></pre>
+<p>[<a href="https://godbolt.org/z/qpAdPU">example</a>]</p>
+<h3>Eager Reduction</h3>
+<p>Reduction can mitigate the risk of overflow:</p>
+<pre><code>fraction i{25, 64};
+fraction j{12, 3};
+auto k{reduce(i*j)};
+cout &lt;&lt; k &lt;&lt; '\n';
+</code></pre>
+<p>[<a href="https://godbolt.org/z/dOLy6Y">example</a>]</p>
+<p>Normalization works just as well. The nice thing about normalization 
+is that it simplifies comparison. But a class is required to maintain 
+the invariant:</p>
+<pre><code>class rational
+{
+private:
+  fraction&lt;&gt; f;
+public:
+  friend auto operator==(rational a, rational b) {
+    // optimisation: denominators do not need to be normalised before comparison
+    return std::tie(a.f.numerator, a.f.denominator) 
+        == std::tie(b.f.numerator, b.f.denominator);
+  }
+};
+</code></pre>
+<h3>Lazy Reduction</h3>
+<p>The following wrapper reduces the fraction in reaction to an overflow exception.</p>
+<pre><code>template&lt;int Digits&gt;
+using safe_integer = overflow_integer&lt;elastic_integer&lt;Digits&gt;, throwing_overflow_tag&gt;;
+
+class rational
+{
+private:
+  using fract = cnl::fraction&lt;safe_integer&lt;31&gt;&gt;;
+  fract f;
+public:
+  friend auto operator*(rational a, rational b) {
+    auto prod{a.f*a.f};  // 62 digit integers
+    try {
+      // narrow to 31 digits; throw on overflow
+      return rational(prod);
+    }
+    catch(std::overflow_error const&amp;) {
+      // Reduce and try again to narrow.
+      // Overflow may still happen but hey, we tried.
+      return rational(fract(reduce(prod)));
+    }
+  }
+};
+</code></pre>
+<p>[<a href="https://godbolt.org/z/loFsPU">example</a>]</p>
+<h2>Synopsis</h2>
+<pre><code>template&lt;class Numerator, class Denominator&gt;
+struct fraction {
+    using numerator_type = Numerator;
+    using denominator_type = Denominator;
+
+    explicit constexpr fraction(const Numerator&amp; n, const Denominator&amp; d);
+    explicit constexpr fraction(const Numerator&amp; n);
+    
+    template&lt;class Scalar, _impl::enable_if_t&lt;std::is_floating_point&lt;Scalar&gt;::value, int&gt; = 0&gt;
+    explicit constexpr operator Scalar() const;
+    
+    numerator_type numerator;
+    denominator_type denominator = 1;
+};
+
+template&lt;class Numerator, class Denominator&gt;
+fraction(const Numerator&amp; n, const Denominator&amp;)
+-&gt; fraction&lt;Numerator, Denominator&gt;;
+
+template&lt;class Numerator&gt;
+fraction(Numerator const&amp; n)
+-&gt; fraction&lt;Numerator, int&gt;;
+
+template&lt;class Numerator, class Denominator&gt;
+constexpr auto reduce(fraction&lt;Numerator, Denominator&gt; const&amp; f);
+
+template&lt;class LhsNumerator, class LhsDenominator, class RhsNumerator, class RhsDenominator&gt;
+constexpr auto operator+(
+        fraction&lt;LhsNumerator, LhsDenominator&gt; const&amp; lhs,
+        fraction&lt;RhsNumerator, RhsDenominator&gt; const&amp; rhs)
+-&gt; decltype(make_fraction(
+        lhs.numerator*rhs.denominator+rhs.numerator*lhs.denominator, lhs.denominator*rhs.denominator));
+                    
+template&lt;class LhsNumerator, class LhsDenominator, class RhsNumerator, class RhsDenominator&gt;
+constexpr auto operator-(
+        fraction&lt;LhsNumerator, LhsDenominator&gt; const&amp; lhs,
+        fraction&lt;RhsNumerator, RhsDenominator&gt; const&amp; rhs)
+-&gt; decltype(make_fraction(
+        lhs.numerator*rhs.denominator-rhs.numerator*lhs.denominator, lhs.denominator*rhs.denominator));
+        
+template&lt;class LhsNumerator, class LhsDenominator, class RhsNumerator, class RhsDenominator&gt;
+constexpr auto operator*(
+        fraction&lt;LhsNumerator, LhsDenominator&gt; const&amp; lhs,
+        fraction&lt;RhsNumerator, RhsDenominator&gt; const&amp; rhs)
+-&gt; decltype(make_fraction(lhs.numerator*rhs.numerator, lhs.denominator*rhs.denominator));
+
+template&lt;class LhsNumerator, class LhsDenominator, class RhsNumerator, class RhsDenominator&gt;
+constexpr auto operator/(
+        fraction&lt;LhsNumerator, LhsDenominator&gt; const&amp; lhs,
+        fraction&lt;RhsNumerator, RhsDenominator&gt; const&amp; rhs)
+-&gt; decltype(make_fraction(lhs.numerator*rhs.denominator, lhs.denominator*rhs.numerator));
+
+template&lt;class LhsNumerator, class LhsDenominator, class RhsNumerator, class RhsDenominator&gt;
+constexpr auto operator==(
+        fraction&lt;LhsNumerator, LhsDenominator&gt; const&amp; lhs,
+        fraction&lt;RhsNumerator, RhsDenominator&gt; const&amp; rhs);
+        
+template&lt;class LhsNumerator, class LhsDenominator, class RhsNumerator, class RhsDenominator&gt;
+constexpr auto operator!=(
+        fraction&lt;LhsNumerator, LhsDenominator&gt; const&amp; lhs,
+        fraction&lt;RhsNumerator, RhsDenominator&gt; const&amp; rhs);
+</code></pre>
+<h2>Reference Implementation</h2>
+<p><code>fraction</code> is implemented as part of <a href="https://github.com/johnmcfarlane/cnl">the CNL library</a> (<a href="https://github.com/johnmcfarlane/cnl/tree/dd4b4fd7fb926a6bad20ff9cc59cd79c7b068c94/include/cnl/_impl/fraction">header</a>, <a href="https://github.com/johnmcfarlane/cnl/tree/dd4b4fd7fb926a6bad20ff9cc59cd79c7b068c94/src/test/fraction">tests</a>, <a href="https://github.com/johnmcfarlane/cnl/blob/6ebb314e2f9d7ee5c9ff89b62da75d1ea0130e52/src/test/fixed_point/fraction_ctor.h">fixed_point integration</a>).</p>
+
+
+</body></html>
