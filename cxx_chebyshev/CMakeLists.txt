@@ -25,6 +25,7 @@ add_executable(test_cxx_chebyshev test_chebyshev.cpp)
 target_link_libraries(test_cxx_chebyshev cxx_chebyshev quadmath)
 target_include_directories(test_cxx_chebyshev PRIVATE
   ../include # float128
+  ../cxx_complex_utils/include
   ../polynomial/include
   ../cxx_fp_utils/include)
 
@@ -32,7 +33,7 @@ add_test(NAME run_test_cxx_chebyshev COMMAND bash -c "./bin/test_cxx_chebyshev >
 
 find_package(Doxygen)
 if (DOXYGEN_FOUND)
-  add_custom_target(docs
+  add_custom_target(docs_chebyshev
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/docs
     COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUTPUT}
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}

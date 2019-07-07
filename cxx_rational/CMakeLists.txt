@@ -24,6 +24,7 @@ add_executable(test_rational test_rational.cpp)
 target_link_libraries(test_rational cxx_rational quadmath)
 target_include_directories(test_rational PRIVATE
   ../include # float128
+  ../cxx_complex_utils/include
   ../polynomial/include
   ../cxx_fp_utils/include)
 
@@ -31,7 +32,7 @@ add_test(NAME run_test_rational COMMAND bash -c "./bin/test_rational > output/te
 
 find_package(Doxygen)
 if (DOXYGEN_FOUND)
-  add_custom_target(docs
+  add_custom_target(docs_rational
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/docs
     COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUTPUT}
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}

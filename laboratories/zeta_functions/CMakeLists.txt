@@ -105,6 +105,7 @@ target_include_directories(test_bose_einstein PRIVATE
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
   ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_bose_einstein quadmath)
@@ -149,6 +150,7 @@ target_include_directories(test_fermi_dirac PRIVATE
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
   ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../quadrature/include
   ../../wrappers)
@@ -166,6 +168,7 @@ target_include_directories(test_hurwitz_zeta PRIVATE
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
   ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_hurwitz_zeta quadmath)
@@ -180,6 +183,7 @@ target_include_directories(test_hurwitz_zeta_new PRIVATE
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
   ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../quadrature/include)
 target_link_libraries(test_hurwitz_zeta_new quadmath)
@@ -205,7 +209,7 @@ target_include_directories(test_polylog PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../quadrature/include
   ../../wrappers)

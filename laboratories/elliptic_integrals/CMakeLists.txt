@@ -47,6 +47,7 @@ target_include_directories(carlson_std PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include)
@@ -61,6 +62,7 @@ target_include_directories(test_comp_ellint_1 PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include)
@@ -75,6 +77,7 @@ target_include_directories(test_heuman_lambda PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include)
@@ -91,6 +94,7 @@ target_include_directories(test_jacobi_zeta PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include)
@@ -105,6 +109,7 @@ target_include_directories(test_legendre_ellint PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include)

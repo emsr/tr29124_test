@@ -28,8 +28,9 @@ target_include_directories(test_parab_cyl PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_parab_cyl quadmath)
 add_test(NAME run_test_parab_cyl COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_parab_cyl > output/test_parab_cyl.txt")

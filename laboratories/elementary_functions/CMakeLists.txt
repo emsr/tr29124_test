@@ -28,8 +28,9 @@ target_include_directories(build_atan_table PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(build_atan_table gmp mpfr quadmath)
 add_test(NAME run_build_atan_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_atan_table > output/build_atan_table.txt")
@@ -43,8 +44,9 @@ target_include_directories(build_cordic PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(build_cordic gmp mpfr quadmath)
 add_test(NAME run_build_cordic COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_cordic > output/build_cordic.txt")
@@ -57,8 +59,9 @@ target_include_directories(build_log_table PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(build_log_table gmp mpfr quadmath)
 add_test(NAME run_build_log_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_log_table > output/build_log_table.txt")
@@ -71,8 +74,9 @@ target_include_directories(build_sincos_tables PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(build_sincos_tables gmp mpfr quadmath)
 add_test(NAME run_build_sincos_tables COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_sincos_tables > output/build_sincos_tables.txt")
@@ -85,8 +89,9 @@ target_include_directories(build_sqrt_table PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(build_sqrt_table gmp mpfr quadmath)
 add_test(NAME run_build_sqrt_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_sqrt_table > output/build_sqrt_table.txt")
@@ -103,8 +108,9 @@ target_include_directories(test_exp PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_exp quadmath)
 add_test(NAME run_test_exp COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_exp > output/test_exp.txt")
@@ -116,8 +122,9 @@ target_include_directories(test_gudermannian PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_gudermannian quadmath)
 add_test(NAME run_test_gudermannian COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_gudermannian > output/test_gudermannian.txt")
@@ -129,8 +136,9 @@ target_include_directories(test_lambert_w PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_lambert_w quadmath)
 add_test(NAME run_test_lambert_w COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_lambert_w > output/test_lambert_w.txt")
@@ -145,8 +153,9 @@ target_include_directories(test_notsospecfun PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_notsospecfun quadmath)
 add_test(NAME run_test_notsospecfun COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_notsospecfun > output/test_notsospecfun.txt")
@@ -162,8 +171,9 @@ target_include_directories(test_reperiodized_hyper PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_reperiodized_hyper quadmath)
 add_test(NAME run_test_reperiodized_hyper COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_reperiodized_hyper > output/test_reperiodized_hyper.txt")
@@ -177,8 +187,9 @@ target_include_directories(test_reperiodized_trig PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_reperiodized_trig quadmath -L../../wrappers -lwrap_boost)
 add_test(NAME run_test_reperiodized_trig COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_reperiodized_trig > output/test_reperiodized_trig.txt")
@@ -191,8 +202,9 @@ target_include_directories(test_sincos PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_sincos quadmath)
 add_test(NAME run_test_sincos COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_sincos > output/test_sincos.txt")
@@ -206,8 +218,9 @@ target_include_directories(test_sinus_cardinal PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_sinus_cardinal
    quadmath
@@ -229,8 +242,9 @@ target_include_directories(test_trig PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_trig quadmath)
 add_test(NAME run_test_trig COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_trig > output/test_trig.txt")
@@ -242,8 +256,9 @@ target_include_directories(test_wright_omega PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_wright_omega quadmath)
 add_test(NAME run_test_wright_omega COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_wright_omega > output/test_wright_omega.txt")
@@ -255,8 +270,9 @@ target_include_directories(test_zeta_trig PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_zeta_trig quadmath)
 add_test(NAME run_test_zeta_trig COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_zeta_trig > output/test_zeta_trig.txt")

@@ -29,10 +29,10 @@ target_include_directories(test_cyl_bessel_ratio PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../polynomial/include
-  ../../quadrature/include
-  ../../cxx_continued_fractions/include)
+  ../../quadrature/include)
 target_link_libraries(test_cyl_bessel_ratio quadmath)
 add_test(NAME run_test_cyl_bessel_ratio COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_cyl_bessel_ratio > output/test_cyl_bessel_ratio.txt")
 
@@ -43,10 +43,10 @@ target_include_directories(test_cyl_hankel_ratio PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
   ../../polynomial/include
-  ../../quadrature/include
-  ../../cxx_continued_fractions/include)
+  ../../quadrature/include)
 target_link_libraries(test_cyl_hankel_ratio quadmath)
 add_test(NAME run_test_cyl_hankel_ratio COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_cyl_hankel_ratio > output/test_cyl_hankel_ratio.txt")
 
@@ -91,6 +91,7 @@ add_test(NAME run_hankel_toy_new COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/hankel
 #  ../../cxx_math_constants/include
 #  ../../include
 #  ../../cxx_fp_utils/include
+#  ../../cxx_continued_fractions/include
 #  ../../cxx_summation/include
 #  ../../polynomial/include
 #  ../../quadrature/include)
@@ -104,8 +105,9 @@ target_include_directories(help_kelvin PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(help_kelvin quadmath)
 add_test(NAME run_help_kelvin COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/help_kelvin > output/help_kelvin.txt")
@@ -120,8 +122,9 @@ target_include_directories(test_anger_weber PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_anger_weber quadmath)
 add_test(NAME run_test_anger_weber COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_anger_weber > output/test_anger_weber.txt")
@@ -134,8 +137,9 @@ target_include_directories(test_bessel_asymp PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_bessel_asymp quadmath)
 add_test(NAME run_test_bessel_asymp COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_bessel_asymp > output/test_bessel_asymp.txt")
@@ -148,8 +152,9 @@ target_include_directories(test_bessel PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_bessel quadmath)
 add_test(NAME run_test_bessel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_bessel > output/test_bessel.txt")
@@ -161,8 +166,9 @@ target_include_directories(test_bessel_iter PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_bessel_iter quadmath)
 add_test(NAME run_test_bessel_iter COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_bessel_iter > output/test_bessel_iter.txt")
@@ -174,8 +180,9 @@ target_include_directories(test_cyl_bessel_zeros PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_cyl_bessel_zeros quadmath)
 add_test(NAME run_test_cyl_bessel_zeros COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_cyl_bessel_zeros > output/test_cyl_bessel_zeros.txt")
@@ -187,8 +194,9 @@ target_include_directories(test_cyl_hankel PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include
   ../../wrappers)
 target_link_libraries(test_cyl_hankel quadmath -L../../wrappers -lwrap_boost)
@@ -202,8 +210,9 @@ target_include_directories(test_hankel PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include)
 target_link_libraries(test_hankel quadmath)
 add_test(NAME run_test_hankel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hankel > output/test_hankel.txt")
@@ -215,8 +224,9 @@ target_include_directories(test_hankel_real_arg PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
+  ../../polynomial/include
   ../../quadrature/include
   ../../wrappers)
 target_link_libraries(test_hankel_real_arg quadmath -L../../wrappers -lwrap_boost)
@@ -229,9 +239,10 @@ target_include_directories(test_kelvin PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
+  ../../cxx_summation/include
   ../../polynomial/include
-  ../../quadrature/include
-  ../../cxx_summation/include)
+  ../../quadrature/include)
 target_link_libraries(test_kelvin quadmath)
 add_test(NAME run_test_kelvin COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_kelvin > output/test_kelvin.txt")
 
@@ -242,9 +253,10 @@ target_include_directories(test_large_order_bessel PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
+  ../../cxx_summation/include
   ../../polynomial/include
-  ../../quadrature/include
-  ../../cxx_summation/include)
+  ../../quadrature/include)
 target_link_libraries(test_large_order_bessel quadmath)
 add_test(NAME run_test_large_order_bessel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_large_order_bessel > output/test_large_order_bessel.txt")
 
@@ -256,9 +268,10 @@ target_include_directories(test_lommel PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
+  ../../cxx_summation/include
   ../../polynomial/include
-  ../../quadrature/include
-  ../../cxx_summation/include)
+  ../../quadrature/include)
 target_link_libraries(test_lommel quadmath)
 add_test(NAME run_test_lommel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_lommel > output/test_lommel.txt")
 
@@ -270,9 +283,10 @@ target_include_directories(test_mod_bessel_asymp PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
+  ../../cxx_summation/include
   ../../polynomial/include
-  ../../quadrature/include
-  ../../cxx_summation/include)
+  ../../quadrature/include)
 target_link_libraries(test_mod_bessel_asymp quadmath)
 
 add_executable(test_nric_bessel test_nric_bessel.cpp)
@@ -288,9 +302,10 @@ target_include_directories(test_sph_bessel PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
+  ../../cxx_summation/include
   ../../polynomial/include
-  ../../quadrature/include
-  ../../cxx_summation/include)
+  ../../quadrature/include)
 target_link_libraries(test_sph_bessel quadmath)
 add_test(NAME run_test_sph_bessel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_sph_bessel > output/test_sph_bessel.txt")
 
@@ -302,9 +317,10 @@ target_include_directories(test_sph_hankel PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
+  ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
-  ../../cxx_summation/include
   ../../wrappers)
 target_link_libraries(test_sph_hankel quadmath -L../../wrappers -lwrap_boost)
 add_test(NAME run_test_sph_hankel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_sph_hankel > output/test_sph_hankel.txt")
@@ -317,10 +333,10 @@ target_include_directories(test_struve PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
+  ../../cxx_summation/include
   ../../polynomial/include
   ../../quadrature/include
-  ../../cxx_summation/include
-  ../../include
   ../../wrappers)
 target_link_libraries(test_struve quadmath -L../../wrappers -lwrap_burkhardt -L/home/ed/bin/lib64 -lgfortran)
 add_test(NAME run_test_struve COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_struve > output/test_struve.txt")
@@ -332,23 +348,25 @@ target_include_directories(test_cyl_bessel_nk_series PRIVATE
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
+  ../../cxx_summation/include
   ../../polynomial/include
-  ../../quadrature/include
-  ../../cxx_summation/include)
+  ../../quadrature/include)
 target_link_libraries(test_cyl_bessel_nk_series quadmath)
 add_test(NAME run_test_cyl_bessel_nk_series COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_cyl_bessel_nk_series > output/test_cyl_bessel_nk_series.txt")
 
 add_executable(test_struve_old test_struve_old.cpp)
 target_include_directories(test_struve_old PRIVATE
   .
+  ../../include
   ../hypergeometric_functions
   ../../cxx_math_constants/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include
-  ../../quadrature/include
+  ../../cxx_continued_fractions/include
   ../../cxx_summation/include
-  ../../include)
+  ../../polynomial/include
+  ../../quadrature/include)
 target_link_libraries(test_struve_old quadmath)
 add_test(NAME run_test_struve_old COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_struve_old > output/test_struve_old.txt")

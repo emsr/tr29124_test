@@ -20,6 +20,6 @@ endif ()
 
 enable_testing()
 
-#add_executable( )
+add_executable(test_heun test_heun.cpp)
 #target_include_directories( PRIVATE )
 #target_link_libraries( )
