@@ -42,6 +42,7 @@
 
 #ifdef _GLIBCXX_USE_FLOAT128
 
+#include <ext/float128_limits.h>
 #include <ext/float128_math.h>
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)

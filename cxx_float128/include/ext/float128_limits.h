@@ -46,6 +46,29 @@
 #define FLT128_MIN_10_EXP (-4931)
 #define FLT128_MAX_10_EXP 4932
 
+#include <limits>
+
+// long double
+
+// Default values.  Should be overridden in configuration files if necessary.
+
+#ifndef __glibcxx_float128_has_denorm_loss
+#  define __glibcxx_float128_has_denorm_loss false
+#endif
+#ifndef __glibcxx_float128_traps
+#  define __glibcxx_float128_traps false
+#endif
+#ifndef __glibcxx_float128_tinyness_before
+#  define __glibcxx_float128_tinyness_before false
+#endif
+
+// The fraction 643/2136 approximates log10(2) to 7 significant digits.
+#define __glibcxx_digits10_b(T,B)		\
+  (__glibcxx_digits_b (T,B) * 643L / 2136)
+
+#define __glibcxx_max_digits10(T) \
+  (2 + (T) * 643L / 2136)
+
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
@@ -123,6 +146,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
+
+#undef __glibcxx_digits10
+#undef __glibcxx_max_digits10
+
+#undef __glibcxx_float128_has_denorm_loss
+#undef __glibcxx_float128_traps
+#undef __glibcxx_float128_tinyness_before
 
 #endif // _GLIBCXX_USE_FLOAT128
 

@@ -36,6 +36,8 @@
 #include <cmath>
 #undef _GLIBCXX_NO_SPECFUN
 
+#include <limits>
+
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
