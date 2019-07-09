@@ -22,15 +22,7 @@ enable_testing()
 
 add_executable(test_mittag_leffler test_mittag_leffler.cpp)
 target_include_directories(test_mittag_leffler PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_float128/include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_mittag_leffler quadmath)
 add_test(NAME run_test_mittag_leffler COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_mittag_leffler > output/test_mittag_leffler.txt")

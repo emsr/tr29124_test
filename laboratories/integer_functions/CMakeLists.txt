@@ -25,14 +25,6 @@ add_test(NAME run_test_factorization COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/te
 
 add_executable(test_prime_factors test_prime_factors.cpp)
 target_include_directories(test_prime_factors PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_prime_factors quadmath)
 add_test(NAME run_test_prime_factors COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_prime_factors > output/test_prime_factors.txt")

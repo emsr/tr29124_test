@@ -13,15 +13,7 @@ set(CMAKE_CXX_FLAGS -Wno-psabi)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 set(TR29124_INCLUDE_DIRS
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_float128/include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS})
 
 if (NOT MSVC)
   if (NOT CMAKE_CROSSCOMPILING)
@@ -34,6 +26,7 @@ enable_testing()
 add_executable(build_gamma_lanczos build_gamma_lanczos.cpp)
 target_include_directories(build_gamma_lanczos PRIVATE
   ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include
 )
 target_link_libraries(build_gamma_lanczos quadmath)
 add_test(NAME run_build_gamma_lanczos COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_gamma_lanczos > output/build_gamma_lanczos.txt")
@@ -49,6 +42,7 @@ add_test(NAME run_build_gamma_recip COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/bui
 add_executable(build_gamma_spouge build_gamma_spouge.cpp)
 target_include_directories(build_gamma_spouge PRIVATE
   ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include
 )
 target_link_libraries(build_gamma_spouge quadmath)
 add_test(NAME run_build_gamma_spouge COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_gamma_spouge > output/build_gamma_spouge.txt")
@@ -71,6 +65,7 @@ add_test(NAME run_test_binet COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_binet
 add_executable(test_binet_float test_binet_float.cpp)
 target_include_directories(test_binet_float PRIVATE
   ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include
 )
 target_link_libraries(test_binet_float quadmath)
 add_test(NAME run_test_binet_float COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_binet_float > output/test_binet_float.txt")
@@ -93,6 +88,7 @@ add_test(NAME run_test_digamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_dig
 add_executable(test_factorial test_factorial.cpp)
 target_include_directories(test_factorial PRIVATE
   ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include
 )
 target_link_libraries(test_factorial quadmath)
 add_test(NAME run_test_factorial COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_factorial > output/test_factorial.txt")
@@ -108,6 +104,7 @@ add_test(NAME run_test_falling_factorial COMMAND bash -c "${CMAKE_BINARY_DIR}/bi
 add_executable(test_gamma test_gamma.cpp)
 target_include_directories(test_gamma PRIVATE
   ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include
   ../../wrappers
 )
 target_link_libraries(test_gamma quadmath -L../../wrappers -lwrap_boost)
@@ -117,19 +114,22 @@ add_executable(test_gamma_ratio test_gamma_ratio.cpp)
 target_include_directories(test_gamma_ratio PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../wrappers
+  ../../cxx_float128/include
 )
 target_link_libraries(test_gamma_ratio quadmath -L../../wrappers -lwrap_boost)
 add_test(NAME run_test_gamma_ratio COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_gamma_ratio > output/test_gamma_ratio.txt")
 
 add_executable(test_gamma_reciprocal test_gamma_reciprocal.cpp)
 target_include_directories(test_gamma_reciprocal PRIVATE
-  ${TR29124_INCLUDE_DIRS})
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_gamma_reciprocal quadmath)
 add_test(NAME run_test_gamma_reciprocal COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_gamma_reciprocal > output/test_gamma_reciprocal.txt")
 
 add_executable(test_inv_gamma test_inv_gamma.cpp)
 target_include_directories(test_inv_gamma PRIVATE
-  ${TR29124_INCLUDE_DIRS})
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_inv_gamma quadmath)
 add_test(NAME run_test_inv_gamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_inv_gamma > output/test_inv_gamma.txt")
 

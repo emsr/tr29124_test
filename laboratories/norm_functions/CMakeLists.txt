@@ -25,15 +25,8 @@ add_test(NAME run_test_abs COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_abs > o
 
 add_executable(test_arith_geom_mean test_arith_geom_mean.cpp)
 target_include_directories(test_arith_geom_mean PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
+  ${TR29124_INCLUDE_DIRS}
   ../../cxx_float128/include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../polynomial/include
-  ../../cxx_summation/include
-  ../../quadrature/include
-  ../../cxx_complex_math/include
   ../../wrappers)
 target_link_libraries(test_arith_geom_mean
   quadmath
@@ -42,15 +35,7 @@ add_test(NAME run_test_arith_geom_mean COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/
 
 add_executable(test_hypot test_hypot.cpp)
 target_include_directories(test_hypot PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_hypot quadmath)
 add_test(NAME run_test_hypot COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hypot > output/test_hypot.txt")
 

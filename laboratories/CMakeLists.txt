@@ -8,6 +8,17 @@ project(
 
 enable_testing()
 
+set(TR29124_INCLUDE_DIRS
+  ../../cxx_math_constants/include
+  ../../cxx_fp_utils/include
+  ../../cxx_complex_utils/include
+  ../../cxx_complex_math/include
+  ../../cxx_continued_fractions/include
+  ../../cxx_summation/include
+  ../../polynomial/include
+  ../../quadrature/include
+  ../../include)
+
 add_subdirectory(airy_functions)
 add_subdirectory(appell_functions)
 add_subdirectory(basic_functions)

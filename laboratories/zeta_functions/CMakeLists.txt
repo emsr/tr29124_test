@@ -12,16 +12,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS -Wno-psabi)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-set(TR29124_INCLUDE_DIRS
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../polynomial/include
-  ../../cxx_summation/include
-  ../../quadrature/include)
-
 if (NOT MSVC)
   if (NOT CMAKE_CROSSCOMPILING)
     set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
@@ -98,16 +88,8 @@ add_test(NAME run_debug_dirichlet_eta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/d
 
 add_executable(test_bose_einstein test_bose_einstein.cpp)
 target_include_directories(test_bose_einstein PRIVATE
-  ../../include
-  ../../cxx_math_constants/include
-  ../../cxx_float128/include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../polynomial/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_bose_einstein quadmath)
 add_test(NAME run_test_bose_einstein COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_bose_einstein > output/test_bose_einstein.txt")
 
@@ -143,16 +125,8 @@ add_test(NAME run_test_dirichlet_eta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/te
 
 add_executable(test_fermi_dirac test_fermi_dirac.cpp)
 target_include_directories(test_fermi_dirac PRIVATE
-  ../../include
-  ../../cxx_math_constants/include
+  ${TR29124_INCLUDE_DIRS}
   ../../cxx_float128/include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../polynomial/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../quadrature/include
   ../../wrappers)
 target_link_libraries(test_fermi_dirac
   quadmath
@@ -161,31 +135,15 @@ add_test(NAME run_test_fermi_dirac COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test
 
 add_executable(test_hurwitz_zeta test_hurwitz_zeta.cpp)
 target_include_directories(test_hurwitz_zeta PRIVATE
-  ../../include
-  ../../cxx_float128/include
-  ../../cxx_math_constants/include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../polynomial/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_hurwitz_zeta quadmath)
 add_test(NAME run_test_hurwitz_zeta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hurwitz_zeta > output/test_hurwitz_zeta.txt")
 
 add_executable(test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp)
 target_include_directories(test_hurwitz_zeta_new PRIVATE
-  ../../include
-  ../../cxx_float128/include
-  ../../cxx_math_constants/include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../polynomial/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_hurwitz_zeta_new quadmath)
 add_test(NAME run_test_hurwitz_zeta_new COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hurwitz_zeta_new > output/test_hurwitz_zeta_new.txt")
 
@@ -203,16 +161,8 @@ add_test(NAME run_test_lerch COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_lerch
 
 add_executable(test_polylog test_polylog.cpp)
 target_include_directories(test_polylog PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
+  ${TR29124_INCLUDE_DIRS}
   ../../cxx_float128/include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../polynomial/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../quadrature/include
   ../../wrappers)
 target_link_libraries(test_polylog
   quadmath

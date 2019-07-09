@@ -22,14 +22,6 @@ enable_testing()
 
 add_executable(test_marcum_q test_marcum_q.cpp)
 target_include_directories(test_marcum_q PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../polynomial/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_marcum_q quadmath)
 add_test(NAME run_test_marcum_q COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_marcum_q > output/test_marcum_q.txt")

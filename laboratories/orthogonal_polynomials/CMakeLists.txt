@@ -22,15 +22,7 @@ enable_testing()
 
 add_executable(debug_odd_legendre debug_odd_legendre.cpp)
 target_include_directories(debug_odd_legendre PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(debug_odd_legendre quadmath)
 add_test(NAME run_debug_odd_legendre COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/debug_odd_legendre > output/debug_odd_legendre.txt")
 
@@ -41,102 +33,46 @@ add_test(NAME run_test_assoc_laguerre COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/t
 
 add_executable(test_assoc_legendre test_assoc_legendre.cpp)
 target_include_directories(test_assoc_legendre PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_assoc_legendre quadmath)
 add_test(NAME run_test_assoc_legendre COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_assoc_legendre > output/test_assoc_legendre.txt")
 
 add_executable(test_assoc_legendre_q test_assoc_legendre_q.cpp)
 target_include_directories(test_assoc_legendre_q PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_assoc_legendre_q quadmath)
 add_test(NAME run_test_assoc_legendre_q COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_assoc_legendre_q > output/test_assoc_legendre_q.txt")
 
 add_executable(test_charlier test_charlier.cpp)
 target_include_directories(test_charlier PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include
+  ${TR29124_INCLUDE_DIRS}
   ../../wrappers)
 target_link_libraries(test_charlier gfortran quadmath -L../../wrappers -lwrap_burkhardt)
 add_test(NAME run_test_charlier COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_charlier >test_charlier .txt")
 
 add_executable(test_chebyshev test_chebyshev.cpp)
 target_include_directories(test_chebyshev PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_chebyshev quadmath)
 add_test(NAME run_test_chebyshev COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_chebyshev > output/test_chebyshev.txt")
 
 add_executable(test_chebyshev_trig test_chebyshev_trig.cpp)
 target_include_directories(test_chebyshev_trig PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_float128/include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_chebyshev_trig quadmath)
 add_test(NAME run_test_chebyshev_trig COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_chebyshev_trig > output/test_chebyshev_trig.txt")
 
 add_executable(test_chebyshev_trig_pi test_chebyshev_trig_pi.cpp)
 target_include_directories(test_chebyshev_trig_pi PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_float128/include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_chebyshev_trig_pi quadmath)
 add_test(NAME run_test_chebyshev_trig_pi COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_chebyshev_trig_pi > output/test_chebyshev_trig_pi.txt")
 
 add_executable(test_complex test_complex.cpp)
 target_include_directories(test_complex PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_complex quadmath)
 add_test(NAME run_test_complex COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_complex > output/test_complex.txt")
 
@@ -157,47 +93,24 @@ add_test(NAME run_test_dual_hahn COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_d
 add_executable(test_gegenbauer test_gegenbauer.cpp)
 target_include_directories(test_gegenbauer PRIVATE
   .
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_float128/include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_gegenbauer quadmath)
 add_test(NAME run_test_gegenbauer COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_gegenbauer > output/test_gegenbauer.txt")
 
 add_executable(test_gegenbauer_neg_parm test_gegenbauer_neg_parm.cpp)
 target_include_directories(test_gegenbauer_neg_parm PRIVATE
   .
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_gegenbauer_neg_parm quadmath)
 add_test(NAME run_test_gegenbauer_neg_parm COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_gegenbauer_neg_parm > output/test_gegenbauer_neg_parm.txt")
 
 add_executable(test_gegenbauer_neg_roots test_gegenbauer_neg_roots.cpp)
 target_include_directories(test_gegenbauer_neg_roots PRIVATE
   .
-  ../../include
-  ../../cxx_math_constants/include
-  ../../cxx_float128/include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_gegenbauer_neg_roots quadmath)
 add_test(NAME run_test_gegenbauer_neg_roots COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_gegenbauer_neg_roots > output/test_gegenbauer_neg_roots.txt")
 
@@ -209,78 +122,37 @@ add_test(NAME run_test_hahn COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hahn >
 add_executable(test_hermite test_hermite.cpp)
 target_include_directories(test_hermite PRIVATE
   .
-  ../../include
-  ../../cxx_math_constants/include
-  ../../cxx_float128/include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include
-  ../../cxx_continued_fractions/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_hermite quadmath)
 add_test(NAME run_test_hermite COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hermite > output/test_hermite.txt")
 
 add_executable(test_jacobi test_jacobi.cpp)
 target_include_directories(test_jacobi PRIVATE
   .
-  ../../include
-  ../../cxx_math_constants/include
-  ../../cxx_float128/include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_jacobi quadmath)
 add_test(NAME run_test_jacobi COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi > output/test_jacobi.txt")
 
 add_executable(test_jacobi_neg_parm test_jacobi_neg_parm.cpp)
 target_include_directories(test_jacobi_neg_parm PRIVATE
   .
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_jacobi_neg_parm quadmath)
 add_test(NAME run_test_jacobi_neg_parm COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_neg_parm > output/test_jacobi_neg_parm.txt")
 
 add_executable(test_jacobi_neg_roots test_jacobi_neg_roots.cpp)
 target_include_directories(test_jacobi_neg_roots PRIVATE
   .
-  ../../include
-  ../../cxx_math_constants/include
-  ../../cxx_float128/include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_jacobi_neg_roots quadmath)
 add_test(NAME run_test_jacobi_neg_roots COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_neg_roots > output/test_jacobi_neg_roots.txt")
 
 add_executable(test_krawtchouk test_krawtchouk.cpp)
 target_include_directories(test_krawtchouk PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include
+  ${TR29124_INCLUDE_DIRS}
   ../../wrappers)
 target_link_libraries(test_krawtchouk
   gfortran
@@ -290,73 +162,33 @@ add_test(NAME run_test_krawtchouk COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_
 
 add_executable(test_laguerre test_laguerre.cpp)
 target_include_directories(test_laguerre PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_laguerre quadmath)
 add_test(NAME run_test_laguerre COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_laguerre > output/test_laguerre.txt")
 
 add_executable(test_legendre test_legendre.cpp)
 target_include_directories(test_legendre PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_legendre quadmath)
 add_test(NAME run_test_legendre COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_legendre > output/test_legendre.txt")
 
 add_executable(test_legendre_q test_legendre_q.cpp)
 target_include_directories(test_legendre_q PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_legendre_q quadmath)
 add_test(NAME run_test_legendre_q COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_legendre_q > output/test_legendre_q.txt")
 
 add_executable(test_lobatto test_lobatto.cpp)
 target_include_directories(test_lobatto PRIVATE
   .
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_float128/include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_lobatto quadmath)
 add_test(NAME run_test_lobatto COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_lobatto > output/test_lobatto.txt")
 
 add_executable(test_meixner test_meixner.cpp)
 target_include_directories(test_meixner PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include
+  ${TR29124_INCLUDE_DIRS}
   ../../wrappers)
 target_link_libraries(test_meixner
   gfortran
