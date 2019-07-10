@@ -30,7 +30,7 @@ template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
 
     const _Real _S_fp_min = _Real{1000} * std::numeric_limits<_Real>::min();
 
-    _Real _M_rel_error = _Real{0.125L} * std::numeric_limits<_Real>::epsilon();
+    _Real _M_rel_error = std::numeric_limits<_Real>::epsilon();
     std::size_t _M_max_iter = 1000;
 
     constexpr _LentzContinuedFraction(_AFun __a, _BFun __b, _TailFun __w)
