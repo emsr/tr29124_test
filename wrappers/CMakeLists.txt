@@ -8,7 +8,7 @@ set(SpecfunWrappers_VERSION_MAJOR 1)
 set(SpecfunWrappers_VERSION_MINOR 0)
 
 set(CMAKE_C_FLAGS "-std=c11 -Wall -Wextra -I$ENV{HOME}/tr29124_test")
-set(CMAKE_CXX_FLAGS "-std=c++17 -Wall -Wextra -Wno-deprecated-declarations -Wold-style-cast -Wno-psabi -I$ENV{HOME}/tr29124_test/include -I$ENV{HOME}/tr29124_test/polynomial/include -I$ENV{HOME}/tr29124_test/quadrature/include -I$ENV{HOME}/tr29124_test/3rdparty")
+set(CMAKE_CXX_FLAGS "-std=c++17 -Wall -Wextra -Wno-deprecated-declarations -Wold-style-cast -Wno-psabi -I$ENV{HOME}/tr29124_test/include -I$ENV{HOME}/tr29124_test/polynomial/include -I$ENV{HOME}/tr29124_test/cxx_integration/include -I$ENV{HOME}/tr29124_test/3rdparty")
 set(CMAKE_Fortran_FLAGS "-Wall -Wextra -I$ENV{HOME}/tr29124_test")
 
 if (NOT MSVC)
@@ -17,8 +17,7 @@ if (NOT MSVC)
   endif ()
 endif ()
 
-add_library(wrap_boost SHARED wrap_boost.cpp)
-target_include_directories(wrap_boost PRIVATE
+set(TR29124_INCLUDE_DIRS
   ../cxx_math_constants/include
   ../cxx_float128/include
   ../cxx_fp_utils/include
@@ -26,6 +25,10 @@ target_include_directories(wrap_boost PRIVATE
   ../cxx_complex_math/include
   ../cxx_continued_fractions/include
   ../cxx_summation/include)
+
+add_library(wrap_boost SHARED wrap_boost.cpp)
+target_include_directories(wrap_boost PRIVATE
+  ${TR29124_INCLUDE_DIRS})
 
 
 set(GSL_ROOT_DIR /usr/local)
@@ -40,13 +43,7 @@ add_library(wrap_gsl SHARED
 	    ../3rdparty/gslextras/Hermite/gsl_sf_hermite.c
 	   )
 target_include_directories(wrap_gsl PRIVATE
-  ../cxx_math_constants/include
-  ../cxx_float128/include
-  ../cxx_fp_utils/include
-  ../cxx_complex_utils/include
-  ../cxx_complex_math/include
-  ../cxx_continued_fractions/include
-  ../cxx_summation/include
+  ${TR29124_INCLUDE_DIRS}
   ../3rdparty/gslextras)
 target_link_libraries(wrap_gsl gsl gslcblas)
 
@@ -199,13 +196,7 @@ add_library(wrap_cephes SHARED
 	    ../3rdparty/cephes/c9x-complex/cpolylog.c
            )
 target_include_directories(wrap_cephes PRIVATE
-  ../cxx_math_constants/include
-  ../cxx_float128/include
-  ../cxx_fp_utils/include
-  ../cxx_complex_utils/include
-  ../cxx_complex_math/include
-  ../cxx_continued_fractions/include
-  ../cxx_summation/include
+  ${TR29124_INCLUDE_DIRS}
   ../3rdparty/cephes)
 
 # This was an interesting disaster!
@@ -243,13 +234,7 @@ add_library(wrap_burkhardt SHARED
            )
 target_link_libraries(wrap_burkhardt gfortran)
 target_include_directories(wrap_burkhardt PRIVATE
-  ../cxx_math_constants/include
-  ../cxx_float128/include
-  ../cxx_fp_utils/include
-  ../cxx_complex_utils/include
-  ../cxx_complex_math/include
-  ../cxx_continued_fractions/include
-  ../cxx_summation/include
+  ${TR29124_INCLUDE_DIRS}
   ../3rdparty/burkhardt)
 
 
@@ -258,13 +243,7 @@ add_library(wrap_lerchphi SHARED
 	    ../3rdparty/lerchphi/Source/lerchphi.cpp
 	   )
 target_include_directories(wrap_lerchphi PRIVATE
-  ../cxx_math_constants/include
-  ../cxx_float128/include
-  ../cxx_fp_utils/include
-  ../cxx_complex_utils/include
-  ../cxx_complex_math/include
-  ../cxx_continued_fractions/include
-  ../cxx_summation/include
+  ${TR29124_INCLUDE_DIRS}
   ../3rdparty/lerchphi/Source)
 
 
@@ -273,13 +252,7 @@ add_library(wrap_faddeeva SHARED
 	    ../3rdparty/Faddeeva/Faddeeva.cc
 	   )
 target_include_directories(wrap_faddeeva PRIVATE
-  ../cxx_math_constants/include
-  ../cxx_float128/include
-  ../cxx_fp_utils/include
-  ../cxx_complex_utils/include
-  ../cxx_complex_math/include
-  ../cxx_continued_fractions/include
-  ../cxx_summation/include
+  ${TR29124_INCLUDE_DIRS}
   ../3rdparty/Faddeeva)
 
 
@@ -288,11 +261,5 @@ add_library(wrap_lambert SHARED
 	    ../3rdparty/LambertW/LambertW.cc
 	   )
 target_include_directories(wrap_lambert PRIVATE
-  ../cxx_math_constants/include
-  ../cxx_float128/include
-  ../cxx_fp_utils/include
-  ../cxx_complex_utils/include
-  ../cxx_complex_math/include
-  ../cxx_continued_fractions/include
-  ../cxx_summation/include
+  ${TR29124_INCLUDE_DIRS}
   ../3rdparty/LambertW)
