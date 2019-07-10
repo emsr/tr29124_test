@@ -4,18 +4,18 @@
 [submodule "quadrature"]
 	path = quadrature
 	url = https://github.com/emsr/quadrature.git
-[submodule "LambertW"]
-	path = 3rdparty/LambertW
-	url = https://github.com/emsr/LambertW.git
+[submodule "cxx_math_const"]
+	path = cxx_math_constants
+	url = https://github.com/emsr/cxx_math_const.git
 [submodule "zeta"]
 	path = 3rdparty/zeta
 	url = https://github.com/emsr/zeta.git
 [submodule "cephes"]
 	path = 3rdparty/cephes
 	url = https://github.com/emsr/maths_cephes.git
-[submodule "cxx_math_const"]
-	path = cxx_math_constants
-	url = https://github.com/emsr/cxx_math_const.git
 [submodule "3rdparty/burkhardt"]
 	path = 3rdparty/burkhardt
 	url = https://github.com/emsr/maths_burkhardt.git
+[submodule "LambertW"]
+	path = 3rdparty/LambertW
+	url = https://github.com/emsr/LambertW.git
