@@ -36,6 +36,8 @@
 #include <cmath>
 #undef _GLIBCXX_NO_SPECFUN
 
+#include <limits>
+
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
@@ -297,7 +299,5 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
-
-#include <bits/numeric_limits_float128.h>
 
 #endif // _GLIBCXX_BITS_NUMERIC_LIMITS_H

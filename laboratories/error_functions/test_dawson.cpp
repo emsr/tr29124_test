@@ -6,12 +6,13 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 
 int
 main()
 {
-  using _Tp = __float128;
+  //using _Tp = __float128;
+  using _Tp = long double;
   std::cout.precision(__gnu_cxx::__digits10<_Tp>());
   //constexpr auto _S_1_sqrtpi{0.5641895835477562869480794515607726L};
   constexpr auto _S_H{0.2L};

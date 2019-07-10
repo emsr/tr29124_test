@@ -35,7 +35,7 @@
 # include <bits/c++0x_warning.h>
 #else
 
-#include <ext/math_const.h>
+#include <ext/math_constants.h>
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {

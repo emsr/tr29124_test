@@ -5,7 +5,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 
 template<typename _Tp>
   void
@@ -140,10 +140,13 @@ main()
 {
   std::cout << "\nfloat\n===========\n";
   test_theta<float>();
+
   std::cout << "\ndouble\n===========\n";
   test_theta<double>();
+
   std::cout << "\nlong double\n===========\n";
   test_theta<long double>();
-  std::cout << "\n__float128\n===========\n";
-  test_theta<__float128>();
+
+  //std::cout << "\n__float128\n===========\n";
+  //test_theta<__float128>();
 }

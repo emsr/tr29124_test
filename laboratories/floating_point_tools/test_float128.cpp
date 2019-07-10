@@ -7,8 +7,8 @@
 #include <algorithm> // For clamp
 
 #include <quadmath.h>
-#include <bits/float128_io.h>
-#include <bits/float128_math.h> // Must come before <cmath>.
+#include <ext/float128_io.h>
+#include <ext/float128_math.h> // Must come before <cmath>.
 #include <cmath>
 
 int

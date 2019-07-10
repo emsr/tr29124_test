@@ -8,7 +8,7 @@
 #include <limits>
 
 #include <jacobi_small.hpp>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 
   template<typename _Tp>
     std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
@@ -170,7 +170,7 @@ main()
 
   test_gegenbauer(1.0L);
 
-  test_gegenbauer(1.0Q);
+  //test_gegenbauer(1.0Q);
 
   return 0;
 }

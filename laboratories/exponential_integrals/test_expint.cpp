@@ -10,7 +10,7 @@
 #include <vector>
 #include <string>
 #include <complex>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 
 /*
                  series     asymp     large-n
@@ -129,5 +129,5 @@ main()
 
   test_expint<long double>();
 
-  test_expint<__float128>();
+  //test_expint<__float128>();
 }

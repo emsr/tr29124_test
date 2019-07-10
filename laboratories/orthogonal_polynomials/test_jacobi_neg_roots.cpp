@@ -13,8 +13,8 @@
 #include <ext/solver_jenkins_traub.h>
 #include <ext/polynomial.h>
 
-#include <bits/float128_io.h>
-#include <bits/float128_math.h>
+#include <ext/float128_io.h>
+#include <ext/float128_math.h>
 
 #include <sf_jacobi_neg_params.tcc>
 
@@ -257,9 +257,9 @@ __gnu_cxx::jacobi(10, 2.0, -12.0, -1.0);
 int
 main()
 {
-  //run<long double>();
+  run<long double>();
 
-  run<__float128>();
+  //run<__float128>();
 
   test_poly<double>();
 }

@@ -13,8 +13,8 @@ namespace __detail
     __lgamma_inv_newton(_Tp __y)
     {
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      constexpr auto _S_ln_2 = __gnu_cxx::__math_constants<_Tp>::__ln_2;
-      constexpr auto _S_ln_pi = __gnu_cxx::__math_constants<_Tp>::__ln_pi;
+      constexpr auto _S_ln_2 = __gnu_cxx::math::__ln_2_v<_Tp>;
+      constexpr auto _S_ln_pi = __gnu_cxx::math::__ln_pi_v<_Tp>;
       constexpr auto _S_log_sqrt_2pi = (_S_ln_2 + _S_ln_pi) / _Tp{2};
       constexpr auto _S_max_iter = 100;
       auto __a0 = __y - _S_log_sqrt_2pi;

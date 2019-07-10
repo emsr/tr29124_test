@@ -3,7 +3,7 @@
  */
 
 #include <cmath>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 #include <limits>
 #include <iostream>
 #include <fstream>
@@ -99,7 +99,7 @@ main(int n_app_args, char** arg)
 
   test_beta<long double>();
 
-  test_beta<__float128>();
+  //test_beta<__float128>();
 
   // Beta seems to be either really tiny or really huge.
   // Maybe graph log_beta.

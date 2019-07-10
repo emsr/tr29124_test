@@ -8,7 +8,7 @@
 #include <cmath>
 #include <limits>
 
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 #include <new_hermite.tcc>
 #include <ext/continued_fractions.h>
 #include <ext/integration.h>
@@ -395,7 +395,7 @@ main()
 
   test_hermite(1.0L);
 
-  test_hermite(1.0Q);
+  //test_hermite(1.0Q);
 
   return 0;
 }

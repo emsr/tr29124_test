@@ -20,7 +20,7 @@ endif ()
 add_library(wrap_boost SHARED wrap_boost.cpp)
 target_include_directories(wrap_boost PRIVATE
   ../cxx_math_constants/include
-  ../include
+  ../cxx_float128/include
   ../cxx_fp_utils/include
   ../cxx_complex_utils/include
   ../cxx_complex_math/include
@@ -41,14 +41,14 @@ add_library(wrap_gsl SHARED
 	   )
 target_include_directories(wrap_gsl PRIVATE
   ../cxx_math_constants/include
-  ../include
+  ../cxx_float128/include
   ../cxx_fp_utils/include
   ../cxx_complex_utils/include
   ../cxx_complex_math/include
   ../cxx_continued_fractions/include
   ../cxx_summation/include
   ../3rdparty/gslextras)
-target_link_libraries(wrap_gsl quadmath gsl gslcblas)
+target_link_libraries(wrap_gsl gsl gslcblas)
 
 add_library(wrap_cephes SHARED
             wrap_cephes.cpp
@@ -200,7 +200,7 @@ add_library(wrap_cephes SHARED
            )
 target_include_directories(wrap_cephes PRIVATE
   ../cxx_math_constants/include
-  ../include
+  ../cxx_float128/include
   ../cxx_fp_utils/include
   ../cxx_complex_utils/include
   ../cxx_complex_math/include
@@ -244,7 +244,7 @@ add_library(wrap_burkhardt SHARED
 target_link_libraries(wrap_burkhardt gfortran)
 target_include_directories(wrap_burkhardt PRIVATE
   ../cxx_math_constants/include
-  ../include
+  ../cxx_float128/include
   ../cxx_fp_utils/include
   ../cxx_complex_utils/include
   ../cxx_complex_math/include
@@ -259,7 +259,7 @@ add_library(wrap_lerchphi SHARED
 	   )
 target_include_directories(wrap_lerchphi PRIVATE
   ../cxx_math_constants/include
-  ../include
+  ../cxx_float128/include
   ../cxx_fp_utils/include
   ../cxx_complex_utils/include
   ../cxx_complex_math/include
@@ -274,7 +274,7 @@ add_library(wrap_faddeeva SHARED
 	   )
 target_include_directories(wrap_faddeeva PRIVATE
   ../cxx_math_constants/include
-  ../include
+  ../cxx_float128/include
   ../cxx_fp_utils/include
   ../cxx_complex_utils/include
   ../cxx_complex_math/include
@@ -289,7 +289,7 @@ add_library(wrap_lambert SHARED
 	   )
 target_include_directories(wrap_lambert PRIVATE
   ../cxx_math_constants/include
-  ../include
+  ../cxx_float128/include
   ../cxx_fp_utils/include
   ../cxx_complex_utils/include
   ../cxx_complex_math/include

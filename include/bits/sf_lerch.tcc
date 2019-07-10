@@ -41,9 +41,7 @@
 
 #pragma GCC system_header
 
-#include <cmath>
 #include <ext/summation.h>
-#include <bits/specfun_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {

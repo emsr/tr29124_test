@@ -5,7 +5,7 @@
 #include <mpreal.h>
 
 #include <bits/numeric_limits.h>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 #include <bits/numeric_limits_mpreal.h>
 
 #include <iostream>
@@ -102,7 +102,7 @@ main()
   test_numeric_limits(1.0);
   test_numeric_limits(1.0L);
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  test_numeric_limits(1.0Q);
+  //test_numeric_limits(1.0Q);
 #endif
 
   const volatile auto x = 6.66666F;

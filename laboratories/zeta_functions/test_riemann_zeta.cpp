@@ -8,7 +8,7 @@
 #include <iomanip>
 #include <fstream>
 #include <vector>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 
 #include <wrap_gsl.h>
 
@@ -404,7 +404,7 @@ main(int n_app_args, char** arg)
   plot_riemann_zeta<long double>(plot_data_dir + '/' + "riemann_zeta_long_double.txt");
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  std::cout << "\nriemann_zeta<__float128>\n";
-  plot_riemann_zeta<__float128>(plot_data_dir + '/' + "riemann_zeta__float128.txt");
+  //std::cout << "\nriemann_zeta<__float128>\n";
+  //plot_riemann_zeta<__float128>(plot_data_dir + '/' + "riemann_zeta__float128.txt");
 #endif
 }

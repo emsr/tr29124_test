@@ -7,7 +7,7 @@
 #include <limits>
 #include <cmath>
 
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 
 template<typename _Tp>
   void
@@ -68,6 +68,6 @@ main()
   std::cout << "\nlong double\n=====\n\n";
   run_sin_cosh_pi<long double>();
 
-  std::cout << "\n__float128\n=====\n\n";
-  run_sin_cosh_pi<__float128>();
+  //std::cout << "\n__float128\n=====\n\n";
+  //run_sin_cosh_pi<__float128>();
 }

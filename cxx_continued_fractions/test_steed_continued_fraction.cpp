@@ -21,7 +21,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    const auto _S_pi_2 = __gnu_cxx::__const_pi_half(proto);
+    const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Tp>;
     using _Cmplx = std::complex<_Tp>;
 
     auto a_trigint
@@ -78,7 +78,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    const auto _S_pi_2 = __gnu_cxx::__const_pi_half(proto);
+    const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Real>;
     const auto _S_i = _Cmplx{0, 1};
 
     auto a_hypint

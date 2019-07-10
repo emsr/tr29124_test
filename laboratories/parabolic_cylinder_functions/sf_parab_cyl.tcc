@@ -44,7 +44,7 @@
 #ifndef _GLIBCXX_BITS_SF_PARAB_CYL_TCC
 #define _GLIBCXX_BITS_SF_PARAB_CYL_TCC 1
 
-#include <ext/math_const.h>
+#include <ext/math_constants.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {

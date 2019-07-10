@@ -220,7 +220,7 @@ main()
 
   test_laguerre(1.0L);
 
-  test_laguerre(1.0Q);
+  //test_laguerre(1.0Q);
 
   return 0;
 }

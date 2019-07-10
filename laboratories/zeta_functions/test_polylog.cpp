@@ -5,9 +5,10 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <ext/float128_math.h>
 #include <cmath>
 #include <complex>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 
 #include <wrap_cephes.h>
 
@@ -817,7 +818,7 @@ main()
   TestPolyLog<long double>();
 
   // This works but it takes forever.
-  TestPolyLog<__float128>();
+  //TestPolyLog<__float128>();
 
   return 0;
 }

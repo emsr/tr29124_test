@@ -25,77 +25,40 @@ add_test(NAME run_builtins COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/builtins > o
 
 add_executable(test_float128 test_float128.cpp)
 target_include_directories(test_float128 PRIVATE
-  ../../wrappers
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include
+  ../../wrappers)
 target_link_libraries(test_float128 quadmath)
 add_test(NAME run_test_float128 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_float128 > output/test_float128.txt")
 
 add_executable(test_limits test_limits.cpp)
 target_include_directories(test_limits PRIVATE
-  ../../wrappers
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include
+  ../../wrappers)
 target_link_libraries(test_limits quadmath)
 add_test(NAME run_test_limits COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_limits > output/test_limits.txt")
 
 add_executable(test_maxint test_maxint.cpp)
 target_include_directories(test_maxint PRIVATE
+  ${TR29124_INCLUDE_DIRS}
   $ENV{HOME}/mpreal
-  ../../wrappers
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ../../wrappers)
 target_link_libraries(test_maxint quadmath gmp mpfr)
 add_test(NAME run_test_maxint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_maxint > output/test_maxint.txt")
 
 add_executable(test_mod2pi test_mod2pi.cpp)
 target_include_directories(test_mod2pi PRIVATE
-  ../../wrappers
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../wrappers)
 target_link_libraries(test_mod2pi quadmath)
 add_test(NAME run_test_mod2pi COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_mod2pi > output/test_mod2pi.txt")
 
 add_executable(test_numeric_limits test_numeric_limits.cpp)
 target_include_directories(test_numeric_limits PRIVATE
   $ENV{HOME}/mpreal
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_numeric_limits quadmath gmp mpfr)
 
 add_executable(test_lab_ulp test_ulp.cpp)

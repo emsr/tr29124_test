@@ -22,13 +22,13 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/limits_float128.h
+/** @file ext/limits_float128.h
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{limits}
  */
 
-#ifndef _GLIBCXX_BITS_FLOAT128_LIMITS_H
-#define _GLIBCXX_BITS_FLOAT128_LIMITS_H 1
+#ifndef _GLIBCXX_EXT_FLOAT128_LIMITS_H
+#define _GLIBCXX_EXT_FLOAT128_LIMITS_H 1
 
 #pragma GCC system_header
 
@@ -45,6 +45,29 @@
 #define FLT128_DIG 33
 #define FLT128_MIN_10_EXP (-4931)
 #define FLT128_MAX_10_EXP 4932
+
+#include <limits>
+
+// long double
+
+// Default values.  Should be overridden in configuration files if necessary.
+
+#ifndef __glibcxx_float128_has_denorm_loss
+#  define __glibcxx_float128_has_denorm_loss false
+#endif
+#ifndef __glibcxx_float128_traps
+#  define __glibcxx_float128_traps false
+#endif
+#ifndef __glibcxx_float128_tinyness_before
+#  define __glibcxx_float128_tinyness_before false
+#endif
+
+// The fraction 643/2136 approximates log10(2) to 7 significant digits.
+#define __glibcxx_digits10_b(T,B)		\
+  (__glibcxx_digits_b (T,B) * 643L / 2136)
+
+#define __glibcxx_max_digits10(T) \
+  (2 + (T) * 643L / 2136)
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -124,6 +147,13 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 _GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
 
+#undef __glibcxx_digits10
+#undef __glibcxx_max_digits10
+
+#undef __glibcxx_float128_has_denorm_loss
+#undef __glibcxx_float128_traps
+#undef __glibcxx_float128_tinyness_before
+
 #endif // _GLIBCXX_USE_FLOAT128
 
-#endif // _GLIBCXX_BITS_FLOAT128_LIMITS_H
+#endif // _GLIBCXX_EXT_FLOAT128_LIMITS_H

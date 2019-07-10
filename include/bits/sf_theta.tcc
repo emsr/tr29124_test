@@ -34,7 +34,6 @@
 
 #include <vector>
 #include <tuple>
-#include <ext/math_constants.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {

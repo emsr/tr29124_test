@@ -6,7 +6,7 @@
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 
 template<typename Tp>
   std::string
@@ -124,8 +124,8 @@ main()
   factorial<double>();
   std::cout << "\n_S_factorial_table<long double>\n";
   factorial<long double>();
-  std::cout << "\n_S_factorial_table<__float128>\n";
-  factorial<__float128>();
+  //std::cout << "\n_S_factorial_table<__float128>\n";
+  //factorial<__float128>();
 
   std::cout << "\n_S_double_factorial_table<float>\n";
   double_factorial<float>();
@@ -133,8 +133,8 @@ main()
   double_factorial<double>();
   std::cout << "\n_S_double_factorial_table<long double>\n";
   double_factorial<long double>();
-  std::cout << "\n_S_double_factorial_table<__float128>\n";
-  double_factorial<__float128>();
+  //std::cout << "\n_S_double_factorial_table<__float128>\n";
+  //double_factorial<__float128>();
 
   std::cout << "\n_S_neg_double_factorial_table<float>\n";
   neg_double_factorial<float>();
@@ -142,6 +142,6 @@ main()
   neg_double_factorial<double>();
   std::cout << "\n_S_neg_double_factorial_table<long double>\n";
   neg_double_factorial<long double>();
-  std::cout << "\n_S_neg_double_factorial_table<__float128>\n";
-  neg_double_factorial<__float128>();
+  //std::cout << "\n_S_neg_double_factorial_table<__float128>\n";
+  //neg_double_factorial<__float128>();
 }

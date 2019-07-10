@@ -32,9 +32,6 @@
 
 #pragma GCC system_header
 
-#include <ext/math_const.h>
-#include <ext/math_util.h>
-
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION

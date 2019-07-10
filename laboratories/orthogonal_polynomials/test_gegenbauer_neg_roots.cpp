@@ -13,8 +13,8 @@
 #include <ext/solver_jenkins_traub.h>
 #include <ext/polynomial.h>
 
-#include <bits/float128_io.h>
-#include <bits/float128_math.h>
+#include <ext/float128_io.h>
+#include <ext/float128_math.h>
 
 #include <sf_gegenbauer_neg_params.tcc>
 
@@ -205,9 +205,9 @@ template<typename _Tp>
 int
 main()
 {
-  //run<long double>();
+  run<long double>();
 
-  run<__float128>();
+  //run<__float128>();
 
   test_poly<double>();
 }

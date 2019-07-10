@@ -51,7 +51,7 @@ template<typename Tp>
   void
   test_erf(Tp toler = 100 * std::numeric_limits<Tp>::epsilon())
   {
-    const auto _S_sqrt_pi = __gnu_cxx::__math_constants<Tp>::__root_pi;
+    const auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<Tp>;
     bool test __attribute__((unused)) = true;
     Stats<Tp> stats(toler);
     for (auto i = 1; i < 10; ++i)

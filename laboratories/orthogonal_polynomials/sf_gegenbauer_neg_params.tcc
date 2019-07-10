@@ -30,7 +30,7 @@
 #ifndef _LABS_GEGENBAUER_TCC
 #define _LABS_GEGENBAUER_TCC 1
 
-#include <ext/math_const.h>
+#include <ext/math_constants.h>
 #include <ext/math_util.h>
 
 namespace lab

@@ -30,7 +30,7 @@
 #ifndef _LABS_SF_JACOBI_TCC
 #define _LABS_SF_JACOBI_TCC 1
 
-#include <ext/math_const.h>
+#include <ext/math_constants.h>
 #include <ext/math_util.h>
 
 namespace lab

@@ -7,7 +7,7 @@
 #include <limits>
 #include <cmath>
 
-#include <ext/math_const.h>
+#include <ext/math_constants.h>
 
 /**
  * Compute the inverse Gudermann function relating a circular argument

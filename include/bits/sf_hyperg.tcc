@@ -45,7 +45,6 @@
 
 #pragma GCC system_header
 
-#include <ext/math_constants.h>
 #include <bits/notsospecfun.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)

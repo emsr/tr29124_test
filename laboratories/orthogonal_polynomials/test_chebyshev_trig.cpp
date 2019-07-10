@@ -7,7 +7,7 @@
 #include <vector>
 #include <cmath>
 
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 
 /**
  * @todo return derivatives from these.
@@ -382,7 +382,8 @@ template<typename Tp>
 int
 main()
 {
-  using Tp = __float128;
+  //using Tp = __float128;
+  using Tp = long double;
 
   test_chebyshev(1.0);
 

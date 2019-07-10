@@ -28,15 +28,7 @@ add_test(NAME run_test_coulomb COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_cou
 
 add_executable(test_hydrogen test_hydrogen.cpp)
 target_include_directories(test_hydrogen PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include
+  ${TR29124_INCLUDE_DIRS}
   ../../wrappers)
 target_link_libraries(test_hydrogen quadmath)
 add_test(NAME run_test_hydrogen COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hydrogen > output/test_hydrogen.txt")

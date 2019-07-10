@@ -7,7 +7,7 @@
 #include <iostream>
 #include <iomanip>
 #include <complex>
-#include <ext/math_const.h>
+#include <ext/math_constants.h>
 
   /**
    * Compute the Kelvin function @f$ ber(x) @f$ by series summation.

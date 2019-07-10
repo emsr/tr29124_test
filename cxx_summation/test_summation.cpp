@@ -6,6 +6,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -I. -o test_summation test_summation.cpp -lquadma
 ./test_summation > test_summation.txt
 */
 
+#include <ext/float128_math.h>
 #include <cmath>
 #include <cstdlib>
 #include <vector>
@@ -14,7 +15,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -I. -o test_summation test_summation.cpp -lquadma
 #include <iostream>
 #include <iomanip>
 
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 #include <ext/summation.h>
 
 template<typename Tp>
@@ -313,6 +314,6 @@ main()
   std::cout << "\nlong double\n===========\n";
   test<long double>();
 
-  std::cout << "\n__float128\n===========\n";
-  test<__float128>();
+  //std::cout << "\n__float128\n===========\n";
+  //test<__float128>();
 }

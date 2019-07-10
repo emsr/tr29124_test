@@ -22,14 +22,6 @@ enable_testing()
 
 add_executable(test_fibonacci test_fibonacci.cpp)
 target_include_directories(test_fibonacci PRIVATE
-  ../../cxx_math_constants/include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../include # All this rest for cos_pi.
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_fibonacci quadmath)
 add_test(NAME run_test_fibonacci COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_fibonacci > output/test_fibonacci.txt")

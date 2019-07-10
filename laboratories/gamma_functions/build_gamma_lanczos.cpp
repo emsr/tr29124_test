@@ -7,7 +7,7 @@
 #include <iomanip>
 #include <limits>
 #include <cmath>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 
   //  Checbyshev coefficient matrix.
   constexpr int
@@ -249,7 +249,7 @@ main()
   std::cout << "\nlanczos<long double>\n";
   lanczos<long double>();
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  std::cout << "\nlanczos<__float128>\n";
-  lanczos<__float128>();
+  //std::cout << "\nlanczos<__float128>\n";
+  //lanczos<__float128>();
 #endif
 }

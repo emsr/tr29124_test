@@ -449,7 +449,7 @@ main()
   test_hypot<double>();
   test_hypot<long double>();
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  test_hypot<__float128>();
+  //test_hypot<__float128>();
 #endif
 
   //test<float>();

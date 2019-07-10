@@ -11,8 +11,8 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_continued
 #include <iomanip>
 #include <vector>
 #include <complex>
-#include <ext/math_const.h>
-#include <bits/float128_io.h>
+#include <ext/math_constants.h>
+#include <ext/float128_io.h>
 #include <bits/numeric_limits.h>
 #include <bits/specfun_util.h>
 #include <ext/complex_util.h>
@@ -72,6 +72,6 @@ main()
   std::cout << "\nlong double\n===========\n";
   run_conf_hyperg_lim<long double>(0.5l);
 
-  std::cout << "\n__float128\n==========\n";
-  run_conf_hyperg_lim<__float128>(0.5q);
+  //std::cout << "\n__float128\n==========\n";
+  //run_conf_hyperg_lim<__float128>(0.5q);
 }

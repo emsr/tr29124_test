@@ -5,7 +5,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-#include <bits/float128_io.h>
+#include <ext/float128_io.h>
 
 //namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 //{
@@ -65,6 +65,7 @@
     }
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+/*
   template<>
     inline __gnu_cxx::__sincos_t<__float128>
     __sincos(__float128 __x)
@@ -73,6 +74,7 @@
       ::sincosq(__x, &__sin, &__cos);
       return __gnu_cxx::__sincos_t<__float128>{__sin, __cos};
     }
+*/
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   /**
@@ -188,7 +190,7 @@ main()
   constexpr auto pi = __gnu_cxx::math::__pi_v<double>;
   constexpr auto pil = __gnu_cxx::math::__pi_v<long double>;
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  constexpr auto piq = __gnu_cxx::math::__pi_v<__float128>;
+  //constexpr auto piq = __gnu_cxx::math::__pi_v<__float128>;
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   auto a1 [[maybe_unused]] = /*std::__detail::*/__sincos(pif * 1.5f);
@@ -201,8 +203,8 @@ main()
   auto c2 [[maybe_unused]] = /*std::__detail::*/__sincos_pi(1.5l);
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  auto d1 [[maybe_unused]] = /*std::__detail::*/__sincos(piq * 1.5q);
-  auto d2 [[maybe_unused]] = /*std::__detail::*/__sincos_pi(1.5q);
+  //auto d1 [[maybe_unused]] = /*std::__detail::*/__sincos(piq * 1.5q);
+  //auto d2 [[maybe_unused]] = /*std::__detail::*/__sincos_pi(1.5q);
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   test_sincos<double>();

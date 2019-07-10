@@ -22,17 +22,10 @@ enable_testing()
 
 add_executable(build_inv_erf_coefs build_inv_erf_coefs.cpp)
 target_include_directories(build_inv_erf_coefs PRIVATE
+  ${TR29124_INCLUDE_DIRS}
   $ENV{HOME}/mpreal
-  ../../wrappers
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ../../cxx_float128/include
+  ../../wrappers)
 target_link_libraries(build_inv_erf_coefs
   quadmath
   gmp mpfr)
@@ -41,15 +34,8 @@ add_test(NAME run_build_inv_erf_coefs COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/b
 add_executable(test_dawson test_dawson.cpp)
 target_include_directories(test_dawson PRIVATE
   ../../wrappers
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_dawson
   quadmath
   -L../../wrappers -lwrap_boost)
@@ -57,32 +43,16 @@ add_test(NAME run_test_dawson COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_daws
 
 add_executable(test_erfc test_erfc.cpp)
 target_include_directories(test_erfc PRIVATE
-  ../../cxx_continued_fractions/include
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_erfc quadmath)
 add_test(NAME run_test_erfc COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_erfc > output/test_erfc.txt")
 
 add_executable(test_experfc test_experfc.cpp)
 target_include_directories(test_experfc PRIVATE
   $ENV{HOME}/mpreal
-  ../../cxx_continued_fractions/include
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_experfc
   quadmath
   mpfr gmp)
@@ -97,45 +67,23 @@ add_test(NAME run_test_faddeeva COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_fa
 add_executable(test_fresnel test_fresnel.cpp)
 target_include_directories(test_fresnel PRIVATE
   .
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_fresnel quadmath)
 add_test(NAME run_test_fresnel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_fresnel > output/test_fresnel.txt")
 
 add_executable(test_inv_erf test_inv_erf.cpp)
 target_compile_definitions(test_inv_erf PRIVATE STANDALONE)
 target_include_directories(test_inv_erf PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include
-)
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include)
 target_link_libraries(test_inv_erf quadmath)
 add_test(NAME run_test_inv_erf COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_inv_erf > output/test_inv_erf.txt")
 
 add_executable(test_owens_t test_owens_t.cpp)
 target_include_directories(test_owens_t PRIVATE
-  ../../cxx_math_constants/include
-  ../../include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include
+  ${TR29124_INCLUDE_DIRS}
+  ../../cxx_float128/include
   ../../wrappers
 )
 target_link_libraries(test_owens_t
