@@ -14,9 +14,12 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 enable_testing()
 
+# Header-only library.
+add_library(cxx_summation INTERFACE)
+target_include_directories(cxx_summation INTERFACE include)
+
 add_executable(test_summation test_summation.cpp)
 target_include_directories(test_summation PRIVATE
-  include
   ../include
   ../cxx_float128/include
   ../cxx_math_constants/include
@@ -26,4 +29,4 @@ target_include_directories(test_summation PRIVATE
   ../cxx_continued_fractions/include
   ../polynomial/include
   ../quadrature/include)
-target_link_libraries(test_summation quadmath)
+target_link_libraries(test_summation cxx_summation quadmath)
