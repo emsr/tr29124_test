@@ -20,12 +20,14 @@ endif ()
 set(TR29124_INCLUDE_DIRS
   ../include
   ../cxx_math_constants/include
-  ../cxx_float128/include
   ../cxx_fp_utils/include
   ../cxx_complex_utils/include
   ../cxx_complex_math/include
   ../cxx_continued_fractions/include
-  ../cxx_summation/include)
+  ../cxx_summation/include
+  ../cxx_polynomial/include
+  ../cxx_integration/include
+  ../cxx_float128/include)
 
 add_library(wrap_boost SHARED wrap_boost.cpp)
 target_include_directories(wrap_boost PRIVATE
