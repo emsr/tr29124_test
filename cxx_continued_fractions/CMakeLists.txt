@@ -14,46 +14,35 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 enable_testing()
 
+set(TR29124_INCLUDE_DIRS
+  ../cxx_math_constants/include
+  ../include
+  ../cxx_fp_utils/include
+  ../cxx_complex_utils/include
+  ../cxx_complex_math/include
+  ../cxx_summation/include
+  ../polynomial/include
+  ../quadrature/include)
+
 add_library(cxx_continued_fractions INTERFACE)
 target_include_directories(cxx_continued_fractions INTERFACE include)
 
 add_executable(test_continued_fraction test_continued_fraction.cpp)
 target_include_directories(test_continued_fraction PRIVATE
-  ../cxx_math_constants/include
-  ../include
-  ../cxx_float128/include
-  ../cxx_fp_utils/include
-  ../cxx_complex_utils/include
-  ../cxx_complex_math/include
-  ../cxx_summation/include
-  ../polynomial/include
-  ../quadrature/include)
+  ${TR29124_INCLUDE_DIRS}
+  ../cxx_float128/include)
 target_link_libraries(test_continued_fraction cxx_continued_fractions quadmath)
 add_test(NAME run_test_continued_fraction COMMAND bash -c "./bin/test_continued_fraction > test_continued_fraction.txt")
 
 add_executable(test_lentz_continued_fraction test_lentz_continued_fraction.cpp)
 target_include_directories(test_lentz_continued_fraction PRIVATE
-  ../cxx_math_constants/include
-  ../include
-  ../cxx_fp_utils/include
-  ../cxx_complex_utils/include
-  ../cxx_complex_math/include
-  ../cxx_summation/include
-  ../polynomial/include
-  ../quadrature/include)
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_lentz_continued_fraction cxx_continued_fractions quadmath)
 add_test(NAME run_test_lentz_continued_fraction COMMAND bash -c "./bin/test_lentz_continued_fraction > test_lentz_continued_fraction.txt")
 
 add_executable(test_steed_continued_fraction test_steed_continued_fraction.cpp)
 target_include_directories(test_steed_continued_fraction PRIVATE
-  ../cxx_math_constants/include
-  ../include
-  ../cxx_fp_utils/include
-  ../cxx_complex_utils/include
-  ../cxx_complex_math/include
-  ../cxx_summation/include
-  ../polynomial/include
-  ../quadrature/include)
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_steed_continued_fraction cxx_continued_fractions quadmath)
 add_test(NAME run_test_steed_continued_fraction COMMAND bash -c "./bin/test_steed_continued_fraction > test_steed_continued_fraction.txt")
 
