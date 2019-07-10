@@ -9,7 +9,7 @@
 #include <Jacobi/jacobi-0.9.2/src/jacobi.h>
 #include <Hermite/gsl_sf_hermite.h>
 
-#include "wrap_gsl.h"
+#include <wrap_gsl.h>
 
 namespace gsl
 {

@@ -3,7 +3,7 @@
 
 #include <lerchphi.h>
 
-#include "wrap_lerch.h"
+#include <wrap_lerch.h>
 
 namespace lurch
 {

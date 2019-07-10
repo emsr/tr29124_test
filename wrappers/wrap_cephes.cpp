@@ -13,7 +13,7 @@
 #include <bessel/cephes_bessel.h>
 #include <c9x-complex/cephes_cmplx.h>
 
-#include "wrap_cephes.h"
+#include <wrap_cephes.h>
 
 namespace cephes
 {

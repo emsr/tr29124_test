@@ -32,7 +32,7 @@
 #include <boost/math/special_functions/spherical_harmonic.hpp>
 #include <boost/math/special_functions/zeta.hpp>
 
-#include "wrap_boost.h"
+#include <wrap_boost.h>
 
 namespace beast
 {

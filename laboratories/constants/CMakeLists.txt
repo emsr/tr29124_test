@@ -3,7 +3,7 @@ cmake_minimum_required (VERSION 3.10)
 include(CheckCXXCompilerFlag)
 
 project(
-  lab_math_constants
+  lab_constants
   VERSION 0.5
   LANGUAGES CXX
 )

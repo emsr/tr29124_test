@@ -23,7 +23,7 @@
 #include <toms462.hpp>
 #include <toms917.hpp>
 
-#include "wrap_burkhardt.h"
+#include <wrap_burkhardt.h>
 
 namespace burkhardt
 {

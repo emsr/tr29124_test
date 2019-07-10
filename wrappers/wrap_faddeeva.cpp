@@ -3,7 +3,7 @@
 
 #include <Faddeeva.hh>
 
-#include "wrap_faddeeva.h"
+#include <wrap_faddeeva.h>
 #include <ext/math_constants.h>
 
 namespace faddeeva
