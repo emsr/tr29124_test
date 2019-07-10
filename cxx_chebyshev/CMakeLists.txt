@@ -26,7 +26,7 @@ target_link_libraries(test_cxx_chebyshev cxx_chebyshev quadmath)
 target_include_directories(test_cxx_chebyshev PRIVATE
   ../cxx_float128/include
   ../cxx_complex_utils/include
-  ../polynomial/include
+  ../cxx_polynomial/include
   ../cxx_fp_utils/include)
 
 add_test(NAME run_test_cxx_chebyshev COMMAND bash -c "./bin/test_cxx_chebyshev > output/test_cxx_chebyshev.txt")

@@ -27,6 +27,6 @@ target_include_directories(test_summation PRIVATE
   ../cxx_complex_utils/include
   ../cxx_complex_math/include
   ../cxx_continued_fractions/include
-  ../polynomial/include
-  ../quadrature/include)
+  ../cxx_polynomial/include
+  ../cxx_integration/include)
 target_link_libraries(test_summation cxx_summation quadmath)

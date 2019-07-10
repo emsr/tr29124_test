@@ -38,11 +38,11 @@ add_executable(hankel_toy128 hankel_toy128.cpp)
 target_include_directories(hankel_toy128 PRIVATE
   ../../cxx_math_constants/include
   ../../include
-  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include)
+  ../../cxx_polynomial/include
+  ../../cxx_float128/include)
 target_link_libraries(hankel_toy128 quadmath)
 add_test(NAME run_hankel_toy128 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/hankel_toy128 > output/hankel_toy128.txt")
 
@@ -50,11 +50,11 @@ add_executable(hankel_toy hankel_toy.cpp)
 target_include_directories(hankel_toy PRIVATE
   ../../cxx_math_constants/include
   ../../include
-  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include)
+  ../../cxx_polynomial/include
+  ../../cxx_float128/include)
 target_link_libraries(hankel_toy quadmath)
 add_test(NAME run_hankel_toy COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/hankel_toy > output/hankel_toy.txt")
 
@@ -62,11 +62,11 @@ add_executable(hankel_toy_new hankel_toy_new.cpp)
 target_include_directories(hankel_toy_new PRIVATE
   ../../cxx_math_constants/include
   ../../include
-  ../../cxx_float128/include
   ../../cxx_fp_utils/include
   ../../cxx_complex_utils/include
   ../../cxx_complex_math/include
-  ../../polynomial/include)
+  ../../cxx_polynomial/include
+  ../../cxx_float128/include)
 target_link_libraries(hankel_toy_new quadmath)
 add_test(NAME run_hankel_toy_new COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/hankel_toy_new > output/hankel_toy_new.txt")
 

@@ -25,7 +25,7 @@ target_link_libraries(test_rational cxx_rational quadmath)
 target_include_directories(test_rational PRIVATE
   ../include # float128
   ../cxx_complex_utils/include
-  ../polynomial/include
+  ../cxx_polynomial/include
   ../cxx_fp_utils/include)
 
 add_test(NAME run_test_rational COMMAND bash -c "./bin/test_rational > output/test_rational.txt")

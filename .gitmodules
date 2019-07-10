@@ -1,8 +1,8 @@
-[submodule "polynomial"]
-	path = polynomial
+[submodule "cxx_polynomial"]
+	path = cxx_polynomial
 	url = https://github.com/emsr/polynomial.git
-[submodule "quadrature"]
-	path = quadrature
+[submodule "cxx_quadrature"]
+	path = cxx_integration
 	url = https://github.com/emsr/quadrature.git
 [submodule "cxx_math_const"]
 	path = cxx_math_constants
@@ -13,7 +13,7 @@
 [submodule "cephes"]
 	path = 3rdparty/cephes
 	url = https://github.com/emsr/maths_cephes.git
-[submodule "3rdparty/burkhardt"]
+[submodule "burkhardt"]
 	path = 3rdparty/burkhardt
 	url = https://github.com/emsr/maths_burkhardt.git
 [submodule "LambertW"]

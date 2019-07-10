@@ -15,8 +15,8 @@ set(TR29124_INCLUDE_DIRS
   ../../cxx_complex_math/include
   ../../cxx_continued_fractions/include
   ../../cxx_summation/include
-  ../../polynomial/include
-  ../../quadrature/include
+  ../../cxx_polynomial/include
+  ../../cxx_integration/include
   ../../include)
 
 add_subdirectory(airy_functions)

@@ -26,5 +26,5 @@ add_subdirectory(cxx_traits_utils)
 
 # Actual submodules
 add_subdirectory(cxx_math_constants)
-add_subdirectory(polynomial)
-add_subdirectory(quadrature)
+add_subdirectory(cxx_polynomial)
+add_subdirectory(cxx_integration)

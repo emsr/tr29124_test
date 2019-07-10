@@ -31,8 +31,8 @@ set(TR29124_INCLUDE_DIRS
   ../cxx_complex_math/include
   ../cxx_continued_fractions/include
   ../cxx_summation/include
-  ../polynomial/include
-  ../quadrature/include)
+  ../cxx_polynomial/include
+  ../cxx_integration/include)
 
 add_executable(testcase testcase.cpp)
 target_link_libraries(testcase -L../wrappers quadmath -lwrap_gsl -lwrap_boost -lwrap_burkhardt)

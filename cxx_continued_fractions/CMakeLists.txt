@@ -21,8 +21,8 @@ set(TR29124_INCLUDE_DIRS
   ../cxx_complex_utils/include
   ../cxx_complex_math/include
   ../cxx_summation/include
-  ../polynomial/include
-  ../quadrature/include)
+  ../cxx_polynomial/include
+  ../cxx_integration/include)
 
 add_library(cxx_continued_fractions INTERFACE)
 target_include_directories(cxx_continued_fractions INTERFACE include)
