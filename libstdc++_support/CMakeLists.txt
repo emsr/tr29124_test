@@ -364,8 +364,7 @@ run_check(check_dirichlet_eta)
 
 add_executable(check_dirichlet_lambda check/check_dirichlet_lambda.cc)
 target_include_directories(check_dirichlet_lambda PRIVATE
-  .run_check(check_dirichlet_lambda)
-
+  .
   ${TR29124_INCLUDE_DIRS}
   ../wrappers)
 target_link_libraries(check_dirichlet_lambda quadmath)
