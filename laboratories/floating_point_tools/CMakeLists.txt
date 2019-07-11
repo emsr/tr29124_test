@@ -42,7 +42,7 @@ add_test(NAME run_test_limits COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_limi
 add_executable(test_maxint test_maxint.cpp)
 target_include_directories(test_maxint PRIVATE
   ${TR29124_INCLUDE_DIRS}
-  $ENV{HOME}/mpreal
+  ../../3rdparty/mpreal
   ../../wrappers)
 target_link_libraries(test_maxint quadmath gmp mpfr)
 add_test(NAME run_test_maxint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_maxint > output/test_maxint.txt")
@@ -56,7 +56,7 @@ add_test(NAME run_test_mod2pi COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_mod2
 
 add_executable(test_numeric_limits test_numeric_limits.cpp)
 target_include_directories(test_numeric_limits PRIVATE
-  $ENV{HOME}/mpreal
+  ../../3rdparty/mpreal
   ${TR29124_INCLUDE_DIRS}
   ../../cxx_float128/include)
 target_link_libraries(test_numeric_limits quadmath gmp mpfr)

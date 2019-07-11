@@ -23,7 +23,7 @@ enable_testing()
 add_executable(build_inv_erf_coefs build_inv_erf_coefs.cpp)
 target_include_directories(build_inv_erf_coefs PRIVATE
   ${TR29124_INCLUDE_DIRS}
-  $ENV{HOME}/mpreal
+  ../../3rdparty/mpreal
   ../../cxx_float128/include
   ../../wrappers)
 target_link_libraries(build_inv_erf_coefs
@@ -50,7 +50,7 @@ add_test(NAME run_test_erfc COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_erfc >
 
 add_executable(test_experfc test_experfc.cpp)
 target_include_directories(test_experfc PRIVATE
-  $ENV{HOME}/mpreal
+  ../../3rdparty/mpreal
   ${TR29124_INCLUDE_DIRS}
   ../../cxx_float128/include)
 target_link_libraries(test_experfc

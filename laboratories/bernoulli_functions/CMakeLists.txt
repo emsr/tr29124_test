@@ -22,7 +22,7 @@ enable_testing()
 
 add_executable(build_bernoulli_2n_table build_bernoulli_2n_table.cpp)
 target_include_directories(build_bernoulli_2n_table PRIVATE
-  $ENV{HOME}/mpreal
+  ../../3rdparty/mpreal
   ${TR29124_INCLUDE_DIRS})
 target_link_libraries(build_bernoulli_2n_table quadmath mpfr)
 add_test(NAME run_build_bernoulli_2n_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_bernoulli_2n_table > output/build_bernoulli_2n_table.txt")

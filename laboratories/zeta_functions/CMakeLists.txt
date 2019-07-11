@@ -22,7 +22,7 @@ enable_testing()
 
 add_executable(build_etam1_table build_etam1_table.cpp)
 target_include_directories(build_etam1_table PRIVATE
-  $ENV{HOME}/mpreal
+  ../../3rdparty/mpreal
   ${TR29124_INCLUDE_DIRS})
 target_link_libraries(build_etam1_table
   quadmath
@@ -31,7 +31,7 @@ add_test(NAME run_build_etam1_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/bui
 
 add_executable(build_nfact_zetanp1 build_nfact_zetanp1.cpp)
 target_include_directories(build_nfact_zetanp1 PRIVATE
-  $ENV{HOME}/mpreal
+  ../../3rdparty/mpreal
   ${TR29124_INCLUDE_DIRS})
 target_link_libraries(build_nfact_zetanp1
   quadmath
@@ -40,7 +40,7 @@ add_test(NAME run_build_nfact_zetanp1 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/b
 
 add_executable(build_zeta_deriv_table build_zeta_deriv_table.cpp)
 target_include_directories(build_zeta_deriv_table PRIVATE
-  $ENV{HOME}/mpreal
+  ../../3rdparty/mpreal
   ${TR29124_INCLUDE_DIRS})
 target_link_libraries(build_zeta_deriv_table
   quadmath
@@ -49,7 +49,7 @@ add_test(NAME run_build_zeta_deriv_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bi
 
 add_executable(build_zetahalfm1_table build_zetahalfm1_table.cpp)
 target_include_directories(build_zetahalfm1_table PRIVATE
-  $ENV{HOME}/mpreal
+  ../../3rdparty/mpreal
   ${TR29124_INCLUDE_DIRS})
 target_link_libraries(build_zetahalfm1_table
   quadmath
@@ -58,7 +58,7 @@ add_test(NAME run_build_zetahalfm1_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bi
 
 add_executable(build_zetam1_table build_zetam1_table.cpp)
 target_include_directories(build_zetam1_table PRIVATE
-  $ENV{HOME}/mpreal
+  ../../3rdparty/mpreal
   ${TR29124_INCLUDE_DIRS})
 target_link_libraries(build_zetam1_table
   quadmath
@@ -67,7 +67,7 @@ add_test(NAME run_build_zetam1_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/bu
 
 add_executable(build_zeta_trig_tables build_zeta_trig_tables.cpp)
 target_include_directories(build_zeta_trig_tables PRIVATE
-  $ENV{HOME}/mpreal
+  ../../3rdparty/mpreal
   ${TR29124_INCLUDE_DIRS})
 target_link_libraries(build_zeta_trig_tables
   quadmath
@@ -149,7 +149,7 @@ add_test(NAME run_test_hurwitz_zeta_new COMMAND bash -c "${CMAKE_BINARY_DIR}/bin
 
 add_executable(test_lerch test_lerch.cpp)
 target_include_directories(test_lerch PRIVATE
-  $ENV{HOME}/mpreal
+  ../../3rdparty/mpreal
   ../.. # For statistics.h
   ../../cxx_summation/include
   ${TR29124_INCLUDE_DIRS})

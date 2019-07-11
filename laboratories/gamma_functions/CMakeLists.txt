@@ -34,7 +34,7 @@ add_test(NAME run_build_gamma_lanczos COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/b
 add_executable(build_gamma_recip build_gamma_recip.cpp)
 target_include_directories(build_gamma_recip PRIVATE
   ${TR29124_INCLUDE_DIRS}
-  $ENV{HOME}/mpreal
+  ../../3rdparty/mpreal
 )
 target_link_libraries(build_gamma_recip quadmath mpfr gmp)
 add_test(NAME run_build_gamma_recip COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_gamma_recip > output/build_gamma_recip.txt")

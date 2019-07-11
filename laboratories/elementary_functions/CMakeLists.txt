@@ -22,7 +22,7 @@ enable_testing()
 
 add_executable(build_atan_table build_atan_table.cpp)
 target_include_directories(build_atan_table PRIVATE
-  $ENV{HOME}/mpreal
+  ../../3rdparty/mpreal
   ${TR29124_INCLUDE_DIRS})
 target_link_libraries(build_atan_table gmp mpfr quadmath)
 add_test(NAME run_build_atan_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_atan_table > output/build_atan_table.txt")
@@ -30,7 +30,7 @@ add_test(NAME run_build_atan_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/buil
 add_executable(build_cordic build_cordic.cpp)
 target_include_directories(build_cordic PRIVATE
   ${TR29124_INCLUDE_DIRS}
-  $ENV{HOME}/mpreal
+  ../../3rdparty/mpreal
   ../../cxx_float128/include)
 target_link_libraries(build_cordic gmp mpfr quadmath)
 add_test(NAME run_build_cordic COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_cordic > output/build_cordic.txt")
@@ -38,21 +38,21 @@ add_test(NAME run_build_cordic COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_co
 add_executable(build_log_table build_log_table.cpp)
 target_include_directories(build_log_table PRIVATE
   ${TR29124_INCLUDE_DIRS}
-  $ENV{HOME}/mpreal)
+  ../../3rdparty/mpreal)
 target_link_libraries(build_log_table gmp mpfr quadmath)
 add_test(NAME run_build_log_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_log_table > output/build_log_table.txt")
 
 add_executable(build_sincos_tables build_sincos_tables.cpp)
 target_include_directories(build_sincos_tables PRIVATE
   ${TR29124_INCLUDE_DIRS}
-  $ENV{HOME}/mpreal)
+  ../../3rdparty/mpreal)
 target_link_libraries(build_sincos_tables gmp mpfr quadmath)
 add_test(NAME run_build_sincos_tables COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_sincos_tables > output/build_sincos_tables.txt")
 
 add_executable(build_sqrt_table build_sqrt_table.cpp)
 target_include_directories(build_sqrt_table PRIVATE
   ${TR29124_INCLUDE_DIRS}
-  $ENV{HOME}/mpreal)
+  ../../3rdparty/mpreal)
 target_link_libraries(build_sqrt_table gmp mpfr quadmath)
 add_test(NAME run_build_sqrt_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_sqrt_table > output/build_sqrt_table.txt")
 
