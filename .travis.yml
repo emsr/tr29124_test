@@ -14,6 +14,7 @@ install:
   - sudo apt-get install -qq gfortran
   - sudo apt-get install -qq libgsl-dev
   - sudo apt-get install -qq libboost-all-dev
+  - sudo apt-get install -qq libgsl-dev libmpfr-dev libmpc-dev
   - sudo apt-get install -qq doxygen
 
 script:
