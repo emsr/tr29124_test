@@ -5,9 +5,9 @@
 #include <iostream>
 #include <cmath>
 
-//  Fermat's method for factoring. Based on Algorithm C in
-//  @see Donald E. Knuth "The Art of Computer Programming", vol. 2, 3rd ed,
-//  Seminumerical Algorithms, Addison-Wesley, pp.386-388
+// Fermat's method for factoring. Based on Algorithm C in
+// @see Donald E. Knuth "The Art of Computer Programming", vol. 2, 3rd ed,
+// Seminumerical Algorithms, Addison-Wesley, pp.386-388
 std::pair<unsigned int, unsigned int>
 factor_fermat(unsigned int N)
 {
@@ -38,10 +38,14 @@ int
 main()
 {
   unsigned int N;
-  std::cout << "Input a positive, odd integer: ";
+  std::cout << "\nInput a positive, odd integer: ";
   std::cin >> N;
+  if (std::cin.bad() || std::cin.fail())
+    return 1;
 
   auto facts = factor_fermat(N);
 
-  std::cout << ' ' << facts.first << ' ' << facts.second << std::endl;
+  std::cout << '\n' << ' ' << facts.first << ' ' << facts.second << '\n';
+
+  return 0;
 }

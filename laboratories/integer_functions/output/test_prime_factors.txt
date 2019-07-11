@@ -1,0 +1,18 @@
+
+Enter integer: 
+ 3
+ 3
+
+Enter integer: 
+ 67
+ 67
+
+Enter integer: 
+ 3 19 953
+ 3 19 953
+
+Enter integer: 
+ 2 1987 13633
+ 2 1987 13633
+
+Enter integer: 

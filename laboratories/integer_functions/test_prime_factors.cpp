@@ -86,6 +86,7 @@ main()
     {
       std::cout << "\nEnter integer: ";
       unsigned int n;
+      std::cout << '\n';
       std::cin >> n;
       if (std::cin.bad() || std::cin.fail())
 	break;
