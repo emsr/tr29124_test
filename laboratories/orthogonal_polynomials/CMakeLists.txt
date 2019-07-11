@@ -112,7 +112,8 @@ target_include_directories(test_gegenbauer_neg_roots PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../cxx_float128/include)
 target_link_libraries(test_gegenbauer_neg_roots quadmath)
-add_test(NAME run_test_gegenbauer_neg_roots COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_gegenbauer_neg_roots > output/test_gegenbauer_neg_roots.txt")
+# FIXME: This is broken until __float128 is back.
+#add_test(NAME run_test_gegenbauer_neg_roots COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_gegenbauer_neg_roots > output/test_gegenbauer_neg_roots.txt")
 
 add_executable(test_hahn test_hahn.cpp)
 target_include_directories(test_hahn PRIVATE )
@@ -148,7 +149,8 @@ target_include_directories(test_jacobi_neg_roots PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../cxx_float128/include)
 target_link_libraries(test_jacobi_neg_roots quadmath)
-add_test(NAME run_test_jacobi_neg_roots COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_neg_roots > output/test_jacobi_neg_roots.txt")
+# FIXME: This is broken until __float128 is back.
+#add_test(NAME run_test_jacobi_neg_roots COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_neg_roots > output/test_jacobi_neg_roots.txt")
 
 add_executable(test_krawtchouk test_krawtchouk.cpp)
 target_include_directories(test_krawtchouk PRIVATE
