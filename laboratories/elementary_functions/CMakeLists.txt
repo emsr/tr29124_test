@@ -9,7 +9,7 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS -Wno-psabi)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-psabi -Wno-deprecated-declarations -Wold-style-cast")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 if (NOT MSVC)
@@ -103,7 +103,7 @@ target_include_directories(test_reperiodized_trig PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../wrappers
   ../../cxx_float128/include)
-target_link_libraries(test_reperiodized_trig quadmath -L../../wrappers -lwrap_boost)
+target_link_libraries(test_reperiodized_trig quadmath wrap_boost)
 add_test(NAME run_test_reperiodized_trig COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_reperiodized_trig > output/test_reperiodized_trig.txt")
 
 add_executable(test_sincos test_sincos.cpp)
@@ -120,7 +120,7 @@ target_include_directories(test_sinus_cardinal PRIVATE
   ../../cxx_float128/include)
 target_link_libraries(test_sinus_cardinal
    quadmath
-   -L../../wrappers -lwrap_gsl -lwrap_boost)
+   wrap_gsl wrap_boost)
 add_test(NAME run_test_sinus_cardinal COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_sinus_cardinal > output/test_sinus_cardinal.txt")
 
 add_executable(test_sqrt test_sqrt.cpp)

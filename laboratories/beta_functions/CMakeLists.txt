@@ -9,7 +9,7 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS -Wno-psabi)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-psabi -Wno-deprecated-declarations -Wold-style-cast")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 if (NOT MSVC)
@@ -25,7 +25,9 @@ target_include_directories(test_beta PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../cxx_float128/include
   ../../wrappers)
-target_link_libraries(test_beta quadmath -L../../wrappers -lwrap_boost)
+target_link_libraries(test_beta
+  quadmath
+  wrap_boost)
 add_test(NAME run_test_beta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_beta > output/test_beta.txt")
 
 add_executable(test_beta_inc test_beta_inc.cpp)

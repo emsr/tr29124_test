@@ -9,7 +9,7 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS -Wno-psabi)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-psabi -Wno-deprecated-declarations -Wold-style-cast")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 if (NOT MSVC)
@@ -38,7 +38,7 @@ add_executable(debug_airy debug_airy.cpp)
 target_include_directories(debug_airy PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../wrappers)
-target_link_libraries(debug_airy quadmath -L../../wrappers -lwrap_gsl)
+target_link_libraries(debug_airy quadmath wrap_gsl)
 add_test(NAME run_debug_airy COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/debug_airy > output/debug_airy.txt")
 
 add_executable(plot_airy plot_airy.cpp)
@@ -58,5 +58,5 @@ target_include_directories(test_little_airy PRIVATE
   .
   ${TR29124_INCLUDE_DIRS}
   ../../wrappers)
-target_link_libraries(test_little_airy quadmath -L../../wrappers -lwrap_gsl)
+target_link_libraries(test_little_airy quadmath wrap_gsl)
 add_test(NAME run_test_little_airy COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_little_airy > output/test_little_airy.txt")

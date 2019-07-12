@@ -9,7 +9,7 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS -Wno-psabi)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-psabi -Wno-deprecated-declarations -Wold-style-cast")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 if (NOT MSVC)
@@ -99,7 +99,7 @@ target_include_directories(test_clausen PRIVATE
   ../../wrappers)
 target_link_libraries(test_clausen
   quadmath
-  -L../../wrappers -lwrap_gsl)
+  wrap_gsl)
 add_test(NAME run_test_clausen COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_clausen > output/test_clausen.txt")
 
 add_executable(test_debye test_debye.cpp)
@@ -108,7 +108,7 @@ target_include_directories(test_debye PRIVATE
   ../../wrappers)
 target_link_libraries(test_debye
   quadmath
-  -L../../wrappers -lwrap_gsl)
+  wrap_gsl)
 add_test(NAME run_test_debye COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_debye > output/test_debye.txt")
 
 add_executable(test_dilog test_dilog.cpp)
@@ -130,7 +130,7 @@ target_include_directories(test_fermi_dirac PRIVATE
   ../../wrappers)
 target_link_libraries(test_fermi_dirac
   quadmath
-  -L../../wrappers -lwrap_gsl)
+  wrap_gsl)
 add_test(NAME run_test_fermi_dirac COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_fermi_dirac > output/test_fermi_dirac.txt")
 
 add_executable(test_hurwitz_zeta test_hurwitz_zeta.cpp)
@@ -156,7 +156,7 @@ target_include_directories(test_lerch PRIVATE
 target_link_libraries(test_lerch
   mpfr gmp
   quadmath
-  -L../../wrappers -lwrap_lerchphi)
+  wrap_lerchphi)
 add_test(NAME run_test_lerch COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_lerch > output/test_lerch.txt")
 
 add_executable(test_polylog test_polylog.cpp)
@@ -166,7 +166,7 @@ target_include_directories(test_polylog PRIVATE
   ../../wrappers)
 target_link_libraries(test_polylog
   quadmath
-  -L../../wrappers -lwrap_cephes)
+  wrap_cephes)
 add_test(NAME run_test_polylog COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_polylog > output/test_polylog.txt")
 
 add_executable(test_riemann_zeta test_riemann_zeta.cpp)
@@ -176,7 +176,7 @@ target_include_directories(test_riemann_zeta PRIVATE
   ../../wrappers)
 target_link_libraries(test_riemann_zeta
   quadmath
-  -L../../wrappers -lwrap_gsl)
+  wrap_gsl)
 add_test(NAME run_test_riemann_zeta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_riemann_zeta > output/test_riemann_zeta.txt")
 
 add_executable(zeta_glob_deathmatch zeta_glob_deathmatch.cpp)
@@ -185,5 +185,5 @@ target_include_directories(zeta_glob_deathmatch PRIVATE
   ../../cxx_math_constants/include)
 target_link_libraries(zeta_glob_deathmatch
   quadmath
-  -L../../wrappers -lwrap_gsl)
+  wrap_gsl)
 add_test(NAME run_zeta_glob_deathmatch COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/zeta_glob_deathmatch > output/zeta_glob_deathmatch.txt")

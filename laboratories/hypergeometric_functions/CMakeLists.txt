@@ -9,7 +9,7 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS -Wno-psabi)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-psabi -Wno-deprecated-declarations -Wold-style-cast")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 if (NOT MSVC)
@@ -51,7 +51,7 @@ target_include_directories(test_hyperg PRIVATE
   ../../wrappers)
 target_link_libraries(test_hyperg
   quadmath
-  -L../../wrappers -lwrap_gsl)
+  wrap_gsl)
 add_test(NAME run_test_hyperg COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hyperg > output/test_hyperg.txt")
 
 #add_executable(test_tricomi_u test_tricomi_u.cpp)

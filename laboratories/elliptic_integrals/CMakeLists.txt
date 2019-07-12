@@ -9,7 +9,7 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS -Wno-psabi)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-psabi -Wno-deprecated-declarations -Wold-style-cast")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 if (NOT MSVC)
@@ -59,14 +59,16 @@ target_include_directories(test_heuman_lambda PRIVATE
   ../../wrappers)
 target_link_libraries(test_heuman_lambda
   quadmath
-  -L../../wrappers -lwrap_boost)
+  wrap_boost)
 add_test(NAME run_test_heuman_lambda COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_heuman_lambda > output/test_heuman_lambda.txt")
 
 add_executable(test_jacobi_zeta test_jacobi_zeta.cpp)
 target_include_directories(test_jacobi_zeta PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../wrappers)
-target_link_libraries(test_jacobi_zeta quadmath -L../../wrappers -lwrap_boost)
+target_link_libraries(test_jacobi_zeta
+  quadmath
+  wrap_boost)
 add_test(NAME run_test_jacobi_zeta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_zeta > output/test_jacobi_zeta.txt")
 
 add_executable(test_legendre_ellint test_legendre_ellint.cpp)
@@ -75,5 +77,5 @@ target_include_directories(test_legendre_ellint PRIVATE
   ../../wrappers)
 target_link_libraries(test_legendre_ellint
   quadmath
-  -L../../wrappers -lwrap_gsl)
+  wrap_gsl)
 add_test(NAME run_test_legendre_ellint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_legendre_ellint > output/test_legendre_ellint.txt")

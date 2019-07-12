@@ -9,7 +9,7 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS -Wno-psabi)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-psabi -Wno-deprecated-declarations -Wold-style-cast")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 if (NOT MSVC)
@@ -47,7 +47,10 @@ add_executable(test_charlier test_charlier.cpp)
 target_include_directories(test_charlier PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../wrappers)
-target_link_libraries(test_charlier gfortran quadmath -L../../wrappers -lwrap_burkhardt)
+target_link_libraries(test_charlier
+  gfortran
+  quadmath
+  wrap_burkhardt)
 add_test(NAME run_test_charlier COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_charlier >test_charlier .txt")
 
 add_executable(test_chebyshev test_chebyshev.cpp)
@@ -159,7 +162,7 @@ target_include_directories(test_krawtchouk PRIVATE
 target_link_libraries(test_krawtchouk
   gfortran
   quadmath
-  -L../../wrappers -lwrap_burkhardt)
+  wrap_burkhardt)
 add_test(NAME run_test_krawtchouk COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_krawtchouk > output/test_krawtchouk.txt")
 
 add_executable(test_laguerre test_laguerre.cpp)
@@ -195,7 +198,7 @@ target_include_directories(test_meixner PRIVATE
 target_link_libraries(test_meixner
   gfortran
   quadmath
-  -L../../wrappers -lwrap_burkhardt)
+  wrap_burkhardt)
 add_test(NAME run_test_meixner COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_meixner > output/test_meixner.txt")
 
 add_executable(test_meixner_pollaczek test_meixner_pollaczek.cpp)

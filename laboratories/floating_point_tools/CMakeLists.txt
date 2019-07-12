@@ -9,7 +9,7 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS -Wno-psabi)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-psabi -Wno-deprecated-declarations -Wold-style-cast")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 if (NOT MSVC)
@@ -26,31 +26,27 @@ add_test(NAME run_builtins COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/builtins > o
 add_executable(test_float128 test_float128.cpp)
 target_include_directories(test_float128 PRIVATE
   ${TR29124_INCLUDE_DIRS}
-  ../../cxx_float128/include
-  ../../wrappers)
+  ../../cxx_float128/include)
 target_link_libraries(test_float128 quadmath)
 add_test(NAME run_test_float128 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_float128 > output/test_float128.txt")
 
 add_executable(test_limits test_limits.cpp)
 target_include_directories(test_limits PRIVATE
   ${TR29124_INCLUDE_DIRS}
-  ../../cxx_float128/include
-  ../../wrappers)
+  ../../cxx_float128/include)
 target_link_libraries(test_limits quadmath)
 add_test(NAME run_test_limits COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_limits > output/test_limits.txt")
 
 add_executable(test_maxint test_maxint.cpp)
 target_include_directories(test_maxint PRIVATE
   ${TR29124_INCLUDE_DIRS}
-  ../../3rdparty/mpreal
-  ../../wrappers)
+  ../../3rdparty/mpreal)
 target_link_libraries(test_maxint quadmath gmp mpfr)
 add_test(NAME run_test_maxint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_maxint > output/test_maxint.txt")
 
 add_executable(test_mod2pi test_mod2pi.cpp)
 target_include_directories(test_mod2pi PRIVATE
-  ${TR29124_INCLUDE_DIRS}
-  ../../wrappers)
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_mod2pi quadmath)
 add_test(NAME run_test_mod2pi COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_mod2pi > output/test_mod2pi.txt")
 

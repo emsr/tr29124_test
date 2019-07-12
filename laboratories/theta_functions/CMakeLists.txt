@@ -9,7 +9,7 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS -Wno-psabi)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-psabi -Wno-deprecated-declarations -Wold-style-cast")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 if (NOT MSVC)
@@ -24,7 +24,7 @@ add_executable(test_jacobi_ellint test_jacobi_ellint.cpp)
 target_include_directories(test_jacobi_ellint PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../wrappers)
-target_link_libraries(test_jacobi_ellint quadmath -L../../wrappers -lwrap_gsl)
+target_link_libraries(test_jacobi_ellint quadmath wrap_gsl)
 add_test(NAME run_test_jacobi_ellint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_ellint > output/test_jacobi_ellint.txt")
 
 add_executable(test_jacobi_inv test_jacobi_inv.cpp)
@@ -38,7 +38,7 @@ target_include_directories(test_jacobi_theta PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../cxx_float128/include
   ../../wrappers)
-target_link_libraries(test_jacobi_theta quadmath -L../../wrappers -lwrap_gsl)
+target_link_libraries(test_jacobi_theta quadmath wrap_gsl)
 add_test(NAME run_test_jacobi_theta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_theta > output/test_jacobi_theta.txt")
 
 add_executable(test_theta test_theta.cpp)
