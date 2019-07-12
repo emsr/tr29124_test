@@ -15,6 +15,7 @@
 #include <string>
 #include <ext/float128_math.h>
 #include <ext/float128_io.h>
+#include <ext/numeric_limits_float128.h>
 #include <ext/summation.h>
 #include <ext/polynomial.h>
 #include <bits/notsospecfun.h> // For complex fma.
