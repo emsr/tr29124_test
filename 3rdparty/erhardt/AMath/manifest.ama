@@ -1,0 +1,54 @@
+3rdparty.ama          3rd party licenses and infos
+amath.pas             Accurate floating point math unit
+amath_info.txt        AMath package: Introduction and function list
+amcmplx.pas           AMath based complex routines
+amquat.pas            AMath based quaternion routines
+amtools.pas           Accurate Math Tools: Root finding, integration, minimization, quadratic equations
+complexdemo.zip       Demos for complex functions (phase plot, calculator)
+copying_we.txt        WE's license
+legal.txt             Legal notice (cryptography, software patents)
+manifest.ama          This file
+memh.pas              Basic portable heap memory allocation functions
+readme.ama            Description of the units
+sfbasic.pas           Basic common code for special functions (extended/double precision)
+sfbessel.pas          Common code for special functions: Bessel functions
+sfbessl2.pas          Bessel functions Part2: Airy, Kelvin, Struve, Coulomb
+sfellint.pas          Common code for special functions: Elliptic integrals, Jacobi elliptic and theta functions
+sferf.pas             Common code for special functions: Error function and related
+sfexpint.pas          Common code for special functions: Exponential integrals and related
+sfgamma.pas           Common code for special functions: Gamma function and related
+sfgamma2.pas          Common code for inverse/incomplete Gamma/Beta functions
+sfhyperg.pas          Common code for special functions: Hypergeometric functions
+sfmisc.pas            Common code for special functions: Other functions
+sfpoly.pas            Common code for special functions: Orthogonal polynomials and related
+sfsdist.pas           Common code for special functions: Statistical distributions
+sfzeta.pas            Common code for special functions: Zeta functions and polylogarithms
+specfun.pas           Special functions unit (double precision)
+specfunx.pas          Special functions unit (extended precision)
+std.inc               Standard definitions and options
+t_acmpxx.cmp          Output of t_acmpxx: precision of complex routines
+t_amathx.cmp          Output of t_amathx: precision of AMath and Delphi math
+
+tests\#c_tamat.bat    Compile batch for t_amath.pas
+tests\#c_tcplx.bat    Compile batch for t_acmplx
+tests\#c_tfpu.bat     Compile batch for t_fpu.pas
+tests\#c_tquat.bat    Compile batch for t_quat,pas
+tests\#c_troot.bat    Compile batch for t_root.pas
+tests\#c_tsfd.bat     Compile batch for t_sfd.pas
+tests\#c_tsfx.bat     Compile batch for t_sfx.pas
+tests\#c_ttool.bat    Compile batch for t_amtool.pas
+tests\$log_amath.zip  Archive with log files of final tests done before release
+tests\*.cfg           Compiler configuration files
+tests\fdamsupp.pas    MPArith support routines for D/AMath test programs
+tests\t_acmpl*.pas    Test programs for AMCmplx
+tests\t_acmpxx.pas    Test program  for multi precision compare of complex routines
+tests\t_all.pas       All-in-one test program for the AMath package
+tests\t_amath*.pas    Test programs for AMath functions (basic regression test)
+tests\t_amathx.pas    Test program  for AMath: compare precision with MPArith and math
+tests\t_amtoo*.pas    Test programs for AMTools: Root finding, minimization, integration
+tests\t_fpu*.pas      Test programs for AMath/FPU functions
+tests\t_quat*.pas     Test program  for AMQuat unit
+tests\t_root*.pas     Test programs for AMTools quadsolve/cubsolve/polyroots
+tests\t_sfd*.pas      Test programs for specfun unit
+tests\t_sfx*.pas      Test programs for specfunx unit
+

@@ -1,0 +1,43 @@
+This archive contains Pascal source for multi precision integer, rational,
+real and complex floating point arithmetic and functions. The basic routines
+can be compiled with the usual Pascal versions that allow const parameters
+(tested with BP 7.0, VP 2.1, FPC 1.0/2.0/2.2/2.4/2.6/3x, and Delphi versions
+2..7/9-10/12/17/18/25/26).
+
+A separate introduction can be found in the mp_intro.txt; Windows and
+Borland Pascal help files are included.
+
+Last changes:
+
+MPArith 1.39.12 with the following new/changed functions:
+
+  * New functions: succd/s/x, predd/s/x in mp_rcalc, mpc_log10, mpc_is_ia in
+    mp_cmplx, and the new unit mp_ccalc, which parses and evaluates
+    mp_complex expressions;
+
+  * Changed functions: adjust sign of mpc_arctanh on the branch cut, error
+    MP_PRECISION in s_mpf_mod_pi2k instead of assert;
+
+  * Other: configuration parameter MPC_NO_EXECPTIONS;
+
+  * Bugfixes: mp_real: copy/paste bug in mpf_sinhcosh, subtle bug for
+    mpf_arctan2(y,0), mp_cmplx: mpc_ln1p and mpc_expm1 for small imaginary a,
+    mpc_arctanh for real |a| > 1.
+
+  * The basic introduction and the multi precision calculator t_rcalc are
+    updated, there is the new calculator t_ccalc for complex expressions.
+
+
+For a complete list with brief descriptions see the mp_intro function list.
+
+There are test programs that verify the functions and the compilation. Demo
+programs are included for pi calculation, expression parsing and evaluation
+(including two interactive multi precision calculators), factorization based
+on Pollard's rho and p-1, Williams's p+1, and ECM methods, RSA attacks, etc.
+
+My Pascal routines are based on many public resources (source code
+libraries, books, articles), links are given in the mp_intro references.
+
+W.Ehrhardt, Nov. 2018
+http://wolfgang-ehrhardt.de
+

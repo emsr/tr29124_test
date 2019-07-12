@@ -1,0 +1,21 @@
+#!/bin/bash -e
+
+# Be sure to have LF as EOL
+# and to chmod a+x
+
+SRC=t_damall
+LOG=t_damall_arm.log
+
+
+echo Results for FPC/ARM \(Raspberry Pi 3/B\) > $LOG
+uname -a                                     >> $LOG
+echo -e -n FPC version \\x20  >> $LOG
+fpc -iW                       >> $LOG
+echo ======================================  >> $LOG
+
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo --------------------------------------  >> $LOG
+./$SRC >> $LOG
+
