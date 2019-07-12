@@ -8,6 +8,8 @@
 #include <limits>
 #include <cmath>
 #include <ext/float128_io.h>
+#include <ext/float128_math.h>
+#include <ext/float128_limits.h>
 #include <ext/summation.h>
 
   template<typename _Tp>
@@ -273,7 +275,7 @@ main()
   std::cout << "\nspouge<long double>\n";
   spouge<long double>();
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  //std::cout << "\nspouge<__float128>\n";
-  //spouge<__float128>();
+  std::cout << "\nspouge<__float128>\n";
+  spouge<__float128>();
 #endif
 }

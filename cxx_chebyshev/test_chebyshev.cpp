@@ -11,6 +11,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev
 
 #include <ext/float128_math.h>
 #include <ext/float128_io.h>
+#include <ext/float128_limits.h>
 #include <ext/chebyshev.h>
 #include <cmath>
 

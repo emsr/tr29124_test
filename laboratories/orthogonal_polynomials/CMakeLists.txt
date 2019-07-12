@@ -27,7 +27,8 @@ target_link_libraries(debug_odd_legendre quadmath)
 add_test(NAME run_debug_odd_legendre COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/debug_odd_legendre > output/debug_odd_legendre.txt")
 
 add_executable(test_assoc_laguerre test_assoc_laguerre.cpp)
-target_include_directories(test_assoc_laguerre PRIVATE )
+target_include_directories(test_assoc_laguerre PRIVATE
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_assoc_laguerre quadmath)
 add_test(NAME run_test_assoc_laguerre COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_assoc_laguerre > output/test_assoc_laguerre.txt")
 
@@ -80,16 +81,19 @@ target_link_libraries(test_complex quadmath)
 add_test(NAME run_test_complex COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_complex > output/test_complex.txt")
 
 add_executable(test_continuous_dual_hahn test_continuous_dual_hahn.cpp)
-target_include_directories(test_continuous_dual_hahn PRIVATE )
+target_include_directories(test_continuous_dual_hahn PRIVATE
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_continuous_dual_hahn quadmath)
 add_test(NAME run_test_continuous_dual_hahn COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_continuous_dual_hahn > output/test_continuous_dual_hahn.txt")
 
 add_executable(test_continuous_hahn test_continuous_hahn.cpp)
-target_include_directories(test_continuous_hahn PRIVATE )
+target_include_directories(test_continuous_hahn PRIVATE
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_continuous_hahn quadmath)
 
 add_executable(test_dual_hahn test_dual_hahn.cpp)
-target_include_directories(test_dual_hahn PRIVATE )
+target_include_directories(test_dual_hahn PRIVATE
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_dual_hahn quadmath)
 add_test(NAME run_test_dual_hahn COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_dual_hahn > output/test_dual_hahn.txt")
 
@@ -119,7 +123,8 @@ target_link_libraries(test_gegenbauer_neg_roots quadmath)
 #add_test(NAME run_test_gegenbauer_neg_roots COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_gegenbauer_neg_roots > output/test_gegenbauer_neg_roots.txt")
 
 add_executable(test_hahn test_hahn.cpp)
-target_include_directories(test_hahn PRIVATE )
+target_include_directories(test_hahn PRIVATE
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_hahn quadmath)
 add_test(NAME run_test_hahn COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hahn > output/test_hahn.txt")
 
@@ -202,20 +207,24 @@ target_link_libraries(test_meixner
 add_test(NAME run_test_meixner COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_meixner > output/test_meixner.txt")
 
 add_executable(test_meixner_pollaczek test_meixner_pollaczek.cpp)
-target_include_directories(test_meixner_pollaczek PRIVATE )
+target_include_directories(test_meixner_pollaczek PRIVATE
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_meixner_pollaczek quadmath)
 add_test(NAME run_test_meixner_pollaczek COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_meixner_pollaczek > output/test_meixner_pollaczek.txt")
 
 add_executable(test_racah test_racah.cpp)
-target_include_directories(test_racah PRIVATE )
+target_include_directories(test_racah PRIVATE
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_racah quadmath)
 add_test(NAME run_test_racah COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_racah > output/test_racah.txt")
 
 add_executable(test_wilson test_wilson.cpp)
-target_include_directories(test_wilson PRIVATE )
+target_include_directories(test_wilson PRIVATE
+  ${TR29124_INCLUDE_DIRS})
 target_link_libraries(test_wilson quadmath)
 add_test(NAME run_test_wilson COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_wilson > output/test_wilson.txt")
 
 #add_executable( )
-#target_include_directories( PRIVATE )
+#target_include_directories( PRIVATE
+#  ${TR29124_INCLUDE_DIRS})
 #target_link_libraries( quadmath)
