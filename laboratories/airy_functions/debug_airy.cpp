@@ -99,7 +99,7 @@ old_bessel_chunk(double xnu, double x, double& rj, double& ry, double& rjp, doub
 
     if ( x <= 0.0 || xnu < 0.0 ) std::cout << "Bad arguments in bessel_jy.\n";
 std::cout << '\n';
-    n = ( x < XMIN ? (int)(xnu + 0.5) : std::max( 0, (int)(xnu - x + 1.5) ) );
+    n = ( x < XMIN ? int(xnu + 0.5) : std::max( 0, int(xnu - x + 1.5) ) );
     xmu = xnu - n;
     xmu2 = xmu*xmu;
     xi = 1.0/x;
