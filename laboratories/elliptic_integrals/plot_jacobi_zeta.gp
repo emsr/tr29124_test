@@ -3,6 +3,9 @@ gnuplot
 
 set termoption enhanced
 
+#set term png
+#set output "jacobi_zeta.png"
+
 set xzeroaxis
 set yzeroaxis
 set grid
