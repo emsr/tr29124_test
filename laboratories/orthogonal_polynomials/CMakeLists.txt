@@ -52,7 +52,7 @@ target_link_libraries(test_charlier
   gfortran
   quadmath
   wrap_burkhardt)
-add_test(NAME run_test_charlier COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_charlier >test_charlier .txt")
+add_test(NAME run_test_charlier COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_charlier > output/test_charlier.txt")
 
 add_executable(test_chebyshev test_chebyshev.cpp)
 target_include_directories(test_chebyshev PRIVATE
