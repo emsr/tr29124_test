@@ -2706,7 +2706,7 @@ inline const mpreal random(unsigned int seed = 0)
     return mpfr::urandom(state);
 #else
     if(seed != 0)    std::srand(seed);
-    return mpfr::mpreal(std::rand()/(double)RAND_MAX);
+    return mpfr::mpreal(std::rand()/static_cast<double>(RAND_MAX));
 #endif
 
 }

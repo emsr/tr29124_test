@@ -1,1 +1,2 @@
-Get the function name right!
+Convert casts from old-style C to new C++ static_cast.
+
