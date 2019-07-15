@@ -185,6 +185,6 @@ target_include_directories(zeta_glob_deathmatch PRIVATE
   ../../cxx_math_constants/include)
 target_link_libraries(zeta_glob_deathmatch
   quadmath
-  wrap_gsl
+  wrap_gsl)
 # FIXME: This passes but takes forever and times out on most CI. Put it in another category.
 #add_test(NAME run_zeta_glob_deathmatch COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/zeta_glob_deathmatch > output/zeta_glob_deathmatch.txt")
