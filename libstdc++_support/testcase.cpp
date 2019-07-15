@@ -363,8 +363,8 @@ template<typename Real>
     maketest(assoc_laguerre, gsl::assoc_laguerre,
 	     "testcase_assoc_laguerre", nsname, basename,
 	     "n", vorder, "alpha", vorder,
-	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
-				std::make_pair(true, true), 11),
+	     "x", fill_argument(std::make_pair(Real{-50}, Real{100}),
+				std::make_pair(true, true), 16),
 	     "GSL",
 	     file_assoc_laguerre);
 
@@ -738,8 +738,8 @@ template<typename Real>
     maketest(laguerre, gsl::laguerre,
 	     "testcase_laguerre", nsname, basename,
 	     "n", vorder,
-	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
-				std::make_pair(true, true), 21),
+	     "x", fill_argument(std::make_pair(Real{-50}, Real{100}),
+				std::make_pair(true, true), 31),
 	     "GSL",
 	     file_laguerre);
 
