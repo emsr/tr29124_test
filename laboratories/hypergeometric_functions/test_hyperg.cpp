@@ -12,6 +12,8 @@
 #include <cmath>
 
 #include <ext/float128_io.h>
+#include <ext/float128_math.h>
+#include <ext/float128_limits.h>
 
 #include <bits/notsospecfun.h> // For complex log1p.
 #include <bits/numeric_limits.h>
