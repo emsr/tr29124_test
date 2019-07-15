@@ -42,9 +42,9 @@
 // Test data.
 // max(|f - f_Boost|): 2.8421709430404007e-14 at index 39
 // max(|f - f_Boost| / |f_Boost|): 3.6020996091956069e-13
-// mean(f - f_Boost): -1.2347406774127543e-15
-// variance(f - f_Boost): 3.1412769593741654e-33
-// stddev(f - f_Boost): 5.6047095904909875e-17
+// mean(f - f_Boost): -1.2236936821428522e-15
+// variance(f - f_Boost): 3.0541102444250673e-33
+// stddev(f - f_Boost): 5.5264004961865253e-17
 const testcase_digamma<double>
 data001[201] =
 {
