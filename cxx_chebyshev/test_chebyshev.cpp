@@ -1,10 +1,3 @@
-/*
-$HOME/bin_tr29124/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev test_chebyshev.cpp -lquadmath
-./test_chebyshev > test_chebyshev.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev test_chebyshev.cpp -lquadmath
-./test_chebyshev
-*/
 
 #include <iostream>
 #include <iomanip>
