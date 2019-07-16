@@ -23,3 +23,9 @@ plot [0.0:10.0][-4.5:6.0] \
                        "" index 8 using 1:2 with lines title "K_8(x; p, N)", \
                        "" index 9 using 1:2 with lines title "K_9(x; p, N)", \
                        "" index 10 using 1:2 with lines title "K_{10}(x; p, N)"
+
+set term push
+set term png
+set output "krawtchouk.png"
+replot
+set term pop

@@ -23,3 +23,9 @@ plot [0.0:20.0][-125.0:125.0] \
                    "" index 8 using 1:2 with lines ls 9 title "W_8(x^2; a, b, c, d)", \
                    "" index 9 using 1:2 with lines ls 10 title "W_9(x^2; a, b, c, d)", \
                    "" index 10 using 1:2 with lines ls 11 title "W_{10}(x^2; a, b, c, d)"
+
+set term push
+set term png
+set output "wilson.png"
+replot
+set term pop

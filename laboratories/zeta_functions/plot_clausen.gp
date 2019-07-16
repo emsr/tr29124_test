@@ -17,6 +17,12 @@ plot [-10.0:10.0][-2.0:2.0] \
                     "" index 0 using 1:5 with lines title "Im[Cl_2(x)]", \
                     "" index 0 using 1:6 with lines title "Im[C_2(x) GSL]"
 
+set term push
+set term png
+set output "clausen.png"
+replot
+set term pop
+
 # Figure 2
 set title "Clausen function Cl_m(x)"
 set xlabel "x"
@@ -26,3 +32,9 @@ plot [-10.0:10.0][-1.7:1.7] \
                     "" index 3 using 1:4 with lines title "Cl_3(x)", \
                     "" index 3 using 1:5 with lines title "Cl_4(x)", \
                     "" index 3 using 1:6 with lines title "Cl_5(x)"
+
+set term push
+set term png
+set output "clausen_n.png"
+replot
+set term pop

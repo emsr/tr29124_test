@@ -3,9 +3,6 @@ gnuplot
 
 set termoption enhanced
 
-#set term png
-#set output "jacobi_zeta.png"
-
 set xzeroaxis
 set yzeroaxis
 set grid
@@ -30,3 +27,9 @@ plot [-1.57079:+1.57079][-.5:.5] \
                              "" index  9 using 2:3 with lines title "Z(k=0.9, {/Symbol f})", \
                              "" index 10 using 2:3 with lines title "Z(k=0.99, {/Symbol f})", \
                              "" index 11 using 2:3 with lines title "Z(k=1, {/Symbol f})"
+
+set term push
+set term png
+set output "jacobi_zeta.png"
+replot
+set term pop

@@ -23,3 +23,9 @@ plot [0.0:11.0][-10.0:50.0] \
                    "" index 8 using 1:2 with lines ls 9 title "S_8(x^2; a, b, c)", \
                    "" index 9 using 1:2 with lines ls 10 title "S_9(x^2; a, b, c)", \
                    "" index 10 using 1:2 with lines ls 11 title "S_{10}(x^2; a, b, c)"
+
+set term push
+set term png
+set output "continuous_dual_hahn.png"
+replot
+set term pop

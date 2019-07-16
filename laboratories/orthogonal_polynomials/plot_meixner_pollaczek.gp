@@ -23,3 +23,9 @@ plot [-3.2:3.2][-12.0:12.0] \
                    "" index 8 using 1:2 with lines ls 9 title "P^{({/Symbol l})}_8(x; {/Symbol f})", \
                    "" index 9 using 1:2 with lines ls 10 title "P^{({/Symbol l})}_9(x; {/Symbol f})", \
                    "" index 10 using 1:2 with lines ls 11 title "P^{({/Symbol l})}_{10}(x; {/Symbol f})"
+
+set term push
+set term png
+set output "meixner_pollaczek.png"
+replot
+set term pop

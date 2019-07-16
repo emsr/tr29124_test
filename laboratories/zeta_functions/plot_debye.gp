@@ -16,6 +16,12 @@ plot [-5.0:20.0][0.0:4.5] "test_debye.txt" index 0 using 1:2 with lines title "D
                                        "" index 0 using 1:6 with lines title "Debye_5(x)", \
                                        "" index 0 using 1:7 with lines title "Debye_6(x)"
 
+set term push
+set term png
+set output "debye.png"
+replot
+set term pop
+
 
 set title "Debye functions D_n(x) - GSL"
 set xlabel "x"

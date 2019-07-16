@@ -23,3 +23,9 @@ plot [0.0:15.0][-110.0:110.0] \
                      "" index 8 using 1:2 with lines title "C_8(x;a)", \
                      "" index 9 using 1:2 with lines title "C_9(x;a)", \
                      "" index 10 using 1:2 with lines title "C_{10}(x;a)"
+
+set term push
+set term png
+set output "charlier.png"
+replot
+set term pop

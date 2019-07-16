@@ -10,6 +10,12 @@ plot [0.0:20.0][-1.6:1.6] \
                   "" index 0 using 1:4 with lines title "F'_{1}(-2, {/Symbol r})", \
                   "" index 0 using 1:5 with lines title "G'_{1}(-2, {/Symbol r})"
 
+set term push
+set term png
+set output "coulomb_a.png"
+replot
+set term pop
+
 set title "Coulomb Functions and Derivatives {/Symbol l} = 1, {/Symbol h} = 0"
 set xlabel "{/Symbol r}"
 plot [0.0:20.0][-1.6:1.6] \
@@ -17,6 +23,12 @@ plot [0.0:20.0][-1.6:1.6] \
                   "" index 1 using 1:3 with lines title "G_{1}(0, {/Symbol r})", \
                   "" index 1 using 1:4 with lines title "F'_{1}(0, {/Symbol r})", \
                   "" index 1 using 1:5 with lines title "G'_{1}(0, {/Symbol r})"
+
+set term push
+set term png
+set output "coulomb_b.png"
+replot
+set term pop
 
 set title "Coulomb Functions and Derivatives {/Symbol l} = 1, {/Symbol h} = 2"
 set xlabel "{/Symbol r}"
@@ -26,6 +38,12 @@ plot [0.0:20.0][-1.6:1.6] \
                   "" index 2 using 1:4 with lines title "F'_{1}(2, {/Symbol r})", \
                   "" index 2 using 1:5 with lines title "G'_{1}(2, {/Symbol r})"
 
+set term push
+set term png
+set output "coulomb_c.png"
+replot
+set term pop
+
 set title "Coulomb Functions and Derivatives {/Symbol l} = 1, {/Symbol h} = 4"
 set xlabel "{/Symbol r}"
 plot [0.0:20.0][-1.6:1.6] \
@@ -33,6 +51,12 @@ plot [0.0:20.0][-1.6:1.6] \
                   "" index 3 using 1:3 with lines title "G_{1}(4, {/Symbol r})", \
                   "" index 3 using 1:4 with lines title "F'_{1}(4, {/Symbol r})", \
                   "" index 3 using 1:5 with lines title "G'_{1}(4, {/Symbol r})"
+
+set term push
+set term png
+set output "coulomb_d.png"
+replot
+set term pop
 
 set title "Coulomb Functions and Derivatives {/Symbol l} = 1, {/Symbol h} = 6"
 set xlabel "{/Symbol r}"
@@ -42,6 +66,12 @@ plot [0.0:20.0][-1.6:1.6] \
                   "" index 4 using 1:4 with lines title "F'_{1}(6, {/Symbol r})", \
                   "" index 4 using 1:5 with lines title "G'_{1}(6, {/Symbol r})"
 
+set term push
+set term png
+set output "coulomb_e.png"
+replot
+set term pop
+
 set title "Coulomb Functions and Derivatives {/Symbol l} = 1, {/Symbol h} = 8"
 set xlabel "x"
 plot [0.0:20.0][-1.6:1.6] \
@@ -50,6 +80,12 @@ plot [0.0:20.0][-1.6:1.6] \
                   "" index 5 using 1:4 with lines title "F'_{1}({/Symbol h}, {/Symbol r})", \
                   "" index 5 using 1:5 with lines title "G'_{1}({/Symbol h}, {/Symbol r})"
 
+set term push
+set term png
+set output "coulomb_f.png"
+replot
+set term pop
+
 set title "Coulomb Functions and Derivatives {/Symbol l} = 1, {/Symbol h} = 10"
 set xlabel "{/Symbol r}"
 plot [0.0:20.0][-1.6:1.6] \
@@ -57,6 +93,12 @@ plot [0.0:20.0][-1.6:1.6] \
                   "" index 6 using 1:3 with lines title "G_{1}(10, {/Symbol r})", \
                   "" index 6 using 1:4 with lines title "F'_{1}(10, {/Symbol r})", \
                   "" index 6 using 1:5 with lines title "G'_{1}(10, {/Symbol r})"
+
+set term push
+set term png
+set output "coulomb_g.png"
+replot
+set term pop
 
 
 
@@ -71,6 +113,12 @@ plot [0.0:20.0][-1.6:1.6] \
                   "" index 5 using 1:2 with lines title "F_{1}(8, {/Symbol r})", \
                   "" index 6 using 1:2 with lines title "F_{1}(10, {/Symbol r})"
 
+set term push
+set term png
+set output "coulomb_h.png"
+replot
+set term pop
+
 set title "Coulomb Function G_{{/Symbol l}=1}({/Symbol h}, {/Symbol r})"
 set xlabel "{/Symbol r}"
 plot [0.0:20.0][-1.6:1.6] \
@@ -81,6 +129,12 @@ plot [0.0:20.0][-1.6:1.6] \
                   "" index 4 using 1:3 with lines title "G_{1}(6, {/Symbol r})", \
                   "" index 5 using 1:3 with lines title "G_{1}(8, {/Symbol r})", \
                   "" index 6 using 1:3 with lines title "G_{1}(10, {/Symbol r})"
+
+set term push
+set term png
+set output "coulomb_i.png"
+replot
+set term pop
 
 set title "Coulomb Function F'_{{/Symbol l}=1}({/Symbol h}, {/Symbol r})"
 set xlabel "{/Symbol r}"
@@ -93,6 +147,12 @@ plot [0.0:20.0][-1.6:1.6] \
                   "" index 5 using 1:2 with lines title "F'_{1}(8, {/Symbol r})", \
                   "" index 6 using 1:2 with lines title "F'_{1}(10, {/Symbol r})"
 
+set term push
+set term png
+set output "coulomb_j.png"
+replot
+set term pop
+
 set title "Coulomb Function G'_{{/Symbol l}=1}({/Symbol h}, {/Symbol r})"
 set xlabel "{/Symbol r}"
 plot [0.0:20.0][-1.6:1.6] \
@@ -103,3 +163,9 @@ plot [0.0:20.0][-1.6:1.6] \
                   "" index 4 using 1:3 with lines title "G'_{1}(6, {/Symbol r})", \
                   "" index 5 using 1:3 with lines title "G'_{1}(8, {/Symbol r})", \
                   "" index 6 using 1:3 with lines title "G'_{1}(10, {/Symbol r})"
+
+set term push
+set term png
+set output "coulomb_k.png"
+replot
+set term pop

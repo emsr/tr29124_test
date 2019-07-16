@@ -11,3 +11,9 @@ plot [-1.0:1.0][-6.0:6.0] \
                              "" index 3 using 1:2 with lines title "Q_3(x)", \
                              "" index 4 using 1:2 with lines title "Q_4(x)", \
                              "" index 5 using 1:2 with lines title "Q_5(x)"
+
+set term push
+set term png
+set output "assoc_legendre_q.png"
+replot
+set term pop

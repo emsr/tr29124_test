@@ -19,6 +19,12 @@ plot [-25:25][-2.5:2.5] \
     "test_riemann_zeta.txt" index 2 using 1:2 with lines title "Re[{/Symbol z}(1/2 +i{/Symbol t})]", \
                          "" index 2 using 1:3 with lines title "Im[{/Symbol z}(1/2 +i{/Symbol t})]"
 
+set term push
+set term png
+set output "riemann_zeta.png"
+replot
+set term pop
+
 gnuplot
 
 set termoption enhanced

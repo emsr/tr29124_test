@@ -23,3 +23,9 @@ plot [0.0:16.0][-20.0:45.0] \
                     "" index 8 using 1:2 with lines title "M_8(x; {/Symbol b}, c)", \
                     "" index 9 using 1:2 with lines title "M_9(x; {/Symbol b}, c)", \
                     "" index 10 using 1:2 with lines title "M_{10}(x; {/Symbol b}, c)"
+
+set term push
+set term png
+set output "meixner.png"
+replot
+set term pop

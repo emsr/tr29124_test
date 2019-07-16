@@ -23,3 +23,9 @@ plot [-2.0:2.0][-75000.0:75000.0] \
                    "" index 8 using 1:2 with lines ls 9 title "p_8(x; a, b, c, d)", \
                    "" index 9 using 1:2 with lines ls 10 title "p_9(x; a, b, c, d)", \
                    "" index 10 using 1:2 with lines ls 11 title "p_{10}(x; a, b, c, d)"
+
+set term push
+set term png
+set output "continuous_hahn.png"
+replot
+set term pop
