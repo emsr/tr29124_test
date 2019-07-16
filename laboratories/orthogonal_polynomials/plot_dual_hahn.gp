@@ -23,3 +23,9 @@ plot [0.0:100.0][-50.0:200.0] \
                  "" index 8 using 1:2 with lines ls 9 title "R_8({/Symbol l}(x); {/Symbol g}, {/Symbol d}, N)", \
                  "" index 9 using 1:2 with lines ls 10 title "R_9({/Symbol l}(x); {/Symbol g}, {/Symbol d}, N)", \
                  "" index 10 using 1:2 with lines ls 11 title "R_{10}({/Symbol l}(x); {/Symbol g}, {/Symbol d}, N)"
+
+set term push
+set term png
+set output "dual_hahn.png"
+replot
+set term pop

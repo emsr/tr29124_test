@@ -7,7 +7,7 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS -Wno-psabi)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-psabi -Wno-deprecated-declarations -Wold-style-cast")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 if (NOT MSVC)
@@ -24,6 +24,7 @@ target_include_directories(cxx_chebyshev INTERFACE include)
 add_executable(test_cxx_chebyshev test_chebyshev.cpp)
 target_link_libraries(test_cxx_chebyshev cxx_chebyshev quadmath)
 target_include_directories(test_cxx_chebyshev PRIVATE
+  ../cxx_math_constants/include
   ../cxx_float128/include
   ../cxx_complex_utils/include
   ../cxx_polynomial/include

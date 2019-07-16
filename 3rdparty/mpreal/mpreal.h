@@ -153,8 +153,8 @@ private:
 public:
     
     // Get default rounding mode & precision
-    inline static mp_rnd_t   get_default_rnd()    {    return (mp_rnd_t)(mpfr_get_default_rounding_mode());       }
-    inline static mp_prec_t  get_default_prec()   {    return (mpfr_get_default_prec)();                          }
+    inline static mp_rnd_t   get_default_rnd()    {    return mp_rnd_t(mpfr_get_default_rounding_mode());       }
+    inline static mp_prec_t  get_default_prec()   {    return mpfr_get_default_prec();                          }
 
     // Constructors && type conversions
     mpreal();
@@ -303,10 +303,10 @@ public:
 
 #if defined (MPREAL_HAVE_EXPLICIT_CONVERTERS)
     explicit operator bool               () const { return toBool();                 }
-    explicit operator int                () const { return int(toLong());            }
+    explicit operator int                () const { return static_cast<int>(toLong()); }
     explicit operator long               () const { return toLong();                 }
     explicit operator long long          () const { return toLLong();                }
-    explicit operator unsigned           () const { return unsigned(toULong());      }
+    explicit operator unsigned           () const { return static_cast<unsigned>(toULong()); }
     explicit operator unsigned long      () const { return toULong();                }
     explicit operator unsigned long long () const { return toULLong();               }
     explicit operator float              () const { return toFloat();                }
@@ -624,7 +624,7 @@ inline mpreal::mpreal(const mpfr_t  u, bool shared)
 
 inline mpreal::mpreal(const mpf_t u)
 {
-    mpfr_init2(mpfr_ptr(),(mp_prec_t) mpf_get_prec(u)); // (gmp: mp_bitcnt_t) unsigned long -> long (mpfr: mp_prec_t)
+    mpfr_init2(mpfr_ptr(),mp_prec_t(mpf_get_prec(u))); // (gmp: mp_bitcnt_t) unsigned long -> long (mpfr: mp_prec_t)
     mpfr_set_f(mpfr_ptr(),u,mpreal::get_default_rnd());
 
     MPREAL_MSVC_DEBUGVIEW_CODE;
@@ -1938,7 +1938,7 @@ inline int bits2digits(mp_prec_t b)
 {
     const double LOG10_2 = 0.30102999566398119;
 
-    return int(std::floor( b * LOG10_2 ));
+    return static_cast<int>(std::floor( b * LOG10_2 ));
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -1952,7 +1952,7 @@ inline mpreal& mpreal::setSign(int sign, mp_rnd_t RoundingMode)
 
 inline int mpreal::getPrecision() const
 {
-    return int(mpfr_get_prec(mpfr_srcptr()));
+    return static_cast<int>(mpfr_get_prec(mpfr_srcptr()));
 }
 
 inline mpreal& mpreal::setPrecision(int Precision, mp_rnd_t RoundingMode)
@@ -2028,7 +2028,7 @@ inline const mpreal frexp(const mpreal& x, int* exp, mp_rnd_t mode = mpreal::get
 {
     mp_exp_t expl;
     mpreal y = frexp(x, &expl, mode);
-    *exp = int(expl);
+    *exp = static_cast<int>(expl);
     return y;
 }
 
@@ -2706,7 +2706,7 @@ inline const mpreal random(unsigned int seed = 0)
     return mpfr::urandom(state);
 #else
     if(seed != 0)    std::srand(seed);
-    return mpfr::mpreal(std::rand()/(double)RAND_MAX);
+    return mpfr::mpreal(std::rand()/static_cast<double>(RAND_MAX));
 #endif
 
 }
@@ -3126,8 +3126,8 @@ namespace std
         // Please note, exponent range is not fixed in MPFR
         static const int min_exponent = MPFR_EMIN_DEFAULT;
         static const int max_exponent = MPFR_EMAX_DEFAULT;
-        MPREAL_PERMISSIVE_EXPR static const int min_exponent10 = (int) (MPFR_EMIN_DEFAULT * 0.3010299956639811); 
-        MPREAL_PERMISSIVE_EXPR static const int max_exponent10 = (int) (MPFR_EMAX_DEFAULT * 0.3010299956639811); 
+        MPREAL_PERMISSIVE_EXPR static const int min_exponent10 = static_cast<int>(MPFR_EMIN_DEFAULT * 0.3010299956639811); 
+        MPREAL_PERMISSIVE_EXPR static const int max_exponent10 = static_cast<int>(MPFR_EMAX_DEFAULT * 0.3010299956639811); 
 
 #ifdef MPREAL_HAVE_DYNAMIC_STD_NUMERIC_LIMITS
 
@@ -3151,7 +3151,7 @@ namespace std
             }
         }
 
-        inline static int digits()                        {    return int(mpfr::mpreal::get_default_prec());    }
+        inline static int digits()                        {    return static_cast<int>(mpfr::mpreal::get_default_prec());    }
         inline static int digits(const mpfr::mpreal& x)   {    return x.getPrecision();                         }
 
         inline static int digits10(mp_prec_t precision = mpfr::mpreal::get_default_prec())

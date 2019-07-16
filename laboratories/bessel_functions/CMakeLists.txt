@@ -9,7 +9,7 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS -Wno-psabi)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-psabi -Wno-deprecated-declarations -Wold-style-cast")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 if (NOT MSVC)
@@ -121,7 +121,7 @@ add_executable(test_cyl_hankel test_cyl_hankel.cpp)
 target_include_directories(test_cyl_hankel PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../wrappers)
-target_link_libraries(test_cyl_hankel quadmath -L../../wrappers -lwrap_boost)
+target_link_libraries(test_cyl_hankel quadmath wrap_boost)
 add_test(NAME run_test_cyl_hankel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_cyl_hankel > output/test_cyl_hankel.txt")
 
 add_executable(test_hankel test_hankel.cpp)
@@ -135,7 +135,7 @@ add_executable(test_hankel_real_arg test_hankel_real_arg.cpp)
 target_include_directories(test_hankel_real_arg PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../wrappers)
-target_link_libraries(test_hankel_real_arg quadmath -L../../wrappers -lwrap_boost)
+target_link_libraries(test_hankel_real_arg quadmath wrap_boost)
 add_test(NAME run_test_hankel_real_arg COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hankel_real_arg > output/test_hankel_real_arg.txt")
 
 add_executable(test_kelvin test_kelvin.cpp)
@@ -180,7 +180,9 @@ target_include_directories(test_sph_hankel PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../cxx_float128/include
   ../../wrappers)
-target_link_libraries(test_sph_hankel quadmath -L../../wrappers -lwrap_boost)
+target_link_libraries(test_sph_hankel
+  quadmath
+  wrap_boost)
 add_test(NAME run_test_sph_hankel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_sph_hankel > output/test_sph_hankel.txt")
 
 add_executable(test_struve test_struve.cpp)
@@ -189,7 +191,7 @@ target_include_directories(test_struve PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../cxx_float128/include
   ../../wrappers)
-target_link_libraries(test_struve quadmath -L../../wrappers -lwrap_burkhardt -L/home/ed/bin/lib64 -lgfortran)
+target_link_libraries(test_struve quadmath wrap_burkhardt gfortran)
 add_test(NAME run_test_struve COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_struve > output/test_struve.txt")
 
 add_executable(test_cyl_bessel_nk_series test_cyl_bessel_nk_series.cpp)

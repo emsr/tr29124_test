@@ -433,7 +433,7 @@ template<typename Real>
 		   [](unsigned, Real){ return true; },
 		   "testcase_laguerre",
 		   make_argument("n"sv, vorder),
-		   make_argument("x"sv, fill2(Real{0}, Real{100}, 21)));
+		   make_argument("x"sv, fill2(Real{-50}, Real{100}, 31)));
     std::ofstream file_laguerre(outfile("laguerre"));
     test_laguerre(file_laguerre);
 

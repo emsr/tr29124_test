@@ -1,0 +1,55 @@
+3rdparty.ama            3rd party licenses and infos
+complexdemo.zip         Demos for complex functions (phase plot, calculator)
+copying_we.txt          WE's license
+damath.pas              Double precision accurate math unit
+damath_info.txt         Basic information about the DAMath package
+damcmplx.pas            DAMath based complex routines
+damquat.pas             DAMath based quaternion routines
+damtools.pas            Accurate Double Math Tools: Root finding, function minimization, numerical integration, quadratic equations
+dfpu.pas                FPU unit for DAMath: Rounding and Precision
+legal.txt               Legal notice (cryptography, software patents)
+manifest.dam            This file
+memh.pas                Basic portable heap memory allocation functions
+readme.dam              Description of the DAMath archive
+sdbasic.pas             Basic code for double precision special functions
+sdbessel.pas            Double precision special functions: Bessel functions and related
+sdbessl2.pas            Bessel functions Part2: Airy, Kelvin, Struve, Coulomb
+sdellint.pas            Double precision elliptic integrals, Jacobi elliptic and theta functions
+sderf.pas               Double precision special functions: Error function and related
+sdexpint.pas            Double precision special functions: Exponential integrals and related
+sdgamma.pas             Double precision special functions: Gamma function and related
+sdgamma2.pas            Double precision inverse/incomplete Gamma/Beta functions
+sdhyperg.pas            Double precision special functions: Hypergeometric functions
+sdmisc.pas              Double precision special functions: Other functions
+sdpoly.pas              Double precision orthogonal polynomials, Legendre functions and related
+sdsdist.pas             Double precision special functions: Statistical distributions
+sdzeta.pas              Double precision Zeta functions and polylogarithms
+specfund.pas            Special functions interface unit (double precision)
+std.inc                 Standard definitions and options
+t_dcmpxx.cmp            Multi precision test and compare complex routines
+t_dcmpxx_arm.cmp        Raspberry Pi: Multi precision test and compare complex routines
+t_xdamat64.cmp          Multi precision test and compare: DAMath vs. 64-bit Delphi and FPC
+t_xdamat_arm.cmp        Raspberry Pi: Multi precision test and compare DAMath vs. FPC
+
+tests\#c_damat.bat      Compile batch for t_damath.pas
+tests\#c_dcmpl.bat      Compile batch for t_dcmplx
+tests\#c_dfpu.bat       Compile batch for t_fpu.pas
+tests\#c_dquat.bat      Compile batch for t_dquat.pas
+tests\#c_droot.bat      Compile batch for t_droot.pas
+tests\#c_dtool.bat      Compile batch for t_damtt.pas
+tests\#c_tsfd.bat       Compile batch for t_sfd.pas
+tests\$log_damath.zip   Archive with log files of final tests done before release
+tests\*.cfg             Compiler configuration files
+tests\fdamsupp.pas      MPArith support routines for D/AMath test programs
+tests\t_damall.pas      All-in-one test program for the DAMath package
+tests\t_damat*.pas      Test programs for DAMath functions (basic regression test)
+tests\t_damtt*.pas      Test programs for DAMTools: Root finding, minimization, integration
+tests\t_dcmpl*.pas      Test programs for DAMCmplx.pas: Complex routines
+tests\t_dcmpxx.pas      Test program  for multi precision compare of complex routines
+tests\t_dfpu*.pas       Test programs for DAMath/FPU functions
+tests\t_dquat*.pas      Test program  for DAMQuat unit
+tests\t_droot*.pas      Test programs for DAMTools/quadsolve/cubsolve/PolyRoots
+tests\t_sfd*.pas        Test programs for SpecFunD unit
+tests\t_xdamat.pas      Test program  for DAMath: compare precision with MPArith and math
+tests\_comparm          Compile / log script for Raspberry Pi
+

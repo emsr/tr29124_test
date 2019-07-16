@@ -23,3 +23,9 @@ plot [0.0:10.0][-65.0:65.0] \
                  "" index 8 using 1:2 with lines ls 9 title "Q_8(x; {/Symbol a}, {/Symbol b}, N)", \
                  "" index 9 using 1:2 with lines ls 10 title "Q_9(x; {/Symbol a}, {/Symbol b}, N)", \
                  "" index 10 using 1:2 with lines ls 11 title "Q_{10}(x; {/Symbol a}, {/Symbol b}, N)"
+
+set term push
+set term png
+set output "hahn.png"
+replot
+set term pop

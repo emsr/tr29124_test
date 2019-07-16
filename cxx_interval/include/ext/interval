@@ -167,28 +167,30 @@ template<typename _FloatTp>
 
     // Operators
     operator short() const
-    { return (short)((this->_M_upper + this->_M_lower) / _FloatTp{2}); }
+    { return static_cast<short>((this->_M_upper + this->_M_lower) / _FloatTp{2}); }
 
     operator int() const
-    { return (int)center(); }
+    { return static_cast<int>(center()); }
 
     operator long() const
-    { return (long)((this->_M_upper + this->_M_lower) / _FloatTp{2}); }
+    { return static_cast<long>((this->_M_upper + this->_M_lower) / _FloatTp{2}); }
 
     operator unsigned short() const
-    { return (unsigned short)((this->_M_upper + this->_M_lower) / _FloatTp{2}); }
+    { return static_cast<unsigned short>((this->_M_upper + this->_M_lower) / _FloatTp{2}); }
 
     operator unsigned int() const
-    { return (unsigned int)((this->_M_upper + this->_M_lower) / _FloatTp{2}); }
+    { return static_cast<unsigned int>((this->_M_upper + this->_M_lower) / _FloatTp{2}); }
 
     operator unsigned long() const
-    { return (unsigned long)((this->_M_upper + this->_M_lower) / _FloatTp{2}); }
+    { return static_cast<unsigned long>((this->_M_upper + this->_M_lower) / _FloatTp{2}); }
 
     operator double() const
-    { return (double)((this->_M_upper + this->_M_lower) / _FloatTp{2}); }
+    { return static_cast<double>((this->_M_upper + this->_M_lower) / _FloatTp{2}); }
 
     operator float() const
-    { return this->_M_upper == this->_M_lower? (float)this->_M_lower : (float)((this->_M_upper + this->_M_lower) / _FloatTp{2}); }
+    { return this->_M_upper == this->_M_lower
+	   ? static_cast<float>(this->_M_lower)
+	   : static_cast<float>((this->_M_upper + this->_M_lower) / _FloatTp{2}); }
 
     interval<_FloatTp>& operator+=(const interval<_FloatTp>&);
     interval<_FloatTp>& operator-=(const interval<_FloatTp>&);

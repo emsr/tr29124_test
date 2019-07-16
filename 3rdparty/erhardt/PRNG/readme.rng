@@ -1,0 +1,63 @@
+This archive contains seven fast pseudo random number generators with
+period lengths much greater than Pascal's random function: taus88 and
+taus113 (Pierre L'Ecuyer), tt800 and mt19937 (Makoto Matsumoto et al,
+mt19937 is the famous Mersenne Twister), kiss123 (George Marsaglia),
+well1024a (Panneton, L'Ecuyer, Matsumoto) and xor4096 (Richard P. Brent).
+All are implemented with context records, therefore several independent
+generators can be used simultaneously, they are not cryptographically
+secure. A TP/Delphi compatible LC generator with the common functions and
+features can be found in unit pasrand.
+
+
+In addition there are three cryptographic generators:
+
+  * Bob Jenkins' public domain ISAAC random number generator
+    (Indirection, Shift, Accumulate, Add, and Count). The average cycle
+    length of ISAAC is 2**8295, the minimum length is 2**40.
+
+  * salsar is based upon the Salsa20 stream cipher and needs the salsa20
+    unit (included in $supp_rng.zip) The core routine uses 128 bit keys
+    and 8 rounds (this default value can be changed to 12 or 20 rounds
+    with salsar_set_rounds).
+
+  * aesr uses AES/CTR mode routines with 128 bit keys (included in
+    $supp_rng.zip).
+
+
+The units and basic test programs can be compiled with the usual Pascal
+(TP5/5.5/6, BP7, VP 2.1, FPC 1.0/2.0/2.2/2.4/2.6,3.x) and Delphi
+(1..7/9/10/12/17/18/25S) versions. Most test programs need the ministat
+and/or the hrtimer unit.
+
+Table of generator properties (C/B: CPU cycles per byte, MB/s: million
+bytes per second. On 1.7 GHz Pentium 4 / Windows 98: BP7 = Borland
+Pascal 7 real mode with 386 BASM and D6 = Delphi 6; on Win7/64 Core
+i3-2350M: D18/64 = Delphi 18 64-bit. Note that isaac was compiled with
+{$define testing}):
+
++-----------+------+----------+-------+------+------+-------+------+-------+
+|           |  ctx |    cycle |   BP7 |  BP7 |   D6 |    D6 |    D18/64    |
+| Generator | size |   length |   C/B | MB/s |  C/B |  MB/s |  C/B |  MB/s |
++-----------+------+----------+-------+------+------+-------+------+-------+
+|   pasrand |    4 |    2**32 |  74.0 | 22.9 |  5.0 | 294.8 |  5.0 | 459.0 |
+|    taus88 |   16 |    2**88 |  79.0 | 21.5 |  8.0 | 211.9 | 10.8 | 213.5 |
+|   taus113 |   20 |   2**113 |  85.0 | 20.0 |  8.0 | 211.9 | 13.5 | 170.0 |
+|   kiss123 |   20 |   2**123 | 114.0 | 14.9 | 13.3 | 127.9 | 15.0 | 153.0 |
+|     tt800 |  106 |   2**800 | 308.3 |  5.5 | 18.5 |  91.7 | 18.0 | 126.7 |
+| well1024a |  134 |  2**1024 | 166.5 | 10.2 |  7.8 | 218.7 | 13.8 | 166.9 |
+|   xor4096 |  522 |  2**4096 |  80.0 | 21.0 |  6.5 | 260.7 | 12.3 | 187.3 |
+|   mt19937 | 2502 | 2**19937 | 227.4 |  7.4 |  8.3 | 204.5 | 12.6 | 181.5 |
+|      aesr |  290 |   2**128 | 211.2 |  8.0 | 28.4 |  59.7 | 60.2 |  38.1 |
+|    salsar |  202 |    2**70 | 108.3 | 15.7 | 15.4 | 110.3 | 31.1 |  73.8 |
+|     isaac | 2066 |  2**8295 | 122.0 | 13.9 |  9.0 | 189.3 | 12.8 | 178.9 |
++-----------+------+----------+-------+------+------+-------+------+-------+
+
+Last changes (Dec. 2017)
+ - New Well1024a generator by F. Panneton, P. L'Ecuyer and M. Matsumoto;
+ - rangel/w functions for random longint/word in range 0..range-1;
+ - Pasrand unit with TP/Delphi LC generator and common random functions;
+ - New archive layout (tests subdirectory, more test, AES/Salsa included).
+
+---------------------------------------------------------------------------
+http://wolfgang-ehrhardt.de/
+

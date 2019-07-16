@@ -8,6 +8,7 @@
 #include <tuple>
 #include <ext/float128_math.h>
 #include <ext/float128_io.h>
+#include <ext/float128_limits.h>
 #include <ext/complex128_math.h>
 #include <ext/polynomial.h>
 #include <ext/math_constants.h>

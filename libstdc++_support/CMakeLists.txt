@@ -35,14 +35,14 @@ set(TR29124_INCLUDE_DIRS
   ../cxx_integration/include)
 
 add_executable(testcase testcase.cpp)
-target_link_libraries(testcase -L../wrappers quadmath -lwrap_gsl -lwrap_boost -lwrap_burkhardt)
+target_link_libraries(testcase wrap_gsl wrap_boost wrap_burkhardt)
 target_include_directories(testcase PRIVATE
   .
   ${TR29124_INCLUDE_DIRS}
   ../wrappers)
 
 add_executable(testcase_tr1 testcase.cpp)
-target_link_libraries(testcase_tr1 quadmath -L../wrappers -lwrap_gsl -lwrap_boost)
+target_link_libraries(testcase_tr1 quadmath wrap_gsl wrap_boost)
 target_compile_definitions(testcase_tr1 PRIVATE TR1)
 target_include_directories(testcase_tr1 PRIVATE
   .

@@ -1,0 +1,1520 @@
+---------------------------------------------------------------------------
+Basic information about the DAMath package (Nov. 2018)
+---------------------------------------------------------------------------
+
+Contents
+
+  * Introduction
+
+  * DAMath functions
+    * Elementary numerical functions
+    * Elementary transcendental functions
+    * Floating point functions
+    * FPU control functions
+    * Polynomial, Vector, Statistic Operations
+    * Argument reduction for trigonometric functions
+    * Basic double-double functions
+    * Other functions
+
+  * Special functions
+    * Bessel functions and related
+    * Elliptic integrals, elliptic / theta functions
+    * Error function and related
+    * Exponential integrals and related
+    * Gamma function and related
+    * Orthogonal polynomials, Legendre functions, and related
+    * Hypergeometric functions and related
+    * Statistical distributions
+    * Zeta functions, polylogarithms, and related
+    * Other special functions
+
+  * DAMTools functions
+    * Function minimization
+    * Zero finding
+    * Numerical integration
+    * Convergence acceleration
+    * Solving quadratic, cubic, polynomial equations
+
+  * DAMath complex functions
+    * Complex arithmetic and basic functions
+    * Complex transcendental functions
+
+  * DAMath quaternionic functions
+    * Quaternionic arithmetic and basic functions
+    * Quaternionic transcendental functions
+
+  * References
+
+
+---------------------------------------------------------------------------
+Introduction
+---------------------------------------------------------------------------
+
+The DAMath package contains Pascal/Delphi source for double precision accurate
+mathematical methods without using multi precision arithmetic or assembler. The
+main purpose is to make the AMath functions available for 64-bit systems without
+Extended Precision or 387-FPU, but they can be used with 32-bit systems.
+
+The source can be compiled with the usual Pascal versions that allow const
+parameters (tested with BP 7.0, VP 2.1, FPC 1.0/2.0/2.2/2.4/2.6/3x, and
+Delphi versions 1..7/9-10/12/17-18/25/26).
+
+Note for FreePascal users: The 3.x versions support a new optimization level
+-O4 (-O3 + optimizations which might have unexpected side effects). For
+AMath/DAmath the so-called FASTMATH optimization is relevant: Among others
+floating point division by constants may be replaced by multiplication with the
+inverse, leading to quotients which are sometimes not correctly rounded! This
+obviously conflicts with the design goal of accurate computing and I recommend
+to turn off this feature using {$OPTIMIZATION NOFASTMATH} or with command line
+option -OoNOFASTMATH!
+
+The units assume IEEE-754 53-bit double precision (binary64) and rounding to
+nearest; since Aug. 2017 there is the separate unit DFPU with 64-bit/ARM
+compatible rounding / precision / exception control functions based on the compiler's
+math unit.
+
+ * The DAMath unit implements the double precision accurate mathematical
+   functions: exponential, logarithmic, trigonometric, hyperbolic, inverse
+   circular / hyperbolic functions; and there are the polynomial, vector,
+   statistic operations and floating point functions.
+
+   DAMath uses the system functions abs, arctan, frac, int, ln, and trunc
+   for 64-bit (frac, int, ln, and trunc are bug-fixed for 16(32-bit). Because
+   FPC-64 (version <= V2.6.4) looses up to 13 of the 53 bits for exp, DAMath
+   implements it's own exp function. System sin(x) and cos(x) are used for
+   |x| <= Pi/4, Payne/Hanek range reduction is performed if |x| > 2^30.
+
+   On Win7/64 the 64-bit DAMath one argument elementary transcendental
+   functions and power have peak relative errors < 2*eps_d (about 4.4E-16),
+   the RMS values are < 0.6*eps_d, a complete list and the Delphi/FPC figures
+   can be found in the log file t_xdamat64.cmp.
+
+   The dbl2 (double-double) routines operate on pairs of 53-bit double
+   floating point numbers, which represent the unevaluated sum of the high and
+   low parts: a = (a.h, a.l) = a.h + a.l, normally with |a.l| < eps_d*|a.h|.
+   The double-double concept was introduced by T.J. Dekker and others in the
+   1970. In DAMath these functions are explicitly used for pow1p and compound
+   (and since long time implicitly in the accurate sum and dot product, as
+   well as the compensated Horner scheme).
+
+ * The DAMTools units provide accurate and reliable tools for finding
+   zeros and local minima of functions, numerical integration of
+   one-dimensional functions, convergence acceleration of sums and sequences,
+   and solving quadratic/cubic/polynomial equations:
+
+   * The functions localmin, mbrent, and fmin (differing in parameter count
+     and ease of use) use Brent's algorithm with guaranteed convergence for
+     finding a local minimum of a function f in an interval (a,b). The
+     algorithm combines golden section search and successive parabolic
+     interpolation using only function (not derivative) evaluations.
+
+   * The functions zbrent and zeroin use the Brent/Dekker algorithm with
+     guaranteed convergence for finding a zero of a continuous function f in
+     the interval [a,b], when f(a) and f(b) have different signs; zbrenty
+     handles the zeros of f(x)-y. The algorithm is based on a combination of
+     successive interpolations and bisection. zridders implements Ridders'
+     root finding method based on regula falsi and exponential factors.
+
+   * The qag* procedures are Pascal translations of Quadpack algorithms by R.
+     Piessens, E. de Doncker-Kapenga, C.W. šberhuber, D. Kahaner. These
+     routines perform global adaptive quadrature of functions over finite or
+     infinite intervals based on Gauss-Kronrod rules for the subintervals and
+     acceleration by Wynn's epsilon algorithm, they can handle rather
+     difficult integrals including integrand functions with local
+     difficulties such as a discontinuities and integrable singularities.
+     quagk is a simple general purpose shell for the qag* routines.
+
+     The Quadpack algorithm qawc computes the Cauchy principal value of
+     f(x)/(x-c) using a globally adaptive strategy and modified Clenshaw -
+     Curtis integration on the subintervals containing the point x=c.
+
+     The adaptive quanc8 algorithm by G.E. Forsythe, M.A. Malcolm, C.B. Moler
+     estimates the integral of a smooth function over a finite interval using
+     a Newton-Cotes rule.
+
+     The procedures intdeo and intdei use the Double Exponential (DE)
+     transformation (developed by M. Mori, T. Ooura, and others) for
+     automatic quadrature of f(x) over the infinite interval (a,+INF) for
+     functions with and without oscillatory factors resp. intde integrates
+     over finite intervals (a,b) and intde_p, intdei_p are the corresponding
+     procedures for functions f(x,p) with parameters.
+
+   * The procedures levinu1 and wynneps1 are stand-alone versions of
+     convergence acceleration methods, they perform one step of the Levin
+     u-transformation for sums or one step of Wynn's epsilon algorithm for
+     sequences or sums (original customized versions are used in LerchPhi and
+     the Quadpack routines, respectively). The calling driver routines have to
+     analyze the convergence of the processes.
+
+   * The squad functions accurately solve quadratic equations with double
+     coefficients; they implement ideas of G.E. Forsythe, W. Kahan, P.H.
+     Sterbenz (high precision calculation of discriminant, scaling by powers
+     of two etc). The cubsolve procedure computes the solutions of real cubic
+     equations with double coefficients; it is based on lecture notes by W.
+     Kahan.
+
+     The PolyRoots procedure computes the n (complex) roots x[k] + i*y[k] of
+     the polynomial p(z) = p[0] + p[1]*z + ... p[n]*z^n   using a companion
+     matrix method, balancing, and the QR algorithm for the eigenvalues of an
+     upper Hessenberg matrix.
+
+ * The units SpecFunD (and sd*.pas) implement many double precision special
+   functions; currently the following function groups are available:
+
+     * Bessel functions and related,
+     * Elliptic integrals/functions and theta functions,
+     * Gamma function and related,
+     * Zeta functions, polylogarithms, and related,
+     * Error function and related,
+     * Exponential integrals and related,
+     * Orthogonal polynomials, Legendre functions, and related,
+     * Hypergeometric functions and related
+     * Statistical distributions,
+     * and other special functions.
+
+   The interface unit SpecFunD uses functions located in more special units
+   roughly representing the above function groups. Note that some functions
+   are sensitive to small changes in the argument; therefore in high
+   precision comparisons argument values should be used, that are
+   representable in both calculations.
+
+   The DAMath special functions are derived from the AMath source code, the
+   interfaced functions in unit SpecFunD have same the names; the reference
+   manual (specialfunctions.pdf on the web site) can be used for details of
+   the implementation.
+
+ * The DAMCmplx unit provides DAMath based complex arithmetic and elementary
+   transcendental functions. The complex data type is a record with real and
+   imaginary parts of type double. Most routines are procedures with const
+   input record(s) and a var output record.
+
+   Please note that the exponential, trigonometric, or hyperbolic functions
+   may overflow or return INFs or NaNs for inputs with real or imaginary parts
+   of order ln_MaxDbl or greater, this will be handled more systematically in
+   future versions.
+
+   The internal archives complexdemo.zip contain expression parsers /
+   interpreters for the implemented operations / functions and the
+   accompanying demo programs PlotPhaseD (a GUI application for the
+   visualization of complex functions) and T_CCalcD (a console program
+   for the evaluation of complex expressions).
+
+ * The DAMQuat unit provides quaternionic arithmetic and elementary
+   transcendental functions. The quaternion data type is a record with real
+   (or scalar) and imaginary (or vector) parts using the base type double.
+
+   type
+     Quaternion = record
+                    r:     double; {real or scalar part     }
+                    x,y,z: double; {imaginary or vector part}
+                  end;
+
+   Most routines are procedures with const input record(s) and a var output
+   record. A quaternion is often written as a = r1 + xi + yj + zk, where 1, i,
+   j, k are the fundamental quaternion units (as 4-dimensional vectors they
+   are the standard unit vectors).
+
+   Addition and subtraction are defined component-wise, i.e. the standard
+   vector addition in R^4. Multiplication of quaternions is associative and
+   distributive, but it is not commutative, it is determined by the relations
+   i^2 = j^2 = k^2 = ijk = -1. The norm of a quaternion is r^2 + x^2 + y^2 + z^2,
+   the absolute value |a| is the square root of the norm, and conj(a) =
+   r1 - xi - yj - zk is the conjugate. The multiplicative inverse is (1/a) =
+   conj(a)/norm(a), division is defined as a/b = a*(1/b).
+
+   Most (inverse) trigonometric / hyperbolic quaternion functions b=f(a) are
+   basically computed with the corresponding complex function w=F(z) with z =
+   Re(a) + i*abs(Im(a)) and the mapping to quaternions Re(b) = Re(w), Im(b) =
+   Im(w)*Im(a)/abs(Im(a)). Note that DAMQuat has no quaternionic power
+   function a^b, if b=x is a real number, a^x is defined as exp(x*ln(a)).
+
+
+---------------------------------------------------------------------------
+DAMath functions
+---------------------------------------------------------------------------
+
+Elementary numerical functions
+
+cbrt               Return the cube root of x
+ceil               Return the smallest integer >= x; |x| <= MaxLongint
+floor              Return the largest integer <= x; |x| <= MaxLongint
+floord             Return the largest integer <= x
+fmod               Return x mod y, y<>0, sign(result) = sign(x)
+hypot              Return sqrt(x*x + y*y)
+hypot3             Return sqrt(x*x + y*y + z*z)
+intpower           Return x^n; via binary exponentiation (no overflow detection)
+modf               Return frac(x) and trunc(x) in ip, |x| <= MaxLongint
+nroot              Return the nth root of x; n<>0, x >= 0 if n is even
+remainder          Return the IEEE754 remainder x REM y = x - rmNearest(x/y)*y
+sqrt1pm1           Return sqrt(1+x)-1, accurate even for x near 0, x>=-1
+sqrt1pmx           Return sqrt(1+x^2)-x
+
+
+Elementary transcendental functions
+
+arccos             Return the inverse circular cosine of x, |x| <= 1
+arccos1m           Return arccos(1-x), 0 <= x <= 2, accurate even for x near 0
+arccosd            Return the inverse circular cosine of x, |x| <= 1, result in degrees
+arccosh            Return the inverse hyperbolic cosine, x >= 1. For x near 1 use arccosh1p(x-1) to reduce cancellation errors!
+arccosh1p          Return arccosh(1+x), x>=0, accurate even for x near 0
+arccot             Return the sign symmetric inverse circular cotangent; arccot(x) = arctan(1/x), x <> 0
+arccotc            Return the continuous inverse circular cotangent; arccotc(x) = Pi/2 - arctan(x)
+arccotcd           Return the continuous inverse circular cotangent; arccotcd(x) = 90 - arctand(x), result in degrees
+arccotd            Return the sign symmetric inverse circular cotangent, arccotd(x) = arctand(1/x), x <> 0, result in degrees
+arccoth            Return the inverse hyperbolic cotangent of x, |x| > 1
+arccsc             Return the inverse cosecant of x, |x| >= 1
+arccsch            Return the inverse hyperbolic cosecant of x, x <> 0
+arcgd              Return the inverse Gudermannian function arcgd(x), |x| < Pi/2
+archav             Return the inverse haversine archav(x), 0 <= x <= 1
+arcsec             Return the inverse secant of x, |x| >= 1
+arcsech            Return the inverse hyperbolic secant of x, 0 < x <= 1
+arcsin             Return the inverse circular sine of x, |x| <= 1
+arcsind            Return the inverse circular sine of x, |x| <= 1, result in degrees
+arcsinh            Return the inverse hyperbolic sine of x
+arctan2            Return arctan(y/x); result in [-Pi..Pi] with correct quadrant
+arctand            Return the inverse circular tangent of x, result in degrees
+arctanh            Return the inverse hyperbolic tangent of x, |x| < 1
+compound           Return (1+x)^n; accurate version of Delphi/VP internal function
+comprel            Return ((1+x)^n-1)/x; accurate version of Delphi/VP internal function
+cos                Accurate version of circular cosine, uses system.cos for |x| <= Pi/4
+cosd               Return cos(x), x in degrees
+cosh               Return the hyperbolic cosine of x
+coshm1             Return cosh(x)-1, accurate even for x near 0
+cosPi              Return cos(Pi*x), result will be 1 for abs(x) >= 2^52
+cot                Return the circular cotangent of x, x mod Pi <> 0
+cotd               Return cot(x), x in degrees
+coth               Return the hyperbolic cotangent of x, x<>0
+covers             Return the coversine covers(x) = 1 - sin(x)
+csc                Return the circular cosecant of x, x mod Pi <> 0
+csch               Return the hyperbolic cosecant of x, x<>0
+exp                Accurate exp (even for FreePascal)
+exp10              Return 10^x
+exp10m1            Return 10^x - 1; special code for small x
+exp2               Return 2^x
+exp2m1             Return 2^x-1, accurate even for x near 0
+exp3               Return 3^x
+exp5               Return 5^x
+exp7               Return 7^x
+expm1              Return exp(x)-1, accurate even for x near 0
+expmx2h            Return exp(-0.5*x^2) with damped error amplification
+exprel             Return exprel(x) = (exp(x) - 1)/x,  1 for x=0
+expx2              Return exp(x*|x|) with damped error amplification
+gd                 Return the Gudermannian function gd(x)
+hav                Return the haversine hav(x) = (1 - cos(x))/2
+ln1mexp            Return ln(1-exp(x)), x<0
+ln1p               Return ln(1+x), accurate even for x near 0
+ln1pexp            Accurately compute ln(1+exp(x)) without overflow
+ln1pmx             Return ln(1+x)-x, accurate even for -0.5 <= x <= 0.5
+lncosh             Return ln(cosh(x)), accurate for x ~ 0 and without overflow for large x
+lnsinh             Return ln(sinh(x)), x > 0, accurate for x ~ 0 and without overflow for large x
+lnxp1              Delphi alias for ln1p
+log10              Return base 10 logarithm of x
+log10p1            Return log10(1+x), accurate even for x near 0
+log2               Return base 2 logarithm of x
+log2p1             Return log2(1+x), accurate even for x near 0
+logaddexp          Accurately compute ln[exp(x) + exp(y)]
+logbase            Return base b logarithm of x
+logistic           Return logistic(x) = 1/(1+exp(-x))
+logit              Return logit(x) = ln(x/(1.0-x)), accurate near x=0.5
+logN               Delphi alias for logbase
+logsubexp          Accurately compute ln[exp(x) - exp(y)], x > y
+pow1p              Return (1+x)^y, x > -1, with dbl2 arithmetic for critical values
+pow1pf             Return (1+x)^y, x > -1, without dbl2, less accurate than pow1p
+pow1pm1            Return (1+x)^y - 1; special code for small x,y
+power              Return x^y; if frac(y)<>0 then x must be > 0
+powm1              Return x^y - 1; special code for small x,y
+powpi              Return accurate powers of Pi, result = Pi^n
+powpi2k            Return accurate scaled powers of Pi, result = (Pi*2^k)^n
+sec                Return the circular secant of x, x mod Pi <> Pi/2
+sech               Return the hyperbolic secant of x
+sin                Accurate version of circular sine, uses system.sin for |x| <= Pi/4
+sinc               Return the cardinal sine sinc(x) = sin(x)/x
+sincos             Return accurate values s=sin(x), c=cos(x)
+sincosd            Return sin(x) and cos(x), x in degrees
+sincosPi           Return s=sin(Pi*x), c=cos(Pi*x); (s,c)=(0,1) for abs(x) >= 2^52
+sincPi             Return the normalised cardinal sine sincPi(x) = sin(Pi*x)/(Pi*x)
+sind               Return sin(x), x in degrees
+sinh               Return the hyperbolic sine of x, accurate even for x near 0
+sinhc              Return sinh(x)/x, accurate even for x near 0
+sinhcosh           Return s=sinh(x) and c=cosh(x)
+sinhmx             Return sinh(x)-x, accurate even for x near 0
+sinPi              Return sin(Pi*x), result will be 0 for abs(x) >= 2^52
+tan                Return the circular tangent of x, x mod Pi <> Pi/2
+tand               Return tan(x), x in degrees
+tanh               Return the hyperbolic tangent of x, accurate even for x near 0
+tanPi              Return tan(Pi*x), result will be 0 for abs(x) >= 2^52
+vers               Return the versine vers(x) = 1 - cos(x)
+versint            Return versint(x) = integral(vers(t),t=0..x) = x - sin(x), accurate near 0
+
+
+Floating point functions
+
+copysignd          Return abs(x)*sign(y)
+copysigns          Return abs(x)*sign(y)
+frexpd             Return the mantissa m and exponent e of d with d = m*2^e, 0.5 <= abs(m) < 1; if d is 0, +-INF, NaN, return m=d, e=0
+frexps             Return the mantissa m and exponent e of s with s = m*2^e, 0.5 <= abs(m) < 1; if s is 0, +-INF, NaN, return m=s, e=0
+ilogb              Return base 2 exponent of x. For finite x ilogb = floor(log2(|x|)), otherwise -MaxLongint for x = 0 or MaxLongint if x = +-INF or Nan.
+IsInfD             Return true if d is +INF or -INF
+IsInfS             Return true if s is +INF or -INF
+IsNaND             Return true if d is a NaN
+IsNaNorInfD        Return true if d is a NaN or infinite
+IsNaNorInfS        Return true if s is a NaN or infinite
+IsNaNS             Return true if s is a NaN
+ldexpd             Return d*2^e
+ldexps             Return s*2^e
+predd              Return next representable double after d in the direction -Inf
+preds              Return next representable single after s in the direction -Inf
+rint               Return the integral value nearest x for the current rounding mode
+scalbn             Return x*2^e
+succd              Return next representable double after d in the direction +Inf
+succs              Return next representable single after s in the direction +Inf
+ulpd               Return the 'unit in the last place': ulpd(d)=|d|-predd(|d|) for finite d
+ulps               Return the 'unit in the last place': ulps(s)=|s|-preds(|s|) for finite s
+ulpx               Return the 'unit in the last place': ulpx(x)=|x|-predx(|x|) for finite x
+
+
+FPU control functions
+
+GetExceptionMask   Return the current exception mask
+GetPrecisionMode   Return the current precision control mode
+GetRoundMode       Return the current rounding mode
+SetExceptionMask   Set new exception mask
+SetPrecisionMode   Set new precision control mode and return the old precision
+SetRoundMode       Set new rounding mode and return the old mode
+
+
+Polynomial, Vector, Statistic Operations
+
+CoeffVar           Return the coefficient of variation (sdev/mean) of a double vector
+CSEvalD            Evaluate Chebyshev sum a[0]/2 + a[1]*T_1(x) +..+ a[n-1]*T_(n-1)(x) using Clenshaw algorithm
+CSEvalDDer         Evaluate Chebyshev sum p(x) = a[0]/2 + a[1]*T_1(x) +..+ a[n-1]*T_(n-1)(x), using Clenshaw algorithm, return pd = p(x) and dp = p'(x)
+dot2               Accurate dot product sum(x[i]*y[i], i=0..n-1) of two double vectors
+mean               Compute accurate mean = sum(a[i], i=0..n-1)/n of a double vector
+MeanAndStdDev      Accurate mean and sample standard deviation of a double vector
+moment             Return the first 4 moments, skewness, and kurtosis of a double vector
+mssqd              Calculate mean mval and ssqd sum((a[i]-mval)^2) of a double vector
+norm2              Calculate the 2-norm = sqrt(sum(a[i]^2, i=0..n-1)) of a double vector
+pcov               Calculate the population covariance = sum((x[i]-mx)(y[i]-my), i=0..n-1)/n of two double vectors
+PolEval            Evaluate polynomial; return a[0] + a[1]*x + ... + a[n-1]*x^(n-1)
+PolEvalC           Evaluate polynomial a[0] + a[1]*z + ... + a[n-1]*z^(n-1) for complex z = x + i*y, result is u + i*v
+PolEvalCHE         Evaluate polynomial with dynamic absolute error estimate using compensated Horner scheme
+PolEvalCHEDer      Evaluate polynomial with dynamic absolute error estimate using compensated Horner scheme, dp = p'(x)
+PolEvalDeriv       Evaluate polynomial p(x) a[0] + a[1]*x + ... + a[n-1]*x^(n-1), return px = p(x) and dp = p'(x)
+PolEvalEE          Evaluate polynomial with dynamic absolute error estimate (double version)
+PolEvalS           Evaluate polynomial; return a[0] + a[1]*x + ... + a[n-1]*x^(n-1)
+psdev              Return the population standard deviation of a double vector
+pvar               Return the population variance of a double vector
+rms                Calculate the RMS value sqrt(sum(a[i]^2, i=0..n-1)/n) of a double vector
+ssdev              Return the sample standard deviation of a double vector
+ssqd               Calculate sum(a[i]^2, i=0..n-1) = scale^2*sumsq, scale>=0, sumsq>0
+sum2               Compute accurate sum(a[i], i=0..n-1) of a double vector
+sumsqr             Calculate sum(a[i]^2, i=0..n-1) of a double vector
+svar               Return the sample variance of a double vector
+tvar               Return the total variance of a double vector
+Argument reduction for trigonometric functions
+
+rem_2pi            Return x mod 2*Pi
+rem_2pi_sym        Return x mod 2*Pi, -Pi <= result <= Pi
+rem_int2           Argument reduction of x: z*Pi = x*Pi - n*Pi/2, |z|<=1/4, result = n mod 8. Used for argument reduction in sin(Pi*x) and cos(Pi*x).
+rem_pio2           Argument reduction of x:  z = x - n*Pi/2, |z| <= Pi/4, result = n mod 8. Uses Payne/Hanek if |x| > ph_cutoff, Cody/Waite otherwise.
+rem_pio2_cw        Cody/Waite  reduction of x:  z = x - n*Pi/2, |z| <= Pi/4, result = n mod 8.
+rem_pio2_ph        Payne/Hanek reduction of x:  z = x - n*Pi/2, |z| <= Pi/4, result = n mod 8.
+
+
+Basic double-double functions
+
+
+abs2d              Return x = abs(a)
+add21d             Return x = a+b
+add2d              Return x = a+b
+ceil2d             Return x = ceil(a)
+chs2d              Return x = -a
+cmp2d              Return sign(a-b)
+dadd12             Return [xh,xl] = a + b
+ddivrem            Compute q,r with a = q*b + r, assumes round to nearest
+ddto2d             Return x = a + b using TwoSum algorithm
+div21d             Return x = a/b,  b<>0
+div2d              Return x = a/b,  b<>0
+dmul12             Return [xh,xl] = a * b
+dto2d              Return x = a
+exp1_2d            Return x = exp(1) with double-double precision
+exp2d              Return x = exp(a)
+floor2d            Return x = floor(a)
+fma_d              Accurately compute a*b + c
+inv2d              Return x = 1/b,  b<>0
+ldexp2d            Return x = a*2^n
+ln2d               Return x = ln(a)
+ln2_2d             Return x = ln(2) with double-double precision
+mul21d             Return x = a*b
+mul2d              Return x = a*b
+nroot2d            Return x = a^(1/n), a > 0 if n is even
+pi2d               Return x = Pi with double-double precision
+pow2d              Return x = a^b, a > 0
+pow2di             Return y = a^n,  frac(n)=0, a<>0 if n<0
+sqr12d             Return [xh,xl] = a^2
+sqr2d              Return x = a^2
+sqrt2d             Return x = sqrt(a),  a >= 0
+sub2d              Return x = a-b
+trunc2d            Return x = trunc(a)
+
+
+Other functions
+
+angle2             Return the accurate angle between the vectors (x1,x2) and (y1,y2)
+area_triangle      Return the area of the triangle defined by the points (xi,yi)
+Dbl2Hex            Return d as a big-endian hex string
+DegToRad           Convert angle x from degrees to radians
+fisEQd             Return true if x and y are bit-identical
+fisEQs             Return true if x and y are bit-identical
+fisNEd             Return true if x and y are not bit-identical
+fisNEs             Return true if x and y are not bit-identical
+Hex2Dbl            Convert big-endian hex string to double,   OK if code=0, inverse of Dbl2Hex
+Hex2Sgl            Convert big-endian hex string to single,   OK if code=0, inverse of Sgl2Hex
+in_triangle        Return true if the point (x,y) lies strictly inside the triangle defined  by the three points (xi,yi), false if it lies on a side or outside.
+in_triangle_ex     Return +1 if the point (x,y) lies strictly inside the triangle defined by the three points (xi,yi), -1 if it lies strictly outside, 0 otherwise.
+isign              Return the sign of x, 0 if x=0 or NAN
+maxd               Return the maximum of two doubles; x,y <> NAN
+maxs               Return the maximum of two singles; x,y <> NAN
+mind               Return the minimum of two doubles; x,y <> NAN
+mins               Return the minimum of two singles; x,y <> NAN
+orient2d           Return the mathematical orientation of the three points (xi,yi): >0 if the order is counterclockwise, <0 if clockwise, =0 if they are collinear.
+RadToDeg           Convert angle x from radians to degrees
+RandG              Random number from Gaussian (normal) distribution with given mean and standard deviation |StdDev|
+RandG01            Random number from standard normal distribution (Mean=0, StdDev=1)
+Sgl2Hex            Return s as a big-endian hex string
+
+
+---------------------------------------------------------------------------
+Special functions
+---------------------------------------------------------------------------
+
+Bessel functions and related
+
+bessel_i0(x)         Return I0(x), the modified Bessel function of the 1st kind, order zero
+bessel_i1(x)         Return I1(x), the modified Bessel function of the 1st kind, order one
+bessel_j0(x)         Return J0(x), the Bessel function of the 1st kind, order zero
+bessel_j1(x)         Return J1(x), the Bessel function of the 1st kind, order one
+bessel_k0(x)         Return K0(x), the modified Bessel function of the 2nd kind, order zero, x>0
+bessel_k1(x)         Return K1(x), the modified Bessel function of the 2nd kind, order one, x>0
+bessel_y0(x)         Return Y0(x), the Bessel function of the 2nd kind, order zero; x>0
+bessel_y1(x)         Return Y1(x), the Bessel function of the 2nd kind, order one; x>0
+
+bessel_i0e(x)        Return I0(x)*exp(-|x|), the exponentially scaled modified Bessel function of the 1st kind, order zero
+bessel_i1e(x)        Return I1(x)*exp(-|x|), the exponentially scaled modified Bessel function of the 1st kind, order one
+bessel_k0e(x)        Return K0(x)*exp(x),    the exponentially scaled modified Bessel function of the 2nd kind, order zero, x>0
+bessel_k1e(x)        Return K1(x)*exp(x),    the exponentially scaled modified Bessel function of the 2nd kind, order one, x>0
+
+bessel_in(n,x)       Return I_n(x), the modified Bessel function of the 1st kind, order n.
+bessel_jn(n,x)       Return J_n(x), the Bessel function of the 1st kind, order n.
+bessel_kn(n,x)       Return K_n(x), the modified Bessel function of the 2nd kind, order n, x > 0.
+bessel_yn(n,x)       Return Y_n(x), the Bessel function of the 2nd kind, order n, x > 0.
+
+bessel_iv(v,x)       Return I_v(x), the modified Bessel function of the 1st kind, order v.
+bessel_jv(v,x)       Return J_v(x), the Bessel function of the 1st kind, order v.
+bessel_kv(v,x)       Return K_v(x), the modified Bessel function of the 2nd kind, order v, x > 0.
+bessel_yv(v,x)       Return Y_v(x), the Bessel function of the 2nd kind, order v; x > 0.
+bessel_lambda(v,x)   Compute lambda(v,x) = Gamma(v+1)*J(v,x)/(0.5x)^v for v,x >= 0
+
+bessel_ive(v,x)      Return I_v(x)*exp(-|x|), the exponentially scaled modified Bessel function of the 1st kind, order v.
+bessel_kve(v,x)      Return K_v(x)*exp(x), the exponentially scaled modified Bessel function of the 2nd kind, order v, x>0
+
+sph_bessel_in(n,x)   Return i_n(x), the modified spherical Bessel function of the 1st/2nd kind, order n
+sph_bessel_jn(n,x)   Return j_n(x), the spherical Bessel function of the 1st kind, order n.
+sph_bessel_kn(n,x)   Return k_n(x), the modified spherical Bessel function of the 3rd kind, order n, x>0
+sph_bessel_yn(n,x)   Return y_n(x), the spherical Bessel function of the 2nd kind, order n >=0 , x<>0
+
+sph_bessel_ine(n,x)  Return i_n(x)*exp(-|x|), the exponentially scaled modified spherical Bessel function of the 1st/2nd kind, order n
+sph_bessel_kne(n,x)  Return k_n(x)*exp(x), the exponentially scaled modified spherical Bessel function of the 3rd kind, order n, x>0
+
+bessel_i0_int(u)     Return the integral int(bessel_i0(x), x = 0..u)
+bessel_j0_int(u)     Return the integral int(bessel_j0(x), x = 0..u)
+bessel_k0_int(u):    Return the integral int(bessel_k0(x), x = 0..u), x >= 0
+bessel_y0_int(u):    Return the integral int(bessel_y0(x), x = 0..u), x >= 0
+
+airy_ai(x)           Return the Airy function Ai(x)
+airy_aip(x)          Return the Airy function Ai'(x)
+airy_ais(x)          Return the scaled Airy function Ai(x) if x <= 0, Ai(x)*exp(+2/3*x^1.5) for x > 0
+airy_bi(x)           Return the Airy function Bi(x)
+airy_bip(x)          Return the Airy function Bi'(x)
+airy_bis(x)          Return the scaled Airy function Bi(x) if x <= 0, Bi(x)*exp(-2/3*x^1.5) for x > 0
+airy_gi(x)           Return the Airy/Scorer function Gi(x) = 1/Pi*integral(sin(x*t+t^3/3), t=0..INF)
+airy_hi(x)           Return the Airy/Scorer function Hi(x) = 1/Pi*integral(exp(x*t-t^3/3), t=0..INF)
+
+kelvin_bei(x)        Return the Kelvin function bei(x)
+kelvin_beip(x)       Return the Kelvin function bei'(x), x >= 0
+kelvin_ber(x)        Return the Kelvin function ber(x)
+kelvin_berbei(x,..)  Return the Kelvin functions br=ber(x), bi=bei(x)
+kelvin_berp(x)       Return the Kelvin function ber'(x), x >= 0
+kelvin_der(x,..)     Return the derivatives of the zero order Kelvin functions, x >= 0
+kelvin_kei(x)        Return the Kelvin function kei(x), x >= 0
+kelvin_keip(x)       Return the Kelvin function kei'(x), x >= 0
+kelvin_ker(x)        Return the Kelvin function ker(x), x > 0
+kelvin_kerkei(x,..)  Return the Kelvin functions kr=ker(x), ki=kei(x), x > 0
+kelvin_kerp(x)       Return the Kelvin function ker'(x), x > 0
+
+struve_h0(x)         Return H0(x),  the Struve function of order 0
+struve_h1(x)         Return H1(x),  the Struve function of order 1
+struve_h(v, x)       Return H_v(x), the Struve function of order v, x < 0 only if v is an integer.
+struve_l0(x)         Return L0(x),  the modified Struve function of order 0
+struve_l1(x)         Return L1(x),  the modified Struve function of order 1
+struve_l(v, x)       Return L_v(x), the modified Struve function of order v, x < 0 only if v is an integer.
+
+CoulombCL(L,eta)     Return the normalizing constant CL for Coulomb wave function, L >= 0
+CoulombSL(L,eta)     Return the Coulomb phase shift sigma_L(eta) for L >= 0
+CoulombF(L,eta,x)    Return the regular Coulomb wave functions FL(eta,x) for L >= 0, x > 0
+CoulombFFp(L,eta,x,fc,fcp,ifail)   Return the regular Coulomb wave functions fc=FL(eta,x) and fcp=FL'(eta,x)
+CoulombGGp(L,eta,x,gc,gcp,ifail)   Return the irregular Coulomb wave functions gc=GL(eta,x) and gcp=GL'(eta,x)
+
+SynchF(x)            Return the first synchrotron function  F(x) = integral(x*BesselK(5/3,t), t=x..INF) for x >= 0
+SynchG(x)            Return the second synchrotron function G(x) = x*BesselK(2/3,x) for x >= 0
+
+
+Elliptic integrals, elliptic / theta functions
+
+comp_ellint_1(k)     Return the complete elliptic integral of the 1st kind, same as EllipticK
+comp_ellint_2(k)     Return the complete elliptic integral of the 2nd kind, same as EllipticEC
+comp_ellint_3(nu,k)  Return the complete elliptic integral of the 3rd kind, |k| <> 1, same as EllipticPiC, nu<>1
+comp_ellint_b(k)     Return the complete elliptic integral B(k) = (E(k) - kc^2*K(k))/k^2, real part for |k| > 1
+comp_ellint_d(k)     Return the complete elliptic integral D(k) = (K(k) - E(k))/k^2, real part for |k| > 1
+ellint_1(phi,k)      Return the Legendre elliptic integral F(phi,k) of the 1st kind = integral(1/sqrt(1-k^2*sin(x)^2),x=0..phi), |k*sin(phi)| <= 1
+ellint_2(phi,k)      Return the Legendre elliptic integral E(phi,k) of the 2nd kind = integral(sqrt(1-k^2*sin(x)^2),x=0..phi), |k*sin(phi)| <= 1
+ellint_3(phi,nu,k)   Return the Legendre elliptic integral PI(phi,nu,k) of the 3rd kind = integral(1/sqrt(1-k^2*sin(x)^2)/(1-nu*sin(x)^2),x=0..phi), |k*sin(phi)| <= 1
+ellint_d(phi,k)      Return the Legendre elliptic integral D(phi,k) = (F(phi,k) - E(phi,k))/k^2, |k*sin(phi)| <= 1
+ellint_b(phi,k)      Return the Legendre elliptic integral B(phi,k) = (E(phi,k) - kc^2*F(phi,k))/k^2 = integral(cos(x)^2/sqrt(1-k^2*sin(x)^2),x=0..phi), |k*sin(phi)| <= 1
+heuman_lambda(phi,k) Return Heuman's function Lambda_0(phi,k) = F(phi,k')/K(k') + 2/Pi*K(k)*Z(phi,k'), |k|<=1
+jacobi_zeta(phi,k)   Return the Jacobi Zeta function Z(phi,k) = E(phi,k) - E(k)/K(k)*F(phi,k), |k|<=1
+
+ell_rc(x,y)          Return Carlson's degenerate elliptic integral RC; x>=0, y<>0
+ell_rf(x,y,z)        Return Carlson's elliptic integral of the 1st kind; x,y,z >=0, at most one =0
+ell_rd(x,y,z)        Return Carlson's elliptic integral of the 2nd kind; z>0; x,y >=0, at most one =0
+ell_rg(x,y,z)        Return Carlson's completely symmetric elliptic integral of the 2nd kind; x,y,z >= 0
+ell_rj(x,y,z,r)      Return Carlson's elliptic integral of the 3rd kind; r<>0; x,y,z >=0, at most one =0
+
+cel1(kc)             Return Bulirsch's complete elliptic integral of the 1st kind, k<>0
+cel2(kc,a,b)         Return Bulirsch's complete elliptic integral of the 2nd kind, kc<>0
+cel(kc,p,a,b)        Return Bulirsch's general complete elliptic integral, kc<>0, Cauchy principle value if p<0
+el1(x,kc)            Return Bulirsch's incomplete elliptic integral of the 1st kind
+el2(x,kc,a,b)        Return Bulirsch's incomplete elliptic integral of the 2nd kind, kc<>0
+el3(x,kc,p)          Return Bulirsch's incomplete elliptic integral of the 3rd kind, 1+p*x^2<>0
+
+EllipticCE(k)        Return the complementary complete elliptic integral of the 2nd kind
+EllipticCK(k)        Return the complementary complete elliptic integral of the  1st kind, k<>0
+EllipticCPi(nu,k)    Return the complementary complete elliptic integral of the 3rd kind, k<>0, nu<>1
+EllipticE(z,k)       Return the incomplete elliptic integrals of the 2nd kind, |z|<=1, |k*z|<=1
+EllipticEC(k)        Return the complete elliptic integral of the 2nd kind, real part if |k| > 1
+EllipticECim(k)      Return E(i*k), the complete elliptic integral of the 2nd kind with imaginary modulus = integral(sqrt(1+k^2*x^2)/sqrt(1-x^2),x=0..1)
+EllipticF(z,k)       Return the incomplete elliptic integral of the 1st kind; |z|<=1, |k*z|<1
+EllipticK(k)         Return the complete elliptic integral of the 1st kind, real part if |k| > 1
+EllipticKim(k)       Return K(i*k), the complete elliptic integral of the 1st kind with imaginary modulus = integral(1/sqrt(1-x^2)/sqrt(1+k^2*x^2),x=0..1)
+EllipticPi(z,nu,k)   Return the incomplete elliptic integral of the 3rd kind, |z|<=1, |k*z|<1
+EllipticPiC(nu,k)    Return the complete elliptic integral of the 3rd kind, |k|<>1, nu<>1; real part for |k|>1
+EllipticPiCim(nu,k)  Return Pi(nu, k*i), the complete elliptic integral of the 3rd kind with imaginary modulus, nu <> 1, real part if nu > 1
+
+M_EllipticE(phi,m)   Return the incomplete elliptic integral of the 2nd kind, E(phi,m) = integral(sqrt(1-m*sin(x)^2),x=0..phi), m*sin(phi)^2 <= 1
+M_EllipticEC(m)      Return the complete elliptic integral of the 2nd kind, E(m) = integral(sqrt(1-m*sin(x)^2),x=0..Pi/2), real part for m>1
+M_EllipticF(phi,m)   Return the incomplete elliptic integral of the 1st kind, F(phi,m) = integral(dx/sqrt(1-m*sin(x)^2),x=0..phi), m*sin(phi)^2 <= 1
+M_EllipticK(m)       Return the complete elliptic integral of the 1st kind, K(m) = integral(dx/sqrt(1-m*sin(x)^2),x=0..Pi/2), real part for m>1
+M_EllipticPi(n,phi,m)   Return the incomplete elliptic integral Pi(n,phi,m) of the 3rd kind = integral(1/sqrt(1-m*sin(x)^2)/(1-n*sin(x)^2),x=0..phi), with n<>1, m*sin(phi)^2 <= 1
+M_EllipticPiC(n,m)   Return the complete elliptic integral of the 3rd kind, n<>1, m<>1, real part for m>1; Pi(n|m) = integral(1/(1-n*sin(x)^2/sqrt(1-m*sin(x)^2)), x=0..Pi/2)
+
+EllipticModulus(q)   Return the elliptic modulus k(q) = theta_2(q)^2/theta_3(q)^2, 0 <= q <= 1
+EllipticNome(k)      Return the elliptic nome q(k) = exp(-Pi*EllipticCK(k)/EllipticK(k)), |k| < 1
+
+jacobi_am(x,k)       Return the Jacobi amplitude am(x,k)
+jacobi_arccn(x,k)    Return the inverse Jacobi elliptic function arccn(x,k), |x| <= 1, x >= sqrt(1 - 1/k^2) if k >= 1
+jacobi_arccd(x,k)    Return the inverse Jacobi elliptic function arccd(x,k); |x| <= 1 if |k| < 1; |x| >= 1 if |k| > 1
+jacobi_arccs(x,k)    Return the inverse Jacobi elliptic function arccs(x,k), |x| >= sqrt(k^2-1) for |k|>1
+jacobi_arcdc(x,k)    Return the inverse Jacobi elliptic function arcdc(x,k); |x| >= 1 if |k| < 1; |x| <= 1 if |k| > 1
+jacobi_arcdn(x,k)    Return the inverse Jacobi elliptic function arcdn(x,k), 0 <= x <= 1, x^2 + k^2 > 1 if |k| < 1;  |x| <= 1 if |k| > 1
+jacobi_arcds(x,k)    Return the inverse Jacobi elliptic function arcds(x,k), x^2 + k^2 >= 1
+jacobi_arcnc(x,k)    Return the inverse Jacobi elliptic function arcnc(x,k), x >= 1, x^2 <= k^2/(k^2-1) for |k|>1
+jacobi_arcnd(x,k)    Return the inverse Jacobi elliptic function arcnd(x,k), x >= 1, x^2 <= k^2/(1-k^2) if k < 1
+jacobi_arcns(x,k)    Return the inverse Jacobi elliptic function arcns(x,k), |x| >= 1, |x| >= k if k >= 1
+jacobi_arcsc(x,k)    Return the inverse Jacobi elliptic function arcsc(x,k), |x| <= 1/sqrt(k^2-1) for |k| > 1
+jacobi_arcsd(x,k)    Return the inverse Jacobi elliptic function arcsd(x,k), x^2*(1-k^2) <= 1
+jacobi_arcsn(x,k)    Return the inverse Jacobi elliptic function arcsn(x,k), |x| <= 1 and |x*k| <= 1
+jacobi_cd(x,k)       Return the Jacobi elliptic function cd(x,k)
+jacobi_cn(x,k)       Return the Jacobi elliptic function cn(x,k)
+jacobi_cs(x,k)       Return the Jacobi elliptic function cs(x,k)
+jacobi_dc(x,k)       Return the Jacobi elliptic function dc(x,k)
+jacobi_dn(x,k)       Return the Jacobi elliptic function dn(x,k)
+jacobi_ds(x,k)       Return the Jacobi elliptic function ds(x,k)
+jacobi_nc(x,k)       Return the Jacobi elliptic function nc(x,k)
+jacobi_nd(x,k)       Return the Jacobi elliptic function nd(x,k)
+jacobi_ns(x,k)       Return the Jacobi elliptic function ns(x,k)
+jacobi_sc(x,k)       Return the Jacobi elliptic function sc(x,k)
+jacobi_sd(x,k)       Return the Jacobi elliptic function sd(x,k)
+jacobi_sn(x,k)       Return the Jacobi elliptic function sn(x,k)
+jacobi_theta(n,x,q)  Return the Jacobi theta function theta_n(x,q), n=1..4, 0 <= q < 1
+sncndn(x,mc,...)     Return the Jacobi elliptic functions sn,cn,dn for argument x and complementary parameter mc.
+theta1p(q)           Return the derivative d/dx(theta_1(x,q)) at x=0, theta1p(q) = 2*q^(1/4)*sum((-1)^n*(2n+1)*q^(n*(n+1)),n=0..Inf), 0 <= q < 1
+theta2(q)            Return Jacobi theta_2(q) = 2*q^(1/4)*sum(q^(n*(n+1)),n=0..Inf) 0 <= q < 1
+theta3(q)            Return Jacobi theta_3(q) = 1 + 2*sum(q^(n*n)),n=1..Inf); |q| < 1
+theta4(q)            Return Jacobi theta_4(q) = 1 + 2*sum((-1)^n*q^(n*(n+1)),n=1..Inf); |q| < 1
+
+ntheta_c(x, k)       Return the Neville theta_c function, |k| <= 1
+ntheta_d(x, k)       Return the Neville theta_d function, |k| <= 1
+ntheta_n(x, k)       Return the Neville theta_n function, |k| <= 1
+ntheta_s(x, k)       Return the Neville theta_s function, |k| <= 1
+
+arccl(x)             Return the inverse lemniscate cosine function, |x| <= 1
+arcsl(x)             Return the inverse lemniscate sine function, |x| <= 1
+cos_lemn(x)          Return the lemniscate cosine function cos_lemn(x)
+sincos_lemn(x,..)    Return the lemniscate functions sl = sin_lemn(x), cl = cos_lemn(x)
+sin_lemn(x)          Return the lemniscate sine function sin_lemn(x)
+
+detai(x)             Return Dedekind eta(i*x), x >= 0
+emlambda(y)          Return the elliptic modular function lambda(iy), y >= 0
+KleinJ               Return Klein's complete invariant J(iy), y>0
+wpl(x)               Return the Weierstrass function wp(x,1,0)=wpe(x,1/2,0), basic lemniscatic case
+wpe(x,e1,e2)         Return the Weierstrass function P(x,e1,e2) from the lattice roots e1 < e2
+wpe_der(x,e1,e2)     Return Weierstrass P'(x,e1,e2) from the lattice roots e1 < e2
+wpe_im(y,e1,e2)      Return the Weierstrass function P(iy,e1,e2) from the lattice roots e1 < e2
+wpe_inv(y,e1,e2)     Return the smallest positive x with wpe(x)=y, y >= e1
+wpg(x,g2,g3)         Return the Weierstrass function P(x,e1,e2) from lattice invariants g2, g3
+wpg_der(x,g2,g3)     Return Weierstrass P'(x,e1,e2) from lattice invariants g2, g3
+wpg_im(y,g2,g3)      Return the Weierstrass function P(iy, g2, g3)
+wpg_inv(y,g2,g3)     Return the smallest positive x with wpg(x,g2,g3)=y, y >= e2
+
+Error function and related
+
+dawson(x)            Return Dawson's integral: dawson(x) = exp(-x^2)*integral(exp(t^2), t=0..x)
+dawson2(p,x)         Return the generalized Dawson integral F(p,x) = exp(-x^p)*integral(exp(t^p), t=0..x); x,p >= 0
+erf(x)               Return the error function erf(x) = 2/sqrt(Pi)*integral((exp(-t^2), t=0..x)
+erf2(x1,x2)          Accurately compute erf(x2) - erf(x1)
+erfc(x)              Return the complementary error function erfc(x) = 1-erf(x)
+erfce(x)             Return the exponentially scaled complementary error function erfce(x) = exp(x^2)*erfc(x)
+erfce_inv(xe)        Return the functional inverse of erfce, erfce(erfce_inv(x)) = x, x > 0
+erfc_inv(x)          Return the inverse function of erfc, erfc(erfc_inv(x)) = x, 0 < x < 2
+erfg(p,x)            Return the generalized error function integral(exp(-t^p), t=0..x); x,p >= 0
+erfh(x,h)            Accurately compute erf(x+h) - erf(x-h)
+erfi(x)              Return the imaginary error function erfi(x) = erf(ix)/i
+erf_inv(x)           Return the inverse function of erf, erf(erf_inv(x)) = x, -1 < x < 1
+erf_p(x)             Return the probability function erf_p = integral(exp(-t^2/2)/sqrt(2*Pi), t=-Inf..x)
+erf_q(x)             Return the probability function erf_q = integral(exp(-t^2/2)/sqrt(2*Pi), t=x..Inf)
+erf_z(x)             Return the probability function erf_z = exp(-x^2/2)/sqrt(2*Pi)
+expint3(x)           Return the integral(exp(-t^3), t=0..x), x >= 0
+Fresnel(x,s,c)       Return the Fresnel integrals S(x)=integral(sin(Pi/2*t^2),t=0..x) and C(x)=integral(cos(Pi/2*t^2),t=0..x)
+FresnelC(x)          Return the Fresnel integral  C(x)=integral(cos(Pi/2*t^2),t=0..x)
+FresnelF(x)          Return the Fresnel auxiliary function  f for x >= 0
+FresnelFG(x,f,g)     Return the Fresnel auxiliary functions f,g for x >= 0
+FresnelG(x)          Return the Fresnel auxiliary function  g for x >= 0
+FresnelS(x)          Return the Fresnel integral  S(x)=integral(sin(Pi/2*t^2),t=0..x)
+gsi(x)               Return the Goodwin-Staton integral gsi(x) = integral(exp(-t*t)/(t+x), t=0..Inf), x <> 0
+inerfc(n,x)          Return the repeated integral of erfc, n >= -1; scaled with exp(x^2) for x>0
+MarcumQ(m,a,b)       Return the generalized Marcum Q function Q(m,a,b), a,b >= 0
+OwenT(h,a)           Return Owen's T function T(h,a)
+
+
+Exponential integrals and related
+
+chi(x)               Return the hyperbolic cosine integral, chi(x) = EulerGamma + ln(|x|) + integral((cosh(t)-1)/t, t=0..|x|)
+ci(x)                Return the cosine integral, ci(x) = EulerGamma + ln(|x|) + integral((cos(t)-1)/t, t=0..|x|)
+cin(x)               Return the entire cosine integral, cin(x) = integral((1-cos(t))/t, t=0..x)
+cinh(x)              Return the entire hyperbolic cosine integral, cinh(x) = integral((cosh(t)-1)/t, t=0..x)
+e1(x)                Return the exponential integral E_1(x) = integral(exp(-x*t)/t, t=1..Inf), x <> 0
+e1s(x)               Return E1s(x) = exp(x)*E1(x), x <> 0
+ei(x)                Return the exponential integral Ei(x)  = PV-integral(exp(t)/t, t=-Inf..x)
+eibeta(n,x)          Return the exponential integral beta(n,x) = int(t^n*exp(-x*t), t=-1..1), n >= 0
+ein(x)               Return the entire exponential integral ein(x) = integral((1-exp(-t))/t, t=0..x)
+eis(x)               Return exp(-x)*Ei(x), x <> 0
+eisx2(x)             Return exp(-x^2)*Ei(x^2), x <> 0
+ei_inv(x)            Return the functional inverse of Ei(x), ei_inv(ei(x))=x
+en(n,x)              Return the exponential integral E_n(x) = integral(exp(-x*t)/t^n, t=1..Inf), x >= 0
+gei(p,x)             Return the generalized exponential integral E_p(x) = integral(exp(-x*t)/t^p, t=1..Inf), x >= 0
+li(x)                Return the logarithmic integral li(x)  = PV-integral(1/ln(t), t=0..x), x >= 0, x <> 1
+li_inv(x)            Return the functional inverse of li(x), li(li_inv(x))=x
+shi(x)               Return the hyperbolic sine integral, shi(x) = integral(sinh(t)/t, t=0..x)
+si(x)                Return the sine integral, si(x) = integral(sin(t)/t, t=0..x)
+ssi(x)               Return the shifted sine integral, ssi(x) = si(x) - Pi/2
+
+
+Gamma function and related
+
+BatemanG(x)          Return the Bateman function G(x) = psi((x+1)/2) - psi(x/2); x <> 0,-1,-2,...
+beta(x,y)            Return beta(x,y)=gamma(x)*gamma(y)/gamma(x+y)
+beta3(a,b,x)         Return the non-normalised incomplete beta function B_x(a,b) = integral(t^(a-1)*(1-t)^(b-1), t=0..x);  0 <= x <= 1
+binomial(n,k)        Return the binomial coefficient 'n choose k'
+dfac(n)              Return the double factorial n!!, n<=MAXDFAC; INF for even n<0
+fac(n)               Return the factorial n!, n < MAXGAM-1; INF if n<0
+gamma(x)             Return gamma(x), x <= MAXGAM; invalid if x is a non-positive integer
+gamma1pm1(x)         Return gamma(1+x)-1, accurate even for x near 0
+gammastar(x)         Return Temme's gammastar(x) = gamma(x)/(sqrt(2*Pi)*x^(x-0.5)*exp(-x)), x>0.
+gamma_delta_ratio(.) Return gamma(x)/gamma(x+d), accurate even for |d| << |x|
+gamma_ratio(x,y)     Return gamma(x)/gamma(y)
+ibeta(a,b,x)         Return the normalised incomplete beta function I_x(a,b), a>0, b>0, 0 <= x <= 1
+ibeta_inv(a,b,y)     Return the functional inverse of the normalised incomplete beta function with a > 0, b > 0, and 0 <= y <= 1.
+igamma(a,x)          Return the non-normalised upper incomplete gamma function GAMMA(a,x) = integral(exp(-t)*t^(a-1), t=x..Inf). If x<0 the real part is returned and a must be <> -1, -2, ...
+igammal(a,x)         Return the non-normalised lower incomplete gamma function gamma(a,x) = integral(exp(-t)*t^(a-1), t=0..x); a<>0,-1,-2,..
+igammap(a,x)         Return the normalised lower incomplete gamma function P(a,x), a >= 0, x >= 0
+igammap_der(a,x)     Return the partial derivative with respect to x of the normalised lower incomplete gamma function P(a,x), x >= 0, a <> 0,-1,-2 ...
+igammap_inv(a,p)     Inverse incomplete gamma: return x with P(a,x)=p, a>=0, 0 <= p < 1
+igammaq(a,x)         Return the normalised upper incomplete gamma function Q(a,x), a >= 0, x >= 0
+igammaq_inv(a,q)     Inverse complemented incomplete gamma: return x with Q(a,x)=q, a >= 0, 0 < q <= 1
+igammat(a,x)         Return Tricomi's entire incomplete gamma function igammat(a,x) = igammal(a,x)/gamma(a)/x^a = P(a,x)/x^a
+igamma_inv(a,p,q)    Return the inverse normalised incomplete gamma function; a > 0, p >= 0, q > 0 and p+q=1.
+incgamma(a,x,p,q)    Return the normalised incomplete gamma functions P and Q, a >= 0, x >= 0
+incgamma_inv(...)    General procedure for the inverse normalised incomplete gamma function
+inv_gamma(y)         Inverse of gamma: return x with gamma(x) = y, y >= 0.8857421875
+lnBarnesG(x)         Return ln(BarnesG(x)), real part for x < 0
+lnbeta(x,y)          Return the logarithm of |beta(x,y)|=|gamma(x)*gamma(y)/gamma(x+y)|
+lnbinomial(n,k)      Return ln(binomial(n,k)), n >= k >= 0
+lnfac(n)             Return ln(n!), INF if n<0
+lngamma(x)           Return ln(|gamma(x)|), |x| <= MAXLGM, invalid if x is a non-positive integer.
+lngamma1p(x)         Return ln(|gamma(1+x)|) with increased accuracy for x near 0
+lngammas(x,s)        Return ln(|gamma(x)|), |x| <= MAXLGM, s=-1,1 is the sign of gamma
+lngamma_inv(y)       Inverse of lngamma: return x with lngamma(x) = y, y >= -0.12142, x > 1.4616
+pentagamma(x)        Return the pentagamma function psi'''(x), INF if x is a negative integer
+poch1(a,x)           Return (pochhammer(a,x)-1)/x, psi(a) if x=0; accurate even for small |x|
+pochhammer(a,x)      Return the Pochhammer symbol (a)_x = gamma(a+x)/gamma(a)
+polygamma(n,x)       Return the polygamma function: n'th derivative of psi; n>=0, x>0 for n>MAXGAMD
+psi(x)               Return the psi (digamma) function of x, INF if x is a non-positive integer
+psistar(x)           Return psi(x) - ln(x), x > 0
+psi_inv(y)           Inverse of psi, return x with psi(x)=y
+rgamma(x)            Return the reciprocal gamma function rgamma = 1/gamma(x)
+signgamma(x)         Return sign(gamma(x)), useless for 0 or negative integer
+tetragamma(x)        Return the tetragamma function psi''(x), NAN/RTE if x is a negative integer
+trigamma(x)          Return the trigamma function of x, INF if x is a negative integer
+
+
+Zeta functions, polylogarithms, and related
+
+bose_einstein(s,x)   Return the Bose-Einstein integral of real order s >= -1
+cl2(x)               Return the Clausen function: integral(-ln(|2sin(t/2)|),t=0..x) = Im(Li_2(exp(ix)))
+dilog(x)             Return dilog(x) = Re(Li_2(x)), Li_2(x) = -integral(ln(1-t)/t, t=0..x)
+DirichletBeta(s)     Return the Dirichlet beta function sum((-1)^n/(2n+1)^s, n=0..INF)
+DirichletLambda(s)   Return the Dirichlet lambda function sum(1/(2n+1)^s, n=0..INF), s<>1
+eta(s)               Return the Dirichlet eta function
+etaint(n)            Return the Dirichlet function eta(n) for integer arguments
+etam1(s)             Return Dirichlet eta(s)-1
+fermi_dirac(n,x)     Return the integer order Fermi-Dirac integral F_n(x) = 1/n!*integral(t^n/(exp(t-x)+1), t=0..INF)
+fermi_dirac_r(s,x)   Return the Fermi-Dirac integral of real order s >= -1
+fermi_dirac_m05(x)   Return the complete Fermi-Dirac integral F(-1/2,x)
+fermi_dirac_p05(x)   Return the complete Fermi-Dirac integral F(1/2,x)
+fermi_dirac_p15(x)   Return the complete Fermi-Dirac integral F(3/2,x)
+fermi_dirac_p25(x)   Return the complete Fermi-Dirac integral F(5/2,x)
+harmonic(x)          Return the harmonic number function H(x) = psi(x+1) + EulerGamma
+harmonic2(x,r)       Return the generalized harmonic function H(x,r) = zeta(r) - zetah(r,x+1); x >= -1
+LegendreChi(s,x)     Return Legendre's Chi-function chi(s,x); s>=0, |x|<=1, x<>1 if s<=1
+LerchPhi(z,s,a)      Return the Lerch transcendent Phi(z,s,a) = sum(z^n/(n+a)^s, n=0..INF), z <= 1, s >= -1, a >= 0
+lobachevsky_c(x)     Return the Lobachevski function L(x) = integral(-ln(|cos(t)|), t=0..x)
+lobachevsky_s(x)     Return the Lobachevski function Lambda(x) = integral(-ln(|2sin(t)|), t=0..x)
+polylog(n,x)         Return the polylogarithm Li_n(x) of integer order; real part for n>0,x>1
+polylogr(s,x)        Return the polylogarithm Li_s(x) of real order s >= -1, x <= 256; s > 0 if x > 256; real part if x > 1
+primezeta(x)         Return the prime zeta function P(x) = sum(1/p^x, p prime), x > 1/5; for x<1 the real part of P(x) is returned.
+ti(s,x)              Return the inverse tangent integral of order s >= 0
+ti2(x)               Return the inverse tangent integral, Ti_2(x) = integral(arctan(t)/t, t=0..x)
+trilog(x)            Return the trilogarithm function trilog(x) = Re(Li_3(x))
+zeta(s)              Return the Riemann zeta function at s, s<>1
+zeta1p(x)            Return the Riemann zeta function at 1+x, x<>0
+zetah(s,a)           Return the Hurwitz zeta function zetah(s,a) = sum(1/(i+a)^s, i=0..INF), s<>1, a>0
+zetaint(n)           Return zeta(n) for integer arguments, n<>1
+zetam1(s)            Return Riemann zeta(s)-1, s<>1
+
+
+Orthogonal polynomials, Legendre functions, and related
+
+chebyshev_t(n,x)     Return T_n(x), the Chebyshev polynomial of the first kind, degree n
+chebyshev_u(n,x)     Return U_n(x), the Chebyshev polynomial of the second kind, degree n
+chebyshev_v(n,x)     Return V_n(x), the Chebyshev polynomial of the third kind, degree n >= 0
+chebyshev_w(n,x)     Return W_n(x), the Chebyshev polynomial of the fourth kind, degree n >= 0
+chebyshev_f1(v,x)    Return T_v(x), the Chebyshev function the first kind, real part for x<-1
+gegenbauer_c(n,a,x)  Return Cn(a,x), the nth Gegenbauer (ultraspherical) polynomial with parameter a > -0.5
+hermite_h(n,x)       Return Hn(n,x), the nth Hermite polynomial, degree n >= 0
+hermite_he(n,x)      Return He_n(x), the nth "probabilists'" Hermite polynomial, degree n >= 0
+jacobi_p(n,a,b,x)    Return Pn(a,b,x), the nth Jacobi polynomial with parameters a,b
+laguerre(n,a,x)      Return Ln(a,x), the nth generalized Laguerre polynomial with parameter a; degree n must be >= 0. x >=0 and a > -1 are the standard ranges.
+laguerre_ass(n,m,x)  Return the associated Laguerre polynomial Ln(m,x); n,m >= 0
+laguerre_l(n,x)      Return the nth Laguerre polynomial Ln(0,x); n >= 0
+legendre_p(l,x)      Return P_l(x), the Legendre polynomial/function P_l, degree l
+legendre_plm(l,m,x)  Return the associated Legendre polynomial P_lm(x)
+legendre_q(l,x)      Return Q_l(x), the Legendre function of the second kind, degree l >= 0, |x| <> 1
+legendre_qlm(l,m,x)  Return Q(l,m,x), the associated Legendre function of the second kind; l >= 0, l+m >= 0, |x|<>1
+toroidal_plm(l,m,x)  Return the toroidal harmonic function P(l-0.5,m,x); l,m=0,1; x >= 1
+toroidal_qlm(l,m,x)  Return the toroidal harmonic function Q(l-0.5,m,x); l=0,1; x > 1
+spherical_harmonic   Return Re and Im of the spherical harmonic function Y_lm(theta,phi)
+zernike_r(n,m,r)     Return the Zernike radial polynomial Rnm(r), r >= 0, n >= m >= 0, n-m even
+
+
+Hypergeometric functions and related
+
+CylinderD(v,x)       Return Whittaker's parabolic cylinder function D_v(x)
+CylinderU(a,x)       Return the parabolic cylinder function U(a,x)
+CylinderV(a,x)       Return the parabolic cylinder function V(a,x) with 2a integer
+HermiteH(v,x)        Return the Hermite function H_v(x) of degree v
+hyperg_0F1(b,x)      Return the confluent hypergeometric limit function 0F1(;b;x)
+hyperg_0F1r(b,x)     Return the regularized confluent hypergeometric limit function 0F1(;b;x)/Gamma(b)
+hyperg_1F1(a,b,x)    Return the confluent hypergeometric function 1F1(a,b,x); Kummer's function M(a,b,x)
+hyperg_1F1r(a,b,x)   Return the regularized Kummer hypergeometric function 1F1(a,b,x)/Gamma(b)
+hyperg_2F0(a,b,x)    Return 2F0(a,b,x), if x>0 then a or b must be a negative integer
+hyperg_2F1(a,b,c,x)  Return the Gauss hypergeometric function 2F1(a,b;c;x)
+hyperg_2F1r(a,b,c,x) Return the regularized Gauss hypergeometric function 2F1(a,b,c,x)/Gamma(c)
+hyperg_u(a,b,x)      Return Tricomi's confluent hypergeometric function U(a,b,x). If x<0, then a must be an integer and a<0 or 1+a-b an integer < 0.
+WhittakerM(k,m,x)    Return the Whittaker M function = exp(-x/2)*x^(0.5+m) * 1F1(m-k-0.5,2m+1,x)
+WhittakerW(k,m,x)    Return the Whittaker W function = exp(-x/2)*x^(0.5+m) * U(m-k-0.5,2m+1,x)
+
+
+Statistical distributions
+
+beta_cdf(a,b,x)      Return the cumulative beta distribution function; a>0, b>0
+beta_inv(a,b,y)      Return the functional inverse of the beta distribution function; a > 0, b > 0, 0 <= y <= 1
+beta_pdf(a,b,x)      Return the probability density function of the beta distribution with parameters a and b
+binomial_cdf(p,n,k)  Return the cumulative binomial distribution function with number of trials n >= 0 and success probability 0 <= p <= 1
+binomial_pmf(p,n,k)  Return the binomial distribution probability mass function with number of trials n >= 0 and success probability 0 <= p <= 1
+cauchy_cdf(a,b,x)    Return the cumulative Cauchy distribution function with location a and scale b > 0
+cauchy_inv(a,b,y)    Return the functional inverse of the Cauchy distribution function with location a and scale b > 0
+cauchy_pdf(a,b,x)    Return the Cauchy probability density function with location a and scale b > 0
+chi2_cdf(nu,x)       Return the cumulative chi-square distribution with nu>0 degrees of freedom, x >= 0
+chi2_inv(nu,p)       Return the functional inverse of the chi-square distribution, nu>0, 0 <= p < 1
+chi2_pdf(nu,x)       Return the probability density function of the chi-square distribution, nu>0
+chi_cdf(nu,x)        Return the cumulative chi-square distribution with nu>0 degrees of freedom, x >= 0
+chi_inv(nu,x)        Return the functional inverse of the chi distribution, nu>0, 0 <= p < 1
+chi_pdf(nu,x)        Return the probability density function of the chi distribution, nu>0
+evt1_cdf(a,b,x)      Return the cumulative Extreme Value Type I distribution function with location a and scale b > 0; result = exp(-exp(-(x-a)/b)).
+evt1_inv(a,b,y)      Return the functional inverse of the Extreme Value Type I distribution function with location a and scale b > 0; result = a - b*ln(ln(-y)).
+evt1_pdf(a,b,x)      Return the probability density function of the Extreme Value Type I distribution with location a and scale b > 0, result = exp(-(x-a)/b)/b * exp(-exp(-(x-a)/b))
+exp_cdf(a,alpha,x)   Return the cumulative exponential distribution function with location a and rate alpha > 0
+exp_inv(a,alpha,y)   Return the functional inverse of the exponential distribution function with location a and rate alpha > 0
+exp_pdf(a,alpha,x)   Return the exponential probability density function with location a and rate alpha > 0
+f_cdf(nu1,nu2,x)     Return the cumulative F distribution function; x >= 0, nu1, nu2 > 0
+f_inv(nu1,nu2,y)     Return the functional inverse of the F distribution, nu1, nu2 > 0, 0 <= y <= 1
+f_pdf(nu1,nu2,x)     Return the probability density function of the F distribution; x >= 0, nu1, nu2 > 0
+gamma_cdf(a,b,x)     Return the cumulative gamma distribution function, shape a>0, scale b>0
+gamma_inv(a,b,p)     Return the functional inverse of the gamma distribution function, shape a>0, scale b>0
+gamma_pdf(a,b,x)     Return the probability density function of a gamma distribution with shape a>0, scale b>0
+hypergeo_cdf(n1,n2,n,k)  Return the cumulative hypergeometric distribution function; n,n1,n2 >= 0, n <= n1+n2
+hypergeo_pmf(n1,n2,n,k)  Return the hypergeometric distribution probability mass function; n,n1,n2 >= 0, n <= n1+n2
+invgamma_cdf(a,b,x)  Return the cumulative inverse gamma distribution function, shape a>0, scale b>0: result = Gamma(a,b/x)/Gamma(a) = Q(a,b/x) = igammaq(a,b/x)
+invgamma_inv(a,b,y)  Return the functional inverse of the inverse gamma distribution function, shape a>0, scale b>0, 0 <= y <= 1
+invgamma_pdf(a,b,x)  Return the probability density function of an inverse gamma distribution with shape a>0, scale b>0: result = (b/x)^a/x*exp(-b/x)/Gamma(a)
+kolmogorov_cdf(x)    Return the limiting form for the cumulative Kolmogorov distribution function
+kolmogorov_inv(y)    Return the functional inverse of the Kolmogorov distribution
+kumaraswamy_cdf(a,b,x)   Return the cumulative Kumaraswamy distribution function with shape parameters a,b > 0, 0 <= x <= 1; result = 1-(1-x^a)^b
+kumaraswamy_inv(a,b,y)   Return the functional inverse of the Kumaraswamy distribution with shape parameters a,b > 0; result = [1-(1-y)^(1/b)]^(1/a)
+kumaraswamy_pdf(a,b,x)   Return the Kumaraswamy probability density function with shape parameters a,b>0, 0<=x<=1; result = a*b*x^(a-1)*(1-x^a)^(b-1)
+laplace_cdf(a,b,x)   Return the cumulative Laplace distribution function with location a and scale b > 0
+laplace_inv(a,b,y)   Return the functional inverse of the Laplace distribution with location a and scale b > 0
+laplace_pdf(a,b,x)   Return the Laplace probability density function with location a and scale b > 0, result = exp(-abs(x-a)/b) / (2*b)
+levy_cdf(a,b,x)      Return the cumulative Levy distribution function with location a and scale parameter b > 0
+levy_inv(a,b,y)      Return the functional inverse of the Levy distribution with location a and scale parameter b > 0
+levy_pdf(a,b,x)      Return the Levy probability density function with location a and scale parameter b > 0
+logistic_cdf(a,b,x)  Return the cumulative logistic distribution function with location a and scale parameter b > 0
+logistic_inv(a,b,y)  Return the functional inverse of the logistic distribution with location a and scale parameter b > 0
+logistic_pdf(a,b,x)  Return the logistic probability density function with location a and scale parameter b > 0, exp(-(x-a)/b)/b/(1+exp(-(x-a)/b))^2
+lognormal_cdf(a,b,x) Return the cumulative log-normal distribution function with location a and scale parameter b > 0, zero for x <= 0.
+lognormal_inv(a,b,y) Return the functional inverse of the log-normal distribution  with location a and scale parameter b > 0, 0 < y < 1.
+lognormal_pdf(a,b,x) Return the log-normal probability density function with location a and scale parameter b > 0, zero for x <= 0.
+logseries_cdf(a,k)   Return the cumulative logarithmic (series) distribution function with shape 0 < a < 1, k > 0
+logseries_pmf(a,k)   Return the logarithmic (series) probability mass function with shape 0 < a < 1, k > 0; result = -a^k/(k*ln(1-a))
+nakagami_pdf(m,w,x)  Return the probability density function of the Nakagami distribution with shape m>0, spread w>0, x>=0: nakagami_pdf = 2x*gamma_pdf(m,w/m,x^2)
+nakagami_cdf(m,w,x)  Return the cumulative Nakagami distribution function, shape m>0, spread w>0
+nakagami_inv(m,w,p)  Return the functional inverse of the Nakagami distribution function, shape m>0, spread w>0, 0 <= p <= 1, i.e. find x such that nakagami_cdf(m, w, x) = p
+maxwell_cdf(b,x)     Return the cumulative Maxwell distribution function with scale b > 0, x >= 0
+maxwell_inv(b,y)     Return the functional inverse of the Maxwell distribution with scale b > 0
+maxwell_pdf(b,x)     Return the Maxwell probability density function with scale b > 0, x >= 0
+moyal_cdf(a,b,x)     Return the cumulative Moyal distribution function with location a and scale parameter b > 0
+moyal_inv(a,b,y)     Return the functional inverse of the Moyal distribution with location a and scale parameter b > 0
+moyal_pdf(a,b x)     Return the Moyal probability density function with location a and scale parameter b > 0
+negbinom_cdf(p,r,k)  Return the cumulative negative binomial distribution function with r > 0 and success probability 0 <= p <= 1
+negbinom_pmf(p,r,k)  Return the negative binomial distribution probability mass function with r > 0 and success probability 0 <= p <= 1
+normal_cdf(mu,sd,x)  Return the normal (Gaussian) distribution function with mean mu and standard deviation sd > 0
+normal_inv(mu,sd,y)  Return the functional inverse of the normal (Gaussian) distribution with mean mu and standard deviation sd > 0, 0 < y < 1
+normal_pdf(mu,sd,x)  Return the normal (Gaussian) probability density function with mean mu and standard deviation sd > 0
+normstd_cdf(x)       Return the standard normal distribution function
+normstd_inv(y)       Return the inverse standard normal distribution function, 0 < y < 1
+normstd_pdf(x)       Return the std. normal probability density function exp(-x^2/2)/sqrt(2*Pi)
+pareto_cdf(k,a,x)    Return the cumulative Pareto distribution function minimum value k > 0 and shape a, x >= a > 0, result = 1-(k/x)^a
+pareto_inv(k,a,y)    Return the functional inverse of the Pareto distribution with minimum value k > 0 and shape a, x >= a > 0
+pareto_pdf(k,a,x)    Return the Pareto probability density function with minimum value k > 0 and shape a, x >= a > 0, result = (a/x)*(k/x)^a
+poisson_cdf(mu,k)    Return the cumulative Poisson distribution function with mean mu >= 0
+poisson_pmf(mu,k)    Return the Poisson distribution probability mass function with mean mu >= 0
+rayleigh_cdf(b,x)    Return the cumulative Rayleigh distribution function with scale b > 0, x >= 0
+rayleigh_inv(b,y)    Return the functional inverse of the Rayleigh distribution with scale b > 0
+rayleigh_pdf(b,x)    Return the Rayleigh probability density function with scale b > 0, x >= 0; result = x*exp(-0.5*(x/b)^2)/b^2
+triangular_cdf(a,b,c,x)  Return the cumulative triangular distribution function with lower limit a, upper limit b, mode c;  a < b, a <= c <= b
+triangular_inv(a,b,c,y)  Return the functional inverse of the triangular distribution with lower limit a, upper limit b, mode c; a < b, a <= c <= b, 0 <= y <= 1
+triangular_pdf(a,b,c,x)  Return the triangular probability density function with lower limit a, upper limit b, mode c;  a < b, a <= c <= b
+t_cdf(nu,t)          Return the cumulative Student t distribution with nu>0 degrees of freedom
+t_inv(nu,p)          Return the functional inverse of Student's t distribution, nu>0, 0 <= p <= 1
+t_pdf(nu,x)          Return the probability density function of Student's t distribution, nu>0
+uniform_cdf(a,b,x)   Return the cumulative uniform distribution function on [a,b], a < b
+uniform_inv(a,b,y)   Return the functional inverse of the uniform distribution on [a,b], a < b
+uniform_pdf(a,b,x)   Return the uniform probability density function on [a,b], a < b
+wald_cdf(mu,b,x)     Return the Wald (inverse Gaussian) distribution function with mean mu > 0, scale b > 0 for x >= 0
+wald_inv(mu,b,y)     Return the functional inverse of the Wald (inverse Gaussian) distribution with mean mu > 0, scale b > 0, 0 <= y < 1.
+wald_pdf(mu,b,x)     Return the Wald (inverse Gaussian) probability density function with mean mu > 0, scale b > 0 for x >= 0
+weibull_cdf(a,b,x)   Return the cumulative Weibull distribution function with shape parameter a > 0 and scale parameter b > 0
+weibull_inv(a,b,y)   Return the functional inverse of the Weibull distribution with shape parameter a > 0 and scale parameter b > 0
+weibull_pdf(a,b,x)   Return the Weibull probability density function with shape a > 0 and scale b > 0, result = a*x^(a-1)*exp(-(x/b)^a)/ b^a; x > 0
+zipf_cdf(r,k)        Return the cumulative Zipf distribution function H(k,r+1)/zeta(r+1), r>0, k>0
+zipf_pmf(r,k)        Return the Zipf distribution probability mass function k^(-(r+1))/zeta(r+1), r>0, k>0
+
+
+Other special functions
+
+agm(x,y)             Return the arithmetic-geometric mean of |x| and |y|
+bernoulli(n)         Return the nth Bernoulli number, 0 if n<0 or odd n >= 3
+bernpoly(n,x)        Return the Bernoulli polynomial B_n(x), 0 <= n <= MaxBernoulli
+besselpoly(n,x)      Return yn(x), the nth Bessel polynomial
+bring(x)             Return the Bring radical b := BR(x) with b^5 + b + x = 0
+catalan(x)           Return the Catalan function C(x) = binomial(2x,x)/(x+1)
+cosint(n,x)          Return cosint(n,x) = integral(cos(t)^n, t=0..x), n >= 0
+debye(n,x)           Return the Debye function D(n,x) = n/x^n*integral(t^n/(exp(t)-1),t=0..x) of order n>0, x>=0
+einstein(n,x)        Return the Einstein function E_n, n=1..4, x > 0 for n=3,4
+euler(n)             Return the nth Euler number, 0 if n<0 or odd n
+eulerpoly(n,x)       Return the Euler polynomial E_n(x), 0 <= n < MaxBernoulli
+euler_q(q)           Return the EulerQ function product(1-q^n, n=1..Inf), |q| <= 1
+expn(n,x)            Return the truncated exponential sum function e_n = sum(x^k/k!, k=0..n), 0 <= n < MAXGAM-1
+expreln(n,x)         Return the relative exponential = (e^x-sum(x^k/k!, k=0..n-1)*n!/x^n
+fibfun(v,x)          Return the general Fibonacci function F_v(x)
+fibpoly(n,x)         Return the Fibonacci polynomial F_n(x)
+kepler(M,e)          Solve Kepler's equation, result x is the eccentric anomaly from the mean anomaly M and the eccentricity e >= 0; x - e*sin(x) = M, x + x^3/3 = M, or e*sinh(x) - x = M for e <1, =1, >1
+LambertW(x)          Return the Lambert W function (principal branch), x >= -1/e
+LambertW1(x)         Return the Lambert W function (-1 branch), -1/e <= x < 0
+LangevinL(x)         Return the Langevin function L(x) = coth(x) - 1/x, L(0) = 0
+LangevinL_inv(x)     Return the functional inverse of the Langevin function, |x| < 1
+lucpoly(n,x)         Return the Lucas polynomial L_n(x)
+omega(x)             Return the Wright omega function, i.e. the solution w of w + ln(w) = x
+RiemannR(x)          Return the Riemann prime counting function R(x), x >= 1/1024
+RiemannR_inv(x)      Return the functional inverse of R(x), R(RiemannR_inv(x))=x, x >= 1.125
+rrcf(q)              Return the Rogers-Ramanujan continued fraction for |q| < 1
+sinint(n,x)          Return sinint(n,x) = integral(sin(t)^n, t=0..x), n >= 0
+transport(n,x)       Return the transport integral J_n(x) for x >= 0, n >= 2; J_n(x) = integral(t^n*exp(t)/(exp(t)-1)^2, t=0..x)
+
+
+---------------------------------------------------------------------------
+DAMTools functions
+---------------------------------------------------------------------------
+
+Function minimization
+
+localmin(f,a,b,eps,t,x,fx,ic): Brent's algorithm (with guaranteed convergence)
+for finding a local minimum of the function f in the interval (a,b). x is the
+approximate minimum abscissa, fx=f(x). eps and t define a tolerance tol =
+eps*|x|+t. f is never evaluated for two points closer together than tol. eps
+shall not be < 2*eps_d, preferably not smaller than sqrt(eps_d). ic is the
+iteration count, -1 if a=b, 0 if max. count = 5000 exceeded. The algorithm
+combines golden section search and successive parabolic interpolation using
+only function (not derivative) evaluations.
+
+mbrent(f,a,b,t,x,fx,ic): Find a local minimum of the function f in the interval
+(a,b). x is the approximate minimum abscissa, fx = f(x). Simplified version of
+procedure localmin with fixed eps = 0.5*sqrt(eps_d). ic is the iteration count,
+-1 if a=b, 0 if max. = 5000 exceeded.
+
+fmin(f,a,b,tol): Find a local minimum of the function f in the interval (a,b)
+and return the approximate minimum abscissa. fmin is a simple shell version for
+the procedure localmin using eps = 0.5*sqrt(eps_d) and t = tol/3.
+
+
+Zero finding
+
+zbrenty(f,y,a,b,t,ic,err): Brent/Dekker algorithm with guaranteed convergence
+for finding a zero x of the function f(x)-y in the interval [a,b] to within a
+tolerance of 6*eps_d*|x|+2*t, where t is a positive tolerance, i.e. zbrenty
+solves f(x)=y. It assumes that f(a)-y and f(b)-y have different signs. ic is
+the iteration count; err is an error code (0: no error, -1: if f(a)-y and
+f(b)-y have the same sign, -2: max. iteration count exceeded). The algorithm is
+based on a combination of successive interpolations and bisection.
+
+zbrent(f,a,b,t,ic,err): Brent/Dekker algorithm with guaranteed convergence for
+finding a zero of a function: Return a zero x of the function f in the interval
+[a,b], function zbrenty with y=0.0 is used.
+
+zeroin(f,a,b,t): Return a zero x of the function f in the interval [a, b] to
+within a tolerance 6*eps_d*|x| + 2*t, where t is a positive tolerance, assumes
+that f(a) and f(b) have different signs. Simplified version of zbrent.
+
+zridders(f,a,b,t): Find a zero x of f with Ridders' method in the interval
+[a,b] with a tolerance 2*eps_d*|x| + 0.5*t, returns NaN if f(a)*f(b) > 0.
+
+Numerical integration
+
+quanc8(fun,a,b,abserr,relerr, result, ..): Estimate the integral of fun(x) from
+a to b to a user provided tolerance using an automatic adaptive routine based
+on the 8-panel Newton-Cotes rule; used for smooth functions on finite
+intervals.
+
+quagk(f,a,b,epsabs,result,abserr,ier): General global adaptive quadrature of f
+over (a,b) based on Gauss-Kronrod rules for the subintervals, with acceleration
+by Wynn's epsilon algorithm. Simple shell for qags and qagi, a or b may be
+infinite.
+
+qags(f,a,b, .. , result, .. ,ier): Global adaptive quadrature of f over (a,b)
+based on 21-point Gauss-Kronrod rule for the subintervals, with acceleration by
+Wynn's epsilon algorithm. Simplified user interface to procedure qagse.
+
+qagi(f,bound,inf, .. ,result, .. ,ier): Global adaptive quadrature of f over an
+infinite interval based on transformed 15-point Gauss-Kronrod rule for the
+subintervals, with acceleration by Wynn's epsilon algorithm. Simplified user
+interface to procedure qagie.
+
+qawc(f,a,b,c, .. , result, .. ,ier): Adaptive quadrature of the function
+f(x)/(x-c) over the finite interval (a,b) with the singularity at c. The
+routine calculates an approximation to the Cauchy principal value. Simplified
+user interface to procedure qawce.
+
+qk21(f,a,b,result, ..): Integrate function f over (a,b) with 21-point
+Gauss-Kronrod rule.
+
+qagse(f,a,b, .. ,result, .. ,ier, ..): Global adaptive quadrature of f over
+(a,b) based on 21-point Gauss-Kronrod rule for the subintervals, with
+acceleration by Wynn's epsilon algorithm.
+
+qagie(f,bound,inf, .. ,result, .. ,ier, ..): Global adaptive quadrature of f
+over an infinite interval based on transformed 15-point Gauss-Kronrod rule for
+the subintervals, with acceleration by Wynn's epsilon algorithm.
+
+qawce(f,a,b,c, .. , result, .. ,ier, ..): Adaptive quadrature of the function
+f(x)/(x-c) over the finite interval (a,b) with the singularity at c with ca and
+cb. The routine calculates an approximation to the Cauchy principal value.
+
+intde(f,a,b,eps,result, .. ,ier): Automatic quadrature of f(x) over the finite
+interval (a,b) using Double Exponential transformation.
+
+intde_p(f,p,a,b,eps,result, .. ,ier): Automatic quadrature of f(x,p) over the
+finite interval (a,b) using Double Exponential transformation, p is typeless
+pointer and can be used to supply parameters.
+
+intdei(f,a,eps,result, .. ,ier): Automatic quadrature of f(x) over (a,INF)
+using Double Exponential transformation when f(x) has no oscillatory factor.
+
+intdei_p(f,p,a,eps,result, .. ,ier): Automatic quadrature of f(x,p) over
+(a,INF) using Double Exponential transformation for functions without
+oscillatory factor, p is typeless pointer and can be used to supply parameters.
+
+intdeo(f,a,omega,eps,result, .. ,ier): Automatic quadrature of f(x) over
+(a,INF) using Double Exponential transformation when f(x) has an oscillatory
+factor, i.e. f has the form f(x) = g(x)*sin(omega*x + theta) as x -> INF.
+
+
+Convergence acceleration
+
+levinu1(an,n,nmax,qnum,qden,extsum,sn,ierr): Perform one step of the Levin
+u-transformation for sum(an, n=0..). Note: The driver routine has to analyze
+the convergence of the process.
+
+wynneps1(an,n,nmax,sum,e,extlim,sn,ierr): Perform one step of Wynn's epsilon
+algorithm for the sequence an, n=0.. or the sum(an, n=0..) Note: The driver
+routine has to analyze the convergence of the whole process.
+
+
+Solving quadratic, cubic, polynomial equations
+
+squad(a,b,c,x1,y1,x2,y2): Solve the quadratic equation ax^2 + bx + c = 0.
+Result is the number of different solutions: 0 (if a=b=0), 1 (x1), or 2
+(x1,x2). If the result is = -2, x1+i*y1 and x2+i*y2 are the two complex
+solutions. No precautions against over/underflow, NAN/INF coefficients return 0.
+
+squadx(a,b,c,x1,y1,x2,y2): Solve the quadratic equation ax^2 + bx + c = 0.
+Result is the number of different solutions: 0 (if a=b=0 or INF/NAN), 1 (x1),
+or 2 (x1,x2). If the result is = -2, then x1 + i*y1 and x2 + i*y2 are the two
+complex solutions. Uses scaling by powers of two to minimize over/underflows.
+
+cubsolve(a,b,c,d, x,x1,y1,x2,y2): Solve the cubic equation ax^3 + bx^2 + cx + d
+= 0: compute a real root x (may be &infin; if a &asymp; 0) and two complex
+zeros x1 + i*y1, x2 + i*y2 where y2 = -y1 may be zero, i.e. there are three
+reel roots.
+
+PolyRoots(p,n,x,y,ierr): Compute the n (complex) roots x[k] + i*y[k] of the
+polynomial p(z) = p[0] + p[1]*z + ... p[n]*z^n, n>0, p[n]0. Real roots have
+y[k]=0. ierr is an error code 0: OK, -1: n<1, -2: p[n]=0, k: iterations
+exceeded while the k-th root is being sought. n must be <= MaxDeg (currently
+= 20); the cases n=1 and 2 are handled separately: n=1 directly and n=2 with
+squad. PolyRoots uses a companion matrix method, balancing, and the QR
+algorithm for the eigenvalues of an upper Hessenberg matrix.
+
+PolyRootsA(p,n,x,y,ierr): Perform PolyRoots, then improve and sort the roots.
+
+PolyRootsOA(p,n,x,y,ierr): Open array version, n <= high(p): perform PolyRoots,
+then improve and sort the roots.
+
+
+---------------------------------------------------------------------------
+DAMath complex functions
+---------------------------------------------------------------------------
+
+Complex arithmetic and basic functions
+
+cabs(z)                Return the complex absolute value |z| = sqrt(z.re^2 + z.im^2)
+cadd(x,y; z)           Return the complex sum z = x + y
+carg(z)                Return the principle value of the argument or phase angle arg(z) = arctan2(z.im, z.re)
+ccis(x; z)             Return z = exp(i*x) = cos(x) + i*sin(x)
+cconj(z; w)            Return the complex conjugate w = z.re - i*z.im
+cdiv(x,y; z)           Return the quotient z = x/y
+cinv(z; w)             Return the complex inverse w = 1/z
+cmul(x,y; z)           Return the complex product z = x*y
+cneg(z; w)             Return the negative w = -z
+cpolar(z; r,theta)     Return the polar form z = r*exp(i*theta) with r = |z|, theta = arg z
+cpoly(z,a,n; w)        Evaluate polynomial; return a[0] + a[1]*z + ... + a[n-1]*z^(n-1)
+cpolyr(z,a,n; w)       Evaluate polynomial; return a[0] + a[1]*z + ... + a[n-1]*z^(n-1) with real a[]
+cpowi(z,n; w)          Return the integer power w = z^n
+cset(z; x,y)           Set real and imaginary part of z = x+iy
+csgn(z)                Return the sign of z. Result = isign(z.re) if z.re<>0, isign(z.im) otherwise
+csqr(z; w)             Return the square w = z^2
+csqrt(z; w)            Return the complex principal square root w = sqrt(z)
+csqrt1mz2(z; w)        Return the complex principal square root w = sqrt(1-z^2)
+csub(x,y; z)           Return the complex difference z = x - y
+rdivc(x,y; z)          Return the quotient z = x/y for real x
+
+
+Complex transcendental functions
+
+cagm(x,y; w)           Return the 'optimal' arithmetic-geometric mean w = AGM(x,y)
+cagm1(z; w)            Return the 'optimal' arithmetic-geometric mean w = AGM(1,z)
+carccos(z; w)          Return the principal value of the complex inverse circular cosine w = arccos(z)
+carccosh(z; w)         Return the principal value of the complex inverse hyperbolic cosine w = arccosh(z)
+carccot(z; w)          Return the principal value of the complex inverse circular cotangent w = arccot(z) = arctan(1/z)
+carccotc(z; w)         Return the principal value of the complex inverse circular cotangent w = arccotc(z) = Pi/2 - arctan(z)
+carccoth(z; w)         Return the principal value of the complex inverse hyperbolic cotangent w = arccoth(z) = arctanh(1/z)
+carccothc(z; w)        Return the principal value of the complex inverse hyperbolic cotangent w = arccothc(z) = arctanh(z) + i*Pi/2
+carccsc(z; w)          Return the principal value of the complex inverse circular cosecant w = arccsc(z) = arcsin(1/z)
+carccsch(z; w)         Return the principal value of the complex inverse hyperbolic cosecant w = arccsch(z) = arcsinh(1/z)
+carcsec(z; w)          Return the principal value of the complex inverse circular secant w = arcsec(z) = arccos(1/z)
+carcsech(z; w)         Return the principal value of the complex inverse hyperbolic secant w = arcsech(z) = arccosh(1/z)
+carcsin(z; w)          Return the principal value of the complex inverse circular sine w = arcsin(z)
+carcsinh(z; w)         Return the principal value of the complex inverse hyperbolic sine w = arcsinh(z)
+carctan(z; w)          Return the principal value of the complex inverse circular tangent w = arctan(z)
+carctanh(z; w)         Return the principal value of the complex inverse hyperbolic tangent w = arctanh(z)
+ccbrt(z; w)            Return the complex principal cube root w = cbrt(z) = z^(1/3)
+ccn(z,k; cn)           Return the Jacobi elliptic function cn(z,k)
+ccos(z; w)             Return the complex circular cosine w = cos(z)
+ccosh(z; w)            Return the complex hyperbolic cosine w = cosh(z)
+ccot(z; w)             Return the complex circular cotangent w = cot(z)
+ccoth(z; w)            Return the complex hyperbolic cotangent w = coth(z)
+ccsc(z; w)             Return the complex circular cosecant w = csc(z) = 1/sin(z)
+ccsch(z; w)            Return the complex hyperbolic cosecant w = csch(z) = 1/sinh(z)
+cdilog(z; w)           Return the principal branch of the complex dilogarithm w = -integral(ln(1-t)/t, t=0..z)
+cdn(z,k; dn)           Return the Jacobi elliptic function dn(z,k)
+ce1(z; w)              Return the complex exponential integral E1(z), z <> 0
+cei(z; w)              Return the complex exponential integral Ei(z), z <> 0
+cellck(k; w)           Return w = K'(k), the complementary complete elliptic integral of the first kind
+celle(k; w)            Return w = E(k), the complete elliptic integral of the second kind
+cellk(k; w)            Return w = K(k), the complete elliptic integral of the first kind
+cellke(k; kk, ek)      Return the complete elliptic integrals kk = K(k), ek = E(k); kk=INF if k^2=1
+cerf(z; w)             Return the complex error function w = erf(z) = 2/sqrt(Pi)*integral((exp(-t^2), t=0..z)
+cerfc(z; w)            Return the complex complementary error function w = erfc(z) = 1-erf(z)
+cexp(z; w)             Return the complex exponential function w = exp(z)
+cexp10(z; w)           Return w = 10^z = exp(z*ln(10))
+cexp2(z; w)            Return w = 2^z  = exp(z*ln(2))
+cexpm1(z; w)           Return w = exp(z)-1, accuracy improved for z near 0
+cgamma(z; w)           Return the complex Gamma function w = Gamma(z)
+cLambertW(z; w)        Return the principal branch w = W(z) = W(0,z) of the Lambert W function
+cLambertWk(k,z; wk)    Return the k'th branch wk = W(k,z) of the Lambert W function
+cli(z; w)              Return the complex logarithmic integral w = li(z) = Ei(ln(z)), z <> 1
+cln(z; w)              Return the complex natural logarithm w = ln(z); principal branch ln(|z|) + i*arg(z), accurate near |z|=1
+cln1p(z; w)            Return the principal branch of ln(1+z), accuracy improved for z near 0
+clngamma(z; w)         Return w = lnGamma(z), the principal branch of the log-Gamma function
+clog10(z; w)           Return the principal branch of the base 10 logarithm of z, w = ln(z)/ln(10)
+clogbase(b,z; w)       Return the principal branch of the base  b logarithm of z, w = ln(z)/ln(b)
+cnroot(z,n; w)         Return the complex principal n'th root w = z^(1/n)
+cnroot1(n; z)          Return the principal nth root of unity z = exp(2*Pi*i/n)
+cpow(z,a; w)           Return the principal value of the complex power w = z^a = exp(a*ln(z))
+cpowx(z,x; w)          Return the principal value w = z^x = |z|^x * exp(i*x*arg(z))
+cpsi(z; w)             Return the complex digamma function w = psi(z), z <> 0,-1,-2,...
+crgamma(z; w)          Return the reciprocal Gamma function w = 1/Gamma(z)
+crstheta(z; w)         Return the Riemann-Siegel function w = theta(z)
+csec(z; w)             Return the complex circular secant w = sec(z) = 1/cos(z)
+csech(z; w)            Return the complex hyperbolic secant w = sech(z) = 1/cosh(z)
+csin(z; w)             Return the complex circular sine w = sin(z)
+csinh(z; w)            Return the complex hyperbolic sine w = sinh(z)
+csinpi(z; w)           Return the complex circular sine w = sin(Pi*z)
+csn(z,k; sn)           Return the Jacobi elliptic function sn(z,k)
+csncndn(z,k; sn,cn,dn) Return the Jacobi elliptic functions sn(z,k), cn(z,k), dn(z,k) for complex argument z and real modulus k
+csurd(z,n; w)          Return the complex n'th root w = z^(1/n) with arg(w) closest to arg(z)
+ctan(z; w)             Return the complex circular tangent w = tan(z)
+ctanh(z; w)            Return the complex hyperbolic tangent w = tanh(z)
+czeta(s; w)            Return the complex Riemann Zeta function, w=Zeta(s), s <> 1
+
+
+--------------------------------------------------------------------------------
+DAMath quaternionic functions
+--------------------------------------------------------------------------------
+
+Quaternionic arithmetic and basic functions
+
+qabs(a)              Return the magnitude of a = sqrt(r^2 + x^2 + y^2 + z^2)
+qabs_im(a)           Return the magnitude of the imaginary part of a
+qadd(a,b,c)          Compute the sum c = a + b
+qarg(a)              Return the argument of a, arg(a) = atan2(|x,y,z|, r)
+qcbrt(a,b)           Compute the cube root b = cbrt(a) = a^(1/3)
+qconj(a,b)           Compute the conjugate of a,b=(r,-x,-y,-z)
+qdiv(a,b,c)          Compute the quotient c = a * (1/b)
+qdot(a,b)            Compute the scalar (dot) product a.b
+qmul(a,b,c)          Compute the product c = a * b
+qmulx(a,b,c)         Compute the product c = a * b
+qneg(a,b)            Compute the negative of b = -a
+qnorm(a)             Return the norm of a = r^2 + x^2 + y^2 + z^2
+qsqrt(a,b)           Compute the square root b = sqrt(a)
+qsub(a,b,c)          Compute the difference c = a - b
+qunit(a,b)           Compute the unit b = a/abs(a)
+
+Quaternionic transcendental functions
+
+qarccos(a,b)         Return the inverse circular cosine of b = arccos(a)
+qarccosh(a,b)        Return the inverse hyperbolic cosine b = arccosh(a)
+qarccot(a,b)         Return the inverse circular cotangent b = arccot(a)
+qarccoth(a,b)        Return the inverse hyperbolic cotangent b = arccoth(a)
+qarccsc(a,b)         Return the inverse trigonometric cosecant b = arccsc(a)
+qarccsch(a,b)        Return the inverse hyperbolic cosecant b = arccsch(a)
+qarcsec(a,b)         Return the inverse circular secant b = arcsec(a)
+qarcsech(a,b)        Return the inverse hyperbolic secant b = arcsech(a)
+qarcsin(a,b)         Return the inverse circular sine of b = arcsin(a)
+qarcsinh(a,b)        Return the inverse hyperbolic sine b = arcsinh(a)
+qarctan(a,b)         Return the inverse circular tangent of b = arctan(a)
+qarctanh(a,b)        Return the inverse hyperbolic tangent b = arctanh(a)
+qcos(a,b)            Compute the circular cosine b = cos(a)
+qcosh(a,b)           Compute the hyperbolic cosine b = cosh(a)
+qcot(a,b)            Return the circular cotangent b = cot(a)
+qcoth(a,b)           Return the hyperbolic cotangent b = coth(a)
+qcsc(a,b)            Return the circular secant b = csc(a) = 1/sin(a)
+qcsch(a,b)           Return the hyperbolic secant  b = sech(a)
+qexp(a,b)            Compute the exponential function b = exp(a)
+qinv(a,b)            Compute the inverse b = 1/a
+qln(a,b)             Compute the logarithm b = ln(a)
+qpowx(a,b,c)         Return the real power of w = a^b = exp(b*ln(a))
+qsec(a,b)            Return the circular secant  b = sec(a)
+qsech(a,b)           Return the hyperbolic secant b = sech(a)
+qsin(a,b)            Compute the circular sine b = sin(a)
+qsinh(a,b)           Compute the hyperbolic sine b = sinh(a)
+qtan(a,b)            Return the circular tangent of b = tan(a)
+qtanh(a,b)           Return the hyperbolic tangent of b = tanh(a)
+
+
+---------------------------------------------------------------------------
+References
+---------------------------------------------------------------------------
+
+   1. [HMF]: M. Abramowitz, I.A. Stegun. Handbook of Mathematical
+      Functions. New York, 1970, http://www.math.sfu.ca/~cbm/aands/
+   2. Intel, IA-32 Architecture Software Developer's Manual Volume 2A:
+      Instruction Set Reference, A-M
+      http://www.intel.com/products/processor/manuals/
+   3. D. Goldberg, What Every Computer Scientist Should Know About
+      Floating-Point Arithmetic, 1991; extended and edited reprint via
+      http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.22.6768
+   4. ISO/IEC 10967-2, Information technology: Language independent
+      arithmetic, Part 2: Elementary numerical functions,
+      http://standards.iso.org/ittf/PubliclyAvailableStandards/c024427_ISO_IEC_10967-2_2001(E).zip
+   5. FDLIBM 5.3 (Freely Distributable LIBM), developed at Sun
+      Microsystems, see http://www.netlib.org/fdlibm/ or
+      http://www.validlab.com/software/fdlibm53.tar.gz
+   6. K.C. Ng, Argument Reduction for Huge Arguments: Good to the Last
+      Bit, Technical report, SunPro, 1992. Available from
+      http://www.validlab.com/arg.pdf
+   7. Cephes Mathematical Library, Version 2.8,
+      http://www.moshier.net/#Cephes or http://www.netlib.org/cephes/
+   8. T. Ogita, S.M. Rump, and S. Oishi, Accurate sum and dot product,
+      SIAM J. Sci. Comput., 26 (2005), pp. 1955-1988. Available as
+      http://www.ti3.tu-harburg.de/paper/rump/OgRuOi05.pdf
+   9. N.J. Higham, Accuracy and Stability of Numerical Algorithms, 2nd ed.,
+      Philadelphia, 2002. http://www.maths.manchester.ac.uk/~higham/asna/
+  10. R. Bulirsch, Numerical Calculation of Elliptic Integrals and Elliptic
+      Functions, Numerische Mathematik 7, 78-90, 1965. Available from
+      http://www.digizeitschriften.de/en/dms/toc/?PPN=PPN362160546_0007
+  11. R. Bulirsch, Numerical Calculation of Elliptic Integrals and Elliptic
+      Functions, part III. Numerische Mathematik 13, 305-315, 1969. Available
+      from http://www.digizeitschriften.de/en/dms/toc/?PPN=PPN362160546_0013
+  12. B.C. Carlson, Computing Elliptic Integrals by Duplication,
+      Numerische Mathematik 33, 1-16, 1979. Available from
+      http://www.digizeitschriften.de/en/dms/toc/?PPN=PPN362160546_0033
+  13. W.H. Press et al, Numerical Recipes in C, 2nd ed., Cambridge,
+      1992. http://www.nrbook.com/a/bookcpdf.html
+  14. SLATEC Common Mathematical Library, Version 4.1, July 1993
+      (general purpose mathematical and statistical routines written in
+      Fortran 77), http://www.netlib.org/slatec/
+  15. W. Kahan, On the Cost of Floating-Point Computation Without Extra-Precise
+      Arithmetic, 2004. http://www.eecs.berkeley.edu/~wkahan/Qdrtcs.pdf
+  16. G.E. Forsythe, How do you solve a quadratic equation? Stanford
+      University Technical Report no. CS40, 1966. Available from
+      http://i.stanford.edu/pub/cstr/reports/cs/tr/66/40/CS-TR-66-40.pdf
+  17. P.H. Sterbenz, Floating-Point Computation. Englewood Cliffs, 1974.
+      Chap.9.3: Carefully written programs/quadratic equation, p.246ff
+  18. W.Y. Sit, Quadratic Programming? 1997.
+      http://www.mmrc.iss.ac.cn/ascm/ascm03/sample.pdf
+  19. Boost C++ Libraries, Release 1.42.0, 2010. http://www.boost.org/
+  20. Special functions by Wayne Fullerton, http://www.netlib.org/fn/.
+      Almost identical to the FNLIB subset of SLATEC [14].
+  21. GNU Scientific Library, GSL-1.14 (March 2010),
+      http://www.gnu.org/software/gsl/
+  22. A.J. MacLeod, MISCFUN: A software package to compute uncommon
+      special functions. ACM Trans. on Math. Soft. 22 (1996), pp.
+      288-301. Fortran source: http://netlib.org/toms/757
+  23. R.M. Corless, G.H. Gonnet, D.E.G. Hare, D.J. Jeffrey, D.E. Knuth,
+      On the Lambert W Function, Adv. Comput. Math., 5 (1996), pp. 329-359.
+      http://www.apmaths.uwo.ca/~rcorless/frames/PAPERS/LambertW/LambertW.ps
+      or http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.33.3583
+  24. D. Veberic, Having Fun with Lambert W(x) Function, 2010.
+      https://arxiv.org/abs/1003.1628
+  25. I. Smith, Examples.xls/txt Version 3.3.4, Personal communication, 2010
+  26. N.M. Temme, A Set of Algorithms for the Incomplete Gamma
+      Functions, Probability in the Engineering and Informational
+      Sciences, 8 (1994), pp. 291-307. Available from
+      https://ir.cwi.nl/pub/10080/10080D.pdf
+  27. A.R. Didonato, A.H. Morris, Computation of the Incomplete Gamma
+      Function Ratios and their Inverse. ACM TOMS, Vol. 12, No. 4, Dec
+      1986, pp. 377-393. Fortran source: ACM TOMS 13 (1987) pp. 318-319;
+      available from http://netlib.org/toms/654
+  28. R.P. Brent, Algorithms for Minimization without Derivatives,
+      Englewood Cliffs, 1973. Scanned copy available from the author's
+      site: http://maths-people.anu.edu.au/~brent/pub/pub011.html
+  29. G.E. Forsythe, M.A. Malcolm, C.B. Moler, Computer Methods for
+      Mathematical Computations, Englewood Cliffs, 1977. Fortran code
+      from http://www.netlib.org/fmm/
+  30. [NIST]: F.W.J. Olver, D.W. Lozier, R.F. Boisvert, C.W. Clark, NIST
+      Handbook of Mathematical Functions, Cambridge, 2010. Online
+      resource: NIST Digital Library of Mathematical Functions,
+      http://dlmf.nist.gov/
+  31. R.E. Crandall, Note on fast polylogarithm computation, 2006.
+      For a local copy see the links page.
+  32. D.E. Knuth: The Art of computer programming; Volume 1, Fundamental
+      Algorithms, 3rd ed., 1997; Volume 2, Seminumerical Algorithms, 3rd ed., 1998;
+  33. http://functions.wolfram.com/: Formulas and graphics about
+      mathematical functions for the mathematical and scientific
+      community. Also used: http://mathworld.wolfram.com/ ("/the web's
+      most extensive mathematical resource/") and Wolfram Alpha -
+      Computational Knowledge Engine at http://www.wolframalpha.com/ for
+      online calculation of multi-precision special function reference values.
+  34. R. Piessens, E. de Doncker-Kapenga, C.W. Ueberhuber, D. Kahaner,
+      QUADPACK: A subroutine package for automatic integration (1983).
+      Public domain Fortran source: http://www.netlib.org/quadpack/
+  35. L.C. Maximon, The dilogarithm function for complex argument, 2003,
+      Proc. R. Soc. Lond. A, 459, 2807-2819, doi: 10.1098/rspa.2003.1156;
+      http://rspa.royalsocietypublishing.org/content/459/2039/2807.full.pdf
+  36. P. Borwein, An Efficient Algorithm for the Riemann Zeta Function,
+      CMS Conference Proc. 27 (2000), pp. 29-34. Available as
+      http://www.cecm.sfu.ca/personal/pborwein/PAPERS/P155.pdf
+  37. A.R. DiDonato, A.H. Morris, Algorithm 708: Significant digit
+      computation of the incomplete beta function ratios, ACM TOMS,
+      Vol.18, No.3, 1992, pp.360-373. Fortran source available from
+      http://netlib.org/toms/708
+  38. T. Ooura's Fortran and C source code for automatic quadrature
+      using Double Exponential transformation; available from
+      http://www.kurims.kyoto-u.ac.jp/~ooura/intde.html
+  39. R: A Language and Environment for Statistical Computing, Version
+      2.11.1, http://www.r-project.org/
+  40. S.V. Aksenov et al., Application of the combined nonlinear-condensation
+      transformation to problems in statistical analysis and theoretical
+      physics. Computer Physics Communications, 150, 1-20, 2003.
+      E-print available from https://arxiv.org/pdf/math/0207086v1
+  41. C. Ferreira, J.L. López, Asymptotic expansions of the  Hurwitz-Lerch
+      zeta function, J. Math. Anal. Appl. 298 (2004), 210-224.
+      Available from http://dx.doi.org/10.1016/j.jmaa.2004.05.040
+  42. Y. L. Luke, Algorithms for the Computation of Mathematical
+      Functions, Academic Press, 1977
+  43. J. Pearson, Computation of Hypergeometric Functions, Master's
+      thesis, University of Oxford, 2009. Available as
+      http://people.maths.ox.ac.uk/porterm/research/pearson_final.pdf
+  44. K.E. Muller, Computing the confluent hypergeometric function
+      M(a,b,x), Numerische Mathematik 90, 179-196, 2001
+  45. N.N. Lebedev, Special Functions and Their Applications, Dover, New York, 1972
+  46. S. Graillat, Ph. Langlois, N. Louvet, Compensated Horner Scheme,
+      Research Report No RR2005-04, 2005, Universite de Perpignan.
+      Available from http://www-pequan.lip6.fr/~graillat/papers/rr2005-04.pdf or
+      http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.81.2979
+  47. M. Goano, Algorithm 745: Computation of the complete and
+      incomplete Fermi-Dirac integral. ACM TOMS, Vol.21, No.3, 1995,
+      pp.221-232. Fortran source available from http://netlib.org/toms/745
+  48. D. Dijkstra, A Continued Fraction Expansion for a Generalization
+      of Dawson's Integral, Mathematics of Computation, Vol.31, 503-510
+      (1977). Available as http://doc.utwente.nl/75001/1/Dijkstra77continued.pdf
+  49. W. Gautschi, Evaluation of the Repeated Integrals of the Coerror
+      Function, ACM TOMS, Vol.3, No.3, 1977, pp.240-252. Fortran source
+      available from http://netlib.org/toms/521
+  50. A. Erdelyi et al., Higher Transcendental Functions Vol. I-III,
+      California Institute of Technology - Bateman Manuscript Project, 1953-1955,
+      Available via http://en.wikipedia.org/wiki/Bateman_Manuscript_Project
+  51. N.M. Temme, On the Numerical Evaluation of the Ordinary Bessel
+      Function of the Second Kind. J. Comput. Phys., 21(3): 343-350 (1976),
+      section 2. Available as https://ir.cwi.nl/pub/10710/10710D.pdf
+  52. N.M. Temme, On the Numerical Evaluation of the Modified Bessel
+      Function of the Third Kind, 2nd edition. Preprint, available from
+      https://ir.cwi.nl/pub/7885/7885D.pdf
+  53. F.G. Tricomi, Fonctions hypergeometriques confluentes. Memorial
+      des sciences mathematiques, 140 (1960), p. 1-86. Available from
+      http://www.numdam.org/item?id=MSM_1960__140__1_0
+  54. R.C. Forrey, Computing the hypergeometric function, J. Comp. Phys. 137, 79-100 (1997).
+      Available as http://physics.bk.psu.edu/pub/papers/hyper.pdf,
+      Fortan code from http://physics.bk.psu.edu/codes.html.
+  55. N.M. Temme, The Numerical Computation of the Confluent Hypergeometric
+      Function U(a,b,z), Numerische Mathematik, 41, p.63-82, 1983. Available from
+      http://www.digizeitschriften.de/en/dms/toc/?PPN=PPN362160546_0041 or
+      https://ir.cwi.nl/pub/10717/10717D.pdf
+  56. E.J. Weniger, Nonlinear sequence transformations for the acceleration of
+      convergence and the summation of divergent series, 1989, Comput. Phys. Rep.
+      10, pp.189-371; available as http://arxiv.org/pdf/math/0306302v1.pdf
+  57. T. Fessler, W.F. Ford, D.A. Smith, HURRY: An Acceleration Algorithm for
+      Scalar Sequences and Series, ACM TOMS, Vol.9, No.3, 1983, pp.346-354.
+      Fortran source available from http://netlib.org/toms/602
+  58. W. Gautschi, On mean convergence of extended Lagrange interpolation,
+      J. Comput. Appl. Math. 43, 1992, pp.19-35. Available as
+      http://www.cs.purdue.edu/homes/wxg/selected_works/section_03/132.pdf
+  59. J.C. Mason. Chebyshev polynomials of second, third and fourth
+      kinds. J. Comput. Appl. Math. 49, 1993, 169-178. Available from
+      http://dx.doi.org/10.1016/0377-0427(93)90148-5
+  60. W. Kahan, To Solve a Real Cubic Equation (Lecture Notes for a
+      Numerical Analysis Course), 1986. Available as
+      http://www.dtic.mil/dtic/tr/fulltext/u2/a206859.pdf
+  61. W. Kahan, "Branch Cuts for Complex Elementary Functions, or Much Ado
+      About Nothing's Sign Bit", in The State of Art in Numerical Analysis,
+      ed. by A. Iserles and M.J.D. Powell, 1987, pp. 165-211.
+      Available as http://people.freebsd.org/~das/kahan86branch.pdf
+  62. PARI/GP: Open Source Number Theory-oriented Computer Algebra
+      System, available from http://pari.math.u-bordeaux.fr/
+  63. R.M. Corless, J.H. Davenport, D.J. Jeffrey, and S.M. Watt, "According to
+      Abramowitz and Stegun" or arccoth needn't be uncouth. SIGSAM BULLETIN:
+      Communications on Computer Algebra, 34(2), June 2000.
+      https://dl.acm.org/citation.cfm?doid=362001.362023
+  64. T.J. Dekker, A Floating-point technique for extending the available
+      precision. Numerische Mathematik, 18, 224-242, 1971. Available from
+      http://www.digizeitschriften.de/en/dms/toc/?PPN=PPN362160546_0018
+  65. S. Linnainmaa, Software for Doubled-Precision Floating-Point Computations.
+      ACM TOMS 7 (1981), pp. 272-283. http://dx.doi.org/10.1145/355958.355960
+  66. H. Rinne, Taschenbuch der Statistik, 4.Auflage, Harri Deutsch, Frankfurt 2008
+  67. B.C. Carlson, Numerical computation of real or complex elliptic integrals, 1994,
+      https://arxiv.org/pdf/math/9409227v1.pdf
+  68. M. Baudin, R.L. Smith, A Robust Complex Division in Scilab, 2013,
+      https://arxiv.org/pdf/1210.4539.pdf
+  69. D.A. Cox, The arithmetic-geometric mean of Gauss, Enseign. Math.
+      30 (1984), pp.275-330; available from ETH Zürich
+      http://dx.doi.org/10.5169/seals-53831 or from
+      https://www.researchgate.net/publication/248675540_The_Arithmetic-Geometric_Mean_of_Gauss
+  70. A.R. Didonato, Significant Digit Computation of the Elliptical
+      Coverage Function, NSWC TR 90 513, 1990. Available from
+      http://www.dtic.mil/dtic/tr/fulltext/u2/a230523.pdf
+  71. R.T. Short, Computation of Rice and Noncentral Chi-Squared Probabilities, 2012.
+      Available as http://www.phaselockedsystems.com/NoncentralChiSquared.pdf
+  72. M. Patefield, D. Tandy, Fast and Accurate Calculation of Owen's T Function,
+      Journal of Statistical Software V5 N5, 2000, pp. 1-25.
+      https://www.jstatsoft.org/article/view/v005i05/t.pdf
+  73. D.C. Wood, The Computation of Polylogarithms, 1992, Technical Report 15-92,
+      http://www.cs.kent.ac.uk/pubs/1992/110
+  74. H.H. Chan, On Ramanujan's cubic continued fraction, Acta Arithmetica
+      LXXIII.4 (1995), available from http://www.math.nus.edu.sg/~chanhh/papers/4.pdf
+  75. R. Coquereaux, A. Grossmann, B.E. Lautrup, Iterative Method for
+      Calculation of the Weierstrass Elliptic Function, 1990, IMA
+      Journal of Numerical Analysis, V10, p. 119-128,
+      https://doi.org/10.1093/imanum/10.1.119
+  76. F. Johansson, MPMATH: Python library for arbitrary-precision
+      floating-point arithmetic 2011, http://mpmath.org
+  77. H.L. Krall, O. Frink, A new class of orthogonal polynomials: the
+      Bessel polynomials, Trans. Amer. Math. Soc. 65 (1949) 100-115.
+      https://www.ams.org/tran/1949-065-01/S0002-9947-1949-0028473-1/S0002-9947-1949-0028473-1.pdf
+  78. V.S. Adamchik, Contributions to the Theory of the Barnes function,
+      2003, https://arxiv.org/pdf/math/0308086v1.pdf
+  79. W.J. Cody, K.E. Hillstrom, Chebyshev approximations for the Coulomb phase
+      shift, Math. Comp. 24 (1970), 671-677,
+      https://doi.org/10.1090/S0025-5718-1970-0273785-4
+  80. A.R. Barnett's Coulomb and Bessel functions
+      http://www.fresco.org.uk/programs/barnett/index.htm. The archive
+      coulombs.tar.gz contains (among others) the source coul90.for and the
+      document app23.pdf (The Calculation of Spherical Bessel Functions and
+      Coulomb Functions)
+  81. A. Banuelos, R.A. Depine, A program for computing the Riemann Zeta
+      function for complex argument, Computer Physics Communications 20
+      (1980) 441-445, https://doi.org/10.1016/0010-4655(80)90021-1.
+  82. V. Pegoraro, P. Slusallek, On the Evaluation of the Complex-Valued
+      Exponential Integral, Journal of Graphics, GPU, and Game Tools,
+      15(3), 183-198, 2011, available from
+      http://www.cs.utah.edu/~vpegorar/research/2011_JGT/paper.pdf.
+

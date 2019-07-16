@@ -1,16 +1,10 @@
-/*
-$HOME/bin_tr29124/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev test_chebyshev.cpp -lquadmath
-./test_chebyshev > test_chebyshev.txt
-
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_chebyshev test_chebyshev.cpp -lquadmath
-./test_chebyshev
-*/
 
 #include <iostream>
 #include <iomanip>
 
 #include <ext/float128_math.h>
 #include <ext/float128_io.h>
+#include <ext/float128_limits.h>
 #include <ext/chebyshev.h>
 #include <cmath>
 
@@ -40,7 +34,8 @@ main()
   std::cout << cdilog << '\n';
 
   //
-  __gnu_cxx::_Chebyshev<__float128> cquad(-4.0Q, +7.0Q, 40, [](__float128 x){return 3.5Q + x * (13.25Q + x * 6.375Q);});
+  __gnu_cxx::_Chebyshev<__float128>
+  cquad(-4.0Q, +7.0Q, 40, [](__float128 x){return 3.5Q + x * (13.25Q + x * 6.375Q);});
   std::cout << cquad << '\n';
   for (int i = 0; i <= 500; ++i)
     {
@@ -50,4 +45,6 @@ main()
     }
   cquad.truncate<float>();
   std::cout << cquad << '\n';
+
+  return 0;
 }

@@ -1401,11 +1401,12 @@ main(int n_app_args, char** arg)
   diff_kelvin3<double>();
   diff_kelvin2<double>();
 
+  // FIXME
   //plot_kelvin<float>(plot_data_dir + '/' + "kelvin_float.txt");
-  plot_kelvin<double>(plot_data_dir + '/' + "kelvin_double.txt");
-  plot_kelvin<long double>(plot_data_dir + '/' + "kelvin_long_double.txt");
+  //plot_kelvin<double>(plot_data_dir + '/' + "kelvin_double.txt");
+  //plot_kelvin<long double>(plot_data_dir + '/' + "kelvin_long_double.txt");
 
   //plot_kelvin_order<float>(plot_data_dir + '/' + "kelvin_order_float.txt");
-  plot_kelvin_order<double>(plot_data_dir + '/' + "kelvin_order_double.txt");
-  plot_kelvin_order<long double>(plot_data_dir + '/' + "kelvin_order_long_double.txt");
+  //plot_kelvin_order<double>(plot_data_dir + '/' + "kelvin_order_double.txt");
+  //plot_kelvin_order<long double>(plot_data_dir + '/' + "kelvin_order_long_double.txt");
 }

@@ -17,6 +17,12 @@ plot [-10.0:10.0][-1.1:1.1] \
                         "" index 0 using 1:5 with lines title "k=0.95", \
                         "" index 0 using 1:6 with lines title "k=1.0"
 
+set term push
+set term png
+set output "jacobi_ellint_sn.png"
+replot
+set term pop
+
 # Figure 2
 set title "Jacobi elliptic cosine amplitude function cn(k,u)"
 set xlabel "u"
@@ -26,6 +32,12 @@ plot [-10.0:10.0][-1.1:1.1] \
                         "" index 1 using 1:4 with lines title "k=0.75", \
                         "" index 1 using 1:5 with lines title "k=0.95", \
                         "" index 1 using 1:6 with lines title "k=1.0"
+
+set term push
+set term png
+set output "jacobi_ellint_cn.png"
+replot
+set term pop
 
 # Figure 2
 set title "Jacobi elliptic delta amplitude function dn(k,u)"
@@ -37,6 +49,12 @@ plot [-10.0:10.0][-0.1:1.1] \
                         "" index 2 using 1:5 with lines title "k=0.95", \
                         "" index 2 using 1:6 with lines title "k=1.0"
 
+set term push
+set term png
+set output "jacobi_ellint_dn.png"
+replot
+set term pop
+
 # Figure 2
 set title "Jacobi elliptic delta amplitude function am(k,u)"
 set xlabel "u"
@@ -46,3 +64,9 @@ plot [-10.0:10.0][-1.6:1.6] \
                         "" index 3 using 1:4 with lines title "k=0.75", \
                         "" index 3 using 1:5 with lines title "k=0.95", \
                         "" index 3 using 1:6 with lines title "k=1.0"
+
+set term push
+set term png
+set output "jacobi_ellint_am.png"
+replot
+set term pop

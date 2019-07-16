@@ -9,7 +9,7 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS -Wno-psabi)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-psabi -Wno-deprecated-declarations -Wold-style-cast")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 if (NOT MSVC)
@@ -24,8 +24,7 @@ add_executable(build_inv_erf_coefs build_inv_erf_coefs.cpp)
 target_include_directories(build_inv_erf_coefs PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../3rdparty/mpreal
-  ../../cxx_float128/include
-  ../../wrappers)
+  ../../cxx_float128/include)
 target_link_libraries(build_inv_erf_coefs
   quadmath
   gmp mpfr)
@@ -38,7 +37,7 @@ target_include_directories(test_dawson PRIVATE
   ../../cxx_float128/include)
 target_link_libraries(test_dawson
   quadmath
-  -L../../wrappers -lwrap_boost)
+  wrap_boost)
 add_test(NAME run_test_dawson COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_dawson > output/test_dawson.txt")
 
 add_executable(test_erfc test_erfc.cpp)
@@ -88,6 +87,5 @@ target_include_directories(test_owens_t PRIVATE
 )
 target_link_libraries(test_owens_t
   quadmath
-  -L../../wrappers -lwrap_boost
-)
+  wrap_boost)
 add_test(NAME run_test_owens_t COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_owens_t > output/test_owens_t.txt")

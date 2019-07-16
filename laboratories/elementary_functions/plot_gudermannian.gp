@@ -11,3 +11,9 @@ plot [-3.1:3.1][-1.5:1.5] \
                          "" index 0 using 1:3 with lines ls 2 title "gd(x) - trig", \
                          "" index 0 using 1:5 with lines ls 3 title "invgd(x) - series", \
                          "" index 0 using 1:6 with lines ls 4 title "invgd(x) - trig"
+
+set term push
+set term png
+set output "gudermannian.png"
+replot
+set term pop

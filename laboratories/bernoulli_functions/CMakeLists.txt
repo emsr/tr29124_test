@@ -9,7 +9,7 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS -Wno-psabi)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-psabi -Wno-deprecated-declarations -Wold-style-cast")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 if (NOT MSVC)
@@ -33,6 +33,6 @@ target_include_directories(test_bernoulli PRIVATE
   ../../cxx_float128/include
   ../../wrappers)
 target_link_libraries(test_bernoulli quadmath
-  -L../../wrappers -lwrap_burkhardt
-  -L/home/ed/bin/lib64 -lgfortran)
+  wrap_burkhardt
+  gfortran)
 add_test(NAME run_test_bernoulli COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_bernoulli > output/test_bernoulli.txt")

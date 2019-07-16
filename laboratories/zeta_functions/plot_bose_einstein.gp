@@ -18,6 +18,12 @@ plot [-10.0:10.0][-5.0:10.0] \
                 	  "" index 5 using 1:2 with lines title "G_{4}(x)", \
                 	  "" index 6 using 1:2 with lines title "G_{5}(x)"
 
+set term push
+set term png
+set output "bose_einstein.png"
+replot
+set term pop
+
 set title "Fermi-Dirac integral F_s(x)"
 set xlabel "x"
 plot [-10.0:10.0][0.0:10.0] \
@@ -30,3 +36,9 @@ plot [-10.0:10.0][0.0:10.0] \
                 	"" index 6 using 1:2 with lines title "F_{3}(x)", \
                 	"" index 7 using 1:2 with lines title "F_{4}(x)", \
                 	"" index 8 using 1:2 with lines title "F_{5}(x)"
+
+set term push
+set term png
+set output "fermi_dirac.png"
+replot
+set term pop

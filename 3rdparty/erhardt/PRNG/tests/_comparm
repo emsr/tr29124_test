@@ -1,0 +1,169 @@
+#!/bin/bash -e
+
+# Be sure to have LF as EOL
+# and to chmod a+x
+
+LOG=rnd_arm.log
+
+echo Results for FPC/ARM \(Raspberry Pi 3/B\) > $LOG
+uname -a                                     >> $LOG
+echo -e -n FPC version \\x20  >> $LOG
+fpc -iW                       >> $LOG
+echo ======================================  >> $LOG
+
+
+SRC=t_rnd_06
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_07
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_16
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_17
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_26
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_27
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_36
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_37
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_46
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_47
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_56
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_57
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_66
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_67
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_76
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_77
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_86
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_87
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_96
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_97
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_a6
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+SRC=t_rnd_a7
+fpc $SRC
+echo >> $LOG
+echo Result of $SRC >> $LOG
+echo -------------------------------------- >> $LOG
+./$SRC >> $LOG
+
+

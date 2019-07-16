@@ -9,7 +9,7 @@ project(
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_FLAGS -Wno-psabi)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-psabi -Wno-deprecated-declarations -Wold-style-cast")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 set(TR29124_INCLUDE_DIRS
@@ -82,7 +82,7 @@ target_include_directories(test_digamma PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../wrappers
 )
-target_link_libraries(test_digamma quadmath -L../../wrappers -lwrap_gsl)
+target_link_libraries(test_digamma quadmath wrap_gsl)
 add_test(NAME run_test_digamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_digamma > output/test_digamma.txt")
 
 add_executable(test_factorial test_factorial.cpp)
@@ -96,27 +96,24 @@ add_test(NAME run_test_factorial COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_f
 add_executable(test_falling_factorial test_falling_factorial.cpp)
 target_include_directories(test_falling_factorial PRIVATE
   ${TR29124_INCLUDE_DIRS}
-  ../../wrappers
-)
-target_link_libraries(test_falling_factorial quadmath -L../../wrappers -lwrap_boost)
+  ../../wrappers)
+target_link_libraries(test_falling_factorial quadmath wrap_boost)
 add_test(NAME run_test_falling_factorial COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_falling_factorial > output/test_falling_factorial.txt")
 
 add_executable(test_gamma test_gamma.cpp)
 target_include_directories(test_gamma PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../cxx_float128/include
-  ../../wrappers
-)
-target_link_libraries(test_gamma quadmath -L../../wrappers -lwrap_boost)
+  ../../wrappers)
+target_link_libraries(test_gamma quadmath wrap_boost)
 add_test(NAME run_test_gamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_gamma > output/test_gamma.txt")
 
 add_executable(test_gamma_ratio test_gamma_ratio.cpp)
 target_include_directories(test_gamma_ratio PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../wrappers
-  ../../cxx_float128/include
-)
-target_link_libraries(test_gamma_ratio quadmath -L../../wrappers -lwrap_boost)
+  ../../cxx_float128/include)
+target_link_libraries(test_gamma_ratio quadmath wrap_boost)
 add_test(NAME run_test_gamma_ratio COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_gamma_ratio > output/test_gamma_ratio.txt")
 
 add_executable(test_gamma_reciprocal test_gamma_reciprocal.cpp)
@@ -145,13 +142,12 @@ target_include_directories(test_polygamma PRIVATE
   ${TR29124_INCLUDE_DIRS}
   ../../cxx_continued_fractions/include
   ../../wrappers)
-target_link_libraries(test_polygamma quadmath -L../../wrappers -lwrap_boost)
+target_link_libraries(test_polygamma quadmath wrap_boost)
 add_test(NAME run_test_polygamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_polygamma > output/test_polygamma.txt")
 
 add_executable(test_rising_factorial test_rising_factorial.cpp)
 target_include_directories(test_rising_factorial PRIVATE
   ${TR29124_INCLUDE_DIRS}
-  ../../wrappers
-)
-target_link_libraries(test_rising_factorial quadmath -L../../wrappers -lwrap_boost)
+  ../../wrappers)
+target_link_libraries(test_rising_factorial quadmath wrap_boost)
 add_test(NAME run_test_rising_factorial COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_rising_factorial > output/test_rising_factorial.txt")

@@ -1,0 +1,57 @@
+#c_t_all.bat         Compile batch file for t_all_r, checks for crypto sources
+$supp_rng.zip        AES/Salsa routines needed for PRNGs
+aesr.pas             CPRNG based on AES CTR mode with 128 bit key
+btypes.pas           Common basic type definitions
+copying_we.txt       License
+isaac.pas            The ISAAC cryptographic random number generator
+kiss123.pas          KISS123 based pseudo random number generator
+legal.txt            Legal notice (cryptography, software patents)
+manifest.rng         This file
+marsag99.use         G. Marsaglia's Usenet post "Random numbers for C: End, at last?"
+mt19937.pas          MT19937 based pseudo random number generator
+pasrand.pas          TP/Delphi compatible LC generator
+readme.rng           Archive info
+rndrange.pas         Transform 32-bit random number to 0..range-1 like random(range)}
+salsar.pas           CPRNG based on the Salsa20 stream cipher
+std.inc              Standard definitions and options
+taus113.pas          Taus113 based pseudo random number generator
+taus88.pas           Taus88  based pseudo random number generator
+tt800.pas            TT800   based pseudo random number generator
+t_all_rg.pas         Simple test for all (c)PRNG
+t_taus113.c          C program to generate selftest values for Taus113
+t_taus88.c           C program to generate selftest values for Taus88
+t_tt800l.c           C program to generate selftest values for TT800
+t_well.c             C program to generate selftest values for well1024a
+t_xor4096.c          C program to generate selftest values for xor4096
+well1024.pas         well1024a based pseudo random number generator
+xor4096.pas          xor4096 based pseudo random number generator
+
+hrtimer.pas          High resolution timer routines with comp data type
+ministat.pas         Mini statistics unit: Accurate running values for 1 and 2 variables
+tsc.pas              Access to Time Stamp Counter (RDTSC)
+_tsc.asm             RDTSC helper routines for 16 bit
+_tsc.obj             Compiled _tsc.asm
+
+tests\##ca.bat       Compile batch for t_rnd_?3/6/7/8 for most compilers
+tests\##ca64.bat     Compile batch for t_rnd_?3/6/7/8 for some 64-bit compilers
+tests\#ca.bat        Generic compile batch file for all console compilers
+tests\$c64.bat       Compile batch single file for some 64-bit compilers
+tests\$ca.bat        Generic compile batch file for all console compilers
+tests\$ca1.bat       Compile batch single file and single compiler
+tests\$d25.zip       dproj files and compile batch for Delphi 25 (Tokyo Starter)
+tests\$log_rng.zip   Archive with log files of final tests done before release
+tests\*.cfg          Compiler configuration files
+tests\t_all_rg.pas   Simple test for all (c)PRNG
+tests\t_rnd_0?.pas   Test programs Pascal  generator
+tests\t_rnd_1?.pas   Test programs Taus88  generator
+tests\t_rnd_2?.pas   Test programs TT800   generator
+tests\t_rnd_3?.pas   Test programs ISAAC   generator
+tests\t_rnd_4?.pas   Test programs MT19937 generator
+tests\t_rnd_5?.pas   Test programs Taus113 generator
+tests\t_rnd_6?.pas   Test programs KISS123 generator
+tests\t_rnd_7?.pas   Test programs aesr    generator
+tests\t_rnd_8?.pas   Test programs salsar  generator
+tests\t_rnd_9?.pas   Test programs xor4096 generator
+tests\t_rnd_a?.pas   Test programs for well1024a generator
+tests\_comparm       Compile and run test programs on Raspberry Pi / 3
+

@@ -4,6 +4,7 @@
 #include <utility>
 #include <iterator>
 #include <algorithm> // For find_if.
+#include <math>
 
 /**
  * @file chebyshev.tcc Implementation for C++ Chebyshev methods.
@@ -30,7 +31,7 @@ namespace __gnu_cxx
       _M_upper(__b),
       _M_coef(__n)
     {
-      constexpr _Tp _S_pi = _Tp{3.1415926535897932384626433832795029L};
+      constexpr _Tp _S_pi = std::math::pi_v<_Tp>;
 
       if (this->upper() == this->lower())
 	std::__throw_domain_error("_Chebyshev: input domain has zero length");
@@ -147,7 +148,7 @@ namespace __gnu_cxx
       for (unsigned int __j = __n - 3; __j >= 0; --__j)
 	__cder[__j] = __cder[__j + 2] + _Tp(2 * (__j + 1)) * this->_M_coef[__j + 1];
 
-      _Tp __con = _Tp{2} / (this->upper() - this->lower());
+      const auto __con = _Tp{2} / (this->upper() - this->lower());
       for (unsigned int __j = 0; __j < __n; ++__j)
 	__cder[__j] *= __con;
 

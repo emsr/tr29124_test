@@ -2,11 +2,13 @@
 CMakeCache.txt
 CMakeDoxyfile.in
 CMakeDoxygenDefaults.cmake
+CMakeDoxyfile.tpl.bak
 CMakeFiles/
 CTestTestfile.cmake
 Makefile
 Testing/
 bin/
+lib/
 cmake_install.cmake
 
 # Build files...

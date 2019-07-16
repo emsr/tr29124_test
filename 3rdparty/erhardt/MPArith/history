@@ -1,0 +1,1217 @@
+Version history of MPArith
+
+ Version  Date      Modification
+ -------  --------  ------------------------------------------
+ 0.0.01   09.05.04  Initial version: BP7
+ 0.0.02   10.05.04  mp_copyprim
+ 0.0.03   11.05.04  mp_expand, mp_copy
+ 0.0.04   12.05.04  mp_newXY, mp_delete, LSign
+ 0.0.05   22.07.04  new design a la MPI/LibTomMath
+                    mp_init, mp_clear, mp_exch, mp_zero
+ 0.0.06   23.07.04  mp_shrink, mp_grow, mp_init_size, mp_set,
+                    mp_init_set, mp_clamp, mp_lshd
+ 0.0.07   23.07.04  cleanup/reordering, mp_iseven/odd/zero
+ 0.0.08   23.07.04  mp_copy
+ 0.0.09   23.07.04  debug/magic, mp_reverse, mp_toradix_n
+ 0.0.10   24.07.04  mp_div_d (only a=0,b=1 quick outs)
+ 0.0.11   24.07.04  mp_div_2d
+ 0.0.12   24.07.04  mp_rshd
+ 0.0.13   24.07.04  mp_mod_2d
+ 0.0.14   24.07.04  mp_mul_d
+ 0.0.15   24.07.04  mp_set_int
+ 0.0.16   24.07.04  mp_mul_2d
+ 0.0.17   24.07.04  fixed severe bug in mp_lshd
+ 0.0.18   25.07.04  debug code checking initialized mp_ints
+ 0.0.19   25.07.04  mp_read_radix
+ 0.0.20   25.07.04  mp_add_d
+ 0.0.21   26.07.04  mp_sub_d
+ 0.0.22   26.07.04  mp_div_2, mp_mul_2
+
+
+ 0.1.00   26.07.04  const parameters, single digit functions
+                    complete, code clean up
+ 0.1.01   27.07.04  mp_cmp_d, mp_cmp_mag, mp_cmp
+ 0.1.02   27.07.04  InitCheck / RunError(210)
+ 0.1.03   27.07.04  s_mp_add/sub, mp_add/sub
+ 0.1.04   28.07.04  mp_rand, bug fix: mp_mul_d, s_mp_add
+ 0.1.05   28.07.04  $Q- in s_mp_sub/mp_sub_d
+ 0.1.06   29.07.04  s_mp_mul_digs {+tbd}, mp_mul {+tbd}
+ 0.1.07   29.07.04  mp_count_bits, mp_div
+ 0.1.08   30.07.04  mp_abs, mp_chs, mp_2expt
+ 0.1.09   30.07.04  mp_sqr {*tbd}, mp_expt, mp_expt_d
+ 0.1.10   01.08.04  mp_show_plus, mp_radix_size, mp_toradix
+ 0.1.11   01.08.04  mp_uppercase, MAXRadix, InitCheck->mp_argchk
+ 0.1.12   01.08.04  RunError with MP_RTE_xx constants
+ 0.1.13   01.08.04  mp_cmp_z, mp_cmp_int
+ 0.1.14   01.08.04  fix compiler warnings, formatting cleanup
+ 0.1.15   01.08.04  mp_sqrt, mp_mod
+ 0.1.16   02.08.04  mp_karatsuba_mul, mp_mul completed
+ 0.1.17   02.08.04  Bug? in Delphi mem mgt, fixed with mp_realloc in mp_grow
+ 0.1.18   02.08.04  Bug fixed 16 bit mp_realloc, mp_abs interfaced
+ 0.1.19   03.08.04  Fix Delphi32 with signs in Karatsuba
+ 0.1.20   03.08.04  BugFix mp_div (negative zero)
+ 0.1.21   03.08.04  small change in s_mp_mul_digs
+ 0.1.22   04.08.04  conditional define: use move in Karatsuba
+ 0.1.23   04.08.04  s_mp_sqr, mp_sqr_cutoff
+ 0.1.24   04.08.04  mp_expt_d with b: word
+ 0.1.25   04.08.04  mp_clear with fillchar(a,sizeof(a),0)
+ 0.1.26   04.08.04  {$i mp_conf.inc), MP_VERSION from mp_types
+ 0.1.27   04.08.04  mp_karatsuba_sqr, mp_conf.inc removed
+ 0.1.28   05.08.04  32Bit fix s_mp_sqr
+ 0.1.29   06.08.04  Bug search cleanups marked {*0.1.29}
+ 0.1.30   06.08.04  "Karatsuba" bug fixed in s_mp_add
+ 0.1.31   07.08.04  last digit optimization in mp_expt, 0 is even
+
+
+ 0.2.00   08.08.04  "release" version 0.2
+ 0.2.01   08.08.04  Debug: check mp_digits <= MP_DIGIT_MAX
+ 0.2.02   08.08.04  mp_unsigned_bin_size, mp_radix_size with size: longint
+ 0.2.03   09.08.04  mp_to_(un)signed_bin_n, mp_read_(un=signed_bin
+ 0.2.04   09.08.04  mp_mod_d,  changed mp_div_d parameter list
+                    mp_numth:  mp_addmod, mp_submod, mp_mulmod, mp_sqrmod
+ 0.2.05   09.08.04  mp_numth:  raw versions of mp_pollard_rho, mp_gcd
+ 0.2.06   09.08.04  mp_core :  easy optimization in s_mp_div
+ 0.2.07   09.08.04  mp_core :  mp_reduce(_setup)
+                    mp_numth:  mp_pollard_rho with mp_reduce
+ 0.2.08   09.08.04  mp_base :  optimize mp_init_copy
+ 0.2.09   10.08.04  mp_base :  LTM031 change applied to mp_2expt
+                    mp_core :  mp_cnt_lsb
+                    mp_numth:  mp_gcd (binary version)
+ 0.2.10   10.08.04  mp_base :  mp_init/clear_multi(_p),
+                    mp_core :  s_mp_chs
+                    mp_numth:  mp_xgcd
+ 0.2.11   10.08.04  mp_numth:  mp_pollard_rho: Barrett after x*x+2
+ 0.2.12   11.08.04  mp_numth:  mp_lcm
+ 0.2.13   11.08.04  mp_numth:  mp_invmod using xgcd
+ 0.2.14   11.08.04  mp_base :  easy outs for mp_expt(_d)
+ 0.2.15   12.08.04  mp_numth:  mp_invmodb using binary gcd
+ 0.2.16   12.08.04  mp_numth:  fast_mp_invmod, inv_mod -> inv_mod_euclid, inv_modb -> inv_mod
+ 0.2.17   12.08.04  mp_numth:  code cleanup
+ 0.2.18   13.08.04  mp_numth:  s_mp_exptmod
+ 0.2.19   13.08.04  mp_numth:  basic mp_exptmod {*tbd}
+ 0.2.20   14.08.04  WEXP_ constants
+ 0.2.21   14.08.04  mp_numth:  mp_pollard_rho with cnt parameter
+ 0.2.22   14.08.04  mp_base :  mp_init_set_int, mp_get_int
+ 0.2.23   15.08.04  mp_core :  s_mp_mul_high_digs {*tdb}
+ 0.2.24   17.08.04  mp_numth:  mp_is_square
+ 0.2.25   17.08.04  mp_numth:  mp_small_factor
+ 0.2.26   17.08.04  mp_numth:  mp_small_factor with mod 30 increments
+ 0.2.27   18.08.04  mp_base :  optimized mp_mod_d
+ 0.2.28   18.08.04  mp_numth:  mp_is_SPP
+                    mp_core :  mp_cnt_lsb(): longint;
+ 0.2.29   22.08.04  mp_numth:  small prime tables
+ 0.2.30   22.08.04  mp_numth:  mp_miller_rabin
+ 0.2.31   22.08.04  mp_core :  mp_init_prim: RunError if mp_argchk>1
+ 0.2.32   23.08.04  mp_numth:  mp_show_progress variable, mp_small_factor with f0
+ 0.2.33   23.08.04  mp_numth:  Prime127 removed, reordering of functions
+ 0.2.34   24.08.04  mp_numth:  mp_ppexpo, mp_pollard_pm1
+
+
+ 0.3.00   26.08.04  "release" version 0.3
+ 0.3.01   26.08.04  mp_error, most functions now procedures
+ 0.3.02   26.08.04  fixed no_init/RTE logic, remove D6+ warnings
+ 0.3.03   27.08.04  mp_base :  mp_result
+ 0.3.04   26.08.04  mp_numth:  mp_progress, mp_set_progress
+ 0.3.05   30.08.04  type mp_str, mp_radix_size with ln, mp_supp
+ 0.3.06   31.08.04  mp_base :  mp_is_<xy> functions, mp_memused, lograd table
+ 0.3.07   14.01.05  mp_supp :  mp_arctan
+ 0.3.08   16.02.05  mp_numth:  Montgomery Reduction
+ 0.3.10   20.02.05  mp_numth:  mp_jacobi
+ 0.3.11   21.02.05  mp_numth:  mp_jacobi (fix up D6/FPC warnings)
+ 0.3.12   27.02.05  mp_freemem, mp_memstat variable, mp_dump_meminfo
+ 0.3.13   27.03.05  Montgomery routines from mp_numth to mp_core
+ 0.3.14   28.03.05  Code/source clean up and rearrangement
+ 0.3.15   29.03.05  mp_numth:  non-recursive version of mp_jacobi
+ 0.3.16   08.05.05  D9; mp_numth/mp_jacobi: clean up, remove old version
+ 0.3.17   16.05.05  FPC: $mode objfpc/$goto on (independence of fpc.cfg)
+ 0.3.18   07.08.05  mp_core:   Karatsuba routines from LTM 0.36
+                    mp_types:  mp_diagcounter (general diagnostic counter)
+ 0.3.19   09.08.05  mp_base:   bugfix mp_toradix_n
+ 0.3.20   10.08.05  mp_core:   count_bits, mp_count_bits uses count_bits
+ 0.3.21   10.08.05  mp_supp:   bugfix memory leak in mp_write_radix
+ 0.3.22   10.08.05  mp_numth:  mp_lucasv.., debug check in mp_xgcd
+ 0.3.23   15.08.05  mp_numth:  bugfix mp_lucasv2p if v same var as p or q
+ 0.3.24   15.08.05  mp_numth:  mp_williams_pp1: William's p+1 method
+                    mp_base:   function mp_isbit
+ 0.3.25   16.08.05  mp_numth:  mp_coshmult compatible with Forster
+ 0.3.26   16.08.05  mp_numth:  s_mp_coshmult with Barret reduction
+ 0.3.28   17.08.05  mp_base:   severe bug fix mp_expt(a,b,c) for @b=@c
+ 0.3.29   17.08.05  mp_core:   mp_reduce_setup with local variable
+ 0.3.30   17.08.05  mp_supp:   mp_dumpu/a routines
+ 0.3.31   17.08.05  mp_numth:  s_mp_coshmult easy out for b=1, loop error check
+ 0.3.32   18.08.05  mp_numth:  mp_williams_pp1: numtest parameter
+
+
+ 0.4.00   20.08.05  mp_set_error, $debug: mp_error as function
+ 0.4.01   20.08.05  mp_base:   some mp_digit typecasts, radix/digits word in mp_rand_radix
+                    mp_core:   FPC specific mp_getmem (without try/except)
+                    mp_numth:  longint bit count in mp_exptmod_win
+                    mp_supp:   mp_output_radix, Radix: word in mp_arctan
+ 0.4.02   21.08.05  mp_types:  WIN32: threadvar mp_error/mp_err
+ 0.4.03   21.08.05  mp_conf/MPC_Diagnostic related changes
+ 0.4.04   21.08.05  assert procedure, removed MPBITS
+ 0.4.05   21.08.05  MPC_ArgCheck, MPC_Assert
+ 0.4.06   22.08.05  removed mp_argcheck, mp_errchk
+ 0.4.07   22.08.05  mp_numth:  now functions: mp_is_SPP, mp_is_square
+                    mp_supp:   mp_dump_memused
+ 0.4.08   22.08.05  mp_base:   mp_init<i>, mp_clear<i>, i=2..5
+ 0.4.09   22.08.05  mp_base:   mp_2expt with longint b
+                    mp_numth:  mp_fermat
+ 0.4.10   22.08.05  mp_base:   bugfix mp_init5
+                    mp_numth:  pollard, williams, coshmult with init<i>
+ 0.4.11   23.08.05  MPC_HaltOnArgCheck, mp_numth: mp_mersenne
+ 0.4.12   23.08.05  mp_types:  MaxDigits doubled for 16/32 bit
+                    mp_core:   mp_lshd alloc check, mp_lshd/rshd word typecasts
+                    mp_numth:  new values for MaxFermat, MaxMersenne
+ 0.4.13   23.08.05  mulmod32, IsPrime32, IsSPP32, IsSPP32A, IsPrime15
+ 0.4.14   23.08.05  use MaxDigits related codes MP_MAXDIGITS, MP_RTE_OTHER
+ 0.4.15   24.08.05  mp_supp:   improved arg checks
+ 0.4.16   24.08.05  mp_supp:   ansistring: mp_radix_astr, mp_adecimal
+ 0.4.17   24.08.05  mp_base:   fix IsPrime32 for BP7/{$R+,Q+}
+ 0.4.18   24.08.05  mp_types:  assert 386 or better
+                    mp_numth:  mp_exptmod_d
+                    mp_base:   fix mp_init_set/_int
+ 0.4.19   24.08.05  mp_numth:  Fibonacci numbers, mp_fib, mp_fib2
+ 0.4.20   25.08.05  mp_numth:  Lucas numbers, mp_lucas, mp_lucas2
+ 0.4.21   25.08.05  mp_numth:  mp_fib2 for n=0
+ 0.4.22   26.08.05  mp_prng:   new unit for PRNG generation
+                    mp_base:   uses mp_prng (mp_rand, mp_rand_radix)
+ 0.4.23   26.08.05  mp_numth:  miller_rabin: generate a in the range 2<=a<n-1
+ 0.4.24   27.08.05  mp_supp:   improved mp_arctan
+                    mp_base:   argcheck for digit in some mp_xxx_d functions
+ 0.4.25   27.08.05  mp_base:   functions mp_cmp_mag_d, mp_read_decimal
+                    mp_numth:  easy outs in mp_small_factor
+ 0.4.26   28.08.05  usage of exceptions implemented
+ 0.4.27   29.08.05  mp_base:   mp_set_short, mp_isone, mp_is0, mp_is1
+ 0.4.28   01.09.05  mp_prng:   ISAAC routines
+ 0.4.29   07.09.05  mp_base:   mp_n_root, bugfix mp_mul_d
+ 0.4.30   08.09.05  some functions moved from mp_supp to mp_base
+ 0.4.31   10.09.05  mp_numth:  function IsMersennePrime
+ 0.4.32   10.09.05  mp_base:   mp_reduce_2k functions
+ 0.4.33   10.09.05  mp_base:   mp_core routines integrated
+ 0.4.34   11.09.05  mp_base:   optimized mp_reduce_is_2k
+ 0.4.35   12.09.05  mp_base:   mp_fact, MaxFact
+ 0.4.36   12.09.05  mp_base:   optimized 3-level mp_fact, FSIVec
+ 0.4.37   13.09.05  mp_base:   mp_fact optimization (balanced factors)
+ 0.4.38   14.09.05  mp_base:   reordered implementation source
+                    mp_prng:   mp_random_seed
+ 0.4.39   16.09.05  mp_numth:  changed mp_gcd easy out, comment in mp_xgcd
+                    mp_base:   optimized mp_cmp_mag and s_mp_sub_d
+ 0.4.40   17.09.05  mp_numth:  mp_ecm_brent (Brent's ECM factoring method)
+ 0.4.41   18.09.05  mp_numth:  mp_ecpwr (faster version of mp_ecpwr2)
+                    mp_base:   mp_let (alternative for mp_read_decimal)
+ 0.4.42   20.09.05  mp_numth:  mp_lucasv2p without goto, changed TProgressProc
+ 0.4.43   21.09.05  mp_clearzero: clear memory to zero before freemem
+ 0.4.44   22.09.05  $argcheck  for identical pointers
+ 0.4.45   25.09.05  mp_numth:  Bugfix: k now longint in IsMersennePrime
+ 0.4.46   26.09.05  mp_numth:  $argcheck for identical args in mp_fib2,mp_lucas2
+
+
+ 0.5.00   29.09.05  'internal' functions moved to end of interface
+ 		    mp_types:  Separate Karatsuba cutoffs for BIT32/BIT16
+ 0.5.01   30.09.05  IsPrime16, pbits16, pmask16
+ 0.5.02   01.10.05  mp_numth:  easy out for IsMersennePrime
+ 0.5.03   02.10.05  changed 'SPP' to more conventional 'spsp'
+ 0.5.04   03.10.05  mp_numth:  function nextprime32
+ 0.5.05   03.10.05  mp_numth:  function prevprime32
+ 0.5.06   07.10.05  mp_base:   is_spsp32A: optimized BASM16
+ 0.5.07   08.10.05  mp_base:   more is_spsp32A optimization
+ 0.5.08   09.10.05  mp_numth:  next/prev prime residues classes module via $ifdef
+ 0.5.09   09.10.05  mp_numth:  mp_is_spsp_d, mp_is_pprime, mp_small_factor with fmax
+ 0.5.10   09.10.05  mp_numth:  small changes in mp_miller_rabin
+ 0.5.11   13.10.05  mp_base:   mp_isbit with BASM16
+                    mp_numth:  mp_is_slpsp
+ 0.5.12   15.10.05  mp_base:   is_spsp32A: a=bases[k] mod N using MulMod32 or div
+ 0.5.13   15.10.05  mp_base:   BugFix N>=9080191 in IsPrime32
+ 0.5.14   16.10.05  mp_numth:  mp_is_pprime with BPSW-pseudoprime
+ 0.5.15   12.11.05  mp_rsa:    EME-PKCS1-v1_5 decoding with $00, $02 ...
+ 0.5.16   12.11.05  mp_rsa:    Working pkcs1v15_encrypt
+                    mp_prng:   mp_random_byte
+ 0.5.17   13.11.05  mp_rsa:    nonzero random padding, more error checking
+ 0.5.18   13.11.05  mp_rsa:    max lengths in more uniform parameter lists
+ 0.5.19   13.11.05  mp_prng:   mp_random_read
+ 0.5.20   14.11.05  mp_numth:  mp_nextprime/mp_prevprime
+ 0.5.21   15.11.05  mp_numth:  mp_rand_prime
+ 0.5.22   18.11.05  mp_numth:  mp_rand_prime improved for safe primes
+ 0.5.23   19.11.05  mp_rsa:    mp_rsa_keygen1, RSA_MINSIZE
+ 0.5.24   20.11.05  mp_numth:  TPrimeType = (pt_normal, pt_3mod4, pt_safe)
+                    mp_rsa:    mp_rsa_keygen1: changed pt_3mod4 to pt_normal
+ 0.5.25   20.11.05  mp_numth:  mp_is_pprime_ex, mp_rand_prime with mp_is_pprime_ex
+                    mp_base:   ArgCheck in mp_isbit, new name: mp_montgomery_calcnorm
+ 0.5.26   20.11.05  mp_prng:   fix mp_random_digit for Delphi/DIGIT_BIT=31
+ 0.5.27   21.11.05  mp_base:   mp_rand_bits, mp_rand: check digits<MAXDigits
+ 0.5.28   21.11.05  mp_numth:  mp_rand_prime with mp_rand_bits
+ 0.5.29   22.11.05  mp_numth:  New name: mp_IsMersennePrime, mp_prng removed from uses
+                    mp_prng:   mp_random_randomize
+
+
+ 0.6.00   30.12.05  mp_count_bits/CountBits32 renamed to mp_bitsize/bitsize32
+ 0.6.01   30.12.05  MP8_BIT removed
+ 0.6.02   31.12.05  mp_base:   mp_set_int via array[0..3] of byte
+ 0.6.03   31.12.05  mp_base:   mp_mul_w, mp_set_w
+                    mp_prng:   mp_random_word
+ 0.6.04   31.12.05  mp_base:   popcount16/32, mp_popcount
+ 0.6.05   01.01.06  mp_types:  WEXP_TABSIZE = 2 ^ WEXP_MAX
+ 0.6.06   05.01.06  mp_numth:  MaxMersenne = DIGIT_BIT*MAXDigits-1;
+ 0.6.07   10.01.06  mp_numth:  mp_fact using Recursive Split
+                    mp_base:   Halt on BAD_ARG in mp_montgomery_setup
+ 0.6.08   28.01.06  mp_base:   s_mp_add_d; changes in mp_sub_d, s_mp_sqr, s_mp_chs
+ 0.6.09   12.03.06  mp_types:  MAXPrecision, MAXAlloc
+
+
+ 0.7.00   19.03.06  mp_types:  assert DIGIT_BIT+16 < 8*sizeof(mp_word)
+                    mp_base:   mp_div_w
+                    mp_supp:   mp_arctanw
+ 0.7.01   28.04.06  mp_numth:  mp_xgcd: u2,v2,t2 suppressed
+ 0.7.02   05.08.06  mp_numth:  TRedType MR_Reduce2k, mp_reduce_2k in mp_exptmod_win
+                    mp_base:   Bugfix in mp_mod_2d, improve mp_reduce_2k
+                    mp_conf:   $define MPC_Reduce_2k (use mp_reduce_2k in mp_exptmod)
+ 0.7.03   05.08.06  mp_prng:   MPC_UseTSC implemented
+                    mp_numth:  mp_show_progress initialized with false
+ 0.7.04   08.08.06  mp_base:   mp_makeodd
+                    mp_numth:  mp_makeodd in mp_miller_rabin, mp_is_slpsp, mp_jacobi
+ 0.7.05   08.08.06  mp_numth:  mp_sqrtmod initial version
+ 0.7.06   09.08.06  mp_numth:  mp_sqrtmod arg/init checks
+                    mp_base:   mp_clear6, mp_init6; removed mp_let, mp_isone
+ 0.7.07   09.08.06  mp_numth:  mp_lucasvmod
+ 0.7.08   09.08.06  mp_numth:  mp_sqrtmod18_lucas, TPrimeType with pt_1mod8
+ 0.7.09   10.08.06  mp_base:   mp_inc, mp_dec
+ 0.7.10   10.08.06  mp_numth:  mp_sqrtmodp2, MPC_sqrtmode
+ 0.7.11   11.08.06  mp_numth:  mp_miller_rabin and mp_is_spsp modified
+ 0.7.12   11.08.06  mp_types:  $ifdef MPC_UseExceptions: don't use MP_RTE_ constants
+ 0.7.13   11.08.06  mp_base:   bugfix mp_set_short
+ 0.7.14   11.08.06  mp_base:   Avoid FPC warnings: mp_set_int/mp_set_w
+                    mp_supp:   Avoid FPC warnings: mp_arctanw
+                    mp_rsa:    Avoid FPC warnings: mp_pkcs1v15_encrypt, mp_pkcs1v15_decrypt
+                    mp_numth:  Avoid FPC warnings: nextprime32/prevprime32
+ 0.7.15   11.08.06  mp_base:   Fixed and improved mp_reduce
+                    mp_numth:  experimental mp_sqrtmod18_fp
+ 0.7.16   11.08.06  mp_base:   Fixed and improved mp_reduce
+ 0.7.17   12.08.06  mp_types:  mp_diagctr: diagnostic counter array
+                    mp_supp:   mp_dump_diagctr: dump diagnostic counters
+                    mp_prng:   Added missing mp_random_word if no ISAAC
+                    mp_base:   s_mp_mul_high_digs: error if id<0
+ 0.7.18   12.08.06  mp_numth:  check prime/q-residue after 100 trials in mp_sqrtmod18_shanks/fp
+ 0.7.19   12.08.06  mp_base:   mp_set_pow, mp_expt_int, mp_expt_d uses mp_expt_int
+ 0.7.20   15.08.06  mp_numth:  small tweak in mp_isMersennePrime
+ 0.7.21   15.08.06  mp_base:   mp_[x]_int with [x]: add,dec,div,inc,mod,sub
+ 0.7.22   15.08.06  mp_numth:  $ifdef MPC_sqrtmod_fp
+ 0.7.23   16.08.06  mp_numth:  bigprime_pm1: big prime stage for Pollard p-1
+ 0.7.24   17.08.06  mp_numth:  bigprime_pm1: Barret and bitsize dependent constants
+ 0.7.25   20.08.06  mp_numth:  const mp_max_small / mp_small_factor
+                    pfdu:      uses mp_max_small, check num=0 or 1, {.$define Use_Brent_ECM}
+ 0.7.26   21.08.06  mp_numth:  mp_ecm_factor (first complete version using 7KB stack)
+ 0.7.27   22.08.06  mp_numth:  mp_ecm_factor (dynamic vectors, progress, intermeditate GCDs)
+ 0.7.28   23.08.06  mp_numth:  mp_ecm_factor,mp_ecm_brent: check n>2, @n<>@f
+ 0.7.29   23.08.06  mp_numth:  mp_ppexpo with mp_mul_w
+ 0.7.30   23.08.06  mp_numth:  mp_ecm_factor with Barrett: speed more than doubled
+ 0.7.31   24.08.06  mp_numth:  mp_ecm_factor: check seed>5 in ecm_setup, more comments
+ 0.7.32   26.08.06  mp_base:   rewrite is_spsp32A, new internal function _spsp32
+                    mp_numth:  nextprime32_array
+ 0.7.33   27.08.06  mp_base:   BIT32: bigalloc; FPC: use ReturnNilIfGrowHeapFails
+                    mp_conf:   $define MPC_ECM_Primetable (Prime table in mp_ecm_factor)
+                    mp_numth:  Prime table in mp_ecm_factor $ifdef MPC_ECM_Primetable
+ 0.7.34   28.08.06  mp_base:   mp_n_root with longint parameter
+                    mp_numth:  basic mp_is_power
+                    pfdu:      uses mp_is_power after small primes test
+ 0.7.35   28.08.06  mp_types:  MP_MAXBIT: Maximum possible bit number
+                    mp_base:   mp_clrbit, mp_setbit, mp_2expt uses mp_setbit
+ 0.7.36   30.08.06  mp_base:   mp_gr_mod, mp_gr_setup
+ 0.7.37   30.08.06  mp_base:   mp_shr, mp_shl, mp_div_2d(..,nil) replaced by mp_shr
+ 0.7.38   06.09.06  mp_base:   better initial approximation for mp_sqrt
+ 0.7.39   07.09.06  mp_numth:  mp_is_square2
+                    mp_base:   mp_mod_w
+ 0.7.40   07.09.06  mp_numth:  mp_ecm_factor with parameters C1,phase; mp_ecm_simple
+                    pfdu:      ECM1 and ECM2
+                    mp_numth:  function ProgressAssigned
+ 0.7.41   08.09.06  pfdu:      CheckWordFactor
+ 0.7.42   09.09.06  mp_prng:   Added some type casts type(random())
+
+
+ 0.8.00   19.09.06  mp_numth:  mp_primorial, MaxPrimorial
+                    mp_base:   mp_alloc interfaced
+ 0.8.01   19.09.06  mp_numth:  mp_isMersennePrime: search small factor before Lucas/Lehmer
+ 0.8.02   23.09.06  mp_numth:  MaxFibonacci, MaxLucas
+ 0.8.03   23.09.06  mp_calc:   Parse and evaluate simple mp_int expressions
+ 0.8.04   24.09.06  mp_calc:   mp_calc_errorstr, eval errors are negative
+ 0.8.05   25.09.06  mp_numth:  mp_kronecker, mp_jacobi uses kron_intern
+                    mp_calc:   Functions: abs, kronecker
+ 0.8.06   30.09.06  mp_calc:   TEval record, mp_initeval, mp_cleareval
+ 0.8.07   30.09.06  mp_calc:   Variables X,Y,Z, function sqr
+ 0.8.08   22.10.06  pfdu:      New pfd_ctx with exponents, sort factors, boolean ECM2
+ 0.8.09   27.10.06  pfdu:      Bugfix: mp_clear(t) in smallfactor
+ 0.8.10   03.11.06  pfdu:      CombSort included
+ 0.8.11   06.11.06  pfdu:      FPC again: @ operators needed in sortfactors
+
+
+ 0.9.00   25.12.06  mp_numth:  minor changes in mp_isMersennePrime
+ 0.9.01   26.12.06  mp_base:   some minor changes related to mp_clamp/assert
+ 0.9.02   27.12.06  mp_base:   s_mp_div: Knuth's q calculation from Alg. D
+ 0.9.03   28.12.06  mp_numth:  Bugfix mp_is_power for a=-4
+ 0.9.04   28.12.06  mp_base:   s_mp_div: separate treatment of single digit b
+ 0.9.05   29.12.06  $define MPC_USE_Assert (debug mode or compiler supported assert)
+ 0.9.06   30.12.06  mp_numth:  FindFirst/NextPrime32, rewrite nextprime32_array
+ 0.9.07   01.01.07  mp_base:   mp_prod_int, bigalloc renamed to IAlloc
+ 0.9.08   01.01.07  mp_numth:  mp_primorial with mp_prod_int
+ 0.9.09   01.01.07  mp_base:   mp_mul_int optimized for small longints
+ 0.9.10   01.01.07  mp_base:   mp_mul optimized for single digit factors
+ 0.9.11   02.01.07  mp_base:   mp_toradix10_n, speed up 2.5 .. 4 for mp_toradix(..,10,..)
+ 0.9.12   03.01.07  mp_types:  TRadixCMap, mp_lcrmap, mp_ucrmap
+                    mp_base:   Changed mp_read_radix to accept uppercase and lowercase
+ 0.9.13   03.01.07  mp_base:   new mp_toradix_n (generalization of mp_toradix10_n)
+ 0.9.14   03.01.07  mp_base:   mp_toradix_n: local TRadixCMap
+ 0.9.15   04.01.07  mp_base:   bugfixed/improved mp_is_power_of_two, renamed to mp_is_pow2_d
+                    mp_base:   mp_is_pow2
+ 0.9.16   07.01.07  mp_base:   improved mp_read_radix
+ 0.9.17   01.03.07  mp_numth:  mp_primorial with mp_primor_cutoff
+ 0.9.18   11.03.07  mp_prng:   Added taus88, removed RTL random
+ 0.9.19   14.03.07  mp_calc:   'parse error' changed to 'mp_calc error'
+ 0.9.20   15.03.07  mp_calc:   Return Err_MPERR_Eval if MP_Error in eval/eval_mod
+ 0.9.21   15.03.07  mp_calc:   Err_Invalid_argument for 0^-n
+
+
+ 1.0.00   11.04.07  mp_types:  types mp_rat, pmp_rat
+                    mp_base:   mp_init_prim: use mp_precision if size=0
+                    mp_ratio:  init, set, normalize, decimal
+ 1.0.01   11.04.07  mp_base:   mp_mul_d/w with factor w/d=0/1
+                    mp_ratio:  mpr_add, mpr_sub, mpr_init_xx, mpr_clear_xx
+ 1.0.02   11.04.07  mp_ratio:  mpr_inv, mpr_mul, mpr_div, mpr_exch
+ 1.0.03   12.04.07  mp_base:   s_mp_read_radix
+                    mp_ratio:  mpr_read_radix
+ 1.0.04   12.04.07  mp_base:   Bugfix EstimateQDigit, improved normalization in s_mp_div
+                    mp_ratio:  mpr_cmp, mpr_cmp_mag, functions mpr_is_??
+ 1.0.05   13.04.07  mp_base:   Easy outs in mp_expt_int
+                    mp_ratio:  mpr_expt, xx.used tests in mpr_is_eq
+ 1.0.06   13.04.07  mp_ratio:  GCDs in mpr_mul, mpr_div, s_mpr_add_sub
+ 1.0.07   14.04.07  mp_ratio:  improved mpr_is_ne/ge/le
+ 1.0.08   14.04.07  mp_ratio:  mpr_toradix_n, mpr_radix_str, mpr_write_radix etc
+                    mp_base:   s_mp_toradix_n, off by 1 bug fix mp_radix_astr
+ 1.0.09   15.04.07  mp_ratio:  improved s_mpr_add_sub
+ 1.0.10   15.04.07  mp_base:   s_mp_write_radix
+                    mp_ratio:  improved mpr_write_radix
+ 1.0.11   15.04.07  mp_ratio:  mpr_set1, mpr_?op?_mpi
+ 1.0.12   16.04.07  mp_base:   mp_is1 without mp_cmp_d
+                    mp_ratio:  speedup s_mpr_add_sub (about 20%)
+ 1.0.13   22.04.07  mp_ratio:  mpr_read_decimal
+ 1.0.14   22.04.07  mp_ratio:  mpr_ceil, mpr_floor, mpr_frac, mpr_trunc
+ 1.0.15   29.04.07  mp_types:  mp_roundfloat: round float representation of mp_rat
+                    mp_ratio:  mpr_tofloat_n, mpr_tofloat_str
+ 1.0.16   29.04.07  mp_ratio:  fix rounding in mpr_tofloat_n
+ 1.0.17   30.04.07  mp_ratio:  s_mpr_tofloat_n, mpr_tofloat_astr
+ 1.0.18   30.04.07  mp_ratio:  mpr_round, mpr_is0, mpr_is_mp
+ 1.0.19   01.05.07  mp_base:   mp_todouble, ldexpd
+                    mp_ratio:  mpr_todouble
+ 1.0.20   01.05.07  mp_base:   DblPosInf,DblNegInf,DblNaN; improved mp_todouble
+ 1.0.21   06.05.07  mp_base:   s_mp_read_radix with SignAllowed, bugfix mp_set_w/int
+                    mp_ratio:  mpr_read_float_radix/decimal, bugfix s_mpr_cmp_mag
+ 1.0.22   06.05.07  mp_base:   rewrite mp_set_w; frexpd, bugfix mp_todouble
+                    mp_ratio:  mpr_read_double
+ 1.0.23   07.05.07  mp_calc:   Handle case v1^(-v2) mod m in eval_mod
+                    mp_base:   0^0=1 in mp_expt
+                    mp_numth:  mp_exptmod returns 0 for c=1, error for c<=0
+ 1.0.24   08.05.07  mp_numth:  Removed Fp[sqrt(D)] arithmetic for MPC_sqrtmod_fp
+                    mp_calc:   Error check for root() and jacobi()
+                    mp_conf:   MPC_NOHALT, removed MPC_sqrtmod_fp
+ 1.0.25   09.05.07  mp_numth:  Removed mp_ecpwr2
+                    mp_calc:   invmod via mp_xgcd avoids error or pre-check
+ 1.0.26   11.05.07  mp_base:   Removed MulMod32, mp_shrink; bugfix s_mp_write_radix
+                    pfdu:      Removed Use_Brent_ECM
+                    mp_ratio:  bugfix mpr_radix_size
+ 1.0.27   13.05.07  Corrected some exception strings
+ 1.0.28   13.05.07  mp_types:  forced assertions on in mp_types initialization
+                    MPAF prefix in assert strings
+
+
+ 1.1.00   19.05.07  mp_numth:  break mp_gcd loop if u=v
+ 1.1.01   22.05.07  mp_numth:  Shallit/Sorenson binary Kronecker symbol
+ 1.1.02   22.05.07  mp_numth:  Binary Kronecker: skip operations after mp_sub
+ 1.1.03   23.05.07  mp_numth:  Binary Kronecker: s_mp_sub, break if x=y
+ 1.1.04   31.05.07  mp_numth:  mp_is_power: check mod 4 before mp_expt_int
+ 1.1.05   27.06.07  mp_numth:  mp_gcd_initial_mod in mp_gcd
+                    mp_base:   mp_abs: Arg check done in mp_copy
+                    mp_supp:   mp_reset_diagctr
+ 1.1.06   01.07.07  mp_numth:  removed useless first iteration in mp_fact
+                               (thanks to Marcel Martin)
+                    mp_base:   EstimateQDigit: removed = from q>=MP_MASK test
+ 1.1.07   02.07.07  mp_numth:  mp_miller_rabin uses IsPrime16 if possible
+ 1.1.08   09.07.07  mp_numth:  mp_gcd_initial_mod renamed to mp_initial_mod
+                               and also used in kron_intern
+ 1.1.09   10.07.07  mp_base:   mp_writeln, mp_clear[x]/mp_init[x] (x=7..9)
+                    mp_prng:   mp_random_seed1, removed small bias in mp_random_radix
+ 1.1.10   12.07.07  mp_numth:  mp_pell and mp_pell4
+ 1.1.11   14.07.07  mp_numth:  s_mp_lucasvmod1 (used by mp_is_slpsp)
+ 1.1.12   14.07.07  mp_numth:  mp_sqrtmod14_mueller
+ 1.1.13   15.07.07  mp_numth:  Mueller sqrtmod: case t=1 handled in Jacobi loop
+ 1.1.14   15.07.07  mp_base:   mp_reduce: easy out if x<m, allow x<0
+                    mp_numth:  Mueller sqrtmod: don't compute PP in Jacobi loop
+ 1.1.15   21.07.07  mp_base:   improved mp_shl, easy out in mp_shr
+                    mp_numth:  mp_xgcd: easy out for trivial cases
+ 1.1.16   21.07.07  mp_base:   mp_sqrt: Initial double approximation based on highest mp_digit(s)
+ 1.1.17   26.07.07  mp_base:   isqrt32
+ 1.1.18   27.07.07  mp_base:   mp_sqrt: new recursive integer square root algorithm
+                    mp_base:   isqrt32 with FPU
+ 1.1.19   29.07.07  mp_base:   improved: mp_reduce, s_mp_mul_high_digs, s_mp_mul_digs
+ 1.1.20   30.07.07  mp_numth:  mp_sqrtmodpk
+ 1.1.21   31.07.07  mp_numth:  mp_sqrtmod14_mueller for mp_sqrtmethod=3 and
+                               in auto mode instead of Lucas
+ 1.1.22   01.08.07  mp_numth:  fast_mp_invmod: no init checks, y removed
+ 1.1.23   04.08.07  mp_base:   renamed/new: s_mp_mod_2d, mp_mod_2d
+ 1.1.24   04.08.07  mp_numth:  mp_sqrtmod2k
+ 1.1.25   05.08.07  mp_numth:  special cases k=1,2 of mp_sqrtmod2k
+                    mp_numth:  easy out in mp_exptmod if b=1
+ 1.1.26   05.08.07  mp_numth:  mp_sqrtmod_ex with optional Jacobi check
+ 1.1.27   05.08.07  mp_numth:  mp_sqrtmodpq, removed mp_invmod_euclid
+
+
+ 1.2.00   16.08.07  mp_numth:  mp_lcm: special cases, divide larger arg by gcd
+ 1.2.01   17.08.07  mp_numth:  mp_is_primepower
+                    mp_base:   GCD32/GCD32U
+ 1.2.02   19.08.07  mp_base:   changed mp_mod_int to use mp_mod
+                               Bugfix mp_mod: don't adjust sign if result=0
+ 1.2.03   19.08.07  mp_base:   mp_mod_int without temporary mp_int, local BASM in loop
+ 1.2.04   20.08.07  mp_prng:   changed mp_random_int, new mp_random_long
+ 1.2.05   21.08.07  mp_numth:  jacobi32
+ 1.2.06   23.08.07  mp_numth:  mp_jacobi_lm
+ 1.2.07   24.08.07  mp_numth:  mp_jacobi_lm used in: mp_is_slpsp, mp_sqrtmod18_shanks_intern
+ 1.2.08   26.08.07  mp_base:   GCD32/GCD32U call internal __GCD32
+                    mp_numth:  improved error handling in mp_sqrtmod18_* routines
+ 1.2.09   30.08.07  mp_numth:  t=1 in mp_sqrtmod14_mueller, improved jacobi32
+ 1.2.10   02.09.07  mp_base:   new s_mp_mul_int used in mp_prod_int
+                    mp_numth:  updated mp_primor_cutoff values
+ 1.2.11   03.09.07  mp_numth:  mp_OddProd, mp_dfact, mp_fact with local mp stack
+ 1.2.12   04.09.07  mp_numth:  small tables for mp_lucas and mp_fib
+                    mp_numth:  Bugfix mp_fib2 for n=k*$10000000, k=1..7
+ 1.2.13   04.09.07  mp_base:   mp_rand_bits_ex
+ 1.2.14   05.09.07  mp_base:   s_mp_expt_dl, s_mp_expt_wl, changed mp_set_pow
+ 1.2.15   05.09.07  mp_types:  MP_32BIT: assert DIGIT_BIT >= 16
+                    mp_base:   MP_32BIT/MP_16BIT versions of mp_set_int
+ 1.2.16   06.09.07  mp_numth:  mp_binomial, s_mp_binom_w
+                    mp_base:   popcount16 and popcount32 return integer
+ 1.2.17   07.09.07  mp_numth:  mp_binomial for negative arguments
+                    mp_calc:   binomial function
+ 1.2.18   07.09.07  mp_base:   mp_checksum, s_mp_checksum
+                    mp_ratio:  mpr_checksum
+ 1.2.19   08.09.07  mp_numth:  Bugfix mp_binomial for small k and n>65535
+                    mp_calc:   Error check: estimate bitsize of binomial(n,k)
+ 1.2.20   08.09.07  mp_calc:   <expr> mod 1 is set to zero without evaluation
+ 1.2.21   08.09.07  mp_numth:  s_mp_binom_l, case k=1 in mp_binomial
+                    mp_calc:   estimate bitsize(mp_binomial) using lnfac
+ 1.2.22   09.09.07  mp_numth:  mp_binomial: init X[s] when needed
+ 1.2.23   10.09.07  mp_types:  MP_INV_MASK
+                    mp_base:   use MP_INV_MASK to avoid warnings if DIGIT_BIT=31
+                    mp_numth:  avoid warning in mp_miller_rabin if MP_16BIT
+ 1.2.24   10.09.07  mp_conf:   MPC_UseKONG
+                    mp_numth:  mp_sqrtmod916_kong
+ 1.2.25   11.09.07  mp_numth:  mp_jacobi_ml
+                    mp_base:   Bugfix in BIT16 version of _spsp32
+ 1.2.26   12.09.07  mp_numth:  Bugfix mp_is_primepower for a=2^1
+ 1.2.27   17.09.07  mp_numth:  mp_is_power uses residues mod 8
+                    mp_base:   some functions made inline $ifdef HAS_INLINE
+ 1.2.28   17.09.07  mp_base:   mp_init_multi/_p use mp_init_prim, mp_abs inline
+                    mp_base:   Bugfix s_mp_read_radix for DIGIT_BIT<10
+                    mp_ratio:  "uses mp_base, mp_numth" in implementation
+ 1.2.29   20.09.07  mp_base:   Removed inline (D9 bug with mp_freemem(pointer(pchar)...)
+ 1.2.30   21.09.07  mp_base:   mp_sqrt uses at most one local mp_int
+
+
+ 1.3.00   14.10.07  mp_calc:   corrected imprecise lnfac from Num. Recipes (1.ed)
+ 1.3.01   24.10.07  mp_calc:   hex numbers in expressions
+ 1.3.02   26.10.07  mp_numth:  s_mp_sqrtmod2k for odd a, mp_sqrtmod2k for a>=0
+                    mp_calc:   sqrtmod function
+ 1.3.04   03.11.07  mp_base:   mp_toextended, frexpx, ldexpx
+                    mp_types:  mp_/MAXPrecision renamed to mp_/MAXAllocPrec
+ 1.3.05   04.11.07  mp_types:  MP_OVERFLOW, MP_RTE_OVRFLOW, MPXOverflow
+ 1.3.06   05.11.07  mp_base:   mp_todouble_ex, mp_toextended_ex
+                    mp_ratio:  mpr_init with mp_allocprec
+ 1.3.07   11.11.07  mp_base:   s_mp_read_radix: sep now a string
+ 1.3.08   12.11.07  Fix memory leak(s) if MPC_HaltOnError is not defined
+ 1.3.09   14.11.07  mp_base:   mp_radix_astr:  prefill result with #0
+                    mp_ratio:  mpr_radix_astr: prefill result with #0
+ 1.3.10   19.11.07  mp_base:   merged routines from mp_supp
+ 1.3.11   22.11.07  mp_base:   complete rewrite of mp_to_unsigned_bin_n,
+                               mp_read_unsigned_bin, and mp_rand
+ 1.3.12   26.11.07  mp_base:   add32_ovr
+ 1.3.13   26.11.07  mp_base:   fix mask/bit logic in mp_rand_bits_ex
+ 1.3.14   29.11.07  mp_base:   Removed some arg checks (done in mp_copy)
+ 1.3.15   09.12.07  mp_base:   s_mp_add_ovr -> add32_ovr, undo mp_supp merging
+                    mp_types:  types mp_float, pmp_float
+ 1.3.16   10.12.07  mp_numth:  improved mp_is_square2
+ 1.3.17   17.12.07  mp_types:  constants MPF_MIN_PREC/MPF_MAX_PREC
+                    mp_base:   moved lograd table to interface
+ 1.3.18   22.12.07  mp_supp:   mpf_dump_me
+ 1.3.19   23.12.07  mp_types:  assert MPF_MAX_PREC <= 200000
+
+
+ 1.4.00   01.01.08  mp_real:   check a<>0 in mpf_ln, s_mpf_add1
+ 1.4.01   01.01.08  mp_real:   s_mpf_dec1, mpf_expm1, mpf_ln1p
+ 1.4.02   02.01.08  mp_real:   mpf_cosh, mpf_sinh, mpf_tanh, mpf_atanh
+ 1.4.03   03.01.08  mp_real:   mpf_acosh, mpf_acosh1p, mpf_asinh
+ 1.4.04   03.01.08  mp_real:   mpf_arctan2, mpf_arccos, mpf_arcsin
+ 1.4.05   05.01.08  mp_real:   s_mpf_toradix_n: fix if rounded res = radix^ndd
+                    mp_supp:   mp_atanhw
+ 1.4.06   06.01.08  mp_real:   s_mpf_agm, mpf_agm, mpf_ccell1, mpf_ccell12
+ 1.4.07   10.01.08  mp_real:   mpf_set_mpi2k, mpf_ccell12: increased working precision
+                    mp_types:  MPF_MAX_PREC = MP_MAXBIT div 4, assert <= 124000
+
+
+ 1.5.00   13.01.08  mp_numth:  mp_sqrtmod2k: bugfix due to error in Adler/Coury [26]
+ 1.5.01   16.01.08  mp_calc:   clear local PExpr if error
+                    mp_real:   Fix rounding/overflow in s_mpf_toradix_n
+ 1.5.02   16.01.08  mp_real:   mpf_writeln, mpf_write_decimal/radix, mpf_output_decimal/radix
+                    mp_rcalc:  first almost complete version
+ 1.5.03   17.01.08  mp_rcalc:  remaining pre-checks (except EXPT)
+                    mp_real:   s_mpf_ldx, s_mpf_is_le0, s_mpf_is_ge0
+ 1.5.04   18.01.08  mp_real:   mpf_cosh/sinh: don't calculate inverse if it is to small
+                    mp_rcalc:  special cases and pre-checks for EXPT
+ 1.5.05   19.01.08  mp_rcalc:  Err_Overflow, pre-checks mul/div
+ 1.5.06   19.01.08  mp_real:   mpf_acosh/asinh = ln(2a) for large a, mpf_sinh small fix
+ 1.5.07   20.01.08  mp_real:   mpf_ccell2, s_mpf_ccell12, s_mpf_incf with add32_ovr
+                    mp_rcalc:  test() function, CE uses mpf_cell2
+ 1.5.08   24.01.08  mp_base:   mp_and, mp_or, mp_xor
+ 1.5.09   25.01.08  mp_real:   _set_ptab_const, mpf_set_ln2/10 functions
+                    mp_rconp:  initial version
+ 1.5.10   25.01.08  mp_real:   mpf_10expt, mpf_2expt, mpf_log10, mpf_log2
+ 1.5.11   26.01.08  mp_rcalc:  log2, log10, fix _EXPT overflow check
+ 1.5.12   28.01.08  mp_real:   s_mpf_ldx returns MaxLongint if overflow, fix mpf_ln
+ 1.5.13   29.01.08  mp_real:   abs(b)=1 in mpf_mul/div_int/d
+ 1.5.14   30.01.08  mp_calc:   boolean functions and, or, xor
+                    mp_real:   mpf_read_radix: removed readxp quick hack
+ 1.5.15   31.01.08  {$x+} for  VP and D1, correct typos
+ 1.5.16   03.02.08  mp_real:   bugfix s_mpf_agm (don't use c in loop)
+
+
+ 1.6.00   19.04.08  t_rcalc:   help: added 'pi', removed '!'
+ 1.6.01   14.05.08  t_calc:    fix parsing of e.g. 'x mod 10',
+                               show warning if result has more than $F000 chars
+ 1.6.02   17.05.08  mp_calc:   simple invalid check for _EXPT
+ 1.6.03   22.05.08  mp_rsa:    TPrivateKey, mp_rsa_keygen2, mp_rsa_init/clear/calc_private
+ 1.6.04   23.05.08  mp_base:   Optimized Argcheck in: mp_mod, mp_cmp_int, mp_todouble_ex, mp_toextended_ex
+ 1.6.05   23.05.08  mp_rsa:    mp_rsadp2
+ 1.6.06   24.05.08  mp_base:   mp_not_init_multi
+                    mp_numth:  mp_crt_solve, mp_crt_setup, mp_crt_single
+ 1.6.07   24.05.08  mp_numth:  functions mp_invmodf, mp_crt_setupf
+ 1.6.08   25.05.08  mp_rsa:    mp_i2pchar
+                    mp_base:   mp_hex/mp_ahex
+ 1.6.09   01.06.08  mp_rsa:    mp_rsa_calc_npq, mp_pkcs1v15_decrypt2, mp_rsa_calc_d
+ 1.6.10   03.06.08  mp_base:   mp_is1a, bugfix mp_is1
+ 1.6.11   04.06.08  mp_numth:  bugfix mp_is_square2: psqrt^ := a if a=0 or 1
+ 1.6.12   04.06.08  mp_numth:  mp_cornacchia
+ 1.6.13   05.06.08  mp_numth:  mp_cornacchia4
+ 1.6.14   05.06.08  mp_calc:   _ISPPRIME (and ispprime in t_calc)
+ 1.6.15   06.06.08  mp_base:   mp_is? routines return false if mp_error<>MP_OKAY
+                    mp_numth:  function mp_gcd1
+                    mp_ratio:  function mp_gcd1 is used
+ 1.6.16   08.06.08  mp_numth:  Cosmetic changes / corrected exception strings
+                    mp_base:   improved carry propagation in s_mp_add_d,s_mp_sub_d
+ 1.6.17   10.06.08  mp_base:   fix mp_mod_d for a<0
+ 1.6.18   11.06.08  mp_base:   mp_init_prim: use size=4 if size=mp_allocprec=0
+                    mp_numth:  Arg check in mp_binomial
+                    mp_real:   MPXRange.Create('mpf_chg_prec: newprec out of range');
+
+ 1.7.00   30.06.08  mp_rsa:    correct exception strings in mp_rsa_calc_npq
+ 1.7.01   27.07.08  mp_numth:  Improved trial factors in mp_isMersennePrime
+ 1.7.02   23.08.08  mp_real:   Avoid FPC222 warning in mpf_decimal
+                    mp_base:   Avoid FPC222 warning in isqrt32
+ 1.7.03   24.08.08  mp_base:   s_mp_toradix_n improved if radix is power of 2
+ 1.7.04   13.09.08  mp_calc:   eval/_INVMOD with mp_invmodf
+ 1.7.05   14.09.08  mp_ratio:  s_mpr_normalize no gcd if |num|=1 or |den|=1
+                    mp_base:   new IsPow2_w; MP_16BIT: improved mp_div_d, mp_div_w, mp_mod, s_mp_div
+ 1.7.06   14.09.08  mp_base:   Fix FPC RTE 201 if R+ in mp_read_unsigned_bin
+ 1.7.07   14.09.08  mp_base:   mp_get/set_allocprec, mp_allocprec local,
+                               mp_init_prim rounds up to multiple of mp_allocprec}
+                    mp_types:  mp_allocprec moved to mp_base/implementation
+ 1.7.08   16.09.08  mp_real:   Accept 'b' or 'B' in binary exponents
+                    mp_calc:   log(a,b); better _EXPT overflow check
+ 1.7.09   17.09.08  mp_base:   mp_rand_ex, mp_is_longint; BIT16: (f)LeftShiftAdd
+                    mp_numth:  use mp_is_longint after mp_initial_mod in mp_gcd
+ 1.7.10   17.09.08  mp_base:   mp_mod with mp_is_longint, BASM16 for 'shr DIGIT_BIT'
+ 1.7.11   17.09.08  mp_numth:  mp_gcd_euclid with mp_mod, more uses of mp_is_longint
+                    mp_calc:   eval: GetTL with mp_is_longint
+ 1.7.12   20.09.08  mp_numth:  mp_xgcd with Lehmer, mp_gcd_ml (modified Lehmer)
+ 1.7.13   21.09.08  mp_numth:  $ifdef MPC_UseGCD32 in mp_gcd
+                    mp_base:   mp_shr1
+ 1.7.14   22.09.08  mp_numth:  mp_xgcd_bin
+ 1.7.15   22.09.08  mp_numth:  mp_invmodf via xgcd, removed fast_mp_invmod
+ 1.7.16   22.09.08  mp_numth:  extended range for Lehmer routine
+ 1.7.17   23.09.08  mp_numth:  improved inner loop of (binary) mp_gcd
+ 1.7.18   24.09.08  mp_base:   mp_sign, removed mp_cmp_z, renamed ??_2d to ??_2k
+                    mp_numth:  use mp_sign for trivial cases in mp_xgcd_bin
+ 1.7.19   24.09.08  (most)     string replaced by mp_string
+ 1.7.20   24.09.08  mp_numth:  mp_is_pprime_ex skips 1-digit test, fixed mp_is_square2
+ 1.7.21   26.09.08  mp_base:   mp_read_radix_str, mp_read_decimal_str
+                    mp_supp:   DIGIT_BIT dependent formatting for mp_dumpa/u
+ 1.7.22   27.09.08  mp_base:   invmod32
+                    mp_numth:  mp_invmodf with invmod32
+ 1.7.23   02.10.08  mp_base:   improved mp_reduce
+                    mp_numth:  bugfix in mp_gcd $ifdef MPC_UseGCD32
+
+
+ 1.8.00   04.10.08  mp_base:   BASM16 in s_mp_mul_(high)_digs
+ 1.8.01   04.10.08  mp_base:   BASM16 in s_mp_sqr
+ 1.8.02   04.10.08  mp_base:   BASM16 in mp_montgomery_reduce
+ 1.8.03   05.10.08  mp_base:   BASM16 in mp_shl, mp_shr
+ 1.8.04   05.10.08  mp_base:   BASM16 in mp_div_w and new s_mp_div_d, fixed IsPow2_w
+ 1.8.05   06.10.08  mp_base:   Simplified MP_32BIT power of two code in mp_div_w
+ 1.8.06   07.10.08  mp_base:   Check for power of two in mp_mod_int
+ 1.8.07   09.10.08  mp_base:   mp_set1
+                    mp_numth:  use mp_set1; mp_is_longint in mp_miller_rabin
+ 1.8.08   11.10.08  mp_types:  Separate Karatsuba cutoffs for 32/32 and 32/16 bit code
+                    mp_base:   Improved mp_reduce_2k_setup
+ 1.8.09   18.10.08  mp_base:   Improved mp_expt_int, mp_popcount, mp_gr_setup
+ 1.8.10   21.10.08  mp_numth:  exptmod32, s_mp_is_pth_power, improved mp_is_power
+ 1.8.11   22.10.08  mp_numth:  changed mp_is_primepower
+ 1.8.12   23.10.08  mp_base:   mp_n_root with Halley's iteration or bisection method
+ 1.8.13   24.10.08  mp_base:   mp_n_root: check startup convergence of Halley steps
+ 1.8.14   25.10.08  mp_base:   s_mp_n_root2, mp_n_root2
+                    mp_numth:  mp_is_power with s_mp_n_root2
+ 1.8.15   26.10.08  mp_base:   Fix check for exact root in Halley
+                    mp_numth:  Check a mod k^3 and a mod q^2 in s_mp_is_pth_power
+                    mp_types:  MAX_DiagCTR = 5
+ 1.8.16   27.10.08  mp_base:   Halley: optimized to keep remainder
+                    mp_numth:  improved mp_is_power
+ 1.8.17   31.10.08  mp_base:   Halley: bisection count = bitsize32(d)
+ 1.8.18   01.11.08  mp_base:   mp_mod_int: check if a is longint
+                    mp_numth:  new: mp_xlcm, mp_rnr
+ 1.8.19   02.11.08  mp_numth:  sieve test loop in s_mp_is_pth_power, new: mp_is_pth_power
+ 1.8.20   04.11.08  mp_base:   s_mp_n_root2: b=1 if n>=mp_bitsize(a)
+ 1.8.21   05.11.08  mp_calc:   second argument in root must be > 0
+
+
+ 1.9.00   08.10.08  mp_conf:   Do NOT define MPC_ErrFunc as debugging default
+                    mp_base:   mp_rshd2, avoid some warnings
+ 1.9.01   08.11.08  mp_base:   Halley renamed to iroot, improved initial approximation
+ 1.9.02   29.11.08  mp_rsa:    mp_rsa_calc_nd, fix silly "fillchar(buf^" bug
+ 1.9.03   30.11.08  mp_base:   mp_read_radix_arr
+ 1.9.04   02.12.08  (most)     Uses BTypes: char8, pchar8
+ 1.9.05   06.12.08  mp_numth:  mp_rnr2
+                    mp_base:   s_mp_is_le0
+ 1.9.06   13.12.08  mp_rsa:    mp_rsa_recover_pq
+                    mp_real:   mpf_sumalt
+ 1.9.07   23.12.08  mp_numth:  s_mp_mca_alg1816
+                    mp_rsa:    mp_rsa_recover_pq uses s_mp_mca_alg1816
+ 1.9.08   25.12.08  mp_numth:  improved mp_small_factor
+ 1.9.09   25.12.08  mp_prime:  new unit with IsPrime16/32,is_spsp32,is_spsp32A from mp_base
+ 1.9.10   29.12.08  mp_prime:  prime_sieve routines
+ 1.9.11   30.12.08  mp_prime:  prime_sieve with mp_getmem, prime_sieve_reset
+ 1.9.12   02.01.09  mp_base:   s_mp_sqrtrem, mp_sqrtrem,renamed mp_sqrt to s_mp_sqrt
+                    mp_types:  mp_sqrt_cutoff: Karatsuba square root cutoff
+ 1.9.13   03.01.09  mp_base:   mp_n_root2 with mp_sqrtrem
+                    mp_numth:  mp_is_square2, s_mp_pell4 with s_mp_sqrtrem
+ 1.9.14   04.01.09  mp_prime:  Primes16 array as global data, Primes16Index
+                    mp_types:  default mp_sqrt_cutoff set to 4
+ 1.9.15   04.01.09  mp_numth:  mp_is_square2: s_mp_sqrtrem only (removed trick branch)
+                               removed mp_ecm_brent, mp_ecpwr
+ 1.9.16   04.01.09  mp_prime:  32 bit first/next prime routines from mp_numth
+                    mp_numth:  32 bit first/next prime routines to mp_prime
+                    mp_conf:   MPC_USE_PRC_30 (default: not defined)
+ 1.9.17   06.01.09  Moved some uses to implementation parts
+                    mp_base:   improved mp_reduce_2k
+                    mp_numth:  minor changes in mp_isMersennePrime
+                    mp_numth:  explicit range check in mp_fermat
+                    mp_types:  Removed legacy mp_diagcounter
+ 1.9.18   07.01.09  mp_types:  Removed CHAR_BIT
+                    mp_base:   Replaced CHAR_BIT
+
+
+ 1.10.00  09.01.09  mp_calc:   eval/_EXPT uses mp_is_longint/mp_expt_int
+                    mp_base:   skip final sqr in mp_expt
+                    t_r/calc:  display sign with ; line terminator
+ 1.10.01  21.01.09  mp_base:   mp_shl1, renamed (s)mp_div to (s)mp_divrem, new mp_div
+                    (many)     changes related to (s)mp_divrem
+ 1.10.02  22.01.09  mp_numth:  mp_cbrtmod
+ 1.10.03  25.01.09  mp_base:   improved mp_add/dec/inc/sub_int
+                    mp_numth:  s_mp_is_pprime_ex
+ 1.10.04  28.01.09  mp_numth:  improved mp_is_square2
+ 1.10.05  01.02.09  mp_base:   s_mp_ln, s_mp_log2, s_mp_set_ext
+ 1.10.06  02.02.09  mp_calc:   _CBRTMOD
+                    t_calc:    cbrtmod in help display
+ 1.10.07  02.02.09  mp_numth:  mp_sqrtmodpk: check invmod, store result only if Err=0
+ 1.10.08  03.02.09  mp_numth:  s_mp_sqrtmodpk with red parameter, mp_sqrtmodpk with red=true
+ 1.10.09  03.02.09  mp_numth:  mp_cbrtmodpk, s_mp_cbrtmodpk, mp_cbrtmod3k
+                    mp_calc:   cbrtmod for prime powers
+ 1.10.10  04.02.09  mp_base:   s_mp_mod_is0
+                    mp_numth:  sqrt/cbrtmodpk functions: handle a mod p = 0
+ 1.10.11  04.02.09  mp_numth:  mp_sqrtmodpk handles p=2
+ 1.10.12  07.02.09  mp_numth:  mp_cbrtmodpq
+ 1.10.13  07.02.09  mp_numth:  s_mp_is_cubres
+ 1.10.14  08.02.09  mp_numth:  mp_cbrtmod_ex
+ 1.10.15  10.02.09  mp_rsa:    mp_rsa_recover_pq2
+ 1.10.16  12.02.09  mp_numth:  improved mp_cbrtmod_ex
+ 1.10.17  16.02.09  mp_base:   mp_shlx, mp_shrx
+ 1.10.18  18.02.09  mp_base:   mp_divrem_newton
+ 1.10.19  19.02.09  mp_numth:  improved s_mp_is_cubres
+ 1.10.20  21.02.09  mp_real:   mpf_sinhcosh
+ 1.10.21  23.02.09  mp_real:   mpf_read_radix: changed evaluation of fraction part
+ 1.10.22  24.02.09  mp_real:   mpf_round
+ 1.10.23  25.02.09  mp_real:   s_mpf_ldx(0)=-MaxLongint, mpf_ln1p for a=0,
+ 1.10.24  25.02.09  mp_real:   s_mpf_numbpart, mpf_numbpart
+ 1.10.25  25.02.09  mp_real:   mpf_add_int, mpf_sub_int
+ 1.10.26  27.02.09  mp_real:   s_mpf_frac, mpf_trig_ex
+ 1.10.27  27.02.09  mp_numth:  mp_isMersennePrime: check for spurious factor
+
+
+ 1.11.00  07.03.09  mp_base:   s_mp_divrem renamed to s_mp_divrem_basecase, new s_mp_divrem with Burnikel/Ziegler
+                    mp_types:  Burnikel-Ziegler cutoff
+ 1.11.01  08.03.09  mp_base:   improved bz_d3n2n, changed bz_divrem_pos argument list
+                    mp_types:  Burnikel-Ziegler cutoffs in digits
+ 1.11.02  14.03.09  mp_types:  mp_t3m_cutoff, mp_t3s_cutoff
+                    mp_base:   s_mp_toom3_mul, renamed s_mp_karatsuba_mul/sqr
+ 1.11.03  15.03.09  mp_base:   s_mp_toom3_mul: use s_mp_mod_2k, mp_shl
+ 1.11.04  15.03.09  mp_base:   s_mp_toom3_sqr, changed mp_sqr
+ 1.11.05  16.03.09  mp_base:   s_mp_toom3_mul: split with B ~ 2^(bitsize(max(a,b)/3)
+ 1.11.06  16.03.09  mp_base:   s_mp_fakeinit (used in s_mp_toom3_mul/sqr)
+ 1.11.07  17.03.09  mp_base:   complete rewrite of s_mp_karatsuba_mul/sqr
+ 1.11.08  20.03.09  mp_base:   mp_mul: separate handling of unbalanced factors
+ 1.11.09  21.03.09  mp_base:   mp_mul: fix sign for unbalanced part
+ 1.11.10  23.03.09  mp_real:   mpf_sumaltf
+                    mp_r/calc: initialize e:=nil in Element,Expr,Factor,Func,Term
+ 1.11.11  25.03.09  mp_base:   fix sign in mp_lshd2
+ 1.11.12  25.03.09  mp_base:   s_mp_toom3_mul uses Bodrato algorithm
+ 1.11.13  26.03.09  mp_base:   s_mp_fakeinit with mp_clamp
+ 1.11.14  26.03.09  mp_base:   s_mp_toom3_sqr uses Bodrato algorithm
+ 1.11.15  27.03.09  mp_base:   mp_clamp without init check, improved fake init in Toom-3
+ 1.11.16  27.03.09  mp_base:   removed MPC_UseToom3 (and mem check for BP7)
+ 1.11.17  29.03.09  mp_types:  MAX_DiagCTR = 7
+                    mp_base:   improved s_mp_mul_high_digs
+ 1.11.18  30.03.09  mp_base:   mp_init_size2, mp_init_size2, removed mp_divrem_newton
+                    mp_r/calc: removed redefinition of str255
+                    mp_real:   removed redefinition of pByte
+ 1.11.19  30.03.09  mp_base:   reduce temporary memory in s_mp_karatsuba_mul/sqr
+ 1.11.20  01.04.09  mp_ratio:  mpr_harmonic, improved mpr_todouble
+
+
+ 1.12.00  20.06.09  mp_numth:  mp_is_power_max
+                    mp_rsa:    updated RFC URLs
+ 1.12.01  20.06.09  mp_base:   Fix mp_rand_bits_ex: add mp_clamp(a)
+ 1.12.02  21.06.09  mp_types:  Trace output routines and variables, mp_int2str
+                    mp_conf:   MPC_TRACE, MPC_USE_ODS
+                    mp_numth:  mp_provable_prime
+ 1.12.03  28.06.09  mp_rsa:    improved mp_rsa_calc_npq
+ 1.12.04  05.07.09  mp_types:  D12 fixes in mp_trace
+                    mp_conf:   Removed MPC_USE_PRC_30
+                    mp_prime:  Removed prime residue classes mod 30
+                    mp_numth:  new: s_mp_npfirst, s_mp_npnext, changed: mp_nextprime, s_mp_is_pprime_ex
+ 1.12.05  05.07.09  mp_real:   D12 fixes in mpf_read_radix and s_mpf_toradix_n
+                    t_rcalc    Display new prec after change, D12 fixes
+ 1.12.06  29.07.09  mp_numth:  Increased trace level in mp_provable_prime
+                    mp_rsa:    Increased trace level in mp_rsa_calc_npq
+
+
+ 1.13.00  10.08.09  mp_rsa:    mp_rsa_wiener
+ 1.13.01  14.08.09  mp_real:   small improvements in (s_)mpf_numbpart
+ 1.13.02  15.08.09  mp_numth:  mp_crt_single/solve: improved and check n>0
+ 1.13.03  23.08.09  mp_numth:  allow p=q in mp_sqrtmodpq/mp_cbrtmodpq
+                    mp_real:   mpf_squad
+ 1.13.04  01.11.09  mp_real:   New names: mpf_arccosh,mpf_arccosh1p,mpf_arcsinh,mpf_arctanh,mpf_exp10,mpf_exp2
+                    mp_conf:   MPC_Old_EleFun
+ 1.13.05  01.11.09  mp_real:   mpf_cot,mpf_csc,mpf_sec,mpf_coth,mpf_csch,mpf_sech
+                    (rcalc):   mpf_cot,mpf_csc,mpf_sec,mpf_coth,mpf_csch,mpf_sech
+ 1.13.06  02.11.09  mp_real:   mpf_arccot,mpf_arccotc,mpf_arccsc,mpf_arcsec,mpf_arccoth,mpf_arccsch,mpf_arcsech
+ 1.13.07  02.11.09  mp_real:   changed mpf_arccosh domain to a >= 1
+                    (rcalc):   mpf_arccot,mpf_arccotc,mpf_arccsc,mpf_arcsec,mpf_arccoth,mpf_arccsch,mpf_arcsech
+ 1.13.08  16.11.09  mp_real:   mpf_init[x], x=2..5
+ 1.13.09  24.11.09  mp_real:   mpf_arccotc calls mpf_arccot for a>0
+ 1.13.10  24.11.09  mp_real:   inv_func/func_inv with 32 guard bits
+
+
+ 1.14.00  09.01.10  t_rcalc:   XH command
+ 1.14.01  31.01.10  mp_real:   mpf_sqrt1pm1
+ 1.14.02  07.02.10  mp_real:   mpf_logbase
+ 1.14.03  09.02.10  mp_real:   improved guard bits calculation in mpf_expt
+ 1.14.04  09.02.10  mp_real:   mpf_cmp_ext, mpf_cmp_mag_ext
+ 1.14.05  12.02.10  mp_conf:   conditional define MPC_MAXRadix64
+ 1.14.06  13.02.10  (most)     MPC_MAXRadix64 adjustments
+
+
+ 1.15.00  04.05.10  mp_base:   Fix mp_sqrtrem if @n=@r
+ 1.15.01  05.05.10  mp_real:   basic s_mpf_toradix_alt
+ 1.15.02  06.05.10  mp_real:   mpf_(a)decimal_alt, mpf_todecimal_alt, mpf_toradix_alt
+ 1.15.03  07.05.10  mp_real:   mpf_write_radix_alt, mpf_write_decimal_alt
+ 1.15.04  07.05.10  mp_real:   mpf_output_radix_alt, mpf_output_decimal_alt
+ 1.15.05  08.05.10  mp_types:  MP_ShortVERS
+ 1.15.06  08.05.10  mp_real:   mpf_round: fix quirk if @b = @a.mantissa
+ 1.15.07  09.05.10  mp_real:   mpf_todouble, mpf_toextended: pre-check max values
+                    mp_base:   mp_todouble/extended_ex: check only bitsize
+                    t_rcalc:   DDH, SCI, ALT commands
+ 1.15.08  13.05.10  (some)     mp_fract_sep, mp_arg_sep
+ 1.15.09  13.05.10  mp_real:   impoved s_mpf_toradix_alt: use s_mp_toradix_n for fractional part
+ 1.15.10  13.05.10  mp_real:   mpf_set_default_decprec
+ 1.15.11  14.05.10  mp_real:   improved s_mpf_toradix_alt: faster removal of trailing zeros
+ 1.15.12  15.05.10  mp_real:   s_mpf_toradix_alt: use IsPow2_w
+ 1.15.13  15.05.10  mp_real:   s_mpf_toradix_alt: improved for radix<>2^n
+ 1.15.14  20.05.10  mp_base:   mp_gcd_int
+ 1.15.15  20.05.10  mp_ratio:  mpr_div_int, mpr_mul_int
+ 1.15.16  21.05.10  mp_ratio:  mpr_div_2, mpr_mul_2
+ 1.15.17  22.05.10  mp_ratio:  mpr_div_2k, mpr_mul_2k
+
+
+ 1.16.00  04.06.10  mp_numth:  mp_4sq, mp_4sq_sa, mp_4sq_sd
+ 1.16.01  05.06.10  mp_base:   mp_read_decimal_astr, mp_read_radix_astr
+ 1.16.02  06.06.10  mp_rsa:    ensure |p-q| is not too small in mp_rsa_calc_npq
+ 1.16.03  12.06.10  mp_real:   Corrected some exception strings
+ 1.16.04  13.06.10  mp_rconp:  Check table sizes, MAX_TCBITS moved to mp_types
+                    mp_types:  MAX_TCBITS from mp_rconp
+ 1.16.05  13.06.10  mp_types:  Uses MPC_FPrec30K conditional define
+                    mp_rconp:  Uses MPC_FPrec30K for smaller tables
+                    mp_real:   mpf_set_exp1, mpf_set_exp1p
+ 1.16.06  03.06.10  t_rcalc:   display MPF_MAX_PREC related info
+ 1.16.07  17.07.10  mp_real:   mpf_expt1pm1, mpf_exptm1
+ 1.16.08  25.07.10  mp_base:   const pa in mp_read_radix_arr
+
+
+ 1.17.00  06.10.10  mp_calc:   _DFACT: double factorial
+ 1.17.01  27.12.10  mp_rsa:    Sign/verify functions
+ 1.17.02  27.12.10  mp_calc:   changed parsing of !!
+ 1.17.03  30.12.10  mp_numth:  mp_binomial for k < 0
+                    mp_calc:   binok for k < 0
+ 1.17.04  31.12.10  mp_rsa:    mp_pkcs1v15_emsa_encode: SHA224 and RIPEMD-160
+ 1.17.05  01.01.11  mp_rsa:    Fix wrong byte in RFC4880 SHA224 algorithm identifier
+ 1.17.06  02.01.11  mp_r/calc: avoid D12 warning in mp/f_calc_errorstr
+
+
+ 1.18.00  17.02.11  mp_real:   mpf_lambertw
+ 1.18.01  21.06.11  t_rcalc:   asx/asd commands
+ 1.18.02  23.06.11  mp_real:   mpf_sinc
+ 1.18.03  23.06.11  mp_real:   mpf_hav. mpf_archav
+ 1.18.04  24.06.11  mp_real:   mpf_gd, mpf_arcgd
+ 1.18.05  24.06.11  mp_real:   improved mpf_tanh
+ 1.18.06  24.06.11  mp_real:   mpf_coshm1
+ 1.18.07  25.06.11  t_rcalc:   nfd command, updated help screen
+
+
+ 1.19.00  03.11.11  (some)     Support for MAXDigits=32000 with MP_32BIT
+ 1.19.01  04.11.11  mp_types:  assert MAXDigits <= 32640
+ 1.19.02  12.11.11  mp_real:   Avoid some warnings for MAXDigits=32000 with MP_32BIT
+ 1.19.03  19.11.11  mp_calc:   Check if 2nd argument of sqrt/cbrtmod is prime power
+ 1.19.04  31.12.11  mp_types:  typecast pchar(string()) in mp_trace only $ifdef D12Plus
+
+
+ 1.20.00  12.01.12  mp_types:  BIT64
+ 1.20.01  12.01.12  mp_base:   Include files mp_bas64/32/16.inc
+ 1.20.02  13.01.12  mp_base:   rewrite (ld/fr)exp(x/d)
+ 1.20.03  13.01.12  mp_base:   adjust mp_toextended_ex for EXT64
+ 1.20.04  14.01.12  mp_prime:  BIT64: _spsp32, is_spsp32A, IsPrime32, modnpd2
+ 1.20.05  14.01.12  mp_numth:  BIT64: exptmod32
+ 1.20.06  15.01.12  mp_base:   Full length for mp_radix_astr
+ 1.20.07  15.01.12  mp_rc32:   Arrays moved from code to data for 32/64 bit
+ 1.20.08  16.01.12  mp_types:  Types TMPHexExtW, TMPHexDblW, TMPHexDblA
+ 1.20.09  16.01.12  mp_real:   mpf_set_ext removed absolute
+ 1.20.10  16.01.12  mp_real:   mpf_set_dbl
+ 1.20.11  16.01.12  mp_real:   EXT64: redirect mpf_set_ext, mpf_toextended
+ 1.20.12  16.01.12  mp_real:   LambertW approximation with double
+ 1.20.13  16.01.12  mp_base:   New add32_ovr in mp_bas64.inc
+ 1.20.14  17.01.12  mp_base:   Fix border cases in mp_lshd/2
+ 1.20.15  17.01.12  t_rcalc:   Fix XH for EXT64 (extended=double)
+ 1.20.16  19.01.12  mp_base:   Subquadratic mp_radix_astr
+ 1.20.17  20.01.12  mp_base:   s_mp_write_radix uses mp_radix_astr for BIT32/64
+ 1.20.18  21.01.12  mp_ratio   mpr_radix_astr/mpr_adecimal without length restriction
+ 1.20.19  21.01.12  mp_base:   s_mp_radix_astr
+ 1.20.20  21.01.12  mp_numth:  Adjusted MaxPrimorial, MaxPrimorial, NMAX in mp_primorial
+ 1.20.21  21.01.12  mp_prime:  IsPrime16 inline if supported
+ 1.20.22  12.03.12  mp_types:  mpf_lna_cutoff
+                    mp_real:   s_mpf_lnagm
+ 1.20.23  13.02.12  mp_real:   improved mpf_ln1p
+ 1.20.24  14.02.12  (some)     ln(2) always available; MPC_Ln2Ln10Tab renamed to MPC_E1Ln10Tab
+
+
+ 1.21.00  30.05.12  mp_real:   faster s_mpf_numbpart
+ 1.21.01  08.07.12  mp_prime:  Assert psieve<>nil and paux<>nil in prime_sieve_next
+ 1.21.02  14.07.12  mp_prime:  lsumphi32 and primepi32
+ 1.21.03  14.07.12  t_calc:    display MaxBit, MaxFact
+ 1.21.04  15.07.12  mp_prime:  improved Primes16Index
+ 1.21.05  15.07.12  mp_calc:   primepi: return primepi32
+ 1.21.06  15.07.12  mp_numth:  mp_isconsole: boolean [used for write('.')]
+ 1.21.07  15.07.12  mp_rcalc:  constant ln2, special code for ^2 and ^(1/2)
+ 1.21.08  16.07.12  mp_real:   s_mpf_rint
+ 1.21.09  16.07.12  mp_rcalc:  constants e, ln10 if MPC_E1Ln10Tab is defined
+ 1.21.10  18.07.12  mp_numth:  mp_catalan, MaxCatalan
+ 1.21.11  19.07.12  mp_base:   Improved mp_div_int for 0 < b < MP_DIGIT_MAX
+ 1.21.12  19.07.12  mp_base:   s_mp_mod_int, mp_mod_d calls s_mp_mod_int if MP_32BIT
+ 1.21.13  19.07.12  mp_numth:  improved mp_small_factor
+ 1.21.14  19.07.12  mp_calc:   catalan
+ 1.21.15  20.07.12  mp_rcalc:  round, numbpart
+ 1.21.16  20.07.12  mp_numth:  mp_poch
+ 1.21.17  20.07.12  mp_numth:  mp_perm
+ 1.21.18  20.07.12  mp_calc:   popcount, randprime, maurer, perm, poch
+ 1.21.19  21.07.12  mp_base:   mp_product
+ 1.21.20  23.07.12  mp_prime:  TFactors32 and PrimeFactor32
+ 1.21.21  23.07.12  mp_prime:  EulerPhi32 and Carmichael32
+ 1.21.22  24.07.12  mp_base:   isqrt32 without FPU, new is_square32
+ 1.21.23  24.07.12  mp_prime:  Moebius32
+ 1.21.24  25.07.12  mp_conf:   MPC_FPU_ISQRT, use trunc(sqrt()) for isqrt32
+ 1.21.25  25.07.12             exptmod32/jacobi32 moved from mp_numth to mp_base
+ 1.21.26  25.07.12  mp_prime:  primroot32
+ 1.21.27  27.07.12  mp_prime:  order32
+ 1.21.28  27.07.12  mp_calc:   eulerphi, carmichael, moebius, primroot, order, spsp
+ 1.21.29  27.07.12  mp_numth:  mp_is_spsp returns false for n<=1
+ 1.21.30  29.07.12  mp_numth:  mp_is_square2 uses is_square32ex
+ 1.21.31  29.07.12  mp_numth:  mp_squfof
+                    pfdu:      pfd1 with mp_squfof
+ 1.21.32  30.07.12  mp_calc:   Special case 0^b, b>=0
+ 1.21.33  30.07.12  mp_base:   Improved mp_set_pow, mp_expt_int: 0^0 = 1
+ 1.21.34  30.07.12  mp_numth:  mp_sigmak
+                    mp_calc:   sigma
+ 1.21.35  31.07.12  mp_numth:  mp_sigmak with geometric sum to avoid overflow
+
+
+ 1.22.00  06.08.12  mp_conf:   MPC_SmallSieve, max sieve prime = 1908867043, def. BIT16n
+ 1.22.01  06.08.12  mp_prime:  SIEVE_MAXPRIME = MaxLongint if not MPC_SmallSieve
+ 1.22.02  07.08.12  mp_prime:  prime32
+ 1.22.03  07.08.12  mp_calc:   prime
+ 1.22.04  10.08.12  mp_numth:  mp_nextprime_ex
+ 1.22.05  11.08.12  mp_numth:  mp_small_factor with inline IsPrime16
+ 1.22.06  12.08.12  mp_numth:  mp_pollard_pm1: max. bound = 65000, fix while condition bug
+                               mp_williams_pp1: max. bound = 65000
+ 1.22.07  14.08.12  mp_numth:  Borwein/Schoenhage s_mp_borsch_fact
+ 1.22.08  15.08.12  mp_numth:  mp_pollard_brent/ex
+ 1.22.09  16.08.12  mp_numth:  Changed mp_lucasv2p; new: mp_lucasuv, mp_lucasu
+ 1.22.10  18.08.12  mp_numth:  Removed mp_coshmult
+ 1.22.11  19.08.12  mp_numth:  mp_squad_mod
+ 1.22.12  19.08.12  pfdu:      Split ECM2 into two phases, some parameter tuning
+ 1.22.13  21.08.12  mp_numth:  mp_cornacchia_ex
+ 1.22.14  26.08.12  mp_base:   mp_mul: call mp_sqr if @a=@b
+ 1.22.15  27.08.12  mp_numth:  mp_qnr
+ 1.22.16  29.08.12  mp_base:   kronjac32: used by kronecker32 and jacobi32
+ 1.22.17  01.09.12  mp_numth:  special treatment for d=12 in s_mp_pell4
+ 1.22.18  02.09.12  mp_types:  ansistring = string for BIT16
+                    mp_base:   mp_radix_astr etc with truncation for BIT16
+ 1.22.19  03.09.12  mp_prime:  is_fundamental32
+ 1.22.20  04.09.12  mp_base:   icbrt32
+ 1.22.21  04.09.12  mp_prime:  is_squarefree32, improved Moebius32
+ 1.22.22  05.09.12  mp_prime:  primepi32 uses icbrt32
+ 1.22.23  05.09.12  mp_prime:  core32, quaddisc32
+ 1.22.24  06.09.12  mp_numth:  mp_rqffu and s_mp_rqffu
+ 1.22.25  07.09.12  mp_numth:  mp_qnr for all n > 0
+ 1.22.26  09.09.12  mp_calc:   qnr
+ 1.22.27  11.09.12  mp_numth:  mp_powerd
+ 1.22.28  12.09.12  mp_numth:  mp_ecm_factor uses Primes16
+
+
+ 1.23.00  16.09.12  mp_numth:  Fix s1 in mp_small_factor
+ 1.23.01  16.09.12  mp_conf:   Removed forced MPC_SmallSieve for BIT16
+ 1.23.02  23.09.12  mp_base:   Improved BASM16 s_mp_div_d, toom3 with s_mp_div_d
+ 1.23.03  24.09.12  mp_modul:  New unit with basic modular arithmetic, GCD and LCM, Jacobi/Kronecker
+ 1.23.04  24.09.12  mp_pfu:    New unit with multi precision prime factorization routines
+ 1.23.05  24.09.12  mp_numth:  s_mp_nextprime_sieve
+ 1.23.06  24.09.12  mp_rsa:    s_mp_mca_alg1816 from mp_numth to mp_rsa
+ 1.23.07  25.09.12  mp_base:   Fix: use production code invmod32 in mp_bas16.inc
+ 1.23.08  28.09.12  mp_numth:  mp_cornacchia_ex renamed to mp_cornacchia_pk
+ 1.23.09  29.09.12  mp_numth:  s_mp_cornacchia_ex, mp_cornacchia_pq
+ 1.23.10  30.09.12  mp_numth:  improved mp_is_power
+ 1.23.11  01.10.12  mp_base:   xgcd32
+ 1.23.12  02.10.12  mp_numth:  BIT16: fix case in s_mp_is_pth_power with p > 2^16
+ 1.23.13  02.10.12  mp_base:   Avoid -0 in s_mp_divrem_basecase after mp_div_w
+ 1.23.14  03.10.12  mp_numth:  mp_val, mp_valrem, s_mp_valrem_d
+ 1.23.15  03.10.12  mp_numth:  mp_is_power with mp_valrem
+ 1.23.16  03.10.12  mp_base:   mp_set_pow: special code if b is a power of two
+ 1.23.17  04.10.12  mp_base:   BASM16: improved mp_mul_d
+ 1.23.18  04.10.12  mp_numth:  Fix bug for test d=5,12 in s_mp_pell4
+ 1.23.19  04.10.12  mp_base:   mp_div_int with s_mp_divrem_basecase
+ 1.23.20  05.10.12  mp_base:   Removed second s_mp_mod_2k in mp_mod_2k for a < 0
+ 1.23.21  05.10.12  mp_base:   Reintroduce s_mp_shrink (mainly for BP7 real mode)
+ 1.23.22  12.10.12  mp_base:   Improved s_mp_n_root2: Use Newton if overflow probable, allow deeper recursion
+ 1.23.23  14.10.12  mp_numth:  mp_is_power with flexible trial division
+ 1.23.24  24.10.12  mp_modul:  mp_initial_mod initialized (removed from mp_numth)
+
+
+ 1.24.00  30.10.12  mp_calc:   val
+ 1.24.01  12.12.12  (some)     MPC_PurePascal
+ 1.24.02  14.12.12  mp_types:  Allow more than 32000 digits, type TNInt, alloc/used: longint
+ 1.24.03  15.12.12  (some)     Some word/integer types changed to longint or TNInt
+ 1.24.04  15.12.12  mp_types:  MAXDigits = $1000000 for 32-bit compilers
+ 1.24.05  17.12.12  mp_types:  system.sysutils for D16+
+ 1.24.06  17.12.12  mp_ratio:  s_mpr_tofloat_n: @r changed to nil in divrem
+ 1.24.07  19.12.12  mp_numth:  mp_fact with longint arguments, s_mp_borsch_fact uses sieve
+ 1.24.08  20.12.12  mp_numth:  MaxFact, MaxFermat computed in initialization
+ 1.24.09  20.12.12  mp_numth:  mp_binomial with prime_sieve for 32+ bits
+ 1.24.10  20.12.12  mp_numth:  mp_dfact and mp_OddProd with longint arguments
+ 1.24.11  21.12.12  mp_numth:  s_mp_gbinom (used in mp_binomial and mp_catalan)
+ 1.24.12  23.12.12  mp_real:   Removed MPC_Old_EleFun function names
+ 1.24.13  03.01.13  mp_types:  $ifdef MPC_TRACE: winapi.windows for D16+
+ 1.24.14  03.01.13  (some)     Fix some more words to TNInt/longint
+ 1.24.15  03.01.13  mp_r/calc: Fix typo: Err_Trailing_Gargabe -> Err_Trailing_Garbage
+ 1.24.16  03.01.13  mp_numth:  Improved mp_primorial
+ 1.24.17  04.01.13  mp_base:   Fix mp_set_int for MP_16bit and b=$80000000
+ 1.24.18  04.01.13  mp_prime:  BIT64 changed to PurePascal
+ 1.24.19  04.01.13  mp_numth:  Improved s_mp_sqrtmod2k; mp_numth:  mp_sqrtmod2k: No error if a is a multiple of 2^k
+ 1.24.20  04.01.13  mp_numth:  Handle k=0 in s_mp_cbrtmodpk, error if k<0
+ 1.24.21  04.01.13  (some)     Renamed mp_expt_d to mp_expt_w
+ 1.24.22  05.01.13  mp_base:   Fix debug mode icbrt32 for VPC, D2/D3
+ 1.24.23  05.01.13  mp_base:   Fix FPC242/244 bug in debug mode s_mp_div_d
+
+
+ 1.25.00  12.01.13  t_rcalc:   DH command
+ 1.25.01  23.01.13  mp_real:   improved mpf_todouble/mpf_toextended
+ 1.25.02  31.01.13  mp_real:   mpf_vers
+                    mp_rcalc:  mpf_vers
+ 1.25.03  02.02.13  mp_calc:   Fix _SQRTMOD and _CBRTMOD if v2=prime^1
+
+
+ 1.26.00  20.02.13  mp_base:   mp_toextended_ex and mp_todouble_ex for denormals
+ 1.26.01  20.02.13  mp_real:   mpf_set_ext for denormals
+ 1.26.02  22.02.13  mp_rcalc:  Allow hex integer numbers as elements
+ 1.26.03  30.07.13  mp_real:   mpf_exp10m1, mpf_exp2m1
+ 1.26.04  31.07.13  mp_real:   mpf_log10p1, mpf_log2p1
+ 1.26.05  17.08.13  mp_rcalc:  Functions asd, asx
+
+
+ 1.27.00  04.09.13  mp_numth:  Allow a < 0 in mp_sqrtmod2k
+ 1.27.01  10.09.13  mp_types:  Turn off unreachable code warnings for FPC 2.7.1+
+ 1.27.02  16.12.13  mp_real:   mpf_hypot
+ 1.27.03  08.02.14  mp_numth:  mp_val/rem: fix for a=0, changed iterative logic
+ 1.27.04  09.02.14  mp_real:   mpf_divr_ext
+ 1.27.05  10.02.14  mp_real:   mpf_sincos
+ 1.27.06  11.02.14  mp_real:   mpf_exp10i
+ 1.27.07  13.02.14  mp_real:   s_mpf_is_gt0
+ 1.27.08  15.02.14  mp_real:   mpf_nroot
+ 1.27.09  19.02.14  mp_cmplx:  new unit
+ 1.27.10  19.02.14  mp_types:  mp_complex types
+
+
+ 1.28.00  31.03.14  mp_cmplx:  mpc_csc/h, mpc_sec/h
+ 1.28.01  01.04.14  mp_cmplx:  mpc_arccot/c
+ 1.28.02  01.04.14  mp_cmplx:  mpc_arccoth/c
+ 1.28.03  02.04.14  mp_cmplx:  mpc_arcsec/h
+ 1.28.04  02.04.14  mp_cmplx:  mpc_arccsc/h
+ 1.28.05  03.04.14  mp_cmplx:  fix mpc_tanh: use s_mpf_ldx(a.re)
+
+
+ 1.29.00  28.04.14  mp_types:  Test8086 only for BIT16
+ 1.29.01  06.05.14  mp_conf:   MPC_PurePascal $ifdef CPUARM
+ 1.29.02  14.07.14  mp_pfu:    mp_fermat_factor
+                    pfdu:      uses mp_fermat_factor
+ 1.29.03  14.07.14  mp_prime:  tau32
+ 1.29.04  15.07.14  mp_prime:  safeprime32
+ 1.29.05  15.07.14  mp_numth:  s_mp_nextprime_sieve can return safe primes
+ 1.29.06  16.07.14  mp_numth:  mp_safeprime
+ 1.29.07  16.07.14  mp_calc:   _SAFEPRIME
+ 1.29.08  16.07.14  mp_conf:   MPC_SieveNextPrime: use sieve for mp_next_prime
+ 1.29.09  17.07.14  mp_numth:  s_mp_is_psp2
+ 1.29.10  17.07.14  mp_numth:  s_mp_nextprime_sieve with s_mp_is_psp2
+ 1.29.11  18.07.14  mp_numth:  mp_is_spsp with Barret reduction if s >= SBMin
+ 1.29.12  18.07.14  mp_numth:  mp_rand_prime with mp_safeprime for pt_safe type
+
+
+ 1.30.00  29.07.14  mp_numth:  Improved s_mp_sqrtmodpk for k a power of 2
+ 1.30.01  03.08.14  mp_pfu:    mp_holf: Hart's OneLineFactor
+                    pfdu:      uses mp_holf, default Fermat count set to 512
+ 1.30.02  16.08.14  mp_real:   Delete superfluous second s_mpf_ldx(a) in mpf_exp
+ 1.30.03  11.09.14  mp_numth:  Improved s_mp_cbrtmodpk for k a power of 2
+ 1.30.04  12.09.14  (some)     Updated URLs/Refs in mp_base, mp_numth, mp_prime, mp_real
+ 1.30.05  20.09.14  mp_numth:  mp_is_power_modpk
+ 1.30.06  21.09.14  mp_numth:  s_mp_nroot_modp
+ 1.30.07  21.09.14  mp_numth:  s_mp_nroot_modpk
+ 1.30.08  22.09.14  mp_numth:  s_mp_nroot_modpq
+ 1.30.09  25.09.14  mp_numth:  fixed mp_is_power_modpk with n: mp_int
+ 1.30.10  27.09.14  mp_base:   mp_random
+ 1.30.11  27.09.14  mp_calc:   _RANDOM uses mp_random
+ 1.30.12  28.09.14  mp_numth:  mp_safeprime_ex
+ 1.30.13  28.09.14  mp_prime:  is_primepower32
+ 1.30.14  29.09.14  mp_numth:  Improved mp_perm
+ 1.30.15  29.09.14  mp_numth:  Check/handle n<0 in mp_fact
+ 1.30.16  30.09.14  mp_base:   Reintroduced mulmod32 function
+ 1.30.17  30.09.14  mp_prime:  dlog32
+ 1.30.18  01.10.14  mp_prime:  dlog32_ex, expanded and tuned version
+ 1.30.19  02.10.14  mp_calc:   Keep some compilers happy and initialize tl := 0
+ 1.30.20  03.10.14  mp_prime:  is_primroot32
+ 1.30.21  03.10.14  mp_base:   mlinsolve32
+ 1.30.22  04.10.14  mp_prime:  dlog32/ex without safe prime requirement
+
+
+ 1.31.00  17.10.14  mp_numth:  small change in s_mp_is_pth_power
+ 1.31.01  05.11.14  mp_numth:  Fix/extend mp_dfact for n<0
+ 1.31.02  05.11.14  mp_calc:   dfact for n=-1, -3
+ 1.31.03  22.11.14  mp_numth:  Extended s_mp_nroot_modp
+ 1.31.04  24.11.14  mp_cmplx:  mpc_agm1
+ 1.31.05  25.11.14  mp_cmplx:  mpc_agm
+
+
+ 1.32.00  13.01.15  mp_types:  Turn off unreachable code warnings for FPC 2.7.1 only
+ 1.32.01  02.03.15  mp_conf:   FPC3x adjustment
+ 1.32.02  03.03.15  mp_numth:  Exception strings corrected in mp_cbrtmod3k, mp_cbrtmod_ex
+ 1.32.03  03.03.15  mp_conf:   Long-used MPC_ACCEPTBIAS listed
+ 1.32.04  09.04.15  mp_real:   BIT16-compatibility functions mpf_adecimal, mpf_adecimal_alt
+
+ 1.33.00  09.06.15  mp_rsa:    moved some mp_clear[x] into success blocks
+ 1.33.01  11.08.16  mp_calc:   fix error for JACOBI
+ 1.33.02  08.09.16  mp_prime:  is_Carmichael32
+ 1.33.03  08.09.16  mp_calc:   _ISCARMICHAEL, function names now string[12]
+ 1.33.04  13.09.16  pfdu:      Print factors/check only if trace is true
+ 1.33.05  14.09.16  mp_numth:  Allow n > p-1 in s_mp_nroot_modp
+ 1.33.06  09.10.16  mp_cmplx:  mpc_exp2, mpc_exp10
+ 1.33.07  13.10.16  mp_cmplx:  fix arg check in mpc_agm1
+ 1.33.08  14.10.16  mp_cmplx:  mpc_coth without vers()
+ 1.33.09  14.10.16  mp_cmplx:  mpc_ln1p
+ 1.33.10  15.10.16  mp_cmplx:  mpc_expm1
+
+ 1.34.00  09.12.16  mp_numth:  mp_is_pcarmichael/ex
+ 1.34.01  09.12.16  mp_calc:   _ISCARMICHAEL uses mp_is_pcarmichael
+ 1.34.02  08.05.17  mp_rsa:    update some broken links
+                    t_calc:    time hint for CPUARM in help
+
+ 1.35.00  25.07.17  mp_numth:  mp_fact: check n > MaxFact
+ 1.35.01  26.07.17  mp_numth:  mp_fact_swing
+ 1.35.02  26.07.17  mp_numth:  mp_swing
+ 1.35.03  26.07.17  mp_calc:   _SWING
+ 1.35.04  26.07.17  t_calc:    command hints: swing, BIT16: mem/pack
+ 1.35.05  26.07.17  mp_real:   From fdamsupp: mpf_arccosd, mpf_arccotcd, mpf_arccotd,
+                               mpf_arcsind, mpf_arctand, mpf_cbrt, mpf_cosd,
+                               mpf_cospi, mpf_cotd, mpf_deg2rad, mpf_rad2deg,
+                               mpf_rem,2pi, mpf_sind, mpf_sinpi, mpf_tand, mpf_tanpi
+ 1.35.06  27.07.17  mp_real:   Temp. var with increased precision in mpf_cbrt
+ 1.35.07  31.07.17  mp_types:  No threadvar for FPC1 / Win32
+
+ 1.36.00  10.09.17  mp_numth:  mp_is_psp
+ 1.36.01  11.09.17  mp_numth:  mp_is_psp_d
+ 1.36.02  11.07.17  mp_calc:   _PSP
+ 1.36.03  11.07.17  t_calc:    Extended help with ??
+ 1.36.04  12.09.17  mp_numth:  mp_nextpower/_ex
+ 1.36.05  12.09.17  mp_calc:   _NEXTPOWER
+ 1.36.06  12.09.17  mp_base:   Fix obscure 16-Bit (MSDOS) FP error in s_mp_n_root2
+ 1.36.07  18.09.17  mp_numth:  mp_digitsum
+ 1.36.08  18.09.17  mp_calc:   _DIGITSUM
+ 1.36.09  21.09.17  mp_numth:  s_mp_is_lpsp with Selfridge A parameters
+ 1.36.10  22.09.17  mp_numth:  Rename existing strong Lucas test to mp_is_slpsp_alt
+ 1.36.11  22.09.17  mp_numth:  mp_is_lpsp, mp_is_slpsp with s_mp_is_lpsp
+ 1.36.12  29.09.17  t_r/calc:  radix command
+
+ 1.37.00  14.10.17  mp_calc:   input in radix from (2..MaxRadix)
+ 1.37.01  15.10.17  mp_numth:  mp_reverse
+ 1.37.02  07.05.18  (some):    Fixed some broken links
+ 1.37.03  10.05.18  mp_real:   mpf_cell1
+ 1.37.04  10.05.18  mp_real:   mpf_cell2
+ 1.37.05  10.05.18  mp_rcalc:  _EE, _EK
+ 1.37.06  10.05.18  mp_base:   Renamed mp_base.mp_reverse to s_mp_reverse
+ 1.35.07  11.05.18  mp_real:   mpf_ccell1, mpf_ccell12, mpf_ccell2 for |k| > 1
+ 1.35.08  11.05.18  mp_real:   improved mpf_cell2
+ 1.37.09  11.05.18  mp_rcalc:  adjusted ranges for elliptic integrals
+ 1.37.10  11.05.18  mp_rcalc:  _ASS
+ 1.37.11  16.05.18  mp_calc:   Avoid implicit string conversion warning
+ 1.37.12  14.06.18  mp_ratio:  mp_reverse changed to s_mp_reverse; fixed s_mpr_cmp_mag if a=0
+
+ 1.38.00  20.06.18  mp_rcalc:  Soft ASX for EXT64
+ 1.38.01  25.06.18  mp_base:   frexpx/ldxepx only if not EXT64
+ 1.38.02  25.06.18  mp_real:   mpf_??_ext changed to mpf_??_dbl
+ 1.38.03  25.06.18  mp_prime:  prime32 uses doubles
+ 1.38.04  25.06.18  mp_rcalc:  Some ??_ext -> ??_dbl
+ 1.38.05  26.06.18  mp_base:   s_mp_set_ext ->  s_mp_set_dbl, s_mp_ln/log2 return double
+ 1.38.06  26.06.18  mp_real:   separate functions for mpf_add/sub/mul/div_ext
+ 1.38.07  26.06.18  mp_cmplx:  mpc_??_ext changed to mpc_??_dbl
+ 1.38.08  27.06.18  mp_real:   const PINC for default precision elevation
+ 1.38.09  28.06.18  mp_real:   some manual precision adjustments
+ 1.38.10  17.07.18  pfdu:      Lim240
+
+ 1.39.00  11.08.18  mp_conf:   MPC_NO_EXECPTIONS
+ 1.39.01  13.10.18  mp_rcalc:  succd/s/x, predd/s/x
+ 1.39.00  12.11.18  mp_real:   fix copy/paste bug in mpf_sinhcosh
+ 1.39.03  12.11.18  mp_types:  Error MP_PRECISION = -9;  {if float bit precision too large}
+ 1.39.04  12.11.18  mp_real:   Error MP_PRECISION in s_mpf_mod_pi2k instead of assert
+ 1.39.05  12.11.18  mp_cmplx:  mpc_log10
+ 1.39.06  13.11.18  mp_cmplx:  mpc_is_ia
+ 1.39.07  13.11.18  mp_cmplx:  fix mpc_ln1p  for small imaginary a
+ 1.39.08  14.11.18  mp_cmplx:  fix mpc_expm1 for small imaginary a
+ 1.39.09  14.11.18  mp_cmplx:  fix mpc_arctanh for real |a| > 1
+ 1.39.10  16.11.18  mp_ccalc:  New unit: Parse and evaluate mp_complex expressions
+ 1.39.11  16.11.18  mp_ccalc:  mpc_arctanh: adjust sign on the branch cut
+ 1.39.12  16.11.18  mp_real:   fix subtle bug for mpf_arctan2(y,0)
+

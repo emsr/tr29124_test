@@ -16,3 +16,9 @@ plot [-1.0:1.0][-3.0:3.0] \
                       "" index 1 using 1:7 with lines title "V'(x)", \
                       "" index 1 using 1:8 with lines title "W(x)", \
                       "" index 1 using 1:9 with lines title "W'(x)"
+
+set term push
+set term png
+set output "chebyshev.png"
+replot
+set term pop

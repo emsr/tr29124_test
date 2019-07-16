@@ -23,3 +23,9 @@ plot [0.0:200.0][-20.0:20.0] \
                   "" index 8 using 1:2 with lines ls 9 title "R_8({/Symbol l}(x); a, b, c, d)", \
                   "" index 9 using 1:2 with lines ls 10 title "R_9({/Symbol l}(x); a, b, c, d)", \
                   "" index 10 using 1:2 with lines ls 11 title "R_{10}({/Symbol l}(x); a, b, c, d)"
+
+set term push
+set term png
+set output "racah.png"
+replot
+set term pop
