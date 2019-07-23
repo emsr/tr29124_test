@@ -23,7 +23,6 @@
     {
       using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp, _Tzeta>;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      using _Cmplx = std::complex<_Real>;
 
       auto __c
 	= [__nu](std::size_t __k)
@@ -107,7 +106,6 @@
     {
       using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
       using _Real = std::__detail::__num_traits_t<_Val>;
-      using _Cmplx = std::complex<_Real>;
 
       const auto __zeta = _Real{1} / (_Real{2} * __z);
       if constexpr (!__gnu_cxx::is_complex_v<_Tp>)
@@ -118,11 +116,11 @@
 
 
   /**
-   * Compute rations of Hankel functions using the J-fraction.
+   * Compute ratios of Hankel functions using the J-fraction.
    */
   template<typename _Tnu, typename _Tp>
     std::complex<std::__detail::__num_traits_t<
-		__gnu_cxx::fp_promote_t<_Tnu, _Tp>>>
+		 __gnu_cxx::fp_promote_t<_Tnu, _Tp>>>
     __cyl_hankel_ratio_j_frac(_Tnu __nu, _Tp __z, _Tp __sgn)
     {
       using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
@@ -176,14 +174,15 @@
 
   /**
    * Return the modified Bessel function ratio of the second kind
-   * from the J-fraction rations of Hankel functions.
+   * from the J-fraction ratios of Hankel functions.
    */
-  template<typename _Tnu, typename _Tp>
-    inline std::complex<std::__detail::__num_traits_t<
-			__gnu_cxx::fp_promote_t<_Tnu, _Tp>>>
+  template<typename _Tnu, typename _Tp,
+	   typename _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>>
+    std::conditional_t<__gnu_cxx::is_complex_v<_Val>,
+			std::complex<std::__detail::__num_traits_t<_Val>>,
+			_Val>
     __cyl_bessel_k_ratio_j_frac(_Tnu __nu, _Tp __z)
     {
-      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
       using _Real = std::__detail::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
       const auto _S_i = _Cmplx{0, 1};
@@ -204,6 +203,49 @@
 
 
 template<typename _Tp>
+  std::complex<_Tp>
+  cyl_bessel_j_cf2(_Tp __nu, _Tp __x)
+  {
+    const auto _S_i = std::complex<_Tp>{0, 1};
+    const auto _S_fp_min = __gnu_cxx::__sqrt_min(__nu);
+    const auto _S_eps = __gnu_cxx::__epsilon(__x);
+    constexpr int _S_max_iter = 15000;
+
+    //const int __n = std::max(0, static_cast<int>(__nu - __x + _Tp{1.5L}));
+    //const auto __mu = __nu - _Tp(__n);
+    const auto __mu = __nu;
+    const auto __mu2 = __mu * __mu;
+    const auto __xi = _Tp{1} / __x;
+    auto __a = _Tp{0.25L} - __mu2;
+    auto __pq = std::complex<_Tp>(-__xi / _Tp{2}, _Tp{1});
+    auto __b = std::complex<_Tp>(_Tp{2} * __x, _Tp{2});
+    auto __fact = __a * __xi / std::norm(__pq);
+    auto __c = __b + _S_i * __fact * std::conj(__pq);
+    auto __d = std::conj(__b) / std::norm(__b);
+    auto __dl = __c * __d;
+    __pq *= __dl;
+    int __i;
+    for (__i = 2; __i <= _S_max_iter; ++__i)
+      {
+	__a += _Tp(2 * (__i - 1));
+	__b += _S_i * _Tp{2};
+	__d = __a * __d + __b;
+	if (std::abs(__d) < _S_fp_min)
+	  __d = _S_fp_min;
+	__fact = __a / std::norm(__c);
+	__c = __b + __fact * std::conj(__c);
+	if (std::abs(__c) < _S_fp_min)
+	  __c = _S_fp_min;
+	__d = std::conj(__d) / std::norm(__d);
+	__dl = __c * __d;
+	__pq *= __dl;
+	if (std::abs(__dl - _Tp{1}) < _S_eps)
+	  break;
+      }
+    return __pq;
+  }
+
+template<typename _Tp>
   void
   test_cyl_hankel_ratio()
   {
@@ -212,8 +254,19 @@ template<typename _Tp>
     auto wc = 4 + 2 * wr;
     using Ret = decltype(__cyl_hankel_1_ratio_j_frac(_Tp{1}, _Tp{1}));
 
+    std::vector<_Tp> nu_vec{_Tp{0}, _Tp{1}/_Tp{3}, _Tp{1}/_Tp{2}, _Tp{2}/_Tp{3},
+			    _Tp{1}, _Tp{2}, _Tp{5}, _Tp{10}, _Tp{20}, _Tp{50}, _Tp{100}};
+
     std::cout << "\n\nRatio H^{(1)}_{\\nu+1}(z) / H^{(1)}_{\\nu}(z)\n";
-    for (auto nu : {_Tp{1}/_Tp{3}, _Tp{1}/_Tp{2}, _Tp{2}/_Tp{3}, _Tp{1}, _Tp{2}, _Tp{5}})
+    std::cout << ' ' << std::setw(wr) << "z"
+	      << ' ' << std::setw(wc) << "ratio"
+	      << ' ' << std::setw(wc) << "from hankel&deriv"
+	      << ' ' << std::setw(wc) << "from hankels"
+	      << ' ' << std::setw(wc) << "old_cf2"
+	      << ' ' << std::setw(wc) << "nu / z - old_cf2"
+	      << ' ' << std::setw(wr) << "delta_r / r"
+	      << '\n';
+    for (auto nu : nu_vec)
       {
 	std::cout << "\n nu = " << std::setw(wr) << nu << '\n';
 	for (int i = 1; i <= 20; ++i)
@@ -235,16 +288,30 @@ template<typename _Tp>
 	    const auto h1nup1 = __gnu_cxx::cyl_hankel_1(nu + 1, z);
 	    const auto h1nu = __gnu_cxx::cyl_hankel_1(nu, z);
 	    const auto s2 = h1nup1 / h1nu;
+	    const auto cf2 = cyl_bessel_j_cf2(nu, z);
+	    const auto cf2x = nu / z - cf2;
+	    const auto test = std::abs((r - cf2x) / cf2x);
 	    std::cout << ' ' << std::setw(wr) << z
 		      << ' ' << std::setw(wc) << r
 		      << ' ' << std::setw(wc) << s1
 		      << ' ' << std::setw(wc) << s2
+		      << ' ' << std::setw(wc) << cf2
+		      << ' ' << std::setw(wc) << cf2x
+		      << ' ' << std::setw(wr) << test
 		      << '\n';
 	  }
       }
 
     std::cout << "\n\nRatio H^{(2)}_{\\nu+1}(z) / H^{(2)}_{\\nu}(z)\n";
-    for (auto nu : {_Tp{1}/_Tp{3}, _Tp{1}/_Tp{2}, _Tp{2}/_Tp{3}, _Tp{1}, _Tp{2}, _Tp{5}})
+    std::cout << ' ' << std::setw(wr) << "z"
+	      << ' ' << std::setw(wc) << "ratio"
+	      << ' ' << std::setw(wc) << "from hankel&deriv"
+	      << ' ' << std::setw(wc) << "from hankels"
+	      << ' ' << std::setw(wc) << "old_cf2"
+	      << ' ' << std::setw(wc) << "nu / z - old_cf2*"
+	      << ' ' << std::setw(wr) << "delta_r / r"
+	      << '\n';
+    for (auto nu : nu_vec)
       {
 	std::cout << "\n nu = " << std::setw(wr) << nu << '\n';
 	for (int i = 1; i <= 20; ++i)
@@ -266,16 +333,27 @@ template<typename _Tp>
 	    const auto h2nup1 = __gnu_cxx::cyl_hankel_2(nu + 1, z);
 	    const auto h2nu = __gnu_cxx::cyl_hankel_2(nu, z);
 	    const auto s2 = h2nup1 / h2nu;
+	    const auto cf2 = cyl_bessel_j_cf2(nu, z);
+	    const auto cf2x = nu / z - std::conj(cf2);
+	    const auto test = std::abs((r - cf2x) / cf2x);
 	    std::cout << ' ' << std::setw(wr) << z
 		      << ' ' << std::setw(wc) << r
 		      << ' ' << std::setw(wc) << s1
 		      << ' ' << std::setw(wc) << s2
+		      << ' ' << std::setw(wc) << cf2
+		      << ' ' << std::setw(wc) << cf2x
+		      << ' ' << std::setw(wr) << test
 		      << '\n';
 	  }
       }
 
     std::cout << "\n\nRatio K_{\\nu+1}(x) / K_{\\nu}(x)\n";
-    for (auto nu : {_Tp{1}/_Tp{3}, _Tp{1}/_Tp{2}, _Tp{2}/_Tp{3}, _Tp{1}, _Tp{2}, _Tp{5}})
+    std::cout << ' ' << std::setw(wr) << "z"
+	      << ' ' << std::setw(wc) << "calculated ratio"
+	      << ' ' << std::setw(wc) << "bessel function"
+	      << ' ' << std::setw(wr) << "delta_r / r"
+	      << '\n';
+    for (auto nu : nu_vec)
       {
 	std::cout << "\n nu = " << std::setw(wr) << nu << '\n';
 	for (int i = 1; i <= 20; ++i)
@@ -297,6 +375,7 @@ template<typename _Tp>
 	    std::cout << ' ' << std::setw(wr) << z
 		      << ' ' << std::setw(wc) << r
 		      << ' ' << std::setw(wc) << s
+		      << ' ' << std::setw(wr) << std::abs((r - s) / s)
 		      << '\n';
 	  }
       }
