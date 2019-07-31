@@ -89,8 +89,8 @@
     {
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       constexpr int _S_max_iter = 100;
-      constexpr auto _S_gamma_e = __gnu_cxx::math::__gamma_e_v<_Tp>;
-      constexpr auto _S_pi_4 = __gnu_cxx::math::__pi_quarter_v<_Tp>;
+      constexpr auto _S_gamma_e = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
+      constexpr auto _S_pi_4 = __gnu_cxx::numbers::__pi_quarter_v<_Tp>;
       constexpr auto _S_inf = std::numeric_limits<_Tp>::infinity();
 
       if (__x == _Tp{0})
@@ -134,8 +134,8 @@
     {
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       constexpr int _S_max_iter = 100;
-      constexpr auto _S_gamma_e = __gnu_cxx::math::__gamma_e_v<_Tp>;
-      constexpr auto _S_pi_4 = __gnu_cxx::math::__pi_quarter_v<_Tp>;
+      constexpr auto _S_gamma_e = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
+      constexpr auto _S_pi_4 = __gnu_cxx::numbers::__pi_quarter_v<_Tp>;
 
       if (__x == _Tp{0})
 	return std::make_pair(-_S_pi_4, _Tp{0});
@@ -241,8 +241,8 @@
 
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       constexpr int _S_max_iter = 100;
-      constexpr auto _S_gamma_e = __gnu_cxx::math::__gamma_e_v<_Tp>;
-      constexpr auto _S_pi_4 = __gnu_cxx::math::__pi_quarter_v<_Tp>;
+      constexpr auto _S_gamma_e = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
+      constexpr auto _S_pi_4 = __gnu_cxx::numbers::__pi_quarter_v<_Tp>;
       constexpr auto _S_inf = std::numeric_limits<_Tp>::infinity();
 
       if (__x == _Tp{0})
@@ -440,8 +440,8 @@ template<typename _Tp>
 	      //<< std::setw(w) << "bei'(x)"
 	      << '\n';
     const auto del = _Tp{1}/_Tp{10};
-    const auto ph = std::polar(_Tp{1}, 3 * __gnu_cxx::math::__pi_quarter_v<_Tp>);
-    const auto pi = __gnu_cxx::math::__pi_v<_Tp>;
+    const auto ph = std::polar(_Tp{1}, 3 * __gnu_cxx::numbers::__pi_quarter_v<_Tp>);
+    const auto pi = __gnu_cxx::numbers::__pi_v<_Tp>;
     for (int i = 0; i <= 200; ++i)
       {
 	const auto x = del * i;

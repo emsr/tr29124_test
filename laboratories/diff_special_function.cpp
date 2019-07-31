@@ -35,7 +35,7 @@ main()
     using _TpGSL = double;
     using Real = double;
 
-    const auto _S_pi = __gnu_cxx::math::__pi_v<Real>;
+    const auto _S_pi = __gnu_cxx::numbers::__pi_v<Real>;
 
     //  Unsigned integer orders for various polynomials, harmonics, and spherical bessels.
     std::vector<unsigned int> vorder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};

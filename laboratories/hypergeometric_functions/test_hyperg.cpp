@@ -120,7 +120,7 @@
     {
       /// Find nearest z0 @f$ z_0 = e^{\plusminus i\pi/3} @f$
       using _Val = std::__detail::__num_traits_t<_Tp>;
-      constexpr auto _S_pi_3 = __gnu_cxx::math::__pi_third_v<_Val>;
+      constexpr auto _S_pi_3 = __gnu_cxx::numbers::__pi_third_v<_Val>;
       const auto __z0p = __z - std::polar(_Val{1}, +_S_pi_3);
       const auto __z0m = __z - std::polar(_Val{1}, -_S_pi_3);
       const auto __z0 = std::abs(__z0m) < std::abs(__z0p) ? __z0m : __z0p;
@@ -320,7 +320,7 @@ template<typename _Tp>
     auto w = 8 + std::cout.precision();
 
     using cmplx = std::complex<_Tp>;
-    constexpr auto _S_pi_3 = __gnu_cxx::math::__pi_third_v<_Tp>;
+    constexpr auto _S_pi_3 = __gnu_cxx::numbers::__pi_third_v<_Tp>;
     const auto z0p = std::polar(_Tp{1}, +_S_pi_3);
     const auto z0m = std::polar(_Tp{1}, -_S_pi_3);
 

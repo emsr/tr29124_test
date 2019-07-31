@@ -748,7 +748,7 @@ namespace __detail
 	      // Gamma functions in the denominator are ok.
 	      // Proceed with evaluation.
 	      const int __maxiter = 2000;
-	      const auto __psi_1 = -__gnu_cxx::math::__gamma_e_v<_Val>;
+	      const auto __psi_1 = -__gnu_cxx::numbers::__gamma_e_v<_Val>;
 	      const auto __psi_1pd = __digamma(_Val{1} + __ad);
 	      const auto __psi_apd1 = __digamma(__a + __d1);
 	      const auto __psi_bpd1 = __digamma(__b + __d1);

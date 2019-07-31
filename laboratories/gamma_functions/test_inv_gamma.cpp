@@ -14,8 +14,8 @@ template<typename _Tp>
   lgamma_scaled(_Tp a)
   {
     constexpr auto _S_ln2pi
-      = __gnu_cxx::math::__ln_2_v<_Tp>
-      + __gnu_cxx::math::__ln_pi_v<_Tp>;
+      = __gnu_cxx::numbers::__ln_2_v<_Tp>
+      + __gnu_cxx::numbers::__ln_pi_v<_Tp>;
     constexpr auto half = _Tp{1} / _Tp{2};
     return std::lgamma(a)
 	 - (a - half) * std::log(a) + a - half * _S_ln2pi;
@@ -27,8 +27,8 @@ template<typename _Tp>
   tgamma_scaled(_Tp a)
   {
     constexpr auto _S_sqrt2pi
-      = __gnu_cxx::math::__root_2_v<_Tp>
-      + __gnu_cxx::math::__root_pi_v<_Tp>;
+      = __gnu_cxx::numbers::__root_2_v<_Tp>
+      + __gnu_cxx::numbers::__root_pi_v<_Tp>;
     return std::tgamma(a) * std::pow(a, -a + _Tp{0.5}) * std::exp(a)
 	 / _S_sqrt2pi;
   }
@@ -127,8 +127,8 @@ template<typename _Tp>
   inv_gamma(_Tp a, _Tp p, _Tp q)
   {
     constexpr auto _S_giant = std::numeric_limits<_Tp>::max() / _Tp{10};
-    constexpr auto _S_sqrt_2 = __gnu_cxx::math::__root_2_v<_Tp>;
-    constexpr auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Tp>;
+    constexpr auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
+    constexpr auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
     constexpr auto _S_sqrt_2pi = _S_sqrt_2 * _S_sqrt_pi;
     bool pcase;
     _Tp porq, s;

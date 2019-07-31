@@ -372,7 +372,7 @@
     {
       using _Real = decltype(std::real(__z));
       const auto _S_eps = __gnu_cxx::__epsilon<_Real>();
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_max_iter = 1000u;
       const auto __z2 = __z * __z;
 
@@ -415,7 +415,7 @@
     __anger_weber_asymp_order(_Tp __nu, _Tp __z)
     {
       using _Real = decltype(std::real(__z));
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto __sinnp = __gnu_cxx::sin_pi(__nu);
       const auto __sinnpd2 = __gnu_cxx::sin_pi(__nu / _Tp{2});
       const auto __cosnpd2 = __gnu_cxx::cos_pi(__nu / _Tp{2});
@@ -542,7 +542,7 @@
   __cosc_pi(_Tp __x)
   {
     const auto _S_eps = __gnu_cxx::__epsilon(__x);
-    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
     if (std::abs(__x) < _Tp{100} * _S_eps)
       return _S_pi * __x / _Tp{2};
     else

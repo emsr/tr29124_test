@@ -91,7 +91,7 @@
       //using _Type = typename std::__detail::__jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome;
       using _Real = std::__detail::__num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
       const auto _S_i = _Cmplx{0, 1};
 
       const auto __lattice = std::__detail::__jacobi_lattice_t(__omega1, __omega3);
@@ -142,7 +142,7 @@
     {
       // @todo Include the arg type _Tp.
       using _Real = std::__detail::__num_traits_t<_Tp>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
       const auto __lattice = std::__detail::__jacobi_lattice_t(__omega1, __omega3);
       const auto __theta0 = std::__detail::__jacobi_theta_0_t(__lattice);
       const auto __omega_1 = __lattice.__omega_1();
@@ -271,7 +271,7 @@ template<typename _Tp>
   {
     using _Real = std::__detail::__num_traits_t<_Tp>;
     using _Cmplx = std::complex<_Real>;
-    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
 
     std::cout.precision(__gnu_cxx::__digits10<_Real>());
     auto w = std::cout.precision() + 8;

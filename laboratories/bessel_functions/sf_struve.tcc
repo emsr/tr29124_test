@@ -39,7 +39,7 @@ namespace __detail
 
       constexpr int _S_max_iter = 1000;
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__x));
-      const auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Tp>;
+      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
 
       auto __x2 = __x / _Val{2};
       auto __xx4 = _Tp(__sign) * __x2 * __x2;
@@ -83,7 +83,7 @@ namespace __detail
 
       constexpr int _S_max_iter = 1000;
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__x));
-      const auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Tp>;
+      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
 
       auto __x2 = __x / _Val{2};
       auto __xx4 = _Val(__sign) * __x2 * __x2;

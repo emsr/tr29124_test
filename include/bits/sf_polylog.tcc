@@ -167,7 +167,7 @@ namespace __detail
     __clamp_pi(std::complex<_Tp> __z)
     {
       using _Real = __num_traits_t<_Tp>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_i2pi = std::complex<_Tp>{0, _Tp{2} * _S_pi};
       while (__z.imag() > _S_pi)
 	__z -= _S_i2pi;
@@ -181,7 +181,7 @@ namespace __detail
     __clamp_0_m2pi(std::complex<_Tp> __z)
     {
       using _Real = __num_traits_t<_Tp>;
-      const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Real>;
+      const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Real>;
       const auto _S_i2pi = std::complex<_Tp>{0, _S_2pi};
       while (__z.imag() > _Tp{0})
 	__z = std::complex<_Tp>(__z.real(), __z.imag() - _S_2pi);
@@ -215,9 +215,9 @@ namespace __detail
     __polylog_exp_pos(unsigned int __s, std::complex<_Tp> __w)
     {
       using _Real = __num_traits_t<_Tp>;
-      const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Real>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
-      const auto _S_pipio6 = __gnu_cxx::math::__pi_sqr_div_6_v<_Real>;
+      const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
+      const auto _S_pipio6 = __gnu_cxx::numbers::__pi_sqr_div_6_v<_Real>;
       std::complex<_Tp> __res = __riemann_zeta<_Tp>(__s);
       auto __wk = __w;
       auto __fact = _Tp{1};
@@ -291,9 +291,9 @@ namespace __detail
     __polylog_exp_pos(unsigned int __s, _Tp __w)
     {
       using _Real = __num_traits_t<_Tp>;
-      const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
-      const auto _S_pipio6 = __gnu_cxx::math::__pi_sqr_div_6_v<_Tp>;
+      const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pipio6 = __gnu_cxx::numbers::__pi_sqr_div_6_v<_Tp>;
       auto __res = __riemann_zeta<_Tp>(__s);
       auto __wk = __w;
       auto __fact = _Tp{1};
@@ -363,8 +363,8 @@ namespace __detail
     __polylog_exp_neg(_Tp __s, std::complex<_Tp> __w)
     {
       const auto _S_i = std::complex<_Tp>{0, 1};
-      const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Tp>;
+      const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
       // Basic general loop, but s is a negative quantity here
       // FIXME Large s makes problems.
       // The series should be rearrangeable so that we only need
@@ -511,9 +511,9 @@ namespace __detail
     std::complex<_Tp>
     __polylog_exp_pos(_Tp __s, std::complex<_Tp> __w)
     { // positive s
-      const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Tp>;
+      const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
       std::complex<_Tp> __res = __riemann_zeta(__s);
       auto __wk = __w;
       const auto __phase = __polar_pi(_Tp{1}, __s / _Tp{2});
@@ -598,7 +598,7 @@ namespace __detail
     std::complex<_Tp>
     __polylog_exp_asymp(_Tp __s, std::complex<_Tp> __w)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
       // wgamma = w^{s-1} / Gamma(s)
       auto __wgamma = std::pow(__w, __s - _Tp{1}) * __gamma_reciprocal(__s);
       auto __res = std::complex<_Tp>(_Tp{0}, -_S_pi) * __wgamma;
@@ -675,9 +675,9 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Real>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Real>;
+      const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
       const auto _S_max_asymp = _Tp{5};
       const auto __rw = __w.real();
       const auto __iw = __w.imag();
@@ -736,8 +736,8 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
       const auto _S_max_asymp = _Tp{5};
       if (__gnu_cxx::__fp_is_zero(__w))
 	{
@@ -786,9 +786,9 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Real>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Real>;
+      const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
       const auto _S_max_asymp = _Tp{5};
       if ((((-__s) & 1) == 0) && __gnu_cxx::__fp_is_imag(__w))
 	{
@@ -830,8 +830,8 @@ namespace __detail
     std::complex<_Tp>
     __polylog_exp_neg_int(int __s, _Tp __w)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
       const auto _S_max_asymp = _Tp{5};
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5}))
 	// Choose exponentially converging series.
@@ -857,9 +857,9 @@ namespace __detail
     std::complex<_Tp>
     __polylog_exp_pos_real(_Tp __s, std::complex<_Tp> __w)
     {
-      const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Tp>;
+      const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
       const auto _S_max_asymp = _Tp{5};
       const auto __rw = __w.real();
       const auto __iw = __w.imag();
@@ -897,8 +897,8 @@ namespace __detail
     std::complex<_Tp>
     __polylog_exp_pos_real(_Tp __s, _Tp __w)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
       const auto _S_max_asymp = _Tp{5};
       if (__gnu_cxx::__fp_is_zero(__w))
 	{
@@ -931,8 +931,8 @@ namespace __detail
     std::complex<_Tp>
     __polylog_exp_neg_real(_Tp __s, std::complex<_Tp> __w)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
       const auto _S_max_asymp = _Tp{5};
       const auto __rw = __w.real();
       const auto __iw = __w.imag();
@@ -962,8 +962,8 @@ namespace __detail
     std::complex<_Tp>
     __polylog_exp_neg_real(_Tp __s, _Tp __w)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
       const auto _S_max_asymp = _Tp{5};
       if (__w < -(_S_pi_2 + _S_pi / _Tp{5}))
 	// Choose exponentially converging series.
@@ -1099,7 +1099,7 @@ namespace __detail
     {
       using _Cmplx = std::complex<_Tp>;
       const auto _S_i = _Cmplx{0, 1};
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
       if (std::isnan(__s) || std::isnan(__z))
 	return __gnu_cxx::__quiet_NaN(__s);
       else if (__gnu_cxx::__fp_is_zero(__z))
@@ -1123,10 +1123,10 @@ namespace __detail
     __hurwitz_zeta_polylog(_Tp __s, std::complex<_Tp> __a)
     {
       using _Cmplx = std::complex<_Tp>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
-      const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
       const auto _S_i2pi = _Cmplx{0, _S_2pi};
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Tp>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
       if ((__a.imag() >= _Tp{0}
 		&& (__a.real() >= _Tp{0} && __a.real() <  _Tp{1}))
        || (__a.imag() <  _Tp{0}
@@ -1193,7 +1193,7 @@ namespace __detail
 	    return _Tp{0};
 	  else
 	    {
-	      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+	      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
 	      const auto __sc = _Tp{1} - __s;
 	      const auto __p2 = std::pow(_Tp{2}, -__sc);
 	      return _Tp{2} * (_Tp{1} - __p2) / (_Tp{1} - _Tp{2} * __p2)
@@ -1464,7 +1464,7 @@ namespace __detail
       else
 	{
 	  const auto _S_i = std::complex<_Tp>{0, 1};
-	  const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+	  const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
 	  return -std::real(__polylog_exp(__s + _Sp{1}, __x + _S_i * _S_pi));
 	}
     }

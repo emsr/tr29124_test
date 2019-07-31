@@ -69,7 +69,7 @@ namespace __detail
     __gnu_cxx::fp_promote_t<_Tp>
     __sinc_pi(_Tp __x)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
       if (std::isnan(__x))
         return __gnu_cxx::__quiet_NaN(__x);
       else if (std::abs(__x) == __gnu_cxx::__infinity(__x))
@@ -112,7 +112,7 @@ namespace __detail
     __gnu_cxx::fp_promote_t<_Tp>
     __sinhc_pi(_Tp __x)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
       if (std::isnan(__x))
         return __gnu_cxx::__quiet_NaN(__x);
       else

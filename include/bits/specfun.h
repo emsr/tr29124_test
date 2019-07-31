@@ -61,13 +61,13 @@
 #  include <bits/numeric_limits.h>
 #  include <bits/sf_prime.tcc>
 #  include <bits/sf_trig.tcc>
+#  include <bits/sf_cardinal.tcc>
 #  include <bits/sf_bernoulli.tcc>
 #  include <bits/sf_gamma.tcc>
 #  include <bits/sf_euler.tcc>
 #  include <bits/sf_stirling.tcc>
 #  include <bits/sf_bessel.tcc>
 #  include <bits/sf_beta.tcc>
-#  include <bits/sf_cardinal.tcc>
 #  include <bits/sf_chebyshev.tcc>
 #  include <bits/sf_coulomb.tcc>
 #  include <bits/sf_dawson.tcc>

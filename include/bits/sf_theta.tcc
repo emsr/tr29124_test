@@ -57,7 +57,7 @@ namespace __detail
       using _Real = __num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       auto __sum = std::exp(-__nu * __nu / __x);
       auto __sign = _Tp{-1};
       for (auto __k = 1; __k < 20; ++__k)
@@ -90,7 +90,7 @@ namespace __detail
       using _Real = __num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       auto __sum = std::exp(-__nu * __nu / __x);
       for (auto __k = 1; __k < 20; ++__k)
 	{
@@ -121,7 +121,7 @@ namespace __detail
       using _Real = __num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       auto __sum = _Tp{0};
       for (auto __k = 0; __k < 20; ++__k)
 	{
@@ -151,7 +151,7 @@ namespace __detail
       using _Real = __num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       auto __sum = _Tp{0};
       for (auto __k = 1; __k < 20; ++__k)
 	{
@@ -184,7 +184,7 @@ namespace __detail
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
 
       if (std::isnan(__nu) || std::isnan(__x))
 	return _S_NaN;
@@ -212,7 +212,7 @@ namespace __detail
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
 
       if (std::isnan(__nu) || std::isnan(__x))
 	return _S_NaN;
@@ -240,7 +240,7 @@ namespace __detail
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
 
       if (std::isnan(__nu) || std::isnan(__x))
 	return _S_NaN;
@@ -268,7 +268,7 @@ namespace __detail
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
 
       if (std::isnan(__nu) || std::isnan(__x))
 	return _S_NaN;
@@ -352,7 +352,7 @@ namespace __detail
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Real>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
 
       if (std::isnan(__k) || std::isnan(__x))
 	return _S_NaN;
@@ -382,7 +382,7 @@ namespace __detail
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Real>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
 
       if (std::isnan(__k) || std::isnan(__x))
 	return _S_NaN;
@@ -411,7 +411,7 @@ namespace __detail
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Real>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
 
       if (std::isnan(__k) || std::isnan(__x))
 	return _S_NaN;
@@ -442,7 +442,7 @@ namespace __detail
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Real>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
 
       if (std::isnan(__k) || std::isnan(__x))
 	return _S_NaN;
@@ -579,7 +579,7 @@ namespace __detail
       __arg_t
       __reduce(const _Cmplx& __z) const;
 
-      static constexpr auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      static constexpr auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       _Tp_Omega1 _M_omega_1;
       _Tp_Omega3 _M_omega_3;
     };
@@ -592,7 +592,7 @@ namespace __detail
     __jacobi_lattice_t<_Tp_Omega1, _Tp_Omega3>::__ellnome() const
     {
       const auto _S_i = _Cmplx{0, 1};
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       if constexpr (__gnu_cxx::is_complex_v<_Tp_Nome>)
 	return std::exp(_S_i * _S_pi * this->__tau().__val);
       else
@@ -614,7 +614,7 @@ namespace __detail
     __jacobi_lattice_t<_Tp1, _Tp3>::
     __reduce(const typename __jacobi_lattice_t<_Tp1, _Tp3>::_Cmplx& __z) const
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
 
       const auto __tau = this->__tau().__val;
       const auto __tau_r = std::real(__tau);
@@ -719,7 +719,7 @@ namespace __detail
       this->th3pp = _Real{-8} * this->th3;
       this->th4pp = _Real{8} * this->th4;
 
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       this->eta_1 = -_S_pi * _S_pi * this->th1ppp
 		  / _Type{12} / __lattice.__omega_1() / this->th1p;
       const auto _S_i = _Cmplx{0, 1};
@@ -799,7 +799,7 @@ namespace __detail
     __weierstrass_roots_t(const __jacobi_theta_0_t<_Tp1, _Tp3>& __theta0,
 			  _Tp1 __omega_1)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
 
       const auto __th22 = __theta0.th2 * __theta0.th2;
       const auto __th24 = __th22 * __th22;
@@ -982,7 +982,7 @@ namespace __detail
       using _Cmplx = std::complex<_Real>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_i = std::complex<_Real>{0, 1};
       constexpr auto _S_q_min = _Real{0.001L};
       constexpr auto _S_q_max = _Real{0.95e-1L};
@@ -1178,7 +1178,7 @@ namespace __detail
       using _Cmplx = std::complex<_Real>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_i = std::complex<_Real>{0, 1};
       constexpr auto _S_q_min = _Real{0.001L};
       constexpr auto _S_q_max = _Real{0.95e-1L};
@@ -1367,7 +1367,7 @@ namespace __detail
       using _Cmplx = std::complex<_Real>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_i = std::complex<_Real>{0, 1};
       constexpr auto _S_q_min = _Real{0.001L};
       constexpr auto _S_q_max = _Real{0.95e-1L};
@@ -1553,7 +1553,7 @@ namespace __detail
       using _Cmplx = std::complex<_Real>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_i = std::complex<_Real>{0, 1};
       constexpr auto _S_q_min = _Real{0.001L};
       constexpr auto _S_q_max = _Real{0.95e-1L};

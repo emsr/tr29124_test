@@ -51,7 +51,7 @@ namespace __detail
       const auto _S_max_iter = 100;
       const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__t);
       const auto _S_fp_min = __gnu_cxx::__lim_min(__t);
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Tp>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
 
       // Evaluate Ci and Si by Lentz's modified method of continued fractions.
       std::complex<_Tp> __b(_Tp{1}, __t);
@@ -94,7 +94,7 @@ namespace __detail
       const auto _S_max_iter = 100;
       const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__t);
       const auto _S_fp_min = __gnu_cxx::__lim_min(__t);
-      const auto _S_gamma_e = __gnu_cxx::math::__gamma_e_v<_Tp>;
+      const auto _S_gamma_e = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
 
       // Evaluate Ci and Si by series simultaneously.
       _Tp __sumc(0), __sums(0);
@@ -157,7 +157,7 @@ namespace __detail
     {
       const auto _S_max_iter = 100;
       const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__t);
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Tp>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
 
       auto __invt = _Tp{1} / __t;
       auto __term = _Tp{1}; // 0!

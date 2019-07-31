@@ -79,8 +79,8 @@ namespace __detail
       const auto __cos2th = __x / __eta;
       const auto __sin2th = _Tp{1} - __cos2th;
       const auto __th = std::acos(std::sqrt(__cos2th));
-      const auto __pre_h = __gnu_cxx::math::__pi_half_v<_Tp>
-			* __gnu_cxx::math::__pi_half_v<_Tp>
+      const auto __pre_h = __gnu_cxx::numbers::__pi_half_v<_Tp>
+			* __gnu_cxx::numbers::__pi_half_v<_Tp>
 			* __eta * __eta * __cos2th * __sin2th;
 
       const auto __lg_b = __log_gamma(_Tp(__n) + __b);
@@ -94,7 +94,7 @@ namespace __detail
       const auto __ser_term1 = __sin_pi(__a);
       const auto __ser_term2 = std::sin(_Tp{0.25L} * __eta
 			     * (_Tp{2} * __th - std::sin(_Tp{2} * __th))
-			      + __gnu_cxx::math::__pi_quarter_v<_Tp>);
+			      + __gnu_cxx::numbers::__pi_quarter_v<_Tp>);
       const auto __ser = __ser_term1 + __ser_term2;
 
       return std::exp(__lnpre) * __ser;

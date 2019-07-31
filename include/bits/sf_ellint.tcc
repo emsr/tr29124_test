@@ -251,7 +251,7 @@ namespace __detail
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_tolfact = _Real{2.7L} * __gnu_cxx::__sqrt_eps(_Real{});
 
       if (std::isnan(__x) || std::isnan(__y))
@@ -367,7 +367,7 @@ namespace __detail
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_tolfact = _Real{2.7L} * __gnu_cxx::__sqrt_eps(_Real{});
 
       if (std::isnan(__x) || std::isnan(__y))
@@ -619,7 +619,7 @@ namespace __detail
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
 
       if (std::isnan(__k) || std::isnan(__phi))
 	return _S_NaN;
@@ -700,7 +700,7 @@ namespace __detail
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
 
       if (std::isnan(__k) || std::isnan(__phi))
 	return _S_NaN;
@@ -793,7 +793,7 @@ namespace __detail
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
 
       if (std::isnan(__k) || std::isnan(__nu) || std::isnan(__phi))
 	return _S_NaN;
@@ -969,7 +969,7 @@ namespace __detail
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Real>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
       const auto _S_eps = __gnu_cxx::__epsilon(__k);
 
       if (std::isnan(__k) || std::isnan(__phi))
@@ -1006,8 +1006,8 @@ namespace __detail
     {
       using _Real = __num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
       const auto _S_eps = __gnu_cxx::__epsilon(__k);
 
       if (std::isnan(__k) || std::isnan(__phi))

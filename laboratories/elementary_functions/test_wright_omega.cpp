@@ -18,7 +18,7 @@ template<typename _Tp>
     using _Cmplx = std::complex<_Tp>;
     const auto _S_NaN = __gnu_cxx::__quiet_NaN(__z.real());
     const auto _S_eps = __gnu_cxx::__epsilon(__z.real());
-    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
     const auto _S_i = _Cmplx(_Tp{0}, _Tp{1});
     const auto _S_0 = _Cmplx{};
     auto [__x, __y] = reinterpret_cast<const _Tp(&)[2]>(__z);
@@ -261,7 +261,7 @@ template<typename _Tp>
   lambert_wp(_Tp __x)
   {
     using _Cmplx = std::complex<_Tp>;
-    const auto _S_1de = __gnu_cxx::math::__one_div_e_v<_Tp>;
+    const auto _S_1de = __gnu_cxx::numbers::__one_div_e_v<_Tp>;
     if (__x < _S_1de)
       std::__throw_domain_error("lambert_wp: Argument out of range.");
     else if (__x == _S_1de)
@@ -283,9 +283,9 @@ template<typename _Tp>
   lambert_wm(_Tp __x)
   {
     using _Cmplx = std::complex<_Tp>;
-    const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
+    const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
     const auto _S_i = _Cmplx(_Tp{0}, _Tp{1});
-    const auto _S_1de = __gnu_cxx::math::__one_div_e_v<_Tp>;
+    const auto _S_1de = __gnu_cxx::numbers::__one_div_e_v<_Tp>;
     if (__x < _S_1de || __x > _Tp{0})
       std::__throw_domain_error("lambert_wm: Argument out of range.");
     else if (__x == _S_1de)
@@ -866,7 +866,7 @@ test_burkhardt_boundary()
 
   for ( i = 0; i < n; i++ )
   {
-    z = std::complex<double> ( x[0], ( y[1] + td * (double) i ) );
+    z = std::complex<double> ( x[0], ( y[1] + td * double(i) ) );
     w = __wright_omega( z,  e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 

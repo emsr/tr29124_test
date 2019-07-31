@@ -140,9 +140,9 @@ namespace __detail
     _Tp
     __hermite_asymp(unsigned int __n, _Tp __x)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
-      const auto _S_sqrt_2 = __gnu_cxx::math::__root_2_v<_Tp>;
-      const auto _S_sqrt_2pi = __gnu_cxx::math::__root_2_pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
+      const auto _S_sqrt_2pi = __gnu_cxx::numbers::__root_2_pi_v<_Tp>;
       // __x >= 0 in this routine.
       const auto __xturn = std::sqrt(_Tp(2 * __n));
       if (std::abs(__x - __xturn) < _Tp{0.05L} * __xturn)
@@ -289,7 +289,7 @@ namespace __detail
       const auto _S_eps = __gnu_cxx::__epsilon(__proto);
       const unsigned int _S_maxit = 1000u;
       const auto _S_pim4 = _Tp{0.7511255444649424828587030047762276930510L};
-      const auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Tp>;
+      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
 
       std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
 

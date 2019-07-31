@@ -150,8 +150,8 @@ namespace __detail
     _Tp
     __kelvin_ker_series(_Tp __x)
     {
-      const auto _S_gamma_e = __gnu_cxx::math::__gamma_e_v<_Tp>;
-      const auto _S_pi_4 = __gnu_cxx::math::__pi_quarter_v<_Tp>;
+      const auto _S_gamma_e = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
+      const auto _S_pi_4 = __gnu_cxx::numbers::__pi_quarter_v<_Tp>;
       const auto __ker = __kelvin_kex_series(__x, -1);
       const auto __ber = __kelvin_bex_series(__x, -1);
       const auto __bei = __kelvin_bex_series(__x, +1);
@@ -176,8 +176,8 @@ namespace __detail
     _Tp
     __kelvin_kei_series(_Tp __x)
     {
-      const auto _S_gamma_e = __gnu_cxx::math::__gamma_e_v<_Tp>;
-      const auto _S_pi_4 = __gnu_cxx::math::__pi_quarter_v<_Tp>;
+      const auto _S_gamma_e = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
+      const auto _S_pi_4 = __gnu_cxx::numbers::__pi_quarter_v<_Tp>;
       const auto __kei = __kelvin_kex_series(__x, +1);
       const auto __ber = __kelvin_bex_series(__x, -1);
       const auto __bei = __kelvin_bex_series(__x, +1);
@@ -225,8 +225,8 @@ namespace __detail
       using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
 
       constexpr auto _S_maxiter = 100;
-      const auto _S_gamma_e = __gnu_cxx::math::__gamma_e_v<_Tp>;
-      const auto _S_pi_4 = __gnu_cxx::math::__pi_quarter_v<_Tp>;
+      const auto _S_gamma_e = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
+      const auto _S_pi_4 = __gnu_cxx::numbers::__pi_quarter_v<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const auto __y = __x / _Tp{2};
       const auto __x2 = __y * __y;
@@ -295,12 +295,12 @@ namespace __detail
 
       const auto _S_j = _Cmplx{0, 1};
       const auto _S_1d2 = _Tp{1} / _Tp{2};
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
-      const auto _S_pi_4 = __gnu_cxx::math::__pi_quarter_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi_4 = __gnu_cxx::numbers::__pi_quarter_v<_Tp>;
       const auto _S_pi_8 = _S_1d2 * _S_pi_4;
       const auto _S_3pi_4 = _Tp{3} * _S_pi_4;
-      const auto _S_sqrt_2 = __gnu_cxx::math::__root_2_v<_Tp>;
-      const auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Tp>;
+      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
+      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       constexpr auto _S_maxiter = 1000;
       const auto __y = _Tp{1} / (_Tp{8} * __x);
@@ -382,8 +382,8 @@ namespace __detail
       using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
 
       const auto _S_j = _Cmplx{0, 1};
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Tp>;
-      const auto _S_pi_4 = __gnu_cxx::math::__pi_quarter_v<_Tp>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
+      const auto _S_pi_4 = __gnu_cxx::numbers::__pi_quarter_v<_Tp>;
       const auto _S_3pi_4 = _Tp{3} * _S_pi_4;
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       constexpr auto _S_maxiter = 1000;
@@ -475,9 +475,9 @@ namespace __detail
       using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
 
       const auto _S_j = _Cmplx{0, 1};
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Tp>;
-      const auto _S_pi_4 = __gnu_cxx::math::__pi_quarter_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
+      const auto _S_pi_4 = __gnu_cxx::numbers::__pi_quarter_v<_Tp>;
       const auto _S_3pi_4 = _Tp{3} * _S_pi_4;
       constexpr auto _S_maxiter = 1000;
 
@@ -547,12 +547,12 @@ namespace __detail
 
       constexpr auto _S_j = _Cmplx{0, 1};
       constexpr auto _S_1d2 = _Tp{1} / _Tp{2};
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Tp>;
-      const auto _S_pi_4 = __gnu_cxx::math::__pi_quarter_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
+      const auto _S_pi_4 = __gnu_cxx::numbers::__pi_quarter_v<_Tp>;
       const auto _S_pi_8 = _S_1d2 * _S_pi_4;
-      const auto _S_sqrt_2 = __gnu_cxx::math::__root_2_v<_Tp>;
-      const auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Tp>;
+      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
+      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       constexpr auto _S_maxiter = 1000;
       const auto __y = _Tp{1} / (_Tp{2} * __x);
@@ -1297,8 +1297,8 @@ template<typename _Tp>
   void
   plot_kelvin(std::string filename, _Tp proto = _Tp{})
   {
-    const auto _S_sqrt_2 = __gnu_cxx::math::__root_2_v<_Tp>;
-    const auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Tp>;
+    const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
+    const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
 
     auto data = std::ofstream(filename);
 
@@ -1342,8 +1342,8 @@ template<typename _Tp>
   void
   plot_kelvin_order(std::string filename, _Tp proto = _Tp{})
   {
-    const auto _S_sqrt_2 = __gnu_cxx::math::__root_2_v<_Tp>;
-    const auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Tp>;
+    const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
+    const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
 
     auto data = std::ofstream(filename);
 

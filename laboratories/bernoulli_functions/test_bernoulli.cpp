@@ -81,7 +81,7 @@
 	  if ((__n / 2) % 2 == 0)
 	    __fact *= -1;
 	  for (auto __k = 1u; __k <= __n; ++__k)
-	    __fact *= __k / __gnu_cxx::math::__pi_v<_Tp>;
+	    __fact *= __k / __gnu_cxx::numbers::__pi_v<_Tp>;
 	  __fact *= _Tp(2);
 
 	  _Tp __sum = _Tp(0);
@@ -263,8 +263,8 @@
 	return _Tp{0};
       else
 	{
-	  const auto _S_e = __gnu_cxx::math::__e_v<_Tp>;
-	  const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+	  const auto _S_e = __gnu_cxx::numbers::__e_v<_Tp>;
+	  const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
 	  const auto __n2 = _Tp(__n * __n);
 	  return __gnu_cxx::__parity<_Tp>(__n / 2) * _Tp{8}
 		* std::sqrt(_Tp(__n) / _S_pi)

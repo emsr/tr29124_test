@@ -152,7 +152,7 @@ namespace faddeeva
   std::complex<double>
   voigt(double x, double t)
   {
-    const auto _S_sqrt_pi = 2 * __gnu_cxx::math::__root_pi_div_2_v<double>;
+    const auto _S_sqrt_pi = 2 * __gnu_cxx::numbers::__root_pi_div_2_v<double>;
     auto s = 1.0 / (2.0 * std::sqrt(t));
     std::complex<double> z(s, -s * x);
     return _S_sqrt_pi * s * faddeeva(z);

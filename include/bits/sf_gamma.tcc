@@ -1654,7 +1654,7 @@ _S_neg_double_factorial_table[999]
     _GLIBCXX14_CONSTEXPR _Tp
     __log_double_factorial(_Tp __nu)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
       return (__nu / _Tp{2}) * std::log(_Tp{2})
 	   + (__cos_pi(__nu) - _Tp{1})
 		* std::log(_S_pi / _Tp{2}) / _Tp{4}
@@ -1760,8 +1760,8 @@ _S_neg_double_factorial_table[999]
       using _Real = __num_traits_t<_Val>;
       const auto _S_eps = _Real{0.01L} * __gnu_cxx::__epsilon(_Real{});
       const auto _S_ln2pi
-	= __gnu_cxx::math::__ln_2_v<_Real>
-	+ __gnu_cxx::math::__ln_pi_v<_Real>;
+	= __gnu_cxx::numbers::__ln_2_v<_Real>
+	+ __gnu_cxx::numbers::__ln_pi_v<_Real>;
 
       auto __lg = (__x - _Real{0.5L}) * std::log(__x)
 		- __x + _Real{0.5L} * _S_ln2pi;
@@ -1940,7 +1940,7 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_sqrt_2pi = __gnu_cxx::math::__root_2_pi_v<_Real>;
+      const auto _S_sqrt_2pi = __gnu_cxx::numbers::__root_2_pi_v<_Real>;
       const auto __c = __gamma_spouge_data<_Real>::_S_cheby;
 
       _Val __sum = _S_sqrt_2pi;
@@ -1984,8 +1984,8 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_ln_pi = __gnu_cxx::math::__ln_pi_v<_Real>;
-      const auto _S_sqrt_2pi = __gnu_cxx::math::__root_2_pi_v<_Real>;
+      const auto _S_ln_pi = __gnu_cxx::numbers::__ln_pi_v<_Real>;
+      const auto _S_sqrt_2pi = __gnu_cxx::numbers::__root_2_pi_v<_Real>;
       auto __a = _Real{__gamma_spouge_data<_Real>::_S_cheby.size() + 1};
 
       // Reflection for z < -1.
@@ -2124,8 +2124,8 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_ln_pi = __gnu_cxx::math::__ln_pi_v<_Real>;
-      const auto _S_sqrt_2pi = __gnu_cxx::math::__root_2_pi_v<_Real>;
+      const auto _S_ln_pi = __gnu_cxx::numbers::__ln_pi_v<_Real>;
+      const auto _S_sqrt_2pi = __gnu_cxx::numbers::__root_2_pi_v<_Real>;
       const auto __c = __gamma_lanczos_data<_Real>::_S_cheby;
       auto __g =  __gamma_lanczos_data<_Real>::_S_g;
 
@@ -2158,7 +2158,7 @@ _S_neg_double_factorial_table[999]
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_ln_pi = __gnu_cxx::math::__ln_pi_v<_Real>;
+      const auto _S_ln_pi = __gnu_cxx::numbers::__ln_pi_v<_Real>;
       auto __g =  __gamma_lanczos_data<_Real>::_S_g;
       // Reflection for z < -1.
       if (std::real(__z) < _Real{-1})
@@ -2274,7 +2274,7 @@ _S_neg_double_factorial_table[999]
 	return __gnu_cxx::__quiet_NaN(__a);
       else
 	{
-	  const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+	  const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
 	  const auto __an = __gnu_cxx::__fp_is_integer(__a);
 	  if (__an)
 	    {
@@ -2327,7 +2327,7 @@ _S_neg_double_factorial_table[999]
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
-      const auto _S_logpi = __gnu_cxx::math::__ln_pi_v<_Tp>;
+      const auto _S_logpi = __gnu_cxx::numbers::__ln_pi_v<_Tp>;
       if (std::real(__a) < _Real{0.5L})
 	{
 	  const auto __sin_fact = std::abs(__sin_pi(__a));
@@ -2363,7 +2363,7 @@ _S_neg_double_factorial_table[999]
       using _Real = __num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
-      const auto _S_logpi = __gnu_cxx::math::__ln_pi_v<_Real>;
+      const auto _S_logpi = __gnu_cxx::numbers::__ln_pi_v<_Real>;
       auto __an = __gnu_cxx::__fp_is_integer(__a);
       if (__an)
 	{
@@ -3317,7 +3317,7 @@ _S_neg_double_factorial_table[999]
     __digamma(unsigned int __n)
     {
       using _Val = std::__detail::__num_traits_t<_Tp>;
-      constexpr auto _S_gamma_E = __gnu_cxx::math::__gamma_e_v<_Val>;
+      constexpr auto _S_gamma_E = __gnu_cxx::numbers::__gamma_e_v<_Val>;
       if (__n > 1)
 	return -_S_gamma_E + __harmonic_number<_Val>(__n - 1);
       else
@@ -3342,7 +3342,7 @@ _S_neg_double_factorial_table[999]
     __digamma_series(_Tp __x)
     {
       using _Val = std::__detail::__num_traits_t<_Tp>;
-      _Tp __sum = -__gnu_cxx::math::__gamma_e_v<_Val>;
+      _Tp __sum = -__gnu_cxx::numbers::__gamma_e_v<_Val>;
       const unsigned int _S_max_iter = 100000;
       for (unsigned int __k = 0; __k < _S_max_iter; ++__k)
 	{
@@ -3409,9 +3409,9 @@ _S_neg_double_factorial_table[999]
       using _Val = std::__detail::__num_traits_t<_Tp>;
       const auto _S_eps = _Val{4} * __gnu_cxx::__epsilon<_Val>();
       const auto _S_x_asymp = _Val{20};
-      const auto _S_gamma_E = __gnu_cxx::math::__gamma_e_v<_Val>;
-      const auto _S_2_ln_2 = _Tp{2} * __gnu_cxx::math::__ln_2_v<_Val>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Val>;
+      const auto _S_gamma_E = __gnu_cxx::numbers::__gamma_e_v<_Val>;
+      const auto _S_2_ln_2 = _Tp{2} * __gnu_cxx::numbers::__ln_2_v<_Val>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Val>;
 
       const auto __n = __gnu_cxx::__fp_is_integer(__x);
       const auto __m = __gnu_cxx::__fp_is_half_odd_integer(__x);

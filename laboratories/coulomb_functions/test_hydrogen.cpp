@@ -23,7 +23,7 @@ template <typename _Tp>
   void
   test01()
   {
-    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
     const _Tp c = _Tp{2.99792458e8L};  //  Speed of light in m/s.
     const _Tp hbar = _Tp{1.0546e-27L};  //  Planck's constant in J s.
     const _Tp hbarc = hbar * c;

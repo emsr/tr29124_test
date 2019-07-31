@@ -11,7 +11,7 @@ template<typename _Tp>
   _Tp
   __mod2pi_cheap(_Tp x)
   {
-    const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
+    const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
     return x - _S_2pi * std::floor(x / _S_2pi);
   }
 
@@ -19,7 +19,7 @@ template<typename _Tp>
   _Tp
   __mod2pi_cephes_wtf(_Tp x)
   {
-    const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
+    const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
     const auto n = std::floor(x / _S_2pi);
     auto a = x - ldexp(n, 2);  /* 4n */
     a -= ldexp( n, 1);    /* 2n */

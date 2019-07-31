@@ -8,6 +8,7 @@
 #include <limits>
 #include <cmath>
 #include <ext/float128_io.h>
+#include <ext/numeric_limits_float128.h>
 
   //  Checbyshev coefficient matrix.
   constexpr int
@@ -40,7 +41,7 @@
     _Tp
     __p(int __k, _Tp __g)
     {
-      const auto _S_pi  = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_pi  = __gnu_cxx::numbers::__pi_v<_Tp>;
       auto __fact = std::sqrt(_Tp{2} / _S_pi);
       auto __sum = __cheby(2 * __k + 1, 1) * __fact
 		 * std::exp(_Tp(__g + 0.5Q))
@@ -67,6 +68,11 @@
       int __n_old = 0;
       int __n = -2 - 0.3 * std::log(std::numeric_limits<_Tp>::epsilon());
       std::cout << "n_Pugh = " << __n << '\n';
+      if (__n > 1000)
+	{
+	  std::cerr << "\nlanczos: Calculation of n_Pugh failed.\n";
+	  return;
+	}
 
       auto __g = __n - _Tp{0.5Q};
       std::cout << "g = " << __g << '\n';
@@ -105,8 +111,8 @@
 	[=](_Tp __z)
 	-> _Tp
 	{
-	  constexpr auto _S_ln_2 = __gnu_cxx::math::__ln_2_v<_Tp>;
-	  constexpr auto _S_ln_pi = __gnu_cxx::math::__ln_pi_v<_Tp>;
+	  constexpr auto _S_ln_2 = __gnu_cxx::numbers::__ln_2_v<_Tp>;
+	  constexpr auto _S_ln_pi = __gnu_cxx::numbers::__ln_pi_v<_Tp>;
 	  constexpr auto _S_log_sqrt_2pi = (_S_ln_2 + _S_ln_pi) / _Tp{2};
 	  auto __fact = _Tp{1};
 	  auto __sum = _Tp{0.5Q} * __p(0, __g);

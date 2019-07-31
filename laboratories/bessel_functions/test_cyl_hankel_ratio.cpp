@@ -186,7 +186,7 @@
       using _Real = std::__detail::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
       const auto _S_i = _Cmplx{0, 1};
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto __ph = std::arg(__z);
 
       _Cmplx _Krat;
@@ -245,6 +245,53 @@ template<typename _Tp>
     return __pq;
   }
 
+
+template<typename _Tp>
+  _Tp
+  cyl_bessel_k_cf2(_Tp __nu, _Tp __x)
+  {
+    const auto _S_eps = __gnu_cxx::__epsilon(__x);
+    constexpr int _S_max_iter = 15000;
+
+    const auto __mu = __nu;
+    const auto __mu2 = __mu * __mu;
+    auto __b = _Tp{2} * (_Tp{1} + __x);
+    auto __d = _Tp{1} / __b;
+    auto __delh = __d;
+    auto __h = __delh;
+    auto __q1 = _Tp{0};
+    auto __q2 = _Tp{1};
+    const auto __a1 = _Tp{0.25L} - __mu2;
+    auto __c = __a1;
+    auto __q = __c;
+    auto __a = -__a1;
+    auto __s = _Tp{1} + __q * __delh;
+    int __i;
+    for (__i = 2; __i <= _S_max_iter; ++__i)
+      {
+	__a -= _Tp{2 * (__i - 1)};
+	__c = -__a * __c / __i;
+	const auto __qnew = (__q1 - __b * __q2) / __a;
+	__q1 = __q2;
+	__q2 = __qnew;
+	__q += __c * __qnew;
+	__b += _Tp{2};
+	__d = _Tp{1} / (__b + __a * __d);
+	__delh = (__b * __d - _Tp{1}) * __delh;
+	__h += __delh;
+	const auto __dels = __q * __delh;
+	__s += __dels;
+	if (std::abs(__dels / __s) < _S_eps)
+	  break;
+      }
+    if (__i > _S_max_iter)
+      std::__throw_runtime_error(__N("__cyl_bessel_ik_steed: "
+				     "Steed's method failed"));
+    __h *= __a1;
+
+    return __h;
+  }
+
 template<typename _Tp>
   void
   test_cyl_hankel_ratio()
@@ -255,7 +302,9 @@ template<typename _Tp>
     using Ret = decltype(__cyl_hankel_1_ratio_j_frac(_Tp{1}, _Tp{1}));
 
     std::vector<_Tp> nu_vec{_Tp{0}, _Tp{1}/_Tp{3}, _Tp{1}/_Tp{2}, _Tp{2}/_Tp{3},
-			    _Tp{1}, _Tp{2}, _Tp{5}, _Tp{10}, _Tp{20}, _Tp{50}, _Tp{100}};
+			    _Tp{1}, _Tp{2}, _Tp{5}, _Tp{10}, _Tp{20}, _Tp{50}, _Tp{100},
+			    _Tp{128},
+			    _Tp{200}, _Tp{500}, _Tp{1000}};
 
     std::cout << "\n\nRatio H^{(1)}_{\\nu+1}(z) / H^{(1)}_{\\nu}(z)\n";
     std::cout << ' ' << std::setw(wr) << "z"
@@ -351,6 +400,7 @@ template<typename _Tp>
     std::cout << ' ' << std::setw(wr) << "z"
 	      << ' ' << std::setw(wc) << "calculated ratio"
 	      << ' ' << std::setw(wc) << "bessel function"
+	      << ' ' << std::setw(wr) << "old_cf2"
 	      << ' ' << std::setw(wr) << "delta_r / r"
 	      << '\n';
     for (auto nu : nu_vec)
@@ -372,9 +422,11 @@ template<typename _Tp>
 	      }
 	    const auto ik = std::__detail::__cyl_bessel_ik(nu, z);
 	    const auto s = nu / z - ik.__K_deriv / ik.__K_value;
+//	    const auto h = cyl_bessel_k_cf2(nu, z);
 	    std::cout << ' ' << std::setw(wr) << z
 		      << ' ' << std::setw(wc) << r
 		      << ' ' << std::setw(wc) << s
+//		      << ' ' << std::setw(wr) << h
 		      << ' ' << std::setw(wr) << std::abs((r - s) / s)
 		      << '\n';
 	  }

@@ -113,7 +113,7 @@
 
       static constexpr _Real
       __true_Wronskian()
-      { return _Real{1} /__gnu_cxx::math::__pi_v<_Real>; }
+      { return _Real{1} /__gnu_cxx::numbers::__pi_v<_Real>; }
     };
 
 
@@ -1501,9 +1501,9 @@
 
       static constexpr _Real _S_eps = __gnu_cxx::__epsilon(_Real{});
       static constexpr _Real _S_pi
-		 = __gnu_cxx::math::__pi_v<_Real>;
+		 = __gnu_cxx::numbers::__pi_v<_Real>;
       static constexpr _Real _S_sqrt_pi
-		 = __gnu_cxx::math::__root_pi_v<_Real>;
+		 = __gnu_cxx::numbers::__root_pi_v<_Real>;
       static constexpr _Real _S_Ai0
 		 = _Real{3.550280538878172392600631860041831763980e-1Q};
       static constexpr _Real _S_Aip0
@@ -3625,8 +3625,8 @@
 	     typename _Airy_asymp<_Tp>::_Cmplx>
     _Airy_asymp<_Tp>::operator()(typename _Airy_asymp<_Tp>::_Cmplx __t) const
     {
-      constexpr auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
-      constexpr auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Real>;
+      constexpr auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
+      constexpr auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Real>;
       constexpr auto _S_i = _Cmplx(0, 1);
       if (std::real(__t) > _Real{0})
 	{
@@ -3741,8 +3741,8 @@
 		  typename _Airy_asymp<_Tp>::_Cmplx>
     _Airy_asymp<_Tp>::_S_fock_airy(typename _Airy_asymp<_Tp>::_Cmplx __t) const
     {
-      constexpr auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
-      constexpr auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Real>;
+      constexpr auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
+      constexpr auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Real>;
       constexpr auto _S_i = _Cmplx(0, 1);
       if (std::real(__t) > _Real{0})
 	{
@@ -3843,7 +3843,7 @@
     _Airy_asymp<_Tp>::_S_absarg_ge_pio3_help(typename _Airy_asymp<_Tp>::_Cmplx __z,
 					     int __sign) const
     {
-      constexpr auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Real>;
+      constexpr auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Real>;
       constexpr auto _S_pmhd2 = _Real{1} / (_Real{2} * _S_sqrt_pi);
       constexpr std::size_t _S_num_nterms = 5;
       constexpr std::size_t _S_max_nterms = 40;
@@ -3933,8 +3933,8 @@
     _Airy_asymp<_Tp>::_S_absarg_lt_pio3(typename _Airy_asymp<_Tp>::_Cmplx __z) const
     {
       constexpr _Real _S_pimh
-	= _Real{1} / __gnu_cxx::math::__root_pi_v<_Real>;
-      constexpr _Real _S_pid4 = __gnu_cxx::math::__pi_quarter_v<_Real>;
+	= _Real{1} / __gnu_cxx::numbers::__root_pi_v<_Real>;
+      constexpr _Real _S_pid4 = __gnu_cxx::numbers::__pi_quarter_v<_Real>;
 
       constexpr _Cmplx _S_zone{1};
       /// @todo Revisit these numbers of terms for the Airy asymptotic
@@ -4026,7 +4026,7 @@
       //using _Cmplx = std::complex<_Real>;
 
       constexpr auto _S_2d3   = _Real{2} / _Real{3};
-      constexpr auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Real>;
+      constexpr auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Real>;
       constexpr auto _S_pmhd2 = _Real{1} / (_Real{2} * _S_sqrt_pi);
       constexpr std::size_t _S_ncoeffs = 15;
       constexpr std::size_t _S_num_nterms = 5;
@@ -4173,8 +4173,8 @@
       constexpr auto _S_2d3 {_Real{2} / _Real{3}};
       constexpr auto _S_9d4 {_Real{9} / _Real{4}};
       constexpr _Real _S_pimh
-	= _Real{1} / __gnu_cxx::math::__root_pi_v<_Real>;
-      constexpr _Tp _S_pid4 = __gnu_cxx::math::__pi_quarter_v<_Real>;
+	= _Real{1} / __gnu_cxx::numbers::__root_pi_v<_Real>;
+      constexpr _Tp _S_pid4 = __gnu_cxx::numbers::__pi_quarter_v<_Real>;
 
       constexpr _Cmplx _S_zone{1};
       constexpr std::size_t _S_ncoeffs = 18;
@@ -4478,7 +4478,7 @@
       using _Val = typename _Sum::value_type;
       using _Real = std::__detail::__num_traits_t<_Val>;
       static constexpr _Real _S_sqrt_pi
-	   = __gnu_cxx::math::__root_pi_v<_Real>;
+	   = __gnu_cxx::numbers::__root_pi_v<_Real>;
 
       _Airy_asymp_series(_Sum __proto)
       : _M_Asum(__proto),
@@ -4619,11 +4619,11 @@
       using _Cmplx = std::complex<_Real>;
 
       static constexpr _Real _S_pi
-	   = __gnu_cxx::math::__pi_v<_Real>;
+	   = __gnu_cxx::numbers::__pi_v<_Real>;
       static constexpr _Real _S_sqrt_pi
-	   = __gnu_cxx::math::__root_pi_v<_Real>;
+	   = __gnu_cxx::numbers::__root_pi_v<_Real>;
       static constexpr _Real _S_pi_3
-	   = __gnu_cxx::math::__pi_third_v<_Real>;
+	   = __gnu_cxx::numbers::__pi_third_v<_Real>;
       static constexpr _Real _S_2pi_3 = _Real{2} * _S_pi_3;
       static constexpr _Real _S_pi_6 = _S_pi_3 / _Real{2};
       static constexpr _Real _S_5pi_6 = _Real{5} * _S_pi_6;
@@ -4763,7 +4763,7 @@
       using _Val = typename _Sum::value_type;
       using _Real = std::__detail::__num_traits_t<_Val>;
       static constexpr _Real _S_pi
-	   = __gnu_cxx::math::__pi_v<_Real>;
+	   = __gnu_cxx::numbers::__pi_v<_Real>;
 
       _Scorer_asymp_series(_Sum __proto)
       : _M_Hsum(__proto), _M_Hpsum(__proto)
@@ -4849,7 +4849,7 @@
       using _Cmplx = std::complex<_Real>;
 
       static constexpr _Real _S_pi_3
-	   = __gnu_cxx::math::__pi_third_v<_Real>;
+	   = __gnu_cxx::numbers::__pi_third_v<_Real>;
       static constexpr _Real _S_2pi_3 = _Real{2} * _S_pi_3;
       static constexpr _Real _S_pi_6 = _S_pi_3 / _Real{2};
       static constexpr _Real _S_5pi_6 = _Real{5} * _S_pi_6;

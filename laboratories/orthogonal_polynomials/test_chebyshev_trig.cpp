@@ -55,7 +55,7 @@
     std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
     __chebyshev_t_zeros(unsigned int __n)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
       std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
       for (unsigned int __k = 0; __k < __n; ++__k)
 	{
@@ -115,7 +115,7 @@
     std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
     __chebyshev_u_zeros(unsigned int __n)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
       std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
       for (unsigned int __k = 1; __k <= __n; ++__k)
 	{
@@ -179,7 +179,7 @@
     std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
     __chebyshev_v_zeros(unsigned int __n)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
       std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
       for (unsigned int __k = 0; __k < __n; ++__k)
 	{
@@ -241,7 +241,7 @@
     std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
     __chebyshev_w_zeros(unsigned int __n)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
       std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
       for (unsigned int __k = 1; __k <= __n; ++__k)
 	{

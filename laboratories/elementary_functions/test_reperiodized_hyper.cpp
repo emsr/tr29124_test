@@ -13,7 +13,7 @@ template<typename _Tp>
   void
   run_sin_cosh_pi(_Tp proto = _Tp{})
   {
-    const _Tp _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+    const _Tp _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
 
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;

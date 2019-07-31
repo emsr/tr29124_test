@@ -26,8 +26,8 @@ template<typename _Tp>
 
     const auto _S_eps = __gnu_cxx::__epsilon(std::real(__t));
     const auto _S_log10min = __gnu_cxx::__log10_min(std::real(__t));
-    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
-    const auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Tp>;
+    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
     constexpr auto _S_Ai0 = _Tp{3.550280538878172392600631860041831763980e-1L};
     constexpr auto _S_Aip0 = _Tp{2.588194037928067984051835601892039634793e-1L};
     //constexpr auto _S_Bi0 = _Tp{6.149266274460007351509223690936135535960e-1L};

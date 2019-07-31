@@ -13,7 +13,7 @@ template<typename _Tp>
     std::cout.precision(__gnu_cxx::__digits10<_Tp>());
     auto w = 8 + std::cout.precision();
 
-    const auto _S_ln2 = __gnu_cxx::math::__ln_2_v<_Tp>;
+    const auto _S_ln2 = __gnu_cxx::numbers::__ln_2_v<_Tp>;
 
     //std::cout << std::setfill('0');
 

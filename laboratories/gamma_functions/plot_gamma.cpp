@@ -19,7 +19,7 @@ template<typename _Tp>
     using _Real = std::__detail::__num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
-    constexpr auto deg = __gnu_cxx::math::__deg_v<_Real>;
+    constexpr auto deg = __gnu_cxx::numbers::__deg_v<_Real>;
 
     auto data = std::ofstream(filename);
 
@@ -116,7 +116,7 @@ template<typename _Tp>
     using _Real = std::__detail::__num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
-    constexpr auto deg = __gnu_cxx::math::__deg_v<_Real>;
+    constexpr auto deg = __gnu_cxx::numbers::__deg_v<_Real>;
 
     auto data = std::ofstream(filename);
 

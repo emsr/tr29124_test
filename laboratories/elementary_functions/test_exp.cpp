@@ -30,7 +30,7 @@ template<typename _Tp>
   __exp_bailey(_Tp __x, int _J = 8)
   {
     constexpr auto _S_N = (std::numeric_limits<_Tp>::max_digits10 + 1) / 2;
-    constexpr auto _S_log_2 = __gnu_cxx::math::__ln_2_v<_Tp>;
+    constexpr auto _S_log_2 = __gnu_cxx::numbers::__ln_2_v<_Tp>;
     if (_J <= 0)
       _J = _S_N - 1;
     const int __n = __x / _S_log_2;

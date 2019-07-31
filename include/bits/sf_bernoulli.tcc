@@ -94,7 +94,7 @@ namespace __detail
       else
 	{
 	  constexpr auto _S_eps = __gnu_cxx::__epsilon<>(_Tp{});
-	  constexpr auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
+	  constexpr auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
 	  auto __fact = _Tp{1};
 	  if ((__n / 2) % 2 == 0)
 	    __fact *= -_Tp{1};

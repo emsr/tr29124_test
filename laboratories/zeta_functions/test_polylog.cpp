@@ -320,7 +320,7 @@
     std::complex<_Tp>
     __polylog_exp_neg_even(unsigned int __p, std::complex<_Tp> __w)
     {
-      const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
+      const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
       const int __pp = 1 + __p;
       const int __sigma = __p % 4 == 0 ? +1 : -1;
       const auto __lnp = std::__detail::__log_factorial<_Tp>(__p);
@@ -396,7 +396,7 @@
     std::complex<_Tp>
     __polylog_exp_neg_odd(unsigned int __p, std::complex<_Tp> __w)
     {
-      const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
+      const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
       const int __pp = 1 + __p;
       const int __sigma = __p % 4 == 1 ? +1 : -1;
       const auto __lnp = std::__detail::__log_factorial<_Tp>(__p);
@@ -476,7 +476,7 @@
     std::complex<_Tp>
     __polylog_exp_asymp(_Tp __s, std::complex<_Tp> __w)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
       // wgamma = w^{s-1} / Gamma(s)
       auto __wgamma = std::pow(__w, __s - _Tp{1}) * std::__detail::__gamma_reciprocal(__s);
       auto __res = std::complex<_Tp>(_Tp{0}, -_S_pi) * __wgamma;
@@ -648,8 +648,8 @@ template<typename _Tp>
   void
   TestPolyLog(_Tp proto = _Tp{})
   {
-    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
-    const auto _S_2pi = __gnu_cxx::math::__2_pi_v<_Tp>;
+    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
 
     std::cout.precision(__gnu_cxx::__digits10(proto) - 1);
     std::cout << std::scientific;

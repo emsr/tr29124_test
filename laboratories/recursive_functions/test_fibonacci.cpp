@@ -79,8 +79,8 @@ template<typename _Tp>
       }
     else if constexpr (std::is_floating_point_v<_Tp>)
       {
-	const auto _S_phi = __gnu_cxx::math::__phi_v<_Tp>;
-	const auto _S_sqrt5 = __gnu_cxx::math::__root_5_v<_Tp>;
+	const auto _S_phi = __gnu_cxx::numbers::__phi_v<_Tp>;
+	const auto _S_sqrt5 = __gnu_cxx::numbers::__root_5_v<_Tp>;
 	const auto __phinu = std::pow(_S_phi, __nu);
 	return (__phinu - __gnu_cxx::cos_pi(__nu) / __phinu) / _S_sqrt5;
       }
@@ -171,7 +171,7 @@ template<typename _Tp>
       }
     else if constexpr (std::is_floating_point_v<_Tp>)
       {
-	const auto _S_phi = __gnu_cxx::math::__phi_v<_Tp>;
+	const auto _S_phi = __gnu_cxx::numbers::__phi_v<_Tp>;
 	const auto __phinu = std::pow(_S_phi, __nu);
 	return __phinu + __gnu_cxx::cos_pi(__nu) / __phinu;
       }

@@ -360,9 +360,9 @@
     _Tp
     __poly_hermite_asymp_old(unsigned int __n, _Tp __x)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
-      const auto _S_sqrt_2 = __gnu_cxx::math::__root_2_v<_Tp>;
-      const auto _S_sqrt_2pi = __gnu_cxx::math::__root_2_pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
+      const auto _S_sqrt_2pi = __gnu_cxx::numbers::__root_2_pi_v<_Tp>;
       // __x >= 0 in this routine.
       const auto __xturn = std::sqrt(_Tp(2 * __n));
       if (std::abs(__x - __xturn) < _Tp{0.05L} * __xturn)
@@ -408,9 +408,9 @@
     _Tp
     __poly_hermite_asymp(unsigned int __n, _Tp __x)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
-      const auto _S_sqrt_2 = __gnu_cxx::math::__root_2_v<_Tp>;
-      const auto _S_sqrt_pi = __gnu_cxx::math::__root_pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
+      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
       const auto _S_Ai0 = _Tp{-2.3381074104597670384891972524467L};
       const bool __n_odd = __n % 2 == 1;
       const auto __z = std::abs(__x);
@@ -473,7 +473,7 @@
     __hermite_norm_factor(unsigned int __n)
     {
       const auto _S_root4_pi = _Tp{1.331335363800389712797534917950280853312L};
-      const auto _S_sqrt_2 = __gnu_cxx::math::__root_2_v<_Tp>;
+      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
       return _S_root4_pi
 	   * std::pow(_S_sqrt_2, _Tp(__n)) * __sqrt_factorial<_Tp>(__n);
     }
@@ -492,10 +492,10 @@
     _Tp
     __log_hermite_norm_factor(unsigned int __n)
     {
-      const auto _S_lsqrt_2 = __gnu_cxx::math::__ln_2_v<_Tp>;
-      const auto _S_lsqrt_2pi = __gnu_cxx::math::__ln_root_2_pi_v<_Tp>;
+      const auto _S_lsqrt_2 = __gnu_cxx::numbers::__ln_2_v<_Tp>;
+      const auto _S_lsqrt_2pi = __gnu_cxx::numbers::__ln_root_2_pi_v<_Tp>;
       const auto _S_lsqrt_pi = _S_lsqrt_2pi - _S_lsqrt_2;
-      const auto _S_ln_2 = __gnu_cxx::math::__ln_2_v<_Tp>;
+      const auto _S_ln_2 = __gnu_cxx::numbers::__ln_2_v<_Tp>;
       return (_S_lsqrt_pi + _Tp(__n) * _S_ln_2
 	   + std::__detail::__log_factorial<_Tp>(__n)) / _Tp{2};
     }
@@ -514,7 +514,7 @@
     _Tp
     __poly_hermite_norm_recursion(unsigned int __n, _Tp __x)
     {
-      const auto _S_sqrt_2 = __gnu_cxx::math::__root_2_v<_Tp>;
+      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
       const auto _S_inv_root4_pi
 	= _Tp{7.511255444649424828587030047762276930510e-1L};
 
@@ -592,7 +592,7 @@
     {
       const auto _S_root4_2pi
 	= _Tp{1.583233487086159538579903034454558455660L};
-      const auto _S_sqrt_2 = __gnu_cxx::math::__root_2_v<_Tp>;
+      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
 
       // Compute Hen_0.
       auto __Hen_nm2 = _Tp{1} / _S_root4_2pi;
@@ -649,7 +649,7 @@
     _Tp
     __log_prob_hermite_norm_factor(unsigned int __n)
     {
-      const auto _S_lsqrt_2pi = __gnu_cxx::math::__ln_root_2_pi_v<_Tp>;
+      const auto _S_lsqrt_2pi = __gnu_cxx::numbers::__ln_root_2_pi_v<_Tp>;
       return (_S_lsqrt_2pi
 	    + std::__detail::__log_factorial<_Tp>(__n)) / _Tp{2};
     }

@@ -50,7 +50,7 @@ namespace __detail
     __sin_pi(_Tp __x)
     {
       using _Val = __num_traits_t<_Tp>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Val>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Val>;
       if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
@@ -82,7 +82,7 @@ namespace __detail
     __sinh_pi(_Tp __x)
     {
       using _Val = __num_traits_t<_Tp>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Val>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Val>;
       if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
@@ -102,7 +102,7 @@ namespace __detail
     __cos_pi(_Tp __x)
     {
       using _Val = __num_traits_t<_Tp>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Val>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Val>;
       if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
@@ -131,7 +131,7 @@ namespace __detail
     __cosh_pi(_Tp __x)
     {
       using _Val = __num_traits_t<_Tp>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Val>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Val>;
       if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__x < _Tp{0})
@@ -152,7 +152,7 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       return std::tan(_S_pi * (__x - std::floor(__x)));
     }
 
@@ -168,7 +168,7 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       return std::tanh(_S_pi * __x);
     }
 
@@ -186,7 +186,7 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
       auto __y = std::imag(__z);
@@ -208,7 +208,7 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
       auto __y = std::imag(__z);
@@ -230,7 +230,7 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
       auto __y = std::imag(__z);
@@ -252,7 +252,7 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
       auto __y = std::imag(__z);
@@ -274,7 +274,7 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
       auto __y = std::imag(__z);
@@ -297,7 +297,7 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = __num_traits_t<_Val>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Real>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_i = std::complex<_Tp>{0, 1};
       auto __x = std::real(__z);
       auto __y = std::imag(__z);
@@ -357,7 +357,7 @@ namespace __detail
     __gnu_cxx::__sincos_t<_Tp>
     __sincos_pi(_Tp __x)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
       if (std::isnan(__x))
 	return __gnu_cxx::__sincos_t<_Tp>{_S_NaN, _S_NaN};

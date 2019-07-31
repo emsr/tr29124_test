@@ -17,7 +17,7 @@ template<typename _Tp>
   {
     using _Val = _Tp;
     using _Real = std::__detail::__num_traits_t<_Val>;
-    const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Real>;
+    const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
 
     std::cout.precision(__gnu_cxx::__digits10<_Real>());
     std::cout << std::showpoint << std::scientific;

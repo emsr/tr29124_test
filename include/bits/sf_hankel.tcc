@@ -51,7 +51,7 @@ namespace __detail
     void
     __debye_region(std::complex<_Tp> __alpha, int& __indexr, char& __aorb)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
 
       __aorb = ' ';
 
@@ -120,9 +120,9 @@ namespace __detail
       const auto _S_1d3   = _Tp{1} / _Tp{3};
       const auto _S_1d2   = _Tp{0.5L};
       const auto _S_2d3   = _Tp{2} / _Tp{3};
-      const auto _S_2pi   = __gnu_cxx::math::__2_pi_v<_Tp>;
+      const auto _S_2pi   = __gnu_cxx::numbers::__2_pi_v<_Tp>;
       const auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152L}; // -(2/3)ln(2/3)
-      const auto _S_sqrt2 = __gnu_cxx::math::__root_2_v<_Tp>;
+      const auto _S_sqrt2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
       const auto _S_4d3   = _Tp{4} / _Tp{3};
 
       const _Cmplx __zone{_Tp{1}, _Tp{0}};
@@ -216,7 +216,7 @@ namespace __detail
       using _Cmplx = std::complex<_Tp>;
 
       // expp and expm are exp(2*pi*i/3) and its reciprocal, respectively.
-      const auto _S_sqrt3d2 = __gnu_cxx::math::__root_3_div_2_v<_Tp>;
+      const auto _S_sqrt3d2 = __gnu_cxx::numbers::__root_3_div_2_v<_Tp>;
       const auto __expp = _Cmplx{-0.5L,  _S_sqrt3d2};
       const auto __expm = _Cmplx{-0.5L, -_S_sqrt3d2};
 
@@ -255,7 +255,7 @@ namespace __detail
     {
       using _Cmplx = std::complex<_Tp>;
 
-      const auto _S_sqrt3d2 = __gnu_cxx::math::__root_3_div_2_v<_Tp>;
+      const auto _S_sqrt3d2 = __gnu_cxx::numbers::__root_3_div_2_v<_Tp>;
       const _Cmplx __e2pd3{-0.5L,  _S_sqrt3d2};
       const _Cmplx __d2pd3{-0.5L, -_S_sqrt3d2};
 
@@ -779,9 +779,9 @@ namespace __detail
 
       using __hank_t = __gnu_cxx::__cyl_hankel_t<_Cmplx, _Cmplx, _Cmplx>;
 
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
-      const auto _S_pi_3 = __gnu_cxx::math::__pi_third_v<_Tp>;
-      const auto _S_sqrt_3 = __gnu_cxx::math::__root_3_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi_3 = __gnu_cxx::numbers::__pi_third_v<_Tp>;
+      const auto _S_sqrt_3 = __gnu_cxx::numbers::__root_3_v<_Tp>;
       const _Cmplx _S_j{1il};
       const _Cmplx __con1p{ _Tp{1}, _S_sqrt_3}; // 2*exp( pi*j/3) (1,sqrt(3))
       const _Cmplx __con1m{ _Tp{1},-_S_sqrt_3}; // 2*exp(-pi*j/3)
@@ -1078,7 +1078,7 @@ namespace __detail
 			      std::complex<_Tp>>
     __hankel(std::complex<_Tp> __nu, std::complex<_Tp> __z)
     {
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
 
       int __indexr;
 
@@ -1209,7 +1209,7 @@ namespace __detail
     {
       using _Cmplx = std::complex<_Tp>;
       using __hank_t = __gnu_cxx::__sph_hankel_t<unsigned int, _Cmplx, _Cmplx>;
-      const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
       _Cmplx __nu(__n + _Tp{0.5});
       auto __hank = __hankel(__nu, __z);
       _Cmplx __fact = std::sqrt(_S_pi / (_Tp{2} * __z));

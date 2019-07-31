@@ -50,7 +50,7 @@ template<typename _Tp>
   _Tp
   __ellint_nome_agm(_Tp __k)
   {
-    const auto _S_pi = __gnu_cxx::math::__pi_v<_Tp>;
+    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
     auto __kp = std::sqrt((_Tp{1} - __k) * (_Tp{1} + __k));
     auto __K = __comp_ellint_1_agm(__k);
     auto __Kp = __comp_ellint_1_agm(__kp);

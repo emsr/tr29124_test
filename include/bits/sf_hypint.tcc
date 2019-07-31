@@ -52,7 +52,7 @@ namespace __detail
       const unsigned int _S_max_iter = 100;
       const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__t);
       const auto _S_fp_min = __gnu_cxx::__lim_min(__t);
-      const auto _S_pi_2 = __gnu_cxx::math::__pi_half_v<_Tp>;
+      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
 
       // Evaluate Chi and Shi by Lentz's modified method of continued fracions.
       std::complex<_Tp> __b(_Tp{1}, __t);
@@ -95,7 +95,7 @@ namespace __detail
       const auto _S_max_iter = 100;
       const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__t);
       const auto _S_fp_min = __gnu_cxx::__lim_min(__t);
-      const auto _S_gamma_e = __gnu_cxx::math::__gamma_e_v<_Tp>;
+      const auto _S_gamma_e = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
 
       // Evaluate Chi and Shi by series simultaneously.
       _Tp _Csum(0), _Ssum(0);
