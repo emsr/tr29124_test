@@ -32,9 +32,7 @@ target_link_libraries(test_limits ${TR29124_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_limits COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_limits > output/test_limits.txt")
 
 add_executable(test_maxint test_maxint.cpp)
-target_include_directories(test_maxint PRIVATE
-  ../../3rdparty/mpreal)
-target_link_libraries(test_maxint ${TR29124_LIBRARIES} quadmath gmp mpfr)
+target_link_libraries(test_maxint ${TR29124_LIBRARIES} quadmath mpreal gmp mpfr)
 add_test(NAME run_test_maxint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_maxint > output/test_maxint.txt")
 
 add_executable(test_mod2pi test_mod2pi.cpp)
@@ -42,9 +40,8 @@ target_link_libraries(test_mod2pi ${TR29124_LIBRARIES} quadmath)
 add_test(NAME run_test_mod2pi COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_mod2pi > output/test_mod2pi.txt")
 
 add_executable(test_numeric_limits test_numeric_limits.cpp)
-target_include_directories(test_numeric_limits PRIVATE
-  ../../3rdparty/mpreal)
-target_link_libraries(test_numeric_limits ${TR29124_LIBRARIES} cxx_float128 quadmath gmp mpfr)
+target_link_libraries(test_numeric_limits ${TR29124_LIBRARIES} cxx_float128 quadmath mpreal gmp mpfr)
+add_test(NAME run_test_numeric_limits COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_numeric_limits > output/test_numeric_limits.txt")
 
 add_executable(test_lab_ulp test_ulp.cpp)
 add_test(NAME run_test_lab_ulp COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_lab_ulp > output/test_lab_ulp.txt")

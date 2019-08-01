@@ -21,13 +21,11 @@ endif ()
 enable_testing()
 
 add_executable(build_inv_erf_coefs build_inv_erf_coefs.cpp)
-target_include_directories(build_inv_erf_coefs PRIVATE
-  ../../3rdparty/mpreal)
 target_link_libraries(build_inv_erf_coefs
   ${TR29124_LIBRARIES}
   cxx_float128
   quadmath
-  gmp mpfr)
+  mpreal gmp mpfr)
 add_test(NAME run_build_inv_erf_coefs COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_inv_erf_coefs > output/build_inv_erf_coefs.txt")
 
 add_executable(test_dawson test_dawson.cpp)
@@ -43,13 +41,11 @@ target_link_libraries(test_erfc ${TR29124_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_erfc COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_erfc > output/test_erfc.txt")
 
 add_executable(test_experfc test_experfc.cpp)
-target_include_directories(test_experfc PRIVATE
-  ../../3rdparty/mpreal)
 target_link_libraries(test_experfc
   ${TR29124_LIBRARIES}
   cxx_float128
   quadmath
-  mpfr gmp)
+  mpreal mpfr gmp)
 add_test(NAME run_test_experfc COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_experfc > output/test_experfc.txt")
 
 add_executable(test_faddeeva test_faddeeva.cpp)

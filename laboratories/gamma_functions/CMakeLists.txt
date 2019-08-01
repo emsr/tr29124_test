@@ -28,22 +28,14 @@ target_link_libraries(build_gamma_lanczos ${TR29124_LIBRARIES} quadmath)
 add_test(NAME run_build_gamma_lanczos COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_gamma_lanczos > output/build_gamma_lanczos.txt")
 
 add_executable(build_gamma_recip build_gamma_recip.cpp)
-target_include_directories(build_gamma_recip PRIVATE
-  ../../3rdparty/mpreal
-)
-target_link_libraries(build_gamma_recip ${TR29124_LIBRARIES} quadmath mpfr gmp)
+target_link_libraries(build_gamma_recip ${TR29124_LIBRARIES} quadmath mpreal mpfr gmp)
 add_test(NAME run_build_gamma_recip COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_gamma_recip > output/build_gamma_recip.txt")
 
 add_executable(build_gamma_spouge build_gamma_spouge.cpp)
-target_include_directories(build_gamma_spouge PRIVATE
-  ../../cxx_float128/include
-)
-target_link_libraries(build_gamma_spouge ${TR29124_LIBRARIES} quadmath)
+target_link_libraries(build_gamma_spouge ${TR29124_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_build_gamma_spouge COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_gamma_spouge > output/build_gamma_spouge.txt")
 
 add_executable(plot_gamma plot_gamma.cpp)
-target_include_directories(plot_gamma PRIVATE
-)
 target_link_libraries(plot_gamma ${TR29124_LIBRARIES} quadmath)
 add_test(NAME run_plot_gamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/plot_gamma > output/plot_gamma.txt")
 
@@ -66,10 +58,7 @@ target_link_libraries(test_digamma
 add_test(NAME run_test_digamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_digamma > output/test_digamma.txt")
 
 add_executable(test_factorial test_factorial.cpp)
-target_include_directories(test_factorial PRIVATE
-  ../../cxx_float128/include
-)
-target_link_libraries(test_factorial ${TR29124_LIBRARIES} quadmath)
+target_link_libraries(test_factorial ${TR29124_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_factorial COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_factorial > output/test_factorial.txt")
 
 add_executable(test_falling_factorial test_falling_factorial.cpp)
@@ -87,15 +76,11 @@ target_link_libraries(test_gamma_ratio ${TR29124_LIBRARIES} cxx_float128 quadmat
 add_test(NAME run_test_gamma_ratio COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_gamma_ratio > output/test_gamma_ratio.txt")
 
 add_executable(test_gamma_reciprocal test_gamma_reciprocal.cpp)
-target_include_directories(test_gamma_reciprocal PRIVATE
-  ../../cxx_float128/include)
-target_link_libraries(test_gamma_reciprocal ${TR29124_LIBRARIES} quadmath)
+target_link_libraries(test_gamma_reciprocal ${TR29124_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_gamma_reciprocal COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_gamma_reciprocal > output/test_gamma_reciprocal.txt")
 
 add_executable(test_inv_gamma test_inv_gamma.cpp)
-target_include_directories(test_inv_gamma PRIVATE
-  ../../cxx_float128/include)
-target_link_libraries(test_inv_gamma ${TR29124_LIBRARIES} quadmath)
+target_link_libraries(test_inv_gamma ${TR29124_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_inv_gamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_inv_gamma > output/test_inv_gamma.txt")
 
 add_executable(test_inv_lgamma test_inv_lgamma.cpp)
