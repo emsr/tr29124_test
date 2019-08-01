@@ -8,5 +8,5 @@ project(
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_library(mpreal INTERFACE mpreal.h)
+add_library(mpreal INTERFACE)
 target_include_directories(mpreal INTERFACE .)
