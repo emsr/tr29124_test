@@ -24,7 +24,5 @@ add_executable(test_factorization test_factorization.cpp)
 add_test(NAME run_test_factorization COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_factorization > output/test_factorization.txt < ${CMAKE_CURRENT_SOURCE_DIR}/test_factorization.in")
 
 add_executable(test_prime_factors test_prime_factors.cpp)
-target_include_directories(test_prime_factors PRIVATE
-  ${TR29124_INCLUDE_DIRS})
-target_link_libraries(test_prime_factors quadmath)
+target_link_libraries(test_prime_factors ${TR29124_LIBRARIES} quadmath)
 add_test(NAME run_test_prime_factors COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_prime_factors > output/test_prime_factors.txt < ${CMAKE_CURRENT_SOURCE_DIR}/test_prime_factors.in")

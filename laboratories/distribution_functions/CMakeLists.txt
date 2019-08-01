@@ -21,7 +21,5 @@ endif ()
 enable_testing()
 
 add_executable(test_marcum_q test_marcum_q.cpp)
-target_include_directories(test_marcum_q PRIVATE
-  ${TR29124_INCLUDE_DIRS})
-target_link_libraries(test_marcum_q quadmath)
+target_link_libraries(test_marcum_q ${TR29124_LIBRARIES} quadmath)
 add_test(NAME run_test_marcum_q COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_marcum_q > output/test_marcum_q.txt")

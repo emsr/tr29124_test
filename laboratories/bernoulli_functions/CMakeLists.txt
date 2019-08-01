@@ -22,17 +22,17 @@ enable_testing()
 
 add_executable(build_bernoulli_2n_table build_bernoulli_2n_table.cpp)
 target_include_directories(build_bernoulli_2n_table PRIVATE
-  ../../3rdparty/mpreal
-  ${TR29124_INCLUDE_DIRS})
-target_link_libraries(build_bernoulli_2n_table quadmath mpfr)
+  ../../3rdparty/mpreal)
+target_link_libraries(build_bernoulli_2n_table ${TR29124_LIBRARIES} quadmath mpfr)
 add_test(NAME run_build_bernoulli_2n_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_bernoulli_2n_table > output/build_bernoulli_2n_table.txt")
 
 add_executable(test_bernoulli test_bernoulli.cpp)
 target_include_directories(test_bernoulli PRIVATE
-  ${TR29124_INCLUDE_DIRS}
-  ../../cxx_float128/include
-  ../../wrappers)
-target_link_libraries(test_bernoulli quadmath
+  ../../cxx_float128/include)
+target_link_libraries(test_bernoulli
+  ${TR29124_LIBRARIES}
+  cxx_float128
+  quadmath
   wrap_burkhardt
   gfortran)
 add_test(NAME run_test_bernoulli COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_bernoulli > output/test_bernoulli.txt")

@@ -18,11 +18,6 @@ endif ()
 
 enable_testing()
 
-list(APPEND cxx_differentiation_INCLUDES
-  include/ext/differentiation.h
-  include/ext/differentiation.tcc
-)
-
 add_library(cxx_differentiation INTERFACE)
 target_include_directories(cxx_differentiation INTERFACE include)
 

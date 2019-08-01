@@ -8,16 +8,16 @@ project(
 
 enable_testing()
 
-set(TR29124_INCLUDE_DIRS
-  ../../cxx_math_constants/include
-  ../../cxx_fp_utils/include
-  ../../cxx_complex_utils/include
-  ../../cxx_complex_math/include
-  ../../cxx_continued_fractions/include
-  ../../cxx_summation/include
-  ../../cxx_polynomial/include
-  ../../cxx_integration/include
-  ../../include)
+set(TR29124_LIBRARIES
+  cxx_math_constants
+  cxx_fp_utils
+  cxx_complex_utils
+  cxx_complex_math
+  cxx_continued_fractions
+  cxx_summation
+  cxx_polynomial
+  cxx_integration
+  cxx_special_functions)
 
 add_subdirectory(airy_functions)
 add_subdirectory(appell_functions)

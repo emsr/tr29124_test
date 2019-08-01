@@ -22,13 +22,14 @@ add_library(cxx_chebyshev INTERFACE)
 target_include_directories(cxx_chebyshev INTERFACE include)
 
 add_executable(test_cxx_chebyshev test_chebyshev.cpp)
-target_link_libraries(test_cxx_chebyshev cxx_chebyshev quadmath)
-target_include_directories(test_cxx_chebyshev PRIVATE
-  ../cxx_math_constants/include
-  ../cxx_float128/include
-  ../cxx_complex_utils/include
-  ../cxx_polynomial/include
-  ../cxx_fp_utils/include)
+target_link_libraries(test_cxx_chebyshev
+  cxx_math_constants
+  cxx_float128
+  cxx_complex_utils
+  cxx_polynomial
+  cxx_fp_utils
+  cxx_chebyshev
+  quadmath)
 
 add_test(NAME run_test_cxx_chebyshev COMMAND bash -c "./bin/test_cxx_chebyshev > output/test_cxx_chebyshev.txt")
 

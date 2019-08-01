@@ -22,12 +22,11 @@ add_library(cxx_rational INTERFACE)
 target_include_directories(cxx_rational INTERFACE include)
 
 add_executable(test_rational test_rational.cpp)
-target_link_libraries(test_rational cxx_rational quadmath)
-target_include_directories(test_rational PRIVATE
-  ../include # float128
-  ../cxx_complex_utils/include
-  ../cxx_polynomial/include
-  ../cxx_fp_utils/include)
+target_link_libraries(test_rational cxx_rational
+  cxx_fp_utils
+  cxx_complex_utils
+  cxx_polynomial
+  quadmath)
 
 add_test(NAME run_test_rational COMMAND bash -c "./bin/test_rational > output/test_rational.txt")
 

@@ -41,41 +41,33 @@ enable_testing()
 #target_link_libraries(carlson )
 
 add_executable(carlson_std carlson_std.cpp)
-target_include_directories(carlson_std PRIVATE
-  ${TR29124_INCLUDE_DIRS})
-target_link_libraries(carlson_std quadmath)
+target_link_libraries(carlson_std ${TR29124_LIBRARIES} quadmath)
 add_test(NAME run_carlson_std COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/carlson_std > output/carlson_std.txt")
 
 add_executable(test_comp_ellint_1 test_comp_ellint_1.cpp)
-target_include_directories(test_comp_ellint_1 PRIVATE
-  ${TR29124_INCLUDE_DIRS}
-  ../../cxx_float128/include)
-target_link_libraries(test_comp_ellint_1 quadmath)
+target_link_libraries(test_comp_ellint_1
+  ${TR29124_LIBRARIES}
+  cxx_float128
+  quadmath)
 add_test(NAME run_test_comp_ellint_1 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_comp_ellint_1 > output/test_comp_ellint_1.txt")
 
 add_executable(test_heuman_lambda test_heuman_lambda.cpp)
-target_include_directories(test_heuman_lambda PRIVATE
-  ${TR29124_INCLUDE_DIRS}
-  ../../wrappers)
 target_link_libraries(test_heuman_lambda
+  ${TR29124_LIBRARIES}
   quadmath
   wrap_boost)
 add_test(NAME run_test_heuman_lambda COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_heuman_lambda > output/test_heuman_lambda.txt")
 
 add_executable(test_jacobi_zeta test_jacobi_zeta.cpp)
-target_include_directories(test_jacobi_zeta PRIVATE
-  ${TR29124_INCLUDE_DIRS}
-  ../../wrappers)
 target_link_libraries(test_jacobi_zeta
+  ${TR29124_LIBRARIES}
   quadmath
   wrap_boost)
 add_test(NAME run_test_jacobi_zeta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_zeta > output/test_jacobi_zeta.txt")
 
 add_executable(test_legendre_ellint test_legendre_ellint.cpp)
-target_include_directories(test_legendre_ellint PRIVATE
-  ${TR29124_INCLUDE_DIRS}
-  ../../wrappers)
 target_link_libraries(test_legendre_ellint
+  ${TR29124_LIBRARIES}
   quadmath
   wrap_gsl)
 add_test(NAME run_test_legendre_ellint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_legendre_ellint > output/test_legendre_ellint.txt")

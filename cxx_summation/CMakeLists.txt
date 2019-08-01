@@ -20,13 +20,15 @@ target_include_directories(cxx_summation INTERFACE include)
 
 add_executable(test_summation test_summation.cpp)
 target_include_directories(test_summation PRIVATE
-  ../include
-  ../cxx_float128/include
-  ../cxx_math_constants/include
-  ../cxx_fp_utils/include
-  ../cxx_complex_utils/include
-  ../cxx_complex_math/include
-  ../cxx_continued_fractions/include
-  ../cxx_polynomial/include
-  ../cxx_integration/include)
-target_link_libraries(test_summation cxx_summation quadmath)
+  ../include)
+target_link_libraries(test_summation
+  cxx_math_constants
+  cxx_fp_utils
+  cxx_complex_utils
+  cxx_complex_math
+  cxx_polynomial
+  cxx_continued_fractions
+  cxx_summation
+  cxx_integration
+  cxx_float128
+  quadmath)

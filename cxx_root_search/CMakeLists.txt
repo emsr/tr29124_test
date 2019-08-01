@@ -24,8 +24,9 @@ target_include_directories(cxx_root_search
 
 add_executable(test_root_search test_root_search.cpp)
 target_include_directories(test_root_search PRIVATE
-  .
-  ../cxx_math_constants/include
-  ../cxx_polynomial/include)
-target_link_libraries(test_root_search cxx_root_search)
+  .)
+target_link_libraries(test_root_search
+  cxx_math_constants
+  cxx_polynomial
+  cxx_root_search)
 add_test(NAME test_root_search COMMAND bash -c "./bin/test_root_search > test_root_search.txt")

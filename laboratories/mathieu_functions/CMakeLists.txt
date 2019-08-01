@@ -21,6 +21,5 @@ endif ()
 enable_testing()
 
 add_executable(test_mathieu test_mathieu.cpp)
-target_include_directories(test_mathieu PRIVATE )
 target_link_libraries(test_mathieu quadmath)
 add_test(NAME run_test_mathieu COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_mathieu > output/test_mathieu.txt")

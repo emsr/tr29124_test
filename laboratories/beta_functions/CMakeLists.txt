@@ -21,24 +21,17 @@ endif ()
 enable_testing()
 
 add_executable(test_beta test_beta.cpp)
-target_include_directories(test_beta PRIVATE
-  ${TR29124_INCLUDE_DIRS}
-  ../../cxx_float128/include
-  ../../wrappers)
-target_link_libraries(test_beta
+target_link_libraries(test_beta ${TR29124_LIBRARIES} cxx_float128
   quadmath
   wrap_boost)
 add_test(NAME run_test_beta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_beta > output/test_beta.txt")
 
 add_executable(test_beta_inc test_beta_inc.cpp)
-target_include_directories(test_beta_inc PRIVATE
-  ${TR29124_INCLUDE_DIRS})
-target_link_libraries(test_beta_inc quadmath)
+target_link_libraries(test_beta_inc ${TR29124_LIBRARIES} quadmath)
 add_test(NAME run_test_beta_inc COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_beta_inc > output/test_beta_inc.txt")
 
 add_executable(test_inv_ibeta test_inv_ibeta.cpp)
 target_include_directories(test_inv_ibeta PRIVATE
-  ${TR29124_INCLUDE_DIRS}
   ../../cxx_root_search/include)
-target_link_libraries(test_inv_ibeta quadmath)
+target_link_libraries(test_inv_ibeta ${TR29124_LIBRARIES} quadmath)
 add_test(NAME run_test_inv_ibeta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_inv_ibeta > output/test_inv_ibeta.txt")

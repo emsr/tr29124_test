@@ -19,22 +19,21 @@ if (NOT MSVC)
   endif ()
 endif ()
 
-set(TR29124_INCLUDE_DIRS
-  ../include
-  ../cxx_math_constants/include
-  ../cxx_fp_utils/include
-  ../cxx_complex_utils/include
-  ../cxx_complex_math/include
-  ../cxx_continued_fractions/include
-  ../cxx_summation/include
-  ../cxx_polynomial/include
-  ../cxx_integration/include
-  ../cxx_float128/include)
+set(TR29124_LIBRARIES
+  cxx_special_functions
+  cxx_math_constants
+  cxx_fp_utils
+  cxx_complex_utils
+  cxx_complex_math
+  cxx_continued_fractions
+  cxx_summation
+  cxx_polynomial
+  cxx_integration
+  cxx_float128)
 
 add_library(wrap_boost SHARED wrap_boost.cpp)
-target_include_directories(wrap_boost PRIVATE
-  .
-  ${TR29124_INCLUDE_DIRS})
+target_link_libraries(wrap_boost ${TR29124_LIBRARIES})
+target_include_directories(wrap_boost PUBLIC .)
 
 
 set(GSL_ROOT_DIR /usr/local)
@@ -48,11 +47,12 @@ add_library(wrap_gsl SHARED
 	    ../3rdparty/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.cpp
 	    ../3rdparty/gslextras/Hermite/gsl_sf_hermite.c
 	   )
-target_include_directories(wrap_gsl PRIVATE
+target_include_directories(wrap_gsl
+PUBLIC
   .
-  ${TR29124_INCLUDE_DIRS}
+PRIVATE
   ../3rdparty/gslextras)
-target_link_libraries(wrap_gsl gsl gslcblas)
+target_link_libraries(wrap_gsl ${TR29124_LIBRARIES} gsl gslcblas)
 
 add_library(wrap_cephes SHARED
             wrap_cephes.cpp
@@ -202,10 +202,12 @@ add_library(wrap_cephes SHARED
 	    ../3rdparty/cephes/c9x-complex/cgamma.c
 	    ../3rdparty/cephes/c9x-complex/cpolylog.c
            )
-target_include_directories(wrap_cephes PRIVATE
+target_include_directories(wrap_cephes
+PUBLIC
   .
-  ${TR29124_INCLUDE_DIRS}
+PRIVATE
   ../3rdparty/cephes)
+target_link_libraries(wrap_cephes ${TR29124_LIBRARIES})
 
 # This was an interesting disaster!
 #	    ../cephes/cmath/sincos.c
@@ -241,37 +243,45 @@ add_library(wrap_burkhardt SHARED
 	    ../3rdparty/burkhardt/triangle_monte_carlo.cpp
            )
 target_link_libraries(wrap_burkhardt gfortran)
-target_include_directories(wrap_burkhardt PRIVATE
+target_include_directories(wrap_burkhardt
+PUBLIC
   .
-  ${TR29124_INCLUDE_DIRS}
+PRIVATE
   ../3rdparty/burkhardt)
+target_link_libraries(wrap_burkhardt ${TR29124_LIBRARIES})
 
 
 add_library(wrap_lerchphi SHARED
             wrap_lerch.cpp
 	    ../3rdparty/lerchphi/Source/lerchphi.cpp
 	   )
-target_include_directories(wrap_lerchphi PRIVATE
+target_include_directories(wrap_lerchphi
+PUBLIC
   .
-  ${TR29124_INCLUDE_DIRS}
+PRIVATE
   ../3rdparty/lerchphi/Source)
+target_link_libraries(wrap_lerchphi ${TR29124_LIBRARIES})
 
 
 add_library(wrap_faddeeva SHARED
             wrap_faddeeva.cpp
 	    ../3rdparty/Faddeeva/Faddeeva.cc
 	   )
-target_include_directories(wrap_faddeeva PRIVATE
+target_include_directories(wrap_faddeeva
+PUBLIC
   .
-  ${TR29124_INCLUDE_DIRS}
+PRIVATE
   ../3rdparty/Faddeeva)
+target_link_libraries(wrap_faddeeva ${TR29124_LIBRARIES})
 
 
 add_library(wrap_lambert SHARED
             wrap_lambert.cpp
 	    ../3rdparty/LambertW/LambertW.cc
 	   )
-target_include_directories(wrap_lambert PRIVATE
+target_link_libraries(wrap_lambert ${TR29124_LIBRARIES})
+target_include_directories(wrap_lambert
+PUBLIC
   .
-  ${TR29124_INCLUDE_DIRS}
+PRIVATE
   ../3rdparty/LambertW)

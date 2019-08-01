@@ -21,35 +21,23 @@ endif ()
 enable_testing()
 
 add_executable(test_jacobi_ellint test_jacobi_ellint.cpp)
-target_include_directories(test_jacobi_ellint PRIVATE
-  ${TR29124_INCLUDE_DIRS}
-  ../../wrappers)
-target_link_libraries(test_jacobi_ellint quadmath wrap_gsl)
+target_link_libraries(test_jacobi_ellint ${TR29124_LIBRARIES} quadmath wrap_gsl)
 add_test(NAME run_test_jacobi_ellint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_ellint > output/test_jacobi_ellint.txt")
 
 add_executable(test_jacobi_inv test_jacobi_inv.cpp)
-target_include_directories(test_jacobi_inv PRIVATE
-  ${TR29124_INCLUDE_DIRS})
-target_link_libraries(test_jacobi_inv quadmath)
+target_link_libraries(test_jacobi_inv ${TR29124_LIBRARIES} quadmath)
 add_test(NAME run_test_jacobi_inv COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_inv > output/test_jacobi_inv.txt")
 
 add_executable(test_jacobi_theta test_jacobi_theta.cpp)
 target_include_directories(test_jacobi_theta PRIVATE
-  ${TR29124_INCLUDE_DIRS}
-  ../../cxx_float128/include
   ../../wrappers)
-target_link_libraries(test_jacobi_theta quadmath wrap_gsl)
+target_link_libraries(test_jacobi_theta ${TR29124_LIBRARIES} cxx_float128 quadmath wrap_gsl)
 add_test(NAME run_test_jacobi_theta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_theta > output/test_jacobi_theta.txt")
 
 add_executable(test_theta test_theta.cpp)
-target_include_directories(test_theta PRIVATE
-  ${TR29124_INCLUDE_DIRS}
-  ../../cxx_float128/include)
-target_link_libraries(test_theta quadmath)
+target_link_libraries(test_theta ${TR29124_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_theta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_theta > output/test_theta.txt")
 
 add_executable(test_weierstrass_ellint test_weierstrass_ellint.cpp)
-target_include_directories(test_weierstrass_ellint PRIVATE
-  ${TR29124_INCLUDE_DIRS})
-target_link_libraries(test_weierstrass_ellint quadmath)
+target_link_libraries(test_weierstrass_ellint ${TR29124_LIBRARIES} quadmath)
 add_test(NAME run_test_weierstrass_ellint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_weierstrass_ellint > output/test_weierstrass_ellint.txt")

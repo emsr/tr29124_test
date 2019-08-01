@@ -22,70 +22,62 @@ enable_testing()
 
 add_executable(build_inv_erf_coefs build_inv_erf_coefs.cpp)
 target_include_directories(build_inv_erf_coefs PRIVATE
-  ${TR29124_INCLUDE_DIRS}
-  ../../3rdparty/mpreal
-  ../../cxx_float128/include)
+  ../../3rdparty/mpreal)
 target_link_libraries(build_inv_erf_coefs
+  ${TR29124_LIBRARIES}
+  cxx_float128
   quadmath
   gmp mpfr)
 add_test(NAME run_build_inv_erf_coefs COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_inv_erf_coefs > output/build_inv_erf_coefs.txt")
 
 add_executable(test_dawson test_dawson.cpp)
-target_include_directories(test_dawson PRIVATE
-  ../../wrappers
-  ${TR29124_INCLUDE_DIRS}
-  ../../cxx_float128/include)
 target_link_libraries(test_dawson
+  ${TR29124_LIBRARIES}
+  cxx_float128
   quadmath
   wrap_boost)
 add_test(NAME run_test_dawson COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_dawson > output/test_dawson.txt")
 
 add_executable(test_erfc test_erfc.cpp)
-target_include_directories(test_erfc PRIVATE
-  ${TR29124_INCLUDE_DIRS}
-  ../../cxx_float128/include)
-target_link_libraries(test_erfc quadmath)
+target_link_libraries(test_erfc ${TR29124_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_erfc COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_erfc > output/test_erfc.txt")
 
 add_executable(test_experfc test_experfc.cpp)
 target_include_directories(test_experfc PRIVATE
-  ../../3rdparty/mpreal
-  ${TR29124_INCLUDE_DIRS}
-  ../../cxx_float128/include)
+  ../../3rdparty/mpreal)
 target_link_libraries(test_experfc
+  ${TR29124_LIBRARIES}
+  cxx_float128
   quadmath
   mpfr gmp)
 add_test(NAME run_test_experfc COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_experfc > output/test_experfc.txt")
 
 add_executable(test_faddeeva test_faddeeva.cpp)
-target_include_directories(test_faddeeva PRIVATE
-  .
-  ../../wrappers)
+target_link_libraries(test_faddeeva
+  wrap_faddeeva)
 add_test(NAME run_test_faddeeva COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_faddeeva > output/test_faddeeva.txt")
 
 add_executable(test_fresnel test_fresnel.cpp)
 target_include_directories(test_fresnel PRIVATE
-  .
-  ${TR29124_INCLUDE_DIRS}
-  ../../cxx_float128/include)
-target_link_libraries(test_fresnel quadmath)
+  .)
+target_link_libraries(test_fresnel
+  ${TR29124_LIBRARIES}
+  cxx_float128
+  quadmath)
 add_test(NAME run_test_fresnel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_fresnel > output/test_fresnel.txt")
 
 add_executable(test_inv_erf test_inv_erf.cpp)
 target_compile_definitions(test_inv_erf PRIVATE STANDALONE)
-target_include_directories(test_inv_erf PRIVATE
-  ${TR29124_INCLUDE_DIRS}
-  ../../cxx_float128/include)
-target_link_libraries(test_inv_erf quadmath)
+target_link_libraries(test_inv_erf
+  ${TR29124_LIBRARIES}
+  cxx_float128
+  quadmath)
 add_test(NAME run_test_inv_erf COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_inv_erf > output/test_inv_erf.txt")
 
 add_executable(test_owens_t test_owens_t.cpp)
-target_include_directories(test_owens_t PRIVATE
-  ${TR29124_INCLUDE_DIRS}
-  ../../cxx_float128/include
-  ../../wrappers
-)
 target_link_libraries(test_owens_t
+  ${TR29124_LIBRARIES}
+  cxx_float128
   quadmath
   wrap_boost)
 add_test(NAME run_test_owens_t COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_owens_t > output/test_owens_t.txt")

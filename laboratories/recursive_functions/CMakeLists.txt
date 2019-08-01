@@ -21,7 +21,5 @@ endif ()
 enable_testing()
 
 add_executable(test_fibonacci test_fibonacci.cpp)
-target_include_directories(test_fibonacci PRIVATE
-  ${TR29124_INCLUDE_DIRS})
-target_link_libraries(test_fibonacci quadmath)
+target_link_libraries(test_fibonacci ${TR29124_LIBRARIES} quadmath)
 add_test(NAME run_test_fibonacci COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_fibonacci > output/test_fibonacci.txt")

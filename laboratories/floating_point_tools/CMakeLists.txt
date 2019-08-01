@@ -24,38 +24,27 @@ add_executable(builtins builtins.cpp)
 add_test(NAME run_builtins COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/builtins > output/builtins.txt")
 
 add_executable(test_float128 test_float128.cpp)
-target_include_directories(test_float128 PRIVATE
-  ${TR29124_INCLUDE_DIRS}
-  ../../cxx_float128/include)
-target_link_libraries(test_float128 quadmath)
+target_link_libraries(test_float128 ${TR29124_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_float128 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_float128 > output/test_float128.txt")
 
 add_executable(test_limits test_limits.cpp)
-target_include_directories(test_limits PRIVATE
-  ${TR29124_INCLUDE_DIRS}
-  ../../cxx_float128/include)
-target_link_libraries(test_limits quadmath)
+target_link_libraries(test_limits ${TR29124_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_limits COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_limits > output/test_limits.txt")
 
 add_executable(test_maxint test_maxint.cpp)
 target_include_directories(test_maxint PRIVATE
-  ${TR29124_INCLUDE_DIRS}
   ../../3rdparty/mpreal)
-target_link_libraries(test_maxint quadmath gmp mpfr)
+target_link_libraries(test_maxint ${TR29124_LIBRARIES} quadmath gmp mpfr)
 add_test(NAME run_test_maxint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_maxint > output/test_maxint.txt")
 
 add_executable(test_mod2pi test_mod2pi.cpp)
-target_include_directories(test_mod2pi PRIVATE
-  ${TR29124_INCLUDE_DIRS})
-target_link_libraries(test_mod2pi quadmath)
+target_link_libraries(test_mod2pi ${TR29124_LIBRARIES} quadmath)
 add_test(NAME run_test_mod2pi COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_mod2pi > output/test_mod2pi.txt")
 
 add_executable(test_numeric_limits test_numeric_limits.cpp)
 target_include_directories(test_numeric_limits PRIVATE
-  ../../3rdparty/mpreal
-  ${TR29124_INCLUDE_DIRS}
-  ../../cxx_float128/include)
-target_link_libraries(test_numeric_limits quadmath gmp mpfr)
+  ../../3rdparty/mpreal)
+target_link_libraries(test_numeric_limits ${TR29124_LIBRARIES} cxx_float128 quadmath gmp mpfr)
 
 add_executable(test_lab_ulp test_ulp.cpp)
 add_test(NAME run_test_lab_ulp COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_lab_ulp > output/test_lab_ulp.txt")

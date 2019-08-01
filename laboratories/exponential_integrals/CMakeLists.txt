@@ -21,17 +21,13 @@ endif ()
 enable_testing()
 
 add_executable(test_csint test_csint.cpp)
-target_include_directories(test_csint PRIVATE
-  ${TR29124_INCLUDE_DIRS})
-target_link_libraries(test_csint quadmath)
+target_link_libraries(test_csint ${TR29124_LIBRARIES} quadmath)
 add_test(NAME run_test_csint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_csint > output/test_csint.txt")
 
 add_executable(test_expint test_expint.cpp)
-target_include_directories(test_expint PRIVATE
-  ${TR29124_INCLUDE_DIRS}
-  ../../cxx_float128/include
-  ../../wrappers)
 target_link_libraries(test_expint
+  ${TR29124_LIBRARIES}
+  cxx_float128
   quadmath
   wrap_boost)
 add_test(NAME run_test_expint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_expint > output/test_expint.txt")

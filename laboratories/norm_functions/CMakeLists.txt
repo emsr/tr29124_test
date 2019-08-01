@@ -24,19 +24,17 @@ add_executable(test_abs test_abs.cpp)
 add_test(NAME run_test_abs COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_abs > output/test_abs.txt")
 
 add_executable(test_arith_geom_mean test_arith_geom_mean.cpp)
-target_include_directories(test_arith_geom_mean PRIVATE
-  ${TR29124_INCLUDE_DIRS}
-  ../../cxx_float128/include
-  ../../wrappers)
 target_link_libraries(test_arith_geom_mean
+  ${TR29124_LIBRARIES}
+  cxx_float128
   quadmath
   wrap_boost)
 add_test(NAME run_test_arith_geom_mean COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_arith_geom_mean > output/test_arith_geom_mean.txt")
 
 add_executable(test_hypot test_hypot.cpp)
-target_include_directories(test_hypot PRIVATE
-  ${TR29124_INCLUDE_DIRS})
-target_link_libraries(test_hypot quadmath)
+target_link_libraries(test_hypot
+  ${TR29124_LIBRARIES}
+  quadmath)
 add_test(NAME run_test_hypot COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hypot > output/test_hypot.txt")
 
 add_executable(test_logsumexp test_logsumexp.cpp)

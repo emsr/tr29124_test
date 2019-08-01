@@ -23,6 +23,7 @@ add_subdirectory(cxx_rational)
 add_subdirectory(cxx_root_search)
 add_subdirectory(cxx_summation)
 add_subdirectory(cxx_traits_utils)
+add_subdirectory(cxx_special_functions)
 
 # Actual submodules
 add_subdirectory(cxx_math_constants)

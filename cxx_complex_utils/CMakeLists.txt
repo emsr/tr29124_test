@@ -12,9 +12,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 enable_testing()
 
+add_library(cxx_complex_utils INTERFACE)
+target_include_directories(cxx_complex_utils INTERFACE include)
+
 add_executable(test_is_complex test_is_complex.cpp)
 target_include_directories(test_is_complex PRIVATE
-  ../cxx_fp_utils/include
-  include
   ../include)
-target_link_libraries(test_is_complex quadmath)
+target_link_libraries(test_is_complex cxx_complex_utils cxx_fp_utils quadmath)

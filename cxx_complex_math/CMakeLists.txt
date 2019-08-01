@@ -7,3 +7,6 @@ project(
 )
 
 enable_testing()
+
+add_library(cxx_complex_math INTERFACE)
+target_include_directories(cxx_complex_math INTERFACE include)
