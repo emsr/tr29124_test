@@ -2466,7 +2466,7 @@ inline const mpreal sum (const mpreal tab[], const unsigned long int n, int& sta
         p[i] = tab[i].mpfr_srcptr();
 
     mpreal x;
-    status = mpfr_sum(x.mpfr_ptr(), (mpfr_ptr*)p, n, mode);
+    status = mpfr_sum(x.mpfr_ptr(), const_cast<mpfr_ptr*>(p), n, mode);
     
     delete [] p;
     return x;
