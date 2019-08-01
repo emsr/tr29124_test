@@ -52,7 +52,7 @@ template<typename Tp>
   void
   test_legendre(Tp toler = 100 * std::numeric_limits<Tp>::epsilon())
   {
-    const auto _S_pi2 = __gnu_cxx::math::__pi_half_v<Tp>;
+    const auto _S_pi2 = __gnu_cxx::numbers::__pi_half_v<Tp>;
     bool test __attribute__((unused)) = true;
     Stats<Tp> stats(toler);
     for (auto i = 1; i < 10; ++i)
@@ -73,7 +73,7 @@ template<typename Tp>
   void
   test_theta_3(Tp toler = 100 * std::numeric_limits<Tp>::epsilon())
   {
-   const auto _S_pi2 = __gnu_cxx::math::__pi_half_v<Tp>;
+   const auto _S_pi2 = __gnu_cxx::numbers::__pi_half_v<Tp>;
     bool test __attribute__((unused)) = true;
     Stats<Tp> stats(toler);
     for (auto i = 1; i < 10; ++i)

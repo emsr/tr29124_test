@@ -280,7 +280,7 @@ template<typename Real>
     using  std::tr1::sph_neumann;
 #endif
 
-    const auto _S_pi = __gnu_cxx::math::__pi_v<Real>;
+    const auto _S_pi = __gnu_cxx::numbers::__pi_v<Real>;
 
     // Unsigned integer orders for various polynomials, harmonics.
     std::vector<unsigned int> vorder{0, 1, 2, 5, 10, 20, 50, 100};
@@ -306,7 +306,7 @@ template<typename Real>
     std::vector<Real> vphid;
     for (unsigned int i = 0; i < num_phi - 1; ++i)
       vphid.push_back(Real{10} * i * _S_pi / Real{180});
-    vphid.push_back(__gnu_cxx::math::__pi_half_v<Real>);
+    vphid.push_back(__gnu_cxx::numbers::__pi_half_v<Real>);
 
     std::vector<Real> vnopolesd;
     for (unsigned int i = 1; i < num_phi - 1; ++i)
