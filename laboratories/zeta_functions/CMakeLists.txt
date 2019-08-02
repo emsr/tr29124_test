@@ -21,57 +21,45 @@ endif ()
 enable_testing()
 
 add_executable(build_etam1_table build_etam1_table.cpp)
-target_include_directories(build_etam1_table PRIVATE
-  ../../3rdparty/mpreal)
 target_link_libraries(build_etam1_table
   ${TR29124_LIBRARIES}
   quadmath
-  mpfr gmp)
+  mpreal mpfr gmp)
 add_test(NAME run_build_etam1_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_etam1_table > output/build_etam1_table.txt")
 
 add_executable(build_nfact_zetanp1 build_nfact_zetanp1.cpp)
-target_include_directories(build_nfact_zetanp1 PRIVATE
-  ../../3rdparty/mpreal)
 target_link_libraries(build_nfact_zetanp1
   ${TR29124_LIBRARIES}
   quadmath
-  mpfr gmp)
+  mpreal mpfr gmp)
 add_test(NAME run_build_nfact_zetanp1 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_nfact_zetanp1 > output/build_nfact_zetanp1.txt")
 
 add_executable(build_zeta_deriv_table build_zeta_deriv_table.cpp)
-target_include_directories(build_zeta_deriv_table PRIVATE
-  ../../3rdparty/mpreal)
 target_link_libraries(build_zeta_deriv_table
   ${TR29124_LIBRARIES}
   quadmath
-  mpfr gmp)
+  mpreal mpfr gmp)
 add_test(NAME run_build_zeta_deriv_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_zeta_deriv_table > output/build_zeta_deriv_table.txt")
 
 add_executable(build_zetahalfm1_table build_zetahalfm1_table.cpp)
-target_include_directories(build_zetahalfm1_table PRIVATE
-  ../../3rdparty/mpreal)
 target_link_libraries(build_zetahalfm1_table
   ${TR29124_LIBRARIES}
   quadmath
-  mpfr gmp)
+  mpreal mpfr gmp)
 add_test(NAME run_build_zetahalfm1_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_zetahalfm1_table > output/build_zetahalfm1_table.txt")
 
 add_executable(build_zetam1_table build_zetam1_table.cpp)
-target_include_directories(build_zetam1_table PRIVATE
-  ../../3rdparty/mpreal)
 target_link_libraries(build_zetam1_table
   ${TR29124_LIBRARIES}
   quadmath
-  mpfr gmp)
+  mpreal mpfr gmp)
 add_test(NAME run_build_zetam1_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_zetam1_table > output/build_zetam1_table.txt")
 
 add_executable(build_zeta_trig_tables build_zeta_trig_tables.cpp)
-target_include_directories(build_zeta_trig_tables PRIVATE
-  ../../3rdparty/mpreal)
 target_link_libraries(build_zeta_trig_tables
   ${TR29124_LIBRARIES}
   quadmath
-  mpfr gmp)
+  mpreal mpfr gmp)
 add_test(NAME run_build_zeta_trig_tables COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_zeta_trig_tables > output/build_zeta_trig_tables.txt")
 
 add_executable(debug_dirichlet_eta debug_dirichlet_eta.cpp)
@@ -123,25 +111,20 @@ target_link_libraries(test_fermi_dirac
 add_test(NAME run_test_fermi_dirac COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_fermi_dirac > output/test_fermi_dirac.txt")
 
 add_executable(test_hurwitz_zeta test_hurwitz_zeta.cpp)
-target_include_directories(test_hurwitz_zeta PRIVATE
-  ../../cxx_float128/include)
-target_link_libraries(test_hurwitz_zeta ${TR29124_LIBRARIES} quadmath)
+target_link_libraries(test_hurwitz_zeta ${TR29124_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_hurwitz_zeta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hurwitz_zeta > output/test_hurwitz_zeta.txt")
 
 add_executable(test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp)
-target_include_directories(test_hurwitz_zeta_new PRIVATE
-  ../../cxx_float128/include)
-target_link_libraries(test_hurwitz_zeta_new ${TR29124_LIBRARIES} quadmath)
+target_link_libraries(test_hurwitz_zeta_new ${TR29124_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_hurwitz_zeta_new COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hurwitz_zeta_new > output/test_hurwitz_zeta_new.txt")
 
 add_executable(test_lerch test_lerch.cpp)
 target_include_directories(test_lerch PRIVATE
-  ../../3rdparty/mpreal
   ../.. # For statistics.h
-  ../../cxx_summation/include)
+)
 target_link_libraries(test_lerch
   ${TR29124_LIBRARIES}
-  mpfr gmp
+  mpreal mpfr gmp
   quadmath
   wrap_lerchphi)
 add_test(NAME run_test_lerch COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_lerch > output/test_lerch.txt")

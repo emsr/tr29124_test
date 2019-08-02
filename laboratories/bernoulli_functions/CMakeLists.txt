@@ -21,9 +21,7 @@ endif ()
 enable_testing()
 
 add_executable(build_bernoulli_2n_table build_bernoulli_2n_table.cpp)
-target_include_directories(build_bernoulli_2n_table PRIVATE
-  ../../3rdparty/mpreal)
-target_link_libraries(build_bernoulli_2n_table ${TR29124_LIBRARIES} quadmath mpfr)
+target_link_libraries(build_bernoulli_2n_table ${TR29124_LIBRARIES} quadmath mpreal mpfr)
 add_test(NAME run_build_bernoulli_2n_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_bernoulli_2n_table > output/build_bernoulli_2n_table.txt")
 
 add_executable(test_bernoulli test_bernoulli.cpp)

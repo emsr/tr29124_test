@@ -21,33 +21,23 @@ endif ()
 enable_testing()
 
 add_executable(build_atan_table build_atan_table.cpp)
-target_include_directories(build_atan_table PRIVATE
-  ../../3rdparty/mpreal)
-target_link_libraries(build_atan_table ${TR29124_LIBRARIES} gmp mpfr quadmath)
+target_link_libraries(build_atan_table ${TR29124_LIBRARIES} mpreal gmp mpfr quadmath)
 add_test(NAME run_build_atan_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_atan_table > output/build_atan_table.txt")
 
 add_executable(build_cordic build_cordic.cpp)
-target_include_directories(build_cordic PRIVATE
-  ../../3rdparty/mpreal)
-target_link_libraries(build_cordic ${TR29124_LIBRARIES} cxx_float128 gmp mpfr quadmath)
+target_link_libraries(build_cordic ${TR29124_LIBRARIES} cxx_float128 mpreal gmp mpfr quadmath)
 add_test(NAME run_build_cordic COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_cordic > output/build_cordic.txt")
 
 add_executable(build_log_table build_log_table.cpp)
-target_include_directories(build_log_table PRIVATE
-  ../../3rdparty/mpreal)
-target_link_libraries(build_log_table ${TR29124_LIBRARIES} gmp mpfr quadmath)
+target_link_libraries(build_log_table ${TR29124_LIBRARIES} mpreal gmp mpfr quadmath)
 add_test(NAME run_build_log_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_log_table > output/build_log_table.txt")
 
 add_executable(build_sincos_tables build_sincos_tables.cpp)
-target_include_directories(build_sincos_tables PRIVATE
-  ../../3rdparty/mpreal)
-target_link_libraries(build_sincos_tables ${TR29124_LIBRARIES} gmp mpfr quadmath)
+target_link_libraries(build_sincos_tables ${TR29124_LIBRARIES} mpreal gmp mpfr quadmath)
 add_test(NAME run_build_sincos_tables COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_sincos_tables > output/build_sincos_tables.txt")
 
 add_executable(build_sqrt_table build_sqrt_table.cpp)
-target_include_directories(build_sqrt_table PRIVATE
-  ../../3rdparty/mpreal)
-target_link_libraries(build_sqrt_table ${TR29124_LIBRARIES} gmp mpfr quadmath)
+target_link_libraries(build_sqrt_table ${TR29124_LIBRARIES} mpreal gmp mpfr quadmath)
 add_test(NAME run_build_sqrt_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_sqrt_table > output/build_sqrt_table.txt")
 
 add_executable(test_cordic test_cordic.cpp)

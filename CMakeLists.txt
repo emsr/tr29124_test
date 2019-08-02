@@ -25,6 +25,8 @@ add_subdirectory(cxx_summation)
 add_subdirectory(cxx_traits_utils)
 add_subdirectory(cxx_special_functions)
 
+add_subdirectory(3rdparty)
+
 # Actual submodules
 add_subdirectory(cxx_math_constants)
 add_subdirectory(cxx_polynomial)

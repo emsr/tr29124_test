@@ -1,2 +1,1 @@
-Convert casts from old-style C to new C++ static_cast.
-
+Merge upstream. Add a CMakeLists.txt
