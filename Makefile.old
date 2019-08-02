@@ -28,7 +28,7 @@ CXX_LIB_DIR = $(CXX_INST_DIR)/lib64
 CXX_TEST_INC_DIR = libstdc++_support
 
 INC_DIR = include/bits
-INCLUDES = -Icxx_math_const/include -Iinclude -Icxx_fp_utils/include -Icxx_summation/include -Ipolynomial/include -Iquadrature/include
+INCLUDES = -Icxx_math_constants/include -Iinclude -Icxx_fp_utils/include -Icxx_summation/include -Ipolynomial/include -Iquadrature/include
 MPREAL_INCLUDES = -I$(HOME)/mpreal
 
 FAD_DIR = 3rdparty/Faddeeva

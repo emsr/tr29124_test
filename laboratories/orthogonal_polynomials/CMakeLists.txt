@@ -170,3 +170,89 @@ add_test(NAME run_test_wilson COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_wils
 #add_executable(xxx xxx.cpp)
 #target_link_libraries(xxx ${TR29124_LIBRARIES} quadmath)
 #add_test(NAME run_xxx COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/xxx > output/xxx.txt")
+
+# Orthonormality tests.
+
+add_executable(test_orthonorm_assoc_laguerre test_orthonorm_assoc_laguerre.cpp)
+target_link_libraries(test_orthonorm_assoc_laguerre
+  ${TR29124_LIBRARIES}
+  quadmath)
+add_test(NAME run_test_orthonorm_assoc_laguerre COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_orthonorm_assoc_laguerre > output/test_orthonorm_assoc_laguerre.txt")
+
+add_executable(test_orthonorm_assoc_legendre test_orthonorm_assoc_legendre.cpp)
+target_link_libraries(test_orthonorm_assoc_legendre
+  ${TR29124_LIBRARIES}
+  quadmath)
+add_test(NAME run_test_orthonorm_assoc_legendre COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_orthonorm_assoc_legendre > output/test_orthonorm_assoc_legendre.txt")
+
+add_executable(test_orthonorm_sph_legendre test_orthonorm_sph_legendre.cpp)
+target_link_libraries(test_orthonorm_sph_legendre
+  ${TR29124_LIBRARIES}
+  quadmath)
+add_test(NAME run_test_orthonorm_sph_legendre COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_orthonorm_sph_legendre > output/test_orthonorm_sph_legendre.txt")
+
+add_executable(test_orthonorm_hermite test_orthonorm_hermite.cpp)
+target_link_libraries(test_orthonorm_hermite
+  ${TR29124_LIBRARIES}
+  quadmath)
+add_test(NAME run_test_orthonorm_hermite COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_orthonorm_hermite > output/test_orthonorm_hermite.txt")
+
+add_executable(test_orthonorm_laguerre test_orthonorm_laguerre.cpp)
+target_link_libraries(test_orthonorm_laguerre
+  ${TR29124_LIBRARIES}
+  quadmath)
+add_test(NAME run_test_orthonorm_laguerre COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_orthonorm_laguerre > output/test_orthonorm_laguerre.txt")
+
+add_executable(test_orthonorm_legendre test_orthonorm_legendre.cpp)
+target_link_libraries(test_orthonorm_legendre
+  ${TR29124_LIBRARIES}
+  quadmath)
+add_test(NAME run_test_orthonorm_legendre COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_orthonorm_legendre > output/test_orthonorm_legendre.txt")
+
+add_executable(test_orthonorm_gegenbauer test_orthonorm_gegenbauer.cpp)
+target_link_libraries(test_orthonorm_gegenbauer
+  ${TR29124_LIBRARIES}
+  quadmath)
+add_test(NAME run_ COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/ > output/.txt")
+
+add_executable(test_orthonorm_jacobi test_orthonorm_jacobi.cpp)
+target_link_libraries(test_orthonorm_jacobi
+  ${TR29124_LIBRARIES}
+  quadmath)
+add_test(NAME run_test_orthonorm_jacobi COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_orthonorm_jacobi > output/test_orthonorm_jacobi.txt")
+
+add_executable(test_orthonorm_chebyshev_t test_orthonorm_chebyshev_t.cpp)
+target_link_libraries(test_orthonorm_chebyshev_t
+  ${TR29124_LIBRARIES}
+  quadmath)
+add_test(NAME run_test_orthonorm_chebyshev_t COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_orthonorm_chebyshev_t > output/test_orthonorm_chebyshev_t.txt")
+
+add_executable(test_orthonorm_chebyshev_u test_orthonorm_chebyshev_u.cpp)
+target_link_libraries(test_orthonorm_chebyshev_u
+  ${TR29124_LIBRARIES}
+  quadmath)
+add_test(NAME run_test_orthonorm_chebyshev_u COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_orthonorm_chebyshev_u > output/test_orthonorm_chebyshev_u.txt")
+
+add_executable(test_orthonorm_chebyshev_v test_orthonorm_chebyshev_v.cpp)
+target_link_libraries(test_orthonorm_chebyshev_v
+  ${TR29124_LIBRARIES}
+  quadmath)
+add_test(NAME run_test_orthonorm_chebyshev_v COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_orthonorm_chebyshev_v > output/test_orthonorm_chebyshev_v.txt")
+
+add_executable(test_orthonorm_chebyshev_w test_orthonorm_chebyshev_w.cpp)
+target_link_libraries(test_orthonorm_chebyshev_w
+  ${TR29124_LIBRARIES}
+  quadmath)
+add_test(NAME run_test_orthonorm_chebyshev_w COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_orthonorm_chebyshev_w > output/test_orthonorm_chebyshev_w.txt")
+
+add_executable(test_orthonorm_radpoly test_orthonorm_radpoly.cpp)
+target_link_libraries(test_orthonorm_radpoly
+  ${TR29124_LIBRARIES}
+  quadmath)
+add_test(NAME run_test_orthonorm_radpoly COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_orthonorm_radpoly > output/test_orthonorm_radpoly.txt")
+
+add_executable(test_orthonorm_zernike test_orthonorm_zernike.cpp)
+target_link_libraries(test_orthonorm_zernike
+  ${TR29124_LIBRARIES}
+  quadmath)
+add_test(NAME run_test_orthonorm_zernike COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_orthonorm_zernike > output/test_orthonorm_zernike.txt")
