@@ -47,7 +47,7 @@ template<typename _Tp>
   {
     const auto _S_eps_factor = 1 << (std::numeric_limits<_Tp>::digits / 3);
     const auto _S_eps = _S_eps_factor * std::numeric_limits<_Tp>::epsilon();
-    const auto _S_2pi = _Tp{2} * __gnu_cxx::__math_constants<_Tp>::__pi;
+    const auto _S_2pi = _Tp{2} * __gnu_cxx::numbers::__pi_v<_Tp>;
     auto z1 = [n1, m1, rho](_Tp phi)
 	      ->_Tp { return __gnu_cxx::zernike(n1, m1, rho, phi); };
     auto z2 = [n2, m2, rho](_Tp phi)
