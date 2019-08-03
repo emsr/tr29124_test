@@ -29,9 +29,7 @@
 
 using namespace __gnu_cxx;
 
-/**
- * Neumann's number
- */
+// Neumann's number
 template<typename _Tp>
   _Tp
   epsilon(int m)

@@ -45,7 +45,7 @@ template<typename _Tp>
 
 template<typename _Tp>
   void
-  test_assoc_laguerre()
+  test_laguerre()
   {
     const auto eps_factor = 1 << (std::numeric_limits<_Tp>::digits / 3);
     const auto eps = std::numeric_limits<_Tp>::epsilon();
@@ -140,7 +140,7 @@ main()
   std::cout << "\n\nOrthonormality tests for float\n";
   try
     {
-      test_assoc_laguerre<float>();
+      test_laguerre<float>();
     }
   catch (__gnu_cxx::__integration_error<float>& ierr)
     {
@@ -155,7 +155,7 @@ main()
   std::cout << "\n\nOrthonormality tests for double\n";
   try
     {
-      test_assoc_laguerre<double>();
+      test_laguerre<double>();
     }
   catch (__gnu_cxx::__integration_error<double>& ierr)
     {
@@ -170,7 +170,7 @@ main()
   std::cout << "\n\nOrthonormality tests for long double\n";
   try
     {
-      test_assoc_laguerre<long double>();
+      test_laguerre<long double>();
     }
   catch (__gnu_cxx::__integration_error<long double>& ierr)
     {
