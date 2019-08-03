@@ -881,3 +881,74 @@ target_include_directories(tr1_pr83140 PRIVATE .)
 target_link_libraries(tr1_pr83140 ${TR29124_LIBRARIES} quadmath)
 run_check(tr1_pr83140)
 
+# Orthonormality checks
+
+add_executable(orthonorm_assoc_laguerre check/orthonorm_assoc_laguerre.cc)
+target_include_directories(orthonorm_assoc_laguerre PRIVATE .)
+target_link_libraries(orthonorm_assoc_laguerre ${TR29124_LIBRARIES})
+run_check(orthonorm_assoc_laguerre)
+
+add_executable(orthonorm_assoc_legendre check/orthonorm_assoc_legendre.cc)
+target_include_directories(orthonorm_assoc_legendre PRIVATE .)
+target_link_libraries(orthonorm_assoc_legendre ${TR29124_LIBRARIES})
+run_check(orthonorm_assoc_legendre)
+
+add_executable(orthonorm_chebyshev_t check/orthonorm_chebyshev_t.cc)
+target_include_directories(orthonorm_chebyshev_t PRIVATE .)
+target_link_libraries(orthonorm_chebyshev_t ${TR29124_LIBRARIES})
+run_check(orthonorm_chebyshev_t)
+
+add_executable(orthonorm_chebyshev_u check/orthonorm_chebyshev_u.cc)
+target_include_directories(orthonorm_chebyshev_u PRIVATE .)
+target_link_libraries(orthonorm_chebyshev_u ${TR29124_LIBRARIES})
+run_check(orthonorm_chebyshev_u)
+
+add_executable(orthonorm_chebyshev_v check/orthonorm_chebyshev_v.cc)
+target_include_directories(orthonorm_chebyshev_v PRIVATE .)
+target_link_libraries(orthonorm_chebyshev_v ${TR29124_LIBRARIES})
+run_check(orthonorm_chebyshev_v)
+
+add_executable(orthonorm_chebyshev_w check/orthonorm_chebyshev_w.cc)
+target_include_directories(orthonorm_chebyshev_w PRIVATE .)
+target_link_libraries(orthonorm_chebyshev_w ${TR29124_LIBRARIES})
+run_check(orthonorm_chebyshev_w)
+
+add_executable(orthonorm_gegenbauer check/orthonorm_gegenbauer.cc)
+target_include_directories(orthonorm_gegenbauer PRIVATE .)
+target_link_libraries(orthonorm_gegenbauer ${TR29124_LIBRARIES})
+run_check(orthonorm_gegenbauer)
+
+add_executable(orthonorm_hermite check/orthonorm_hermite.cc)
+target_include_directories(orthonorm_hermite PRIVATE .)
+target_link_libraries(orthonorm_hermite ${TR29124_LIBRARIES})
+run_check(orthonorm_hermite)
+
+add_executable(orthonorm_jacobi check/orthonorm_jacobi.cc)
+target_include_directories(orthonorm_jacobi PRIVATE .)
+target_link_libraries(orthonorm_jacobi ${TR29124_LIBRARIES})
+run_check(orthonorm_jacobi)
+
+add_executable(orthonorm_laguerre check/orthonorm_laguerre.cc)
+target_include_directories(orthonorm_laguerre PRIVATE .)
+target_link_libraries(orthonorm_laguerre ${TR29124_LIBRARIES})
+run_check(orthonorm_laguerre)
+
+add_executable(orthonorm_legendre check/orthonorm_legendre.cc)
+target_include_directories(orthonorm_legendre PRIVATE .)
+target_link_libraries(orthonorm_legendre ${TR29124_LIBRARIES})
+run_check(orthonorm_legendre)
+
+add_executable(orthonorm_radpoly check/orthonorm_radpoly.cc)
+target_include_directories(orthonorm_radpoly PRIVATE .)
+target_link_libraries(orthonorm_radpoly ${TR29124_LIBRARIES})
+run_check(orthonorm_radpoly)
+
+add_executable(orthonorm_sph_legendre check/orthonorm_sph_legendre.cc)
+target_include_directories(orthonorm_sph_legendre PRIVATE .)
+target_link_libraries(orthonorm_sph_legendre ${TR29124_LIBRARIES})
+run_check(orthonorm_sph_legendre)
+
+add_executable(orthonorm_zernike check/orthonorm_zernike.cc)
+target_include_directories(orthonorm_zernike PRIVATE .)
+target_link_libraries(orthonorm_zernike ${TR29124_LIBRARIES})
+run_check(orthonorm_zernike)

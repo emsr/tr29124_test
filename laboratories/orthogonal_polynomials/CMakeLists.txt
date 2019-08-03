@@ -213,7 +213,7 @@ add_executable(test_orthonorm_gegenbauer test_orthonorm_gegenbauer.cpp)
 target_link_libraries(test_orthonorm_gegenbauer
   ${TR29124_LIBRARIES}
   quadmath)
-add_test(NAME run_ COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/ > output/.txt")
+add_test(NAME run_test_orthonorm_gegenbauer COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_orthonorm_gegenbauer > output/test_orthonorm_gegenbauer.txt")
 
 add_executable(test_orthonorm_jacobi test_orthonorm_jacobi.cpp)
 target_link_libraries(test_orthonorm_jacobi
