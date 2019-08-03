@@ -22,44 +22,17 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/specfun_util.h
- * This is an internal header file, included by other library headers.
- * Do not attempt to use it directly. @headername{cmath}
+/** @file ext/fp_type_util.h
  */
 
-//
-// ISO C++ 14882 TR29124: Mathematical Special Functions
-//
+#ifndef _EXT_FP_TYPE_UTIL_H
+#define _EXT_FP_TYPE_UTIL_H 1
 
-#ifndef _GLIBCXX_BITS_SPECFUN_UTIL_H
-#define _GLIBCXX_BITS_SPECFUN_UTIL_H 1
-
-#pragma GCC system_header
-
-#if __cplusplus >= 201103L
-#  include <ratio>
-#endif
-#if __cplusplus >= 201402L
-#  include <utility> // For exchange
-#endif
+#include <utility> // For exchange
+#include <ratio>
 #include <limits>
 
-#ifdef _GLIBCXX_USE_FLOAT128
-#  if __has_include(<quadmath.h>)
-#    include <quadmath.h>
-#    if _GLIBCXX_USE_C99_MATH && !_GLIBCXX_USE_C99_FP_MACROS_DYNAMIC
-namespace std
-{
-  bool isnan(__float128);
-  bool isinf(__float128);
-}
-#    endif
-#  endif
-#endif // _GLIBCXX_USE_FLOAT128
-
-namespace std _GLIBCXX_VISIBILITY(default)
-{
-namespace __detail
+namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
@@ -103,15 +76,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       operator()()
       { return std::numeric_limits<_Tp>::quiet_NaN(); }
     };
-
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
-} // namespace std
-
-
-namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
-{
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 #if __cplusplus >= 201103L
 
@@ -207,7 +171,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 #endif // __cplusplus >= 201103L
 
 _GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __gnu_cxx
+}
 
-#endif // _GLIBCXX_BITS_SPECFUN_UTIL_H
-
+#endif // _EXT_FP_TYPE_UTIL_H

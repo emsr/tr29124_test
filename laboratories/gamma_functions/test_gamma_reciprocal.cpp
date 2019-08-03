@@ -27,11 +27,11 @@
    * 
    */
   template<typename _Tp>
-    std::vector<std::__detail::__num_traits_t<_Tp>>
+    std::vector<__gnu_cxx::__num_traits_t<_Tp>>
     __gamma_reciprocal_series_coef(std::size_t __n, _Tp __proto = _Tp{})
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__proto));
       const auto _S_gamma_e = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
       auto __sign = [](std::size_t __i){ return (__i & 1u) == 1u ? -1 : +1; };
@@ -175,7 +175,7 @@
     _Tp
     __gamma_reciprocal(_Tp __a)
     {
-      using _Real = std::__detail::__num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
 
       if (std::isnan(__a))
 	return __gnu_cxx::__quiet_NaN(__a);
@@ -348,7 +348,7 @@ template<typename _Tp>
   test_gamma_reciprocal(_Tp __proto)
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
 
     std::cout.precision(__gnu_cxx::__digits10(__proto));
     std::cout << std::showpoint << std::scientific;

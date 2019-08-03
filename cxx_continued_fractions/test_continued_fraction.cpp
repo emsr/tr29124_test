@@ -14,7 +14,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_continued
 #include <ext/math_constants.h>
 #include <ext/float128_io.h>
 #include <bits/numeric_limits.h>
-#include <bits/specfun_util.h>
+#include <ext/fp_type_util.h>
 #include <ext/complex_util.h>
 //#include "rational.h"
 #include <ext/polynomial.h>

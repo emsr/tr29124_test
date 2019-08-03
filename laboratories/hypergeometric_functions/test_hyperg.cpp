@@ -44,7 +44,7 @@
     _Tp
     __hyperg_series(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
       const auto __eps = __gnu_cxx::__epsilon<_Val>();
       const unsigned int _S_max_iter = 100000u;
       auto __aint = __gnu_cxx::__fp_is_integer(__a);
@@ -119,7 +119,7 @@
     __hyperg_buhring(_Tp __a, _Tp __b, _Tp __c, _Tp __z)
     {
       /// Find nearest z0 @f$ z_0 = e^{\plusminus i\pi/3} @f$
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
       constexpr auto _S_pi_3 = __gnu_cxx::numbers::__pi_third_v<_Val>;
       const auto __z0p = __z - std::polar(_Val{1}, +_S_pi_3);
       const auto __z0m = __z - std::polar(_Val{1}, -_S_pi_3);
@@ -232,7 +232,7 @@ template<typename _Tp>
   test_hyperg(_Tp proto = _Tp{})
   {
     //using _Val = _Tp;
-    //using _Real = std::__detail::__num_traits_t<_Val>;
+    //using _Real = __gnu_cxx::__num_traits_t<_Val>;
     std::vector<_Tp> parm{_Tp{0.25}, _Tp{0.5}, _Tp{1}, _Tp{2}, _Tp{5}};
 
     std::cout.precision(__gnu_cxx::__digits10(proto));

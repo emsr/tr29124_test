@@ -275,7 +275,7 @@ main()
   std::cout << "\nspouge<long double>\n";
   spouge<long double>();
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  std::cout << "\nspouge<__float128>\n";
-  spouge<__float128>();
+  //FIXME!!! std::cout << "\nspouge<__float128>\n";
+  //FIXME!!! spouge<__float128>();
 #endif
 }

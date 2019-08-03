@@ -53,7 +53,7 @@ namespace __detail
     __recursive_thing(_Tp __c)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
 
       const int _N = 100;
 
@@ -370,7 +370,7 @@ std::cerr << std::setw(12) << __c[__k - __i] * __d[__i] << '\t' << std::setw(12)
     __binet_asymp(_Tp __z)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
 
       // Weighted Bernoulli numbers: (-1)^k B_{2k + 2} / ((2k + 1)(2k + 2)), k >= 0.
@@ -453,7 +453,7 @@ std::cerr << std::setw(12) << __c[__k - __i] * __d[__i] << '\t' << std::setw(12)
     __binet_cont_frac(_Tp __z)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
 
       // Stieltjes partial numerators.
       constexpr std::size_t _S_n = 96;
@@ -605,7 +605,7 @@ std::cerr << std::setw(12) << __c[__k - __i] * __d[__i] << '\t' << std::setw(12)
     __binet(_Tp __z)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
 
       /// @todo Find Binet function switch.
       constexpr auto _S_switchover = _Real{10};

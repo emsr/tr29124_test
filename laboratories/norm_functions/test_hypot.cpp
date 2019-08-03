@@ -7,7 +7,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <cmath>
-#include <bits/specfun_util.h>
+#include <ext/fp_type_util.h>
 
 //#define __cpp_lib_hypot 201603L
 

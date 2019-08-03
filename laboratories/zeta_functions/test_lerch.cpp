@@ -9,7 +9,7 @@
 #include <iostream>
 #include <iomanip>
 #include <ext/summation.h>
-#include <bits/specfun_util.h>
+#include <ext/fp_type_util.h>
 #include <statistics.h>
 
 #include <3rdparty/lerchphi/Source/lerchphi.h>

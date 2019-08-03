@@ -36,7 +36,7 @@
 #include <ratio>
 #include <limits>
 #include <type_traits>
-#include <bits/specfun_util.h>
+#include <ext/fp_type_util.h>
 #include <ext/math_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
@@ -59,13 +59,15 @@ namespace std _GLIBCXX_VISIBILITY(default)
     isinf(const std::complex<_Tp>& __z)
     { return isinf(std::real(__z)) || isinf(std::imag(__z)); }
 
-namespace __detail
+} // namespace std
+
+namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 //
 // The base definitions of __num_traits and fp_promote,
-// reside in ext/specfun_util.h
+// reside in ext/fp_type_util.h
 //
 
   /**
@@ -91,14 +93,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 	return std::complex<_Tp>{__NaN, __NaN};
       }
     };
-
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __detail
-} // namespace std
-
-namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
-{
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * A function to reliably test a complex number for realness.

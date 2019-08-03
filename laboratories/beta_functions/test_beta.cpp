@@ -19,7 +19,7 @@ template<typename _Tp>
   test_beta(_Tp proto = _Tp{})
   {
     //using _Val = _Tp;
-    //using _Real = std::__detail::__num_traits_t<_Val>;
+    //using _Real = __gnu_cxx::__num_traits_t<_Val>;
 
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -57,7 +57,7 @@ template<typename _Tp>
   plot_beta(std::string filename)
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
 
     auto data = std::ofstream(filename);
 

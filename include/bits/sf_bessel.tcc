@@ -98,7 +98,7 @@ namespace __detail
     {
       // FIXME: This will promote float to double if _Tnu is integral.
       using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon<_Real>();
       if (std::abs(__x) < _S_eps)
 	{
@@ -208,7 +208,7 @@ namespace __detail
     {
       // FIXME: This will promote float to double if _Tnu is integral.
       using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       using __bess_t = __cyl_bessel_asymp_sums_t<_Tnu, _Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon<_Real>();
       const auto __2nu = _Real{2} * __nu;
@@ -273,7 +273,7 @@ namespace __detail
     {
       // FIXME: This will promote float to double if _Tnu is integral.
       using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tnu, _Tp, _Tp>;
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
@@ -302,12 +302,12 @@ namespace __detail
    *           and @f$ \zeta = z^2 @f$ for @f$ I_\nu(z) @f$.
    */
   template<typename _Tnu, typename _Tp, typename _Tzeta>
-    std::complex<__num_traits_t<
+    std::complex<__gnu_cxx::__num_traits_t<
 		 __gnu_cxx::fp_promote_t<_Tnu, _Tp, _Tzeta>>>
     __cyl_bessel_ratio_s_frac(_Tnu __nu, _Tp __z, _Tzeta __zeta)
     {
       using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       auto __a_J
@@ -341,11 +341,11 @@ namespace __detail
   template<typename _Tnu, typename _Tp,
 	   typename _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>>
     std::conditional_t<__gnu_cxx::is_complex_v<_Val>,
-			std::complex<__num_traits_t<_Val>>,
+			std::complex<__gnu_cxx::__num_traits_t<_Val>>,
 			_Val>
     __cyl_bessel_j_ratio_s_frac(_Tnu __nu, _Tp __z)
     {
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       const auto __iz = _Cmplx{0, 1} * __z;
@@ -364,11 +364,11 @@ namespace __detail
   template<typename _Tnu, typename _Tp,
 	   typename _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>>
     std::conditional_t<__gnu_cxx::is_complex_v<_Val>,
-			std::complex<__num_traits_t<_Val>>,
+			std::complex<__gnu_cxx::__num_traits_t<_Val>>,
 			_Val>
     __cyl_bessel_i_ratio_s_frac(_Tnu __nu, _Tp __z)
     {
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       const auto __zeta = __z * __z;
@@ -384,12 +384,12 @@ namespace __detail
    * Compute ratios of Hankel functions using the J-fraction.
    */
   template<typename _Tnu, typename _Tp>
-    std::complex<__num_traits_t<
+    std::complex<__gnu_cxx::__num_traits_t<
 		 __gnu_cxx::fp_promote_t<_Tnu, _Tp>>>
     __cyl_hankel_ratio_j_frac(_Tnu __nu, _Tp __z, _Tp __sgn)
     {
       using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
       const auto __zeta = _Cmplx{0, 2} * __z;
       using _Tzeta = decltype(__zeta);
@@ -423,7 +423,7 @@ namespace __detail
    * Return the Hankel function ratio of the first kind from the J-fraction.
    */
   template<typename _Tnu, typename _Tp>
-    inline std::complex<__num_traits_t<
+    inline std::complex<__gnu_cxx::__num_traits_t<
 			__gnu_cxx::fp_promote_t<_Tnu, _Tp>>>
     __cyl_hankel_1_ratio_j_frac(_Tnu __nu, _Tp __z)
     { return __cyl_hankel_ratio_j_frac(__nu, __z, _Tp{-1}); }
@@ -432,7 +432,7 @@ namespace __detail
    * Return the Hankel function ratio of the second kind from the J-fraction.
    */
   template<typename _Tnu, typename _Tp>
-    inline std::complex<__num_traits_t<
+    inline std::complex<__gnu_cxx::__num_traits_t<
 			__gnu_cxx::fp_promote_t<_Tnu, _Tp>>>
     __cyl_hankel_2_ratio_j_frac(_Tnu __nu, _Tp __z)
     { return __cyl_hankel_ratio_j_frac(__nu, __z, _Tp{+1}); }
@@ -444,11 +444,11 @@ namespace __detail
   template<typename _Tnu, typename _Tp,
 	   typename _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>>
     std::conditional_t<__gnu_cxx::is_complex_v<_Val>,
-			std::complex<__num_traits_t<_Val>>,
+			std::complex<__gnu_cxx::__num_traits_t<_Val>>,
 			_Val>
     __cyl_bessel_k_ratio_j_frac(_Tnu __nu, _Tp __z)
     {
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
       const auto _S_i = _Cmplx{0, 1};
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;

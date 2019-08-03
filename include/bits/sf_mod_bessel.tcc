@@ -77,7 +77,7 @@ namespace __detail
     {
       // FIXME: This will promote float to double if _Tnu is integral.
       using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       using __bess_t = __gnu_cxx::__cyl_mod_bessel_t<_Tnu, _Tp, _Tp>;
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
 

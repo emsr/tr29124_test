@@ -11,6 +11,8 @@
 #include <iostream>
 #include <iomanip>
 #include <ext/math_constants.h>
+#include <ext/fp_type_util.h>
+#include <ext/complex_util.h>
 #include <bits/numeric_limits.h>
 #include <bits/specfun_state.h>
 #include <bits/sf_trig.tcc>

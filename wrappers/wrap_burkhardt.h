@@ -4,7 +4,7 @@
 #include <vector>
 #include <complex>
 
-#include <bits/quadrature_point.h>
+#include <ext/quadrature_point.h>
 
 namespace burkhardt
 {

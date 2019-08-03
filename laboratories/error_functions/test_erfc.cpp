@@ -25,7 +25,7 @@ namespace __detail
     _Tp
     __erfc_series(_Tp __z)
     {
-      using _Real = std::__detail::__num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_max_iter = 1000;
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__z));
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
@@ -82,7 +82,7 @@ namespace __detail
     _Tp
     __erfc_cont_frac(_Tp __z)
     {
-      using _Real = std::__detail::__num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Real>;
       const auto __a = [](size_t __k, _Tp /*__z*/)
 		 ->_Tp
@@ -117,7 +117,7 @@ namespace __detail
     _Tp
     __fadeeva_cont_frac(_Tp __z)
     {
-      using _Real = std::__detail::__num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
       const auto _S_i = _Cmplx{0, 1};
       const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Real>;
@@ -185,7 +185,7 @@ namespace __detail
     _Tp
     __fadeeva(_Tp __z)
     {
-      using _Real = std::__detail::__num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__z));
       const auto _S_i = _Cmplx{0, 1};

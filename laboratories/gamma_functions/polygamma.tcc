@@ -47,7 +47,7 @@
 #define _GLIBCXX_BITS_SF_DIGAMMA_TCC 1
 
 #include <limits>
-#include <bits/specfun_util.h>
+#include <ext/fp_type_util.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {

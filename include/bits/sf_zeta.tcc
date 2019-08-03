@@ -62,7 +62,7 @@ namespace __detail
     __exp2(_Tp __x)
     {
       if constexpr (__gnu_cxx::is_complex_v<_Tp>)
-	return std::pow(__num_traits_t<_Tp>{2}, __x);
+	return std::pow(__gnu_cxx::__num_traits_t<_Tp>{2}, __x);
       else
 	return std::exp2(__x);
     }
@@ -244,7 +244,7 @@ namespace __detail
     __dilog(_Tp __x)
     {
       using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       constexpr unsigned long long _S_maxit = 100000ULL;
       const auto _S_eps = 10 * __gnu_cxx::__epsilon(_Real{});
       const auto _S_pipio6 = __gnu_cxx::numbers::__pi_sqr_div_6_v<_Real>;
@@ -312,7 +312,7 @@ namespace __detail
     __riemann_zeta_laurent(_Tp __s)
     {
       using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
       const auto __arg = __s - _Val{1};
       auto __argk = _Val{1};
@@ -346,7 +346,7 @@ namespace __detail
     __riemann_zeta_sum(_Tp __s)
     {
       using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       // A user shouldn't get to this.
       if (std::real(__s) < _Real{1})
 	std::__throw_domain_error(__N("__riemann_zeta_sum: "
@@ -389,7 +389,7 @@ namespace __detail
     __riemann_zeta_euler_maclaurin(_Tp __s)
     {
       using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
       const auto _S_N = 10 + __gnu_cxx::__digits10(_Real{}) / _Tp{2};
       const auto _S_jmax = _Num_Euler_Maclaurin_zeta - 1;
@@ -448,7 +448,7 @@ namespace __detail
     __riemann_zeta_m_1_glob(_Tp __s)
     {
       using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
       //  Max e exponent before overflow.
       const auto __max_binom
@@ -499,7 +499,7 @@ namespace __detail
     __riemann_zeta_glob(_Tp __s)
     {
       using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
 
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
@@ -549,7 +549,7 @@ namespace __detail
     __riemann_zeta_product(_Tp __s)
     {
       using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
 
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
 
@@ -714,7 +714,7 @@ namespace __detail
     _Tp
     __riemann_zeta_m_1(_Tp __s)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       if (__s == _Real{1})
@@ -759,7 +759,7 @@ namespace __detail
     __riemann_zeta(_Tp __s)
     {
       using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
       const auto _S_inf = __gnu_cxx::__infinity(_Real{});
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
@@ -821,7 +821,7 @@ namespace __detail
     __hurwitz_zeta_euler_maclaurin(_Tp __s, _Tp __a)
     {
       using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
       const int _S_N = 10 + __gnu_cxx::__digits10(_Real{}) / 2;
       const int _S_jmax = _Num_Euler_Maclaurin_zeta - 1;
@@ -869,7 +869,7 @@ namespace __detail
     __hurwitz_zeta(_Tp __s, _Tp __a)
     {
       using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
       const auto _S_inf = __gnu_cxx::__infinity(_Real{});
       if (std::isnan(__s) || std::isnan(__a))

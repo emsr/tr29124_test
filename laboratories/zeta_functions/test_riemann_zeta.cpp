@@ -38,7 +38,7 @@
     __riemann_zeta_alt(_Tp __s)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
       const unsigned int _S_max_iter = 10000000;
       auto __sgn = _Real{1};
@@ -85,7 +85,7 @@
     __riemann_zeta_product(_Tp __s)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
 
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
       constexpr unsigned long
@@ -123,7 +123,7 @@
     __riemann_zeta_m_1_sum(_Tp __s)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
       if (__gnu_cxx::__fp_is_integer(__s) == _Real{1})
        return __gnu_cxx::__quiet_NaN(std::real(__s));
@@ -147,7 +147,7 @@ template<typename _Tp>
   plot_riemann_zeta(std::string filename, _Tp proto = _Tp{})
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
     const auto deg = __gnu_cxx::numbers::__deg_v<_Real>;
@@ -243,7 +243,7 @@ template<typename _Tp>
   test_riemann_zeta_real(_Tp proto = _Tp{})
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(__gnu_cxx::__digits10(proto));
@@ -317,7 +317,7 @@ template<typename _Tp>
     using namespace std::literals::complex_literals;
 
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(__gnu_cxx::__digits10(proto));

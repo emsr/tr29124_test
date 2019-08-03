@@ -52,7 +52,7 @@ namespace __detail
   template<typename _Tp>
     struct _AiryState
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
 
       _Tp __z;
       _Tp __Ai_value;
@@ -77,7 +77,7 @@ namespace __detail
   template<typename _Tp>
     struct _AiryAuxilliaryState
     {
-      using _Val = __num_traits_t<_Tp>;
+      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
 
       _Tp __z;
       _Tp __fai_value;
@@ -2210,7 +2210,7 @@ namespace __detail
     _Airy_asymp<_Tp>::_S_absarg_ge_pio3_help(std::complex<_Tp> __z,
 					     int __sign) const
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Real>;
       const auto _S_pmhd2 = _Tp{1} / (_Tp{2} * _S_sqrt_pi);
 
@@ -2365,7 +2365,7 @@ namespace __detail
     public:
 
       using value_type = typename _Sum::value_type;
-      using scalar_type = __num_traits_t<value_type>;
+      using scalar_type = __gnu_cxx::__num_traits_t<value_type>;
       static constexpr scalar_type _S_sqrt_pi
 	   = __gnu_cxx::numbers::__root_pi_v<scalar_type>;
 
@@ -2505,7 +2505,7 @@ namespace __detail
     public:
 
       using value_type = _Tp;
-      using scalar_type = __num_traits_t<value_type>;
+      using scalar_type = __gnu_cxx::__num_traits_t<value_type>;
 
       constexpr _Airy() = default;
       _Airy(const _Airy&) = default;

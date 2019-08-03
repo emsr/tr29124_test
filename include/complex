@@ -2041,7 +2041,4 @@ _GLIBCXX_END_NAMESPACE_VERSION
 
 #endif  // C++11
 
-#include <bits/specfun_util.h>
-#include <ext/complex_util.h>
-
 #endif  /* _GLIBCXX_COMPLEX */

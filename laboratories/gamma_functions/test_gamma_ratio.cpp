@@ -396,7 +396,7 @@ template<typename _Tp>
   test_gamma_ratio(_Tp proto = _Tp{})
   {
     //using _Val = _Tp;
-    //using _Real = std::__detail::__num_traits_t<_Val>;
+    //using _Real = __gnu_cxx::__num_traits_t<_Val>;
 
     std::vector<_Tp> parm{_Tp{0.25}, _Tp{0.5}, _Tp{1}, _Tp{2}, _Tp{5}};
 

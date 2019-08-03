@@ -145,7 +145,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _AitkenDeltaSquaredSum<_Sum>::_M_update()
     {
       using _Tp = value_type;
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_huge = __gnu_cxx::__root_max(_Val{5}); // 1.0e+60
       const auto _S_tiny = __gnu_cxx::__root_min(_Val{5}); // 1.0e-60;
 
@@ -183,7 +183,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _WinnEpsilonSum<_Sum>::_M_update()
     {
       using _Tp = value_type;
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_huge = __gnu_cxx::__root_max(_Val{5}); // 1.0e+60
       const auto _S_tiny = __gnu_cxx::__root_min(_Val{5}); // 1.0e-60;
 
@@ -219,7 +219,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _BrezinskiThetaSum<_Sum>::_M_update()
     {
       using _Tp = value_type;
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_huge = __gnu_cxx::__root_max(_Val{5}); // 1.0e+60
       const auto _S_tiny = __gnu_cxx::__root_min(_Val{5}); // 1.0e-60;
 
@@ -260,7 +260,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _LevinSum<_Sum, _RemainderModel>::_M_update(value_type __r_n)
     {
       using _Tp = value_type;
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_huge = __gnu_cxx::__root_max(_Val{5}); // 1.0e+60
       const auto _S_tiny = __gnu_cxx::__root_min(_Val{5}); // 1.0e-60;
 
@@ -306,7 +306,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     _WenigerSum<_Sum, _RemainderModel>::_M_update(value_type __r_n)
     {
       using _Tp = value_type;
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
       const/*expr*/ auto _S_huge = __gnu_cxx::__root_max(_Val{5}); // 1.0e+60
       const/*expr*/ auto _S_tiny = __gnu_cxx::__root_min(_Val{5}); // 1.0e-60;
 

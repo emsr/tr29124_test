@@ -115,7 +115,7 @@ namespace __detail
     __struve_h(_Tp __nu, _Tp __x)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       const auto _S_nan = __gnu_cxx::__quiet_NaN(std::real(__x));
       const auto _S_max = __gnu_cxx::__digits10(std::real(__x));
 
@@ -142,7 +142,7 @@ namespace __detail
     __struve_k(_Tp __nu, _Tp __x)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       const auto _S_nan = __gnu_cxx::__quiet_NaN(std::real(__x));
       const auto _S_max = __gnu_cxx::__digits10(std::real(__x));
 
@@ -169,7 +169,7 @@ namespace __detail
     __struve_l(_Tp __nu, _Tp __x)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       const auto _S_nan = __gnu_cxx::__quiet_NaN(std::real(__x));
       const auto _S_max = __gnu_cxx::__digits10(std::real(__x));
 
@@ -196,7 +196,7 @@ namespace __detail
     __struve_m(_Tp __nu, _Tp __x)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       const auto _S_nan = __gnu_cxx::__quiet_NaN(std::real(__x));
       const auto _S_max = __gnu_cxx::__digits10(std::real(__x));
 

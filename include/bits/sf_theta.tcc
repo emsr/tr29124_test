@@ -54,7 +54,7 @@ namespace __detail
     _Tp
     __theta_2_sum(_Tp __nu, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
@@ -87,7 +87,7 @@ namespace __detail
     _Tp
     __theta_3_sum(_Tp __nu, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
@@ -118,7 +118,7 @@ namespace __detail
     _Tp
     __theta_2_asymp(_Tp __nu, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
@@ -148,7 +148,7 @@ namespace __detail
     _Tp
     __theta_3_asymp(_Tp __nu, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
@@ -182,7 +182,7 @@ namespace __detail
     _Tp
     __theta_2(_Tp __nu, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
 
@@ -210,7 +210,7 @@ namespace __detail
     _Tp
     __theta_1(_Tp __nu, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
 
@@ -238,7 +238,7 @@ namespace __detail
     _Tp
     __theta_3(_Tp __nu, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
 
@@ -266,7 +266,7 @@ namespace __detail
     _Tp
     __theta_4(_Tp __nu, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
 
@@ -350,7 +350,7 @@ namespace __detail
     _Tp
     __theta_s(_Tp __k, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
 
@@ -380,7 +380,7 @@ namespace __detail
     _Tp
     __theta_c(_Tp __k, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
 
@@ -409,7 +409,7 @@ namespace __detail
     _Tp
     __theta_d(_Tp __k, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
 
@@ -440,7 +440,7 @@ namespace __detail
     _Tp
     __theta_n(_Tp __k, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
 
@@ -471,8 +471,8 @@ namespace __detail
       static_assert(__gnu_cxx::is_complex_v<_Tp_Omega1>
 		 || __gnu_cxx::is_complex_v<_Tp_Omega3>,
 		    "One frequecy type must be complex.");
-      using _Real_Omega1 = __num_traits_t<_Tp_Omega1>;
-      using _Real_Omega3 = __num_traits_t<_Tp_Omega3>;
+      using _Real_Omega1 = __gnu_cxx::__num_traits_t<_Tp_Omega1>;
+      using _Real_Omega3 = __gnu_cxx::__num_traits_t<_Tp_Omega3>;
       using _Real = __gnu_cxx::fp_promote_t<_Real_Omega1, _Real_Omega3>;
       using _Cmplx = std::complex<_Real>;
       using _Tp_Nome = std::conditional_t<__gnu_cxx::is_complex_v<_Tp_Omega1>
@@ -644,7 +644,7 @@ namespace __detail
       __jacobi_theta_0_t(const __jacobi_lattice_t<_Tp1, _Tp3>& __lattice);
 
       using _Type = typename __jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome;
-      using _Real = __num_traits_t<_Type>;
+      using _Real = __gnu_cxx::__num_traits_t<_Type>;
       using _Cmplx = std::complex<_Real>;
 
       _Type th1p;
@@ -746,7 +746,7 @@ namespace __detail
     struct __weierstrass_roots_t
     {
       using _Type = typename __jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome;
-      using _Real = __num_traits_t<_Type>;
+      using _Real = __gnu_cxx::__num_traits_t<_Type>;
       using _Cmplx = std::complex<_Real>;
 
       _Type __e1, __e2, __e3;
@@ -826,7 +826,7 @@ namespace __detail
     struct __weierstrass_invariants_t
     {
       using _Type = typename __jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome;
-      using _Real = __num_traits_t<_Type>;
+      using _Real = __gnu_cxx::__num_traits_t<_Type>;
       using _Cmplx = std::complex<_Real>;
 
       _Type __g_2, __g_3;
@@ -886,7 +886,7 @@ namespace __detail
     _Tp
     __jacobi_theta_1_sum(_Tp __q, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       constexpr std::size_t _S_max_iter = 50;
 
@@ -921,7 +921,7 @@ namespace __detail
     _Tp
     __jacobi_theta_1_prod(_Tp __q, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       constexpr std::size_t _S_max_iter = 50;
       const auto __q2 = __q * __q;
@@ -978,7 +978,7 @@ namespace __detail
     std::complex<_Tp>
     __jacobi_theta_1(std::complex<_Tp> __q, std::complex<_Tp> __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
@@ -1075,7 +1075,7 @@ namespace __detail
     _Tp
     __jacobi_theta_2_sum(_Tp __q, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       constexpr std::size_t _S_max_iter = 50;
 
@@ -1107,7 +1107,7 @@ namespace __detail
     _Tp
     __jacobi_theta_2_prod(_Tp __q, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       constexpr std::size_t _S_max_iter = 50;
       const auto __q2 = __q * __q;
@@ -1174,7 +1174,7 @@ namespace __detail
     std::complex<_Tp>
     __jacobi_theta_2(std::complex<_Tp> __q, std::complex<_Tp> __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
@@ -1275,7 +1275,7 @@ namespace __detail
     _Tp
     __jacobi_theta_3_sum(_Tp __q, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       constexpr std::size_t _S_max_iter = 50;
 
@@ -1307,7 +1307,7 @@ namespace __detail
     _Tp
     __jacobi_theta_3_prod(_Tp __q, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       constexpr std::size_t _S_max_iter = 50;
       const auto __q2 = __q * __q;
@@ -1363,7 +1363,7 @@ namespace __detail
     std::complex<_Tp>
     __jacobi_theta_3(std::complex<_Tp> __q, std::complex<_Tp> __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
@@ -1459,7 +1459,7 @@ namespace __detail
     _Tp
     __jacobi_theta_4_sum(_Tp __q, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       constexpr std::size_t _S_max_iter = 50;
 
@@ -1493,7 +1493,7 @@ namespace __detail
     _Tp
     __jacobi_theta_4_prod(_Tp __q, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
       constexpr std::size_t _S_max_iter = 50;
       const auto __q2 = __q * __q;
@@ -1549,7 +1549,7 @@ namespace __detail
     std::complex<_Tp>
     __jacobi_theta_4(std::complex<_Tp> __q, std::complex<_Tp> __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__x));
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__x));
@@ -1647,7 +1647,7 @@ namespace __detail
     __gnu_cxx::__jacobi_ellint_t<_Tp>
     __jacobi_ellint(_Tp __k, _Tp __u)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__u));
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::abs(__u));
 

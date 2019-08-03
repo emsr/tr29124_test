@@ -10,7 +10,7 @@ set(SpecfunWrappers_VERSION_MINOR 0)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 set(CMAKE_C_FLAGS "-std=c11 -Wall -Wextra")
-set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-psabi -Wno-deprecated-declarations -Wold-style-cast")
+set(CMAKE_CXX_FLAGS "-fconcepts -Wall -Wextra -Wno-psabi -Wno-deprecated-declarations -Wold-style-cast")
 set(CMAKE_Fortran_FLAGS "-Wall -Wextra")
 
 if (NOT MSVC)

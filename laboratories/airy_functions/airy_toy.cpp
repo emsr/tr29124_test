@@ -99,7 +99,7 @@
     {
       using _Arg = _Tx;
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
 
       _Arg __x_arg;
       _Val __Ai_value;
@@ -129,7 +129,7 @@
     {
       using _Arg = _Tx;
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
 
       _Arg __x_arg;
       _Val __w1_value;
@@ -156,7 +156,7 @@
     {
       using _Arg = _Tx;
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
 
       _Arg __x_arg;
       _Val __fai_value;
@@ -178,7 +178,7 @@
     {
       using _Arg = _Tx;
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
 
       _Arg __x_arg;
       _Val __Gi_value;
@@ -260,7 +260,7 @@
     class _Airy_series
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
     public:
@@ -3592,7 +3592,7 @@
     public:
 
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       constexpr _Airy_asymp() = default;
@@ -4022,7 +4022,7 @@
 				     int __sign = -1)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       //using _Cmplx = std::complex<_Real>;
 
       constexpr auto _S_2d3   = _Real{2} / _Real{3};
@@ -4167,7 +4167,7 @@
     __airy_asymp_absarg_lt_pio3(std::complex<_Tp> __z)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       constexpr auto _S_2d3 {_Real{2} / _Real{3}};
@@ -4383,7 +4383,7 @@
     __airy_hyperg_rational(_Tp __z)
     {
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       constexpr _Cmplx _S_zone{1};
@@ -4476,7 +4476,7 @@
     public:
 
       using _Val = typename _Sum::value_type;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       static constexpr _Real _S_sqrt_pi
 	   = __gnu_cxx::numbers::__root_pi_v<_Real>;
 
@@ -4615,7 +4615,7 @@
     public:
 
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       static constexpr _Real _S_pi
@@ -4629,7 +4629,7 @@
       static constexpr _Real _S_5pi_6 = _Real{5} * _S_pi_6;
       static constexpr _Cmplx _S_i = _Cmplx{0, 1};
 
-      static constexpr auto _S_NaN = std::__detail::__make_NaN<_Val>{}();
+      static constexpr auto _S_NaN = __gnu_cxx::__make_NaN<_Val>{}();
 
       constexpr _Airy() = default;
       _Airy(const _Airy&) = default;
@@ -4761,7 +4761,7 @@
     public:
 
       using _Val = typename _Sum::value_type;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       static constexpr _Real _S_pi
 	   = __gnu_cxx::numbers::__pi_v<_Real>;
 
@@ -4845,7 +4845,7 @@
     public:
 
       using _Val = _Tp;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       static constexpr _Real _S_pi_3
@@ -4855,7 +4855,7 @@
       static constexpr _Real _S_5pi_6 = _Real{5} * _S_pi_6;
       static constexpr _Cmplx _S_i = _Cmplx{0, 1};
 
-      static constexpr auto _S_NaN = std::__detail::__make_NaN<_Val>{}();
+      static constexpr auto _S_NaN = __gnu_cxx::__make_NaN<_Val>{}();
 
       constexpr __scorer_t<_Val, _Val>
       operator()(_Val __y) const;
@@ -5212,7 +5212,7 @@ template<typename _Tp>
   run_airy()
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
     //using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(std::numeric_limits<_Real>::digits10);
@@ -5261,7 +5261,7 @@ template<typename _Tp>
   run_scorer()
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
     //using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(std::numeric_limits<_Real>::digits10);
@@ -5305,7 +5305,7 @@ template<typename _Tp>
   run_scorer_series()
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(std::numeric_limits<_Real>::digits10);
@@ -5347,7 +5347,7 @@ template<typename _Tp>
   diff_airy_series()
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
@@ -5410,7 +5410,7 @@ template<typename _Tp>
   diff_airy_asymp_p()
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
     _Airy_asymp<_Cmplx> airy_asymp;
@@ -5479,7 +5479,7 @@ template<typename _Tp>
   diff_airy_asymp_m()
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
     _Airy_asymp<_Cmplx> airy_asymp;
@@ -5548,7 +5548,7 @@ template<typename _Tp>
   diff_airy()
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
     //using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(std::numeric_limits<_Real>::digits10);
@@ -5661,7 +5661,7 @@ template<typename _Tp>
   diff_zeta()
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
     //using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(std::numeric_limits<_Real>::digits10);
@@ -5702,7 +5702,7 @@ template<typename _Tp>
   plot_airy(std::string filename)
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
     //using _Cmplx = std::complex<_Real>;
 
     auto data = std::ofstream(filename);
@@ -5754,7 +5754,7 @@ template<typename _Tp>
   splot_airy(std::string filename)
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
     auto data = std::ofstream(filename);
@@ -5912,7 +5912,7 @@ template<typename _Tp>
   plot_scorer(std::string filename)
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
 
     auto data = std::ofstream(filename);
 
@@ -5959,7 +5959,7 @@ template<typename _Tp>
   plot_fgh(std::string filename)
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
 
     auto data = std::ofstream(filename);
 

@@ -29,7 +29,7 @@ template<typename _Tp>
   test_expint()
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
     auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
     std::cout.precision(__gnu_cxx::__digits10<_Real>());
     std::cout << std::showpoint << std::scientific;

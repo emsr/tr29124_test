@@ -82,7 +82,7 @@ namespace __detail
     __gnu_cxx::__legendre_p_t<_Tp>
     __legendre_p(unsigned int __l, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       using __ret_t = __gnu_cxx::__legendre_p_t<_Tp>;
 
       const auto __lge1 = __l >= 1 ? _Tp{+1} : _Tp{0};
@@ -162,7 +162,7 @@ namespace __detail
     __gnu_cxx::__legendre_q_t<_Tp>
     __legendre_q(unsigned int __l, _Tp __x)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
       const auto _S_inf = __gnu_cxx::__infinity(_Real{});
       if (std::isnan(__x))
@@ -239,7 +239,7 @@ namespace __detail
     __assoc_legendre_p(unsigned int __l, unsigned int __m, _Tp __x,
 		       _Tp __phase = _Tp{+1})
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       if (__m > __l)
 	return {__l, __m, __x, _Tp{0}, _Tp{0}, _Tp{0}};
       else if (std::isnan(__x))
@@ -297,7 +297,7 @@ namespace __detail
     __assoc_legendre_q(unsigned int __l, unsigned int __m, _Tp __x,
 		       _Tp __phase = _Tp{+1})
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       if (std::isnan(__x))
 	{
 	  const auto _NaN = __gnu_cxx::__quiet_NaN(_Real{});

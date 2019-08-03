@@ -16,7 +16,7 @@ template<typename _Tp>
   plot_spouge(std::string filename)
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
     constexpr auto deg = __gnu_cxx::numbers::__deg_v<_Real>;
@@ -113,7 +113,7 @@ template<typename _Tp>
   plot_lanczos(std::string filename)
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
     constexpr auto deg = __gnu_cxx::numbers::__deg_v<_Real>;

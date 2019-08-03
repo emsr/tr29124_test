@@ -161,7 +161,7 @@ namespace __detail
     _Tp
     __conf_hyperg_lim(_Tp __c, _Tp __x)
     {
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
       const auto __c_nint = __gnu_cxx::__fp_is_integer(__c);
       if (std::isnan(__c) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
@@ -229,7 +229,7 @@ namespace __detail
     _Tp
     __conf_hyperg_luke(_Tp __a, _Tp __c, _Tp __xin)
     {
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
       const auto __big = __gnu_cxx::__root_max(_Val{6});
       const int __nmax = 20000;
       const auto __eps = __gnu_cxx::__epsilon<_Val>();
@@ -428,7 +428,7 @@ namespace __detail
     _Tp
     __hyperg_series(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
       const auto __eps = __gnu_cxx::__epsilon<_Val>();
 
       auto __term = _Tp{1};
@@ -499,7 +499,7 @@ namespace __detail
     _Tp
     __hyperg_luke(_Tp __a, _Tp __b, _Tp __c, _Tp __xin)
     {
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
       const auto __big = __gnu_cxx::__root_max(_Val{6});
       const int __nmax = 20000;
       const auto __eps = __gnu_cxx::__epsilon<_Val>();
@@ -635,7 +635,7 @@ namespace __detail
     _Tp
     __hyperg_reflect(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_log_max = __gnu_cxx::__log_max<_Val>();
       const auto __eps = __gnu_cxx::__epsilon<_Val>();
       const auto __epsfact = _Val{1000};
@@ -925,7 +925,7 @@ namespace __detail
     _Tp
     __hyperg(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      using _Val = std::__detail::__num_traits_t<_Tp>;
+      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_log_max = __gnu_cxx::__log_max<_Val>();
       const auto __epsfact = _Val{1000};
       const auto __toler = __epsfact * __gnu_cxx::__epsilon<_Val>();

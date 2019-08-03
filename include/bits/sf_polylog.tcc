@@ -59,7 +59,7 @@ namespace __detail
     {
     private:
 
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const std::size_t _M_max_iter;
       std::size_t _M_curr_iter;
       _Real _M_toler;
@@ -104,7 +104,7 @@ namespace __detail
     {
     private:
 
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const std::size_t _M_max_iter;
       std::size_t _M_curr_iter;
       _Real _M_toler;
@@ -166,7 +166,7 @@ namespace __detail
     std::complex<_Tp>
     __clamp_pi(std::complex<_Tp> __z)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_i2pi = std::complex<_Tp>{0, _Tp{2} * _S_pi};
       while (__z.imag() > _S_pi)
@@ -180,7 +180,7 @@ namespace __detail
     std::complex<_Tp>
     __clamp_0_m2pi(std::complex<_Tp> __z)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Real>;
       const auto _S_i2pi = std::complex<_Tp>{0, _S_2pi};
       while (__z.imag() > _Tp{0})
@@ -214,7 +214,7 @@ namespace __detail
     std::complex<_Tp>
     __polylog_exp_pos(unsigned int __s, std::complex<_Tp> __w)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Real>;
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_pipio6 = __gnu_cxx::numbers::__pi_sqr_div_6_v<_Real>;
@@ -290,7 +290,7 @@ namespace __detail
     std::complex<_Tp>
     __polylog_exp_pos(unsigned int __s, _Tp __w)
     {
-      using _Real = __num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
       const auto _S_pipio6 = __gnu_cxx::numbers::__pi_sqr_div_6_v<_Tp>;
@@ -674,7 +674,7 @@ namespace __detail
     __polylog_exp_pos_int(unsigned int __s, std::complex<_Tp> __w)
     {
       using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Real>;
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
@@ -735,7 +735,7 @@ namespace __detail
     __polylog_exp_pos_int(unsigned int __s, _Tp __w)
     {
       using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
       const auto _S_max_asymp = _Tp{5};
@@ -785,7 +785,7 @@ namespace __detail
     __polylog_exp_neg_int(int __s, std::complex<_Tp> __w)
     {
       using _Val = _Tp;
-      using _Real = __num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Real>;
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
       const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;

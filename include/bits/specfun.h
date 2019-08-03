@@ -54,8 +54,8 @@
 #include <ext/math_util.h>
 #include <ext/complex_util.h>
 #include <bits/specfun_state.h>
-#include <bits/quadrature_point.h>
-#include <bits/specfun_util.h>
+#include <ext/quadrature_point.h>
+#include <ext/fp_type_util.h>
 
 #if __cplusplus >= 201103L
 #  include <bits/numeric_limits.h>

@@ -1,0 +1,134 @@
+44,46c44
+< #define _GLIBCXX_NO_SPECFUN 1
+< #  include <cmath>
+< #undef _GLIBCXX_NO_SPECFUN
+---
+> #include <cmath>
+49,52d46
+< #ifndef _GLIBCXX20_CONSTEXPR
+< #  define _GLIBCXX20_CONSTEXPR 
+< #endif
+< 
+118,127d111
+< /*
+<  * I, Edward Smith-Rowland, am about to declare unilaterally
+<  * the following things as standard:
+<  * 1. multiplying and dividing complex by integer types.
+<  * 2. Parity with floating functions 
+<       a. tgamma, lgamma
+<       b. erf, erfc
+<       c. log1p
+<       d. nearbyint
+<  */
+469c453
+<     {  return complex<_Tp>(-__x.real(), -__x.imag()); }
+---
+>     { return complex<_Tp>(-__x.real(), -__x.imag()); }
+619c603
+<       return __s * std::sqrt(__x * __x + __y * __y);
+---
+>       return __s * sqrt(__x * __x + __y * __y);
+713c697
+<       return complex<_Tp>(__rho * std::cos(__theta), __rho * std::sin(__theta));
+---
+>       return complex<_Tp>(__rho * cos(__theta), __rho * sin(__theta));
+730,731c714
+<       return complex<_Tp>(std::cos(__x) * std::cosh(__y),
+< 			 -std::sin(__x) * std::sinh(__y));
+---
+>       return complex<_Tp>(cos(__x) * cosh(__y), -sin(__x) * sinh(__y));
+761,762c744
+<       return complex<_Tp>(std::cosh(__x) * std::cos(__y),
+< 			  std::sinh(__x) * std::sin(__y));
+---
+>       return complex<_Tp>(cosh(__x) * cos(__y), sinh(__x) * sin(__y));
+789c771
+<     { return std::polar<_Tp>(std::exp(__z.real()), __z.imag()); }
+---
+>     { return std::polar<_Tp>(exp(__z.real()), __z.imag()); }
+816c798
+<     { return complex<_Tp>(std::log(std::abs(__z)), std::arg(__z)); }
+---
+>     { return complex<_Tp>(log(std::abs(__z)), std::arg(__z)); }
+841c823
+<     { return std::log(__z) / std::log(_Tp(10.0)); }
+---
+>     { return std::log(__z) / log(_Tp(10.0)); }
+850,851c832
+<       return complex<_Tp>(std::sin(__x) * std::cosh(__y),
+< 			  std::cos(__x) * std::sinh(__y));
+---
+>       return complex<_Tp>(sin(__x) * cosh(__y), cos(__x) * sinh(__y));
+881,882c862
+<       return complex<_Tp>(std::sinh(__x) * std::cos(__y),
+< 			  std::cosh(__x) * std::sin(__y));
+---
+>       return complex<_Tp>(sinh(__x) * cos(__y), cosh(__x) * sin(__y));
+916c896
+<           _Tp __t = std::sqrt(std::abs(__y) / 2);
+---
+>           _Tp __t = sqrt(abs(__y) / 2);
+921c901
+<           _Tp __t = std::sqrt(2 * (std::abs(__z) + std::abs(__x)));
+---
+>           _Tp __t = sqrt(2 * (std::abs(__z) + abs(__x)));
+925c905
+<             : complex<_Tp>(std::abs(__y) / __t, __y < _Tp() ? -__u : __u);
+---
+>             : complex<_Tp>(abs(__y) / __t, __y < _Tp() ? -__u : __u);
+1051c1031
+<       return std::polar<_Tp>(std::exp(__y * __t.real()), __y * __t.imag());
+---
+>       return std::polar<_Tp>(exp(__y * __t.real()), __y * __t.imag());
+1088,1089c1068,1069
+<       return __x > _Tp() ? std::polar<_Tp>(std::pow(__x, __y.real()),
+< 					   __y.imag() * std::log(__x))
+---
+>       return __x > _Tp() ? std::polar<_Tp>(pow(__x, __y.real()),
+> 					   __y.imag() * log(__x))
+1115,1117d1094
+< #ifdef _GLIBCXX_USE_FLOAT128
+<       explicit _GLIBCXX_CONSTEXPR complex(const complex<__float128>&);
+< #endif // _GLIBCXX_USE_FLOAT128
+1196c1173,1174
+< 	  _M_value = __z.__rep();
+---
+> 	  __real__ _M_value = __z.real();
+> 	  __imag__ _M_value = __z.imag();
+1264,1266d1241
+< #ifdef _GLIBCXX_USE_FLOAT128
+<       explicit _GLIBCXX_CONSTEXPR complex(const complex<__float128>&);
+< #endif // _GLIBCXX_USE_FLOAT128
+1415,1418d1389
+< #ifdef _GLIBCXX_USE_FLOAT128
+<       explicit _GLIBCXX_CONSTEXPR complex(const complex<__float128>&);
+< #endif // _GLIBCXX_USE_FLOAT128
+< 
+1571,1572c1542,1543
+< #endif // _GLIBCXX_USE_WCHAR_T
+< #endif // _GLIBCXX_EXTERN_TEMPLATE
+---
+> #endif
+> #endif
+1710,1711c1681,1682
+<       return std::complex<_Tp>(_Tp(0.5) * std::atan2(_Tp(2) * __z.real(), __x),
+< 			       _Tp(0.25) * std::log(__num / __den));
+---
+>       return std::complex<_Tp>(_Tp(0.5) * atan2(_Tp(2.0) * __z.real(), __x),
+> 			       _Tp(0.25) * log(__num / __den));
+1829,1830c1800,1801
+<       return std::complex<_Tp>(_Tp(0.25) * (std::log(__num) - std::log(__den)),
+< 			       _Tp(0.5) * std::atan2(_Tp(2) * __z.imag(), __x));
+---
+>       return std::complex<_Tp>(_Tp(0.25) * (log(__num) - log(__den)),
+> 			       _Tp(0.5) * atan2(_Tp(2.0) * __z.imag(), __x));
+1948d1918
+< 
+2043,2049d2012
+< 
+< #include <bits/specfun_util.h>
+< #include <ext/complex_util.h>
+< 
+< #ifdef _GLIBCXX_USE_FLOAT128
+< #  include <bits/complex128.h>
+< #endif // _GLIBCXX_USE_FLOAT128

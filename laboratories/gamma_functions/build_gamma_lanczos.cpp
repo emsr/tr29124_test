@@ -255,7 +255,7 @@ main()
   std::cout << "\nlanczos<long double>\n";
   lanczos<long double>();
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  //std::cout << "\nlanczos<__float128>\n";
-  //lanczos<__float128>();
+  //FIXME!!! std::cout << "\nlanczos<__float128>\n";
+  //FIXME!!! lanczos<__float128>();
 #endif
 }

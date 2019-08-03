@@ -117,7 +117,7 @@
   template<typename _Tp>
     struct __airy_t
     {
-      using _Real = std::__detail::__num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
 
       _Tp __x_arg;
       _Tp __Ai_value;
@@ -2204,7 +2204,7 @@ template<typename _Sum>
   airy_asymp(typename _Sum::value_type __z)
   {
     using _Tp = typename _Sum::value_type;
-    using _Val = std::__detail::__num_traits_t<_Tp>;
+    using _Val = __gnu_cxx::__num_traits_t<_Tp>;
     constexpr int _S_max_iter = 10000;
     constexpr auto _S_eps = std::numeric_limits<_Val>::epsilon();
     constexpr auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Val>;

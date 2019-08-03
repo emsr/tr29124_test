@@ -22,7 +22,7 @@
     {
     private:
 
-      using _Real = std::__detail::__num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const std::size_t _M_max_iter;
       std::size_t _M_curr_iter;
       _Real _M_toler;
@@ -67,7 +67,7 @@
     {
     private:
 
-      using _Real = std::__detail::__num_traits_t<_Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
       const std::size_t _M_max_iter;
       std::size_t _M_curr_iter;
       _Real _M_toler;

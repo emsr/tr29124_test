@@ -6,7 +6,7 @@
 #include <complex>
 
 #include <ext/continued_fractions.h>
-#include <bits/specfun_util.h>
+#include <ext/fp_type_util.h>
 #include <ext/complex_util.h> // is_complex
 
   /**
@@ -19,12 +19,12 @@
    *           and @f$ \zeta = z^2 @f$ for @f$ I_\nu(z) @f$.
    */
   template<typename _Tnu, typename _Tp, typename _Tzeta>
-    std::complex<std::__detail::__num_traits_t<
+    std::complex<__gnu_cxx::__num_traits_t<
 		 __gnu_cxx::fp_promote_t<_Tnu, _Tp, _Tzeta>>>
     __cyl_bessel_ratio_s_frac(_Tnu __nu, _Tp __z, _Tzeta __zeta)
     {
       using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       auto __a_J
@@ -59,11 +59,11 @@
   template<typename _Tnu, typename _Tp,
 	   typename _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>>
     std::conditional_t<__gnu_cxx::is_complex_v<_Val>,
-			std::complex<std::__detail::__num_traits_t<_Val>>,
+			std::complex<__gnu_cxx::__num_traits_t<_Val>>,
 			_Val>
     __cyl_bessel_j_ratio_s_frac(_Tnu __nu, _Tp __z)
     {
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       const auto __iz = _Cmplx{0, 1} * __z;
@@ -82,11 +82,11 @@
   template<typename _Tnu, typename _Tp,
 	   typename _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>>
     std::conditional_t<__gnu_cxx::is_complex_v<_Val>,
-			std::complex<std::__detail::__num_traits_t<_Val>>,
+			std::complex<__gnu_cxx::__num_traits_t<_Val>>,
 			_Val>
     __cyl_bessel_i_ratio_s_frac(_Tnu __nu, _Tp __z)
     {
-      using _Real = std::__detail::__num_traits_t<_Val>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       const auto __zeta = __z * __z;

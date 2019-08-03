@@ -71,7 +71,7 @@ template<typename _Tp>
   test_lentz_hypint(_Tp proto = _Tp{})
   {
     using _Val = _Tp;
-    using _Real = std::__detail::__num_traits_t<_Val>;
+    using _Real = __gnu_cxx::__num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(__gnu_cxx::__digits10(std::real(proto)));

@@ -446,7 +446,7 @@
     __anger_weber_sum_recip(_Tp __nu, _Tp __z)
     {
       //using _Val = _Tp;
-      //using _Real = std::__detail::__num_traits_t<_Val>;
+      //using _Real = __gnu_cxx::__num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(__z);
 
       const auto __z2 = __z / _Tp{2};
