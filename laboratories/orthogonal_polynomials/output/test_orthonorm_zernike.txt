@@ -1,0 +1,14 @@
+
+
+Orthonormality tests for float
+
+
+Orthonormality tests for double
+Integration successful for zernike polynomials up to n = 0
+
+
+Orthonormality tests for long double
+Integration successful for zernike polynomials up to n = 0
+Integration successful for zernike polynomials up to n = 1
+Integration successful for zernike polynomials up to n = 2
+Integration successful for zernike polynomials up to n = 3

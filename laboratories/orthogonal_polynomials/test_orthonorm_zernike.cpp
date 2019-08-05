@@ -24,10 +24,9 @@
 #include <stdexcept>
 #include <sstream>
 #include <string>
+#include <vector>
 
 #include <ext/integration.h>
-
-using namespace __gnu_cxx;
 
 // Neumann's number
 template<typename _Tp>
@@ -39,6 +38,8 @@ template<typename _Tp>
 
 
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.
+// This does the angular integral.
+// FIXME: Try an FFTish integral here. Fail.
 template<typename _Tp>
   _Tp
   normalized_zernike(int n1, int m1, int n2, int m2, _Tp rho)
@@ -46,15 +47,25 @@ template<typename _Tp>
     const auto _S_eps_factor = 1 << (std::numeric_limits<_Tp>::digits / 3);
     const auto _S_eps = _S_eps_factor * std::numeric_limits<_Tp>::epsilon();
     const auto _S_2pi = _Tp{2} * __gnu_cxx::numbers::__pi_v<_Tp>;
+
     auto z1 = [n1, m1, rho](_Tp phi)
-	      ->_Tp { return __gnu_cxx::zernike(n1, m1, rho, phi); };
+	      -> _Tp
+	      { return __gnu_cxx::zernike(n1, m1, rho, phi); };
     auto z2 = [n2, m2, rho](_Tp phi)
-	      ->_Tp { return __gnu_cxx::zernike(n2, m2, rho, phi); };
+	      -> _Tp
+	      { return __gnu_cxx::zernike(n2, m2, rho, phi); };
+
     auto norm = _Tp{1} / std::sqrt(_Tp(2 * n1 + 2) * _Tp(2 * n2 + 2));
     auto fun = [n1, m1, rho, z1, z2, norm](_Tp phi)
-		->_Tp { return rho * z1(phi) * z2(phi) / norm; };
+		-> _Tp
+		{ return rho * z1(phi) * z2(phi) / norm; };
+
     auto val
-	= integrate(fun, _Tp{0}, _Tp{_S_2pi}, _S_eps, _S_eps, 1024, Kronrod_21);
+	= __gnu_cxx::integrate_tanh_sinh(fun, _Tp{0}, _Tp{_S_2pi},
+			      _S_eps, _S_eps, 8);
+	//= __gnu_cxx::integrate_oscillatory(fun, _Tp{0}, _Tp{_S_2pi},
+	//			_S_eps, _S_eps, 1024);
+
     return _Tp{2} * val.__result / _S_2pi / epsilon<_Tp>(m1);
   }
 
@@ -67,32 +78,38 @@ template<typename _Tp>
   void
   test_zernike()
   {
+    bool full_range = false;
+
     const auto eps_factor = 1 << (std::numeric_limits<_Tp>::digits / 3);
     const auto eps = std::numeric_limits<_Tp>::epsilon();
     const auto abs_precision = eps_factor * eps;
     const auto rel_precision = eps_factor * eps;
     const auto cmp_precision = _Tp{10} * rel_precision;
 
-    int n1 = 0;
-    for (; n1 <= 128; ++n1)
+    std::vector<int> degree{0,1,2,3,4,5,8,9,16,17,32,33};
+
+    int n1_save = 0;
+    for (int n1 : degree)
       {
-	for (int m1 = 0; m1 <= n1; ++m1)
+	for (int m1 : degree)
 	  {
-	    if ((n1 - m1) & 1)
+	    if (m1 > n1 || (n1 - m1) & 1)
 	      continue;
-	    for (int n2 = 0; n2 <= n1; ++n2)
+	    for (int n2 : degree)
 	      {
-		for (int m2 = 0; m2 <= n2; ++m2)
+		if (n2 > n1)
+		  continue;
+		for (int m2 : degree)
 		  {
-		    if ((n2 - m2) & 1)
+		    if (m2 > n2 || (n2 - m2) & 1)
 		      continue;
 		    auto func = [n1, m1, n2, m2](_Tp x)
 				-> _Tp
 				{ return normalized_zernike(n1, m1, n2, m2, x); };
 
 		    auto [result, error]
-			= integrate_singular(func, _Tp{0}, _Tp{1},
-					     abs_precision, rel_precision);
+			= __gnu_cxx::integrate_tanh_sinh(func, _Tp{0}, _Tp{1},
+					      abs_precision, rel_precision, 8);
 
 		    if (std::abs(delta<_Tp>(n1, m1, n2, m2) - result) > cmp_precision)
 		      {
@@ -106,44 +123,48 @@ template<typename _Tp>
 			   << ", with error = " << std::setw(w) << error
 			   << " instead of the expected " << delta<_Tp>(n1, m1, n2, m2) << '\n';
 			std::cerr << ss.str();
-			//throw std::logic_error(ss.str());
 		      }
 		  }
 	      }
 	  }
-	std::cout << "Integration successful for zernike polynomials up to n = " << n1
+	n1_save = n1;
+	std::cout << "Integration successful for zernike polynomials up to n = " << n1_save
 		  << '\n' << std::flush;
       }
 
-    int ibot = n1 - 1;
-    int itop = 2 * ibot;
+    if (!full_range)
+      return;
+
+    int n1_lower = n1_save;
+    int n1_upper = 2 * n1_lower;
     int del = 2;
     bool breakout = false;
-    while (itop != ibot)
+    while (n1_upper != n1_lower)
       {
 	RESTART:
-	for (int m1 = 0; m1 <= itop; ++m1)
+	for (int m1 = 0; m1 <= n1_upper; ++m1)
 	  {
-	    if ((itop - m1) & 1)
+	    if (m1 > n1_upper || (n1_upper - m1) & 1)
 	      continue;
-	    for (int n2 = 0; n2 <= itop; n2 += del)
+	    for (int n2 = 0; n2 <= n1_upper; n2 += del)
 	      {
 		for (int m2 = 0; m2 <= n2; ++m2)
 		  {
-		    if ((n2 - m2) & 1)
+		    if (m2 > n2 || (n2 - m2) & 1)
 		      continue;
-		    auto func = [n1 = itop, m1, n2, m2](_Tp x)
+		    auto func = [n1 = n1_upper, m1, n2, m2](_Tp x)
 				-> _Tp
 				{ return normalized_zernike(n1, m1, n2, m2, x); };
 
 		    auto [result, error]
-			= integrate_singular(func, _Tp{0}, _Tp{1}, abs_precision, rel_precision);
+			= __gnu_cxx::integrate_tanh_sinh(func, _Tp{0}, _Tp{1},
+					      abs_precision, rel_precision, 8);
 
-		    if (std::abs(delta<_Tp>(itop, m1, n2, m2) - result) > cmp_precision)
+		    if (std::abs(delta<_Tp>(n1_upper, m1, n2, m2) - result) > cmp_precision)
 		      {
-			if ((ibot + itop) / 2 < itop)
+			if ((n1_lower + n1_upper) / 2 < n1_upper)
 			  {
-			    itop = (ibot + itop) / 2;
+			    n1_upper = (n1_lower + n1_upper) / 2;
 			    goto RESTART;
 			  }
 			else
@@ -158,20 +179,20 @@ template<typename _Tp>
 	      break;
 	  }
 
-	std::cout << "Integration successful for zernike polynomials up to n = " << itop
+	std::cout << "Integration successful for zernike polynomials up to n = " << n1_upper
 		  << '\n' << std::flush;
 
 	if (breakout)
 	  break;
 
-	ibot = itop;
-	if (itop > 1000)
+	n1_lower = n1_upper;
+	if (n1_upper > 1000)
 	  {
 	    std::cout << "\nGood enough!\n" << std::flush;
 	    break;
 	  }
-	else if (itop <= std::numeric_limits<int>::max() / 2)
-	  itop *= 2;
+	else if (n1_upper <= std::numeric_limits<int>::max() / 2)
+	  n1_upper *= 2;
 	else
 	  break;
         del *= 2;

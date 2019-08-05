@@ -26,8 +26,6 @@
 
 #include <ext/integration.h>
 
-using namespace __gnu_cxx;
-
 // Function which should integrate to 1 for l1 == l2, 0 otherwise.
 template<typename _Tp>
   _Tp
@@ -71,7 +69,10 @@ template<typename _Tp>
 			{ return norm_sph_legendre(l1, m1, l2, m2, theta); };
 
 	    auto [result, error]
-		= integrate(func, _Tp{0}, _S_pi, abs_precision, rel_precision);
+		//= __gnu_cxx::integrate(func, _Tp{0}, _S_pi,
+		//			abs_precision, rel_precision);
+		= __gnu_cxx::integrate_tanh_sinh(func, _Tp{0}, _S_pi,
+						 abs_precision, rel_precision, 6);
 
 	    if (std::abs(delta<_Tp>(l1, l2) * delta<_Tp>(m1, m2) - result) > cmp_precision)
 	      {
@@ -89,27 +90,30 @@ template<typename _Tp>
 		  << '\n' << std::flush;
       }
 
-    int ibot = l1 - 1;
-    int itop = 2 * ibot;
+    int n1_lower = l1 - 1;
+    int n1_upper = 2 * n1_lower;
     int del = 2;
     bool breakout = false;
-    while (itop != ibot)
+    while (n1_upper != n1_lower)
       {
 	RESTART:
-	for (int l2 = 0; l2 <= itop; l2 += del)
+	for (int l2 = 0; l2 <= n1_upper; l2 += del)
 	  {
-	    auto func = [l1 = itop, m1, l2, m2](_Tp theta)
+	    auto func = [l1 = n1_upper, m1, l2, m2](_Tp theta)
 			-> _Tp
 			{ return norm_sph_legendre(l1, m1, l2, m2, theta); };
 
 	    auto [result, error]
-		= integrate(func, _Tp{0}, _S_pi, abs_precision, rel_precision);
+		//= __gnu_cxx::integrate(func, _Tp{0}, _S_pi,
+		//			abs_precision, rel_precision);
+		= __gnu_cxx::integrate_tanh_sinh(func, _Tp{0}, _S_pi,
+						 abs_precision, rel_precision, 6);
 
-	    if (std::abs(delta<_Tp>(itop, l2) * delta<_Tp>(m1, m2) - result) > cmp_precision)
+	    if (std::abs(delta<_Tp>(n1_upper, l2) * delta<_Tp>(m1, m2) - result) > cmp_precision)
 	      {
-		if ((ibot + itop) / 2 < itop)
+		if ((n1_lower + n1_upper) / 2 < n1_upper)
 		  {
-		    itop = (ibot + itop) / 2;
+		    n1_upper = (n1_lower + n1_upper) / 2;
 		    goto RESTART;
 		  }
 		else
@@ -120,20 +124,20 @@ template<typename _Tp>
 	      }
 	  }
 
-	std::cout << "Integration successful for sph_legendre polynomials up to l = " << itop
+	std::cout << "Integration successful for sph_legendre polynomials up to l = " << n1_upper
 		  << '\n' << std::flush;
 
 	if (breakout)
 	  break;
 
-	ibot = itop;
-	if (itop > 1000)
+	n1_lower = n1_upper;
+	if (n1_upper > 1000)
 	  {
 	    std::cout << "\nGood enough!\n" << std::flush;
 	    break;
 	  }
-	else if (itop <= std::numeric_limits<int>::max() / 2)
-	  itop *= 2;
+	else if (n1_upper <= std::numeric_limits<int>::max() / 2)
+	  n1_upper *= 2;
 	else
 	  break;
         del *= 2;

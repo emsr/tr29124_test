@@ -26,8 +26,6 @@
 
 #include <ext/integration.h>
 
-using namespace __gnu_cxx;
-
 // Try to manage the four-gamma ratio.
 // alpha > -1, beta > -1.
 template<typename _Tp>
@@ -99,11 +97,14 @@ template<typename _Tp>
 
 	    auto [result, error]
 		= singular
-		? integrate_singular_endpoints(func,
+		? __gnu_cxx::integrate_singular_endpoints(func,
 					       _Tp{-1}, _Tp{1},
 					       alpha, beta, 0, 0,
 					       abs_precision, rel_precision)
-		: integrate(func, _Tp{-1}, _Tp{1}, abs_precision, rel_precision);
+		//: __gnu_cxx::integrate(func, _Tp{-1}, _Tp{1},
+		//			abs_precision, rel_precision);
+		: __gnu_cxx::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
+						 abs_precision, rel_precision);
 
 	    if (std::abs(delta<_Tp>(n1, n2) - result) > cmp_precision)
 	      {
@@ -121,32 +122,35 @@ template<typename _Tp>
 		  << '\n' << std::flush;
       }
 
-    int ibot = n1 - 1;
-    int itop = 2 * ibot;
+    int n1_lower = n1 - 1;
+    int n1_upper = 2 * n1_lower;
     int del = 2;
     bool breakout = false;
-    while (itop != ibot)
+    while (n1_upper != n1_lower)
       {
 	RESTART:
-	for (int n2 = 0; n2 <= itop; n2 += del)
+	for (int n2 = 0; n2 <= n1_upper; n2 += del)
 	  {
-	    auto func = [itop, n2, alpha, beta](_Tp x)
+	    auto func = [n1_upper, n2, alpha, beta](_Tp x)
 			-> _Tp
-			{ return normalized_jacobi<_Tp>(itop, n2, alpha, beta, x); };
+			{ return normalized_jacobi<_Tp>(n1_upper, n2, alpha, beta, x); };
 
 	    auto [result, error]
 		= singular
-		? integrate_singular_endpoints(func,
+		? __gnu_cxx::integrate_singular_endpoints(func,
 					       _Tp{-1}, _Tp{1},
 					       alpha, beta, 0, 0,
 					       abs_precision, rel_precision)
-		: integrate(func, _Tp{-1}, _Tp{1}, abs_precision, rel_precision);
+		//: __gnu_cxx::integrate(func, _Tp{-1}, _Tp{1},
+		//			abs_precision, rel_precision);
+		: __gnu_cxx::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
+						 abs_precision, rel_precision);
 
-	    if (std::abs(delta<_Tp>(itop, n2) - result) > cmp_precision)
+	    if (std::abs(delta<_Tp>(n1_upper, n2) - result) > cmp_precision)
 	      {
-		if ((ibot + itop) / 2 < itop)
+		if ((n1_lower + n1_upper) / 2 < n1_upper)
 		  {
-		    itop = (ibot + itop) / 2;
+		    n1_upper = (n1_lower + n1_upper) / 2;
 		    goto RESTART;
 		  }
 		else
@@ -157,20 +161,20 @@ template<typename _Tp>
 	      }
 	  }
 
-	std::cout << "Integration successful for jacobi polynomials up to n = " << itop
+	std::cout << "Integration successful for jacobi polynomials up to n = " << n1_upper
 		  << '\n' << std::flush;
 
 	if (breakout)
 	  break;
 
-	ibot = itop;
-	if (itop > 1000)
+	n1_lower = n1_upper;
+	if (n1_upper > 1000)
 	  {
 	    std::cout << "\nGood enough!\n" << std::flush;
 	    break;
 	  }
-	else if (itop <= std::numeric_limits<int>::max() / 2)
-	  itop *= 2;
+	else if (n1_upper <= std::numeric_limits<int>::max() / 2)
+	  n1_upper *= 2;
 	else
 	  break;
         del *= 2;
