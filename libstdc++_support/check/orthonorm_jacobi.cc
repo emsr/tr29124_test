@@ -112,8 +112,8 @@ template<typename _Tp>
 					       _Tp{-1}, _Tp{1},
 					       alpha, beta, 0, 0,
 					       abs_prec, rel_prec)
-		: __gnu_cxx::integrate(func, _Tp{-1}, _Tp{1},
-					abs_prec, rel_prec);
+		: __gnu_cxx::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
+						 abs_prec, rel_prec);
 
 	    if (std::abs(delta<_Tp>(n1, n2) - result) > cmp_prec)
 	      ++fail;
@@ -125,7 +125,7 @@ template<typename _Tp>
 int
 main()
 {
-  test_jacobi<float>(0.5F, 1.5F);
-  test_jacobi<double>(0.5, 1.5);
-  test_jacobi<long double>(0.5L, 1.5L);
+  VERIFY(0 == test_jacobi<float>(0.5F, 1.5F));
+  VERIFY(0 == test_jacobi<double>(0.5, 1.5));
+  VERIFY(0 == test_jacobi<long double>(0.5L, 1.5L));
 }

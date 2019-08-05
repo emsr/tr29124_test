@@ -89,7 +89,7 @@ template<typename _Tp>
 int
 main()
 {
-  test_hermite<float>();
-  test_hermite<double>();
-  test_hermite<long double>();
+  VERIFY(0 == test_hermite<float>());
+  VERIFY(0 == test_hermite<double>());
+  VERIFY(0 == test_hermite<long double>());
 }

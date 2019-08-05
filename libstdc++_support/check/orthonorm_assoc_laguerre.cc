@@ -99,7 +99,7 @@ template<typename _Tp>
 int
 main()
 {
-  test_assoc_laguerre<float>(0.0F);
-  test_assoc_laguerre<double>(0.0);
-  test_assoc_laguerre<long double>(0.0L);
+  VERIFY(0 == test_assoc_laguerre<float>(0.0F));
+  VERIFY(0 == test_assoc_laguerre<double>(0.0));
+  VERIFY(0 == test_assoc_laguerre<long double>(0.0L));
 }

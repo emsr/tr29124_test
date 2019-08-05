@@ -67,7 +67,7 @@ template<typename _Tp>
     const auto rel_prec = eps_factor * eps;
     const auto cmp_prec = _Tp{10} * rel_prec;
 
-    const std::array<int, 10> degree{{0, 1, 2, 4, 8, 16, 32, 64, 81, 128}};
+    const std::array<int, 10> degree{{0, 1, 2, 3, 4, 5, 8, 9, 16, 17}};
     int fail = 0;
 
     for (const auto n1 : degree)
@@ -87,7 +87,8 @@ template<typename _Tp>
 			{ return norm_radpoly(n1, m1, n2, m2, x); };
 
 	    auto [result, error]
-		= __gnu_cxx::integrate_singular(func, _Tp{0}, _Tp{1}, abs_prec, rel_prec);
+		= __gnu_cxx::integrate_tanh_sinh(func, _Tp{0}, _Tp{1},
+					abs_prec, rel_prec, 8);
 
 	    if (std::abs(delta<_Tp>(n1, m1, n2, m2) - result) > cmp_prec)
 	      ++fail;
@@ -99,7 +100,7 @@ template<typename _Tp>
 int
 main()
 {
-  test_radpoly<float>(1, 2);
-  test_radpoly<double>(1, 2);
-  test_radpoly<long double>(1, 2);
+  VERIFY(0 == test_radpoly<float>(1, 2));
+  VERIFY(0 == test_radpoly<double>(1, 2));
+  VERIFY(0 == test_radpoly<long double>(1, 2));
 }

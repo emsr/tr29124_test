@@ -81,7 +81,8 @@ template<typename _Tp>
 			{ return norm_sph_legendre(l1, m1, l2, m2, theta); };
 
 	    auto [result, error]
-		= __gnu_cxx::integrate(func, _Tp{0}, _S_pi, abs_prec, rel_prec);
+		= __gnu_cxx::integrate_tanh_sinh(func, _Tp{0}, _S_pi,
+						 abs_prec, rel_prec, 6);
 
 	    if (std::abs(delta<_Tp>(l1, l2) - result) > cmp_prec)
 	      ++fail;
@@ -93,7 +94,7 @@ template<typename _Tp>
 int
 main()
 {
-  test_sph_legendre<float>(0, 0);
-  test_sph_legendre<double>(0, 0);
-  test_sph_legendre<long double>(0, 0);
+  VERIFY(0 == test_sph_legendre<float>(0, 0));
+  VERIFY(0 == test_sph_legendre<double>(0, 0));
+  VERIFY(0 == test_sph_legendre<long double>(0, 0));
 }

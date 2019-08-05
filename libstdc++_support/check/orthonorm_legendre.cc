@@ -85,7 +85,7 @@ template<typename _Tp>
 int
 main()
 {
-  test_legendre<float>();
-  test_legendre<double>();
-  test_legendre<long double>();
+  VERIFY(0 == test_legendre<float>());
+  VERIFY(0 == test_legendre<double>());
+  VERIFY(0 == test_legendre<long double>());
 }

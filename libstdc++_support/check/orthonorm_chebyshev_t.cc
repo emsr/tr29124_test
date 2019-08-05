@@ -94,7 +94,7 @@ template<typename _Tp>
 int
 main()
 {
-  test_chebyshev_t<float>();
-  test_chebyshev_t<double>();
-  test_chebyshev_t<long double>();
+  VERIFY(0 == test_chebyshev_t<float>());
+  VERIFY(0 == test_chebyshev_t<double>());
+  VERIFY(0 == test_chebyshev_t<long double>());
 }

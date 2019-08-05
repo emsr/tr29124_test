@@ -88,7 +88,7 @@ template<typename _Tp>
 int
 main()
 {
-  test_chebyshev_u<float>();
-  test_chebyshev_u<double>();
-  test_chebyshev_u<long double>();
+  VERIFY(0 == test_chebyshev_u<float>());
+  VERIFY(0 == test_chebyshev_u<double>());
+  VERIFY(0 == test_chebyshev_u<long double>());
 }
