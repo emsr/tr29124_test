@@ -100,7 +100,7 @@ template<typename Tp>
   void
   test_comp_ellint_1(Tp toler = 100 * std::numeric_limits<Tp>::epsilon())
   {
-    const auto _S_pi2 = __gnu_cxx::__math_constants<Tp>::__pi_half;
+    const auto _S_pi2 = __gnu_cxx::numbers::__pi_half_v<Tp>;
     bool test __attribute__((unused)) = true;
     Stats<Tp> stats(toler);
     for (auto i = 1; i < 10; ++i)
@@ -117,7 +117,7 @@ template<typename Tp>
   void
   test_comp_ellint_2(Tp toler = 100 * std::numeric_limits<Tp>::epsilon())
   {
-    const auto _S_pi2 = __gnu_cxx::__math_constants<Tp>::__pi_half;
+    const auto _S_pi2 = __gnu_cxx::numbers::__pi_half_v<Tp>;
     bool test __attribute__((unused)) = true;
     Stats<Tp> stats(toler);
     for (auto i = 1; i < 10; ++i)

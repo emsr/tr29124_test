@@ -40,11 +40,11 @@
 #include <specfun_testcase.h>
 
 // Test data.
-// max(|f - f_GSL|): 3.2782554626464844e-06 at index 40
+// max(|f - f_GSL|): 5.9604644775390625e-08 at index 40
 // max(|f - f_GSL| / |f_GSL|): 1.3892218807298919e-13
-// mean(f - f_GSL): -7.9288058389565726e-08
-// variance(f - f_GSL): 2.6223068162089258e-13
-// stddev(f - f_GSL): 5.1208464302387799e-07
+// mean(f - f_GSL): 1.8615697453643900e-09
+// variance(f - f_GSL): 8.5440482044283006e-17
+// stddev(f - f_GSL): 9.2434020817166131e-09
 const testcase_airy_bi<double>
 data001[41] =
 {

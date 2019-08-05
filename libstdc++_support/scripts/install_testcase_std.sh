@@ -43,34 +43,40 @@ ${makedir} ${gcc_dir}/19_sph_bessel
 ${makedir} ${gcc_dir}/20_sph_legendre
 ${makedir} ${gcc_dir}/21_sph_neumann
 
-${tool} check/check_assoc_laguerre.cc   ${gcc_dir}/01_assoc_laguerre/check_value.cc
-${tool} check/check_assoc_legendre.cc   ${gcc_dir}/02_assoc_legendre/check_value.cc
-${tool} check/pr86655_assoc_legendre.cc ${gcc_dir}/02_assoc_legendre/pr86655.cc
-${tool} check/pr83140.cc                ${gcc_dir}/02_assoc_legendre/pr83140.cc
-${tool} check/check_beta.cc             ${gcc_dir}/03_beta/check_value.cc
-${tool} check/check_comp_ellint_1.cc    ${gcc_dir}/04_comp_ellint_1/check_value.cc
-${tool} check/check_comp_ellint_2.cc    ${gcc_dir}/05_comp_ellint_2/check_value.cc
-${tool} check/check_comp_ellint_3.cc    ${gcc_dir}/06_comp_ellint_3/check_value.cc
-${tool} check/check_cyl_bessel_i.cc     ${gcc_dir}/07_cyl_bessel_i/check_value.cc
-${tool} check/pr56216_cyl_bessel_i.cc   ${gcc_dir}/07_cyl_bessel_i/pr56216.cc
-${tool} check/check_cyl_bessel_j.cc     ${gcc_dir}/08_cyl_bessel_j/check_value.cc
-${tool} check/origin_cyl_bessel_j.cc    ${gcc_dir}/08_cyl_bessel_j/check_origin.cc
-${tool} check/check_cyl_bessel_k.cc     ${gcc_dir}/09_cyl_bessel_k/check_value.cc
-${tool} check/check_cyl_neumann.cc      ${gcc_dir}/10_cyl_neumann/check_value.cc
-${tool} check/origin_cyl_neumann.cc     ${gcc_dir}/10_cyl_neumann/check_origin.cc
-${tool} check/check_ellint_1.cc         ${gcc_dir}/11_ellint_1/check_value.cc
-${tool} check/check_ellint_2.cc         ${gcc_dir}/12_ellint_2/check_value.cc
-${tool} check/check_ellint_3.cc         ${gcc_dir}/13_ellint_3/check_value.cc
-${tool} check/check_expint.cc           ${gcc_dir}/14_expint/check_value.cc
-${tool} check/pr68397.cc                ${gcc_dir}/14_expint/pr68397.cc
-${tool} check/check_hermite.cc          ${gcc_dir}/15_hermite/check_value.cc
-${tool} check/check_laguerre.cc         ${gcc_dir}/16_laguerre/check_value.cc
-${tool} check/check_legendre.cc         ${gcc_dir}/17_legendre/check_value.cc
-${tool} check/check_riemann_zeta.cc     ${gcc_dir}/18_riemann_zeta/check_value.cc
-${tool} check/check_sph_bessel.cc       ${gcc_dir}/19_sph_bessel/check_value.cc
-${tool} check/check_sph_legendre.cc     ${gcc_dir}/20_sph_legendre/check_value.cc
-${tool} check/pr86655_sph_legendre.cc   ${gcc_dir}/20_sph_legendre/pr86655.cc
-${tool} check/check_sph_neumann.cc      ${gcc_dir}/21_sph_neumann/check_value.cc
+${tool} check/check_assoc_laguerre.cc       ${gcc_dir}/01_assoc_laguerre/check_value.cc
+${tool} check/orthonorm_assoc_laguerre.cc   ${gcc_dir}/01_assoc_laguerre/orthonorm.cc
+${tool} check/check_assoc_legendre.cc       ${gcc_dir}/02_assoc_legendre/check_value.cc
+${tool} check/orthonorm_assoc_legendre.cc   ${gcc_dir}/02_assoc_legendre/orthonorm.cc
+${tool} check/pr86655_assoc_legendre.cc     ${gcc_dir}/02_assoc_legendre/pr86655.cc
+${tool} check/pr83140.cc                    ${gcc_dir}/02_assoc_legendre/pr83140.cc
+${tool} check/check_beta.cc                 ${gcc_dir}/03_beta/check_value.cc
+${tool} check/check_comp_ellint_1.cc        ${gcc_dir}/04_comp_ellint_1/check_value.cc
+${tool} check/check_comp_ellint_2.cc        ${gcc_dir}/05_comp_ellint_2/check_value.cc
+${tool} check/check_comp_ellint_3.cc        ${gcc_dir}/06_comp_ellint_3/check_value.cc
+${tool} check/check_cyl_bessel_i.cc         ${gcc_dir}/07_cyl_bessel_i/check_value.cc
+${tool} check/pr56216_cyl_bessel_i.cc       ${gcc_dir}/07_cyl_bessel_i/pr56216.cc
+${tool} check/check_cyl_bessel_j.cc         ${gcc_dir}/08_cyl_bessel_j/check_value.cc
+${tool} check/origin_cyl_bessel_j.cc        ${gcc_dir}/08_cyl_bessel_j/check_origin.cc
+${tool} check/check_cyl_bessel_k.cc         ${gcc_dir}/09_cyl_bessel_k/check_value.cc
+${tool} check/check_cyl_neumann.cc          ${gcc_dir}/10_cyl_neumann/check_value.cc
+${tool} check/origin_cyl_neumann.cc         ${gcc_dir}/10_cyl_neumann/check_origin.cc
+${tool} check/check_ellint_1.cc             ${gcc_dir}/11_ellint_1/check_value.cc
+${tool} check/check_ellint_2.cc             ${gcc_dir}/12_ellint_2/check_value.cc
+${tool} check/check_ellint_3.cc             ${gcc_dir}/13_ellint_3/check_value.cc
+${tool} check/check_expint.cc               ${gcc_dir}/14_expint/check_value.cc
+${tool} check/pr68397.cc                    ${gcc_dir}/14_expint/pr68397.cc
+${tool} check/check_hermite.cc              ${gcc_dir}/15_hermite/check_value.cc
+${tool} check/orthonorm_hermite.cc          ${gcc_dir}/15_hermite/orthonorm.cc
+${tool} check/check_laguerre.cc             ${gcc_dir}/16_laguerre/check_value.cc
+${tool} check/orthonorm_laguerre.cc         ${gcc_dir}/16_laguerre/orthonorm.cc
+${tool} check/check_legendre.cc             ${gcc_dir}/17_legendre/check_value.cc
+${tool} check/orthonorm_legendre.cc         ${gcc_dir}/17_legendre/orthonorm.cc
+${tool} check/check_riemann_zeta.cc         ${gcc_dir}/18_riemann_zeta/check_value.cc
+${tool} check/check_sph_bessel.cc           ${gcc_dir}/19_sph_bessel/check_value.cc
+${tool} check/check_sph_legendre.cc         ${gcc_dir}/20_sph_legendre/check_value.cc
+${tool} check/orthonorm_sph_legendre.cc     ${gcc_dir}/20_sph_legendre/orthonorm.cc
+${tool} check/pr86655_sph_legendre.cc       ${gcc_dir}/20_sph_legendre/pr86655.cc
+${tool} check/check_sph_neumann.cc          ${gcc_dir}/21_sph_neumann/check_value.cc
 
 
 ${makedir} ${ext_dir}/airy_ai
@@ -173,9 +179,13 @@ ${tool} check/check_bernoulli.cc          ${ext_dir}/bernoulli/check_value.cc
 ${tool} check/check_binomial.cc           ${ext_dir}/binomial/check_value.cc
 ${tool} check/check_chi.cc                ${ext_dir}/coshint/check_chi.cc
 ${tool} check/check_chebyshev_t.cc        ${ext_dir}/chebyshev_t/check_value.cc
+${tool} check/orthonorm_chebyshev_t.cc    ${ext_dir}/chebyshev_t/orthonorm.cc
 ${tool} check/check_chebyshev_u.cc        ${ext_dir}/chebyshev_u/check_value.cc
+${tool} check/orthonorm_chebyshev_u.cc    ${ext_dir}/chebyshev_u/orthonorm.cc
 ${tool} check/check_chebyshev_v.cc        ${ext_dir}/chebyshev_v/check_value.cc
+${tool} check/orthonorm_chebyshev_v.cc    ${ext_dir}/chebyshev_v/orthonorm.cc
 ${tool} check/check_chebyshev_w.cc        ${ext_dir}/chebyshev_w/check_value.cc
+${tool} check/orthonorm_chebyshev_w.cc    ${ext_dir}/chebyshev_w/orthonorm.cc
 ${tool} check/check_clausen_cl.cc         ${ext_dir}/clausen_cl/check_value.cc
 ${tool} check/check_comp_ellint_d.cc      ${ext_dir}/comp_ellint_d/check_value.cc
 ${tool} check/check_conf_hyperg.cc        ${ext_dir}/conf_hyperg/check_value.cc
@@ -213,12 +223,14 @@ ${tool} check/check_fresnel_c.cc          ${ext_dir}/fresnel_c/check_value.cc
 ${tool} check/check_fresnel_s.cc          ${ext_dir}/fresnel_s/check_value.cc
 ${tool} check/check_gamma_reciprocal.cc   ${ext_dir}/gamma_reciprocal/check_value.cc
 ${tool} check/check_gegenbauer.cc         ${ext_dir}/gegenbauer/check_value.cc
+${tool} check/orthonorm_gegenbauer.cc     ${ext_dir}/gegenbauer/orthonorm.cc
 ${tool} check/check_heuman_lambda.cc      ${ext_dir}/heuman_lambda/check_value.cc
 ${tool} check/check_hurwitz_zeta.cc       ${ext_dir}/hurwitz_zeta/check_value.cc
 ${tool} check/check_hyperg.cc             ${ext_dir}/hyperg/check_value.cc
 ${tool} check/check_ibeta.cc              ${ext_dir}/ibeta/check_value.cc
 ${tool} check/check_ibetac.cc             ${ext_dir}/ibetac/check_value.cc
 ${tool} check/check_jacobi.cc             ${ext_dir}/jacobi/check_value.cc
+${tool} check/orthonorm_jacobi.cc         ${ext_dir}/jacobi/orthonorm.cc
 ${tool} check/check_jacobi_sn.cc          ${ext_dir}/jacobi_sn/check_value.cc
 ${tool} check/check_jacobi_cn.cc          ${ext_dir}/jacobi_cn/check_value.cc
 ${tool} check/check_jacobi_dn.cc          ${ext_dir}/jacobi_dn/check_value.cc
@@ -234,6 +246,7 @@ ${tool} check/check_owens_t.cc            ${ext_dir}/owens_t/check_value.cc
 ${tool} check/check_gamma_p.cc            ${ext_dir}/gamma_p/check_value.cc
 ${tool} check/check_gamma_q.cc            ${ext_dir}/gamma_q/check_value.cc
 ${tool} check/check_radpoly.cc            ${ext_dir}/radpoly/check_value.cc
+${tool} check/orthonorm_radpoly.cc        ${ext_dir}/radpoly/orthonorm.cc
 ${tool} check/check_rising_factorial.cc   ${ext_dir}/rising_factorial/check_value.cc
 ${tool} check/check_shi.cc                ${ext_dir}/sinhint/check_shi.cc
 ${tool} check/check_sinc.cc               ${ext_dir}/sinc/check_value.cc
@@ -254,3 +267,4 @@ ${tool} check/check_theta_2.cc            ${ext_dir}/theta_2/check_value.cc
 ${tool} check/check_theta_3.cc            ${ext_dir}/theta_3/check_value.cc
 ${tool} check/check_theta_4.cc            ${ext_dir}/theta_4/check_value.cc
 ${tool} check/check_zernike.cc            ${ext_dir}/zernike/check_value.cc
+${tool} check/orthonorm_zernike.cc        ${ext_dir}/zernike/orthonorm.cc
