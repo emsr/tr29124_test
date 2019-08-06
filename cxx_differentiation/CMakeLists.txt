@@ -27,7 +27,7 @@ target_include_directories(cxx_differentiation INTERFACE include)
 add_executable(test_differentiation test_differentiation.cpp)
 target_link_libraries(test_differentiation cxx_differentiation)
 
-add_test(NAME run_test_differentiation COMMAND bash -c "./bin/test_differentiation > output/test_differentiation.txt")
+add_test(NAME run_test_differentiation COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_differentiation > output/test_differentiation.txt")
 
 find_package(Doxygen)
 if (DOXYGEN_FOUND)

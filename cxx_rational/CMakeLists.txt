@@ -31,7 +31,7 @@ target_link_libraries(test_rational cxx_rational
   cxx_polynomial
   quadmath)
 
-add_test(NAME run_test_rational COMMAND bash -c "./bin/test_rational > output/test_rational.txt")
+add_test(NAME run_test_rational COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_rational > output/test_rational.txt")
 
 find_package(Doxygen)
 if (DOXYGEN_FOUND)

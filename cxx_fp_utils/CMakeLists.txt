@@ -26,8 +26,8 @@ target_include_directories(cxx_fp_utils INTERFACE include)
 
 add_executable(test_fp_utils test_fp_utils.cpp)
 target_link_libraries(test_fp_utils cxx_fp_utils)
-add_test(NAME run_test_fp_utils COMMAND bash -c "./bin/test_fp_utils > output/test_fp_utils.txt")
+add_test(NAME run_test_fp_utils COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_fp_utils > output/test_fp_utils.txt")
 
 add_executable(test_ulp test_ulp.cpp)
 target_link_libraries(test_ulp cxx_fp_utils)
-add_test(NAME run_test_ulp COMMAND bash -c "./bin/test_ulp > output/test_ulp.txt")
+add_test(NAME run_test_ulp COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_ulp > output/test_ulp.txt")

@@ -34,7 +34,7 @@ target_link_libraries(test_cxx_chebyshev
   cxx_chebyshev
   quadmath)
 
-add_test(NAME run_test_cxx_chebyshev COMMAND bash -c "./bin/test_cxx_chebyshev > output/test_cxx_chebyshev.txt")
+add_test(NAME run_test_cxx_chebyshev COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_cxx_chebyshev > output/test_cxx_chebyshev.txt")
 
 find_package(Doxygen)
 if (DOXYGEN_FOUND)
