@@ -32,4 +32,4 @@ target_link_libraries(test_root_search
   cxx_math_constants
   cxx_polynomial
   cxx_root_search)
-add_test(NAME test_root_search COMMAND bash -c "./bin/test_root_search > test_root_search.txt")
+add_test(NAME run_test_root_search COMMAND bash -c "./bin/test_root_search > test_root_search.txt")
