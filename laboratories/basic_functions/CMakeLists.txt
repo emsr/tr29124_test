@@ -20,6 +20,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_lab_basic_functions_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_executable(test_q_number test_q_number.cpp)
 add_test(NAME run_test_q_number COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_q_number > output/test_q_number.txt")
 

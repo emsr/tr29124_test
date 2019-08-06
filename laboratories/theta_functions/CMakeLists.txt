@@ -20,6 +20,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_lab_theta_functions_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_executable(test_jacobi_ellint test_jacobi_ellint.cpp)
 target_link_libraries(test_jacobi_ellint ${TR29124_LIBRARIES} quadmath wrap_gsl)
 add_test(NAME run_test_jacobi_ellint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_ellint > output/test_jacobi_ellint.txt")

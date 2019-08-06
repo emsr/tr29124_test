@@ -20,6 +20,9 @@ endif ()
 
 enable_testing( )
 
+add_custom_target(make_lab_hypergeometric_functions_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_executable(hyperg_1F2 hyperg_1F2.cpp)
 target_compile_definitions(hyperg_1F2 PRIVATE MAIN_1F2)
 add_test(NAME run_hyperg_1F2 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/hyperg_1F2 > output/hyperg_1F2.txt")

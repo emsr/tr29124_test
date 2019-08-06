@@ -18,6 +18,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_cxx_chebyshev_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_library(cxx_chebyshev INTERFACE)
 target_include_directories(cxx_chebyshev INTERFACE include)
 
@@ -35,7 +38,7 @@ add_test(NAME run_test_cxx_chebyshev COMMAND bash -c "./bin/test_cxx_chebyshev >
 
 find_package(Doxygen)
 if (DOXYGEN_FOUND)
-  add_custom_target(docs_chebyshev
+  add_custom_target(docs_cxx_chebyshev
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/docs
     COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUTPUT}
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}

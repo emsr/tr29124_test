@@ -20,6 +20,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_lab_coulomb_functions_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_executable(run_coulfg run_coulfg.cpp coulfg.cpp)
 add_test(NAME run_run_coulfg COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/run_coulfg > output/run_coulfg.txt")
 

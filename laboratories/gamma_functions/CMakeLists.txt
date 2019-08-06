@@ -20,6 +20,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_lab_gamma_functions_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_executable(build_gamma_lanczos build_gamma_lanczos.cpp)
 target_include_directories(build_gamma_lanczos PRIVATE
   ../../cxx_float128/include

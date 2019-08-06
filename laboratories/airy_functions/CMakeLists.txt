@@ -20,6 +20,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_lab_airy_functions_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_executable(airy_toy airy_toy.cpp)
 target_link_libraries(airy_toy ${TR29124_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_airy_toy COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/airy_toy > output/airy_toy.txt")

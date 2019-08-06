@@ -20,6 +20,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_lab_constants_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 #add_executable( )
 #target_include_directories( PRIVATE )
 #target_link_libraries( )

@@ -20,6 +20,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_lab_error_functions_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_executable(build_inv_erf_coefs build_inv_erf_coefs.cpp)
 target_link_libraries(build_inv_erf_coefs
   ${TR29124_LIBRARIES}

@@ -20,6 +20,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_lab_beta_functions_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_executable(test_beta test_beta.cpp)
 target_link_libraries(test_beta ${TR29124_LIBRARIES} cxx_float128
   quadmath

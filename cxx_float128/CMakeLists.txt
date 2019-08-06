@@ -18,6 +18,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_cxx_float128_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 # Header-only library.
 add_library(cxx_float128 INTERFACE)
 target_include_directories(cxx_float128 INTERFACE include)

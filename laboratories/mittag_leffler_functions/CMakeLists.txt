@@ -20,6 +20,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_lab_mittag_leffler_functions_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_executable(test_mittag_leffler test_mittag_leffler.cpp)
 target_link_libraries(test_mittag_leffler ${TR29124_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_mittag_leffler COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_mittag_leffler > output/test_mittag_leffler.txt")

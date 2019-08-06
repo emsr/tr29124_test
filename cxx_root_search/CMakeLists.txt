@@ -18,6 +18,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_cxx_root_search_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_library(cxx_root_search INTERFACE)
 target_include_directories(cxx_root_search
   INTERFACE include)

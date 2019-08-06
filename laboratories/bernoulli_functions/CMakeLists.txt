@@ -20,6 +20,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_lab_bernoulli_functions_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_executable(build_bernoulli_2n_table build_bernoulli_2n_table.cpp)
 target_link_libraries(build_bernoulli_2n_table ${TR29124_LIBRARIES} quadmath mpreal mpfr)
 add_test(NAME run_build_bernoulli_2n_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_bernoulli_2n_table > output/build_bernoulli_2n_table.txt")

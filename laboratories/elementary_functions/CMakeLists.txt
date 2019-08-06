@@ -20,6 +20,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_lab_elementary_functions_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_executable(build_atan_table build_atan_table.cpp)
 target_link_libraries(build_atan_table ${TR29124_LIBRARIES} mpreal gmp mpfr quadmath)
 add_test(NAME run_build_atan_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_atan_table > output/build_atan_table.txt")

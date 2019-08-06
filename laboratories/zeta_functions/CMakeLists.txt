@@ -20,6 +20,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_lab_zeta_functions_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_executable(build_etam1_table build_etam1_table.cpp)
 target_link_libraries(build_etam1_table
   ${TR29124_LIBRARIES}

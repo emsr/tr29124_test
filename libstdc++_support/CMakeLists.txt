@@ -18,8 +18,8 @@ endif ()
 
 enable_testing()
 
-#add_library( INTERFACE)
-#target_include_directories( INTERFACE qwerty)
+add_custom_target(make_libstdcpp_support_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
 
 add_definitions(-D__TEST_DEBUG)
 

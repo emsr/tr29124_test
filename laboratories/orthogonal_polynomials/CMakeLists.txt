@@ -20,6 +20,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_lab_orthogonal_polynomials_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_executable(debug_odd_legendre debug_odd_legendre.cpp)
 target_link_libraries(debug_odd_legendre ${TR29124_LIBRARIES} quadmath)
 add_test(NAME run_debug_odd_legendre COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/debug_odd_legendre > output/debug_odd_legendre.txt")

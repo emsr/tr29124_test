@@ -20,6 +20,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_lab_bessel_functions_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_executable(debug_bessel debug_bessel.cpp)
 
 add_executable(test_cyl_bessel_ratio test_cyl_bessel_ratio.cpp)

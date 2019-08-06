@@ -20,6 +20,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_lab_elliptic_integrals_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 #add_executable(carlson1 carlson1.cpp)
 #target_include_directories(carlson1 PRIVATE )
 #target_link_libraries(carlson1 )

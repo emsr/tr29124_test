@@ -20,6 +20,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_lab_integer_functions_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_executable(test_factorization test_factorization.cpp)
 add_test(NAME run_test_factorization COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_factorization > output/test_factorization.txt < ${CMAKE_CURRENT_SOURCE_DIR}/test_factorization.in")
 

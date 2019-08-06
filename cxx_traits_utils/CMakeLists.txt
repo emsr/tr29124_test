@@ -18,10 +18,13 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_cxx_traits_utils_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_library(cxx_traits_utils INTERFACE)
 target_include_directories(cxx_traits_utils INTERFACE include)
 
 add_executable(test_traits_utils test_traits_utils.cpp)
 target_link_libraries(test_traits_utils PRIVATE cxx_traits_utils)
 
-add_test(NAME traits_utils_test0 COMMAND bash -c "./bin/test_traits_utils > test_traits_utils.txt")
+add_test(NAME traits_utils_test0 COMMAND bash -c "./bin/test_traits_utils > output/test_traits_utils.txt")

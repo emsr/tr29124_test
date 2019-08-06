@@ -14,6 +14,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 enable_testing()
 
+add_custom_target(make_cxx_summation_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 # Header-only library.
 add_library(cxx_summation INTERFACE)
 target_include_directories(cxx_summation INTERFACE include)

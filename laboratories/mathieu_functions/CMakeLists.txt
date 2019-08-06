@@ -20,6 +20,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_lab_mathieu_functions_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_executable(test_mathieu test_mathieu.cpp)
 target_link_libraries(test_mathieu quadmath)
 add_test(NAME run_test_mathieu COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_mathieu > output/test_mathieu.txt")

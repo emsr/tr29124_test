@@ -18,6 +18,9 @@ endif ()
 
 enable_testing()
 
+add_custom_target(make_cxx_rational_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
+
 add_library(cxx_rational INTERFACE)
 target_include_directories(cxx_rational INTERFACE include)
 
@@ -32,7 +35,7 @@ add_test(NAME run_test_rational COMMAND bash -c "./bin/test_rational > output/te
 
 find_package(Doxygen)
 if (DOXYGEN_FOUND)
-  add_custom_target(docs_rational
+  add_custom_target(docs_cxx_rational
     COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/docs
     COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUTPUT}
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
