@@ -122,7 +122,7 @@ add_executable(test_struve test_struve.cpp)
 target_include_directories(test_struve PRIVATE
   .)
 target_link_libraries(test_struve quadmath ${TR29124_LIBRARIES} cxx_float128 wrap_burkhardt gfortran)
-add_test(NAME run_test_struve COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_struve > output/test_struve.txt")
+#FIXME add_test(NAME run_test_struve COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_struve > output/test_struve.txt")
 
 add_executable(test_cyl_bessel_nk_series test_cyl_bessel_nk_series.cpp)
 target_link_libraries(test_cyl_bessel_nk_series ${TR29124_LIBRARIES} quadmath)

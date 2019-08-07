@@ -37,4 +37,4 @@ add_executable(test_inv_ibeta test_inv_ibeta.cpp)
 target_include_directories(test_inv_ibeta PRIVATE
   ../../cxx_root_search/include)
 target_link_libraries(test_inv_ibeta ${TR29124_LIBRARIES} quadmath)
-add_test(NAME run_test_inv_ibeta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_inv_ibeta > output/test_inv_ibeta.txt")
+# FIXME add_test(NAME run_test_inv_ibeta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_inv_ibeta > output/test_inv_ibeta.txt")

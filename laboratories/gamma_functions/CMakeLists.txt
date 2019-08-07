@@ -36,7 +36,7 @@ add_test(NAME run_build_gamma_recip COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/bui
 
 add_executable(build_gamma_spouge build_gamma_spouge.cpp)
 target_link_libraries(build_gamma_spouge ${TR29124_LIBRARIES} cxx_float128 quadmath)
-add_test(NAME run_build_gamma_spouge COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_gamma_spouge > output/build_gamma_spouge.txt")
+#FIXME add_test(NAME run_build_gamma_spouge COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_gamma_spouge > output/build_gamma_spouge.txt")
 
 add_executable(plot_gamma plot_gamma.cpp)
 target_link_libraries(plot_gamma ${TR29124_LIBRARIES} quadmath)
@@ -84,7 +84,7 @@ add_test(NAME run_test_gamma_reciprocal COMMAND bash -c "${CMAKE_BINARY_DIR}/bin
 
 add_executable(test_inv_gamma test_inv_gamma.cpp)
 target_link_libraries(test_inv_gamma ${TR29124_LIBRARIES} cxx_float128 quadmath)
-add_test(NAME run_test_inv_gamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_inv_gamma > output/test_inv_gamma.txt")
+#FIXME add_test(NAME run_test_inv_gamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_inv_gamma > output/test_inv_gamma.txt")
 
 add_executable(test_inv_lgamma test_inv_lgamma.cpp)
 target_include_directories(test_inv_lgamma PRIVATE
