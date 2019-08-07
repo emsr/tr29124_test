@@ -86,7 +86,7 @@ template<typename _Tp>
     const auto rel_precision = eps_factor * eps;
     const auto cmp_precision = _Tp{10} * rel_precision;
 
-    std::vector<int> degree{0,1,2,3,4,5,8,9,16,17,32,33};
+    std::vector<int> degree{0, 1, 2, 3, 4, 5, 8, 9, 16, 17};
 
     int n1_save = 0;
     for (int n1 : degree)
