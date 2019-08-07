@@ -1,5 +1,9 @@
 # TR29124 Mathematical Special Functions in C++
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bee73172954646a0bf287bdcdd269553)](https://app.codacy.com/app/emsr/tr29124_test?utm_source=github.com&utm_medium=referral&utm_content=emsr/tr29124_test&utm_campaign=Badge_Grade_Dashboard)
+[![Build Status](https://travis-ci.org/emsr/tr29124_test.svg?branch=master)](https://travis-ci.org/emsr/tr29124_test)
+[![Coverage Status](https://codecov.io/gh/emsr/tr29124_test/branch/master/graph/badge.svg)](https://codecov.io/gh/emsr/tr29124_test)
+
 This repository contains work toward
 [IS 29124 - Extensions to the C++ Library to Support Mathematical Special Functions]
 (http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2010/n3060.pdf)
@@ -33,7 +37,7 @@ In addition to the special functions in C++17, this library adds several extensi
 * Hankel functions
 * Statistical distribution functions
 
-Some capabilities have bee migrated into separate subprojects:
+Some capabilities have been migrated into separate subprojects:
 * Quadrature rules
 * Polynomial classes and solvers
 
@@ -56,7 +60,3 @@ into the main project directory and update the submodules:
 
 From then on:
 * git submodule update --recursive --remote
-
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bee73172954646a0bf287bdcdd269553)](https://app.codacy.com/app/emsr/tr29124_test?utm_source=github.com&utm_medium=referral&utm_content=emsr/tr29124_test&utm_campaign=Badge_Grade_Dashboard)
-[![Build Status](https://travis-ci.org/emsr/tr29124_test.svg?branch=master)](https://travis-ci.org/emsr/tr29124_test)
-[![Coverage Status](https://codecov.io/gh/emsr/tr29124_test/branch/master/graph/badge.svg)](https://codecov.io/gh/emsr/tr29124_test)
