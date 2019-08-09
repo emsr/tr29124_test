@@ -9,7 +9,7 @@ project(
 set(src_dir Fortran77/Src/Dp)
 set(test_dir Fortran77/Drivers/Dp)
 
-add_library(gst_scorer SHARED ${src_dir}/src_819.f)
+add_library(gst_scorer SHARED ${src_dir}/src_819.f ${src_dir}/scorer.f90)
 target_link_libraries(gst_scorer gst_airy)
 
 # I think the file names were switched by the authors: src_819.f <-> src.f
@@ -19,5 +19,5 @@ target_link_libraries(gst_scorer gst_airy)
 add_executable(sctest ${test_dir}/driver.f)
 target_link_libraries(sctest gst_scorer)
 
-#add_executable(test_gst_scorer ${src_dir}/test_scorer.cpp)
-#target_link_libraries(sctest gst_scorer)
+add_executable(test_gst_scorer ${src_dir}/test_scorer.cpp)
+target_link_libraries(test_gst_scorer gst_scorer)
