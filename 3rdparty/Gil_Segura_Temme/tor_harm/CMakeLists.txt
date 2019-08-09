@@ -6,7 +6,10 @@ project(
   LANGUAGES Fortran
 )
 
-add_library(gst_tor_harm SHARED dtorh1.f dtorh2.f dtorh3.f rout.f)
+add_library(gst_tor_harm SHARED dtorh1.f dtorh2.f dtorh3.f rout.f toroidal_harmonic.f90)
 
 add_executable(test_tor_harm testpro.f)
 target_link_libraries(test_tor_harm gst_tor_harm)
+
+add_executable(test_gst_toroidal_harmonic test_toroidal_harmonic.cpp)
+target_link_libraries(test_gst_toroidal_harmonic gst_tor_harm)
