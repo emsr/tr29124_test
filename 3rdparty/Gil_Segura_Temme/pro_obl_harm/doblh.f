@@ -1,9 +1,10 @@
-         SUBROUTINE DOBLH(X,M,NMAX,MODE,RL,TL,NUEVO)
+
+      SUBROUTINE DOBLH(X,M,NMAX,MODE,RL,TL,NUEVO)
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 C  CALCULATION OF OBLATE SPHEROIDAL HARMONICS                             C
 C                                                                         C
 C  INPUT :                                                                C
-C                                                                         C  
+C                                                                         C
 C    X        ARGUMENT OF THE FUNCTIONS                                   C
 C                                                                         C
 C    M        DEGREE OF THE SPHEROIDAL HARMONICS                          C
@@ -15,6 +16,7 @@ C                                                                         C
 C    MODE     MODE OF CALCULATION (SEE OUTPUT)                            C
 C                                                                         C
 C  OUTPUT :                                                               C
+C                                                                         C
 C   *IF MODE IS EQUAL TO 0:                                               C
 C                                                                         C
 C    RL(L+1)                                                              C
@@ -52,7 +54,7 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 C                                                                         C
 C   DECLARATION OF VARIABLES                                              C
-C                                                                         C 
+C                                                                         C
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
        IMPLICIT REAL*8 (A-H,O-Z)
        DIMENSION RL(0:NMAX+1),TL(0:NMAX+1)
@@ -72,7 +74,7 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
          AR=1.
        ELSE
          AR=-1.
-       END IF      
+       END IF
        DZM=DSQRT(X*X+1.D0)
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 C                                                                         C
@@ -88,12 +90,12 @@ C                                                                         C
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
        RL0=1.D0
        IF (MODE.EQ.0) THEN
-         IF (M.GT.0) THEN  
-           J=1 
+         IF (M.GT.0) THEN
+           J=1
            DO I=1,M
              RL0=RL0*DZM*(2.*M-J)
              J=J+2
-           END DO  
+           END DO
          END IF
          RL(0)=RL0
          RL(1)=X*(2.*M+1.D0)*RL(0)
@@ -101,17 +103,17 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
          IF (M*DLOG(DZM).GT.(DLOG(OVER))) THEN
            WRITE(6,*)'BETTER TRY MODE=2'
            STOP
-         END IF  
+         END IF
          IF (M.GT.0) THEN
            DO I=1,M
              RL0=RL0*DZM
-           END DO 
+           END DO
          END IF
          RL(0)=RL0
          RL(1)=X*(2.*M+1.D0)*RL(0)
        ELSE
          RL(0)=RL0*TINY
-         RL(1)=X*(2.*M+1.D0)*RL(0)                             
+         RL(1)=X*(2.*M+1.D0)*RL(0)
        END IF
        NP=1
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
@@ -125,20 +127,20 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
          NP=NP+1
        ENDDO
        NMAX=NP-1
-       IF (MODE.EQ.0) THEN         
-         FACTOR=FACTCO(NMAX,RL(NMAX+1),M,OVER)        
-         DO WHILE ((FACTOR.EQ.0.D0).AND.(NMAX.GT.0)) 
+       IF (MODE.EQ.0) THEN
+         FACTOR=FACTCO(NMAX,RL(NMAX+1),M,OVER)
+         DO WHILE ((FACTOR.EQ.0.D0).AND.(NMAX.GT.0))
            NMAX=NMAX-3
-           FACTOR=FACTCO(NMAX,RL(NMAX+1),M,OVER)     
-         END DO   
+           FACTOR=FACTCO(NMAX,RL(NMAX+1),M,OVER)
+         END DO
          IF (NMAX.LE.0.) THEN
            WRITE(6,*)'TRY ANOTHER M'
            STOP
          END IF
        ELSE
          FACTOR=FACTCONEW(NMAX,RL(NMAX+1),M)
-       END IF         
-       NUEVO=NMAX      
+       END IF
+       NUEVO=NMAX
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 C                                                                         C
 C   WE EVALUATE THE CONTINUED FRACTION USING                              C
@@ -159,8 +161,8 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
        DELTA=C0*D0
        FC=FC*DELTA
        MM=MM+1
-       A=(N+MM+1.D0)/DFLOAT(N+M+M+MM) 
-       B=(1.D0+(N+MM+2.D0)/(M+M+N+MM+1.D0))*X   
+       A=(N+MM+1.D0)/DFLOAT(N+M+M+MM)
+       B=(1.D0+(N+MM+2.D0)/(M+M+N+MM+1.D0))*X
        IF (ABS(DELTA-1.D0).GT.EPS) GOTO 10
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 C                                                                         C
@@ -180,34 +182,4 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
        ENDDO
        NMAX=NMAXP
        RETURN
-       END
-
-
-        FUNCTION FACTCO(I,PN,M,OVER)
-        IMPLICIT REAL*8 (A-H,O-Z)
-        FACTCO=1.D0/PN
-        IF (M.GT.0) THEN
-          J=M+M
-          DO WHILE ((J.GT.1).AND.(FACTCO.LT.OVER))
-            FACTCO=FACTCO*(I+J)
-            J=J-1
-          END DO  
-          IF (J.GT.2) FACTCO=0.
-        ELSE
-          FACTCO=1.D0/(I+1.D0)/PN
-        END IF
-        RETURN          
-        END
-
-
-        FUNCTION FACTCONEW(N,PN,M)
-        IMPLICIT REAL*8 (A-H,O-Z)
-        FACTCONEW=1.D0/(N+1.D0)/PN
-        IF (M.GT.0) THEN
-         J=M+M
-         DO L=1,N
-           FACTCONEW=FACTCONEW*DFLOAT(J+L)/DFLOAT(L)
-         END DO  
-        END IF
-        RETURN          
-        END
+      END

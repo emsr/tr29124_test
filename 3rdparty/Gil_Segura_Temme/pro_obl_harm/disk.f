@@ -1,10 +1,10 @@
        PROGRAM DISK
        IMPLICIT REAL*8 (A-H,O-Z)
-       DIMENSION PL(0:2001),QL(0:2001),POL(0:2001)	
-       PARAMETER(EPS=1.D-8)     
+       DIMENSION PL(0:2001),QL(0:2001),POL(0:2001)
+       PARAMETER(EPS=1.D-8)
        PI=3.14159265358979323D0
        NMAX=500
-       WRITE(6,*)'INTRODUCE DISTANCE AND RADIUS' 
+       WRITE(6,*)'INTRODUCE DISTANCE AND RADIUS'
        WRITE(6,*)'L,A'
  1     READ(5,*)DL,A
        DLA=DL/A
@@ -26,15 +26,15 @@
        END IF
        SINBET=RA
        COSBET=DSQRT(1.D0-SINBET*SINBET)
-       DFACT=-Q/PI/A2  
+       DFACT=-Q/PI/A2
        DFACT1=1.D0/DLA2*(1.D0+1.D0/DLA2*SINBET*SINBET)**(-1.5)
        DFACT2=2.D0/DSQRT(PI)/COSBET
        CALL DOBLH(DLA,0,NMAX,0,PL,QL,NUEVO)
-       CALL POLIN(COSBET,NMAX,POL) 
+       CALL POLIN(COSBET,NMAX,POL)
        JJ=0
        NSUP=NUEVO
-       OPEN(10,FILE='disk.dat',STATUS='NEW')       
-       WRITE(10,*)'NSUP',NSUP        
+       OPEN(10,FILE='disk.dat',STATUS='NEW')
+       WRITE(10,*)'NSUP',NSUP
        DSUME=0.D0
        DDS=1.D0
        PRE=1.D0
@@ -57,7 +57,7 @@
        WRITE(10,*) DENSITY
        CLOSE(10)
        END
-   
+
 
 
 
@@ -76,18 +76,18 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
        ENDDO
        RETURN
        END
- 
-      
+
+
 
        FUNCTION FA(QLM,N)
        IMPLICIT REAL*8 (A-H,O-Z)
        FA=QLM
         IF (N.GT.0) THEN
-          J=1 
+          J=1
           DO I=1,N
             FA=FA*I/(2.D0*N-J)
             J=J+2
-          END DO 
+          END DO
         END IF
-       RETURN          
+       RETURN
        END
