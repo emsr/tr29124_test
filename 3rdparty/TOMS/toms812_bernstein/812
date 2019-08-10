@@ -1,0 +1,3139 @@
+#! /bin/sh
+# This is a shell archive, meaning:
+# 1. Remove everything above the #! /bin/sh line.
+# 2. Save the resulting text in a file.
+# 3. Execute the file with /bin/sh (not csh) to create the files:
+#	Cpp/
+#	Cpp/Sp/
+#	Cpp/Sp/Drivers/
+#	Cpp/Sp/Drivers/driver1.cpp
+#	Cpp/Sp/Drivers/driver10.cpp
+#	Cpp/Sp/Drivers/driver2.cpp
+#	Cpp/Sp/Drivers/driver3.cpp
+#	Cpp/Sp/Drivers/driver4.cpp
+#	Cpp/Sp/Drivers/driver5.cpp
+#	Cpp/Sp/Drivers/driver6.cpp
+#	Cpp/Sp/Drivers/driver7.cpp
+#	Cpp/Sp/Drivers/driver8.cpp
+#	Cpp/Sp/Drivers/driver9.cpp
+#	Cpp/Sp/Drivers/res1
+#	Cpp/Sp/Drivers/res10
+#	Cpp/Sp/Drivers/res2
+#	Cpp/Sp/Drivers/res3
+#	Cpp/Sp/Drivers/res4
+#	Cpp/Sp/Drivers/res5
+#	Cpp/Sp/Drivers/res6
+#	Cpp/Sp/Drivers/res7
+#	Cpp/Sp/Drivers/res8
+#	Cpp/Sp/Drivers/res9
+#	Cpp/Sp/Src/
+#	Cpp/Sp/Src/Bernstein.cpp
+#	Cpp/Sp/Src/Bernstein.h
+#	Doc/
+#	Doc/makefile
+# This archive created: Tue Nov 13 10:04:40 2001
+export PATH; PATH=/bin:$PATH
+if test ! -d 'Cpp'
+then
+	mkdir 'Cpp'
+fi
+cd 'Cpp'
+if test ! -d 'Sp'
+then
+	mkdir 'Sp'
+fi
+cd 'Sp'
+if test ! -d 'Drivers'
+then
+	mkdir 'Drivers'
+fi
+cd 'Drivers'
+if test -f 'driver1.cpp'
+then
+	echo shar: will not over-write existing file "'driver1.cpp'"
+else
+cat << "SHAR_EOF" > 'driver1.cpp'
+#include"Bernstein.h"
+#include <time.h>
+
+// Demonstration of constructing a degree n
+// Chebyshev polynomial and finding its roots:
+//
+// by Evan Yi-Feng Tsai, 2001
+void main(void)
+{
+  int ii, nn;
+  nn = 30;    // the polynomial degree
+  double zero, *zeros, pi = 3.1415926535897932;
+  double RR, delta, eta;
+  Bernstein *TT, Cheb, result;
+  FILE *out;
+
+  clock_t start, finish;
+  out = fopen("res1","w");
+
+  // Set the tolerances:
+  delta = 1e-11;
+  eta = 1e-8;
+
+  try {  
+    TT = new Bernstein[nn+1];
+    TT[0].cf = new double[1];
+    TT[1].cf = new double[2]; 
+    zeros = new double[nn];
+  }
+  catch ( bad_alloc exception ) {  
+    cout << "In test_Chebyshev.cpp: " << exception.what() << endl;  
+    exit(1);
+  }
+
+  start = clock();
+
+  // Set T[0] = 1: 
+  TT[0].dgr = 0;
+  TT[0].cf[0] = 1.0;
+
+  // Set T[1] = 2u-1 = (-1)(1-u) + 1(u):
+  TT[1].dgr = 1;
+  TT[1].cf[0] = -1.0; 
+  TT[1].cf[1] = 1.0;
+
+  // Recursion for constructing Tn:
+  for ( ii = 2; ii <= nn; ii++ )
+    TT[ii] = 2.0 * TT[1] * TT[ii-1] - TT[ii-2];
+
+  Cheb = TT[nn]; 
+
+  // Root solving (we know there are only single roots):
+  result = sort ( sROOT(Cheb, delta, eta) );
+  if ( result.dgr == -1 ) {
+    cout << "In test_Chebyshev.cpp: " << "Error in root solving." << endl;
+    exit(1);
+  }
+
+  // Compute ``standard'' roots:
+  for ( ii = nn - 1; ii >= 0; ii-- )
+    zeros[nn-1-ii] = 0.5 + 0.5 * 
+                   cos((2.0*(double)ii+1.0)*pi/(2.0*(double)nn));
+
+  // Compute RMS error:
+  RR = 0.0;
+  for ( ii = 0; ii <= nn - 1; ii++ ) {
+    zero = 0.5 + 0.5 * 
+           cos((2.0*(double)(nn-1-ii)+1.0)*pi/(2.0*(double)nn));
+    RR = RR + pow((result.cf[ii] - zero),2.0);
+  }
+  RR = RR / (double)nn;
+  RR = sqrt(RR);  
+
+  finish = clock();
+
+  // Print the results:
+  fprintf(out,"Test case -- Root solving for Chebyshev polynomials:\n\n");
+  fprintf(out,"Roots of a degree %d Chebyshev polynomial:\n\n", nn);
+  fprintf(out,"Computed            Standard            Error\n");
+  for ( ii = 0; ii <= nn - 1; ii++ )
+    fprintf(out,"%1.16f  %1.16f  %1.16f\n",result.cf[ii],zeros[ii],result.cf[ii]-zeros[ii]);
+  
+  fprintf(out,"\nRMS error: %1.16f\n", RR);
+
+  fprintf(out,"Time taken: %f seconds\n",((double) (finish-start)) / CLOCKS_PER_SEC);
+
+  fclose(out);
+}
+
+
+
+
+
+
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'driver10.cpp'
+then
+	echo shar: will not over-write existing file "'driver10.cpp'"
+else
+cat << "SHAR_EOF" > 'driver10.cpp'
+#include"Bernstein.h"
+
+// Testing for the Bernstein library: 
+//   Subdivision by de Castaljau algorithm
+//
+// This function verifies the subdivision algorithm
+// by comparing points on the subdivided curves with
+// the corresponding points on the original curve.
+//
+// by Evan Yi-Feng Tsai, 2001
+void main(void)
+{
+  int nn = 5;
+  double xi, xiL, xiR;
+  double xil, xir;
+  Bernstein rr, left, right;
+  FILE *out;
+
+  out = fopen("res10","w");
+
+  rr.dgr = nn;
+  try {  rr.cf = new double[rr.dgr + 1];  }
+  catch ( bad_alloc exception ) {  
+    cout << "In test_subdivision.cpp: " << exception.what() << endl;
+    exit(1);
+  }
+
+  rr.cf[0] = 65.8;  rr.cf[1] = -34.56;  rr.cf[2] = 11.004;
+  rr.cf[3] = -51.72;  rr.cf[4] = 30.6;  rr.cf[5] = -87.0;
+
+  // Enter the left testing point, the subdivision point,
+  // and the right testing point:
+  xiL = 0.12; xi = 0.38; xiR = 0.95;
+
+  fprintf(out,"Test case -- Subdivision:\n\n");
+  fprintf(out,"The subdivision point: %f\n", xi);
+  fprintf(out,"The left test point (in the original domain [0,1]): %f\n", xiL);
+  fprintf(out,"The right test point (in the original domain [0,1]): %f\n", xiR);
+
+  left = subLEFT(rr,xi);
+  right = subRIGHT(rr,xi);
+
+  // xi values on the local coordinates:
+  xil = xiL / xi;
+  xir = (xiR - xi) / (1.0 - xi);
+
+  fprintf(out,"\nError on the left piece: %1.16f\n",EVAL(left,xil)-EVAL(rr,xiL));
+  fprintf(out,"Error on the right piece: %1.16f\n",EVAL(right,xir)-EVAL(rr,xiR));
+
+  fclose(out);
+}
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'driver2.cpp'
+then
+	echo shar: will not over-write existing file "'driver2.cpp'"
+else
+cat << "SHAR_EOF" > 'driver2.cpp'
+#include"Bernstein.h"
+
+// Testing for the Bernstein library: 
+//   Arithmetic operations: +, -, *, /, ^
+//
+// by Evan Yi-Feng Tsai, 2001
+// 
+void main(void)
+{
+  int ii, mm = 15, nn = 9;
+  double aa[16], bb[10]; 
+  double xi, dxi = 1.0 / 100.0, error, RR;
+
+  // Set up the two polynomials:
+  aa[0] = 6.3; aa[1] = -3.42; aa[2] = 0.06; 
+  aa[3] = -3.9; aa[4] = 1.42; aa[5] = 6.5;
+  aa[6] = 4.2; aa[7] = -0.42; aa[8] = 0.06;
+  aa[9] = 31.3; aa[10] = -1.42; aa[11] = 0.6; 
+  aa[12] = 3.9; aa[13] = -10.42; aa[14] = -6.5;
+  aa[15] = 40.2;
+
+  bb[0] = 10.5; bb[1] = 2.46; bb[2] = -5.11; 
+  bb[3] = -6.90; bb[4] = 10.0; bb[5] = 1.0;
+  bb[6] = 12.5; bb[7] = -2.46; bb[8] = 5.11; 
+  bb[9] = -1.90;
+
+  Bernstein xx(aa, mm), yy(bb, nn), result, qq, rr, recovered_xx;
+
+  FILE *out;
+  out = fopen("res2","w");
+
+  fprintf(out,"Test case -- Arithmetic operations:\n\n");
+  fprintf(out,"For the two Bernstein-form polynomials x and y,\n");
+  fprintf(out,"where deg(x) = %d, deg(y) = %d\n\n", mm, nn);
+
+  // Test for the '+' operator:
+  result = xx + yy;
+  RR = 0.0;
+  for ( ii = 0; ii <= 100; ii++ ) {
+    xi = (double)ii * dxi;
+    error = EVAL(result, xi) - ( EVAL(xx, xi) + EVAL(yy, xi) ); 
+    RR += (error * error);
+  }
+
+  RR = RR / 101.0;
+  RR = sqrt(RR);
+  fprintf(out,"The RMS error in computing x + y: %1.16f\n", RR);
+
+  // Test for the '-' operator:
+  result = xx - yy;
+  RR = 0.0;
+  for ( ii = 0; ii <= 100; ii++ ) {
+    xi = (double)ii * dxi;
+    error = EVAL(result, xi) - ( EVAL(xx, xi) - EVAL(yy, xi) ); 
+    RR += (error * error);
+  }
+
+  RR = RR / 101.0;
+  RR = sqrt(RR);
+  fprintf(out,"The RMS error in computing x - y: %1.16f\n", RR);
+
+  // Test for the '*' operator:
+  result = xx * yy;
+  RR = 0.0;
+  for ( ii = 0; ii <= 100; ii++ ) {
+    xi = (double)ii * dxi;
+    error = EVAL(result, xi) - ( EVAL(xx, xi) * EVAL(yy, xi) ); 
+    RR += (error * error);
+  }
+
+  RR = RR / 101.0;
+  RR = sqrt(RR);
+  fprintf(out,"The RMS error in computing x * y: %1.16f\n",RR);
+
+  // Test for the '*' operator --- pre-multiply:
+  result = 3.0 * yy;
+  RR = 0.0;
+  for ( ii = 0; ii <= 100; ii++ ) {
+    xi = (double)ii * dxi;
+    error = EVAL(result, xi) - ( 3.0 * EVAL(yy, xi) ); 
+    RR += (error * error);
+  }
+
+  RR = RR / 101.0;
+  RR = sqrt(RR);
+  fprintf(out,"The RMS error in computing 3.0 * y: %1.16f\n", RR);
+
+  // Test for the '*' operator --- post-multiply:
+  result = xx * 3.0;
+  RR = 0.0;
+  for ( ii = 0; ii <= 100; ii++ ) {
+    xi = (double)ii * dxi;
+    error = EVAL(result, xi) - ( EVAL(xx, xi) * 3.0 ); 
+    RR += (error * error);
+  }
+
+  RR = RR / 101.0;
+  RR = sqrt(RR);
+  fprintf(out,"The RMS error in computing x * 3.0: %1.16f\n", RR);
+
+  // Test for the '/' operator:
+  result = xx / yy;
+  qq = quo(result, mm-nn);
+  rr = rem(result, nn-1);
+
+  // Putting it back:
+  recovered_xx = qq * yy + rr;
+  RR = 0.0;
+  for ( ii = 0; ii <= 100; ii++ ) {
+    xi = (double)ii * dxi;
+    error = EVAL(recovered_xx, xi) - EVAL(xx, xi); 
+    RR += (error * error);
+  }
+
+  RR = RR / 101.0;
+  RR = sqrt(RR);
+  fprintf(out,"The RMS error in computing x / y: %1.16f\n", RR);  
+
+  // Test for the '^' operator:
+  result = yy^2;
+  RR = 0.0;
+  for ( ii = 0; ii <= 100; ii++ ) {
+    xi = (double)ii * dxi;
+    error = EVAL(result, xi) - pow( EVAL(yy, xi), 2.0 ); 
+    RR += (error * error);
+  }
+
+  RR = RR / 101.0;
+  RR = sqrt(RR);
+  fprintf(out,"The RMS error in computing y^2: %1.16f\n", RR);
+
+  fclose(out);
+}
+
+
+
+
+
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'driver3.cpp'
+then
+	echo shar: will not over-write existing file "'driver3.cpp'"
+else
+cat << "SHAR_EOF" > 'driver3.cpp'
+#include"Bernstein.h"
+
+// Testing for the Bernstein library: 
+//   Computation of binomial coefficients
+//
+//
+// by Evan Yi-Feng Tsai, 2001
+void main(void)
+{
+  int ii, nn;
+  double aa[2];
+  double error, RR;
+  Bernstein xx, PP;
+  FILE *out;
+
+  out = fopen("res3","w");
+
+  // Creates the trivial polynomial x(t) = 1.0(1-t) + 1.0t:
+  aa[0] = 1.0;  aa[1] = 1.0;
+  xx = Bernstein(aa, 1);
+
+  nn = 100;
+  // Take it to the nth power: all of the Bernstein coefficients
+  // of P(t) should have the value 1
+  PP = xx^nn;
+
+  fprintf(out,"Test case -- Computation of binomial coefficients:\n\n");
+  fprintf(out,"For x(t) = 1.0(1-t) + 1.0t and P(t) = x^%d:\n\n",nn);
+
+  RR = 0.0; 
+  for ( ii = 0; ii <= nn; ii++ ) {
+    error = PP.cf[ii] - 1.0;
+    RR += (error * error);
+  }
+
+  RR = RR / (double) (nn+1);
+  RR = sqrt(RR);
+
+  fprintf(out,"The RMS error in the Bernstein coefficients of P(t)\n");
+  fprintf(out,"(from the theoretical value 1) = %1.18f\n",RR);  
+
+  fclose(out);
+}
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'driver4.cpp'
+then
+	echo shar: will not over-write existing file "'driver4.cpp'"
+else
+cat << "SHAR_EOF" > 'driver4.cpp'
+#include"Bernstein.h"
+#include <time.h>
+
+// Testing for the Bernstein library: 
+//   Composition operation: <<
+//
+// Caution: The testing of this operation 
+// is subject to extrapolation, if the 
+// range of y(x) is beyond [0,1]. 
+//
+// by Evan Yi-Feng Tsai, 2001
+void main(void)
+{
+  int ii, mm = 15, nn = 9;
+  double aa[16], bb[10]; 
+  double xi, dxi = 1.0 / 100.0, error, RR;
+  clock_t start, finish;
+
+  // Set up the two polynomials:
+  aa[0] = 6.3; aa[1] = -3.42; aa[2] = 0.06; 
+  aa[3] = -3.9; aa[4] = 1.42; aa[5] = 6.5;
+  aa[6] = 4.2; aa[7] = -0.42; aa[8] = 0.06;
+  aa[9] = 31.3; aa[10] = -1.42; aa[11] = 0.6; 
+  aa[12] = 3.9; aa[13] = -10.42; aa[14] = -6.5;
+  aa[15] = 40.2;
+
+  bb[0] = 0.5; bb[1] = 0.246; bb[2] = 0.51; 
+  bb[3] = -0.69; bb[4] = 0.44; bb[5] = 0.99;
+  bb[6] = 0.51; bb[7] = -0.246; bb[8] = 0.32; 
+  bb[9] = -0.74;
+
+  Bernstein x(aa, mm), y(bb, nn), result;
+
+  FILE *out;
+  out = fopen("res4","w");
+
+  fprintf(out,"Test case -- Composition operation:\n\n");
+  fprintf(out,"For the two Bernstein-form polynomials x and y,\n");
+  fprintf(out,"where deg(x) = %d, deg(y) = %d\n\n", mm, nn);
+
+  start = clock();
+  result = x << y;
+  finish = clock();
+
+  RR = 0.0;
+  for ( ii = 0; ii <= 100; ii++ ) {
+    xi = (double)ii * dxi;
+    error = (EVAL(result,xi)) - EVAL(x,EVAL(y,xi));
+    RR += (error * error);
+  }
+
+  RR = RR / 101.0;
+  RR = sqrt(RR);
+
+  fprintf(out,"The RMS error in computing x << y: %1.16f\n",RR);
+  fprintf(out,"Time taken: %f seconds\n",((double) (finish-start)) / CLOCKS_PER_SEC);
+  fclose(out);
+}
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'driver5.cpp'
+then
+	echo shar: will not over-write existing file "'driver5.cpp'"
+else
+cat << "SHAR_EOF" > 'driver5.cpp'
+#include"Bernstein.h"
+
+// Testing for the Bernstein library: 
+//   Differentiation & integration
+//
+// This function first integrates a polynomial x,
+// and then differentiate it.  The result should
+// be identical to x.
+//
+// by Evan Yi-Feng Tsai, 2001
+void main(void)
+{
+  int ii, nn = 15;
+  double aa[16]; 
+  double xi, dxi = 1.0 / 100.0, error, RR;
+
+  // Set up the original polynomial:
+  aa[0] = 6.3; aa[1] = -3.42; aa[2] = 0.06; 
+  aa[3] = -3.9; aa[4] = 1.42; aa[5] = 6.5;
+  aa[6] = 4.2; aa[7] = -0.42; aa[8] = 0.06;
+  aa[9] = 31.3; aa[10] = -1.42; aa[11] = 0.6; 
+  aa[12] = 3.9; aa[13] = -10.42; aa[14] = -6.5;
+  aa[15] = 40.2;
+
+  Bernstein xx(aa,nn), int_diff;
+
+  FILE *out;
+  out = fopen("res5","w");
+
+  int_diff = diff(integrate(xx));
+
+  RR = 0.0;
+  for ( ii = 0; ii <= 100; ii++ ) {
+    xi = (double)ii * dxi;
+    error = EVAL(int_diff,xi) - EVAL(xx,xi); 
+    RR += (error * error);
+  }
+
+  RR = RR / 101.0;
+  RR = sqrt(RR);
+
+  fprintf(out,"Test case -- Differentiation and integration:\n\n");
+  fprintf(out,"The RMS error in integrate_differentiate: %1.16f\n",RR);  
+
+  fclose(out);
+}
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'driver6.cpp'
+then
+	echo shar: will not over-write existing file "'driver6.cpp'"
+else
+cat << "SHAR_EOF" > 'driver6.cpp'
+#include"Bernstein.h"
+
+// Testing for the Bernstein library: 
+//   gcd
+//
+// This function finds the gcd of two arbitrary
+// polynomials.  The gcd found is then used to
+// divide the original two polynomials, the norms
+// of the two remainders are examined to see if
+// they are small enough.
+//
+// by Evan Yi-Feng Tsai, 2001
+
+void main(void)
+{
+  int ii;
+  double aa[2], bb[2], cc[2], dd[2], ee[2];
+  double rf, rg, epsilon = 1e-5;
+  Bernstein AA, BB, CC, DD, EE, F, G, gcd, truegcd;
+  FILE *out;
+
+  out = fopen("res6","w");
+
+  aa[0] = -0.53;   aa[1] = 1.0 + aa[0];
+  bb[0] = -0.81;   bb[1] = 1.0 + bb[0];
+  cc[0] = -0.19;   cc[1] = 1.0 + cc[0];
+  dd[0] = -0.24;   dd[1] = 1.0 + dd[0];
+  ee[0] = -0.66;   ee[1] = 1.0 + ee[0];
+
+  AA = Bernstein(aa,1);
+  BB = Bernstein(bb,1);
+  CC = Bernstein(cc,1);
+  DD = Bernstein(dd,1);
+  EE = Bernstein(ee,1);
+
+  F = (AA^4) * (BB^4) * (CC^6);
+  G = (AA^4) * (DD^3) * (EE^4);
+
+  fprintf(out,"Test case -- Greatest common divisor:\n\n");
+  fprintf(out,"f = (cc^6) (aa^4) (bb^4),\n");
+  fprintf(out,"g = (dd^3) (aa^4) (ee^4),\n");
+
+  fprintf(out,"where aa = (x - 0.53), bb = (x - 0.81), cc = (x - 0.19),\n");
+  fprintf(out,"and dd = (x - 0.24), ee = (x - 0.66).\n\n");
+
+  gcd = GCD(F,G,epsilon);
+
+  rf = Norm(rem((Normalize(F) / gcd),(gcd.dgr - 1)));
+  rg = Norm(rem((Normalize(G) / gcd),(gcd.dgr - 1)));
+
+  fprintf(out,"Norms of the remainders:\n");
+  fprintf(out,"rf = %1.18f\n",rf);
+  fprintf(out,"rg = %1.18f\n",rg);
+
+  gcd = Normalize(gcd);
+  truegcd = Normalize(AA^4);
+
+
+  fprintf(out,"\nBernstein coefficients of the gcd (Normalized):\n");
+  fprintf(out,"Computed              True                  Error\n");
+  
+  for ( ii = 0; ii <= truegcd.dgr; ii++ )
+    fprintf(out,"%1.16f    %1.16f    %1.16f\n",gcd.cf[ii],truegcd.cf[ii],gcd.cf[ii]-truegcd.cf[ii]);
+
+  fclose(out);
+
+}
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'driver7.cpp'
+then
+	echo shar: will not over-write existing file "'driver7.cpp'"
+else
+cat << "SHAR_EOF" > 'driver7.cpp'
+#include"Bernstein.h"
+
+// Testing for the Bernstein library: 
+//   Normalization
+//
+// The RMS value of a normalized polynomial on [0,1] should
+// have a numerical value of 1 
+//
+// by Evan Yi-Feng Tsai, 2001
+void main(void)
+{
+  int nn = 15;
+  double aa[16]; 
+  double RR;
+
+  // Set up the original polynomial:
+  aa[0] = 6.3; aa[1] = -3.42; aa[2] = 0.06; 
+  aa[3] = -3.9; aa[4] = 1.42; aa[5] = 6.5;
+  aa[6] = 4.2; aa[7] = -0.42; aa[8] = 0.06;
+  aa[9] = 31.3; aa[10] = -1.42; aa[11] = 0.6; 
+  aa[12] = 3.9; aa[13] = -10.42; aa[14] = -6.5;
+  aa[15] = 40.2;
+
+  Bernstein xx(aa, nn), result, value;
+
+  FILE *out;
+  out = fopen("res7","w");
+
+  result = Normalize(xx);
+
+  // Obtain the RMS polynomial:
+  value = integrate(result * result);
+  RR = value.cf[value.dgr];
+  fprintf(out,"Test case -- Normalization:\n\n");
+  fprintf(out,"The RMS value of the normalized polynomial on [0,1]: %1.16f\n", RR);
+  fprintf(out,"Its error from the theoretical value is: %1.16f\n", RR - 1.0);  
+  fclose(out);
+}
+
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'driver8.cpp'
+then
+	echo shar: will not over-write existing file "'driver8.cpp'"
+else
+cat << "SHAR_EOF" > 'driver8.cpp'
+#include"Bernstein.h"
+
+// Testing for the Bernstein library: 
+//   Root solver 1st case: multiple roots
+//
+// by Evan Yi-Feng Tsai, 2001
+void main(void)
+{
+  int ii, nn = 20;
+  double error, delta, eta, epsilon;
+  Bernstein PP, roots;
+  FILE *out;
+
+  // Set the tolerances:
+  epsilon = 1e-5;
+  delta = 1e-11;
+  eta = 1e-8;
+
+  //  Set up the polynomial:
+  //    This polynomial has very special roots: 
+  //    If the polynomial is of degree n, then 
+  //    there are two single roots at 0 and 1,
+  //    and also (n-2) multiple roots at 0.5    
+  PP.dgr = nn;
+  try {  PP.cf = new double[PP.dgr + 1];  }
+  catch ( bad_alloc exception ) {  
+    cout << "In file test_rootsolver.cpp: " << exception.what() << endl;
+    exit(1);
+  }
+
+  for ( ii = 0; ii <= PP.dgr; ii++ )
+    PP.cf[ii] = pow(-1.0, ii) * ii * (nn - ii); 
+
+  out = fopen("res8","w");
+
+  roots = ROOT(PP, delta, eta, epsilon);
+  if ( roots.dgr == -1 ) {
+    cout << "Error occurred in root solving!  Method aborts." << endl;
+    exit(1);
+  }
+
+  fprintf(out,"Test case -- Rootsolver (first example):\n\n");
+  // Verify the roots found:
+  for ( ii = 0; ii < PP.dgr; ii++ )
+  {
+    error = EVAL(PP, roots.cf[ii]);
+    fprintf(out, "The error for root %1.16f = %1.16f\n", roots.cf[ii], error);  
+  }
+
+  fclose(out);
+}
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'driver9.cpp'
+then
+	echo shar: will not over-write existing file "'driver9.cpp'"
+else
+cat << "SHAR_EOF" > 'driver9.cpp'
+#include"Bernstein.h"
+
+// Testing for the Bernstein library: 
+//   Root solver 2nd case: arbitrary roots
+//
+// by Evan Yi-Feng Tsai, 2001
+void main(void)
+{
+  int ii;
+  double rr[10];
+  double aa[10][2];
+  double error, delta, eta, epsilon;
+  Bernstein AA[10], xx, roots;
+  FILE *out;
+
+  // The roots:
+  rr[0] = 0.15; 
+  rr[1] = 0.24;
+  rr[2] = 0.39;
+  rr[3] = 0.48; 
+  rr[4] = 0.54;
+  rr[5] = 0.66;
+  rr[6] = 0.72;
+  rr[7] = 0.81; 
+  rr[8] = 0.93;
+  rr[9] = 0.05; 
+
+  // Set the tolerances:
+  epsilon = 1e-5;
+  delta = 1e-11;
+  eta = 1e-8;
+
+  // Set up the original polynomial:
+  for ( ii = 0; ii < 10; ii++ ) {
+    aa[ii][0] = -1.0 * rr[ii];
+    aa[ii][1] = 1.0 - rr[ii];
+    AA[ii] = Bernstein(*(aa+ii),1);
+  } 
+
+  xx = AA[1]*AA[2]*AA[3]*AA[4]*AA[5]*AA[6]*AA[7]*AA[8]*AA[9];  
+  //  xx = (AA[0]^3)*AA[1]*AA[2]*AA[3]*AA[4]*(AA[5]^2)*AA[6]*AA[7]*(AA[8]^4)*AA[9];
+
+  out = fopen("res9","w");
+
+  roots = ROOT (xx, delta, eta, epsilon);
+  if ( roots.dgr == -1 ) {
+    cout << "Error occurred in root solving!  Method aborts." << endl;
+    exit(1);
+  }
+
+  //  Verify the roots found:
+  //    The error is determined by plugging in the computed roots
+  //    to the polynomial to see how far does the result deviate
+  //    from zero.
+  fprintf(out,"Test case -- Rootsolver (second example):\n\n");
+  for ( ii = 0; ii < roots.dgr; ii++ )
+  {
+    error = EVAL(xx, roots.cf[ii]);
+    fprintf(out,"The error for root %1.16f = %1.16f\n",roots.cf[ii],error);  
+  }
+
+  fclose(out);
+}
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'res1'
+then
+	echo shar: will not over-write existing file "'res1'"
+else
+cat << "SHAR_EOF" > 'res1'
+Test case -- Root solving for Chebyshev polynomials:
+
+Roots of a degree 30 Chebyshev polynomial:
+
+Computed            Standard            Error
+0.0006852326227131  0.0006852326227131  -0.0000000000000000
+0.0061558297024311  0.0061558297024312  -0.0000000000000001
+0.0170370868554397  0.0170370868554658  -0.0000000000000262
+0.0332097867513982  0.0332097867513991  -0.0000000000000009
+0.0544967379058075  0.0544967379058161  -0.0000000000000086
+0.0806647160273189  0.0806647160272880  0.0000000000000308
+0.1114270192709454  0.1114270192715145  -0.0000000000005692
+0.1464466094090629  0.1464466094067263  0.0000000000023366
+0.1853398044736085  0.1853398044750814  -0.0000000000014728
+0.2276804824779569  0.2276804824924866  -0.0000000000145297
+0.2730047502087240  0.2730047501302266  0.0000000000784974
+0.3208160250078186  0.3208160252273499  -0.0000000002195312
+0.3705904777798316  0.3705904774487397  0.0000000003310919
+0.4217827669043023  0.4217827674798846  -0.0000000005755822
+0.4738320221827591  0.4738320218785282  0.0000000003042309
+0.5261679777349354  0.5261679781214719  -0.0000000003865365
+0.5782172330498238  0.5782172325201155  0.0000000005297083
+0.6294095221315767  0.6294095225512604  -0.0000000004196836
+0.6791839750767467  0.6791839747726502  0.0000000003040964
+0.7269952496929356  0.7269952498697734  -0.0000000001768378
+0.7723195175621024  0.7723195175075136  0.0000000000545888
+0.8146601955031142  0.8146601955249186  -0.0000000000218044
+0.8535533905999059  0.8535533905932738  0.0000000000066320
+0.8885729807274140  0.8885729807284855  -0.0000000000010715
+0.9193352839728702  0.9193352839727120  0.0000000000001582
+0.9455032620941644  0.9455032620941839  -0.0000000000000195
+0.9667902132486033  0.9667902132486008  0.0000000000000024
+0.9829629131445601  0.9829629131445341  0.0000000000000260
+0.9938441702975689  0.9938441702975689  0.0000000000000000
+0.9993147673772870  0.9993147673772869  0.0000000000000001
+
+RMS error: 0.0000000002098754
+Time taken: 1.550000 seconds
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'res10'
+then
+	echo shar: will not over-write existing file "'res10'"
+else
+cat << "SHAR_EOF" > 'res10'
+Test case -- Subdivision:
+
+The subdivision point: 0.380000
+The left test point (in the original domain [0,1]): 0.120000
+The right test point (in the original domain [0,1]): 0.950000
+
+Error on the left piece: -0.0000000000000036
+Error on the right piece: -0.0000000000000355
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'res2'
+then
+	echo shar: will not over-write existing file "'res2'"
+else
+cat << "SHAR_EOF" > 'res2'
+Test case -- Arithmetic operations:
+
+For the two Bernstein-form polynomials x and y,
+where deg(x) = 15, deg(y) = 9
+
+The RMS error in computing x + y: 0.0000000000000025
+The RMS error in computing x - y: 0.0000000000000026
+The RMS error in computing x * y: 0.0000000000000055
+The RMS error in computing 3.0 * y: 0.0000000000000033
+The RMS error in computing x * 3.0: 0.0000000000000095
+The RMS error in computing x / y: 0.0000000000000049
+The RMS error in computing y^2: 0.0000000000000106
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'res3'
+then
+	echo shar: will not over-write existing file "'res3'"
+else
+cat << "SHAR_EOF" > 'res3'
+Test case -- Computation of binomial coefficients:
+
+For x(t) = 1.0(1-t) + 1.0t and P(t) = x^100:
+
+The RMS error in the Bernstein coefficients of P(t)
+(from the theoretical value 1) = 0.000000000000000465
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'res4'
+then
+	echo shar: will not over-write existing file "'res4'"
+else
+cat << "SHAR_EOF" > 'res4'
+Test case -- Composition operation:
+
+For the two Bernstein-form polynomials x and y,
+where deg(x) = 15, deg(y) = 9
+
+The RMS error in computing x << y: 0.0000000000155472
+Time taken: 27.770000 seconds
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'res5'
+then
+	echo shar: will not over-write existing file "'res5'"
+else
+cat << "SHAR_EOF" > 'res5'
+Test case -- Differentiation and integration:
+
+The RMS error in integrate_differentiate: 0.0000000000000017
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'res6'
+then
+	echo shar: will not over-write existing file "'res6'"
+else
+cat << "SHAR_EOF" > 'res6'
+Test case -- Greatest common divisor:
+
+f = (cc^6) (aa^4) (bb^4),
+g = (dd^3) (aa^4) (ee^4),
+where aa = (x - 0.53), bb = (x - 0.81), cc = (x - 0.19),
+and dd = (x - 0.24), ee = (x - 0.66).
+
+Norms of the remainders:
+rf = 0.000000049069342696
+rg = 0.000000008125819765
+
+Bernstein coefficients of the gcd (Normalized):
+Computed              True                  Error
+3.5609666466404506    3.5609669095929837    -0.0000002629525331
+-3.1578378978743662    -3.1578385802050986    0.0000006823307324
+2.8003466854390271    2.8003474201818794    -0.0000007347428523
+-2.4833265616760039    -2.4833269575197794    0.0000003958437755
+2.2021957070666418    2.2021956038382946    0.0000001032283472
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'res7'
+then
+	echo shar: will not over-write existing file "'res7'"
+else
+cat << "SHAR_EOF" > 'res7'
+Test case -- Normalization:
+
+The RMS value of the normalized polynomial on [0,1]: 0.9999999999999999
+Its error from the theoretical value is: -0.0000000000000001
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'res8'
+then
+	echo shar: will not over-write existing file "'res8'"
+else
+cat << "SHAR_EOF" > 'res8'
+Test case -- Rootsolver (first example):
+
+The error for root 1.0000000000000000 = 0.0000000000000000
+The error for root 0.0000000000000000 = 0.0000000000000000
+The error for root 0.5000000000000000 = 0.0000000000000000
+The error for root 0.5000000000000000 = 0.0000000000000000
+The error for root 0.5000000000000000 = 0.0000000000000000
+The error for root 0.5000000000000000 = 0.0000000000000000
+The error for root 0.5000000000000000 = 0.0000000000000000
+The error for root 0.5000000000000000 = 0.0000000000000000
+The error for root 0.5000000000000000 = 0.0000000000000000
+The error for root 0.5000000000000000 = 0.0000000000000000
+The error for root 0.5000000000000000 = 0.0000000000000000
+The error for root 0.5000000000000000 = 0.0000000000000000
+The error for root 0.5000000000000000 = 0.0000000000000000
+The error for root 0.5000000000000000 = 0.0000000000000000
+The error for root 0.5000000000000000 = 0.0000000000000000
+The error for root 0.5000000000000000 = 0.0000000000000000
+The error for root 0.5000000000000000 = 0.0000000000000000
+The error for root 0.5000000000000000 = 0.0000000000000000
+The error for root 0.5000000000000000 = 0.0000000000000000
+The error for root 0.5000000000000000 = 0.0000000000000000
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'res9'
+then
+	echo shar: will not over-write existing file "'res9'"
+else
+cat << "SHAR_EOF" > 'res9'
+Test case -- Rootsolver (second example):
+
+The error for root 0.0499999992458867 = -0.0000000000028057
+The error for root 0.2399999995241274 = 0.0000000000000774
+The error for root 0.3899999900567189 = -0.0000000000001383
+The error for root 0.5400000082790142 = 0.0000000000000249
+The error for root 0.7200000001690509 = 0.0000000000000009
+The error for root 0.4799993782338083 = 0.0000000000022229
+The error for root 0.6599999717868444 = 0.0000000000001024
+The error for root 0.9300000000000354 = 0.0000000000000000
+The error for root 0.8100001316985610 = -0.0000000000034587
+SHAR_EOF
+fi # end of overwriting check
+cd ..
+if test ! -d 'Src'
+then
+	mkdir 'Src'
+fi
+cd 'Src'
+if test -f 'Bernstein.cpp'
+then
+	echo shar: will not over-write existing file "'Bernstein.cpp'"
+else
+cat << "SHAR_EOF" > 'Bernstein.cpp'
+#include"Bernstein.h"
+// Function definitions for BPOLY:
+//
+// by Evan Yi-Feng Tsai, 2001
+//
+
+// ---
+// Constructor:
+Bernstein::Bernstein()   
+{ 
+  dgr = 0;
+  cf = NULL;
+}
+
+// ---
+// Constructor with coefficient and degree inputs:
+Bernstein::Bernstein(double *coeff, int degree)
+{ 
+  int kk;
+  dgr = degree;
+
+  try {  cf = new double[dgr + 1];  }
+  catch ( bad_alloc exception ) {  
+    cout << "In constructing a Bernstein object: " << exception.what() << endl;  
+    dgr = -1;
+  }
+
+  for ( kk = 0; kk <= dgr; kk++ )
+    cf[kk] = coeff[kk];
+}
+
+// ---
+// Copy constructor:
+Bernstein::Bernstein(const Bernstein &uu)
+{
+  int kk;
+  dgr = uu.dgr;
+
+  try {  cf = new double[dgr + 1];  }
+  catch ( bad_alloc exception ) {  
+    cout << "In constructing a Bernstein object: " << exception.what() << endl;  
+    dgr = -1;
+  }
+
+  for ( kk = 0; kk <= dgr; kk++ )
+    cf[kk] = uu.cf[kk];
+}
+
+// ---
+// Destructor:
+Bernstein::~Bernstein()
+{  if ( dgr > -1 )  delete [] cf;  }
+
+// ---
+// Function for ``retrieving'' from the ``prime database''.
+//   mode 1 : when the client provides information
+//     about `n', the degree of the binomial coefficient.
+//   mode 2 : when the client provides information
+//     about `prNum', the number of primes needed.
+//
+// This funstion returns a Bernstein instance `output':
+//   output.dgr = number of prime numbers,
+//   output.cf[] = the prime numbers, in ascending order,
+//   output.cf[0] is always 1, not counted as a prime.
+
+Bernstein getprimes(int nn, int prNum, int mode)
+{
+  int jj;
+  Bernstein output;
+  double primes[169] =
+  {  1.0,  2.0,   3.0,   5.0,   7.0,  11.0,  13.0,  17.0,  19.0,  23.0,  29.0,
+    31.0,  37.0,  41.0,  43.0,  47.0,  53.0,  59.0,  61.0,  67.0,  71.0,
+    73.0,  79.0,  83.0,  89.0,  97.0, 101.0, 103.0, 107.0, 109.0, 113.0,
+   127.0, 131.0, 137.0, 139.0, 149.0, 151.0, 157.0, 163.0, 167.0, 173.0,
+   179.0, 181.0, 191.0, 193.0, 197.0, 199.0, 211.0, 223.0, 227.0, 229.0,
+   233.0, 239.0, 241.0, 251.0, 257.0, 263.0, 269.0, 271.0, 277.0, 281.0,
+   283.0, 293.0, 307.0, 311.0, 313.0, 317.0, 331.0, 337.0, 347.0, 349.0,
+   353.0, 359.0, 367.0, 373.0, 379.0, 383.0, 389.0, 397.0, 401.0, 409.0,
+   419.0, 421.0, 431.0, 433.0, 439.0, 443.0, 449.0, 457.0, 461.0, 463.0,
+   467.0, 479.0, 487.0, 491.0, 499.0, 503.0, 509.0, 521.0, 523.0, 541.0,
+   547.0, 557.0, 563.0, 569.0, 571.0, 577.0, 587.0, 593.0, 599.0, 601.0,
+   607.0, 613.0, 617.0, 619.0, 631.0, 641.0, 643.0, 647.0, 653.0, 659.0,
+   661.0, 673.0, 677.0, 683.0, 691.0, 701.0, 709.0, 719.0, 727.0, 733.0,
+   739.0, 743.0, 751.0, 757.0, 761.0, 769.0, 773.0, 787.0, 797.0, 809.0,
+   811.0, 821.0, 823.0, 827.0, 829.0, 839.0, 853.0, 857.0, 859.0, 863.0,
+   877.0, 881.0, 883.0, 887.0, 907.0, 911.0, 919.0, 929.0, 937.0, 941.0,
+   947.0, 953.0, 967.0, 971.0, 977.0, 983.0, 991.0, 997.0  };
+
+  if ( mode == 1 ) {
+    prNum = 0;
+    for ( jj = 1; jj <= 168; jj++ ) {
+      if ( primes[jj] <= nn )  prNum += 1;
+      else  break;  
+    } 
+  }
+
+  output.dgr = prNum;
+  try {  output.cf = new double[output.dgr + 1];  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function getprimes(): " << exception.what() << endl;
+    output.dgr = -1;
+    return output;
+  }
+
+  for ( jj = 0; jj <= output.dgr; jj++ )
+    output.cf[jj] = primes[jj];
+
+  return output;
+}
+
+// ---
+// Function for factorization of a binomial coefficient:
+// It returns the exponent array and also the size of this
+// array, in an instance of Bernstein object:
+Bernstein factorization(int nn, int kk)
+{
+  int ii, jj;
+  double p_i;           
+  Bernstein primes, exp;  
+
+  // Irrational case:
+  if ( (nn < kk) || (kk < 0) )
+    exp.dgr = -1;
+  else {
+    // Retrieve prime numbers in mode 1
+    primes = getprimes(nn, 0, 1);
+ 
+    // Set up the array for storing the exponent vector:
+    exp.dgr = primes.dgr;
+    try {  exp.cf = new double[exp.dgr + 1];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function factorization(): " << exception.what() << endl;
+      exp.dgr = -1;
+      return exp;
+    }
+
+    exp.cf[0] = 1.0;
+
+    for ( jj = 1; jj <= exp.dgr; jj++ ) {
+      exp.cf[jj] = 0.0;
+      ii = 1; 
+      p_i = pow(primes.cf[jj], ii);
+      while ( p_i <= nn ) {
+        if ( fmod(nn, p_i) < fmod(kk, p_i) )
+          exp.cf[jj] += 1.0;
+        ii ++; 
+        p_i = pow(primes.cf[jj], ii);
+      }
+    }
+  }
+
+  return exp;
+}
+
+// ---
+// Function for direct evaluation of a binomial coefficient 
+// with (n,k) input.
+double binom(int nn, int kk)
+{
+  int jj;
+  double result = 1.0; 
+  Bernstein primes, exp;
+
+  // Retrieve the prime numbers in mode 1
+  primes = getprimes(nn, 0, 1);  
+
+  // Compute the exponents:
+  exp = factorization(nn, kk);   
+
+  for ( jj = 1; jj <= exp.dgr; jj++ ) {
+    if ( exp.cf[jj] != 0.0 )      
+      result *= pow(primes.cf[jj], exp.cf[jj]);  
+  }
+
+  return result;
+}
+
+// ---
+// Function for direct evaluation of a binomial coefficient
+// with exponent array input:
+double binom(const Bernstein &ee)
+{
+  int jj;
+  double result = 1.0;
+  Bernstein primes; 
+
+  // Retrieve the prime numbers in mode 2
+  primes = getprimes(0, ee.dgr, 2);
+
+  for ( jj = 1; jj <= ee.dgr; jj++ ) {
+    if ( ee.cf[jj] != 0.0 )  
+      result *= pow(primes.cf[jj], ee.cf[jj]);
+  }
+
+  return result;
+}
+
+// ---
+// Function for multiplying two binomial coefficients:
+// (the output is another exponent array)
+Bernstein binomult(const Bernstein &e1, const Bernstein &e2)
+{
+  int ii, n1, n2;
+  Bernstein output;
+
+  n1 = e1.dgr;
+  n2 = e2.dgr;
+
+  if ( n1 == -1 || n2 == -1 )
+    output.dgr = -1;
+
+  else if ( n1 > n2 ) {
+    output.dgr = n1;
+    try {  output.cf = new double[output.dgr + 1];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function binomult(): " << exception.what() << endl;
+      output.dgr = -1;
+      return output;
+    }
+
+    for ( ii = 1; ii <= n2; ii++ )        
+      output.cf[ii] = e1.cf[ii] + e2.cf[ii];  
+    for ( ii = n2 + 1; ii <= n1; ii++ )     
+      output.cf[ii] = e1.cf[ii];
+  }  
+  else if ( n1 < n2 ) {
+    output.dgr = n2;
+    try {  output.cf = new double[output.dgr + 1];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function binomult(): " << exception.what() << endl;
+      output.dgr = -1;
+      return output;
+    }
+
+    for ( ii = 1; ii <= n1; ii++ )        
+      output.cf[ii] = e2.cf[ii] + e1.cf[ii];  
+    for ( ii = n1 + 1; ii <= n2; ii++ )     
+      output.cf[ii] = e2.cf[ii];
+  }
+  else if ( n1 == n2 ) {
+    output.dgr = n1;
+    try {  output.cf = new double[output.dgr + 1];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function binomult(): " << exception.what() << endl;
+      output.dgr = -1;
+      return output;
+    }
+
+    for ( ii = 1; ii <= output.dgr; ii++ )   
+      output.cf[ii] = e1.cf[ii] + e2.cf[ii];
+  } 
+  return output;
+}
+
+// ---
+// Function for dividing two binomial coefficients:
+// (the output is another exponent array)
+Bernstein binodiv(const Bernstein &e1, const Bernstein &e2)
+{
+  int ii, n1, n2;
+  Bernstein output;
+
+  n1 = e1.dgr;
+  n2 = e2.dgr;
+
+  if ( n1 == -1 || n2 == -1 )
+    output.dgr = -1;
+
+  else if ( n1 > n2 )
+  {
+    output.dgr = n1;
+    try {  output.cf = new double[output.dgr + 1];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function binodiv(): " << exception.what() << endl;
+      output.dgr = -1;
+      return output;
+    }
+    for ( ii = 1; ii <= n2; ii++ )        
+      output.cf[ii] = e1.cf[ii] - e2.cf[ii];  
+    for ( ii = n2 + 1; ii <= n1; ii++ )     
+      output.cf[ii] = e1.cf[ii];
+  }  
+  else if ( n1 < n2 ) {
+    output.dgr = n2;
+    try {  output.cf = new double[output.dgr + 1];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function binodiv(): " << exception.what() << endl;
+      output.dgr = -1;
+      return output;
+    }
+    for ( ii = 1; ii <= n1; ii++ )        
+      output.cf[ii] = e1.cf[ii] - e2.cf[ii];  
+    for ( ii = n1 + 1; ii <= n2; ii++ )     
+      output.cf[ii] = (-1.0) * e2.cf[ii];
+  }
+  else if ( n1 == n2 ) {
+    output.dgr = n1;
+    try {  output.cf = new double[output.dgr + 1];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function binodiv(): " << exception.what() << endl;
+      output.dgr = -1;
+      return output;
+    }
+    for ( ii = 1; ii <= output.dgr; ii++ )   
+      output.cf[ii] = e1.cf[ii] - e2.cf[ii];
+  }
+  return output;
+}
+
+// ---
+// Function for degree elevation: 
+// In the computation for the coefficients, the common
+// factor in each summation is factored out to reduce 
+// the total number of floating-point multiplications.
+Bernstein DE(const Bernstein &uu, int rr)
+{
+  int jj, jmin, jmax, nn, kk, ii;
+  double fracBINOM;
+  Bernstein result, e1, e2, e12, e3, e123, CF;
+
+  nn = uu.dgr;
+  result.dgr = nn + rr;
+  try {  result.cf = new double[result.dgr + 1];  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function DE(): " << exception.what() << endl;
+    result.dgr = -1; 
+    return result;
+  }
+  
+  for ( kk = 0; kk <= nn + rr; kk++ ) {
+    jmin = kk - rr; 
+    if ( jmin < 0 )   jmin = 0;  
+    jmax = kk;   
+    if ( jmax > nn )   jmax = nn;  
+    result.cf[kk] = 0.0;
+
+    // Compute the common factor:
+    e1 = factorization(rr, kk-jmin);
+    e2 = factorization(nn, jmin);
+    e3 = factorization(nn+rr, kk); 
+    e12 = binomult(e1, e2);
+    e123 = binodiv(e12, e3);
+    CF = e123;
+
+    for ( jj = jmin + 1; jj <= jmax; jj++ ) {   
+      e1 = factorization(rr, kk-jj);
+      e2 = factorization(nn, jj);
+      e3 = factorization(nn+rr, kk); 
+      e12 = binomult(e1, e2);
+      e123 = binodiv(e12, e3);
+
+      for ( ii = 1; ii <= e123.dgr; ii++ ) {
+        if ( e123.cf[ii] != CF.cf[ii] )
+          CF.cf[ii] = 0.0;
+      }
+    }
+
+    // Bring out the common factor:
+    for ( jj = jmin; jj <= jmax; jj++ ) {    
+      e1 = factorization(rr, kk-jj);
+      e2 = factorization(nn, jj);
+      e3 = factorization(nn+rr, kk); 
+      e12 = binomult(e1, e2);
+      e123 = binodiv(e12, e3);
+
+      for ( ii = 1; ii <= e123.dgr; ii++ ) {
+        if ( e123.cf[ii] == CF.cf[ii] )
+          e123.cf[ii] = 0.0;
+      }
+
+      fracBINOM = binom(e123);   
+      result.cf[kk] += fracBINOM * uu.cf[jj];
+    }
+
+    // Multiply the comon factor back:
+    result.cf[kk] *= binom(CF);  
+  }
+  return result;
+}
+
+// ---
+// Function for evaluating a Bernstein polynomial at x,
+// using de Casteljau algorithm:
+double EVAL(const Bernstein &uu, double xx)
+{
+  int nn, kk, rr;
+  double result, **tri;
+
+  nn = uu.dgr;
+
+  try { 
+    tri = new double *[nn+1];
+    for( kk = 0; kk <= nn; kk++ )
+      *(tri + kk) = new double[nn+1];  
+  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function EVAL(): " << exception.what() << endl;
+    exit(1);
+  }
+
+  for ( kk = 0; kk <= nn; kk++ ) 
+    tri[kk][0] = uu.cf[kk];  
+  for ( rr = 1; rr <= nn; rr++ )
+    for ( kk = rr; kk <= nn; kk++ )
+      tri[kk][rr] = (1.0 - xx) * tri[kk-1][rr-1] + xx * tri[kk][rr-1];  
+
+  result = tri[nn][nn];
+
+  for ( kk = 0; kk <= nn; kk++ )
+    delete [] *(tri + kk);
+  delete [] tri;
+  return result;
+}
+
+// ---
+// Function for subdivision of a Bernstein polynomial
+// at x and returns the left half:
+Bernstein subLEFT(const Bernstein &uu, double xx)
+{
+  int nn, kk, rr;
+  double **tri; 
+  Bernstein LEFT;
+
+  nn = uu.dgr; 
+ 
+  try { 
+    tri = new double *[nn+1];
+    for( kk = 0; kk <= nn; kk++ )
+      *(tri + kk) = new double[nn+1];  
+  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function subLEFT(): " << exception.what() << endl;
+    LEFT.dgr = -1;
+    return LEFT;
+  }
+
+  LEFT.dgr = nn;
+  try {  LEFT.cf = new double[nn + 1]; }
+  catch ( bad_alloc exception ) {  
+    cout << "In function subLEFT(): " << exception.what() << endl;
+    LEFT.dgr = -1;
+    return LEFT;
+  }
+
+  for ( kk = 0; kk <= nn; kk++ ) 
+    tri[kk][0] = uu.cf[kk];  
+  for ( rr = 1; rr <= nn; rr++ )
+    for ( kk = rr; kk <= nn; kk++ )
+      tri[kk][rr] = (1.0 - xx) * tri[kk-1][rr-1] + xx * tri[kk][rr-1];  
+
+  for ( kk = 0; kk <= nn; kk++ )  
+    LEFT.cf[kk] = tri[kk][kk];
+
+  for ( kk = 0; kk <= nn; kk++ )
+    delete [] *(tri+kk);
+  delete [] tri;
+  return LEFT;
+}
+
+// ---
+// Function for subdivision of a Bernstein polynomial
+// at x and returns the right half:
+Bernstein subRIGHT(const Bernstein &uu, double xx)
+{
+  int nn, kk, rr;
+  double **tri; 
+  Bernstein RIGHT;
+
+  nn = uu.dgr;
+
+  try { 
+    tri = new double *[nn+1];
+    for( kk = 0; kk <= nn; kk++ )
+      *(tri + kk) = new double[nn+1];  
+  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function subLEFT(): " << exception.what() << endl;
+    RIGHT.dgr = -1;
+    return RIGHT;
+  }
+
+  RIGHT.dgr = nn;
+  try {  RIGHT.cf = new double[nn + 1]; }
+  catch ( bad_alloc exception ) {  
+    cout << "In function subLEFT(): " << exception.what() << endl;
+    RIGHT.dgr = -1;
+    return RIGHT;
+  }
+
+  for ( kk = 0; kk <= nn; kk++ ) 
+    tri[kk][0] = uu.cf[kk];  
+  for ( rr = 1; rr <= nn; rr++ )
+    for ( kk = rr; kk <= nn; kk++ )
+      tri[kk][rr] = (1.0 - xx) * tri[kk-1][rr-1] + xx * tri[kk][rr-1];  
+
+  for ( kk = 0; kk <= nn; kk++ )  
+    RIGHT.cf[kk] = tri[nn][nn-kk];
+
+  for ( kk = 0; kk <= nn; kk++ )
+    delete [] *(tri + kk);
+  delete [] tri;
+  return RIGHT;
+}
+
+// ---
+// Bernstein "assign" operator:
+const Bernstein& Bernstein::operator=(const Bernstein &uu) 
+{
+  int kk;
+
+  dgr = uu.dgr;
+
+  try {  cf = new double[dgr + 1]; }
+  catch ( bad_alloc exception ) {  
+    cout << "In function assign(): " << exception.what() << endl;
+    dgr = -1;
+    return *this;
+  }
+
+  for ( kk = 0; kk <= dgr; kk++ )
+    cf[kk] = uu.cf[kk];
+
+  return *this;
+} 
+
+// ---  
+// Bernstein "add" operator:
+Bernstein Bernstein::operator+(const Bernstein &uu) const 
+{
+  int kk, mm, nn;
+  mm = dgr;  nn= uu.dgr;
+  Bernstein result, temp;
+  
+  if ( mm == nn ) {
+    result.dgr = mm;  
+    try {  result.cf = new double[mm+1];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function add(): " << exception.what() << endl;
+      result.dgr = -1;
+      return result;
+    }
+
+    for ( kk = 0; kk <= mm; kk++ )   
+      result.cf[kk] = cf[kk] + uu.cf[kk];    
+  }
+  else if ( mm > nn ) {
+    result.dgr = mm;
+    try {  result.cf = new double[mm+1];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function add(): " << exception.what() << endl;
+      result.dgr = -1;
+      return result;
+    }
+
+    temp = DE(uu, mm-nn);
+    for ( kk = 0; kk <= temp.dgr; kk++ )   
+      result.cf[kk] = cf[kk] + temp.cf[kk];  
+  }
+  else if ( mm < nn ) {
+    result.dgr = nn;
+    try {  result.cf = new double[nn+1];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function add(): " << exception.what() << endl;
+      result.dgr = -1;
+      return result;
+    }
+
+    temp = DE(*this, nn-mm);
+    for ( kk = 0; kk <= temp.dgr; kk++ )   
+      result.cf[kk] = temp.cf[kk] + uu.cf[kk];  
+  } 
+  return result;
+} 
+
+// ---  
+// Bernstein "subtract" operator:
+Bernstein Bernstein::operator-(const Bernstein &uu) const 
+{
+  int kk, mm, nn;
+  mm = dgr;  nn= uu.dgr;
+  Bernstein result, temp;
+  
+  if ( mm == nn ) {
+    result.dgr = mm; 
+    try {  result.cf = new double[mm+1];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function subtract(): " << exception.what() << endl;
+      result.dgr = -1;
+      return result;
+    }
+
+    for ( kk = 0; kk <= mm; kk++ )   
+      result.cf[kk] = cf[kk] - uu.cf[kk];    
+  }
+  else if ( mm > nn ) {
+    result.dgr = mm;
+    result.cf = new double[mm+1];
+    try {  result.cf = new double[mm+1];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function subtract(): " << exception.what() << endl;
+      result.dgr = -1;
+      return result;
+    }
+
+    temp = DE(uu, mm-nn);
+    for ( kk = 0; kk <= temp.dgr; kk++ )   
+      result.cf[kk] = cf[kk] - temp.cf[kk];  
+  }
+  else if ( mm < nn )
+  {
+    result.dgr = nn;
+    try {  result.cf = new double[nn+1];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function subtract(): " << exception.what() << endl;
+      result.dgr = -1;
+      return result;
+    }
+
+    temp = DE(*this, nn-mm);
+    for ( kk = 0; kk <= temp.dgr; kk++ )   
+      result.cf[kk] = temp.cf[kk] - uu.cf[kk];  
+  } 
+
+  return result;
+} 
+
+// ---
+// Bernstein "multiply" operator.
+//
+// In the computation for the coefficients, the common
+// factor in each summation is factored out to reduce 
+// the total number of floating-point multiplications.
+Bernstein Bernstein::operator*(const Bernstein &uu) const 
+{
+  int jj, jmin, jmax, kk, mm, nn, ii; 
+  mm = dgr;  nn= uu.dgr;
+  double fracBINOM;
+  Bernstein result, e1, e2, e12, e3, e123, CF;
+
+  result.dgr = mm + nn;
+  try {  result.cf = new double[result.dgr + 1];  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function multiply(): " << exception.what() << endl;
+    result.dgr = -1;
+    return result;
+  }
+   
+  for ( kk = 0; kk <= mm + nn; kk++ ) {
+    jmin = kk - nn;  
+    if ( jmin < 0 )    jmin = 0;  
+    jmax = kk;      
+    if ( jmax > mm )    jmax = mm;  
+    result.cf[kk] = 0.0;
+  
+    // Compute the common factor:
+    e1 = factorization(mm, jmin);
+    e2 = factorization(nn, kk - jmin);
+    e3 = factorization(mm+nn, kk);
+    e12 = binomult(e1, e2);
+    e123 = binodiv(e12, e3);
+    CF = e123;
+
+    for ( jj = jmin + 1; jj <= jmax; jj++ ) {
+      e1 = factorization(mm, jj);
+      e2 = factorization(nn, kk-jj);
+      e3 = factorization(mm+nn, kk); 
+      e12 = binomult(e1, e2);
+      e123 = binodiv(e12, e3);
+
+      for ( ii = 1; ii <= e123.dgr; ii++ ) {
+        if ( e123.cf[ii] != CF.cf[ii] )
+        CF.cf[ii] = 0;
+      }
+    }
+
+    // Bring out the common factor:
+    for ( jj = jmin; jj <= jmax; jj++ ) {   
+      e1 = factorization(mm, jj);
+      e2 = factorization(nn, kk-jj);
+      e3 = factorization(mm+nn, kk);
+      e12 = binomult(e1, e2);
+      e123 = binodiv(e12, e3);
+
+      for ( ii = 1; ii <= e123.dgr; ii++ ) {
+        if ( e123.cf[ii] == CF.cf[ii] )
+          e123.cf[ii] = 0;
+      }
+
+      fracBINOM = binom(e123);   
+      result.cf[kk] += fracBINOM * cf[jj] * uu.cf[kk-jj];
+    }
+
+    // Multiply the comon factor back:
+    result.cf[kk] *= binom(CF);  
+  }
+  return result;
+} 
+
+
+// ---
+// Bernstein "divide by" operator:
+//
+// The 'result' vector contains both the quotient
+// and remainder vectors in the following format:
+//  [result] = [quotient|remainder]
+//
+// One can use the functions quo() or rem() defined
+// later to further extract the quotient or the 
+// remainder parts, respectively. 
+
+Bernstein Bernstein::operator/(const Bernstein &uu) const
+{
+  int ii, jj, jmin, jmax, kk, mm, nn, chgTo;
+  mm = dgr;  nn = uu.dgr;
+  double **HA, BINOM, pivot, buffer;
+  Bernstein result, e1, e2, e12, e3, e123;
+
+  // Set up an m+1 by m+2 matrix:
+  try {  
+    HA = new double *[mm+1];
+    for ( ii = 0; ii <= mm; ii++ )
+      *(HA+ii) = new double[mm+2]; 
+  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function divide(): " << exception.what() << endl;
+    result.dgr = -1;
+    return result;
+  }
+
+  result.dgr = mm;
+  try {  result.cf = new double[result.dgr + 1];  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function divide(): " << exception.what() << endl;
+    result.dgr = -1;
+    return result;
+  }
+
+  for ( ii = 0; ii <= result.dgr; ii++ ) { 
+    result.cf[ii] = 0.0;
+    for ( jj = 0; jj <= mm + 1; jj++ )  
+      HA[ii][jj] = 0.0;
+  }
+
+  // Construct the big [H|A] matrix:
+  for ( kk = 0; kk <= mm; kk++ ) {
+    jmin = kk - nn;  
+    if ( jmin < 0 )    jmin = 0;
+    jmax = kk;      
+    if ( jmax > mm-nn )  jmax = mm - nn;
+
+    for ( jj = jmin; jj <= jmax; jj++ ) {  
+      e1 = factorization(mm-nn, jj);
+      e2 = factorization(nn, kk-jj);
+      e3 = factorization(mm, kk);  
+      e12 = binomult(e1, e2);      
+      e123 = binodiv(e12, e3);    
+      BINOM = binom(e123);
+      HA[kk][jj] = BINOM * uu.cf[kk-jj];
+    }
+
+    jmin = kk - mm + nn -1;  
+    if ( jmin < 0 )    jmin = 0;
+    jmax = kk;             
+    if ( jmax > nn-1 )  jmax = nn - 1;
+
+    for ( jj = jmin; jj <= jmax; jj++ ) {
+      e1 = factorization(mm-nn+1, kk-jj);  
+      e2 = factorization(nn-1, jj);    
+      e3 = factorization(mm, kk);      
+      e12 = binomult(e1, e2);
+      e123 = binodiv(e12, e3);
+      BINOM = binom(e123);        
+      HA[kk][mm-nn+1+jj] = BINOM;
+    }
+    HA[kk][mm+1] = cf[kk]; 
+  }
+
+  // Gaussian elimination with partial pivoting:
+  for ( ii = 0; ii < mm; ii++ ) {
+    // Interchanging rows if necessary:
+    pivot = HA[ii][ii]; 
+    chgTo = 0;
+    for ( jj = ii + 1; jj <= mm; jj++ ) { 
+      if ( fabs(pivot) < fabs(HA[jj][ii]) )  { 
+        pivot = HA[jj][ii]; 
+        chgTo = jj; 
+      }
+    }
+    if ( pivot != HA[ii][ii] ) {
+      // Interchange two rows:
+      for ( kk = 0; kk <= mm + 1; kk++ ) { 
+        buffer = HA[ii][kk]; 
+        HA[ii][kk] = HA[chgTo][kk]; 
+        HA[chgTo][kk] = buffer;  
+      }
+    }
+    // LU factorization:
+    for ( jj = ii + 1; jj <= mm; jj++ ) {
+      // Compute and store the multipliers:
+      HA[jj][ii] = HA[jj][ii] / HA[ii][ii];    
+
+      for ( kk = ii + 1; kk <= mm + 1; kk++ )
+        HA[jj][kk] = HA[jj][kk] - HA[jj][ii] * HA[ii][kk];
+    } 
+  }
+
+  // back substitution:
+  result.cf[mm] = HA[mm][mm+1] / HA[mm][mm];
+  for ( ii = mm - 1; ii >= 0; ii-- ) {
+    for ( jj = ii + 1; jj <= mm; jj++ )
+      result.cf[ii] = result.cf[ii] - HA[ii][jj] * result.cf[jj]; 
+
+    result.cf[ii] = result.cf[ii] + HA[ii][mm+1];
+    result.cf[ii] = result.cf[ii] / HA[ii][ii];
+  }
+
+  for ( ii = 0; ii <= mm; ii++ )
+    delete [] *(HA+ii);
+  delete [] HA;
+  return result;
+}
+
+// ---
+// Extract quotient after division:
+Bernstein quo(const Bernstein &uu, int degree)
+{
+  int ii;
+  Bernstein result;
+  
+  result.dgr = degree;
+  try {  result.cf = new double[result.dgr+1];  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function quo(): " << exception.what() << endl;
+    result.dgr = -1;
+    return result;
+  }
+
+  for ( ii = 0; ii <= result.dgr; ii++ )
+    result.cf[ii] = uu.cf[ii];
+
+  return result;
+}
+
+// ---
+// Extract remainder after division:
+Bernstein rem(const Bernstein &uu, int degree)
+{
+  int ii;
+  Bernstein result;
+
+  result.dgr = degree;
+  try {  result.cf = new double[result.dgr+1];  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function rem(): " << exception.what() << endl;
+    result.dgr = -1;
+    return result;
+  }
+
+
+  for ( ii = 0; ii <= result.dgr; ii++ )
+    result.cf[ii] = uu.cf[uu.dgr-result.dgr+ii];
+
+  return result;
+}
+
+// ---
+// Bernstein "composition" operator:
+Bernstein Bernstein::operator<<(const Bernstein &uu) const
+{
+  int ss, ii, jj, kk, ll, kmin, kmax, mm, nn;
+  double ***hh, fracBINOM;
+  Bernstein result, e1, e2, e12, e3, e123, CF;
+
+  mm = dgr;  nn = uu.dgr;
+  result.dgr = mm * nn;
+
+  try {
+    result.cf = new double[result.dgr + 1];
+    hh = new double **[mm+1];
+    for( ii = 0; ii <= mm; ii++ )
+      *(hh + ii) = new double *[mm+1];
+    for( ii = 0; ii <= mm; ii++ )
+      for( jj = 0; jj <= mm; jj++ )
+        *(*(hh + ii) + jj) = new double [mm*nn+1];
+  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function composition(): " << exception.what() << endl;
+    result.dgr = -1;
+    return result;
+  }
+
+  for ( ii = 0; ii <= mm; ii++ )
+    hh[0][ii][0] = cf[ii];
+
+  for ( ss = 1; ss <= mm; ss++ ) {
+    for ( ii = 0; ii <= mm - ss; ii++ ) {
+      for ( jj = 0; jj <= nn * ss; jj++ ) {
+        kmin = jj - nn;      
+        if ( kmin < 0 )   kmin = 0;
+        kmax = nn * ss - nn;  
+        if ( kmax > jj )   kmax = jj;
+        hh[ss][ii][jj] = 0.0;
+
+        // Compute the common factor:
+        e1 = factorization(nn*ss-nn, kmin);
+        e2 = factorization(nn, jj-kmin);
+        e3 = factorization(nn*ss, jj); 
+        e12 = binomult(e1, e2);
+        e123 = binodiv(e12, e3);
+        CF = e123;
+
+        for ( kk = kmin + 1; kk <= kmax; kk++ ) {
+          e1 = factorization(nn*ss-nn, kk);
+          e2 = factorization(nn, jj-kk);
+          e3 = factorization(nn*ss, jj); 
+          e12 = binomult(e1, e2);
+          e123 = binodiv(e12, e3);
+     
+          for ( ll = 1; ll <= e123.dgr; ll++ ) {
+            if ( e123.cf[ll] != CF.cf[ll] )
+              CF.cf[ll] = 0;
+	  }
+	}
+
+	// Bring out the common factor:
+        for ( kk = kmin; kk <= kmax; kk++ ) {
+          e1 = factorization(nn*ss-nn, kk);
+          e2 = factorization(nn, jj-kk);
+          e3 = factorization(nn*ss, jj); 
+          e12 = binomult(e1, e2);
+          e123 = binodiv(e12, e3);
+
+          for ( ll = 1; ll <= e123.dgr; ll++ ) {
+            if ( e123.cf[ll] == CF.cf[ll] )
+              e123.cf[ll] = 0;
+	  }
+
+        fracBINOM = binom(e123);
+        hh[ss][ii][jj] += fracBINOM * 
+		((1-uu.cf[jj-kk])*hh[ss-1][ii][kk] + uu.cf[jj-kk]*hh[ss-1][ii+1][kk]);   
+	}
+
+        hh[ss][ii][jj] = hh[ss][ii][jj] * binom(CF);
+      }
+    }
+  }
+
+  for ( jj = 0; jj <= result.dgr; jj++ )
+    result.cf[jj] = hh[mm][0][jj]; 
+
+  for ( ii = 0; ii <= mm; ii++ )
+    for ( jj = 0; jj <= mm; jj++ )
+      delete [] *(*(hh+ii)+jj);
+
+  for( ii = 0; ii <= mm; ii++ )
+    delete [] *(hh+ii);
+
+  delete [] hh;
+  return result;
+}
+
+// ---
+// Bernstein "power" operator:
+//
+// It only accepts an integer for the power
+Bernstein Bernstein::operator^(int power)
+{
+  int ii;
+  Bernstein result;
+
+  result.dgr = 0;
+  try {  result.cf = new double[result.dgr+1];  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function power(): " << exception.what() << endl;
+    result.dgr = -1;
+    return result;
+  }
+  result.cf[0] = 1.0;
+
+  if ( power == 0 )
+    return result;
+
+  for ( ii = 1; ii <= power; ii++ )
+    result = result * (*this);
+
+  return result;
+}
+
+// ---
+// Bernstein "pre-multiply" operator:
+Bernstein operator*(double factor, const Bernstein &uu) 
+{
+  int kk;
+  Bernstein result;
+
+  result.dgr = uu.dgr;
+  try {  result.cf = new double[result.dgr+1];  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function pre-multiply(): " << exception.what() << endl;
+    result.dgr = -1;
+    return result;
+  }
+
+  for ( kk = 0; kk <= result.dgr; kk++ )
+    result.cf[kk] = factor * uu.cf[kk];    
+ 
+ return result;
+}
+
+// ---   
+// Bernstein "post-multiply" operator:
+Bernstein operator*(const Bernstein &uu, double factor) 
+{
+  int kk;
+  Bernstein result;
+
+  result.dgr = uu.dgr;
+  try {  result.cf = new double[result.dgr+1];  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function quo(): " << exception.what() << endl;
+    result.dgr = -1;
+    return result;
+  }
+
+  for ( kk = 0; kk <= result.dgr; kk++ )
+    result.cf[kk] = factor * uu.cf[kk];    
+
+  return result;
+}  
+
+// ---
+// Bernstein "differentiate" function:
+Bernstein diff(const Bernstein &uu)
+{
+  int kk; 
+  Bernstein result;
+
+  result.dgr = uu.dgr - 1;
+  try {  result.cf = new double[result.dgr+1];  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function quo(): " << exception.what() << endl;
+    result.dgr = -1;
+    return result;
+  }
+
+  for ( kk = 0; kk <= result.dgr; kk++ )
+    result.cf[kk] = (double)uu.dgr * (uu.cf[kk+1] - uu.cf[kk]);
+
+  return result;
+}  
+
+// ---
+// Bernstein "integrate" (indefinite) function:
+Bernstein integrate(const Bernstein &uu)
+{
+  int kk, jj; 
+  double recip = 1.0 / (double)(uu.dgr+1);
+  Bernstein result;
+
+  result.dgr = uu.dgr + 1;
+  try {  result.cf = new double[result.dgr+1];  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function quo(): " << exception.what() << endl;
+    result.dgr = -1;
+    return result;
+  }
+
+  for ( kk = 0; kk <= result.dgr; kk++ )
+    result.cf[kk] = 0.0;
+  for ( kk = 1; kk <= result.dgr; kk++ )
+    for ( jj = 0; jj <= kk-1; jj++ )
+      result.cf[kk] += recip * uu.cf[jj];
+
+  return result;
+}
+
+// ---
+// Bernstein "integrate" (definite) function:
+double integral(const Bernstein &uu)
+{
+  int kk, jj; 
+  double recip = 1.0 / (double)(uu.dgr+1);
+  Bernstein result;
+
+  result.dgr = uu.dgr + 1;
+  try {  result.cf = new double[result.dgr+1];  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function quo(): " << exception.what() << endl;
+    return 0.0;
+  }
+
+  for ( kk = 0; kk <= result.dgr; kk++ )
+    result.cf[kk] = 0.0;
+  for ( kk = 1; kk <= result.dgr; kk++ )
+    for ( jj = 0; jj <= kk - 1; jj++ )
+      result.cf[kk] += recip * uu.cf[jj];
+
+  return result.cf[result.dgr];
+}
+
+// ---
+// Function for finding the L2 norm:
+double Norm(const Bernstein &uu)
+{
+  int ii, jj, nn;
+  double BINOM, Norm = 0.0;
+  Bernstein e1, e2, e12, e3, e123;
+  nn = uu.dgr;
+
+  // There's no need to bring out the common factors because it's 1.
+  for ( ii = 0; ii <= nn; ii++ ) {
+    for ( jj = 0; jj <= nn; jj++ ) {
+      e1 = factorization(nn, ii);
+      e2 = factorization(nn, jj);
+      e3 = factorization(nn+nn, ii+jj); 
+      e12 = binomult(e1, e2);
+      e123 = binodiv(e12, e3);
+      BINOM = binom(e123);
+      Norm += BINOM * uu.cf[ii] * uu.cf[jj];
+    }
+  }
+
+  Norm = Norm / (2.0 * (double)nn + 1.0);
+  Norm = sqrt(Norm);
+  return Norm;
+}
+
+// ---
+// Function for normalizing a polynomial in Bernstein form:
+Bernstein Normalize(const Bernstein &uu)
+{
+  int ii, nn;
+  double factor;  
+  Bernstein result;
+  nn = uu.dgr;
+
+  result.dgr = nn;
+  try {  result.cf = new double[result.dgr+1];  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function quo(): " << exception.what() << endl;
+    result.dgr = -1;
+    return result;
+  }
+
+  factor = 1.0 / Norm(uu);
+  for ( ii = 0; ii <= uu.dgr; ii++ )
+    result.cf[ii] = factor * uu.cf[ii];
+
+  return result;
+}
+
+// ---
+// Bernstein "greatest common divisor" function:
+Bernstein GCD(const Bernstein &uu, const Bernstein &vv, double epsilon) 
+{
+  int nn;
+  double r1Norm, r2Norm;
+  Bernstein ff, gg, phi0, phi1, phi2, result; 
+ 
+  // Initialization:
+  if ( uu.dgr >= vv.dgr ) { 
+    nn = vv.dgr;
+    ff = Normalize(uu);     
+    gg = Normalize(vv);
+  }
+  else { 
+    nn = uu.dgr; 
+    ff = Normalize(vv);     
+    gg = Normalize(uu);
+  }
+
+  phi0 = ff;  phi1 = gg;
+
+  if ( nn == 0 )
+    result = phi1;
+
+  while ( nn > 0 )
+  {
+    // Divide, obtain the remainder and store it in phi2:
+    phi2 = rem( phi0 / phi1, nn - 1 );  
+
+    // Compute the sizes of the remainders, when
+    // the (normalized) original polynomials are
+    // divided by the `gcd candidate' phi1:
+    r1Norm = Norm( rem( ff / phi1, phi1.dgr - 1 ) );
+    r2Norm = Norm( rem( gg / phi1, phi1.dgr - 1 ) );
+    //  printf("divisor degree = %d   r1Norm = %1.16f\n",phi1.dgr,r1Norm);
+    //  printf("divisor degree = %d   r2Norm = %1.16f\n",phi1.dgr,r2Norm);
+    if ( r1Norm <= epsilon && r2Norm <= epsilon ) {
+      // Found gcd at the mth stage:
+      break;
+    }   
+
+    // If no gcd is found, proceed to the next division:
+    phi0 = phi1;
+    phi1 = phi2;  
+    nn = phi2.dgr;  
+  }
+
+  result = phi1;  
+  return result;
+}
+
+// ---
+// Function for sorting the cf[]'s of a Bernstein object, 
+// in ascending order.
+// This function is used with ROOT() to sort the roots found.
+Bernstein sort(const Bernstein &uu) 
+{
+  int ii, jj, nn, count, minindex;
+  double min, *temp, *newtemp;
+  Bernstein result;
+ 
+  nn = uu.dgr;
+  result.dgr = nn;
+  if ( result.dgr == -1 )
+    return result;
+
+  try {  
+    // Beware: n elements instead of n+1 !!
+    result.cf = new double[result.dgr];  
+    temp = new double[result.dgr];
+  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function sort(): " << exception.what() << endl;
+    result.dgr = -1;
+    return result;
+  }
+
+  for ( ii = 0; ii < result.dgr; ii++ )
+    temp[ii] = uu.cf[ii];
+
+  for ( ii = result.dgr; ii >= 2; ii-- ) { 
+    min = temp[ii-1];  
+    minindex = ii - 1;
+    for ( jj = ii - 2; jj >= 0; jj-- ) {
+      if ( temp[jj] <= min ) {  
+        min = temp[jj];  
+        minindex = jj;  
+      }
+    }
+
+    result.cf[result.dgr-ii] = min;
+
+    try {  newtemp = new double[ii-1];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function sort(): " << exception.what() << endl;
+      result.dgr = -1;
+      return result;
+    }
+
+    count = 0;
+    for ( jj = 0; jj < ii; jj++ ) {    
+      if ( jj != minindex ) {  
+        newtemp[count] = temp[jj]; 
+        count += 1;  
+      }
+    }
+
+    delete [] temp;
+
+    try {  temp = new double[ii-1];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function sort(): " << exception.what() << endl;
+      result.dgr = -1;
+      return result;
+    }
+
+    for ( jj = 0; jj < ii - 1; jj++ )
+      temp[jj] = newtemp[jj];
+
+    delete [] newtemp;
+  }
+
+  result.cf[nn-1] = temp[0];
+  return result;
+}
+
+
+// ---
+// Bernstein root solver
+//
+// epsilon is the tolerance for gcd()
+//
+// delta is the tolerance defined as: 
+// Whenever |F(u)| <= delta, u is identified as a root.
+//
+// eta is the tolerance defined as:
+// Whenever the width of a sub-interval b - a < eta, we
+// don't subdivide it anymore --- one can think of it 
+// as the resolution of subdivisions.
+Bernstein ROOT(const Bernstein &uu, double delta, double eta, double epsilon)
+{
+  int ii, mm, count;	
+  Bernstein uprime, DD, roots;
+
+  FILE *ROOTlog;
+  ROOTlog = fopen("ROOT.log","w");
+
+  uprime = diff(uu);
+  DD = GCD(uu,uprime,epsilon);
+
+  if ( DD.dgr == 0 ) 
+    // There are no multiple roots: invoke the simple root solver
+    roots = sROOT(uu, delta, eta);  
+
+  else
+    // There are multiple roots: invoke the multiple root solver
+    roots = mROOT(uu, delta, eta, epsilon);  
+
+  mm = 1;  ii = 0;  count = 0;
+
+  while( (ii+1) < roots.dgr ) {
+    if ( roots.cf[ii+1] != roots.cf[ii] ) {  
+      count++;
+      fprintf(ROOTlog,
+          "Root %d (multiplicity %d): %1.6f,\n",count,mm,roots.cf[ii]);
+      mm = 1;
+    }
+
+    else
+      mm++;
+
+    ii++; 
+  }
+
+  count++;
+  fprintf(ROOTlog,"Root %d (multiplicity %d): %1.6f,\n",count,mm,roots.cf[ii]);
+
+  fprintf(ROOTlog,"\nTotal of %d distinct roots are found.\n",count);
+
+  return roots;
+}
+
+// ---
+// Bernstein root solver for simple roots: 
+// This function returns a Bernstein instance for which
+// dgr = number of roots found; and
+// cf[0],...,cf[dgr-1] record these roots    
+Bernstein sROOT(const Bernstein &uu, double delta, double eta)
+{
+  int ii, jj, kk, nn, last_GO, GO, OUT, abandon, ONLY_ONE, ALL_ONE;
+  int *signchg, *GO_index, *OUT_index, converge;
+  double step, base, min2, max2, min3, max3; 
+  double root, error, iterate;
+  Bernstein uprime, yprime, ydbprime, roots, temp;
+  Bernstein *x_stack, *y_stack, *last_x, *last_y, *ONE_x;
+  FILE *sROOTlog;
+
+  sROOTlog = fopen("sROOT.log", "w");
+
+  nn = uu.dgr;
+  uprime = diff(uu);
+  // Prepare root storage array:
+  roots.dgr = 0;
+  try {  roots.cf = new double[nn];  }  
+  // Beware: roots.cf[n] is NOT used !!
+  catch ( bad_alloc exception ) {  
+    cout << "In function sROOT(): " << exception.what() << endl;
+    roots.dgr = -1;
+    return roots;
+  }
+
+  for ( ii = 0; ii < nn; ii++ )
+    roots.cf[ii] = -1;  
+
+  // Initialize:
+  //
+  // The variable `GO' keeps track of the number of 
+  // sub-sections that the algorithm is processing.
+  // The variable `OUT' keeps track of the number of 
+  // sub-sections that pass the tests, and are thus 
+  // discarded from `GO'. 
+  ALL_ONE = 0;
+  GO = 1;  OUT = 0;
+  ONLY_ONE = 0;
+
+  try {  
+    last_x = new Bernstein[GO];
+    last_y = new Bernstein[GO];
+    // Assign the starting Bernstein data (x,y):
+    last_x[0].dgr = nn;
+    last_x[0].cf = new double[nn+1];
+    // Prepare the array `ONE_x' for storing the sub-intervals 
+    // that have exactly one coefficient sign change:
+    ONE_x = new Bernstein[2*nn];
+  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function sROOT(): " << exception.what() << endl;
+    roots.dgr = -1;
+    return roots;
+  }
+ 
+  step = 1.0 / (double)nn; 
+  for ( ii = 0; ii <= nn; ii++ )
+    last_x[0].cf[ii] = 0.0 + (double)ii * step;
+
+  // Normalize the original polynomial:
+  last_y[0] = Normalize(uu);
+
+  // When there are still sub-sections that have more than 1 
+  // x-axis intersections, continue this while loop:
+  while(ALL_ONE == 0)
+  {
+    last_GO = GO;  // number of sub-sections conveyed from last step 
+    try {
+      GO_index = new int[2*last_GO];
+      signchg = new int[2*last_GO];
+    }
+    catch ( bad_alloc exception ) {  
+      cout << "In function sROOT(): " << exception.what() << endl;
+      roots.dgr = -1;
+      return roots;
+    }
+
+    // Examine subdivided sections. Mark the sub-sections
+    // that "pass" the tests with "GO":
+
+    // Test 1. Check sign changes:
+    GO = 0;  // Reset the "GO" counter.
+    for ( ii = 0; ii < last_GO; ii++ ) 
+    {
+      // Examine the left half:
+      temp = subLEFT(last_y[ii],0.5);  
+      signchg[2*ii] = 0;
+      for ( jj = 0; jj < nn; jj++ )
+      {
+        if ((temp.cf[jj] * temp.cf[jj+1]) <= 0)
+          signchg[2*ii] += 1;
+        else if ( jj == 0 && (temp.cf[0] < delta && temp.cf[0] > -1.0*delta) )
+          signchg[2*ii] += 1;
+        else if ( jj == nn-1 && (temp.cf[nn] < delta && temp.cf[nn] > -1.0*delta) )
+          signchg[2*ii] += 1;
+      }
+      if (signchg[2*ii] > 0)
+      {
+        GO = GO + 1;  // Convey the sub-sections that
+                      // have at least 1 x-axis intersections.
+        GO_index[GO-1] = 2*ii;
+      }
+   
+      // Examine the right half:
+      temp = subRIGHT(last_y[ii],0.5);
+      signchg[2*ii+1] = 0;
+      for ( jj = 0; jj < nn; jj++ )
+      {
+        if (temp.cf[jj] * temp.cf[jj+1] <= 0)
+          signchg[2*ii+1] += 1;
+        else if ( jj == 0 && (temp.cf[0] < delta && temp.cf[0] > -1.0*delta)  )
+          signchg[2*ii+1] += 1;
+        else if ( jj == nn-1 && (temp.cf[nn] < delta && temp.cf[nn] > -1.0*delta)  )
+          signchg[2*ii+1] += 1;
+      }
+      if (signchg[2*ii+1] > 0)
+      {
+        GO = GO + 1;  // Convey the sub-sections that
+                      // have at least 1 x-axis intersections.
+        GO_index[GO-1] = 2*ii+1;
+      }
+    }
+
+    // Subdivide according to "GO_index":
+    // (only keep sub-sections of concern to save memory) 
+    try {
+      x_stack = new Bernstein[GO];
+      y_stack = new Bernstein[GO];
+    }
+    catch ( bad_alloc exception ) {  
+      cout << "In function sROOT(): " << exception.what() << endl;
+      roots.dgr = -1;
+      return roots;
+    } 
+
+    for ( ii = 0; ii < GO; ii++ )
+    {
+      if ((GO_index[ii]+1)/2 == (GO_index[ii])/2)
+      // If it's an even number, it's a left half:
+      {
+        x_stack[ii] = subLEFT(last_x[GO_index[ii]/2],0.5);
+        y_stack[ii] = subLEFT(last_y[GO_index[ii]/2],0.5);  
+      }
+      else
+      // Otherwise it's a right half:
+      {
+        x_stack[ii] = subRIGHT(last_x[GO_index[ii]/2],0.5);
+        y_stack[ii] = subRIGHT(last_y[GO_index[ii]/2],0.5);  
+      } 
+    }
+
+    delete [] last_x;  delete [] last_y;  
+    delete [] signchg;  delete [] GO_index;
+  
+    // Beyond this point all of the sub-sections conveyed to 
+    // the next steps have at least 1 intersection with the 
+    // x-axis!!
+
+    fprintf(sROOTlog,
+        "Sub-intervals found that have at least 1 x-axis intersections:\n");
+    for ( ii = 0; ii < GO; ii++ )
+      fprintf(sROOTlog,"[%1.7f, %1.7f]\n",x_stack[ii].cf[0],x_stack[ii].cf[nn]);
+
+    // Test 1. Check if F(a)F(b) < 0
+    // Test 2. Check if F'(x) != 0 for x in [a,b]
+    // Test 3. Check if F''(x) either >= 0 or <= 0
+    OUT = 0; 
+    try {  OUT_index = new int[GO];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function sROOT(): " << exception.what() << endl;
+      roots.dgr = -1;
+      return roots;
+    }
+
+    for ( ii = 0; ii < GO; ii++ )
+    {
+      yprime = diff(y_stack[ii]);  
+      ydbprime = diff(yprime);
+
+      max2 = yprime.cf[0];
+      for ( kk = 1; kk <= nn - 1; kk++ )
+      {  if (yprime.cf[kk] >= max2)   max2 = yprime.cf[kk];  }
+
+      min2 = yprime.cf[0];
+      for ( kk = 1; kk <= nn - 1; kk++ )
+      {  if (yprime.cf[kk] <= min2)   min2 = yprime.cf[kk];  }
+
+      max3 = ydbprime.cf[0];
+      for (kk = 1; kk <= nn - 2; kk++ )
+      {  if (ydbprime.cf[kk] >= max3)   max3 = ydbprime.cf[kk];  }
+
+      min3 = ydbprime.cf[0];
+      for ( kk = 1; kk <= nn - 2; kk++ )
+      {  if (ydbprime.cf[kk] <= min3)   min3 = ydbprime.cf[kk];  }
+
+      if ((y_stack[ii].cf[0]*y_stack[ii].cf[nn] <= delta) &&
+		  ((max2*min2) > 0) && ((max3*min3) >= 0))
+      {
+        // Pass the tests!
+        ONLY_ONE = ONLY_ONE + 1;
+	// Record the sub-interval that has only 1 x-axis 
+        // intersection:
+        ONE_x[ONLY_ONE-1] = x_stack[ii];
+        OUT = OUT + 1;
+        OUT_index[OUT-1] = ii;
+      }
+    }
+
+    if (OUT != GO)
+    { 
+      // When there are still sub-sections that have more 
+      // than 1 x-axis intersections, continue this while loop:
+      ALL_ONE = 0;
+      try {
+        last_x = new Bernstein[GO-OUT]; 
+        last_y = new Bernstein[GO-OUT];
+      }
+      catch ( bad_alloc exception ) {  
+        cout << "In function sROOT(): " << exception.what() << endl;
+        roots.dgr = -1;
+        return roots;
+      }
+
+      last_GO = GO;  GO = 0;
+
+      // Abandon the sub-interval that has only 1 x-axis 
+      // intersection.
+      // Store the "non-abandoned" intervals:
+      for ( ii = 0; ii < last_GO; ii++ ) 
+      { 
+        abandon = 0;
+        for ( jj = 0; jj < OUT; jj++ ) 
+        {
+          if ( ii == OUT_index[jj] )
+          {  abandon = 1;  break;  }  
+	}                                 
+
+        if ( abandon == 0 )  
+        {
+          GO = GO + 1;                    
+          last_x[GO-1] = x_stack[ii];
+          last_y[GO-1] = y_stack[ii];
+        }
+      }
+    } 
+
+    else
+      ALL_ONE = 1;
+
+    delete [] x_stack;  delete [] y_stack;  
+    delete [] OUT_index;
+  }
+
+  // Beyond this point all of the sub-sections have only
+  // 1 intersection with the x-axis:
+
+  fprintf(sROOTlog,"The conveyed sub-intervals after the first stage:\n");
+  for ( ii = 0; ii < ONLY_ONE; ii++ )
+  fprintf(sROOTlog,"[%1.7f, %1.7f]\n",ONE_x[ii].cf[0],ONE_x[ii].cf[nn]);
+
+  // Prepare for the next while loop:
+  GO = ONLY_ONE;  converge = 0;
+
+  try {  x_stack = new Bernstein[GO];  }   
+  catch ( bad_alloc exception ) {  
+    cout << "In function sROOT(): " << exception.what() << endl;
+    roots.dgr = -1;
+    return roots;
+  }
+
+  for ( ii = 0; ii < GO; ii++ )
+    x_stack[ii] = ONE_x[ii];
+
+  delete [] ONE_x;    
+
+  while(converge == 0)
+  {       
+    converge = 1;
+    // Test 4. Find endpoint roots and abandon the 
+    // corresponding sub-intervals:
+    OUT = 0;                   
+    try {  OUT_index = new int[GO];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function sROOT(): " << exception.what() << endl;
+      roots.dgr = -1;
+      return roots;
+    }
+
+    fprintf(sROOTlog,"\nEnd-point roots:\n");
+
+    for ( ii = 0; ii < GO; ii++ )
+    {  
+      if ( fabs(EVAL(uu,x_stack[ii].cf[0])) <= delta )    
+      {
+        abandon = 0;	 
+	for ( jj = 0; jj < roots.dgr; jj++ ) {
+          if ( fabs(roots.cf[jj] - x_stack[ii].cf[0]) <= 1e-15 )
+            abandon = 1;
+	}
+	if ( abandon == 0 ) {
+          roots.dgr = roots.dgr + 1;      
+          roots.cf[roots.dgr - 1] = x_stack[ii].cf[0];
+		  fprintf(sROOTlog,"One endpoint root found: %1.16f\n",x_stack[ii].cf[0]);
+        }
+        OUT = OUT + 1;
+        OUT_index[OUT-1] = ii;    
+      }
+
+      else if ( fabs(EVAL(uu,x_stack[ii].cf[nn])) <= delta )    
+      {
+        abandon = 0;	 
+	for ( jj = 0; jj < roots.dgr; jj++ ) {
+          if ( fabs(roots.cf[jj] - x_stack[ii].cf[nn]) <= 1e-15 )
+            abandon = 1;
+	}
+	if ( abandon == 0 ) {
+          roots.dgr = roots.dgr + 1;      
+          roots.cf[roots.dgr - 1] = x_stack[ii].cf[nn];
+		  fprintf(sROOTlog,"One endpoint root found: %1.16f\n",x_stack[ii].cf[nn]);
+	}
+        OUT = OUT + 1;
+        OUT_index[OUT-1] = ii;		   
+      }
+    }    
+
+    try {  last_x = new Bernstein[GO-OUT];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function sROOT(): " << exception.what() << endl;
+      roots.dgr = -1;
+      return roots;
+    }
+
+    last_GO = GO;
+    GO = 0;
+    // Store the "non-abandoned" sub-intervals:
+    for ( ii = 0; ii < last_GO; ii++ ) 
+    { 
+      abandon = 0;
+      for ( jj = 0; jj < OUT; jj++ ) 
+      {
+        if ( ii == OUT_index[jj] )
+        {  abandon = 1;  break;  }  
+      }                                
+
+      if (abandon == 0)  
+      {
+        GO = GO + 1;                    
+        last_x[GO-1] = x_stack[ii];
+      }
+    }
+
+    delete [] x_stack;  
+    delete [] OUT_index;
+
+    if (GO == 0)
+      // All roots are found!
+      return roots;
+
+    // Test 5. The tangent at the endpoint of the sub-interval 
+    //    that has a smaller absolute slope, must intersect 
+    //    the x-axis at a point within the sub-interval:
+    OUT = 0;                   
+    try {  OUT_index = new int[GO];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function sROOT(): " << exception.what() << endl;
+      roots.dgr = -1;
+      return roots;
+    }
+
+    fprintf(sROOTlog,"\nSub-intervals that fail test 5:\n");
+
+    for ( ii = 0; ii < GO; ii++ )
+    {              
+      if (fabs(EVAL(uprime,last_x[ii].cf[nn])) <= 
+          fabs(EVAL(uprime,last_x[ii].cf[0])))
+        base = EVAL(uu,last_x[ii].cf[nn]) / EVAL(uprime,last_x[ii].cf[nn]);
+      else
+        base = EVAL(uu,last_x[ii].cf[0]) / EVAL(uprime,last_x[ii].cf[0]);
+
+      if ((fabs(base) > (last_x[ii].cf[nn] - last_x[ii].cf[0])) &&
+          (fabs(last_x[ii].cf[nn] - last_x[ii].cf[0]) >= eta))  
+      // When the sub-interval [a,b] is too small, b - a 
+      // entails catastrophic cancellations!!
+
+      {  // It won't converge
+	 converge = 0;  
+	 fprintf(sROOTlog,"[%1.7f, %1.7f]:\n",last_x[ii].cf[0],last_x[ii].cf[nn]);
+         fprintf(sROOTlog,"|base| = %1.16f\n",fabs(base)); 
+      }
+
+      else
+      {    
+        // Pass the test, do Newton's iterations:
+        // It should converge from arbitrary start point:
+        root = last_x[ii].cf[nn/2];
+        iterate = 50;
+        for ( jj = 0; jj <= iterate; jj++ )
+        {
+          error = EVAL(uu,root) / EVAL(uprime,root);
+          root = root - error;
+          if ( fabs(EVAL(uu,root)) <= delta )
+          {
+            roots.dgr = roots.dgr + 1; 
+            roots.cf[roots.dgr - 1] = root;
+	    jj = 100;
+            break;
+          }
+        }
+      
+        if (jj != 100)
+        {
+          // If it doesn't converge to meet the root tolerance:
+          fprintf(sROOTlog,
+             "Warning: This value %1.16f does not yield convergence!\n",root);  
+	  fprintf(sROOTlog,"value = %1.16f\n",fabs(EVAL(uu,root)));
+	  // But record it anyways, since there's not much
+	  // we can do:
+          roots.dgr = roots.dgr + 1; 
+          roots.cf[roots.dgr - 1] = root;  
+	}
+
+        OUT = OUT + 1;
+        OUT_index[OUT-1] = ii;
+      }
+    }
+
+    // Abandon the unwanted intervals:
+    try {  x_stack = new Bernstein[GO-OUT];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function sROOT(): " << exception.what() << endl;
+      roots.dgr = -1;
+      return roots;
+    }
+
+    last_GO = GO;
+    GO = 0;
+    // Store the "non-abandoned" intervals:
+    for ( ii = 0; ii < last_GO; ii++ ) 
+    { 
+      abandon = 0;
+      for ( jj = 0; jj < OUT; jj++ ) 
+      {
+        if ( ii == OUT_index[jj] )
+        {  abandon = 1;  break;  }  
+      }                               
+
+      if ( abandon == 0 )  
+      {
+        GO = GO + 1;                    
+        x_stack[GO-1] = last_x[ii];
+      }
+    }
+
+    delete [] last_x;  
+    delete [] OUT_index;
+
+    if (GO == 0)
+    // All roots are found!
+      return roots;
+   
+    // Examine subdivided sections. Mark the intervals
+    // that "pass" the tests with "GO":
+  
+    // Check sign changes in the interval:
+    last_GO = GO;  
+    try {  GO_index = new int[2*last_GO];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function sROOT(): " << exception.what() << endl;
+      roots.dgr = -1;
+      return roots;
+    }
+
+    GO = 0;  // Reset the "GO" counter.
+    for ( ii = 0; ii < last_GO; ii++ ) 
+    {
+      // Examine the left half:
+      temp = subLEFT(x_stack[ii],0.5);
+    
+      if ( EVAL(uu,temp.cf[0]) * EVAL(uu,temp.cf[nn]) < 0 )
+      {   
+        GO = GO + 1;  // Abandon the sub-intervals that
+                      // don't have exactly one x-axis intersections.
+        GO_index[GO-1] = 2*ii;
+      }
+   
+      // Examine the right half:
+      temp = subRIGHT(x_stack[ii],0.5);
+
+      if ( EVAL(uu,temp.cf[0]) * EVAL(uu,temp.cf[nn]) < 0 )
+      {   
+        GO = GO + 1;  // Abandon the sub-intervals that
+                      // don't have exactly one x-axis intersections.
+        GO_index[GO-1] = 2*ii+1;
+      }
+    }
+     
+    // Subdivide according to "GO_index":
+    try {  last_x = new Bernstein[GO];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function sROOT(): " << exception.what() << endl;
+      roots.dgr = -1;
+      return roots;
+    }
+   
+    for ( ii = 0; ii < GO; ii++ )
+    {
+      if ((GO_index[ii]+1)/2 == (GO_index[ii])/2)
+        // If it's an even number, it's a left half:
+        last_x[ii] = subLEFT(x_stack[GO_index[ii]/2],0.5);
+      else
+        // Otherwise it's the right half:
+        last_x[ii] = subRIGHT(x_stack[GO_index[ii]/2],0.5);
+    }
+
+    delete [] x_stack;    delete [] GO_index;
+
+    try {  x_stack = new Bernstein[GO];  }
+    catch ( bad_alloc exception ) {  
+      cout << "In function sROOT(): " << exception.what() << endl;
+      roots.dgr = -1;
+      return roots;
+    }
+   
+    for ( ii = 0; ii < GO; ii++ )
+      x_stack[ii] = last_x[ii];    
+
+    delete [] last_x;  
+  } 
+  return roots;
+}
+
+// ---
+// Bernstein root solver for multiple roots:
+// epsilon is the tolerance for gcd()
+Bernstein mROOT(const Bernstein &uu, double delta, double eta, double epsilon)
+{
+  int nn, kk, mm, ii, jj;
+  Bernstein up, DD, Dp, *Dk, *ff, *XX;
+  Bernstein roots, temp;
+
+  nn = uu.dgr;
+  // Prepare root storage array:
+  try {  roots.cf = new double[nn];  }  
+  // Beware: roots.cf[n] is NOT used !!
+  catch ( bad_alloc exception ) {  
+    cout << "In function mROOT(): " << exception.what() << endl;
+    roots.dgr = -1;
+    return roots;
+  }
+
+  for ( ii = 0; ii < nn; ii++ )
+    roots.cf[ii] = -1;
+
+  // Initialize:
+  up = diff(uu);
+
+  try {  Dk = new Bernstein[uu.dgr];  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function mROOT(): " << exception.what() << endl;
+    roots.dgr = -1;
+    return roots;
+  }
+
+  Dk[0] = GCD(uu,up,epsilon);
+
+  // Compute D's and determine m:
+  kk = 1;
+  while (1) {
+    Dp = diff(Dk[kk-1]); 
+    Dk[kk] = GCD(Dk[kk-1],Dp,epsilon);
+
+    if (Dk[kk].dgr == 0) {
+      mm = kk + 1;  // no roots of multiplicity higher than m
+      break;
+    }
+    kk = kk + 1; 
+  }
+ 
+  // Compute f's:
+  try {  
+    ff = new Bernstein[mm + 1];  
+    XX = new Bernstein[mm];
+  }
+  catch ( bad_alloc exception ) {  
+    cout << "In function mROOT(): " << exception.what() << endl;
+    roots.dgr = -1;
+    return roots;
+  }
+
+  ff[0] = uu;
+  ff[1] = quo ( ff[0] / Dk[0], ff[0].dgr - Dk[0].dgr );
+  for ( ii = 2; ii <= mm; ii++ )
+    ff[ii] = quo ( Dk[ii-2] / Dk[ii-1], Dk[ii-2].dgr - Dk[ii-1].dgr );
+
+  delete [] Dk;
+
+  // Compute X's, solve simple roots and record them
+  // according to respective multiplicities:
+  for ( ii = 0; ii < mm - 1; ii++ ) {
+    XX[ii] = quo ( ff[ii+1] / ff[ii+2], ff[ii+1].dgr - ff[ii+2].dgr );
+    temp = sROOT(XX[ii], delta, eta);
+    for ( jj = 0; jj < (temp.dgr*(ii+1)); jj++ ) {
+      roots.dgr = roots.dgr + 1;
+      roots.cf[roots.dgr-1] = temp.cf[jj/(ii+1)];
+    }
+  }
+
+  XX[mm-1] = ff[mm];
+  temp = sROOT(XX[mm-1], delta, eta);
+  for ( jj = 0; jj < (temp.dgr*mm); jj++ )
+  {
+    roots.dgr = roots.dgr + 1;
+    roots.cf[roots.dgr-1] = temp.cf[jj/mm];
+  }
+
+  delete [] ff;  delete [] XX;
+  return roots;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'Bernstein.h'
+then
+	echo shar: will not over-write existing file "'Bernstein.h'"
+else
+cat << "SHAR_EOF" > 'Bernstein.h'
+#include <iostream.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#include <new>
+using std::bad_alloc;
+
+// Bernstein.h:
+// Declaration of a class for computations with polynomials 
+// in Bernstein form.
+// 
+// by Evan Yi-Feng Tsai, 2001
+
+class Bernstein
+{
+ public:   
+   double *cf;  // Array for storing Bernstein coefficients
+                // (It also stores exponents of the factorization
+                //  of binomial coefficients).
+   int dgr;     // Degree of the Bernstein polynomial
+                // (Also the number of elements of the 
+                //  exponent array).
+   
+   // constructors and destructor: 
+   Bernstein();                           // default constructor 
+   Bernstein(double *coeff, int degree);  // constructor with coefficient 
+                                          // and degree inputs
+   Bernstein(const Bernstein &u);         // copy constructor   
+   ~Bernstein();                          // destructor
+
+   // Binomial functions and utilities:
+   friend Bernstein getprimes(int n, int pr_num, int mode);
+   friend Bernstein factorization(int n, int k);
+   friend double binom(int n, int k);   
+   friend double binom(const Bernstein &e);
+   friend Bernstein binomult(const Bernstein &e1, const Bernstein &e2);
+   friend Bernstein binodiv(const Bernstein &e1, const Bernstein &e2);
+
+   // Degree elevation:
+   friend Bernstein DE(const Bernstein &u, int r);
+
+   // Evaluation and subdivision:
+   friend double EVAL(const Bernstein &u, double x);
+   friend Bernstein subLEFT(const Bernstein &u, double x);
+   friend Bernstein subRIGHT(const Bernstein &u, double x);
+
+   // Differentiation and integration:
+   friend Bernstein diff(const Bernstein &u);
+   friend Bernstein integrate(const Bernstein &u);
+   friend double integral(const Bernstein &u);
+
+   // Normalization:
+   friend double Norm(const Bernstein &u);
+   friend Bernstein Normalize(const Bernstein &u);
+
+   // Operator overloading:
+   const Bernstein &operator=(const Bernstein &u);
+   Bernstein operator+(const Bernstein &u) const;
+   Bernstein operator-(const Bernstein &u) const;    
+   Bernstein operator*(const Bernstein &u) const;
+   friend Bernstein operator*(double factor, const Bernstein &u);
+   friend Bernstein operator*(const Bernstein &u, double factor);
+   Bernstein operator^(int power);
+   Bernstein operator/(const Bernstein &u) const;
+   friend Bernstein quo(const Bernstein &u, int degree);
+   friend Bernstein rem(const Bernstein &u, int degree);
+   Bernstein operator<<(const Bernstein &u) const;
+
+   // Greatest common divisors:
+   friend Bernstein GCD(const Bernstein &u, const Bernstein &v, double epsilon);
+
+   // Bernstein root solver:
+   friend Bernstein sort(const Bernstein &u);
+   friend Bernstein ROOT(const Bernstein &u, double delta, double eta, double epsilon);
+   friend Bernstein sROOT(const Bernstein &u, double delta, double eta);
+   friend Bernstein mROOT(const Bernstein &u, double delta, double eta, double epsilon);
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SHAR_EOF
+fi # end of overwriting check
+cd ..
+cd ..
+cd ..
+if test ! -d 'Doc'
+then
+	mkdir 'Doc'
+fi
+cd 'Doc'
+if test -f 'makefile'
+then
+	echo shar: will not over-write existing file "'makefile'"
+else
+cat << "SHAR_EOF" > 'makefile'
+CC = g++
+CFLAGS = -pedantic -Wall 
+all: res1 res2 res3 res4 res5 res6 res7 res8 res9 res10
+res1: driver1.o Bernstein.o
+	$(CC) $(CFLAGS) driver1.o Bernstein.o -lm
+	a.out > res1
+res2: driver2.o Bernstein.o
+	$(CC) $(CFLAGS) driver2.o Bernstein.o -lm
+	a.out > res2
+res3: driver3.o Bernstein.o
+	$(CC) $(CFLAGS) driver3.o Bernstein.o -lm
+	a.out > res3
+res4: driver4.o Bernstein.o
+	$(CC) $(CFLAGS) driver4.o Bernstein.o -lm
+	a.out > res4
+res5: driver5.o Bernstein.o
+	$(CC) $(CFLAGS) driver5.o Bernstein.o -lm
+	a.out > res5
+res6: driver6.o Bernstein.o
+	$(CC) $(CFLAGS) driver6.o Bernstein.o -lm
+	a.out > res6
+res7: driver7.o Bernstein.o
+	$(CC) $(CFLAGS) driver7.o Bernstein.o -lm
+	a.out > res7
+res8: driver8.o Bernstein.o
+	$(CC) $(CFLAGS) driver8.o Bernstein.o -lm
+	a.out > res8
+res9: driver9.o Bernstein.o
+	$(CC) $(CFLAGS) driver9.o Bernstein.o -lm
+	a.out > res9
+res10: driver10.o Bernstein.o
+	$(CC) $(CFLAGS) driver10.o Bernstein.o -lm
+	a.out > res10
+SHAR_EOF
+fi # end of overwriting check
+cd ..
+#       End of shell archive
+exit 0
+

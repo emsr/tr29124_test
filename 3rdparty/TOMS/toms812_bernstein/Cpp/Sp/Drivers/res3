@@ -1,0 +1,6 @@
+Test case -- Computation of binomial coefficients:
+
+For x(t) = 1.0(1-t) + 1.0t and P(t) = x^100:
+
+The RMS error in the Bernstein coefficients of P(t)
+(from the theoretical value 1) = 0.000000000000000465
