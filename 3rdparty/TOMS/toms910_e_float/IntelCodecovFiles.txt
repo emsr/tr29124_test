@@ -1,0 +1,17 @@
+efx
+bessel
+elementary
+elliptic
+gamma
+hypergeometric
+integer
+polynomials
+zeta
+~constants
+~example
+~hypergeometric_0f0
+~hypergeometric_1f0
+~tables
+~test
+~utility
+~xutility

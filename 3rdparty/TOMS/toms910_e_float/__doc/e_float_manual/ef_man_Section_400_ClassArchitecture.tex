@@ -1,0 +1,100 @@
+The class architecture of the \efloat\ system has been described in
+Section~\ref{sec:architecture}. The architecture is based on three main
+components: the \efloatbaseclass\ class, the \efloatclass\ class and the
+\efloatclass\ global arithmetic interface. The synopsis of these components is
+described in the following sections.
+
+\subsection{The \efloatbasehyperref\ Class}\label{subsec:efbaseclass}
+
+The \efloatbaseclass\ class is a partly abstract base class from which the
+\efloatclass\ class is derived. The $33$ public pure--virtual interface functions
+of the \efloatbaseclass\ class describe all mathematical primitives needed
+for real--numbered arithmetic.
+The synopsis of the public interface to the \efloatbaseclass\ class is shown below.
+
+\vspace{4.0pt}
+
+\lstsetCPlusPlus
+\lstinputlisting{CodeSample_EfloatBaseSynopsis.cpp}
+
+\vspace{4.0pt}
+
+\subsection{The \efloathyperref\ Class}\label{subsec:efclass}
+
+The \efloatclass\ class implements all of the pure--virtual functions
+of its base class and adds additional numerical constants and local
+private utility functions.
+The synopsis of the public interface to the \efloatclass\ class is shown below.
+
+\vspace{4.0pt}
+
+\lstsetCPlusPlus
+\lstinputlisting{CodeSample_EfloatSynopsis.cpp}
+
+\vspace{4.0pt}
+
+\subsection{The \efloathyperref\ Global Arithmetic Interface}
+
+The \efloatclass\ global arithmetic interface defines global functions
+for arithmetic.
+The synopsis of the \efloatclass\ global arithmetic interface is shown below.
+
+\vspace{4.0pt}
+
+\lstsetCPlusPlus
+\lstinputlisting{CodeSample_EfloatGlobalMathSynopsis.cpp}
+
+\vspace{4.0pt}
+
+\subsection{Numeric Limits of the \efloathyperref\ Class}
+
+In order to maintain consistency with C++ programming styles and idioms,
+a template specialization of STL's standard numeric limits class has
+been implemented. It is called
+{\courier std::\-nu\-me\-ric\underline\ lim\-its<e\underline\ float>}.
+The class synopsis is shown below.
+
+\vspace{4.0pt}
+
+\lstsetCPlusPlus
+\lstinputlisting{CodeSample_EfloatNumLimSynopsis.cpp}
+
+\vspace{4.0pt}
+
+\subsection{Adapting Another MP Implementation for use with \efloathyperref}
+
+From a software--architectural standpoint, it is quite straightforward
+to adapt another MP implementation for use with \efloat.
+In order to be used with \efloat, the MP needs to be implemented in a
+class which is called \efloatclass. This adapted MP class must be
+derived from the \efloatbaseclass\ class and it must also reside
+within a unique namespace. Furthermore, the adapted MP class must fully
+implement all of the $33$ pure--virtual functions of \efloatbaseclass,
+which are listed in Section~\ref{subsec:efbaseclass}.
+Although architecturally simple enough, the actual implementation details
+of the functions needed for the
+virtual interface --- such as fast multiplication --- can be
+technically very challenging to implement in an efficient fashion.
+
+Any optional number of the virtual functions needed for
+the ``{\emph has--its--own}'' mechanism should also be implemented such
+that they return {\courier true} if the MP's own function should
+be used. Be sure to also implement the corresponding static functions.
+
+When the adapted MP type is fully implemented, it can be selected
+with a compile--time definition and used as a drop--in replacement
+for the selected MP type in \efloat.
+
+\subsection{The Complex Class Interface}
+
+The \efcomplexclass\ class defines the \efloat\ interface to
+complex--numbered values. The synopsis of the public interface
+to the \efcomplexclass\ class is shown below.
+
+\vspace{4.0pt}
+
+\lstsetCPlusPlus
+\lstinputlisting{CodeSample_EfloatComplexSynopsis.cpp}
+
+\vspace{4.0pt}
+

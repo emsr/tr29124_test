@@ -1,0 +1,68 @@
+\begin{table}[ht]\noindent
+\begin{center}
+\renewcommand{\arraystretch}{1.20}
+\begin{tabular}{c|l|c|c}
+
+Class Name
+            & Internal Representation
+						& Digits
+						& Padding \\
+
+\hline
+
+\multirow{4}{*}{{\courier{efx::e{\ttfamily\underline\ }float}}}
+            & data: {\courier{UINT32}} base--$10^{8}$ array
+						& \multirow{4}{*}{$30$--$300$}
+						& \multirow{4}{*}{$15$\%} \\
+
+\ %space
+            & Boolean negative sign
+            & \ %space
+						& \ \\
+
+\ %space
+            & {\courier{INT64}} base--10 exponent
+            & \ %space
+						& \ \\
+
+\ %space
+            & floating point class (finite, NaN, {\emph{etc}}.)
+            & \ %space
+						& \ \\
+
+\hline
+
+\multirow{2}{*}{{\courier{gmp::e{\ttfamily\underline\ }float}}}
+            & data: GMP's type {\courier{::mpf{\ttfamily\underline\ }t}}
+						& \multirow{2}{*}{$30$--$300$}
+						& \multirow{2}{*}{$15$\%} \\
+
+\ %space
+            & floating point class (finite, NaN, {\emph{etc}}.)
+            & \ %space
+						& \ \\
+
+\hline
+
+{\courier{mpfr::e{\ttfamily\underline\ }float}}
+            & data: MPFR's type {\courier{::mpfr{\ttfamily\underline\ }t}}
+						& $30$--$300$
+						& $15$\% \\
+
+\hline
+
+{\courier{f90::e{\ttfamily\underline\ }float}}
+            & data: Fortran's type {\courier{REAL(KIND\ensuremath{=}16)}}
+						& $\sim$$\,30$
+						& $4$--$5$ digits \\
+
+\hline
+
+\end{tabular}
+\vspace{2.0mm}
+\caption{The MP classes in \efloat\ are shown. Details about the internal representation
+as well as the digit range and the added internal extra digits ({\emph{i.e.}} the padding) are given.}
+\label{table:mpclasses}
+\end{center}
+\end{table}
+

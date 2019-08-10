@@ -1,0 +1,92 @@
+\lstsetCPlusPlus
+\begin{lstlisting}
+e_float airy_a      (const e_float& x);
+e_float airy_a_prime(const e_float& x);
+e_float airy_b      (const e_float& x);
+e_float airy_b_prime(const e_float& x);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Effects:} These functions compute the Airy functions and derivatives
+for their respective argument {\courier x}, with {\courier x}~$\in\mathbb{R}$.
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier airy\underline\ a} function
+returns~\cite{wolframfunctions:website}
+
+\begin{equation}
+Ai(x) =
+\frac{1}{3^{2/3} \Gamma(\frac{2}{3})}
+\sum_{k=0}^{\infty} \frac{1}{\left(\frac{2}{3}\right)_{k} k!}
+\left(\frac{x^3}{9}\right)^k
+-
+\frac{x}{\sqrt[3]{3}\ \Gamma(\frac{1}{3})}
+\sum_{k=0}^{\infty} \frac{1}{\left(\frac{4}{3}\right)_{k} k!}
+\left(\frac{x^3}{9}\right)^k.
+\end{equation}
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier airy\underline\ a\underline\ prime} function
+returns~\cite{wolframfunctions:website}
+
+\begin{equation}
+Ai^{\prime}(x) =
+\frac{x^2}{2\ 3^{2/3} \Gamma(\frac{2}{3})}
+\sum_{k=0}^{\infty} \frac{1}{\left(\frac{5}{3}\right)_{k} k!}
+\left(\frac{x^3}{9}\right)^k
+-
+\frac{1}{\sqrt[3]{3}\ \Gamma(\frac{1}{3})}
+\sum_{k=0}^{\infty} \frac{1}{\left(\frac{1}{3}\right)_{k} k!}
+\left(\frac{x^3}{9}\right)^k.
+\end{equation}
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier airy\underline\ b} function
+returns~\cite{wolframfunctions:website}
+
+\begin{equation}
+Bi(x) =
+\frac{1}{\sqrt[6]{3}\ \Gamma(\frac{2}{3})}
+\sum_{k=0}^{\infty} \frac{1}{\left(\frac{2}{3}\right)_{k} k!}
+\left(\frac{x^3}{9}\right)^k
++
+\frac{\sqrt[6]{3}}{\Gamma(\frac{1}{3})}
+\ x
+\sum_{k=0}^{\infty} \frac{1}{\left(\frac{4}{3}\right)_{k} k!}
+\left(\frac{x^3}{9}\right)^k.
+\end{equation}
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier airy\underline\ b\underline\ prime} function
+returns~\cite{wolframfunctions:website}
+
+\begin{equation}
+Bi^{\prime}(x) =
+\frac{\sqrt[6]{3}}{\Gamma(\frac{1}{3})}
+\sum_{k=0}^{\infty} \frac{1}{\left(\frac{1}{3}\right)_{k} k!}
+\left(\frac{x^3}{9}\right)^k
++
+\frac{x^2}{2\ \sqrt[6]{3}\ \Gamma(\frac{2}{3})}
+\sum_{k=0}^{\infty} \frac{1}{\left(\frac{5}{3}\right)_{k} k!}
+\left(\frac{x^3}{9}\right)^k.
+\end{equation}
+
+\vspace{6.0pt}
+
+\lstsetCPlusPlus
+\begin{lstlisting}
+void airy_a_zero(const UINT32 k, std::deque<e_float>& zeros);
+void airy_b_zero(const UINT32 k, std::deque<e_float>& zeros);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Effects:} These functions compute the first {\courier k} zeros of the
+Airy functions on the negative real axis, with results stored in the
+container {\courier zeros}.
+

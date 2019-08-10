@@ -1,0 +1,113 @@
+\begin{table}[h]\noindent
+\begin{center}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{c|c|c|c}
+
+Config
+            & \efloatclass\ Class
+            & Capabilities
+            & Dependencies \\
+
+\hline
+
+\multirow{2}{*}{efx}
+            & \multirow{2}{*}{\efxefloatclass}
+            & functions, algorithm design,
+            & \multirow{2}{*}{---} \\
+
+\ %space
+            & \ %space
+            & test and benchmark
+            & \\
+
+\hline
+
+gmp
+            & \gmpefloatclass\
+            & ''$\quad\quad$''
+            & GMP library \\
+
+\hline
+
+\multirow{2}{*}{mpfr}
+            & \multirow{2}{*}{\mpfrefloatclass}
+            & \multirow{2}{*}{''$\quad\quad$''}
+            & GMP library, \\
+
+\ %space
+            & \ %space
+            & \ %space
+            & MPFR library \\
+
+\hline
+
+\multirow{2}{*}{f90}
+            & \multirow{2}{*}{\mpfrefloatclass}
+            & \multirow{2}{*}{''$\quad\quad$''}
+            & {\courier{REAL(KIND\ensuremath{=}16)}} wrap, \\
+
+\ %space
+            & \ %space
+            & \ %space
+            & Fortran run--time libraries \\
+
+\hline
+
+\multirow{3}{*}{pyd}
+            & \multirow{3}{*}{any \efloatclass}
+            & functions, algorithm design,
+            & those of its {\courier{e{\ttfamily\underline\ }float}} type, \\
+
+\ %space
+            & \ %space
+            & rapid prototyping,
+            & {\courier{boost.python}} library, \\
+
+\ %space
+            & \ %space
+            & high level Python scripting
+            & Python library \\
+
+\hline
+
+\multirow{4}{*}{clr}
+            & \multirow{4}{*}{any \efloatclass}
+            & functions, algorithm design,
+            & \ \\
+
+\ %space
+            & \ %space
+            & rapid prototyping,
+            & those of its {\courier{e{\ttfamily\underline\ }float}} type, \\
+
+\ %space
+            & \ %space
+            & high level scripting,
+            & common language runtime \\
+
+\ %space
+            & \ %space
+            & CLR GUI development
+            & \ \\
+
+\hline
+
+
+\multirow{2}{*}{cas}
+            & \multirow{2}{*}{any \efloatclass}
+            & \multirow{2}{*}{computer algebra interoperability}
+            & those of its {\courier{e{\ttfamily\underline\ }float}} type, \\
+
+\ %space
+            & \ %space
+            & \ %space
+            & computer algebra system \\
+
+\hline
+\end{tabular}
+\vspace{2.0mm}
+\caption{The system configurations of \efloat\ are shown.}
+\label{table:systemconfigs}
+\end{center}
+\end{table}
+

@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{6989167D-11E4-40FE-8C1A-2192A86A7E90}") = "libf90quad", "libf90quad.vfproj", "{C9D1FF66-40FB-4F8F-8518-2002DFABC712}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9D1FF66-40FB-4F8F-8518-2002DFABC712}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C9D1FF66-40FB-4F8F-8518-2002DFABC712}.Debug|Win32.Build.0 = Debug|Win32
+		{C9D1FF66-40FB-4F8F-8518-2002DFABC712}.Debug|x64.ActiveCfg = Debug|x64
+		{C9D1FF66-40FB-4F8F-8518-2002DFABC712}.Debug|x64.Build.0 = Debug|x64
+		{C9D1FF66-40FB-4F8F-8518-2002DFABC712}.Release|Win32.ActiveCfg = Release|Win32
+		{C9D1FF66-40FB-4F8F-8518-2002DFABC712}.Release|Win32.Build.0 = Release|Win32
+		{C9D1FF66-40FB-4F8F-8518-2002DFABC712}.Release|x64.ActiveCfg = Release|x64
+		{C9D1FF66-40FB-4F8F-8518-2002DFABC712}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

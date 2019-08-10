@@ -1,0 +1,20 @@
+\documentclass{a3posterLandscape}
+
+\usepackage{url}
+\usepackage[flushmargin]{footmisc}
+
+\def\courierSeven{\fontfamily{pcr}\fontsize{7.0}{ 8.75pt}\selectfont}
+\def\courierEight{\fontfamily{pcr}\fontsize{8.0}{10.00pt}\selectfont}
+\def\courierNine {\fontfamily{pcr}\fontsize{9.0}{11.25pt}\selectfont}
+\def\courier     {\fontfamily{pcr}\selectfont}
+
+\newcommand{\courierNineMakeTenPowX}[1]{\ensuremath{\times}{\mbox{\courier{10}}}\ensuremath{^{\mbox{\courierNine{#1}}}}}
+
+\input{symbol_footnote.tex}
+
+\begin{document}
+
+\input{e_float_poster_body.tex}
+
+\end{document}
+

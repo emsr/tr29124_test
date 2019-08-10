@@ -1,0 +1,103 @@
+\lstsetCPlusPlus
+\begin{lstlisting}
+e_float laguerre(const e_float& v, const e_float& x);
+e_float laguerre(const e_float& v, const e_float& L, const e_float& x);
+e_float laguerre(const INT32 n,    const e_float& L, const e_float& x);
+e_float laguerre(const INT32 n,    const INT32 m,    const e_float& x);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Effects:} These functions compute the associated Laguerre functions for
+their respective arguments
+{\courier v}, {\courier m}, {\courier L}, {\courier n}, {\courier x},
+with {\courier v}, {\courier L}, {\courier x}~$\in\mathbb{R}$;
+{\courier n}, {\courier m}~$\in\mathbb{N}$.
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier laguerre} function
+of non-integer degree and non-integer order
+returns~\cite{wolframfunctions:website}
+
+\begin{equation}
+L_{\nu}^{\lambda}(x) = \frac{\Gamma(\nu + \lambda + 1)}{\Gamma(\nu + 1)}
+\sum_{k=0}^{\infty}
+\frac{(-\nu)_{k}\ x^{k}}{\Gamma(k + \lambda + 1) k!}.
+\end{equation}
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier assoc\underline\ laguerre} functions
+of pure integer order and pure integer degree
+return~\cite{wolframmathworld:website}
+
+\begin{equation}
+L_{n}^{m}(x) = (-1)^m \frac{d^{m}}{dx^{m}} L_{n+m}(x),
+\end{equation}
+
+\noindent with
+
+\begin{equation}
+L_{n}(x) = \frac{e^{x}}{n!}\ \frac{d^{n}}{dx^{n}}(x^{n} e^{-x}).
+\end{equation}
+
+\lstsetCPlusPlus
+\begin{lstlisting}
+e_float weber_d(const e_float& v, const e_float& x);
+e_float weber_d(const INT32& n,   const e_float& x);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Effects:} These functions compute the Weber parabolic
+cylinder functions for their respective arguments
+{\courier v}, {\courier n}, {\courier x},
+with {\courier v}, {\courier x}~$\in\mathbb{R}$;
+{\courier n}~$\in\mathbb{N}$.
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier weber\underline\ d} function
+returns~\cite{wolframfunctions:website}
+
+\begin{eqnarray}
+D_{\nu}(x) & = & 
+2^{\nu/2}\sqrt{\pi} e^{-x^{2}/4}
+\Biggl\{
+\frac{1}{\Gamma\left(\dfrac{1-\nu}{2}\right)}
+\sum_{k=0}^{\infty}
+\frac{\left(-\dfrac{\nu}{2}\right)_{k}}{\left(\dfrac{1}{2}\right)_{k} k!}
+\left(\dfrac{x^{2}}{2}\right)^{k}
+\nonumber\\
+\ 
+\nonumber\\
+& & \quad\quad\quad\quad\quad\quad\quad - \ \ 
+\frac{\sqrt{2} \ x}{\Gamma\left(-\dfrac{\nu}{2}\right)}
+\sum_{k=0}^{\infty}
+\frac{\left(\dfrac{1-\nu}{2}\right)_{k}}{\left(\dfrac{3}{2}\right)_{k} k!}
+\left(\dfrac{x^2}{2}\right)^k
+\Biggr\}.
+\end{eqnarray}
+
+
+\lstsetCPlusPlus
+\begin{lstlisting}
+e_float hermite(const e_float& v, const e_float& x);
+\end{lstlisting}
+
+\vspace{6.0pt}
+
+\noindent {\it Effects:} This function computes the associated Hermite
+function for its respective arguments
+{\courier v}, {\courier x}, with {\courier v}, {\courier x}~$\in\mathbb{R}$.
+
+\vspace{6.0pt}
+
+\noindent {\it Returns:} The {\courier hermite} function
+returns~\cite{abramowitz:textbook}
+
+\begin{equation}
+H_{\nu}(x) = 2^{\nu/2} e^{x^2/4} D_{\nu}(\sqrt{2} \ x)
+\end{equation}
+
