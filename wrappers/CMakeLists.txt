@@ -54,50 +54,15 @@ PRIVATE
   ../3rdparty/gslextras)
 target_link_libraries(wrap_gsl ${TR29124_LIBRARIES} gsl gslcblas)
 
+
 add_library(wrap_cephes SHARED wrap_cephes.cpp)
 target_include_directories(wrap_cephes PUBLIC .)
 target_link_libraries(wrap_cephes ${TR29124_LIBRARIES} maths_cephes)
 
-# This was an interesting disaster!
-#	    ../cephes/cmath/sincos.c
 
-
-add_library(wrap_burkhardt SHARED
-            wrap_burkhardt.cpp
-	    ../3rdparty/burkhardt/special_functions.f90
-	    ../3rdparty/burkhardt/asa109.cpp
-	    ../3rdparty/burkhardt/asa243.cpp
-	    ../3rdparty/burkhardt/asa310.cpp
-	    ../3rdparty/burkhardt/bernstein_polynomial.cpp
-	    ../3rdparty/burkhardt/cdflib.cpp
-	    ../3rdparty/burkhardt/chebyshev_polynomial.cpp
-	    ../3rdparty/burkhardt/gegenbauer_polynomial.cpp
-	    ../3rdparty/burkhardt/hermite_polynomial.cpp
-	    ../3rdparty/burkhardt/jacobi_polynomial.cpp
-	    ../3rdparty/burkhardt/kronrod.cpp
-	    ../3rdparty/burkhardt/lobatto_polynomial.cpp
-	    ../3rdparty/burkhardt/minmax.cpp
-	    ../3rdparty/burkhardt/polpak.cpp
-	    ../3rdparty/burkhardt/timestamp.cpp
-	    ../3rdparty/burkhardt/toms443.cpp
-	    ../3rdparty/burkhardt/toms462.cpp
-	    ../3rdparty/burkhardt/toms917.cpp
-	    ../3rdparty/burkhardt/quadrule.cpp
-	    ../3rdparty/burkhardt/line_monte_carlo.cpp
-	    ../3rdparty/burkhardt/line_ncc_rule.cpp
-	    ../3rdparty/burkhardt/line_nco_rule.cpp
-	    ../3rdparty/burkhardt/tetrahedron_monte_carlo.cpp
-	    ../3rdparty/burkhardt/triangle_fekete_rule.cpp
-	    ../3rdparty/burkhardt/triangle_felippa_rule.cpp
-	    ../3rdparty/burkhardt/triangle_monte_carlo.cpp
-           )
-target_link_libraries(wrap_burkhardt gfortran)
-target_include_directories(wrap_burkhardt
-PUBLIC
-  .
-PRIVATE
-  ../3rdparty/burkhardt)
-target_link_libraries(wrap_burkhardt ${TR29124_LIBRARIES})
+add_library(wrap_burkhardt SHARED wrap_burkhardt.cpp)
+target_include_directories(wrap_burkhardt PUBLIC .)
+target_link_libraries(wrap_burkhardt maths_burkhardt ${TR29124_LIBRARIES})
 
 
 add_library(wrap_lerchphi SHARED
