@@ -1,3 +1,6 @@
+#ifndef GST_SPH_HARM_H
+#define GST_SPH_HARM_H 1
+
 #include <stddef.h>
 #ifdef __cplusplus
 #include <complex>
@@ -17,3 +20,5 @@ void pro_sph_harm (double x, int m, int nmax, int mode, double *pl, double *ql, 
 #ifdef __cplusplus
 }
 #endif
+
+#endif // GST_SPH_HARM_H

@@ -1,3 +1,6 @@
+#ifndef GST_TOROIDAL_HARMONIC_H
+#define GST_TOROIDAL_HARMONIC_H 1
+
 #include <stddef.h>
 #ifdef __cplusplus
 #include <complex>
@@ -16,3 +19,5 @@ void tor_harmonic (double z, int m, int nmax, double *pl, double *ql, int *newn)
 #ifdef __cplusplus
 }
 #endif
+
+#endif // GST_TOROIDAL_HARMONIC_H

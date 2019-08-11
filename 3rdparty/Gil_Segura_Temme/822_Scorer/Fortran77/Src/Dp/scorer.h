@@ -1,3 +1,6 @@
+#ifndef GST_SCORER_H
+#define GST_SCORER_H 1
+
 #include <stddef.h>
 #ifdef __cplusplus
 #include <complex>
@@ -17,3 +20,5 @@ void scorer_hi (int ifach, double x, double *y, double *reh, double *imh, double
 #ifdef __cplusplus
 }
 #endif
+
+#endif // GST_SCORER_H

@@ -1,3 +1,6 @@
+#ifndef GST_INCOMPLETE_GAMMA_H
+#define GST_INCOMPLETE_GAMMA_H 1
+
 #include <stddef.h>
 #ifdef __cplusplus
 #include <complex>
@@ -17,3 +20,5 @@ void inv_inc_gamma (double a, double p, double q, double *x, int *ierr);
 #ifdef __cplusplus
 }
 #endif
+
+#endif // GST_INCOMPLETE_GAMMA_H

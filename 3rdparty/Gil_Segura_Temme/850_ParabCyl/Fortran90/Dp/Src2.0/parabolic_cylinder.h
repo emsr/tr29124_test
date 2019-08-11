@@ -1,3 +1,6 @@
+#ifndef GST_PARABOLIC_CYLINDER_H
+#define GST_PARABOLIC_CYLINDER_H 1
+
 #include <stddef.h>
 #ifdef __cplusplus
 #include <complex>
@@ -16,3 +19,5 @@ void parab_cyl (double a, double x, int mode, double *uaxx, double *vaxx, int *i
 #ifdef __cplusplus
 }
 #endif
+
+#endif // GST_PARABOLIC_CYLINDER_H
