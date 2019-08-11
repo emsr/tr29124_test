@@ -3,7 +3,7 @@ module scorer
 
 contains
 
-  subroutine scorer_gi(ifacg, x, y, reg, img, regp, imgp, ierrog) bind(c)
+  subroutine scorergi(ifacg, x, y, reg, img, regp, imgp, ierrog) bind(c)
     use iso_c_binding
     implicit none
     integer(c_int), intent(in), value :: ifacg
@@ -13,7 +13,7 @@ contains
     call giz(ifacg, x, y, reg, img, regp, imgp, ierrog)
   end subroutine
 
-  subroutine scorer_hi(ifach, x, y, reh, imh, rehp, imhp, ierroh) bind(c)
+  subroutine scorerhi(ifach, x, y, reh, imh, rehp, imhp, ierroh) bind(c)
     use iso_c_binding
     implicit none
     integer(c_int), intent(in), value :: ifach

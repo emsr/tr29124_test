@@ -14,8 +14,8 @@ extern "C" {
 #define __GFORTRAN_LONG_DOUBLE_COMPLEX long double _Complex
 #endif
 
-void scorer_gi (int ifacg, double x, double *y, double *reg, double *img, double *regp, double *imgp, int *ierrog);
-void scorer_hi (int ifach, double x, double *y, double *reh, double *imh, double *rehp, double *imhp, int *ierroh);
+void scorergi (int ifacg, double x, double *y, double *reg, double *img, double *regp, double *imgp, int *ierrog);
+void scorerhi (int ifach, double x, double *y, double *reh, double *imh, double *rehp, double *imhp, int *ierroh);
 
 #ifdef __cplusplus
 }

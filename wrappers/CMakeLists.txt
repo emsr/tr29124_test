@@ -55,6 +55,16 @@ PRIVATE
 target_link_libraries(wrap_gsl ${TR29124_LIBRARIES} gsl gslcblas)
 
 
+add_library(wrap_gst SHARED wrap_gst.cpp)
+target_include_directories(wrap_gst PUBLIC .)
+target_link_libraries(wrap_gst
+  gst_incomplete_gamma
+  gst_scorer
+  gst_toroidal_harmonic
+  gst_parabolic_cylinder_2
+  gst_spheroidal_harmonic)
+
+
 add_library(wrap_cephes SHARED wrap_cephes.cpp)
 target_include_directories(wrap_cephes PUBLIC .)
 target_link_libraries(wrap_cephes ${TR29124_LIBRARIES} maths_cephes)

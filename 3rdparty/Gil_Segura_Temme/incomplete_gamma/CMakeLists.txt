@@ -7,6 +7,7 @@ project(
 )
 
 add_library(gst_incomplete_gamma SHARED cons.f90 incgam.f90 incomplete_gamma.f90)
+target_include_directories(gst_incomplete_gamma PUBLIC .)
 
 add_executable(test_incgam testincgam.f90)
 target_link_libraries(test_incgam gst_incomplete_gamma)
