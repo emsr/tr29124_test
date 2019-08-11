@@ -76,6 +76,26 @@ qgamma(double a, double x)
   return q;
 }
 
+std::pair<double, double>
+gamma_cdf(double a, double x)
+{
+  double p, q;
+  int ierr = 0;
+  inc_gamma(a, x, &p, &q, &ierr);
+  return {p, q};
+}
+
+double
+inv_gamma_cdf(double a, std::pair<double, double> pq)
+{
+  double p = pq.first;
+  double q = pq.second;
+  double x = 0.0;
+  int ierr = 0;
+  inv_inc_gamma(a, p, q, &x, &ierr);
+  return x;
+}
+
 /// Toroidal harmonic functions
 
 double

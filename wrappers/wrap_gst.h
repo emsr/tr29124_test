@@ -1,6 +1,8 @@
 #ifndef WRAP_GST_H
 #define WRAP_GST_H 1
 
+#include <utility> // For pair.
+
 namespace gst
 {
 
@@ -22,11 +24,11 @@ double pgamma(double a, double x);
 
 double qgamma(double a, double x);
 
-//gamma_cdf_t gamma_cdf(double a, double x);
+std::pair<double, double> gamma_cdf(double a, double x);
 
 /// Inverse Incomplete gamma functions.
 
-//double inv_gamma_cdf(double a, gamma_cdf_t pq);
+double inv_gamma_cdf(double a, std::pair<double, double> pq);
 
 /// Toroidal harmonic functions
 
