@@ -1,4 +1,5 @@
-#include "sph_harm.h"
+#include <spheroidal_harmonic.h>
+
 #include <iostream>
 #include <iomanip>
 

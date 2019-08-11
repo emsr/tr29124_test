@@ -10,6 +10,7 @@ set(src_dir Fortran77/Src/Dp)
 set(test_dir Fortran77/Drivers/Dp)
 
 add_library(gst_scorer SHARED ${src_dir}/src_819.f ${src_dir}/scorer.f90)
+target_include_directories(gst_scorer PUBLIC .)
 target_link_libraries(gst_scorer gst_airy)
 
 # I think the file names were switched by the authors: src_819.f <-> src.f
