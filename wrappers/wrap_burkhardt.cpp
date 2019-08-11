@@ -33,7 +33,7 @@ double
 airy_ai(double x)
 {
   double ai{}, bi{}, ad{}, bd{};
-  airya_(&x, &ai, &bi, &ad, &bd);
+  airyab(x, &ai, &bi, &ad, &bd);
   return ai;
 }
 
@@ -42,7 +42,7 @@ double
 airy_bi(double x)
 {
   double ai{}, bi{}, ad{}, bd{};
-  airya_(&x, &ai, &bi, &ad, &bd);
+  airyab(x, &ai, &bi, &ad, &bd);
   return bi;
 }
 
@@ -122,7 +122,7 @@ double
 conf_hyperg(double a, double c, double x)
 {
   double chg;
-  cchg_(&a, &c, &x, &chg);
+  confhyp(a, c, x, &chg);
   return chg;
 }
 
@@ -132,7 +132,7 @@ tricomi_u(double a, double c, double x)
 {
   double hu;
   int md;
-  chgu_(&a, &c, &x, &hu, &md);
+  tricomiu(a, c, x, &hu, &md);
   return hu;
 }
 
@@ -798,7 +798,7 @@ double
 struve_h(double nu, double x)
 {
   double sh{};
-  stvhv_(&nu, &x, &sh);
+  struveh(nu, x, &sh);
   return sh;
 }
 
@@ -807,7 +807,7 @@ double
 struve_l(double nu, double x)
 {
   double sl{};
-  stvlv_(&nu, &x, &sl);
+  struvel(nu, x, &sl);
   return sl;
 }
 
