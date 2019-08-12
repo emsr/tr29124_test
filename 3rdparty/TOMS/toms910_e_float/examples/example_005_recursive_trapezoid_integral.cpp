@@ -24,7 +24,8 @@ namespace examples
 
     public:
 
-      RecursiveTrapezoidJ0(const e_float& z) : Util::RecursiveTrapezoidRule<e_float>(ef::zero(), ef::pi(), my_tol()),
+      explicit RecursiveTrapezoidJ0(const e_float& z)
+       : Util::RecursiveTrapezoidRule<e_float>(ef::zero(), ef::pi(), my_tol()),
                                                my_z(z) { }
 
       virtual ~RecursiveTrapezoidJ0() { }

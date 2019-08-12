@@ -35,7 +35,7 @@ template<typename _Tp>
     const auto _S_inf = std::numeric_limits<_Tp>::infinity();
     const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
     if (std::abs(x + _Tp{1}) < _S_eps)
-      return (n1 + n2) & 1 ? -_S_inf : _S_inf;
+      return ((n1 + n2) & 1) ? -_S_inf : _S_inf;
     else
       return __gnu_cxx::chebyshev_w(n1, x)
 	   * __gnu_cxx::chebyshev_w(n2, x)

@@ -82,7 +82,7 @@ assoc_legendre(unsigned int l, unsigned int m, double x)
           throw std::runtime_error(msg.str());
         }
       else
-        return (m & 1 ? -1 : +1) * result.val;
+        return ((m & 1) ? -1 : +1) * result.val;
     }
 }
 

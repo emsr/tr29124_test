@@ -41,7 +41,7 @@ test01()
   double jm3o2 = std::cyl_bessel_j(-1.5, 0.0);
   double jm2 = std::cyl_bessel_j(-2.0, 0.0);
 
-  bool test [[gnu::unused]] = true;
+  bool test __attribute__((unused)) = true;
   VERIFY(jm1o2 == inf);
   VERIFY(jm1 == 0.0);
   VERIFY(jm3o2 == -inf);

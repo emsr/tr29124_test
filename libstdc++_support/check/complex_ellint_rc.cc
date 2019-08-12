@@ -48,7 +48,7 @@ test01()
   auto rc5 = ellint_rc(0.25, -2.0);
   auto rc6 = ellint_rc(cmplx(0.0, 1.0), cmplx(-1.0, 0.0));
 
-  bool test [[gnu::unused]] = true;
+  bool test __attribute__((unused)) = true;
   double eps = 1.0e-12;
   VERIFY(std::abs(rc1 - 3.1415926535898) < eps);
   VERIFY(std::abs(rc2 - 0.69314718055995) < eps);

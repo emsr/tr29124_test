@@ -52,7 +52,7 @@ test01()
   auto bi8 = airy_bi(cmplx( 0.3090169943749474, -0.9510565162951536));
   auto bi9 = airy_bi(cmplx( 0.8090169943749474, -0.5877852522924731));
 
-  bool test [[gnu::unused]] = true;
+  bool test __attribute__((unused)) = true;
   double eps = 1.0e-12;
   VERIFY(std::abs(bi0 - cmplx( 1.207423594952871,   0.0000000000000000)) < eps);
   VERIFY(std::abs(bi1 - cmplx( 0.9127160108293936,  0.3800456133135556)) < eps);

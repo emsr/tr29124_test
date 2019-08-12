@@ -52,7 +52,7 @@ test01()
   auto ai8 = airy_ai(cmplx( 0.3090169943749474, -0.9510565162951536));
   auto ai9 = airy_ai(cmplx( 0.8090169943749474, -0.5877852522924731));
 
-  bool test [[gnu::unused]] = true;
+  bool test __attribute__((unused)) = true;
   double eps = 1.0e-12;
   VERIFY(std::abs(ai0 - cmplx( 0.1352924163128814,  0.0000000000000000)) < eps);
   VERIFY(std::abs(ai1 - cmplx( 0.1433824486882056, -0.1092193342707378)) < eps);

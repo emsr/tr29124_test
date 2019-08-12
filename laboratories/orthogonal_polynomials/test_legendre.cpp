@@ -37,8 +37,9 @@
 	      const auto __lmfact = std::__detail::__factorial<_Tp>(__lm);
 	      const auto __mm = __lm / 2;
 	      const auto __mmfact = std::__detail::__factorial<_Tp>(__mm);
-	      auto __Plm1 = (__lm & 1 ? -1 : 1) * __lmfact / __mmfact / __mmfact
-			    / std::pow(_Tp{2}, __lm);
+	      auto __Plm1 = ((__lm & 1) ? -1 : 1)
+			    * __lmfact / __mmfact / __mmfact
+			    / std::exp2(_Tp(__lm));
 	      auto __Ppl = __l * __Plm1;
 	      __pt[__m].__point = _Tp{0};
 	      __pt[__m].__weight = _Tp{2} / __Ppl / __Ppl;

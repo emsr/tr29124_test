@@ -28,7 +28,7 @@ namespace BesselAsymp
     multiplies_zeta_debye(const multiplies_zeta_debye& mzd) : has_phase(mzd.has_phase),
                                                               s_phase  (mzd.s_phase) { }
 
-    multiplies_zeta_debye(const bool hp) : has_phase(hp),
+    explicit multiplies_zeta_debye(const bool hp) : has_phase(hp),
                                            s_phase  (static_cast<INT32>(0)) { }
 
     e_float operator()(const e_float& u, const e_float& v)
@@ -52,14 +52,14 @@ namespace BesselAsymp
 
   struct multiplies_zeta_debye_mu : public multiplies_zeta_debye
   {
-    multiplies_zeta_debye_mu(const bool hp) : multiplies_zeta_debye(hp) { }
+    explicit multiplies_zeta_debye_mu(const bool hp) : multiplies_zeta_debye(hp) { }
   };
 
   struct multiplies_zeta_debye_lambda : public multiplies_zeta_debye
   {
   public:
 
-    multiplies_zeta_debye_lambda(const bool hp) : multiplies_zeta_debye(hp) { }
+    explicit multiplies_zeta_debye_lambda(const bool hp) : multiplies_zeta_debye(hp) { }
 
   private:
 

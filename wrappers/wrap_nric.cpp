@@ -363,6 +363,6 @@ chebyshev_t(unsigned int n, double x)
 /// Jacobi polynomials.
 double
 jacobi(unsigned int n, double alpha, double beta, double x)
-{ double jacobi_poly(n, alpha, beta, x); }
+{ return jacobi_poly(n, alpha, beta, x); }
 
 } // namespace nric

@@ -1,3 +1,5 @@
+#! /bin/bash
+
 rm \
  airy_functions/airy_complex_float.txt \
  airy_functions/airy_float.txt \

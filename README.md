@@ -29,17 +29,17 @@ The functions in IS 29124 have been accepted into C++17.
 See Section 26.9.5 Mathematical special functions [sf.cmath] in a recent draft.
 
 In addition to the special functions in C++17, this library adds several extensions:
-* Hypergeometric functions
-* Carlson elliptic functions
-* Jacobi elliptic functions, amplitude, and nome
-* Polylogarithm functions
-* Airy functions
-* Hankel functions
-* Statistical distribution functions
+*   Hypergeometric functions
+*   Carlson elliptic functions
+*   Jacobi elliptic functions, amplitude, and nome
+*   Polylogarithm functions
+*   Airy functions
+*   Hankel functions
+*   Statistical distribution functions
 
 Some capabilities have been migrated into separate subprojects:
-* Quadrature rules
-* Polynomial classes and solvers
+*   Quadrature rules
+*   Polynomial classes and solvers
 
 I strive for type genericity.  I want C++ numerics to follow
 the containers + algorithms by having numeric algorithms that will
@@ -56,7 +56,7 @@ Check out the [API documentation](https://emsr.github.io/tr29124_test/html/index
 
 Because there are several submodules, when you first clone this package you'll neeed to go
 into the main project directory and update the submodules:
-* git submodule update --init --recursive
+*   git submodule update --init --recursive
 
 From then on:
-* git submodule update --recursive --remote
+*   git submodule update --recursive --remote

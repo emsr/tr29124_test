@@ -189,10 +189,9 @@ template<typename Real>
     std::vector<unsigned int> sph_order{0, 1, 2, 5, 10, 20, 50, 100};
 
     const unsigned int num_phi = 10;
-    Real phi[num_phi];
+    std::vector<Real> vphid(num_phi);
     for (unsigned int i = 0; i < num_phi; ++i)
-      phi[i] = Real{10} * i * __gnu_cxx::__math_constants<Real>::__pi / Real{180};
-    std::vector<Real> vphid(phi, phi + num_phi);
+      vphid[i] = i * __gnu_cxx::__math_constants<Real>::__pi / Real{18};
 
     std::vector<Real> vab{0, Real{0.5L}, 1, 2, 5, 10, 20};
 

@@ -20,7 +20,7 @@ int main()
 
   rr.dgr = nn;
   try {  rr.cf = new double[rr.dgr + 1];  }
-  catch ( bad_alloc exception ) {  
+  catch ( bad_alloc& exception ) {  
     std::cout << "In test_subdivision.cpp: " << exception.what() << '\n';
     exit(1);
   }

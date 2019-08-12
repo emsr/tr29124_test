@@ -56,7 +56,7 @@ test01()
   auto rj8 = ellint_rj(cmplx(-1.0,1.0), cmplx(-2.0,-1.0),
 		       cmplx(0.0,-1.0), cmplx(-1.0,1.0));
 
-  bool test [[gnu::unused]] = true;
+  bool test __attribute__((unused)) = true;
   double eps = 1.0e-12;
   VERIFY(std::abs(rj1 - 0.77688623778582) < eps);
   VERIFY(std::abs(rj2 - 0.14297579667157) < eps);

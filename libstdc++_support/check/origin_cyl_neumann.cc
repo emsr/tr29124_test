@@ -42,7 +42,7 @@ test01()
   double nm3o2 = std::cyl_neumann(-1.5, 0.0);
   double nm2 = std::cyl_neumann(-2.0, 0.0);
 
-  bool test [[gnu::unused]] = true;
+  bool test __attribute__((unused)) = true;
   VERIFY(nm1o4 == -inf);
   VERIFY(nm1o2 == 0.0);
   VERIFY(nm1 == inf);

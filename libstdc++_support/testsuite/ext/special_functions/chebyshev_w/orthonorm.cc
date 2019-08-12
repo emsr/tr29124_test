@@ -45,7 +45,7 @@ template<typename _Tp>
     const auto
     _S_pi = _Tp{3.1415'92653'58979'32384'62643'38327'95028'84195e+0L};
     if (std::abs(x + _Tp{1}) < _S_eps)
-      return (n1 + n2) & 1 ? -_S_inf : _S_inf;
+      return ((n1 + n2) & 1) ? -_S_inf : _S_inf;
     else
       return __gnu_cxx::chebyshev_w(n1, x)
 	   * __gnu_cxx::chebyshev_w(n2, x)

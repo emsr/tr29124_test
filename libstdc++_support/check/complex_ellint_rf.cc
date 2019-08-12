@@ -49,7 +49,7 @@ test01()
   auto rf6 = ellint_rf(cmplx(0.0, 1.0), cmplx(0.0, -1.0), cmplx(2.0, 0.0));
   auto rf7 = ellint_rf(cmplx(-1.0, 1.0), cmplx(1.0, -1.0), cmplx(0.0, 1.0));
 
-  bool test [[gnu::unused]] = true;
+  bool test __attribute__((unused)) = true;
   double eps = 1.0e-12;
   VERIFY(std::abs(rf1 - 1.3110287771461) < eps);
   VERIFY(std::abs(rf2 - 1.8540746773014) < eps);

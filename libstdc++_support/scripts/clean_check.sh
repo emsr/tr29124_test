@@ -1,3 +1,5 @@
+#! /bin/bash
+
 rm \
   check/check_airy_ai \
   check/check_airy_bi \

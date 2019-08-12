@@ -45,7 +45,7 @@ test01()
   double h21r = std::real(h21);
   double h21i = std::imag(h21);
 
-  bool test [[gnu::unused]] = true;
+  bool test __attribute__((unused)) = true;
   VERIFY(h20r == 1.0);
   VERIFY(h20i == inf);
   VERIFY(h21r == 0.0);

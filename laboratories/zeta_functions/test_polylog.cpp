@@ -318,7 +318,7 @@
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __polylog_exp_neg_even(unsigned int __p, std::complex<_Tp> __w)
+    __polylog_exp_neg_even(unsigned int __p, const std::complex<_Tp>& __w)
     {
       const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
       const int __pp = 1 + __p;
@@ -394,7 +394,7 @@
    */
   template<typename _Tp>
     std::complex<_Tp>
-    __polylog_exp_neg_odd(unsigned int __p, std::complex<_Tp> __w)
+    __polylog_exp_neg_odd(unsigned int __p, const std::complex<_Tp>& __w)
     {
       const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
       const int __pp = 1 + __p;

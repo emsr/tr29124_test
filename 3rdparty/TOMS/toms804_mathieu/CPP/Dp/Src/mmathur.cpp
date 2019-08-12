@@ -391,7 +391,7 @@ h_type  MathuEDn(char typ, int n, double v, h_type Cm[], h_type Norm, h_type Am[
 h_type  MathuIn(char typ, int n, h_type Am[], h_type Ims[], h_type Zm[], int CDIM)
 {
  int  m,ni,p,s;
- h_type Sum,MathZ,Tmp;
+ h_type Sum,MathZ,Tmp=1;
 
 	 /* assuming that  Am's are the Modified Mathieu Coefficients */
 
@@ -427,7 +427,7 @@ h_type  MathuIn(char typ, int n, h_type Am[], h_type Ims[], h_type Zm[], int CDI
 h_type  MathuKn(char typ, int n, h_type Am[], h_type Ims[], h_type Zm[], int CDIM)
 {
  int  m,ni,p,s;
- h_type Sum,MathZ,Tmp;
+ h_type Sum,MathZ,Tmp=1;
  double sign=1.0;
 
     p=n%2;

@@ -48,7 +48,7 @@ test01()
   auto rg5 = ellint_rg(cmplx(0.0, -1.0), cmplx(-1.0, 1.0), cmplx(0.0, 1.0));
   auto rg6 = ellint_rg(0, 0.0796, 4);
 
-  bool test [[gnu::unused]] = true;
+  bool test __attribute__((unused)) = true;
   double eps = 1.0e-12;
   VERIFY(std::abs(rg1 - 3.1415926535898) < eps);
   VERIFY(std::abs(rg2 - 1.7255030280692) < eps);

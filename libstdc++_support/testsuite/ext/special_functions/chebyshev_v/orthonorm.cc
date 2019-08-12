@@ -43,7 +43,7 @@ template<typename _Tp>
     const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
     const auto _S_inf = std::numeric_limits<_Tp>::infinity();
     if (std::abs(x - _Tp{1}) < _S_eps)
-      return (n1 + n2) & 1 ? -_S_inf : _S_inf;
+      return ((n1 + n2) & 1) ? -_S_inf : _S_inf;
     else
       return __gnu_cxx::chebyshev_v(n1, x)
 	   * __gnu_cxx::chebyshev_v(n2, x)
