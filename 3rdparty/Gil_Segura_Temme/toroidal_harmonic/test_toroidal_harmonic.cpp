@@ -7,7 +7,6 @@ test_tor_harmonic()
 {
   std::cout.precision(16);
   auto w = 6 + std::cout.precision();
-  int ifac = 1;
   double P[6], Q[6];
   int newn = 5;
 
