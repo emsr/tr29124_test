@@ -1,0 +1,2663 @@
+
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS
+
+D. W. LOZIER AND F. W. J. OLVER
+
+1991 Mathematics Subject Classification. Primary 65D20; Secondary 33-00.
+The research of the second author has been supported by NSF Grant CCR 89-14933.
+
+1
+
+2
+
+Contents
+1. Introduction 3
+2. Mathematical Developments 5
+3. Packages, Libraries and Systems 6
+
+3.1. Software Packages
+3.2. Intermediate Libraries
+3.3. Comprehensive Libraries
+3.4. Interactive Systems
+
+4. Functions of One Variable 14
+
+4.1. Airy Functions
+4.2. Error Functions, Dawson's Integral, Fresnel Integrals
+4.3. Exponential Integrals, Logarithmic Integral, Sine and Cosine Integrals
+4.4. Gamma, Psi, and Polygamma Functions
+4.5. Landau Density and Distribution Functions
+4.6. Polylogarithms
+4.7. Zeta Function
+
+5. Functions of Two or More Variables 17
+
+5.1. Bessel Functions
+5.2. Coulomb Wave Functions
+5.3. Elliptic Integrals and Functions
+5.4. Fermi-Dirac, Bose-Einstein, and Debye Integrals
+5.5. Hypergeometric and Confluent Hypergeometric Functions
+5.6. Incomplete Bessel Functions, Incomplete Beta Function
+5.7. Incomplete Gamma Functions, Generalized Exponential Integrals
+5.8. Legendre Functions and Associated Legendre Functions
+5.9. Mathieu, Lam'e, and Spheroidal Wave Functions
+5.10. Orthogonal Polynomials
+5.11. Polylogarithms (Generalized)
+5.12. Struve and Anger-Weber Functions
+5.13. Weber Parabolic Cylinder Functions
+5.14. Zeta Function (Generalized)
+
+6. Testing and Library Construction 23
+7. Future Trends 23
+Acknowledgments 24
+A Note on the Reference Acronyms 24
+References 24
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 3
+
+1. Introduction
+When automatic computers began to appear in the 1950s various confident, and
+often incorrect, predictions were made concerning the impact of these devices on
+applied mathematics, science and engineering. One of these predictions was that
+the need for special functions, or higher transcendental functions (as they are also
+known), would disappear entirely. This was based on the observation that the main
+use of these functions in those days was to approximate the solutions of classical
+partial differential equations: with automatic computers it would become possible
+to solve these equations by direct numerical methods. This observation is indeed
+correct; nevertheless, a perusal of current computational journals in the sciences
+reveals a persistent need for numerical algorithms to generate Airy functions, Bessel
+functions, Coulomb wave functions, error functions and exponential integrals--to
+name but a few of the classical special functions. Equally significantly, the National
+Bureau of Standards' Handbook of Mathematical Functions [AS64]1 continues to
+be one of the best-selling mathematical books of all time2.
+
+The purpose of the present paper is to provide some assistance to those mathematicians, engineers, scientists, and statisticians who discover that they need to
+generate numerical values of the special functions in the course of solving their
+problems. "Generate" is the operative word here: we are thinking primarily of
+either software or numerical approximations that can be programmed fairly easily.
+Numerical tables are not covered in this survey. Furthermore, for the most part we
+shall concentrate on the functions themselves; only in certain cases do we include,
+for example, zeros, inverse functions or indefinite integrals. Elementary functions,
+also, are excluded3. Lastly, we believe that the majority of readers would prefer
+us to emphasize the more useful algorithms rather than make an attempt to be
+encyclopedic: algorithms or approximations that have clearly been superseded are
+omitted.
+
+We identify three stages in the development of computational procedures for the
+special functions:
+
+(i) Derivation of relevant mathematical properties.
+(ii) Development of numerical approximations and algorithms.
+(iii) Construction and testing of robust software.
+
+Included in Stage (i) are asymptotic expansions, continued fractions, difference and
+differential equations, functional identities, integral representations, and Taylorseries expansions. Included in Stage (ii) are expansions in series of Chebyshev polynomials ("Chebyshev series"), minimax polynomial and rational approximations,
+Pad'e approximations, numerical quadrature, and numerical solution of difference
+and differential equations. In this paper the emphasis will be on Stages (ii)
+and (iii), but in x2 we supply some general references for Stage (i).
+
+In x3 we make a general survey of software libraries and packages4 that include
+
+1An explanation of the scheme used for acronyms of references is given on p. 25.
+2In 1988 the National Bureau of Standards became the National Institute of Standards and
+
+Technology.
+
+3Methods for constructing and testing algorithms for generating elementary functions are surveyed in [CW80]. See also [Bai93,Bre76,Bre78a,Bre78b,Cod93a,LCY65,MY91,Smi89,Smi91,Ziv91].
+
+4Certain company products are identified in the text. In no case does such identification imply
+
+recommendation or endorsement by the National Institute of Standards and Technology, nor does
+
+4
+collections of special functions.
+
+In xx4 and 5 the functions are treated individually. We list software that is
+already available and readily programmable numerical approximations. In x6 we
+also include references to articles (or books) that may be useful for the testing or
+comparison of existing software, or in the construction of new libraries. We do
+not attempt what would be a herculean task of testing and comparing everything
+that is available. Our philosophy in this survey has to be that of caveat emptor:
+no algorithm, approximation or package that we mention should be relied upon to
+produce accurate output in the absence of evidence of independent and systematic
+checks.
+
+As in the progress of other branches of numerical analysis, procedures used
+to evaluate special functions are influenced heavily by the computing equipment
+available at the time. In the era of desk-calculating machines the medium was
+a printed table of numerical values of the wanted function, or functions, generally for equispaced values of the arguments. Nontabular values were calculated by
+means of Lagrange's interpolation formula or central-difference interpolation formulas [Fox56]. In other words, local polynomial approximations were employed.
+These interpolation procedures were reasonably successful for functions of a single
+variable, but two-dimensional interpolation on desk-calculating machines was often
+a laborious computation that was prone to error. The daunting task that faced a
+(human) computer is summed up in the following quotation from the Introduction
+to Karl Pearson's tables of the incomplete gamma function [Pea22]:
+
+"As a matter of fact, supposing the use of a machine, which every modern
+computer has at his command, no interpolation suggested ought to take more than
+an hour's work and many much less. If the user of these tables groans under that
+hour, let him compute de novo a function value, say I(6:86877; 47:1813) --including
+of course \Gamma (48:1813)--to seven-figure accuracy, and when he has completed the task,
+we believe his feelings towards those who have provided him with these tables will
+be very sensibly modified."
+
+With electronic computers, the number of arithmetic operations that could be
+contemplated for the generation of a single function value increased considerably. In
+consequence, high-degree global approximations appeared for functions of a single
+variable in the form of minimax polynomial or rational approximations, or truncated
+Chebyshev-series expansions; see, for example, [Cle62,HCL+68] and [Luk77b].
+
+Chebyshev series in two dimensions also became feasible [CP66,Luk71a,Luk71b,Luk72a].
+However, because of their more complicated asymptotic behavior, special functions
+of two variables cannot be covered comprehensively simply by use of polynomial or
+rational approximations or Chebyshev series. The situation is cloudier still when
+the variables or parameters are complex, or of course when they are more than two
+in number. For this reason, to achieve maximum speed, a comprehensive software
+package for generating a function of two (or more) variables typically employs several different algorithms in addition to, or quite commonly in place of, polynomial
+or rational approximations or Chebyshev series. The construction and testing of
+such a package invariably entails prodigious effort.
+
+Computers continue to increase in sophistication and power; in consequence
+we should expect further changes in the algorithms used to generate the special
+
+it imply that the products are necessarily the best available for the purpose.
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 5
+functions. So far, the potential offered by the introduction of vector and parallel
+computing machines has not been exploited to any great extent. It might well lead
+to simplifications in the algorithms needed for many functions, as well as to an
+increase in execution speeds. We refer again to this possibility in the concluding
+section (x7).
+
+In assembling the bibliography of this paper we have been assisted by the references collected and classified by the late Dr. L. W. Fullerton in his 1980 Bell
+Laboratories report [Ful80], by access to Dr. N. M. Temme's private collection of
+references, and by GAMS, the Guide to Available Mathematical Software prepared
+by the National Institute of Science and Technology [BHKS90] and also available
+online5.
+
+We have searched through issues of the following journals of the past twenty-five
+years for relevant references:
+
+Applied Statistics (Appl. Statist.), Association for Computing Machinery Transactions on Mathematical Software (ACM Trans. Math. Software), BIT, Collected
+Algorithms from the Association for Computing Machinery (CALGO), Communications of the Association for Computing Machinery (Comm. ACM), Computer
+Physics Communications (Comput. Phys. Comm.), Computing, Journal of Computational and Applied Mathematics (J. Comput. Appl. Math.), Journal of Computational Physics (J. Comput. Phys.), Mathematical Reviews (Math. Rev.), Mathematics of Computation (Math. Comp.), Numerische Mathematik (Numer. Math.),
+U.S.S.R. Computational Mathematics and Mathematical Physics (U.S.S.R. Comput. Math. and Math. Phys.)6, Zeitschrift f"ur Angewandte Mathematik und Physik
+(Z. Angew. Math. Phys.), Zentralblatt f"ur Mathematik und ihre Grenzgebiete (Zbl.).
+
+However, because of the sheer volume and diversity of publications on special
+functions it is almost inevitable that we have overlooked some useful algorithms
+and important articles. In this event we tender, in advance, our apologies to the
+authors.
+
+2. Mathematical Developments
+Comprehensive compendia of mathematical properties of the special functions
+are provided by the National Bureau of Standards' Handbook of Mathematical
+Functions [AS64], published originally in 1964, and the 3-volume set that resulted
+from the Bateman Manuscript Project [EMOT53a,EMOT53b,EMOT55], published in 1953 and 1955. These references employ the same notation for the special
+functions, and we shall follow them. The NBS Handbook has been reprinted many
+times by the U. S. Government Printing Office and has also been issued in whole, or
+in part, by other publishers including Dover Publications, Moscow Nauka, Verlag
+Harri Deutsch and Wiley-Interscience.
+
+The forerunner of [AS64] is the book of Jahnke and Emde [JE45], published
+originally in 1909, and still in print7. It continues to be useful, especially for its collection of graphs. Other useful compendia include those of Magnus, Oberhettinger
+and Soni [MOS66], and (from the standpoint of hypergeometric functions) Luke
+
+5To get started with the online GAMS system, telnet gams.nist.gov and login as gams or
+xgams. No password is required. Information on commercial and noncommercial software is
+provided, and electronic retrieval of noncommercial software is possible.
+
+6In 1991 this journal was retitled Computational Mathematics and Mathematical Physics.
+
+7A more recent edition, with F. L"osch added as author [JEL60], is no longer in print.
+
+6
+[Luk69a]. For an introductory compendium, see the recent "atlas" of Spanier and
+Oldham [SO87].
+
+Books and articles that include descriptions or surveys of general methods for
+computing special functions include [Bre78b,DKK81,Gau75,HCL+68,Luk69b,Luk77b,PT84,PTVF92,Tem78,vdLT84].
+
+Other books and articles that provide indepth coverage of pertinent topics include:
+
+[Ask89, survey of compendia], [BG81a,BG81b, Pad'e approximations], [BH75,
+asymptotic approximations], [Bre91, continued fractions, Pad'e approximations],
+[BvI93, Pad'e approximations], [Cod70, polynomial and rational approximations],
+[Fik68, polynomial and rational approximations], [FP68, Chebyshev polynomials],
+[JT80, continued fractions], [Kar91, power series], [KG80, statistical computations], [Luk75, supplement to AS64--especially for functions of hypergeometric
+type], [Mor80, power series], [Olv74, asymptotic approximations], [Riv90, Chebyshev polynomials], [Tem77, integral representations], [Tem85, asymptotic approximations], [Wim84, recurrence relations], [Won89, asymptotic approximations].
+
+3. Packages, Libraries and Systems
+This section reviews a selection of mathematical software with respect to its
+support for the numerical evaluation of special functions8. In some cases only a
+descriptive overview is given while in others cross references by individual function
+are given in the subsequent sections x4 and x5. The cross-referenced packages,
+libraries and systems are marked with a --. We used the following criteria in
+assigning the -- marks:
+
+First, a marked item must be readily accessible. Often this means it is commercial software that is purchased or leased for a fee but we also include software
+that is distributed, sometimes over computer networks, by journals and research
+institutions.
+
+Second, a marked item must have a significant following in North America. (In
+most cases the unmarked software is used widely elsewhere.)
+
+Third, a marked item must be reasonably comprehensive in its coverage of special
+functions.
+
+3.1. Software Packages. In this paper software package will mean a set of subroutines, or just a single subroutine, that addresses a subfield of numerical mathematics. There are three important series of software packages that include special
+functions. These packages are research contributions written in a variety of programming languages.
+3.1.1. -- ACM Algorithms. These were published in the Communications of the
+ACM, Volumes 3-18 (1960-75) and since then in the ACM Transactions on Mathematical Software (TOMS). The transition between the two journals took place with
+Algorithm 493 in Volume 1, Number 2 of TOMS. Algol was required originally but
+Fortran and other languages were allowed after it became clear that this condition
+was too restrictive. A recent statement of the ACM Algorithms Policy appears in
+[Kro91]. The policy requires ACM Algorithms to be self-contained, adequately
+
+8General reviews of mathematical software appear regularly in the Computers and Mathematics column of the Notices of the American Mathematical Society. A useful guide to these reviews
+is given in [Dev93].
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 7
+documented through comments in the code, and reasonably portable from one machine to another. A test program with sample output is also required. The policy
+provides for addenda to previously published algorithms. All ACM Algorithms that
+appear in TOMS are refereed. The ACM Algorithms Policy has been in effect, with
+little change, since 1975.
+
+A compendium of all ACM Algorithms is maintained in the 4-volume publication
+[ACM], a useful feature of which is that all addenda to an algorithm are printed
+together with the algorithm. This makes it unnecessary to gather the information
+from different journal issues. A quarterly looseleaf service keeps [ACM] up-todate. The software itself is available on tape or diskette from the ACM Algorithms
+Distribution Service. Order forms are printed in each issue of TOMS. Alternatively,
+unofficial and possibly temporary electronic dissemination is being made available
+by Netlib9 [DG87].
+
+For indexing purposes, each ACM Algorithm is assigned a symbol from a modification of the SHARE classification system; cf. [ACM] or [ACM64]. Cumulative
+indexes by SHARE classification for 1960-1980, 1981-1986 and 1987-1988 appear
+in [ACM]. Algorithm 620 [Ham85,HM90b,RH84] provides a data base and Fortran program for preparing a cumulative index by SHARE classification. This
+data base is updated periodically by the ACM Algorithms Distribution Service and
+Netlib.
+3.1.2. -- AS Algorithms. A section for statistical subroutines in Applied Statistics
+was established in 1968 to "encourage the development of a published literature
+on statistical computing" as the specialized needs of statistical computing were
+"only partly met" by the algorithm sections of other journals [AS68]. The current
+version of detailed instructions and other information for authors of AS Algorithms,
+first published in 1968, can be found in [RWGH87]. All submissions adhere to
+a standard format and are refereed. A test program is required for the referee's
+use. Addenda to previously published algorithms are accepted and are subjected
+to the same refereeing process as original algorithms. An index appears at the end
+of every volume. A cumulative index of the first 251 AS Algorithms (1968-1989,
+with addenda) appears in [HM90a], organized according to the GAMS scheme
+[BHK91]. Corrected and improved versions of selected AS Algorithms appear in
+[GH85]. Instructions for obtaining AS Algorithms on computer diskette can be
+found in issues of Applied Statistics starting in 1993.
+3.1.3. -- CPC Programs. The journal Computer Physics Communications was
+begun in 1969 to "facilitate the exchange of physics programs and of relevant information about the use of computers in the physics community". It publishes
+descriptions of CPC Programs and, in addition, general papers on the computational aspects of physics and physical chemistry. Programs and their descriptions
+are refereed.
+
+Program descriptions consist of a Program Summary (a concise description in
+a standard format with keywords) and a Long Write-Up (a detailed description
+of the underlying physics and algorithms). A test program is required for each
+CPC Program, and each CPC Program is required to be well documented and as
+portable and self-contained as possible. An index of CPC Programs is printed at
+the end of every volume. Two cumulative indexes without Program Summaries
+
+9To get started with Netlib, send the message "help" to netlib@ornl.gov.
+
+8
+[CPC87,CPC90] and one with Program Summaries [CPC84] exist. A more attractive alternative is the up-to-date electronic index10 (with Program Summaries).
+All these indexes are organized according to a physics-oriented classification scheme.
+
+CPC Programs can be ordered individually or by subscription service. Ordering
+instructions and an order form are printed in the back of every issue of Computer
+Physics Communications.
+
+3.2. Intermediate Libraries. Under this heading we place software that is in
+some sense intermediate between software packages, which embody original research
+contributions, and comprehensive libraries (x3.3 below). The libraries we consider here provide support only for mathematical functions. Furthermore, they are
+largely restricted to codification of existing algorithms with all their advantages--
+and limitations.
+3.2.1. -- C Mathematical Function Handbook. This volume with diskette [Bak92]
+is keyed to the NBS Handbook of Mathematical Functions [AS64]. Most chapters
+of the NBS Handbook have a counterpart here in which brief introductory material
+is followed by C code listings. A complex arithmetic package is included since C
+supports only real and integer arithmetic. [Bak92] advocates the use of C because
+it "is rapidly becoming the lingua franca of the computer world" and "algorithms
+written in C should be very portable". He has written two other books on C
+programming for technical applications.
+3.2.2. -- Mathematical Function Library for Microsoft Fortran or C. These volumes [ULI90] exist to "provide users with a comprehensive set of mathematical
+function routines to assist them in solving their mathematical problems on IBM
+PC/XT/AT or compatibles". Each consists of a looseleaf manual with diskettes.
+The documentation for each function gives usage instructions, input range, accuracy, definition of the function, algorithm, sample program and sample results. The
+functions are evaluated only for real arguments. The diskettes contain a compiled
+library in microprocessor assembly code for use with Microsoft compilers and the
+Fortran or C source code for use with other compilers.
+3.2.3. -- Methods and Programs for Mathematical Functions.
+
+This volume with separate diskette of C programs [Mos89] presents a selection of special functions with real arguments and integer or real parameters. The
+programs are designed for double precision, and tables of test results included for
+every function typically show absolute or relative errors (whichever is appropriate)
+of the order of 10
+
+\Gamma 16. Where polynomial or rational approximations are used, the
+
+expansion coefficients were generated in multiple precision using C programs that
+are given in the book.
+
+3.3. Comprehensive Libraries. When new algorithms are developed they tend
+to appear first as subroutines in software packages (x3.1 above). Later they may
+be assimilated into more complete software products such as intermediate libraries
+(x3.2 above). Even more useful are comprehensive libraries that integrate evaluation
+of special functions with other essential elements of numerical computing and offer
+additional advantages such as uniform documentation, style of usage, and handling
+
+10To get started with the electronic index, send the message "get cpc intro cpcindex" to
+listral@earn-relay.ac.uk, or see the instructions printed in every issue of Computer Physics
+Communications.
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 9
+of error conditions. Corrections and improvements, particularly in orienting the
+programming toward particular computer architectures, are often made.
+3.3.1. CERN Library. The European Laboratory for Particle Physics maintains a comprehensive software library [CER93], mostly in Fortran but with a few
+routines in assembly language, in support of high-energy physics research. The
+coverage of special functions includes the error function of real and complex argument; the Dawson and Fresnel integrals; exponential, sine, cosine and arctangent
+integrals; the gamma and digamma functions of real and complex argument; incomplete gamma function; real dilogarithm and complex generalized polylogarithms;
+Bessel functions of real argument and orders 0, \Sigma  14, \Sigma  13, \Sigma  12, \Sigma  23, \Sigma  34 and 1; Bessel
+functions of real order and real or complex argument; Bessel functions of complex
+order and argument; zeros of the Bessel functions J and Y and of their derivatives;
+Coulomb wave functions of complex order, argument and parameter; complete and
+incomplete elliptic integrals; Jacobi's elliptic functions (real and complex); Jacobi's
+theta functions (real); Bose-Einstein and Fermi-Dirac integrals ; Legendre and associated Legendre functions; conical functions of the first kind; Struve functions.
+The library is distributed, with some restrictions, to organizations outside CERN.
+3.3.2. -- IMSL Library. International Mathematical and Statistical Libraries
+was incorporated in 1970 "with the intent of providing high-quality, supported
+Fortran subroutine libraries in mathematics and statistics" [Air84]. In its first ten
+years it produced libraries tailored to twelve different computer lines, providing an
+alternative to manufacturer-supplied libraries. Currently the company offers a wide
+range of products for large-scale scientific computing. At the center of its product
+line is the IMSL numerical subroutine library for mathematics and statistics, which
+includes an extensive coverage of real and complex special functions [IMS91]; this
+reference includes a GAMS index [BHK91] and a KWIC (keyword in context)
+index. The library is optimized, vectorized and parallelized where appropriate,
+depending on the target computer architecture, but it contains no vector or parallel
+support for special functions.
+
+A subset of the IMSL library is offered also as a C library. This is an essential
+component of a powerful interactive system (x3.4 below) which has the capability of
+providing graphical and numerical computing with very large data sets. Optionally,
+Maple (x3.4.3 below) can be incorporated to provide for symbolic computing.
+3.3.3. -- NAG Library. An overview of the development, structure and contents
+of the NAG Fortran library [NAG91] is given in [FP84]. After originating as a
+cooperative project among several British computing centers in 1970 with the purpose of providing "a balanced, general-purpose numerical algorithms library," the
+Numerical Algorithms Group formed a not-for-profit company in 1976 to provide
+for the wider distribution of the library. The library is organized around the ACM
+modification of the SHARE classification system (see x3.1.1 above) and is available
+for a wide cross-section of computing systems. A KWIC (keyword in context) index and an index in the GAMS classification scheme [BHK91] are provided in the
+library documentation.
+
+Subsets of the full library are available in Ada, Algol 68, C, Fortran 90 and
+Pascal. NAG is actively developing and marketing an interactive system (x3.4
+below) that integrates most of the numerical power of the full NAG library with
+online symbolic and graphical capabilities.
+3.3.4. NSWC Library. In 1976 the Naval Surface Warfare Center, Dahlgren,
+
+10
+Virginia, began development of "a [Fortran] library of general purpose subroutines
+that would provide a basic computational ability in a variety of mathematical activities" [Mor93]. The design goals stressed reliability, transportability, efficiency,
+ease of use, and generality. In 1993 the library contained 576 user-level subroutines,
+including ones in real arithmetic for the error function and its inverse; Dawson's
+integral and Fresnel integrals; exponential, sine and cosine integrals; gamma, psi
+and polygamma functions; dilogarithm; incomplete gamma function and its inverse;
+incomplete beta function; complete and incomplete elliptic integrals; Jacobi's and
+Weierstrass' elliptic functions; Bessel functions of real argument and order. It also
+contained Airy functions and complete elliptic integrals of complex argument, and
+Bessel functions of complex argument and integer or complex order.
+3.3.5. NUMAL Library. In 1973 the Mathematisch Centrum, Amsterdam, introduced this library of numerical procedures in Algol-60 with " the aim : : : to
+provide Algol-60 programmers with a high-level numerical library which contains
+a set of validated numerical procedures together with supporting documentation"
+[Hem81]. In 1979 it contained approximately 430 subroutines, including ones for
+the exponential, sine and cosine integrals; gamma function; incomplete gamma and
+beta functions; error and inverse error functions; Fresnel integrals; modified and
+unmodified Bessel functions of integer, half-integer or real order; Airy functions.
+All subroutines are for real variables.
+3.3.6. -- Numerical Recipes. This partly pedagogical series of books offers "for
+each topic considered, a certain amount of general discussion, a certain amount of
+analytical mathematics, a certain amount of discussion of algorithmics, and (most
+important) actual implementations of these ideas in the form of working computer
+routines" [PTVF92]. Besides being listed fully in the text, the computer routines
+are available for purchase on diskette or under a variety of licensing arrangements,
+one of which is tailored to the needs of classroom instructors. Example books
+with test programs and diskettes are available also. Standard fields of numerical
+computation are covered, with approximation of functions and evaluation of special
+functions included. The book is published in four versions with the software coded
+in Basic, C, Fortran or Pascal; another volume for Basic is [Spr91].
+3.3.7. NUMPAC Library. The Nagoya University Mathematical Package is used
+widely in Japan. It is a comprehensive Fortran library oriented toward Japanese
+computers, including vector supercomputers. Coverage includes Airy functions;
+error and inverse error functions; Dawson and Fresnel integrals; exponential, sine
+and cosine integrals; complex gamma function; digamma function; dilogarithm; Riemann's zeta function; Bessel functions of integer or real order and real or complex
+argument; zeros and integrals of Bessel functions; complete and incomplete elliptic
+integrals; Jacobi's elliptic functions; incomplete beta and gamma functions; Legendre polynomials and associated Legendre functions; classical orthogonal polynomials; Struve functions; Abramowitz, Debye and elliptic theta functions; solutions of
+the Blasius and Thomas-Fermi equations. Information can be obtained from Ichizo
+Ninomiya, Chubu University, Kasugai, Aichi, 487 Japan or Yasuyo Hatano, Chukyo
+University, Yagoto, Nagoya, 466 Japan.
+3.3.8. PORT Library. This library [FHS78b,Fox84] is mentioned here because
+it provides a framework [FHS78a] for constructing portable Fortran libraries that
+has proven its utility. The framework supplies computer arithmetic parameters
+via Fortran function calls. Algorithms are coded so as to be valid for a range of
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 11
+values of the arithmetic parameters; actual values are substituted at run time. The
+PORT framework is used, for example, in the SLATEC library (x3.3.10 below). It
+is particularly valuable in the special function routines because of their sensitivity
+to precision, underflow and overflow. The PORT framework is available as ACM
+Algorithm 528 (x3.1.1 above).
+3.3.9. -- Scientific Desk Library. C. Abaci offers the following products: (i) the
+Scientific Desk Library, a Fortran-based collection of numerical software; (ii) the
+Scientific Desk Analysis System, an interactive system (x3.4 below); (iii) software
+produced by others, including the ACM algorithms (x3.1.1 above). The library is
+available in object code for personal computers under a variety of Fortran compilers and in Fortran source code for other computers. The Analysis System, which
+is strongly oriented toward statistics, simplifies the programming burden and provides for simple graphical output. C. Abaci distributes the SPECFUN collection
+[Cod93b] of Fortran programs for special functions and the ELEFUNT, INTFUNT
+and CELEFUNT tests [Cod93a,CW80] for elementary functions. Inquire at C.
+Abaci, Inc., P. O. Box 2626, Raleigh, NC 27602.
+3.3.10. -- SLATEC Library. The acronym stands for Sandia, Los Alamos, Air
+Force Weapons Laboratory Technical Exchange Committee11, formed in 1974 to
+"foster the exchange of technical information among the three computing departments". In 1977 a subcommittee undertook the development of a complete, noncommercial Fortran library for numerical supercomputing [Buz84]. The primary
+motivation was that the suppliers of commercial libraries regarded the supercomputing market as too small. The library subcommittee admitted subsequently five
+additional U. S. Government agencies (the Lawrence Livermore, Oak Ridge and
+Sandia Livermore National Laboratories, the National Energy Supercomputer Center at Lawrence Livermore, and the National Institute of Standards and Technology). SLATEC Version 1.0 appeared in 1981. Version 4.0, the third major revision
+and expansion, was released in December 1992. The initial coverage of special functions coincided with FNLIB [Ful77], FUNPACK [Cod75,Cod84a] and AMOSLIB
+[AD79]. Subroutines from [ADW77a,ADW77b,Amo80a,Amo83a,Amo83b,Amo86,CN81,LS81,OS83]
+were added later. Available from Energy Science and Technology Center, P. O. Box
+1020, Oak Ridge, TN 37831 and from Netlib (x3.1.1 above).
+
+3.4. Interactive Systems. The software packages and libraries considered in the
+preceding three sections are used in conjunction with standard programming languages. These languages are not fully interactive. A program needs to be written,
+compiled and linked to libraries before it can be executed, and after the results are
+examined the cycle may need to be repeated to correct errors or change parameters.
+An interactive system provides a powerful set of commands which the user can enter
+at the keyboard. The response to each command is displayed immediately. The
+burden of programming and the compile-link-execute cycle is reduced. Programming in an interactive system serves a new purpose: to extend or customize the
+command set.
+
+A striking characteristic of interactive systems is their ability to integrate nonnumerical tasks with numerical computation. Graphical and symbolic computing
+work best in an interactive environment, and one or both are combined powerfully
+with numerical computing in commercially available interactive systems. The trend
+
+11The Air Force Weapons Laboratory has been renamed the Phillips Laboratory.
+
+12
+toward increased integration of these computational components is being recognized
+by recent developments of the IMSL, NAG and Scientific Desk libraries (xx3.3.2,
+3.3.3 and 3.3.9 above).
+
+A particular type of interactive system with a special capability for the numerical
+evaluation of special functions is the computer algebra system, developed to provide
+symbolic processing of mathematical formulas and intended, primarily, to assist
+in mathematical developments. These systems contain basic mathematical information that enables them to manipulate algebraic expressions, make substitutions,
+differentiate and integrate functions, solve algebraic, transcendental and differential
+equations, manipulate power series, and the like. Some knowledge of mathematical
+properties of special functions is built in, and more can be added by programming
+extensions to the command set. Numerical approximations are to be avoided, in
+keeping with the primary purpose of supporting exact mathematical developments,
+but floating-point computation is provided as a secondary capability. This often
+comes with a bonus when compared to the usual programming languages which
+simply use the hardware computer arithmetic: the precision can be set arbitrarily.
+
+The rationale for arbitrary precision is not entirely clear. It is clear that exact
+rational arithmetic is essential in computer algebra applications. Perhaps multipleprecision floating-point, being relatively easy to implement, is considered a worthwhile additional capability. Also, evaluation of symbolic expressions may require
+high precision because of numerical sensitivity. Whatever the reason, for occasional
+usage of arbitrary-precision floating-point, computer algebra systems are well worth
+considering.
+3.4.1. HiQ (Apple Macintosh, Sun). This system [Bim93] approaches the goal of
+reducing the need to write programs by making concentrated use of the graphical
+user interface (the image displays and controls associated with the computer screen).
+The system opens with a blank worksheet (in a window on the screen) and an array
+of icons. Each icon corresponds to a particular kind of task.
+
+For example, one icon is called the "expression evaluator". When activated by
+the mouse, this icon presents a window with three areas. An algebraic expression
+is entered into the input area in a conventional programming-language syntax (like
+Fortran). This expression can contain numbers, symbols representing numbers, and
+symbols representing built-in HiQ functions. The symbols representing numbers
+are assigned numerical values in the options area as constants or finite arithmetical
+sequences. Output icons are generated in the output area when the "run button"
+(another icon) is "pushed" by clicking the mouse. The output icons, when activated,
+display tables and graphs of the computed data.
+
+Other tasks that can be performed by similar sequences of manipulations with
+icons are numerical integration, optimization, data fitting, finding roots of polynomials and nonlinear functions of one variable, and solving nonlinear systems,
+integral equations, and initial-value and boundary-value problems in ordinary differential equations.
+
+Special functions included in HiQ are Airy functions; beta, gamma, log gamma,
+psi, incomplete beta, incomplete gamma, and complementary incomplete gamma
+functions; Kelvin functions; Bessel functions of integer and half-integer order;
+Struve and Weber parabolic cylinder functions; hypergeometric function and series; confluent hypergeometric function and series; Riemann zeta function. Although HiQ performs complex arithmetic, most if not all the special functions are
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 13
+evaluated for real arguments only.
+3.4.2. Macsyma. Macsyma [Sym92] is a computer algebra system that supports symbolic, graphical and numerical computing on personal computers, scientific workstations and mainframes. Its built-in capabilities can be extended by
+programming in either Lisp or an Algol-like procedural language.
+
+Macsyma avoids numerical approximations unless floating-point numbers are
+introduced, either explicitly or as the result of special commands. Floating-point
+numbers are represented internally in machine single precision, machine double
+precision, or software arbitrary precision. When arbitrary precision is being used
+there is a precision specifier. Operand precisions are adjusted, if necessary, to the
+specified operational precision by truncating or extending with zero digits before
+arithmetic operations are performed. The precision specifier can be changed at any
+time.
+
+Macsyma supports the numerical evaluation of elliptic, error, gamma, polygamma, polylogarithmic and zeta functions; Airy, Bessel and Legendre functions;
+complete elliptic integrals and the exponential integral; classical orthogonal polynomials. Only the gamma, polygamma and Riemann zeta functions are computable
+in arbitrary precision. Some of the other functions are restricted to single precision.
+Complex arguments are allowed for the error, gamma and Bessel functions.
+3.4.3. -- Maple. Maple V Release 2 [CGG+91] is a computer algebra system containing symbolic, numerical and graphical capabilities. It is available for a
+wide range of computers, from personal computers and Unix workstations to vector supercomputers. The normal mode of operation is interactive. A Pascal-like
+programming language, called the Maple language, is provided also. Much of the
+Maple system is programmed in this language. This part, called the Maple Library,
+can be viewed on the screen or printed, and serves as useful supplementary documentation or as a guide for the preparation of additional library modules. The
+core of Maple, written in the C programming language, is not normally accessible
+to users.
+
+Because of its emphasis on symbolic computing, Maple avoids any evaluation
+which would introduce an inexact result unless the user specifically requests it. Expressions are evaluated symbolically, with numbers rendered as rational fractions
+with arbitrarily long numerators and denominators or represented as symbols. The
+user can request floating-point evaluation to arbitrary precision. For mathematical
+functions, Maple detects certain special values and can make appropriate substitutions. Otherwise the functions are left as symbolic representations until the user
+explicitly requests their evaluation in floating-point format. These evaluations, if
+they can be done at all, are to the precision specified by the user.
+3.4.4. Mathcad (PC with Microsoft Windows). This system [Mat93a] is oriented
+toward the engineering professions but is useful also in educational, mathematical,
+scientific and statistical applications. Mathcad can be regarded as an editor and
+calculator that can be used to create complete documents. These documents can
+include graphics, ordinary text, and mathematical text resulting from input commands and their associated numerical or symbolic output. Commands are selected
+from an extensive array of icons (similar to HiQ, x3.4.1 above) or they can be activated by appropriate keystrokes. Numerical commands support real and complex
+computations with scalars, vectors and matrices; numerical differentiation and integration; solution of algebraic equations; constrained and unconstrained minimiza14
+tion; Fourier transforms; statistical operations. Symbolic commands are supported
+by a subset of Maple (x3.4.3 above). Coverage of special functions includes error,
+gamma and polylogarithmic functions; sine, cosine and Fresnel integrals; Bessel
+functions of integer order. Except for the gamma function, all arguments must be
+real.
+3.4.5. -- Mathematica. Mathematica [Wol91] is a computer algebra system
+for symbolic, graphical and numerical computing on personal computers, scientific
+workstations, and larger computers. A highly developed user interface, available
+on some of this hardware, integrates Mathematica output with ordinary text for
+the preparation of complete documents entirely within the Mathematica system.
+A programming language, based on pattern matching, is included and can be used
+for extending the capabilities of the system.
+
+As with other computer algebra systems, Mathematica uses floating-point numbers only when requested explicitly. If numbers are introduced with no more significant figures than the precision of the machine floating-point system, and if the
+machine underflow and overflow limits are not exceeded, then computations proceed in hardware floating-point arithmetic. On the other hand, numbers that are
+not machine-representable are stored in a software floating-point format. Each such
+number is tagged with its own precision, and computations are performed in software floating-point arithmetic. The precision of nonmachine numbers is arbitrary
+but the internal representation is set to the highest justifiable precision. This is
+determined by the number of significant figures in an input number and by the
+precision of the operands or arguments in arithmetic operations and function evaluations. If numbers in a hardware computation underflow or overflow, then the
+software arithmetic takes over automatically.
+3.4.6. Matlab. This system [Mat92] uses matrix notation to provide a built-in
+set of commands for standard algorithms of numerical computation. A graphics
+capability is included also. Additional commands can be coded in concise procedures using Matlab notation. Symbolic computing is supported through a recently
+introduced option using Maple (x3.4.3 above). Matlab runs on a broad range of
+computers from personal computers and scientific workstations to vector supercomputers. One of its strengths is that it treats complex arithmetic as the natural
+extension of real arithmetic: variables do not have a fixed real or complex type
+as in Fortran. Nevertheless, Matlab's coverage of complex functions is limited. It
+supports Bessel functions of real order and complex argument z but warns in the
+online help system that the functions "may produce inaccurate results" for large
+order and jzj. Built-in special functions for real arguments and parameters include
+error and inverse error functions; gamma function; incomplete gamma and beta
+functions; Bessel functions I, J, K and Y ; complete elliptic integrals; Jacobi's
+elliptic functions.
+
+4. Functions of One Variable
+In the references that follow an indication is made of the programming language
+where applicable. Also, special note is made of references that include surveys.
+Libraries and interactive systems are listed separately.
+
+In the subsections of x4 and x5, a library or interactive system is listed only if
+it employs an algorithm tailored to the restrictions of the subsection. For example,
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 15
+NAG is listed in x4.1.1 and x4.1.2 because it has separate capabilities for Airy
+functions of real and complex argument. Maple is listed only in x4.1.1 because it
+does not have Airy functions of complex argument. Mathematica is listed only in
+x4.1.2 because it does not use a restricted algorithm for real arguments. Because
+these distinctions are sometimes difficult to infer from software documentation and
+even, when available, from source code, they should be regarded only as a guide,
+both in x4 and x5.
+
+4.1. Airy Functions. This section includes Scorer's functions.
+4.1.1. Real Arguments.
+
+Algorithms: [Nem71], [RS81].
+Software Packages: [Pri75, Fortran].
+Intermediate Libraries: [Bak92], [Mos89], [ULI90].
+Comprehensive Libraries: IMSL, NAG, Numerical Recipes, Scientific Desk,
+SLATEC.
+
+Interactive Systems: Maple.
+4.1.2. Complex Arguments.
+
+Software Packages: [Amo86, Fortran], [CJR92, Fortran].
+Comprehensive Libraries: NAG, Scientific Desk, SLATEC.
+Interactive Systems: Mathematica.
+4.1.3. Articles. [CCF83], [Lee80], [LO93], [Moo81], [SAG79].
+
+4.2. Error Functions, Dawson's Integral, Fresnel Integrals. 4.2.1. Error Functions of Real Argument.
+
+Algorithms: [Cle62], [Cod69], [Luk69b], [Luk75], [Sch78], [SL81].
+Software Packages: [Ada69, Algol], [CMW63, Algol], [Cod90a, Fortran],
+[CT85, Fortran], [Hil73, Fortran], [SZ70, Fortran], [Tem94, Pascal].
+
+Intermediate Libraries: [Bak92], [Mos89], [ULI90].
+Comprehensive Libraries: IMSL, NAG, Numerical Recipes, Scientific Desk,
+SLATEC.
+4.2.2. Inverse Error Functions of Real Argument.
+
+Algorithms: [BEJ76].
+Software Packages: [Cun69, Fortran], [HD73, Algol].
+Intermediate Libraries: [Mos89], [ULI90].
+Comprehensive Libraries: IMSL, NAG, Scientific Desk.
+4.2.3. Integrals of the Error Function.
+
+Algorithms: [Woo67].
+Software Packages: [Gau77a, Fortran].
+Intermediate Libraries: [Bak92].
+4.2.4. Dawson's Integral of Real Argument.
+
+Algorithms: [CPT70], [Hum64].
+Software Packages: [Ryb89, Fortran].
+Intermediate Libraries: [Bak92], [Mos89], [ULI90].
+Comprehensive Libraries: IMSL, NAG, Numerical Recipes, Scientific Desk,
+SLATEC.
+4.2.5. Fresnel Integrals of Real Argument.
+
+Algorithms: [Cod68], [Hea85], [Luk69b], [Luk75].
+Software Packages: [Bul67, Algol], [LG64, Algol], [Sny93, Fortran].
+Intermediate Libraries: [Bak92], [Mos89], [ULI90].
+
+16
+
+Comprehensive Libraries: IMSL, NAG, Numerical Recipes.
+Interactive Systems: Maple.
+4.2.6. Complex Arguments.
+
+Algorithms: [Luk69b].
+Software Packages: [Gau69a, Algol], [Lyn93, Fortran], [PW90a, Fortran],
+[SZ81, Fortran].
+
+Intermediate Libraries: [Bak92].
+Comprehensive Libraries: IMSL, NAG.
+Interactive Systems: Maple, Mathematica.
+4.2.7. Articles. [BR71], [Cod90b, includes survey], [Col87a], [Fle68], [Gau70],
+[Gau77b], [Hen79], [HR72], [LW90], [LW91], [McC74], [Mor83], [MR71],
+[PW90b], [Str68], [vdLT84], [Wei94a, includes survey], [Wei94b].
+
+4.3. Exponential Integrals, Logarithmic Integral, Sine and Cosine Integrals. 4.3.1. Exponential Integrals of Real Argument.
+
+Algorithms: [Cle62], [CT69], [Luk69b], [Luk76].
+Software Packages: [Amo80a, Fortran], [CMW63, Algol], [Gau73, Algol],
+[Pac70, Fortran], [SZ76, Fortran].
+
+Intermediate Libraries: [Bak92], [ULI90].
+Comprehensive Libraries: IMSL, NAG, Numerical Recipes, Scientific Desk,
+SLATEC.
+4.3.2. Logarithmic Integral of Real Argument.
+
+Intermediate Libraries: [Bak92], [ULI90].
+Comprehensive Libraries: IMSL, Scientific Desk, SLATEC.
+4.3.3. Sine and Cosine Integrals and Hyperbolic Sine and Cosine Integrals of Real
+Argument.
+
+Algorithms: [Luk69b].
+Software Packages: [Bul67, Algol].
+Intermediate Libraries: [Bak92], [Mos89], [ULI90].
+Comprehensive Libraries: IMSL, NAG, Numerical Recipes, Scientific Desk.
+4.3.4. Complex Arguments.
+
+Algorithms: [Luk69b].
+Software Packages: [Amo90a, Fortran].
+Intermediate Libraries: [Bak92].
+Interactive Systems: Maple, Mathematica.
+4.3.5. Articles. [Amo80b], [Amo90b], [CT68], [TM68], [vdLT84].
+
+4.4. Gamma, Psi, and Polygamma Functions. 4.4.1. Gamma Function of Real
+
+Argument.
+
+Algorithms: [CH67], [Cle62], [Luk69b], [Luk75].
+Software Packages: [CMW63, Algol], [CT85, Fortran], [FS67, Algol], [Mac89,
+Fortran], [Tem94, Pascal].
+
+Intermediate Libraries: [Bak92], [Mos89], [ULI90].
+Comprehensive Libraries: IMSL, NAG, Numerical Recipes, Scientific Desk,
+SLATEC.
+4.4.2. Psi and Polygamma Functions of Real Argument.
+
+Algorithms: [CST73], [Luk69b], [Luk75].
+Software Packages: [Amo83b, Fortran], [Bow84, Fortran].
+Intermediate Libraries: [Bak92], [Mos89], [ULI90].
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 17
+Comprehensive Libraries: IMSL, NAG, Scientific Desk, SLATEC.
+4.4.3. Complex Arguments.
+
+Algorithms: [Luk69b].
+Software Packages: [BD80, Fortran], [Kol72a, Fortran], [Kuk72a, Fortran].
+Intermediate Libraries: [Bak92].
+Comprehensive Libraries: IMSL, Scientific Desk, SLATEC.
+Interactive Systems: Maple, Mathematica.
+4.4.4. Articles. [AB87b], [Cha80], [Cod91, includes survey], [FW80], [Kat78],
+[Kra90], [Kuk72b], [Luk70a], [McC81], [Ng75, includes survey], [vdLT84].
+
+4.5. Landau Density and Distribution Functions. 4.5.1. Real Variables.
+
+Software Packages: [KS84d, Fortran], [Sch74, Fortran].
+
+4.6. Polylogarithms. 4.6.1. Dilogarithms.
+
+Algorithms: [Luk75].
+Software Packages: [GZ75, Fortran].
+Intermediate Libraries: [Bak92], [Mos89].
+Comprehensive Libraries: IMSL, SLATEC.
+Interactive Systems: Maple.
+4.6.2. Higher Polylogarithms.
+
+Intermediate Libraries: [Bak92].
+Interactive Systems: Mathematica.
+4.6.3. Articles. [GT81], [JL72], [Mor79].
+
+4.7. Zeta Function. 4.7.1. Real Arguments.
+
+Algorithms: [CHT71], [Luk69b], [PB72].
+Software Packages: [Mar65, Algol].
+Intermediate Libraries: [Bak92], [Mos89].
+Interactive Systems: Maple.
+4.7.2. Complex Arguments.
+
+Software Packages: [BD80, Fortran], [YKK88, Fortran].
+Interactive Systems: Mathematica.
+4.7.3. Articles. [AB89], [EKK85], [Ker80, includes survey].
+
+5. Functions of Two or More Variables
+As in x4, an indication is made of the programming language where applicable
+and special note is made of references that include surveys. Libraries and interactive
+systems are listed separately, and similar remarks apply about the inclusiveness of
+the subsections.
+
+5.1. Bessel Functions. All of the following subsections apply to the ordinary
+Bessel functions (J and Y ) and the modified Bessel functions (I and K).
+5.1.1. Orders 0 and 1, Real Arguments.
+
+Interactive Systems: [Bla74], [Cle62], [Luk69b], [Luk75], [WBR82].
+Software Packages: [BS92, Fortran], [Hil81, Fortran].
+Intermediate Libraries: [Bak92], [Mos89].
+Comprehensive Libraries: IMSL, NAG, Numerical Recipes, Scientific Desk,
+SLATEC.
+
+18
+5.1.2. Integer or Half-Integer Orders, Real Arguments. This subsection includes
+spherical Bessel functions.
+
+Interactive Systems: [AM61], [MM90], [PB82].
+Software Packages: [AM78, Fortran], [Col80, Fortran], [Hil81, Fortran], [RF93,
+Fortran].
+
+Intermediate Libraries: [Bak92], [Mos89], [ULI90].
+Comprehensive Libraries: IMSL, Numerical Recipes.
+5.1.3. Real Orders, Real Arguments.
+
+Interactive Systems: [CP66], [Luk69b], [Luk71a], [Luk71b], [Luk72a], [Luk75].
+Software Packages: [ADW77a, Fortran], [Bar82b, Fortran], [Cam79, Fortran], [Cod83, Fortran], [Mat93b, Fortran], [Pie84b, Fortran], [Tem75, Algol],
+[Tem76, Algol].
+
+Intermediate Libraries: [Mos89], [ULI90].
+Comprehensive Libraries: IMSL, Numerical Recipes, Scientific Desk, SLATEC.
+Interactive Systems: Maple.
+5.1.4. Integer or Half-Integer Orders, Complex Arguments. This subsection includes Kelvin functions.
+
+Interactive Systems: [Bur63], [CM83].
+Software Packages: [BKN88a, Fortran], [BKN88b, Fortran],
+Intermediate Libraries: [Bak92], [ULI90].
+Comprehensive Libraries: IMSL, NAG.
+5.1.5. Real Orders, Complex Arguments.
+
+Interactive Systems: [Luk69b], [Luk75].
+Software Packages: [Amo86, Fortran], [Cam81, Fortran], [TB87, Fortran].
+IMSL,
+
+Comprehensive Libraries: NAG, Scientific Desk, SLATEC.
+5.1.6. Complex Orders, Complex Arguments.
+
+Software Packages: [TB85, Fortran].
+Interactive Systems: Mathematica.
+5.1.7. Integrals of Bessel Functions.
+
+Interactive Systems: [BEJ78], [GP64].
+Software Packages: [Amo83a, Fortran], [And82a, Fortran], [Cha83, Fortran],
+[Feu91, Fortran], [PB84, Fortran], [Pie82, Fortran], [SZ79, Fortran], [Tal83,
+Fortran].
+
+Intermediate Libraries: [Bak92].
+Comprehensive Libraries: SLATEC.
+5.1.8. Zeros of Bessel Functions.
+
+Interactive Systems: [Pie84a].
+Software Packages: [Cam84, Fortran], [Pie90, Fortran], [Tem79, Algol].
+Intermediate Libraries: [Bak92].
+5.1.9. Articles--Functions. [Ach86], [ADW77b], [Amo74], [Bar81a], [BGV93],
+[Cam80], [CF87], [CMF77], [Cod80, includes survey], [Col87b], [CS89, includes survey], [Gau91b], [GB87], [GS78], [Hit68], [KS84b], [Luk72b], [Luk77b],
+[Nes84], [OS72], [Rem73], [TB86], [VGK+91], [Wal84], [WC90], [YN74],
+[Yos92].
+5.1.10. Articles--Integrals. [Amo83c], [And82b], [BFST86], [BGV93], [Can81],
+[Chr90], [Cof91], [Cor72], [DK90], [Gab79], [Gab80], [GM81], [Han85], [Joh75],
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 19
+[Lew91], [Lin72], [LK73], [LPM81], [Lun85], [MDS92], [Moo83], [OFM78],
+[PB82], [PB83], [PB85, includes survey], [Puo88], [SBK92], [Sie77].
+5.1.11. Articles--Zeros. [CH70a], [IKF91], [KS84a], [KS84c], [KS85a], [KS85b],
+[KS85c], [KS87], [MF86], [Sko85].
+
+5.2. Coulomb Wave Functions. 5.2.1. Real Arguments and Parameters.
+
+Algorithms: [CH70b], [She74].
+Software Packages: [Bar76, Fortran], [Bar81b, Fortran], [Bar82b, Fortran],
+[BDG+72, Fortran], [BS80, Fortran], [NT84, Fortran], [Sea82, Fortran].
+
+Intermediate Libraries: [Bak92].
+5.2.2. Complex Arguments and Parameters.
+
+Software Packages: [TB85, Fortran], [TR69, Fortran].
+5.2.3. Articles. [AS92], [Bar81a], [Bar82a], [Bar82c], [Gau69b], [Kol72b,
+includes survey], [Nes84], [Pex70], [SG72], [TB86].
+
+5.3. Elliptic Integrals and Functions. An important recent change in the old
+subject of elliptic integrals is a renormalization of the definitions of the integrals.
+This is due to B. C. Carlson: references will be found in x5.3.5.
+5.3.1. Complete Elliptic Integrals.
+
+Algorithms: [Bel88], [Cod65a], [Cod65b], [Luk69b].
+Software Packages: [Bul65a, Algol], [Bul65b, Algol], [Bul69b, Algol], [MH73,
+Algol].
+
+Intermediate Libraries: [Bak92], [Mos89], [ULI90].
+Comprehensive Libraries: IMSL, Numerical Recipes.
+Interactive Systems: Mathematica.
+5.3.2. Incomplete Elliptic Integrals.
+
+Algorithms: [Luk69b].
+Software Packages: [Bul65a, Algol], [Bul69b, Algol], [Car87, Fortran], [Car88,
+Fortran], [CN81, Fortran], [PT90, Fortran].
+
+Intermediate Libraries: [Bak92], [Mos89], [ULI90].
+Comprehensive Libraries: IMSL, NAG, Numerical Recipes, Scientific Desk,
+SLATEC.
+
+Interactive Systems: Mathematica.
+5.3.3. Jacobi's Elliptic Functions. This subsection includes the theta functions.
+
+Software Packages: [Bul65a, Algol].
+Intermediate Libraries: [Bak92], [Mos89], [ULI90].
+Comprehensive Libraries: IMSL, NAG, Numerical Recipes.
+Interactive Systems: Mathematica (includes inverse functions).
+5.3.4. Weierstrass' Elliptic Functions.
+
+Algorithms: [Eck76], [Eck77].
+Software Packages: [Eck80, Fortran].
+Intermediate Libraries: [Bak92], [ULI90].
+Comprehensive Libraries: IMSL.
+Interactive Systems: Mathematica.
+5.3.5. Articles. [ACJP85, includes survey], [Bul69a], [Car65], [Car77a],
+[Car77b], [Car79], [Car87], [Car88], [Car89], [Car91], [Car92], [CGL90],
+[Cri89], [FGG82], [FL67], [Lee90], [Lee92], [Luk68], [Luk70b], [LY88], [Mid75],
+[NC66], [Sal89], [War60].
+
+20
+5.4. Fermi-Dirac, Bose-Einstein, and Debye Integrals. This section includes
+the Lerch transcendent.
+5.4.1. Real Parameter and Argument.
+
+Algorithms: [CT67], [NDT69].
+Software Packages: [BDM81, Fortran], [FR86, Fortran].
+Intermediate Libraries: [Bak92].
+5.4.2. Complex Argument and/or Parameters.
+
+Interactive Systems: Mathematica.
+5.4.3. Articles. [Bui91], [Gau93a], [Gau93b], [LS91], [NM93], [Pas88],
+[Pas91], [Pic89], [Sag91a], [Sag91b].
+
+5.5. Hypergeometric and Confluent Hypergeometric Functions. 5.5.1. Hypergeometric Functions.
+
+Intermediate Libraries: [Bak92], [Mos89], [ULI90].
+Comprehensive Libraries: Numerical Recipes.
+Interactive Systems: Mathematica.
+5.5.2. Confluent Hypergeometric Functions.
+
+Software Packages: [BS80, Fortran], [NPB92a, Fortran], [NT84, Fortran],
+[Tem83, Algol].
+
+Intermediate Libraries: [Bak92], [Mos89], [ULI90].
+Comprehensive Libraries: SLATEC.
+Interactive Systems: Mathematica.
+5.5.3. Other Hypergeometric Functions.
+
+Algorithms: [PBN93].
+Software Packages: [CM84, Pascal].
+Intermediate Libraries: [Bak92], [Mos89].
+Interactive Systems: Maple, Mathematica.
+5.5.4. Articles. [BMOF92], [CG89], [Luk75], [Luk77a], [Nem74], [NPB92b],
+[Wim74].
+
+5.6. Incomplete Bessel Functions, Incomplete Beta Function. This section
+includes F-, t- and von Mises' distribution functions.
+5.6.1. Incomplete Bessel Functions.
+
+Software Packages: [Hil77, Fortran].
+5.6.2. Incomplete Beta Function.
+
+Software Packages: [DM92, Fortran], [Dor68, Algol], [Gau64, Algol], [Hil70a,
+Algol], [Lev69, Fortran], [MB73a, Fortran], [Mor69, Algol], [Phi90, Basic].
+
+Intermediate Libraries: [Bak92], [Mos89], [ULI90].
+Comprehensive Libraries: IMSL, NAG, Numerical Recipes, Scientific Desk,
+SLATEC.
+
+Interactive Systems: Mathematica.
+5.6.3. Inverse Incomplete Beta Function.
+
+Algorithms: [MB73b].
+Software Packages: [AS93a, Fortran], [Hil70b, Algol].
+Intermediate Libraries: [Mos89], [ULI90].
+Comprehensive Libraries: IMSL, NAG, Scientific Desk.
+Interactive Systems: Maple, Mathematica.
+5.6.4. Articles. [AS93b], [DJ67], [OM68], [Tem92b].
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 21
+5.7. Incomplete Gamma Functions, Generalized Exponential Integrals.
+These functions are essentially equivalent; thus Ep(z) = zp
+
+\Gamma 1\Gamma (1 \Gamma  p; z). This
+
+section includes the chi-square distribution function.
+5.7.1. Real z and Integer or Half-Integer p.
+
+Software Packages: [Amo80a, Fortran], [SP75, Fortran], [SZ74, Fortran].
+Intermediate Libraries: [Mos89], [ULI90].
+Comprehensive Libraries: SLATEC.
+Interactive Systems: Maple.
+5.7.2. Real z and Real p.
+
+Software Packages: [CLM90a, Fortran], [CLM90b, Fortran], [DM87, Fortran], [Ful72, Fortran], [Gau79a, Fortran], [Moo82, Fortran], [She88, Fortran],
+[Tem94, Pascal].
+
+Intermediate Libraries: [Bak92], [Mos89], [ULI90].
+Comprehensive Libraries: IMSL, NAG, Numerical Recipes, Scientific Desk,
+SLATEC.
+5.7.3. Complex z and Real or Complex p.
+
+Interactive Systems: Maple, Mathematica.
+5.7.4. Inverse Function.
+
+Software Packages: [DM87, Fortran], [Phi88, Fortran].
+Intermediate Libraries: [Mos89], [ULI90].
+Comprehensive Libraries: IMSL, NAG, Scientific Desk.
+Interactive Systems: Maple, Mathematica.
+5.7.5. Articles. [AB87a], [Amo80b], [Bar61], [CLM87], [CLM88], [CLM90c],
+[DM86], [Gau79b], [JT85], [LDP93], [Luk75], [Mar82], [Tem85], [Tem87],
+[Tem92a].
+
+5.8. Legendre Functions and Associated Legendre Functions. This section
+includes the conical and toroidal functions. See also hypergeometric functions (x5.5)
+and orthogonal polynomials (x5.10).
+5.8.1. Real Argument and Parameters.
+
+Software Packages: [Bra73, Fortran], [Del79, Fortran], [Gau65, Algol], [LS81,
+Fortran], [OS83, Fortran].
+
+Intermediate Libraries: [Bak92].
+Comprehensive Libraries: Numerical Recipes, SLATEC.
+5.8.2. Complex Argument and/or Parameters.
+
+Algorithms: [Kol81, conical with real argument].
+Intermediate Libraries: [Bak92].
+Interactive Systems: Mathematica.
+5.8.3. Articles. [CM78], [CM79], [EWB84], [Fet70], [SOL81].
+
+5.9. Mathieu, Lam'e, and Spheroidal Wave Functions. 5.9.1. Characteristic
+
+Values of Mathieu's Equation.
+
+Software Packages: [Cle69, Fortran], [Del73, Algol], [Lee79, Fortran], [RL80,
+Fortran], [Shi93a, Fortran].
+
+Intermediate Libraries: [Bak92].
+Comprehensive Libraries: IMSL.
+5.9.2. Mathieu Functions.
+
+Software Packages: [Cle69, Fortran], [Del73, Algol], [RL80, Fortran], [Shi93a,
+Fortran].
+
+22
+
+Intermediate Libraries: [Bak92].
+Comprehensive Libraries: IMSL.
+5.9.3. Spheroidal Wave Functions.
+
+Software Packages: [BC83a, Fortran], [BC83b, Fortran], [KBH70, Fortran],
+[KvB70, Fortran], [vBBH70, Fortran].
+
+Intermediate Libraries: [Bak92].
+5.9.4. Articles. [ADK+84], [ADKL89], [ADKL91], [ATZ83], [Bla46], [Cal88],
+[Can71], [Egl84], [EP69], [Hod70], [Pal69], [Shi93b], [SM75], [TP83], [vBBHK72].
+
+5.10. Orthogonal Polynomials. See also hypergeometric functions (x5.5), Legendre functions (x5.8), and Weber parabolic cylinder functions (x5.13).
+5.10.1. Classical Polynomials (Chebyshev, Hermite, Jacobi, Laguerre, Legendre
+etc.), Real Arguments.
+
+Software Packages: [LPT80, Fortran], [Sim64, Algol], [Wit68, Fortran].
+Intermediate Libraries: [Bak92], [ULI90].
+5.10.2. Classical Polynomials, Complex Arguments.
+
+Interactive Systems: Maple, Mathematica.
+5.10.3. Other Orthogonal Polynomials.
+
+Interactive Systems: [EK92].
+Software Packages: [Bis91, Maple], [Coo68, Fortran], [Gau94, Fortran], [Opi87,
+Fortran].
+5.10.4. Articles. [BEGG91], [BR91], [Chi92], [FG91], [FG92], [Gau82],
+[Gau85], [Gau90], [Gau91a], [Luk75], [PA92].
+
+5.11. Polylogarithms (Generalized). 5.11.1. Real Variables.
+
+Software Packages: [KMR70, Algol].
+5.11.2. Articles. [Bar74].
+
+5.12. Struve and Anger-Weber Functions. 5.12.1. Struve Functions or Integrals
+
+of Struve Functions.
+
+Algorithms: [Luk69b], [Luk75], [Mac93], [New84].
+Intermediate Libraries: [Bak92], [Mos89], [ULI90].
+5.12.2. Integrals of Anger-Weber Functions.
+
+Intermediate Libraries: [Bak92].
+5.12.3. Articles. [Zan75].
+
+5.13. Weber Parabolic Cylinder Functions. See also confluent hypergeometric
+functions (x5.5).
+5.13.1. Real Arguments and Parameters.
+
+Software Packages: [Tau92, Fortran].
+Intermediate Libraries: [Bak92].
+5.13.2. Articles. [LR74], [MMV81], [RL76], [SGA81].
+
+5.14. Zeta Function (Generalized). 5.14.1. Real arguments.
+
+Algorithms: [AB89].
+Intermediate Libraries: [Bak92], [Mos89].
+Interactive Systems: Maple, Mathematica.
+5.14.2. Articles. [CHT71], [Moi88].
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 23
+
+6. Testing and Library Construction
+In this section we list articles and books that provide general observations on
+the testing of software and/or the construction of software libraries for the special
+functions. For information on individual libraries see x3.
+
+[Cod74], [Cod76], [Cod82], [Cod84b], [Cod85], [CS91], [Eva74, especially
+pp. 275-301 and 357-435], [Ful77], [Gaf88], [Kuk71], [LMS73a], [LMS73b],
+[Mos89], [PTVF92, example books], [Ric83], [Sch76], [SL73].
+
+7. Future Trends
+Great progress has been made in recent years in the construction of software for
+generating the special functions, yet enormous gaps remain for functions having
+variable parameters in addition to the argument. This is especially true when the
+variables are complex. In this concluding section we offer some general suggestions
+concerning future work in this area.
+
+First, because of the sheer magnitude of the effort required, there should be a
+perceived physical or other applied need before a decision is made to embark on the
+construction of extensive new software for functions of two or more variables. At
+present there are simply too many gaps to fill to be able to indulge in the luxury of
+arbitrary selection. Moreover, great care should be exercised in the choice of actual
+functions to be generated. For example, neither the Airy function Bi(z) nor the
+Bessel function of the second kind Y*(z) has a useful role when the argument z is
+not real; compare [Olv74, Chapters 7 and 11].
+
+Second, coverage of a chosen region should be dictated by uniform accuracy
+requirements (in an appropriate measure), not by the limitations of the methods
+that happen to be used. At the very least it is frustrating for users to discover that
+the precision yielded by a package varies widely, or worse still disappears altogether,
+in parts of the claimed regions of coverage.
+
+Third, the potential offered by the ongoing increase in power of computers should
+be exploited with a view to reducing the number and complexity of algorithms to be
+used. This includes, for example, the use of parallel or vector methods for summing
+series [Kar91] or solving differential or difference equations [LO93].
+
+Fourth--and here we are looking further into the future--the use of systems of
+computer arithmetic other than floating-point should be considered. The floatingpoint system has two disadvantages which become especially annoying and timeconsuming in the construction of special-function software. One is that the associated error measure, relative precision, is quite inappropriate in the neighborhoods
+of zeros. The other stems from failure due to overflow or underflow: here the usual
+remedy of rescaling can be difficult to apply, owing to the extremely varied asymptotic behavior of functions of several variables. A system of computer arithmetic
+that is capable of overcoming both problems in an elegant manner is the so-called
+level-index system [COT89].
+
+Lastly, any new algorithm or package should be documented fully. It should also
+be subjected to exhaustive testing procedures, and these, too, need to be documented. Indeed, the proposed testing procedures should be considered at an early
+stage in the planning of the main algorithms12. There are so many pitfalls in the
+
+12For example, it is better to avoid the use of Wronskian and Casoratian relations in the main
+computing package, if possible, in order to reserve these identities for consistency checks.
+
+24
+construction of algorithms for the special functions that the use of undocumented
+or insufficiently tested packages is a risky proposition13.
+
+Acknowledgments
+We are grateful to the following individuals for supplying references and making
+helpful comments: D. E. Amos, W. L. Anderson, A. R. Barnett, E. Battiste, C.
+Brezinski, B. C. Carlson, B. Gabutti, P. W. Gaffney, W. Gautschi, K. S. K"olbig, S.
+D. Leigh, L. C. Maximon, M. A. McClain, B. R. Miller, W. Parke, N. M. Temme,
+M. Vuorinen.
+
+A Note on the Reference Acronyms
+In the references that follow, the acronyms within the identifying square brackets follow the AMS BibTeX scheme. Initial letters pertain to the author(s) or
+editor(s). These are followed by two digits representing the year of publication; a
+letter may also be appended to distinguish between publications in the same year,
+e.g. [AB87a], [AB87b]. In the case of papers or books with more than four authors, initial letters from the names of the first three authors are used, followed by
+a + sign, e.g. [ADK+84]. It is also important to note that the references
+are listed according to the alphabetical order of the acronyms and not
+according to the alphabetical order of the authors' names.
+
+References
+[AB87a] G. Allasia and R. Besenghi, Numerical calculation of incomplete gamma functions
+
+by the trapezoidal rule, Numer. Math. 50 (1987), 419-428.
+[AB87b] G. Allasia and R. Besenghi, Numerical computation of Tricomi's psi function by the
+
+trapezoidal rule, Computing 39 (1987), 271-279.
+[AB89] G. Allasia and R. Besenghi, Numerical calculation of the Riemann zeta function and
+
+generalizations by means of the trapezoidal rule, Numerical and Applied Mathematics,
+Part 2 (Paris 1988) (C. Brezinski, ed.), IMACS Ann. Comput. Appl. Math., 1.2,
+Baltzer, Basel, 1989, pp. 467-472.
+[Ach86] J.-J. Achenbach, Numerik. Implementierung von Zylinderfunktionen, Friedr. Vieweg
+
+&Sohn, Braunschweig/Wiesbaden, 1986.
+[ACJP85] J. Arazy, T. Claesson, S. Janson, and J. Peetre, Means and their iterations, Proceedings of the Nineteenth Nordic Congress of Mathematicians, Reykjavik 1984, Icelandic
+Mathematical Society, Reykjavik, 1985, pp. 191-212.
+[ACM] Collected algorithms from ACM, Association for Computing Machinery, 1515 Broadway, New York, New York 10036, periodically updated looseleaf collection.
+[ACM64] Index by subject to algorithms, 1960-63, Comm. ACM 7 (1964), 146-148.
+
+[AD79] D. E. Amos and S. L. Daniel, AMOSLIB, A special function library, version 9/77,
+
+Report 77-1390, Sandia Laboratories, August 1979.
+[Ada69] A. G. Adams, Algorithm 39. Areas under the normal curve, Comput. J. 12 (1969),
+
+197-198.
+[ADK+84] A. A. Abramov, A. L. Dyshko, N. B. Konyukhova, T. V. Pak, and B. S. Pariiskii,
+
+Evaluation of prolate spheroidal function by solving the corresponding differential
+equations, U.S.S.R. Comput. Math. and Math. Phys. 24 (1984), no. 1, 1-11.
+[ADKL89] A. A. Abramov, A. L. Dyshko, N. B. Konyukhova, and T. V. Levitina, Evaluation
+
+of Lam'e angular wave functions by solving auxiliary differential equations, U.S.S.R.
+Comput. Math. and Math. Phys. 29 (1989), no. 3, 119-131.
+
+13For a striking example see [Olv91].
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 25
+[ADKL91] A. A. Abramov, A. L. Dyshko, N. B. Konyukhova, and T. V. Levitina, Computation
+
+of radial wave functions for spheroids and triaxial ellipsoids by the modified phase
+function method, Comput. Math. and Math. Phys. 31 (1991), no. 2, 25-42.
+[ADW77a] D. E. Amos, S. L. Daniel, and M. K. Weston, Algorithm 511. CDC 6600 subroutines
+
+IBESS and JBESS for Bessel functions I* (x) and J* (x), x * 0, * * 0, ACM Trans.
+Math. Software 3 (1977), 93-95, for erratum see same journal v. 4 (1978), p. 411.
+[ADW77b] D. E. Amos, S. L. Daniel, and M. K. Weston, CDC 6600 subroutines IBESS and
+
+JBESS for Bessel functions I*(x) and J*(x), x * 0, * * 0, ACM Trans. Math.
+Software 3 (1977), 76-92.
+[Air84] T. J. Aird, The IMSL library, Sources and Development of Mathematical Software
+
+(W. R. Cowell, ed.), Prentice-Hall, Inc., Englewood Cliffs, New Jersey, 1984, pp. 264-
+301.
+[AM61] A. M. Arthurs and R. McCarroll, Expansion of spherical Bessel functions in a series
+
+of Chebyshev polynomials, Math. Comp. 15 (1961), 159-162.
+[AM78] R. W. B. Ardill and K. J. M. Moriarty, Spherical Bessel functions jn and yn of
+
+integer order and real argument, Comput. Phys. Comm. 14 (1978), 261-265.
+[Amo74] D. E. Amos, Computation of modified Bessel functions and their ratios, Math. Comp.
+
+28 (1974), 239-251.
+[Amo80a] D. E. Amos, Algorithm 556. Exponential integrals, ACM Trans. Math. Software 6
+
+(1980), 420-428, for remark see same journal v. 9 (1983), p. 525.
+[Amo80b] D. E. Amos, Computation of exponential integrals, ACM Trans. Math. Software 6
+
+(1980), 365-377.
+[Amo83a] D. E. Amos, Algorithm 609. A portable Fortran subroutine for the Bickley functions
+
+K in(x), ACM Trans. Math. Software 9 (1983), 480-493.
+[Amo83b] D. E. Amos, Algorithm 610. A portable Fortran subroutine for derivatives of the psi
+
+function, ACM Trans. Math. Software 9 (1983), 494-502.
+[Amo83c] D. E. Amos, Uniform asymptotic expansions for exponential integrals En(x) and
+
+Bickley functions K in(x), ACM Trans. Math. Software 9 (1983), 467-479.
+[Amo86] D. E. Amos, Algorithm 644. A portable package for Bessel functions of a complex
+
+argument and nonnegative order, ACM Trans. Math. Software 12 (1986), 265-273,
+for remark see same journal v. 16 (1990), p. 404.
+[Amo90a] D. E. Amos, Algorithm 683. A portable Fortran subroutine for exponential integrals
+
+of a complex argument, ACM Trans. Math. Software 16 (1990), 178-182.
+[Amo90b] D. E. Amos, Computation of exponential integrals of a complex argument, ACM
+
+Trans. Math. Software 16 (1990), 169-177.
+[And82a] W. L. Anderson, Algorithm 588. Fast Hankel transforms using related and lagged
+
+convolutions, ACM Trans. Math. Software 8 (1982), 369-370.
+[And82b] W. L. Anderson, Fast Hankel transforms using related and lagged convolutions, ACM
+
+Trans. Math. Software 8 (1982), 344-368.
+[AS64] M. Abramowitz and I. A. Stegun (eds.), Handbook of mathematical functions with
+
+formulas, graphs and mathematical tables, National Bureau of Standards Applied
+Mathematics Series, vol. 55, U. S. Government Printing Office, Washington, D. C.,
+1964.
+[AS68] Statistical algorithms editorial note, Appl. Statist. 17 (1968), 79-82.
+[AS92] J. Abad and J. Sesma, Computation of Coulomb wave functions at low energies,
+
+Comput. Phys. Comm. 71 (1992), 110-124.
+[AS93a] R. W. Abernathy and R. P. Smith, Algorithm 724. Program to calculate F -percentiles,
+
+ACM Trans. Math. Software 19 (1993), 481-483.
+[AS93b] R. W. Abernathy and R. P. Smith, Applying series expansion to the inverse beta
+
+distribution to find percentiles of the F -distribution, ACM Trans. Math. Software 19
+(1993), 474-480.
+[Ask89] R. A. Askey, Handbooks of special functions, A Century of Mathematics in America,
+
+Part III, Hist. Math., vol. 3, American Mathematical Society, Providence, Rhode
+Island, 1989, pp. 369-391.
+[ATZ83] F. M. Arscott, P. J. Taylor, and R. V. M. Zahar, On the numerical construction of
+
+ellipsoidal wave functions, Math. Comp. 40 (1983), 367-380.
+[Bai93] D. H. Bailey, Algorithm 719. Multiprecision translation and execution of Fortran
+
+26
+
+programs, ACM Trans. Math. Software 19 (1993), 288-319.
+[Bak92] L. Baker, C mathematical function handbook, McGraw-Hill, Inc., New York, 1992,
+
+includes diskette.
+[Bar61] R. Barakat, Evaluation of the incomplete gamma function of imaginary argument by
+
+Chebyshev polynomials, Math. Comp. 15 (1961), 7-11.
+[Bar74] R. H. Barlow, Convergent continued fraction approximants to generalised polylogarithms, BIT 14 (1974), 112-116.
+[Bar76] A. R. Barnett, RCWFF--A modification of the real Coulomb wavefunction program
+
+RCWFN, Comput. Phys. Comm. 11 (1976), 141-142.
+[Bar81a] A. R. Barnett, An algorithm for regular and irregular Coulomb and Bessel functions
+
+of real order to machine accuracy, Comput. Phys. Comm. 21 (1981), 297-314.
+[Bar81b] A. R. Barnett, KLEIN: Coulomb functions for real * and positive energy to high
+
+accuracy, Comput. Phys. Comm. 24 (1981), 141-159.
+[Bar82a] A. R. Barnett, Continued-fraction evaluation of Coulomb functions F*(j; x), G*(j; x)
+
+and their derivatives, J. Comput. Phys. 46 (1982), 171-188.
+[Bar82b] A. R. Barnett, COULFG: Coulomb and Bessel functions and their derivatives, for
+
+real arguments, by Steed's method, Comput. Phys. Comm. 27 (1982), 147-166.
+[Bar82c] A. R. Barnett, High-precision evaluation of the regular and irregular Coulomb wavefunctions, J. Comput. Appl. Math. 8 (1982), 29-33.
+[BC83a] T. A. Beu and R. I. C^ampeanu, Prolate angular spheroidal wave functions, Comput.
+
+Phys. Comm. 30 (1983), 187-192.
+[BC83b] T. A. Beu and R. I. C^ampeanu, Prolate radial spheroidal wave functions, Comput.
+
+Phys. Comm. 30 (1983), 177-185.
+[BD80] A. Ba~nuelos and R. A. Depine, A program for computing the Riemann zeta function
+
+for complex argument, Comput. Phys. Comm. 20 (1980), 441-445.
+[BDG+72] C. Bardin, Y. Dandeu, L. Gauthier, J. Guillerman, T. Lena, and J.-M. Pernet,
+
+Coulomb functions in the entire (j; ae)-plane, Comput. Phys. Comm. 3 (1972), 73-87.
+[BDM81] A. Ba~nuelos, R. A. Depine, and R. C. Mancini, A program for computing the FermiDirac functions, Comput. Phys. Comm. 21 (1981), 315-322.
+[BEGG91] D. L. Boley, S. Elhay, G. H. Golub, and M. H. Gutknecht, Nonsymmetric Lanczos and
+
+finding orthogonal polynomials associated with indefinite weights, Numer. Algorithms
+1 (1991), 21-43.
+[BEJ76] J. M. Blair, C. A. Edwards, and J. H. Johnson, Rational Chebyshev approximations
+
+for the inverse of the error function, Math. Comp. 30 (1976), 827-830.
+[BEJ78] J. M. Blair, C. A. Edwards, and J. H. Johnson, Rational Chebyshev approximations
+
+for the Bickley functions K in(x), Math. Comp. 32 (1978), 876-886.
+[Bel88] V. N. Belykh, Calculation on a computer of the complete elliptic integrals K(x) and
+
+E(x), Boundary value problems for partial differential equations, Akad. Nauk SSSR
+Sibirsk. Otdel., Inst. Mat., Novosibirsk, 1988, pp. 3-15 and 137 (Russian).
+[BFST86] V. Bezvoda, R. Farzan, K. Segeth, and G. Tak'o, On numerical evaluation of integrals
+
+involving Bessel functions, Apl. Mat. 31 (1986), 396-410.
+[BG81a] G. A. Baker, Jr. and P. Graves-Morris, Pad'e approximants, part I, Encyclopedia
+
+of Mathematics and its Applications, vol. 13, Addison-Wesley Publishing Company,
+Reading, Massachusetts, 1981.
+[BG81b] G. A. Baker, Jr. and P. Graves-Morris, Pad'e approximants, part II, Encyclopedia
+
+of Mathematics and its Applications, vol. 14, Addison-Wesley Publishing Company,
+Reading, Massachusetts, 1981.
+[BGV93] K. Balla, O. S. Guk, and M. Vicsek, On the computation of Bessel functions of first
+
+kind, Computing 50 (1993), 77-85.
+[BH75] N. Bleistein and R. A. Handelsman, Asymptotic expansions of integrals, Holt, Rinehart and Winston, New York, 1975.
+[BHK91] R. F. Boisvert, S. E. Howe, and D. K. Kahaner, The guide to available mathematical
+
+software problem classification system, Comm. Statist. B--Simulation Comput. 20
+(1991), 811-842.
+[BHKS90] R. F. Boisvert, S. E. Howe, D. K. Kahaner, and J. L. Springmann, Guide to available
+
+mathematical software, Tech. Report NISTIR 90-4237, National Institute of Standards and Technology, Center for Computing and Applied Mathematics, GaithersNUMERICAL EVALUATION OF SPECIAL FUNCTIONS 27
+burg, Maryland 20899, 1990.
+[Bim93] HiQ reference manual, version 2.0, Bimillennium Corporation, 16795 Lark Avenue,
+
+Suite 200, Los Gatos, California 95030, 1993.
+[Bis91] A. K. Bisoi, A Maple program to generate orthonormal polynomials, Comput. Math.
+
+Appl. 22 (1991), no. 9, 1-5.
+[BKN88a] L. V. Babushkina, M. K. Kerimov, and A. I. Nikitin, Algorithms for computing Bessel
+
+functions of half-integer order with complex arguments, U.S.S.R. Comput. Math. and
+Math. Phys. 28 (1988), no. 5, 109-117.
+[BKN88b] L. V. Babushkina, M. K. Kerimov, and A. I. Nikitin, Algorithms for evaluating spherical Bessel functions in the complex domain, U.S.S.R. Comput. Math. and Math.
+Phys. 28 (1988), no. 6, 122-128.
+[Bla46] G. Blanch, On the computation of Mathieu functions, J. Math. and Phys. 25 (1946),
+
+1-20.
+[Bla74] J. M. Blair, Rational Chebyshev approximations for the modified Bessel functions
+
+I0(x) and I1(x), Math. Comp. 28 (1974), 581-583.
+[BMOF92] E. Badralexe, P. Marksteiner, Y. Oh, and A. J. Freeman, Computation of the Kummer functions and Whittaker functions by using Neumann type series expansions,
+Comput. Phys. Comm. 71 (1992), 47-55.
+[Bow84] K. O. Bowman, Computation of the polygamma functions, Comm. Statist. B--
+
+Simulation Comput. 13 (1984), 409-415.
+[BR71] R. D. Bardo and K. Ruedenberg, Numerical analysis and evaluation of normalized
+
+repeated integrals of the error function and related functions, J. Comput. Phys. 8
+(1971), 167-174.
+[BR91] C. Brezinski and M. Redivo Zaglia, A new presentation of orthogonal polynomials
+
+with applications to their computation, Numer. Algorithms 1 (1991), 207-221.
+[Bra73] W. J. Braithwaite, Associated Legendre polynomials, ordinary and modified spherical
+
+harmonics, Comput. Phys. Comm. 5 (1973), 390-394.
+[Bre76] R. P. Brent, Fast multiple-precision evaluation of elementary functions, J. Assoc.
+
+Comput. Mach. 23 (1976), 242-251.
+[Bre78a] R. P. Brent, Algorithm 524. MP, A Fortran multiple-precision arithmetic package,
+
+ACM Trans. Math. Software 4 (1978), 71-81, for remark see same journal v. 5 (1979),
+pp. 518-519.
+[Bre78b] R. P. Brent, A Fortran multiple-precision arithmetic package, ACM Trans. Math.
+
+Software 4 (1978), 57-70.
+[Bre91] C. Brezinski, History of continued fractions and Pad'e approximants, Springer Series
+
+in Computational Mathematics, vol. 12, Springer-Verlag, Berlin, 1991.
+[BS80] K. L. Bell and N. S. Scott, Coulomb functions (negative energies), Comput. Phys.
+
+Comm. 20 (1980), 447-458.
+[BS92] R. F. Boisvert and B. V. Saunders, Portable vectorized software for Bessel function
+
+evaluation, ACM Trans. Math. Software 18 (1992), 456-469, for corrigendum see
+same journal v. 19 (1993), p. 131.
+[Bui91] Bui Doan Khanh, A computation of the Fermi-Dirac integrals by asymptotics and
+
+the Hermite corrector formula, Appl. Math. Comput. 41 (1991), 61-68.
+[Bul65a] R. Bulirsch, Numerical calculation of elliptic integrals and elliptic functions, Numer.
+
+Math. 7 (1965), 78-90.
+[Bul65b] R. Bulirsch, Numerical calculation of elliptic integrals and elliptic functions. II, Numer. Math. 7 (1965), 353-354.
+[Bul67] R. Bulirsch, Numerical calculation of the sine, cosine and Fresnel integrals, Numer.
+
+Math. 9 (1967), 380-385.
+[Bul69a] R. Bulirsch, An extension of the Bartky-transformation to incomplete elliptic integrals
+
+of the third kind, Numer. Math. 13 (1969), 266-284.
+[Bul69b] R. Bulirsch, Numerical calculation of elliptic integrals and elliptic functions. III,
+
+Numer. Math. 13 (1969), 305-315.
+[Bur63] F. D. Burgoyne, Approximations to Kelvin functions, Math. Comp. 17 (1963), 295-
+
+298.
+[Buz84] B. L. Buzbee, The SLATEC common mathematical library, Sources and Development
+
+of Mathematical Software (W. R. Cowell, ed.), Prentice-Hall, Inc., Englewood Cliffs,
+
+28
+
+New Jersey, 1984, pp. 302-320.
+[BvI93] C. Brezinski and J. van Iseghem, Pad'e approximations, Handbook of Numerical Analysis (P. G. Ciarlet and J. L. Lions, eds.), vol. 3, North-Holland, Amsterdam, 1993, in
+press.
+[Cal88] J. Caldwell, Computation of eigenvalues of spheroidal harmonics using relaxation, J.
+
+Phys. A 21 (1988), 3685-3693.
+[Cam79] J. B. Campbell, Bessel functions J* (x) and Y* (x) of real order and real argument,
+
+Comput. Phys. Comm. 18 (1979), 133-142.
+[Cam80] J. B. Campbell, On Temme's algorithm for the modified Bessel function of the third
+
+kind, ACM Trans. Math. Software 6 (1980), 581-586.
+[Cam81] J. B. Campbell, Bessel functions I*(z) and K*(z) of real order and complex argument,
+
+Comput. Phys. Comm. 24 (1981), 97-105, for erratum see same journal v. 25 (1982),
+p. 207.
+[Cam84] J. B. Campbell, Determination of *-zeros of Hankel functions, Comput. Phys.
+
+Comm. 32 (1984), 333-339.
+[Can71] J. Canosa, Numerical solution of Mathieu's equation, J. Comput. Phys. 7 (1971),
+
+255-272.
+[Can81] S. M. Candel, An algorithm for the Fourier-Bessel transform, Comput. Phys. Comm.
+
+23 (1981), 343-353.
+[Car65] B. C. Carlson, On computing elliptic integrals and functions, J. Math. and Phys. 44
+
+(1965), 36-51.
+[Car77a] B. C. Carlson, Elliptic integrals of the first kind, SIAM J. Math. Anal. 8 (1977),
+
+231-242.
+[Car77b] B. C. Carlson, Special functions of applied mathematics, Academic Press, New York,
+
+1977.
+[Car79] B. C. Carlson, Computing elliptic integrals by duplication, Numer. Math. 33 (1979),
+
+1-16.
+[Car87] B. C. Carlson, A table of elliptic integrals of the second kind, Math. Comp. 49 (1987),
+
+595-606 and S13-S17.
+[Car88] B. C. Carlson, A table of elliptic integrals of the third kind, Math. Comp. 51 (1988),
+
+267-280 and S1-S5.
+[Car89] B. C. Carlson, A table of elliptic integrals: Cubic cases, Math. Comp. 53 (1989),
+
+327-333.
+[Car91] B. C. Carlson, A table of elliptic integrals: One quadratic factor, Math. Comp. 56
+
+(1991), 267-280.
+[Car92] B. C. Carlson, A table of elliptic integrals: Two quadratic factors, Math. Comp. 59
+
+(1992), 165-180.
+[CCF83] J. N. L. Connor, P. R. Curtis, and D. Farrelly, A differential equation method for the
+
+numerical evaluation of the Airy, Pearcey and swallowtail canonical integrals and
+their derivatives, Molecular Phys. 48 (1983), 1305-1330.
+[CER93] CERNLIB short writeups, CERN Program Library Office, CERN-CN Division, CH-
+
+1211 Geneva 23, Switzerland, 1993, electronic mail address is cernlib@cernvm.cern.ch.
+[CF87] Ll. Closas and J. Fern'andez Rubio, Calculo rapido de las funciones de Bessel modificadas Kis(X) e Iis(X) y sus derivadas, Stochastica 11 (1987), no. 1, 53-61.
+[CG89] G. Chiocchia and B. Gabutti, A new transformation for computing hypergeometric
+
+series and the exact evaluation of the transonic adiabatic flow over a smooth bump,
+Comput. & Fluids 17 (1989), no. 1, 13-23.
+[CGG+91] B. W. Char, K. O. Geddes, G. H. Gonnet, B. L. Leong, M. B. Monaghan, and S. M.
+
+Watt, Maple V library reference manual, Springer-Verlag, New York, 1991.
+[CGL90] R. Coquereaux, A. Grossmann, and B. E. Lautrup, Iterative method for calculation
+
+of the Weierstrass elliptic function, IMA J. Numer. Anal. 10 (1990), 119-128.
+[CH67] W. J. Cody and K. E. Hillstrom, Chebyshev approximations for the natural logarithm
+
+of the gamma function, Math. Comp. 21 (1967), 198-203.
+[CH70a] J. A. Cochran and J. N. Hoffspiegel, Numerical techniques for finding *-zeros of
+
+Hankel functions, Math. Comp. 24 (1970), 413-422.
+[CH70b] W. J. Cody and K. E. Hillstrom, Chebyshev approximations for the Coulomb phase
+
+shift, Math. Comp. 24 (1970), 671-677, for corrigendum, see same journal v. 26
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 29
+(1972), p. 1031.
+[Cha80] B. W. Char, On Stieltjes' continued fraction for the gamma function, Math. Comp.
+
+34 (1980), 547-551.
+[Cha83] A. D. Chave, Numerical integration of related Hankel transforms by quadrature and
+
+continued fraction expansion, Geophysics 48 (1983), 1671-1686.
+[Chi92] R. C. Y. Chin, A domain decomposition method for generating orthogonal polynomials
+
+for a Gaussian weight on a finite interval, J. Comput. Phys. 99 (1992), 321-336.
+[Chr90] N. B. Christensen, Optimized fast Hankel transform filters, Geophysical Prospecting
+
+38 (1990), 545-568, for comment and reply, see same journal v. 39 (1991), pp. 445-447
+and 449-450.
+[CHT71] W. J. Cody, K. E. Hillstrom, and H. C. Thacher, Jr., Chebyshev approximations for
+
+the Riemann zeta function, Math. Comp. 25 (1971), 537-547.
+[CJR92] R. M. Corless, D. J. Jeffrey, and H. Rasmussen, Numerical evaluation of Airy functions with complex arguments, J. Comput. Phys. 99 (1992), 106-114.
+[Cle62] C. W. Clenshaw, Chebyshev series for mathematical functions, National Physical
+
+Laboratory Mathematical Tables, vol. 5, Her Majesty's Stationery Office, London,
+1962.
+[Cle69] D. S. Clemm, Algorithm 352. Characteristic values and associated solutions of Mathieu's differential equation, Comm. ACM 12 (1969), 399-407, for remarks see same
+journal v. 13 (1970), p. 750 and v. 15 (1972), p. 1074.
+[CLM87] C. Chiccoli, S. Lorenzutta, and G. Maino, A numerical method for generalized exponential integrals, Comput. Math. Appl. 14 (1987), 261-268.
+[CLM88] C. Chiccoli, S. Lorenzutta, and G. Maino, On the evaluation of generalized exponential integrals E*(x), J. Comput. Phys. 78 (1988), 278-287.
+[CLM90a] C. Chiccoli, S. Lorenzutta, and G. Maino, An algorithm for exponential integrals of
+
+real order, Computing 45 (1990), 269-276.
+[CLM90b] C. Chiccoli, S. Lorenzutta, and G. Maino, Calculation of exponential integrals of real
+
+order, Internat. J. Comput. Math. 31 (1990), 125-135.
+[CLM90c] C. Chiccoli, S. Lorenzutta, and G. Maino, On a Tricomi series representation for the
+
+generalized exponential integral, Internat. J. Comput. Math. 31 (1990), 257-262.
+[CM78] J. N. L. Connor and D. C. Mackay, Accelerating the convergence of the zonal harmonic
+
+series representation in the Schumann resonance problem, J. Atmospheric Terrestrial
+Phys. 40 (1978), 977-980.
+[CM79] J. N. L. Connor and D. C. Mackay, Calculation of angular distributions in complex
+
+angular momentum theories of elastic scattering, Molecular Phys. 37 (1979), 1703-
+1712.
+[CM83] J. P. Coleman and A. J. Monaghan, Chebyshev expansions for the Bessel function
+
+Jn(x) in the complex plane, Math. Comp. 40 (1983), 343-366.
+[CM84] A. P. Clarke and W. Marwood, A compact mathematical function package, Austral.
+
+Comput. J. 16 (1984), 107-114.
+[CMF77] W. J. Cody, R. M. Motley, and L. W. Fullerton, The computation of real fractional
+
+order Bessel functions of the second kind, ACM Trans. Math. Software 3 (1977),
+232-239.
+[CMW63] C. W. Clenshaw, G. F. Miller, and M. Woodger, Algorithms for special functions I,
+
+Numer. Math. 4 (1963), 403-419.
+[CN81] B. C. Carlson and E. M. Notis, Algorithm 577. Algorithms for incomplete elliptic
+
+integrals, ACM Trans. Math. Software 7 (1981), 398-403.
+[Cod65a] W. J. Cody, Chebyshev approximations for the complete elliptic integrals K and E,
+
+Math. Comp. 19 (1965), 105-112, for corrigenda see same journal v. 20 (1966), p.
+207.
+[Cod65b] W. J. Cody, Chebyshev polynomial expansions of complete elliptic integrals, Math.
+
+Comp. 19 (1965), 249-259.
+[Cod68] W. J. Cody, Chebyshev approximations for the Fresnel integrals, Math. Comp. 22
+
+(1968), 450-453, with Microfiche Supplement.
+[Cod69] W. J. Cody, Rational Chebyshev approximations for the error function, Math. Comp.
+
+23 (1969), 631-637.
+[Cod70] W. J. Cody, A survey of practical rational and polynomial approximation of functions,
+
+30
+
+SIAM Rev. 12 (1970), 400-423.
+[Cod74] W. J. Cody, The construction of numerical subroutine libraries, SIAM Rev. 16 (1974),
+
+36-46.
+[Cod75] W. J. Cody, The FUNPACK package of special function routines, ACM Trans. Math.
+
+Software 1 (1975), 13-25.
+[Cod76] W. J. Cody, An overview of software development for special functions, Lecture Notes
+
+in Mathematics 506: Numerical Analysis Dundee, 1975 (G. A. Watson, ed.), SpringerVerlag, Berlin, 1976, pp. 38-48.
+[Cod80] W. J. Cody, Preliminary report on software for the modified Bessel functions of the
+
+first kind, Tech. Memorandum TM-357, Argonne National Laboratory, 9700 South
+Cass Avenue, Argonne, Illinois 60439-4801, 1980.
+[Cod82] W. J. Cody, Implementation and testing of function software, Lecture Notes in Computer Science No. 142. Problems and Methodologies in Mathematical Software Production (P. C. Messina and A. Murli, eds.), Springer-Verlag, Berlin, 1982, pp. 24-47.
+[Cod83] W. J. Cody, Algorithm 597. Sequence of modified Bessel functions of the first kind,
+
+ACM Trans. Math. Software 9 (1983), 242-245.
+[Cod84a] W. J. Cody, FUNPACK--A package of special function routines, Sources and Development of Mathematical Software (W. R. Cowell, ed.), Prentice-Hall, Inc., Englewood
+Cliffs, New Jersey, 1984, pp. 49-67.
+[Cod84b] W. J. Cody, Observations on the mathematical software effort, Sources and Development of Mathematical Software (W. R. Cowell, ed.), Prentice-Hall, Inc., Englewood
+Cliffs, New Jersey, 1984, pp. 1-19.
+[Cod85] W. J. Cody, Software for special functions, Rend. Sem. Mat. Univ. Politec. Torino
+
+Fascicolo Speciale. Special Functions: Theory and Computation (1985),
+91-116.
+[Cod90a] W. J. Cody, The normal integral, Tech. Report MCS-89-1090, Mathematics and
+
+Computer Science Division, Argonne National Laboratory, 9700 South Cass Avenue,
+Argonne, Illinois 60439-4801, 1990.
+[Cod90b] W. J. Cody, Performance evaluation of programs for the error and complementary
+
+error functions, ACM Trans. Math. Software 16 (1990), 29-37.
+[Cod91] W. J. Cody, Performance evaluation of programs related to the real gamma function,
+
+ACM Trans. Math. Software 17 (1991), 46-54.
+[Cod93a] W. J. Cody, Algorithm 714. CELEFUNT: A portable test package for complex elementary functions, ACM Trans. Math. Software 19 (1993), 1-21.
+[Cod93b] W. J. Cody, Algorithm 715. SPECFUN: A portable Fortran package of special function routines and test drivers, ACM Trans. Math. Software 19 (1993), 22-32.
+[Cof91] M. W. Coffey, Calculation of generalized Lommel integrals for modified Bessel functions, J. Phys. A 24 (1991), 23-33.
+[Col80] J. P. Coleman, A Fortran subroutine for the Bessel function Jn(x) of order 0 to 10,
+
+Comput. Phys. Comm. 21 (1980), 109-118.
+[Col87a] J. P. Coleman, Complex polynomial approximation by the Lanczos o/-method: Dawson's integral, J. Comput. Appl. Math. 20 (1987), 137-151.
+[Col87b] J. P. Coleman, Polynomial approximations in the complex plane, J. Comput. Appl.
+
+Math. 18 (1987), 193-211.
+[Coo68] B. E. Cooper, Algorithm AS 10. The use of orthogonal polynomials, Appl. Statist.
+
+17 (1968), 283-287.
+[Cor72] P. Cornille, Computation of Hankel transforms, SIAM Rev. 14 (1972), 278-285.
+[COT89] C. W. Clenshaw, F. W. J. Olver, and P. R. Turner, Level-index arithmetic: An
+
+introductory survey, Lecture Notes in Mathematics 1397: Numerical Analysis and
+Parallel Processing (Lancaster 1987) (P. R. Turner, ed.), Springer-Verlag, Berlin,
+1989, pp. 95-168.
+[CP66] C. W. Clenshaw and S. M. Picken, Chebyshev series for Bessel functions of fractional
+
+order, National Physical Laboratory Mathematical Tables, vol. 8, Her Majesty's Stationery Office, London, 1966.
+[CPC84] Master index volumes 1-30, July 1969--December 1983, Comput. Phys. Comm. 35
+
+(1984), B1-B75, C1-C928.
+[CPC87] Program master index volumes 1-40, July 1969--June 1986, Comput. Phys. Comm.
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 31
+(1987), 1-75.
+[CPC90] Master index volumes 41-50, July 1986--July 1988, Comput. Phys. Comm. (1990),
+
+17-30.
+[CPT70] W. J. Cody, K. A. Paciorek, and H. C. Thacher, Jr., Chebyshev approximations for
+
+Dawson's integral, Math. Comp. 24 (1970), 171-178.
+[Cri89] C. L. Critchfield, Computation of elliptic functions, J. Math. Phys. 30 (1989), 295-
+
+297.
+[CS89] W. J. Cody and L. Stoltz, Performance evaluation of programs for certain Bessel
+
+functions, ACM Trans. Math. Software 15 (1989), 41-48.
+[CS91] W. J. Cody and L. Stoltz, The use of Taylor series to test accuracy of function
+
+programs, ACM Trans. Math. Software 17 (1991), 55-63.
+[CST73] W. J. Cody, A. J. Strecok, and H. C. Thacher, Jr., Chebyshev approximations for the
+
+psi function, Math. Comp. 27 (1973), 123-127.
+[CT67] W. J. Cody and H. C. Thacher, Jr., Rational Chebyshev approximations for FermiDirac integrals of orders \Gamma 1=2, 1=2 and 3=2, Math. Comp. 21 (1967), 30-40.
+[CT68] W. J. Cody and H. C. Thacher, Jr., Rational Chebyshev approximations for the
+
+exponential integral E1(x), Math. Comp. 22 (1968), 641-649.
+[CT69] W. J. Cody and H. C. Thacher, Jr., Chebyshev approximations for the exponential
+
+integral E i(x), Math. Comp. 23 (1969), 289-303.
+[CT85] M. Carmignani and A. Tortorici Macaluso, Calcolo delle funzioni speciali \Gamma (x),
+
+log \Gamma (x), fi(x; y), e rf(x), e rfc(x) alle alte precisioni, Atti Accad. Sci. Lett. Arti
+Palermo (5) 2 (1981-82) (1985), no. 1, 7-25.
+[Cun69] S. W. Cunningham, Algorithm AS 24. From normal integral to deviate, Appl. Statist.
+
+18 (1969), 290-293.
+[CW80] W. J. Cody and W. Waite, Software manual for the elementary functions, Prentice
+
+Hall, Englewood Cliffs, New Jersey, 1980.
+[Del73] Delft Numerical Analysis Group, On the computation of Mathieu functions, J. Engrg.
+
+Math. 7 (1973), 39-61.
+[Del79] G. Delic, Chebyshev expansion of the associated Legendre polynomial P ML (x), Comput. Phys. Comm. 18 (1979), 63-71.
+[Dev93] K. Devlin (ed.), Computers and mathematics, Notices Amer. Math. Soc. 40 (1993),
+
+613-623.
+[DG87] J. J. Dongarra and E. Grosse, Distribution of mathematical software via electronic
+
+mail, Comm. ACM 30 (1987), 403-407.
+[DJ67] A. R. DiDonato and M. P. Jarnagin, The efficient calculation of the incomplete betafunction ratio for half-integer values of the parameters a; b, Math. Comp. 21 (1967),
+652-662.
+[DK90] S. L. Dvorak and E. F. Kuester, Numerical computation of the incomplete LipschitzHankel integral J e0(a; z), J. Comput. Phys. 87 (1990), 301-327.
+[DKK81] V. A. Ditkin, K. A. Karpov, and M. K. Kerimov, The computation of special functions, U.S.S.R. Comput. Math. and Math. Phys. 20 (1981), no. 5, 3-12.
+[DM86] A. R. DiDonato and A. H. Morris, Jr., Computation of the incomplete gamma function ratios and their inverse, ACM Trans. Math. Software 12 (1986), 377-393.
+[DM87] A. R. DiDonato and A. H. Morris, Jr., Algorithm 654. Fortran subroutines for computing the incomplete gamma function ratios and their inverse, ACM Trans. Math.
+Software 13 (1987), 318-319.
+[DM92] A. R. DiDonato and A. H. Morris, Jr., Algorithm 708. Significant digit computation of
+
+the incomplete beta function ratios, ACM Trans. Math. Software 18 (1992), 360-373.
+[Dor68] E. Dorrer, Algorithm 322. F -distribution, Comm. ACM 11 (1968), 116-117, for certification see same journal v. 12 (1969), p. 39.
+[Eck76] U. Eckhardt, A rational approximation to Weierstrass' P-function, Math. Comp. 30
+
+(1976), 818-826.
+[Eck77] U. Eckhardt, A rational approximation to Weierstrass' P-function. II. The lemniscatic case, Computing 18 (1977), 341-349.
+[Eck80] U. Eckhardt, Algorithm 549. Weierstrass' elliptic functions, ACM Trans. Math. Software 4 (1980), 112-120.
+[Egl84] A. P. Eglaya, Eigenvalues of wave spheroidal functions with a complex parameter,
+
+32
+
+Latv. Mat. Ezhegodnik (1984), no. 28, 143-150 (Russian).
+[EK92] "O. E~gecio~glu and ,C. K. Ko,c, A parallel algorithm for generating discrete orthogonal
+
+polynomials, Parallel Comput. 18 (1992), 649-659.
+[EKK85] A. Yu. Eremin, I. E. Kaporin, and M. K. Kerimov, The calculation of the Riemann
+
+zeta-function in the complex domain, U.S.S.R. Comput. Math. and Math. Phys. 25
+(1985), no. 2, 111-119, see also [YKK88].
+[EMOT53a] A. Erd'elyi, W. Magnus, F. Oberhettinger, and F. G. Tricomi, Higher transcendental
+
+functions, vol. 1, McGraw-Hill, New York, 1953, reprinted and published in 1981 by
+Krieger Publishing Company, Melbourne, Florida.
+[EMOT53b] A. Erd'elyi, W. Magnus, F. Oberhettinger, and F. G. Tricomi, Higher transcendental
+
+functions, vol. 2, McGraw-Hill, New York, 1953, reprinted and published in 1981 by
+Krieger Publishing Company, Melbourne, Florida.
+[EMOT55] A. Erd'elyi, W. Magnus, F. Oberhettinger, and F. G. Tricomi, Higher transcendental
+
+functions, vol. 3, McGraw-Hill, New York, 1955, reprinted and published in 1981 by
+Krieger Publishing Company, Melbourne, Florida.
+[EP69] S. P. Era^sevskaja and A. A. Pal'cev, The computation of spheroidal functions and
+
+their first derivatives on a computer. II, Vesc_i Akad. Navuk BSSR Ser. F_iz.-Mat.
+Navuk (1969), no. 4, 37-46 (Russian).
+[Eva74] D. J. Evans (ed.), Software for numerical mathematics, Proceedings of the Loughboro
+
+University of Technology Conference of the IMA held in April 1973, Academic Press,
+London, 1974.
+[EWB84] A. S. Elder, J. N. Walbert, and E. C. Benck, Calculation of Legendre functions on
+
+the cut for integral order and complex degree by means of Gauss continued fractions,
+Tech. Report ARBRL-MR-03335, U. S. Army Armament Research and Development Center, Ballistic Research Laboratory, Aberdeen Proving Ground, Maryland,
+1984, copies obtainable from National Technical Information Service, U. S. Dept. of
+Commerce, Springfield, VA 22161.
+[Fet70] H. E. Fettis, A new method for computing toroidal harmonics, Math. Comp. 24
+
+(1970), 667-670.
+[Feu91] F. Feuillebois, Numerical calculation of singular integrals related to Hankel transform,
+
+Comput. Math. Appl. 21 (1991), no. 2-3, 87-94.
+[FG91] B. Fischer and G. H. Golub, On generating polynomials which are orthogonal over
+
+several intervals, Math. Comp. 56 (1991), 711-730.
+[FG92] B. Fischer and G. H. Golub, How to generate unknown orthogonal polynomials out
+
+of known orthogonal polynomials, J. Comput. Appl. Math. 43 (1992), 99-115.
+[FGG82] J. D. Fenton and R. S. Gardiner-Garden, Rapidly-convergent methods for evaluating
+
+elliptic integrals and theta and elliptic functions, J. Austral. Math. Soc. Ser. B 24
+(1982), 47-58.
+[FHS78a] P. A. Fox, A. D. Hall, and N. L. Schryer, Algorithm 528. Framework for a portable
+
+library, ACM Trans. Math. Software 4 (1978), 177-188.
+[FHS78b] P. A. Fox, A. D. Hall, and N. L. Schryer, The PORT mathematical subroutine library,
+
+ACM Trans. Math. Software 4 (1978), 104-126.
+[Fik68] C. T. Fike, Computer evaluation of mathematical functions, Prentice-Hall, Inc., Englewood Cliffs, New Jersey, 1968.
+[FL67] W. G. Fair and Y. L. Luke, Rational approximations to the incomplete elliptic integrals of the first and second kinds, Math. Comp. 21 (1967), 418-422.
+[Fle68] O. L. Fleckner, A method for the computation of the Fresnel integrals and related
+
+functions, Math. Comp. 22 (1968), 635-640.
+[Fox56] L. Fox, The use and construction of mathematical tables, National Physical Laboratory Mathematical Tables, vol. 1, Her Majesty's Stationery Office, London, 1956.
+[Fox84] P. A. Fox, The PORT mathematical subroutine library, Sources and Development
+
+of Mathematical Software (W. R. Cowell, ed.), Prentice-Hall, Inc., Englewood Cliffs,
+New Jersey, 1984, pp. 346-374.
+[FP68] L. Fox and I. B. Parker, Chebyshev polynomials in numerical analysis, Oxford University Press, London, 1968.
+[FP84] B. Ford and J. C. T. Pool, The evolving NAG library service, Sources and Development of Mathematical Software (W. R. Cowell, ed.), Prentice-Hall, Inc., Englewood
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 33
+Cliffs, New Jersey, 1984, pp. 375-397.
+[FR86] L. W. Fullerton and G. A. Rinker, Generalized Fermi-Dirac integrals--FD, FDG,
+
+FDH, Comput. Phys. Comm. 39 (1986), 181-185.
+[FS67] A. M. S. Filho and G. Schwachheim, Algorithm 309. Gamma function with arbitrary
+
+precision, Comm. ACM 10 (1967), 511-512.
+[Ful72] L. W. Fullerton, Algorithm 435. Modified incomplete gamma function, Comm. ACM
+
+15 (1972), 993-995, for remark see ACM Trans. Math. Software v. 4 (1978), pp.
+296-304.
+[Ful77] L. W. Fullerton, Portable special function routines, Lecture Notes in Computer Science 57: Portability of Numerical Software (Oak Brook 1976) (W. R. Cowell, ed.),
+Springer-Verlag, Berlin, 1977, pp. 452-483.
+[Ful80] L. W. Fullerton, A bibliography on the evaluation of mathematical functions, Computing Science Tech. Report No. 86, Bell Laboratories, Murray Hill, New Jersey 07974,
+1980.
+[FW80] A. Frans'en and S. Wrigge, High-precision values of the gamma function and of some
+
+related coefficients, Math. Comp. 34 (1980), 553-566, for addendum and corrigendum
+see same journal v. 37 (1981), pp. 233-235.
+[Gab79] B. Gabutti, On high precision methods for computing integrals involving Bessel functions, Math. Comp. 33 (1979), 1049-1057.
+[Gab80] B. Gabutti, On the generalization of a method for computing Bessel function integrals, J. Comput. Appl. Math. 6 (1980), 167-168.
+[Gaf88] P. W. Gaffney, When things go wrong : : : , Pitman Research Notes in Mathematics
+
+Series (D. F. Griffiths and G. A. Watson, eds.), vol. 170, Longman Scientific and
+Technical, Harlow, Essex, U. K., 1988, pp. 67-114.
+[Gau64] W. Gautschi, Algorithm 222. Incomplete beta function ratios, Comm. ACM 7 (1964),
+
+143-144, for certification see same journal v. 7 (1964), p. 244.
+[Gau65] W. Gautschi, Algorithm 259. Legendre functions for arguments larger than one,
+
+Comm. ACM 8 (1965), 488-492, for remark see ACM Trans. Math. Software, v.
+3 (1977), pp. 204-205.
+[Gau69a] W. Gautschi, Algorithm 363. Complex error function, Comm. ACM 12 (1969), 635,
+
+for certification see same journal v. 15 (1972), pp. 465-466.
+[Gau69b] W. Gautschi, An application of minimal solutions of three-term recurrences to
+
+Coulomb wave functions, Aequationes Math. 2 (1969), 171-176.
+[Gau70] W. Gautschi, Efficient computation of the complex error function, SIAM J. Numer.
+
+Anal. 7 (1970), 187-198.
+[Gau73] W. Gautschi, Algorithm 471. Exponential integrals, Comm. ACM 16 (1973), 761-763.
+[Gau75] W. Gautschi, Computational methods in special functions--a survey, Theory and
+
+application of special functions, Proc. Advanced Sem., Math. Res. Center, Univ.
+Wisconsin, Madison, Wis., Academic Press, New York, 1975, pp. 1-98.
+[Gau77a] W. Gautschi, Algorithm 521. Repeated integrals of the coerror function, ACM Trans.
+
+Math. Software 3 (1977), 301-302.
+[Gau77b] W. Gautschi, Evaluation of the repeated integrals of the coerror function, ACM Trans.
+
+Math. Software 3 (1977), 240-252.
+[Gau79a] W. Gautschi, Algorithm 542. Incomplete gamma functions, ACM Trans. Math. Software 5 (1979), 482-489.
+[Gau79b] W. Gautschi, A computational procedure for incomplete gamma functions, ACM
+
+Trans. Math. Software 5 (1979), 466-481.
+[Gau82] W. Gautschi, On generating orthogonal polynomials, SIAM J. Sci. Statist. Comput.
+
+3 (1982), 289-317.
+[Gau85] W. Gautschi, Orthogonal polynomials--constructive theory and applications, J. Comput. Appl. Math. 12/13 (1985), 61-76.
+[Gau90] W. Gautschi, Computational aspects of orthogonal polynomials, Orthogonal Polynomials: Theory and Practice (P. Nevai, ed.), Kluwer Academic Publishers, Dordrecht,
+1990, NATO ASI Series, vol. C294, pp. 181-216.
+[Gau91a] W. Gautschi, Computational problems and applications of orthogonal polynomials,
+
+Orthogonal Polynomials and their Applications (C. Brezinski, L. Gori, and A. Ronveaux, eds.), J. C. Baltzer AG, Scientific Publishing Company, Basel, 1991, pp. 61-71.
+
+34
+
+[Gau91b] W. Gautschi, On the paper "A continued fraction approximation of the modified
+
+Bessel function I1(t)" by P. R. Parthasarathy and N. Balakrishnan, Appl. Math.
+Lett. 4 (1991), no. 5, 47-51.
+[Gau93a] W. Gautschi, Gauss-type quadrature rules for rational functions, International Series
+
+of Numerical Mathematics, vol. 112, Birkh"auser Verlag, Basel, 1993, pp. 111-130.
+[Gau93b] W. Gautschi, On the computation of generalized Fermi-Dirac and Bose-Einstein
+
+integrals, Comput. Phys. Comm. 74 (1993), 233-238.
+[Gau94] W. Gautschi, Algorithm. ORTHPOL: A package of routines for generating orthogonal
+
+polynomials and Gauss-type quadrature rules, ACM Trans. Math. Software 20 (1994),
+in press.
+[GB87] A. Ganguli and R. Baskaran, Generation of Bessel functions with complex arguments
+
+and integer orders, Internat. J. Comput. Math. 21 (1987), 43-64.
+[GH85] P. Griffiths and I. D. Hill (eds.), Applied statistics algorithms, Ellis Horwood Limited,
+
+Chichester, 1985.
+[GM81] B. Gabutti and B. Minetti, A new application of the discrete Laguerre polynomials
+
+in the numerical evaluation of the Hankel transform of a strongly decreasing even
+function, J. Comput. Phys. 42 (1981), 277-287.
+[GP64] I. Gargantini and T. Pomentale, Rational Chebyshev approximations to the Bessel
+
+function integrals K is(x), Comm. ACM 7 (1964), 727-730.
+[GS78] W. Gautschi and J. Slavik, On the computation of modified Bessel function ratios,
+
+Math. Comp. 32 (1978), 865-875.
+[GT81] R. Gastmans and W. Troost, On the evaluation of polylogarithmic integrals, Simon
+
+Stevin 55 (1981), 205-219.
+[GZ75] E. S. Ginsberg and D. Zaborowski, Algorithm 490. The dilogarithm function of a
+
+real argument, Comm. ACM 18 (1975), 200-202, for remark see ACM Trans. Math.
+Software v. 2 (1976), p. 112.
+[Ham85] D. E. Hamilton, Remark on Algorithm 620: References and keywords for collected
+
+algorithms from ACM, ACM Trans. Math. Software 11 (1985), 305-307.
+[Han85] E. W. Hansen, Fast Hankel transform algorithm, IEEE Trans. Acoust. Speech Signal
+
+Process. 33 (1985), 666-671.
+[HCL+68] J. F. Hart, E. W. Cheney, C. L. Lawson, H. J. Maehly, C. K. Mesztenyi, J. R. Rice,
+
+H. C. Thacher, Jr., and C. Witzgall, Computer approximations, John Wiley and Sons,
+Inc., New York, 1968.
+[HD73] G. W. Hill and A. W. Davis, Algorithm 442. Normal deviate, Comm. ACM 16 (1973),
+
+51-52.
+[Hea85] M. A. Heald, Rational approximations for the Fresnel integrals, Math. Comp. 44
+
+(1985), 459-461.
+[Hem81] P. W. Hemker (ed.), NUMAL numerical procedures in Algol 60, Mathematisch Centrum Syllabus 47.1-7, Centrum voor Wiskunde en Informatica, Kruislaan 413, 1098
+SJ, Amsterdam, 1981.
+[Hen79] P. Henrici, Zur numerischen Berechnung der Fresnelschen Integrale, Z. Angew. Math.
+
+Phys. 30 (1979), 209-219.
+[Hil70a] G. W. Hill, Algorithm 395. Student's t-distribution, Comm. ACM 13 (1970), 617-
+
+619, for remarks see ACM Trans. Math. Software v. 5 (1979), pp. 238-239, v. 7 (1981),
+pp. 247-249.
+[Hil70b] G. W. Hill, Algorithm 396. Student's t-quantiles, Comm. ACM 13 (1970), 619-620,
+
+for remarks see ACM Trans. Math. Software v. 5 (1979), pp. 238-239, v. 7 (1981),
+pp. 250-251.
+[Hil73] I. D. Hill, Algorithm AS 66. The normal integral, Appl. Statist. 22 (1973), 424-427.
+[Hil77] G. W. Hill, Algorithm 518. Incomplete Bessel function I0: The von Mises distribution, ACM Trans. Math. Software 3 (1977), 279-284.
+[Hil81] G. W. Hill, Algorithm 571. Statistics for von Mises' and Fisher's distributions of
+
+directions: I1(x)=I0(x); I1:5(x)=I0:5(x); and their inverses, ACM Trans. Math. Software 7 (1981), 233-238.
+[Hit68] S. Hitotumatu, On the numerical computation of Bessel functions through continued
+
+fraction, Comment. Math. Univ. St. Paul. 16 (1967/68), 89-113.
+[HM90a] T. R. Hopkins and D. R. Morse, Index of statistical algorithms, Appl. Statist. 39
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 35
+(1990), 177-187.
+[HM90b] T. R. Hopkins and D. R. Morse, Remark on Algorithm 620: References and keywords
+
+for collected algorithms from ACM, ACM Trans. Math. Software 16 (1990), 401-403.
+[Hod70] D. B. Hodge, Eigenvalues and eigenfunctions of the spheroidal wave equation, J.
+
+Math. Phys. 11 (1970), 2308-2312.
+[HR72] D. B. Hunter and T. Regan, A note on the evaluation of the complementary error
+
+function, Math. Comp. 26 (1972), 539-541.
+[Hum64] D. G. Hummer, Expansion of Dawson's function in a series of Chebyshev polynomials,
+
+Math. Comp. 18 (1964), 317-319.
+[IKF91] Y. Ikebe, Y. Kikuchi, and I. Fujishiro, Computing zeros and orders of Bessel functions, J. Comput. Appl. Math. 38 (1991), 169-184.
+[IMS91] MATH/LIBRARY special functions, version 2.0, IMSL, Inc., 2500 CityWest Boulevard, Houston, Texas 77042, September 1991, current address is Visual Numerics,
+Inc., 9990 Richmond Ave, Suite 400, Houston, Texas 77042-4548.
+[JE45] E. Jahnke and F. Emde, Tables of functions with formulae and curves, fourth ed.,
+
+Dover Publications, Inc., New York, 1945.
+[JEL60] E. Jahnke, F. Emde, and F. L"osch, Tables of higher functions, sixth ed., McGraw-Hill,
+
+New York, 1960.
+[JL72] D. Jacobs and F. Lambert, On the numerical calculation of polylogarithms, BIT 12
+
+(1972), 581-585.
+[Joh75] H. K. Johansen, An interactive computer/graphic-display-terminal system for interpretation of resistivity soundings, Geophysical Prospecting 23 (1975), 449-458.
+[JT80] W. B. Jones and W. J. Thron, Continued fractions: analytic theory and applications, Encyclopedia of Mathematics and its Applications, vol. 11, Addison-Wesley
+Publishing Company, Reading, Massachusetts, 1980.
+[JT85] W. B. Jones and W. J. Thron, On the computation of incomplete gamma functions
+
+in the complex domain, J. Comput. Appl. Math. 12/13 (1985), 401-417.
+[Kar91] E. A. Karatsuba, Fast evaluation of transcendental functions, Problems Inform.
+
+Transmission 27 (1991), 339-360.
+[Kat78] C. R. Katholi, On the computation of values of the psi function from rapidly converging power series expansions, J. Statist. Comput. Simulation 8 (1978), 25-42.
+[KBH70] B. J. King, R. V. Baier, and S. Hanish, A Fortran computer program for calculating
+
+the prolate spheroidal radial functions of the first and second kind and their first
+derivatives, NRL Report No. 7012, Naval Res. Lab., Washington, D. C., 1970.
+[Ker80] M. K. Kerimov, Methods of computing the Riemann zeta-function and some generalizations of it, U.S.S.R. Comput. Math. and Math. Phys. 20 (1980), no. 6, 212-230.
+[KG80] W. J. Kennedy, Jr. and J. E. Gentle, Statistical computing, Marcel Dekker, New York,
+
+1980.
+[KMR70] K. S. K"olbig, J. A. Mignaco, and E. Remiddi, On Nielsen's generalized polylogarithms
+
+and their numerical calculation, BIT 10 (1970), 38-73.
+[K"ol72a] K. S. K"olbig, Programs for computing the logarithm of the gamma function, and the
+
+digamma function, for complex argument, Comput. Phys. Comm. 4 (1972), 221-226.
+[K"ol72b] K. S. K"olbig, Remarks on the computation of Coulomb wavefunctions, Comput. Phys.
+
+Comm. 4 (1972), 214-220.
+[K"ol81] K. S. K"olbig, A program for computing the conical functions of the first kind
+
+P m
+
+\Gamma  12 +io/ (x) for m = 0 and m = 1, Comput. Phys. Comm. 23 (1981), 51-61.
+
+[Kr"a90] W. Kr"amer, Berechnung der Gammafunktion \Gamma (x) f"ur reelle Punkt- und Intervallargumente, Z. Angew. Math. Mech. 70 (1990), T581-T584.
+[Kro91] F. T. Krogh, ACM algorithms policy, ACM Trans. Math. Software 17 (1991), 427-
+
+430.
+[KS84a] M. K. Kerimov and S. L. Skorokhodov, Calculation of modified Bessel functions in
+
+the complex domain, U.S.S.R. Comput. Math. and Math. Phys. 24 (1984), no. 3,
+15-24.
+[KS84b] M. K. Kerimov and S. L. Skorokhodov, Calculation of the complex zeros of the modified Bessel function of the second kind and its derivatives, U.S.S.R. Comput. Math.
+and Math. Phys. 24 (1984), no. 4, 115-123.
+[KS84c] M. K. Kerimov and S. L. Skorokhodov, Evaluation of complex zeros of Bessel func36
+
+tions J*(z) and I* (z) and their derivatives, U.S.S.R. Comput. Math. and Math. Phys.
+24 (1984), no. 5, 131-141.
+[KS84d] K. S. K"olbig and B. Schorr, A program package for the Landau distribution, Comput.
+
+Phys. Comm. 31 (1984), 97-111.
+[KS85a] M. K. Kerimov and S. L. Skorokhodov, Calculation of the complex zeros of a Bessel
+
+function of the second kind and its derivatives, U.S.S.R. Comput. Math. and Math.
+Phys. 25 (1985), no. 5, 117-128.
+[KS85b] M. K. Kerimov and S. L. Skorokhodov, Calculation of the complex zeros of Hankel
+
+functions and their derivatives, U.S.S.R. Comput. Math. and Math. Phys. 25 (1985),
+no. 6, 26-36.
+[KS85c] M. K. Kerimov and S. L. Skorokhodov, Calculation of the multiple zeros of the derivatives of the cylindrical Bessel functions J* (z) and Y*(z), U.S.S.R. Comput. Math.
+and Math. Phys. 25 (1985), no. 6, 101-107.
+[KS87] M. K. Kerimov and S. L. Skorokhodov, On the calculation of the multiple complex
+
+roots of the derivatives of cylindrical Bessel functions, U.S.S.R. Comput. Math. and
+Math. Phys. 27 (1987), no. 6, 18-25.
+[Kuk71] H. Kuki, Mathematical function subprograms for basic system libraries-- objectives,
+
+constraints and trade-off, Mathematical Software (J. R. Rice, ed.), Academic Press,
+New York, 1971, pp. 187-199.
+[Kuk72a] H. Kuki, Algorithm 421. Complex gamma function with error control, Comm. ACM
+
+15 (1972), 271-272.
+[Kuk72b] H. Kuki, Complex gamma function with error control, Comm. ACM 15 (1972), 262-
+
+267.
+[KvB70] B. J. King and A. L. van Buren, A Fortran computer program for calculating the prolate and oblate angle functions of the first kind and their first and second derivatives,
+NRL Report No. 7161, Naval Res. Lab., Washington, D. C., 1970.
+[LCY65] L. A. Lyusternik, O. A. Chervonenkis, and A. R. Yanpol'skii, Handbook for computing elementary functions, International Series of Monographs in Pure and Applied
+Mathematics, vol. 76, Pergamon Press, Oxford, 1965.
+[LDP93] Y. Li, X. Dong, and S. Pan, Computation of auxiliary functions in STO molecular
+
+integrals up to arbitrary accuracy. I. Evaluation of incomplete gamma function En(x)
+by forward recursion, Internat. J. Quantum Chem. 45 (1993), 3-14.
+[Lee79] W. R. Leeb, Algorithm 537. Characteristic values of Mathieu's differential equation,
+
+ACM Trans. Math. Software 5 (1979), 112-117.
+[Lee80] S.-Y. Lee, The inhomogeneous Airy functions G i(z) and H i(z), J. Chem. Phys. 72
+
+(1980), 332-336.
+[Lee90] D. K. Lee, Application of theta functions for numerical evaluation of complete elliptic
+
+integrals of the first and second kinds, Comput. Phys. Comm. 60 (1990), 319-327.
+[Lee92] D. K. Lee, Calculation of coefficients in a power-series expansion of the nome q =
+
+exp[\Gamma ssK(k0)=K(k)], Comput. Phys. Comm. 70 (1992), 292-296.
+[Lev69] D. A. Levine, Algorithm 344. Student's t-distribution, Comm. ACM 12 (1969), 37-
+
+38, for remarks see same journal v. 13 (1970), pp. 124 and 449.
+[Lew91] S. Lewanowicz, Evaluation of Bessel function integrals with algebraic singularities,
+
+J. Comput. Appl. Math. 37 (1991), 101-112.
+[LG64] H. Lotsch and M. Gray, Algorithm 244. Fresnel integrals, Comm. ACM 7 (1964),
+
+660-661.
+[Lin72] P. Linz, A method for computing Bessel function integrals, Math. Comp. 26 (1972),
+
+509-513.
+[LK73] P. Linz and T. E. Kropp, A note on the computation of integrals involving products
+
+of trigonometric and Bessel functions, Math. Comp. 27 (1973), 871-872.
+[LMS73a] D. W. Lozier, L. C. Maximon, and W. L. Sadowski, A bit comparison program for
+
+algorithm testing, Comput. J. 16 (1973), 111-117.
+[LMS73b] D. W. Lozier, L. C. Maximon, and W. L. Sadowski, Performance testing of a Fortran
+
+library of mathematical function routines--A case study in the application of testing
+techniques, J. Res. Nat. Bur. Standards 77B (1973), 101-110.
+[LO93] D. W. Lozier and F. W. J. Olver, Airy and Bessel functions by parallel integration of
+
+ODEs, Proceedings of the Sixth SIAM Conference on Parallel Processing for Scientific
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 37
+Computing, vol. 2 (R. F. Sincovec, D. E. Keyes, M. R. Leuze, L. R. Petzold, and
+D. A. Reed, eds.), Society for Industrial and Applied Mathematics, Philadelphia,
+1993, pp. 531-538.
+[LPM81] A. R. Lehman, W. C. Parke, and L. C. Maximon, Numerical evaluation of integrals
+
+containing a spherical Bessel function by product integration, J. Math. Phys. 22
+(1981), 1399-1413.
+[LPT80] M. C. Lorenzini, G. Puleo, and A. Tortorici Macaluso, Un package di aritmetica in
+
+multiprecisione ed applicazione al calcolo dei polinomi di Jacobi, Hermite, Laguerre,
+Legendre, Chebyshev, Atti Accad. Sci. Lett. Arti Palermo Ser. 4, Parte 1 39 (1980),
+339-376.
+[LR74] W. P. Latham and R. W. Redding, On the calculation of the parabolic cylinder functions, J. Comput. Phys. 16 (1974), 66-75.
+[LS81] D. W. Lozier and J. M. Smith, Algorithm 567. Extended-range arithmetic and normalized Legendre polynomials, ACM Trans. Math. Software 7 (1981), 141-146.
+[LS91] A. I. Litvin and S. D. Simonzhenkov, Computation of Fermi-Dirac functions, Comput. Math. and Math. Phys. 31 (1991), no. 8, 100-103.
+[Luk68] Y. L. Luke, Approximations for elliptic integrals, Math. Comp. 22 (1968), 627-634.
+[Luk69a] Y. L. Luke, The special functions and their approximations, vol. 1, Academic Press,
+
+New York, 1969.
+[Luk69b] Y. L. Luke, The special functions and their approximations, vol. 2, Academic Press,
+
+New York, 1969.
+[Luk70a] Y. L. Luke, Evaluation of the gamma function by means of Pad'e approximations,
+
+SIAM J. Math. Anal. 1 (1970), 266-281.
+[Luk70b] Y. L. Luke, Further approximations for elliptic integrals, Math. Comp. 24 (1970),
+
+191-198.
+[Luk71a] Y. L. Luke, Miniaturized tables of Bessel functions, Math. Comp. 25 (1971), 323-330.
+[Luk71b] Y. L. Luke, Miniaturized tables of Bessel functions. II, Math. Comp. 25 (1971), 789-
+
+795, for corrigendum see same journal v. 26 (1972), Microfiche Supplement A1-A7.
+[Luk72a] Y. L. Luke, Miniaturized tables of Bessel functions. III, Math. Comp. 26 (1972),
+
+237-240, with Microfiche Supplement.
+[Luk72b] Y. L. Luke, On generating Bessel functions by use of the backward recurrence formula,
+
+Tech. Report ARL 72-0030, Aerospace Research Laboratories, Wright-Patterson Air
+Force Base, Ohio, 1972.
+[Luk75] Y. L. Luke, Mathematical functions and their approximations, Academic Press, New
+
+York, 1975.
+[Luk76] Y. L. Luke, On the expansion of exponential type integrals in series of Chebyshev
+
+polynomials, Theory of Approximation with Applications (A. G. Law and B. N. Sahney, eds.), Academic Press, Inc., New York, 1976, pp. 180-199.
+[Luk77a] Y. L. Luke, Algorithms for rational approximations for a confluent hypergeometric
+
+function, Utilitas Math. 11 (1977), 123-151.
+[Luk77b] Y. L. Luke, Algorithms for the computation of mathematical functions, Academic
+
+Press, New York, 1977.
+[Lun85] J. Lund, Bessel transforms and rational extrapolation, Numer. Math. 47 (1985), 1-14.
+
+[LW90] F. G. Lether and P. R. Wenston, An algorithm for the numerical computation of the
+
+Voigt function, Appl. Math. Comput. 35 (1990), 277-289.
+[LW91] F. G. Lether and P. R. Wenston, The numerical computation of the Voigt function
+
+by a corrected midpoint quadrature rule for (\Gamma 1; 1), J. Comput. Appl. Math. 34
+(1991), 75-92.
+[LY88] T. Y. Lemczyk and M. M. Yovanovich, Efficient evaluation of incomplete elliptic
+
+integrals and functions, Comput. Math. Appl. 16 (1988), 747-757.
+[Lyn93] A. E. Lynas-Gray, VOIGTL--A fast subroutine for Voigt function evaluation on
+
+vector processors, Comput. Phys. Comm. 75 (1993), 135-142.
+[Mac89] A. J. MacLeod, Algorithm AS 245. A robust and reliable algorithm for the logarithm
+
+of the gamma function, Appl. Statist. 38 (1989), 397-402.
+[Mac93] A. J. MacLeod, Chebyshev expansions for modified Struve and related functions,
+
+Math. Comp. 60 (1993), 735-747.
+[Mar65] B. Markman, Contribution no. 14. The Riemann zeta function, BIT 5 (1965), 138-
+
+38
+
+141.
+[Mar82] A. L. Marshak, On the approximation of the exponential integral by quadrature formulae, U.S.S.R. Comput. Math. and Math. Phys. 22 (1982), no. 5, 20-28.
+[Mat92] MATLAB high performance numeric computation and visualization software reference guide, The MathWorks, Inc., Cochituate Place, 24 Prime Park Way, Natick,
+Massachusetts 01760, August 1992, electronic mail address is info@mathworks.com.
+[Mat93a] Mathcad 4.0 user's guide, MathSoft Inc., 201 Broadway, Cambridge, Massachusetts
+
+02139, March 1993.
+[Mat93b] G. Matviyenko, On the evaluation of Bessel functions, Appl. Comput. Harmonic
+
+Anal. 1 (1993), 116-135.
+[MB73a] K. L. Majumder and G. P. Bhattacharjee, Algorithm AS 63. The incomplete beta
+
+integral, Appl. Statist. 22 (1973), 409-411, for remark see same journal v. 26 (1977),
+pp. 111-114.
+[MB73b] K. L. Majumder and G. P. Bhattacharjee, Algorithm AS 64. Inverse of the incomplete
+
+beta function ratio, Appl. Statist. 22 (1973), 411-414, for remarks and corrections
+see same journal v. 26 (1977), pp. 111-114, v. 39 (1990), pp. 309-310, v. 40 (1991),
+p. 236.
+[McC74] J. H. McCabe, A continued fraction expansion, with a truncation error estimate, for
+
+Dawson's integral, Math. Comp. 28 (1974), 811-816.
+[McC81] P. McCullagh, A rapidly convergent series for computing (z) and its derivatives,
+
+Math. Comp. 36 (1981), 247-248.
+[MDS92] R. C. McPhredan, D. H. Dawes, and T. C. Scott, On a Bessel function integral, Appl.
+
+Algebra Engrg. Comm. Comput. 2 (1992), 207-216.
+[MF86] V. P. Modenov and A. V. Filonov, Calculation of zeros of cylindrical functions and
+
+their derivatives, Vestnik Moskov. Univ. Ser. XV Vychisl. Mat. Kibernet. (1986),
+no. 2, 63-64 and 71 (Russian).
+[MH73] T. Morita and T. Horiguchi, Convergence of arithmetic-geometric mean procedure
+
+for the complex variables and the calculation of the complete elliptic integrals with
+complex modulus, Numer. Math. 20 (1973), 425-430, for correction see same journal
+v. 29 (1978), pp. 233-236.
+[Mid75] P. Midy, An improved calculation of the general elliptic integral of the second kind
+
+in the neighbourhood of x = 0, Numer. Math. 25 (1975), 99-101.
+[MM90] P. Mali^ck'y and M. Mali^ck'a, On the computation of Riccati-Bessel functions, Apl.
+
+Mat. 35 (1990), 487-493.
+[MMV81] G. Maino, E. Menapace, and A. Ventura, Computation of parabolic cylinder functions
+
+by means of a Tricomi expansion, J. Comput. Phys. 40 (1981), 294-304.
+[Moi88] A. I. Moiseyev, Computation of certain functions related to the Hurwitz zeta-function,
+
+U.S.S.R. Comput. Math. and Math. Phys. 28 (1988), no. 3, 1-6.
+[Moo81] W. Moon, Airy function with complex arguments, Comput. Phys. Comm. 22 (1981),
+
+411-417.
+[Moo82] R. J. Moore, Algorithm AS 187. Derivatives of the incomplete gamma integral, Appl.
+
+Statist. 31 (1982), 330-335.
+[Moo83] D. R. Mook, An algorithm for the numerical evaluation of the Hankel and Abel
+
+transforms, IEEE Trans. Acoust. Speech Signal Process. 31 (1983), 979-985.
+[Mor69] J. Morris, Algorithm 346. F -test probabilities, Comm. ACM 12 (1969), 184-185, for
+
+remark see ACM Trans. Math. Software v. 14 (1988), pp. 288-289.
+[Mor79] R. Morris, The dilogarithm function of a real argument, Math. Comp. 33 (1979),
+
+778-787.
+[Mor80] M. Mori, Analytic representations suitable for numerical computation of some special
+
+functions, Numer. Math. 35 (1980), 163-174.
+[Mor83] M. Mori, A method for evaluation of the error function of real and complex variable
+
+with high relative accuracy, Publ. Res. Inst. Math. Sci. 19 (1983), 1081-1094.
+[Mor93] A. H. Morris, Jr., NSWC library of mathematics subroutines, NSWCDD/TR-92/425,
+
+Naval Surface Warfare Center, Dahlgren Division, Dahlgren, Virginia, 22448, January
+1993.
+[MOS66] W. Magnus, F. Oberhettinger, and R. P. Soni, Formulas and theorems for the special functions of mathematical physics, Die Grundlehren der mathematischen WisNUMERICAL EVALUATION OF SPECIAL FUNCTIONS 39
+senschaften in Einzeldarstellungen, vol. 52, Springer-Verlag, New York, 1966.
+[Mos89] S. L. B. Moshier, Methods and programs for mathematical functions, Ellis Horwood
+
+Limited, Chichester, 1989, separate diskette.
+[MR71] F. Matta and A. Reichel, Uniform computation of the error function and other related
+
+functions, Math. Comp. 25 (1971), 339-344.
+[MY91] P. Midy and Y. Yakovlev, Computing some elementary functions of a complex variable, Math. Comput. Simulation 33 (1991), 33-49.
+[NAG91] NAG Fortran library manual, mark 15, vol. 10, NAG Inc., 1400 Opus Place, Suite
+
+200, Downers Grove, Illinois 60515-5702, June 1991.
+[NC66] W. J. Nellis and B. C. Carlson, Reduction and evaluation of elliptic integrals, Math.
+
+Comp. 20 (1966), 223-231.
+[NDT69] E. W. Ng, C. J. Devine, and R. F. Tooper, Chebyshev polynomial expansion of BoseEinstein functions of orders 1 to 10, Math. Comp. 23 (1969), 639-643.
+[N'em71] G. N'emeth, Chebyshev polynomial expansions of Airy functions, their zeros, derivatives, first and second integrals, Magyar Tud. Akad. Mat. Fiz. Oszt. K"ozl. 20 (1971),
+13-33 (Hungarian).
+[N'em74] G. N'emeth, Expansion of generalized hypergeometric functions in Chebyshev polynomials, Collection of Scientific Papers in Collaboration of Joint Institute for Nuclear Research, Dubna, USSR and Central Research Institute for Physics, Budapest,
+Hungary, Hungarian Academy of Sciences, Central Research Institute for Physics,
+Budapest, 1974, reference No. KFKI-74-34, pp. 57-91.
+[Nes84] R. K. Nesbet, Algorithms for regular and irregular Coulomb and Bessel functions,
+
+Comput. Phys. Comm. 32 (1984), 341-347.
+[New84] J. N. Newman, Approximations for the Bessel and Struve functions, Math. Comp.
+
+43 (1984), 551-556.
+[Ng75] E. W. Ng, A comparison of computational methods and algorithms for the complex
+
+gamma function, ACM Trans. Math. Software 1 (1975), 56-70.
+[NM93] A. Natarajan and N. Mohan Kumar, On the numerical evaluation of the generalised
+
+Fermi-Dirac integrals, Comput. Phys. Comm. 76 (1993), 48-50.
+[NPB92a] M. Nardin, W. F. Perger, and A. Bhalla, Algorithm 707. CONHYP: A numerical
+
+evaluator of the confluent hypergeometric function for complex arguments of large
+magnitudes, ACM Trans. Math. Software 18 (1992), 345-349.
+[NPB92b] M. Nardin, W. F. Perger, and A. Bhalla, Numerical evaluation of the confluent hypergeometric function for complex arguments of large magnitudes, J. Comput. Appl.
+Math. 39 (1992), 193-200.
+[NT84] C. J. Noble and I. J. Thompson, COULN, A program for evaluating negative energy
+
+Coulomb functions, Comput. Phys. Comm. 33 (1984), 413-419.
+[OFM78] A. V. Oppenheim, G. V. Frisk, and D. R. Martinez, An algorithm for the numerical
+
+evaluation of the Hankel transform, Proc. Inst. Electr. Electron. Engrg. 66 (1978),
+264-265.
+[Olv74] F. W. J. Olver, Asymptotics and special functions, Academic Press, New York, 1974.
+[Olv91] F. W. J. Olver, Review of United Laboratories, Inc., Mathematical Function Library
+
+for Microsoft-Fortran, Wiley, New York, 1989, Math. Comp. 56 (1991), 879-885.
+[OM68] D. Osborn and R. Madey, The incomplete beta function and its ratio to the complete
+
+beta function, Math. Comp. 22 (1968), 159-162.
+[ "Opi87] U. "Opik, A program to set up systems of orthogonal polynomials, Comput. Phys.
+
+Comm. 46 (1987), 263-296.
+[OS72] F. W. J. Olver and D. J. Sookne, Note on backward recurrence algorithms, Math.
+
+Comp. 26 (1972), 941-947.
+[OS83] F. W. J. Olver and J. M. Smith, Associated Legendre functions on the cut, J. Comput.
+
+Phys. 51 (1983), 502-518.
+[PA92] C. U. Pabon-Ortiz and M. Artoni, Laguerre polynomials: Novel properties and numerical generation scheme for analysis of a discrete probability distribution, Comput.
+Phys. Comm. 71 (1992), 215-221.
+[Pac70] K. A. Paciorek, Algorithm 385. Exponential integral E i(x), Comm. ACM 13 (1970),
+
+446-447, for certification and remarks see same journal v. 13 (1970), pp. 448-449 and
+p. 750; v. 15 (1972), p. 1074.
+
+40
+
+[Pal69] A. A. Pal'cev, The computation of spheroidal functions and their first derivatives on
+
+a computer. I, Vesc_i Akad. Navuk BSSR Ser. F_iz.-Mat. Navuk (1969), no. 1, 19-25
+(Russian).
+[Pas88] S. Paszkowski, Evaluation of Fermi-Dirac integral, Nonlinear Numerical Methods and
+
+Rational Approximation (A. Cuyt, ed.), D. Reidel Publishing Company, Dordrecht,
+1988, pp. 435-444.
+[Pas91] S. Paszkowski, Evaluation of the Fermi-Dirac integral of half-integer order, Zastos.
+
+Mat. 21 (1991), 289-301.
+[PB72] R. Piessens and M. Branders, Chebyshev polynomial expansions of the Riemann zeta
+
+function, Math. Comp. 26 (1972), 1022.
+[PB82] R. Piessens and M. Branders, Approximation for Bessel functions and their application in the computation of Hankel transforms, Comput. Math. Appl. 8 (1982),
+305-311.
+[PB83] R. Piessens and M. Branders, Modified Clenshaw-Curtis method for the computation
+
+of Bessel function integrals, BIT 23 (1983), 370-381.
+[PB84] R. Piessens and M. Branders, Algorithm 28. Algorithm for the computation of Bessel
+
+function integrals, J. Comput. Appl. Math. 11 (1984), 119-137.
+[PB85] R. Piessens and M. Branders, A survey of numerical methods for the computation of
+
+Bessel function integrals, Rend. Sem. Mat. Univ. Politec. Torino Fascicolo Speciale.
+Special Functions: Theory and Computation (1985), 249-265.
+[PBN93] W. F. Perger, A. Bhalla, and M. Nardin, A numerical evaluator for the generalized
+
+hypergeometric series, Comput. Phys. Comm. 77 (1993), 249-254.
+[Pea22] K. Pearson, Tables of the incomplete \Gamma -function, H. M. Stationery Office, London,
+
+1922, reissued by Biometrika, 1934.
+[Pex70] R. L. Pexton, Computer investigation of Coulomb wave functions, Math. Comp. 24
+
+(1970), 409-411.
+[Phi88] H. N. Phien, A Fortran routine for the computation of gamma percentiles, Adv.
+
+Engrg. Software 10 (1988), 159-164.
+[Phi90] H. N. Phien, A note on the computation of the incomplete beta function, Adv. Engrg.
+
+Software 12 (1990), 39-44.
+[Pic89] B. Pichon, Numerical calculation of the generalized Fermi-Dirac integrals, Comput.
+
+Phys. Comm. 55 (1989), 127-136.
+[Pie82] R. Piessens, Automatic computation of Bessel function integrals, Comput. Phys.
+
+Comm. 25 (1982), 289-295.
+[Pie84a] R. Piessens, Chebyshev series approximations for the zeros of the Bessel functions,
+
+J. Comput. Phys. 53 (1984), 188-192.
+[Pie84b] R. Piessens, The computation of Bessel functions on a small computer, Comput.
+
+Math. Appl. 10 (1984), 161-166.
+[Pie90] R. Piessens, On the computation of zeros and turning points of Bessel functions,
+
+Bull. Soc. Math. Gr`ece (N.S.) 31 (1990), 117-122.
+[Pri75] P. J. Prince, Algorithm 498. Airy functions using Chebyshev series approximations,
+
+ACM Trans. Math. Software 1 (1975), 372-379.
+[PT84] B. A. Popov and G. S. Tesler, Computation of functions on electronic computers--
+
+handbook, Naukova Dumka, Kiev, 1984 (Russian), see review by K. S. K"olbig in Math.
+Comp. v. 55 (1990), pp. 395-397.
+[PT90] W. H. Press and S. A. Teukolsky, Elliptic integrals, Computers in Physics 4 (1990),
+
+92-96.
+[PTVF92] W. H. Press, S. A. Teukolsky, W. T. Vetterling, and B. P. Flannery, Numerical
+
+recipes. The art of scientific computing, second ed., Cambridge University Press,
+1992, diskettes and example books available. Editions exist in Basic (1991), C (1992),
+Fortran (1992), Macintosh Fortran (1988) and Pascal (1989).
+[Puo88] M. Puoskari, A method for computing Bessel function integrals, J. Comput. Phys. 75
+
+(1988), 334-344.
+[PW90a] G. P. M. Poppe and C. M. J. Wijers, Algorithm 680. Evaluation of the complex error
+
+function, ACM Trans. Math. Software 16 (1990), 47.
+[PW90b] G. P. M. Poppe and C. M. J. Wijers, More efficient computation of the complex error
+
+function, ACM Trans. Math. Software 16 (1990), 38-46.
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 41
+[Rem73] G. F. Remenets, Computation of Hankel (Bessel) functions of complex index and
+
+argument by numerical integration of a Schl"afli contour integral, U.S.S.R. Comput.
+Math. and Math. Phys. 13 (1973), no. 6, 58-67.
+[RF93] Yu. L. Ratis and P. Fern'andez de C'ordoba, A code to calculate (high order) Bessel
+
+functions based on the continued fractions method, Comput. Phys. Comm. 76 (1993),
+381-388.
+[RH84] J. R. Rice and R. J. Hanson, Algorithm 620. References and keywords for collected
+
+algorithms from ACM, ACM Trans. Math. Software 10 (1984), 359-360.
+[Ric83] J. R. Rice, Numerical methods, software and analysis: IMSL reference edition,
+
+McGraw-Hill Book Company, New York, 1983.
+[Riv90] T. J. Rivlin, Chebyshev polynomials. From approximation theory to algebra and number theory, second ed., John Wiley and Sons, Inc., New York, 1990.
+[RL76] R. W. Redding and W. P. Latham, On the calculation of the parabolic cylinder functions. II. The function V (a; x), J. Comput. Phys. 20 (1976), 256-258.
+[RL80] S. R. Rengarajan and J. E. Lewis, Mathieu functions of integral orders and real
+
+arguments, IEEE Trans. Microwave Theory Tech. 28 (1980), 276-277.
+[RS81] M. Razaz and J. L. Schonfelder, Remark on Algorithm 498. Airy functions using
+
+Chebyshev series approximations, ACM Trans. Math. Software 7 (1981), 404-405.
+[RWGH87] J. P. Royston, J. B. Webb, P. Griffiths, and I. D. Hill, The construction and description of algorithms, Appl. Statist. 36 (1987), 94-103.
+[Ryb89] G. B. Rybicki, Dawson's integral and the sampling theorem, Computers in Physics 3
+
+(1989), 85-87.
+[SAG79] Z. Schulten, D. G. M. Anderson, and R. G. Gordon, An algorithm for the evaluation
+
+of the complex Airy functions, J. Comput. Phys. 31 (1979), 60-75.
+[Sag91a] R. P. Sagar, A Gaussian quadrature for the calculation of generalized Fermi-Dirac
+
+integrals, Comput. Phys. Comm. 66 (1991), 271-275.
+[Sag91b] R. P. Sagar, On the evaluation of the Fermi-Dirac integrals, Astrophys. J. 376 (1991),
+
+364-366.
+[Sal89] K. L. Sala, Transformations of the Jacobian amplitude function and its calculation
+
+via the arithmetic-geometric mean, SIAM J. Math. Anal. 20 (1989), 1514-1528.
+[SBK92] O. A. Sharafeddin, H. F. Bowen, and D. J. Kouri, Numerical evaluation of spherical
+
+Bessel transforms via fast Fourier transforms, J. Comput. Phys. 100 (1992), 294-
+296.
+[Sch74] B. Schorr, Programs for the Landau and the Vavilov distributions and the corresponding random numbers, Comput. Phys. Comm. 7 (1974), 215-224.
+[Sch76] J. L. Schonfelder, The production of special function routines for a multi-machine
+
+library, Software--Practice and Experience 6 (1976), 71-82.
+[Sch78] J. L. Schonfelder, Chebyshev expansions for the error and related functions, Math.
+
+Comp. 32 (1978), 1232-1240.
+[Sea82] M. J. Seaton, Coulomb functions analytic in the energy, Comput. Phys. Comm. 25
+
+(1982), 87-95.
+[SG72] A. J. Strecok and J. A. Gregory, High precision evaluation of the irregular Coulomb
+
+wave functions, Math. Comp. 26 (1972), 955-961.
+[SGA81] Z. Schulten, R. G. Gordon, and D. G. M. Anderson, A numerical algorithm for the
+
+evaluation of Weber parabolic cylinder functions U(a;x); V (a; x), and W (a; \Sigma x), J.
+Comput. Phys. 42 (1981), 213-237.
+[She74] V. B. Sheorey, Chebyshev expansions for wave functions, Comput. Phys. Comm. 7
+
+(1974), 1-12.
+[She88] B. L. Shea, Algorithm AS 239. Chi-squared and incomplete gamma integral, Appl.
+
+Statist. 37 (1988), 466-473.
+[Shi93a] R. B. Shirts, Algorithm 721. MTIEU1 and MTIEU2: Two subroutines to compute
+
+eigenvalues and solutions to Mathieu's differential equation for noninteger and integer order, ACM Trans. Math. Software 19 (1993), 391-406.
+[Shi93b] R. B. Shirts, The computation of eigenvalues and solutions of Mathieu's differential
+
+equation for noninteger order, ACM Trans. Math. Software 19 (1993), 377-390.
+[Sie77] A. E. Siegman, Quasi fast Hankel transform, Optics Lett. 1 (1977), 13-15.
+[Sim64] J. M. S. Sim~oes Pereira, Algorithm 234. Poisson-Charlier polynomials, Comm. ACM
+
+42
+
+7 (1964), 420, for certification see same journal v. 8 (1965), p. 105.
+[Sko85] S. L. Skorokhodov, On the computation of complex zeros of the modified Bessel function of the second kind, Soviet Math. Dokl. 31 (1985), 78-81.
+[SL73] W. L. Sadowski and D. W. Lozier, A unified standards approach to algorithm testing,
+
+Program Test Methods (W. C. Hetzel, ed.), Prentice-Hall, Inc., Englewood Cliffs,
+New Jersey, 1973, pp. 277-290.
+[SL81] M. M. Shepherd and J. G. Laframboise, Chebyshev approximation of
+
+(1 + 2x) exp(x2)e rfcx in 0 ^ x ! 1, Math. Comp. 36 (1981), 249-253.
+[SM75] B. P. Sinha and R. H. MacPhie, On the computation of the prolate spheroidal radial
+
+functions of the second kind, J. Math. Phys. 16 (1975), 2378-2381.
+[Smi89] D. M. Smith, Efficient multiple-precision evaluation of elementary functions, Math.
+
+Comp. 52 (1989), 131-134.
+[Smi91] D. M. Smith, Algorithm 693. A Fortran package for floating-point multiple-precision
+
+arithmetic, ACM Trans. Math. Software 17 (1991), 273-283.
+[Sny93] W. V. Snyder, Algorithm 723. Fresnel integrals, ACM Trans. Math. Software 19
+
+(1993), 452-456.
+[SO87] J. Spanier and K. B. Oldham, An atlas of functions, Hemisphere Publishing Corporation, Washington, D. C., 1987.
+[SOL81] J. M. Smith, F. W. J. Olver, and D. W. Lozier, Extended-range arithmetic and
+
+normalized Legendre polynomials, ACM Trans. Math. Software 7 (1981), 93-105.
+[SP75] P. Spellucci and P. Pulay, Effective calculation of the incomplete gamma function for
+
+parameter values ff = (2n + 1)=2;n = 0; : : : ; 5, Angew. Informatik 17 (1975), 30-32.
+[Spr91] J. C. Sprott, Numerical recipes: routines and examples in BASIC, Cambridge University Press, 1991.
+[Str68] A. J. Strecok, On the calculation of the inverse of the error function, Math. Comp.
+
+22 (1968), 144-158.
+[Sym92] MACSYMA reference manual, version 13, Symbolics, Inc., 20 Academy St., Arlington, Massachusetts 02174-6436, November 1992.
+[SZ70] I. A. Stegun and R. Zucker, Automatic computing methods for special functions, J.
+
+Res. Nat. Bur. Standards 74B (1970), 211-224.
+[SZ74] I. A. Stegun and R. Zucker, Automatic computing methods for special functions. Part
+
+II. The exponential integral En(x), J. Res. Nat. Bur. Standards 78B (1974), 199-216.
+[SZ76] I. A. Stegun and R. Zucker, Automatic computing methods for special functions. Part
+
+III. The sine, cosine, exponential integrals, and related functions, J. Res. Nat. Bur.
+Standards 80B (1976), 291-311.
+[SZ79] B. Sommer and J. G. Zabolitzky, On numerical Bessel transformation, Comput.
+
+Phys. Comm. 16 (1979), 383-387.
+[SZ81] I. A. Stegun and R. Zucker, Automatic computing methods for special functions. Part
+
+IV. Complex error function, Fresnel integrals, and other related functions, J. Res.
+Nat. Bur. Standards 86 (1981), 661-686.
+[Tal83] J. D. Talman, LSFBTR: A subroutine for calculating spherical Bessel transforms,
+
+Comput. Phys. Comm. 30 (1983), 93-99.
+[Tau92] G. Taubmann, Parabolic cylinder functions U(n; x) for natural n and positive x,
+
+Comput. Phys. Comm. 69 (1992), 415-419.
+[TB85] I. J. Thompson and A. R. Barnett, COULCC: A continued-fraction algorithm for
+
+Coulomb functions of complex order with complex arguments, Comput. Phys. Comm.
+36 (1985), 363-372.
+[TB86] I. J. Thompson and A. R. Barnett, Coulomb and Bessel functions of complex arguments and order, J. Comput. Phys. 64 (1986), 490-509.
+[TB87] I. J. Thompson and A. R. Barnett, Modified Bessel functions I*(z) and K*(z) of real
+
+order and complex argument, to selected accuracy, Comput. Phys. Comm. 47 (1987),
+245-257.
+[Tem75] N. M. Temme, On the numerical evaluation of the modified Bessel function of the
+
+third kind, J. Comput. Phys. 19 (1975), 324-337.
+[Tem76] N. M. Temme, On the numerical evaluation of the ordinary Bessel function of the
+
+second kind, J. Comput. Phys. 21 (1976), 343-350.
+[Tem77] N. M. Temme, The numerical computation of special functions by use of quadrature
+
+NUMERICAL EVALUATION OF SPECIAL FUNCTIONS 43
+rules for saddle point integrals. I. Trapezoidal integration rules, Tech. Report TW
+164/77, Mathematisch Centrum, Amsterdam, 1977.
+[Tem78] N. M. Temme, Some aspects of applied analysis: asymptotics, special functions and
+
+their numerical computation, Mathematisch Centrum, Amsterdam, 1978.
+[Tem79] N. M. Temme, An algorithm with ALGOL 60 program for the computation of the
+
+zeros of ordinary Bessel functions and those of their derivatives, J. Comput. Phys.
+32 (1979), 270-279.
+[Tem83] N. M. Temme, The numerical computation of the confluent hypergeometric function
+
+U(a; b; z), Numer. Math. 41 (1983), 63-82.
+[Tem85] N. M. Temme, Special functions as approximants in uniform asymptotic expansions
+
+of integrals; A survey, Rend. Sem. Mat. Univ. Politec. Torino Fascicolo Speciale.
+Special Functions: Theory and Computation (1985), 289-317.
+[Tem87] N. M. Temme, On the computation of the incomplete gamma functions for large
+
+values of the parameters, Inst. Math. Appl. Conf. Ser. New Ser., vol. 10: Algorithms
+for Approximation (Shrivenham, 1985), Oxford Univ. Press, New York, 1987, pp. 479-
+489.
+[Tem92a] N. M. Temme, Asymptotic inversion of incomplete gamma functions, Math. Comp.
+
+58 (1992), 755-764.
+[Tem92b] N. M. Temme, Asymptotic inversion of the incomplete beta function, J. Comput.
+
+Appl. Math. 41 (1992), 145-157.
+[Tem94] N. M. Temme, A set of algorithms for the incomplete gamma functions, Probab.
+
+Engrg. Inform. Sci. (1994), in press.
+[TM68] R. F. Tooper and J. Mark, Simplified calculation of E i(x) for positive arguments,
+
+and a short table of S hi(x), Math. Comp. 22 (1968), 448-449.
+[TP83] N. Tu^gbay and E. Panayirci, An efficient algorithm for generation of prolate
+
+spheroidal wave functions, Bull. Tech. Univ. Istanbul 36 (1983), 563-577.
+[TR69] T. Tamura and F. Rybicki, Coulomb functions for complex energies, Comput. Phys.
+
+Comm. 1 (1969), 25-30, for erratum see same journal v. 3 (1972), p. 276.
+[ULI90] Mathematical function library for Microsoft-C, United Laboratories, Inc., John Wiley
+
+&Sons, 1990, includes diskettes. Edition also exists in Fortran (1989).
+[vBBH70] A. L. van Buren, R. V. Baier, and S. Hanish, A Fortran computer program for
+
+calculating the oblate spheroidal radial functions of the first and second kind and
+their first derivatives, NRL Report No. 6959, Naval Res. Lab., Washington, D. C.,
+1970.
+[vBBHK72] A. L. van Buren, R. V. Baier, S. Hanish, and B. J. King, Calculation of spheroidal
+
+wave functions, J. Acoust. Soc. Amer. 51 (1972), 414-416.
+[vdLT84] C. G. van der Laan and N. M. Temme, Calculation of special functions: The gamma
+
+function, the exponential integrals and error-like functions, CWI Tract, vol. 10, Centrum voor Wiskunde en Informatica, Amsterdam, 1984.
+[VGK+91] V. K. Vlasov, M. N. Glukhova, L. N. Korolev, M. S. Pelina, S. N. Razumovski^i,
+
+and O. L. Ulasik, On the calculation of Bessel functions of a complex index and a
+complex argument, Vestnik Moskov. Univ. Ser. XV Vychisl. Mat. Kibernet. (1991),
+no. 3, 46-51 and 64 (Russian).
+[Wal84] J. L. Walmsley, On the efficient evaluation of modified Bessel functions of zeroth
+
+and first orders for arguments of the form x exp(iss=4), J. Comput. Phys. 56 (1984),
+349-355.
+[War60] M. Ward, The calculation of the complete elliptic integral of the third kind, Amer.
+
+Math. Monthly 67 (1960), 205-213.
+[WBR82] C. A. Wills, J. M. Blair, and P. L. Ragde, Rational Chebyshev approximations for
+
+the Bessel functions J0(x); J1(x); Y0(x); Y1(z), Math. Comp. 39 (1982), 617-623.
+[WC90] E. J. Weniger and J. Ci*zek, Rational approximations for the modified Bessel function
+
+of the second kind, Comput. Phys. Comm. 59 (1990), 471-493.
+[Wei94a] J. A. C. Weideman, Computation of the complex error function, SIAM J. Numer.
+
+Anal. (1994), in press.
+[Wei94b] J. A. C. Weideman, Computing integrals of the complex error function, These proceedings, 1994.
+[Wim74] J. Wimp, On the computation of Tricomi's \Psi  function, Computing 13 (1974), 195-
+
+44
+
+203.
+[Wim84] J. Wimp, Computation with recurrence relations, Pitman, London, 1984.
+
+[Wit68] B. F. W. Witte, Algorithm 332. Jacobi polynomials, Comm. ACM 11 (1968), 436-437,
+
+for remarks see same journal v. 13 (1970), p. 449 and v. 18 (1975), pp. 116-117.
+[Wol91] S. Wolfram, Mathematica, A system for doing mathematics by computer, second ed.,
+
+Addison-Wesley, Redwood City, California, 1991.
+[Won89] R. Wong, Asymptotic approximations of integrals, Academic Press, New York, 1989.
+
+[Woo67] V. E. Wood, Chebyshev expansions for integrals of the error function, Math. Comp.
+
+21 (1967), 494-496.
+[YKK88] A. Yu. Yeremin, I. E. Kaporin, and M. K. Kerimov, Computation of the derivatives
+
+of the Riemann zeta-function in the complex domain, U.S.S.R. Comput. Math. and
+Math. Phys. 28 (1988), no. 4, 115-124, see also [EKK85].
+[YN74] T. Yoshida and I. Ninomiya, Computation of Bessel functions Kn(z) with complex
+
+argument by o/-method, J. Inform. Process. 14 (1974), 32-37.
+[Yos92] T. Yoshida, Error analysis of the recurrence technique for calculation of Bessel functions I*(x), J. Inform. Process. 15 (1992), 213-221.
+[Zan75] R. Zanovello, Sul calcolo numerico della funzione di Struve H*(z), Rend. Sem. Mat.
+
+Univ. Politec. Torino 32 (1975), 251-269.
+[Ziv91] A. Ziv, Fast evaluation of elementary mathematical functions with correctly rounded
+
+last bit, ACM Trans. Math. Software 17 (1991), 410-423.
+
+Applied and Computational Mathematics Division, National Institute of Standards and Technology, Gaithersburg, Md 20899
+
+E-mail address: dlozier@nist.gov
+
+Institute for Physical Science and Technology, University of Maryland, College Park, MD 20742
+
+E-mail address: olver@bessel.umd.edu

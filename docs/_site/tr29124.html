@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="DxxxxRy, ISO/IEC JTC1 SC22 WG21">
+
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/font-hack/2.015/css/hack.min.css"/>
+<style type="text/css">
+pre {
+  font-family: "Hack", "OCR A Extended", "Consolas", "Lucida Console", monospace;
+  margin-left:20pt;
+  line-height: 1.1em;
+  font-size: small;
+}
+code {
+  font-family: "Hack", "OCR A Extended", "Consolas", "Lucida Console", monospace;
+  font-size: small;
+}
+pre > i {
+  font-family: "Hack", "OCR A Extended", "Consolas", "Lucida Console", monospace;
+  font-style:italic;
+}
+code > i {
+  font-family: "Hack", "OCR A Extended", "Consolas", "Lucida Console", monospace;
+  font-style:italic;
+}
+pre > em {
+  font-family: "Hack", "OCR A Extended", "Consolas", "Lucida Console", monospace;
+  font-style:italic;
+}
+code > em {
+  font-family: "Hack", "OCR A Extended", "Consolas", "Lucida Console", monospace;
+  font-style:italic;
+}
+body {
+    color: #000000; background-color: #FFFFFF; 
+    font-family: "Book Antiqua", "Times New Roman", "Times", serif;
+    padding: 2em;
+}
+/*del { text-decoration: line-through; color: #8B0040; }
+ins { text-decoration: underline; color: #005100; }*/
+del { text-decoration: line-through; color: #8B0040; }
+ins { text-decoration: none;
+    border-bottom: 1px solid #005100;
+    color: #005100;
+    line-height: 1.4em;
+}
+span.section_name {
+    float: right;
+    font-weight: bold;
+}
+
+p.example { margin-left: 2em; }
+pre.example { margin-left: 2em; }
+div.example { margin-left: 2em; }
+
+code.extract { background-color: #F5F6A2; }
+pre.extract { margin-left: 2em; background-color: #F5F6A2;
+  border: 1px solid #E1E28E; }
+
+p.function { }
+.attribute { margin-left: 2em; }
+.attribute dt { float: left; font-style: italic;
+  padding-right: 1ex; }
+.attribute dd { margin-left: 0em; margin-bottom: 0.5em;}
+
+blockquote.std { color: #000000; background-color: #F1F1F1;
+  border: 1px solid #D1D1D1;
+  padding-left: 0.5em; padding-right: 0.5em; }
+blockquote.stddel { text-decoration: line-through;
+  color: #000000; background-color: #FFEBFF;
+  border: 1px solid #ECD7EC;
+  padding-left: 0.5empadding-right: 0.5em; ; }
+
+blockquote.stdins { text-decoration: underline;
+  color: #000000; background-color: #C8FFC8;
+  border: 1px solid #B3EBB3; padding: 0.5em; }
+
+table { border: 1px solid black; border-spacing: 0px;
+  margin-left: auto; margin-right: auto; }
+
+table.header {
+  margin-left: 0em;
+  border: none;
+    margin-bottom: 2em;
+}
+th { text-align: left; vertical-align: top;
+  padding-left: 0.4em; 
+  padding-right: 0.4em; }
+td { text-align: left; vertical-align: top;
+  padding-left: 0.4em; 
+  padding-right: 0.4em;  }
+</style>
+
+<title>Special Math Functions, v4.</title>
+</head>
+
+<body>
+<table class="header">
+    <tr><td>Document Number:</td> <td>DxxxxRy, ISO/IEC JTC1 SC22 WG21</td></tr>
+    <tr><td>Date:</td><td>2016-02-02</td></tr>
+    <tr><td>Author:</td><td>Edward Smith-Rowland (esmith-rowland@alionscience.com)</td></tr>
+</table>
+<h1>Special Math Functions (v4).</h1>
+
+<h2>Table of Contents</h2>
+<nav id="TOC">
+<ul>
+<li><a href="#introduction">Background and proposal</a></li>
+<li><a href="#discussion">Proposed wording</a></li>
+<li><a href="#proposed-wording">Proposed wording</a></li>
+<li><a href="#acknowledgments">Acknowledgments</a></li>
+<li><a href="#bibliography">Bibliography</a></li>
+</ul>
+</nav>
+
+
+<h2 id="introduction">Introduction</h2>
+<p>This paper proposes to merge International Standard 29124:2010, Extensions to the C++
+Library to support mathematical special functions, into C++17.</p>
+
+Mathematical Special Functions were proposed [N1422, N1514, N1542] for C++ with the following
+rationale:
+
+<blockquote>
+<p>While these functions are clearly numerical in nature and will likely be most heavily
+used by the scientific and engineering communities, other communities of programmers
+also have needs, ranging from frequent to intermittent, for these functions. . . . [W]e
+believe that adoption of this proposal would send a clear message to the various
+numeric computing communities that, contrary to significant popular belief within
+these communities, C++ is an eminently suitable programming language for their
+problem domain, too.</p>
+</blockquote>
+
+Modulo some additional discussion and wordsmithing [N1502, N1570, N1665, N1884], the pro-
+posal\u2019s wording was subsequently published as one of the clauses comprising WG21\u2019s TR1 [ISO07].
+
+<p>When it came time to determine what to do with TR1 relative to C++0X, WG21 decided 1 to adopt
+essentially all of TR1 into the Working Paper, with the notable exclusion of the clause specifying
+the Mathematical Special Functions. During the discussion that led to that decision, it was
+principally argued that these functions' implementation would be a development hardship and
+maintenance burden for vendors, noting that "Users aren't breaking down our doors clamoring
+for these functions."2
+Still later, following WG14's lead [ISO09],3 WG21 voted to issue its own
+Mathematical Special Functions International Standard, IS 29124:2010 [N3060, ISO10].4</p>
+
+<p>With encouragement/approval from Study Group 6 (numerics) at previous WG21 meetings,
+we therefore propose to merge IS 29124:2010 [ISO10] into the C++17 standard.
+We do so for the following principal reasons:
+
+<ul>
+<li> Importantly, the merger will decrease future WG21 burden by managing a single
+International Standard, rather than two. This reduces not only the number of published
+Standards, but also the amount of such future overhead as working papers, issues lists,
+Project Editors, and the like.</ul>
+<li> Even more importantly, members of the user community have expressed interest in maintain-
+ing and enhancing the functionality provided by IS 29124:2010. (See, for example, [N3494].)
+However, WG21 has no vehicle to do so, as IS 29124:2010 is considered a completed project.
+If it were merged into the C++17 standard, our usual process would be able to evaluate and
+act on such proposals.</ul>
+<li> Finally, it is relevant to take this step in time for C++17, because IS 29124:2010 will come
+before WG21 in 2015 per the usual ISO rule for periodic review. This is thus an appropriate
+time to plan this Standard's retirement.</ul>
+</ul>
+
+<h3 id="post-lenexa-discussion">Post-Lenexa Discussion</h3>
+
+<p>Clow recounted that these functions were in TR1 but were not brought into C++11 due
+to concerns about the small size of the user base. Instead they were published in a separate IS in 2010,
+which is now up for review. The proposal is to let the other IS lapse and fold these into C++17.
+The original paper proposed to make these conditionally-supported, but there were
+a number of views expressed this week about the pros and cons of conditionally-supported.
+The motion is to adopt the paper but make these functions mandatory not optional.</p>
+
+<p>Maurer said letting the existing IS lapse now, before a new C++ standard is ready,
+would leave two years with no IS for these functions. Suggested re-confirming the other IS in Kona.</p>
+
+<p>Plauger gave historical background on the difficulty of implementing these,
+which scared the committee at the time. There has since been an open-source implementation produced,
+which changes the situation. Carruth says that for some open-source implementations the existence
+of a different open-source implementation does not necessarily help them.</p>
+
+<p>Stroustrup asked whether a freestanding function is required to support these functions.
+Nelson said no.</p>
+
+<p>Wong asked whether there had been any consideration for doing it as a TS. Dos Reis
+says it was a TR that became an IS.</p>
+
+<p>It was stated that for the scientific community these functions are important and
+for C++ to be relevant to the community including these is important.</p>
+
+<p>Lavavej said he has no objection to conditionally-supported but if it's mandatory
+the cost is maintenance and debugging. Well-qualified users will report bugs that they
+may not be in a position to handle and deal with. The cost is a concern and it
+should be considered when users call for these features.</p>
+
+<p>Wakely pointed out the proposal is to put headers in math.h which C++ implementation
+do not control. Brown has agreed to address this, but Wakely said we must stop pretending
+implementations control C headers.</p>
+
+<p>Sutter said that conditionally-supported has typically been used for small things that
+users can test for the presence of, this is a big feature. Sutter said that one ISO approach
+is to have optional parts of a standard. That is effectively the status quo due to it being in a separate IS,
+moving it in to the standard would be similar except having a single project number for one IS, not two.
+Sutter reported there is one implementation of the existing IS, and one of the older TR1 spec.
+If people want these functions they know where to find them.</p>
+
+<p>Stroustrup said scientific computing is not niche, but that this doesn't necessarily
+need to be in the standard. The cost for smaller implementation vendors is very high.</p>
+
+<p>Carruth said these are not vaporware or pipedreams, they are concrete and useful
+but hard to implement, so worth standardizing for that reason. Carruth said fixing
+bug reports with these functions is hard because the standard says nothing about precision
+of floating point operations whatsoever. Building up a strong set of specifications is important,
+and we don't have to prioritize it right now, but we do need to grow support for the scientific community.</p>
+
+<p>Naumann stressed the importance of these functions and that they must not be
+conditionally-supported. CERN is concerned that their code will continue to compile
+in more than a decade, so they don't use anything not in an IS. Having these in the IS
+would allow them to stop maintaining their own versions.</p>
+
+<p>Finkel stated that Boost has most of these implemented too. He says it's 21 functions,
+with three overloads each, but the single-precision ones can just be done in double-precision
+and cast back to float. He stressed the importance of these in many domains, insurance and statistics.
+We should consider supporting them unconditionally. He was unaware there even was an implementation
+of the IS rather than just TR1. When purchasing supercomputers it is expected that
+when stating requirements for a programming language there will be an ISO standard to refer to.
+Requiring an additional IS increases costs. Unlike determining the right interface for a new type,
+these are much more well established and well understood.</p>
+
+<p>Lavavej said the number of functions is not a good indicator of the difficulty
+of implementing and supporting them. If it's conditionally-supported vendors can make business
+decisions about supporting them.</p>
+
+<p>Boehm asked what the license is of the open-source implementation
+and whether he wants it on his phone. Wakely said there is one with the usual
+libstdc++ licence and one with the usual Boost licence.</p>
+
+<p>Wong said the for C this is a TR. Wakely specified ISO/IEC 24747. IS.</p>
+
+<p>Halpern said conditionally-supported is effectively not standardized.</p>
+
+<p>Stroustrup said this seems a very short time to make such a big decision,
+and asked whether there is a great hurry to decide on this. Nelson asked if anyone
+would like to address whether this should be discussed now or in Kona.
+Carruth suggested we vote, and if it fails revisit it again in Kona.</p>
+
+<p>Brown said that this discussion alone has raised awareness of the numerics
+community which is good. These functions originated in ISO 31-11 decades ago
+because they are essential for some domains. There has been a paper languishing
+for years suggesting improvements to our IS but there is no work item that would
+allow that to be done. The user community have eloquently and clearly
+said these things are fundamental to them.</p>
+
+<p>Sutter took a poll to determine support for LWG Motion 19 as written.
+
+<ul>
+<li>Accept LWG Motion 19 as written? SF=30, F=14, N=17, A=0, SA=0</li>
+</ul>
+
+<p>Sutter said we do not have strong consensus.</p>
+
+<p>Carruth argued that conditional support is worse. It pits users against vendors,
+by putting the vendors in the position of refusing to do what they request.</p>
+
+<p>Voutilainen pointed out that conditionally-supported is not the same as the status quo,
+because at DIS ballot an NB could request that it be made unconditional.</p>
+
+<p>Sutter said if these go in (conditionally or not) he would seek a CD ballot soon
+to determine support for this from the wider community, so it would not cause problems
+later alongside other features we do want in C++17.</p>
+
+<p>Meredith was concerned about introducing the first conditionally-supported things
+into the library. That will spread to additional things. Lavavej pointed out that
+over-aligned types and garbage collection are conditionally-supported in the library.</p>
+
+<p>Carruth argued that for vendors to vote in favor of conditionally-supported
+doesn't make sense, as it suggests they are putting something to the standard
+that they do not plan to implement.</p>
+
+<p>Stroustrup suggested postponing this to Kona as he is surprised by the heat
+of this discussion. Sutter says that the proposal author may not be willing to try
+to bring this again, and we have an unusually large number of people from the scientific community.</p>
+
+<p>Zhao wondered why vendors would be in favor of conditionally-supported,
+because their users can go to another vendor if they refuse to implement it.
+
+<p>Dos Reis requested the convener to say whether the poll had consensus again,
+as the result was two-to-one. Sutter said the consensus was not strong enough,
+with 14 against. Yasskin said he would hesitate to call this consensus even in a
+working group session.</p>
+
+<p>Meredith said garbage-collection is not the same, because the functions are
+required to be present even if they do nothing, but stdint.h was pointed out as
+another conditionally-supported function.</p>
+
+<p>Spicer said that there are claims of strong demand from users, but vendors
+usually like to make their users happy, so would have expected there to be several available implementations,
+and the absence of them to indicate that demand is not that strong.</p>
+
+<p>Halpern asked whether putting this into the WP would mean letting the IS lapse.
+Hedquist said because of the timing we should reaffirm the IS then withdraw it once we have a new C++ IS including these.</p>
+
+<p>Sutter took a poll to determine support for N4437, but there were only four in favor,
+so no consensus.</p>
+
+<p>Meredith asked whether it was worth taking the first poll again and Sutter took another
+poll to determine support for LWG Motion 19 as written. </p>
+
+<ul>
+<li>Accept LWG Motion 19 as written? SF=31, F=13, N=17, A=0, SA=0</li>
+</ul>
+
+<p>Sutter again determined the poll to be insufficient for consensus and so LWG Motion 19 was withdrawn.</p>
+
+
+
+<h2 id="discussion">Discussion</h2>
+<h3 id="additional-empty-state">Additional empty state</h3>
+<p>LEWG opted against introducing an explicit additional variant state, representing its invalid (and possibly empty, default constructed) state. This is meant to simplify the <code>variant</code> use: as getting a <code>variant</code> into the invalid state is sufficiently difficult, it was felt that there is no need to regularly check for a variant becoming invalid. This prevents all <code>get&lt;int&gt;(v)</code> calls from being protected by <code>if (v.valid())</code>.</p>
+<h3 id="visibility-of-the-invalid-state">Visibility of the Invalid State</h3>
+<p>Accessing an invalid variant’s value is undefined behavior, whatever alternative is accessed.</p>
+<p>The <code>variant</code>’s invalid state needs to be visible: accessing its contents or visiting it will violate preconditions; users must be able to verify that a <code>variant</code> is not in this state.</p>
+<p>When in the invalid state, <code>index()</code> returns <code>tuple_not_found</code>; <code>variant</code> provides <code>valid()</code> as a usability feature.</p>
+<p>This usually does not need to be checked given how rare the invalid case is. It (generally) keeps a variant with N alternatives as an N-state type.</p>
+<h3 id="empty-state-and-default-construction">Empty state and default construction</h3>
+<p>Default construction of a <code>variant</code> should be allowed, to increase usability for instance in containers. LEWG opted against a <code>variant</code> default-initialized into its invalid state, to make invalid <code>variant</code>s really rare.</p>
+<p>Instead, the <code>variant</code> can be initialized with the first alternative (similar to the behavior of initialization of a <code>union</code>) only if that is default constructible. For cases where this behavior should be explicit, and for cases where no such default constructible alternative exists, there is a separate type <code>monostate</code> that can be used as first alternative, to explicitly enable default construction.</p>
+<h3 id="feature-test">Feature Test</h3>
+<p>No header called <code>variant</code> exists; testing for this header’s existence is thus sufficient.</p>
+
+<h2 id="proposed-wording">Proposed wording</h2>
+<p>The insertions and deletions in this section describe the changes to 
+    the Fundamentals TS. Grayish background indicates proposed wording.</p>
+
+<h3>Header &lt;experimental/tuple&gt;</h3>
+<ins>Insertions</ins> and <del>deletions</del> mark the parts to be inserted into / deleted from existing wording.
+    
+
+
+<h2 id="conclusion">Conclusion</h2>
+<p>A variant has proven to be a useful tool. This paper proposes the necessary ingredients.</p>
+<h2 id="acknowledgments">Acknowledgments</h2>
+<p>Thank you, Nevin ":-)" Liber, for bringing sanity to this proposal. Agust&iacute;n K-ballo Berg&eacute;  and Antony Polukhin provided very valuable feedback, criticism and suggestions. Thanks also to Vincenzo Innocente and Philippe Canal for their comments.</p>
+<h2 id="bibliography" class="references unnumbered">Bobliography</h2>
+<div id="ref-N4335">
+<p>1. <em>Working Draft, Technical Specification on C++ Extensions for Library Fundamentals</em>. N4335</p>
+</div>
+<div id="ref-PERFECTINIT">
+<p>2. <em>Improving pair and tuple, revision 2</em>. N4064</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+\hypertarget{structstd_1_1____detail_1_1__AiryState}{}\section{std\+:\+:\+\_\+\+\_\+detail\+:\+:\+\_\+\+Airy\+State$<$ \+\_\+\+Tp $>$ Struct Template Reference}
+\label{structstd_1_1____detail_1_1__AiryState}\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State$<$ \+\_\+\+Tp $>$@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State$<$ \+\_\+\+Tp $>$}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{structstd_1_1____detail_1_1__AiryState_ac18d07c685cbffed6173532d5f0c0cc9}{\+\_\+\+Real} = \+\_\+\+\_\+num\+\_\+traits\+\_\+t$<$ \+\_\+\+Tp $>$
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structstd_1_1____detail_1_1__AiryState_ac18d07c685cbffed6173532d5f0c0cc9}{\+\_\+\+Real} \hyperlink{structstd_1_1____detail_1_1__AiryState_a6c519145b38f24b2dab705fbc23f49d6}{true\+\_\+\+Wronskian} ()
+\item 
+\+\_\+\+Tp \hyperlink{structstd_1_1____detail_1_1__AiryState_a565f891531681d918aa85320ad776428}{Wronskian} () const
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+Tp \hyperlink{structstd_1_1____detail_1_1__AiryState_a3d918b7b8cb09fd4bb57c10a5853c36f}{\+\_\+\+\_\+\+Ai\+\_\+deriv}
+\item 
+\+\_\+\+Tp \hyperlink{structstd_1_1____detail_1_1__AiryState_ad4a37f92020588e84a18fc1e93b02af6}{\+\_\+\+\_\+\+Ai\+\_\+value}
+\item 
+\+\_\+\+Tp \hyperlink{structstd_1_1____detail_1_1__AiryState_a0f80df510bae0d9a812fae2a20ac3c20}{\+\_\+\+\_\+\+Bi\+\_\+deriv}
+\item 
+\+\_\+\+Tp \hyperlink{structstd_1_1____detail_1_1__AiryState_a10ef7705b2b52a40502d75e62add672f}{\+\_\+\+\_\+\+Bi\+\_\+value}
+\item 
+\+\_\+\+Tp \hyperlink{structstd_1_1____detail_1_1__AiryState_a7606b501eba3f9b55aafa1706d7c9cc1}{\+\_\+\+\_\+z}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Tp$>$\newline
+struct std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State$<$ \+\_\+\+Tp $>$}
+
+This struct defines the Airy function state with two presumably numerically useful Airy functions and their derivatives. The data mambers are directly accessible. The lone method computes the Wronskian from the stored functions. A static method returns the correct Wronskian. 
+
+Definition at line 54 of file sf\+\_\+airy.\+tcc.
+
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{structstd_1_1____detail_1_1__AiryState_ac18d07c685cbffed6173532d5f0c0cc9}\label{structstd_1_1____detail_1_1__AiryState_ac18d07c685cbffed6173532d5f0c0cc9}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}!\+\_\+\+Real@{\+\_\+\+Real}}
+\index{\+\_\+\+Real@{\+\_\+\+Real}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}}
+\subsubsection{\texorpdfstring{\+\_\+\+Real}{\_Real}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp$>$ \\
+using \hyperlink{structstd_1_1____detail_1_1__AiryState}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}$<$ \+\_\+\+Tp $>$\+::\hyperlink{structstd_1_1____detail_1_1__AiryState_ac18d07c685cbffed6173532d5f0c0cc9}{\+\_\+\+Real} =  \+\_\+\+\_\+num\+\_\+traits\+\_\+t$<$\+\_\+\+Tp$>$}
+
+
+
+Definition at line 56 of file sf\+\_\+airy.\+tcc.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structstd_1_1____detail_1_1__AiryState_a6c519145b38f24b2dab705fbc23f49d6}\label{structstd_1_1____detail_1_1__AiryState_a6c519145b38f24b2dab705fbc23f49d6}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}!true\+\_\+\+Wronskian@{true\+\_\+\+Wronskian}}
+\index{true\+\_\+\+Wronskian@{true\+\_\+\+Wronskian}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}}
+\subsubsection{\texorpdfstring{true\+\_\+\+Wronskian()}{true\_Wronskian()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp$>$ \\
+\hyperlink{structstd_1_1____detail_1_1__AiryState_ac18d07c685cbffed6173532d5f0c0cc9}{\+\_\+\+Real} \hyperlink{structstd_1_1____detail_1_1__AiryState}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}$<$ \+\_\+\+Tp $>$\+::true\+\_\+\+Wronskian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 69 of file sf\+\_\+airy.\+tcc.
+
+\mbox{\Hypertarget{structstd_1_1____detail_1_1__AiryState_a565f891531681d918aa85320ad776428}\label{structstd_1_1____detail_1_1__AiryState_a565f891531681d918aa85320ad776428}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}!Wronskian@{Wronskian}}
+\index{Wronskian@{Wronskian}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}}
+\subsubsection{\texorpdfstring{Wronskian()}{Wronskian()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp$>$ \\
+\+\_\+\+Tp \hyperlink{structstd_1_1____detail_1_1__AiryState}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}$<$ \+\_\+\+Tp $>$\+::Wronskian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 65 of file sf\+\_\+airy.\+tcc.
+
+
+
+References std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+\+Ai\+\_\+deriv.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structstd_1_1____detail_1_1__AiryState_a3d918b7b8cb09fd4bb57c10a5853c36f}\label{structstd_1_1____detail_1_1__AiryState_a3d918b7b8cb09fd4bb57c10a5853c36f}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}!\+\_\+\+\_\+\+Ai\+\_\+deriv@{\+\_\+\+\_\+\+Ai\+\_\+deriv}}
+\index{\+\_\+\+\_\+\+Ai\+\_\+deriv@{\+\_\+\+\_\+\+Ai\+\_\+deriv}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+\+Ai\+\_\+deriv}{\_\_Ai\_deriv}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp$>$ \\
+\+\_\+\+Tp \hyperlink{structstd_1_1____detail_1_1__AiryState}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+\+Ai\+\_\+deriv}
+
+
+
+Definition at line 60 of file sf\+\_\+airy.\+tcc.
+
+
+
+Referenced by std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State$<$ \+\_\+\+Tp $>$\+::\+Wronskian().
+
+\mbox{\Hypertarget{structstd_1_1____detail_1_1__AiryState_ad4a37f92020588e84a18fc1e93b02af6}\label{structstd_1_1____detail_1_1__AiryState_ad4a37f92020588e84a18fc1e93b02af6}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}!\+\_\+\+\_\+\+Ai\+\_\+value@{\+\_\+\+\_\+\+Ai\+\_\+value}}
+\index{\+\_\+\+\_\+\+Ai\+\_\+value@{\+\_\+\+\_\+\+Ai\+\_\+value}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+\+Ai\+\_\+value}{\_\_Ai\_value}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp$>$ \\
+\+\_\+\+Tp \hyperlink{structstd_1_1____detail_1_1__AiryState}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+\+Ai\+\_\+value}
+
+
+
+Definition at line 59 of file sf\+\_\+airy.\+tcc.
+
+\mbox{\Hypertarget{structstd_1_1____detail_1_1__AiryState_a0f80df510bae0d9a812fae2a20ac3c20}\label{structstd_1_1____detail_1_1__AiryState_a0f80df510bae0d9a812fae2a20ac3c20}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}!\+\_\+\+\_\+\+Bi\+\_\+deriv@{\+\_\+\+\_\+\+Bi\+\_\+deriv}}
+\index{\+\_\+\+\_\+\+Bi\+\_\+deriv@{\+\_\+\+\_\+\+Bi\+\_\+deriv}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+\+Bi\+\_\+deriv}{\_\_Bi\_deriv}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp$>$ \\
+\+\_\+\+Tp \hyperlink{structstd_1_1____detail_1_1__AiryState}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+\+Bi\+\_\+deriv}
+
+
+
+Definition at line 62 of file sf\+\_\+airy.\+tcc.
+
+\mbox{\Hypertarget{structstd_1_1____detail_1_1__AiryState_a10ef7705b2b52a40502d75e62add672f}\label{structstd_1_1____detail_1_1__AiryState_a10ef7705b2b52a40502d75e62add672f}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}!\+\_\+\+\_\+\+Bi\+\_\+value@{\+\_\+\+\_\+\+Bi\+\_\+value}}
+\index{\+\_\+\+\_\+\+Bi\+\_\+value@{\+\_\+\+\_\+\+Bi\+\_\+value}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+\+Bi\+\_\+value}{\_\_Bi\_value}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp$>$ \\
+\+\_\+\+Tp \hyperlink{structstd_1_1____detail_1_1__AiryState}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+\+Bi\+\_\+value}
+
+
+
+Definition at line 61 of file sf\+\_\+airy.\+tcc.
+
+\mbox{\Hypertarget{structstd_1_1____detail_1_1__AiryState_a7606b501eba3f9b55aafa1706d7c9cc1}\label{structstd_1_1____detail_1_1__AiryState_a7606b501eba3f9b55aafa1706d7c9cc1}} 
+\index{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}!\+\_\+\+\_\+z@{\+\_\+\+\_\+z}}
+\index{\+\_\+\+\_\+z@{\+\_\+\+\_\+z}!std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State@{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+z}{\_\_z}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp$>$ \\
+\+\_\+\+Tp \hyperlink{structstd_1_1____detail_1_1__AiryState}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+State}$<$ \+\_\+\+Tp $>$\+::\+\_\+\+\_\+z}
+
+
+
+Definition at line 58 of file sf\+\_\+airy.\+tcc.
+
+
+
+Referenced by std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp$<$ \+\_\+\+Tp $>$\+::\+\_\+\+S\+\_\+absarg\+\_\+ge\+\_\+pio3(), std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp$<$ \+\_\+\+Tp $>$\+::\+\_\+\+S\+\_\+absarg\+\_\+lt\+\_\+pio3(), and std\+::\+\_\+\+\_\+detail\+::\+\_\+\+Airy\+\_\+asymp$<$ \+\_\+\+Tp $>$\+::operator()().
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/bits/\hyperlink{sf__airy_8tcc}{sf\+\_\+airy.\+tcc}\end{DoxyCompactItemize}

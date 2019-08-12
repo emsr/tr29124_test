@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<link rel="icon" href="http://www.luschny.de/Documents/factorial/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="http://www.luschny.de/Documents/factorial/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="author" content="Peter Luschny">
+<meta name="copyright" content="Copyright(c) 2007 by Peter Luschny">
+<meta name="abstract" content="Asymptotic approximations and inclusions of the Bernoulli Numbers">
+<meta name="keywords" content="Bernoulli numbers, asymptotic approximations, inclusion, Zeta function, OEIS A000367, OEIS A027641">
+<meta name="robots" content="index,follow">
+<meta name="revisit-after" content="120 days">
+<meta name="security" content="public">
+<meta name="date" content="2007-01-12">
+<title>Asymptotic approximations and inclusions of the Bernoulli Numbers</title>
+<style type="text/css">
+body {
+	background-color: white;
+	color: black;
+	font-size: 11pt;
+	margin: auto;
+	font-family: Verdana, 'Trebuchet MS', Sans-Serif, Arial, Helvetica;
+	text-align: justify;
+	width: 740px;
+}
+h2 {
+	background-color: #B0C4DE;
+	color: yellow;
+	text-align: center;
+}
+td.box {
+	background-color: #ffff99;
+	color: blue;
+	border: inset 1pt red;
+	padding: 0.8em;
+}
+.style3 {
+	color: blue;
+}
+.style8 {
+	background-color: yellow;
+	color: teal;
+}
+.style9 {
+	color: black;
+}
+.style10 {
+	color: maroon;
+	font-size:small
+}
+.style11 {
+	border-width: 0px;
+	color: red;
+		font-size: medium;
+		font-weight: 500;
+}
+#container {
+	padding: 32px 32px;
+	background: #ffffff;
+	color: #303030;
+	border: 2px solid #a0a0a0;
+}
+table {
+	border-style: none;
+	border-color: inherit;
+	border-width: 0;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+td.navbarcell:hover {
+	background: red;
+}
+a:link {
+	color: navy;
+	text-decoration: none;
+}
+a:visited {
+	color: navy;
+	text-decoration: none;
+}
+a:hover {
+	background: red;
+	color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+<p><span class="style3"><strong>KEYWORDS: Bernoulli numbers, asymptotic inclusion, 
+asymptotic approximation, OEIS A000367, OEIS A027641.</strong></span></p>
+<h2 class="style8">An approximation of the Bernoulli numbers.</h2>
+<p>There is a standard asymptotic formula for the Bernoulli numbers. For example 
+at Mathworld or at the Digital Library of Mathematical Functions (NIST) (§24.11) 
+one can find the formula </p>
+<div style="text-align: center"><table><tbody><tr>
+<td class="box"><img alt="bernaasy" src="Asymptotic%20approximations%20and%20inclusions%20of%20the%20Bernoulli%20Numbers_files/bernasy1.gif">
+</td></tr></tbody></table></div>
+<p>The present author found two inclusions for the Bernoulli numbers which appear to be new. 
+They are reported on this page. The bounds given comprise a simple 
+but amazingly efficient approximation to the Bernoulli numbers which I will 
+call the 'cute approximation'. </p>
+<h2 class="style8">A sharp inclusion of the Bernoulli numbers.</h2>
+<p><span class="style9">Let B<sub>n</sub> denote the Bernoulli numbers. If n 
+is even and n ≥ 38 then</span></p>
+<div style="text-align: center"><table><tbody><tr><td class="box">
+<img alt="berinklusion" src="Asymptotic%20approximations%20and%20inclusions%20of%20the%20Bernoulli%20Numbers_files/berinklusion.gif">
+</td></tr></tbody></table></div>
+<p>For example the inclusion predicts</p>
+<p style="font-size: 14px">0.5318704469415522033..*10^1770 &lt; |B(1000)| &lt; 0.5318704469415522039..*10^1770.</p>
+<p>And indeed |B(1000)| = 0.5318704469415522036..*10^1770.</p>
+Note that the factorial function is not referenced in these formulas.<h2 class="style8">
+A cute approximation of the Bernoulli numbers.</h2>
+<p>The lower bound of the above inclusion can also be used as a convenient approximation 
+for the Bernoulli numbers. It then takes the form (assuming n even)</p>
+<div style="text-align: center"><table><tbody><tr><td class="box">
+<img alt="bernapprox" src="Asymptotic%20approximations%20and%20inclusions%20of%20the%20Bernoulli%20Numbers_files/bernapprox.gif" height="59" width="342">
+</td></tr></tbody></table></div>
+<p>&nbsp;Equivalently this formula can be stated as</p>
+<div style="text-align: center"><table><tbody><tr>
+<td class="box"><img alt="bernapprox" src="Asymptotic%20approximations%20and%20inclusions%20of%20the%20Bernoulli%20Numbers_files/bernasy5.gif"></td>
+</tr></tbody></table></div>
+<p>For example the standard approximation gives B(1000) ~ 0.5318<em>2</em>..*10^1770, 
+which amounts to <strong>4</strong> valid decimal numbers, whereas the last 
+approximation gives for B(1000) an approximation with almost <strong>18.2</strong> 
+valid decimal digits.</p>
+<h2 class="style8">Asymptotic formulas</h2>
+<p>More generally let us look at three asymptotic formulas for the logarithm 
+of the Bernoulli numbers.</p>
+<ol style="font-family: 'Courier New', Courier, Monospace; text-align: left">
+<li>LogB1(n) = (1/2+n)*ln(n)+(1/2-n)*ln(pi)+(3/2-n)*ln(2)-n</li>
+<li>LogB2(n) = (1/2+n)*ln(n)+(1/2-n)*ln(pi)+(3/2-n)*ln(2)-n*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (1-ln((120*n^2+9)/(120*n^2-1)))</li>
+<li>LogB3(n) = (1/2+n)*ln(n)+(1/2-n)*ln(pi)+(3/2-n)*ln(2)-n*<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (1-1/(12*n^2)*(1-1/(30*n^2)*(1-2/(7*n^2))))</li>
+</ol>
+<div style="text-align: center"><table><tbody><tr><td class="box">
+<img alt="" src="Asymptotic%20approximations%20and%20inclusions%20of%20the%20Bernoulli%20Numbers_files/BernoulliFormula.png" height="160" width="674">
+</td></tr></tbody></table></div>
+<p>We see that formula 2 as well as formula 3 are refinements of formula 1. 
+We are now focusing on formula 3 in its exponential form exp(LogB3(n)).</p>
+<p>What makes this asymptotic approximation especially useful -- besides being 
+a <i>much</i> better approximation than those given by the Digital Library of 
+Mathematical Functions (see §24.11) -- is that the error of the approximation 
+can be easily estimated. </p>
+<p>In fact a convenient way to reason about the validity of an approximation 
+formula is to give a lower bound for the number of exact decimal digits, i. 
+e. to indicate the number of decimal digits which are guaranteed by the formula 
+at least. In the case of exp(LogB3(n)) we have a good and simple way to express 
+this bound: </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; EddE(n) = floor(3*log(3*n)) &nbsp; (valid 
+for n ≥ 50). </p>
+<p>For example for Bernoulli(31622776) this bound says that 55 
+decimal digits of exp(LogB3(n)) are guaranteed to be correct (the true value 
+is 55.7). </p>
+<p>To sum up: to compute an approximation to the Bernoulli numbers B(n) 
+with n ≥ 50 and n even compute exp(logB3(n)) and retain floor(3*log(3*n)) decimal 
+digits of the result. </p>
+<pre>def BernoulliAsympt(n) :
+    if n &lt; 50 :
+        print "Value error, n has to be ≥ 50"
+        return 
+    if is_odd(n): return 0
+    R = RealField(300)  # to be increased for large values n
+    nn = n*n
+    LogB = R((1/2+n)*ln(n)+(1/2-n)*ln(pi)+(3/2-n)*ln(2)-n*(1-1/(12*nn)*
+           (1-1/(30*nn)*(1-2/(7*nn))))
+    B = (-1)^(1+n//2)*exp(LogB)
+    Edd = floor(3*ln(3*n))    
+    print SciFormat(B, Edd - 1)  # see <a href="http://www.luschny.de/math/primes/SciFormat.txt">SciFormat</a>
+    return B    
+    
+for n in (49..52): print n, BernoulliAsympt(n)    
+   49 → Value error, n has to be ≥ 50
+   50 → 7.50086674607696e24
+   51 → 0
+   52 → -5.0387781014810e26
+ 
+BernoulliAsympt(31622776)
+   -7.66922063003368519879820408820523505875084131626143035e198196563
+</pre>
+<p>Note that the function displays only valid digits as we used this formatting function: <a href="http://www.luschny.de/math/primes/SciFormat.txt">SciFormat</a>.&nbsp; With Sage 
+the asymptotic formulas for the Bernoulli numbers based on these formulas and 
+the exact decimal digits (edd) of these approximations can be computed as follows.</p>
+<pre style="margin-left: 16px">Edd1(n) = -log10(abs(1-exp(LogB1(n))/abs(bernoulli(n)))
+Edd2(n) = -log10(abs(1-exp(LogB2(n))/abs(bernoulli(n)))
+Edd3(n) = -log10(abs(1-exp(LogB3(n))/abs(bernoulli(n)))
+EddE(n) = 3*ln(3*n)
+
+ANF = 50; END = 1000; STEP = 20 
+plot2 = list_plot([[n, Edd2(n)] for n in range(ANF,END,STEP)], color='red')
+plot3 = list_plot([[n, Edd3(n)] for n in range(ANF,END,STEP)], color='blue')
+plotE = list_plot([[n, EddE(n)] for n in range(ANF,END,STEP)], color='magenta')
+show(plot2 + plot3 + plotE)
+</pre>
+<p>The plot below compares the number of exact decimal digits of the approximation 
+(formula 3, blue curve) with the number of exact decimal digits guaranteed by 
+this formula, 3*ln(3*n) (magenta curve). For comparison the red curve shows 
+the exact decimal digits of formula 2. Formula 1 (given by DLMF/NIST) gives 
+a poor approximation not worth to be shown.</p>
+<p>
+<img alt="" src="Asymptotic%20approximations%20and%20inclusions%20of%20the%20Bernoulli%20Numbers_files/ExactDecimalDigitsOfAsymptoticBernoulliNumbers.png" width="100%"></p>
+<p>Restating exp(LogB3(n)) gives the following asymptotic expansion of the 
+Bernoulli number B(n) for n&gt;0 even:</p>
+<div style="text-align: center; "><table><tbody><tr><td class="box">
+<img alt="" src="Asymptotic%20approximations%20and%20inclusions%20of%20the%20Bernoulli%20Numbers_files/BernoulliNumbersAsymptotic.png" height="75" width="662"></td></tr></tbody></table></div>
+<hr>
+<p class="style10">Note: The first inclusion was given on Jan. 18 2007 
+by the present author. Here the 
+<a href="http://groups.google.com/group/de.sci.mathematik/msg/efa8d5c42ca29533">
+announcement</a> in the newsgroup de.sci.mathematik. Thanks to Charles R Greathouse IV who drew my attention to an error in a previous version.</p>
+<p><a href="http://www.luschny.de/math/primes/eulerinc.html"><img src="Asymptotic%20approximations%20and%20inclusions%20of%20the%20Bernoulli%20Numbers_files/prev.gif" alt="previous" height="32" width="32"></a>
+<span class="style11">Asymptotic inclusions and approximations for the Euler numbers. <br>
+<a href="http://www.luschny.de/math/factorial/approx/SimpleCases.html">
+<img alt="next" src="Asymptotic%20approximations%20and%20inclusions%20of%20the%20Bernoulli%20Numbers_files/next.gif" class="style11" height="32" width="32"></a> 
+Asymptotic expansions of the factorial function.</span></p>
+<script type="text/javascript">var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E")); </script><script src="Asymptotic%20approximations%20and%20inclusions%20of%20the%20Bernoulli%20Numbers_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript"> var pageTracker = _gat._getTracker("UA-6269363-1"); pageTracker._trackPageview(); </script>
+</div>
+
+
+
+
+</body></html>

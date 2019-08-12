@@ -1,0 +1,12 @@
+Ideas for basic helpful functions...
+
+log(base, x)
+csc(x)
+cot(x)
+sec(x)
+
+agm..
+agm(a, b)
+agm(abegin, aend)
+agm(abegin, aend, wbegin[, wend])
+power_mean(std::initializer_list<>)?

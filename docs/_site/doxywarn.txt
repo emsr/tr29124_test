@@ -1,0 +1,2 @@
+/home/ed/tr29124_test/include/bits/sf_hyperg.tcc:487: warning: Found unknown command `\fixme'
+/home/ed/tr29124_test/include/bits/sf_zeta.tcc:539: warning: Found unknown command `\Re'

@@ -1,0 +1,203 @@
+\hypertarget{group__mathsf}{}\section{Mathematical Special Functions}
+\label{group__mathsf}\index{Mathematical Special Functions@{Mathematical Special Functions}}
+Collaboration diagram for Mathematical Special Functions\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__mathsf}
+\end{center}
+\end{figure}
+\subsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group__mathsf__std}{C++17/\+I\+S29124 Mathematical Special Functions}
+\item 
+\hyperlink{group__mathsf__gnu}{G\+N\+U Extended Mathematical Special Functions}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hypertarget{group__mathsf_mathsf_desc}{}\subsection{Mathematical Special Functions}\label{group__mathsf_mathsf_desc}
+A collection of advanced mathematical special functions, defined by I\+S\+O/\+I\+EC IS 29124 and then added to I\+SO C++ 2017.\hypertarget{group__mathsf_mathsf_intro}{}\subsubsection{Introduction and History}\label{group__mathsf_mathsf_intro}
+The first significant library upgrade on the road to C++2011, \href{http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2005/n1836.pdf}{\tt T\+R1}, included a set of 23 mathematical functions that significantly extended the standard transcendental functions inherited from C and declared in $<$cmath$>$.
+
+Although most components from T\+R1 were eventually adopted for C++11 these math functions were left behind out of concern for implementability. The math functions were published as a separate international standard \href{http://www.open-std.org/JTC1/SC22/WG21/docs/papers/2010/n3060.pdf}{\tt IS 29124 -\/ Extensions to the C++ Library to Support Mathematical Special Functions}.
+
+Follow-\/up proosals for new special functions have also been published\+: \href{http://open-std.org/JTC1/SC22/WG21/docs/papers/2013/n3494.pdf}{\tt A proposal to add special mathematical functions according to the I\+S\+O/\+I\+EC 80000-\/2\+:2009 standard, Vincent Reverdy}.
+
+\href{http://open-std.org/JTC1/SC22/WG21/docs/papers/2004/n1668.pdf}{\tt A Proposal to add Mathematical Functions for Statistics to the C++ Standard Library, Paul A Bristow}.
+
+\href{http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0081r0.pdf}{\tt A proposal to add sincos to the standard library, Paul Dreik}.
+
+For C++17 these functions were incorporated into the main standard.\hypertarget{group__mathsf_mathsf_contents}{}\subsubsection{Contents}\label{group__mathsf_mathsf_contents}
+The following functions are implemented in namespace {\ttfamily std\+:} 
+\begin{DoxyItemize}
+\item \hyperlink{group__mathsf__std_ga0b33e0ac3066f2353861ce2f34b43f57}{assoc\+\_\+laguerre -\/ Associated Laguerre functions}
+\item \hyperlink{group__mathsf__std_ga7aa4182446f687094b12688078517d53}{assoc\+\_\+legendre -\/ Associated Legendre functions}
+\item \hyperlink{group__mathsf__gnu_ga96a1223727fa71ffbf520a98ac3dc885}{assoc\+\_\+legendre\+\_\+q -\/ Associated Legendre functions of the second kind}
+\item \hyperlink{group__mathsf__std_gacd36403ae64b89840b1504f97024dcee}{beta -\/ Beta functions}
+\item \hyperlink{group__mathsf__std_gad559217fb01e7a8b7a6e23eeedda64be}{comp\+\_\+ellint\+\_\+1 -\/ Complete elliptic functions of the first kind}
+\item \hyperlink{group__mathsf__std_gaadf288465eea84ec609d93de96200aaa}{comp\+\_\+ellint\+\_\+2 -\/ Complete elliptic functions of the second kind}
+\item \hyperlink{group__mathsf__std_ga80419d323d3231870bd588525e818974}{comp\+\_\+ellint\+\_\+3 -\/ Complete elliptic functions of the third kind}
+\item \hyperlink{group__mathsf__std_ga29504b6008798072b0b8d6ea5a50ec60}{cyl\+\_\+bessel\+\_\+i -\/ Regular modified cylindrical Bessel functions}
+\item \hyperlink{group__mathsf__std_ga644f7eb975809674db88768f2f115744}{cyl\+\_\+bessel\+\_\+j -\/ Cylindrical Bessel functions of the first kind}
+\item \hyperlink{group__mathsf__std_gac73d664b8e7ceba7f8e786c93e97a084}{cyl\+\_\+bessel\+\_\+k -\/ Irregular modified cylindrical Bessel functions}
+\item \hyperlink{group__mathsf__std_ga1e4bef23704469b0704cf15c5f04e29e}{cyl\+\_\+neumann -\/ Cylindrical Neumann functions or Cylindrical Bessel functions of the second kind}
+\item \hyperlink{group__mathsf__std_ga1550d6947bbbeee9865aabd398102a36}{ellint\+\_\+1 -\/ Incomplete elliptic functions of the first kind}
+\item \hyperlink{group__mathsf__std_gad64cb9babb7837d585912b1a94b2cb7d}{ellint\+\_\+2 -\/ Incomplete elliptic functions of the second kind}
+\item \hyperlink{group__mathsf__std_gaac0240d1e7e401e652b9d1adf4c7e029}{ellint\+\_\+3 -\/ Incomplete elliptic functions of the third kind}
+\item \hyperlink{group__mathsf__std_ga0e9ac717a106ef54184b5f058c451782}{expint -\/ The exponential integral}
+\item \hyperlink{group__mathsf__std_ga8bd1626f1e3f7256c4fd13579f881183}{hermite -\/ Hermite polynomials}
+\item \hyperlink{group__mathsf__std_ga9d7b24a11dad27690387405548973ef9}{laguerre -\/ Laguerre functions}
+\item \hyperlink{group__mathsf__std_gad06811f4e139b0ba84235c1f0d34d86e}{legendre -\/ Legendre polynomials}
+\item \hyperlink{group__mathsf__std_gac4ef9d52ee583c77937c3a420b7c72ca}{riemann\+\_\+zeta -\/ The Riemann zeta function}
+\item \hyperlink{group__mathsf__std_gad125841d7c85e461cb8954952e3a17c8}{sph\+\_\+bessel -\/ Spherical Bessel functions}
+\item \hyperlink{group__mathsf__std_gacef0d41a7ce572a9ace3437498794ed0}{sph\+\_\+legendre -\/ Spherical Legendre functions}
+\item \hyperlink{group__mathsf__std_ga01cdd716aaca8ff3c08f307800fd5220}{sph\+\_\+neumann -\/ Spherical Neumann functions}
+\end{DoxyItemize}
+
+The hypergeometric functions were stricken from the T\+R29124 and C++17 versions of this math library because of implementation concerns. However, since they were in the T\+R1 version and since they are popular we kept them as an extension in namespace {\ttfamily \hyperlink{namespace____gnu__cxx}{\+\_\+\+\_\+gnu\+\_\+cxx}\+:} 
+\begin{DoxyItemize}
+\item \hyperlink{group__mathsf__gnu_ga4d01e85e7d295afca5d9f8b6c68f19cc}{conf\+\_\+hyperg -\/ Confluent hypergeometric functions}
+\item \hyperlink{group__mathsf__gnu_ga374198e4076f9e23f3878ca3af70e6da}{hyperg -\/ Hypergeometric functions}
+\end{DoxyItemize}
+
+In addition a large number of new functions are added as extensions\+:
+\begin{DoxyItemize}
+\item \hyperlink{group__mathsf__gnu_gac84f8c4ad00ee677ad4d0b785925d983}{airy\+\_\+ai -\/ Airy functions of the first kind}
+\item \hyperlink{group__mathsf__gnu_ga33c172cab7f8e9c99537444c7e30801a}{airy\+\_\+bi -\/ Airy functions of the second kind}
+\item \hyperlink{group__mathsf__gnu_gac07286d722248a7f3c65a13b49b1fef5}{bell -\/ Bell numbers and polynomials}
+\item \hyperlink{group__mathsf__gnu_gad339f0011df1967ec6c9e55bd1547bf4}{bernoulli -\/ Bernoulli polynomials}
+\item \hyperlink{group__mathsf__gnu_gabd0cf6e3f1e1d36c4c45f118e34a5ca2}{binomial -\/ Binomial coefficients}
+\item \hyperlink{group__mathsf__gnu_gae8135b6861a48f2cee2e692093a17102}{bose\+\_\+einstein -\/ Bose-\/\+Einstein integrals}
+\item \hyperlink{group__mathsf__gnu_ga4d9cae9de13a64ceeb4fb0226f4b7844}{chebyshev\+\_\+t -\/ Chebyshev polynomials of the first kind}
+\item \hyperlink{group__mathsf__gnu_gafa90c06bdedb8459f20576297cf1608f}{chebyshev\+\_\+u -\/ Chebyshev polynomials of the second kind}
+\item \hyperlink{group__mathsf__gnu_ga32b7decd0002f542d2c9187c5f0846c6}{chebyshev\+\_\+v -\/ Chebyshev polynomials of the third kind}
+\item \hyperlink{group__mathsf__gnu_gaa156c6c21e99104ebcb627e92aceada0}{chebyshev\+\_\+w -\/ Chebyshev polynomials of the fourth kind}
+\item \hyperlink{group__mathsf__gnu_ga54e4ba71b1f81718d6998349f91ff88f}{clausen -\/ Clausen integrals}
+\item \hyperlink{group__mathsf__gnu_ga8786b86db309998f93f877cfb9bdfd57}{clausen\+\_\+cl -\/ Clausen cosine integrals}
+\item \hyperlink{group__mathsf__gnu_gacb757b00309213cd96bb2bc6b5dc3c24}{clausen\+\_\+sl -\/ Clausen sine integrals}
+\item \hyperlink{group__mathsf__gnu_ga3fe79a91524b43ffc5ffb83c0eb2bd00}{comp\+\_\+ellint\+\_\+d -\/ Incomplete Legendre D elliptic integral}
+\item \hyperlink{group__mathsf__gnu_ga9fe7a5e2e741f56d88fd29bc249feab2}{conf\+\_\+hyperg\+\_\+lim -\/ Confluent hypergeometric limit functions}
+\item \hyperlink{group__mathsf__gnu_gafc4698ae591b0e9e61285b0794d43ef4}{cos\+\_\+pi -\/ Reperiodized cosine function.}
+\item \hyperlink{group__mathsf__gnu_gaf59c68a01adfdab0f22c4fb405ab2a36}{cosh\+\_\+pi -\/ Reperiodized hyperbolic cosine function.}
+\item \hyperlink{group__mathsf__gnu_ga2411d513d418180285ace6650c7b7e31}{coshint -\/ Hyperbolic cosine integral}
+\item \hyperlink{group__mathsf__gnu_gafd398869cde057087e6b3428a1d13a93}{cosint -\/ Cosine integral}
+\item \hyperlink{group__mathsf__gnu_ga5329bba77d10a9d2f15d9bbe43a70db3}{cyl\+\_\+hankel\+\_\+1 -\/ Cylindrical Hankel functions of the first kind}
+\item \hyperlink{group__mathsf__gnu_ga7ebc71dd48ac97255d72f5f5f43dfd8e}{cyl\+\_\+hankel\+\_\+2 -\/ Cylindrical Hankel functions of the second kind}
+\item \hyperlink{group__mathsf__gnu_gabc97cbc04fdd23593e8dccbc1421dad5}{dawson -\/ Dawson integrals}
+\item \hyperlink{group__mathsf__gnu_ga0b14de47c011de3ebf771c9f29b2b78c}{debye -\/ Debye functions}
+\item \hyperlink{group__mathsf__gnu_ga7b87300edf8754d959e1d94fe0c9246e}{digamma -\/ Digamma or psi function}
+\item \hyperlink{group__mathsf__gnu_ga4185ee1a0f9189a18085f65d52b6bc9b}{dilog -\/ Dilogarithm functions}
+\item \hyperlink{group__mathsf__gnu_ga87466a2d429a2815d794acc21c882b08}{dirichlet\+\_\+beta -\/ Dirichlet beta function}
+\item \hyperlink{group__mathsf__gnu_gae46e26e4107675d285c79a2d6202e6c7}{dirichlet\+\_\+eta -\/ Dirichlet beta function}
+\item \hyperlink{group__mathsf__gnu_ga06842a81bdcabf9c62252dde992d42ee}{dirichlet\+\_\+lambda -\/ Dirichlet lambda function}
+\item \hyperlink{group__mathsf__gnu_ga1e62c47f84f9782828f8830b4fedc13c}{double\+\_\+factorial -\/ Double factorials}
+\item \hyperlink{group__mathsf__gnu_gad75103894786e6d7766bac4d8447b6cc}{ellint\+\_\+d -\/ Legendre D elliptic integrals}
+\item \hyperlink{group__mathsf__gnu_ga7d3d42f5f71a74266be8aaca528056bf}{ellint\+\_\+rc -\/ Carlson elliptic functions R\+\_\+C}
+\item \hyperlink{group__mathsf__gnu_gad29dae6abc783c8fe952dba477e65309}{ellint\+\_\+rd -\/ Carlson elliptic functions R\+\_\+D}
+\item \hyperlink{group__mathsf__gnu_gae4859494464c7eaf98193f92b2235bc1}{ellint\+\_\+rf -\/ Carlson elliptic functions R\+\_\+F}
+\item \hyperlink{group__mathsf__gnu_gadf618529d6106c1c1bc1e9212c4fed12}{ellint\+\_\+rg -\/ Carlson elliptic functions R\+\_\+G}
+\item \hyperlink{group__mathsf__gnu_gadccabc8df929cc03745286ed1574a3ba}{ellint\+\_\+rj -\/ Carlson elliptic functions R\+\_\+J}
+\item \hyperlink{group__mathsf__gnu_ga7bfb34f8b5c0ed7c72040f9cb7034bba}{ellnome -\/ Elliptic nome}
+\item \hyperlink{group__mathsf__gnu_gac956e6457ab7d0d1765d281e73073f55}{euler -\/ Euler numbers}
+\item \hyperlink{group__mathsf__gnu_gac956e6457ab7d0d1765d281e73073f55}{euler -\/ Euler polynomials}
+\item \hyperlink{group__mathsf__gnu_gadfd8810a97655d2cdd1b0e3af68a79d3}{eulerian\+\_\+1 -\/ Eulerian numbers of the first kind}
+\item \hyperlink{group__mathsf__gnu_ga9bc456941d5e35cf54ec9c50f2e52884}{eulerian\+\_\+2 -\/ Eulerian numbers of the second kind}
+\item \hyperlink{group__mathsf__gnu_gadaf9317953b826975da72d1858f01ea5}{expint -\/ Exponential integrals}
+\item \hyperlink{group__mathsf__gnu_ga963b1612f50b0964f5f42c9f289aab68}{factorial -\/ Factorials}
+\item \hyperlink{group__mathsf__gnu_ga3cc8eb6068c7155ec48b40e20160c5c0}{falling\+\_\+factorial -\/ Falling factorials}
+\item \hyperlink{group__mathsf__gnu_ga5468fbaed5cb8384cff7cfb9d2188d1a}{fermi\+\_\+dirac -\/ Fermi-\/\+Dirac integrals}
+\item \hyperlink{group__mathsf__gnu_ga92a3585165bfad3f9972fb4210140d22}{fresnel\+\_\+c -\/ Fresnel cosine integrals}
+\item \hyperlink{group__mathsf__gnu_ga075a32b4f59a5fa67c2e28232c89ad45}{fresnel\+\_\+s -\/ Fresnel sine integrals}
+\item \hyperlink{group__mathsf__gnu_ga692601fa7508c0b97bf549e6362a49b9}{gamma\+\_\+p -\/ Regularized lower incomplete gamma functions}
+\item \hyperlink{group__mathsf__gnu_ga10c246b2fa2ce000dc5d7c81e9e98c58}{gamma\+\_\+q -\/ Regularized upper incomplete gamma functions}
+\item \hyperlink{group__mathsf__gnu_ga641f9bcdb8fc32a9a0ce7a15b5040076}{gamma\+\_\+reciprocal -\/ Reciprocal gamma function}
+\item \hyperlink{group__mathsf__gnu_ga512e7981e328d6184f604de1892048b6}{gegenbauer -\/ Gegenbauer polynomials}
+\item \hyperlink{group__mathsf__gnu_ga7537f96eedc8571ed1987481b2863e89}{heuman\+\_\+lambda -\/ Heuman lambda functions}
+\item \hyperlink{group__mathsf__gnu_ga7b167ce1c8d9aa6aad40fc83a95733bd}{hurwitz\+\_\+zeta -\/ Hurwitz zeta functions}
+\item \hyperlink{group__mathsf__gnu_ga1fa9e260ba85fc043e3d2ada99c0143c}{ibeta -\/ Regularized incomplete beta functions}
+\item \hyperlink{group__mathsf__gnu_gad54f6601748324d268532138eb38ca33}{jacobi -\/ Jacobi polynomials}
+\item \hyperlink{group__mathsf__gnu_ga49d5e18152dd0dd0f496b8c8582e7045}{jacobi\+\_\+sn -\/ Jacobi sine amplitude functions}
+\item \hyperlink{group__mathsf__gnu_ga2e1c43b232d378164bed1433041ca7dc}{jacobi\+\_\+cn -\/ Jacobi cosine amplitude functions}
+\item \hyperlink{group__mathsf__gnu_ga0f8fa8d6a77dbc2089d65f3f16876aa9}{jacobi\+\_\+dn -\/ Jacobi delta amplitude functions}
+\item \hyperlink{group__mathsf__gnu_ga996ca8c1fff75e2d4f196e99e0919933}{theta\+\_\+1 -\/ Jacobi theta function 1}
+\item \hyperlink{group__mathsf__gnu_gaf6b13dac1f112a870299d75cb4cf42cc}{theta\+\_\+2 -\/ Jacobi theta function 2}
+\item \hyperlink{group__mathsf__gnu_gaf4eac2990db1dadba66ae688ceaa6403}{theta\+\_\+3 -\/ Jacobi theta function 3}
+\item \hyperlink{group__mathsf__gnu_ga676501b6284d5702a3dc61252e6c78ab}{theta\+\_\+4 -\/ Jacobi theta function 4}
+\item \hyperlink{group__mathsf__gnu_ga639be4ebef9a20572375ec534be52b07}{jacobi\+\_\+zeta -\/ Jacobi zeta functions}
+\item \hyperlink{group__mathsf__gnu_gaa3491fabb0a6ef54a946a7a23ca866c7}{lah -\/ Lah numbers}
+\item \hyperlink{group__mathsf__gnu_gabfa5aeba56edfa110846fc8e76963bc2}{lbinomial -\/ Log binomial coefficients}
+\item \hyperlink{group__mathsf__gnu_ga43bf9a20282d5b9237bf352682a48395}{ldouble\+\_\+factorial -\/ Log double factorials}
+\item \hyperlink{group__mathsf__gnu_gadad5b22d0075dca31690907668af568f}{legendre\+\_\+q -\/ Legendre functions of the second kind}
+\item \hyperlink{group__mathsf__gnu_ga31d7cfc601a99d72e58f654d0c890fd6}{lerch\+\_\+phi -\/ The Lerch transcendent}
+\item \hyperlink{group__mathsf__gnu_gab256f8d7b77b9a8fefafca21827166eb}{lfactorial -\/ Log factorials}
+\item \hyperlink{group__mathsf__gnu_ga2032c10640d5010666d60d9faec86c32}{lfalling\+\_\+factorial -\/ Log falling factorials}
+\item \hyperlink{group__mathsf__gnu_ga40fa5127f7c419ed1d8f1c6a6f96ea9b}{lgamma -\/ Log gamma for complex arguments}
+\item \hyperlink{group__mathsf__gnu_ga8912b75b2f7592fb61128c766e7313b9}{lrising\+\_\+factorial -\/ Log rising factorials}
+\item \hyperlink{group__mathsf__gnu_ga1a51079e00fbe5473d8cf9ad3304c5c6}{mittag\+\_\+leffler -\/ Mittag-\/\+Leffler functions}
+\item \hyperlink{group__mathsf__gnu_gab4e367aae19853cca3af99eead01fcaa}{owens\+\_\+t -\/ Owens T functions}
+\item \hyperlink{group__mathsf__gnu_ga06b06216e87b868cb21c76d33ac560c8}{periodic\+\_\+zeta -\/ Periodic zeta functions}
+\item \hyperlink{group__mathsf__gnu_ga195db2592888b7a8df870d9eaeff8d05}{radpoly -\/ Radial polynomials}
+\item \hyperlink{group__mathsf__gnu_gae8c36a0e1f60254cf212a3806f7c675c}{rising\+\_\+factorial -\/ Rising factorials}
+\item \hyperlink{group__mathsf__gnu_gaf2f02e4143e7beb97352cef4b7fcb663}{sinhc -\/ Hyperbolic sinus cardinal function}
+\item \hyperlink{group__mathsf__gnu_ga8bb6034e28d48879845bf64818cc06e1}{sinhc\+\_\+pi -\/ Reperiodized hyperbolic sinus cardinal function}
+\item \hyperlink{group__mathsf__gnu_ga09976b5d041113979c93613cc3700348}{sinc -\/ Normalized sinus cardinal function}
+\item \hyperlink{group__mathsf__gnu_ga8041c24b528475bcf8a4178e484652a3}{sincos -\/ Sine + cosine function}
+\item \hyperlink{group__mathsf__gnu_ga6553883f127ea0de67041c3128e03813}{sincos\+\_\+pi -\/ Reperiodized sine + cosine function}
+\item \hyperlink{group__mathsf__gnu_ga220f8a9a0477697cff96e84dc911d5f0}{sin\+\_\+pi -\/ Reperiodized sine function.}
+\item \hyperlink{group__mathsf__gnu_gade43453b87b6b38c05b3fcce40870542}{sinh\+\_\+pi -\/ Reperiodized hyperbolic sine function.}
+\item \hyperlink{group__mathsf__gnu_ga5195270024403b985e7d4f2f935f8779}{sinc\+\_\+pi -\/ Sinus cardinal function}
+\item \hyperlink{group__mathsf__gnu_gab5cbc831c5fab99a967c03d059f1ad59}{sinhint -\/ Hyperbolic sine integral}
+\item \hyperlink{group__mathsf__gnu_ga076c8d52588904f5711c41781f8acfa0}{sinint -\/ Sine integral}
+\item \hyperlink{group__mathsf__gnu_ga156b8154b27b7898c8b2abf4284f7323}{sph\+\_\+bessel\+\_\+i -\/ Spherical regular modified Bessel functions}
+\item \hyperlink{group__mathsf__gnu_ga288b28f2c6995d052a4f5f17293cbf1a}{sph\+\_\+bessel\+\_\+k -\/ Spherical iregular modified Bessel functions}
+\item \hyperlink{group__mathsf__gnu_ga4424f565fb224ab88b177beb65d08305}{sph\+\_\+hankel\+\_\+1 -\/ Spherical Hankel functions of the first kind}
+\item \hyperlink{group__mathsf__gnu_ga1ca08866a25e3637b04c57ff5a0c36a5}{sph\+\_\+hankel\+\_\+2 -\/ Spherical Hankel functions of the first kind}
+\item \hyperlink{group__mathsf__gnu_gacbff28988d5d36f0c3b3fe03d4f57896}{sph\+\_\+harmonic -\/ Spherical}
+\item \hyperlink{group__mathsf__gnu_ga2b955dac7d2c5125f2091eaeb25c8ad2}{stirling\+\_\+1 -\/ Stirling numbers of the first kind}
+\item \hyperlink{group__mathsf__gnu_ga3761c0e467cbe45cbda66a4e796adcd3}{stirling\+\_\+2 -\/ Stirling numbers of the second kind}
+\item \hyperlink{group__mathsf__gnu_ga12855bd62fe6a955ef0d1d5e92c85ba9}{tan\+\_\+pi -\/ Reperiodized tangent function.}
+\item \hyperlink{group__mathsf__gnu_ga8729ffd5acf3266315e9dac1b5a9b3a6}{tanh\+\_\+pi -\/ Reperiodized hyperbolic tangent function.}
+\item \hyperlink{group__mathsf__gnu_ga73a634663e4eceb1e6bcf3fc16773b7b}{tgamma -\/ Gamma for complex arguments}
+\item \hyperlink{group__mathsf__gnu_ga73a634663e4eceb1e6bcf3fc16773b7b}{tgamma -\/ Upper incomplete gamma functions}
+\item \hyperlink{group__mathsf__gnu_gaed107908dec8865ea48e7764f7ea88a2}{tgamma\+\_\+lower -\/ Lower incomplete gamma functions}
+\item \hyperlink{group__mathsf__gnu_gaa2e5a3a5f550fe032a596a8b01c878c0}{theta\+\_\+1 -\/ Exponential theta function 1}
+\item \hyperlink{group__mathsf__gnu_ga16f278edeb2842d614bae1f1ae2d0256}{theta\+\_\+2 -\/ Exponential theta function 2}
+\item \hyperlink{group__mathsf__gnu_ga146c3b8e86991e164d4bf143cda5f0fc}{theta\+\_\+3 -\/ Exponential theta function 3}
+\item \hyperlink{group__mathsf__gnu_ga8a6f8b69272a9f205a13e1745832ada3}{theta\+\_\+4 -\/ Exponential theta function 4}
+\item \hyperlink{group__mathsf__gnu_gaf51a13fad85006e4d65c5b117e49f7d8}{tricomi\+\_\+u -\/ Tricomi confluent hypergeometric function}
+\item \hyperlink{group__mathsf__gnu_gaaed33f29c1eb1d2c5b9590fe2e57151c}{zernike -\/ Zernike polynomials}
+\end{DoxyItemize}\hypertarget{group__mathsf_mathsf_promotion}{}\subsubsection{Argument Promotion}\label{group__mathsf_mathsf_promotion}
+The arguments suppled to the non-\/suffixed functions will be promoted according to the following rules\+:
+\begin{DoxyEnumerate}
+\item If any argument intended to be floating point is given an integral value That integral value is promoted to double.
+\item All floating point arguments are promoted up to the largest floating point precision among them.
+\end{DoxyEnumerate}\hypertarget{group__mathsf_mathsf_NaN}{}\subsubsection{Na\+N Arguments}\label{group__mathsf_mathsf_NaN}
+If any of the floating point arguments supplied to these functions is invalid or NaN (std\+::numeric\+\_\+limits$<$\+Tp$>$\+::quiet\+\_\+\+NaN), the value NaN is returned.\hypertarget{group__mathsf_mathsf_impl}{}\subsubsection{Implementation}\label{group__mathsf_mathsf_impl}
+We strive to implement the underlying math with type generic algorithms to the greatest extent possible. In practice, the functions are thin wrappers that dispatch to function templates. Type dependence is controlled with std\+::numeric\+\_\+limits and functions thereof.
+
+We don\textquotesingle{}t promote {\ttfamily float} to {\ttfamily double} or {\ttfamily double} to {\ttfamily long double} reflexively. The goal is for {\ttfamily float} functions to operate more quickly, at the cost of {\ttfamily float} accuracy and possibly a smaller domain of validity. Similaryly, {\ttfamily long double} should give you more dynamic range and slightly more pecision than {\ttfamily double} on many systems.\hypertarget{group__mathsf_mathsf_testing}{}\subsubsection{Testing}\label{group__mathsf_mathsf_testing}
+These functions have been tested against equivalent implementations from the \href{http://www.gnu.org/software/gsl}{\tt Gnu Scientific Library, G\+SL} and $<$a href="\href{http://www.boost.org/doc/libs/1_60_0/libs/math/doc/html/index.html}{\tt http\+://www.\+boost.\+org/doc/libs/1\+\_\+60\+\_\+0/libs/math/doc/html/index.\+html}$>$Boost and the ratio \[ \frac{|f - f_{test}|}{|f_{test}|} \] is generally found to be within 10\textsuperscript{-\/15} for 64-\/bit double on linux-\/x86\+\_\+64 systems over most of the ranges of validity.
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]Provide accuracy comparisons on a per-\/function basis for a small number of targets.\end{DoxyRefDesc}
+\hypertarget{group__mathsf_mathsf_bibliography}{}\subsubsection{General Bibliography}\label{group__mathsf_mathsf_bibliography}
+\begin{DoxySeeAlso}{See also}
+Abramowitz and Stegun\+: Handbook of Mathematical Functions, with Formulas, Graphs, and Mathematical Tables Edited by Milton Abramowitz and Irene A. Stegun, National Bureau of Standards Applied Mathematics Series -\/ 55 Issued June 1964, Tenth Printing, December 1972, with corrections Electronic versions of A\&S abound including both pdf and navigable html. 
+
+for example \href{http://people.math.sfu.ca/~cbm/aands/}{\tt http\+://people.\+math.\+sfu.\+ca/$\sim$cbm/aands/}
+
+The old A\&S has been redone as the N\+I\+ST Digital Library of Mathematical Functions\+: \href{http://dlmf.nist.gov/}{\tt http\+://dlmf.\+nist.\+gov/} This version is far more navigable and includes more recent work.
+
+The Planet\+Math website has a wealth of material. In particular \href{https://planetmath.org/msc.html#33_Special_functions}{\tt https\+://planetmath.\+org/msc.\+html\#33\+\_\+\+Special\+\_\+functions}
+
+An Atlas of Functions\+: with Equator, the Atlas Function Calculator 2nd Edition, by Oldham, Keith B., Myland, Jan, Spanier, Jerome
+
+Asymptotics and Special Functions by Frank W. J. Olver, Academic Press, 1974
+
+Numerical Recipes in C, The Art of Scientific Computing, by William H. Press, Second Ed., Saul A. Teukolsky, William T. Vetterling, and Brian P. Flannery, Cambridge University Press, 1992
+
+The Special Functions and Their Approximations\+: Volumes 1 and 2, by Yudell L. Luke, Academic Press, 1969 
+\end{DoxySeeAlso}

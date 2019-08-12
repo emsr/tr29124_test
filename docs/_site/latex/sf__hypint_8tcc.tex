@@ -1,0 +1,57 @@
+\hypertarget{sf__hypint_8tcc}{}\section{include/bits/sf\+\_\+hypint.tcc File Reference}
+\label{sf__hypint_8tcc}\index{include/bits/sf\+\_\+hypint.\+tcc@{include/bits/sf\+\_\+hypint.\+tcc}}
+{\ttfamily \#include $<$complex$>$}\newline
+{\ttfamily \#include $<$ext/math\+\_\+const.\+h$>$}\newline
+Include dependency graph for sf\+\_\+hypint.\+tcc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{sf__hypint_8tcc__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{sf__hypint_8tcc__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacestd}{std}
+\item 
+ \hyperlink{namespacestd_1_1____detail}{std\+::\+\_\+\+\_\+detail}
+\begin{DoxyCompactList}\small\item\em Implementation-\/space details. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{sf__hypint_8tcc_ab91dbc8208427facb5b049391e050aaa}{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+I\+N\+T\+\_\+\+T\+CC}~1
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::pair$<$ \+\_\+\+Tp, \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_aa07abc4dac6cf589ccd12d3ce40277cf}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+chshint} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \&\+\_\+\+Chi, \+\_\+\+Tp \&\+\_\+\+Shi)
+\begin{DoxyCompactList}\small\item\em This function returns the hyperbolic cosine $ Ci(x) $ and hyperbolic sine $ Si(x) $ integrals as a pair. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a07da2303d36d77bfad393a7b8ebdf686}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+chshint\+\_\+cont\+\_\+frac} (\+\_\+\+Tp \+\_\+\+\_\+t, \+\_\+\+Tp \&\+\_\+\+Chi, \+\_\+\+Tp \&\+\_\+\+Shi)
+\begin{DoxyCompactList}\small\item\em This function computes the hyperbolic cosine $ Chi(x) $ and hyperbolic sine $ Shi(x) $ integrals by continued fraction for positive argument. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a16055b6e4baa35ffe5c6d9495d9d0158}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+chshint\+\_\+series} (\+\_\+\+Tp \+\_\+\+\_\+t, \+\_\+\+Tp \&\+\_\+\+Chi, \+\_\+\+Tp \&\+\_\+\+Shi)
+\begin{DoxyCompactList}\small\item\em This function computes the hyperbolic cosine $ Chi(x) $ and hyperbolic sine $ Shi(x) $ integrals by series summation for positive argument. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is an internal header file, included by other library headers. Do not attempt to use it directly. Instead, include $<$cmath$>$. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sf__hypint_8tcc_ab91dbc8208427facb5b049391e050aaa}\label{sf__hypint_8tcc_ab91dbc8208427facb5b049391e050aaa}} 
+\index{sf\+\_\+hypint.\+tcc@{sf\+\_\+hypint.\+tcc}!\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+I\+N\+T\+\_\+\+T\+CC@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+I\+N\+T\+\_\+\+T\+CC}}
+\index{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+I\+N\+T\+\_\+\+T\+CC@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+I\+N\+T\+\_\+\+T\+CC}!sf\+\_\+hypint.\+tcc@{sf\+\_\+hypint.\+tcc}}
+\subsubsection{\texorpdfstring{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+I\+N\+T\+\_\+\+T\+CC}{\_GLIBCXX\_BITS\_SF\_HYPINT\_TCC}}
+{\footnotesize\ttfamily \#define \+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+I\+N\+T\+\_\+\+T\+CC~1}
+
+
+
+Definition at line 31 of file sf\+\_\+hypint.\+tcc.
+

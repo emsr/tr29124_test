@@ -1,0 +1,59 @@
+\hypertarget{sf__trigint_8tcc}{}\section{include/bits/sf\+\_\+trigint.tcc File Reference}
+\label{sf__trigint_8tcc}\index{include/bits/sf\+\_\+trigint.\+tcc@{include/bits/sf\+\_\+trigint.\+tcc}}
+{\ttfamily \#include $<$complex$>$}\newline
+{\ttfamily \#include $<$ext/math\+\_\+const.\+h$>$}\newline
+Include dependency graph for sf\+\_\+trigint.\+tcc\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{sf__trigint_8tcc__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{sf__trigint_8tcc__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacestd}{std}
+\item 
+ \hyperlink{namespacestd_1_1____detail}{std\+::\+\_\+\+\_\+detail}
+\begin{DoxyCompactList}\small\item\em Implementation-\/space details. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{sf__trigint_8tcc_a8ba3ab1895ab4f89f7ee4d01d6db906e}{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+R\+I\+G\+I\+N\+T\+\_\+\+T\+CC}~1
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::pair$<$ \+\_\+\+Tp, \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a53bf807a99eef68cdb6f917c7ca085bf}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sincosint} (\+\_\+\+Tp \+\_\+\+\_\+x)
+\begin{DoxyCompactList}\small\item\em This function returns the sine $ Si(x) $ and cosine $ Ci(x) $ integrals as a {\ttfamily pair}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a976c3ff52c54001de3d409900c9bcb9c}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sincosint\+\_\+asymp} (\+\_\+\+Tp \+\_\+\+\_\+t, \+\_\+\+Tp \&\+\_\+\+Si, \+\_\+\+Tp \&\+\_\+\+Ci)
+\begin{DoxyCompactList}\small\item\em This function computes the sine $ Si(x) $ and cosine $ Ci(x) $ integrals by asymptotic series summation for positive argument. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_a211f552bca2944f64e3a1f5593690fda}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sincosint\+\_\+cont\+\_\+frac} (\+\_\+\+Tp \+\_\+\+\_\+t, \+\_\+\+Tp \&\+\_\+\+Si, \+\_\+\+Tp \&\+\_\+\+Ci)
+\begin{DoxyCompactList}\small\item\em This function computes the sine $ Si(x) $ and cosine $ Ci(x) $ integrals by continued fraction for positive argument. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_aea85e0044476065ed4a067f1aa9647cb}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sincosint\+\_\+series} (\+\_\+\+Tp \+\_\+\+\_\+t, \+\_\+\+Tp \&\+\_\+\+Si, \+\_\+\+Tp \&\+\_\+\+Ci)
+\begin{DoxyCompactList}\small\item\em This function computes the sine $ Si(x) $ and cosine $ Ci(x) $ integrals by series summation for positive argument. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is an internal header file, included by other library headers. Do not attempt to use it directly. Instead, include $<$cmath$>$. 
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sf__trigint_8tcc_a8ba3ab1895ab4f89f7ee4d01d6db906e}\label{sf__trigint_8tcc_a8ba3ab1895ab4f89f7ee4d01d6db906e}} 
+\index{sf\+\_\+trigint.\+tcc@{sf\+\_\+trigint.\+tcc}!\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+R\+I\+G\+I\+N\+T\+\_\+\+T\+CC@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+R\+I\+G\+I\+N\+T\+\_\+\+T\+CC}}
+\index{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+R\+I\+G\+I\+N\+T\+\_\+\+T\+CC@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+R\+I\+G\+I\+N\+T\+\_\+\+T\+CC}!sf\+\_\+trigint.\+tcc@{sf\+\_\+trigint.\+tcc}}
+\subsubsection{\texorpdfstring{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+R\+I\+G\+I\+N\+T\+\_\+\+T\+CC}{\_GLIBCXX\_BITS\_SF\_TRIGINT\_TCC}}
+{\footnotesize\ttfamily \#define \+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+R\+I\+G\+I\+N\+T\+\_\+\+T\+CC~1}
+
+
+
+Definition at line 31 of file sf\+\_\+trigint.\+tcc.
+
