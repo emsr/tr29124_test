@@ -36,7 +36,7 @@ template<typename _Tp>
     if (std::abs(x - _Tp{1}) < _S_eps)
       return _S_inf;
     else if (std::abs(x + _Tp{1}) < _S_eps)
-      return (n1 + n2) & 1 ? -_S_inf : _S_inf;
+      return ((n1 + n2) & 1) ? -_S_inf : _S_inf;
     else
       return __gnu_cxx::chebyshev_t(n2, x)
 	   * __gnu_cxx::chebyshev_t(n1, x)

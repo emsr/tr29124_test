@@ -3,6 +3,7 @@
  */
 
 #include <cmath>
+#include <iostream>
 
 template<typename _Tp, typename _Hfun>
   std::vector<_Tp>
@@ -64,5 +65,4 @@ template<typename _Tp, typename _Hfun>
 int
 main()
 {
-  auto x = 1;
 }

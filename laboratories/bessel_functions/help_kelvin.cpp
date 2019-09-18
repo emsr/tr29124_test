@@ -252,7 +252,6 @@
 
       const auto __y = __x / _Tp{2};
       const auto __y2 = __y * __y;
-      const auto __y4 = __y2 * __y2;
 
       //_BasicSum _H_n;
       //_WenigerDeltaWijnSum __ber, __bei, __ker, __kei;

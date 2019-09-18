@@ -8,7 +8,8 @@
 
   template<typename _Tp>
     std::complex<_Tp>
-    fma_naive(std::complex<_Tp> __a, std::complex<_Tp> __b, std::complex<_Tp> __c)
+    fma_naive(const std::complex<_Tp>& __a, const std::complex<_Tp>& __b,
+	      const std::complex<_Tp>& __c)
     { return __a * __b + __c; }
 
   /*
@@ -16,7 +17,8 @@
    */
   template<typename _Tp>
     std::complex<_Tp>
-    fma_sym(std::complex<_Tp> __a, std::complex<_Tp> __b, std::complex<_Tp> __c)
+    fma_sym(const std::complex<_Tp>& __a, const std::complex<_Tp>& __b,
+	    const std::complex<_Tp>& __c)
     {
       const auto [__ar, __ai] = reinterpret_cast<const _Tp(&)[2]>(__a);
       const auto [__br, __bi] = reinterpret_cast<const _Tp(&)[2]>(__b);
@@ -30,7 +32,8 @@
 
   template<typename _Tp>
     std::complex<_Tp>
-    fma(std::complex<_Tp> __a, std::complex<_Tp> __b, std::complex<_Tp> __c)
+    fma(const std::complex<_Tp>& __a, const std::complex<_Tp>& __b,
+	const std::complex<_Tp>& __c)
     {
       const auto [__ar, __ai] = reinterpret_cast<const _Tp(&)[2]>(__a);
       const auto [__br, __bi] = reinterpret_cast<const _Tp(&)[2]>(__b);

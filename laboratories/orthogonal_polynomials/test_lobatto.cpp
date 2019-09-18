@@ -31,7 +31,7 @@
 	  auto __lmfact = std::__detail::__factorial<_Tp>(__lm);
 	  auto __mm = __lm / 2;
 	  auto __mmfact = std::__detail::__factorial<_Tp>(__mm);
-	  auto __Plm1 = (__lm & 1 ? -1 : 1) * __lmfact / __mmfact / __mmfact
+	  auto __Plm1 = ((__lm & 1) ? -1 : 1) * __lmfact / __mmfact / __mmfact
 			/ std::pow(_Tp{2}, __lm);
 	  auto __Ppl = __l * __Plm1;
 	  __pt[__m].__point = _Tp{0};

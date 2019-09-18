@@ -16,15 +16,13 @@ main()
   double nu = 0.0;
   double xpre = 79.9;
   double xpost = 80.0;
-  double jpre = std::tr1::cyl_bessel_j(nu, xpre);
-  double jpost = std::tr1::cyl_bessel_j(nu, xpost);
+  double jpre [[maybe_unused]] = std::tr1::cyl_bessel_j(nu, xpre);
+  double jpost [[maybe_unused]] = std::tr1::cyl_bessel_j(nu, xpost);
 
-  double jcurr = jpost, jprev;
   for (int i = 1; i <= 10000; ++i)
     {
       double x = xpost + i * 0.1;
-      jprev = jcurr;
-      jcurr = std::tr1::cyl_bessel_j(nu, x);
+      double jcurr = std::tr1::cyl_bessel_j(nu, x);
       std::cout << "x = " << x << "  j = " << jcurr << '\n';
     }
 

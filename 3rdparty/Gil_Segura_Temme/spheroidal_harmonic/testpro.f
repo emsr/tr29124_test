@@ -14,7 +14,8 @@
       WRITE(10,30)'X','N','PL2(N)',
      & 'QL2(N)','QL2(0)'
       WRITE(10,*)
-      DO X=1.2D0,10.D0,1.6D0
+      DO IX=0,5
+         X = 1.2D0 + IX * 1.6D0
          CALL DPROH(X,M,NMAX,MODE,PL,QL,NUEVO)
          WRITE(10,800) X,NUEVO,PL(NUEVO),QL(NUEVO),QL(0)
          NM=10
@@ -28,7 +29,8 @@
       WRITE(10,31)'X','N','PL(N)/(2M-1)!!',
      &             'QL(N)/(2M)!!','QL(0)/(2M)!!'
       WRITE(10,*)
-      DO X=1.2D0,10.D0,1.6D0
+      DO IX=0,5
+         X = 1.2D0 + IX * 1.6D0
          CALL DPROH(X,M,NMAX,MODE,PL,QL,NUEVO)
          WRITE(10,800) X,NUEVO,PL(NUEVO),QL(NUEVO),QL(0)
          NM=10
@@ -42,7 +44,8 @@
       WRITE(10,*)
       WRITE(10,32)'X','N', 'RL(N)', 'TL(N)', 'TL(0)'
       WRITE(10,*)
-      DO X=0.2D0,10.D0,1.6D0
+      DO IX=0,6
+         X = 0.2D0 + IX * 1.6D0
          CALL DOBLH(X,M,NMAX,MODE,PL,QL,NUEVO)
          WRITE(10,801) X,NUEVO,PL(NUEVO),QL(NUEVO),QL(0)
          NM=10

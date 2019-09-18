@@ -248,7 +248,6 @@ namespace __detail
 	  _H_n += _Tp{1};
 	  for (auto __k = 1; __k < _S_maxiter; ++__k)
 	    {
-	      const auto __tkm1 = _Tp(2 * __k - 1);
 	      const auto __tk = _Tp(2 * __k);
 	      const auto __tkp1 = _Tp(2 * __k + 1);
 

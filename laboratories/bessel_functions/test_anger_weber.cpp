@@ -95,8 +95,6 @@
 
 	  if (std::abs(__term1) < _S_eps * std::abs(_S1))
 	    return _S1;
-	  if (__k > _S_max_iter)
-	    std::__throw_logic_error("Too many terms.");
 	}
       return _Tp{0};
     }
@@ -122,7 +120,7 @@
       auto _Gam11 = std::tgamma(_GamArg11);
       auto _GamArg12 = _Tp(1 - __m + __k_start);
       auto _Gam12 = std::tgamma(_GamArg12);
-      auto __term1 = (__k_start & 1 ? -1 : +1)
+      auto __term1 = ((__k_start & 1) ? -1 : +1)
 		   * std::pow(__z2, _Tp(2 * __k_start)) / (_Gam11 * _Gam12);
       auto _S1 = __term1;
       for (auto __k = 1u; __k < _S_max_iter; ++__k)
@@ -134,8 +132,6 @@
 
 	  if (std::abs(__term1) < _S_eps * std::abs(_S1))
 	    return _S1;
-	  if (__k > _S_max_iter)
-	    std::__throw_logic_error("Too many terms.");
 	}
       return _Tp{0};
     }
@@ -169,8 +165,6 @@
 
 	  if (std::abs(__term2) < _S_eps * std::abs(_S2))
 	    return _S2;
-	  if (__k > _S_max_iter)
-	    std::__throw_logic_error("Too many terms.");
 	}
       return _Tp{0};
     }
@@ -196,7 +190,7 @@
       auto _Gam21 = std::tgamma(_GamArg21);
       auto _GamArg22 = _Tp{1} - __m + __k_start;
       auto _Gam22 = std::tgamma(_GamArg22);
-      auto __term2 = (__k_start & 1 ? -1 : +1)
+      auto __term2 = ((__k_start & 1) ? -1 : +1)
 		   * std::pow(__z2, _Tp(2 * __k_start + 1)) / (_Gam21 * _Gam22);
       auto _S2 = __term2;
       for (auto __k = 1u; __k < _S_max_iter; ++__k)
@@ -208,8 +202,6 @@
 
 	  if (std::abs(__term2) < _S_eps * std::abs(_S2))
 	    return _S2;
-	  if (__k > _S_max_iter)
-	    std::__throw_logic_error("Too many terms.");
 	}
       return _Tp{0};
     }
@@ -293,7 +285,7 @@
 		}
 	      return __anger_weber_t<_Tp>{__nu, __z,
 					  _Tp{0},
-					  -((__n / 2) & 1 ? -1 : +1) * _S1};
+					  -(((__n / 2) & 1) ? -1 : +1) * _S1};
 	    }
 	  else
 	    {

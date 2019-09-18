@@ -15,9 +15,9 @@
     _Tp
     __experfc_func(_Tp __x)
     {
-      mpfr::mpreal __X((long double)__x, 1024);
+      mpfr::mpreal __X(static_cast<long double>(__x), 1024);
       if (__x < _Tp{20})
-	return (long double)(mpfr::exp(__X * __X) * mpfr::erfc(__X));
+	return static_cast<long double>(mpfr::exp(__X * __X) * mpfr::erfc(__X));
       else
 	{
 return 0;

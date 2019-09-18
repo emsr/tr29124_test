@@ -30,14 +30,14 @@
       auto __U1 = _Tp{};
       auto __b = __a - __c + _Tp{1};
       auto __ib = __gnu_cxx::__fp_is_integer(__b);
-      if (!__ib || (__ib && __ib() > 0))
+      if (!__ib || __ib() > 0)
 	__U1 = std::__detail::__gamma(_Tp{1} - __c)
 	     * std::__detail::__conf_hyperg(__a, __c, __x)
 	     / std::__detail::__gamma(__b);
 
       auto __U2 = _Tp{};
       auto __ia = __gnu_cxx::__fp_is_integer(__a);
-      if (!__ia || (__ia && __ia() > 0))
+      if (!__ia || __ia() > 0)
 	__U2 = std::__detail::__gamma(__c - _Tp{1})
 	     * std::pow(__x, _Tp{1} - __c)
 	     * std::__detail::__conf_hyperg(__b, _Tp{2} - __c, __x)
@@ -112,7 +112,7 @@
 	  if (std::abs(__term2) < _S_eps * std::abs(_U2))
 	    break;
 	}
-      _U2 *= (__m & 1 ? -1 : +1)
+      _U2 *= ((__m & 1) ? -1 : +1)
 	   / std::__detail::__factorial<_Tp>(__m - 1)
 	   / std::__detail::__gamma(__b);
 
@@ -149,7 +149,7 @@
 	  if (std::abs(__term) < _S_eps * std::abs(_Usum))
 	    break;
 	}
-      return (__n & 1 ? -1 : +1)
+      return ((__n & 1) ? -1 : +1)
 	   * __gnu_cxx::rising_factorial(__m, -__n) * _Usum;
     }
 
