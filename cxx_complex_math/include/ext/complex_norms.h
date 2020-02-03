@@ -1,11 +1,3 @@
-
-  /**
-   * Return the L1 norm modulus or the Manhattan metric distance of a complex number.
-   */
-  template<typename _Tp>
-    inline constexpr _Tp
-    __l1_norm(const std::complex<_Tp>& __z)
-    { return std::abs(std::real(__z)) + std::abs(std::imag(__z)); }
 // Special functions -*- C++ -*-
 
 // Copyright (C) 2016-2019 Free Software Foundation, Inc.
@@ -43,6 +35,14 @@
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
+
+  /**
+   * Return the L1 norm modulus or the Manhattan metric distance of a complex number.
+   */
+  template<typename _Tp>
+    inline constexpr _Tp
+    __l1_norm(const std::complex<_Tp>& __z)
+    { return std::abs(std::real(__z)) + std::abs(std::imag(__z)); }
 
   /**
    * Return the L2 norm modulus or the Euclidean metric distance of a complex number.
