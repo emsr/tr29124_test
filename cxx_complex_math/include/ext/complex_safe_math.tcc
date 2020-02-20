@@ -33,7 +33,7 @@
 #pragma GCC system_header
 
 #include <bits/numeric_limits.h>
-#include <ext/math_constants.h>
+#include <ext/numbers>
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {

@@ -20,6 +20,7 @@ if (NOT MSVC)
 endif ()
 
 set(TR29124_LIBRARIES
+  cxx_numeric_limits
   cxx_special_functions
   cxx_math_constants
   cxx_fp_utils
@@ -72,7 +73,7 @@ target_link_libraries(wrap_cephes ${TR29124_LIBRARIES} maths_cephes)
 
 add_library(wrap_burkhardt SHARED wrap_burkhardt.cpp)
 target_include_directories(wrap_burkhardt PUBLIC .)
-target_link_libraries(wrap_burkhardt maths_burkhardt ${TR29124_LIBRARIES})
+target_link_libraries(wrap_burkhardt ${TR29124_LIBRARIES} maths_burkhardt)
 
 
 add_library(wrap_lerchphi SHARED

@@ -331,6 +331,7 @@ namespace __detail
 			 std::complex<_Tp>& _H2sum, std::complex<_Tp>& _H2psum)
     {
       using _Cmplx = std::complex<_Tp>;
+      using __gnu_cxx::__l1_norm;
 
       int __nterms = 4;
 

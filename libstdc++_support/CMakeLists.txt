@@ -24,6 +24,7 @@ add_custom_target(make_libstdcpp_support_output_dir ALL
 add_definitions(-D__TEST_DEBUG)
 
 set(TR29124_LIBRARIES
+  cxx_numeric_limits
   cxx_special_functions
   cxx_math_constants
   cxx_fp_utils

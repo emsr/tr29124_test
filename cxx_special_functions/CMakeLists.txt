@@ -19,3 +19,4 @@ add_custom_target(make_cxx_special_functions_output_dir ALL
 
 add_library(cxx_special_functions INTERFACE)
 target_include_directories(cxx_special_functions INTERFACE ../include)
+target_link_libraries(cxx_special_functions INTERFACE cxx_complex_math cxx_numeric_limits)

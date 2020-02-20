@@ -4,7 +4,7 @@
 
 #include <limits>
 #include <mpreal.h>
-#include <bits/math_mpreal.h>
+#include <math_mpreal.h>
 #include <bits/numeric_limits.h>
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)

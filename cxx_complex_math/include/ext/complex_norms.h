@@ -32,9 +32,11 @@
 
 #pragma GCC system_header
 
-namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
+#include <complex>
+
+namespace __gnu_cxx //_GLIBCXX_VISIBILITY(default)
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
+//_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the L1 norm modulus or the Manhattan metric distance of a complex number.
@@ -85,7 +87,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     __linf_norm(_Tp __x)
     { return std::abs(__x); }
 
-_GLIBCXX_END_NAMESPACE_VERSION
+//_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace __gnu_cxx
 
 #endif // _GLIBCXX_EXT_COMPLEX_NORMS_H

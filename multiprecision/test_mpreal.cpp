@@ -9,7 +9,7 @@ $HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_mpreal te
 #include <mpreal.h>
 #include <bits/numeric_limits_mpreal.h>
 #include <ext/math_const_mpreal.h>
-#include <bits/math_mpreal.h>
+#include <math_mpreal.h>
 
 int
 main()
