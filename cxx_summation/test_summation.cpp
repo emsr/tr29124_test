@@ -1,10 +1,3 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++20 -g -Wall -Wextra -Wno-psabi -I. -o test_summation test_summation.cpp -lquadmath
-./test_summation > test_summation.txt
-
-$HOME/bin/bin/g++ -std=gnu++20 -I. -o test_summation test_summation.cpp -lquadmath
-./test_summation > test_summation.txt
-*/
 
 #include <ext/float128_math.h>
 #include <cmath>

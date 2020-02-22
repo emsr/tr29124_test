@@ -1,6 +1,3 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++20 -g -Iinclude -o test_fp_utils test_fp_utils.cpp
-*/
 
 #include <ext/math_util.h>
 

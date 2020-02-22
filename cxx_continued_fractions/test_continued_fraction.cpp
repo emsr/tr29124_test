@@ -1,10 +1,3 @@
-/*
-$HOME/bin/bin/g++ -std=gnu++20 -g -Wall -Wextra -Wno-psabi -I. -o test_continued_fraction test_continued_fraction.cpp -L$HOME/bin/lib64 -lquadmath
-./test_continued_fraction > test_continued_fraction.txt
-
-$HOME/bin/bin/g++ -std=gnu++20 -g -Wall -Wextra -Wno-psabi -I. -o test_continued_fraction test_continued_fraction.cpp -lquadmath
-./test_continued_fraction > test_continued_fraction.txt
-*/
 
 #include <limits>
 #include <iostream>

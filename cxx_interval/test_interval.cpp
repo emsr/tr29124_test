@@ -1,7 +1,3 @@
-/*
-$HOME/bin/bin/g++ -std=c++17 -g -Iinclude -o test_interval test_interval.cpp
-LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_interval
-*/
 
 #include <limits>
 #include <iostream>

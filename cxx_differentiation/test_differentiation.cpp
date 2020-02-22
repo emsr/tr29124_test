@@ -1,6 +1,3 @@
-/*
-g++ -std=c++17 -g -Iinclude -o test_differentiation test_differentiation.cpp
-*/
 
 #include <ext/differentiation.h>
 
