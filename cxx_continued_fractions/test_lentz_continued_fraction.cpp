@@ -1,8 +1,8 @@
 /*
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_lentz_continued_fraction test_lentz_continued_fraction.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++20 -g -Wall -Wextra -Wno-psabi -I. -o test_lentz_continued_fraction test_lentz_continued_fraction.cpp -lquadmath
 ./test_lentz_continued_fraction > test_lentz_continued_fraction.txt
 
-$HOME/bin/bin/g++ -std=gnu++2a -g -Wall -Wextra -Wno-psabi -I. -o test_lentz_continued_fraction test_lentz_continued_fraction.cpp -lquadmath
+$HOME/bin/bin/g++ -std=gnu++20 -g -Wall -Wextra -Wno-psabi -I. -o test_lentz_continued_fraction test_lentz_continued_fraction.cpp -lquadmath
 ./test_lentz_continued_fraction > test_lentz_continued_fraction.txt
 */
 

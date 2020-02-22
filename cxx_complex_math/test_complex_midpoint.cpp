@@ -1,5 +1,5 @@
 /*
-$HOME/bin/bin/g++ -std=c++2a -c -I/home/ed/tr29124_test/cxx_complex_math/include test_cmplx.cpp
+$HOME/bin/bin/g++ -std=c++20 -c -I/home/ed/tr29124_test/cxx_complex_math/include test_cmplx.cpp
 */
 
 #include <complex>
