@@ -48,6 +48,14 @@
 
 #pragma GCC system_header
 
+#include <ext/continued_fractions.h>
+
+#define BESSEL_DEBUG 1
+#ifdef BESSEL_DEBUG
+#  include <iostream>
+#  include <iomanip>
+#endif
+
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
@@ -285,6 +293,180 @@ namespace __detail
     }
 
   /**
+   * Compute ratios of Bessel functions using the S-fraction.
+   *
+   * @param  __nu  The order of the Hankel ratio.
+   * @param  __x   The argument of the Hankel ratio.
+   * @param  __zeta A variable encapsulating the regular and irregular
+   *           Bessel functions; Use @f$ \zeta = (iz)^2 @f$ for @f$ J_\nu(z) @f$
+   *           and @f$ \zeta = z^2 @f$ for @f$ I_\nu(z) @f$.
+   */
+  template<typename _Tnu, typename _Tp, typename _Tzeta>
+    std::complex<__gnu_cxx::__num_traits_t<
+		 __gnu_cxx::fp_promote_t<_Tnu, _Tp, _Tzeta>>>
+    __cyl_bessel_ratio_s_frac(_Tnu __nu, _Tp __z, _Tzeta __zeta)
+    {
+      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Cmplx = std::complex<_Real>;
+
+      auto __a_J
+	= [__nu, __z, __zeta](std::size_t __k, _Tp)
+	  {
+	    using __type = decltype(_Tnu{} * _Tzeta{});
+	    if (__k == 1)
+	      return __type(__z / (_Tnu{2} * __nu + _Tnu{2}));
+	    else
+	      return __zeta
+		   / (_Tnu{4} * (__nu + _Tnu(__k - 1)) * (__nu + _Tnu(__k)));
+	  };
+      using _AFun = decltype(__a_J);
+
+      auto __b_J = [](std::size_t, _Tp) -> _Real { return _Real{1}; };
+      using _BFun = decltype(__b_J);
+
+      auto __w_J = [](std::size_t, _Tp) -> _Real { return _Real{0}; };
+      using _WFun = decltype(__w_J);
+
+      _SteedContinuedFraction<_Tp, _AFun, _BFun, _WFun>
+      _J(__a_J, __b_J, __w_J);
+
+      // b_0 is 0 not 1 so subtract 1.
+      return _J(__z) - _Real{1};
+    }
+
+  /**
+   * 
+   */
+  template<typename _Tnu, typename _Tp,
+	   typename _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>>
+    std::conditional_t<__gnu_cxx::is_complex_v<_Val>,
+			std::complex<__gnu_cxx::__num_traits_t<_Val>>,
+			_Val>
+    __cyl_bessel_j_ratio_s_frac(_Tnu __nu, _Tp __z)
+    {
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Cmplx = std::complex<_Real>;
+
+      const auto __iz = _Cmplx{0, 1} * __z;
+      const auto __zeta = __iz * __iz;
+      const auto _Jrat = __cyl_bessel_ratio_s_frac(__nu, __z, __zeta);
+
+      if constexpr (!__gnu_cxx::is_complex_v<_Val>)
+	return std::real(_Jrat);
+      else
+	return _Jrat;
+    }
+
+  /**
+   * 
+   */
+  template<typename _Tnu, typename _Tp,
+	   typename _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>>
+    std::conditional_t<__gnu_cxx::is_complex_v<_Val>,
+			std::complex<__gnu_cxx::__num_traits_t<_Val>>,
+			_Val>
+    __cyl_bessel_i_ratio_s_frac(_Tnu __nu, _Tp __z)
+    {
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Cmplx = std::complex<_Real>;
+
+      const auto __zeta = __z * __z;
+      const auto _Irat = __cyl_bessel_ratio_s_frac(__nu, __z, __zeta);
+
+      if constexpr (!__gnu_cxx::is_complex_v<_Val>)
+	return std::real(_Irat);
+      else
+	return _Irat;
+    }
+
+  /**
+   * Compute ratios of Hankel functions using the J-fraction.
+   */
+  template<typename _Tnu, typename _Tp>
+    std::complex<__gnu_cxx::__num_traits_t<
+		 __gnu_cxx::fp_promote_t<_Tnu, _Tp>>>
+    __cyl_hankel_ratio_j_frac(_Tnu __nu, _Tp __z, _Tp __sgn)
+    {
+      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Cmplx = std::complex<_Real>;
+      const auto __zeta = _Cmplx{0, 2} * __z;
+      using _Tzeta = decltype(__zeta);
+
+      auto __a_H
+	= [__nu](std::size_t __k, _Tp)
+	  {
+	    const auto __kk = _Tnu(2 * __k - 1) / _Tnu{2};
+	    return (__nu - __kk) * (__nu + __kk);
+	  };
+      using _NumFun = decltype(__a_H);
+
+      auto __b_H
+	= [__zeta, __sgn](std::size_t __k, _Tp)
+	  { return __sgn * _Tzeta(2 * __k) + __zeta; };
+      using _DenFun = decltype(__b_H);
+
+      auto __w_H
+	= [__zeta](std::size_t __k, _Tp)
+	  { return _Tzeta(__k) + __zeta / _Tzeta{2}; };
+      using _TailFun = decltype(__w_H);
+
+      _SteedContinuedFraction<_Tp, _NumFun, _DenFun, _TailFun>
+      _H(__a_H, __b_H, __w_H);
+
+      return (_Tzeta(2 * __nu + 1) + __sgn * __zeta) / (_Tp{2} * __z)
+	   + __sgn * (_H(__z) - __b_H(0, _Tp{})) / __z;
+    }
+
+  /**
+   * Return the Hankel function ratio of the first kind from the J-fraction.
+   */
+  template<typename _Tnu, typename _Tp>
+    inline std::complex<__gnu_cxx::__num_traits_t<
+			__gnu_cxx::fp_promote_t<_Tnu, _Tp>>>
+    __cyl_hankel_1_ratio_j_frac(_Tnu __nu, _Tp __z)
+    { return __cyl_hankel_ratio_j_frac(__nu, __z, _Tp{-1}); }
+
+  /**
+   * Return the Hankel function ratio of the second kind from the J-fraction.
+   */
+  template<typename _Tnu, typename _Tp>
+    inline std::complex<__gnu_cxx::__num_traits_t<
+			__gnu_cxx::fp_promote_t<_Tnu, _Tp>>>
+    __cyl_hankel_2_ratio_j_frac(_Tnu __nu, _Tp __z)
+    { return __cyl_hankel_ratio_j_frac(__nu, __z, _Tp{+1}); }
+
+  /**
+   * Return the modified Bessel function ratio of the second kind
+   * from the J-fraction ratios of Hankel functions.
+   */
+  template<typename _Tnu, typename _Tp,
+	   typename _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>>
+    std::conditional_t<__gnu_cxx::is_complex_v<_Val>,
+			std::complex<__gnu_cxx::__num_traits_t<_Val>>,
+			_Val>
+    __cyl_bessel_k_ratio_j_frac(_Tnu __nu, _Tp __z)
+    {
+      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Cmplx = std::complex<_Real>;
+      const auto _S_i = _Cmplx{0, 1};
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
+      const auto __ph = std::arg(__z);
+
+      _Cmplx _Krat;
+      if (__ph > -_S_pi && __ph <= _S_pi / _Real{2})
+	_Krat = _S_i * __cyl_hankel_1_ratio_j_frac(__nu, _S_i * __z);
+      else
+	_Krat = -_S_i * __cyl_hankel_2_ratio_j_frac(__nu, -_S_i * __z);
+
+      if constexpr (!__gnu_cxx::is_complex_v<_Val>)
+	return std::real(_Krat);
+      else
+	return _Krat;
+    }
+
+  /**
    * @brief Compute the gamma functions required by the Temme series
    * 	    expansions of @f$ N_\nu(x) @f$ and @f$ K_\nu(x) @f$.
    * @f[
@@ -336,6 +518,83 @@ namespace __detail
     }
 
   /**
+   * A little return type for the Temme series.
+   */
+  template<typename _Tp>
+    struct __bessel_nk_series_t
+    {
+      _Tp _Z_mu;
+      _Tp _Z_mup1;
+    };
+
+  /**
+   * This routine computes the dominant cylindrical bessel function solutions
+   * by series summation for order @f$ |\mu| < 1/2 @f$.
+   *
+   * @param __mu The order of the Bessel functions @f$ |\mu| < 1/2 @f$.
+   * @param __x  The argument of the Bessel functions.
+   * @param __modified If true solve for the modified Bessel function
+   *                   @f$ K_\mu @f$, otherwise solve for the Neumann function
+   *                   @f$ N_\mu @f$,
+   * @return A structure containing Z_{\mu} and Z_{\mu+1}.
+   */
+  template<typename _Tp>
+    __bessel_nk_series_t<_Tp>
+    __cyl_bessel_nk_series(_Tp __mu, _Tp __x, bool __modified = false,
+			   int __max_iter = 100)
+    {
+      const auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto __xi = _Tp{1} / __x;
+      const auto __x2 = __x / _Tp{2};
+
+      const auto __fact = _Tp{1} / std::__detail::__sinc_pi(__mu);
+      const auto __lx2 = -std::log(__x2);
+      const auto __arg = __mu * __lx2;
+      const auto __fact2 = std::__detail::__sinhc(__arg);
+      const auto __gamt = std::__detail::__gamma_temme(__mu);
+      const auto __norm = __modified ? _Tp{-1} : _Tp{2} / _S_pi;
+      auto __ff = __norm * __fact
+		* (__gamt.__gamma_1_value * std::cosh(__arg)
+		 + __gamt.__gamma_2_value * __fact2 * __lx2);
+      const auto __e = std::exp(__arg);
+      auto __p = __norm * __e / (_Tp{2} * __gamt.__gamma_plus_value);
+      auto __q = __norm / (__e * _Tp{2} * __gamt.__gamma_minus_value);
+      const auto __fact3 = __modified
+			 ? _Tp{0}
+			 : std::__detail::__sinc_pi(__mu / _Tp{2});
+      const auto __r = __modified
+		     ? _Tp{0}
+		     : __fact3 * __fact3 * _S_pi * _S_pi * __mu / _Tp{2};
+      auto __c = _Tp{1};
+      const auto __d = __modified ? __x2 * __x2 : -__x2 * __x2;
+      auto __sum_mu = __ff + __r * __q;
+      auto __sum_mup1 = __p;
+      int __i;
+      for (__i = 1; __i <= __max_iter; ++__i)
+	{
+	  __ff = (__i * __ff + __p + __q)
+	       / ((_Tp(__i) - __mu) * (_Tp(__i) + __mu));
+	  __c *= __d / _Tp(__i);
+	  __p /= _Tp(__i) - __mu;
+	  __q /= _Tp(__i) + __mu;
+	  const auto __del_mu = __c * (__ff + __r * __q);
+	  __sum_mu += __del_mu;
+	  const auto __del_mup1 = __c * __p - _Tp(__i) * __del_mu;
+	  __sum_mup1 += __del_mup1;
+	  if (std::abs(__del_mu) < _S_eps * std::abs(__sum_mu))
+	    break;
+	}
+      if (__i > __max_iter)
+	std::__throw_runtime_error(__N("__cyl_bessel_nk_series: "
+				       "Series failed to converge"));
+      auto _N_mu = -__sum_mu;
+      auto _N_mup1 = -_Tp{2} * __xi * __sum_mup1;
+
+      return {_N_mu, _N_mup1};
+    }
+
+  /**
    * @brief  Compute the Bessel @f$ J_\nu(x) @f$ and Neumann
    * 	     @f$ N_\nu(x) @f$ functions and their first derivatives
    * 	     @f$ J'_\nu(x) @f$ and @f$ N'_\nu(x) @f$ respectively.
@@ -369,12 +628,11 @@ namespace __detail
 		    : std::max(0,
 			       static_cast<int>(__nu - __x + _Tp{1.5L})));
 
-      const auto __mu = __nu - _Tp(__n);
-      const auto __mu2 = __mu * __mu;
       const auto __xi = _Tp{1} / __x;
       const auto __xi2 = _Tp{2} * __xi;
       const auto _Wronski = __xi2 / _S_pi;
       int __isign = 1;
+//#if 1
       auto __h = std::max(_S_fp_min, __nu * __xi);
       auto __b = __xi2 * __nu;
       auto __d = _Tp{0};
@@ -399,7 +657,28 @@ namespace __detail
 	}
       if (__i > _S_max_iter)
 	return __cyl_bessel_jn_asymp(__nu, __x);
+//#else
+      _Tp __h2;
+      try
+	{
+	  __h2 = __nu * __xi - __cyl_bessel_j_ratio_s_frac(__nu, __x);
+	}
+      catch (...)
+	{
+	  return __cyl_bessel_jn_asymp(__nu, __x);
+	}
+//#endif
+#ifdef BESSEL_DEBUG
+std::cerr << ' ' << std::setw(10) << __nu
+	  << ' ' << std::setw(10) << __x
+	  << ' ' << std::setw(2) << __isign
+	  << ' ' << std::setw(10) << __h2
+	  << ' ' << std::setw(10) << __h
+	  << ' ' << std::setw(14) << __h2 - __h
+	  << '\n';
+#endif
 
+      // Recur recessive solution downward to |mu| < 1/2.
       auto _Jnul = __isign * _S_fp_min;
       auto _Jpnul = __h * _Jnul;
       auto _Jnul1 = _Jnul;
@@ -415,91 +694,24 @@ namespace __detail
       if (_Jnul == _Tp{0})
 	_Jnul = _S_eps;
 
+      const auto __mu = __nu - _Tp(__n);
+      const auto __mu2 = __mu * __mu;
       const auto __f = _Jpnul / _Jnul;
       _Tp _Nmu, _Nnu1, _Npmu, _Jmu;
       if (__x < _S_x_min)
 	{
-	  const auto __x2 = __x / _Tp{2};
-	  const auto __pimu = _S_pi * __mu;
-	  const auto __fact = (std::abs(__pimu) < _S_eps
-			    ? _Tp{1}
-			    : __pimu / std::sin(__pimu));
-	  auto __d = -std::log(__x2);
-	  auto __e = __mu * __d;
-	  const auto __fact2 = (std::abs(__e) < _S_eps
-			     ? _Tp{1}
-			     : std::sinh(__e) / __e);
-	  const auto __gamt = __gamma_temme(__mu);
-	  auto __ff = (_Tp{2} / _S_pi) * __fact
-		    * (__gamt.__gamma_1_value * std::cosh(__e)
-		     + __gamt.__gamma_2_value * __fact2 * __d);
-	  __e = std::exp(__e);
-	  auto __p = __e / (_S_pi * __gamt.__gamma_plus_value);
-	  auto __q = _Tp{1} / (__e * _S_pi * __gamt.__gamma_minus_value);
-	  const auto __pimu2 = __pimu / _Tp{2};
-	  const auto __fact3 = (std::abs(__pimu2) < _S_eps
-			     ? _Tp{1} : std::sin(__pimu2) / __pimu2 );
-	  const auto __r = _S_pi * __pimu2 * __fact3 * __fact3;
-	  auto __c = _Tp{1};
-	  __d = -__x2 * __x2;
-	  auto __sum = __ff + __r * __q;
-	  auto __sum1 = __p;
-	  int __i;
-	  for (__i = 1; __i <= _S_max_iter; ++__i)
-	    {
-	      __ff = (__i * __ff + __p + __q) / (__i * __i - __mu2);
-	      __c *= __d / _Tp(__i);
-	      __p /= _Tp(__i) - __mu;
-	      __q /= _Tp(__i) + __mu;
-	      const auto __del = __c * (__ff + __r * __q);
-	      __sum += __del;
-	      const auto __del1 = __c * __p - _Tp(__i) * __del;
-	      __sum1 += __del1;
-	      if (std::abs(__del) < _S_eps * (_Tp{1} + std::abs(__sum)))
-		break;
-	    }
-	  if (__i > _S_max_iter)
-	    std::__throw_runtime_error(__N("__cyl_bessel_jn_steed: "
-					   "Y-series failed to converge"));
-	  _Nmu = -__sum;
-	  _Nnu1 = -__sum1 * __xi2;
+	  const auto _Z = __cyl_bessel_nk_series(__mu, __x);
+	  _Nmu = _Z._Z_mu;
+	  _Nnu1 = _Z._Z_mup1;
 	  _Npmu = __mu * __xi * _Nmu - _Nnu1;
 	  _Jmu = _Wronski / (_Npmu - __f * _Nmu);
 	}
       else
 	{
-	  const auto _S_i = std::complex<_Tp>{0, 1};
-	  auto __a = _Tp{0.25L} - __mu2;
-	  auto __pq = std::complex<_Tp>(-__xi / _Tp{2}, _Tp{1});
-	  auto __b = std::complex<_Tp>(_Tp{2} * __x, _Tp{2});
-	  auto __fact = __a * __xi / std::norm(__pq);
-	  auto __c = __b + _S_i * __fact * std::conj(__pq);
-	  auto __d = std::conj(__b) / std::norm(__b);
-	  auto __dl = __c * __d;
-	  __pq *= __dl;
-	  int __i;
-	  for (__i = 2; __i <= _S_max_iter; ++__i)
-	    {
-	      __a += _Tp{2 * (__i - 1)};
-	      __b += _S_i * _Tp{2};
-	      __d = __a * __d + __b;
-	      if (std::abs(__d) < _S_fp_min)
-		__d = _S_fp_min;
-	      __fact = __a / std::norm(__c);
-	      __c = __b + __fact * std::conj(__c);
-	      if (std::abs(__c) < _S_fp_min)
-		__c = _S_fp_min;
-	      __d = std::conj(__d) / std::norm(__d);
-	      __dl = __c * __d;
-	      __pq *= __dl;
-	      if (std::abs(__dl - _Tp{1}) < _S_eps)
-		break;
-	    }
-	  if (__i > _S_max_iter)
-	    std::__throw_runtime_error(__N("__cyl_bessel_jn_steed: "
-					   "Lentz's method failed"));
-	  //const auto [__p, __q] = __pq; // This should be a thing.
-	  const auto [__p, __q] = reinterpret_cast<_Tp(&)[2]>(__pq);
+	  auto __pq = __cyl_hankel_1_ratio_j_frac(__mu, __x);
+	  auto [__p, __q] = reinterpret_cast<_Tp(&)[2]>(__pq);
+	  // FIXME: Is this right?
+	  __q = std::abs(__q);
 	  const auto __gam = (__p - __f) / __q;
 	  _Jmu = std::sqrt(_Wronski / ((__p - __f) * __gam + __q));
 	  _Jmu = std::copysign(_Jmu, _Jnul);
@@ -507,6 +719,7 @@ namespace __detail
 	  _Npmu = (__p + __q / __gam) * _Nmu;
 	  _Nnu1 = __mu * __xi * _Nmu - _Npmu;
         }
+
       __fact = _Jmu / _Jnul;
       const auto _Jnu = __fact * _Jnul1;
       const auto _Jpnu = __fact * _Jpnu1;

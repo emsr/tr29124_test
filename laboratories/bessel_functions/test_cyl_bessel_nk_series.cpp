@@ -237,6 +237,15 @@ template<typename _Tp>
     const auto w = 8 + std::cout.precision();
 
     std::cout << "\ncyl_neumann\n";
+    std::cout << ' ' << std::setw(w) << "x"
+	      << ' ' << std::setw(w) << "new N_mu"
+	      << ' ' << std::setw(w) << "new N_mup1"
+	      << ' ' << std::setw(w) << "old N_mu"
+	      << ' ' << std::setw(w) << "old N_mup1"
+	      << ' ' << std::setw(w) << "new N_mup1 - std"
+	      << ' ' << std::setw(w) << "N_mu (new-lab)/lab"
+	      << ' ' << std::setw(w) << "N'_mu (new-lab)/lab"
+	      << '\n';
     for (auto nu : {_Tp{0}, _Tp{1}/_Tp{3}, _Tp{1}/_Tp{2}})
       {
 	for (int i = 1; i < 20; ++i)
@@ -260,6 +269,15 @@ template<typename _Tp>
       }
 
     std::cout << "\ncyl_bessel_k\n";
+    std::cout << ' ' << std::setw(w) << "x"
+	      << ' ' << std::setw(w) << "new K_mu"
+	      << ' ' << std::setw(w) << "new K_mup1"
+	      << ' ' << std::setw(w) << "old K_mu"
+	      << ' ' << std::setw(w) << "old K_mup1"
+	      << ' ' << std::setw(w) << "new K_mup1 - std"
+	      << ' ' << std::setw(w) << "K_mu (new-lab)/lab"
+	      << ' ' << std::setw(w) << "K'_mu (new-lab)/lab"
+	      << '\n';
     for (auto nu : {_Tp{0}, _Tp{1}/_Tp{3}, _Tp{1}/_Tp{2}})
       {
 	for (int i = 1; i < 20; ++i)

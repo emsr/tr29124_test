@@ -145,28 +145,19 @@ namespace __detail
 
       const int __n = std::nearbyint(__nu);
 
-      const auto __mu = __nu - _Tp(__n);
-      const auto __mu2 = __mu * __mu;
       const auto __xi = _Tp{1} / __x;
       const auto __xi2 = _Tp{2} * __xi;
-      auto __h = std::max(_S_fp_min, __nu * __xi);
-      auto __b = __xi2 * __nu;
-      auto __d = _Tp{0};
-      auto __c = __h;
-      int __i;
-      for (__i = 1; __i <= _S_max_iter; ++__i)
+      _Tp __h;
+      try
 	{
-	  __b += __xi2;
-	  __d = _Tp{1} / (__b + __d);
-	  __c = __b + _Tp{1} / __c;
-	  const auto __del = __c * __d;
-	  __h *= __del;
-	  if (std::abs(__del - _Tp{1}) < _S_eps)
-	    break;
+	  __h = __nu * __xi + __cyl_bessel_i_ratio_s_frac(__nu, __x);
 	}
-      if (__i > _S_max_iter)
-	return __cyl_bessel_ik_asymp(__nu, __x);
+      catch (...)
+	{
+	  return __cyl_bessel_ik_asymp(__nu, __x);
+	}
 
+      // Recur recessive solution downward to |mu| < 1/2.
       auto _Inul = _S_fp_min;
       auto _Ipnul = __h * _Inul;
       auto _Inul1 = _Inul;
@@ -181,50 +172,15 @@ namespace __detail
 	}
 
       const auto __f = _Ipnul / _Inul;
+      const auto __mu = __nu - _Tp(__n);
+      const auto __mu2 = __mu * __mu;
       bool __scaled = false;
-      _Tp _Kmu, _Knu1;
+      _Tp _Kmu, _Kmu1;
       if (__x < _S_x_min)
 	{
-	  const auto __x2 = __x / _Tp{2};
-	  const auto __pimu = _S_pi * __mu;
-	  const auto __fact = (std::abs(__pimu) < _S_eps
-			    ? _Tp{1}
-			    : __pimu / std::sin(__pimu));
-	  auto __d = -std::log(__x2);
-	  auto __e = __mu * __d;
-	  const auto __fact2 = (std::abs(__e) < _S_eps
-			     ? _Tp{1}
-			     : std::sinh(__e) / __e);
-	  const auto __gamt = __gamma_temme(__mu);
-	  auto __ff = __fact
-		    * (__gamt.__gamma_1_value * std::cosh(__e)
-		     + __gamt.__gamma_2_value * __fact2 * __d);
-	  auto __sum = __ff;
-	  __e = std::exp(__e);
-	  auto __p = __e / (_Tp{2} * __gamt.__gamma_plus_value);
-	  auto __q = _Tp{1} / (_Tp{2} * __e * __gamt.__gamma_minus_value);
-	  auto __c = _Tp{1};
-	  __d = __x2 * __x2;
-	  auto __sum1 = __p;
-	  int __i;
-	  for (__i = 1; __i <= _S_max_iter; ++__i)
-	    {
-	      __ff = (__i * __ff + __p + __q) / (__i * __i - __mu2);
-	      __c *= __d / _Tp(__i);
-	      __p /= _Tp(__i) - __mu;
-	      __q /= _Tp(__i) + __mu;
-	      const auto __del = __c * __ff;
-	      __sum += __del;
-	      const auto __del1 = __c * (__p - _Tp(__i) * __ff);
-	      __sum1 += __del1;
-	      if (std::abs(__del) < _S_eps * std::abs(__sum))
-		break;
-	    }
-	  if (__i > _S_max_iter)
-	    std::__throw_runtime_error(__N("__cyl_bessel_ik_steed: "
-					   "K-series failed to converge"));
-	  _Kmu = __sum;
-	  _Knu1 = __sum1 * __xi2;
+	  const auto _Z = __cyl_bessel_nk_series(__mu, __x, true);
+	  _Kmu = _Z._Z_mu;
+	  _Kmu1 = _Z._Z_mup1;
 	}
       else
 	{
@@ -236,7 +192,8 @@ namespace __detail
 	  auto __q1 = _Tp{0};
 	  auto __q2 = _Tp{1};
 	  const auto __a1 = _Tp{0.25L} - __mu2;
-	  auto __q = __c = __a1;
+	  auto __c = __a1;
+	  auto __q = __c;
 	  auto __a = -__a1;
 	  auto __s = _Tp{1} + __q * __delh;
 	  int __i;
@@ -264,18 +221,18 @@ namespace __detail
 	  // We are scaling this branch to prevent under/overflow. Removing...
 	  // * std::exp(-__x)
 	  _Kmu = std::sqrt(_S_pi / (_Tp{2} * __x)) / __s;
-	  _Knu1 = _Kmu * (__mu + __x + _Tp{0.5L} - __h) * __xi;
+	  _Kmu1 = _Kmu * (__mu + __x + _Tp{0.5L} - __h) * __xi;
 	}
 
-      auto _Kpmu = __mu * __xi * _Kmu - _Knu1;
+      auto _Kpmu = __mu * __xi * _Kmu - _Kmu1;
       auto _Inumu = __xi / (__f * _Kmu - _Kpmu);
       auto _Inu = _Inumu * _Inul1 / _Inul;
       auto _Ipnu = _Inumu * _Ipnu1 / _Inul;
       for (int __i = 1; __i <= __n; ++__i)
-	_Kmu = __gnu_cxx::__exchange(_Knu1,
-				     (__mu + _Tp(__i)) * __xi2 * _Knu1 + _Kmu);
+	_Kmu = __gnu_cxx::__exchange(_Kmu1,
+				     (__mu + _Tp(__i)) * __xi2 * _Kmu1 + _Kmu);
       auto _Knu = _Kmu;
-      auto _Kpnu = __nu * __xi * _Kmu - _Knu1;
+      auto _Kpnu = __nu * __xi * _Kmu - _Kmu1;
 
       if (__do_scaled && !__scaled)
 	{

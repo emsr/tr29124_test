@@ -25,7 +25,6 @@
     {
       using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
       using _Real = __gnu_cxx::__num_traits_t<_Val>;
-      using _Cmplx = std::complex<_Real>;
 
       auto __a_J
 	= [__nu, __z, __zeta](std::size_t __k, _Tp)
@@ -86,9 +85,6 @@
 			_Val>
     __cyl_bessel_i_ratio_s_frac(_Tnu __nu, _Tp __z)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
-      using _Cmplx = std::complex<_Real>;
-
       const auto __zeta = __z * __z;
       const auto _Irat = __cyl_bessel_ratio_s_frac(__nu, __z, __zeta);
 
@@ -170,7 +166,15 @@ template<typename _Tp>
     auto w = 6 + std::cout.precision();
     using Ret = decltype(__cyl_bessel_j_ratio_s_frac(_Tp{1}, _Tp{1}));
 
+    // What's with the NaN at 2?
+    __cyl_bessel_j_ratio_s_frac(_Tp{1}, _Tp{2});
+
     std::cout << "\n\nRatio J_{\\nu+1}(x) / J_{\\nu}(x)\n";
+    std::cout << ' ' << std::setw(w) << "z"
+	      << ' ' << std::setw(w) << "new ratio"
+	      << ' ' << std::setw(w) << "lab w/deriv ratio"
+	      << ' ' << std::setw(w) << "nu / z - cf1"
+	      << '\n';
     for (auto nu : {_Tp{0}, _Tp{1}/_Tp{3}, _Tp{1}/_Tp{2}, _Tp{2}/_Tp{3}, _Tp{1}, _Tp{2}, _Tp{5}})
       {
 	std::cout << "\n nu = " << std::setw(w) << nu << '\n';
@@ -200,6 +204,11 @@ template<typename _Tp>
       }
 
     std::cout << "\n\nRatio I_{\\nu+1}(x) / I_{\\nu}(x)\n";
+    std::cout << ' ' << std::setw(w) << "z"
+	      << ' ' << std::setw(w) << "new ratio"
+	      << ' ' << std::setw(w) << "lab w/deriv ratio"
+	      << ' ' << std::setw(w) << "cf1 - nu / z"
+	      << '\n';
     for (auto nu : {_Tp{0}, _Tp{1}/_Tp{3}, _Tp{1}/_Tp{2}, _Tp{2}/_Tp{3}, _Tp{1}, _Tp{2}, _Tp{5}})
       {
 	std::cout << "\n nu = " << std::setw(w) << nu << '\n';
