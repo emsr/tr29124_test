@@ -15,6 +15,7 @@ template<typename _Tp>
     const auto _S_eps = _Tp{10} * std::numeric_limits<_Tp>::epsilon();
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     const auto w = 6 + std::cout.precision();
+    const auto max_iter = 10000;
 
     // Roots of Ai(-x)
     std::vector<_Tp> zai
@@ -57,6 +58,7 @@ template<typename _Tp>
 	auto xai_prev = xai;
 	auto aip_prev = _Tp(0);
 	auto ai_prev = _Tp(0);
+	auto iter = 0;
 	do
 	  {
 	    xai_prev = xai;
@@ -64,6 +66,8 @@ template<typename _Tp>
 	    xai -= ai / aip;
 	    aip_prev = aip;
 	    ai_prev = ai;
+	    if (++iter > max_iter)
+	      break;
 	  }
 	while (std::abs(xai - xai_prev) >= _S_eps * std::abs(xai));
 	zai[i] = -xai;
@@ -85,6 +89,7 @@ template<typename _Tp>
 	auto ai_prev = _Tp(0);
 	auto aip_prev = _Tp(0);
 	//auto aipp_prev = _Tp(0);
+	auto iter = 0;
 	do
 	  {
 	    xaip_prev = xaip;
@@ -94,6 +99,8 @@ template<typename _Tp>
 	    ai_prev = ai;
 	    aip_prev = aip;
 	    //aipp_prev = aipp;
+	    if (++iter > max_iter)
+	      break;
 	  }
 	while (std::abs(xaip - xaip_prev) >= 2 * _S_eps * std::abs(xaip));
 	zaip[i] = -xaip;
@@ -118,6 +125,7 @@ template<typename _Tp>
 	auto xbi_prev = xbi;
 	auto bip_prev = _Tp(0);
 	auto bi_prev = _Tp(0);
+	auto iter = 0;
 	do
 	  {
 	    xbi_prev = xbi;
@@ -125,6 +133,8 @@ template<typename _Tp>
 	    xbi -= bi / bip;
 	    bip_prev = bip;
 	    bi_prev = bi;
+	    if (++iter > max_iter)
+	      break;
 	  }
 	while (std::abs(xbi - xbi_prev) >= _S_eps * std::abs(xbi));
 	zbi.push_back(-xbi);
@@ -150,6 +160,7 @@ template<typename _Tp>
 	auto bi_prev = _Tp(0);
 	auto bip_prev = _Tp(0);
 	//auto bipp_prev = _Tp(0);
+	auto iter = 0;
 	do
 	  {
 	    xbip_prev = xbip;
@@ -159,6 +170,8 @@ template<typename _Tp>
 	    bi_prev = bi;
 	    bip_prev = bip;
 	    //bipp_prev = bipp;
+	    if (++iter > max_iter)
+	      break;
 	  }
 	while (std::abs(xbip - xbip_prev) >= _S_eps * std::abs(xbip));
 	zbip.push_back(-xbip);
@@ -174,4 +187,5 @@ int
 main()
 {
   test_airy_roots<double>();
+  test_airy_roots<long double>();
 }
