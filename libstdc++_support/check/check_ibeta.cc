@@ -29,7 +29,7 @@
 #  define VERIFY(A) \
   if (!(A)) \
     { \
-      std::cout << "line " << __LINE__ \
+      std::cout << "ERROR: line " << __LINE__ \
 	<< "  max_abs_frac = " << max_abs_frac \
 	<< '\n'; \
     }
@@ -3841,9 +3841,9 @@ const double toler076 = 1.0000000000000008e-12;
 // Test data for a=4.0000000000000000, b=2.0000000000000000.
 // max(|f - f_GSL|): 6.3282712403633923e-15 at index 12
 // max(|f - f_GSL| / |f_GSL|): 1.4771357773101754e-14
-// mean(f - f_GSL): 4.8469596934143377e-16
-// variance(f - f_GSL): 4.0454600165622192e-33
-// stddev(f - f_GSL): 6.3603930826342949e-17
+// mean(f - f_GSL): 4.8323514957219011e-16
+// variance(f - f_GSL): 4.0005849124954013e-33
+// stddev(f - f_GSL): 6.3250177173628544e-17
 const testcase_ibeta<double>
 data077[19] =
 {
@@ -3865,7 +3865,7 @@ data077[19] =
 	  0.40000000000000002, 0.0 },
   { 0.13122000000000003, 4.0000000000000000, 2.0000000000000000, 
 	  0.45000000000000001, 0.0 },
-  { 0.18750000000000003, 4.0000000000000000, 2.0000000000000000, 
+  { 0.18750000000000006, 4.0000000000000000, 2.0000000000000000, 
 	  0.50000000000000000, 0.0 },
   { 0.25621749999999999, 4.0000000000000000, 2.0000000000000000, 
 	  0.55000000000000004, 0.0 },
@@ -4391,9 +4391,9 @@ const double toler087 = 2.5000000000000015e-12;
 // Test data for a=4.5000000000000000, b=1.5000000000000000.
 // max(|f - f_GSL|): 5.9952043329758453e-15 at index 13
 // max(|f - f_GSL| / |f_GSL|): 1.7774439184040241e-14
-// mean(f - f_GSL): -7.0453394198716400e-16
-// variance(f - f_GSL): 3.0927662476550015e-34
-// stddev(f - f_GSL): 1.7586262387599595e-17
+// mean(f - f_GSL): -7.0307312221792043e-16
+// variance(f - f_GSL): 3.2184417552672373e-34
+// stddev(f - f_GSL): 1.7940016040314003e-17
 const testcase_ibeta<double>
 data088[19] =
 {
@@ -4417,7 +4417,7 @@ data088[19] =
 	  0.45000000000000001, 0.0 },
   { 0.087712909323852173, 4.5000000000000000, 1.5000000000000000, 
 	  0.50000000000000000, 0.0 },
-  { 0.12984529015392812, 4.5000000000000000, 1.5000000000000000, 
+  { 0.12984529015392809, 4.5000000000000000, 1.5000000000000000, 
 	  0.55000000000000004, 0.0 },
   { 0.18460731840898886, 4.5000000000000000, 1.5000000000000000, 
 	  0.60000000000000009, 0.0 },
@@ -5046,21 +5046,28 @@ template<typename Ret, unsigned int Num>
     const Ret eps = std::numeric_limits<Ret>::epsilon();
     Ret max_abs_diff = Ret(-1);
     Ret max_abs_frac = Ret(-1);
+    bool failure = false;
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
   	 {
 	const Ret f = __gnu_cxx::ibeta(data[i].a, data[i].b,
 		     data[i].x);
-	const Ret f0 = data[i].f0;
-	const Ret diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Ret(10) * eps
-	 && std::abs(f) > Ret(10) * eps)
+	const bool failure_f = std::isnan(f);
+	if (!failure && failure_f)
+	  failure = true;
+	if (!failure_f)
 	  {
-	    const Ret frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
+	    const Ret f0 = data[i].f0;
+	    const Ret diff = f - f0;
+	    if (std::abs(diff) > max_abs_diff)
+	      max_abs_diff = std::abs(diff);
+	    if (std::abs(f0) > Ret(10) * eps
+	     && std::abs(f) > Ret(10) * eps)
+	      {
+		const Ret frac = diff / f0;
+		if (std::abs(frac) > max_abs_frac)
+		  max_abs_frac = std::abs(frac);
+	      }
 	  }
       }
     VERIFY(max_abs_frac < toler);

@@ -29,7 +29,7 @@
 #  define VERIFY(A) \
   if (!(A)) \
     { \
-      std::cout << "line " << __LINE__ \
+      std::cout << "ERROR: line " << __LINE__ \
 	<< "  max_abs_frac = " << max_abs_frac \
 	<< '\n'; \
     }
@@ -608,20 +608,27 @@ template<typename Ret, unsigned int Num>
     const Ret eps = std::numeric_limits<Ret>::epsilon();
     Ret max_abs_diff = Ret(-1);
     Ret max_abs_frac = Ret(-1);
+    bool failure = false;
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
 	const std::complex<Ret> f = __gnu_cxx::sph_hankel_1(data[i].n, data[i].x);
-	const std::complex<Ret> f0 = data[i].f0;
-	const std::complex<Ret> diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Ret(10) * eps
-	 && std::abs(f) > Ret(10) * eps)
+	const bool failure_f = std::isnan(f);
+	if (!failure && failure_f)
+	  failure = true;
+	if (!failure_f)
 	  {
-	    const std::complex<Ret> frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
+	    const std::complex<Ret> f0 = data[i].f0;
+	    const std::complex<Ret> diff = f - f0;
+	    if (std::abs(diff) > max_abs_diff)
+	      max_abs_diff = std::abs(diff);
+	    if (std::abs(f0) > Ret(10) * eps
+	     && std::abs(f) > Ret(10) * eps)
+	      {
+		const std::complex<Ret> frac = diff / f0;
+		if (std::abs(frac) > max_abs_frac)
+		  max_abs_frac = std::abs(frac);
+	      }
 	  }
       }
     VERIFY(max_abs_frac < toler);

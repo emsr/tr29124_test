@@ -516,27 +516,27 @@ template<typename Real>
 	     "Boost",
 	     file_cyl_bessel_j, true, false);
     test =
-    maketest(cyl_bessel_j, gsl::cyl_bessel_j,
+    maketest(cyl_bessel_j, beast::cyl_bessel_j,//gsl::cyl_bessel_j,
 	     "testcase_cyl_bessel_j", nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
-	     "GSL",
+	     "Boost",//"GSL",
 	     file_cyl_bessel_j, false, false, test);
     test =
-    maketest(cyl_bessel_j, gsl::cyl_bessel_j,
+    maketest(cyl_bessel_j, beast::cyl_bessel_j,//gsl::cyl_bessel_j,
 	     "testcase_cyl_bessel_j", nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
-	     "GSL",
+	     "Boost",//"GSL",
 	     file_cyl_bessel_j, false, false, test);
-    maketest(cyl_bessel_j, gsl::cyl_bessel_j,
+    maketest(cyl_bessel_j, beast::cyl_bessel_j,//gsl::cyl_bessel_j,
 	     "testcase_cyl_bessel_j", nsname, basename,
 	     "nu", {100},
 	     "x", fill_argument(std::make_pair(Real{1000}, Real{2000}),
 				std::make_pair(true, true), 11),
-	     "GSL",
+	     "Boost",//"GSL",
 	     file_cyl_bessel_j, false, true, test);
 
     // Irregular modified cylindrical Bessel functions.

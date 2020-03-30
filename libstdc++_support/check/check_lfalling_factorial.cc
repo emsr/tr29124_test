@@ -29,7 +29,7 @@
 #  define VERIFY(A) \
   if (!(A)) \
     { \
-      std::cout << "line " << __LINE__ \
+      std::cout << "ERROR: line " << __LINE__ \
 	<< "  max_abs_frac = " << max_abs_frac \
 	<< '\n'; \
     }
@@ -175,10 +175,11 @@ const double toler006 = 2.5000000000000020e-13;
 // variance(f - f_Boost): 0.0000000000000000
 // stddev(f - f_Boost): 0.0000000000000000
 const testcase_lfalling_factorial<double>
-data007[2] =
+data007[3] =
 {
   { 0.0000000000000000, 2.0000000000000000, 0.0000000000000000, 0.0 },
   { 0.69314718055994529, 2.0000000000000000, 1.0000000000000000, 0.0 },
+  { 0.69314718055994529, 2.0000000000000000, 2.0000000000000000, 0.0 },
 };
 const double toler007 = 2.5000000000000020e-13;
 
@@ -414,11 +415,12 @@ const double toler018 = 2.5000000000000020e-13;
 // variance(f - f_Boost): 4.1086505480261029e-33
 // stddev(f - f_Boost): 6.4098756212785461e-17
 const testcase_lfalling_factorial<double>
-data019[3] =
+data019[4] =
 {
   { 0.0000000000000000, 5.0000000000000000, 0.0000000000000000, 0.0 },
   { 1.6094379124341003, 5.0000000000000000, 1.0000000000000000, 0.0 },
   { 2.9957322735539909, 5.0000000000000000, 2.0000000000000000, 0.0 },
+  { 4.7874917427820458, 5.0000000000000000, 5.0000000000000000, 0.0 },
 };
 const double toler019 = 2.5000000000000020e-13;
 
@@ -430,20 +432,27 @@ template<typename Ret, unsigned int Num>
     const Ret eps = std::numeric_limits<Ret>::epsilon();
     Ret max_abs_diff = Ret(-1);
     Ret max_abs_frac = Ret(-1);
+    bool failure = false;
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
 	const Ret f = __gnu_cxx::lfalling_factorial(data[i].a, data[i].x);
-	const Ret f0 = data[i].f0;
-	const Ret diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Ret(10) * eps
-	 && std::abs(f) > Ret(10) * eps)
+	const bool failure_f = std::isnan(f);
+	if (!failure && failure_f)
+	  failure = true;
+	if (!failure_f)
 	  {
-	    const Ret frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
+	    const Ret f0 = data[i].f0;
+	    const Ret diff = f - f0;
+	    if (std::abs(diff) > max_abs_diff)
+	      max_abs_diff = std::abs(diff);
+	    if (std::abs(f0) > Ret(10) * eps
+	     && std::abs(f) > Ret(10) * eps)
+	      {
+		const Ret frac = diff / f0;
+		if (std::abs(frac) > max_abs_frac)
+		  max_abs_frac = std::abs(frac);
+	      }
 	  }
       }
     VERIFY(max_abs_frac < toler);

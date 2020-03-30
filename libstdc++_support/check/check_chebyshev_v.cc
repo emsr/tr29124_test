@@ -29,7 +29,7 @@
 #  define VERIFY(A) \
   if (!(A)) \
     { \
-      std::cout << "line " << __LINE__ \
+      std::cout << "ERROR: line " << __LINE__ \
 	<< "  max_abs_frac = " << max_abs_frac \
 	<< '\n'; \
     }
@@ -95,7 +95,7 @@ data002[21] =
   { -0.59999999999999976, 1, 0.20000000000000018, 0.0 },
   { -0.39999999999999969, 1, 0.30000000000000004, 0.0 },
   { -0.19999999999999971, 1, 0.40000000000000013, 0.0 },
-  { -1.8569000893614809e-16, 1, 0.50000000000000000, 0.0 },
+  { -1.8569000893614806e-16, 1, 0.50000000000000000, 0.0 },
   { 0.20000000000000034, 1, 0.60000000000000009, 0.0 },
   { 0.40000000000000047, 1, 0.70000000000000018, 0.0 },
   { 0.60000000000000020, 1, 0.80000000000000004, 0.0 },
@@ -310,20 +310,27 @@ template<typename Ret, unsigned int Num>
     const Ret eps = std::numeric_limits<Ret>::epsilon();
     Ret max_abs_diff = Ret(-1);
     Ret max_abs_frac = Ret(-1);
+    bool failure = false;
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
 	const Ret f = __gnu_cxx::chebyshev_v(data[i].n, data[i].x);
-	const Ret f0 = data[i].f0;
-	const Ret diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Ret(10) * eps
-	 && std::abs(f) > Ret(10) * eps)
+	const bool failure_f = std::isnan(f);
+	if (!failure && failure_f)
+	  failure = true;
+	if (!failure_f)
 	  {
-	    const Ret frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
+	    const Ret f0 = data[i].f0;
+	    const Ret diff = f - f0;
+	    if (std::abs(diff) > max_abs_diff)
+	      max_abs_diff = std::abs(diff);
+	    if (std::abs(f0) > Ret(10) * eps
+	     && std::abs(f) > Ret(10) * eps)
+	      {
+		const Ret frac = diff / f0;
+		if (std::abs(frac) > max_abs_frac)
+		  max_abs_frac = std::abs(frac);
+	      }
 	  }
       }
     VERIFY(max_abs_frac < toler);

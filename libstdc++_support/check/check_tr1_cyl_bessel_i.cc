@@ -28,7 +28,7 @@
 #  define VERIFY(A) \
   if (!(A)) \
     { \
-      std::cout << "line " << __LINE__ \
+      std::cout << "ERROR: line " << __LINE__ \
 	<< "  max_abs_frac = " << max_abs_frac \
 	<< '\n'; \
     }
@@ -145,8 +145,9 @@ const double toler003 = 2.5000000000000020e-13;
 // variance(f - f_Boost): 8.2478098180994047e-30
 // stddev(f - f_Boost): 2.8719000362302664e-15
 const testcase_cyl_bessel_i<double>
-data004[20] =
+data004[21] =
 {
+  { 0.0000000000000000, -0.66666666666666663, 0.0000000000000000, 0.0 },
   { 1.5635301197571894, -0.66666666666666663, 0.25000000000000000, 0.0 },
   { 1.1211475422053203, -0.66666666666666663, 0.50000000000000000, 0.0 },
   { 1.0369461345194857, -0.66666666666666663, 0.75000000000000000, 0.0 },
@@ -179,8 +180,9 @@ const double toler004 = 2.5000000000000020e-13;
 // variance(f - f_Boost): 2.4651903288156620e-33
 // stddev(f - f_Boost): 4.9650683064945459e-17
 const testcase_cyl_bessel_i<double>
-data005[20] =
+data005[21] =
 {
+  { 0.0000000000000000, -0.50000000000000000, 0.0000000000000000, 0.0 },
   { 1.6458971764074704, -0.50000000000000000, 0.25000000000000000, 0.0 },
   { 1.2723896474148495, -0.50000000000000000, 0.50000000000000000, 0.0 },
   { 1.1928146673978171, -0.50000000000000000, 0.75000000000000000, 0.0 },
@@ -213,8 +215,9 @@ const double toler005 = 2.5000000000000020e-13;
 // variance(f - f_Boost): 5.2044128534901707e-30
 // stddev(f - f_Boost): 2.2813182271419677e-15
 const testcase_cyl_bessel_i<double>
-data006[20] =
+data006[21] =
 {
+  { 0.0000000000000000, -0.33333333333333331, 0.0000000000000000, 0.0 },
   { 1.5117554361923495, -0.33333333333333331, 0.25000000000000000, 0.0 },
   { 1.2842545661273943, -0.33333333333333331, 0.50000000000000000, 0.0 },
   { 1.2493695272681207, -0.33333333333333331, 0.75000000000000000, 0.0 },
@@ -908,20 +911,27 @@ template<typename Ret, unsigned int Num>
     const Ret eps = std::numeric_limits<Ret>::epsilon();
     Ret max_abs_diff = Ret(-1);
     Ret max_abs_frac = Ret(-1);
+    bool failure = false;
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
 	const Ret f = std::tr1::cyl_bessel_i(data[i].nu, data[i].x);
-	const Ret f0 = data[i].f0;
-	const Ret diff = f - f0;
-	if (std::abs(diff) > max_abs_diff)
-	  max_abs_diff = std::abs(diff);
-	if (std::abs(f0) > Ret(10) * eps
-	 && std::abs(f) > Ret(10) * eps)
+	const bool failure_f = std::tr1::isnan(f);
+	if (!failure && failure_f)
+	  failure = true;
+	if (!failure_f)
 	  {
-	    const Ret frac = diff / f0;
-	    if (std::abs(frac) > max_abs_frac)
-	      max_abs_frac = std::abs(frac);
+	    const Ret f0 = data[i].f0;
+	    const Ret diff = f - f0;
+	    if (std::abs(diff) > max_abs_diff)
+	      max_abs_diff = std::abs(diff);
+	    if (std::abs(f0) > Ret(10) * eps
+	     && std::abs(f) > Ret(10) * eps)
+	      {
+		const Ret frac = diff / f0;
+		if (std::abs(frac) > max_abs_frac)
+		  max_abs_frac = std::abs(frac);
+	      }
 	  }
       }
     VERIFY(max_abs_frac < toler);
