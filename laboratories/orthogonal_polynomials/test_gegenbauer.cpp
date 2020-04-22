@@ -19,7 +19,7 @@
       std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
 
       _Tp __z;
-      _Tp __w;
+      _Tp __w = _Tp{0};
       for (auto __i = 1u; __i <= __n; ++__i)
 	{
 	  if (__i == 1)
