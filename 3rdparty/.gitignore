@@ -1,0 +1,8 @@
+# Ignore mpreal guts.
+# This enclosing project adds CMakery to mpreal that's not in the original project and thus awkwardness.
+
+mpreal/README.md
+mpreal/changelog
+mpreal/copying.txt
+mpreal/example/
+mpreal/mpreal.h

@@ -264,11 +264,9 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   { return mpfr::remainder(__x, __y); }
 
   inline mpfr::mpreal
-  remquo(const mpfr::mpreal& __x, const mpfr::mpreal& __y, int* __n) _GLIBCXX_USE_NOEXCEPT
+  remquo(const mpfr::mpreal& __x, const mpfr::mpreal& __y, int* __q) _GLIBCXX_USE_NOEXCEPT
   {
-    long __ln = *__n;
-    auto __ret = mpfr::remquo(&__ln, __x, __y);
-    *__n = static_cast<int>(__ln);
+    auto __ret = mpfr::remquo(__x, __y, __q);
     return __ret;
   }
 

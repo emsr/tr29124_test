@@ -14,5 +14,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 enable_testing()
 
+add_library(multiprecision INTERFACE)
+target_include_directories(multiprecision INTERFACE .)
+
 add_executable(mpfr_gexpr mpfr_gexpr.c)
 target_link_libraries(mpfr_gexpr mpfr gmp m)

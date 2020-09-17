@@ -17,7 +17,7 @@ add_custom_target(make_cxx_numeric_limits_output_dir ALL
 
 add_library(cxx_numeric_limits INTERFACE)
 target_include_directories(cxx_numeric_limits INTERFACE include)
-target_link_libraries(cxx_numeric_limits INTERFACE mpreal)
+target_link_libraries(cxx_numeric_limits INTERFACE mpreal multiprecision)
 
 add_executable(test_numeric_limits test_numeric_limits.cpp)
 target_link_libraries(test_numeric_limits cxx_numeric_limits cxx_fp_utils cxx_float128 quadmath mpreal gmp mpfr)
