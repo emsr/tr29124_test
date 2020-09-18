@@ -16,9 +16,3 @@
 [submodule "burkhardt"]
 	path = 3rdparty/burkhardt
 	url = https://github.com/emsr/maths_burkhardt.git
-[submodule "LambertW"]
-	path = 3rdparty/LambertW
-	url = https://github.com/emsr/LambertW.git
-[submodule "3rdparty/mpreal"]
-	path = 3rdparty/mpreal
-	url = https://github.com/advanpix/mpreal.git
