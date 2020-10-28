@@ -151,23 +151,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<typename... _Tps>
     using fp_promote_t = typename fp_promote<_Tps...>::__type;
 
-// Need an exchange utility.
-#if __cplusplus < 201402L
-  template<typename _Tp, typename _Up = _Tp>
-    _Tp
-    __exchange(_Tp& __obj, _Up&& __new_val)
-    {
-      _Tp __old_val = std::move(__obj);
-      __obj = std::forward<_Up>(__new_val);
-      return __old_val;
-    }
-#else
-  template<typename _Tp, typename _Up = _Tp>
-    _Tp
-    __exchange(_Tp& __obj, _Up&& __new_val)
-    { return std::exchange(__obj, std::forward<_Up>(__new_val)); }
-#endif
-
 #endif // __cplusplus >= 201103L
 
 _GLIBCXX_END_NAMESPACE_VERSION
