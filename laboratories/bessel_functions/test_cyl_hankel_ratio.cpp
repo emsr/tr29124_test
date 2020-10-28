@@ -285,7 +285,7 @@ template<typename _Tp>
 	  break;
       }
     if (__i > _S_max_iter)
-      std::__throw_runtime_error(__N("__cyl_bessel_ik_steed: "
+      std::__throw_runtime_error(__N("cyl_bessel_k_cf2: "
 				     "Steed's method failed"));
     __h *= __a1;
 
@@ -400,7 +400,7 @@ template<typename _Tp>
     std::cout << ' ' << std::setw(wr) << "z"
 	      << ' ' << std::setw(wc) << "calculated ratio"
 	      << ' ' << std::setw(wc) << "bessel function"
-	      << ' ' << std::setw(wr) << "old_cf2"
+//	      << ' ' << std::setw(wr) << "old_cf2"
 	      << ' ' << std::setw(wr) << "delta_r / r"
 	      << '\n';
     for (auto nu : nu_vec)

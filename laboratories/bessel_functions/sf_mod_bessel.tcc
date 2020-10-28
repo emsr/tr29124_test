@@ -48,6 +48,8 @@
 
 #pragma GCC system_header
 
+#include <utility> // For exchange.
+
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
@@ -229,8 +231,7 @@ namespace __detail
       auto _Inu = _Inumu * _Inul1 / _Inul;
       auto _Ipnu = _Inumu * _Ipnu1 / _Inul;
       for (int __i = 1; __i <= __n; ++__i)
-	_Kmu = __gnu_cxx::__exchange(_Kmu1,
-				     (__mu + _Tp(__i)) * __xi2 * _Kmu1 + _Kmu);
+	_Kmu = std::exchange(_Kmu1, (__mu + _Tp(__i)) * __xi2 * _Kmu1 + _Kmu);
       auto _Knu = _Kmu;
       auto _Kpnu = __nu * __xi * _Kmu - _Kmu1;
 
