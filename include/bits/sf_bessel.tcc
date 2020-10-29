@@ -48,6 +48,8 @@
 
 #pragma GCC system_header
 
+#include <utility> // For exchange.
+
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
@@ -513,8 +515,7 @@ namespace __detail
       if (std::abs(_S_pi * __x * _Jnu / _Tp{2}) > _S_tiny)
 	{
 	  for (int __i = 1; __i <= __n; ++__i)
-	    _Nmu = __gnu_cxx::__exchange(_Nnu1,
-					 (__mu + __i) * __xi2 * _Nnu1 - _Nmu);
+	    _Nmu = std::exchange(_Nnu1, (__mu + __i) * __xi2 * _Nnu1 - _Nmu);
 	  const auto _Nnu = _Nmu;
 	  const auto _Npnu = __nu * __xi * _Nmu - _Nnu1;
 	  return __bess_t{__nu, __x, _Jnu, _Jpnu, _Nnu, _Npnu};
