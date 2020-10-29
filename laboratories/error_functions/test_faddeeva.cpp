@@ -3,6 +3,8 @@
  */
 
 #include <iostream>
+#include <limits>
+
 #include <wrap_faddeeva.h>
 
 namespace __gnu_cxx
