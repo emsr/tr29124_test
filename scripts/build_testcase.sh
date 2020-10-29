@@ -1,3 +1,3 @@
 #! /bin/bash
 
-$HOME/builds/tr29124_test/release/bin/testcase > testcase.txt
+$HOME/builds/cxx_math/release/bin/testcase > testcase.txt
