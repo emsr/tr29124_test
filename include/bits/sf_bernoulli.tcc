@@ -60,7 +60,7 @@ namespace __detail
    * @return  The Bernoulli number of order n.
    */
   template<typename _Tp>
-    _GLIBCXX14_CONSTEXPR _Tp
+    constexpr _Tp
     __bernoulli_series(unsigned int __n)
     {
       constexpr unsigned long _S_num_bern_tab = 12;
@@ -123,7 +123,7 @@ namespace __detail
    *   @return  The Bernoulli number of order n.
    */
   template<typename _Tp>
-    _GLIBCXX14_CONSTEXPR _Tp
+    constexpr _Tp
     __bernoulli(unsigned int __n)
     { return __bernoulli_series<_Tp>(__n); }
 
@@ -135,7 +135,7 @@ namespace __detail
    * @return  The Bernoulli number of order 2n.
    */
   template<typename _Tp>
-    _GLIBCXX14_CONSTEXPR _Tp
+    constexpr _Tp
     __bernoulli_2n(unsigned int __n)
     { return __bernoulli_series<_Tp>(2 * __n); }
 

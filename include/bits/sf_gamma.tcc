@@ -1611,7 +1611,7 @@ _S_neg_double_factorial_table[999]
    * @f]
    */
   template<typename _Tp>
-    _GLIBCXX14_CONSTEXPR _Tp
+    constexpr _Tp
     __factorial(unsigned int __n)
     {
       if (__n < _S_num_factorials<_Tp>)
@@ -1629,7 +1629,7 @@ _S_neg_double_factorial_table[999]
    * @f]
    */
   template<typename _Tp>
-    _GLIBCXX14_CONSTEXPR _Tp
+    constexpr _Tp
     __log_factorial(unsigned int __n)
     {
       if (__n < _S_num_factorials<_Tp>)
@@ -1651,7 +1651,7 @@ _S_neg_double_factorial_table[999]
    * @f]
    */
   template<typename _Tp>
-    _GLIBCXX14_CONSTEXPR _Tp
+    constexpr _Tp
     __log_double_factorial(_Tp __nu)
     {
       const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
@@ -1681,7 +1681,7 @@ _S_neg_double_factorial_table[999]
    */
   // I must watch neg log double factorial.  Or do the log_t thing.
   template<typename _Tp>
-    _GLIBCXX14_CONSTEXPR _Tp
+    constexpr _Tp
     __double_factorial(int __n)
     {
       if (__n < 0)
@@ -1721,7 +1721,7 @@ _S_neg_double_factorial_table[999]
    * for $f[ n = -2m - 1 $f].
    */
   template<typename _Tp>
-    _GLIBCXX14_CONSTEXPR _Tp
+    constexpr _Tp
     __log_double_factorial(int __n)
     {
       if (__n < 0)
@@ -1753,7 +1753,7 @@ _S_neg_double_factorial_table[999]
    *  @return  The logarithm of the gamma function.
    */
   template<typename _Tp>
-    _GLIBCXX14_CONSTEXPR _Tp
+    constexpr _Tp
     __log_gamma_bernoulli(_Tp __x)
     {
       using _Val = _Tp;
@@ -1935,7 +1935,7 @@ _S_neg_double_factorial_table[999]
    * @return  The logarithm of the gamma function.
    */
   template<typename _Tp>
-    _GLIBCXX14_CONSTEXPR _Tp
+    constexpr _Tp
     __spouge_binet1p(_Tp __z)
     {
       using _Val = _Tp;
@@ -1979,7 +1979,7 @@ _S_neg_double_factorial_table[999]
    * @return  The the gamma function.
    */
   template<typename _Tp>
-    _GLIBCXX14_CONSTEXPR _Tp
+    constexpr _Tp
     __spouge_log_gamma1p(_Tp __z)
     {
       using _Val = _Tp;
@@ -2119,7 +2119,7 @@ _S_neg_double_factorial_table[999]
    * @return  The logarithm of the gamma function.
    */
   template<typename _Tp>
-    _GLIBCXX14_CONSTEXPR _Tp
+    constexpr _Tp
     __lanczos_binet1p(_Tp __z)
     {
       using _Val = _Tp;
@@ -2153,7 +2153,7 @@ _S_neg_double_factorial_table[999]
    * @return  The logarithm of the gamma function.
    */
   template<typename _Tp>
-    _GLIBCXX14_CONSTEXPR _Tp
+    constexpr _Tp
     __lanczos_log_gamma1p(_Tp __z)
     {
       using _Val = _Tp;
