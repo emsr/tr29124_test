@@ -606,30 +606,30 @@ sph_bessel_k(unsigned int /*n*/, double /*x*/)
 
 /// Chebyshev polynomials of the first kind.
 double
-chebyshev_t(unsigned int /*n*/, double /*x*/)
+chebyshev_t(unsigned int n, double x)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  return t_polynomial_value(n, x);
 }
 
 /// Chebyshev polynomials of the second kind.
 double
-chebyshev_u(unsigned int /*n*/, double /*x*/)
+chebyshev_u(unsigned int n, double x)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  return u_polynomial_value(n, x);
 }
 
 /// Chebyshev polynomials of the third kind.
 double
-chebyshev_v(unsigned int /*n*/, double /*x*/)
+chebyshev_v(unsigned int n, double x)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  return v_polynomial_value(n, x);
 }
 
 /// Chebyshev polynomials of the fourth kind.
 double
-chebyshev_w(unsigned int /*n*/, double /*x*/)
+chebyshev_w(unsigned int n, double x)
 {
-  return std::numeric_limits<double>::quiet_NaN();
+  return w_polynomial_value(n, x);
 }
 
 /// Binomial coefficients.
