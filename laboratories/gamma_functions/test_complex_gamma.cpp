@@ -17,6 +17,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <cmath>
+#include <limits>
 #include <ext/math_constants.h>
 
 template<typename _Tp>
