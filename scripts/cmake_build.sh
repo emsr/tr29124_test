@@ -1,11 +1,14 @@
 #! /bin/bash
 
-mkdir -p $HOME/builds/tr29124_test/release
-cd $HOME/builds/tr29124_test/release
-cmake -DCMAKE_BUILD_TYPE=release $HOME/tr29124_test
+src_dir=$(pwd)
+echo "Source directory: $src_dir"
+
+mkdir -p $HOME/builds/cxx_math/release
+cd $HOME/builds/cxx_math/release
+cmake -DCMAKE_BUILD_TYPE=release $src_dir
 make -j$(nproc)
 
-mkdir -p $HOME/builds/tr29124_test/debug
-cd $HOME/builds/tr29124_test/debug
-cmake -DCMAKE_BUILD_TYPE=debug $HOME/tr29124_test
+mkdir -p $HOME/builds/cxx_math/debug
+cd $HOME/builds/cxx_math/debug
+cmake -DCMAKE_BUILD_TYPE=debug $src_dir
 make -j$(nproc)
