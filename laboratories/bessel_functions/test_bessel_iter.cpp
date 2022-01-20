@@ -6,7 +6,8 @@
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include <ext/polynomial.h>
+
+#include <emsr/polynomial.h>
 
 // This thing1 will develop a set of rational functions to express
 // Cylinder functions of order nu in terms to rational functions of nu and 2/z
@@ -17,7 +18,7 @@ int
 main()
 {
   using _Tp = double;
-  using _RatTp = __gnu_cxx::_Polynomial<__gnu_cxx::_Polynomial<_Tp>>;
+  using _RatTp = emsr::Polynomial<emsr::Polynomial<_Tp>>;
 
   std::cout.precision(std::numeric_limits<_Tp>::digits10);
   auto w = 8 + std::cout.precision();

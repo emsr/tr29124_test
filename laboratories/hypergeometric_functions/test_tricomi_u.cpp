@@ -29,14 +29,14 @@
     {
       auto __U1 = _Tp{};
       auto __b = __a - __c + _Tp{1};
-      auto __ib = __gnu_cxx::__fp_is_integer(__b);
+      auto __ib = emsr::fp_is_integer(__b);
       if (!__ib || __ib() > 0)
 	__U1 = std::__detail::__gamma(_Tp{1} - __c)
 	     * std::__detail::__conf_hyperg(__a, __c, __x)
 	     / std::__detail::__gamma(__b);
 
       auto __U2 = _Tp{};
-      auto __ia = __gnu_cxx::__fp_is_integer(__a);
+      auto __ia = emsr::fp_is_integer(__a);
       if (!__ia || __ia() > 0)
 	__U2 = std::__detail::__gamma(__c - _Tp{1})
 	     * std::pow(__x, _Tp{1} - __c)
@@ -170,8 +170,8 @@
     _Tp
     __tricomi_u(_Tp __a, _Tp __c, _Tp __z)
     {
-      auto __aint = __gnu_cxx::__fp_is_integer(__a);
-      auto __cint = __gnu_cxx::__fp_is_integer(__c);
+      auto __aint = emsr::fp_is_integer(__a);
+      auto __cint = emsr::fp_is_integer(__c);
       if (__cint)
 	{
 	  if (__cint() > 0)

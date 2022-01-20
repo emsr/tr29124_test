@@ -9,20 +9,20 @@
 #include <iomanip>
 
 #include <ext/continued_fractions.h>
-#include <ext/fp_type_util.h>
-#include <ext/math_constants.h>
-#include <ext/complex_util.h> // is_complex
+#include <emsr/fp_type_util.h>
+#include <emsr/math_constants.h>
+#include <emsr/complex_util.h> // is_complex
 
   /**
    * This C-fraction is almost useless as AFAICT.
    */
   template<typename _Tnu, typename _Tp, typename _Tzeta>
-    std::complex<__gnu_cxx::__num_traits_t<
-		__gnu_cxx::fp_promote_t<_Tnu, _Tp, _Tzeta>>>
+    std::complex<emsr::num_traits_t<
+		emsr::fp_promote_t<_Tnu, _Tp, _Tzeta>>>
     __cyl_hankel_ratio_c_frac(_Tnu __nu, _Tp __z, _Tzeta __zeta)
     {
-      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp, _Tzeta>;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Val = emsr::fp_promote_t<_Tnu, _Tp, _Tzeta>;
+      using _Real = emsr::num_traits_t<_Val>;
 
       auto __c
 	= [__nu](std::size_t __k)
@@ -68,12 +68,12 @@
    * This C-fraction is almost useless as AFAICT.
    */
   template<typename _Tnu, typename _Tp>
-    std::complex<__gnu_cxx::__num_traits_t<
-		__gnu_cxx::fp_promote_t<_Tnu, _Tp>>>
+    std::complex<emsr::num_traits_t<
+		emsr::fp_promote_t<_Tnu, _Tp>>>
     __cyl_hankel_1_ratio_c_frac(_Tnu __nu, _Tp __z)
     {
-      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       const auto __zeta = _Real{-1} / (_Cmplx{0, 2} * __z);
@@ -84,12 +84,12 @@
    * This C-fraction is almost useless as AFAICT.
    */
   template<typename _Tnu, typename _Tp>
-    std::complex<__gnu_cxx::__num_traits_t<
-		__gnu_cxx::fp_promote_t<_Tnu, _Tp>>>
+    std::complex<emsr::num_traits_t<
+		emsr::fp_promote_t<_Tnu, _Tp>>>
     __cyl_hankel_2_ratio_c_frac(_Tnu __nu, _Tp __z)
     {
-      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       const auto __zeta = _Real{1} / (_Cmplx{0, 2} * __z);
@@ -100,15 +100,15 @@
    * This C-fraction is almost useless as AFAICT.
    */
   template<typename _Tnu, typename _Tp>
-    std::complex<__gnu_cxx::__num_traits_t<
-		__gnu_cxx::fp_promote_t<_Tnu, _Tp>>>
+    std::complex<emsr::num_traits_t<
+		emsr::fp_promote_t<_Tnu, _Tp>>>
     __cyl_bessel_k_ratio_c_frac(_Tnu __nu, _Tp __z)
     {
-      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      using _Real = emsr::num_traits_t<_Val>;
 
       const auto __zeta = _Real{1} / (_Real{2} * __z);
-      if constexpr (!__gnu_cxx::is_complex_v<_Tp>)
+      if constexpr (!emsr::is_complex_v<_Tp>)
 	return std::real(__cyl_hankel_ratio_c_frac(__nu, __z, __zeta));
       else
 	return __cyl_hankel_ratio_c_frac(__nu, __z, __zeta);
@@ -119,12 +119,12 @@
    * Compute ratios of Hankel functions using the J-fraction.
    */
   template<typename _Tnu, typename _Tp>
-    std::complex<__gnu_cxx::__num_traits_t<
-		 __gnu_cxx::fp_promote_t<_Tnu, _Tp>>>
+    std::complex<emsr::num_traits_t<
+		 emsr::fp_promote_t<_Tnu, _Tp>>>
     __cyl_hankel_ratio_j_frac(_Tnu __nu, _Tp __z, _Tp __sgn)
     {
-      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
       const auto __zeta = _Cmplx{0, 2} * __z;
       using _Tzeta = decltype(__zeta);
@@ -158,8 +158,8 @@
    * Return the Hankel function ratio of the first kind from the J-fraction.
    */
   template<typename _Tnu, typename _Tp>
-    inline std::complex<__gnu_cxx::__num_traits_t<
-			__gnu_cxx::fp_promote_t<_Tnu, _Tp>>>
+    inline std::complex<emsr::num_traits_t<
+			emsr::fp_promote_t<_Tnu, _Tp>>>
     __cyl_hankel_1_ratio_j_frac(_Tnu __nu, _Tp __z)
     { return __cyl_hankel_ratio_j_frac(__nu, __z, _Tp{-1}); }
 
@@ -167,8 +167,8 @@
    * Return the Hankel function ratio of the second kind from the J-fraction.
    */
   template<typename _Tnu, typename _Tp>
-    inline std::complex<__gnu_cxx::__num_traits_t<
-			__gnu_cxx::fp_promote_t<_Tnu, _Tp>>>
+    inline std::complex<emsr::num_traits_t<
+			emsr::fp_promote_t<_Tnu, _Tp>>>
     __cyl_hankel_2_ratio_j_frac(_Tnu __nu, _Tp __z)
     { return __cyl_hankel_ratio_j_frac(__nu, __z, _Tp{+1}); }
 
@@ -177,16 +177,16 @@
    * from the J-fraction ratios of Hankel functions.
    */
   template<typename _Tnu, typename _Tp,
-	   typename _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>>
-    std::conditional_t<__gnu_cxx::is_complex_v<_Val>,
-			std::complex<__gnu_cxx::__num_traits_t<_Val>>,
+	   typename _Val = emsr::fp_promote_t<_Tnu, _Tp>>
+    std::conditional_t<emsr::is_complex_v<_Val>,
+			std::complex<emsr::num_traits_t<_Val>>,
 			_Val>
     __cyl_bessel_k_ratio_j_frac(_Tnu __nu, _Tp __z)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
       const auto _S_i = _Cmplx{0, 1};
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
+      const auto _S_pi = emsr::pi_v<_Real>;
       const auto __ph = std::arg(__z);
 
       _Cmplx _Krat;
@@ -195,7 +195,7 @@
       else
 	_Krat = -_S_i * __cyl_hankel_2_ratio_j_frac(__nu, -_S_i * __z);
 
-      if constexpr (!__gnu_cxx::is_complex_v<_Val>)
+      if constexpr (!emsr::is_complex_v<_Val>)
 	return std::real(_Krat);
       else
 	return _Krat;

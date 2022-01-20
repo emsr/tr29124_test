@@ -43,12 +43,12 @@ bool VERBOSE = false;
       while (__k < 50 * __nu);
 
       auto __chi = __x - (__nu + _Tp(0.5L))
-        	       * __gnu_cxx::numbers::__pi_half_v<_Tp>;
+        	       * emsr::pi_v<_Tp> / _Tp{2};
       auto __c = std::cos(__chi);
       auto __s = std::sin(__chi);
 
       auto __coef = std::sqrt(_Tp(2)
-        	  / (__gnu_cxx::numbers::__pi_v<_Tp> * __x));
+        	  / (emsr::pi_v<_Tp> * __x));
       __Jnu = __coef * (__c * __P - __s * __Q);
       __Nnu = __coef * (__s * __P + __c * __Q);
 
@@ -99,8 +99,8 @@ bool VERBOSE = false;
       using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Tp>;
 
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
+      const auto _S_pi_2 = _S_pi / _Tp{2};
       const auto __2nu = _Tp{2} * __nu;
       const auto __4nu2 = __2nu * __2nu;
       const auto __8x = _Tp{8} * __x;
@@ -185,8 +185,8 @@ if (VERBOSE) std::cout << ' ' << std::setw(20) << __ak_xk << '\n';
     {
       using __bess_t = __gnu_cxx::__cyl_mod_bessel_t<_Tp, _Tp, _Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
+      const auto _S_pi_2 = _S_pi / _Tp{2};
       const auto __2nu = _Tp{2} * __nu;
       const auto __4nu2 = __2nu * __2nu;
       const auto __8x = _Tp{8} * __x;
@@ -249,7 +249,7 @@ template<typename _Tnu, typename _Tp>
   void
   test_bessel_asymp(_Tnu nu, _Tp x, bool use_internal, bool use_internal_old)
   {
-    const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
+    const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     auto w = 8 + std::cout.precision();
 

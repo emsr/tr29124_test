@@ -44,7 +44,7 @@
 #ifndef _TR1_BESSEL_FUNCTION_TCC
 #define _TR1_BESSEL_FUNCTION_TCC 1
 
-#include <ext/fp_type_util.h>
+#include <emsr/fp_type_util.h>
 
 namespace std
 {

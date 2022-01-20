@@ -24,7 +24,7 @@
 #include <sstream>
 #include <string>
 
-#include <ext/integration.h>
+#include <emsr/integration.h>
 
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.
 template<typename _Tp>
@@ -65,11 +65,11 @@ template<typename _Tp>
 	    auto func = [n1, n2](_Tp x)->_Tp{return normalized_chebyshev_v(n1, n2, x);};
 
 	    auto [result, error]
-		//= __gnu_cxx::integrate(func, _Tp{-1}, _Tp{1},
+		//= emsr::integrate(func, _Tp{-1}, _Tp{1},
 		//			abs_precision, rel_precision);
-		//= __gnu_cxx::integrate_singular(func, _Tp{-1}, _Tp{1},
+		//= emsr::integrate_singular(func, _Tp{-1}, _Tp{1},
 		//				abs_precision, rel_precision);
-		= __gnu_cxx::integrate_singular_endpoints(func,
+		= emsr::integrate_singular_endpoints(func,
 				 _Tp{-1}, _Tp{1},
 				 _Tp{0.5}, _Tp{-0.5}, 0, 0,
 				 abs_precision, rel_precision);
@@ -102,11 +102,11 @@ template<typename _Tp>
 	    auto func = [n1 = n1_upper, n2](_Tp x)->_Tp{return normalized_chebyshev_v(n1, n2, x);};
 
 	    auto [result, error]
-		//= __gnu_cxx::integrate(func, _Tp{-1}, _Tp{1},
+		//= emsr::integrate(func, _Tp{-1}, _Tp{1},
 		//			abs_precision, rel_precision);
-		//= __gnu_cxx::integrate_singular(func, _Tp{-1}, _Tp{1},
+		//= emsr::integrate_singular(func, _Tp{-1}, _Tp{1},
 		//				abs_precision, rel_precision);
-		= __gnu_cxx::integrate_singular_endpoints(func,
+		= emsr::integrate_singular_endpoints(func,
 				 _Tp{-1}, _Tp{1},
 				 _Tp{0.5}, _Tp{-0.5}, 0, 0,
 				 abs_precision, rel_precision);
@@ -154,7 +154,7 @@ main()
     {
       test_chebyshev_v<float>();
     }
-  catch (__gnu_cxx::__integration_error<float>& ierr)
+  catch (emsr::integration_error<float, float>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -169,7 +169,7 @@ main()
     {
       test_chebyshev_v<double>();
     }
-  catch (__gnu_cxx::__integration_error<double>& ierr)
+  catch (emsr::integration_error<double, double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -184,7 +184,7 @@ main()
     {
       test_chebyshev_v<long double>();
     }
-  catch (__gnu_cxx::__integration_error<long double>& ierr)
+  catch (emsr::integration_error<long double, long double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';

@@ -7,7 +7,7 @@
 #include <iostream>
 #include <iomanip>
 
-#include <ext/math_constants.h>
+#include <emsr/math_constants.h>
 #include <bits/numeric_limits.h>
 
   template<typename _Tp>
@@ -23,7 +23,7 @@
     {
       using __gammat_t = __gnu_cxx::__gamma_temme_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__mu);
-      const auto _S_gamma_E = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
+      const auto _S_gamma_E = emsr::egamma_v<_Tp>;
 
       if (std::abs(__mu) < _S_eps)
 	return __gammat_t{__mu, _Tp{1}, _Tp{1}, -_S_gamma_E, _Tp{1}};
@@ -51,7 +51,7 @@
     old_n(_Tp __nu, _Tp __x, int __max_iter = 10000)
     {
       const auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const int __n = std::nearbyint(__nu);
       const auto __mu = __nu - _Tp(__n);
       const auto __mu2 = __mu * __mu;
@@ -111,7 +111,7 @@
     old_k(_Tp __nu, _Tp __x, int __max_iter = 10000)
     {
       const auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const int __n = std::nearbyint(__nu);
       const auto __mu = __nu - _Tp(__n);
       const auto __mu2 = __mu * __mu;
@@ -178,7 +178,7 @@
 			   int __max_iter = 100)
     {
       const auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto __xi = _Tp{1} / __x;
       const auto __x2 = __x / _Tp{2};
 

@@ -24,7 +24,7 @@
 #include <sstream>
 #include <string>
 
-#include <ext/integration.h>
+#include <emsr/integration.h>
 
 // Try to manage the four-gamma ratio.
 // alpha > -1, beta > -1.
@@ -97,13 +97,13 @@ template<typename _Tp>
 
 	    auto [result, error]
 		= singular
-		? __gnu_cxx::integrate_singular_endpoints(func,
+		? emsr::integrate_singular_endpoints(func,
 					       _Tp{-1}, _Tp{1},
 					       alpha, beta, 0, 0,
 					       abs_precision, rel_precision)
-		//: __gnu_cxx::integrate(func, _Tp{-1}, _Tp{1},
+		//: emsr::integrate(func, _Tp{-1}, _Tp{1},
 		//			abs_precision, rel_precision);
-		: __gnu_cxx::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
+		: emsr::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
 						 abs_precision, rel_precision);
 
 	    if (std::abs(delta<_Tp>(n1, n2) - result) > cmp_precision)
@@ -137,13 +137,13 @@ template<typename _Tp>
 
 	    auto [result, error]
 		= singular
-		? __gnu_cxx::integrate_singular_endpoints(func,
+		? emsr::integrate_singular_endpoints(func,
 					       _Tp{-1}, _Tp{1},
 					       alpha, beta, 0, 0,
 					       abs_precision, rel_precision)
-		//: __gnu_cxx::integrate(func, _Tp{-1}, _Tp{1},
+		//: emsr::integrate(func, _Tp{-1}, _Tp{1},
 		//			abs_precision, rel_precision);
-		: __gnu_cxx::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
+		: emsr::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
 						 abs_precision, rel_precision);
 
 	    if (std::abs(delta<_Tp>(n1_upper, n2) - result) > cmp_precision)
@@ -189,7 +189,7 @@ main()
     {
       test_jacobi<float>(0.5F, 1.5F);
     }
-  catch (__gnu_cxx::__integration_error<float>& ierr)
+  catch (emsr::integration_error<float, float>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -204,7 +204,7 @@ main()
     {
       test_jacobi<double>(0.5, 1.5);
     }
-  catch (__gnu_cxx::__integration_error<double>& ierr)
+  catch (emsr::integration_error<double, double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -219,7 +219,7 @@ main()
     {
       test_jacobi<long double>(0.5L, 1.5L);
     }
-  catch (__gnu_cxx::__integration_error<long double>& ierr)
+  catch (emsr::integration_error<long double, long double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';

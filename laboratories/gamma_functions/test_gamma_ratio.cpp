@@ -276,7 +276,7 @@ template<typename _Tp>
     __hyperg_reflect(_Tp __a, _Tp __b, _Tp __c)
     {
       const auto __d = __c - __a - __b;
-      const auto __intd = __gnu_cxx::__fp_is_integer(__d);
+      const auto __intd = emsr::fp_is_integer(__d);
       auto __F1 = _Tp{0};
       if (__intd)
 	{
@@ -396,7 +396,7 @@ template<typename _Tp>
   test_gamma_ratio(_Tp proto = _Tp{})
   {
     //using _Val = _Tp;
-    //using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    //using _Real = emsr::num_traits_t<_Val>;
 
     std::vector<_Tp> parm{_Tp{0.25}, _Tp{0.5}, _Tp{1}, _Tp{2}, _Tp{5}};
 

@@ -20,7 +20,7 @@
 #ifndef STATISTICS_H
 #define STATISTICS_H 1
 
-#include <ext/complex_util.h>
+#include <emsr/complex_util.h>
 
 /**
  * Incremental computation of statistics.
@@ -60,9 +60,9 @@ template<typename _Tp>
       return *this;
     }
 
-    static constexpr bool _M_is_complex = __gnu_cxx::is_complex_v<_Tp>;
+    static constexpr bool _M_is_complex = emsr::is_complex_v<_Tp>;
 
-    using _M_type = std::conditional_t<__gnu_cxx::is_complex_v<_Tp>,
+    using _M_type = std::conditional_t<emsr::is_complex_v<_Tp>,
 				       std::complex<long double>, long double>;
 
     _Tp

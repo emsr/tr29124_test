@@ -24,15 +24,15 @@
 #include <sstream>
 #include <string>
 
-#include <ext/integration.h>
-#include <ext/math_constants.h>
+#include <emsr/integration.h>
+#include <emsr/math_constants.h>
 
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.
 template<typename _Tp>
   _Tp
   normalized_gegenbauer(int n1, int n2, _Tp lambda, _Tp x)
   {
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto _S_pi = emsr::pi_v<_Tp>;
     auto gama = std::tgamma(lambda);
     auto gamn2a = std::tgamma(n1 + _Tp{2} * lambda);
     auto norm = _S_pi * std::pow(_Tp{2}, _Tp{1} - _Tp{2} * lambda) * gamn2a
@@ -71,12 +71,12 @@ template<typename _Tp>
 	    // Using integrate_singular works pretty well.
 	    auto [result, error]
 		= singular
-		? __gnu_cxx::integrate_singular_endpoints(func,
+		? emsr::integrate_singular_endpoints(func,
 					       _Tp{-1}, _Tp{1},
 					       lambda - _Tp{0.5}, lambda - _Tp{0.5}, 0, 0,
 					       abs_precision, rel_precision)
-		//: __gnu_cxx::integrate(func, _Tp{-1}, _Tp{1}, abs_precision, rel_precision);
-		: __gnu_cxx::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
+		//: emsr::integrate(func, _Tp{-1}, _Tp{1}, abs_precision, rel_precision);
+		: emsr::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
 						 abs_precision, rel_precision);
 
 	    if (std::abs(delta<_Tp>(n1, n2) - result) > cmp_precision)
@@ -111,12 +111,12 @@ template<typename _Tp>
 	    // Using integrate_singular works pretty well.
 	    auto [result, error]
 		= singular
-		? __gnu_cxx::integrate_singular_endpoints(func,
+		? emsr::integrate_singular_endpoints(func,
 					       _Tp{-1}, _Tp{1},
 					       lambda - _Tp{0.5}, lambda - _Tp{0.5}, 0, 0,
 					       abs_precision, rel_precision)
-		//: __gnu_cxx::integrate(func, _Tp{-1}, _Tp{1}, abs_precision, rel_precision);
-		: __gnu_cxx::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
+		//: emsr::integrate(func, _Tp{-1}, _Tp{1}, abs_precision, rel_precision);
+		: emsr::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
 						 abs_precision, rel_precision);
 
 	    if (std::abs(delta<_Tp>(n1_upper, n2) - result) > cmp_precision)
@@ -172,7 +172,7 @@ main()
     {
       test_gegenbauer<float>(0.5F);
     }
-  catch (__gnu_cxx::__integration_error<float>& ierr)
+  catch (emsr::integration_error<float, float>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -187,7 +187,7 @@ main()
     {
       test_gegenbauer<double>(0.5);
     }
-  catch (__gnu_cxx::__integration_error<double>& ierr)
+  catch (emsr::integration_error<double, double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -202,7 +202,7 @@ main()
     {
       test_gegenbauer<long double>(0.5L);
     }
-  catch (__gnu_cxx::__integration_error<long double>& ierr)
+  catch (emsr::integration_error<long double, long double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';

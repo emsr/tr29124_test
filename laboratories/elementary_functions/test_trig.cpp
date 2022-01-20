@@ -31,10 +31,10 @@ template<typename _Tp>
   _Tp
   __sin(_Tp __x)
   {
-    const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-    const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
-    const auto _S_pi_4 = __gnu_cxx::numbers::__pi_quarter_v<_Tp>;
+    const auto _S_2pi = emsr::tau_v<_Tp>;
+    const auto _S_pi = emsr::pi_v<_Tp>;
+    const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
+    const auto _S_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
     int __sgn = 1;
     if (__x < _Tp{0})
       {

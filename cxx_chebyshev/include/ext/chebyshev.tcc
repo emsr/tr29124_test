@@ -6,6 +6,8 @@
 #include <algorithm> // For find_if.
 #include <numbers>
 
+#include <emsr/math_constants.h>
+
 /**
  * @file chebyshev.tcc Implementation for C++ Chebyshev methods.
  */
@@ -31,7 +33,7 @@ namespace __gnu_cxx
       _M_upper(__b),
       _M_coef(__n)
     {
-      constexpr _Tp _S_pi = std::numbers::pi_v<_Tp>;
+      constexpr _Tp _S_pi = emsr::pi_v<_Tp>;
 
       if (this->upper() == this->lower())
 	std::__throw_domain_error("_Chebyshev: input domain has zero length");
@@ -69,7 +71,7 @@ namespace __gnu_cxx
   template<typename _Tp>
     template<typename _Up>
     _Chebyshev<_Tp>::_Chebyshev(_Up __a, _Up __b,
-				const _Polynomial<_Up> & __poly)
+				const emsr::Polynomial<_Up> & __poly)
     : _M_lower(__a),
       _M_upper(__b),
       _M_coef(__poly.order())
@@ -193,7 +195,7 @@ namespace __gnu_cxx
    * expansion which is equivalent to the Chebyshev fit.
    */
   template<typename _Tp>
-    _Polynomial<_Tp>
+    emsr::Polynomial<_Tp>
     _Chebyshev<_Tp>::to_polynomial() const
     {
       unsigned int __n = this->_M_coef.size();
@@ -215,7 +217,7 @@ namespace __gnu_cxx
       //  Map the interval [-1,+1] to [a,b].
       poly_shift_coeff(this->lower(), this->upper(), __d);
 
-      return _Polynomial<_Tp>(__d);
+      return emsr::Polynomial<_Tp>(__d);
     }
 
 
@@ -270,8 +272,8 @@ namespace __gnu_cxx
    * over the requested range.
    */
   template<typename _Tp>
-    _Polynomial<_Tp>
-    economize_polynomial(_Tp __a, _Tp __b, const _Polynomial<_Tp>& __poly,
+    emsr::Polynomial<_Tp>
+    economize_polynomial(_Tp __a, _Tp __b, const emsr::Polynomial<_Tp>& __poly,
 			 _Tp __eps)
     {
       if (__poly.order() < 3)

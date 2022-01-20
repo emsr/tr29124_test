@@ -8,7 +8,7 @@
 #include <iomanip>
 
 #include <wrap_gsl.h>
-#include <ext/math_constants.h>
+#include <emsr/math_constants.h>
 
 #define _GLIBCXX_MATH_NS std
 
@@ -35,14 +35,14 @@
             {
               _Tp __zeta = __riemann_zeta_glob_old(_Tp(1) - __s);
               __zeta *= std::pow(_Tp(2)
-                     * __gnu_cxx::numbers::__pi_v<_Tp>, __s)
-                     * std::sin(__gnu_cxx::numbers::__pi_half_v<_Tp> * __s)
+                     * emsr::pi_v<_Tp>, __s)
+                     * std::sin(emsr::pi_v<_Tp> * __s / _Tp{2})
 #if _GLIBCXX_USE_C99_MATH_TR1
                      * std::exp(_GLIBCXX_MATH_NS::lgamma(_Tp(1) - __s))
 #else
                      * std::exp(__log_gamma(_Tp(1) - __s))
 #endif
-                     / __gnu_cxx::numbers::__pi_v<_Tp>;
+                     / emsr::pi_v<_Tp>;
               return __zeta;
             }
         }
@@ -165,14 +165,14 @@
             {
               _Tp __zeta = __riemann_zeta_glob_new(_Tp(1) - __s);
               __zeta *= std::pow(_Tp(2)
-                     * __gnu_cxx::numbers::__pi_v<_Tp>, __s)
-                     * std::sin(__gnu_cxx::numbers::__pi_half_v<_Tp> * __s)
+                     * emsr::pi_v<_Tp>, __s)
+                     * std::sin(emsr::pi_v<_Tp> * __s / _Tp{2})
 #if _GLIBCXX_USE_C99_MATH_TR1
                      * std::exp(_GLIBCXX_MATH_NS::lgamma(_Tp(1) - __s))
 #else
                      * std::exp(__log_gamma(_Tp(1) - __s))
 #endif
-                     / __gnu_cxx::numbers::__pi_v<_Tp>;
+                     / emsr::pi_v<_Tp>;
               return __zeta;
             }
         }
@@ -239,14 +239,14 @@
             {
               _Tp __zeta = __hurwitz_zeta_glob_new(_Tp(1) - __s, __a);
               __zeta *= std::pow(_Tp(2)
-                     * __gnu_cxx::numbers::__pi_v<_Tp>, __s)
-                     * std::sin(__gnu_cxx::numbers::__pi_half_v<_Tp> * __s)
+                     * emsr::pi_v<_Tp>, __s)
+                     * std::sin(emsr::pi_v<_Tp> * __s / _Tp{2})
 #if _GLIBCXX_USE_C99_MATH_TR1
                      * std::exp(_GLIBCXX_MATH_NS::lgamma(_Tp(1) - __s))
 #else
                      * std::exp(__log_gamma(_Tp(1) - __s))
 #endif
-                     / __gnu_cxx::numbers::__pi_v<_Tp>;
+                     / emsr::pi_v<_Tp>;
               return __zeta;
             }
         }

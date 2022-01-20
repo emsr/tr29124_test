@@ -98,8 +98,8 @@ namespace __detail
 			   unsigned int __max_iter)
     {
       // FIXME: This will promote float to double if _Tnu is integral.
-      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon<_Real>();
       if (std::abs(__x) < _S_eps)
 	{
@@ -137,7 +137,7 @@ namespace __detail
     struct __cyl_bessel_asymp_sums_t
     {
       // FIXME: This will promote float to double if _Tnu is integral.
-      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
+      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
       _Val _Psum;
       _Val _Qsum;
       _Val _Rsum;
@@ -208,8 +208,8 @@ namespace __detail
     __cyl_bessel_asymp_sums(_Tnu __nu, _Tp __x, int __sgn)
     {
       // FIXME: This will promote float to double if _Tnu is integral.
-      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      using _Real = emsr::num_traits_t<_Val>;
       using __bess_t = __cyl_bessel_asymp_sums_t<_Tnu, _Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon<_Real>();
       const auto __2nu = _Real{2} * __nu;
@@ -273,11 +273,11 @@ namespace __detail
     __cyl_bessel_jn_asymp(_Tnu __nu, _Tp __x)
     {
       // FIXME: This will promote float to double if _Tnu is integral.
-      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      using _Real = emsr::num_traits_t<_Val>;
       using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tnu, _Tp, _Tp>;
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
-      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
+      const auto _S_pi = emsr::pi_v<_Real>;
+      const auto _S_pi_2 = emsr::pi_v<_Real> / _Real{2};
 
       const auto __sums = __cyl_bessel_asymp_sums(__nu, __x, -1);
 
@@ -303,12 +303,12 @@ namespace __detail
    *           and @f$ \zeta = z^2 @f$ for @f$ I_\nu(z) @f$.
    */
   template<typename _Tnu, typename _Tp, typename _Tzeta>
-    std::complex<__gnu_cxx::__num_traits_t<
-		 __gnu_cxx::fp_promote_t<_Tnu, _Tp, _Tzeta>>>
+    std::complex<emsr::num_traits_t<
+		 emsr::fp_promote_t<_Tnu, _Tp, _Tzeta>>>
     __cyl_bessel_ratio_s_frac(_Tnu __nu, _Tp __z, _Tzeta __zeta)
     {
-      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       auto __a_J
@@ -340,20 +340,20 @@ namespace __detail
    * 
    */
   template<typename _Tnu, typename _Tp,
-	   typename _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>>
-    std::conditional_t<__gnu_cxx::is_complex_v<_Val>,
-			std::complex<__gnu_cxx::__num_traits_t<_Val>>,
+	   typename _Val = emsr::fp_promote_t<_Tnu, _Tp>>
+    std::conditional_t<emsr::is_complex_v<_Val>,
+			std::complex<emsr::num_traits_t<_Val>>,
 			_Val>
     __cyl_bessel_j_ratio_s_frac(_Tnu __nu, _Tp __z)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       const auto __iz = _Cmplx{0, 1} * __z;
       const auto __zeta = __iz * __iz;
       const auto _Jrat = __cyl_bessel_ratio_s_frac(__nu, __z, __zeta);
 
-      if constexpr (!__gnu_cxx::is_complex_v<_Val>)
+      if constexpr (!emsr::is_complex_v<_Val>)
 	return std::real(_Jrat);
       else
 	return _Jrat;
@@ -363,19 +363,19 @@ namespace __detail
    * 
    */
   template<typename _Tnu, typename _Tp,
-	   typename _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>>
-    std::conditional_t<__gnu_cxx::is_complex_v<_Val>,
-			std::complex<__gnu_cxx::__num_traits_t<_Val>>,
+	   typename _Val = emsr::fp_promote_t<_Tnu, _Tp>>
+    std::conditional_t<emsr::is_complex_v<_Val>,
+			std::complex<emsr::num_traits_t<_Val>>,
 			_Val>
     __cyl_bessel_i_ratio_s_frac(_Tnu __nu, _Tp __z)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       const auto __zeta = __z * __z;
       const auto _Irat = __cyl_bessel_ratio_s_frac(__nu, __z, __zeta);
 
-      if constexpr (!__gnu_cxx::is_complex_v<_Val>)
+      if constexpr (!emsr::is_complex_v<_Val>)
 	return std::real(_Irat);
       else
 	return _Irat;
@@ -385,12 +385,12 @@ namespace __detail
    * Compute ratios of Hankel functions using the J-fraction.
    */
   template<typename _Tnu, typename _Tp>
-    std::complex<__gnu_cxx::__num_traits_t<
-		 __gnu_cxx::fp_promote_t<_Tnu, _Tp>>>
+    std::complex<emsr::num_traits_t<
+		 emsr::fp_promote_t<_Tnu, _Tp>>>
     __cyl_hankel_ratio_j_frac(_Tnu __nu, _Tp __z, _Tp __sgn)
     {
-      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
       const auto __zeta = _Cmplx{0, 2} * __z;
       using _Tzeta = decltype(__zeta);
@@ -424,8 +424,8 @@ namespace __detail
    * Return the Hankel function ratio of the first kind from the J-fraction.
    */
   template<typename _Tnu, typename _Tp>
-    inline std::complex<__gnu_cxx::__num_traits_t<
-			__gnu_cxx::fp_promote_t<_Tnu, _Tp>>>
+    inline std::complex<emsr::num_traits_t<
+			emsr::fp_promote_t<_Tnu, _Tp>>>
     __cyl_hankel_1_ratio_j_frac(_Tnu __nu, _Tp __z)
     { return __cyl_hankel_ratio_j_frac(__nu, __z, _Tp{-1}); }
 
@@ -433,8 +433,8 @@ namespace __detail
    * Return the Hankel function ratio of the second kind from the J-fraction.
    */
   template<typename _Tnu, typename _Tp>
-    inline std::complex<__gnu_cxx::__num_traits_t<
-			__gnu_cxx::fp_promote_t<_Tnu, _Tp>>>
+    inline std::complex<emsr::num_traits_t<
+			emsr::fp_promote_t<_Tnu, _Tp>>>
     __cyl_hankel_2_ratio_j_frac(_Tnu __nu, _Tp __z)
     { return __cyl_hankel_ratio_j_frac(__nu, __z, _Tp{+1}); }
 
@@ -443,16 +443,16 @@ namespace __detail
    * from the J-fraction ratios of Hankel functions.
    */
   template<typename _Tnu, typename _Tp,
-	   typename _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>>
-    std::conditional_t<__gnu_cxx::is_complex_v<_Val>,
-			std::complex<__gnu_cxx::__num_traits_t<_Val>>,
+	   typename _Val = emsr::fp_promote_t<_Tnu, _Tp>>
+    std::conditional_t<emsr::is_complex_v<_Val>,
+			std::complex<emsr::num_traits_t<_Val>>,
 			_Val>
     __cyl_bessel_k_ratio_j_frac(_Tnu __nu, _Tp __z)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
       const auto _S_i = _Cmplx{0, 1};
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
+      const auto _S_pi = emsr::pi_v<_Real>;
       const auto __ph = std::arg(__z);
 
       _Cmplx _Krat;
@@ -461,7 +461,7 @@ namespace __detail
       else
 	_Krat = -_S_i * __cyl_hankel_2_ratio_j_frac(__nu, -_S_i * __z);
 
-      if constexpr (!__gnu_cxx::is_complex_v<_Val>)
+      if constexpr (!emsr::is_complex_v<_Val>)
 	return std::real(_Krat);
       else
 	return _Krat;
@@ -495,7 +495,7 @@ namespace __detail
     {
       using __gammat_t = __gnu_cxx::__gamma_temme_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__mu);
-      const auto _S_gamma_E = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
+      const auto _S_gamma_E = emsr::egamma_v<_Tp>;
 
       if (std::abs(__mu) < _S_eps)
 	return __gammat_t{__mu, _Tp{1}, _Tp{1}, -_S_gamma_E, _Tp{1}};
@@ -545,7 +545,7 @@ namespace __detail
 			   int __max_iter = 100)
     {
       const auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto __xi = _Tp{1} / __x;
       const auto __x2 = __x / _Tp{2};
 
@@ -615,7 +615,7 @@ namespace __detail
       const auto _S_inf = __gnu_cxx::__infinity(__x);
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const auto _S_tiny = __gnu_cxx::__lim_min(__x);
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       // When the multiplier is N i.e.
       // fp_min = N * min()
       // Then J_0 and N_0 tank at x = 8 * N (J_0 = 0 and N_0 = nan)!
@@ -747,7 +747,7 @@ std::cerr << ' ' << std::setw(10) << __nu
       using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const auto _S_inf = __gnu_cxx::__infinity(__x);
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       if (__nu < _Tp{0})
 	{
 	  const auto _Bess = __cyl_bessel_jn(-__nu, __x);
@@ -1027,7 +1027,7 @@ std::cerr << ' ' << std::setw(10) << __nu
 
       const auto _Bess = __cyl_bessel_jn(__nu, __x);
 
-      const auto __factor = __gnu_cxx::numbers::__root_pi_div_2_v<_Tp>
+      const auto __factor = (emsr::sqrtpi_v<_Tp> / emsr::sqrt2_v<_Tp>)
 			  / std::sqrt(__x);
 
       const auto __j_n = __factor * _Bess.__J_value;
@@ -1058,7 +1058,7 @@ std::cerr << ' ' << std::setw(10) << __nu
 	  const auto _Bess = __cyl_bessel_jn_neg_arg(__nu, __x);
 
 	  const auto __factor
-	    = __gnu_cxx::numbers::__root_pi_div_2_v<_Tp>
+	    = (emsr::sqrtpi_v<_Tp> / emsr::sqrt2_v<_Tp>)
 	      / std::sqrt(_Cmplx(__x));
 
 	  const auto __j_n = __factor * _Bess.__J_value;

@@ -9,9 +9,9 @@
 #include <iomanip>
 
 #include <cmath> // FIXME: For isnan for math_util.h
-#include <ext/math_util.h>
-#include <ext/solver_jenkins_traub.h>
-#include <ext/polynomial.h>
+#include <emsr/math_util.h>
+#include <emsr/solver_jenkins_traub.h>
+#include <emsr/polynomial.h>
 
 #include <ext/float128_io.h>
 #include <ext/float128_math.h>
@@ -36,15 +36,15 @@ namespace __detail
    * @param[in]  beta1  The second parameter of the Jacobi polynomial
    */
   template<typename _Tp>
-    __gnu_cxx::_Polynomial<_Tp>
+    emsr::Polynomial<_Tp>
     __jacobi_poly(unsigned int __n, _Tp __alpha1, _Tp __beta1)
     {
-      __gnu_cxx::_Polynomial<_Tp> __poly;
+      emsr::Polynomial<_Tp> __poly;
 
       if (std::isnan(__alpha1) || std::isnan(__beta1))
 	return __poly;
 
-      auto __term = __gnu_cxx::_Polynomial<_Tp>{1};
+      auto __term = emsr::Polynomial<_Tp>{1};
       __poly += __term;
       if (__n == 0)
 	return __poly;
@@ -52,11 +52,11 @@ namespace __detail
       const auto __apb = __alpha1 + __beta1;
 
       auto __m = int(__n);
-      if (const auto __pint = __gnu_cxx::__fp_is_integer(__n + 1 + __apb);
+      if (const auto __pint = emsr::fp_is_integer(__n + 1 + __apb);
 	  __pint && __pint() <= 0 && -__pint() < __m)
 	__m = -__pint();
 
-      const __gnu_cxx::_Polynomial<_Tp> __arg({_Tp{1}/_Tp{2}, _Tp{-1}/_Tp{2}});
+      const emsr::Polynomial<_Tp> __arg({_Tp{1}/_Tp{2}, _Tp{-1}/_Tp{2}});
 
       auto __fact = _Tp{1};
       for (unsigned int __k = 1; __k <= __n; ++__k)
@@ -116,7 +116,7 @@ template<typename _Tp>
 
     std::reverse(coef.begin(), coef.end());
 
-    auto jt = __gnu_cxx::_JenkinsTraubSolver(coef);
+    auto jt = emsr::JenkinsTraubSolver(coef);
     auto roots = jt.solve();
     std::cout << "\nThe roots are:\n";
     for (const auto& z : roots)

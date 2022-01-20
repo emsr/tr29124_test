@@ -32,7 +32,7 @@
 
 #pragma GCC system_header
 
-#include <ext/integration.h>
+#include <emsr/integration.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -48,7 +48,7 @@ namespace __detail
     __mittag_leffler_K(_Tp __alpha, _Tp __beta, _Tp __chi,
 		       const std::complex<_Tp>& __z)
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto __chip1 = std::pow(__chi, _Tp{1} / __alpha);
       const auto __chip2 = std::pow(__chi, (_Tp{1} - __beta) / __alpha);
       return __chip2
@@ -74,10 +74,10 @@ namespace __detail
 
       const auto __epsabs = _Tp{100} * _S_eps;
       const auto __epsrel = _Tp{0};
-      auto __ws = __gnu_cxx::cquad_workspace<_Tp, std::complex<_Tp>>();
+      auto __ws = emsr::cquad_workspace<_Tp, std::complex<_Tp>>();
 
       auto __quad
-	= __gnu_cxx::cquad_integrate(__ws, __func, __chi_min, __chi_max,
+	= emsr::cquad_integrate(__ws, __func, __chi_min, __chi_max,
 				     __epsabs, __epsrel);
 
       return __quad.__result;
@@ -90,7 +90,7 @@ namespace __detail
 		       const std::complex<_Tp>& __z)
     {
       const auto _S_i = std::complex<_Tp>{0, 1};
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto __epsp1 = std::pow(__epsilon, _Tp{1} / __alpha);
       const auto __rat = _Tp{1} + (_Tp{1} - __beta) / __alpha;
       const auto __epsp2 = std::pow(__epsilon, __rat);
@@ -119,10 +119,10 @@ namespace __detail
 
       const auto __epsabs = _Tp{100} * _S_eps;
       const auto __epsrel = _Tp{0};
-      auto __ws = __gnu_cxx::cquad_workspace<_Tp, std::complex<_Tp>>();
+      auto __ws = emsr::cquad_workspace<_Tp, std::complex<_Tp>>();
 
       auto __quad
-	= __gnu_cxx::cquad_integrate(__ws, __func, __phi_min, __phi_max,
+	= emsr::cquad_integrate(__ws, __func, __phi_min, __phi_max,
 				     __epsabs, __epsrel);
 
       return __quad.__result;
@@ -146,8 +146,8 @@ namespace __detail
     {
       using _Cmplx = std::complex<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__alpha);
-      const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_2pi = emsr::tau_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
 
       const auto __az = std::abs(__z);
       if (__alpha == _Tp{0})

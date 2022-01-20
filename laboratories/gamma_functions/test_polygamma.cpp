@@ -9,8 +9,8 @@
 
 #include <bits/specfun.h>
 #include <ext/continued_fractions.h>
-#include <ext/polynomial.h>
-#include <ext/horner.h>
+#include <emsr/polynomial.h>
+#include <emsr/horner.h>
 
 #include <wrap_boost.h>
 
@@ -41,7 +41,7 @@ template<typename _Tp>
   _Tp
   __trigamma_cont_frac(_Tp __x)
   {
-    const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
+    const auto _S_2pi = emsr::tau_v<_Tp>;
     const auto _S_12pi = _Tp{1} / _S_2pi / _Tp{6};
 
     auto __a
@@ -86,7 +86,7 @@ template<typename _Tp>
   _Tp
   __tetragamma_cont_frac(_Tp __x)
   {
-    const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
+    const auto _S_2pi = emsr::tau_v<_Tp>;
     const auto _S_8pi2 = _Tp{1} / _S_2pi / _S_2pi / _Tp{2};
 
     auto __a
@@ -216,11 +216,11 @@ template<typename _Tp>
  *  c * { 4951498053124096LL, 118071834535526400LL, 603968063567560704LL, 990081991141490688LL, 584901762421358592LL, 122829335169859584LL, 7984436548730880LL, 112949304754176LL, 137433710592LL, 524288LL }
  */
 template<typename _Tp>
-  __gnu_cxx::_Polynomial<_Tp>
+  emsr::Polynomial<_Tp>
   __polygamma_poly(unsigned int __m)
   {
-    __gnu_cxx::_Polynomial<_Tp> __a{_Tp{0}, _Tp{1}};
-    __gnu_cxx::_Polynomial<_Tp> __b{_Tp{1}, _Tp{0}, _Tp{-1}};
+    emsr::Polynomial<_Tp> __a{_Tp{0}, _Tp{1}};
+    emsr::Polynomial<_Tp> __b{_Tp{1}, _Tp{0}, _Tp{-1}};
     if (__m == 0)
       return __a;
     else
@@ -264,32 +264,32 @@ template<typename _Tp>
     _Tp
     __polygamma_reflect(unsigned int __m, _Tp __x)
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto __c = std::__detail::__cos_pi(__x);
       const auto __cc = __c * __c;
       const auto __s = std::__detail::__sin_pi(__x);
       const auto __fact = std::pow(_S_pi / __s, _Tp(__m + 1));
       if (__m == 0)
 	return __c * __fact
-	     * __gnu_cxx::horner(__cc, -1LL);
+	     * emsr::horner(__cc, -1LL);
       else if (__m == 1)
 	return __fact
-	     * __gnu_cxx::horner(__cc, 2LL);
+	     * emsr::horner(__cc, 2LL);
       else if (__m == 2)
 	return __c * __fact
-	     * __gnu_cxx::horner(__cc, -2LL, -4LL);
+	     * emsr::horner(__cc, -2LL, -4LL);
       else if (__m == 3)
 	return __fact
-	     * __gnu_cxx::horner(__cc, 16LL, 8LL);
+	     * emsr::horner(__cc, 16LL, 8LL);
       else if (__m == 4)
 	return __c * __fact
-	     * __gnu_cxx::horner(__cc, -16LL, -88LL, -16LL);
+	     * emsr::horner(__cc, -16LL, -88LL, -16LL);
       else if (__m == 5)
 	return __fact
-	     * __gnu_cxx::horner(__cc, 272LL, 416LL, 32LL);
+	     * emsr::horner(__cc, 272LL, 416LL, 32LL);
       else if (__m == 6)
 	return __c * __fact
-	     * __gnu_cxx::horner(__cc, -272LL, -2880LL, -1824LL, -64LL);
+	     * emsr::horner(__cc, -272LL, -2880LL, -1824LL, -64LL);
       else
 	{
 	  auto __poly = __polygamma_poly<long long>(__m);
@@ -327,7 +327,7 @@ template<typename _Tp>
     {
       if (__x <= _Tp{0})
 	{
-	  if (const auto __n = __gnu_cxx::__fp_is_integer(__x); __n)
+	  if (const auto __n = emsr::fp_is_integer(__x); __n)
 	    return __gnu_cxx::__infinity(__x);
 	  else
 	    return _Tp(__m & 1 ? -1 : +1) * __polygamma(__m, _Tp{1} - __x)

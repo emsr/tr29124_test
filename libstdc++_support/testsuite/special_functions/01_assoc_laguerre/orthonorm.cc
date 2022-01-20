@@ -21,7 +21,7 @@
 
 #include <cmath>
 
-#include <ext/integration.h>
+#include <emsr/integration.h>
 
 #if defined(__TEST_DEBUG)
 #  include <iostream>
@@ -87,7 +87,7 @@ template<typename _Tp>
 			{ return norm_assoc_laguerre<_Tp>(n1, n2, alpha, x); };
 
 	    auto [result, error]
-		= __gnu_cxx::integrate_exp_sinh(func, _Tp{0},
+		= emsr::integrate_exp_sinh(func, _Tp{0},
 						abs_prec, rel_prec);
 	    if (std::abs(delta<_Tp>(n1, n2) - result) > cmp_prec)
 	      ++fail;

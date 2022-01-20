@@ -389,7 +389,7 @@ template<typename Ret, typename Arg1>
 
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
-    constexpr auto ret_complex = __gnu_cxx::is_complex_v<Ret>;
+    constexpr auto ret_complex = emsr::is_complex_v<Ret>;
 
     std::string numname(type_strings<Val>::type());
 
@@ -629,7 +629,7 @@ template<typename Ret, typename Arg1, typename Arg2>
 
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
-    constexpr auto ret_complex = __gnu_cxx::is_complex_v<Ret>;
+    constexpr auto ret_complex = emsr::is_complex_v<Ret>;
 
     std::string numname(type_strings<Val>::type());
 
@@ -884,7 +884,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3>
 
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
-    constexpr auto ret_complex = __gnu_cxx::is_complex_v<Ret>;
+    constexpr auto ret_complex = emsr::is_complex_v<Ret>;
 
     std::string numname(type_strings<Val>::type());
 
@@ -1156,7 +1156,7 @@ template<typename Ret, typename Arg1, typename Arg2, typename Arg3, typename Arg
 
     constexpr auto eps = std::numeric_limits<Val>::epsilon();
     constexpr auto inf = std::numeric_limits<Val>::infinity();
-    constexpr auto ret_complex = __gnu_cxx::is_complex_v<Ret>;
+    constexpr auto ret_complex = emsr::is_complex_v<Ret>;
 
     std::string numname(type_strings<Val>::type());
 

@@ -14,7 +14,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
+    const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
     using _Cmplx = std::complex<_Tp>;
 
     auto a_trigint
@@ -64,14 +64,14 @@ template<typename _Tp>
   test_lentz_hypint(_Tp proto = _Tp{})
   {
     using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using _Real = emsr::num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(__gnu_cxx::__digits10(std::real(proto)));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
+    const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
     const auto _S_i = _Cmplx{0, 1};
 
     auto a_hypint

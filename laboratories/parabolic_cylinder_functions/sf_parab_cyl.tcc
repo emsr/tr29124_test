@@ -44,7 +44,7 @@
 #ifndef _GLIBCXX_BITS_SF_PARAB_CYL_TCC
 #define _GLIBCXX_BITS_SF_PARAB_CYL_TCC 1
 
-#include <ext/math_constants.h>
+#include <emsr/math_constants.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -60,8 +60,8 @@ namespace __detail
     std::tuple<_Tp, _Tp, _Tp, _Tp>
     __parabolic_cylinder_factor(_Tp __a)
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-      const auto _S_sqrt_pi = __gnu_cxx::numbers::__pi_half_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
+      const auto _S_sqrt_pi = _S_pi / _Tp{2};
       auto __2e14p = std::pow(_Tp{2}, 0.25L + 0.5L * __a);
       auto __2e34p = std::pow(_Tp{2}, 0.75L + 0.5L * __a);
       auto __2e14m = std::pow(_Tp{2}, 0.25L - 0.5L * __a);
@@ -122,7 +122,7 @@ namespace __detail
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__z));
       constexpr auto _S_max_iter = 1000;
       constexpr auto _S_1d2 = _Tp{1} / _Tp{2};
-      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
+      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
       const auto _S_2dsqrt_pi = _Tp{2} / _S_sqrt_pi;
       const auto __zz = __z * __z;
       const auto __i2zz = _Tp{1} / (_Tp{2} * __z * __z);

@@ -161,8 +161,8 @@ namespace __detail
     _Tp
     __conf_hyperg_lim(_Tp __c, _Tp __x)
     {
-      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
-      const auto __c_nint = __gnu_cxx::__fp_is_integer(__c);
+      using _Val = emsr::num_traits_t<_Tp>;
+      const auto __c_nint = emsr::fp_is_integer(__c);
       if (std::isnan(__c) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__c_nint && __c_nint() <= 0)
@@ -229,7 +229,7 @@ namespace __detail
     _Tp
     __conf_hyperg_luke(_Tp __a, _Tp __c, _Tp __xin)
     {
-      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Val = emsr::num_traits_t<_Tp>;
       const auto __big = __gnu_cxx::__root_max(_Val{6});
       const int __nmax = 20000;
       const auto __eps = __gnu_cxx::__epsilon<_Val>();
@@ -335,7 +335,7 @@ namespace __detail
     _Tp
     __conf_hyperg(_Tp __a, _Tp __c, _Tp __x)
     {
-      const auto __c_nint = __gnu_cxx::__fp_is_integer(__c);
+      const auto __c_nint = emsr::fp_is_integer(__c);
       if (std::isnan(__a) || std::isnan(__c) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else if (__c_nint && __c_nint() <= 0)
@@ -368,14 +368,14 @@ namespace __detail
     {
       auto __U1 = _Tp{};
       auto __b = __a - __c + _Tp{1};
-      auto __ib = __gnu_cxx::__fp_is_integer(__b);
+      auto __ib = emsr::fp_is_integer(__b);
       if (!__ib || (__ib && __ib() > 0))
 	__U1 = std::tgamma(_Tp{1} - __c)
 	       * __conf_hyperg(__a, __c, __x)
 	       / std::tgamma(__b);
 
       auto __U2 = _Tp{};
-      auto __ia = __gnu_cxx::__fp_is_integer(__a);
+      auto __ia = emsr::fp_is_integer(__a);
       if (!__ia || (__ia && __ia() > 0))
 	__U2 = std::tgamma(__c - _Tp{1})
 	       * std::pow(__x, _Tp{1} - __c)
@@ -428,7 +428,7 @@ namespace __detail
     _Tp
     __hyperg_series(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Val = emsr::num_traits_t<_Tp>;
       const auto __eps = __gnu_cxx::__epsilon<_Val>();
 
       auto __term = _Tp{1};
@@ -499,7 +499,7 @@ namespace __detail
     _Tp
     __hyperg_luke(_Tp __a, _Tp __b, _Tp __c, _Tp __xin)
     {
-      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Val = emsr::num_traits_t<_Tp>;
       const auto __big = __gnu_cxx::__root_max(_Val{6});
       const int __nmax = 20000;
       const auto __eps = __gnu_cxx::__epsilon<_Val>();
@@ -635,17 +635,17 @@ namespace __detail
     _Tp
     __hyperg_reflect(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Val = emsr::num_traits_t<_Tp>;
       const auto _S_log_max = __gnu_cxx::__log_max<_Val>();
       const auto __eps = __gnu_cxx::__epsilon<_Val>();
       const auto __epsfact = _Val{1000};
       const auto __toler = __epsfact * __eps;
       const auto __d = __c - __a - __b;
-      const auto __d_nint = __gnu_cxx::__fp_is_integer(__d, __epsfact);
+      const auto __d_nint = emsr::fp_is_integer(__d, __epsfact);
 
       if (__d_nint)
 	{
-	  const auto __ln_omx = std::log1p(-__x);
+	  const auto __ln_omx = emsr::log1p(-__x);
 	  const auto __ad = std::abs(__d);
 	  _Tp __F1, __F2;
 
@@ -748,7 +748,7 @@ namespace __detail
 	      // Gamma functions in the denominator are ok.
 	      // Proceed with evaluation.
 	      const int __maxiter = 2000;
-	      const auto __psi_1 = -__gnu_cxx::numbers::__gamma_e_v<_Val>;
+	      const auto __psi_1 = -emsr::egamma_v<_Val>;
 	      const auto __psi_1pd = __digamma(_Val{1} + __ad);
 	      const auto __psi_apd1 = __digamma(__a + __d1);
 	      const auto __psi_bpd1 = __digamma(__b + __d1);
@@ -925,13 +925,13 @@ namespace __detail
     _Tp
     __hyperg(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Val = emsr::num_traits_t<_Tp>;
       const auto _S_log_max = __gnu_cxx::__log_max<_Val>();
       const auto __epsfact = _Val{1000};
       const auto __toler = __epsfact * __gnu_cxx::__epsilon<_Val>();
-      const auto __a_nint = __gnu_cxx::__fp_is_integer(__a, __epsfact);
-      const auto __b_nint = __gnu_cxx::__fp_is_integer(__b, __epsfact);
-      const auto __c_nint = __gnu_cxx::__fp_is_integer(__c, __epsfact);
+      const auto __a_nint = emsr::fp_is_integer(__a, __epsfact);
+      const auto __b_nint = emsr::fp_is_integer(__b, __epsfact);
+      const auto __c_nint = emsr::fp_is_integer(__c, __epsfact);
       if (std::abs(__x - _Tp{1}) < __toler && std::abs(__c - __b - __a) > _Val{0}
        && !(__c_nint && __c_nint() <= 0))
 	{

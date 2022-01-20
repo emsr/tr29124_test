@@ -6,7 +6,7 @@
 #include <complex>
 #include <iostream>
 #include <iomanip>
-#include <ext/solver_low_degree.h>
+#include <emsr/solver_low_degree.h>
 
   /**
    * Return the elliptic modular function by product expansion:
@@ -21,7 +21,7 @@
     std::complex<_Tp>
     __elliptic_modular_prod(const std::complex<_Tp>& __q)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
       constexpr std::size_t _S_max_iter = 50;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__q));
@@ -56,7 +56,7 @@
     std::complex<_Tp>
     __dedekind_eta_prod(const std::complex<_Tp>& __q)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
       constexpr std::size_t _S_max_iter = 50;
       const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__q));
@@ -89,9 +89,9 @@
     {
       // @todo Include the arg type _Tp.
       //using _Type = typename std::__detail::__jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome;
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto _S_i = _Cmplx{0, 1};
 
       const auto __lattice = std::__detail::__jacobi_lattice_t(__omega1, __omega3);
@@ -141,8 +141,8 @@
     __weierstrass_sigma(_Tp1 __omega1, _Tp3 __omega3, _Tp __z)
     {
       // @todo Include the arg type _Tp.
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      using _Real = emsr::num_traits_t<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto __lattice = std::__detail::__jacobi_lattice_t(__omega1, __omega3);
       const auto __theta0 = std::__detail::__jacobi_theta_0_t(__lattice);
       const auto __omega_1 = __lattice.__omega_1();
@@ -159,7 +159,7 @@ template<typename _Tp>
   void
   test_weierstrass_ellint()
   {
-    using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+    using _Real = emsr::num_traits_t<_Tp>;
     using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(__gnu_cxx::__digits10<_Real>());
@@ -196,7 +196,7 @@ template<typename _Tp>
   void
   test_weierstrass_zeta()
   {
-    using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+    using _Real = emsr::num_traits_t<_Tp>;
     using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(__gnu_cxx::__digits10<_Real>());
@@ -233,7 +233,7 @@ template<typename _Tp>
   void
   test_weierstrass_sigma()
   {
-    using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+    using _Real = emsr::num_traits_t<_Tp>;
     using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(__gnu_cxx::__digits10<_Real>());
@@ -269,9 +269,9 @@ template<typename _Tp>
   void
   test_weierstrass_invariants()
   {
-    using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+    using _Real = emsr::num_traits_t<_Tp>;
     using _Cmplx = std::complex<_Real>;
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto _S_pi = emsr::pi_v<_Tp>;
 
     std::cout.precision(__gnu_cxx::__digits10<_Real>());
     auto w = std::cout.precision() + 8;

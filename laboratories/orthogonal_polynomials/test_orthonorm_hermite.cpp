@@ -24,15 +24,15 @@
 #include <sstream>
 #include <string>
 
-#include <ext/integration.h>
-#include <ext/math_constants.h>
+#include <emsr/integration.h>
+#include <emsr/math_constants.h>
 
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.
 template<typename _Tp>
   _Tp
   normalized_hermite(int n1, int n2, _Tp x)
   {
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto _S_pi = emsr::pi_v<_Tp>;
     auto lnorm = _Tp{0.5} * (log(_S_pi) + _Tp(n1 + n2) * log(_Tp{2})
 			  + __gnu_cxx::lfactorial<_Tp>(n1)
 			  + __gnu_cxx::lfactorial<_Tp>(n2));
@@ -68,15 +68,15 @@ template<typename _Tp>
 	    //using func_t = decltype(func);
 
 	    auto [result, error]
-		//= __gnu_cxx::integrate_singular(func, -infty, infty, abs_precision, rel_precision);
-		//= __gnu_cxx::integrate(func, -infty, infty, abs_precision, rel_precision);
-		//= __gnu_cxx::integrate_infinite(func, abs_precision, rel_precision);
-		//= __gnu_cxx::integrate_singular_infinite(func, abs_precision, rel_precision);
-		//= __gnu_cxx::integrate_oscillatory(map_minf_pinf<_Tp, func_t>(func),
+		//= emsr::integrate_singular(func, -infty, infty, abs_precision, rel_precision);
+		//= emsr::integrate(func, -infty, infty, abs_precision, rel_precision);
+		//= emsr::integrate_infinite(func, abs_precision, rel_precision);
+		//= emsr::integrate_singular_infinite(func, abs_precision, rel_precision);
+		//= emsr::integrate_oscillatory(map_minf_pinf<_Tp, func_t>(func),
 		//			  _Tp{0}, _Tp{1}, abs_precision, rel_precision);
-		//= __gnu_cxx::integrate_clenshaw_curtis(map_minf_pinf<_Tp, func_t>(func),
+		//= emsr::integrate_clenshaw_curtis(map_minf_pinf<_Tp, func_t>(func),
 		//			      _Tp{0}, _Tp{1}, abs_precision, rel_precision);
-		= __gnu_cxx::integrate_sinh_sinh(func, abs_precision, rel_precision);
+		= emsr::integrate_sinh_sinh(func, abs_precision, rel_precision);
 
 	    if (std::abs(delta<_Tp>(n1, n2) - result) > cmp_precision)
 	      {
@@ -109,9 +109,9 @@ template<typename _Tp>
 			{ return normalized_hermite(n1, n2, x); };
 
 	    auto [result, error]
-		//= __gnu_cxx::integrate_singular(func, -infty, infty,
+		//= emsr::integrate_singular(func, -infty, infty,
 		//				abs_precision, rel_precision);
-		= __gnu_cxx::integrate_sinh_sinh(func, abs_precision, rel_precision);
+		= emsr::integrate_sinh_sinh(func, abs_precision, rel_precision);
 
 	    if (std::abs(delta<_Tp>(n1_upper, n2) - result) > cmp_precision)
 	      {
@@ -156,7 +156,7 @@ main()
     {
       test_hermite<float>();
     }
-  catch (__gnu_cxx::__integration_error<float>& ierr)
+  catch (emsr::integration_error<float, float>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -171,7 +171,7 @@ main()
     {
       test_hermite<double>();
     }
-  catch (__gnu_cxx::__integration_error<double>& ierr)
+  catch (emsr::integration_error<double, double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -186,7 +186,7 @@ main()
     {
       test_hermite<long double>();
     }
-  catch (__gnu_cxx::__integration_error<long double>& ierr)
+  catch (emsr::integration_error<long double, long double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';

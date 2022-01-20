@@ -24,14 +24,14 @@
 #include <sstream>
 #include <string>
 
-#include <ext/integration.h>
+#include <emsr/integration.h>
 
 // Function which should integrate to 1 for l1 == l2, 0 otherwise.
 template<typename _Tp>
   _Tp
   norm_sph_legendre(int l1, int m1, int l2, int m2, _Tp theta)
   {
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto _S_pi = emsr::pi_v<_Tp>;
     return _Tp{2} * _S_pi * std::sin(theta)
 	 * std::sph_legendre(l1, m1, theta)
 	 * std::sph_legendre(l2, m2, theta);
@@ -48,7 +48,7 @@ template<typename _Tp>
   {
     const auto eps_factor = 1 << (std::numeric_limits<_Tp>::digits / 3);
     const auto eps = std::numeric_limits<_Tp>::epsilon();
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto _S_pi = emsr::pi_v<_Tp>;
     const auto abs_precision = eps_factor * eps;
     const auto rel_precision = eps_factor * eps;
     const auto cmp_precision = _Tp{10} * rel_precision;
@@ -69,9 +69,9 @@ template<typename _Tp>
 			{ return norm_sph_legendre(l1, m1, l2, m2, theta); };
 
 	    auto [result, error]
-		//= __gnu_cxx::integrate(func, _Tp{0}, _S_pi,
+		//= emsr::integrate(func, _Tp{0}, _S_pi,
 		//			abs_precision, rel_precision);
-		= __gnu_cxx::integrate_tanh_sinh(func, _Tp{0}, _S_pi,
+		= emsr::integrate_tanh_sinh(func, _Tp{0}, _S_pi,
 						 abs_precision, rel_precision, 6);
 
 	    if (std::abs(delta<_Tp>(l1, l2) * delta<_Tp>(m1, m2) - result) > cmp_precision)
@@ -104,9 +104,9 @@ template<typename _Tp>
 			{ return norm_sph_legendre(l1, m1, l2, m2, theta); };
 
 	    auto [result, error]
-		//= __gnu_cxx::integrate(func, _Tp{0}, _S_pi,
+		//= emsr::integrate(func, _Tp{0}, _S_pi,
 		//			abs_precision, rel_precision);
-		= __gnu_cxx::integrate_tanh_sinh(func, _Tp{0}, _S_pi,
+		= emsr::integrate_tanh_sinh(func, _Tp{0}, _S_pi,
 						 abs_precision, rel_precision, 6);
 
 	    if (std::abs(delta<_Tp>(n1_upper, l2) * delta<_Tp>(m1, m2) - result) > cmp_precision)
@@ -152,7 +152,7 @@ main()
     {
       test_sph_legendre<float>(0, 0);
     }
-  catch (__gnu_cxx::__integration_error<float>& ierr)
+  catch (emsr::integration_error<float, float>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -167,7 +167,7 @@ main()
     {
       test_sph_legendre<double>(0, 0);
     }
-  catch (__gnu_cxx::__integration_error<double>& ierr)
+  catch (emsr::integration_error<double, double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -182,7 +182,7 @@ main()
     {
       test_sph_legendre<long double>(0, 0);
     }
-  catch (__gnu_cxx::__integration_error<long double>& ierr)
+  catch (emsr::integration_error<long double, long double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';

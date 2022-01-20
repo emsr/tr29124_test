@@ -21,7 +21,7 @@
 
 #include <cmath>
 
-#include <ext/integration.h>
+#include <emsr/integration.h>
 
 #if defined(__TEST_DEBUG)
 #  include <iostream>
@@ -72,7 +72,7 @@ template<typename _Tp>
 			{ return normalized_assoc_legendre(l1, m1, l2, m2, x); };
 
 	    auto [result, error]
-		= __gnu_cxx::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
+		= emsr::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
 						 abs_prec, rel_prec, 6);
 
 	    if (std::abs(delta<_Tp>(l1, l2) - result) > cmp_prec)

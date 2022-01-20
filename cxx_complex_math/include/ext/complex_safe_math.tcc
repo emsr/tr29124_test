@@ -33,7 +33,7 @@
 #pragma GCC system_header
 
 #include <bits/numeric_limits.h>
-#include <ext/numbers>
+#include <emsr/math_constants.h>
 
 namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
 {
@@ -179,7 +179,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::complex<_Tp>
     __safe_sqr(const std::complex<_Tp>& __z)
     {
-      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
+      const auto _S_sqrt_2 = emsr::sqrt2_v<_Tp>;
       const auto _S_max = __gnu_cxx::__lim_max<_Tp>();
       const auto _S_hmax = _S_max / _Tp{2};
       const auto _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();

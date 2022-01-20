@@ -19,7 +19,7 @@ template<typename _Tp, typename _Gamma>
   test_gamma(_Gamma gamma)
   {
     using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using _Real = emsr::num_traits_t<_Val>;
 
     std::cout.precision(std::numeric_limits<_Real>::digits10);
     std::cout << std::showpoint << std::scientific;

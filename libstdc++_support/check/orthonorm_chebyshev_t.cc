@@ -21,7 +21,7 @@
 
 #include <cmath>
 
-#include <ext/integration.h>
+#include <emsr/integration.h>
 
 #if defined(__TEST_DEBUG)
 #  include <iostream>
@@ -79,7 +79,7 @@ template<typename _Tp>
 			{return norm_chebyshev_t(n1, n2, x);};
 
 	    auto [result, error]
-		= __gnu_cxx::integrate_singular_endpoints(func,
+		= emsr::integrate_singular_endpoints(func,
 				 _Tp{-1}, _Tp{1},
 				 _Tp{-0.5}, _Tp{-0.5}, 0, 0,
 				 abs_prec, rel_prec);

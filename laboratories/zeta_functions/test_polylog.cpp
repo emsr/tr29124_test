@@ -22,7 +22,7 @@
     {
     private:
 
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<_Tp>;
       const std::size_t _M_max_iter;
       std::size_t _M_curr_iter;
       _Real _M_toler;
@@ -67,7 +67,7 @@
     {
     private:
 
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<_Tp>;
       const std::size_t _M_max_iter;
       std::size_t _M_curr_iter;
       _Real _M_toler;
@@ -185,7 +185,7 @@
 	      __term = __fact * __gnu_cxx::stirling_2<_Tp>(1 - __n, 1 + __k);
 	      __sum += __term;
 	    }
-	  __sum *= __gnu_cxx::__parity<_Tp>(1 - __n);
+	  __sum *= emsr::parity<_Tp>(1 - __n);
 	  return __sum;
 	}
     }
@@ -240,9 +240,9 @@
     __polylog_exp_neg(int __n, std::complex<_Tp> __w)
     {
       const auto _S_inf = std::numeric_limits<_Tp>::infinity();
-      if (__gnu_cxx::__fp_is_zero(__w))
+      if (emsr::fp_is_zero(__w))
 	return std::complex<_Tp>{0};
-      else if (__gnu_cxx::__fp_is_equal(__w, _Tp{1}))
+      else if (emsr::fp_is_equal(__w, _Tp{1}))
 	return std::complex<_Tp>{_S_inf, _Tp{0}};
       else
 	{
@@ -320,7 +320,7 @@
     std::complex<_Tp>
     __polylog_exp_neg_even(unsigned int __p, const std::complex<_Tp>& __w)
     {
-      const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
+      const auto _S_2pi = emsr::tau_v<_Tp>;
       const int __pp = 1 + __p;
       const int __sigma = __p % 4 == 0 ? +1 : -1;
       const auto __lnp = std::__detail::__log_factorial<_Tp>(__p);
@@ -396,7 +396,7 @@
     std::complex<_Tp>
     __polylog_exp_neg_odd(unsigned int __p, const std::complex<_Tp>& __w)
     {
-      const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
+      const auto _S_2pi = emsr::tau_v<_Tp>;
       const int __pp = 1 + __p;
       const int __sigma = __p % 4 == 1 ? +1 : -1;
       const auto __lnp = std::__detail::__log_factorial<_Tp>(__p);
@@ -476,7 +476,7 @@
     std::complex<_Tp>
     __polylog_exp_asymp(_Tp __s, std::complex<_Tp> __w)
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       // wgamma = w^{s-1} / Gamma(s)
       auto __wgamma = std::pow(__w, __s - _Tp{1}) * std::__detail::__gamma_reciprocal(__s);
       auto __res = std::complex<_Tp>(_Tp{0}, -_S_pi) * __wgamma;
@@ -559,7 +559,7 @@ template<typename _Tp>
     for (int i = -200; i <= 10; ++i)
       {
 	auto x = del * i;
-	auto Li0 = __gnu_cxx::__fp_is_zero(_Tp{1} - x)
+	auto Li0 = emsr::fp_is_zero(_Tp{1} - x)
 		 ? std::numeric_limits<_Tp>::quiet_NaN()
 		 : x / (_Tp{1} - x);
 	auto Lis_gnu = __gnu_cxx::polylog(_Tp{0}, x);
@@ -583,7 +583,7 @@ template<typename _Tp>
     for (int i = -200; i <= 10; ++i)
       {
 	auto x = del * i;
-	auto Li1 = __gnu_cxx::__fp_is_zero(_Tp{1} - x)
+	auto Li1 = emsr::fp_is_zero(_Tp{1} - x)
 		 ? std::numeric_limits<_Tp>::quiet_NaN()
 		 : -std::log(_Tp{1} - x);
 	auto Lis_gnu = __gnu_cxx::polylog(_Tp{1}, x);
@@ -648,8 +648,8 @@ template<typename _Tp>
   void
   TestPolyLog(_Tp proto = _Tp{})
   {
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-    const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
+    const auto _S_pi = emsr::pi_v<_Tp>;
+    const auto _S_2pi = emsr::tau_v<_Tp>;
 
     std::cout.precision(__gnu_cxx::__digits10(proto) - 1);
     std::cout << std::scientific;

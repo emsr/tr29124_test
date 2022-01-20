@@ -33,7 +33,7 @@
 #pragma GCC system_header
 
 #include <ext/summation.h>
-#include <ext/polynomial.h>
+#include <emsr/polynomial.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -52,7 +52,7 @@ namespace __detail
   template<typename _Tp>
     struct _AiryState
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<_Tp>;
 
       _Tp __z;
       _Tp __Ai_value;
@@ -66,7 +66,7 @@ namespace __detail
 
       _Real
       true_Wronskian()
-      { return _Real{1} / __gnu_cxx::numbers::__pi_v<_Real>; }
+      { return _Real{1} / emsr::pi_v<_Real>; }
     };
 
 
@@ -77,7 +77,7 @@ namespace __detail
   template<typename _Tp>
     struct _AiryAuxilliaryState
     {
-      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Val = emsr::num_traits_t<_Tp>;
 
       _Tp __z;
       _Tp __fai_value;
@@ -121,9 +121,9 @@ namespace __detail
     public:
 
       static constexpr _Tp _S_eps = __gnu_cxx::__epsilon(_Tp{});
-      static constexpr _Tp _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      static constexpr _Tp _S_pi = emsr::pi_v<_Tp>;
       static constexpr _Tp _S_sqrt_pi
-      		 = __gnu_cxx::numbers::__root_pi_v<_Tp>;
+      		 = emsr::sqrtpi_v<_Tp>;
       static constexpr _Tp _S_Ai0
       		 = _Tp{3.550280538878172392600631860041831763980e-1L};
       static constexpr _Tp _S_Aip0
@@ -498,7 +498,7 @@ namespace __detail
     _AiryState<std::complex<_Tp>>
     _Airy_series<_Tp>::_S_Scorer2(std::complex<_Tp> __t)
     {
-      const auto _S_cbrt3 = __gnu_cxx::numbers::__cbrt_3_v<_Tp>;
+      const auto _S_cbrt3 = emsr::cbrt3_v<_Tp>;
       const auto _S_1d3 = _Tp{1} / _Tp{3};
       const auto _S_2d3 = _Tp{2} / _Tp{3};
       const auto __s = _S_cbrt3 * __t;
@@ -2027,8 +2027,8 @@ namespace __detail
     _Airy_asymp<_Tp>::operator()(std::complex<_Tp> __t,
 				 bool __return_fock_airy) const
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
+      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
       const auto _S_i = _Cmplx(_Tp{0}, _Tp{1});
       if (std::real(__t) > _Tp{0})
 	{
@@ -2210,8 +2210,8 @@ namespace __detail
     _Airy_asymp<_Tp>::_S_absarg_ge_pio3_help(std::complex<_Tp> __z,
 					     int __sign) const
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
-      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Real>;
+      using _Real = emsr::num_traits_t<_Tp>;
+      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Real>;
       const auto _S_pmhd2 = _Tp{1} / (_Tp{2} * _S_sqrt_pi);
 
       constexpr int _S_num_nterms = 5;
@@ -2240,12 +2240,12 @@ namespace __detail
       // Power series is in terms of +-1 / \zeta.
       auto __zetam = _Tp(__sign) / __zeta;
 
-      __gnu_cxx::_Polynomial<_Tp>
+      emsr::Polynomial<_Tp>
 	__cpoly(std::begin(_Airy_asymp_data<_Tp>::_S_c),
 		std::begin(_Airy_asymp_data<_Tp>::_S_c) + __nterm);
       auto _Ai = __fact * __cpoly(__zetam);
 
-      __gnu_cxx::_Polynomial<_Tp>
+      emsr::Polynomial<_Tp>
 	__dpoly(std::begin(_Airy_asymp_data<_Tp>::_S_d),
 		std::begin(_Airy_asymp_data<_Tp>::_S_d) + __nterm);
       auto _Aip = __factp * __dpoly(__zetam);
@@ -2299,8 +2299,8 @@ namespace __detail
     _AiryState<std::complex<_Tp>>
     _Airy_asymp<_Tp>::_S_absarg_lt_pio3(std::complex<_Tp> __z) const
     {
-      const _Tp _S_pimh = _Tp{1} / __gnu_cxx::numbers::__root_pi_v<_Tp>;
-      const _Tp _S_pid4 = __gnu_cxx::numbers::__pi_quarter_v<_Tp>;
+      const _Tp _S_pimh = _Tp{1} / emsr::sqrtpi_v<_Tp>;
+      const _Tp _S_pid4 = emsr::pi_v<_Tp> / _Tp{4};
 
       const _Cmplx _S_zone{1};
 
@@ -2326,11 +2326,11 @@ namespace __detail
       // Power series is in terms of 1 / \zeta^2.
       auto __zetam2 = _Tp{1} / (__zeta * __zeta);
 
-      __gnu_cxx::_Polynomial<_Tp>
+      emsr::Polynomial<_Tp>
 	__cpoly(std::begin(_Airy_asymp_data<_Tp>::_S_c),
 		std::begin(_Airy_asymp_data<_Tp>::_S_c) + __nterm);
 
-      __gnu_cxx::_Polynomial<_Tp>
+      emsr::Polynomial<_Tp>
 	__dpoly(std::begin(_Airy_asymp_data<_Tp>::_S_d),
 		std::begin(_Airy_asymp_data<_Tp>::_S_d) + __nterm);
 
@@ -2365,9 +2365,8 @@ namespace __detail
     public:
 
       using value_type = typename _Sum::value_type;
-      using scalar_type = __gnu_cxx::__num_traits_t<value_type>;
-      static constexpr scalar_type _S_sqrt_pi
-	   = __gnu_cxx::numbers::__root_pi_v<scalar_type>;
+      using scalar_type = emsr::num_traits_t<value_type>;
+      static constexpr scalar_type _S_sqrt_pi = emsr::sqrtpi_v<scalar_type>;
 
       _Airy_asymp_series(_Sum __proto)
       : _M_Asum(__proto),
@@ -2505,7 +2504,7 @@ namespace __detail
     public:
 
       using value_type = _Tp;
-      using scalar_type = __gnu_cxx::__num_traits_t<value_type>;
+      using scalar_type = emsr::num_traits_t<value_type>;
 
       constexpr _Airy() = default;
       _Airy(const _Airy&) = default;
@@ -2529,9 +2528,9 @@ namespace __detail
       using _Real = scalar_type;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__y.real());
       const auto _S_cNaN = value_type(_S_NaN, _S_NaN);
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
-      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Real>;
-      const auto _S_pi_3 = __gnu_cxx::numbers::__pi_third_v<_Real>;
+      const auto _S_pi = emsr::pi_v<_Real>;
+      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Real>;
+      const auto _S_pi_3 = emsr::pi_v<_Real> / _Real{3};
       const auto _S_2pi_3 = _Real{2} * _S_pi_3;
       const auto _S_pi_6 = _S_pi_3 / _Real{2};
       const auto _S_5pi_6 = _Real{5} * _S_pi_6;

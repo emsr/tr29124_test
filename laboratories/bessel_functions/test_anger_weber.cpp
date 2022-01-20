@@ -3,7 +3,7 @@
  */
 
 #include <cmath>
-#include <ext/math_util.h>
+#include <emsr/math_util.h>
 
   /**
    * 
@@ -25,7 +25,7 @@
     {
       explicit _GammaReciprocal(_Tp __a)
       : _M_arg(__a),
-        _M_int(__gnu_cxx::__fp_is_integer(__a))
+        _M_int(emsr::fp_is_integer(__a))
       { }
 
       _Tp
@@ -221,7 +221,7 @@
 	}
       else
 	{
-	  auto __nuint = __gnu_cxx::__fp_is_integer(__nu);
+	  auto __nuint = emsr::fp_is_integer(__nu);
 
 	  auto _S1 = _Tp{0};
 	  if (__nuint && __nuint() > 0 && __nuint() % 2 == 0)
@@ -253,7 +253,7 @@
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__z);
 
-      auto __nuint = __gnu_cxx::__fp_is_integer(__nu);
+      auto __nuint = emsr::fp_is_integer(__nu);
 
       if (__nu < _Tp{0})
 	{
@@ -364,7 +364,7 @@
     {
       using _Real = decltype(std::real(__z));
       const auto _S_eps = __gnu_cxx::__epsilon<_Real>();
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
+      const auto _S_pi = emsr::pi_v<_Real>;
       const auto _S_max_iter = 1000u;
       const auto __z2 = __z * __z;
 
@@ -407,7 +407,7 @@
     __anger_weber_asymp_order(_Tp __nu, _Tp __z)
     {
       using _Real = decltype(std::real(__z));
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
+      const auto _S_pi = emsr::pi_v<_Real>;
       const auto __sinnp = __gnu_cxx::sin_pi(__nu);
       const auto __sinnpd2 = __gnu_cxx::sin_pi(__nu / _Tp{2});
       const auto __cosnpd2 = __gnu_cxx::cos_pi(__nu / _Tp{2});
@@ -438,7 +438,7 @@
     __anger_weber_sum_recip(_Tp __nu, _Tp __z)
     {
       //using _Val = _Tp;
-      //using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      //using _Real = emsr::num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(__z);
 
       const auto __z2 = __z / _Tp{2};
@@ -512,7 +512,7 @@
     {
       auto _Bessel = std::cyl_bessel_j(__nu, __z);
       auto _Weber = __anger_weber_sum_new(__nu, __z);
-      if (__gnu_cxx::__fp_is_integer(__nu))
+      if (emsr::fp_is_integer(__nu))
 	return _Tp{0};
       else
         return (_Weber.__J_value - _Bessel) / __gnu_cxx::sin_pi(__nu);
@@ -534,7 +534,7 @@
   __cosc_pi(_Tp __x)
   {
     const auto _S_eps = __gnu_cxx::__epsilon(__x);
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto _S_pi = emsr::pi_v<_Tp>;
     if (std::abs(__x) < _Tp{100} * _S_eps)
       return _S_pi * __x / _Tp{2};
     else

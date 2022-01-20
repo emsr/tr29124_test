@@ -22,7 +22,7 @@
   template<typename _Tp>
     inline _Tp
     __acos_pi(_Tp __x)
-    { return std::acos(__x) / __gnu_cxx::numbers::__pi_v<_Tp>; }
+    { return std::acos(__x) / emsr::pi_v<_Tp>; }
 
   /**
    * Return the Chebyshev polynomial of the first kind

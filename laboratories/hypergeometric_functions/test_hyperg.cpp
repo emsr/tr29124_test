@@ -2,7 +2,7 @@
  *
  */
 
-#include <ext/math_constants.h>
+#include <emsr/math_constants.h>
 
 #include <iostream>
 #include <iomanip>
@@ -44,11 +44,11 @@
     _Tp
     __hyperg_series(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
-      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Val = emsr::num_traits_t<_Tp>;
       const auto __eps = __gnu_cxx::__epsilon<_Val>();
       const unsigned int _S_max_iter = 100000u;
-      auto __aint = __gnu_cxx::__fp_is_integer(__a);
-      auto __bint = __gnu_cxx::__fp_is_integer(__b);
+      auto __aint = emsr::fp_is_integer(__a);
+      auto __bint = emsr::fp_is_integer(__b);
       auto __max_iter = _S_max_iter;
       if (__aint && __aint() < 0 && int(_S_max_iter) > -__aint())
 	__max_iter = -__aint();
@@ -119,8 +119,8 @@
     __hyperg_buhring(_Tp __a, _Tp __b, _Tp __c, _Tp __z)
     {
       /// Find nearest z0 @f$ z_0 = e^{\plusminus i\pi/3} @f$
-      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
-      constexpr auto _S_pi_3 = __gnu_cxx::numbers::__pi_third_v<_Val>;
+      using _Val = emsr::num_traits_t<_Tp>;
+      constexpr auto _S_pi_3 = emsr::pi_v<_Val> / _Val{3};
       const auto __z0p = __z - std::polar(_Val{1}, +_S_pi_3);
       const auto __z0m = __z - std::polar(_Val{1}, -_S_pi_3);
       const auto __z0 = std::abs(__z0m) < std::abs(__z0p) ? __z0m : __z0p;
@@ -166,11 +166,11 @@
     _Tp
     __hyperg(_Tp __a, _Tp __b, _Tp __c, _Tp __x, _Tp __rho = _Tp{0.5Q})
     {
-      auto __aint = __gnu_cxx::__fp_is_integer(__a);
-      auto __bint = __gnu_cxx::__fp_is_integer(__b);
-      auto __cint = __gnu_cxx::__fp_is_integer(__c);
+      auto __aint = emsr::fp_is_integer(__a);
+      auto __bint = emsr::fp_is_integer(__b);
+      auto __cint = emsr::fp_is_integer(__c);
       auto __d = __c - __a - __b;
-      auto __dint = __gnu_cxx::__fp_is_integer(__d);
+      auto __dint = emsr::fp_is_integer(__d);
       const auto __toler = _Tp{1000} * __gnu_cxx::__epsilon(__x);
 
       if (std::isnan(__a) || std::isnan(__b)
@@ -232,7 +232,7 @@ template<typename _Tp>
   test_hyperg(_Tp proto = _Tp{})
   {
     //using _Val = _Tp;
-    //using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    //using _Real = emsr::num_traits_t<_Val>;
     std::vector<_Tp> parm{_Tp{0.25}, _Tp{0.5}, _Tp{1}, _Tp{2}, _Tp{5}};
 
     std::cout.precision(__gnu_cxx::__digits10(proto));
@@ -320,7 +320,7 @@ template<typename _Tp>
     auto w = 8 + std::cout.precision();
 
     using cmplx = std::complex<_Tp>;
-    constexpr auto _S_pi_3 = __gnu_cxx::numbers::__pi_third_v<_Tp>;
+    constexpr auto _S_pi_3 = emsr::pi_v<_Tp> / _Tp{3};
     const auto z0p = std::polar(_Tp{1}, +_S_pi_3);
     const auto z0m = std::polar(_Tp{1}, -_S_pi_3);
 

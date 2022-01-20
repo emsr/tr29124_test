@@ -10,9 +10,9 @@
 #include <cmath>
 #include <iostream>
 #include <iomanip>
-#include <ext/math_constants.h>
-#include <ext/fp_type_util.h>
-#include <ext/complex_util.h>
+#include <emsr/math_constants.h>
+#include <emsr/fp_type_util.h>
+#include <emsr/complex_util.h>
 #include <bits/numeric_limits.h>
 #include <bits/specfun_state.h>
 #include <bits/sf_trig.tcc>
@@ -25,7 +25,7 @@ template <typename _Tp>
   void
   test01()
   {
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto _S_pi = emsr::pi_v<_Tp>;
     const _Tp c = _Tp{2.99792458e8L};  //  Speed of light in m/s.
     const _Tp hbar = _Tp{1.0546e-27L};  //  Planck's constant in J s.
     const _Tp hbarc = hbar * c;

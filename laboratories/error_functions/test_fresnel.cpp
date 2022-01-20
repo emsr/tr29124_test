@@ -15,7 +15,7 @@ template<typename _Tp>
   test_fresnel(_Tp proto = _Tp{})
   {
     //using _Val = _Tp;
-    //using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    //using _Real = emsr::num_traits_t<_Val>;
 
     std::cout.precision(__gnu_cxx::__digits10(proto));
     std::cout << std::showpoint << std::scientific;

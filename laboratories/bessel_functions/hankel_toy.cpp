@@ -5,8 +5,9 @@
 #include <limits>
 #include <iostream>
 #include <iomanip>
+
 #include <ext/float128_io.h>
-#include <ext/polynomial.h>
+#include <emsr/polynomial.h>
 
 template<typename _Tp>
   void
@@ -78,14 +79,14 @@ template<typename _Tp>
 	  break;
       }
 
-    __gnu_cxx::_Polynomial<_Tp> upol1{_Tp{0}, _Tp{0}, _Tp{0.5Q}, _Tp{0}, -_Tp{0.5Q}};
-    __gnu_cxx::_Polynomial<_Tp> upol2{+_Tp{0.125Q}, _Tp{0}, -_Tp{0.625Q}};
-    __gnu_cxx::_Polynomial<_Tp> vpol1{_Tp{0}, -_Tp{0.5Q}, _Tp{0}, +_Tp{0.5Q}};
-    __gnu_cxx::_Polynomial<_Tp> vpol2{_Tp{0}, _Tp{0}, -_Tp{1}, _Tp{0}, +_Tp{1}};
-    __gnu_cxx::_Polynomial<_Tp> u{_Tp{1}};
-    std::vector<__gnu_cxx::_Polynomial<_Tp>> uvec;
-    __gnu_cxx::_Polynomial<_Tp> v{_Tp{1}};
-    std::vector<__gnu_cxx::_Polynomial<_Tp>> vvec;
+    emsr::Polynomial<_Tp> upol1{_Tp{0}, _Tp{0}, _Tp{0.5Q}, _Tp{0}, -_Tp{0.5Q}};
+    emsr::Polynomial<_Tp> upol2{+_Tp{0.125Q}, _Tp{0}, -_Tp{0.625Q}};
+    emsr::Polynomial<_Tp> vpol1{_Tp{0}, -_Tp{0.5Q}, _Tp{0}, +_Tp{0.5Q}};
+    emsr::Polynomial<_Tp> vpol2{_Tp{0}, _Tp{0}, -_Tp{1}, _Tp{0}, +_Tp{1}};
+    emsr::Polynomial<_Tp> u{_Tp{1}};
+    std::vector<emsr::Polynomial<_Tp>> uvec;
+    emsr::Polynomial<_Tp> v{_Tp{1}};
+    std::vector<emsr::Polynomial<_Tp>> vvec;
     for (auto k = 1; k <= 20; ++k)
       {
 	uvec.push_back(u);

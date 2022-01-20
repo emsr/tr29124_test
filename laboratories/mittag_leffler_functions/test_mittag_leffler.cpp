@@ -11,7 +11,7 @@
 #include <ext/float128_io.h>
 #include <bits/specfun.h>
 
-#include <ext/integration.h>
+#include <emsr/integration.h>
 
   /* Monotone integrand for the Mittag-Leffler function. */
   template<typename _Tp>
@@ -19,7 +19,7 @@
     __mittag_leffler_K(_Tp __alpha, _Tp __beta, _Tp __chi,
 		       const std::complex<_Tp>& __z)
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto __chip1 = std::pow(__chi, _Tp{1} / __alpha);
       const auto __chip2 = std::pow(__chi, (_Tp{1} - __beta) / __alpha);
       return __chip2
@@ -45,13 +45,13 @@
 
       const auto __epsabs = _Tp{100} * _S_eps;
       const auto __epsrel = _Tp{0};
-      auto __ws = __gnu_cxx::cquad_workspace<_Tp, std::complex<_Tp>>();
+      auto __ws = emsr::cquad_workspace<_Tp, std::complex<_Tp>>();
 
       auto __quad
-	= __gnu_cxx::cquad_integrate(__ws, __func, __chi_min, __chi_max,
+	= emsr::cquad_integrate(__ws, __func, __chi_min, __chi_max,
 				     __epsabs, __epsrel);
 
-      return __quad.__result;
+      return __quad.result;
     }
 
   /* Oscillatory integrand for the Mittag-Leffler function. */
@@ -61,7 +61,7 @@
 		       const std::complex<_Tp>& __z)
     {
       const auto _S_i = std::complex<_Tp>{0, 1};
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto __epsp1 = std::pow(__epsilon, _Tp{1} / __alpha);
       const auto __rat = _Tp{1} + (_Tp{1} - __beta) / __alpha;
       const auto __epsp2 = std::pow(__epsilon, __rat);
@@ -90,13 +90,13 @@
 
       const auto __epsabs = _Tp{100} * _S_eps;
       const auto __epsrel = _Tp{0};
-      auto __ws = __gnu_cxx::cquad_workspace<_Tp, std::complex<_Tp>>();
+      auto __ws = emsr::cquad_workspace<_Tp, std::complex<_Tp>>();
 
       auto __quad
-	= __gnu_cxx::cquad_integrate(__ws, __func, __phi_min, __phi_max,
+	= emsr::cquad_integrate(__ws, __func, __phi_min, __phi_max,
 				     __epsabs, __epsrel);
 
-      return __quad.__result;
+      return __quad.result;
     }
 
 
@@ -116,8 +116,8 @@
     {
       using _Cmplx = std::complex<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__alpha);
-      const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_2pi = emsr::tau_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
 
       const auto __az = std::abs(__z);
       if (__alpha > _Tp{1})
@@ -377,7 +377,7 @@ template<typename _Tp>
     {
       const auto __alpha = _Tp{3} / _Tp{4};
       const auto __beta = _Tp{1};
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto __phase = __alpha * _S_pi / _Tp{4};
       std::cout << '\n';
       std::cout << '\n';
@@ -399,7 +399,7 @@ template<typename _Tp>
     {
       const auto __alpha = _Tp{3} / _Tp{4};
       const auto __beta = _Tp{1};
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto __phase = __alpha * _S_pi / _Tp{2};
       std::cout << '\n';
       std::cout << '\n';
@@ -421,7 +421,7 @@ template<typename _Tp>
     {
       const auto __alpha = _Tp{3} / _Tp{4};
       const auto __beta = _Tp{1};
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto __phase = _Tp{3} * __alpha * _S_pi / _Tp{4};
       std::cout << '\n';
       std::cout << '\n';
@@ -443,7 +443,7 @@ template<typename _Tp>
     {
       const auto __alpha = _Tp{3} / _Tp{4};
       const auto __beta = _Tp{1};
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto __phase = _S_pi;
       std::cout << '\n';
       std::cout << '\n';
@@ -465,7 +465,7 @@ template<typename _Tp>
     {
       const auto __alpha = _Tp{5} / _Tp{4};
       const auto __beta = _Tp{1};
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto __phase = __alpha * _S_pi / _Tp{4};
       std::cout << '\n';
       std::cout << '\n';
@@ -487,7 +487,7 @@ template<typename _Tp>
     {
       const auto __alpha = _Tp{5} / _Tp{4};
       const auto __beta = _Tp{1};
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto __phase = __alpha * _S_pi / _Tp{2};
       std::cout << '\n';
       std::cout << '\n';
@@ -509,7 +509,7 @@ template<typename _Tp>
     {
       const auto __alpha = _Tp{5} / _Tp{4};
       const auto __beta = _Tp{1};
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto __phase = _Tp{3} * __alpha * _S_pi / _Tp{4};
       std::cout << '\n';
       std::cout << '\n';
@@ -531,7 +531,7 @@ template<typename _Tp>
     {
       const auto __alpha = _Tp{5} / _Tp{4};
       const auto __beta = _Tp{1};
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto __phase =  _S_pi;
       std::cout << '\n';
       std::cout << '\n';

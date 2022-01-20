@@ -49,7 +49,7 @@ namespace __detail
     {
       const auto _S_max_iter = 100;
       const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__ax);
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto _S_pi_2 = _S_pi / _Tp{2};
 
       // Evaluate S and C by series expansion.
@@ -108,7 +108,7 @@ namespace __detail
       const auto _S_max_iter = 100;
       const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__ax);
       const auto _S_fp_min = __gnu_cxx::__lim_min(__ax);
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
 
       // Evaluate S and C by Lentz's complex continued fraction method.
       const auto __pix2 = _S_pi * __ax * __ax;

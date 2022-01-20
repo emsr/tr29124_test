@@ -7,7 +7,7 @@
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include <ext/math_constants.h>
+#include <emsr/math_constants.h>
 
 template<typename _Tp>
   struct Kelvin
@@ -25,9 +25,9 @@ template<typename _Tp>
     Kelvin<_Tp>
     __kelvin_asymp(_Tp __x)
     {
-      constexpr auto _S_sqrt2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
-      constexpr auto _S_pi_4 = __gnu_cxx::numbers::__pi_v<_Tp> / _Tp{4};
-      constexpr auto _S_pi_8 = __gnu_cxx::numbers::__pi_v<_Tp> / _Tp{8};
+      constexpr auto _S_sqrt2 = emsr::sqrt2_v<_Tp>;
+      constexpr auto _S_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
+      constexpr auto _S_pi_8 = emsr::pi_v<_Tp> / _Tp{8};
       constexpr auto _S_mix_iter = 100;
 
       const auto __xrt2 = __x / _S_sqrt2;

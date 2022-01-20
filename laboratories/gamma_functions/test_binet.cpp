@@ -114,7 +114,7 @@ namespace __detail
     __binet_asymp(_Tp __z)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
 
       // Weighted Bernoulli numbers: (-1)^k B_2k / ((2*k+1)*(2*k+2))
@@ -160,7 +160,7 @@ namespace __detail
     __binet_cont_frac(_Tp __z)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
 
       // Stieltjes partial numerators.
       constexpr std::size_t _S_n = 6;
@@ -192,7 +192,7 @@ namespace __detail
     __binet(_Tp __z)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
 
       constexpr auto _S_switchover = _Real{10}; /// @todo Find Binet function switch.
 

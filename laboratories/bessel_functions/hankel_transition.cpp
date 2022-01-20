@@ -7,9 +7,10 @@
 #include <iomanip>
 #include <tuple>
 #include <cmath>
+
 #include <bits/specfun.h>
-#include <ext/rational_polynomial.h>
-#include <ext/polynomial.h>
+#include <emsr/rational_polynomial.h>
+#include <emsr/polynomial.h>
 
 template<typename _Tp>
   void
@@ -24,15 +25,15 @@ template<typename _Tp>
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     auto width = std::cout.precision() + 6;
 
-    __gnu_cxx::_Polynomial<int> poo({0, -2});
-    std::vector<__gnu_cxx::_Polynomial<int>> phi;
-    std::vector<__gnu_cxx::_Polynomial<int>> psi;
-    phi.push_back(__gnu_cxx::_Polynomial<int>(1));
-    phi.push_back(__gnu_cxx::_Polynomial<int>(0));
-    phi.push_back(__gnu_cxx::_Polynomial<int>({0, -2}));
-    psi.push_back(__gnu_cxx::_Polynomial<int>(0));
-    psi.push_back(__gnu_cxx::_Polynomial<int>(-1));
-    psi.push_back(__gnu_cxx::_Polynomial<int>(0));
+    emsr::Polynomial<int> poo({0, -2});
+    std::vector<emsr::Polynomial<int>> phi;
+    std::vector<emsr::Polynomial<int>> psi;
+    phi.push_back(emsr::Polynomial<int>(1));
+    phi.push_back(emsr::Polynomial<int>(0));
+    phi.push_back(emsr::Polynomial<int>({0, -2}));
+    psi.push_back(emsr::Polynomial<int>(0));
+    psi.push_back(emsr::Polynomial<int>(-1));
+    psi.push_back(emsr::Polynomial<int>(0));
     for (std::size_t s = 3; s < n_phipsi; ++s)
       {
 	phi.push_back(poo * phi[s - 2] - int(2 * (s - 2)) * phi[s - 3]);
@@ -44,14 +45,14 @@ template<typename _Tp>
     std::cout << "\npsi polynomial\n";
     for (const auto& p : psi)
       std::cout << p << '\n';
-    std::vector<__gnu_cxx::_Polynomial<rational>> A(n_AB);
-    std::vector<__gnu_cxx::_Polynomial<rational>> B(n_AB);
+    std::vector<emsr::Polynomial<rational>> A(n_AB);
+    std::vector<emsr::Polynomial<rational>> B(n_AB);
     for (std::size_t s = 0; s < n_AB; ++s)
       {
 	for (std::size_t r = 0; r <= s; ++r)
 	  {
-	    A[s] += phi[2 * s + r] * __gnu_cxx::_Polynomial<rational>(sign(r, s), r);
-	    B[s] += psi[2 * s + r] * __gnu_cxx::_Polynomial<rational>(sign(r, s), r);
+	    A[s] += phi[2 * s + r] * emsr::Polynomial<rational>(sign(r, s), r);
+	    B[s] += psi[2 * s + r] * emsr::Polynomial<rational>(sign(r, s), r);
 	  }
       }
     std::cout << "\nA polynomial\n";
@@ -63,7 +64,7 @@ template<typename _Tp>
 
     using _RPoly = __gnu_cxx::_RationalPolynomial<long long>;
 
-    std::vector<__gnu_cxx::_Polynomial<_RPoly>>
+    std::vector<emsr::Polynomial<_RPoly>>
     P
     {
       {{1, 1}},
@@ -73,7 +74,7 @@ template<typename _Tp>
       {{}, {947, 346500}, {}, {}, {5903, 138600}, {}, {}, {-23573, 147000}, {}, {}, {27, 20000}}
     };
 
-    std::vector<__gnu_cxx::_Polynomial<_RPoly>>
+    std::vector<emsr::Polynomial<_RPoly>>
     Q
     {
       {{}, {}, {3, 10}},
@@ -82,7 +83,7 @@ template<typename _Tp>
       {{}, {}, {79, 12375}, {}, {}, {-110767, 693000}, {}, {}, {549, 28000}}
     };
 
-    std::vector<__gnu_cxx::_Polynomial<_RPoly>>
+    std::vector<emsr::Polynomial<_RPoly>>
     R
     {
       {{1, 1}},
@@ -92,7 +93,7 @@ template<typename _Tp>
       {{}, {-1159, 115500}, {}, {}, {3889, 4620}, {}, {}, {-46631, 147000}, {}, {}, {27, 20000}}
     };
 
-    std::vector<__gnu_cxx::_Polynomial<_RPoly>>
+    std::vector<emsr::Polynomial<_RPoly>>
     S
     {
       {{-1, 5}, {}, {}, {3, 5}},

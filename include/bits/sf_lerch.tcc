@@ -95,7 +95,7 @@ namespace __detail
       const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
       const auto _S_eps = __gnu_cxx::__epsilon(__s);
 
-      const auto __aint = __gnu_cxx::__fp_is_integer(__a);
+      const auto __aint = emsr::fp_is_integer(__a);
       if (__aint && __aint() <= 0)
 	return _S_nan;
       else if (std::abs(std::abs(__z) - _Tp{1}) < _S_eps
@@ -193,9 +193,9 @@ namespace __detail
 	return _S_nan;
       else
 	{
-	  const auto __aint = __gnu_cxx::__fp_is_integer(__a);
+	  const auto __aint = emsr::fp_is_integer(__a);
 
-	  const auto __sint = __gnu_cxx::__fp_is_integer(__s);
+	  const auto __sint = emsr::fp_is_integer(__s);
 	  const bool __tinyz = std::abs(__z) < _S_eps; // _S_min?
 	  const bool __smallz = !__tinyz && (std::abs(__z) < _Tp{0.5});
 

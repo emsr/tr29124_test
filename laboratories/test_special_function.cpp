@@ -35,7 +35,7 @@ template<typename Real>
   void
   do_test(Real proto = Real{})
   {
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<Real>;
+    const auto _S_pi = emsr::pi_v<Real>;
 
     //  Unsigned integer orders for various polynomials, harmonics, and spherical bessels.
     std::vector<unsigned int> uiorder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};

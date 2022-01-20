@@ -52,15 +52,15 @@
    * @f]
    */
   template<typename _Tp>
-    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
+    std::vector<emsr::QuadraturePoint<_Tp>>
     __chebyshev_t_zeros(unsigned int __n)
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
+      const auto _S_pi = emsr::pi_v<_Tp>;
+      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
       for (unsigned int __k = 0; __k < __n; ++__k)
 	{
-	  __pt[__k].__point = __gnu_cxx::cos_pi(_Tp(__k + 0.5L) / _Tp(__n));
-	  __pt[__k].__weight = _S_pi / __n;
+	  __pt[__k].point = __gnu_cxx::cos_pi(_Tp(__k + 0.5L) / _Tp(__n));
+	  __pt[__k].weight = _S_pi / __n;
 	}
       return __pt;
     }
@@ -112,19 +112,19 @@
    * @f]
    */
   template<typename _Tp>
-    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
+    std::vector<emsr::QuadraturePoint<_Tp>>
     __chebyshev_u_zeros(unsigned int __n)
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
+      const auto _S_pi = emsr::pi_v<_Tp>;
+      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
       for (unsigned int __k = 1; __k <= __n; ++__k)
 	{
 	  const auto __arg = _Tp(__k) / _Tp(__n + 1);
-	  const auto __half = __gnu_cxx::__fp_is_equal<_Tp>(__arg, _Tp{0.5L});
+	  const auto __half = emsr::fp_is_equal<_Tp>(__arg, _Tp{0.5L});
 	  const auto __z = (__half ? _Tp{0} : __gnu_cxx::cos_pi(__arg));
 	  const auto __w = _S_pi * (_Tp{1} - __z * __z) / _Tp(__n + 1);
-	  __pt[__k - 1].__point = __z;
-	  __pt[__k - 1].__weight = __w;
+	  __pt[__k - 1].point = __z;
+	  __pt[__k - 1].weight = __w;
 	}
       return __pt;
     }
@@ -176,17 +176,17 @@
    * @f]
    */
   template<typename _Tp>
-    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
+    std::vector<emsr::QuadraturePoint<_Tp>>
     __chebyshev_v_zeros(unsigned int __n)
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
+      const auto _S_pi = emsr::pi_v<_Tp>;
+      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
       for (unsigned int __k = 0; __k < __n; ++__k)
 	{
 	  const auto __z = __gnu_cxx::cos_pi(_Tp(__k + 0.5L) / _Tp(__n + 0.5L));
 	  const auto __w = _S_pi * (_Tp{1} + __z) / (_Tp(__n) + _Tp{1} / _Tp{2});
-	  __pt[__k].__point = __z;
-	  __pt[__k].__weight = __w;
+	  __pt[__k].point = __z;
+	  __pt[__k].weight = __w;
 	}
       return __pt;
     }
@@ -238,17 +238,17 @@
    * @f]
    */
   template<typename _Tp>
-    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
+    std::vector<emsr::QuadraturePoint<_Tp>>
     __chebyshev_w_zeros(unsigned int __n)
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
+      const auto _S_pi = emsr::pi_v<_Tp>;
+      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
       for (unsigned int __k = 1; __k <= __n; ++__k)
 	{
 	  const auto __z = __gnu_cxx::cos_pi(_Tp(__k) / _Tp(__n + 0.5L));
 	  const auto __w = _S_pi * (_Tp{1} - __z) / (_Tp(__n) + _Tp{1} / _Tp{2});
-	  __pt[__k - 1].__point = __z;
-	  __pt[__k - 1].__weight = __w;
+	  __pt[__k - 1].point = __z;
+	  __pt[__k - 1].weight = __w;
 	}
       return __pt;
     }
@@ -317,10 +317,10 @@ template<typename Tp>
 	auto tz = __chebyshev_t_zeros<Tp>(n);
 	for (auto z : tz)
 	  {
-	    auto Tt = __chebyshev_t_trig(n, z.__point);
-	    auto Tg = __gnu_cxx::chebyshev_t(n, z.__point);
-	    std::cout << ' ' << std::setw(width) << z.__point
-		      << ' ' << std::setw(width) << z.__weight
+	    auto Tt = __chebyshev_t_trig(n, z.point);
+	    auto Tg = __gnu_cxx::chebyshev_t(n, z.point);
+	    std::cout << ' ' << std::setw(width) << z.point
+		      << ' ' << std::setw(width) << z.weight
 		      << ' ' << std::setw(width) << Tt
 		      << ' ' << std::setw(width) << Tg
 		      << '\n';
@@ -334,10 +334,10 @@ template<typename Tp>
 	auto uz = __chebyshev_u_zeros<Tp>(n);
 	for (auto z : uz)
 	  {
-	    auto Ut = __chebyshev_u_trig(n, z.__point);
-	    auto Ug = __gnu_cxx::chebyshev_u(n, z.__point);
-	    std::cout << ' ' << std::setw(width) << z.__point
-		      << ' ' << std::setw(width) << z.__weight
+	    auto Ut = __chebyshev_u_trig(n, z.point);
+	    auto Ug = __gnu_cxx::chebyshev_u(n, z.point);
+	    std::cout << ' ' << std::setw(width) << z.point
+		      << ' ' << std::setw(width) << z.weight
 		      << ' ' << std::setw(width) << Ut
 		      << ' ' << std::setw(width) << Ug
 		      << '\n';
@@ -351,10 +351,10 @@ template<typename Tp>
 	auto vz = __chebyshev_v_zeros<Tp>(n);
 	for (auto z : vz)
 	  {
-	    auto Vt = __chebyshev_v_trig(n, z.__point);
-	    auto Vg = __gnu_cxx::chebyshev_v(n, z.__point);
-	    std::cout << ' ' << std::setw(width) << z.__point
-		      << ' ' << std::setw(width) << z.__weight
+	    auto Vt = __chebyshev_v_trig(n, z.point);
+	    auto Vg = __gnu_cxx::chebyshev_v(n, z.point);
+	    std::cout << ' ' << std::setw(width) << z.point
+		      << ' ' << std::setw(width) << z.weight
 		      << ' ' << std::setw(width) << Vt
 		      << ' ' << std::setw(width) << Vg
 		      << '\n';
@@ -368,10 +368,10 @@ template<typename Tp>
 	auto wz = __chebyshev_w_zeros<Tp>(n);
 	for (auto z : wz)
 	  {
-	    auto Wt = __chebyshev_w_trig(n, z.__point);
-	    auto Wg = __gnu_cxx::chebyshev_w(n, z.__point);
-	    std::cout << ' ' << std::setw(width) << z.__point
-		      << ' ' << std::setw(width) << z.__weight
+	    auto Wt = __chebyshev_w_trig(n, z.point);
+	    auto Wg = __gnu_cxx::chebyshev_w(n, z.point);
+	    std::cout << ' ' << std::setw(width) << z.point
+		      << ' ' << std::setw(width) << z.weight
 		      << ' ' << std::setw(width) << Wt
 		      << ' ' << std::setw(width) << Wg
 		      << '\n';
@@ -396,8 +396,8 @@ main()
       auto uz = __chebyshev_u_zeros<Tp>(n);
       for (auto z : uz)
 	{
-	  std::cout << ' ' << std::setw(width) << z.__point
-		    << ' ' << std::setw(width) << z.__weight
+	  std::cout << ' ' << std::setw(width) << z.point
+		    << ' ' << std::setw(width) << z.weight
 		    << '\n';
 	}
     }

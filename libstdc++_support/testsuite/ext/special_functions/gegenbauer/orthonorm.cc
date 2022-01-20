@@ -21,7 +21,7 @@
 
 #include <cmath>
 
-#include <ext/integration.h>
+#include <emsr/integration.h>
 
 #if defined(__TEST_DEBUG)
 #  include <iostream>
@@ -81,12 +81,12 @@ template<typename _Tp>
 
 	    auto [result, error]
 		= singular
-		? __gnu_cxx::integrate_singular_endpoints(func,
+		? emsr::integrate_singular_endpoints(func,
 					_Tp{-1}, _Tp{1},
 					lambda - _Tp{0.5}, lambda - _Tp{0.5},
 					0, 0,
 					abs_prec, rel_prec)
-		: __gnu_cxx::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
+		: emsr::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
 						 abs_prec, rel_prec);
 
 	    if (std::abs(delta<_Tp>(n1, n2) - result) > cmp_prec)

@@ -18,7 +18,7 @@ template<typename _Tp>
     using _Cmplx = std::complex<_Tp>;
     const auto _S_NaN = __gnu_cxx::__quiet_NaN(__z.real());
     const auto _S_eps = __gnu_cxx::__epsilon(__z.real());
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto _S_pi = emsr::pi_v<_Tp>;
     const auto _S_i = _Cmplx(_Tp{0}, _Tp{1});
     const auto _S_0 = _Cmplx{};
     auto [__x, __y] = reinterpret_cast<const _Tp(&)[2]>(__z);
@@ -261,7 +261,7 @@ template<typename _Tp>
   lambert_wp(_Tp __x)
   {
     using _Cmplx = std::complex<_Tp>;
-    const auto _S_1de = __gnu_cxx::numbers::__one_div_e_v<_Tp>;
+    const auto _S_1de = emsr::inv_e_v<_Tp>;
     if (__x < _S_1de)
       std::__throw_domain_error("lambert_wp: Argument out of range.");
     else if (__x == _S_1de)
@@ -283,9 +283,9 @@ template<typename _Tp>
   lambert_wm(_Tp __x)
   {
     using _Cmplx = std::complex<_Tp>;
-    const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
+    const auto _S_2pi = emsr::tau_v<_Tp>;
     const auto _S_i = _Cmplx(_Tp{0}, _Tp{1});
-    const auto _S_1de = __gnu_cxx::numbers::__one_div_e_v<_Tp>;
+    const auto _S_1de = emsr::inv_e_v<_Tp>;
     if (__x < _S_1de || __x > _Tp{0})
       std::__throw_domain_error("lambert_wm: Argument out of range.");
     else if (__x == _S_1de)

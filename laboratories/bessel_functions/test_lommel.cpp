@@ -84,8 +84,8 @@ namespace __detail
 	return __lommel_2(__mu, -__nu, __z);
       else
 	{
-	  const auto im = __gnu_cxx::__fp_is_odd_integer(__mu - __nu);
-	  const auto ip = __gnu_cxx::__fp_is_odd_integer(__mu + __nu);
+	  const auto im = emsr::fp_is_odd_integer(__mu - __nu);
+	  const auto ip = emsr::fp_is_odd_integer(__mu + __nu);
 	  if (im && im() < 0)
             {
 	      return _Tp{0};
@@ -173,10 +173,10 @@ namespace __gnu_cxx
    * @f]
    */
   template<typename _Tmu, typename _Tnu, typename _Tp>
-    inline __gnu_cxx::fp_promote_t<_Tmu, _Tnu, _Tp>
+    inline emsr::fp_promote_t<_Tmu, _Tnu, _Tp>
     lommel_1(_Tmu __mu, _Tnu __nu, _Tp __z)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Tmu, _Tnu, _Tp>;
+      using __type = emsr::fp_promote_t<_Tmu, _Tnu, _Tp>;
       return std::__detail::__lommel_1<__type>(__mu, __nu, __z);
     }
 
@@ -215,10 +215,10 @@ namespace __gnu_cxx
    * @see cyl_neumann.
    */
   template<typename _Tmu, typename _Tnu, typename _Tp>
-    inline __gnu_cxx::fp_promote_t<_Tmu, _Tnu, _Tp>
+    inline emsr::fp_promote_t<_Tmu, _Tnu, _Tp>
     lommel_2(_Tmu __mu, _Tnu __nu, _Tp __z)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Tmu, _Tnu, _Tp>;
+      using __type = emsr::fp_promote_t<_Tmu, _Tnu, _Tp>;
       return std::__detail::__lommel_2<__type>(__mu, __nu, __z);
     }
 

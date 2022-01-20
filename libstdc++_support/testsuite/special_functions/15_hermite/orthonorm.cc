@@ -21,7 +21,7 @@
 
 #include <cmath>
 
-#include <ext/integration.h>
+#include <emsr/integration.h>
 
 #if defined(__TEST_DEBUG)
 #  include <iostream>
@@ -77,7 +77,7 @@ template<typename _Tp>
 			{ return norm_hermite(n1, n2, x); };
 
 	    auto [result, error]
-		  = __gnu_cxx::integrate_sinh_sinh(func, abs_prec, rel_prec);
+		  = emsr::integrate_sinh_sinh(func, abs_prec, rel_prec);
 
 	    if (std::abs(delta<_Tp>(n1, n2) - result) > cmp_prec)
 	      ++fail;

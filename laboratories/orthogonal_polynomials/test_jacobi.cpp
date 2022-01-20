@@ -11,13 +11,13 @@
 #include <ext/float128_io.h>
 
   template<typename _Tp>
-    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
+    std::vector<emsr::QuadraturePoint<_Tp>>
     __jacobi_zeros(unsigned int __n, _Tp __alpha, _Tp __beta)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__alpha);
       const unsigned int _S_maxit = 1000u;
 
-      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
+      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
 
       _Tp __z;
       _Tp __w = _Tp{0};
@@ -48,7 +48,7 @@
 	      auto __r1 = (1.67 + 0.28 * __alpha) / (1.0 + 0.37 * __alpha);
 	      auto __r2 = 1.0 + 0.22 * (__n - 8.0) / __n;
 	      auto __r3 = 1.0 + 8.0 * __beta / ((6.28 + __beta) * __n * __n);
-	      __z -= (__pt[0].__point - __z) * __r1 * __r2 * __r3;
+	      __z -= (__pt[0].point - __z) * __r1 * __r2 * __r3;
 	    }
 	  else if (__i == __n - 1)
 	    {
@@ -57,7 +57,7 @@
 						/ (1.0 + 0.71 * (__n - 4.0)));
 	      auto __r3 = 1.0 / (1.0 + 20.0 * __alpha
 				/ ((7.5 + __alpha) * __n * __n));
-	      __z += (__z - __pt[__n - 4].__point) * __r1 * __r2 * __r3;
+	      __z += (__z - __pt[__n - 4].point) * __r1 * __r2 * __r3;
 	    }
 	  else if (__i == __n)
 	    {
@@ -65,12 +65,12 @@
 	      auto __r2 = 1.0 / (1.0 + 0.22 * (__n - 8.0) / __n);
 	      auto __r3 = 1.0 / (1.0 + 8.0 * __alpha
 				 / ((6.28 + __alpha) * __n * __n));
-	      __z += (__z - __pt[__n - 3].__point) * __r1 * __r2 * __r3;
+	      __z += (__z - __pt[__n - 3].point) * __r1 * __r2 * __r3;
 	    }
 	  else
 	    {
-	      __z = 3.0 * __pt[__i - 2].__point
-		  - 3.0 * __pt[__i - 3].__point + __pt[__i - 4].__point;
+	      __z = 3.0 * __pt[__i - 2].point
+		  - 3.0 * __pt[__i - 3].point + __pt[__i - 4].point;
 	    }
 
 	  auto __alphabeta = __alpha + __beta;
@@ -110,8 +110,8 @@
 	      if (__its > _S_maxit)
 		std::__throw_logic_error("__jacobi_zeros: Too many iterations");
 	    }
-	  __pt[__i - 1].__point = __z;
-	  __pt[__i - 1].__weight = __w;
+	  __pt[__i - 1].point = __z;
+	  __pt[__i - 1].weight = __w;
 	}
 
       return __pt;

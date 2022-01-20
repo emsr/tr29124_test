@@ -30,8 +30,8 @@
 #ifndef _LABS_GEGENBAUER_TCC
 #define _LABS_GEGENBAUER_TCC 1
 
-#include <ext/math_constants.h>
-#include <ext/math_util.h>
+#include <emsr/math_constants.h>
+#include <emsr/math_util.h>
 
 namespace lab
 {
@@ -64,7 +64,7 @@ namespace lab
 
       auto __m = int(__n);
       if (const auto
-	    __pint = __gnu_cxx::__fp_is_integer(__n + _Tp{2} * __lambda);
+	    __pint = emsr::fp_is_integer(__n + _Tp{2} * __lambda);
 	  __pint && __pint() <= 0 && __m > -__pint())
 	__m = -__pint();
 
@@ -99,12 +99,12 @@ namespace lab
    * @param[in]  lambda  The order of the Gegenbauer polynomial
    */
   template<typename _Tp>
-    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
+    std::vector<emsr::QuadraturePoint<_Tp>>
     __gegenbauer_zeros(unsigned int __n, _Tp __lambda)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__lambda);
       const unsigned int _S_maxit = 1000u;
-      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
+      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
 
       _Tp __z;
       _Tp __w;
@@ -134,7 +134,7 @@ namespace lab
 	      auto __r1 = (1.67 + 0.28 * __lambda) / (1.0 + 0.37 * __lambda);
 	      auto __r2 = 1.0 + 0.22 * (__n - 8.0) / __n;
 	      auto __r3 = 1.0 + 8.0 *__lambda / ((6.28 + __lambda) * __n * __n);
-	      __z -= (__pt[0].__point - __z) * __r1 * __r2 * __r3;
+	      __z -= (__pt[0].point - __z) * __r1 * __r2 * __r3;
 	    }
 	  else if (__i == __n - 1)
 	    {
@@ -143,7 +143,7 @@ namespace lab
 						/ (1.0 + 0.71 * (__n - 4.0)));
 	      auto __r3 = 1.0 / (1.0 + 20.0 * __lambda
 				/ ((7.5 + __lambda) * __n * __n));
-	      __z += (__z - __pt[__n - 4].__point) * __r1 * __r2 * __r3;
+	      __z += (__z - __pt[__n - 4].point) * __r1 * __r2 * __r3;
 	    }
 	  else if (__i == __n)
 	    {
@@ -151,11 +151,11 @@ namespace lab
 	      auto __r2 = 1.0 / (1.0 + 0.22 * (__n - 8.0) / __n);
 	      auto __r3 = 1.0 / (1.0 + 8.0 * __lambda
 				 / ((6.28 + __lambda) * __n * __n));
-	      __z += (__z - __pt[__n - 3].__point) * __r1 * __r2 * __r3;
+	      __z += (__z - __pt[__n - 3].point) * __r1 * __r2 * __r3;
 	    }
 	  else
-	    __z = 3.0 * __pt[__i - 2].__point
-		- 3.0 * __pt[__i - 3].__point + __pt[__i - 4].__point;
+	    __z = 3.0 * __pt[__i - 2].point
+		- 3.0 * __pt[__i - 3].point + __pt[__i - 4].point;
 
 	  auto __2lambda = _Tp{2} * __lambda;
 	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
@@ -193,8 +193,8 @@ namespace lab
 	      if (__its > _S_maxit)
 		std::__throw_logic_error("__gegenbauer_zeros: Too many iterations");
 	    }
-	  __pt[__i - 1].__point = __z;
-	  __pt[__i - 1].__weight = __w;
+	  __pt[__i - 1].point = __z;
+	  __pt[__i - 1].weight = __w;
 	}
 
       return __pt;

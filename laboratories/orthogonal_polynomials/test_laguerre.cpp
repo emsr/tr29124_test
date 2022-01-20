@@ -74,13 +74,13 @@
    * Return a vector of zeros of the Laguerre polynomial of degree n.
    */
   template<typename _Tp>
-    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
+    std::vector<emsr::QuadraturePoint<_Tp>>
     __laguerre_zeros(unsigned int __n, _Tp __proto)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__proto);
       const unsigned int _S_maxit = 1000u;
 
-      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
+      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
 
       auto __z = _Tp{0};
       auto __w = _Tp{0};
@@ -95,7 +95,7 @@
 	    {
 	      auto __ai = __i - 2;
 	      __z += ((1.0 + 2.55 * __ai) / (1.9 * __ai))
-		   * (__z - __pt[__i - 3].__point);
+		   * (__z - __pt[__i - 3].point);
 	    }
 	  // Iterate TTRR for polynomial values
 	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
@@ -123,8 +123,8 @@
 		std::__throw_logic_error("__laguerre_zeros: "
 					 "Too many iterations");
 	   }
-	  __pt[__i - 1].__point = __z;
-	  __pt[__i - 1].__weight = __w;
+	  __pt[__i - 1].point = __z;
+	  __pt[__i - 1].weight = __w;
 	}
       return __pt;
     }
@@ -133,13 +133,13 @@
    * Return an array of abscissae and weights for the Gauss-Laguerre rule.
    */
   template<typename _Tp, typename _Tn>
-    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
+    std::vector<emsr::QuadraturePoint<_Tp>>
     __laguerre_zeros(unsigned int __n, _Tn __alpha, _Tp __proto)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__proto);
       const unsigned int _S_maxit = 1000;
 
-      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
+      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
 
       for (auto __i = 1u; __i <= __n; ++__i)
 	{
@@ -156,7 +156,7 @@
 	      auto __ai = __i - 2;
 	      __z += ((1.0 + 2.55 * __ai) / (1.9 * __ai)
 		     + 1.26 * __ai * __alpha / (1.0 + 3.5 * __ai))
-		   * (__z - __pt[__i - 3].__point) / (1.0 + 0.3 * __alpha);
+		   * (__z - __pt[__i - 3].point) / (1.0 + 0.3 * __alpha);
 	    }
 	  // Iterate TTRR for polynomial values
 	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
@@ -186,8 +186,8 @@
 		std::__throw_logic_error("__laguerre_zeros: "
 					 "Too many iterations");
 	   }
-	  __pt[__i - 1].__point = __z;
-	  __pt[__i - 1].__weight = __w;
+	  __pt[__i - 1].point = __z;
+	  __pt[__i - 1].weight = __w;
 	}
     return __pt;
   }

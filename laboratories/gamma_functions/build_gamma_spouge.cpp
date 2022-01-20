@@ -21,7 +21,7 @@
       auto width = 8 + std::cout.precision();
 
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
+      const auto _S_2pi = emsr::tau_v<_Tp>;
       auto __a = _Tp{1};
       const auto __fact = _Tp{1} / std::sqrt(_S_2pi);
       while (_S_eps <= __fact * std::pow(_S_2pi, -__a) / std::sqrt(__a))
@@ -87,9 +87,9 @@
 	[=](_Tp __y)
 	-> _Tp
 	{
-	  constexpr auto _S_log_10 = __gnu_cxx::numbers::__log10_e_v<_Tp>;
-	  constexpr auto _S_ln_2 = __gnu_cxx::numbers::__ln_2_v<_Tp>;
-	  constexpr auto _S_ln_pi = __gnu_cxx::numbers::__ln_pi_v<_Tp>;
+	  constexpr auto _S_log_10 = emsr::log10e_v<_Tp>;
+	  constexpr auto _S_ln_2 = emsr::ln2_v<_Tp>;
+	  constexpr auto _S_ln_pi = emsr::lnpi_v<_Tp>;
 	  constexpr auto _S_log_sqrt_2pi = (_S_ln_2 + _S_ln_pi) / _Tp{2};
 	  auto __x = __y * _S_log_10 - _S_log_sqrt_2pi;
 	  auto __x0 = __x;

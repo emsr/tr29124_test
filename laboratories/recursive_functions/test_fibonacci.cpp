@@ -6,8 +6,8 @@
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include <ext/math_constants.h>
-#include <ext/math_util.h>
+#include <emsr/math_constants.h>
+#include <emsr/math_util.h>
 
 /**
  * @todo Test these relations between the Lucas and Fibonacci numbers
@@ -71,7 +71,7 @@ template<typename _Tp>
 	else
 	  {
 	    if (__nu < 0)
-	      return __gnu_cxx::__parity<_Tp>(-__nu + 1)
+	      return emsr::parity<_Tp>(-__nu + 1)
 		   * __fibonacci_recur(-__nu);
 	    else
 	      return __fibonacci_recur(__nu);
@@ -79,8 +79,8 @@ template<typename _Tp>
       }
     else if constexpr (std::is_floating_point_v<_Tp>)
       {
-	const auto _S_phi = __gnu_cxx::numbers::__phi_v<_Tp>;
-	const auto _S_sqrt5 = __gnu_cxx::numbers::__root_5_v<_Tp>;
+	const auto _S_phi = emsr::phi_v<_Tp>;
+	const auto _S_sqrt5 = emsr::sqrt5_v<_Tp>;
 	const auto __phinu = std::pow(_S_phi, __nu);
 	return (__phinu - __gnu_cxx::cos_pi(__nu) / __phinu) / _S_sqrt5;
       }
@@ -164,14 +164,14 @@ template<typename _Tp>
 	else
 	  {
 	    if (__nu < 0)
-	      return __gnu_cxx::__parity<_Tp>(__nu) * __lucas_recur(-__nu);
+	      return emsr::parity<_Tp>(__nu) * __lucas_recur(-__nu);
 	    else
 	      return __lucas_recur(__nu);
 	  }
       }
     else if constexpr (std::is_floating_point_v<_Tp>)
       {
-	const auto _S_phi = __gnu_cxx::numbers::__phi_v<_Tp>;
+	const auto _S_phi = emsr::phi_v<_Tp>;
 	const auto __phinu = std::pow(_S_phi, __nu);
 	return __phinu + __gnu_cxx::cos_pi(__nu) / __phinu;
       }

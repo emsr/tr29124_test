@@ -68,7 +68,7 @@ template<typename _Tp>
 
     std::cout << '\n';
 
-    _Tp __pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
+    _Tp __pi_2 = emsr::pi_v<_Tp> / _Tp{2};
     // Adding complex zero makes these complex k.
     std::cout << "K(pi/2)  = " << std::__detail::__comp_ellint_1(__pi_2 + _S_z) << '\n';  //  1.5887715763658593607082818553065 - i 1.3986463677643598308560440635658
     std::cout << "K(-1)    = " << std::__detail::__comp_ellint_1(-1.0 + _S_z) << '\n';  //  1.31102877714605990523242

@@ -14,14 +14,14 @@
    * for the Legendre polynomial of degree @c l.
    */
   template<typename _Tp>
-    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
+    std::vector<emsr::QuadraturePoint<_Tp>>
     __legendre_zeros(unsigned int __l, _Tp proto = _Tp{})
     {
       const auto _S_eps = __gnu_cxx::__epsilon(proto);
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const unsigned int _S_maxit = 1000u;
 
-      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__l);
+      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__l);
 
       auto __m = __l / 2;
 
@@ -41,12 +41,12 @@
 			    * __lmfact / __mmfact / __mmfact
 			    / std::exp2(_Tp(__lm));
 	      auto __Ppl = __l * __Plm1;
-	      __pt[__m].__point = _Tp{0};
-	      __pt[__m].__weight = _Tp{2} / __Ppl / __Ppl;
+	      __pt[__m].point = _Tp{0};
+	      __pt[__m].weight = _Tp{2} / __Ppl / __Ppl;
 	    }
 	  else
 	    {
-	      const auto _S_ln2 = __gnu_cxx::numbers::__ln_2_v<_Tp>;
+	      const auto _S_ln2 = emsr::ln2_v<_Tp>;
 	      const auto __lm = __l - 1;
 	      const auto __lmfact = std::__detail::__log_factorial<_Tp>(__lm);
 	      const auto __mm = __lm / 2;
@@ -54,8 +54,8 @@
 	      auto __Plm1 = (__lm & 1 ? -1 : 1)
 			  * std::exp(__lmfact - 2 * __mmfact - __lm * _S_ln2);
 	      auto __Ppl = __l * __Plm1;
-	      __pt[__m].__point = _Tp{0};
-	      __pt[__m].__weight = _Tp{2} / __Ppl / __Ppl;
+	      __pt[__m].point = _Tp{0};
+	      __pt[__m].weight = _Tp{2} / __Ppl / __Ppl;
 	    }
 	}
 
@@ -97,10 +97,10 @@
 					 "Too many iterations");
 	    }
 
-	  __pt[__i - 1].__point = -__z;
-	  __pt[__l - __i].__point = __z;
-	  __pt[__i - 1].__weight = __w;
-	  __pt[__l - __i].__weight = __w;
+	  __pt[__i - 1].point = -__z;
+	  __pt[__l - __i].point = __z;
+	  __pt[__i - 1].weight = __w;
+	  __pt[__l - __i].weight = __w;
 	}
 
       return __pt;

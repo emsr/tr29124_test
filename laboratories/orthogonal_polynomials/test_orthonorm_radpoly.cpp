@@ -26,7 +26,7 @@
 #include <string>
 #include <vector>
 
-#include <ext/integration.h>
+#include <emsr/integration.h>
 
 // Neumann's number
 template<typename _Tp>
@@ -84,7 +84,7 @@ template<typename _Tp>
 			    { return normalized_radpoly(n1, m1, n2, m2, x); };
 
 		auto [result, error]
-			= __gnu_cxx::integrate_tanh_sinh(func, _Tp{0}, _Tp{1},
+			= emsr::integrate_tanh_sinh(func, _Tp{0}, _Tp{1},
 					      abs_precision, rel_precision, 8);
 
 		if (std::abs(delta<_Tp>(n1, m1, n2, m2) - result) > cmp_precision)
@@ -132,7 +132,7 @@ template<typename _Tp>
 			    { return normalized_radpoly(n1, m1, n2, m2, x); };
 
 		auto [result, error]
-			= __gnu_cxx::integrate_tanh_sinh(func, _Tp{0}, _Tp{1},
+			= emsr::integrate_tanh_sinh(func, _Tp{0}, _Tp{1},
 					      abs_precision, rel_precision, 8);
 
 		if (std::abs(delta<_Tp>(n1_upper, m1, n2, m2) - result) > cmp_precision)
@@ -181,7 +181,7 @@ main()
     {
       test_radpoly<float>();
     }
-  catch (__gnu_cxx::__integration_error<float>& ierr)
+  catch (emsr::integration_error<float, float>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -196,7 +196,7 @@ main()
     {
       test_radpoly<double>();
     }
-  catch (__gnu_cxx::__integration_error<double>& ierr)
+  catch (emsr::integration_error<double, double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -211,7 +211,7 @@ main()
     {
       test_radpoly<long double>();
     }
-  catch (__gnu_cxx::__integration_error<long double>& ierr)
+  catch (emsr::integration_error<long double, long double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';

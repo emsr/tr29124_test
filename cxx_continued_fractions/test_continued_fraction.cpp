@@ -4,13 +4,13 @@
 #include <iomanip>
 #include <vector>
 #include <complex>
-#include <ext/math_constants.h>
+#include <emsr/math_constants.h>
 #include <ext/float128_io.h>
 #include <bits/numeric_limits.h>
-#include <ext/fp_type_util.h>
-#include <ext/complex_util.h>
+#include <emsr/fp_type_util.h>
+#include <emsr/complex_util.h>
 //#include "rational.h"
-#include <ext/polynomial.h>
+#include <emsr/polynomial.h>
 
 /**
  * Convert a series to a continued fraction.

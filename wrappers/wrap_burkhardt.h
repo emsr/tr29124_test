@@ -4,7 +4,7 @@
 #include <vector>
 #include <complex>
 
-#include <ext/quadrature_point.h>
+#include <emsr/quadrature_point.h>
 
 namespace burkhardt
 {
@@ -388,55 +388,55 @@ std::complex<double> wright_omega(std::complex<double> z);
 double lambert_w(double x);
 
 /// Gauss-Chebyshev T rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_chebyshev_t_rule(std::size_t n);
 
 /// Gauss-Chebyshev U rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_chebyshev_u_rule(std::size_t n);
 
 /// Gauss-Chebyshev V rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_chebyshev_v_rule(std::size_t n);
 
 /// Gauss-Radau rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_legendre_radau_rule(std::size_t n);
 
 /// Gauss-Lobatto rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_legendre_lobatto_rule(std::size_t n);
 
 /// Gauss-Laguerre rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_laguerre_rule(std::size_t n);
 
 /// Gauss-Associative Laguerre rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_laguerre_rule(std::size_t n, double alpha);
 
 /// Gauss-Jacobi rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_jacobi_rule(std::size_t n, double alpha, double beta);
 
 /// Gauss-Gegenbauer rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_gegenbauer_rule(std::size_t n, double lambda);
 
 /// Gauss-Hermite rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_hermite_rule(std::size_t n);
 
 /// Clenshaw-Curtis rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 clenshaw_curtis_rule(std::size_t n);
 
 /// Fejer 1 rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 fejer_1_rule(std::size_t n);
 
 /// Fejer 2 rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 fejer_2_rule(std::size_t n);
 
 // Bell numbers.

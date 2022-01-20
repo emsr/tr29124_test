@@ -6,8 +6,8 @@
 #include <complex>
 
 #include <ext/continued_fractions.h>
-#include <ext/fp_type_util.h>
-#include <ext/complex_util.h> // is_complex
+#include <emsr/fp_type_util.h>
+#include <emsr/complex_util.h> // is_complex
 
   /**
    * Compute ratios of Bessel functions using the S-fraction.
@@ -19,12 +19,12 @@
    *           and @f$ \zeta = z^2 @f$ for @f$ I_\nu(z) @f$.
    */
   template<typename _Tnu, typename _Tp, typename _Tzeta>
-    std::complex<__gnu_cxx::__num_traits_t<
-		 __gnu_cxx::fp_promote_t<_Tnu, _Tp, _Tzeta>>>
+    std::complex<emsr::num_traits_t<
+		 emsr::fp_promote_t<_Tnu, _Tp, _Tzeta>>>
     __cyl_bessel_ratio_s_frac(_Tnu __nu, _Tp __z, _Tzeta __zeta)
     {
-      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      using _Real = emsr::num_traits_t<_Val>;
 
       auto __a_J
 	= [__nu, __z, __zeta](std::size_t __k, _Tp)
@@ -56,20 +56,20 @@
    * 
    */
   template<typename _Tnu, typename _Tp,
-	   typename _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>>
-    std::conditional_t<__gnu_cxx::is_complex_v<_Val>,
-			std::complex<__gnu_cxx::__num_traits_t<_Val>>,
+	   typename _Val = emsr::fp_promote_t<_Tnu, _Tp>>
+    std::conditional_t<emsr::is_complex_v<_Val>,
+			std::complex<emsr::num_traits_t<_Val>>,
 			_Val>
     __cyl_bessel_j_ratio_s_frac(_Tnu __nu, _Tp __z)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       const auto __iz = _Cmplx{0, 1} * __z;
       const auto __zeta = __iz * __iz;
       const auto _Jrat = __cyl_bessel_ratio_s_frac(__nu, __z, __zeta);
 
-      if constexpr (!__gnu_cxx::is_complex_v<_Val>)
+      if constexpr (!emsr::is_complex_v<_Val>)
 	return std::real(_Jrat);
       else
 	return _Jrat;
@@ -79,16 +79,16 @@
    * 
    */
   template<typename _Tnu, typename _Tp,
-	   typename _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>>
-    std::conditional_t<__gnu_cxx::is_complex_v<_Val>,
-			std::complex<__gnu_cxx::__num_traits_t<_Val>>,
+	   typename _Val = emsr::fp_promote_t<_Tnu, _Tp>>
+    std::conditional_t<emsr::is_complex_v<_Val>,
+			std::complex<emsr::num_traits_t<_Val>>,
 			_Val>
     __cyl_bessel_i_ratio_s_frac(_Tnu __nu, _Tp __z)
     {
       const auto __zeta = __z * __z;
       const auto _Irat = __cyl_bessel_ratio_s_frac(__nu, __z, __zeta);
 
-      if constexpr (!__gnu_cxx::is_complex_v<_Val>)
+      if constexpr (!emsr::is_complex_v<_Val>)
 	return std::real(_Irat);
       else
 	return _Irat;

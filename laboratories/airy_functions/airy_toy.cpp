@@ -13,11 +13,12 @@
 #include <iomanip>
 #include <vector>
 #include <string>
+
 #include <ext/float128_math.h>
 #include <ext/float128_io.h>
 #include <ext/numeric_limits_float128.h>
 #include <ext/summation.h>
-#include <ext/polynomial.h>
+#include <emsr/polynomial.h>
 #include <bits/notsospecfun.h> // For complex fma.
 
   /**
@@ -99,7 +100,7 @@
     {
       using _Arg = _Tx;
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
 
       _Arg __x_arg;
       _Val __Ai_value;
@@ -113,7 +114,7 @@
 
       static constexpr _Real
       __true_Wronskian()
-      { return _Real{1} /__gnu_cxx::numbers::__pi_v<_Real>; }
+      { return _Real{1} /emsr::pi_v<_Real>; }
     };
 
 
@@ -129,7 +130,7 @@
     {
       using _Arg = _Tx;
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
 
       _Arg __x_arg;
       _Val __w1_value;
@@ -156,7 +157,7 @@
     {
       using _Arg = _Tx;
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
 
       _Arg __x_arg;
       _Val __fai_value;
@@ -178,7 +179,7 @@
     {
       using _Arg = _Tx;
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
 
       _Arg __x_arg;
       _Val __Gi_value;
@@ -260,7 +261,7 @@
     class _Airy_series
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
     public:
@@ -1501,9 +1502,9 @@
 
       static constexpr _Real _S_eps = __gnu_cxx::__epsilon(_Real{});
       static constexpr _Real _S_pi
-		 = __gnu_cxx::numbers::__pi_v<_Real>;
+		 = emsr::pi_v<_Real>;
       static constexpr _Real _S_sqrt_pi
-		 = __gnu_cxx::numbers::__root_pi_v<_Real>;
+		 = emsr::sqrtpi_v<_Real>;
       static constexpr _Real _S_Ai0
 		 = _Real{3.550280538878172392600631860041831763980e-1Q};
       static constexpr _Real _S_Aip0
@@ -3592,7 +3593,7 @@
     public:
 
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       constexpr _Airy_asymp() = default;
@@ -3625,8 +3626,8 @@
 	     typename _Airy_asymp<_Tp>::_Cmplx>
     _Airy_asymp<_Tp>::operator()(typename _Airy_asymp<_Tp>::_Cmplx __t) const
     {
-      constexpr auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
-      constexpr auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Real>;
+      constexpr auto _S_pi = emsr::pi_v<_Real>;
+      constexpr auto _S_sqrt_pi = emsr::sqrtpi_v<_Real>;
       constexpr auto _S_i = _Cmplx(0, 1);
       if (std::real(__t) > _Real{0})
 	{
@@ -3741,8 +3742,8 @@
 		  typename _Airy_asymp<_Tp>::_Cmplx>
     _Airy_asymp<_Tp>::_S_fock_airy(typename _Airy_asymp<_Tp>::_Cmplx __t) const
     {
-      constexpr auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
-      constexpr auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Real>;
+      constexpr auto _S_pi = emsr::pi_v<_Real>;
+      constexpr auto _S_sqrt_pi = emsr::sqrtpi_v<_Real>;
       constexpr auto _S_i = _Cmplx(0, 1);
       if (std::real(__t) > _Real{0})
 	{
@@ -3843,7 +3844,7 @@
     _Airy_asymp<_Tp>::_S_absarg_ge_pio3_help(typename _Airy_asymp<_Tp>::_Cmplx __z,
 					     int __sign) const
     {
-      constexpr auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Real>;
+      constexpr auto _S_sqrt_pi = emsr::sqrtpi_v<_Real>;
       constexpr auto _S_pmhd2 = _Real{1} / (_Real{2} * _S_sqrt_pi);
       constexpr std::size_t _S_num_nterms = 5;
       constexpr std::size_t _S_max_nterms = 40;
@@ -3871,12 +3872,12 @@
       // Power series is in terms of +-1 / \zeta.
       auto __zetam = _Real(__sign) / __zeta;
 
-      __gnu_cxx::_Polynomial<_Real>
+      emsr::Polynomial<_Real>
 	__cpoly(std::begin(_Airy_asymp_data<_Real>::_S_c),
 		std::begin(_Airy_asymp_data<_Real>::_S_c) + __nterm);
       auto _Ai = __fact * __cpoly(__zetam);
 
-      __gnu_cxx::_Polynomial<_Real>
+      emsr::Polynomial<_Real>
 	__dpoly(std::begin(_Airy_asymp_data<_Real>::_S_d),
 		std::begin(_Airy_asymp_data<_Real>::_S_d) + __nterm);
       auto _Aip = __factp * __dpoly(__zetam);
@@ -3933,8 +3934,8 @@
     _Airy_asymp<_Tp>::_S_absarg_lt_pio3(typename _Airy_asymp<_Tp>::_Cmplx __z) const
     {
       constexpr _Real _S_pimh
-	= _Real{1} / __gnu_cxx::numbers::__root_pi_v<_Real>;
-      constexpr _Real _S_pid4 = __gnu_cxx::numbers::__pi_quarter_v<_Real>;
+	= _Real{1} / emsr::sqrtpi_v<_Real>;
+      constexpr _Real _S_pid4 = emsr::pi_v<_Real> / _Real{4};
 
       constexpr _Cmplx _S_zone{1};
       /// @todo Revisit these numbers of terms for the Airy asymptotic
@@ -3959,11 +3960,11 @@
       // Power series is in terms of 1 / \zeta^2.
       auto __zetam2 = _Real{1} / (__zeta * __zeta);
 
-      __gnu_cxx::_Polynomial<_Real>
+      emsr::Polynomial<_Real>
 	__cpoly(std::begin(_Airy_asymp_data<_Real>::_S_c),
 		std::begin(_Airy_asymp_data<_Real>::_S_c) + __nterm);
 
-      __gnu_cxx::_Polynomial<_Real>
+      emsr::Polynomial<_Real>
 	__dpoly(std::begin(_Airy_asymp_data<_Real>::_S_d),
 		std::begin(_Airy_asymp_data<_Real>::_S_d) + __nterm);
 
@@ -4022,11 +4023,11 @@
 				     int __sign = -1)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       //using _Cmplx = std::complex<_Real>;
 
       constexpr auto _S_2d3   = _Real{2} / _Real{3};
-      constexpr auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Real>;
+      constexpr auto _S_sqrt_pi = emsr::sqrtpi_v<_Real>;
       constexpr auto _S_pmhd2 = _Real{1} / (_Real{2} * _S_sqrt_pi);
       constexpr std::size_t _S_ncoeffs = 15;
       constexpr std::size_t _S_num_nterms = 5;
@@ -4167,14 +4168,14 @@
     __airy_asymp_absarg_lt_pio3(std::complex<_Tp> __z)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       constexpr auto _S_2d3 {_Real{2} / _Real{3}};
       constexpr auto _S_9d4 {_Real{9} / _Real{4}};
       constexpr _Real _S_pimh
-	= _Real{1} / __gnu_cxx::numbers::__root_pi_v<_Real>;
-      constexpr _Tp _S_pid4 = __gnu_cxx::numbers::__pi_quarter_v<_Real>;
+	= _Real{1} / emsr::sqrtpi_v<_Real>;
+      constexpr _Tp _S_pid4 = emsr::pi_v<_Real> / _Real{4};
 
       constexpr _Cmplx _S_zone{1};
       constexpr std::size_t _S_ncoeffs = 18;
@@ -4383,7 +4384,7 @@
     __airy_hyperg_rational(_Tp __z)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
       constexpr _Cmplx _S_zone{1};
@@ -4476,9 +4477,9 @@
     public:
 
       using _Val = typename _Sum::value_type;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       static constexpr _Real _S_sqrt_pi
-	   = __gnu_cxx::numbers::__root_pi_v<_Real>;
+	   = emsr::sqrtpi_v<_Real>;
 
       _Airy_asymp_series(_Sum __proto)
       : _M_Asum(__proto),
@@ -4615,21 +4616,18 @@
     public:
 
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
-      static constexpr _Real _S_pi
-	   = __gnu_cxx::numbers::__pi_v<_Real>;
-      static constexpr _Real _S_sqrt_pi
-	   = __gnu_cxx::numbers::__root_pi_v<_Real>;
-      static constexpr _Real _S_pi_3
-	   = __gnu_cxx::numbers::__pi_third_v<_Real>;
+      static constexpr _Real _S_pi = emsr::pi_v<_Real>;
+      static constexpr _Real _S_sqrt_pi = emsr::sqrtpi_v<_Real>;
+      static constexpr _Real _S_pi_3 = emsr::pi_v<_Real> / _Real{3};
       static constexpr _Real _S_2pi_3 = _Real{2} * _S_pi_3;
       static constexpr _Real _S_pi_6 = _S_pi_3 / _Real{2};
       static constexpr _Real _S_5pi_6 = _Real{5} * _S_pi_6;
       static constexpr _Cmplx _S_i = _Cmplx{0, 1};
 
-      static constexpr auto _S_NaN = __gnu_cxx::__make_NaN<_Val>{}();
+      static constexpr auto _S_NaN = emsr::make_NaN<_Val>{}();
 
       constexpr _Airy() = default;
       _Airy(const _Airy&) = default;
@@ -4761,9 +4759,9 @@
     public:
 
       using _Val = typename _Sum::value_type;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       static constexpr _Real _S_pi
-	   = __gnu_cxx::numbers::__pi_v<_Real>;
+	   = emsr::pi_v<_Real>;
 
       _Scorer_asymp_series(_Sum __proto)
       : _M_Hsum(__proto), _M_Hpsum(__proto)
@@ -4845,17 +4843,16 @@
     public:
 
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
-      static constexpr _Real _S_pi_3
-	   = __gnu_cxx::numbers::__pi_third_v<_Real>;
+      static constexpr _Real _S_pi_3 = emsr::pi_v<_Real> / _Real{3};
       static constexpr _Real _S_2pi_3 = _Real{2} * _S_pi_3;
       static constexpr _Real _S_pi_6 = _S_pi_3 / _Real{2};
       static constexpr _Real _S_5pi_6 = _Real{5} * _S_pi_6;
       static constexpr _Cmplx _S_i = _Cmplx{0, 1};
 
-      static constexpr auto _S_NaN = __gnu_cxx::__make_NaN<_Val>{}();
+      static constexpr auto _S_NaN = emsr::make_NaN<_Val>{}();
 
       constexpr __scorer_t<_Val, _Val>
       operator()(_Val __y) const;
@@ -4891,7 +4888,7 @@
 
       __airy_t<_Cmplx, _Cmplx> __airy_sums = _Airy<_Val>()(__y);
       _Val _Bi{}, _Bip{};
-      if constexpr (__gnu_cxx::is_complex_v<_Val>)
+      if constexpr (emsr::is_complex_v<_Val>)
 	{
 	  _Bi = __airy_sums.__Bi_value;
 	  _Bip = __airy_sums.__Bi_deriv;
@@ -5212,7 +5209,7 @@ template<typename _Tp>
   run_airy()
   {
     using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using _Real = emsr::num_traits_t<_Val>;
     //using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(std::numeric_limits<_Real>::digits10);
@@ -5261,7 +5258,7 @@ template<typename _Tp>
   run_scorer()
   {
     using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using _Real = emsr::num_traits_t<_Val>;
     //using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(std::numeric_limits<_Real>::digits10);
@@ -5305,7 +5302,7 @@ template<typename _Tp>
   run_scorer_series()
   {
     using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using _Real = emsr::num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(std::numeric_limits<_Real>::digits10);
@@ -5347,7 +5344,7 @@ template<typename _Tp>
   diff_airy_series()
   {
     using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using _Real = emsr::num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
@@ -5410,7 +5407,7 @@ template<typename _Tp>
   diff_airy_asymp_p()
   {
     using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using _Real = emsr::num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
     _Airy_asymp<_Cmplx> airy_asymp;
@@ -5479,7 +5476,7 @@ template<typename _Tp>
   diff_airy_asymp_m()
   {
     using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using _Real = emsr::num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
     _Airy_asymp<_Cmplx> airy_asymp;
@@ -5548,7 +5545,7 @@ template<typename _Tp>
   diff_airy()
   {
     using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using _Real = emsr::num_traits_t<_Val>;
     //using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(std::numeric_limits<_Real>::digits10);
@@ -5661,7 +5658,7 @@ template<typename _Tp>
   diff_zeta()
   {
     using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using _Real = emsr::num_traits_t<_Val>;
     //using _Cmplx = std::complex<_Real>;
 
     std::cout.precision(std::numeric_limits<_Real>::digits10);
@@ -5702,7 +5699,7 @@ template<typename _Tp>
   plot_airy(std::string filename)
   {
     using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using _Real = emsr::num_traits_t<_Val>;
     //using _Cmplx = std::complex<_Real>;
 
     auto data = std::ofstream(filename);
@@ -5754,7 +5751,7 @@ template<typename _Tp>
   splot_airy(std::string filename)
   {
     using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using _Real = emsr::num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
     auto data = std::ofstream(filename);
@@ -5912,7 +5909,7 @@ template<typename _Tp>
   plot_scorer(std::string filename)
   {
     using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using _Real = emsr::num_traits_t<_Val>;
 
     auto data = std::ofstream(filename);
 
@@ -5959,7 +5956,7 @@ template<typename _Tp>
   plot_fgh(std::string filename)
   {
     using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using _Real = emsr::num_traits_t<_Val>;
 
     auto data = std::ofstream(filename);
 
@@ -6120,10 +6117,10 @@ namespace __gnu_cxx
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tp>
-    inline fp_promote_t<_Tp>
+    inline emsr::fp_promote_t<_Tp>
     scorer_gi(_Tp __x)
     {
-      using __type = fp_promote_t<_Tp>;
+      using __type = emsr::fp_promote_t<_Tp>;
       return std::__detail::__scorer_gi<__type>(__x);
     }
 
@@ -6164,10 +6161,10 @@ namespace __gnu_cxx
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tp>
-    inline fp_promote_t<_Tp>
+    inline emsr::fp_promote_t<_Tp>
     scorer_hi(_Tp __x)
     {
-      using __type = fp_promote_t<_Tp>;
+      using __type = emsr::fp_promote_t<_Tp>;
       return std::__detail::__scorer_hi<__type>(__x);
     }
 

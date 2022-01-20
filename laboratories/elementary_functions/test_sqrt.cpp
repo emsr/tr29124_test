@@ -7,7 +7,7 @@
 #include <cmath>
 #include <limits>
 
-#include <numbers> // For math constants.
+#include <emsr/math_constants.h> // For math constants.
 
 /**
  * 
@@ -18,7 +18,7 @@ template<typename _Tp>
   {
     const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
     const auto _S_digs = std::numeric_limits<_Tp>::digits;
-    constexpr auto __rsqrt2 = _Tp{1} / std::numbers::sqrt2_v<_Tp>;
+    constexpr auto __rsqrt2 = _Tp{1} / emsr::sqrt2_v<_Tp>;
 
     if (__x == _Tp{0})
       return _Tp{0};

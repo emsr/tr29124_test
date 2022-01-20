@@ -52,7 +52,7 @@
 
 #include <array>
 #include <numeric> // for gcd
-#include <ext/horner.h>
+#include <emsr/horner.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -1655,7 +1655,7 @@ _S_neg_double_factorial_table[999]
     constexpr _Tp
     __log_double_factorial(_Tp __nu)
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       return (__nu / _Tp{2}) * std::log(_Tp{2})
 	   + (__cos_pi(__nu) - _Tp{1})
 		* std::log(_S_pi / _Tp{2}) / _Tp{4}
@@ -1758,11 +1758,11 @@ _S_neg_double_factorial_table[999]
     __log_gamma_bernoulli(_Tp __x)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_eps = _Real{0.01L} * __gnu_cxx::__epsilon(_Real{});
       const auto _S_ln2pi
-	= __gnu_cxx::numbers::__ln_2_v<_Real>
-	+ __gnu_cxx::numbers::__ln_pi_v<_Real>;
+	= emsr::ln2_v<_Real>
+	+ emsr::lnpi_v<_Real>;
 
       auto __lg = (__x - _Real{0.5L}) * std::log(__x)
 		- __x + _Real{0.5L} * _S_ln2pi;
@@ -1940,8 +1940,8 @@ _S_neg_double_factorial_table[999]
     __spouge_binet1p(_Tp __z)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
-      const auto _S_sqrt_2pi = __gnu_cxx::numbers::__root_2_pi_v<_Real>;
+      using _Real = emsr::num_traits_t<_Val>;
+      const auto _S_sqrt_2pi = emsr::sqrttau_v<_Real>;
       const auto __c = __gamma_spouge_data<_Real>::_S_cheby;
 
       _Val __sum = _S_sqrt_2pi;
@@ -1984,16 +1984,16 @@ _S_neg_double_factorial_table[999]
     __spouge_log_gamma1p(_Tp __z)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
-      const auto _S_ln_pi = __gnu_cxx::numbers::__ln_pi_v<_Real>;
-      const auto _S_sqrt_2pi = __gnu_cxx::numbers::__root_2_pi_v<_Real>;
+      using _Real = emsr::num_traits_t<_Val>;
+      const auto _S_ln_pi = emsr::lnpi_v<_Real>;
+      const auto _S_sqrt_2pi = emsr::sqrttau_v<_Real>;
       auto __a = _Real{__gamma_spouge_data<_Real>::_S_cheby.size() + 1};
 
       // Reflection for z < -1.
       if (std::real(__z) < _Real{-1})
 	{
 	  auto __sin_fact = __sin_pi(__z);
-	  if (!__gnu_cxx::is_complex_v<_Val>)
+	  if (!emsr::is_complex_v<_Val>)
 	    __sin_fact = std::abs(__sin_fact);
 	  return _S_ln_pi - std::log(__sin_fact)
 			  - __spouge_log_gamma1p(-_Real{1} - __z);
@@ -2001,7 +2001,7 @@ _S_neg_double_factorial_table[999]
       else
 	{
 	  auto __sum = __spouge_binet1p(__z);
-	  if (!__gnu_cxx::is_complex_v<_Val>)
+	  if (!emsr::is_complex_v<_Val>)
 	    __sum = std::abs(__sum);
 	  return std::log(__sum)
 	       + (__z + _Real{0.5L}) * std::log(__z + __a)
@@ -2124,9 +2124,9 @@ _S_neg_double_factorial_table[999]
     __lanczos_binet1p(_Tp __z)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
-      const auto _S_ln_pi = __gnu_cxx::numbers::__ln_pi_v<_Real>;
-      const auto _S_sqrt_2pi = __gnu_cxx::numbers::__root_2_pi_v<_Real>;
+      using _Real = emsr::num_traits_t<_Val>;
+      const auto _S_ln_pi = emsr::lnpi_v<_Real>;
+      const auto _S_sqrt_2pi = emsr::sqrttau_v<_Real>;
       const auto __c = __gamma_lanczos_data<_Real>::_S_cheby;
       auto __g =  __gamma_lanczos_data<_Real>::_S_g;
 
@@ -2158,14 +2158,14 @@ _S_neg_double_factorial_table[999]
     __lanczos_log_gamma1p(_Tp __z)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
-      const auto _S_ln_pi = __gnu_cxx::numbers::__ln_pi_v<_Real>;
+      using _Real = emsr::num_traits_t<_Val>;
+      const auto _S_ln_pi = emsr::lnpi_v<_Real>;
       auto __g =  __gamma_lanczos_data<_Real>::_S_g;
       // Reflection for z < -1.
       if (std::real(__z) < _Real{-1})
         {
 	  auto __sin_fact = __sin_pi(__z);
-	  if (!__gnu_cxx::is_complex_v<_Val>)
+	  if (!emsr::is_complex_v<_Val>)
 	    __sin_fact = std::abs(__sin_fact);
 	  return _S_ln_pi - std::log(__sin_fact)
 			  - __lanczos_log_gamma1p(-_Real{1} - __z);
@@ -2173,7 +2173,7 @@ _S_neg_double_factorial_table[999]
       else
         {
 	  auto __sum = __lanczos_binet1p(__z);
-	  if (!__gnu_cxx::is_complex_v<_Val>)
+	  if (!emsr::is_complex_v<_Val>)
 	    __sum = std::abs(__sum);
 	  return std::log(__sum)
 	       + (__z + _Real{0.5L}) * std::log(__z + __g + _Real{0.5L})
@@ -2201,7 +2201,7 @@ _S_neg_double_factorial_table[999]
     _Tp
     __gamma_reciprocal_series(_Tp __a)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<_Tp>;
 
       static constexpr std::array<long double, 31>
       _S_c
@@ -2269,14 +2269,14 @@ _S_neg_double_factorial_table[999]
     _Tp
     __gamma_reciprocal(_Tp __a)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<_Tp>;
 
       if (std::isnan(__a))
 	return __gnu_cxx::__quiet_NaN(__a);
       else
 	{
-	  const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
-	  const auto __an = __gnu_cxx::__fp_is_integer(__a);
+	  const auto _S_pi = emsr::pi_v<_Real>;
+	  const auto __an = emsr::fp_is_integer(__a);
 	  if (__an)
 	    {
 	      auto __n = __an();
@@ -2326,9 +2326,9 @@ _S_neg_double_factorial_table[999]
     __log_gamma(_Tp __a)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
-      const auto _S_logpi = __gnu_cxx::numbers::__ln_pi_v<_Tp>;
+      const auto _S_logpi = emsr::lnpi_v<_Tp>;
       if (std::real(__a) < _Real{0.5L})
 	{
 	  const auto __sin_fact = std::abs(__sin_pi(__a));
@@ -2361,11 +2361,11 @@ _S_neg_double_factorial_table[999]
     __log_gamma(std::complex<_Tp> __a)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
-      const auto _S_logpi = __gnu_cxx::numbers::__ln_pi_v<_Real>;
-      auto __an = __gnu_cxx::__fp_is_integer(__a);
+      const auto _S_logpi = emsr::lnpi_v<_Real>;
+      auto __an = emsr::fp_is_integer(__a);
       if (__an)
 	{
 	  auto __n = __an();
@@ -2435,7 +2435,7 @@ _S_neg_double_factorial_table[999]
     __log_binomial(unsigned int __n, unsigned int __k)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       if (__k > __n)
 	return -_Val(__gnu_cxx::__infinity<_Real>());
       else if (__k == 0 || __k == __n)
@@ -2539,7 +2539,7 @@ _S_neg_double_factorial_table[999]
     __binomial(unsigned int __n, unsigned int __k)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       // Max e exponent before overflow.
       const auto __max_binom
                       = __gnu_cxx::__max_exponent10<_Real>()
@@ -2599,7 +2599,7 @@ _S_neg_double_factorial_table[999]
     __binomial(_Tp __nu, unsigned int __k)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       // Max e exponent before overflow.
       auto __n = int(std::nearbyint(__nu));
       if (std::isnan(__nu))
@@ -2640,8 +2640,8 @@ _S_neg_double_factorial_table[999]
     __gamma(_Tp __a)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
-      auto __an = __gnu_cxx::__fp_is_integer(__a);
+      using _Real = emsr::num_traits_t<_Val>;
+      auto __an = emsr::fp_is_integer(__a);
       if (__an)
 	{
 	  auto __n = __an();
@@ -2677,13 +2677,13 @@ _S_neg_double_factorial_table[999]
     __gamma_series(_Tp __a, _Tp __x)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_eps = _Real{3} * __gnu_cxx::__epsilon(__a);
       const auto _S_itmax = 10 * int(10 + std::sqrt(std::abs(__a)));
 
       auto __lngam = __log_gamma(__a);
       auto __sign = __log_gamma_sign(__a);
-      auto __ia = __gnu_cxx::__fp_is_integer(__a);
+      auto __ia = emsr::fp_is_integer(__a);
 
       if (__ia && __ia() <= 0)
 	std::__throw_domain_error(__N("__gamma_series: "
@@ -2722,7 +2722,7 @@ _S_neg_double_factorial_table[999]
     __gamma_cont_frac(_Tp __a, _Tp __x)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_fpmin = _Real{3} * __gnu_cxx::__lim_min(__a);
       const auto _S_eps = _Real{3} * __gnu_cxx::__epsilon(__a);
       const auto _S_itmax = 10 * int(10 + std::sqrt(std::abs(__a)));
@@ -2767,13 +2767,13 @@ _S_neg_double_factorial_table[999]
     __gamma(_Tp __a, _Tp __x)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__a);
 
       if (std::isnan(__a) || std::isnan(__x))
 	return std::make_pair(_S_NaN, _S_NaN);
 
-      auto __ia = __gnu_cxx::__fp_is_integer(__a);
+      auto __ia = emsr::fp_is_integer(__a);
       if (__ia && __ia() <= 0)
 	std::__throw_domain_error(__N("__gamma: "
 				      "non-positive integer argument a"));
@@ -2806,13 +2806,13 @@ _S_neg_double_factorial_table[999]
     __gamma_p(_Tp __a, _Tp __x)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__a);
 
       if (std::isnan(__a) || std::isnan(__x))
 	return _S_NaN;
 
-      auto __ia = __gnu_cxx::__fp_is_integer(__a);
+      auto __ia = emsr::fp_is_integer(__a);
       if (__ia && __ia() <= 0)
 	std::__throw_domain_error(__N("__gamma_p: "
 				      "non-positive integer argument a"));
@@ -2840,13 +2840,13 @@ _S_neg_double_factorial_table[999]
     __gamma_q(_Tp __a, _Tp __x)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__a);
 
       if (std::isnan(__a) || std::isnan(__x))
 	return _S_NaN;
 
-      auto __ia = __gnu_cxx::__fp_is_integer(__a);
+      auto __ia = emsr::fp_is_integer(__a);
       if (__ia && __ia() <= 0)
 	std::__throw_domain_error(__N("__gamma_q: "
 				      "non-positive integer argument a"));
@@ -2869,13 +2869,13 @@ _S_neg_double_factorial_table[999]
     __tgamma_lower(_Tp __a, _Tp __x)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__a);
 
       if (std::isnan(__a) || std::isnan(__x))
 	return _S_NaN;
 
-      auto __ia = __gnu_cxx::__fp_is_integer(__a);
+      auto __ia = emsr::fp_is_integer(__a);
       if (__ia && __ia() <= 0)
 	std::__throw_domain_error(__N("__tgamma_lower: "
 				      "non-positive integer argument a"));
@@ -2904,13 +2904,13 @@ _S_neg_double_factorial_table[999]
     __tgamma(_Tp __a, _Tp __x)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__a);
 
       if (std::isnan(__a) || std::isnan(__x))
 	return _S_NaN;
 
-      auto __ia = __gnu_cxx::__fp_is_integer(__a);
+      auto __ia = emsr::fp_is_integer(__a);
       if (__ia && __ia() <= 0)
 	std::__throw_domain_error(__N("__tgamma: "
 				      "non-positive integer argument a"));
@@ -2942,9 +2942,9 @@ _S_neg_double_factorial_table[999]
     __falling_factorial(_Tp __a, int __n)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon<_Val>();
-      const auto __ia = __gnu_cxx::__fp_is_integer(__a);
+      const auto __ia = emsr::fp_is_integer(__a);
 
       if (std::isnan(__a))
 	return __gnu_cxx::__quiet_NaN(_Real{});
@@ -2997,11 +2997,11 @@ _S_neg_double_factorial_table[999]
     __falling_factorial(_Tp __a, _Tp __nu)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon<_Val>();
       const auto _S_inf = __gnu_cxx::__infinity<_Val>();
-      const auto __inu = __gnu_cxx::__fp_is_integer(__nu);
-      const auto __ia = __gnu_cxx::__fp_is_integer(__a);
+      const auto __inu = emsr::fp_is_integer(__nu);
+      const auto __ia = emsr::fp_is_integer(__a);
 
       if (std::isnan(__nu) || std::isnan(__a))
 	return __gnu_cxx::__quiet_NaN(_Real{});
@@ -3051,12 +3051,12 @@ _S_neg_double_factorial_table[999]
     __log_falling_factorial(_Tp __a, _Tp __nu)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN<_Val>();
       const auto _S_eps = __gnu_cxx::__epsilon<_Val>();
       const auto _S_inf = __gnu_cxx::__infinity<_Val>();
-      const auto __inu = __gnu_cxx::__fp_is_integer(__nu);
-      const auto __ia = __gnu_cxx::__fp_is_integer(__a);
+      const auto __inu = emsr::fp_is_integer(__nu);
+      const auto __ia = emsr::fp_is_integer(__a);
 
       if (std::isnan(__nu) || std::isnan(__a))
 	return _S_NaN;
@@ -3101,7 +3101,7 @@ _S_neg_double_factorial_table[999]
     __rising_factorial(_Tp __a, int __n)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon<_Real>();
 
       if (std::isnan(__a))
@@ -3200,7 +3200,7 @@ _S_neg_double_factorial_table[999]
     __log_rising_factorial(_Tp __a, _Tp __nu)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
 
       if (std::isnan(__nu) || std::isnan(__a))
 	return __gnu_cxx::__quiet_NaN(__a);
@@ -3317,8 +3317,8 @@ _S_neg_double_factorial_table[999]
     _Tp
     __digamma(unsigned int __n)
     {
-      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
-      constexpr auto _S_gamma_E = __gnu_cxx::numbers::__gamma_e_v<_Val>;
+      using _Val = emsr::num_traits_t<_Tp>;
+      constexpr auto _S_gamma_E = emsr::egamma_v<_Val>;
       if (__n > 1)
 	return -_S_gamma_E + __harmonic_number<_Val>(__n - 1);
       else
@@ -3342,8 +3342,8 @@ _S_neg_double_factorial_table[999]
     _Tp
     __digamma_series(_Tp __x)
     {
-      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
-      _Tp __sum = -__gnu_cxx::numbers::__gamma_e_v<_Val>;
+      using _Val = emsr::num_traits_t<_Tp>;
+      _Tp __sum = -emsr::egamma_v<_Val>;
       const unsigned int _S_max_iter = 100000;
       for (unsigned int __k = 0; __k < _S_max_iter; ++__k)
 	{
@@ -3374,7 +3374,7 @@ _S_neg_double_factorial_table[999]
     _Tp
     __digamma_asymp(_Tp __x)
     {
-      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Val = emsr::num_traits_t<_Tp>;
       auto __sum = std::log(__x) - _Val{0.5L} / __x;
       const auto __xx = __x * __x;
       auto __xp = __xx;
@@ -3407,15 +3407,15 @@ _S_neg_double_factorial_table[999]
     _Tp
     __digamma(_Tp __x)
     {
-      using _Val = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Val = emsr::num_traits_t<_Tp>;
       const auto _S_eps = _Val{4} * __gnu_cxx::__epsilon<_Val>();
       const auto _S_x_asymp = _Val{20};
-      const auto _S_gamma_E = __gnu_cxx::numbers::__gamma_e_v<_Val>;
-      const auto _S_2_ln_2 = _Tp{2} * __gnu_cxx::numbers::__ln_2_v<_Val>;
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Val>;
+      const auto _S_gamma_E = emsr::egamma_v<_Val>;
+      const auto _S_2_ln_2 = _Tp{2} * emsr::ln2_v<_Val>;
+      const auto _S_pi = emsr::pi_v<_Val>;
 
-      const auto __n = __gnu_cxx::__fp_is_integer(__x);
-      const auto __m = __gnu_cxx::__fp_is_half_odd_integer(__x);
+      const auto __n = emsr::fp_is_integer(__x);
+      const auto __m = emsr::fp_is_half_odd_integer(__x);
       if (std::real(__x) <= _Val{0})
 	{
 	  if (__n)
@@ -3467,7 +3467,7 @@ _S_neg_double_factorial_table[999]
     {
       if (__m == 0)
 	return __digamma(__x);
-      else if (const auto __n = __gnu_cxx::__fp_is_integer(__x);
+      else if (const auto __n = emsr::fp_is_integer(__x);
 		__n && __n() <= 0)
 	{
 	  return __gnu_cxx::__quiet_NaN(__x);

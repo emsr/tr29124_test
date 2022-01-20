@@ -23,8 +23,8 @@ template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
     using _ARet = decltype(_M_num(0ull, _Tp{}));
     using _BRet = decltype(_M_den(0ull, _Tp{}));
     using _Ret = decltype(_ARet(0, _Tp{}) / _BRet(0, _Tp{}));
-    using _Val = __gnu_cxx::fp_promote_t<_Tp, _ARet, _BRet>;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using _Val = emsr::fp_promote_t<_Tp, _ARet, _BRet>;
+    using _Real = emsr::num_traits_t<_Val>;
 
     const _Real _S_fp_min = std::numeric_limits<_Real>::min();
 

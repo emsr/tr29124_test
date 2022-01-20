@@ -263,10 +263,10 @@
   { return __erf_inv<long double>(__p); }
 
   template<typename _Tp>
-    inline __gnu_cxx::fp_promote_t<_Tp>
+    inline emsr::fp_promote_t<_Tp>
     erf_inv(_Tp __p)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Tp>;
+      using __type = emsr::fp_promote_t<_Tp>;
       return __erf_inv<__type>(__p);
     }
 
@@ -279,10 +279,10 @@
   { return __erfc_inv<long double>(__q); }
 
   template<typename _Tp>
-    inline __gnu_cxx::fp_promote_t<_Tp>
+    inline emsr::fp_promote_t<_Tp>
     erfc_inv(_Tp __q)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Tp>;
+      using __type = emsr::fp_promote_t<_Tp>;
       return __erfc_inv<__type>(__q);
     }
 

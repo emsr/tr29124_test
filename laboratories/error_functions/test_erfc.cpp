@@ -25,10 +25,10 @@ namespace __detail
     _Tp
     __erfc_series(_Tp __z)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<_Tp>;
       const auto _S_max_iter = 1000;
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__z));
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
+      const auto _S_pi = emsr::pi_v<_Real>;
 
       const auto __h = _Real{1} / _Real{2};
 
@@ -82,8 +82,8 @@ namespace __detail
     _Tp
     __erfc_cont_frac(_Tp __z)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
-      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Real>;
+      using _Real = emsr::num_traits_t<_Tp>;
+      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Real>;
       const auto __a = [](size_t __k, _Tp /*__z*/)
 		 ->_Tp
 		 { return __k == 1 ? _Tp{1} : _Tp(__k - 1) / _Tp{2}; };
@@ -117,10 +117,10 @@ namespace __detail
     _Tp
     __fadeeva_cont_frac(_Tp __z)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
       const auto _S_i = _Cmplx{0, 1};
-      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Real>;
+      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Real>;
       const auto __a = [](size_t __k, _Tp /*__z*/)
 		 ->_Tp
 		 { return __k == 1 ? _Tp{1} : _Tp(__k - 1) / _Tp{2}; };
@@ -154,7 +154,7 @@ namespace __detail
     _Tp
     __erfc_cont_frac_even(_Tp __z)
     {
-      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
+      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
       const auto __a = [](size_t __k, _Tp __z)
 		 ->_Tp
 		 { return __k == 1
@@ -185,7 +185,7 @@ namespace __detail
     _Tp
     __fadeeva(_Tp __z)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__z));
       const auto _S_i = _Cmplx{0, 1};
@@ -261,7 +261,7 @@ namespace __detail
     __erfc_asymp(int __k, _Tp __x)
     {
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
+      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
       const auto _S_max_iter = 200;
       const auto __2x = _Tp{2} * __x;
       const auto __2xm2 = -_Tp{1} / (__2x * __2x);
@@ -311,7 +311,7 @@ namespace __detail
     _Tp
     __erfc_recur(int __k, _Tp __x)
     {
-      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
+      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
 
       auto __erfcm2 = _Tp{2} * std::exp(-__x * __x) / _S_sqrt_pi;
       if (__k == -1)

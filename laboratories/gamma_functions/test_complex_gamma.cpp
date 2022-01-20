@@ -19,7 +19,7 @@
 #include <cmath>
 #include <limits>
 
-#include <ext/math_constants.h>
+#include <emsr/math_constants.h>
 
 template<typename _Tp>
   struct __value_type
@@ -88,7 +88,7 @@ template<typename _Tp>
 
       const _Tp __term1 = (__xm1 + _Tp(0.5L))
                         * std::log((__xm1 + _Tp(7.5L))
-                       / __gnu_cxx::numbers::__gamma_e_v<_Val>);
+                       / emsr::egamma_v<_Val>);
       const _Tp __term2 = __LOGROOT2PI + std::log(__sum);
       const _Tp __result = __term1 + (__term2 - _Tp(7L));
 
@@ -115,12 +115,12 @@ template<typename _Tp>
       else
         {
           const _Tp __sin_fact
-                 = __sin_fact_helper(std::sin(__gnu_cxx::numbers::__pi_v<_Val> * __x));
+                 = __sin_fact_helper(std::sin(emsr::pi_v<_Val> * __x));
           if (__sin_fact == _Tp(0))
             //std::__throw_domain_error(__N("Argument is nonpositive integer "
             //                              "in __log_gamma"));
             throw std::domain_error("Argument is nonpositive integer in __log_gamma");
-          return __gnu_cxx::numbers::__ln_pi_v<_Val>
+          return emsr::lnpi_v<_Val>
                      - std::log(__sin_fact)
                      - __log_cccgamma_lanczos(_Tp(1) - __x);
         }

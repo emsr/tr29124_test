@@ -81,7 +81,7 @@
 	  if ((__n / 2) % 2 == 0)
 	    __fact *= -1;
 	  for (auto __k = 1u; __k <= __n; ++__k)
-	    __fact *= __k / __gnu_cxx::numbers::__pi_v<_Tp>;
+	    __fact *= __k / emsr::pi_v<_Tp>;
 	  __fact *= _Tp(2);
 
 	  _Tp __sum = _Tp(0);
@@ -263,10 +263,10 @@
 	return _Tp{0};
       else
 	{
-	  const auto _S_e = __gnu_cxx::numbers::__e_v<_Tp>;
-	  const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+	  const auto _S_e = emsr::e_v<_Tp>;
+	  const auto _S_pi = emsr::pi_v<_Tp>;
 	  const auto __n2 = _Tp(__n * __n);
-	  return __gnu_cxx::__parity<_Tp>(__n / 2) * _Tp{8}
+	  return emsr::parity<_Tp>(__n / 2) * _Tp{8}
 		* std::sqrt(_Tp(__n) / _S_pi)
 		* std::pow(_Tp(4 * __n) / (_S_pi * _S_e)
 			 * (__n2 + _Tp{9} / _Tp{480})
@@ -484,7 +484,6 @@
       using std::__detail::__log_binomial;
       using std::__detail::__log_binomial_sign;
       using std::__detail::__binomial;
-      using __gnu_cxx::__parity;
       if (2 * __n - __m > std::__detail::_S_num_factorials<_Tp> / 2)
 	{
 	  auto _S1 = _Tp{0};
@@ -496,7 +495,7 @@
 	      const auto __slbc1 = __log_binomial_sign<_Tp>(__n - 1 + __k, __nmpk);
 	      const auto __lbc2 = __log_binomial<_Tp>(2 * __n - __m, __nmmk);
 	      const auto __slbc2 = __log_binomial_sign<_Tp>(2 * __n - __m, __nmmk);
-	      _S1 += __parity<_Tp>(__k) * __slbc1 * __slbc2
+	      _S1 += emsr::parity<_Tp>(__k) * __slbc1 * __slbc2
 		   * std::exp(__lbc1 + __lbc2 + __log_stirling_2<_Tp>(__nmpk, __k));
 	    }
 	  return _S1;
@@ -508,7 +507,7 @@
 	    {
 	      const auto __nmpk = __n - __m + __k;
 	      const auto __nmmk = __n - __m - __k;
-	      _S1 += __parity<_Tp>(__k)
+	      _S1 += emsr::parity<_Tp>(__k)
 		   * __binomial<_Tp>(__n - 1 + __k, __nmpk)
 		   * __binomial<_Tp>(2 * __n - __m, __nmmk)
 		   * __stirling_2<_Tp>(__nmpk, __k);

@@ -97,12 +97,12 @@ namespace __detail
    * @param[in]  __lambda  The order of the Gegenbauer polynomial
    */
   template<typename _Tp>
-    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
+    std::vector<emsr::QuadraturePoint<_Tp>>
     __gegenbauer_zeros(unsigned int __n, _Tp __lambda)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__lambda);
       const unsigned int _S_maxit = 1000u;
-      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
+      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
 
       _Tp __z;
       _Tp __w;

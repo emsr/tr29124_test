@@ -68,7 +68,7 @@ bessel_cheb(double x, double& gam1, double& gam2, double& gampl, double& gammi)
 		  _Tp & __gam1, _Tp & __gam2, _Tp & __gampl, _Tp & __gammi)
     {
       constexpr _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
-      constexpr _Tp _S_gamma_E = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
+      constexpr _Tp _S_gamma_E = emsr::egamma_v<_Tp>;
       __gampl = _Tp{1} / std::tgamma(_Tp{1} + __mu);
       __gammi = _Tp{1} / std::tgamma(_Tp{1} - __mu);
 
@@ -242,7 +242,7 @@ template<typename _Tp>
   void
   new_bessel_chunk(_Tp __nu, _Tp __x, _Tp& _Jnu, _Tp& _Jpnu, _Tp& _Nnu, _Tp& _Npnu)
   {
-      constexpr _Tp _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      constexpr _Tp _S_pi = emsr::pi_v<_Tp>;
       constexpr _Tp _S_inf = std::numeric_limits<_Tp>::infinity();
       constexpr _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
       if (__x == _Tp{0})

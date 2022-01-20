@@ -18,7 +18,7 @@ template<typename _Tp>
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto _S_pi = emsr::pi_v<_Tp>;
 
     const auto del1 = _Tp{1} / _Tp{10};
     const auto del01 = _Tp{1} / _Tp{100};
@@ -63,7 +63,7 @@ template<typename _Tp>
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto _S_pi = emsr::pi_v<_Tp>;
 
     std::cout << "\n\n\n";
     _Tp q0 = _Tp{0.15L};

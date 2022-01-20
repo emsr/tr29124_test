@@ -9,6 +9,7 @@ Makefile
 Testing/
 bin/
 lib/
+build/
 cmake_install.cmake
 
 # Build files...

@@ -82,7 +82,7 @@ namespace __detail
     __gnu_cxx::__legendre_p_t<_Tp>
     __legendre_p(unsigned int __l, _Tp __x)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<_Tp>;
       using __ret_t = __gnu_cxx::__legendre_p_t<_Tp>;
 
       const auto __lge1 = __l >= 1 ? _Tp{+1} : _Tp{0};
@@ -162,7 +162,7 @@ namespace __detail
     __gnu_cxx::__legendre_q_t<_Tp>
     __legendre_q(unsigned int __l, _Tp __x)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
       const auto _S_inf = __gnu_cxx::__infinity(_Real{});
       if (std::isnan(__x))
@@ -239,7 +239,7 @@ namespace __detail
     __assoc_legendre_p(unsigned int __l, unsigned int __m, _Tp __x,
 		       _Tp __phase = _Tp{+1})
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<_Tp>;
       if (__m > __l)
 	return {__l, __m, __x, _Tp{0}, _Tp{0}, _Tp{0}};
       else if (std::isnan(__x))
@@ -297,7 +297,7 @@ namespace __detail
     __assoc_legendre_q(unsigned int __l, unsigned int __m, _Tp __x,
 		       _Tp __phase = _Tp{+1})
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<_Tp>;
       if (std::isnan(__x))
 	{
 	  const auto _NaN = __gnu_cxx::__quiet_NaN(_Real{});
@@ -417,7 +417,7 @@ namespace __detail
 	{
 	  auto _P_l = __legendre_p(__l, __x).__P_l;
 	  _Tp __fact = std::sqrt(_Tp(2 * __l + 1)
-		     / (_Tp{4} * __gnu_cxx::numbers::__pi_v<_Tp>));
+		     / (_Tp{4} * emsr::pi_v<_Tp>));
 	  _P_l *= __fact;
 	  return _P_l;
 	}
@@ -437,10 +437,10 @@ namespace __detail
 	  const auto __lnpoch = __log_gamma(_Tp(__m + 0.5L))
 			      - __log_gamma(_Tp(__m));
 	  const auto __lnpre_val =
-		     -_Tp{0.25L} * __gnu_cxx::numbers::__ln_pi_v<_Tp>
+		     -_Tp{0.25L} * emsr::lnpi_v<_Tp>
 		     + _Tp{0.5L} * (__lnpoch + __m * __lncirc);
 	  const auto __sr = std::sqrt((_Tp{2} + _Tp{1} / __m)
-			  / (_Tp{4} * __gnu_cxx::numbers::__pi_v<_Tp>));
+			  / (_Tp{4} * emsr::pi_v<_Tp>));
 	  auto _Y_mm = __sgn * __sr * std::exp(__lnpre_val);
 	  auto _Y_mp1m = _Y_mp1m_factor * _Y_mm;
 
@@ -515,14 +515,14 @@ namespace __detail
    * for the Legendre polynomial of degree @c l.
    */
   template<typename _Tp>
-    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
+    std::vector<emsr::QuadraturePoint<_Tp>>
     __legendre_zeros(unsigned int __l, _Tp proto = _Tp{})
     {
       const auto _S_eps = __gnu_cxx::__epsilon(proto);
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const unsigned int _S_maxit = 1000u;
 
-      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__l);
+      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__l);
 
       auto __m = __l / 2;
 

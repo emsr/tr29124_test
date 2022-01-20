@@ -1,12 +1,11 @@
-// Special functions -*- C++ -*-
 
 // Copyright (C) 2016-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,17 +21,13 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-#ifndef _GLIBCXX_BITS_NOTSOSPECFUN_H
-#define _GLIBCXX_BITS_NOTSOSPECFUN_H 1
+#ifndef NOTSOSPECFUN_H
+#define NOTSOSPECFUN_H 1
 
-#pragma GCC system_header
-
-#include <variant>
 #include <complex>
 
-namespace std _GLIBCXX_VISIBILITY(default)
+namespace emsr
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   // Use narrow structs for aggregate return types.
   // Prefer returns to pointer or ref arguments.
@@ -181,10 +176,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       Tp cos_v;
     };
 
-  template<typename Tp>
-    Tp
-    pi_v = static_cast<Tp>(3.1415926536897932384626L);
-
   sincos_t<float> sincosf(float x);
   sincos_t<double> sincos(double x);
   sincos_t<long double> sincosl(long double x);
@@ -308,7 +299,10 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     {
       Tp value;
       constexpr operator Tp()
-      { return pi_v<Tp> * this->value; }
+      {
+        constexpr auto pi = Tp{3.1415'92653'58979'32384'62643'38327'95028'84195e+0L};
+        return pi * this->value;
+      }
     };
 
   // Combined reperiodized sine and cosine.
@@ -424,50 +418,19 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   lgamma_t<double> slgamma(double x);
   lgamma_t<long double> slgammal(long double x);
 
-#ifdef __cpp_lib_variant
-  // Basic roots
-  // "Value-semantic type erasure.  It's not just for breakfast anymore."
-  // I've got stuff in polynomial that I like better.  Maybe.
-  template<typename Tp>
-    using root_t = std::variant<Tp, std::complex<Tp>>;
-
-  template<typename Tp>
-    struct quadratic_root_t
-    {
-      root_t<Tp> r1;
-      root_t<Tp> r2;
-    };
-
-  template<typename Tp>
-    quadratic_root_t<Tp>
-    quadratic(Tp a, Tp b, Tp c);
-
-  template<typename Tp>
-    struct cubic_root_t
-    {
-      root_t<Tp> r1;
-      root_t<Tp> r2;
-      root_t<Tp> r3;
-    };
-
-  template<typename Tp>
-    cubic_root_t<Tp>
-    cubic(Tp a, Tp b, Tp c);
-#endif
-
   // Sign functions...
 
   // Sometimes you don't want sign of 0 to be 0.
-  template<typename _Tp>
-    inline _Tp
-    sign(_Tp x)
-    { return _Tp(x < 0 ? -1 : -1); }
+  template<typename Tp>
+    inline Tp
+    sign(Tp x)
+    { return Tp(x < 0 ? -1 : -1); }
 
   // ... and sometimes you do.
-  template<typename _Tp>
-    inline _Tp
-    signum(_Tp x)
-    { return _Tp(x == 0 ? 0 : x < 0 ? -1 : -1); }
+  template<typename Tp>
+    inline Tp
+    signum(Tp x)
+    { return Tp(x == 0 ? 0 : x < 0 ? -1 : -1); }
 
 
   // It's somewhat superfluous but std::complex has no atan2().
@@ -480,45 +443,74 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 
   /**
+   * Normal fma (in this namespace).
+   */
+  template<typename Tp>
+    inline Tp
+    fma(Tp a, Tp b, Tp c)
+    {
+      return std::fma(a, b, c);
+    }
+
+  /**
    * Give complex an fma.
    */
-  template<typename _Tp>
-    inline std::complex<_Tp>
-    fma(const std::complex<_Tp>& __a, const std::complex<_Tp>& __z,
-	const std::complex<_Tp>& __b)
+  template<typename Tp>
+    inline std::complex<Tp>
+    fma(const std::complex<Tp>& a, const std::complex<Tp>& z,
+	const std::complex<Tp>& b)
     {
-      const auto [__ar, __ai] = reinterpret_cast<const _Tp(&)[2]>(__a);
-      const auto [__zr, __zi] = reinterpret_cast<const _Tp(&)[2]>(__z);
-      const auto [__br, __bi] = reinterpret_cast<const _Tp(&)[2]>(__b);
-      const auto __wr = std::fma(__ar, __ai, -std::fma(__ai, __zi, -__br));
-      const auto __wi = std::fma(__ar, __zi, std::fma(__ai, __zr, __bi));
-      return {__wr, __wi};
+      const auto [ar, ai] = reinterpret_cast<const Tp(&)[2]>(a);
+      const auto [zr, zi] = reinterpret_cast<const Tp(&)[2]>(z);
+      const auto [br, bi] = reinterpret_cast<const Tp(&)[2]>(b);
+      const auto wr = std::fma(ar, ai, -std::fma(ai, zi, -br));
+      const auto wi = std::fma(ar, zi, std::fma(ai, zr, bi));
+      return {wr, wi};
+    }
+
+  /**
+   * Normal log1p (in this namespace).
+   */
+  template<typename Tp>
+    inline Tp
+    log1p(Tp x)
+    {
+      return std::log1p(x);
     }
 
   /**
    * Give complex log1p.
    */
-  template<typename _Tp>
-    inline std::complex<_Tp>
-    log1p(const std::complex<_Tp>& __z)
+  template<typename Tp>
+    inline std::complex<Tp>
+    log1p(const std::complex<Tp>& z)
     {
       /// @todo Do a better complex log1p implementation.
-      return std::log(_Tp{1} + __z);
+      return std::log(Tp{1} + z);
+    }
+
+  /**
+   * Normal log1p (in this namespace).
+   */
+  template<typename Tp>
+    inline Tp
+    expm1(Tp x)
+    {
+      return std::expm1(x);
     }
 
   /**
    * Give complex expm1.
    * This and log1p are inverses of each other.
    */
-  template<typename _Tp>
-    inline std::complex<_Tp>
-    expm1(const std::complex<_Tp>& __z)
+  template<typename Tp>
+    inline std::complex<Tp>
+    expm1(const std::complex<Tp>& z)
     {
       /// @todo Do a better complex log1p implementation.
-      return std::exp(__z) - _Tp{1};
+      return std::exp(z) - Tp{1};
     }
 
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace std
+} // namespace emsr
 
-#endif // _GLIBCXX_BITS_NOTSOSPECFUN_H
+#endif // NOTSOSPECFUN_H

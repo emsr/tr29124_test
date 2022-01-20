@@ -61,8 +61,8 @@ namespace __detail
     _Tp
     __exp2(_Tp __x)
     {
-      if constexpr (__gnu_cxx::is_complex_v<_Tp>)
-	return std::pow(__gnu_cxx::__num_traits_t<_Tp>{2}, __x);
+      if constexpr (emsr::is_complex_v<_Tp>)
+	return std::pow(emsr::num_traits_t<_Tp>{2}, __x);
       else
 	return std::exp2(__x);
     }
@@ -244,10 +244,10 @@ namespace __detail
     __dilog(_Tp __x)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       constexpr unsigned long long _S_maxit = 100000ULL;
       const auto _S_eps = 10 * __gnu_cxx::__epsilon(_Real{});
-      const auto _S_pipio6 = __gnu_cxx::numbers::__pi_sqr_div_6_v<_Real>;
+      const auto _S_pipio6 = emsr::pi_sqr_div_6_v<_Real>;
       if (std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(_Real{});
       else if (__x > _Tp{+1})
@@ -312,7 +312,7 @@ namespace __detail
     __riemann_zeta_laurent(_Tp __s)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
       const auto __arg = __s - _Val{1};
       auto __argk = _Val{1};
@@ -346,7 +346,7 @@ namespace __detail
     __riemann_zeta_sum(_Tp __s)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       // A user shouldn't get to this.
       if (std::real(__s) < _Real{1})
 	std::__throw_domain_error(__N("__riemann_zeta_sum: "
@@ -369,7 +369,7 @@ namespace __detail
 	}
       else
 	{
-	  const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
+	  const auto _S_pi = emsr::pi_v<_Real>;
 	  auto __zeta = std::pow(_Real{2} * _S_pi, __s)
 		      * __sin_pi(_Real{0.5L} * __s) * __gamma(_Val{1} - __s)
 		      * __riemann_zeta_sum(_Val{1} - __s) / _S_pi;
@@ -389,7 +389,7 @@ namespace __detail
     __riemann_zeta_euler_maclaurin(_Tp __s)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
       const auto _S_N = 10 + __gnu_cxx::__digits10(_Real{}) / _Tp{2};
       const auto _S_jmax = _Num_Euler_Maclaurin_zeta - 1;
@@ -448,7 +448,7 @@ namespace __detail
     __riemann_zeta_m_1_glob(_Tp __s)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
       //  Max e exponent before overflow.
       const auto __max_binom
@@ -499,16 +499,16 @@ namespace __detail
     __riemann_zeta_glob(_Tp __s)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
 
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
-      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
+      const auto _S_pi = emsr::pi_v<_Real>;
+      const auto _S_pi_2 = emsr::pi_v<_Real> / _Real{2};
 
       //  This series works until the binomial coefficient blows up
       //  so use reflection.
       if (std::real(__s) < _Real{0})
 	{
-	  if (__gnu_cxx::__fp_is_even_integer(__s))
+	  if (emsr::fp_is_even_integer(__s))
 	    return _Val{0};
 	  else
 	    {
@@ -549,7 +549,7 @@ namespace __detail
     __riemann_zeta_product(_Tp __s)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
 
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
 
@@ -714,13 +714,13 @@ namespace __detail
     _Tp
     __riemann_zeta_m_1(_Tp __s)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
+      const auto _S_pi = emsr::pi_v<_Real>;
       if (__s == _Real{1})
 	return __gnu_cxx::__infinity(_Real{});
 
-      auto __n = __gnu_cxx::__fp_is_integer(__s);
+      auto __n = emsr::fp_is_integer(__s);
       if (__n && __n() >= 0)
 	{
 	  // @todo See if we can do better for zetam1 large int.
@@ -759,10 +759,10 @@ namespace __detail
     __riemann_zeta(_Tp __s)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
       const auto _S_inf = __gnu_cxx::__infinity(_Real{});
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
+      const auto _S_pi = emsr::pi_v<_Real>;
       if (std::isnan(__s))
 	return _S_NaN;
       else if (__s == _Val{1})
@@ -770,7 +770,7 @@ namespace __detail
       else
 	{
 	  const auto __S_max = __gnu_cxx::__digits(_Real{});
-	  const auto __p = __gnu_cxx::__fp_is_integer(__s);
+	  const auto __p = emsr::fp_is_integer(__s);
 	  if (__p && __p() >= 0)
 	    return _Real{1} + __riemann_zeta_m_1(_Real(__p()));
 	  else if (__p && __p() < 0)
@@ -821,7 +821,7 @@ namespace __detail
     __hurwitz_zeta_euler_maclaurin(_Tp __s, _Tp __a)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
       const int _S_N = 10 + __gnu_cxx::__digits10(_Real{}) / 2;
       const int _S_jmax = _Num_Euler_Maclaurin_zeta - 1;
@@ -869,7 +869,7 @@ namespace __detail
     __hurwitz_zeta(_Tp __s, _Tp __a)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
       const auto _S_inf = __gnu_cxx::__infinity(_Real{});
       if (std::isnan(__s) || std::isnan(__a))
@@ -959,7 +959,7 @@ namespace __detail
 	  __sum += __term;
 	  return _Tp(__n) * __sum / __xn;
 	}
-      else if (std::abs(__x) < _Tp{2} * __gnu_cxx::numbers::__pi_v<_Tp>)
+      else if (std::abs(__x) < _Tp{2} * emsr::pi_v<_Tp>)
 	{
 	  /**
 	   * Compute the Debye function:
@@ -972,7 +972,7 @@ namespace __detail
 	   */
 	  const auto _S_eps = __gnu_cxx::__epsilon(__x);
 	  const std::size_t _S_max_iter = 200;
-	  const auto _S_1_2pi = __gnu_cxx::numbers::__one_div_2_pi_v<_Tp>;
+	  const auto _S_1_2pi = emsr::inv_tau_v<_Tp>;
 	  const auto __x2pi = __x * _S_1_2pi;
 	  const auto __x2pi2 = __x2pi * __x2pi;
 	  auto __x2pi2k = __x2pi2;

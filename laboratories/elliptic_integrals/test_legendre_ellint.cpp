@@ -56,7 +56,7 @@ template<typename _Tp>
   {
     std::cout.precision(__gnu_cxx::__digits10<_Tp>());
     const auto w = 8 + std::cout.precision();
-    const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
+    const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
 
     const std::vector<_Tp> ks({0.0L, 0.5L, 0.75L, 0.9L, 0.95L, 0.99L});
     std::cout << '\n' << '\n';
@@ -82,7 +82,7 @@ template<typename _Tp>
   {
     std::cout.precision(__gnu_cxx::__digits10<_Tp>());
     const auto w = 8 + std::cout.precision();
-    const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
+    const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
 
     const std::vector<_Tp> ks({0.0L, 0.5L, 0.75L, 0.9L, 0.95L, 0.99L});
     std::cout << '\n' << '\n';

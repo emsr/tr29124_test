@@ -43,9 +43,9 @@ get_filename(const std::string & path,
  * @f]
  * where @f$ \theta = \acos(x) @f$.
  */
-template<typename _Tp>
-  _Tp
-  __chebyshev_t_trig(unsigned int __n, _Tp __x)
+template<typename Tp>
+  Tp
+  __chebyshev_t_trig(unsigned int __n, Tp __x)
   {
     auto __theta = std::acos(__x);
     return std::cos(__n * __theta);
@@ -58,19 +58,19 @@ template<typename _Tp>
  * @f]
  * where @f$ \theta = \acos(x) @f$.
  */
-template<typename _Tp>
-  _Tp
-  __chebyshev_u_trig(unsigned int __n, _Tp __x)
+template<typename Tp>
+  Tp
+  __chebyshev_u_trig(unsigned int __n, Tp __x)
   {
     const auto _S_eps = __gnu_cxx::__epsilon(__x);
-    if (std::abs(__x + _Tp{1}) < _S_eps)
-      return (__n % 2 == 0 ? +1 : -1) * _Tp(__n + 1);
-    else if (std::abs(__x - _Tp{1}) < _S_eps)
-      return _Tp(__n + 1);
+    if (std::abs(__x + Tp{1}) < _S_eps)
+      return (__n % 2 == 0 ? +1 : -1) * Tp(__n + 1);
+    else if (std::abs(__x - Tp{1}) < _S_eps)
+      return Tp(__n + 1);
     else
       {
 	auto __theta = std::acos(__x);
-	return std::sin(_Tp(__n + 1) * __theta)
+	return std::sin(Tp(__n + 1) * __theta)
 	     / std::sin(__theta);
       }
   }
@@ -83,18 +83,18 @@ template<typename _Tp>
  * @f]
  * where @f$ \theta = \acos(x) @f$.
  */
-template<typename _Tp>
-  _Tp
-  __chebyshev_v_trig(unsigned int __n, _Tp __x)
+template<typename Tp>
+  Tp
+  __chebyshev_v_trig(unsigned int __n, Tp __x)
   {
     const auto _S_eps = __gnu_cxx::__epsilon(__x);
-    if (std::abs(__x + _Tp{1}) < _S_eps)
-      return (__n % 2 == 0 ? +1 : -1) * _Tp(2 * __n + 1);
+    if (std::abs(__x + Tp{1}) < _S_eps)
+      return (__n % 2 == 0 ? +1 : -1) * Tp(2 * __n + 1);
     else
       {
 	auto __theta = std::acos(__x);
-	return std::cos(_Tp(__n + _Tp{1} / _Tp{2}) * __theta)
-	     / std::cos(__theta / _Tp{2});
+	return std::cos(Tp(__n + Tp{1} / Tp{2}) * __theta)
+	     / std::cos(__theta / Tp{2});
       }
   }
 
@@ -106,18 +106,18 @@ template<typename _Tp>
  * @f]
  * where @f$ \theta = \acos(x) @f$.
  */
-template<typename _Tp>
-  _Tp
-  __chebyshev_w_trig(unsigned int __n, _Tp __x)
+template<typename Tp>
+  Tp
+  __chebyshev_w_trig(unsigned int __n, Tp __x)
   {
     const auto _S_eps = __gnu_cxx::__epsilon(__x);
-    if (std::abs(__x - _Tp{1}) < _S_eps)
-      return _Tp(2 * __n + 1);
+    if (std::abs(__x - Tp{1}) < _S_eps)
+      return Tp(2 * __n + 1);
     else
       {
 	auto __theta = std::acos(__x);
-	return std::sin(_Tp(__n + _Tp{1} / _Tp{2}) * __theta)
-	     / std::sin(__theta / _Tp{2});
+	return std::sin(Tp(__n + Tp{1} / Tp{2}) * __theta)
+	     / std::sin(__theta / Tp{2});
       }
   }
 
@@ -280,7 +280,7 @@ template<typename Real>
     using  std::tr1::sph_neumann;
 #endif
 
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<Real>;
+    const auto _S_pi = emsr::pi_v<Real>;
 
     // Unsigned integer orders for various polynomials, harmonics.
     std::vector<unsigned int> vorder{0, 1, 2, 5, 10, 20, 50, 100};
@@ -305,8 +305,8 @@ template<typename Real>
     const unsigned int num_phi = 10;
     std::vector<Real> vphid;
     for (unsigned int i = 0; i < num_phi - 1; ++i)
-      vphid.push_back(Real{10} * i * _S_pi / Real{180});
-    vphid.push_back(__gnu_cxx::numbers::__pi_half_v<Real>);
+      vphid.push_back(Real{10} * i * emsr::rad_v<Real>);
+    vphid.push_back(emsr::pi_v<Real> / Real{2});
 
     std::vector<Real> vnopolesd;
     for (unsigned int i = 1; i < num_phi - 1; ++i)

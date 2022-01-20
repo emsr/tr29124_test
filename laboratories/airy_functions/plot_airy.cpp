@@ -15,7 +15,7 @@ template<typename _Tp>
   void
   plot_airy(std::string filename)
   {
-    using _Val = __gnu_cxx::__num_traits_t<_Tp>;
+    using _Val = emsr::num_traits_t<_Tp>;
 
     auto data = std::ofstream(filename);
 
@@ -64,7 +64,7 @@ template<typename _Tp>
   void
   splot_airy(std::string filename)
   {
-    using _Val = __gnu_cxx::__num_traits_t<_Tp>;
+    using _Val = emsr::num_traits_t<_Tp>;
 
     auto data = std::ofstream(filename);
 
@@ -215,7 +215,7 @@ template<typename _Tp>
   void
   plot_scorer(std::string filename)
   {
-    using _Val = __gnu_cxx::__num_traits_t<_Tp>;
+    using _Val = emsr::num_traits_t<_Tp>;
 
     auto data = std::ofstream(filename);
 
@@ -265,7 +265,7 @@ template<typename _Tp>
   void
   plot_fgh(std::string filename)
   {
-    using _Val = __gnu_cxx::__num_traits_t<_Tp>;
+    using _Val = emsr::num_traits_t<_Tp>;
 
     auto data = std::ofstream(filename);
 

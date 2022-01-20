@@ -4,7 +4,7 @@ LD_LIBRARY_PATH=$HOME/bin/lib64:$LD_LIBRARY_PATH ./test_root_search > test_root_
 */
 
 #include <ext/root_search.h>
-#include <ext/polynomial.h>
+#include <emsr/polynomial.h>
 #include <limits>
 #include <iostream>
 #include <iomanip>
@@ -164,7 +164,7 @@ template<typename _Tp>
 
     try
       {
-	__gnu_cxx::_Polynomial<_Tp> P({-4, 1, -2, 3});
+	emsr::Polynomial<_Tp> P({-4, 1, -2, 3});
 	_Tp x_lower = _Tp{-10}, x_upper = _Tp{10};
 	auto bracket = __gnu_cxx::__root_brackets(P, x_lower, x_upper, 50 * P.degree());
 	std::cout << "root brackets:\n";
@@ -174,7 +174,7 @@ template<typename _Tp>
 	       << " <= x <= " << std::setw(w) << br.second;
 	    auto r = __gnu_cxx::__root_bisect(P, br.first, br.second, eps);
 	    std::cout << ": x = " << std::setw(w) << r << '\n';
-	    P /= __gnu_cxx::_Polynomial<_Tp>(-r, _Tp{1});
+	    P /= emsr::Polynomial<_Tp>(-r, _Tp{1});
 	  }
 	std::cout << '\n';
       }

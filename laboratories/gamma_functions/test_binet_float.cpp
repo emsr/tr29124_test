@@ -9,7 +9,7 @@
 #include <cmath>
 #include <ext/float128_io.h>
 #include <complex>
-#include <ext/polynomial.h>
+#include <emsr/polynomial.h>
 
 namespace std
 {
@@ -53,7 +53,7 @@ namespace __detail
     __recursive_thing(_Tp __c)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
 
       const int _N = 100;
 
@@ -80,7 +80,7 @@ namespace __detail
     _Tp
     __binet_recursive(_Tp __z)
     {
-      const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
+      const auto _S_2pi = emsr::tau_v<_Tp>;
       const auto __c = _S_2pi * __z;
       for (int __k = 1; __k < 10; ++__k)
 	{
@@ -370,7 +370,7 @@ std::cerr << std::setw(12) << __c[__k - __i] * __d[__i] << '\t' << std::setw(12)
     __binet_asymp(_Tp __z)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
 
       // Weighted Bernoulli numbers: (-1)^k B_{2k + 2} / ((2k + 1)(2k + 2)), k >= 0.
@@ -453,7 +453,7 @@ std::cerr << std::setw(12) << __c[__k - __i] * __d[__i] << '\t' << std::setw(12)
     __binet_cont_frac(_Tp __z)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
 
       // Stieltjes partial numerators.
       constexpr std::size_t _S_n = 96;
@@ -605,7 +605,7 @@ std::cerr << std::setw(12) << __c[__k - __i] * __d[__i] << '\t' << std::setw(12)
     __binet(_Tp __z)
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
 
       /// @todo Find Binet function switch.
       constexpr auto _S_switchover = _Real{10};
@@ -709,9 +709,7 @@ template<typename _Tp>
   test()
   {
     using _Real = _Tp;
-    constexpr auto _S_ln2pi
-      = __gnu_cxx::numbers::__ln_2_v<_Real>
-      + __gnu_cxx::numbers::__ln_pi_v<_Real>;
+    constexpr auto _S_ln2pi = emsr::ln2_v<_Real> + emsr::lnpi_v<_Real>;
 
     std::cout.precision(std::numeric_limits<_Real>::digits10);
     auto width = std::cout.precision() + 8;
@@ -825,9 +823,9 @@ template<typename _Tp>
 
 /* Try to build Pade approximants someday.
     std::cout << "\nTest exp(x)\n";
-    __gnu_cxx::_Polynomial<_Tp> expoly(std::begin(coeff), std::end(coeff));
-    __gnu_cxx::_Polynomial<_Tp> rat_numer(std::begin(coeff), std::begin(coeff) + 10);
-    __gnu_cxx::_Polynomial<_Tp> rat_denom(std::begin(recip), std::begin(recip) + 10);
+    emsr::Polynomial<_Tp> expoly(std::begin(coeff), std::end(coeff));
+    emsr::Polynomial<_Tp> rat_numer(std::begin(coeff), std::begin(coeff) + 10);
+    emsr::Polynomial<_Tp> rat_denom(std::begin(recip), std::begin(recip) + 10);
     const auto del = _Tp{1} / _Tp{10};
     for (int k = 0; k <= 500; ++k)
       {

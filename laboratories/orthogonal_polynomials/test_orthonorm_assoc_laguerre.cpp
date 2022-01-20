@@ -24,7 +24,7 @@
 #include <sstream>
 #include <string>
 
-#include <ext/integration.h>
+#include <emsr/integration.h>
 
 /* Orthonormality only works for integer alpha. */
 
@@ -76,9 +76,9 @@ template<typename _Tp>
 			{ return normalized_assoc_laguerre<_Tp>(n1, n2, alpha, x); };
 
 	    auto [result, error]
-		//= __gnu_cxx::integrate_lower_pinf(func, _Tp{0},
+		//= emsr::integrate_lower_pinf(func, _Tp{0},
 		//				  abs_precision, rel_precision);
-		= __gnu_cxx::integrate_exp_sinh(func, _Tp{0},
+		= emsr::integrate_exp_sinh(func, _Tp{0},
 						abs_precision, rel_precision);
 
 	    if (std::abs(delta<_Tp>(n1, n2) - result) > cmp_precision)
@@ -111,9 +111,9 @@ template<typename _Tp>
 			{ return normalized_assoc_laguerre<_Tp>(n1, n2, alpha, x); };
 
 	    auto [result, error]
-		//= __gnu_cxx::integrate_lower_pinf(func, _Tp{0},
+		//= emsr::integrate_lower_pinf(func, _Tp{0},
 		//				  abs_precision, rel_precision);
-		= __gnu_cxx::integrate_exp_sinh(func, _Tp{0},
+		= emsr::integrate_exp_sinh(func, _Tp{0},
 						abs_precision, rel_precision);
 
 	    if (std::abs(delta<_Tp>(n1_upper, n2) - result) > cmp_precision)
@@ -159,7 +159,7 @@ main()
     {
       test_assoc_laguerre<float>(0.0F);
     }
-  catch (__gnu_cxx::__integration_error<float>& ierr)
+  catch (emsr::integration_error<float, float>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -174,7 +174,7 @@ main()
     {
       test_assoc_laguerre<double>(0.0);
     }
-  catch (__gnu_cxx::__integration_error<double>& ierr)
+  catch (emsr::integration_error<double, double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -189,7 +189,7 @@ main()
     {
       test_assoc_laguerre<long double>(0.0L);
     }
-  catch (__gnu_cxx::__integration_error<long double>& ierr)
+  catch (emsr::integration_error<long double, long double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';

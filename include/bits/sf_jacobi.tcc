@@ -135,13 +135,13 @@ namespace __detail
    * @param[in]  __beta1  The second order parameter of the Jacobi polynomial
    */
   template<typename _Tp>
-    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
+    std::vector<emsr::QuadraturePoint<_Tp>>
     __jacobi_zeros(unsigned int __n, _Tp __alpha1, _Tp __beta1)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__alpha1);
       const unsigned int _S_maxit = 1000u;
 
-      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
+      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
 
       _Tp __z;
       _Tp __w;
@@ -319,12 +319,12 @@ namespace __detail
    * @param[in]  __m  The order of the radial Jacobi polynomial
    */
   template<typename _Tp>
-    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
+    std::vector<emsr::QuadraturePoint<_Tp>>
     __radial_jacobi_zeros(unsigned int __n, unsigned int __m)
     {
       const int __nmm = int(__n) - int(__m);
       if (__nmm % 2 != 0)
-	return std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>();
+	return std::vector<emsr::QuadraturePoint<_Tp>>();
       else
 	{
 	  auto __k = (int(__n) - int(__m)) / 2;
@@ -366,7 +366,7 @@ namespace __detail
    * @param __phi The azimuthal angle
    */
   template<typename _Tp>
-    __gnu_cxx::fp_promote_t<_Tp>
+    emsr::fp_promote_t<_Tp>
     __zernike(unsigned int __n, int __m, _Tp __rho, _Tp __phi)
     {
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__rho);

@@ -1,4 +1,4 @@
-#include <ext/fp_type_util.h>
+#include <emsr/fp_type_util.h>
 
 #include <cmath>
 
@@ -13,8 +13,8 @@ namespace __detail
     __lgamma_inv_newton(_Tp __y)
     {
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      constexpr auto _S_ln_2 = __gnu_cxx::numbers::__ln_2_v<_Tp>;
-      constexpr auto _S_ln_pi = __gnu_cxx::numbers::__ln_pi_v<_Tp>;
+      constexpr auto _S_ln_2 = emsr::ln2_v<_Tp>;
+      constexpr auto _S_ln_pi = emsr::lnpi_v<_Tp>;
       constexpr auto _S_log_sqrt_2pi = (_S_ln_2 + _S_ln_pi) / _Tp{2};
       constexpr auto _S_max_iter = 100;
       auto __a0 = __y - _S_log_sqrt_2pi;
@@ -54,9 +54,9 @@ namespace __detail
 
   // Do arg promotion
   template<typename _Tp>
-    inline __gnu_cxx::fp_promote_t<_Tp>
+    inline emsr::fp_promote_t<_Tp>
     lgamma_inv(_Tp __y)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Tp>;
+      using __type = emsr::fp_promote_t<_Tp>;
       return __lgamma_inv<__type>(__y);
     }

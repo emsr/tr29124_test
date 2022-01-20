@@ -27,13 +27,13 @@
    * 
    */
   template<typename _Tp>
-    std::vector<__gnu_cxx::__num_traits_t<_Tp>>
+    std::vector<emsr::num_traits_t<_Tp>>
     __gamma_reciprocal_series_coef(std::size_t __n, _Tp __proto = _Tp{})
     {
       using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__proto));
-      const auto _S_gamma_e = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
+      const auto _S_gamma_e = emsr::egamma_v<_Tp>;
       auto __sign = [](std::size_t __i){ return (__i & 1u) == 1u ? -1 : +1; };
       std::vector<_Real> __c;
       __c.push_back(_Real{0});
@@ -149,7 +149,7 @@
     __gamma_reciprocal_prod(_Tp __a)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
-      const auto _S_gamma_e = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
+      const auto _S_gamma_e = emsr::egamma_v<_Tp>;
       const auto _S_max_iter = 10000;
       auto __gam = __a * std::exp(_S_gamma_e * __a);
       for (auto __k = 1u; __k < _S_max_iter; ++__k)
@@ -175,14 +175,14 @@
     _Tp
     __gamma_reciprocal(_Tp __a)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<_Tp>;
 
       if (std::isnan(__a))
 	return __gnu_cxx::__quiet_NaN(__a);
       else
 	{
-	  const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-	  const auto __an = __gnu_cxx::__fp_is_integer(__a);
+	  const auto _S_pi = emsr::pi_v<_Tp>;
+	  const auto __an = emsr::fp_is_integer(__a);
 	  if (__an)
 	    {
 	      auto __n = __an();
@@ -283,7 +283,7 @@
     {
       using __gammat_t = __gnu_cxx::__gamma_temme_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__mu);
-      const auto _S_gamma_E = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
+      const auto _S_gamma_E = emsr::egamma_v<_Tp>;
 
       if (std::abs(__mu) < _S_eps)
 	return __gammat_t{__mu, _Tp{1}, _Tp{1}, -_S_gamma_E, _Tp{1}};
@@ -311,7 +311,7 @@
     __gamma_temme_std(_Tp __mu)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__mu);
-      const auto _S_gamma_E = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
+      const auto _S_gamma_E = emsr::egamma_v<_Tp>;
       auto __gamp = _Tp{1} / std::tgamma(_Tp{1} + __mu);
       auto __gamm = _Tp{1} / std::tgamma(_Tp{1} - __mu);
       auto __gam1 = (std::abs(__mu) < _S_eps)
@@ -348,7 +348,7 @@ template<typename _Tp>
   test_gamma_reciprocal(_Tp __proto)
   {
     using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using _Real = emsr::num_traits_t<_Val>;
 
     std::cout.precision(__gnu_cxx::__digits10(__proto));
     std::cout << std::showpoint << std::scientific;

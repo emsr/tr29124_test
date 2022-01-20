@@ -207,8 +207,8 @@ namespace __detail
     _Tp
     __normal_pdf(_Tp __mu, _Tp __sigma, _Tp __x)
     {
-      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
-      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
+      const auto _S_sqrt_2 = emsr::sqrt2_v<_Tp>;
+      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
       const auto _S_sqrt_2pi = _S_sqrt_2 * _S_sqrt_pi;
       if (std::isnan(__mu) || std::isnan(__sigma))
 	return __gnu_cxx::__quiet_NaN(__x);
@@ -235,7 +235,7 @@ namespace __detail
     _Tp
     __normal_p(_Tp __mu, _Tp __sigma, _Tp __x)
     {
-      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
+      const auto _S_sqrt_2 = emsr::sqrt2_v<_Tp>;
       if (std::isnan(__mu) || std::isnan(__sigma) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else
@@ -256,8 +256,8 @@ namespace __detail
     _Tp
     __lognormal_pdf(_Tp __nu, _Tp __sigma, _Tp __x)
     {
-      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
-      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
+      const auto _S_sqrt_2 = emsr::sqrt2_v<_Tp>;
+      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
       const auto _S_sqrt_2pi = _S_sqrt_2 * _S_sqrt_pi;
       if (std::isnan(__nu) || std::isnan(__sigma))
 	return __gnu_cxx::__quiet_NaN(__x);
@@ -284,7 +284,7 @@ namespace __detail
     _Tp
     __lognormal_p(_Tp __mu, _Tp __sigma, _Tp __x)
     {
-      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
+      const auto _S_sqrt_2 = emsr::sqrt2_v<_Tp>;
       if (std::isnan(__mu) || std::isnan(__sigma) || std::isnan(__x))
 	return __gnu_cxx::__quiet_NaN(__x);
       else
@@ -416,7 +416,7 @@ namespace __detail
     _Tp
     __student_t_pdf(_Tp __t, unsigned int __nu)
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       if (std::isnan(__t))
 	return __gnu_cxx::__quiet_NaN(__t);
       else
@@ -694,7 +694,7 @@ namespace __detail
     _Tp
     __cauchy_p(_Tp __a, _Tp __b, _Tp __x)
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       return _Tp{0.5L} + std::atan((__x - __a) / __b) / _S_pi;
     }
 

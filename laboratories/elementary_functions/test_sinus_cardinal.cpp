@@ -19,7 +19,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    const auto pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto pi = emsr::pi_v<_Tp>;
 
     std::cout << '\n';
     std::cout << std::setw(width) << "x"

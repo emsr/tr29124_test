@@ -16,8 +16,8 @@ template<typename _Tp>
   test_cyl_bessel()
   {
     using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
-    const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
+    using _Real = emsr::num_traits_t<_Val>;
+    const auto _S_pi_2 = emsr::pi_v<_Real> / _Real{2};
 
     std::cout.precision(__gnu_cxx::__digits10<_Real>());
     std::cout << std::showpoint << std::scientific;
@@ -98,7 +98,7 @@ template<typename _Tp>
   test_std_bessel()
   {
     using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using _Real = emsr::num_traits_t<_Val>;
 
     std::cout.precision(__gnu_cxx::__digits10<_Real>());
     std::cout << std::showpoint << std::scientific;

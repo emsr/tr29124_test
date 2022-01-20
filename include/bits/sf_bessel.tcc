@@ -91,8 +91,8 @@ namespace __detail
 			   unsigned int __max_iter)
     {
       // FIXME: This will promote float to double if _Tnu is integral.
-      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      using _Real = emsr::num_traits_t<_Val>;
       const auto _S_eps = __gnu_cxx::__epsilon<_Real>();
       if (std::abs(__x) < _S_eps)
 	{
@@ -130,7 +130,7 @@ namespace __detail
     struct __cyl_bessel_asymp_sums_t
     {
       // FIXME: This will promote float to double if _Tnu is integral.
-      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
+      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
       _Val _Psum;
       _Val _Qsum;
       _Val _Rsum;
@@ -201,8 +201,8 @@ namespace __detail
     __cyl_bessel_asymp_sums(_Tnu __nu, _Tp __x, int __sgn)
     {
       // FIXME: This will promote float to double if _Tnu is integral.
-      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      using _Real = emsr::num_traits_t<_Val>;
       using __bess_t = __cyl_bessel_asymp_sums_t<_Tnu, _Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon<_Real>();
       const auto __2nu = _Real{2} * __nu;
@@ -266,11 +266,11 @@ namespace __detail
     __cyl_bessel_jn_asymp(_Tnu __nu, _Tp __x)
     {
       // FIXME: This will promote float to double if _Tnu is integral.
-      using _Val = __gnu_cxx::fp_promote_t<_Tnu, _Tp>;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      using _Real = emsr::num_traits_t<_Val>;
       using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tnu, _Tp, _Tp>;
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Real>;
-      const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Real>;
+      const auto _S_pi = emsr::pi_v<_Real>;
+      const auto _S_pi_2 = emsr::pi_v<_Real> / _Real{2};
 
       const auto __sums = __cyl_bessel_asymp_sums(__nu, __x, -1);
 
@@ -314,7 +314,7 @@ namespace __detail
     {
       using __gammat_t = __gnu_cxx::__gamma_temme_t<_Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__mu);
-      const auto _S_gamma_E = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
+      const auto _S_gamma_E = emsr::egamma_v<_Tp>;
 
       if (std::abs(__mu) < _S_eps)
 	return __gammat_t{__mu, _Tp{1}, _Tp{1}, -_S_gamma_E, _Tp{1}};
@@ -357,7 +357,7 @@ namespace __detail
       const auto _S_inf = __gnu_cxx::__infinity(__x);
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const auto _S_tiny = __gnu_cxx::__lim_min(__x);
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       // When the multiplier is N i.e.
       // fp_min = N * min()
       // Then J_0 and N_0 tank at x = 8 * N (J_0 = 0 and N_0 = nan)!
@@ -535,7 +535,7 @@ namespace __detail
       using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Tp>;
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       const auto _S_inf = __gnu_cxx::__infinity(__x);
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       if (__nu < _Tp{0})
 	{
 	  const auto _Bess = __cyl_bessel_jn(-__nu, __x);
@@ -815,7 +815,7 @@ namespace __detail
 
       const auto _Bess = __cyl_bessel_jn(__nu, __x);
 
-      const auto __factor = __gnu_cxx::numbers::__root_pi_div_2_v<_Tp>
+      const auto __factor = (emsr::sqrtpi_v<_Tp> / emsr::sqrt2_v<_Tp>)
 			  / std::sqrt(__x);
 
       const auto __j_n = __factor * _Bess.__J_value;
@@ -846,7 +846,7 @@ namespace __detail
 	  const auto _Bess = __cyl_bessel_jn_neg_arg(__nu, __x);
 
 	  const auto __factor
-	    = __gnu_cxx::numbers::__root_pi_div_2_v<_Tp>
+	    = (emsr::sqrtpi_v<_Tp> / emsr::sqrt2_v<_Tp>)
 	      / std::sqrt(_Cmplx(__x));
 
 	  const auto __j_n = __factor * _Bess.__J_value;

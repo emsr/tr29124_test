@@ -5,7 +5,7 @@
 #include <vector>
 #include <iosfwd>
 
-#include <ext/polynomial.h>
+#include <emsr/polynomial.h>
 
 /**
  * @file chebyshev.h Interface for C++ Chebyshev methods.
@@ -56,7 +56,7 @@ namespace __gnu_cxx
       { }
 
       template<typename _Up>
-        _Chebyshev(_Up __a, _Up __b, const _Polynomial<_Up>& __poly);
+        _Chebyshev(_Up __a, _Up __b, const emsr::Polynomial<_Up>& __poly);
 
       _Chebyshev derivative() const;
 
@@ -74,7 +74,7 @@ namespace __gnu_cxx
       upper() const
       { return this->_M_upper; }
 
-      _Polynomial<_Tp>
+      emsr::Polynomial<_Tp>
       to_polynomial() const;
 
       value_type operator()(value_type __x) const;

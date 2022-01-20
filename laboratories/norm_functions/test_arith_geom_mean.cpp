@@ -9,7 +9,7 @@
 #include <wrap_boost.h>
 #include <wrap_gsl.h>
 #include <bits/numeric_limits.h>
-#include <ext/math_constants.h>
+#include <emsr/math_constants.h>
 
   /**
    * Try complex (and negative real) values. Nope.
@@ -62,9 +62,9 @@
     _Tp
     __log_agm(_Tp __x)
     {
-      constexpr auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-      constexpr auto _S_log_10 = __gnu_cxx::numbers::__ln_10_v<_Tp>;
-      constexpr auto _S_log_2 = __gnu_cxx::numbers::__ln_2_v<_Tp>;
+      constexpr auto _S_pi = emsr::pi_v<_Tp>;
+      constexpr auto _S_log_10 = emsr::ln10_v<_Tp>;
+      constexpr auto _S_log_2 = emsr::ln2_v<_Tp>;
       const auto __p = std::numeric_limits<_Tp>::digits;
       const auto __b = std::numeric_limits<_Tp>::radix;
       const auto __n = std::ilogb(__x);

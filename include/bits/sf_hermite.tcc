@@ -140,9 +140,9 @@ namespace __detail
     _Tp
     __hermite_asymp(unsigned int __n, _Tp __x)
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
-      const auto _S_sqrt_2pi = __gnu_cxx::numbers::__root_2_pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
+      const auto _S_sqrt_2 = emsr::sqrt2_v<_Tp>;
+      const auto _S_sqrt_2pi = emsr::sqrttau_v<_Tp>;
       // __x >= 0 in this routine.
       const auto __xturn = std::sqrt(_Tp(2 * __n));
       if (std::abs(__x - __xturn) < _Tp{0.05L} * __xturn)
@@ -283,15 +283,15 @@ namespace __detail
    * Build a vector of the Gauss-Hermite integration rule abscissae and weights.
    */
   template<typename _Tp>
-    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
+    std::vector<emsr::QuadraturePoint<_Tp>>
     __hermite_zeros(unsigned int __n, _Tp __proto = _Tp{})
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__proto);
       const unsigned int _S_maxit = 1000u;
       const auto _S_pim4 = _Tp{0.7511255444649424828587030047762276930510L};
-      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
+      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
 
-      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
+      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
 
       const auto __m = __n / 2;
 

@@ -564,7 +564,7 @@ template<typename MaskFun, typename TestFun, typename BaselineFun,
       constexpr auto eps = std::numeric_limits<Val>::epsilon();
       constexpr auto inf = std::numeric_limits<Val>::infinity();
       constexpr auto NaN = std::numeric_limits<Val>::quiet_NaN();
-      constexpr auto ret_complex = __gnu_cxx::is_complex_v<Ret>;
+      constexpr auto ret_complex = emsr::is_complex_v<Ret>;
 
       auto numname = type_strings<Val>::type();
       auto structname = outer._M_structname.to_string() + '<' + numname + '>';
@@ -714,7 +714,7 @@ template<typename MaskFun, typename TestFun, typename BaselineFun,
 	     std::string_view funcall) const
   {
     //using Ret = decltype(TestFun(Arg{}.value[0]...));
-    constexpr auto ret_complex = __gnu_cxx::is_complex_v<Ret>;
+    constexpr auto ret_complex = emsr::is_complex_v<Ret>;
     std::string ret_tname = "Ret";
     if (ret_complex)
       ret_tname = "std::complex<Ret>";

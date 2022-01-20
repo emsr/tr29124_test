@@ -84,7 +84,7 @@
     __gnu_cxx::__sincos_t<_Tp>
     __sincos_pi(_Tp __x)
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<_Tp>;
       const auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>(__x);
       if (std::isnan(__x))
 	return __gnu_cxx::__sincos_t<_Tp>{_S_NaN, _S_NaN};
@@ -142,7 +142,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    const auto pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto pi = emsr::pi_v<_Tp>;
 
     std::cout << '\n';
     std::cout << std::setw(width) << "x"
@@ -186,11 +186,11 @@ template<typename _Tp>
 int
 main()
 {
-  constexpr auto pif = __gnu_cxx::numbers::__pi_v<float>;
-  constexpr auto pi = __gnu_cxx::numbers::__pi_v<double>;
-  constexpr auto pil = __gnu_cxx::numbers::__pi_v<long double>;
+  constexpr auto pif = emsr::pi_v<float>;
+  constexpr auto pi = emsr::pi_v<double>;
+  constexpr auto pil = emsr::pi_v<long double>;
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  //constexpr auto piq = __gnu_cxx::numbers::__pi_v<__float128>;
+  //constexpr auto piq = emsr::pi_v<__float128>;
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   auto a1 [[maybe_unused]] = /*std::__detail::*/__sincos(pif * 1.5f);

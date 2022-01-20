@@ -43,10 +43,10 @@ namespace __gnu_cxx
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tpnu, typename _Tp>
-    inline fp_promote_t<_Tpnu, _Tp>
+    inline emsr::fp_promote_t<_Tpnu, _Tp>
     struve_h(_Tpnu __nu, _Tp __x)
     {
-      using __type = fp_promote_t<_Tpnu, _Tp>;
+      using __type = emsr::fp_promote_t<_Tpnu, _Tp>;
       return std::__detail::__struve_h<__type>(__nu, __x);
     }
 
@@ -89,10 +89,10 @@ namespace __gnu_cxx
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tpnu, typename _Tp>
-    inline fp_promote_t<_Tpnu, _Tp>
+    inline emsr::fp_promote_t<_Tpnu, _Tp>
     struve_k(_Tpnu __nu, _Tp __x)
     {
-      using __type = fp_promote_t<_Tpnu, _Tp>;
+      using __type = emsr::fp_promote_t<_Tpnu, _Tp>;
       return std::__detail::__struve_k<__type>(__nu, __x);
     }
 
@@ -138,10 +138,10 @@ namespace __gnu_cxx
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tpnu, typename _Tp>
-    inline fp_promote_t<_Tpnu, _Tp>
+    inline emsr::fp_promote_t<_Tpnu, _Tp>
     struve_l(_Tpnu __nu, _Tp __x)
     {
-      using __type = fp_promote_t<_Tpnu, _Tp>;
+      using __type = emsr::fp_promote_t<_Tpnu, _Tp>;
       return std::__detail::__struve_l<__type>(__nu, __x);
     }
 
@@ -187,10 +187,10 @@ namespace __gnu_cxx
    * @throw std::domain_error if <tt> __x < 0 </tt>.
    */
   template<typename _Tpnu, typename _Tp>
-    inline fp_promote_t<_Tpnu, _Tp>
+    inline emsr::fp_promote_t<_Tpnu, _Tp>
     struve_m(_Tpnu __nu, _Tp __x)
     {
-      using __type = fp_promote_t<_Tpnu, _Tp>;
+      using __type = emsr::fp_promote_t<_Tpnu, _Tp>;
       return std::__detail::__struve_m<__type>(__nu, __x);
     }
 

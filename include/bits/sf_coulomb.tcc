@@ -46,7 +46,7 @@ template<typename _Tp>
   _Tp
   __coulomb_norm(unsigned int __l, _Tp __eta)
   {
-    const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
+    const auto _S_2pi = emsr::tau_v<_Tp>;
     auto _Ck = std::sqrt(_S_2pi * __eta / (std::exp(_S_2pi * __eta) - _Tp{1}));
     if (__l == 0)
       return _Ck;

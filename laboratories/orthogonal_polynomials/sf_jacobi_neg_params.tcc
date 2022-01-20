@@ -30,8 +30,8 @@
 #ifndef _LABS_SF_JACOBI_TCC
 #define _LABS_SF_JACOBI_TCC 1
 
-#include <ext/math_constants.h>
-#include <ext/math_util.h>
+#include <emsr/math_constants.h>
+#include <emsr/math_util.h>
 
 namespace lab
 {
@@ -67,7 +67,7 @@ namespace lab
 
       const auto __apb = __alpha1 + __beta1;
       auto __m = int(__n);
-      if (const auto __pint = __gnu_cxx::__fp_is_integer(__n + 1 + __apb);
+      if (const auto __pint = emsr::fp_is_integer(__n + 1 + __apb);
 	  __pint && __pint() <= 0 && __m + 1 > -__pint())
 	__m = -__pint();
 
@@ -140,13 +140,13 @@ break;
    * @param[in]  beta1  The second order parameter of the Jacobi polynomial
    */
   template<typename _Tp>
-    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
+    std::vector<emsr::QuadraturePoint<_Tp>>
     __jacobi_zeros(unsigned int __n, _Tp __alpha1, _Tp __beta1)
     {
       const auto _S_eps = __gnu_cxx::__epsilon(__alpha1);
       const unsigned int _S_maxit = 1000u;
 
-      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
+      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
 
       _Tp __z;
       _Tp __w;
@@ -180,7 +180,7 @@ break;
 	      const auto __r2 = 1.0 + 0.22 * (__n - 8.0) / __n;
 	      const auto __r3 = 1.0 + 8.0 * __beta1
 				/ ((6.28 + __beta1) * __n * __n);
-	      __z -= (__pt[0].__point - __z) * __r1 * __r2 * __r3;
+	      __z -= (__pt[0].point - __z) * __r1 * __r2 * __r3;
 	    }
 	  else if (__i == __n - 1)
 	    {
@@ -190,7 +190,7 @@ break;
 						/ (1.0 + 0.71 * (__n - 4.0)));
 	      const auto __r3 = 1.0 / (1.0 + 20.0 * __alpha1
 				/ ((7.5 + __alpha1) * __n * __n));
-	      __z += (__z - __pt[__n - 4].__point) * __r1 * __r2 * __r3;
+	      __z += (__z - __pt[__n - 4].point) * __r1 * __r2 * __r3;
 	    }
 	  else if (__i == __n)
 	    {
@@ -199,12 +199,12 @@ break;
 	      const auto __r2 = 1.0 / (1.0 + 0.22 * (__n - 8.0) / __n);
 	      const auto __r3 = 1.0 / (1.0 + 8.0 * __alpha1
 				/ ((6.28 + __alpha1) * __n * __n));
-	      __z += (__z - __pt[__n - 3].__point) * __r1 * __r2 * __r3;
+	      __z += (__z - __pt[__n - 3].point) * __r1 * __r2 * __r3;
 	    }
 	  else
 	    {
-	      __z = 3.0 * __pt[__i - 2].__point
-		  - 3.0 * __pt[__i - 3].__point + __pt[__i - 4].__point;
+	      __z = 3.0 * __pt[__i - 2].point
+		  - 3.0 * __pt[__i - 3].point + __pt[__i - 4].point;
 	    }
 
 	  auto __alphabeta = __alpha1 + __beta1;
@@ -244,8 +244,8 @@ break;
 	      if (__its > _S_maxit)
 		std::__throw_logic_error("__jacobi_zeros: Too many iterations");
 	    }
-	  __pt[__i - 1].__point = __z;
-	  __pt[__i - 1].__weight = __w;
+	  __pt[__i - 1].point = __z;
+	  __pt[__i - 1].weight = __w;
 	}
 
       return __pt;
@@ -325,19 +325,19 @@ break;
    * @param[in]  beta1  The second parameter of the Jacobi polynomial
    */
   template<typename _Tp>
-    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
+    std::vector<emsr::QuadraturePoint<_Tp>>
     __radial_jacobi_zeros(unsigned int __n, unsigned int __m)
     {
       const int __nmm = int(__n) - int(__m);
       if (__nmm % 2 != 0)
-	return std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>();
+	return std::vector<emsr::QuadraturePoint<_Tp>>();
       else
 	{
 	  auto __k = (int(__n) - int(__m)) / 2;
           auto __roots = __jacobi_zeros(__k, _Tp(__m), _Tp{0});
 	  for (auto& __z : __roots)
 	    {
-	      __z.__point = std::sqrt((_Tp{1} - __z.__point) / _Tp{2});
+	      __z.point = std::sqrt((_Tp{1} - __z.point) / _Tp{2});
 	      // weight?
 	    }
 	  return __roots;
@@ -372,7 +372,7 @@ break;
    * @param __phi The azimuthal angle
    */
   template<typename _Tp>
-    __gnu_cxx::fp_promote_t<_Tp>
+    emsr::fp_promote_t<_Tp>
     __zernike(unsigned int __n, int __m, _Tp __rho, _Tp __phi)
     {
       const auto _S_NaN = __gnu_cxx::__quiet_NaN(__rho);

@@ -7,7 +7,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <cmath>
-#include <ext/fp_type_util.h>
+#include <emsr/fp_type_util.h>
 
 //#define __cpp_lib_hypot 201603L
 
@@ -104,7 +104,7 @@ namespace __detail
    * avoiding underflow/overflow with small/large arguments.
    */
   template<typename _Tp>
-    constexpr __gnu_cxx::fp_promote_t<_Tp>
+    constexpr emsr::fp_promote_t<_Tp>
     __hypot3(const std::complex<_Tp>& __x, const std::complex<_Tp>& __y)
     {
       if (std::isnan(__x) || std::isnan(__y))
@@ -136,7 +136,7 @@ namespace __detail
    * avoiding underflow/overflow with small/large arguments.
    */
   template<typename _Tp>
-    constexpr __gnu_cxx::fp_promote_t<_Tp>
+    constexpr emsr::fp_promote_t<_Tp>
     __hypot3(const std::complex<_Tp>& __x, const std::complex<_Tp>& __y,
 	     const std::complex<_Tp>& __z)
     {
@@ -179,10 +179,10 @@ namespace __detail
   { return std::__detail::__hypot3<long double>(__x, __y, __z); }
 
   template<typename _Tpx, typename _Tpy, typename _Tpz>
-    constexpr inline __gnu_cxx::fp_promote_t<_Tpx, _Tpy, _Tpz>
+    constexpr inline emsr::fp_promote_t<_Tpx, _Tpy, _Tpz>
     hypot(_Tpx __x, _Tpy __y, _Tpz __z)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Tpx, _Tpy, _Tpz>;
+      using __type = emsr::fp_promote_t<_Tpx, _Tpy, _Tpz>;
       return std::__detail::__hypot3<__type>(__x, __y, __z);
     }
 
@@ -201,10 +201,10 @@ namespace __detail
   { return std::__detail::__hypot3<long double>(__x, __y); }
 
   template<typename _Tpx, typename _Tpy>
-    constexpr inline __gnu_cxx::fp_promote_t<_Tpx, _Tpy>
+    constexpr inline emsr::fp_promote_t<_Tpx, _Tpy>
     hypot(const std::complex<_Tpx>& __x, const std::complex<_Tpy>& __y)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Tpx, _Tpy>;
+      using __type = emsr::fp_promote_t<_Tpx, _Tpy>;
       return std::__detail::__hypot3<__type>(__x, __y);
     }
 
@@ -225,11 +225,11 @@ namespace __detail
   { return std::__detail::__hypot3<long double>(__x, __y, __z); }
 
   template<typename _Tpx, typename _Tpy, typename _Tpz>
-    constexpr inline __gnu_cxx::fp_promote_t<_Tpx, _Tpy, _Tpz>
+    constexpr inline emsr::fp_promote_t<_Tpx, _Tpy, _Tpz>
     hypot(const std::complex<_Tpx>& __x, const std::complex<_Tpy>& __y,
 	  const std::complex<_Tpz>& __z)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Tpx, _Tpy, _Tpz>;
+      using __type = emsr::fp_promote_t<_Tpx, _Tpy, _Tpz>;
       return std::__detail::__hypot3<__type>(__x, __y, __z);
     }
 

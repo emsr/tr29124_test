@@ -21,7 +21,7 @@
 
 #include <cmath>
 
-#include <ext/integration.h>
+#include <emsr/integration.h>
 
 #if defined(__TEST_DEBUG)
 #  include <iostream>
@@ -81,8 +81,7 @@ template<typename _Tp>
 			{ return norm_sph_legendre(l1, m1, l2, m2, theta); };
 
 	    auto [result, error]
-		= __gnu_cxx::integrate_tanh_sinh(func, _Tp{0}, _S_pi,
-						 abs_prec, rel_prec, 6);
+		= emsr::integrate_tanh_sinh(func, _Tp{0}, _S_pi, abs_prec, rel_prec, 6);
 
 	    if (std::abs(delta<_Tp>(l1, l2) - result) > cmp_prec)
 	      ++fail;

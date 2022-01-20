@@ -26,7 +26,7 @@
 #include <string>
 #include <vector>
 
-#include <ext/integration.h>
+#include <emsr/integration.h>
 
 // Neumann's number
 template<typename _Tp>
@@ -46,7 +46,7 @@ template<typename _Tp>
   {
     const auto _S_eps_factor = 1 << (std::numeric_limits<_Tp>::digits / 3);
     const auto _S_eps = _S_eps_factor * std::numeric_limits<_Tp>::epsilon();
-    const auto _S_2pi = _Tp{2} * __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto _S_2pi = _Tp{2} * emsr::pi_v<_Tp>;
 
     auto z1 = [n1, m1, rho](_Tp phi)
 	      -> _Tp
@@ -61,12 +61,12 @@ template<typename _Tp>
 		{ return rho * z1(phi) * z2(phi) / norm; };
 
     auto val
-	= __gnu_cxx::integrate_tanh_sinh(fun, _Tp{0}, _Tp{_S_2pi},
+	= emsr::integrate_tanh_sinh(fun, _Tp{0}, _Tp{_S_2pi},
 			      _S_eps, _S_eps, 8);
-	//= __gnu_cxx::integrate_oscillatory(fun, _Tp{0}, _Tp{_S_2pi},
+	//= emsr::integrate_oscillatory(fun, _Tp{0}, _Tp{_S_2pi},
 	//			_S_eps, _S_eps, 1024);
 
-    return _Tp{2} * val.__result / _S_2pi / epsilon<_Tp>(m1);
+    return _Tp{2} * val.result / _S_2pi / epsilon<_Tp>(m1);
   }
 
 template<typename _Tp>
@@ -108,7 +108,7 @@ template<typename _Tp>
 				{ return normalized_zernike(n1, m1, n2, m2, x); };
 
 		    auto [result, error]
-			= __gnu_cxx::integrate_tanh_sinh(func, _Tp{0}, _Tp{1},
+			= emsr::integrate_tanh_sinh(func, _Tp{0}, _Tp{1},
 					      abs_precision, rel_precision, 8);
 
 		    if (std::abs(delta<_Tp>(n1, m1, n2, m2) - result) > cmp_precision)
@@ -157,7 +157,7 @@ template<typename _Tp>
 				{ return normalized_zernike(n1, m1, n2, m2, x); };
 
 		    auto [result, error]
-			= __gnu_cxx::integrate_tanh_sinh(func, _Tp{0}, _Tp{1},
+			= emsr::integrate_tanh_sinh(func, _Tp{0}, _Tp{1},
 					      abs_precision, rel_precision, 8);
 
 		    if (std::abs(delta<_Tp>(n1_upper, m1, n2, m2) - result) > cmp_precision)
@@ -207,7 +207,7 @@ main()
     {
       test_zernike<float>();
     }
-  catch (__gnu_cxx::__integration_error<float>& ierr)
+  catch (emsr::integration_error<float, float>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -222,7 +222,7 @@ main()
     {
       test_zernike<double>();
     }
-  catch (__gnu_cxx::__integration_error<double>& ierr)
+  catch (emsr::integration_error<double, double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -237,7 +237,7 @@ main()
     {
       test_zernike<long double>();
     }
-  catch (__gnu_cxx::__integration_error<long double>& ierr)
+  catch (emsr::integration_error<long double, long double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
