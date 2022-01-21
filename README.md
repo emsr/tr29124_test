@@ -22,8 +22,13 @@ to the C++ Standard Library, Paul A Bristow]
 [A proposal to add sincos to the standard library, Paul Dreik]
 (http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0081r0.pdf)
 
-This work is targeted towards (and licensed for) libstdc++ but I hope that
-it is generally useful and amusing.
+This work began as a project to add math extensions to libstdc++.
+At this point I am abandoning that idea in favor of a general math library.
+Much work is afoot.
+
+<b>This library and sub-libraries are experiencing a lot of churn right now but in the
+end I expect a set of smaller components that are more independent.
+It does seem to be in the nature of this work that some interdependencies creep in.</b>
 
 The functions in IS 29124 have been accepted into C++17.
 See Section 26.9.5 Mathematical special functions [sf.cmath] in a recent draft.
