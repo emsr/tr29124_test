@@ -3,51 +3,51 @@
 
 #include <type_traits>
 
-namespace __gnu_cxx
+namespace emsr
 {
 
-namespace __detail
+namespace detail
 {
   template<typename, typename = std::void_t<>>
-    struct __has_value_type
+    struct has_value_type
     : std::false_type
     { };
  
   template<typename _Tp>
-    struct __has_value_type<_Tp, std::void_t<typename _Tp::value_type>>
+    struct has_value_type<_Tp, std::void_t<typename _Tp::value_type>>
     : std::true_type
     { };
 
   template<typename _Tp>
     inline constexpr bool
-    __has_value_type_v = __has_value_type<_Tp>::value;
+    has_value_type_v = has_value_type<_Tp>::value;
 }
 
   template<typename _Tp, bool _HasValueType>
-    struct __value_type_impl;
+    struct value_type_impl;
 
   template<typename _Tp>
-    struct __value_type_impl<_Tp, false>
+    struct value_type_impl<_Tp, false>
     {
-      using __type = std::decay_t<_Tp>;
+      using type = std::decay_t<_Tp>;
     };
 
   template<typename _Tp>
-    struct __value_type_impl<_Tp, true>
+    struct value_type_impl<_Tp, true>
     {
-      using __vtype = typename _Tp::value_type;
-      using __type = __value_type_impl<__vtype,
-				       __detail::__has_value_type_v<__vtype>>;
+      using vtype = typename _Tp::value_type;
+      using type = value_type_impl<vtype,
+				       detail::has_value_type_v<vtype>>;
     };
 
   template<typename _Tp>
-    struct __value_type
+    struct value_type
     {
-      using __type = __value_type_impl<_Tp, __detail::__has_value_type_v<_Tp>>;
+      using type = value_type_impl<_Tp, detail::has_value_type_v<_Tp>>;
     };
 
   template<typename _Tp>
-    using __value_t = typename __value_type<_Tp>::__type;
+    using value_t = typename value_type<_Tp>::type;
 
 }
 
