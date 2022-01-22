@@ -28,7 +28,7 @@
 #ifndef COMPLEX_SAFE_MATH_TCC
 #define COMPLEX_SAFE_MATH_TCC 1
 
-#include <bits/numeric_limits.h>
+#include <emsr/numeric_limits.h>
 #include <emsr/math_constants.h>
 
 namespace emsr
@@ -50,7 +50,7 @@ namespace emsr
     safe_div(const std::complex<Tp>& z1, const std::complex<Tp>& z2)
     {
       // Half the largest available floating-point number.
-      const auto s_hmax = __gnu_cxx::__lim_max(std::real(z1)) / Tp{2};
+      const auto s_hmax = emsr::lim_max(std::real(z1)) / Tp{2};
 
       auto re1 = std::real(z1);
       auto im1 = std::imag(z1);
@@ -95,8 +95,8 @@ namespace emsr
     safe_mul(Tp s1, Tp s2)
     {
       // The largest available floating-point number.
-      const auto s_max = __gnu_cxx::__lim_max(std::real(s1));
-      const auto s_sqrt_max = __gnu_cxx::__sqrt_max(std::real(s1));
+      const auto s_max = emsr::lim_max(std::real(s1));
+      const auto s_sqrt_max = emsr::sqrt_max(std::real(s1));
       auto abs_s1 = std::abs(s1);
       auto abs_s2 = std::abs(s2);
       if (abs_s1 < s_sqrt_max || abs_s2 < s_sqrt_max)
@@ -129,8 +129,8 @@ namespace emsr
     safe_mul(const std::complex<Tp>& z1, const std::complex<Tp>& z2)
     {
       // Half the largest available floating-point number.
-      const auto s_max = __gnu_cxx::__lim_max(std::real(z1));
-      const auto s_sqrt_max = __gnu_cxx::__sqrt_max(std::real(z1));
+      const auto s_max = emsr::lim_max(std::real(z1));
+      const auto s_sqrt_max = emsr::sqrt_max(std::real(z1));
 
       auto re1 = std::real(z1);
       auto im1 = std::imag(z1);
@@ -170,9 +170,9 @@ namespace emsr
     safe_sqr(const std::complex<Tp>& z)
     {
       const auto s_sqrt_2 = emsr::sqrt2_v<Tp>;
-      const auto s_max = __gnu_cxx::__lim_max<Tp>();
+      const auto s_max = emsr::lim_max<Tp>();
       const auto s_hmax = s_max / Tp{2};
-      const auto s_sqrt_max = __gnu_cxx::__sqrt_max<Tp>();
+      const auto s_sqrt_max = emsr::sqrt_max<Tp>();
       const auto s_sqrt_hmax = s_sqrt_max / s_sqrt_2;
 
       auto rez = std::real(z);
