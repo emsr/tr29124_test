@@ -11,7 +11,7 @@ template<typename _Tp>
   void
   test_jacobi_zeta()
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    std::cout.precision(emsr::digits10<_Tp>());
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
     const int n_phi = 40;

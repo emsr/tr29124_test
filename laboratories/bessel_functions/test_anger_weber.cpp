@@ -78,7 +78,7 @@
     __anger_weber_sum_1(_Tp __nu, _Tp __z)
     {
       const auto _S_max_iter = 10000u;
-      const auto _S_eps = __gnu_cxx::__epsilon(__z);
+      const auto _S_eps = emsr::epsilon(__z);
       const auto __z2 = __z / _Tp{2};
       auto _GamArg11 = _Tp{1} + __nu / _Tp{2};
       auto _GamArg12 = _Tp{1} - __nu / _Tp{2};
@@ -112,7 +112,7 @@
     __anger_weber_sum_1_even_int(int __n, _Tp __z)
     {
       const auto _S_max_iter = 10000u;
-      const auto _S_eps = __gnu_cxx::__epsilon(__z);
+      const auto _S_eps = emsr::epsilon(__z);
       const auto __z2 = __z / _Tp{2};
       const auto __m = __n / 2;
       const auto __k_start = __m;
@@ -148,7 +148,7 @@
     __anger_weber_sum_2(_Tp __nu, _Tp __z)
     {
       const auto _S_max_iter = 10000u;
-      const auto _S_eps = __gnu_cxx::__epsilon(__z);
+      const auto _S_eps = emsr::epsilon(__z);
       const auto __z2 = __z / _Tp{2};
       auto _GamArg21 = _Tp{3} / _Tp{2} + __nu / _Tp{2};
       auto _GamArg22 = _Tp{3} / _Tp{2} - __nu / _Tp{2};
@@ -182,7 +182,7 @@
     __anger_weber_sum_2_odd_int(int __n, _Tp __z)
     {
       const auto _S_max_iter = 10000u;
-      const auto _S_eps = __gnu_cxx::__epsilon(__z);
+      const auto _S_eps = emsr::epsilon(__z);
       const auto __z2 = __z / _Tp{2};
       const auto __m = (__n - 1) / 2;
       const auto __k_start = __m;
@@ -251,7 +251,7 @@
     __anger_weber_t<_Tp>
     __anger_weber_sum(_Tp __nu, _Tp __z)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__z);
+      const auto _S_eps = emsr::epsilon(__z);
 
       auto __nuint = emsr::fp_is_integer(__nu);
 
@@ -363,7 +363,7 @@
     __anger_weber_asymp_arg(_Tp __nu, _Tp __z)
     {
       using _Real = decltype(std::real(__z));
-      const auto _S_eps = __gnu_cxx::__epsilon<_Real>();
+      const auto _S_eps = emsr::epsilon<_Real>();
       const auto _S_pi = emsr::pi_v<_Real>;
       const auto _S_max_iter = 1000u;
       const auto __z2 = __z * __z;
@@ -439,7 +439,7 @@
     {
       //using _Val = _Tp;
       //using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__z);
+      const auto _S_eps = emsr::epsilon(__z);
 
       const auto __z2 = __z / _Tp{2};
       auto _GamArg11 = _Tp{1} + __nu / _Tp{2};
@@ -533,7 +533,7 @@
   _Tp
   __cosc_pi(_Tp __x)
   {
-    const auto _S_eps = __gnu_cxx::__epsilon(__x);
+    const auto _S_eps = emsr::epsilon(__x);
     const auto _S_pi = emsr::pi_v<_Tp>;
     if (std::abs(__x) < _Tp{100} * _S_eps)
       return _S_pi * __x / _Tp{2};
@@ -546,7 +546,7 @@ template<typename _Tp>
   void
   test_anger_weber(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 

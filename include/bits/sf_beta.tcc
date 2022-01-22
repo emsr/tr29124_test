@@ -84,7 +84,7 @@ namespace __detail
 	  else if (__nb != __b || __nb > 0)
 	    return _Tp{0};
 	  else
-	    return __gnu_cxx::__quiet_NaN<_Tp>();
+	    return emsr::quiet_NaN<_Tp>();
 	}
       else
 	{
@@ -132,7 +132,7 @@ namespace __detail
 	  else if (__nb != __b || __nb > 0)
 	    return _Tp{0};
 	  else
-	    return __gnu_cxx::__quiet_NaN<_Tp>(__a);
+	    return emsr::quiet_NaN<_Tp>(__a);
 	}
       else
 	{
@@ -143,8 +143,8 @@ namespace __detail
 		      * __log_gamma_sign(__b)
 		      * __log_gamma_sign(__a + __b);
 
-	  if (__bet > __gnu_cxx::__log_max<_Tp>())
-            return __sign * __gnu_cxx::__infinity<_Tp>(__a);
+	  if (__bet > emsr::log_max<_Tp>())
+            return __sign * emsr::infinity<_Tp>(__a);
 	  else
 	    return __sign * std::exp(__bet);
 	}
@@ -176,7 +176,7 @@ namespace __detail
     _Tp
     __beta_product(_Tp __a, _Tp __b)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      const auto _S_eps = emsr::epsilon<_Tp>();
       const auto __ab = __a * __b;
       auto __bet = (__a + __b) / __ab;
 
@@ -213,7 +213,7 @@ namespace __detail
     __beta(_Tp __a, _Tp __b)
     {
       if (std::isnan(__a) || std::isnan(__b))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return emsr::quiet_NaN<_Tp>();
       else if (std::abs(__a) < _S_num_factorials<_Tp>
 	    && std::abs(__b) < _S_num_factorials<_Tp>
 	    && std::abs(__a + __b) < _S_num_factorials<_Tp>)
@@ -237,8 +237,8 @@ namespace __detail
     __ibeta_cont_frac(_Tp __a, _Tp __b, _Tp __x)
     {
       constexpr unsigned int _S_itmax = 100;
-      const auto _S_fpmin = 1000 * __gnu_cxx::__lim_min<_Tp>();
-      const auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      const auto _S_fpmin = 1000 * emsr::lim_min<_Tp>();
+      const auto _S_eps = emsr::epsilon<_Tp>();
 
       auto __apb = __a + __b;
       auto __ap1 = __a + _Tp{1};
@@ -308,7 +308,7 @@ namespace __detail
     _Tp
     __beta_inc(_Tp __a, _Tp __b, _Tp __x)
     {
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_NaN = emsr::quiet_NaN(__x);
 
 
       if (__x < _Tp{0} || __x > _Tp{1})

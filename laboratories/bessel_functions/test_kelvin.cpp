@@ -9,7 +9,7 @@
 #include <cmath>
 #include <emsr/summation.h>
 #include <emsr/math_constants.h>
-#include <bits/numeric_limits.h>
+#include <emsr/numeric_limits.h>
 #include <bits/specfun.h>
 
 namespace std
@@ -54,7 +54,7 @@ namespace __detail
       using _WijnSum = emsr::VanWijngaardenSum<_Tp>;
       using _WenigerDeltaWijnSum = emsr::WenigerDeltaSum<_WijnSum>;
 
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = emsr::epsilon(__x);
       constexpr auto _S_maxiter = 100;
       const auto __y = __x / _Tp{2};
       const auto __y2 = __y * __y;
@@ -89,7 +89,7 @@ namespace __detail
       using _WijnSum = emsr::VanWijngaardenSum<_Tp>;
       using _WenigerDeltaWijnSum = emsr::WenigerDeltaSum<_WijnSum>;
 
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = emsr::epsilon(__x);
       constexpr auto _S_maxiter = 100;
       const auto __y = __x / _Tp{2};
       const auto __y2 = __y * __y;
@@ -227,13 +227,13 @@ namespace __detail
       constexpr auto _S_maxiter = 100;
       const auto _S_gamma_e = emsr::egamma_v<_Tp>;
       const auto _S_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = emsr::epsilon(__x);
       const auto __y = __x / _Tp{2};
       const auto __x2 = __y * __y;
       const auto __y4 = __x2 * __x2;
       if (__x == _Tp{0})
 	{
-	  const auto _S_inf = __gnu_cxx::__infinity<_Tp>();
+	  const auto _S_inf = emsr::infinity<_Tp>();
 	  return {0, __x, _Tp{1}, _Tp{0}, _S_inf, -_S_pi_4};
 	}
       else
@@ -301,7 +301,7 @@ namespace __detail
       const auto _S_3pi_4 = _Tp{3} * _S_pi_4;
       const auto _S_sqrt_2 = emsr::sqrt2_v<_Tp>;
       const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = emsr::epsilon(__x);
       constexpr auto _S_maxiter = 1000;
       const auto __y = _Tp{1} / (_Tp{8} * __x);
       auto __term = _Tp{1};
@@ -385,7 +385,7 @@ namespace __detail
       const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
       const auto _S_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
       const auto _S_3pi_4 = _Tp{3} * _S_pi_4;
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = emsr::epsilon(__x);
       constexpr auto _S_maxiter = 1000;
       if (__n < 0)
 	{
@@ -553,7 +553,7 @@ namespace __detail
       const auto _S_pi_8 = _S_1d2 * _S_pi_4;
       const auto _S_sqrt_2 = emsr::sqrt2_v<_Tp>;
       const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = emsr::epsilon(__x);
       constexpr auto _S_maxiter = 1000;
       const auto __y = _Tp{1} / (_Tp{2} * __x);
       auto __bterm = _Tp{1};
@@ -602,7 +602,7 @@ namespace __detail
     {
       constexpr auto _S_switch = _Tp{26};
       if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return emsr::quiet_NaN<_Tp>();
       else if (std::abs(__x) < _S_switch)
 	return __kelvin_ber_series(__x);
       else
@@ -618,7 +618,7 @@ namespace __detail
     {
       constexpr auto _S_switch = _Tp{26};
       if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return emsr::quiet_NaN<_Tp>();
       else if (std::abs(__x) < _S_switch)
 	return __kelvin_bei_series(__x);
       else
@@ -634,7 +634,7 @@ namespace __detail
     {
       constexpr auto _S_switch = _Tp{5};
       if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return emsr::quiet_NaN<_Tp>();
       else if (std::abs(__x) < _S_switch)
 	return __kelvin_ker_series(__x);
       else
@@ -650,7 +650,7 @@ namespace __detail
     {
       constexpr auto _S_switch = _Tp{5};
       if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return emsr::quiet_NaN<_Tp>();
       else if (std::abs(__x) < _S_switch)
 	return __kelvin_kei_series(__x);
       else
@@ -666,7 +666,7 @@ namespace __detail
     {
       constexpr auto _S_switch = _Tp{26};
       if (std::isnan(__nu) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return emsr::quiet_NaN<_Tp>();
       else if (std::abs(__x) < _S_switch)
 	return __kelvin_series(__nu, __x).__ber;
       else
@@ -682,7 +682,7 @@ namespace __detail
     {
       constexpr auto _S_switch = _Tp{26};
       if (std::isnan(__nu) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return emsr::quiet_NaN<_Tp>();
       else if (std::abs(__x) < _S_switch)
 	return __kelvin_series(__nu, __x).__bei;
       else
@@ -698,7 +698,7 @@ namespace __detail
     {
       constexpr auto _S_switch = _Tp{5};
       if (std::isnan(__nu) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return emsr::quiet_NaN<_Tp>();
       else if (std::abs(__x) < _S_switch)
 	return __kelvin_series(__nu, __x).__ker;
       else
@@ -714,7 +714,7 @@ namespace __detail
     {
       const auto _S_switch = _Tp{5};
       if (std::isnan(__nu) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return emsr::quiet_NaN<_Tp>();
       else if (std::abs(__x) < _S_switch)
 	return __kelvin_series(__nu, __x).__kei;
       else
@@ -1068,7 +1068,7 @@ template<typename _Tp>
   void
   run_kelvin1(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -1107,7 +1107,7 @@ template<typename _Tp>
   void
   run_kelvin2(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -1143,7 +1143,7 @@ template<typename _Tp>
   void
   diff_kelvin2(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -1194,7 +1194,7 @@ template<typename _Tp>
   void
   run_kelvin3(_Tp nu = _Tp{0})
   {
-    std::cout.precision(__gnu_cxx::__digits10(nu));
+    std::cout.precision(emsr::digits10(nu));
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -1228,7 +1228,7 @@ template<typename _Tp>
   void
   diff_kelvin3(_Tp nu = _Tp{0})
   {
-    std::cout.precision(__gnu_cxx::__digits10(nu));
+    std::cout.precision(emsr::digits10(nu));
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -1263,7 +1263,7 @@ template<typename _Tp>
   void
   run_kelvin4(int n = 0, _Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -1302,7 +1302,7 @@ template<typename _Tp>
 
     auto data = std::ofstream(filename);
 
-    data.precision(__gnu_cxx::__digits10(proto));
+    data.precision(emsr::digits10(proto));
     data << std::showpoint << std::scientific;
     auto w = 8 + data.precision();
 
@@ -1347,7 +1347,7 @@ template<typename _Tp>
 
     auto data = std::ofstream(filename);
 
-    data.precision(__gnu_cxx::__digits10(proto));
+    data.precision(emsr::digits10(proto));
     data << std::showpoint << std::scientific;
     auto w = 8 + data.precision();
 

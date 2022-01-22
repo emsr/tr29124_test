@@ -67,7 +67,7 @@ namespace __detail
 				_Tp __chi_min, _Tp __chi_max,
 				const std::complex<_Tp>& __z)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__chi_min);
+      const auto _S_eps = emsr::epsilon(__chi_min);
       auto __func = [__alpha, __beta, __z](_Tp __chi)
 		    -> std::complex<_Tp>
 		    { return __mittag_leffler_K(__alpha, __beta, __chi, __z); };
@@ -109,7 +109,7 @@ namespace __detail
 				_Tp __phi_min, _Tp __phi_max,
 				const std::complex<_Tp>& __z)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__phi_min);
+      const auto _S_eps = emsr::epsilon(__phi_min);
       auto __func = [__alpha, __beta, __epsilon, __z](_Tp __phi)
 		    -> std::complex<_Tp>
 		    {
@@ -145,7 +145,7 @@ namespace __detail
     __mittag_leffler(_Tp __alpha, _Tp __beta, const std::complex<_Tp>& __z)
     {
       using _Cmplx = std::complex<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__alpha);
+      const auto _S_eps = emsr::epsilon(__alpha);
       const auto _S_2pi = emsr::tau_v<_Tp>;
       const auto _S_pi = emsr::pi_v<_Tp>;
 
@@ -156,7 +156,7 @@ namespace __detail
 	    return __gamma_reciprocal(__beta) / (_Tp{1} - __z);
 	  else
 	    {
-	      const auto _S_inf = __gnu_cxx::__infinity(__alpha);
+	      const auto _S_inf = emsr::infinity(__alpha);
 	      return std::complex<_Tp>{_S_inf, _S_inf};
 	    }
 	}
@@ -301,7 +301,7 @@ namespace __detail
 			   const std::complex<_Tp>& __z)
     {
       using _Cmplx = std::complex<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__alpha);
+      const auto _S_eps = emsr::epsilon(__alpha);
 
       const auto __az = std::abs(__z);
       if (__az < _Tp{1})

@@ -52,7 +52,7 @@
 	    __sum += std::__detail::__factorial<_Tp>(__n)
 		   * std::__detail::__riemann_zeta<_Tp>(__n + 1);
 	  else
-	    return __gnu_cxx::__infinity(__x);
+	    return emsr::infinity(__x);
 
 	  /**
 	   * Compute the Debye function:
@@ -93,7 +93,7 @@
            * for @f$ |x| < 2\pi @f$.
 	   * Abramowitz-Stegun 27.1.1
 	   */
-	  const auto _S_eps = __gnu_cxx::__epsilon(__x);
+	  const auto _S_eps = emsr::epsilon(__x);
 	  const std::size_t _S_max_iter = 200;
 	  const auto _S_1_2pi = emsr::inv_tau_v<_Tp>;
 	  const auto __x2pi = __x * _S_1_2pi;
@@ -122,7 +122,7 @@ template<typename _Tp>
   void
   test_debye(_Tp __proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__max_digits10(__proto));
+    std::cout.precision(emsr::max_digits10(__proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -149,7 +149,7 @@ template<typename _Tp>
   void
   test_debye_gsl(_Tp __proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__max_digits10(__proto));
+    std::cout.precision(emsr::max_digits10(__proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 

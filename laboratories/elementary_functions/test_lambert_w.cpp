@@ -14,7 +14,7 @@
     _Tp
     __lambert_w_series(_Tp __z)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__z);
+      const auto _S_eps = emsr::epsilon(__z);
       const auto _S_max_iter = 1000u;
 
       auto _W = __z * (_Tp{1} - __z);
@@ -36,7 +36,7 @@
     _Tp
     __lambert_w_newton(_Tp __z, _Tp _W = _Tp{1})
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__z);
+      const auto _S_eps = emsr::epsilon(__z);
       const auto _S_max_iter = 1000u;
 
       auto __wk = _W;
@@ -61,7 +61,7 @@
     _Tp
     __lambert_w_halley(_Tp __z, _Tp _W = _Tp{1})
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__z);
+      const auto _S_eps = emsr::epsilon(__z);
       const auto _S_max_iter = 1000u;
 
       auto __wk = _W;
@@ -144,7 +144,7 @@ template<typename _Tp>
   void
   test_lambert_w(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 

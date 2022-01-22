@@ -116,8 +116,8 @@ namespace __detail
     {
       using __cmplx = std::complex<_Tp>;
 
-      static constexpr auto _S_inf     = __gnu_cxx::__max<_Tp>();
-      static constexpr auto _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();
+      static constexpr auto _S_inf     = emsr::max<_Tp>();
+      static constexpr auto _S_sqrt_max = emsr::sqrt_max<_Tp>();
 
       static constexpr auto _S_1d4   = _Tp{0.25L};
       static constexpr auto _S_1d3   = _Tp{0.3333333333333333333333333333333333333333L};

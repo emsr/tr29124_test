@@ -10,7 +10,7 @@ template<typename _Tp>
   void
   test()
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    std::cout.precision(emsr::digits10<_Tp>());
     auto w = 8 + std::cout.precision();
 
     const auto _S_ln2 = emsr::ln2_v<_Tp>;

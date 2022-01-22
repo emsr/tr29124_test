@@ -1500,7 +1500,7 @@
 
     public:
 
-      static constexpr _Real _S_eps = __gnu_cxx::__epsilon(_Real{});
+      static constexpr _Real _S_eps = emsr::epsilon(_Real{});
       static constexpr _Real _S_pi
 		 = emsr::pi_v<_Real>;
       static constexpr _Real _S_sqrt_pi
@@ -1643,7 +1643,7 @@
   //  You need this to compile.
   template<typename _Tp>
     const typename _Airy_series<_Tp>::_Real
-    _Airy_series<_Tp>::_S_log10min = __gnu_cxx::__log10_min(_Real{});
+    _Airy_series<_Tp>::_S_log10min = emsr::log10_min(_Real{});
 
   /**
    * Return auxilliary Airy functions by using the series expansions of
@@ -4413,7 +4413,7 @@
 
       _Val _Fp1d3, _Fm1d3, _Fp2d3, _Fm2d3;
 
-      if (std::abs(__zzz) < _Real{10} * __gnu_cxx::__lim_min<_Real>())
+      if (std::abs(__zzz) < _Real{10} * emsr::lim_min<_Real>())
 	return __airy_t<_Val, _Val>{__z, _S_Ai0, _S_Aip0, _S_Bi0, _S_Bip0};
       else
 	{
@@ -6041,7 +6041,7 @@ namespace __detail
     _Tp
     __scorer_gi(_Tp __x)
     {
-      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
+      constexpr auto _S_nan = emsr::quiet_NaN<_Tp>();
 
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__scorer_gi: bad argument"));
@@ -6061,7 +6061,7 @@ namespace __detail
     _Tp
     __scorer_hi(_Tp __x)
     {
-      constexpr auto _S_nan = __gnu_cxx::__quiet_NaN<_Tp>();
+      constexpr auto _S_nan = emsr::quiet_NaN<_Tp>();
 
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__scorer_hi: bad argument"));

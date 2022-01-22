@@ -64,7 +64,7 @@ namespace __detail
     __gnu_cxx::__jacobi_t<_Tp>
     __jacobi_recur(unsigned int __n, _Tp __alpha1, _Tp __beta1, _Tp __x)
     {
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_NaN = emsr::quiet_NaN(__x);
 
       if (std::isnan(__alpha1) || std::isnan(__beta1) || std::isnan(__x))
 	return {__n, __alpha1, __beta1, __x, _S_NaN, _S_NaN, _S_NaN};
@@ -138,7 +138,7 @@ namespace __detail
     std::vector<emsr::QuadraturePoint<_Tp>>
     __jacobi_zeros(unsigned int __n, _Tp __alpha1, _Tp __beta1)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__alpha1);
+      const auto _S_eps = emsr::epsilon(__alpha1);
       const unsigned int _S_maxit = 1000u;
 
       std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
@@ -291,7 +291,7 @@ namespace __detail
     _Tp
     __radial_jacobi(unsigned int __n, unsigned int __m, _Tp __rho)
     {
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__rho);
+      const auto _S_NaN = emsr::quiet_NaN(__rho);
 
       if (std::isnan(__rho))
 	return _S_NaN;
@@ -369,7 +369,7 @@ namespace __detail
     emsr::fp_promote_t<_Tp>
     __zernike(unsigned int __n, int __m, _Tp __rho, _Tp __phi)
     {
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__rho);
+      const auto _S_NaN = emsr::quiet_NaN(__rho);
 
       if (std::isnan(__rho) || std::isnan(__phi))
 	return _S_NaN;

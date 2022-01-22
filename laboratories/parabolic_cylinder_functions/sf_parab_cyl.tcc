@@ -83,7 +83,7 @@ namespace __detail
     std::pair<_Tp, _Tp>
     __parabolic_cylinder_series(_Tp __a, _Tp __z)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__z));
+      const auto _S_eps = emsr::epsilon(std::real(__z));
       constexpr auto _S_max_iter = 1000;
       const auto __zz = __z * __z;
       const auto __ezz4 = std::exp(-__zz / _Tp{4});
@@ -119,7 +119,7 @@ namespace __detail
     std::pair<_Tp, _Tp>
     __parabolic_cylinder_asymp(_Tp __a, _Tp __z)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__z));
+      const auto _S_eps = emsr::epsilon(std::real(__z));
       constexpr auto _S_max_iter = 1000;
       constexpr auto _S_1d2 = _Tp{1} / _Tp{2};
       const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
@@ -172,7 +172,7 @@ namespace __detail
     __parabolic_cyl_u(_Tp __a, _Tp __z)
     {
       if (std::isnan(__a) || std::isnan(__z))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return emsr::quiet_NaN<_Tp>();
       else
         return __parabolic_cylinder(__a, __z).first;
     }
@@ -185,7 +185,7 @@ namespace __detail
     __parabolic_cyl_v(_Tp __a, _Tp __z)
     {
       if (std::isnan(__a) || std::isnan(__z))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return emsr::quiet_NaN<_Tp>();
       else
         return __parabolic_cylinder(__a, __z).second;
     }

@@ -11,7 +11,7 @@ template<typename _Tp>
   void
   test_cyl_bessel()
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    std::cout.precision(emsr::digits10<_Tp>());
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
@@ -46,7 +46,7 @@ template<typename _Tp>
   void
   test_mod_cyl_bessel()
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    std::cout.precision(emsr::digits10<_Tp>());
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
@@ -80,7 +80,7 @@ template<typename _Tp>
   void
   test_sph_bessel()
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    std::cout.precision(emsr::digits10<_Tp>());
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
@@ -114,7 +114,7 @@ template<typename _Tp>
   void
   test_mod_sph_bessel()
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    std::cout.precision(emsr::digits10<_Tp>());
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 

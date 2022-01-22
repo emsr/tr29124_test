@@ -19,9 +19,9 @@
 #include <ext/float128_io.h>
 
 //#include <mpreal.h>
-//#include <ext/math_const_mpreal.h>
+//#include <emsr/math_const_mpreal.h>
 //#include <math_mpreal.h>
-//#include <bits/numeric_limits_mpreal.h>
+//#include <emsr/numeric_limits_mpreal.h>
 
   /**
    * 
@@ -32,7 +32,7 @@
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__proto));
+      const auto _S_eps = emsr::epsilon(std::real(__proto));
       const auto _S_gamma_e = emsr::egamma_v<_Tp>;
       auto __sign = [](std::size_t __i){ return (__i & 1u) == 1u ? -1 : +1; };
       std::vector<_Real> __c;
@@ -122,7 +122,7 @@
 	-0.0000000000000000000000000000000000000013Q,
 	 0.0000000000000000000000000000000000000002Q,
       }};
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
+      const auto _S_eps = emsr::epsilon(std::real(__a));
       auto __ak = _Tp{1};
       auto __gam = _Tp{0};
       for (auto __k = 1u; __k < _S_c.size(); ++__k)
@@ -148,7 +148,7 @@
     _Tp
     __gamma_reciprocal_prod(_Tp __a)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
+      const auto _S_eps = emsr::epsilon(std::real(__a));
       const auto _S_gamma_e = emsr::egamma_v<_Tp>;
       const auto _S_max_iter = 10000;
       auto __gam = __a * std::exp(_S_gamma_e * __a);
@@ -178,7 +178,7 @@
       using _Real = emsr::num_traits_t<_Tp>;
 
       if (std::isnan(__a))
-	return __gnu_cxx::__quiet_NaN(__a);
+	return emsr::quiet_NaN(__a);
       else
 	{
 	  const auto _S_pi = emsr::pi_v<_Tp>;
@@ -282,7 +282,7 @@
     __gamma_temme(_Tp __mu)
     {
       using __gammat_t = __gnu_cxx::__gamma_temme_t<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__mu);
+      const auto _S_eps = emsr::epsilon(__mu);
       const auto _S_gamma_E = emsr::egamma_v<_Tp>;
 
       if (std::abs(__mu) < _S_eps)
@@ -310,7 +310,7 @@
     __gamma_temme_t<_Tp>
     __gamma_temme_std(_Tp __mu)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__mu);
+      const auto _S_eps = emsr::epsilon(__mu);
       const auto _S_gamma_E = emsr::egamma_v<_Tp>;
       auto __gamp = _Tp{1} / std::tgamma(_Tp{1} + __mu);
       auto __gamm = _Tp{1} / std::tgamma(_Tp{1} - __mu);
@@ -327,7 +327,7 @@ template<typename _Tp>
   void
   plot_gamma_reciprocal(_Tp __proto)
   {
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(emsr::digits10(__proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
     const auto del = _Tp{1} / _Tp{100};
@@ -350,7 +350,7 @@ template<typename _Tp>
     using _Val = _Tp;
     using _Real = emsr::num_traits_t<_Val>;
 
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(emsr::digits10(__proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -400,7 +400,7 @@ template<typename _Tp>
   void
   test_gamma_temme(_Tp __proto)
   {
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(emsr::digits10(__proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 

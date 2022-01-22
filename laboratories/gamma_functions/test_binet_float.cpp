@@ -286,7 +286,7 @@ std::cerr << std::showpoint;
 	    {
 std::cerr << '\n';
 //	      _WijnSum __sum(8);
-__gnu_cxx::_BasicSum<_Real> __sum;
+emsr::BasicSum<_Real> __sum;
 	      for (auto __i = 0u; __i < __k; ++__i)
 	        if (__k - __i < __n)
 {
@@ -611,7 +611,7 @@ std::cerr << std::setw(12) << __c[__k - __i] * __d[__i] << '\t' << std::setw(12)
       constexpr auto _S_switchover = _Real{10};
 
       if (std::isnan(__z))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return emsr::quiet_NaN<_Tp>();
       else if (__z < _S_switchover)
 	return __binet_cont_frac(__z);
       else

@@ -13,7 +13,7 @@ template<typename _Tp>
   void
   test_parab_cyl(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__max_digits10(proto));
+    std::cout.precision(emsr::max_digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 

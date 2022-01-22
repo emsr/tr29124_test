@@ -24,7 +24,7 @@
       using _Real = emsr::num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
       constexpr std::size_t _S_max_iter = 50;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__q));
+      const auto _S_eps = emsr::epsilon(std::abs(__q));
 
       auto __qqn =  _Cmplx{1};
       auto __prod = _Cmplx{1};
@@ -59,7 +59,7 @@
       using _Real = emsr::num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
       constexpr std::size_t _S_max_iter = 50;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::abs(__q));
+      const auto _S_eps = emsr::epsilon(std::abs(__q));
 
       const auto __qq = __q * __q;
       auto __qqn = _Cmplx{1};
@@ -162,7 +162,7 @@ template<typename _Tp>
     using _Real = emsr::num_traits_t<_Tp>;
     using _Cmplx = std::complex<_Real>;
 
-    std::cout.precision(__gnu_cxx::__digits10<_Real>());
+    std::cout.precision(emsr::digits10<_Real>());
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
@@ -199,7 +199,7 @@ template<typename _Tp>
     using _Real = emsr::num_traits_t<_Tp>;
     using _Cmplx = std::complex<_Real>;
 
-    std::cout.precision(__gnu_cxx::__digits10<_Real>());
+    std::cout.precision(emsr::digits10<_Real>());
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
@@ -236,7 +236,7 @@ template<typename _Tp>
     using _Real = emsr::num_traits_t<_Tp>;
     using _Cmplx = std::complex<_Real>;
 
-    std::cout.precision(__gnu_cxx::__digits10<_Real>());
+    std::cout.precision(emsr::digits10<_Real>());
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
@@ -273,7 +273,7 @@ template<typename _Tp>
     using _Cmplx = std::complex<_Real>;
     const auto _S_pi = emsr::pi_v<_Tp>;
 
-    std::cout.precision(__gnu_cxx::__digits10<_Real>());
+    std::cout.precision(emsr::digits10<_Real>());
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 

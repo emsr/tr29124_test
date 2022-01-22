@@ -85,7 +85,7 @@
     __sincos_pi(_Tp __x)
     {
       const auto _S_pi = emsr::pi_v<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>(__x);
+      const auto _S_NaN = emsr::quiet_NaN<_Tp>(__x);
       if (std::isnan(__x))
 	return __gnu_cxx::__sincos_t<_Tp>{_S_NaN, _S_NaN};
       else if (__x < _Tp{0})
@@ -138,7 +138,7 @@ template<typename _Tp>
   void
   test_sincos(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 

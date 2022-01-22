@@ -19,7 +19,7 @@ template<typename _Tp>
     using _Real = emsr::num_traits_t<_Val>;
     const auto _S_pi_2 = emsr::pi_v<_Real> / _Real{2};
 
-    std::cout.precision(__gnu_cxx::__digits10<_Real>());
+    std::cout.precision(emsr::digits10<_Real>());
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -100,7 +100,7 @@ template<typename _Tp>
     using _Val = _Tp;
     using _Real = emsr::num_traits_t<_Val>;
 
-    std::cout.precision(__gnu_cxx::__digits10<_Real>());
+    std::cout.precision(emsr::digits10<_Real>());
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 

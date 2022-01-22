@@ -81,10 +81,10 @@ namespace __detail
     __ellint_rc(_Tp __x, _Tp __y)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
-      const auto _S_min = __gnu_cxx::__lim_min(_Real{});
-      const auto _S_max = __gnu_cxx::__lim_max(_Real{});
-      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
+      const auto _S_NaN = emsr::quiet_NaN(_Real{});
+      const auto _S_min = emsr::lim_min(_Real{});
+      const auto _S_max = emsr::lim_max(_Real{});
+      const auto _S_eps = emsr::epsilon(_Real{});
       const auto _S_lolim = _Real{5} * _S_min;
       const auto _S_uplim = _S_max / _Real{5};
 
@@ -172,10 +172,10 @@ namespace __detail
     __ellint_rd(_Tp __x, _Tp __y, _Tp __z)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
-      const auto _S_min = __gnu_cxx::__lim_min(_Real{});
-      const auto _S_max = __gnu_cxx::__lim_max(_Real{});
-      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
+      const auto _S_NaN = emsr::quiet_NaN(_Real{});
+      const auto _S_min = emsr::lim_min(_Real{});
+      const auto _S_max = emsr::lim_max(_Real{});
+      const auto _S_eps = emsr::epsilon(_Real{});
       const auto _S_lolim = _Real{5} * _S_min;
       const auto _S_uplim = _S_max / _Real{5};
 
@@ -249,10 +249,10 @@ namespace __detail
     __comp_ellint_rf(_Tp __x, _Tp __y)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
-      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
+      const auto _S_NaN = emsr::quiet_NaN(_Real{});
+      const auto _S_eps = emsr::epsilon(_Real{});
       const auto _S_pi = emsr::pi_v<_Real>;
-      const auto _S_tolfact = _Real{2.7L} * __gnu_cxx::__sqrt_eps(_Real{});
+      const auto _S_tolfact = _Real{2.7L} * emsr::sqrt_eps(_Real{});
 
       if (std::isnan(__x) || std::isnan(__y))
 	return _S_NaN;
@@ -291,10 +291,10 @@ namespace __detail
     __ellint_rf(_Tp __x, _Tp __y, _Tp __z)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
-      const auto _S_min = __gnu_cxx::__lim_min(_Real{});
-      const auto _S_max = __gnu_cxx::__lim_max(_Real{});
-      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
+      const auto _S_NaN = emsr::quiet_NaN(_Real{});
+      const auto _S_min = emsr::lim_min(_Real{});
+      const auto _S_max = emsr::lim_max(_Real{});
+      const auto _S_eps = emsr::epsilon(_Real{});
       const auto _S_lolim = _Real(5) * _S_min;
       const auto _S_uplim = _S_max / _Real(5);
 
@@ -365,10 +365,10 @@ namespace __detail
     __comp_ellint_rg(_Tp __x, _Tp __y)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
-      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
+      const auto _S_NaN = emsr::quiet_NaN(_Real{});
+      const auto _S_eps = emsr::epsilon(_Real{});
       const auto _S_pi = emsr::pi_v<_Real>;
-      const auto _S_tolfact = _Real{2.7L} * __gnu_cxx::__sqrt_eps(_Real{});
+      const auto _S_tolfact = _Real{2.7L} * emsr::sqrt_eps(_Real{});
 
       if (std::isnan(__x) || std::isnan(__y))
 	return _S_NaN;
@@ -427,7 +427,7 @@ namespace __detail
     __ellint_rg(_Tp __x, _Tp __y, _Tp __z)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
+      const auto _S_NaN = emsr::quiet_NaN(_Real{});
 
       if (std::isnan(__x) || std::isnan(__y) || std::isnan(__z))
 	return _S_NaN;
@@ -475,10 +475,10 @@ namespace __detail
     __ellint_rj(_Tp __x, _Tp __y, _Tp __z, _Tp __p)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
-      const auto _S_min = __gnu_cxx::__lim_min(_Real{});
-      const auto _S_max = __gnu_cxx::__lim_max(_Real{});
-      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
+      const auto _S_NaN = emsr::quiet_NaN(_Real{});
+      const auto _S_min = emsr::lim_min(_Real{});
+      const auto _S_max = emsr::lim_max(_Real{});
+      const auto _S_eps = emsr::epsilon(_Real{});
       const auto _S_lolim = _Real(5) * _S_min;
       const auto _S_uplim = _S_max / _Real(5);
 
@@ -589,7 +589,7 @@ namespace __detail
     __comp_ellint_1(_Tp __k)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
+      const auto _S_NaN = emsr::quiet_NaN(__k);
 
       if (std::isnan(__k))
 	return _S_NaN;
@@ -618,7 +618,7 @@ namespace __detail
     __ellint_1(_Tp __k, _Tp __phi)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
+      const auto _S_NaN = emsr::quiet_NaN(__k);
       const auto _S_pi = emsr::pi_v<_Real>;
 
       if (std::isnan(__k) || std::isnan(__phi))
@@ -663,7 +663,7 @@ namespace __detail
     __comp_ellint_2(_Tp __k)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
+      const auto _S_NaN = emsr::quiet_NaN(__k);
 
       if (std::isnan(__k))
 	return _S_NaN;
@@ -699,7 +699,7 @@ namespace __detail
     __ellint_2(_Tp __k, _Tp __phi)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
+      const auto _S_NaN = emsr::quiet_NaN(__k);
       const auto _S_pi = emsr::pi_v<_Real>;
 
       if (std::isnan(__k) || std::isnan(__phi))
@@ -753,12 +753,12 @@ namespace __detail
     __comp_ellint_3(_Tp __k, _Tp __nu)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
+      const auto _S_NaN = emsr::quiet_NaN(__k);
 
       if (std::isnan(__k) || std::isnan(__nu))
 	return _S_NaN;
       else if (__nu == _Tp{1})
-	return __gnu_cxx::__infinity(__k);
+	return emsr::infinity(__k);
       else if (std::abs(__k) > _Real{1})
 	std::__throw_domain_error(__N("__comp_ellint_3: bad argument"));
       else
@@ -792,7 +792,7 @@ namespace __detail
     __ellint_3(_Tp __k, _Tp __nu, _Tp __phi)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
+      const auto _S_NaN = emsr::quiet_NaN(__k);
       const auto _S_pi = emsr::pi_v<_Real>;
 
       if (std::isnan(__k) || std::isnan(__nu) || std::isnan(__phi))
@@ -833,7 +833,7 @@ namespace __detail
     __ellint_d(_Tp __k, _Tp __phi)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
+      const auto _S_NaN = emsr::quiet_NaN(__k);
 
       if (std::isnan(__k) || std::isnan(__phi))
 	return _S_NaN;
@@ -859,7 +859,7 @@ namespace __detail
     __comp_ellint_d(_Tp __k)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
+      const auto _S_NaN = emsr::quiet_NaN(__k);
 
       if (std::isnan(__k))
 	return _S_NaN;
@@ -875,7 +875,7 @@ namespace __detail
     __ellint_el1(_Tp __x, _Tp __k_c)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
+      const auto _S_NaN = emsr::quiet_NaN(_Real{});
 
       if (std::isnan(__x) || std::isnan(__k_c))
 	return _S_NaN;
@@ -896,7 +896,7 @@ namespace __detail
     __ellint_el2(_Tp __x, _Tp __k_c, _Tp __a, _Tp __b)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
+      const auto _S_NaN = emsr::quiet_NaN(_Real{});
 
       if (std::isnan(__x) || std::isnan(__k_c) || std::isnan(__a) || std::isnan(__b))
 	return _S_NaN;
@@ -921,7 +921,7 @@ namespace __detail
     __ellint_el3(_Tp __x, _Tp __k_c, _Tp __p)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
+      const auto _S_NaN = emsr::quiet_NaN(_Real{});
 
       if (std::isnan(__x) || std::isnan(__k_c) || std::isnan(__p))
 	return _S_NaN;
@@ -947,7 +947,7 @@ namespace __detail
     __ellint_cel(_Tp __k_c, _Tp __p, _Tp __a, _Tp __b)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k_c);
+      const auto _S_NaN = emsr::quiet_NaN(__k_c);
 
       if (std::isnan(__k_c) || std::isnan(__p) || std::isnan(__a) || std::isnan(__b))
 	return _S_NaN;
@@ -968,9 +968,9 @@ namespace __detail
     __jacobi_zeta(_Tp __k, _Tp __phi)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
+      const auto _S_NaN = emsr::quiet_NaN(__k);
       const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
-      const auto _S_eps = __gnu_cxx::__epsilon(__k);
+      const auto _S_eps = emsr::epsilon(__k);
 
       if (std::isnan(__k) || std::isnan(__phi))
 	return _S_NaN;
@@ -1005,10 +1005,10 @@ namespace __detail
     __heuman_lambda(_Tp __k, _Tp __phi)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__k);
+      const auto _S_NaN = emsr::quiet_NaN(__k);
       const auto _S_pi = emsr::pi_v<_Tp>;
       const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
-      const auto _S_eps = __gnu_cxx::__epsilon(__k);
+      const auto _S_eps = emsr::epsilon(__k);
 
       if (std::isnan(__k) || std::isnan(__phi))
 	return _S_NaN;

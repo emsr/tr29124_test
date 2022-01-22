@@ -1,6 +1,6 @@
 #include <complex>
 #include <cmath>
-#include <bits/numeric_limits.h>
+#include <emsr/numeric_limits.h>
 
 /**
  *  @param[in]  t      The input argument.
@@ -24,8 +24,8 @@ template<typename _Tp>
   {
     using __cmplx = std::complex<_Tp>;
 
-    const auto _S_eps = __gnu_cxx::__epsilon(std::real(__t));
-    const auto _S_log10min = __gnu_cxx::__log10_min(std::real(__t));
+    const auto _S_eps = emsr::epsilon(std::real(__t));
+    const auto _S_log10min = emsr::log10_min(std::real(__t));
     const auto _S_pi = emsr::pi_v<_Tp>;
     const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
     constexpr auto _S_Ai0 = _Tp{3.550280538878172392600631860041831763980e-1L};

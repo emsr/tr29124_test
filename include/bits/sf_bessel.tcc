@@ -93,7 +93,7 @@ namespace __detail
       // FIXME: This will promote float to double if _Tnu is integral.
       using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
       using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon<_Real>();
+      const auto _S_eps = emsr::epsilon<_Real>();
       if (std::abs(__x) < _S_eps)
 	{
 	  if (__nu == _Tnu{0})
@@ -204,7 +204,7 @@ namespace __detail
       using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
       using _Real = emsr::num_traits_t<_Val>;
       using __bess_t = __cyl_bessel_asymp_sums_t<_Tnu, _Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon<_Real>();
+      const auto _S_eps = emsr::epsilon<_Real>();
       const auto __2nu = _Real{2} * __nu;
       const auto __4nu2 = __2nu * __2nu;
       const auto __r8x = _Tp{1} / (_Real{8} * __x);
@@ -313,7 +313,7 @@ namespace __detail
     __gamma_temme(_Tp __mu)
     {
       using __gammat_t = __gnu_cxx::__gamma_temme_t<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__mu);
+      const auto _S_eps = emsr::epsilon(__mu);
       const auto _S_gamma_E = emsr::egamma_v<_Tp>;
 
       if (std::abs(__mu) < _S_eps)
@@ -354,17 +354,17 @@ namespace __detail
     __cyl_bessel_jn_steed(_Tp __nu, _Tp __x)
     {
       using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Tp>;
-      const auto _S_inf = __gnu_cxx::__infinity(__x);
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_tiny = __gnu_cxx::__lim_min(__x);
+      const auto _S_inf = emsr::infinity(__x);
+      const auto _S_eps = emsr::epsilon(__x);
+      const auto _S_tiny = emsr::lim_min(__x);
       const auto _S_pi = emsr::pi_v<_Tp>;
       // When the multiplier is N i.e.
       // fp_min = N * min()
       // Then J_0 and N_0 tank at x = 8 * N (J_0 = 0 and N_0 = nan)!
-      //const _Tp _S_fp_min = _Tp{20} * __gnu_cxx::__lim_min(__nu);
+      //const _Tp _S_fp_min = _Tp{20} * emsr::lim_min(__nu);
       constexpr int _S_max_iter = 15000;
       const auto _S_x_min = _Tp{2};
-      const auto _S_fp_min = __gnu_cxx::__sqrt_min(__nu);
+      const auto _S_fp_min = emsr::sqrt_min(__nu);
 
       const int __n = (__x < _S_x_min
 		    ? std::nearbyint(__nu)
@@ -533,8 +533,8 @@ namespace __detail
     __cyl_bessel_jn(_Tp __nu, _Tp __x)
     {
       using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_inf = __gnu_cxx::__infinity(__x);
+      const auto _S_eps = emsr::epsilon(__x);
+      const auto _S_inf = emsr::infinity(__x);
       const auto _S_pi = emsr::pi_v<_Tp>;
       if (__nu < _Tp{0})
 	{
@@ -642,7 +642,7 @@ namespace __detail
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_j: bad argument"));
       else if (std::isnan(__nu) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__nu >= _Tp{0} && __x * __x < _Tp{10} * (__nu + _Tp{1}))
 	return __cyl_bessel_ij_series(__nu, __x, -1, 200);
       else
@@ -673,7 +673,7 @@ namespace __detail
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_neumann_n: bad argument"));
       else if (std::isnan(__nu) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else
 	return __cyl_bessel_jn(__nu, __x).__N_value;
     }
@@ -738,7 +738,7 @@ namespace __detail
     __cyl_hankel_1(_Tp __nu, _Tp __x)
     {
       using _Cmplx = std::complex<_Tp>;
-      const auto _S_nan = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_nan = emsr::quiet_NaN(__x);
       constexpr _Cmplx _S_i{0, 1};
       if (__nu < _Tp{0})
 	return __polar_pi(_Tp{1}, -__nu)
@@ -776,7 +776,7 @@ namespace __detail
     __cyl_hankel_2(_Tp __nu, _Tp __x)
     {
       using _Cmplx = std::complex<_Tp>;
-      const auto _S_nan = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_nan = emsr::quiet_NaN(__x);
       constexpr _Cmplx _S_i{0, 1};
       if (__nu < _Tp{0})
 	return __polar_pi(_Tp{1}, __nu)
@@ -881,7 +881,7 @@ namespace __detail
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__sph_bessel: bad argument"));
       else if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__x == _Tp{0})
 	{
 	  if (__n == 0)
@@ -914,9 +914,9 @@ namespace __detail
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__sph_neumann: bad argument"));
       else if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__x == _Tp{0})
-	return -__gnu_cxx::__infinity(__x);
+	return -emsr::infinity(__x);
       else
 	return __sph_bessel_jn(__n, __x).__n_value;
     }
@@ -941,7 +941,7 @@ namespace __detail
     {
       using _Cmplx = std::complex<_Tp>;
       constexpr _Cmplx _S_i{0, 1};
-      const auto _S_nan = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_nan = emsr::quiet_NaN(__x);
       if (std::isnan(__x))
 	return _Cmplx{_S_nan, _S_nan};
       else if (__x < _Tp{0})
@@ -976,7 +976,7 @@ namespace __detail
     {
       using _Cmplx = std::complex<_Tp>;
       constexpr _Cmplx _S_i{0, 1};
-      const auto _S_nan = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_nan = emsr::quiet_NaN(__x);
       if (std::isnan(__x))
 	return _Cmplx{_S_nan, _S_nan};
       else if (__x < _Tp{0})

@@ -19,7 +19,7 @@ namespace __detail
     _Tp
     __lommel_1_series(_Tp __mu, _Tp __nu, _Tp __z)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__z);
+      const auto _S_eps = emsr::epsilon(__z);
       const unsigned int _S_max_iter = 100000u;
       const auto __z2 = __z * __z;
       const auto __nu2 = __nu * __nu;
@@ -53,7 +53,7 @@ namespace __detail
     inline _Tp
     __lommel_1(_Tp __mu, _Tp __nu, _Tp __z)
     {
-      auto _S_NaN = __gnu_cxx::__quiet_NaN(__z);
+      auto _S_NaN = emsr::quiet_NaN(__z);
       if (std::isnan(__mu) || std::isnan(__nu) || std::isnan(__z))
 	return _S_NaN;
       else if (__nu < _Tp{0})
@@ -77,7 +77,7 @@ namespace __detail
     _Tp
     __lommel_2(_Tp __mu, _Tp __nu, _Tp __z)
     {
-      auto _S_NaN = __gnu_cxx::__quiet_NaN(__z);
+      auto _S_NaN = emsr::quiet_NaN(__z);
       if (std::isnan(__mu) || std::isnan(__nu) || std::isnan(__z))
 	return _S_NaN;
       else if (__nu < _Tp{0})
@@ -117,7 +117,7 @@ namespace __detail
     _Tp
     __lommel_2_asymp(_Tp __mu, _Tp __nu, _Tp __z)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__z);
+      const auto _S_eps = emsr::epsilon(__z);
       const unsigned int _S_max_iter = 100000u;
       const auto __zm2 = _Tp{1} / (__z * __z);
       const auto __nu2 = __nu * __nu;
@@ -228,7 +228,7 @@ template<typename _Tp>
   void
   test_lommel_1(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
@@ -249,7 +249,7 @@ template<typename _Tp>
   void
   test_lommel_2(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 

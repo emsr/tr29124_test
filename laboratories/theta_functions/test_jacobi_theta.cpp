@@ -14,7 +14,7 @@ template<typename _Tp>
   void
   test_jacobi_theta(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
@@ -59,7 +59,7 @@ template<typename _Tp>
   void
   plot_jacobi_theta(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 

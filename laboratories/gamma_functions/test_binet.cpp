@@ -197,7 +197,7 @@ namespace __detail
       constexpr auto _S_switchover = _Real{10}; /// @todo Find Binet function switch.
 
       if (std::isnan(__z))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+	return emsr::quiet_NaN<_Tp>();
       else if (__z < _S_switchover)
 	return __binet_cont_frac(__z);
       else

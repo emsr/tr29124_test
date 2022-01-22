@@ -10,7 +10,7 @@ template<typename _Tp, typename _Hfun>
   cyl_bessel_zeros(_Hfun __cyl_ratio, _Tp __nu, _Tp __a, _Tp __b)
   {
     const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
-    const auto _S_eps = __gnu_cxx::__epsilon(__nu);
+    const auto _S_eps = emsr::epsilon(__nu);
     auto _Delta = _S_pi_2;
     std::vector<_Tp> __zeros;
 

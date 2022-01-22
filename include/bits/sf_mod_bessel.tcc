@@ -137,9 +137,9 @@ namespace __detail
     __cyl_bessel_ik_steed(_Tp __nu, _Tp __x, bool __do_scaled = false)
     {
       using __bess_t = __gnu_cxx::__cyl_mod_bessel_t<_Tp, _Tp, _Tp>;
-      const auto _S_inf = __gnu_cxx::__infinity(__x);
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_tiny = __gnu_cxx::__lim_min(__x);
+      const auto _S_inf = emsr::infinity(__x);
+      const auto _S_eps = emsr::epsilon(__x);
+      const auto _S_tiny = emsr::lim_min(__x);
       const auto _S_pi = emsr::pi_v<_Tp>;
       const auto _S_fp_min = _Tp{10} * _S_eps;
       constexpr int _S_max_iter = 15000;
@@ -315,8 +315,8 @@ namespace __detail
     __cyl_bessel_ik(_Tp __nu, _Tp __x, bool __do_scaled = false)
     {
       using __bess_t = __gnu_cxx::__cyl_mod_bessel_t<_Tp, _Tp, _Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_inf = __gnu_cxx::__infinity(__x);
+      const auto _S_eps = emsr::epsilon(__x);
+      const auto _S_inf = emsr::infinity(__x);
       const auto _S_pi = emsr::pi_v<_Tp>;
       if (__nu < _Tp{0})
 	{
@@ -379,7 +379,7 @@ namespace __detail
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_i: Argument < 0"));
       else if (std::isnan(__nu) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__nu >= _Tp{0} && __x * __x < _Tp{10} * (__nu + _Tp{1}))
 	return __cyl_bessel_ij_series(__nu, __x, +1, 200);
       else
@@ -393,7 +393,7 @@ namespace __detail
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_i: Argument < 0"));
       else if (std::isnan(__nu) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else
 	return __cyl_bessel_ik(__nu, __x, true).__I_value;
     }
@@ -425,7 +425,7 @@ namespace __detail
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_k: Argument < 0"));
       else if (std::isnan(__nu) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else
 	return __cyl_bessel_ik(__nu, __x).__K_value;
     }
@@ -437,7 +437,7 @@ namespace __detail
       if (__x < _Tp{0})
 	std::__throw_domain_error(__N("__cyl_bessel_k_scaled: Argument < 0"));
       else if (std::isnan(__nu) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else
 	return __cyl_bessel_ik(__nu, __x, true).__K_value;
     }
@@ -458,13 +458,13 @@ namespace __detail
     __sph_bessel_ik(unsigned int __n, _Tp __x)
     {
       using __sph_t = __gnu_cxx::__sph_mod_bessel_t<unsigned int, _Tp, _Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_NaN = emsr::quiet_NaN(__x);
 
       if (std::isnan(__x))
 	return __sph_t{__n, __x, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
       else if (__x == _Tp{0})
 	{
-	  const auto _S_inf = __gnu_cxx::__infinity(__x);
+	  const auto _S_inf = emsr::infinity(__x);
 	  if (__n == 0)
 	    return __sph_t{__n, __x, _Tp{1}, _Tp{0}, _S_inf, -_S_inf};
 	  else
@@ -505,8 +505,8 @@ namespace __detail
     __airy(_Tp __z)
     {
       using __ai_t = __gnu_cxx::__airy_t<_Tp, _Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__z);
-      const auto _S_inf = __gnu_cxx::__infinity(__z);
+      const auto _S_NaN = emsr::quiet_NaN(__z);
+      const auto _S_inf = emsr::infinity(__z);
       const auto _S_pi = emsr::pi_v<_Tp>;
       const auto _S_sqrt3 = emsr::sqrt3_v<_Tp>;
       const auto __absz = std::abs(__z);

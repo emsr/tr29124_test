@@ -30,8 +30,8 @@ template<typename _Tp>
   {
     using _Val = _Tp;
     using _Real = emsr::num_traits_t<_Val>;
-    auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
-    std::cout.precision(__gnu_cxx::__digits10<_Real>());
+    auto _S_NaN = emsr::quiet_NaN<_Real>();
+    std::cout.precision(emsr::digits10<_Real>());
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
     std::vector<unsigned int>

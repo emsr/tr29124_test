@@ -210,7 +210,7 @@
     _Tp
     __erf_inv(_Tp __p)
     {
-      const auto _S_inf = __gnu_cxx::__infinity(__p);
+      const auto _S_inf = emsr::infinity(__p);
       if (std::isnan(__p))
 	return __p;
       else if (std::abs(__p) > _Tp(1))
@@ -236,7 +236,7 @@
     _Tp
     __erfc_inv(_Tp __q)
     {
-      const auto _S_inf = __gnu_cxx::__infinity(__q);
+      const auto _S_inf = emsr::infinity(__q);
       if (std::isnan(__q))
 	return __q;
       else if (__q < _Tp(0) || __q > _Tp(2))

@@ -13,7 +13,7 @@ template<typename _Tp>
   void
   RunSphHankel1(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>(proto));
+    std::cout.precision(emsr::digits10<_Tp>(proto));
     std::cout.flags(std::ios::showpoint);
     auto width = 8 + std::cout.precision();
 

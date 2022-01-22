@@ -50,8 +50,8 @@ namespace __detail
     __chshint_cont_frac(_Tp __t, _Tp& _Chi, _Tp& _Shi)
     {
       const unsigned int _S_max_iter = 100;
-      const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__t);
-      const auto _S_fp_min = __gnu_cxx::__lim_min(__t);
+      const auto _S_eps = _Tp{5} * emsr::epsilon(__t);
+      const auto _S_fp_min = emsr::lim_min(__t);
       const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
 
       // Evaluate Chi and Shi by Lentz's modified method of continued fracions.
@@ -93,8 +93,8 @@ namespace __detail
     __chshint_series(_Tp __t, _Tp& _Chi, _Tp& _Shi)
     {
       const auto _S_max_iter = 100;
-      const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__t);
-      const auto _S_fp_min = __gnu_cxx::__lim_min(__t);
+      const auto _S_eps = _Tp{5} * emsr::epsilon(__t);
+      const auto _S_fp_min = emsr::lim_min(__t);
       const auto _S_gamma_e = emsr::egamma_v<_Tp>;
 
       // Evaluate Chi and Shi by series simultaneously.
@@ -162,14 +162,14 @@ namespace __detail
     std::pair<_Tp, _Tp>
     __chshint(_Tp __x, _Tp& _Chi, _Tp& _Shi)
     {
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_NaN = emsr::quiet_NaN(__x);
       if (std::isnan(__x))
 	return std::make_pair(_S_NaN, _S_NaN);
 
       auto __t = std::abs(__x);
       if (__t == _Tp{0})
 	{
-	  _Chi = -__gnu_cxx::__infinity(__x);
+	  _Chi = -emsr::infinity(__x);
 	  _Shi = _Tp{0};
 	}
       else if (__t > _Tp{2})

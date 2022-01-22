@@ -13,7 +13,7 @@
 #include <emsr/math_constants.h>
 #include <emsr/fp_type_util.h>
 #include <emsr/complex_util.h>
-#include <bits/numeric_limits.h>
+#include <emsr/numeric_limits.h>
 #include <bits/specfun_state.h>
 #include <bits/sf_trig.tcc>
 #include <bits/sf_bernoulli.tcc>

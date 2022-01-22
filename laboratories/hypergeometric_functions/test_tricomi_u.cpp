@@ -53,7 +53,7 @@
     _Tp
     __tricomi_u_asymp(_Tp __a, _Tp __c, _Tp __z)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__z);
+      const auto _S_eps = emsr::epsilon(__z);
       const unsigned int _S_max_iter = 100000u;
       auto __b = __a - __c + _Tp{1};
       auto __term = _Tp{1};
@@ -76,7 +76,7 @@
     _Tp
     __tricomi_u_c_pos_int(_Tp __a, int __m, _Tp __z)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__z);
+      const auto _S_eps = emsr::epsilon(__z);
       const unsigned int _S_max_iter = 100000u;
 //std::cout << '\n';
 
@@ -139,7 +139,7 @@
     __tricomi_u_ac_int(_Tp __n, _Tp __m, _Tp __z)
     {
       const unsigned int _S_max_iter = 100000u;
-      const auto _S_eps = __gnu_cxx::__epsilon(__z);
+      const auto _S_eps = emsr::epsilon(__z);
       auto __term = _Tp{1};
       auto _Usum = _Tp{1};
       for (auto __k = 1u; __k < -__n; ++__k)
@@ -212,7 +212,7 @@ template<typename _Tp>
   void
   test_tricomi_u(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 

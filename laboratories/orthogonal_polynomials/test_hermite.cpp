@@ -10,7 +10,7 @@
 
 #include <ext/float128_io.h>
 #include <new_hermite.tcc>
-#include <ext/continued_fractions.h>
+#include <emsr/continued_fractions.h>
 #include <emsr/integration.h>
 
   /**
@@ -42,7 +42,7 @@
       auto __w = [](std::size_t, _Tp) { return _Tp{0}; };
       using _TailFun = decltype(__w);
 
-      using _CFrac = _LentzContinuedFraction<_Tp, _AFun, _BFun, _TailFun>;
+      using _CFrac = emsr::LentzContinuedFraction<_Tp, _AFun, _BFun, _TailFun>;
       _CFrac __Hrat(__a, __b, __w);
 
       return __Hrat();
@@ -55,7 +55,7 @@
     std::vector<emsr::QuadraturePoint<_Tp>>
     __hermite_zeros(unsigned int __n, _Tp __proto = _Tp{})
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__proto);
+      const auto _S_eps = emsr::epsilon(__proto);
       const unsigned int _S_maxit = 1000u;
       const auto _S_pim4 = _Tp{0.7511255444649424828587030047762276930510L};
       const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
@@ -155,7 +155,7 @@ template<typename _Tp>
 		   return out.str();
 		 };
 
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout.flags(std::ios::showpoint);
     auto width = 8 + std::cout.precision();
 

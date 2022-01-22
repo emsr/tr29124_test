@@ -148,7 +148,7 @@ template<typename _Tp>
     __gamma_ratio_buhring(_Tn __n, _Tp __a, _Tp __b, _Tp __c,
 			  int _S_M = 20, __buhring_mode mode = automatic)
     {
-      const auto _S_eps = 10 * __gnu_cxx::__epsilon(__a);
+      const auto _S_eps = 10 * emsr::epsilon(__a);
       if (mode == equation2p7
 	|| (mode == automatic && std::real(1 - __c - __n) < _Tp{0}))
 	{
@@ -400,7 +400,7 @@ template<typename _Tp>
 
     std::vector<_Tp> parm{_Tp{0.25}, _Tp{0.5}, _Tp{1}, _Tp{2}, _Tp{5}};
 
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -436,7 +436,7 @@ template<typename _Tp>
   void
   test_gamma_ratio_buhring(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -501,7 +501,7 @@ template<typename _Tp>
   void
   test_bernoulli_2n_2x(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -560,7 +560,7 @@ template<typename _Tp>
   __binomial_asymp_field(_Tp __nu, unsigned int __k)
   {
     constexpr auto _S_max_iter = 1000U;
-    const auto _S_eps = __gnu_cxx::__epsilon(__nu);
+    const auto _S_eps = emsr::epsilon(__nu);
     const auto __rho = -__nu / _Tp{2};
     const auto __pocharg = __nu + _Tp{1};
     const auto __powarg = _Tp(__k) + __rho;

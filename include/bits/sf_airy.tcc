@@ -120,7 +120,7 @@ namespace __detail
 
     public:
 
-      static constexpr _Tp _S_eps = __gnu_cxx::__epsilon(_Tp{});
+      static constexpr _Tp _S_eps = emsr::epsilon(_Tp{});
       static constexpr _Tp _S_pi = emsr::pi_v<_Tp>;
       static constexpr _Tp _S_sqrt_pi
       		 = emsr::sqrtpi_v<_Tp>;
@@ -256,7 +256,7 @@ namespace __detail
     _Airy_series<_Tp>::_S_AiryHelp(std::complex<_Tp> __t,
 				   bool __return_fock_airy)
     {
-      const _Tp _S_log10min = __gnu_cxx::__log10_min(_Tp{});
+      const _Tp _S_log10min = emsr::log10_min(_Tp{});
       const auto _S_min = std::numeric_limits<_Tp>::min();
       const auto __log10t = std::log10(std::abs(__t));
       const auto __ttt = __t * __t * __t;
@@ -380,8 +380,8 @@ namespace __detail
     _AiryAuxilliaryState<std::complex<_Tp>>
     _Airy_series<_Tp>::_S_FGH(std::complex<_Tp> __t)
     {
-      const _Tp _S_log10min = __gnu_cxx::__log10_min(__t);
-      const auto _S_min = __gnu_cxx::__lim_min(__t);
+      const _Tp _S_log10min = emsr::log10_min(__t);
+      const auto _S_min = emsr::lim_min(__t);
       const auto __log10t = std::log10(std::abs(__t));
       const auto __tt = __t * __t;
       const auto __ttt = __t * __tt;
@@ -547,7 +547,7 @@ namespace __detail
     std::pair<std::complex<_Tp>, std::complex<_Tp>>
     _Airy_series<_Tp>::_S_AiBi(std::complex<_Tp> __t, std::pair<_Tp, _Tp> _Z0)
     {
-      const _Tp _S_log10min = __gnu_cxx::__log10_min(__t.real());
+      const _Tp _S_log10min = emsr::log10_min(__t.real());
       const auto __log10t = std::log10(std::abs(__t));
       const auto __ttt = __t * __t * __t;
 
@@ -2526,7 +2526,7 @@ namespace __detail
     {
       using _Cmplx = value_type;
       using _Real = scalar_type;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__y.real());
+      const auto _S_NaN = emsr::quiet_NaN(__y.real());
       const auto _S_cNaN = value_type(_S_NaN, _S_NaN);
       const auto _S_pi = emsr::pi_v<_Real>;
       const auto _S_sqrt_pi = emsr::sqrtpi_v<_Real>;

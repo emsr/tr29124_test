@@ -7,7 +7,7 @@
 #include <limits>
 #include <iostream>
 #include <cmath>
-#include <bits/numeric_limits_mpreal.h>
+#include <emsr/numeric_limits_mpreal.h>
 
 /**
  * Max representable integer turns out to be
@@ -19,12 +19,12 @@ template<typename _Tp>
   void
   test_maxint(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__max_digits10(proto));
+    std::cout.precision(emsr::max_digits10(proto));
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
     // Try 2/epsilon.
-    auto maxint = _Tp{2} / __gnu_cxx::__epsilon(proto);
+    auto maxint = _Tp{2} / emsr::epsilon(proto);
     std::cout << "\n\nTrying maxint = " << std::setw(width) << maxint << '\n';
     if (maxint + 1 == maxint)
       std::cout << "\nmaxint FAIL\n";
@@ -36,7 +36,7 @@ template<typename _Tp>
 	}
 
     // Try ldexp(1, std::numeric_limis<_Tp>::digits);
-    auto maxint2 = std::ldexp(_Tp{1}, __gnu_cxx::__digits(proto));
+    auto maxint2 = std::ldexp(_Tp{1}, emsr::digits(proto));
     std::cout << "\n\nTrying maxint2 = " << std::setw(width) << maxint2 << '\n';
     if (maxint2 + 1 == maxint2)
       std::cout << "\nmaxint2 FAIL\n";

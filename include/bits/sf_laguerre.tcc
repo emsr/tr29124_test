@@ -223,7 +223,7 @@ namespace __detail
     std::vector<emsr::QuadraturePoint<_Tp>>
     __laguerre_zeros(unsigned int __n, _Tp __alpha1)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__alpha1);
+      const auto _S_eps = emsr::epsilon(__alpha1);
       const unsigned int _S_maxit = 1000;
 
       std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
@@ -316,7 +316,7 @@ namespace __detail
     {
       const unsigned int __n_huge = 10000000;
       if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__n == 0)
 	return _Tp{1};
       else if (__n == 1)

@@ -210,7 +210,7 @@ namespace __detail
     __hermite(unsigned int __n, _Tp __x)
     {
       if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return (__n % 2 == 1 ? -1 : +1) * __hermite(__n, -__x);
       else if (__n > 10000)
@@ -286,7 +286,7 @@ namespace __detail
     std::vector<emsr::QuadraturePoint<_Tp>>
     __hermite_zeros(unsigned int __n, _Tp __proto = _Tp{})
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__proto);
+      const auto _S_eps = emsr::epsilon(__proto);
       const unsigned int _S_maxit = 1000u;
       const auto _S_pim4 = _Tp{0.7511255444649424828587030047762276930510L};
       const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;

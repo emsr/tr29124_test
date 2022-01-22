@@ -7,7 +7,7 @@
 #include <algorithm> // max({...})
 #include <cmath>
 
-#include <bits/numeric_limits.h>
+#include <emsr/numeric_limits.h>
 #include <ext/float128_io.h>
 #include <bits/specfun.h>
 
@@ -38,7 +38,7 @@
 				_Tp __chi_min, _Tp __chi_max,
 				const std::complex<_Tp>& __z)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__chi_min);
+      const auto _S_eps = emsr::epsilon(__chi_min);
       auto __func = [__alpha, __beta, __z](_Tp __chi)
 		    -> std::complex<_Tp>
 		    { return __mittag_leffler_K(__alpha, __beta, __chi, __z); };
@@ -80,7 +80,7 @@
 				_Tp __phi_min, _Tp __phi_max,
 				const std::complex<_Tp>& __z)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__phi_min);
+      const auto _S_eps = emsr::epsilon(__phi_min);
       auto __func = [__alpha, __beta, __epsilon, __z](_Tp __phi)
 		    -> std::complex<_Tp>
 		    {
@@ -115,7 +115,7 @@
     __mittag_leffler(_Tp __alpha, _Tp __beta, const std::complex<_Tp>& __z)
     {
       using _Cmplx = std::complex<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__alpha);
+      const auto _S_eps = emsr::epsilon(__alpha);
       const auto _S_2pi = emsr::tau_v<_Tp>;
       const auto _S_pi = emsr::pi_v<_Tp>;
 
@@ -259,7 +259,7 @@
 			   const std::complex<_Tp>& __z)
     {
       using _Cmplx = std::complex<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__alpha);
+      const auto _S_eps = emsr::epsilon(__alpha);
 
       const auto __az = std::abs(__z);
       if (__az < _Tp{1})
@@ -309,7 +309,7 @@ template<typename _Tp>
     using namespace std::literals::complex_literals;
     using _Cmplx = std::complex<_Tp>;
 
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 

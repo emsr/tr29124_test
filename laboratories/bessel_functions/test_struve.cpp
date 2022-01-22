@@ -24,7 +24,7 @@ template<typename _Tp>
   void
   test_struve_transition(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -60,7 +60,7 @@ template<typename _Tp>
   {
     auto data = std::ofstream(filename);
 
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
@@ -122,7 +122,7 @@ template<typename _Tp>
 void
 test_struve()
 {
-  std::cout.precision(__gnu_cxx::__digits10<double>());
+  std::cout.precision(emsr::digits10<double>());
   std::cout << std::showpoint << std::scientific;
   auto width = 8 + std::cout.precision();
   const auto del = double{1} / double{100};

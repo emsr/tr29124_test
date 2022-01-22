@@ -11,7 +11,7 @@ template<typename Tp>
   void
   test_chebyshev(Tp proto = Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 

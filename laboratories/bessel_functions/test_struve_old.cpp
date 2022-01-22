@@ -86,7 +86,7 @@ main()
 {
   using _Tp = double;
 
-  std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+  std::cout.precision(emsr::digits10<_Tp>());
   std::cout << std::showpoint << std::scientific;
   auto width = 8 + std::cout.precision();
 

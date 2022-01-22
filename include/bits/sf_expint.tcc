@@ -73,7 +73,7 @@ namespace __detail
     _Tp
     __expint_E1_series(_Tp __x)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = emsr::epsilon(__x);
       auto __term = _Tp{1};
       auto __esum = _Tp{0};
       auto __osum = _Tp{0};
@@ -148,7 +148,7 @@ namespace __detail
     __expint_En_series(unsigned int __n, _Tp __x)
     {
       const unsigned int _S_max_iter = 1000;
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = emsr::epsilon(__x);
       const int __nm1 = __n - 1;
       const auto _S_gamma_E = emsr::egamma_v<_Tp>;
       const auto __logx = std::log(__x);
@@ -196,8 +196,8 @@ namespace __detail
     __expint_En_cont_frac(unsigned int __n, _Tp __x)
     {
       const unsigned int _S_max_iter = 1000;
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
-      const auto _S_fp_min = _Tp{4} * __gnu_cxx::__lim_min(__x);
+      const auto _S_eps = emsr::epsilon(__x);
+      const auto _S_fp_min = _Tp{4} * emsr::lim_min(__x);
       const int __nm1 = __n - 1;
       auto __b = __x + _Tp(__n);
       auto __c = _Tp{1} / _S_fp_min;
@@ -288,7 +288,7 @@ namespace __detail
     {
       _Tp __term = _Tp{1};
       _Tp __sum = _Tp{0};
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = emsr::epsilon(__x);
       const unsigned int __max_iter = 1000;
       for (unsigned int __i = 1; __i < __max_iter; ++__i)
 	{
@@ -321,7 +321,7 @@ namespace __detail
     {
       _Tp __term = _Tp{1};
       _Tp __sum = _Tp{1};
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = emsr::epsilon(__x);
       const unsigned int __max_iter = 1000;
       for (unsigned int __i = 1; __i < __max_iter; ++__i)
 	{
@@ -353,7 +353,7 @@ namespace __detail
     _Tp
     __expint_Ei(_Tp __x)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = emsr::epsilon(__x);
       if (__x < _Tp{0})
 	return -__expint_E1(-__x);
       else if (__x < -std::log(_S_eps))
@@ -441,7 +441,7 @@ namespace __detail
     {
       const auto __xpn = __x + __n;
       const auto __xpn2 = __xpn * __xpn;
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = emsr::epsilon(__x);
       auto __term = _Tp{1};
       auto __sum = _Tp{1};
       for (unsigned int __i = 1; __i <= __n; ++__i)
@@ -474,9 +474,9 @@ namespace __detail
     __expint(unsigned int __n, _Tp __x)
     {
       if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__n <= 1 && __x == _Tp{0})
-	return __gnu_cxx::__infinity(__x);
+	return emsr::infinity(__x);
       else
 	{
 	  if (__n == 0)
@@ -515,7 +515,7 @@ namespace __detail
     __expint(_Tp __x)
     {
       if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else
 	return __expint_Ei(__x);
     }
@@ -536,9 +536,9 @@ namespace __detail
     __logint(const _Tp __x)
     {
       if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (std::abs(__x) == _Tp{1})
-	return __gnu_cxx::__infinity(__x);
+	return emsr::infinity(__x);
       else
 	return __expint(std::log(__x));
     }
@@ -559,7 +559,7 @@ namespace __detail
     __coshint(const _Tp __x)
     {
       if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__x == _Tp{0})
 	return _Tp{0};
       else
@@ -582,7 +582,7 @@ namespace __detail
     __sinhint(const _Tp __x)
     {
       if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else
 	return (__expint_Ei(__x) + __expint_E1(__x)) / _Tp{2};
     }

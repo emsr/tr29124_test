@@ -73,7 +73,7 @@ namespace __detail
     __chi_squared_pdf(_Tp __chi2, unsigned int __nu)
     {
       if (std::isnan(__chi2))
-	return __gnu_cxx::__quiet_NaN(__chi2);
+	return emsr::quiet_NaN(__chi2);
       else if (__chi2 < _Tp{0})
 	std::__throw_domain_error(__N("__chi_squared_p: "
 				      "chi-squared is negative"));
@@ -97,7 +97,7 @@ namespace __detail
     __chi_squared_pdfc(_Tp __chi2, unsigned int __nu)
     {
       if (std::isnan(__chi2) || std::isnan(__nu))
-	return __gnu_cxx::__quiet_NaN(__chi2);
+	return emsr::quiet_NaN(__chi2);
       else if (__chi2 < _Tp{0})
 	std::__throw_domain_error(__N("__chi_square_pdfc: "
 				      "chi-squared is negative"));
@@ -119,7 +119,7 @@ namespace __detail
     __gamma_pdf(_Tp __alpha, _Tp __beta, _Tp __x)
     {
       if (std::isnan(__alpha) || std::isnan(__beta) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else
 	return std::pow(__beta, __alpha) * std::pow(__x, __alpha - _Tp{1})
 	     * std::exp(__beta * __x) / __gamma(__alpha);
@@ -139,7 +139,7 @@ namespace __detail
     __gamma_p(_Tp __alpha, _Tp __beta, _Tp __x)
     {
       if (std::isnan(__alpha) || std::isnan(__beta) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else
 	return __tgamma_lower(__alpha, __beta * __x)
 	     / __gamma(__alpha);
@@ -160,7 +160,7 @@ namespace __detail
     __gamma_q(_Tp __alpha, _Tp __beta, _Tp __x)
     {
       if (std::isnan(__alpha) || std::isnan(__beta) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else
 	return __tgamma(__alpha, __beta * __x)
 	     / __gamma(__alpha);
@@ -184,7 +184,7 @@ namespace __detail
     __rice_pdf(_Tp __nu, _Tp __sigma, _Tp __x)
     {
       if (std::isnan(__nu) || std::isnan(__sigma))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else
 	{
 	  auto __sigma2 = __sigma * __sigma;
@@ -211,7 +211,7 @@ namespace __detail
       const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
       const auto _S_sqrt_2pi = _S_sqrt_2 * _S_sqrt_pi;
       if (std::isnan(__mu) || std::isnan(__sigma))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else
 	{
 	  __x -= __mu;
@@ -237,7 +237,7 @@ namespace __detail
     {
       const auto _S_sqrt_2 = emsr::sqrt2_v<_Tp>;
       if (std::isnan(__mu) || std::isnan(__sigma) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else
 	return _Tp{0.5L}
 	     * (_Tp{1} + std::erf((__x - __mu) / (__sigma * _S_sqrt_2)));
@@ -260,7 +260,7 @@ namespace __detail
       const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
       const auto _S_sqrt_2pi = _S_sqrt_2 * _S_sqrt_pi;
       if (std::isnan(__nu) || std::isnan(__sigma))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else
 	{
 	  __x -= __nu;
@@ -286,7 +286,7 @@ namespace __detail
     {
       const auto _S_sqrt_2 = emsr::sqrt2_v<_Tp>;
       if (std::isnan(__mu) || std::isnan(__sigma) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else
 	return _Tp{0.5L} * (_Tp{1} + std::erf((std::log(__x) - __mu)
 					    / (__sigma * _S_sqrt_2)));
@@ -306,7 +306,7 @@ namespace __detail
     __exponential_pdf(_Tp __lambda, _Tp __x)
     {
       if (std::isnan(__lambda) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return _Tp{0};
       else
@@ -326,7 +326,7 @@ namespace __detail
     __exponential_p(_Tp __lambda, _Tp __x)
     {
       if (std::isnan(__lambda) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return _Tp{0};
       else
@@ -348,7 +348,7 @@ namespace __detail
     __exponential_q(_Tp __lambda, _Tp __x)
     {
       if (std::isnan(__lambda) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return _Tp{0};
       else
@@ -372,7 +372,7 @@ namespace __detail
     __weibull_pdf(_Tp __a, _Tp __b, _Tp __x)
     {
       if (std::isnan(__a) || std::isnan(__b) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return _Tp{0};
       else
@@ -393,7 +393,7 @@ namespace __detail
     __weibull_p(_Tp __a, _Tp __b, _Tp __x)
     {
       if (std::isnan(__a) || std::isnan(__b) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return _Tp{0};
       else
@@ -418,7 +418,7 @@ namespace __detail
     {
       const auto _S_pi = emsr::pi_v<_Tp>;
       if (std::isnan(__t))
-	return __gnu_cxx::__quiet_NaN(__t);
+	return emsr::quiet_NaN(__t);
       else
 	return __gamma(_Tp(__nu + 1) / _Tp{2})
 	     * std::pow((_Tp(__nu) + __t * __t) / __nu, -_Tp(__nu + 1) / 2 )
@@ -442,7 +442,7 @@ namespace __detail
     __student_t_p(_Tp __t, unsigned int __nu)
     {
       if (std::isnan(__t))
-	return __gnu_cxx::__quiet_NaN(__t);
+	return emsr::quiet_NaN(__t);
       else
 	return __beta_inc(_Tp{0.5L}, _Tp(__nu) / _Tp{2},
 			  __t * __t / (_Tp(__nu) + __t * __t));
@@ -465,7 +465,7 @@ namespace __detail
     __student_t_q(_Tp __t, unsigned int __nu)
     {
       if (std::isnan(__t))
-	return __gnu_cxx::__quiet_NaN(__t);
+	return emsr::quiet_NaN(__t);
       else
 	return __beta_inc(_Tp(__nu) / _Tp{2}, _Tp{0.5L},
 			  _Tp(__nu) / (_Tp(__nu) + __t * __t));
@@ -491,7 +491,7 @@ namespace __detail
     __fisher_f_pdf(_Tp __F, unsigned int __nu1, unsigned int __nu2)
     {
       if (std::isnan(__F))
-	return __gnu_cxx::__quiet_NaN(__F);
+	return emsr::quiet_NaN(__F);
       else if (__F < _Tp{0})
 	std::__throw_domain_error(__N("__f_p: F is negative"));
       else
@@ -521,7 +521,7 @@ namespace __detail
     __fisher_f_p(_Tp __F, unsigned int __nu1, unsigned int __nu2)
     {
       if (std::isnan(__F))
-	return __gnu_cxx::__quiet_NaN(__F);
+	return emsr::quiet_NaN(__F);
       else if (__F < _Tp{0})
 	std::__throw_domain_error(__N("__f_p: F is negative"));
       else
@@ -550,7 +550,7 @@ namespace __detail
     __fisher_f_q(_Tp __F, unsigned int __nu1, unsigned int __nu2)
     {
       if (std::isnan(__F))
-	return __gnu_cxx::__quiet_NaN(__F);
+	return emsr::quiet_NaN(__F);
       else if (__F < _Tp{0})
 	std::__throw_domain_error(__N("__f_q: F is negative"));
       else
@@ -576,7 +576,7 @@ namespace __detail
     __binomial_pdf(_Tp __p, unsigned int __n, unsigned int __k)
     {
       if (std::isnan(__p))
-	return __gnu_cxx::__quiet_NaN(__p);
+	return emsr::quiet_NaN(__p);
       else if (__p < _Tp{0} || __p > _Tp{1})
 	std::__throw_domain_error(__N("__binomial_p: "
 				      "probability is out of range"));
@@ -612,7 +612,7 @@ namespace __detail
     __binomial_p(_Tp __p, unsigned int __n, unsigned int __k)
     {
       if (std::isnan(__p))
-	return __gnu_cxx::__quiet_NaN(__p);
+	return emsr::quiet_NaN(__p);
       else if (__p < _Tp{0} || __p > _Tp{1})
 	std::__throw_domain_error(__N("__binomial_p: "
 				      "probability is out of range"));
@@ -642,7 +642,7 @@ namespace __detail
     __binomial_q(_Tp __p, unsigned int __n, unsigned int __k)
     {
       if (std::isnan(__p))
-	return __gnu_cxx::__quiet_NaN(__p);
+	return emsr::quiet_NaN(__p);
       else if (__p < _Tp{0} || __p > _Tp{1})
 	std::__throw_domain_error(__N("__binomial_q: "
 				      "probability is out of range"));

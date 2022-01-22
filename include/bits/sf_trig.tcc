@@ -52,7 +52,7 @@ namespace __detail
       using _Val = emsr::num_traits_t<_Tp>;
       const auto _S_pi = emsr::pi_v<_Val>;
       if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return -__sin_pi(-__x);
       else if (__x < _Tp{0.5L})
@@ -84,7 +84,7 @@ namespace __detail
       using _Val = emsr::num_traits_t<_Tp>;
       const auto _S_pi = emsr::pi_v<_Val>;
       if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return -__sinh_pi(-__x);
       else
@@ -104,7 +104,7 @@ namespace __detail
       using _Val = emsr::num_traits_t<_Tp>;
       const auto _S_pi = emsr::pi_v<_Val>;
       if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return __cos_pi(-__x);
       else if (__x < _Tp{0.5L})
@@ -133,7 +133,7 @@ namespace __detail
       using _Val = emsr::num_traits_t<_Tp>;
       const auto _S_pi = emsr::pi_v<_Val>;
       if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__x < _Tp{0})
 	return __cosh_pi(-__x);
       else
@@ -358,7 +358,7 @@ namespace __detail
     __sincos_pi(_Tp __x)
     {
       const auto _S_pi = emsr::pi_v<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_NaN = emsr::quiet_NaN(__x);
       if (std::isnan(__x))
 	return __gnu_cxx::__sincos_t<_Tp>{_S_NaN, _S_NaN};
       else if (__x < _Tp{0})

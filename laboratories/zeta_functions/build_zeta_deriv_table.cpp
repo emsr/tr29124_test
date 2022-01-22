@@ -3,16 +3,16 @@
  */
 
 #include <mpreal.h>
-#include <bits/numeric_limits_mpreal.h>
+#include <emsr/numeric_limits_mpreal.h>
 
 int
 main()
 {
   std::size_t prec = 128;
   mpfr::mpreal p(0, prec);
-  std::cout.precision(__gnu_cxx::__max_digits10(p));
+  std::cout.precision(emsr::max_digits10(p));
   auto w = 8 + std::cout.precision();
-  auto eps = __gnu_cxx::__epsilon(p);
+  auto eps = emsr::epsilon(p);
   std::cerr << "eps = " << eps << '\n';
 
   for (int i = 10; i <= 120; ++i)

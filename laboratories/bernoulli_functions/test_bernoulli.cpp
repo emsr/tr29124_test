@@ -88,7 +88,7 @@
 	  for (auto __i = 1u; __i < 1000; ++__i)
 	    {
 	      _Tp __term = std::pow(_Tp(__i), -_Tp(__n));
-	      if (__term < __gnu_cxx::__epsilon<_Tp>())
+	      if (__term < emsr::epsilon<_Tp>())
         	break;
 	      __sum += __term;
 	    }
@@ -924,7 +924,7 @@ template<typename _Tp>
   void
   test_bernoulli(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 

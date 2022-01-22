@@ -21,7 +21,7 @@ template<typename _Tp>
     //using _Val = _Tp;
     //using _Real = emsr::num_traits_t<_Val>;
 
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 

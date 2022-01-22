@@ -11,7 +11,7 @@ template<typename _Tp>
   void
   test_digamma(_Tp __proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(emsr::digits10(__proto));
     auto w = 8 + std::cout.precision();
 
     auto x_start = -9.9375L;

@@ -87,7 +87,7 @@ namespace __detail
 
       const auto __lge1 = __l >= 1 ? _Tp{+1} : _Tp{0};
       const auto __lge2 = __l >= 2 ? _Tp{+1} : _Tp{0};
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
+      const auto _S_NaN = emsr::quiet_NaN(_Real{});
 
       if (std::isnan(__x))
 	return {__l, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
@@ -163,11 +163,11 @@ namespace __detail
     __legendre_q(unsigned int __l, _Tp __x)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
-      const auto _S_inf = __gnu_cxx::__infinity(_Real{});
+      const auto _S_eps = emsr::epsilon(_Real{});
+      const auto _S_inf = emsr::infinity(_Real{});
       if (std::isnan(__x))
 	{
-	  const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
+	  const auto _S_NaN = emsr::quiet_NaN(_Real{});
 	  return {__l, __x, _S_NaN, _S_NaN, _S_NaN};
 	}
       else if (std::abs(__x - _Real{1}) < _S_eps)
@@ -244,7 +244,7 @@ namespace __detail
 	return {__l, __m, __x, _Tp{0}, _Tp{0}, _Tp{0}};
       else if (std::isnan(__x))
 	{
-	  const auto _NaN = __gnu_cxx::__quiet_NaN(_Real{});
+	  const auto _NaN = emsr::quiet_NaN(_Real{});
 	  return {__l, __m, __x, _NaN, _NaN, _NaN, __phase};
 	}
       else if (__m == 0)
@@ -300,7 +300,7 @@ namespace __detail
       using _Real = emsr::num_traits_t<_Tp>;
       if (std::isnan(__x))
 	{
-	  const auto _NaN = __gnu_cxx::__quiet_NaN(_Real{});
+	  const auto _NaN = emsr::quiet_NaN(_Real{});
 	  return {__l, __m, __x, _NaN, _NaN, _NaN, __phase};
 	}
       else if (std::abs(__x) < _Real{1})
@@ -407,7 +407,7 @@ namespace __detail
     __sph_legendre(unsigned int __l, unsigned int __m, _Tp __theta)
     {
       if (std::isnan(__theta))
-	return __gnu_cxx::__quiet_NaN(__theta);
+	return emsr::quiet_NaN(__theta);
 
       const auto __x = std::cos(__theta);
 
@@ -499,7 +499,7 @@ namespace __detail
     std::complex<_Tp>
     __sph_harmonic(unsigned int __l, int __m, _Tp __theta, _Tp __phi)
     {
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__theta);
+      const auto _S_NaN = emsr::quiet_NaN(__theta);
       if (std::isnan(__theta) || std::isnan(__phi))
 	return std::complex<_Tp>{_S_NaN, _S_NaN};
       else if (std::abs(__m) > __l)
@@ -518,7 +518,7 @@ namespace __detail
     std::vector<emsr::QuadraturePoint<_Tp>>
     __legendre_zeros(unsigned int __l, _Tp proto = _Tp{})
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(proto);
+      const auto _S_eps = emsr::epsilon(proto);
       const auto _S_pi = emsr::pi_v<_Tp>;
       const unsigned int _S_maxit = 1000u;
 

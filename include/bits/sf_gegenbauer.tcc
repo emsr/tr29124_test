@@ -61,7 +61,7 @@ namespace __detail
     __gnu_cxx::__gegenbauer_t<_Tp>
     __gegenbauer_recur(unsigned int __n, _Tp __lambda, _Tp __x)
     {
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_NaN = emsr::quiet_NaN(__x);
 
       if (std::isnan(__lambda) || std::isnan(__x))
 	return {__n, __lambda, __x, _S_NaN, _S_NaN, _S_NaN};
@@ -100,7 +100,7 @@ namespace __detail
     std::vector<emsr::QuadraturePoint<_Tp>>
     __gegenbauer_zeros(unsigned int __n, _Tp __lambda)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__lambda);
+      const auto _S_eps = emsr::epsilon(__lambda);
       const unsigned int _S_maxit = 1000u;
       std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
 

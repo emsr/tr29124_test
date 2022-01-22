@@ -39,7 +39,7 @@
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
+      const auto _S_eps = emsr::epsilon(std::real(__s));
       const unsigned int _S_max_iter = 10000000;
       auto __sgn = _Real{1};
       auto __zeta = _Val{0};
@@ -87,7 +87,7 @@
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
 
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
+      const auto _S_eps = emsr::epsilon(std::real(__s));
       constexpr unsigned long
         _S_num_primes = sizeof(unsigned long) != 8 ? 256 : 256 + 48;
 
@@ -124,9 +124,9 @@
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__s));
+      const auto _S_eps = emsr::epsilon(std::real(__s));
       if (emsr::fp_is_integer(__s) == _Real{1})
-       return __gnu_cxx::__quiet_NaN(std::real(__s));
+       return emsr::quiet_NaN(std::real(__s));
       else
        {
 	 const auto __arg = -std::log10(_S_eps) / std::abs(__s);
@@ -154,7 +154,7 @@ template<typename _Tp>
 
     auto data = std::ofstream(filename);
 
-    data.precision(__gnu_cxx::__digits10(proto));
+    data.precision(emsr::digits10(proto));
     data << std::showpoint << std::scientific;
     auto w = 8 + data.precision();
 
@@ -246,7 +246,7 @@ template<typename _Tp>
     using _Real = emsr::num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -276,7 +276,7 @@ template<typename _Tp>
   void
   test_riemann_zeta(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -320,7 +320,7 @@ template<typename _Tp>
     using _Real = emsr::num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 

@@ -70,7 +70,7 @@
     _Tp
     __ibeta(_Tp __a, _Tp __b, _Tp __x)
     {
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_NaN = emsr::quiet_NaN(__x);
       if (__x < _Tp{0} || __x > _Tp{1})
 	std::__throw_domain_error(__N("__ibeta: argument out of range"));
       else if (std::isnan(__x) || std::isnan(__a) || std::isnan(__b))
@@ -112,7 +112,7 @@ template<typename _Tp>
   void
   test_ibeta(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     auto width = std::cout.precision() + 6;
 
     for (int ia = 0; ia <= 10; ++ia)
@@ -138,7 +138,7 @@ template<typename _Tp>
   void
   stress_test_ibeta(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     auto width = std::cout.precision() + 8;
 
     std::cout << "a = " << std::setw(6) << _Tp{0.001L} << '\n';

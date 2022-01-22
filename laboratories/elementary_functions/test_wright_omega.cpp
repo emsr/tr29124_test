@@ -16,8 +16,8 @@ template<typename _Tp>
 		 std::complex<_Tp>& __condn)
   {
     using _Cmplx = std::complex<_Tp>;
-    const auto _S_NaN = __gnu_cxx::__quiet_NaN(__z.real());
-    const auto _S_eps = __gnu_cxx::__epsilon(__z.real());
+    const auto _S_NaN = emsr::quiet_NaN(__z.real());
+    const auto _S_eps = emsr::epsilon(__z.real());
     const auto _S_pi = emsr::pi_v<_Tp>;
     const auto _S_i = _Cmplx(_Tp{0}, _Tp{1});
     const auto _S_0 = _Cmplx{};
@@ -998,7 +998,7 @@ template<typename _Tp>
   void
   test_wright_omega(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 

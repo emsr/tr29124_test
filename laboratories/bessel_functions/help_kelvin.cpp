@@ -235,9 +235,9 @@
     Kelvin<int, _Tp>
     __kelvin_series(_Tp __x)
     {
-      //using _BasicSum = __gnu_cxx::_BasicSum<_Tp>;
-      //using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Tp>;
-      //using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
+      //using _BasicSum = emsr::BasicSum<_Tp>;
+      //using _WijnSum = emsr::VanWijngaardenSum<_Tp>;
+      //using _WenigerDeltaWijnSum = emsr::WenigerDeltaSum<_WijnSum>;
 
       constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
       constexpr int _S_max_iter = 100;

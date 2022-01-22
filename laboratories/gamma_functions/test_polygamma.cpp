@@ -8,7 +8,7 @@
 #include <cmath>
 
 #include <bits/specfun.h>
-#include <ext/continued_fractions.h>
+#include <emsr/continued_fractions.h>
 #include <emsr/polynomial.h>
 #include <emsr/horner.h>
 
@@ -22,7 +22,7 @@ template<typename _Tp>
   __polygamma_series(unsigned int __m, _Tp __x)
   {
     constexpr int _S_max_iter = 1000;
-    const auto _S_eps = __gnu_cxx::__epsilon(__x);
+    const auto _S_eps = emsr::epsilon(__x);
     auto __sum = _Tp{0};
     for (int __k = 0; __k < _S_max_iter; ++__k)
       {
@@ -70,7 +70,7 @@ template<typename _Tp>
 	};
     using _WFun = decltype(__w);
 
-    _LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>
+    emsr::LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>
       G1Frac(__a, __b, __w);
 
     auto __g1 = G1Frac(__x);
@@ -116,7 +116,7 @@ template<typename _Tp>
 	};
     using _WFun = decltype(__w);
 
-    _LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>
+    emsr::LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>
       G2Frac(__a, __b, __w);
 
     auto __g2 = G2Frac(__x);
@@ -134,7 +134,7 @@ template<typename _Tp>
   void
   test_trigamma(_Tp __proto)
   {
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(emsr::digits10(__proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -165,7 +165,7 @@ template<typename _Tp>
   void
   test_tetragamma(_Tp __proto)
   {
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(emsr::digits10(__proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -243,7 +243,7 @@ template<typename _Tp>
   void
   test_polygamma_poly(_Tp __proto)
   {
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(emsr::digits10(__proto));
     std::cout << std::showpoint << std::scientific;
 
     std::cout << '\n' << '\n';
@@ -328,7 +328,7 @@ template<typename _Tp>
       if (__x <= _Tp{0})
 	{
 	  if (const auto __n = emsr::fp_is_integer(__x); __n)
-	    return __gnu_cxx::__infinity(__x);
+	    return emsr::infinity(__x);
 	  else
 	    return _Tp(__m & 1 ? -1 : +1) * __polygamma(__m, _Tp{1} - __x)
 		 + __polygamma_reflect(__m, __x);
@@ -346,7 +346,7 @@ template<typename _Tp>
   void
   test_polygamma(_Tp __proto)
   {
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(emsr::digits10(__proto));
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -371,7 +371,7 @@ template<typename _Tp>
   void
   test_polygamma_reflect_vs_hurwitz(_Tp __proto)
   {
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(emsr::digits10(__proto));
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -392,7 +392,7 @@ template<typename _Tp>
 	      }
 	    catch (...)
 	      {
-	        psi_boost = __gnu_cxx::__quiet_NaN(__proto);
+	        psi_boost = emsr::quiet_NaN(__proto);
 	      }
 	    std::cout << ' ' << std::setw(w) << x
 		      << ' ' << std::setw(w) << psi_reflect

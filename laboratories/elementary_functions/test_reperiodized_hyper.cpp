@@ -15,7 +15,7 @@ template<typename _Tp>
   {
     const _Tp _S_pi = emsr::pi_v<_Tp>;
 
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 10 + std::cout.precision();
 

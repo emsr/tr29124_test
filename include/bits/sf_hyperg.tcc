@@ -128,7 +128,7 @@ namespace __detail
     _Tp
     __conf_hyperg_lim_series(_Tp __c, _Tp __x)
     {
-      const auto __eps = __gnu_cxx::__epsilon(__x);
+      const auto __eps = emsr::epsilon(__x);
 
       auto __term = _Tp{1};
       auto __Fac = _Tp{1};
@@ -164,9 +164,9 @@ namespace __detail
       using _Val = emsr::num_traits_t<_Tp>;
       const auto __c_nint = emsr::fp_is_integer(__c);
       if (std::isnan(__c) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__c_nint && __c_nint() <= 0)
-	return __gnu_cxx::__infinity(__x);
+	return emsr::infinity(__x);
       //else if (__x < _Tp{0})
 	//return __conf_hyperg_lim_luke(__c, __x);
       else
@@ -194,7 +194,7 @@ namespace __detail
     _Tp
     __conf_hyperg_series(_Tp __a, _Tp __c, _Tp __x)
     {
-      const auto __eps = __gnu_cxx::__epsilon(__x);
+      const auto __eps = emsr::epsilon(__x);
 
       auto __term = _Tp{1};
       auto __Fac = _Tp{1};
@@ -230,9 +230,9 @@ namespace __detail
     __conf_hyperg_luke(_Tp __a, _Tp __c, _Tp __xin)
     {
       using _Val = emsr::num_traits_t<_Tp>;
-      const auto __big = __gnu_cxx::__root_max(_Val{6});
+      const auto __big = emsr::root_max(_Val{6});
       const int __nmax = 20000;
-      const auto __eps = __gnu_cxx::__epsilon<_Val>();
+      const auto __eps = emsr::epsilon<_Val>();
       const auto __x  = -__xin;
       const auto __x3 = __x * __x * __x;
       const auto __t0 = __a / __c;
@@ -337,9 +337,9 @@ namespace __detail
     {
       const auto __c_nint = emsr::fp_is_integer(__c);
       if (std::isnan(__a) || std::isnan(__c) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__c_nint && __c_nint() <= 0)
-	return __gnu_cxx::__infinity(__x);
+	return emsr::infinity(__x);
       else if (__a == _Tp{0})
 	return _Tp{1};
       else if (__c == __a)
@@ -429,7 +429,7 @@ namespace __detail
     __hyperg_series(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
       using _Val = emsr::num_traits_t<_Tp>;
-      const auto __eps = __gnu_cxx::__epsilon<_Val>();
+      const auto __eps = emsr::epsilon<_Val>();
 
       auto __term = _Tp{1};
       auto __Fabc = _Tp{1};
@@ -500,9 +500,9 @@ namespace __detail
     __hyperg_luke(_Tp __a, _Tp __b, _Tp __c, _Tp __xin)
     {
       using _Val = emsr::num_traits_t<_Tp>;
-      const auto __big = __gnu_cxx::__root_max(_Val{6});
+      const auto __big = emsr::root_max(_Val{6});
       const int __nmax = 20000;
-      const auto __eps = __gnu_cxx::__epsilon<_Val>();
+      const auto __eps = emsr::epsilon<_Val>();
       const auto __x  = -__xin;
       const auto __x3 = __x * __x * __x;
       const auto __t0 = __a * __b / __c;
@@ -636,8 +636,8 @@ namespace __detail
     __hyperg_reflect(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
       using _Val = emsr::num_traits_t<_Tp>;
-      const auto _S_log_max = __gnu_cxx::__log_max<_Val>();
-      const auto __eps = __gnu_cxx::__epsilon<_Val>();
+      const auto _S_log_max = emsr::log_max<_Val>();
+      const auto __eps = emsr::epsilon<_Val>();
       const auto __epsfact = _Val{1000};
       const auto __toler = __epsfact * __eps;
       const auto __d = __c - __a - __b;
@@ -926,9 +926,9 @@ namespace __detail
     __hyperg(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
       using _Val = emsr::num_traits_t<_Tp>;
-      const auto _S_log_max = __gnu_cxx::__log_max<_Val>();
+      const auto _S_log_max = emsr::log_max<_Val>();
       const auto __epsfact = _Val{1000};
-      const auto __toler = __epsfact * __gnu_cxx::__epsilon<_Val>();
+      const auto __toler = __epsfact * emsr::epsilon<_Val>();
       const auto __a_nint = emsr::fp_is_integer(__a, __epsfact);
       const auto __b_nint = emsr::fp_is_integer(__b, __epsfact);
       const auto __c_nint = emsr::fp_is_integer(__c, __epsfact);
@@ -946,7 +946,7 @@ namespace __detail
 			       - __log_gamca - __log_gamcb;
 	  const auto __sign = __sign_gamc * __sign_gamca * __sign_gamcb;
 	  if (__sign == _Val{0})
-	    return __gnu_cxx::__quiet_NaN(__x);
+	    return emsr::quiet_NaN(__x);
 	  if (std::abs(__log_pre) < _S_log_max)
 	    return __sign * std::exp(__log_pre);
 	  else
@@ -958,9 +958,9 @@ namespace __detail
 				      "argument outside unit circle"));
       else if (std::isnan(__a) || std::isnan(__b)
 	    || std::isnan(__c) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__c_nint && __c_nint() <= 0)
-	return __gnu_cxx::__infinity(__x);
+	return emsr::infinity(__x);
       else if (std::abs(__c - __b) < __toler || std::abs(__c - __a) < __toler)
 	return std::pow(_Tp{1} - __x, __c - __a - __b);
       else if (std::real(__a) >= _Val{0}

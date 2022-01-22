@@ -247,7 +247,7 @@ template<typename _Tp>
                unsigned int __l, unsigned int __m,
                _Tp __Z, _Tp __r, _Tp __theta, _Tp __phi)
     {
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__r);
+      const auto _S_NaN = emsr::quiet_NaN(__r);
 
       if (std::isnan(__Z) || std::isnan(__r)
 	 || std::isnan(__theta) || std::isnan(__phi))

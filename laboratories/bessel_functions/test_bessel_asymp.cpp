@@ -98,7 +98,7 @@ bool VERBOSE = false;
     {
       using __bess_t = __gnu_cxx::__cyl_bessel_t<_Tp, _Tp, _Tp>;
 
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = emsr::epsilon(__x);
       const auto _S_pi = emsr::pi_v<_Tp>;
       const auto _S_pi_2 = _S_pi / _Tp{2};
       const auto __2nu = _Tp{2} * __nu;
@@ -184,7 +184,7 @@ if (VERBOSE) std::cout << ' ' << std::setw(20) << __ak_xk << '\n';
     __cyl_bessel_ik_asymp(_Tnu __nu, _Tp __x)
     {
       using __bess_t = __gnu_cxx::__cyl_mod_bessel_t<_Tp, _Tp, _Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = emsr::epsilon(__x);
       const auto _S_pi = emsr::pi_v<_Tp>;
       const auto _S_pi_2 = _S_pi / _Tp{2};
       const auto __2nu = _Tp{2} * __nu;

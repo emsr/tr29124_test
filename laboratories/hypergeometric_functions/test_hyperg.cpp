@@ -16,7 +16,7 @@
 #include <ext/float128_limits.h>
 
 #include <bits/notsospecfun.h> // For complex log1p.
-#include <bits/numeric_limits.h>
+#include <emsr/numeric_limits.h>
 
 #include <wrap_gsl.h>
 
@@ -45,7 +45,7 @@
     __hyperg_series(_Tp __a, _Tp __b, _Tp __c, _Tp __x)
     {
       using _Val = emsr::num_traits_t<_Tp>;
-      const auto __eps = __gnu_cxx::__epsilon<_Val>();
+      const auto __eps = emsr::epsilon<_Val>();
       const unsigned int _S_max_iter = 100000u;
       auto __aint = emsr::fp_is_integer(__a);
       auto __bint = emsr::fp_is_integer(__b);
@@ -171,13 +171,13 @@
       auto __cint = emsr::fp_is_integer(__c);
       auto __d = __c - __a - __b;
       auto __dint = emsr::fp_is_integer(__d);
-      const auto __toler = _Tp{1000} * __gnu_cxx::__epsilon(__x);
+      const auto __toler = _Tp{1000} * emsr::epsilon(__x);
 
       if (std::isnan(__a) || std::isnan(__b)
 	 || std::isnan(__c) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
       else if (__cint && __cint() <= 0)
-	return __gnu_cxx::__infinity(__x);
+	return emsr::infinity(__x);
       else if (std::abs(__c - __b) < __toler
 	    || std::abs(__c - __a) < __toler)
 	return std::pow(_Tp{1} - __x, __d);
@@ -221,7 +221,7 @@
 	    }
 	}
       else
-	return __gnu_cxx::__quiet_NaN(__x);
+	return emsr::quiet_NaN(__x);
     }
 
 /**
@@ -235,7 +235,7 @@ template<typename _Tp>
     //using _Real = emsr::num_traits_t<_Val>;
     std::vector<_Tp> parm{_Tp{0.25}, _Tp{0.5}, _Tp{1}, _Tp{2}, _Tp{5}};
 
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -280,7 +280,7 @@ template<typename _Tp>
   void
   test_gsl_issue(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -315,7 +315,7 @@ template<typename _Tp>
   {
     using namespace std::literals::complex_literals;
 
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 

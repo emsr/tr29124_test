@@ -1025,7 +1025,7 @@
     _Airy_series<_Tp>::operator()(std::complex<_Tp> __t,
 				  bool __return_fock_airy) const
     {
-      constexpr auto _S_eps = __gnu_cxx::__epsilon(_Tp{});
+      constexpr auto _S_eps = emsr::epsilon(_Tp{});
       constexpr auto _S_pi = emsr::pi_v<_Tp>;
       constexpr auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
       constexpr auto _S_Ai0 = _Tp{3.550280538878172392600631860041831763980e-1Q};
@@ -1033,7 +1033,7 @@
       //constexpr auto _S_Bi0 = _Tp{6.149266274460007351509223690936135535960e-1Q};
       //constexpr auto _S_Bip0 = _Tp{4.482883573538263579148237103988283908668e-1Q};
       constexpr auto _S_i = __cmplx(_Tp{0}, _Tp{1});
-      const auto _S_log10min = __gnu_cxx::__log10_min(_Tp{});
+      const auto _S_log10min = emsr::log10_min(_Tp{});
       const auto __log10t = std::log10(std::abs(__t));
       const auto __ttt = __t * __t * __t;
 

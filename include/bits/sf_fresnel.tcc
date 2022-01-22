@@ -48,7 +48,7 @@ namespace __detail
     __fresnel_series(const _Tp __ax, _Tp & _Cf, _Tp & _Sf)
     {
       const auto _S_max_iter = 100;
-      const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__ax);
+      const auto _S_eps = _Tp{5} * emsr::epsilon(__ax);
       const auto _S_pi = emsr::pi_v<_Tp>;
       const auto _S_pi_2 = _S_pi / _Tp{2};
 
@@ -106,8 +106,8 @@ namespace __detail
     __fresnel_cont_frac(const _Tp __ax, _Tp & _Cf, _Tp & _Sf)
     {
       const auto _S_max_iter = 100;
-      const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__ax);
-      const auto _S_fp_min = __gnu_cxx::__lim_min(__ax);
+      const auto _S_eps = _Tp{5} * emsr::epsilon(__ax);
+      const auto _S_fp_min = emsr::lim_min(__ax);
       const auto _S_pi = emsr::pi_v<_Tp>;
 
       // Evaluate S and C by Lentz's complex continued fraction method.
@@ -166,9 +166,9 @@ namespace __detail
     std::complex<_Tp>
     __fresnel(const _Tp __x)
     {
-      const auto _S_fp_min = __gnu_cxx::__lim_min(__x);
+      const auto _S_fp_min = emsr::lim_min(__x);
       const auto _S_x_min = _Tp{1.5L};
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_NaN = emsr::quiet_NaN(__x);
       if (std::isnan(__x))
 	return std::complex<_Tp>{_S_NaN, _S_NaN};
 

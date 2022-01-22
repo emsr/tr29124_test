@@ -12,7 +12,7 @@
 #include <ext/complex128_math.h>
 #include <emsr/polynomial.h>
 #include <emsr/math_constants.h>
-#include <bits/numeric_limits.h>
+#include <emsr/numeric_limits.h>
 
 template<typename _Tp>
   struct __hankel_outer_param_t
@@ -73,7 +73,7 @@ template<typename _Tp>
     const std::complex<_Tp> _S_j{0, 1};
 
     //using _Cmplx = std::complex<_Tp>;
-    const auto _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();
+    const auto _S_sqrt_max = emsr::sqrt_max<_Tp>();
 
     // If nu^2 can be computed without overflow.
     if (std::abs(__nu) <= _S_sqrt_max)

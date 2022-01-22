@@ -92,8 +92,8 @@ namespace __detail
     _Tp
     __lerch_sum(_Tp __z, _Tp __s, _Tp __a)
     {
-      const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
-      const auto _S_eps = __gnu_cxx::__epsilon(__s);
+      const auto _S_nan = emsr::quiet_NaN(__s);
+      const auto _S_eps = emsr::epsilon(__s);
 
       const auto __aint = emsr::fp_is_integer(__a);
       if (__aint && __aint() <= 0)
@@ -131,7 +131,7 @@ namespace __detail
     _Tp
     __lerch_delta_vanwijngaarden_sum(_Tp __z, _Tp __s, _Tp __a)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__s);
+      const auto _S_eps = emsr::epsilon(__s);
       constexpr auto _S_maxit = 1000u;
 
       emsr::WenigerDeltaSum<emsr::VanWijngaardenSum<_Tp>> _WDvW;
@@ -181,8 +181,8 @@ namespace __detail
     _Tp
     __lerch_phi(_Tp __z, _Tp __s, _Tp __a)
     {
-      const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
-      const auto _S_eps = __gnu_cxx::__epsilon(__s);
+      const auto _S_nan = emsr::quiet_NaN(__s);
+      const auto _S_eps = emsr::epsilon(__s);
 
       if (std::isnan(__z) || std::isnan(__s) || std::isnan(__a))
 	return _S_nan;

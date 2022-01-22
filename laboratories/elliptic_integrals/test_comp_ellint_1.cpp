@@ -76,7 +76,7 @@ template<typename _Tp>
   void
   test_K(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
 
     auto width = 6 + std::cout.precision();
     const auto del = _Tp{1} / _Tp{1000};

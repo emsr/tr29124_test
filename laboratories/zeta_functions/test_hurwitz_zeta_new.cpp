@@ -411,7 +411,7 @@
     _Tp
     __riemann_zeta_m_1_basic_sum(_Tp __s)
     {
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      constexpr auto _S_eps = emsr::epsilon<_Tp>();
       // A user shouldn't get to this.
       if (__s < _Tp{1})
 	std::__throw_domain_error(__N("Bad argument in zeta sum."));
@@ -437,7 +437,7 @@
     _Tp
     __riemann_zeta_m_1_vanwg_sum(_Tp __s)
     {
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      constexpr auto _S_eps = emsr::epsilon<_Tp>();
       // A user shouldn't get to this.
       if (__s < _Tp{1})
 	std::__throw_domain_error(__N("Bad argument in zeta sum."));
@@ -463,7 +463,7 @@
     _Tp
     __riemann_zeta_m_1_kahan_sum(_Tp __s)
     {
-      constexpr auto _S_eps = __gnu_cxx::__epsilon<_Tp>();
+      constexpr auto _S_eps = emsr::epsilon<_Tp>();
       // A user shouldn't get to this.
       if (__s < _Tp{1})
 	std::__throw_domain_error(__N("Bad argument in zeta sum."));

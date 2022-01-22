@@ -48,7 +48,7 @@ template<typename _Tp>
   void
   test_exp(_Tp __proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(emsr::digits10(__proto));
     auto w = 8 + std::cout.precision();
 
     for (int i = -100; i <= +100; ++i)

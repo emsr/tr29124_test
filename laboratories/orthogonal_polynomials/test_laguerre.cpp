@@ -77,7 +77,7 @@
     std::vector<emsr::QuadraturePoint<_Tp>>
     __laguerre_zeros(unsigned int __n, _Tp __proto)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__proto);
+      const auto _S_eps = emsr::epsilon(__proto);
       const unsigned int _S_maxit = 1000u;
 
       std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
@@ -136,7 +136,7 @@
     std::vector<emsr::QuadraturePoint<_Tp>>
     __laguerre_zeros(unsigned int __n, _Tn __alpha, _Tp __proto)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__proto);
+      const auto _S_eps = emsr::epsilon(__proto);
       const unsigned int _S_maxit = 1000;
 
       std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
@@ -196,7 +196,7 @@ template<typename _Tp>
   void
   test_laguerre(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 

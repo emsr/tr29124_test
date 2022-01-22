@@ -8,7 +8,7 @@
 
 #include <wrap_boost.h>
 #include <wrap_gsl.h>
-#include <bits/numeric_limits.h>
+#include <emsr/numeric_limits.h>
 #include <emsr/math_constants.h>
 
   /**
@@ -22,7 +22,7 @@
 	return std::complex<_Tp>{};
       else
         {
-	  const auto _S_eps = __gnu_cxx::__epsilon(std::real(__x)) / _Tp{2};
+	  const auto _S_eps = emsr::epsilon(std::real(__x)) / _Tp{2};
 	  while (true)
   	    {
 	      __y = std::sqrt(__y * std::exchange(__x, (__x + __y) / _Tp{2}));
@@ -44,7 +44,7 @@
 	return _Tp{0};
       else
         {
-	  const auto _S_eps = __gnu_cxx::__epsilon(__x) / _Tp{2};
+	  const auto _S_eps = emsr::epsilon(__x) / _Tp{2};
 	  while (true)
   	    {
 	      __y = std::sqrt(__y * std::exchange(__x, (__x + __y) / _Tp{2}));
@@ -82,7 +82,7 @@ template<typename _Tp>
   void
   test_arith_geom_mean(_Tp __proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(emsr::digits10(__proto));
     auto w = 8 + std::cout.precision();
 
     for (int i = 0; i < 100; ++i)
@@ -103,7 +103,7 @@ template<typename _Tp>
   void
   test_arith_geom_mean_cmplx(_Tp __proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(emsr::digits10(__proto));
     auto w = 4 + 2 * (6 + std::cout.precision());
 
     const auto del = _Tp{0.0625};
@@ -131,7 +131,7 @@ template<typename _Tp>
   void
   test_log(_Tp __proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(emsr::digits10(__proto));
     auto w = 8 + std::cout.precision();
 
     for (int i = 1; i < 100; ++i)

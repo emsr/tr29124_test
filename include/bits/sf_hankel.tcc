@@ -114,7 +114,7 @@ namespace __detail
     {
       using _Cmplx = std::complex<_Tp>;
 
-      const auto _S_inf = __gnu_cxx::__lim_max(_Tp{});
+      const auto _S_inf = emsr::lim_max(_Tp{});
 
       const auto _S_1d4   = _Tp{0.25L};
       const auto _S_1d3   = _Tp{1} / _Tp{3};
@@ -128,7 +128,7 @@ namespace __detail
       const _Cmplx __zone{_Tp{1}, _Tp{0}};
       const _Cmplx _S_j{_Tp{0}, _Tp{1}};
 
-      const auto _S_sqrt_max = __gnu_cxx::__sqrt_max(_Tp{});
+      const auto _S_sqrt_max = emsr::sqrt_max(_Tp{});
 
       // Separate real and imaginary parts of zhat.
       auto __rezhat = std::real(__zhat);

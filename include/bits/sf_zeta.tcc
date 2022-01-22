@@ -246,10 +246,10 @@ namespace __detail
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
       constexpr unsigned long long _S_maxit = 100000ULL;
-      const auto _S_eps = 10 * __gnu_cxx::__epsilon(_Real{});
+      const auto _S_eps = 10 * emsr::epsilon(_Real{});
       const auto _S_pipio6 = emsr::pi_sqr_div_6_v<_Real>;
       if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(_Real{});
+	return emsr::quiet_NaN(_Real{});
       else if (__x > _Tp{+1})
 	std::__throw_range_error(__N("dilog: argument greater than one"));
       else if (__x < _Tp{-1})
@@ -313,7 +313,7 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
+      const auto _S_eps = emsr::epsilon(_Real{});
       const auto __arg = __s - _Val{1};
       auto __argk = _Val{1};
       auto __zeta = _Val{1} / __arg + _S_Stieltjes[0];
@@ -354,7 +354,7 @@ namespace __detail
       else if (std::real(__s) > _Real{1})
 	{
 	  constexpr unsigned int _S_max_iter = 10000;
-	  const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
+	  const auto _S_eps = emsr::epsilon(_Real{});
 	  auto __zeta = _Val{1};
 	  for (unsigned int __k = 2; __k < _S_max_iter; ++__k)
 	    {
@@ -390,8 +390,8 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
-      const auto _S_N = 10 + __gnu_cxx::__digits10(_Real{}) / _Tp{2};
+      const auto _S_eps = emsr::epsilon(_Real{});
+      const auto _S_N = 10 + emsr::digits10(_Real{}) / _Tp{2};
       const auto _S_jmax = _Num_Euler_Maclaurin_zeta - 1;
 
       const auto __pmax  = std::pow(_Val{_S_N + 1}, -__s);
@@ -401,7 +401,7 @@ namespace __detail
         __ans += std::pow(_Val(__k + 1), -__s);
 
       auto __fact = __pmax * __s / _Val{_S_N + 1};
-      auto __delta_prev = __gnu_cxx::__lim_max(__s);
+      auto __delta_prev = emsr::lim_max(__s);
       for (auto __j = 0; __j < _S_jmax; ++__j)
         {
 	  auto __delta = _S_Euler_Maclaurin_zeta[__j + 1] * __fact;
@@ -449,10 +449,10 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
+      const auto _S_eps = emsr::epsilon(_Real{});
       //  Max e exponent before overflow.
       const auto __max_binom
-		 = std::exp(__gnu_cxx::__max_exponent10(_Real{})
+		 = std::exp(emsr::max_exponent10(_Real{})
 			    * std::log(_Real{10}) - _Real{1});
 
       auto __zeta_m_1 = _Val{0};
@@ -551,7 +551,7 @@ namespace __detail
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
 
-      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
+      const auto _S_eps = emsr::epsilon(_Real{});
 
       auto __zeta = _Val{1};
       for (unsigned long __i = 0;
@@ -715,10 +715,10 @@ namespace __detail
     __riemann_zeta_m_1(_Tp __s)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
+      const auto _S_eps = emsr::epsilon(_Real{});
       const auto _S_pi = emsr::pi_v<_Real>;
       if (__s == _Real{1})
-	return __gnu_cxx::__infinity(_Real{});
+	return emsr::infinity(_Real{});
 
       auto __n = emsr::fp_is_integer(__s);
       if (__n && __n() >= 0)
@@ -760,8 +760,8 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
-      const auto _S_inf = __gnu_cxx::__infinity(_Real{});
+      const auto _S_NaN = emsr::quiet_NaN(_Real{});
+      const auto _S_inf = emsr::infinity(_Real{});
       const auto _S_pi = emsr::pi_v<_Real>;
       if (std::isnan(__s))
 	return _S_NaN;
@@ -769,7 +769,7 @@ namespace __detail
 	return _S_inf;
       else
 	{
-	  const auto __S_max = __gnu_cxx::__digits(_Real{});
+	  const auto __S_max = emsr::digits(_Real{});
 	  const auto __p = emsr::fp_is_integer(__s);
 	  if (__p && __p() >= 0)
 	    return _Real{1} + __riemann_zeta_m_1(_Real(__p()));
@@ -822,8 +822,8 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(_Real{});
-      const int _S_N = 10 + __gnu_cxx::__digits10(_Real{}) / 2;
+      const auto _S_eps = emsr::epsilon(_Real{});
+      const int _S_N = 10 + emsr::digits10(_Real{}) / 2;
       const int _S_jmax = _Num_Euler_Maclaurin_zeta - 1;
 
       const auto __pmax  = std::pow(_Val{_S_N} + __a, -__s);
@@ -870,8 +870,8 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(_Real{});
-      const auto _S_inf = __gnu_cxx::__infinity(_Real{});
+      const auto _S_NaN = emsr::quiet_NaN(_Real{});
+      const auto _S_inf = emsr::infinity(_Real{});
       if (std::isnan(__s) || std::isnan(__a))
 	return _S_NaN;
       else if (__a == _Real{1})
@@ -929,7 +929,7 @@ namespace __detail
 	    __sum += std::__detail::__factorial<_Tp>(__n)
 		   * std::__detail::__riemann_zeta<_Tp>(__n + 1);
 	  else
-	    return __gnu_cxx::__infinity(__x);
+	    return emsr::infinity(__x);
 
 	  /**
 	   * Compute the Debye function:
@@ -970,7 +970,7 @@ namespace __detail
            * for @f$ |x| < 2\pi @f$.
 	   * Abramowitz-Stegun 27.1.1
 	   */
-	  const auto _S_eps = __gnu_cxx::__epsilon(__x);
+	  const auto _S_eps = emsr::epsilon(__x);
 	  const std::size_t _S_max_iter = 200;
 	  const auto _S_1_2pi = emsr::inv_tau_v<_Tp>;
 	  const auto __x2pi = __x * _S_1_2pi;

@@ -49,8 +49,8 @@ namespace __detail
     __sincosint_cont_frac(_Tp __t, _Tp& _Si, _Tp& _Ci)
     {
       const auto _S_max_iter = 100;
-      const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__t);
-      const auto _S_fp_min = __gnu_cxx::__lim_min(__t);
+      const auto _S_eps = _Tp{5} * emsr::epsilon(__t);
+      const auto _S_fp_min = emsr::lim_min(__t);
       const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
 
       // Evaluate Ci and Si by Lentz's modified method of continued fractions.
@@ -92,8 +92,8 @@ namespace __detail
     __sincosint_series(_Tp __t, _Tp& _Si, _Tp& _Ci)
     {
       const auto _S_max_iter = 100;
-      const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__t);
-      const auto _S_fp_min = __gnu_cxx::__lim_min(__t);
+      const auto _S_eps = _Tp{5} * emsr::epsilon(__t);
+      const auto _S_fp_min = emsr::lim_min(__t);
       const auto _S_gamma_e = emsr::egamma_v<_Tp>;
 
       // Evaluate Ci and Si by series simultaneously.
@@ -156,7 +156,7 @@ namespace __detail
     __sincosint_asymp(_Tp __t, _Tp& _Si, _Tp& _Ci)
     {
       const auto _S_max_iter = 100;
-      const auto _S_eps = _Tp{5} * __gnu_cxx::__epsilon(__t);
+      const auto _S_eps = _Tp{5} * emsr::epsilon(__t);
       const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
 
       auto __invt = _Tp{1} / __t;
@@ -222,7 +222,7 @@ namespace __detail
     std::pair<_Tp, _Tp>
     __sincosint(_Tp __x)
     {
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_NaN = emsr::quiet_NaN(__x);
       if (std::isnan(__x))
 	return std::make_pair(_S_NaN, _S_NaN);
 
@@ -231,7 +231,7 @@ namespace __detail
       if (__t == _Tp{0})
 	{
 	  _Si = _Tp{0};
-	  _Ci = -__gnu_cxx::__infinity(__x);
+	  _Ci = -emsr::infinity(__x);
 	}
       else if (__t > _Tp{1000}) // Check this!
 	__sincosint_asymp(__t, _Si, _Ci);

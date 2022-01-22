@@ -12,7 +12,7 @@ template<typename _Tp>
   void
   test_comp_ellint_1()
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    std::cout.precision(emsr::digits10<_Tp>());
     const auto w = 8 + std::cout.precision();
 
     std::cout << '\n' << '\n';
@@ -33,7 +33,7 @@ template<typename _Tp>
   void
   test_comp_ellint_2()
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    std::cout.precision(emsr::digits10<_Tp>());
     const auto w = 8 + std::cout.precision();
 
     std::cout << '\n' << '\n';
@@ -54,7 +54,7 @@ template<typename _Tp>
   void
   test_ellint_1()
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    std::cout.precision(emsr::digits10<_Tp>());
     const auto w = 8 + std::cout.precision();
     const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
 
@@ -80,7 +80,7 @@ template<typename _Tp>
   void
   test_ellint_2()
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    std::cout.precision(emsr::digits10<_Tp>());
     const auto w = 8 + std::cout.precision();
     const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
 

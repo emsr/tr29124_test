@@ -5,7 +5,7 @@
 #include <cmath>
 #include <complex>
 
-#include <ext/continued_fractions.h>
+#include <emsr/continued_fractions.h>
 #include <emsr/fp_type_util.h>
 #include <emsr/complex_util.h> // is_complex
 
@@ -44,8 +44,8 @@
       auto __w_J = [](std::size_t, _Tp) -> _Real { return _Real{0}; };
       using _WFun = decltype(__w_J);
 
-      //_SteedContinuedFraction<_Tp, _AFun, _BFun, _WFun>
-      _LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>
+      //emsr::SteedContinuedFraction<_Tp, _AFun, _BFun, _WFun>
+      emsr::LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>
       _J(__a_J, __b_J, __w_J);
 
       // b_0 is 0 not 1 so subtract 1.
@@ -98,8 +98,8 @@ template<typename _Tp>
   _Tp
   cyl_bessel_j_cf1(_Tp __nu, _Tp __x)
   {
-    const auto _S_fp_min = __gnu_cxx::__sqrt_min(__nu);
-    const auto _S_eps = __gnu_cxx::__epsilon(__x);
+    const auto _S_fp_min = emsr::sqrt_min(__nu);
+    const auto _S_eps = emsr::epsilon(__x);
     constexpr int _S_max_iter = 15000;
 
     int __isign = 1;
@@ -134,8 +134,8 @@ template<typename _Tp>
   _Tp
   cyl_bessel_i_cf1(_Tp __nu, _Tp __x)
   {
-    const auto _S_fp_min = __gnu_cxx::__sqrt_min(__nu);
-    const auto _S_eps = __gnu_cxx::__epsilon(__x);
+    const auto _S_fp_min = emsr::sqrt_min(__nu);
+    const auto _S_eps = emsr::epsilon(__x);
     constexpr int _S_max_iter = 15000;
 
     const auto __xi = _Tp{1} / __x;

@@ -1033,7 +1033,7 @@ namespace __detail
     __polylog(_Tp __s, _Tp __x)
     {
       if (std::isnan(__s) || std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__s);
+	return emsr::quiet_NaN(__s);
       else if (emsr::fp_is_zero(__x))
 	return _Tp{0};
       else
@@ -1074,7 +1074,7 @@ namespace __detail
     __polylog(_Tp __s, std::complex<_Tp> __w)
     {
       if (std::isnan(__s) || std::isnan(__w))
-	return __gnu_cxx::__quiet_NaN(__s);
+	return emsr::quiet_NaN(__s);
       else if (emsr::fp_is_real(__w))
 	return __polylog(__s, std::real(__w));
       else
@@ -1101,7 +1101,7 @@ namespace __detail
       const auto _S_i = _Cmplx{0, 1};
       const auto _S_pi = emsr::pi_v<_Tp>;
       if (std::isnan(__s) || std::isnan(__z))
-	return __gnu_cxx::__quiet_NaN(__s);
+	return emsr::quiet_NaN(__s);
       else if (emsr::fp_is_zero(__z))
 	return __riemann_zeta(__s);
       else
@@ -1163,7 +1163,7 @@ namespace __detail
     __dirichlet_eta(std::complex<_Tp> __s)
     {
       if (std::isnan(__s))
-	return __gnu_cxx::__quiet_NaN(std::imag(__s));
+	return emsr::quiet_NaN(std::imag(__s));
       else if (emsr::fp_is_real(__s))
 	return -__polylog(std::real(__s), _Tp{-1});
       else
@@ -1185,7 +1185,7 @@ namespace __detail
     __dirichlet_eta(_Tp __s)
     {
       if (std::isnan(__s))
-	return __gnu_cxx::__quiet_NaN(__s);
+	return emsr::quiet_NaN(__s);
       else if (__s < _Tp{0})
 	{
 	  const auto __p = emsr::fp_is_integer(__s, _Tp{5});
@@ -1224,7 +1224,7 @@ namespace __detail
     {
       const auto _S_i = std::complex<_Tp>{0, 1};
       if (std::isnan(__s))
-	return __gnu_cxx::__quiet_NaN(std::imag(__s));
+	return emsr::quiet_NaN(std::imag(__s));
       else if (emsr::fp_is_real(__s))
 	return std::imag(__polylog(__s.real(), _S_i));
       else

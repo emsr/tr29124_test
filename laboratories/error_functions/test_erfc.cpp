@@ -5,7 +5,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-#include <ext/continued_fractions.h>
+#include <emsr/continued_fractions.h>
 
 namespace std
 {
@@ -27,7 +27,7 @@ namespace __detail
     {
       using _Real = emsr::num_traits_t<_Tp>;
       const auto _S_max_iter = 1000;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__z));
+      const auto _S_eps = emsr::epsilon(std::real(__z));
       const auto _S_pi = emsr::pi_v<_Real>;
 
       const auto __h = _Real{1} / _Real{2};
@@ -98,7 +98,7 @@ namespace __detail
 		  / (std::sqrt(_Tp{1} + _Tp(2 * __k) / __z / __z) - _Tp{1})
 		  / _Tp{2}; };
       using _WFun = decltype(__w);
-      using _CFrac = _LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>;
+      using _CFrac = emsr::LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>;
       const _CFrac __cf(__a, __b, __w);
       auto __erfc = std::exp(-__z * __z) * __cf(__z) * __z / _S_sqrt_pi;
       if (std::real(__z) < _Real{0})
@@ -135,7 +135,7 @@ namespace __detail
 		  / (std::sqrt(_Tp{1} + _Tp(2 * __k) / __z / __z) - _Tp{1})
 		  / _Tp{2}; };
       using _WFun = decltype(__w);
-      using _CFrac = _LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>;
+      using _CFrac = emsr::LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>;
       const _CFrac __cf(__a, __b, __w);
       const auto __cfrac = _S_i * __cf(__z) / _S_sqrt_pi;
       if (std::real(__z) < _Real{0})
@@ -170,7 +170,7 @@ namespace __detail
       using _BFun = decltype(__b);
       const auto __w = [__b](size_t, _Tp)->_Tp{ return _Tp{0}; };
       using _WFun = decltype(__w);
-      using _CFrac = _LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>;
+      using _CFrac = emsr::LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>;
       const _CFrac __cf(__a, __b, __w);
       return std::exp(-__z * __z) * __cf(__z) / _S_sqrt_pi;
     }
@@ -187,7 +187,7 @@ namespace __detail
     {
       using _Real = emsr::num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(std::real(__z));
+      const auto _S_NaN = emsr::quiet_NaN(std::real(__z));
       const auto _S_i = _Cmplx{0, 1};
       if (std::isnan(__z))
 	return _Cmplx{_S_NaN, _S_NaN};
@@ -206,7 +206,7 @@ namespace __detail
     _Tp
     __erfc(_Tp __x)
     {
-      const auto _S_inf = __gnu_cxx::__infinity(__x);
+      const auto _S_inf = emsr::infinity(__x);
       const auto _S_cfrac = _Tp{0.025} * std::numeric_limits<_Tp>::digits;
 
       if (std::isnan(__x))
@@ -359,7 +359,7 @@ template<typename _Tp>
   {
     using namespace std::literals::complex_literals;
     const auto _S_NaN = std::numeric_limits<_Tp>::quiet_NaN();
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 

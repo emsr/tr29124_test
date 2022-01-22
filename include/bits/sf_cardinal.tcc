@@ -50,10 +50,10 @@ namespace __detail
     __sinc(_Tp __x)
     {
       if (std::isnan(__x))
-        return __gnu_cxx::__quiet_NaN(__x);
-      else if (std::abs(__x) == __gnu_cxx::__infinity(__x))
+        return emsr::quiet_NaN(__x);
+      else if (std::abs(__x) == emsr::infinity(__x))
 	return _Tp{0};
-      else if (std::abs(__x) < __gnu_cxx::__sqrt_min(__x))
+      else if (std::abs(__x) < emsr::sqrt_min(__x))
         return _Tp{1} - __x * __x / _Tp{6};
       else
 	return std::sin(__x) / __x;
@@ -71,13 +71,13 @@ namespace __detail
     {
       const auto _S_pi = emsr::pi_v<_Tp>;
       if (std::isnan(__x))
-        return __gnu_cxx::__quiet_NaN(__x);
-      else if (std::abs(__x) == __gnu_cxx::__infinity(__x))
+        return emsr::quiet_NaN(__x);
+      else if (std::abs(__x) == emsr::infinity(__x))
 	return _Tp{0};
       else
 	{
 	  auto __arg = _S_pi * __x;
-	  if (std::abs(__arg) < _Tp{4} * __gnu_cxx::__sqrt_min(__x))
+	  if (std::abs(__arg) < _Tp{4} * emsr::sqrt_min(__x))
 	    return _Tp{1} - __arg * __arg / _Tp{6};
 	  else
 	    return __sin_pi(__x) / __arg;
@@ -95,8 +95,8 @@ namespace __detail
     __sinhc(_Tp __x)
     {
       if (std::isnan(__x))
-        return __gnu_cxx::__quiet_NaN(__x);
-      else if (std::abs(__x) < _Tp{4} * __gnu_cxx::__sqrt_min(__x))
+        return emsr::quiet_NaN(__x);
+      else if (std::abs(__x) < _Tp{4} * emsr::sqrt_min(__x))
         return _Tp{1} + __x * __x / _Tp{6};
       else
 	return std::sinh(__x) / __x;
@@ -114,11 +114,11 @@ namespace __detail
     {
       const auto _S_pi = emsr::pi_v<_Tp>;
       if (std::isnan(__x))
-        return __gnu_cxx::__quiet_NaN(__x);
+        return emsr::quiet_NaN(__x);
       else
 	{
 	  auto __arg = _S_pi * __x;
-	  if (std::abs(__arg) < _Tp{4} * __gnu_cxx::__sqrt_min(__x))
+	  if (std::abs(__arg) < _Tp{4} * emsr::sqrt_min(__x))
 	    return _Tp{1} + __arg * __arg / _Tp{6};
 	  else
 	    return __sinh_pi(__x) / __arg;

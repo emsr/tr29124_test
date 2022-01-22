@@ -8,7 +8,7 @@
 #include <iostream>
 #include <iomanip>
 
-#include <ext/continued_fractions.h>
+#include <emsr/continued_fractions.h>
 #include <emsr/fp_type_util.h>
 #include <emsr/math_constants.h>
 #include <emsr/complex_util.h> // is_complex
@@ -57,7 +57,7 @@
 	  };
       using _TailFun = decltype(__w_H1);
 
-      _SteedContinuedFraction<_Tp, _NumFun, _DenFun, _TailFun>
+      emsr::SteedContinuedFraction<_Tp, _NumFun, _DenFun, _TailFun>
       _H1(__a_H1, __b_H1, __w_H1);
 
       // b_0 is 0 not 1 so subtract 1.
@@ -147,7 +147,7 @@
 	  { return _Tzeta(__k) + __zeta / _Tzeta{2}; };
       using _TailFun = decltype(__w_H);
 
-      _SteedContinuedFraction<_Tp, _NumFun, _DenFun, _TailFun>
+      emsr::SteedContinuedFraction<_Tp, _NumFun, _DenFun, _TailFun>
       _H(__a_H, __b_H, __w_H);
 
       return (_Tzeta(2 * __nu + 1) + __sgn * __zeta) / (_Tp{2} * __z)
@@ -207,8 +207,8 @@ template<typename _Tp>
   cyl_bessel_j_cf2(_Tp __nu, _Tp __x)
   {
     const auto _S_i = std::complex<_Tp>{0, 1};
-    const auto _S_fp_min = __gnu_cxx::__sqrt_min(__nu);
-    const auto _S_eps = __gnu_cxx::__epsilon(__x);
+    const auto _S_fp_min = emsr::sqrt_min(__nu);
+    const auto _S_eps = emsr::epsilon(__x);
     constexpr int _S_max_iter = 15000;
 
     //const int __n = std::max(0, static_cast<int>(__nu - __x + _Tp{1.5L}));
@@ -250,7 +250,7 @@ template<typename _Tp>
   _Tp
   cyl_bessel_k_cf2(_Tp __nu, _Tp __x)
   {
-    const auto _S_eps = __gnu_cxx::__epsilon(__x);
+    const auto _S_eps = emsr::epsilon(__x);
     constexpr int _S_max_iter = 15000;
 
     const auto __mu = __nu;

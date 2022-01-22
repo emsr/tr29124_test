@@ -93,7 +93,7 @@ namespace __detail
 	return _S_bernoulli_2n[__n / 2];
       else
 	{
-	  constexpr auto _S_eps = __gnu_cxx::__epsilon<>(_Tp{});
+	  constexpr auto _S_eps = emsr::epsilon<>(_Tp{});
 	  constexpr auto _S_2pi = emsr::tau_v<_Tp>;
 	  auto __fact = _Tp{1};
 	  if ((__n / 2) % 2 == 0)
@@ -108,7 +108,7 @@ namespace __detail
 	    {
 	      auto __term = std::pow(_Tp(__i), -_Tp(__n));
 	      __sum += __term;
-	      if (__term < __gnu_cxx::__epsilon<_Tp>() * __sum)
+	      if (__term < emsr::epsilon<_Tp>() * __sum)
 		break;
 	    }
 

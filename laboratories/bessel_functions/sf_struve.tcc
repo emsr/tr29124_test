@@ -28,17 +28,17 @@ namespace __detail
     {
       using _Val = _Tp;
 
-      using _BasicSum = __gnu_cxx::_BasicSum<_Val>;
-      using _WenigerBasSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
-      using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Val>;
-      using _WenigerWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
+      using _BasicSum = emsr::BasicSum<_Val>;
+      using _WenigerBasSum = emsr::WenigerDeltaSum<_BasicSum>;
+      using _WijnSum = emsr::VanWijngaardenSum<_Val>;
+      using _WenigerWijnSum = emsr::WenigerDeltaSum<_WijnSum>;
       using _WenigerSum = std::conditional_t<_Type == _StruveH,
 					     _WenigerWijnSum, _WenigerBasSum>;
       int __sign = (_Type == _StruveH ? -1 : _Type == _StruveL ? +1 : 0);
       assert(__sign != 0);
 
       constexpr int _S_max_iter = 1000;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__x));
+      const auto _S_eps = emsr::epsilon(std::real(__x));
       const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
 
       auto __x2 = __x / _Val{2};
@@ -71,10 +71,10 @@ namespace __detail
     {
       using _Val = _Tp;
 
-      using _BasicSum = __gnu_cxx::_BasicSum<_Val>;
-      using _WenigerBasSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
-      using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Val>;
-      using _WenigerWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
+      using _BasicSum = emsr::BasicSum<_Val>;
+      using _WenigerBasSum = emsr::WenigerDeltaSum<_BasicSum>;
+      using _WijnSum = emsr::VanWijngaardenSum<_Val>;
+      using _WenigerWijnSum = emsr::WenigerDeltaSum<_WijnSum>;
       using _WenigerSum = std::conditional_t<_Type == _StruveM,
 					     _WenigerWijnSum, _WenigerBasSum>;
 
@@ -82,7 +82,7 @@ namespace __detail
       assert(__sign != 0);
 
       constexpr int _S_max_iter = 1000;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__x));
+      const auto _S_eps = emsr::epsilon(std::real(__x));
       const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
 
       auto __x2 = __x / _Val{2};
@@ -116,8 +116,8 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_nan = __gnu_cxx::__quiet_NaN(std::real(__x));
-      const auto _S_max = __gnu_cxx::__digits10(std::real(__x));
+      const auto _S_nan = emsr::quiet_NaN(std::real(__x));
+      const auto _S_max = emsr::digits10(std::real(__x));
 
       if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_h: bad argument"));
@@ -143,8 +143,8 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_nan = __gnu_cxx::__quiet_NaN(std::real(__x));
-      const auto _S_max = __gnu_cxx::__digits10(std::real(__x));
+      const auto _S_nan = emsr::quiet_NaN(std::real(__x));
+      const auto _S_max = emsr::digits10(std::real(__x));
 
       if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_k: bad argument"));
@@ -170,8 +170,8 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_nan = __gnu_cxx::__quiet_NaN(std::real(__x));
-      const auto _S_max = __gnu_cxx::__digits10(std::real(__x));
+      const auto _S_nan = emsr::quiet_NaN(std::real(__x));
+      const auto _S_max = emsr::digits10(std::real(__x));
 
       if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_l: bad argument"));
@@ -197,8 +197,8 @@ namespace __detail
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_nan = __gnu_cxx::__quiet_NaN(std::real(__x));
-      const auto _S_max = __gnu_cxx::__digits10(std::real(__x));
+      const auto _S_nan = emsr::quiet_NaN(std::real(__x));
+      const auto _S_max = emsr::digits10(std::real(__x));
 
       if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
 	std::__throw_domain_error(__N("__struve_k: bad argument"));

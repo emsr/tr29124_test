@@ -58,7 +58,7 @@
 #include <emsr/fp_type_util.h>
 
 #if __cplusplus >= 201103L
-#  include <bits/numeric_limits.h>
+#  include <emsr/numeric_limits.h>
 #  include <bits/sf_prime.tcc>
 #  include <bits/sf_trig.tcc>
 #  include <bits/sf_cardinal.tcc>

@@ -11,7 +11,7 @@ template<typename _Tp>
   void
   test_theta(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     auto width = 8 + std::cout.precision();
     std::cout << std::showpoint << std::scientific;
 

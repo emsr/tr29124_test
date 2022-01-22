@@ -55,7 +55,7 @@ namespace __detail
 	  __term *= -(_Tp{2} / _Tp(2 * __k + 1)) * __x2;
 	  __sum += __term;
 	  ++__k;
-	  if (std::abs(__term) < __gnu_cxx::__epsilon(__x))
+	  if (std::abs(__term) < emsr::epsilon(__x))
 	    break;
 	}
       return __x * __sum;
@@ -71,7 +71,7 @@ namespace __detail
     __dawson_cont_frac(_Tp __x)
     {
       const auto _S_1_sqrtpi{0.5641895835477562869480794515607726L};
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = emsr::epsilon(__x);
       const auto _S_H{0.2L};
       /// This array could be built on a thread-local basis.
       const auto _S_n_max = 100;
@@ -232,7 +232,7 @@ namespace __detail
     _Tp
     __dawson(_Tp __x)
     {
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN(__x);
+      const auto _S_NaN = emsr::quiet_NaN(__x);
       constexpr _Tp _S_x_min{0.2L};
 
       if (std::isnan(__x))

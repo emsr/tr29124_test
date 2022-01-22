@@ -71,7 +71,7 @@
     _Tp
     __chebyshev_u_trig(unsigned int __n, _Tp __x)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = emsr::epsilon(__x);
       if (std::abs(__x + _Tp{1}) < _S_eps)
 	return (__n % 2 == 0 ? +1 : -1) * _Tp(__n + 1);
       else if (std::abs(__x - _Tp{1}) < _S_eps)
@@ -115,7 +115,7 @@
     _Tp
     __chebyshev_v_trig(unsigned int __n, _Tp __x)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = emsr::epsilon(__x);
       if (std::abs(__x + _Tp{1}) < _S_eps)
 	return (__n % 2 == 0 ? +1 : -1) * _Tp(2 * __n + 1);
       else
@@ -158,7 +158,7 @@
     _Tp
     __chebyshev_w_trig(unsigned int __n, _Tp __x)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__x);
+      const auto _S_eps = emsr::epsilon(__x);
       if (std::abs(__x - _Tp{1}) < _S_eps)
 	return _Tp(2 * __n + 1);
       else
@@ -192,7 +192,7 @@ template<typename Tp>
   void
   test_chebyshev(Tp proto = Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 

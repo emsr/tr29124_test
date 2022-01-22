@@ -14,7 +14,7 @@
     std::vector<emsr::QuadraturePoint<_Tp>>
     __jacobi_zeros(unsigned int __n, _Tp __alpha, _Tp __beta)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__alpha);
+      const auto _S_eps = emsr::epsilon(__alpha);
       const unsigned int _S_maxit = 1000u;
 
       std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
@@ -121,7 +121,7 @@ template<typename _Tp>
   void
   test_jacobi(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     auto width = std::cout.precision() + 6;
     std::cout << "\njacobi\n";
     for (int n = 0; n <= 5; ++n)

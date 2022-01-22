@@ -3,7 +3,7 @@
  */
 
 #include <mpreal.h>
-#include <bits/numeric_limits_mpreal.h>
+#include <emsr/numeric_limits_mpreal.h>
 
 
 int
@@ -11,7 +11,7 @@ main()
 {
   int prec = 256;
   mpfr::mpreal p(0, prec);
-  //std::cout.precision(__gnu_cxx::__digits10(p));
+  //std::cout.precision(emsr::digits10(p));
   std::cout.precision(40);
   auto w = 8 + std::cout.precision();
   std::cout << std::scientific;

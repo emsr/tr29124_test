@@ -16,7 +16,7 @@
     std::vector<emsr::QuadraturePoint<_Tp>>
     __lobatto_zeros(unsigned int __l, _Tp proto = _Tp{})
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(proto);
+      const auto _S_eps = emsr::epsilon(proto);
       const auto _S_pi = emsr::pi_v<_Tp>;
       const unsigned int _S_maxit = 1000u;
 
@@ -89,7 +89,7 @@ template<typename _Tp>
   void
   test_lobatto(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 

@@ -510,7 +510,7 @@ template<typename _Tp>
   void
   test_polylog_neg_int(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::scientific;
 
     //std::cout << "\nTest negative integer order\n";
@@ -551,7 +551,7 @@ template<typename _Tp>
   void
   test_polylog_0(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::scientific;
 
     std::cout << "\n\nTest against algebraic function for Li_0\n";
@@ -575,7 +575,7 @@ template<typename _Tp>
   void
   test_polylog_1(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::scientific;
 
     std::cout << "\n\nTest against algebraic function for Li_1\n";
@@ -599,7 +599,7 @@ template<typename _Tp>
   void
   test_polylog_dilog(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::scientific;
 
     std::cout << "\n\nTest against local dilog\n";
@@ -621,7 +621,7 @@ template<typename _Tp>
   void
   test_polylog_cephes(_Tp proto = _Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::scientific;
 
     //std::cout << "\nTest against Cephes for integer order\n";
@@ -651,7 +651,7 @@ template<typename _Tp>
     const auto _S_pi = emsr::pi_v<_Tp>;
     const auto _S_2pi = emsr::tau_v<_Tp>;
 
-    std::cout.precision(__gnu_cxx::__digits10(proto) - 1);
+    std::cout.precision(emsr::digits10(proto) - 1);
     std::cout << std::scientific;
     const auto w = std::cout.precision() + 8;
 
