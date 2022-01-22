@@ -1,14 +1,14 @@
 
-#ifndef _RATIONAL_TCC
-#define _RATIONAL_TCC 1
+#ifndef RATIONAL_TCC
+#define RATIONAL_TCC 1
 
-namespace __gnu_cxx
+namespace emsr
 {
 
   // Arithmetic assignment operators
-  template<typename _IntTp>
-    _Rational<_IntTp>&
-    _Rational<_IntTp>::operator+=(_Rational<_IntTp> __rat)
+  template<typename IntTp>
+    Rational<IntTp>&
+    Rational<IntTp>::operator+=(Rational<IntTp> rat)
     {
       // This calculation avoids overflow, and minimises the number of expensive
       // calculations. Thanks to Nickolay Mladenov for this algorithm.
@@ -28,77 +28,77 @@ namespace __gnu_cxx
       // Which proves that instead of normalizing the result, it is better to
       // divide num and den by gcd((a*d1 + c*b1), g)
 
-      value_type __gcd = std::experimental::gcd(this->_M_den, __rat.den());
-      this->_M_den /= __gcd;  // = b1 from the calculations above
-      this->_M_num = this->_M_num * (__rat.den() / __gcd) + __rat.num() * this->_M_den;
-      __gcd = std::experimental::gcd(this->_M_num, __gcd);
-      this->_M_num /= __gcd;
-      this->_M_den *= __rat.den() / __gcd;
+      value_type gcd = std::experimental::gcd(this->m_den, rat.den());
+      this->m_den /= gcd;  // = b1 from the calculations above
+      this->m_num = this->m_num * (rat.den() / gcd) + rat.num() * this->m_den;
+      gcd = std::experimental::gcd(this->m_num, gcd);
+      this->m_num /= gcd;
+      this->m_den *= rat.den() / gcd;
 
       return *this;
     }
 
-  template<typename _IntTp>
-    _Rational<_IntTp>&
-    _Rational<_IntTp>::operator-=(_Rational<_IntTp> __rat)
+  template<typename IntTp>
+    Rational<IntTp>&
+    Rational<IntTp>::operator-=(Rational<IntTp> rat)
     {
       // This calculation avoids overflow, and minimises the number of expensive
       // calculations. It corresponds exactly to the += case above
-      value_type __gcd = std::experimental::gcd(this->_M_den, __rat.den());
-      this->_M_den /= __gcd;
-      this->_M_num = this->_M_num * (__rat.den() / __gcd) - __rat.num() * this->_M_den;
-      __gcd = std::experimental::gcd(this->_M_num, __gcd);
-      this->_M_num /= __gcd;
-      this->_M_den *= __rat.den() / __gcd;
+      value_type gcd = std::experimental::gcd(this->m_den, rat.den());
+      this->m_den /= gcd;
+      this->m_num = this->m_num * (rat.den() / gcd) - rat.num() * this->m_den;
+      gcd = std::experimental::gcd(this->m_num, gcd);
+      this->m_num /= gcd;
+      this->m_den *= rat.den() / gcd;
 
       return *this;
     }
 
-  template<typename _IntTp>
-    _Rational<_IntTp>&
-    _Rational<_IntTp>::operator*=(_Rational<_IntTp> __rat)
+  template<typename IntTp>
+    Rational<IntTp>&
+    Rational<IntTp>::operator*=(Rational<IntTp> rat)
     {
       // Avoid overflow and preserve normalization
-      value_type __gcd1 = std::experimental::gcd(this->_M_num, __rat.den());
-      value_type __gcd2 = std::experimental::gcd(__rat.num(), this->_M_den);
-      this->_M_num = (this->_M_num / __gcd1) * (__rat.num() / __gcd2);
-      this->_M_den = (this->_M_den / __gcd2) * (__rat.den() / __gcd1);
+      value_type gcd1 = std::experimental::gcd(this->m_num, rat.den());
+      value_type gcd2 = std::experimental::gcd(rat.num(), this->m_den);
+      this->m_num = (this->m_num / gcd1) * (rat.num() / gcd2);
+      this->m_den = (this->m_den / gcd2) * (rat.den() / gcd1);
       return *this;
     }
 
-  template<typename _IntTp>
-    _Rational<_IntTp>&
-    _Rational<_IntTp>::operator/=(_Rational<_IntTp> __rat)
+  template<typename IntTp>
+    Rational<IntTp>&
+    Rational<IntTp>::operator/=(Rational<IntTp> rat)
     {
       constexpr value_type zero{0};
 
       // Trap division by zero
-      if (__rat.num() == zero)
-	throw _Bad_Rational();
-      if (this->_M_num == zero)
+      if (rat.num() == zero)
+	throw BadRational();
+      if (this->m_num == zero)
 	return *this;
 
       // Avoid overflow and preserve normalization
-      value_type __gcd1 = std::experimental::gcd(this->_M_num, __rat.num());
-      value_type __gcd2 = std::experimental::gcd(__rat.den(), this->_M_den);
-      this->_M_num = (this->_M_num / __gcd1) * (__rat.den() / __gcd2);
-      this->_M_den = (this->_M_den / __gcd2) * (__rat.num() / __gcd1);
+      value_type gcd1 = std::experimental::gcd(this->m_num, rat.num());
+      value_type gcd2 = std::experimental::gcd(rat.den(), this->m_den);
+      this->m_num = (this->m_num / gcd1) * (rat.den() / gcd2);
+      this->m_den = (this->m_den / gcd2) * (rat.num() / gcd1);
 
-      if (this->_M_den < zero)
+      if (this->m_den < zero)
 	{
-          this->_M_num = -this->_M_num;
-          this->_M_den = -this->_M_den;
+          this->m_num = -this->m_num;
+          this->m_den = -this->m_den;
 	}
       return *this;
     }
 
-  template<typename _IntTp>
+  template<typename IntTp>
     bool
-    _Rational<_IntTp>::operator<(const _Rational<_IntTp>& r) const
+    Rational<IntTp>::operator<(const Rational<IntTp>& r) const
     {
       constexpr value_type zero{0};
 
-      assert(this->_M_den > zero);
+      assert(this->m_den > zero);
       assert(r.den() > zero);
 
       // Determine relative order by expanding each value to its simple continued
@@ -106,9 +106,9 @@ namespace __gnu_cxx
       struct
       { value_type n, d, q, r; }
       ts{
-	this->_M_num, this->_M_den,
-	static_cast<value_type>(this->_M_num / this->_M_den),
-	static_cast<value_type>(this->_M_num % this->_M_den)
+	this->m_num, this->m_den,
+	static_cast<value_type>(this->m_num / this->m_den),
+	static_cast<value_type>(this->m_num % this->m_den)
       },
       rs
       {
@@ -181,91 +181,91 @@ namespace __gnu_cxx
 	}
     }
 
-  template<typename _IntTp>
+  template<typename IntTp>
     bool
-    _Rational<_IntTp>::operator<(value_type __i) const
+    Rational<IntTp>::operator<(value_type i) const
     {
       constexpr value_type zero{0};
 
       // Break value into mixed-fraction form, w/ always-nonnegative remainder
-      assert(this->_M_den > zero);
-      value_type __quo = this->_M_num / this->_M_den,
-		 __rem = this->_M_num % this->_M_den;
-      while (__rem < zero)
+      assert(this->m_den > zero);
+      value_type quo = this->m_num / this->m_den,
+		 rem = this->m_num % this->m_den;
+      while (rem < zero)
 	{
-	  __rem += this->_M_den;
-	  --__quo;
+	  rem += this->m_den;
+	  --quo;
 	}
 
       // Compare with just the quotient, since the remainder always bumps the
       // value up.  [Since q = floor(n/d), and if n/d < i then q < i, if n/d == i
       // then q == i, if n/d == i + r/d then q == i, and if n/d >= i + 1 then
       // q >= i + 1 > i; therefore n/d < i iff q < i.]
-      return __quo < __i;
+      return quo < i;
     }
 
   // Normalisation
-  template<typename _IntTp>
+  template<typename IntTp>
     void
-    _Rational<_IntTp>::_M_normalize()
+    Rational<IntTp>::m_normalize()
     {
       constexpr value_type zero{0};
 
-      if (this->_M_den == zero)
-	throw _Bad_Rational();
+      if (this->m_den == zero)
+	throw BadRational();
 
       // Handle the case of zero separately, to avoid division by zero
-      if (this->_M_num == zero)
+      if (this->m_num == zero)
 	{
-          this->_M_den = value_type{1};
+          this->m_den = value_type{1};
           return;
 	}
 
-      value_type __gcd = std::experimental::gcd(this->_M_num, this->_M_den);
+      value_type gcd = std::experimental::gcd(this->m_num, this->m_den);
 
-      this->_M_num /= __gcd;
-      this->_M_den /= __gcd;
+      this->m_num /= gcd;
+      this->m_den /= gcd;
 
       // Ensure that the denominator is positive
-      if (this->_M_den < zero)
+      if (this->m_den < zero)
 	{
-          this->_M_num = -this->_M_num;
-          this->_M_den = -this->_M_den;
+          this->m_num = -this->m_num;
+          this->m_den = -this->m_den;
 	}
 
-      assert(this->_M_valid());
+      assert(this->m_valid());
     }
 
   // Input and output
-  template<typename _IntTp>
+  template<typename IntTp>
     std::istream&
-    operator>>(std::istream& __is, _Rational<_IntTp>& __rat)
+    operator>>(std::istream& is, Rational<IntTp>& rat)
     {
-      using __value_type = typename _Rational<_IntTp>::value_type;
+      using value_type = typename Rational<IntTp>::value_type;
 
-      auto __num = __value_type{0}, __den = __value_type{1};
-      char __c = 0;
-      detail::resetter sentry(__is);
+      auto num = value_type{0}, den = value_type{1};
+      char c = 0;
+      detail::resetter sentry(is);
 
-      __is >> __num;
-      __c = __is.get();
+      is >> num;
+      c = is.get();
 
-      if (__c != '/')
-	__is.clear(std::ios_base::badbit);  // old GNU c++ lib has no ios_base
+      if (c != '/')
+	is.clear(std::ios_base::badbit);  // old GNU c++ lib has no ios_base
 
   #if !defined(__GNUC__) || (defined(__GNUC__) && (__GNUC__ >= 3))
-      __is >> std::noskipws;
+      is >> std::noskipws;
   #else
-      __is.unsetf(ios::skipws); // compiles, but seems to have no effect.
+      is.unsetf(ios::skipws); // compiles, but seems to have no effect.
   #endif
-      __is >> __den;
+      is >> den;
 
-      if (__is)
-	__rat.assign(__num, __den);
+      if (is)
+	rat.assign(num, den);
 
-      return __is;
+      return is;
     }
 
-} // namespace __gnu_cxx
+} // namespace emsr
 
-#endif // _RATIONAL_TCC
+#endif // RATIONAL_TCC

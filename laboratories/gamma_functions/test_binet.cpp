@@ -6,7 +6,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
-#include <ext/rational.h>
+#include <emsr/rational.h>
 #include <cmath>
 
 namespace std
@@ -234,7 +234,7 @@ template<typename _Tp>
   void
   test()
   {
-    using _Rat = __gnu_cxx::_Rational<_Tp>;
+    using _Rat = emsr::Rational<_Tp>;
 
     using _Real = long double;
 
@@ -256,7 +256,7 @@ template<typename _Tp>
     auto cf = std::__detail::__stieltjes_cont_frac_seq<_Rat>(len);
     for (int k = 0; k < len; ++k)
       std::cout << k + 1 << ": " << cf[k]
-		<< " = " << __gnu_cxx::_Rational_cast<_Real>(cf[k]) << '\n';
+		<< " = " << emsr::Rational_cast<_Real>(cf[k]) << '\n';
 
     std::cout << "\nBinet asymptotic\n";
     for (int k = 1; k <= 5000; ++k)

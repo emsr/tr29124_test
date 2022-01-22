@@ -32,7 +32,7 @@
 
 #pragma GCC system_header
 
-#include <ext/summation.h>
+#include <emsr/summation.h>
 #include <emsr/polynomial.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
@@ -2536,8 +2536,8 @@ namespace __detail
       const auto _S_5pi_6 = _Real{5} * _S_pi_6;
       const auto _S_i = _Cmplx{0, 1};
 
-      using _OuterSum = __gnu_cxx::_KahanSum<_Cmplx>;
-      using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
+      using _OuterSum = emsr::KahanSum<_Cmplx>;
+      using _InnerSum = emsr::WenigerDeltaSum<_OuterSum>;
 
       if (std::isnan(__y))
 	return _AiryState<_Tp>{__y, _S_cNaN, _S_cNaN, _S_cNaN, _S_cNaN};

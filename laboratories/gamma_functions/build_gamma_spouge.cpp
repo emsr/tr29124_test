@@ -10,7 +10,7 @@
 #include <ext/float128_io.h>
 #include <ext/float128_math.h>
 #include <ext/float128_limits.h>
-#include <ext/summation.h>
+#include <emsr/summation.h>
 
   template<typename _Tp>
     void
@@ -53,9 +53,9 @@
 	  //  return std::log(_S_pi) - std::log(__sin_pi(__z)) - __log_gamma1p_spouge(_Tp{1} - __z);
 	  //else
 	    {
-	      //using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Tp>;
+	      //using _WijnSum = emsr::VanWijngaardenSum<_Tp>;
 	      //_WijnSum __sum;
-	      using _BasicSum = __gnu_cxx::_BasicSum<_Tp>;
+	      using _BasicSum = emsr::BasicSum<_Tp>;
 	      _BasicSum __sum;
 	      __sum += std::sqrt(_S_2pi);
 	      for (unsigned int __k = 0; __k < __c.size(); ++__k)

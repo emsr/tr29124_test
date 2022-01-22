@@ -41,7 +41,7 @@
 
 #pragma GCC system_header
 
-#include <ext/summation.h>
+#include <emsr/summation.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -134,11 +134,11 @@ namespace __detail
       const auto _S_eps = __gnu_cxx::__epsilon(__s);
       constexpr auto _S_maxit = 1000u;
 
-      __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<_Tp>> _WDvW;
+      emsr::WenigerDeltaSum<emsr::VanWijngaardenSum<_Tp>> _WDvW;
       if (__z >= _Tp{0})
 	{
 	  using __lerch_t = __lerch_term<_Tp>;
-	  using __lerch_cmp_t = __gnu_cxx::_VanWijngaardenCompressor<__lerch_t>;
+	  using __lerch_cmp_t = emsr::VanWijngaardenCompressor<__lerch_t>;
 	  auto _VwT = __lerch_cmp_t(__lerch_t(__z, __s, __a));
 	  for (auto __k = 0u; __k < _S_maxit; ++__k)
 	    {

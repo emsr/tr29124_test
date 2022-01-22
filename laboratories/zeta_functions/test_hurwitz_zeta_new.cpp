@@ -8,7 +8,7 @@
 #include <iomanip>
 #include <vector>
 #include <ext/float128_io.h>
-#include <ext/summation.h>
+#include <emsr/summation.h>
 
   constexpr unsigned long long
   _S_num_harmonic_numer = 29;
@@ -468,7 +468,7 @@
       if (__s < _Tp{1})
 	std::__throw_domain_error(__N("Bad argument in zeta sum."));
 
-      __gnu_cxx::_KahanSum<_Tp> __zeta_m_1;
+      emsr::KahanSum<_Tp> __zeta_m_1;
       int __k_max = std::min(1000000, int(std::pow(_Tp{1} / _S_eps, _Tp{1} / __s)));
 #ifdef DEBUG_SERIES
       std::cerr << "s = " << __s << "  k_max = " << __k_max << '\n';

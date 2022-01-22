@@ -4,11 +4,10 @@
 #include <numeric> // For midpoint.
 #include <cmath> // For lerp.
 
-//#if __cplusplus > 201703L // CMake...
 #if __cplusplus >= 201703L
-namespace std
-{
 #if __cpp_lib_interpolate >=  201902L
+namespace emsr //std
+{
   // Overload midpoint.
   template<typename _Tp>
     constexpr std::complex<_Tp>
@@ -26,9 +25,8 @@ namespace std
       return std::complex<_Tp>{std::lerp(u.real(), v.real(), t),
 			       std::lerp(u.imag(), v.imag(), t)};
     }
-#endif // __cpp_lib_interpolate >=  201902L
 }
+#endif // __cpp_lib_interpolate
 #endif // C++17
-//#endif // C++20
 
 #endif // COMPLEX_ALGORITHM_H

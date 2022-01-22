@@ -12,7 +12,7 @@
 #include <string>
 #include <complex>
 
-#include <ext/summation.h>
+#include <emsr/summation.h>
 
 #include <wrap_boost.h>
 
@@ -152,8 +152,8 @@ template<typename _Tp>
       if (mode == equation2p7
 	|| (mode == automatic && std::real(1 - __c - __n) < _Tp{0}))
 	{
-	  //__gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<_Tp>> __sum;
-	  __gnu_cxx::_BasicSum<_Tp> __sum;
+	  //emsr::WenigerDeltaSum<emsr::BasicSum<_Tp>> __sum;
+	  emsr::BasicSum<_Tp> __sum;
 	  auto __term = _Tp{1};
 	  __sum += _Tp{__term};
 	  auto __ca = __c - __a;
@@ -180,8 +180,8 @@ template<typename _Tp>
 	   || (mode == automatic
 	    && std::real(1 + __c - __a - __b - _Tp(__n)) < _Tp{0}))
 	{
-	  //__gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<_Tp>> __sum;
-	  __gnu_cxx::_BasicSum<_Tp> __sum;
+	  //emsr::WenigerDeltaSum<emsr::BasicSum<_Tp>> __sum;
+	  emsr::BasicSum<_Tp> __sum;
 	  auto __term = _Tp{1};
 	  __sum += _Tp{__term};
 	  auto __ac = __a - __c;
@@ -209,14 +209,14 @@ template<typename _Tp>
       else
 	{
 	  // Average 2.7 and 3.1 sums.
-	  __gnu_cxx::_BasicSum<_Tp> __sum2p7;
+	  emsr::BasicSum<_Tp> __sum2p7;
 	  auto __term2p7 = _Tp{1};
 	  __sum2p7 += _Tp{__term2p7};
 	  auto __ca = __c - __a;
 	  auto __cb = __c - __b;
 	  auto __cabn = _Tp{1} + __c - __a - __b - _Tp(__n);
 
-	  __gnu_cxx::_BasicSum<_Tp> __sum3p1;
+	  emsr::BasicSum<_Tp> __sum3p1;
 	  auto __term3p1 = _Tp{1};
 	  __sum3p1 += _Tp{__term3p1};
 	  auto __ac = __a - __c;

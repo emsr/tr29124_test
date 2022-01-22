@@ -10,7 +10,7 @@
 #include <complex>
 #include <ext/float128_math.h>
 #include <ext/float128_io.h>
-#include <ext/summation.h>
+#include <emsr/summation.h>
 
 
   /**
@@ -2983,17 +2983,17 @@ main()
 
   std::cout << "\nfloat\n=====\n\n";
   using __fcmplx = std::complex<float>;
-  using __fsum = __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_KahanSum<__fcmplx>>;
+  using __fsum = emsr::WenigerDeltaSum<emsr::KahanSum<__fcmplx>>;
   diff_airy_asymp<__fsum>();
 
   std::cout << "\ndouble\n======\n";
   using __cmplx = std::complex<double>;
-  using __sum = __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_KahanSum<__cmplx>>;
+  using __sum = emsr::WenigerDeltaSum<emsr::KahanSum<__cmplx>>;
   diff_airy_asymp<__sum>();
 
   std::cout << "\nlong double\n===========\n";
   using __lcmplx = std::complex<long double>;
-  using __lsum = __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_KahanSum<__lcmplx>>;
+  using __lsum = emsr::WenigerDeltaSum<emsr::KahanSum<__lcmplx>>;
   diff_airy_asymp<__lsum>();
 
   std::cout << "\ndouble\n======\n";

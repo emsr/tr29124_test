@@ -1,12 +1,12 @@
 // Special functions -*- C++ -*-
 
 // Copyright (C) 2016-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,100 +23,94 @@
 // <http://www.gnu.org/licenses/>.
 
 /** @file ext/complex_safe_math.h
- * This is an internal header file, included by other library headers.
- * You should not attempt to use it directly.
  */
 
-#ifndef _GLIBCXX_EXT_COMPLEX_SAFE_MATH_H
-#define _GLIBCXX_EXT_COMPLEX_SAFE_MATH_H 1
-
-#pragma GCC system_header
+#ifndef COMPLEX_SAFE_MATH_H
+#define COMPLEX_SAFE_MATH_H 1
 
 #include <complex>
 
-namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
+namespace emsr
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Carefully compute @c z1/z2 avoiding overflow and destructive underflow.
    * If the quotient is successfully computed it is returned.
    * Otherwise, std::runtime_error is thrown.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __safe_div(const std::complex<_Tp>& __z1, const std::complex<_Tp>& __z2);
+  template<typename Tp>
+    std::complex<Tp>
+    safe_div(const std::complex<Tp>& z1, const std::complex<Tp>& z2);
 
   /**
    * Carefully compute @c s/z2 avoiding overflow and destructive underflow.
    * If the quotient is successfully computed it is returned.
    * Otherwise, @c false is returned and the quotient is not.
    */
-  template<typename _Sp, typename _Tp>
-    inline std::complex<_Tp>
-    __safe_div(_Sp __s, const std::complex<_Tp>& __z)
-    { return __safe_div(std::complex<_Tp>(__s), __z); }
+  template<typename _Sp, typename Tp>
+    inline std::complex<Tp>
+    safe_div(_Sp s, const std::complex<Tp>& z)
+    { return safe_div(std::complex<Tp>(s), z); }
 
   /**
    * Carefully compute @c z1/s avoiding overflow and destructive underflow.
    * If the quotient is successfully computed it is returned.
    * Otherwise, @c false is returned and the quotient is not.
    */
-  template<typename _Sp, typename _Tp>
-    inline std::complex<_Tp>
-    __safe_div(const std::complex<_Tp>& __z, _Sp __s)
-    { return __safe_div(__z, std::complex<_Tp>(__s)); }
+  template<typename _Sp, typename Tp>
+    inline std::complex<Tp>
+    safe_div(const std::complex<Tp>& z, _Sp s)
+    { return safe_div(z, std::complex<Tp>(s)); }
 
   /**
    * @brief Carefully compute and return @c s1*s2 avoiding overflow.
    *	   If the product can be successfully computed it is returned.
    *	   Otherwise, std::runtime_error is thrown.
    */
-  template<typename _Tp>
-    _Tp
-    __safe_mul(_Tp __s1, _Tp __s2);
+  template<typename Tp>
+    Tp
+    safe_mul(Tp s1, Tp s2);
 
   /**
    * Carefully compute @c z1*z2 avoiding overflow.
    * If the product is successfully computed it is returned.
    * Otherwise, std::runtime_error is thrown.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __safe_mul(const std::complex<_Tp>& __z1, const std::complex<_Tp>& __z2);
+  template<typename Tp>
+    std::complex<Tp>
+    safe_mul(const std::complex<Tp>& z1, const std::complex<Tp>& z2);
 
   /**
    * Carefully compute @c s*z avoiding overflow.
    * If the product is successfully computed it is returned.
    * Otherwise, std::runtime_error is thrown.
    */
-  template<typename _Sp, typename _Tp>
-    inline std::complex<_Tp>
-    __safe_mul(_Sp __s, const std::complex<_Tp>& __z)
-    { return __safe_mul(std::complex<_Tp>(__s), __z); }
+  template<typename _Sp, typename Tp>
+    inline std::complex<Tp>
+    safe_mul(_Sp s, const std::complex<Tp>& z)
+    { return safe_mul(std::complex<Tp>(s), z); }
 
   /**
    * Carefully compute @c z*s avoiding overflow.
    * If the product is successfully computed it is returned.
    * Otherwise, std::runtime_error is thrown.
    */
-  template<typename _Sp, typename _Tp>
-    inline std::complex<_Tp>
-    __safe_mul(const std::complex<_Tp>& __z, _Sp __s)
-    { return __safe_mul(__z, std::complex<_Tp>(__s)); }
+  template<typename _Sp, typename Tp>
+    inline std::complex<Tp>
+    safe_mul(const std::complex<Tp>& z, _Sp s)
+    { return safe_mul(z, std::complex<Tp>(s)); }
 
   /**
    * Carefully compute @c z*z avoiding overflow.
    * If the square is successfully computed it is returned.
    * Otherwise, std::runtime_error is thrown.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __safe_sqr(const std::complex<_Tp>& __z);
+  template<typename Tp>
+    std::complex<Tp>
+    safe_sqr(const std::complex<Tp>& z);
 
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __gnu_cxx
+} // namespace emsr
 
-#include <ext/complex_safe_math.tcc>
+#include <emsr/complex_safe_math.tcc>
 
-#endif // _GLIBCXX_EXT_COMPLEX_SAFE_MATH_H
+#endif // COMPLEX_SAFE_MATH_H

@@ -7,7 +7,7 @@
 #include <fstream>
 #include <iomanip>
 #include <cmath>
-#include <ext/summation.h>
+#include <emsr/summation.h>
 #include <emsr/math_constants.h>
 #include <bits/numeric_limits.h>
 #include <bits/specfun.h>
@@ -51,8 +51,8 @@ namespace __detail
     _Tp
     __kelvin_bex_series(_Tp __x, int __sign)
     {
-      using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Tp>;
-      using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
+      using _WijnSum = emsr::VanWijngaardenSum<_Tp>;
+      using _WenigerDeltaWijnSum = emsr::WenigerDeltaSum<_WijnSum>;
 
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       constexpr auto _S_maxiter = 100;
@@ -85,9 +85,9 @@ namespace __detail
     _Tp
     __kelvin_kex_series(_Tp __x, int __sign)
     {
-      using _BasicSum = __gnu_cxx::_BasicSum<_Tp>;
-      using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Tp>;
-      using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
+      using _BasicSum = emsr::BasicSum<_Tp>;
+      using _WijnSum = emsr::VanWijngaardenSum<_Tp>;
+      using _WenigerDeltaWijnSum = emsr::WenigerDeltaSum<_WijnSum>;
 
       const auto _S_eps = __gnu_cxx::__epsilon(__x);
       constexpr auto _S_maxiter = 100;
@@ -220,9 +220,9 @@ namespace __detail
     _KelvinState<int, _Tp>
     __kelvin_series(_Tp __x)
     {
-      using _BasicSum = __gnu_cxx::_BasicSum<_Tp>;
-      using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Tp>;
-      using _WenigerDeltaWijnSum = __gnu_cxx::_WenigerDeltaSum<_WijnSum>;
+      using _BasicSum = emsr::BasicSum<_Tp>;
+      using _WijnSum = emsr::VanWijngaardenSum<_Tp>;
+      using _WenigerDeltaWijnSum = emsr::WenigerDeltaSum<_WijnSum>;
 
       constexpr auto _S_maxiter = 100;
       const auto _S_gamma_e = emsr::egamma_v<_Tp>;
@@ -289,8 +289,8 @@ namespace __detail
     __kelvin_asymp(_Tp __x)
     {
       using _Cmplx = std::complex<_Tp>;
-      using _BasicSum = __gnu_cxx::_BasicSum<_Cmplx>;
-      using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
+      using _BasicSum = emsr::BasicSum<_Cmplx>;
+      using _WenigerDeltaSum = emsr::WenigerDeltaSum<_BasicSum>;
 
       const auto _S_j = _Cmplx{0, 1};
       const auto _S_1d2 = _Tp{1} / _Tp{2};
@@ -378,8 +378,8 @@ namespace __detail
     __kelvin_series(int __n, _Tp __x)
     {
       using _Cmplx = std::complex<_Tp>;
-      using _BasicSum = __gnu_cxx::_BasicSum<_Cmplx>;
-      using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
+      using _BasicSum = emsr::BasicSum<_Cmplx>;
+      using _WenigerDeltaSum = emsr::WenigerDeltaSum<_BasicSum>;
 
       const auto _S_j = _Cmplx{0, 1};
       const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
@@ -471,8 +471,8 @@ namespace __detail
     __kelvin_series(_Tp __nu, _Tp __x)
     {
       using _Cmplx = std::complex<_Tp>;
-      using _BasicSum = __gnu_cxx::_BasicSum<_Cmplx>;
-      using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
+      using _BasicSum = emsr::BasicSum<_Cmplx>;
+      using _WenigerDeltaSum = emsr::WenigerDeltaSum<_BasicSum>;
 
       const auto _S_j = _Cmplx{0, 1};
       const auto _S_pi = emsr::pi_v<_Tp>;
@@ -542,8 +542,8 @@ namespace __detail
     __kelvin_asymp(_Tp __nu, _Tp __x)
     {
       using _Cmplx = std::complex<_Tp>;
-      using _BasicSum = __gnu_cxx::_BasicSum<_Cmplx>;
-      using _WenigerDeltaSum = __gnu_cxx::_WenigerDeltaSum<_BasicSum>;
+      using _BasicSum = emsr::BasicSum<_Cmplx>;
+      using _WenigerDeltaSum = emsr::WenigerDeltaSum<_BasicSum>;
 
       constexpr auto _S_j = _Cmplx{0, 1};
       constexpr auto _S_1d2 = _Tp{1} / _Tp{2};

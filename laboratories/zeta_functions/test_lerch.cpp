@@ -8,7 +8,7 @@
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include <ext/summation.h>
+#include <emsr/summation.h>
 #include <emsr/fp_type_util.h>
 #include <statistics.h>
 
@@ -102,7 +102,7 @@
 	  constexpr auto _S_maxit = 100000u;
 	  using __lerch_t = __lerch_term<_Tp>;
 	  auto __lerch_fun = __lerch_t(__z, __s, __a);
-	  __gnu_cxx::_VanWijngaardenSum<_Tp> __sum;
+	  emsr::VanWijngaardenSum<_Tp> __sum;
 	  for (auto __k = 0u; __k < _S_maxit; ++__k)
 	    {
 	      auto __temp = __lerch_fun(__k);
@@ -117,8 +117,8 @@
 	  constexpr auto _S_maxit = 100000u;
 	  using __lerch_t = __lerch_term<_Tp>;
 	  auto __lerch_fun = __lerch_t(__z, __s, __a);
-	  __gnu_cxx::_VanWijngaardenCompressor<__lerch_t> __term(__lerch_fun);
-	  __gnu_cxx::_VanWijngaardenSum<_Tp> __sum;
+	  emsr::VanWijngaardenCompressor<__lerch_t> __term(__lerch_fun);
+	  emsr::VanWijngaardenSum<_Tp> __sum;
 	  for (auto __k = 0u; __k < _S_maxit; ++__k)
 	    {
 	      auto __temp = __term[__k];
@@ -159,7 +159,7 @@
 	    {
 	      auto __term = std::pow(__a, -__s);
 	      auto __binomial = _Tp{1};
-	      __gnu_cxx::_VanWijngaardenSum<_Tp> __sum(__term);
+	      emsr::VanWijngaardenSum<_Tp> __sum(__term);
 	      for (auto __k = 1; __k <= __n; ++__k)
 		{
 		  __binomial *= -_Tp(__n - __k + 1) / _Tp(__k);
@@ -186,11 +186,11 @@
       const auto _S_eps = __gnu_cxx::__epsilon(__s);
       constexpr auto _S_maxit = 1000u;
 
-      __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<_Tp>> _WDvW;
+      emsr::WenigerDeltaSum<emsr::VanWijngaardenSum<_Tp>> _WDvW;
       if (__z >= _Tp{0})
 	{
 	  using __lerch_t = __lerch_term<_Tp>;
-	  using __lerch_cmp_t = __gnu_cxx::_VanWijngaardenCompressor<__lerch_t>;
+	  using __lerch_cmp_t = emsr::VanWijngaardenCompressor<__lerch_t>;
 	  auto _VwT = __lerch_cmp_t(__lerch_t(__z, __s, __a));
 	  for (auto __k = 0u; __k < _S_maxit; ++__k)
 	    {

@@ -34,8 +34,8 @@
 
 #include <vector>
 
-#include <ext/complex_norms.h>
-#include <ext/complex_safe_math.h>
+#include <emsr/complex_norms.h>
+#include <emsr/complex_safe_math.h>
 
 namespace std _GLIBCXX_VISIBILITY(default)
 {
@@ -135,12 +135,12 @@ namespace __detail
       auto __imzhat = std::imag(__zhat);
 
       // Compute 1 - zhat^2 and related constants.
-      auto __w = _Cmplx{_Tp{1}} - __gnu_cxx::__safe_sqr(__zhat);
+      auto __w = _Cmplx{_Tp{1}} - emsr::safe_sqr(__zhat);
       __w = std::sqrt(__w);
       __p = _Tp{1} / __w;
       __p2 = __p * __p;
 
-      __nup2 = __gnu_cxx::__safe_sqr(__nu);
+      __nup2 = emsr::safe_sqr(__nu);
       __num2 = _Tp{1} / __nup2;
       // Compute nu^(-1/3), nu^(-2/3), nu^(-4/3).
       __num4d3 = -std::log(__nu);
@@ -222,7 +222,7 @@ namespace __detail
 
       try
 	{
-	  __argm = __gnu_cxx::__safe_div(__num2d3, __zeta);
+	  __argm = emsr::safe_div(__num2d3, __zeta);
 	  __argp = __expp * __argm;
 	  __argm = __expm * __argm;
 	}
@@ -261,7 +261,7 @@ namespace __detail
 
       try
 	{
-	  __zhat = __gnu_cxx::__safe_div(__z, __nu);
+	  __zhat = emsr::safe_div(__z, __nu);
 	  // Try to compute other nu and z dependent parameters except args to Airy functions.
 	  _Cmplx __num4d3, __nup2, __zeta, __zetaphf, __zetamhf;
 	  __hankel_params(__nu, __zhat, __p, __p2, __nup2,
@@ -331,7 +331,6 @@ namespace __detail
 			 std::complex<_Tp>& _H2sum, std::complex<_Tp>& _H2psum)
     {
       using _Cmplx = std::complex<_Tp>;
-      using __gnu_cxx::__l1_norm;
 
       int __nterms = 4;
 
@@ -590,10 +589,10 @@ namespace __detail
 			+ _S_lambda[0] * __v[0]);
 
       // Compute sum of first two terms to initialize the Kahan summing scheme.
-      __gnu_cxx::_KahanSum<_Cmplx> _Asum;
-      __gnu_cxx::_KahanSum<_Cmplx> _Bsum;
-      __gnu_cxx::_KahanSum<_Cmplx> _Csum;
-      __gnu_cxx::_KahanSum<_Cmplx> _Dsum;
+      emsr::KahanSum<_Cmplx> _Asum;
+      emsr::KahanSum<_Cmplx> _Bsum;
+      emsr::KahanSum<_Cmplx> _Csum;
+      emsr::KahanSum<_Cmplx> _Dsum;
       _Asum += _A0;
       _Bsum += _B0;
       _Csum += _C0;
@@ -615,10 +614,10 @@ namespace __detail
       auto _H2psave = __od2m * _C0 + __od0dm * _D0;
 
       auto __converged
-	= (__l1_norm(_H1sum - _H1save) < __eps * __l1_norm(_H1sum)
-	&& __l1_norm(_H2sum - _H2save) < __eps * __l1_norm(_H2sum)
-	&& __l1_norm(_H1psum - _H1psave) < __eps * __l1_norm(_H1psum)
-	&& __l1_norm(_H2psum - _H2psave) < __eps * __l1_norm(_H2psum));
+	= (emsr::l1_norm(_H1sum - _H1save) < __eps * emsr::l1_norm(_H1sum)
+	&& emsr::l1_norm(_H2sum - _H2save) < __eps * emsr::l1_norm(_H2sum)
+	&& emsr::l1_norm(_H1psum - _H1psave) < __eps * emsr::l1_norm(_H1psum)
+	&& emsr::l1_norm(_H2psum - _H2psave) < __eps * emsr::l1_norm(_H2psum));
 
       // Save current sums for next convergence test.
       _H1save = _H1sum;
@@ -735,10 +734,10 @@ namespace __detail
 	  _H2psum = __od2m * _Csum() + __od0dm * _Dsum();
 
 	  // If convergence criteria met this term, see if it was before.
-	  if (__l1_norm(_H1sum - _H1save) < __eps * __l1_norm(_H1sum)
-	   && __l1_norm(_H2sum - _H2save) < __eps * __l1_norm(_H2sum)
-	   && __l1_norm(_H1psum - _H1psave) < __eps * __l1_norm(_H1psum)
-	   && __l1_norm(_H2psum - _H2psave) < __eps * __l1_norm(_H2psum))
+	  if (emsr::l1_norm(_H1sum - _H1save) < __eps * emsr::l1_norm(_H1sum)
+	   && emsr::l1_norm(_H2sum - _H2save) < __eps * emsr::l1_norm(_H2sum)
+	   && emsr::l1_norm(_H1psum - _H1psave) < __eps * emsr::l1_norm(_H1psum)
+	   && emsr::l1_norm(_H2psum - _H2psave) < __eps * emsr::l1_norm(_H2psum))
 	    {
 	      if (__converged) // Converged twice in a row - done!
 		return;

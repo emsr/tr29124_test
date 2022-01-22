@@ -17,7 +17,7 @@
 #include <ext/float128_math.h>
 #include <ext/float128_io.h>
 #include <ext/numeric_limits_float128.h>
-#include <ext/summation.h>
+#include <emsr/summation.h>
 #include <emsr/polynomial.h>
 #include <bits/notsospecfun.h> // For complex fma.
 
@@ -4665,9 +4665,9 @@
 	     typename _Airy<_Tp>::_Cmplx>
     _Airy<_Tp>::operator()(typename _Airy<_Tp>::_Val __y) const
     {
-      using _OuterSum = __gnu_cxx::_KahanSum<_Val>;
-      using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
-      //using _InnerSum = __gnu_cxx::_AitkenDeltaSquaredSum<_OuterSum>;
+      using _OuterSum = emsr::KahanSum<_Val>;
+      using _InnerSum = emsr::WenigerDeltaSum<_OuterSum>;
+      //using _InnerSum = emsr::AitkenDeltaSquaredSum<_OuterSum>;
 
       if (std::isnan(__y))
 	return __airy_t<_Cmplx, _Cmplx>{__y, _S_NaN, _S_NaN, _S_NaN, _S_NaN};
@@ -4877,8 +4877,8 @@
 			 typename _Scorer<_Tp>::_Val>
     _Scorer<_Tp>::operator()(typename _Scorer<_Tp>::_Val __y) const
     {
-      using _OuterSum = __gnu_cxx::_KahanSum<_Val>;
-      using _InnerSum = __gnu_cxx::_WenigerDeltaSum<_OuterSum>;
+      using _OuterSum = emsr::KahanSum<_Val>;
+      using _InnerSum = emsr::WenigerDeltaSum<_OuterSum>;
 
       if (std::isnan(__y))
 	return __scorer_t<_Val, _Val>{__y, _S_NaN, _S_NaN, _S_NaN, _S_NaN};

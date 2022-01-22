@@ -49,15 +49,15 @@
   /**
    * A struct conaining the results of a numerical differentiation.
    */
-  template<typename _Tp>
+  template<typename Tp>
     struct derivative_t
     {
       /// The value of the derivative.
-      _Tp value;
+      Tp value;
       /// The absolute value of the truncation error.
-      _Tp error_trunc;
+      Tp error_trunc;
       /// The absolute value of the rounding error.
-      _Tp error_round;
+      Tp error_round;
     };
 
   /**
@@ -69,17 +69,17 @@
    * and the 3-point rule (x-h, x, x+h).
    * Again the central point is not used.
    *
-   * @tparam _Func A function type callable with a numeric type
+   * @tparam Func A function type callable with a numeric type
    *          and returning the same.
-   * @tparam _Tp  The foating point type of the argument and stepsize.
+   * @tparam Tp  The foating point type of the argument and stepsize.
    *
-   * @param __func The function to be differentated.
-   * @param __x The location at which the derivative is required.
-   * @param __h The stepsize.
+   * @param func The function to be differentated.
+   * @param x The location at which the derivative is required.
+   * @param h The stepsize.
    */
-  template<typename _Func, typename _Tp>
-    derivative_t<_Tp>
-    derivative_central(_Func __func, _Tp __x, _Tp __h);
+  template<typename Func, typename Tp>
+    derivative_t<Tp>
+    derivative_central(Func func, Tp x, Tp h);
 
   /**
    * Compute the derivative using the 4-point rule (x + h/4, x + h/2,
@@ -88,17 +88,17 @@
    * Compute the error using the difference between the 4-point and
    * the 2-point rule (x + h/2, x+h).
    *
-   * @tparam _Func A function type callable with a numeric type
+   * @tparam Func A function type callable with a numeric type
    *          and returning the same.
-   * @tparam _Tp  The foating point type of the argument and stepsize.
+   * @tparam Tp  The foating point type of the argument and stepsize.
    *
-   * @param __func The function to be differentated.
-   * @param __x The location at which the derivative is required.
-   * @param __h The stepsize.
+   * @param func The function to be differentated.
+   * @param x The location at which the derivative is required.
+   * @param h The stepsize.
    */
-  template<typename _Func, typename _Tp>
-    derivative_t<_Tp>
-    derivative_forward(_Func __func, _Tp __x, _Tp __h);
+  template<typename Func, typename Tp>
+    derivative_t<Tp>
+    derivative_forward(Func func, Tp x, Tp h);
 
 
   /**
@@ -110,18 +110,18 @@
    *
    * i.e. run the forward differentiator with negative stepsize.
    *
-   * @tparam _Func A function type callable with a numeric type
+   * @tparam Func A function type callable with a numeric type
    *          and returning the same.
-   * @tparam _Tp  The foating point type of the argument and stepsize.
+   * @tparam Tp  The foating point type of the argument and stepsize.
    *
-   * @param __func The function to be differentated.
-   * @param __x The location at which the derivative is required.
-   * @param __h The stepsize.
+   * @param func The function to be differentated.
+   * @param x The location at which the derivative is required.
+   * @param h The stepsize.
    */
-  template<typename _Func, typename _Tp>
-    inline derivative_t<_Tp>
-    derivative_backward(_Func __func, _Tp __x, _Tp __h)
-    { return derivative_forward(__func, __x, -__h); }
+  template<typename Func, typename Tp>
+    inline derivative_t<Tp>
+    derivative_backward(Func func, Tp x, Tp h)
+    { return derivative_forward(func, x, -h); }
 
   /**
    * Compute the derivative of a function func at a point x by Ridder's method
@@ -131,17 +131,17 @@
    * but rather it should be an interval over which the function changes
    * substantially.
    *
-   * @tparam _Func A function type callable with a numeric type
+   * @tparam Func A function type callable with a numeric type
    *          and returning the same.
-   * @tparam _Tp  The foating point type of the argument and stepsize.
+   * @tparam Tp  The foating point type of the argument and stepsize.
    *
-   * @param __func The function to be differentated.
-   * @param __x The location at which the derivative is required.
-   * @param __h The initial stepsize.
+   * @param func The function to be differentated.
+   * @param x The location at which the derivative is required.
+   * @param h The initial stepsize.
    */
-  template<typename _Func, typename _Tp>
-    derivative_t<_Tp>
-    derivative_ridder(_Func __func, _Tp __x, _Tp __h);
+  template<typename Func, typename Tp>
+    derivative_t<Tp>
+    derivative_ridder(Func func, Tp x, Tp h);
 
   /**
    * Compute the derivative of a function func at a point x by automatic
@@ -154,17 +154,17 @@
    * If your function has complex overloads and works at least very near
    * the real axis this is a very accurate routine.
    *
-   * @tparam _Func A function type callable with a numeric type
+   * @tparam Func A function type callable with a numeric type
    *          and returning the same.
-   * @tparam _Tp  The foating point type of the argument and stepsize.
+   * @tparam Tp  The foating point type of the argument and stepsize.
    *
-   * @param __func The function to be differentated.
-   * @param __x The (real) location at which the derivative is required.
-   * @param __h The initial stepsize.
+   * @param func The function to be differentated.
+   * @param x The (real) location at which the derivative is required.
+   * @param h The initial stepsize.
    */
-  template<typename _Func, typename _Tp>
-    derivative_t<_Tp>
-    derivative_automatic(_Func __func, _Tp __x, _Tp);
+  template<typename Func, typename Tp>
+    derivative_t<Tp>
+    derivative_automatic(Func func, Tp x, Tp);
 
 #include <ext/differentiation.tcc>
 
