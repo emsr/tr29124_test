@@ -2,69 +2,72 @@
 #define CFRAC_FORWARD_TCC 1
 
 #include <stdexcept>
-#include <bits/numeric_limits.h>
+#include <emsr/numeric_limits.h>
+
+namespace emsr
+{
 
 /**
  * You need a functors returning the numerator and denominator a, b
  * an iterator pair for a and an iterator for b
  *
  */
-template<typename _Tp, typename _AFun, typename _BFun, typename _TailFun>
-  class _ForwardContinuedFraction
+template<typename Tp, typename AFun, typename BFun, typename TailFun>
+  class ForwardContinuedFraction
   {
   private:
 
-    _AFun _M_num;
-    _BFun _M_den;
-    _TailFun _M_tail;
+    AFun m_num;
+    BFun m_den;
+    TailFun m_tail;
 
   public:
 
-    using _ARet = decltype(_M_num(0ull, _Tp{}));
-    using _BRet = decltype(_M_den(0ull, _Tp{}));
-    using _Ret = decltype(_ARet(0, _Tp{}) / _BRet(0, _Tp{}));
-    using _Val = emsr::fp_promote_t<_Tp, _ARet, _BRet>;
-    using _Real = emsr::num_traits_t<_Val>;
+    using ARet = decltype(m_num(0ull, Tp{}));
+    using BRet = decltype(m_den(0ull, Tp{}));
+    using Ret = decltype(ARet(0, Tp{}) / BRet(0, Tp{}));
+    using Val = emsr::fp_promote_t<Tp, ARet, BRet>;
+    using Real = emsr::num_traits_t<Val>;
 
-    const _Real _S_fp_min = std::numeric_limits<_Real>::min();
+    Real m_rel_error = std::numeric_limits<Real>::epsilon();
+    int m_max_iter = 1000;
 
-    _Real _M_rel_error = std::numeric_limits<_Real>::epsilon();
-    int _M_max_iter = 1000;
-
-    _ForwardContinuedFraction(_AFun __a, _BFun __b, _TailFun __w)
-    : _M_num(__a),
-      _M_den(__b),
-      _M_tail(__w)
+    ForwardContinuedFraction(AFun a, BFun b, TailFun w)
+    : m_num(a),
+      m_den(b),
+      m_tail(w)
     { }
 
-    _Ret
-    operator()(_Tp __x) const
+    Ret
+    operator()(Tp x) const
     {
-      auto __b = _M_den(0, __x);
-      auto _Den2 = __b;
-      auto __a = _M_num(1, __x);
-      auto _Num2 = __a;
-      __b = _M_den(2, __x);
-      auto _Num1 = __b * _Num2;
-      __a = _M_num(2, __x);
-      auto _Den1 = __a + __b * _Den2;
-      std::size_t __k = 2;
+      auto b = m_den(0, x);
+      auto Den2 = b;
+      auto a = m_num(1, x);
+      auto Num2 = a;
+      b = m_den(2, x);
+      auto Num1 = b * Num2;
+      a = m_num(2, x);
+      auto Den1 = a + b * Den2;
+      std::size_t k = 2;
       while (true)
 	{
-	  __a = _M_num(__k, __x);
-	  __b = _M_den(__k, __x);
-	  auto _Num = __b * _Num1 + __a * _Num2;
-	  auto _Den = __b * _Den1 + __a * _Den2;
-	  _Num2 = _Num1;
-	  _Den2 = _Den1;
-	  _Num1 = _Num;
-	  _Den1 = _Den;
-	  ++__k;
-	  if (__k > _M_max_iter)
-	    throw std::runtime_error("_ForwardContinuedFraction: "
+	  a = m_num(k, x);
+	  b = m_den(k, x);
+	  auto Num = b * Num1 + a * Num2;
+	  auto Den = b * Den1 + a * Den2;
+	  Num2 = Num1;
+	  Den2 = Den1;
+	  Num1 = Num;
+	  Den1 = Den;
+	  ++k;
+	  if (k > m_max_iter)
+	    throw std::runtime_error("ForwardContinuedFraction: "
 				     "continued fraction evaluation failed");
 	}
     }
   };
+
+} // namespace emsr
 
 #endif // CFRAC_FORWARD_TCC
