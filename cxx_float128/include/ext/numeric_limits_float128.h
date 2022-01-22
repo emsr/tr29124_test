@@ -23,14 +23,10 @@
 // <http://www.gnu.org/licenses/>.
 
 /** @file ext/numeric_limits_float128.h
- *  This is an internal header file, included by other library headers.
- *  Do not attempt to use it directly. @headername{xxxxx}
  */
 
-#ifndef _GLIBCXX_EXT_NUMERIC_LIMITS_FLOAT128_H
-#define _GLIBCXX_EXT_NUMERIC_LIMITS_FLOAT128_H 1
-
-#pragma GCC system_header
+#ifndef NUMERIC_LIMITS_FLOAT128_H
+#define NUMERIC_LIMITS_FLOAT128_H 1
 
 #define _GLIBCXX_USE_FLOAT128 0
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
@@ -44,10 +40,10 @@
 
 #include <ext/float128_limits.h>
 #include <ext/float128_math.h>
+#include <emsr/numeric_limits.h>
 
-namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
+namespace emsr
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    *  @brief An extension/wrapper of std::numeric_limits.
@@ -62,163 +58,163 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   // Constexpr function template versions of std::numeric_limits.
 
   template<>
-    _GLIBCXX_CONSTEXPR bool
-    __is_specialized<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr bool
+    is_specialized<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::is_specialized; }
 
   template<>
-    _GLIBCXX_CONSTEXPR __float128
-    __lim_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr __float128
+    lim_min<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::min(); }
 
   template<>
-    _GLIBCXX_CONSTEXPR __float128
-    __lim_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr __float128
+    lim_max<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::max(); }
 
   template<>
-    _GLIBCXX_CONSTEXPR __float128
-    __lowest<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr __float128
+    lowest<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::lowest(); }
 
   template<>
-    _GLIBCXX_CONSTEXPR int
-    __digits<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr int
+    digits<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::digits; }
 
   template<>
-    _GLIBCXX_CONSTEXPR int
-    __digits10<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr int
+    digits10<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::digits10; }
 
   template<>
-    _GLIBCXX_CONSTEXPR int
-    __max_digits10<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr int
+    max_digits10<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::max_digits10; }
 
   template<>
-    _GLIBCXX_CONSTEXPR bool
-    __is_signed<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr bool
+    is_signed<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::is_signed; }
 
   template<>
-    _GLIBCXX_CONSTEXPR bool
-    __is_integer<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr bool
+    is_integer<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::is_integer; }
 
   template<>
-    _GLIBCXX_CONSTEXPR bool
-    __is_exact<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr bool
+    is_exact<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::is_exact; }
 
   template<>
-    _GLIBCXX_CONSTEXPR int
-    __radix<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr int
+    radix<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::radix; }
 
   template<>
-    _GLIBCXX_CONSTEXPR __float128
-    __epsilon<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr __float128
+    epsilon<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::epsilon(); }
 
   template<>
-    _GLIBCXX_CONSTEXPR __float128
-    __round_error<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr __float128
+    round_error<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::round_error(); }
 
   template<>
-    _GLIBCXX_CONSTEXPR int
-    __min_exponent<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr int
+    min_exponent<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::min_exponent; }
 
   template<>
-    _GLIBCXX_CONSTEXPR int
-    __min_exponent10<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr int
+    min_exponent10<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::min_exponent10; }
 
   template<>
-    _GLIBCXX_CONSTEXPR int
-    __max_exponent<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr int
+    max_exponent<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::max_exponent; }
 
   template<>
-    _GLIBCXX_CONSTEXPR int
-    __max_exponent10<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr int
+    max_exponent10<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::max_exponent10; }
 
   template<>
-    _GLIBCXX_CONSTEXPR bool
-    __has_infinity<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr bool
+    has_infinity<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::has_infinity; }
 
   template<>
-    _GLIBCXX_CONSTEXPR bool
-    __has_quiet_NaN<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr bool
+    has_quiet_NaN<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::has_quiet_NaN; }
 
   template<>
-    _GLIBCXX_CONSTEXPR bool
-    __has_signaling_NaN<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr bool
+    has_signaling_NaN<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::has_signaling_NaN; }
 
   template<>
-    _GLIBCXX_CONSTEXPR std::float_denorm_style
-    __has_denorm<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr std::float_denorm_style
+    has_denorm<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::has_denorm; }
 
   template<>
-    _GLIBCXX_CONSTEXPR bool
-    __has_denorm_loss<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr bool
+    has_denorm_loss<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::has_denorm_loss; }
 
   template<>
-    _GLIBCXX_CONSTEXPR __float128
-    __infinity<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr __float128
+    infinity<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::infinity(); }
 
   template<>
-    _GLIBCXX_CONSTEXPR __float128
-    __quiet_NaN<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr __float128
+    quiet_NaN<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::quiet_NaN(); }
 
   template<>
-    _GLIBCXX_CONSTEXPR __float128
-    __signaling_NaN<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr __float128
+    signaling_NaN<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::signaling_NaN(); }
 
   template<>
-    _GLIBCXX_CONSTEXPR __float128
-    __denorm_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr __float128
+    denorm_min<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::denorm_min(); }
 
   template<>
-    _GLIBCXX_CONSTEXPR bool
-    __is_iec559<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr bool
+    is_iec559<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::is_iec559; }
 
   template<>
-    _GLIBCXX_CONSTEXPR bool
-    __is_bounded<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr bool
+    is_bounded<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::is_bounded; }
 
   template<>
-    _GLIBCXX_CONSTEXPR bool
-    __is_modulo<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr bool
+    is_modulo<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::is_modulo; }
 
   template<>
-    _GLIBCXX_CONSTEXPR bool
-    __traps<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr bool
+    traps<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::traps; }
 
   template<>
-    _GLIBCXX_CONSTEXPR bool
-    __tinyness_before<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr bool
+    tinyness_before<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::tinyness_before; }
 
   template<>
-    _GLIBCXX_CONSTEXPR std::float_round_style
-    __round_style<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
+    constexpr std::float_round_style
+    round_style<__float128>(__float128) noexcept
     { return std::numeric_limits<__float128>::round_style; }
 
   // Extra bits to help with numerics...
@@ -227,88 +223,87 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<>
     inline __float128
-    __max_integer(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::ldexp(1, __digits(__float128{})); }
+    max_integer(__float128) noexcept
+    { return std::ldexp(1, digits(__float128{})); }
 
   template<>
     inline __float128
-    __sqrt_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::sqrt(__lim_max(__float128{})); }
+    sqrt_max<__float128>(__float128) noexcept
+    { return std::sqrt(lim_max(__float128{})); }
 
   template<>
     inline __float128
-    __cbrt_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::cbrt(__lim_max(__float128{})); }
+    cbrt_max<__float128>(__float128) noexcept
+    { return std::cbrt(lim_max(__float128{})); }
 
   template<>
     inline __float128
-    __root_max(__float128 __root) _GLIBCXX_USE_NOEXCEPT
-    { return std::pow(__lim_max(__float128{}), 1 / __root); }
+    root_max(__float128 __root) noexcept
+    { return std::pow(lim_max(__float128{}), 1 / __root); }
 
   template<>
     inline __float128
-    __log_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::log(__lim_max(__float128{})); }
+    log_max<__float128>(__float128) noexcept
+    { return std::log(lim_max(__float128{})); }
 
   template<>
     inline __float128
-    __log10_max<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::log10(__lim_max(__float128{})); }
+    log10_max<__float128>(__float128) noexcept
+    { return std::log10(lim_max(__float128{})); }
 
 
   template<>
     inline __float128
-    __sqrt_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::sqrt(__lim_min(__float128{})); }
+    sqrt_min<__float128>(__float128) noexcept
+    { return std::sqrt(lim_min(__float128{})); }
 
   template<>
     inline __float128
-    __cbrt_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::cbrt(__lim_min(__float128{})); }
+    cbrt_min<__float128>(__float128) noexcept
+    { return std::cbrt(lim_min(__float128{})); }
 
   template<>
     inline __float128
-    __root_min(__float128 __root) _GLIBCXX_USE_NOEXCEPT
-    { return std::pow(__lim_min(__float128{}), 1 / __root); }
+    root_min(__float128 __root) noexcept
+    { return std::pow(lim_min(__float128{}), 1 / __root); }
 
   template<>
     inline __float128
-    __log_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::log(__lim_min(__float128{})); }
+    log_min<__float128>(__float128) noexcept
+    { return std::log(lim_min(__float128{})); }
 
   template<>
     inline __float128
-    __log10_min<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::log10(__lim_min(__float128{})); }
+    log10_min<__float128>(__float128) noexcept
+    { return std::log10(lim_min(__float128{})); }
 
   template<>
     inline __float128
-    __sqrt_eps<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::sqrt(__epsilon(__float128{})); }
+    sqrt_eps<__float128>(__float128) noexcept
+    { return std::sqrt(epsilon(__float128{})); }
 
   template<>
     inline __float128
-    __cbrt_eps<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::cbrt(__epsilon(__float128{})); }
+    cbrt_eps<__float128>(__float128) noexcept
+    { return std::cbrt(epsilon(__float128{})); }
 
   template<>
     inline __float128
-    __root_eps(__float128 __root) _GLIBCXX_USE_NOEXCEPT
-    { return std::pow(__epsilon(__float128{}), 1 / __root); }
+    root_eps(__float128 __root) noexcept
+    { return std::pow(epsilon(__float128{}), 1 / __root); }
 
   template<>
     inline __float128
-    __log_eps<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::log(__epsilon(__float128{})); }
+    log_eps<__float128>(__float128) noexcept
+    { return std::log(epsilon(__float128{})); }
 
   template<>
     inline __float128
-    __log10_eps<__float128>(__float128) _GLIBCXX_USE_NOEXCEPT
-    { return std::log10(__epsilon(__float128{})); }
+    log10_eps<__float128>(__float128) noexcept
+    { return std::log10(epsilon(__float128{})); }
 
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __gnu_cxx
+} // namespace emsr
 
 #endif // _GLIBCXX_USE_FLOAT128
 
-#endif // _GLIBCXX_EXT_NUMERIC_LIMITS_FLOAT128_H
+#endif // NUMERIC_LIMITS_FLOAT128_H
