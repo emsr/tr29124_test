@@ -61,7 +61,7 @@ namespace emsr
       const Tp golden = emsr::phi_v<Tp>;
 
       if (x_lower >= x_upper)
-	throw std::domain_error("__root_bracket: Initial range must be ordered");
+	throw std::domain_error("root_bracket: Initial range must be ordered");
       auto f_lower = func(x_lower);
       auto f_upper = func(x_upper);
       for (std::size_t i = 0; i < max_iter; ++i)
