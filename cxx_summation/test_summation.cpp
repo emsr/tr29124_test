@@ -15,12 +15,12 @@ template<typename Tp>
   void
   test(Tp proto = Tp{})
   {
-    const auto _S_max_log = __gnu_cxx::__log_max(proto);
+    const auto _S_max_log = emsr::log_max(proto);
 
     using ABS_t = emsr::AitkenDeltaSquaredSum<emsr::BasicSum<Tp>>;
     using ShankS_t = emsr::AitkenDeltaSquaredSum<ABS_t>;
 
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     auto w = 8 + std::cout.precision();
     emsr::BasicSum<Tp> BS;
     emsr::AitkenDeltaSquaredSum<emsr::BasicSum<Tp>> ABS;

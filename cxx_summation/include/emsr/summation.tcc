@@ -31,7 +31,7 @@
 #define SUMMATION_TCC 1
 
 #include <vector>
-#include <bits/numeric_limits.h>
+#include <emsr/numeric_limits.h>
 #include <utility> // For exchange.
 
 namespace emsr
@@ -99,8 +99,8 @@ namespace emsr
     VanWijngaardenCompressor<TermFn>::operator[](std::size_t j) const
     {
       using value_type = decltype(this->m_term_fn(j));
-      const auto s_min = __gnu_cxx::__lim_min<value_type>();
-      const auto s_eps = __gnu_cxx::__epsilon<value_type>();
+      const auto s_min = emsr::lim_min<value_type>();
+      const auto s_eps = emsr::epsilon<value_type>();
       // Maximum number of iterations before 2^k overflow.
       const auto k_max = std::numeric_limits<std::size_t>::digits;
 
@@ -141,8 +141,8 @@ namespace emsr
     {
       using Tp = value_type;
       using Val = emsr::num_traits_t<Tp>;
-      const auto s_huge = __gnu_cxx::__root_max(Val{5}); // 1.0e+60
-      const auto s_tiny = __gnu_cxx::__root_min(Val{5}); // 1.0e-60;
+      const auto s_huge = emsr::root_max(Val{5}); // 1.0e+60
+      const auto s_tiny = emsr::root_min(Val{5}); // 1.0e-60;
 
       const auto n = this->m_part_sum.num_terms() - 1;
       const auto s_n = this->m_part_sum();
@@ -179,8 +179,8 @@ namespace emsr
     {
       using Tp = value_type;
       using Val = emsr::num_traits_t<Tp>;
-      const auto s_huge = __gnu_cxx::__root_max(Val{5}); // 1.0e+60
-      const auto s_tiny = __gnu_cxx::__root_min(Val{5}); // 1.0e-60;
+      const auto s_huge = emsr::root_max(Val{5}); // 1.0e+60
+      const auto s_tiny = emsr::root_min(Val{5}); // 1.0e-60;
 
       const auto n = this->m_part_sum.num_terms() - 1;
       const auto s_n = this->m_part_sum();
@@ -215,8 +215,8 @@ namespace emsr
     {
       using Tp = value_type;
       using Val = emsr::num_traits_t<Tp>;
-      const auto s_huge = __gnu_cxx::__root_max(Val{5}); // 1.0e+60
-      const auto s_tiny = __gnu_cxx::__root_min(Val{5}); // 1.0e-60;
+      const auto s_huge = emsr::root_max(Val{5}); // 1.0e+60
+      const auto s_tiny = emsr::root_min(Val{5}); // 1.0e-60;
 
       const auto n = this->m_part_sum.num_terms() - 1;
       const auto s_n = this->m_part_sum();
@@ -256,8 +256,8 @@ namespace emsr
     {
       using Tp = value_type;
       using Val = emsr::num_traits_t<Tp>;
-      const auto s_huge = __gnu_cxx::__root_max(Val{5}); // 1.0e+60
-      const auto s_tiny = __gnu_cxx::__root_min(Val{5}); // 1.0e-60;
+      const auto s_huge = emsr::root_max(Val{5}); // 1.0e+60
+      const auto s_tiny = emsr::root_min(Val{5}); // 1.0e-60;
 
       const auto n = this->m_part_sum.num_terms() - 1;
       const auto s_n = this->m_part_sum();
@@ -302,8 +302,8 @@ namespace emsr
     {
       using Tp = value_type;
       using Val = emsr::num_traits_t<Tp>;
-      const/*expr*/ auto s_huge = __gnu_cxx::__root_max(Val{5}); // 1.0e+60
-      const/*expr*/ auto s_tiny = __gnu_cxx::__root_min(Val{5}); // 1.0e-60;
+      const/*expr*/ auto s_huge = emsr::root_max(Val{5}); // 1.0e+60
+      const/*expr*/ auto s_tiny = emsr::root_min(Val{5}); // 1.0e-60;
 
       const auto n = this->m_part_sum.num_terms() - 1;
       const auto s_n = this->m_part_sum();
