@@ -7,10 +7,12 @@
 #include <iomanip>
 #include <limits>
 #include <cmath>
-#include <ext/float128_io.h>
-#include <ext/float128_math.h>
-#include <ext/float128_limits.h>
+
+#include <emsr/float128_io.h>
+#include <emsr/float128_math.h>
+#include <emsr/float128_limits.h>
 #include <emsr/summation.h>
+#include <emsr/math_constants.h>
 
   template<typename _Tp>
     void
@@ -20,49 +22,49 @@
       std::cout << std::showpoint << std::scientific;
       auto width = 8 + std::cout.precision();
 
-      const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      const auto _S_2pi = emsr::tau_v<_Tp>;
-      auto __a = _Tp{1};
-      const auto __fact = _Tp{1} / std::sqrt(_S_2pi);
-      while (_S_eps <= __fact * std::pow(_S_2pi, -__a) / std::sqrt(__a))
+      const auto s_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto s_2pi = emsr::tau_v<_Tp>;
+      auto a = _Tp{1};
+      const auto fact = _Tp{1} / std::sqrt(s_2pi);
+      while (s_eps <= fact * std::pow(s_2pi, -a) / std::sqrt(a))
 	{
-          std::cout << "err = " << __fact * std::pow(_S_2pi, -__a) / std::sqrt(__a) << '\n';
-          __a += _Tp{1};
+          std::cout << "err = " << fact * std::pow(s_2pi, -a) / std::sqrt(a) << '\n';
+          a += _Tp{1};
 	}
-      std::cout << "a = " << __a << '\n';
+      std::cout << "a = " << a << '\n';
 
-      std::vector<_Tp> __c;
-      auto __factc = _Tp{1};
-      __c.push_back(__factc * std::sqrt(__a - 1) * std::exp(__a - 1));
-      std::cout << "c_0 = " << __c.back() << '\n';
-      //auto __sum = __factc * std::exp(__a - 1);
-      for (int __k = 1; __k < std::ceil(__a); ++__k)
+      std::vector<_Tp> c;
+      auto factc = _Tp{1};
+      c.push_back(factc * std::sqrt(a - 1) * std::exp(a - 1));
+      std::cout << "c_0 = " << c.back() << '\n';
+      //auto sum = factc * std::exp(a - 1);
+      for (int k = 1; k < std::ceil(a); ++k)
 	{
-	  __factc *= -_Tp{1} / _Tp(__k);
-	  auto __ak = _Tp(__a - __k - 1);
-	  __c.push_back(__factc * std::pow(__ak, _Tp(__k + 0.5Q)) * std::exp(__ak));
-	  std::cout << "c_" << __k << " = " << __c.back() << '\n';
+	  factc *= -_Tp{1} / _Tp(k);
+	  auto ak = _Tp(a - k - 1);
+	  c.push_back(factc * std::pow(ak, _Tp(k + 0.5Q)) * std::exp(ak));
+	  std::cout << "c_" << k << " = " << c.back() << '\n';
 	}
 
-      auto __log_gamma1p_spouge =
-	[=](_Tp __z)
+      auto log_gamma1p_spouge =
+	[=](_Tp z)
 	-> _Tp
 	{
 	  // Reflection is right but auto and use of functions won't compile.
-	  //if (__z <= -__a)
-	  //  return std::log(_S_pi) - std::log(__sin_pi(__z)) - __log_gamma1p_spouge(_Tp{1} - __z);
+	  //if (z <= -a)
+	  //  return std::log(s_pi) - std::log(sin_pi(z)) - log_gamma1p_spouge(_Tp{1} - z);
 	  //else
 	    {
 	      //using _WijnSum = emsr::VanWijngaardenSum<_Tp>;
-	      //_WijnSum __sum;
+	      //_WijnSum sum;
 	      using _BasicSum = emsr::BasicSum<_Tp>;
-	      _BasicSum __sum;
-	      __sum += std::sqrt(_S_2pi);
-	      for (unsigned int __k = 0; __k < __c.size(); ++__k)
-		__sum += __c[__k] / (__z + __k + 1);
-	      return std::log(__sum())
-		   + (__z + _Tp{0.5Q}) * std::log(__z + __a)
-		   - (__z + __a);
+	      _BasicSum sum;
+	      sum += std::sqrt(s_2pi);
+	      for (unsigned int k = 0; k < c.size(); ++k)
+		sum += c[k] / (z + k + 1);
+	      return std::log(sum())
+		   + (z + _Tp{0.5Q}) * std::log(z + a)
+		   - (z + a);
 	    }
 	};
 
@@ -76,26 +78,26 @@
 	{
 	  auto z = _Tp{0.01Q} * i;
 	  std::cout << ' ' << std::setw(width) << z
-		    << ' ' << std::setw(width) << __log_gamma1p_spouge(z - _Tp{1})
+		    << ' ' << std::setw(width) << log_gamma1p_spouge(z - _Tp{1})
 		    << ' ' << std::setw(width) << std::lgamma(z)
-		    << ' ' << std::setw(width) << __log_gamma1p_spouge(z - _Tp{1}) - std::lgamma(z) << '\n';
+		    << ' ' << std::setw(width) << log_gamma1p_spouge(z - _Tp{1}) - std::lgamma(z) << '\n';
 	}
 
       //  Try to invert using Newton...
-      auto __log_gamma_inv
+      auto log_gamma_inv
       {
-	[=](_Tp __y)
+	[=](_Tp y)
 	-> _Tp
 	{
-	  constexpr auto _S_log_10 = emsr::log10e_v<_Tp>;
-	  constexpr auto _S_ln_2 = emsr::ln2_v<_Tp>;
-	  constexpr auto _S_ln_pi = emsr::lnpi_v<_Tp>;
-	  constexpr auto _S_log_sqrt_2pi = (_S_ln_2 + _S_ln_pi) / _Tp{2};
-	  auto __x = __y * _S_log_10 - _S_log_sqrt_2pi;
-	  auto __x0 = __x;
-	  for (int __i = 0; __i < 100; ++__i)
-	    __x = (__x0 + __x) / std::log(__x);
-	  return __x;
+	  constexpr auto s_log_10 = emsr::log10e_v<_Tp>;
+	  constexpr auto s_ln_2 = emsr::ln2_v<_Tp>;
+	  constexpr auto s_ln_pi = emsr::lnpi_v<_Tp>;
+	  constexpr auto s_log_sqrt_2pi = (s_ln_2 + s_ln_pi) / _Tp{2};
+	  auto x = y * s_log_10 - s_log_sqrt_2pi;
+	  auto x0 = x;
+	  for (int i = 0; i < 100; ++i)
+	    x = (x0 + x) / std::log(x);
+	  return x;
 	}
       };
 
@@ -110,12 +112,12 @@
       for (int i = 0; i <= 500; ++i)
 	{
 	  auto z = _Tp{0.01Q} * i;
-	  auto y = __log_gamma1p_spouge(z - _Tp{1});
-	  auto x = __log_gamma_inv(y);
+	  auto y = log_gamma1p_spouge(z - _Tp{1});
+	  auto x = log_gamma_inv(y);
 	  std::cout << ' ' << std::setw(width) << z
 		    << ' ' << std::setw(width) << y
 		    << ' ' << std::setw(width) << std::lgamma(z)
-		    << ' ' << std::setw(width) << __log_gamma1p_spouge(z - _Tp{1}) - std::lgamma(z)
+		    << ' ' << std::setw(width) << log_gamma1p_spouge(z - _Tp{1}) - std::lgamma(z)
 		    << ' ' << std::setw(width) << x
 		    << ' ' << std::setw(width) << x - z
 		    << '\n';
@@ -136,7 +138,7 @@
     public:
     private:
       static constexpr std::array<float, 7>
-      _S_cheby
+      s_cheby
       {
 	 2.901419e+03F,
 	-5.929168e+03F,
@@ -154,7 +156,7 @@
     public:
     private:
       static constexpr std::array<double, 18>
-      _S_cheby
+      s_cheby
       {
 	 2.785716565770350e+08,
 	-1.693088166941517e+09,
@@ -183,7 +185,7 @@
     public:
     private:
       static constexpr std::array<long double, 22>
-      _S_cheby
+      s_cheby
       {
 	 1.681473171108908244e+10L,
 	-1.269150315503303974e+11L,
@@ -211,14 +213,14 @@
     };
 
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#if !defined(STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   template<>
     class _GammaSpouge<__float128>
     {
     public:
     private:
       static constexpr std::array<__float128, 40>
-      _S_cheby
+      s_cheby
       {
 	 1.488707141702962349642653219904701e+18Q,
 	-2.109024888057172629401888926607933e+19Q,

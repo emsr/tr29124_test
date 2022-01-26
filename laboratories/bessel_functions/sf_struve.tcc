@@ -1,7 +1,13 @@
+#ifndef SF_STRUVE_TCC
+#define SF_STRUVE_TCC 1
 
-namespace std
+#include <emsr/math_constants.h>
+#include <emsr/summation.h>
+#include <emsr/specfun.h>
+
+namespace emsr
 {
-namespace __detail
+namespace detail
 {
 
   /**
@@ -24,7 +30,7 @@ namespace __detail
    */
   template<_StruveType _Type, typename _Tp>
     _Tp
-    __struve_series(_Tp __nu, _Tp __x)
+    struve_series(_Tp nu, _Tp x)
     {
       using _Val = _Tp;
 
@@ -34,29 +40,29 @@ namespace __detail
       using _WenigerWijnSum = emsr::WenigerDeltaSum<_WijnSum>;
       using _WenigerSum = std::conditional_t<_Type == _StruveH,
 					     _WenigerWijnSum, _WenigerBasSum>;
-      int __sign = (_Type == _StruveH ? -1 : _Type == _StruveL ? +1 : 0);
-      assert(__sign != 0);
+      int sign = (_Type == _StruveH ? -1 : _Type == _StruveL ? +1 : 0);
+      assert(sign != 0);
 
-      constexpr int _S_max_iter = 1000;
-      const auto _S_eps = emsr::epsilon(std::real(__x));
-      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
+      constexpr int s_max_iter = 1000;
+      const auto s_eps = emsr::epsilon(std::real(x));
+      const auto s_sqrt_pi = emsr::sqrtpi_v<_Tp>;
 
-      auto __x2 = __x / _Val{2};
-      auto __xx4 = _Tp(__sign) * __x2 * __x2;
-      auto __term = _Val{1};
-      auto __struve = _WenigerSum(_Val{1});
-      __struve += __term;
-      for (int __k = 1; __k < _S_max_iter; ++__k)
+      auto x2 = x / _Val{2};
+      auto xx4 = _Tp(sign) * x2 * x2;
+      auto term = _Val{1};
+      auto struve = _WenigerSum(_Val{1});
+      struve += term;
+      for (int k = 1; k < s_max_iter; ++k)
 	{
-      	  __term *= __xx4 / _Val(__k + 0.5L) / (__nu + _Val(__k + 0.5L));
-	  __struve += __term;
-	  if (std::abs(__term) < _S_eps * std::abs(__struve))
+      	  term *= xx4 / _Val(k + 0.5L) / (nu + _Val(k + 0.5L));
+	  struve += term;
+	  if (std::abs(term) < s_eps * std::abs(struve))
 	    break;
 	}
-      auto __factor = _Val{2} * std::pow(__x2, __nu + _Val{1})
-		    / std::__detail::__gamma(__nu + _Val{1.5L}) / _S_sqrt_pi;
+      auto factor = _Val{2} * std::pow(x2, nu + _Val{1})
+		    / emsr::tgamma(nu + _Val{1.5L}) / s_sqrt_pi;
 
-      return __factor * __struve();
+      return factor * struve();
     }
 
   /**
@@ -67,7 +73,7 @@ namespace __detail
    */
   template<_StruveType _Type, typename _Tp>
     _Tp
-    __struve_asymp(_Tp __nu, _Tp __x)
+    struve_asymp(_Tp nu, _Tp x)
     {
       using _Val = _Tp;
 
@@ -78,32 +84,32 @@ namespace __detail
       using _WenigerSum = std::conditional_t<_Type == _StruveM,
 					     _WenigerWijnSum, _WenigerBasSum>;
 
-      int __sign = (_Type == _StruveK ? +1 : _Type == _StruveM ? -1 : 0);
-      assert(__sign != 0);
+      int sign = (_Type == _StruveK ? +1 : _Type == _StruveM ? -1 : 0);
+      assert(sign != 0);
 
-      constexpr int _S_max_iter = 1000;
-      const auto _S_eps = emsr::epsilon(std::real(__x));
-      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
+      constexpr int s_max_iter = 1000;
+      const auto s_eps = emsr::epsilon(std::real(x));
+      const auto s_sqrt_pi = emsr::sqrtpi_v<_Tp>;
 
-      auto __x2 = __x / _Val{2};
-      auto __xx4 = _Val(__sign) * __x2 * __x2;
-      auto __term = _Val{1};
-      auto __struve = _WenigerSum(_Val{1});
-      __struve += __term;
-      for (int __k = 1; __k < _S_max_iter; ++__k)
+      auto x2 = x / _Val{2};
+      auto xx4 = _Val(sign) * x2 * x2;
+      auto term = _Val{1};
+      auto struve = _WenigerSum(_Val{1});
+      struve += term;
+      for (int k = 1; k < s_max_iter; ++k)
 	{
-	  const auto __term_prev = __term;
-      	  __term *= _Val(__k - 0.5L) / (_Val(-__k - 0.5L) + __nu) / __xx4;
-	  if (std::abs(__term) > std::abs(__term_prev))
+	  const auto term_prev = term;
+      	  term *= _Val(k - 0.5L) / (_Val(-k - 0.5L) + nu) / xx4;
+	  if (std::abs(term) > std::abs(term_prev))
 	    break;
-	  __struve += __term;
-	  if (std::abs(__term) < _S_eps * std::abs(__struve))
+	  struve += term;
+	  if (std::abs(term) < s_eps * std::abs(struve))
 	    break;
 	}
-      auto __fact = _Val(__sign) * std::pow(__x2, __nu - _Val{1})
-		  / std::__detail::__gamma(__nu + _Val{0.5L}) / _S_sqrt_pi;
+      auto fact = _Val(sign) * std::pow(x2, nu - _Val{1})
+		  / emsr::tgamma(nu + _Val{0.5L}) / s_sqrt_pi;
 
-      return __fact * __struve();
+      return fact * struve();
     }
 
   /**
@@ -112,23 +118,23 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __struve_h(_Tp __nu, _Tp __x)
+    struve_h(_Tp nu, _Tp x)
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_nan = emsr::quiet_NaN(std::real(__x));
-      const auto _S_max = emsr::digits10(std::real(__x));
+      const auto s_nan = emsr::quiet_NaN(std::real(x));
+      const auto s_max = emsr::digits10(std::real(x));
 
-      if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
-	std::__throw_domain_error(__N("__struve_h: bad argument"));
-      else if (std::isnan(__nu) || std::isnan(__x))
-	return _S_nan;
-      else if (std::abs(__x) < _S_max)
-	return __struve_series<_StruveH>(__nu, __x);
+      if (std::real(x) < _Real{0}) /// @todo Find out about Struve for x < 0.
+	throw std::domain_error("struve_h: bad argument");
+      else if (std::isnan(nu) || std::isnan(x))
+	return s_nan;
+      else if (std::abs(x) < s_max)
+	return struve_series<_StruveH>(nu, x);
       else
 	{
-	  auto _Nnu = __cyl_neumann_n(__nu, __x);
-	  auto _Knu = __struve_asymp<_StruveK>(__nu, __x);
+	  auto _Nnu = cyl_neumann_n(nu, x);
+	  auto _Knu = struve_asymp<_StruveK>(nu, x);
 	  return _Knu + _Nnu;
 	}
     }
@@ -139,23 +145,23 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __struve_k(_Tp __nu, _Tp __x)
+    struve_k(_Tp nu, _Tp x)
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_nan = emsr::quiet_NaN(std::real(__x));
-      const auto _S_max = emsr::digits10(std::real(__x));
+      const auto s_nan = emsr::quiet_NaN(std::real(x));
+      const auto s_max = emsr::digits10(std::real(x));
 
-      if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
-	std::__throw_domain_error(__N("__struve_k: bad argument"));
-      else if (std::isnan(__nu) || std::isnan(__x))
-	return _S_nan;
-      else if (std::abs(__x) >= _S_max)
-	return __struve_asymp<_StruveK>(__nu, __x);
+      if (std::real(x) < _Real{0}) /// @todo Find out about Struve for x < 0.
+	throw std::domain_error("struve_k: bad argument");
+      else if (std::isnan(nu) || std::isnan(x))
+	return s_nan;
+      else if (std::abs(x) >= s_max)
+	return struve_asymp<_StruveK>(nu, x);
       else
 	{
-	  auto _Nnu = __cyl_neumann_n(__nu, __x);
-	  auto _Hnu = __struve_series<_StruveH>(__nu, __x);
+	  auto _Nnu = cyl_neumann_n(nu, x);
+	  auto _Hnu = struve_series<_StruveH>(nu, x);
 	  return _Hnu - _Nnu;
 	}
     }
@@ -166,23 +172,23 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __struve_l(_Tp __nu, _Tp __x)
+    struve_l(_Tp nu, _Tp x)
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_nan = emsr::quiet_NaN(std::real(__x));
-      const auto _S_max = emsr::digits10(std::real(__x));
+      const auto s_nan = emsr::quiet_NaN(std::real(x));
+      const auto s_max = emsr::digits10(std::real(x));
 
-      if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
-	std::__throw_domain_error(__N("__struve_l: bad argument"));
-      else if (std::isnan(__nu) || std::isnan(__x))
-	return _S_nan;
-      else if (std::abs(__x) < _S_max)
-	return __struve_series<_StruveL>(__nu, __x);
+      if (std::real(x) < _Real{0}) /// @todo Find out about Struve for x < 0.
+	throw std::domain_error("struve_l: bad argument");
+      else if (std::isnan(nu) || std::isnan(x))
+	return s_nan;
+      else if (std::abs(x) < s_max)
+	return struve_series<_StruveL>(nu, x);
       else
 	{
-	  auto _Inu = __cyl_bessel_i(__nu, __x);
-	  auto _Mnu = __struve_asymp<_StruveM>(__nu, __x);
+	  auto _Inu = cyl_bessel_i(nu, x);
+	  auto _Mnu = struve_asymp<_StruveM>(nu, x);
 	  return _Mnu + _Inu;
 	}
     }
@@ -193,26 +199,28 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __struve_m(_Tp __nu, _Tp __x)
+    struve_m(_Tp nu, _Tp x)
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_nan = emsr::quiet_NaN(std::real(__x));
-      const auto _S_max = emsr::digits10(std::real(__x));
+      const auto s_nan = emsr::quiet_NaN(std::real(x));
+      const auto s_max = emsr::digits10(std::real(x));
 
-      if (std::real(__x) < _Real{0}) /// @todo Find out about Struve for x < 0.
-	std::__throw_domain_error(__N("__struve_k: bad argument"));
-      else if (std::isnan(__nu) || std::isnan(__x))
-	return _S_nan;
-      else if (std::abs(__x) >= _S_max)
-	return __struve_asymp<_StruveM>(__nu, __x);
+      if (std::real(x) < _Real{0}) /// @todo Find out about Struve for x < 0.
+	throw std::domain_error("struve_k: bad argument");
+      else if (std::isnan(nu) || std::isnan(x))
+	return s_nan;
+      else if (std::abs(x) >= s_max)
+	return struve_asymp<_StruveM>(nu, x);
       else
 	{
-	  auto _Inu = __cyl_bessel_i(__nu, __x);
-	  auto _Lnu = __struve_series<_StruveL>(__nu, __x);
+	  auto _Inu = cyl_bessel_i(nu, x);
+	  auto _Lnu = struve_series<_StruveL>(nu, x);
 	  return _Lnu - _Inu;
 	}
     }
 
-} // namespace __detail
-} // namespace std
+} // namespace detail
+} // namespace emsr
+
+#endif // SF_STRUVE_TCC

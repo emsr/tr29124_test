@@ -14,97 +14,96 @@
   //  by the modified Lentz's method
   template<typename _Tp>
     _Tp
-    __ibeta_cont_frac(_Tp __a, _Tp __b, _Tp __x)
+    ibeta_cont_frac(_Tp a, _Tp b, _Tp x)
     {
       constexpr auto _S_itmax = 100;
       const auto _S_fpmin = 1000 * std::numeric_limits<_Tp>::min();
       const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      auto __apb = __a + __b;
-      auto __ap1 = __a + _Tp{1};
-      auto __am1 = __a - _Tp{1};
-      auto __c = _Tp{1};
+      auto apb = a + b;
+      auto ap1 = a + _Tp{1};
+      auto am1 = a - _Tp{1};
+      auto c = _Tp{1};
       //  First step of Lentz's method.
-      auto __d = _Tp{1} - __apb * __x / __ap1;
-      if (std::abs(__d) < _S_fpmin)
-	__d = _S_fpmin;
-      __d = _Tp{1} / __d;
-      auto __h = __d;
-      for (int __m = 1; __m <= _S_itmax; ++__m)
+      auto d = _Tp{1} - apb * x / ap1;
+      if (std::abs(d) < _S_fpmin)
+	d = _S_fpmin;
+      d = _Tp{1} / d;
+      auto h = d;
+      for (int m = 1; m <= _S_itmax; ++m)
 	{
-	  auto __m2 = 2 * __m;
+	  auto m2 = 2 * m;
 
 	  //  Even step of the recurrence.
-	  auto __aa = _Tp(__m) * (__b - _Tp(__m)) * __x
-		     / ((__am1 + _Tp(__m2)) * (__a + _Tp(__m2)));
-	  __d = _Tp{1} + __aa * __d;
-	  if (std::abs(__d) < _S_fpmin)
-	    __d = _S_fpmin;
-	  __c = _Tp{1} + __aa / __c;
-	  if (std::abs(__c) < _S_fpmin)
-	    __c = _S_fpmin;
-	  __d = _Tp{1} / __d;
-	  __h *= __d * __c;
+	  auto aa = _Tp(m) * (b - _Tp(m)) * x
+		     / ((am1 + _Tp(m2)) * (a + _Tp(m2)));
+	  d = _Tp{1} + aa * d;
+	  if (std::abs(d) < _S_fpmin)
+	    d = _S_fpmin;
+	  c = _Tp{1} + aa / c;
+	  if (std::abs(c) < _S_fpmin)
+	    c = _S_fpmin;
+	  d = _Tp{1} / d;
+	  h *= d * c;
 
 	  //  Odd step of the recurrence.
-	  __aa = -(__a + _Tp(__m)) * (__apb + _Tp(__m)) * __x
-		/ ((__a + _Tp(__m2)) * (__ap1 + _Tp(__m2)));
-	  __d = _Tp{1} + __aa * __d;
-	  if (std::abs(__d) < _S_fpmin)
-	    __d = _S_fpmin;
-	  __c = _Tp{1} + __aa / __c;
-	  if (std::abs(__c) < _S_fpmin)
-	    __c = _S_fpmin;
-	  __d = _Tp{1} / __d;
-	  auto __del = __d * __c;
-	  __h *= __del;
+	  aa = -(a + _Tp(m)) * (apb + _Tp(m)) * x
+		/ ((a + _Tp(m2)) * (ap1 + _Tp(m2)));
+	  d = _Tp{1} + aa * d;
+	  if (std::abs(d) < _S_fpmin)
+	    d = _S_fpmin;
+	  c = _Tp{1} + aa / c;
+	  if (std::abs(c) < _S_fpmin)
+	    c = _S_fpmin;
+	  d = _Tp{1} / d;
+	  auto del = d * c;
+	  h *= del;
 
-	  if (std::abs(__del - _Tp{1}) < _S_eps)
-	    return __h;
+	  if (std::abs(del - _Tp{1}) < _S_eps)
+	    return h;
 	}
-      std::__throw_runtime_error(__N("__ibeta_cont_frac: "
-				     "a or b too big, or _S_itmax too small"));
+      throw std::runtime_error("ibeta_cont_frac: a or b too big, or _S_itmax too small");
     }
 
   ///  Returns the incomplete beta function I_x(a;b).
   template<typename _Tp>
     _Tp
-    __ibeta(_Tp __a, _Tp __b, _Tp __x)
+    ibeta(_Tp a, _Tp b, _Tp x)
     {
-      const auto _S_NaN = emsr::quiet_NaN(__x);
-      if (__x < _Tp{0} || __x > _Tp{1})
-	std::__throw_domain_error(__N("__ibeta: argument out of range"));
-      else if (std::isnan(__x) || std::isnan(__a) || std::isnan(__b))
+      const auto _S_NaN = emsr::quiet_NaN(x);
+      if (x < _Tp{0} || x > _Tp{1})
+	throw std::domain_error("ibeta: argument out of range");
+      else if (std::isnan(x) || std::isnan(a) || std::isnan(b))
 	return _S_NaN;
-      else if (__a == _Tp{0} && __b == _Tp{0})
+      else if (a == _Tp{0} && b == _Tp{0})
 	return _S_NaN;
-      else if (__a == _Tp{0})
+      else if (a == _Tp{0})
 	{
-	  if (__x > _Tp{0})
+	  if (x > _Tp{0})
 	    return _Tp{1};
 	  else
 	    return _Tp{0};
 	}
-      else if (__b == _Tp{0})
+      else if (b == _Tp{0})
 	{
-	  if (__x < _Tp{1})
+	  if (x < _Tp{1})
 	    return _Tp{0};
 	  else
 	    return _Tp{1};
 	}
       else
 	{
-	  _Tp __fact;
-	  if (__x == _Tp{0} || __x == _Tp{1})
-	    __fact = _Tp{0};
+	  _Tp fact;
+	  if (x == _Tp{0} || x == _Tp{1})
+	    fact = _Tp{0};
 	  else
-	    __fact = std::exp(std::lgamma(__a + __b)
-			    - std::lgamma(__a) - std::lgamma(__b)
-			    + __a * std::log(__x) + __b * std::log(_Tp{1} - __x));
-	  if (__x < (__a + _Tp{1}) / (__a + __b + _Tp{2}))
-	    return __fact * __ibeta_cont_frac(__a, __b, __x) / __a;
+	    fact = std::exp(std::lgamma(a + b)
+			    - std::lgamma(a) - std::lgamma(b)
+			    + a * std::log(x) + b * std::log(_Tp{1} - x));
+	  if (x < (a + _Tp{1}) / (a + b + _Tp{2}))
+	    return fact * ibeta_cont_frac(a, b, x) / a;
 	  else
 	    return _Tp{1}
-		 - __fact * __ibeta_cont_frac(__b, __a, _Tp{1} - __x) / __b;
+		 - fact * ibeta_cont_frac(b, a, _Tp{1} - x) / b;
 	}
     }
 
@@ -128,7 +127,7 @@ template<typename _Tp>
 		//auto x = ix * _Tp{0.01L};
 		auto x = std::clamp(ix * _Tp{0.01L}, _Tp{0}, _Tp{1});
 		std::cout << ' ' << std::setw(6) << x
-		          << ' ' << std::setw(width) << __ibeta(a, b, x) << '\n';
+		          << ' ' << std::setw(width) << ibeta(a, b, x) << '\n';
 	      }
 	  }
       }
@@ -147,61 +146,61 @@ template<typename _Tp>
       {
 	auto x = std::clamp(ix * _Tp{0.00000000000000000001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
       }
     for (int ix = 1; ix < 100; ++ix)
       {
 	auto x = std::clamp(ix * _Tp{0.000000000000000001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
       }
     for (int ix = 1; ix < 100; ++ix)
       {
 	auto x = std::clamp(ix * _Tp{0.0000000000000001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
       }
     for (int ix = 1; ix < 100; ++ix)
       {
 	auto x = std::clamp(ix * _Tp{0.00000000000001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
       }
     for (int ix = 1; ix < 100; ++ix)
       {
 	auto x = std::clamp(ix * _Tp{0.000000000001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
       }
     for (int ix = 1; ix < 100; ++ix)
       {
 	auto x = std::clamp(ix * _Tp{0.0000000001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
       }
     for (int ix = 1; ix < 100; ++ix)
       {
 	auto x = std::clamp(ix * _Tp{0.00000001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
       }
     for (int ix = 1; ix < 100; ++ix)
       {
 	auto x = std::clamp(ix * _Tp{0.000001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
       }
     for (int ix = 1; ix < 100; ++ix)
       {
 	auto x = std::clamp(ix * _Tp{0.0001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
       }
     for (int ix = 1; ix <= 100; ++ix)
       {
 	auto x = std::clamp(ix * _Tp{0.01L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{0.001L}, _Tp{20L}, x) << '\n';
       }
 
     std::cout << "a = " << std::setw(6) << _Tp{20L} << '\n';
@@ -210,67 +209,67 @@ template<typename _Tp>
       {
 	auto x = std::clamp(ix * _Tp{0.01L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
       }
     for (int ix = 1; ix < 100; ++ix)
       {
 	auto x = std::clamp(_Tp{0.99L} + ix * _Tp{0.0001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
       }
     for (int ix = 1; ix < 100; ++ix)
       {
 	auto x = std::clamp(_Tp{0.9999L} + ix * _Tp{0.000001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
       }
     for (int ix = 1; ix < 100; ++ix)
       {
 	auto x = std::clamp(_Tp{0.999999L} + ix * _Tp{0.00000001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
       }
     for (int ix = 1; ix < 100; ++ix)
       {
 	auto x = std::clamp(_Tp{0.99999999L} + ix * _Tp{0.0000000001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
       }
     for (int ix = 1; ix < 100; ++ix)
       {
 	auto x = std::clamp(_Tp{0.9999999999L} + ix * _Tp{0.000000000001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
       }
     for (int ix = 1; ix < 100; ++ix)
       {
 	auto x = std::clamp(_Tp{0.999999999999L} + ix * _Tp{0.00000000000001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
       }
     for (int ix = 1; ix < 100; ++ix)
       {
 	auto x = std::clamp(_Tp{0.99999999999999L} + ix * _Tp{0.0000000000000001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
       }
     for (int ix = 1; ix <= 100; ++ix)
       {
 	auto x = std::clamp(_Tp{0.9999999999999999L} + ix * _Tp{0.000000000000000001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
       }
     for (int ix = 1; ix <= 100; ++ix)
       {
 	auto x = std::clamp(_Tp{0.999999999999999999L} + ix * _Tp{0.00000000000000000001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
       }
     for (int ix = 1; ix <= 100; ++ix)
       {
 	auto x = std::clamp(_Tp{0.99999999999999999999L} + ix * _Tp{0.0000000000000000000001L}, _Tp{0}, _Tp{1});
 	std::cout << ' ' << std::setw(width) << x
-		  << ' ' << std::setw(width) << __ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
+		  << ' ' << std::setw(width) << ibeta(_Tp{20L}, _Tp{0.001L}, x) << '\n';
       }
   }
 

@@ -24,7 +24,7 @@
  */
 template<typename _Tp, typename _TpX>
   _Tp
-  __dual_hahn_recur(int n, _Tp gamma, _Tp delta, int N, _TpX x)
+  dual_hahn_recur(int n, _Tp gamma, _Tp delta, int N, _TpX x)
   {
     auto Rnm1 = _Tp{1};
     if (n == 0)
@@ -64,7 +64,7 @@ template<typename _Tp, typename _TpX>
  */
 template<typename _Tp, typename _TpX>
   _Tp
-  __dual_hahn(int n, _Tp gamma, _Tp delta, int N, _TpX x)
+  dual_hahn(int n, _Tp gamma, _Tp delta, int N, _TpX x)
   {
     if (std::isnan(gamma))
       return gamma;
@@ -73,10 +73,9 @@ template<typename _Tp, typename _TpX>
     else if (std::isnan(x))
       return x;
     else if (n > N)
-      std::__throw_domain_error(__N("__dual_hahn: "
-				"Degree must be less than or equal to big N."));
+      throw std::domain_error("dual_hahn: Degree must be less than or equal to big N.");
     else
-      return __dual_hahn_recur(n, gamma, delta, N, x);
+      return dual_hahn_recur(n, gamma, delta, N, x);
   }
 
 /**
@@ -98,7 +97,7 @@ template<typename _Tp>
 	for (int i = 0; i <= 200; ++i)
 	  {
 	    auto x = i * _Tp{0.05L};
-	    auto R = __dual_hahn(n, gamma, delta, N, x);
+	    auto R = dual_hahn(n, gamma, delta, N, x);
 	    std::cout << ' ' << std::setw(w) << lambda(x)
 		      << ' ' << std::setw(w) << R
 		      << '\n';

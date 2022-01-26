@@ -33,8 +33,8 @@ main()
     }
 
   std::cout << "\n\n" << ' ' << std::setw(w) << "a_k" << '\n';
-  for (auto __aa : a)
-    std::cout << ' ' << std::setw(w) << __aa << '\n';
+  for (auto aa : a)
+    std::cout << ' ' << std::setw(w) << aa << '\n';
 
   std::vector<mpfr::mpreal> c;
   mpfr::mpreal cstart(1, prec);
@@ -50,6 +50,6 @@ main()
     c[n] /= (2 * n + 1);
 
   std::cout << "\n\n" << ' ' << std::setw(w) << "c_k" << '\n';
-  for (auto __cc : c)
-    std::cout << ' ' << std::setw(w) << __cc << '\n';
+  for (auto cc : c)
+    std::cout << ' ' << std::setw(w) << cc << '\n';
 }

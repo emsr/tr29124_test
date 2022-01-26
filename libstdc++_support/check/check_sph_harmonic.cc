@@ -21426,7 +21426,7 @@ template<typename Ret, unsigned int Num>
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const std::complex<Ret> f = __gnu_cxx::sph_harmonic(data[i].l, data[i].m,
+	const std::complex<Ret> f = emsr::sph_harmonic(data[i].l, data[i].m,
 		     data[i].theta, data[i].phi);
 	const bool failure_f = std::isnan(f);
 	if (!failure && failure_f)

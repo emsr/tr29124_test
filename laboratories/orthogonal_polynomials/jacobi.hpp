@@ -26,8 +26,8 @@
    \author Christophe Prud'homme <christophe.prudhomme@ujf-grenoble.fr>
    \date 2005-07-26
  */
-#ifndef __Jacobi_H
-#define __Jacobi_H 1
+#ifndef Jacobi_H
+#define Jacobi_H 1
 
 #include <ublas.hpp>
 
@@ -230,14 +230,14 @@ namespace Life
   }
   template<typename T>
   ublas::matrix<T>
-  JacobiBatchEvaluation( int N, T a, T b, ublas::vector<T> const& __pts )
+  JacobiBatchEvaluation( int N, T a, T b, ublas::vector<T> const& pts )
   {
     typedef T value_type;
-    ublas::matrix<T> res( N+1, __pts.size() );
+    ublas::matrix<T> res( N+1, pts.size() );
     ublas::row( res, 0 ) = ublas::scalar_vector<value_type>( res.size2(), 1.0 );
     if ( N > 0 )
       {
-        ublas::row( res, 1 ) = 0.5 * ( ublas::scalar_vector<value_type>( res.size2(), a - b) + ( a + b + 2.0 ) * __pts );
+        ublas::row( res, 1 ) = 0.5 * ( ublas::scalar_vector<value_type>( res.size2(), a - b) + ( a + b + 2.0 ) * pts );
         value_type apb = a + b;
         for ( int k = 2; k < N+1; ++k )
 	  {
@@ -251,7 +251,7 @@ namespace Life
             a4 = a4 / a1;
 
             ublas::row( res, k ) = a2* ublas::row( res, k-1 ) +
-	      a3 * ublas::element_prod(__pts, ublas::row( res, k-1 ) ) -
+	      a3 * ublas::element_prod(pts, ublas::row( res, k-1 ) ) -
 	      a4 * ublas::row( res, k-2 );
 	  }
       }
@@ -260,14 +260,14 @@ namespace Life
 
   template<typename T>
   ublas::matrix<T>
-  JacobiBatchDerivation( int N, T a, T b, ublas::vector<T> const& __pts )
+  JacobiBatchDerivation( int N, T a, T b, ublas::vector<T> const& pts )
   {
     typedef T value_type;
-    ublas::matrix<T> res( N+1, __pts.size() );
+    ublas::matrix<T> res( N+1, pts.size() );
     ublas::row( res, 0 ) = ublas::scalar_vector<value_type>( res.size2(), 0.0 );
     if ( N > 0 )
       {
-        ublas::subrange( res, 1, N+1, 0, __pts.size() ) = JacobiBatchEvaluation<T>( N-1, a+1.0, b+1.0, __pts );
+        ublas::subrange( res, 1, N+1, 0, pts.size() ) = JacobiBatchEvaluation<T>( N-1, a+1.0, b+1.0, pts );
         for ( int i = 1;i < N+1; ++i )
 	  ublas::row( res, i ) *= 0.5*(a+b+value_type( i )+1.0);
       }
@@ -441,5 +441,5 @@ namespace Life
     return res;
   }
 } // Life
-#endif /* __Jacobi_H */
+#endif /* Jacobi_H */
 

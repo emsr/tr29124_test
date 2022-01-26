@@ -43,7 +43,7 @@ template<typename _Tp>
     for (int i = -2000; i <= +500; ++i)
       {
 	auto t = _Tp(0.01Q * i);
-	auto airy0 = __gnu_cxx::airy(t);
+	auto airy0 = emsr::airy(t);
 	data << std::setw(w) << std::real(airy0.z)
 	     << std::setw(w) << std::real(airy0.Ai)
 	     << std::setw(w) << std::real(airy0.Aip)
@@ -77,7 +77,7 @@ template<typename _Tp>
 	for (int j = -50; j <= +50; ++j)
 	  {
 	    auto t = _Tp(0.10Q * i, 0.10Q * j);
-	    auto Ai = __gnu_cxx::airy_ai(t);
+	    auto Ai = emsr::airy_ai(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
 		 << std::setw(w) << std::pow(std::abs(Ai), _Val{1} / _Val{6})
@@ -92,7 +92,7 @@ template<typename _Tp>
 	for (int j = -50; j <= +50; ++j)
 	  {
 	    auto t = _Tp(0.10Q * i, 0.10Q * j);
-	    auto Ai = __gnu_cxx::airy_ai(t);
+	    auto Ai = emsr::airy_ai(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
 		 << std::setw(w) << std::real(Ai)
@@ -107,7 +107,7 @@ template<typename _Tp>
 	for (int j = -50; j <= +50; ++j)
 	  {
 	    auto t = _Tp(0.10Q * i, 0.10Q * j);
-	    auto Ai = __gnu_cxx::airy_ai(t);
+	    auto Ai = emsr::airy_ai(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
 		 << std::setw(w) << std::imag(Ai)
@@ -122,7 +122,7 @@ template<typename _Tp>
 	for (int j = -50; j <= +50; ++j)
 	  {
 	    auto t = _Tp(0.10Q * i, 0.10Q * j);
-	    auto Ai = __gnu_cxx::airy_ai(t);
+	    auto Ai = emsr::airy_ai(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
 		 << std::setw(w) << std::arg(Ai)
@@ -137,7 +137,7 @@ template<typename _Tp>
 	for (int j = -50; j <= +50; ++j)
 	  {
 	    auto t = _Tp(0.10Q * i, 0.10Q * j);
-	    auto Bi = __gnu_cxx::airy_bi(t);
+	    auto Bi = emsr::airy_bi(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
 		 << std::setw(w) << std::pow(std::abs(Bi), _Val{1} / _Val{6})
@@ -152,7 +152,7 @@ template<typename _Tp>
 	for (int j = -50; j <= +50; ++j)
 	  {
 	    auto t = _Tp(0.10Q * i, 0.10Q * j);
-	    auto Bi = __gnu_cxx::airy_bi(t);
+	    auto Bi = emsr::airy_bi(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
 		 << std::setw(w) << std::real(Bi)
@@ -167,7 +167,7 @@ template<typename _Tp>
 	for (int j = -50; j <= +50; ++j)
 	  {
 	    auto t = _Tp(0.10Q * i, 0.10Q * j);
-	    auto Bi = __gnu_cxx::airy_bi(t);
+	    auto Bi = emsr::airy_bi(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
 		 << std::setw(w) << std::imag(Bi)
@@ -182,7 +182,7 @@ template<typename _Tp>
 	for (int j = -50; j <= +50; ++j)
 	  {
 	    auto t = _Tp(0.10Q * i, 0.10Q * j);
-	    auto Bi = __gnu_cxx::airy_bi(t);
+	    auto Bi = emsr::airy_bi(t);
 	    data << std::setw(w) << std::real(t)
 	         << std::setw(w) << std::imag(t)
 		 << std::setw(w) << std::arg(Bi)
@@ -295,7 +295,7 @@ template<typename _Tp>
     for (int i = -2000; i <= +500; ++i)
       {
 	auto t = _Tp(0.01Q * i);
-	auto fgh0 = _Airy_series<_Val>::_S_FGH(t);
+	auto fgh0 = _Airy_series<_Val>::s_FGH(t);
 	data << std::setw(w) << std::real(fgh0.z)
 	     << std::setw(w) << std::real(fgh0.fai)
 	     << std::setw(w) << std::real(fgh0.faip)

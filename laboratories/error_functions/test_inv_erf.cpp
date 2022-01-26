@@ -10,12 +10,15 @@
 #include <limits>
 #include <cmath>
 #include <complex>
-#include <ext/float128_io.h>
+
+#include <emsr/float128_io.h>
+namespace detail
+{
 
   template<typename _Tp>
     _Tp
-    __erfc_scaled(_Tp __x)
-    { return std::exp(__x * __x) * std::erfc(__x); }
+    erfc_scaled(_Tp x)
+    { return std::exp(x * x) * std::erfc(x); }
 
   /**
    * Return the inverse error function by recursion:
@@ -23,38 +26,38 @@
    *
    * @f]
    *
-   * @param[in] __p The argument between -1 and 1
-   * @param[in] __x The initial x-value guess.
+   * @param[in] p The argument between -1 and 1
+   * @param[in] x The initial x-value guess.
    */
   template<typename _Tp>
     _Tp
-    __erf_inv_recur(_Tp __p, _Tp __x = _Tp{5})
+    erf_inv_recur(_Tp p, _Tp x = _Tp{5})
     {
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto s_eps = std::numeric_limits<_Tp>::epsilon();
 
-      if (__p < _Tp{0})
-	return -__erf_inv_recur(-__p);
+      if (p < _Tp{0})
+	return -erf_inv_recur(-p);
       else
 	{
 	  // Iterate experfc(x).
-	  auto __xprev2 = _Tp{0}, __xprev = _Tp{0};
-	  const auto _S_max_iter = 500;
-	  auto __iter = 0;
-	  while (++__iter < _S_max_iter)
+	  auto xprev2 = _Tp{0}, xprev = _Tp{0};
+	  const auto s_max_iter = 500;
+	  auto iter = 0;
+	  while (++iter < s_max_iter)
 	    {
-	      __xprev2 = __xprev;
-	      __xprev = __x;
-	      __x = std::log(__erfc_scaled(__x) / (_Tp{1} - __p));
+	      xprev2 = xprev;
+	      xprev = x;
+	      x = std::log(erfc_scaled(x) / (_Tp{1} - p));
 	      // If the fraction jumps < 0 just bop it back.
-	      if (__x < _Tp{0})
-		__x = -__x;
-	      __x = std::sqrt(__x);
-	      if (std::abs(__x - __xprev) < _S_eps)
+	      if (x < _Tp{0})
+		x = -x;
+	      x = std::sqrt(x);
+	      if (std::abs(x - xprev) < s_eps)
 		break;
-	      if (std::abs(__x - __xprev2) < _S_eps)
+	      if (std::abs(x - xprev2) < s_eps)
 		break;
 	    }
-	  return __x;
+	  return x;
 	}
     }
 
@@ -72,14 +75,14 @@
    */
   template<typename _Tp>
     _Tp
-    __erf_inv_series(_Tp __p)
+    erf_inv_series(_Tp p)
     {
-      const auto _S_sqrt_pi = _Tp{1.772453850905516027298167483341145182797L};
-      const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto s_sqrt_pi = _Tp{1.772453850905516027298167483341145182797L};
+      const auto s_eps = std::numeric_limits<_Tp>::epsilon();
 
-      constexpr std::size_t _S_num_c = 100;
+      constexpr std::size_t s_num_c = 100;
       constexpr _Tp
-      _S_c[_S_num_c]
+      s_c[s_num_c]
       {
 	1.0000000000000000000000000000000000000000e+00L,
 	3.3333333333333333333333333333333333333333e-01L,
@@ -183,23 +186,23 @@
 	5.8436299732183403140670782938460945305608e+07L,
       };
 
-      if (__p < _Tp{0})
-	return -__erf_inv_series(-__p);
+      if (p < _Tp{0})
+	return -erf_inv_series(-p);
       else
 	{
-	  auto __chi = _S_sqrt_pi * __p / _Tp{2};
-	  auto __chi2 = __chi * __chi;
-	  auto __chik = __chi;
-	  auto __inverf = _Tp{0};
-	  for (std::size_t __k = 0; __k < _S_num_c; ++__k)
+	  auto chi = s_sqrt_pi * p / _Tp{2};
+	  auto chi2 = chi * chi;
+	  auto chik = chi;
+	  auto inverf = _Tp{0};
+	  for (std::size_t k = 0; k < s_num_c; ++k)
 	    {
-	      auto __term = _S_c[__k] * __chik;
-	      __inverf += __term;
-	      if (std::abs(__term) < _S_eps * std::abs(__inverf))
+	      auto term = s_c[k] * chik;
+	      inverf += term;
+	      if (std::abs(term) < s_eps * std::abs(inverf))
 		break;
-	      __chik *= __chi2;
+	      chik *= chi2;
 	    }
-	  return __inverf;
+	  return inverf;
 	}
     }
 
@@ -208,24 +211,23 @@
    */
   template<typename _Tp>
     _Tp
-    __erf_inv(_Tp __p)
+    erf_inv(_Tp p)
     {
-      const auto _S_inf = emsr::infinity(__p);
-      if (std::isnan(__p))
-	return __p;
-      else if (std::abs(__p) > _Tp(1))
-	std::__throw_domain_error("__erf_inv: Argument must have absolute value"
-				  " less than or equal to one.");
-      else if (__p == _Tp{-1})
-	return -_S_inf;
-      else if (__p == _Tp{1})
-	return _S_inf;
-      else if (std::abs(__p) > _Tp{0.95})
-	return __erf_inv_recur(__p);
-      else if (std::abs(__p) > _Tp{0.75})
-	return __erf_inv_recur(__p, __erf_inv_series(__p));
+      const auto s_inf = emsr::infinity(p);
+      if (std::isnan(p))
+	return p;
+      else if (std::abs(p) > _Tp(1))
+	throw std::domain_error("erf_inv: Argument must have absolute value less than or equal to one.");
+      else if (p == _Tp{-1})
+	return -s_inf;
+      else if (p == _Tp{1})
+	return s_inf;
+      else if (std::abs(p) > _Tp{0.95})
+	return erf_inv_recur(p);
+      else if (std::abs(p) > _Tp{0.75})
+	return erf_inv_recur(p, erf_inv_series(p));
       else
-	return __erf_inv_series(__p);
+	return erf_inv_series(p);
     }
 
   /**
@@ -234,56 +236,57 @@
    */
   template<typename _Tp>
     _Tp
-    __erfc_inv(_Tp __q)
+    erfc_inv(_Tp q)
     {
-      const auto _S_inf = emsr::infinity(__q);
-      if (std::isnan(__q))
-	return __q;
-      else if (__q < _Tp(0) || __q > _Tp(2))
-	std::__throw_domain_error("__erf_inv: Argument must be within"
-				  " the domain of erfc: [0,2].");
-      else if (__q == _Tp{0})
-	return +_S_inf;
-      else if (__q == _Tp{2})
-	return -_S_inf;
-      else if (std::abs(_Tp{1} - __q) > _Tp{0.95})
-	return __erf_inv_recur(_Tp{1} - __q);
-      else if (std::abs(_Tp{1} - __q) > _Tp{0.75})
-	return __erf_inv_recur(_Tp{1} - __q, __erf_inv_series(_Tp{1} - __q));
+      const auto s_inf = emsr::infinity(q);
+      if (std::isnan(q))
+	return q;
+      else if (q < _Tp(0) || q > _Tp(2))
+	throw std::domain_error("erf_inv: Argument must be within the domain of erfc: [0,2].");
+      else if (q == _Tp{0})
+	return +s_inf;
+      else if (q == _Tp{2})
+	return -s_inf;
+      else if (std::abs(_Tp{1} - q) > _Tp{0.95})
+	return erf_inv_recur(_Tp{1} - q);
+      else if (std::abs(_Tp{1} - q) > _Tp{0.75})
+	return erf_inv_recur(_Tp{1} - q, erf_inv_series(_Tp{1} - q));
       else
-	return __erf_inv_series(_Tp{1} - __q);
+	return erf_inv_series(_Tp{1} - q);
     }
 
+}
+
   float
-  inline erf_invf(float __p)
-  { return __erf_inv<float>(__p); }
+  inline erf_invf(float p)
+  { return detail::erf_inv<float>(p); }
 
   long double
-  inline erf_invl(long double __p)
-  { return __erf_inv<long double>(__p); }
+  inline erf_invl(long double p)
+  { return detail::erf_inv<long double>(p); }
 
   template<typename _Tp>
     inline emsr::fp_promote_t<_Tp>
-    erf_inv(_Tp __p)
+    erf_inv(_Tp p)
     {
-      using __type = emsr::fp_promote_t<_Tp>;
-      return __erf_inv<__type>(__p);
+      using type = emsr::fp_promote_t<_Tp>;
+      return detail::erf_inv<type>(p);
     }
 
   float
-  inline erfc_invf(float __q)
-  { return __erfc_inv<float>(__q); }
+  inline erfc_invf(float q)
+  { return detail::erfc_inv<float>(q); }
 
   long double
-  inline erfc_invl(long double __q)
-  { return __erfc_inv<long double>(__q); }
+  inline erfc_invl(long double q)
+  { return detail::erfc_inv<long double>(q); }
 
   template<typename _Tp>
     inline emsr::fp_promote_t<_Tp>
-    erfc_inv(_Tp __q)
+    erfc_inv(_Tp q)
     {
-      using __type = emsr::fp_promote_t<_Tp>;
-      return __erfc_inv<__type>(__q);
+      using type = emsr::fp_promote_t<_Tp>;
+      return detail::erfc_inv<type>(q);
     }
 
 /**
@@ -300,36 +303,36 @@ template<typename _Tp>
     const int n_max = 250;
     std::vector<_Tp> a;
     a.push_back(1);
-    for (int __n = 1; __n < n_max; ++__n)
+    for (int n = 1; n < n_max; ++n)
       {
-	auto __atemp = _Tp{0};
-	for (int __k = 1; __k <= __n; ++__k)
-	  __atemp += _Tp(2 * (__k - 1) + 1) * a[__k - 1]
-		 * _Tp(2 * (__n - __k) + 1) * a[__n - __k]
-		 / _Tp(__k * (2 * __k - 1));
-	__atemp /= _Tp(2 * __n + 1);
-	a.push_back(__atemp);
+	auto atemp = _Tp{0};
+	for (int k = 1; k <= n; ++k)
+	  atemp += _Tp(2 * (k - 1) + 1) * a[k - 1]
+		 * _Tp(2 * (n - k) + 1) * a[n - k]
+		 / _Tp(k * (2 * k - 1));
+	atemp /= _Tp(2 * n + 1);
+	a.push_back(atemp);
       }
 
     std::cout << "\n\n" << std::setw(w) << " a_k" << '\n';
-    for (auto __aa : a)
-      std::cout << ' ' << std::setw(w) << __aa << '\n';
+    for (auto aa : a)
+      std::cout << ' ' << std::setw(w) << aa << '\n';
 
     std::vector<_Tp> c;
     c.push_back(1);
-    for (int __n = 1; __n < n_max; ++__n)
+    for (int n = 1; n < n_max; ++n)
       {
-	auto __ctemp = _Tp{0};
-	for (int __k = 1; __k <= __n; ++__k)
-	  __ctemp += c[__k - 1] * c[__n - __k] / _Tp(__k * (2 * __k - 1));
-	c.push_back(__ctemp);
+	auto ctemp = _Tp{0};
+	for (int k = 1; k <= n; ++k)
+	  ctemp += c[k - 1] * c[n - k] / _Tp(k * (2 * k - 1));
+	c.push_back(ctemp);
       }
-    for (int __n = 1; __n < n_max; ++__n)
-      c[__n] /= _Tp(2 * __n + 1);
+    for (int n = 1; n < n_max; ++n)
+      c[n] /= _Tp(2 * n + 1);
 
     std::cout << "\n\n " << std::setw(w) << "c_k" << '\n';
-    for (auto __cc : c)
-      std::cout << ' ' << std::setw(w) << __cc << '\n';
+    for (auto cc : c)
+      std::cout << ' ' << std::setw(w) << cc << '\n';
 
     std::cout << "\n\n"
 	      << ' ' << std::setw(w) << "\"p\""
@@ -341,20 +344,20 @@ template<typename _Tp>
 	      << ' ' << std::setw(w) << "\"erf(inv_erf(p))\""
 	      << ' ' << std::setw(w) << "\"erf(inv_erf(p)) - p\""
 	      << '\n';
-    for (int __i = -100; __i <= 100; ++__i)
+    for (int i = -100; i <= 100; ++i)
       {
-	auto __p = _Tp(__i * 0.01L);
-	auto __inverfs = __erf_inv_series(__p);
-	auto __inverfr = __erf_inv_recur(__p);
-	auto __inverf = __erf_inv(__p);
-	std::cout << ' ' << std::setw(w) << __p
-		  << ' ' << std::setw(w) << __inverfs
-		  << ' ' << std::setw(w) << std::erf(__inverf)
-		  << ' ' << std::setw(w) << std::erf(__inverf) - __p
-		  << ' ' << std::setw(w) << std::erf(__inverfs)
-		  << ' ' << std::setw(w) << std::erf(__inverfs) - __p
-		  << ' ' << std::setw(w) << std::erf(__inverfr)
-		  << ' ' << std::setw(w) << std::erf(__inverfr) - __p
+	auto p = _Tp(i * 0.01L);
+	auto inverfs = detail::erf_inv_series(p);
+	auto inverfr = detail::erf_inv_recur(p);
+	auto inverf = erf_inv(p);
+	std::cout << ' ' << std::setw(w) << p
+		  << ' ' << std::setw(w) << inverfs
+		  << ' ' << std::setw(w) << std::erf(inverf)
+		  << ' ' << std::setw(w) << std::erf(inverf) - p
+		  << ' ' << std::setw(w) << std::erf(inverfs)
+		  << ' ' << std::setw(w) << std::erf(inverfs) - p
+		  << ' ' << std::setw(w) << std::erf(inverfr)
+		  << ' ' << std::setw(w) << std::erf(inverfr) - p
 		  << '\n';
       }
 
@@ -368,21 +371,21 @@ template<typename _Tp>
 	      << ' ' << std::setw(w) << "\"inv_erf(erf(x))\""
 	      << ' ' << std::setw(w) << "\"inv_erf(erf(x)) - x\""
 	      << '\n';
-    for (int __i = -200; __i <= 200; ++__i)
+    for (int i = -200; i <= 200; ++i)
       {
-	auto __x = _Tp(__i * 0.01L);
-	auto __erfx = std::erf(__x);
-	auto __inverfs = __erf_inv_series(__erfx);
-	auto __inverfr = __erf_inv_recur(__erfx);
-	auto __inverf = __erf_inv(__erfx);
-	std::cout << ' ' << std::setw(w) << __x
-		  << ' ' << std::setw(w) << __erfx
-		  << ' ' << std::setw(w) << __inverf
-		  << ' ' << std::setw(w) << __inverf - __x
-		  << ' ' << std::setw(w) << __inverfs
-		  << ' ' << std::setw(w) << __inverfs - __x
-		  << ' ' << std::setw(w) << __inverfr
-		  << ' ' << std::setw(w) << __inverfr - __x
+	auto x = _Tp(i * 0.01L);
+	auto erfx = std::erf(x);
+	auto inverfs = detail::erf_inv_series(erfx);
+	auto inverfr = detail::erf_inv_recur(erfx);
+	auto inverf = erf_inv(erfx);
+	std::cout << ' ' << std::setw(w) << x
+		  << ' ' << std::setw(w) << erfx
+		  << ' ' << std::setw(w) << inverf
+		  << ' ' << std::setw(w) << inverf - x
+		  << ' ' << std::setw(w) << inverfs
+		  << ' ' << std::setw(w) << inverfs - x
+		  << ' ' << std::setw(w) << inverfr
+		  << ' ' << std::setw(w) << inverfr - x
 		  << '\n';
       }
 
@@ -392,14 +395,14 @@ template<typename _Tp>
 	      << ' ' << std::setw(w) << "\"erfc(inv_erfc(p))\""
 	      << ' ' << std::setw(w) << "\"erfc(inv_erfc(p)) - p\""
 	      << '\n';
-    for (int __i = 200; __i >= 0; --__i)
+    for (int i = 200; i >= 0; --i)
       {
-	auto __p = _Tp(__i * 0.01L);
-	auto __inverfc = __erfc_inv(__p);
-	std::cout << ' ' << std::setw(w) << __p
-		  << ' ' << std::setw(w) << __inverfc
-		  << ' ' << std::setw(w) << std::erfc(__inverfc)
-		  << ' ' << std::setw(w) << std::erfc(__inverfc) - __p
+	auto p = _Tp(i * 0.01L);
+	auto inverfc = erfc_inv(p);
+	std::cout << ' ' << std::setw(w) << p
+		  << ' ' << std::setw(w) << inverfc
+		  << ' ' << std::setw(w) << std::erfc(inverfc)
+		  << ' ' << std::setw(w) << std::erfc(inverfc) - p
 		  << '\n';
       }
 
@@ -409,15 +412,15 @@ template<typename _Tp>
 	      << ' ' << std::setw(w) << "\"inv_erf(erf(x))\""
 	      << ' ' << std::setw(w) << "\"inv_erf(erf(x)) - x\""
 	      << '\n';
-    for (int __i = -200; __i <= 200; ++__i)
+    for (int i = -200; i <= 200; ++i)
       {
-	auto __x = _Tp(__i * 0.01L);
-	auto __erfcx = std::erfc(__x);
-	auto __inverfc = __erfc_inv(__erfcx);
-	std::cout << ' ' << std::setw(w) << __x
-		  << ' ' << std::setw(w) << __erfcx
-		  << ' ' << std::setw(w) << __inverfc
-		  << ' ' << std::setw(w) << __inverfc - __x
+	auto x = _Tp(i * 0.01L);
+	auto erfcx = std::erfc(x);
+	auto inverfc = erfc_inv(erfcx);
+	std::cout << ' ' << std::setw(w) << x
+		  << ' ' << std::setw(w) << erfcx
+		  << ' ' << std::setw(w) << inverfc
+		  << ' ' << std::setw(w) << inverfc - x
 		  << '\n';
       }
   }
@@ -437,12 +440,12 @@ template<typename _Tp>
 	      << ' ' << std::setw(w) << "p"
 	      << ' ' << std::setw(w) << "inv_erf(p)"
 	      << '\n';
-    for (int __k = -100; __k <= 100; ++__k)
+    for (int k = -100; k <= 100; ++k)
       {
-	auto __p = __k * _Tp{0.01L};
-	auto __inverf = __erf_inv(__p);
-	std::cout << ' ' << std::setw(w) << __p
-		  << ' ' << std::setw(w) << __inverf
+	auto p = k * _Tp{0.01L};
+	auto inverf = erf_inv(p);
+	std::cout << ' ' << std::setw(w) << p
+		  << ' ' << std::setw(w) << inverf
 		  << '\n';
       }
 
@@ -450,12 +453,12 @@ template<typename _Tp>
 	      << ' ' << std::setw(w) << "p"
 	      << ' ' << std::setw(w) << "inv_erfc(p)"
 	      << '\n';
-    for (int __k = 200; __k >= 0; --__k)
+    for (int k = 200; k >= 0; --k)
       {
-	auto __p = __k * _Tp{0.01L};
-	auto __inverfc = __erfc_inv(__p);
-	std::cout << ' ' << std::setw(w) << __p
-		  << ' ' << std::setw(w) << __inverfc
+	auto p = k * _Tp{0.01L};
+	auto inverfc = erfc_inv(p);
+	std::cout << ' ' << std::setw(w) << p
+		  << ' ' << std::setw(w) << inverfc
 		  << '\n';
       }
   }

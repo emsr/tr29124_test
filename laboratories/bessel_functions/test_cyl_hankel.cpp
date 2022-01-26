@@ -8,6 +8,7 @@
 #include <limits>
 #include <iostream>
 #include <iomanip>
+
 #include <wrap_boost.h>
 
 template<typename _Tp>
@@ -27,7 +28,7 @@ template<typename _Tp>
 	for (int iz = 1; iz <= +1000; ++iz)
 	  {
 	    auto z = iz * 0.01;
-	    auto h1s = __gnu_cxx::cyl_hankel_1(nu, z);
+	    auto h1s = emsr::cyl_hankel_1(nu, z);
 	    auto h1b = beast::cyl_hankel_1(nu, z);
 	    auto abs_frac = std::abs((h1s - h1b) / h1b);
 	    std::cout << ' ' << std::setw(width) << nu

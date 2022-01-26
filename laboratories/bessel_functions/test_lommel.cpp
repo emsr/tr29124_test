@@ -7,9 +7,9 @@
 #include <iostream>
 #include <iomanip>
 
-namespace std
+namespace emsr
 {
-namespace __detail
+namespace detail
 {
 
   /**
@@ -17,24 +17,24 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __lommel_1_series(_Tp __mu, _Tp __nu, _Tp __z)
+    lommel_1_series(_Tp mu, _Tp nu, _Tp z)
     {
-      const auto _S_eps = emsr::epsilon(__z);
-      const unsigned int _S_max_iter = 100000u;
-      const auto __z2 = __z * __z;
-      const auto __nu2 = __nu * __nu;
+      const auto s_eps = emsr::epsilon(z);
+      const unsigned int s_max_iter = 100000u;
+      const auto z2 = z * z;
+      const auto nu2 = nu * nu;
 
-      auto __term = _Tp{1};
-      auto _S1 = __term;
-      for (auto __k = 1u; __k < _S_max_iter; ++__k)
+      auto term = _Tp{1};
+      auto _S1 = term;
+      for (auto k = 1u; k < s_max_iter; ++k)
 	{
-	  const auto __mu1 = __mu + _Tp(2 * __k - 1);
-	  __term *= -__z2 / (__mu1 * __mu1 - __nu2);
-	  _S1 += __term;
-	  if (std::abs(__term) < _S_eps * std::abs(_S1))
+	  const auto mu1 = mu + _Tp(2 * k - 1);
+	  term *= -z2 / (mu1 * mu1 - nu2);
+	  _S1 += term;
+	  if (std::abs(term) < s_eps * std::abs(_S1))
 	    break;
 	}
-      _S1 *= std::pow(__z, __mu + 1);
+      _S1 *= std::pow(z, mu + 1);
       return _S1;
     }
 
@@ -51,15 +51,15 @@ namespace __detail
    */
   template<typename _Tp>
     inline _Tp
-    __lommel_1(_Tp __mu, _Tp __nu, _Tp __z)
+    lommel_1(_Tp mu, _Tp nu, _Tp z)
     {
-      auto _S_NaN = emsr::quiet_NaN(__z);
-      if (std::isnan(__mu) || std::isnan(__nu) || std::isnan(__z))
-	return _S_NaN;
-      else if (__nu < _Tp{0})
-	return __lommel_1(__mu, -__nu, __z);
+      auto s_NaN = emsr::quiet_NaN(z);
+      if (std::isnan(mu) || std::isnan(nu) || std::isnan(z))
+	return s_NaN;
+      else if (nu < _Tp{0})
+	return lommel_1(mu, -nu, z);
       else
-	return __lommel_1_series(__mu, __nu, __z);
+	return lommel_1_series(mu, nu, z);
     }
 
 
@@ -75,17 +75,17 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __lommel_2(_Tp __mu, _Tp __nu, _Tp __z)
+    lommel_2(_Tp mu, _Tp nu, _Tp z)
     {
-      auto _S_NaN = emsr::quiet_NaN(__z);
-      if (std::isnan(__mu) || std::isnan(__nu) || std::isnan(__z))
-	return _S_NaN;
-      else if (__nu < _Tp{0})
-	return __lommel_2(__mu, -__nu, __z);
+      auto s_NaN = emsr::quiet_NaN(z);
+      if (std::isnan(mu) || std::isnan(nu) || std::isnan(z))
+	return s_NaN;
+      else if (nu < _Tp{0})
+	return lommel_2(mu, -nu, z);
       else
 	{
-	  const auto im = emsr::fp_is_odd_integer(__mu - __nu);
-	  const auto ip = emsr::fp_is_odd_integer(__mu + __nu);
+	  const auto im = emsr::fp_is_odd_integer(mu - nu);
+	  const auto ip = emsr::fp_is_odd_integer(mu + nu);
 	  if (im && im() < 0)
             {
 	      return _Tp{0};
@@ -96,15 +96,15 @@ namespace __detail
 	    }
 	  else
             {
-	      const auto _S1 = __lommel_1(__mu, __nu, __z);
-	      const auto __sc = std::__detail::__sincos_pi((__mu - __nu) / _Tp{2});
-	      const auto __Bess = std::__detail::__cyl_bessel_jn(__nu, __z);
+	      const auto _S1 = lommel_1(mu, nu, z);
+	      const auto sc = emsr::detail::sincos_pi((mu - nu) / _Tp{2});
+	      const auto Bess = emsr::detail::cyl_bessel_jn(nu, z);
 	      const auto _S2 = _S1
-			     + std::pow(_Tp{2}, __mu - 1)
-			      * std::__detail::__gamma((__mu + __nu + 1)/ _Tp{2})
-			      * std::__detail::__gamma((__mu - __nu + 1)/ _Tp{2})
-		    * (__sc.__sin_v * __Bess.__J_value
-		     - __sc.__cos_v * __Bess.__N_value);
+			     + std::pow(_Tp{2}, mu - 1)
+			      * emsr::detail::gamma((mu + nu + 1)/ _Tp{2})
+			      * emsr::detail::gamma((mu - nu + 1)/ _Tp{2})
+		    * (sc.sin_v * Bess.J_value
+		     - sc.cos_v * Bess.N_value);
 	      return _S2;
 	    }
 	}
@@ -115,30 +115,30 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __lommel_2_asymp(_Tp __mu, _Tp __nu, _Tp __z)
+    lommel_2_asymp(_Tp mu, _Tp nu, _Tp z)
     {
-      const auto _S_eps = emsr::epsilon(__z);
-      const unsigned int _S_max_iter = 100000u;
-      const auto __zm2 = _Tp{1} / (__z * __z);
-      const auto __nu2 = __nu * __nu;
+      const auto s_eps = emsr::epsilon(z);
+      const unsigned int s_max_iter = 100000u;
+      const auto zm2 = _Tp{1} / (z * z);
+      const auto nu2 = nu * nu;
 
-      auto __term = _Tp{1};
-      auto _S2 = __term;
-      for (auto __k = 1; __k < _S_max_iter; ++__k)
+      auto term = _Tp{1};
+      auto _S2 = term;
+      for (auto k = 1; k < s_max_iter; ++k)
 	{
-	  const auto __mu1 = -__mu + _Tp(2 * __k - 1);
-	  __term *= -(__mu1 * __mu1 - __nu2) * __zm2;
-	  _S2 += __term;
-	  if (std::abs(__term) < _S_eps * std::abs(_S2))
+	  const auto mu1 = -mu + _Tp(2 * k - 1);
+	  term *= -(mu1 * mu1 - nu2) * zm2;
+	  _S2 += term;
+	  if (std::abs(term) < s_eps * std::abs(_S2))
 	    break;
 	}
-      _S2 *= std::pow(__z, __mu - 1);
+      _S2 *= std::pow(z, mu - 1);
     }
 
-} // namespace __detail
-} // namespace std
+} // namespace detail
+} // namespace emsr
 
-namespace __gnu_cxx
+namespace emsr
 {
 
   /**
@@ -148,8 +148,8 @@ namespace __gnu_cxx
    * @see lommel_1 for details.
    */
   inline float
-  lommel_1f(float __mu, float __nu, float __z)
-  { return std::__detail::__lommel_1<float>(__mu, __nu, __z); }
+  lommel_1f(float mu, float nu, float z)
+  { return emsr::detail::lommel_1<float>(mu, nu, z); }
 
   /**
    * Return the Lommel function of the first kind @f$ s_{\mu,nu}(z) @f$
@@ -158,8 +158,8 @@ namespace __gnu_cxx
    * @see lommel_1 for details.
    */
   inline long double
-  lommel_1l(float __mu, long double __nu, long double __z)
-  { return std::__detail::__lommel_1<long double>(__mu, __nu, __z); }
+  lommel_1l(float mu, long double nu, long double z)
+  { return emsr::detail::lommel_1<long double>(mu, nu, z); }
 
   /**
    * Return the Lommel function of the first kind.
@@ -174,10 +174,10 @@ namespace __gnu_cxx
    */
   template<typename _Tmu, typename _Tnu, typename _Tp>
     inline emsr::fp_promote_t<_Tmu, _Tnu, _Tp>
-    lommel_1(_Tmu __mu, _Tnu __nu, _Tp __z)
+    lommel_1(_Tmu mu, _Tnu nu, _Tp z)
     {
-      using __type = emsr::fp_promote_t<_Tmu, _Tnu, _Tp>;
-      return std::__detail::__lommel_1<__type>(__mu, __nu, __z);
+      using type = emsr::fp_promote_t<_Tmu, _Tnu, _Tp>;
+      return emsr::detail::lommel_1<type>(mu, nu, z);
     }
 
   /**
@@ -187,8 +187,8 @@ namespace __gnu_cxx
    * @see lommel_2 for details.
    */
   inline float
-  lommel_2f(float __mu, float __nu, float __z)
-  { return std::__detail::__lommel_2<float>(__mu, __nu, __z); }
+  lommel_2f(float mu, float nu, float z)
+  { return emsr::detail::lommel_2<float>(mu, nu, z); }
 
   /**
    * Return the Lommel function of the second kind @f$ S_{\mu,nu}(z) @f$
@@ -197,8 +197,8 @@ namespace __gnu_cxx
    * @see lommel_2 for details.
    */
   inline long double
-  lommel_2l(float __mu, long double __nu, long double __z)
-  { return std::__detail::__lommel_2<long double>(__mu, __nu, __z); }
+  lommel_2l(float mu, long double nu, long double z)
+  { return emsr::detail::lommel_2<long double>(mu, nu, z); }
 
   /**
    * Return the Lommel function of the second kind.
@@ -216,13 +216,13 @@ namespace __gnu_cxx
    */
   template<typename _Tmu, typename _Tnu, typename _Tp>
     inline emsr::fp_promote_t<_Tmu, _Tnu, _Tp>
-    lommel_2(_Tmu __mu, _Tnu __nu, _Tp __z)
+    lommel_2(_Tmu mu, _Tnu nu, _Tp z)
     {
-      using __type = emsr::fp_promote_t<_Tmu, _Tnu, _Tp>;
-      return std::__detail::__lommel_2<__type>(__mu, __nu, __z);
+      using type = emsr::fp_promote_t<_Tmu, _Tnu, _Tp>;
+      return emsr::detail::lommel_2<type>(mu, nu, z);
     }
 
-} // namespace __gnu_cxx
+} // namespace emsr
 
 template<typename _Tp>
   void
@@ -240,7 +240,7 @@ template<typename _Tp>
     {
       auto z = del * i;
       std::cout << ' ' << std::setw(6) << z
-		<< ' ' << std::setw(width) << __gnu_cxx::lommel_1(mu, nu, z)
+		<< ' ' << std::setw(width) << emsr::lommel_1(mu, nu, z)
 		<< '\n';
     }
   }
@@ -261,7 +261,7 @@ template<typename _Tp>
     {
       auto z = del * i;
       std::cout << ' ' << std::setw(6) << z
-		<< ' ' << std::setw(width) << __gnu_cxx::lommel_2(mu, nu, z)
+		<< ' ' << std::setw(width) << emsr::lommel_2(mu, nu, z)
 		<< '\n';
     }
   }

@@ -23,6 +23,9 @@
 
 #include <cmath>
 #include <complex>
+
+#include <emsr/specfun.h>
+
 #if defined(__TEST_DEBUG)
 #  include <iostream>
 #  define VERIFY(A) \
@@ -39,18 +42,17 @@ void
 test01()
 {
   using cmplx = std::complex<double>;
-  using __gnu_cxx::airy_ai;
 
-  auto ai0 = airy_ai(cmplx( 1.0000000000000000,  0.0000000000000000));
-  auto ai1 = airy_ai(cmplx( 0.8090169943749474,  0.5877852522924731));
-  auto ai2 = airy_ai(cmplx( 0.3090169943749474,  0.9510565162951536));
-  auto ai3 = airy_ai(cmplx(-0.3090169943749474,  0.9510565162951536));
-  auto ai4 = airy_ai(cmplx(-0.8090169943749474,  0.5877852522924731));
-  auto ai5 = airy_ai(cmplx(-1.0000000000000000,  0.0000000000000000));
-  auto ai6 = airy_ai(cmplx(-0.8090169943749474, -0.5877852522924731));
-  auto ai7 = airy_ai(cmplx(-0.3090169943749474, -0.9510565162951536));
-  auto ai8 = airy_ai(cmplx( 0.3090169943749474, -0.9510565162951536));
-  auto ai9 = airy_ai(cmplx( 0.8090169943749474, -0.5877852522924731));
+  auto ai0 = emsr::airy_ai(cmplx( 1.0000000000000000,  0.0000000000000000));
+  auto ai1 = emsr::airy_ai(cmplx( 0.8090169943749474,  0.5877852522924731));
+  auto ai2 = emsr::airy_ai(cmplx( 0.3090169943749474,  0.9510565162951536));
+  auto ai3 = emsr::airy_ai(cmplx(-0.3090169943749474,  0.9510565162951536));
+  auto ai4 = emsr::airy_ai(cmplx(-0.8090169943749474,  0.5877852522924731));
+  auto ai5 = emsr::airy_ai(cmplx(-1.0000000000000000,  0.0000000000000000));
+  auto ai6 = emsr::airy_ai(cmplx(-0.8090169943749474, -0.5877852522924731));
+  auto ai7 = emsr::airy_ai(cmplx(-0.3090169943749474, -0.9510565162951536));
+  auto ai8 = emsr::airy_ai(cmplx( 0.3090169943749474, -0.9510565162951536));
+  auto ai9 = emsr::airy_ai(cmplx( 0.8090169943749474, -0.5877852522924731));
 
   bool test __attribute__((unused)) = true;
   double eps = 1.0e-12;

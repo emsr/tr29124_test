@@ -34,192 +34,191 @@
 
 #include <cmath>
 #include <complex>
-//#include <bits/sf_airy.tcc>
-//#include <bits/sf_hankel.tcc>
-#include <bits/complex128.h>
-#include <bits/sf_airy.tcc>
-#include <bits/sf_hankel_new.tcc>
+#include <emsr/complex128.h>
+#include <emsr/sf_airy.tcc>
+//#include <emsr/sf_hankel.tcc>
+#include <emsr/sf_hankel_new.tcc>
 
-namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
+namespace emsr _GLIBCXX_VISIBILITY(default)
 {
 
   inline std::complex<float>
-  ccyl_hankel_h1f(std::complex<float> __nu,
-		  std::complex<float> __z)
-  { return std::__detail::__cyl_hankel_h1<float>(__nu, __z); }
+  ccyl_hankel_h1f(std::complex<float> nu,
+		  std::complex<float> z)
+  { return emsr::detail::cyl_hankel_h1<float>(nu, z); }
 
   inline std::complex<long double>
-  ccyl_hankel_h1l(std::complex<long double> __nu,
-		  std::complex<long double> __z)
-  { return std::__detail::__cyl_hankel_h1<long double>(__nu, __z); }
+  ccyl_hankel_h1l(std::complex<long double> nu,
+		  std::complex<long double> z)
+  { return emsr::detail::cyl_hankel_h1<long double>(nu, z); }
 
   template<typename _Tpnu, typename _Tp>
-    inline std::complex<typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type>
-    ccyl_hankel_h1(std::complex<_Tpnu> __nu, std::complex<_Tp> __z)
+    inline std::complex<typename emsr::promote_2<_Tpnu, _Tp>::type>
+    ccyl_hankel_h1(std::complex<_Tpnu> nu, std::complex<_Tp> z)
     {
-      using __type = typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type;
-      return std::__detail::__cyl_hankel_h1<__type>(__nu, __z);
+      using type = typename emsr::promote_2<_Tpnu, _Tp>::type;
+      return emsr::detail::cyl_hankel_h1<type>(nu, z);
     }
 
 
   inline std::complex<float>
-  ccyl_hankel_h2f(std::complex<float> __nu,
-		  std::complex<float> __z)
-  { return std::__detail::__cyl_hankel_h2<float>(__nu, __z); }
+  ccyl_hankel_h2f(std::complex<float> nu,
+		  std::complex<float> z)
+  { return emsr::detail::cyl_hankel_h2<float>(nu, z); }
 
   inline std::complex<long double>
-  ccyl_hankel_h2l(std::complex<long double> __nu,
-		  std::complex<long double> __z)
-  { return std::__detail::__cyl_hankel_h2<long double>(__nu, __z); }
+  ccyl_hankel_h2l(std::complex<long double> nu,
+		  std::complex<long double> z)
+  { return emsr::detail::cyl_hankel_h2<long double>(nu, z); }
 
   template<typename _Tpnu, typename _Tp>
-    inline std::complex<typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type>
-    ccyl_hankel_h2(std::complex<_Tpnu> __nu, std::complex<_Tp> __z)
+    inline std::complex<typename emsr::promote_2<_Tpnu, _Tp>::type>
+    ccyl_hankel_h2(std::complex<_Tpnu> nu, std::complex<_Tp> z)
     {
-      using __type = typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type;
-      return std::__detail::__cyl_hankel_h2<__type>(__nu, __z);
+      using type = typename emsr::promote_2<_Tpnu, _Tp>::type;
+      return emsr::detail::cyl_hankel_h2<type>(nu, z);
     }
 
 
   inline std::complex<float>
-  ccyl_besself(std::complex<float> __nu,
-	       std::complex<float> __z)
-  { return std::__detail::__cyl_bessel<float>(__nu, __z); }
+  ccyl_besself(std::complex<float> nu,
+	       std::complex<float> z)
+  { return emsr::detail::cyl_bessel<float>(nu, z); }
 
   inline std::complex<long double>
-  ccyl_bessell(std::complex<long double> __nu,
-	       std::complex<long double> __z)
-  { return std::__detail::__cyl_bessel<long double>(__nu, __z); }
+  ccyl_bessell(std::complex<long double> nu,
+	       std::complex<long double> z)
+  { return emsr::detail::cyl_bessel<long double>(nu, z); }
 
   template<typename _Tpnu, typename _Tp>
-    inline std::complex<typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type>
-    ccyl_bessel(std::complex<_Tpnu> __nu, std::complex<_Tp> __z)
+    inline std::complex<typename emsr::promote_2<_Tpnu, _Tp>::type>
+    ccyl_bessel(std::complex<_Tpnu> nu, std::complex<_Tp> z)
     {
-      using __type = typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type;
-      return std::__detail::__cyl_bessel<__type>(__nu, __z);
+      using type = typename emsr::promote_2<_Tpnu, _Tp>::type;
+      return emsr::detail::cyl_bessel<type>(nu, z);
     }
 
 
   inline std::complex<float>
-  ccyl_neumannf(std::complex<float> __nu,
-	        std::complex<float> __z)
-  { return std::__detail::__cyl_neumann<float>(__nu, __z); }
+  ccyl_neumannf(std::complex<float> nu,
+	        std::complex<float> z)
+  { return emsr::detail::cyl_neumann<float>(nu, z); }
 
   inline std::complex<long double>
-  ccyl_neumannl(std::complex<long double> __nu,
-	        std::complex<long double> __z)
-  { return std::__detail::__cyl_neumann<long double>(__nu, __z); }
+  ccyl_neumannl(std::complex<long double> nu,
+	        std::complex<long double> z)
+  { return emsr::detail::cyl_neumann<long double>(nu, z); }
 
   template<typename _Tpnu, typename _Tp>
-    inline std::complex<typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type>
-    ccyl_neumann(std::complex<_Tpnu> __nu, std::complex<_Tp> __z)
+    inline std::complex<typename emsr::promote_2<_Tpnu, _Tp>::type>
+    ccyl_neumann(std::complex<_Tpnu> nu, std::complex<_Tp> z)
     {
-      using __type = typename __gnu_cxx::__promote_2<_Tpnu, _Tp>::__type;
-      return std::__detail::__cyl_neumann<__type>(__nu, __z);
+      using type = typename emsr::promote_2<_Tpnu, _Tp>::type;
+      return emsr::detail::cyl_neumann<type>(nu, z);
     }
 
 
   inline std::complex<float>
-  csph_hankel_h1f(int __n, std::complex<float> __z)
-  {return std::__detail::__sph_hankel_h1<float>(__n, __z); }
+  csph_hankel_h1f(int n, std::complex<float> z)
+  {return emsr::detail::sph_hankel_h1<float>(n, z); }
 
   inline std::complex<long double>
-  csph_hankel_h1l(int __n, std::complex<long double> __z)
-  { return std::__detail::__sph_hankel_h1<long double>(__n, __z); }
+  csph_hankel_h1l(int n, std::complex<long double> z)
+  { return emsr::detail::sph_hankel_h1<long double>(n, z); }
 
   template<typename _Tp>
-    inline std::complex<typename __gnu_cxx::__promote<_Tp>::__type>
-    csph_hankel_h1(int __n, std::complex<_Tp> __z)
+    inline std::complex<typename emsr::promote<_Tp>::type>
+    csph_hankel_h1(int n, std::complex<_Tp> z)
     {
-      using __type = typename __gnu_cxx::__promote<_Tp>::__type;
-      return std::__detail::__sph_hankel_h1<__type>(__n, __z);
+      using type = typename emsr::promote<_Tp>::type;
+      return emsr::detail::sph_hankel_h1<type>(n, z);
     }
 
 
   inline std::complex<float>
-  csph_hankel_h2f(int __n, std::complex<float> __z)
-  { return std::__detail::__sph_hankel_h2<float>(__n, __z); }
+  csph_hankel_h2f(int n, std::complex<float> z)
+  { return emsr::detail::sph_hankel_h2<float>(n, z); }
 
   inline std::complex<long double>
-  csph_hankel_h2l(int __n, std::complex<long double> __z)
-  { return std::__detail::__sph_hankel_h2<long double>(__n, __z); }
+  csph_hankel_h2l(int n, std::complex<long double> z)
+  { return emsr::detail::sph_hankel_h2<long double>(n, z); }
 
   template<typename _Tp>
-    inline std::complex<typename __gnu_cxx::__promote<_Tp>::__type>
-    csph_hankel_h2(int __n, std::complex<_Tp> __z)
+    inline std::complex<typename emsr::promote<_Tp>::type>
+    csph_hankel_h2(int n, std::complex<_Tp> z)
     {
-      using __type = typename __gnu_cxx::__promote<_Tp>::__type;
-      return std::__detail::__sph_hankel_h2<__type>(__n, __z);
+      using type = typename emsr::promote<_Tp>::type;
+      return emsr::detail::sph_hankel_h2<type>(n, z);
     }
 
 
   inline std::complex<float>
-  csph_besself(int __n, std::complex<float> __z)
-  { return std::__detail::__sph_bessel<float>(__n, __z); }
+  csph_besself(int n, std::complex<float> z)
+  { return emsr::detail::sph_bessel<float>(n, z); }
 
   inline std::complex<long double>
-  csph_bessell(int __n, std::complex<long double> __z)
-  { return std::__detail::__sph_bessel<long double>(__n, __z); }
+  csph_bessell(int n, std::complex<long double> z)
+  { return emsr::detail::sph_bessel<long double>(n, z); }
 
   template<typename _Tp>
-    inline std::complex<typename __gnu_cxx::__promote<_Tp>::__type>
-    csph_bessel(int __n, std::complex<_Tp> __z)
+    inline std::complex<typename emsr::promote<_Tp>::type>
+    csph_bessel(int n, std::complex<_Tp> z)
     {
-      using __type = typename __gnu_cxx::__promote<_Tp>::__type;
-      return std::__detail::__sph_bessel<__type>(__n, __z);
+      using type = typename emsr::promote<_Tp>::type;
+      return emsr::detail::sph_bessel<type>(n, z);
     }
 
 
   inline std::complex<float>
-  csph_neumannf(int __n, std::complex<float> __z)
-  { return std::__detail::__sph_neumann<float>(__n, __z); }
+  csph_neumannf(int n, std::complex<float> z)
+  { return emsr::detail::sph_neumann<float>(n, z); }
 
   inline std::complex<long double>
-  csph_neumannl(int __n, std::complex<long double> __z)
-  { return std::__detail::__sph_neumann<long double>(__n, __z); }
+  csph_neumannl(int n, std::complex<long double> z)
+  { return emsr::detail::sph_neumann<long double>(n, z); }
 
   template<typename _Tp>
-    inline std::complex<typename __gnu_cxx::__promote<_Tp>::__type>
-    csph_neumann(int __n, std::complex<_Tp> __z)
+    inline std::complex<typename emsr::promote<_Tp>::type>
+    csph_neumann(int n, std::complex<_Tp> z)
     {
-      using __type = typename __gnu_cxx::__promote<_Tp>::__type;
-      return std::__detail::__sph_neumann<__type>(__n, __z);
+      using type = typename emsr::promote<_Tp>::type;
+      return emsr::detail::sph_neumann<type>(n, z);
     }
 
 
   inline std::complex<float>
-  cairy_aif(std::complex<float> __z)
-  { return std::__detail::__airy_ai<float>(__z); }
+  cairy_aif(std::complex<float> z)
+  { return emsr::detail::airy_ai<float>(z); }
 
   inline std::complex<long double>
-  cairy_ail(std::complex<long double> __z)
-  { return std::__detail::__airy_ai<long double>(__z); }
+  cairy_ail(std::complex<long double> z)
+  { return emsr::detail::airy_ai<long double>(z); }
 
   template<typename _Tp>
-    inline std::complex<typename __gnu_cxx::__promote<_Tp>::__type>
-    cairy_ai(std::complex<_Tp> __z)
+    inline std::complex<typename emsr::promote<_Tp>::type>
+    cairy_ai(std::complex<_Tp> z)
     {
-      using __type = typename __gnu_cxx::__promote<_Tp>::__type;
-      return std::__detail::__airy_ai<__type>(__z);
+      using type = typename emsr::promote<_Tp>::type;
+      return emsr::detail::airy_ai<type>(z);
     }
 //
 //
 //  inline std::complex<float>
-//  cairy_bif(std::complex<float> __z)
-//  { return std::__detail::__airy_bi<float>(__z); }
+//  cairy_bif(std::complex<float> z)
+//  { return emsr::detail::airy_bi<float>(z); }
 //
 //  inline std::complex<long double>
-//  cairy_bil(std::complex<long double> __z)
-//  { return std::__detail::__airy_bi<long double>(__z); }
+//  cairy_bil(std::complex<long double> z)
+//  { return emsr::detail::airy_bi<long double>(z); }
 //
 //  template<typename _Tp>
-//    inline std::complex<typename __gnu_cxx::__promote<_Tp>::__type>
-//    cairy_bi(std::complex<_Tp> __z)
+//    inline std::complex<typename emsr::promote<_Tp>::type>
+//    cairy_bi(std::complex<_Tp> z)
 //    {
-//      using __type = typename __gnu_cxx::__promote<_Tp>::__type;
-//      return std::__detail:__airy_bi<__type>(__z);
+//      using type = typename emsr::promote<_Tp>::type;
+//      return emsr::detail::airy_bi<type>(z);
 //    }
 
-} // namespace __gnu_cxx
+} // namespace emsr
 
 #endif // _GLIBCXX_BITS_HANKEL_H

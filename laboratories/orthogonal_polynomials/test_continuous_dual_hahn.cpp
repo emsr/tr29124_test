@@ -10,10 +10,10 @@
 
 template<typename _Tp>
   struct
-  __continuous_dual_hahn_t
+  continuous_dual_hahn_t
   {
-    _Tp __value;
-    _Tp __factor;
+    _Tp value;
+    _Tp factor;
   };
 
 /**
@@ -33,8 +33,8 @@ template<typename _Tp>
  * @f]
  */
 template<typename _Tp, typename _TpX>
-  __continuous_dual_hahn_t<_Tp>
-  __continuous_dual_hahn_recur(int n, _Tp a, _Tp b, _Tp c, _TpX x)
+  continuous_dual_hahn_t<_Tp>
+  continuous_dual_hahn_recur(int n, _Tp a, _Tp b, _Tp c, _TpX x)
   {
     auto Snm1 = _Tp{1};
     if (n == 0)
@@ -84,8 +84,8 @@ template<typename _Tp, typename _TpX>
  * @f]
  */
 template<typename _Tp, typename _TpX>
-  __continuous_dual_hahn_t<_Tp>
-  __continuous_dual_hahn(int n, _Tp a, _Tp b, _Tp c, _TpX x)
+  continuous_dual_hahn_t<_Tp>
+  continuous_dual_hahn(int n, _Tp a, _Tp b, _Tp c, _TpX x)
   {
     if (std::isnan(a))
       return {a, _Tp{}};
@@ -96,7 +96,7 @@ template<typename _Tp, typename _TpX>
     else if (std::isnan(x))
       return {x, _Tp{}};
     else
-      return __continuous_dual_hahn_recur(n, a, b, c, x);
+      return continuous_dual_hahn_recur(n, a, b, c, x);
   }
 
 /**
@@ -115,9 +115,9 @@ template<typename _Tp>
 	for (int i = 0; i <= 220; ++i)
 	  {
 	    auto x = i * _Tp{0.05L};
-	    auto S = __continuous_dual_hahn(n, a, b, c, x);
+	    auto S = continuous_dual_hahn(n, a, b, c, x);
 	    std::cout << ' ' << std::setw(w) << x
-		      << ' ' << std::setw(w) << S.__value
+		      << ' ' << std::setw(w) << S.value
 		      << '\n';
 	  }
       }

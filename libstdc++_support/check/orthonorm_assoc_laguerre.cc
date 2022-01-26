@@ -21,6 +21,7 @@
 
 #include <cmath>
 
+#include <emsr/specfun.h>
 #include <emsr/integration.h>
 
 #if defined(__TEST_DEBUG)
@@ -56,8 +57,8 @@ template<typename _Tp>
   {
     auto norm = gamma_ratio(n1, alpha);
     return std::pow(x, alpha) * std::exp(-x)
-	 * std::assoc_laguerre(n1, alpha, x)
-	 * std::assoc_laguerre(n2, alpha, x) / norm;
+	 * emsr::assoc_laguerre(n1, alpha, x)
+	 * emsr::assoc_laguerre(n2, alpha, x) / norm;
   }
 
 template<typename _Tp>

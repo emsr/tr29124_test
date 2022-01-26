@@ -23,6 +23,9 @@
 
 #include <cmath>
 #include <complex>
+
+#include <emsr/specfun.h>
+
 #if defined(__TEST_DEBUG)
 #  include <iostream>
 #  define VERIFY(A) \
@@ -39,14 +42,13 @@ void
 test01()
 {
   using cmplx = std::complex<double>;
-  using __gnu_cxx::ellint_rd;
 
-  auto rd1 = ellint_rd(0.0, 2.0, 1.0);
-  auto rd2 = ellint_rd(2.0, 3.0, 4.0);
-  auto rd3 = ellint_rd(cmplx(0.0, 1.0), cmplx(0.0, -1.0), cmplx(2.0, 0.0));
-  auto rd4 = ellint_rd(cmplx(0.0, 0.0), cmplx(0.0, 1.0), cmplx(0.0, -1.0));
-  auto rd5 = ellint_rd(cmplx(0.0, 0.0), cmplx(-1.0, 1.0), cmplx(0.0, 1.0));
-  auto rd6 = ellint_rd(cmplx(-2.0, -1.0), cmplx(0.0, -1.0), cmplx(-1.0, 1.0));
+  auto rd1 = emsr::ellint_rd(0.0, 2.0, 1.0);
+  auto rd2 = emsr::ellint_rd(2.0, 3.0, 4.0);
+  auto rd3 = emsr::ellint_rd(cmplx(0.0, 1.0), cmplx(0.0, -1.0), cmplx(2.0, 0.0));
+  auto rd4 = emsr::ellint_rd(cmplx(0.0, 0.0), cmplx(0.0, 1.0), cmplx(0.0, -1.0));
+  auto rd5 = emsr::ellint_rd(cmplx(0.0, 0.0), cmplx(-1.0, 1.0), cmplx(0.0, 1.0));
+  auto rd6 = emsr::ellint_rd(cmplx(-2.0, -1.0), cmplx(0.0, -1.0), cmplx(-1.0, 1.0));
 
   bool test __attribute__((unused)) = true;
   double eps = 1.0e-12;

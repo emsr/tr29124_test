@@ -11,10 +11,10 @@
 
 template<typename _Tp>
   struct
-  __meixner_pollaczek_t
+  meixner_pollaczek_t
   {
-    std::complex<_Tp> __value;
-    std::complex<_Tp> __factor;
+    std::complex<_Tp> value;
+    std::complex<_Tp> factor;
   };
 
 /**
@@ -27,8 +27,8 @@ template<typename _Tp>
  * where @f$ P_n(x) = P^{(\lambda)}_n(x;\phi) @f$
  */
 template<typename _Tp, typename _TpX>
-  __meixner_pollaczek_t<_Tp>
-  __meixner_pollaczek_recur(int n, _Tp lambda, _Tp phi, _TpX x)
+  meixner_pollaczek_t<_Tp>
+  meixner_pollaczek_recur(int n, _Tp lambda, _Tp phi, _TpX x)
   {
     std::complex<_Tp> Pnm1 = _Tp{1};
     if (n == 0)
@@ -69,8 +69,8 @@ template<typename _Tp, typename _TpX>
  * @f]
  */
 template<typename _Tp, typename _TpX>
-  __meixner_pollaczek_t<_Tp>
-  __meixner_pollaczek(int n, _Tp lambda, _Tp phi, _TpX x)
+  meixner_pollaczek_t<_Tp>
+  meixner_pollaczek(int n, _Tp lambda, _Tp phi, _TpX x)
   {
     if (std::isnan(lambda))
       return {std::complex<_Tp>(lambda), std::complex<_Tp>{}};
@@ -79,7 +79,7 @@ template<typename _Tp, typename _TpX>
     else if (std::isnan(x))
       return {std::complex<_Tp>(x), std::complex<_Tp>{}};
     else
-      return __meixner_pollaczek_recur(n, lambda, phi, x);
+      return meixner_pollaczek_recur(n, lambda, phi, x);
   }
 
 template<typename _Tp>
@@ -95,10 +95,10 @@ template<typename _Tp>
 	for (int i = -320; i <= 320; ++i)
 	  {
 	    auto x = i * _Tp{0.01L};
-	    auto P = __meixner_pollaczek(n, lambda, phi, x);
+	    auto P = meixner_pollaczek(n, lambda, phi, x);
 	    std::cout << ' ' << std::setw(w) << x
-		      << ' ' << std::setw(w) << std::real(P.__value)
-		      << ' ' << std::setw(w) << std::imag(P.__value)
+		      << ' ' << std::setw(w) << std::real(P.value)
+		      << ' ' << std::setw(w) << std::imag(P.value)
 		      << '\n';
 	  }
       }

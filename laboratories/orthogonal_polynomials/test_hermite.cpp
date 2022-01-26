@@ -8,7 +8,7 @@
 #include <cmath>
 #include <limits>
 
-#include <ext/float128_io.h>
+#include <emsr/float128_io.h>
 #include <new_hermite.tcc>
 #include <emsr/continued_fractions.h>
 #include <emsr/integration.h>
@@ -31,21 +31,21 @@
    */
   template<typename _Tp>
     _Tp
-    __hermite_ratio(unsigned int __n, _Tp __x)
+    hermite_ratio(unsigned int n, _Tp x)
     {
-      auto __a = [__n](std::size_t __k, _Tp) { return _Tp(-2 * (__n - __k)); };
-      using _AFun = decltype(__a);
+      auto a = [n](std::size_t k, _Tp) { return _Tp(-2 * (n - k)); };
+      using _AFun = decltype(a);
 
-      auto __b = [__x](std::size_t, _Tp) { return _Tp{2} * __x; };
-      using _BFun = decltype(__b);
+      auto b = [x](std::size_t, _Tp) { return _Tp{2} * x; };
+      using _BFun = decltype(b);
 
-      auto __w = [](std::size_t, _Tp) { return _Tp{0}; };
-      using _TailFun = decltype(__w);
+      auto w = [](std::size_t, _Tp) { return _Tp{0}; };
+      using _TailFun = decltype(w);
 
       using _CFrac = emsr::LentzContinuedFraction<_Tp, _AFun, _BFun, _TailFun>;
-      _CFrac __Hrat(__a, __b, __w);
+      _CFrac Hrat(a, b, w);
 
-      return __Hrat();
+      return Hrat();
     }
 
   /**
@@ -53,100 +53,99 @@
    */
   template<typename _Tp>
     std::vector<emsr::QuadraturePoint<_Tp>>
-    __hermite_zeros(unsigned int __n, _Tp __proto = _Tp{})
+    hermite_zeros(unsigned int n, _Tp proto = _Tp{})
     {
-      const auto _S_eps = emsr::epsilon(__proto);
-      const unsigned int _S_maxit = 1000u;
-      const auto _S_pim4 = _Tp{0.7511255444649424828587030047762276930510L};
-      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
+      const auto s_eps = emsr::epsilon(proto);
+      const unsigned int s_maxit = 1000u;
+      const auto s_pim4 = _Tp{0.7511255444649424828587030047762276930510L};
+      const auto s_sqrt_pi = emsr::sqrtpi_v<_Tp>;
 
-      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
+      std::vector<emsr::QuadraturePoint<_Tp>> pt(n);
 
-      const auto __m = __n / 2;
+      const auto m = n / 2;
 
       // Treat the central zero for odd order specially.
       // Be careful to avoid overflow of the factorials.
       // An alternative would be to proceed with the recursion
       // for large order.
-      if (__n & 1)
+      if (n & 1)
 	{
-	  if (__n < std::__detail::_S_num_factorials<_Tp>)
+	  if (n < emsr::detail::s_num_factorials<_Tp>)
 	    {
-	      auto __nm = __n - 1;
-	      auto __nmfact = std::__detail::__factorial<_Tp>(__nm);
-	      auto __mm = __nm / 2;
-	      auto __mmfact = std::__detail::__factorial<_Tp>(__mm);
-	      auto __Hnm1 = (__mm & 1 ? _Tp{-1} : _Tp{1}) / __mmfact;
-	      __pt[__m].point = _Tp{0};
-	      __pt[__m].weight = _S_sqrt_pi * std::pow(_Tp{2}, _Tp(__n - 1))
-				 / __nmfact / __Hnm1 / __Hnm1 / __n;
+	      auto nm = n - 1;
+	      auto nmfact = emsr::detail::factorial<_Tp>(nm);
+	      auto mm = nm / 2;
+	      auto mmfact = emsr::detail::factorial<_Tp>(mm);
+	      auto Hnm1 = (mm & 1 ? _Tp{-1} : _Tp{1}) / mmfact;
+	      pt[m].point = _Tp{0};
+	      pt[m].weight = s_sqrt_pi * std::pow(_Tp{2}, _Tp(n - 1))
+				 / nmfact / Hnm1 / Hnm1 / n;
 	    }
 	  else
 	    {
-	      auto __nm = __n - 1;
-	      auto __nmfact = std::__detail::__log_factorial<_Tp>(__nm);
-	      auto __mm = __nm / 2;
-	      auto __mmfact = std::__detail::__log_factorial<_Tp>(__mm);
-	      __pt[__m].point = _Tp{0};
-	      __pt[__m].weight = _S_sqrt_pi * std::pow(_Tp{2}, _Tp(__n - 1))
-				 *std::exp(-(__nmfact - 2 * __mmfact)) / __n;
+	      auto nm = n - 1;
+	      auto nmfact = emsr::detail::log_factorial<_Tp>(nm);
+	      auto mm = nm / 2;
+	      auto mmfact = emsr::detail::log_factorial<_Tp>(mm);
+	      pt[m].point = _Tp{0};
+	      pt[m].weight = s_sqrt_pi * std::pow(_Tp{2}, _Tp(n - 1))
+				 *std::exp(-(nmfact - 2 * mmfact)) / n;
 	    }
 	}
 
-      _Tp __z;
-      _Tp __w = _Tp{0};
-      for (auto __i = 1u; __i <= __m; ++__i)
+      _Tp z;
+      _Tp w = _Tp{0};
+      for (auto i = 1u; i <= m; ++i)
 	{
-	  if (__i == 1)
-	    __z = std::sqrt(_Tp(2 * __n + 1))
-		- 1.85575 * std::pow(_Tp(2 * __n + 1), -0.166667);
-	  else if (__i == 2)
-	    __z -= 1.14 * std::pow(_Tp(__n), 0.426) / __z;
-	  else if (__i == 3)
-	    __z = 1.86 * __z - 0.86 * __pt[0].point;
-	  else if (__i == 4)
-	    __z = 1.91 * __z - 0.91 * __pt[1].point;
+	  if (i == 1)
+	    z = std::sqrt(_Tp(2 * n + 1))
+		- 1.85575 * std::pow(_Tp(2 * n + 1), -0.166667);
+	  else if (i == 2)
+	    z -= 1.14 * std::pow(_Tp(n), 0.426) / z;
+	  else if (i == 3)
+	    z = 1.86 * z - 0.86 * pt[0].point;
+	  else if (i == 4)
+	    z = 1.91 * z - 0.91 * pt[1].point;
 	  else
-	    __z = 2.0 * __z - __pt[__i - 3].point;
-	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
+	    z = 2.0 * z - pt[i - 3].point;
+	  for (auto its = 1u; its <= s_maxit; ++its)
 	    {
-	      auto __H = _S_pim4;
-	      auto __H1 = _Tp{0};
-	      for (auto __k = 1u; __k <= __n; ++__k)
+	      auto H = s_pim4;
+	      auto H1 = _Tp{0};
+	      for (auto k = 1u; k <= n; ++k)
 		{
-		  auto __H2 = __H1;
-		  __H1 = __H;
-		  __H = __z * std::sqrt(_Tp{2} / __k) * __H1
-		       - std::sqrt(_Tp(__k - 1) / _Tp(__k)) * __H2;
+		  auto H2 = H1;
+		  H1 = H;
+		  H = z * std::sqrt(_Tp{2} / k) * H1
+		       - std::sqrt(_Tp(k - 1) / _Tp(k)) * H2;
 		}
-	      auto __Hp = std::sqrt(_Tp(2 * __n)) * __H1;
-	      auto __z1 = __z;
-	      __z = __z1 - __H / __Hp;
-	      if (std::abs(__z - __z1) <= _S_eps)
+	      auto Hp = std::sqrt(_Tp(2 * n)) * H1;
+	      auto z1 = z;
+	      z = z1 - H / Hp;
+	      if (std::abs(z - z1) <= s_eps)
 		{
-		  __w = 2.0 / (__Hp * __Hp);
+		  w = 2.0 / (Hp * Hp);
 		  break;
 		}
-	      if (__its > _S_maxit)
-		std::__throw_logic_error("__hermite_zeros: "
-					 "Too many iterations");
+	      if (its > s_maxit)
+		throw std::logic_error("hermite_zeros: Too many iterations");
 	    }
-	  __pt[__n - __i].point = -__z;
-	  __pt[__n - __i].weight = __w;
-	  __pt[__i - 1].point = __z;
-	  __pt[__i - 1].weight = __w;
+	  pt[n - i].point = -z;
+	  pt[n - i].weight = w;
+	  pt[i - 1].point = z;
+	  pt[i - 1].weight = w;
 	}
 
-      return __pt;
+      return pt;
     }
 
 template<typename _Tp>
   void
   test_hermite(_Tp proto = _Tp{})
   {
-    const auto _S_pi = emsr::pi_v<_Tp>;
-    const auto _S_sqrt_2 = emsr::sqrt2_v<_Tp>;
-    const auto _S_Ai0 = _Tp{-2.3381074104597670384891972524467L};
+    const auto s_pi = emsr::pi_v<_Tp>;
+    const auto s_sqrt_2 = emsr::sqrt2_v<_Tp>;
+    const auto s_Ai0 = _Tp{-2.3381074104597670384891972524467L};
 
     auto fname = [](std::string_view front, int n, std::string_view back)
 		 {
@@ -180,7 +179,7 @@ template<typename _Tp>
     for (int n = 4; n <= 200; ++n)
       {
 	auto xt = std::sqrt(_Tp(2 * n + 1));
-        auto delta = _S_Ai0 / _S_sqrt_2 / std::pow(n, _Tp{1} / _Tp{6});
+        auto delta = s_Ai0 / s_sqrt_2 / std::pow(n, _Tp{1} / _Tp{6});
 	std::cout << "  " << std::setw(6) << "n   = " << std::setw(4) << n << '\n';
 	std::cout << "  " << std::setw(6) << "x_t = " << std::setw(width) << xt << '\n';
 	std::cout << "  " << std::setw(width) << "x";
@@ -205,11 +204,11 @@ template<typename _Tp>
 	for (int i = 0; i <= 201; ++i)
           {
             auto x = _Tp{3} * xt / _Tp{4} + i * del;
-            auto h = __poly_hermite_recursion(n, x);
+            auto h = poly_hermite_recursion(n, x);
             // This sorta works... I think the old asymp is for He_n(x).
-            //auto ht = std::exp2(n - 1) * __poly_hermite_asymp_old(n, x / _S_sqrt_2);
-            auto ht = __poly_hermite_asymp_old(n, x);
-            auto h2 = __poly_hermite_asymp(n, x);
+            //auto ht = std::exp2(n - 1) * poly_hermite_asymp_old(n, x / s_sqrt_2);
+            auto ht = poly_hermite_asymp_old(n, x);
+            auto h2 = poly_hermite_asymp(n, x);
 	    if (std::abs(x - xt) < del)
 	      std::cout << ">>";
 	    else if (std::abs(x - xt - delta) < del)
@@ -235,7 +234,7 @@ template<typename _Tp>
     for (int n : {1000, 2000, 5000, 10000})
       {
 	auto xt = std::sqrt(_Tp(2 * n + 1));
-        auto delta = _S_Ai0 / _S_sqrt_2 / std::pow(n, _Tp{1} / _Tp{6});
+        auto delta = s_Ai0 / s_sqrt_2 / std::pow(n, _Tp{1} / _Tp{6});
 	std::cout << "  " << std::setw(6) << "n   = " << std::setw(4) << n << '\n';
 	std::cout << "  " << std::setw(6) << "x_t = " << std::setw(width) << xt << '\n';
 	std::cout << "  " << std::setw(width) << "x";
@@ -260,9 +259,9 @@ template<typename _Tp>
 	for (int i = 1; i <= 201; ++i)
           {
             auto x = _Tp{3} * xt / _Tp{4} + i * del;
-            auto h = __poly_hermite_recursion(n, x);
-            auto ht = __poly_hermite_asymp_old(n, x);
-            auto h2 = __poly_hermite_asymp(n, x);
+            auto h = poly_hermite_recursion(n, x);
+            auto ht = poly_hermite_asymp_old(n, x);
+            auto h2 = poly_hermite_asymp(n, x);
 	    if (std::abs(x - xt) < del)
 	      std::cout << ">>";
 	    else if (std::abs(x - xt - delta) < del)
@@ -288,7 +287,7 @@ template<typename _Tp>
     for (int n = 0; n <= 50; ++n)
       {
 	auto xt = std::sqrt(_Tp(2 * n + 1));
-        auto delta = _S_Ai0 / _S_sqrt_2 / std::pow(n, _Tp{1} / _Tp{6});
+        auto delta = s_Ai0 / s_sqrt_2 / std::pow(n, _Tp{1} / _Tp{6});
 	std::cout << "  " << std::setw(6) << "n   = " << std::setw(4) << n << '\n';;
 	std::cout << "  " << std::setw(6) << "x_t = " << std::setw(width) << xt << '\n';;
 	std::cout << "  " << std::setw(width) << "x";
@@ -307,8 +306,8 @@ template<typename _Tp>
 	for (int i = 0; i <= 100; ++i)
           {
             auto x = i * del;
-            auto h = __poly_hermite_recursion(n, x);
-            auto ht = __poly_hermite_asymp(n, x);
+            auto h = poly_hermite_recursion(n, x);
+            auto ht = poly_hermite_asymp(n, x);
 	    if (std::abs(x - xt) < del)
 	      std::cout << ">>";
 	    else if (std::abs(x - xt - delta) < del)
@@ -332,7 +331,7 @@ template<typename _Tp>
     for (int n = 0; n <= 50; ++n)
       {
 	// sqrt(factorial(n) * 2**n sqrt(pi))
-	auto norm = std::exp(std::lgamma(n + 1) / _Tp{2}) * std::sqrt(power * std::sqrt(_S_pi));
+	auto norm = std::exp(std::lgamma(n + 1) / _Tp{2}) * std::sqrt(power * std::sqrt(s_pi));
 	power *= _Tp{2};
 	std::cout << "  " << std::setw(width) << "n = " << n << '\n';
 	std::cout << "  " << std::setw(width) << "norm = " << norm << '\n';
@@ -352,10 +351,10 @@ template<typename _Tp>
 	for (int i = 0; i <= 100; ++i)
           {
             auto x = i * del;
-            auto h = __poly_hermite_recursion(n, x);
-            auto hn = __poly_hermite_norm_recursion(n, x);
-            auto he = __poly_prob_hermite_recursion(n, x);
-            auto hen = __poly_prob_hermite_norm_recursion(n, x);
+            auto h = poly_hermite_recursion(n, x);
+            auto hn = poly_hermite_norm_recursion(n, x);
+            auto he = poly_prob_hermite_recursion(n, x);
+            auto hen = poly_prob_hermite_norm_recursion(n, x);
             std::cout << "  " << std::setw(width) << x;
             std::cout << "  " << std::setw(width) << h;
             std::cout << "  " << std::setw(width) << hn;
@@ -367,7 +366,7 @@ template<typename _Tp>
 
     for (int n = 0; n <= 50; ++n)
       {
-	auto pt = __hermite_zeros(n, proto);
+	auto pt = hermite_zeros(n, proto);
 	std::cout << "\nn = " << std::setw(4) << n << ":\n";
 	for (auto [z, w] : pt)
 	  std::cout << ' ' << std::setw(width) << z

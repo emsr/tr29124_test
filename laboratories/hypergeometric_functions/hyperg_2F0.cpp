@@ -8,11 +8,11 @@
 
 template<typename _Tp>
   _Tp
-  __hyperg_2f0(_Tp a, _Tp b, _Tp x, _Tp& err)
+  hyperg_2f0(_Tp a, _Tp b, _Tp x, _Tp& err)
   {
-    constexpr auto _S_max_iter = 200;
-    const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-    const auto _S_huge = std::numeric_limits<_Tp>::max() / _Tp{1000};
+    constexpr auto s_max_iter = 200;
+    const auto s_eps = std::numeric_limits<_Tp>::epsilon();
+    const auto s_huge = std::numeric_limits<_Tp>::max() / _Tp{1000};
     auto an = a;
     auto bn = b;
     auto a0 = _Tp{1};
@@ -30,8 +30,8 @@ template<typename _Tp>
 	  break;
 	if (bn == _Tp{0})
 	  break;
-	if (a0 > _S_huge || n > _S_max_iter)
-	  throw std::runtime_error("__hyperg_2f0: series failed");
+	if (a0 > s_huge || n > s_max_iter)
+	  throw std::runtime_error("hyperg_2f0: series failed");
 	a0 *= (an * bn * x) / n;
 	an += _Tp{1};
 	bn += _Tp{1};
@@ -54,7 +54,7 @@ template<typename _Tp>
       }
     while (t > stop);
 
-    t = std::abs(_S_eps * max / sum);
+    t = std::abs(s_eps * max / sum);
     max = std::abs(conv / sum);
     if (max > t)
       t = max;
@@ -71,7 +71,7 @@ main()
   double b = 2.0;
   double x = 2.5;
   double err = 0.0;
-  __hyperg_2f0(a, b, x, err);
+  hyperg_2f0(a, b, x, err);
 }
 #endif
 

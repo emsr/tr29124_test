@@ -1,4 +1,3 @@
-#define STD !TR1
 
 #include <iostream>
 #include <sstream>
@@ -7,14 +6,12 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
-#if STD
-#  include <cmath>
-#else
-#  include <tr1/cmath>
-#endif
+#include <cmath>
 #include <functional>
 #include <utility>
 #include <tuple>
+
+#include <emsr/specfun.h>
 
 #include "specfun_testcase.h"
 #include "../wrappers/wrap_gsl.h"
@@ -45,10 +42,10 @@ get_filename(const std::string & path,
  */
 template<typename Tp>
   Tp
-  __chebyshev_t_trig(unsigned int __n, Tp __x)
+  chebyshev_t_trig(unsigned int n, Tp x)
   {
-    auto __theta = std::acos(__x);
-    return std::cos(__n * __theta);
+    auto theta = std::acos(x);
+    return std::cos(n * theta);
   }
 
 /**
@@ -60,18 +57,18 @@ template<typename Tp>
  */
 template<typename Tp>
   Tp
-  __chebyshev_u_trig(unsigned int __n, Tp __x)
+  chebyshev_u_trig(unsigned int n, Tp x)
   {
-    const auto _S_eps = __gnu_cxx::__epsilon(__x);
-    if (std::abs(__x + Tp{1}) < _S_eps)
-      return (__n % 2 == 0 ? +1 : -1) * Tp(__n + 1);
-    else if (std::abs(__x - Tp{1}) < _S_eps)
-      return Tp(__n + 1);
+    const auto _S_eps = emsr::epsilon(x);
+    if (std::abs(x + Tp{1}) < _S_eps)
+      return (n % 2 == 0 ? +1 : -1) * Tp(n + 1);
+    else if (std::abs(x - Tp{1}) < _S_eps)
+      return Tp(n + 1);
     else
       {
-	auto __theta = std::acos(__x);
-	return std::sin(Tp(__n + 1) * __theta)
-	     / std::sin(__theta);
+	auto theta = std::acos(x);
+	return std::sin(Tp(n + 1) * theta)
+	     / std::sin(theta);
       }
   }
 
@@ -85,16 +82,16 @@ template<typename Tp>
  */
 template<typename Tp>
   Tp
-  __chebyshev_v_trig(unsigned int __n, Tp __x)
+  chebyshev_v_trig(unsigned int n, Tp x)
   {
-    const auto _S_eps = __gnu_cxx::__epsilon(__x);
-    if (std::abs(__x + Tp{1}) < _S_eps)
-      return (__n % 2 == 0 ? +1 : -1) * Tp(2 * __n + 1);
+    const auto _S_eps = emsr::epsilon(x);
+    if (std::abs(x + Tp{1}) < _S_eps)
+      return (n % 2 == 0 ? +1 : -1) * Tp(2 * n + 1);
     else
       {
-	auto __theta = std::acos(__x);
-	return std::cos(Tp(__n + Tp{1} / Tp{2}) * __theta)
-	     / std::cos(__theta / Tp{2});
+	auto theta = std::acos(x);
+	return std::cos(Tp(n + Tp{1} / Tp{2}) * theta)
+	     / std::cos(theta / Tp{2});
       }
   }
 
@@ -108,177 +105,151 @@ template<typename Tp>
  */
 template<typename Tp>
   Tp
-  __chebyshev_w_trig(unsigned int __n, Tp __x)
+  chebyshev_w_trig(unsigned int n, Tp x)
   {
-    const auto _S_eps = __gnu_cxx::__epsilon(__x);
-    if (std::abs(__x - Tp{1}) < _S_eps)
-      return Tp(2 * __n + 1);
+    const auto _S_eps = emsr::epsilon(x);
+    if (std::abs(x - Tp{1}) < _S_eps)
+      return Tp(2 * n + 1);
     else
       {
-	auto __theta = std::acos(__x);
-	return std::sin(Tp(__n + Tp{1} / Tp{2}) * __theta)
-	     / std::sin(__theta / Tp{2});
+	auto theta = std::acos(x);
+	return std::sin(Tp(n + Tp{1} / Tp{2}) * theta)
+	     / std::sin(theta / Tp{2});
       }
   }
+/*
+double
+chebyshev_t(unsigned int n, double x)
+{ return chebyshev_t_trig<double>(n, x); }
 
 double
-__chebyshev_t(unsigned int __n, double __x)
-{ return __chebyshev_t_trig<double>(__n, __x); }
+chebyshev_u(unsigned int n, double x)
+{ return chebyshev_u_trig<double>(n, x); }
 
 double
-__chebyshev_u(unsigned int __n, double __x)
-{ return __chebyshev_u_trig<double>(__n, __x); }
+chebyshev_v(unsigned int n, double x)
+{ return chebyshev_v_trig<double>(n, x); }
 
 double
-__chebyshev_v(unsigned int __n, double __x)
-{ return __chebyshev_v_trig<double>(__n, __x); }
-
-double
-__chebyshev_w(unsigned int __n, double __x)
-{ return __chebyshev_w_trig<double>(__n, __x); }
-
+chebyshev_w(unsigned int n, double x)
+{ return chebyshev_w_trig<double>(n, x); }
+*/
 template<typename Real>
   void
   harness()
   {
-#if STD
-    using __gnu_cxx::airy_ai;
-    using __gnu_cxx::airy_bi;
-    using       std::assoc_laguerre;
-    using       std::assoc_legendre;
-    using __gnu_cxx::bell;
-    using __gnu_cxx::bernoulli;
-    using       std::beta;
-    using __gnu_cxx::binomial;
-    using __gnu_cxx::chebyshev_t;
-    using __gnu_cxx::chebyshev_u;
-    using __gnu_cxx::chebyshev_v;
-    using __gnu_cxx::chebyshev_w;
-    using __gnu_cxx::clausen;
-    using __gnu_cxx::clausen_cl;
-    using __gnu_cxx::clausen_sl;
-    using __gnu_cxx::comp_ellint_d;
-    using       std::comp_ellint_1;
-    using       std::comp_ellint_2;
-    using       std::comp_ellint_3;
-    using __gnu_cxx::conf_hyperg;
-    using __gnu_cxx::conf_hyperg_lim;
-    using __gnu_cxx::coshint;
-    using __gnu_cxx::cosint;
-    using __gnu_cxx::cos_pi;
-    using       std::cyl_bessel_i;
-    using __gnu_cxx::cyl_bessel_i_scaled;
-    using       std::cyl_bessel_j;
-    using       std::cyl_bessel_k;
-    using __gnu_cxx::cyl_bessel_k_scaled;
-    using __gnu_cxx::cyl_hankel_1;
-    using __gnu_cxx::cyl_hankel_2;
-    using       std::cyl_neumann;
-    using __gnu_cxx::dawson;
-    using __gnu_cxx::debye;
-    using __gnu_cxx::dilog;
-    using __gnu_cxx::dirichlet_beta;
-    using __gnu_cxx::dirichlet_eta;
-    using __gnu_cxx::double_factorial;
-    using       std::ellint_1;
-    using       std::ellint_2;
-    using       std::ellint_3;
-    using __gnu_cxx::ellint_d;
-    using __gnu_cxx::ellint_rc;
-    using __gnu_cxx::ellint_rd;
-    using __gnu_cxx::ellint_rf;
-    using __gnu_cxx::ellint_rg;
-    using __gnu_cxx::ellint_rj;
-    using __gnu_cxx::euler;
-    using __gnu_cxx::eulerian_1;
-    using       std::expint;
-    using __gnu_cxx::expint;
-    using __gnu_cxx::factorial;
-    using __gnu_cxx::falling_factorial;
-    using __gnu_cxx::fresnel_c;
-    using __gnu_cxx::fresnel_s;
-    using __gnu_cxx::gegenbauer;
-    using       std::hermite;
-    using __gnu_cxx::heuman_lambda;
-    using __gnu_cxx::hurwitz_zeta;
-    using __gnu_cxx::hyperg;
-    using __gnu_cxx::ibeta;
-    using __gnu_cxx::ibetac;
-    using __gnu_cxx::jacobi;
-    using __gnu_cxx::jacobi_sn;
-    using __gnu_cxx::jacobi_cn;
-    using __gnu_cxx::jacobi_dn;
-    using __gnu_cxx::jacobi_zeta;
-    using       std::laguerre;
-    using __gnu_cxx::lah;
-    using __gnu_cxx::lbinomial;
-    using __gnu_cxx::ldouble_factorial;
-    using       std::legendre;
-    using __gnu_cxx::legendre_q;
-    using __gnu_cxx::lfactorial;
-    using __gnu_cxx::lfalling_factorial;
-    using __gnu_cxx::lrising_factorial;
-    using __gnu_cxx::owens_t;
-    using __gnu_cxx::gamma_p;
-    using __gnu_cxx::polygamma;
-    using __gnu_cxx::digamma;
-    using __gnu_cxx::gamma_q;
-    using __gnu_cxx::radpoly;
-    using       std::riemann_zeta;
-    using __gnu_cxx::rising_factorial;
-    using __gnu_cxx::sinc;
-    using __gnu_cxx::sinc_pi;
-    using __gnu_cxx::sinhc;
-    using __gnu_cxx::sinhc_pi;
-    using __gnu_cxx::sinhint;
-    using __gnu_cxx::sinint;
-    using __gnu_cxx::sin_pi;
-    using       std::sph_bessel;
-    using __gnu_cxx::sph_bessel_i;
-    using __gnu_cxx::sph_bessel_k;
-    using __gnu_cxx::sph_hankel_1;
-    using __gnu_cxx::sph_hankel_2;
-    using __gnu_cxx::sph_harmonic;
-    using       std::sph_legendre;
-    using       std::sph_neumann;
-    using __gnu_cxx::stirling_1;
-    using __gnu_cxx::stirling_2;
-    using __gnu_cxx::tgamma_lower;
-    using __gnu_cxx::tgamma;
-    using __gnu_cxx::theta_1;
-    using __gnu_cxx::theta_2;
-    using __gnu_cxx::theta_3;
-    using __gnu_cxx::theta_4;
-    using __gnu_cxx::theta_s;
-    using __gnu_cxx::theta_c;
-    using __gnu_cxx::theta_d;
-    using __gnu_cxx::theta_n;
-    using __gnu_cxx::zernike;
-#else
-    using  std::tr1::assoc_laguerre;
-    using  std::tr1::assoc_legendre;
-    using  std::tr1::beta;
-    using  std::tr1::comp_ellint_1;
-    using  std::tr1::comp_ellint_2;
-    using  std::tr1::comp_ellint_3;
-    using  std::tr1::conf_hyperg;
-    using  std::tr1::cyl_bessel_i;
-    using  std::tr1::cyl_bessel_j;
-    using  std::tr1::cyl_bessel_k;
-    using  std::tr1::cyl_neumann;
-    using  std::tr1::ellint_1;
-    using  std::tr1::ellint_2;
-    using  std::tr1::ellint_3;
-    using  std::tr1::expint;
-    using  std::tr1::hermite;
-    using  std::tr1::hyperg;
-    using  std::tr1::laguerre;
-    using  std::tr1::legendre;
-    using  std::tr1::riemann_zeta;
-    using  std::tr1::sph_bessel;
-    using  std::tr1::sph_legendre;
-    using  std::tr1::sph_neumann;
-#endif
+    using emsr::airy_ai;
+    using emsr::airy_bi;
+    using emsr::assoc_laguerre;
+    using emsr::assoc_legendre;
+    using emsr::bell;
+    using emsr::bernoulli;
+    using emsr::beta;
+    using emsr::binomial;
+    using emsr::chebyshev_t;
+    using emsr::chebyshev_u;
+    using emsr::chebyshev_v;
+    using emsr::chebyshev_w;
+    using emsr::clausen;
+    using emsr::clausen_cl;
+    using emsr::clausen_sl;
+    using emsr::comp_ellint_d;
+    using emsr::comp_ellint_1;
+    using emsr::comp_ellint_2;
+    using emsr::comp_ellint_3;
+    using emsr::conf_hyperg;
+    using emsr::conf_hyperg_lim;
+    using emsr::coshint;
+    using emsr::cosint;
+    using emsr::cos_pi;
+    using emsr::cyl_bessel_i;
+    using emsr::cyl_bessel_i_scaled;
+    using emsr::cyl_bessel_j;
+    using emsr::cyl_bessel_k;
+    using emsr::cyl_bessel_k_scaled;
+    using emsr::cyl_hankel_1;
+    using emsr::cyl_hankel_2;
+    using emsr::cyl_neumann;
+    using emsr::dawson;
+    using emsr::debye;
+    using emsr::dilog;
+    using emsr::dirichlet_beta;
+    using emsr::dirichlet_eta;
+    using emsr::double_factorial;
+    using emsr::ellint_1;
+    using emsr::ellint_2;
+    using emsr::ellint_3;
+    using emsr::ellint_d;
+    using emsr::ellint_rc;
+    using emsr::ellint_rd;
+    using emsr::ellint_rf;
+    using emsr::ellint_rg;
+    using emsr::ellint_rj;
+    using emsr::euler;
+    using emsr::eulerian_1;
+    using emsr::expint;
+    using emsr::expint;
+    using emsr::factorial;
+    using emsr::falling_factorial;
+    using emsr::fresnel_c;
+    using emsr::fresnel_s;
+    using emsr::gegenbauer;
+    using emsr::hermite;
+    using emsr::heuman_lambda;
+    using emsr::hurwitz_zeta;
+    using emsr::hyperg;
+    using emsr::ibeta;
+    using emsr::ibetac;
+    using emsr::jacobi;
+    using emsr::jacobi_sn;
+    using emsr::jacobi_cn;
+    using emsr::jacobi_dn;
+    using emsr::jacobi_zeta;
+    using emsr::laguerre;
+    using emsr::lah;
+    using emsr::lbinomial;
+    using emsr::ldouble_factorial;
+    using emsr::legendre;
+    using emsr::legendre_q;
+    using emsr::lfactorial;
+    using emsr::lfalling_factorial;
+    using emsr::lrising_factorial;
+    using emsr::owens_t;
+    using emsr::gamma_p;
+    using emsr::polygamma;
+    using emsr::digamma;
+    using emsr::gamma_q;
+    using emsr::radpoly;
+    using emsr::riemann_zeta;
+    using emsr::rising_factorial;
+    using emsr::sinc;
+    using emsr::sinc_pi;
+    using emsr::sinhc;
+    using emsr::sinhc_pi;
+    using emsr::sinhint;
+    using emsr::sinint;
+    using emsr::sin_pi;
+    using emsr::sph_bessel;
+    using emsr::sph_bessel_i;
+    using emsr::sph_bessel_k;
+    using emsr::sph_hankel_1;
+    using emsr::sph_hankel_2;
+    using emsr::sph_harmonic;
+    using emsr::sph_legendre;
+    using emsr::sph_neumann;
+    using emsr::stirling_1;
+    using emsr::stirling_2;
+    using emsr::tgamma_lower;
+    using emsr::tgamma;
+    using emsr::theta_1;
+    using emsr::theta_2;
+    using emsr::theta_3;
+    using emsr::theta_4;
+    using emsr::theta_s;
+    using emsr::theta_c;
+    using emsr::theta_d;
+    using emsr::theta_n;
+    using emsr::zernike;
 
     const auto _S_pi = emsr::pi_v<Real>;
 
@@ -318,18 +289,12 @@ template<typename Real>
 
     const std::string path = "libstdc++_support/check/";
 
-#if STD
     std::string nsname = "std";
     const std::string prefix = "/check_";
-#else
-    std::string nsname = "std::tr1";
-    const std::string prefix = "/check_tr1_";
-#endif
 
     std::string basename;
     std::string filename;
 
-#if STD
     // Airy functions of the first kind.
     std::cout << "airy_ai\n" << std::flush;
     basename = "airy_ai";
@@ -353,7 +318,6 @@ template<typename Real>
 				std::make_pair(true, true), 41),
 	     "GSL",
 	     file_airy_bi);
-#endif // STD
 
     // Associated Laguerre polynomials.
     std::cout << "assoc_laguerre\n" << std::flush;
@@ -444,11 +408,7 @@ template<typename Real>
     std::ofstream file_conf_hyperg(filename);
     maketest(conf_hyperg, gsl::conf_hyperg,
 	     "testcase_conf_hyperg",
-#if STD
-	     "__gnu_cxx",
-#else
-	     nsname,
-#endif
+	     "emsr",
 	      basename, "a", vab,
 	     "c", fill_argument(std::make_pair(Real{0}, Real{10}),
 				std::make_pair(false, true), 11),
@@ -486,7 +446,6 @@ template<typename Real>
 	     "GSL",
 	     file_cyl_bessel_i, false, true, test);
 
-#if STD
     // Scaled regular modified cylindrical Bessel functions.
     std::cout << "cyl_bessel_i_scaled\n" << std::flush;
     basename = "cyl_bessel_i_scaled";
@@ -500,7 +459,6 @@ template<typename Real>
 				std::make_pair(true, true), 11),
 	     "GSL",
 	     file_cyl_bessel_i_scaled);
-#endif // STD
 
     // Cylindrical Bessel functions (of the first kind).
     std::cout << "cyl_bessel_j\n" << std::flush;
@@ -569,7 +527,6 @@ template<typename Real>
 	     "GSL",
 	     file_cyl_bessel_k, false, true, test);
 
-#if STD
     // Scaled irregular modified cylindrical Bessel functions.
     std::cout << "cyl_bessel_k_scaled\n" << std::flush;
     basename = "cyl_bessel_k_scaled";
@@ -583,7 +540,6 @@ template<typename Real>
 				std::make_pair(true, true), 11),
 	     "GSL",
 	     file_cyl_bessel_k_scaled);
-#endif // STD
 
     // Cylindrical Neumann functions.
     // Skip the pole at the origin.
@@ -716,11 +672,7 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_hyperg(filename);
     maketest(hyperg, gsl::hyperg, "testcase_hyperg",
-#if STD
-	     "__gnu_cxx",
-#else
-	     nsname,
-#endif
+	     "emsr",
 	     basename, "a", vab,
 	     "b", vab,
 	     "c", fill_argument(std::make_pair(Real{0}, Real{10}),
@@ -776,7 +728,6 @@ template<typename Real>
 	     "Boost",
 	     file_riemann_zeta, false, true, test);
 
-#if STD
     // Hurwitz zeta functions.
     std::cout << "hurwitz_zeta\n" << std::flush;
     // Skip the pole at 1.
@@ -791,7 +742,6 @@ template<typename Real>
 				std::make_pair(false, true), 26),
 	     "GSL",
 	     file_hurwitz_zeta);
-#endif // STD
 
     // Spherical Bessel functions.
     std::cout << "sph_bessel\n" << std::flush;
@@ -849,7 +799,6 @@ template<typename Real>
 	     "GSL",
 	     file_sph_neumann, false, true, test);
 
-#if STD
     // Carlson elliptic functions R_C.
     std::cout << "ellint_rc\n" << std::flush;
     basename = "ellint_rc";
@@ -1463,7 +1412,7 @@ template<typename Real>
     basename = "chebyshev_t";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_chebyshev_t(filename);
-    maketest(chebyshev_t, __chebyshev_t,
+    maketest(chebyshev_t, chebyshev_t_trig<double>,
 	     "testcase_chebyshev_t", "__gnu_cxx", basename,
 	     "n", {0U, 1U, 5U, 8U, 10U, 20U, 40U, 100U},
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{+1}),
@@ -1476,7 +1425,7 @@ template<typename Real>
     basename = "chebyshev_u";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_chebyshev_u(filename);
-    maketest(chebyshev_u, __chebyshev_u,
+    maketest(chebyshev_u, chebyshev_u_trig<double>,
 	     "testcase_chebyshev_u", "__gnu_cxx", basename,
 	     "n", {0U, 1U, 5U, 8U, 10U, 20U, 40U, 100U},
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{+1}),
@@ -1489,7 +1438,7 @@ template<typename Real>
     basename = "chebyshev_v";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_chebyshev_v(filename);
-    maketest(chebyshev_v, __chebyshev_v,
+    maketest(chebyshev_v, chebyshev_v_trig<double>,
 	     "testcase_chebyshev_v", "__gnu_cxx", basename,
 	     "n", {0U, 1U, 5U, 8U, 10U, 20U, 40U, 100U},
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{+1}),
@@ -1502,7 +1451,7 @@ template<typename Real>
     basename = "chebyshev_w";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_chebyshev_w(filename);
-    maketest(chebyshev_w, __chebyshev_w,
+    maketest(chebyshev_w, chebyshev_w_trig<double>,
 	     "testcase_chebyshev_w", "__gnu_cxx", basename,
 	     "n", {0U, 1U, 5U, 8U, 10U, 20U, 40U, 100U},
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{+1}),
@@ -1916,9 +1865,6 @@ template<typename Real>
 				std::make_pair(true, true), 41),
 	     "GSL",
 	     file_debye);
-
-#endif // STD
-
   }
 
 

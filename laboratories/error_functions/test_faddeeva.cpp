@@ -7,7 +7,7 @@
 
 #include <wrap_faddeeva.h>
 
-namespace __gnu_cxx
+namespace emsr
 {
 
   /**
@@ -19,7 +19,7 @@ namespace __gnu_cxx
    */
   template<typename _Tp>
     std::complex<_Tp>
-    faddeeva(std::complex<_Tp> __z);
+    faddeeva(std::complex<_Tp> z);
 
   /**
    * Compute the Faddeeva or scaled complex complementary error function
@@ -30,7 +30,7 @@ namespace __gnu_cxx
    */
   template<typename _Tp>
     _Tp
-    faddeeva(_Tp __x);
+    faddeeva(_Tp x);
 
   /**
    * Compute the scaled complementary error function of complex argument:
@@ -40,7 +40,7 @@ namespace __gnu_cxx
    */
   template<typename _Tp>
     std::complex<_Tp>
-    erfc_scaled(std::complex<_Tp> __z);
+    erfc_scaled(std::complex<_Tp> z);
 
   /**
    * Compute the scaled complementary error function of real argument:
@@ -50,7 +50,7 @@ namespace __gnu_cxx
    */
   template<typename _Tp>
     _Tp
-    erfc_scaled(_Tp __x);
+    erfc_scaled(_Tp x);
 
   /**
    * Compute the error function of complex argument:
@@ -60,7 +60,7 @@ namespace __gnu_cxx
    */
   template<typename _Tp>
     std::complex<_Tp>
-    erf(std::complex<_Tp> __z);
+    erf(std::complex<_Tp> z);
 
   /**
    * Compute the error function of real argument:
@@ -70,7 +70,7 @@ namespace __gnu_cxx
    */
   template<typename _Tp>
     _Tp
-    erf(_Tp __x);
+    erf(_Tp x);
 
   /**
    * Compute the imaginary error function for complex argument:
@@ -80,7 +80,7 @@ namespace __gnu_cxx
    */
   template<typename _Tp>
     std::complex<_Tp>
-    erfi(std::complex<_Tp> __z);
+    erfi(std::complex<_Tp> z);
 
   /**
    * Compute the imaginary error function of real argument:
@@ -90,7 +90,7 @@ namespace __gnu_cxx
    */
   template<typename _Tp>
     _Tp
-    erfi(_Tp __x);
+    erfi(_Tp x);
 
   /**
    * Compute the complementary error function for complex argument:
@@ -100,7 +100,7 @@ namespace __gnu_cxx
    */
   template<typename _Tp>
     std::complex<_Tp>
-    erfc(std::complex<_Tp> __z);
+    erfc(std::complex<_Tp> z);
 
   /**
    * Compute the complementary error function for real argument:
@@ -110,7 +110,7 @@ namespace __gnu_cxx
    */
   template<typename _Tp>
     _Tp
-    erfc(_Tp __x);
+    erfc(_Tp x);
 
   /**
    * Compute the Dawson integral for complex argument:
@@ -121,7 +121,7 @@ namespace __gnu_cxx
    */
   template<typename _Tp>
     std::complex<_Tp>
-    dawson(std::complex<_Tp> __z);
+    dawson(std::complex<_Tp> z);
 
   /**
    * Compute the Dawson integral for real argument:
@@ -132,7 +132,7 @@ namespace __gnu_cxx
    */
   template<typename _Tp>
     _Tp
-    dawson(_Tp __x);
+    dawson(_Tp x);
 
   /**
    * Compute Voigt function for real shape parameter t and argument x:
@@ -152,7 +152,7 @@ namespace __gnu_cxx
    */
   template<typename _Tp>
     std::complex<_Tp>
-    voigt(_Tp __x, _Tp __t);
+    voigt(_Tp x, _Tp t);
 
   /**
    * Compute the Voigt U function for real shape parameter t and argument x:
@@ -163,7 +163,7 @@ namespace __gnu_cxx
    */
   template<typename _Tp>
     std::complex<_Tp>
-    voigt_u(_Tp __x, _Tp __t);
+    voigt_u(_Tp x, _Tp t);
 
   /**
    * Compute the Voigt V function for real shape parameter t and argument x:
@@ -174,9 +174,9 @@ namespace __gnu_cxx
    */
   template<typename _Tp>
     std::complex<_Tp>
-    voigt_v(_Tp __x, _Tp __t);
+    voigt_v(_Tp x, _Tp t);
 
-} // namespace __gnu_cxx
+} // namespace emsr
 
 bool
 not_zero(double x)

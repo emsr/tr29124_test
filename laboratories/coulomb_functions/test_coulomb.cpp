@@ -17,7 +17,7 @@ enum Func
 
 template<typename _Tp>
   void
-  __coulomb_jwkb(_Tp lambda, _Tp eta, _Tp rho, _Tp& fjwkb, _Tp& gjwkb, int& iexp);
+  coulomb_jwkb(_Tp lambda, _Tp eta, _Tp rho, _Tp& fjwkb, _Tp& gjwkb, int& iexp);
 
 /**
  * Revised Coulomb wavefunction program using Steed's method
@@ -36,21 +36,21 @@ template<typename _Tp>
  */
 template<typename _Tp>
   void
-  __coulomb_steed(Func func, _Tp lambda, _Tp eta, _Tp rho,
+  coulomb_steed(Func func, _Tp lambda, _Tp eta, _Tp rho,
 		  _Tp& fc, _Tp& gc, _Tp& fcp, _Tp& gcp, int& ifail)
   {
     constexpr auto abort = _Tp{20000};
-    //constexpr auto _S_tiny = _Tp{1.0e-30};
+    //constexpr auto s_tiny = _Tp{1.0e-30};
     // This constant is  sqrt(_Tp{2}/pi)
     constexpr auto rt2epi = _Tp{0.79788'45608'02865e0};
-    const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-    const auto _S_i = std::complex<_Tp>{0, 1};
+    const auto s_eps = std::numeric_limits<_Tp>::epsilon();
+    const auto s_i = std::complex<_Tp>{0, 1};
     ifail = 0;
     int iexp = 1;
     if (func != Coulomb)
       eta = _Tp{0};
-    const auto acc4 = std::pow(_S_eps, 0.75);// * _Tp{10000};
-    const auto acch = std::sqrt(_S_eps);
+    const auto acc4 = std::pow(s_eps, 0.75);// * _Tp{10000};
+    const auto acch = std::sqrt(s_eps);
     // Test range of rho, exit if <= sqrt(epsilon) or if negative
     if (rho <= acch)
       {
@@ -86,7 +86,7 @@ template<typename _Tp>
 	pk1 = pk + _Tp{1};
 	const auto ek1 = eta / pk1;
 	// Test ensures b1 != _Tp{0} for negative eta; fixup is exact.
-	if (std::abs(eta * rho + pk * pk1) > _S_eps)
+	if (std::abs(eta * rho + pk * pk1) > s_eps)
 	  break;
 	fcl = (_Tp{1} + ek * ek) / (_Tp{1} + ek1 * ek1);
 	pk +=  _Tp{2};
@@ -129,12 +129,12 @@ template<typename _Tp>
 	    return;
 	  }
       }
-    while (std::abs(df) > _S_eps * std::abs(f));
+    while (std::abs(df) > s_eps * std::abs(f));
     //if (lxtra == 0)
     //  goto 7;
 /*
     // Downward recurrence to lambda = lambda.
-    fcl *= _S_tiny;
+    fcl *= s_tiny;
     auto fcpl = fcl * f;
     fcp = fcpl;
     fc = fcl;
@@ -158,8 +158,8 @@ template<typename _Tp>
           //gc = rl;
 	xl -= _Tp{1};
       }
-    if (std::abs(fcl) < _S_eps)
-      fcl = _S_eps;
+    if (std::abs(fcl) < s_eps)
+      fcl = s_eps;
     f = fcpl / fcl;
 */
   //7:
@@ -172,7 +172,7 @@ template<typename _Tp>
     _Tp gam = _Tp{0}, w = _Tp{0};
     _Tp p, q;
     if (turn)
-      __coulomb_jwkb(std::max(lambda, _Tp{0}), eta, rho, fjwkb, gjwkb, iexp);
+      coulomb_jwkb(std::max(lambda, _Tp{0}), eta, rho, fjwkb, gjwkb, iexp);
     if (iexp > 1 && gjwkb > _Tp{1} / (_Tp{100} * acch))
       {
 	// Arrive here if G > 10^6
@@ -191,13 +191,13 @@ template<typename _Tp>
 	auto a = std::complex<_Tp>(-e2mm1, eta);
 	auto b = _Tp{2} * std::complex<_Tp>(rho - eta, _Tp{1});
 	auto d = std::conj(b) / std::norm(b);
-	auto dpq = _S_i * xi * a * d;
+	auto dpq = s_i * xi * a * d;
 	do
 	  {
 	    pq += dpq;
 	    pk += _Tp{2};
 	    a += std::complex<_Tp>(pk, wi);
-	    b += _Tp{2} * _S_i;
+	    b += _Tp{2} * s_i;
 	    d = b + a * d;
 	    d = std::conj(d) / std::norm(d);
 	    auto ab = b * d - _Tp{1};
@@ -208,7 +208,7 @@ template<typename _Tp>
 		return;
 	      }
 	  }
-	while (std::abs(dpq) > _S_eps * std::abs(pq));
+	while (std::abs(dpq) > s_eps * std::abs(pq));
 
 	// Solve for fcm = f at lambda, then find norm factor w = w / fcm.
         auto p = std::real(pq);
@@ -275,7 +275,7 @@ template<typename _Tp>
  */
 template<typename _Tp>
   void
-  __coulomb_jwkb(_Tp lambda, _Tp eta, _Tp rho, _Tp& fjwkb, _Tp& gjwkb, int& iexp)
+  coulomb_jwkb(_Tp lambda, _Tp eta, _Tp rho, _Tp& fjwkb, _Tp& gjwkb, int& iexp)
   {
     const auto gh2 = rho * (_Tp{2} * eta - rho);
     const auto lamax = std::max(lambda * (lambda + _Tp{1}), _Tp{0});
@@ -317,7 +317,7 @@ template<typename _Tp>
 	    auto rho = irho * _Tp{0.1};
 	    _Tp fc = 0, gc = 0, fcp = 0, gcp = 0;
 	    int ifail = 0;
-	    __coulomb_steed(func, lambda, eta, rho, fc, gc, fcp, gcp, ifail);
+	    coulomb_steed(func, lambda, eta, rho, fc, gc, fcp, gcp, ifail);
 	    std::cout << ' ' << std::setw(16) << rho
 		      << ' ' << std::setw(16) << fc
 		      << ' ' << std::setw(16) << gc

@@ -6,258 +6,258 @@
 #include <iostream>
 #include <iomanip>
 #include <tuple>
-#include <ext/float128_math.h>
-#include <ext/float128_io.h>
-#include <ext/float128_limits.h>
-#include <ext/complex128_math.h>
+
+#include <emsr/float128_math.h>
+#include <emsr/float128_io.h>
+#include <emsr/float128_limits.h>
+#include <emsr/complex128_math.h>
 #include <emsr/polynomial.h>
 #include <emsr/math_constants.h>
 #include <emsr/numeric_limits.h>
 
 template<typename _Tp>
-  struct __hankel_outer_param_t
+  struct hankel_outer_param_t
   {
-    __hankel_outer_param_t(std::complex<_Tp> __nu_in, std::complex<_Tp> __z_in);
+    hankel_outer_param_t(std::complex<_Tp> nu_in, std::complex<_Tp> z_in);
 
-    std::complex<_Tp> __zhat;
+    std::complex<_Tp> zhat;
     std::complex<_Tp> __1dnsq;
-    std::complex<_Tp> __num1d3;
-    std::complex<_Tp> __num2d3;
-    std::complex<_Tp> __p;
-    std::complex<_Tp> __p2;
-    std::complex<_Tp> __etm3h;
-    std::complex<_Tp> __etrat;
+    std::complex<_Tp> num1d3;
+    std::complex<_Tp> num2d3;
+    std::complex<_Tp> p;
+    std::complex<_Tp> p2;
+    std::complex<_Tp> etm3h;
+    std::complex<_Tp> etrat;
     std::complex<_Tp> _Aip;
-    std::complex<_Tp> __o4dp;
+    std::complex<_Tp> o4dp;
     std::complex<_Tp> _Aim;
-    std::complex<_Tp> __o4dm;
-    std::complex<_Tp> __od2p;
-    std::complex<_Tp> __od0dp;
-    std::complex<_Tp> __od2m;
-    std::complex<_Tp> __od0dm;
+    std::complex<_Tp> o4dm;
+    std::complex<_Tp> od2p;
+    std::complex<_Tp> od0dp;
+    std::complex<_Tp> od2m;
+    std::complex<_Tp> od0dm;
   };
 
 
 template<typename _Tp>
-  struct __hankel_param_t
+  struct hankel_param_t
   {
-    __hankel_param_t(std::complex<_Tp> __nu_in, std::complex<_Tp> __zhat_in);
+    hankel_param_t(std::complex<_Tp> nu_in, std::complex<_Tp> zhat_in);
 
-    std::complex<_Tp> __nu;
-    std::complex<_Tp> __zhat;
-    std::complex<_Tp> __nup2;
-    std::complex<_Tp> __num2;
-    std::complex<_Tp> __num1d3;
-    std::complex<_Tp> __num2d3;
-    std::complex<_Tp> __num4d3;
-    std::complex<_Tp> __w;
-    std::complex<_Tp> __p;
-    std::complex<_Tp> __p2;
-    std::complex<_Tp> __xi;
-    std::complex<_Tp> __zeta;
-    std::complex<_Tp> __zetam3hf;
-    std::complex<_Tp> __zetaphf;
-    std::complex<_Tp> __zetamhf;
-    std::complex<_Tp> __thing;
+    std::complex<_Tp> nu;
+    std::complex<_Tp> zhat;
+    std::complex<_Tp> nup2;
+    std::complex<_Tp> num2;
+    std::complex<_Tp> num1d3;
+    std::complex<_Tp> num2d3;
+    std::complex<_Tp> num4d3;
+    std::complex<_Tp> w;
+    std::complex<_Tp> p;
+    std::complex<_Tp> p2;
+    std::complex<_Tp> xi;
+    std::complex<_Tp> zeta;
+    std::complex<_Tp> zetam3hf;
+    std::complex<_Tp> zetaphf;
+    std::complex<_Tp> zetamhf;
+    std::complex<_Tp> thing;
   };
 
 template<typename _Tp>
-  __hankel_param_t<_Tp>::__hankel_param_t(std::complex<_Tp> __nu_in,
-					  std::complex<_Tp> __zhat_in)
-  : __nu(__nu_in), __zhat(__zhat_in)
+  hankel_param_t<_Tp>::hankel_param_t(std::complex<_Tp> nu_in,
+					  std::complex<_Tp> zhat_in)
+  : nu(nu_in), zhat(zhat_in)
   {
-    const auto _S_1d3	= _Tp{1} / _Tp{3};
-    const auto _S_2d3	= _Tp{2} / _Tp{3};
+    const auto s_1d3	= _Tp{1} / _Tp{3};
+    const auto s_2d3	= _Tp{2} / _Tp{3};
     // -(2/3)ln(2/3)
-    const auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q};
-    const std::complex<_Tp> _S_j{0, 1};
+    const auto s_lncon = _Tp{0.2703100720721095879853420769762327577152Q};
+    const std::complex<_Tp> s_j{0, 1};
 
     //using _Cmplx = std::complex<_Tp>;
-    const auto _S_sqrt_max = emsr::sqrt_max<_Tp>();
+    const auto s_sqrt_max = emsr::sqrt_max<_Tp>();
 
     // If nu^2 can be computed without overflow.
-    if (std::abs(__nu) <= _S_sqrt_max)
+    if (std::abs(nu) <= s_sqrt_max)
       {
-	auto __nup2 = __nu * __nu;
-	__num2 = _Tp{1} / __nup2;
+	auto nup2 = nu * nu;
+	num2 = _Tp{1} / nup2;
 	// Compute nu^(-1/3), nu^(-2/3), nu^(-4/3).
-	__num1d3 = std::pow(__nu, -_S_1d3);
-	__num2d3 = __num1d3 * __num1d3;
-	__num4d3 = __num2d3 * __num2d3;
+	num1d3 = std::pow(nu, -s_1d3);
+	num2d3 = num1d3 * num1d3;
+	num4d3 = num2d3 * num2d3;
       }
     else
-      std::__throw_runtime_error(__N("__hankel_param_t: "
-				     "unable to compute nu^2"));
+      throw std::runtime_error("hankel_param_t: unable to compute nu^2");
 
-    if (std::real(__zhat) <= _Tp{1})
+    if (std::real(zhat) <= _Tp{1})
       {
-	__w = std::sqrt((_Tp{1} + __zhat) * (_Tp{1} - __zhat));
-	__p = _Tp{1} / __w;
-	__p2 = __p * __p;
-	__xi = std::log(_Tp{1} + __w) - std::log(__zhat) - __w;
-	//auto __zetam3hf = _S_2d3 / __xi; // zeta^(-3/2)
-	auto __logzeta = _S_2d3 * std::log(__xi) + _S_lncon; // ln(zeta)
-	__zeta = std::exp(__logzeta);
-	__zetaphf = std::sqrt(__zeta);
-	__zetamhf = _Tp{1} / __zetaphf;
+	w = std::sqrt((_Tp{1} + zhat) * (_Tp{1} - zhat));
+	p = _Tp{1} / w;
+	p2 = p * p;
+	xi = std::log(_Tp{1} + w) - std::log(zhat) - w;
+	//auto zetam3hf = s_2d3 / xi; // zeta^(-3/2)
+	auto logzeta = s_2d3 * std::log(xi) + s_lncon; // ln(zeta)
+	zeta = std::exp(logzeta);
+	zetaphf = std::sqrt(zeta);
+	zetamhf = _Tp{1} / zetaphf;
       }
     else
       {
-	__w = std::sqrt((__zhat + _Tp{1}) * (__zhat - _Tp{1}));
-	__p = _S_j / __w;
-	__p2 = __p * __p;
-	__xi = __w - std::acos(_Tp{1} / __zhat);
-	__zetam3hf = _S_j * _S_2d3 / __xi; // i(-zeta)^(-3/2)
-	auto __logmzeta = _S_2d3 * std::log(__xi) + _S_lncon; // ln(-zeta)
-	auto __mzeta = std::exp(__logmzeta); // -zeta
-	__zetaphf = -_S_j * std::sqrt(__mzeta); // -i(-zeta)^(1/2)
-	__zetamhf = _Tp{1} / __zetaphf; // i(-zeta)^(-1/2)
-	__zeta = -__mzeta;
+	w = std::sqrt((zhat + _Tp{1}) * (zhat - _Tp{1}));
+	p = s_j / w;
+	p2 = p * p;
+	xi = w - std::acos(_Tp{1} / zhat);
+	zetam3hf = s_j * s_2d3 / xi; // i(-zeta)^(-3/2)
+	auto logmzeta = s_2d3 * std::log(xi) + s_lncon; // ln(-zeta)
+	auto mzeta = std::exp(logmzeta); // -zeta
+	zetaphf = -s_j * std::sqrt(mzeta); // -i(-zeta)^(1/2)
+	zetamhf = _Tp{1} / zetaphf; // i(-zeta)^(-1/2)
+	zeta = -mzeta;
       }
-      __thing = std::pow(_Tp{4} * __zeta / __w, _Tp{0.25L});
+      thing = std::pow(_Tp{4} * zeta / w, _Tp{0.25L});
   }
 
 template<typename _Tp>
   std::complex<_Tp>
-  get_zeta_old(std::complex<_Tp> __zhat)
+  get_zeta_old(std::complex<_Tp> zhat)
   {
-    using __cmplx = std::complex<_Tp>;
+    using cmplx = std::complex<_Tp>;
 
-    static constexpr auto _S_2pi   = _Tp{6.283185307179586476925286766559005768391L};
-    static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666667Q};
-    static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
-    static constexpr __cmplx _S_j{0, 1};
+    static constexpr auto s_2pi   = _Tp{6.283185307179586476925286766559005768391L};
+    static constexpr auto s_2d3   = _Tp{0.6666666666666666666666666666666666666667Q};
+    static constexpr auto s_lncon = _Tp{0.2703100720721095879853420769762327577152Q}; // -(2/3)ln(2/3)
+    static constexpr cmplx s_j{0, 1};
 
-    auto __rezhat = std::real(__zhat);
-    auto __imzhat = std::imag(__zhat);
+    auto rezhat = std::real(zhat);
+    auto imzhat = std::imag(zhat);
 
     // Compute 1 - zhat^2 and related constants.
-    auto __w = __cmplx{_Tp{1} - (__rezhat - __imzhat) * (__rezhat + __imzhat),
-			-_Tp{2} * __rezhat * __imzhat};
-    __w = std::sqrt(__w);
+    auto w = cmplx{_Tp{1} - (rezhat - imzhat) * (rezhat + imzhat),
+			-_Tp{2} * rezhat * imzhat};
+    w = std::sqrt(w);
 
     // Compute xi = ln(1+(1-zhat^2)^(1/2)) - ln(zhat) - (1-zhat^2)^(1/2)
     // using default branch of logarithm and square root.
-    auto __xi = std::log(__cmplx{1} + __w) - std::log(__zhat) - __w;
-    auto __zetam3hf = _S_2d3 / __xi;
+    auto xi = std::log(cmplx{1} + w) - std::log(zhat) - w;
+    auto zetam3hf = s_2d3 / xi;
 
     // Compute principal value of ln(xi) and then adjust imaginary part.
-    auto __logxi = std::log(__xi);
+    auto logxi = std::log(xi);
 
     // Prepare to adjust logarithm of xi to appropriate Riemann sheet.
-    auto __npi = _Tp{0};
+    auto npi = _Tp{0};
 
     // Find adjustment necessary to get on proper Riemann sheet.
-    if (__imzhat == _Tp{0})  // zhat is real.
+    if (imzhat == _Tp{0})  // zhat is real.
       {
-	if (__rezhat > _Tp{1})
-	  __npi = _S_2pi;
+	if (rezhat > _Tp{1})
+	  npi = s_2pi;
       }
     else // zhat is not real.
       {
 	// zhat is in upper half-plane.
-	if (__imzhat > _Tp{0})
+	if (imzhat > _Tp{0})
 	  {
 	    // xi lies in upper half-plane.
-	    if (std::imag(__xi) > _Tp{0})
-	      __npi = -_S_2pi;
+	    if (std::imag(xi) > _Tp{0})
+	      npi = -s_2pi;
 	    else
-	      __npi = +_S_2pi;
+	      npi = +s_2pi;
 	  }
       }
 
     // Adjust logarithm of xi.
-    __logxi += __npi * _S_j;
+    logxi += npi * s_j;
 
     // Compute ln(zeta), zeta, zeta^(+1/2), zeta^(-1/2).
-    auto __logzeta = _S_2d3 * __logxi + _S_lncon;
-    auto __zeta = std::exp(__logzeta);
-    return __zeta;
+    auto logzeta = s_2d3 * logxi + s_lncon;
+    auto zeta = std::exp(logzeta);
+    return zeta;
   }
 
 template<typename _Tp>
   std::complex<_Tp>
-  get_zeta(std::complex<_Tp> __zhat)
+  get_zeta(std::complex<_Tp> zhat)
   {
-    using __cmplx = std::complex<_Tp>;
+    using cmplx = std::complex<_Tp>;
 
-    static constexpr auto _S_2d3   = _Tp{2} / _Tp{3};
+    static constexpr auto s_2d3   = _Tp{2} / _Tp{3};
     // -(2/3)ln(2/3)
-    static constexpr auto _S_lncon
+    static constexpr auto s_lncon
       = _Tp{0.2703100720721095879853420769762327577152Q};
-    static constexpr __cmplx _S_j{0, 1};
+    static constexpr cmplx s_j{0, 1};
 
-    if (__zhat == _Tp{0})
+    if (zhat == _Tp{0})
       return std::numeric_limits<_Tp>::infinity();
-    else if (__zhat <= _Tp{1})
+    else if (zhat <= _Tp{1})
       {
-	auto __w = std::sqrt((_Tp{1} + __zhat) * (_Tp{1} - __zhat));
+	auto w = std::sqrt((_Tp{1} + zhat) * (_Tp{1} - zhat));
 	// Compute xi = ln(1 + (1 - zhat^2)^(1/2)) - ln(zhat)
 	//	      - (1 - zhat^2)^(1/2) = (2/3)(zeta)^(3/2)
 	// using default branch of logarithm and square root.
-	auto __xi = std::log(_Tp{1} + __w) - std::log(__zhat) - __w;
+	auto xi = std::log(_Tp{1} + w) - std::log(zhat) - w;
 
-	auto __logxi = std::log(__xi);
+	auto logxi = std::log(xi);
 
 	// Compute ln(zeta), zeta.
-	auto __logzeta = _S_2d3 * __logxi + _S_lncon;
-	auto __zeta = std::exp(__logzeta);
-	return __zeta;
+	auto logzeta = s_2d3 * logxi + s_lncon;
+	auto zeta = std::exp(logzeta);
+	return zeta;
       }
     else
       {
-	auto __w = std::sqrt((__zhat + _Tp{1}) * (__zhat - _Tp{1}));
-	auto __xi = __w - std::acos(_Tp{1} / __zhat);
+	auto w = std::sqrt((zhat + _Tp{1}) * (zhat - _Tp{1}));
+	auto xi = w - std::acos(_Tp{1} / zhat);
 
-	auto __logxi = std::log(__xi);
+	auto logxi = std::log(xi);
 
 	// Compute ln(-zeta), zeta.
-	auto __logmzeta = _S_2d3 * __logxi + _S_lncon;
-	auto __zeta = -std::exp(__logmzeta);
-	return __zeta;
+	auto logmzeta = s_2d3 * logxi + s_lncon;
+	auto zeta = -std::exp(logmzeta);
+	return zeta;
       }
   }
 
 template<typename _Tp>
   _Tp
-  get_zeta(_Tp __zhat)
+  get_zeta(_Tp zhat)
   {
-    static constexpr auto _S_2d3   = _Tp{2} / _Tp{3};
+    static constexpr auto s_2d3   = _Tp{2} / _Tp{3};
     // -(2/3)ln(2/3)
-    static constexpr auto _S_lncon
+    static constexpr auto s_lncon
       = _Tp{0.2703100720721095879853420769762327577152Q};
-    if (__zhat == _Tp{0})
+    if (zhat == _Tp{0})
       return std::numeric_limits<_Tp>::infinity();
-    else if (__zhat <= _Tp{1})
+    else if (zhat <= _Tp{1})
       {
-	auto __w = std::sqrt((_Tp{1} + __zhat) * (_Tp{1} - __zhat));
+	auto w = std::sqrt((_Tp{1} + zhat) * (_Tp{1} - zhat));
 	// Compute xi = ln(1 + (1 - zhat^2)^(1/2)) - ln(zhat)
 	//	      - (1 - zhat^2)^(1/2) = (2/3)(zeta)^(3/2)
 	// using default branch of logarithm and square root.
-	auto __xi = std::log(_Tp{1} + __w) - std::log(__zhat) - __w;
-	//auto __zetam3hf = _S_2d3 / __xi;
+	auto xi = std::log(_Tp{1} + w) - std::log(zhat) - w;
+	//auto zetam3hf = s_2d3 / xi;
 
-	auto __logxi = std::log(__xi);
+	auto logxi = std::log(xi);
 
 	// Compute ln(zeta), zeta.
-	auto __logzeta = _S_2d3 * __logxi + _S_lncon;
-	auto __zeta = std::exp(__logzeta);
-	return __zeta;
+	auto logzeta = s_2d3 * logxi + s_lncon;
+	auto zeta = std::exp(logzeta);
+	return zeta;
       }
     else
       {
-	auto __w = std::sqrt((__zhat + _Tp{1}) * (__zhat - _Tp{1}));
+	auto w = std::sqrt((zhat + _Tp{1}) * (zhat - _Tp{1}));
 	// Compute xi = (zhat^2 - 1)^(1/2) - arcsec(zhat) = (2/3)(-zeta)^(3/2)
 	// using default branch of logarithm and square root.
-	auto __xi = __w - std::acos(_Tp{1} / __zhat);
-	//auto __mzetam3hf = _S_2d3 / __xi;
+	auto xi = w - std::acos(_Tp{1} / zhat);
+	//auto mzetam3hf = s_2d3 / xi;
 
-	auto __logxi = std::log(__xi);
+	auto logxi = std::log(xi);
 
 	// Compute ln(-zeta), zeta.
-	auto __logmzeta = _S_2d3 * __logxi + _S_lncon;
-	auto __zeta = -std::exp(__logmzeta);
-	return __zeta;
+	auto logmzeta = s_2d3 * logxi + s_lncon;
+	auto zeta = -std::exp(logmzeta);
+	return zeta;
       }
   }
 
@@ -496,17 +496,17 @@ template<typename _Tp>
     for (int i = 0; i <= 2000; ++i)
       {
 	auto zhat = _Tp(i * 0.01Q);
-	auto parm = __hankel_param_t<_Tp>(nu, zhat);
+	auto parm = hankel_param_t<_Tp>(nu, zhat);
 	std::cout
-	  << ' ' << parm.__zhat
-	  << ' ' << parm.__zeta
-	  << ' ' << parm.__zetam3hf
-	  << ' ' << parm.__thing
-	  << ' ' << parm.__p;
+	  << ' ' << parm.zhat
+	  << ' ' << parm.zeta
+	  << ' ' << parm.zetam3hf
+	  << ' ' << parm.thing
+	  << ' ' << parm.p;
 	//  << ' ' << parm.
 	//  << ' ' << parm.
 	//  << ' ' << parm.
-	auto t = _Tp{1.5L} / std::pow(parm.__zeta, _Tp{1.5L});
+	auto t = _Tp{1.5L} / std::pow(parm.zeta, _Tp{1.5L});
 	for (std::size_t k = 0; k < k_max; ++k)
 	  {
 	    decltype(t) tj = 1;
@@ -514,7 +514,7 @@ template<typename _Tp>
 	    for (std::size_t j = 0; j <= 2 * k; ++j)
 	      {
 //std::cout << "\nuvec[" << 2 * k - j << "]: " << uvec[2 * k - j] << '\n';
-		A += tj * mu[j] * uvec[2 * k - j](parm.__p);
+		A += tj * mu[j] * uvec[2 * k - j](parm.p);
 		tj *= t;
 	      }
 	    std::cout << std::setw(width) << A << ' ';

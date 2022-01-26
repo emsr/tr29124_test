@@ -12,7 +12,7 @@ template<typename _Tp>
   void
   test_airy_roots()
   {
-    const auto _S_eps = _Tp{10} * std::numeric_limits<_Tp>::epsilon();
+    const auto s_eps = _Tp{10} * std::numeric_limits<_Tp>::epsilon();
     std::cout.precision(std::numeric_limits<_Tp>::digits10);
     const auto w = 6 + std::cout.precision();
     const auto max_iter = 10000;
@@ -62,14 +62,14 @@ template<typename _Tp>
 	do
 	  {
 	    xai_prev = xai;
-	    auto [x, ai, aip, bi, bip] = std::__detail::__airy(xai);
+	    auto [x, ai, aip, bi, bip] = emsr::detail::airy(xai);
 	    xai -= ai / aip;
 	    aip_prev = aip;
 	    ai_prev = ai;
 	    if (++iter > max_iter)
 	      break;
 	  }
-	while (std::abs(xai - xai_prev) >= _S_eps * std::abs(xai));
+	while (std::abs(xai - xai_prev) >= s_eps * std::abs(xai));
 	zai[i] = -xai;
 	std::cout << ' ' << std::setw(w) << xai
 		  << ' ' << std::setw(w) << aip_prev
@@ -93,7 +93,7 @@ template<typename _Tp>
 	do
 	  {
 	    xaip_prev = xaip;
-	    auto [x, ai, aip, bi, bip] = std::__detail::__airy(xaip);
+	    auto [x, ai, aip, bi, bip] = emsr::detail::airy(xaip);
 	    auto aipp = xaip * ai; // Ai''(x) = xAi(x)
 	    xaip -= aip / aipp;
 	    ai_prev = ai;
@@ -102,7 +102,7 @@ template<typename _Tp>
 	    if (++iter > max_iter)
 	      break;
 	  }
-	while (std::abs(xaip - xaip_prev) >= 2 * _S_eps * std::abs(xaip));
+	while (std::abs(xaip - xaip_prev) >= 2 * s_eps * std::abs(xaip));
 	zaip[i] = -xaip;
 	std::cout << ' ' << std::setw(w) << xaip
 		  << ' ' << std::setw(w) << ai_prev
@@ -129,14 +129,14 @@ template<typename _Tp>
 	do
 	  {
 	    xbi_prev = xbi;
-	    auto [x, ai, aip, bi, bip] = std::__detail::__airy(xbi);
+	    auto [x, ai, aip, bi, bip] = emsr::detail::airy(xbi);
 	    xbi -= bi / bip;
 	    bip_prev = bip;
 	    bi_prev = bi;
 	    if (++iter > max_iter)
 	      break;
 	  }
-	while (std::abs(xbi - xbi_prev) >= _S_eps * std::abs(xbi));
+	while (std::abs(xbi - xbi_prev) >= s_eps * std::abs(xbi));
 	zbi.push_back(-xbi);
 	std::cout << ' ' << std::setw(w) << xbi
 		  << ' ' << std::setw(w) << bip_prev
@@ -164,7 +164,7 @@ template<typename _Tp>
 	do
 	  {
 	    xbip_prev = xbip;
-	    auto [x, ai, aip, bi, bip] = std::__detail::__airy(xbip);
+	    auto [x, ai, aip, bi, bip] = emsr::detail::airy(xbip);
 	    auto bipp = xbip * bi; // Bi''(x) = xBi(x)
 	    xbip -= bip / bipp;
 	    bi_prev = bi;
@@ -173,7 +173,7 @@ template<typename _Tp>
 	    if (++iter > max_iter)
 	      break;
 	  }
-	while (std::abs(xbip - xbip_prev) >= _S_eps * std::abs(xbip));
+	while (std::abs(xbip - xbip_prev) >= s_eps * std::abs(xbip));
 	zbip.push_back(-xbip);
 	std::cout << ' ' << std::setw(w) << xbip
 		  << ' ' << std::setw(w) << bi_prev

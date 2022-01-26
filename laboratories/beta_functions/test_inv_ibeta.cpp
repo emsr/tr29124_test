@@ -4,74 +4,73 @@
 
 #include <iostream>
 #include <iomanip>
-#include <bits/specfun.h>
+
+#include <emsr/specfun.h>
 #include <emsr/root_search.h>
 
 template<typename _Tp>
   _Tp
-  __ibeta_inv(_Tp __a, _Tp __b, _Tp _Ibeta)
+  ibeta_inv(_Tp a, _Tp b, _Tp _Ibeta)
   {
     constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
     constexpr int _S_max_inner_iter = 12;
     constexpr int _S_max_outer_iter = 35;
-    if (__a < _Tp{0} || __b < _Tp{0})
-      std::__throw_domain_error(__N("__ibeta_inv: "
-				"parameters a and b must be positive"));
+    if (a < _Tp{0} || b < _Tp{0})
+      throw std::domain_error("ibeta_inv: parameters a and b must be positive");
     else if (_Ibeta < _Tp{0} || _Ibeta > _Tp{1})
-      std::__throw_domain_error(__N("__ibeta_inv: "
-				"incomplete beta function out of range"));
-    const auto _Beta = std::beta(__a, __b);
+      throw std::domain_error("ibeta_inv: incomplete beta function out of range");
+    const auto _Beta = emsr::beta(a, b);
 
-    auto __ibeta = [__a, __b](_Tp __x)
+    auto ibeta = [a, b](_Tp x)
 		   -> _Tp
-		   { return __gnu_cxx::ibeta(__a, __b, __x); };
-    auto __xl = _Tp{0};
-    auto __xr = _Tp{1};
-    emsr::root_bracket(__ibeta, __xl, __xr); // This API blows.
+		   { return emsr::ibeta(a, b, x); };
+    auto xl = _Tp{0};
+    auto xr = _Tp{1};
+    emsr::root_bracket(ibeta, xl, xr); // This API blows.
 /*
     auto _Ix = _Ibeta;
     auto _Iy = _Tp{1} - _Ix;
     auto _Ixy_prev = std::min(_Ix, _Iy);
-    _Tp __x_prev, __y_prev;
-    if (__a <= __b)
+    _Tp x_prev, y_prev;
+    if (a <= b)
       {
-	__x_prev = std::pow(__a * _Ix * _Beta, _Tp{1} / __a);
-	__y_prev = _Tp{1} - __x_prev;
+	x_prev = std::pow(a * _Ix * _Beta, _Tp{1} / a);
+	y_prev = _Tp{1} - x_prev;
       }
     else
       {
-	__y_prev = std::pow(__b * _Iy * _Beta, _Tp{1} / __b);
-	__x_prev = _Tp{1} - __y_prev;
+	y_prev = std::pow(b * _Iy * _Beta, _Tp{1} / b);
+	x_prev = _Tp{1} - y_prev;
       }
-    auto __xy_prev = std::min(__x_prev, __y_prev);
-    auto __xy_lower = _Tp{0};
-    auto __xy_upper = _Tp{1};
-    int __outer_iter = 0;
-    while (__outer_iter++ < _S_max_outer_iter)
+    auto xy_prev = std::min(x_prev, y_prev);
+    auto xy_lower = _Tp{0};
+    auto xy_upper = _Tp{1};
+    int outer_iter = 0;
+    while (outer_iter++ < _S_max_outer_iter)
       {
-	int __iter = 0;
-	while (__iter++ < _S_max_inner_iter && _Ixy_prev < _Ixy)
+	int iter = 0;
+	while (iter++ < _S_max_inner_iter && _Ixy_prev < _Ixy)
 	  {
-	    __xy = _Tp{2} * __xy_prev;
-	    __xy_lower = __xy;
+	    xy = _Tp{2} * xy_prev;
+	    xy_lower = xy;
 	  }
-	__iter = 0;
-	while (__iter++ < _S_max_inner_iter && _Ixy_prev >= _Ixy)
+	iter = 0;
+	while (iter++ < _S_max_inner_iter && _Ixy_prev >= _Ixy)
 	  {
-	    __xy = __xy_prev / _Tp{2};
-	    __xy_upper = __xy;
+	    xy = xy_prev / _Tp{2};
+	    xy_upper = xy;
 	  }
-	__xy = (__xy_lower + __xy_upper) / _Tp{2};
-	if (std::abs(__xy_upper - __xy_lower) < _S_eps * __xy)
+	xy = (xy_lower + xy_upper) / _Tp{2};
+	if (std::abs(xy_upper - xy_lower) < _S_eps * xy)
 	  break;
       }
 */
-    auto __thing = [__a, __b](_Tp __x){ return __gnu_cxx::ibeta(__a, __b, __x); };
-    auto __xy_lower = _Tp{0};
-    auto __xy_upper = _Tp{1};
-    if (emsr::root_bracket(__thing, __xy_lower, __xy_upper))
+    auto thing = [a, b](_Tp x){ return emsr::ibeta(a, b, x); };
+    auto xy_lower = _Tp{0};
+    auto xy_upper = _Tp{1};
+    if (emsr::root_bracket(thing, xy_lower, xy_upper))
       {
-	return emsr::root_brent(__thing, __xy_lower, __xy_upper, _Tp{10} * _S_eps);
+	return emsr::root_brent(thing, xy_lower, xy_upper, _Tp{10} * _S_eps);
       }
 
     return _Tp{0};
@@ -82,6 +81,6 @@ main()
 {
   double a = 2.4, b = 5.6;
   double x = 0.8;
-  double ibet = __gnu_cxx::ibeta(a, b, x);
-  auto y = __ibeta_inv(a, b, ibet);
+  double ibet = emsr::ibeta(a, b, x);
+  auto y = ibeta_inv(a, b, ibet);
 }

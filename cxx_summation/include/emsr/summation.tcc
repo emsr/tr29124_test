@@ -1,12 +1,11 @@
-// Special functions -*- C++ -*-
 
 // Copyright (C) 2016-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -66,7 +65,7 @@ namespace emsr
 	  auto temp = this->m_delta[0];
 	  this->m_delta[0] = term;
 	  auto n = this->m_delta.size();
-	  for (auto j = 0; j < n - 1; ++j)
+	  for (auto j = 0ull; j < n - 1; ++j)
 	    temp = std::exchange(this->m_delta[j + 1],
 			     value_type{0.5L} * (this->m_delta[j] + temp));
 	  auto next = value_type{0.5L} * (this->m_delta.back() + temp);
@@ -153,7 +152,7 @@ namespace emsr
       else
 	{
 	  auto lowmax = n / 2;
-	  for (auto j = 1; j <= lowmax; ++j)
+	  for (auto j = 1u; j <= lowmax; ++j)
 	    {
 	      auto m = n - 2 * j;
 	      auto denom = (this->m_a[m + 2] - this->m_a[m + 1])
@@ -228,7 +227,7 @@ namespace emsr
 	{
 	  auto lmax = n / 3;
 	  auto m = n;
-	  for (auto l = 1; l <= lmax; ++l)
+	  for (auto l = 1u; l <= lmax; ++l)
 	    {
 	      m -= 3;
 	      auto diff0 = this->m_arj[m + 1] - this->m_arj[m];
@@ -276,7 +275,7 @@ namespace emsr
 	      auto bn2 = this->m_beta + Tp(n);
 	      auto coef = bn1 / bn2;
 	      auto coefp = Tp{1};
-	      for (auto j = 2; j <= n; ++j)
+	      for (auto j = 2u; j <= n; ++j)
 		{
 		  auto fact = (this->m_beta + Tp(n - j)) * coefp / bn2;
 		  this->m_num[n - j] = this->m_num[n - j + 1]
@@ -320,7 +319,7 @@ namespace emsr
 	    {
 	      auto bn1 = this->m_beta + Tp(n - 1);
 	      auto bn2 = this->m_beta + Tp(n - 2);
-	      for (auto j = 2; j <= n; ++j)
+	      for (auto j = 2ull; j <= n; ++j)
 		{
 		  auto fact = (bn1 / (bn1 + Tp(j - 1)))
 			      * (bn2 / (bn2 + Tp(j - 1)));

@@ -22,11 +22,11 @@ double PI = 3.141592653589793238462643383279502884195;
 
 double
 yv(double nu, double x)
-{ return std::cyl_neumann(nu, x); }
+{ return emsr::cyl_neumann(nu, x); }
 
 double
 jv(double nu, double x)
-{ return std::cyl_bessel_j(nu, x); }
+{ return emsr::cyl_bessel_j(nu, x); }
 
 double
 struve(double nu, double x)
@@ -53,7 +53,7 @@ struve(double nu, double x)
       y = 0.0;
     }
   else
-    y = __hyperg_1f2(1.0, 1.5, 1.5 + nu, -t, onef2err);
+    y = hyperg_1f2(1.0, 1.5, 1.5 + nu, -t, onef2err);
 
   if (f < 18.0 || x < 0.0)
     {
@@ -61,7 +61,7 @@ struve(double nu, double x)
       ya = 0.0;
     }
   else
-    ya = __hyperg_3f0(1.0, 0.5, 0.5 - nu, -1.0 / t, threef0err);
+    ya = hyperg_3f0(1.0, 0.5, 0.5 - nu, -1.0 / t, threef0err);
 
   f = std::sqrt(PI);
   double h = std::pow(0.5 * x, nu - 1.0);

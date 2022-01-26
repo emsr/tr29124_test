@@ -26,8 +26,6 @@
 #include <limits>
 #include <LambertW.h>
 
-using namespace std;
-
 namespace LambertWDetail {
 
   const double kInvE = 1/M_E;

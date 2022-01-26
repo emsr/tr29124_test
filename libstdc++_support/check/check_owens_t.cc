@@ -1403,7 +1403,7 @@ template<typename Ret, unsigned int Num>
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Ret f = __gnu_cxx::owens_t(data[i].h, data[i].a);
+	const Ret f = emsr::owens_t(data[i].h, data[i].a);
 	const bool failure_f = std::isnan(f);
 	if (!failure && failure_f)
 	  failure = true;

@@ -206,7 +206,7 @@ template<typename Ret, unsigned int Num>
     const Ret toler = 100 * eps;
     Ret max_abs_diff = Ret(-1);
     Ret max_abs_frac = Ret(-1);
-    const auto lah = __gnu_cxx::lah<Ret>(Num - 1);
+    const auto lah = emsr::lah<Ret>(Num - 1);
     for (unsigned int i = 0; i < Num; ++i)
       {
 	const Ret f0 = lah_numbers[i];

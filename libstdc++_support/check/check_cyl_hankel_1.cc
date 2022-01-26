@@ -1029,7 +1029,7 @@ template<typename Ret, unsigned int Num>
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const std::complex<Ret> f = __gnu_cxx::cyl_hankel_1(data[i].nu, data[i].x);
+	const std::complex<Ret> f = emsr::cyl_hankel_1(data[i].nu, data[i].x);
 	const bool failure_f = std::isnan(f);
 	if (!failure && failure_f)
 	  failure = true;

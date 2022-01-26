@@ -4,17 +4,19 @@
 
 #include <cmath>
 #include <emsr/math_util.h>
+#include <emsr/numeric_limits.h>
+#include <emsr/specfun.h>
 
   /**
    * 
    */
   template<typename _Tp>
-    struct __anger_weber_t
+    struct anger_weber_t
     {
-      _Tp __nu;
-      _Tp __z;
-      _Tp __J_value;
-      _Tp __E_value;
+      _Tp nu;
+      _Tp z;
+      _Tp J_value;
+      _Tp E_value;
     };
 
   /**
@@ -23,9 +25,9 @@
   template<typename _Tp>
     struct _GammaReciprocal
     {
-      explicit _GammaReciprocal(_Tp __a)
-      : _M_arg(__a),
-        _M_int(emsr::fp_is_integer(__a))
+      explicit _GammaReciprocal(_Tp a)
+      : _M_arg(a),
+        _M_int(emsr::fp_is_integer(a))
       { }
 
       _Tp
@@ -40,7 +42,7 @@
 	    else
 	      {
 	        this->_M_start = true;
-	        this->_M_gam = std::__detail::__gamma_reciprocal(this->_M_arg);
+	        this->_M_gam = emsr::detail::gamma_reciprocal(this->_M_arg);
 		return this->_M_gam;
 	      }
 	  }
@@ -56,9 +58,9 @@
       _GammaReciprocal&
       operator++(int)
       {
-	auto __temp = *this;
+	auto temp = *this;
 	this->_M_arg += _Tp{1};
-	return __temp;
+	return temp;
       }
 
       _Tp _M_arg;
@@ -75,25 +77,25 @@
    */
   template<typename _Tp>
     _Tp
-    __anger_weber_sum_1(_Tp __nu, _Tp __z)
+    anger_weber_sum_1(_Tp nu, _Tp z)
     {
-      const auto _S_max_iter = 10000u;
-      const auto _S_eps = emsr::epsilon(__z);
-      const auto __z2 = __z / _Tp{2};
-      auto _GamArg11 = _Tp{1} + __nu / _Tp{2};
-      auto _GamArg12 = _Tp{1} - __nu / _Tp{2};
+      const auto s_max_iter = 10000u;
+      const auto s_eps = emsr::epsilon(z);
+      const auto z2 = z / _Tp{2};
+      auto _GamArg11 = _Tp{1} + nu / _Tp{2};
+      auto _GamArg12 = _Tp{1} - nu / _Tp{2};
       auto _Gam11 = std::tgamma(_GamArg11);
       auto _Gam12 = std::tgamma(_GamArg12);
-      auto __term1 = _Tp{1} / (_Gam11 * _Gam12);
-      auto _S1 = __term1;
-      for (auto __k = 1u; __k < _S_max_iter; ++__k)
+      auto term1 = _Tp{1} / (_Gam11 * _Gam12);
+      auto _S1 = term1;
+      for (auto k = 1u; k < s_max_iter; ++k)
 	{
-	  __term1 *= -__z2 / _GamArg11 * __z2 / _GamArg12;
-	  _S1 += __term1;
+	  term1 *= -z2 / _GamArg11 * z2 / _GamArg12;
+	  _S1 += term1;
 	  _GamArg11 += _Tp{1};
 	  _GamArg12 += _Tp{1};
 
-	  if (std::abs(__term1) < _S_eps * std::abs(_S1))
+	  if (std::abs(term1) < s_eps * std::abs(_S1))
 	    return _S1;
 	}
       return _Tp{0};
@@ -109,28 +111,28 @@
    */
   template<typename _Tp>
     _Tp
-    __anger_weber_sum_1_even_int(int __n, _Tp __z)
+    anger_weber_sum_1_even_int(int n, _Tp z)
     {
-      const auto _S_max_iter = 10000u;
-      const auto _S_eps = emsr::epsilon(__z);
-      const auto __z2 = __z / _Tp{2};
-      const auto __m = __n / 2;
-      const auto __k_start = __m;
-      auto _GamArg11 = _Tp(1 + __m + __k_start);
+      const auto s_max_iter = 10000u;
+      const auto s_eps = emsr::epsilon(z);
+      const auto z2 = z / _Tp{2};
+      const auto m = n / 2;
+      const auto k_start = m;
+      auto _GamArg11 = _Tp(1 + m + k_start);
       auto _Gam11 = std::tgamma(_GamArg11);
-      auto _GamArg12 = _Tp(1 - __m + __k_start);
+      auto _GamArg12 = _Tp(1 - m + k_start);
       auto _Gam12 = std::tgamma(_GamArg12);
-      auto __term1 = ((__k_start & 1) ? -1 : +1)
-		   * std::pow(__z2, _Tp(2 * __k_start)) / (_Gam11 * _Gam12);
-      auto _S1 = __term1;
-      for (auto __k = 1u; __k < _S_max_iter; ++__k)
+      auto term1 = ((k_start & 1) ? -1 : +1)
+		   * std::pow(z2, _Tp(2 * k_start)) / (_Gam11 * _Gam12);
+      auto _S1 = term1;
+      for (auto k = 1u; k < s_max_iter; ++k)
 	{
-	  __term1 *= -__z2 / _GamArg11 * __z2 / _GamArg12;
-	  _S1 += __term1;
+	  term1 *= -z2 / _GamArg11 * z2 / _GamArg12;
+	  _S1 += term1;
 	  _GamArg11 += _Tp{1};
 	  _GamArg12 += _Tp{1};
 
-	  if (std::abs(__term1) < _S_eps * std::abs(_S1))
+	  if (std::abs(term1) < s_eps * std::abs(_S1))
 	    return _S1;
 	}
       return _Tp{0};
@@ -145,25 +147,25 @@
    */
   template<typename _Tp>
     _Tp
-    __anger_weber_sum_2(_Tp __nu, _Tp __z)
+    anger_weber_sum_2(_Tp nu, _Tp z)
     {
-      const auto _S_max_iter = 10000u;
-      const auto _S_eps = emsr::epsilon(__z);
-      const auto __z2 = __z / _Tp{2};
-      auto _GamArg21 = _Tp{3} / _Tp{2} + __nu / _Tp{2};
-      auto _GamArg22 = _Tp{3} / _Tp{2} - __nu / _Tp{2};
+      const auto s_max_iter = 10000u;
+      const auto s_eps = emsr::epsilon(z);
+      const auto z2 = z / _Tp{2};
+      auto _GamArg21 = _Tp{3} / _Tp{2} + nu / _Tp{2};
+      auto _GamArg22 = _Tp{3} / _Tp{2} - nu / _Tp{2};
       auto _Gam21 = std::tgamma(_GamArg21);
       auto _Gam22 = std::tgamma(_GamArg22);
-      auto __term2 = __z2 / (_Gam21 * _Gam22);
-      auto _S2 = __term2;
-      for (auto __k = 1u; __k < _S_max_iter; ++__k)
+      auto term2 = z2 / (_Gam21 * _Gam22);
+      auto _S2 = term2;
+      for (auto k = 1u; k < s_max_iter; ++k)
 	{
-	  __term2 *= -__z2 / _GamArg21 * __z2 / _GamArg22;
-	  _S2 += __term2;
+	  term2 *= -z2 / _GamArg21 * z2 / _GamArg22;
+	  _S2 += term2;
 	  _GamArg21 += _Tp{1};
 	  _GamArg22 += _Tp{1};
 
-	  if (std::abs(__term2) < _S_eps * std::abs(_S2))
+	  if (std::abs(term2) < s_eps * std::abs(_S2))
 	    return _S2;
 	}
       return _Tp{0};
@@ -179,28 +181,28 @@
    */
   template<typename _Tp>
     _Tp
-    __anger_weber_sum_2_odd_int(int __n, _Tp __z)
+    anger_weber_sum_2_odd_int(int n, _Tp z)
     {
-      const auto _S_max_iter = 10000u;
-      const auto _S_eps = emsr::epsilon(__z);
-      const auto __z2 = __z / _Tp{2};
-      const auto __m = (__n - 1) / 2;
-      const auto __k_start = __m;
-      auto _GamArg21 = _Tp{2} + __m + __k_start;
+      const auto s_max_iter = 10000u;
+      const auto s_eps = emsr::epsilon(z);
+      const auto z2 = z / _Tp{2};
+      const auto m = (n - 1) / 2;
+      const auto k_start = m;
+      auto _GamArg21 = _Tp{2} + m + k_start;
       auto _Gam21 = std::tgamma(_GamArg21);
-      auto _GamArg22 = _Tp{1} - __m + __k_start;
+      auto _GamArg22 = _Tp{1} - m + k_start;
       auto _Gam22 = std::tgamma(_GamArg22);
-      auto __term2 = ((__k_start & 1) ? -1 : +1)
-		   * std::pow(__z2, _Tp(2 * __k_start + 1)) / (_Gam21 * _Gam22);
-      auto _S2 = __term2;
-      for (auto __k = 1u; __k < _S_max_iter; ++__k)
+      auto term2 = ((k_start & 1) ? -1 : +1)
+		   * std::pow(z2, _Tp(2 * k_start + 1)) / (_Gam21 * _Gam22);
+      auto _S2 = term2;
+      for (auto k = 1u; k < s_max_iter; ++k)
 	{
-	  __term2 *= -__z2 / _GamArg21 * __z2 / _GamArg22;
-	  _S2 += __term2;
+	  term2 *= -z2 / _GamArg21 * z2 / _GamArg22;
+	  _S2 += term2;
 	  _GamArg21 += _Tp{1};
 	  _GamArg22 += _Tp{1};
 
-	  if (std::abs(__term2) < _S_eps * std::abs(_S2))
+	  if (std::abs(term2) < s_eps * std::abs(_S2))
 	    return _S2;
 	}
       return _Tp{0};
@@ -210,37 +212,37 @@
    * 
    */
   template<typename _Tp>
-    __anger_weber_t<_Tp>
-    __anger_weber_sum_new(_Tp __nu, _Tp __z)
+    anger_weber_t<_Tp>
+    anger_weber_sum_new(_Tp nu, _Tp z)
     {
-      if (__nu < _Tp{0})
+      if (nu < _Tp{0})
 	{
-	  auto __AW = __anger_weber_sum_new(-__nu, -__z);
-	  __AW.__E_value = -__AW.__E_value;
-	  return __AW;
+	  auto AW = anger_weber_sum_new(-nu, -z);
+	  AW.E_value = -AW.E_value;
+	  return AW;
 	}
       else
 	{
-	  auto __nuint = emsr::fp_is_integer(__nu);
+	  auto nuint = emsr::fp_is_integer(nu);
 
 	  auto _S1 = _Tp{0};
-	  if (__nuint && __nuint() > 0 && __nuint() % 2 == 0)
-	    _S1 = __anger_weber_sum_1_even_int(__nuint(), __z);
+	  if (nuint && nuint() > 0 && nuint() % 2 == 0)
+	    _S1 = anger_weber_sum_1_even_int(nuint(), z);
 	  else
-	    _S1 = __anger_weber_sum_1(__nu, __z);
+	    _S1 = anger_weber_sum_1(nu, z);
 
 	  auto _S2 = _Tp{0};
-	  if (__nuint && __nuint() > 0 && __nuint() % 2 == 1)
-	    _S2 = __anger_weber_sum_2_odd_int(__nuint(), __z);
+	  if (nuint && nuint() > 0 && nuint() % 2 == 1)
+	    _S2 = anger_weber_sum_2_odd_int(nuint(), z);
 	  else
-	    _S2 = __anger_weber_sum_2(__nu, __z);
+	    _S2 = anger_weber_sum_2(nu, z);
 
-	  auto __ph = std::__detail::__sincos_pi(__nu / _Tp{2});
-	  return __anger_weber_t<_Tp>{__nu, __z,
-				      __ph.__cos_v * _S1
-				    + __ph.__sin_v * _S2,
-				      __ph.__sin_v * _S1
-				    - __ph.__cos_v * _S2};
+	  auto ph = emsr::detail::sincos_pi(nu / _Tp{2});
+	  return anger_weber_t<_Tp>{nu, z,
+				      ph.cos_v * _S1
+				    + ph.sin_v * _S2,
+				      ph.sin_v * _S1
+				    - ph.cos_v * _S2};
 	}
     }
 
@@ -248,107 +250,107 @@
    * 
    */
   template<typename _Tp>
-    __anger_weber_t<_Tp>
-    __anger_weber_sum(_Tp __nu, _Tp __z)
+    anger_weber_t<_Tp>
+    anger_weber_sum(_Tp nu, _Tp z)
     {
-      const auto _S_eps = emsr::epsilon(__z);
+      const auto s_eps = emsr::epsilon(z);
 
-      auto __nuint = emsr::fp_is_integer(__nu);
+      auto nuint = emsr::fp_is_integer(nu);
 
-      if (__nu < _Tp{0})
+      if (nu < _Tp{0})
 	{
-	  auto __AW = __anger_weber_sum(-__nu, -__z);
-	  __AW.__E_value = -__AW.__E_value;
-	  return __AW;
+	  auto AW = anger_weber_sum(-nu, -z);
+	  AW.E_value = -AW.E_value;
+	  return AW;
 	}
-      else if (__nuint && __nuint() > 1)
+      else if (nuint && nuint() > 1)
 	{
-	  auto __n = __nuint();
-	  if (__n & 1)
+	  auto n = nuint();
+	  if (n & 1)
 	    {
-	      const auto __z2 = __z / _Tp{2};
-	      auto _GamArg11 = _Tp{1} + __nu / _Tp{2};
-	      auto _GamArg12 = _Tp{1} - __nu / _Tp{2};
+	      const auto z2 = z / _Tp{2};
+	      auto _GamArg11 = _Tp{1} + nu / _Tp{2};
+	      auto _GamArg12 = _Tp{1} - nu / _Tp{2};
 	      auto _Gam11 = std::tgamma(_GamArg11);
 	      auto _Gam12 = std::tgamma(_GamArg12);
-	      auto __term1 = _Tp{1} / (_Gam11 * _Gam12);
-	      auto _S1 = __term1;
-	      for (auto __k = 1u; __k < 10000u; ++__k)
+	      auto term1 = _Tp{1} / (_Gam11 * _Gam12);
+	      auto _S1 = term1;
+	      for (auto k = 1u; k < 10000u; ++k)
 		{
-		  __term1 *= -__z2 / _GamArg11 * __z2 / _GamArg12;
-		  _S1 += __term1;
+		  term1 *= -z2 / _GamArg11 * z2 / _GamArg12;
+		  _S1 += term1;
 		  _GamArg11 += _Tp{1};
 		  _GamArg12 += _Tp{1};
 
-		  if (std::abs(__term1) < _S_eps * std::abs(_S1))
+		  if (std::abs(term1) < s_eps * std::abs(_S1))
 		    break;
 		}
-	      return __anger_weber_t<_Tp>{__nu, __z,
+	      return anger_weber_t<_Tp>{nu, z,
 					  _Tp{0},
-					  -(((__n / 2) & 1) ? -1 : +1) * _S1};
+					  -(((n / 2) & 1) ? -1 : +1) * _S1};
 	    }
 	  else
 	    {
-	      const auto __z2 = __z / _Tp{2};
-	      auto _GamArg21 = _Tp{3} / _Tp{2} + __nu / _Tp{2};
-	      auto _GamArg22 = _Tp{3} / _Tp{2} - __nu / _Tp{2};
+	      const auto z2 = z / _Tp{2};
+	      auto _GamArg21 = _Tp{3} / _Tp{2} + nu / _Tp{2};
+	      auto _GamArg22 = _Tp{3} / _Tp{2} - nu / _Tp{2};
 	      auto _Gam21 = std::tgamma(_GamArg21);
 	      auto _Gam22 = std::tgamma(_GamArg22);
-	      auto __term2 = __z2 / (_Gam21 * _Gam22);
-	      auto _S2 = __term2;
-	      for (auto __k = 1u; __k < 10000u; ++__k)
+	      auto term2 = z2 / (_Gam21 * _Gam22);
+	      auto _S2 = term2;
+	      for (auto k = 1u; k < 10000u; ++k)
 		{
-		  __term2 *= -__z2 / _GamArg21 * __z2 / _GamArg22;
-		  _S2 += __term2;
+		  term2 *= -z2 / _GamArg21 * z2 / _GamArg22;
+		  _S2 += term2;
 		  _GamArg21 += _Tp{1};
 		  _GamArg22 += _Tp{1};
 
-		  if (std::abs(__term2) < _S_eps * std::abs(_S2))
+		  if (std::abs(term2) < s_eps * std::abs(_S2))
 		    break;
 		}
-	      return __anger_weber_t<_Tp>{__nu, __z,
+	      return anger_weber_t<_Tp>{nu, z,
 					  _Tp{0},
-					 -((__n / 2) & 1 ? -1 : +1) * _S2};
+					 -((n / 2) & 1 ? -1 : +1) * _S2};
 	    }
 	}
       else
 	{
-	  const auto __z2 = __z / _Tp{2};
-	  auto _GamArg11 = _Tp{1} + __nu / _Tp{2};
-	  auto _GamArg12 = _Tp{1} - __nu / _Tp{2};
-	  auto _GamArg21 = _Tp{3} / _Tp{2} + __nu / _Tp{2};
-	  auto _GamArg22 = _Tp{3} / _Tp{2} - __nu / _Tp{2};
+	  const auto z2 = z / _Tp{2};
+	  auto _GamArg11 = _Tp{1} + nu / _Tp{2};
+	  auto _GamArg12 = _Tp{1} - nu / _Tp{2};
+	  auto _GamArg21 = _Tp{3} / _Tp{2} + nu / _Tp{2};
+	  auto _GamArg22 = _Tp{3} / _Tp{2} - nu / _Tp{2};
 	  auto _Gam11 = std::tgamma(_GamArg11);
 	  auto _Gam12 = std::tgamma(_GamArg12);
 	  auto _Gam21 = std::tgamma(_GamArg21);
 	  auto _Gam22 = std::tgamma(_GamArg22);
-	  auto __term1 = _Tp{1} / (_Gam11 * _Gam12);
-	  auto _S1 = __term1;
-	  auto __term2 = __z2 / (_Gam21 * _Gam22);
-	  auto _S2 = __term2;
-	  for (auto __k = 1u; __k < 10000u; ++__k)
+	  auto term1 = _Tp{1} / (_Gam11 * _Gam12);
+	  auto _S1 = term1;
+	  auto term2 = z2 / (_Gam21 * _Gam22);
+	  auto _S2 = term2;
+	  for (auto k = 1u; k < 10000u; ++k)
 	    {
-	      __term1 *= -__z2 / _GamArg11 * __z2 / _GamArg12;
-	      _S1 += __term1;
+	      term1 *= -z2 / _GamArg11 * z2 / _GamArg12;
+	      _S1 += term1;
 	      _GamArg11 += _Tp{1};
 	      _GamArg12 += _Tp{1};
 
-	      __term2 *= -__z2 / _GamArg21 * __z2 / _GamArg22;
-	      _S2 += __term2;
+	      term2 *= -z2 / _GamArg21 * z2 / _GamArg22;
+	      _S2 += term2;
 	      _GamArg21 += _Tp{1};
 	      _GamArg22 += _Tp{1};
 
-	      if (std::abs(__term1) < _S_eps * std::abs(_S1)
-	       && std::abs(__term2) < _S_eps * std::abs(_S2))
+	      if (std::abs(term1) < s_eps * std::abs(_S1)
+	       && std::abs(term2) < s_eps * std::abs(_S2))
 		break;
 	    }
-	  //auto [__sin, __cos] = __sincos_pi(__nu / _Tp{2});
-	  auto __ph = std::__detail::__sincos_pi(__nu / _Tp{2});
-	  return __anger_weber_t<_Tp>{__nu, __z,
-				      __ph.__cos_v * _S1
-				    + __ph.__sin_v * _S2,
-				      __ph.__sin_v * _S1
-				    - __ph.__cos_v * _S2};
+	  //auto [sin, cos] = sincos_pi(nu / _Tp{2});
+	  auto ph = emsr::detail::sincos_pi(nu / _Tp{2});
+	  return anger_weber_t<_Tp>{nu, z,
+				      ph.cos_v * _S1
+				    + ph.sin_v * _S2,
+				      ph.sin_v * _S1
+				    - ph.cos_v * _S2};
 	}
     }
 
@@ -359,41 +361,41 @@
    * @see http://dlmf.nist.gov/11.10#i
    */
   template<typename _Tp>
-    __anger_weber_t<_Tp>
-    __anger_weber_asymp_arg(_Tp __nu, _Tp __z)
+    anger_weber_t<_Tp>
+    anger_weber_asymp_arg(_Tp nu, _Tp z)
     {
-      using _Real = decltype(std::real(__z));
-      const auto _S_eps = emsr::epsilon<_Real>();
-      const auto _S_pi = emsr::pi_v<_Real>;
-      const auto _S_max_iter = 1000u;
-      const auto __z2 = __z * __z;
+      using _Real = decltype(std::real(z));
+      const auto s_eps = emsr::epsilon<_Real>();
+      const auto s_pi = emsr::pi_v<_Real>;
+      const auto s_max_iter = 1000u;
+      const auto z2 = z * z;
 
-      auto __F_z2k = _Tp{1};
-      auto __G_z2k = _Tp{1};
+      auto F_z2k = _Tp{1};
+      auto G_z2k = _Tp{1};
 
-      auto __Fsum = __F_z2k;
-      auto __Gsum = __G_z2k;
-      for (auto __k = 1u; __k < _S_max_iter; ++__k)
+      auto Fsum = F_z2k;
+      auto Gsum = G_z2k;
+      for (auto k = 1u; k < s_max_iter; ++k)
 	{
-	  __F_z2k *= (__nu - _Tp(2 * __k - 1)) * (__nu + _Tp(2 * __k - 1))
-		   / __z2;
-	  __Fsum += __F_z2k;
-	  __G_z2k *= (__nu - _Tp(2 * __k)) * (__nu + _Tp(2 * __k))
-		   / __z2;
-	  __Gsum += __G_z2k;
+	  F_z2k *= (nu - _Tp(2 * k - 1)) * (nu + _Tp(2 * k - 1))
+		   / z2;
+	  Fsum += F_z2k;
+	  G_z2k *= (nu - _Tp(2 * k)) * (nu + _Tp(2 * k))
+		   / z2;
+	  Gsum += G_z2k;
 	}
 
-      auto __ph = std::__detail::__sincos_pi(__nu / _Tp{2});
-      auto _Bess = __cyl_bessel(__nu, __z);
-      return __anger_weber_t<_Tp>{__nu, __z,
+      auto ph = emsr::detail::sincos_pi(nu / _Tp{2});
+      auto _Bess = cyl_bessel(nu, z);
+      return anger_weber_t<_Tp>{nu, z,
 				  _Bess._J_value
-				    + __ph.__sin_v
-				* (__Fsum + __nu * __Gsum / __z) / _S_pi / __z,
+				    + ph.sin_v
+				* (Fsum + nu * Gsum / z) / s_pi / z,
 				 -_Bess._N_value
-				    - (_Tp{1} + __ph.__cos_v) * __Fsum
-					/ _S_pi / __z
-				    - (_Tp{1} - __ph.__cos_v) * __Gsum
-					* __nu / _S_pi / __z / __z};
+				    - (_Tp{1} + ph.cos_v) * Fsum
+					/ s_pi / z
+				    - (_Tp{1} - ph.cos_v) * Gsum
+					* nu / s_pi / z / z};
     }
 
   /**
@@ -403,19 +405,19 @@
    * @see http://dlmf.nist.gov/11.10#ii
    */
   template<typename _Tp>
-    __anger_weber_t<_Tp>
-    __anger_weber_asymp_order(_Tp __nu, _Tp __z)
+    anger_weber_t<_Tp>
+    anger_weber_asymp_order(_Tp nu, _Tp z)
     {
-      using _Real = decltype(std::real(__z));
-      const auto _S_pi = emsr::pi_v<_Real>;
-      const auto __sinnp = __gnu_cxx::sin_pi(__nu);
-      const auto __sinnpd2 = __gnu_cxx::sin_pi(__nu / _Tp{2});
-      const auto __cosnpd2 = __gnu_cxx::cos_pi(__nu / _Tp{2});
-      const auto __nufact = __nu * __z / (__nu * __nu - _Tp{1});
-      return __anger_weber_t<_Tp>{__nu, __z,
-				  __sinnp * (_Tp{1} - __nufact) / __nu / _S_pi,
-				  _Tp{2} * (__sinnpd2 + __nufact * __cosnpd2)
-					 / __nu / _S_pi};
+      using _Real = decltype(std::real(z));
+      const auto s_pi = emsr::pi_v<_Real>;
+      const auto sinnp = emsr::sin_pi(nu);
+      const auto sinnpd2 = emsr::sin_pi(nu / _Tp{2});
+      const auto cosnpd2 = emsr::cos_pi(nu / _Tp{2});
+      const auto nufact = nu * z / (nu * nu - _Tp{1});
+      return anger_weber_t<_Tp>{nu, z,
+				  sinnp * (_Tp{1} - nufact) / nu / s_pi,
+				  _Tp{2} * (sinnpd2 + nufact * cosnpd2)
+					 / nu / s_pi};
     }
 
   /**
@@ -425,8 +427,8 @@
    * @see http://dlmf.nist.gov/11.10#iii
    */
   template<typename _Tp>
-    __anger_weber_t<_Tp>
-    __anger_weber_asymp_uniform(_Tp __nu, _Tp __z)
+    anger_weber_t<_Tp>
+    anger_weber_asymp_uniform(_Tp nu, _Tp z)
     {
     }
 
@@ -434,49 +436,49 @@
    * Use the reciprocal gamma function... Fails.  WTF.
    */
   template<typename _Tp>
-    __anger_weber_t<_Tp>
-    __anger_weber_sum_recip(_Tp __nu, _Tp __z)
+    anger_weber_t<_Tp>
+    anger_weber_sum_recip(_Tp nu, _Tp z)
     {
       //using _Val = _Tp;
       //using _Real = emsr::num_traits_t<_Val>;
-      const auto _S_eps = emsr::epsilon(__z);
+      const auto s_eps = emsr::epsilon(z);
 
-      const auto __z2 = __z / _Tp{2};
-      auto _GamArg11 = _Tp{1} + __nu / _Tp{2};
-      auto _GamArg12 = _Tp{1} - __nu / _Tp{2};
-      auto _GamArg21 = _Tp{3} / _Tp{2} + __nu / _Tp{2};
-      auto _GamArg22 = _Tp{3} / _Tp{2} - __nu / _Tp{2};
-      auto _Gam11 = std::__detail::__gamma_reciprocal(_GamArg11);
-      auto _Gam12 = std::__detail::__gamma_reciprocal(_GamArg12);
-      auto _Gam21 = std::__detail::__gamma_reciprocal(_GamArg21);
-      auto _Gam22 = std::__detail::__gamma_reciprocal(_GamArg22);
-      auto __term1 = _Gam11 * _Gam12;
-      auto _S1 = __term1;
-      auto __term2 = __z2 * _Gam21 * _Gam22;
-      auto _S2 = __term2;
-      for (auto __k = 1u; __k < 10000u; ++__k)
+      const auto z2 = z / _Tp{2};
+      auto _GamArg11 = _Tp{1} + nu / _Tp{2};
+      auto _GamArg12 = _Tp{1} - nu / _Tp{2};
+      auto _GamArg21 = _Tp{3} / _Tp{2} + nu / _Tp{2};
+      auto _GamArg22 = _Tp{3} / _Tp{2} - nu / _Tp{2};
+      auto _Gam11 = emsr::detail::gamma_reciprocal(_GamArg11);
+      auto _Gam12 = emsr::detail::gamma_reciprocal(_GamArg12);
+      auto _Gam21 = emsr::detail::gamma_reciprocal(_GamArg21);
+      auto _Gam22 = emsr::detail::gamma_reciprocal(_GamArg22);
+      auto term1 = _Gam11 * _Gam12;
+      auto _S1 = term1;
+      auto term2 = z2 * _Gam21 * _Gam22;
+      auto _S2 = term2;
+      for (auto k = 1u; k < 10000u; ++k)
 	{
-	  __term1 *= -__z2 / _GamArg11 * __z2 / _GamArg12;
-	  _S1 += __term1;
+	  term1 *= -z2 / _GamArg11 * z2 / _GamArg12;
+	  _S1 += term1;
 	  _GamArg11 += _Tp{1};
 	  _GamArg12 += _Tp{1};
 
-	  __term2 *= -__z2 / _GamArg21 * __z2 / _GamArg22;
-	  _S2 += __term2;
+	  term2 *= -z2 / _GamArg21 * z2 / _GamArg22;
+	  _S2 += term2;
 	  _GamArg21 += _Tp{1};
 	  _GamArg22 += _Tp{1};
 
-	  if (std::abs(__term1) < _S_eps * std::abs(_S1)
-	   && std::abs(__term2) < _S_eps * std::abs(_S2))
+	  if (std::abs(term1) < s_eps * std::abs(_S1)
+	   && std::abs(term2) < s_eps * std::abs(_S2))
 	    break;
 	}
-      //auto [__sin, __cos] = __sincos_pi(__nu / _Tp{2});
-      auto __ph = std::__detail::__sincos_pi(__nu / _Tp{2});
-      return __anger_weber_t<_Tp>{__nu, __z,
-				  __ph.__cos_v * _S1
-				+ __ph.__sin_v * _S2,
-				  __ph.__sin_v * _S1
-				- __ph.__cos_v * _S2};
+      //auto [sin, cos] = sincos_pi(nu / _Tp{2});
+      auto ph = emsr::detail::sincos_pi(nu / _Tp{2});
+      return anger_weber_t<_Tp>{nu, z,
+				  ph.cos_v * _S1
+				+ ph.sin_v * _S2,
+				  ph.sin_v * _S1
+				- ph.cos_v * _S2};
     }
 
   /**
@@ -488,10 +490,10 @@
    */
   template<typename _Tp>
     _Tp
-    __assoc_anger_weber_asymp(_Tp __nu, _Tp __z)
+    assoc_anger_weber_asymp(_Tp nu, _Tp z)
     {
-      auto _Bessel = __cyl_bessel(__nu, __z);
-      auto _Weber = __anger_weber(__nu, __z);
+      auto _Bessel = cyl_bessel(nu, z);
+      auto _Weber = anger_weber(nu, z);
     }
 
   /**
@@ -508,14 +510,14 @@
    */
   template<typename _Tp>
     _Tp
-    __assoc_anger_weber(_Tp __nu, _Tp __z)
+    assoc_anger_weber(_Tp nu, _Tp z)
     {
-      auto _Bessel = std::cyl_bessel_j(__nu, __z);
-      auto _Weber = __anger_weber_sum_new(__nu, __z);
-      if (emsr::fp_is_integer(__nu))
+      auto _Bessel = emsr::cyl_bessel_j(nu, z);
+      auto _Weber = anger_weber_sum_new(nu, z);
+      if (emsr::fp_is_integer(nu))
 	return _Tp{0};
       else
-        return (_Weber.__J_value - _Bessel) / __gnu_cxx::sin_pi(__nu);
+        return (_Weber.J_value - _Bessel) / emsr::sin_pi(nu);
     }
 
   /**
@@ -531,14 +533,14 @@
    */
   template<typename _Tp>
   _Tp
-  __cosc_pi(_Tp __x)
+  cosc_pi(_Tp x)
   {
-    const auto _S_eps = emsr::epsilon(__x);
-    const auto _S_pi = emsr::pi_v<_Tp>;
-    if (std::abs(__x) < _Tp{100} * _S_eps)
-      return _S_pi * __x / _Tp{2};
+    const auto s_eps = emsr::epsilon(x);
+    const auto s_pi = emsr::pi_v<_Tp>;
+    if (std::abs(x) < _Tp{100} * s_eps)
+      return s_pi * x / _Tp{2};
     else
-      return (_Tp{1} - __gnu_cxx::cos_pi(__x)) / _S_pi / __x;
+      return (_Tp{1} - emsr::cos_pi(x)) / s_pi / x;
   }
 
 
@@ -571,11 +573,11 @@ template<typename _Tp>
 	for (int k = -80; k <= 80; ++k)
 	  {
 	    auto z = del * k;
-	    //auto AW = __anger_weber_sum(nu, z);
-	    auto AW = __anger_weber_sum_new(nu, z);
-	    std::cout << ' ' << std::setw(4) << AW.__z
-		      << ' ' << std::setw(width) << AW.__J_value
-		      << ' ' << std::setw(width) << AW.__E_value
+	    //auto AW = anger_weber_sum(nu, z);
+	    auto AW = anger_weber_sum_new(nu, z);
+	    std::cout << ' ' << std::setw(4) << AW.z
+		      << ' ' << std::setw(width) << AW.J_value
+		      << ' ' << std::setw(width) << AW.E_value
 		      << '\n';
 	  }
       }
@@ -587,12 +589,12 @@ template<typename _Tp>
 		    _Tp{3} - twk, _Tp{3},
 		    _Tp{5}})
       {
-	auto AW = __anger_weber_sum_new(nu, _Tp{0});
-	std::cout << "\n\n nu = " << std::setw(4) << AW.__nu << '\n';
-	std::cout << ' ' << std::setw(width) << AW.__J_value
-		  << ' ' << std::setw(width) << __gnu_cxx::sinc_pi(nu)
-		  << ' ' << std::setw(width) << AW.__E_value
-		  << ' ' << std::setw(width) << __cosc_pi(nu)
+	auto AW = anger_weber_sum_new(nu, _Tp{0});
+	std::cout << "\n\n nu = " << std::setw(4) << AW.nu << '\n';
+	std::cout << ' ' << std::setw(width) << AW.J_value
+		  << ' ' << std::setw(width) << emsr::sinc_pi(nu)
+		  << ' ' << std::setw(width) << AW.E_value
+		  << ' ' << std::setw(width) << cosc_pi(nu)
 		  << '\n';
       }
 
@@ -605,10 +607,10 @@ template<typename _Tp>
 	for (int k = 0; k <= 80; ++k)
 	  {
 	    auto z = del * k;
-	    auto AW = __anger_weber_sum_new(nu, z);
-	    std::cout << ' ' << std::setw(4) << AW.__z
-		      << ' ' << std::setw(width) << AW.__J_value
-		      << ' ' << std::setw(width) << std::cyl_bessel_j(nu, z)
+	    auto AW = anger_weber_sum_new(nu, z);
+	    std::cout << ' ' << std::setw(4) << AW.z
+		      << ' ' << std::setw(width) << AW.J_value
+		      << ' ' << std::setw(width) << emsr::cyl_bessel_j(nu, z)
 		      << '\n';
 	  }
       }
@@ -631,7 +633,7 @@ template<typename _Tp>
 	for (int k = 0; k <= 80; ++k)
 	  {
 	    auto z = del * k;
-	    auto AW = __assoc_anger_weber(nu, z);
+	    auto AW = assoc_anger_weber(nu, z);
 	    std::cout << ' ' << std::setw(4) << z
 		      << ' ' << std::setw(width) << AW
 		      << '\n';
@@ -647,9 +649,9 @@ template<typename _Tp>
 	for (int k = 0; k <= 80; ++k)
 	  {
 	    auto z = del * k;
-	    auto AWm = __assoc_anger_weber(nu - twk, z);
-	    auto AW = __assoc_anger_weber(nu, z);
-	    auto AWp = __assoc_anger_weber(nu + twk, z);
+	    auto AWm = assoc_anger_weber(nu - twk, z);
+	    auto AW = assoc_anger_weber(nu, z);
+	    auto AWp = assoc_anger_weber(nu + twk, z);
 	    std::cout << ' ' << std::setw(4) << z
 		      << ' ' << std::setw(width) << AWm
 		      << ' ' << std::setw(width) << AW
@@ -662,9 +664,9 @@ template<typename _Tp>
 int
 main()
 {
-  auto AW2 [[maybe_unused]] = __anger_weber_sum_new(2.0, -8.0);
-  auto BX2 [[maybe_unused]] = __anger_weber_sum_new(1.999, -8.0);
-  auto AW3 [[maybe_unused]] = __anger_weber_sum_new(3.0, -8.0);
-  auto BX3 [[maybe_unused]] = __anger_weber_sum_new(2.999, -8.0);
+  auto AW2 [[maybe_unused]] = anger_weber_sum_new(2.0, -8.0);
+  auto BX2 [[maybe_unused]] = anger_weber_sum_new(1.999, -8.0);
+  auto AW3 [[maybe_unused]] = anger_weber_sum_new(3.0, -8.0);
+  auto BX3 [[maybe_unused]] = anger_weber_sum_new(2.999, -8.0);
   test_anger_weber(1.0);
 }

@@ -7,6 +7,8 @@
 #include <limits>
 #include <cmath>
 
+#include <emsr/specfun.h>
+
 /**
  * 
  */
@@ -27,10 +29,10 @@ template<typename _Tp>
 	    for (int i = -100; i <= 100; ++i)
 	      {
 		const auto x = _Tp(0.01 * i);
-		//const auto Q = std::assoc_legendre_q(l, m, x);
-		const auto Q = std::__detail::__assoc_legendre_q(l, m, x);
+		//const auto Q = emsr::assoc_legendre_q(l, m, x);
+		const auto Q = emsr::detail::assoc_legendre_q(l, m, x);
 		std::cout << ' ' << std::setw(w) << x
-			  << ' ' << std::setw(w) << Q.__Q_lm
+			  << ' ' << std::setw(w) << Q.Q_lm
 			  << ' ' << std::setw(w) << Q.deriv()
 			  << '\n';
 	      }

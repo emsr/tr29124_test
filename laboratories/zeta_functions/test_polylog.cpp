@@ -5,10 +5,17 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <ext/float128_math.h>
 #include <cmath>
 #include <complex>
-#include <ext/float128_io.h>
+
+#include <emsr/float128_math.h>
+#include <emsr/float128_io.h>
+#include <emsr/fp_type_util.h>
+#include <emsr/sf_stirling.h>
+#include <emsr/sf_euler.h>
+#include <emsr/sf_gamma.h>
+#include <emsr/sf_zeta.h>
+#include <emsr/sf_polylog.h>
 
 #include <wrap_cephes.h>
 
@@ -17,21 +24,21 @@
    * Termination conditions involve both a maximum iteration count
    * and a relative precision.
    */
-  template<typename _Tp>
+  template<typename Tp>
     class _Terminator
     {
     private:
 
-      using _Real = emsr::num_traits_t<_Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const std::size_t _M_max_iter;
       std::size_t _M_curr_iter;
-      _Real _M_toler;
+      Real _M_toler;
 
     public:
 
-      _Terminator(std::size_t __max_iter, _Real __mul = _Real{1})
-      : _M_max_iter(__max_iter), _M_curr_iter{0},
-	_M_toler(std::abs(__mul) * std::numeric_limits<_Real>::epsilon())
+      _Terminator(std::size_t max_iter, Real mul = Real{1})
+      : _M_max_iter(max_iter), _M_curr_iter{0},
+	_M_toler(std::abs(mul) * std::numeric_limits<Real>::epsilon())
       { }
 
       /// Return the current number of terms summed.
@@ -42,12 +49,12 @@
       /// Detect if the sum should terminate either because the incoming term
       /// is small enough or the maximum number of terms has been reached.
       bool
-      operator()(_Tp __term, _Tp __sum)
+      operator()(Tp term, Tp sum)
       {
 	if (this->_M_curr_iter >= this->_M_max_iter
 	    || ++this->_M_curr_iter == this->_M_max_iter)
 	  return true;
-	else if (std::abs(__term) < this->_M_toler * std::abs(__sum))
+	else if (std::abs(term) < this->_M_toler * std::abs(sum))
 	  return true;
 	else
 	  return false;
@@ -62,36 +69,36 @@
    * Termination conditions involve both a maximum iteration count
    * and a relative precision.
    */
-  template<typename _Tp>
+  template<typename Tp>
     class _AsympTerminator
     {
     private:
 
-      using _Real = emsr::num_traits_t<_Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const std::size_t _M_max_iter;
       std::size_t _M_curr_iter;
-      _Real _M_toler;
-      _Real _M_prev_term = std::numeric_limits<_Real>::max();
+      Real _M_toler;
+      Real _M_prev_term = std::numeric_limits<Real>::max();
       bool _M_stop_asymp = false;
 
     public:
 
-      _AsympTerminator(std::size_t __max_iter, _Real __mul = _Real{1})
-      : _M_max_iter(__max_iter), _M_curr_iter{0},
-	_M_toler(std::abs(__mul) * std::numeric_limits<_Real>::epsilon())
+      _AsympTerminator(std::size_t max_iter, Real mul = Real{1})
+      : _M_max_iter(max_iter), _M_curr_iter{0},
+	_M_toler(std::abs(mul) * std::numeric_limits<Real>::epsilon())
       { }
 
       /// Filter a term before applying it to the sum.
-      _Tp
-      operator<<(_Tp __term)
+      Tp
+      operator<<(Tp term)
       {
-	if (std::abs(__term) > this->_M_prev_term)
+	if (std::abs(term) > this->_M_prev_term)
 	  {
 	    this->_M_stop_asymp = true;
-	    return _Tp{0};
+	    return Tp{0};
 	  }
 	else
-	  return __term;
+	  return term;
       }
 
       /// Return the current number of terms summed.
@@ -103,19 +110,19 @@
       /// is small enough or because the terms are starting to grow or
       //  the maximum number of terms has been reached.
       bool
-      operator()(_Tp __term, _Tp __sum)
+      operator()(Tp term, Tp sum)
       {
 	if (this->_M_stop_asymp)
 	  return true;
 	else
 	  {
-	    const auto __aterm = std::abs(__term);
-	    this->_M_stop_asymp = (__aterm > this->_M_prev_term);
-	    this->_M_prev_term = __aterm;
+	    const auto aterm = std::abs(term);
+	    this->_M_stop_asymp = (aterm > this->_M_prev_term);
+	    this->_M_prev_term = aterm;
 	    if (this->_M_curr_iter >= this->_M_max_iter
 	    || ++this->_M_curr_iter == this->_M_max_iter)
 	      return true;
-	    else if (__aterm < this->_M_toler * std::abs(__sum))
+	    else if (aterm < this->_M_toler * std::abs(sum))
 	      return true;
 	    else if (this->_M_stop_asymp)
 	      return true;
@@ -132,27 +139,27 @@
    *           \mbox{    } n = 0,1,2, ...
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    __polylog_nonpos_int_1(int __n, _Tp __x)
+  template<typename Tp>
+    Tp
+    polylog_nonpos_int_1(int n, Tp x)
     {
-      if (__x == _Tp{0})
-	return _Tp{0};
-      else if (__x == _Tp{1})
-	return std::numeric_limits<_Tp>::infinity();
+      if (x == Tp{0})
+	return Tp{0};
+      else if (x == Tp{1})
+	return std::numeric_limits<Tp>::infinity();
       else
 	{
-	  const auto __arg = __x / (_Tp{1} - __x);
-	  auto __fact = __arg;
-	  auto __term = __arg * __gnu_cxx::stirling_2<_Tp>(1 - __n, 1);
-	  auto __sum = __term;
-	  for (int __k = 1; __k <= -__n; ++__k)
+	  const auto arg = x / (Tp{1} - x);
+	  auto fact = arg;
+	  auto term = arg * emsr::stirling_2<Tp>(1 - n, 1);
+	  auto sum = term;
+	  for (int k = 1; k <= -n; ++k)
 	    {
-	      __fact *= __k * __arg;
-	      __term = __fact * __gnu_cxx::stirling_2<_Tp>(1 - __n, 1 + __k);
-	      __sum += __term;
+	      fact *= k * arg;
+	      term = fact * emsr::stirling_2<Tp>(1 - n, 1 + k);
+	      sum += term;
 	    }
-	  return __sum;
+	  return sum;
 	}
     }
 
@@ -165,28 +172,28 @@
    * @f]
    * where @f$ S(n,k) @f$ are the Sterling numbers of the second kind.
    */
-  template<typename _Tp>
-    _Tp
-    __polylog_nonpos_int_2(int __n, _Tp __x)
+  template<typename Tp>
+    Tp
+    polylog_nonpos_int_2(int n, Tp x)
     {
-      if (__x == _Tp{0})
-	return _Tp{0};
-      else if (__x == _Tp{1})
-	return std::numeric_limits<_Tp>::infinity();
+      if (x == Tp{0})
+	return Tp{0};
+      else if (x == Tp{1})
+	return std::numeric_limits<Tp>::infinity();
       else
 	{
-	  const auto __arg = _Tp{-1} / (_Tp{1} - __x);
-	  auto __fact = __arg;
-	  auto __term = __fact * __gnu_cxx::stirling_2<_Tp>(1 - __n, 1);
-	  auto __sum = __term;
-	  for (int __k = 1; __k <= -__n; ++__k)
+	  const auto arg = Tp{-1} / (Tp{1} - x);
+	  auto fact = arg;
+	  auto term = fact * emsr::stirling_2<Tp>(1 - n, 1);
+	  auto sum = term;
+	  for (int k = 1; k <= -n; ++k)
 	    {
-	      __fact *= __k * __arg;
-	      __term = __fact * __gnu_cxx::stirling_2<_Tp>(1 - __n, 1 + __k);
-	      __sum += __term;
+	      fact *= k * arg;
+	      term = fact * emsr::stirling_2<Tp>(1 - n, 1 + k);
+	      sum += term;
 	    }
-	  __sum *= emsr::parity<_Tp>(1 - __n);
-	  return __sum;
+	  sum *= emsr::parity<Tp>(1 - n);
+	  return sum;
 	}
     }
 
@@ -198,27 +205,27 @@
    *           \mbox{    } n = 1,2, ...
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    __polylog_nonpos_int_3(int __n, _Tp __x)
+  template<typename Tp>
+    Tp
+    polylog_nonpos_int_3(int n, Tp x)
     {
-      if (__x == _Tp{0})
-	return _Tp{0};
-      else if (__x == _Tp{1})
-	return std::numeric_limits<_Tp>::infinity();
+      if (x == Tp{0})
+	return Tp{0};
+      else if (x == Tp{1})
+	return std::numeric_limits<Tp>::infinity();
       else
 	{
-	  auto __fact = _Tp{1} / __x;
-	  auto __term = __fact * __gnu_cxx::eulerian_1<_Tp>(-__n, 0);
-	  auto __sum = __term;
-	  for (int __k = 1; __k < -__n; ++__k)
+	  auto fact = Tp{1} / x;
+	  auto term = fact * emsr::eulerian_1<Tp>(-n, 0);
+	  auto sum = term;
+	  for (int k = 1; k < -n; ++k)
 	    {
-	      __fact /= __x;
-	      __term = __fact * __gnu_cxx::eulerian_1<_Tp>(-__n, __k);
-	      __sum += __term;
+	      fact /= x;
+	      term = fact * emsr::eulerian_1<Tp>(-n, k);
+	      sum += term;
 	    }
-	  __sum *= std::pow(__x / (_Tp{1} - __x), _Tp(1 - __n));
-	  return __sum;
+	  sum *= std::pow(x / (Tp{1} - x), Tp(1 - n));
+	  return sum;
 	}
     }
 
@@ -231,50 +238,50 @@
    * @f]
    * where @f$ q = (p+1) mod 2 @f$.
    *
-   * @param __n the negative integer index @f$ n = -p @f$.
-   * @param __w the argument w.
+   * @param n the negative integer index @f$ n = -p @f$.
+   * @param w the argument w.
    * @return the value of the polylogarithm.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __polylog_exp_neg(int __n, std::complex<_Tp> __w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_neg(int n, std::complex<Tp> w)
     {
-      const auto _S_inf = std::numeric_limits<_Tp>::infinity();
-      if (emsr::fp_is_zero(__w))
-	return std::complex<_Tp>{0};
-      else if (emsr::fp_is_equal(__w, _Tp{1}))
-	return std::complex<_Tp>{_S_inf, _Tp{0}};
+      const auto s_inf = std::numeric_limits<Tp>::infinity();
+      if (emsr::fp_is_zero(w))
+	return std::complex<Tp>{0};
+      else if (emsr::fp_is_equal(w, Tp{1}))
+	return std::complex<Tp>{s_inf, Tp{0}};
       else
 	{
-	  const int __p = -__n;
-	  const int __pp = 1 + __p;
-	  const int __q = (__p & 1) ? 0 : 1;
-	  const auto __w2 = __w * __w;
-	  auto __wp = (__p & 1) ? std::complex<_Tp>{1} : __w;
-	  unsigned int __2k = __q;
-	  auto __gam = std::__detail::__factorial<_Tp>(__p + __2k);
-	  const auto __pfact = std::__detail::__factorial<_Tp>(__p);
-	  auto __res = __pfact * std::pow(-__w, _Tp(-__pp));
-	  auto __sum = std::complex<_Tp>{};
-	  constexpr unsigned int __maxit = 300;
-	  _Terminator<std::complex<_Tp>> __done(__maxit);
+	  const int p = -n;
+	  const int pp = 1 + p;
+	  const int q = (p & 1) ? 0 : 1;
+	  const auto w2 = w * w;
+	  auto wp = (p & 1) ? std::complex<Tp>{1} : w;
+	  unsigned int __2k = q;
+	  auto gam = emsr::detail::factorial<Tp>(p + __2k);
+	  const auto pfact = emsr::detail::factorial<Tp>(p);
+	  auto res = pfact * std::pow(-w, Tp(-pp));
+	  auto sum = std::complex<Tp>{};
+	  constexpr unsigned int maxit = 300;
+	  _Terminator<std::complex<Tp>> done(maxit);
 	  while (true)
 	    {
-	      const auto __id = (__p + __2k + 1) / 2;
-	      if (__id == std::__detail::_Num_Euler_Maclaurin_zeta)
+	      const auto id = (p + __2k + 1) / 2;
+	      if (id == emsr::detail::Num_Euler_Maclaurin_zeta)
 		break;
-	      auto __term = __gam * __wp
-		* _Tp(std::__detail::_S_Euler_Maclaurin_zeta[__id]);
-	      __sum += __term;
-	      if (__done(__term, __sum))
+	      auto term = gam * wp
+		* Tp(emsr::detail::Euler_Maclaurin_zeta[id]);
+	      sum += term;
+	      if (done(term, sum))
 		break;
-	      __gam *= _Tp(__p + __2k + 1) / _Tp(__2k + 1)
-		     * _Tp(__p + __2k + 2) / _Tp(__2k + 2);
-	      __wp *= __w2;
+	      gam *= Tp(p + __2k + 1) / Tp(__2k + 1)
+		     * Tp(p + __2k + 2) / Tp(__2k + 2);
+	      wp *= w2;
 	      __2k += 2;
 	    }
-	  __res -= __sum;
-	  return __res;
+	  res -= sum;
+	  return res;
 	}
     }
 
@@ -312,46 +319,46 @@
    * @f]
    * Where @f$ p = 4k (\sigma = 1) @f$ or @f$ p = 4k + 2 (\sigma = -1) @f$.
    *
-   * @param __p the integral index @f$ p = 4k @f$ or @f$ p = 4k + 2 @f$.
-   * @param __w The complex argument w
+   * @param p the integral index @f$ p = 4k @f$ or @f$ p = 4k + 2 @f$.
+   * @param w The complex argument w
    * @return the value of the Polylogarithm.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __polylog_exp_neg_even(unsigned int __p, const std::complex<_Tp>& __w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_neg_even(unsigned int p, const std::complex<Tp>& w)
     {
-      const auto _S_2pi = emsr::tau_v<_Tp>;
-      const int __pp = 1 + __p;
-      const int __sigma = __p % 4 == 0 ? +1 : -1;
-      const auto __lnp = std::__detail::__log_factorial<_Tp>(__p);
-      auto __res = std::exp(__lnp - _Tp(__pp) * std::log(-__w));
-      auto __wup = __w / _S_2pi;
-      auto __wq = -__wup * __wup;
-      auto __pref = _Tp{2} * std::pow(_S_2pi, _Tp(-__pp));
+      const auto s_2pi = emsr::tau_v<Tp>;
+      const int pp = 1 + p;
+      const int sigma = p % 4 == 0 ? +1 : -1;
+      const auto lnp = emsr::detail::log_factorial<Tp>(p);
+      auto res = std::exp(lnp - Tp(pp) * std::log(-w));
+      auto wup = w / s_2pi;
+      auto wq = -wup * wup;
+      auto pref = Tp{2} * std::pow(s_2pi, Tp(-pp));
       // Subtract the expression A_p(w)
-      __pref *= __sigma;
-      __res -= __pref
-	     * std::exp(__lnp - _Tp{0.5L} * __pp * std::log(_Tp{1} - __wq))
-	     * std::cos(_Tp(__pp) * std::atan(_Tp{1} / __wup));
+      pref *= sigma;
+      res -= pref
+	     * std::exp(lnp - Tp{0.5L} * pp * std::log(Tp{1} - wq))
+	     * std::cos(Tp(pp) * std::atan(Tp{1} / wup));
       unsigned int __2k = 0;
-      auto __gam = std::__detail::__factorial<_Tp>(1 + __p);
-      std::complex<_Tp> __sum;
-      constexpr unsigned int __maxit = 400;
-      _Terminator<std::complex<_Tp>> __done(__maxit);
+      auto gam = emsr::detail::factorial<Tp>(1 + p);
+      std::complex<Tp> sum;
+      constexpr unsigned int maxit = 400;
+      _Terminator<std::complex<Tp>> done(maxit);
       while (true)
 	{
-	  auto __term = __gam * __wup
-		      * std::__detail::__riemann_zeta_m_1<_Tp>(__2k + 2 + __p);
-	  __sum += __term;
-	  if (__done(__term, __sum))
+	  auto term = gam * wup
+		      * emsr::detail::riemann_zeta_m_1<Tp>(__2k + 2 + p);
+	  sum += term;
+	  if (done(term, sum))
 	    break;
-	  __gam *= _Tp(__2k + 2 + __p) / _Tp(__2k + 2)
-		 * _Tp(__2k + 3 + __p) / _Tp(__2k + 3);
+	  gam *= Tp(__2k + 2 + p) / Tp(__2k + 2)
+		 * Tp(__2k + 3 + p) / Tp(__2k + 3);
 	  __2k += 2;
-	  __wup *= __wq;
+	  wup *= wq;
 	}
-      __res -= __pref * __sum;
-      return __res;
+      res -= pref * sum;
+      return res;
     }
 
   /**
@@ -388,69 +395,69 @@
    *       (-1)^k \left(\frac{w}{2\pi}\right)^{2k} \zeta(1 + 2k + p)
    * @f]
    *
-   * @param __p the integral index @f$ p = 4k + 1 @f$ or @f$ p = 4k + 3 @f$.
-   * @param __w The complex argument w.
+   * @param p the integral index @f$ p = 4k + 1 @f$ or @f$ p = 4k + 3 @f$.
+   * @param w The complex argument w.
    * @return The value of the Polylogarithm.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __polylog_exp_neg_odd(unsigned int __p, const std::complex<_Tp>& __w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_neg_odd(unsigned int p, const std::complex<Tp>& w)
     {
-      const auto _S_2pi = emsr::tau_v<_Tp>;
-      const int __pp = 1 + __p;
-      const int __sigma = __p % 4 == 1 ? +1 : -1;
-      const auto __lnp = std::__detail::__log_factorial<_Tp>(__p);
-      auto __res = std::exp(__lnp - _Tp(__pp) * std::log(-__w));
-      auto __wup = __w / _S_2pi;
-      auto __wq = -__wup * __wup;
-      auto __pref = _Tp{2} * std::pow(_S_2pi, _Tp(-__pp));
-      __pref *= __sigma;
+      const auto s_2pi = emsr::tau_v<Tp>;
+      const int pp = 1 + p;
+      const int sigma = p % 4 == 1 ? +1 : -1;
+      const auto lnp = emsr::detail::log_factorial<Tp>(p);
+      auto res = std::exp(lnp - Tp(pp) * std::log(-w));
+      auto wup = w / s_2pi;
+      auto wq = -wup * wup;
+      auto pref = Tp{2} * std::pow(s_2pi, Tp(-pp));
+      pref *= sigma;
       // Add the expression A_p(w)
-      __res += __pref
-	     * std::exp(__lnp - _Tp{0.5L} * __pp * std::log(_Tp{1} - __wq))
-	     * std::cos(_Tp(__pp) * std::atan(_Tp{1} / __wup));
-      auto __gam = std::__detail::__factorial<_Tp>(__p);
+      res += pref
+	     * std::exp(lnp - Tp{0.5L} * pp * std::log(Tp{1} - wq))
+	     * std::cos(Tp(pp) * std::atan(Tp{1} / wup));
+      auto gam = emsr::detail::factorial<Tp>(p);
       unsigned int __2k = 0;
-      std::complex<_Tp> __sum;
-      constexpr unsigned int __maxit = 400;
-      _Terminator<std::complex<_Tp>> __done(__maxit);
+      std::complex<Tp> sum;
+      constexpr unsigned int maxit = 400;
+      _Terminator<std::complex<Tp>> done(maxit);
       while (true)
 	{
-	  auto __term = __gam * __wup
-		      * std::__detail::__riemann_zeta_m_1<_Tp>(__2k + 1 + __p);
-	  __sum += __term;
-	  if (__done(__term, __sum))
+	  auto term = gam * wup
+		      * emsr::detail::riemann_zeta_m_1<Tp>(__2k + 1 + p);
+	  sum += term;
+	  if (done(term, sum))
 	    break;
-	  __gam *= _Tp(__2k + 1 + __p) / _Tp(__2k + 1)
-		 * _Tp(__2k + 2 + __p) / _Tp(__2k + 2);
+	  gam *= Tp(__2k + 1 + p) / Tp(__2k + 1)
+		 * Tp(__2k + 2 + p) / Tp(__2k + 2);
 	  __2k += 2;
-	  __wup *= __wq;
+	  wup *= wq;
 	}
-      __res -= __pref * __sum;
-      return __res;
+      res -= pref * sum;
+      return res;
   }
 
   /**
    * This function treats the cases of negative integer index s
    * and branches accordingly
    *
-   * @param __s the integer index s.
-   * @param __w The Argument w
+   * @param s the integer index s.
+   * @param w The Argument w
    * @return The value of the Polylogarithm evaluated by a suitable function.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __polylog_exp_neg_old(int __s, std::complex<_Tp> __w)
-    { // negative integer __s
-      const auto __p = -__s;
-      switch (__p % 2)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_neg_old(int s, std::complex<Tp> w)
+    { // negative integer s
+      const auto p = -s;
+      switch (p % 2)
       {
       case 0:
-	return __polylog_exp_neg_even<_Tp>(__p, __w);
+	return polylog_exp_neg_even<Tp>(p, w);
       case 1:
-	return __polylog_exp_neg_odd<_Tp>(__p, __w);
+	return polylog_exp_neg_odd<Tp>(p, w);
       default: // We shouldn't need this.
-	return std::complex<_Tp>{};
+	return std::complex<Tp>{};
       }
     }
 
@@ -468,47 +475,47 @@
    * @f$ Im(Li_s(e^u)) = - \pi u^{s-1}/\Gamma(s) @f$.
    * Check this relation for any benchmark that you use.
    *
-   * @param __s the real index s.
-   * @param __w the large complex argument w.
+   * @param s the real index s.
+   * @param w the large complex argument w.
    * @return the value of the polylogarithm.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __polylog_exp_asymp(_Tp __s, std::complex<_Tp> __w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_asymp(Tp s, std::complex<Tp> w)
     {
-      const auto _S_pi = emsr::pi_v<_Tp>;
+      const auto s_pi = emsr::pi_v<Tp>;
       // wgamma = w^{s-1} / Gamma(s)
-      auto __wgamma = std::pow(__w, __s - _Tp{1}) * std::__detail::__gamma_reciprocal(__s);
-      auto __res = std::complex<_Tp>(_Tp{0}, -_S_pi) * __wgamma;
+      auto wgamma = std::pow(w, s - Tp{1}) * emsr::detail::gamma_reciprocal(s);
+      auto res = std::complex<Tp>(Tp{0}, -s_pi) * wgamma;
       // wgamma = w^s / Gamma(s+1)
-      __wgamma *= __w / __s;
-      constexpr unsigned int __maxiter = 100;
-      _AsympTerminator<std::complex<_Tp>> __done(__maxiter);
+      wgamma *= w / s;
+      constexpr unsigned int maxiter = 100;
+      _AsympTerminator<std::complex<Tp>> done(maxiter);
       // zeta(0) w^s / Gamma(s + 1)
-      std::complex<_Tp> __oldterm = -_Tp{0.5L} * __wgamma;
-      __res += _Tp{2} * __oldterm;
-      std::complex<_Tp> __term;
-      auto __wq = _Tp{1} / (__w * __w);
-      int __k = 1;
+      std::complex<Tp> oldterm = -Tp{0.5L} * wgamma;
+      res += Tp{2} * oldterm;
+      std::complex<Tp> term;
+      auto wq = Tp{1} / (w * w);
+      int k = 1;
       while (true)
 	{
-	  __wgamma *= __wq * (__s + _Tp(1 - 2 * __k)) * (__s + _Tp(2 - 2 * __k));
-	  __term = std::__detail::__riemann_zeta<_Tp>(2 * __k) * __wgamma;
-	  __res += __done << _Tp{2} * __term;
-	  if (__done(_Tp{2} * __term, __res))
+	  wgamma *= wq * (s + Tp(1 - 2 * k)) * (s + Tp(2 - 2 * k));
+	  term = emsr::detail::riemann_zeta<Tp>(2 * k) * wgamma;
+	  res += done << Tp{2} * term;
+	  if (done(Tp{2} * term, res))
 	    break;
-	  __oldterm = __term;
-	  ++__k;
+	  oldterm = term;
+	  ++k;
 	}
-      return __res;
+      return res;
     }
 
 /**
  * Compute the polylogarithm for negative integer order.
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  test_polylog_neg_int(_Tp proto = _Tp{})
+  test_polylog_neg_int(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::scientific;
@@ -517,23 +524,23 @@ template<typename _Tp>
     for (auto n : {-1, -2, -3, -4, -5})
       {
 	std::cout << "\n\nNegative integer degree: n = " << n << '\n';
-	const auto del = _Tp{1} / _Tp{20};
+	const auto del = Tp{1} / Tp{20};
 	for (int i = -200; i <= 20; ++i)
 	  {
 	    auto x = del * i;
-	    auto Ls_rat1 = __polylog_nonpos_int_1(n, x);
-	    auto Ls_rat2 = __polylog_nonpos_int_2(n, x);
-	    auto Ls_rat3 = __polylog_nonpos_int_3(n, x);
-	    auto Ls_nint = x == _Tp{0}
-			 ? _Tp{0}
-			 : [n, x]() -> _Tp
-			   { auto w = std::log(std::complex<_Tp>(x));
-			     return std::real(std::__detail::__polylog_exp_neg(n, w)); }();
-	    auto Ls_gnu = x == _Tp{0}
-			? _Tp{0}
-			: [n, x]() -> _Tp
-			  { auto w = std::log(std::complex<_Tp>(x));
-			    return std::real(__polylog_exp_neg_old(n, w)); }();
+	    auto Ls_rat1 = polylog_nonpos_int_1(n, x);
+	    auto Ls_rat2 = polylog_nonpos_int_2(n, x);
+	    auto Ls_rat3 = polylog_nonpos_int_3(n, x);
+	    auto Ls_nint = x == Tp{0}
+			 ? Tp{0}
+			 : [n, x]() -> Tp
+			   { auto w = std::log(std::complex<Tp>(x));
+			     return std::real(emsr::detail::polylog_exp_neg(n, w)); }();
+	    auto Ls_gnu = x == Tp{0}
+			? Tp{0}
+			: [n, x]() -> Tp
+			  { auto w = std::log(std::complex<Tp>(x));
+			    return std::real(polylog_exp_neg_old(n, w)); }();
 	    std::cout << ' ' << n
 		      << ' ' << x
 		      << ' ' << Ls_rat1
@@ -547,22 +554,22 @@ template<typename _Tp>
     std::cout << '\n' << std::flush;
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_polylog_0(_Tp proto = _Tp{})
+  test_polylog_0(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::scientific;
 
     std::cout << "\n\nTest against algebraic function for Li_0\n";
-    const auto del = _Tp{1} / _Tp{10};
+    const auto del = Tp{1} / Tp{10};
     for (int i = -200; i <= 10; ++i)
       {
 	auto x = del * i;
-	auto Li0 = emsr::fp_is_zero(_Tp{1} - x)
-		 ? std::numeric_limits<_Tp>::quiet_NaN()
-		 : x / (_Tp{1} - x);
-	auto Lis_gnu = __gnu_cxx::polylog(_Tp{0}, x);
+	auto Li0 = emsr::fp_is_zero(Tp{1} - x)
+		 ? std::numeric_limits<Tp>::quiet_NaN()
+		 : x / (Tp{1} - x);
+	auto Lis_gnu = emsr::polylog(Tp{0}, x);
 	std::cout << ' ' << x
 		  << ' ' << Li0
 		  << ' ' << Lis_gnu
@@ -571,22 +578,22 @@ template<typename _Tp>
     std::cout << '\n' << std::flush;
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_polylog_1(_Tp proto = _Tp{})
+  test_polylog_1(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::scientific;
 
     std::cout << "\n\nTest against algebraic function for Li_1\n";
-    const auto del = _Tp{1} / _Tp{10};
+    const auto del = Tp{1} / Tp{10};
     for (int i = -200; i <= 10; ++i)
       {
 	auto x = del * i;
-	auto Li1 = emsr::fp_is_zero(_Tp{1} - x)
-		 ? std::numeric_limits<_Tp>::quiet_NaN()
-		 : -std::log(_Tp{1} - x);
-	auto Lis_gnu = __gnu_cxx::polylog(_Tp{1}, x);
+	auto Li1 = emsr::fp_is_zero(Tp{1} - x)
+		 ? std::numeric_limits<Tp>::quiet_NaN()
+		 : -std::log(Tp{1} - x);
+	auto Lis_gnu = emsr::polylog(Tp{1}, x);
 	std::cout << ' ' << x
 		  << ' ' << Li1
 		  << ' ' << Lis_gnu
@@ -595,20 +602,20 @@ template<typename _Tp>
     std::cout << '\n' << std::flush;
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_polylog_dilog(_Tp proto = _Tp{})
+  test_polylog_dilog(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::scientific;
 
     std::cout << "\n\nTest against local dilog\n";
-    const auto del = _Tp{1} / _Tp{10};
+    const auto del = Tp{1} / Tp{10};
     for (int i = -200; i <= 10; ++i)
       {
 	auto x = del * i;
-	auto Ls_dilog = __gnu_cxx::dilog(x);
-	auto Ls_gnu = __gnu_cxx::polylog(_Tp(2), x);
+	auto Ls_dilog = emsr::dilog(x);
+	auto Ls_gnu = emsr::polylog(Tp(2), x);
 	std::cout << ' ' << x
 		  << ' ' << Ls_dilog
 		  << ' ' << Ls_gnu
@@ -617,9 +624,9 @@ template<typename _Tp>
     std::cout << '\n' << std::flush;
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_polylog_cephes(_Tp proto = _Tp{})
+  test_polylog_cephes(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::scientific;
@@ -628,12 +635,12 @@ template<typename _Tp>
     for (auto n : {0, 1, 2, 3, 4, 5})
       {
 	std::cout << "\n\nNon-negative integer degree: n = " << n << '\n';
-	const auto del = _Tp{1} / _Tp{10};
+	const auto del = Tp{1} / Tp{10};
 	for (int i = -200; i <= 10; ++i)
 	  {
 	    auto x = del * i;
 	    auto Ls_ceph = cephes::polylog(n, x);
-	    auto Ls_gnu = __gnu_cxx::polylog(_Tp(n), x);
+	    auto Ls_gnu = emsr::polylog(Tp(n), x);
 	    std::cout << ' ' << n
 		      << ' ' << x
 		      << ' ' << Ls_ceph
@@ -644,12 +651,12 @@ template<typename _Tp>
     std::cout << '\n' << std::flush;
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  TestPolyLog(_Tp proto = _Tp{})
+  TestPolyLog(Tp proto = Tp{})
   {
-    const auto _S_pi = emsr::pi_v<_Tp>;
-    const auto _S_2pi = emsr::tau_v<_Tp>;
+    const auto s_pi = emsr::pi_v<Tp>;
+    const auto s_2pi = emsr::tau_v<Tp>;
 
     std::cout.precision(emsr::digits10(proto) - 1);
     std::cout << std::scientific;
@@ -663,137 +670,137 @@ template<typename _Tp>
     // the old implementation takes about 2.8s on my core2 and the new one 0.8s
     //     for(std::size_t i = 0; i < n; ++i)
     //     {
-    //       _Tp x = _Tp{10}* static_cast<_Tp>(i)/n + 1.1;
+    //       Tp x = Tp{10}* static_cast<Tp>(i)/n + 1.1;
     // //      std::cout << std::scientific<<x<<' '<<
-    //       std::__detail::__riemann_zeta(x)
-    // //      std::tr1::__detail::__riemann_zeta(x)
+    //       emsr::detail::riemann_zeta(x)
+    // //      std::tr1::detail::riemann_zeta(x)
     //       ;//between 1 and 10 riemann_zeta_glob is called
     // //      <<'\n';
     //     }
 
     // Something that didn't work in the original implementation
-    std::cout << std::riemann_zeta(std::complex<_Tp>{5.1, 0.5}) << '\n';
-    std::cout << __gnu_cxx::hurwitz_zeta(_Tp{5.1}, _Tp{0.5}) << '\n';
-    std::cout << __gnu_cxx::hurwitz_zeta(_Tp{5.1}, std::complex<_Tp>{0.5}) << '\n';
-    std::cout << std::__detail::__hurwitz_zeta_polylog(_Tp{5.1}, std::complex<_Tp>{0.5}) << '\n';
-    std::cout << std::__detail::__polylog_exp(_Tp{2.5}, std::complex<_Tp>(_Tp{15}, _Tp{1})) << '\n';
+    std::cout << emsr::riemann_zeta(std::complex<Tp>{5.1, 0.5}) << '\n';
+    std::cout << emsr::hurwitz_zeta(Tp{5.1}, Tp{0.5}) << '\n';
+    std::cout << emsr::hurwitz_zeta(Tp{5.1}, std::complex<Tp>{0.5}) << '\n';
+    std::cout << emsr::detail::hurwitz_zeta_polylog(Tp{5.1}, std::complex<Tp>{0.5}) << '\n';
+    std::cout << emsr::detail::polylog_exp(Tp{2.5}, std::complex<Tp>(Tp{15}, Tp{1})) << '\n';
 
     for(std::size_t k = 0; k < 32; ++k)
       {
-	auto w = std::complex<_Tp>(_Tp{0}, _S_2pi * k / _Tp{32});
+	auto w = std::complex<Tp>(Tp{0}, s_2pi * k / Tp{32});
 	std::cout << "=======  " << k << "  ==========" << '\n';
-	std::cout << std::__detail::__polylog_exp(_Tp{4}, w) << '\n';
-	std::cout << std::__detail::__polylog_exp(_Tp{-4}, w) << '\n';
-	std::cout << std::__detail::__polylog_exp(_Tp{2.6}, w) << '\n';
-	std::cout << std::__detail::__polylog_exp(_Tp{-2.6}, w) << '\n';
+	std::cout << emsr::detail::polylog_exp(Tp{4}, w) << '\n';
+	std::cout << emsr::detail::polylog_exp(Tp{-4}, w) << '\n';
+	std::cout << emsr::detail::polylog_exp(Tp{2.6}, w) << '\n';
+	std::cout << emsr::detail::polylog_exp(Tp{-2.6}, w) << '\n';
       }
     std::cout << '\n';
 
-    std::cout << '\n' << std::__detail::__polylog_exp(_Tp{2.6}, std::complex<_Tp>(_S_pi, _S_pi)) << '\n';
+    std::cout << '\n' << emsr::detail::polylog_exp(Tp{2.6}, std::complex<Tp>(s_pi, s_pi)) << '\n';
 
     for(std::size_t k = 0; k < 10; ++k)
       {
-	auto w = std::complex<_Tp>(-_S_pi / 2 - _S_pi / 5, 0);
-	std::cout << std::__detail::__polylog_exp(_Tp{-4}, w) << '\n';
-	std::cout << std::__detail::__polylog_exp_sum(_Tp{-4}, w) << '\n';
+	auto w = std::complex<Tp>(-s_pi / 2 - s_pi / 5, 0);
+	std::cout << emsr::detail::polylog_exp(Tp{-4}, w) << '\n';
+	std::cout << emsr::detail::polylog_exp_sum(Tp{-4}, w) << '\n';
       }
     std::cout << '\n' << std::flush;
 
-    std::cout << '\n' << std::__detail::__polylog_exp_neg(_Tp{-50.5}, std::complex<_Tp>(_Tp{1}, _Tp{1})) << '\n';
-    std::cout << '\n' << std::__detail::__polylog_exp_neg(_Tp{-5}, std::complex<_Tp>(_Tp{1}, _Tp{1})) << '\n';
-    std::cout << '\n' << std::__detail::__polylog_exp_pos(_Tp{2.3}, std::complex<_Tp>(_Tp{1}, _Tp{1})) << '\n';
+    std::cout << '\n' << emsr::detail::polylog_exp_neg(Tp{-50.5}, std::complex<Tp>(Tp{1}, Tp{1})) << '\n';
+    std::cout << '\n' << emsr::detail::polylog_exp_neg(Tp{-5}, std::complex<Tp>(Tp{1}, Tp{1})) << '\n';
+    std::cout << '\n' << emsr::detail::polylog_exp_pos(Tp{2.3}, std::complex<Tp>(Tp{1}, Tp{1})) << '\n';
     //Don't trust Mathematica for small s
-    std::cout << '\n' << std::__detail::__polylog_exp_asymp(_Tp{60.4}, std::complex<_Tp>(_Tp{30}, _Tp{0})) << '\n';
+    std::cout << '\n' << emsr::detail::polylog_exp_asymp(Tp{60.4}, std::complex<Tp>(Tp{30}, Tp{0})) << '\n';
 
-    auto l = _Tp{2};
+    auto l = Tp{2};
     auto p = std::atan(l);
     std::ofstream data("polylog_el20.txt");
-    for(auto alpha : {_Tp{0.5}, _Tp{1}, _Tp{1.5}, _Tp{4}})
+    for(auto alpha : {Tp{0.5}, Tp{1}, Tp{1.5}, Tp{4}})
       {
 	for(int s : {-1, 1})
 	  {
-	    for(auto k = -_S_pi; k < _S_pi; k += _Tp{0.002})
+	    for(auto k = -s_pi; k < s_pi; k += Tp{0.002})
 	      {
-		data << k << ' ' << std::sqrt(_Tp{1} + l * l)
-				* real(std::exp(std::complex<_Tp>(0, -s * p))
-				/ (std::exp(std::complex<_Tp>(0, k)) - std::exp(-alpha))) << '\n';
+		data << k << ' ' << std::sqrt(Tp{1} + l * l)
+				* real(std::exp(std::complex<Tp>(0, -s * p))
+				/ (std::exp(std::complex<Tp>(0, k)) - std::exp(-alpha))) << '\n';
 		data << "&" << '\n';
 	      }
 	  }
       }
 
-    const auto del01 = _Tp{1} / _Tp{100};
-    const auto del05 = _Tp{1} / _Tp{20};
+    const auto del01 = Tp{1} / Tp{100};
+    const auto del05 = Tp{1} / Tp{20};
 
     std::ofstream test("test_polylog.dat");
     test.precision(std::cout.precision());
-    for (auto s = _Tp{2.5}; s < _Tp{3.5}; s += del01)
-      test << s << ' ' << std::setw(w) << std::real(std::__detail::__polylog(s, _Tp{2})) - _Tp{2} << '\n';
+    for (auto s = Tp{2.5}; s < Tp{3.5}; s += del01)
+      test << s << ' ' << std::setw(w) << std::real(emsr::detail::polylog(s, Tp{2})) - Tp{2} << '\n';
     test << '\n' << std::flush;
 
-    std::cout << '\n' << std::__detail::__polylog(_Tp{3.1}, _Tp{2}) << '\n';
-    std::cout << '\n' << std::__detail::__polylog_exp_pos(_Tp{3.1}, std::complex<_Tp>(std::log(_Tp{2}))) << '\n';
+    std::cout << '\n' << emsr::detail::polylog(Tp{3.1}, Tp{2}) << '\n';
+    std::cout << '\n' << emsr::detail::polylog_exp_pos(Tp{3.1}, std::complex<Tp>(std::log(Tp{2}))) << '\n';
 
     std::cout << "\nTest function 1 [PolyLog_Exp_pos(k,exp(i2pik)]:\n";
     for (std::size_t k = 3; k < 8; ++k)
-      for (_Tp x = 0; x < _Tp{1}; x += del05)
+      for (Tp x = 0; x < Tp{1}; x += del05)
 	std::cout << k
 		  << ' ' << x
-		  << ' ' << std::__detail::__polylog_exp_pos(k, std::polar(_Tp{1}, _S_2pi * x))
+		  << ' ' << emsr::detail::polylog_exp_pos(k, std::polar(Tp{1}, s_2pi * x))
 		  << '\n';
     std::cout << '\n' << std::flush;
 
     std::cout << "\nTest function 2 [PolyLog_Exp_pos(k,x)]:\n";
     for (std::size_t k = 3; k < 8; ++k)
-      for (_Tp x = 0; x < 6.28; x += del05)
+      for (Tp x = 0; x < 6.28; x += del05)
 	std::cout << k
 		  << ' ' << x
-		  << ' ' << std::__detail::__polylog_exp_pos(k, x)
+		  << ' ' << emsr::detail::polylog_exp_pos(k, x)
 		  << '\n';
     std::cout << '\n' << std::flush;
 
     std::cout << "\nTest function 3 [PolyLog_Exp_neg(s<0, exp(i2pik)]:\n";
-    for (_Tp k = _Tp{-8}; k < _Tp{0}; k += _Tp{1} / _Tp{13})
-      for(_Tp x = 0; x < _Tp{1}; x += del05)
+    for (Tp k = Tp{-8}; k < Tp{0}; k += Tp{1} / Tp{13})
+      for(Tp x = 0; x < Tp{1}; x += del05)
 	std::cout << k
 		  << ' ' << x
-		  << ' ' << std::__detail::__polylog_exp_neg(k, std::polar(_Tp{1}, _S_2pi * x))
+		  << ' ' << emsr::detail::polylog_exp_neg(k, std::polar(Tp{1}, s_2pi * x))
 		  << '\n';
     std::cout << '\n' << std::flush;
 
     std::cout << "\nTest function 4 + 5 [PolyLog_Exp_neg(k<0, exp(i2pik]:\n";
     for (int k = -40; k < 0; ++k)
-      for (_Tp x = 0; x < _Tp{1}; x += del05)
+      for (Tp x = 0; x < Tp{1}; x += del05)
 	std::cout << k
 		  << ' ' << x
-		  << ' ' << std::__detail::__polylog_exp_neg(k, std::polar(_Tp{1}, _S_2pi * x))
+		  << ' ' << emsr::detail::polylog_exp_neg(k, std::polar(Tp{1}, s_2pi * x))
 		  << '\n';
     std::cout << '\n' << std::flush;
 
     std::cout << "\nTest series 6 [PolyLog_Exp_pos(s, exp(i2pix)]:\n";
-    for (_Tp k = _Tp{1} / _Tp{7}; k < _Tp{13}; k += _Tp{1} / _Tp{11})
-      for (_Tp x = _Tp{0}; x < _Tp{1}; x += del05)
+    for (Tp k = Tp{1} / Tp{7}; k < Tp{13}; k += Tp{1} / Tp{11})
+      for (Tp x = Tp{0}; x < Tp{1}; x += del05)
 	std::cout << k
 		  << ' ' << x
-		  << ' ' << std::__detail::__polylog_exp_pos(k, std::polar(_Tp{1}, _S_2pi * x))
+		  << ' ' << emsr::detail::polylog_exp_pos(k, std::polar(Tp{1}, s_2pi * x))
 		  << '\n';
     std::cout << '\n' << std::flush;
 
     std::cout << "\nTest series 7 [PolyLog_Exp_asym(k, 100 exp(i2pix))]:\n";
-    for (_Tp k = _Tp{-13}; k < _Tp{13}; k += _Tp{1} / _Tp{11})
-      for (_Tp x = _Tp{0}; x < _Tp{1}; x += del01)
+    for (Tp k = Tp{-13}; k < Tp{13}; k += Tp{1} / Tp{11})
+      for (Tp x = Tp{0}; x < Tp{1}; x += del01)
 	std::cout << k
 		  << ' ' << x
-		  << ' ' << std::__detail::__polylog_exp_asymp(k, _Tp{100} * std::polar(_Tp{1}, _S_2pi * x))
+		  << ' ' << emsr::detail::polylog_exp_asymp(k, Tp{100} * std::polar(Tp{1}, s_2pi * x))
 		  << '\n';
     std::cout << '\n' << std::flush;
 
     std::cout << "\nTest series 8 [PolyLog_Exp_negative_real_part(k, x)]:\n";
-    for (_Tp k = _Tp{-13}; k < _Tp{13}; k += _Tp{1} / _Tp{11})
-      for (_Tp x = _Tp{-7} / _Tp{10} * _S_pi; x > -_S_2pi; x -= del05)
+    for (Tp k = Tp{-13}; k < Tp{13}; k += Tp{1} / Tp{11})
+      for (Tp x = Tp{-7} / Tp{10} * s_pi; x > -s_2pi; x -= del05)
 	std::cout << k
 		  << ' ' << x
-		  << ' ' << std::__detail::__polylog_exp_sum(k, x)
+		  << ' ' << emsr::detail::polylog_exp_sum(k, x)
 		  << '\n';
     std::cout << '\n' << std::flush;
   }

@@ -11,8 +11,9 @@
 #include <vector>
 #include <complex>
 #include <string>
-#include <ext/float128_io.h>
-#include <ext/float128_math.h>
+
+#include <emsr/float128_io.h>
+#include <emsr/float128_math.h>
 
 #include <wrap_burkhardt.h>
 #include <sf_struve.h>
@@ -37,9 +38,9 @@ template<typename _Tp>
 	for (int n = 0; n <= 5; ++n)
 	  {
 	    auto nu = ndel * n;
-	    auto series = std::__detail::__struve_series<std::__detail::_StruveH>(nu, t);
-	    auto asymp = std::__detail::__struve_asymp<std::__detail::_StruveK>(nu, t)
-		       + std::__detail::__cyl_neumann_n(nu, t);
+	    auto series = emsr::detail::struve_series<emsr::detail::_StruveH>(nu, t);
+	    auto asymp = emsr::detail::struve_asymp<emsr::detail::_StruveK>(nu, t)
+		       + emsr::detail::cyl_neumann_n(nu, t);
 	    std::cout << '\t'
 		      << std::setw(width) << series
 		      << std::setw(width) << asymp
@@ -85,8 +86,8 @@ template<typename _Tp>
 	  {
 	    auto nu = ndel * n;
 	    data << '\t'
-		 << std::setw(width) << __gnu_cxx::struve_h(nu, t)
-		 << std::setw(width) << __gnu_cxx::struve_l(nu, t);
+		 << std::setw(width) << emsr::struve_h(nu, t)
+		 << std::setw(width) << emsr::struve_l(nu, t);
 	  }
 	data << '\n';
       }
@@ -111,8 +112,8 @@ template<typename _Tp>
 	  {
 	    auto nu = ndel * n;
 	    data << '\t'
-		 << std::setw(width) << __gnu_cxx::struve_k(nu, t)
-		 << std::setw(width) << __gnu_cxx::struve_m(nu, t);
+		 << std::setw(width) << emsr::struve_k(nu, t)
+		 << std::setw(width) << emsr::struve_m(nu, t);
 	  }
 	data << '\n';
       }
@@ -134,8 +135,8 @@ test_struve()
       for (int n = 0; n <= 20; ++n)
 	{
 	  auto nu = ndel * n;
-	  auto h = __gnu_cxx::struve_h(nu, t);
-	  auto l = __gnu_cxx::struve_l(nu, t);
+	  auto h = emsr::struve_h(nu, t);
+	  auto l = emsr::struve_l(nu, t);
 	  auto hb = burkhardt::struve_h(nu, t);
 	  auto lb = burkhardt::struve_l(nu, t);
 	  std::cout << '\t'

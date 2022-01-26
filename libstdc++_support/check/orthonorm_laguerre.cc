@@ -21,6 +21,7 @@
 
 #include <cmath>
 
+#include <emsr/specfun.h>
 #include <emsr/integration.h>
 
 #if defined(__TEST_DEBUG)
@@ -41,8 +42,8 @@ template<typename _Tp>
   norm_laguerre(int n1, int n2, _Tp x)
   {
     return std::exp(-x)
-	 * std::laguerre(n1, x)
-	 * std::laguerre(n2, x);
+	 * emsr::laguerre(n1, x)
+	 * emsr::laguerre(n2, x);
   }
 
 template<typename _Tp>

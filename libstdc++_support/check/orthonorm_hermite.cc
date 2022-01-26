@@ -21,6 +21,7 @@
 
 #include <cmath>
 
+#include <emsr/specfun.h>
 #include <emsr/integration.h>
 
 #if defined(__TEST_DEBUG)
@@ -43,11 +44,11 @@ template<typename _Tp>
     const auto
     _S_pi = _Tp{3.1415'92653'58979'32384'62643'38327'95028'84195e+0L};
     auto lnorm = _Tp{0.5} * (log(_S_pi) + _Tp(n1 + n2) * log(_Tp{2})
-			  + __gnu_cxx::lfactorial<_Tp>(n1)
-			  + __gnu_cxx::lfactorial<_Tp>(n2));
-    return std::hermite(n2, x)
+			  + emsr::lfactorial<_Tp>(n1)
+			  + emsr::lfactorial<_Tp>(n2));
+    return emsr::hermite(n2, x)
 	 * std::exp(-x * x - lnorm)
-	 * std::hermite(n1, x);
+	 * emsr::hermite(n1, x);
   }
 
 template<typename _Tp>

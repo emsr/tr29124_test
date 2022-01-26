@@ -21,6 +21,7 @@
 
 #include <cmath>
 
+#include <emsr/specfun.h>
 #include <emsr/integration.h>
 
 #if defined(__TEST_DEBUG)
@@ -45,8 +46,8 @@ template<typename _Tp>
     if (std::abs(x - _Tp{1}) < _S_eps)
       return (n1 + n2) & 1 ? -_S_inf : _S_inf;
     else
-      return __gnu_cxx::chebyshev_v(n1, x)
-	   * __gnu_cxx::chebyshev_v(n2, x)
+      return emsr::chebyshev_v(n1, x)
+	   * emsr::chebyshev_v(n2, x)
 	   * std::sqrt((_Tp{1} + x) / (_Tp{1} - x))
 	   / _Tp{2};
   }

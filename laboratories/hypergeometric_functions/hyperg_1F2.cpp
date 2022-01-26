@@ -8,11 +8,11 @@
 
 template<typename _Tp>
   _Tp
-  __hyperg_1f2(_Tp a, _Tp b, _Tp c, _Tp x, _Tp& err)
+  hyperg_1f2(_Tp a, _Tp b, _Tp c, _Tp x, _Tp& err)
   {
-    constexpr auto _S_max_iter = 200;
-    const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-    const auto _S_huge = std::numeric_limits<_Tp>::max() / _Tp{1000};
+    constexpr auto s_max_iter = 200;
+    const auto s_eps = std::numeric_limits<_Tp>::epsilon();
+    const auto s_huge = std::numeric_limits<_Tp>::max() / _Tp{1000};
     auto an = a;
     auto bn = b;
     auto cn = c;
@@ -28,11 +28,11 @@ template<typename _Tp>
 	if (an == _Tp{0})
 	  break;
 	if (bn == _Tp{0})
-	  throw std::runtime_error("__hyperg_1f2: series failed");
+	  throw std::runtime_error("hyperg_1f2: series failed");
 	if (cn == _Tp{0})
-	  throw std::runtime_error("__hyperg_1f2: series failed");
-	if (a0 > _S_huge || n > _S_max_iter)
-	  throw std::runtime_error("__hyperg_1f2: series failed");
+	  throw std::runtime_error("hyperg_1f2: series failed");
+	if (a0 > s_huge || n > s_max_iter)
+	  throw std::runtime_error("hyperg_1f2: series failed");
 	a0 *= (an * x) / (bn * cn * n);
 	sum += a0;
 	an += _Tp{1};
@@ -49,7 +49,7 @@ template<typename _Tp>
       }
     while (t > stop);
 
-    err = std::abs(_S_eps * max / sum);
+    err = std::abs(s_eps * max / sum);
 
     return sum;
   }
@@ -63,6 +63,6 @@ main()
   double c = 1.5;
   double x = 2.5;
   double err = 0.0;
-  __hyperg_1f2(a, b, c, x, err);
+  hyperg_1f2(a, b, c, x, err);
 }
 #endif

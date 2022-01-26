@@ -5,7 +5,7 @@
 #include <cmath>
 #include <iostream>
 
-#include <bits/sf_prime.tcc>
+#include <emsr/sf_prime.tcc>
 
 void
 print_prime_factors(unsigned int n)
@@ -37,11 +37,11 @@ print_prime_factors(unsigned int n)
 }
 
 void
-__prime_factors(unsigned int n)
+prime_factors(unsigned int n)
 {
   const unsigned long p_max = std::sqrt(n);
   unsigned long i = 0;
-  auto p = __gnu_cxx::prime(i);
+  auto p = emsr::prime(i);
   while (p > 0 && p <= p_max)
     {
       while (n % p == 0)
@@ -49,7 +49,7 @@ __prime_factors(unsigned int n)
           std::cout << ' ' << p;
           n /= p;
         }
-      p = __gnu_cxx::prime(++i);
+      p = emsr::prime(++i);
     }
   if (n > 1)
     std::cout << ' ' << n;
@@ -62,9 +62,9 @@ write_primes()
 {
   const auto max = std::numeric_limits<unsigned short>::max();
   unsigned short index = 0;
-  for (unsigned int i = 0; i < __gnu_cxx::num_primes(); ++i)
+  for (unsigned int i = 0; i < emsr::num_primes(); ++i)
     {
-      auto p = __gnu_cxx::prime(i);
+      auto p = emsr::prime(i);
       if (p >= max)
 	{
 	  if (index == 0)
@@ -91,7 +91,7 @@ main()
       if (std::cin.bad() || std::cin.fail())
 	break;
       print_prime_factors(n);
-      __prime_factors(n);
+      prime_factors(n);
     }
 
   //write_primes();

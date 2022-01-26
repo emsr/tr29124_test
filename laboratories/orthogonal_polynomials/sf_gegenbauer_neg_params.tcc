@@ -22,7 +22,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/sf_gegenbauer.tcc
+/** @file emsr/sf_gegenbauer.tcc
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{cmath}
  */
@@ -32,6 +32,9 @@
 
 #include <emsr/math_constants.h>
 #include <emsr/math_util.h>
+#include <emsr/numeric_limits.h>
+#include <emsr/specfun_state.h>
+#include <emsr/quadrature_point.h>
 
 namespace lab
 {
@@ -49,44 +52,44 @@ namespace lab
    * This works for @f$ \lambda > -1/2 @f$
    *
    * @tparam  _Tp  The real type of the argument and order
-   * @param  __n  The non-negative integral degree
-   * @param  __lambda  The order of the Gegenbauer polynomial
-   * @param  __x  The real argument
+   * @param  n  The non-negative integral degree
+   * @param  lambda  The order of the Gegenbauer polynomial
+   * @param  x  The real argument
    */
   template<typename _Tp>
-    __gnu_cxx::__gegenbauer_t<_Tp>
-    __gegenbauer_recur(unsigned int __n, _Tp __lambda, _Tp __x)
+    emsr::gegenbauer_t<_Tp>
+    gegenbauer_recur(unsigned int n, _Tp lambda, _Tp x)
     {
-      const auto _S_NaN = emsr::quiet_NaN(__x);
+      const auto _S_NaN = emsr::quiet_NaN(x);
 
-      if (std::isnan(__lambda) || std::isnan(__x))
-	return {__n, __lambda, __x, _S_NaN, _S_NaN, _S_NaN};
+      if (std::isnan(lambda) || std::isnan(x))
+	return {n, lambda, x, _S_NaN, _S_NaN, _S_NaN};
 
-      auto __m = int(__n);
+      auto m = int(n);
       if (const auto
-	    __pint = emsr::fp_is_integer(__n + _Tp{2} * __lambda);
-	  __pint && __pint() <= 0 && __m > -__pint())
-	__m = -__pint();
+	    pint = emsr::fp_is_integer(n + _Tp{2} * lambda);
+	  pint && pint() <= 0 && m > -pint())
+	m = -pint();
 
-      auto __C_nm2 = _Tp{1};
-      if (__m == 0)
-	return {__n, __lambda, __x, __C_nm2, _Tp{0}, _Tp{0}};
+      auto C_nm2 = _Tp{1};
+      if (m == 0)
+	return {n, lambda, x, C_nm2, _Tp{0}, _Tp{0}};
 
-      auto __C_nm1 = _Tp{2} * __lambda * __x;
-      if (__m == 1)
-	return {__n, __lambda, __x, __C_nm1, __C_nm2, _Tp{0}};
+      auto C_nm1 = _Tp{2} * lambda * x;
+      if (m == 1)
+	return {n, lambda, x, C_nm1, C_nm2, _Tp{0}};
 
-      auto __C_n = (_Tp{2} * (_Tp{1} + __lambda) * __x * __C_nm1
-		 - _Tp{2} * __lambda * __C_nm2) / _Tp(2);
-      for (auto __k = 3; __k <= __m; ++__k)
+      auto C_n = (_Tp{2} * (_Tp{1} + lambda) * x * C_nm1
+		 - _Tp{2} * lambda * C_nm2) / _Tp(2);
+      for (auto k = 3; k <= m; ++k)
 	{
-	  __C_nm2 = __C_nm1;
-	  __C_nm1 = __C_n;
-	  __C_n = (_Tp{2} * (_Tp(__k) - _Tp{1} + __lambda) * __x * __C_nm1
-		- (_Tp(__k) - _Tp{2} + _Tp{2} * __lambda) * __C_nm2)
-	      / _Tp(__k);
+	  C_nm2 = C_nm1;
+	  C_nm1 = C_n;
+	  C_n = (_Tp{2} * (_Tp(k) - _Tp{1} + lambda) * x * C_nm1
+		- (_Tp(k) - _Tp{2} + _Tp{2} * lambda) * C_nm2)
+	      / _Tp(k);
 	}
-      return {__n, __lambda, __x, __C_n, __C_nm1, __C_nm2};
+      return {n, lambda, x, C_n, C_nm1, C_nm2};
     }
 
   /**
@@ -100,104 +103,104 @@ namespace lab
    */
   template<typename _Tp>
     std::vector<emsr::QuadraturePoint<_Tp>>
-    __gegenbauer_zeros(unsigned int __n, _Tp __lambda)
+    gegenbauer_zeros(unsigned int n, _Tp lambda)
     {
-      const auto _S_eps = emsr::epsilon(__lambda);
+      const auto _S_eps = emsr::epsilon(lambda);
       const unsigned int _S_maxit = 1000u;
-      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
+      std::vector<emsr::QuadraturePoint<_Tp>> pt(n);
 
-      _Tp __z;
-      _Tp __w;
-      for (auto __i = 1u; __i <= __n; ++__i)
+      _Tp z;
+      _Tp w;
+      for (auto i = 1u; i <= n; ++i)
 	{
-	  if (__i == 1)
+	  if (i == 1)
 	    {
-	      auto __an = __lambda / __n;
-	      auto __an2 = __an * __an;
-	      auto __r1 = (1.0 + __lambda) * (2.78 / (4.0 + __n * __n)
-			+ 0.768 * __an / __n);
-	      auto __r2 = 1.0 + 1.48 * __an + 0.96 * __an + 1.282 * __an2;
-	      __z = 1.0 - __r1 / __r2;
+	      auto an = lambda / n;
+	      auto an2 = an * an;
+	      auto r1 = (1.0 + lambda) * (2.78 / (4.0 + n * n)
+			+ 0.768 * an / n);
+	      auto r2 = 1.0 + 1.48 * an + 0.96 * an + 1.282 * an2;
+	      z = 1.0 - r1 / r2;
 	    }
-	  else if (__i == 2)
+	  else if (i == 2)
 	    {
-	      auto __r1 = (4.1 + __lambda)
-			/ ((1.0 + __lambda) * (1.0 + 0.156 * __lambda));
-	      auto __r2 = 1.0
-			+ 0.06 * (__n - 8.0) * (1.0 + 0.12 * __lambda) / __n;
-	      auto __r3 = 1.0
-		   + 0.012 * __lambda * (1.0 + 0.25 * std::abs(__lambda)) / __n;
-	      __z -= (1.0 - __z) * __r1 * __r2 * __r3;
+	      auto r1 = (4.1 + lambda)
+			/ ((1.0 + lambda) * (1.0 + 0.156 * lambda));
+	      auto r2 = 1.0
+			+ 0.06 * (n - 8.0) * (1.0 + 0.12 * lambda) / n;
+	      auto r3 = 1.0
+		   + 0.012 * lambda * (1.0 + 0.25 * std::abs(lambda)) / n;
+	      z -= (1.0 - z) * r1 * r2 * r3;
 	    }
-	  else if (__i == 3)
+	  else if (i == 3)
 	    {
-	      auto __r1 = (1.67 + 0.28 * __lambda) / (1.0 + 0.37 * __lambda);
-	      auto __r2 = 1.0 + 0.22 * (__n - 8.0) / __n;
-	      auto __r3 = 1.0 + 8.0 *__lambda / ((6.28 + __lambda) * __n * __n);
-	      __z -= (__pt[0].point - __z) * __r1 * __r2 * __r3;
+	      auto r1 = (1.67 + 0.28 * lambda) / (1.0 + 0.37 * lambda);
+	      auto r2 = 1.0 + 0.22 * (n - 8.0) / n;
+	      auto r3 = 1.0 + 8.0 *lambda / ((6.28 + lambda) * n * n);
+	      z -= (pt[0].point - z) * r1 * r2 * r3;
 	    }
-	  else if (__i == __n - 1)
+	  else if (i == n - 1)
 	    {
-	      auto __r1 = (1.0 + 0.235 * __lambda) / (0.766 + 0.119 * __lambda);
-	      auto __r2 = 1.0 / (1.0 + 0.639 * (__n - 4.0)
-						/ (1.0 + 0.71 * (__n - 4.0)));
-	      auto __r3 = 1.0 / (1.0 + 20.0 * __lambda
-				/ ((7.5 + __lambda) * __n * __n));
-	      __z += (__z - __pt[__n - 4].point) * __r1 * __r2 * __r3;
+	      auto r1 = (1.0 + 0.235 * lambda) / (0.766 + 0.119 * lambda);
+	      auto r2 = 1.0 / (1.0 + 0.639 * (n - 4.0)
+						/ (1.0 + 0.71 * (n - 4.0)));
+	      auto r3 = 1.0 / (1.0 + 20.0 * lambda
+				/ ((7.5 + lambda) * n * n));
+	      z += (z - pt[n - 4].point) * r1 * r2 * r3;
 	    }
-	  else if (__i == __n)
+	  else if (i == n)
 	    {
-	      auto __r1 = (1.0 + 0.37 * __lambda) / (1.67 + 0.28 * __lambda);
-	      auto __r2 = 1.0 / (1.0 + 0.22 * (__n - 8.0) / __n);
-	      auto __r3 = 1.0 / (1.0 + 8.0 * __lambda
-				 / ((6.28 + __lambda) * __n * __n));
-	      __z += (__z - __pt[__n - 3].point) * __r1 * __r2 * __r3;
+	      auto r1 = (1.0 + 0.37 * lambda) / (1.67 + 0.28 * lambda);
+	      auto r2 = 1.0 / (1.0 + 0.22 * (n - 8.0) / n);
+	      auto r3 = 1.0 / (1.0 + 8.0 * lambda
+				 / ((6.28 + lambda) * n * n));
+	      z += (z - pt[n - 3].point) * r1 * r2 * r3;
 	    }
 	  else
-	    __z = 3.0 * __pt[__i - 2].point
-		- 3.0 * __pt[__i - 3].point + __pt[__i - 4].point;
+	    z = 3.0 * pt[i - 2].point
+		- 3.0 * pt[i - 3].point + pt[i - 4].point;
 
-	  auto __2lambda = _Tp{2} * __lambda;
-	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
+	  auto __2lambda = _Tp{2} * lambda;
+	  for (auto its = 1u; its <= _S_maxit; ++its)
 	    {
-	      auto __temp = _Tp{2} + __2lambda;
-	      auto __C1 = (__temp * __z) / _Tp{2};
-	      auto __C2 = _Tp{1};
-	      for (auto __j = 2u; __j <= __n; ++__j)
+	      auto temp = _Tp{2} + __2lambda;
+	      auto C1 = (temp * z) / _Tp{2};
+	      auto C2 = _Tp{1};
+	      for (auto j = 2u; j <= n; ++j)
 		{
-		  auto __C3 = __C2;
-		  __C2 = __C1;
-		  __temp = _Tp(2 * __j) + __2lambda;
-		  auto __a = _Tp(2 * __j) * (__j + __2lambda)
-			   * (__temp - _Tp{2});
-		  auto __b = (__temp - _Tp{1})
-			   * __temp * (__temp - _Tp{2}) * __z;
-		  auto __c = _Tp{2} * (__j - 1 + __lambda)
-			   * (__j - 1 + __lambda) * __temp;
-		  __C1 = (__b * __C2 - __c * __C3) / __a;
+		  auto C3 = C2;
+		  C2 = C1;
+		  temp = _Tp(2 * j) + __2lambda;
+		  auto a = _Tp(2 * j) * (j + __2lambda)
+			   * (temp - _Tp{2});
+		  auto b = (temp - _Tp{1})
+			   * temp * (temp - _Tp{2}) * z;
+		  auto c = _Tp{2} * (j - 1 + lambda)
+			   * (j - 1 + lambda) * temp;
+		  C1 = (b * C2 - c * C3) / a;
 		}
-	      auto __Cp = (__n * (-__temp * __z) * __C1
-			+ _Tp{2} * (__n + __lambda) * (__n + __lambda) * __C2)
-			/ (__temp * (_Tp{1} - __z * __z));
-	      auto __z1 = __z;
-	      __z = __z1 - __C1 / __Cp;
-	      if (std::abs(__z - __z1) <= _S_eps)
+	      auto Cp = (n * (-temp * z) * C1
+			+ _Tp{2} * (n + lambda) * (n + lambda) * C2)
+			/ (temp * (_Tp{1} - z * z));
+	      auto z1 = z;
+	      z = z1 - C1 / Cp;
+	      if (std::abs(z - z1) <= _S_eps)
 		{
-		  __w = std::exp(std::lgamma(__lambda + _Tp(__n))
-			       + std::lgamma(__lambda + _Tp(__n))
-			       - std::lgamma(_Tp(__n + 1))
-			       - std::lgamma(_Tp(__n + 1) + __2lambda))
-		      * __temp * std::pow(_Tp{2}, __2lambda) / (__Cp * __C2);
+		  w = std::exp(std::lgamma(lambda + _Tp(n))
+			       + std::lgamma(lambda + _Tp(n))
+			       - std::lgamma(_Tp(n + 1))
+			       - std::lgamma(_Tp(n + 1) + __2lambda))
+		      * temp * std::pow(_Tp{2}, __2lambda) / (Cp * C2);
 		  break;
 		}
-	      if (__its > _S_maxit)
-		std::__throw_logic_error("__gegenbauer_zeros: Too many iterations");
+	      if (its > _S_maxit)
+		throw std::logic_error("gegenbauer_zeros: Too many iterations");
 	    }
-	  __pt[__i - 1].point = __z;
-	  __pt[__i - 1].weight = __w;
+	  pt[i - 1].point = z;
+	  pt[i - 1].weight = w;
 	}
 
-      return __pt;
+      return pt;
     }
 } // namespace lab
 

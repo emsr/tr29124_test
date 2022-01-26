@@ -5,7 +5,8 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-#include <ext/float128_io.h>
+
+#include <emsr/float128_io.h>
 
 #include <wrap_boost.h>
 #include <wrap_gsl.h>
@@ -40,7 +41,7 @@ template<typename _Tp>
     for (int i = -40; i <= +40; ++i)
       {
 	auto x = del * i * pi;
-	auto sinc = __gnu_cxx::sinc(x);
+	auto sinc = emsr::sinc(x);
 	auto sinc_gsl = gsl::sinc(x);
 	auto sinc_boost = beast::sinc(x);
 	auto delta_gsl = sinc - sinc_gsl;
@@ -82,7 +83,7 @@ template<typename _Tp>
     for (int i = -40; i <= +40; ++i)
       {
 	auto x = del * i;
-	auto sinc_pi = __gnu_cxx::sinc_pi(x);
+	auto sinc_pi = emsr::sinc_pi(x);
 	auto sinc_pi_gsl = gsl::sinc_pi(x);
 	auto sinc_pi_boost = beast::sinc_pi(x);
 	auto delta_gsl = sinc_pi - sinc_pi_gsl;
@@ -125,7 +126,7 @@ template<typename _Tp>
     for (int i = -40; i <= +40; ++i)
       {
 	auto x = del * i;
-	auto sinhc = __gnu_cxx::sinhc(x);
+	auto sinhc = emsr::sinhc(x);
 	auto sinhc_gsl = gsl::sinhc(x);
 	auto sinhc_boost = beast::sinhc(x);
 	auto delta_gsl = sinhc - sinhc_gsl;
@@ -167,7 +168,7 @@ template<typename _Tp>
     for (int i = -40; i <= +40; ++i)
       {
 	auto x = del * i;
-	auto sinhc_pi = __gnu_cxx::sinhc_pi(x);
+	auto sinhc_pi = emsr::sinhc_pi(x);
 	auto sinhc_pi_gsl = gsl::sinhc_pi(x);
 	auto sinhc_pi_boost = beast::sinhc_pi(x);
 	auto delta_gsl = sinhc_pi - sinhc_pi_gsl;

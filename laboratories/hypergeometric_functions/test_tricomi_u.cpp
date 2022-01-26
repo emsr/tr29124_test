@@ -7,9 +7,9 @@
 #include <iostream>
 #include <iomanip>
 
-//namespace std
+//namespace emsr
 //{
-//namespace __detail
+//namespace detail
 //{
 
   /**
@@ -18,32 +18,32 @@
    *   U(a,c,x) = \frac{\Gamma(1-c)}{\Gamma(a-c+1)} {}_1F_1(a;c;x)
    *       + \frac{\Gamma(c-1)}{\Gamma(a)} x^{1-c} {}_1F_1(a-c+1;2-c;x)
    * @f]
-   * @param  __a  The @a numerator parameter.
-   * @param  __c  The @a denominator parameter.
-   * @param  __x  The argument of the confluent hypergeometric function.
+   * @param  a  The @a numerator parameter.
+   * @param  c  The @a denominator parameter.
+   * @param  x  The argument of the confluent hypergeometric function.
    * @return  The Tricomi confluent hypergeometric function.
    */
   template<typename _Tp>
     _Tp
-    __tricomi_u_naive(_Tp __a, _Tp __c, _Tp __x)
+    tricomi_u_naive(_Tp a, _Tp c, _Tp x)
     {
-      auto __U1 = _Tp{};
-      auto __b = __a - __c + _Tp{1};
-      auto __ib = emsr::fp_is_integer(__b);
-      if (!__ib || __ib() > 0)
-	__U1 = std::__detail::__gamma(_Tp{1} - __c)
-	     * std::__detail::__conf_hyperg(__a, __c, __x)
-	     / std::__detail::__gamma(__b);
+      auto U1 = _Tp{};
+      auto b = a - c + _Tp{1};
+      auto ib = emsr::fp_is_integer(b);
+      if (!ib || ib() > 0)
+	U1 = emsr::detail::gamma(_Tp{1} - c)
+	     * emsr::detail::conf_hyperg(a, c, x)
+	     / emsr::detail::gamma(b);
 
-      auto __U2 = _Tp{};
-      auto __ia = emsr::fp_is_integer(__a);
-      if (!__ia || __ia() > 0)
-	__U2 = std::__detail::__gamma(__c - _Tp{1})
-	     * std::pow(__x, _Tp{1} - __c)
-	     * std::__detail::__conf_hyperg(__b, _Tp{2} - __c, __x)
-	     / std::__detail::__gamma(__a);
+      auto U2 = _Tp{};
+      auto ia = emsr::fp_is_integer(a);
+      if (!ia || ia() > 0)
+	U2 = emsr::detail::gamma(c - _Tp{1})
+	     * std::pow(x, _Tp{1} - c)
+	     * emsr::detail::conf_hyperg(b, _Tp{2} - c, x)
+	     / emsr::detail::gamma(a);
 
-      return __U1 + __U2;
+      return U1 + U2;
     }
 
   /**
@@ -51,22 +51,22 @@
    */
   template<typename _Tp>
     _Tp
-    __tricomi_u_asymp(_Tp __a, _Tp __c, _Tp __z)
+    tricomi_u_asymp(_Tp a, _Tp c, _Tp z)
     {
-      const auto _S_eps = emsr::epsilon(__z);
-      const unsigned int _S_max_iter = 100000u;
-      auto __b = __a - __c + _Tp{1};
-      auto __term = _Tp{1};
+      const auto s_eps = emsr::epsilon(z);
+      const unsigned int s_max_iter = 100000u;
+      auto b = a - c + _Tp{1};
+      auto term = _Tp{1};
       auto _Usum = _Tp{1};
-      for (auto __k = 1u; __k < _S_max_iter; ++__k)
+      for (auto k = 1u; k < s_max_iter; ++k)
 	{
-	  __term *= -(__a + _Tp(__k - 1)) * (__b + _Tp(__k - 1))
-		  / _Tp(__k) / __z;
-	  _Usum += __term;
-	  if (std::abs(__term) < _S_eps * std::abs(_Usum))
+	  term *= -(a + _Tp(k - 1)) * (b + _Tp(k - 1))
+		  / _Tp(k) / z;
+	  _Usum += term;
+	  if (std::abs(term) < s_eps * std::abs(_Usum))
 	    break;
 	}
-      return std::pow(__z, -__a) * _Usum;
+      return std::pow(z, -a) * _Usum;
     }
 
   /**
@@ -74,47 +74,47 @@
    */
   template<typename _Tp>
     _Tp
-    __tricomi_u_c_pos_int(_Tp __a, int __m, _Tp __z)
+    tricomi_u_c_pos_int(_Tp a, int m, _Tp z)
     {
-      const auto _S_eps = emsr::epsilon(__z);
-      const unsigned int _S_max_iter = 100000u;
+      const auto s_eps = emsr::epsilon(z);
+      const unsigned int s_max_iter = 100000u;
 //std::cout << '\n';
 
-      auto __term1 = _Tp{1};
-      auto _U1 = __term1;
-      for (auto __k = 1; __k <= __m - 2; ++__k)
+      auto term1 = _Tp{1};
+      auto _U1 = term1;
+      for (auto k = 1; k <= m - 2; ++k)
 	{
-	  __term1 *= (__a + _Tp(-__m + __k)) * __z
-		   / _Tp(1 - __m + __k) / _Tp(__k);
-	  _U1 += __term1;
+	  term1 *= (a + _Tp(-m + k)) * z
+		   / _Tp(1 - m + k) / _Tp(k);
+	  _U1 += term1;
 //std::cout << "_U1 = " << _U1 << '\n';
 	}
-      _U1 *= std::__detail::__factorial<_Tp>(__m - 2)
-	   / std::__detail::__gamma(__a)
-	   / std::pow(__z, _Tp(__m - 1));
+      _U1 *= emsr::detail::factorial<_Tp>(m - 2)
+	   / emsr::detail::gamma(a)
+	   / std::pow(z, _Tp(m - 1));
 
-      const auto __b = __a + _Tp(1 - __m);
-      auto __psi2 = std::__detail::__digamma(__a)
-		  - std::__detail::__digamma<_Tp>(1)
-		  - std::__detail::__digamma<_Tp>(__m)
-		  + std::log(__z);
-      auto __fact2 = _Tp{1};
-      auto _U2 = __psi2;
-      for (auto __k = 1u; __k < _S_max_iter; ++__k)
+      const auto b = a + _Tp(1 - m);
+      auto psi2 = emsr::detail::digamma(a)
+		  - emsr::detail::digamma<_Tp>(1)
+		  - emsr::detail::digamma<_Tp>(m)
+		  + std::log(z);
+      auto fact2 = _Tp{1};
+      auto _U2 = psi2;
+      for (auto k = 1u; k < s_max_iter; ++k)
 	{
-	  __psi2 += _Tp{1} / (__a + _Tp(__k - 1))
-		  - _Tp{1} / _Tp(__k)
-		  - _Tp{1} / _Tp(__m + __k - 1);
-	  __fact2 *= (__a + _Tp(__k)) * __z / _Tp(__m + __k) / _Tp(__k);
-	  auto __term2 = __psi2 * __fact2;
-	  _U2 += __term2;
+	  psi2 += _Tp{1} / (a + _Tp(k - 1))
+		  - _Tp{1} / _Tp(k)
+		  - _Tp{1} / _Tp(m + k - 1);
+	  fact2 *= (a + _Tp(k)) * z / _Tp(m + k) / _Tp(k);
+	  auto term2 = psi2 * fact2;
+	  _U2 += term2;
 //std::cout << "_U2 = " << _U2 << '\n';
-	  if (std::abs(__term2) < _S_eps * std::abs(_U2))
+	  if (std::abs(term2) < s_eps * std::abs(_U2))
 	    break;
 	}
-      _U2 *= ((__m & 1) ? -1 : +1)
-	   / std::__detail::__factorial<_Tp>(__m - 1)
-	   / std::__detail::__gamma(__b);
+      _U2 *= ((m & 1) ? -1 : +1)
+	   / emsr::detail::factorial<_Tp>(m - 1)
+	   / emsr::detail::gamma(b);
 
       return _U1 + _U2;
     }
@@ -124,11 +124,11 @@
    */
   template<typename _Tp>
     _Tp
-    __tricomi_u_c_nonpos_int(_Tp __a, _Tp __m, _Tp __z)
+    tricomi_u_c_nonpos_int(_Tp a, _Tp m, _Tp z)
     {
-      auto __b = __a + _Tp(1 - __m);
-      return std::pow(__z, _Tp(1 - __m))
-	   * __tricomi_u_c_pos_int(__b, 2 - __m, __z);
+      auto b = a + _Tp(1 - m);
+      return std::pow(z, _Tp(1 - m))
+	   * tricomi_u_c_pos_int(b, 2 - m, z);
     }
 
   /**
@@ -136,21 +136,21 @@
    */
   template<typename _Tp>
     _Tp
-    __tricomi_u_ac_int(_Tp __n, _Tp __m, _Tp __z)
+    tricomi_u_ac_int(_Tp n, _Tp m, _Tp z)
     {
-      const unsigned int _S_max_iter = 100000u;
-      const auto _S_eps = emsr::epsilon(__z);
-      auto __term = _Tp{1};
+      const unsigned int s_max_iter = 100000u;
+      const auto s_eps = emsr::epsilon(z);
+      auto term = _Tp{1};
       auto _Usum = _Tp{1};
-      for (auto __k = 1u; __k < -__n; ++__k)
+      for (auto k = 1u; k < -n; ++k)
 	{
-	  __term *= _Tp(__n + __k - 1) / _Tp(__m + __k - 1) / _Tp(__k) * __z;
-	  _Usum += __term;
-	  if (std::abs(__term) < _S_eps * std::abs(_Usum))
+	  term *= _Tp(n + k - 1) / _Tp(m + k - 1) / _Tp(k) * z;
+	  _Usum += term;
+	  if (std::abs(term) < s_eps * std::abs(_Usum))
 	    break;
 	}
-      return ((__n & 1) ? -1 : +1)
-	   * __gnu_cxx::rising_factorial(__m, -__n) * _Usum;
+      return ((n & 1) ? -1 : +1)
+	   * emsr::rising_factorial(m, -n) * _Usum;
     }
 
   /**
@@ -158,7 +158,7 @@
    */
   template<typename _Tp>
     _Tp
-    __tricomi_u_series(_Tp __a, _Tp __c, _Tp __z)
+    tricomi_u_series(_Tp a, _Tp c, _Tp z)
     {
       return 0;
     }
@@ -168,19 +168,19 @@
    */
   template<typename _Tp>
     _Tp
-    __tricomi_u(_Tp __a, _Tp __c, _Tp __z)
+    tricomi_u(_Tp a, _Tp c, _Tp z)
     {
-      auto __aint = emsr::fp_is_integer(__a);
-      auto __cint = emsr::fp_is_integer(__c);
-      if (__cint)
+      auto aint = emsr::fp_is_integer(a);
+      auto cint = emsr::fp_is_integer(c);
+      if (cint)
 	{
-	  if (__cint() > 0)
-	    return __tricomi_u_c_pos_int(__a, __cint(), __z);
+	  if (cint() > 0)
+	    return tricomi_u_c_pos_int(a, cint(), z);
 	  else
-	    return __tricomi_u_c_nonpos_int(__a, __cint(), __z);
+	    return tricomi_u_c_nonpos_int(a, cint(), z);
 	}
       else
-	return __tricomi_u_series(__a, __c, __z);
+	return tricomi_u_series(a, c, z);
     }
 
   /**
@@ -188,10 +188,10 @@
    */
   template<typename _Tp>
     _Tp
-    __whittaker_m(_Tp __kappa, _Tp __mu, _Tp __z)
+    whittaker_m(_Tp kappa, _Tp mu, _Tp z)
     {
-      return std::exp(-__z / 2) * std::pow(__z, 0.5 + __mu)
-	   * __gnu_cxx::conf_hyperg(0.5 + __mu - __kappa, 1 + 2 * __mu, __z);
+      return std::exp(-z / 2) * std::pow(z, 0.5 + mu)
+	   * emsr::conf_hyperg(0.5 + mu - kappa, 1 + 2 * mu, z);
     }
 
   /**
@@ -199,14 +199,14 @@
    */
   template<typename _Tp>
     _Tp
-    __whittaker_w(_Tp __kappa, _Tp __mu, _Tp __z)
+    whittaker_w(_Tp kappa, _Tp mu, _Tp z)
     {
-      return std::exp(-__z / 2) * std::pow(__z, 0.5 + __mu)
-	   * __tricomi_u(0.5 + __mu - __kappa, 1 + 2 * __mu, __z);
+      return std::exp(-z / 2) * std::pow(z, 0.5 + mu)
+	   * tricomi_u(0.5 + mu - kappa, 1 + 2 * mu, z);
     }
 
-//} // namespace __detail
-//} // namespace std
+//} // namespace detail
+//} // namespace emsr
 
 template<typename _Tp>
   void
@@ -223,7 +223,7 @@ template<typename _Tp>
     {
       auto z = del * i;
       std::cout << ' ' << std::setw(6) << z
-		<< ' ' << std::setw(width) << __tricomi_u_naive(a, c, z)
+		<< ' ' << std::setw(width) << tricomi_u_naive(a, c, z)
 		<< '\n';
     }
 
@@ -234,8 +234,8 @@ template<typename _Tp>
     for (auto m = 1u; m <= +20; ++m)
     {
       std::cout << ' ' << std::setw(6) << m
-		<< ' ' << std::setw(width) << __tricomi_u_naive(a, _Tp(m), z)
-		<< ' ' << std::setw(width) << __tricomi_u_c_pos_int(a, m, z)
+		<< ' ' << std::setw(width) << tricomi_u_naive(a, _Tp(m), z)
+		<< ' ' << std::setw(width) << tricomi_u_c_pos_int(a, m, z)
 		<< '\n';
     }
   }

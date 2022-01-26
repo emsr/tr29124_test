@@ -11,35 +11,35 @@
  */
 template<typename _Tp>
   _Tp
-  pow(_Tp __x, int __n)
+  pow(_Tp x, int n)
   {
-    _Tp __val = _Tp{1};
+    _Tp val = _Tp{1};
 
-    if (__n < 0)
+    if (n < 0)
       {
-	__n = -__n;
-	if (__x == _Tp{})
+	n = -n;
+	if (x == _Tp{})
 	  {
-	    auto __u = _Tp{1} / __x;
+	    auto u = _Tp{1} / x;
 	    // Correct sign of infinity.
-	    __val = (__n % 2) ? __u : (__u * __u) ;
+	    val = (n % 2) ? u : (u * u) ;
           }
 
-	__x = _Tp{1} / __x;
+	x = _Tp{1} / x;
       }
 
     // Repeated squaring method
     // Returns 0^0 = 1, so continuous in x.
     do
       {
-	if ((__n & 1) == 1)
-	  __val *= __x;
-	__n >>= 1;
-	__x *= __x;
+	if ((n & 1) == 1)
+	  val *= x;
+	n >>= 1;
+	x *= x;
       }
-    while (__n > 0);
+    while (n > 0);
 
-    return __val;
+    return val;
   }
 
 int

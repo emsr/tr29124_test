@@ -17,10 +17,10 @@ main()
     {
       auto s = i * (0.01);
       std::cout << ' ' << s
-		<< ' ' << std::setw(w) << std::riemann_zeta(s)
-		<< ' ' << std::setw(w) << __gnu_cxx::dirichlet_eta(s)
-		<< ' ' << std::setw(w) << __gnu_cxx::dirichlet_beta(s)
-		<< ' ' << std::setw(w) << __gnu_cxx::dirichlet_lambda(s)
+		<< ' ' << std::setw(w) << emsr::riemann_zeta(s)
+		<< ' ' << std::setw(w) << emsr::dirichlet_eta(s)
+		<< ' ' << std::setw(w) << emsr::dirichlet_beta(s)
+		<< ' ' << std::setw(w) << emsr::dirichlet_lambda(s)
 		<< '\n';
     }
 }

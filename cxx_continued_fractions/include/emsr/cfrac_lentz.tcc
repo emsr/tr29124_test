@@ -2,6 +2,9 @@
 #define CFRAC_LENTZ_TCC 1
 
 #include <stdexcept>
+
+#include <emsr/fp_type_util.h>
+#include <emsr/complex_util.h>
 #include <emsr/numeric_limits.h>
 
 namespace emsr

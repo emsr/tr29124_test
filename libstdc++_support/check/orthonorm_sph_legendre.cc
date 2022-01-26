@@ -21,6 +21,7 @@
 
 #include <cmath>
 
+#include <emsr/specfun.h>
 #include <emsr/integration.h>
 
 #if defined(__TEST_DEBUG)
@@ -43,8 +44,8 @@ template<typename _Tp>
     const auto
     _S_pi = _Tp{3.1415'92653'58979'32384'62643'38327'95028'84195e+0L};
     return _Tp{2} * _S_pi * std::sin(theta)
-	 * std::sph_legendre(l1, m1, theta)
-	 * std::sph_legendre(l2, m2, theta);
+	 * emsr::sph_legendre(l1, m1, theta)
+	 * emsr::sph_legendre(l2, m2, theta);
   }
 
 template<typename _Tp>

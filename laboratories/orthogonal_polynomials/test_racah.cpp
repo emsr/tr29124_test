@@ -29,7 +29,7 @@
  */
 template<typename _Tp, typename _TpX>
   _Tp
-  __racah_recur(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
+  racah_recur(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
   {
     auto Rnm1 = _Tp{1};
     if (n == 0)
@@ -77,7 +77,7 @@ template<typename _Tp, typename _TpX>
  */
 template<typename _Tp, typename _TpX>
   _Tp
-  __racah(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
+  racah(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
   {
     if (std::isnan(a))
       return a;
@@ -90,7 +90,7 @@ template<typename _Tp, typename _TpX>
     else if (std::isnan(x))
       return x;
     else
-      return __racah_recur(n, a, b, c, d, x);
+      return racah_recur(n, a, b, c, d, x);
   }
 
 /**
@@ -112,7 +112,7 @@ template<typename _Tp>
 	for (int i = 0; i <= 200; ++i)
 	  {
 	    auto x = i * _Tp{0.05L};
-	    auto R = __racah(n, a, b, c, d, x);
+	    auto R = racah(n, a, b, c, d, x);
 	    std::cout << ' ' << std::setw(w) << lambda(x)
 		      << ' ' << std::setw(w) << R
 		      << '\n';

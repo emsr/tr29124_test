@@ -8,12 +8,12 @@
 
 template<typename _Tp>
   _Tp
-  ulp(_Tp __x)
+  ulp(_Tp x)
   {
     const int digs = std::numeric_limits<_Tp>::digits;
     const int min_exp = std::numeric_limits<_Tp>::min_exponent;
     int exp;
-    /*_Tp __frac = */std::frexp(std::abs(__x), &exp);
+    /*_Tp frac = */std::frexp(std::abs(x), &exp);
     return ldexp(_Tp{1}, std::max(exp, min_exp) - digs + 1);
   }
 

@@ -8,113 +8,113 @@
 #include <limits>
 
 #include <jacobi_small.hpp>
-#include <ext/float128_io.h>
+#include <emsr/float128_io.h>
 
   template<typename _Tp>
     std::vector<emsr::QuadraturePoint<_Tp>>
-    __jacobi_zeros(unsigned int __n, _Tp __alpha, _Tp __beta)
+    jacobi_zeros(unsigned int n, _Tp alpha, _Tp beta)
     {
-      const auto _S_eps = emsr::epsilon(__alpha);
-      const unsigned int _S_maxit = 1000u;
+      const auto s_eps = emsr::epsilon(alpha);
+      const unsigned int s_maxit = 1000u;
 
-      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
+      std::vector<emsr::QuadraturePoint<_Tp>> pt(n);
 
-      _Tp __z;
-      _Tp __w = _Tp{0};
-      for (auto __i = 1u; __i <= __n; ++__i)
+      _Tp z;
+      _Tp w = _Tp{0};
+      for (auto i = 1u; i <= n; ++i)
 	{
-	  if (__i == 1)
+	  if (i == 1)
 	    {
-	      auto __an = __alpha / __n;
-	      auto __bn = __beta / __n;
-	      auto __r1 = (1.0 + __alpha) * (2.78 / (4.0 + __n * __n)
-			+ 0.768 * __an / __n);
-	      auto __r2 = 1.0 + 1.48 * __an + 0.96 * __bn
-			+ 0.452 * __an * __an + 0.83 * __an * __bn;
-	      __z = 1.0 - __r1 / __r2;
+	      auto an = alpha / n;
+	      auto bn = beta / n;
+	      auto r1 = (1.0 + alpha) * (2.78 / (4.0 + n * n)
+			+ 0.768 * an / n);
+	      auto r2 = 1.0 + 1.48 * an + 0.96 * bn
+			+ 0.452 * an * an + 0.83 * an * bn;
+	      z = 1.0 - r1 / r2;
 	    }
-	  else if (__i == 2)
+	  else if (i == 2)
 	    {
-	      auto __r1 = (4.1 + __alpha)
-			/ ((1.0 + __alpha) * (1.0 + 0.156 * __alpha));
-	      auto __r2 = 1.0
-			+ 0.06 * (__n - 8.0) * (1.0 + 0.12 * __alpha) / __n;
-	      auto __r3 = 1.0
-		    + 0.012 * __beta * (1.0 + 0.25 * std::abs(__alpha)) / __n;
-	      __z -= (1.0 - __z) * __r1 * __r2 * __r3;
+	      auto r1 = (4.1 + alpha)
+			/ ((1.0 + alpha) * (1.0 + 0.156 * alpha));
+	      auto r2 = 1.0
+			+ 0.06 * (n - 8.0) * (1.0 + 0.12 * alpha) / n;
+	      auto r3 = 1.0
+		    + 0.012 * beta * (1.0 + 0.25 * std::abs(alpha)) / n;
+	      z -= (1.0 - z) * r1 * r2 * r3;
 	    }
-	  else if (__i == 3)
+	  else if (i == 3)
 	    {
-	      auto __r1 = (1.67 + 0.28 * __alpha) / (1.0 + 0.37 * __alpha);
-	      auto __r2 = 1.0 + 0.22 * (__n - 8.0) / __n;
-	      auto __r3 = 1.0 + 8.0 * __beta / ((6.28 + __beta) * __n * __n);
-	      __z -= (__pt[0].point - __z) * __r1 * __r2 * __r3;
+	      auto r1 = (1.67 + 0.28 * alpha) / (1.0 + 0.37 * alpha);
+	      auto r2 = 1.0 + 0.22 * (n - 8.0) / n;
+	      auto r3 = 1.0 + 8.0 * beta / ((6.28 + beta) * n * n);
+	      z -= (pt[0].point - z) * r1 * r2 * r3;
 	    }
-	  else if (__i == __n - 1)
+	  else if (i == n - 1)
 	    {
-	      auto __r1 = (1.0 + 0.235 * __beta) / (0.766 + 0.119 * __beta);
-	      auto __r2 = 1.0 / (1.0 + 0.639 * (__n - 4.0)
-						/ (1.0 + 0.71 * (__n - 4.0)));
-	      auto __r3 = 1.0 / (1.0 + 20.0 * __alpha
-				/ ((7.5 + __alpha) * __n * __n));
-	      __z += (__z - __pt[__n - 4].point) * __r1 * __r2 * __r3;
+	      auto r1 = (1.0 + 0.235 * beta) / (0.766 + 0.119 * beta);
+	      auto r2 = 1.0 / (1.0 + 0.639 * (n - 4.0)
+						/ (1.0 + 0.71 * (n - 4.0)));
+	      auto r3 = 1.0 / (1.0 + 20.0 * alpha
+				/ ((7.5 + alpha) * n * n));
+	      z += (z - pt[n - 4].point) * r1 * r2 * r3;
 	    }
-	  else if (__i == __n)
+	  else if (i == n)
 	    {
-	      auto __r1 = (1.0 + 0.37 * __beta) / (1.67 + 0.28 * __beta);
-	      auto __r2 = 1.0 / (1.0 + 0.22 * (__n - 8.0) / __n);
-	      auto __r3 = 1.0 / (1.0 + 8.0 * __alpha
-				 / ((6.28 + __alpha) * __n * __n));
-	      __z += (__z - __pt[__n - 3].point) * __r1 * __r2 * __r3;
+	      auto r1 = (1.0 + 0.37 * beta) / (1.67 + 0.28 * beta);
+	      auto r2 = 1.0 / (1.0 + 0.22 * (n - 8.0) / n);
+	      auto r3 = 1.0 / (1.0 + 8.0 * alpha
+				 / ((6.28 + alpha) * n * n));
+	      z += (z - pt[n - 3].point) * r1 * r2 * r3;
 	    }
 	  else
 	    {
-	      __z = 3.0 * __pt[__i - 2].point
-		  - 3.0 * __pt[__i - 3].point + __pt[__i - 4].point;
+	      z = 3.0 * pt[i - 2].point
+		  - 3.0 * pt[i - 3].point + pt[i - 4].point;
 	    }
 
-	  auto __alphabeta = __alpha + __beta;
-	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
+	  auto alphabeta = alpha + beta;
+	  for (auto its = 1u; its <= s_maxit; ++its)
 	    {
-	      auto __temp = _Tp{2} + __alphabeta;
-	      auto __P1 = (__alpha - __beta + __temp * __z) / _Tp{2};
-	      auto __P2 = _Tp{1};
-	      for (auto __j = 2u; __j <= __n; ++__j)
+	      auto temp = _Tp{2} + alphabeta;
+	      auto P1 = (alpha - beta + temp * z) / _Tp{2};
+	      auto P2 = _Tp{1};
+	      for (auto j = 2u; j <= n; ++j)
 		{
-		  auto __P3 = __P2;
-		  __P2 = __P1;
-		  __temp = _Tp{2} * __j + __alphabeta;
-		  auto __a = _Tp{2} * __j * (__j + __alphabeta)
-			   * (__temp - _Tp{2});
-		  auto __b = (__temp - _Tp{1})
-			   * (__alpha * __alpha - __beta * __beta
-				+ __temp * (__temp - _Tp{2}) * __z);
-		  auto __c = _Tp{2} * (__j - 1 + __alpha)
-			   * (__j - 1 + __beta) * __temp;
-		  __P1 = (__b * __P2 - __c * __P3) / __a;
+		  auto P3 = P2;
+		  P2 = P1;
+		  temp = _Tp{2} * j + alphabeta;
+		  auto a = _Tp{2} * j * (j + alphabeta)
+			   * (temp - _Tp{2});
+		  auto b = (temp - _Tp{1})
+			   * (alpha * alpha - beta * beta
+				+ temp * (temp - _Tp{2}) * z);
+		  auto c = _Tp{2} * (j - 1 + alpha)
+			   * (j - 1 + beta) * temp;
+		  P1 = (b * P2 - c * P3) / a;
 		}
-	      auto __Pp = (__n * (__alpha - __beta - __temp * __z) * __P1
-			   + _Tp{2} * (__n + __alpha) * (__n + __beta) * __P2)
-			/ (__temp * (_Tp{1} - __z * __z));
-	      auto __z1 = __z;
-	      __z = __z1 - __P1 / __Pp;
-	      if (std::abs(__z - __z1) <= _S_eps)
+	      auto Pp = (n * (alpha - beta - temp * z) * P1
+			   + _Tp{2} * (n + alpha) * (n + beta) * P2)
+			/ (temp * (_Tp{1} - z * z));
+	      auto z1 = z;
+	      z = z1 - P1 / Pp;
+	      if (std::abs(z - z1) <= s_eps)
 		{
-		  __w = std::exp(std::lgamma(__alpha + _Tp(__n))
-			       + std::lgamma(__beta + _Tp(__n))
-			       - std::lgamma(_Tp(__n + 1))
-			       - std::lgamma(_Tp(__n + 1) + __alphabeta))
-		      * __temp * std::pow(_Tp{2}, __alphabeta) / (__Pp * __P2);
+		  w = std::exp(std::lgamma(alpha + _Tp(n))
+			       + std::lgamma(beta + _Tp(n))
+			       - std::lgamma(_Tp(n + 1))
+			       - std::lgamma(_Tp(n + 1) + alphabeta))
+		      * temp * std::pow(_Tp{2}, alphabeta) / (Pp * P2);
 		  break;
 		}
-	      if (__its > _S_maxit)
-		std::__throw_logic_error("__jacobi_zeros: Too many iterations");
+	      if (its > s_maxit)
+		throw std::logic_error("jacobi_zeros: Too many iterations");
 	    }
-	  __pt[__i - 1].point = __z;
-	  __pt[__i - 1].weight = __w;
+	  pt[i - 1].point = z;
+	  pt[i - 1].weight = w;
 	}
 
-      return __pt;
+      return pt;
     }
 
 template<typename _Tp>
@@ -141,7 +141,7 @@ template<typename _Tp>
         	  {
         	    auto x = (k - 100) * del01;
         	    std::cout << std::setw(width) << x
-        	              << std::setw(width) << __gnu_cxx::jacobi(n, alpha, beta, x)
+        	              << std::setw(width) << emsr::jacobi(n, alpha, beta, x)
         	              << std::setw(width) << jac(x)
         	              << '\n';
         	  }
@@ -149,7 +149,7 @@ template<typename _Tp>
 
 		for (int n = 0; n <= 50; ++n)
 		  {
-		    auto pt = __jacobi_zeros(n, alpha, beta);
+		    auto pt = jacobi_zeros(n, alpha, beta);
 		    std::cout << "\nn = " << std::setw(4) << n << ":\n";
 		    for (auto [z, w] : pt)
 		      std::cout << ' ' << std::setw(width) << z

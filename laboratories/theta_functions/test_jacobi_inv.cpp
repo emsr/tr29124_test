@@ -16,8 +16,8 @@
    * @see jacobi_acn for more information.
    */
   float
-  jacobi_acnf(float __k, float __v)
-  { return std::ellint_1(__k, std::acos(__v)); }
+  jacobi_acnf(float k, float v)
+  { return emsr::ellint_1(k, std::acos(v)); }
 
   /**
    * Return the inverse of the Jacobi elliptic cosine amplitude function
@@ -26,8 +26,8 @@
    * @see jacobi_acn for more information.
    */
   long double
-  jacobi_acnl(long double __k, long double __v)
-  { return std::ellint_1(__k, std::acos(__v)); }
+  jacobi_acnl(long double k, long double v)
+  { return emsr::ellint_1(k, std::acos(v)); }
 
   /**
    * Return the inverse of the Jacobi elliptic cosine amplitude function
@@ -41,10 +41,10 @@
    */
   template<typename _Tk, typename _Tv>
     emsr::fp_promote_t<_Tk, _Tv>
-    jacobi_acn(_Tk __k, _Tv __v)
+    jacobi_acn(_Tk k, _Tv v)
     {
-      using __type = emsr::fp_promote_t<_Tk, _Tv>;
-      return std::ellint_1<__type>(__k, std::acos(__v));
+      using type = emsr::fp_promote_t<_Tk, _Tv>;
+      return emsr::ellint_1<type>(k, std::acos(v));
     }
 
   // Jacobi elliptic sine amplitude inverse functions.
@@ -56,8 +56,8 @@
    * @see jacobi_asn for more information.
    */
   float
-  jacobi_asnf(float __k, float __v)
-  { return std::ellint_1(__k, std::asin(__v)); }
+  jacobi_asnf(float k, float v)
+  { return emsr::ellint_1(k, std::asin(v)); }
 
   /**
    * Return the inverse of the Jacobi elliptic sine amplitude function
@@ -66,8 +66,8 @@
    * @see jacobi_asn for more information.
    */
   long double
-  jacobi_asnl(long double __k, long double __v)
-  { return std::ellint_1(__k, std::asin(__v)); }
+  jacobi_asnl(long double k, long double v)
+  { return emsr::ellint_1(k, std::asin(v)); }
 
   /**
    * Return the inverse of the Jacobi elliptic sine amplitude function
@@ -81,10 +81,10 @@
    */
   template<typename _Tk, typename _Tv>
     emsr::fp_promote_t<_Tk, _Tv>
-    jacobi_asn(_Tk __k, _Tv __v)
+    jacobi_asn(_Tk k, _Tv v)
     {
-      using __type = emsr::fp_promote_t<_Tk, _Tv>;
-      return std::ellint_1<__type>(__k, std::asin(__v));
+      using type = emsr::fp_promote_t<_Tk, _Tv>;
+      return emsr::ellint_1<type>(k, std::asin(v));
     }
 
   // Jacobi elliptic delta amplitude inverse functions.
@@ -96,8 +96,8 @@
    * @see jacobi_adn for more information.
    */
   float
-  jacobi_adnf(float __k, float __v)
-  { return std::ellint_1(__k, std::asin(std::sqrt(1.0F - __v * __v) / __k)); }
+  jacobi_adnf(float k, float v)
+  { return emsr::ellint_1(k, std::asin(std::sqrt(1.0F - v * v) / k)); }
 
   /**
    * Return the inverse of the Jacobi elliptic delta amplitude function
@@ -106,8 +106,8 @@
    * @see jacobi_adn for more information.
    */
   long double
-  jacobi_adnl(long double __k, long double __v)
-  { return std::ellint_1(__k, std::asin(std::sqrt(1.0L - __v * __v) / __k)); }
+  jacobi_adnl(long double k, long double v)
+  { return emsr::ellint_1(k, std::asin(std::sqrt(1.0L - v * v) / k)); }
 
   /**
    * Return the inverse of the Jacobi elliptic delta amplitude function
@@ -121,11 +121,11 @@
    */
   template<typename _Tk, typename _Tv>
     emsr::fp_promote_t<_Tk, _Tv>
-    jacobi_adn(_Tk __k, _Tv __v)
+    jacobi_adn(_Tk k, _Tv v)
     {
-      using __type = emsr::fp_promote_t<_Tk, _Tv>;
-      auto __root = std::sqrt(__type{1} - __v * __v);
-      return std::ellint_1<__type>(__k, std::asin(__root / __k));
+      using type = emsr::fp_promote_t<_Tk, _Tv>;
+      auto root = std::sqrt(type{1} - v * v);
+      return emsr::ellint_1<type>(k, std::asin(root / k));
     }
 
 
@@ -152,7 +152,7 @@ main()
   for (auto iu = 0; iu < 150; ++iu)
     {
       auto u = Tp(iu * 0.01L);
-      auto v = __gnu_cxx::jacobi_cn(k, u);
+      auto v = emsr::jacobi_cn(k, u);
       auto w = jacobi_acn(k, v);
       std::cout << std::setw(width) << u
 		<< std::setw(width) << v
@@ -173,7 +173,7 @@ main()
   for (auto iu = 0; iu < 150; ++iu)
     {
       auto u = Tp(iu * 0.01L);
-      auto v = __gnu_cxx::jacobi_sn(k, u);
+      auto v = emsr::jacobi_sn(k, u);
       auto w = jacobi_asn(k, v);
       std::cout << std::setw(width) << u
 		<< std::setw(width) << v
@@ -194,7 +194,7 @@ main()
   for (auto iu = 0; iu < 150; ++iu)
     {
       auto u = Tp(iu * 0.01L);
-      auto v = __gnu_cxx::jacobi_dn(k, u);
+      auto v = emsr::jacobi_dn(k, u);
       auto w = jacobi_adn(k, v);
       std::cout << std::setw(width) << u
 		<< std::setw(width) << v

@@ -96,11 +96,11 @@ template<typename _Tp>
 
     /// Default ctor.
     __heun_t()
-    : value{_S_NaN}, deriv{_S_NaN}, error{_S_NaN}, num_terms{0},
+    : value{s_NaN}, deriv{s_NaN}, error{s_NaN}, num_terms{0},
       wrnmsg()
     { }
 
-    static constexpr _Tp _S_NaN = std::numeric_limits<_Tp>::qiet_NaN();
+    static constexpr _Tp s_NaN = std::numeric_limits<_Tp>::qiet_NaN();
   };
 
 // Heun function for z close to 1 (|z-1|<min{1,|a-1|})
@@ -406,7 +406,7 @@ template<typename _Tp>
   HeunL0(_Tp a, _Tp q, _Tp alpha, _Tp beta, _Tp gamma, _Tp delta, _Tp z)
   {
     using namespace std::complex_literals;
-    using namespace std::literals::string_literals;
+    using namespace std::string_literals;
 
     const auto eps = std::numeric_limits<_Tp>::epsilon();
     if (Heun_cont_coef<_Tp> == _Tp{0})

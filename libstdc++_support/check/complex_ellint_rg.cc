@@ -23,6 +23,9 @@
 
 #include <cmath>
 #include <complex>
+
+#include <emsr/specfun.h>
+
 #if defined(__TEST_DEBUG)
 #  include <iostream>
 #  define VERIFY(A) \
@@ -39,14 +42,13 @@ void
 test01()
 {
   using cmplx = std::complex<double>;
-  using __gnu_cxx::ellint_rg;
 
-  auto rg1 = ellint_rg(0.0, 16.0, 16.0);
-  auto rg2 = ellint_rg(2, 3, 4);
-  auto rg3 = ellint_rg(cmplx(0.0, 0.0), cmplx(0.0, 1.0), cmplx(0.0, -1.0));
-  auto rg4 = ellint_rg(cmplx(-1.0, 1.0), cmplx(0.0, 1.0), cmplx(0.0, 0.0));
-  auto rg5 = ellint_rg(cmplx(0.0, -1.0), cmplx(-1.0, 1.0), cmplx(0.0, 1.0));
-  auto rg6 = ellint_rg(0, 0.0796, 4);
+  auto rg1 = emsr::ellint_rg(0.0, 16.0, 16.0);
+  auto rg2 = emsr::ellint_rg(2, 3, 4);
+  auto rg3 = emsr::ellint_rg(cmplx(0.0, 0.0), cmplx(0.0, 1.0), cmplx(0.0, -1.0));
+  auto rg4 = emsr::ellint_rg(cmplx(-1.0, 1.0), cmplx(0.0, 1.0), cmplx(0.0, 0.0));
+  auto rg5 = emsr::ellint_rg(cmplx(0.0, -1.0), cmplx(-1.0, 1.0), cmplx(0.0, 1.0));
+  auto rg6 = emsr::ellint_rg(0, 0.0796, 4);
 
   bool test __attribute__((unused)) = true;
   double eps = 1.0e-12;

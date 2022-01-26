@@ -1293,7 +1293,7 @@ template<typename Ret, unsigned int Num>
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Ret f = __gnu_cxx::jacobi_dn(data[i].k, data[i].u);
+	const Ret f = emsr::jacobi_dn(data[i].k, data[i].u);
 	const bool failure_f = std::isnan(f);
 	if (!failure && failure_f)
 	  failure = true;

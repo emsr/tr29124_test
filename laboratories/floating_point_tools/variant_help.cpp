@@ -12,31 +12,31 @@
 	    = std::variant<std::monostate, _Real, std::complex<_Real>>;
 
   //template<typename _Real>
-  //  operator bool(const solution_t<_Real>& __x)
-  //  { return __x.index() != 0; }
+  //  operator bool(const solution_t<_Real>& x)
+  //  { return x.index() != 0; }
 
   template<typename _Real>
     solution_t<_Real>
-    real(const solution_t<_Real>& __x)
+    real(const solution_t<_Real>& x)
     {
-      if (__x.index() == 0)
+      if (x.index() == 0)
 	return solution_t<_Real>{};
-      else if (__x.index() == 1)
-	return solution_t<_Real>(std::get<1>(__x));
+      else if (x.index() == 1)
+	return solution_t<_Real>(std::get<1>(x));
       else
-	return solution_t<_Real>(std::real(std::get<2>(__x)));
+	return solution_t<_Real>(std::real(std::get<2>(x)));
     }
 
   template<typename _Real>
     solution_t<_Real>
-    imag(const solution_t<_Real>& __x)
+    imag(const solution_t<_Real>& x)
     {
-      if (__x.index() == 0)
+      if (x.index() == 0)
 	return solution_t<_Real>{};
-      else if (__x.index() == 1)
+      else if (x.index() == 1)
 	return solution_t<_Real>(_Real{0});
       else
-	return solution_t<_Real>(std::imag(std::get<2>(__x)));
+	return solution_t<_Real>(std::imag(std::get<2>(x)));
     }
 
   /**
@@ -45,22 +45,22 @@
    */
   template<typename _Real>
     bool
-    operator<(const solution_t<_Real>& __a, const solution_t<_Real>& __b)
+    operator<(const solution_t<_Real>& a, const solution_t<_Real>& b)
     {
-      if (__a.index() == 0 && __b.index() == 0)
+      if (a.index() == 0 && b.index() == 0)
 	return false;
-      else if (__a.index() == 0)
+      else if (a.index() == 0)
 	return true;
-      else if (__b.index() == 0)
+      else if (b.index() == 0)
 	return false;
       else
 	{
-	  const auto __rea = real(__a);
-	  const auto __reb = real(__b);
-	  if (std::get<1>(__rea) < std::get<1>(__reb))
+	  const auto rea = real(a);
+	  const auto reb = real(b);
+	  if (std::get<1>(rea) < std::get<1>(reb))
 	    return true;
-	  else if (__rea == __reb)
-	    return std::get<1>(imag(__a)) < std::get<1>(imag(__b));
+	  else if (rea == reb)
+	    return std::get<1>(imag(a)) < std::get<1>(imag(b));
 	  else
 	    return false;
 	}

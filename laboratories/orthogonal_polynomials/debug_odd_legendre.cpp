@@ -20,44 +20,44 @@ template<typename _Tp>
     std::cout << "ln(2) = " << std::log(_Tp{2}) << '\n';
     std::cout << "ln(2) = " << _S_ln2 << '\n';
 
-    for (auto __l = 1u; __l < std::__detail::_S_num_factorials<_Tp>; __l += 2)
+    for (auto l = 1u; l < emsr::detail::s_num_factorials<_Tp>; l += 2)
       {
 	std::cout << '\n';
 	  {
-	    const auto __lm = __l - 1;
-	    const auto __lmfact = std::__detail::__factorial<_Tp>(__lm);
-	    const auto __mm = __lm / 2;
-	    const auto __mmfact = std::__detail::__factorial<_Tp>(__mm);
-	    auto __Plm1 = ((__mm & 1) ? -1 : 1) * __lmfact / __mmfact / __mmfact
-			  / std::pow(_Tp{2}, __lm);
-	    auto __Ppl = __l * __Plm1;
-	    auto __weight = _Tp{2} / __Ppl / __Ppl;
-	    std::cout << ' ' << std::setw(w) << __Plm1 << ' ' << std::setw(w) << __Ppl << ' ' << std::setw(w) << __weight << '\n';
+	    const auto lm = l - 1;
+	    const auto lmfact = emsr::detail::factorial<_Tp>(lm);
+	    const auto mm = lm / 2;
+	    const auto mmfact = emsr::detail::factorial<_Tp>(mm);
+	    auto Plm1 = ((mm & 1) ? -1 : 1) * lmfact / mmfact / mmfact
+			  / std::pow(_Tp{2}, lm);
+	    auto Ppl = l * Plm1;
+	    auto weight = _Tp{2} / Ppl / Ppl;
+	    std::cout << ' ' << std::setw(w) << Plm1 << ' ' << std::setw(w) << Ppl << ' ' << std::setw(w) << weight << '\n';
 	  }
 
 	  {
-	    const auto __lm = __l - 1;
-	    const auto __lmfact = std::__detail::__log_factorial<_Tp>(__lm);
-	    const auto __mm = __lm / 2;
-	    const auto __mmfact = std::__detail::__log_factorial<_Tp>(__mm);
-	    auto __Plm1 = ((__mm & 1) ? -1 : 1)
-			* std::exp(__lmfact - 2 * __mmfact - __lm * _S_ln2);
+	    const auto lm = l - 1;
+	    const auto lmfact = emsr::detail::log_factorial<_Tp>(lm);
+	    const auto mm = lm / 2;
+	    const auto mmfact = emsr::detail::log_factorial<_Tp>(mm);
+	    auto Plm1 = ((mm & 1) ? -1 : 1)
+			* std::exp(lmfact - 2 * mmfact - lm * _S_ln2);
 
-	    auto __Ppl = __l * __Plm1;
-	    auto __weight = _Tp{2} / __Ppl / __Ppl;
-	    std::cout << ' ' << std::setw(w) << __Plm1 << ' ' << std::setw(w) << __Ppl << ' ' << std::setw(w) << __weight << '\n';
+	    auto Ppl = l * Plm1;
+	    auto weight = _Tp{2} / Ppl / Ppl;
+	    std::cout << ' ' << std::setw(w) << Plm1 << ' ' << std::setw(w) << Ppl << ' ' << std::setw(w) << weight << '\n';
 	  }
 
 	  {
-	    const auto __lm = __l - 1;
-	    const auto __mm = __lm / 2;
+	    const auto lm = l - 1;
+	    const auto mm = lm / 2;
 	    auto _Am = _Tp{1};
-	    for (auto __m = 1u; __m <= __mm; ++__m)
-	      _Am *= -_Tp(2 * __m - 1) / _Tp(2 * __m);
-	    auto __Plm1 = _Am;
-	    auto __Ppl = __l * __Plm1;
-	    auto __weight = _Tp{2} / __Ppl / __Ppl;
-	    std::cout << ' ' << std::setw(w) << __Plm1 << ' ' << std::setw(w) << __Ppl << ' ' << std::setw(w) << __weight << '\n';
+	    for (auto m = 1u; m <= mm; ++m)
+	      _Am *= -_Tp(2 * m - 1) / _Tp(2 * m);
+	    auto Plm1 = _Am;
+	    auto Ppl = l * Plm1;
+	    auto weight = _Tp{2} / Ppl / Ppl;
+	    std::cout << ' ' << std::setw(w) << Plm1 << ' ' << std::setw(w) << Ppl << ' ' << std::setw(w) << weight << '\n';
 	  }
       }
   }

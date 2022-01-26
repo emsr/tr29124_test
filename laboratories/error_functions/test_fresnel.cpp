@@ -29,7 +29,7 @@ template<typename _Tp>
     for (int i = 0; i <= 1000; ++i)
       {
 	auto x = i * del;
-	auto frnl = __fresnel(x);
+	auto frnl = fresnel(x);
 	std::cout << "  " << std::setw(width) << x;
 	std::cout << "  " << std::setw(width) << frnl.first;
 	std::cout << "  " << std::setw(width) << frnl.second;

@@ -25,6 +25,7 @@
 #include <string>
 
 #include <emsr/integration.h>
+#include <emsr/specfun.h>
 
 /* Orthonormality only works for integer alpha. */
 
@@ -33,7 +34,7 @@ template<typename _Tp>
   _Tp
   gamma_ratio(int n, _Tp alpha)
   {
-    auto gaman1 = std::tgamma(_Tp(1) + alpha);
+    auto gaman1 = emsr::tgamma(_Tp(1) + alpha);
     auto fact = gaman1;
     for (int k = 1; k <= n; ++k)
       fact *= (_Tp(k) + alpha) / _Tp(k);
@@ -47,8 +48,8 @@ template<typename _Tp>
   {
     auto norm = gamma_ratio(n1, alpha);
     return std::pow(x, alpha) * std::exp(-x)
-	 * std::assoc_laguerre(n1, alpha, x)
-	 * std::assoc_laguerre(n2, alpha, x) / norm;
+	 * emsr::assoc_laguerre(n1, alpha, x)
+	 * emsr::assoc_laguerre(n2, alpha, x) / norm;
   }
 
 template<typename _Tp>

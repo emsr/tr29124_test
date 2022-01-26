@@ -25,22 +25,24 @@
 #include <string>
 
 #include <emsr/integration.h>
+#include <emsr/specfun.h>
+#include <emsr/math_constants.h>
 
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.
 template<typename _Tp>
   _Tp
   normalized_chebyshev_w(int n1, int n2, _Tp x)
   {
-    const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-    const auto _S_inf = std::numeric_limits<_Tp>::infinity();
-    const auto _S_pi = emsr::pi_v<_Tp>;
-    if (std::abs(x + _Tp{1}) < _S_eps)
-      return ((n1 + n2) & 1) ? -_S_inf : _S_inf;
+    const auto s_eps = std::numeric_limits<_Tp>::epsilon();
+    const auto s_inf = std::numeric_limits<_Tp>::infinity();
+    const auto s_pi = emsr::pi_v<_Tp>;
+    if (std::abs(x + _Tp{1}) < s_eps)
+      return ((n1 + n2) & 1) ? -s_inf : s_inf;
     else
-      return __gnu_cxx::chebyshev_w(n1, x)
-	   * __gnu_cxx::chebyshev_w(n2, x)
+      return emsr::chebyshev_w(n1, x)
+	   * emsr::chebyshev_w(n2, x)
 	   * std::sqrt((_Tp{1} - x) / (_Tp{1} + x))
-	   / _S_pi;
+	   / s_pi;
   }
 
 template<typename _Tp>

@@ -21,6 +21,7 @@
 
 #include <cmath>
 
+#include <emsr/specfun.h>
 #include <emsr/integration.h>
 
 #if defined(__TEST_DEBUG)
@@ -45,10 +46,10 @@ template<typename _Tp>
     auto gama = std::tgamma(lambda);
     auto gamn2a = std::tgamma(n1 + _Tp{2} * lambda);
     auto norm = _S_pi * std::pow(_Tp{2}, _Tp{1} - _Tp{2} * lambda) * gamn2a
-	      / __gnu_cxx::factorial<_Tp>(n1) / (_Tp(n1) + lambda) / gama / gama;
+	      / emsr::factorial<_Tp>(n1) / (_Tp(n1) + lambda) / gama / gama;
     return std::pow(_Tp{1} - x * x, lambda - _Tp{0.5})
-	 * __gnu_cxx::gegenbauer(n1, lambda, x)
-	 * __gnu_cxx::gegenbauer(n2, lambda, x) / norm;
+	 * emsr::gegenbauer(n1, lambda, x)
+	 * emsr::gegenbauer(n2, lambda, x) / norm;
   }
 
 template<typename _Tp>

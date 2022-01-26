@@ -15,95 +15,94 @@
    */
   template<typename _Tp>
     std::vector<emsr::QuadraturePoint<_Tp>>
-    __legendre_zeros(unsigned int __l, _Tp proto = _Tp{})
+    legendre_zeros(unsigned int l, _Tp proto = _Tp{})
     {
       const auto _S_eps = emsr::epsilon(proto);
       const auto _S_pi = emsr::pi_v<_Tp>;
       const unsigned int _S_maxit = 1000u;
 
-      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__l);
+      std::vector<emsr::QuadraturePoint<_Tp>> pt(l);
 
-      auto __m = __l / 2;
+      auto m = l / 2;
 
       // Treat the central zero for odd order specially.
       // Be careful to avoid overflow of the factorials.
       // An alternative would be to proceed with the recursion
       // for large order.
-      if (__l & 1)
+      if (l & 1)
 	{
-	  if (__l < std::__detail::_S_num_factorials<_Tp>)
+	  if (l < emsr::detail::s_num_factorials<_Tp>)
 	    {
-	      const auto __lm = __l - 1;
-	      const auto __lmfact = std::__detail::__factorial<_Tp>(__lm);
-	      const auto __mm = __lm / 2;
-	      const auto __mmfact = std::__detail::__factorial<_Tp>(__mm);
-	      auto __Plm1 = ((__lm & 1) ? -1 : 1)
-			    * __lmfact / __mmfact / __mmfact
-			    / std::exp2(_Tp(__lm));
-	      auto __Ppl = __l * __Plm1;
-	      __pt[__m].point = _Tp{0};
-	      __pt[__m].weight = _Tp{2} / __Ppl / __Ppl;
+	      const auto lm = l - 1;
+	      const auto lmfact = emsr::detail::factorial<_Tp>(lm);
+	      const auto mm = lm / 2;
+	      const auto mmfact = emsr::detail::factorial<_Tp>(mm);
+	      auto Plm1 = ((lm & 1) ? -1 : 1)
+			    * lmfact / mmfact / mmfact
+			    / std::exp2(_Tp(lm));
+	      auto Ppl = l * Plm1;
+	      pt[m].point = _Tp{0};
+	      pt[m].weight = _Tp{2} / Ppl / Ppl;
 	    }
 	  else
 	    {
 	      const auto _S_ln2 = emsr::ln2_v<_Tp>;
-	      const auto __lm = __l - 1;
-	      const auto __lmfact = std::__detail::__log_factorial<_Tp>(__lm);
-	      const auto __mm = __lm / 2;
-	      const auto __mmfact = std::__detail::__log_factorial<_Tp>(__mm);
-	      auto __Plm1 = (__lm & 1 ? -1 : 1)
-			  * std::exp(__lmfact - 2 * __mmfact - __lm * _S_ln2);
-	      auto __Ppl = __l * __Plm1;
-	      __pt[__m].point = _Tp{0};
-	      __pt[__m].weight = _Tp{2} / __Ppl / __Ppl;
+	      const auto lm = l - 1;
+	      const auto lmfact = emsr::detail::log_factorial<_Tp>(lm);
+	      const auto mm = lm / 2;
+	      const auto mmfact = emsr::detail::log_factorial<_Tp>(mm);
+	      auto Plm1 = (lm & 1 ? -1 : 1)
+			  * std::exp(lmfact - 2 * mmfact - lm * _S_ln2);
+	      auto Ppl = l * Plm1;
+	      pt[m].point = _Tp{0};
+	      pt[m].weight = _Tp{2} / Ppl / Ppl;
 	    }
 	}
 
-      for (auto __i = 1u; __i <= __m; ++__i)
+      for (auto i = 1u; i <= m; ++i)
 	{
 	  // Clever approximation of root.
-	  auto __z = std::cos(_S_pi * (__i - _Tp{1} / _Tp{4})
-				    / (__l + _Tp{1} / _Tp{2}));
-	  auto __z1 = __z;
-	  auto __w = _Tp{0};
-	  for (auto __its = 0u; __its < _S_maxit; ++__its)
+	  auto z = std::cos(_S_pi * (i - _Tp{1} / _Tp{4})
+				    / (l + _Tp{1} / _Tp{2}));
+	  auto z1 = z;
+	  auto w = _Tp{0};
+	  for (auto its = 0u; its < _S_maxit; ++its)
 	    {
-	      // Compute __P, __P1, and __P2 the Legendre polynomials of order
+	      // Compute P, P1, and P2 the Legendre polynomials of order
 	      // l, l-1, l-2 respectively by iterating through the recursion
 	      // relation for the Legendre polynomials.
-	      // Compute __Pp the derivative of the Legendre polynomial of order l.
-	      auto __P1 = _Tp{0};
-	      auto __P = _Tp{1};
-	      for  (auto __k = 1u; __k <= __l; ++__k)
+	      // Compute Pp the derivative of the Legendre polynomial of order l.
+	      auto P1 = _Tp{0};
+	      auto P = _Tp{1};
+	      for  (auto k = 1u; k <= l; ++k)
 		{
-		  auto __P2 = __P1;
-		  __P1 = __P;
+		  auto P2 = P1;
+		  P1 = P;
 		  // Recursion for Legendre polynomials.
-		  __P = ((_Tp{2} * __k - _Tp{1}) * __z * __P1
-		      - (__k - _Tp{1}) * __P2) / __k;
+		  P = ((_Tp{2} * k - _Tp{1}) * z * P1
+		      - (k - _Tp{1}) * P2) / k;
 		}
 	      // Recursion for the derivative of The Legendre polynomial.
-	      auto __Pp = __l * (__z * __P - __P1) / (__z * __z - _Tp{1});
-	      __z1 = __z;
+	      auto Pp = l * (z * P - P1) / (z * z - _Tp{1});
+	      z1 = z;
 	      // Converge on root by Newton's method.
-	      __z = __z1 - __P / __Pp;
-	      if (std::abs(__z - __z1) < _S_eps)
+	      z = z1 - P / Pp;
+	      if (std::abs(z - z1) < _S_eps)
 		{
-		  __w = _Tp{2} / ((_Tp{1} - __z * __z) * __Pp * __Pp);
+		  w = _Tp{2} / ((_Tp{1} - z * z) * Pp * Pp);
 		  break;
 		}
-	      if (__its > _S_maxit)
-		std::__throw_logic_error("__legendre_zeros: "
-					 "Too many iterations");
+	      if (its > _S_maxit)
+		throw std::logic_error("legendre_zeros: Too many iterations");
 	    }
 
-	  __pt[__i - 1].point = -__z;
-	  __pt[__l - __i].point = __z;
-	  __pt[__i - 1].weight = __w;
-	  __pt[__l - __i].weight = __w;
+	  pt[i - 1].point = -z;
+	  pt[l - i].point = z;
+	  pt[i - 1].weight = w;
+	  pt[l - i].weight = w;
 	}
 
-      return __pt;
+      return pt;
     }
 
 /**
@@ -127,12 +126,12 @@ template<typename _Tp>
 	for (int i = -120; i <= 120; ++i)
 	  {
 	    auto x = i * del;
-	    const auto P_l = std::__detail::__legendre_p(l, x);
-	    const auto P_l0 = std::__detail::__assoc_legendre_p(l, 0, x);
+	    const auto P_l = emsr::detail::legendre_p(l, x);
+	    const auto P_l0 = emsr::detail::assoc_legendre_p(l, 0, x);
 	    std::cout << ' ' << std::setw(w) << x
-		      << ' ' << std::setw(w) << P_l.__P_l
-		      << ' ' << std::setw(w) << P_l0.__P_lm
-		      << ' ' << std::setw(w) << P_l.__P_l - P_l0.__P_lm
+		      << ' ' << std::setw(w) << P_l.P_l
+		      << ' ' << std::setw(w) << P_l0.P_lm
+		      << ' ' << std::setw(w) << P_l.P_l - P_l0.P_lm
 		      << ' ' << std::setw(w) << P_l.deriv()
 		      << ' ' << std::setw(w) << P_l0.deriv()
 		      << '\n';
@@ -151,9 +150,9 @@ template<typename _Tp>
 	    for (int i = -120; i <= 120; ++i)
 	      {
 		const auto x = i * del;
-		const auto P = std::__detail::__assoc_legendre_p(l, m, x);
+		const auto P = emsr::detail::assoc_legendre_p(l, m, x);
 		std::cout << ' ' << std::setw(w) << x
-			  << ' ' << std::setw(w) << P.__P_lm
+			  << ' ' << std::setw(w) << P.P_lm
 			  << ' ' << std::setw(w) << P.deriv()
 			  << '\n';
 	      }
@@ -162,7 +161,7 @@ template<typename _Tp>
 
     for (int l = 0; l <= 1024; ++l)
       {
-	auto pt = __legendre_zeros(l, proto);
+	auto pt = legendre_zeros(l, proto);
 	std::cout << "\nl = " << std::setw(4) << l << ":\n";
 	for (auto [z, w] : pt)
 	  std::cout << ' ' << std::setw(w) << z

@@ -290,7 +290,7 @@ template<typename Ret, unsigned int Num>
     unsigned int num_datum = MAX_ITERATIONS;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Ret f = std::riemann_zeta(data[i].s);
+	const Ret f = emsr::riemann_zeta(data[i].s);
 	const bool failure_f = std::isnan(f);
 	if (!failure && failure_f)
 	  failure = true;

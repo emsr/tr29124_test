@@ -2,32 +2,32 @@
 
   template <typename _Tp>
     _Tp
-    __legendre_p(unsigned int __l, _Tp __x)
+    legendre_p(unsigned int l, _Tp x)
     {
-      if (__l < 0)
-	throw std::domain_error("__legendre_p: Bad order");
-      if (__x < _Tp{-1} || __x > _Tp{+1})
-	throw std::domain_error("__legendre_p: Bad argument");
+      if (l < 0)
+	throw std::domain_error("legendre_p: Bad order");
+      if (x < _Tp{-1} || x > _Tp{+1})
+	throw std::domain_error("legendre_p: Bad argument");
 
       auto _P_lm2 = _Tp{1};
-      if (__l == 0)
+      if (l == 0)
 	return _P_lm2;
 
-      auto _P_lm1 = __x;
-      if (__l == 1)
+      auto _P_lm1 = x;
+      if (l == 1)
 	return _P_lm1;
 
-      if (__x == _Tp{+1})
+      if (x == _Tp{+1})
 	return _Tp{+1};
 
-      if (__x == _Tp{-1})
-	return (__l % 2 == 1 ? _Tp{-1} : _Tp{+1});
+      if (x == _Tp{-1})
+	return (l % 2 == 1 ? _Tp{-1} : _Tp{+1});
 
       _Tp _P_l;
-      for (auto __ll = 2u; __ll <= __l; ++__ll)
+      for (auto ll = 2u; ll <= l; ++ll)
 	{
-          _P_l = (_Tp(2 * __ll - 1) * __x * _P_lm1
-        	- _Tp(__ll - 1) * _P_lm2) / _Tp(__ll);
+          _P_l = (_Tp(2 * ll - 1) * x * _P_lm1
+        	- _Tp(ll - 1) * _P_lm2) / _Tp(ll);
           _P_lm2 = _P_lm1;
           _P_lm1 = _P_l;
 	}
@@ -46,36 +46,36 @@
  */
   template <typename _Tp>
     std::pair<_Tp, _Tp>
-    __lobatto(unsigned int __l, _Tp __x)
+    lobatto(unsigned int l, _Tp x)
     {
-      if (__x == _Tp{-1} || __x == _Tp{+1})
+      if (x == _Tp{-1} || x == _Tp{+1})
 	return std::make_pair(_Tp{0}, _Tp{0}); // FIXME deriv!
       else
 	{
 	  auto _Lo_lm2 = _Tp{0};
-	  if (__l == 0)
+	  if (l == 0)
 	    return std::make_pair(_Lo_lm2, _Tp{0});
 
-	  auto _Lo_lm1 = _Tp{1} - __x * __x;
-	  if (__l == 1)
-	    return std::make_pair(_Lo_lm1, -_Tp{2} * __x);
+	  auto _Lo_lm1 = _Tp{1} - x * x;
+	  if (l == 1)
+	    return std::make_pair(_Lo_lm1, -_Tp{2} * x);
 
 	  auto _P_lm2 = _Tp{1};
-	  auto _P_lm1 = __x;
+	  auto _P_lm1 = x;
 	  _Tp _P_l;
 	  auto _Pp_lm1 = _Tp{0};
 	  auto _Pp_l = _Tp{1};
 	  _Tp _Lo_l;
 	  _Tp _Lop_l;
-	  for (auto __ll = 2u; __ll <= __l; ++__ll)
+	  for (auto ll = 2u; ll <= l; ++ll)
 	    {
-	      _P_l = (_Tp(2 * __ll - 1) * __x * _P_lm1
-		   - _Tp(__ll - 1) * _P_lm2) / _Tp(__ll);
+	      _P_l = (_Tp(2 * ll - 1) * x * _P_lm1
+		   - _Tp(ll - 1) * _P_lm2) / _Tp(ll);
 	      // Recursion for the derivative of the Legendre polynomial.
 	      _Pp_lm1 = _Pp_l;
-	      _Lo_l = -__l * (__x * _P_l - _P_lm1);
-	      _Pp_l = _Lo_l / (_Tp{1} - __x * __x);
-	      _Lop_l = __l * (_Pp_lm1 - _P_l - __x * _Pp_l);
+	      _Lo_l = -l * (x * _P_l - _P_lm1);
+	      _Pp_l = _Lo_l / (_Tp{1} - x * x);
+	      _Lop_l = l * (_Pp_lm1 - _P_l - x * _Pp_l);
 	      _P_lm2 = _P_lm1;
 	      _P_lm1 = _P_l;
 	    }

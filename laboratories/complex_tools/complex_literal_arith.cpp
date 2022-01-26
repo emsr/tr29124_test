@@ -13,7 +13,7 @@ func(std::complex<double> z)
 void
 test01()
 {
-  using namespace std::literals::complex_literals;
+  using namespace std::complex_literals;
 
   std::complex<double> z, nu;
 

@@ -24,10 +24,10 @@
 #ifndef COMPLEX_UTIL_H
 #define COMPLEX_UTIL_H 1
 
-#include <complex>
 #include <ratio>
 #include <limits>
 #include <type_traits>
+#include <complex>
 
 #include <emsr/fp_type_util.h>
 #include <emsr/math_util.h>
@@ -163,9 +163,6 @@ namespace emsr
     fp_is_equal(const std::complex<Tp>& a, Tp b,
 		  Tp mul = Tp{1})
     {
-      const auto _S_eps = std::numeric_limits<Tp>::epsilon();
-      const auto _S_tol = mul * _S_eps;
-      bool retval = true;
       if (fp_is_real(a, mul))
 	return fp_is_equal(std::real(a), b, mul);
       else
@@ -186,9 +183,6 @@ namespace emsr
     fp_is_equal(const Tp a, std::complex<Tp>& b,
 		  Tp mul = Tp{1})
     {
-      const auto _S_eps = std::numeric_limits<Tp>::epsilon();
-      const auto _S_tol = mul * _S_eps;
-      bool retval = true;
       if (fp_is_real(b, mul))
 	return fp_is_equal(a, std::real(b), mul);
       else

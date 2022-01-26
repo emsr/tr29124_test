@@ -6,12 +6,13 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
-#include <emsr/rational.h>
 #include <cmath>
 
-namespace std
+#include <emsr/rational.h>
+
+namespace emsr
 {
-namespace __detail
+namespace detail
 {
 
   /**
@@ -21,26 +22,26 @@ namespace __detail
    */
   template<typename _Rat>
     std::vector<_Rat>
-    __bernoulli_a_t(std::size_t __len)
+    bernoulli_a_t(std::size_t len)
     {
-      auto __n = 2 * __len + 1;
-      std::vector<_Rat> __t;
-      std::vector<_Rat> __a;
+      auto n = 2 * len + 1;
+      std::vector<_Rat> t;
+      std::vector<_Rat> a;
 
-      __t.emplace_back(1LL);
+      t.emplace_back(1LL);
 
-      for (std::size_t __m = 1; __m < __n; ++__m)
+      for (std::size_t m = 1; m < n; ++m)
 	{
-	  __t.push_back(_Rat(1, __m + 1));
-	  for (std::size_t __j = __m; __j > 0; --__j)
-            __t[__j - 1] = _Rat(__j) * (__t[__j - 1] - __t[__j]);
+	  t.push_back(_Rat(1, m + 1));
+	  for (std::size_t j = m; j > 0; --j)
+            t[j - 1] = _Rat(j) * (t[j - 1] - t[j]);
 
 	  // Get all Bernoulli numbers by deleting the 'if' clause.
-	  if ((__m & 1) == 0)
-	    __a.push_back(__t[0]);
+	  if ((m & 1) == 0)
+	    a.push_back(t[0]);
 	}
 
-      return __a;
+      return a;
     }
 
   /**
@@ -49,78 +50,78 @@ namespace __detail
    */
   template<typename _Rat>
     std::vector<_Rat>
-    __weights(std::vector<_Rat> __b)
+    weights(std::vector<_Rat> b)
     {
-      int __sgn = 1;
-      for (std::size_t __m = 0; __m < __b.size(); ++__m)
+      int sgn = 1;
+      for (std::size_t m = 0; m < b.size(); ++m)
 	{
-	  __b[__m] *= _Rat(__sgn, (2 * __m + 1) * (2 * __m + 2));
-	  __sgn = -__sgn;
+	  b[m] *= _Rat(sgn, (2 * m + 1) * (2 * m + 2));
+	  sgn = -sgn;
 	}
 
-      return __b;
+      return b;
     }
 
   // Computes Rutishauser's Quotient-Difference (QD) algorithm
   template<typename _Rat>
     std::vector<_Rat>
-    __quotient_difference(std::vector<_Rat> __s)
+    quotient_difference(std::vector<_Rat> s)
     {
-      auto __len = __s.size();
-      auto __zero = _Rat(0);
-      std::vector<std::vector<_Rat>> __m;
-      std::vector<_Rat> __r;
+      auto len = s.size();
+      auto zero = _Rat(0);
+      std::vector<std::vector<_Rat>> m;
+      std::vector<_Rat> r;
 
-      for (std::size_t __n = 0; __n < __len; ++__n)
+      for (std::size_t n = 0; n < len; ++n)
 	{
-	  __m.push_back(std::vector<_Rat>());
-	  __m.back().push_back(__zero);
+	  m.push_back(std::vector<_Rat>());
+	  m.back().push_back(zero);
 	}
-      for (std::size_t __n = 0; __n < __len - 1; ++__n)
-	__m[__n].push_back(__s[__n + 1] / __s[__n]);
+      for (std::size_t n = 0; n < len - 1; ++n)
+	m[n].push_back(s[n + 1] / s[n]);
 
-      __r.push_back(__s[0]);
-      __r.push_back(__m[0][1]);
+      r.push_back(s[0]);
+      r.push_back(m[0][1]);
 
-      for (std::size_t __k = 2; __k < __len; ++__k)
+      for (std::size_t k = 2; k < len; ++k)
 	{
-	  for (std::size_t __n = 0; __n < __len - __k ; ++__n)
+	  for (std::size_t n = 0; n < len - k ; ++n)
             {
-              auto __a = __m[__n + 1][__k - 2];
-              auto __b = __m[__n + 1][__k - 1];
-              auto __c = __m[__n][__k - 1];
-              __m[__n].push_back((__k & 1) == 0
-				 ? __a + __b - __c
-				 : __a * __b / __c);
+              auto a = m[n + 1][k - 2];
+              auto b = m[n + 1][k - 1];
+              auto c = m[n][k - 1];
+              m[n].push_back((k & 1) == 0
+				 ? a + b - c
+				 : a * b / c);
             }
-	  __r.push_back(__m[0][__k]);
+	  r.push_back(m[0][k]);
 	}
 
-      return __r;
+      return r;
     }
 
   // Computes the Stieltjes continued fraction for the
   // Gamma function using Rutishauser's QD-algorithm.
   template<typename _Rat>
     std::vector<_Rat>
-    __stieltjes_cont_frac_seq(int __len)
-    { return __quotient_difference(__weights(__bernoulli_a_t<_Rat>(__len))); }
+    stieltjes_cont_frac_seq(int len)
+    { return quotient_difference(weights(bernoulli_a_t<_Rat>(len))); }
 
   /**
    *
    */
   template<typename _Tp>
     _Tp
-    __binet_asymp(_Tp __z)
+    binet_asymp(_Tp z)
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
-      constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
+      constexpr auto s_eps = std::numeric_limits<_Real>::epsilon();
 
       // Weighted Bernoulli numbers: (-1)^k B_2k / ((2*k+1)*(2*k+2))
-      constexpr std::size_t _S_n = 12;
+      constexpr std::size_t s_n = 12;
       constexpr _Real
-      _S_b[_S_n]
+      s_b[s_n]
       {
 	_Real{1LL}             / _Real{12LL},
 	_Real{1LL}             / _Real{360LL},
@@ -136,20 +137,20 @@ namespace __detail
 	_Real{236364091LL}     / _Real{1506960LL}
       };
 
-      auto __z2 = _Real{1} / (__z * __z);
-      auto __J = _Val{};
-      auto __zk = _Val{1};
-      for (auto __b : _S_b)
+      auto z2 = _Real{1} / (z * z);
+      auto J = _Val{};
+      auto zk = _Val{1};
+      for (auto b : s_b)
 	{
-	  auto __term = __b * __zk;
-	  __J += __term;
-	  if (std::abs(__term) < _S_eps * std::abs(__J))
+	  auto term = b * zk;
+	  J += term;
+	  if (std::abs(term) < s_eps * std::abs(J))
 	    break;
-	  __zk *= __z2;
+	  zk *= z2;
 	}
-      __J /= __z;
+      J /= z;
 
-      return __J;
+      return J;
     }
 
   /**
@@ -157,15 +158,15 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __binet_cont_frac(_Tp __z)
+    binet_cont_frac(_Tp z)
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
 
       // Stieltjes partial numerators.
-      constexpr std::size_t _S_n = 6;
+      constexpr std::size_t s_n = 6;
       constexpr _Real
-      _S_a[_S_n]
+      s_a[s_n]
       {
 	_Real{1LL}            / _Real{12LL},
 	_Real{1LL}            / _Real{30LL},
@@ -176,12 +177,12 @@ namespace __detail
       };
 
       // Backward recurrence.
-      auto __w = _Val{}; // The tail function.
-      auto __J = __w;
-      for (std::ptrdiff_t __k = _S_n - 1; __k >= 0; --__k)
-        __J = _S_a[__k] / (__z + __J);
+      auto w = _Val{}; // The tail function.
+      auto J = w;
+      for (std::ptrdiff_t k = s_n - 1; k >= 0; --k)
+        J = s_a[k] / (z + J);
 
-      return __J;
+      return J;
     }
 
   /**
@@ -189,26 +190,26 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __binet(_Tp __z)
+    binet(_Tp z)
     {
       using _Val = _Tp;
       using _Real = emsr::num_traits_t<_Val>;
 
-      constexpr auto _S_switchover = _Real{10}; /// @todo Find Binet function switch.
+      constexpr auto s_switchover = _Real{10}; /// @todo Find Binet function switch.
 
-      if (std::isnan(__z))
+      if (std::isnan(z))
 	return emsr::quiet_NaN<_Tp>();
-      else if (__z < _S_switchover)
-	return __binet_cont_frac(__z);
+      else if (z < s_switchover)
+	return binet_cont_frac(z);
       else
-	return __binet_asymp(__z);
+	return binet_asymp(z);
     }
 
-} // namespace __detail
-} // namespace std
+} // namespace detail
+} // namespace emsr
 
 
-namespace __gnu_cxx
+namespace emsr
 {
 
   /**
@@ -216,18 +217,18 @@ namespace __gnu_cxx
    */
   template<typename _Tp>
     _Tp
-    lgamma_scaled(_Tp __z)
-    { return std::__detail::__binet(__z); }
+    lgamma_scaled(_Tp z)
+    { return emsr::detail::binet(z); }
 
   /**
    *
    */
   template<typename _Tp>
     _Tp
-    tgamma_scaled(_Tp __z)
-    { return std::exp(std::__detail::__binet(__z)); }
+    tgamma_scaled(_Tp z)
+    { return std::exp(emsr::detail::binet(z)); }
 
-} // namespace__gnu_cxx
+} // namespace emsr
 
 
 template<typename _Tp>
@@ -242,18 +243,18 @@ template<typename _Tp>
     auto width = std::cout.precision() + 6;
 
     std::cout << "\nBernoulli numbers\n";
-    auto bern = std::__detail::__bernoulli_a_t<_Rat>(20);
+    auto bern = emsr::detail::bernoulli_a_t<_Rat>(20);
     for (auto& b : bern)
       std::cout << b << '\n';
 
     std::cout << "\nWeighted Bernoulli numbers\n";
-    auto wts = std::__detail::__weights(bern);
+    auto wts = emsr::detail::weights(bern);
     for (auto& w : wts)
       std::cout << w << '\n';
 
     std::cout << "\nStieltjes partial numerators\n";
     int len = 7;
-    auto cf = std::__detail::__stieltjes_cont_frac_seq<_Rat>(len);
+    auto cf = emsr::detail::stieltjes_cont_frac_seq<_Rat>(len);
     for (int k = 0; k < len; ++k)
       std::cout << k + 1 << ": " << cf[k]
 		<< " = " << emsr::Rational_cast<_Real>(cf[k]) << '\n';
@@ -262,8 +263,8 @@ template<typename _Tp>
     for (int k = 1; k <= 5000; ++k)
       {
 	auto x = 0.1L * k;
-	auto j_as = std::__detail::__binet_asymp(x);
-	auto j_cf = std::__detail::__binet_cont_frac(x);
+	auto j_as = emsr::detail::binet_asymp(x);
+	auto j_cf = emsr::detail::binet_cont_frac(x);
 	std::cout << ' ' << std::setw(width) << x
 		  << ' ' << std::setw(width) << j_as
 		  << ' ' << std::setw(width) << j_cf

@@ -7664,7 +7664,7 @@ template<typename Ret, unsigned int Num>
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
   	 {
-	const Ret f = __gnu_cxx::gegenbauer(data[i].n, data[i].lambda,
+	const Ret f = emsr::gegenbauer(data[i].n, data[i].lambda,
 		     data[i].x);
 	const bool failure_f = std::isnan(f);
 	if (!failure && failure_f)

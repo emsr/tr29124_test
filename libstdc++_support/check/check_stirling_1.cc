@@ -303,7 +303,7 @@ template<typename Ret, unsigned int Num>
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Ret f = __gnu_cxx::stirling_1<Ret>(data[i].n, data[i].m);
+	const Ret f = emsr::stirling_1<Ret>(data[i].n, data[i].m);
 	const bool failure_f = std::isnan(f);
 	if (!failure && failure_f)
 	  failure = true;

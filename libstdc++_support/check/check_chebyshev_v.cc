@@ -314,7 +314,7 @@ template<typename Ret, unsigned int Num>
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Ret f = __gnu_cxx::chebyshev_v(data[i].n, data[i].x);
+	const Ret f = emsr::chebyshev_v(data[i].n, data[i].x);
 	const bool failure_f = std::isnan(f);
 	if (!failure && failure_f)
 	  failure = true;

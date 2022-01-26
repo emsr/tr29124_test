@@ -11,10 +11,10 @@
 
 template<typename _Tp>
   struct
-  __continuous_hahn_t
+  continuous_hahn_t
   {
-    std::complex<_Tp> __value;
-    std::complex<_Tp> __factor;
+    std::complex<_Tp> value;
+    std::complex<_Tp> factor;
   };
 
 /**
@@ -34,8 +34,8 @@ template<typename _Tp>
  * @f]
  */
 template<typename _Tp, typename _TpX>
-  __continuous_hahn_t<_Tp>
-  __continuous_hahn_recur(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
+  continuous_hahn_t<_Tp>
+  continuous_hahn_recur(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
   {
     auto pnm1 = std::complex<_Tp>{1};
     if (n == 0)
@@ -93,8 +93,8 @@ template<typename _Tp, typename _TpX>
  * @f]
  */
 template<typename _Tp, typename _TpX>
-  __continuous_hahn_t<_Tp>
-  __continuous_hahn(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
+  continuous_hahn_t<_Tp>
+  continuous_hahn(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
   {
     if (std::isnan(a))
       return {std::complex<_Tp>(a), std::complex<_Tp>{}};
@@ -107,7 +107,7 @@ template<typename _Tp, typename _TpX>
     else if (std::isnan(x))
       return {std::complex<_Tp>(x), std::complex<_Tp>{}};
     else
-      return __continuous_hahn_recur(n, a, b, c, d, x);
+      return continuous_hahn_recur(n, a, b, c, d, x);
   }
 
 template<typename _Tp>
@@ -123,10 +123,10 @@ template<typename _Tp>
 	for (int i = -200; i <= 200; ++i)
 	  {
 	    auto x = i * _Tp{0.01L};
-	    auto p = __continuous_hahn(n, a, b, c, d, x);
+	    auto p = continuous_hahn(n, a, b, c, d, x);
 	    std::cout << ' ' << std::setw(w) << x
-		      << ' ' << std::setw(w) << std::real(p.__factor * p.__value)
-		      << ' ' << std::setw(w) << std::imag(p.__factor * p.__value)
+		      << ' ' << std::setw(w) << std::real(p.factor * p.value)
+		      << ' ' << std::setw(w) << std::imag(p.factor * p.value)
 		      << '\n';
 	  }
       }

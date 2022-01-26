@@ -9,26 +9,26 @@
 
   template<typename _Tp>
     _Tp
-    __conf_hyperg_limit_sum(_Tp __c, _Tp __z)
+    conf_hyperg_limit_sum(_Tp c, _Tp z)
     {
-      constexpr int _S_max_iter = 10000;
-      _Tp __term{1};
-      _Tp __sum = __term;
-      for (int __i = 0; __i < _S_max_iter; ++__i)
+      constexpr int s_max_iter = 10000;
+      _Tp term{1};
+      _Tp sum = term;
+      for (int i = 0; i < s_max_iter; ++i)
 	{
-	  __term *=  __z / ((__c + __i) * (__i + 1));
-	  __sum += __term;
-	  if (std::abs(__term) < std::numeric_limits<_Tp>::epsilon())
+	  term *=  z / ((c + i) * (i + 1));
+	  sum += term;
+	  if (std::abs(term) < std::numeric_limits<_Tp>::epsilon())
 	    break;
 	}
-      return __sum;
+      return sum;
     }
 
   template<typename _Tp>
     _Tp
-    __conf_hyperg_limit(_Tp __c, _Tp __z)
+    conf_hyperg_limit(_Tp c, _Tp z)
     {
-      return conf_hyperg_limit_sum(__c, __z);
+      return conf_hyperg_limit_sum(c, z);
     }
 
 template<typename _Tp>
@@ -45,7 +45,7 @@ template<typename _Tp>
     {
       auto z = del * i;
       std::cout << ' ' << std::setw(6) << z
-		<< ' ' << std::setw(width) << __gnu_cxx::conf_hyperg_lim(c, z)
+		<< ' ' << std::setw(width) << emsr::conf_hyperg_lim(c, z)
 		<< '\n';
     }
   }

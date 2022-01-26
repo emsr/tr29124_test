@@ -22,7 +22,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/sf_jacobi.tcc
+/** @file emsr/sf_jacobi.tcc
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{cmath}
  */
@@ -32,6 +32,11 @@
 
 #include <emsr/math_constants.h>
 #include <emsr/math_util.h>
+#include <emsr/numeric_limits.h>
+#include <emsr/specfun_state.h>
+#include <emsr/quadrature_point.h>
+#include <emsr/specfun.h>
+#include <emsr/fp_type_util.h>
 
 namespace lab
 {
@@ -57,63 +62,62 @@ namespace lab
    * @param[in]  x  The argument
    */
   template<typename _Tp>
-    __gnu_cxx::__jacobi_t<_Tp>
-    __jacobi_recur(unsigned int __n, _Tp __alpha1, _Tp __beta1, _Tp __x)
+    emsr::jacobi_t<_Tp>
+    jacobi_recur(unsigned int n, _Tp alpha1, _Tp beta1, _Tp x)
     {
-      const auto _S_NaN = emsr::quiet_NaN(__x);
+      const auto _S_NaN = emsr::quiet_NaN(x);
 
-      if (std::isnan(__alpha1) || std::isnan(__beta1) || std::isnan(__x))
-	return {__n, __alpha1, __beta1, __x, _S_NaN, _S_NaN, _S_NaN};
+      if (std::isnan(alpha1) || std::isnan(beta1) || std::isnan(x))
+	return {n, alpha1, beta1, x, _S_NaN, _S_NaN, _S_NaN};
 
-      const auto __apb = __alpha1 + __beta1;
-      auto __m = int(__n);
-      if (const auto __pint = emsr::fp_is_integer(__n + 1 + __apb);
-	  __pint && __pint() <= 0 && __m + 1 > -__pint())
-	__m = -__pint();
+      const auto apb = alpha1 + beta1;
+      auto m = int(n);
+      if (const auto pint = emsr::fp_is_integer(n + 1 + apb);
+	  pint && pint() <= 0 && m + 1 > -pint())
+	m = -pint();
 
-      auto __P_nm2 = _Tp{1};
-      if (__n == 0)
-	return {__n, __alpha1, __beta1, __x, __P_nm2, _Tp{0}, _Tp{0}};
+      auto P_nm2 = _Tp{1};
+      if (n == 0)
+	return {n, alpha1, beta1, x, P_nm2, _Tp{0}, _Tp{0}};
 
-      const auto __amb = __alpha1 - __beta1;
-      auto __P_nm1 = (__amb + (__apb + _Tp{2}) * __x) / _Tp{2};
-      if (__n == 1)
-	return {__n, __alpha1, __beta1, __x, __P_nm1, __P_nm2, _Tp{0}};
+      const auto amb = alpha1 - beta1;
+      auto P_nm1 = (amb + (apb + _Tp{2}) * x) / _Tp{2};
+      if (n == 1)
+	return {n, alpha1, beta1, x, P_nm1, P_nm2, _Tp{0}};
 
-      const auto __a2mb2 = __amb * __apb;
-      const auto __bah = ((__apb + _Tp{2}) + _Tp{2});
-      const auto __poo = (__bah - _Tp{1});
-      auto __P_n = (((__poo * __a2mb2)
-		     + ((__poo - _Tp{1}) * __poo * __bah) * __x)
-		    * __P_nm1 - (_Tp{2} * (__alpha1 + _Tp{1})
-			    * (__beta1 + _Tp{1}) * __bah) * __P_nm2)
-		 / (_Tp{4} * (__apb + _Tp{2}) * (__poo - _Tp{1}));
-      for (auto __k = 3u; __k <= __n; ++__k )
+      const auto a2mb2 = amb * apb;
+      const auto bah = ((apb + _Tp{2}) + _Tp{2});
+      const auto poo = (bah - _Tp{1});
+      auto P_n = (((poo * a2mb2)
+		     + ((poo - _Tp{1}) * poo * bah) * x)
+		    * P_nm1 - (_Tp{2} * (alpha1 + _Tp{1})
+			    * (beta1 + _Tp{1}) * bah) * P_nm2)
+		 / (_Tp{4} * (apb + _Tp{2}) * (poo - _Tp{1}));
+      for (auto k = 3u; k <= n; ++k )
 	{
-	  const auto __apbpk = __apb + _Tp(__k);
-	  const auto __apbp2k = __apbpk + _Tp(__k);
-	  const auto __apbp2km1 = __apbp2k - _Tp{1};
-	  const auto __apbp2km2 = __apbp2km1 - _Tp{1};
-	  const auto __d = _Tp{2} * __k * __apbpk * __apbp2km2;
-	  const auto __a = __apbp2km2 * __apbp2km1 * __apbp2k;
-	  const auto __b = __apbp2km1 * __a2mb2;
-	  const auto __c = _Tp{2} * (__alpha1 + _Tp(__k - 1))
-				  * (__beta1 + _Tp(__k - 1)) * __apbp2k;
-	  if (__d == _Tp{0})
+	  const auto apbpk = apb + _Tp(k);
+	  const auto apbp2k = apbpk + _Tp(k);
+	  const auto apbp2km1 = apbp2k - _Tp{1};
+	  const auto apbp2km2 = apbp2km1 - _Tp{1};
+	  const auto d = _Tp{2} * k * apbpk * apbp2km2;
+	  const auto a = apbp2km2 * apbp2km1 * apbp2k;
+	  const auto b = apbp2km1 * a2mb2;
+	  const auto c = _Tp{2} * (alpha1 + _Tp(k - 1))
+				  * (beta1 + _Tp(k - 1)) * apbp2k;
+	  if (d == _Tp{0})
 {
-std::cerr << '\n' << '*' << ' ' << __n << ' ' << __alpha1 << ' ' << __beta1 << ' ' << __m << ' ' << __k << '\n';
+std::cerr << '\n' << '*' << ' ' << n << ' ' << alpha1 << ' ' << beta1 << ' ' << m << ' ' << k << '\n';
 break;
-	//    std::__throw_runtime_error(__N("__jacobi_recur: "
-	//				   "Failure in recursion"));
+	//    throw std::runtime_error("jacobi_recur: Failure in recursion");
 }
-	  __P_nm2 = __P_nm1;
-	  __P_nm1 = __P_n;
-	  __P_n = ((__b + __a * __x) * __P_nm1 - __c * __P_nm2) / __d;
+	  P_nm2 = P_nm1;
+	  P_nm1 = P_n;
+	  P_n = ((b + a * x) * P_nm1 - c * P_nm2) / d;
 	}
-      //auto __Pp_n = (__n * (__alpha1 - __beta1 - __apbp2k * __x) * __P_nm1
-	//	   + _Tp{2} * (__n + __alpha1) * (__n + __beta1) * __P_nm2)
-	//	/ (__apbp2k * (_Tp{1} - __x * __x));
-      return {__n, __alpha1, __beta1, __x, __P_n, __P_nm1, __P_nm2};
+      //auto Pp_n = (n * (alpha1 - beta1 - apbp2k * x) * P_nm1
+	//	   + _Tp{2} * (n + alpha1) * (n + beta1) * P_nm2)
+	//	/ (apbp2k * (_Tp{1} - x * x));
+      return {n, alpha1, beta1, x, P_n, P_nm1, P_nm2};
     }
 /*
 
@@ -141,114 +145,114 @@ break;
    */
   template<typename _Tp>
     std::vector<emsr::QuadraturePoint<_Tp>>
-    __jacobi_zeros(unsigned int __n, _Tp __alpha1, _Tp __beta1)
+    jacobi_zeros(unsigned int n, _Tp alpha1, _Tp beta1)
     {
-      const auto _S_eps = emsr::epsilon(__alpha1);
+      const auto _S_eps = emsr::epsilon(alpha1);
       const unsigned int _S_maxit = 1000u;
 
-      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
+      std::vector<emsr::QuadraturePoint<_Tp>> pt(n);
 
-      _Tp __z;
-      _Tp __w;
-      for (auto __i = 1u; __i <= __n; ++__i)
+      _Tp z;
+      _Tp w;
+      for (auto i = 1u; i <= n; ++i)
 	{
-	  if (__i == 1)
+	  if (i == 1)
 	    {
-	      const auto __an = __alpha1 / __n;
-	      const auto __bn = __beta1 / __n;
-	      const auto __r1 = (1.0 + __alpha1) * (2.78 / (4.0 + __n * __n)
-			+ 0.768 * __an / __n);
-	      const auto __r2 = 1.0 + 1.48 * __an + 0.96 * __bn
-			      + 0.452 * __an * __an + 0.83 * __an * __bn;
-	      __z = 1.0 - __r1 / __r2;
+	      const auto an = alpha1 / n;
+	      const auto bn = beta1 / n;
+	      const auto r1 = (1.0 + alpha1) * (2.78 / (4.0 + n * n)
+			+ 0.768 * an / n);
+	      const auto r2 = 1.0 + 1.48 * an + 0.96 * bn
+			      + 0.452 * an * an + 0.83 * an * bn;
+	      z = 1.0 - r1 / r2;
 	    }
-	  else if (__i == 2)
+	  else if (i == 2)
 	    {
-	      const auto __r1 = (4.1 + __alpha1)
-			/ ((1.0 + __alpha1) * (1.0 + 0.156 * __alpha1));
-	      const auto __r2 = 1.0
-			+ 0.06 * (__n - 8.0) * (1.0 + 0.12 * __alpha1) / __n;
-	      const auto __r3 = 1.0
-			+ 0.012 * __beta1 * (1.0 + 0.25 * std::abs(__alpha1))
-			/ __n;
-	      __z -= (1.0 - __z) * __r1 * __r2 * __r3;
+	      const auto r1 = (4.1 + alpha1)
+			/ ((1.0 + alpha1) * (1.0 + 0.156 * alpha1));
+	      const auto r2 = 1.0
+			+ 0.06 * (n - 8.0) * (1.0 + 0.12 * alpha1) / n;
+	      const auto r3 = 1.0
+			+ 0.012 * beta1 * (1.0 + 0.25 * std::abs(alpha1))
+			/ n;
+	      z -= (1.0 - z) * r1 * r2 * r3;
 	    }
-	  else if (__i == 3)
+	  else if (i == 3)
 	    {
-	      const auto __r1 = (1.67 + 0.28 * __alpha1)
-			      / (1.0 + 0.37 * __alpha1);
-	      const auto __r2 = 1.0 + 0.22 * (__n - 8.0) / __n;
-	      const auto __r3 = 1.0 + 8.0 * __beta1
-				/ ((6.28 + __beta1) * __n * __n);
-	      __z -= (__pt[0].point - __z) * __r1 * __r2 * __r3;
+	      const auto r1 = (1.67 + 0.28 * alpha1)
+			      / (1.0 + 0.37 * alpha1);
+	      const auto r2 = 1.0 + 0.22 * (n - 8.0) / n;
+	      const auto r3 = 1.0 + 8.0 * beta1
+				/ ((6.28 + beta1) * n * n);
+	      z -= (pt[0].point - z) * r1 * r2 * r3;
 	    }
-	  else if (__i == __n - 1)
+	  else if (i == n - 1)
 	    {
-	      const auto __r1 = (1.0 + 0.235 * __beta1)
-			      / (0.766 + 0.119 * __beta1);
-	      const auto __r2 = 1.0 / (1.0 + 0.639 * (__n - 4.0)
-						/ (1.0 + 0.71 * (__n - 4.0)));
-	      const auto __r3 = 1.0 / (1.0 + 20.0 * __alpha1
-				/ ((7.5 + __alpha1) * __n * __n));
-	      __z += (__z - __pt[__n - 4].point) * __r1 * __r2 * __r3;
+	      const auto r1 = (1.0 + 0.235 * beta1)
+			      / (0.766 + 0.119 * beta1);
+	      const auto r2 = 1.0 / (1.0 + 0.639 * (n - 4.0)
+						/ (1.0 + 0.71 * (n - 4.0)));
+	      const auto r3 = 1.0 / (1.0 + 20.0 * alpha1
+				/ ((7.5 + alpha1) * n * n));
+	      z += (z - pt[n - 4].point) * r1 * r2 * r3;
 	    }
-	  else if (__i == __n)
+	  else if (i == n)
 	    {
-	      const auto __r1 = (1.0 + 0.37 * __beta1)
-			      / (1.67 + 0.28 * __beta1);
-	      const auto __r2 = 1.0 / (1.0 + 0.22 * (__n - 8.0) / __n);
-	      const auto __r3 = 1.0 / (1.0 + 8.0 * __alpha1
-				/ ((6.28 + __alpha1) * __n * __n));
-	      __z += (__z - __pt[__n - 3].point) * __r1 * __r2 * __r3;
+	      const auto r1 = (1.0 + 0.37 * beta1)
+			      / (1.67 + 0.28 * beta1);
+	      const auto r2 = 1.0 / (1.0 + 0.22 * (n - 8.0) / n);
+	      const auto r3 = 1.0 / (1.0 + 8.0 * alpha1
+				/ ((6.28 + alpha1) * n * n));
+	      z += (z - pt[n - 3].point) * r1 * r2 * r3;
 	    }
 	  else
 	    {
-	      __z = 3.0 * __pt[__i - 2].point
-		  - 3.0 * __pt[__i - 3].point + __pt[__i - 4].point;
+	      z = 3.0 * pt[i - 2].point
+		  - 3.0 * pt[i - 3].point + pt[i - 4].point;
 	    }
 
-	  auto __alphabeta = __alpha1 + __beta1;
-	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
+	  auto alphabeta = alpha1 + beta1;
+	  for (auto its = 1u; its <= _S_maxit; ++its)
 	    {
-	      auto __temp = _Tp{2} + __alphabeta;
-	      auto __P1 = (__alpha1 - __beta1 + __temp * __z) / _Tp{2};
-	      auto __P2 = _Tp{1};
-	      for (auto __j = 2u; __j <= __n; ++__j)
+	      auto temp = _Tp{2} + alphabeta;
+	      auto P1 = (alpha1 - beta1 + temp * z) / _Tp{2};
+	      auto P2 = _Tp{1};
+	      for (auto j = 2u; j <= n; ++j)
 		{
-		  auto __P3 = __P2;
-		  __P2 = __P1;
-		  __temp = _Tp{2} * __j + __alphabeta;
-		  auto __a = _Tp{2} * __j * (__j + __alphabeta)
-			   * (__temp - _Tp{2});
-		  auto __b = (__temp - _Tp{1})
-			   * (__alpha1 * __alpha1 - __beta1 * __beta1
-				+ __temp * (__temp - _Tp{2}) * __z);
-		  auto __c = _Tp{2} * (__j - 1 + __alpha1)
-			   * (__j - 1 + __beta1) * __temp;
-		  __P1 = (__b * __P2 - __c * __P3) / __a;
+		  auto P3 = P2;
+		  P2 = P1;
+		  temp = _Tp{2} * j + alphabeta;
+		  auto a = _Tp{2} * j * (j + alphabeta)
+			   * (temp - _Tp{2});
+		  auto b = (temp - _Tp{1})
+			   * (alpha1 * alpha1 - beta1 * beta1
+				+ temp * (temp - _Tp{2}) * z);
+		  auto c = _Tp{2} * (j - 1 + alpha1)
+			   * (j - 1 + beta1) * temp;
+		  P1 = (b * P2 - c * P3) / a;
 		}
-	      auto __Pp = (__n * (__alpha1 - __beta1 - __temp * __z) * __P1
-			   + _Tp{2} * (__n + __alpha1) * (__n + __beta1) * __P2)
-			/ (__temp * (_Tp{1} - __z * __z));
-	      auto __z1 = __z;
-	      __z = __z1 - __P1 / __Pp;
-	      if (std::abs(__z - __z1) <= _S_eps)
+	      auto Pp = (n * (alpha1 - beta1 - temp * z) * P1
+			   + _Tp{2} * (n + alpha1) * (n + beta1) * P2)
+			/ (temp * (_Tp{1} - z * z));
+	      auto z1 = z;
+	      z = z1 - P1 / Pp;
+	      if (std::abs(z - z1) <= _S_eps)
 		{
-		  __w = std::exp(std::lgamma(__alpha1 + _Tp(__n))
-			       + std::lgamma(__beta1 + _Tp(__n))
-			       - std::lgamma(_Tp(__n + 1))
-			       - std::lgamma(_Tp(__n + 1) + __alphabeta))
-		      * __temp * std::pow(_Tp{2}, __alphabeta) / (__Pp * __P2);
+		  w = std::exp(std::lgamma(alpha1 + _Tp(n))
+			       + std::lgamma(beta1 + _Tp(n))
+			       - std::lgamma(_Tp(n + 1))
+			       - std::lgamma(_Tp(n + 1) + alphabeta))
+		      * temp * std::pow(_Tp{2}, alphabeta) / (Pp * P2);
 		  break;
 		}
-	      if (__its > _S_maxit)
-		std::__throw_logic_error("__jacobi_zeros: Too many iterations");
+	      if (its > _S_maxit)
+		throw std::logic_error("jacobi_zeros: Too many iterations");
 	    }
-	  __pt[__i - 1].point = __z;
-	  __pt[__i - 1].weight = __w;
+	  pt[i - 1].point = z;
+	  pt[i - 1].weight = w;
 	}
 
-      return __pt;
+      return pt;
     }
 
   /**
@@ -288,30 +292,30 @@ break;
    *      Technical Report YALEU/DCS/TR-1539, February 20, 2018
    *
    * @tparam _Tp The real type of the radial coordinate
-   * @param __n The non-negative degree.
-   * @param __m The non-negative azimuthal order
-   * @param __rho The radial argument
+   * @param n The non-negative degree.
+   * @param m The non-negative azimuthal order
+   * @param rho The radial argument
    */
   template<typename _Tp>
     _Tp
-    __radial_jacobi(unsigned int __n, unsigned int __m, _Tp __rho)
+    radial_jacobi(unsigned int n, unsigned int m, _Tp rho)
     {
-      const auto _S_NaN = emsr::quiet_NaN(__rho);
+      const auto _S_NaN = emsr::quiet_NaN(rho);
 
-      if (std::isnan(__rho))
+      if (std::isnan(rho))
 	return _S_NaN;
 
-      const int __nmm = int(__n) - int(__m);
-      if (__nmm < 0)
+      const int nmm = int(n) - int(m);
+      if (nmm < 0)
 	return _Tp{0}; // FIXME: Is this true?
-      else if (__nmm % 2 == 1)
+      else if (nmm % 2 == 1)
 	return _Tp{0};
       else
 	{
-	  auto __k = __nmm / 2;
-	  return (__k % 2 == 0 ? +1 : -1) * std::pow(__rho, __m)
-	       * __jacobi_recur(__k, _Tp(__m), _Tp{0},
-				_Tp{1} - _Tp{2} * __rho * __rho).__P_n;
+	  auto k = nmm / 2;
+	  return (k % 2 == 0 ? +1 : -1) * std::pow(rho, m)
+	       * jacobi_recur(k, _Tp(m), _Tp{0},
+				_Tp{1} - _Tp{2} * rho * rho).P_n;
 	}
     }
 
@@ -326,21 +330,21 @@ break;
    */
   template<typename _Tp>
     std::vector<emsr::QuadraturePoint<_Tp>>
-    __radial_jacobi_zeros(unsigned int __n, unsigned int __m)
+    radial_jacobi_zeros(unsigned int n, unsigned int m)
     {
-      const int __nmm = int(__n) - int(__m);
-      if (__nmm % 2 != 0)
+      const int nmm = int(n) - int(m);
+      if (nmm % 2 != 0)
 	return std::vector<emsr::QuadraturePoint<_Tp>>();
       else
 	{
-	  auto __k = (int(__n) - int(__m)) / 2;
-          auto __roots = __jacobi_zeros(__k, _Tp(__m), _Tp{0});
-	  for (auto& __z : __roots)
+	  auto k = (int(n) - int(m)) / 2;
+          auto roots = jacobi_zeros(k, _Tp(m), _Tp{0});
+	  for (auto& z : roots)
 	    {
-	      __z.point = std::sqrt((_Tp{1} - __z.point) / _Tp{2});
+	      z.point = std::sqrt((_Tp{1} - z.point) / _Tp{2});
 	      // weight?
 	    }
-	  return __roots;
+	  return roots;
 	}
     }
 
@@ -360,28 +364,28 @@ break;
    * @f]
    * for non-negative degree @f$ m @f$ and @f$ m <= n @f$
    * and where @f$ R_n^m(\rho) @f$ is the radial polynomial
-   * (@see __radial_jacobi).
+   * (@see radial_jacobi).
    *
    * @see Principals of Optics, 7th edition, Max Born and Emil Wolf,
    * Cambridge University Press, 1999, pp 523-525 and 905-910.
    *
    * @tparam _Tp The real type of the radial coordinate and azimuthal angle
-   * @param __n The non-negative integral degree.
-   * @param __m The integral azimuthal order
-   * @param __rho The radial coordinate
-   * @param __phi The azimuthal angle
+   * @param n The non-negative integral degree.
+   * @param m The integral azimuthal order
+   * @param rho The radial coordinate
+   * @param phi The azimuthal angle
    */
   template<typename _Tp>
     emsr::fp_promote_t<_Tp>
-    __zernike(unsigned int __n, int __m, _Tp __rho, _Tp __phi)
+    zernike(unsigned int n, int m, _Tp rho, _Tp phi)
     {
-      const auto _S_NaN = emsr::quiet_NaN(__rho);
+      const auto _S_NaN = emsr::quiet_NaN(rho);
 
-      if (std::isnan(__rho) || std::isnan(__phi))
+      if (std::isnan(rho) || std::isnan(phi))
 	return _S_NaN;
       else
-	return __radial_jacobi(__n, std::abs(__m), __rho)
-	     * (__m >= 0 ? std::cos(__m * __phi) : std::sin(__m * __phi));
+	return radial_jacobi(n, std::abs(m), rho)
+	     * (m >= 0 ? std::cos(m * phi) : std::sin(m * phi));
     }
 
 } // namespace lab

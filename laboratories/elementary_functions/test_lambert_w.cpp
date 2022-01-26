@@ -12,18 +12,18 @@
    */
   template<typename _Tp>
     _Tp
-    __lambert_w_series(_Tp __z)
+    lambert_w_series(_Tp z)
     {
-      const auto _S_eps = emsr::epsilon(__z);
+      const auto _S_eps = emsr::epsilon(z);
       const auto _S_max_iter = 1000u;
 
-      auto _W = __z * (_Tp{1} - __z);
-      auto __term = -__z * __z;
-      for (auto __k = 3u; __k < _S_max_iter; ++__k)
+      auto _W = z * (_Tp{1} - z);
+      auto term = -z * z;
+      for (auto k = 3u; k < _S_max_iter; ++k)
 	{
-	  __term *= -__z * std::pow(_Tp(__k) / _Tp(__k - 1), __k - 2);
-	  _W += __term;
-	  if (std::abs(__term) < _S_eps * std::abs(_W))
+	  term *= -z * std::pow(_Tp(k) / _Tp(k - 1), k - 2);
+	  _W += term;
+	  if (std::abs(term) < _S_eps * std::abs(_W))
 	    break;
 	}
       return _W;
@@ -34,24 +34,24 @@
    */
   template<typename _Tp>
     _Tp
-    __lambert_w_newton(_Tp __z, _Tp _W = _Tp{1})
+    lambert_w_newton(_Tp z, _Tp _W = _Tp{1})
     {
-      const auto _S_eps = emsr::epsilon(__z);
+      const auto _S_eps = emsr::epsilon(z);
       const auto _S_max_iter = 1000u;
 
-      auto __wk = _W;
-      for (auto __k = 0u; __k < _S_max_iter; ++__k)
+      auto wk = _W;
+      for (auto k = 0u; k < _S_max_iter; ++k)
 	{
-          const auto __expwk = std::exp(__wk);
-          const auto __wexpwk = __wk * __expwk;
-	  const auto __wkp1 = __wk - (__wexpwk - __z)
-				   / (_Tp{1} + __wk) / __expwk;
-	  const auto __del = std::abs(__wkp1 - __wk);
-	  __wk = __wkp1;
-	  if (__del < _S_eps)
+          const auto expwk = std::exp(wk);
+          const auto wexpwk = wk * expwk;
+	  const auto wkp1 = wk - (wexpwk - z)
+				   / (_Tp{1} + wk) / expwk;
+	  const auto del = std::abs(wkp1 - wk);
+	  wk = wkp1;
+	  if (del < _S_eps)
 	    break;
 	}
-      return __wk;
+      return wk;
     }
 
   /**
@@ -59,24 +59,24 @@
    */
   template<typename _Tp>
     _Tp
-    __lambert_w_halley(_Tp __z, _Tp _W = _Tp{1})
+    lambert_w_halley(_Tp z, _Tp _W = _Tp{1})
     {
-      const auto _S_eps = emsr::epsilon(__z);
+      const auto _S_eps = emsr::epsilon(z);
       const auto _S_max_iter = 1000u;
 
-      auto __wk = _W;
-      for (auto __k = 0u; __k < _S_max_iter; ++__k)
+      auto wk = _W;
+      for (auto k = 0u; k < _S_max_iter; ++k)
 	{
-          const auto __expwk = std::exp(__wk);
-	  const auto __fact = __wk * __expwk - __z;
-          const auto __wkp1 = __wk - __fact
-		      / ((__wk + 1) * __expwk - (__wk + 2) * __fact / (2 * __wk + 2));
-	  const auto __del = std::abs(__wkp1 - __wk);
-	  __wk = __wkp1;
-	  if (__del < _S_eps)
+          const auto expwk = std::exp(wk);
+	  const auto fact = wk * expwk - z;
+          const auto wkp1 = wk - fact
+		      / ((wk + 1) * expwk - (wk + 2) * fact / (2 * wk + 2));
+	  const auto del = std::abs(wkp1 - wk);
+	  wk = wkp1;
+	  if (del < _S_eps)
 	    break;
 	}
-      return __wk;
+      return wk;
     }
 
 
@@ -85,18 +85,18 @@
    */
   template<typename _Tp>
     _Tp
-    __lambert_w_schroder(_Tp __z, _Tp _W)
+    lambert_w_schroder(_Tp z, _Tp _W)
     {
-      const auto __y = __z * std::exp(-_W);
-      const auto __f0 = _W - __y;
-      const auto __f1 = _Tp{1} + __y;
-      const auto __f2 = __y;
-      const auto __f11 = __f1 * __f1;
-      const auto __f0y = __f0 * __y;
-      const auto __f00y = __f0 * __f0y;
-      return _W - 4 *__f0 * (6 * __f1 * (__f11 + __f0y) + __f00y)
-		/ (__f11 * (24 * __f11 + 36 * __f0y)
-		 + 6 * __f00y * (14 * __y + 8 + __f0));
+      const auto y = z * std::exp(-_W);
+      const auto f0 = _W - y;
+      const auto f1 = _Tp{1} + y;
+      const auto f2 = y;
+      const auto f11 = f1 * f1;
+      const auto f0y = f0 * y;
+      const auto f00y = f0 * f0y;
+      return _W - 4 *f0 * (6 * f1 * (f11 + f0y) + f00y)
+		/ (f11 * (24 * f11 + 36 * f0y)
+		 + 6 * f00y * (14 * y + 8 + f0));
     }
 
 
@@ -111,12 +111,12 @@
  */
 template<typename _Tp>
   _Tp
-  __lambert_w_0_log_series(_Tp __z)
+  lambert_w_0_log_series(_Tp z)
   {
-    const auto __xi = std::log(__z);
-    const auto __lnxi = std::log(__xi);
-    return __xi - __lnxi * (_Tp{1} - (_Tp{1} / __xi)
-		* (_Tp{1} - (_Tp{1} / __xi) * (_Tp{1} - __lnxi / _Tp{2})));
+    const auto xi = std::log(z);
+    const auto lnxi = std::log(xi);
+    return xi - lnxi * (_Tp{1} - (_Tp{1} / xi)
+		* (_Tp{1} - (_Tp{1} / xi) * (_Tp{1} - lnxi / _Tp{2})));
   }
 
 
@@ -131,12 +131,12 @@ template<typename _Tp>
  */
 template<typename _Tp>
   _Tp
-  __lambert_w_1_log_series(_Tp __z)
+  lambert_w_1_log_series(_Tp z)
   {
-    const auto __eta = std::log(-_Tp{1} / __z);
-    const auto __lneta = std::log(__eta);
-    return -__eta - __lneta * (_Tp{1} + (_Tp{1} / __eta)
-		* (_Tp{1} + (_Tp{1} / __eta) * (_Tp{1} + __lneta / _Tp{2})));
+    const auto eta = std::log(-_Tp{1} / z);
+    const auto lneta = std::log(eta);
+    return -eta - lneta * (_Tp{1} + (_Tp{1} / eta)
+		* (_Tp{1} + (_Tp{1} / eta) * (_Tp{1} + lneta / _Tp{2})));
   }
 
 
@@ -160,9 +160,9 @@ template<typename _Tp>
     for (int i = 0; i <= N0; ++i)
       {
 	auto z = -_S_1_e  + del0 * i;
-        auto W_newton = __lambert_w_newton(z);
-        auto W_halley = __lambert_w_halley(z);
-        auto W_series = __lambert_w_series(z);
+        auto W_newton = lambert_w_newton(z);
+        auto W_halley = lambert_w_halley(z);
+        auto W_series = lambert_w_series(z);
 	std::cout << ' ' << std::setw(w) << z
 		  << ' ' << std::setw(w) << W_newton
 		  << ' ' << std::setw(w) << W_halley
@@ -175,8 +175,8 @@ template<typename _Tp>
     for (int i = 0; i <= Nm1; ++i)
       {
 	auto z = -_S_1_e  + delm1 * i;
-        auto W_newton = __lambert_w_newton(z, _Tp{-2});
-        auto W_halley = __lambert_w_halley(z, _Tp{-2});
+        auto W_newton = lambert_w_newton(z, _Tp{-2});
+        auto W_halley = lambert_w_halley(z, _Tp{-2});
 	std::cout << ' ' << std::setw(w) << z
 		  << ' ' << std::setw(w) << W_newton
 		  << ' ' << std::setw(w) << W_halley
@@ -185,11 +185,11 @@ template<typename _Tp>
 
     std::cout << '\n';
     std::cout << '\n';
-    auto __term = _Tp{-1};
-    for (auto __k = 3u; __k < 50; ++__k)
+    auto term = _Tp{-1};
+    for (auto k = 3u; k < 50; ++k)
       {
-	__term *= -std::pow(_Tp(__k) / _Tp(__k - 1), __k - 2);
-	std::cout << ' ' << __term << '\n';
+	term *= -std::pow(_Tp(k) / _Tp(k - 1), k - 2);
+	std::cout << ' ' << term << '\n';
       }
   }
 

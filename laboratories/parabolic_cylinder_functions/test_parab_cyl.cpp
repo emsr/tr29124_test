@@ -23,7 +23,7 @@ template<typename _Tp>
     for (int i = 0; i <= +200; ++i)
       {
 	auto z = _Tp{0.1L} * i;
-	auto [U, V] = std::__detail::__parabolic_cylinder(a, z);
+	auto [U, V] = emsr::detail::parabolic_cylinder(a, z);
 	std::cout << ' ' << std::setw(width) << z
 		  << ' ' << std::setw(width) << U
 		  << ' ' << std::setw(width) << V;

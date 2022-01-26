@@ -22,7 +22,7 @@ template<typename _Tp>
     {
       auto z = del * i;
       std::cout << ' ' << std::setw(6) << z
-		<< ' ' << std::setw(width) << __gnu_cxx::conf_hyperg(a, c, z)
+		<< ' ' << std::setw(width) << emsr::conf_hyperg(a, c, z)
 		<< '\n';
     }
   }

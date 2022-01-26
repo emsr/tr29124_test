@@ -23,6 +23,9 @@
 
 #include <cmath>
 #include <complex>
+
+#include <emsr/specfun.h>
+
 #if defined(__TEST_DEBUG)
 #  include <iostream>
 #  define VERIFY(A) \
@@ -39,21 +42,20 @@ void
 test01()
 {
   using cmplx = std::complex<double>;
-  using __gnu_cxx::ellint_rj;
 
-  auto rj1 = ellint_rj(0.0, 1.0, 2.0, 3.0);
-  auto rj2 = ellint_rj(2.0, 3.0, 4.0, 5.0);
-  auto rj3 = ellint_rj(cmplx(2.0,0.0), cmplx(3.0,0.0),
+  auto rj1 = emsr::ellint_rj(0.0, 1.0, 2.0, 3.0);
+  auto rj2 = emsr::ellint_rj(2.0, 3.0, 4.0, 5.0);
+  auto rj3 = emsr::ellint_rj(cmplx(2.0,0.0), cmplx(3.0,0.0),
 		       cmplx(4.0,0.0), cmplx(-1.0,1.0));
-  auto rj4 = ellint_rj(cmplx(0.0,1.0), cmplx(0.0,-1.0),
+  auto rj4 = emsr::ellint_rj(cmplx(0.0,1.0), cmplx(0.0,-1.0),
 		       cmplx(0.0,0.0), cmplx(2.0,0.0));
-  auto rj5 = ellint_rj(cmplx(-1.0,1.0), cmplx(-1.0,-1.0),
+  auto rj5 = emsr::ellint_rj(cmplx(-1.0,1.0), cmplx(-1.0,-1.0),
 				  cmplx(1.0,0.0), cmplx(2.0,0.0));
-  auto rj6 = ellint_rj(cmplx(0.0,1.0), cmplx(0.0,-1.0),
+  auto rj6 = emsr::ellint_rj(cmplx(0.0,1.0), cmplx(0.0,-1.0),
 		       cmplx(0.0,0.0), cmplx(1.0,-1.0));
-  auto rj7 = ellint_rj(cmplx(-1.0,1.0), cmplx(-1.0,-1.0),
+  auto rj7 = emsr::ellint_rj(cmplx(-1.0,1.0), cmplx(-1.0,-1.0),
 		       cmplx(1.0,0.0), cmplx(-3.0,1.0));
-  auto rj8 = ellint_rj(cmplx(-1.0,1.0), cmplx(-2.0,-1.0),
+  auto rj8 = emsr::ellint_rj(cmplx(-1.0,1.0), cmplx(-2.0,-1.0),
 		       cmplx(0.0,-1.0), cmplx(-1.0,1.0));
 
   bool test __attribute__((unused)) = true;

@@ -8,7 +8,8 @@
 #include <limits>
 #include <cmath>
 #include <complex>
-#include <ext/float128_io.h>
+
+#include <emsr/float128_io.h>
 
 
   /**
@@ -19,9 +20,9 @@
    */
   template<typename _Tp>
     _Tp
-    __bose_einstein_pdf(_Tp __mu, _Tp __beta, _Tp __x)
+    bose_einstein_pdf(_Tp mu, _Tp beta, _Tp x)
     {
-      _Tp{1} / (std::exp(__beta * (__x - __mu)) - _Tp{1});
+      _Tp{1} / (std::exp(beta * (x - mu)) - _Tp{1});
     }
 
   /**
@@ -32,7 +33,7 @@
    */
   template<typename _Tp>
     _Tp
-    __bose_einstein_p(_Tp __mu, _Tp __beta, _Tp __x)
+    bose_einstein_p(_Tp mu, _Tp beta, _Tp x)
     {
       ;
     }
@@ -45,7 +46,7 @@
    */
   template<typename _Tp>
     _Tp
-    __bose_einstein_integral(_Tp __mu, _Tp __beta, _Tp __x)
+    bose_einstein_integral(_Tp mu, _Tp beta, _Tp x)
     {
       ;
     }
@@ -69,7 +70,7 @@ template<typename _Tp>
 	for (int i = -250; i <= 250; ++i)
 	  {
 	    auto x = del * i;
-	    auto G = std::__detail::__bose_einstein(s, x);
+	    auto G = emsr::detail::bose_einstein(s, x);
 	    std::cout << ' ' << std::setw(width) << x
 		      << ' ' << std::setw(width) << G << '\n';
 

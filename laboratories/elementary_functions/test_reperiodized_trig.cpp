@@ -48,11 +48,11 @@ template<typename _Tp>
     for (int i = -1600; i <= +1600; ++i)
       {
 	auto x = del * i;
-	auto sin_pi_g = __gnu_cxx::sin_pi(x);
+	auto sin_pi_g = emsr::sin_pi(x);
 	auto sin_pi_b = beast::sin_pi(x);
-	auto cos_pi_g = __gnu_cxx::cos_pi(x);
+	auto cos_pi_g = emsr::cos_pi(x);
 	auto cos_pi_b = beast::cos_pi(x);
-	auto tan_pi_g = __gnu_cxx::tan_pi(x);
+	auto tan_pi_g = emsr::tan_pi(x);
 	std::cout << std::setw(width) << x
 		  << std::setw(width) << sin_pi_g
 		  << std::setw(width) << sin_pi_b
@@ -97,11 +97,11 @@ template<typename _Tp>
     for (int i = 0; i <= +3200; ++i)
       {
 	auto x = bigdel * i;
-	auto sin_pi_g = __gnu_cxx::sin_pi(x);
+	auto sin_pi_g = emsr::sin_pi(x);
 	auto sin_pi_b = beast::sin_pi(x);
-	auto cos_pi_g = __gnu_cxx::cos_pi(x);
+	auto cos_pi_g = emsr::cos_pi(x);
 	auto cos_pi_b = beast::cos_pi(x);
-	auto tan_pi_g = __gnu_cxx::tan_pi(x);
+	auto tan_pi_g = emsr::tan_pi(x);
 	std::cout << std::setw(width) << x
 		  << std::setw(width) << sin_pi_g
 		  << std::setw(width) << sin_pi_b

@@ -5,11 +5,15 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-#include <emsr/continued_fractions.h>
+#include <complex>
 
-namespace std
+#include <emsr/math_constants.h>
+#include <emsr/continued_fractions.h>
+#include <emsr/specfun.h>
+
+namespace emsr
 {
-namespace __detail
+namespace detail
 {
 
   /**
@@ -23,55 +27,55 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __erfc_series(_Tp __z)
+    erfc_series(_Tp z)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_max_iter = 1000;
-      const auto _S_eps = emsr::epsilon(std::real(__z));
-      const auto _S_pi = emsr::pi_v<_Real>;
+      const auto s_max_iter = 1000;
+      const auto s_eps = emsr::epsilon(std::real(z));
+      const auto s_pi = emsr::pi_v<_Real>;
 
-      const auto __h = _Real{1} / _Real{2};
+      const auto h = _Real{1} / _Real{2};
 
-      const auto __z2 = __z * __z;
-      auto __sum = _Tp{0};
-      auto __a = std::exp(__h * __h);
-      auto __b = _Real{1};
-      const auto __c = _Real{1} / __a / __a;
-      for (auto __k = 1; __k < _S_max_iter; ++__k)
+      const auto z2 = z * z;
+      auto sum = _Tp{0};
+      auto a = std::exp(h * h);
+      auto b = _Real{1};
+      const auto c = _Real{1} / a / a;
+      for (auto k = 1; k < s_max_iter; ++k)
       {
-	__a *= __c;
-	__b *= __a;
-	const auto __kh = __k * __h;
-	const auto __kh2 = __kh * __kh;
-	const auto __term = __b / (__kh2 + __z2);
-	__sum += __term;
-	if (std::abs(__term) < _S_eps * std::abs(__sum))
+	a *= c;
+	b *= a;
+	const auto kh = k * h;
+	const auto kh2 = kh * kh;
+	const auto term = b / (kh2 + z2);
+	sum += term;
+	if (std::abs(term) < s_eps * std::abs(sum))
 	  break;
       }
-      auto __erfc = _Tp{2} * __z * __h * std::exp(-__z2)
-		  * (_Tp{1} / __z2 / _Tp{2} + __sum) / _S_pi;
+      auto erfc = _Tp{2} * z * h * std::exp(-z2)
+		  * (_Tp{1} / z2 / _Tp{2} + sum) / s_pi;
 
-      auto __rez = std::real(__z);
-      auto __imz = std::imag(__z);
-      if (__rez < _Real{0})
-	__erfc += _Real{2};
-      if (std::abs(__rez) < _S_pi / __h)
+      auto rez = std::real(z);
+      auto imz = std::imag(z);
+      if (rez < _Real{0})
+	erfc += _Real{2};
+      if (std::abs(rez) < s_pi / h)
 	{
-	  auto __sz = _Tp(__rez < _Tp{0} ? -1 : +1) * __z;
-	  auto __Rcorr = _Tp{2} / std::expm1(_Tp{2} * _S_pi * __sz / __h);
-	  if (__rez >= _Real{0})
+	  auto sz = _Tp(rez < _Tp{0} ? -1 : +1) * z;
+	  auto Rcorr = _Tp{2} / std::expm1(_Tp{2} * s_pi * sz / h);
+	  if (rez >= _Real{0})
 	    {
-	      if (std::abs(__imz) < _S_pi / _Tp{2} - __rez)
-		__erfc -= __Rcorr;
+	      if (std::abs(imz) < s_pi / _Tp{2} - rez)
+		erfc -= Rcorr;
 	    }
 	  else
 	    {
-	      if (std::abs(__imz) < _S_pi / _Tp{2} + __rez)
-		__erfc += __Rcorr;
+	      if (std::abs(imz) < s_pi / _Tp{2} + rez)
+		erfc += Rcorr;
 	    }
 	}
 
-      return __erfc;
+      return erfc;
     }
 
   /**
@@ -80,30 +84,30 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __erfc_cont_frac(_Tp __z)
+    erfc_cont_frac(_Tp z)
     {
       using _Real = emsr::num_traits_t<_Tp>;
-      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Real>;
-      const auto __a = [](size_t __k, _Tp /*__z*/)
+      const auto s_sqrt_pi = emsr::sqrtpi_v<_Real>;
+      const auto a = [](size_t k, _Tp /*z*/)
 		 ->_Tp
-		 { return __k == 1 ? _Tp{1} : _Tp(__k - 1) / _Tp{2}; };
-      using _AFun = decltype(__a);
-      const auto __b = [](size_t __k, _Tp __z)
+		 { return k == 1 ? _Tp{1} : _Tp(k - 1) / _Tp{2}; };
+      using _AFun = decltype(a);
+      const auto b = [](size_t k, _Tp z)
 		 ->_Tp
-		 { return __k == 0 ? _Tp{0} : (__k & 1) ? __z * __z : _Tp{1}; };
-      using _BFun = decltype(__b);
-      const auto __w = [__b](size_t __k, _Tp __z)
+		 { return k == 0 ? _Tp{0} : (k & 1) ? z * z : _Tp{1}; };
+      using _BFun = decltype(b);
+      const auto w = [b](size_t k, _Tp z)
 		 ->_Tp
-		 { return __b(__k, __z)
-		  / (std::sqrt(_Tp{1} + _Tp(2 * __k) / __z / __z) - _Tp{1})
+		 { return b(k, z)
+		  / (std::sqrt(_Tp{1} + _Tp(2 * k) / z / z) - _Tp{1})
 		  / _Tp{2}; };
-      using _WFun = decltype(__w);
+      using _WFun = decltype(w);
       using _CFrac = emsr::LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>;
-      const _CFrac __cf(__a, __b, __w);
-      auto __erfc = std::exp(-__z * __z) * __cf(__z) * __z / _S_sqrt_pi;
-      if (std::real(__z) < _Real{0})
-	__erfc += _Real{2};
-      return __erfc;
+      const _CFrac cf(a, b, w);
+      auto erfc = std::exp(-z * z) * cf(z) * z / s_sqrt_pi;
+      if (std::real(z) < _Real{0})
+	erfc += _Real{2};
+      return erfc;
     }
 
   /**
@@ -115,32 +119,32 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __fadeeva_cont_frac(_Tp __z)
+    fadeeva_cont_frac(_Tp z)
     {
       using _Real = emsr::num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
-      const auto _S_i = _Cmplx{0, 1};
-      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Real>;
-      const auto __a = [](size_t __k, _Tp /*__z*/)
+      const auto s_i = _Cmplx{0, 1};
+      const auto s_sqrt_pi = emsr::sqrtpi_v<_Real>;
+      const auto a = [](size_t k, _Tp /*z*/)
 		 ->_Tp
-		 { return __k == 1 ? _Tp{1} : _Tp(__k - 1) / _Tp{2}; };
-      using _AFun = decltype(__a);
-      const auto __b = [](size_t __k, _Tp __z)
+		 { return k == 1 ? _Tp{1} : _Tp(k - 1) / _Tp{2}; };
+      using _AFun = decltype(a);
+      const auto b = [](size_t k, _Tp z)
 		 ->_Tp
-		 { return __k == 0 ? _Tp{0} : (__k & 1) ? __z * __z : _Tp{1}; };
-      using _BFun = decltype(__b);
-      const auto __w = [__b](size_t __k, _Tp __z)
+		 { return k == 0 ? _Tp{0} : (k & 1) ? z * z : _Tp{1}; };
+      using _BFun = decltype(b);
+      const auto w = [b](size_t k, _Tp z)
 		 ->_Tp
-		 { return __b(__k, __z)
-		  / (std::sqrt(_Tp{1} + _Tp(2 * __k) / __z / __z) - _Tp{1})
+		 { return b(k, z)
+		  / (std::sqrt(_Tp{1} + _Tp(2 * k) / z / z) - _Tp{1})
 		  / _Tp{2}; };
-      using _WFun = decltype(__w);
+      using _WFun = decltype(w);
       using _CFrac = emsr::LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>;
-      const _CFrac __cf(__a, __b, __w);
-      const auto __cfrac = _S_i * __cf(__z) / _S_sqrt_pi;
-      if (std::real(__z) < _Real{0})
-	__erfc += _Real{2};
-      return __cfrac;
+      const _CFrac cf(a, b, w);
+      const auto cfrac = s_i * cf(z) / s_sqrt_pi;
+      if (std::real(z) < _Real{0})
+	erfc += _Real{2};
+      return cfrac;
     }
 
   /**
@@ -152,27 +156,27 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __erfc_cont_frac_even(_Tp __z)
+    erfc_cont_frac_even(_Tp z)
     {
-      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
-      const auto __a = [](size_t __k, _Tp __z)
+      const auto s_sqrt_pi = emsr::sqrtpi_v<_Tp>;
+      const auto a = [](size_t k, _Tp z)
 		 ->_Tp
-		 { return __k == 1
-			 ? _Tp{2} * __z
-			 : (__k & 1) ? __z * __z : _Tp{1}; };
-      using _AFun = decltype(__a);
-      const auto __b = [](size_t __k, _Tp __z)
+		 { return k == 1
+			 ? _Tp{2} * z
+			 : (k & 1) ? z * z : _Tp{1}; };
+      using _AFun = decltype(a);
+      const auto b = [](size_t k, _Tp z)
 		 ->_Tp
-		 { return __k == 0
+		 { return k == 0
 			? _Tp{0}
-			: (__k & 1) ? _Tp{2} * __z * __z
+			: (k & 1) ? _Tp{2} * z * z
 				  : _Tp{1}; };
-      using _BFun = decltype(__b);
-      const auto __w = [__b](size_t, _Tp)->_Tp{ return _Tp{0}; };
-      using _WFun = decltype(__w);
+      using _BFun = decltype(b);
+      const auto w = [b](size_t, _Tp)->_Tp{ return _Tp{0}; };
+      using _WFun = decltype(w);
       using _CFrac = emsr::LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>;
-      const _CFrac __cf(__a, __b, __w);
-      return std::exp(-__z * __z) * __cf(__z) / _S_sqrt_pi;
+      const _CFrac cf(a, b, w);
+      return std::exp(-z * z) * cf(z) / s_sqrt_pi;
     }
 
   /**
@@ -183,20 +187,20 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __fadeeva(_Tp __z)
+    fadeeva(_Tp z)
     {
       using _Real = emsr::num_traits_t<_Tp>;
       using _Cmplx = std::complex<_Real>;
-      const auto _S_NaN = emsr::quiet_NaN(std::real(__z));
-      const auto _S_i = _Cmplx{0, 1};
-      if (std::isnan(__z))
-	return _Cmplx{_S_NaN, _S_NaN};
-      else if (std::real(__z) < _Real{0})
-	return _Real{2} * std::exp(-__z * __z) - __fadeeva(-__z);
-      else if (std::abs(__z) < _Real{15})
-	return __erfc_series(__z);
+      const auto s_NaN = emsr::quiet_NaN(std::real(z));
+      const auto s_i = _Cmplx{0, 1};
+      if (std::isnan(z))
+	return _Cmplx{s_NaN, s_NaN};
+      else if (std::real(z) < _Real{0})
+	return _Real{2} * std::exp(-z * z) - fadeeva(-z);
+      else if (std::abs(z) < _Real{15})
+	return erfc_series(z);
       else
-	return __fadeeva_cont_frac(__z);
+	return fadeeva_cont_frac(z);
     }
 
   /**
@@ -204,21 +208,21 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __erfc(_Tp __x)
+    erfc(_Tp x)
     {
-      const auto _S_inf = emsr::infinity(__x);
-      const auto _S_cfrac = _Tp{0.025} * std::numeric_limits<_Tp>::digits;
+      const auto s_inf = emsr::infinity(x);
+      const auto s_cfrac = _Tp{0.025} * std::numeric_limits<_Tp>::digits;
 
-      if (std::isnan(__x))
-	return __x;
-      else if (__x == -_S_inf)
+      if (std::isnan(x))
+	return x;
+      else if (x == -s_inf)
 	return _Tp{2};
-      else if (__x == +_S_inf)
+      else if (x == +s_inf)
 	return _Tp{0};
-      else if (__x < _S_cfrac)
-	return __erfc_series(__x);
+      else if (x < s_cfrac)
+	return erfc_series(x);
       else
-	return __erfc_cont_frac(__x);
+	return erfc_cont_frac(x);
     }
 
   /**
@@ -226,21 +230,21 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __erf(_Tp __x)
+    erf(_Tp x)
     {
-      const auto _S_inf = std::numeric_limits<_Tp>::infinity();
-      const auto _S_cfrac = _Tp{0.025} * std::numeric_limits<_Tp>::digits;
+      const auto s_inf = std::numeric_limits<_Tp>::infinity();
+      const auto s_cfrac = _Tp{0.025} * std::numeric_limits<_Tp>::digits;
 
-      if (std::isnan(__x))
-	return __x;
-      else if (__x == -_S_inf)
+      if (std::isnan(x))
+	return x;
+      else if (x == -s_inf)
 	return _Tp{0};
-      else if (__x == +_S_inf)
+      else if (x == +s_inf)
 	return _Tp{1};
-      else if (__x < _S_cfrac)
-	return _Tp{1} - __erfc_series(__x);
+      else if (x < s_cfrac)
+	return _Tp{1} - erfc_series(x);
       else
-	return _Tp{1} - __erfc_cont_frac(__x);
+	return _Tp{1} - erfc_cont_frac(x);
     }
 
   /**
@@ -258,31 +262,31 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __erfc_asymp(int __k, _Tp __x)
+    erfc_asymp(int k, _Tp x)
     {
-      constexpr auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
-      const auto _S_max_iter = 200;
-      const auto __2x = _Tp{2} * __x;
+      constexpr auto s_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto s_sqrt_pi = emsr::sqrtpi_v<_Tp>;
+      const auto s_max_iter = 200;
+      const auto __2x = _Tp{2} * x;
       const auto __2xm2 = -_Tp{1} / (__2x * __2x);
-      auto __term = _Tp{1};
-      auto __sum = __term;
-      auto __kfact = std::__detail::__factorial<_Tp>(__k);
-      auto __prev_term = std::abs(__term);
-      for (int __m = 1; __m < _S_max_iter; ++__m)
+      auto term = _Tp{1};
+      auto sum = term;
+      auto kfact = emsr::detail::factorial<_Tp>(k);
+      auto prev_term = std::abs(term);
+      for (int m = 1; m < s_max_iter; ++m)
 	{
-	  __term *= __2xm2 * _Tp(__k + 2 * __m) * _Tp(__k + 2 * __m - 1)
-		  / _Tp(__m) / __kfact;
-	  if (std::abs(__term) > __prev_term)
+	  term *= __2xm2 * _Tp(k + 2 * m) * _Tp(k + 2 * m - 1)
+		  / _Tp(m) / kfact;
+	  if (std::abs(term) > prev_term)
 	    break;
-	  __prev_term = std::abs(__term);
-	  __sum += __term;
-	  if (std::abs(__term) < _S_eps * std::abs(__sum))
+	  prev_term = std::abs(term);
+	  sum += term;
+	  if (std::abs(term) < s_eps * std::abs(sum))
 	    break;
 	}
-      const auto __fact = _Tp{2} * std::exp(__x * __x)
-			/ std::pow(__2x, _Tp(__k + 1)) / _S_sqrt_pi;
-      return __fact * __sum;
+      const auto fact = _Tp{2} * std::exp(x * x)
+			/ std::pow(__2x, _Tp(k + 1)) / s_sqrt_pi;
+      return fact * sum;
     }
 
   /**
@@ -309,26 +313,26 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __erfc_recur(int __k, _Tp __x)
+    erfc_recur(int k, _Tp x)
     {
-      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
+      const auto s_sqrt_pi = emsr::sqrtpi_v<_Tp>;
 
-      auto __erfcm2 = _Tp{2} * std::exp(-__x * __x) / _S_sqrt_pi;
-      if (__k == -1)
-	return __erfcm2;
+      auto erfcm2 = _Tp{2} * std::exp(-x * x) / s_sqrt_pi;
+      if (k == -1)
+	return erfcm2;
 
-      auto __erfcm1 = __erfc(__x);
-      if (__k == 0)
-	return __erfcm1;
+      auto erfcm1 = erfc(x);
+      if (k == 0)
+	return erfcm1;
 
-      auto __erfcm0 = -__x * __erfcm1 + __erfcm2 / _Tp{2};
-      for (int __i = 2; __i <= __k; ++__i)
+      auto erfcm0 = -x * erfcm1 + erfcm2 / _Tp{2};
+      for (int i = 2; i <= k; ++i)
 	{
-	  __erfcm2 = __erfcm1;
-	  __erfcm1 = __erfcm0;
-	  __erfcm0 = (-__x * __erfcm1 + __erfcm2 / _Tp{2}) / __i;
+	  erfcm2 = erfcm1;
+	  erfcm1 = erfcm0;
+	  erfcm0 = (-x * erfcm1 + erfcm2 / _Tp{2}) / i;
 	}
-      return __erfcm0;
+      return erfcm0;
     }
 
   /**
@@ -336,29 +340,29 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __erfc(int __k, _Tp __x)
+    erfc(int k, _Tp x)
     {
-      const auto _S_inf = std::numeric_limits<_Tp>::infinity();
+      const auto s_inf = std::numeric_limits<_Tp>::infinity();
 
-      if (std::isnan(__x))
-	return __x;
-      else if (__x == -_S_inf)
-	return +_S_inf;
-      else if (__x == +_S_inf)
+      if (std::isnan(x))
+	return x;
+      else if (x == -s_inf)
+	return +s_inf;
+      else if (x == +s_inf)
 	return _Tp{0};
       else
-	return __erfc_recur(__k, __x);
+	return erfc_recur(k, x);
     }
 
-} // namespace std
-} // namespace __detail
+} // namespace detail
+} // namespace emsr
 
 template<typename _Tp>
   void
   test_erfc(_Tp proto = _Tp{})
   {
-    using namespace std::literals::complex_literals;
-    const auto _S_NaN = std::numeric_limits<_Tp>::quiet_NaN();
+    using namespace std::complex_literals;
+    const auto s_NaN = std::numeric_limits<_Tp>::quiet_NaN();
     std::cout.precision(emsr::digits10(proto));
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
@@ -367,29 +371,29 @@ template<typename _Tp>
     for (int i = -200; i <= 1000; ++i)
       {
 	auto x = del * i;
-	auto __erfc = std::erfc(x);
+	auto erfc = std::erfc(x);
 	std::cout << ' ' << x
-		  << ' ' << std::setw(width) << __erfc;
+		  << ' ' << std::setw(width) << erfc;
 
 	try
 	  {
-	    auto __erfcs = std::__detail::__erfc_series(x);
-	    std::cout << ' ' << std::setw(width) << __erfcs;
+	    auto erfcs = emsr::detail::erfc_series(x);
+	    std::cout << ' ' << std::setw(width) << erfcs;
 	  }
 	catch (std::runtime_error& err)
 	  {
-	    std::cout << ' ' << std::setw(width) << _S_NaN;
+	    std::cout << ' ' << std::setw(width) << s_NaN;
 	    std::cerr << err.what() << '\n';
 	  }
 
 	try
 	  {
-	    auto __erfccf = std::__detail::__erfc_cont_frac(x);
-	    std::cout << ' ' << std::setw(width) << __erfccf;
+	    auto erfccf = emsr::detail::erfc_cont_frac(x);
+	    std::cout << ' ' << std::setw(width) << erfccf;
 	  }
 	catch (std::runtime_error& err)
 	  {
-	    std::cout << ' ' << std::setw(width) << _S_NaN;
+	    std::cout << ' ' << std::setw(width) << s_NaN;
 	    std::cerr << err.what() << '\n';
 	  }
 
@@ -411,12 +415,12 @@ template<typename _Tp>
 	      << ' ' << std::setw(w) << "x"
 	      << ' ' << std::setw(w) << "erf(x)"
 	      << '\n';
-    for (int __k = -200; __k <= 200; ++__k)
+    for (int k = -200; k <= 200; ++k)
       {
-	auto __x = __k * _Tp{0.01Q};
-	auto __erfx = std::__detail::__erf(__x);
-	std::cout << ' ' << std::setw(w) << __x
-		  << ' ' << std::setw(w) << __erfx
+	auto x = k * _Tp{0.01Q};
+	auto erfx = emsr::detail::erf(x);
+	std::cout << ' ' << std::setw(w) << x
+		  << ' ' << std::setw(w) << erfx
 		  << '\n';
       }
 
@@ -424,12 +428,12 @@ template<typename _Tp>
 	      << ' ' << std::setw(w) << "x"
 	      << ' ' << std::setw(w) << "erfc(x)"
 	      << '\n';
-    for (int __k = -200; __k <= 200; ++__k)
+    for (int k = -200; k <= 200; ++k)
       {
-	auto __x = __k * _Tp{0.01Q};
-	auto __erfcx = std::__detail::__erfc(__x);
-	std::cout << ' ' << std::setw(w) << __x
-		  << ' ' << std::setw(w) << __erfcx
+	auto x = k * _Tp{0.01Q};
+	auto erfcx = emsr::detail::erfc(x);
+	std::cout << ' ' << std::setw(w) << x
+		  << ' ' << std::setw(w) << erfcx
 		  << '\n';
       }
 
@@ -443,12 +447,12 @@ template<typename _Tp>
 	      << ' ' << std::setw(w) << "i^4erfc(x)"
 	      << ' ' << std::setw(w) << "i^5erfc(x)"
 	      << '\n';
-    for (int __k = -200; __k <= 500; ++__k)
+    for (int k = -200; k <= 500; ++k)
       {
-	auto __x = __k * _Tp{0.01Q};
-	std::cout << ' ' << std::setw(w) << __x;
-	for (int __n = -1; __n <= 5; ++__n)
-	  std::cout << ' ' << std::setw(w) << std::__detail::__erfc(__n, __x);
+	auto x = k * _Tp{0.01Q};
+	std::cout << ' ' << std::setw(w) << x;
+	for (int n = -1; n <= 5; ++n)
+	  std::cout << ' ' << std::setw(w) << emsr::detail::erfc(n, x);
 	std::cout << '\n';
       }
   }

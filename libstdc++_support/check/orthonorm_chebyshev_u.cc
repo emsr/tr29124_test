@@ -21,6 +21,7 @@
 
 #include <cmath>
 
+#include <emsr/specfun.h>
 #include <emsr/integration.h>
 
 #if defined(__TEST_DEBUG)
@@ -42,8 +43,8 @@ template<typename _Tp>
   {
     const auto
     _S_pi_2 = _Tp{3.1415'92653'58979'32384'62643'38327'95028'84195e+0L} / _Tp{2};
-    return __gnu_cxx::chebyshev_u(n2, x)
-	 * __gnu_cxx::chebyshev_u(n1, x)
+    return emsr::chebyshev_u(n2, x)
+	 * emsr::chebyshev_u(n1, x)
 	 * std::sqrt(_Tp{1} - x * x)
 	 / _S_pi_2;
   }

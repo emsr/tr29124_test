@@ -25,6 +25,7 @@
 #include <string>
 
 #include <emsr/integration.h>
+#include <emsr/specfun.h>
 
 // Function which should integrate to 1 for l1 == l2, 0 otherwise.
 template<typename _Tp>
@@ -32,8 +33,8 @@ template<typename _Tp>
   normalized_assoc_legendre(int l1, int m1, int l2, int m2, _Tp x)
   {
     return (_Tp(l1 + l2 + 1) / _Tp{2})
-	 * std::assoc_legendre(l1, m1, x)
-	 * std::assoc_legendre(l2, m2, x);
+	 * emsr::assoc_legendre(l1, m1, x)
+	 * emsr::assoc_legendre(l2, m2, x);
   }
 
 template<typename _Tp>

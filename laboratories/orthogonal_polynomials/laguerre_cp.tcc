@@ -10,27 +10,27 @@
    */
   template<typename _Tpa, class _Tp>
   _Tp
-    __laguerre_n_cp(unsigned int __n, _Tpa __alpha, _Tp __x)
+    laguerre_n_cp(unsigned int n, _Tpa alpha, _Tp x)
     {
-      constexpr auto __max = _Tp{0.9L} * std::numeric_limits<_Tp>::max();
-      const auto __lnfact = __log_gamma(__n + _Tp{1});
-      const auto __lg1 = __log_gamma(__alpha + _Tp{1} + __n);
-      const auto __s1 = __log_gamma_sign(__alpha + _Tp{1} + __n);
-      const auto __lg2 = __log_gamma(__alpha + _Tp{1});
-      const auto __s2 = __log_gamma_sign(__alpha + _Tp{1});
-      const auto lnpre = (__lg1 - __lg2) - __lnfact;
+      constexpr auto max = _Tp{0.9L} * std::numeric_limits<_Tp>::max();
+      const auto lnfact = log_gamma(n + _Tp{1});
+      const auto lg1 = log_gamma(alpha + _Tp{1} + n);
+      const auto s1 = log_gamma_sign(alpha + _Tp{1} + n);
+      const auto lg2 = log_gamma(alpha + _Tp{1});
+      const auto s2 = log_gamma_sign(alpha + _Tp{1});
+      const auto lnpre = (lg1 - lg2) - lnfact;
 
-      auto __poly_1F1 = _Tp{1};
-      for (auto __k = int(__n) - 1; __k >= 0; --__k)
+      auto poly_1F1 = _Tp{1};
+      for (auto k = int(n) - 1; k >= 0; --k)
 	{
-	  auto __t = (-int(__n) + __k) * (__x / _Tp(__k + 1))
-		   / (__alpha + _Tp{1} + __k);
-	  auto __r = __t + _Tp{1} / __poly_1F1;
-	  if (__r > __max / __poly_1F1) // Internal error only, catch in the main routine.
-            std::__throw_runtime_error(__N("__laguerre_n_cp: series failed));
+	  auto t = (-int(n) + k) * (x / _Tp(k + 1))
+		   / (alpha + _Tp{1} + k);
+	  auto r = t + _Tp{1} / poly_1F1;
+	  if (r > max / poly_1F1) // Internal error only, catch in the main routine.
+            throw std::runtime_error("laguerre_n_cp: series failed);
 	  else // Collect the Horner terms.
-            __poly_1F1  = _Tp{1} + __t * __poly_1F1;
+            poly_1F1  = _Tp{1} + t * poly_1F1;
 	}
 
-      return std::exp(__lnpre) * __poly_1F1;
+      return std::exp(lnpre) * poly_1F1;
     }

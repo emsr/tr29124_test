@@ -65,188 +65,188 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     ///
     template <typename _Tp>
     void
-    __bessel_ik(const _Tp __nu, const _Tp __x,
-                _Tp & __I_nu, _Tp & __K_nu, _Tp & __Ip_nu, _Tp & __Kp_nu)
+    bessel_ik(const _Tp nu, const _Tp x,
+                _Tp & I_nu, _Tp & K_nu, _Tp & Ip_nu, _Tp & Kp_nu)
     {
 
-      if (__x < _Tp(0) || __nu < _Tp(0))
-        __throw_runtime_error(__N("Bad arguments in "
-                                  "__bessel_ik."));
+      if (x < _Tp(0) || nu < _Tp(0))
+        throw_runtime_error(N("Bad arguments in "
+                                  "bessel_ik."));
 
-      if (std::isnan(__nu) || std::isnan(__x))
+      if (std::isnan(nu) || std::isnan(x))
         {
-          __I_nu = std::numeric_limits<_Tp>::quiet_NaN();
-          __K_nu = std::numeric_limits<_Tp>::quiet_NaN();
-          __Ip_nu = std::numeric_limits<_Tp>::quiet_NaN();
-          __Kp_nu = std::numeric_limits<_Tp>::quiet_NaN();
+          I_nu = std::numeric_limits<_Tp>::quiet_NaN();
+          K_nu = std::numeric_limits<_Tp>::quiet_NaN();
+          Ip_nu = std::numeric_limits<_Tp>::quiet_NaN();
+          Kp_nu = std::numeric_limits<_Tp>::quiet_NaN();
           return;
         }
 
-      if (__x == _Tp(0))
+      if (x == _Tp(0))
         {
-          if (__nu == _Tp(0))
+          if (nu == _Tp(0))
             {
-              __I_nu = _Tp(1);
-              __K_nu = std::numeric_limits<_Tp>::infinity();
-              __Ip_nu = _Tp(0);
-              __Kp_nu = -std::numeric_limits<_Tp>::infinity();
+              I_nu = _Tp(1);
+              K_nu = std::numeric_limits<_Tp>::infinity();
+              Ip_nu = _Tp(0);
+              Kp_nu = -std::numeric_limits<_Tp>::infinity();
             }
           else
             {
-              __I_nu = _Tp(0);
-              __K_nu = std::numeric_limits<_Tp>::infinity();
-              //__Ip_nu = ???
-              //__Kp_nu = ???
+              I_nu = _Tp(0);
+              K_nu = std::numeric_limits<_Tp>::infinity();
+              //Ip_nu = ???
+              //Kp_nu = ???
             }
           return;
         }
 
-      const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
-      const _Tp __fp_min = _Tp(10) * std::numeric_limits<_Tp>::epsilon();
-      const int __max_iter = 15000;
-      const _Tp __x_min = _Tp(2);
+      const _Tp eps = std::numeric_limits<_Tp>::epsilon();
+      const _Tp fp_min = _Tp(10) * std::numeric_limits<_Tp>::epsilon();
+      const int max_iter = 15000;
+      const _Tp x_min = _Tp(2);
 
-      const int __nl = static_cast<int>(__nu + _Tp(0.5L));
+      const int nl = static_cast<int>(nu + _Tp(0.5L));
 
 #define _TR1_MU_WART 1
 #if _TR1_MU_WART
       //  Bump |mu| away from 0.5.  This is a wart.
-      _Tp __mu = __nu - __nl;
-      if (__mu == -_Tp(0.5L))
-        __mu += 10 * __eps;
-      else if (__mu == _Tp(0.5L))
-        __mu -= 10 * __eps;
+      _Tp mu = nu - nl;
+      if (mu == -_Tp(0.5L))
+        mu += 10 * eps;
+      else if (mu == _Tp(0.5L))
+        mu -= 10 * eps;
 #else
-      const _Tp __mu = __nu - __nl;
+      const _Tp mu = nu - nl;
 #endif
-      const _Tp __mu2 = __mu * __mu;
-      const _Tp __xi = _Tp(1) / __x;
-      const _Tp __xi2 = _Tp(2) * __xi;
-      _Tp __h = __nu * __xi;
-      if ( __h < __fp_min )
-        __h = __fp_min;
-      _Tp __b = __xi2 * __nu;
-      _Tp __d = _Tp(0);
-      _Tp __c = __h;
-      int __i;
-      for ( __i = 1; __i <= __max_iter; ++__i )
+      const _Tp mu2 = mu * mu;
+      const _Tp xi = _Tp(1) / x;
+      const _Tp xi2 = _Tp(2) * xi;
+      _Tp h = nu * xi;
+      if ( h < fp_min )
+        h = fp_min;
+      _Tp b = xi2 * nu;
+      _Tp d = _Tp(0);
+      _Tp c = h;
+      int i;
+      for ( i = 1; i <= max_iter; ++i )
         {
-          __b += __xi2;
-          __d = _Tp(1) / (__b + __d);
-          __c = __b + _Tp(1) / __c;
-          const _Tp __del = __c * __d;
-          __h = __del * __h;
-          if (std::abs(__del - _Tp(1)) < __eps)
+          b += xi2;
+          d = _Tp(1) / (b + d);
+          c = b + _Tp(1) / c;
+          const _Tp del = c * d;
+          h = del * h;
+          if (std::abs(del - _Tp(1)) < eps)
             break;
         }
-      if (__i > __max_iter)
-        __throw_runtime_error(__N("Argument x too large in __bessel_ik; "
+      if (i > max_iter)
+        throw_runtime_error(N("Argument x too large in bessel_ik; "
                                   "try asymptotic expansion."));
-      _Tp __I_nul = __fp_min;
-      _Tp __Ip_nul = __h * __I_nul;
-      _Tp __I_nul1 = __I_nul;
-      _Tp __Ip_nu1 = __Ip_nul;
-      _Tp __fact = __nu * __xi;
-      for (int __l = __nl; __l >= 1; --__l)
+      _Tp I_nul = fp_min;
+      _Tp Ip_nul = h * I_nul;
+      _Tp I_nul1 = I_nul;
+      _Tp Ip_nu1 = Ip_nul;
+      _Tp fact = nu * xi;
+      for (int l = nl; l >= 1; --l)
         {
-          const _Tp __I_nutemp = __fact * __I_nul + __Ip_nul;
-          __fact -= __xi;
-          __Ip_nul = __fact * __I_nutemp + __I_nul;
-          __I_nul = __I_nutemp;
+          const _Tp I_nutemp = fact * I_nul + Ip_nul;
+          fact -= xi;
+          Ip_nul = fact * I_nutemp + I_nul;
+          I_nul = I_nutemp;
         }
-      _Tp __f = __Ip_nul / __I_nul;
-      _Tp __K_mu, __K_nu1;
-      if (__x < __x_min)
+      _Tp f = Ip_nul / I_nul;
+      _Tp K_mu, K_nu1;
+      if (x < x_min)
         {
-          const _Tp __x2 = __x / _Tp(2);
-          const _Tp __pimu = __PI * __mu;
-          const _Tp __fact = (std::abs(__pimu) < __eps
-                            ? _Tp(1) : __pimu / std::sin(__pimu));
-          _Tp __d = -std::log(__x2);
-          _Tp __e = __mu * __d;
-          const _Tp __fact2 = (std::abs(__e) < __eps
-                            ? _Tp(1) : std::sinh(__e) / __e);
-          _Tp __gam1, __gam2, __gampl, __gammi;
-          __gamma_temme(__mu, __gampl, __gammi, __gam1, __gam2);
-          _Tp __ff = __fact * (__gam1 * std::cosh(__e)
-                             + __gam2 * __fact2 * __d);
-          _Tp __sum = __ff;
-          __e = std::exp(__e);
-          _Tp __p = __e / (_Tp(2) * __gampl);
-          _Tp __q = _Tp(1) / (_Tp(2) * __e * __gammi);
-          _Tp __c = _Tp(1);
-          __d = __x2 * __x2;
-          _Tp __sum1 = __p;
-          int __i;
-          for (__i = 1; __i <= __max_iter; ++__i)
+          const _Tp x2 = x / _Tp(2);
+          const _Tp pimu = PI * mu;
+          const _Tp fact = (std::abs(pimu) < eps
+                            ? _Tp(1) : pimu / std::sin(pimu));
+          _Tp d = -std::log(x2);
+          _Tp e = mu * d;
+          const _Tp fact2 = (std::abs(e) < eps
+                            ? _Tp(1) : std::sinh(e) / e);
+          _Tp gam1, gam2, gampl, gammi;
+          gamma_temme(mu, gampl, gammi, gam1, gam2);
+          _Tp ff = fact * (gam1 * std::cosh(e)
+                             + gam2 * fact2 * d);
+          _Tp sum = ff;
+          e = std::exp(e);
+          _Tp p = e / (_Tp(2) * gampl);
+          _Tp q = _Tp(1) / (_Tp(2) * e * gammi);
+          _Tp c = _Tp(1);
+          d = x2 * x2;
+          _Tp sum1 = p;
+          int i;
+          for (i = 1; i <= max_iter; ++i)
             {
-              __ff = (__i * __ff + __p + __q) / (__i * __i - __mu2);
-              __c *= __d / __i;
-              __p /= __i - __mu;
-              __q /= __i + __mu;
-              const _Tp __del = __c * __ff;
-              __sum += __del; 
-              const _Tp __del1 = __c * (__p - __i * __ff);
-              __sum1 += __del1;
-              if (std::abs(__del) < __eps * std::abs(__sum))
+              ff = (i * ff + p + q) / (i * i - mu2);
+              c *= d / i;
+              p /= i - mu;
+              q /= i + mu;
+              const _Tp del = c * ff;
+              sum += del; 
+              const _Tp del1 = c * (p - i * ff);
+              sum1 += del1;
+              if (std::abs(del) < eps * std::abs(sum))
                 break;
             }
-          if (__i > __max_iter)
-            __throw_runtime_error(__N("Bessel k series failed to converge "
-                                      "in __bessel_ik."));
-          __K_mu = __sum;
-          __K_nu1 = __sum1 * __xi2;
+          if (i > max_iter)
+            throw_runtime_error(N("Bessel k series failed to converge "
+                                      "in bessel_ik."));
+          K_mu = sum;
+          K_nu1 = sum1 * xi2;
         }
       else
         {
-          _Tp __b = _Tp(2) * (_Tp(1) + __x);
-          _Tp __d = _Tp(1) / __b;
-          _Tp __delh = __d;
-          _Tp __h = __delh;
-          _Tp __q1 = _Tp(0);
-          _Tp __q2 = _Tp(1);
-          _Tp __a1 = 0.25L - __mu2;
-          _Tp __q = __c = __a1;
-          _Tp __a = -__a1;
-          _Tp __s = _Tp(1) + __q * __delh;
-          int __i;
-          for (__i = 2; __i <= __max_iter; ++__i)
+          _Tp b = _Tp(2) * (_Tp(1) + x);
+          _Tp d = _Tp(1) / b;
+          _Tp delh = d;
+          _Tp h = delh;
+          _Tp q1 = _Tp(0);
+          _Tp q2 = _Tp(1);
+          _Tp a1 = 0.25L - mu2;
+          _Tp q = c = a1;
+          _Tp a = -a1;
+          _Tp s = _Tp(1) + q * delh;
+          int i;
+          for (i = 2; i <= max_iter; ++i)
             {
-              __a -= 2 * (__i - 1);
-              __c = -__a * __c / __i;
-              const _Tp __qnew = (__q1 - __b * __q2) / __a;
-              __q1 = __q2;
-              __q2 = __qnew;
-              __q += __c * __qnew;
-              __b += _Tp(2);
-              __d = _Tp(1) / (__b + __a * __d);
-              __delh = (__b * __d - _Tp(1)) * __delh;
-              __h += __delh;
-              const _Tp __dels = __q * __delh;
-              __s += __dels;
-              if ( std::abs(__dels / __s) < __eps )
+              a -= 2 * (i - 1);
+              c = -a * c / i;
+              const _Tp qnew = (q1 - b * q2) / a;
+              q1 = q2;
+              q2 = qnew;
+              q += c * qnew;
+              b += _Tp(2);
+              d = _Tp(1) / (b + a * d);
+              delh = (b * d - _Tp(1)) * delh;
+              h += delh;
+              const _Tp dels = q * delh;
+              s += dels;
+              if ( std::abs(dels / s) < eps )
                 break;
             }
-          if (__i > __max_iter)
-            __throw_runtime_error(__N("Steed's method failed "
-                                      "in __bessel_ik."));
-          __h = __a1 * __h;
-          __K_mu = std::sqrt(__PI / (_Tp(2) * __x)) * std::exp(-__x) / __s;
-          __K_nu1 = __K_mu * (__mu + __x + _Tp(0.5L) - __h) * __xi;
+          if (i > max_iter)
+            throw_runtime_error(N("Steed's method failed "
+                                      "in bessel_ik."));
+          h = a1 * h;
+          K_mu = std::sqrt(PI / (_Tp(2) * x)) * std::exp(-x) / s;
+          K_nu1 = K_mu * (mu + x + _Tp(0.5L) - h) * xi;
         }
 
-      _Tp __K_mup = __mu * __xi * __K_mu - __K_nu1;
-      _Tp __I_mu = __xi / (__f * __K_mu - __K_mup);
-      __I_nu = __I_mu * __I_nul1 / __I_nul;
-      __Ip_nu = __I_mu * __Ip_nu1 / __I_nul;
-      for ( __i = 1; __i <= __nl; ++__i )
+      _Tp K_mup = mu * xi * K_mu - K_nu1;
+      _Tp I_mu = xi / (f * K_mu - K_mup);
+      I_nu = I_mu * I_nul1 / I_nul;
+      Ip_nu = I_mu * Ip_nu1 / I_nul;
+      for ( i = 1; i <= nl; ++i )
         {
-          const _Tp __K_nutemp = (__mu + __i) * __xi2 * __K_nu1 + __K_mu;
-          __K_mu = __K_nu1;
-          __K_nu1 = __K_nutemp;
+          const _Tp K_nutemp = (mu + i) * xi2 * K_nu1 + K_mu;
+          K_mu = K_nu1;
+          K_nu1 = K_nutemp;
         }
-      __K_nu = __K_mu;
-      __Kp_nu = __nu * __xi * __K_mu - __K_nu1;
+      K_nu = K_mu;
+      Kp_nu = nu * xi * K_mu - K_nu1;
 
       return;
     }
@@ -258,19 +258,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     ///
     template<typename _Tp>
     _Tp
-    __cyl_bessel_i(const _Tp __nu, const _Tp __x)
+    cyl_bessel_i(const _Tp nu, const _Tp x)
     {
-      if (__x < _Tp(0))
-        std::__throw_domain_error(__N("Bad argument "
-                                      "in __cyl_bessel_i."));
+      if (x < _Tp(0))
+        throw std::domain_error("Bad argument in cyl_bessel_i.");
 
-      if (std::isnan(__nu) || std::isnan(__x))
+      if (std::isnan(nu) || std::isnan(x))
         return std::numeric_limits<_Tp>::quiet_NaN();
 
-      _Tp __I_nu, __K_nu, __Ip_nu, __Kp_nu;
-      __bessel_ik(__nu, __x, __I_nu, __K_nu, __Ip_nu, __Kp_nu);
+      _Tp I_nu, K_nu, Ip_nu, Kp_nu;
+      bessel_ik(nu, x, I_nu, K_nu, Ip_nu, Kp_nu);
 
-      return __I_nu;
+      return I_nu;
     }
 
 
@@ -280,19 +279,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     ///
     template<typename _Tp>
     _Tp
-    __cyl_bessel_k(const _Tp __nu, const _Tp __x)
+    cyl_bessel_k(const _Tp nu, const _Tp x)
     {
-      if (__x < _Tp(0))
-        std::__throw_domain_error(__N("Bad argument "
-                                      "in __cyl_bessel_k."));
+      if (x < _Tp(0))
+        throw std::domain_error("Bad argument in cyl_bessel_k.");
 
-      if (std::isnan(__nu) || std::isnan(__x))
+      if (std::isnan(nu) || std::isnan(x))
         return std::numeric_limits<_Tp>::quiet_NaN();
 
-      _Tp __I_nu, __K_nu, __Ip_nu, __Kp_nu;
-      __bessel_ik(__nu, __x, __I_nu, __K_nu, __Ip_nu, __Kp_nu);
+      _Tp I_nu, K_nu, Ip_nu, Kp_nu;
+      bessel_ik(nu, x, I_nu, K_nu, Ip_nu, Kp_nu);
 
-      return __K_nu;
+      return K_nu;
     }
 
 
@@ -304,25 +302,25 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     ///
     template <typename _Tp>
     void
-    __sph_bessel_ik(const unsigned int __n, const _Tp __x,
-                    _Tp & __i_n, _Tp & __k_n, _Tp & __ip_n, _Tp & __kp_n)
+    sph_bessel_ik(const unsigned int n, const _Tp x,
+                    _Tp & i_n, _Tp & k_n, _Tp & ip_n, _Tp & kp_n)
     {
 
-      if (__x < _Tp(0))
-        __throw_runtime_error(__N("Bad arguments "
+      if (x < _Tp(0))
+        throw_runtime_error(N("Bad arguments "
                                   "in sph_bessel."));
 
-      const _Tp __nu = _Tp(__n) + _Tp(0.5L);
+      const _Tp nu = _Tp(n) + _Tp(0.5L);
 
-      _Tp __I_nu, __Ip_nu, __K_nu, __Kp_nu;
-      __bessel_ik(__nu, __x, __I_nu, __K_nu, __Ip_nu, __Kp_nu);
+      _Tp I_nu, Ip_nu, K_nu, Kp_nu;
+      bessel_ik(nu, x, I_nu, K_nu, Ip_nu, Kp_nu);
 
-      const _Tp __factor = _Tp(__SQRTPIO2) / std::sqrt(__x);
+      const _Tp factor = _Tp(SQRTPIO2) / std::sqrt(x);
 
-      __i_n = __factor * __I_nu;
-      __k_n = __factor * __K_nu;
-      __ip_n = __factor * __Ip_nu - __i_n / (_Tp(2) * __x);
-      __kp_n = __factor * __Kp_nu - __k_n / (_Tp(2) * __x);
+      i_n = factor * I_nu;
+      k_n = factor * K_nu;
+      ip_n = factor * Ip_nu - i_n / (_Tp(2) * x);
+      kp_n = factor * Kp_nu - k_n / (_Tp(2) * x);
 
       return;
     }
@@ -336,49 +334,49 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     ///
     template <typename _Tp>
     void
-    __airy(const _Tp __x,
-           _Tp & __Ai, _Tp & __Bi, _Tp & __Aip, _Tp & __Bip)
+    airy(const _Tp x,
+           _Tp & Ai, _Tp & Bi, _Tp & Aip, _Tp & Bip)
     {
-      const _Tp __absx = std::abs(__x);
-      const _Tp __rootx = std::sqrt(__absx);
-      const _Tp __z = _Tp(2) * __absx * __rootx / _Tp(3);
-      if (__x > _Tp(0))
+      const _Tp absx = std::abs(x);
+      const _Tp rootx = std::sqrt(absx);
+      const _Tp z = _Tp(2) * absx * rootx / _Tp(3);
+      if (x > _Tp(0))
         {
-          _Tp __I_nu, __Ip_nu, __K_nu, __Kp_nu;
+          _Tp I_nu, Ip_nu, K_nu, Kp_nu;
 
-          __bessel_jn(_Tp(1)/_Tp(3), __z, __I_nu, __K_nu, __Ip_nu, __Kp_nu);
-          __Ai = __rootx * __K_nu / (__SQRT3 * __PI);
-          __Bi = __rootx * (__K_nu / __PI + _Tp(2) * __I_nu / __SQRT3);
+          bessel_jn(_Tp(1)/_Tp(3), z, I_nu, K_nu, Ip_nu, Kp_nu);
+          Ai = rootx * K_nu / (SQRT3 * PI);
+          Bi = rootx * (K_nu / PI + _Tp(2) * I_nu / SQRT3);
 
-          __bessel_jn(_Tp(2)/_Tp(3), __z, __I_nu, __K_nu, __Ip_nu, __Kp_nu);
-          __Aip = -__x * __K_nu / (__SQRT3 * __PI);
-          __Bip = __x * (__K_nu / __PI + _Tp(2) * __I_nu / __SQRT3);
+          bessel_jn(_Tp(2)/_Tp(3), z, I_nu, K_nu, Ip_nu, Kp_nu);
+          Aip = -x * K_nu / (SQRT3 * PI);
+          Bip = x * (K_nu / PI + _Tp(2) * I_nu / SQRT3);
         }
-      else if (__x < _Tp(0))
+      else if (x < _Tp(0))
         {
-          _Tp __J_nu, __Jp_nu, __N_nu, __Np_nu;
+          _Tp J_nu, Jp_nu, N_nu, Np_nu;
 
-          __bessel_jn(_Tp(1)/_Tp(3), __z, __J_nu, __N_nu, __Jp_nu, __Np_nu);
-          __Ai = __rootx * (__J_nu - __N_nu / __SQRT3) / _Tp(2);
-          __Bi = -__rootx * (__N_nu + __J_nu / __SQRT3) / _Tp(2);
+          bessel_jn(_Tp(1)/_Tp(3), z, J_nu, N_nu, Jp_nu, Np_nu);
+          Ai = rootx * (J_nu - N_nu / SQRT3) / _Tp(2);
+          Bi = -rootx * (N_nu + J_nu / SQRT3) / _Tp(2);
 
-          __bessel_jn(_Tp(2)/_Tp(3), __z, __J_nu, __N_nu, __Jp_nu, __Np_nu);
-          __Aip = __absx * (__N_nu / __SQRT3 + __J_nu) / _Tp(2);
-          __Bip = __absx * (__J_nu / __SQRT3 - __N_nu) / _Tp(2);
+          bessel_jn(_Tp(2)/_Tp(3), z, J_nu, N_nu, Jp_nu, Np_nu);
+          Aip = absx * (N_nu / SQRT3 + J_nu) / _Tp(2);
+          Bip = absx * (J_nu / SQRT3 - N_nu) / _Tp(2);
         }
       else
         {
           // Reference:
           //   Abramowitz & Stegun, page 446 section 10.4.4 on Airy functions.
           // The number is Ai(0) = 3^{-2/3}/\Gamma(2/3).
-          __Ai = _Tp(0.35502805388781723926L);
-          __Bi = __Ai * __SQRT3;
+          Ai = _Tp(0.35502805388781723926L);
+          Bi = Ai * SQRT3;
 
           // Reference:
           //   Abramowitz & Stegun, page 446 section 10.4.5 on Airy functions.
           // The number is Ai'(0) = -3^{-1/3}/\Gamma(1/3).
-          __Aip = -_Tp(0.25881940379280679840L);
-          __Bip = -__Aip * __SQRT3;
+          Aip = -_Tp(0.25881940379280679840L);
+          Bip = -Aip * SQRT3;
         }
 
       return;

@@ -3263,7 +3263,7 @@ template<typename Ret, unsigned int Num>
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Ret f = __gnu_cxx::binomial<Ret>(data[i].n, data[i].k);
+	const Ret f = emsr::binomial<Ret>(data[i].n, data[i].k);
 	const bool failure_f = std::isnan(f);
 	if (!failure && failure_f)
 	  failure = true;

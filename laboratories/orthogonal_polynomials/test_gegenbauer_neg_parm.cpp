@@ -24,9 +24,9 @@ template<typename Tp>
       {
 	auto x = i * Tp{0.01L};
 	std::cout << ' ' << std::setw(w) << x
-		  << ' ' << std::setw(w) << lab::__gegenbauer_recur(n, lambda - 0.01, x).__C_n
-		  << ' ' << std::setw(w) << lab::__gegenbauer_recur(n, lambda, x).__C_n
-		  << ' ' << std::setw(w) << lab::__gegenbauer_recur(n, lambda + 0.01, x).__C_n
+		  << ' ' << std::setw(w) << lab::gegenbauer_recur(n, lambda - 0.01, x).C_n
+		  << ' ' << std::setw(w) << lab::gegenbauer_recur(n, lambda, x).C_n
+		  << ' ' << std::setw(w) << lab::gegenbauer_recur(n, lambda + 0.01, x).C_n
 		  << '\n';
       }
   }

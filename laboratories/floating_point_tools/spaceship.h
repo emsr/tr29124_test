@@ -12,11 +12,11 @@
 template<typename _Int>
   struct _Spaceship
   {
-    using __type = _Int;
+    using type = _Int;
 
     constexpr int
-    operator()(__type __a, __type __b)
-    { return __a < __b ? +1 : (__b < __a ? -1 : 0); }
+    operator()(type a, type b)
+    { return a < b ? +1 : (b < a ? -1 : 0); }
   };
 
 /**

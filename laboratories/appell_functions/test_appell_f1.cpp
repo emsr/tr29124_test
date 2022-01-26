@@ -9,7 +9,7 @@
 
 template<typename _Tp>
   _Tp
-  __appell_f1_series(_Tp alpha, _Tp betax, _Tp betay, _Tp gamma, _Tp x, _Tp y)
+  appell_f1_series(_Tp alpha, _Tp betax, _Tp betay, _Tp gamma, _Tp x, _Tp y)
   {
     const _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
     const int N = 100;
@@ -33,19 +33,19 @@ template<typename _Tp>
 
 template<typename _Tp>
   _Tp
-  __appell_f2_series(_Tp alpha, _Tp beta, _Tp betap, _Tp gamma, _Tp gammap, _Tp x, _Tp y)
+  appell_f2_series(_Tp alpha, _Tp beta, _Tp betap, _Tp gamma, _Tp gammap, _Tp x, _Tp y)
   {
   }
 
 template<typename _Tp>
   _Tp
-  __appell_f3_series(_Tp alpha, _Tp alphap, _Tp beta, _Tp betap, _Tp gamma, _Tp x, _Tp y)
+  appell_f3_series(_Tp alpha, _Tp alphap, _Tp beta, _Tp betap, _Tp gamma, _Tp x, _Tp y)
   {
   }
 
 template<typename _Tp>
   _Tp
-  __appell_f4_series(_Tp alpha, _Tp beta, _Tp gamma, _Tp gammap, _Tp x, _Tp y)
+  appell_f4_series(_Tp alpha, _Tp beta, _Tp gamma, _Tp gammap, _Tp x, _Tp y)
   {
   }
 
@@ -63,7 +63,7 @@ template<typename _Tp>
 	for (int n = -99; n <= 99; ++n)
 	  {
 	    auto y = n * del;
-	    auto f1 = __appell_f1_series(alpha, betax, betay, gamma, x, y);
+	    auto f1 = appell_f1_series(alpha, betax, betay, gamma, x, y);
 	    std::cout << ' ' << std::setw(w) << x
 		      << ' ' << std::setw(w) << y
 		      << ' ' << std::setw(w) << f1

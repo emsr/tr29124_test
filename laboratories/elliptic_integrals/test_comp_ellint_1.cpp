@@ -7,23 +7,24 @@
 #include <iomanip>
 #include <limits>
 #include <utility>
-#include <ext/float128_io.h>
+
+#include <emsr/float128_io.h>
 
 //  Use AGM to do an ab initio calculation of K(k).
 template<typename _Tp>
   _Tp
-  __comp_ellint_1_agm(_Tp __k)
+  comp_ellint_1_agm(_Tp k)
   {
-    constexpr auto _S_max_iter = 100;
-    auto __am = (_Tp{1} + __k) / _Tp{2};
-    auto __gm = std::sqrt(__k);
-    for (int __i = 0; __i < _S_max_iter; ++__i)
+    constexpr auto s_max_iter = 100;
+    auto am = (_Tp{1} + k) / _Tp{2};
+    auto gm = std::sqrt(k);
+    for (int i = 0; i < s_max_iter; ++i)
       {
-	__gm = std::sqrt(__gm * std::exchange(__am, (__am + __gm) / _Tp{2}));
-	if (std::abs(__am - __gm) < std::numeric_limits<_Tp>::epsilon())
+	gm = std::sqrt(gm * std::exchange(am, (am + gm) / _Tp{2}));
+	if (std::abs(am - gm) < std::numeric_limits<_Tp>::epsilon())
 	  break;
       }
-    return __gm;
+    return gm;
   }
 
 /**
@@ -32,14 +33,14 @@ template<typename _Tp>
  */
 template<typename _Tp>
   _Tp
-  __ellint_nome_series(_Tp __k)
+  ellint_nome_series(_Tp k)
   {
-    auto __m = __k * __k; 
-    return __m * ((_Tp{1} / _Tp{16})
-	 + __m * ((_Tp{1} / _Tp{32})
-	 + __m * ((_Tp{21} / _Tp{1024})
-	 + __m * ((_Tp{31} / _Tp{2048})
-	 + __m * (_Tp{6257} / _Tp{524288})))));
+    auto m = k * k; 
+    return m * ((_Tp{1} / _Tp{16})
+	 + m * ((_Tp{1} / _Tp{32})
+	 + m * ((_Tp{21} / _Tp{1024})
+	 + m * ((_Tp{31} / _Tp{2048})
+	 + m * (_Tp{6257} / _Tp{524288})))));
   }
 
 /**
@@ -48,13 +49,13 @@ template<typename _Tp>
  */
 template<typename _Tp>
   _Tp
-  __ellint_nome_agm(_Tp __k)
+  ellint_nome_agm(_Tp k)
   {
-    const auto _S_pi = emsr::pi_v<_Tp>;
-    auto __kp = std::sqrt((_Tp{1} - __k) * (_Tp{1} + __k));
-    auto __K = __comp_ellint_1_agm(__k);
-    auto __Kp = __comp_ellint_1_agm(__kp);
-    return std::exp(-_S_pi * __Kp / __K);
+    const auto s_pi = emsr::pi_v<_Tp>;
+    auto kp = std::sqrt((_Tp{1} - k) * (_Tp{1} + k));
+    auto K = comp_ellint_1_agm(k);
+    auto Kp = comp_ellint_1_agm(kp);
+    return std::exp(-s_pi * Kp / K);
   }
 
 /**
@@ -62,13 +63,13 @@ template<typename _Tp>
  */
 template<typename _Tp>
   _Tp
-  __ellint_nome(_Tp __k)
+  ellint_nome(_Tp k)
   {
-    const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-    if (__k < std::pow(_Tp{67} * _S_eps, _Tp{1}/_Tp{8}))
-      return __ellint_nome_series(__k);
+    const auto s_eps = std::numeric_limits<_Tp>::epsilon();
+    if (k < std::pow(_Tp{67} * s_eps, _Tp{1}/_Tp{8}))
+      return ellint_nome_series(k);
     else
-      return __ellint_nome_agm(__k);
+      return ellint_nome_agm(k);
   }
 
 
@@ -84,8 +85,8 @@ template<typename _Tp>
       {
 	auto k = i * del;
 	std::cout << ' ' << std::setw(width) << k
-		  << ' ' << std::setw(width) << __comp_ellint_1_agm(k)
-		  << ' ' << std::setw(width) << __ellint_nome(k) << '\n';
+		  << ' ' << std::setw(width) << comp_ellint_1_agm(k)
+		  << ' ' << std::setw(width) << ellint_nome(k) << '\n';
       }
   }
 

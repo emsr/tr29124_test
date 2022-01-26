@@ -74,7 +74,7 @@ namespace emsr
    * This is a more modern version of promote_N in ext/type_traits.
    * This is used for numeric argument promotion of complex and cmath.
    */
-  template<typename Tp, bool = std::is_integral<Tp>::value>
+  template<typename Tp, bool = std::is_integral_v<Tp>>
     struct fp_promote_help
     { using type = double; };
 
@@ -83,7 +83,7 @@ namespace emsr
   // <cmath> and <complex> to only the intended types.
   template<typename Tp>
     struct fp_promote_help<Tp, false>
-    { };
+    { }; // using type = void?
 
   template<>
     struct fp_promote_help<float>
@@ -112,12 +112,16 @@ namespace emsr
   // is an array.
   template<typename Tp, typename... _Tps>
     struct fp_promote
-    { using type = decltype(fp_promote_help_t<std::decay_t<Tp>>{}
-		   + typename fp_promote<_Tps...>::type{}); };
+    {
+      using type = decltype(fp_promote_help_t<std::decay_t<Tp>>{}
+		          + typename fp_promote<_Tps...>::type{});
+    };
 
   template<typename Tp>
     struct fp_promote<Tp>
-    { using type = decltype(fp_promote_help_t<std::decay_t<Tp>>{}); };
+    {
+      using type = decltype(fp_promote_help_t<std::decay_t<Tp>>{});
+    };
 
   template<typename... _Tps>
     using fp_promote_t = typename fp_promote<_Tps...>::type;

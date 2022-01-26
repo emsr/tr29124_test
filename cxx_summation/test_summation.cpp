@@ -1,5 +1,4 @@
 
-#include <ext/float128_math.h>
 #include <cmath>
 #include <cstdlib>
 #include <vector>
@@ -8,8 +7,11 @@
 #include <iostream>
 #include <iomanip>
 
-#include <ext/float128_io.h>
+#include <emsr/float128_math.h>
+#include <emsr/float128_io.h>
 #include <emsr/summation.h>
+#include <emsr/math_constants.h>
+#include <emsr/sf_expint.h>
 
 template<typename Tp>
   void
@@ -119,7 +121,7 @@ template<typename Tp>
     // 2F0(1,1;;-1/z) = z e^z E_1(z)
     const auto expint_scaled
       = [](Tp z)->Tp
-        { return z * std::exp(z)* __gnu_cxx::expint(1,z); };
+        { return z * std::exp(z)* emsr::expint(1,z); };
 
     // 2F0(1,1;;-1/z) = z e^zE_1(z)
     for (auto z : {Tp{3}, Tp{0.5L}})
@@ -214,7 +216,7 @@ template<typename Tp>
 	auto b = Tp{1};
 	auto c = Tp{2};
 	std::cout << "\n\n";
-	//std::cout << "  2F1(1,1;2;" << -z << ") = " << std::setw(w) << __gnu_cxx::hyperg(a, b, c, z) << "\n";
+	//std::cout << "  2F1(1,1;2;" << -z << ") = " << std::setw(w) << emsr::hyperg(a, b, c, z) << "\n";
 	std::cout << "  log(1 + " << z << ") / (" << z << ") = " << std::log1p(z) / z << '\n';
 	auto term = Tp{1};
 	BS.reset(term);

@@ -24,6 +24,8 @@
 #include <limits>
 #include <cmath>
 
+#include <emsr/specfun.h>
+
 #if defined(__TEST_DEBUG)
 #  include <iostream>
 #  define VERIFY(A) \
@@ -57,7 +59,7 @@ template<typename Tp>
     for (auto i = 1; i < 10; ++i)
       {
 	auto z = Tp{0.1L} * i;
-	auto hyp = Tp{2} * z * __gnu_cxx::conf_hyperg(Tp{0.5L}, Tp{1.5L}, -z * z) / _S_sqrt_pi;
+	auto hyp = Tp{2} * z * emsr::conf_hyperg(Tp{0.5L}, Tp{1.5L}, -z * z) / _S_sqrt_pi;
 	auto erf = std::erf(z);
 	stats << std::make_pair(hyp, erf);
       }
@@ -73,7 +75,7 @@ template<typename Tp>
     for (auto i = 1; i < 10; ++i)
       {
 	auto z = Tp{0.1L} * i;
-	auto hyp = __gnu_cxx::conf_hyperg(a, a, z);
+	auto hyp = emsr::conf_hyperg(a, a, z);
 	auto exp = std::exp(z);
 	stats << std::make_pair(hyp, exp);
       }
@@ -89,7 +91,7 @@ template<typename Tp>
     for (auto i = 1; i < 10; ++i)
       {
 	auto z = Tp{0.1L} * i;
-	auto hyp = z * std::exp(-z) * __gnu_cxx::conf_hyperg(Tp{1}, Tp{2}, Tp{2} * z);
+	auto hyp = z * std::exp(-z) * emsr::conf_hyperg(Tp{1}, Tp{2}, Tp{2} * z);
 	auto exp = std::sinh(z);
 	stats << std::make_pair(hyp, exp);
       }
@@ -105,8 +107,8 @@ template<typename Tp>
     for (auto i = 1; i < 10; ++i)
       {
 	auto z = Tp{0.1L} * i;
-	auto M = __gnu_cxx::conf_hyperg(a, c, z);
-	auto Mt = std::exp(z) * __gnu_cxx::conf_hyperg(c - a, c, -z);
+	auto M = emsr::conf_hyperg(a, c, z);
+	auto Mt = std::exp(z) * emsr::conf_hyperg(c - a, c, -z);
 	stats << std::make_pair(M, Mt);
       }
     VERIFY(stats.max_abs_frac < toler);
@@ -121,9 +123,9 @@ template<typename Tp>
     for (auto i = 1; i < 10; ++i)
       {
 	auto z = Tp{0.1L} * i;
-	auto U = __gnu_cxx::tricomi_u(a, c, z);
+	auto U = emsr::tricomi_u(a, c, z);
 	auto Ut = std::pow(z, Tp{1} - c)
-		* __gnu_cxx::tricomi_u(Tp{1} + a - c, Tp{1} - c, z);
+		* emsr::tricomi_u(Tp{1} + a - c, Tp{1} - c, z);
 	stats << std::make_pair(U, Ut);
       }
     VERIFY(stats.max_abs_frac < toler);

@@ -1993,7 +1993,7 @@ template<typename Ret, unsigned int Num>
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
   	 {
-	const Ret f = std::sph_legendre(data[i].l, data[i].m,
+	const Ret f = emsr::sph_legendre(data[i].l, data[i].m,
 		     data[i].theta);
 	const bool failure_f = std::isnan(f);
 	if (!failure && failure_f)

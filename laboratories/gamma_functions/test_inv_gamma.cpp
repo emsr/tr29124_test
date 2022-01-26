@@ -13,12 +13,12 @@ template<typename _Tp>
   _Tp
   lgamma_scaled(_Tp a)
   {
-    constexpr auto _S_ln2pi
+    constexpr auto s_ln2pi
       = emsr::ln2_v<_Tp>
       + emsr::lnpi_v<_Tp>;
     constexpr auto half = _Tp{1} / _Tp{2};
     return std::lgamma(a)
-	 - (a - half) * std::log(a) + a - half * _S_ln2pi;
+	 - (a - half) * std::log(a) + a - half * s_ln2pi;
   }
 
 // A fake Binet function.
@@ -26,11 +26,11 @@ template<typename _Tp>
   _Tp
   tgamma_scaled(_Tp a)
   {
-    constexpr auto _S_sqrt2pi
+    constexpr auto s_sqrt2pi
       = emsr::sqrt2_v<_Tp>
       + emsr::sqrtpi_v<_Tp>;
     return std::tgamma(a) * std::pow(a, -a + _Tp{0.5}) * std::exp(a)
-	 / _S_sqrt2pi;
+	 / s_sqrt2pi;
   }
 
 /**
@@ -126,10 +126,10 @@ template<typename _Tp>
   _Tp
   inv_gamma(_Tp a, _Tp p, _Tp q)
   {
-    constexpr auto _S_giant = std::numeric_limits<_Tp>::max() / _Tp{10};
-    constexpr auto _S_sqrt_2 = emsr::sqrt2_v<_Tp>;
-    constexpr auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
-    constexpr auto _S_sqrt_2pi = _S_sqrt_2 * _S_sqrt_pi;
+    constexpr auto s_giant = std::numeric_limits<_Tp>::max() / _Tp{10};
+    constexpr auto s_sqrt_2 = emsr::sqrt2_v<_Tp>;
+    constexpr auto s_sqrt_pi = emsr::sqrtpi_v<_Tp>;
+    constexpr auto s_sqrt_2pi = s_sqrt_2 * s_sqrt_pi;
     bool pcase;
     _Tp porq, s;
     if (p < 0.5)
@@ -184,7 +184,7 @@ template<typename _Tp>
 	const auto b = _Tp{1} - a;
 	const auto b2 = b * b;
 	const auto b3 = b2 * b;
-	eta = std::sqrt(-2 / a * std::log(q * tgamma_scaled(a) * _S_sqrt_2pi / std::sqrt(a)));
+	eta = std::sqrt(-2 / a * std::log(q * tgamma_scaled(a) * s_sqrt_2pi / std::sqrt(a)));
 	x0 = a * lambda(eta);
 	const auto L = std::log(x0);
 	if ((a > _Tp{0.12L}) || (x0 > _Tp{5}))
@@ -259,12 +259,12 @@ template<typename _Tp>
 	if (m == 0)
 	  {
 	    const auto dlnr = (_Tp{1} - a) * std::log(x) + x + std::lgamma(a);
-	    if (dlnr > std::log(_S_giant))
-	      std::__throw_runtime_error("inv_gamma: Overflow in computation");
+	    if (dlnr > std::log(s_giant))
+	      throw std::runtime_error("inv_gamma: Overflow in computation");
 	    else
 	      {
 		auto r = std::exp(dlnr);
-		const auto [px, qx] = std::__detail::__gamma(a, x);
+		const auto [px, qx] = emsr::detail::gamma(a, x);
 		if (pcase)
 		  ck[0] = -r * (px - p);
 		else
@@ -288,11 +288,11 @@ template<typename _Tp>
 	else
 	  {
 	    const auto y = eta;
-	    const auto fp = -std::sqrt(a) / _S_sqrt_2pi
+	    const auto fp = -std::sqrt(a) / s_sqrt_2pi
 			  * std::exp(-0.5 * a * y * y)
 			  / tgamma_scaled(a);
 	    auto r = -x / fp;
-	    const auto [px, qx] = std::__detail::__gamma(a, x);
+	    const auto [px, qx] = emsr::detail::gamma(a, x);
 	    if (pcase)
 	      ck[0] = -r * (px - p);
 	    else
@@ -317,8 +317,7 @@ template<typename _Tp>
 	++n;
       }
     if (n == max_num_iter)
-      std::__throw_runtime_error("inv_gamma:"
-				" Too many iterations in Newton root search.");
+      throw std::runtime_error("inv_gamma: Too many iterations in Newton root search.");
 
     return x;
   }
@@ -333,7 +332,7 @@ main()
       for (int ix = 0; ix <= 100; ++ix)
 	{
 	  auto x = ix * 0.1;
-	  const auto [p, q] = std::__detail::__gamma(a, x);
+	  const auto [p, q] = emsr::detail::gamma(a, x);
 	  const auto xr = inv_gamma(a, p, q);
 	  std::cout << ' ' << x
 		    << ' ' << p

@@ -7,7 +7,7 @@
 #include <limits>
 #include <cmath>
 
-#include <ext/float128_io.h>
+#include <emsr/float128_io.h>
 
 template<typename _Tp>
   void
@@ -40,9 +40,9 @@ template<typename _Tp>
     for (int i = -1600; i <= +1600; ++i)
       {
 	auto x = del * i;
-	auto sinh_pi_g = __gnu_cxx::sinh_pi(x);
-	auto cosh_pi_g = __gnu_cxx::cosh_pi(x);
-	auto tanh_pi_g = __gnu_cxx::tanh_pi(x);
+	auto sinh_pi_g = emsr::sinh_pi(x);
+	auto cosh_pi_g = emsr::cosh_pi(x);
+	auto tanh_pi_g = emsr::tanh_pi(x);
 	std::cout << ' ' << std::setw(width) << x
 		  << ' ' << std::setw(width) << sinh_pi_g
 		  << ' ' << std::setw(width) << sinh_pi_g - std::sinh(_S_pi * x)

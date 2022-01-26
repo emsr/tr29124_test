@@ -22,40 +22,40 @@
  */
 template<typename _Tp>
   std::pair<_Tp, _Tp>
-  marcum_q_bessel_series(unsigned int __m, _Tp __a, _Tp __b)
+  marcum_q_bessel_series(unsigned int m, _Tp a, _Tp b)
   {
     const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-    if (__b == _Tp{0})
+    if (b == _Tp{0})
       return std::make_pair(_Tp{0}, _Tp{1});
 
-    auto __q1 = _Tp{0};
-    const auto __arg = __a * __b;
-    const auto __ab = __a / __b;
-    auto __temp = _Tp{1};
-    unsigned int __k = 0;
+    auto q1 = _Tp{0};
+    const auto arg = a * b;
+    const auto ab = a / b;
+    auto temp = _Tp{1};
+    unsigned int k = 0;
     while (true)
       {
-	const auto __term = __temp * std::cyl_bessel_i(__k, __arg);
-	__q1 += __term;
-	if (std::abs(__term) < _S_eps)
+	const auto term = temp * emsr::cyl_bessel_i(k, arg);
+	q1 += term;
+	if (std::abs(term) < _S_eps)
           break;
-	__temp *= __ab;
-	++__k;
+	temp *= ab;
+	++k;
       }
 
-    auto __q = __q1;
+    auto q = q1;
 
-    const _Tp __ba = __b / __a;
-    __temp = _Tp{1};
-    for (unsigned int __k = 1; __k < __m; ++__k)
+    const _Tp ba = b / a;
+    temp = _Tp{1};
+    for (unsigned int k = 1; k < m; ++k)
       {
-	__temp *= __ba;
-	__q += __temp * std::cyl_bessel_i(__k, __arg);
+	temp *= ba;
+	q += temp * emsr::cyl_bessel_i(k, arg);
       }
 
-    __q *= std::exp(-(__a * __a + __b * __b) / _Tp{2});
+    q *= std::exp(-(a * a + b * b) / _Tp{2});
 
-    return std::make_pair(_Tp{1} - __q, __q);
+    return std::make_pair(_Tp{1} - q, q);
   }
 
 /**
@@ -77,28 +77,28 @@ template<typename _Tp>
  */
 template<typename _Tp>
   std::pair<_Tp, _Tp>
-  marcum_q_gamma_series(_Tp __mu, _Tp __a, _Tp __b)
+  marcum_q_gamma_series(_Tp mu, _Tp a, _Tp b)
   {
     const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
     unsigned int _S_max_iter = 100u;
-    __a *= __a / _Tp{2};
-    __b *= __b / _Tp{2};
-    auto __fact = _Tp{1};
-    auto [_MP, _MQ] = std::__detail::__gamma(__mu, __b);
-    for (unsigned int __k = 1; __k < _S_max_iter; ++__k)
+    a *= a / _Tp{2};
+    b *= b / _Tp{2};
+    auto fact = _Tp{1};
+    auto [_MP, _MQ] = emsr::detail::gamma(mu, b);
+    for (unsigned int k = 1; k < _S_max_iter; ++k)
       {
-	const auto [_Pgam, _Qgam] = std::__detail::__gamma(__k + __mu, __b);
-	__fact *= __a / __k;
-	const auto __termP = __fact * _Pgam;
-	_MP += __termP;
-	const auto __termQ = __fact * _Qgam;
-	_MQ += __termQ;
-	if (std::abs(__termP) < _S_eps * _MP
-	 && std::abs(__termQ) < _S_eps * _MQ)
+	const auto [_Pgam, _Qgam] = emsr::detail::gamma(k + mu, b);
+	fact *= a / k;
+	const auto termP = fact * _Pgam;
+	_MP += termP;
+	const auto termQ = fact * _Qgam;
+	_MQ += termQ;
+	if (std::abs(termP) < _S_eps * _MP
+	 && std::abs(termQ) < _S_eps * _MQ)
 	  break;
       }
-    auto __exp = std::exp(-__a);
-    return std::make_pair(__exp * _MP, __exp * _MQ);
+    auto exp = std::exp(-a);
+    return std::make_pair(exp * _MP, exp * _MQ);
   }
 
 //
@@ -109,13 +109,13 @@ template<typename _Tp>
 //
 template<typename _Tp>
   _Tp
-  marcum_q_integral(unsigned int __m, _Tp __a, _Tp __b)
+  marcum_q_integral(unsigned int m, _Tp a, _Tp b)
   {
-    //auto __rho = [](_Tp __theta, _Tp __xi)
+    //auto rho = [](_Tp theta, _Tp xi)
 	//	 -> _Tp
 	//	 { return ; };
 
-    //return __q;
+    //return q;
   }
 
 template<typename _Tp>

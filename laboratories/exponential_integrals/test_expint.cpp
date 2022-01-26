@@ -10,7 +10,8 @@
 #include <vector>
 #include <string>
 #include <complex>
-#include <ext/float128_io.h>
+
+#include <emsr/float128_io.h>
 
 /*
                  series     asymp     large-n
@@ -62,7 +63,7 @@ template<typename _Tp>
 	    _Tp ens = _S_NaN;
 	    try
 	    {
-	      ens = std::__detail::__expint_En_series(n, x);
+	      ens = emsr::detail::expint_En_series(n, x);
 	    }
 	    catch (...)
 	    {
@@ -71,7 +72,7 @@ template<typename _Tp>
 	    _Tp enc = _S_NaN;
 	    try
 	    {
-	      enc = std::__detail::__expint_En_cont_frac(n, x);
+	      enc = emsr::detail::expint_En_cont_frac(n, x);
 	    }
 	    catch (...)
 	    {
@@ -80,7 +81,7 @@ template<typename _Tp>
 	    _Tp enn = _S_NaN;
 	    try
 	    {
-	      enn = std::__detail::__expint_En_large_n(n, x);
+	      enn = emsr::detail::expint_En_large_n(n, x);
 	    }
 	    catch (...)
 	    {
@@ -89,7 +90,7 @@ template<typename _Tp>
 	    _Tp ena = _S_NaN;
 	    try
 	    {
-	      ena = std::__detail::__expint_En_asymp(n, x);
+	      ena = emsr::detail::expint_En_asymp(n, x);
 	    }
 	    catch (...)
 	    {

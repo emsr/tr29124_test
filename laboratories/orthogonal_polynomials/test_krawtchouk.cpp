@@ -21,7 +21,7 @@
  */
 template<typename _Tp, typename _TpX>
   _Tp
-  __krawtchouk_recur(int n, _Tp p, int N, _TpX x)
+  krawtchouk_recur(int n, _Tp p, int N, _TpX x)
   {
     auto Knm1 = _Tp{1};
     if (n == 0)
@@ -55,17 +55,16 @@ template<typename _Tp, typename _TpX>
  */
 template<typename _Tp, typename _TpX>
   _Tp
-  __krawtchouk(int n, _Tp p, int N, _TpX x)
+  krawtchouk(int n, _Tp p, int N, _TpX x)
   {
     if (std::isnan(p))
       return p;
     else if (std::isnan(x))
       return x;
     else if (n > N)
-      std::__throw_domain_error(__N("__krawtchouk: "
-				"Degree must be less than or equal to big N."));
+      throw std::domain_error("krawtchouk: Degree must be less than or equal to big N.");
     else
-      return __krawtchouk_recur(n, p, N, x);
+      return krawtchouk_recur(n, p, N, x);
   }
 
 /**
@@ -84,7 +83,7 @@ template<typename _Tp>
 	for (int i = 0; i <= 400; ++i)
 	  {
 	    auto x = i * _Tp{0.05L};
-	    auto K = __krawtchouk(n, p, N, x);
+	    auto K = krawtchouk(n, p, N, x);
 	    auto K_test = burkhardt::krawtchouk(n, p, N, x);
 	    std::cout << ' ' << std::setw(w) << x
 		      << ' ' << std::setw(w) << K

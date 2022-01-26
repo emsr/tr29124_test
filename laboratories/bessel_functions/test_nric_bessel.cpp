@@ -31,7 +31,7 @@ main()
           double J_nu, N_nu, Jp_nu, Np_nu;
           try
             {
-              __bessel_jn(nu, x, J_nu, N_nu, Jp_nu, Np_nu);
+              bessel_jn(nu, x, J_nu, N_nu, Jp_nu, Np_nu);
             }
           catch (std::exception & err)
             {
@@ -40,7 +40,7 @@ main()
           double I_nu, K_nu, Ip_nu, Kp_nu;
           try
             {
-              __bessel_ik(nu, x, I_nu, K_nu, Ip_nu, Kp_nu);
+              bessel_ik(nu, x, I_nu, K_nu, Ip_nu, Kp_nu);
             }
           catch (std::exception & err)
             {

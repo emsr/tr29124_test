@@ -10,7 +10,7 @@
    */
   template<typename _Tp>
     _Tp
-    __maliuzhinets(_Tp __n, _Tp __z)
+    maliuzhinets(_Tp n, _Tp z)
     {
     }
 

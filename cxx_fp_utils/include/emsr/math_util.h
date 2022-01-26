@@ -26,6 +26,7 @@
 
 #include <limits>
 #include <cmath>
+#include <algorithm> // min, max
 
 namespace emsr
 {
@@ -190,7 +191,7 @@ namespace emsr
       else
 	{
 	  const auto n = static_cast<int>(std::nearbyint(Tp{2} * a));
-	  const bool halfodd = (n & 1 == 1)
+	  const bool halfodd = ((n & 1) == 1)
 				&& fp_is_equal(Tp{2} * a, Tp(n), mul);
 	  return fp_is_integer_t{halfodd, (n - 1) / 2};
 	}

@@ -9,56 +9,56 @@
    */
   template<typename _Tp>
     _Tp
-    mathieu_a(int __n, _Tp __q);
+    mathieu_a(int n, _Tp q);
 
   /**
    * Return the Mathieu function eigenvalue @f$  @f$ .
    */
   template<typename _Tp>
     _Tp
-    mathieu_b(int __n, _Tp __q);
+    mathieu_b(int n, _Tp q);
 
   /**
    * Return the angular Mathieu function @f$ se_n(q,x) @f$.
    */
   template<typename _Tp>
     _Tp
-    mathieu_se(int __n, _Tp __q, _Tp __x);
+    mathieu_se(int n, _Tp q, _Tp x);
 
   /**
    * Return the angular Mathieu function @f$ ce_n(q,x) @f$.
    */
   template<typename _Tp>
     _Tp
-    mathieu_fe(int __n, _Tp __q, _Tp __x);
+    mathieu_fe(int n, _Tp q, _Tp x);
 
   /**
    * Return the angular Mathieu function @f$ fe_n(q,x) @f$.
    */
   template<typename _Tp>
     _Tp
-    mathieu_ge(int __n, _Tp __q, _Tp __x);
+    mathieu_ge(int n, _Tp q, _Tp x);
 
   /**
    * Return the angular Mathieu function @f$ ge_n(q,x) @f$.
    */
   template<typename _Tp>
     _Tp
-    mathieu_ce(int __n, _Tp __q, _Tp __x);
+    mathieu_ce(int n, _Tp q, _Tp x);
 
   /**
    * Return the radial Mathieu function @f$ Ms_n^{(k)}(q,x) @f$.
    */
   template<typename _Tp>
     _Tp
-    mathieu_ms(int __n, int __k, _Tp __q, _Tp __x);
+    mathieu_ms(int n, int k, _Tp q, _Tp x);
 
   /**
    * Return the radial Mathieu function @f$ Mc_n^{(k)}(q,x) @f$.
    */
   template<typename _Tp>
     _Tp
-    mathieu_mc(int __n, int __k, _Tp __q, _Tp __x);
+    mathieu_mc(int n, int k, _Tp q, _Tp x);
 
 int
 main()

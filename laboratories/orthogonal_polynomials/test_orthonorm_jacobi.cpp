@@ -25,6 +25,7 @@
 #include <string>
 
 #include <emsr/integration.h>
+#include <emsr/specfun.h>
 
 // Try to manage the four-gamma ratio.
 // alpha > -1, beta > -1.
@@ -64,8 +65,8 @@ template<typename _Tp>
 	auto norm = std::pow(_Tp{2}, _Tp{1} + alpha + beta)
 		  * gam / (_Tp(2 * n1 + 1) + alpha + beta);
 	return std::pow(_Tp{1} - x, alpha) * std::pow(_Tp{1} + x, beta)
-	     * __gnu_cxx::jacobi(n1, alpha, beta, x)
-	     * __gnu_cxx::jacobi(n2, alpha, beta, x) / norm;
+	     * emsr::jacobi(n1, alpha, beta, x)
+	     * emsr::jacobi(n2, alpha, beta, x) / norm;
       }
   }
 

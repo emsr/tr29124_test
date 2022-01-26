@@ -1,7 +1,7 @@
 
 #include <sf_struve.tcc>
 
-namespace __gnu_cxx
+namespace emsr
 {
 
   // Struve functions (of the first kind)
@@ -13,8 +13,8 @@ namespace __gnu_cxx
    * @see struve_h for setails.
    */
   inline float
-  struve_hf(float __nu, float __x)
-  { return std::__detail::__struve_h<float>(__nu, __x); }
+  struve_hf(float nu, float x)
+  { return emsr::detail::struve_h<float>(nu, x); }
 
   /**
    * Return the Struve function of the first kind @f$ \boldmath{H}_{\nu}(x) @f$
@@ -23,8 +23,8 @@ namespace __gnu_cxx
    * @see struve_h for setails.
    */
   inline long double
-  struve_hl(long double __nu, long double __x)
-  { return std::__detail::__struve_h<long double>(__nu, __x); }
+  struve_hl(long double nu, long double x)
+  { return emsr::detail::struve_h<long double>(nu, x); }
 
   /**
    * Return the Struve function of the first kind @f$ \boldmath{H}_{\nu}(x) @f$
@@ -36,18 +36,18 @@ namespace __gnu_cxx
    *              \frac{(-1)^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
    * @f]
    *
-   * @tparam _Tpnu The floating-point type of the order @c __nu.
-   * @tparam _Tp The floating-point type of the argument @c __x.
-   * @param  __nu  The order
-   * @param  __x   The argument, <tt> __x >= 0 </tt>
-   * @throw std::domain_error if <tt> __x < 0 </tt>.
+   * @tparam _Tpnu The floating-point type of the order @c nu.
+   * @tparam _Tp The floating-point type of the argument @c x.
+   * @param  nu  The order
+   * @param  x   The argument, <tt> x >= 0 </tt>
+   * @throw std::domain_error if <tt> x < 0 </tt>.
    */
   template<typename _Tpnu, typename _Tp>
     inline emsr::fp_promote_t<_Tpnu, _Tp>
-    struve_h(_Tpnu __nu, _Tp __x)
+    struve_h(_Tpnu nu, _Tp x)
     {
-      using __type = emsr::fp_promote_t<_Tpnu, _Tp>;
-      return std::__detail::__struve_h<__type>(__nu, __x);
+      using type = emsr::fp_promote_t<_Tpnu, _Tp>;
+      return emsr::detail::struve_h<type>(nu, x);
     }
 
   // Struve functions (of the second kind)
@@ -59,8 +59,8 @@ namespace __gnu_cxx
    * @see struve_k for setails.
    */
   inline float
-  struve_kf(float __nu, float __x)
-  { return std::__detail::__struve_k<float>(__nu, __x); }
+  struve_kf(float nu, float x)
+  { return emsr::detail::struve_k<float>(nu, x); }
 
   /**
    * Return the Struve function of the first kind @f$ \boldmath{K}_{\nu}(x) @f$
@@ -69,8 +69,8 @@ namespace __gnu_cxx
    * @see struve_k for setails.
    */
   inline long double
-  struve_kl(long double __nu, long double __x)
-  { return std::__detail::__struve_k<long double>(__nu, __x); }
+  struve_kl(long double nu, long double x)
+  { return emsr::detail::struve_k<long double>(nu, x); }
 
   /**
    * Return the Struve function of the second kind @f$ \boldmath{K}_{\nu}(x) @f$
@@ -82,18 +82,18 @@ namespace __gnu_cxx
    *              \frac{(-1)^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
    * @f]
    *
-   * @tparam _Tpnu The floating-point type of the order @c __nu.
-   * @tparam _Tp The floating-point type of the argument @c __x.
-   * @param  __nu  The order
-   * @param  __x   The argument, <tt> __x >= 0 </tt>
-   * @throw std::domain_error if <tt> __x < 0 </tt>.
+   * @tparam _Tpnu The floating-point type of the order @c nu.
+   * @tparam _Tp The floating-point type of the argument @c x.
+   * @param  nu  The order
+   * @param  x   The argument, <tt> x >= 0 </tt>
+   * @throw std::domain_error if <tt> x < 0 </tt>.
    */
   template<typename _Tpnu, typename _Tp>
     inline emsr::fp_promote_t<_Tpnu, _Tp>
-    struve_k(_Tpnu __nu, _Tp __x)
+    struve_k(_Tpnu nu, _Tp x)
     {
-      using __type = emsr::fp_promote_t<_Tpnu, _Tp>;
-      return std::__detail::__struve_k<__type>(__nu, __x);
+      using type = emsr::fp_promote_t<_Tpnu, _Tp>;
+      return emsr::detail::struve_k<type>(nu, x);
     }
 
   // Modified Struve functions (of the first kind)
@@ -106,8 +106,8 @@ namespace __gnu_cxx
    * @see struve_l for setails.
    */
   inline float
-  struve_lf(float __nu, float __x)
-  { return std::__detail::__struve_l<float>(__nu, __x); }
+  struve_lf(float nu, float x)
+  { return emsr::detail::struve_l<float>(nu, x); }
 
   /**
    * Return the modified Struve function of the first kind
@@ -117,8 +117,8 @@ namespace __gnu_cxx
    * @see struve_l for setails.
    */
   inline long double
-  struve_ll(long double __nu, long double __x)
-  { return std::__detail::__struve_l<long double>(__nu, __x); }
+  struve_ll(long double nu, long double x)
+  { return emsr::detail::struve_l<long double>(nu, x); }
 
   /**
    * Return the modified Struve function of the first kind
@@ -131,18 +131,18 @@ namespace __gnu_cxx
    *              \frac{(-1)^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
    * @f]
    *
-   * @tparam _Tpnu The floating-point type of the order @c __nu.
-   * @tparam _Tp The floating-point type of the argument @c __x.
-   * @param  __nu  The order
-   * @param  __x   The argument, <tt> __x >= 0 </tt>
-   * @throw std::domain_error if <tt> __x < 0 </tt>.
+   * @tparam _Tpnu The floating-point type of the order @c nu.
+   * @tparam _Tp The floating-point type of the argument @c x.
+   * @param  nu  The order
+   * @param  x   The argument, <tt> x >= 0 </tt>
+   * @throw std::domain_error if <tt> x < 0 </tt>.
    */
   template<typename _Tpnu, typename _Tp>
     inline emsr::fp_promote_t<_Tpnu, _Tp>
-    struve_l(_Tpnu __nu, _Tp __x)
+    struve_l(_Tpnu nu, _Tp x)
     {
-      using __type = emsr::fp_promote_t<_Tpnu, _Tp>;
-      return std::__detail::__struve_l<__type>(__nu, __x);
+      using type = emsr::fp_promote_t<_Tpnu, _Tp>;
+      return emsr::detail::struve_l<type>(nu, x);
     }
 
   // Modified Struve functions of the second kind
@@ -155,8 +155,8 @@ namespace __gnu_cxx
    * @see struve_m for setails.
    */
   inline float
-  struve_mf(float __nu, float __x)
-  { return std::__detail::__struve_m<float>(__nu, __x); }
+  struve_mf(float nu, float x)
+  { return emsr::detail::struve_m<float>(nu, x); }
 
   /**
    * Return the modified Struve function of the second kind
@@ -166,8 +166,8 @@ namespace __gnu_cxx
    * @see struve_m for setails.
    */
   inline long double
-  struve_ml(long double __nu, long double __x)
-  { return std::__detail::__struve_m<long double>(__nu, __x); }
+  struve_ml(long double nu, long double x)
+  { return emsr::detail::struve_m<long double>(nu, x); }
 
   /**
    * Return the modified Struve function of the second kind
@@ -180,18 +180,18 @@ namespace __gnu_cxx
    *              \frac{(-1)^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
    * @f]
    *
-   * @tparam _Tpnu The floating-point type of the order @c __nu.
-   * @tparam _Tp The floating-point type of the argument @c __x.
-   * @param  __nu  The order
-   * @param  __x   The argument, <tt> __x >= 0 </tt>
-   * @throw std::domain_error if <tt> __x < 0 </tt>.
+   * @tparam _Tpnu The floating-point type of the order @c nu.
+   * @tparam _Tp The floating-point type of the argument @c x.
+   * @param  nu  The order
+   * @param  x   The argument, <tt> x >= 0 </tt>
+   * @throw std::domain_error if <tt> x < 0 </tt>.
    */
   template<typename _Tpnu, typename _Tp>
     inline emsr::fp_promote_t<_Tpnu, _Tp>
-    struve_m(_Tpnu __nu, _Tp __x)
+    struve_m(_Tpnu nu, _Tp x)
     {
-      using __type = emsr::fp_promote_t<_Tpnu, _Tp>;
-      return std::__detail::__struve_m<__type>(__nu, __x);
+      using type = emsr::fp_promote_t<_Tpnu, _Tp>;
+      return emsr::detail::struve_m<type>(nu, x);
     }
 
-} // namespace __gnu_cxx
+} // namespace emsr

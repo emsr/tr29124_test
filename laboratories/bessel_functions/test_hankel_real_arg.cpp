@@ -4,7 +4,9 @@
 
 #include <iostream>
 #include <iomanip>
-#include <bits/specfun.h>
+
+#include <emsr/specfun.h>
+
 #include <wrap_boost.h>
 
 int
@@ -15,7 +17,7 @@ main()
     for (auto x : {-5.0, -4.0, -3.0, -2.0, -1.0,/* 0.0,*/ 1.0, 2.0, 3.0, 4.0, 5.0})
       {
 	auto H1_boost = beast::cyl_hankel_1(nu, x);
-	auto H1_gnu = __gnu_cxx::cyl_hankel_1(nu, x);
+	auto H1_gnu = emsr::cyl_hankel_1(nu, x);
 	std::cout << ' ' << std::setw(4) << nu
 		  << ' ' << std::setw(4) << x
 		  << ' ' << std::setw(24) << H1_gnu
@@ -29,7 +31,7 @@ main()
     for (auto x : {-5.0, -4.0, -3.0, -2.0, -1.0,/* 0.0,*/ 1.0, 2.0, 3.0, 4.0, 5.0})
       {
 	auto h1_boost = beast::sph_hankel_1(n, x);
-	auto h1_gnu = __gnu_cxx::sph_hankel_1(n, x);
+	auto h1_gnu = emsr::sph_hankel_1(n, x);
 	std::cout << ' ' << std::setw(4) << n
 		  << ' ' << std::setw(4) << x
 		  << ' ' << std::setw(24) << h1_gnu

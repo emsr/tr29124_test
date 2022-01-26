@@ -9,18 +9,18 @@
 
 template<typename _Tp>
   _Tp
-  __mod2pi_cheap(_Tp x)
+  mod2pi_cheap(_Tp x)
   {
-    const auto _S_2pi = emsr::tau_v<_Tp>;
-    return x - _S_2pi * std::floor(x / _S_2pi);
+    const auto s_2pi = emsr::tau_v<_Tp>;
+    return x - s_2pi * std::floor(x / s_2pi);
   }
 
 template<typename _Tp>
   _Tp
-  __mod2pi_cephes_wtf(_Tp x)
+  mod2pi_cephes_wtf(_Tp x)
   {
-    const auto _S_2pi = emsr::tau_v<_Tp>;
-    const auto n = std::floor(x / _S_2pi);
+    const auto s_2pi = emsr::tau_v<_Tp>;
+    const auto n = std::floor(x / s_2pi);
     auto a = x - ldexp(n, 2);  /* 4n */
     a -= ldexp( n, 1);    /* 2n */
     a -= ldexp( n, -2 );  /* n/4 */
@@ -54,14 +54,14 @@ template<typename _Tp>
     auto x = _Tp{12.34567895432Q};
     std::cout << '\n';
     std::cout << "x         = " << std::setw(w) << x << '\n';
-    std::cout << "mod2pi(x) = " << std::setw(w) << __mod2pi_cheap(x) << '\n';
-    std::cout << "mod2pi(x) = " << std::setw(w) << __mod2pi_cephes_wtf(x) << '\n';
+    std::cout << "mod2pi(x) = " << std::setw(w) << mod2pi_cheap(x) << '\n';
+    std::cout << "mod2pi(x) = " << std::setw(w) << mod2pi_cephes_wtf(x) << '\n';
 
     auto y = _Tp{123456.78954326521Q};
     std::cout << '\n';
     std::cout << "y         = " << std::setw(w) << y << '\n';
-    std::cout << "mod2pi(y) = " << std::setw(w) << __mod2pi_cheap(y) << '\n';
-    std::cout << "mod2pi(y) = " << std::setw(w) << __mod2pi_cephes_wtf(y) << '\n';
+    std::cout << "mod2pi(y) = " << std::setw(w) << mod2pi_cheap(y) << '\n';
+    std::cout << "mod2pi(y) = " << std::setw(w) << mod2pi_cephes_wtf(y) << '\n';
   }
 
 int

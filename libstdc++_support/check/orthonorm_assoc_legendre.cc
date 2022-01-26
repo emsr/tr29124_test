@@ -21,6 +21,7 @@
 
 #include <cmath>
 
+#include <emsr/specfun.h>
 #include <emsr/integration.h>
 
 #if defined(__TEST_DEBUG)
@@ -41,8 +42,8 @@ template<typename _Tp>
   normalized_assoc_legendre(int l1, int m1, int l2, int m2, _Tp x)
   {
     return (_Tp(l1 + l2 + 1) / _Tp{2})
-	 * std::assoc_legendre(l1, m1, x)
-	 * std::assoc_legendre(l2, m2, x);
+	 * emsr::assoc_legendre(l1, m1, x)
+	 * emsr::assoc_legendre(l2, m2, x);
   }
 
 template<typename _Tp>

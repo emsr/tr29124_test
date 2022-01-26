@@ -25,6 +25,7 @@
 #include <string>
 
 #include <emsr/integration.h>
+#include <emsr/specfun.h>
 
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.
 template<typename _Tp>
@@ -32,8 +33,8 @@ template<typename _Tp>
   normalized_laguerre(int n1, int n2, _Tp x)
   {
     return std::exp(-x)
-	 * std::laguerre(n1, x)
-	 * std::laguerre(n2, x);
+	 * emsr::laguerre(n1, x)
+	 * emsr::laguerre(n2, x);
   }
 
 template<typename _Tp>

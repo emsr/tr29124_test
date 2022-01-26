@@ -7,7 +7,7 @@
 #include <limits>
 #include <cmath>
 
-#include <bits/sf_legendre.tcc>
+#include <emsr/sf_legendre.h>
 
 template<typename _Tp>
   void
@@ -24,7 +24,7 @@ template<typename _Tp>
 	  {
 	    auto x = _Tp(0.01L * i);
 	    std::cout << ' ' << std::setw(w) << x
-		      << ' ' << std::setw(w) << __gnu_cxx::legendre_q(l, x)
+		      << ' ' << std::setw(w) << emsr::legendre_q(l, x)
 		      << '\n';
 	  }
       }

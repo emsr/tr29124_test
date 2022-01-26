@@ -20,7 +20,7 @@
  */
 template<typename _Tp, typename _TpX>
   _Tp
-  __meixner_recur(int n, _Tp beta, _Tp c, _TpX x)
+  meixner_recur(int n, _Tp beta, _Tp c, _TpX x)
   {
     auto Mnm1 = _Tp{1};
     if (n == 0)
@@ -55,7 +55,7 @@ template<typename _Tp, typename _TpX>
  */
 template<typename _Tp, typename _TpX>
   _Tp
-  __meixner(int n, _Tp beta, _Tp c, _TpX x)
+  meixner(int n, _Tp beta, _Tp c, _TpX x)
   {
     if (std::isnan(beta))
       return beta;
@@ -64,7 +64,7 @@ template<typename _Tp, typename _TpX>
     if (std::isnan(x))
       return x;
     else
-      return __meixner_recur(n, beta, c, x);
+      return meixner_recur(n, beta, c, x);
   }
 
 template<typename _Tp>
@@ -80,7 +80,7 @@ template<typename _Tp>
 	for (int i = 0; i <= 400; ++i)
 	  {
 	    auto x = i * _Tp{0.05L};
-	    auto M = __meixner(n, beta, c, x);
+	    auto M = meixner(n, beta, c, x);
 	    auto M_test = burkhardt::meixner(n, beta, c, x);
 	    std::cout << ' ' << std::setw(w) << x
 		      << ' ' << std::setw(w) << M

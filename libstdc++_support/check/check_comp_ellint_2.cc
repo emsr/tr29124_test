@@ -81,7 +81,7 @@ template<typename Ret, unsigned int Num>
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Ret f = std::comp_ellint_2(data[i].k);
+	const Ret f = emsr::comp_ellint_2(data[i].k);
 	const bool failure_f = std::isnan(f);
 	if (!failure && failure_f)
 	  failure = true;

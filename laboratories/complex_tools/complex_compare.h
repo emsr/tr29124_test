@@ -8,14 +8,14 @@
  */
 template<typename _Tp, typename _Up>
   constexpr bool
-  operator<(const std::complex<_Tp>& __y, const std::complex<_Up>& __z)
+  operator<(const std::complex<_Tp>& y, const std::complex<_Up>& z)
   {
-    if (__y.real() < __z.real())
+    if (y.real() < z.real())
       return true;
-    else if (__z.real() < __y.real())
+    else if (z.real() < y.real())
       return false;
     else
-      return __y.imag() < __z.imag();
+      return y.imag() < z.imag();
   }
 
 /**
@@ -23,14 +23,14 @@ template<typename _Tp, typename _Up>
  */
 template<typename _Tp, typename _Up>
   constexpr bool
-  operator<(const std::complex<_Tp>& __y, _Up __z)
+  operator<(const std::complex<_Tp>& y, _Up z)
   {
-    if (__y.real() < __z)
+    if (y.real() < z)
       return true;
-    else if (__z < __y.real())
+    else if (z < y.real())
       return false;
     else
-      return __y.imag() < _Up{};
+      return y.imag() < _Up{};
   }
 
 /**
@@ -38,14 +38,14 @@ template<typename _Tp, typename _Up>
  */
 template<typename _Tp, typename _Up>
   constexpr bool
-  operator<(_Tp __y, const std::complex<_Up>& __z)
+  operator<(_Tp y, const std::complex<_Up>& z)
   {
-    if (__y < __z.real())
+    if (y < z.real())
       return true;
-    else if (__z.real() < __y)
+    else if (z.real() < y)
       return false;
     else
-      return _Tp{} < __z.imag();
+      return _Tp{} < z.imag();
   }
 
 /**
@@ -53,71 +53,71 @@ template<typename _Tp, typename _Up>
  */
 template<typename _Tp, typename _Up>
   constexpr bool
-  operator>(const std::complex<_Tp>& __y, const std::complex<_Up>& __z)
-  { return operator<(__z, __y); }
+  operator>(const std::complex<_Tp>& y, const std::complex<_Up>& z)
+  { return operator<(z, y); }
 
 /**
  * A sane operator> for complex numbers.
  */
 template<typename _Tp, typename _Up>
   constexpr bool
-  operator>(const std::complex<_Tp>& __y, _Up __z)
-  { return operator<(__z, __y); }
+  operator>(const std::complex<_Tp>& y, _Up z)
+  { return operator<(z, y); }
 
 /**
  * A sane operator> for complex numbers.
  */
 template<typename _Tp, typename _Up>
   constexpr bool
-  operator>(_Tp __y, const std::complex<_Up>& __z)
-  { return operator<(__z, __y); }
+  operator>(_Tp y, const std::complex<_Up>& z)
+  { return operator<(z, y); }
 
 /**
  * A sane operator>= for complex numbers.
  */
 template<typename _Tp, typename _Up>
   constexpr bool
-  operator>=(const std::complex<_Tp>& __y, const std::complex<_Up>& __z)
-  { return !operator<(__y, __z); }
+  operator>=(const std::complex<_Tp>& y, const std::complex<_Up>& z)
+  { return !operator<(y, z); }
 
 /**
  * A sane operator>= for complex numbers.
  */
 template<typename _Tp, typename _Up>
   constexpr bool
-  operator>=(const std::complex<_Tp>& __y, _Up __z)
-  { return !operator<(__y, __z); }
+  operator>=(const std::complex<_Tp>& y, _Up z)
+  { return !operator<(y, z); }
 
 /**
  * A sane operator>= for complex numbers.
  */
 template<typename _Tp, typename _Up>
   constexpr bool
-  operator>=(_Tp __y, const std::complex<_Up>& __z)
-  { return !operator<(__y, __z); }
+  operator>=(_Tp y, const std::complex<_Up>& z)
+  { return !operator<(y, z); }
 
 /**
  * A sane operator<= for complex numbers.
  */
 template<typename _Tp, typename _Up>
   constexpr bool
-  operator<=(const std::complex<_Tp>& __y, const std::complex<_Up>& __z)
-  { return !operator>(__y, __z); }
+  operator<=(const std::complex<_Tp>& y, const std::complex<_Up>& z)
+  { return !operator>(y, z); }
 
 /**
  * A sane operator<= for complex numbers.
  */
 template<typename _Tp, typename _Up>
   constexpr bool
-  operator<=(const std::complex<_Tp>& __y, _Up __z)
-  { return !operator>(__y, __z); }
+  operator<=(const std::complex<_Tp>& y, _Up z)
+  { return !operator>(y, z); }
 
 /**
  * A sane operator<= for complex numbers.
  */
 template<typename _Tp, typename _Up>
   constexpr bool
-  operator<=(_Tp __y, const std::complex<_Up>& __z)
-  { return !operator>(__y, __z); }
+  operator<=(_Tp y, const std::complex<_Up>& z)
+  { return !operator>(y, z); }
 
 #endif // COMPLEX_COMPARE_H

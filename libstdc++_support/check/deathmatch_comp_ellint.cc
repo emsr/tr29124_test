@@ -24,6 +24,8 @@
 #include <limits>
 #include <cmath>
 
+#include <emsr/specfun.h>
+
 #if defined(__TEST_DEBUG)
 #  include <iostream>
 #  define VERIFY(A) \
@@ -59,10 +61,10 @@ template<typename Tp>
       {
 	auto k = Tp{0.1L} * i;
 	auto kp = std::sqrt(Tp{1} - k * k);
-	auto K = std::comp_ellint_1(k);
-	auto Kp = std::comp_ellint_1(kp);
-	auto E = std::comp_ellint_2(k);
-	auto Ep = std::comp_ellint_2(kp);
+	auto K = emsr::comp_ellint_1(k);
+	auto Kp = emsr::comp_ellint_1(kp);
+	auto E = emsr::comp_ellint_2(k);
+	auto Ep = emsr::comp_ellint_2(kp);
 	stats << std::make_pair(K * Ep + E * Kp - K * Kp, _S_pi2);
       }
     VERIFY(stats.max_abs_frac < toler);
@@ -79,9 +81,9 @@ template<typename Tp>
     for (auto i = 1; i < 10; ++i)
       {
 	auto k = Tp{0.1L} * i;
-	auto q = __gnu_cxx::ellnome(k);
-	auto K = std::comp_ellint_1(k);
-	auto tht3 = __gnu_cxx::theta_3(Tp{0}, q);
+	auto q = emsr::ellnome(k);
+	auto K = emsr::comp_ellint_1(k);
+	auto tht3 = emsr::theta_3(Tp{0}, q);
 	stats << std::make_pair(_S_pi2 * tht3 * tht3, K);
       }
     VERIFY(stats.max_abs_frac < toler);

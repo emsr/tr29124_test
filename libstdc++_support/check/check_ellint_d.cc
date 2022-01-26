@@ -468,7 +468,7 @@ template<typename Ret, unsigned int Num>
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Ret f = __gnu_cxx::ellint_d(data[i].k, data[i].phi);
+	const Ret f = emsr::ellint_d(data[i].k, data[i].phi);
 	const bool failure_f = std::isnan(f);
 	if (!failure && failure_f)
 	  failure = true;

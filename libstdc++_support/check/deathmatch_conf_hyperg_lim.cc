@@ -24,6 +24,8 @@
 #include <limits>
 #include <cmath>
 
+#include <emsr/specfun.h>
+
 #if defined(__TEST_DEBUG)
 #  include <iostream>
 #  define VERIFY(A) \
@@ -57,9 +59,9 @@ template<typename Tp>
       {
 	auto z = Tp{0.1L} * i;
 	auto hyp = std::pow(z / Tp{2}, nu)
-		 * __gnu_cxx::conf_hyperg_lim(nu + Tp{1}, -z * z / Tp{4})
+		 * emsr::conf_hyperg_lim(nu + Tp{1}, -z * z / Tp{4})
 		 / std::tgamma(nu + Tp{1});
-	auto Jnu = std::cyl_bessel_j(nu, z);
+	auto Jnu = emsr::cyl_bessel_j(nu, z);
 	stats << std::make_pair(hyp, Jnu);
       }
     VERIFY(stats.max_abs_frac < toler);

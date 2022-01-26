@@ -21,6 +21,8 @@
 
 #include <cmath>
 
+#include <emsr/specfun.h>
+#include <emsr/math_constants.h>
 #include <emsr/integration.h>
 
 #if defined(__TEST_DEBUG)
@@ -55,10 +57,10 @@ template<typename _Tp>
 
     auto z1 = [n1, m1, rho](_Tp phi)
 	      -> _Tp
-	      { return __gnu_cxx::zernike(n1, m1, rho, phi); };
+	      { return emsr::zernike(n1, m1, rho, phi); };
     auto z2 = [n2, m2, rho](_Tp phi)
 	      -> _Tp
-	      { return __gnu_cxx::zernike(n2, m2, rho, phi); };
+	      { return emsr::zernike(n2, m2, rho, phi); };
 
     auto norm = _Tp{1} / std::sqrt(_Tp(2 * n1 + 2) * _Tp(2 * n2 + 2));
     auto fun = [n1, m1, rho, z1, z2, norm](_Tp phi)

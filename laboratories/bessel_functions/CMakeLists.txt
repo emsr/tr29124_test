@@ -54,6 +54,7 @@ target_link_libraries(help_kelvin ${TR29124_LIBRARIES} quadmath)
 add_test(NAME run_help_kelvin COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/help_kelvin > output/help_kelvin.txt")
 
 add_executable(plot_bessel plot_bessel.cpp)
+target_link_libraries(plot_bessel ${TR29124_LIBRARIES})
 add_test(NAME run_plot_bessel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/plot_bessel > output/plot_bessel.txt")
 
 add_executable(test_anger_weber test_anger_weber.cpp)

@@ -7,14 +7,15 @@
 #include <fstream>
 #include <iomanip>
 #include <cmath>
+
 #include <emsr/summation.h>
 #include <emsr/math_constants.h>
 #include <emsr/numeric_limits.h>
-#include <bits/specfun.h>
+#include <emsr/specfun.h>
 
-namespace std
+namespace emsr
 {
-namespace __detail
+namespace detail
 {
 
   /**
@@ -23,12 +24,12 @@ namespace __detail
   template<typename _TpNu, typename _Tp>
     struct _KelvinState
     {
-      _TpNu __nu;
-      _Tp __x;
-      _Tp __ber;
-      _Tp __bei;
-      _Tp __ker;
-      _Tp __kei;
+      _TpNu nu;
+      _Tp x;
+      _Tp ber;
+      _Tp bei;
+      _Tp ker;
+      _Tp kei;
     };
 
 
@@ -49,28 +50,28 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __kelvin_bex_series(_Tp __x, int __sign)
+    kelvin_bex_series(_Tp x, int sign)
     {
       using _WijnSum = emsr::VanWijngaardenSum<_Tp>;
       using _WenigerDeltaWijnSum = emsr::WenigerDeltaSum<_WijnSum>;
 
-      const auto _S_eps = emsr::epsilon(__x);
-      constexpr auto _S_maxiter = 100;
-      const auto __y = __x / _Tp{2};
-      const auto __y2 = __y * __y;
-      const auto __y4 = -__y2 * __y2;
-      auto __term = _Tp{1};
-      _WenigerDeltaWijnSum __bex;
-      __bex += __term;
-      for (auto __k = 1; __k < _S_maxiter; ++__k)
+      const auto s_eps = emsr::epsilon(x);
+      constexpr auto s_maxiter = 100;
+      const auto y = x / _Tp{2};
+      const auto y2 = y * y;
+      const auto y4 = -y2 * y2;
+      auto term = _Tp{1};
+      _WenigerDeltaWijnSum bex;
+      bex += term;
+      for (auto k = 1; k < s_maxiter; ++k)
 	{
-	  const auto __fact = _Tp{1} / (2 * __k * (2 * __k + __sign));
-	  __term *= __y4 * __fact * __fact;
-	  __bex += __term;
-	  if (std::abs(__term) < _S_eps * std::abs(__bex()))
+	  const auto fact = _Tp{1} / (2 * k * (2 * k + sign));
+	  term *= y4 * fact * fact;
+	  bex += term;
+	  if (std::abs(term) < s_eps * std::abs(bex()))
 	    break;
 	}
-      return __bex();
+      return bex();
     }
 
 
@@ -83,36 +84,36 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __kelvin_kex_series(_Tp __x, int __sign)
+    kelvin_kex_series(_Tp x, int sign)
     {
       using _BasicSum = emsr::BasicSum<_Tp>;
       using _WijnSum = emsr::VanWijngaardenSum<_Tp>;
       using _WenigerDeltaWijnSum = emsr::WenigerDeltaSum<_WijnSum>;
 
-      const auto _S_eps = emsr::epsilon(__x);
-      constexpr auto _S_maxiter = 100;
-      const auto __y = __x / _Tp{2};
-      const auto __y2 = __y * __y;
-      const auto __y4 = -__y2 * __y2;
-      auto __term = _Tp{1};
+      const auto s_eps = emsr::epsilon(x);
+      constexpr auto s_maxiter = 100;
+      const auto y = x / _Tp{2};
+      const auto y2 = y * y;
+      const auto y4 = -y2 * y2;
+      auto term = _Tp{1};
       _BasicSum _H_n;
-      _WenigerDeltaWijnSum __kex;
-      __kex += __term;
-      for (auto __k = 1; __k < _S_maxiter; ++__k)
+      _WenigerDeltaWijnSum kex;
+      kex += term;
+      for (auto k = 1; k < s_maxiter; ++k)
 	{
-	  const auto __tk = 2 * __k;
-	  const auto __tkps = __tk + __sign;
-	  const auto __fact = _Tp{1} / (__tk * __tkps);
-	  __term *= __y4 * __fact * __fact;
+	  const auto tk = 2 * k;
+	  const auto tkps = tk + sign;
+	  const auto fact = _Tp{1} / (tk * tkps);
+	  term *= y4 * fact * fact;
 
-	  _H_n += _Tp{1} / __tk + _Tp{1} / __tkps;
+	  _H_n += _Tp{1} / tk + _Tp{1} / tkps;
 
-	  __kex += __term * _H_n();
+	  kex += term * _H_n();
 
-	  if (std::abs(__term) < _S_eps * std::abs(__kex()))
+	  if (std::abs(term) < s_eps * std::abs(kex()))
 	    break;
 	}
-      return __kex();
+      return kex();
     }
 
 
@@ -122,8 +123,8 @@ namespace __detail
    */
   template<typename _Tp>
     inline _Tp
-    __kelvin_ber_series(_Tp __x)
-    { return __kelvin_bex_series(__x, -1); }
+    kelvin_ber_series(_Tp x)
+    { return kelvin_bex_series(x, -1); }
 
 
   /**
@@ -132,8 +133,8 @@ namespace __detail
    */
   template<typename _Tp>
     inline _Tp
-    __kelvin_bei_series(_Tp __x)
-    { return __x * __x * __kelvin_bex_series(__x, +1) / _Tp{4}; }
+    kelvin_bei_series(_Tp x)
+    { return x * x * kelvin_bex_series(x, +1) / _Tp{4}; }
 
 
   /**
@@ -148,16 +149,16 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __kelvin_ker_series(_Tp __x)
+    kelvin_ker_series(_Tp x)
     {
-      const auto _S_gamma_e = emsr::egamma_v<_Tp>;
-      const auto _S_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
-      const auto __ker = __kelvin_kex_series(__x, -1);
-      const auto __ber = __kelvin_bex_series(__x, -1);
-      const auto __bei = __kelvin_bex_series(__x, +1);
-      const auto __x2 = __x * __x / _Tp{4};
-      const auto __ln = std::log(__x / _Tp{2}) + _S_gamma_e;
-      return -__ln * __ber + _S_pi_4 * __x2 * __bei + __ker;
+      const auto s_gamma_e = emsr::egamma_v<_Tp>;
+      const auto s_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
+      const auto ker = kelvin_kex_series(x, -1);
+      const auto ber = kelvin_bex_series(x, -1);
+      const auto bei = kelvin_bex_series(x, +1);
+      const auto x2 = x * x / _Tp{4};
+      const auto ln = std::log(x / _Tp{2}) + s_gamma_e;
+      return -ln * ber + s_pi_4 * x2 * bei + ker;
     }
 
 
@@ -174,16 +175,16 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __kelvin_kei_series(_Tp __x)
+    kelvin_kei_series(_Tp x)
     {
-      const auto _S_gamma_e = emsr::egamma_v<_Tp>;
-      const auto _S_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
-      const auto __kei = __kelvin_kex_series(__x, +1);
-      const auto __ber = __kelvin_bex_series(__x, -1);
-      const auto __bei = __kelvin_bex_series(__x, +1);
-      const auto __x2 = __x * __x / _Tp{4};
-      const auto __ln = std::log(__x / _Tp{2}) + _S_gamma_e;
-      return -__ln * __x2 * __bei - _S_pi_4 * __ber + __x2 * __kei;
+      const auto s_gamma_e = emsr::egamma_v<_Tp>;
+      const auto s_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
+      const auto kei = kelvin_kex_series(x, +1);
+      const auto ber = kelvin_bex_series(x, -1);
+      const auto bei = kelvin_bex_series(x, +1);
+      const auto x2 = x * x / _Tp{4};
+      const auto ln = std::log(x / _Tp{2}) + s_gamma_e;
+      return -ln * x2 * bei - s_pi_4 * ber + x2 * kei;
     }
 
 
@@ -218,61 +219,61 @@ namespace __detail
    */
   template<typename _Tp>
     _KelvinState<int, _Tp>
-    __kelvin_series(_Tp __x)
+    kelvin_series(_Tp x)
     {
       using _BasicSum = emsr::BasicSum<_Tp>;
       using _WijnSum = emsr::VanWijngaardenSum<_Tp>;
       using _WenigerDeltaWijnSum = emsr::WenigerDeltaSum<_WijnSum>;
 
-      constexpr auto _S_maxiter = 100;
-      const auto _S_gamma_e = emsr::egamma_v<_Tp>;
-      const auto _S_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
-      const auto _S_eps = emsr::epsilon(__x);
-      const auto __y = __x / _Tp{2};
-      const auto __x2 = __y * __y;
-      const auto __y4 = __x2 * __x2;
-      if (__x == _Tp{0})
+      constexpr auto s_maxiter = 100;
+      const auto s_gamma_e = emsr::egamma_v<_Tp>;
+      const auto s_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
+      const auto s_eps = emsr::epsilon(x);
+      const auto y = x / _Tp{2};
+      const auto x2 = y * y;
+      const auto y4 = x2 * x2;
+      if (x == _Tp{0})
 	{
-	  const auto _S_inf = emsr::infinity<_Tp>();
-	  return {0, __x, _Tp{1}, _Tp{0}, _S_inf, -_S_pi_4};
+	  const auto s_inf = emsr::infinity<_Tp>();
+	  return {0, x, _Tp{1}, _Tp{0}, s_inf, -s_pi_4};
 	}
       else
 	{
-	  auto __term = _Tp{1};
+	  auto term = _Tp{1};
 	  _BasicSum _H_n;
-	  _WenigerDeltaWijnSum __ber, __bei, __ker, __kei;
-	  __ber += __term;
-	  __ker += __term;
-	  __bei += __term;
-	  __kei += __term;
+	  _WenigerDeltaWijnSum ber, bei, ker, kei;
+	  ber += term;
+	  ker += term;
+	  bei += term;
+	  kei += term;
 	  _H_n += _Tp{1};
-	  for (auto __k = 1; __k < _S_maxiter; ++__k)
+	  for (auto k = 1; k < s_maxiter; ++k)
 	    {
-	      const auto __tk = _Tp(2 * __k);
-	      const auto __tkp1 = _Tp(2 * __k + 1);
+	      const auto tk = _Tp(2 * k);
+	      const auto tkp1 = _Tp(2 * k + 1);
 
-	      const auto __factr = _Tp{1} / __tk;
-	      __term *= -__y4 * __factr * __factr;
-	      __ber += __term;
+	      const auto factr = _Tp{1} / tk;
+	      term *= -y4 * factr * factr;
+	      ber += term;
 
-	      _H_n += _Tp{1} / __tk;
-	      __ker += __term * _H_n();
+	      _H_n += _Tp{1} / tk;
+	      ker += term * _H_n();
 
-	      const auto __facti = _Tp{1} / __tkp1;
-	      __term *= __facti * __facti;
-	      __bei += __term;
+	      const auto facti = _Tp{1} / tkp1;
+	      term *= facti * facti;
+	      bei += term;
 
-	      _H_n += _Tp{1} / __tkp1;
-	      __kei += __term * _H_n();
+	      _H_n += _Tp{1} / tkp1;
+	      kei += term * _H_n();
 
-	      if (std::abs(__term) < _S_eps * std::abs(__ber())
-	       && std::abs(__term) < _S_eps * std::abs(__bei()))
+	      if (std::abs(term) < s_eps * std::abs(ber())
+	       && std::abs(term) < s_eps * std::abs(bei()))
 		break;
 	    }
-	  const auto __ln = std::log(__x / _Tp{2}) + _S_gamma_e;
-	  return _KelvinState<int, _Tp>{0, __x, __ber(), __x2 * __bei(),
-	      -__ln * __ber() + _S_pi_4 * __x2 * __bei() + __ker(),
-	      -__ln * __x2 * __bei() - _S_pi_4 * __ber() + __x2 * __kei()};
+	  const auto ln = std::log(x / _Tp{2}) + s_gamma_e;
+	  return _KelvinState<int, _Tp>{0, x, ber(), x2 * bei(),
+	      -ln * ber() + s_pi_4 * x2 * bei() + ker(),
+	      -ln * x2 * bei() - s_pi_4 * ber() + x2 * kei()};
 	}
     }
 
@@ -286,55 +287,54 @@ namespace __detail
    */
   template<typename _Tp>
     _KelvinState<int, _Tp>
-    __kelvin_asymp(_Tp __x)
+    kelvin_asymp(_Tp x)
     {
       using _Cmplx = std::complex<_Tp>;
       using _BasicSum = emsr::BasicSum<_Cmplx>;
       using _WenigerDeltaSum = emsr::WenigerDeltaSum<_BasicSum>;
 
-      const auto _S_j = _Cmplx{0, 1};
-      const auto _S_1d2 = _Tp{1} / _Tp{2};
-      const auto _S_gamma_e = emsr::egamma_v<_Tp>;
-      const auto _S_pi = emsr::pi_v<_Tp>;
-      const auto _S_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
-      const auto _S_pi_8 = _S_1d2 * _S_pi_4;
-      const auto _S_3pi_4 = _Tp{3} * _S_pi_4;
-      const auto _S_sqrt_2 = emsr::sqrt2_v<_Tp>;
-      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
-      const auto _S_eps = emsr::epsilon(__x);
-      constexpr auto _S_maxiter = 1000;
-      const auto __y = _Tp{1} / (_Tp{8} * __x);
-      auto __term = _Tp{1};
-      const auto __xrt2 = __x / _S_sqrt_2;
-      auto __barg = __xrt2 - _S_pi_8;
-      auto __karg = -__xrt2 - _S_pi_8;
-      _WenigerDeltaSum __be, __ke;
-      __be += std::polar(__term, __barg);
-      __ke += std::polar(__term, __karg);
-      for (auto __k = 1; __k < _S_maxiter; ++__k)
+      const auto s_j = _Cmplx{0, 1};
+      const auto s_1d2 = _Tp{1} / _Tp{2};
+      const auto s_pi = emsr::pi_v<_Tp>;
+      const auto s_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
+      const auto s_pi_8 = s_1d2 * s_pi_4;
+      const auto s_3pi_4 = _Tp{3} * s_pi_4;
+      const auto s_sqrt_2 = emsr::sqrt2_v<_Tp>;
+      const auto s_sqrt_pi = emsr::sqrtpi_v<_Tp>;
+      const auto s_eps = emsr::epsilon(x);
+      constexpr auto s_maxiter = 1000;
+      const auto y = _Tp{1} / (_Tp{8} * x);
+      auto term = _Tp{1};
+      const auto xrt2 = x / s_sqrt_2;
+      auto barg = xrt2 - s_pi_8;
+      auto karg = -xrt2 - s_pi_8;
+      _WenigerDeltaSum be, ke;
+      be += std::polar(term, barg);
+      ke += std::polar(term, karg);
+      for (auto k = 1; k < s_maxiter; ++k)
 	{
-	  __barg -= _S_pi_4;
-	  __karg += _S_3pi_4;
-	  auto __fact = _Tp(2 * __k - 1);
-	  auto __next = __y * __fact * __fact / _Tp(__k);
-	  if (std::abs(__next) > _Tp{1})
+	  barg -= s_pi_4;
+	  karg += s_3pi_4;
+	  auto fact = _Tp(2 * k - 1);
+	  auto next = y * fact * fact / _Tp(k);
+	  if (std::abs(next) > _Tp{1})
 	    break;
-	  __term *= -__next;
-	  __be += std::polar(__term, __barg);
-	  __ke += std::polar(__term, __karg);
+	  term *= -next;
+	  be += std::polar(term, barg);
+	  ke += std::polar(term, karg);
 
-	  if (std::abs(__term) < _S_eps * std::abs(__be()))
+	  if (std::abs(term) < s_eps * std::abs(be()))
 	    break;
 	}
-      const auto __exp = std::exp(__xrt2);
-      const auto __rt = std::sqrt(_Tp{2} * __x);
-      const auto __kfact = _S_sqrt_pi / __rt / __exp;
-      const auto __kex = __kfact * __ke();
-      const auto __bfact = __exp / _S_sqrt_pi / __rt;
-      const auto __bex = __bfact * __be() + _S_j * __kex / _S_pi;
-      return _KelvinState<int, _Tp>{0, __x,
-				    std::real(__bex), std::imag(__bex),
-				    std::real(__kex), std::imag(__kex)};
+      const auto exp = std::exp(xrt2);
+      const auto rt = std::sqrt(_Tp{2} * x);
+      const auto kfact = s_sqrt_pi / rt / exp;
+      const auto kex = kfact * ke();
+      const auto bfact = exp / s_sqrt_pi / rt;
+      const auto bex = bfact * be() + s_j * kex / s_pi;
+      return _KelvinState<int, _Tp>{0, x,
+				    std::real(bex), std::imag(bex),
+				    std::real(kex), std::imag(kex)};
     }
 
   /**
@@ -342,32 +342,32 @@ namespace __detail
    */
   template<typename _Tp>
     inline _Tp
-    __kelvin_ber_asymp(_Tp __x)
-    { return __kelvin_asymp(__x).__ber; }
+    kelvin_ber_asymp(_Tp x)
+    { return kelvin_asymp(x).ber; }
 
   /**
    * Compute the Kelvin functions by asymptotic series expansion.
    */
   template<typename _Tp>
     inline _Tp
-    __kelvin_bei_asymp(_Tp __x)
-    { return __kelvin_asymp(__x).__bei; }
+    kelvin_bei_asymp(_Tp x)
+    { return kelvin_asymp(x).bei; }
 
   /**
    * Compute the Kelvin functions by asymptotic series expansion.
    */
   template<typename _Tp>
     inline _Tp
-    __kelvin_ker_asymp(_Tp __x)
-    { return __kelvin_asymp(__x).__ker; }
+    kelvin_ker_asymp(_Tp x)
+    { return kelvin_asymp(x).ker; }
 
   /**
    * Compute the Kelvin functions by asymptotic series expansion.
    */
   template<typename _Tp>
     inline _Tp
-    __kelvin_kei_asymp(_Tp __x)
-    { return __kelvin_asymp(__x).__kei; }
+    kelvin_kei_asymp(_Tp x)
+    { return kelvin_asymp(x).kei; }
 
 
   /**
@@ -375,90 +375,90 @@ namespace __detail
    */
   template<typename _Tp>
     _KelvinState<int, _Tp>
-    __kelvin_series(int __n, _Tp __x)
+    kelvin_series(int n, _Tp x)
     {
       using _Cmplx = std::complex<_Tp>;
       using _BasicSum = emsr::BasicSum<_Cmplx>;
-      using _WenigerDeltaSum = emsr::WenigerDeltaSum<_BasicSum>;
+      //using _WenigerDeltaSum = emsr::WenigerDeltaSum<_BasicSum>;
 
-      const auto _S_j = _Cmplx{0, 1};
-      const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
-      const auto _S_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
-      const auto _S_3pi_4 = _Tp{3} * _S_pi_4;
-      const auto _S_eps = emsr::epsilon(__x);
-      constexpr auto _S_maxiter = 1000;
-      if (__n < 0)
+      const auto s_j = _Cmplx{0, 1};
+      const auto s_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
+      const auto s_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
+      const auto s_3pi_4 = _Tp{3} * s_pi_4;
+      const auto s_eps = emsr::epsilon(x);
+      constexpr auto s_maxiter = 1000;
+      if (n < 0)
 	{
-	  const auto _Cnp = _Tp(1 - 2 * (__n & 1));
-	  auto _Kv = __kelvin_series(-__n, __x);
-	  return _KelvinState<int, _Tp>{__n, __x,
-	  				_Cnp * _Kv.__ber, _Cnp * _Kv.__bei,
-					_Cnp * _Kv.__ker, _Cnp * _Kv.__kei};
+	  const auto _Cnp = _Tp(1 - 2 * (n & 1));
+	  auto _Kv = kelvin_series(-n, x);
+	  return _KelvinState<int, _Tp>{n, x,
+	  				_Cnp * _Kv.ber, _Cnp * _Kv.bei,
+					_Cnp * _Kv.ker, _Cnp * _Kv.kei};
 	}
       else
 	{
-	  const auto __y = __x / _Tp{2};
-	  const auto __y2 = __y * __y;
+	  const auto y = x / _Tp{2};
+	  const auto y2 = y * y;
 
-	  _BasicSum __be;
-	  auto __bterm = _Tp{1};
-	  auto __barg = _S_3pi_4 * _Tp(__n);
-	  __be += std::polar(__bterm, __barg);
-	  for (auto __k = 1; __k < _S_maxiter; ++__k)
+	  _BasicSum be;
+	  auto bterm = _Tp{1};
+	  auto barg = s_3pi_4 * _Tp(n);
+	  be += std::polar(bterm, barg);
+	  for (auto k = 1; k < s_maxiter; ++k)
 	    {
-	      __bterm *= __y2 / _Tp(__k + __n) / _Tp(__k);
-	      __barg += _S_pi_2;
-	      __be += std::polar(__bterm, __barg);
-	      if (std::abs(__bterm) < _S_eps * std::abs(__be()))
+	      bterm *= y2 / _Tp(k + n) / _Tp(k);
+	      barg += s_pi_2;
+	      be += std::polar(bterm, barg);
+	      if (std::abs(bterm) < s_eps * std::abs(be()))
 		break;
 	    }
 
-	  _BasicSum __ke1;
-	  if (__n > 0)
+	  _BasicSum ke1;
+	  if (n > 0)
 	    {
-	      auto __kterm1 = _Tp{1};
-	      auto __karg1 = _S_3pi_4 * _Tp(__n);
-	      __ke1 += std::polar(__kterm1, -__karg1);
-	      for (auto __k = 1; __k < __n - 1; ++__k)
+	      auto kterm1 = _Tp{1};
+	      auto karg1 = s_3pi_4 * _Tp(n);
+	      ke1 += std::polar(kterm1, -karg1);
+	      for (auto k = 1; k < n - 1; ++k)
 		{
-		  __kterm1 *= __y2 / _Tp(__n - 1 - __k) / _Tp(__k);
-		  __karg1 += _S_pi_2;
-		  __ke1 += std::polar(__kterm1, -__karg1);
+		  kterm1 *= y2 / _Tp(n - 1 - k) / _Tp(k);
+		  karg1 += s_pi_2;
+		  ke1 += std::polar(kterm1, -karg1);
 		}
-	      if (__n > 1)
+	      if (n > 1)
 		{
-		  __kterm1 *= __y2 / _Tp(__n - 1);
-		  __karg1 += _S_pi_2;
-		  __ke1 += std::polar(__kterm1, -__karg1);
+		  kterm1 *= y2 / _Tp(n - 1);
+		  karg1 += s_pi_2;
+		  ke1 += std::polar(kterm1, -karg1);
 		}
 	    }
 
-	  _BasicSum __ke2;
-	  auto __hsum2 = __digamma<_Tp>(1) + __digamma<_Tp>(1 + __n);
-	  auto __kterm2 = _Tp{1};
-	  auto __karg2 = _S_3pi_4 * _Tp(__n);
-	  __ke2 += std::polar(__hsum2 * __kterm2, __karg2);
-	  for (auto __k = 1; __k < _S_maxiter; ++__k)
+	  _BasicSum ke2;
+	  auto hsum2 = digamma<_Tp>(1) + digamma<_Tp>(1 + n);
+	  auto kterm2 = _Tp{1};
+	  auto karg2 = s_3pi_4 * _Tp(n);
+	  ke2 += std::polar(hsum2 * kterm2, karg2);
+	  for (auto k = 1; k < s_maxiter; ++k)
 	    {
-	      __hsum2 += _Tp{1} / _Tp(1 + __k)
-		       + _Tp{1} / _Tp(1 + __n + __k);
-	      __kterm2 *= __y2 / _Tp(__k) / _Tp(__n + __k);
-	      __karg2 += _S_pi_2;
-	      __ke2 += std::polar(__hsum2 * __kterm2, __karg2);
-	      if (std::abs(__hsum2 * __kterm2) < _S_eps * std::abs(__ke2()))
+	      hsum2 += _Tp{1} / _Tp(1 + k)
+		       + _Tp{1} / _Tp(1 + n + k);
+	      kterm2 *= y2 / _Tp(k) / _Tp(n + k);
+	      karg2 += s_pi_2;
+	      ke2 += std::polar(hsum2 * kterm2, karg2);
+	      if (std::abs(hsum2 * kterm2) < s_eps * std::abs(ke2()))
 		break;
 	    }
 
-	  const auto __nfact = __factorial<_Tp>(__n);
-	  const auto __pow = std::pow(__y, _Tp(__n));
-	  const auto __bex = __pow * __be() / __nfact;
-	  const auto __fact = __n > 0 ? __factorial<_Tp>(__n - 1) : _Tp{1};
-	  const auto __kex = -std::log(__y) * __bex - _S_j * _S_pi_4 * __bex
-			   + __ke1() / __pow / _Tp{2} / __fact
-			   + __pow * __ke2() / __nfact / _Tp{2};
-	  return _KelvinState<int, _Tp>{__n, __x,
-				     std::real(__bex), std::imag(__bex),
-				     std::real(__kex), std::imag(__kex)};
+	  const auto nfact = factorial<_Tp>(n);
+	  const auto pow = std::pow(y, _Tp(n));
+	  const auto bex = pow * be() / nfact;
+	  const auto fact = n > 0 ? factorial<_Tp>(n - 1) : _Tp{1};
+	  const auto kex = -std::log(y) * bex - s_j * s_pi_4 * bex
+			   + ke1() / pow / _Tp{2} / fact
+			   + pow * ke2() / nfact / _Tp{2};
+	  return _KelvinState<int, _Tp>{n, x,
+				     std::real(bex), std::imag(bex),
+				     std::real(kex), std::imag(kex)};
 	}
     }
 
@@ -468,68 +468,68 @@ namespace __detail
    */
   template<typename _Tp>
     _KelvinState<_Tp, _Tp>
-    __kelvin_series(_Tp __nu, _Tp __x)
+    kelvin_series(_Tp nu, _Tp x)
     {
       using _Cmplx = std::complex<_Tp>;
       using _BasicSum = emsr::BasicSum<_Cmplx>;
       using _WenigerDeltaSum = emsr::WenigerDeltaSum<_BasicSum>;
 
-      const auto _S_j = _Cmplx{0, 1};
-      const auto _S_pi = emsr::pi_v<_Tp>;
-      const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
-      const auto _S_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
-      const auto _S_3pi_4 = _Tp{3} * _S_pi_4;
-      constexpr auto _S_maxiter = 1000;
+      const auto s_j = _Cmplx{0, 1};
+      const auto s_pi = emsr::pi_v<_Tp>;
+      const auto s_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
+      const auto s_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
+      const auto s_3pi_4 = _Tp{3} * s_pi_4;
+      constexpr auto s_maxiter = 1000;
 
-      if (auto __nuint = emsr::fp_is_integer(__nu); __nuint)
+      if (auto nuint = emsr::fp_is_integer(nu); nuint)
 	{
-	  const auto __ret = __kelvin_series(__nuint(), __x);
-	  return _KelvinState<_Tp, _Tp>{_Tp(__ret.__nu), __ret.__x,
-					__ret.__ber, __ret.__bei,
-					__ret.__ker, __ret.__kei};
+	  const auto ret = kelvin_series(nuint(), x);
+	  return _KelvinState<_Tp, _Tp>{_Tp(ret.nu), ret.x,
+					ret.ber, ret.bei,
+					ret.ker, ret.kei};
 	}
       else
 	{
-	  const auto __y = __x / _Tp{2};
-	  const auto __y2 = __y * __y;
+	  const auto y = x / _Tp{2};
+	  const auto y2 = y * y;
 
-	  _WenigerDeltaSum __bep;
-	  auto __termp = _Tp{1};
-	  auto __argp = _S_3pi_4 * __nu;
-	  __bep += std::polar(__termp, __argp);
-	  for (auto __k = 1; __k < _S_maxiter; ++__k)
+	  _WenigerDeltaSum bep;
+	  auto termp = _Tp{1};
+	  auto argp = s_3pi_4 * nu;
+	  bep += std::polar(termp, argp);
+	  for (auto k = 1; k < s_maxiter; ++k)
 	    {
-	      __termp *= __y2 / _Tp(__k + __nu) / _Tp(__k);
-	      __argp += _S_pi_2;
-	      __bep += std::polar(__termp, __argp);
+	      termp *= y2 / _Tp(k + nu) / _Tp(k);
+	      argp += s_pi_2;
+	      bep += std::polar(termp, argp);
 	    }
 
-	  const auto __bex = std::pow(__y, __nu) * __bep()
-			   / std::tgamma(_Tp{1} + __nu);
+	  const auto bex = std::pow(y, nu) * bep()
+			   / std::tgamma(_Tp{1} + nu);
 
-	  _WenigerDeltaSum __bem;
-	  auto __termm = _Tp{1};
-	  auto __argm = -_S_3pi_4 * __nu;
-	  __bem += std::polar(__termm, __argm);
-	  for (auto __k = 1; __k < _S_maxiter; ++__k)
+	  _WenigerDeltaSum bem;
+	  auto termm = _Tp{1};
+	  auto argm = -s_3pi_4 * nu;
+	  bem += std::polar(termm, argm);
+	  for (auto k = 1; k < s_maxiter; ++k)
 	    {
-	      __termm *= __y2 / _Tp(__k - __nu) / _Tp(__k);
-	      __argm += _S_pi_2;
-	      __bem += std::polar(__termm, __argm);
+	      termm *= y2 / _Tp(k - nu) / _Tp(k);
+	      argm += s_pi_2;
+	      bem += std::polar(termm, argm);
 	    }
 
-	  const auto __bey = std::pow(__y, -__nu) * __bem()
-			   / std::tgamma(_Tp{1} - __nu);
+	  const auto bey = std::pow(y, -nu) * bem()
+			   / std::tgamma(_Tp{1} - nu);
 
-	  const auto __nupi = __nu * _S_pi;
-	  const auto __csc = _Tp{1} / std::sin(__nupi);
-	  const auto __cot = _Tp{1} / std::tan(__nupi);
-	  const auto __kex = _S_pi_2
-			   * (__csc * __bey - __cot * __bex + _S_j * __bex);
+	  const auto nupi = nu * s_pi;
+	  const auto csc = _Tp{1} / std::sin(nupi);
+	  const auto cot = _Tp{1} / std::tan(nupi);
+	  const auto kex = s_pi_2
+			   * (csc * bey - cot * bex + s_j * bex);
 
-	  return _KelvinState<_Tp, _Tp>{__nu, __x,
-					std::real(__bex), std::imag(__bex),
-					std::real(__kex), std::imag(__kex)};
+	  return _KelvinState<_Tp, _Tp>{nu, x,
+					std::real(bex), std::imag(bex),
+					std::real(kex), std::imag(kex)};
 	}
     }
 
@@ -539,58 +539,58 @@ namespace __detail
    */
   template<typename _Tp>
     _KelvinState<_Tp, _Tp>
-    __kelvin_asymp(_Tp __nu, _Tp __x)
+    kelvin_asymp(_Tp nu, _Tp x)
     {
       using _Cmplx = std::complex<_Tp>;
       using _BasicSum = emsr::BasicSum<_Cmplx>;
       using _WenigerDeltaSum = emsr::WenigerDeltaSum<_BasicSum>;
 
-      constexpr auto _S_j = _Cmplx{0, 1};
-      constexpr auto _S_1d2 = _Tp{1} / _Tp{2};
-      const auto _S_pi = emsr::pi_v<_Tp>;
-      const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
-      const auto _S_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
-      const auto _S_pi_8 = _S_1d2 * _S_pi_4;
-      const auto _S_sqrt_2 = emsr::sqrt2_v<_Tp>;
-      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
-      const auto _S_eps = emsr::epsilon(__x);
-      constexpr auto _S_maxiter = 1000;
-      const auto __y = _Tp{1} / (_Tp{2} * __x);
-      auto __bterm = _Tp{1};
-      auto __kterm = _Tp{1};
-      const auto __xrt2 = __x / _S_sqrt_2;
-      auto __barg = __xrt2 + __nu * _S_pi_2 - _S_pi_8;
-      auto __karg = __xrt2 + __nu * _S_pi_2 + _S_pi_8;
-      _WenigerDeltaSum __be, __ke;
-      __be += std::polar(__bterm, __barg);
-      __ke += std::polar(__kterm, __karg);
-      for (auto __k = 1; __k < _S_maxiter; ++__k)
+      constexpr auto s_j = _Cmplx{0, 1};
+      constexpr auto s_1d2 = _Tp{1} / _Tp{2};
+      const auto s_pi = emsr::pi_v<_Tp>;
+      const auto s_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
+      const auto s_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
+      const auto s_pi_8 = s_1d2 * s_pi_4;
+      const auto s_sqrt_2 = emsr::sqrt2_v<_Tp>;
+      const auto s_sqrt_pi = emsr::sqrtpi_v<_Tp>;
+      const auto s_eps = emsr::epsilon(x);
+      constexpr auto s_maxiter = 1000;
+      const auto y = _Tp{1} / (_Tp{2} * x);
+      auto bterm = _Tp{1};
+      auto kterm = _Tp{1};
+      const auto xrt2 = x / s_sqrt_2;
+      auto barg = xrt2 + nu * s_pi_2 - s_pi_8;
+      auto karg = xrt2 + nu * s_pi_2 + s_pi_8;
+      _WenigerDeltaSum be, ke;
+      be += std::polar(bterm, barg);
+      ke += std::polar(kterm, karg);
+      for (auto k = 1; k < s_maxiter; ++k)
 	{
-	  __barg -= _S_pi_4;
-	  __karg += _S_pi_4;
-	  auto __fact = (_Tp(__k) - _S_1d2 - __nu)
-		      * (_Tp(__k) - _S_1d2 + __nu) / _Tp(__k);
-	  auto __next = __y * __fact;
-	  if (std::abs(__next) > _Tp{1})
+	  barg -= s_pi_4;
+	  karg += s_pi_4;
+	  auto fact = (_Tp(k) - s_1d2 - nu)
+		      * (_Tp(k) - s_1d2 + nu) / _Tp(k);
+	  auto next = y * fact;
+	  if (std::abs(next) > _Tp{1})
 	    break;
 
-	  __bterm *= __next;
-	  __kterm *= -__bterm;
-	  __be += std::polar(__bterm, __barg);
-	  __ke += std::polar(__kterm, __karg);
+	  bterm *= next;
+	  kterm *= -bterm;
+	  be += std::polar(bterm, barg);
+	  ke += std::polar(kterm, karg);
 
-	  if (std::abs(__bterm) < _S_eps * std::abs(__be()))
+	  if (std::abs(bterm) < s_eps * std::abs(be()))
 	    break;
 	}
-      const auto __exp = std::exp(__xrt2);
-      const auto __rt = _S_sqrt_2 * std::sqrt(__x);
-      const auto __kfact = _S_sqrt_pi / __rt / __exp;
-      const auto __kex = __kfact * __ke();
-      const auto __bfact = __exp / _S_sqrt_pi / __rt;
-      const auto __bex = __bfact * __be() + _S_j * __kex / _S_pi;
-      return _KelvinState<_Tp, _Tp>{__nu, __x,
-				std::real(__bex), std::imag(__bex),
-				std::real(__kex), -std::imag(__kex)};
+      const auto exp = std::exp(xrt2);
+      const auto rt = s_sqrt_2 * std::sqrt(x);
+      const auto kfact = s_sqrt_pi / rt / exp;
+      const auto kex = kfact * ke();
+      const auto bfact = exp / s_sqrt_pi / rt;
+      const auto bex = bfact * be() + s_j * kex / s_pi;
+      return _KelvinState<_Tp, _Tp>{nu, x,
+				std::real(bex), std::imag(bex),
+				std::real(kex), -std::imag(kex)};
     }
 
   /**
@@ -598,15 +598,15 @@ namespace __detail
    */
   template<typename _Tp>
     inline _Tp
-    __kelvin_ber(_Tp __x)
+    kelvin_ber(_Tp x)
     {
-      constexpr auto _S_switch = _Tp{26};
-      if (std::isnan(__x))
+      constexpr auto s_switch = _Tp{26};
+      if (std::isnan(x))
 	return emsr::quiet_NaN<_Tp>();
-      else if (std::abs(__x) < _S_switch)
-	return __kelvin_ber_series(__x);
+      else if (std::abs(x) < s_switch)
+	return kelvin_ber_series(x);
       else
-	return __kelvin_ber_asymp(__x);
+	return kelvin_ber_asymp(x);
     }
 
   /**
@@ -614,15 +614,15 @@ namespace __detail
    */
   template<typename _Tp>
     inline _Tp
-    __kelvin_bei(_Tp __x)
+    kelvin_bei(_Tp x)
     {
-      constexpr auto _S_switch = _Tp{26};
-      if (std::isnan(__x))
+      constexpr auto s_switch = _Tp{26};
+      if (std::isnan(x))
 	return emsr::quiet_NaN<_Tp>();
-      else if (std::abs(__x) < _S_switch)
-	return __kelvin_bei_series(__x);
+      else if (std::abs(x) < s_switch)
+	return kelvin_bei_series(x);
       else
-	return __kelvin_bei_asymp(__x);
+	return kelvin_bei_asymp(x);
     }
 
   /**
@@ -630,15 +630,15 @@ namespace __detail
    */
   template<typename _Tp>
     inline _Tp
-    __kelvin_ker(_Tp __x)
+    kelvin_ker(_Tp x)
     {
-      constexpr auto _S_switch = _Tp{5};
-      if (std::isnan(__x))
+      constexpr auto s_switch = _Tp{5};
+      if (std::isnan(x))
 	return emsr::quiet_NaN<_Tp>();
-      else if (std::abs(__x) < _S_switch)
-	return __kelvin_ker_series(__x);
+      else if (std::abs(x) < s_switch)
+	return kelvin_ker_series(x);
       else
-	return __kelvin_ker_asymp(__x);
+	return kelvin_ker_asymp(x);
     }
 
   /**
@@ -646,15 +646,15 @@ namespace __detail
    */
   template<typename _Tp>
     inline _Tp
-    __kelvin_kei(_Tp __x)
+    kelvin_kei(_Tp x)
     {
-      constexpr auto _S_switch = _Tp{5};
-      if (std::isnan(__x))
+      constexpr auto s_switch = _Tp{5};
+      if (std::isnan(x))
 	return emsr::quiet_NaN<_Tp>();
-      else if (std::abs(__x) < _S_switch)
-	return __kelvin_kei_series(__x);
+      else if (std::abs(x) < s_switch)
+	return kelvin_kei_series(x);
       else
-	return __kelvin_kei_asymp(__x);
+	return kelvin_kei_asymp(x);
     }
 
   /**
@@ -662,15 +662,15 @@ namespace __detail
    */
   template<typename _Tp>
     inline _Tp
-    __kelvin_ber(_Tp __nu, _Tp __x)
+    kelvin_ber(_Tp nu, _Tp x)
     {
-      constexpr auto _S_switch = _Tp{26};
-      if (std::isnan(__nu) || std::isnan(__x))
+      constexpr auto s_switch = _Tp{26};
+      if (std::isnan(nu) || std::isnan(x))
 	return emsr::quiet_NaN<_Tp>();
-      else if (std::abs(__x) < _S_switch)
-	return __kelvin_series(__nu, __x).__ber;
+      else if (std::abs(x) < s_switch)
+	return kelvin_series(nu, x).ber;
       else
-	return __kelvin_asymp(__nu, __x).__ber;
+	return kelvin_asymp(nu, x).ber;
     }
 
   /**
@@ -678,15 +678,15 @@ namespace __detail
    */
   template<typename _Tp>
     inline _Tp
-    __kelvin_bei(_Tp __nu, _Tp __x)
+    kelvin_bei(_Tp nu, _Tp x)
     {
-      constexpr auto _S_switch = _Tp{26};
-      if (std::isnan(__nu) || std::isnan(__x))
+      constexpr auto s_switch = _Tp{26};
+      if (std::isnan(nu) || std::isnan(x))
 	return emsr::quiet_NaN<_Tp>();
-      else if (std::abs(__x) < _S_switch)
-	return __kelvin_series(__nu, __x).__bei;
+      else if (std::abs(x) < s_switch)
+	return kelvin_series(nu, x).bei;
       else
-	return __kelvin_asymp(__nu, __x).__bei;
+	return kelvin_asymp(nu, x).bei;
     }
 
   /**
@@ -694,15 +694,15 @@ namespace __detail
    */
   template<typename _Tp>
     inline _Tp
-    __kelvin_ker(_Tp __nu, _Tp __x)
+    kelvin_ker(_Tp nu, _Tp x)
     {
-      constexpr auto _S_switch = _Tp{5};
-      if (std::isnan(__nu) || std::isnan(__x))
+      constexpr auto s_switch = _Tp{5};
+      if (std::isnan(nu) || std::isnan(x))
 	return emsr::quiet_NaN<_Tp>();
-      else if (std::abs(__x) < _S_switch)
-	return __kelvin_series(__nu, __x).__ker;
+      else if (std::abs(x) < s_switch)
+	return kelvin_series(nu, x).ker;
       else
-	return __kelvin_asymp(__nu, __x).__ker;
+	return kelvin_asymp(nu, x).ker;
     }
 
   /**
@@ -710,21 +710,21 @@ namespace __detail
    */
   template<typename _Tp>
     inline _Tp
-    __kelvin_kei(_Tp __nu, _Tp __x)
+    kelvin_kei(_Tp nu, _Tp x)
     {
-      const auto _S_switch = _Tp{5};
-      if (std::isnan(__nu) || std::isnan(__x))
+      const auto s_switch = _Tp{5};
+      if (std::isnan(nu) || std::isnan(x))
 	return emsr::quiet_NaN<_Tp>();
-      else if (std::abs(__x) < _S_switch)
-	return __kelvin_series(__nu, __x).__kei;
+      else if (std::abs(x) < s_switch)
+	return kelvin_series(nu, x).kei;
       else
-	return __kelvin_asymp(__nu, __x).__kei;
+	return kelvin_asymp(nu, x).kei;
     }
 
-} // namespace __detail
-} // namespace std
+} // namespace detail
+} // namespace emsr
 
-namespace __gnu_cxx
+namespace emsr
 {
 
 
@@ -736,8 +736,8 @@ namespace __gnu_cxx
    * @see kelvin_ber for details.
    */
   inline float
-  kelvin_berf(float __x)
-  { return std::__detail::__kelvin_ber<float>(__x); }
+  kelvin_berf(float x)
+  { return emsr::detail::kelvin_ber<float>(x); }
 
   /**
    * Return the Kelvin function @f$ ber(x) @f$
@@ -746,8 +746,8 @@ namespace __gnu_cxx
    * @see kelvin_ber for details.
    */
   inline long double
-  kelvin_berl(long double __x)
-  { return std::__detail::__kelvin_ber<long double>(__x); }
+  kelvin_berl(long double x)
+  { return emsr::detail::kelvin_ber<long double>(x); }
 
   /**
    * Return the Kelvin function @f$ ber(x) @f$ for @c real argument @c x.
@@ -758,15 +758,15 @@ namespace __gnu_cxx
    * \f]
    * where @f$ J_0(x) @f$ is the Bessel function of the first kind.
    *
-   * @tparam _Tp The floating-point type of the argument @c __x.
-   * @param  __x  The argument of the Kelvin function
+   * @tparam _Tp The floating-point type of the argument @c x.
+   * @param  x  The argument of the Kelvin function
    */
   template<typename _Tp>
-    inline typename __gnu_cxx::__promote<_Tp>::__type
-    kelvin_ber(_Tp __x)
+    inline typename emsr::fp_promote_t<_Tp>
+    kelvin_ber(_Tp x)
     {
-      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
-      return std::__detail::__kelvin_ber<__type>(__x);
+      typedef typename emsr::fp_promote_t<_Tp> type;
+      return emsr::detail::kelvin_ber<type>(x);
     }
 
   /**
@@ -775,8 +775,8 @@ namespace __gnu_cxx
    * @see kelvin_bei for details.
    */
   inline float
-  kelvin_beif(float __x)
-  { return std::__detail::__kelvin_bei<float>(__x); }
+  kelvin_beif(float x)
+  { return emsr::detail::kelvin_bei<float>(x); }
 
   /**
    * Return the Kelvin function @f$ bei(x) @f$
@@ -785,8 +785,8 @@ namespace __gnu_cxx
    * @see kelvin_bei for details.
    */
   inline long double
-  kelvin_beil(long double __x)
-  { return std::__detail::__kelvin_bei<long double>(__x); }
+  kelvin_beil(long double x)
+  { return emsr::detail::kelvin_bei<long double>(x); }
 
   /**
    * Return the Kelvin function @f$ bei(x) @f$ for @c real argument @c x.
@@ -797,15 +797,15 @@ namespace __gnu_cxx
    * \f]
    * where @f$ J_0(x) @f$ is the Bessel function of the first kind.
    *
-   * @tparam _Tp The floating-point type of the argument @c __x.
-   * @param  __x  The argument of the Kelvin function
+   * @tparam _Tp The floating-point type of the argument @c x.
+   * @param  x  The argument of the Kelvin function
    */
   template<typename _Tp>
-    inline typename __gnu_cxx::__promote<_Tp>::__type
-    kelvin_bei(_Tp __x)
+    inline typename emsr::fp_promote_t<_Tp>
+    kelvin_bei(_Tp x)
     {
-      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
-      return std::__detail::__kelvin_bei<__type>(__x);
+      typedef typename emsr::fp_promote_t<_Tp> type;
+      return emsr::detail::kelvin_bei<type>(x);
     }
 
   /**
@@ -814,8 +814,8 @@ namespace __gnu_cxx
    * @see kelvin_ker for details.
    */
   inline float
-  kelvin_kerf(float __x)
-  { return std::__detail::__kelvin_ker<float>(__x); }
+  kelvin_kerf(float x)
+  { return emsr::detail::kelvin_ker<float>(x); }
 
   /**
    * Return the Kelvin function @f$ ker(x) @f$
@@ -824,8 +824,8 @@ namespace __gnu_cxx
    * @see kelvin_ker for details.
    */
   inline long double
-  kelvin_kerl(long double __x)
-  { return std::__detail::__kelvin_ker<long double>(__x); }
+  kelvin_kerl(long double x)
+  { return emsr::detail::kelvin_ker<long double>(x); }
 
   /**
    * Return the Kelvin function @f$ ker(x) @f$ for @c real argument @c x.
@@ -836,15 +836,15 @@ namespace __gnu_cxx
    * \f]
    * where @f$ J_0(x) @f$ is the Bessel function of the first kind.
    *
-   * @tparam _Tp The floating-point type of the argument @c __x.
-   * @param  __x  The argument of the Kelvin function
+   * @tparam _Tp The floating-point type of the argument @c x.
+   * @param  x  The argument of the Kelvin function
    */
   template<typename _Tp>
-    inline typename __gnu_cxx::__promote<_Tp>::__type
-    kelvin_ker(_Tp __x)
+    inline typename emsr::fp_promote_t<_Tp>
+    kelvin_ker(_Tp x)
     {
-      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
-      return std::__detail::__kelvin_ker<__type>(__x);
+      typedef typename emsr::fp_promote_t<_Tp> type;
+      return emsr::detail::kelvin_ker<type>(x);
     }
 
   /**
@@ -853,8 +853,8 @@ namespace __gnu_cxx
    * @see kelvin_kei for details.
    */
   inline float
-  kelvin_keif(float __x)
-  { return std::__detail::__kelvin_kei<float>(__x); }
+  kelvin_keif(float x)
+  { return emsr::detail::kelvin_kei<float>(x); }
 
   /**
    * Return the Kelvin function @f$ kei(x) @f$
@@ -863,8 +863,8 @@ namespace __gnu_cxx
    * @see kelvin_kei for details.
    */
   inline long double
-  kelvin_keil(long double __x)
-  { return std::__detail::__kelvin_kei<long double>(__x); }
+  kelvin_keil(long double x)
+  { return emsr::detail::kelvin_kei<long double>(x); }
 
   /**
    * Return the Kelvin function @f$ kei(x) @f$ for @c real argument @c x.
@@ -875,15 +875,15 @@ namespace __gnu_cxx
    * \f]
    * where @f$ J_0(x) @f$ is the Bessel function of the first kind.
    *
-   * @tparam _Tp The floating-point type of the argument @c __x.
-   * @param  __x  The argument of the Kelvin function
+   * @tparam _Tp The floating-point type of the argument @c x.
+   * @param  x  The argument of the Kelvin function
    */
   template<typename _Tp>
-    inline typename __gnu_cxx::__promote<_Tp>::__type
-    kelvin_kei(_Tp __x)
+    inline typename emsr::fp_promote_t<_Tp>
+    kelvin_kei(_Tp x)
     {
-      typedef typename __gnu_cxx::__promote<_Tp>::__type __type;
-      return std::__detail::__kelvin_kei<__type>(__x);
+      typedef typename emsr::fp_promote_t<_Tp> type;
+      return emsr::detail::kelvin_kei<type>(x);
     }
 
   /**
@@ -893,8 +893,8 @@ namespace __gnu_cxx
    * @see kelvin_ber for details.
    */
   inline float
-  kelvin_berf(float __nu, float __x)
-  { return std::__detail::__kelvin_ber<float>(__nu, __x); }
+  kelvin_berf(float nu, float x)
+  { return emsr::detail::kelvin_ber<float>(nu, x); }
 
   /**
    * Return the Kelvin function @f$ ber_\nu(x) @f$ for <tt>long double</tt>
@@ -903,8 +903,8 @@ namespace __gnu_cxx
    * @see kelvin_ber for details.
    */
   inline long double
-  kelvin_berl(long double __nu, long double __x)
-  { return std::__detail::__kelvin_ber<long double>(__nu, __x); }
+  kelvin_berl(long double nu, long double x)
+  { return emsr::detail::kelvin_ber<long double>(nu, x); }
 
   /**
    * Return the Kelvin function @f$ ber_\nu(x) @f$ of real
@@ -918,15 +918,15 @@ namespace __gnu_cxx
    * where J_\nu(x) is the Bessel function of the first kind.
    *
    * @tparam _Tp The real type of the argument
-   * @param __nu The real order
-   * @param __x The real argument
+   * @param nu The real order
+   * @param x The real argument
    */
   template<typename _Tp>
     inline emsr::fp_promote_t<_Tp>
-    kelvin_ber(_Tp __nu, _Tp __x)
+    kelvin_ber(_Tp nu, _Tp x)
     {
-      using __type = emsr::fp_promote_t<_Tp>;
-      return std::__detail::__kelvin_ber<__type>(__nu, __x);
+      using type = emsr::fp_promote_t<_Tp>;
+      return emsr::detail::kelvin_ber<type>(nu, x);
     }
 
   /**
@@ -936,8 +936,8 @@ namespace __gnu_cxx
    * @see kelvin_bei for details.
    */
   inline float
-  kelvin_beif(float __nu, float __x)
-  { return std::__detail::__kelvin_bei<float>(__nu, __x); }
+  kelvin_beif(float nu, float x)
+  { return emsr::detail::kelvin_bei<float>(nu, x); }
 
   /**
    * Return the Kelvin function @f$ bei_\nu(x) @f$ for <tt>long double</tt>
@@ -946,8 +946,8 @@ namespace __gnu_cxx
    * @see kelvin_bei for details.
    */
   inline long double
-  kelvin_beil(long double __nu, long double __x)
-  { return std::__detail::__kelvin_bei<long double>(__nu, __x); }
+  kelvin_beil(long double nu, long double x)
+  { return emsr::detail::kelvin_bei<long double>(nu, x); }
 
   /**
    * Return the Kelvin function @f$ bei_\nu(x) @f$ of real
@@ -961,15 +961,15 @@ namespace __gnu_cxx
    * where J_\nu(x) is the Bessel function of the first kind.
    *
    * @tparam _Tp The real type of the argument
-   * @param __nu The real order
-   * @param __x The real argument
+   * @param nu The real order
+   * @param x The real argument
    */
   template<typename _Tp>
     inline emsr::fp_promote_t<_Tp>
-    kelvin_bei(_Tp __nu, _Tp __x)
+    kelvin_bei(_Tp nu, _Tp x)
     {
-      using __type = emsr::fp_promote_t<_Tp>;
-      return std::__detail::__kelvin_bei<__type>(__nu, __x);
+      using type = emsr::fp_promote_t<_Tp>;
+      return emsr::detail::kelvin_bei<type>(nu, x);
     }
 
   /**
@@ -979,8 +979,8 @@ namespace __gnu_cxx
    * @see kelvin_ker for details.
    */
   inline float
-  kelvin_kerf(float __nu, float __x)
-  { return std::__detail::__kelvin_ker<float>(__nu, __x); }
+  kelvin_kerf(float nu, float x)
+  { return emsr::detail::kelvin_ker<float>(nu, x); }
 
   /**
    * Return the Kelvin function @f$ ker_\nu(x) @f$ for <tt>long double</tt>
@@ -989,8 +989,8 @@ namespace __gnu_cxx
    * @see kelvin_ker for details.
    */
   inline long double
-  kelvin_kerl(long double __nu, long double __x)
-  { return std::__detail::__kelvin_ker<long double>(__nu, __x); }
+  kelvin_kerl(long double nu, long double x)
+  { return emsr::detail::kelvin_ker<long double>(nu, x); }
 
   /**
    * Return the Kelvin function @f$ ker_\nu(x) @f$ of real
@@ -1004,15 +1004,15 @@ namespace __gnu_cxx
    * where K_\nu(x) is the regular modified Bessel function.
    *
    * @tparam _Tp The real type of the argument
-   * @param __nu The real order
-   * @param __x The real argument
+   * @param nu The real order
+   * @param x The real argument
    */
   template<typename _Tp>
     inline emsr::fp_promote_t<_Tp>
-    kelvin_ker(_Tp __nu, _Tp __x)
+    kelvin_ker(_Tp nu, _Tp x)
     {
-      using __type = emsr::fp_promote_t<_Tp>;
-      return std::__detail::__kelvin_ker<__type>(__nu, __x);
+      using type = emsr::fp_promote_t<_Tp>;
+      return emsr::detail::kelvin_ker<type>(nu, x);
     }
 
   /**
@@ -1022,8 +1022,8 @@ namespace __gnu_cxx
    * @see kelvin_kei for details.
    */
   inline float
-  kelvin_keif(float __nu, float __x)
-  { return std::__detail::__kelvin_kei<float>(__nu, __x); }
+  kelvin_keif(float nu, float x)
+  { return emsr::detail::kelvin_kei<float>(nu, x); }
 
   /**
    * Return the Kelvin function @f$ kei_\nu(x) @f$ for <tt>long double</tt>
@@ -1032,8 +1032,8 @@ namespace __gnu_cxx
    * @see kelvin_kei for details.
    */
   inline long double
-  kelvin_keil(long double __nu, long double __x)
-  { return std::__detail::__kelvin_kei<long double>(__nu, __x); }
+  kelvin_keil(long double nu, long double x)
+  { return emsr::detail::kelvin_kei<long double>(nu, x); }
 
   /**
    * Return the Kelvin function @f$ kei_\nu(x) @f$ of real
@@ -1047,22 +1047,22 @@ namespace __gnu_cxx
    * where K_\nu(x) is the regular modified Bessel function.
    *
    * @tparam _Tp The real type of the argument
-   * @param __nu The real order
-   * @param __x The real argument
+   * @param nu The real order
+   * @param x The real argument
    */
   template<typename _Tp>
     inline emsr::fp_promote_t<_Tp>
-    kelvin_kei(_Tp __nu, _Tp __x)
+    kelvin_kei(_Tp nu, _Tp x)
     {
-      using __type = emsr::fp_promote_t<_Tp>;
-      return std::__detail::__kelvin_kei<__type>(__nu, __x);
+      using type = emsr::fp_promote_t<_Tp>;
+      return emsr::detail::kelvin_kei<type>(nu, x);
     }
 
-} // namespace __gnu_cxx
+} // namespace emsr
 
 
 /**
- * Run Kelvin with individual sums: __kelvin_ber_series, etc.
+ * Run Kelvin with individual sums: kelvin_ber_series, etc.
  */
 template<typename _Tp>
   void
@@ -1072,7 +1072,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
-    std::__detail::__kelvin_ber_series(_Tp{});
+    emsr::detail::kelvin_ber_series(_Tp{});
 
     std::cout << "\n\nPrint Kelvin functions computed by series expansions\n";
     std::cout << std::setw(w) << "x"
@@ -1085,10 +1085,10 @@ template<typename _Tp>
     for (int i = 0; i <= 200; ++i)
       {
 	auto x = del * i;
-	auto ber = std::__detail::__kelvin_ber_series(x);
-	auto bei = std::__detail::__kelvin_bei_series(x);
-	auto ker = std::__detail::__kelvin_ker_series(x);
-	auto kei = std::__detail::__kelvin_kei_series(x);
+	auto ber = emsr::detail::kelvin_ber_series(x);
+	auto bei = emsr::detail::kelvin_bei_series(x);
+	auto ker = emsr::detail::kelvin_ker_series(x);
+	auto kei = emsr::detail::kelvin_kei_series(x);
 	std::cout << std::setw(w) << x
 		  << std::setw(w) << ber
 		  << std::setw(w) << bei
@@ -1101,7 +1101,7 @@ template<typename _Tp>
 
 
 /**
- * Run Kelvin with __kelvin_series which combines sums.
+ * Run Kelvin with kelvin_series which combines sums.
  */
 template<typename _Tp>
   void
@@ -1111,7 +1111,7 @@ template<typename _Tp>
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
-    std::__detail::__kelvin_series(_Tp{});
+    emsr::detail::kelvin_series(_Tp{});
 
     std::cout << "\n\nPrint Kelvin functions computed by series expansions\n";
     std::cout << std::setw(w) << "x"
@@ -1124,12 +1124,12 @@ template<typename _Tp>
     for (int i = 0; i <= 200; ++i)
       {
 	auto x = del * i;
-	auto ke = std::__detail::__kelvin_series(x);
-	std::cout << std::setw(w) << ke.__x
-		  << std::setw(w) << ke.__ber
-		  << std::setw(w) << ke.__bei
-		  << std::setw(w) << ke.__ker
-		  << std::setw(w) << ke.__kei
+	auto ke = emsr::detail::kelvin_series(x);
+	std::cout << std::setw(w) << ke.x
+		  << std::setw(w) << ke.ber
+		  << std::setw(w) << ke.bei
+		  << std::setw(w) << ke.ker
+		  << std::setw(w) << ke.kei
 		  << '\n';
       }
     std::cout << '\n' << std::flush;
@@ -1137,7 +1137,7 @@ template<typename _Tp>
 
 
 /**
- * Diff Kelvin __kelvin_asymp with __kelvin_series.
+ * Diff Kelvin kelvin_asymp with kelvin_series.
  */
 template<typename _Tp>
   void
@@ -1166,21 +1166,21 @@ template<typename _Tp>
     for (int i = 50; i <= 400; ++i)
       {
 	auto x = del * i;
-	auto kes = std::__detail::__kelvin_series(x);
-	auto kea = std::__detail::__kelvin_asymp(x);
-	std::cout << ' ' << std::setw(w) << kes.__x
-		  << ' ' << std::setw(w) << kea.__ber
-		  << ' ' << std::setw(w) << kes.__ber
-		  << ' ' << std::setw(w) << kea.__bei
-		  << ' ' << std::setw(w) << kes.__bei
-		  << ' ' << std::setw(w) << kea.__ker
-		  << ' ' << std::setw(w) << kes.__ker
-		  << ' ' << std::setw(w) << kea.__kei
-		  << ' ' << std::setw(w) << kes.__kei
-		  << ' ' << std::setw(w) << (kea.__ber - kes.__ber) / std::abs(kes.__ber)
-		  << ' ' << std::setw(w) << (kea.__bei - kes.__bei) / std::abs(kes.__bei)
-		  << ' ' << std::setw(w) << (kea.__ker - kes.__ker) / std::abs(kes.__ker)
-		  << ' ' << std::setw(w) << (kea.__kei - kes.__kei) / std::abs(kes.__kei)
+	auto kes = emsr::detail::kelvin_series(x);
+	auto kea = emsr::detail::kelvin_asymp(x);
+	std::cout << ' ' << std::setw(w) << kes.x
+		  << ' ' << std::setw(w) << kea.ber
+		  << ' ' << std::setw(w) << kes.ber
+		  << ' ' << std::setw(w) << kea.bei
+		  << ' ' << std::setw(w) << kes.bei
+		  << ' ' << std::setw(w) << kea.ker
+		  << ' ' << std::setw(w) << kes.ker
+		  << ' ' << std::setw(w) << kea.kei
+		  << ' ' << std::setw(w) << kes.kei
+		  << ' ' << std::setw(w) << (kea.ber - kes.ber) / std::abs(kes.ber)
+		  << ' ' << std::setw(w) << (kea.bei - kes.bei) / std::abs(kes.bei)
+		  << ' ' << std::setw(w) << (kea.ker - kes.ker) / std::abs(kes.ker)
+		  << ' ' << std::setw(w) << (kea.kei - kes.kei) / std::abs(kes.kei)
 		  << '\n';
       }
     std::cout << '\n' << std::flush;
@@ -1188,7 +1188,7 @@ template<typename _Tp>
 
 
 /**
- * Run Kelvin with __kelvin_series(nu, x) which combines sums for general order.
+ * Run Kelvin with kelvin_series(nu, x) which combines sums for general order.
  */
 template<typename _Tp>
   void
@@ -1209,12 +1209,12 @@ template<typename _Tp>
     for (int i = 0; i <= 200; ++i)
       {
 	auto x = del * i;
-	auto ke = std::__detail::__kelvin_series(nu, x);
-	std::cout << std::setw(w) << ke.__x
-		  << std::setw(w) << ke.__ber
-		  << std::setw(w) << ke.__bei
-		  << std::setw(w) << ke.__ker
-		  << std::setw(w) << ke.__kei
+	auto ke = emsr::detail::kelvin_series(nu, x);
+	std::cout << std::setw(w) << ke.x
+		  << std::setw(w) << ke.ber
+		  << std::setw(w) << ke.bei
+		  << std::setw(w) << ke.ker
+		  << std::setw(w) << ke.kei
 		  << '\n';
       }
     std::cout << '\n' << std::flush;
@@ -1222,7 +1222,7 @@ template<typename _Tp>
 
 
 /**
- * Diff Kelvin __kelvin_asymp(nu, x) with __kelvin_series(nu, x) for general order.
+ * Diff Kelvin kelvin_asymp(nu, x) with kelvin_series(nu, x) for general order.
  */
 template<typename _Tp>
   void
@@ -1243,13 +1243,13 @@ template<typename _Tp>
     for (int i = 50; i <= 400; ++i)
       {
 	auto x = del * i;
-	auto kes = std::__detail::__kelvin_series(nu, x);
-	auto kea = std::__detail::__kelvin_asymp(nu, x);
-	std::cout << ' ' << std::setw(w) << kes.__x
-		  << ' ' << std::setw(w) << (kea.__ber - kes.__ber) / std::abs(kes.__ber)
-		  << ' ' << std::setw(w) << (kea.__bei - kes.__bei) / std::abs(kes.__bei)
-		  << ' ' << std::setw(w) << (kea.__ker - kes.__ker) / std::abs(kes.__ker)
-		  << ' ' << std::setw(w) << (kea.__kei - kes.__kei) / std::abs(kes.__kei)
+	auto kes = emsr::detail::kelvin_series(nu, x);
+	auto kea = emsr::detail::kelvin_asymp(nu, x);
+	std::cout << ' ' << std::setw(w) << kes.x
+		  << ' ' << std::setw(w) << (kea.ber - kes.ber) / std::abs(kes.ber)
+		  << ' ' << std::setw(w) << (kea.bei - kes.bei) / std::abs(kes.bei)
+		  << ' ' << std::setw(w) << (kea.ker - kes.ker) / std::abs(kes.ker)
+		  << ' ' << std::setw(w) << (kea.kei - kes.kei) / std::abs(kes.kei)
 		  << '\n';
       }
     std::cout << '\n' << std::flush;
@@ -1257,7 +1257,7 @@ template<typename _Tp>
 
 
 /**
- * Run Kelvin with __kelvin_series(n, x) which combines sums for integral order.
+ * Run Kelvin with kelvin_series(n, x) which combines sums for integral order.
  */
 template<typename _Tp>
   void
@@ -1278,12 +1278,12 @@ template<typename _Tp>
     for (int i = 0; i <= 200; ++i)
       {
 	auto x = del * i;
-	auto ke = std::__detail::__kelvin_series(n, x);
-	std::cout << std::setw(w) << ke.__x
-		  << std::setw(w) << ke.__ber
-		  << std::setw(w) << ke.__bei
-		  << std::setw(w) << ke.__ker
-		  << std::setw(w) << ke.__kei
+	auto ke = emsr::detail::kelvin_series(n, x);
+	std::cout << std::setw(w) << ke.x
+		  << std::setw(w) << ke.ber
+		  << std::setw(w) << ke.bei
+		  << std::setw(w) << ke.ker
+		  << std::setw(w) << ke.kei
 		  << '\n';
       }
     std::cout << '\n' << std::flush;
@@ -1297,8 +1297,8 @@ template<typename _Tp>
   void
   plot_kelvin(std::string filename, _Tp proto = _Tp{})
   {
-    const auto _S_sqrt_2 = emsr::sqrt2_v<_Tp>;
-    const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
+    const auto s_sqrt_2 = emsr::sqrt2_v<_Tp>;
+    const auto s_sqrt_pi = emsr::sqrtpi_v<_Tp>;
 
     auto data = std::ofstream(filename);
 
@@ -1318,17 +1318,17 @@ template<typename _Tp>
     for (int i = 0; i <= +4000; ++i)
       {
 	const auto x = del * i;
-	const auto ber = std::__detail::__kelvin_ber(x);
-	const auto bei = std::__detail::__kelvin_bei(x);
-	const auto ker = std::__detail::__kelvin_ker(x);
-	const auto kei = std::__detail::__kelvin_kei(x);
-	const auto exf = std::exp(x / _S_sqrt_2);
-	const auto rt2x = _S_sqrt_2 * std::sqrt(x);
+	const auto ber = emsr::detail::kelvin_ber(x);
+	const auto bei = emsr::detail::kelvin_bei(x);
+	const auto ker = emsr::detail::kelvin_ker(x);
+	const auto kei = emsr::detail::kelvin_kei(x);
+	const auto exf = std::exp(x / s_sqrt_2);
+	const auto rt2x = s_sqrt_2 * std::sqrt(x);
 	data << std::setw(w) << x
-	     << std::setw(w) << _S_sqrt_pi * rt2x * ber / exf
-	     << std::setw(w) << _S_sqrt_pi * rt2x * bei / exf
-	     << std::setw(w) << rt2x * exf * ker / _S_sqrt_pi
-	     << std::setw(w) << rt2x * exf * kei / _S_sqrt_pi
+	     << std::setw(w) << s_sqrt_pi * rt2x * ber / exf
+	     << std::setw(w) << s_sqrt_pi * rt2x * bei / exf
+	     << std::setw(w) << rt2x * exf * ker / s_sqrt_pi
+	     << std::setw(w) << rt2x * exf * kei / s_sqrt_pi
 	     << '\n';
       }
     data << "\n\n";
@@ -1342,8 +1342,8 @@ template<typename _Tp>
   void
   plot_kelvin_order(std::string filename, _Tp proto = _Tp{})
   {
-    const auto _S_sqrt_2 = emsr::sqrt2_v<_Tp>;
-    const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
+    const auto s_sqrt_2 = emsr::sqrt2_v<_Tp>;
+    const auto s_sqrt_pi = emsr::sqrtpi_v<_Tp>;
 
     auto data = std::ofstream(filename);
 
@@ -1368,17 +1368,17 @@ template<typename _Tp>
 	for (int i = 0; i <= +4000; ++i)
 	  {
 	    const auto x = del * i;
-	    const auto ber = std::__detail::__kelvin_ber(nu, x);
-	    const auto bei = std::__detail::__kelvin_bei(nu, x);
-	    const auto ker = std::__detail::__kelvin_ker(nu, x);
-	    const auto kei = std::__detail::__kelvin_kei(nu, x);
-	    const auto exf = std::exp(x / _S_sqrt_2);
-	    const auto rt2x = _S_sqrt_2 * std::sqrt(x);
+	    const auto ber = emsr::detail::kelvin_ber(nu, x);
+	    const auto bei = emsr::detail::kelvin_bei(nu, x);
+	    const auto ker = emsr::detail::kelvin_ker(nu, x);
+	    const auto kei = emsr::detail::kelvin_kei(nu, x);
+	    const auto exf = std::exp(x / s_sqrt_2);
+	    const auto rt2x = s_sqrt_2 * std::sqrt(x);
 	    data << std::setw(w) << x
-		 << std::setw(w) << _S_sqrt_pi * rt2x * ber / exf
-		 << std::setw(w) << _S_sqrt_pi * rt2x * bei / exf
-		 << std::setw(w) << rt2x * exf * ker / _S_sqrt_pi
-		 << std::setw(w) << rt2x * exf * kei / _S_sqrt_pi
+		 << std::setw(w) << s_sqrt_pi * rt2x * ber / exf
+		 << std::setw(w) << s_sqrt_pi * rt2x * bei / exf
+		 << std::setw(w) << rt2x * exf * ker / s_sqrt_pi
+		 << std::setw(w) << rt2x * exf * kei / s_sqrt_pi
 		 << '\n';
 	  }
 	data << "\n\n";

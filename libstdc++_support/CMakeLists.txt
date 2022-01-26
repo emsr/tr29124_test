@@ -39,11 +39,6 @@ add_executable(testcase testcase.cpp)
 target_link_libraries(testcase wrap_gsl wrap_boost wrap_burkhardt)
 target_include_directories(testcase PRIVATE .)
 
-add_executable(testcase_tr1 testcase.cpp)
-target_link_libraries(testcase_tr1 quadmath wrap_gsl wrap_boost)
-target_compile_definitions(testcase_tr1 PRIVATE TR1)
-target_include_directories(testcase_tr1 PRIVATE .)
-
 #
 # Function to run checks.
 #
@@ -638,121 +633,6 @@ target_include_directories(check_theta_4 PRIVATE .)
 target_link_libraries(check_theta_4 ${TR29124_LIBRARIES} quadmath)
 run_check(check_theta_4)
 
-add_executable(check_tr1_assoc_laguerre check/check_tr1_assoc_laguerre.cc)
-target_include_directories(check_tr1_assoc_laguerre PRIVATE .)
-target_link_libraries(check_tr1_assoc_laguerre ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_assoc_laguerre)
-
-add_executable(check_tr1_assoc_legendre check/check_tr1_assoc_legendre.cc)
-target_include_directories(check_tr1_assoc_legendre PRIVATE .)
-target_link_libraries(check_tr1_assoc_legendre ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_assoc_legendre)
-
-add_executable(check_tr1_beta check/check_tr1_beta.cc)
-target_include_directories(check_tr1_beta PRIVATE .)
-target_link_libraries(check_tr1_beta ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_beta)
-
-add_executable(check_tr1_comp_ellint_1 check/check_tr1_comp_ellint_1.cc)
-target_include_directories(check_tr1_comp_ellint_1 PRIVATE .)
-target_link_libraries(check_tr1_comp_ellint_1 ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_comp_ellint_1)
-
-add_executable(check_tr1_comp_ellint_2 check/check_tr1_comp_ellint_2.cc)
-target_include_directories(check_tr1_comp_ellint_2 PRIVATE .)
-target_link_libraries(check_tr1_comp_ellint_2 ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_comp_ellint_2)
-
-add_executable(check_tr1_comp_ellint_3 check/check_tr1_comp_ellint_3.cc)
-target_include_directories(check_tr1_comp_ellint_3 PRIVATE .)
-target_link_libraries(check_tr1_comp_ellint_3 ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_comp_ellint_3)
-
-add_executable(check_tr1_conf_hyperg check/check_tr1_conf_hyperg.cc)
-target_include_directories(check_tr1_conf_hyperg PRIVATE .)
-target_link_libraries(check_tr1_conf_hyperg ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_conf_hyperg)
-
-add_executable(check_tr1_cyl_bessel_i check/check_tr1_cyl_bessel_i.cc)
-target_include_directories(check_tr1_cyl_bessel_i PRIVATE .)
-target_link_libraries(check_tr1_cyl_bessel_i ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_cyl_bessel_i)
-
-add_executable(check_tr1_cyl_bessel_j check/check_tr1_cyl_bessel_j.cc)
-target_include_directories(check_tr1_cyl_bessel_j PRIVATE .)
-target_link_libraries(check_tr1_cyl_bessel_j ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_cyl_bessel_j)
-
-add_executable(check_tr1_cyl_bessel_k check/check_tr1_cyl_bessel_k.cc)
-target_include_directories(check_tr1_cyl_bessel_k PRIVATE .)
-target_link_libraries(check_tr1_cyl_bessel_k ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_cyl_bessel_k)
-
-add_executable(check_tr1_cyl_neumann check/check_tr1_cyl_neumann.cc)
-target_include_directories(check_tr1_cyl_neumann PRIVATE .)
-target_link_libraries(check_tr1_cyl_neumann ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_cyl_neumann)
-
-add_executable(check_tr1_ellint_1 check/check_tr1_ellint_1.cc)
-target_include_directories(check_tr1_ellint_1 PRIVATE .)
-target_link_libraries(check_tr1_ellint_1 ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_ellint_1)
-
-add_executable(check_tr1_ellint_2 check/check_tr1_ellint_2.cc)
-target_include_directories(check_tr1_ellint_2 PRIVATE .)
-target_link_libraries(check_tr1_ellint_2 ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_ellint_2)
-
-add_executable(check_tr1_ellint_3 check/check_tr1_ellint_3.cc)
-target_include_directories(check_tr1_ellint_3 PRIVATE .)
-target_link_libraries(check_tr1_ellint_3 ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_ellint_3)
-
-add_executable(check_tr1_expint check/check_tr1_expint.cc)
-target_include_directories(check_tr1_expint PRIVATE .)
-target_link_libraries(check_tr1_expint ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_expint)
-
-add_executable(check_tr1_hermite check/check_tr1_hermite.cc)
-target_include_directories(check_tr1_hermite PRIVATE .)
-target_link_libraries(check_tr1_hermite ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_hermite)
-
-add_executable(check_tr1_hyperg check/check_tr1_hyperg.cc)
-target_include_directories(check_tr1_hyperg PRIVATE .)
-target_link_libraries(check_tr1_hyperg ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_hyperg)
-
-add_executable(check_tr1_laguerre check/check_tr1_laguerre.cc)
-target_include_directories(check_tr1_laguerre PRIVATE .)
-target_link_libraries(check_tr1_laguerre ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_laguerre)
-
-add_executable(check_tr1_legendre check/check_tr1_legendre.cc)
-target_include_directories(check_tr1_legendre PRIVATE .)
-target_link_libraries(check_tr1_legendre ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_legendre)
-
-add_executable(check_tr1_riemann_zeta check/check_tr1_riemann_zeta.cc)
-target_include_directories(check_tr1_riemann_zeta PRIVATE .)
-target_link_libraries(check_tr1_riemann_zeta ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_riemann_zeta)
-
-add_executable(check_tr1_sph_bessel check/check_tr1_sph_bessel.cc)
-target_include_directories(check_tr1_sph_bessel PRIVATE .)
-target_link_libraries(check_tr1_sph_bessel ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_sph_bessel)
-
-add_executable(check_tr1_sph_legendre check/check_tr1_sph_legendre.cc)
-target_include_directories(check_tr1_sph_legendre PRIVATE .)
-target_link_libraries(check_tr1_sph_legendre ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_sph_legendre)
-
-add_executable(check_tr1_sph_neumann check/check_tr1_sph_neumann.cc)
-target_include_directories(check_tr1_sph_neumann PRIVATE .)
-target_link_libraries(check_tr1_sph_neumann ${TR29124_LIBRARIES} quadmath)
-run_check(check_tr1_sph_neumann)
-
 add_executable(check_zernike check/check_zernike.cc)
 target_include_directories(check_zernike PRIVATE .)
 target_link_libraries(check_zernike ${TR29124_LIBRARIES} quadmath)
@@ -855,32 +735,6 @@ add_executable(pr86655_sph_legendre check/pr86655_sph_legendre.cc)
 target_include_directories(pr86655_sph_legendre PRIVATE .)
 target_link_libraries(pr86655_sph_legendre ${TR29124_LIBRARIES} quadmath)
 run_check(pr86655_sph_legendre)
-
-add_executable(pr86655_tr1_assoc_legendre check/pr86655_tr1_assoc_legendre.cc)
-target_include_directories(pr86655_tr1_assoc_legendre PRIVATE .)
-target_link_libraries(pr86655_tr1_assoc_legendre ${TR29124_LIBRARIES} quadmath)
-run_check(pr86655_tr1_assoc_legendre)
-
-add_executable(pr86655_tr1_sph_legendre check/pr86655_tr1_sph_legendre.cc)
-target_include_directories(pr86655_tr1_sph_legendre PRIVATE .)
-target_link_libraries(pr86655_tr1_sph_legendre ${TR29124_LIBRARIES} quadmath)
-run_check(pr86655_tr1_sph_legendre)
-
-# This needs C++14!
-#add_executable(tr1_airy check/tr1_airy.cc)
-#target_include_directories(tr1_airy PRIVATE .)
-#target_link_libraries(tr1_airy ${TR29124_LIBRARIES} quadmath)
-#run_check(tr1_airy)
-
-add_executable(tr1_pr68397 check/tr1_pr68397.cc)
-target_include_directories(tr1_pr68397 PRIVATE .)
-target_link_libraries(tr1_pr68397 ${TR29124_LIBRARIES} quadmath)
-run_check(tr1_pr68397)
-
-add_executable(tr1_pr83140 check/tr1_pr83140.cc)
-target_include_directories(tr1_pr83140 PRIVATE .)
-target_link_libraries(tr1_pr83140 ${TR29124_LIBRARIES} quadmath)
-run_check(tr1_pr83140)
 
 # Orthonormality checks
 

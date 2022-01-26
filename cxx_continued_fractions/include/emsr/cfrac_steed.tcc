@@ -1,6 +1,9 @@
 #ifndef CFRAC_STEED_TCC
 #define CFRAC_STEED_TCC 1
 
+#include <emsr/fp_type_util.h>
+#include <emsr/complex_util.h>
+
 namespace emsr
 {
 

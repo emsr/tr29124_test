@@ -10,10 +10,10 @@
 
 template<typename _Tp>
   struct
-  __wilson_t
+  wilson_t
   {
-    _Tp __value;
-    _Tp __factor;
+    _Tp value;
+    _Tp factor;
   };
 
 /**
@@ -35,8 +35,8 @@ template<typename _Tp>
  * @f]
  */
 template<typename _Tp, typename _TpX>
-  __wilson_t<_Tp>
-  __wilson_recur(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
+  wilson_t<_Tp>
+  wilson_recur(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
   {
     auto Wnm1 = _Tp{1};
     if (n == 0)
@@ -97,8 +97,8 @@ template<typename _Tp, typename _TpX>
  * @f]
  */
 template<typename _Tp, typename _TpX>
-  __wilson_t<_Tp>
-  __wilson(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
+  wilson_t<_Tp>
+  wilson(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
   {
     if (std::isnan(a))
       return {a, _Tp{}};
@@ -111,7 +111,7 @@ template<typename _Tp, typename _TpX>
     else if (std::isnan(x))
       return {x, _Tp{}};
     else
-      return __wilson_recur(n, a, b, c, d, x);
+      return wilson_recur(n, a, b, c, d, x);
   }
 
 /**
@@ -130,9 +130,9 @@ template<typename _Tp>
 	for (int i = 0; i <= 400; ++i)
 	  {
 	    auto x = i * _Tp{0.05L};
-	    auto W = __wilson(n, a, b, c, d, std::sqrt(x));
+	    auto W = wilson(n, a, b, c, d, std::sqrt(x));
 	    std::cout << ' ' << std::setw(w) << x
-		      << ' ' << std::setw(w) << W.__value
+		      << ' ' << std::setw(w) << W.value
 		      << '\n';
 	  }
       }

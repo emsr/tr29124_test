@@ -7,13 +7,16 @@
 #include <iomanip>
 #include <algorithm>
 #include <cmath>
+#include <complex>
+
 #include <emsr/fp_type_util.h>
+#include <emsr/complex_util.h> // isnan
 
-//#define __cpp_lib_hypot 201603L
+//#define cpp_lib_hypot 201603L
 
-namespace std
+namespace emsr
 {
-namespace __detail
+namespace detail
 {
 #if LAMBDA
 
@@ -26,27 +29,27 @@ namespace __detail
    */
   template<typename _Tp>
     constexpr _Tp
-    __hypot3(_Tp __x, _Tp __y, _Tp __z)
+    hypot3(_Tp x, _Tp y, _Tp z)
     {
-      if (std::isnan(__x) || std::isnan(__y) || std::isnan(__z))
+      if (std::isnan(x) || std::isnan(y) || std::isnan(z))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	{
-	  auto __abs_max = [](_Tp __a, _Tp __b)
+	  auto abs_max = [](_Tp a, _Tp b)
 			    -> bool
-			    { return std::abs(__a) < std::abs(__b); };
+			    { return std::abs(a) < std::abs(b); };
 
-	  const auto __amax = std::max({__x, __y, __z}, __abs_max);
-	  if (__amax == _Tp{0})
+	  const auto amax = std::max({x, y, z}, abs_max);
+	  if (amax == _Tp{0})
 	    return _Tp{0};
-	  else if (std::isinf(__amax))
+	  else if (std::isinf(amax))
 	    return std::numeric_limits<_Tp>::infinity();
 	  else
 	    {
-	      __x /= __amax;
-	      __y /= __amax;
-	      __z /= __amax;
-	      return __amax * std::sqrt(__x * __x + __y * __y + __z * __z);
+	      x /= amax;
+	      y /= amax;
+	      z /= amax;
+	      return amax * std::sqrt(x * x + y * y + z * z);
             }
 	}
     }
@@ -56,9 +59,9 @@ namespace __detail
   // Avoid including all of <algorithm>
   template<typename _Tp>
     constexpr _Tp
-    __max3(_Tp __x, _Tp __y, _Tp __z)
+    max3(_Tp x, _Tp y, _Tp z)
     {
-      return std::max(std::max(__x, __y), std::max(__y, __z));
+      return std::max(std::max(x, y), std::max(y, z));
     }
 
   /**
@@ -70,26 +73,26 @@ namespace __detail
    */
   template<typename _Tp>
     constexpr _Tp
-    __hypot3(_Tp __x, _Tp __y, _Tp __z)
+    hypot3(_Tp x, _Tp y, _Tp z)
     {
-      if (std::isnan(__x) || std::isnan(__y) || std::isnan(__z))
+      if (std::isnan(x) || std::isnan(y) || std::isnan(z))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	{
-	  __x = std::abs(__x);
-	  __y = std::abs(__y);
-	  __z = std::abs(__z);
-	  const auto __amax = __max3(__x, __y, __z);
-	  if (__amax == _Tp{0})
+	  x = std::abs(x);
+	  y = std::abs(y);
+	  z = std::abs(z);
+	  const auto amax = max3(x, y, z);
+	  if (amax == _Tp{0})
 	    return _Tp{0};
-	  else if (std::isinf(__amax))
+	  else if (std::isinf(amax))
 	    return std::numeric_limits<_Tp>::infinity();
 	  else
 	    {
-	      __x /= __amax;
-	      __y /= __amax;
-	      __z /= __amax;
-	      return __amax * std::sqrt(__x * __x + __y * __y + __z * __z);
+	      x /= amax;
+	      y /= amax;
+	      z /= amax;
+	      return amax * std::sqrt(x * x + y * y + z * z);
             }
 	}
     }
@@ -105,24 +108,24 @@ namespace __detail
    */
   template<typename _Tp>
     constexpr emsr::fp_promote_t<_Tp>
-    __hypot3(const std::complex<_Tp>& __x, const std::complex<_Tp>& __y)
+    hypot3(const std::complex<_Tp>& x, const std::complex<_Tp>& y)
     {
-      if (std::isnan(__x) || std::isnan(__y))
+      if (std::isnan(x) || std::isnan(y))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	{
-	  auto __ax = std::abs(__x);
-	  auto __ay = std::abs(__y);
-	  const auto __amax = std::max<_Tp>(__ax, __ay);
-	  if (__amax == _Tp{0})
+	  auto ax = std::abs(x);
+	  auto ay = std::abs(y);
+	  const auto amax = std::max<_Tp>(ax, ay);
+	  if (amax == _Tp{0})
 	    return _Tp{0};
-	  else if (std::isinf(__amax))
+	  else if (std::isinf(amax))
 	    return std::numeric_limits<_Tp>::infinity();
 	  else
 	    {
-	      __ax /= __amax;
-	      __ay /= __amax;
-	      return __amax * std::sqrt(__ax * __ax + __ay * __ay);
+	      ax /= amax;
+	      ay /= amax;
+	      return amax * std::sqrt(ax * ax + ay * ay);
             }
 	}
     }
@@ -137,104 +140,104 @@ namespace __detail
    */
   template<typename _Tp>
     constexpr emsr::fp_promote_t<_Tp>
-    __hypot3(const std::complex<_Tp>& __x, const std::complex<_Tp>& __y,
-	     const std::complex<_Tp>& __z)
+    hypot3(const std::complex<_Tp>& x, const std::complex<_Tp>& y,
+	     const std::complex<_Tp>& z)
     {
-      if (std::isnan(__x) || std::isnan(__y))
+      if (std::isnan(x) || std::isnan(y))
 	return std::numeric_limits<_Tp>::quiet_NaN();
       else
 	{
-	  auto __ax = std::abs(__x);
-	  auto __ay = std::abs(__y);
-	  auto __az = std::abs(__z);
-	  const auto __amax = std::max<_Tp>({__ax, __ay, __az});
-	  if (__amax == _Tp{0})
+	  auto ax = std::abs(x);
+	  auto ay = std::abs(y);
+	  auto az = std::abs(z);
+	  const auto amax = std::max<_Tp>({ax, ay, az});
+	  if (amax == _Tp{0})
 	    return _Tp{0};
-	  else if (std::isinf(__amax))
+	  else if (std::isinf(amax))
 	    return std::numeric_limits<_Tp>::infinity();
 	  else
 	    {
-	      __ax /= __amax;
-	      __ay /= __amax;
-	      __az /= __amax;
-	      return __amax
-		   * std::sqrt(__ax * __ax + __ay * __ay + __az * __az);
+	      ax /= amax;
+	      ay /= amax;
+	      az /= amax;
+	      return amax
+		   * std::sqrt(ax * ax + ay * ay + az * az);
             }
 	}
     }
 
-} // namespace __detail
-} // namespace std
+} // namespace detail
+} // namespace emsr
 
   constexpr inline float
-  hypot(float __x, float __y, float __z)
-  { return std::__detail::__hypot3<float>(__x, __y, __z); }
+  hypot(float x, float y, float z)
+  { return emsr::detail::hypot3<float>(x, y, z); }
 
   constexpr inline double
-  hypot(double __x, double __y, double __z)
-  { return std::__detail::__hypot3<double>(__x, __y, __z); }
+  hypot(double x, double y, double z)
+  { return emsr::detail::hypot3<double>(x, y, z); }
 
   constexpr inline long double
-  hypot(long double __x, long double __y, long double __z)
-  { return std::__detail::__hypot3<long double>(__x, __y, __z); }
+  hypot(long double x, long double y, long double z)
+  { return emsr::detail::hypot3<long double>(x, y, z); }
 
   template<typename _Tpx, typename _Tpy, typename _Tpz>
     constexpr inline emsr::fp_promote_t<_Tpx, _Tpy, _Tpz>
-    hypot(_Tpx __x, _Tpy __y, _Tpz __z)
+    hypot(_Tpx x, _Tpy y, _Tpz z)
     {
-      using __type = emsr::fp_promote_t<_Tpx, _Tpy, _Tpz>;
-      return std::__detail::__hypot3<__type>(__x, __y, __z);
+      using type = emsr::fp_promote_t<_Tpx, _Tpy, _Tpz>;
+      return emsr::detail::hypot3<type>(x, y, z);
     }
 
 
   constexpr inline float
-  hypot(const std::complex<float>& __x, const std::complex<float>& __y)
-  { return std::__detail::__hypot3<float>(__x, __y); }
+  hypot(const std::complex<float>& x, const std::complex<float>& y)
+  { return emsr::detail::hypot3<float>(x, y); }
 
   constexpr inline double
-  hypot(const std::complex<double>& __x, const std::complex<double>& __y)
-  { return std::__detail::__hypot3<double>(__x, __y); }
+  hypot(const std::complex<double>& x, const std::complex<double>& y)
+  { return emsr::detail::hypot3<double>(x, y); }
 
   constexpr inline long double
-  hypot(const std::complex<long double>& __x,
-	const std::complex<long double>& __y)
-  { return std::__detail::__hypot3<long double>(__x, __y); }
+  hypot(const std::complex<long double>& x,
+	const std::complex<long double>& y)
+  { return emsr::detail::hypot3<long double>(x, y); }
 
   template<typename _Tpx, typename _Tpy>
     constexpr inline emsr::fp_promote_t<_Tpx, _Tpy>
-    hypot(const std::complex<_Tpx>& __x, const std::complex<_Tpy>& __y)
+    hypot(const std::complex<_Tpx>& x, const std::complex<_Tpy>& y)
     {
-      using __type = emsr::fp_promote_t<_Tpx, _Tpy>;
-      return std::__detail::__hypot3<__type>(__x, __y);
+      using type = emsr::fp_promote_t<_Tpx, _Tpy>;
+      return emsr::detail::hypot3<type>(x, y);
     }
 
   constexpr inline float
-  hypot(const std::complex<float>& __x, const std::complex<float>& __y,
-	const std::complex<float>& __z)
-  { return std::__detail::__hypot3<float>(__x, __y, __z); }
+  hypot(const std::complex<float>& x, const std::complex<float>& y,
+	const std::complex<float>& z)
+  { return emsr::detail::hypot3<float>(x, y, z); }
 
   constexpr inline double
-  hypot(const std::complex<double>& __x, const std::complex<double>& __y,
-	const std::complex<double>& __z)
-  { return std::__detail::__hypot3<double>(__x, __y, __z); }
+  hypot(const std::complex<double>& x, const std::complex<double>& y,
+	const std::complex<double>& z)
+  { return emsr::detail::hypot3<double>(x, y, z); }
 
   constexpr inline long double
-  hypot(const std::complex<long double>& __x,
-	const std::complex<long double>& __y,
-	const std::complex<long double>& __z)
-  { return std::__detail::__hypot3<long double>(__x, __y, __z); }
+  hypot(const std::complex<long double>& x,
+	const std::complex<long double>& y,
+	const std::complex<long double>& z)
+  { return emsr::detail::hypot3<long double>(x, y, z); }
 
   template<typename _Tpx, typename _Tpy, typename _Tpz>
     constexpr inline emsr::fp_promote_t<_Tpx, _Tpy, _Tpz>
-    hypot(const std::complex<_Tpx>& __x, const std::complex<_Tpy>& __y,
-	  const std::complex<_Tpz>& __z)
+    hypot(const std::complex<_Tpx>& x, const std::complex<_Tpy>& y,
+	  const std::complex<_Tpz>& z)
     {
-      using __type = emsr::fp_promote_t<_Tpx, _Tpy, _Tpz>;
-      return std::__detail::__hypot3<__type>(__x, __y, __z);
+      using type = emsr::fp_promote_t<_Tpx, _Tpy, _Tpz>;
+      return emsr::detail::hypot3<type>(x, y, z);
     }
 
 
-//} // namespace std
+//} // namespace emsr
 
 template<typename _Tp>
   void

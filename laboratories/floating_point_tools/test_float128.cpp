@@ -6,10 +6,11 @@
 #include <iostream>
 #include <algorithm> // For clamp
 
-#include <quadmath.h>
-#include <ext/float128_io.h>
-#include <ext/float128_math.h> // Must come before <cmath>.
 #include <cmath>
+#include <quadmath.h>
+
+#include <emsr/float128_io.h>
+#include <emsr/float128_math.h> // Must come before <cmath>.
 
 int
 main()

@@ -27,8 +27,8 @@ template<typename _Tp>
     data << std::showpoint << std::scientific;
     auto w = 8 + data.precision();
 
-    using std::__detail::__spouge_log_gamma1p;
-    using GammaT = decltype(__spouge_log_gamma1p(_Cmplx{}));
+    using emsr::detail::spouge_log_gamma1p;
+    using GammaT = decltype(spouge_log_gamma1p(_Cmplx{}));
     std::vector<std::vector<GammaT>> zv;
     std::vector<std::vector<GammaT>> gammav;
 
@@ -43,7 +43,7 @@ template<typename _Tp>
 	  {
 	    auto t = _Cmplx(0.10L * i, 0.10L * j);
 	    zv.back().push_back(t);
-	    gammav.back().push_back(__spouge_log_gamma1p(t - GammaT{1}));
+	    gammav.back().push_back(spouge_log_gamma1p(t - GammaT{1}));
 	  }
       }
 
@@ -124,8 +124,8 @@ template<typename _Tp>
     data << std::showpoint << std::scientific;
     auto w = 8 + data.precision();
 
-    using std::__detail::__lanczos_log_gamma1p;
-    using GammaT = decltype(__lanczos_log_gamma1p(_Cmplx{}));
+    using emsr::detail::lanczos_log_gamma1p;
+    using GammaT = decltype(lanczos_log_gamma1p(_Cmplx{}));
     std::vector<std::vector<GammaT>> zv;
     std::vector<std::vector<GammaT>> gammav;
 
@@ -140,7 +140,7 @@ template<typename _Tp>
 	  {
 	    auto t = _Cmplx(0.10L * i, 0.10L * j);
 	    zv.back().push_back(t);
-	    gammav.back().push_back(__lanczos_log_gamma1p(t - GammaT{1}));
+	    gammav.back().push_back(lanczos_log_gamma1p(t - GammaT{1}));
 	  }
       }
 
@@ -221,7 +221,7 @@ main(int n_app_args, char** arg)
   plot_lanczos<long double>(plot_data_dir + '/' + "log_gamma_lanczos_long_double.txt");
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   //std::cout << "\nlanczos<__float128>\n";
-  //plot_lanczos<__float128>(plot_data_dir + '/' + "log_gamma_lanczos__float128.txt");
+  //plot_lanczos<__float128>(plot_data_dir + '/' + "log_gamma_lanczosfloat128.txt");
 #endif
 
   std::cout << "\n\nSpouge Algorithm\n\n";
@@ -233,6 +233,6 @@ main(int n_app_args, char** arg)
   plot_spouge<long double>(plot_data_dir + '/' + "log_gamma_spouge_long_double.txt");
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
   //std::cout << "\nspouge<__float128>\n";
-  //plot_spouge<__float128>(plot_data_dir + '/' + "log_gamma_spouge__float128.txt");
+  //plot_spouge<__float128>(plot_data_dir + '/' + "log_gamma_spougefloat128.txt");
 #endif
 }

@@ -25,6 +25,7 @@
 #include <string>
 
 #include <emsr/integration.h>
+#include <emsr/specfun.h>
 
 // Function which should integrate to 1 for l1 == l2, 0 otherwise.
 template<typename _Tp>
@@ -33,8 +34,8 @@ template<typename _Tp>
   {
     const auto _S_pi = emsr::pi_v<_Tp>;
     return _Tp{2} * _S_pi * std::sin(theta)
-	 * std::sph_legendre(l1, m1, theta)
-	 * std::sph_legendre(l2, m2, theta);
+	 * emsr::sph_legendre(l1, m1, theta)
+	 * emsr::sph_legendre(l2, m2, theta);
   }
 
 template<typename _Tp>

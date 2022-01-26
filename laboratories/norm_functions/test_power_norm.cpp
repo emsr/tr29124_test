@@ -14,17 +14,17 @@
  */
 template<typename _Real, typename _Iter>
   _Real
-  __impl_power_norm_0(_Iter __begin, _Iter __end)
+  impl_power_norm_0(_Iter begin, _Iter end)
   {
-    std::size_t __n = 0;
-    auto __prod = _Real{1};
-    while (__begin != __end)
+    std::size_t n = 0;
+    auto prod = _Real{1};
+    while (begin != end)
       {
-	++__n;
-	__prod *= *__begin;
-	++__begin;
+	++n;
+	prod *= *begin;
+	++begin;
       }
-    return std::pow(std::abs(__prod), _Real{1} / _Real(__n));
+    return std::pow(std::abs(prod), _Real{1} / _Real(n));
   }
 
 /**
@@ -32,32 +32,32 @@ template<typename _Real, typename _Iter>
  */
 template<typename _Real, typename _Iter>
   _Real
-  __impl_power_norm(_Real __p, _Iter __begin, _Iter __end)
+  impl_power_norm(_Real p, _Iter begin, _Iter end)
   {
-    if (__begin == __end)
+    if (begin == end)
       return _Real{0};
 
-    using _Tp = std::decay_t<decltype(*__begin)>;
-    if (__p == _Real{0})
-      return __impl_power_norm_0<_Tp>(__begin, __end);
-    else if (std::isinf(__p))
+    using _Tp = std::decay_t<decltype(*begin)>;
+    if (p == _Real{0})
+      return impl_power_norm_0<_Tp>(begin, end);
+    else if (std::isinf(p))
       {
-	if (__p < _Real{0})
-	  return std::abs(*std::min_element(__begin, __end));
+	if (p < _Real{0})
+	  return std::abs(*std::min_element(begin, end));
 	else
-	  return std::abs(*std::max_element(__begin, __end));
+	  return std::abs(*std::max_element(begin, end));
       }
     else
       {
-	std::size_t __n = 0;
-	auto __sum = _Real{0};
-	while (__begin != __end)
+	std::size_t n = 0;
+	auto sum = _Real{0};
+	while (begin != end)
 	  {
-	    ++__n;
-	    __sum += std::pow(std::abs(*__begin), __p);
-	    ++__begin;
+	    ++n;
+	    sum += std::pow(std::abs(*begin), p);
+	    ++begin;
 	  }
-	return std::pow(__sum / _Real(__n), _Real{1} / _Real(__p));
+	return std::pow(sum / _Real(n), _Real{1} / _Real(p));
       }
   }
 
@@ -66,10 +66,10 @@ template<typename _Real, typename _Iter>
  */
 template<typename _Real>
   _Real
-  power_norm(_Real __p, std::initializer_list<_Real> __val)
+  power_norm(_Real p, std::initializer_list<_Real> val)
   {
-    using _Tp = std::decay_t<decltype(*__val.begin())>;
-    return __impl_power_norm<_Tp>(__p, __val.begin(), __val.end());
+    using _Tp = std::decay_t<decltype(*val.begin())>;
+    return impl_power_norm<_Tp>(p, val.begin(), val.end());
   }
 
 template<typename _Tp>

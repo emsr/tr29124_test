@@ -10,11 +10,12 @@
 #include <string>
 #include <complex>
 #include <cmath>
-#include <bits/specfun.h>
+
+#include <emsr/specfun.h>
 
 template<typename _Tp, typename _Bessel>
   void
-  plot_bessel(std::string filename, _Bessel __bessel)
+  plot_bessel(std::string filename, _Bessel bessel)
   {
     auto data = std::ofstream(filename);
 
@@ -28,7 +29,7 @@ template<typename _Tp, typename _Bessel>
 	for (int i = 0; i <= 1000; ++i)
 	  {
 	    auto x = _Tp(0.10L * i);
-	    auto j = __bessel(nu, x);
+	    auto j = bessel(nu, x);
 	    data << ' ' << std::setw(w) << nu
 		 << ' ' << std::setw(w) << x
 		 << ' ' << std::setw(w) << j << '\n';

@@ -6,15 +6,15 @@
 #include <iostream>
 #include <iomanip>
 
-#include <ext/float128_io.h>
+#include <emsr/float128_io.h>
 #include <emsr/polynomial.h>
 
 template<typename _Tp>
   void
   run_toy()
   {
-    constexpr auto _S_1d6 = _Tp{1} / _Tp{6};
-    constexpr auto _S_5d6 = _Tp{5} / _Tp{6};
+    constexpr auto s_1d6 = _Tp{1} / _Tp{6};
+    constexpr auto s_5d6 = _Tp{5} / _Tp{6};
 
     auto index = 0;
     auto indexp = 0;
@@ -69,10 +69,10 @@ template<typename _Tp>
 	    // It's a subtly different thing!  Look at the nenom!
 	    // Derive a new one!
 	    //lambda *= _Tp(s - 1) / _Tp{2} + _Tp{5} / _Tp(72 * s);
-	    //mu = -lambda * _Tp(s + _S_1d6) / _Tp(s - _S_1d6);
-	    lambda *= _Tp{3} * _Tp(s - _S_5d6) * _Tp(s - _S_1d6)
+	    //mu = -lambda * _Tp(s + s_1d6) / _Tp(s - s_1d6);
+	    lambda *= _Tp{3} * _Tp(s - s_5d6) * _Tp(s - s_1d6)
 		   / (s * 4);
-	    mu = -lambda * _Tp(s + _S_1d6) / _Tp(s - _S_1d6);
+	    mu = -lambda * _Tp(s + s_1d6) / _Tp(s - s_1d6);
 	  }
 	if (std::isnan(lambda) || std::isinf(lambda)
 	 || std::isnan(mu) || std::isinf(mu))

@@ -5,6 +5,9 @@
 #include <iomanip>
 
 #include <emsr/continued_fractions.h>
+#include <emsr/math_constants.h>
+#include <emsr/sf_trigint.h>
+#include <emsr/sf_expint.h>
 
 template<typename Tp>
   void
@@ -55,8 +58,8 @@ template<typename Tp>
     std::cout << "Si = " << std::setw(width) << std::imag(y) << '\n';
     std::cout << "Ci = " << std::setw(width) << -std::real(y) << '\n';
     std::cout << '\n';
-    std::cout << "Si = " << std::setw(width) << __gnu_cxx::sinint(1.2) << '\n';
-    std::cout << "Ci = " << std::setw(width) << __gnu_cxx::cosint(1.2) << '\n';
+    std::cout << "Si = " << std::setw(width) << emsr::sinint(1.2) << '\n';
+    std::cout << "Ci = " << std::setw(width) << emsr::cosint(1.2) << '\n';
   }
 
 template<typename Tp>
@@ -112,8 +115,8 @@ template<typename Tp>
     std::cout << "Shi = " << std::setw(width) << std::imag(y) << '\n';
     std::cout << "Chi = " << std::setw(width) << -std::real(y) << '\n';
     std::cout << '\n';
-    std::cout << "Shi = " << std::setw(width) << __gnu_cxx::sinhint(1.2) << '\n';
-    std::cout << "Chi = " << std::setw(width) << __gnu_cxx::coshint(1.2) << '\n';
+    std::cout << "Shi = " << std::setw(width) << emsr::sinhint(1.2) << '\n';
+    std::cout << "Chi = " << std::setw(width) << emsr::coshint(1.2) << '\n';
   }
 
 

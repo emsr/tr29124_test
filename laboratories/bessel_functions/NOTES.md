@@ -12,6 +12,6 @@ I will carry on, in a new branch, this bessel work.
 
 The deal with the NaNs at z=2 is the cutover at that point to another algo - the pq CF.
 The deal was that q was negative and blowing a sqrt.
-Look for FIXME in sf_bessel ~711 after __cyl_hankel_1_ratio_j_frac.
+Look for FIXME in sf_bessel ~711 after cyl_hankel_1_ratio_j_frac.
 
 Also, there is some deal with a sign for a CF.

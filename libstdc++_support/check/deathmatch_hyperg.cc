@@ -24,6 +24,8 @@
 #include <limits>
 #include <cmath>
 
+#include <emsr/specfun.h>
+
 #if defined(__TEST_DEBUG)
 #  include <iostream>
 #  define VERIFY(A) \
@@ -57,7 +59,7 @@ template<typename Tp>
     for (auto i = 1; i < 10; ++i)
       {
 	auto z = Tp{0.1L} * i;
-	auto hyp = z * __gnu_cxx::hyperg(Tp{1}, Tp{1}, Tp{2}, -z);
+	auto hyp = z * emsr::hyperg(Tp{1}, Tp{1}, Tp{2}, -z);
 	auto ln1p = std::log1p(z);
 	stats << std::make_pair(hyp, ln1p);
       }
@@ -73,7 +75,7 @@ template<typename Tp>
     for (auto i = 1; i < 10; ++i)
       {
 	auto z = Tp{0.1L} * i;
-	auto hyp = __gnu_cxx::hyperg(a, Tp{1}, Tp{1}, z);
+	auto hyp = emsr::hyperg(a, Tp{1}, Tp{1}, z);
 	auto binom = std::pow(Tp{1} - z, -a);
 	stats << std::make_pair(hyp, binom);
       }
@@ -89,7 +91,7 @@ template<typename Tp>
     for (auto i = 1; i < 10; ++i)
       {
 	auto z = Tp{0.1L} * i;
-	auto hyp = z * __gnu_cxx::hyperg(Tp{0.5L}, Tp{0.5L}, Tp{1.5L}, z * z);
+	auto hyp = z * emsr::hyperg(Tp{0.5L}, Tp{0.5L}, Tp{1.5L}, z * z);
 	auto arcsin = std::asin(z);
 	stats << std::make_pair(hyp, arcsin);
       }
@@ -106,7 +108,7 @@ template<typename Tp>
     for (auto i = 1; i < 10; ++i)
       {
 	auto k = Tp{0.1L} * i;
-	auto hyp = _S_pi2 * __gnu_cxx::hyperg(Tp{0.5L}, Tp{0.5L}, Tp{1}, k * k);
+	auto hyp = _S_pi2 * emsr::hyperg(Tp{0.5L}, Tp{0.5L}, Tp{1}, k * k);
 	auto K = std::comp_ellint_1(k);
 	stats << std::make_pair(hyp, K);
       }
@@ -123,7 +125,7 @@ template<typename Tp>
     for (auto i = 1; i < 10; ++i)
       {
 	auto k = Tp{0.1L} * i;
-	auto hyp = _S_pi2 * __gnu_cxx::hyperg(Tp{-0.5L}, Tp{0.5L}, Tp{1}, k * k);
+	auto hyp = _S_pi2 * emsr::hyperg(Tp{-0.5L}, Tp{0.5L}, Tp{1}, k * k);
 	auto E = std::comp_ellint_2(k);
 	stats << std::make_pair(hyp, E);
       }
@@ -140,10 +142,10 @@ template<typename Tp>
     for (auto i = -9; i < 10; ++i)
       {
 	auto z = Tp{0.1L} * i;
-	auto hyp = __gnu_cxx::hyperg(-Tp(n), Tp(1 + n) + alpha + beta, Tp{1} + alpha, z);
-	auto P = __gnu_cxx::factorial<Tp>(n)
-	       * __gnu_cxx::jacobi(n, alpha, beta, Tp{1} - Tp{2} * z)
-	       / __gnu_cxx::rising_factorial(alpha + Tp{1}, int(n));
+	auto hyp = emsr::hyperg(-Tp(n), Tp(1 + n) + alpha + beta, Tp{1} + alpha, z);
+	auto P = emsr::factorial<Tp>(n)
+	       * emsr::jacobi(n, alpha, beta, Tp{1} - Tp{2} * z)
+	       / emsr::rising_factorial(alpha + Tp{1}, int(n));
 	stats << std::make_pair(hyp, P);
       }
     VERIFY(stats.max_abs_frac < toler);

@@ -24,8 +24,9 @@
 #include <sstream>
 #include <string>
 
-#include <emsr/math_constants.h>
 #include <emsr/integration.h>
+#include <emsr/specfun.h>
+#include <emsr/math_constants.h>
 
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.
 template<typename _Tp>
@@ -33,8 +34,8 @@ template<typename _Tp>
   normalized_chebyshev_u(int n1, int n2, _Tp x)
   {
     const auto _S_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
-    return __gnu_cxx::chebyshev_u(n2, x)
-	 * __gnu_cxx::chebyshev_u(n1, x)
+    return emsr::chebyshev_u(n2, x)
+	 * emsr::chebyshev_u(n1, x)
 	 * std::sqrt(_Tp{1} - x * x)
 	 / _S_pi_2;
   }

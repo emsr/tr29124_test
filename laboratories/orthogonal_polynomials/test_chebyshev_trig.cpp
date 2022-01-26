@@ -7,7 +7,8 @@
 #include <vector>
 #include <cmath>
 
-#include <ext/float128_io.h>
+#include <emsr/float128_io.h>
+#include <emsr/specfun.h>
 
 /**
  * @todo return derivatives from these.
@@ -23,22 +24,22 @@
    */
   template<typename _Tp>
     _Tp
-    __chebyshev_t_trig(unsigned int __n, _Tp __x)
+    chebyshev_t_trig(unsigned int n, _Tp x)
     {
-      if (std::abs(__x) <= _Tp{1})
+      if (std::abs(x) <= _Tp{1})
 	{
-	  const auto __theta = std::acos(__x);
-	  return std::cos(__n * __theta);
+	  const auto theta = std::acos(x);
+	  return std::cos(n * theta);
 	}
-      else if (__x > _Tp{1})
+      else if (x > _Tp{1})
 	{
-	  const auto __theta = std::acosh(__x);
-	  return std::cosh(__n * __theta);
+	  const auto theta = std::acosh(x);
+	  return std::cosh(n * theta);
 	}
       else
 	{
-	  const auto __theta = std::acosh(-__x);
-	  return ((__n & 1) ? _Tp{-1} : _Tp{+1}) * std::cosh(__n * __theta);
+	  const auto theta = std::acosh(-x);
+	  return ((n & 1) ? _Tp{-1} : _Tp{+1}) * std::cosh(n * theta);
 	}
     }
 
@@ -53,16 +54,16 @@
    */
   template<typename _Tp>
     std::vector<emsr::QuadraturePoint<_Tp>>
-    __chebyshev_t_zeros(unsigned int __n)
+    chebyshev_t_zeros(unsigned int n)
     {
-      const auto _S_pi = emsr::pi_v<_Tp>;
-      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
-      for (unsigned int __k = 0; __k < __n; ++__k)
+      const auto s_pi = emsr::pi_v<_Tp>;
+      std::vector<emsr::QuadraturePoint<_Tp>> pt(n);
+      for (unsigned int k = 0; k < n; ++k)
 	{
-	  __pt[__k].point = __gnu_cxx::cos_pi(_Tp(__k + 0.5L) / _Tp(__n));
-	  __pt[__k].weight = _S_pi / __n;
+	  pt[k].point = emsr::cos_pi(_Tp(k + 0.5L) / _Tp(n));
+	  pt[k].weight = s_pi / n;
 	}
-      return __pt;
+      return pt;
     }
 
   /**
@@ -75,31 +76,31 @@
    */
   template<typename _Tp>
     _Tp
-    __chebyshev_u_trig(unsigned int __n, _Tp __x)
+    chebyshev_u_trig(unsigned int n, _Tp x)
     {
-      const auto _S_eps = emsr::epsilon(__x);
-      if (std::abs(__x + _Tp{1}) < _S_eps)
-	return (__n % 2 == 0 ? +1 : -1) * _Tp(__n + 1);
-      else if (std::abs(__x - _Tp{1}) < _S_eps)
-	return _Tp(__n + 1);
-      else if (std::abs(__x) < _Tp{1})
+      const auto s_eps = emsr::epsilon(x);
+      if (std::abs(x + _Tp{1}) < s_eps)
+	return (n % 2 == 0 ? +1 : -1) * _Tp(n + 1);
+      else if (std::abs(x - _Tp{1}) < s_eps)
+	return _Tp(n + 1);
+      else if (std::abs(x) < _Tp{1})
 	{
-	  const auto __theta = std::acos(__x);
-	  return std::sin(_Tp(__n + 1) * __theta)
-	       / std::sin(__theta);
+	  const auto theta = std::acos(x);
+	  return std::sin(_Tp(n + 1) * theta)
+	       / std::sin(theta);
 	}
-      else if (__x > _Tp{1})
+      else if (x > _Tp{1})
 	{
-	  const auto __theta = std::acosh(__x);
-	  return std::sinh(_Tp(__n + 1) * __theta)
-	       / std::sinh(__theta);
+	  const auto theta = std::acosh(x);
+	  return std::sinh(_Tp(n + 1) * theta)
+	       / std::sinh(theta);
 	}
       else
 	{
-	  const auto __theta = std::acosh(-__x);
-	  return (__n & 1 ? _Tp{-1} : _Tp{+1})
-	       * std::sinh(_Tp(__n + 1) * __theta)
-	       / std::sinh(__theta);
+	  const auto theta = std::acosh(-x);
+	  return (n & 1 ? _Tp{-1} : _Tp{+1})
+	       * std::sinh(_Tp(n + 1) * theta)
+	       / std::sinh(theta);
 	}
     }
 
@@ -113,20 +114,20 @@
    */
   template<typename _Tp>
     std::vector<emsr::QuadraturePoint<_Tp>>
-    __chebyshev_u_zeros(unsigned int __n)
+    chebyshev_u_zeros(unsigned int n)
     {
-      const auto _S_pi = emsr::pi_v<_Tp>;
-      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
-      for (unsigned int __k = 1; __k <= __n; ++__k)
+      const auto s_pi = emsr::pi_v<_Tp>;
+      std::vector<emsr::QuadraturePoint<_Tp>> pt(n);
+      for (unsigned int k = 1; k <= n; ++k)
 	{
-	  const auto __arg = _Tp(__k) / _Tp(__n + 1);
-	  const auto __half = emsr::fp_is_equal<_Tp>(__arg, _Tp{0.5L});
-	  const auto __z = (__half ? _Tp{0} : __gnu_cxx::cos_pi(__arg));
-	  const auto __w = _S_pi * (_Tp{1} - __z * __z) / _Tp(__n + 1);
-	  __pt[__k - 1].point = __z;
-	  __pt[__k - 1].weight = __w;
+	  const auto arg = _Tp(k) / _Tp(n + 1);
+	  const auto half = emsr::fp_is_equal<_Tp>(arg, _Tp{0.5L});
+	  const auto z = (half ? _Tp{0} : emsr::cos_pi(arg));
+	  const auto w = s_pi * (_Tp{1} - z * z) / _Tp(n + 1);
+	  pt[k - 1].point = z;
+	  pt[k - 1].weight = w;
 	}
-      return __pt;
+      return pt;
     }
 
   /**
@@ -140,29 +141,29 @@
    */
   template<typename _Tp>
     _Tp
-    __chebyshev_v_trig(unsigned int __n, _Tp __x)
+    chebyshev_v_trig(unsigned int n, _Tp x)
     {
-      const auto _S_eps = emsr::epsilon(__x);
-      if (std::abs(__x + _Tp{1}) < _S_eps)
-	return (__n % 2 == 0 ? +1 : -1) * _Tp(2 * __n + 1);
-      else if (std::abs(__x) <= _Tp{1})
+      const auto s_eps = emsr::epsilon(x);
+      if (std::abs(x + _Tp{1}) < s_eps)
+	return (n % 2 == 0 ? +1 : -1) * _Tp(2 * n + 1);
+      else if (std::abs(x) <= _Tp{1})
 	{
-	  const auto __theta = std::acos(__x);
-	  return std::cos(_Tp(__n + 0.5L) * __theta)
-	       / std::cos(_Tp{0.5L} * __theta);
+	  const auto theta = std::acos(x);
+	  return std::cos(_Tp(n + 0.5L) * theta)
+	       / std::cos(_Tp{0.5L} * theta);
 	}
-      else if (__x > _Tp{1})
+      else if (x > _Tp{1})
 	{
-	  const auto __theta = std::acosh(__x);
-	  return std::cosh(_Tp(__n + 0.5L) * __theta)
-	       / std::cosh(_Tp{0.5L} * __theta);
+	  const auto theta = std::acosh(x);
+	  return std::cosh(_Tp(n + 0.5L) * theta)
+	       / std::cosh(_Tp{0.5L} * theta);
 	}
       else
 	{
-	  const auto __theta = std::acosh(-__x);
-	  return (__n % 2 == 0 ? +1 : -1)
-	       * std::sinh(_Tp(__n + 0.5L) * __theta)
-	       / std::sinh(_Tp{0.5L} * __theta);
+	  const auto theta = std::acosh(-x);
+	  return (n % 2 == 0 ? +1 : -1)
+	       * std::sinh(_Tp(n + 0.5L) * theta)
+	       / std::sinh(_Tp{0.5L} * theta);
 	}
     }
 
@@ -177,18 +178,18 @@
    */
   template<typename _Tp>
     std::vector<emsr::QuadraturePoint<_Tp>>
-    __chebyshev_v_zeros(unsigned int __n)
+    chebyshev_v_zeros(unsigned int n)
     {
-      const auto _S_pi = emsr::pi_v<_Tp>;
-      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
-      for (unsigned int __k = 0; __k < __n; ++__k)
+      const auto s_pi = emsr::pi_v<_Tp>;
+      std::vector<emsr::QuadraturePoint<_Tp>> pt(n);
+      for (unsigned int k = 0; k < n; ++k)
 	{
-	  const auto __z = __gnu_cxx::cos_pi(_Tp(__k + 0.5L) / _Tp(__n + 0.5L));
-	  const auto __w = _S_pi * (_Tp{1} + __z) / (_Tp(__n) + _Tp{1} / _Tp{2});
-	  __pt[__k].point = __z;
-	  __pt[__k].weight = __w;
+	  const auto z = emsr::cos_pi(_Tp(k + 0.5L) / _Tp(n + 0.5L));
+	  const auto w = s_pi * (_Tp{1} + z) / (_Tp(n) + _Tp{1} / _Tp{2});
+	  pt[k].point = z;
+	  pt[k].weight = w;
 	}
-      return __pt;
+      return pt;
     }
 
   /**
@@ -202,29 +203,29 @@
    */
   template<typename _Tp>
     _Tp
-    __chebyshev_w_trig(unsigned int __n, _Tp __x)
+    chebyshev_w_trig(unsigned int n, _Tp x)
     {
-      const auto _S_eps = emsr::epsilon(__x);
-      if (std::abs(__x - _Tp{1}) < _S_eps)
-	return _Tp(2 * __n + 1);
-      else if (std::abs(__x) <= _Tp{1})
+      const auto s_eps = emsr::epsilon(x);
+      if (std::abs(x - _Tp{1}) < s_eps)
+	return _Tp(2 * n + 1);
+      else if (std::abs(x) <= _Tp{1})
 	{
-	  const auto __theta = std::acos(__x);
-	  return std::sin(_Tp(__n + 0.5L) * __theta)
-	       / std::sin(_Tp{0.5L} * __theta);
+	  const auto theta = std::acos(x);
+	  return std::sin(_Tp(n + 0.5L) * theta)
+	       / std::sin(_Tp{0.5L} * theta);
 	}
-      else if (__x > _Tp{1})
+      else if (x > _Tp{1})
 	{
-	  const auto __theta = std::acosh(__x);
-	  return std::sinh(_Tp(__n + 0.5L) * __theta)
-	       / std::sinh(_Tp{0.5L} * __theta);
+	  const auto theta = std::acosh(x);
+	  return std::sinh(_Tp(n + 0.5L) * theta)
+	       / std::sinh(_Tp{0.5L} * theta);
 	}
       else
 	{
-	  const auto __theta = std::acosh(-__x);
-	  return (__n % 2 == 0 ? +1 : -1)
-	       * std::cosh(_Tp(__n + 0.5L) * __theta)
-	       / std::cosh(_Tp{0.5L} * __theta);
+	  const auto theta = std::acosh(-x);
+	  return (n % 2 == 0 ? +1 : -1)
+	       * std::cosh(_Tp(n + 0.5L) * theta)
+	       / std::cosh(_Tp{0.5L} * theta);
 	}
     }
 
@@ -239,18 +240,18 @@
    */
   template<typename _Tp>
     std::vector<emsr::QuadraturePoint<_Tp>>
-    __chebyshev_w_zeros(unsigned int __n)
+    chebyshev_w_zeros(unsigned int n)
     {
-      const auto _S_pi = emsr::pi_v<_Tp>;
-      std::vector<emsr::QuadraturePoint<_Tp>> __pt(__n);
-      for (unsigned int __k = 1; __k <= __n; ++__k)
+      const auto s_pi = emsr::pi_v<_Tp>;
+      std::vector<emsr::QuadraturePoint<_Tp>> pt(n);
+      for (unsigned int k = 1; k <= n; ++k)
 	{
-	  const auto __z = __gnu_cxx::cos_pi(_Tp(__k) / _Tp(__n + 0.5L));
-	  const auto __w = _S_pi * (_Tp{1} - __z) / (_Tp(__n) + _Tp{1} / _Tp{2});
-	  __pt[__k - 1].point = __z;
-	  __pt[__k - 1].weight = __w;
+	  const auto z = emsr::cos_pi(_Tp(k) / _Tp(n + 0.5L));
+	  const auto w = s_pi * (_Tp{1} - z) / (_Tp(n) + _Tp{1} / _Tp{2});
+	  pt[k - 1].point = z;
+	  pt[k - 1].weight = w;
 	}
-      return __pt;
+      return pt;
     }
 
 
@@ -285,14 +286,14 @@ template<typename Tp>
 	for (int i = -150; i <= 150; ++i)
 	  {
 	    auto x = del * i;
-	    auto Tt = __chebyshev_t_trig(n, x);
-	    auto Ut = __chebyshev_u_trig(n, x);
-	    auto Vt = __chebyshev_v_trig(n, x);
-	    auto Wt = __chebyshev_w_trig(n, x);
-	    auto Tg = __gnu_cxx::chebyshev_t(n, x);
-	    auto Ug = __gnu_cxx::chebyshev_u(n, x);
-	    auto Vg = __gnu_cxx::chebyshev_v(n, x);
-	    auto Wg = __gnu_cxx::chebyshev_w(n, x);
+	    auto Tt = chebyshev_t_trig(n, x);
+	    auto Ut = chebyshev_u_trig(n, x);
+	    auto Vt = chebyshev_v_trig(n, x);
+	    auto Wt = chebyshev_w_trig(n, x);
+	    auto Tg = emsr::chebyshev_t(n, x);
+	    auto Ug = emsr::chebyshev_u(n, x);
+	    auto Vg = emsr::chebyshev_v(n, x);
+	    auto Wg = emsr::chebyshev_w(n, x);
 	    std::cout << ' ' << std::setw(width) << x
 		      << ' ' << std::setw(width) << Tt
 		      << ' ' << std::setw(width) << Tg
@@ -314,11 +315,11 @@ template<typename Tp>
     for (auto n : index)
       {
 	std::cout << "\n n = " << std::setw(width) << n << '\n';
-	auto tz = __chebyshev_t_zeros<Tp>(n);
+	auto tz = chebyshev_t_zeros<Tp>(n);
 	for (auto z : tz)
 	  {
-	    auto Tt = __chebyshev_t_trig(n, z.point);
-	    auto Tg = __gnu_cxx::chebyshev_t(n, z.point);
+	    auto Tt = chebyshev_t_trig(n, z.point);
+	    auto Tg = emsr::chebyshev_t(n, z.point);
 	    std::cout << ' ' << std::setw(width) << z.point
 		      << ' ' << std::setw(width) << z.weight
 		      << ' ' << std::setw(width) << Tt
@@ -331,11 +332,11 @@ template<typename Tp>
     for (auto n : index)
       {
 	std::cout << "\n n = " << std::setw(width) << n << '\n';
-	auto uz = __chebyshev_u_zeros<Tp>(n);
+	auto uz = chebyshev_u_zeros<Tp>(n);
 	for (auto z : uz)
 	  {
-	    auto Ut = __chebyshev_u_trig(n, z.point);
-	    auto Ug = __gnu_cxx::chebyshev_u(n, z.point);
+	    auto Ut = chebyshev_u_trig(n, z.point);
+	    auto Ug = emsr::chebyshev_u(n, z.point);
 	    std::cout << ' ' << std::setw(width) << z.point
 		      << ' ' << std::setw(width) << z.weight
 		      << ' ' << std::setw(width) << Ut
@@ -348,11 +349,11 @@ template<typename Tp>
     for (auto n : index)
       {
 	std::cout << "\n n = " << std::setw(width) << n << '\n';
-	auto vz = __chebyshev_v_zeros<Tp>(n);
+	auto vz = chebyshev_v_zeros<Tp>(n);
 	for (auto z : vz)
 	  {
-	    auto Vt = __chebyshev_v_trig(n, z.point);
-	    auto Vg = __gnu_cxx::chebyshev_v(n, z.point);
+	    auto Vt = chebyshev_v_trig(n, z.point);
+	    auto Vg = emsr::chebyshev_v(n, z.point);
 	    std::cout << ' ' << std::setw(width) << z.point
 		      << ' ' << std::setw(width) << z.weight
 		      << ' ' << std::setw(width) << Vt
@@ -365,11 +366,11 @@ template<typename Tp>
     for (auto n : index)
       {
 	std::cout << "\n n = " << std::setw(width) << n << '\n';
-	auto wz = __chebyshev_w_zeros<Tp>(n);
+	auto wz = chebyshev_w_zeros<Tp>(n);
 	for (auto z : wz)
 	  {
-	    auto Wt = __chebyshev_w_trig(n, z.point);
-	    auto Wg = __gnu_cxx::chebyshev_w(n, z.point);
+	    auto Wt = chebyshev_w_trig(n, z.point);
+	    auto Wg = emsr::chebyshev_w(n, z.point);
 	    std::cout << ' ' << std::setw(width) << z.point
 		      << ' ' << std::setw(width) << z.weight
 		      << ' ' << std::setw(width) << Wt
@@ -393,7 +394,7 @@ main()
   std::cout << "\n\nZeros of Chebyshev U_23(x) for qcheb_integrate\n";
   for (auto n : {23})
     {
-      auto uz = __chebyshev_u_zeros<Tp>(n);
+      auto uz = chebyshev_u_zeros<Tp>(n);
       for (auto z : uz)
 	{
 	  std::cout << ' ' << std::setw(width) << z.point

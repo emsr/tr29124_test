@@ -23,6 +23,9 @@
 
 #include <cmath>
 #include <complex>
+
+#include <emsr/specfun.h>
+
 #if defined(__TEST_DEBUG)
 #  include <iostream>
 #  define VERIFY(A) \
@@ -39,18 +42,17 @@ void
 test01()
 {
   using cmplx = std::complex<double>;
-  using __gnu_cxx::airy_bi;
 
-  auto bi0 = airy_bi(cmplx( 1.0000000000000000,  0.0000000000000000));
-  auto bi1 = airy_bi(cmplx( 0.8090169943749474,  0.5877852522924731));
-  auto bi2 = airy_bi(cmplx( 0.3090169943749474,  0.9510565162951536));
-  auto bi3 = airy_bi(cmplx(-0.3090169943749474,  0.9510565162951536));
-  auto bi4 = airy_bi(cmplx(-0.8090169943749474,  0.5877852522924731));
-  auto bi5 = airy_bi(cmplx(-1.0000000000000000,  0.0000000000000000));
-  auto bi6 = airy_bi(cmplx(-0.8090169943749474, -0.5877852522924731));
-  auto bi7 = airy_bi(cmplx(-0.3090169943749474, -0.9510565162951536));
-  auto bi8 = airy_bi(cmplx( 0.3090169943749474, -0.9510565162951536));
-  auto bi9 = airy_bi(cmplx( 0.8090169943749474, -0.5877852522924731));
+  auto bi0 = emsr::airy_bi(cmplx( 1.0000000000000000,  0.0000000000000000));
+  auto bi1 = emsr::airy_bi(cmplx( 0.8090169943749474,  0.5877852522924731));
+  auto bi2 = emsr::airy_bi(cmplx( 0.3090169943749474,  0.9510565162951536));
+  auto bi3 = emsr::airy_bi(cmplx(-0.3090169943749474,  0.9510565162951536));
+  auto bi4 = emsr::airy_bi(cmplx(-0.8090169943749474,  0.5877852522924731));
+  auto bi5 = emsr::airy_bi(cmplx(-1.0000000000000000,  0.0000000000000000));
+  auto bi6 = emsr::airy_bi(cmplx(-0.8090169943749474, -0.5877852522924731));
+  auto bi7 = emsr::airy_bi(cmplx(-0.3090169943749474, -0.9510565162951536));
+  auto bi8 = emsr::airy_bi(cmplx( 0.3090169943749474, -0.9510565162951536));
+  auto bi9 = emsr::airy_bi(cmplx( 0.8090169943749474, -0.5877852522924731));
 
   bool test __attribute__((unused)) = true;
   double eps = 1.0e-12;

@@ -42,7 +42,7 @@ template<typename _Tp>
       {
 	term *= xx
 	     / _Tp(2 * i) / _Tp(2 * i + 1);
-	sum += term * __gnu_cxx::euler<_Tp>(2 * i);
+	sum += term * emsr::euler<_Tp>(2 * i);
       }
     return sum;
   }
@@ -57,7 +57,7 @@ template<typename _Tp>
   _Tp
   invgd_ellint_2(_Tp x)
   {
-    return std::ellint_2(_Tp{1}, x);
+    return emsr::ellint_2(_Tp{1}, x);
   }
 
 /**
@@ -93,7 +93,7 @@ template<typename _Tp>
       {
 	term *= xx
 	     / _Tp(2 * i) / _Tp(2 * i + 1);
-	sum += term * __gnu_cxx::euler<_Tp>(2 * i);
+	sum += term * emsr::euler<_Tp>(2 * i);
       }
     return sum;
   }

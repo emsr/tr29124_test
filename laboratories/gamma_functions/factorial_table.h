@@ -29,7 +29,7 @@
 #include <vector>
 #include <cmath>
 
-namespace __gnu_cxx
+namespace emsr
 {
 
   // Look-up table for storing and obtaining factorials
@@ -39,33 +39,33 @@ namespace __gnu_cxx
 
     private:
 
-      static std::vector<_Tp> _S_ft;
+      static std::vector<_Tp> s_ft;
       factorial_table() = delete;
 
     public:
 
       static _Tp
-      get(std::size_t __n)
+      get(std::size_t n)
       {
-	if (__n >= _S_ft.size())
-	  add_factorials(__n);
-	return _S_ft[__n];
+	if (n >= s_ft.size())
+	  add_factorials(n);
+	return s_ft[n];
       }
 
       static void
-      add_factorials(std::size_t __max_fact)
+      add_factorials(std::size_t max_fact)
       {
-	if (_S_ft.size() == 0)
-	  _S_ft.push_back(_Tp(1));
+	if (s_ft.size() == 0)
+	  s_ft.push_back(_Tp(1));
 
-	for (_Tp __ii = _S_ft.size(); __ii <= _Tp(__max_fact); ++__ii)
-	  _S_ft.push_back(__ii * _S_ft[_S_ft.size() - 1]);
+	for (_Tp ii = s_ft.size(); ii <= _Tp(max_fact); ++ii)
+	  s_ft.push_back(ii * s_ft[s_ft.size() - 1]);
       }
     };
 
   template<typename _Tp>
     std::vector<_Tp>
-    factorial_table<_Tp>::_S_ft = std::vector<_Tp>();
+    factorial_table<_Tp>::s_ft = std::vector<_Tp>();
 
   // Look-up table for storing and obtaining logarithms of factorials
   template<typename _Tp>
@@ -74,79 +74,79 @@ namespace __gnu_cxx
 
     private:
 
-      static std::vector<_Tp> _S_lnft;
+      static std::vector<_Tp> s_lnft;
       lnfactorial_table() = delete;
 
     public:
 
       static _Tp
-      get(std::size_t __n)
+      get(std::size_t n)
       {
-	if (__n >= _S_lnft.size())
-	  add_factorials(__n);
-	return _S_lnft[__n];
+	if (n >= s_lnft.size())
+	  add_factorials(n);
+	return s_lnft[n];
       }
 
       static void
-      add_factorials(std::size_t __max_fact)
+      add_factorials(std::size_t max_fact)
       {
-	if (_S_lnft.size() == 0)
-	  _S_lnft.push_back(_Tp(0));
+	if (s_lnft.size() == 0)
+	  s_lnft.push_back(_Tp(0));
 
-	for (_Tp __ii = _S_lnft.size(); __ii <= _Tp(__max_fact); ++__ii)
-	  _S_lnft.push_back(std::log(__ii) + _S_lnft[_S_lnft.size() - 1]);
+	for (_Tp ii = s_lnft.size(); ii <= _Tp(max_fact); ++ii)
+	  s_lnft.push_back(std::log(ii) + s_lnft[s_lnft.size() - 1]);
       }
     };
 
   template<typename _Tp>
     std::vector<_Tp>
-    lnfactorial_table<_Tp>::_S_lnft = std::vector<_Tp>();
+    lnfactorial_table<_Tp>::s_lnft = std::vector<_Tp>();
 
   template<typename _Tp>
     inline _Tp
-    factorial(std::size_t __n)
-    { return factorial_table<_Tp>::get(__n); }
+    factorial(std::size_t n)
+    { return factorial_table<_Tp>::get(n); }
 
   inline float
-  factorialf(std::size_t __n)
-  { return factorial<float>(__n); }
+  factorialf(std::size_t n)
+  { return factorial<float>(n); }
 
   inline double
-  factoriald(std::size_t __n)
-  { return factorial<double>(__n); }
+  factoriald(std::size_t n)
+  { return factorial<double>(n); }
 
   inline long double
-  factorialld(std::size_t __n)
-  { return factorial<long double>(__n); }
+  factorialld(std::size_t n)
+  { return factorial<long double>(n); }
 
   inline int
-  factoriali(std::size_t __n)
-  { return factorial<int>(__n); }
+  factoriali(std::size_t n)
+  { return factorial<int>(n); }
 
   inline long
-  factoriall(std::size_t __n)
-  { return factorial<long>(__n); }
+  factoriall(std::size_t n)
+  { return factorial<long>(n); }
 
   inline long long
-  factorialll(std::size_t __n)
-  { return factorial<long long>(__n); }
+  factorialll(std::size_t n)
+  { return factorial<long long>(n); }
 
   template<typename _Tp>
     inline _Tp
-    lnfactorial(std::size_t __n)
-    { return lnfactorial_table<_Tp>::get(__n); }
+    lnfactorial(std::size_t n)
+    { return lnfactorial_table<_Tp>::get(n); }
 
   inline float
-  lnfactorialf(std::size_t __n)
-  { return lnfactorial<float>(__n); }
+  lnfactorialf(std::size_t n)
+  { return lnfactorial<float>(n); }
 
   inline double
-  lnfactoriald(std::size_t __n)
-  { return lnfactorial<double>(__n); }
+  lnfactoriald(std::size_t n)
+  { return lnfactorial<double>(n); }
 
   inline long double
-  lnfactorialld(std::size_t __n)
-  { return lnfactorial<long double>(__n); }
+  lnfactorialld(std::size_t n)
+  { return lnfactorial<long double>(n); }
 
 } // namespace
 

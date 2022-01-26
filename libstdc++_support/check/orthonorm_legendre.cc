@@ -21,6 +21,7 @@
 
 #include <cmath>
 
+#include <emsr/specfun.h>
 #include <emsr/integration.h>
 
 #if defined(__TEST_DEBUG)
@@ -41,8 +42,8 @@ template<typename _Tp>
   norm_legendre(int l1, int l2, _Tp x)
   {
     return (_Tp(l1 + l2 + 1) / _Tp{2})
-	 * std::legendre(l1,x)
-	 * std::legendre(l2,x);
+	 * emsr::legendre(l1,x)
+	 * emsr::legendre(l2,x);
   }
 
 template<typename _Tp>

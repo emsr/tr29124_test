@@ -7,8 +7,10 @@
 #include <iomanip>
 #include <limits>
 #include <cmath>
+
 #include <wrap_gsl.h>
-#include <ext/float128_io.h>
+
+#include <emsr/float128_io.h>
 
 
   /**
@@ -19,9 +21,9 @@
    */
   template<typename _Tp>
     _Tp
-    __fermi_dirac_pdf(_Tp __mu, _Tp __beta, _Tp __x)
+    fermi_dirac_pdf(_Tp mu, _Tp beta, _Tp x)
     {
-      _Tp{1} / (std::exp(__beta * (__x - __mu)) + _Tp{1});
+      _Tp{1} / (std::exp(beta * (x - mu)) + _Tp{1});
     }
 
   /**
@@ -32,7 +34,7 @@
    */
   template<typename _Tp>
     _Tp
-    __fermi_dirac_p(_Tp __mu, _Tp __beta, _Tp __x)
+    fermi_dirac_p(_Tp mu, _Tp beta, _Tp x)
     {
       ;
     }
@@ -56,7 +58,7 @@ template<typename _Tp>
 	for (int i = -250; i <= 250; ++i)
 	  {
 	    auto x = del * i;
-	    auto F = std::__detail::__fermi_dirac(s, x);
+	    auto F = emsr::detail::fermi_dirac(s, x);
 	    auto F_GSL = gsl::fermi_dirac(s, x);
 	    auto err = (F - F_GSL) / std::abs(F_GSL);
 	    std::cout << ' ' << std::setw(width) << x

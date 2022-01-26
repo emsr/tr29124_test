@@ -7,6 +7,7 @@
 #include <limits>
 #include <cmath>
 
+#include <emsr/specfun.h>
 #include <wrap_burkhardt.h>
 
 /**
@@ -18,7 +19,7 @@
  */
 template<typename _Tp, typename _TpX>
   _Tp
-  __charlier_recur(int n, _Tp a, _TpX x)
+  charlier_recur(int n, _Tp a, _TpX x)
   {
     auto Cnm1 = _Tp{1};
     if (n == 0)
@@ -47,14 +48,14 @@ template<typename _Tp, typename _TpX>
  */
 template<typename _Tp, typename _TpX>
   _Tp
-  __charlier(int n, _Tp a, _TpX x)
+  charlier(int n, _Tp a, _TpX x)
   {
     if (std::isnan(a))
       return a;
     else if (std::isnan(x))
       return x;
     else
-      return __charlier_recur(n, a, x);
+      return charlier_recur(n, a, x);
   }
 
 /**
@@ -73,7 +74,7 @@ template<typename _Tp>
 	for (int i = 0; i <= 400; ++i)
 	  {
 	    auto x = i * _Tp{0.05L};
-	    auto C = __charlier(n, a, x);
+	    auto C = charlier(n, a, x);
 	    auto C_test = burkhardt::charlier(n, a, x);
 	    std::cout << ' ' << std::setw(w) << x
 		      << ' ' << std::setw(w) << C

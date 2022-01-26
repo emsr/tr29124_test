@@ -74,7 +74,7 @@ template<typename Ret>
     const Ret toler = 100 * eps;
     Ret max_abs_diff = Ret(-1);
     Ret max_abs_frac = Ret(-1);
-    const auto bells = __gnu_cxx::bell<Ret>(num_bells);
+    const auto bells = emsr::bell<Ret>(num_bells);
     for (unsigned int i = 0; i < num_bells; ++i)
       {
 	const Ret f0 = bell[i];

@@ -10,55 +10,55 @@
 
 #include <wrap_boost.h>
 
-namespace __gnu_cxx
+namespace emsr
 {
 
   template<typename _Tp>
     _Tp
-    __rising_factorial_upper_prod(int __a, int __n)
+    rising_factorial_upper_prod(int a, int n)
     {
-      if (__a < __n)
+      if (a < n)
 	return _Tp{0};
       else
 	{
-	  auto __prod = 1;
-	  for (int __k = 0; __k < __n; ++__k)
-	    __prod *= __a--;
-	  return __prod;
+	  auto prod = 1;
+	  for (int k = 0; k < n; ++k)
+	    prod *= a--;
+	  return prod;
 	}
     }
 
   template<typename _Tp>
     _Tp
-    __rising_factorial_prod(_Tp __a, int __n)
+    rising_factorial_prod(_Tp a, int n)
     {
-      auto __prod = _Tp{1};
-      for (int __k = 0; __k < __n; ++__k)
-	__prod *= __a++;
-      return __prod;
+      auto prod = _Tp{1};
+      for (int k = 0; k < n; ++k)
+	prod *= a++;
+      return prod;
     }
 
   template<typename _Tp>
     _Tp
-    __rising_factorial_fake(_Tp __a, _Tp __x)
+    rising_factorial_fake(_Tp a, _Tp x)
     {
-      auto __n = int(std::nearbyint(__x));
-      if (_Tp(__n) == __x)
+      auto n = int(std::nearbyint(x));
+      if (_Tp(n) == x)
 	{
-	  if (__n == 0)
+	  if (n == 0)
 	    return _Tp{1};
 	  else
 	    {
-	      auto __m = int(std::nearbyint(__a));
-	      if (int(__m) == __a)
-		return __rising_factorial_prod<_Tp>(__m, __n);
+	      auto m = int(std::nearbyint(a));
+	      if (int(m) == a)
+		return rising_factorial_prod<_Tp>(m, n);
 	      else
-		return __rising_factorial_prod(__a, __n);
+		return rising_factorial_prod(a, n);
 	    }
 	}
       else
-	return std::__detail::__gamma(__a + __x)
-	     / std::__detail::__gamma(__a);
+	return emsr::detail::gamma(a + x)
+	     / emsr::detail::gamma(a);
     }
 
 }
@@ -80,7 +80,7 @@ main()
       std::cout << '\n';
       for (auto x : xv)
 	{
-	  auto pochg = __gnu_cxx::rising_factorial(a, x);
+	  auto pochg = emsr::rising_factorial(a, x);
 	  auto pochb = beast::rising_factorial(a, x);
 	  std::cout << ' ' << std::setw(width) << a
 		    << ' ' << std::setw(width) << x
@@ -100,7 +100,7 @@ main()
       std::cout << '\n';
       for (auto x : xv)
 	{
-	  auto pochg = __gnu_cxx::__rising_factorial_fake(a, x);
+	  auto pochg = emsr::rising_factorial_fake(a, x);
 	  auto pochb = beast::rising_factorial(a, x);
 	  std::cout << ' ' << std::setw(width) << a
 		    << ' ' << std::setw(width) << x

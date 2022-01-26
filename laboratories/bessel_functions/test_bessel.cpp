@@ -7,9 +7,11 @@
 #include <cmath>
 #include <stdexcept>
 #include <vector>
-#include <ext/float128_io.h>
-#include <ext/float128_math.h>
 #include <limits>
+
+#include <emsr/float128_io.h>
+#include <emsr/float128_math.h>
+#include <emsr/specfun.h>
 
 template<typename _Tp>
   void
@@ -17,13 +19,13 @@ template<typename _Tp>
   {
     using _Val = _Tp;
     using _Real = emsr::num_traits_t<_Val>;
-    const auto _S_pi_2 = emsr::pi_v<_Real> / _Real{2};
+    const auto s_pi_2 = emsr::pi_v<_Real> / _Real{2};
 
     std::cout.precision(emsr::digits10<_Real>());
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
-    std::cyl_neumann(1.0, 0.01);
+    emsr::cyl_neumann(1.0, 0.01);
 
     std::vector<_Tp> nuvec
     {
@@ -62,12 +64,12 @@ template<typename _Tp>
             std::cout << ' ' << std::setw(w) << x;
             try
               {
-        	auto Cyl = std::__detail::__cyl_bessel_jn(nu, x);
-        	std::cout << ' ' << std::setw(w) << Cyl.__J_value;
-        	std::cout << ' ' << std::setw(w) << Cyl.__J_deriv;
-        	std::cout << ' ' << std::setw(w) << Cyl.__N_value;
-        	std::cout << ' ' << std::setw(w) << Cyl.__N_deriv;
-        	std::cout << ' ' << std::setw(w) << _S_pi_2 * x * Cyl.__Wronskian();
+        	auto Cyl = emsr::detail::cyl_bessel_jn(nu, x);
+        	std::cout << ' ' << std::setw(w) << Cyl.J_value;
+        	std::cout << ' ' << std::setw(w) << Cyl.J_deriv;
+        	std::cout << ' ' << std::setw(w) << Cyl.N_value;
+        	std::cout << ' ' << std::setw(w) << Cyl.N_deriv;
+        	std::cout << ' ' << std::setw(w) << s_pi_2 * x * Cyl.Wronskian();
               }
             catch (std::exception& err)
               {
@@ -75,12 +77,12 @@ template<typename _Tp>
               }
             try
               {
-        	auto Cyl = std::__detail::__cyl_bessel_ik(nu, x);
-        	std::cout << ' ' << std::setw(w) << Cyl.__I_value;
-        	std::cout << ' ' << std::setw(w) << Cyl.__I_deriv;
-        	std::cout << ' ' << std::setw(w) << Cyl.__K_value;
-        	std::cout << ' ' << std::setw(w) << Cyl.__K_deriv;
-        	std::cout << ' ' << std::setw(w) << -x * Cyl.__Wronskian();
+        	auto Cyl = emsr::detail::cyl_bessel_ik(nu, x);
+        	std::cout << ' ' << std::setw(w) << Cyl.I_value;
+        	std::cout << ' ' << std::setw(w) << Cyl.I_deriv;
+        	std::cout << ' ' << std::setw(w) << Cyl.K_value;
+        	std::cout << ' ' << std::setw(w) << Cyl.K_deriv;
+        	std::cout << ' ' << std::setw(w) << -x * Cyl.Wronskian();
               }
             catch (std::exception& err)
               {
@@ -135,16 +137,16 @@ template<typename _Tp>
 	    std::cout << ' ' << std::setw(w) << x;
 	    try
 	      {
-		auto jx = std::cyl_bessel_j(nu, x);
-		auto nx = std::cyl_neumann(nu, x);
+		auto jx = emsr::cyl_bessel_j(nu, x);
+		auto nx = emsr::cyl_neumann(nu, x);
 		std::cout << ' ' << std::setw(w) << jx;
 		std::cout << ' ' << std::setw(w) << nx;
 	      }
 	    catch (std::exception& err)
 	      {
 		std::cerr << err.what() << '\n';
-		auto ix = std::cyl_bessel_i(nu, x);
-		auto kx = std::cyl_bessel_k(nu, x);
+		auto ix = emsr::cyl_bessel_i(nu, x);
+		auto kx = emsr::cyl_bessel_k(nu, x);
 		std::cout << ' ' << std::setw(w) << ix;
 		std::cout << ' ' << std::setw(w) << kx;
 	      }

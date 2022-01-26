@@ -22,7 +22,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/sf_polygamma.tcc
+/** @file emsr/sf_polygamma.tcc
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{cmath}
  */
@@ -79,52 +79,52 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __hurwitz_zeta_glob(const _Tp __a, const _Tp __s)
+    hurwitz_zeta_glob(const _Tp a, const _Tp s)
     {
-      _Tp __zeta = _Tp(0);
+      _Tp zeta = _Tp(0);
 
       //  Max e exponent before overflow.
-      const _Tp __max_binom = std::numeric_limits<_Tp>::max_exponent10
+      const _Tp max_binom = std::numeric_limits<_Tp>::max_exponent10
                             * std::log(_Tp(10)) - _Tp(1);
 
-      const unsigned int __maxit = 10000;
-      for (unsigned int __i = 0; __i < __maxit; ++__i)
+      const unsigned int maxit = 10000;
+      for (unsigned int i = 0; i < maxit; ++i)
 	{
-          bool __punt = false;
-          _Tp __sgn = _Tp(1);
-          _Tp __term = _Tp(0);
-          for (unsigned int __j = 0; __j <= __i; ++__j)
+          bool punt = false;
+          _Tp sgn = _Tp(1);
+          _Tp term = _Tp(0);
+          for (unsigned int j = 0; j <= i; ++j)
             {
 #if _GLIBCXX_USE_C99_MATH_TR1
-              _Tp __binom = std::lgamma(_Tp(1 + __i))
-                          - std::lgamma(_Tp(1 + __j))
-                          - std::lgamma(_Tp(1 + __i - __j));
+              _Tp binom = std::lgamma(_Tp(1 + i))
+                          - std::lgamma(_Tp(1 + j))
+                          - std::lgamma(_Tp(1 + i - j));
 #else
-              _Tp __binom = __log_gamma(_Tp(1 + __i))
-                          - __log_gamma(_Tp(1 + __j))
-                          - __log_gamma(_Tp(1 + __i - __j));
+              _Tp binom = log_gamma(_Tp(1 + i))
+                          - log_gamma(_Tp(1 + j))
+                          - log_gamma(_Tp(1 + i - j));
 #endif
-              if (__binom > __max_binom)
+              if (binom > max_binom)
                 {
                   //  This only gets hit for x << 0.
-                  __punt = true;
+                  punt = true;
                   break;
                 }
-              __binom = std::exp(__binom);
-              __term += __sgn * __binom * std::pow(_Tp(__a + __j), -__s);
-              __sgn *= _Tp(-1);
+              binom = std::exp(binom);
+              term += sgn * binom * std::pow(_Tp(a + j), -s);
+              sgn *= _Tp(-1);
             }
-          if (__punt)
+          if (punt)
             break;
-          __term /= _Tp(__i + 1);
-          if (std::abs(__term / __zeta) < std::numeric_limits<_Tp>::epsilon())
+          term /= _Tp(i + 1);
+          if (std::abs(term / zeta) < std::numeric_limits<_Tp>::epsilon())
             break;
-          __zeta += __term;
+          zeta += term;
         }
 
-      __zeta /= __s - _Tp(1);
+      zeta /= s - _Tp(1);
 
-      return __zeta;
+      return zeta;
     }
 
 
@@ -143,9 +143,9 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __hurwitz_zeta(const _Tp __a, const _Tp __s)
+    hurwitz_zeta(const _Tp a, const _Tp s)
     {
-      return __hurwitz_zeta_glob(__a, __s);
+      return hurwitz_zeta_glob(a, s);
     }
 
 
@@ -158,7 +158,7 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __digamma(const _Tp __x)
+    digamma(const _Tp x)
     {
       ///  @todo Finish me!!!
     }
@@ -169,16 +169,16 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __digamma_1(const _Tp __x)
+    digamma_1(const _Tp x)
     {
-      int __n = std::nearbyint(__x);
+      int n = std::nearbyint(x);
 
-      if (__x == _Tp(__n))
+      if (x == _Tp(n))
         {
-          _Tp __digamma = -__numeric_constants<_Tp>::euler();
-          for (int __i = 1; __i <= __n; ++__i )
-            __digamma += _Tp(1) / __i;
-          return __digamma;
+          _Tp digamma = -numeric_constants<_Tp>::euler();
+          for (int i = 1; i <= n; ++i )
+            digamma += _Tp(1) / i;
+          return digamma;
         }
       else
         {
@@ -197,26 +197,26 @@ namespace __detail
    */
   template<typename _Tp>
     _Tp
-    __polygamma(const unsigned int __n, const _Tp __x)
+    polygamma(const unsigned int n, const _Tp x)
     {
-      if (__x <= _Tp(0))
-        __throw_domain_error("__polygamma: srgument out of range");
-      else if (__n == 0)
-        return __polygamma(__x);
-      else if (__n == 1)
-        return __digamma_1(__x);
+      if (x <= _Tp(0))
+        throw_domain_error("polygamma: srgument out of range");
+      else if (n == 0)
+        return polygamma(x);
+      else if (n == 1)
+        return digamma_1(x);
       else
         {
-          const _Tp __hzeta = __hurwitz_zeta(_Tp(__n + 1), __x);
+          const _Tp hzeta = hurwitz_zeta(_Tp(n + 1), x);
 #if _GLIBCXX_USE_C99_MATH_TR1
-          const _Tp __ln_nfact = std::lgamma(_Tp(__n + 1));
+          const _Tp ln_nfact = std::lgamma(_Tp(n + 1));
 #else
-          const _Tp __ln_nfact = __log_gamma(_Tp(__n + 1));
+          const _Tp ln_nfact = log_gamma(_Tp(n + 1));
 #endif
-          _Tp __result = std::exp(__ln_nfact) * __hzeta;
-          if (__n % 2 == 1)
-            __result = -__result;
-          return __result;
+          _Tp result = std::exp(ln_nfact) * hzeta;
+          if (n % 2 == 1)
+            result = -result;
+          return result;
         }
     }
 } // namespace __detail

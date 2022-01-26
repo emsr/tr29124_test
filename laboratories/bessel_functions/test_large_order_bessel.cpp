@@ -25,18 +25,18 @@ template<typename _Tp>
 	for (int i = -10; i <= +10; ++i)
 	  {
 	    auto x = nu + i * nu / _Tp{100};
-	    auto bessel = std::__detail::__cyl_bessel_jn(nu, x);
+	    auto bessel = emsr::detail::cyl_bessel_jn(nu, x);
 	    auto Wtrue = wronski(nu, x);
-	    auto Wcalc = bessel.__Wronskian();
+	    auto Wcalc = bessel.Wronskian();
 	    std::cout << ' ' << std::setw(w) << Wtrue
 		      << ' ' << std::setw(w) << Wcalc
 		      << ' ' << std::setw(w) << (Wcalc - Wtrue) / Wtrue
-		      << ' ' << std::setw(w) << bessel.__nu_arg
-		      << ' ' << std::setw(w) << bessel.__x_arg
-		      << ' ' << std::setw(w) << bessel.__J_value
-		      << ' ' << std::setw(w) << bessel.__J_deriv
-		      << ' ' << std::setw(w) << bessel.__N_value
-		      << ' ' << std::setw(w) << bessel.__N_deriv
+		      << ' ' << std::setw(w) << bessel.nu_arg
+		      << ' ' << std::setw(w) << bessel.x_arg
+		      << ' ' << std::setw(w) << bessel.J_value
+		      << ' ' << std::setw(w) << bessel.J_deriv
+		      << ' ' << std::setw(w) << bessel.N_value
+		      << ' ' << std::setw(w) << bessel.N_deriv
 		      << '\n';
 	  }
       }
@@ -59,18 +59,18 @@ template<typename _Tp>
 	for (int i = -10; i <= +10; ++i)
 	  {
 	    auto x = nu + i * nu / _Tp{100};
-	    auto bessel = std::__detail::__cyl_bessel_ik(nu, x);
+	    auto bessel = emsr::detail::cyl_bessel_ik(nu, x);
 	    auto Wtrue = wronski(nu, x);
-	    auto Wcalc = bessel.__Wronskian();
+	    auto Wcalc = bessel.Wronskian();
 	    std::cout << ' ' << std::setw(w) << Wtrue
 		      << ' ' << std::setw(w) << Wcalc
 		      << ' ' << std::setw(w) << (Wcalc - Wtrue) / Wtrue
-		      << ' ' << std::setw(w) << bessel.__nu_arg
-		      << ' ' << std::setw(w) << bessel.__x_arg
-		      << ' ' << std::setw(w) << bessel.__I_value
-		      << ' ' << std::setw(w) << bessel.__I_deriv
-		      << ' ' << std::setw(w) << bessel.__K_value
-		      << ' ' << std::setw(w) << bessel.__K_deriv
+		      << ' ' << std::setw(w) << bessel.nu_arg
+		      << ' ' << std::setw(w) << bessel.x_arg
+		      << ' ' << std::setw(w) << bessel.I_value
+		      << ' ' << std::setw(w) << bessel.I_deriv
+		      << ' ' << std::setw(w) << bessel.K_value
+		      << ' ' << std::setw(w) << bessel.K_deriv
 		      << '\n';
 	  }
       }
@@ -93,18 +93,18 @@ template<typename _Tp>
 	for (int i = -10; i <= +10; ++i)
 	  {
 	    auto x = n + i * n / _Tp{100};
-	    auto bessel = std::__detail::__sph_bessel_jn(n, x);
+	    auto bessel = emsr::detail::sph_bessel_jn(n, x);
 	    auto Wtrue = wronski(n, x);
-	    auto Wcalc = bessel.__Wronskian();
+	    auto Wcalc = bessel.Wronskian();
 	    std::cout << ' ' << std::setw(w) << Wtrue
 		      << ' ' << std::setw(w) << Wcalc
 		      << ' ' << std::setw(w) << (Wcalc - Wtrue) / Wtrue
-		      << ' ' << std::setw(w) << bessel.__n_arg
-		      << ' ' << std::setw(w) << bessel.__x_arg
-		      << ' ' << std::setw(w) << bessel.__j_value
-		      << ' ' << std::setw(w) << bessel.__j_deriv
-		      << ' ' << std::setw(w) << bessel.__n_value
-		      << ' ' << std::setw(w) << bessel.__n_deriv
+		      << ' ' << std::setw(w) << bessel.n_arg
+		      << ' ' << std::setw(w) << bessel.x_arg
+		      << ' ' << std::setw(w) << bessel.j_value
+		      << ' ' << std::setw(w) << bessel.j_deriv
+		      << ' ' << std::setw(w) << bessel.n_value
+		      << ' ' << std::setw(w) << bessel.n_deriv
 		      << '\n';
 	  }
       }
@@ -128,18 +128,18 @@ template<typename _Tp>
 	for (int i = -10; i <= +10; ++i)
 	  {
 	    auto x = n + i * n / _Tp{100};
-	    auto bessel = std::__detail::__sph_bessel_ik(n, x);
+	    auto bessel = emsr::detail::sph_bessel_ik(n, x);
 	    auto Wtrue = wronski(n, x);
-	    auto Wcalc = bessel.__Wronskian();
+	    auto Wcalc = bessel.Wronskian();
 	    std::cout << ' ' << std::setw(w) << Wtrue
 		      << ' ' << std::setw(w) << Wcalc
 		      << ' ' << std::setw(w) << (Wcalc - Wtrue) / Wtrue
-		      << ' ' << std::setw(w) << bessel.__n_arg
-		      << ' ' << std::setw(w) << bessel.__x_arg
-		      << ' ' << std::setw(w) << bessel.__i_value
-		      << ' ' << std::setw(w) << bessel.__i_deriv
-		      << ' ' << std::setw(w) << bessel.__k_value
-		      << ' ' << std::setw(w) << bessel.__k_deriv
+		      << ' ' << std::setw(w) << bessel.n_arg
+		      << ' ' << std::setw(w) << bessel.x_arg
+		      << ' ' << std::setw(w) << bessel.i_value
+		      << ' ' << std::setw(w) << bessel.i_deriv
+		      << ' ' << std::setw(w) << bessel.k_value
+		      << ' ' << std::setw(w) << bessel.k_deriv
 		      << '\n';
 	  }
       }

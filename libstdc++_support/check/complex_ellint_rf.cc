@@ -23,6 +23,9 @@
 
 #include <cmath>
 #include <complex>
+
+#include <emsr/specfun.h>
+
 #if defined(__TEST_DEBUG)
 #  include <iostream>
 #  define VERIFY(A) \
@@ -39,15 +42,14 @@ void
 test01()
 {
   using cmplx = std::complex<double>;
-  using __gnu_cxx::ellint_rf;
 
-  auto rf1 = ellint_rf(1.0, 2.0, 0.0);
-  auto rf2 = ellint_rf(cmplx(0.0, 1.0), cmplx(0.0, -1.0), cmplx(0.0, 0.0));
-  auto rf3 = ellint_rf(cmplx(-1.0, 1.0), cmplx(0.0, 1.0), cmplx(0.0, 0.0));
-  auto rf4 = ellint_rf(0.5, 1.0, 0.0);
-  auto rf5 = ellint_rf(2.0, 3.0, 4.0);
-  auto rf6 = ellint_rf(cmplx(0.0, 1.0), cmplx(0.0, -1.0), cmplx(2.0, 0.0));
-  auto rf7 = ellint_rf(cmplx(-1.0, 1.0), cmplx(1.0, -1.0), cmplx(0.0, 1.0));
+  auto rf1 = emsr::ellint_rf(1.0, 2.0, 0.0);
+  auto rf2 = emsr::ellint_rf(cmplx(0.0, 1.0), cmplx(0.0, -1.0), cmplx(0.0, 0.0));
+  auto rf3 = emsr::ellint_rf(cmplx(-1.0, 1.0), cmplx(0.0, 1.0), cmplx(0.0, 0.0));
+  auto rf4 = emsr::ellint_rf(0.5, 1.0, 0.0);
+  auto rf5 = emsr::ellint_rf(2.0, 3.0, 4.0);
+  auto rf6 = emsr::ellint_rf(cmplx(0.0, 1.0), cmplx(0.0, -1.0), cmplx(2.0, 0.0));
+  auto rf7 = emsr::ellint_rf(cmplx(-1.0, 1.0), cmplx(1.0, -1.0), cmplx(0.0, 1.0));
 
   bool test __attribute__((unused)) = true;
   double eps = 1.0e-12;

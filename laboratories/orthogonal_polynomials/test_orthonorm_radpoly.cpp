@@ -27,6 +27,7 @@
 #include <vector>
 
 #include <emsr/integration.h>
+#include <emsr/specfun.h>
 
 // Neumann's number
 template<typename _Tp>
@@ -41,8 +42,8 @@ template<typename _Tp>
   {
     auto norm = _Tp{1} / std::sqrt(_Tp(2 * n1 + 2) * _Tp(2 * n2 + 2));
     return rho
-	 * __gnu_cxx::radpoly(n1, m1, rho)
-	 * __gnu_cxx::radpoly(n2, m2, rho) / norm;
+	 * emsr::radpoly(n1, m1, rho)
+	 * emsr::radpoly(n2, m2, rho) / norm;
   }
 
 template<typename _Tp>

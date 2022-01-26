@@ -208,7 +208,7 @@ template<typename Ret, unsigned int Num>
     unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
-	const Ret f = __gnu_cxx::lgamma(data[i].a);
+	const Ret f = emsr::lgamma(data[i].a);
 	const bool failure_f = std::isnan(f);
 	if (!failure && failure_f)
 	  failure = true;

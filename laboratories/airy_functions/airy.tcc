@@ -24,16 +24,16 @@ template<typename _Tp>
   {
     using __cmplx = std::complex<_Tp>;
 
-    const auto _S_eps = emsr::epsilon(std::real(__t));
-    const auto _S_log10min = emsr::log10_min(std::real(__t));
-    const auto _S_pi = emsr::pi_v<_Tp>;
-    const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
-    constexpr auto _S_Ai0 = _Tp{3.550280538878172392600631860041831763980e-1L};
-    constexpr auto _S_Aip0 = _Tp{2.588194037928067984051835601892039634793e-1L};
-    //constexpr auto _S_Bi0 = _Tp{6.149266274460007351509223690936135535960e-1L};
-    //constexpr auto _S_Bip0 = _Tp{8.868776642045783582807775119976424596506e-1L};
-    constexpr auto _S_i = __cmplx(_Tp{0}, _Tp{1});
-    constexpr auto _S_big = _Tp{5.0L}; // was 3.5
+    const auto s_eps = emsr::epsilon(std::real(__t));
+    const auto s_log10min = emsr::log10_min(std::real(__t));
+    const auto s_pi = emsr::pi_v<_Tp>;
+    const auto s_sqrt_pi = emsr::sqrtpi_v<_Tp>;
+    constexpr auto s_Ai0 = _Tp{3.550280538878172392600631860041831763980e-1L};
+    constexpr auto s_Aip0 = _Tp{2.588194037928067984051835601892039634793e-1L};
+    //constexpr auto s_Bi0 = _Tp{6.149266274460007351509223690936135535960e-1L};
+    //constexpr auto s_Bip0 = _Tp{8.868776642045783582807775119976424596506e-1L};
+    constexpr auto s_i = __cmplx(_Tp{0}, _Tp{1});
+    constexpr auto s_big = _Tp{5.0L}; // was 3.5
     constexpr int _N_FG = 40;
     constexpr _Tp
     _Fai[_N_FG]
@@ -79,7 +79,7 @@ template<typename _Tp>
       6.739363052581000552399325803379883e-130L,
       4.719441913572129238374878013571347e-134L
     };
-    //constexpr _Tp _S_slope_F{-2.660L}, _S_intercept_F{-0.778L};
+    //constexpr _Tp s_slope_F{-2.660L}, s_intercept_F{-0.778L};
     constexpr _Tp
     _Faip[_N_FG]
     {
@@ -124,7 +124,7 @@ template<typename _Tp>
       7.885054771519770646307211189954463e-128L,
       5.663330296286555086049853616285617e-132L
     };
-    //constexpr _Tp _S_slope_Fp{-2.576L}, _S_intercept_Fp{-0.301L};
+    //constexpr _Tp s_slope_Fp{-2.576L}, s_intercept_Fp{-0.301L};
     constexpr _Tp
     _Gai[_N_FG]
     {
@@ -169,7 +169,7 @@ template<typename _Tp>
       3.831788208832617584135633794186463e-131L,
       2.638972595614750402297268453296462e-135L
     };
-    constexpr _Tp _S_slope_G{-2.708L}, _S_intercept_G{-1.079L};
+    constexpr _Tp s_slope_G{-2.708L}, s_intercept_G{-1.079L};
     constexpr _Tp
     _Gaip[_N_FG]
     {
@@ -214,11 +214,11 @@ template<typename _Tp>
       4.521510086422488749280047877140026e-129L,
       3.193156840693847986779694828488720e-133L
     };
-    constexpr _Tp _S_slope_Gp{-2.632L}, _S_intercept_Gp{-0.477};
+    constexpr _Tp s_slope_Gp{-2.632L}, s_intercept_Gp{-0.477};
 
     constexpr int _N_cd = 50;
     constexpr _Tp
-    _S_cn[_N_cd]
+    s_cn[_N_cd]
     {
       0.0694444444444444444444444444444444471L,
       0.0371334876543209876543209876543209876L,
@@ -272,7 +272,7 @@ template<typename _Tp>
       8.57469841483542799451063352688988237e+46L
     };
     constexpr _Tp
-    _S_dn[_N_cd]
+    s_dn[_N_cd]
     {
       -0.0972222222222222222222222222222222356L,
       -0.043885030864197530864197530864197528L,
@@ -326,7 +326,7 @@ template<typename _Tp>
       -8.63205425707512985400568793175202219e+46L
     };
 
-    if (std::abs(__t) <= _S_big)
+    if (std::abs(__t) <= s_big)
       {
 	const auto __log10t = std::log10(std::abs(__t));
 	const auto __ttt = __t * __t * __t;
@@ -336,46 +336,46 @@ template<typename _Tp>
 	auto _G = __t;
 	for (int __n = 0; __n < _N_FG; ++__n)
 	  {
-	    if (std::abs(__t) < _S_eps)
+	    if (std::abs(__t) < s_eps)
 	      break;
 	    auto __xx = __log10t * (3 * (__n + 1) + 1)
-		      + _S_slope_G * __n + _S_intercept_G;
-	    if (__xx < _S_log10min)
+		      + s_slope_G * __n + s_intercept_G;
+	    if (__xx < s_log10min)
 	      break;
 	    __term *= __ttt;
 	    _F += _Fai[__n] * __term;
 	    _G += _Gai[__n] * __term * __t;
 	  }
-	auto _UU = std::sqrt(_Tp{3} * _S_pi)
-		* (_S_Ai0 * _F + _S_Aip0 * _G);
-	auto _VV = _S_sqrt_pi * (_S_Ai0 * _F - _S_Aip0 * _G);
-	_Bi = _UU / _S_sqrt_pi;
-	_Ai = _VV / _S_sqrt_pi;
-	__w1 = _UU - _S_i * _VV;
-	__w2 = _UU + _S_i * _VV;
+	auto _UU = std::sqrt(_Tp{3} * s_pi)
+		* (s_Ai0 * _F + s_Aip0 * _G);
+	auto _VV = s_sqrt_pi * (s_Ai0 * _F - s_Aip0 * _G);
+	_Bi = _UU / s_sqrt_pi;
+	_Ai = _VV / s_sqrt_pi;
+	__w1 = _UU - s_i * _VV;
+	__w2 = _UU + s_i * _VV;
 
 	__term = __cmplx{_Tp{1}};
 	auto _Fp = __cmplx{_Tp{0}};
 	auto _Gp = __cmplx{_Tp{1}};
 	for (int __n = 0; __n < _N_FG; ++__n)
 	  {
-	    if (std::abs(__t) < _S_eps)
+	    if (std::abs(__t) < s_eps)
 	      break;
 	    auto __xx = __log10t * 3 * (__n + 1)
-		      + _S_slope_Gp * __n + _S_intercept_Gp;
-	    if (__xx < _S_log10min)
+		      + s_slope_Gp * __n + s_intercept_Gp;
+	    if (__xx < s_log10min)
 	      break;
 	    __term *= __ttt;
 	    _Fp += _Faip[__n] * __term / __t;
 	    _Gp += _Gaip[__n] * __term;
 	  }
-	auto _UUp = std::sqrt(_Tp{3} * _S_pi)
-		  * (_S_Ai0 * _Fp + _S_Aip0 * _Gp);
-	auto _VVp = _S_sqrt_pi * (_S_Ai0 * _Fp - _S_Aip0 * _Gp);
-	_Bip = _UUp / _S_sqrt_pi;
-	_Aip = _VVp / _S_sqrt_pi;
-	__w1p = _UUp - _S_i * _VVp;
-	__w2p = _UUp + _S_i * _VVp;
+	auto _UUp = std::sqrt(_Tp{3} * s_pi)
+		  * (s_Ai0 * _Fp + s_Aip0 * _Gp);
+	auto _VVp = s_sqrt_pi * (s_Ai0 * _Fp - s_Aip0 * _Gp);
+	_Bip = _UUp / s_sqrt_pi;
+	_Aip = _VVp / s_sqrt_pi;
+	__w1p = _UUp - s_i * _VVp;
+	__w2p = _UUp + s_i * _VVp;
 
 	return;
       }
@@ -396,19 +396,19 @@ template<typename _Tp>
 	    for (int __n = 0; __n < _N_cd; ++__n)
 	      {
 		__izeta0 *= __fact0;
-		if (std::abs(_S_cn[__n] * __izeta0) > __prev_Ai0
-		 || std::abs(_S_dn[__n] * __izeta0) > __prev_Aip0)
+		if (std::abs(s_cn[__n] * __izeta0) > __prev_Ai0
+		 || std::abs(s_dn[__n] * __izeta0) > __prev_Aip0)
 		  break;
-		__prev_Ai0 = std::abs(_S_cn[__n] * __izeta0);
-		__prev_Aip0 = std::abs(_S_dn[__n] * __izeta0);
-		_Ai += _S_cn[__n] * __izeta0;
-		_Aip += _S_dn[__n] * __izeta0;
+		__prev_Ai0 = std::abs(s_cn[__n] * __izeta0);
+		__prev_Aip0 = std::abs(s_dn[__n] * __izeta0);
+		_Ai += s_cn[__n] * __izeta0;
+		_Aip += s_dn[__n] * __izeta0;
 	      }
-	    _Ai *= _Tp{+0.5L} * __mqrt0 * __ezeta0 / _S_sqrt_pi;
-	    _Aip *= _Tp{-0.5L} * __pqrt0 * __ezeta0 / _S_sqrt_pi;
+	    _Ai *= _Tp{+0.5L} * __mqrt0 * __ezeta0 / s_sqrt_pi;
+	    _Aip *= _Tp{-0.5L} * __pqrt0 * __ezeta0 / s_sqrt_pi;
 
-	    auto __t1 = __t * std::exp(+_Tp{2} * _S_pi * _S_i / _Tp{3});
-	    auto __t2 = __t * std::exp(-_Tp{2} * _S_pi * _S_i / _Tp{3});
+	    auto __t1 = __t * std::exp(+_Tp{2} * s_pi * s_i / _Tp{3});
+	    auto __t2 = __t * std::exp(-_Tp{2} * s_pi * s_i / _Tp{3});
 	    auto __zeta1 = (_Tp{2} / _Tp{3}) * std::pow(__t1, _Tp{1.5L});
 	    auto __zeta2 = (_Tp{2} / _Tp{3}) * std::pow(__t2, _Tp{1.5L});
 	    auto __mqrt1 = std::pow(__t1, _Tp{-0.25L});
@@ -433,10 +433,10 @@ template<typename _Tp>
 		__sign *= _Tp{-1};
 		__izeta1 /= __zeta1;
 		__izeta2 /= __zeta2;
-		const auto __term1 = _S_cn[__n] * __izeta1;
-		const auto __term2 = _S_cn[__n] * __izeta2;
-		const auto __term1p = _S_dn[__n] * __izeta1;
-		const auto __term2p = _S_dn[__n] * __izeta2;
+		const auto __term1 = s_cn[__n] * __izeta1;
+		const auto __term2 = s_cn[__n] * __izeta2;
+		const auto __term1p = s_dn[__n] * __izeta1;
+		const auto __term2p = s_dn[__n] * __izeta2;
 		if (std::abs(__term1) > __prev_Ai1
 		 || std::abs(__term2) > __prev_Ai2
 		 || std::abs(__term1p) > __prev_Ai1p
@@ -451,20 +451,20 @@ template<typename _Tp>
 		_Ai1p += __sign * __term1p;
 		_Ai2p += __sign * __term2p;
 	      }
-	    _Ai1 *= _Tp{+0.5L} * __mqrt1 * __ezeta1 / _S_sqrt_pi;
-	    _Ai2 *= _Tp{+0.5L} * __mqrt2 * __ezeta2 / _S_sqrt_pi;
-	    _Ai1p *= _Tp{-0.5L} * __pqrt1 * __ezeta1 / _S_sqrt_pi;
-	    _Ai2p *= _Tp{-0.5L} * __pqrt2 * __ezeta2 / _S_sqrt_pi;
+	    _Ai1 *= _Tp{+0.5L} * __mqrt1 * __ezeta1 / s_sqrt_pi;
+	    _Ai2 *= _Tp{+0.5L} * __mqrt2 * __ezeta2 / s_sqrt_pi;
+	    _Ai1p *= _Tp{-0.5L} * __pqrt1 * __ezeta1 / s_sqrt_pi;
+	    _Ai2p *= _Tp{-0.5L} * __pqrt2 * __ezeta2 / s_sqrt_pi;
 
-	    _Bi = std::exp(+_S_i * _S_pi / _Tp{6}) * _Ai1
-		+ std::exp(-_S_i * _S_pi / _Tp{6}) * _Ai2;
-	    _Bip = std::exp(+_S_i * _Tp{5} * _S_pi / _Tp{6}) * _Ai1p
-		 + std::exp(-_S_i * _Tp{5} * _S_pi / _Tp{6}) * _Ai2p;
+	    _Bi = std::exp(+s_i * s_pi / _Tp{6}) * _Ai1
+		+ std::exp(-s_i * s_pi / _Tp{6}) * _Ai2;
+	    _Bip = std::exp(+s_i * _Tp{5} * s_pi / _Tp{6}) * _Ai1p
+		 + std::exp(-s_i * _Tp{5} * s_pi / _Tp{6}) * _Ai2p;
 
-	    __w1 = _S_sqrt_pi * (_Bi - _S_i * _Ai);
-	    __w2 = _S_sqrt_pi * (_Bi + _S_i * _Ai);
-	    __w1p = _S_sqrt_pi * (_Bip - _S_i * _Aip);
-	    __w2p = _S_sqrt_pi * (_Bip + _S_i * _Aip);
+	    __w1 = s_sqrt_pi * (_Bi - s_i * _Ai);
+	    __w2 = s_sqrt_pi * (_Bi + s_i * _Ai);
+	    __w1p = s_sqrt_pi * (_Bip - s_i * _Aip);
+	    __w2p = s_sqrt_pi * (_Bip + s_i * _Aip);
 
 	    return;
 	  }
@@ -473,12 +473,12 @@ template<typename _Tp>
 	    auto __zeta = (_Tp{2} / _Tp{3}) * std::pow(-__t, _Tp{1.5L});
 	    auto __mqrt = std::pow(-__t, _Tp{-0.25L});
 	    auto __pqrt = std::pow(-__t, _Tp{+0.25L});
-	    auto __mezeta = std::exp(-_S_i * (__zeta + (_S_pi / _Tp{4})));
-	    auto __pezeta = std::exp(+_S_i * (__zeta + (_S_pi / _Tp{4})));
+	    auto __mezeta = std::exp(-s_i * (__zeta + (s_pi / _Tp{4})));
+	    auto __pezeta = std::exp(+s_i * (__zeta + (s_pi / _Tp{4})));
 	    __w1 = __cmplx{_Tp{1}};
 	    __w2 = __cmplx{_Tp{1}};
-	    __w1p = +_S_i;
-	    __w2p = -_S_i;
+	    __w1p = +s_i;
+	    __w2p = -s_i;
 	    auto __ipn = __cmplx{_Tp{1}};
 	    auto __imn = __cmplx{_Tp{1}};
 	    auto __ixn = __cmplx{_Tp{1}};
@@ -488,11 +488,11 @@ template<typename _Tp>
 	    auto __prev_w2p = _Tp{1};
 	    for (int __n = 0; __n < _N_cd; ++__n)
 	      {
-		__ipn *= +_S_i;
-		__imn *= -_S_i;
+		__ipn *= +s_i;
+		__imn *= -s_i;
 		__ixn /= __zeta;
-		const auto __term = _S_cn[__n] * __ixn;
-		const auto __termp = _S_dn[__n] * __ixn;
+		const auto __term = s_cn[__n] * __ixn;
+		const auto __termp = s_dn[__n] * __ixn;
 		if (std::abs(__term) > __prev_w1
 		 || std::abs(__term) > __prev_w2
 		 || std::abs(__termp) > __prev_w1p
@@ -504,18 +504,18 @@ template<typename _Tp>
 		__prev_w2p = std::abs(__termp);
 		__w1 += __ipn * __term;
 		__w2 += __imn * __term;
-		__w1p += +_S_i * __ipn * __termp;
-		__w2p += -_S_i * __imn * __termp;
+		__w1p += +s_i * __ipn * __termp;
+		__w2p += -s_i * __imn * __termp;
 	      }
 	    __w1 *= __mqrt * __mezeta;
 	    __w2 *= __mqrt * __pezeta;
 	    __w1p *= __pqrt * __mezeta;
 	    __w2p *= __pqrt * __pezeta;
 
-	    _Bi = (__w1 + __w2) / (_Tp{2} * _S_sqrt_pi);
-	    _Ai = (__w2 - __w1) / (_Tp{2} * _S_i * _S_sqrt_pi);
-	    _Bip = (__w1p + __w2p) / (_Tp{2} * _S_sqrt_pi);
-	    _Aip = (__w2p - __w1p) / (_Tp{2} * _S_i * _S_sqrt_pi);
+	    _Bi = (__w1 + __w2) / (_Tp{2} * s_sqrt_pi);
+	    _Ai = (__w2 - __w1) / (_Tp{2} * s_i * s_sqrt_pi);
+	    _Bip = (__w1p + __w2p) / (_Tp{2} * s_sqrt_pi);
+	    _Aip = (__w2p - __w1p) / (_Tp{2} * s_i * s_sqrt_pi);
 
 	    return;
 	  }
