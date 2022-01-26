@@ -1,7 +1,7 @@
 #ifndef SF_HYPINT_H
 #define SF_HYPINT_H 1
 
-#include <emsr/sf_hypint.tcc>
+#include <emsr/detail/sf_hypint.tcc>
 
 namespace emsr
 {

@@ -2,7 +2,7 @@
 #define SF_GEGENBAUER_H 1
 
 #include <emsr/fp_type_util.h>
-#include <emsr/sf_gegenbauer.tcc>
+#include <emsr/detail/sf_gegenbauer.tcc>
 
 namespace emsr
 {

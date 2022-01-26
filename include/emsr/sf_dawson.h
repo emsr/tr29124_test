@@ -3,7 +3,7 @@
 
 
 #include <emsr/fp_type_util.h>
-#include <emsr/sf_dawson.tcc>
+#include <emsr/detail/sf_dawson.tcc>
 
 namespace emsr
 {

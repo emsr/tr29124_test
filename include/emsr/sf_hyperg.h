@@ -2,7 +2,7 @@
 #define SF_HYPERG_H 1
 
 #include <emsr/fp_type_util.h>
-#include <emsr/sf_hyperg.tcc>
+#include <emsr/detail/sf_hyperg.tcc>
 
 namespace emsr
 {

@@ -1,7 +1,7 @@
 #ifndef SF_STIRLING_H
 #define SF_STIRLING_H 1
 
-#include <emsr/sf_stirling.tcc>
+#include <emsr/detail/sf_stirling.tcc>
 
 namespace emsr
 {

@@ -2,7 +2,7 @@
 #define SF_TRIGINT_H 1
 
 #include <emsr/fp_type_util.h>
-#include <emsr/sf_trigint.tcc>
+#include <emsr/detail/sf_trigint.tcc>
 
 namespace emsr
 {

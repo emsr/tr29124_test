@@ -71,7 +71,7 @@ namespace emsr
     };
 }
 
-#include <emsr/sf_theta.tcc>
+#include <emsr/detail/sf_theta.tcc>
 
 namespace emsr
 {

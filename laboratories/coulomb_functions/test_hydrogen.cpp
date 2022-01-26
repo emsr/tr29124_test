@@ -15,10 +15,7 @@
 #include <emsr/complex_util.h>
 #include <emsr/numeric_limits.h>
 #include <emsr/specfun_state.h>
-#include <emsr/sf_trig.tcc>
-#include <emsr/sf_bernoulli.tcc>
-#include <emsr/sf_gamma.tcc>
-#include <emsr/sf_coulomb.tcc>
+#include <emsr/sf_coulomb.h>
 #include <wrap_gsl.h>
 
 template <typename _Tp>
@@ -51,7 +48,7 @@ template <typename _Tp>
       for (int k = 0; k <= 20; ++k)
 	{
 	  auto eta = k * _Tp{1};
-	  auto C_cxx = emsr::detail::coulomb_norm(l, eta);
+	  auto C_cxx = emsr::coulomb_norm(l, eta);
 	  auto C_gsl = gsl::coulomb_norm(l, eta);
 	  std::cout << std::setw(4) << l
 		    << std::setw(w) << eta

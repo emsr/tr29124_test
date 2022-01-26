@@ -2,7 +2,7 @@
 #define SF_EXPINT_H 1
 
 #include <emsr/fp_type_util.h>
-#include <emsr/sf_expint.tcc>
+#include <emsr/detail/sf_expint.tcc>
 
 namespace emsr
 {

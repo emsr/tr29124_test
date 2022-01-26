@@ -2,7 +2,7 @@
 #define SF_CHEBYSHEV_H 1
 
 #include <emsr/fp_type_util.h>
-#include <emsr/sf_chebyshev.tcc>
+#include <emsr/detail/sf_chebyshev.tcc>
 
 namespace emsr
 {

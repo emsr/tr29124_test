@@ -2,7 +2,7 @@
 #define SF_MOD_BESSEL_H 1
 
 #include <emsr/fp_type_util.h>
-#include <emsr/sf_mod_bessel.tcc>
+#include <emsr/detail/sf_mod_bessel.tcc>
 
 namespace emsr
 {

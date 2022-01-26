@@ -1,7 +1,7 @@
 #ifndef SF_PRIME_H
 #define SF_PRIME_H 1
 
-#include <emsr/sf_prime.tcc>
+#include <emsr/detail/sf_prime.tcc>
 
 namespace emsr
 {

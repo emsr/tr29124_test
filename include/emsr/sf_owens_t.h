@@ -2,7 +2,7 @@
 #define SF_OWENS_T_H 1
 
 #include <emsr/fp_type_util.h>
-#include <emsr/sf_owens_t.tcc>
+#include <emsr/detail/sf_owens_t.tcc>
 
 namespace emsr
 {

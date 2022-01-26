@@ -4,8 +4,9 @@
 
 #include <cmath>
 #include <iostream>
+#include <iomanip>
 
-#include <emsr/sf_prime.tcc>
+#include <emsr/sf_prime.h>
 
 void
 print_prime_factors(unsigned int n)

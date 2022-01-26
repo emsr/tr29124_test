@@ -4,7 +4,7 @@
 #include <complex>
 
 #include <emsr/fp_type_util.h>
-#include <emsr/sf_polylog.tcc>
+#include <emsr/detail/sf_polylog.tcc>
 
 namespace emsr
 {

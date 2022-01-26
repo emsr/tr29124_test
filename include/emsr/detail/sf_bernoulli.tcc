@@ -30,6 +30,8 @@
 #ifndef SF_BERNOULLI_TCC
 #define SF_BERNOULLI_TCC 1
 
+#include <emsr/numeric_limits.h>
+
 namespace emsr
 {
 namespace detail

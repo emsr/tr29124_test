@@ -2,7 +2,7 @@
 #define SF_LAGUERRE_H 1
 
 #include <emsr/fp_type_util.h>
-#include <emsr/sf_laguerre.tcc>
+#include <emsr/detail/sf_laguerre.tcc>
 
 namespace emsr
 {

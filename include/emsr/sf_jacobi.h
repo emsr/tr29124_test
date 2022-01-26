@@ -2,7 +2,7 @@
 #define SF_JACOBI_H 1
 
 #include <emsr/fp_type_util.h>
-#include <emsr/sf_jacobi.tcc>
+#include <emsr/detail/sf_jacobi.tcc>
 
 namespace emsr
 {

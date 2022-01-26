@@ -2,7 +2,7 @@
 #define SF_ZETA_H 1
 
 #include <emsr/fp_type_util.h>
-#include <emsr/sf_zeta.tcc>
+#include <emsr/detail/sf_zeta.tcc>
 
 namespace emsr
 {

@@ -36,7 +36,7 @@
 #include <emsr/sf_zeta.h>
 #include <emsr/sf_prime.h>
 #include <emsr/sf_ellint.h>
-#include <emsr/sf_gamma.tcc>
+#include <emsr/sf_gamma.h>
 #include <emsr/sf_beta.h>
 #include <emsr/sf_bernoulli.h>
 #include <emsr/sf_euler.h>

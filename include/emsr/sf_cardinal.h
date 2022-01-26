@@ -2,7 +2,7 @@
 #define SF_CARDINAL_H 1
 
 #include <emsr/fp_type_util.h>
-#include <emsr/sf_cardinal.tcc>
+#include <emsr/detail/sf_cardinal.tcc>
 
 namespace emsr
 {

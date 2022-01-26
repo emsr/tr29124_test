@@ -2,7 +2,7 @@
 #define SF_DISTRIBUTIONS_H 1
 
 #include <emsr/fp_type_util.h>
-#include <emsr/sf_distributions.tcc>
+#include <emsr/detail/sf_distributions.tcc>
 
 namespace emsr
 {

@@ -11,6 +11,10 @@
 
 #include <emsr/float128_io.h>
 #include <emsr/polynomial.h>
+#include <emsr/summation.h>
+#include <emsr/fp_type_util.h>
+#include <emsr/math_constants.h>
+#include <emsr/sf_gamma.h>
 
 namespace emsr
 {

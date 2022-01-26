@@ -2,7 +2,7 @@
 #define SF_ELLINT_H 1
 
 #include <emsr/fp_type_util.h>
-#include <emsr/sf_ellint.tcc>
+#include <emsr/detail/sf_ellint.tcc>
 
 namespace emsr
 {

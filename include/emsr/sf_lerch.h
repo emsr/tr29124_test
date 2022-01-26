@@ -2,7 +2,7 @@
 #define SF_LERCH_H 1
 
 #include <emsr/fp_type_util.h>
-#include <emsr/sf_lerch.tcc>
+#include <emsr/detail/sf_lerch.tcc>
 
 namespace emsr
 {

@@ -4,7 +4,7 @@
 #include <complex>
 
 #include <emsr/fp_type_util.h>
-#include <emsr/sf_bessel.tcc>
+#include <emsr/detail/sf_bessel.tcc>
 
 namespace emsr
 {

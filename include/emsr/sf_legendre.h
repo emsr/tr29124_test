@@ -5,7 +5,7 @@
 
 #include <emsr/fp_type_util.h>
 #include <emsr/specfun_state.h>
-#include <emsr/sf_legendre.tcc>
+#include <emsr/detail/sf_legendre.tcc>
 
 namespace emsr
 {

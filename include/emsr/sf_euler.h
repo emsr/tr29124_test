@@ -1,7 +1,7 @@
 #ifndef SF_EULER_H
 #define SF_EULER_H 1
 
-#include <emsr/sf_euler.tcc>
+#include <emsr/detail/sf_euler.tcc>
 
 namespace emsr
 {
