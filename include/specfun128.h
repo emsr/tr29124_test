@@ -30,562 +30,555 @@
 #ifndef SPECFUN128_H
 #define SPECFUN128_H 1
 
-#pragma GCC system_header
-
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
 
-namespace std
+namespace emsr
 {
 
   inline __float128
-  assoc_laguerreq(unsigned int __n, unsigned int __m, __float128 __x)
-  { return __detail::__assoc_laguerre<__float128>(__n, __m, __x); }
+  assoc_laguerreq(unsigned int n, unsigned int m, __float128 x)
+  { return emsr::detail::assoc_laguerre<__float128>(n, m, x); }
 
   inline __float128
-  assoc_legendreq(unsigned int __l, unsigned int __m, __float128 __x)
-  { return __detail::__assoc_legendre_p<__float128>(__l, __m, __x); }
+  assoc_legendreq(unsigned int l, unsigned int m, __float128 x)
+  { return emsr::detail::assoc_legendre_p<__float128>(l, m, x); }
 
   inline __float128
-  betaq(__float128 __x, __float128 __y)
-  { return __detail::__beta<__float128>(__x, __y); }
+  betaq(__float128 x, __float128 y)
+  { return emsr::detail::beta<__float128>(x, y); }
 
   inline __float128
-  comp_ellint_1q(__float128 __k)
-  { return __detail::__comp_ellint_1<__float128>(__k); }
+  comp_ellint_1q(__float128 k)
+  { return emsr::detail::comp_ellint_1<__float128>(k); }
 
   inline __float128
-  comp_ellint_2q(__float128 __k)
-  { return __detail::__comp_ellint_2<__float128>(__k); }
+  comp_ellint_2q(__float128 k)
+  { return emsr::detail::comp_ellint_2<__float128>(k); }
 
   inline __float128
-  comp_ellint_3q(__float128 __k, __float128 __nu)
-  { return __detail::__comp_ellint_3<__float128>(__k, __nu); }
+  comp_ellint_3q(__float128 k, __float128 nu)
+  { return emsr::detail::comp_ellint_3<__float128>(k, nu); }
 
   inline __float128
-  cyl_bessel_iq(__float128 __nu, __float128 __x)
-  { return __detail::__cyl_bessel_i<__float128>(__nu, __x); }
+  cyl_bessel_iq(__float128 nu, __float128 x)
+  { return emsr::detail::cyl_bessel_i<__float128>(nu, x); }
 
   inline __float128
-  cyl_bessel_jq(__float128 __nu, __float128 __x)
-  { return __detail::__cyl_bessel_j<__float128>(__nu, __x); }
+  cyl_bessel_jq(__float128 nu, __float128 x)
+  { return emsr::detail::cyl_bessel_j<__float128>(nu, x); }
 
   inline __float128
-  cyl_bessel_kq(__float128 __nu, __float128 __x)
-  { return __detail::__cyl_bessel_k<__float128>(__nu, __x); }
+  cyl_bessel_kq(__float128 nu, __float128 x)
+  { return emsr::detail::cyl_bessel_k<__float128>(nu, x); }
 
   inline __float128
-  cyl_neumannq(__float128 __nu, __float128 __x)
-  { return __detail::__cyl_neumann_n<__float128>(__nu, __x); }
+  cyl_neumannq(__float128 nu, __float128 x)
+  { return emsr::detail::cyl_neumann_n<__float128>(nu, x); }
 
   inline __float128
-  ellint_1q(__float128 __k, __float128 __phi)
-  { return __detail::__ellint_1<__float128>(__k, __phi); }
+  ellint_1q(__float128 k, __float128 phi)
+  { return emsr::detail::ellint_1<__float128>(k, phi); }
 
   inline __float128
-  ellint_2q(__float128 __k, __float128 __phi)
-  { return __detail::__ellint_2<__float128>(__k, __phi); }
+  ellint_2q(__float128 k, __float128 phi)
+  { return emsr::detail::ellint_2<__float128>(k, phi); }
 
   inline __float128
-  ellint_3q(__float128 __k, __float128 __nu, __float128 __phi)
-  { return __detail::__ellint_3<__float128>(__k, __nu, __phi); }
+  ellint_3q(__float128 k, __float128 nu, __float128 phi)
+  { return emsr::detail::ellint_3<__float128>(k, nu, phi); }
 
   inline __float128
-  expintq(__float128 __x)
-  { return __detail::__expint<__float128>(__x); }
+  expintq(__float128 x)
+  { return emsr::detail::expint<__float128>(x); }
 
   inline __float128
-  hermiteq(unsigned int __n, __float128 __x)
-  { return __detail::__hermite<__float128>(__n, __x); }
+  hermiteq(unsigned int n, __float128 x)
+  { return emsr::detail::hermite<__float128>(n, x); }
 
   inline __float128
-  laguerreq(unsigned int __n, __float128 __x)
-  { return __detail::__laguerre<__float128>(__n, __x); }
+  laguerreq(unsigned int n, __float128 x)
+  { return emsr::detail::laguerre<__float128>(n, x); }
 
   inline __float128
-  legendreq(unsigned int __n, __float128 __x)
-  { return __detail::__legendre_p<__float128>(__n, __x); }
+  legendreq(unsigned int n, __float128 x)
+  { return emsr::detail::legendre_p<__float128>(n, x); }
 
   inline __float128
-  riemann_zetaq(__float128 __s)
-  { return __detail::__riemann_zeta<__float128>(__s); }
+  riemann_zetaq(__float128 s)
+  { return emsr::detail::riemann_zeta<__float128>(s); }
 
   inline __float128
-  sph_besselq(unsigned int __n, __float128 __x)
-  { return __detail::__sph_bessel<__float128>(__n, __x); }
+  sph_besselq(unsigned int n, __float128 x)
+  { return emsr::detail::sph_bessel<__float128>(n, x); }
 
   inline __float128
-  sph_legendreq(unsigned int __l, unsigned int __m, __float128 __theta)
-  { return __detail::__sph_legendre<__float128>(__l, __m, __theta); }
+  sph_legendreq(unsigned int l, unsigned int m, __float128 theta)
+  { return emsr::detail::sph_legendre<__float128>(l, m, theta); }
 
   inline __float128
-  sph_neumannq(unsigned int __n, __float128 __x)
-  { return __detail::__sph_neumann<__float128>(__n, __x); }
-
-} // namespace std
-
-namespace __gnu_cxx
-{
+  sph_neumannq(unsigned int n, __float128 x)
+  { return emsr::detail::sph_neumann<__float128>(n, x); }
 
   inline __float128
-  conf_hypergq(__float128 __a, __float128 __c, __float128 __x)
-  { return std::__detail::__conf_hyperg<__float128>(__a, __c, __x); }
+  conf_hypergq(__float128 a, __float128 c, __float128 x)
+  { return emsr::detail::conf_hyperg<__float128>(a, c, x); }
 
   inline __float128
-  hypergq(__float128 __a, __float128 __b, __float128 __c, __float128 __x)
-  { return std::__detail::__hyperg<__float128>(__a, __b, __c, __x); }
+  hypergq(__float128 a, __float128 b, __float128 c, __float128 x)
+  { return emsr::detail::hyperg<__float128>(a, b, c, x); }
 
   inline __float128
-  conf_hyperg_limq(__float128 __c, __float128 __x)
-  { return std::__detail::__conf_hyperg_lim<__float128>(__c, __x); }
+  conf_hyperg_limq(__float128 c, __float128 x)
+  { return emsr::detail::conf_hyperg_lim<__float128>(c, x); }
 
   inline __float128
-  sinc_piq(__float128 __x)
-  { return std::__detail::__sinc_pi<__float128>(__x); }
+  sinc_piq(__float128 x)
+  { return emsr::detail::sinc_pi<__float128>(x); }
 
   inline __float128
-  sincq(__float128 __x)
-  { return std::__detail::__sinc<__float128>(__x); }
+  sincq(__float128 x)
+  { return emsr::detail::sinc<__float128>(x); }
 
   inline __float128
-  sinhc_piq(__float128 __x)
-  { return std::__detail::__sinhc_pi<__float128>(__x); }
+  sinhc_piq(__float128 x)
+  { return emsr::detail::sinhc_pi<__float128>(x); }
 
   inline __float128
-  sinhcq(__float128 __x)
-  { return std::__detail::__sinhc<__float128>(__x); }
+  sinhcq(__float128 x)
+  { return emsr::detail::sinhc<__float128>(x); }
 
   inline __float128
-  logintq(__float128 __x)
-  { return std::__detail::__logint<__float128>(__x); }
+  logintq(__float128 x)
+  { return emsr::detail::logint<__float128>(x); }
   inline __float128
-  sinintq(__float128 __x)
-  { return std::__detail::__sincosint<__float128>(__x).first; }
+  sinintq(__float128 x)
+  { return emsr::detail::sincosint<__float128>(x).first; }
 
   inline __float128
-  cosintq(__float128 __x)
-  { return std::__detail::__sincosint<__float128>(__x).second; }
+  cosintq(__float128 x)
+  { return emsr::detail::sincosint<__float128>(x).second; }
 
   inline __float128
-  sinhintq(__float128 __x)
-  { return std::__detail::__sinhint<__float128>(__x); }
+  sinhintq(__float128 x)
+  { return emsr::detail::sinhint<__float128>(x); }
 
   inline __float128
-  coshintq(__float128 __x)
-  { return std::__detail::__coshint<__float128>(__x); }
+  coshintq(__float128 x)
+  { return emsr::detail::coshint<__float128>(x); }
 
   inline __float128
-  jacobi_snq(__float128 __k, __float128 __u)
+  jacobi_snq(__float128 k, __float128 u)
   {
     return std::get<_GLIBCXX_JACOBI_SN>
-		(std::__detail::__jacobi_ellint<__float128>(__k, __u));
+		(emsr::detail::jacobi_ellint<__float128>(k, u));
   }
 
   inline __float128
-  jacobi_cnq(__float128 __k, __float128 __u)
+  jacobi_cnq(__float128 k, __float128 u)
   {
     return std::get<_GLIBCXX_JACOBI_CN>
-		(std::__detail::__jacobi_ellint<__float128>(__k, __u));
+		(emsr::detail::jacobi_ellint<__float128>(k, u));
   }
 
   inline __float128
-  jacobi_dnq(__float128 __k, __float128 __u)
+  jacobi_dnq(__float128 k, __float128 u)
   {
     return std::get<_GLIBCXX_JACOBI_DN>
-		(std::__detail::__jacobi_ellint<__float128>(__k, __u));
+		(emsr::detail::jacobi_ellint<__float128>(k, u));
   }
 
   inline __float128
-  chebyshev_tq(unsigned int __n, __float128 __x)
-  { return std::__detail::__chebyshev_t<__float128>(__n, __x); }
+  chebyshev_tq(unsigned int n, __float128 x)
+  { return emsr::detail::chebyshev_t<__float128>(n, x); }
 
   inline __float128
-  chebyshev_uq(unsigned int __n, __float128 __x)
-  { return std::__detail::__chebyshev_u<__float128>(__n, __x); }
+  chebyshev_uq(unsigned int n, __float128 x)
+  { return emsr::detail::chebyshev_u<__float128>(n, x); }
 
   inline __float128
-  chebyshev_vq(unsigned int __n, __float128 __x)
-  { return std::__detail::__chebyshev_v<__float128>(__n, __x); }
+  chebyshev_vq(unsigned int n, __float128 x)
+  { return emsr::detail::chebyshev_v<__float128>(n, x); }
 
   inline __float128
-  chebyshev_wq(unsigned int __n, __float128 __x)
-  { return std::__detail::__chebyshev_w<__float128>(__n, __x); }
+  chebyshev_wq(unsigned int n, __float128 x)
+  { return emsr::detail::chebyshev_w<__float128>(n, x); }
 
   inline __float128
-  jacobiq(unsigned __n, __float128 __alpha, __float128 __beta, __float128 __x)
-  { return std::__detail::__poly_jacobi<__float128>(__n, __alpha, __beta, __x); }
+  jacobiq(unsigned n, __float128 alpha, __float128 beta, __float128 x)
+  { return emsr::detail::poly_jacobi<__float128>(n, alpha, beta, x); }
 
   inline __float128
-  gegenbauerq(unsigned int __n, __float128 __alpha, __float128 __x)
-  { return std::__detail::__gegenbauer_poly<__float128>(__n, __alpha, __x); }
+  gegenbauerq(unsigned int n, __float128 alpha, __float128 x)
+  { return emsr::detail::gegenbauer_poly<__float128>(n, alpha, x); }
 
   inline __float128
-  zernikeq(unsigned int __n, int __m, __float128 __rho, __float128 __phi)
-  { return std::__detail::__zernike<__float128>(__n, __m, __rho, __phi); }
+  zernikeq(unsigned int n, int m, __float128 rho, __float128 phi)
+  { return emsr::detail::zernike<__float128>(n, m, rho, phi); }
 
   inline __float128
-  radpolyq(unsigned int __n, unsigned int __m, __float128 __rho)
-  { return std::__detail::__poly_radial_jacobi(__n, __m, __rho); }
+  radpolyq(unsigned int n, unsigned int m, __float128 rho)
+  { return emsr::detail::poly_radial_jacobi(n, m, rho); }
 
   inline __float128
-  sinhc_piq(__float128 __x)
-  { return std::__detail::__sinhc_pi<__float128>(__x); }
+  sinhc_piq(__float128 x)
+  { return emsr::detail::sinhc_pi<__float128>(x); }
 
   inline __float128
-  sinhcq(__float128 __x)
-  { return std::__detail::__sinhc<__float128>(__x); }
+  sinhcq(__float128 x)
+  { return emsr::detail::sinhc<__float128>(x); }
 
   inline std::complex<__float128>
-  cyl_hankel_1q(__float128 __nu, __float128 __z)
-  { return std::__detail::__cyl_hankel_1<__float128>(__nu, __z); }
+  cyl_hankel_1q(__float128 nu, __float128 z)
+  { return emsr::detail::cyl_hankel_1<__float128>(nu, z); }
 
   inline std::complex<__float128>
-  cyl_hankel_2q(__float128 __nu, __float128 __z)
-  { return std::__detail::__cyl_hankel_2<__float128>(__nu, __z); }
+  cyl_hankel_2q(__float128 nu, __float128 z)
+  { return emsr::detail::cyl_hankel_2<__float128>(nu, z); }
 
   inline std::complex<__float128>
-  sph_hankel_1q(unsigned int __n, __float128 __z)
-  { return std::__detail::__sph_hankel_1<__float128>(__n, __z); }
+  sph_hankel_1q(unsigned int n, __float128 z)
+  { return emsr::detail::sph_hankel_1<__float128>(n, z); }
 
   inline std::complex<__float128>
-  sph_hankel_2q(unsigned int __n, __float128 __z)
-  { return std::__detail::__sph_hankel_2<__float128>(__n, __z); }
+  sph_hankel_2q(unsigned int n, __float128 z)
+  { return emsr::detail::sph_hankel_2<__float128>(n, z); }
 
   inline __float128
-  sph_bessel_iq(unsigned int __n, __float128 __x)
+  sph_bessel_iq(unsigned int n, __float128 x)
   {
-    __float128 __i_n, __k_n, __ip_n, __kp_n;
-    std::__detail::__sph_bessel_ik<__float128>(__n, __x,
-        				  __i_n, __k_n, __ip_n, __kp_n);
+    __float128 i_n, k_n, ip_n, kp_n;
+    emsr::detail::sph_bessel_ik<__float128>(n, x,
+        				  i_n, k_n, ip_n, kp_n);
     return __i_n;
   }
 
   inline __float128
-  sph_bessel_kq(unsigned int __n, __float128 __x)
+  sph_bessel_kq(unsigned int n, __float128 x)
   {
-    __float128 __i_n, __k_n, __ip_n, __kp_n;
-    std::__detail::__sph_bessel_ik<__float128>(__n, __x,
-        				  __i_n, __k_n, __ip_n, __kp_n);
+    __float128 i_n, k_n, ip_n, kp_n;
+    emsr::detail::sph_bessel_ik<__float128>(n, x,
+        				  i_n, k_n, ip_n, kp_n);
     return __k_n;
   }
 
   inline __float128
-  airy_aiq(__float128 __x)
+  airy_aiq(__float128 x)
   {
-    __float128 __Ai, __Bi, __Aip, __Bip;
-    std::__detail::__airy<__float128>(__x, __Ai, __Bi, __Aip, __Bip);
+    __float128 Ai, Bi, Aip, Bip;
+    emsr::detail::airy<__float128>(x, Ai, Bi, Aip, Bip);
     return __Ai;
   }
 
   inline __float128
-  airy_biq(__float128 __x)
+  airy_biq(__float128 x)
   {
-    __float128 __Ai, __Bi, __Aip, __Bip;
-    std::__detail::__airy<__float128>(__x, __Ai, __Bi, __Aip, __Bip);
+    __float128 Ai, Bi, Aip, Bip;
+    emsr::detail::airy<__float128>(x, Ai, Bi, Aip, Bip);
     return __Bi;
   }
 
   inline __float128
-  tgammaq(__float128 __n, __float128 __x)
-  { return std::__detail::__tgamma<__float128>(__n, __x); }
+  tgammaq(__float128 n, __float128 x)
+  { return emsr::detail::tgamma<__float128>(n, x); }
 
   inline __float128
-  tgamma_lowerq(__float128 __n, __float128 __x)
-  { return std::__detail::__tgamma_lower<__float128>(__n, __x); }
+  tgamma_lowerq(__float128 n, __float128 x)
+  { return emsr::detail::tgamma_lower<__float128>(n, x); }
 
   inline __float128
-  dilogq(__float128 __x)
-  { return std::__detail::__dilog<__float128>(__x); }
+  dilogq(__float128 x)
+  { return emsr::detail::dilog<__float128>(x); }
 
   inline __float128
-  comp_ellint_rq(__float128 __x, __float128 __y)
-  { return std::__detail::__comp_ellint_rf<__float128>(__x, __y); }
+  comp_ellint_rq(__float128 x, __float128 y)
+  { return emsr::detail::comp_ellint_rf<__float128>(x, y); }
 
   inline __float128
-  ellint_rfq(__float128 __x, __float128 __y, __float128 __z)
-  { return std::__detail::__ellint_rf<__float128>(__x, __y, __z); }
+  ellint_rfq(__float128 x, __float128 y, __float128 z)
+  { return emsr::detail::ellint_rf<__float128>(x, y, z); }
 
   inline __float128
-  ellint_rcq(__float128 __x, __float128 __y)
-  { return std::__detail::__ellint_rc<__float128>(__x, __y); }
+  ellint_rcq(__float128 x, __float128 y)
+  { return emsr::detail::ellint_rc<__float128>(x, y); }
 
   inline __float128
-  ellint_rjq(__float128 __x, __float128 __y, __float128 __z, __float128 __p)
-  { return std::__detail::__ellint_rj<__float128>(__x, __y, __z, __p); }
+  ellint_rjq(__float128 x, __float128 y, __float128 z, __float128 p)
+  { return emsr::detail::ellint_rj<__float128>(x, y, z, p); }
 
   inline __float128
-  ellint_rdq(__float128 __x, __float128 __y, __float128 __z)
-  { return std::__detail::__ellint_rd<__float128>(__x, __y, __z); }
+  ellint_rdq(__float128 x, __float128 y, __float128 z)
+  { return emsr::detail::ellint_rd<__float128>(x, y, z); }
 
   inline __float128
-  comp_ellint_rg(__float128 __x, __float128 __y)
-  { return std::__detail::__comp_ellint_rg<__float128>(__x, __y); }
+  comp_ellint_rg(__float128 x, __float128 y)
+  { return emsr::detail::comp_ellint_rg<__float128>(x, y); }
 
   inline __float128
-  ellint_rgq(__float128 __x, __float128 __y, __float128 __z)
-  { return std::__detail::__ellint_rg<__float128>(__x, __y, __z); }
+  ellint_rgq(__float128 x, __float128 y, __float128 z)
+  { return emsr::detail::ellint_rg<__float128>(x, y, z); }
 
   inline __float128
-  hurwitz_zetaq(__float128 __s, __float128 __a)
-  { return std::__detail::__hurwitz_zeta<__float128>(__s, __a); }
+  hurwitz_zetaq(__float128 s, __float128 a)
+  { return emsr::detail::hurwitz_zeta<__float128>(s, a); }
 
   inline __float128
-  digammaq(__float128 __x)
-  { return std::__detail::__digamma<__float128>(__x); }
+  digammaq(__float128 x)
+  { return emsr::detail::digamma<__float128>(x); }
 
   inline __float128
-  polygammaq(unsigned int __m, __float128 __x)
-  { return std::__detail::__polygamma<__float128>(__m, __x); }
+  polygammaq(unsigned int m, __float128 x)
+  { return emsr::detail::polygamma<__float128>(m, x); }
 
   inline __float128
-  ibetaq(__float128 __a, __float128 __b, __float128 __x)
-  { return std::__detail::__beta_inc<__float128>(__a, __b, __x); }
+  ibetaq(__float128 a, __float128 b, __float128 x)
+  { return emsr::detail::beta_inc<__float128>(a, b, x); }
 
   inline __float128
-  ibetacq(__float128 __a, __float128 __b, __float128 __x)
-  { return 1.0Q - ibetaq(__a, __b, __x); }
+  ibetacq(__float128 a, __float128 b, __float128 x)
+  { return 1.0Q - ibetaq(a, b, x); }
 
   inline __float128
-  fresnel_sq(__float128 __x)
-  { return std::imag(std::__detail::__fresnel<__float128>(__x)); }
+  fresnel_sq(__float128 x)
+  { return std::imag(emsr::detail::fresnel<__float128>(x)); }
 
   inline __float128
-  fresnel_cq(__float128 __x)
-  { return std::real(std::__detail::__fresnel<__float128>(__x)); }
+  fresnel_cq(__float128 x)
+  { return std::real(emsr::detail::fresnel<__float128>(x)); }
 
   inline __float128
-  dawsonq(__float128 __x)
-  { return std::__detail::__dawson<__float128>(__x); }
+  dawsonq(__float128 x)
+  { return emsr::detail::dawson<__float128>(x); }
 
   inline __float128
-  expintq(unsigned int __n, __float128 __x)
-  { return std::__detail::__expint<__float128>(__n, __x); }
+  expintq(unsigned int n, __float128 x)
+  { return emsr::detail::expint<__float128>(n, x); }
 
   inline __float128
-  expint_enq(unsigned int __n, __float128 __x)
-  { return std::__detail::__expint<__float128>(__n, __x); }
+  expint_enq(unsigned int n, __float128 x)
+  { return emsr::detail::expint<__float128>(n, x); }
 
   inline __float128
-  lrising_factorialq(__float128 __a, __float128 __n)
-  { return std::__detail::__log_rising_factorial<__float128>(__a, __n); }
+  lrising_factorialq(__float128 a, __float128 n)
+  { return emsr::detail::log_rising_factorial<__float128>(a, n); }
 
   inline __float128
-  lfalling_factorialq(__float128 __a, __float128 __n)
-  { return std::__detail::__log_falling_factorial<__float128>(__a, __n); }
+  lfalling_factorialq(__float128 a, __float128 n)
+  { return emsr::detail::log_falling_factorial<__float128>(a, n); }
 
   inline __float128
-  rising_factorialq(__float128 __a, __float128 __n)
-  { return std::__detail::__rising_factorial<__float128>(__a, __n); }
+  rising_factorialq(__float128 a, __float128 n)
+  { return emsr::detail::rising_factorial<__float128>(a, n); }
 
   inline __float128
-  falling_factorialq(__float128 __a, __float128 __n)
-  { return std::__detail::__falling_factorial<__float128>(__a, __n); }
+  falling_factorialq(__float128 a, __float128 n)
+  { return emsr::detail::falling_factorial<__float128>(a, n); }
 
   inline __float128
-  factorialq(unsigned int __n)
-  { return std::__detail::__factorial<__float128>(__n); }
+  factorialq(unsigned int n)
+  { return emsr::detail::factorial<__float128>(n); }
 
   inline __float128
-  double_factorialq(int __n)
-  { return std::__detail::__double_factorial<__float128>(__n); }
+  double_factorialq(int n)
+  { return emsr::detail::double_factorial<__float128>(n); }
 
   inline __float128
-  lfactorialq(unsigned int __n)
-  { return std::__detail::__log_factorial<__float128>(__n); }
+  lfactorialq(unsigned int n)
+  { return emsr::detail::log_factorial<__float128>(n); }
 
   inline __float128
-  ldouble_factorialq(int __n)
-  { return std::__detail::__log_double_factorial<__float128>(__n); }
+  ldouble_factorialq(int n)
+  { return emsr::detail::log_double_factorial<__float128>(n); }
 
   inline __float128
-  binomialq(unsigned int __n, unsigned int __k)
-  { return std::__detail::__binomial<__float128>(__n, __k); }
+  binomialq(unsigned int n, unsigned int k)
+  { return emsr::detail::binomial<__float128>(n, k); }
 
   inline __float128
-  lbinomialq(unsigned int __n, unsigned int __k)
-  { return std::__detail::__log_binomial<__float128>(__n, __k); }
+  lbinomialq(unsigned int n, unsigned int k)
+  { return emsr::detail::log_binomial<__float128>(n, k); }
 
   inline __float128
-  legendre_qq(unsigned int __n, __float128 __x)
-  { return std::__detail::__legendre_q<__float128>(__n, __x); }
+  legendre_qq(unsigned int n, __float128 x)
+  { return emsr::detail::legendre_q<__float128>(n, x); }
 
   inline __float128
-  gamma_pq(__float128 __a, __float128 __x)
-  { return std::__detail::__gamma_p<__float128>(__a, __x); }
+  gamma_pq(__float128 a, __float128 x)
+  { return emsr::detail::gamma_p<__float128>(a, x); }
 
   inline __float128
-  gamma_qq(__float128 __a, __float128 __x)
-  { return std::__detail::__gamma_q<__float128>(__a, __x); }
+  gamma_qq(__float128 a, __float128 x)
+  { return emsr::detail::gamma_q<__float128>(a, x); }
 
   inline __float128
-  jacobi_zetaq(__float128 __k, __float128 __phi)
-  { return std::__detail::__jacobi_zeta<__float128>(__k, __phi); }
+  jacobi_zetaq(__float128 k, __float128 phi)
+  { return emsr::detail::jacobi_zeta<__float128>(k, phi); }
 
   inline __float128
-  heuman_lambdaq(__float128 __k, __float128 __phi)
-  { return std::__detail::__heuman_lambda<__float128>(__k, __phi); }
+  heuman_lambdaq(__float128 k, __float128 phi)
+  { return emsr::detail::heuman_lambda<__float128>(k, phi); }
 
   inline __float128
-  comp_ellint_dq(__float128 __k)
-  { return std::__detail::__comp_ellint_d<__float128>(__k); }
+  comp_ellint_dq(__float128 k)
+  { return emsr::detail::comp_ellint_d<__float128>(k); }
 
   inline __float128
-  ellint_dq(__float128 __k, __float128 __phi)
-  { return std::__detail::__ellint_d<__float128>(__k, __phi); }
+  ellint_dq(__float128 k, __float128 phi)
+  { return emsr::detail::ellint_d<__float128>(k, phi); }
 
   inline __float128
-  ellint_el1q(__float128 __x, __float128 __k_c)
-  { return std::__detail::__ellint_el1<__float128>(__x, __k_c); }
+  ellint_el1q(__float128 x, __float128 k_c)
+  { return emsr::detail::ellint_el1<__float128>(x, k_c); }
 
   inline __float128
-  ellint_el2q(__float128 __x, __float128 __k_c, __float128 __a, __float128 __b)
-  { return std::__detail::__ellint_el2<__float128>(__x, __k_c, __a, __b); }
+  ellint_el2q(__float128 x, __float128 k_c, __float128 a, __float128 b)
+  { return emsr::detail::ellint_el2<__float128>(x, k_c, a, b); }
 
   inline __float128
-  ellint_el3q(__float128 __x, __float128 __k_c, __float128 __p)
-  { return std::__detail::__ellint_el3<__float128>(__x, __k_c, __p); }
+  ellint_el3q(__float128 x, __float128 k_c, __float128 p)
+  { return emsr::detail::ellint_el3<__float128>(x, k_c, p); }
 
   inline __float128
-  ellint_celq(__float128 __k_c, __float128 __p, __float128 __a, __float128 __b)
-  { return std::__detail::__ellint_cel<__float128>(__k_c, __p, __a, __b); }
-
-  inline std::complex<__float128>
-  cyl_hankel_1q(std::complex<__float128> __nu, std::complex<__float128> __x)
-  { return std::__detail::__cyl_hankel_1<__float128>(__nu, __x); }
+  ellint_celq(__float128 k_c, __float128 p, __float128 a, __float128 b)
+  { return emsr::detail::ellint_cel<__float128>(k_c, p, a, b); }
 
   inline std::complex<__float128>
-  cyl_hankel_2q(std::complex<__float128> __nu, std::complex<__float128> __x)
-  { return std::__detail::__cyl_hankel_2<__float128>(__nu, __x); }
+  cyl_hankel_1q(std::complex<__float128> nu, std::complex<__float128> x)
+  { return emsr::detail::cyl_hankel_1<__float128>(nu, x); }
 
   inline std::complex<__float128>
-  sph_hankel_1q(unsigned int __n, std::complex<__float128> __x)
-  { return std::__detail::__sph_hankel_1<__float128>(__n, __x); }
+  cyl_hankel_2q(std::complex<__float128> nu, std::complex<__float128> x)
+  { return emsr::detail::cyl_hankel_2<__float128>(nu, x); }
 
   inline std::complex<__float128>
-  sph_hankel_2q(unsigned int __n, std::complex<__float128> __x)
-  { return std::__detail::__sph_hankel_2<__float128>(__n, __x); }
+  sph_hankel_1q(unsigned int n, std::complex<__float128> x)
+  { return emsr::detail::sph_hankel_1<__float128>(n, x); }
 
   inline std::complex<__float128>
-  sph_harmonicq(unsigned int __l, unsigned int __m,
-		__float128 __theta, __float128 __phi)
-  { return std::__detail::__sph_harmonic<__float128>(__l, __m, __theta, __phi); }
-
-  inline __float128
-  polylogq(__float128 __s, __float128 __w)
-  { return std::__detail::__polylog<__float128>(__s, __w); }
+  sph_hankel_2q(unsigned int n, std::complex<__float128> x)
+  { return emsr::detail::sph_hankel_2<__float128>(n, x); }
 
   inline std::complex<__float128>
-  polylogq(__float128 __s, std::complex<__float128> __w)
-  { return std::__detail::__polylog<__float128>(__s, __w); }
+  sph_harmonicq(unsigned int l, unsigned int m,
+		__float128 theta, __float128 phi)
+  { return emsr::detail::sph_harmonic<__float128>(l, m, theta, phi); }
 
   inline __float128
-  dirichlet_etaq(__float128 __s)
-  { return std::__detail::__dirichlet_eta<__float128>(__s); }
-
-  inline __float128
-  dirichlet_betaq(__float128 __s)
-  { return std::__detail::__dirichlet_beta<__float128>(__s); }
-
-  inline __float128
-  dirichlet_lambdaq(__float128 __s)
-  { return std::__detail::__dirichlet_lambda<__float128>(__s); }
-
-  inline __float128
-  clausen_slq(unsigned int __m, __float128 __w)
-  { return std::__detail::__clausen_sl<__float128>(__m, __w); }
-
-  inline __float128
-  clausen_clq(unsigned int __m, __float128 __w)
-  { return std::__detail::__clausen_cl<__float128>(__m, __w); }
-
-  inline __float128
-  clausenq(unsigned int __m, __float128 __w)
-  { return std::__detail::__clausen<__float128>(__m, __w); }
+  polylogq(__float128 s, __float128 w)
+  { return emsr::detail::polylog<__float128>(s, w); }
 
   inline std::complex<__float128>
-  clausenq(unsigned int __m, std::complex<__float128> __w)
-  { return std::__detail::__clausen<__float128>(__m, __w); }
+  polylogq(__float128 s, std::complex<__float128> w)
+  { return emsr::detail::polylog<__float128>(s, w); }
 
   inline __float128
-  theta_1q(__float128 __nu, __float128 __x)
-  { return std::__detail::__theta_1<__float128>(__nu, __x); }
+  dirichlet_etaq(__float128 s)
+  { return emsr::detail::dirichlet_eta<__float128>(s); }
 
   inline __float128
-  theta_2q(__float128 __nu, __float128 __x)
-  { return std::__detail::__theta_2<__float128>(__nu, __x); }
+  dirichlet_betaq(__float128 s)
+  { return emsr::detail::dirichlet_beta<__float128>(s); }
 
   inline __float128
-  theta_3q(__float128 __nu, __float128 __x)
-  { return std::__detail::__theta_3<__float128>(__nu, __x); }
+  dirichlet_lambdaq(__float128 s)
+  { return emsr::detail::dirichlet_lambda<__float128>(s); }
 
   inline __float128
-  theta_4q(__float128 __nu, __float128 __x)
-  { return std::__detail::__theta_4<__float128>(__nu, __x); }
+  clausen_slq(unsigned int m, __float128 w)
+  { return emsr::detail::clausen_sl<__float128>(m, w); }
 
   inline __float128
-  ellnomeq(__float128 __k)
-  { return std::__detail::__ellnome<__float128>(__k); }
+  clausen_clq(unsigned int m, __float128 w)
+  { return emsr::detail::clausen_cl<__float128>(m, w); }
 
   inline __float128
-  theta_sq(__float128 __k, __float128 __x)
-  { return std::__detail::__theta_s<__float128>(__k, __x); }
+  clausenq(unsigned int m, __float128 w)
+  { return emsr::detail::clausen<__float128>(m, w); }
+
+  inline std::complex<__float128>
+  clausenq(unsigned int m, std::complex<__float128> w)
+  { return emsr::detail::clausen<__float128>(m, w); }
 
   inline __float128
-  theta_dq(__float128 __k, __float128 __x)
-  { return std::__detail::__theta_d<__float128>(__k, __x); }
+  theta_1q(__float128 nu, __float128 x)
+  { return emsr::detail::theta_1<__float128>(nu, x); }
 
   inline __float128
-  theta_cq(__float128 __k, __float128 __x)
-  { return std::__detail::__theta_c<__float128>(__k, __x); }
+  theta_2q(__float128 nu, __float128 x)
+  { return emsr::detail::theta_2<__float128>(nu, x); }
 
   inline __float128
-  theta_nq(__float128 __k, __float128 __x)
-  { return std::__detail::__theta_n<__float128>(__k, __x); }
+  theta_3q(__float128 nu, __float128 x)
+  { return emsr::detail::theta_3<__float128>(nu, x); }
 
   inline __float128
-  owens_tq(__float128 __h, __float128 __a)
-  { return std::__detail::__owens_t<__float128>(__h, __a); }
+  theta_4q(__float128 nu, __float128 x)
+  { return emsr::detail::theta_4<__float128>(nu, x); }
 
   inline __float128
-  fermi_diracq(__float128 __s, __float128 __x)
-  { return std::__detail::__fermi_dirac<__float128>(__s, __x); }
+  ellnomeq(__float128 k)
+  { return emsr::detail::ellnome<__float128>(k); }
 
   inline __float128
-  bose_einsteinq(__float128 __s, __float128 __x)
-  { return std::__detail::__bose_einstein<__float128>(__s, __x); }
+  theta_sq(__float128 k, __float128 x)
+  { return emsr::detail::theta_s<__float128>(k, x); }
 
   inline __float128
-  sin_piq(__float128 __x)
-  { return std::__detail::__sin_pi<__float128>(__x); }
+  theta_dq(__float128 k, __float128 x)
+  { return emsr::detail::theta_d<__float128>(k, x); }
 
   inline __float128
-  sinh_piq(__float128 __x)
-  { return std::__detail::__sinh_pi<__float128>(__x); }
+  theta_cq(__float128 k, __float128 x)
+  { return emsr::detail::theta_c<__float128>(k, x); }
 
   inline __float128
-  cos_piq(__float128 __x)
-  { return std::__detail::__cos_pi<__float128>(__x); }
+  theta_nq(__float128 k, __float128 x)
+  { return emsr::detail::theta_n<__float128>(k, x); }
 
   inline __float128
-  cosh_piq(__float128 __x)
-  { return std::__detail::__cosh_pi<__float128>(__x); }
+  owens_tq(__float128 __h, __float128 a)
+  { return emsr::detail::owens_t<__float128>(__h, a); }
 
   inline __float128
-  tan_piq(__float128 __x)
-  { return std::__detail::__tan_pi<__float128>(__x); }
+  fermi_diracq(__float128 s, __float128 x)
+  { return emsr::detail::fermi_dirac<__float128>(s, x); }
 
   inline __float128
-  tanh_piq(__float128 __x)
-  { return std::__detail::__tanh_pi<__float128>(__x); }
+  bose_einsteinq(__float128 s, __float128 x)
+  { return emsr::detail::bose_einstein<__float128>(s, x); }
+
+  inline __float128
+  sin_piq(__float128 x)
+  { return emsr::detail::sin_pi<__float128>(x); }
+
+  inline __float128
+  sinh_piq(__float128 x)
+  { return emsr::detail::sinh_pi<__float128>(x); }
+
+  inline __float128
+  cos_piq(__float128 x)
+  { return emsr::detail::cos_pi<__float128>(x); }
+
+  inline __float128
+  cosh_piq(__float128 x)
+  { return emsr::detail::cosh_pi<__float128>(x); }
+
+  inline __float128
+  tan_piq(__float128 x)
+  { return emsr::detail::tan_pi<__float128>(x); }
+
+  inline __float128
+  tanh_piq(__float128 x)
+  { return emsr::detail::tanh_pi<__float128>(x); }
 
   inline __sincos_t<__float128>
-  sincosq(__float128 __x)
-  { return std::__detail::__sincos<__float128>(__x); }
+  sincosq(__float128 x)
+  { return emsr::detail::sincos<__float128>(x); }
 
   inline __sincos_t<__float128>
-  sincos_piq(__float128 __x)
-  { return std::__detail::__sincos_pi<__float128>(__x); }
+  sincos_piq(__float128 x)
+  { return emsr::detail::sincos_pi<__float128>(x); }
 
-} // namespace __gnu_cxx
+} // namespace emsr
 
 #endif // FLOAT128
 
