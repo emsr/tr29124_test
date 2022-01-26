@@ -8,7 +8,7 @@
 #include <iomanip>
 
 #include <emsr/polynomial.h>
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 
 // This thing1 will develop a set of rational functions to express
 // Cylinder functions of order nu in terms to rational functions of nu and 2/z

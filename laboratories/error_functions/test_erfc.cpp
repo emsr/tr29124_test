@@ -9,7 +9,7 @@
 
 #include <emsr/math_constants.h>
 #include <emsr/continued_fractions.h>
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 
 namespace emsr
 {

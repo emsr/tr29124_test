@@ -35,7 +35,7 @@
 #include <emsr/numeric_limits.h>
 #include <emsr/specfun_state.h>
 #include <emsr/quadrature_point.h>
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 #include <emsr/fp_type_util.h>
 
 namespace lab

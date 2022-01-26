@@ -10,7 +10,7 @@
 #include <emsr/continued_fractions.h>
 #include <emsr/fp_type_util.h>
 #include <emsr/complex_util.h> // is_complex
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 
   /**
    * Compute ratios of Bessel functions using the S-fraction.

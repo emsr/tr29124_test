@@ -6,7 +6,7 @@
 #include <iostream>
 #include <iomanip>
 
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 
 int
 main()

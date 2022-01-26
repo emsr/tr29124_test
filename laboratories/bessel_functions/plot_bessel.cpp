@@ -11,7 +11,7 @@
 #include <complex>
 #include <cmath>
 
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 
 template<typename _Tp, typename _Bessel>
   void

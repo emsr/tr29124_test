@@ -25,7 +25,7 @@
 #include <string>
 
 #include <emsr/integration.h>
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 #include <emsr/math_constants.h>
 
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.

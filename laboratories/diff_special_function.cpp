@@ -11,7 +11,7 @@
 
 #include <cmath>
 #include <array>
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 #include <wrap_gsl.h>
 #include <wrap_boost.h>
 #include <wrap_burkhardt.h>

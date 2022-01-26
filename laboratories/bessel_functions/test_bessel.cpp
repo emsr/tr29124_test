@@ -11,7 +11,7 @@
 
 #include <emsr/float128_io.h>
 #include <emsr/float128_math.h>
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 
 template<typename _Tp>
   void

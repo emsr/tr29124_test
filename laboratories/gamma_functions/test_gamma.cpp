@@ -10,7 +10,7 @@
 #include <string>
 #include <complex>
 
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 #include <emsr/fp_type_util.h>
 #include <emsr/float128_io.h>
 

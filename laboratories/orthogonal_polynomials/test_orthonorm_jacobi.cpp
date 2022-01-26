@@ -25,7 +25,7 @@
 #include <string>
 
 #include <emsr/integration.h>
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 
 // Try to manage the four-gamma ratio.
 // alpha > -1, beta > -1.

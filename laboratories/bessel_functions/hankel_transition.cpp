@@ -8,7 +8,7 @@
 #include <tuple>
 #include <cmath>
 
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 #include <emsr/rational_polynomial.h>
 #include <emsr/polynomial.h>
 

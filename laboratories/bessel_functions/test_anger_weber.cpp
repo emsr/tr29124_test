@@ -5,7 +5,7 @@
 #include <cmath>
 #include <emsr/math_util.h>
 #include <emsr/numeric_limits.h>
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 
   /**
    * 

@@ -3,7 +3,7 @@
 
 #include <emsr/math_constants.h>
 #include <emsr/summation.h>
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 
 namespace emsr
 {

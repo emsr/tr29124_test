@@ -25,7 +25,7 @@
 #include <string>
 
 #include <emsr/integration.h>
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 
 /* Orthonormality only works for integer alpha. */
 

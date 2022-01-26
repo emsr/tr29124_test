@@ -5,7 +5,7 @@
 #include <iostream>
 #include <iomanip>
 
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 #include <wrap_boost.h>
 
 template<typename _Tp>

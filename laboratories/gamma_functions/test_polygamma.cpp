@@ -10,7 +10,7 @@
 #include <emsr/continued_fractions.h>
 #include <emsr/polynomial.h>
 #include <emsr/horner.h>
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 
 #include <wrap_boost.h>
 

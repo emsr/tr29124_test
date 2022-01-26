@@ -9,7 +9,7 @@
 
 #include <emsr/numeric_limits.h>
 #include <emsr/float128_io.h>
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 
 #include <emsr/integration.h>
 

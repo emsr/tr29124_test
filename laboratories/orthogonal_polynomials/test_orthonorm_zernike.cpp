@@ -27,7 +27,7 @@
 #include <vector>
 
 #include <emsr/integration.h>
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 
 // Neumann's number
 template<typename _Tp>

@@ -12,7 +12,7 @@
 #include <emsr/fp_type_util.h>
 #include <emsr/math_constants.h>
 #include <emsr/complex_util.h> // is_complex
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 
   /**
    * This C-fraction is almost useless as AFAICT.

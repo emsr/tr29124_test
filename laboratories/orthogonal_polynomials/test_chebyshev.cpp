@@ -7,7 +7,7 @@
 #include <vector>
 #include <cmath>
 
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 
 template<typename Tp>
   void

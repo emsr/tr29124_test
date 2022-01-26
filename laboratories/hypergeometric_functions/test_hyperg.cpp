@@ -17,7 +17,7 @@
 
 #include <emsr/notsospecfun.h> // For complex log1p.
 #include <emsr/numeric_limits.h>
-#include <emsr/specfun.h>
+#include <emsr/special_functions.h>
 
 #include <wrap_gsl.h>
 
