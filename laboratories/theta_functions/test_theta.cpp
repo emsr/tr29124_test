@@ -5,7 +5,10 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+
 #include <emsr/float128_io.h>
+#include <emsr/numeric_limits.h>
+#include <emsr/sf_theta.h>
 
 template<typename _Tp>
   void

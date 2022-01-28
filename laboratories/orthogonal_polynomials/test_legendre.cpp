@@ -9,6 +9,12 @@
 #include <limits>
 #include <vector>
 
+#include <emsr/numeric_limits.h>
+#include <emsr/math_constants.h>
+#include <emsr/quadrature_point.h>
+#include <emsr/sf_legendre.h>
+#include <emsr/sf_gamma.h> / factorial
+
   /**
    * Build a list of zeros and weights for the Gauss-Legendre integration rule
    * for the Legendre polynomial of degree @c l.

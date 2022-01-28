@@ -6,6 +6,11 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+
+#include <emsr/numeric_limits.h>
+#include <emsr/math_constants.h>
+#include <emsr/sf_ellint.h>
+
 #include <wrap_gsl.h>
 
 template<typename _Tp>

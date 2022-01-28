@@ -1,6 +1,8 @@
 #include <complex>
 #include <cmath>
+
 #include <emsr/numeric_limits.h>
+#include <emsr/math_constants.h>
 
 /**
  *  @param[in]  t      The input argument.

@@ -1,11 +1,11 @@
 
 // Copyright (C) 2017-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -35,6 +35,8 @@
 
 #include <vector>
 
+#include <emsr/sf_gamma.h> // binomial
+
 namespace emsr
 {
 namespace detail
@@ -51,12 +53,12 @@ namespace detail
    *
    * @todo Find a way to predict the maximum Euler number for a type.
    */
-  template<typename _Tp>
-    _Tp
+  template<typename Tp>
+    Tp
     euler_series(unsigned int n)
     {
       static constexpr std::size_t s_len = 22;
-      static constexpr _Tp
+      static constexpr Tp
       s_num[s_len]
       {
 	 1ll, 0,
@@ -74,19 +76,19 @@ namespace detail
       };
 
       if (n == 0)
-	return _Tp{1};
+	return Tp{1};
       else if (n & 1)
-	return _Tp{0};
+	return Tp{0};
       else if (n == 2)
-        return _Tp{-1};
+        return Tp{-1};
       else if (n < s_len)
 	return s_num[n];
       else
 	{
-	  std::vector<_Tp> _En(n + 1);
-	  _En[0] = _Tp{1};
-	  _En[1] = _Tp{0};
-	  _En[2] = _Tp{-1};
+	  std::vector<Tp> _En(n + 1);
+	  _En[0] = Tp{1};
+	  _En[1] = Tp{0};
+	  _En[2] = Tp{-1};
 
 	  for (auto i = 3u; i <= n; ++i)
 	    {
@@ -95,7 +97,7 @@ namespace detail
 	      if (i % 2 == 0)
 		{
 		  for (auto j = 2u; j <= i; j += 2u)
-		    _En[i] -= binomial<_Tp>(i, j)
+		    _En[i] -= binomial<Tp>(i, j)
 			      * _En[i - j];
 		}
 	    }
@@ -109,10 +111,10 @@ namespace detail
    * @param n the order n of the Euler number.
    * @return  The Euler number of order n.
    */
-  template<typename _Tp>
-    inline _Tp
+  template<typename Tp>
+    inline Tp
     euler(unsigned int n)
-    { return euler_series<_Tp>(n); }
+    { return euler_series<Tp>(n); }
 
   /**
    * Return the Euler polynomial @f$ E_n(x) @f$ of order n at argument x.
@@ -127,19 +129,19 @@ namespace detail
    *             \mbox{ is the n-th Euler number.}
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    euler(unsigned int n, _Tp x)
+  template<typename Tp>
+    Tp
+    euler(unsigned int n, Tp x)
     {
       if (std::isnan(x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return std::numeric_limits<Tp>::quiet_NaN();
       else
 	{
 	  auto bx1 = bernoulli(n + 1, x );
-	  auto bx2 = bernoulli(n + 1, _Tp{0.5L} * x );
+	  auto bx2 = bernoulli(n + 1, Tp{0.5L} * x );
 
-	  auto _E_n = _Tp{2} * (bx1 - bx2 * std::pow(_Tp{2}, _Tp(n + 1)))
-		    / _Tp(n + 1);
+	  auto _E_n = Tp{2} * (bx1 - bx2 * std::pow(Tp{2}, Tp(n + 1)))
+		    / Tp(n + 1);
 
 	  return _E_n;
 	}
@@ -156,25 +158,25 @@ namespace detail
    * @f]
    * Note that @f$ A(n,m) @f$ is a common older notation.
    */
-  template<typename _Tp>
-    _Tp
+  template<typename Tp>
+    Tp
     eulerian_1_recur(unsigned int n, unsigned int m)
     {
       if (m == 0)
-	return _Tp{1};
+	return Tp{1};
       else if (m >= n)
-	return _Tp{0};
+	return Tp{0};
       else if (m == n - 1)
-	return _Tp{1};
+	return Tp{1};
       else if (n - m - 1 < m) // Symmetry.
-	return eulerian_1_recur<_Tp>(n, n - m - 1);
+	return eulerian_1_recur<Tp>(n, n - m - 1);
       else
 	{
 	  // Start recursion with n == 2 (already returned above).
-	  std::vector<_Tp> _Aold(m + 1), _Anew(m + 1);
-	  _Aold[0] = _Tp{1};
-	  _Anew[0] = _Tp{1};
-	  _Anew[1] = _Tp{1};
+	  std::vector<Tp> _Aold(m + 1), _Anew(m + 1);
+	  _Aold[0] = Tp{1};
+	  _Anew[0] = Tp{1};
+	  _Anew[1] = Tp{1};
 	  for (auto in = 3u; in <= n; ++in)
 	    {
 	      std::swap(_Aold, _Anew);
@@ -197,10 +199,10 @@ namespace detail
    * @f]
    * Note that @f$ A(n,m) @f$ is a common older notation.
    */
-  template<typename _Tp>
-    inline _Tp
+  template<typename Tp>
+    inline Tp
     eulerian_1(unsigned int n, unsigned int m)
-    { return eulerian_1_recur<_Tp>(n, m); }
+    { return eulerian_1_recur<Tp>(n, m); }
 
   /**
    * Return a vector Eulerian numbers of the first kind by recursion.
@@ -209,22 +211,22 @@ namespace detail
    *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
    * @f]
    */
-  template<typename _Tp>
-    std::vector<_Tp>
+  template<typename Tp>
+    std::vector<Tp>
     eulerian_1_recur(unsigned int n)
     {
       if (n == 0)
-	return std::vector<_Tp>(1, _Tp{1});
+	return std::vector<Tp>(1, Tp{1});
       //else if (m == n - 1)
-	//return _Tp{1};
+	//return Tp{1};
       //else if (n - m - 1 < m) // Symmetry.
-	//return eulerian_1_recur<_Tp>(n, n - m - 1);
+	//return eulerian_1_recur<Tp>(n, n - m - 1);
       else
 	{
 	  // Start recursion with n == 2 (already returned above).
-	  std::vector<_Tp> _Aold(n + 1), _Anew(n + 1);
-	  _Aold[0] = _Anew[0] = _Tp{1};
-	  _Anew[1] = _Tp{1};
+	  std::vector<Tp> _Aold(n + 1), _Anew(n + 1);
+	  _Aold[0] = _Anew[0] = Tp{1};
+	  _Anew[1] = Tp{1};
 	  for (auto in = 3u; in <= n; ++in)
 	    {
 	      std::swap(_Aold, _Anew);
@@ -243,10 +245,10 @@ namespace detail
    *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
    * @f]
    */
-  template<typename _Tp>
-    inline std::vector<_Tp>
+  template<typename Tp>
+    inline std::vector<Tp>
     eulerian_1(unsigned int n)
-    { return eulerian_1_recur<_Tp>(n); }
+    { return eulerian_1_recur<Tp>(n); }
 
   /**
    * Return the Eulerian number of the second kind by recursion:
@@ -259,23 +261,23 @@ namespace detail
    *       \mbox{ for } n > 0
    * @f]
    */
-  template<typename _Tp>
-    _Tp
+  template<typename Tp>
+    Tp
     eulerian_2_recur(unsigned int n, unsigned int m)
     {
       if (m == 0)
-	return _Tp{1};
+	return Tp{1};
       else if (m >= n)
-	return _Tp{0};
+	return Tp{0};
       else if (n == 0)
-	return _Tp{1};
+	return Tp{1};
       else
 	{
 	  // Start recursion with n == 2 (already returned above).
-	  std::vector<_Tp> _Aold(m + 1), _Anew(m + 1);
-	  _Aold[0] = _Tp{1};
-	  _Anew[0] = _Tp{1};
-	  _Anew[1] = _Tp{2};
+	  std::vector<Tp> _Aold(m + 1), _Anew(m + 1);
+	  _Aold[0] = Tp{1};
+	  _Anew[0] = Tp{1};
+	  _Anew[1] = Tp{2};
 	  for (auto in = 3u; in <= n; ++in)
 	    {
 	      std::swap(_Aold, _Anew);
@@ -299,10 +301,10 @@ namespace detail
    *       \mbox{ for } n > 0
    * @f]
    */
-  template<typename _Tp>
-    inline _Tp
+  template<typename Tp>
+    inline Tp
     eulerian_2(unsigned int n, unsigned int m)
-    { return eulerian_2_recur<_Tp>(n, m); }
+    { return eulerian_2_recur<Tp>(n, m); }
 
   /**
    * Return a vector of Eulerian numbers of the second kind.
@@ -315,22 +317,22 @@ namespace detail
    *       \mbox{ for } n > 0
    * @f]
    */
-  template<typename _Tp>
-    std::vector<_Tp>
+  template<typename Tp>
+    std::vector<Tp>
     eulerian_2_recur(unsigned int n)
     {
       if (n == 0)
-	return std::vector<_Tp>(1, _Tp{1});
+	return std::vector<Tp>(1, Tp{1});
       //else if (m >= n)
-	//return _Tp{0};
+	//return Tp{0};
       //else if (n == 0)
-	//return _Tp{1};
+	//return Tp{1};
       else
 	{
 	  // Start recursion with n == 2 (already returned above).
-	  std::vector<_Tp> _Aold(n + 1), _Anew(n + 1);
-	  _Aold[0] = _Anew[0] = _Tp{1};
-	  _Anew[1] = _Tp{2};
+	  std::vector<Tp> _Aold(n + 1), _Anew(n + 1);
+	  _Aold[0] = _Anew[0] = Tp{1};
+	  _Anew[1] = Tp{2};
 	  for (auto in = 3u; in <= n; ++in)
 	    {
 	      std::swap(_Aold, _Anew);
@@ -353,10 +355,10 @@ namespace detail
    *       \mbox{ for } n > 0
    * @f]
    */
-  template<typename _Tp>
-    inline std::vector<_Tp>
+  template<typename Tp>
+    inline std::vector<Tp>
     eulerian_2(unsigned int n)
-    { return eulerian_2_recur<_Tp>(n); }
+    { return eulerian_2_recur<Tp>(n); }
 
 } // namespace detail
 } // namespace emsr

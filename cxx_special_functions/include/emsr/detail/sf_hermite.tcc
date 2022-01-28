@@ -1,12 +1,12 @@
 // Special functions -*- C++ -*-
 
 // Copyright (C) 2006-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -79,40 +79,40 @@ namespace detail
    * @return The value of the Hermite polynomial of order n
    * 	     and argument x.
    */
-  template<typename _Tp>
-    emsr::hermite_t<_Tp>
-    hermite_recur(unsigned int n, _Tp x)
+  template<typename Tp>
+    emsr::hermite_t<Tp>
+    hermite_recur(unsigned int n, Tp x)
     {
       // Compute H_0.
-      auto H_nm2 = _Tp{1};
+      auto H_nm2 = Tp{1};
       if (n == 0)
-	return {n, x, H_nm2, _Tp{0}, _Tp{0}};
+	return {n, x, H_nm2, Tp{0}, Tp{0}};
 
       // Compute H_1.
-      auto H_nm1 = _Tp{2} * x;
+      auto H_nm1 = Tp{2} * x;
       if (n == 1)
-	return {n, x, H_nm1, H_nm2, _Tp{0}};
+	return {n, x, H_nm1, H_nm2, Tp{0}};
 
       // Try to detect blowup.
       /// @todo Find the sign of Hermite blowup values.
       {
-	constexpr auto s_inf = std::numeric_limits<_Tp>::infinity();
-	constexpr auto s_max = std::numeric_limits<_Tp>::max();
+	constexpr auto s_inf = std::numeric_limits<Tp>::infinity();
+	constexpr auto s_max = std::numeric_limits<Tp>::max();
 	// Subtract little safety below.
-	const auto arg = std::log2(s_max) / n - _Tp{0.125};
-	const auto xm = std::pow(_Tp{2}, arg);
-	const auto hinf = _Tp(n & 1 ? -1 : +1) * s_inf;
+	const auto arg = std::log2(s_max) / n - Tp{0.125};
+	const auto xm = std::pow(Tp{2}, arg);
+	const auto hinf = Tp(n & 1 ? -1 : +1) * s_inf;
 	if (std::abs(x) > xm)
 	  return {n, x, hinf, -hinf, hinf};
       }
 
       // Compute H_n.
-      auto H_n = _Tp{2} * (x * H_nm1 - H_nm2);
+      auto H_n = Tp{2} * (x * H_nm1 - H_nm2);
       for (unsigned int i = 3; i <= n; ++i)
 	{
 	  H_nm2 = H_nm1;
 	  H_nm1 = H_n;
-	  H_n = _Tp{2} * (x * H_nm1 - _Tp(i - 1) * H_nm2);
+	  H_n = Tp{2} * (x * H_nm1 - Tp(i - 1) * H_nm2);
 	}
 
       return {n, x, H_n, H_nm1, H_nm2};
@@ -136,21 +136,21 @@ namespace detail
    * @return The value of the Hermite polynomial of order n
    * 	     and argument x.
    */
-  template<typename _Tp>
-    _Tp
-    hermite_asymp(unsigned int n, _Tp x)
+  template<typename Tp>
+    Tp
+    hermite_asymp(unsigned int n, Tp x)
     {
-      const auto s_pi = emsr::pi_v<_Tp>;
-      const auto s_sqrt_2 = emsr::sqrt2_v<_Tp>;
-      const auto s_sqrt_2pi = emsr::sqrttau_v<_Tp>;
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto s_sqrt_2 = emsr::sqrt2_v<Tp>;
+      const auto s_sqrt_2pi = emsr::sqrttau_v<Tp>;
       // x >= 0 in this routine.
-      const auto xturn = std::sqrt(_Tp(2 * n));
-      if (std::abs(x - xturn) < _Tp{0.05L} * xturn)
+      const auto xturn = std::sqrt(Tp(2 * n));
+      if (std::abs(x - xturn) < Tp{0.05L} * xturn)
 	{
 	  // Transition region x ~ sqrt(2n).
-	  const auto n_2 = _Tp(n) / _Tp{2};
-	  const auto n6th = std::pow(_Tp(n), _Tp{1} / _Tp{6});
-	  const auto exparg = n * std::log(xturn) - _Tp{3} * n_2
+	  const auto n_2 = Tp(n) / Tp{2};
+	  const auto n6th = std::pow(Tp(n), Tp{1} / Tp{6});
+	  const auto exparg = n * std::log(xturn) - Tp{3} * n_2
 			      + xturn * x;
 	  const auto airyarg = s_sqrt_2 * (x - xturn) * n6th;
 	  auto Ai = emsr::airy_ai(airyarg);
@@ -160,23 +160,23 @@ namespace detail
 	{
 	  // Oscillatory region |x| < sqrt(2n).
 	  const auto theta = std::asin(x / xturn);
-	  const auto __2theta = _Tp{2} * theta;
-	  const auto n_2 = _Tp(n) / _Tp{2};
-	  const auto exparg = n_2 * (_Tp{2} * std::log(xturn)
+	  const auto __2theta = Tp{2} * theta;
+	  const auto n_2 = Tp(n) / Tp{2};
+	  const auto exparg = n_2 * (Tp{2} * std::log(xturn)
 					- std::cos(__2theta));
-	  const auto arg = theta / _Tp{2}
+	  const auto arg = theta / Tp{2}
 		+ n_2 * (std::sin(__2theta) + __2theta - s_pi);
-	  return std::sqrt(_Tp{2} / std::cos(theta))
+	  return std::sqrt(Tp{2} / std::cos(theta))
 	       * std::exp(exparg) * std::cos(arg);
 	}
       else
 	{
 	  // Exponential region |x| > sqrt(2n).
 	  const auto sigma = std::sqrt((x - xturn) * (x + xturn));
-	  const auto exparg = _Tp{0.5L} * (x * (x - sigma) - n)
+	  const auto exparg = Tp{0.5L} * (x * (x - sigma) - n)
 			     + n * std::log(sigma + x);
 	  return std::exp(exparg)
-	       * std::sqrt(_Tp{0.5L} * (_Tp{1} + x / sigma));
+	       * std::sqrt(Tp{0.5L} * (Tp{1} + x / sigma));
 	}
     }
 
@@ -205,13 +205,13 @@ namespace detail
    * @return The value of the Hermite polynomial of order n
    * 	     and argument x.
    */
-  template<typename _Tp>
-    _Tp
-    hermite(unsigned int n, _Tp x)
+  template<typename Tp>
+    Tp
+    hermite(unsigned int n, Tp x)
     {
       if (std::isnan(x))
 	return emsr::quiet_NaN(x);
-      else if (x < _Tp{0})
+      else if (x < Tp{0})
 	return (n % 2 == 1 ? -1 : +1) * hermite(n, -x);
       else if (n > 10000)
 	return hermite_asymp(n, x);
@@ -253,19 +253,19 @@ namespace detail
    * @return The value of the Hermite polynomial of order n
    * 	     and argument x.
    */
-  template<typename _Tp>
-    emsr::hermite_he_t<_Tp>
-    prob_hermite_recur(unsigned int n, _Tp x)
+  template<typename Tp>
+    emsr::hermite_he_t<Tp>
+    prob_hermite_recur(unsigned int n, Tp x)
     {
       // Compute He_0.
-      auto He_nm2 = _Tp{1};
+      auto He_nm2 = Tp{1};
       if (n == 0)
-	return {n, x, He_nm2, _Tp{0}, _Tp{0}};
+	return {n, x, He_nm2, Tp{0}, Tp{0}};
 
       // Compute He_1.
       auto He_nm1 = x;
       if (n == 1)
-	return {n, x, He_nm1, He_nm2, _Tp{0}};
+	return {n, x, He_nm1, He_nm2, Tp{0}};
 
       // Compute He_n.
       auto He_n = x * He_nm1 - He_nm2;
@@ -273,7 +273,7 @@ namespace detail
 	{
 	  He_nm2 = He_nm1;
 	  He_nm1 = He_n;
-	  He_n = x * He_nm1 - _Tp(i - 1) * He_nm2;
+	  He_n = x * He_nm1 - Tp(i - 1) * He_nm2;
 	}
 
       return {n, x, He_n, He_nm1, He_nm2};
@@ -282,16 +282,16 @@ namespace detail
   /**
    * Build a vector of the Gauss-Hermite integration rule abscissae and weights.
    */
-  template<typename _Tp>
-    std::vector<emsr::QuadraturePoint<_Tp>>
-    hermite_zeros(unsigned int n, _Tp proto = _Tp{})
+  template<typename Tp>
+    std::vector<emsr::QuadraturePoint<Tp>>
+    hermite_zeros(unsigned int n, Tp proto = Tp{})
     {
       const auto s_eps = emsr::epsilon(proto);
       const unsigned int s_maxit = 1000u;
-      const auto s_pim4 = _Tp{0.7511255444649424828587030047762276930510L};
-      const auto s_sqrt_pi = emsr::sqrtpi_v<_Tp>;
+      const auto s_pim4 = Tp{0.7511255444649424828587030047762276930510L};
+      const auto s_sqrt_pi = emsr::sqrtpi_v<Tp>;
 
-      std::vector<emsr::QuadraturePoint<_Tp>> pt(n);
+      std::vector<emsr::QuadraturePoint<Tp>> pt(n);
 
       const auto m = n / 2;
 
@@ -301,38 +301,38 @@ namespace detail
       // for large order.
       if (n & 1)
 	{
-	  if (n < s_num_factorials<_Tp>)
+	  if (n < s_num_factorials<Tp>)
 	    {
 	      auto nm = n - 1;
-	      auto nmfact = factorial<_Tp>(nm);
+	      auto nmfact = factorial<Tp>(nm);
 	      auto mm = nm / 2;
-	      auto mmfact = factorial<_Tp>(mm);
-	      auto Hnm1 = (mm & 1 ? _Tp{-1} : _Tp{1}) / mmfact;
-	      pt[m].point = _Tp{0};
-	      pt[m].weight = s_sqrt_pi * std::pow(_Tp{2}, _Tp(n - 1))
+	      auto mmfact = factorial<Tp>(mm);
+	      auto Hnm1 = (mm & 1 ? Tp{-1} : Tp{1}) / mmfact;
+	      pt[m].point = Tp{0};
+	      pt[m].weight = s_sqrt_pi * std::pow(Tp{2}, Tp(n - 1))
 				 / nmfact / Hnm1 / Hnm1 / n;
 	    }
 	  else
 	    {
 	      auto nm = n - 1;
-	      auto nmfact = log_factorial<_Tp>(nm);
+	      auto nmfact = log_factorial<Tp>(nm);
 	      auto mm = nm / 2;
-	      auto mmfact = log_factorial<_Tp>(mm);
-	      pt[m].point = _Tp{0};
-	      pt[m].weight = s_sqrt_pi * std::pow(_Tp{2}, _Tp(n - 1))
+	      auto mmfact = log_factorial<Tp>(mm);
+	      pt[m].point = Tp{0};
+	      pt[m].weight = s_sqrt_pi * std::pow(Tp{2}, Tp(n - 1))
 				 *std::exp(-(nmfact - 2 * mmfact)) / n;
 	    }
 	}
 
       for (auto i = 1u; i <= m; ++i)
 	{
-	  _Tp z;
-	  _Tp w = _Tp{0};
+	  Tp z;
+	  Tp w = Tp{0};
 	  if (i == 1)
-	    z = std::sqrt(_Tp(2 * n + 1))
-		- 1.85575 * std::pow(_Tp(2 * n + 1), -0.166667);
+	    z = std::sqrt(Tp(2 * n + 1))
+		- 1.85575 * std::pow(Tp(2 * n + 1), -0.166667);
 	  else if (i == 2)
-	    z -= 1.14 * std::pow(_Tp(n), 0.426) / z;
+	    z -= 1.14 * std::pow(Tp(n), 0.426) / z;
 	  else if (i == 3)
 	    z = 1.86 * z - 0.86 * pt[0].point;
 	  else if (i == 4)
@@ -342,20 +342,20 @@ namespace detail
 	  for (auto its = 1u; its <= s_maxit; ++its)
 	    {
 	      auto H = s_pim4;
-	      auto H1 = _Tp{0};
+	      auto H1 = Tp{0};
 	      for (auto k = 1u; k <= n; ++k)
 		{
 		  auto H2 = H1;
 		  H1 = H;
-		  H = z * std::sqrt(_Tp{2} / k) * H1
-		       - std::sqrt(_Tp(k - 1) / _Tp(k)) * H2;
+		  H = z * std::sqrt(Tp{2} / k) * H1
+		       - std::sqrt(Tp(k - 1) / Tp(k)) * H2;
 		}
-	      auto Hp = std::sqrt(_Tp(2 * n)) * H1;
+	      auto Hp = std::sqrt(Tp(2 * n)) * H1;
 	      auto z1 = z;
 	      z = z1 - H / Hp;
 	      if (std::abs(z - z1) <= s_eps)
 		{
-		  w = _Tp{2} / (Hp * Hp);
+		  w = Tp{2} / (Hp * Hp);
 		  break;
 		}
 	      if (its > s_maxit)

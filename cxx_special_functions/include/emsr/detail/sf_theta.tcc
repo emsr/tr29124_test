@@ -1,12 +1,12 @@
 // Special functions -*- C++ -*-
 
 // Copyright (C) 2016-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -38,6 +38,7 @@
 #include <emsr/fp_type_util.h>
 #include <emsr/numeric_limits.h>
 #include <emsr/sf_ellint.h>
+#include <emsr/sf_trig.h> // reperiodized polar
 
 namespace emsr
 {
@@ -56,9 +57,9 @@ namespace detail
     Tp
     theta_2_sum(Tp nu, Tp x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_eps = emsr::epsilon(std::abs(x));
-      const auto s_pi = emsr::pi_v<_Real>;
+      const auto s_pi = emsr::pi_v<Real>;
       auto sum = std::exp(-nu * nu / x);
       auto sign = Tp{-1};
       for (auto k = 1; k < 20; ++k)
@@ -88,9 +89,9 @@ namespace detail
     Tp
     theta_3_sum(Tp nu, Tp x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_eps = emsr::epsilon(std::abs(x));
-      const auto s_pi = emsr::pi_v<_Real>;
+      const auto s_pi = emsr::pi_v<Real>;
       auto sum = std::exp(-nu * nu / x);
       for (auto k = 1; k < 20; ++k)
 	{
@@ -118,9 +119,9 @@ namespace detail
     Tp
     theta_2_asymp(Tp nu, Tp x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_eps = emsr::epsilon(std::abs(x));
-      const auto s_pi = emsr::pi_v<_Real>;
+      const auto s_pi = emsr::pi_v<Real>;
       auto sum = Tp{0};
       for (auto k = 0; k < 20; ++k)
 	{
@@ -147,9 +148,9 @@ namespace detail
     Tp
     theta_3_asymp(Tp nu, Tp x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_eps = emsr::epsilon(std::abs(x));
-      const auto s_pi = emsr::pi_v<_Real>;
+      const auto s_pi = emsr::pi_v<Real>;
       auto sum = Tp{0};
       for (auto k = 1; k < 20; ++k)
 	{
@@ -180,13 +181,13 @@ namespace detail
     Tp
     theta_2(Tp nu, Tp x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_NaN = emsr::quiet_NaN(std::abs(x));
-      const auto s_pi = emsr::pi_v<_Real>;
+      const auto s_pi = emsr::pi_v<Real>;
 
       if (std::isnan(nu) || std::isnan(x))
 	return s_NaN;
-      else if (std::abs(x) <= _Real{1} / s_pi)
+      else if (std::abs(x) <= Real{1} / s_pi)
 	return theta_2_sum(nu, x);
       else
 	return theta_2_asymp(nu, x);
@@ -234,13 +235,13 @@ namespace detail
     Tp
     theta_3(Tp nu, Tp x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_NaN = emsr::quiet_NaN(std::abs(x));
-      const auto s_pi = emsr::pi_v<_Real>;
+      const auto s_pi = emsr::pi_v<Real>;
 
       if (std::isnan(nu) || std::isnan(x))
 	return s_NaN;
-      else if (std::abs(x) <= _Real{1} / s_pi)
+      else if (std::abs(x) <= Real{1} / s_pi)
 	return theta_3_sum(nu, x);
       else
 	return theta_3_asymp(nu, x);
@@ -343,9 +344,9 @@ namespace detail
     Tp
     theta_s(Tp k, Tp x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_NaN = emsr::quiet_NaN(std::abs(x));
-      const auto s_pi_2 = emsr::pi_v<_Real> / _Real{2};
+      const auto s_pi_2 = emsr::pi_v<Real> / Real{2};
 
       if (std::isnan(k) || std::isnan(x))
 	return s_NaN;
@@ -372,9 +373,9 @@ namespace detail
     Tp
     theta_c(Tp k, Tp x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_NaN = emsr::quiet_NaN(std::abs(x));
-      const auto s_pi_2 = emsr::pi_v<_Real> / _Real{2};
+      const auto s_pi_2 = emsr::pi_v<Real> / Real{2};
 
       if (std::isnan(k) || std::isnan(x))
 	return s_NaN;
@@ -400,9 +401,9 @@ namespace detail
     Tp
     theta_d(Tp k, Tp x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_NaN = emsr::quiet_NaN(std::abs(x));
-      const auto s_pi_2 = emsr::pi_v<_Real> / _Real{2};
+      const auto s_pi_2 = emsr::pi_v<Real> / Real{2};
 
       if (std::isnan(k) || std::isnan(x))
 	return s_NaN;
@@ -430,9 +431,9 @@ namespace detail
     Tp
     theta_n(Tp k, Tp x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_NaN = emsr::quiet_NaN(std::abs(x));
-      const auto s_pi_2 = emsr::pi_v<_Real> / _Real{2};
+      const auto s_pi_2 = emsr::pi_v<Real> / Real{2};
 
       if (std::isnan(k) || std::isnan(x))
 	return s_NaN;
@@ -454,19 +455,19 @@ namespace detail
    * allow us to treat the rectangulr lattice (real nome, pure imaginary
    * lattice parameter) specially.
    */
-  template<typename _Tp_Omega1, typename _Tp_Omega3 = std::complex<_Tp_Omega1>>
+  template<typename Tp_Omega1, typename Tp_Omega3 = std::complex<Tp_Omega1>>
     struct jacobi_lattice_t
     {
-      static_assert(emsr::is_complex_v<_Tp_Omega1>
-		 || emsr::is_complex_v<_Tp_Omega3>,
+      static_assert(emsr::is_complex_v<Tp_Omega1>
+		 || emsr::is_complex_v<Tp_Omega3>,
 		    "One frequecy type must be complex.");
-      using _Real_Omega1 = emsr::num_traits_t<_Tp_Omega1>;
-      using _Real_Omega3 = emsr::num_traits_t<_Tp_Omega3>;
-      using _Real = emsr::fp_promote_t<_Real_Omega1, _Real_Omega3>;
-      using _Cmplx = std::complex<_Real>;
-      using _Tp_Nome = std::conditional_t<emsr::is_complex_v<_Tp_Omega1>
-				       && emsr::is_complex_v<_Tp_Omega3>,
-					  _Cmplx, _Real>;
+      using _Real_Omega1 = emsr::num_traits_t<Tp_Omega1>;
+      using _Real_Omega3 = emsr::num_traits_t<Tp_Omega3>;
+      using Real = emsr::fp_promote_t<_Real_Omega1, _Real_Omega3>;
+      using Cmplx = std::complex<Real>;
+      using _Tp_Nome = std::conditional_t<emsr::is_complex_v<Tp_Omega1>
+				       && emsr::is_complex_v<Tp_Omega3>,
+					  Cmplx, Real>;
 
       /**
        * A struct representing a complex scalar lattice parameter
@@ -474,9 +475,9 @@ namespace detail
        */
       struct tau_t
       {
-	_Cmplx val;
+	Cmplx val;
 
-	explicit tau_t(_Cmplx tau)
+	explicit tau_t(Cmplx tau)
 	: val(tau)
 	{ }
       };
@@ -489,18 +490,18 @@ namespace detail
       {
 	int m;
 	int n;
-	_Cmplx z;
+	Cmplx z;
       };
 
       /// Construct the lattice from two complex lattice frequencies.
-      jacobi_lattice_t(const _Tp_Omega1& omega1,
-			 const _Tp_Omega3& omega3)
+      jacobi_lattice_t(const Tp_Omega1& omega1,
+			 const Tp_Omega3& omega3)
       : m_omega_1(omega1),
         m_omega_3(omega3)
       {
 	if (std::isnan(m_omega_1) || std::isnan(m_omega_3))
 	  throw std::domain_error("Invalid input");
-	else if (std::imag(this->tau().val) <= _Real{0})
+	else if (std::imag(this->tau().val) <= Real{0})
 	  throw std::domain_error("jacobi_lattice_t: "
 			"Lattice parameter must have positive imaginary part.");
 	else
@@ -521,11 +522,11 @@ namespace detail
       {
 	if (std::isnan(tau.val))
 	  throw std::domain_error("Invalid input");
-	else if (std::imag(tau.val) <= _Real{0})
+	else if (std::imag(tau.val) <= Real{0})
 	  throw std::domain_error("jacobi_lattice_t: Lattice parameter must have positive imaginary part.");
 	else
 	  {
-	    if constexpr (emsr::is_complex_v<_Tp_Omega3>)
+	    if constexpr (emsr::is_complex_v<Tp_Omega3>)
 	      m_omega_3 *= tau.val;
 	    else
 	      m_omega_1 *= tau.val;
@@ -534,9 +535,9 @@ namespace detail
 
       /// Construct the lattice from a single scalar elliptic nome.
       explicit jacobi_lattice_t(_Tp_Nome q)
-      : jacobi_lattice_t(tau_t(_Cmplx{0, -1} * std::log(q) / s_pi))
+      : jacobi_lattice_t(tau_t(Cmplx{0, -1} * std::log(q) / s_pi))
       {
-	if (std::abs(q) == _Real{0})
+	if (std::abs(q) == Real{0})
 	  throw std::domain_error("jacobi_lattice_t: Nome must be nonzero.");
       }
 
@@ -546,17 +547,17 @@ namespace detail
       { return tau_t(this->m_omega_3 / this->m_omega_1); }
 
       /// Return the first lattice frequency.
-      _Tp_Omega1
+      Tp_Omega1
       omega_1() const
       { return this->m_omega_1; }
 
       /// Return the second lattice frequency.
-      _Cmplx
+      Cmplx
       omega_2() const
-      { return -(_Cmplx(this->m_omega_1) + _Cmplx(this->m_omega_3)); }
+      { return -(Cmplx(this->m_omega_1) + Cmplx(this->m_omega_3)); }
 
       /// Return the third lattice frequency.
-      _Tp_Omega3
+      Tp_Omega3
       omega_3() const
       { return this->m_omega_3; }
 
@@ -564,22 +565,22 @@ namespace detail
       ellnome() const;
 
       arg_t
-      reduce(const _Cmplx& z) const;
+      reduce(const Cmplx& z) const;
 
-      static constexpr auto s_pi = emsr::pi_v<_Real>;
-      _Tp_Omega1 m_omega_1;
-      _Tp_Omega3 m_omega_3;
+      static constexpr auto s_pi = emsr::pi_v<Real>;
+      Tp_Omega1 m_omega_1;
+      Tp_Omega3 m_omega_3;
     };
 
   /**
    * Return the elliptic nome corresponding to the lattice parameter.
    */
-  template<typename _Tp_Omega1, typename _Tp_Omega3>
-    typename jacobi_lattice_t<_Tp_Omega1, _Tp_Omega3>::_Tp_Nome
-    jacobi_lattice_t<_Tp_Omega1, _Tp_Omega3>::ellnome() const
+  template<typename Tp_Omega1, typename Tp_Omega3>
+    typename jacobi_lattice_t<Tp_Omega1, Tp_Omega3>::_Tp_Nome
+    jacobi_lattice_t<Tp_Omega1, Tp_Omega3>::ellnome() const
     {
-      const auto s_i = _Cmplx{0, 1};
-      const auto s_pi = emsr::pi_v<_Real>;
+      const auto s_i = Cmplx{0, 1};
+      const auto s_pi = emsr::pi_v<Real>;
       if constexpr (emsr::is_complex_v<_Tp_Nome>)
 	return std::exp(s_i * s_pi * this->tau().val);
       else
@@ -599,9 +600,9 @@ namespace detail
   template<typename _Tp1, typename _Tp3>
     typename jacobi_lattice_t<_Tp1, _Tp3>::arg_t
     jacobi_lattice_t<_Tp1, _Tp3>::
-    reduce(const typename jacobi_lattice_t<_Tp1, _Tp3>::_Cmplx& z) const
+    reduce(const typename jacobi_lattice_t<_Tp1, _Tp3>::Cmplx& z) const
     {
-      const auto s_pi = emsr::pi_v<_Real>;
+      const auto s_pi = emsr::pi_v<Real>;
 
       const auto tau = this->tau().val;
       const auto tau_r = std::real(tau);
@@ -618,7 +619,7 @@ namespace detail
       const auto mu = a - m;
 
       return {m, n,
-      	      s_pi * _Cmplx(mu + nu * tau_r, nu * tau_i)};
+      	      s_pi * Cmplx(mu + nu * tau_r, nu * tau_i)};
     }
 
   /**
@@ -631,8 +632,8 @@ namespace detail
       jacobi_theta_0_t(const jacobi_lattice_t<_Tp1, _Tp3>& lattice);
 
       using _Type = typename jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome;
-      using _Real = emsr::num_traits_t<_Type>;
-      using _Cmplx = std::complex<_Real>;
+      using Real = emsr::num_traits_t<_Type>;
+      using Cmplx = std::complex<Real>;
 
       _Type th1p;
       _Type th1ppp;
@@ -643,8 +644,8 @@ namespace detail
       _Type th4;
       _Type th4pp;
       _Type eta_1;
-      _Cmplx eta_2;
-      _Cmplx eta_3;
+      Cmplx eta_2;
+      Cmplx eta_3;
 
       _Type
       dedekind_eta() const
@@ -663,34 +664,34 @@ namespace detail
       const auto q = lattice.ellnome();
       const auto s_eps = emsr::epsilon(std::abs(q));
 
-      const auto fact = _Real{2} * std::pow(q, _Real{0.25L});
+      const auto fact = Real{2} * std::pow(q, Real{0.25L});
       this->th1p = fact;
       this->th2 = fact;
-      this->th3 = _Real{1};
-      this->th4 = _Real{1};
-      this->th1ppp = _Real{0};
-      this->th2pp = _Real{0};
-      this->th3pp = _Real{0};
-      this->th4pp = _Real{0};
+      this->th3 = Real{1};
+      this->th4 = Real{1};
+      this->th1ppp = Real{0};
+      this->th2pp = Real{0};
+      this->th3pp = Real{0};
+      this->th4pp = Real{0};
       auto q2n = _Type{1};
       for (std::size_t n = 1; n < s_max_iter; ++n)
 	{
 	  q2n *= q;
-	  const auto tp = _Real{1} + q2n;
+	  const auto tp = Real{1} + q2n;
 	  this->th3 *= tp * tp;
-	  const auto tm = _Real{1} - q2n;
+	  const auto tm = Real{1} - q2n;
 	  this->th4 *= tm * tm;
 
 	  this->th3pp += q2n / tp / tp;
 	  this->th4pp += q2n / tm / tm;
 
 	  q2n *= q;
-	  const auto tm2 = _Real{1} - q2n;
+	  const auto tm2 = Real{1} - q2n;
 	  this->th3 *= tm2;
 	  this->th4 *= tm2;
 	  this->th2 *= tm2;
 	  this->th1p *= tm2 * tm2 * tm2;
-	  const auto tp2 = _Real{1} + q2n;
+	  const auto tp2 = Real{1} + q2n;
 	  this->th2 *= tp2 * tp2;
 
 	  this->th1ppp += q2n / tm2 / tm2;
@@ -701,19 +702,19 @@ namespace detail
 	}
       // Could check th1p =? th2pp * th3pp * th4pp at this point.
       // Could check th1ppp =? th2pp + th3pp + th4pp at this point.
-      this->th1ppp = (_Real{-1} + _Real{24} * this->th1ppp) * this->th1p;
-      this->th2pp = (_Real{-1} - _Real{8} * this->th2pp) * this->th2;
-      this->th3pp = _Real{-8} * this->th3;
-      this->th4pp = _Real{8} * this->th4;
+      this->th1ppp = (Real{-1} + Real{24} * this->th1ppp) * this->th1p;
+      this->th2pp = (Real{-1} - Real{8} * this->th2pp) * this->th2;
+      this->th3pp = Real{-8} * this->th3;
+      this->th4pp = Real{8} * this->th4;
 
-      const auto s_pi = emsr::pi_v<_Real>;
+      const auto s_pi = emsr::pi_v<Real>;
       this->eta_1 = -s_pi * s_pi * this->th1ppp
 		  / _Type{12} / lattice.omega_1() / this->th1p;
-      const auto s_i = _Cmplx{0, 1};
+      const auto s_i = Cmplx{0, 1};
       this->eta_2 = (lattice.omega_2() * this->eta_1
-		  + s_i * s_pi / _Real{2}) / lattice.omega_1();
+		  + s_i * s_pi / Real{2}) / lattice.omega_1();
       this->eta_3 = (lattice.omega_3() * this->eta_1
-		  - s_i * s_pi / _Real{2}) / lattice.omega_1();
+		  - s_i * s_pi / Real{2}) / lattice.omega_1();
     }
 
   /**
@@ -733,8 +734,8 @@ namespace detail
     struct weierstrass_roots_t
     {
       using _Type = typename jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome;
-      using _Real = emsr::num_traits_t<_Type>;
-      using _Cmplx = std::complex<_Real>;
+      using Real = emsr::num_traits_t<_Type>;
+      using Cmplx = std::complex<Real>;
 
       _Type e1, e2, e3;
 
@@ -786,18 +787,18 @@ namespace detail
     weierstrass_roots_t(const jacobi_theta_0_t<_Tp1, _Tp3>& theta0,
 			  _Tp1 omega_1)
     {
-      const auto s_pi = emsr::pi_v<_Real>;
+      const auto s_pi = emsr::pi_v<Real>;
 
       const auto th22 = theta0.th2 * theta0.th2;
       const auto th24 = th22 * th22;
       const auto th42 = theta0.th4 * theta0.th4;
       const auto th44 = th42 * th42;
       const auto fr = s_pi / omega_1;
-      const auto fc = fr * fr / _Real{12};
+      const auto fc = fr * fr / Real{12};
 
-      e1 = fc * (th24 + _Real{2} * th44);
+      e1 = fc * (th24 + Real{2} * th44);
       e2 = fc * (th24 - th44);
-      e3 = fc * (_Real{-2} * th24 - th44);
+      e3 = fc * (Real{-2} * th24 - th44);
     }
 
   /**
@@ -813,8 +814,8 @@ namespace detail
     struct weierstrass_invariants_t
     {
       using _Type = typename jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome;
-      using _Real = emsr::num_traits_t<_Type>;
-      using _Cmplx = std::complex<_Real>;
+      using Real = emsr::num_traits_t<_Type>;
+      using Cmplx = std::complex<Real>;
 
       _Type g_2, g_3;
 
@@ -851,10 +852,10 @@ namespace detail
     weierstrass_invariants_t(const jacobi_lattice_t<_Tp1, _Tp3>& lattice)
     {
       const auto roots = weierstrass_roots_t<_Tp1, _Tp3>(lattice);
-      g_2 = _Real{2} * (roots.e1 * roots.e1
+      g_2 = Real{2} * (roots.e1 * roots.e1
         		+ roots.e2 * roots.e2
         		+ roots.e3 * roots.e3);
-      g_3 = _Real{4} * roots.e1 * roots.e2 * roots.e3;
+      g_3 = Real{4} * roots.e1 * roots.e2 * roots.e3;
     }
 
   /**
@@ -873,23 +874,23 @@ namespace detail
     Tp
     jacobi_theta_1_sum(Tp q, Tp x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_eps = emsr::epsilon(std::abs(x));
       constexpr std::size_t s_max_iter = 50;
 
       Tp sum{};
-      _Real sign{-1};
+      Real sign{-1};
       for (std::size_t n = 0; n < s_max_iter; ++n)
 	{
 	  sign *= -1;
 	  const auto term = sign
-			    * std::pow(q, _Real((n + 0.5L) * (n + 0.5L)))
-			    * std::sin(_Real(2 * n + 1) * x);
+			    * std::pow(q, Real((n + 0.5L) * (n + 0.5L)))
+			    * std::sin(Real(2 * n + 1) * x);
 	  sum += term;
 	  if (std::abs(term) < s_eps * std::abs(sum))
 	    break;
 	}
-      return _Real{2} * sum;
+      return Real{2} * sum;
     }
 
   /**
@@ -908,12 +909,12 @@ namespace detail
     Tp
     jacobi_theta_1_prod(Tp q, Tp x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_eps = emsr::epsilon(std::abs(x));
       constexpr std::size_t s_max_iter = 50;
       const auto q2 = q * q;
       const auto q4 = q2 * q2;
-      const auto cos2x = std::cos(_Real{2} * x);
+      const auto cos2x = std::cos(Real{2} * x);
 
       auto q2n = Tp{1};
       auto q4n = Tp{1};
@@ -922,14 +923,14 @@ namespace detail
 	{
 	  q2n *= q2;
 	  q4n *= q4;
-	  const auto fact = (_Real{1} - q2n)
-			    * (_Real{1} - _Real{2} * q2n * cos2x + q4n);
+	  const auto fact = (Real{1} - q2n)
+			    * (Real{1} - Real{2} * q2n * cos2x + q4n);
 	  prod *= fact;
 	  if (std::abs(fact) < s_eps)
 	    break;
 	}
 
-      return _Real{2} * std::pow(q, Tp{0.25L}) * std::sin(x) * prod;
+      return Real{2} * std::pow(q, Tp{0.25L}) * std::sin(x) * prod;
     }
 
   /**
@@ -965,18 +966,18 @@ namespace detail
     std::complex<Tp>
     jacobi_theta_1(std::complex<Tp> q, std::complex<Tp> x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
-      using _Cmplx = std::complex<_Real>;
+      using Real = emsr::num_traits_t<Tp>;
+      using Cmplx = std::complex<Real>;
       const auto s_NaN = emsr::quiet_NaN(std::abs(x));
       const auto s_eps = emsr::epsilon(std::abs(x));
-      const auto s_pi = emsr::pi_v<_Real>;
-      const auto s_i = std::complex<_Real>{0, 1};
-      constexpr auto s_q_min = _Real{0.001L};
-      constexpr auto s_q_max = _Real{0.95e-1L};
+      const auto s_pi = emsr::pi_v<Real>;
+      const auto s_i = std::complex<Real>{0, 1};
+      constexpr auto s_q_min = Real{0.001L};
+      constexpr auto s_q_max = Real{0.95e-1L};
 
       if (std::isnan(q) || std::isnan(x))
 	return Tp{s_NaN};
-      else if (std::abs(q) >= _Real{1})
+      else if (std::abs(q) >= Real{1})
 	throw std::domain_error("jacobi_theta_1: nome q out of range");
       else if (std::abs(q) < s_q_min || std::abs(q) > s_q_max)
 	return jacobi_theta_1_prod(q, x);
@@ -984,7 +985,7 @@ namespace detail
 	return std::complex<Tp>{0, 0};
       else
 	{
-	  const auto lattice = jacobi_lattice_t<_Cmplx, _Cmplx>(q);
+	  const auto lattice = jacobi_lattice_t<Cmplx, Cmplx>(q);
 	  auto tau = lattice.tau().val;
 
 	  const auto x_red = lattice.reduce(x);
@@ -993,19 +994,19 @@ namespace detail
 	    fact *= emsr::parity<Tp>(x_red.m);
 	  if (x_red.n != 0)
 	    fact *= emsr::parity<Tp>(x_red.n)
-	    	    * std::exp(s_i * _Real(-2 * x_red.n) * x_red.z)
+	    	    * std::exp(s_i * Real(-2 * x_red.n) * x_red.z)
 		    * std::pow(q, -x_red.n * x_red.n);
 	  x = x_red.z;
 
 	  // theta_1(tau+1, z) = exp(i tau/4) theta_1(tau, z)
 	  const auto itau = std::floor(std::real(tau));
 	  tau -= itau;
-	  fact *= polar_pi(_Real{1}, itau / _Real{4});
+	  fact *= polar_pi(Real{1}, itau / Real{4});
 
 	  if (std::imag(tau) < 0.5)
 	    {
 	      const auto fact2 = s_i * std::sqrt(-s_i * tau);
-	      tau = _Real{-1} / tau;
+	      tau = Real{-1} / tau;
 	      const auto phase = std::exp(s_i * tau * x * x / s_pi);
 	      fact *= phase / fact2;
 	      q = std::exp(s_i * s_pi * tau);
@@ -1032,10 +1033,10 @@ namespace detail
     Tp
     jacobi_theta_1(Tp q, const Tp x)
     {
-      using _Cmplx = std::complex<Tp>;
+      using Cmplx = std::complex<Tp>;
 
       const auto s_eps = emsr::epsilon(std::abs(x));
-      const auto ret = jacobi_theta_1(_Cmplx(q), _Cmplx(x));
+      const auto ret = jacobi_theta_1(Cmplx(q), Cmplx(x));
 
       if (std::abs(ret) > s_eps
 	  && std::abs(std::imag(ret)) > s_eps * std::abs(ret))
@@ -1061,20 +1062,20 @@ namespace detail
     Tp
     jacobi_theta_2_sum(Tp q, Tp x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_eps = emsr::epsilon(std::abs(x));
       constexpr std::size_t s_max_iter = 50;
 
       Tp sum{};
       for (std::size_t n = 0; n < s_max_iter; ++n)
 	{
-	  const auto term = std::pow(q, _Real((n + 0.5L) * (n + 0.5L)))
-			    * std::cos(_Real(2 * n + 1) * x);
+	  const auto term = std::pow(q, Real((n + 0.5L) * (n + 0.5L)))
+			    * std::cos(Real(2 * n + 1) * x);
 	  sum += term;
 	  if (std::abs(term) < s_eps * std::abs(sum))
 	    break;
 	}
-      return _Real{2} * sum;
+      return Real{2} * sum;
     }
 
   /**
@@ -1093,12 +1094,12 @@ namespace detail
     Tp
     jacobi_theta_2_prod(Tp q, Tp x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_eps = emsr::epsilon(std::abs(x));
       constexpr std::size_t s_max_iter = 50;
       const auto q2 = q * q;
       const auto q4 = q2 * q2;
-      const auto cos2x = std::cos(_Real{2} * x);
+      const auto cos2x = std::cos(Real{2} * x);
 
       auto q2n = Tp{1};
       auto q4n = Tp{1};
@@ -1107,14 +1108,14 @@ namespace detail
 	{
 	  q2n *= q2;
 	  q4n *= q4;
-	  const auto fact = (_Real{1} - q2n)
-			    * (_Real{1} + _Real{2} * q2n * cos2x + q4n);
+	  const auto fact = (Real{1} - q2n)
+			    * (Real{1} + Real{2} * q2n * cos2x + q4n);
 	  prod *= fact;
 	  if (std::abs(fact) < s_eps)
 	    break;
 	}
 
-      return _Real{2} * std::pow(q, Tp{0.25L}) * std::cos(x) * prod;
+      return Real{2} * std::pow(q, Tp{0.25L}) * std::cos(x) * prod;
     }
 
   // Pre-declare Jacobi theta_4 sum ...
@@ -1160,31 +1161,31 @@ namespace detail
     std::complex<Tp>
     jacobi_theta_2(std::complex<Tp> q, std::complex<Tp> x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
-      using _Cmplx = std::complex<_Real>;
+      using Real = emsr::num_traits_t<Tp>;
+      using Cmplx = std::complex<Real>;
       const auto s_NaN = emsr::quiet_NaN(std::abs(x));
       const auto s_eps = emsr::epsilon(std::abs(x));
-      const auto s_pi = emsr::pi_v<_Real>;
-      const auto s_i = std::complex<_Real>{0, 1};
-      constexpr auto s_q_min = _Real{0.001L};
-      constexpr auto s_q_max = _Real{0.95e-1L};
+      const auto s_pi = emsr::pi_v<Real>;
+      const auto s_i = std::complex<Real>{0, 1};
+      constexpr auto s_q_min = Real{0.001L};
+      constexpr auto s_q_max = Real{0.95e-1L};
 
       if (std::isnan(q) || std::isnan(x))
 	return Tp{s_NaN};
-      else if (std::abs(q) >= _Real{1})
+      else if (std::abs(q) >= Real{1})
 	throw std::domain_error("jacobi_theta_2: nome q out of range");
       else if (std::abs(q) < s_q_min || std::abs(q) > s_q_max)
 	return jacobi_theta_2_prod(q, x);
       else if (std::abs(x) < s_eps)
 #if cplusplus > 201403
-	return jacobi_theta_0_t(jacobi_lattice_t<_Cmplx, _Cmplx>(q)).th2;
+	return jacobi_theta_0_t(jacobi_lattice_t<Cmplx, Cmplx>(q)).th2;
 #else
-	return jacobi_theta_0_t<_Cmplx, _Cmplx>(
-				jacobi_lattice_t<_Cmplx, _Cmplx>(q)).th2;
+	return jacobi_theta_0_t<Cmplx, Cmplx>(
+				jacobi_lattice_t<Cmplx, Cmplx>(q)).th2;
 #endif
       else
 	{
-	  const auto lattice = jacobi_lattice_t<_Cmplx, _Cmplx>(q);
+	  const auto lattice = jacobi_lattice_t<Cmplx, Cmplx>(q);
 	  auto tau = lattice.tau().val;
 
 	  const auto x_red = lattice.reduce(x);
@@ -1192,19 +1193,19 @@ namespace detail
 	  if (x_red.m != 0)
 	    fact *= emsr::parity<Tp>(x_red.m);
 	  if (x_red.n != 0)
-	    fact *= std::exp(s_i * _Real(-2 * x_red.n) * x_red.z)
+	    fact *= std::exp(s_i * Real(-2 * x_red.n) * x_red.z)
 		    * std::pow(q, -x_red.n * x_red.n);
 	  x = x_red.z;
 
 	  // theta_2(tau+1, z) = theta_2(tau, z)
 	  const auto itau = std::floor(std::real(tau));
 	  tau -= itau;
-	  fact *= polar_pi(_Real{1}, itau / _Real{4});
+	  fact *= polar_pi(Real{1}, itau / Real{4});
 
 	  if (std::imag(tau) < 0.5)
 	    {
 	      const auto fact2 = std::sqrt(-s_i * tau);
-	      tau = _Real{-1} / tau;
+	      tau = Real{-1} / tau;
 	      const auto phase = std::exp(s_i * tau * x * x / s_pi);
 	      fact *= phase / fact2;
 	      q = std::exp(s_i * s_pi * tau);
@@ -1232,10 +1233,10 @@ namespace detail
     Tp
     jacobi_theta_2(Tp q, const Tp x)
     {
-      using _Cmplx = std::complex<Tp>;
+      using Cmplx = std::complex<Tp>;
       const auto s_eps = emsr::epsilon(std::abs(x));
 
-      const auto ret = jacobi_theta_2(_Cmplx(q), _Cmplx(x));
+      const auto ret = jacobi_theta_2(Cmplx(q), Cmplx(x));
 
       if (std::abs(ret) > s_eps
 	  && std::abs(std::imag(ret)) > s_eps * std::abs(ret))
@@ -1260,20 +1261,20 @@ namespace detail
     Tp
     jacobi_theta_3_sum(Tp q, Tp x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_eps = emsr::epsilon(std::abs(x));
       constexpr std::size_t s_max_iter = 50;
 
       Tp sum{};
       for (std::size_t n = 1; n < s_max_iter; ++n)
 	{
-	  const auto term = std::pow(q, _Real(n * n))
-			    * std::cos(_Real(2 * n) * x);
+	  const auto term = std::pow(q, Real(n * n))
+			    * std::cos(Real(2 * n) * x);
 	  sum += term;
 	  if (std::abs(term) < s_eps * std::abs(sum))
 	    break;
 	}
-      return _Real{1} + _Real{2} * sum;
+      return Real{1} + Real{2} * sum;
     }
 
   /**
@@ -1292,20 +1293,20 @@ namespace detail
     Tp
     jacobi_theta_3_prod(Tp q, Tp x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_eps = emsr::epsilon(std::abs(x));
       constexpr std::size_t s_max_iter = 50;
       const auto q2 = q * q;
       const auto q4 = q2 * q2;
-      const auto cos2x = std::cos(_Real{2} * x);
+      const auto cos2x = std::cos(Real{2} * x);
 
       auto q2nm1 = q;
       auto q4nm2 = q2;
       auto prod = Tp{1};
       for (std::size_t n = 1; n < s_max_iter; ++n)
 	{
-	  const auto fact = (_Real{1} - q2nm1 * q)
-			    * (_Real{1} + _Real{2} * q2nm1 * cos2x + q4nm2);
+	  const auto fact = (Real{1} - q2nm1 * q)
+			    * (Real{1} + Real{2} * q2nm1 * cos2x + q4nm2);
 	  prod *= fact;
 	  if (std::abs(fact) < s_eps)
 	    break;
@@ -1348,37 +1349,37 @@ namespace detail
     std::complex<Tp>
     jacobi_theta_3(std::complex<Tp> q, std::complex<Tp> x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
-      using _Cmplx = std::complex<_Real>;
+      using Real = emsr::num_traits_t<Tp>;
+      using Cmplx = std::complex<Real>;
       const auto s_NaN = emsr::quiet_NaN(std::abs(x));
       const auto s_eps = emsr::epsilon(std::abs(x));
-      const auto s_pi = emsr::pi_v<_Real>;
-      const auto s_i = std::complex<_Real>{0, 1};
-      constexpr auto s_q_min = _Real{0.001L};
-      constexpr auto s_q_max = _Real{0.95e-1L};
+      const auto s_pi = emsr::pi_v<Real>;
+      const auto s_i = std::complex<Real>{0, 1};
+      constexpr auto s_q_min = Real{0.001L};
+      constexpr auto s_q_max = Real{0.95e-1L};
 
       if (std::isnan(q) || std::isnan(x))
 	return Tp{s_NaN};
-      else if (std::abs(q) >= _Real{1})
+      else if (std::abs(q) >= Real{1})
 	throw std::domain_error("jacobi_theta_3: nome q out of range");
       else if (std::abs(q) < s_q_min || std::abs(q) > s_q_max)
 	return jacobi_theta_3_prod(q, x);
       else if (std::abs(x) < s_eps)
 #if cplusplus > 201403L
-	return jacobi_theta_0_t(jacobi_lattice_t<_Cmplx, _Cmplx>(q)).th3;
+	return jacobi_theta_0_t(jacobi_lattice_t<Cmplx, Cmplx>(q)).th3;
 #else
-	return jacobi_theta_0_t<_Cmplx, _Cmplx>(
-				jacobi_lattice_t<_Cmplx, _Cmplx>(q)).th3;
+	return jacobi_theta_0_t<Cmplx, Cmplx>(
+				jacobi_lattice_t<Cmplx, Cmplx>(q)).th3;
 #endif
       else
 	{
-	  const auto lattice = jacobi_lattice_t<_Cmplx, _Cmplx>(q);
+	  const auto lattice = jacobi_lattice_t<Cmplx, Cmplx>(q);
 	  auto tau = lattice.tau().val;
 
 	  const auto x_red = lattice.reduce(x);
 	  auto fact = std::complex<Tp>{1, 0};
 	  if (x_red.n != 0)
-	    fact *= std::exp(s_i * _Real(-2 * x_red.n) * x_red.z)
+	    fact *= std::exp(s_i * Real(-2 * x_red.n) * x_red.z)
 		    * std::pow(q, -x_red.n * x_red.n);
 	  x = x_red.z;
 
@@ -1389,7 +1390,7 @@ namespace detail
 	  if (std::imag(tau) < 0.5)
 	    {
 	      const auto fact2 = std::sqrt(-s_i * tau);
-	      tau = _Real{-1} / tau;
+	      tau = Real{-1} / tau;
 	      const auto phase = std::exp(s_i * tau * x * x / s_pi);
 	      fact *= phase / fact2;
 	      q = std::exp(s_i * s_pi * tau);
@@ -1415,10 +1416,10 @@ namespace detail
     Tp
     jacobi_theta_3(Tp q, const Tp x)
     {
-      using _Cmplx = std::complex<Tp>;
+      using Cmplx = std::complex<Tp>;
       const auto s_eps = emsr::epsilon(std::abs(x));
 
-      const auto ret = jacobi_theta_3(_Cmplx(q), _Cmplx(x));
+      const auto ret = jacobi_theta_3(Cmplx(q), Cmplx(x));
 
       if (std::abs(ret) > s_eps
 	  && std::abs(std::imag(ret)) > s_eps * std::abs(ret))
@@ -1443,22 +1444,22 @@ namespace detail
     Tp
     jacobi_theta_4_sum(Tp q, Tp x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_eps = emsr::epsilon(std::abs(x));
       constexpr std::size_t s_max_iter = 50;
 
       Tp sum{};
-      _Real sign{1};
+      Real sign{1};
       for (std::size_t n = 1; n < s_max_iter; ++n)
 	{
 	  sign *= -1;
-	  const auto term = sign * std::pow(q, _Real(n * n))
-			    * std::cos(_Real(2 * n) * x);
+	  const auto term = sign * std::pow(q, Real(n * n))
+			    * std::cos(Real(2 * n) * x);
 	  sum += term;
 	  if (std::abs(term) < s_eps * std::abs(sum))
 	    break;
 	}
-      return _Real{1} + _Real{2} * sum;
+      return Real{1} + Real{2} * sum;
     }
 
   /**
@@ -1477,20 +1478,20 @@ namespace detail
     Tp
     jacobi_theta_4_prod(Tp q, Tp x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_eps = emsr::epsilon(std::abs(x));
       constexpr std::size_t s_max_iter = 50;
       const auto q2 = q * q;
       const auto q4 = q2 * q2;
-      const auto cos2x = std::cos(_Real{2} * x);
+      const auto cos2x = std::cos(Real{2} * x);
 
       auto q2nm1 = q;
       auto q4nm2 = q2;
       auto prod = Tp{1};
       for (std::size_t n = 1; n < s_max_iter; ++n)
 	{
-	  const auto fact = (_Real{1} - q2nm1 * q)
-			    * (_Real{1} - _Real{2} * q2nm1 * cos2x + q4nm2);
+	  const auto fact = (Real{1} - q2nm1 * q)
+			    * (Real{1} - Real{2} * q2nm1 * cos2x + q4nm2);
 	  prod *= fact;
 	  if (std::abs(fact) < s_eps)
 	    break;
@@ -1533,37 +1534,37 @@ namespace detail
     std::complex<Tp>
     jacobi_theta_4(std::complex<Tp> q, std::complex<Tp> x)
     {
-      using _Real = emsr::num_traits_t<Tp>;
-      using _Cmplx = std::complex<_Real>;
+      using Real = emsr::num_traits_t<Tp>;
+      using Cmplx = std::complex<Real>;
       const auto s_NaN = emsr::quiet_NaN(std::abs(x));
       const auto s_eps = emsr::epsilon(std::abs(x));
-      const auto s_pi = emsr::pi_v<_Real>;
-      const auto s_i = std::complex<_Real>{0, 1};
-      constexpr auto s_q_min = _Real{0.001L};
-      constexpr auto s_q_max = _Real{0.95e-1L};
+      const auto s_pi = emsr::pi_v<Real>;
+      const auto s_i = std::complex<Real>{0, 1};
+      constexpr auto s_q_min = Real{0.001L};
+      constexpr auto s_q_max = Real{0.95e-1L};
 
       if (std::isnan(q) || std::isnan(x))
 	return Tp{s_NaN};
-      else if (std::abs(q) >= _Real{1})
+      else if (std::abs(q) >= Real{1})
 	throw std::domain_error("jacobi_theta_4: nome q out of range");
       else if (std::abs(q) < s_q_min || std::abs(q) > s_q_max)
 	return jacobi_theta_4_prod(q, x);
       else if (std::abs(x) < s_eps)
 #if cplusplus > 201403L
-	return jacobi_theta_0_t(jacobi_lattice_t<_Cmplx, _Cmplx>(q)).th4;
+	return jacobi_theta_0_t(jacobi_lattice_t<Cmplx, Cmplx>(q)).th4;
 #else
-	return jacobi_theta_0_t<_Cmplx, _Cmplx>(
-				jacobi_lattice_t<_Cmplx, _Cmplx>(q)).th4;
+	return jacobi_theta_0_t<Cmplx, Cmplx>(
+				jacobi_lattice_t<Cmplx, Cmplx>(q)).th4;
 #endif
       else
 	{
-	  const auto lattice = jacobi_lattice_t<_Cmplx, _Cmplx>(q);
+	  const auto lattice = jacobi_lattice_t<Cmplx, Cmplx>(q);
 	  auto tau = lattice.tau().val;
 
 	  const auto x_red = lattice.reduce(x);
 	  auto fact = std::complex<Tp>{1, 0};
 	  if (x_red.n != 0)
-	    fact *= std::exp(s_i * _Real(-2 * x_red.n) * x_red.z)
+	    fact *= std::exp(s_i * Real(-2 * x_red.n) * x_red.z)
 		    * std::pow(q, -x_red.n * x_red.n);
 	  if (x_red.n != 0)
 	    fact *= emsr::parity<Tp>(x_red.n);
@@ -1576,7 +1577,7 @@ namespace detail
 	  if (std::imag(tau) < 0.5)
 	    {
 	      const auto fact2 = std::sqrt(-s_i * tau);
-	      tau = _Real{-1} / tau;
+	      tau = Real{-1} / tau;
 	      const auto phase = std::exp(s_i * tau * x * x / s_pi);
 	      fact *= phase / fact2;
 	      q = std::exp(s_i * s_pi * tau);
@@ -1603,10 +1604,10 @@ namespace detail
     Tp
     jacobi_theta_4(Tp q, const Tp x)
     {
-      using _Cmplx = std::complex<Tp>;
+      using Cmplx = std::complex<Tp>;
       const auto s_eps = emsr::epsilon(std::abs(x));
 
-      const auto ret = jacobi_theta_4(_Cmplx(q), _Cmplx(x));
+      const auto ret = jacobi_theta_4(Cmplx(q), Cmplx(x));
 
       if (std::abs(ret) > s_eps
 	  && std::abs(std::imag(ret)) > s_eps * std::abs(ret))

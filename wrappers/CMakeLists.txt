@@ -19,7 +19,7 @@ if (NOT MSVC)
   endif ()
 endif ()
 
-set(TR29124_LIBRARIES
+set(EMSR_LIBRARIES
   cxx_numeric_limits
   cxx_special_functions
   cxx_math_constants
@@ -33,7 +33,7 @@ set(TR29124_LIBRARIES
   cxx_float128)
 
 add_library(wrap_boost SHARED wrap_boost.cpp)
-target_link_libraries(wrap_boost ${TR29124_LIBRARIES})
+target_link_libraries(wrap_boost ${EMSR_LIBRARIES})
 target_include_directories(wrap_boost PUBLIC .)
 
 
@@ -53,7 +53,7 @@ PUBLIC
   .
 PRIVATE
   ../3rdparty/gslextras)
-target_link_libraries(wrap_gsl ${TR29124_LIBRARIES} gsl gslcblas)
+target_link_libraries(wrap_gsl ${EMSR_LIBRARIES} gsl gslcblas)
 
 
 add_library(wrap_gst SHARED wrap_gst.cpp)
@@ -68,12 +68,12 @@ target_link_libraries(wrap_gst
 
 add_library(wrap_cephes SHARED wrap_cephes.cpp)
 target_include_directories(wrap_cephes PUBLIC .)
-target_link_libraries(wrap_cephes ${TR29124_LIBRARIES} maths_cephes)
+target_link_libraries(wrap_cephes ${EMSR_LIBRARIES} maths_cephes)
 
 
 add_library(wrap_burkhardt SHARED wrap_burkhardt.cpp)
 target_include_directories(wrap_burkhardt PUBLIC .)
-target_link_libraries(wrap_burkhardt ${TR29124_LIBRARIES} maths_burkhardt)
+target_link_libraries(wrap_burkhardt ${EMSR_LIBRARIES} maths_burkhardt)
 
 
 add_library(wrap_lerchphi SHARED
@@ -85,7 +85,7 @@ PUBLIC
   .
 PRIVATE
   ../3rdparty/lerchphi/Source)
-target_link_libraries(wrap_lerchphi ${TR29124_LIBRARIES})
+target_link_libraries(wrap_lerchphi ${EMSR_LIBRARIES})
 
 
 add_library(wrap_faddeeva SHARED
@@ -97,14 +97,14 @@ PUBLIC
   .
 PRIVATE
   ../3rdparty/Faddeeva)
-target_link_libraries(wrap_faddeeva ${TR29124_LIBRARIES})
+target_link_libraries(wrap_faddeeva ${EMSR_LIBRARIES})
 
 
 add_library(wrap_lambert SHARED
             wrap_lambert.cpp
 	    ../3rdparty/LambertW/LambertW.cc
 	   )
-target_link_libraries(wrap_lambert ${TR29124_LIBRARIES})
+target_link_libraries(wrap_lambert ${EMSR_LIBRARIES})
 target_include_directories(wrap_lambert
 PUBLIC
   .

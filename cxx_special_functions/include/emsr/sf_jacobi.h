@@ -55,19 +55,19 @@ namespace emsr
    * @f$ P_1^{(\alpha,\beta)}(x)
    *      = [(\alpha - \beta) + (\alpha + \beta + 2) x] / 2 @f$.
    *
-   * @tparam _Talpha The real type of the order @f$ \alpha @f$
-   * @tparam _Tbeta The real type of the order @f$ \beta @f$
-   * @tparam _Tp The real type of the argument
+   * @tparam Talpha The real type of the order @f$ \alpha @f$
+   * @tparam Tbeta The real type of the order @f$ \beta @f$
+   * @tparam Tp The real type of the argument
    * @param n The non-negative integral degree
    * @param alpha The real order
    * @param beta The real order
    * @param x The real argument
    */
-  template<typename _Talpha, typename _Tbeta, typename _Tp>
-    inline emsr::fp_promote_t<_Talpha, _Tbeta, _Tp>
-    jacobi(unsigned n, _Talpha alpha, _Tbeta beta, _Tp x)
+  template<typename Talpha, typename Tbeta, typename Tp>
+    inline emsr::fp_promote_t<Talpha, Tbeta, Tp>
+    jacobi(unsigned n, Talpha alpha, Tbeta beta, Tp x)
     {
-      using type = emsr::fp_promote_t<_Talpha, _Tbeta, _Tp>;
+      using type = emsr::fp_promote_t<Talpha, Tbeta, Tp>;
       return emsr::detail::jacobi_recur<type>(n, alpha, beta, x).P_n;
     }
 
@@ -168,16 +168,16 @@ namespace emsr
    * @f]
    * @see jacobi for details on the Jacobi polynomials (see jacobi).
    *
-   * @tparam _Tp The real type of the radial coordinate
+   * @tparam Tp The real type of the radial coordinate
    * @param n The non-negative degree.
    * @param m The non-negative azimuthal order
    * @param rho The radial argument
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    radpoly(unsigned int n, unsigned int m, _Tp rho)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    radpoly(unsigned int n, unsigned int m, Tp rho)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::radial_jacobi<type>(n, m, rho);
     }
 

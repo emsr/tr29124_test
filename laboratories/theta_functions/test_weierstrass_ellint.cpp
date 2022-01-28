@@ -6,7 +6,11 @@
 #include <complex>
 #include <iostream>
 #include <iomanip>
+
 #include <emsr/solver_low_degree.h>
+#include <emsr/fp_type_util.h>
+#include <emsr/numeric_limits.h>
+#include <emsr/sf_theta.h>
 
   /**
    * Return the elliptic modular function by product expansion:

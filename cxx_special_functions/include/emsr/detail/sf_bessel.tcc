@@ -1,11 +1,11 @@
 
 // Copyright (C) 2006-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -51,6 +51,7 @@
 
 #include <emsr/fp_type_util.h>
 #include <emsr/sf_trig.h> // sin_pi, cos_pi, polar_pi
+#include <emsr/sf_gamma.h> // log_gamma, gamma_reciprocal_series
 #include <emsr/specfun_state.h>
 
 namespace emsr
@@ -86,21 +87,21 @@ namespace detail
    * @param  max_iter  The maximum number of iterations for sum.
    * @return  The output Bessel function.
    */
-  template<typename _Tnu, typename _Tp>
-    constexpr _Tp
-    cyl_bessel_ij_series(_Tnu nu, _Tp x, int sgn,
+  template<typename Tnu, typename Tp>
+    constexpr Tp
+    cyl_bessel_ij_series(Tnu nu, Tp x, int sgn,
 			   unsigned int max_iter)
     {
-      // FIXME: This will promote float to double if _Tnu is integral.
-      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      // FIXME: This will promote float to double if Tnu is integral.
+      using _Val = emsr::fp_promote_t<Tnu, Tp>;
       using _Real = emsr::num_traits_t<_Val>;
       const auto s_eps = emsr::epsilon<_Real>();
       if (std::abs(x) < s_eps)
 	{
-	  if (nu == _Tnu{0})
-	    return _Tp{1};
+	  if (nu == Tnu{0})
+	    return Tp{1};
 	  else
-	    return _Tp{0};
+	    return Tp{0};
 	}
       else
 	{
@@ -118,7 +119,7 @@ namespace detail
 	    }
 
 	  auto fact = _Val(nu) * std::log(x2);
-	  fact -= log_gamma(_Real{1} + nu);
+	  fact -= emsr::detail::log_gamma(_Real{1} + nu);
 	  fact = std::exp(fact);
 	  return fact * _Jn;
 	}
@@ -127,11 +128,11 @@ namespace detail
   /**
    * A type for Bessel asymptotic sums.
    */
-  template<typename _Tnu, typename _Tp>
+  template<typename Tnu, typename Tp>
     struct cyl_bessel_asymp_sums_t
     {
-      // FIXME: This will promote float to double if _Tnu is integral.
-      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      // FIXME: This will promote float to double if Tnu is integral.
+      using _Val = emsr::fp_promote_t<Tnu, Tp>;
       _Val _Psum;
       _Val _Qsum;
       _Val _Rsum;
@@ -197,20 +198,20 @@ namespace detail
    * @return A struct containing the cylindrical Bessel functions
    *         of the first and second kinds and their derivatives.
    */
-  template<typename _Tnu, typename _Tp>
-    constexpr cyl_bessel_asymp_sums_t<_Tnu, _Tp>
-    cyl_bessel_asymp_sums(_Tnu nu, _Tp x, int sgn)
+  template<typename Tnu, typename Tp>
+    constexpr cyl_bessel_asymp_sums_t<Tnu, Tp>
+    cyl_bessel_asymp_sums(Tnu nu, Tp x, int sgn)
     {
-      // FIXME: This will promote float to double if _Tnu is integral.
-      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      // FIXME: This will promote float to double if Tnu is integral.
+      using _Val = emsr::fp_promote_t<Tnu, Tp>;
       using _Real = emsr::num_traits_t<_Val>;
-      using bess_t = cyl_bessel_asymp_sums_t<_Tnu, _Tp>;
+      using bess_t = cyl_bessel_asymp_sums_t<Tnu, Tp>;
       const auto s_eps = emsr::epsilon<_Real>();
       const auto __2nu = _Real{2} * nu;
       const auto __4nu2 = __2nu * __2nu;
-      const auto r8x = _Tp{1} / (_Real{8} * x);
+      const auto r8x = Tp{1} / (_Real{8} * x);
       const auto nu_min = std::real(nu / _Real{2});
-      const auto nu_max = std::abs(_Real{100} * (nu + _Tnu{1}));
+      const auto nu_max = std::abs(_Real{100} * (nu + Tnu{1}));
       auto k = 0;
       auto bk_xk = _Val{1};
       auto _Rsum = bk_xk;
@@ -262,14 +263,14 @@ namespace detail
   /**
    *
    */
-  template<typename _Tnu, typename _Tp>
-    constexpr emsr::cyl_bessel_t<_Tnu, _Tp, _Tp>
-    cyl_bessel_jn_asymp(_Tnu nu, _Tp x)
+  template<typename Tnu, typename Tp>
+    constexpr emsr::cyl_bessel_t<Tnu, Tp, Tp>
+    cyl_bessel_jn_asymp(Tnu nu, Tp x)
     {
-      // FIXME: This will promote float to double if _Tnu is integral.
-      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      // FIXME: This will promote float to double if Tnu is integral.
+      using _Val = emsr::fp_promote_t<Tnu, Tp>;
       using _Real = emsr::num_traits_t<_Val>;
-      using bess_t = emsr::cyl_bessel_t<_Tnu, _Tp, _Tp>;
+      using bess_t = emsr::cyl_bessel_t<Tnu, Tp, Tp>;
       const auto s_pi = emsr::pi_v<_Real>;
       const auto s_pi_2 = emsr::pi_v<_Real> / _Real{2};
 
@@ -309,31 +310,31 @@ namespace detail
    * @param mu The input parameter of the gamma functions.
    * @return  An output structure containing four gamma functions.
    */
-  template<typename _Tp>
-    emsr::gamma_temme_t<_Tp>
-    gamma_temme(_Tp mu)
+  template<typename Tp>
+    emsr::gamma_temme_t<Tp>
+    gamma_temme(Tp mu)
     {
-      using gammat_t = emsr::gamma_temme_t<_Tp>;
+      using gammat_t = emsr::gamma_temme_t<Tp>;
       const auto s_eps = emsr::epsilon(mu);
-      const auto s_gamma_E = emsr::egamma_v<_Tp>;
+      const auto s_gamma_E = emsr::egamma_v<Tp>;
 
       if (std::abs(mu) < s_eps)
-	return gammat_t{mu, _Tp{1}, _Tp{1}, -s_gamma_E, _Tp{1}};
+	return gammat_t{mu, Tp{1}, Tp{1}, -s_gamma_E, Tp{1}};
       else
 	{
-	  _Tp gamp, gamm;
-	  if (std::real(mu) <= _Tp{0})
+	  Tp gamp, gamm;
+	  if (std::real(mu) <= Tp{0})
 	    {
-	      gamp = gamma_reciprocal_series(_Tp{1} + mu);
-	      gamm = -gamma_reciprocal_series(-mu) / mu;
+	      gamp = emsr::detail::gamma_reciprocal_series(Tp{1} + mu);
+	      gamm = -emsr::detail::gamma_reciprocal_series(-mu) / mu;
 	    }
 	  else
 	    {
-	      gamp = gamma_reciprocal_series(mu) / mu;
-	      gamm = gamma_reciprocal_series(_Tp{1} - mu);
+	      gamp = emsr::detail::gamma_reciprocal_series(mu) / mu;
+	      gamm = emsr::detail::gamma_reciprocal_series(Tp{1} - mu);
 	    }
-	  const auto gam1 = (gamm - gamp) / (_Tp{2} * mu);
-	  const auto gam2 = (gamm + gamp) / _Tp{2};
+	  const auto gam1 = (gamm - gamp) / (Tp{2} * mu);
+	  const auto gam2 = (gamm + gamp) / Tp{2};
 	  return gammat_t{mu, gamp, gamm, gam1, gam2};
 	}
     }
@@ -350,37 +351,37 @@ namespace detail
    * @return A struct containing the cylindrical Bessel functions
    *         of the first and second kinds and their derivatives.
    */
-  template<typename _Tp>
-    emsr::cyl_bessel_t<_Tp, _Tp, _Tp>
-    cyl_bessel_jn_steed(_Tp nu, _Tp x)
+  template<typename Tp>
+    emsr::cyl_bessel_t<Tp, Tp, Tp>
+    cyl_bessel_jn_steed(Tp nu, Tp x)
     {
-      using bess_t = emsr::cyl_bessel_t<_Tp, _Tp, _Tp>;
+      using bess_t = emsr::cyl_bessel_t<Tp, Tp, Tp>;
       const auto s_inf = emsr::infinity(x);
       const auto s_eps = emsr::epsilon(x);
       const auto s_tiny = emsr::lim_min(x);
-      const auto s_pi = emsr::pi_v<_Tp>;
+      const auto s_pi = emsr::pi_v<Tp>;
       // When the multiplier is N i.e.
       // fp_min = N * min()
       // Then J_0 and N_0 tank at x = 8 * N (J_0 = 0 and N_0 = nan)!
-      //const _Tp s_fp_min = _Tp{20} * emsr::lim_min(nu);
+      //const Tp s_fp_min = Tp{20} * emsr::lim_min(nu);
       constexpr int s_max_iter = 15000;
-      const auto s_x_min = _Tp{2};
+      const auto s_x_min = Tp{2};
       const auto s_fp_min = emsr::sqrt_min(nu);
 
       const int n = (x < s_x_min
 		    ? std::nearbyint(nu)
 		    : std::max(0,
-			       static_cast<int>(nu - x + _Tp{1.5L})));
+			       static_cast<int>(nu - x + Tp{1.5L})));
 
-      const auto mu = nu - _Tp(n);
+      const auto mu = nu - Tp(n);
       const auto mu2 = mu * mu;
-      const auto xi = _Tp{1} / x;
-      const auto xi2 = _Tp{2} * xi;
+      const auto xi = Tp{1} / x;
+      const auto xi2 = Tp{2} * xi;
       const auto _Wronski = xi2 / s_pi;
       int isign = 1;
       auto h = std::max(s_fp_min, nu * xi);
       auto b = xi2 * nu;
-      auto d = _Tp{0};
+      auto d = Tp{0};
       auto c = h;
       int i;
       for (i = 1; i <= s_max_iter; ++i)
@@ -389,15 +390,15 @@ namespace detail
 	  d = b - d;
 	  if (std::abs(d) < s_fp_min)
 	    d = s_fp_min;
-	  d = _Tp{1} / d;
-	  c = b - _Tp{1} / c;
+	  d = Tp{1} / d;
+	  c = b - Tp{1} / c;
 	  if (std::abs(c) < s_fp_min)
 	    c = s_fp_min;
 	  const auto del = c * d;
 	  h *= del;
-	  if (d < _Tp{0})
+	  if (d < Tp{0})
 	    isign = -isign;
-	  if (std::abs(del - _Tp{1}) < s_eps)
+	  if (std::abs(del - Tp{1}) < s_eps)
 	    break;
 	}
       if (i > s_max_iter)
@@ -415,35 +416,35 @@ namespace detail
 	  _Jpnul = fact * _Jnutemp - _Jnul;
 	  _Jnul = _Jnutemp;
 	}
-      if (_Jnul == _Tp{0})
+      if (_Jnul == Tp{0})
 	_Jnul = s_eps;
 
       const auto f = _Jpnul / _Jnul;
-      _Tp _Nmu, _Nnu1, _Npmu, _Jmu;
+      Tp _Nmu, _Nnu1, _Npmu, _Jmu;
       if (x < s_x_min)
 	{
-	  const auto x2 = x / _Tp{2};
+	  const auto x2 = x / Tp{2};
 	  const auto pimu = s_pi * mu;
 	  const auto fact = (std::abs(pimu) < s_eps
-			    ? _Tp{1}
+			    ? Tp{1}
 			    : pimu / std::sin(pimu));
 	  auto d = -std::log(x2);
 	  auto e = mu * d;
 	  const auto fact2 = (std::abs(e) < s_eps
-			     ? _Tp{1}
+			     ? Tp{1}
 			     : std::sinh(e) / e);
 	  const auto gamt = gamma_temme(mu);
-	  auto ff = (_Tp{2} / s_pi) * fact
+	  auto ff = (Tp{2} / s_pi) * fact
 		    * (gamt.gamma_1_value * std::cosh(e)
 		     + gamt.gamma_2_value * fact2 * d);
 	  e = std::exp(e);
 	  auto p = e / (s_pi * gamt.gamma_plus_value);
-	  auto q = _Tp{1} / (e * s_pi * gamt.gamma_minus_value);
-	  const auto pimu2 = pimu / _Tp{2};
+	  auto q = Tp{1} / (e * s_pi * gamt.gamma_minus_value);
+	  const auto pimu2 = pimu / Tp{2};
 	  const auto fact3 = (std::abs(pimu2) < s_eps
-			     ? _Tp{1} : std::sin(pimu2) / pimu2 );
+			     ? Tp{1} : std::sin(pimu2) / pimu2 );
 	  const auto r = s_pi * pimu2 * fact3 * fact3;
-	  auto c = _Tp{1};
+	  auto c = Tp{1};
 	  d = -x2 * x2;
 	  auto sum = ff + r * q;
 	  auto sum1 = p;
@@ -451,14 +452,14 @@ namespace detail
 	  for (i = 1; i <= s_max_iter; ++i)
 	    {
 	      ff = (i * ff + p + q) / (i * i - mu2);
-	      c *= d / _Tp(i);
-	      p /= _Tp(i) - mu;
-	      q /= _Tp(i) + mu;
+	      c *= d / Tp(i);
+	      p /= Tp(i) - mu;
+	      q /= Tp(i) + mu;
 	      const auto del = c * (ff + r * q);
 	      sum += del;
-	      const auto del1 = c * p - _Tp(i) * del;
+	      const auto del1 = c * p - Tp(i) * del;
 	      sum1 += del1;
-	      if (std::abs(del) < s_eps * (_Tp{1} + std::abs(sum)))
+	      if (std::abs(del) < s_eps * (Tp{1} + std::abs(sum)))
 		break;
 	    }
 	  if (i > s_max_iter)
@@ -470,10 +471,10 @@ namespace detail
 	}
       else
 	{
-	  const auto s_i = std::complex<_Tp>{0, 1};
-	  auto a = _Tp{0.25L} - mu2;
-	  auto pq = std::complex<_Tp>(-xi / _Tp{2}, _Tp{1});
-	  auto b = std::complex<_Tp>(_Tp{2} * x, _Tp{2});
+	  const auto s_i = std::complex<Tp>{0, 1};
+	  auto a = Tp{0.25L} - mu2;
+	  auto pq = std::complex<Tp>(-xi / Tp{2}, Tp{1});
+	  auto b = std::complex<Tp>(Tp{2} * x, Tp{2});
 	  auto fact = a * xi / std::norm(pq);
 	  auto c = b + s_i * fact * std::conj(pq);
 	  auto d = std::conj(b) / std::norm(b);
@@ -482,8 +483,8 @@ namespace detail
 	  int i;
 	  for (i = 2; i <= s_max_iter; ++i)
 	    {
-	      a += _Tp(2 * (i - 1));
-	      b += s_i * _Tp{2};
+	      a += Tp(2 * (i - 1));
+	      b += s_i * Tp{2};
 	      d = a * d + b;
 	      if (std::abs(d) < s_fp_min)
 		d = s_fp_min;
@@ -494,13 +495,13 @@ namespace detail
 	      d = std::conj(d) / std::norm(d);
 	      dl = c * d;
 	      pq *= dl;
-	      if (std::abs(dl - _Tp{1}) < s_eps)
+	      if (std::abs(dl - Tp{1}) < s_eps)
 		break;
 	    }
 	  if (i > s_max_iter)
 	    throw std::runtime_error("cyl_bessel_jn_steed: Lentz's method failed");
 	  //const auto [p, q] = pq; // This should be a thing.
-	  const auto [p, q] = reinterpret_cast<_Tp(&)[2]>(pq);
+	  const auto [p, q] = reinterpret_cast<Tp(&)[2]>(pq);
 	  const auto gam = (p - f) / q;
 	  _Jmu = std::sqrt(_Wronski / ((p - f) * gam + q));
 	  _Jmu = std::copysign(_Jmu, _Jnul);
@@ -511,7 +512,7 @@ namespace detail
       fact = _Jmu / _Jnul;
       const auto _Jnu = fact * _Jnul1;
       const auto _Jpnu = fact * _Jpnu1;
-      if (std::abs(s_pi * x * _Jnu / _Tp{2}) > s_tiny)
+      if (std::abs(s_pi * x * _Jnu / Tp{2}) > s_tiny)
 	{
 	  for (int i = 1; i <= n; ++i)
 	    _Nmu = std::exchange(_Nnu1, (mu + i) * xi2 * _Nnu1 - _Nmu);
@@ -527,28 +528,28 @@ namespace detail
    * @brief  Return the cylindrical Bessel functions and their derivatives
    * of order @f$ \nu @f$ by various means.
    */
-  template<typename _Tp>
-    emsr::cyl_bessel_t<_Tp, _Tp, _Tp>
-    cyl_bessel_jn(_Tp nu, _Tp x)
+  template<typename Tp>
+    emsr::cyl_bessel_t<Tp, Tp, Tp>
+    cyl_bessel_jn(Tp nu, Tp x)
     {
-      using bess_t = emsr::cyl_bessel_t<_Tp, _Tp, _Tp>;
+      using bess_t = emsr::cyl_bessel_t<Tp, Tp, Tp>;
       const auto s_eps = emsr::epsilon(x);
       const auto s_inf = emsr::infinity(x);
-      if (nu < _Tp{0})
+      if (nu < Tp{0})
 	{
 	  const auto _Bess = cyl_bessel_jn(-nu, x);
 	  const auto sinnupi = emsr::sin_pi(-nu);
 	  const auto cosnupi = emsr::cos_pi(-nu);
 	  if (std::abs(sinnupi) < s_eps)
 	    { // Carefully preserve +-inf.
-	      const auto sign = std::copysign(_Tp{1}, cosnupi);
+	      const auto sign = std::copysign(Tp{1}, cosnupi);
 	      return bess_t{nu, x,
 			sign * _Bess.J_value, sign * _Bess.J_deriv,
 			sign * _Bess.N_value, sign * _Bess.N_deriv};
 	    }
 	  else if (std::abs(cosnupi) < s_eps)
 	    { // Carefully preserve +-inf.
-	      const auto sign = std::copysign(_Tp{1}, sinnupi);
+	      const auto sign = std::copysign(Tp{1}, sinnupi);
 	      return bess_t{nu, x,
 			-sign * _Bess.N_value, -sign * _Bess.N_deriv,
 			 sign * _Bess.J_value,  sign * _Bess.J_deriv};
@@ -562,27 +563,27 @@ namespace detail
 		sinnupi * _Bess.J_deriv + cosnupi * _Bess.N_deriv};
 	    }
 	}
-      else if (x == _Tp{0})
+      else if (x == Tp{0})
 	{
-	  _Tp _Jnu, _Jpnu;
-	  if (nu == _Tp{0})
+	  Tp _Jnu, _Jpnu;
+	  if (nu == Tp{0})
 	    {
-	      _Jnu = _Tp{1};
-	      _Jpnu = _Tp{0};
+	      _Jnu = Tp{1};
+	      _Jpnu = Tp{0};
 	    }
-	  else if (nu == _Tp{1})
+	  else if (nu == Tp{1})
 	    {
-	      _Jnu = _Tp{0};
-	      _Jpnu = _Tp{0.5L};
+	      _Jnu = Tp{0};
+	      _Jpnu = Tp{0.5L};
 	    }
 	  else
 	    {
-	      _Jnu = _Tp{0};
-	      _Jpnu = _Tp{0};
+	      _Jnu = Tp{0};
+	      _Jpnu = Tp{0};
 	    }
 	  return bess_t{nu, x, _Jnu, _Jpnu, -s_inf, s_inf};
 	}
-      else if (x > _Tp{1000})
+      else if (x > Tp{1000})
 	return cyl_bessel_jn_asymp(nu, x);
       else
 	return cyl_bessel_jn_steed(nu, x);
@@ -592,28 +593,28 @@ namespace detail
    * @brief  Return the cylindrical Bessel functions and their derivatives
    *         of real order @f$ \nu @f$ and argument @f$ x < 0 @f$.
    */
-  template<typename _Tp>
-    emsr::cyl_bessel_t<_Tp, _Tp, std::complex<_Tp>>
-    cyl_bessel_jn_neg_arg(_Tp nu, _Tp x)
+  template<typename Tp>
+    emsr::cyl_bessel_t<Tp, Tp, std::complex<Tp>>
+    cyl_bessel_jn_neg_arg(Tp nu, Tp x)
     {
-      using _Cmplx = std::complex<_Tp>;
-      using bess_t = emsr::cyl_bessel_t<_Tp, _Tp, _Cmplx>;
+      using _Cmplx = std::complex<Tp>;
+      using bess_t = emsr::cyl_bessel_t<Tp, Tp, _Cmplx>;
       constexpr _Cmplx s_i{0, 1};
-      if (x >= _Tp{0})
+      if (x >= Tp{0})
 	throw std::domain_error("cyl_bessel_jn_neg_arg: non-negative argument");
       else
 	{
 	  const auto _Bess = cyl_bessel_jn(nu, -x);
-	  const auto phm = emsr::polar_pi(_Tp{1}, -nu);
-	  const auto php = emsr::polar_pi(_Tp{1}, nu);
+	  const auto phm = emsr::polar_pi(Tp{1}, -nu);
+	  const auto php = emsr::polar_pi(Tp{1}, nu);
 	  const auto cosp = emsr::cos_pi(nu);
 	  return bess_t{nu, x,
 			  php * _Bess.J_value,
 			  -php * _Bess.J_deriv,
 			  phm * _Bess.N_value
-				+ s_i * _Tp{2} * cosp * _Bess.J_value,
+				+ s_i * Tp{2} * cosp * _Bess.J_value,
 			  -phm * _Bess.N_deriv
-				- s_i * _Tp{2} * cosp * _Bess.J_deriv};
+				- s_i * Tp{2} * cosp * _Bess.J_deriv};
 	}
     }
 
@@ -632,15 +633,15 @@ namespace detail
    * @param  x   The argument of the Bessel function.
    * @return  The output Bessel function.
    */
-  template<typename _Tp>
-    _Tp
-    cyl_bessel_j(_Tp nu, _Tp x)
+  template<typename Tp>
+    Tp
+    cyl_bessel_j(Tp nu, Tp x)
     {
-      if (x < _Tp{0})
+      if (x < Tp{0})
 	throw std::domain_error("cyl_bessel_j: bad argument");
       else if (std::isnan(nu) || std::isnan(x))
 	return emsr::quiet_NaN(x);
-      else if (nu >= _Tp{0} && x * x < _Tp{10} * (nu + _Tp{1}))
+      else if (nu >= Tp{0} && x * x < Tp{10} * (nu + Tp{1}))
 	return cyl_bessel_ij_series(nu, x, -1, 200);
       else
 	return cyl_bessel_jn(nu, x).J_value;
@@ -663,11 +664,11 @@ namespace detail
    * @param  x   The argument of the Neumann function.
    * @return  The output Neumann function.
    */
-  template<typename _Tp>
-    _Tp
-    cyl_neumann_n(_Tp nu, _Tp x)
+  template<typename Tp>
+    Tp
+    cyl_neumann_n(Tp nu, Tp x)
     {
-      if (x < _Tp{0})
+      if (x < Tp{0})
 	throw std::domain_error("cyl_neumann_n: bad argument");
       else if (std::isnan(nu) || std::isnan(x))
 	return emsr::quiet_NaN(x);
@@ -680,24 +681,24 @@ namespace detail
    *         and second kinds and their derivatives.
    *
    */
-  template<typename _Tp>
-    emsr::cyl_hankel_t<_Tp, _Tp, std::complex<_Tp>>
-    cyl_hankel_h1h2(_Tp nu, _Tp x)
+  template<typename Tp>
+    emsr::cyl_hankel_t<Tp, Tp, std::complex<Tp>>
+    cyl_hankel_h1h2(Tp nu, Tp x)
     {
-      using _Cmplx = std::complex<_Tp>;
+      using _Cmplx = std::complex<Tp>;
       constexpr _Cmplx s_i{0, 1};
 
-      _Cmplx ph1 = _Tp{1}, ph2 = _Tp{1};
-      if (nu < _Tp{0})
+      _Cmplx ph1 = Tp{1}, ph2 = Tp{1};
+      if (nu < Tp{0})
 	{
-	  ph1 = emsr::polar_pi(_Tp{1}, -nu);
-	  ph2 = emsr::polar_pi(_Tp{1}, +nu);
+	  ph1 = emsr::polar_pi(Tp{1}, -nu);
+	  ph2 = emsr::polar_pi(Tp{1}, +nu);
 	  nu = -nu;
 	}
 
       // The two _Bess types are different.
       // We might still be able to assign the real output to the complex one.
-      if (x < _Tp{0})
+      if (x < Tp{0})
 	{
 	  const auto _Bess = cyl_bessel_jn_neg_arg(nu, x);
 	  const auto _H1 = ph1 * (_Bess.J_value + s_i * _Bess.N_value);
@@ -730,19 +731,19 @@ namespace detail
    * @param  x  The argument of the spherical Neumann function.
    * @return  The output spherical Neumann function.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    cyl_hankel_1(_Tp nu, _Tp x)
+  template<typename Tp>
+    std::complex<Tp>
+    cyl_hankel_1(Tp nu, Tp x)
     {
-      using _Cmplx = std::complex<_Tp>;
+      using _Cmplx = std::complex<Tp>;
       const auto s_nan = emsr::quiet_NaN(x);
       constexpr _Cmplx s_i{0, 1};
-      if (nu < _Tp{0})
-	return emsr::polar_pi(_Tp{1}, -nu)
+      if (nu < Tp{0})
+	return emsr::polar_pi(Tp{1}, -nu)
 	     * cyl_hankel_1(-nu, x);
       else if (std::isnan(x))
 	return _Cmplx{s_nan, s_nan};
-      else if (x < _Tp{0})
+      else if (x < Tp{0})
 	{
 	  const auto _Bess = cyl_bessel_jn_neg_arg(nu, x);
 	  return _Bess.J_value + s_i * _Bess.N_value;
@@ -768,19 +769,19 @@ namespace detail
    *   @param  x  The argument of the spherical Neumann function.
    *   @return  The output spherical Neumann function.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    cyl_hankel_2(_Tp nu, _Tp x)
+  template<typename Tp>
+    std::complex<Tp>
+    cyl_hankel_2(Tp nu, Tp x)
     {
-      using _Cmplx = std::complex<_Tp>;
+      using _Cmplx = std::complex<Tp>;
       const auto s_nan = emsr::quiet_NaN(x);
       constexpr _Cmplx s_i{0, 1};
-      if (nu < _Tp{0})
-	return emsr::polar_pi(_Tp{1}, nu)
+      if (nu < Tp{0})
+	return emsr::polar_pi(Tp{1}, nu)
 	     * cyl_hankel_2(-nu, x);
       else if (std::isnan(x))
 	return _Cmplx{s_nan, s_nan};
-      else if (x < _Tp{0})
+      else if (x < Tp{0})
 	{
 	  const auto _Bess = cyl_bessel_jn_neg_arg(nu, x);
 	  return _Bess.J_value - s_i * _Bess.N_value;
@@ -803,22 +804,22 @@ namespace detail
    * @param  x  The argument of the spherical Bessel function.
    * @return  The output derivative of the spherical Neumann function.
    */
-  template<typename _Tp>
-    emsr::sph_bessel_t<unsigned int, _Tp, _Tp>
-    sph_bessel_jn(unsigned int n, _Tp x)
+  template<typename Tp>
+    emsr::sph_bessel_t<unsigned int, Tp, Tp>
+    sph_bessel_jn(unsigned int n, Tp x)
     {
-      using bess_t = emsr::sph_bessel_t<unsigned int, _Tp, _Tp>;
-      const auto nu = _Tp(n + 0.5L);
+      using bess_t = emsr::sph_bessel_t<unsigned int, Tp, Tp>;
+      const auto nu = Tp(n + 0.5L);
 
       const auto _Bess = cyl_bessel_jn(nu, x);
 
-      const auto factor = (emsr::sqrtpi_v<_Tp> / emsr::sqrt2_v<_Tp>)
+      const auto factor = (emsr::sqrtpi_v<Tp> / emsr::sqrt2_v<Tp>)
 			  / std::sqrt(x);
 
       const auto j_n = factor * _Bess.J_value;
-      const auto jp_n = factor * _Bess.J_deriv - j_n / (_Tp{2} * x);
+      const auto jp_n = factor * _Bess.J_deriv - j_n / (Tp{2} * x);
       const auto n_n = factor * _Bess.N_value;
-      const auto np_n = factor * _Bess.N_deriv - n_n / (_Tp{2} * x);
+      const auto np_n = factor * _Bess.N_deriv - n_n / (Tp{2} * x);
 
       return bess_t{n, x, j_n, jp_n, n_n, np_n};
     }
@@ -827,29 +828,29 @@ namespace detail
    * Return the spherical Bessel functions and their derivatives
    * of order @f$ \nu @f$ and argument @f$ x < 0 @f$.
    */
-  template<typename _Tp>
-    emsr::sph_bessel_t<unsigned int, _Tp, std::complex<_Tp>>
-    sph_bessel_jn_neg_arg(unsigned int n, _Tp x)
+  template<typename Tp>
+    emsr::sph_bessel_t<unsigned int, Tp, std::complex<Tp>>
+    sph_bessel_jn_neg_arg(unsigned int n, Tp x)
     {
-      using _Cmplx = std::complex<_Tp>;
-      using bess_t = emsr::sph_bessel_t<unsigned int, _Tp, _Cmplx>;
-      if (x >= _Tp{0})
+      using _Cmplx = std::complex<Tp>;
+      using bess_t = emsr::sph_bessel_t<unsigned int, Tp, _Cmplx>;
+      if (x >= Tp{0})
 	throw std::domain_error("sph_bessel_jn_neg_arg: non-negative argument");
       else
 	{
-	  const auto nu = _Tp(n + 0.5L);
+	  const auto nu = Tp(n + 0.5L);
 	  const auto _Bess = cyl_bessel_jn_neg_arg(nu, x);
 
 	  const auto factor
-	    = (emsr::sqrtpi_v<_Tp> / emsr::sqrt2_v<_Tp>)
+	    = (emsr::sqrtpi_v<Tp> / emsr::sqrt2_v<Tp>)
 	      / std::sqrt(_Cmplx(x));
 
 	  const auto j_n = factor * _Bess.J_value;
 	  const auto jp_n = factor * _Bess.J_deriv
-			    - j_n / (_Tp{2} * x);
+			    - j_n / (Tp{2} * x);
 	  const auto n_n = factor * _Bess.N_value;
 	  const auto np_n = factor * _Bess.N_deriv
-			    - n_n / (_Tp{2} * x);
+			    - n_n / (Tp{2} * x);
 
 	  return bess_t{n, x, j_n, jp_n, n_n, np_n};
 	}
@@ -869,20 +870,20 @@ namespace detail
    * @param  x  The non-negative real argument
    * @return  The output spherical Bessel function.
    */
-  template<typename _Tp>
-    _Tp
-    sph_bessel(unsigned int n, _Tp x)
+  template<typename Tp>
+    Tp
+    sph_bessel(unsigned int n, Tp x)
     {
-      if (x < _Tp{0})
+      if (x < Tp{0})
 	throw std::domain_error("sph_bessel: bad argument");
       else if (std::isnan(x))
 	return emsr::quiet_NaN(x);
-      else if (x == _Tp{0})
+      else if (x == Tp{0})
 	{
 	  if (n == 0)
-	    return _Tp{1};
+	    return Tp{1};
 	  else
-	    return _Tp{0};
+	    return Tp{0};
 	}
       else
 	return sph_bessel_jn(n, x).j_value;
@@ -902,15 +903,15 @@ namespace detail
    * @param  x  The argument of the spherical Neumann function.
    * @return  The output spherical Neumann function.
    */
-  template<typename _Tp>
-    _Tp
-    sph_neumann(unsigned int n, _Tp x)
+  template<typename Tp>
+    Tp
+    sph_neumann(unsigned int n, Tp x)
     {
-      if (x < _Tp{0})
+      if (x < Tp{0})
 	throw std::domain_error("sph_neumann: bad argument");
       else if (std::isnan(x))
 	return emsr::quiet_NaN(x);
-      else if (x == _Tp{0})
+      else if (x == Tp{0})
 	return -emsr::infinity(x);
       else
 	return sph_bessel_jn(n, x).n_value;
@@ -930,16 +931,16 @@ namespace detail
    * @param  x  The argument of the spherical Neumann function.
    * @return  The output spherical Neumann function.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    sph_hankel_1(unsigned int n, _Tp x)
+  template<typename Tp>
+    std::complex<Tp>
+    sph_hankel_1(unsigned int n, Tp x)
     {
-      using _Cmplx = std::complex<_Tp>;
+      using _Cmplx = std::complex<Tp>;
       constexpr _Cmplx s_i{0, 1};
       const auto s_nan = emsr::quiet_NaN(x);
       if (std::isnan(x))
 	return _Cmplx{s_nan, s_nan};
-      else if (x < _Tp{0})
+      else if (x < Tp{0})
 	{
 	  const auto _Bess = sph_bessel_jn_neg_arg(n, x);
 	  return _Bess.j_value + s_i * _Bess.n_value;
@@ -965,16 +966,16 @@ namespace detail
    * @param  x  The non-negative real argument
    * @return  The output spherical Neumann function.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    sph_hankel_2(unsigned int n, _Tp x)
+  template<typename Tp>
+    std::complex<Tp>
+    sph_hankel_2(unsigned int n, Tp x)
     {
-      using _Cmplx = std::complex<_Tp>;
+      using _Cmplx = std::complex<Tp>;
       constexpr _Cmplx s_i{0, 1};
       const auto s_nan = emsr::quiet_NaN(x);
       if (std::isnan(x))
 	return _Cmplx{s_nan, s_nan};
-      else if (x < _Tp{0})
+      else if (x < Tp{0})
 	{
 	  const auto _Bess = sph_bessel_jn_neg_arg(n, x);
 	  return _Bess.j_value - s_i * _Bess.n_value;

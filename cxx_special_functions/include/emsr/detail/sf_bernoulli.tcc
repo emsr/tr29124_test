@@ -1,11 +1,11 @@
 
 // Copyright (C) 2017-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -52,55 +52,55 @@ namespace detail
    * @param n the order n of the Bernoulli number.
    * @return  The Bernoulli number of order n.
    */
-  template<typename _Tp>
-    constexpr _Tp
+  template<typename Tp>
+    constexpr Tp
     bernoulli_series(unsigned int n)
     {
       constexpr unsigned long s_num_bern_tab = 12;
-      constexpr _Tp
+      constexpr Tp
       s_bernoulli_2n[s_num_bern_tab]
       {
-	 _Tp{1ULL},
-	 _Tp{1ULL}             / _Tp{6ULL},
-	-_Tp{1ULL}             / _Tp{30ULL},
-	 _Tp{1ULL}             / _Tp{42ULL},
-	-_Tp{1ULL}             / _Tp{30ULL},
-	 _Tp{5ULL}             / _Tp{66ULL},
-	-_Tp{691ULL}           / _Tp{2730ULL},
-	 _Tp{7ULL}             / _Tp{6ULL},
-	-_Tp{3617ULL}          / _Tp{510ULL},
-	 _Tp{43867ULL}         / _Tp{798ULL},
-	-_Tp{174611ULL}        / _Tp{330ULL},
-	 _Tp{854513ULL}        / _Tp{138ULL}
+	 Tp{1ULL},
+	 Tp{1ULL}             / Tp{6ULL},
+	-Tp{1ULL}             / Tp{30ULL},
+	 Tp{1ULL}             / Tp{42ULL},
+	-Tp{1ULL}             / Tp{30ULL},
+	 Tp{5ULL}             / Tp{66ULL},
+	-Tp{691ULL}           / Tp{2730ULL},
+	 Tp{7ULL}             / Tp{6ULL},
+	-Tp{3617ULL}          / Tp{510ULL},
+	 Tp{43867ULL}         / Tp{798ULL},
+	-Tp{174611ULL}        / Tp{330ULL},
+	 Tp{854513ULL}        / Tp{138ULL}
       };
 
       if (n == 0)
-	return _Tp{1};
+	return Tp{1};
       else if (n == 1)
-	return -_Tp{1} / _Tp{2};
+	return -Tp{1} / Tp{2};
       // Take care of the rest of the odd ones.
       else if (n % 2 == 1)
-	return _Tp{0};
+	return Tp{0};
       // Take care of some small evens that are painful for the series.
       else if (n / 2 < s_num_bern_tab)
 	return s_bernoulli_2n[n / 2];
       else
 	{
-	  constexpr auto s_2pi = emsr::tau_v<_Tp>;
-	  auto fact = _Tp{1};
+	  constexpr auto s_2pi = emsr::tau_v<Tp>;
+	  auto fact = Tp{1};
 	  if ((n / 2) % 2 == 0)
-	    fact *= -_Tp{1};
+	    fact *= -Tp{1};
 	  for (unsigned int k = 1; k <= n; ++k)
 	    fact *= k / s_2pi;
-	  fact *= _Tp{2};
+	  fact *= Tp{2};
 
 	 // Riemann zeta function minus-1 for even integer argument.
-	  auto sum = _Tp{0};
+	  auto sum = Tp{0};
 	  for (unsigned int i = 2; i < 1000; ++i)
 	    {
-	      auto term = std::pow(_Tp(i), -_Tp(n));
+	      auto term = std::pow(Tp(i), -Tp(n));
 	      sum += term;
-	      if (term < emsr::epsilon<_Tp>() * sum)
+	      if (term < emsr::epsilon<Tp>() * sum)
 		break;
 	    }
 
@@ -114,10 +114,10 @@ namespace detail
    *   @param n the order n of the Bernoulli number.
    *   @return  The Bernoulli number of order n.
    */
-  template<typename _Tp>
-    constexpr _Tp
+  template<typename Tp>
+    constexpr Tp
     bernoulli(unsigned int n)
-    { return bernoulli_series<_Tp>(n); }
+    { return bernoulli_series<Tp>(n); }
 
   /**
    * @brief This returns Bernoulli number @f$ B_2n @f$ at even integer
@@ -126,10 +126,10 @@ namespace detail
    * @param n the half-order n of the Bernoulli number.
    * @return  The Bernoulli number of order 2n.
    */
-  template<typename _Tp>
-    constexpr _Tp
+  template<typename Tp>
+    constexpr Tp
     bernoulli_2n(unsigned int n)
-    { return bernoulli_series<_Tp>(2 * n); }
+    { return bernoulli_series<Tp>(2 * n); }
 
   /**
    * Return the Bernoulli polynomial @f$ B_n(x) @f$ of order n at argument x.
@@ -154,21 +154,21 @@ namespace detail
    *   B_n(x+1) - B_n(x) = n * x^{n-1}
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    bernoulli(unsigned int n, _Tp x)
+  template<typename Tp>
+    Tp
+    bernoulli(unsigned int n, Tp x)
     {
       if (std::isnan(x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return std::numeric_limits<Tp>::quiet_NaN();
       else
 	{
-	  auto _B_n = bernoulli<_Tp>(0);
-	  auto binomial = _Tp{1};
+	  auto _B_n = bernoulli<Tp>(0);
+	  auto binomial = Tp{1};
 	  for (auto k = 1u; k <= n; ++k)
 	    {
-	      binomial *= _Tp(n + 1 - k) / _Tp(k);
+	      binomial *= Tp(n + 1 - k) / Tp(k);
 	      _B_n = x * _B_n + binomial
-		   * bernoulli<_Tp>(k);
+		   * bernoulli<Tp>(k);
 	    }
 	  return _B_n;
 	}

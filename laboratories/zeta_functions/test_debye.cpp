@@ -6,6 +6,11 @@
 #include <iomanip>
 #include <limits>
 #include <cmath>
+
+#include <emsr/numeric_limits.h>
+#include <emsr/sf_gamma.h> // factorial
+#include <emsr/sf_zeta.h>
+
 #include <wrap_gsl.h>
 
   /**

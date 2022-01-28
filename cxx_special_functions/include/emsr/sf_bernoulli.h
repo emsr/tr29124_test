@@ -40,11 +40,11 @@ namespace emsr
    *
    * @param n The order.
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
     bernoulli(unsigned int n)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::bernoulli<type>(n);
     }
 
@@ -71,9 +71,9 @@ namespace emsr
    *   B_n(x+1) - B_n(x) = n x^{n-1}
    * @f]
    */
-  template<typename _Tp>
-    inline _Tp
-    bernoulli(unsigned int n, _Tp x)
+  template<typename Tp>
+    inline Tp
+    bernoulli(unsigned int n, Tp x)
     { return emsr::detail::bernoulli(n, x); }
 
 } // namespace emsr

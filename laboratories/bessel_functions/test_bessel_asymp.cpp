@@ -7,6 +7,10 @@
 #include <sstream>
 #include <cmath>
 
+#include <emsr/math_constants.h>
+#include <emsr/sf_bessel.h>
+
+
 bool VERBOSE = false;
 
   template <typename _Tp>

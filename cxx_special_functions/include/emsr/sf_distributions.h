@@ -16,11 +16,11 @@ namespace emsr
    *                             (x/\beta)^{\alpha - 1} e^{-x/\beta}
    * @f]
    */
-  template<typename _Ta, typename _Tb, typename _Tp>
-    inline emsr::fp_promote_t<_Ta, _Tb, _Tp>
-    gamma_pdf(_Ta alpha, _Tb beta, _Tp x)
+  template<typename Ta, typename Tb, typename Tp>
+    inline emsr::fp_promote_t<Ta, Tb, Tp>
+    gamma_pdf(Ta alpha, Tb beta, Tp x)
     {
-      using type = emsr::fp_promote_t<_Ta, _Tb, _Tp>;
+      using type = emsr::fp_promote_t<Ta, Tb, Tp>;
       return emsr::detail::gamma_pdf<type>(alpha, beta, x);
     }
 
@@ -32,11 +32,11 @@ namespace emsr
    *    \Gamma(x|\alpha,\beta) = \frac{1}{\beta\Gamma(\alpha)}
    *                             (x/\beta)^{\alpha - 1} e^{-x/\beta}
    * @f]
-  template<typename _Ta, typename _Tb, typename _Tp>
-    inline emsr::fp_promote_t<_Ta, _Tb, _Tp>
-    gamma_p(_Ta alpha, _Tb beta, _Tp x)
+  template<typename Ta, typename Tb, typename Tp>
+    inline emsr::fp_promote_t<Ta, Tb, Tp>
+    gamma_p(Ta alpha, Tb beta, Tp x)
     {
-      using type = emsr::fp_promote_t<_Ta, _Tb, _Tp>;
+      using type = emsr::fp_promote_t<Ta, Tb, Tp>;
       return emsr::detail::gamma_p<type>(alpha, beta, x);
     }
    */
@@ -49,11 +49,11 @@ namespace emsr
    *   f(x|\mu,\sigma) = \frac{e^{(x-\mu)^2/2\sigma^2}}{\sigma\sqrt{2\pi}}
    * @f]
    */
-  template<typename _Tmu, typename _Tsig, typename _Tp>
-    inline emsr::fp_promote_t<_Tmu, _Tsig, _Tp>
-    normal_pdf(_Tmu mu, _Tsig sigma, _Tp x)
+  template<typename Tmu, typename Tsig, typename Tp>
+    inline emsr::fp_promote_t<Tmu, Tsig, Tp>
+    normal_pdf(Tmu mu, Tsig sigma, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tmu, _Tsig, _Tp>;
+      using type = emsr::fp_promote_t<Tmu, Tsig, Tp>;
       return emsr::detail::normal_pdf<type>(mu, sigma, x);
     }
 
@@ -66,11 +66,11 @@ namespace emsr
    *        = \frac{1}{2}\left[ 1-erf(\frac{x-\mu}{\sqrt{2}\sigma}) \right]
    * @f]
    */
-  template<typename _Tmu, typename _Tsig, typename _Tp>
-    inline emsr::fp_promote_t<_Tmu, _Tsig, _Tp>
-    normal_p(_Tmu mu, _Tsig sigma, _Tp x)
+  template<typename Tmu, typename Tsig, typename Tp>
+    inline emsr::fp_promote_t<Tmu, Tsig, Tp>
+    normal_p(Tmu mu, Tsig sigma, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tmu, _Tsig, _Tp>;
+      using type = emsr::fp_promote_t<Tmu, Tsig, Tp>;
       return emsr::detail::normal_p<type>(mu, sigma, x);
     }
 
@@ -82,11 +82,11 @@ namespace emsr
    *   f(x|\mu,\sigma) = \frac{e^{(\ln{x}-\mu)^2/2\sigma^2}}{\sigma\sqrt{2\pi}}
    * @f]
    */
-  template<typename _Tmu, typename _Tsig, typename _Tp>
-    inline emsr::fp_promote_t<_Tmu, _Tsig, _Tp>
-    lognormal_pdf(_Tmu mu, _Tsig sigma, _Tp x)
+  template<typename Tmu, typename Tsig, typename Tp>
+    inline emsr::fp_promote_t<Tmu, Tsig, Tp>
+    lognormal_pdf(Tmu mu, Tsig sigma, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tmu, _Tsig, _Tp>;
+      using type = emsr::fp_promote_t<Tmu, Tsig, Tp>;
       return emsr::detail::lognormal_pdf<type>(mu, sigma, x);
     }
 
@@ -100,11 +100,11 @@ namespace emsr
    *                  \frac{\ln{x}-\mu}{\sqrt{2}\sigma}\right)\right]
    * @f]
    */
-  template<typename _Tmu, typename _Tsig, typename _Tp>
-    inline emsr::fp_promote_t<_Tmu, _Tsig, _Tp>
-    lognormal_p(_Tmu mu, _Tsig sigma, _Tp x)
+  template<typename Tmu, typename Tsig, typename Tp>
+    inline emsr::fp_promote_t<Tmu, Tsig, Tp>
+    lognormal_p(Tmu mu, Tsig sigma, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tmu, _Tsig, _Tp>;
+      using type = emsr::fp_promote_t<Tmu, Tsig, Tp>;
       return emsr::detail::lognormal_p<type>(mu, sigma, x);
     }
 
@@ -116,11 +116,11 @@ namespace emsr
    *   f(x|\lambda) = \lambda e^{-\lambda x} \mbox{ for } x >= 0
    * @f]
    */
-  template<typename _Tlam, typename _Tp>
-    inline emsr::fp_promote_t<_Tlam, _Tp>
-    exponential_pdf(_Tlam lambda, _Tp x)
+  template<typename _Tlam, typename Tp>
+    inline emsr::fp_promote_t<_Tlam, Tp>
+    exponential_pdf(_Tlam lambda, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tlam, _Tp>;
+      using type = emsr::fp_promote_t<_Tlam, Tp>;
       return emsr::detail::exponential_pdf<type>(lambda, x);
     }
 
@@ -132,11 +132,11 @@ namespace emsr
    *   F(x|\lambda) = 1 - e^{-\lambda x} \mbox{ for } x >= 0
    * @f]
    */
-  template<typename _Tlam, typename _Tp>
-    inline emsr::fp_promote_t<_Tlam, _Tp>
-    exponential_p(_Tlam lambda, _Tp x)
+  template<typename _Tlam, typename Tp>
+    inline emsr::fp_promote_t<_Tlam, Tp>
+    exponential_p(_Tlam lambda, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tlam, _Tp>;
+      using type = emsr::fp_promote_t<_Tlam, Tp>;
       return emsr::detail::exponential_p<type>(lambda, x);
     }
 
@@ -151,11 +151,11 @@ namespace emsr
    *                 \mbox{ for } x >= 0
    * @f]
    */
-  template<typename _Ta, typename _Tb, typename _Tp>
-    inline emsr::fp_promote_t<_Ta, _Tb, _Tp>
-    weibull_pdf(_Ta a, _Tb b, _Tp x)
+  template<typename Ta, typename Tb, typename Tp>
+    inline emsr::fp_promote_t<Ta, Tb, Tp>
+    weibull_pdf(Ta a, Tb b, Tp x)
     {
-      using type = emsr::fp_promote_t<_Ta, _Tb, _Tp>;
+      using type = emsr::fp_promote_t<Ta, Tb, Tp>;
       return emsr::detail::weibull_pdf<type>(a, b, x);
     }
 
@@ -167,11 +167,11 @@ namespace emsr
    *   F(x|\lambda) = 1 - e^{-(x / b)^a} \mbox{ for } x >= 0
    * @f]
    */
-  template<typename _Ta, typename _Tb, typename _Tp>
-    inline emsr::fp_promote_t<_Ta, _Tb, _Tp>
-    weibull_p(_Ta a, _Tb b, _Tp x)
+  template<typename Ta, typename Tb, typename Tp>
+    inline emsr::fp_promote_t<Ta, Tb, Tp>
+    weibull_p(Ta a, Tb b, Tp x)
     {
-      using type = emsr::fp_promote_t<_Ta, _Tb, _Tp>;
+      using type = emsr::fp_promote_t<Ta, Tb, Tp>;
       return emsr::detail::weibull_p<type>(a, b, x);
     }
 
@@ -187,11 +187,11 @@ namespace emsr
    * @param t 
    * @param nu 
    */
-  template<typename _Tt, typename _Tp>
-    emsr::fp_promote_t<_Tp>
+  template<typename _Tt, typename Tp>
+    emsr::fp_promote_t<Tp>
     student_t_pdf(_Tt t, unsigned int nu)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::student_t_pdf<type>(t, nu);
     }
 
@@ -207,11 +207,11 @@ namespace emsr
    * @param t 
    * @param nu 
    */
-  template<typename _Tt, typename _Tp>
-    emsr::fp_promote_t<_Tp>
+  template<typename _Tt, typename Tp>
+    emsr::fp_promote_t<Tp>
     student_t_p(_Tt t, unsigned int nu)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::student_t_p<type>(t, nu);
     }
 
@@ -228,16 +228,16 @@ namespace emsr
    * 			 = 1 - Q(F|\nu_1, \nu_2)
    * @f]
    *
-   * @param __F 
+   * @param F 
    * @param nu1 
    * @param nu2 
    */
-  template<typename _Tp>
-    emsr::fp_promote_t<_Tp>
-    fisher_f_pdf(_Tp __F, unsigned int nu1, unsigned int nu2)
+  template<typename Tp>
+    emsr::fp_promote_t<Tp>
+    fisher_f_pdf(Tp F, unsigned int nu1, unsigned int nu2)
     {
-      using type = emsr::fp_promote_t<_Tp>;
-      return emsr::detail::fisher_f_pdf<type>(__F, nu1, nu2);
+      using type = emsr::fp_promote_t<Tp>;
+      return emsr::detail::fisher_f_pdf<type>(F, nu1, nu2);
     }
 
   /**
@@ -253,14 +253,14 @@ namespace emsr
    *
    * @param nu1 The number of degrees of freedom of sample 1
    * @param nu2 The number of degrees of freedom of sample 2
-   * @param __F The F statistic
+   * @param F The F statistic
    */
-  template<typename _Tp>
-    emsr::fp_promote_t<_Tp>
-    fisher_f_p(_Tp __F, unsigned int nu1, unsigned int nu2)
+  template<typename Tp>
+    emsr::fp_promote_t<Tp>
+    fisher_f_p(Tp F, unsigned int nu1, unsigned int nu2)
     {
-      using type = emsr::fp_promote_t<_Tp>;
-      return emsr::detail::fisher_f_p<type>(__F, nu1, nu2);
+      using type = emsr::fp_promote_t<Tp>;
+      return emsr::detail::fisher_f_p<type>(F, nu1, nu2);
     }
 
   /**
@@ -276,11 +276,11 @@ namespace emsr
    * @param n 
    * @param k 
    */
-  template<typename _Tp>
-    emsr::fp_promote_t<_Tp>
-    binomial_pdf(_Tp p, unsigned int n, unsigned int k)
+  template<typename Tp>
+    emsr::fp_promote_t<Tp>
+    binomial_pdf(Tp p, unsigned int n, unsigned int k)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::binomial_pdf<type>(p, n, k);
     }
 
@@ -297,11 +297,11 @@ namespace emsr
    * @param n 
    * @param k 
    */
-  template<typename _Tp>
-    emsr::fp_promote_t<_Tp>
-    binomial_p(_Tp p, unsigned int n, unsigned int k)
+  template<typename Tp>
+    emsr::fp_promote_t<Tp>
+    binomial_p(Tp p, unsigned int n, unsigned int k)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::binomial_p<type>(p, n, k);
     }
 
@@ -314,11 +314,11 @@ namespace emsr
    * @f]
    * where @f$b > 0@f$.
    */
-  template<typename _Ta, typename _Tb, typename _Tp>
-    inline emsr::fp_promote_t<_Ta, _Tb, _Tp>
-    logistic_pdf(_Ta a, _Tb b, _Tp x)
+  template<typename Ta, typename Tb, typename Tp>
+    inline emsr::fp_promote_t<Ta, Tb, Tp>
+    logistic_pdf(Ta a, Tb b, Tp x)
     {
-      using type = emsr::fp_promote_t<_Ta, _Tb, _Tp>;
+      using type = emsr::fp_promote_t<Ta, Tb, Tp>;
       return emsr::detail::logistic_pdf<type>(a, b, x);
     }
 
@@ -331,11 +331,11 @@ namespace emsr
    * @f]
    * where @f$b > 0@f$.
    */
-  template<typename _Ta, typename _Tb, typename _Tp>
-    inline emsr::fp_promote_t<_Ta, _Tb, _Tp>
-    logistic_p(_Ta a, _Tb b, _Tp x)
+  template<typename Ta, typename Tb, typename Tp>
+    inline emsr::fp_promote_t<Ta, Tb, Tp>
+    logistic_p(Ta a, Tb b, Tp x)
     {
-      using type = emsr::fp_promote_t<_Ta, _Tb, _Tp>;
+      using type = emsr::fp_promote_t<Ta, Tb, Tp>;
       return emsr::detail::logistic_p<type>(a, b, x);
     }
 

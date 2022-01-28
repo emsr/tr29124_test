@@ -8,6 +8,8 @@
 #include <cmath>
 
 #include <emsr/float128_io.h>
+#include <emsr/sf_trig.h>
+#include <emsr/sf_chebyshev.h>
 
 /**
  * @todo return derivatives from these.

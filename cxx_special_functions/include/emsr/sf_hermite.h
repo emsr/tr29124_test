@@ -43,15 +43,15 @@ namespace emsr
    *   H_n(-x) = (-1)^n H_n(x)
    * @f]
    *
-   * @tparam _Tp The floating-point type of the argument @c x.
+   * @tparam Tp The floating-point type of the argument @c x.
    * @param n The order
    * @param x The argument
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    hermite(unsigned int n, _Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    hermite(unsigned int n, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::hermite<type>(n, x);
     }
 

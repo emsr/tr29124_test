@@ -62,11 +62,11 @@ namespace emsr
    * @param x The argument of the Laguerre function, <tt>x >= 0</tt>.
    * @throw std::domain_error if <tt>x < 0</tt>.
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    assoc_laguerre(unsigned int n, unsigned int m, _Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    assoc_laguerre(unsigned int n, unsigned int m, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::assoc_laguerre<type>(n, m, x);
     }
 
@@ -77,13 +77,13 @@ namespace emsr
    *
    * @tparam _Talpha The (signed integer or floating-point) type
    *                 of the degree @c alpha1.
-   * @tparam _Tp The floating-point type of the argument @c x.
+   * @tparam Tp The floating-point type of the argument @c x.
    */
-  template<typename _Talpha, typename _Tp>
-    inline emsr::fp_promote_t<_Talpha, _Tp>
-    assoc_laguerre(unsigned int n, _Talpha alpha1, _Tp x)
+  template<typename _Talpha, typename Tp>
+    inline emsr::fp_promote_t<_Talpha, Tp>
+    assoc_laguerre(unsigned int n, _Talpha alpha1, Tp x)
     {
-      using type = emsr::fp_promote_t<_Talpha, _Tp>;
+      using type = emsr::fp_promote_t<_Talpha, Tp>;
       return emsr::detail::assoc_laguerre<type>(n, alpha1, x);
     }
 
@@ -118,16 +118,16 @@ namespace emsr
    * 	 L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
    * @f]
    *
-   * @tparam _Tp The floating-point type of the argument @c x.
+   * @tparam Tp The floating-point type of the argument @c x.
    * @param n The nonnegative order
    * @param x The argument <tt> x >= 0 </tt>
    * @throw std::domain_error if <tt> x < 0 </tt>.
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    laguerre(unsigned int n, _Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    laguerre(unsigned int n, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::laguerre<type>(n, x);
     }
 

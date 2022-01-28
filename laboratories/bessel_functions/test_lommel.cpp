@@ -7,6 +7,10 @@
 #include <iostream>
 #include <iomanip>
 
+#include <emsr/fp_type_util.h>
+#include <emsr/sf_gamma.h>
+#include <emsr/sf_bessel.h>
+
 namespace emsr
 {
 namespace detail

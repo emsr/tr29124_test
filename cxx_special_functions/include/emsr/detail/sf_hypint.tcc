@@ -1,11 +1,11 @@
 
 // Copyright (C) 2016-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -43,36 +43,36 @@ namespace detail
    *    by continued fraction for positive argument.
    */
   ////FIXME!!!!
-  template<typename _Tp>
+  template<typename Tp>
     void
-    chshint_cont_frac(_Tp t, _Tp& _Chi, _Tp& _Shi)
+    chshint_cont_frac(Tp t, Tp& _Chi, Tp& _Shi)
     {
       const unsigned int s_max_iter = 100;
-      const auto s_eps = _Tp{5} * emsr::epsilon(t);
+      const auto s_eps = Tp{5} * emsr::epsilon(t);
       const auto s_fp_min = emsr::lim_min(t);
-      const auto s_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
+      const auto s_pi_2 = emsr::pi_v<Tp> / Tp{2};
 
       // Evaluate Chi and Shi by Lentz's modified method of continued fracions.
-      std::complex<_Tp> b(_Tp{1}, t);
-      std::complex<_Tp> c(_Tp{1} / s_fp_min);
-      std::complex<_Tp> d(_Tp{1} / b);
-      std::complex<_Tp> h(d);
+      std::complex<Tp> b(Tp{1}, t);
+      std::complex<Tp> c(Tp{1} / s_fp_min);
+      std::complex<Tp> d(Tp{1} / b);
+      std::complex<Tp> h(d);
       unsigned int i = 2;
       while (true)
 	{
-	  auto a = -_Tp(i - 1) * _Tp(i - 1);
-	  b += _Tp{2};
-	  d = _Tp{1} / (a * d + b);
+	  auto a = -Tp(i - 1) * Tp(i - 1);
+	  b += Tp{2};
+	  d = Tp{1} / (a * d + b);
 	  c = b + a / c;
 	  auto del = c * d;
 	  h *= del;
-	  if (std::abs(del.real() - _Tp{1}) + std::abs(del.imag()) < s_eps)
+	  if (std::abs(del.real() - Tp{1}) + std::abs(del.imag()) < s_eps)
 	    break;
 	  if (i > s_max_iter)
 	    throw std::runtime_error("chshint_cont_frac: Continued fraction evaluation failed");
 	  ++i;
 	}
-      h *= std::polar(_Tp{1}, -t);
+      h *= std::polar(Tp{1}, -t);
       _Chi = -h.real();
       _Shi = s_pi_2 + h.imag();
 
@@ -85,36 +85,36 @@ namespace detail
    *    and hyperbolic sine @f$ Shi(x) @f$ integrals
    *    by series summation for positive argument.
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    chshint_series(_Tp t, _Tp& _Chi, _Tp& _Shi)
+    chshint_series(Tp t, Tp& _Chi, Tp& _Shi)
     {
       const auto s_max_iter = 100;
-      const auto s_eps = _Tp{5} * emsr::epsilon(t);
+      const auto s_eps = Tp{5} * emsr::epsilon(t);
       const auto s_fp_min = emsr::lim_min(t);
-      const auto s_gamma_e = emsr::egamma_v<_Tp>;
+      const auto s_gamma_e = emsr::egamma_v<Tp>;
 
       // Evaluate Chi and Shi by series simultaneously.
-      _Tp _Csum(0), _Ssum(0);
+      Tp _Csum(0), _Ssum(0);
       if (t * t < s_fp_min)
 	{
 	  // Avoid underflow.
-	  _Csum = _Tp{0};
+	  _Csum = Tp{0};
 	  _Ssum = t;
 	}
       else
 	{
 	  // Evaluate Shi and Chi by series expansion.
-	  _Tp sum(0);
-	  _Tp fact(1);
+	  Tp sum(0);
+	  Tp fact(1);
 	  auto odd = true;
 	  auto k = 1;
 	  while (true)
 	    {
 	      fact *= t / k;
-	      _Tp term = fact / k;
+	      Tp term = fact / k;
 	      sum += term;
-	      _Tp err = term / std::abs(sum);
+	      Tp err = term / std::abs(sum);
 	      if (odd)
 		{
 		  _Ssum = sum;
@@ -154,26 +154,26 @@ namespace detail
    *      Shi(x) = \int_0^x dt \frac{\sinh(t)}{t}
    *  @f]
    */
-  template<typename _Tp>
-    std::pair<_Tp, _Tp>
-    chshint(_Tp x, _Tp& _Chi, _Tp& _Shi)
+  template<typename Tp>
+    std::pair<Tp, Tp>
+    chshint(Tp x, Tp& _Chi, Tp& _Shi)
     {
       const auto s_NaN = emsr::quiet_NaN(x);
       if (std::isnan(x))
 	return std::make_pair(s_NaN, s_NaN);
 
       auto t = std::abs(x);
-      if (t == _Tp{0})
+      if (t == Tp{0})
 	{
 	  _Chi = -emsr::infinity(x);
-	  _Shi = _Tp{0};
+	  _Shi = Tp{0};
 	}
-      else if (t > _Tp{2})
+      else if (t > Tp{2})
 	chshint_cont_frac(t, _Chi, _Shi);
       else
 	chshint_series(t, _Chi, _Shi);
 
-      if (x < _Tp{0})
+      if (x < Tp{0})
 	_Shi = -_Shi;
 
       return std::make_pair(_Chi, _Shi);

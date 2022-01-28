@@ -27,11 +27,11 @@ namespace emsr
    *
    * @param x The argument
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    fresnel_s(_Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    fresnel_s(Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return std::imag(emsr::detail::fresnel<type>(x));
     }
 
@@ -55,11 +55,11 @@ namespace emsr
    *
    * @param x The argument
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    fresnel_c(_Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    fresnel_c(Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return std::real(emsr::detail::fresnel<type>(x));
     }
 

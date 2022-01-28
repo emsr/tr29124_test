@@ -1,12 +1,11 @@
-// Special functions -*- C++ -*-
 
 // Copyright (C) 2017-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -59,31 +58,31 @@ namespace detail
    * @todo Find a way to predict the maximum Stirling number supported
    *       for a given type.
    */
-  template<typename _Tp>
-    _Tp
+  template<typename Tp>
+    Tp
     stirling_2_series(unsigned int n, unsigned int m)
     {
-      if (m > s_num_factorials<_Tp>)
+      if (m > s_num_factorials<Tp>)
 	{
-	  auto _S2 = _Tp{0};
+	  auto _S2 = Tp{0};
 	  for (auto k = 0u; k <= m; ++k)
 	    {
-	      auto lf1 = log_factorial<_Tp>(k);
-	      auto lf2 = log_factorial<_Tp>(m - k);
-	      _S2 += ((m - k) & 1 ? _Tp{-1} : _Tp{1})
+	      auto lf1 = log_factorial<Tp>(k);
+	      auto lf2 = log_factorial<Tp>(m - k);
+	      _S2 += ((m - k) & 1 ? Tp{-1} : Tp{1})
 		   * std::exp(n * std::log(k) - lf1 - lf2);
 	    }
 	  return _S2;
 	}
       else
 	{
-	  auto _S2 = _Tp{0};
+	  auto _S2 = Tp{0};
 	  for (auto k = 0u; k <= m; ++k)
 	    {
-	      _S2 += ((m - k) & 1 ? _Tp{-1} : _Tp{1})
+	      _S2 += ((m - k) & 1 ? Tp{-1} : Tp{1})
 		   * std::pow(k, n)
-		   / factorial<_Tp>(k)
-		   / factorial<_Tp>(m - k);
+		   / factorial<Tp>(k)
+		   / factorial<Tp>(m - k);
 	    }
 	  // @todo Only round if the sum is less than
 	  // the maximum representable integer.
@@ -112,18 +111,18 @@ namespace detail
    * in the literature: 
    * @f$ \sigma_n^{(m)} @f$, @f$ \textit{S}_n^{(m)} @f$ and others.
    */
-  template<typename _Tp>
-    _Tp
+  template<typename Tp>
+    Tp
     stirling_2_recur(unsigned int n, unsigned int m)
     {
       if (n == 0)
-	return _Tp(m == 0);
+	return Tp(m == 0);
       else if (m == 0)
-	return _Tp(n == 0);
+	return Tp(n == 0);
       else
 	{
-	  std::vector<_Tp> sigold(m + 1), signew(m + 1);
-	  sigold[1] = _Tp{1};
+	  std::vector<Tp> sigold(m + 1), signew(m + 1);
+	  sigold[1] = Tp{1};
 	  if (n == 1)
 	    return sigold[m];
 	  for (auto in = 1u; in <= n; ++in)
@@ -148,18 +147,18 @@ namespace detail
    *
    * @todo Find asymptotic expressions for the Stirling numbers.
    */
-  template<typename _Tp>
-    _Tp
+  template<typename Tp>
+    Tp
     stirling_2(unsigned int n, unsigned int m)
     {
       if (m > n)
-	return _Tp{0};
+	return Tp{0};
       else if (m == n)
-	return _Tp{1};
+	return Tp{1};
       else if (m == 0 && n >= 1)
-	return _Tp{0};
+	return Tp{0};
       else
-	return stirling_2_recur<_Tp>(n, m);
+	return stirling_2_recur<Tp>(n, m);
     }
 
   /**
@@ -182,17 +181,17 @@ namespace detail
    * in the literature: 
    * @f$ \sigma_n^{(m)} @f$, @f$ \textit{S}_n^{(m)} @f$ and others.
    */
-  template<typename _Tp>
-    std::vector<_Tp>
+  template<typename Tp>
+    std::vector<Tp>
     stirling_2_recur(unsigned int n)
     {
       if (n == 0)
-	return std::vector<_Tp>(1, _Tp{1});
+	return std::vector<Tp>(1, Tp{1});
       else
 	{
-	  std::vector<_Tp> sigold(n + 1), signew(n + 1);
-	  sigold[0] = signew[0] = _Tp{0};
-	  sigold[1] = _Tp{1};
+	  std::vector<Tp> sigold(n + 1), signew(n + 1);
+	  sigold[0] = signew[0] = Tp{0};
+	  sigold[1] = Tp{1};
 	  if (n == 1)
 	    return sigold;
 	  for (auto in = 1u; in <= n; ++in)
@@ -217,28 +216,28 @@ namespace detail
    *
    * @todo Find asymptotic expressions for the Stirling numbers.
    */
-  template<typename _Tp>
-    std::vector<_Tp>
+  template<typename Tp>
+    std::vector<Tp>
     stirling_2(unsigned int n)
-    { return stirling_2_recur<_Tp>(n); }
+    { return stirling_2_recur<Tp>(n); }
 
   /**
    * Return the Stirling number of the second kind.
    *
    * @todo Find asymptotic expressions for the Stirling numbers.
    */
-  template<typename _Tp>
-    _Tp
+  template<typename Tp>
+    Tp
     log_stirling_2(unsigned int n, unsigned int m)
     {
       if (m > n)
-	return -std::numeric_limits<_Tp>::infinity();
+	return -std::numeric_limits<Tp>::infinity();
       else if (m == n)
-	return _Tp{0};
+	return Tp{0};
       else if (m == 0 && n >= 1)
-	return -std::numeric_limits<_Tp>::infinity();
+	return -std::numeric_limits<Tp>::infinity();
       else
-	return std::log(stirling_2<_Tp>(n, m));
+	return std::log(stirling_2<Tp>(n, m));
     }
 
   /**
@@ -256,18 +255,18 @@ namespace detail
    *   S_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0}
    * @f]
    */
-  template<typename _Tp>
-    _Tp
+  template<typename Tp>
+    Tp
     stirling_1_recur(unsigned int n, unsigned int m)
     {
       if (n == 0)
-	return _Tp(m == 0);
+	return Tp(m == 0);
       else if (m == 0)
-	return _Tp(n == 0);
+	return Tp(n == 0);
       else
 	{
-	  std::vector<_Tp> _Sold(m + 1), _Snew(m + 1);
-	  _Sold[1] = _Tp{1};
+	  std::vector<Tp> _Sold(m + 1), _Snew(m + 1);
+	  _Sold[1] = Tp{1};
 	  if (n == 1)
 	    return _Sold[m];
 	  for (auto in = 1u; in <= n; ++in)
@@ -304,18 +303,18 @@ namespace detail
    *
    * @todo Find asymptotic expressions for the Stirling numbers.
    */
-  template<typename _Tp>
-    _Tp
+  template<typename Tp>
+    Tp
     stirling_1(unsigned int n, unsigned int m)
     {
       if (m > n)
-	return _Tp{0};
+	return Tp{0};
       else if (m == n)
-	return _Tp{1};
+	return Tp{1};
       else if (m == 0 && n >= 1)
-	return _Tp{0};
+	return Tp{0};
       else
-        return stirling_1_recur<_Tp>(n, m);
+        return stirling_1_recur<Tp>(n, m);
     }
 
   /**
@@ -333,17 +332,17 @@ namespace detail
    *   S_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0}
    * @f]
    */
-  template<typename _Tp>
-    std::vector<_Tp>
+  template<typename Tp>
+    std::vector<Tp>
     stirling_1_recur(unsigned int n)
     {
       if (n == 0)
-	return std::vector<_Tp>(1, _Tp{1});
+	return std::vector<Tp>(1, Tp{1});
       else
 	{
-	  std::vector<_Tp> _Sold(n + 1), _Snew(n + 1);
-	  _Sold[0] = _Snew[0] = _Tp{0};
-	  _Sold[1] = _Tp{1};
+	  std::vector<Tp> _Sold(n + 1), _Snew(n + 1);
+	  _Sold[0] = _Snew[0] = Tp{0};
+	  _Sold[1] = Tp{1};
 	  if (n == 1)
 	    return _Sold;
 	  for (auto in = 1u; in <= n; ++in)
@@ -371,37 +370,37 @@ namespace detail
    *   S_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0}
    * @f]
    */
-  template<typename _Tp>
-    std::vector<_Tp>
+  template<typename Tp>
+    std::vector<Tp>
     stirling_1(unsigned int n)
-    { return stirling_1_recur<_Tp>(n); }
+    { return stirling_1_recur<Tp>(n); }
 
   /**
    * Return the logarithm of the absolute value of Stirling number
    * of the first kind.
    */
-  template<typename _Tp>
-    _Tp
+  template<typename Tp>
+    Tp
     log_stirling_1(unsigned int n, unsigned int m)
     {
       if (m > n)
-	return -std::numeric_limits<_Tp>::infinity();
+	return -std::numeric_limits<Tp>::infinity();
       else if (m == n)
-	return _Tp{0};
+	return Tp{0};
       else if (m == 0 && n >= 1)
-	return -std::numeric_limits<_Tp>::infinity();
+	return -std::numeric_limits<Tp>::infinity();
       else
-	return std::log(std::abs(stirling_1<_Tp>(n, m)));
+	return std::log(std::abs(stirling_1<Tp>(n, m)));
     }
 
   /**
    * Return the sign of the exponent of the logarithm of the Stirling number
    * of the first kind.
    */
-  template<typename _Tp>
-    inline _Tp
+  template<typename Tp>
+    inline Tp
     log_stirling_1_sign(unsigned int n, unsigned int m)
-    { return (n + m) & 1 ? _Tp{-1} : _Tp{+1}; }
+    { return (n + m) & 1 ? Tp{-1} : Tp{+1}; }
 
   /**
    * Return the Lah number by downward recurrence:
@@ -409,19 +408,19 @@ namespace detail
    *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
    * @f]
    */
-  template<typename _Tp>
-    _Tp
+  template<typename Tp>
+    Tp
     lah_recur(unsigned int n, unsigned int k)
     {
       if (k > n)
-	return _Tp{0};
+	return Tp{0};
       else if (n == 0)
-	return (k == 0 ? _Tp{1} : _Tp{0});
+	return (k == 0 ? Tp{1} : Tp{0});
       else
 	{
-	  _Tp _Lnn = 1;
+	  Tp _Lnn = 1;
 	  for (unsigned int i = 1u; i <= n - k; ++i)
-	    _Lnn *= _Tp(n - i + 1) * _Tp(n - i) / _Tp(i);
+	    _Lnn *= Tp(n - i + 1) * Tp(n - i) / Tp(i);
 	  return _Lnn;
 	}
     }
@@ -433,10 +432,10 @@ namespace detail
    *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
    * @f]
    */
-  template<typename _Tp>
-    inline _Tp
+  template<typename Tp>
+    inline Tp
     lah(unsigned int n, unsigned int k)
-    { return lah_recur<_Tp>(n, k); }
+    { return lah_recur<Tp>(n, k); }
 
   /**
    * Return a vector of Lah numbers defined by downward recurrence:
@@ -444,20 +443,20 @@ namespace detail
    *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
    * @f]
    */
-  template<typename _Tp>
-    std::vector<_Tp>
+  template<typename Tp>
+    std::vector<Tp>
     lah_recur(unsigned int n)
     {
       if (n == 0)
-	return std::vector<_Tp>(1, _Tp{1});
+	return std::vector<Tp>(1, Tp{1});
       else
 	{
-	  std::vector<_Tp> _L(n + 1);
-	  _Tp _Lnn = 1;
+	  std::vector<Tp> _L(n + 1);
+	  Tp _Lnn = 1;
 	  _L[n] = _Lnn;
 	  for (unsigned int i = 1u; i <= n; ++i)
 	    {
-	      _Lnn *= _Tp(n - i + 1) * _Tp(n - i) / _Tp(i);
+	      _Lnn *= Tp(n - i + 1) * Tp(n - i) / Tp(i);
 	      _L[n - i] = _Lnn;
 	    }
 	  return _L;
@@ -471,10 +470,10 @@ namespace detail
    *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
    * @f]
    */
-  template<typename _Tp>
-    inline std::vector<_Tp>
+  template<typename Tp>
+    inline std::vector<Tp>
     lah(unsigned int n)
-    { return lah_recur<_Tp>(n); }
+    { return lah_recur<Tp>(n); }
 
   /**
    * Return a vector of the Bell numbers by summation.
@@ -483,17 +482,17 @@ namespace detail
    * @f]
    * where @f$ S_n^{(k)} @f$ are the Stirling numbers of the second kind.
    */
-  template<typename _Tp>
-    std::vector<_Tp>
+  template<typename Tp>
+    std::vector<Tp>
     bell_series(unsigned int n)
     {
-      std::vector<_Tp> bell(n + 1);
-      bell[0] = _Tp{1};
+      std::vector<Tp> bell(n + 1);
+      bell[0] = Tp{1};
 
       /// @todo Test for blowup in Bell number summation.
       for (unsigned int i = 1; i <= n; ++i)
 	for (unsigned int j = 1; j <= i; ++j)
-	  bell[i] += bell[i - j] * emsr::detail::binomial<_Tp>(i - 1, j - 1);
+	  bell[i] += bell[i - j] * emsr::detail::binomial<Tp>(i - 1, j - 1);
 
       return bell;
     }
@@ -501,10 +500,10 @@ namespace detail
   /**
    * Return a vector of the Bell numbers.
    */
-  template<typename _Tp>
-    inline std::vector<_Tp>
+  template<typename Tp>
+    inline std::vector<Tp>
     bell(unsigned int n)
-    { return bell_series<_Tp>(n); }
+    { return bell_series<Tp>(n); }
 
   /**
    * Evaluate the Bell polynomial
@@ -513,11 +512,11 @@ namespace detail
    * @f]
    * where @f$ S_n^{(k)} @f$ are the Stirling numbers of the second kind.
    */
-  template<typename _Tp, typename _Up>
+  template<typename Tp, typename _Up>
     inline _Up
     bell(unsigned int n, _Up x)
     {
-      const auto _Sn = stirling_2<_Tp>(n);
+      const auto _Sn = stirling_2<Tp>(n);
       auto bell = _Sn[n];
       for (unsigned int i = 1; i < n; ++i)
 	bell = _Sn[n - i] + x * bell;

@@ -9,6 +9,7 @@
 
 #include <emsr/math_constants.h>
 #include <emsr/numeric_limits.h>
+#include <emsr/special_functions.h>
 
   template<typename _Tp>
     struct bessel_nk_series_t

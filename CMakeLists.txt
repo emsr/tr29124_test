@@ -11,7 +11,6 @@ set(CMAKE_CXX_STANDARD 17)
 enable_testing()
 
 add_subdirectory(wrappers)
-add_subdirectory(libstdc++_support)
 add_subdirectory(laboratories)
 
 add_subdirectory(cxx_chebyshev)

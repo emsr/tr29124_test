@@ -7,6 +7,9 @@
 #include <iomanip>
 #include <cmath>
 
+#include <emsr/math_constants.h>
+#include <emsr/numeric_limits.h>
+
 template<typename _Tp>
   _Tp
   mod2pi_cheap(_Tp x)

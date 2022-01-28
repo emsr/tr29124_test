@@ -7,6 +7,8 @@
 #include <cmath>
 #include <limits>
 
+#include <emsr/special_functions.h>
+
 #include <wrap_gsl.h>
 
 

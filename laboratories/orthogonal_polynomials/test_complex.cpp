@@ -5,6 +5,8 @@
 #include <cmath>
 #include <complex>
 
+#include <emsr/sf_legendre.h>
+
 int
 main()
 {

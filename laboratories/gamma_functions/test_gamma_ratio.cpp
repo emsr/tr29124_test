@@ -23,65 +23,65 @@
  *        \frac{\binom{2n-1}{2i+2}B_{2i+2}}{2i+2}B_{2n-2i-2}^{(2x)}(x)
  * @f]
  */
-template<typename _Tp>
-  _Tp
-  bernoulli_2n_2x(unsigned int n, _Tp x)
+template<typename Tp>
+  Tp
+  bernoulli_2n_2x(unsigned int n, Tp x)
   {
-    std::vector<_Tp> _B;
+    std::vector<Tp> _B;
 
-    //_Tp fact =  * bernoulli(0);
-    _B.push_back(_Tp{1});
+    //Tp fact =  * bernoulli(0);
+    _B.push_back(Tp{1});
     if (n == _B.size() - 1)
       return _B.back();
 
-    _B.push_back(-x / _Tp{6});
+    _B.push_back(-x / Tp{6});
     if (n == _B.size() - 1)
       return _B.back();
 
-    _B.push_back(x * (_Tp{1} + x * _Tp{5}) / _Tp{60});
+    _B.push_back(x * (Tp{1} + x * Tp{5}) / Tp{60});
     if (n == _B.size() - 1)
       return _B.back();
 
-    _B.push_back(-x * (_Tp{4}
-		+ x * (_Tp{21}
-		+ x * _Tp{35})) / _Tp{504});
+    _B.push_back(-x * (Tp{4}
+		+ x * (Tp{21}
+		+ x * Tp{35})) / Tp{504});
     if (n == _B.size() - 1)
       return _B.back();
 
-    _B.push_back(x * (_Tp{18}
-	       + x * (_Tp{101}
-	       + x * (_Tp{210}
-	       + x * _Tp{175}))) / _Tp{2160});
+    _B.push_back(x * (Tp{18}
+	       + x * (Tp{101}
+	       + x * (Tp{210}
+	       + x * Tp{175}))) / Tp{2160});
     if (n == _B.size() - 1)
       return _B.back();
 
-    _B.push_back(-x * (_Tp{48}
-		+ x * (_Tp{286}
-		+ x * (_Tp{671}
-		+ x * (_Tp{770}
-		+ x * _Tp{385})))) / _Tp{3168});
+    _B.push_back(-x * (Tp{48}
+		+ x * (Tp{286}
+		+ x * (Tp{671}
+		+ x * (Tp{770}
+		+ x * Tp{385})))) / Tp{3168});
     if (n == _B.size() - 1)
       return _B.back();
 
-    _B.push_back(x * (_Tp{33168}
-	       + x * (_Tp{207974}
-	       + x * (_Tp{531531}
-	       + x * (_Tp{715715}
-	       + x * (_Tp{525525}
-	       + x * _Tp{175175}))))) / _Tp{786240});
+    _B.push_back(x * (Tp{33168}
+	       + x * (Tp{207974}
+	       + x * (Tp{531531}
+	       + x * (Tp{715715}
+	       + x * (Tp{525525}
+	       + x * Tp{175175}))))) / Tp{786240});
     if (n == _B.size() - 1)
       return _B.back();
 
     for (unsigned k = _B.size(); k <= n; ++k)
       {
-	_B.push_back(_Tp{0});
+	_B.push_back(Tp{0});
 	for (unsigned i = 0; i < _B.size() - 1; ++i)
 	  {
-	    _B.back() += emsr::detail::binomial<_Tp>(2 * k - 1, 2 * i + 1)
-			 * emsr::detail::bernoulli_2n<_Tp>(i + 1)
-			 * _B[k - i - 1] / _Tp(2 * i + 2);
+	    _B.back() += emsr::detail::binomial<Tp>(2 * k - 1, 2 * i + 1)
+			 * emsr::detail::bernoulli_2n<Tp>(i + 1)
+			 * _B[k - i - 1] / Tp(2 * i + 2);
 	  }
-	_B.back() *= -_Tp{2} * x;
+	_B.back() *= -Tp{2} * x;
       }
 
     return _B.back();
@@ -100,22 +100,22 @@ template<typename _Tp>
   /**
    * Factorial ratio.
    */
-  template<typename _Tp>
-    _Tp
+  template<typename Tp>
+    Tp
     factorial_ratio(long long m, long long n)
     {
       if (m == n)
-	return _Tp{1};
+	return Tp{1};
       else if (m < 0 && n >= 0)
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return std::numeric_limits<Tp>::quiet_NaN();
       else if (m >= 0 && n < 0)
-	return _Tp{0};
+	return Tp{0};
       else if ((m == 0 || m == 1)
-	    && n < emsr::detail::s_num_factorials<_Tp>)
-	return _Tp{1} / emsr::detail::factorial<_Tp>(n);
+	    && n < emsr::detail::s_num_factorials<Tp>)
+	return Tp{1} / emsr::detail::factorial<Tp>(n);
       else if ((n == 0 || n == 1)
-	    && m < emsr::detail::s_num_factorials<_Tp>)
-	return emsr::detail::factorial<_Tp>(m);
+	    && m < emsr::detail::s_num_factorials<Tp>)
+	return emsr::detail::factorial<Tp>(m);
       else
 	{
 	  // Try a running product.
@@ -127,9 +127,9 @@ template<typename _Tp>
 	  for (; pmin < pmax; ++pmin)
 	    p *= pmin;
 	  if (m < n)
-	    return _Tp{1} / _Tp{p};
+	    return Tp{1} / Tp{p};
 	  else
-	    return _Tp{p};
+	    return Tp{p};
 	}
     }
 
@@ -144,26 +144,26 @@ template<typename _Tp>
    *          + O(n^{-M-1})
    * @f]
    */
-  template<typename _Tn, typename _Tp>
-    _Tp
-    gamma_ratio_buhring(_Tn n, _Tp a, _Tp b, _Tp c,
+  template<typename _Tn, typename Tp>
+    Tp
+    gamma_ratio_buhring(_Tn n, Tp a, Tp b, Tp c,
 			  int s_M = 20, buhring_mode mode = automatic)
     {
       const auto s_eps = 10 * emsr::epsilon(a);
       if (mode == equation2p7
-	|| (mode == automatic && std::real(1 - c - n) < _Tp{0}))
+	|| (mode == automatic && std::real(1 - c - n) < Tp{0}))
 	{
-	  //emsr::WenigerDeltaSum<emsr::BasicSum<_Tp>> sum;
-	  emsr::BasicSum<_Tp> sum;
-	  auto term = _Tp{1};
-	  sum += _Tp{term};
+	  //emsr::WenigerDeltaSum<emsr::BasicSum<Tp>> sum;
+	  emsr::BasicSum<Tp> sum;
+	  auto term = Tp{1};
+	  sum += Tp{term};
 	  auto ca = c - a;
 	  auto cb = c - b;
-	  auto cabn = _Tp{1} + c - a - b - _Tp(n);
+	  auto cabn = Tp{1} + c - a - b - Tp(n);
 	  for (int m = 1; m <= s_M; ++m)
 	    {
 	      auto prev = term;
-	      if (cabn == _Tp{0})
+	      if (cabn == Tp{0})
 		break;
 	      term *= ca / m * cb / cabn;
 	      sum += term;
@@ -179,19 +179,19 @@ template<typename _Tp>
 	}
       else if (mode == equation3p1
 	   || (mode == automatic
-	    && std::real(1 + c - a - b - _Tp(n)) < _Tp{0}))
+	    && std::real(1 + c - a - b - Tp(n)) < Tp{0}))
 	{
-	  //emsr::WenigerDeltaSum<emsr::BasicSum<_Tp>> sum;
-	  emsr::BasicSum<_Tp> sum;
-	  auto term = _Tp{1};
-	  sum += _Tp{term};
+	  //emsr::WenigerDeltaSum<emsr::BasicSum<Tp>> sum;
+	  emsr::BasicSum<Tp> sum;
+	  auto term = Tp{1};
+	  sum += Tp{term};
 	  auto ac = a - c;
 	  auto bc = b - c;
-	  auto cn = _Tp{1} - c - _Tp(n);
+	  auto cn = Tp{1} - c - Tp(n);
 	  for (int m = 1; m <= s_M; ++m)
 	    {
 	      auto prev = term;
-	      if (cn == _Tp{0})
+	      if (cn == Tp{0})
 		break;
 	      term *= ac / m * bc / cn;
 	      sum += term;
@@ -210,25 +210,25 @@ template<typename _Tp>
       else
 	{
 	  // Average 2.7 and 3.1 sums.
-	  emsr::BasicSum<_Tp> sum2p7;
-	  auto term2p7 = _Tp{1};
-	  sum2p7 += _Tp{term2p7};
+	  emsr::BasicSum<Tp> sum2p7;
+	  auto term2p7 = Tp{1};
+	  sum2p7 += Tp{term2p7};
 	  auto ca = c - a;
 	  auto cb = c - b;
-	  auto cabn = _Tp{1} + c - a - b - _Tp(n);
+	  auto cabn = Tp{1} + c - a - b - Tp(n);
 
-	  emsr::BasicSum<_Tp> sum3p1;
-	  auto term3p1 = _Tp{1};
-	  sum3p1 += _Tp{term3p1};
+	  emsr::BasicSum<Tp> sum3p1;
+	  auto term3p1 = Tp{1};
+	  sum3p1 += Tp{term3p1};
 	  auto ac = a - c;
 	  auto bc = b - c;
-	  auto cn = _Tp{1} - c - _Tp(n);
+	  auto cn = Tp{1} - c - Tp(n);
 
 	  bool conv2p7 = false;
 	  bool conv3p1 = false;
 	  for (int m = 1; m <= s_M; ++m)
 	    {
-	      if (cabn == _Tp{0})
+	      if (cabn == Tp{0})
 		conv2p7 = true;
 	      else if (!conv2p7)
 		{
@@ -243,7 +243,7 @@ template<typename _Tp>
 		    conv2p7 = true;
 		}
 
-	      if (cn == _Tp{0})
+	      if (cn == Tp{0})
 		conv3p1 = true;
 	      else if (!conv3p1)
 		{
@@ -261,38 +261,38 @@ template<typename _Tp>
 	      if (conv2p7 && conv3p1)
 		break;
 	    }
-	  return (sum2p7() + sum3p1()) / _Tp{2}
-		* emsr::sin_pi(c + _Tp(n))
-		* emsr::sin_pi(a + b - c + _Tp(n))
+	  return (sum2p7() + sum3p1()) / Tp{2}
+		* emsr::sin_pi(c + Tp(n))
+		* emsr::sin_pi(a + b - c + Tp(n))
 		/ emsr::sin_pi(a + n)
-		* emsr::sin_pi(b + _Tp(n));
+		* emsr::sin_pi(b + Tp(n));
 	}
     }
 
   /**
    * Juggle gamma special cases - from hyperg.
    */
-  template<typename _Tp>
-    _Tp
-    hyperg_reflect(_Tp a, _Tp b, _Tp c)
+  template<typename Tp>
+    Tp
+    hyperg_reflect(Tp a, Tp b, Tp c)
     {
       const auto d = c - a - b;
       const auto intd = emsr::fp_is_integer(d);
-      auto F1 = _Tp{0};
+      auto F1 = Tp{0};
       if (intd)
 	{
 	  if (intd() <= 0)
 	    {
-	      F1 = _Tp{0};
+	      F1 = Tp{0};
 	    }
 	  else
 	    {
-	      F1 = _Tp{0};
+	      F1 = Tp{0};
 	    }
 	}
       else
 	{
-	  F1 = _Tp{0};
+	  F1 = Tp{0};
 	}
     }
 
@@ -313,13 +313,13 @@ template<typename _Tp>
  * where @f$ {}_2F_0(-0,z+b;;1/z) = 1 @f$
  * and @f$ {}_2F_0(-1,z+b;;1/z) = -b/z @f$.
  */
-template<typename _Tp>
-  _Tp
-  gamma_ratio_asymp_2f0(_Tp a, _Tp b, _Tp z)
+template<typename Tp>
+  Tp
+  gamma_ratio_asymp_2f0(Tp a, Tp b, Tp z)
   {
     const auto s_max_iter = 1000;
-    auto fact = _Tp{1};
-    auto _Fnm1 = _Tp{1};
+    auto fact = Tp{1};
+    auto _Fnm1 = Tp{1};
     auto sum = fact * _Fnm1;
     fact *= (b - a);
     auto _Fn = -b / z;
@@ -356,11 +356,11 @@ template<typename _Tp>
  * @f]
  * where @f$ {}_1F_1(-0;z+a;z) = 1 @f$ and @f$ {}_1F_1(-1;z+a;z) = a/(z+a) @f$.
  */
-template<typename _Tp>
-  _Tp
-  gamma_ratio_asymp_1f1(_Tp z, _Tp a, _Tp b)
+template<typename Tp>
+  Tp
+  gamma_ratio_asymp_1f1(Tp z, Tp a, Tp b)
   {
-    return _Tp{0};
+    return Tp{0};
   }
 
 /**
@@ -371,11 +371,11 @@ template<typename _Tp>
  * @f]
  * where @f$@f$ is the Norlund or generalized Bernoulli polynomial.
  */
-template<typename _Tp>
-  _Tp
-  gamma_ratio_asymp_erdelyi_tricomi(_Tp z, _Tp a, _Tp b)
+template<typename Tp>
+  Tp
+  gamma_ratio_asymp_erdelyi_tricomi(Tp z, Tp a, Tp b)
   {
-    return _Tp{0};
+    return Tp{0};
   }
 
 /**
@@ -385,21 +385,21 @@ template<typename _Tp>
  * @f]
  * for large @f$ a @f$.
  */
-template<typename _Tp>
-  _Tp
-  gamma_ratio_asymp(_Tp z, _Tp a)
+template<typename Tp>
+  Tp
+  gamma_ratio_asymp(Tp z, Tp a)
   {
-    return _Tp{0};
+    return Tp{0};
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_gamma_ratio(_Tp proto = _Tp{})
+  test_gamma_ratio(Tp proto = Tp{})
   {
-    //using _Val = _Tp;
-    //using _Real = emsr::num_traits_t<_Val>;
+    //using Val = Tp;
+    //using Real = emsr::num_traits_t<Val>;
 
-    std::vector<_Tp> parm{_Tp{0.25}, _Tp{0.5}, _Tp{1}, _Tp{2}, _Tp{5}};
+    std::vector<Tp> parm{Tp{0.25}, Tp{0.5}, Tp{1}, Tp{2}, Tp{5}};
 
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -419,7 +419,7 @@ template<typename _Tp>
 	for (auto c : parm)
 	  for (int i = i_min; i <= +200; ++i)
 	    {
-	      auto n = _Tp{0.1Q} * i;
+	      auto n = Tp{0.1Q} * i;
 	      //auto gamrat0 = gamma_ratio_log(a, b, c, z);
 	      auto gamrat = gamma_ratio_buhring(n, a, b, c);
 	      std::cout << ' ' << std::setw(width) << n
@@ -433,17 +433,17 @@ template<typename _Tp>
 	    }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_gamma_ratio_buhring(_Tp proto = _Tp{})
+  test_gamma_ratio_buhring(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    _Tp a = -11.7;
-    _Tp b = -11.2;
-    _Tp c = -11.4;
+    Tp a = -11.7;
+    Tp b = -11.2;
+    Tp c = -11.4;
 
     std::cout << '\n';
 
@@ -498,9 +498,9 @@ template<typename _Tp>
       }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_bernoulli_2n_2x(_Tp proto = _Tp{})
+  test_bernoulli_2n_2x(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -526,20 +526,20 @@ template<typename _Tp>
  *          B_{(2\rho)}^{2k}(\rho)
  * @f]
  */
-template<typename _Tp>
-  _Tp
-  gamma_ratio_asymp_field(_Tp z, _Tp a, _Tp b)
+template<typename Tp>
+  Tp
+  gamma_ratio_asymp_field(Tp z, Tp a, Tp b)
   {
     const auto bma = b - a;
-    const auto rho = (_Tp{1} + a + b) / _Tp{2};
+    const auto rho = (Tp{1} + a + b) / Tp{2};
     const auto arg = z + a - rho;
     const auto arg2 = arg * arg;
-    auto fact = _Tp{1};
-    auto ratio = _Tp{1};
+    auto fact = Tp{1};
+    auto ratio = Tp{1};
     for (int k = 1; k < 7; ++k)
       {
-	fact *= ((bma + 2 * k - 2) / _Tp(2 * k - 1))
-		* ((bma + 2 * k - 1) / _Tp(2 * k))
+	fact *= ((bma + 2 * k - 2) / Tp(2 * k - 1))
+		* ((bma + 2 * k - 1) / Tp(2 * k))
 		/ arg2;
 	ratio += fact * bernoulli_2n_2x(k, rho);
       }
@@ -556,29 +556,29 @@ template<typename _Tp>
  * @f]
  * where @f$ \rho = -\nu/2 @f$.
  */
-template<typename _Tp>
-  _Tp
-  binomial_asymp_field(_Tp nu, unsigned int k)
+template<typename Tp>
+  Tp
+  binomial_asymp_field(Tp nu, unsigned int k)
   {
     constexpr auto s_max_iter = 1000U;
     const auto s_eps = emsr::epsilon(nu);
-    const auto rho = -nu / _Tp{2};
-    const auto pocharg = nu + _Tp{1};
-    const auto powarg = _Tp(k) + rho;
+    const auto rho = -nu / Tp{2};
+    const auto pocharg = nu + Tp{1};
+    const auto powarg = Tp(k) + rho;
     const auto powarg2 = powarg * powarg;
     auto sum = bernoulli_2n_2x(0, rho);
-    auto fact = _Tp{1};
+    auto fact = Tp{1};
     for (int i = 1; i < s_max_iter; ++i)
       {
-	fact *= ((pocharg + _Tp(2 * i - 2)) / _Tp(2 * i - 1))
-		* ((pocharg + _Tp(2 * i - 1)) / _Tp(2 * i))
+	fact *= ((pocharg + Tp(2 * i - 2)) / Tp(2 * i - 1))
+		* ((pocharg + Tp(2 * i - 1)) / Tp(2 * i))
 		/ powarg2;
 	const auto term = bernoulli_2n_2x(i, rho) * fact;
 	sum += term;
 	if (std::abs(term) < s_eps * std::abs(sum))
 	  break;
       }
-    return _Tp((k & 1) ? -1 : +1) / std::pow(powarg, pocharg)
+    return Tp((k & 1) ? -1 : +1) / std::pow(powarg, pocharg)
 	 * sum * gamma_recip(-nu);
   }
 

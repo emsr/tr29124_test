@@ -6,6 +6,8 @@
 #include <iostream>
 #include <iomanip>
 
+#include <emsr/sf_polylog.h>
+
 int
 main()
 {

@@ -38,11 +38,11 @@ namespace emsr
    *
    * @param x The real upper integration limit
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    sinint(_Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    sinint(Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::sincosint<type>(x).first;
     }
 
@@ -78,11 +78,11 @@ namespace emsr
    *
    * @param x The real upper integration limit
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    cosint(_Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    cosint(Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::sincosint<type>(x).second;
     }
 

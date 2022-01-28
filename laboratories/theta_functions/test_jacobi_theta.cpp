@@ -7,6 +7,8 @@
 #include <cmath>
 
 #include <emsr/float128_io.h>
+#include <emsr/numeric_limits.h>
+#include <emsr/sf_theta.h>
 
 /**
  * Plot the thetas over x= [0, 2pi] for q = 0, 0.1, ..., 0.9

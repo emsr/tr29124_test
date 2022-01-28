@@ -7,6 +7,7 @@
 #include <cmath>
 
 #include <emsr/float128_io.h>
+#include <emsr/sf_cardinal.h>
 
 #include <wrap_boost.h>
 #include <wrap_gsl.h>

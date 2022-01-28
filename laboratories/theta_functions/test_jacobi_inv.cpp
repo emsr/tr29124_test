@@ -7,6 +7,9 @@
 #include <iomanip>
 #include <limits>
 
+#include <emsr/fp_type_util.h>
+#include <emsr/sf_theta.h>
+
   // Jacobi elliptic cosine amplitude inverse functions.
 
   /**

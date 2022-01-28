@@ -41,17 +41,17 @@ namespace emsr
    *              \frac{(-1)^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
    * @f]
    *
-   * @tparam _Tpnu The floating-point type of the order @c nu.
+   * @tparam Tpnu The floating-point type of the order @c nu.
    * @tparam _Tp The floating-point type of the argument @c x.
    * @param  nu  The order
    * @param  x   The argument, <tt> x >= 0 </tt>
    * @throw std::domain_error if <tt> x < 0 </tt>.
    */
-  template<typename _Tpnu, typename _Tp>
-    inline emsr::fp_promote_t<_Tpnu, _Tp>
-    cyl_bessel_j(_Tpnu nu, _Tp x)
+  template<typename Tpnu, typename _Tp>
+    inline emsr::fp_promote_t<Tpnu, _Tp>
+    cyl_bessel_j(Tpnu nu, _Tp x)
     {
-      using type = emsr::fp_promote_t<_Tpnu, _Tp>;
+      using type = emsr::fp_promote_t<Tpnu, _Tp>;
       return detail::cyl_bessel_j<type>(nu, x);
     }
 
@@ -89,17 +89,17 @@ namespace emsr
    * where @f$ x >= 0 @f$ and for integral order @f$ \nu = n @f$
    * a limit is taken: @f$ lim_{\nu \to n} @f$.
    *
-   * @tparam _Tpnu The floating-point type of the order @c nu.
+   * @tparam Tpnu The floating-point type of the order @c nu.
    * @tparam _Tp The floating-point type of the argument @c x.
    * @param  nu  The order.
    * @param  x   The argument, <tt> x >= 0 </tt>.
    * @throw std::domain_error if <tt> x < 0 </tt>.
    */
-  template<typename _Tpnu, typename _Tp>
-    inline emsr::fp_promote_t<_Tpnu, _Tp>
-    cyl_neumann(_Tpnu nu, _Tp x)
+  template<typename Tpnu, typename _Tp>
+    inline emsr::fp_promote_t<Tpnu, _Tp>
+    cyl_neumann(Tpnu nu, _Tp x)
     {
-      using type = emsr::fp_promote_t<_Tpnu, _Tp>;
+      using type = emsr::fp_promote_t<Tpnu, _Tp>;
       return detail::cyl_neumann_n<type>(nu, x);
     }
 
@@ -231,11 +231,11 @@ namespace emsr
    * @param nu The real order
    * @param z The real argument
    */
-  template<typename _Tpnu, typename _Tp>
-    inline std::complex<emsr::fp_promote_t<_Tpnu, _Tp>>
-    cyl_hankel_1(_Tpnu nu, _Tp z)
+  template<typename Tpnu, typename _Tp>
+    inline std::complex<emsr::fp_promote_t<Tpnu, _Tp>>
+    cyl_hankel_1(Tpnu nu, _Tp z)
     {
-      using type = emsr::fp_promote_t<_Tpnu, _Tp>;
+      using type = emsr::fp_promote_t<Tpnu, _Tp>;
       return emsr::detail::cyl_hankel_1<type>(nu, z);
     }
 
@@ -279,11 +279,11 @@ namespace emsr
    * @param nu The real order
    * @param z The real argument
    */
-  template<typename _Tpnu, typename _Tp>
-    inline std::complex<emsr::fp_promote_t<_Tpnu, _Tp>>
-    cyl_hankel_2(_Tpnu nu, _Tp z)
+  template<typename Tpnu, typename _Tp>
+    inline std::complex<emsr::fp_promote_t<Tpnu, _Tp>>
+    cyl_hankel_2(Tpnu nu, _Tp z)
     {
-      using type = emsr::fp_promote_t<_Tpnu, _Tp>;
+      using type = emsr::fp_promote_t<Tpnu, _Tp>;
       return emsr::detail::cyl_hankel_2<type>(nu, z);
     }
 

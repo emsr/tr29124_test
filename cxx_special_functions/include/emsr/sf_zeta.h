@@ -133,11 +133,11 @@ namespace emsr
    *
    * @param x The argument.
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    dilog(_Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    dilog(Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::dilog<type>(x);
     }
 

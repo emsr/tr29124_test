@@ -111,11 +111,11 @@ namespace emsr
    * @param nu The periodic (period = 2) argument
    * @param x The argument
    */
-  template<typename _Tpnu, typename Tp>
-    inline emsr::fp_promote_t<_Tpnu, Tp>
-    theta_1(_Tpnu nu, Tp x)
+  template<typename Tpnu, typename Tp>
+    inline emsr::fp_promote_t<Tpnu, Tp>
+    theta_1(Tpnu nu, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tpnu, Tp>;
+      using type = emsr::fp_promote_t<Tpnu, Tp>;
       return emsr::detail::theta_1<type>(nu, x);
     }
 
@@ -154,11 +154,11 @@ namespace emsr
    * @param nu The periodic (period = 2) argument
    * @param x The argument
    */
-  template<typename _Tpnu, typename Tp>
-    inline emsr::fp_promote_t<_Tpnu, Tp>
-    theta_2(_Tpnu nu, Tp x)
+  template<typename Tpnu, typename Tp>
+    inline emsr::fp_promote_t<Tpnu, Tp>
+    theta_2(Tpnu nu, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tpnu, Tp>;
+      using type = emsr::fp_promote_t<Tpnu, Tp>;
       return emsr::detail::theta_2<type>(nu, x);
     }
 
@@ -197,11 +197,11 @@ namespace emsr
    * @param nu The periodic (period = 1) argument
    * @param x The argument
    */
-  template<typename _Tpnu, typename Tp>
-    inline emsr::fp_promote_t<_Tpnu, Tp>
-    theta_3(_Tpnu nu, Tp x)
+  template<typename Tpnu, typename Tp>
+    inline emsr::fp_promote_t<Tpnu, Tp>
+    theta_3(Tpnu nu, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tpnu, Tp>;
+      using type = emsr::fp_promote_t<Tpnu, Tp>;
       return emsr::detail::theta_3<type>(nu, x);
     }
 
@@ -240,11 +240,11 @@ namespace emsr
    * @param nu The periodic (period = 1) argument
    * @param x The argument
    */
-  template<typename _Tpnu, typename Tp>
-    inline emsr::fp_promote_t<_Tpnu, Tp>
-    theta_4(_Tpnu nu, Tp x)
+  template<typename Tpnu, typename Tp>
+    inline emsr::fp_promote_t<Tpnu, Tp>
+    theta_4(Tpnu nu, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tpnu, Tp>;
+      using type = emsr::fp_promote_t<Tpnu, Tp>;
       return emsr::detail::theta_4<type>(nu, x);
     }
 

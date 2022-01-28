@@ -31,18 +31,18 @@ namespace emsr
    * The Stirling number of the first kind is denoted by other symbols
    * in the literature, usually @f$ S_n^{(m)} @f$.
    */
-  template<typename _Tp>
-    inline _Tp
+  template<typename Tp>
+    inline Tp
     stirling_1(unsigned int n, unsigned int m)
-    { return emsr::detail::stirling_1<_Tp>(n, m); }
+    { return emsr::detail::stirling_1<Tp>(n, m); }
 
   /**
    * Return a vector of Stirling numbers of the first kind.
    */
-  template<typename _Tp>
-    inline std::vector<_Tp>
+  template<typename Tp>
+    inline std::vector<Tp>
     stirling_1(unsigned int n)
-    { return emsr::detail::stirling_1<_Tp>(n); }
+    { return emsr::detail::stirling_1<Tp>(n); }
 
   /**
    * Return the Stirling number of the second kind by series expansion
@@ -58,18 +58,18 @@ namespace emsr
    * in the literature: 
    * @f$ \sigma_n^{(m)} @f$, @f$ \textit{S}_n^{(m)} @f$ and others.
    */
-  template<typename _Tp>
-    inline _Tp
+  template<typename Tp>
+    inline Tp
     stirling_2(unsigned int n, unsigned int m)
-    { return emsr::detail::stirling_2<_Tp>(n, m); }
+    { return emsr::detail::stirling_2<Tp>(n, m); }
 
   /**
    * Return a vector of Stirling numbers of the second kind.
    */
-  template<typename _Tp>
-    inline std::vector<_Tp>
+  template<typename Tp>
+    inline std::vector<Tp>
     stirling_2(unsigned int n)
-    { return emsr::detail::stirling_2<_Tp>(n); }
+    { return emsr::detail::stirling_2<Tp>(n); }
 
   /**
    * Return the Lah number.
@@ -78,10 +78,10 @@ namespace emsr
    *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
    * @f]
    */
-  template<typename _Tp>
-    inline _Tp
+  template<typename Tp>
+    inline Tp
     lah(unsigned int n, unsigned int k)
-    { return emsr::detail::lah<_Tp>(n, k); }
+    { return emsr::detail::lah<Tp>(n, k); }
 
   /**
    * Return a vector of Lah numbers.
@@ -90,10 +90,10 @@ namespace emsr
    *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
    * @f]
    */
-  template<typename _Tp>
-    inline std::vector<_Tp>
+  template<typename Tp>
+    inline std::vector<Tp>
     lah(unsigned int n)
-    { return emsr::detail::lah<_Tp>(n); }
+    { return emsr::detail::lah<Tp>(n); }
 
   /**
    * Return a vector of the Bell numbers
@@ -102,10 +102,10 @@ namespace emsr
    * @f]
    * where @f$ S_n^{(k)} @f$ are the Stirling numbers of the second kind.
    */
-  template<typename _Tp>
-    inline std::vector<_Tp>
+  template<typename Tp>
+    inline std::vector<Tp>
     bell(unsigned int n)
-    { return emsr::detail::bell<_Tp>(n); }
+    { return emsr::detail::bell<Tp>(n); }
 
   /**
    * Evaluate the Bell polynomial
@@ -114,7 +114,7 @@ namespace emsr
    * @f]
    * where @f$ S_n^{(k)} @f$ are the Stirling numbers of the second kind.
    */
-  template<typename _Tp, typename _Up>
+  template<typename Tp, typename _Up>
     inline _Up
     bell(unsigned int n, _Up x)
     { return emsr::detail::bell(n, x); }

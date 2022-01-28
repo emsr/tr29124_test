@@ -12,6 +12,9 @@
 #include <complex>
 
 #include <emsr/float128_io.h>
+#include <emsr/fp_type_util.h>
+#include <emsr/numeric_limits.h>
+#include <emsr/sf_expint.h>
 
 /*
                  series     asymp     large-n

@@ -8,6 +8,8 @@
 #include <cmath>
 #include <complex>
 
+#include <emsr/sf_trigint.h>
+
 int
 main()
 {

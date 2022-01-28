@@ -16,14 +16,14 @@
 
 #include <wrap_boost.h>
 
-template<typename _Tp, typename _Gamma>
+template<typename Tp, typename _Gamma>
   void
   test_gamma(_Gamma gamma)
   {
-    using _Val = _Tp;
-    using _Real = emsr::num_traits_t<_Val>;
+    using Val = Tp;
+    using Real = emsr::num_traits_t<Val>;
 
-    std::cout.precision(std::numeric_limits<_Real>::digits10);
+    std::cout.precision(std::numeric_limits<Real>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -38,8 +38,8 @@ template<typename _Tp, typename _Gamma>
     int i_min = -200;
     for (int i = i_min; i <= +500; ++i)
       {
-	auto a = _Tp{0.10L} * i;
-	auto gam = gamma(a - _Tp{1});
+	auto a = Tp{0.10L} * i;
+	auto gam = gamma(a - Tp{1});
 	auto gam0 = std::lgamma(a);
 	auto glgam = emsr::detail::log_gamma(a);
 	auto blgam = beast::lgamma(a);

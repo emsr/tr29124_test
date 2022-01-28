@@ -9,6 +9,9 @@
 #include <iostream>
 #include <iomanip>
 
+#include <emsr/numeric_limits.h>
+#include <emsr/math_constants.h>
+
 template<typename _Tp>
   std::complex<_Tp>
   wright_omega(const std::complex<_Tp>& z,

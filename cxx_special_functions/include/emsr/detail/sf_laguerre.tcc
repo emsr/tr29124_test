@@ -1,11 +1,11 @@
 
 // Copyright (C) 2006-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -48,6 +48,7 @@
 #include <emsr/specfun_state.h>
 #include <emsr/quadrature_point.h>
 #include <emsr/sf_trig.h> // sin_pi, cos_pi, polar_pi
+#include <emsr/sf_gamma.h>
 
 namespace emsr
 {
@@ -59,8 +60,8 @@ namespace detail
    *        of degree @f$ n @f$, order @f$ \alpha > -1 @f$ for large n.
    * Abramowitz & Stegun, 13.5.21
    *
-   * @tparam _Tpa The type of the order.
-   * @tparam _Tp The type of the parameter.
+   * @tparam Tpa The type of the order.
+   * @tparam Tp The type of the parameter.
    * @param n The degree of the Laguerre function.
    * @param alpha1 The order of the Laguerre function.
    * @param x The argument of the Laguerre function.
@@ -69,32 +70,32 @@ namespace detail
    *
    *  This is from the GNU Scientific Library.
    */
-  template<typename _Tpa, typename _Tp>
-    _Tp
-    laguerre_large_n(unsigned n, _Tpa alpha1, _Tp x)
+  template<typename Tpa, typename Tp>
+    Tp
+    laguerre_large_n(unsigned n, Tpa alpha1, Tp x)
     {
-      const auto a = -_Tp(n);
-      const auto b = _Tp(alpha1) + _Tp{1};
-      const auto eta = _Tp{2} * b - _Tp{4} * a;
+      const auto a = -Tp(n);
+      const auto b = Tp(alpha1) + Tp{1};
+      const auto eta = Tp{2} * b - Tp{4} * a;
       const auto cos2th = x / eta;
-      const auto sin2th = _Tp{1} - cos2th;
+      const auto sin2th = Tp{1} - cos2th;
       const auto th = std::acos(std::sqrt(cos2th));
-      const auto pre_h = (emsr::pi_v<_Tp> / _Tp{2})
-			* (emsr::pi_v<_Tp> / _Tp{2})
+      const auto pre_h = (emsr::pi_v<Tp> / Tp{2})
+			* (emsr::pi_v<Tp> / Tp{2})
 			* eta * eta * cos2th * sin2th;
 
-      const auto lg_b = log_gamma(_Tp(n) + b);
-      const auto lnfact = log_gamma(_Tp(n + 1));
+      const auto lg_b = log_gamma(Tp(n) + b);
+      const auto lnfact = log_gamma(Tp(n + 1));
 
-      const auto pre_term1 = _Tp{0.5L} * (_Tp{1} - b)
-			     * std::log(_Tp{0.25L} * x * eta);
-      const auto pre_term2 = _Tp{0.25L} * std::log(pre_h);
-      const auto lnpre = lg_b - lnfact + _Tp{0.5L} * x
+      const auto pre_term1 = Tp{0.5L} * (Tp{1} - b)
+			     * std::log(Tp{0.25L} * x * eta);
+      const auto pre_term2 = Tp{0.25L} * std::log(pre_h);
+      const auto lnpre = lg_b - lnfact + Tp{0.5L} * x
 			 + pre_term1 - pre_term2;
       const auto ser_term1 = emsr::sin_pi(a);
-      const auto ser_term2 = std::sin(_Tp{0.25L} * eta
-			     * (_Tp{2} * th - std::sin(_Tp{2} * th))
-			      + emsr::pi_v<_Tp> / _Tp{4});
+      const auto ser_term2 = std::sin(Tp{0.25L} * eta
+			     * (Tp{2} * th - std::sin(Tp{2} * th))
+			      + emsr::pi_v<Tp> / Tp{4});
       const auto ser = ser_term1 + ser_term2;
 
       return std::exp(lnpre) * ser;
@@ -117,24 +118,24 @@ namespace detail
    *
    * This is from the GNU Scientific Library.
    *
-   * @tparam _Tpa The type of the order.
-   * @tparam _Tp The type of the parameter.
+   * @tparam Tpa The type of the order.
+   * @tparam Tp The type of the parameter.
    * @param n The degree of the Laguerre function.
    * @param alpha1 The order of the Laguerre function.
    * @param x The argument of the Laguerre function.
    * @return The value of the Laguerre function of degree n,
    * 	     order @f$ \alpha @f$, and argument x.
    */
-  template<typename _Tpa, typename _Tp>
-    _Tp
-    laguerre_hyperg(unsigned int n, _Tpa alpha1, _Tp x)
+  template<typename Tpa, typename Tp>
+    Tp
+    laguerre_hyperg(unsigned int n, Tpa alpha1, Tp x)
     {
-      const auto b = _Tp(alpha1) + _Tp{1};
+      const auto b = Tp(alpha1) + Tp{1};
       const auto mx = -x;
-      const auto tc_sgn = (x < _Tp{0} ? _Tp{1}
-			 : ((n % 2 == 1) ? -_Tp{1} : _Tp{1}));
+      const auto tc_sgn = (x < Tp{0} ? Tp{1}
+			 : ((n % 2 == 1) ? -Tp{1} : Tp{1}));
       // Get |x|^n/n!
-      auto tc = _Tp{1};
+      auto tc = Tp{1};
       const auto ax = std::abs(x);
       for (unsigned int k = 1; k <= n; ++k)
 	tc *= (ax / k);
@@ -143,8 +144,8 @@ namespace detail
       auto sum = term;
       for (int k = int(n) - 1; k >= 0; --k)
 	{
-	  term *= ((b + _Tp(k)) / _Tp(int(n) - k))
-		  * _Tp(k + 1) / mx;
+	  term *= ((b + Tp(k)) / Tp(int(n) - k))
+		  * Tp(k + 1) / mx;
 	  sum += term;
 	}
 
@@ -175,63 +176,63 @@ namespace detail
    *    L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
    * @f]
    *
-   * @tparam _Tpa The type of the order.
-   * @tparam _Tp The type of the parameter.
+   * @tparam Tpa The type of the order.
+   * @tparam Tp The type of the parameter.
    * @param n The degree of the Laguerre function.
    * @param alpha1 The order of the Laguerre function.
    * @param x The argument of the Laguerre function.
    * @return The value of the Laguerre function of order n,
    * 	     degree @f$ \alpha @f$, and argument x.
    */
-  template<typename _Tpa, typename _Tp>
-    emsr::laguerre_t<_Tpa, _Tp>
-    laguerre_recur(unsigned int n, _Tpa alpha1, _Tp x)
+  template<typename Tpa, typename Tp>
+    emsr::laguerre_t<Tpa, Tp>
+    laguerre_recur(unsigned int n, Tpa alpha1, Tp x)
     {
       // Compute L_0.
-      auto L_0 = _Tp{1};
+      auto L_0 = Tp{1};
       if  (n == 0)
-	return {n, alpha1, x, L_0, _Tp{0}, _Tp{0}};
+	return {n, alpha1, x, L_0, Tp{0}, Tp{0}};
 
       // Compute L_1^{(alpha)}.
-      auto L_1 = -x + _Tp{1} + _Tp(alpha1);
+      auto L_1 = -x + Tp{1} + Tp(alpha1);
       if  (n == 1)
-	return {n, alpha1, x, L_1, L_0, _Tp{0}};
+	return {n, alpha1, x, L_1, L_0, Tp{0}};
 
       // Compute L_n^{(alpha)} by recursion on n.
       auto L_nm2 = L_0;
       auto L_nm1 = L_1;
-      auto L_n = (_Tp{3} + _Tp(alpha1) - x) * L_nm1 / _Tp{2}
-		  - (_Tp{1} + _Tp(alpha1)) * L_nm2 / _Tp{2};
+      auto L_n = (Tp{3} + Tp(alpha1) - x) * L_nm1 / Tp{2}
+		  - (Tp{1} + Tp(alpha1)) * L_nm2 / Tp{2};
       for  (unsigned int nn = 3; nn <= n; ++nn)
 	{
 	    L_nm2 = L_nm1;
 	    L_nm1 = L_n;
-	    L_n = (_Tp(2 * nn - 1) + _Tp(alpha1) - x)
-		  * L_nm1 / _Tp(nn)
-		  - (_Tp(nn - 1) + _Tp(alpha1)) * L_nm2 / _Tp(nn);
+	    L_n = (Tp(2 * nn - 1) + Tp(alpha1) - x)
+		  * L_nm1 / Tp(nn)
+		  - (Tp(nn - 1) + Tp(alpha1)) * L_nm2 / Tp(nn);
 	}
 
       // Derivative.
-      //auto Lp_n = (_Tp(n) * L_nm1 - _Tp(n + alpha1) * L_nm2) / x;
+      //auto Lp_n = (Tp(n) * L_nm1 - Tp(n + alpha1) * L_nm2) / x;
       return {n, alpha1, x, L_n, L_nm1, L_nm2};
     }
 
   /**
    * Return an array of abscissae and weights for the Gauss-Laguerre rule.
    */
-  template<typename _Tp>
-    std::vector<emsr::QuadraturePoint<_Tp>>
-    laguerre_zeros(unsigned int n, _Tp alpha1)
+  template<typename Tp>
+    std::vector<emsr::QuadraturePoint<Tp>>
+    laguerre_zeros(unsigned int n, Tp alpha1)
     {
       const auto s_eps = emsr::epsilon(alpha1);
       const unsigned int s_maxit = 1000;
 
-      std::vector<emsr::QuadraturePoint<_Tp>> pt(n);
+      std::vector<emsr::QuadraturePoint<Tp>> pt(n);
 
       for (auto i = 1u; i <= n; ++i)
 	{
-	  auto z = _Tp{0};
-	  auto w = _Tp{0};
+	  auto z = Tp{0};
+	  auto w = Tp{0};
 	  // Clever approximations for roots.
 	  if (i == 1)
 	    z += (1.0 + alpha1)
@@ -248,24 +249,24 @@ namespace detail
 	  // Iterate TTRR for polynomial values
 	  for (auto its = 1u; its <= s_maxit; ++its)
 	    {
-	      auto L2 = _Tp{0};
-	      auto L1 = _Tp{1};
+	      auto L2 = Tp{0};
+	      auto L1 = Tp{1};
 	      for (auto j = 1u; j <= n; ++j)
 		{
 		  auto L3 = L2;
 		  L2 = L1;
-		  L1 = ((_Tp(2 * j - 1 + alpha1) - z) * L2
-			- (_Tp(j - 1 + alpha1)) * L3) / _Tp(j);
+		  L1 = ((Tp(2 * j - 1 + alpha1) - z) * L2
+			- (Tp(j - 1 + alpha1)) * L3) / Tp(j);
 		}
 	      // Derivative.
-	      auto Lp = (_Tp(n) * L1 - _Tp(n + alpha1) * L2) / z;
+	      auto Lp = (Tp(n) * L1 - Tp(n + alpha1) * L2) / z;
 	      // Newton's rule for root.
 	      auto z1 = z;
 	      z = z1 - L1 / Lp;
 	      if (std::abs(z - z1) <= s_eps)
 		{
-		  auto exparg = std::lgamma(_Tp(alpha1 + n))
-				- std::lgamma(_Tp(n));
+		  auto exparg = std::lgamma(Tp(alpha1 + n))
+				- std::lgamma(Tp(n));
 		  w = -std::exp(exparg) / (Lp * n * L2);
 		  break;
 		}
@@ -301,37 +302,37 @@ namespace detail
    * 	 L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
    * @f]
    *
-   * @tparam _Tpa The type of the order.
-   * @tparam _Tp The type of the parameter.
+   * @tparam Tpa The type of the order.
+   * @tparam Tp The type of the parameter.
    * @param n The degree of the Laguerre function.
    * @param alpha1 The order of the Laguerre function.
    * @param x The argument of the Laguerre function.
    * @return The value of the Laguerre function of degree n,
    *         order @f$ \alpha @f$, and argument x.
    */
-  template<typename _Tpa, typename _Tp>
-    _Tp
-    laguerre(unsigned int n, _Tpa alpha1, _Tp x)
+  template<typename Tpa, typename Tp>
+    Tp
+    laguerre(unsigned int n, Tpa alpha1, Tp x)
     {
       const unsigned int n_huge = 10000000;
       if (std::isnan(x))
 	return emsr::quiet_NaN(x);
       else if (n == 0)
-	return _Tp{1};
+	return Tp{1};
       else if (n == 1)
-	return _Tp{1} + _Tp(alpha1) - x;
-      else if (x == _Tp{0})
+	return Tp{1} + Tp(alpha1) - x;
+      else if (x == Tp{0})
 	{
-	  auto prod = _Tp(alpha1) + _Tp{1};
+	  auto prod = Tp(alpha1) + Tp{1};
 	  for (unsigned int k = 2; k <= n; ++k)
-	    prod *= (_Tp(alpha1) + _Tp(k)) / _Tp(k);
+	    prod *= (Tp(alpha1) + Tp(k)) / Tp(k);
 	  return prod;
 	}
-      else if (n > n_huge && _Tp(alpha1) > -_Tp{1}
-	    && x < _Tp{2} * (_Tp(alpha1) + _Tp{1}) + _Tp(4 * n))
+      else if (n > n_huge && Tp(alpha1) > -Tp{1}
+	    && x < Tp{2} * (Tp(alpha1) + Tp{1}) + Tp(4 * n))
 	return laguerre_large_n(n, alpha1, x);
-      else if (_Tp(alpha1) >= _Tp{0}
-	   || (x > _Tp{0} && _Tp(alpha1) < -_Tp(n + 1)))
+      else if (Tp(alpha1) >= Tp{0}
+	   || (x > Tp{0} && Tp(alpha1) < -Tp(n + 1)))
 	return laguerre_recur(n, alpha1, x).L_n;
       else
 	return laguerre_hyperg(n, alpha1, x);
@@ -352,18 +353,18 @@ namespace detail
    * 	 L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x})
    * @f]
    *
-   * @tparam _Tpa The type of the order.
-   * @tparam _Tp The type of the parameter
+   * @tparam Tpa The type of the order.
+   * @tparam Tp The type of the parameter
    * @param n The degree
    * @param alpha The order
    * @param x The argument
    * @return The value of the associated Laguerre polynomial of order n,
    *         degree m, and argument x.
    */
-  template<typename _Tpa, typename _Tp>
-    _Tp
-    assoc_laguerre(unsigned int n, _Tpa alpha, _Tp x)
-    { return laguerre<_Tpa, _Tp>(n, alpha, x); }
+  template<typename Tpa, typename Tp>
+    Tp
+    assoc_laguerre(unsigned int n, Tpa alpha, Tp x)
+    { return laguerre<Tpa, Tp>(n, alpha, x); }
 
 
   /**
@@ -380,10 +381,10 @@ namespace detail
    * @return The value of the Laguerre polynomial of order n
    * 	     and argument x.
    */
-  template<typename _Tp>
-    _Tp
-    laguerre(unsigned int n, _Tp x)
-    { return laguerre<unsigned int, _Tp>(n, 0, x); }
+  template<typename Tp>
+    Tp
+    laguerre(unsigned int n, Tp x)
+    { return laguerre<unsigned int, Tp>(n, 0, x); }
 
 } // namespace detail
 } // namespace emsr

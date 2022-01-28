@@ -39,36 +39,36 @@
     return -1;
   }
 
-  template<typename _Tp>
-    _Tp
-    p(int k, _Tp g)
+  template<typename Tp>
+    Tp
+    p(int k, Tp g)
     {
-      const auto s_pi  = emsr::pi_v<_Tp>;
-      auto fact = std::sqrt(_Tp{2} / s_pi);
+      const auto s_pi  = emsr::pi_v<Tp>;
+      auto fact = std::sqrt(Tp{2} / s_pi);
       auto sum = cheby(2 * k + 1, 1) * fact
-		 * std::exp(_Tp(g + 0.5Q))
-		 / std::sqrt(_Tp(g + 0.5Q));
+		 * std::exp(Tp(g + 0.5Q))
+		 / std::sqrt(Tp(g + 0.5Q));
       for (int a = 1; a <= k; ++a)
 	{
-	  fact *= _Tp(2 * a - 1) / 2;
+	  fact *= Tp(2 * a - 1) / 2;
 	  sum += cheby(2 * k + 1, 2 * a + 1) * fact
-		 * std::pow(_Tp(a + g + 0.5Q), -_Tp(a + 0.5Q))
-		 * std::exp(_Tp(a + g + 0.5Q));
+		 * std::pow(Tp(a + g + 0.5Q), -Tp(a + 0.5Q))
+		 * std::exp(Tp(a + g + 0.5Q));
 	}
       return sum;
     }
 
-  template<typename _Tp>
+  template<typename Tp>
     void
     lanczos()
     {
-      std::cout.precision(std::numeric_limits<_Tp>::digits10);
+      std::cout.precision(std::numeric_limits<Tp>::digits10);
       std::cout << std::showpoint << std::scientific;
       auto width = 8 + std::cout.precision();
 
       // From Pugh..
       int n_old = 0;
-      int n = -2 - 0.3 * std::log(std::numeric_limits<_Tp>::epsilon());
+      int n = -2 - 0.3 * std::log(std::numeric_limits<Tp>::epsilon());
       std::cout << "n_Pugh = " << n << '\n';
       if (n > 1000)
 	{
@@ -76,12 +76,12 @@
 	  return;
 	}
 
-      auto g = n - _Tp{0.5Q};
+      auto g = n - Tp{0.5Q};
       std::cout << "g = " << g << '\n';
       while (n != n_old)
 	{
 	  std::cout << '\n';
-	  std::vector<_Tp> a;
+	  std::vector<Tp> a;
 	  for (int k = 1; k <= n; ++k)
 	    {
 	      for (int j = 1; j <= k; ++j)
@@ -92,7 +92,7 @@
 	    }
 
 	  std::cout << '\n';
-	  auto prev = std::numeric_limits<_Tp>::max();
+	  auto prev = std::numeric_limits<Tp>::max();
 	  for (int k = 0; k <= n + 5; ++k)
 	    {
 	      auto curr = p(k, g);
@@ -100,7 +100,7 @@
 		{
 		  n_old = n;
 		  n = k;
-		  g = n - _Tp{0.5Q};
+		  g = n - Tp{0.5Q};
 		  break;
 		}
 	      prev = curr;
@@ -110,22 +110,22 @@
 	}
 
       auto log_gamma1p_lanczos =
-	[=](_Tp z)
-	-> _Tp
+	[=](Tp z)
+	-> Tp
 	{
-	  constexpr auto s_ln_2 = emsr::ln2_v<_Tp>;
-	  constexpr auto s_ln_pi = emsr::lnpi_v<_Tp>;
-	  constexpr auto s_log_sqrt_2pi = (s_ln_2 + s_ln_pi) / _Tp{2};
-	  auto fact = _Tp{1};
-	  auto sum = _Tp{0.5Q} * p(0, g);
+	  constexpr auto s_ln_2 = emsr::ln2_v<Tp>;
+	  constexpr auto s_ln_pi = emsr::lnpi_v<Tp>;
+	  constexpr auto s_log_sqrt_2pi = (s_ln_2 + s_ln_pi) / Tp{2};
+	  auto fact = Tp{1};
+	  auto sum = Tp{0.5Q} * p(0, g);
 	  for (int k = 1; k < n; ++k)
 	    {
 	      fact *= (z - k + 1) / (z + k);
 	      sum += fact * p(k, g);
 	    }
 	  return s_log_sqrt_2pi + std::log(sum)
-	       + (z + _Tp{0.5Q}) * std::log(z + g + _Tp{0.5Q})
-	       - (z + g + _Tp{0.5Q});
+	       + (z + Tp{0.5Q}) * std::log(z + g + Tp{0.5Q})
+	       - (z + g + Tp{0.5Q});
 	};
 
       std::cout << '\n'
@@ -136,11 +136,11 @@
 		<< '\n';
       for (int i = 0; i <= 500; ++i)
 	{
-	  auto z = _Tp{0.01Q} * i;
+	  auto z = Tp{0.01Q} * i;
 	  std::cout << ' ' << std::setw(width) << z
-		    << ' ' << std::setw(width) << log_gamma1p_lanczos(z - _Tp{1})
+		    << ' ' << std::setw(width) << log_gamma1p_lanczos(z - Tp{1})
 		    << ' ' << std::setw(width) << std::lgamma(z)
-		    << ' ' << std::setw(width) << log_gamma1p_lanczos(z - _Tp{1}) - std::lgamma(z)
+		    << ' ' << std::setw(width) << log_gamma1p_lanczos(z - Tp{1}) - std::lgamma(z)
 		    << '\n';
 	}
     }
@@ -149,7 +149,7 @@
   /**
    * A struct for Lanczos algorithm Chebyshev arrays of coefficients.
    */
-  template<typename _Tp>
+  template<typename Tp>
     class _GammaLanczos
     {
     };

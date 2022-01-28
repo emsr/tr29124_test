@@ -9,6 +9,7 @@
 #include <iostream>
 #include <iomanip>
 
+#include <emsr/numeric_limits.h>
 
   //  Evaluates the continued fraction for the incomplete beta function
   //  by the modified Lentz's method

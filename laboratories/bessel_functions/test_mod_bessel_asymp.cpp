@@ -7,6 +7,8 @@
 #include <sstream>
 #include <cmath>
 
+#include <emsr/sf_mod_bessel.h>
+
 template<typename _Tnu, typename _Tp>
   void
   test_mod_bessel_asymp(_Tnu nu)

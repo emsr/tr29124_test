@@ -8,6 +8,8 @@
 #include <cmath>
 
 #include <emsr/math_constants.h>
+#include <emsr/sf_euler.h>
+#include <emsr/sf_ellint.h>
 
 /**
  * Compute the inverse Gudermann function relating a circular argument

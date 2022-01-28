@@ -45,17 +45,17 @@ namespace emsr
    * @f]
    * and @f$ C_0^{\lambda}(x) = 1 @f$, @f$ C_1^{\lambda}(x) = 2\lambda x @f$.
    *
-   * @tparam _Tlam The real type of the order
-   * @tparam _Tp The real type of the argument
+   * @tparam Tlam The real type of the order
+   * @tparam Tp The real type of the argument
    * @param n The non-negative integral degree
    * @param lambda The real order
    * @param x The real argument
    */
-  template<typename _Tlam, typename _Tp>
-    inline typename emsr::fp_promote_t<_Tlam, _Tp>
-    gegenbauer(unsigned int n, _Tlam lambda, _Tp x)
+  template<typename Tlam, typename Tp>
+    inline typename emsr::fp_promote_t<Tlam, Tp>
+    gegenbauer(unsigned int n, Tlam lambda, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tlam, _Tp>;
+      using type = emsr::fp_promote_t<Tlam, Tp>;
       return emsr::detail::gegenbauer_recur<type>(n, lambda, x).C_n;
     }
 

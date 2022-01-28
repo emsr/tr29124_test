@@ -17,112 +17,112 @@
 /**
  * 
  */
-template<typename _Tp>
-  _Tp
-  polygamma_series(unsigned int m, _Tp x)
+template<typename Tp>
+  Tp
+  polygamma_series(unsigned int m, Tp x)
   {
     constexpr int s_max_iter = 1000;
     const auto s_eps = emsr::epsilon(x);
-    auto sum = _Tp{0};
+    auto sum = Tp{0};
     for (int k = 0; k < s_max_iter; ++k)
       {
-	auto term = std::pow(x + _Tp(k), _Tp(m + 1));
+	auto term = std::pow(x + Tp(k), Tp(m + 1));
 	sum += term;
 	if (std::abs(term) < s_eps * std::abs(sum))
 	  break;
       }
-    return (m & 1 ? +1 : -1) * emsr::factorial<_Tp>(m) * sum;
+    return (m & 1 ? +1 : -1) * emsr::factorial<Tp>(m) * sum;
   }
 
 /**
  * 
  */
-template<typename _Tp>
-  _Tp
-  trigamma_cont_frac(_Tp x)
+template<typename Tp>
+  Tp
+  trigamma_cont_frac(Tp x)
   {
-    const auto s_2pi = emsr::tau_v<_Tp>;
-    const auto s_12pi = _Tp{1} / s_2pi / _Tp{6};
+    const auto s_2pi = emsr::tau_v<Tp>;
+    const auto s_12pi = Tp{1} / s_2pi / Tp{6};
 
     auto a
-      = [s_12pi](std::size_t k, _Tp)
+      = [s_12pi](std::size_t k, Tp)
 	{
 	  if (k == 1)
 	    return s_12pi;
 	  else
 	    {
-	      auto kk = _Tp(k * k);
-	      return kk * (kk - _Tp{1}) / _Tp{4} / (_Tp{4} * kk - _Tp{1});
+	      auto kk = Tp(k * k);
+	      return kk * (kk - Tp{1}) / Tp{4} / (Tp{4} * kk - Tp{1});
 	    }
 	};
     using _AFun = decltype(a);
 
     auto b
-      = [](std::size_t k, _Tp x)
-	{ return k == 0 ? _Tp{0} : (k & 1 ? x * x : _Tp{1}); };
+      = [](std::size_t k, Tp x)
+	{ return k == 0 ? Tp{0} : (k & 1 ? x * x : Tp{1}); };
     using _BFun = decltype(b);
 
     auto w
-      = [a, b](std::size_t k, _Tp x)
+      = [a, b](std::size_t k, Tp x)
 	{
-	  auto arg = _Tp{4} * a(k + 1, x) / x / x + _Tp{1};
-	  return b(k, x) * (std::sqrt(arg) - _Tp{1}) / _Tp{2};
+	  auto arg = Tp{4} * a(k + 1, x) / x / x + Tp{1};
+	  return b(k, x) * (std::sqrt(arg) - Tp{1}) / Tp{2};
 	};
     using _WFun = decltype(w);
 
-    emsr::LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>
+    emsr::LentzContinuedFraction<Tp, _AFun, _BFun, _WFun>
       G1Frac(a, b, w);
 
     auto g1 = G1Frac(x);
-    auto rx = _Tp{1} / x;
+    auto rx = Tp{1} / x;
 
-    return rx + rx * rx / _Tp{2} + s_2pi * rx * g1;
+    return rx + rx * rx / Tp{2} + s_2pi * rx * g1;
   }
 
 /**
  * 
  */
-template<typename _Tp>
-  _Tp
-  tetragamma_cont_frac(_Tp x)
+template<typename Tp>
+  Tp
+  tetragamma_cont_frac(Tp x)
   {
-    const auto s_2pi = emsr::tau_v<_Tp>;
-    const auto s_8pi2 = _Tp{1} / s_2pi / s_2pi / _Tp{2};
+    const auto s_2pi = emsr::tau_v<Tp>;
+    const auto s_8pi2 = Tp{1} / s_2pi / s_2pi / Tp{2};
 
     auto a
-      = [s_8pi2](std::size_t k, _Tp)
+      = [s_8pi2](std::size_t k, Tp)
 	{
 	  if (k == 1)
 	    return s_8pi2;
 	  else
 	    {
 	      auto j = k & 1 ? (k - 1) / 2 : k / 2;
-	      auto aa = _Tp(j) * _Tp(j + 1) / _Tp{2} / _Tp(2 * j + 1);
-	      return (k & 1 ? aa * _Tp(j + 1) : aa * _Tp(j));
+	      auto aa = Tp(j) * Tp(j + 1) / Tp{2} / Tp(2 * j + 1);
+	      return (k & 1 ? aa * Tp(j + 1) : aa * Tp(j));
 	    }
 	};
     using _AFun = decltype(a);
 
     auto b
-      = [](std::size_t k, _Tp x)
-	{ return k == 0 ? _Tp{0} : (k & 1 ? x * x : _Tp{1}); };
+      = [](std::size_t k, Tp x)
+	{ return k == 0 ? Tp{0} : (k & 1 ? x * x : Tp{1}); };
     using _BFun = decltype(b);
 
     auto w
-      = [a, b](std::size_t k, _Tp x)
+      = [a, b](std::size_t k, Tp x)
 	{
-	  auto arg = _Tp{4} * a(k + 1, x) / x / x + _Tp{1};
-	  return b(k, x) * (std::sqrt(arg) - _Tp{1}) / _Tp{2};
+	  auto arg = Tp{4} * a(k + 1, x) / x / x + Tp{1};
+	  return b(k, x) * (std::sqrt(arg) - Tp{1}) / Tp{2};
 	};
     using _WFun = decltype(w);
 
-    emsr::LentzContinuedFraction<_Tp, _AFun, _BFun, _WFun>
+    emsr::LentzContinuedFraction<Tp, _AFun, _BFun, _WFun>
       G2Frac(a, b, w);
 
     auto g2 = G2Frac(x);
 
     auto fg = s_2pi / x;
-    auto xm2 = _Tp{1} / (x * x);
+    auto xm2 = Tp{1} / (x * x);
 
     return -xm2 - xm2 / x - fg * fg * g2;
   }
@@ -130,9 +130,9 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  test_trigamma(_Tp proto)
+  test_trigamma(Tp proto)
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -161,9 +161,9 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  test_tetragamma(_Tp proto)
+  test_tetragamma(Tp proto)
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -215,12 +215,12 @@ template<typename _Tp>
  *  { -29088885112832LL, -2184860175433728LL, -19686087844429824LL, -48165109676113920LL, -39471306959486976LL, -11124607890751488LL, -965271355195392LL, -18733264797696LL, -34357248000LL, -262144LL }
  *  c * { 4951498053124096LL, 118071834535526400LL, 603968063567560704LL, 990081991141490688LL, 584901762421358592LL, 122829335169859584LL, 7984436548730880LL, 112949304754176LL, 137433710592LL, 524288LL }
  */
-template<typename _Tp>
-  emsr::Polynomial<_Tp>
+template<typename Tp>
+  emsr::Polynomial<Tp>
   polygamma_poly(unsigned int m)
   {
-    emsr::Polynomial<_Tp> a{_Tp{0}, _Tp{1}};
-    emsr::Polynomial<_Tp> b{_Tp{1}, _Tp{0}, _Tp{-1}};
+    emsr::Polynomial<Tp> a{Tp{0}, Tp{1}};
+    emsr::Polynomial<Tp> b{Tp{1}, Tp{0}, Tp{-1}};
     if (m == 0)
       return a;
     else
@@ -229,7 +229,7 @@ template<typename _Tp>
 	auto Pp = P.derivative();
 	for (unsigned int k = 0; k < m; ++k)
 	  {
-	    P = -(_Tp(k + 1) * a * P + b * Pp);
+	    P = -(Tp(k + 1) * a * P + b * Pp);
 	    Pp = P.derivative();
 	  }
 	return P;
@@ -239,9 +239,9 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  test_polygamma_poly(_Tp proto)
+  test_polygamma_poly(Tp proto)
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -249,7 +249,7 @@ template<typename _Tp>
     std::cout << '\n' << '\n';
     for (int m = 0; m <= 20; ++m)
       {
-	auto P = polygamma_poly<_Tp>(m);
+	auto P = polygamma_poly<Tp>(m);
 	std::cout << P << '\n';
       }
   }
@@ -260,15 +260,15 @@ template<typename _Tp>
    *    \frac{\pi^{m+1}}{sin^{m+1}(\pi x)} \frac{d^m}{dx^m} cot(\pi x)
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    polygamma_reflect(unsigned int m, _Tp x)
+  template<typename Tp>
+    Tp
+    polygamma_reflect(unsigned int m, Tp x)
     {
-      const auto s_pi = emsr::pi_v<_Tp>;
+      const auto s_pi = emsr::pi_v<Tp>;
       const auto c = emsr::detail::cos_pi(x);
       const auto cc = c * c;
       const auto s = emsr::detail::sin_pi(x);
-      const auto fact = std::pow(s_pi / s, _Tp(m + 1));
+      const auto fact = std::pow(s_pi / s, Tp(m + 1));
       if (m == 0)
 	return c * fact
 	     * emsr::horner(cc, -1LL);
@@ -301,12 +301,12 @@ template<typename _Tp>
   /**
    *
    */
-  template<typename _Tp>
-    _Tp
-    polygamma_hurwitz(unsigned int m, _Tp x)
+  template<typename Tp>
+    Tp
+    polygamma_hurwitz(unsigned int m, Tp x)
     {
-      const auto hzeta = emsr::detail::hurwitz_zeta(_Tp(m + 1), x);
-      const auto ln_nfact = emsr::detail::log_gamma(_Tp(m + 1));
+      const auto hzeta = emsr::detail::hurwitz_zeta(Tp(m + 1), x);
+      const auto ln_nfact = emsr::detail::log_gamma(Tp(m + 1));
       auto result = std::exp(ln_nfact) * hzeta;
       if (m % 2 == 0)
 	result = -result;
@@ -321,16 +321,16 @@ template<typename _Tp>
    *   \psi^{(m)}(x) = (-1)^{m+1} m! \zeta(m+1,x)
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    polygamma(unsigned int m, _Tp x)
+  template<typename Tp>
+    Tp
+    polygamma(unsigned int m, Tp x)
     {
-      if (x <= _Tp{0})
+      if (x <= Tp{0})
 	{
 	  if (const auto n = emsr::fp_is_integer(x); n)
 	    return emsr::infinity(x);
 	  else
-	    return _Tp(m & 1 ? -1 : +1) * polygamma(m, _Tp{1} - x)
+	    return Tp(m & 1 ? -1 : +1) * polygamma(m, Tp{1} - x)
 		 + polygamma_reflect(m, x);
 	}
       else if (m == 0)
@@ -342,9 +342,9 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  test_polygamma(_Tp proto)
+  test_polygamma(Tp proto)
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -367,9 +367,9 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  test_polygamma_reflect_vs_hurwitz(_Tp proto)
+  test_polygamma_reflect_vs_hurwitz(Tp proto)
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -385,7 +385,7 @@ template<typename _Tp>
 	    auto x = i * 0.1;
 	    auto psi_reflect = polygamma(m, x);
 	    auto psi_hurwitz = polygamma_hurwitz(m, x);
-	    auto psi_boost = _Tp{0};
+	    auto psi_boost = Tp{0};
 	    try
 	      {
 	        psi_boost = beast::polygamma(m, x);

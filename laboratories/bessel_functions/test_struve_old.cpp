@@ -12,7 +12,11 @@ These are from cephes.
 #include <cmath>
 #include <stdexcept>
 #include <vector>
+
 #include <test_struve_old.h>
+
+#include <emsr/sf_bessel.h>
+#include <emsr/numeric_limits.h>
 
 #include "hyperg_1F2.cpp"
 #include "hyperg_2F0.cpp"

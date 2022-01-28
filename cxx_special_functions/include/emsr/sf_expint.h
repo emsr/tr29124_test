@@ -36,14 +36,14 @@ namespace emsr
    *   Ei(x) = -\int_{-x}^\infty \frac{e^t}{t} dt
    * \f]
    *
-   * @tparam _Tp The floating-point type of the argument @c x.
+   * @tparam Tp The floating-point type of the argument @c x.
    * @param  x  The argument of the exponential integral function.
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    expint(_Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    expint(Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::expint<type>(x);
     }
 
@@ -81,15 +81,15 @@ namespace emsr
    *    E_1(x) = \int_1^\infty \frac{e^{-tx}}{t}dt = -Ei(-x)
    * @f]
    *
-   * @tparam _Tp The real type of the argument
+   * @tparam Tp The real type of the argument
    * @param n The integral order
    * @param x The real argument
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    expint(unsigned int n, _Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    expint(unsigned int n, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::expint<type>(n, x);
     }
 
@@ -124,11 +124,11 @@ namespace emsr
    *
    * @param x The real upper integration limit
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    logint(_Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    logint(Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::logint<type>(x);
     }
 
@@ -162,14 +162,14 @@ namespace emsr
    *    Shi(x) = \int_0^x \frac{\sinh(t)}{t}dt
    * @f]
    *
-   * @tparam _Tp The type of the real argument
+   * @tparam Tp The type of the real argument
    * @param x The argument
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    sinhint(_Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    sinhint(Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::sinhint<type>(x);
     }
 
@@ -204,14 +204,14 @@ namespace emsr
    *     = \gamma_E + ln(x) + \int_0^x \frac{\cosh(t)-1}{t}dt
    * @f]
    *
-   * @tparam _Tp The type of the real argument
+   * @tparam Tp The type of the real argument
    * @param x The real argument
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    coshint(_Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    coshint(Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::coshint<type>(x);
     }
 

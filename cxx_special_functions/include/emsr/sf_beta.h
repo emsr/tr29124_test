@@ -95,11 +95,11 @@ namespace emsr
    * @param b The second parameter
    * @param x The argument
    */
-  template<typename _Ta, typename _Tb, typename _Tp>
-    inline emsr::fp_promote_t<_Ta, _Tb, _Tp>
-    ibeta(_Ta a, _Tb b, _Tp x)
+  template<typename Ta, typename Tb, typename Tp>
+    inline emsr::fp_promote_t<Ta, Tb, Tp>
+    ibeta(Ta a, Tb b, Tp x)
     {
-      using type = emsr::fp_promote_t<_Ta, _Tb, _Tp>;
+      using type = emsr::fp_promote_t<Ta, Tb, Tp>;
       return emsr::detail::beta_inc<type>(a, b, x);
     }
 
@@ -126,11 +126,11 @@ namespace emsr
    * @param b The parameter
    * @param x The argument
    */
-  template<typename _Ta, typename _Tb, typename _Tp>
-    inline emsr::fp_promote_t<_Ta, _Tb, _Tp>
-    ibetac(_Ta a, _Tb b, _Tp x)
+  template<typename Ta, typename Tb, typename Tp>
+    inline emsr::fp_promote_t<Ta, Tb, Tp>
+    ibetac(Ta a, Tb b, Tp x)
     {
-      using type = emsr::fp_promote_t<_Ta, _Tb, _Tp>;
+      using type = emsr::fp_promote_t<Ta, Tb, Tp>;
       return type(1) - emsr::ibeta<type>(a, b, x);
     }
 

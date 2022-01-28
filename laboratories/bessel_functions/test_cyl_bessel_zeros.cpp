@@ -4,6 +4,10 @@
 
 #include <cmath>
 #include <iostream>
+#include <vector>
+
+#include <emsr/math_constants.h>
+#include <emsr/numeric_limits.h>
 
 template<typename _Tp, typename _Hfun>
   std::vector<_Tp>

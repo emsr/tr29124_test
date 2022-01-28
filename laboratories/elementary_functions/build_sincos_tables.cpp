@@ -2,8 +2,13 @@
  *
  */
 
+#include <iostream>
+#include <iomanip>
+
 #include <mpreal.h>
+
 #include <emsr/numeric_limits_mpreal.h>
+#include <emsr/math_constants.h>
 
 int
 main()

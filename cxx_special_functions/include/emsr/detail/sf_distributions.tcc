@@ -1,11 +1,11 @@
 
 // Copyright (C) 2006-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -65,16 +65,16 @@ namespace detail
    *    P(\chi^2|\nu) = \Gamma_P(\frac{\nu}{2}, \frac{\chi^2}{2})
    *  @f]
    */
-  template<typename _Tp>
-    _Tp
-    chi_squared_pdf(_Tp chi2, unsigned int nu)
+  template<typename Tp>
+    Tp
+    chi_squared_pdf(Tp chi2, unsigned int nu)
     {
       if (std::isnan(chi2))
 	return emsr::quiet_NaN(chi2);
-      else if (chi2 < _Tp{0})
+      else if (chi2 < Tp{0})
 	throw std::domain_error("chi_squared_p: chi-squared is negative");
       else
-	return gamma_p(_Tp(nu) / _Tp{2}, chi2 / _Tp{2});
+	return gamma_p(Tp(nu) / Tp{2}, chi2 / Tp{2});
     }
 
   /**
@@ -88,16 +88,16 @@ namespace detail
    *    Q(\chi^2|\nu) = \Gamma_Q(\frac{\nu}{2}, \frac{\chi^2}{2})
    *  @f]
    */
-  template<typename _Tp>
-    _Tp
-    chi_squared_pdfc(_Tp chi2, unsigned int nu)
+  template<typename Tp>
+    Tp
+    chi_squared_pdfc(Tp chi2, unsigned int nu)
     {
       if (std::isnan(chi2) || std::isnan(nu))
 	return emsr::quiet_NaN(chi2);
-      else if (chi2 < _Tp{0})
+      else if (chi2 < Tp{0})
 	throw std::domain_error("chi_square_pdfc: chi-squared is negative");
       else
-	return gamma_q(_Tp(nu) / _Tp{2}, chi2 / _Tp{2});
+	return gamma_q(Tp(nu) / Tp{2}, chi2 / Tp{2});
     }
 
   /**
@@ -109,14 +109,14 @@ namespace detail
    *                             (x/\beta)^{\alpha - 1} e^{-x/\beta}
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    gamma_pdf(_Tp alpha, _Tp beta, _Tp x)
+  template<typename Tp>
+    Tp
+    gamma_pdf(Tp alpha, Tp beta, Tp x)
     {
       if (std::isnan(alpha) || std::isnan(beta) || std::isnan(x))
 	return emsr::quiet_NaN(x);
       else
-	return std::pow(beta, alpha) * std::pow(x, alpha - _Tp{1})
+	return std::pow(beta, alpha) * std::pow(x, alpha - Tp{1})
 	     * std::exp(beta * x) / gamma(alpha);
     }
 
@@ -129,9 +129,9 @@ namespace detail
    *                             (x/\beta)^{\alpha - 1} e^{-x/\beta}
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    gamma_p(_Tp alpha, _Tp beta, _Tp x)
+  template<typename Tp>
+    Tp
+    gamma_p(Tp alpha, Tp beta, Tp x)
     {
       if (std::isnan(alpha) || std::isnan(beta) || std::isnan(x))
 	return emsr::quiet_NaN(x);
@@ -150,9 +150,9 @@ namespace detail
    *                            (x/\beta)^{\alpha - 1} e^{-x/\beta} 
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    gamma_q(_Tp alpha, _Tp beta, _Tp x)
+  template<typename Tp>
+    Tp
+    gamma_q(Tp alpha, Tp beta, Tp x)
     {
       if (std::isnan(alpha) || std::isnan(beta) || std::isnan(x))
 	return emsr::quiet_NaN(x);
@@ -174,9 +174,9 @@ namespace detail
    * where @f$I_0(x)@f$ is the modified Bessel function of the first kind
    * of order 0 and @f$\nu >= 0@f$ and @f$\sigma > 0@f$.
    */
-  template<typename _Tp>
-    _Tp
-    rice_pdf(_Tp nu, _Tp sigma, _Tp x)
+  template<typename Tp>
+    Tp
+    rice_pdf(Tp nu, Tp sigma, Tp x)
     {
       if (std::isnan(nu) || std::isnan(sigma))
 	return emsr::quiet_NaN(x);
@@ -184,8 +184,8 @@ namespace detail
 	{
 	  auto sigma2 = sigma * sigma;
 	  return (x / sigma2)
-               * std::exp(-(x * x + nu * nu) / (_Tp{2} * sigma2))
-               * cyl_bessel_i(_Tp{0}, (x * nu) / (sigma2));
+               * std::exp(-(x * x + nu * nu) / (Tp{2} * sigma2))
+               * cyl_bessel_i(Tp{0}, (x * nu) / (sigma2));
 	}
     }
 
@@ -198,12 +198,12 @@ namespace detail
    *   f(x|\mu,\sigma) = \frac{e^{(x-\mu)^2/2\sigma^2}}{\sigma\sqrt{2\pi}}
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    normal_pdf(_Tp mu, _Tp sigma, _Tp x)
+  template<typename Tp>
+    Tp
+    normal_pdf(Tp mu, Tp sigma, Tp x)
     {
-      const auto s_sqrt_2 = emsr::sqrt2_v<_Tp>;
-      const auto s_sqrt_pi = emsr::sqrtpi_v<_Tp>;
+      const auto s_sqrt_2 = emsr::sqrt2_v<Tp>;
+      const auto s_sqrt_pi = emsr::sqrtpi_v<Tp>;
       const auto s_sqrt_2pi = s_sqrt_2 * s_sqrt_pi;
       if (std::isnan(mu) || std::isnan(sigma))
 	return emsr::quiet_NaN(x);
@@ -212,7 +212,7 @@ namespace detail
 	  x -= mu;
 	  x /= sigma;
 	  x *= x;
-	  x /= _Tp{2};
+	  x /= Tp{2};
 	  return std::exp(-(x)) / (sigma * s_sqrt_2pi);
 	}
     }
@@ -226,16 +226,16 @@ namespace detail
    *        = \frac{1}{2}\left[ 1-erf(\frac{x-\mu}{\sqrt{2}\sigma}) \right]
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    normal_p(_Tp mu, _Tp sigma, _Tp x)
+  template<typename Tp>
+    Tp
+    normal_p(Tp mu, Tp sigma, Tp x)
     {
-      const auto s_sqrt_2 = emsr::sqrt2_v<_Tp>;
+      const auto s_sqrt_2 = emsr::sqrt2_v<Tp>;
       if (std::isnan(mu) || std::isnan(sigma) || std::isnan(x))
 	return emsr::quiet_NaN(x);
       else
-	return _Tp{0.5L}
-	     * (_Tp{1} + std::erf((x - mu) / (sigma * s_sqrt_2)));
+	return Tp{0.5L}
+	     * (Tp{1} + std::erf((x - mu) / (sigma * s_sqrt_2)));
     }
 
 
@@ -247,12 +247,12 @@ namespace detail
    *   f(x|\mu,\sigma) = \frac{e^{(\ln{x}-\mu)^2/2\sigma^2}}{\sigma\sqrt{2\pi}}
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    lognormal_pdf(_Tp nu, _Tp sigma, _Tp x)
+  template<typename Tp>
+    Tp
+    lognormal_pdf(Tp nu, Tp sigma, Tp x)
     {
-      const auto s_sqrt_2 = emsr::sqrt2_v<_Tp>;
-      const auto s_sqrt_pi = emsr::sqrtpi_v<_Tp>;
+      const auto s_sqrt_2 = emsr::sqrt2_v<Tp>;
+      const auto s_sqrt_pi = emsr::sqrtpi_v<Tp>;
       const auto s_sqrt_2pi = s_sqrt_2 * s_sqrt_pi;
       if (std::isnan(nu) || std::isnan(sigma))
 	return emsr::quiet_NaN(x);
@@ -261,7 +261,7 @@ namespace detail
 	  x -= nu;
 	  x /= sigma;
 	  x *= x;
-	  x /= _Tp{2};
+	  x /= Tp{2};
 	  return std::exp(-(std::log(x))) / (sigma * s_sqrt_2pi);
 	}
     }
@@ -275,15 +275,15 @@ namespace detail
    *     = \frac{1}{2}\left[ 1-erf(\frac{\ln{x}-\mu}{\sqrt{2}\sigma}) \right]
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    lognormal_p(_Tp mu, _Tp sigma, _Tp x)
+  template<typename Tp>
+    Tp
+    lognormal_p(Tp mu, Tp sigma, Tp x)
     {
-      const auto s_sqrt_2 = emsr::sqrt2_v<_Tp>;
+      const auto s_sqrt_2 = emsr::sqrt2_v<Tp>;
       if (std::isnan(mu) || std::isnan(sigma) || std::isnan(x))
 	return emsr::quiet_NaN(x);
       else
-	return _Tp{0.5L} * (_Tp{1} + std::erf((std::log(x) - mu)
+	return Tp{0.5L} * (Tp{1} + std::erf((std::log(x) - mu)
 					    / (sigma * s_sqrt_2)));
     }
 
@@ -296,14 +296,14 @@ namespace detail
    *   f(x|\lambda) = \lambda e^{-\lambda x} \mbox{ for } x >= 0
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    exponential_pdf(_Tp lambda, _Tp x)
+  template<typename Tp>
+    Tp
+    exponential_pdf(Tp lambda, Tp x)
     {
       if (std::isnan(lambda) || std::isnan(x))
 	return emsr::quiet_NaN(x);
-      else if (x < _Tp{0})
-	return _Tp{0};
+      else if (x < Tp{0})
+	return Tp{0};
       else
 	return lambda * std::exp(-lambda * x);
     }
@@ -316,16 +316,16 @@ namespace detail
    *   F(x|\lambda) = 1 - e^{-\lambda x} \mbox{ for } x >= 0
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    exponential_p(_Tp lambda, _Tp x)
+  template<typename Tp>
+    Tp
+    exponential_p(Tp lambda, Tp x)
     {
       if (std::isnan(lambda) || std::isnan(x))
 	return emsr::quiet_NaN(x);
-      else if (x < _Tp{0})
-	return _Tp{0};
+      else if (x < Tp{0})
+	return Tp{0};
       else
-	return _Tp{1} - std::exp(-lambda * x);
+	return Tp{1} - std::exp(-lambda * x);
     }
 
   /**
@@ -338,14 +338,14 @@ namespace detail
    *   F(x|\lambda) = e^{-\lambda x} \mbox{ for } x >= 0
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    exponential_q(_Tp lambda, _Tp x)
+  template<typename Tp>
+    Tp
+    exponential_q(Tp lambda, Tp x)
     {
       if (std::isnan(lambda) || std::isnan(x))
 	return emsr::quiet_NaN(x);
-      else if (x < _Tp{0})
-	return _Tp{0};
+      else if (x < Tp{0})
+	return Tp{0};
       else
 	return std::exp(-lambda * x);
     }
@@ -362,16 +362,16 @@ namespace detail
    *                 \mbox{ for } x >= 0
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    weibull_pdf(_Tp a, _Tp b, _Tp x)
+  template<typename Tp>
+    Tp
+    weibull_pdf(Tp a, Tp b, Tp x)
     {
       if (std::isnan(a) || std::isnan(b) || std::isnan(x))
 	return emsr::quiet_NaN(x);
-      else if (x < _Tp{0})
-	return _Tp{0};
+      else if (x < Tp{0})
+	return Tp{0};
       else
-	return (a / b) * std::pow(x / b, a - _Tp{1})
+	return (a / b) * std::pow(x / b, a - Tp{1})
  			   * std::exp(-std::pow(x / b, a));
     }
 
@@ -383,16 +383,16 @@ namespace detail
    *   F(x|\lambda) = 1 - e^{-(x / b)^a} \mbox{ for } x >= 0
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    weibull_p(_Tp a, _Tp b, _Tp x)
+  template<typename Tp>
+    Tp
+    weibull_p(Tp a, Tp b, Tp x)
     {
       if (std::isnan(a) || std::isnan(b) || std::isnan(x))
 	return emsr::quiet_NaN(x);
-      else if (x < _Tp{0})
-	return _Tp{0};
+      else if (x < Tp{0})
+	return Tp{0};
       else
-	return _Tp{1} - std::exp(-std::pow(x / b, a));
+	return Tp{1} - std::exp(-std::pow(x / b, a));
     }
 
   /**
@@ -407,17 +407,17 @@ namespace detail
    * @param t 
    * @param nu 
    */
-  template<typename _Tp>
-    _Tp
-    student_t_pdf(_Tp t, unsigned int nu)
+  template<typename Tp>
+    Tp
+    student_t_pdf(Tp t, unsigned int nu)
     {
-      const auto s_pi = emsr::pi_v<_Tp>;
+      const auto s_pi = emsr::pi_v<Tp>;
       if (std::isnan(t))
 	return emsr::quiet_NaN(t);
       else
-	return gamma(_Tp(nu + 1) / _Tp{2})
-	     * std::pow((_Tp(nu) + t * t) / nu, -_Tp(nu + 1) / 2 )
-	     / gamma(_Tp(nu) / _Tp{2}) / std::sqrt(_Tp(nu) * s_pi);
+	return gamma(Tp(nu + 1) / Tp{2})
+	     * std::pow((Tp(nu) + t * t) / nu, -Tp(nu + 1) / 2 )
+	     / gamma(Tp(nu) / Tp{2}) / std::sqrt(Tp(nu) * s_pi);
     }
 
   /**
@@ -432,15 +432,15 @@ namespace detail
    * @param t 
    * @param nu 
    */
-  template<typename _Tp>
-    _Tp
-    student_t_p(_Tp t, unsigned int nu)
+  template<typename Tp>
+    Tp
+    student_t_p(Tp t, unsigned int nu)
     {
       if (std::isnan(t))
 	return emsr::quiet_NaN(t);
       else
-	return beta_inc(_Tp{0.5L}, _Tp(nu) / _Tp{2},
-			  t * t / (_Tp(nu) + t * t));
+	return beta_inc(Tp{0.5L}, Tp(nu) / Tp{2},
+			  t * t / (Tp(nu) + t * t));
     }
 
   /**
@@ -455,15 +455,15 @@ namespace detail
    * @param t 
    * @param nu 
    */
-  template<typename _Tp>
-    _Tp
-    student_t_q(_Tp t, unsigned int nu)
+  template<typename Tp>
+    Tp
+    student_t_q(Tp t, unsigned int nu)
     {
       if (std::isnan(t))
 	return emsr::quiet_NaN(t);
       else
-	return beta_inc(_Tp(nu) / _Tp{2}, _Tp{0.5L},
-			  _Tp(nu) / (_Tp(nu) + t * t));
+	return beta_inc(Tp(nu) / Tp{2}, Tp{0.5L},
+			  Tp(nu) / (Tp(nu) + t * t));
     }
 
   /**
@@ -481,19 +481,19 @@ namespace detail
    * @param nu2 The number of degrees of freedom of sample 2
    * @param F The F statistic
    */
-  template<typename _Tp>
-    _Tp
-    fisher_f_pdf(_Tp F, unsigned int nu1, unsigned int nu2)
+  template<typename Tp>
+    Tp
+    fisher_f_pdf(Tp F, unsigned int nu1, unsigned int nu2)
     {
       if (std::isnan(F))
 	return emsr::quiet_NaN(F);
-      else if (F < _Tp{0})
+      else if (F < Tp{0})
 	throw std::domain_error("f_p: F is negative");
       else
-	return std::sqrt(std::pow(_Tp(nu1) * F, _Tp(nu1))
-		       * std::pow(_Tp(nu2), _Tp(nu2))
-		/ std::pow(_Tp(nu1) * F + _Tp(nu2), _Tp(nu1 + nu2)))
-	    / F / beta(_Tp(nu1) / _Tp{2}, _Tp(nu2) / _Tp{2});
+	return std::sqrt(std::pow(Tp(nu1) * F, Tp(nu1))
+		       * std::pow(Tp(nu2), Tp(nu2))
+		/ std::pow(Tp(nu1) * F + Tp(nu2), Tp(nu1 + nu2)))
+	    / F / beta(Tp(nu1) / Tp{2}, Tp(nu2) / Tp{2});
     }
 
   /**
@@ -511,17 +511,17 @@ namespace detail
    * @param nu2 The number of degrees of freedom of sample 2
    * @param F The F statistic
    */
-  template<typename _Tp>
-    _Tp
-    fisher_f_p(_Tp F, unsigned int nu1, unsigned int nu2)
+  template<typename Tp>
+    Tp
+    fisher_f_p(Tp F, unsigned int nu1, unsigned int nu2)
     {
       if (std::isnan(F))
 	return emsr::quiet_NaN(F);
-      else if (F < _Tp{0})
+      else if (F < Tp{0})
 	throw std::domain_error("f_p: F is negative");
       else
-	return beta_inc(_Tp(nu2) / _Tp{2}, _Tp(nu1) / _Tp{2},
-			  _Tp(nu2) / (_Tp(nu2) + nu1 * F));
+	return beta_inc(Tp(nu2) / Tp{2}, Tp(nu1) / Tp{2},
+			  Tp(nu2) / (Tp(nu2) + nu1 * F));
     }
 
   /**
@@ -540,17 +540,17 @@ namespace detail
    * @param nu1 
    * @param nu2 
    */
-  template<typename _Tp>
-    _Tp
-    fisher_f_q(_Tp F, unsigned int nu1, unsigned int nu2)
+  template<typename Tp>
+    Tp
+    fisher_f_q(Tp F, unsigned int nu1, unsigned int nu2)
     {
       if (std::isnan(F))
 	return emsr::quiet_NaN(F);
-      else if (F < _Tp{0})
+      else if (F < Tp{0})
 	throw std::domain_error("f_q: F is negative");
       else
-	return beta_inc(_Tp(nu1) / _Tp{2}, _Tp(nu2) / _Tp{2},
-			  nu1 * F / (_Tp(nu2) + nu1 * F));
+	return beta_inc(Tp(nu1) / Tp{2}, Tp(nu2) / Tp{2},
+			  nu1 * F / (Tp(nu2) + nu1 * F));
     }
 
   /**
@@ -566,26 +566,26 @@ namespace detail
    * @param n 
    * @param k 
    */
-  template<typename _Tp>
-    _Tp
-    binomial_pdf(_Tp p, unsigned int n, unsigned int k)
+  template<typename Tp>
+    Tp
+    binomial_pdf(Tp p, unsigned int n, unsigned int k)
     {
       if (std::isnan(p))
 	return emsr::quiet_NaN(p);
-      else if (p < _Tp{0} || p > _Tp{1})
+      else if (p < Tp{0} || p > Tp{1})
 	throw std::domain_error("binomial_p: probability is out of range");
       else if (k > n)
-	return _Tp{0};
+	return Tp{0};
       else if (n == 0)
-	return _Tp{1};
+	return Tp{1};
       else if (k == 0)
-	return std::pow(_Tp{1} - p, n);
+	return std::pow(Tp{1} - p, n);
       else if (k == n)
 	return std::pow(p, n);
       else
-	return binomial<_Tp>(n, k)
+	return binomial<Tp>(n, k)
 	     * std::pow(p, k)
-	     * std::pow(_Tp{1} - p, n - k);
+	     * std::pow(Tp{1} - p, n - k);
     }
 
   /**
@@ -601,20 +601,20 @@ namespace detail
    * @param n 
    * @param k 
    */
-  template<typename _Tp>
-    _Tp
-    binomial_p(_Tp p, unsigned int n, unsigned int k)
+  template<typename Tp>
+    Tp
+    binomial_p(Tp p, unsigned int n, unsigned int k)
     {
       if (std::isnan(p))
 	return emsr::quiet_NaN(p);
-      else if (p < _Tp{0} || p > _Tp{1})
+      else if (p < Tp{0} || p > Tp{1})
 	throw std::domain_error("binomial_p: probability is out of range");
       else if (k == 0)
-	return _Tp{1};
+	return Tp{1};
       else if (k > n)
-	return _Tp{0};
+	return Tp{0};
       else
-	return beta_inc(_Tp(k), _Tp(n - k - 1), p);
+	return beta_inc(Tp(k), Tp(n - k - 1), p);
     }
 
   /**
@@ -630,20 +630,20 @@ namespace detail
    * @param n 
    * @param k 
    */
-  template<typename _Tp>
-    _Tp
-    binomial_q(_Tp p, unsigned int n, unsigned int k)
+  template<typename Tp>
+    Tp
+    binomial_q(Tp p, unsigned int n, unsigned int k)
     {
       if (std::isnan(p))
 	return emsr::quiet_NaN(p);
-      else if (p < _Tp{0} || p > _Tp{1})
+      else if (p < Tp{0} || p > Tp{1})
 	throw std::domain_error("binomial_q: probability is out of range");
       else if (k == 0)
-	return _Tp{1};
+	return Tp{1};
       else if (k > n)
-	return _Tp{0};
+	return Tp{0};
       else
-	return beta_inc(_Tp(n - k - 1), _Tp(k), _Tp{1} - p);
+	return beta_inc(Tp(n - k - 1), Tp(k), Tp{1} - p);
     }
 
   /**
@@ -655,13 +655,13 @@ namespace detail
    * @f]
    * where @f$b > 0@f$.
    */
-  template<typename _Tp>
-    _Tp
-    logistic_pdf(_Tp a, _Tp b, _Tp x)
+  template<typename Tp>
+    Tp
+    logistic_pdf(Tp a, Tp b, Tp x)
     {
       const auto arg = (x - a) / b;
       const auto exparg = std::exp(arg);
-      return exparg / (b * (_Tp{1} + exparg) * (_Tp{1} + exparg));
+      return exparg / (b * (Tp{1} + exparg) * (Tp{1} + exparg));
     }
 
   /**
@@ -673,31 +673,31 @@ namespace detail
    * @f]
    * where @f$b > 0@f$.
    */
-  template<typename _Tp>
-    _Tp
-    logistic_p(_Tp a, _Tp b, _Tp x)
+  template<typename Tp>
+    Tp
+    logistic_p(Tp a, Tp b, Tp x)
     {
       const auto arg = (x - a) / b;
       const auto exparg = std::exp(arg);
-      return exparg / (_Tp{1} + exparg);
+      return exparg / (Tp{1} + exparg);
     }
 
-  template<typename _Tp>
-    _Tp
-    cauchy_p(_Tp a, _Tp b, _Tp x)
+  template<typename Tp>
+    Tp
+    cauchy_p(Tp a, Tp b, Tp x)
     {
-      const auto s_pi = emsr::pi_v<_Tp>;
-      return _Tp{0.5L} + std::atan((x - a) / b) / s_pi;
+      const auto s_pi = emsr::pi_v<Tp>;
+      return Tp{0.5L} + std::atan((x - a) / b) / s_pi;
     }
 
-  template<typename _Tp>
-    _Tp
-    beta_p(_Tp a, _Tp b, _Tp x)
+  template<typename Tp>
+    Tp
+    beta_p(Tp a, Tp b, Tp x)
     {
-      if (x < _Tp{0})
-	return _Tp{0};
-      else if (x > _Tp{1})
-	return _Tp{1};
+      if (x < Tp{0})
+	return Tp{0};
+      else if (x > Tp{1})
+	return Tp{1};
       else
 	return beta_inc(a, b, x);
     }
@@ -708,11 +708,11 @@ namespace detail
    *            + e^{-2 \cdot 9 x^2} - e^{-2 \cdot 16 x^2} + ...
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    kolmogorov_p(_Tp a, _Tp b, _Tp x)
+  template<typename Tp>
+    Tp
+    kolmogorov_p(Tp a, Tp b, Tp x)
     {
-      return _Tp{1} - std::exp(-_Tp{2} * x * x);
+      return Tp{1} - std::exp(-Tp{2} * x * x);
     }
 
 } // namespace detail

@@ -1,11 +1,11 @@
 
 // Copyright (C) 2016-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -41,20 +41,20 @@ namespace detail
    *  @brief This function returns the Fresnel cosine and sine integrals
    *    as a pair by series expansion for positive argument.
    */
-  template <typename _Tp>
+  template <typename Tp>
     void
-    fresnel_series(const _Tp ax, _Tp & _Cf, _Tp & _Sf)
+    fresnel_series(const Tp ax, Tp & _Cf, Tp & _Sf)
     {
       const auto s_max_iter = 100;
-      const auto s_eps = _Tp{5} * emsr::epsilon(ax);
-      const auto s_pi = emsr::pi_v<_Tp>;
-      const auto s_pi_2 = s_pi / _Tp{2};
+      const auto s_eps = Tp{5} * emsr::epsilon(ax);
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto s_pi_2 = s_pi / Tp{2};
 
       // Evaluate S and C by series expansion.
-      auto sum = _Tp{0};
-      auto _Ssum = _Tp{0};
+      auto sum = Tp{0};
+      auto _Ssum = Tp{0};
       auto _Csum = ax;
-      auto sign = _Tp{1};
+      auto sign = Tp{1};
       auto fact = s_pi_2 * ax * ax;
       auto odd = true;
       auto term = ax;
@@ -64,7 +64,7 @@ namespace detail
 	{
 	  term *= fact / k;
 	  sum += sign * term / n;
-	  _Tp test = std::abs(sum) * s_eps;
+	  Tp test = std::abs(sum) * s_eps;
 	  if (odd)
 	    {
 	      sign = -sign;
@@ -97,43 +97,43 @@ namespace detail
    *  @brief This function computes the Fresnel cosine and sine integrals
    *    by continued fractions for positive argument.
    */
-  template <typename _Tp>
+  template <typename Tp>
     void
-    fresnel_cont_frac(const _Tp ax, _Tp & _Cf, _Tp & _Sf)
+    fresnel_cont_frac(const Tp ax, Tp & _Cf, Tp & _Sf)
     {
       const auto s_max_iter = 100;
-      const auto s_eps = _Tp{5} * emsr::epsilon(ax);
+      const auto s_eps = Tp{5} * emsr::epsilon(ax);
       const auto s_fp_min = emsr::lim_min(ax);
-      const auto s_pi = emsr::pi_v<_Tp>;
+      const auto s_pi = emsr::pi_v<Tp>;
 
       // Evaluate S and C by Lentz's complex continued fraction method.
       const auto pix2 = s_pi * ax * ax;
-      std::complex<_Tp> b(_Tp{1}, -pix2);
-      std::complex<_Tp> cc(_Tp{1} / s_fp_min, _Tp{0});
-      auto h = _Tp{1} / b;
+      std::complex<Tp> b(Tp{1}, -pix2);
+      std::complex<Tp> cc(Tp{1} / s_fp_min, Tp{0});
+      auto h = Tp{1} / b;
       auto d = h;
       auto n = -1;
       auto k = 0;
       for (k = 2; k <= s_max_iter; ++k)
 	{
 	  n += 2;
-	  const auto a = -_Tp(n * (n + 1));
-	  b += _Tp{4};
-	  d = _Tp{1} / (a * d + b);
+	  const auto a = -Tp(n * (n + 1));
+	  b += Tp{4};
+	  d = Tp{1} / (a * d + b);
 	  cc = b + a / cc;
 	  const auto del = cc * d;
 	  h *= del;
-	  if (std::abs(del.real() - _Tp{1})
+	  if (std::abs(del.real() - Tp{1})
 	    + std::abs(del.imag()) < s_eps)
 	    break;
 	}
       if (k > s_max_iter)
 	throw std::runtime_error("fresnel_cont_frac: continued fraction evaluation failed");
 
-      h *= std::complex<_Tp>(ax, -ax);
-      auto phase = std::polar(_Tp{1}, pix2/_Tp{2});
-      auto cs = std::complex<_Tp>(_Tp{0.5L}, _Tp{0.5L})
-		* (_Tp{1} - phase * h);
+      h *= std::complex<Tp>(ax, -ax);
+      auto phase = std::polar(Tp{1}, pix2/Tp{2});
+      auto cs = std::complex<Tp>(Tp{0.5L}, Tp{0.5L})
+		* (Tp{1} - phase * h);
       _Cf = cs.real();
       _Sf = cs.imag();
 
@@ -157,37 +157,37 @@ namespace detail
    *
    * @param x The argument
    */
-  template <typename _Tp>
-    std::complex<_Tp>
-    fresnel(const _Tp x)
+  template <typename Tp>
+    std::complex<Tp>
+    fresnel(const Tp x)
     {
       const auto s_fp_min = emsr::lim_min(x);
-      const auto s_x_min = _Tp{1.5L};
+      const auto s_x_min = Tp{1.5L};
       const auto s_NaN = emsr::quiet_NaN(x);
       if (std::isnan(x))
-	return std::complex<_Tp>{s_NaN, s_NaN};
+	return std::complex<Tp>{s_NaN, s_NaN};
 
-      auto _Cf = _Tp{0};
-      auto _Sf = _Tp{0};
+      auto _Cf = Tp{0};
+      auto _Sf = Tp{0};
 
-      const _Tp ax = std::abs(x);
+      const Tp ax = std::abs(x);
       if (ax < std::sqrt(s_fp_min))
 	{
 	  _Cf = ax;
-	  _Sf = _Tp{0};
+	  _Sf = Tp{0};
 	}
       else if (ax < s_x_min)
 	fresnel_series(ax, _Cf, _Sf);
       else
 	fresnel_cont_frac(ax, _Cf, _Sf);
 
-      if (x < _Tp{0})
+      if (x < Tp{0})
 	{
 	  _Cf = -_Cf;
 	  _Sf = -_Sf;
 	}
 
-      return std::complex<_Tp>(_Cf, _Sf);
+      return std::complex<Tp>(_Cf, _Sf);
     }
 
 } // namespace detail

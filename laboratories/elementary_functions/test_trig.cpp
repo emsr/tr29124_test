@@ -4,6 +4,8 @@
 
 #include <cmath>
 
+#include <emsr/math_constants.h>
+
 /**
  * naive Taylor-series implementation of sin(x).
  */

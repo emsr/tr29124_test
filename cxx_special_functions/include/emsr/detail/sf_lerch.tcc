@@ -1,11 +1,11 @@
 
 // Copyright (C) 2006-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -48,14 +48,14 @@ namespace detail
   /**
    * A functor for a vanWijnGaarden compressor.
    * vanWijnGaarden requires:
-   *   _Tp operator()(int) that returns a term in the original defining series.
+   *   Tp operator()(int) that returns a term in the original defining series.
    */
-  template<typename _Tp>
+  template<typename Tp>
     class lerch_term
     {
     public:
 
-      using value_type = _Tp;
+      using value_type = Tp;
 
       lerch_term(value_type z, value_type s, value_type a)
       : _M_z{z}, _M_s{s}, _M_a{a}
@@ -82,9 +82,9 @@ namespace detail
    * @param s The order @f$ s != 1 @f$.
    * @param a The scale parameter @f$ a > -1 @f$.
    */
-  template<typename _Tp>
-    _Tp
-    lerch_sum(_Tp z, _Tp s, _Tp a)
+  template<typename Tp>
+    Tp
+    lerch_sum(Tp z, Tp s, Tp a)
     {
       const auto s_nan = emsr::quiet_NaN(s);
       const auto s_eps = emsr::epsilon(s);
@@ -92,15 +92,15 @@ namespace detail
       const auto aint = emsr::fp_is_integer(a);
       if (aint && aint() <= 0)
 	return s_nan;
-      else if (std::abs(std::abs(z) - _Tp{1}) < s_eps
-		&& std::real(s) <= _Tp{1} + s_eps)
+      else if (std::abs(std::abs(z) - Tp{1}) < s_eps
+		&& std::real(s) <= Tp{1} + s_eps)
 	return s_nan;
-      else if (std::abs(z) > _Tp{1} + s_eps)
+      else if (std::abs(z) > Tp{1} + s_eps)
 	return s_nan;
       else
 	{
 	  constexpr auto s_maxit = 100000u;
-	  auto zpow = _Tp{1};
+	  auto zpow = Tp{1};
 	  auto sum = std::pow(a, -s);
 	  for (auto k = 1u; k < s_maxit; ++k)
 	    {
@@ -121,17 +121,17 @@ namespace detail
    * @param s The order @f$ s != 1 @f$.
    * @param a The scale parameter @f$ a > -1 @f$.
    */
-  template<typename _Tp>
-    _Tp
-    lerch_delta_vanwijngaarden_sum(_Tp z, _Tp s, _Tp a)
+  template<typename Tp>
+    Tp
+    lerch_delta_vanwijngaarden_sum(Tp z, Tp s, Tp a)
     {
       const auto s_eps = emsr::epsilon(s);
       constexpr auto s_maxit = 1000u;
 
-      emsr::WenigerDeltaSum<emsr::VanWijngaardenSum<_Tp>> _WDvW;
-      if (z >= _Tp{0})
+      emsr::WenigerDeltaSum<emsr::VanWijngaardenSum<Tp>> _WDvW;
+      if (z >= Tp{0})
 	{
-	  using lerch_t = lerch_term<_Tp>;
+	  using lerch_t = lerch_term<Tp>;
 	  using lerch_cmp_t = emsr::VanWijngaardenCompressor<lerch_t>;
 	  auto _VwT = lerch_cmp_t(lerch_t(z, s, a));
 	  for (auto k = 0u; k < s_maxit; ++k)
@@ -145,7 +145,7 @@ namespace detail
 	}
       else
 	{
-	  auto _LT = lerch_term<_Tp>(z, s, a);
+	  auto _LT = lerch_term<Tp>(z, s, a);
 	  for (auto k = 0u; k < s_maxit; ++k)
 	    {
 	      auto term = _LT(k);
@@ -171,19 +171,19 @@ namespace detail
    * @param s The order @f$ s != 1 @f$.
    * @param a The scale parameter @f$ a > -1 @f$.
    */
-  template<typename _Tp>
-    _Tp
-    lerch_phi(_Tp z, _Tp s, _Tp a)
+  template<typename Tp>
+    Tp
+    lerch_phi(Tp z, Tp s, Tp a)
     {
       const auto s_nan = emsr::quiet_NaN(s);
       const auto s_eps = emsr::epsilon(s);
 
       if (std::isnan(z) || std::isnan(s) || std::isnan(a))
 	return s_nan;
-      else if (std::abs(std::abs(z) - _Tp{1}) < s_eps
-		&& std::real(s) <= _Tp{1} + s_eps)
+      else if (std::abs(std::abs(z) - Tp{1}) < s_eps
+		&& std::real(s) <= Tp{1} + s_eps)
 	return s_nan;
-      else if (std::abs(z) > _Tp{1} + s_eps)
+      else if (std::abs(z) > Tp{1} + s_eps)
 	return s_nan;
       else
 	{
@@ -191,37 +191,37 @@ namespace detail
 
 	  const auto sint = emsr::fp_is_integer(s);
 	  const bool tinyz = std::abs(z) < s_eps; // s_min?
-	  const bool smallz = !tinyz && (std::abs(z) < _Tp{0.5});
+	  const bool smallz = !tinyz && (std::abs(z) < Tp{0.5});
 
 	  if (aint && aint() <= 0)
 	    return s_nan;
-	  else if (a < _Tp{0})
+	  else if (a < Tp{0})
 	    {
 	      if (sint)
 		{
 		  int sign = sint() % 2 == 0 ? +1 : -1;
 		  if (tinyz)
-		    return sign * _Tp{1} / std::pow(std::abs(a), s);
+		    return sign * Tp{1} / std::pow(std::abs(a), s);
 		  else
 		    {
 		      const auto m = -int(std::floor(a));
-		      const auto a1 = a + _Tp(m);
-		      auto sum1 = _Tp{0};
+		      const auto a1 = a + Tp(m);
+		      auto sum1 = Tp{0};
 		      for (int i = 0; i < m; ++i)
 			{
 			  sum1 += sign * std::pow(std::abs(z), i)
-				 / std::pow(std::abs(a + i), _Tp(sint()));
-			  if (z < _Tp{0})
+				 / std::pow(std::abs(a + i), Tp(sint()));
+			  if (z < Tp{0})
 			    sign = -sign;
 			}
-		      auto sum = _Tp{0};
+		      auto sum = Tp{0};
 		      if (smallz)
 			sum = lerch_sum(z, s, a1);
 		      else
 			sum
 			  = lerch_delta_vanwijngaarden_sum(z, s, a1);
 		      sign = 1;
-		      if (z < _Tp{0} && m % 2 != 0)
+		      if (z < Tp{0} && m % 2 != 0)
 			sign = -1;
 		      return sum1
 			   + sum * sign * std::pow(std::abs(z), m);
@@ -231,7 +231,7 @@ namespace detail
 		return s_nan;
 	    }
 	  else if (tinyz)
-	    return _Tp{1} / std::pow(a, s);
+	    return Tp{1} / std::pow(a, s);
 	  else // a > 0
 	    {
 	      if (smallz)

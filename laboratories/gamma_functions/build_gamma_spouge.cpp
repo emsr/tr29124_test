@@ -14,56 +14,56 @@
 #include <emsr/summation.h>
 #include <emsr/math_constants.h>
 
-  template<typename _Tp>
+  template<typename Tp>
     void
     spouge()
     {
-      std::cout.precision(std::numeric_limits<_Tp>::digits10);
+      std::cout.precision(std::numeric_limits<Tp>::digits10);
       std::cout << std::showpoint << std::scientific;
       auto width = 8 + std::cout.precision();
 
-      const auto s_eps = std::numeric_limits<_Tp>::epsilon();
-      const auto s_2pi = emsr::tau_v<_Tp>;
-      auto a = _Tp{1};
-      const auto fact = _Tp{1} / std::sqrt(s_2pi);
+      const auto s_eps = std::numeric_limits<Tp>::epsilon();
+      const auto s_2pi = emsr::tau_v<Tp>;
+      auto a = Tp{1};
+      const auto fact = Tp{1} / std::sqrt(s_2pi);
       while (s_eps <= fact * std::pow(s_2pi, -a) / std::sqrt(a))
 	{
           std::cout << "err = " << fact * std::pow(s_2pi, -a) / std::sqrt(a) << '\n';
-          a += _Tp{1};
+          a += Tp{1};
 	}
       std::cout << "a = " << a << '\n';
 
-      std::vector<_Tp> c;
-      auto factc = _Tp{1};
+      std::vector<Tp> c;
+      auto factc = Tp{1};
       c.push_back(factc * std::sqrt(a - 1) * std::exp(a - 1));
       std::cout << "c_0 = " << c.back() << '\n';
       //auto sum = factc * std::exp(a - 1);
       for (int k = 1; k < std::ceil(a); ++k)
 	{
-	  factc *= -_Tp{1} / _Tp(k);
-	  auto ak = _Tp(a - k - 1);
-	  c.push_back(factc * std::pow(ak, _Tp(k + 0.5Q)) * std::exp(ak));
+	  factc *= -Tp{1} / Tp(k);
+	  auto ak = Tp(a - k - 1);
+	  c.push_back(factc * std::pow(ak, Tp(k + 0.5Q)) * std::exp(ak));
 	  std::cout << "c_" << k << " = " << c.back() << '\n';
 	}
 
       auto log_gamma1p_spouge =
-	[=](_Tp z)
-	-> _Tp
+	[=](Tp z)
+	-> Tp
 	{
 	  // Reflection is right but auto and use of functions won't compile.
 	  //if (z <= -a)
-	  //  return std::log(s_pi) - std::log(sin_pi(z)) - log_gamma1p_spouge(_Tp{1} - z);
+	  //  return std::log(s_pi) - std::log(sin_pi(z)) - log_gamma1p_spouge(Tp{1} - z);
 	  //else
 	    {
-	      //using _WijnSum = emsr::VanWijngaardenSum<_Tp>;
+	      //using _WijnSum = emsr::VanWijngaardenSum<Tp>;
 	      //_WijnSum sum;
-	      using _BasicSum = emsr::BasicSum<_Tp>;
+	      using _BasicSum = emsr::BasicSum<Tp>;
 	      _BasicSum sum;
 	      sum += std::sqrt(s_2pi);
 	      for (unsigned int k = 0; k < c.size(); ++k)
 		sum += c[k] / (z + k + 1);
 	      return std::log(sum())
-		   + (z + _Tp{0.5Q}) * std::log(z + a)
+		   + (z + Tp{0.5Q}) * std::log(z + a)
 		   - (z + a);
 	    }
 	};
@@ -76,23 +76,23 @@
 		<< '\n';
       for (int i = 0; i <= 500; ++i)
 	{
-	  auto z = _Tp{0.01Q} * i;
+	  auto z = Tp{0.01Q} * i;
 	  std::cout << ' ' << std::setw(width) << z
-		    << ' ' << std::setw(width) << log_gamma1p_spouge(z - _Tp{1})
+		    << ' ' << std::setw(width) << log_gamma1p_spouge(z - Tp{1})
 		    << ' ' << std::setw(width) << std::lgamma(z)
-		    << ' ' << std::setw(width) << log_gamma1p_spouge(z - _Tp{1}) - std::lgamma(z) << '\n';
+		    << ' ' << std::setw(width) << log_gamma1p_spouge(z - Tp{1}) - std::lgamma(z) << '\n';
 	}
 
       //  Try to invert using Newton...
       auto log_gamma_inv
       {
-	[=](_Tp y)
-	-> _Tp
+	[=](Tp y)
+	-> Tp
 	{
-	  constexpr auto s_log_10 = emsr::log10e_v<_Tp>;
-	  constexpr auto s_ln_2 = emsr::ln2_v<_Tp>;
-	  constexpr auto s_ln_pi = emsr::lnpi_v<_Tp>;
-	  constexpr auto s_log_sqrt_2pi = (s_ln_2 + s_ln_pi) / _Tp{2};
+	  constexpr auto s_log_10 = emsr::log10e_v<Tp>;
+	  constexpr auto s_ln_2 = emsr::ln2_v<Tp>;
+	  constexpr auto s_ln_pi = emsr::lnpi_v<Tp>;
+	  constexpr auto s_log_sqrt_2pi = (s_ln_2 + s_ln_pi) / Tp{2};
 	  auto x = y * s_log_10 - s_log_sqrt_2pi;
 	  auto x0 = x;
 	  for (int i = 0; i < 100; ++i)
@@ -111,13 +111,13 @@
 		<< '\n';
       for (int i = 0; i <= 500; ++i)
 	{
-	  auto z = _Tp{0.01Q} * i;
-	  auto y = log_gamma1p_spouge(z - _Tp{1});
+	  auto z = Tp{0.01Q} * i;
+	  auto y = log_gamma1p_spouge(z - Tp{1});
 	  auto x = log_gamma_inv(y);
 	  std::cout << ' ' << std::setw(width) << z
 		    << ' ' << std::setw(width) << y
 		    << ' ' << std::setw(width) << std::lgamma(z)
-		    << ' ' << std::setw(width) << log_gamma1p_spouge(z - _Tp{1}) - std::lgamma(z)
+		    << ' ' << std::setw(width) << log_gamma1p_spouge(z - Tp{1}) - std::lgamma(z)
 		    << ' ' << std::setw(width) << x
 		    << ' ' << std::setw(width) << x - z
 		    << '\n';
@@ -127,7 +127,7 @@
   /**
    * A struct for Spouge algorithm Chebyshev arrays of coefficients.
    */
-  template<typename _Tp>
+  template<typename Tp>
     class _GammaSpouge
     {
     };

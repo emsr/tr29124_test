@@ -8,6 +8,8 @@
 #include <limits>
 #include <utility>
 
+#include <emsr/numeric_limits.h>
+#include <emsr/math_constants.h>
 #include <emsr/float128_io.h>
 
 //  Use AGM to do an ab initio calculation of K(k).

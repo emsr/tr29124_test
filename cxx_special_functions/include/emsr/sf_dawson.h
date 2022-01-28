@@ -43,11 +43,11 @@ namespace emsr
    *
    * @param x The argument @f$ -inf < x < inf @f$.
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    dawson(_Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    dawson(Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::dawson<type>(x);
     }
 

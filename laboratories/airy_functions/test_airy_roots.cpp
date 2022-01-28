@@ -8,6 +8,8 @@
 #include <iomanip>
 #include <cmath>
 
+#include <emsr/sf_mod_bessel.h>
+
 template<typename _Tp>
   void
   test_airy_roots()

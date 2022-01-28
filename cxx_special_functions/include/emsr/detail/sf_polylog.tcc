@@ -1,11 +1,11 @@
 
 // Copyright (C) 2016-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -42,8 +42,10 @@
 #include <stdexcept>
 #include <complex>
 
+#include <emsr/complex_util.h>
 #include <emsr/fp_type_util.h>
 #include <emsr/sf_trig.h>
+#include <emsr/sf_zeta.h>
 
 namespace emsr
 {
@@ -55,12 +57,12 @@ namespace detail
    * Termination conditions involve both a maximum iteration count
    * and a relative precision.
    */
-  template<typename _Tp>
+  template<typename Tp>
     class _Terminator
     {
     private:
 
-      using _Real = emsr::num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<Tp>;
       const std::size_t _M_max_iter;
       std::size_t _M_curr_iter;
       _Real _M_toler;
@@ -80,7 +82,7 @@ namespace detail
       /// Detect if the sum should terminate either because the incoming term
       /// is small enough or the maximum number of terms has been reached.
       bool
-      operator()(_Tp term, _Tp sum)
+      operator()(Tp term, Tp sum)
       {
 	if (this->_M_curr_iter >= this->_M_max_iter
 	    || ++this->_M_curr_iter == this->_M_max_iter)
@@ -100,12 +102,12 @@ namespace detail
    * Termination conditions involve both a maximum iteration count
    * and a relative precision.
    */
-  template<typename _Tp>
+  template<typename Tp>
     class _AsympTerminator
     {
     private:
 
-      using _Real = emsr::num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<Tp>;
       const std::size_t _M_max_iter;
       std::size_t _M_curr_iter;
       _Real _M_toler;
@@ -120,13 +122,13 @@ namespace detail
       { }
 
       /// Filter a term before applying it to the sum.
-      _Tp
-      operator<<(_Tp term)
+      Tp
+      operator<<(Tp term)
       {
 	if (std::abs(term) > this->_M_prev_term)
 	  {
 	    this->_M_stop_asymp = true;
-	    return _Tp{0};
+	    return Tp{0};
 	  }
 	else
 	  return term;
@@ -141,7 +143,7 @@ namespace detail
       /// is small enough or because the terms are starting to grow or
       //  the maximum number of terms has been reached.
       bool
-      operator()(_Tp term, _Tp sum)
+      operator()(Tp term, Tp sum)
       {
 	if (this->_M_stop_asymp)
 	  return true;
@@ -163,13 +165,13 @@ namespace detail
       }
     };
 
-  template<typename _Tp>
-    std::complex<_Tp>
-    clamp_pi(std::complex<_Tp> z)
+  template<typename Tp>
+    std::complex<Tp>
+    clamp_pi(std::complex<Tp> z)
     {
-      using _Real = emsr::num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<Tp>;
       const auto s_pi = emsr::pi_v<_Real>;
-      const auto s_i2pi = std::complex<_Tp>{0, _Tp{2} * s_pi};
+      const auto s_i2pi = std::complex<Tp>{0, Tp{2} * s_pi};
       while (z.imag() > s_pi)
 	z -= s_i2pi;
       while (z.imag() <= -s_pi)
@@ -177,16 +179,16 @@ namespace detail
       return z;
     }
 
-  template<typename _Tp>
-    std::complex<_Tp>
-    clamp_0_m2pi(std::complex<_Tp> z)
+  template<typename Tp>
+    std::complex<Tp>
+    clamp_0_m2pi(std::complex<Tp> z)
     {
-      using _Real = emsr::num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<Tp>;
       const auto s_2pi = emsr::tau_v<_Real>;
-      while (z.imag() > _Tp{0})
-	z = std::complex<_Tp>(z.real(), z.imag() - s_2pi);
+      while (z.imag() > Tp{0})
+	z = std::complex<Tp>(z.real(), z.imag() - s_2pi);
       while (z.imag() <= -s_2pi)
-	z = std::complex<_Tp>(z.real(), z.imag() + s_2pi);
+	z = std::complex<Tp>(z.real(), z.imag() + s_2pi);
       return z;
     }
 
@@ -210,23 +212,23 @@ namespace detail
    * @param w the argument.
    * @return the value of the polylogarithm.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    polylog_exp_pos(unsigned int s, std::complex<_Tp> w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_pos(unsigned int s, std::complex<Tp> w)
     {
-      using _Real = emsr::num_traits_t<_Tp>;
+      using _Real = emsr::num_traits_t<Tp>;
       const auto s_2pi = emsr::tau_v<_Real>;
       const auto s_pi = emsr::pi_v<_Real>;
       const auto s_pipio6 = emsr::pi_sqr_div_6_v<_Real>;
-      std::complex<_Tp> res = emsr::detail::riemann_zeta<_Tp>(s);
+      std::complex<Tp> res = emsr::detail::riemann_zeta<Tp>(s);
       auto wk = w;
-      auto fact = _Tp{1};
-      auto harmonicN = _Tp{1}; // HarmonicNumber_1
+      auto fact = Tp{1};
+      auto harmonicN = Tp{1}; // HarmonicNumber_1
       for (unsigned int k = 1; k <= s - 2; ++k)
 	{
-	  res += fact * emsr::detail::riemann_zeta<_Tp>(s - k) * wk;
+	  res += fact * emsr::detail::riemann_zeta<Tp>(s - k) * wk;
 	  wk *= w;
-	  const auto temp = _Tp{1} / _Tp(1 + k);
+	  const auto temp = Tp{1} / Tp(1 + k);
 	  fact *= temp;
 	  harmonicN += temp;
 	}
@@ -235,31 +237,31 @@ namespace detail
       res += (harmonicN - std::log(-w)) * wk * fact;
       wk *= w;
       fact /= s; // 1/s!
-      res -= wk * fact / _Tp{2};
+      res -= wk * fact / Tp{2};
       wk *= w;
       // Now comes the remainder of the series.
       const auto pref = wk / s_pi / s_2pi;
-      fact /= _Tp(s + 1); // 1/(s+1)!
+      fact /= Tp(s + 1); // 1/(s+1)!
       // Subtract the zeroth order term.
       res -= s_pipio6 * fact * pref;
-      fact *= _Tp{2} / _Tp(s + 2) * _Tp{3} / _Tp(s + 3);
+      fact *= Tp{2} / Tp(s + 2) * Tp{3} / Tp(s + 3);
       const auto wbar = w / s_2pi;
       const auto w2 = -wbar * wbar;
       auto w2k = w2;
-      auto rzarg = _Tp{2};
+      auto rzarg = Tp{2};
       const unsigned int maxit = 200;
-      _Terminator<std::complex<_Tp>> done(maxit);
+      _Terminator<std::complex<Tp>> done(maxit);
       while (true)
 	{
-	  rzarg += _Tp{2};
+	  rzarg += Tp{2};
 	  const auto rzeta = emsr::detail::riemann_zeta(rzarg);
 	  const auto term = pref * fact * rzeta * w2k;
 	  res -= term;
 	  if (done(term, res))
 	    break;
 	  w2k *= w2;
-	  fact *= _Tp(rzarg) / _Tp(s + rzarg)
-		  * _Tp(rzarg + 1) / _Tp(s + rzarg + 1);
+	  fact *= Tp(rzarg) / Tp(s + rzarg)
+		  * Tp(rzarg + 1) / Tp(s + rzarg + 1);
 	}
       return res;
     }
@@ -286,59 +288,59 @@ namespace detail
    * @param w the argument.
    * @return the value of the polylogarithm.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    polylog_exp_pos(unsigned int s, _Tp w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_pos(unsigned int s, Tp w)
     {
-      const auto s_2pi = emsr::tau_v<_Tp>;
-      const auto s_pi = emsr::pi_v<_Tp>;
-      const auto s_pipio6 = emsr::pi_sqr_div_6_v<_Tp>;
-      auto res = emsr::detail::riemann_zeta<_Tp>(s);
+      const auto s_2pi = emsr::tau_v<Tp>;
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto s_pipio6 = emsr::pi_sqr_div_6_v<Tp>;
+      auto res = emsr::detail::riemann_zeta<Tp>(s);
       auto wk = w;
-      auto fact = _Tp{1};
-      auto harmonicN = _Tp{1}; // HarmonicNumber_1
+      auto fact = Tp{1};
+      auto harmonicN = Tp{1}; // HarmonicNumber_1
       for (unsigned int k = 1; k <= s - 2; ++k)
 	{
-	  res += fact * emsr::detail::riemann_zeta<_Tp>(s - k) * wk;
+	  res += fact * emsr::detail::riemann_zeta<Tp>(s - k) * wk;
 	  wk *= w;
-	  const auto temp = _Tp{1} / _Tp(1 + k);
+	  const auto temp = Tp{1} / Tp(1 + k);
 	  fact *= temp;
 	  harmonicN += temp;
 	}
       // harmonicN now contains H_{s-1}
       // fact should be 1/(s-1)!
       const auto imagtemp = fact * wk
-			    * (harmonicN - std::log(std::complex<_Tp>(-w)));
+			    * (harmonicN - std::log(std::complex<Tp>(-w)));
       res += std::real(imagtemp);
       wk *= w;
       fact /= s; // 1/s!
-      res -= wk * fact / _Tp{2};
+      res -= wk * fact / Tp{2};
       wk *= w;
       // Now comes the remainder of the series.
       const auto pref = wk / s_pi / s_2pi;
-      fact /= _Tp(s + 1); // 1/(s+1)!
+      fact /= Tp(s + 1); // 1/(s+1)!
       // Subtract the zeroth order term.
       res -= s_pipio6 * fact * pref;
-      fact *= _Tp{2} / _Tp(s + 2) * _Tp{3} / _Tp(s + 3);
+      fact *= Tp{2} / Tp(s + 2) * Tp{3} / Tp(s + 3);
       const auto wbar = w / s_2pi;
       const auto w2 = -wbar * wbar;
       auto w2k = w2;
-      auto rzarg = _Tp{2};
+      auto rzarg = Tp{2};
       const unsigned int maxit = 200;
-      _Terminator<_Tp> done(maxit);
+      _Terminator<Tp> done(maxit);
       while (true)
 	{
-	  rzarg += _Tp{2};
+	  rzarg += Tp{2};
 	  const auto rzeta = emsr::detail::riemann_zeta(rzarg);
 	  const auto term = pref * fact * rzeta * w2k;
 	  res -= term;
 	  if (done(term, res))
 	    break;
 	  w2k *= w2;
-	  fact *= _Tp(rzarg) / _Tp(s + rzarg)
-		  * _Tp(rzarg + 1) / _Tp(s + rzarg + 1);
+	  fact *= Tp(rzarg) / Tp(s + rzarg)
+		  * Tp(rzarg + 1) / Tp(s + rzarg + 1);
 	}
-      return std::complex<_Tp>(res, std::imag(imagtemp));
+      return std::complex<Tp>(res, std::imag(imagtemp));
     }
 
   /**
@@ -357,21 +359,21 @@ namespace detail
    * @param w  The complex argument
    * @return  The value of the polylogarithm.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    polylog_exp_neg(_Tp s, std::complex<_Tp> w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_neg(Tp s, std::complex<Tp> w)
     {
-      const auto s_i = std::complex<_Tp>{0, 1};
-      const auto s_2pi = emsr::tau_v<_Tp>;
+      const auto s_i = std::complex<Tp>{0, 1};
+      const auto s_2pi = emsr::tau_v<Tp>;
       // Basic general loop, but s is a negative quantity here
       // FIXME Large s makes problems.
       // The series should be rearrangeable so that we only need
       // the ratio Gamma(1-s)/(2 pi)^s
-      auto ls = log_gamma(_Tp{1} - s);
-      auto res = std::exp(ls - (_Tp{1} - s) * std::log(-w));
+      auto ls = log_gamma(Tp{1} - s);
+      auto res = std::exp(ls - (Tp{1} - s) * std::log(-w));
       const auto wup = w / s_2pi;
       auto w2k = wup;
-      const auto pref = _Tp{2} * std::pow(s_2pi, -(_Tp{1} - s));
+      const auto pref = Tp{2} * std::pow(s_2pi, -(Tp{1} - s));
       // Here we factor up the ratio of Gamma(1 - s + k)/k! .
       // This ratio should be well behaved even for large k in the series
       // afterwards
@@ -380,7 +382,7 @@ namespace detail
       // on the positive real axis where it is real.
       auto gam = std::exp(ls);
 
-      const auto phase = emsr::polar_pi(_Tp{1}, s / _Tp{2});
+      const auto phase = emsr::polar_pi(Tp{1}, s / Tp{2});
       const auto cp = std::real(phase);
       const auto sp = std::imag(phase);
       // Here we add the expression that would result from ignoring
@@ -388,22 +390,22 @@ namespace detail
       const auto p = s_2pi - s_i * w;
       const auto q = s_2pi + s_i * w;
       // This can be optimized for real values of w
-      res += s_i * gam * (std::conj(phase) * std::pow(p, s - _Tp{1})
-	     - phase * std::pow(q, s - _Tp{1}));
+      res += s_i * gam * (std::conj(phase) * std::pow(p, s - Tp{1})
+	     - phase * std::pow(q, s - Tp{1}));
       // The above expression is the result of
       // sum_k Gamma(1+k-s)/k! * sin(pi (s-k)/2) (w/2/pi)^k
       // Therefore we only need to sample values of zeta(n) on the real axis
       // that really differ from one
-      std::complex<_Tp> sum = sp * gam * emsr::detail::riemann_zeta_m_1(_Tp{1} - s);
+      std::complex<Tp> sum = sp * gam * emsr::detail::riemann_zeta_m_1(Tp{1} - s);
       unsigned int j = 1;
-      gam *= (_Tp{1} - s);
+      gam *= (Tp{1} - s);
       constexpr unsigned int maxit = 200;
-      _Terminator<std::complex<_Tp>> done(maxit);
+      _Terminator<std::complex<Tp>> done(maxit);
       while (true)
 	{
-	  const auto rzarg = _Tp(1 + j) - s;
+	  const auto rzarg = Tp(1 + j) - s;
 	  const auto rz = emsr::detail::riemann_zeta_m_1(rzarg);
-	  _Tp sine;
+	  Tp sine;
 	  // Save repeated recalculation of the sines.
 	  if (j & 1)
 	    { // odd
@@ -420,7 +422,7 @@ namespace detail
 	  const auto term =  w2k * (gam * sine * rz);
 	  w2k *= wup;
 	  ++j;
-	  gam  *= rzarg / _Tp(j); // == 1/(j+1) we incremented j above.
+	  gam  *= rzarg / Tp(j); // == 1/(j+1) we incremented j above.
 	  sum += term;
 	  if (done(term, sum))
 	    break;
@@ -442,41 +444,41 @@ namespace detail
    * @param w the argument w.
    * @return the value of the polylogarithm.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    polylog_exp_neg(int n, std::complex<_Tp> w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_neg(int n, std::complex<Tp> w)
     {
-      const auto s_inf = std::numeric_limits<_Tp>::infinity();
+      const auto s_inf = std::numeric_limits<Tp>::infinity();
       if (emsr::fp_is_zero(w))
-	return std::complex<_Tp>{0};
-      else if (emsr::fp_is_equal(w, _Tp{1}))
-	return std::complex<_Tp>{s_inf, _Tp{0}};
+	return std::complex<Tp>{0};
+      else if (emsr::fp_is_equal(w, Tp{1}))
+	return std::complex<Tp>{s_inf, Tp{0}};
       else
 	{
 	  const int p = -n;
 	  const int pp = 1 + p;
 	  const int q = p & 1 ? 0 : 1;
 	  const auto w2 = w * w;
-	  auto wp = p & 1 ? std::complex<_Tp>{1} : w;
+	  auto wp = p & 1 ? std::complex<Tp>{1} : w;
 	  unsigned int __2k = q;
-	  auto gam = factorial<_Tp>(p + __2k);
-	  const auto pfact = factorial<_Tp>(p);
-	  auto res = pfact * std::pow(-w, _Tp(-pp));
-	  auto sum = std::complex<_Tp>{};
+	  auto gam = factorial<Tp>(p + __2k);
+	  const auto pfact = factorial<Tp>(p);
+	  auto res = pfact * std::pow(-w, Tp(-pp));
+	  auto sum = std::complex<Tp>{};
 	  constexpr unsigned int maxit = 300;
-	  _Terminator<std::complex<_Tp>> done(maxit);
+	  _Terminator<std::complex<Tp>> done(maxit);
 	  while (true)
 	    {
 	      const auto id = (p + __2k + 1) / 2;
 	      if (id == emsr::detail::Num_Euler_Maclaurin_zeta)
 		break;
 	      const auto term = gam * wp
-			* _Tp(emsr::detail::Euler_Maclaurin_zeta[id]);
+			* Tp(emsr::detail::Euler_Maclaurin_zeta[id]);
 	      sum += term;
 	      if (done(term, sum))
 		break;
-	      gam *= _Tp(p + __2k + 1) / _Tp(__2k + 1)
-		     * _Tp(p + __2k + 2) / _Tp(__2k + 2);
+	      gam *= Tp(p + __2k + 1) / Tp(__2k + 1)
+		     * Tp(p + __2k + 2) / Tp(__2k + 2);
 	      wp *= w2;
 	      __2k += 2;
 	    }
@@ -505,48 +507,48 @@ namespace detail
    * @param w The complex argument w.
    * @return the value of the polylogarithm.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    polylog_exp_pos(_Tp s, std::complex<_Tp> w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_pos(Tp s, std::complex<Tp> w)
     { // positive s
-      const auto s_2pi = emsr::tau_v<_Tp>;
-      const auto s_pi = emsr::pi_v<_Tp>;
-      std::complex<_Tp> res = emsr::detail::riemann_zeta(s);
+      const auto s_2pi = emsr::tau_v<Tp>;
+      const auto s_pi = emsr::pi_v<Tp>;
+      std::complex<Tp> res = emsr::detail::riemann_zeta(s);
       auto wk = w;
-      const auto phase = emsr::polar_pi(_Tp{1}, s / _Tp{2});
+      const auto phase = emsr::polar_pi(Tp{1}, s / Tp{2});
       const auto cp = std::real(phase);
       const auto sp = std::imag(phase);
       // This is \Gamma(1-s)(-w)^{s-1}
-      res += s_pi / (_Tp{2} * sp * cp)
-	  * std::exp(-log_gamma(s) + (s - _Tp{1}) * std::log(-w));
-      auto fact = _Tp{1};
+      res += s_pi / (Tp{2} * sp * cp)
+	  * std::exp(-log_gamma(s) + (s - Tp{1}) * std::log(-w));
+      auto fact = Tp{1};
       const auto m = static_cast<unsigned int>(std::floor(s));
       for (unsigned int k = 1; k <= m; ++k)
 	{
 	  res += wk * fact
-		 * emsr::detail::riemann_zeta(s - _Tp(k));
+		 * emsr::detail::riemann_zeta(s - Tp(k));
 	  wk *= w;
-	  fact /= _Tp(1 + k);
+	  fact /= Tp(1 + k);
 	}
       // fac should now be 1/(m+1)!
-      const auto pref = _Tp{2} * std::pow(s_2pi, s - _Tp{1});
+      const auto pref = Tp{2} * std::pow(s_2pi, s - Tp{1});
       // Factor this out for now so we can compare with sum.
       res /= pref;
       // Now comes the remainder of the series
       unsigned int j = 0;
       constexpr unsigned int maxit = 100;
-      _Terminator<std::complex<_Tp>> done(maxit);
+      _Terminator<std::complex<Tp>> done(maxit);
       auto wup = w / s_2pi;
-      auto wbark = std::pow(wup, _Tp(m + 1));
+      auto wbark = std::pow(wup, Tp(m + 1));
       // It is 1 < 2 - s + m < 2 => Gamma(2-s+m) will not overflow
       // Here we factor up the ratio of Gamma(1 - s + k) / k!.
       // This ratio should be well behaved even for large k
-      auto gam = gamma(_Tp(2 + m) - s) * fact;
-      std::complex<_Tp> sum{};
+      auto gam = gamma(Tp(2 + m) - s) * fact;
+      std::complex<Tp> sum{};
       while (true)
 	{
 	  const auto idx = m + 1 + j;
-	  const auto zetaarg = _Tp(1 + idx) - s;
+	  const auto zetaarg = Tp(1 + idx) - s;
 	  const auto rz = emsr::detail::riemann_zeta(zetaarg);
 	  auto sine = cp;
 	  if (idx & 1) // Save the repeated calculation of the sines.
@@ -563,7 +565,7 @@ namespace detail
 	    }
 	  const auto term = wbark * sine * gam * rz;
 	  wbark *= wup;
-	  gam *= zetaarg / _Tp(1 + idx);
+	  gam *= zetaarg / Tp(1 + idx);
 	  ++j;
 	  sum += term;
 	  if (done(term, res + sum))
@@ -591,30 +593,30 @@ namespace detail
    * @param w the large complex argument w.
    * @return the value of the polylogarithm.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    polylog_exp_asymp(_Tp s, std::complex<_Tp> w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_asymp(Tp s, std::complex<Tp> w)
     {
-      const auto s_pi = emsr::pi_v<_Tp>;
+      const auto s_pi = emsr::pi_v<Tp>;
       // wgamma = w^{s-1} / Gamma(s)
-      auto wgamma = std::pow(w, s - _Tp{1}) * gamma_reciprocal(s);
-      auto res = std::complex<_Tp>(_Tp{0}, -s_pi) * wgamma;
+      auto wgamma = std::pow(w, s - Tp{1}) * gamma_reciprocal(s);
+      auto res = std::complex<Tp>(Tp{0}, -s_pi) * wgamma;
       // wgamma = w^s / Gamma(s+1)
       wgamma *= w / s;
       constexpr unsigned int maxiter = 100;
-      _AsympTerminator<std::complex<_Tp>> done(maxiter);
+      _AsympTerminator<std::complex<Tp>> done(maxiter);
       // zeta(0) w^s / Gamma(s + 1)
-      std::complex<_Tp> oldterm = -_Tp{0.5L} * wgamma;
-      res += _Tp{2} * oldterm;
-      std::complex<_Tp> term;
-      auto wq = _Tp{1} / (w * w);
+      std::complex<Tp> oldterm = -Tp{0.5L} * wgamma;
+      res += Tp{2} * oldterm;
+      std::complex<Tp> term;
+      auto wq = Tp{1} / (w * w);
       int k = 1;
       while (true)
 	{
-	  wgamma *= wq * (s + _Tp(1 - 2 * k)) * (s + _Tp(2 - 2 * k));
-	  term = emsr::detail::riemann_zeta<_Tp>(2 * k) * wgamma;
-	  res += done << _Tp{2} * term;
-	  if (done(_Tp{2} * term, res))
+	  wgamma *= wq * (s + Tp(1 - 2 * k)) * (s + Tp(2 - 2 * k));
+	  term = emsr::detail::riemann_zeta<Tp>(2 * k) * wgamma;
+	  res += done << Tp{2} * term;
+	  if (done(Tp{2} * term, res))
 	    break;
 	  oldterm = term;
 	  ++k;
@@ -635,21 +637,21 @@ namespace detail
    * @param w something with a negative real part.
    * @return the value of the polylogarithm.
    */
-  template<typename _PowTp, typename _Tp>
-    _Tp
-    polylog_exp_sum(_PowTp s, _Tp w)
+  template<typename _PowTp, typename Tp>
+    Tp
+    polylog_exp_sum(_PowTp s, Tp w)
     {
       auto ew = std::exp(w);
       const auto up = ew;
       auto res = ew;
       unsigned int maxiter = 500;
-      _Terminator<_Tp> done(maxiter);
+      _Terminator<Tp> done(maxiter);
       bool terminate = false;
       unsigned int k = 2;
       while (!terminate)
 	{
 	  ew *= up;
-	  _Tp temp = std::pow(k, s); // This saves us a type conversion
+	  Tp temp = std::pow(k, s); // This saves us a type conversion
 	  const auto term = ew / temp;
 	  res += term;
 	  terminate = done(term, res);
@@ -666,43 +668,43 @@ namespace detail
    * @param w an arbitrary complex number.
    * @return The value of the polylogarithm.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    polylog_exp_pos_int(unsigned int s, std::complex<_Tp> w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_pos_int(unsigned int s, std::complex<Tp> w)
     {
-      using _Val = _Tp;
+      using _Val = Tp;
       using _Real = emsr::num_traits_t<_Val>;
       const auto s_2pi = emsr::tau_v<_Real>;
       const auto s_pi = emsr::pi_v<_Real>;
       const auto s_pi_2 = emsr::pi_v<_Real> / _Real{2};
-      const auto s_max_asymp = _Tp{5};
+      const auto s_max_asymp = Tp{5};
       const auto rw = w.real();
       const auto iw = w.imag();
       if (emsr::fp_is_real(w)
-	  && emsr::fp_is_equal(std::remainder(iw, s_2pi), _Tp{0}))
+	  && emsr::fp_is_equal(std::remainder(iw, s_2pi), Tp{0}))
 	{
 	  if (s == 1)
-	    return std::numeric_limits<_Tp>::infinity();
+	    return std::numeric_limits<Tp>::infinity();
 	  else
-	    return emsr::detail::riemann_zeta<_Tp>(s);
+	    return emsr::detail::riemann_zeta<Tp>(s);
 	}
       else if (0 == s)
 	{
 	  const auto t = std::exp(w);
-	  return emsr::fp_is_zero(_Tp{1} - t)
-	       ? std::numeric_limits<_Tp>::quiet_NaN()
-	       : t / (_Tp{1} - t);
+	  return emsr::fp_is_zero(Tp{1} - t)
+	       ? std::numeric_limits<Tp>::quiet_NaN()
+	       : t / (Tp{1} - t);
 	}
       else if (1 == s)
 	{
 	  const auto t = std::exp(w);
-	  return emsr::fp_is_zero(_Tp{1} - t)
-	       ? std::numeric_limits<_Tp>::quiet_NaN()
-	       : -std::log(_Tp{1} - t);
+	  return emsr::fp_is_zero(Tp{1} - t)
+	       ? std::numeric_limits<Tp>::quiet_NaN()
+	       : -std::log(Tp{1} - t);
 	}
       else
 	{
-	  if (rw < -(s_pi_2 + s_pi / _Tp{5}))
+	  if (rw < -(s_pi_2 + s_pi / Tp{5}))
 	    // Choose the exponentially converging series
 	    return polylog_exp_sum(s, w);
 	  else if (rw < s_max_asymp)
@@ -714,7 +716,7 @@ namespace detail
 	    return polylog_exp_pos(s, clamp_pi(w));
 	  else
 	    // Wikipedia says that this is required for Wood's formula.
-	    return polylog_exp_asymp(static_cast<_Tp>(s),
+	    return polylog_exp_asymp(static_cast<Tp>(s),
 				       clamp_0_m2pi(w));
 	}
     }
@@ -727,46 +729,46 @@ namespace detail
    * @param w an arbitrary real argument w
    * @return the value of the polylogarithm.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    polylog_exp_pos_int(unsigned int s, _Tp w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_pos_int(unsigned int s, Tp w)
     {
-      using _Val = _Tp;
+      using _Val = Tp;
       using _Real = emsr::num_traits_t<_Val>;
       const auto s_pi = emsr::pi_v<_Real>;
       const auto s_pi_2 = emsr::pi_v<_Real> / _Real{2};
-      const auto s_max_asymp = _Tp{5};
+      const auto s_max_asymp = Tp{5};
       if (emsr::fp_is_zero(w))
 	{
 	  if (s == 1)
-	    return std::numeric_limits<_Tp>::infinity();
+	    return std::numeric_limits<Tp>::infinity();
 	  else
-	    return emsr::detail::riemann_zeta<_Tp>(s);
+	    return emsr::detail::riemann_zeta<Tp>(s);
 	}
       else if (s == 0)
 	{
 	  const auto t = std::exp(w);
-	  return emsr::fp_is_zero(_Tp{1} - t)
-	       ? std::numeric_limits<_Tp>::infinity()
-	       : t / (_Tp{1} - t);
+	  return emsr::fp_is_zero(Tp{1} - t)
+	       ? std::numeric_limits<Tp>::infinity()
+	       : t / (Tp{1} - t);
 	}
       else if (s == 1)
 	{
 	  const auto t = std::exp(w);
-	  return emsr::fp_is_zero(_Tp{1} - t)
-	       ? -std::numeric_limits<_Tp>::infinity()
-	       : -std::log(_Tp{1} - t);
+	  return emsr::fp_is_zero(Tp{1} - t)
+	       ? -std::numeric_limits<Tp>::infinity()
+	       : -std::log(Tp{1} - t);
 	}
       else
 	{
-	  if (w < -(s_pi_2 + s_pi / _Tp{5}))
+	  if (w < -(s_pi_2 + s_pi / Tp{5}))
 	    // Choose the exponentially converging series
 	    return polylog_exp_sum(s, w);
 	  else if (w < s_max_asymp)
 	    return polylog_exp_pos(s, w);
 	  else
-	    return polylog_exp_asymp(static_cast<_Tp>(s),
-				       std::complex<_Tp>(w));
+	    return polylog_exp_asymp(static_cast<Tp>(s),
+				       std::complex<Tp>(w));
 	}
     }
 
@@ -777,31 +779,31 @@ namespace detail
    * @param w an arbitrary complex number
    * @return the value of the polylogarith,.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    polylog_exp_neg_int(int s, std::complex<_Tp> w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_neg_int(int s, std::complex<Tp> w)
     {
-      using _Val = _Tp;
+      using _Val = Tp;
       using _Real = emsr::num_traits_t<_Val>;
       const auto s_2pi = emsr::tau_v<_Real>;
       const auto s_pi = emsr::pi_v<_Real>;
       const auto s_pi_2 = emsr::pi_v<_Real> / _Real{2};
-      const auto s_max_asymp = _Tp{5};
+      const auto s_max_asymp = Tp{5};
       if ((((-s) & 1) == 0) && emsr::fp_is_imag(w))
 	{
 	  // Now s is odd and w on the unit-circle.
 	  const auto iw = imag(w); // Get imaginary part.
 	  const auto rem = std::remainder(iw, s_2pi);
-	  if (emsr::fp_is_equal(std::abs(rem), _Tp{0.5L}))
+	  if (emsr::fp_is_equal(std::abs(rem), Tp{0.5L}))
 	    // Due to: Li_{-n}(-1) + (-1)^n Li_{-n}(1/-1) = 0.
-	    return _Tp{0};
+	    return Tp{0};
 	  else
 	    // No asymptotic expansion available... check the reduction.
-	    return polylog_exp_neg(s, std::complex<_Tp>(w.real(), rem));
+	    return polylog_exp_neg(s, std::complex<Tp>(w.real(), rem));
 	}
       else
 	{
-	  if (std::real(w) < -(s_pi_2 + s_pi / _Tp{5}))
+	  if (std::real(w) < -(s_pi_2 + s_pi / Tp{5}))
 	    // Choose the exponentially converging series
 	    return polylog_exp_sum(s, w);
 	  else if (std::real(w) < s_max_asymp)
@@ -812,7 +814,7 @@ namespace detail
 	    return polylog_exp_neg(s, clamp_pi(w));
 	  else
 	    // Wikipedia says that this clamping is required for Wood's formula.
-	    return polylog_exp_asymp(_Tp(s), clamp_0_m2pi(w));
+	    return polylog_exp_asymp(Tp(s), clamp_0_m2pi(w));
 	}
     }
 
@@ -823,23 +825,23 @@ namespace detail
    * @param w the argument.
    * @return the value of the polylogarithm.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    polylog_exp_neg_int(int s, _Tp w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_neg_int(int s, Tp w)
     {
-      const auto s_pi = emsr::pi_v<_Tp>;
-      const auto s_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
-      const auto s_max_asymp = _Tp{5};
-      if (w < -(s_pi_2 + s_pi / _Tp{5}))
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto s_pi_2 = emsr::pi_v<Tp> / Tp{2};
+      const auto s_max_asymp = Tp{5};
+      if (w < -(s_pi_2 + s_pi / Tp{5}))
 	// Choose exponentially converging series.
 	return polylog_exp_sum(s, w);
       else if (emsr::fp_is_zero(w))
-	return std::numeric_limits<_Tp>::infinity();
+	return std::numeric_limits<Tp>::infinity();
       else if (w < s_max_asymp)
 	// Arbitrary transition point less than 2 pi.
-	return polylog_exp_neg(s, std::complex<_Tp>(w));
+	return polylog_exp_neg(s, std::complex<Tp>(w));
       else
-	return polylog_exp_asymp(_Tp(s), std::complex<_Tp>(w));
+	return polylog_exp_asymp(Tp(s), std::complex<Tp>(w));
     }
 
   /**
@@ -850,25 +852,25 @@ namespace detail
    * @param w the complex argument.
    * @return The value of the polylogarithm.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    polylog_exp_pos_real(_Tp s, std::complex<_Tp> w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_pos_real(Tp s, std::complex<Tp> w)
     {
-      const auto s_2pi = emsr::tau_v<_Tp>;
-      const auto s_pi = emsr::pi_v<_Tp>;
-      const auto s_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
-      const auto s_max_asymp = _Tp{5};
+      const auto s_2pi = emsr::tau_v<Tp>;
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto s_pi_2 = emsr::pi_v<Tp> / Tp{2};
+      const auto s_max_asymp = Tp{5};
       const auto rw = w.real();
       const auto iw = w.imag();
       if (emsr::fp_is_real(w)
 	  && emsr::fp_is_zero(std::remainder(iw, s_2pi)))
 	{
-	  if (emsr::fp_is_equal(s, _Tp{1}))
-	    return std::numeric_limits<_Tp>::infinity();
+	  if (emsr::fp_is_equal(s, Tp{1}))
+	    return std::numeric_limits<Tp>::infinity();
 	  else
 	    return emsr::detail::riemann_zeta(s);
 	}
-      if (rw < -(s_pi_2 + s_pi / _Tp{5}))
+      if (rw < -(s_pi_2 + s_pi / Tp{5}))
         // Choose exponentially converging series.
 	return polylog_exp_sum(s, w);
       if (rw < s_max_asymp)
@@ -890,28 +892,28 @@ namespace detail
    * @param w  The real argument w.
    * @return  The value of the polylogarithm.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    polylog_exp_pos_real(_Tp s, _Tp w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_pos_real(Tp s, Tp w)
     {
-      const auto s_pi = emsr::pi_v<_Tp>;
-      const auto s_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
-      const auto s_max_asymp = _Tp{5};
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto s_pi_2 = emsr::pi_v<Tp> / Tp{2};
+      const auto s_max_asymp = Tp{5};
       if (emsr::fp_is_zero(w))
 	{
-	  if (emsr::fp_is_equal(s, _Tp{1}))
-	    return std::numeric_limits<_Tp>::infinity();
+	  if (emsr::fp_is_equal(s, Tp{1}))
+	    return std::numeric_limits<Tp>::infinity();
 	  else
 	    return emsr::detail::riemann_zeta(s);
 	}
-      if (w < -(s_pi_2 + s_pi / _Tp{5}))
+      if (w < -(s_pi_2 + s_pi / Tp{5}))
 	// Choose exponentially converging series.
 	return polylog_exp_sum(s, w);
       if (w < s_max_asymp)
 	// Arbitrary transition point
-	return polylog_exp_pos(s, std::complex<_Tp>(w));
+	return polylog_exp_pos(s, std::complex<Tp>(w));
       else
-	return polylog_exp_asymp(s, std::complex<_Tp>(w));
+	return polylog_exp_asymp(s, std::complex<Tp>(w));
     }
 
   /**
@@ -924,15 +926,15 @@ namespace detail
    * @param w  The complex argument.
    * @return  The value of the polylogarithm.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    polylog_exp_neg_real(_Tp s, std::complex<_Tp> w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_neg_real(Tp s, std::complex<Tp> w)
     {
-      const auto s_pi = emsr::pi_v<_Tp>;
-      const auto s_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
-      const auto s_max_asymp = _Tp{5};
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto s_pi_2 = emsr::pi_v<Tp> / Tp{2};
+      const auto s_max_asymp = Tp{5};
       const auto rw = w.real();
-      if (rw < -(s_pi_2 + s_pi / _Tp{5}))
+      if (rw < -(s_pi_2 + s_pi / Tp{5}))
 	// Choose exponentially converging series.
 	return polylog_exp_sum(s, w);
       else if (rw < s_max_asymp)
@@ -954,21 +956,21 @@ namespace detail
    * @param w  A real argument.
    * @return  The value of the polylogarithm.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    polylog_exp_neg_real(_Tp s, _Tp w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog_exp_neg_real(Tp s, Tp w)
     {
-      const auto s_pi = emsr::pi_v<_Tp>;
-      const auto s_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
-      const auto s_max_asymp = _Tp{5};
-      if (w < -(s_pi_2 + s_pi / _Tp{5}))
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto s_pi_2 = emsr::pi_v<Tp> / Tp{2};
+      const auto s_max_asymp = Tp{5};
+      if (w < -(s_pi_2 + s_pi / Tp{5}))
 	// Choose exponentially converging series.
 	return polylog_exp_sum(s, w);
       else if (w < s_max_asymp)
 	// Arbitrary transition point
-	return polylog_exp_neg(s, std::complex<_Tp>(w));
+	return polylog_exp_neg(s, std::complex<Tp>(w));
       else
-	return polylog_exp_asymp(s, std::complex<_Tp>(w));
+	return polylog_exp_asymp(s, std::complex<Tp>(w));
     }
 
   /**
@@ -983,18 +985,18 @@ namespace detail
    * @param w  The real or complex argument.
    * @return  The real or complex value of Li_s(e^w).
    */
-  template<typename _Tp, typename _ArgType>
-    emsr::fp_promote_t<std::complex<_Tp>, _ArgType>
-    polylog_exp(_Tp s, _ArgType w)
+  template<typename Tp, typename _ArgType>
+    emsr::fp_promote_t<std::complex<Tp>, _ArgType>
+    polylog_exp(Tp s, _ArgType w)
     {
       if (std::isnan(s) || std::isnan(w))
-	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (s > _Tp{25})
+	return std::numeric_limits<Tp>::quiet_NaN();
+      else if (s > Tp{25})
 	// Cutoff chosen by some testing on the real axis.
 	return polylog_exp_sum(s, w);
       else
 	{
-	  const auto p = emsr::fp_is_integer(s, _Tp{5});
+	  const auto p = emsr::fp_is_integer(s, Tp{5});
 	  if (p)
 	    { // The order s is an integer.
 	      if (p() >= 0)
@@ -1004,7 +1006,7 @@ namespace detail
 	    }
 	  else
 	    {
-	      if (s > _Tp{0})
+	      if (s > Tp{0})
 		return polylog_exp_pos_real(s, w);
 	      else
 		return polylog_exp_neg_real(s, w);
@@ -1024,30 +1026,30 @@ namespace detail
    * @param x  The real argument.
    * @return The complex value of the polylogarithm.
    */
-  template<typename _Tp>
-    _Tp
-    polylog(_Tp s, _Tp x)
+  template<typename Tp>
+    Tp
+    polylog(Tp s, Tp x)
     {
       if (std::isnan(s) || std::isnan(x))
 	return emsr::quiet_NaN(s);
       else if (emsr::fp_is_zero(x))
-	return _Tp{0};
+	return Tp{0};
       else
 	{
-	  const auto n = emsr::fp_is_integer(s, _Tp{5});
+	  const auto n = emsr::fp_is_integer(s, Tp{5});
 	  if (n && n() == 1)
-	    return -std::log(_Tp{1} - x);
+	    return -std::log(Tp{1} - x);
 	  else if (n && n() == 0)
-	    return x / (_Tp{1} - x);
-	  else if (emsr::fp_is_equal(x, _Tp{-1}))
+	    return x / (Tp{1} - x);
+	  else if (emsr::fp_is_equal(x, Tp{-1}))
 	    // Prevent blowups caused by reflecting the branch point.
-	    return std::real(polylog_exp(s, _Tp{0})
-				* (std::pow(_Tp{2}, _Tp{1} - s) - _Tp{1}));
-	  else if (x < _Tp{0})
+	    return std::real(polylog_exp(s, Tp{0})
+				* (std::pow(Tp{2}, Tp{1} - s) - Tp{1}));
+	  else if (x < Tp{0})
 	    { // Use the reflection formula to access negative values.
 	      const auto y = std::log(-x);
-	      return std::real(polylog_exp(s, _Tp{2} * y)
-				    * std::pow(_Tp{2}, _Tp{1} - s)
+	      return std::real(polylog_exp(s, Tp{2} * y)
+				    * std::pow(Tp{2}, Tp{1} - s)
 			     - polylog_exp(s, y));
 	    }
 	  else
@@ -1065,9 +1067,9 @@ namespace detail
    * @param w  The complex argument.
    * @return  The complex value of the polylogarithm.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    polylog(_Tp s, std::complex<_Tp> w)
+  template<typename Tp>
+    std::complex<Tp>
+    polylog(Tp s, std::complex<Tp> w)
     {
       if (std::isnan(s) || std::isnan(w))
 	return emsr::quiet_NaN(s);
@@ -1089,19 +1091,19 @@ namespace detail
   * @param z  The real or complex argument.
   * @return The complex value of the periodic zeta function.
   */
-  template<typename _Tp, typename _ArgType>
-    emsr::fp_promote_t<std::complex<_Tp>, _ArgType>
-    periodic_zeta(_ArgType z, _Tp s)
+  template<typename Tp, typename _ArgType>
+    emsr::fp_promote_t<std::complex<Tp>, _ArgType>
+    periodic_zeta(_ArgType z, Tp s)
     {
-      using _Cmplx = std::complex<_Tp>;
+      using _Cmplx = std::complex<Tp>;
       const auto s_i = _Cmplx{0, 1};
-      const auto s_pi = emsr::pi_v<_Tp>;
+      const auto s_pi = emsr::pi_v<Tp>;
       if (std::isnan(s) || std::isnan(z))
 	return emsr::quiet_NaN(s);
       else if (emsr::fp_is_zero(z))
 	return emsr::detail::riemann_zeta(s);
       else
-	return polylog_exp(s, s_i * _Tp{2} * s_pi * z);
+	return polylog_exp(s, s_i * Tp{2} * s_pi * z);
     }
 
   /**
@@ -1114,24 +1116,24 @@ namespace detail
    * @param s The real argument
    * @param a The complex parameter
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    hurwitz_zeta_polylog(_Tp s, std::complex<_Tp> a)
+  template<typename Tp>
+    std::complex<Tp>
+    hurwitz_zeta_polylog(Tp s, std::complex<Tp> a)
     {
-      using _Cmplx = std::complex<_Tp>;
-      const auto s_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
-      const auto s_2pi = emsr::tau_v<_Tp>;
+      using _Cmplx = std::complex<Tp>;
+      const auto s_pi_2 = emsr::pi_v<Tp> / Tp{2};
+      const auto s_2pi = emsr::tau_v<Tp>;
       const auto s_i2pi = _Cmplx{0, s_2pi};
-      if ((a.imag() >= _Tp{0}
-		&& (a.real() >= _Tp{0} && a.real() <  _Tp{1}))
-       || (a.imag() <  _Tp{0}
-		&& (a.real() >  _Tp{0} && a.real() <= _Tp{1})))
+      if ((a.imag() >= Tp{0}
+		&& (a.real() >= Tp{0} && a.real() <  Tp{1}))
+       || (a.imag() <  Tp{0}
+		&& (a.real() >  Tp{0} && a.real() <= Tp{1})))
 	{
-	  const auto t = _Tp{1} - s;
+	  const auto t = Tp{1} - s;
 	  const auto lpe = polylog_exp(t, s_i2pi * a);
 	  /// @todo This hurwitz_zeta_polylog prefactor is prone to overflow.
 	  /// positive integer orders s?
-	  const auto thing = std::exp(_Cmplx(_Tp{0}, -s_pi_2 * t));
+	  const auto thing = std::exp(_Cmplx(Tp{0}, -s_pi_2 * t));
 	  return gamma(t)
 	       * std::pow(s_2pi, -t)
 	       * (lpe * thing + std::conj(lpe * thing));
@@ -1153,14 +1155,14 @@ namespace detail
    * @return  The complex Dirichlet eta function.
    * @throw  std::domain_error if the argument has a significant imaginary part.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    dirichlet_eta(std::complex<_Tp> s)
+  template<typename Tp>
+    std::complex<Tp>
+    dirichlet_eta(std::complex<Tp> s)
     {
       if (std::isnan(s))
 	return emsr::quiet_NaN(std::imag(s));
       else if (emsr::fp_is_real(s))
-	return -polylog(std::real(s), _Tp{-1});
+	return -polylog(std::real(s), Tp{-1});
       else
 	throw std::domain_error("dirichlet_eta: Bad argument");
     }
@@ -1175,29 +1177,29 @@ namespace detail
    * @param s  The real argument.
    * @return  The Dirichlet eta function.
    */
-  template<typename _Tp>
-    _Tp
-    dirichlet_eta(_Tp s)
+  template<typename Tp>
+    Tp
+    dirichlet_eta(Tp s)
     {
       if (std::isnan(s))
 	return emsr::quiet_NaN(s);
-      else if (s < _Tp{0})
+      else if (s < Tp{0})
 	{
-	  const auto p = emsr::fp_is_integer(s, _Tp{5});
+	  const auto p = emsr::fp_is_integer(s, Tp{5});
 	  if (p && (p() % 2 == 0))
-	    return _Tp{0};
+	    return Tp{0};
 	  else
 	    {
-	      const auto s_pi = emsr::pi_v<_Tp>;
-	      const auto sc = _Tp{1} - s;
-	      const auto p2 = std::pow(_Tp{2}, -sc);
-	      return _Tp{2} * (_Tp{1} - p2) / (_Tp{1} - _Tp{2} * p2)
-		   * std::pow(s_pi, -sc) * s * emsr::sin_pi(s / _Tp{2})
+	      const auto s_pi = emsr::pi_v<Tp>;
+	      const auto sc = Tp{1} - s;
+	      const auto p2 = std::pow(Tp{2}, -sc);
+	      return Tp{2} * (Tp{1} - p2) / (Tp{1} - Tp{2} * p2)
+		   * std::pow(s_pi, -sc) * s * emsr::sin_pi(s / Tp{2})
 		   * gamma(-s) * dirichlet_eta(sc);
 	    }
 	}
       else
-	return -std::real(polylog(s, _Tp{-1}));
+	return -std::real(polylog(s, Tp{-1}));
     }
 
   /**
@@ -1213,11 +1215,11 @@ namespace detail
    * @return  The Dirichlet Beta function of real argument.
    * @throw  std::domain_error if the argument has a significant imaginary part.
    */
-  template<typename _Tp>
-    _Tp
-    dirichlet_beta(std::complex<_Tp> s)
+  template<typename Tp>
+    Tp
+    dirichlet_beta(std::complex<Tp> s)
     {
-      const auto s_i = std::complex<_Tp>{0, 1};
+      const auto s_i = std::complex<Tp>{0, 1};
       if (std::isnan(s))
 	return emsr::quiet_NaN(std::imag(s));
       else if (emsr::fp_is_real(s))
@@ -1236,13 +1238,13 @@ namespace detail
    * @param s  The real argument.
    * @return  The Dirichlet Beta function of real argument.
    */
-  template<typename _Tp>
-    _Tp
-    dirichlet_beta(_Tp s)
+  template<typename Tp>
+    Tp
+    dirichlet_beta(Tp s)
     {
-      const auto s_i = std::complex<_Tp>{0, 1};
+      const auto s_i = std::complex<Tp>{0, 1};
       if (std::isnan(s))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return std::numeric_limits<Tp>::quiet_NaN();
       else
 	return std::imag(polylog(s, s_i));
     }
@@ -1256,14 +1258,14 @@ namespace detail
    * @param s  The real argument.
    * @return  The Dirichlet lambda function.
    */
-  template<typename _Tp>
-    _Tp
-    dirichlet_lambda(_Tp s)
+  template<typename Tp>
+    Tp
+    dirichlet_lambda(Tp s)
     {
       if (std::isnan(s))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return std::numeric_limits<Tp>::quiet_NaN();
       else
-	return (emsr::detail::riemann_zeta(s) + dirichlet_eta(s)) / _Tp{2};
+	return (emsr::detail::riemann_zeta(s) + dirichlet_eta(s)) / Tp{2};
     }
 
   /**
@@ -1274,18 +1276,18 @@ namespace detail
    * @param z  The complex argument.
    * @return  The complex Clausen function.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    clausen(unsigned int m, std::complex<_Tp> z)
+  template<typename Tp>
+    std::complex<Tp>
+    clausen(unsigned int m, std::complex<Tp> z)
     {
       if (std::isnan(z))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return std::numeric_limits<Tp>::quiet_NaN();
       else if (m == 0)
 	throw std::domain_error("clausen: Non-positive order");
       else
 	{
-	  const auto s_i = std::complex<_Tp>{0, 1};
-	  const auto ple = polylog_exp(_Tp(m), s_i * z);
+	  const auto s_i = std::complex<Tp>{0, 1};
+	  const auto ple = polylog_exp(Tp(m), s_i * z);
 	  if (m & 1)
 	    return ple;
 	  else
@@ -1301,18 +1303,18 @@ namespace detail
    * @param x  The real argument.
    * @return  The Clausen function.
    */
-  template<typename _Tp>
-    _Tp
-    clausen(unsigned int m, _Tp x)
+  template<typename Tp>
+    Tp
+    clausen(unsigned int m, Tp x)
     {
       if (std::isnan(x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return std::numeric_limits<Tp>::quiet_NaN();
       else if (m == 0)
 	throw std::domain_error("clausen: Non-positive order");
       else
 	{
-	  const auto s_i = std::complex<_Tp>{0, 1};
-	  const auto ple = polylog_exp(_Tp(m), s_i * x);
+	  const auto s_i = std::complex<Tp>{0, 1};
+	  const auto ple = polylog_exp(Tp(m), s_i * x);
 	  if (m & 1)
 	    return std::real(ple);
 	  else
@@ -1329,18 +1331,18 @@ namespace detail
    * @param z  The complex argument.
    * @return  The Clausen sine sum Sl_m(w),
    */
-  template<typename _Tp>
-    _Tp
-    clausen_sl(unsigned int m, std::complex<_Tp> z)
+  template<typename Tp>
+    Tp
+    clausen_sl(unsigned int m, std::complex<Tp> z)
     {
       if (std::isnan(z))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return std::numeric_limits<Tp>::quiet_NaN();
       else if (m == 0)
 	throw std::domain_error("clausen_sl: Non-positive order");
       else
 	{
-	  const auto s_i = std::complex<_Tp>{0, 1};
-	  const auto ple = polylog_exp(_Tp(m), s_i * z);
+	  const auto s_i = std::complex<Tp>{0, 1};
+	  const auto ple = polylog_exp(Tp(m), s_i * z);
 	  if (m & 1)
 	    return std::imag(ple);
 	  else
@@ -1357,18 +1359,18 @@ namespace detail
    * @param x  The real argument.
    * @return  The Clausen sine sum Sl_m(w),
    */
-  template<typename _Tp>
-    _Tp
-    clausen_sl(unsigned int m, _Tp x)
+  template<typename Tp>
+    Tp
+    clausen_sl(unsigned int m, Tp x)
     {
       if (std::isnan(x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return std::numeric_limits<Tp>::quiet_NaN();
       else if (m == 0)
 	throw std::domain_error("clausen_sl: Non-positive order");
       else
 	{
-	  const auto s_i = std::complex<_Tp>{0, 1};
-	  const auto ple = polylog_exp(_Tp(m), s_i * x);
+	  const auto s_i = std::complex<Tp>{0, 1};
+	  const auto ple = polylog_exp(Tp(m), s_i * x);
 	  if (m & 1)
 	    return std::imag(ple);
 	  else
@@ -1385,18 +1387,18 @@ namespace detail
    * @param z  The complex argument.
    * @return  The Clausen cosine sum Cl_m(w),
    */
-  template<typename _Tp>
-    _Tp
-    clausen_cl(unsigned int m, std::complex<_Tp> z)
+  template<typename Tp>
+    Tp
+    clausen_cl(unsigned int m, std::complex<Tp> z)
     {
       if (std::isnan(z))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return std::numeric_limits<Tp>::quiet_NaN();
       else if (m == 0)
 	throw std::domain_error("clausen_cl: Non-positive order");
       else
 	{
-	  const auto s_i = std::complex<_Tp>{0, 1};
-	  const auto ple = polylog_exp(_Tp(m), s_i * z);
+	  const auto s_i = std::complex<Tp>{0, 1};
+	  const auto ple = polylog_exp(Tp(m), s_i * z);
 	  if (m & 1)
 	    return std::real(ple);
 	  else
@@ -1413,18 +1415,18 @@ namespace detail
    * @param x  The real argument.
    * @return  The real Clausen cosine sum Cl_m(w),
    */
-  template<typename _Tp>
-    _Tp
-    clausen_cl(unsigned int m, _Tp x)
+  template<typename Tp>
+    Tp
+    clausen_cl(unsigned int m, Tp x)
     {
       if (std::isnan(x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+	return std::numeric_limits<Tp>::quiet_NaN();
       else if (m == 0)
 	throw std::domain_error("clausen_cl: Non-positive order");
       else
 	{
-	  const auto s_i = std::complex<_Tp>{0, 1};
-	  const auto ple = polylog_exp(_Tp(m), s_i * x);
+	  const auto s_i = std::complex<Tp>{0, 1};
+	  const auto ple = polylog_exp(Tp(m), s_i * x);
 	  if (m & 1)
 	    return std::real(ple);
 	  else
@@ -1447,19 +1449,19 @@ namespace detail
    * @param x  The real argument.
    * @return  The real Fermi-Dirac integral F_s(x),
    */
-  template<typename _Sp, typename _Tp>
-    _Tp
-    fermi_dirac(_Sp s, _Tp x)
+  template<typename Sp, typename Tp>
+    Tp
+    fermi_dirac(Sp s, Tp x)
     {
       if (std::isnan(s) || std::isnan(x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (s <= _Sp{-1})
+	return std::numeric_limits<Tp>::quiet_NaN();
+      else if (s <= Sp{-1})
 	throw std::domain_error("fermi_dirac: Order must be greater than -1");
       else
 	{
-	  const auto s_i = std::complex<_Tp>{0, 1};
-	  const auto s_pi = emsr::pi_v<_Tp>;
-	  return -std::real(polylog_exp(s + _Sp{1}, x + s_i * s_pi));
+	  const auto s_i = std::complex<Tp>{0, 1};
+	  const auto s_pi = emsr::pi_v<Tp>;
+	  return -std::real(polylog_exp(s + Sp{1}, x + s_i * s_pi));
 	}
     }
 
@@ -1478,16 +1480,16 @@ namespace detail
    * @param x  The real argument.
    * @return  The real Bose-Einstein integral G_s(x),
    */
-  template<typename _Sp, typename _Tp>
-    _Tp
-    bose_einstein(_Sp s, _Tp x)
+  template<typename Sp, typename Tp>
+    Tp
+    bose_einstein(Sp s, Tp x)
     {
       if (std::isnan(s) || std::isnan(x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (s <= _Sp{0} && x < _Tp{0})
+	return std::numeric_limits<Tp>::quiet_NaN();
+      else if (s <= Sp{0} && x < Tp{0})
 	throw std::domain_error("bose_einstein: Order must be greater than 0");
       else
-	return std::real(polylog_exp(s + _Sp{1}, x));
+	return std::real(polylog_exp(s + Sp{1}, x));
     }
 
 } // namespace detail

@@ -43,11 +43,11 @@ namespace emsr
    * @param s The order.
    * @param w Argument.
    */
-  template<typename _Tp, typename _Wp>
-    inline emsr::fp_promote_t<_Tp, _Wp>
-    polylog(_Tp s, _Wp w)
+  template<typename Tp, typename _Wp>
+    inline emsr::fp_promote_t<Tp, _Wp>
+    polylog(Tp s, _Wp w)
     {
-      using type = emsr::fp_promote_t<_Tp, _Wp>;
+      using type = emsr::fp_promote_t<Tp, _Wp>;
       return emsr::detail::polylog<type>(s, w);
     }
 
@@ -83,11 +83,11 @@ namespace emsr
    * @param s The order.
    * @param w Argument.
    */
-  template<typename _Tp, typename _Wp>
-    inline std::complex<emsr::fp_promote_t<_Tp, _Wp>>
-    polylog(_Tp s, std::complex<_Tp> w)
+  template<typename Tp, typename _Wp>
+    inline std::complex<emsr::fp_promote_t<Tp, _Wp>>
+    polylog(Tp s, std::complex<Tp> w)
     {
-      using type = emsr::fp_promote_t<_Tp, _Wp>;
+      using type = emsr::fp_promote_t<Tp, _Wp>;
       return emsr::detail::polylog<type>(s, w);
     }
 
@@ -131,11 +131,11 @@ namespace emsr
    *
    * @param s The order.
    */
-  template<typename _Tp>
-    inline _Tp
-    dirichlet_eta(_Tp s)
+  template<typename Tp>
+    inline Tp
+    dirichlet_eta(Tp s)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::dirichlet_eta<type>(s);
     }
 
@@ -178,11 +178,11 @@ namespace emsr
    *
    * @param s The order.
    */
-  template<typename _Tp>
-    inline _Tp
-    dirichlet_beta(_Tp s)
+  template<typename Tp>
+    inline Tp
+    dirichlet_beta(Tp s)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::dirichlet_beta<type>(s);
     }
 
@@ -221,11 +221,11 @@ namespace emsr
    *
    * @param s The order.
    */
-  template<typename _Tp>
-    inline _Tp
-    dirichlet_lambda(_Tp s)
+  template<typename Tp>
+    inline Tp
+    dirichlet_lambda(Tp s)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::dirichlet_lambda<type>(s);
     }
 
@@ -260,15 +260,15 @@ namespace emsr
    *    Sl_m(x) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^m}
    * @f]
    *
-   * @tparam _Tp The real type of the argument
+   * @tparam Tp The real type of the argument
    * @param m The unsigned integer order
    * @param x The real argument
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    clausen_sl(unsigned int m, _Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    clausen_sl(unsigned int m, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::clausen_sl<type>(m, x);
     }
 
@@ -303,15 +303,15 @@ namespace emsr
    *    Cl_m(x) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^m}
    * @f]
    *
-   * @tparam _Tp The real type of the argument
+   * @tparam Tp The real type of the argument
    * @param m The unsigned integer order
    * @param x The real argument
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    clausen_cl(unsigned int m, _Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    clausen_cl(unsigned int m, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::clausen_cl<type>(m, x);
     }
 
@@ -348,15 +348,15 @@ namespace emsr
    *      = Cl_m(x) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^m} \mbox{ for odd } m
    * @f]
    *
-   * @tparam _Tp The real type of the argument
+   * @tparam Tp The real type of the argument
    * @param m The integral order
    * @param x The real argument
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    clausen(unsigned int m, _Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    clausen(unsigned int m, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::clausen<type>(m, x);
     }
 
@@ -392,15 +392,15 @@ namespace emsr
    *           = Cl_m(z) = \sum_{k=1}^\infty\frac{\cos(kz)}{k^m} \mbox{ for odd } m
    * @f]
    *
-   * @tparam _Tp The real type of the complex components
+   * @tparam Tp The real type of the complex components
    * @param m The integral order
    * @param z The complex argument
    */
-  template<typename _Tp>
-    inline std::complex<emsr::fp_promote_t<_Tp>>
-    clausen(unsigned int m, std::complex<_Tp> z)
+  template<typename Tp>
+    inline std::complex<emsr::fp_promote_t<Tp>>
+    clausen(unsigned int m, std::complex<Tp> z)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::clausen<type>(m, z);
     }
 
@@ -440,11 +440,11 @@ namespace emsr
    * @param x  The real argument.
    * @return  The real Fermi-Dirac integral F_s(x),
    */
-  template<typename _Tps, typename _Tp>
-    inline emsr::fp_promote_t<_Tps, _Tp>
-    fermi_dirac(_Tps s, _Tp x)
+  template<typename Tps, typename Tp>
+    inline emsr::fp_promote_t<Tps, Tp>
+    fermi_dirac(Tps s, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tps, _Tp>;
+      using type = emsr::fp_promote_t<Tps, Tp>;
       return emsr::detail::fermi_dirac<type>(s, x);
     }
 
@@ -484,11 +484,11 @@ namespace emsr
    * @param x  The real argument.
    * @return  The real Bose-Einstein integral G_s(x),
    */
-  template<typename _Tps, typename _Tp>
-    inline emsr::fp_promote_t<_Tps, _Tp>
-    bose_einstein(_Tps s, _Tp x)
+  template<typename Tps, typename Tp>
+    inline emsr::fp_promote_t<Tps, Tp>
+    bose_einstein(Tps s, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tps, _Tp>;
+      using type = emsr::fp_promote_t<Tps, Tp>;
       return emsr::detail::bose_einstein<type>(s, x);
     }
 
@@ -498,11 +498,11 @@ namespace emsr
    *
    * @see hurwitz_zeta for details.
    */
-  template<typename _Tp, typename _Up>
-    inline std::complex<_Tp>
-    hurwitz_zeta(_Tp s, std::complex<_Up> a)
+  template<typename Tp, typename Up>
+    inline std::complex<Tp>
+    hurwitz_zeta(Tp s, std::complex<Up> a)
     {
-      using type = emsr::fp_promote_t<_Tp, _Up>;
+      using type = emsr::fp_promote_t<Tp, Up>;
       return emsr::detail::hurwitz_zeta_polylog<type>(s, a);
     }
 
@@ -540,11 +540,11 @@ namespace emsr
    * @param x The argument.
    * @param s The order.
    */
-  template<typename _Tp, typename _Up>
-    inline emsr::fp_promote_t<std::complex<_Tp>, _Up>
-    periodic_zeta(_Tp x, _Up s)
+  template<typename Tp, typename Up>
+    inline emsr::fp_promote_t<std::complex<Tp>, Up>
+    periodic_zeta(Tp x, Up s)
     {
-      using type = emsr::fp_promote_t<_Tp, _Up>;
+      using type = emsr::fp_promote_t<Tp, Up>;
       return emsr::detail::periodic_zeta<type>(x, s);
     }
 
@@ -554,11 +554,11 @@ namespace emsr
    *
    * @see periodic_zeta for details.
    */
-  template<typename _Tp, typename _Up>
-    inline emsr::fp_promote_t<std::complex<_Tp>, std::complex<_Up>>
-    periodic_zeta(std::complex<_Up> z, _Tp s)
+  template<typename Tp, typename Up>
+    inline emsr::fp_promote_t<std::complex<Tp>, std::complex<Up>>
+    periodic_zeta(std::complex<Up> z, Tp s)
     {
-      using type = emsr::fp_promote_t<_Tp, _Up>;
+      using type = emsr::fp_promote_t<Tp, Up>;
       return emsr::detail::periodic_zeta<type>(z, s);
     }
 

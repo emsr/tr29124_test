@@ -39,17 +39,17 @@ namespace emsr
    * 		\frac{(x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
    * @f]
    *
-   * @tparam _Tpnu The floating-point type of the order @c nu.
+   * @tparam Tpnu The floating-point type of the order @c nu.
    * @tparam Tp The floating-point type of the argument @c x.
    * @param  nu  The order
    * @param  x   The argument, <tt> x >= 0 </tt>
    * @throw std::domain_error if <tt> x < 0 </tt>.
    */
-  template<typename _Tpnu, typename Tp>
-    inline emsr::fp_promote_t<_Tpnu, Tp>
-    cyl_bessel_i(_Tpnu nu, Tp x)
+  template<typename Tpnu, typename Tp>
+    inline emsr::fp_promote_t<Tpnu, Tp>
+    cyl_bessel_i(Tpnu nu, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tpnu, Tp>;
+      using type = emsr::fp_promote_t<Tpnu, Tp>;
       return detail::cyl_bessel_i<type>(nu, x);
     }
 
@@ -91,17 +91,17 @@ namespace emsr
    * 	K_{-\nu}(x) = K_{\nu}(x)
    * @f]
    *
-   * @tparam _Tpnu The floating-point type of the order @c nu.
+   * @tparam Tpnu The floating-point type of the order @c nu.
    * @tparam Tp The floating-point type of the argument @c x.
    * @param  nu  The order
    * @param  x   The argument, <tt> x >= 0 </tt>
    * @throw std::domain_error if <tt> x < 0 </tt>.
    */
-  template<typename _Tpnu, typename Tp>
-    inline emsr::fp_promote_t<_Tpnu, Tp>
-    cyl_bessel_k(_Tpnu nu, Tp x)
+  template<typename Tpnu, typename Tp>
+    inline emsr::fp_promote_t<Tpnu, Tp>
+    cyl_bessel_k(Tpnu nu, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tpnu, Tp>;
+      using type = emsr::fp_promote_t<Tpnu, Tp>;
       return detail::cyl_bessel_k<type>(nu, x);
     }
 
@@ -118,17 +118,17 @@ namespace emsr
    * 		\frac{(x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)}
    * @f]
    *
-   * @tparam _Tpnu The floating-point type of the order @c nu.
+   * @tparam Tpnu The floating-point type of the order @c nu.
    * @tparam Tp The floating-point type of the argument @c x.
    * @param  nu  The order
    * @param  x   The argument, <tt> x >= 0 </tt>
    * @throw std::domain_error if <tt> x < 0 </tt>.
    */
-  template<typename _Tpnu, typename Tp>
-    inline emsr::fp_promote_t<_Tpnu, Tp>
-    cyl_bessel_i_scaled(_Tpnu nu, Tp x)
+  template<typename Tpnu, typename Tp>
+    inline emsr::fp_promote_t<Tpnu, Tp>
+    cyl_bessel_i_scaled(Tpnu nu, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tpnu, Tp>;
+      using type = emsr::fp_promote_t<Tpnu, Tp>;
       return emsr::detail::cyl_bessel_i_scaled<type>(nu, x);
     }
 
@@ -149,17 +149,17 @@ namespace emsr
    * 	K_{-\nu}(x) = K_{\nu}(x)
    * @f]
    *
-   * @tparam _Tpnu The floating-point type of the order @c nu.
+   * @tparam Tpnu The floating-point type of the order @c nu.
    * @tparam Tp The floating-point type of the argument @c x.
    * @param  nu  The order
    * @param  x   The argument, <tt> x >= 0 </tt>
    * @throw std::domain_error if <tt> x < 0 </tt>.
    */
-  template<typename _Tpnu, typename Tp>
-    inline emsr::fp_promote_t<_Tpnu, Tp>
-    cyl_bessel_k_scaled(_Tpnu nu, Tp x)
+  template<typename Tpnu, typename Tp>
+    inline emsr::fp_promote_t<Tpnu, Tp>
+    cyl_bessel_k_scaled(Tpnu nu, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tpnu, Tp>;
+      using type = emsr::fp_promote_t<Tpnu, Tp>;
       return emsr::detail::cyl_bessel_k_scaled<type>(nu, x);
     }
 

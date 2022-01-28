@@ -7,6 +7,9 @@
 #include <iostream>
 #include <iomanip>
 
+#include <emsr/numeric_limits.h>
+#include <emsr/sf_hyperg.h>
+
 template<typename _Tp>
   void
   test_conf_hyperg(_Tp proto = _Tp{})

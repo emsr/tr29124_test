@@ -38,11 +38,11 @@ namespace emsr
    * @param s The order @f$ s != 1 @f$.
    * @param a The scale parameter @f$ a > -1 @f$.
    */
-  template<typename _Tp, typename _Ts, typename _Ta>
-    inline emsr::fp_promote_t<_Tp, _Ts, _Ta>
-    lerch_phi(_Tp z, _Ts s, _Ta a)
+  template<typename Tp, typename Ts, typename Ta>
+    inline emsr::fp_promote_t<Tp, Ts, Ta>
+    lerch_phi(Tp z, Ts s, Ta a)
     {
-      using type = emsr::fp_promote_t<_Tp, _Ts, _Ta>;
+      using type = emsr::fp_promote_t<Tp, Ts, Ta>;
       return emsr::detail::lerch_phi<type>(z, s, a);
     }
 

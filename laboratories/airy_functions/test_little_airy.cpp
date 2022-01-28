@@ -8,6 +8,8 @@
 
 #include <airy.tcc>
 
+#include <emsr/math_constants.h>
+
 #include <wrap_gsl.h>
 
 int

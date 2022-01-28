@@ -7,6 +7,8 @@
 #include <iostream>
 #include <iomanip>
 
+#include <emsr/math_constants.h>
+
 
 constexpr size_t _S_num = 11;
 

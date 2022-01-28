@@ -205,11 +205,11 @@ namespace emsr
    *	  \nu \end{array} \right]
    * @f], and others.
    */
-  template<typename _Tp, typename _Tnu>
-    inline emsr::fp_promote_t<_Tp, _Tnu>
-    lrising_factorial(_Tp a, _Tnu nu)
+  template<typename Tp, typename Tnu>
+    inline emsr::fp_promote_t<Tp, Tnu>
+    lrising_factorial(Tp a, Tnu nu)
     {
-      using type = emsr::fp_promote_t<_Tp, _Tnu>;
+      using type = emsr::fp_promote_t<Tp, Tnu>;
       return emsr::detail::log_rising_factorial<type>(a, nu);
     }
 
@@ -257,11 +257,11 @@ namespace emsr
    *	  \nu \end{array} \}
    * @f], and others.
    */
-  template<typename _Tp, typename _Tnu>
-    inline emsr::fp_promote_t<_Tp, _Tnu>
-    lfalling_factorial(_Tp a, _Tnu nu)
+  template<typename Tp, typename Tnu>
+    inline emsr::fp_promote_t<Tp, Tnu>
+    lfalling_factorial(Tp a, Tnu nu)
     {
-      using type = emsr::fp_promote_t<_Tp, _Tnu>;
+      using type = emsr::fp_promote_t<Tp, Tnu>;
       return emsr::detail::log_falling_factorial<type>(a, nu);
     }
 
@@ -301,11 +301,11 @@ namespace emsr
    *	  \nu \end{array} \right]
    * @f], and others.
    */
-  template<typename _Tp, typename _Tnu>
-    inline emsr::fp_promote_t<_Tp, _Tnu>
-    rising_factorial(_Tp a, _Tnu nu)
+  template<typename Tp, typename Tnu>
+    inline emsr::fp_promote_t<Tp, Tnu>
+    rising_factorial(Tp a, Tnu nu)
     {
-      using type = emsr::fp_promote_t<_Tp, _Tnu>;
+      using type = emsr::fp_promote_t<Tp, Tnu>;
       return emsr::detail::rising_factorial<type>(a, nu);
     }
 
@@ -343,11 +343,11 @@ namespace emsr
    * where @f$ a^{\underline{0}} \equiv 1 @f$.
    * In particular, @f$ n^{\underline{n}} = n! @f$.
    */
-  template<typename _Tp, typename _Tnu>
-    inline emsr::fp_promote_t<_Tp, _Tnu>
-    falling_factorial(_Tp a, _Tnu nu)
+  template<typename Tp, typename Tnu>
+    inline emsr::fp_promote_t<Tp, Tnu>
+    falling_factorial(Tp a, Tnu nu)
     {
-      using type = emsr::fp_promote_t<_Tp, _Tnu>;
+      using type = emsr::fp_promote_t<Tp, Tnu>;
       return emsr::detail::falling_factorial<type>(a, nu);
     }
 
@@ -386,11 +386,11 @@ namespace emsr
    * @param k The second argument of the binomial coefficient.
    * @return  The binomial coefficient.
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
     binomial(unsigned int n, unsigned int k)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::binomial<type>(n, k);
     }
 
@@ -429,11 +429,11 @@ namespace emsr
    * @param k The second argument of the binomial coefficient.
    * @return  The logarithm of the binomial coefficient.
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
     lbinomial(unsigned int n, unsigned int k)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::log_binomial<type>(n, k);
     }
 
@@ -596,11 +596,11 @@ namespace emsr
    *   \Gamma(a,x) = \int_x^\infty t^{a-1}e^{-t}dt
    * @f]
    */
-  template<typename _Ta, typename _Tp>
-    inline emsr::fp_promote_t<_Ta, _Tp>
-    tgamma(_Ta a, _Tp x)
+  template<typename _Ta, typename Tp>
+    inline emsr::fp_promote_t<_Ta, Tp>
+    tgamma(_Ta a, Tp x)
     {
-      using type = emsr::fp_promote_t<_Ta, _Tp>;
+      using type = emsr::fp_promote_t<_Ta, Tp>;
       return emsr::detail::tgamma<type>(a, x);
     }
 
@@ -633,11 +633,11 @@ namespace emsr
    *   \gamma(a,x) = \int_0^x t^{a-1}e^{-t}dt
    * @f]
    */
-  template<typename _Ta, typename _Tp>
-    inline emsr::fp_promote_t<_Ta, _Tp>
-    tgamma_lower(_Ta a, _Tp x)
+  template<typename _Ta, typename Tp>
+    inline emsr::fp_promote_t<_Ta, Tp>
+    tgamma_lower(_Ta a, Tp x)
     {
-      using type = emsr::fp_promote_t<_Ta, _Tp>;
+      using type = emsr::fp_promote_t<_Ta, Tp>;
       return emsr::detail::tgamma_lower<type>(a, x);
     }
 
@@ -674,11 +674,11 @@ namespace emsr
    *
    * @param x The parameter
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    digamma(_Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    digamma(Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::digamma<type>(x);
     }
 
@@ -715,11 +715,11 @@ namespace emsr
    * @param m The order
    * @param x The parameter
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    polygamma(unsigned int m, _Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    polygamma(unsigned int m, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::polygamma<type>(m, x);
     }
 
@@ -782,11 +782,11 @@ namespace emsr
    *                             (x/\beta)^{\alpha - 1} e^{-x/\beta}
    * @f]
    */
-  template<typename _Ta, typename _Tp>
-    inline emsr::fp_promote_t<_Ta, _Tp>
-    gamma_p(_Ta a, _Tp x)
+  template<typename _Ta, typename Tp>
+    inline emsr::fp_promote_t<_Ta, Tp>
+    gamma_p(_Ta a, Tp x)
     {
-      using type = emsr::fp_promote_t<_Ta, _Tp>;
+      using type = emsr::fp_promote_t<_Ta, Tp>;
       return emsr::detail::gamma_p<type>(a, x);
     }
 
@@ -810,11 +810,11 @@ namespace emsr
    *                             (x/\beta)^{\alpha - 1} e^{-x/\beta}
    * @f]
    */
-  template<typename _Ta, typename _Tp>
-    inline emsr::fp_promote_t<_Ta, _Tp>
-    gamma_q(_Ta a,_Tp  x)
+  template<typename _Ta, typename Tp>
+    inline emsr::fp_promote_t<_Ta, Tp>
+    gamma_q(_Ta a,Tp  x)
     {
-      using type = emsr::fp_promote_t<_Ta, _Tp>;
+      using type = emsr::fp_promote_t<_Ta, Tp>;
       return emsr::detail::gamma_q<type>(a, x);
     }
 
@@ -828,11 +828,11 @@ namespace emsr
    *
    * @param n The parameter
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
     harmonic(unsigned int n)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::harmonic_number<type>(n);
     }
 

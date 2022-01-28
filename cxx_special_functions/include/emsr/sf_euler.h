@@ -2,6 +2,7 @@
 #define SF_EULER_H 1
 
 #include <emsr/detail/sf_euler.tcc>
+#include <emsr/sf_gamma.h> // binomial
 
 namespace emsr
 {
@@ -12,10 +13,10 @@ namespace emsr
    * @param n the order n of the Euler number.
    * @return  The Euler number of order n.
    */
-  template<typename _Tp>
-    inline _Tp
+  template<typename Tp>
+    inline Tp
     euler(unsigned int n)
-    { return emsr::detail::euler<_Tp>(n); }
+    { return emsr::detail::euler<Tp>(n); }
 
   /**
    * Return the Eulerian number of the first kind.
@@ -28,18 +29,18 @@ namespace emsr
    * @f]
    * Note that @f$ A(n,m) @f$ is a common older notation.
    */
-  template<typename _Tp>
-    inline _Tp
+  template<typename Tp>
+    inline Tp
     eulerian_1(unsigned int n, unsigned int m)
-    { return emsr::detail::eulerian_1<_Tp>(n, m); }
+    { return emsr::detail::eulerian_1<Tp>(n, m); }
 
   /**
    * Return a vector of Eulerian numbers of the first kind.
    */
-  template<typename _Tp>
-    inline std::vector<_Tp>
+  template<typename Tp>
+    inline std::vector<Tp>
     eulerian_1(unsigned int n)
-    { return emsr::detail::eulerian_1<_Tp>(n); }
+    { return emsr::detail::eulerian_1<Tp>(n); }
 
   /**
    * Return the Eulerian number of the second kind.
@@ -53,10 +54,10 @@ namespace emsr
    *       \mbox{ for } n > 0
    * @f]
    */
-  template<typename _Tp>
-    inline _Tp
+  template<typename Tp>
+    inline Tp
     eulerian_2(unsigned int n, unsigned int m)
-    { return emsr::detail::eulerian_2<_Tp>(n, m); }
+    { return emsr::detail::eulerian_2<Tp>(n, m); }
 
 } // namespace emsr
 

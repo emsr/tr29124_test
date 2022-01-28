@@ -1,11 +1,11 @@
 
 // Copyright (C) 2006-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -47,12 +47,14 @@
 
 #include <stdexcept>
 
+#include <emsr/math_constants.h>
+
 namespace emsr
 {
 namespace detail
 {
 
-  template<typename _Tp> _Tp expint_E1(_Tp);
+  template<typename Tp> Tp expint_E1(Tp);
 
   /**
    * @brief Return the exponential integral @f$ E_1(x) @f$ by series summation.
@@ -66,14 +68,14 @@ namespace detail
    * @param  x  The argument of the exponential integral function.
    * @return  The exponential integral.
    */
-  template<typename _Tp>
-    _Tp
-    expint_E1_series(_Tp x)
+  template<typename Tp>
+    Tp
+    expint_E1_series(Tp x)
     {
       const auto s_eps = emsr::epsilon(x);
-      auto term = _Tp{1};
-      auto esum = _Tp{0};
-      auto osum = _Tp{0};
+      auto term = Tp{1};
+      auto esum = Tp{0};
+      auto osum = Tp{0};
       const unsigned int max_iter = 1000;
       for (unsigned int i = 1; i < max_iter; ++i)
 	{
@@ -81,14 +83,14 @@ namespace detail
 	  if (std::abs(term)
 		 < s_eps * std::min(std::abs(esum), std::abs(osum)))
 	    break;
-	  if (term >= _Tp{0})
+	  if (term >= Tp{0})
 	    esum += term / i;
 	  else
 	    osum += term / i;
 	}
 
       return - esum - osum
-	     - emsr::egamma_v<_Tp> - std::log(x);
+	     - emsr::egamma_v<Tp> - std::log(x);
     }
 
 
@@ -104,13 +106,13 @@ namespace detail
    * @param  x  The argument of the exponential integral function.
    * @return  The exponential integral.
    */
-  template<typename _Tp>
-    _Tp
-    expint_E1_asymp(_Tp x)
+  template<typename Tp>
+    Tp
+    expint_E1_asymp(Tp x)
     {
-      auto term = _Tp{1};
-      auto esum = _Tp{1};
-      auto osum = _Tp{0};
+      auto term = Tp{1};
+      auto esum = Tp{1};
+      auto osum = Tp{0};
       const unsigned int max_iter = 1000;
       for (unsigned int i = 1; i < max_iter; ++i)
 	{
@@ -118,7 +120,7 @@ namespace detail
 	  term *= - i / x;
 	  if (std::abs(term) > std::abs(prev))
 	    break;
-	  if (term >= _Tp{0})
+	  if (term >= Tp{0})
 	    esum += term;
 	  else
 	    osum += term;
@@ -140,30 +142,30 @@ namespace detail
    * @param  x  The argument of the exponential integral function.
    * @return  The exponential integral.
    */
-  template<typename _Tp>
-    _Tp
-    expint_En_series(unsigned int n, _Tp x)
+  template<typename Tp>
+    Tp
+    expint_En_series(unsigned int n, Tp x)
     {
       const unsigned int s_max_iter = 1000;
       const auto s_eps = emsr::epsilon(x);
       const int nm1 = n - 1;
-      const auto s_gamma_E = emsr::egamma_v<_Tp>;
+      const auto s_gamma_E = emsr::egamma_v<Tp>;
       const auto logx = std::log(x);
-      _Tp sum = (nm1 != 0
-		? _Tp{1} / nm1
+      Tp sum = (nm1 != 0
+		? Tp{1} / nm1
 		: -logx - s_gamma_E);
-      _Tp fact = _Tp{1};
+      Tp fact = Tp{1};
       for (unsigned int i = 1; i <= s_max_iter; ++i)
 	{
-	  fact *= -x / _Tp(i);
-	  _Tp term;
+	  fact *= -x / Tp(i);
+	  Tp term;
 	  if (int(i) != nm1)
-	    term = -fact / _Tp(i - nm1);
+	    term = -fact / Tp(i - nm1);
 	  else
 	    {
-	      _Tp psi = -s_gamma_E;
+	      Tp psi = -s_gamma_E;
 	      for (int ii = 1; ii <= nm1; ++ii)
-		psi += _Tp{1} / _Tp(ii);
+		psi += Tp{1} / Tp(ii);
 	      term = fact * (psi - logx);
 	    }
 	  sum += term;
@@ -187,23 +189,23 @@ namespace detail
    * @param  x  The argument of the exponential integral function.
    * @return  The exponential integral.
    */
-  template<typename _Tp>
-    _Tp
-    expint_En_cont_frac(unsigned int n, _Tp x)
+  template<typename Tp>
+    Tp
+    expint_En_cont_frac(unsigned int n, Tp x)
     {
       const unsigned int s_max_iter = 1000;
       const auto s_eps = emsr::epsilon(x);
-      const auto s_fp_min = _Tp{4} * emsr::lim_min(x);
+      const auto s_fp_min = Tp{4} * emsr::lim_min(x);
       const int nm1 = n - 1;
-      auto b = x + _Tp(n);
-      auto c = _Tp{1} / s_fp_min;
-      auto d = _Tp{1} / b;
+      auto b = x + Tp(n);
+      auto c = Tp{1} / s_fp_min;
+      auto d = Tp{1} / b;
       auto h = d;
       for ( unsigned int i = 1; i <= s_max_iter; ++i )
 	{
-	  auto a = -_Tp(i * (nm1 + i));
-	  b += _Tp{2};
-	  d = _Tp{1} / (a * d + b);
+	  auto a = -Tp(i * (nm1 + i));
+	  b += Tp{2};
+	  d = Tp{1} / (a * d + b);
 	  if (std::abs(d) < s_fp_min)
 	    d = std::copysign(s_fp_min, d);
 	  c = b + a / c;
@@ -211,7 +213,7 @@ namespace detail
 	    c = std::copysign(s_fp_min, c);
 	  const auto del = c * d;
 	  h *= del;
-	  if (std::abs(del - _Tp{1}) < s_eps)
+	  if (std::abs(del - Tp{1}) < s_eps)
 	    return h * std::exp(-x);
 	}
       throw std::runtime_error("expint_En_cont_frac: continued fraction failed");
@@ -232,34 +234,34 @@ namespace detail
    * @param  x  The argument of the exponential integral function.
    * @return  The exponential integral.
    */
-  template<typename _Tp>
-    _Tp
-    expint_En_recursion(unsigned int n, _Tp x)
+  template<typename Tp>
+    Tp
+    expint_En_recursion(unsigned int n, Tp x)
     {
-      _Tp En;
-      _Tp E1 = expint_E1(x);
-      if (x < _Tp(n))
+      Tp En;
+      Tp E1 = expint_E1(x);
+      if (x < Tp(n))
 	{
 	  // Forward recursion is stable only for n < x.
 	  En = E1;
 	  for (unsigned int j = 2; j < n; ++j)
-	    En = (std::exp(-x) - x * En) / _Tp(j - 1);
+	    En = (std::exp(-x) - x * En) / Tp(j - 1);
 	}
       else
 	{
 	  // Backward recursion is stable only for n >= x.
-	  En = _Tp{1};
+	  En = Tp{1};
 	  /// @todo Find a principled starting number
 	  /// for the @f$ E_n(x) @f$ downward recursion.
 	  const int N = n + 20;
-	  _Tp save = _Tp{0};
+	  Tp save = Tp{0};
 	  for (int j = N; j > 0; --j)
 	    {
 	      En = (std::exp(-x) - j * En) / x;
 	      if (j == n)
 		save = En;
 	    }
-	    _Tp norm = En / E1;
+	    Tp norm = En / E1;
 	    En /= norm;
 	}
 
@@ -277,12 +279,12 @@ namespace detail
    * @param  x  The argument of the exponential integral function.
    * @return  The exponential integral.
    */
-  template<typename _Tp>
-    _Tp
-    expint_Ei_series(_Tp x)
+  template<typename Tp>
+    Tp
+    expint_Ei_series(Tp x)
     {
-      _Tp term = _Tp{1};
-      _Tp sum = _Tp{0};
+      Tp term = Tp{1};
+      Tp sum = Tp{0};
       const auto s_eps = emsr::epsilon(x);
       const unsigned int max_iter = 1000;
       for (unsigned int i = 1; i < max_iter; ++i)
@@ -293,7 +295,7 @@ namespace detail
 	    break;
 	}
 
-      return emsr::egamma_v<_Tp>
+      return emsr::egamma_v<Tp>
 	   + sum + std::log(x);
     }
 
@@ -310,17 +312,17 @@ namespace detail
    * @param  x  The argument of the exponential integral function.
    * @return  The exponential integral.
    */
-  template<typename _Tp>
-    _Tp
-    expint_Ei_asymp(_Tp x)
+  template<typename Tp>
+    Tp
+    expint_Ei_asymp(Tp x)
     {
-      _Tp term = _Tp{1};
-      _Tp sum = _Tp{1};
+      Tp term = Tp{1};
+      Tp sum = Tp{1};
       const auto s_eps = emsr::epsilon(x);
       const unsigned int max_iter = 1000;
       for (unsigned int i = 1; i < max_iter; ++i)
 	{
-	  _Tp prev = term;
+	  Tp prev = term;
 	  term *= i / x;
 	  if (std::abs(term) >= std::abs(prev))
 	    break;
@@ -344,12 +346,12 @@ namespace detail
    * @param  x  The argument of the exponential integral function.
    * @return  The exponential integral.
    */
-  template<typename _Tp>
-    _Tp
-    expint_Ei(_Tp x)
+  template<typename Tp>
+    Tp
+    expint_Ei(Tp x)
     {
       const auto s_eps = emsr::epsilon(x);
-      if (x < _Tp{0})
+      if (x < Tp{0})
 	return -expint_E1(-x);
       else if (x < -std::log(s_eps))
 	return expint_Ei_series(x);
@@ -369,15 +371,15 @@ namespace detail
    * @param  x  The argument of the exponential integral function.
    * @return  The exponential integral.
    */
-  template<typename _Tp>
-    _Tp
-    expint_E1(_Tp x)
+  template<typename Tp>
+    Tp
+    expint_E1(Tp x)
     {
-      if (x < _Tp{0})
+      if (x < Tp{0})
 	return -expint_Ei(-x);
-      else if (x < _Tp{1})
+      else if (x < Tp{1})
 	return expint_E1_series(x);
-      else if (x < _Tp{100})
+      else if (x < Tp{100})
 	/// @todo Find a good asymptotic switch point in @f$ E_1(x) @f$.
 	return expint_En_cont_frac(1, x);
       else
@@ -398,16 +400,16 @@ namespace detail
    * @param  x  The argument of the exponential integral function.
    * @return  The exponential integral.
    */
-  template<typename _Tp>
-    _Tp
-    expint_En_asymp(unsigned int n, _Tp x)
+  template<typename Tp>
+    Tp
+    expint_En_asymp(unsigned int n, Tp x)
     {
-      auto term = _Tp{1};
-      auto sum = _Tp{1};
+      auto term = Tp{1};
+      auto sum = Tp{1};
       for (unsigned int i = 1; i <= n; ++i)
 	{
 	  auto prev = term;
-	  term *= -_Tp(n - i + 1) / x;
+	  term *= -Tp(n - i + 1) / x;
 	  if (std::abs(term) > std::abs(prev))
 	    break;
 	  sum += term;
@@ -430,15 +432,15 @@ namespace detail
    * @param  x  The argument of the exponential integral function.
    * @return  The exponential integral.
    */
-  template<typename _Tp>
-    _Tp
-    expint_En_large_n(unsigned int n, _Tp x)
+  template<typename Tp>
+    Tp
+    expint_En_large_n(unsigned int n, Tp x)
     {
       const auto xpn = x + n;
       const auto xpn2 = xpn * xpn;
       const auto s_eps = emsr::epsilon(x);
-      auto term = _Tp{1};
-      auto sum = _Tp{1};
+      auto term = Tp{1};
+      auto sum = Tp{1};
       for (unsigned int i = 1; i <= n; ++i)
 	{
 	  term *= (n - 2 * (i - 1) * x) / xpn2;
@@ -463,13 +465,13 @@ namespace detail
    * @param  x  The argument of the exponential integral function.
    * @return  The exponential integral.
    */
-  template<typename _Tp>
-    _Tp
-    expint(unsigned int n, _Tp x)
+  template<typename Tp>
+    Tp
+    expint(unsigned int n, Tp x)
     {
       if (std::isnan(x))
 	return emsr::quiet_NaN(x);
-      else if (n <= 1 && x == _Tp{0})
+      else if (n <= 1 && x == Tp{0})
 	return emsr::infinity(x);
       else
 	{
@@ -477,14 +479,14 @@ namespace detail
 	    return std::exp(-x) / x;
 	  else if (n == 1)
 	    return expint_E1(x);
-	  else if (x == _Tp{0})
-	    return _Tp{1} / static_cast<_Tp>(n - 1);
-	  else if (x < _Tp{1})
+	  else if (x == Tp{0})
+	    return Tp{1} / static_cast<Tp>(n - 1);
+	  else if (x < Tp{1})
 	    return expint_En_series(n, x);
 	  else if (n > 50000)
 	    /// @todo Study arbitrary switch to large-n @f$ E_n(x) @f$.
 	    return expint_En_large_n(n, x);
-	  else if (x > _Tp{100})
+	  else if (x > Tp{100})
 	    /// @todo Find a good asymptotic switch point in @f$ E_n(x) @f$.
 	    return expint_En_asymp(n, x);
 	  else
@@ -504,9 +506,9 @@ namespace detail
    * @param  x  The argument of the exponential integral function.
    * @return  The exponential integral.
    */
-  template<typename _Tp>
-    _Tp
-    expint(_Tp x)
+  template<typename Tp>
+    Tp
+    expint(Tp x)
     {
       if (std::isnan(x))
 	return emsr::quiet_NaN(x);
@@ -525,13 +527,13 @@ namespace detail
    * @param  x  The argument of the logarithmic integral function.
    * @return  The logarithmic integral.
    */
-  template<typename _Tp>
-    _Tp
-    logint(const _Tp x)
+  template<typename Tp>
+    Tp
+    logint(const Tp x)
     {
       if (std::isnan(x))
 	return emsr::quiet_NaN(x);
-      else if (std::abs(x) == _Tp{1})
+      else if (std::abs(x) == Tp{1})
 	return emsr::infinity(x);
       else
 	return expint(std::log(x));
@@ -548,16 +550,16 @@ namespace detail
    * @param  x  The argument of the hyperbolic cosine integral function.
    * @return  The hyperbolic cosine integral.
    */
-  template<typename _Tp>
-    _Tp
-    coshint(const _Tp x)
+  template<typename Tp>
+    Tp
+    coshint(const Tp x)
     {
       if (std::isnan(x))
 	return emsr::quiet_NaN(x);
-      else if (x == _Tp{0})
-	return _Tp{0};
+      else if (x == Tp{0})
+	return Tp{0};
       else
-	return (expint_Ei(x) - expint_E1(x)) / _Tp{2};
+	return (expint_Ei(x) - expint_E1(x)) / Tp{2};
     }
 
   /**
@@ -571,14 +573,14 @@ namespace detail
    * @param  x  The argument of the hyperbolic sine integral function.
    * @return  The hyperbolic sine integral.
    */
-  template<typename _Tp>
-    _Tp
-    sinhint(const _Tp x)
+  template<typename Tp>
+    Tp
+    sinhint(const Tp x)
     {
       if (std::isnan(x))
 	return emsr::quiet_NaN(x);
       else
-	return (expint_Ei(x) + expint_E1(x)) / _Tp{2};
+	return (expint_Ei(x) + expint_E1(x)) / Tp{2};
     }
 
 } // namespace detail

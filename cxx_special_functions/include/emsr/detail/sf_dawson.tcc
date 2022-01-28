@@ -1,11 +1,11 @@
 
 // Copyright (C) 2016-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -37,17 +37,17 @@ namespace detail
   /**
    * @brief Compute the Dawson integral using the series expansion.
    */
-  template<typename _Tp>
-    _Tp
-    dawson_series(_Tp x)
+  template<typename Tp>
+    Tp
+    dawson_series(Tp x)
     {
       auto x2 = x * x;
-      _Tp sum(1);
+      Tp sum(1);
       auto k = 1;
-      _Tp term(1);
+      Tp term(1);
       while (true)
 	{
-	  term *= -(_Tp{2} / _Tp(2 * k + 1)) * x2;
+	  term *= -(Tp{2} / Tp(2 * k + 1)) * x2;
 	  sum += term;
 	  ++k;
 	  if (std::abs(term) < emsr::epsilon(x))
@@ -61,9 +61,9 @@ namespace detail
    * @brief Compute the Dawson integral using a sampling theorem
    * representation.
    */
-  template<typename _Tp>
-    _Tp
-    dawson_cont_frac(_Tp x)
+  template<typename Tp>
+    Tp
+    dawson_cont_frac(Tp x)
     {
       const auto s_1_sqrtpi{0.5641895835477562869480794515607726L};
       const auto s_eps = emsr::epsilon(x);
@@ -71,18 +71,18 @@ namespace detail
       /// This array could be built on a thread-local basis.
       const auto s_n_max = 100;
       // The array below is produced by the following snippet:
-      //static thread_local _Tp s_c[s_n_max + 1];
+      //static thread_local Tp s_c[s_n_max + 1];
       //static thread_local auto init = false;
       //if (! init)
       //  {
       //    init = true;
       //    for (unsigned int i = 0; i < s_n_max; ++i)
       //  	{
-      //  	  auto y = _Tp(2 * i + 1) * s_H;
+      //  	  auto y = Tp(2 * i + 1) * s_H;
       //  	  s_c[i] = std::exp(-y * y);
       //  	}
       //  }
-      constexpr _Tp
+      constexpr Tp
       s_c[s_n_max]
       {
 	9.60789439152323209438169001326016e-001L,
@@ -188,21 +188,21 @@ namespace detail
       };
 
       auto xx = std::abs(x);
-      auto n0 = 2 * static_cast<int>(_Tp{0.5L} + _Tp{0.5L} * xx / s_H);
+      auto n0 = 2 * static_cast<int>(Tp{0.5L} + Tp{0.5L} * xx / s_H);
       auto xp = xx - n0 * s_H;
-      auto e1 = std::exp(_Tp{2} * xp * s_H);
+      auto e1 = std::exp(Tp{2} * xp * s_H);
       auto e2 = e1 * e1;
-      auto d1 = _Tp(n0) + _Tp{1};
-      auto d2 = d1 - _Tp{2};
-      auto sum = _Tp{0};
+      auto d1 = Tp(n0) + Tp{1};
+      auto d2 = d1 - Tp{2};
+      auto sum = Tp{0};
       for (unsigned int i = 0; i < s_n_max; ++i)
 	{
-	  auto term = _Tp(s_c[i]) * (e1 / d1 + _Tp{1} / (d2 * e1));
+	  auto term = Tp(s_c[i]) * (e1 / d1 + Tp{1} / (d2 * e1));
 	  sum += term;
 	  if (std::abs(term) < s_eps * std::abs(sum))
 	    break;
-	  d1 += _Tp{2};
-	  d2 -= _Tp{2};
+	  d1 += Tp{2};
+	  d2 -= Tp{2};
 	  e1 *= e2;
 	}
       return std::copysign(std::exp(-xp * xp), x)
@@ -223,12 +223,12 @@ namespace detail
    *
    * @param x The argument @f$ -inf < x < inf @f$.
    */
-  template<typename _Tp>
-    _Tp
-    dawson(_Tp x)
+  template<typename Tp>
+    Tp
+    dawson(Tp x)
     {
       const auto s_NaN = emsr::quiet_NaN(x);
-      constexpr _Tp s_x_min{0.2L};
+      constexpr Tp s_x_min{0.2L};
 
       if (std::isnan(x))
 	return s_NaN;

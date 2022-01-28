@@ -43,16 +43,16 @@ namespace emsr
    *    H^{(1)}_\nu(x) = J_\nu(x) + i N_\nu(x)
    * @f]
    *
-   * @tparam _Tpnu The complex type of the order
-   * @tparam _Tp The complex type of the argument
+   * @tparam Tpnu The complex type of the order
+   * @tparam Tp The complex type of the argument
    * @param nu The complex order
    * @param x The complex argument
    */
-  template<typename _Tpnu, typename _Tp>
-    inline std::complex<emsr::fp_promote_t<_Tpnu, _Tp>>
-    cyl_hankel_1(std::complex<_Tpnu> nu, std::complex<_Tp> x)
+  template<typename Tpnu, typename Tp>
+    inline std::complex<emsr::fp_promote_t<Tpnu, Tp>>
+    cyl_hankel_1(std::complex<Tpnu> nu, std::complex<Tp> x)
     {
-      using type = emsr::fp_promote_t<_Tpnu, _Tp>;
+      using type = emsr::fp_promote_t<Tpnu, Tp>;
       return emsr::detail::cyl_hankel_1<type>(nu, x);
     }
 
@@ -90,16 +90,16 @@ namespace emsr
    *    H^{(2)}_\nu(x) = J_\nu(x) - i N_\nu(x)
    * @f]
    *
-   * @tparam _Tpnu The complex type of the order
-   * @tparam _Tp The complex type of the argument
+   * @tparam Tpnu The complex type of the order
+   * @tparam Tp The complex type of the argument
    * @param nu The complex order
    * @param x The complex argument
    */
-  template<typename _Tpnu, typename _Tp>
-    inline std::complex<emsr::fp_promote_t<_Tpnu, _Tp>>
-    cyl_hankel_2(std::complex<_Tpnu> nu, std::complex<_Tp> x)
+  template<typename Tpnu, typename Tp>
+    inline std::complex<emsr::fp_promote_t<Tpnu, Tp>>
+    cyl_hankel_2(std::complex<Tpnu> nu, std::complex<Tp> x)
     {
-      using type = emsr::fp_promote_t<_Tpnu, _Tp>;
+      using type = emsr::fp_promote_t<Tpnu, Tp>;
       return emsr::detail::cyl_hankel_2<type>(nu, x);
     }
 
@@ -143,11 +143,11 @@ namespace emsr
    * @param n The integral order >= 0
    * @param x The complex argument
    */
-  template<typename _Tp>
-    inline std::complex<emsr::fp_promote_t<_Tp>>
-    sph_hankel_1(unsigned int n, std::complex<_Tp> x)
+  template<typename Tp>
+    inline std::complex<emsr::fp_promote_t<Tp>>
+    sph_hankel_1(unsigned int n, std::complex<Tp> x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::sph_hankel_1<type>(n, x);
     }
 
@@ -191,11 +191,11 @@ namespace emsr
    * @param n The integral order >= 0
    * @param x The complex argument
    */
-  template<typename _Tp>
-    inline std::complex<emsr::fp_promote_t<_Tp>>
-    sph_hankel_2(unsigned int n, std::complex<_Tp> x)
+  template<typename Tp>
+    inline std::complex<emsr::fp_promote_t<Tp>>
+    sph_hankel_2(unsigned int n, std::complex<Tp> x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::sph_hankel_2<type>(n, x);
     }
 

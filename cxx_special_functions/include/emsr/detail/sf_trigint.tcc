@@ -1,11 +1,11 @@
 
 // Copyright (C) 2016-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -32,6 +32,9 @@
 #include <stdexcept>
 #include <complex>
 
+#include <emsr/numeric_limits.h>
+#include <emsr/math_constants.h>
+
 namespace emsr
 {
 namespace detail
@@ -42,36 +45,36 @@ namespace detail
    *         and cosine @f$ Ci(x) @f$ integrals by continued fraction
    *         for positive argument.
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    sincosint_cont_frac(_Tp t, _Tp& _Si, _Tp& _Ci)
+    sincosint_cont_frac(Tp t, Tp& _Si, Tp& _Ci)
     {
       const auto s_max_iter = 100;
-      const auto s_eps = _Tp{5} * emsr::epsilon(t);
+      const auto s_eps = Tp{5} * emsr::epsilon(t);
       const auto s_fp_min = emsr::lim_min(t);
-      const auto s_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
+      const auto s_pi_2 = emsr::pi_v<Tp> / Tp{2};
 
       // Evaluate Ci and Si by Lentz's modified method of continued fractions.
-      std::complex<_Tp> b(_Tp{1}, t);
-      std::complex<_Tp> c(_Tp{1} / s_fp_min);
-      std::complex<_Tp> d(_Tp{1} / b);
-      std::complex<_Tp> h(d);
+      std::complex<Tp> b(Tp{1}, t);
+      std::complex<Tp> c(Tp{1} / s_fp_min);
+      std::complex<Tp> d(Tp{1} / b);
+      std::complex<Tp> h(d);
       int i = 2;
       while (true)
 	{
-	  auto a = -_Tp(i - 1) * _Tp(i - 1);
-	  b += _Tp{2};
-	  d = _Tp{1} / (a * d + b);
+	  auto a = -Tp(i - 1) * Tp(i - 1);
+	  b += Tp{2};
+	  d = Tp{1} / (a * d + b);
 	  c = b + a / c;
-	  std::complex<_Tp> del = c * d;
+	  std::complex<Tp> del = c * d;
 	  h *= del;
-	  if (std::abs(del - _Tp{1}) < s_eps)
+	  if (std::abs(del - Tp{1}) < s_eps)
 	    break;
 	  if (i > s_max_iter)
 	    throw std::runtime_error("sincosint_cont_frac: continued fraction evaluation failed");
 	  ++i;
 	}
-      h *= std::polar(_Tp{1}, -t);
+      h *= std::polar(Tp{1}, -t);
       _Ci = -h.real();
       _Si = s_pi_2 + h.imag();
 
@@ -84,36 +87,36 @@ namespace detail
    *         and cosine @f$ Ci(x) @f$ integrals by series summation
    *         for positive argument.
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    sincosint_series(_Tp t, _Tp& _Si, _Tp& _Ci)
+    sincosint_series(Tp t, Tp& _Si, Tp& _Ci)
     {
       const auto s_max_iter = 100;
-      const auto s_eps = _Tp{5} * emsr::epsilon(t);
+      const auto s_eps = Tp{5} * emsr::epsilon(t);
       const auto s_fp_min = emsr::lim_min(t);
-      const auto s_gamma_e = emsr::egamma_v<_Tp>;
+      const auto s_gamma_e = emsr::egamma_v<Tp>;
 
       // Evaluate Ci and Si by series simultaneously.
-      _Tp sumc(0), sums(0);
+      Tp sumc(0), sums(0);
       if (t * t < s_fp_min)
 	{
 	  // Avoid underflow.
-	  sumc = _Tp{0};
+	  sumc = Tp{0};
 	  sums = t;
 	}
       else
 	{
 	  // Evaluate Si and Ci by series expansion.
-	  _Tp sum(0);
-	  _Tp sign(1), fact(1);
+	  Tp sum(0);
+	  Tp sign(1), fact(1);
 	  bool odd = true;
 	  unsigned int k = 1;
 	  while (true)
 	    {
 	      fact *= t / k;
-	      _Tp term = fact / k;
+	      Tp term = fact / k;
 	      sum += sign * term;
-	      _Tp err = term / std::abs(sum);
+	      Tp err = term / std::abs(sum);
 	      if (odd)
 		{
 		  sign = -sign;
@@ -147,20 +150,20 @@ namespace detail
    *
    *   The asymptotic series is very good for x > 50.
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    sincosint_asymp(_Tp t, _Tp& _Si, _Tp& _Ci)
+    sincosint_asymp(Tp t, Tp& _Si, Tp& _Ci)
     {
       const auto s_max_iter = 100;
-      const auto s_eps = _Tp{5} * emsr::epsilon(t);
-      const auto s_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
+      const auto s_eps = Tp{5} * emsr::epsilon(t);
+      const auto s_pi_2 = emsr::pi_v<Tp> / Tp{2};
 
-      auto invt = _Tp{1} / t;
-      auto term = _Tp{1}; // 0!
-      auto sume = _Tp{term};
+      auto invt = Tp{1} / t;
+      auto term = Tp{1}; // 0!
+      auto sume = Tp{term};
       term *= invt; // 1! / t
-      auto sumo = _Tp{term};
-      auto sign = _Tp{1};
+      auto sumo = Tp{term};
+      auto sign = Tp{1};
       auto even = true;
       auto k = 2;
       while (true)
@@ -213,29 +216,29 @@ namespace detail
    *      Ci(x) = \gamma_E + \log(x) + \int_0^x dt \frac{\cos(t) - 1}{t}
    *  @f]
    */
-  template<typename _Tp>
-    std::pair<_Tp, _Tp>
-    sincosint(_Tp x)
+  template<typename Tp>
+    std::pair<Tp, Tp>
+    sincosint(Tp x)
     {
       const auto s_NaN = emsr::quiet_NaN(x);
       if (std::isnan(x))
 	return std::make_pair(s_NaN, s_NaN);
 
       auto t = std::abs(x);
-      _Tp _Ci, _Si;
-      if (t == _Tp{0})
+      Tp _Ci, _Si;
+      if (t == Tp{0})
 	{
-	  _Si = _Tp{0};
+	  _Si = Tp{0};
 	  _Ci = -emsr::infinity(x);
 	}
-      else if (t > _Tp{1000}) // Check this!
+      else if (t > Tp{1000}) // Check this!
 	sincosint_asymp(t, _Si, _Ci);
-      else if (t > _Tp{2})
+      else if (t > Tp{2})
 	sincosint_cont_frac(t, _Si, _Ci);
       else
 	sincosint_series(t, _Si, _Ci);
 
-      if (x < _Tp{0})
+      if (x < Tp{0})
 	_Si = -_Si;
 
       return std::make_pair(_Si, _Ci);

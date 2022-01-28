@@ -9,6 +9,8 @@
 #include <iostream>
 #include <iomanip>
 
+#include <emsr/sf_bessel.h>
+
 #include <wrap_boost.h>
 
 template<typename _Tp>

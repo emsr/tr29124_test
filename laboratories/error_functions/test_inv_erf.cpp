@@ -12,6 +12,9 @@
 #include <complex>
 
 #include <emsr/float128_io.h>
+#include <emsr/fp_type_util.h>
+#include <emsr/numeric_limits.h>
+
 namespace detail
 {
 
@@ -349,7 +352,7 @@ template<typename _Tp>
 	auto p = _Tp(i * 0.01L);
 	auto inverfs = detail::erf_inv_series(p);
 	auto inverfr = detail::erf_inv_recur(p);
-	auto inverf = erf_inv(p);
+	auto inverf = detail::erf_inv(p);
 	std::cout << ' ' << std::setw(w) << p
 		  << ' ' << std::setw(w) << inverfs
 		  << ' ' << std::setw(w) << std::erf(inverf)
@@ -377,7 +380,7 @@ template<typename _Tp>
 	auto erfx = std::erf(x);
 	auto inverfs = detail::erf_inv_series(erfx);
 	auto inverfr = detail::erf_inv_recur(erfx);
-	auto inverf = erf_inv(erfx);
+	auto inverf = detail::erf_inv(erfx);
 	std::cout << ' ' << std::setw(w) << x
 		  << ' ' << std::setw(w) << erfx
 		  << ' ' << std::setw(w) << inverf
@@ -398,7 +401,7 @@ template<typename _Tp>
     for (int i = 200; i >= 0; --i)
       {
 	auto p = _Tp(i * 0.01L);
-	auto inverfc = erfc_inv(p);
+	auto inverfc = detail::erfc_inv(p);
 	std::cout << ' ' << std::setw(w) << p
 		  << ' ' << std::setw(w) << inverfc
 		  << ' ' << std::setw(w) << std::erfc(inverfc)
@@ -416,7 +419,7 @@ template<typename _Tp>
       {
 	auto x = _Tp(i * 0.01L);
 	auto erfcx = std::erfc(x);
-	auto inverfc = erfc_inv(erfcx);
+	auto inverfc = detail::erfc_inv(erfcx);
 	std::cout << ' ' << std::setw(w) << x
 		  << ' ' << std::setw(w) << erfcx
 		  << ' ' << std::setw(w) << inverfc
@@ -443,7 +446,7 @@ template<typename _Tp>
     for (int k = -100; k <= 100; ++k)
       {
 	auto p = k * _Tp{0.01L};
-	auto inverf = erf_inv(p);
+	auto inverf = detail::erf_inv(p);
 	std::cout << ' ' << std::setw(w) << p
 		  << ' ' << std::setw(w) << inverf
 		  << '\n';
@@ -456,7 +459,7 @@ template<typename _Tp>
     for (int k = 200; k >= 0; --k)
       {
 	auto p = k * _Tp{0.01L};
-	auto inverfc = erfc_inv(p);
+	auto inverfc = detail::erfc_inv(p);
 	std::cout << ' ' << std::setw(w) << p
 		  << ' ' << std::setw(w) << inverfc
 		  << '\n';

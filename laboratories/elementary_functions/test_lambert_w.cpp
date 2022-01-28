@@ -6,6 +6,9 @@
 #include <iostream>
 #include <iomanip>
 
+#include <emsr/numeric_limits.h>
+#include <emsr/math_constants.h>
+
   /**
    * This is the third-order Halley's root finding algorithm for Lambert W.
    * The radius of convergence is 1/e but it staggers on pretty well up to above 3.

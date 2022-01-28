@@ -28,7 +28,7 @@ add_test(NAME run_test_abs COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_abs > o
 
 add_executable(test_arith_geom_mean test_arith_geom_mean.cpp)
 target_link_libraries(test_arith_geom_mean
-  ${TR29124_LIBRARIES}
+  ${EMSR_LIBRARIES}
   cxx_float128
   quadmath
   wrap_boost)
@@ -36,7 +36,7 @@ add_test(NAME run_test_arith_geom_mean COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/
 
 add_executable(test_hypot test_hypot.cpp)
 target_link_libraries(test_hypot
-  ${TR29124_LIBRARIES}
+  ${EMSR_LIBRARIES}
   quadmath)
 add_test(NAME run_test_hypot COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hypot > output/test_hypot.txt")
 

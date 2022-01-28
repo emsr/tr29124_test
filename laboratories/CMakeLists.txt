@@ -8,7 +8,7 @@ project(
 
 enable_testing()
 
-set(TR29124_LIBRARIES
+set(EMSR_LIBRARIES
   cxx_math_constants
   cxx_fp_utils
   cxx_complex_utils

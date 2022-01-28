@@ -6,6 +6,9 @@
 #include <iostream>
 #include <iomanip>
 
+#include <emsr/math_constants.h>
+#include <emsr/numeric_limits.h>
+
 /**
  * Integer powers of 2.
  */

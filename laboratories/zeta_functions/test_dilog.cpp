@@ -7,6 +7,8 @@
 #include <iostream>
 #include <stdexcept>
 
+#include <emsr/sf_zeta.h>
+
 #ifdef NO_DILOG
 
 namespace emsr

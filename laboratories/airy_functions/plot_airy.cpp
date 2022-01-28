@@ -9,6 +9,8 @@
 #include <complex>
 #include <string>
 
+#include <emsr/sf_airy.h>
+
 /**
  * 
 template<typename _Tp>

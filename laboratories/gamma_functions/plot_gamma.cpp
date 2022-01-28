@@ -11,24 +11,28 @@
 #include <string>
 #include <complex>
 
-template<typename _Tp>
+#include <emsr/math_constants.h>
+#include <emsr/sf_gamma.h>
+#include <emsr/fp_type_util.h>
+
+template<typename Tp>
   void
   plot_spouge(std::string filename)
   {
-    using _Val = _Tp;
-    using _Real = emsr::num_traits_t<_Val>;
-    using _Cmplx = std::complex<_Real>;
+    using Val = Tp;
+    using Real = emsr::num_traits_t<Val>;
+    using Cmplx = std::complex<Real>;
 
-    constexpr auto deg = emsr::deg_v<_Real>;
+    constexpr auto deg = emsr::deg_v<Real>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Real>::digits10);
+    data.precision(std::numeric_limits<Real>::digits10);
     data << std::showpoint << std::scientific;
     auto w = 8 + data.precision();
 
     using emsr::detail::spouge_log_gamma1p;
-    using GammaT = decltype(spouge_log_gamma1p(_Cmplx{}));
+    using GammaT = decltype(spouge_log_gamma1p(Cmplx{}));
     std::vector<std::vector<GammaT>> zv;
     std::vector<std::vector<GammaT>> gammav;
 
@@ -41,7 +45,7 @@ template<typename _Tp>
 	gammav.push_back(std::vector<GammaT>{});
 	for (int j = j_min; j <= +50; ++j)
 	  {
-	    auto t = _Cmplx(0.10L * i, 0.10L * j);
+	    auto t = Cmplx(0.10L * i, 0.10L * j);
 	    zv.back().push_back(t);
 	    gammav.back().push_back(spouge_log_gamma1p(t - GammaT{1}));
 	  }
@@ -108,24 +112,24 @@ template<typename _Tp>
     data << '\n';
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
   plot_lanczos(std::string filename)
   {
-    using _Val = _Tp;
-    using _Real = emsr::num_traits_t<_Val>;
-    using _Cmplx = std::complex<_Real>;
+    using Val = Tp;
+    using Real = emsr::num_traits_t<Val>;
+    using Cmplx = std::complex<Real>;
 
-    constexpr auto deg = emsr::deg_v<_Real>;
+    constexpr auto deg = emsr::deg_v<Real>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Real>::digits10);
+    data.precision(std::numeric_limits<Real>::digits10);
     data << std::showpoint << std::scientific;
     auto w = 8 + data.precision();
 
     using emsr::detail::lanczos_log_gamma1p;
-    using GammaT = decltype(lanczos_log_gamma1p(_Cmplx{}));
+    using GammaT = decltype(lanczos_log_gamma1p(Cmplx{}));
     std::vector<std::vector<GammaT>> zv;
     std::vector<std::vector<GammaT>> gammav;
 
@@ -138,7 +142,7 @@ template<typename _Tp>
 	gammav.push_back(std::vector<GammaT>{});
 	for (int j = j_min; j <= +50; ++j)
 	  {
-	    auto t = _Cmplx(0.10L * i, 0.10L * j);
+	    auto t = Cmplx(0.10L * i, 0.10L * j);
 	    zv.back().push_back(t);
 	    gammav.back().push_back(lanczos_log_gamma1p(t - GammaT{1}));
 	  }

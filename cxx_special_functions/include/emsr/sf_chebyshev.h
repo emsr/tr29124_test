@@ -39,15 +39,15 @@ namespace emsr
    * @f]
    * where @f$ \theta = \arccos(x) @f$, @f$ -1 <= x <= +1 @f$.
    *
-   * @tparam _Tp The real type of the argument
+   * @tparam Tp The real type of the argument
    * @param n The non-negative integral order
    * @param x The real argument @f$ -1 <= x <= +1 @f$
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    chebyshev_t(unsigned int n, _Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    chebyshev_t(unsigned int n, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::chebyshev_t<type>(n, x).T_n;
     }
 
@@ -83,15 +83,15 @@ namespace emsr
    * @f]
    * where @f$ \theta = \arccos(x) @f$, @f$ -1 <= x <= +1 @f$.
    *
-   * @tparam _Tp The real type of the argument
+   * @tparam Tp The real type of the argument
    * @param n The non-negative integral order
    * @param x The real argument @f$ -1 <= x <= +1 @f$
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    chebyshev_u(unsigned int n, _Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    chebyshev_u(unsigned int n, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::chebyshev_u<type>(n, x).U_n;
     }
 
@@ -128,15 +128,15 @@ namespace emsr
    * @f]
    * where @f$ \theta = \arccos(x) @f$, @f$ -1 <= x <= +1 @f$.
    *
-   * @tparam _Tp The real type of the argument
+   * @tparam Tp The real type of the argument
    * @param n The non-negative integral order
    * @param x The real argument @f$ -1 <= x <= +1 @f$
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    chebyshev_v(unsigned int n, _Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    chebyshev_v(unsigned int n, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::chebyshev_v<type>(n, x).V_n;
     }
 
@@ -173,15 +173,15 @@ namespace emsr
    * @f]
    * where @f$ \theta = \arccos(x) @f$, @f$ -1 <= x <= +1 @f$.
    *
-   * @tparam _Tp The real type of the argument
+   * @tparam Tp The real type of the argument
    * @param n The non-negative integral order
    * @param x The real argument @f$ -1 <= x <= +1 @f$
    */
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    chebyshev_w(unsigned int n, _Tp x)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    chebyshev_w(unsigned int n, Tp x)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::chebyshev_w<type>(n, x).W_n;
     }
 

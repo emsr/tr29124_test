@@ -9,6 +9,8 @@
 #include <cmath>
 
 #include <emsr/rational.h>
+#include <emsr/fp_type_util.h>
+#include <emsr/numeric_limits.h>
 
 namespace emsr
 {
@@ -110,36 +112,36 @@ namespace detail
   /**
    *
    */
-  template<typename _Tp>
-    _Tp
-    binet_asymp(_Tp z)
+  template<typename Tp>
+    Tp
+    binet_asymp(Tp z)
     {
-      using _Val = _Tp;
-      using _Real = emsr::num_traits_t<_Val>;
-      constexpr auto s_eps = std::numeric_limits<_Real>::epsilon();
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
+      constexpr auto s_eps = std::numeric_limits<Real>::epsilon();
 
       // Weighted Bernoulli numbers: (-1)^k B_2k / ((2*k+1)*(2*k+2))
       constexpr std::size_t s_n = 12;
-      constexpr _Real
+      constexpr Real
       s_b[s_n]
       {
-	_Real{1LL}             / _Real{12LL},
-	_Real{1LL}             / _Real{360LL},
-	_Real{1LL}             / _Real{1260LL},
-	_Real{1LL}             / _Real{1680LL},
-	_Real{1LL}             / _Real{1188LL},
-	_Real{691LL}           / _Real{360360LL},
-	_Real{1LL}             / _Real{156LL},
-	_Real{3617LL}          / _Real{122400LL},
-	_Real{43867LL}         / _Real{244188LL},
-	_Real{174611LL}        / _Real{125400LL},
-	_Real{77683LL}         / _Real{5796LL},
-	_Real{236364091LL}     / _Real{1506960LL}
+	Real{1LL}             / Real{12LL},
+	Real{1LL}             / Real{360LL},
+	Real{1LL}             / Real{1260LL},
+	Real{1LL}             / Real{1680LL},
+	Real{1LL}             / Real{1188LL},
+	Real{691LL}           / Real{360360LL},
+	Real{1LL}             / Real{156LL},
+	Real{3617LL}          / Real{122400LL},
+	Real{43867LL}         / Real{244188LL},
+	Real{174611LL}        / Real{125400LL},
+	Real{77683LL}         / Real{5796LL},
+	Real{236364091LL}     / Real{1506960LL}
       };
 
-      auto z2 = _Real{1} / (z * z);
-      auto J = _Val{};
-      auto zk = _Val{1};
+      auto z2 = Real{1} / (z * z);
+      auto J = Val{};
+      auto zk = Val{1};
       for (auto b : s_b)
 	{
 	  auto term = b * zk;
@@ -156,28 +158,28 @@ namespace detail
   /**
    *
    */
-  template<typename _Tp>
-    _Tp
-    binet_cont_frac(_Tp z)
+  template<typename Tp>
+    Tp
+    binet_cont_frac(Tp z)
     {
-      using _Val = _Tp;
-      using _Real = emsr::num_traits_t<_Val>;
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
 
       // Stieltjes partial numerators.
       constexpr std::size_t s_n = 6;
-      constexpr _Real
+      constexpr Real
       s_a[s_n]
       {
-	_Real{1LL}            / _Real{12LL},
-	_Real{1LL}            / _Real{30LL},
-	_Real{53LL}           / _Real{210LL},
-	_Real{195LL}          / _Real{371LL},
-	_Real{22999LL}        / _Real{22737LL},
-	_Real{29944523LL}     / _Real{19733142LL}
+	Real{1LL}            / Real{12LL},
+	Real{1LL}            / Real{30LL},
+	Real{53LL}           / Real{210LL},
+	Real{195LL}          / Real{371LL},
+	Real{22999LL}        / Real{22737LL},
+	Real{29944523LL}     / Real{19733142LL}
       };
 
       // Backward recurrence.
-      auto w = _Val{}; // The tail function.
+      auto w = Val{}; // The tail function.
       auto J = w;
       for (std::ptrdiff_t k = s_n - 1; k >= 0; --k)
         J = s_a[k] / (z + J);
@@ -188,17 +190,17 @@ namespace detail
   /**
    *
    */
-  template<typename _Tp>
-    _Tp
-    binet(_Tp z)
+  template<typename Tp>
+    Tp
+    binet(Tp z)
     {
-      using _Val = _Tp;
-      using _Real = emsr::num_traits_t<_Val>;
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
 
-      constexpr auto s_switchover = _Real{10}; /// @todo Find Binet function switch.
+      constexpr auto s_switchover = Real{10}; /// @todo Find Binet function switch.
 
       if (std::isnan(z))
-	return emsr::quiet_NaN<_Tp>();
+	return emsr::quiet_NaN<Tp>();
       else if (z < s_switchover)
 	return binet_cont_frac(z);
       else
@@ -215,31 +217,31 @@ namespace emsr
   /**
    *
    */
-  template<typename _Tp>
-    _Tp
-    lgamma_scaled(_Tp z)
+  template<typename Tp>
+    Tp
+    lgamma_scaled(Tp z)
     { return emsr::detail::binet(z); }
 
   /**
    *
    */
-  template<typename _Tp>
-    _Tp
-    tgamma_scaled(_Tp z)
+  template<typename Tp>
+    Tp
+    tgamma_scaled(Tp z)
     { return std::exp(emsr::detail::binet(z)); }
 
 } // namespace emsr
 
 
-template<typename _Tp>
+template<typename Tp>
   void
   test()
   {
-    using _Rat = emsr::Rational<_Tp>;
+    using _Rat = emsr::Rational<Tp>;
 
-    using _Real = long double;
+    using Real = long double;
 
-    std::cout.precision(std::numeric_limits<_Real>::digits10);
+    std::cout.precision(std::numeric_limits<Real>::digits10);
     auto width = std::cout.precision() + 6;
 
     std::cout << "\nBernoulli numbers\n";
@@ -257,7 +259,7 @@ template<typename _Tp>
     auto cf = emsr::detail::stieltjes_cont_frac_seq<_Rat>(len);
     for (int k = 0; k < len; ++k)
       std::cout << k + 1 << ": " << cf[k]
-		<< " = " << emsr::Rational_cast<_Real>(cf[k]) << '\n';
+		<< " = " << emsr::Rational_cast<Real>(cf[k]) << '\n';
 
     std::cout << "\nBinet asymptotic\n";
     for (int k = 1; k <= 5000; ++k)

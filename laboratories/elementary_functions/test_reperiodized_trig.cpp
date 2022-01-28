@@ -7,6 +7,8 @@
 #include <limits>
 #include <cmath>
 
+#include <emsr/sf_trig.h>
+
 #include <wrap_boost.h>
 
 template<typename _Tp>

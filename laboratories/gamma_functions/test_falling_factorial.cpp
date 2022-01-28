@@ -8,17 +8,19 @@
 #include <iomanip>
 #include <cmath>
 
+#include <emsr/sf_gamma.h>
+
 #include <wrap_boost.h>
 
 namespace emsr
 {
 
-  template<typename _Tp>
-    _Tp
+  template<typename Tp>
+    Tp
     falling_factorial_prod(int a, int n)
     {
       if (a < n)
-	return _Tp{0};
+	return Tp{0};
       else
 	{
 	  auto prod = 1;
@@ -28,37 +30,37 @@ namespace emsr
 	}
     }
 
-  template<typename _Tp>
-    _Tp
-    falling_factorial_prod(_Tp a, int n)
+  template<typename Tp>
+    Tp
+    falling_factorial_prod(Tp a, int n)
     {
-      auto prod = _Tp{1};
+      auto prod = Tp{1};
       for (int k = 0; k < n; ++k)
 	prod *= a--;
       return prod;
     }
 
-  template<typename _Tp>
-    _Tp
-    falling_factorial_fake(_Tp a, _Tp x)
+  template<typename Tp>
+    Tp
+    falling_factorial_fake(Tp a, Tp x)
     {
       auto n = int(std::nearbyint(x));
-      if (_Tp(n) == x)
+      if (Tp(n) == x)
 	{
 	  if (n == 0)
-	    return _Tp{1};
+	    return Tp{1};
 	  else
 	    {
 	      auto m = int(std::nearbyint(a));
 	      if (int(m) == a)
-		return falling_factorial_prod<_Tp>(m, n);
+		return falling_factorial_prod<Tp>(m, n);
 	      else
 		return falling_factorial_prod(a, n);
 	    }
 	}
       else
-	return emsr::detail::gamma(a + _Tp{1})
-	     / emsr::detail::gamma(a - x + _Tp{1});
+	return emsr::detail::gamma(a + Tp{1})
+	     / emsr::detail::gamma(a - x + Tp{1});
     }
 
 }

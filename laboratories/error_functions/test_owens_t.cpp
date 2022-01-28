@@ -8,6 +8,8 @@
 #include <cmath>
 #include <wrap_boost.h>
 
+#include <emsr/sf_owens_t.h>
+
 int
 main()
 {

@@ -7,6 +7,8 @@
 #include <complex>
 #include <limits>
 
+#include <emsr/sf_ellint.h>
+
 template<typename _Tp>
   void
   test_carlson_std()

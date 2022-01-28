@@ -1,11 +1,11 @@
 
 // Copyright (C) 2006-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -74,14 +74,14 @@ namespace detail
    * @return A struct containing the modified cylindrical Bessel functions
    *         of the first and second kinds and their derivatives.
    */
-  template<typename _Tnu, typename Tp>
-    constexpr emsr::cyl_mod_bessel_t<_Tnu, Tp, Tp>
-    cyl_bessel_ik_scaled_asymp(_Tnu nu, Tp x)
+  template<typename Tnu, typename Tp>
+    constexpr emsr::cyl_mod_bessel_t<Tnu, Tp, Tp>
+    cyl_bessel_ik_scaled_asymp(Tnu nu, Tp x)
     {
-      // FIXME: This will promote float to double if _Tnu is integral.
-      using Val = emsr::fp_promote_t<_Tnu, Tp>;
+      // FIXME: This will promote float to double if Tnu is integral.
+      using Val = emsr::fp_promote_t<Tnu, Tp>;
       using Real = emsr::num_traits_t<Val>;
-      using bess_t = emsr::cyl_mod_bessel_t<_Tnu, Tp, Tp>;
+      using bess_t = emsr::cyl_mod_bessel_t<Tnu, Tp, Tp>;
       const auto s_pi = emsr::pi_v<Real>;
 
       const auto sums = cyl_bessel_asymp_sums(nu, x, +1);
@@ -99,11 +99,11 @@ namespace detail
    * @param  x   The argument of the Bessel functions.
    * @param  do_scaled  If true, scale I, I' by exp(-x) and K, K' by exp(+x).
    */
-  template<typename _Tnu, typename Tp>
-    constexpr emsr::cyl_mod_bessel_t<_Tnu, Tp, Tp>
-    cyl_bessel_ik_asymp(_Tnu nu, Tp x, bool do_scaled = false)
+  template<typename Tnu, typename Tp>
+    constexpr emsr::cyl_mod_bessel_t<Tnu, Tp, Tp>
+    cyl_bessel_ik_asymp(Tnu nu, Tp x, bool do_scaled = false)
     {
-      using bess_t = emsr::cyl_mod_bessel_t<_Tnu, Tp, Tp>;
+      using bess_t = emsr::cyl_mod_bessel_t<Tnu, Tp, Tp>;
 
       auto ik = cyl_bessel_ik_scaled_asymp(nu, x);
 

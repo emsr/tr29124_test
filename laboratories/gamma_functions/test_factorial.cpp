@@ -8,6 +8,7 @@
 #include <iomanip>
 
 #include <emsr/float128_io.h>
+#include <emsr/sf_gamma.h>
 
 template<typename Tp>
   std::string

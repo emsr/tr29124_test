@@ -6,8 +6,11 @@
 
 #include <limits>
 #include <iostream>
+#include <iomanip>
 #include <cmath>
+
 #include <emsr/numeric_limits_mpreal.h>
+#include <emsr/fp_type_util.h>
 
 /**
  * Max representable integer turns out to be

@@ -8,6 +8,7 @@
 #include <cmath>
 
 #include <emsr/float128_io.h>
+#include <emsr/sf_bessel.h>
 
 #include <wrap_boost.h>
 

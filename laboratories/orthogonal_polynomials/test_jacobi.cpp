@@ -8,7 +8,10 @@
 #include <limits>
 
 #include <jacobi_small.hpp>
+
 #include <emsr/float128_io.h>
+#include <emsr/sf_jacobi.h>
+#include <emsr/quadrature_point.h>
 
   template<typename _Tp>
     std::vector<emsr::QuadraturePoint<_Tp>>

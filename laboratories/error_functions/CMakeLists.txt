@@ -25,7 +25,7 @@ add_custom_target(make_lab_error_functions_output_dir ALL
 
 add_executable(build_inv_erf_coefs build_inv_erf_coefs.cpp)
 target_link_libraries(build_inv_erf_coefs
-  ${TR29124_LIBRARIES}
+  ${EMSR_LIBRARIES}
   cxx_float128
   quadmath
   mpreal gmp mpfr)
@@ -33,19 +33,19 @@ add_test(NAME run_build_inv_erf_coefs COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/b
 
 add_executable(test_dawson test_dawson.cpp)
 target_link_libraries(test_dawson
-  ${TR29124_LIBRARIES}
+  ${EMSR_LIBRARIES}
   cxx_float128
   quadmath
   wrap_boost)
 add_test(NAME run_test_dawson COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_dawson > output/test_dawson.txt")
 
 add_executable(test_erfc test_erfc.cpp)
-target_link_libraries(test_erfc ${TR29124_LIBRARIES} cxx_float128 quadmath)
+target_link_libraries(test_erfc ${EMSR_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_erfc COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_erfc > output/test_erfc.txt")
 
 add_executable(test_experfc test_experfc.cpp)
 target_link_libraries(test_experfc
-  ${TR29124_LIBRARIES}
+  ${EMSR_LIBRARIES}
   cxx_float128
   quadmath
   mpreal mpfr gmp)
@@ -60,7 +60,7 @@ add_executable(test_fresnel test_fresnel.cpp)
 target_include_directories(test_fresnel PRIVATE
   .)
 target_link_libraries(test_fresnel
-  ${TR29124_LIBRARIES}
+  ${EMSR_LIBRARIES}
   cxx_float128
   quadmath)
 add_test(NAME run_test_fresnel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_fresnel > output/test_fresnel.txt")
@@ -68,14 +68,14 @@ add_test(NAME run_test_fresnel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_fre
 add_executable(test_inv_erf test_inv_erf.cpp)
 target_compile_definitions(test_inv_erf PRIVATE STANDALONE)
 target_link_libraries(test_inv_erf
-  ${TR29124_LIBRARIES}
+  ${EMSR_LIBRARIES}
   cxx_float128
   quadmath)
 add_test(NAME run_test_inv_erf COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_inv_erf > output/test_inv_erf.txt")
 
 add_executable(test_owens_t test_owens_t.cpp)
 target_link_libraries(test_owens_t
-  ${TR29124_LIBRARIES}
+  ${EMSR_LIBRARIES}
   cxx_float128
   quadmath
   wrap_boost)

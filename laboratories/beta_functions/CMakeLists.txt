@@ -24,17 +24,17 @@ add_custom_target(make_lab_beta_functions_output_dir ALL
   COMMAND ${CMAKE_COMMAND} -E make_directory output)
 
 add_executable(test_beta test_beta.cpp)
-target_link_libraries(test_beta ${TR29124_LIBRARIES} cxx_float128
+target_link_libraries(test_beta ${EMSR_LIBRARIES} cxx_float128
   quadmath
   wrap_boost)
 add_test(NAME run_test_beta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_beta > output/test_beta.txt")
 
 add_executable(test_beta_inc test_beta_inc.cpp)
-target_link_libraries(test_beta_inc ${TR29124_LIBRARIES} quadmath)
+target_link_libraries(test_beta_inc ${EMSR_LIBRARIES} quadmath)
 add_test(NAME run_test_beta_inc COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_beta_inc > output/test_beta_inc.txt")
 
 add_executable(test_inv_ibeta test_inv_ibeta.cpp)
 target_include_directories(test_inv_ibeta PRIVATE
   ../../cxx_root_search/include)
-target_link_libraries(test_inv_ibeta ${TR29124_LIBRARIES} quadmath)
+target_link_libraries(test_inv_ibeta ${EMSR_LIBRARIES} quadmath)
 # FIXME add_test(NAME run_test_inv_ibeta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_inv_ibeta > output/test_inv_ibeta.txt")

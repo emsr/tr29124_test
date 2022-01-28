@@ -11,7 +11,7 @@
 #include <wrap_gsl.h>
 
 #include <emsr/float128_io.h>
-
+#include <emsr/sf_polylog.h>
 
   /**
    * Return the Fermi-Dirac probability distribution function (continuous).
@@ -19,11 +19,11 @@
    * @see Kieth Oldham, Jan Myland, and Jerome Spanier,
    * An Atlas of Functions, 2nd Edition p. 266
    */
-  template<typename _Tp>
-    _Tp
-    fermi_dirac_pdf(_Tp mu, _Tp beta, _Tp x)
+  template<typename Tp>
+    Tp
+    fermi_dirac_pdf(Tp mu, Tp beta, Tp x)
     {
-      _Tp{1} / (std::exp(beta * (x - mu)) + _Tp{1});
+      Tp{1} / (std::exp(beta * (x - mu)) + Tp{1});
     }
 
   /**
@@ -32,29 +32,29 @@
    * @see Kieth Oldham, Jan Myland, and Jerome Spanier,
    * An Atlas of Functions, 2nd Edition p. 266
    */
-  template<typename _Tp>
-    _Tp
-    fermi_dirac_p(_Tp mu, _Tp beta, _Tp x)
+  template<typename Tp>
+    Tp
+    fermi_dirac_p(Tp mu, Tp beta, Tp x)
     {
       ;
     }
 
 
-template<typename _Tp>
+template<typename Tp>
   void
   run_fermi_dirac()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    std::vector<_Tp> svec{_Tp{-1}/_Tp{2}, _Tp{0}, _Tp{1}/_Tp{2}, _Tp{1},
-			  _Tp{3}/_Tp{2}, _Tp{2}, _Tp{3}, _Tp{4}, _Tp{5}};
+    std::vector<Tp> svec{Tp{-1}/Tp{2}, Tp{0}, Tp{1}/Tp{2}, Tp{1},
+			  Tp{3}/Tp{2}, Tp{2}, Tp{3}, Tp{4}, Tp{5}};
 
     for (auto s : svec)
       {
 	std::cout << "\n\n\n s = " << std::setw(width) << s << '\n';
-	const auto del = _Tp{1} / _Tp{10};
+	const auto del = Tp{1} / Tp{10};
 	for (int i = -250; i <= 250; ++i)
 	  {
 	    auto x = del * i;

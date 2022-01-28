@@ -20,11 +20,11 @@ namespace emsr
    * @see COMPUTATION OF THE MITTAG-LEFFLER FUNCTION @f$ E_{\alpha,\beta}(z) @f$
    * AND ITS DERIVATIVE, Rudolf Gorenflo, Joulia Loutchko & Yuri Luchko
    */
-  template<typename _Tp, typename _Ta, typename _Tb>
-    inline std::complex<emsr::fp_promote_t<_Tp, _Ta, _Tb>>
-    mittag_leffler(_Ta alpha, _Tb beta, const std::complex<_Tp>& z)
+  template<typename Tp, typename Ta, typename Tb>
+    inline std::complex<emsr::fp_promote_t<Tp, Ta, Tb>>
+    mittag_leffler(Ta alpha, Tb beta, const std::complex<Tp>& z)
     {
-      using type = emsr::fp_promote_t<_Tp, _Ta, _Tb>;
+      using type = emsr::fp_promote_t<Tp, Ta, Tb>;
       return emsr::detail::mittag_leffler<type>(alpha, beta, z);
     }
 

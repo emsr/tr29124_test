@@ -7,7 +7,9 @@
 #include <iostream>
 #include <iomanip>
 #include <complex>
+
 #include <emsr/math_constants.h>
+#include <emsr/sf_bessel.h>
 
   /**
    * Compute the Kelvin function @f$ ber(x) @f$ by series summation.

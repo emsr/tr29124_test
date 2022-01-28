@@ -11,9 +11,11 @@
 #include <wrap_boost.h>
 #include <wrap_gsl.h>
 
-namespace emsr _GLIBCXX_VISIBILITY(default)
+#include <emsr/fp_type_util.h>
+#include <emsr/sf_theta.h>
+
+namespace emsr
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi amplitude function of modulus k and argument u.
@@ -165,7 +167,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return emsr::detail::jacobi_ellint<type>(k, u).ns();
     }
 
-_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace emsr
 
 void

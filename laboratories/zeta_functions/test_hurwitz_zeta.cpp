@@ -8,6 +8,7 @@
 #include <iomanip>
 
 #include <emsr/float128_io.h>
+#include <emsr/math_constants.h>
 
   //  From sf_gamma.tcc
   template<typename _Tp>

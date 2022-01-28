@@ -7,6 +7,9 @@
 #include <iostream>
 #include <iomanip>
 
+#include <emsr/numeric_limits.h>
+#include <emsr/sf_hyperg.h>
+
   template<typename _Tp>
     _Tp
     conf_hyperg_limit_sum(_Tp c, _Tp z)

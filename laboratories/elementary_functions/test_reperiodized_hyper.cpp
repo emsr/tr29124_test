@@ -8,6 +8,7 @@
 #include <cmath>
 
 #include <emsr/float128_io.h>
+#include <emsr/sf_trig.h>
 
 template<typename _Tp>
   void

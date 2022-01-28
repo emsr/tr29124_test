@@ -1,11 +1,11 @@
 
 // Copyright (C) 2006-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -49,6 +49,8 @@
 
 #include <stdexcept>
 
+#include <emsr/sf_gamma.h>
+
 namespace emsr
 {
 namespace detail
@@ -66,9 +68,9 @@ namespace detail
    * @param b The second argument of the beta function.
    * @return  The beta function.
    */
-  template<typename _Tp>
-    _Tp
-    beta_gamma(_Tp a, _Tp b)
+  template<typename Tp>
+    Tp
+    beta_gamma(Tp a, Tp b)
     {
       auto na = int(std::nearbyint(a));
       auto nb = int(std::nearbyint(b));
@@ -76,15 +78,15 @@ namespace detail
       if (nab <= 0 && nab == a + b)
 	{
 	  if (na != a || na > 0)
-	    return _Tp{0};
+	    return Tp{0};
 	  else if (nb != b || nb > 0)
-	    return _Tp{0};
+	    return Tp{0};
 	  else
-	    return emsr::quiet_NaN<_Tp>();
+	    return emsr::quiet_NaN<Tp>();
 	}
       else
 	{
-	  _Tp bet;
+	  Tp bet;
 	  if (std::abs(b) > std::abs(a))
 	    {
 	      bet = gamma(b) / gamma(a + b);
@@ -114,9 +116,9 @@ namespace detail
    * @param b The second argument of the beta function.
    * @return  The beta function.
    */
-  template<typename _Tp>
-    _Tp
-    beta_lgamma(_Tp a, _Tp b)
+  template<typename Tp>
+    Tp
+    beta_lgamma(Tp a, Tp b)
     {
       auto na = int(std::nearbyint(a));
       auto nb = int(std::nearbyint(b));
@@ -124,11 +126,11 @@ namespace detail
       if (nab <= 0 && nab == a + b)
 	{
 	  if (na != a || na > 0)
-	    return _Tp{0};
+	    return Tp{0};
 	  else if (nb != b || nb > 0)
-	    return _Tp{0};
+	    return Tp{0};
 	  else
-	    return emsr::quiet_NaN<_Tp>(a);
+	    return emsr::quiet_NaN<Tp>(a);
 	}
       else
 	{
@@ -139,8 +141,8 @@ namespace detail
 		      * log_gamma_sign(b)
 		      * log_gamma_sign(a + b);
 
-	  if (bet > emsr::log_max<_Tp>())
-            return sign * emsr::infinity<_Tp>(a);
+	  if (bet > emsr::log_max<Tp>())
+            return sign * emsr::infinity<Tp>(a);
 	  else
 	    return sign * std::exp(bet);
 	}
@@ -168,11 +170,11 @@ namespace detail
    * @param b The second argument of the beta function.
    * @return  The beta function.
    */
-  template<typename _Tp>
-    _Tp
-    beta_product(_Tp a, _Tp b)
+  template<typename Tp>
+    Tp
+    beta_product(Tp a, Tp b)
     {
-      const auto s_eps = emsr::epsilon<_Tp>();
+      const auto s_eps = emsr::epsilon<Tp>();
       const auto ab = a * b;
       auto bet = (a + b) / ab;
 
@@ -181,9 +183,9 @@ namespace detail
       const auto apk = a, apb = b;
       for (unsigned int k = 1; k < s_max_iter; ++k)
 	{
-	  auto term = _Tp{1} - ab / (++apk) / (++apb);
+	  auto term = Tp{1} - ab / (++apk) / (++apb);
 	  bet *= term;
-	  if (std::abs(_Tp{1} - term) < s_eps)
+	  if (std::abs(Tp{1} - term) < s_eps)
 	    break;
 	}
 
@@ -204,15 +206,15 @@ namespace detail
    * @param b The second argument of the beta function.
    * @return  The beta function.
    */
-  template<typename _Tp>
-    _Tp
-    beta(_Tp a, _Tp b)
+  template<typename Tp>
+    Tp
+    beta(Tp a, Tp b)
     {
       if (std::isnan(a) || std::isnan(b))
-	return emsr::quiet_NaN<_Tp>();
-      else if (std::abs(a) < s_num_factorials<_Tp>
-	    && std::abs(b) < s_num_factorials<_Tp>
-	    && std::abs(a + b) < s_num_factorials<_Tp>)
+	return emsr::quiet_NaN<Tp>();
+      else if (std::abs(a) < s_num_factorials<Tp>
+	    && std::abs(b) < s_num_factorials<Tp>
+	    && std::abs(a + b) < s_num_factorials<Tp>)
 	return beta_gamma(a, b);
       else
 	return beta_lgamma(a, b);
@@ -228,53 +230,53 @@ namespace detail
    * @param b The second parameter
    * @param x The argument
    */
-  template<typename _Tp>
-    _Tp
-    ibeta_cont_frac(_Tp a, _Tp b, _Tp x)
+  template<typename Tp>
+    Tp
+    ibeta_cont_frac(Tp a, Tp b, Tp x)
     {
       constexpr unsigned int s_itmax = 100;
-      const auto s_fpmin = 1000 * emsr::lim_min<_Tp>();
-      const auto s_eps = emsr::epsilon<_Tp>();
+      const auto s_fpmin = 1000 * emsr::lim_min<Tp>();
+      const auto s_eps = emsr::epsilon<Tp>();
 
       auto apb = a + b;
-      auto ap1 = a + _Tp{1};
-      auto am1 = a - _Tp{1};
-      auto c = _Tp{1};
-      auto d = _Tp{1} - apb * x / ap1;
+      auto ap1 = a + Tp{1};
+      auto am1 = a - Tp{1};
+      auto c = Tp{1};
+      auto d = Tp{1} - apb * x / ap1;
       if (std::abs(d) < s_fpmin)
 	d = s_fpmin;
-      d = _Tp{1} / d;
+      d = Tp{1} / d;
       auto h = d;
       for (unsigned int m = 1; m <= s_itmax; ++m)
 	{
 	  auto m2 = 2 * m;
 
 	  //  Even step of the recurrence.
-	  auto aa = _Tp(m) * (b - _Tp(m)) * x
-		    / ((am1 + _Tp(m2)) * (a + _Tp(m2)));
-	  d = _Tp{1} + aa * d;
+	  auto aa = Tp(m) * (b - Tp(m)) * x
+		    / ((am1 + Tp(m2)) * (a + Tp(m2)));
+	  d = Tp{1} + aa * d;
 	  if (std::abs(d) < s_fpmin)
 	    d = s_fpmin;
-	  c = _Tp{1} + aa / c;
+	  c = Tp{1} + aa / c;
 	  if (std::abs(c) < s_fpmin)
 	    c = s_fpmin;
-	  d = _Tp{1} / d;
+	  d = Tp{1} / d;
 	  h *= d * c;
 
 	  //  Odd step of the recurrence.
-	  aa = -(a + _Tp(m)) * (apb + _Tp(m)) * x
-	       / ((a + _Tp(m2)) * (ap1 + _Tp(m2)));
-	  d = _Tp{1} + aa * d;
+	  aa = -(a + Tp(m)) * (apb + Tp(m)) * x
+	       / ((a + Tp(m2)) * (ap1 + Tp(m2)));
+	  d = Tp{1} + aa * d;
 	  if (std::abs(d) < s_fpmin)
 	    d = s_fpmin;
-	  c = _Tp{1} + aa / c;
+	  c = Tp{1} + aa / c;
 	  if (std::abs(c) < s_fpmin)
 	    c = s_fpmin;
-	  d = _Tp{1} / d;
+	  d = Tp{1} / d;
 	  auto del = d * c;
 	  h *= del;
 
-	  if (std::abs(del - _Tp{1}) < s_eps)
+	  if (std::abs(del - Tp{1}) < s_eps)
 	    return h;
 	}
       throw std::runtime_error("ibeta_cont_frac: continued fractions failed to converge");
@@ -299,32 +301,32 @@ namespace detail
    * @param b The second parameter
    * @param x The argument
    */
-  template<typename _Tp>
-    _Tp
-    beta_inc(_Tp a, _Tp b, _Tp x)
+  template<typename Tp>
+    Tp
+    beta_inc(Tp a, Tp b, Tp x)
     {
       const auto s_NaN = emsr::quiet_NaN(x);
 
 
-      if (x < _Tp{0} || x > _Tp{1})
+      if (x < Tp{0} || x > Tp{1})
 	throw std::domain_error("beta_inc: argument out of range");
       else if (std::isnan(x) || std::isnan(a) || std::isnan(b))
 	return s_NaN;
-      else if (a == _Tp{0} && b == _Tp{0})
+      else if (a == Tp{0} && b == Tp{0})
 	return s_NaN;
-      else if (a == _Tp{0})
+      else if (a == Tp{0})
 	{
-	  if (x > _Tp{0})
-	    return _Tp{1};
+	  if (x > Tp{0})
+	    return Tp{1};
 	  else
-	    return _Tp{0};
+	    return Tp{0};
 	}
-      else if (b == _Tp{0})
+      else if (b == Tp{0})
 	{
-	  if (x < _Tp{1})
-	    return _Tp{0};
+	  if (x < Tp{1})
+	    return Tp{0};
 	  else
-	    return _Tp{1};
+	    return Tp{1};
 	}
       else
 	{
@@ -332,13 +334,13 @@ namespace detail
 		      * log_gamma_sign(a) * log_gamma_sign(b);
 	  auto fact = sign * std::exp(log_gamma(a + b)
 		      - log_gamma(a) - log_gamma(b)
-		      + a * std::log(x) + b * std::log(_Tp{1} - x));
+		      + a * std::log(x) + b * std::log(Tp{1} - x));
 
-	  if (x < (a + _Tp{1}) / (a + b + _Tp{2}))
+	  if (x < (a + Tp{1}) / (a + b + Tp{2}))
 	    return fact * ibeta_cont_frac(a, b, x) / a;
 	  else
-	    return _Tp{1}
-		 - fact * ibeta_cont_frac(b, a, _Tp{1} - x) / b;
+	    return Tp{1}
+		 - fact * ibeta_cont_frac(b, a, Tp{1} - x) / b;
 	}
     }
 

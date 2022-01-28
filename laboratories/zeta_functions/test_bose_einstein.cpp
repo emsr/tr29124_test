@@ -10,7 +10,7 @@
 #include <complex>
 
 #include <emsr/float128_io.h>
-
+#include <emsr/sf_polylog.h>
 
   /**
    * Return the Bose-Einstein probability distribution function (continuous).
