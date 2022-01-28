@@ -7,7 +7,7 @@
 #include <cmath>
 
 #include <emsr/math_constants.h>
-#include <emsr/sf_gamma.h> / factorial
+#include <emsr/sf_gamma.h> // factorial
 
 template<typename _Tp>
   void
