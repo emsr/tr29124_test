@@ -2944,7 +2944,7 @@ s_neg_double_factorial_table[999]
       else if (ia)
 	{
 	  auto na = ia();
-	  if (na <= n)
+	  if (na < n)
 	    return Tp{0};
 	  else if (na < static_cast<int>(s_num_factorials<_Real>)
 	      && na - n < static_cast<int>(s_num_factorials<_Real>))
@@ -2975,7 +2975,7 @@ s_neg_double_factorial_table[999]
     }
 
   /**
-   * @brief Return the logarithm of the falling factorial function
+   * @brief Return the falling factorial function
    * or the lower Pochhammer symbol for real argument @f$ a @f$
    * and order @f$ \nu @f$.
    * The falling factorial function is defined by
@@ -2989,7 +2989,6 @@ s_neg_double_factorial_table[999]
     {
       using Val = Tp;
       using _Real = emsr::num_traits_t<Val>;
-      const auto s_inf = emsr::infinity<Val>();
       const auto inu = emsr::fp_is_integer(nu);
       const auto ia = emsr::fp_is_integer(a);
 
@@ -3000,7 +2999,7 @@ s_neg_double_factorial_table[999]
       else if (inu)
 	{
 	  if (ia && ia() < inu())
-	    return -s_inf;
+	    return Tp{0};
 	  else
 	    return falling_factorial(a, inu());
 	}
@@ -3055,7 +3054,7 @@ s_neg_double_factorial_table[999]
 	{
 	  if (ia)
 	    {
-	      if (ia() <= inu())
+	      if (ia() < inu())
 		return -s_inf;
 	      else
 		return log_factorial<Val>(unsigned(ia()))
