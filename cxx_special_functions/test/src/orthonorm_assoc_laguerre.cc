@@ -1,25 +1,27 @@
 
+#include <iostream>
+
 #include <emsr/integration.h>
 #include <emsr/sf_laguerre.h>
 
 /* Orthonormality only works for integer alpha. */
 
 // Try to manage the gamma ratio.
-template<typename _Tp>
-  _Tp
-  gamma_ratio(int n, _Tp alpha)
+template<typename Tp>
+  Tp
+  gamma_ratio(int n, Tp alpha)
   {
-    auto gaman1 = std::tgamma(_Tp(1) + alpha);
+    auto gaman1 = std::tgamma(Tp(1) + alpha);
     auto fact = gaman1;
     for (int k = 1; k <= n; ++k)
-      fact *= (_Tp(k) + alpha) / _Tp(k);
+      fact *= (Tp(k) + alpha) / Tp(k);
     return fact;
   }
 
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.
-template<typename _Tp>
-  _Tp
-  norm_assoc_laguerre(int n1, int n2, _Tp alpha, _Tp x)
+template<typename Tp>
+  Tp
+  norm_assoc_laguerre(int n1, int n2, Tp alpha, Tp x)
   {
     auto norm = gamma_ratio(n1, alpha);
     return std::pow(x, alpha) * std::exp(-x)
@@ -27,20 +29,20 @@ template<typename _Tp>
 	 * emsr::assoc_laguerre(n2, alpha, x) / norm;
   }
 
-template<typename _Tp>
-  _Tp
+template<typename Tp>
+  Tp
   delta(int n1, int n2)
-  { return n1 == n2 ? _Tp{1} : _Tp{0}; }
+  { return n1 == n2 ? Tp{1} : Tp{0}; }
 
-template<typename _Tp>
+template<typename Tp>
   int
-  test_assoc_laguerre(_Tp alpha)
+  test_assoc_laguerre(Tp alpha)
   {
-    const auto eps_factor = 1 << (std::numeric_limits<_Tp>::digits / 3);
-    const auto eps = std::numeric_limits<_Tp>::epsilon();
+    const auto eps_factor = 1 << (std::numeric_limits<Tp>::digits / 3);
+    const auto eps = std::numeric_limits<Tp>::epsilon();
     const auto abs_prec = eps_factor * eps;
     const auto rel_prec = eps_factor * eps;
-    const auto cmp_prec = _Tp{10} * rel_prec;
+    const auto cmp_prec = Tp{10} * rel_prec;
 
     const std::array<int, 10> degree{{0, 1, 2, 4, 8, 16, 32, 64, 81, 128}};
     int num_errors = 0;
@@ -49,14 +51,20 @@ template<typename _Tp>
       {
 	for (const auto n2 : degree)
 	  {
-	    auto func = [n1, n2, alpha](_Tp x)
-			-> _Tp
-			{ return norm_assoc_laguerre<_Tp>(n1, n2, alpha, x); };
+	    auto func = [n1, n2, alpha](Tp x)
+			-> Tp
+			{ return norm_assoc_laguerre<Tp>(n1, n2, alpha, x); };
 
 	    auto [result, error]
-		= emsr::integrate_exp_sinh(func, _Tp{0}, abs_prec, rel_prec);
-	    if (std::abs(delta<_Tp>(n1, n2) - result) > cmp_prec)
-	      ++num_errors;
+		= emsr::integrate_exp_sinh(func, Tp{0}, abs_prec, rel_prec);
+
+            auto del = delta<Tp>(n1, n2) - result;
+	    if (std::abs(del) > cmp_prec)
+              {
+		++num_errors;
+        	std::cout << "n1 = " << n1 << "; n2 = " << n2
+                          << "; res = " << result << "; del = " << del << '\n';
+              }
 	  }
       }
     return num_errors;
