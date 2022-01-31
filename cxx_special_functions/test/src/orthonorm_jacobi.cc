@@ -72,7 +72,7 @@ template<typename Tp>
 
     const bool singular = (alpha < Tp{0} || beta < Tp{0});
 
-    const std::array<int, 10> degree{{0, 1, 2, 4, 8, 16, 32, 64, 81, 128}};
+    const std::array<int, 10> degree{{0, 1, 2, 3, 5, 10, 15}};
     int num_errors = 0;
 
     for (const auto n1 : degree)
