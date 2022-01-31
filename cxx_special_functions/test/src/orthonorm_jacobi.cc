@@ -10,8 +10,8 @@ template<typename Tp>
   Tp
   gamma_ratio(int n, Tp alpha, Tp beta)
   {
-    const auto _S_eps = std::numeric_limits<Tp>::epsilon();
-    if (std::abs(Tp{1} + alpha + beta) < _S_eps)
+    const auto s_eps = std::numeric_limits<Tp>::epsilon();
+    if (std::abs(Tp{1} + alpha + beta) < s_eps)
       return Tp{0};
     else
       {
@@ -26,24 +26,32 @@ template<typename Tp>
       }
   }
 
+// Normalized Jacobi polynomial.
+template<typename Tp>
+  Tp
+  normalized_jacobi(int n, Tp alpha, Tp beta, Tp x)
+  {
+    auto gam = gamma_ratio(n, alpha, beta);
+    auto norm = std::sqrt(std::pow(Tp{2}, Tp{1} + alpha + beta)
+	                * gam / (Tp(2 * n + 1) + alpha + beta));
+    return emsr::jacobi(n, alpha, beta, x) / norm;
+  }
+
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.
 template<typename Tp>
   Tp
-  norm_jacobi(int n1, int n2, Tp alpha, Tp beta, Tp x)
+  integrand(int n1, int n2, Tp alpha, Tp beta, Tp x)
   {
-    const auto _S_eps = std::numeric_limits<Tp>::epsilon();
-    if (std::abs(x - Tp{1}) < _S_eps)
+    const auto s_eps = std::numeric_limits<Tp>::epsilon();
+    if (std::abs(x - Tp{1}) < s_eps)
       return Tp{0};
-    else if (std::abs(x + Tp{1}) < _S_eps)
+    else if (std::abs(x + Tp{1}) < s_eps)
       return Tp{0};
     else
       {
-	auto gam = gamma_ratio(n1, alpha, beta);
-	auto norm = std::pow(Tp{2}, Tp{1} + alpha + beta)
-		  * gam / (Tp(2 * n1 + 1) + alpha + beta);
 	return std::pow(Tp{1} - x, alpha) * std::pow(Tp{1} + x, beta)
-	     * emsr::jacobi(n1, alpha, beta, x)
-	     * emsr::jacobi(n2, alpha, beta, x) / norm;
+	     * normalized_jacobi(n1, alpha, beta, x)
+	     * normalized_jacobi(n2, alpha, beta, x);
       }
   }
 
@@ -58,9 +66,9 @@ template<typename Tp>
   {
     const auto eps_factor = 1 << (std::numeric_limits<Tp>::digits / 3);
     const auto eps = std::numeric_limits<Tp>::epsilon();
-    const auto abs_prec = eps_factor * eps;
-    const auto rel_prec = eps_factor * eps;
-    const auto cmp_prec = Tp{10} * rel_prec;
+    const auto abs_precision = eps_factor * eps;
+    const auto rel_precision = eps_factor * eps;
+    const auto cmp_precision = Tp{10} * rel_precision;
 
     const bool singular = (alpha < Tp{0} || beta < Tp{0});
 
@@ -71,18 +79,21 @@ template<typename Tp>
       {
 	for (const auto n2 : degree)
 	  {
+            if (n2 > n1)
+              continue; // No need to duplicate.
+
 	    auto func = [n1, n2, alpha, beta](Tp x)
 			-> Tp
-			{ return norm_jacobi<Tp>(n1, n2, alpha, beta, x); };
+			{ return integrand<Tp>(n1, n2, alpha, beta, x); };
 
 	    auto [result, error]
 		= singular
 		? emsr::integrate_singular_endpoints(func, Tp{-1}, Tp{1},
-					             alpha, beta, 0, 0, abs_prec, rel_prec)
-		: emsr::integrate_tanh_sinh(func, Tp{-1}, Tp{1}, abs_prec, rel_prec);
+					             alpha, beta, 0, 0, abs_precision, rel_precision)
+		: emsr::integrate_tanh_sinh(func, Tp{-1}, Tp{1}, abs_precision, rel_precision);
 
             auto del = delta<Tp>(n1, n2) - result;
-	    if (std::abs(del) > cmp_prec)
+	    if (std::abs(del) > cmp_precision)
               {
 		++num_errors;
         	std::cout << "n1 = " << n1 << "; n2 = " << n2

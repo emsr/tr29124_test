@@ -3,20 +3,27 @@
 
 #include <emsr/integration.h>
 #include <emsr/sf_hermite.h>
+#include <emsr/math_constants.h>
+
+// Normalized Hermite polynomial.
+template<typename Tp>
+  Tp
+  normalized_hermite(int n, Tp x)
+  {
+    constexpr auto s_lnpi = emsr::lnpi_v<Tp>;
+    constexpr auto s_ln2 = emsr::ln2_v<Tp>;
+    const auto lnorm = Tp{0.5} * (Tp{0.5} * s_lnpi + Tp(n) * s_ln2 + emsr::lfactorial<Tp>(n));
+    return emsr::hermite(n, x) * std::exp(-lnorm);
+  }
 
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.
 template<typename Tp>
   Tp
-  norm_hermite(int n1, int n2, Tp x)
+  integrand(int n1, int n2, Tp x)
   {
-    const auto
-    _S_pi = Tp{3.1415'92653'58979'32384'62643'38327'95028'84195e+0L};
-    auto lnorm = Tp{0.5} * (log(_S_pi) + Tp(n1 + n2) * log(Tp{2})
-			  + emsr::lfactorial<Tp>(n1)
-			  + emsr::lfactorial<Tp>(n2));
-    return emsr::hermite(n2, x)
-	 * std::exp(-x * x - lnorm)
-	 * emsr::hermite(n1, x);
+    return std::exp(-x * x)
+	 * normalized_hermite(n1, x)
+	 * normalized_hermite(n2, x);
   }
 
 template<typename Tp>
@@ -30,9 +37,9 @@ template<typename Tp>
   {
     const auto eps_factor = 1 << (std::numeric_limits<Tp>::digits / 3);
     const auto eps = std::numeric_limits<Tp>::epsilon();
-    const auto abs_prec = eps_factor * eps;
-    const auto rel_prec = eps_factor * eps;
-    const auto cmp_prec = Tp{10} * rel_prec;
+    const auto abs_precision = eps_factor * eps;
+    const auto rel_precision = eps_factor * eps;
+    const auto cmp_precision = Tp{10} * rel_precision;
 
     const std::array<int, 10> degree{{0, 1, 2, 4, 8, 16, 32, 64, 81, 128}};
     int num_errors = 0;
@@ -41,15 +48,18 @@ template<typename Tp>
       {
 	for (const auto n2 : degree)
 	  {
+            if (n2 > n1)
+              continue; // No need to duplicate.
+
 	    auto func = [n1, n2](Tp x)
 			-> Tp
-			{ return norm_hermite(n1, n2, x); };
+			{ return integrand(n1, n2, x); };
 
 	    auto [result, error]
-		  = emsr::integrate_sinh_sinh(func, abs_prec, rel_prec);
+		  = emsr::integrate_sinh_sinh(func, abs_precision, rel_precision);
 
             auto del = delta<Tp>(n1, n2) - result;
-	    if (std::abs(del) > cmp_prec)
+	    if (std::abs(del) > cmp_precision)
               {
 		++num_errors;
         	std::cout << "n1 = " << n1 << "; n2 = " << n2

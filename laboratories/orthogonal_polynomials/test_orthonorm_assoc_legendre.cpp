@@ -8,30 +8,38 @@
 #include <emsr/integration.h>
 #include <emsr/special_functions.h>
 
-// Function which should integrate to 1 for l1 == l2, 0 otherwise.
-template<typename _Tp>
-  _Tp
-  normalized_assoc_legendre(int l1, int m1, int l2, int m2, _Tp x)
+// Normalized associated Legendre polynomial.
+template<typename Tp>
+  Tp
+  normalized_assoc_legendre(int l, int m, Tp x)
   {
-    return (_Tp(l1 + l2 + 1) / _Tp{2})
-	 * emsr::assoc_legendre(l1, m1, x)
-	 * emsr::assoc_legendre(l2, m2, x);
+    return std::sqrt(Tp(2 * l + 1) / Tp{2})
+	 * emsr::assoc_legendre(l, m, x);
   }
 
-template<typename _Tp>
-  _Tp
-  delta(int l1, int l2)
-  { return l1 == l2 ? _Tp{1} : _Tp{0}; }
+// Function which should integrate to 1 for l1 == l2, 0 otherwise.
+template<typename Tp>
+  Tp
+  integrand(int l1, int m1, int l2, int m2, Tp x)
+  {
+    return normalized_assoc_legendre(l1, m1, x)
+         * normalized_assoc_legendre(l2, m2, x);
+  }
 
-template<typename _Tp>
+template<typename Tp>
+  Tp
+  delta(int l1, int l2)
+  { return l1 == l2 ? Tp{1} : Tp{0}; }
+
+template<typename Tp>
   void
   test_assoc_legendre(int m1, int m2)
   {
-    const auto eps_factor = 1 << (std::numeric_limits<_Tp>::digits / 3);
-    const auto eps = std::numeric_limits<_Tp>::epsilon();
+    const auto eps_factor = 1 << (std::numeric_limits<Tp>::digits / 3);
+    const auto eps = std::numeric_limits<Tp>::epsilon();
     const auto abs_precision = eps_factor * eps;
     const auto rel_precision = eps_factor * eps;
-    const auto cmp_precision = _Tp{10} * rel_precision;
+    const auto cmp_precision = Tp{10} * rel_precision;
 
     int l1 = 0;
     for (; l1 <= 128; ++l1)
@@ -44,25 +52,25 @@ template<typename _Tp>
 	    if (m2 > l2)
 	      continue;
 
-	    auto func = [l1, m1, l2, m2](_Tp x)
-			-> _Tp
-			{ return normalized_assoc_legendre(l1, m1, l2, m2, x); };
+	    auto func = [l1, m1, l2, m2](Tp x)
+			-> Tp
+			{ return integrand(l1, m1, l2, m2, x); };
 
 	    auto [result, error]
-		//= emsr::integrate(func, _Tp{-1}, _Tp{1},
+		//= emsr::integrate(func, Tp{-1}, Tp{1},
 		//			abs_precision, rel_precision);
-		= emsr::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
+		= emsr::integrate_tanh_sinh(func, Tp{-1}, Tp{1},
 						 abs_precision, rel_precision, 6);
 
-	    if (std::abs(delta<_Tp>(l1, l2) * delta<_Tp>(m1, m2) - result) > cmp_precision)
+	    if (std::abs(delta<Tp>(l1, l2) * delta<Tp>(m1, m2) - result) > cmp_precision)
 	      {
 		std::stringstream ss;
-		ss.precision(std::numeric_limits<_Tp>::digits10);
+		ss.precision(std::numeric_limits<Tp>::digits10);
 		ss << std::showpoint << std::scientific;
 		ss << "Integration failed at l1=" << l1 << ", l2=" << l2
 		   << ", returning result " << result
 		   << ", with error " << error
-		   << " instead of the expected " << delta<_Tp>(l1, l2) << '\n';
+		   << " instead of the expected " << delta<Tp>(l1, l2) << '\n';
 		throw std::logic_error(ss.str());
 	      }
 	  }
@@ -79,17 +87,17 @@ template<typename _Tp>
 	RESTART:
 	for (int l2 = 0; l2 <= n1_upper; l2 += del)
 	  {
-	    auto func = [l1 = n1_upper, m1, l2, m2](_Tp x)
-			-> _Tp
-			{ return normalized_assoc_legendre(l1, m1, l2, m2, x); };
+	    auto func = [l1 = n1_upper, m1, l2, m2](Tp x)
+			-> Tp
+			{ return integrand(l1, m1, l2, m2, x); };
 
 	    auto [result, error]
-		//= emsr::integrate(func, _Tp{-1}, _Tp{1},
+		//= emsr::integrate(func, Tp{-1}, Tp{1},
 		//			abs_precision, rel_precision);
-		= emsr::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
+		= emsr::integrate_tanh_sinh(func, Tp{-1}, Tp{1},
 						 abs_precision, rel_precision, 6);
 
-	    if (std::abs(delta<_Tp>(n1_upper, l2) * delta<_Tp>(m1, m2) - result) > cmp_precision)
+	    if (std::abs(delta<Tp>(n1_upper, l2) * delta<Tp>(m1, m2) - result) > cmp_precision)
 	      {
 		if ((n1_lower + n1_upper) / 2 < n1_upper)
 		  {

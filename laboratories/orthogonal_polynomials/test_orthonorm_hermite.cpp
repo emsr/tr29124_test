@@ -8,67 +8,74 @@
 #include <emsr/integration.h>
 #include <emsr/math_constants.h>
 #include <emsr/special_functions.h>
+#include <emsr/math_constants.h>
 
-// Function which should integrate to 1 for n1 == n2, 0 otherwise.
-template<typename _Tp>
-  _Tp
-  normalized_hermite(int n1, int n2, _Tp x)
+// Normalized Hermite polynomial.
+template<typename Tp>
+  Tp
+  normalized_hermite(int n, Tp x)
   {
-    const auto _S_pi = emsr::pi_v<_Tp>;
-    auto lnorm = _Tp{0.5} * (log(_S_pi) + _Tp(n1 + n2) * log(_Tp{2})
-			  + emsr::lfactorial<_Tp>(n1)
-			  + emsr::lfactorial<_Tp>(n2));
-    return emsr::hermite(n2, x)
-	 * std::exp(-x * x - lnorm)
-	 * emsr::hermite(n1, x);
+    constexpr auto s_lnpi = emsr::lnpi_v<Tp>;
+    constexpr auto s_ln2 = emsr::ln2_v<Tp>;
+    const auto lnorm = Tp{0.5} * (Tp{0.5} * s_lnpi + Tp(n) * s_ln2 + emsr::lfactorial<Tp>(n));
+    return emsr::hermite(n, x) * std::exp(-lnorm);
   }
 
-template<typename _Tp>
-  _Tp
-  delta(int n1, int n2)
-  { return n1 == n2 ? _Tp{1} : _Tp{0}; }
+// Function which should integrate to 1 for n1 == n2, 0 otherwise.
+template<typename Tp>
+  Tp
+  integrand(int n1, int n2, Tp x)
+  {
+    return std::exp(-x * x)
+	 * normalized_hermite(n1, x)
+	 * normalized_hermite(n2, x);
+  }
 
-template<typename _Tp>
+template<typename Tp>
+  Tp
+  delta(int n1, int n2)
+  { return n1 == n2 ? Tp{1} : Tp{0}; }
+
+template<typename Tp>
   void
   test_hermite()
   {
-    const auto eps_factor = 1 << (std::numeric_limits<_Tp>::digits / 3);
-    const auto eps = std::numeric_limits<_Tp>::epsilon();
-    //const auto infty = std::numeric_limits<_Tp>::infinity();
+    const auto eps_factor = 1 << (std::numeric_limits<Tp>::digits / 3);
+    const auto eps = std::numeric_limits<Tp>::epsilon();
+    //const auto infty = std::numeric_limits<Tp>::infinity();
     const auto abs_precision = eps_factor * eps;
     const auto rel_precision = eps_factor * eps;
-    const auto cmp_precision = _Tp{10} * rel_precision;
+    const auto cmp_precision = Tp{10} * rel_precision;
 
     int n1 = 0;
     for (; n1 <= 128; ++n1)
       {
 	for (int n2 = 0; n2 <= n1; ++n2)
 	  {
-	    auto func = [n1, n2](_Tp x)
-			-> _Tp
-			{ return normalized_hermite(n1, n2, x); };
-	    //using func_t = decltype(func);
+	    auto func = [n1, n2](Tp x)
+			-> Tp
+			{ return integrand(n1, n2, x); };
 
 	    auto [result, error]
 		//= emsr::integrate_singular(func, -infty, infty, abs_precision, rel_precision);
 		//= emsr::integrate(func, -infty, infty, abs_precision, rel_precision);
 		//= emsr::integrate_infinite(func, abs_precision, rel_precision);
 		//= emsr::integrate_singular_infinite(func, abs_precision, rel_precision);
-		//= emsr::integrate_oscillatory(map_minf_pinf<_Tp, func_t>(func),
-		//			  _Tp{0}, _Tp{1}, abs_precision, rel_precision);
-		//= emsr::integrate_clenshaw_curtis(map_minf_pinf<_Tp, func_t>(func),
-		//			      _Tp{0}, _Tp{1}, abs_precision, rel_precision);
+		//= emsr::integrate_oscillatory(map_minf_pinf<Tp, func_t>(func),
+		//			  Tp{0}, Tp{1}, abs_precision, rel_precision);
+		//= emsr::integrate_clenshaw_curtis(map_minf_pinf<Tp, func_t>(func),
+		//			      Tp{0}, Tp{1}, abs_precision, rel_precision);
 		= emsr::integrate_sinh_sinh(func, abs_precision, rel_precision);
 
-	    if (std::abs(delta<_Tp>(n1, n2) - result) > cmp_precision)
+	    if (std::abs(delta<Tp>(n1, n2) - result) > cmp_precision)
 	      {
 		std::stringstream ss;
-		ss.precision(std::numeric_limits<_Tp>::digits10);
+		ss.precision(std::numeric_limits<Tp>::digits10);
 		ss << std::showpoint << std::scientific;
 		ss << "Integration failed at n1=" << n1 << ", n2=" << n2
 		   << ", returning result " << result
 		   << ", with error " << error
-		   << " instead of the expected " << delta<_Tp>(n1, n2)
+		   << " instead of the expected " << delta<Tp>(n1, n2)
 		   << " with absolute precision " << cmp_precision << '\n';
 		throw std::logic_error(ss.str());
 	      }
@@ -86,16 +93,16 @@ template<typename _Tp>
 	RESTART:
 	for (int n2 = 0; n2 <= n1_upper; n2 += del)
 	  {
-	    auto func = [n1 = n1_upper, n2](_Tp x)
-			-> _Tp
-			{ return normalized_hermite(n1, n2, x); };
+	    auto func = [n1 = n1_upper, n2](Tp x)
+			-> Tp
+			{ return integrand(n1, n2, x); };
 
 	    auto [result, error]
 		//= emsr::integrate_singular(func, -infty, infty,
 		//				abs_precision, rel_precision);
 		= emsr::integrate_sinh_sinh(func, abs_precision, rel_precision);
 
-	    if (std::abs(delta<_Tp>(n1_upper, n2) - result) > cmp_precision)
+	    if (std::abs(delta<Tp>(n1_upper, n2) - result) > cmp_precision)
 	      {
 		if ((n1_lower + n1_upper) / 2 < n1_upper)
 		  {

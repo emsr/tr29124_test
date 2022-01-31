@@ -3,21 +3,30 @@
 
 #include <emsr/integration.h>
 #include <emsr/sf_gegenbauer.h>
+#include <emsr/math_constants.h>
+
+// Normalized Gegenbauer polynomial.
+template<typename Tp>
+  Tp
+  normalized_gegenbauer(int n, Tp lambda, Tp x)
+  {
+    constexpr auto s_pi = emsr::pi_v<Tp>;
+    auto gama = std::tgamma(lambda);
+    auto gamn2a = std::tgamma(n + Tp{2} * lambda);
+    auto norm = std::sqrt(s_pi * std::pow(Tp{2}, Tp{1} - Tp{2} * lambda)
+	                * gamn2a / emsr::factorial<Tp>(n) / (Tp(n) + lambda))
+              / gama;
+    return emsr::gegenbauer(n, lambda, x) / norm;
+  }
 
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.
 template<typename Tp>
   Tp
-  norm_gegenbauer(int n1, int n2, Tp lambda, Tp x)
+  integrand(int n1, int n2, Tp lambda, Tp x)
   {
-    const auto
-    _S_pi = Tp{3.1415'92653'58979'32384'62643'38327'95028'84195e+0L};
-    auto gama = std::tgamma(lambda);
-    auto gamn2a = std::tgamma(n1 + Tp{2} * lambda);
-    auto norm = _S_pi * std::pow(Tp{2}, Tp{1} - Tp{2} * lambda) * gamn2a
-	      / emsr::factorial<Tp>(n1) / (Tp(n1) + lambda) / gama / gama;
     return std::pow(Tp{1} - x * x, lambda - Tp{0.5})
-	 * emsr::gegenbauer(n1, lambda, x)
-	 * emsr::gegenbauer(n2, lambda, x) / norm;
+	 * normalized_gegenbauer(n1, lambda, x)
+	 * normalized_gegenbauer(n2, lambda, x);
   }
 
 template<typename Tp>
@@ -31,9 +40,9 @@ template<typename Tp>
   {
     const auto eps_factor = 1 << (std::numeric_limits<Tp>::digits / 3);
     const auto eps = std::numeric_limits<Tp>::epsilon();
-    const auto abs_prec = eps_factor * eps;
-    const auto rel_prec = eps_factor * eps;
-    const auto cmp_prec = Tp{10} * rel_prec;
+    const auto abs_precision = eps_factor * eps;
+    const auto rel_precision = eps_factor * eps;
+    const auto cmp_precision = Tp{10} * rel_precision;
 
     const bool singular = (lambda < Tp{0.5});
 
@@ -44,9 +53,12 @@ template<typename Tp>
       {
 	for (const auto n2 : degree)
 	  {
+            if (n2 > n1)
+              continue; // No need to duplicate.
+
 	    auto func = [n1, n2, lambda](Tp x)
 			-> Tp
-			{ return norm_gegenbauer<Tp>(n1, n2, lambda, x); };
+			{ return integrand<Tp>(n1, n2, lambda, x); };
 
 	    auto [result, error]
 		= singular
@@ -54,11 +66,11 @@ template<typename Tp>
 					Tp{-1}, Tp{1},
 					lambda - Tp{0.5}, lambda - Tp{0.5},
 					0, 0,
-					abs_prec, rel_prec)
-		: emsr::integrate_tanh_sinh(func, Tp{-1}, Tp{1}, abs_prec, rel_prec);
+					abs_precision, rel_precision)
+		: emsr::integrate_tanh_sinh(func, Tp{-1}, Tp{1}, abs_precision, rel_precision);
 
             auto del = delta<Tp>(n1, n2) - result;
-	    if (std::abs(del) > cmp_prec)
+	    if (std::abs(del) > cmp_precision)
               {
 		++num_errors;
         	std::cout << "n1 = " << n1 << "; n2 = " << n2 << "; lambda = " << lambda

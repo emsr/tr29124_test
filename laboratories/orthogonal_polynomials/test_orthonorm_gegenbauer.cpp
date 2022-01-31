@@ -6,70 +6,79 @@
 #include <string>
 
 #include <emsr/integration.h>
-#include <emsr/math_constants.h>
 #include <emsr/special_functions.h>
+#include <emsr/math_constants.h>
 
-// Function which should integrate to 1 for n1 == n2, 0 otherwise.
-template<typename _Tp>
-  _Tp
-  normalized_gegenbauer(int n1, int n2, _Tp lambda, _Tp x)
+// Normalized Gegenbauer polynomial.
+template<typename Tp>
+  Tp
+  normalized_gegenbauer(int n, Tp lambda, Tp x)
   {
-    const auto _S_pi = emsr::pi_v<_Tp>;
+    constexpr auto s_pi = emsr::pi_v<Tp>;
     auto gama = std::tgamma(lambda);
-    auto gamn2a = std::tgamma(n1 + _Tp{2} * lambda);
-    auto norm = _S_pi * std::pow(_Tp{2}, _Tp{1} - _Tp{2} * lambda) * gamn2a
-	      / emsr::factorial<_Tp>(n1) / (_Tp(n1) + lambda) / gama / gama;
-    return std::pow(_Tp{1} - x * x, lambda - _Tp{0.5})
-	 * emsr::gegenbauer(n1, lambda, x)
-	 * emsr::gegenbauer(n2, lambda, x) / norm;
+    auto gamn2a = std::tgamma(n + Tp{2} * lambda);
+    auto norm = std::sqrt(s_pi * std::pow(Tp{2}, Tp{1} - Tp{2} * lambda)
+	                * gamn2a / emsr::factorial<Tp>(n) / (Tp(n) + lambda))
+              / gama;
+    return emsr::gegenbauer(n, lambda, x) / norm;
   }
 
-template<typename _Tp>
-  _Tp
-  delta(int n1, int n2)
-  { return n1 == n2 ? _Tp{1} : _Tp{0}; }
-
-template<typename _Tp>
-  void
-  test_gegenbauer(_Tp lambda)
+// Function which should integrate to 1 for n1 == n2, 0 otherwise.
+template<typename Tp>
+  Tp
+  integrand(int n1, int n2, Tp lambda, Tp x)
   {
-    const auto eps_factor = 1 << (std::numeric_limits<_Tp>::digits / 3);
-    const auto eps = std::numeric_limits<_Tp>::epsilon();
+    return std::pow(Tp{1} - x * x, lambda - Tp{0.5})
+	 * normalized_gegenbauer(n1, lambda, x)
+	 * normalized_gegenbauer(n2, lambda, x);
+  }
+
+template<typename Tp>
+  Tp
+  delta(int n1, int n2)
+  { return n1 == n2 ? Tp{1} : Tp{0}; }
+
+template<typename Tp>
+  void
+  test_gegenbauer(Tp lambda)
+  {
+    const auto eps_factor = 1 << (std::numeric_limits<Tp>::digits / 3);
+    const auto eps = std::numeric_limits<Tp>::epsilon();
     const auto abs_precision = eps_factor * eps;
     const auto rel_precision = eps_factor * eps;
-    const auto cmp_precision = _Tp{10} * rel_precision;
+    const auto cmp_precision = Tp{10} * rel_precision;
 
-    const bool singular = (lambda < _Tp{0.5});
+    const bool singular = (lambda < Tp{0.5});
 
     int n1 = 0;
     for (; n1 <= 128; ++n1)
       {
 	for (int n2 = 0; n2 <= n1; ++n2)
 	  {
-	    auto func = [n1, n2, lambda](_Tp x)
-			-> _Tp
-			{ return normalized_gegenbauer<_Tp>(n1, n2, lambda, x); };
+	    auto func = [n1, n2, lambda](Tp x)
+			-> Tp
+			{ return integrand<Tp>(n1, n2, lambda, x); };
 
 	    // Using integrate_singular works pretty well.
 	    auto [result, error]
 		= singular
 		? emsr::integrate_singular_endpoints(func,
-					       _Tp{-1}, _Tp{1},
-					       lambda - _Tp{0.5}, lambda - _Tp{0.5}, 0, 0,
+					       Tp{-1}, Tp{1},
+					       lambda - Tp{0.5}, lambda - Tp{0.5}, 0, 0,
 					       abs_precision, rel_precision)
-		//: emsr::integrate(func, _Tp{-1}, _Tp{1}, abs_precision, rel_precision);
-		: emsr::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
+		//: emsr::integrate(func, Tp{-1}, Tp{1}, abs_precision, rel_precision);
+		: emsr::integrate_tanh_sinh(func, Tp{-1}, Tp{1},
 						 abs_precision, rel_precision);
 
-	    if (std::abs(delta<_Tp>(n1, n2) - result) > cmp_precision)
+	    if (std::abs(delta<Tp>(n1, n2) - result) > cmp_precision)
 	      {
 		std::stringstream ss;
-		ss.precision(std::numeric_limits<_Tp>::digits10);
+		ss.precision(std::numeric_limits<Tp>::digits10);
 		ss << std::showpoint << std::scientific;
 		ss << "Integration failed at n1=" << n1 << ", n2=" << n2
 		   << ", returning result " << result
 		   << ", with error " << error
-		   << " instead of the expected " << delta<_Tp>(n1, n2) << '\n';
+		   << " instead of the expected " << delta<Tp>(n1, n2) << '\n';
 		throw std::logic_error(ss.str());
 	      }
 	  }
@@ -86,22 +95,22 @@ template<typename _Tp>
 	RESTART:
 	for (int n2 = 0; n2 <= n1_upper; n2 += del)
 	  {
-	    auto func = [n1 = n1_upper, n2, lambda](_Tp x)
-			-> _Tp
-			{ return normalized_gegenbauer<_Tp>(n1, n2, lambda, x); };
+	    auto func = [n1 = n1_upper, n2, lambda](Tp x)
+			-> Tp
+			{ return integrand<Tp>(n1, n2, lambda, x); };
 
 	    // Using integrate_singular works pretty well.
 	    auto [result, error]
 		= singular
 		? emsr::integrate_singular_endpoints(func,
-					       _Tp{-1}, _Tp{1},
-					       lambda - _Tp{0.5}, lambda - _Tp{0.5}, 0, 0,
+					       Tp{-1}, Tp{1},
+					       lambda - Tp{0.5}, lambda - Tp{0.5}, 0, 0,
 					       abs_precision, rel_precision)
-		//: emsr::integrate(func, _Tp{-1}, _Tp{1}, abs_precision, rel_precision);
-		: emsr::integrate_tanh_sinh(func, _Tp{-1}, _Tp{1},
+		//: emsr::integrate(func, Tp{-1}, Tp{1}, abs_precision, rel_precision);
+		: emsr::integrate_tanh_sinh(func, Tp{-1}, Tp{1},
 						 abs_precision, rel_precision);
 
-	    if (std::abs(delta<_Tp>(n1_upper, n2) - result) > cmp_precision)
+	    if (std::abs(delta<Tp>(n1_upper, n2) - result) > cmp_precision)
 	      {
 		if ((n1_lower + n1_upper) / 2 < n1_upper)
 		  {

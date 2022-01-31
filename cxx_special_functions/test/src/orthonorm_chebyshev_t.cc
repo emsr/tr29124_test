@@ -4,22 +4,25 @@
 #include <emsr/integration.h>
 #include <emsr/sf_chebyshev.h>
 
+// Chebyshev polynomials of the first kind are already normalized.
+
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.
 template<typename Tp>
   Tp
-  norm_chebyshev_t(int n1, int n2, Tp x)
+  integrand(int n1, int n2, Tp x)
   {
-    const auto _S_eps = std::numeric_limits<Tp>::epsilon();
-    const auto _S_inf = std::numeric_limits<Tp>::infinity();
-    if (std::abs(x - Tp{1}) < _S_eps)
-      return _S_inf;
-    else if (std::abs(x + Tp{1}) < _S_eps)
-      return ((n1 + n2) & 1) ? -_S_inf : _S_inf;
+    const auto s_eps = std::numeric_limits<Tp>::epsilon();
+    const auto s_inf = std::numeric_limits<Tp>::infinity();
+    if (std::abs(x - Tp{1}) < s_eps)
+      return s_inf;
+    else if (std::abs(x + Tp{1}) < s_eps)
+      return ((n1 + n2) & 1) ? -s_inf : s_inf;
     else
       return emsr::chebyshev_t(n2, x)
 	   * emsr::chebyshev_t(n1, x)
 	   / std::sqrt(Tp{1} - x * x);
   }
+
 
 template<typename Tp>
   Tp
@@ -32,9 +35,9 @@ template<typename Tp>
   {
     const auto eps_factor = 1 << (std::numeric_limits<Tp>::digits / 3);
     const auto eps = std::numeric_limits<Tp>::epsilon();
-    const auto abs_prec = eps_factor * eps;
-    const auto rel_prec = eps_factor * eps;
-    const auto cmp_prec = Tp{10} * rel_prec;
+    const auto abs_precision = eps_factor * eps;
+    const auto rel_precision = eps_factor * eps;
+    const auto cmp_precision = Tp{10} * rel_precision;
 
     const std::array<int, 10> degree{{0, 1, 2, 4, 8, 16, 32, 64, 81, 128}};
     int num_errors = 0;
@@ -43,18 +46,21 @@ template<typename Tp>
       {
 	for (const auto n2 : degree)
 	  {
+            if (n2 > n1)
+              continue; // No need to duplicate.
+
 	    auto func = [n1, n2](Tp x)
 			-> Tp
-			{return norm_chebyshev_t(n1, n2, x);};
+			{return integrand(n1, n2, x);};
 
 	    auto [result, error]
 		= emsr::integrate_singular_endpoints(func,
 				 Tp{-1}, Tp{1},
 				 Tp{-0.5}, Tp{-0.5}, 0, 0,
-				 abs_prec, rel_prec);
+				 abs_precision, rel_precision);
 
             auto del = delta<Tp>(n1, n2) - result;
-	    if (std::abs(del) > cmp_prec)
+	    if (std::abs(del) > cmp_precision)
               {
 		++num_errors;
         	std::cout << "n1 = " << n1 << "; n2 = " << n2

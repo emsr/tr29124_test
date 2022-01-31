@@ -10,39 +10,40 @@
 #include <emsr/integration.h>
 #include <emsr/special_functions.h>
 
-// Neumann's number
-template<typename _Tp>
-  _Tp
-  epsilon(int m)
-  { return m == 0 ? _Tp{2} : _Tp{1}; }
-
-// Function which should integrate to 1 for n1 == n2, 0 otherwise.
-template<typename _Tp>
-  _Tp
-  normalized_radpoly(int n1, int m1, int n2, int m2, _Tp rho)
+// Normalized radial polynomial.
+template<typename Tp>
+  Tp
+  normalized_radpoly(int n, int m, Tp rho)
   {
-    auto norm = _Tp{1} / std::sqrt(_Tp(2 * n1 + 2) * _Tp(2 * n2 + 2));
-    return rho
-	 * emsr::radpoly(n1, m1, rho)
-	 * emsr::radpoly(n2, m2, rho) / norm;
+    return std::sqrt(Tp(2 * n + 2)) * emsr::radpoly(n, m, rho);
   }
 
-template<typename _Tp>
-  _Tp
-  delta(int n1, int m1, int n2, int m2)
-  { return (n1 == n2 && m1 == m2) ? _Tp{1} : _Tp{0}; }
+// Function which should integrate to 1 for n1 == n2, 0 otherwise.
+template<typename Tp>
+  Tp
+  integrand(int n1, int m1, int n2, int m2, Tp rho)
+  {
+    return rho
+	 * normalized_radpoly(n1, m1, rho)
+	 * normalized_radpoly(n2, m2, rho);
+  }
 
-template<typename _Tp>
+template<typename Tp>
+  Tp
+  delta(int n1, int m1, int n2, int m2)
+  { return (n1 == n2 && m1 == m2) ? Tp{1} : Tp{0}; }
+
+template<typename Tp>
   void
   test_radpoly()
   {
     bool full_range = false;
 
-    const auto eps_factor = 1 << (std::numeric_limits<_Tp>::digits / 3);
-    const auto eps = std::numeric_limits<_Tp>::epsilon();
+    const auto eps_factor = 1 << (std::numeric_limits<Tp>::digits / 3);
+    const auto eps = std::numeric_limits<Tp>::epsilon();
     const auto abs_precision = eps_factor * eps;
     const auto rel_precision = eps_factor * eps;
-    const auto cmp_precision = _Tp{10} * rel_precision;
+    const auto cmp_precision = Tp{10} * rel_precision;
 
     std::vector<int> degree{0,1,2,3,4,5,8,9,16,17,32,33,64,65,128,129};
 
@@ -61,25 +62,25 @@ template<typename _Tp>
 		int m2 = m1;
 		if (m2 > n2 || (n2 - m2) & 1)
 		  continue;
-		auto func = [n1, m1, n2, m2](_Tp x)
-			    -> _Tp
-			    { return normalized_radpoly(n1, m1, n2, m2, x); };
+		auto func = [n1, m1, n2, m2](Tp x)
+			    -> Tp
+			    { return integrand(n1, m1, n2, m2, x); };
 
 		auto [result, error]
-			= emsr::integrate_tanh_sinh(func, _Tp{0}, _Tp{1},
+			= emsr::integrate_tanh_sinh(func, Tp{0}, Tp{1},
 					      abs_precision, rel_precision, 8);
 
-		if (std::abs(delta<_Tp>(n1, m1, n2, m2) - result) > cmp_precision)
+		if (std::abs(delta<Tp>(n1, m1, n2, m2) - result) > cmp_precision)
 		  {
 		    std::stringstream ss;
-		    ss.precision(std::numeric_limits<_Tp>::digits10);
+		    ss.precision(std::numeric_limits<Tp>::digits10);
 		    auto w = 8 + ss.precision();
 		    ss << std::showpoint << std::scientific;
 		    ss << "Integration failed at n1=" << n1 << ", m1=" << m1
 		       << ", n2=" << n2 << ", m2=" << m2
 		       << ", returning result = " << std::setw(w) << result
 		       << ", with error = " << std::setw(w) << error
-		       << " instead of the expected " << delta<_Tp>(n1, m1, n2, m2) << '\n';
+		       << " instead of the expected " << delta<Tp>(n1, m1, n2, m2) << '\n';
 		    std::cerr << ss.str();
 		  }
 	      }
@@ -109,15 +110,15 @@ template<typename _Tp>
 		int m2 = m1;
 		if (m2 > n2 || (n2 - m2) & 1)
 		  continue;
-		auto func = [n1 = n1_upper, m1, n2, m2](_Tp x)
-			    -> _Tp
-			    { return normalized_radpoly(n1, m1, n2, m2, x); };
+		auto func = [n1 = n1_upper, m1, n2, m2](Tp x)
+			    -> Tp
+			    { return integrand(n1, m1, n2, m2, x); };
 
 		auto [result, error]
-			= emsr::integrate_tanh_sinh(func, _Tp{0}, _Tp{1},
+			= emsr::integrate_tanh_sinh(func, Tp{0}, Tp{1},
 					      abs_precision, rel_precision, 8);
 
-		if (std::abs(delta<_Tp>(n1_upper, m1, n2, m2) - result) > cmp_precision)
+		if (std::abs(delta<Tp>(n1_upper, m1, n2, m2) - result) > cmp_precision)
 		  {
 		    if ((n1_lower + n1_upper) / 2 < n1_upper)
 		      {
