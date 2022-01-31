@@ -213,7 +213,7 @@ namespace detail
 	  x /= sigma;
 	  x *= x;
 	  x /= Tp{2};
-	  return std::exp(-(x)) / (sigma * s_sqrt_2pi);
+	  return std::exp(-x) / (sigma * s_sqrt_2pi);
 	}
     }
 
@@ -234,8 +234,7 @@ namespace detail
       if (std::isnan(mu) || std::isnan(sigma) || std::isnan(x))
 	return emsr::quiet_NaN(x);
       else
-	return Tp{0.5L}
-	     * (Tp{1} + std::erf((x - mu) / (sigma * s_sqrt_2)));
+	return Tp{0.5L} * (Tp{1} + std::erf((x - mu) / (sigma * s_sqrt_2)));
     }
 
 
@@ -254,15 +253,20 @@ namespace detail
       const auto s_sqrt_2 = emsr::sqrt2_v<Tp>;
       const auto s_sqrt_pi = emsr::sqrtpi_v<Tp>;
       const auto s_sqrt_2pi = s_sqrt_2 * s_sqrt_pi;
-      if (std::isnan(nu) || std::isnan(sigma))
+      if (std::isnan(nu) || std::isnan(sigma) || std::isnan(x))
 	return emsr::quiet_NaN(x);
+      else if (x < Tp{0})
+        throw std::domain_error("lognormal_pdf: argument x must be positive.");
+      else if (x == Tp{0})
+        return Tp{0};
       else
 	{
-	  x -= nu;
-	  x /= sigma;
-	  x *= x;
-	  x /= Tp{2};
-	  return std::exp(-(std::log(x))) / (sigma * s_sqrt_2pi);
+          auto arg = std::log(x);
+	  arg -= nu;
+	  arg /= sigma;
+	  arg *= arg;
+	  arg /= Tp{2};
+	  return std::exp(-arg) / (sigma * s_sqrt_2pi);
 	}
     }
 
@@ -282,6 +286,10 @@ namespace detail
       const auto s_sqrt_2 = emsr::sqrt2_v<Tp>;
       if (std::isnan(mu) || std::isnan(sigma) || std::isnan(x))
 	return emsr::quiet_NaN(x);
+      else if (x < Tp{0})
+        throw std::domain_error("lognormal_p: argument x must be positive.");
+      else if (x == Tp{0})
+        return Tp{0};
       else
 	return Tp{0.5L} * (Tp{1} + std::erf((std::log(x) - mu)
 					    / (sigma * s_sqrt_2)));
@@ -651,17 +659,17 @@ namespace detail
    *
    * The formula for the logistic probability density function is
    * @f[
-   *     p(x| a, b) = \frac{e^{(x - a)/b}}{b[1 + e^{(x - a)/b}]^2}
+   *     p(x| mu, s) = \frac{e^{-(x - \mu)/s}}{s[1 + e^{-(x - \mu)/s}]^2}
    * @f]
-   * where @f$b > 0@f$.
+   * where @f$s > 0@f$.
    */
   template<typename Tp>
     Tp
-    logistic_pdf(Tp a, Tp b, Tp x)
+    logistic_pdf(Tp mu, Tp s, Tp x)
     {
-      const auto arg = (x - a) / b;
+      const auto arg = -(x - mu) / s;
       const auto exparg = std::exp(arg);
-      return exparg / (b * (Tp{1} + exparg) * (Tp{1} + exparg));
+      return exparg / (s * (Tp{1} + exparg) * (Tp{1} + exparg));
     }
 
   /**
@@ -669,15 +677,15 @@ namespace detail
    *
    * The formula for the logistic probability function is
    * @f[
-   *     cdf(x| a, b) = \frac{e^{(x - a)/b}}{1 + e^{(x - a)/b}}
+   *     cdf(x| \mu, s) = \frac{1}{1 + e^{-(x - \mu)/s}}
    * @f]
-   * where @f$b > 0@f$.
+   * where @f$s > 0@f$.
    */
   template<typename Tp>
     Tp
-    logistic_p(Tp a, Tp b, Tp x)
+    logistic_p(Tp mu, Tp s, Tp x)
     {
-      const auto arg = (x - a) / b;
+      const auto arg = -(x - mu) / s;
       const auto exparg = std::exp(arg);
       return exparg / (Tp{1} + exparg);
     }
