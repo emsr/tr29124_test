@@ -18,29 +18,29 @@
    *    ber(x) = \sum_{k=0}^\infty \frac{[-(x/2)^4]^k}{[(2k)!]^2}
    * @f]
    */
-  template<typename _Tp>
-    std::pair<_Tp, _Tp>
-    kelvin_ber_series(_Tp x)
+  template<typename Tp>
+    std::pair<Tp, Tp>
+    kelvin_ber_series(Tp x)
     {
-      constexpr auto s_eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto s_eps = std::numeric_limits<Tp>::epsilon();
       constexpr int s_max_iter = 100;
 
-      if (x == _Tp{0})
-	return std::make_pair(_Tp{1}, _Tp{0});
+      if (x == Tp{0})
+	return std::make_pair(Tp{1}, Tp{0});
 
-      const auto y = x / _Tp{2};
+      const auto y = x / Tp{2};
       const auto y2 = y * y;
       const auto y4 = y2 * y2;
 
-      auto term = _Tp{1};
+      auto term = Tp{1};
       auto ber = term;
-      auto berd = _Tp{0};
+      auto berd = Tp{0};
       for (int k = 1; k < s_max_iter; ++k)
 	{
-	  const auto fact = _Tp{1} / _Tp(2 * k - 1) / _Tp(2 * k);
+	  const auto fact = Tp{1} / Tp(2 * k - 1) / Tp(2 * k);
 	  term *= -y4 * fact * fact;
 	  ber += term;
-	  berd += _Tp(2 * k) * term / y;
+	  berd += Tp(2 * k) * term / y;
 	  if (std::abs(term) < s_eps * std::abs(ber))
 	    break;
 	}
@@ -55,17 +55,17 @@
    *    bei(x) = (x/2)^2\sum_{k=0}^\infty \frac{[-(x/2)^4]^k}{[(2k+1)!]^2}
    * @f]
    */
-  template<typename _Tp>
-    std::pair<_Tp, _Tp>
-    kelvin_bei_series(_Tp x)
+  template<typename Tp>
+    std::pair<Tp, Tp>
+    kelvin_bei_series(Tp x)
     {
-      constexpr auto s_eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto s_eps = std::numeric_limits<Tp>::epsilon();
       constexpr int s_max_iter = 100;
 
-      if (x == _Tp{0})
-	return std::make_pair(_Tp{0}, _Tp{0});
+      if (x == Tp{0})
+	return std::make_pair(Tp{0}, Tp{0});
 
-      const auto y = x / _Tp{2};
+      const auto y = x / Tp{2};
       const auto y2 = y * y;
       const auto y4 = y2 * y2;
 
@@ -74,10 +74,10 @@
       auto beid = y;
       for (int k = 1; k < s_max_iter; ++k)
 	{
-	  const auto fact = _Tp{1} / _Tp(2 * k + 1) / _Tp(2 * k);
+	  const auto fact = Tp{1} / Tp(2 * k + 1) / Tp(2 * k);
 	  term *= -y4 * fact * fact;
 	  bei += term;
-	  beid += _Tp(2 * k + 1) * term / y;
+	  beid += Tp(2 * k + 1) * term / y;
 	  if (std::abs(term) < s_eps * std::abs(bei))
 	    break;
 	}
@@ -85,35 +85,35 @@
       return std::make_pair(bei, beid);
     }
 
-  template<typename _Tp>
-    std::pair<_Tp, _Tp>
-    kelvin_ker_series(_Tp x)
+  template<typename Tp>
+    std::pair<Tp, Tp>
+    kelvin_ker_series(Tp x)
     {
-      constexpr auto s_eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto s_eps = std::numeric_limits<Tp>::epsilon();
       constexpr int s_max_iter = 100;
-      constexpr auto s_gamma_e = emsr::egamma_v<_Tp>;
-      constexpr auto s_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
-      constexpr auto s_inf = std::numeric_limits<_Tp>::infinity();
+      constexpr auto s_gamma_e = emsr::egamma_v<Tp>;
+      constexpr auto s_pi_4 = emsr::pi_v<Tp> / Tp{4};
+      constexpr auto s_inf = std::numeric_limits<Tp>::infinity();
 
-      if (x == _Tp{0})
+      if (x == Tp{0})
 	return std::make_pair(s_inf, -s_inf);
 
-      const auto y = x / _Tp{2};
+      const auto y = x / Tp{2};
       const auto y2 = y * y;
       const auto y4 = y2 * y2;
 
       // phi(1) = -gamma_E <=> H_0 = 0.
-      auto _H = _Tp{0};
-      auto term = _Tp{1};
-      auto ker = _Tp{0}; 
-      auto kerd = _Tp{0};
+      auto _H = Tp{0};
+      auto term = Tp{1};
+      auto ker = Tp{0}; 
+      auto kerd = Tp{0};
       for (int k = 1; k < s_max_iter; ++k)
 	{
-	  _H += _Tp{1} / _Tp(2 * k - 1) + _Tp{1} / _Tp(2 * k);
-	  const auto fact = _Tp{1} / _Tp(2 * k - 1) / _Tp(2 * k);
+	  _H += Tp{1} / Tp(2 * k - 1) + Tp{1} / Tp(2 * k);
+	  const auto fact = Tp{1} / Tp(2 * k - 1) / Tp(2 * k);
 	  term *= -y4 * fact * fact;
 	  ker += term * _H;
-	  kerd += _Tp(2 * k) * term * _H / y;
+	  kerd += Tp(2 * k) * term * _H / y;
 	  if (std::abs(term * _H) < s_eps * std::abs(ker))
 	    break;
 	}
@@ -130,33 +130,33 @@
       return std::make_pair(ker, kerd);
     }
 
-  template<typename _Tp>
-    std::pair<_Tp, _Tp>
-    kelvin_kei_series(_Tp x)
+  template<typename Tp>
+    std::pair<Tp, Tp>
+    kelvin_kei_series(Tp x)
     {
-      constexpr auto s_eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto s_eps = std::numeric_limits<Tp>::epsilon();
       constexpr int s_max_iter = 100;
-      constexpr auto s_gamma_e = emsr::egamma_v<_Tp>;
-      constexpr auto s_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
+      constexpr auto s_gamma_e = emsr::egamma_v<Tp>;
+      constexpr auto s_pi_4 = emsr::pi_v<Tp> / Tp{4};
 
-      if (x == _Tp{0})
-	return std::make_pair(-s_pi_4, _Tp{0});
+      if (x == Tp{0})
+	return std::make_pair(-s_pi_4, Tp{0});
 
-      const auto y = x / _Tp{2};
+      const auto y = x / Tp{2};
       const auto y2 = y * y;
       const auto y4 = y2 * y2;
 
-      auto _H = _Tp{1};
+      auto _H = Tp{1};
       auto term = y2;
       auto kei = term;
       auto keid = y;
       for (int k = 1; k < s_max_iter; ++k)
 	{
-	  _H += _Tp{1} / _Tp(2 * k) + _Tp{1} / _Tp(2 * k + 1);
-	  const auto fact = _Tp{1} / _Tp(2 * k) / _Tp(2 * k + 1);
+	  _H += Tp{1} / Tp(2 * k) + Tp{1} / Tp(2 * k + 1);
+	  const auto fact = Tp{1} / Tp(2 * k) / Tp(2 * k + 1);
 	  term *= -y4 * fact * fact;
 	  kei += term * _H;
-	  keid += _Tp(2 * k + 1) * term * _H / y;
+	  keid += Tp(2 * k + 1) * term * _H / y;
 	  if (std::abs(term * _H) < s_eps * std::abs(kei))
 	    break;
 	}
@@ -173,34 +173,34 @@
       return std::make_pair(kei, keid);
     }
 
-  template<typename _TpNu, typename _Tp>
+  template<typename _TpNu, typename Tp>
     struct Kelvin
     {
       _TpNu nu;
-      _Tp x;
-      _Tp ber_value, ber_deriv;
-      _Tp bei_value, bei_deriv;
-      _Tp ker_value, ker_deriv;
-      _Tp kei_value, kei_deriv;
+      Tp x;
+      Tp ber_value, ber_deriv;
+      Tp bei_value, bei_deriv;
+      Tp ker_value, ker_deriv;
+      Tp kei_value, kei_deriv;
 
-      _Tp
+      Tp
       ber_deriv2() const
       { return deriv2(ber_value, ber_deriv); }
-      _Tp
+      Tp
       bei_deriv2() const
       { return deriv2(bei_value, bei_deriv); }
-      _Tp
+      Tp
       ker_deriv2() const
       { return deriv2(ker_value, ker_deriv); }
-      _Tp
+      Tp
       kei_deriv2() const
       { return deriv2(kei_value, kei_deriv); }
 
-      _Tp
-      deriv2(_Tp val, _Tp der)
+      Tp
+      deriv2(Tp val, Tp der)
       {
-	if (x == _Tp{0})
-	  return std::numeric_limits<_Tp>::infinity();
+	if (x == Tp{0})
+	  return std::numeric_limits<Tp>::infinity();
 	else
 	  return -(x * der + (x - nu) * (x + nu) * val)
 	       / x / x;
@@ -233,42 +233,42 @@
    * @f]
    * is the harmonic number.
    */
-  template<typename _Tp>
-    Kelvin<int, _Tp>
-    kelvin_series(_Tp x)
+  template<typename Tp>
+    Kelvin<int, Tp>
+    kelvin_series(Tp x)
     {
-      //using _BasicSum = emsr::BasicSum<_Tp>;
-      //using _WijnSum = emsr::VanWijngaardenSum<_Tp>;
+      //using _BasicSum = emsr::BasicSum<Tp>;
+      //using _WijnSum = emsr::VanWijngaardenSum<Tp>;
       //using _WenigerDeltaWijnSum = emsr::WenigerDeltaSum<_WijnSum>;
 
-      constexpr auto s_eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto s_eps = std::numeric_limits<Tp>::epsilon();
       constexpr int s_max_iter = 100;
-      constexpr auto s_gamma_e = emsr::egamma_v<_Tp>;
-      constexpr auto s_pi_4 = emsr::pi_v<_Tp> / _Tp{4};
-      constexpr auto s_inf = std::numeric_limits<_Tp>::infinity();
+      constexpr auto s_gamma_e = emsr::egamma_v<Tp>;
+      constexpr auto s_pi_4 = emsr::pi_v<Tp> / Tp{4};
+      constexpr auto s_inf = std::numeric_limits<Tp>::infinity();
 
-      if (x == _Tp{0})
+      if (x == Tp{0})
 	return {0, x,
-		_Tp{1}, _Tp{0}, _Tp{0}, _Tp{0},
-		s_inf, -s_inf, -s_pi_4, _Tp{0}};
+		Tp{1}, Tp{0}, Tp{0}, Tp{0},
+		s_inf, -s_inf, -s_pi_4, Tp{0}};
 
-      const auto y = x / _Tp{2};
+      const auto y = x / Tp{2};
       const auto y2 = y * y;
 
       //_BasicSum _H_n;
       //_WenigerDeltaWijnSum ber, bei, ker, kei;
       //_WenigerDeltaWijnSum berp, beip, kerp, keip;
-      auto term = _Tp{1};
+      auto term = Tp{1};
       auto ber = term;
-      auto berp = _Tp{0};
-      auto _H = _Tp{0}; // phi(1) = -gamma_E <=> H_0 = 0.
+      auto berp = Tp{0};
+      auto _H = Tp{0}; // phi(1) = -gamma_E <=> H_0 = 0.
       auto ker = term * _H; 
-      auto kerp = _Tp{0};
+      auto kerp = Tp{0};
 
       term = y2;
       auto bei = term;
       auto beip = y;
-      _H = _Tp{1};
+      _H = Tp{1};
       auto kei = term * _H;
       auto keip = y;
 
@@ -276,8 +276,8 @@
 	{
 	  bool done = true;
 
-	  const auto tk = _Tp(2 * k);
-	  const auto factr = _Tp{1} / tk;
+	  const auto tk = Tp(2 * k);
+	  const auto factr = Tp{1} / tk;
 	  term *= -y2 * factr * factr;
 	  ber += term;
 	  berp += tk * term / y;
@@ -287,8 +287,8 @@
 	  kerp += tk * term * _H / y;
 	  done = done && std::abs(term * _H) < s_eps * std::abs(ker);
 
-	  const auto tkp1 = tk + _Tp{1};
-	  const auto facti = _Tp{1} / tkp1;
+	  const auto tkp1 = tk + Tp{1};
+	  const auto facti = Tp{1} / tkp1;
 	  term *= y2 * facti * facti;
 	  bei += term;
 	  beip += tkp1 * term / y;
@@ -328,29 +328,29 @@
    *
    *
    */
-  template<typename _Tp>
-    Kelvin<int, _Tp>
-    kelvin_asymp(_Tp x)
+  template<typename Tp>
+    Kelvin<int, Tp>
+    kelvin_asymp(Tp x)
     {
     }
 
   /**
    * Compute the Kelvin functions of integer order n by series expansion.
    */
-  template<typename _Tp>
-    Kelvin<int, _Tp>
-    kelvin_series(int n, _Tp x)
+  template<typename Tp>
+    Kelvin<int, Tp>
+    kelvin_series(int n, Tp x)
     {
 return {n, x,
-	_Tp{0}, _Tp{0}, _Tp{0}, _Tp{0},
-	_Tp{0}, _Tp{0}, _Tp{0}, _Tp{0}};
+	Tp{0}, Tp{0}, Tp{0}, Tp{0},
+	Tp{0}, Tp{0}, Tp{0}, Tp{0}};
     }
 
-template<typename _Tp>
+template<typename Tp>
   void
   help_kelvin()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -365,7 +365,7 @@ template<typename _Tp>
 	      << std::setw(w) << "ker'(x)"
 	      << std::setw(w) << "kei'(x)"
 	      << '\n';
-    const auto del = _Tp{1}/_Tp{10};
+    const auto del = Tp{1}/Tp{10};
     for (int i = 0; i <= 200; ++i)
       {
 	const auto x = del * i;
@@ -387,11 +387,11 @@ template<typename _Tp>
     std::cout << '\n' << std::flush;
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
   help_kelvin2()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -406,7 +406,7 @@ template<typename _Tp>
 	      << std::setw(w) << "ker'(x)"
 	      << std::setw(w) << "kei'(x)"
 	      << '\n';
-    const auto del = _Tp{1}/_Tp{10};
+    const auto del = Tp{1}/Tp{10};
     for (int i = 0; i <= 200; ++i)
       {
 	const auto x = del * i;
@@ -425,11 +425,11 @@ template<typename _Tp>
     std::cout << '\n' << std::flush;
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
   help_kelvin3()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -440,9 +440,9 @@ template<typename _Tp>
 	      //<< std::setw(w) << "ber'(x)"
 	      //<< std::setw(w) << "bei'(x)"
 	      << '\n';
-    const auto del = _Tp{1}/_Tp{10};
-    const auto ph = std::polar(_Tp{1}, 3 * emsr::pi_v<_Tp> / 4);
-    const auto pi = emsr::pi_v<_Tp>;
+    const auto del = Tp{1}/Tp{10};
+    const auto ph = std::polar(Tp{1}, 3 * emsr::pi_v<Tp> / 4);
+    const auto pi = emsr::pi_v<Tp>;
     for (int i = 0; i <= 200; ++i)
       {
 	const auto x = del * i;
@@ -470,7 +470,7 @@ template<typename _Tp>
 		  << std::setw(w) << std::imag(klv.J_value)
 		  << std::setw(w) << std::real(klv.J_deriv)
 		  << std::setw(w) << std::imag(klv.J_deriv)
-		  << std::setw(2 * w + 4) << pi * ph * x * klv.Wronskian() / _Tp{2}
+		  << std::setw(2 * w + 4) << pi * ph * x * klv.Wronskian() / Tp{2}
 		  << '\n';
       }
     std::cout << std::endl;

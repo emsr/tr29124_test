@@ -12,12 +12,12 @@
 #include <emsr/float128_io.h>
 #include <mpreal.h>
 
-  template<typename _Tp>
-    _Tp
-    experfc_func(_Tp x)
+  template<typename Tp>
+    Tp
+    experfc_func(Tp x)
     {
       mpfr::mpreal X(static_cast<long double>(x), 1024);
-      if (x < _Tp{20})
+      if (x < Tp{20})
 	return static_cast<long double>(mpfr::exp(X * X) * mpfr::erfc(X));
       else
 	{
@@ -28,7 +28,7 @@ return 0;
 	  if (lg * log2_e < 1022)
 	    return (long double)(mpfr::exp(lg));
 	  else
-	    return _Tp{0};
+	    return Tp{0};
 */
 	}
     }
@@ -41,24 +41,24 @@ return 0;
    *               \sum_{k=0}^{\infty}\frac{x^{2k+1}}{(2k+1)!!}
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    experf_series(_Tp x)
+  template<typename Tp>
+    Tp
+    experf_series(Tp x)
     {
-      constexpr auto s_eps = std::numeric_limits<_Tp>::epsilon();
-      const auto s_sqrt_pi = _Tp{1.772453850905516027298167483341145182797Q};
+      constexpr auto s_eps = std::numeric_limits<Tp>::epsilon();
+      const auto s_sqrt_pi = Tp{1.772453850905516027298167483341145182797Q};
       const auto s_max_iter = 200;
-      const auto x2 = _Tp{2} * x * x;
+      const auto x2 = Tp{2} * x * x;
       auto term = x;
       auto sum = term;
       for (int k = 1; k < s_max_iter; ++k)
 	{
-	  term *= x2 / _Tp(2 * k + 1);
+	  term *= x2 / Tp(2 * k + 1);
 	  sum += term;
 	  if (std::abs(term) < s_eps * std::abs(sum))
 	    break;
 	}
-      return  _Tp{2} * sum / s_sqrt_pi;
+      return  Tp{2} * sum / s_sqrt_pi;
     }
 
   /**
@@ -67,9 +67,9 @@ return 0;
    *   experfc(x) = exp(x^2)erfc(x) = exp(x^2)(1 - erf(x))
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    experfc_func_bad(_Tp x)
+  template<typename Tp>
+    Tp
+    experfc_func_bad(Tp x)
     { return std::exp(x * x) - experf_series(x); }
 
   /**
@@ -82,18 +82,18 @@ return 0;
    *    experfc(x) = \sum_{k=0}^{\infty} \frac{(-x)^k}{\Gamma(1+k/2)}
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    experfc_series(_Tp x)
+  template<typename Tp>
+    Tp
+    experfc_series(Tp x)
     {
-      const auto s_eps = std::numeric_limits<_Tp>::epsilon();
-      const auto s_sqrt_pi = _Tp{1.772453850905516027298167483341145182797Q};
+      const auto s_eps = std::numeric_limits<Tp>::epsilon();
+      const auto s_sqrt_pi = Tp{1.772453850905516027298167483341145182797Q};
       const auto s_max_iter = 200;
-      auto gamr_e = _Tp{1};
-      auto gamr_o = _Tp{2} / s_sqrt_pi;
-      auto term = _Tp{0};
-      auto sum = _Tp{0};
-      auto xk = _Tp{1};
+      auto gamr_e = Tp{1};
+      auto gamr_o = Tp{2} / s_sqrt_pi;
+      auto term = Tp{0};
+      auto sum = Tp{0};
+      auto xk = Tp{1};
 
       for (int k = 0; k < s_max_iter; ++k)
 	{
@@ -101,13 +101,13 @@ return 0;
 	    {
 	      term = gamr_o * xk;
 	      sum += term;
-	      gamr_o /= _Tp(2 + k) / _Tp{2};
+	      gamr_o /= Tp(2 + k) / Tp{2};
 	    }
 	  else
 	    {
 	      term = gamr_e * xk;
 	      sum += term;
-	      gamr_e /= _Tp(1 + k / 2);
+	      gamr_e /= Tp(1 + k / 2);
 	    }
 	  if (std::abs(term) < s_eps * std::abs(sum))
 	    break;
@@ -131,17 +131,17 @@ return 0;
    * Surprisingly, this is accurate to within 0.1% over the whole range
    * [0, infty].  It is used to start AGM algorithms of the experfc function.
    */
-  template<typename _Tp>
-    _Tp
-    experfc_approx(_Tp x)
+  template<typename Tp>
+    Tp
+    experfc_approx(Tp x)
     {
-      const auto s_pi =  _Tp{3.1415926535897932384626433832795029Q};
-      const auto s_sqrt_pi = _Tp{1.772453850905516027298167483341145182797Q};
+      const auto s_pi =  Tp{3.1415926535897932384626433832795029Q};
+      const auto s_sqrt_pi = Tp{1.772453850905516027298167483341145182797Q};
       auto experfc = s_sqrt_pi * std::sqrt(x)
-		     + std::sqrt(s_pi * (x + _Tp{2})
-			       - _Tp{2} * (s_pi - _Tp{2})
-			       * std::exp(-std::sqrt(_Tp{5} * x / _Tp{7})));
-      return _Tp{2} / experfc;
+		     + std::sqrt(s_pi * (x + Tp{2})
+			       - Tp{2} * (s_pi - Tp{2})
+			       * std::exp(-std::sqrt(Tp{5} * x / Tp{7})));
+      return Tp{2} / experfc;
     }
 
   /**
@@ -156,20 +156,20 @@ return 0;
    *       \sum_{k=0}^{\infty}\frac{(2k-1)!!}{(-2x^2)^k}
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    experfc_asymp(_Tp x)
+  template<typename Tp>
+    Tp
+    experfc_asymp(Tp x)
     {
-      constexpr auto s_eps = std::numeric_limits<_Tp>::epsilon();
-      const auto s_sqrt_pi = _Tp{1.772453850905516027298167483341145182797Q};
+      constexpr auto s_eps = std::numeric_limits<Tp>::epsilon();
+      const auto s_sqrt_pi = Tp{1.772453850905516027298167483341145182797Q};
       const auto s_max_iter = 200;
-      const auto xm2 = -_Tp{1} / (_Tp{2} * x * x);
-      auto term = _Tp{1} / x;
+      const auto xm2 = -Tp{1} / (Tp{2} * x * x);
+      auto term = Tp{1} / x;
       auto sum = term;
       auto prev_term = std::abs(term);
       for (int k = 1; k < s_max_iter; ++k)
 	{
-	  term *= xm2 * _Tp(2 * k - 1);
+	  term *= xm2 * Tp(2 * k - 1);
 	  sum += term;
 	  if (std::abs(term) > prev_term)
 	    break;
@@ -194,17 +194,17 @@ return 0;
    *              + \cfrac{3}{\sqrt{2}x + ...} } } }
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    experfc_cont_frac(_Tp x)
+  template<typename Tp>
+    Tp
+    experfc_cont_frac(Tp x)
     {
-      const auto s_sqrt_2 = _Tp{1.414213562373095048801688724209698078569Q};
-      const auto s_sqrt_pi = _Tp{1.772453850905516027298167483341145182797Q};
-      const auto b = std::sqrt(_Tp{2} * x * x);
+      const auto s_sqrt_2 = Tp{1.414213562373095048801688724209698078569Q};
+      const auto s_sqrt_pi = Tp{1.772453850905516027298167483341145182797Q};
+      const auto b = std::sqrt(Tp{2} * x * x);
       auto s = b;
       for (int n = 100; n >= 1; --n)
 	{
-	  auto a = _Tp(n);
+	  auto a = Tp(n);
 	  s = b + a / s;
 	}
       s = (s_sqrt_2 / s_sqrt_pi) / s;
@@ -214,17 +214,17 @@ return 0;
   /**
    * exp(x^2) erfc(x).
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    experfc_series_aw(std::complex<_Tp> z,
+  template<typename Tp>
+    std::complex<Tp>
+    experfc_series_aw(std::complex<Tp> z,
 			int trunc_lo = 32, int trunc_hi = 193,
-			_Tp sep = _Tp{8})
+			Tp sep = Tp{8})
     {
-      const auto s_pi =  _Tp{3.1415926535897932384626433832795029Q};
-      const auto s_sqrt_pi = _Tp{1.772453850905516027298167483341145182797Q};
-      const auto s_i = std::complex<_Tp>{0, 1};
+      const auto s_pi =  Tp{3.1415926535897932384626433832795029Q};
+      const auto s_sqrt_pi = Tp{1.772453850905516027298167483341145182797Q};
+      const auto s_i = std::complex<Tp>{0, 1};
 
-      if (sep < _Tp{0} || std::abs(z) <= sep)
+      if (sep < Tp{0} || std::abs(z) <= sep)
         {
           // Infinite series approximation, Abramowitz p. 313 7.1.29
           auto x = std::real(z);
@@ -235,53 +235,53 @@ return 0;
           auto s1 = erf(x);
 
           auto k1 = std::exp(-y * y);
-          auto k2 = std::exp(_Tp{2} * s_i * x * y);
+          auto k2 = std::exp(Tp{2} * s_i * x * y);
 
-          std::complex<_Tp> s2;
-          if (x == _Tp{0})
+          std::complex<Tp> s2;
+          if (x == Tp{0})
             s2 = s_i * y * k1 / s_pi;
           else
-            s2 = k1 * (k2 - _Tp{1} / (_Tp{2} * s_pi * x));
+            s2 = k1 * (k2 - Tp{1} / (Tp{2} * s_pi * x));
 
           auto retval = ez2 * s1 + s2;
 
-          if (y != _Tp{0})
+          if (y != Tp{0})
 	    {
-              auto sum = std::complex<_Tp>{};
+              auto sum = std::complex<Tp>{};
               for (unsigned n = 1; n <= trunc_lo; ++n)
 		{
-		  auto enn = _Tp(n);
-		  auto s3 = std::exp(-enn * enn / _Tp{4})
-			    / (enn * enn + _Tp{4} * x * x);
-                  auto s4 = _Tp{2} * x * k1 * k2
-			    - (x + s_i * enn / _Tp{2})
+		  auto enn = Tp(n);
+		  auto s3 = std::exp(-enn * enn / Tp{4})
+			    / (enn * enn + Tp{4} * x * x);
+                  auto s4 = Tp{2} * x * k1 * k2
+			    - (x + s_i * enn / Tp{2})
 			     * std::exp(-y * (enn + y))
-			    - (x - s_i * enn / _Tp{2})
+			    - (x - s_i * enn / Tp{2})
 			     * std::exp(+y * (enn - y));
                   sum += s3 * s4;
 		}
-              retval += _Tp{2} * sum / s_pi;
+              retval += Tp{2} * sum / s_pi;
 	    }
           return ez2 - retval;
         }
       else
 	{
           // Asymptotic expansion, Abramowitz p. 312 7.1.23
-          bool isneg = (std::real(z) < _Tp{0});
+          bool isneg = (std::real(z) < Tp{0});
           if (isneg)
 	    z = -z;
 
-          std::complex<_Tp> s = _Tp{1};
-          std::complex<_Tp> y = _Tp{2} * z * z;
+          std::complex<Tp> s = Tp{1};
+          std::complex<Tp> y = Tp{2} * z * z;
           for (auto n = trunc_hi; n >= 1; n -= 2)
-	    s = _Tp{1} - _Tp(n) * (s / y);
+	    s = Tp{1} - Tp(n) * (s / y);
 
           auto retval = s / (s_sqrt_pi * z);
 
           if (isneg)
 	    {
               z = -z;
-              retval = _Tp{2} - retval;
+              retval = Tp{2} - retval;
             }
 
           return retval;
@@ -291,21 +291,21 @@ return 0;
   /**
    *
    */
-  template<typename _Tp>
-    _Tp
-    erfc_scaled(_Tp x)
+  template<typename Tp>
+    Tp
+    erfc_scaled(Tp x)
     {
-      const auto s_inf = std::numeric_limits<_Tp>::infinity();
-      const auto s_cfrac = _Tp{0.025} * std::numeric_limits<_Tp>::digits;
+      const auto s_inf = std::numeric_limits<Tp>::infinity();
+      const auto s_cfrac = Tp{0.025} * std::numeric_limits<Tp>::digits;
       // The asymptotic series gets good by here but never really beats C.F.
-      //const auto s_asymp = _Tp{0.18} * std::numeric_limits<_Tp>::digits;
+      //const auto s_asymp = Tp{0.18} * std::numeric_limits<Tp>::digits;
 
       if (std::isnan(x))
 	return x;
       else if (x == -s_inf)
 	return +s_inf;
       else if (x == +s_inf)
-	return _Tp{0};
+	return Tp{0};
       else if (x < s_cfrac)
 	return experfc_series(x);
       else
@@ -315,11 +315,11 @@ return 0;
 /**
  * Test the scaled complementary error function - experfc(x) = exp(x^2)erfc(x).
  */
-template<typename _Tp>
+template<typename Tp>
   void
   plot_experfc()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto w = 8 + std::cout.precision();
 
     std::cout << "\n\n"
@@ -328,7 +328,7 @@ template<typename _Tp>
 	      << '\n';
     for (int k = -200; k <= 5500; ++k)
       {
-	auto x = k * _Tp{0.01Q};
+	auto x = k * Tp{0.01Q};
 	auto experfc = erfc_scaled(x);
 	std::cout << ' ' << std::setw(w) << x
 		  << ' ' << std::setw(w) << experfc
@@ -339,11 +339,11 @@ template<typename _Tp>
 /**
  * Test the scaled complementary error function - experfc(x) = exp(x^2)erfc(x).
  */
-template<typename _Tp>
+template<typename Tp>
   void
   test_experfc()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     decltype(std::cout.precision()) xw = 22;
     auto w = std::max(xw, 8 + std::cout.precision());
 
@@ -360,7 +360,7 @@ template<typename _Tp>
 	      << '\n';
     for (int i = 0; i <= 5500; ++i)
       {
-	auto x = i * _Tp{0.01Q};
+	auto x = i * Tp{0.01Q};
 	auto experfc_apr = experfc_approx(x * x);
 	auto experfc_fun = experfc_func(x);
 	auto experfc_cfr = experfc_cont_frac(x);

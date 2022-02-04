@@ -13,18 +13,18 @@
    * This is the third-order Halley's root finding algorithm for Lambert W.
    * The radius of convergence is 1/e but it staggers on pretty well up to above 3.
    */
-  template<typename _Tp>
-    _Tp
-    lambert_w_series(_Tp z)
+  template<typename Tp>
+    Tp
+    lambert_w_series(Tp z)
     {
       const auto _S_eps = emsr::epsilon(z);
       const auto _S_max_iter = 1000u;
 
-      auto _W = z * (_Tp{1} - z);
+      auto _W = z * (Tp{1} - z);
       auto term = -z * z;
       for (auto k = 3u; k < _S_max_iter; ++k)
 	{
-	  term *= -z * std::pow(_Tp(k) / _Tp(k - 1), k - 2);
+	  term *= -z * std::pow(Tp(k) / Tp(k - 1), k - 2);
 	  _W += term;
 	  if (std::abs(term) < _S_eps * std::abs(_W))
 	    break;
@@ -35,9 +35,9 @@
   /**
    * This is the second-order Newton root finding algorithm for Lambert W.
    */
-  template<typename _Tp>
-    _Tp
-    lambert_w_newton(_Tp z, _Tp _W = _Tp{1})
+  template<typename Tp>
+    Tp
+    lambert_w_newton(Tp z, Tp _W = Tp{1})
     {
       const auto _S_eps = emsr::epsilon(z);
       const auto _S_max_iter = 1000u;
@@ -48,7 +48,7 @@
           const auto expwk = std::exp(wk);
           const auto wexpwk = wk * expwk;
 	  const auto wkp1 = wk - (wexpwk - z)
-				   / (_Tp{1} + wk) / expwk;
+				   / (Tp{1} + wk) / expwk;
 	  const auto del = std::abs(wkp1 - wk);
 	  wk = wkp1;
 	  if (del < _S_eps)
@@ -60,9 +60,9 @@
   /**
    * This is the third-order Halley root finding algorithm for Lambert W.
    */
-  template<typename _Tp>
-    _Tp
-    lambert_w_halley(_Tp z, _Tp _W = _Tp{1})
+  template<typename Tp>
+    Tp
+    lambert_w_halley(Tp z, Tp _W = Tp{1})
     {
       const auto _S_eps = emsr::epsilon(z);
       const auto _S_max_iter = 1000u;
@@ -86,13 +86,13 @@
   /**
    * This is the fifth-order Schroder's update for Lambert W.
    */
-  template<typename _Tp>
-    _Tp
-    lambert_w_schroder(_Tp z, _Tp _W)
+  template<typename Tp>
+    Tp
+    lambert_w_schroder(Tp z, Tp _W)
     {
       const auto y = z * std::exp(-_W);
       const auto f0 = _W - y;
-      const auto f1 = _Tp{1} + y;
+      const auto f1 = Tp{1} + y;
       const auto f2 = y;
       const auto f11 = f1 * f1;
       const auto f0y = f0 * y;
@@ -112,14 +112,14 @@
  * @f]
  * where @f$ \xi = ln(z) @f$
  */
-template<typename _Tp>
-  _Tp
-  lambert_w_0_log_series(_Tp z)
+template<typename Tp>
+  Tp
+  lambert_w_0_log_series(Tp z)
   {
     const auto xi = std::log(z);
     const auto lnxi = std::log(xi);
-    return xi - lnxi * (_Tp{1} - (_Tp{1} / xi)
-		* (_Tp{1} - (_Tp{1} / xi) * (_Tp{1} - lnxi / _Tp{2})));
+    return xi - lnxi * (Tp{1} - (Tp{1} / xi)
+		* (Tp{1} - (Tp{1} / xi) * (Tp{1} - lnxi / Tp{2})));
   }
 
 
@@ -132,28 +132,28 @@ template<typename _Tp>
  * @f]
  * where @f$ \eta = ln(-1/z) @f$
  */
-template<typename _Tp>
-  _Tp
-  lambert_w_1_log_series(_Tp z)
+template<typename Tp>
+  Tp
+  lambert_w_1_log_series(Tp z)
   {
-    const auto eta = std::log(-_Tp{1} / z);
+    const auto eta = std::log(-Tp{1} / z);
     const auto lneta = std::log(eta);
-    return -eta - lneta * (_Tp{1} + (_Tp{1} / eta)
-		* (_Tp{1} + (_Tp{1} / eta) * (_Tp{1} + lneta / _Tp{2})));
+    return -eta - lneta * (Tp{1} + (Tp{1} / eta)
+		* (Tp{1} + (Tp{1} / eta) * (Tp{1} + lneta / Tp{2})));
   }
 
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_lambert_w(_Tp proto = _Tp{})
+  test_lambert_w(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
     const int N0 = 100;
-    const auto _S_e = emsr::e_v<_Tp>;
-    const auto _S_1_e = _Tp{1} / _S_e;
+    const auto _S_e = emsr::e_v<Tp>;
+    const auto _S_1_e = Tp{1} / _S_e;
     const auto del0 = (_S_e + _S_1_e) / N0;
 
     const int Nm1 = 50;
@@ -178,8 +178,8 @@ template<typename _Tp>
     for (int i = 0; i <= Nm1; ++i)
       {
 	auto z = -_S_1_e  + delm1 * i;
-        auto W_newton = lambert_w_newton(z, _Tp{-2});
-        auto W_halley = lambert_w_halley(z, _Tp{-2});
+        auto W_newton = lambert_w_newton(z, Tp{-2});
+        auto W_halley = lambert_w_halley(z, Tp{-2});
 	std::cout << ' ' << std::setw(w) << z
 		  << ' ' << std::setw(w) << W_newton
 		  << ' ' << std::setw(w) << W_halley
@@ -188,10 +188,10 @@ template<typename _Tp>
 
     std::cout << '\n';
     std::cout << '\n';
-    auto term = _Tp{-1};
+    auto term = Tp{-1};
     for (auto k = 3u; k < 50; ++k)
       {
-	term *= -std::pow(_Tp(k) / _Tp(k - 1), k - 2);
+	term *= -std::pow(Tp(k) / Tp(k - 1), k - 2);
 	std::cout << ' ' << term << '\n';
       }
   }

@@ -9,16 +9,16 @@
 
 #include <emsr/sf_mod_bessel.h>
 
-template<typename _Tnu, typename _Tp>
+template<typename _Tnu, typename Tp>
   void
   test_mod_bessel_asymp(_Tnu nu)
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto w = 8 + std::cout.precision();
 
     for (int i = 1000; i <= 2000; ++i)
       {
-	auto x = _Tp(i);
+	auto x = Tp(i);
 	auto iks = emsr::detail::cyl_bessel_ik_scaled_asymp(nu, x);
 	std::cout << ' ' << std::setw(w) << x
 		  << ' ' << std::setw(w) << iks.I_value

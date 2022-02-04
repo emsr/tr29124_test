@@ -18,9 +18,9 @@
 namespace detail
 {
 
-  template<typename _Tp>
-    _Tp
-    erfc_scaled(_Tp x)
+  template<typename Tp>
+    Tp
+    erfc_scaled(Tp x)
     { return std::exp(x * x) * std::erfc(x); }
 
   /**
@@ -32,27 +32,27 @@ namespace detail
    * @param[in] p The argument between -1 and 1
    * @param[in] x The initial x-value guess.
    */
-  template<typename _Tp>
-    _Tp
-    erf_inv_recur(_Tp p, _Tp x = _Tp{5})
+  template<typename Tp>
+    Tp
+    erf_inv_recur(Tp p, Tp x = Tp{5})
     {
-      constexpr auto s_eps = std::numeric_limits<_Tp>::epsilon();
+      constexpr auto s_eps = std::numeric_limits<Tp>::epsilon();
 
-      if (p < _Tp{0})
+      if (p < Tp{0})
 	return -erf_inv_recur(-p);
       else
 	{
 	  // Iterate experfc(x).
-	  auto xprev2 = _Tp{0}, xprev = _Tp{0};
+	  auto xprev2 = Tp{0}, xprev = Tp{0};
 	  const auto s_max_iter = 500;
 	  auto iter = 0;
 	  while (++iter < s_max_iter)
 	    {
 	      xprev2 = xprev;
 	      xprev = x;
-	      x = std::log(erfc_scaled(x) / (_Tp{1} - p));
+	      x = std::log(erfc_scaled(x) / (Tp{1} - p));
 	      // If the fraction jumps < 0 just bop it back.
-	      if (x < _Tp{0})
+	      if (x < Tp{0})
 		x = -x;
 	      x = std::sqrt(x);
 	      if (std::abs(x - xprev) < s_eps)
@@ -76,15 +76,15 @@ namespace detail
    *              \frac{a_{j-1}a_{k-j}}{j(2j-1)}
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    erf_inv_series(_Tp p)
+  template<typename Tp>
+    Tp
+    erf_inv_series(Tp p)
     {
-      const auto s_sqrt_pi = _Tp{1.772453850905516027298167483341145182797L};
-      const auto s_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto s_sqrt_pi = Tp{1.772453850905516027298167483341145182797L};
+      const auto s_eps = std::numeric_limits<Tp>::epsilon();
 
       constexpr std::size_t s_num_c = 100;
-      constexpr _Tp
+      constexpr Tp
       s_c[s_num_c]
       {
 	1.0000000000000000000000000000000000000000e+00L,
@@ -189,14 +189,14 @@ namespace detail
 	5.8436299732183403140670782938460945305608e+07L,
       };
 
-      if (p < _Tp{0})
+      if (p < Tp{0})
 	return -erf_inv_series(-p);
       else
 	{
-	  auto chi = s_sqrt_pi * p / _Tp{2};
+	  auto chi = s_sqrt_pi * p / Tp{2};
 	  auto chi2 = chi * chi;
 	  auto chik = chi;
-	  auto inverf = _Tp{0};
+	  auto inverf = Tp{0};
 	  for (std::size_t k = 0; k < s_num_c; ++k)
 	    {
 	      auto term = s_c[k] * chik;
@@ -212,22 +212,22 @@ namespace detail
   /**
    * Return the inverse error function.
    */
-  template<typename _Tp>
-    _Tp
-    erf_inv(_Tp p)
+  template<typename Tp>
+    Tp
+    erf_inv(Tp p)
     {
       const auto s_inf = emsr::infinity(p);
       if (std::isnan(p))
 	return p;
-      else if (std::abs(p) > _Tp(1))
+      else if (std::abs(p) > Tp(1))
 	throw std::domain_error("erf_inv: Argument must have absolute value less than or equal to one.");
-      else if (p == _Tp{-1})
+      else if (p == Tp{-1})
 	return -s_inf;
-      else if (p == _Tp{1})
+      else if (p == Tp{1})
 	return s_inf;
-      else if (std::abs(p) > _Tp{0.95})
+      else if (std::abs(p) > Tp{0.95})
 	return erf_inv_recur(p);
-      else if (std::abs(p) > _Tp{0.75})
+      else if (std::abs(p) > Tp{0.75})
 	return erf_inv_recur(p, erf_inv_series(p));
       else
 	return erf_inv_series(p);
@@ -237,25 +237,25 @@ namespace detail
    * Return the inverse complementary error function.
    * @todo Don't fall back on inv_erf(1-p)
    */
-  template<typename _Tp>
-    _Tp
-    erfc_inv(_Tp q)
+  template<typename Tp>
+    Tp
+    erfc_inv(Tp q)
     {
       const auto s_inf = emsr::infinity(q);
       if (std::isnan(q))
 	return q;
-      else if (q < _Tp(0) || q > _Tp(2))
+      else if (q < Tp(0) || q > Tp(2))
 	throw std::domain_error("erf_inv: Argument must be within the domain of erfc: [0,2].");
-      else if (q == _Tp{0})
+      else if (q == Tp{0})
 	return +s_inf;
-      else if (q == _Tp{2})
+      else if (q == Tp{2})
 	return -s_inf;
-      else if (std::abs(_Tp{1} - q) > _Tp{0.95})
-	return erf_inv_recur(_Tp{1} - q);
-      else if (std::abs(_Tp{1} - q) > _Tp{0.75})
-	return erf_inv_recur(_Tp{1} - q, erf_inv_series(_Tp{1} - q));
+      else if (std::abs(Tp{1} - q) > Tp{0.95})
+	return erf_inv_recur(Tp{1} - q);
+      else if (std::abs(Tp{1} - q) > Tp{0.75})
+	return erf_inv_recur(Tp{1} - q, erf_inv_series(Tp{1} - q));
       else
-	return erf_inv_series(_Tp{1} - q);
+	return erf_inv_series(Tp{1} - q);
     }
 
 }
@@ -268,11 +268,11 @@ namespace detail
   inline erf_invl(long double p)
   { return detail::erf_inv<long double>(p); }
 
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    erf_inv(_Tp p)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    erf_inv(Tp p)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return detail::erf_inv<type>(p);
     }
 
@@ -284,36 +284,36 @@ namespace detail
   inline erfc_invl(long double q)
   { return detail::erfc_inv<long double>(q); }
 
-  template<typename _Tp>
-    inline emsr::fp_promote_t<_Tp>
-    erfc_inv(_Tp q)
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    erfc_inv(Tp q)
     {
-      using type = emsr::fp_promote_t<_Tp>;
+      using type = emsr::fp_promote_t<Tp>;
       return detail::erfc_inv<type>(q);
     }
 
 /**
  * Test the inverse error function.
  */
-template<typename _Tp>
+template<typename Tp>
   void
   test_inv_erf()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     decltype(std::cout.precision()) xw = 22;
     auto w = std::max(xw, 8 + std::cout.precision());
 
     const int n_max = 250;
-    std::vector<_Tp> a;
+    std::vector<Tp> a;
     a.push_back(1);
     for (int n = 1; n < n_max; ++n)
       {
-	auto atemp = _Tp{0};
+	auto atemp = Tp{0};
 	for (int k = 1; k <= n; ++k)
-	  atemp += _Tp(2 * (k - 1) + 1) * a[k - 1]
-		 * _Tp(2 * (n - k) + 1) * a[n - k]
-		 / _Tp(k * (2 * k - 1));
-	atemp /= _Tp(2 * n + 1);
+	  atemp += Tp(2 * (k - 1) + 1) * a[k - 1]
+		 * Tp(2 * (n - k) + 1) * a[n - k]
+		 / Tp(k * (2 * k - 1));
+	atemp /= Tp(2 * n + 1);
 	a.push_back(atemp);
       }
 
@@ -321,17 +321,17 @@ template<typename _Tp>
     for (auto aa : a)
       std::cout << ' ' << std::setw(w) << aa << '\n';
 
-    std::vector<_Tp> c;
+    std::vector<Tp> c;
     c.push_back(1);
     for (int n = 1; n < n_max; ++n)
       {
-	auto ctemp = _Tp{0};
+	auto ctemp = Tp{0};
 	for (int k = 1; k <= n; ++k)
-	  ctemp += c[k - 1] * c[n - k] / _Tp(k * (2 * k - 1));
+	  ctemp += c[k - 1] * c[n - k] / Tp(k * (2 * k - 1));
 	c.push_back(ctemp);
       }
     for (int n = 1; n < n_max; ++n)
-      c[n] /= _Tp(2 * n + 1);
+      c[n] /= Tp(2 * n + 1);
 
     std::cout << "\n\n " << std::setw(w) << "c_k" << '\n';
     for (auto cc : c)
@@ -349,7 +349,7 @@ template<typename _Tp>
 	      << '\n';
     for (int i = -100; i <= 100; ++i)
       {
-	auto p = _Tp(i * 0.01L);
+	auto p = Tp(i * 0.01L);
 	auto inverfs = detail::erf_inv_series(p);
 	auto inverfr = detail::erf_inv_recur(p);
 	auto inverf = detail::erf_inv(p);
@@ -376,7 +376,7 @@ template<typename _Tp>
 	      << '\n';
     for (int i = -200; i <= 200; ++i)
       {
-	auto x = _Tp(i * 0.01L);
+	auto x = Tp(i * 0.01L);
 	auto erfx = std::erf(x);
 	auto inverfs = detail::erf_inv_series(erfx);
 	auto inverfr = detail::erf_inv_recur(erfx);
@@ -400,7 +400,7 @@ template<typename _Tp>
 	      << '\n';
     for (int i = 200; i >= 0; --i)
       {
-	auto p = _Tp(i * 0.01L);
+	auto p = Tp(i * 0.01L);
 	auto inverfc = detail::erfc_inv(p);
 	std::cout << ' ' << std::setw(w) << p
 		  << ' ' << std::setw(w) << inverfc
@@ -417,7 +417,7 @@ template<typename _Tp>
 	      << '\n';
     for (int i = -200; i <= 200; ++i)
       {
-	auto x = _Tp(i * 0.01L);
+	auto x = Tp(i * 0.01L);
 	auto erfcx = std::erfc(x);
 	auto inverfc = detail::erfc_inv(erfcx);
 	std::cout << ' ' << std::setw(w) << x
@@ -431,11 +431,11 @@ template<typename _Tp>
 /**
  * Test the scaled complementary error function - experfc(x) = exp(x^2)erfc(x).
  */
-template<typename _Tp>
+template<typename Tp>
   void
   plot_inv_erf()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     decltype(std::cout.precision()) xw = 22;
     auto w = std::max(xw, 8 + std::cout.precision());
 
@@ -445,7 +445,7 @@ template<typename _Tp>
 	      << '\n';
     for (int k = -100; k <= 100; ++k)
       {
-	auto p = k * _Tp{0.01L};
+	auto p = k * Tp{0.01L};
 	auto inverf = detail::erf_inv(p);
 	std::cout << ' ' << std::setw(w) << p
 		  << ' ' << std::setw(w) << inverf
@@ -458,7 +458,7 @@ template<typename _Tp>
 	      << '\n';
     for (int k = 200; k >= 0; --k)
       {
-	auto p = k * _Tp{0.01L};
+	auto p = k * Tp{0.01L};
 	auto inverfc = detail::erfc_inv(p);
 	std::cout << ' ' << std::setw(w) << p
 		  << ' ' << std::setw(w) << inverfc

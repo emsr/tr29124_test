@@ -28,11 +28,11 @@ namespace detail
    * of the first kind @f$ \boldmath{L}_\nu(x) @f$
    * depending on whether @c sign is -1 or +1 respectively.
    */
-  template<_StruveType _Type, typename _Tp>
-    _Tp
-    struve_series(_Tp nu, _Tp x)
+  template<_StruveType _Type, typename Tp>
+    Tp
+    struve_series(Tp nu, Tp x)
     {
-      using _Val = _Tp;
+      using _Val = Tp;
 
       using _BasicSum = emsr::BasicSum<_Val>;
       using _WenigerBasSum = emsr::WenigerDeltaSum<_BasicSum>;
@@ -45,10 +45,10 @@ namespace detail
 
       constexpr int s_max_iter = 1000;
       const auto s_eps = emsr::epsilon(std::real(x));
-      const auto s_sqrt_pi = emsr::sqrtpi_v<_Tp>;
+      const auto s_sqrt_pi = emsr::sqrtpi_v<Tp>;
 
       auto x2 = x / _Val{2};
-      auto xx4 = _Tp(sign) * x2 * x2;
+      auto xx4 = Tp(sign) * x2 * x2;
       auto term = _Val{1};
       auto struve = _WenigerSum(_Val{1});
       struve += term;
@@ -71,11 +71,11 @@ namespace detail
    * of the second kind @f$ \boldmath{M}_\nu(x) @f$
    * depending on whether @c sign is +1 or -1 respectively.
    */
-  template<_StruveType _Type, typename _Tp>
-    _Tp
-    struve_asymp(_Tp nu, _Tp x)
+  template<_StruveType _Type, typename Tp>
+    Tp
+    struve_asymp(Tp nu, Tp x)
     {
-      using _Val = _Tp;
+      using _Val = Tp;
 
       using _BasicSum = emsr::BasicSum<_Val>;
       using _WenigerBasSum = emsr::WenigerDeltaSum<_BasicSum>;
@@ -89,7 +89,7 @@ namespace detail
 
       constexpr int s_max_iter = 1000;
       const auto s_eps = emsr::epsilon(std::real(x));
-      const auto s_sqrt_pi = emsr::sqrtpi_v<_Tp>;
+      const auto s_sqrt_pi = emsr::sqrtpi_v<Tp>;
 
       auto x2 = x / _Val{2};
       auto xx4 = _Val(sign) * x2 * x2;
@@ -116,11 +116,11 @@ namespace detail
    * Return the Struve function of the first kind
    * @f$ \boldmath{H}_\nu(x) @f$.
    */
-  template<typename _Tp>
-    _Tp
-    struve_h(_Tp nu, _Tp x)
+  template<typename Tp>
+    Tp
+    struve_h(Tp nu, Tp x)
     {
-      using _Val = _Tp;
+      using _Val = Tp;
       using _Real = emsr::num_traits_t<_Val>;
       const auto s_nan = emsr::quiet_NaN(std::real(x));
       const auto s_max = emsr::digits10(std::real(x));
@@ -143,11 +143,11 @@ namespace detail
    * Return the Struve function of the second kind
    * @f$ \boldmath{K}_\nu(x) @f$.
    */
-  template<typename _Tp>
-    _Tp
-    struve_k(_Tp nu, _Tp x)
+  template<typename Tp>
+    Tp
+    struve_k(Tp nu, Tp x)
     {
-      using _Val = _Tp;
+      using _Val = Tp;
       using _Real = emsr::num_traits_t<_Val>;
       const auto s_nan = emsr::quiet_NaN(std::real(x));
       const auto s_max = emsr::digits10(std::real(x));
@@ -170,11 +170,11 @@ namespace detail
    * Return the modified Struve function of the first kind
    * @f$ \boldmath{L}_\nu(x) @f$.
    */
-  template<typename _Tp>
-    _Tp
-    struve_l(_Tp nu, _Tp x)
+  template<typename Tp>
+    Tp
+    struve_l(Tp nu, Tp x)
     {
-      using _Val = _Tp;
+      using _Val = Tp;
       using _Real = emsr::num_traits_t<_Val>;
       const auto s_nan = emsr::quiet_NaN(std::real(x));
       const auto s_max = emsr::digits10(std::real(x));
@@ -197,11 +197,11 @@ namespace detail
    * Return the modified Struve function of the second kind
    * @f$ \boldmath{M}_\nu(x) @f$.
    */
-  template<typename _Tp>
-    _Tp
-    struve_m(_Tp nu, _Tp x)
+  template<typename Tp>
+    Tp
+    struve_m(Tp nu, Tp x)
     {
-      using _Val = _Tp;
+      using _Val = Tp;
       using _Real = emsr::num_traits_t<_Val>;
       const auto s_nan = emsr::quiet_NaN(std::real(x));
       const auto s_max = emsr::digits10(std::real(x));

@@ -17,24 +17,24 @@
  * @f]
  * where @f$ C_n(x) = C_n(x; a) @f$.
  */
-template<typename _Tp, typename _TpX>
-  _Tp
-  charlier_recur(int n, _Tp a, _TpX x)
+template<typename Tp, typename _TpX>
+  Tp
+  charlier_recur(int n, Tp a, _TpX x)
   {
-    auto Cnm1 = _Tp{1};
+    auto Cnm1 = Tp{1};
     if (n == 0)
       return Cnm1;
 
-    auto Cn = _Tp{1} - _Tp(x) / a;
+    auto Cn = Tp{1} - Tp(x) / a;
     if (n == 1)
       return Cn;
 
-    auto Cnp1 = ((_Tp{1} + a - _Tp(x)) * Cn - Cnm1) / a;
+    auto Cnp1 = ((Tp{1} + a - Tp(x)) * Cn - Cnm1) / a;
     for (int k = 2; k < n; ++k)
       {
 	Cnm1 = Cn;
 	Cn = Cnp1;
-	Cnp1 = ((_Tp(k) + a - _Tp(x)) * Cn - _Tp(k) * Cnm1) / a;
+	Cnp1 = ((Tp(k) + a - Tp(x)) * Cn - Tp(k) * Cnm1) / a;
       }
 
     return Cnp1;
@@ -46,9 +46,9 @@ template<typename _Tp, typename _TpX>
  *    C_n(x; a) = {}_2F_0(-n, -x; ; -\frac{1}{a})
  * @f]
  */
-template<typename _Tp, typename _TpX>
-  _Tp
-  charlier(int n, _Tp a, _TpX x)
+template<typename Tp, typename _TpX>
+  Tp
+  charlier(int n, Tp a, _TpX x)
   {
     if (std::isnan(a))
       return a;
@@ -61,11 +61,11 @@ template<typename _Tp, typename _TpX>
 /**
  * 
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  test_charlier(int n_max, _Tp a)
+  test_charlier(int n_max, Tp a)
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto w = std::cout.precision() + 8;
 
     for (int n = 0; n <= n_max; ++n)
@@ -73,7 +73,7 @@ template<typename _Tp>
 	std::cout << '\n' << '\n' << " n = " << n << '\n';
 	for (int i = 0; i <= 400; ++i)
 	  {
-	    auto x = i * _Tp{0.05L};
+	    auto x = i * Tp{0.05L};
 	    auto C = charlier(n, a, x);
 	    auto C_test = burkhardt::charlier(n, a, x);
 	    std::cout << ' ' << std::setw(w) << x

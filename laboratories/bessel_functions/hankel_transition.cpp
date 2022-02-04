@@ -12,17 +12,17 @@
 #include <emsr/rational_polynomial.h>
 #include <emsr/polynomial.h>
 
-template<typename _Tp>
+template<typename Tp>
   void
   hankel_transition()
   {
     auto sign = [](int s, int r){return (s + r) % 2 == 1 ? -1 : +1; };
-    using rational = _Tp;
+    using rational = Tp;
 
     const std::size_t n_AB = 8;
     const std::size_t n_phipsi = 3 * (n_AB - 1) + 1;
 
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto width = std::cout.precision() + 6;
 
     emsr::Polynomial<int> poo({0, -2});
@@ -108,7 +108,7 @@ template<typename _Tp>
     std::cout << "\nP values\n";
     for (int i = -100; i <= +100; ++i)
       {
-	auto z = _Tp{0.01Q} * i;
+	auto z = Tp{0.01Q} * i;
 	std::cout << std::setw(width) << z;
 	for (const auto& p : P)
 	  std::cout << std::setw(width) << p(z);
@@ -121,7 +121,7 @@ template<typename _Tp>
     std::cout << "\nQ values\n";
     for (int i = -100; i <= +100; ++i)
       {
-	auto z = _Tp{0.01Q} * i;
+	auto z = Tp{0.01Q} * i;
 	std::cout << std::setw(width) << z;
 	for (const auto& q : Q)
 	  std::cout << std::setw(width) << q(z);
@@ -134,7 +134,7 @@ template<typename _Tp>
     std::cout << "\nR values\n";
     for (int i = -100; i <= +100; ++i)
       {
-	auto z = _Tp{0.01Q} * i;
+	auto z = Tp{0.01Q} * i;
 	std::cout << std::setw(width) << z;
 	for (const auto& r : R)
 	  std::cout << std::setw(width) << r(z);
@@ -147,20 +147,20 @@ template<typename _Tp>
     std::cout << "\nS values\n";
     for (int i = -100; i <= +100; ++i)
       {
-	auto z = _Tp{0.01Q} * i;
+	auto z = Tp{0.01Q} * i;
 	std::cout << std::setw(width) << z;
 	for (const auto& s : S)
 	  std::cout << std::setw(width) << s(z);
 	std::cout << '\n';
       }
 
-    auto nu = _Tp{20};
-    const auto s_2p13 = _Tp{1.259921049894873164767210607278228350570Q};
-    const auto s_2p23 = _Tp{1.587401051968199474751705639272308260393Q};
-    const auto s_2p43 = _Tp{2.519842099789746329534421214556456701140Q};
-    const auto s_2p53 = _Tp{3.174802103936398949503411278544616520785Q};
-    const auto s_pi   = _Tp{3.141592653589793238462643383279502884195Q};
-    const auto nu13 = std::pow(nu, _Tp{1} / _Tp{3});
+    auto nu = Tp{20};
+    const auto s_2p13 = Tp{1.259921049894873164767210607278228350570Q};
+    const auto s_2p23 = Tp{1.587401051968199474751705639272308260393Q};
+    const auto s_2p43 = Tp{2.519842099789746329534421214556456701140Q};
+    const auto s_2p53 = Tp{3.174802103936398949503411278544616520785Q};
+    const auto s_pi   = Tp{3.141592653589793238462643383279502884195Q};
+    const auto nu13 = std::pow(nu, Tp{1} / Tp{3});
     const auto nu23 = nu13 * nu13;
     const auto nu43 = nu23 * nu23;
 
@@ -174,15 +174,15 @@ template<typename _Tp>
 	      << '\n';
     for (int i = -100; i <= +100; ++i)
       {
-	auto a = _Tp{0.005Q} * i;
+	auto a = Tp{0.005Q} * i;
 	const auto airy_arg = -s_2p13 * a;
 	auto _Airy = emsr::detail::airy(airy_arg);
 
-	auto num2k3 = _Tp{1};
+	auto num2k3 = Tp{1};
 
-	auto _Jsum1 = _Tp{0};
-	auto _Nsum1 = _Tp{0};
-	num2k3 = _Tp{1};
+	auto _Jsum1 = Tp{0};
+	auto _Nsum1 = Tp{0};
+	num2k3 = Tp{1};
 	for (const auto& p : P)
 	  {
 	    _Jsum1 += p(a) * num2k3;
@@ -190,9 +190,9 @@ template<typename _Tp>
 	    num2k3 /= nu23;
 	  }
 
-	auto _Jsum2 = _Tp{0};
-	auto _Nsum2 = _Tp{0};
-	num2k3 = _Tp{1};
+	auto _Jsum2 = Tp{0};
+	auto _Nsum2 = Tp{0};
+	num2k3 = Tp{1};
 	for (const auto& q : Q)
 	  {
 	    _Jsum2 += q(a) * num2k3;
@@ -205,9 +205,9 @@ template<typename _Tp>
 	const auto _Nt = -s_2p13 * _Airy.Bi_value * _Nsum1 / nu13
 			- s_2p23 * _Airy.Bi_deriv * _Nsum2 / nu;
 
-	auto _Jpsum1 = _Tp{0};
-	auto _Npsum1 = _Tp{0};
-	num2k3 = _Tp{1};
+	auto _Jpsum1 = Tp{0};
+	auto _Npsum1 = Tp{0};
+	num2k3 = Tp{1};
 	for (const auto& r : R)
 	  {
 	    _Jpsum1 += r(a) * num2k3;
@@ -215,9 +215,9 @@ template<typename _Tp>
 	    num2k3 /= nu23;
 	  }
 
-	auto _Jpsum2 = _Tp{0};
-	auto _Npsum2 = _Tp{0};
-	num2k3 = _Tp{1};
+	auto _Jpsum2 = Tp{0};
+	auto _Npsum2 = Tp{0};
+	num2k3 = Tp{1};
 	for (const auto& s : S)
 	  {
 	    _Jpsum2 += s(a) * num2k3;
@@ -238,8 +238,8 @@ template<typename _Tp>
 		  << std::setw(width) << '\n';
       }
 
-    const auto mipi3 = std::polar(-s_pi / _Tp{3});
-    const auto pipi3 = std::polar(+s_pi / _Tp{3});
+    const auto mipi3 = std::polar(-s_pi / Tp{3});
+    const auto pipi3 = std::polar(+s_pi / Tp{3});
     std::cout << "\n\nTransition region Bessel functions: J_\\nu(\\nu + a\\nu^{1/3})\n";
     std::cout << "\nnu = " << nu << "\n"
 	      << std::setw(2*width) << "a"
@@ -249,22 +249,22 @@ template<typename _Tp>
 	      << std::setw(2*width) << "N'_\\nu"
 	      << '\n';
 
-    //const auto eps = std::numeric_limits<_Tp>::epsilon();
+    //const auto eps = std::numeric_limits<Tp>::epsilon();
     for (int i = -100; i <= +100; ++i)
       {
-	auto a = _Tp{0.005Q} * i;
+	auto a = Tp{0.005Q} * i;
 
-	const std::complex<_Tp> airy_argm = s_2p13 * a * mipi3;
-	auto airym = emsr::detail::_Airy<std::complex<_Tp>>()(airy_argm);
+	const std::complex<Tp> airy_argm = s_2p13 * a * mipi3;
+	auto airym = emsr::detail::_Airy<std::complex<Tp>>()(airy_argm);
 
-	const std::complex<_Tp> airy_argp = s_2p13 * a * pipi3;
-	auto airyp = emsr::detail::_Airy<std::complex<_Tp>>()(airy_argp);
+	const std::complex<Tp> airy_argp = s_2p13 * a * pipi3;
+	auto airyp = emsr::detail::_Airy<std::complex<Tp>>()(airy_argp);
 
-	auto num2k3 = _Tp{1};
+	auto num2k3 = Tp{1};
 
-	auto _H1sum1 = _Tp{0};
-	auto _H2sum1 = _Tp{0};
-	num2k3 = _Tp{1};
+	auto _H1sum1 = Tp{0};
+	auto _H2sum1 = Tp{0};
+	num2k3 = Tp{1};
 	for (const auto& p : P)
 	  {
 	    _H1sum1 += p(a) * num2k3;
@@ -272,9 +272,9 @@ template<typename _Tp>
 	    num2k3 /= nu23;
 	  }
 
-	auto _H1sum2 = _Tp{0};
-	auto _H2sum2 = _Tp{0};
-	num2k3 = _Tp{1};
+	auto _H1sum2 = Tp{0};
+	auto _H2sum2 = Tp{0};
+	num2k3 = Tp{1};
 	for (const auto& q : Q)
 	  {
 	    _H1sum2 += q(a) * num2k3;
@@ -287,9 +287,9 @@ template<typename _Tp>
 	const auto _H2t = s_2p43 * pipi3 * airyp.Ai_value * _H2sum1 / nu13
 			+ s_2p53 * pipi3 * airyp.Ai_deriv * _H2sum2 / nu;
 
-	auto _H1psum1 = _Tp{0};
-	auto _H2psum1 = _Tp{0};
-	num2k3 = _Tp{1};
+	auto _H1psum1 = Tp{0};
+	auto _H2psum1 = Tp{0};
+	num2k3 = Tp{1};
 	for (const auto& r : R)
 	  {
 	    _H1psum1 += r(a) * num2k3;
@@ -297,9 +297,9 @@ template<typename _Tp>
 	    num2k3 /= nu23;
 	  }
 
-	auto _H1psum2 = _Tp{0};
-	auto _H2psum2 = _Tp{0};
-	num2k3 = _Tp{1};
+	auto _H1psum2 = Tp{0};
+	auto _H2psum2 = Tp{0};
+	num2k3 = Tp{1};
 	for (const auto& s : S)
 	  {
 	    _H1psum2 += s(a) * num2k3;

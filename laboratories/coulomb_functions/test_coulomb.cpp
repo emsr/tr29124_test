@@ -15,9 +15,9 @@ enum Func
   CylBessel
 };
 
-template<typename _Tp>
+template<typename Tp>
   void
-  coulomb_jwkb(_Tp lambda, _Tp eta, _Tp rho, _Tp& fjwkb, _Tp& gjwkb, int& iexp);
+  coulomb_jwkb(Tp lambda, Tp eta, Tp rho, Tp& fjwkb, Tp& gjwkb, int& iexp);
 
 /**
  * Revised Coulomb wavefunction program using Steed's method
@@ -34,22 +34,22 @@ template<typename _Tp>
  *         = 1 Spherical Bessel
  *         = 2 Cylindrical Bessel
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  coulomb_steed(Func func, _Tp lambda, _Tp eta, _Tp rho,
-		  _Tp& fc, _Tp& gc, _Tp& fcp, _Tp& gcp, int& ifail)
+  coulomb_steed(Func func, Tp lambda, Tp eta, Tp rho,
+		  Tp& fc, Tp& gc, Tp& fcp, Tp& gcp, int& ifail)
   {
-    constexpr auto abort = _Tp{20000};
-    //constexpr auto s_tiny = _Tp{1.0e-30};
-    // This constant is  sqrt(_Tp{2}/pi)
-    constexpr auto rt2epi = _Tp{0.79788'45608'02865e0};
-    const auto s_eps = std::numeric_limits<_Tp>::epsilon();
-    const auto s_i = std::complex<_Tp>{0, 1};
+    constexpr auto abort = Tp{20000};
+    //constexpr auto s_tiny = Tp{1.0e-30};
+    // This constant is  sqrt(Tp{2}/pi)
+    constexpr auto rt2epi = Tp{0.79788'45608'02865e0};
+    const auto s_eps = std::numeric_limits<Tp>::epsilon();
+    const auto s_i = std::complex<Tp>{0, 1};
     ifail = 0;
     int iexp = 1;
     if (func != Coulomb)
-      eta = _Tp{0};
-    const auto acc4 = std::pow(s_eps, 0.75);// * _Tp{10000};
+      eta = Tp{0};
+    const auto acc4 = std::pow(s_eps, 0.75);// * Tp{10000};
     const auto acch = std::sqrt(s_eps);
     // Test range of rho, exit if <= sqrt(epsilon) or if negative
     if (rho <= acch)
@@ -58,70 +58,70 @@ template<typename _Tp>
 	return;
       }
     if (func == 2)
-      lambda -= _Tp{0.5};
-    if (lambda <= -_Tp{1})
+      lambda -= Tp{0.5};
+    if (lambda <= -Tp{1})
       {
 	ifail = -2;
 	return;
       }
-    const auto e2mm1 = eta * eta + lambda * (lambda + _Tp{1});
-    bool turn = rho * (rho - _Tp{2} * eta) < lambda * (lambda + _Tp{1});
+    const auto e2mm1 = eta * eta + lambda * (lambda + Tp{1});
+    bool turn = rho * (rho - Tp{2} * eta) < lambda * (lambda + Tp{1});
     // lxtra is number of additional lambda values to be computed
     // lamax is max lambda value, or 0.5 smaller for J, Y Bessels
-    int lxtra = std::numeric_limits<_Tp>::digits10;
-    const auto lamax = lambda + _Tp(lxtra);
+    int lxtra = std::numeric_limits<Tp>::digits10;
+    const auto lamax = lambda + Tp(lxtra);
 
     //  Evaluate CF1 = f = F'(lambda,eta,x) / F(lambda,eta,x)
-    const auto xi = _Tp{1} / rho;
-    auto f = _Tp{0};
-    auto fcl = _Tp{1};
-    auto ek = _Tp{0};
-    auto pk = lamax + _Tp{1};
-    auto pk1 = _Tp{0};
+    const auto xi = Tp{1} / rho;
+    auto f = Tp{0};
+    auto fcl = Tp{1};
+    auto ek = Tp{0};
+    auto pk = lamax + Tp{1};
+    auto pk1 = Tp{0};
     auto px = pk + abort;
     while (true)
       {
 	ek = eta / pk;
-	f = (ek + pk * xi) * fcl + (fcl - _Tp{1}) * xi;
-	pk1 = pk + _Tp{1};
+	f = (ek + pk * xi) * fcl + (fcl - Tp{1}) * xi;
+	pk1 = pk + Tp{1};
 	const auto ek1 = eta / pk1;
-	// Test ensures b1 != _Tp{0} for negative eta; fixup is exact.
+	// Test ensures b1 != Tp{0} for negative eta; fixup is exact.
 	if (std::abs(eta * rho + pk * pk1) > s_eps)
 	  break;
-	fcl = (_Tp{1} + ek * ek) / (_Tp{1} + ek1 * ek1);
-	pk +=  _Tp{2};
+	fcl = (Tp{1} + ek * ek) / (Tp{1} + ek1 * ek1);
+	pk +=  Tp{2};
       }
-    auto d = _Tp{1} / ((pk + pk1) * (xi + ek / pk1));
-    auto df = -fcl * (_Tp{1} + ek * ek) * d;
-    if (fcl != _Tp{1} )
-      fcl = -_Tp{1};
-    if (d < _Tp{0})
+    auto d = Tp{1} / ((pk + pk1) * (xi + ek / pk1));
+    auto df = -fcl * (Tp{1} + ek * ek) * d;
+    if (fcl != Tp{1} )
+      fcl = -Tp{1};
+    if (d < Tp{0})
       fcl = -fcl;
     f += df;
 
     // Begin CF1 loop on pk = k = lambda + 1
-    auto test = _Tp{1};
-    auto tk = _Tp{0};
+    auto test = Tp{1};
+    auto tk = Tp{0};
     do
       {
 	pk = pk1;
-	pk1 += _Tp{1};
+	pk1 += Tp{1};
 	ek = eta / pk;
 	tk = (pk + pk1) * (xi + ek / pk1);
-	d = tk - d * (_Tp{1} + ek * ek);
+	d = tk - d * (Tp{1} + ek * ek);
 	if (std::abs(d) < acch)
 	  {
-	    test += _Tp{1};
-	    if (test > _Tp{2})
+	    test += Tp{1};
+	    if (test > Tp{2})
 	      {
 		ifail = 1;
 		return;
 	      }
 	  }
-	d = _Tp{1} / d;
-	if (d < _Tp{0})
+	d = Tp{1} / d;
+	if (d < Tp{0})
 	  fcl = -fcl;
-	df *= (d * tk - _Tp{1});
+	df *= (d * tk - Tp{1});
 	f += df;
 	if (pk > px)
 	  {
@@ -139,14 +139,14 @@ template<typename _Tp>
     fcp = fcpl;
     fc = fcl;
     auto xl = lamax;
-    auto rl = _Tp{1};
-    auto el = _Tp{0};
+    auto rl = Tp{1};
+    auto el = Tp{0};
     for (auto lp = 1; lp <= lxtra; ++lp)
       {
-	if (eta != _Tp{0})
+	if (eta != Tp{0})
 	  {
             el = eta / xl;
-            rl = std::sqrt(_Tp{1} + el * el);
+            rl = std::sqrt(Tp{1} + el * el);
 	  }
 	auto sl = el + xl * xi;
 	auto fcl1 = (fcl * sl + fcpl) / rl;
@@ -154,9 +154,9 @@ template<typename _Tp>
 	fcl = fcl1;
 	fc = fcl;
 	fcp = fcpl;
-	//if (eta != _Tp{0})
+	//if (eta != Tp{0})
           //gc = rl;
-	xl -= _Tp{1};
+	xl -= Tp{1};
       }
     if (std::abs(fcl) < s_eps)
       fcl = s_eps;
@@ -167,40 +167,40 @@ template<typename _Tp>
     // Now we have reached lambda
     // Evaluate CF2 = P + I.Q  again using Steed's algorithm
     // see text for compact complex code for sp cdc or non-ansi ibm 
-    auto fjwkb = _Tp{0};
-    auto gjwkb = _Tp{0};
-    _Tp gam = _Tp{0}, w = _Tp{0};
-    _Tp p, q;
+    auto fjwkb = Tp{0};
+    auto gjwkb = Tp{0};
+    Tp gam = Tp{0}, w = Tp{0};
+    Tp p, q;
     if (turn)
-      coulomb_jwkb(std::max(lambda, _Tp{0}), eta, rho, fjwkb, gjwkb, iexp);
-    if (iexp > 1 && gjwkb > _Tp{1} / (_Tp{100} * acch))
+      coulomb_jwkb(std::max(lambda, Tp{0}), eta, rho, fjwkb, gjwkb, iexp);
+    if (iexp > 1 && gjwkb > Tp{1} / (Tp{100} * acch))
       {
 	// Arrive here if G > 10^6
 	w = fjwkb;
 	gam = gjwkb * w;
 	p = f;
-	q = _Tp{1};
+	q = Tp{1};
       }
     else
       {
 	turn = false;
-	const auto tab = _Tp{2} * abort;
-	pk = _Tp{0};
-	const auto wi = _Tp{2} * eta;
-	auto pq = std::complex<_Tp>(_Tp{0}, _Tp{1} - eta * xi);
-	auto a = std::complex<_Tp>(-e2mm1, eta);
-	auto b = _Tp{2} * std::complex<_Tp>(rho - eta, _Tp{1});
+	const auto tab = Tp{2} * abort;
+	pk = Tp{0};
+	const auto wi = Tp{2} * eta;
+	auto pq = std::complex<Tp>(Tp{0}, Tp{1} - eta * xi);
+	auto a = std::complex<Tp>(-e2mm1, eta);
+	auto b = Tp{2} * std::complex<Tp>(rho - eta, Tp{1});
 	auto d = std::conj(b) / std::norm(b);
 	auto dpq = s_i * xi * a * d;
 	do
 	  {
 	    pq += dpq;
-	    pk += _Tp{2};
-	    a += std::complex<_Tp>(pk, wi);
-	    b += _Tp{2} * s_i;
+	    pk += Tp{2};
+	    a += std::complex<Tp>(pk, wi);
+	    b += Tp{2} * s_i;
 	    d = b + a * d;
 	    d = std::conj(d) / std::norm(d);
-	    auto ab = b * d - _Tp{1};
+	    auto ab = b * d - Tp{1};
 	    dpq *= ab;
 	    if (pk > tab)
 	      {
@@ -219,12 +219,12 @@ template<typename _Tp>
 	    ifail = 3;
 	    return;
 	  }
-	w = _Tp{1} / std::sqrt((f - p) * gam + q);
+	w = Tp{1} / std::sqrt((f - p) * gam + q);
       }
 
     // Normalise for spherical or cylindrical Bessel functions
-    auto alpha = _Tp{0};
-    auto beta = _Tp{1};
+    auto alpha = Tp{0};
+    auto beta = Tp{1};
     if (func == SphBessel)
       {
 	alpha = xi;
@@ -232,7 +232,7 @@ template<typename _Tp>
       }
     else if (func == CylBessel)
       {
-	alpha = _Tp{0.5} * xi;
+	alpha = Tp{0.5} * xi;
 	beta = std::sqrt(xi) * rt2epi;
       }
     const auto fcm = std::copysign(w, fcl) * beta;
@@ -248,10 +248,10 @@ template<typename _Tp>
 /*
     // Upward recurrence from GC, G' stored value is rl
     // Renormalise FC, F' at each lambda and correct regular derivative
-    //    xl = lambda here and rl = _Tp{1}, el = _Tp{0} for Bessels
+    //    xl = lambda here and rl = Tp{1}, el = Tp{0} for Bessels
     w *= beta / std::abs(fcl);
-    xl += _Tp{1};
-    if (eta != _Tp{0})
+    xl += Tp{1};
+    if (eta != Tp{0})
       {
 	el = eta / xl;
 	rl = gc;
@@ -273,49 +273,49 @@ template<typename _Tp>
  * Computes JWKB approximations to Coulomb functions for lambda >= 0
  * as modified by Biedenharn et al. Phys Rev 97 (1955) 542-554
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  coulomb_jwkb(_Tp lambda, _Tp eta, _Tp rho, _Tp& fjwkb, _Tp& gjwkb, int& iexp)
+  coulomb_jwkb(Tp lambda, Tp eta, Tp rho, Tp& fjwkb, Tp& gjwkb, int& iexp)
   {
-    const auto gh2 = rho * (_Tp{2} * eta - rho);
-    const auto lamax = std::max(lambda * (lambda + _Tp{1}), _Tp{0});
-    if (gh2 + lamax <= _Tp{0})
+    const auto gh2 = rho * (Tp{2} * eta - rho);
+    const auto lamax = std::max(lambda * (lambda + Tp{1}), Tp{0});
+    if (gh2 + lamax <= Tp{0})
       return;
-    const auto hll = lamax + _Tp{6} / _Tp{35};
+    const auto hll = lamax + Tp{6} / Tp{35};
     const auto hl = std::sqrt(hll);
     const auto sl = eta / hl + hl / rho;
-    const auto rl2 = _Tp{1} + eta * eta / hll;
+    const auto rl2 = Tp{1} + eta * eta / hll;
     const auto gh = std::sqrt(gh2 + hll) / rho;
     auto phi = rho * gh
-	     - _Tp{0.5} * (hl * std::log((gh + sl) * (gh + sl) / rl2)
+	     - Tp{0.5} * (hl * std::log((gh + sl) * (gh + sl) / rl2)
 			  - std::log(gh));
     phi -= eta * std::atan2(rho * gh, rho - eta);
     const auto phi10 = -phi;
     iexp = int(phi10);
     if (iexp > 250)
-      gjwkb = std::exp(phi10 - _Tp(iexp));
+      gjwkb = std::exp(phi10 - Tp(iexp));
     else
       {
 	gjwkb = std::exp(-phi);
 	iexp = 0;
       }
-    fjwkb = _Tp{0.5} / (gh * gjwkb);
+    fjwkb = Tp{0.5} / (gh * gjwkb);
     return;
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_coulomb()
   {
     Func func = Coulomb;
-    _Tp lambda = 0;
-    for (auto eta : {_Tp{-2}, _Tp{0}, _Tp{2}, _Tp{10}})
+    Tp lambda = 0;
+    for (auto eta : {Tp{-2}, Tp{0}, Tp{2}, Tp{10}})
       {
 	std::cout << "\n\neta = " << eta << '\n';
 	for (int irho = 1; irho <= 200; ++irho)
 	  {
-	    auto rho = irho * _Tp{0.1};
-	    _Tp fc = 0, gc = 0, fcp = 0, gcp = 0;
+	    auto rho = irho * Tp{0.1};
+	    Tp fc = 0, gc = 0, fcp = 0, gcp = 0;
 	    int ifail = 0;
 	    coulomb_steed(func, lambda, eta, rho, fc, gc, fcp, gcp, ifail);
 	    std::cout << ' ' << std::setw(16) << rho
@@ -332,6 +332,6 @@ template<typename _Tp>
 int
 main()
 {
-  using _Tp = double;
-  test_coulomb<_Tp>();
+  using Tp = double;
+  test_coulomb<Tp>();
 }

@@ -75,20 +75,20 @@ namespace tr1
      *      \zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
      *    \f]
      */
-    template<typename _Tp>
-    _Tp
-    riemann_zeta_sum(_Tp s)
+    template<typename Tp>
+    Tp
+    riemann_zeta_sum(Tp s)
     {
       //  A user shouldn't get to this.
-      if (s < _Tp(1))
+      if (s < Tp(1))
         throw std::domain_error("Bad argument in zeta sum.");
 
       const unsigned int max_iter = 10000;
-      _Tp zeta = _Tp(0);
+      Tp zeta = Tp(0);
       for (unsigned int k = 1; k < max_iter; ++k)
         {
-          _Tp term = std::pow(static_cast<_Tp>(k), -s);
-          if (term < std::numeric_limits<_Tp>::epsilon())
+          Tp term = std::pow(static_cast<Tp>(k), -s);
+          if (term < std::numeric_limits<Tp>::epsilon())
             {
               break;
             }
@@ -112,21 +112,21 @@ namespace tr1
      *      \zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
      *    \f]
      */
-    template<typename _Tp>
-    _Tp
-    riemann_zeta_alt(_Tp s)
+    template<typename Tp>
+    Tp
+    riemann_zeta_alt(Tp s)
     {
-      _Tp sgn = _Tp(1);
-      _Tp zeta = _Tp(0);
+      Tp sgn = Tp(1);
+      Tp zeta = Tp(0);
       for (unsigned int i = 1; i < 10000000; ++i)
         {
-          _Tp term = sgn / std::pow(i, s);
-          if (std::abs(term) < std::numeric_limits<_Tp>::epsilon())
+          Tp term = sgn / std::pow(i, s);
+          if (std::abs(term) < std::numeric_limits<Tp>::epsilon())
             break;
           zeta += term;
-          sgn *= _Tp(-1);
+          sgn *= Tp(-1);
         }
-      zeta /= _Tp(1) - std::pow(_Tp(2), _Tp(1) - s);
+      zeta /= Tp(1) - std::pow(Tp(2), Tp(1) - s);
 
       return zeta;
     }
@@ -154,56 +154,56 @@ namespace tr1
      *      \zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
      *    \f]
      */
-    template<typename _Tp>
-    _Tp
-    riemann_zeta_glob(_Tp s)
+    template<typename Tp>
+    Tp
+    riemann_zeta_glob(Tp s)
     {
-      _Tp zeta = _Tp(0);
+      Tp zeta = Tp(0);
 
-      const _Tp eps = std::numeric_limits<_Tp>::epsilon();
+      const Tp eps = std::numeric_limits<Tp>::epsilon();
       //  Max e exponent before overflow.
-      const _Tp max_binom = std::exp(std::numeric_limits<_Tp>::max_exponent10
-                            * std::log(_Tp(10)) - _Tp(1));
+      const Tp max_binom = std::exp(std::numeric_limits<Tp>::max_exponent10
+                            * std::log(Tp(10)) - Tp(1));
 
       //  This series works until the binomial coefficient blows up
       //  so use reflection.
-      if (s < _Tp(0))
+      if (s < Tp(0))
         {
 #if _GLIBCXX_USE_C99_MATH_TR1
-          if (_GLIBCXX_MATH_NS::fmod(s, _Tp(2)) == _Tp(0))
-            return _Tp(0);
+          if (_GLIBCXX_MATH_NS::fmod(s, Tp(2)) == Tp(0))
+            return Tp(0);
           else
 #endif
             {
-              _Tp zeta = riemann_zeta_glob(_Tp(1) - s);
-              zeta *= std::pow(_Tp(2)
-                     * numeric_constants<_Tp>::pi(), s)
-                     * std::sin(numeric_constants<_Tp>::pi_2() * s)
+              Tp zeta = riemann_zeta_glob(Tp(1) - s);
+              zeta *= std::pow(Tp(2)
+                     * numeric_constants<Tp>::pi(), s)
+                     * std::sin(numeric_constants<Tp>::pi_2() * s)
 #if _GLIBCXX_USE_C99_MATH_TR1
-                     * std::exp(_GLIBCXX_MATH_NS::lgamma(_Tp(1) - s))
+                     * std::exp(_GLIBCXX_MATH_NS::lgamma(Tp(1) - s))
 #else
-                     * std::exp(log_gamma(_Tp(1) - s))
+                     * std::exp(log_gamma(Tp(1) - s))
 #endif
-                     / numeric_constants<_Tp>::pi();
+                     / numeric_constants<Tp>::pi();
               return zeta;
             }
         }
 
-      _Tp num = _Tp(0.25L);
+      Tp num = Tp(0.25L);
       const unsigned int maxit = 10000;
-      zeta = _Tp(0.5L);
+      zeta = Tp(0.5L);
       // This for loop starts at 1 because we already calculated the
       // value of the zeroeth order in zeta above
       for (unsigned int i = 1; i < maxit; ++i)
         {
           bool punt = false;
-          _Tp term = _Tp(1.0L);
-          _Tp binom = _Tp(1.0L);
+          Tp term = Tp(1.0L);
+          Tp binom = Tp(1.0L);
           // This for loop starts at 1 because we already calculated the value
           // of the zeroeth order in term above.
           for (unsigned int j = 1; j <= i; ++j)
             {
-              _Tp incr = _Tp(i - j + 1) / _Tp(j);
+              Tp incr = Tp(i - j + 1) / Tp(j);
               binom *= -incr;
               if(std::abs(binom) > max_binom )
                 {
@@ -211,7 +211,7 @@ namespace tr1
                   punt = true;
                   break;
                 }
-              term += binom * std::pow(_Tp(1 + j), -s);
+              term += binom * std::pow(Tp(1 + j), -s);
             }
           if (punt)
             break;
@@ -219,10 +219,10 @@ namespace tr1
           zeta += term;
           if (std::abs(term/zeta) < eps)
             break;
-          num *= _Tp(0.5L);
+          num *= Tp(0.5L);
         }
 
-      zeta /= _Tp(1) - std::pow(_Tp(2), _Tp(1) - s);
+      zeta /= Tp(1) - std::pow(Tp(2), Tp(1) - s);
 
       return zeta;
     }
@@ -245,28 +245,28 @@ namespace tr1
      *      \zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
      *    \f]
      */
-    template<typename _Tp>
-    _Tp
-    riemann_zeta_product(_Tp s)
+    template<typename Tp>
+    Tp
+    riemann_zeta_product(Tp s)
     {
-      static const _Tp prime[] = {
-        _Tp(2), _Tp(3), _Tp(5), _Tp(7), _Tp(11), _Tp(13), _Tp(17), _Tp(19),
-        _Tp(23), _Tp(29), _Tp(31), _Tp(37), _Tp(41), _Tp(43), _Tp(47),
-        _Tp(53), _Tp(59), _Tp(61), _Tp(67), _Tp(71), _Tp(73), _Tp(79),
-        _Tp(83), _Tp(89), _Tp(97), _Tp(101), _Tp(103), _Tp(107), _Tp(109)
+      static const Tp prime[] = {
+        Tp(2), Tp(3), Tp(5), Tp(7), Tp(11), Tp(13), Tp(17), Tp(19),
+        Tp(23), Tp(29), Tp(31), Tp(37), Tp(41), Tp(43), Tp(47),
+        Tp(53), Tp(59), Tp(61), Tp(67), Tp(71), Tp(73), Tp(79),
+        Tp(83), Tp(89), Tp(97), Tp(101), Tp(103), Tp(107), Tp(109)
       };
-      static const unsigned int num_primes = sizeof(prime) / sizeof(_Tp);
+      static const unsigned int num_primes = sizeof(prime) / sizeof(Tp);
 
-      _Tp zeta = _Tp(1);
+      Tp zeta = Tp(1);
       for (unsigned int i = 0; i < num_primes; ++i)
         {
-          const _Tp fact = _Tp(1) - std::pow(prime[i], -s);
+          const Tp fact = Tp(1) - std::pow(prime[i], -s);
           zeta *= fact;
-          if (_Tp(1) - fact < std::numeric_limits<_Tp>::epsilon())
+          if (Tp(1) - fact < std::numeric_limits<Tp>::epsilon())
             break;
         }
 
-      zeta = _Tp(1) / zeta;
+      zeta = Tp(1) / zeta;
 
       return zeta;
     }
@@ -286,28 +286,28 @@ namespace tr1
      *      \zeta(s) = 2^s \pi^{s-1} \Gamma(1-s) \zeta(1-s)
      *    \f]
      */
-    template<typename _Tp>
-    _Tp
-    riemann_zeta(_Tp s)
+    template<typename Tp>
+    Tp
+    riemann_zeta(Tp s)
     {
       if (std::isnan(s))
-        return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (s == _Tp(1))
-        return std::numeric_limits<_Tp>::infinity();
-      else if (s < -_Tp(19))
+        return std::numeric_limits<Tp>::quiet_NaN();
+      else if (s == Tp(1))
+        return std::numeric_limits<Tp>::infinity();
+      else if (s < -Tp(19))
         {
-          _Tp zeta = riemann_zeta_product(_Tp(1) - s);
-          zeta *= std::pow(_Tp(2) * numeric_constants<_Tp>::pi(), s)
-                 * std::sin(numeric_constants<_Tp>::pi_2() * s)
+          Tp zeta = riemann_zeta_product(Tp(1) - s);
+          zeta *= std::pow(Tp(2) * numeric_constants<Tp>::pi(), s)
+                 * std::sin(numeric_constants<Tp>::pi_2() * s)
 #if _GLIBCXX_USE_C99_MATH_TR1
-                 * std::exp(_GLIBCXX_MATH_NS::lgamma(_Tp(1) - s))
+                 * std::exp(_GLIBCXX_MATH_NS::lgamma(Tp(1) - s))
 #else
-                 * std::exp(log_gamma(_Tp(1) - s))
+                 * std::exp(log_gamma(Tp(1) - s))
 #endif
-                 / numeric_constants<_Tp>::pi();
+                 / numeric_constants<Tp>::pi();
           return zeta;
         }
-      else if (s < _Tp(20))
+      else if (s < Tp(20))
         {
           //  Global double sum or McLaurin?
           bool glob = true;
@@ -315,19 +315,19 @@ namespace tr1
             return riemann_zeta_glob(s);
           else
             {
-              if (s > _Tp(1))
+              if (s > Tp(1))
                 return riemann_zeta_sum(s);
               else
                 {
-                  _Tp zeta = std::pow(_Tp(2)
-                                * numeric_constants<_Tp>::pi(), s)
-                         * std::sin(numeric_constants<_Tp>::pi_2() * s)
+                  Tp zeta = std::pow(Tp(2)
+                                * numeric_constants<Tp>::pi(), s)
+                         * std::sin(numeric_constants<Tp>::pi_2() * s)
 #if _GLIBCXX_USE_C99_MATH_TR1
-                             * _GLIBCXX_MATH_NS::tgamma(_Tp(1) - s)
+                             * _GLIBCXX_MATH_NS::tgamma(Tp(1) - s)
 #else
-                             * std::exp(log_gamma(_Tp(1) - s))
+                             * std::exp(log_gamma(Tp(1) - s))
 #endif
-                             * riemann_zeta_sum(_Tp(1) - s);
+                             * riemann_zeta_sum(Tp(1) - s);
                   return zeta;
                 }
             }
@@ -358,33 +358,33 @@ namespace tr1
      *                \sum_{k=0}^{n} (-1)^k \frac{n!}{(n-k)!k!} (k+a)^{-s}
      *   @f]
      */
-    template<typename _Tp>
-    _Tp
-    hurwitz_zeta_glob(_Tp s, _Tp a)
+    template<typename Tp>
+    Tp
+    hurwitz_zeta_glob(Tp s, Tp a)
     {
-      _Tp zeta = _Tp(0);
+      Tp zeta = Tp(0);
 
-      const _Tp eps = std::numeric_limits<_Tp>::epsilon();
+      const Tp eps = std::numeric_limits<Tp>::epsilon();
       //  Max e exponent before overflow.
-      const _Tp max_binom = std::numeric_limits<_Tp>::max_exponent10
-                            * std::log(_Tp(10)) - _Tp(1);
+      const Tp max_binom = std::numeric_limits<Tp>::max_exponent10
+                            * std::log(Tp(10)) - Tp(1);
 
       const unsigned int maxit = 10000;
       for (unsigned int i = 0; i < maxit; ++i)
         {
           bool punt = false;
-          _Tp sgn = _Tp(1);
-          _Tp term = _Tp(0);
+          Tp sgn = Tp(1);
+          Tp term = Tp(0);
           for (unsigned int j = 0; j <= i; ++j)
             {
 #if _GLIBCXX_USE_C99_MATH_TR1
-              _Tp binom = _GLIBCXX_MATH_NS::lgamma(_Tp(1 + i))
-                          - _GLIBCXX_MATH_NS::lgamma(_Tp(1 + j))
-                          - _GLIBCXX_MATH_NS::lgamma(_Tp(1 + i - j));
+              Tp binom = _GLIBCXX_MATH_NS::lgamma(Tp(1 + i))
+                          - _GLIBCXX_MATH_NS::lgamma(Tp(1 + j))
+                          - _GLIBCXX_MATH_NS::lgamma(Tp(1 + i - j));
 #else
-              _Tp binom = log_gamma(_Tp(1 + i))
-                          - log_gamma(_Tp(1 + j))
-                          - log_gamma(_Tp(1 + i - j));
+              Tp binom = log_gamma(Tp(1 + i))
+                          - log_gamma(Tp(1 + j))
+                          - log_gamma(Tp(1 + i - j));
 #endif
               if (binom > max_binom)
                 {
@@ -393,18 +393,18 @@ namespace tr1
                   break;
                 }
               binom = std::exp(binom);
-              term += sgn * binom * std::pow(_Tp(j + a), -s);
-              sgn *= _Tp(-1);
+              term += sgn * binom * std::pow(Tp(j + a), -s);
+              sgn *= Tp(-1);
             }
           if (punt)
             break;
-          term /= _Tp(i + 1);
+          term /= Tp(i + 1);
           if (std::abs(term / zeta) < eps)
             break;
           zeta += term;
         }
 
-      zeta /= s - _Tp(1);
+      zeta /= s - Tp(1);
 
       return zeta;
     }
@@ -423,9 +423,9 @@ namespace tr1
      *     \zeta(s) = \zeta(s,1)
      *   @f]
      */
-    template<typename _Tp>
-    _Tp
-    hurwitz_zeta(_Tp s, _Tp a)
+    template<typename Tp>
+    Tp
+    hurwitz_zeta(Tp s, Tp a)
     { return hurwitz_zeta_glob(s, a); }
   } // namespace __detail
 #undef _GLIBCXX_MATH_NS

@@ -9,12 +9,12 @@
 #include <emsr/float128_io.h>
 #include <emsr/polynomial.h>
 
-template<typename _Tp>
+template<typename Tp>
   void
   run_toy()
   {
-    constexpr auto s_1d6 = _Tp{1} / _Tp{6};
-    constexpr auto s_5d6 = _Tp{5} / _Tp{6};
+    constexpr auto s_1d6 = Tp{1} / Tp{6};
+    constexpr auto s_5d6 = Tp{5} / Tp{6};
 
     auto index = 0;
     auto indexp = 0;
@@ -40,7 +40,7 @@ template<typename _Tp>
 	std::cout << "indexp = " << (k + 1) * (2 * k + 1) << '\n';
       }
 
-    auto prec = std::numeric_limits<_Tp>::max_digits10;
+    auto prec = std::numeric_limits<Tp>::max_digits10;
     auto width = prec + 6;
 
     std::cout.precision(prec);
@@ -50,8 +50,8 @@ template<typename _Tp>
     bool old = false;
 
     std::cout << '\n' << std::setw(width) << "lambda\t" << std::setw(width) << "mu\n";
-    _Tp lambda = _Tp{1};
-    _Tp mu = -_Tp{1};
+    Tp lambda = Tp{1};
+    Tp mu = -Tp{1};
     for (int s = 1; s <= 50; ++s)
       {
 	std::cout << std::setw(width) << lambda << '\t' << std::setw(width) << mu << '\n';
@@ -60,7 +60,7 @@ template<typename _Tp>
 	//   numer *= m;
 	if (old)
 	  {
-	    lambda *= _Tp{1} * (6 * s - 5) * (6 * s - 3) * (6 * s - 1)
+	    lambda *= Tp{1} * (6 * s - 5) * (6 * s - 3) * (6 * s - 1)
 		  / ((2 * s - 1) * s * 144);
 	    mu = -(6 * s + 1) * lambda / (6 * s - 1);
 	  }
@@ -68,25 +68,25 @@ template<typename _Tp>
 	  { // FIXME: Why this no work!?!?!
 	    // It's a subtly different thing!  Look at the nenom!
 	    // Derive a new one!
-	    //lambda *= _Tp(s - 1) / _Tp{2} + _Tp{5} / _Tp(72 * s);
-	    //mu = -lambda * _Tp(s + s_1d6) / _Tp(s - s_1d6);
-	    lambda *= _Tp{3} * _Tp(s - s_5d6) * _Tp(s - s_1d6)
+	    //lambda *= Tp(s - 1) / Tp{2} + Tp{5} / Tp(72 * s);
+	    //mu = -lambda * Tp(s + s_1d6) / Tp(s - s_1d6);
+	    lambda *= Tp{3} * Tp(s - s_5d6) * Tp(s - s_1d6)
 		   / (s * 4);
-	    mu = -lambda * _Tp(s + s_1d6) / _Tp(s - s_1d6);
+	    mu = -lambda * Tp(s + s_1d6) / Tp(s - s_1d6);
 	  }
 	if (std::isnan(lambda) || std::isinf(lambda)
 	 || std::isnan(mu) || std::isinf(mu))
 	  break;
       }
 
-    emsr::Polynomial<_Tp> upol1{_Tp{0}, _Tp{0}, _Tp{0.5Q}, _Tp{0}, -_Tp{0.5Q}};
-    emsr::Polynomial<_Tp> upol2{+_Tp{0.125Q}, _Tp{0}, -_Tp{0.625Q}};
-    emsr::Polynomial<_Tp> vpol1{_Tp{0}, -_Tp{0.5Q}, _Tp{0}, +_Tp{0.5Q}};
-    emsr::Polynomial<_Tp> vpol2{_Tp{0}, _Tp{0}, -_Tp{1}, _Tp{0}, +_Tp{1}};
-    emsr::Polynomial<_Tp> u{_Tp{1}};
-    std::vector<emsr::Polynomial<_Tp>> uvec;
-    emsr::Polynomial<_Tp> v{_Tp{1}};
-    std::vector<emsr::Polynomial<_Tp>> vvec;
+    emsr::Polynomial<Tp> upol1{Tp{0}, Tp{0}, Tp{0.5Q}, Tp{0}, -Tp{0.5Q}};
+    emsr::Polynomial<Tp> upol2{+Tp{0.125Q}, Tp{0}, -Tp{0.625Q}};
+    emsr::Polynomial<Tp> vpol1{Tp{0}, -Tp{0.5Q}, Tp{0}, +Tp{0.5Q}};
+    emsr::Polynomial<Tp> vpol2{Tp{0}, Tp{0}, -Tp{1}, Tp{0}, +Tp{1}};
+    emsr::Polynomial<Tp> u{Tp{1}};
+    std::vector<emsr::Polynomial<Tp>> uvec;
+    emsr::Polynomial<Tp> v{Tp{1}};
+    std::vector<emsr::Polynomial<Tp>> vvec;
     for (auto k = 1; k <= 20; ++k)
       {
 	uvec.push_back(u);
@@ -102,7 +102,7 @@ template<typename _Tp>
     for (const auto & v : vvec)
       std::cout << v << '\n';
 
-    std::vector<std::vector<std::tuple<int, int, _Tp>>> uentry;
+    std::vector<std::vector<std::tuple<int, int, Tp>>> uentry;
     auto ku = 0;
     for (const auto & u : uvec)
       {
@@ -122,7 +122,7 @@ template<typename _Tp>
 		    << ' ' << std::setw(3) << std::get<1>(c)
 		    << ' ' << std::setw(width) << std::get<2>(c) << '\n';
       }
-    std::vector<std::vector<std::tuple<int, int, _Tp>>> ventry;
+    std::vector<std::vector<std::tuple<int, int, Tp>>> ventry;
     auto kv = 0;
     for (const auto & v : vvec)
       {

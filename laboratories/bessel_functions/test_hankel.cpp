@@ -13,12 +13,12 @@
 #include <emsr/special_functions.h>
 
 /*
-  template<typename _Tp>
-    inline std::complex<_Tp>
-    operator/(const std::complex<_Tp>& x, const complex__ & y)
+  template<typename Tp>
+    inline std::complex<Tp>
+    operator/(const std::complex<Tp>& x, const complex__ & y)
     {
-      std::complex<_Tp> r = x;
-      r /= std::complex<_Tp>(y);
+      std::complex<Tp> r = x;
+      r /= std::complex<Tp>(y);
       return r;
     }
 */

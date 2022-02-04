@@ -12,13 +12,13 @@
 #include <wrap_gsl.h>
 
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_clausen_cl()
   {
-    using cmplx = std::complex<_Tp>;
+    using cmplx = std::complex<Tp>;
 
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -41,7 +41,7 @@ template<typename _Tp>
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
-    const auto del = _Tp{1} / _Tp{100};
+    const auto del = Tp{1} / Tp{100};
     for (int i = -1000; i <= +1000; ++i)
       {
 	auto w = cmplx{del * i};
@@ -60,11 +60,11 @@ template<typename _Tp>
     std::cout << '\n' << std::flush;
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
   plot_clausen()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -83,7 +83,7 @@ template<typename _Tp>
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
-    const auto del = _Tp{1} / _Tp{100};
+    const auto del = Tp{1} / Tp{100};
     for (int i = -1000; i <= +1000; ++i)
       {
 	auto w = del * i;

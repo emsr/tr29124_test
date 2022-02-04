@@ -11,11 +11,11 @@
 
 #include <wrap_boost.h>
 
-template<typename _Tp>
+template<typename Tp>
   void
-  run_sin_cos_pi(_Tp proto = _Tp{})
+  run_sin_cos_pi(Tp proto = Tp{})
   {
-    const _Tp _S_pi = emsr::pi_v<_Tp>;
+    const Tp _S_pi = emsr::pi_v<Tp>;
 
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -46,7 +46,7 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << std::setw(width) << "==============="
 	      << '\n';
-    const auto del = _Tp{1} / _Tp{10};
+    const auto del = Tp{1} / Tp{10};
     for (int i = -1600; i <= +1600; ++i)
       {
 	auto x = del * i;
@@ -95,7 +95,7 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << std::setw(width) << "==============="
 	      << '\n';
-    const auto bigdel = _Tp{1} / _Tp{4};
+    const auto bigdel = Tp{1} / Tp{4};
     for (int i = 0; i <= +3200; ++i)
       {
 	auto x = bigdel * i;

@@ -13,11 +13,11 @@
 #include <emsr/float128_math.h>
 #include <emsr/special_functions.h>
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_cyl_bessel()
   {
-    using _Val = _Tp;
+    using _Val = Tp;
     using _Real = emsr::num_traits_t<_Val>;
     const auto s_pi_2 = emsr::pi_v<_Real> / _Real{2};
 
@@ -27,19 +27,19 @@ template<typename _Tp>
 
     emsr::cyl_neumann(1.0, 0.01);
 
-    std::vector<_Tp> nuvec
+    std::vector<Tp> nuvec
     {
-      _Tp{0},
-      _Tp{1} / _Tp{3},
-      _Tp{1} / _Tp{2},
-      _Tp{2} / _Tp{3},
-      _Tp{1},
-      _Tp{2},
-      _Tp{5},
-      _Tp{10},
-      _Tp{20},
-      _Tp{50},
-      _Tp{100},
+      Tp{0},
+      Tp{1} / Tp{3},
+      Tp{1} / Tp{2},
+      Tp{2} / Tp{3},
+      Tp{1},
+      Tp{2},
+      Tp{5},
+      Tp{10},
+      Tp{20},
+      Tp{50},
+      Tp{100},
     };
 
     for (auto nu : nuvec)
@@ -57,7 +57,7 @@ template<typename _Tp>
 	std::cout << ' ' << std::setw(w) << "K'_nu(x)";
 	std::cout << ' ' << std::setw(w) << "-x W{I,K}";
 	std::cout << '\n';
-	const auto del = _Tp{1} / _Tp{100};
+	const auto del = Tp{1} / Tp{100};
 	for (unsigned int i = 0; i <= 1000; ++i)
           {
             auto x = i * del;
@@ -95,11 +95,11 @@ template<typename _Tp>
     return;
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_std_bessel()
   {
-    using _Val = _Tp;
+    using _Val = Tp;
     using _Real = emsr::num_traits_t<_Val>;
 
     std::cout.precision(emsr::digits10<_Real>());
@@ -107,19 +107,19 @@ template<typename _Tp>
     auto w = 8 + std::cout.precision();
 
 
-    std::vector<_Tp> nuvec
+    std::vector<Tp> nuvec
     {
-      _Tp{0},
-      _Tp{1} / _Tp{3},
-      _Tp{1} / _Tp{2},
-      _Tp{2} / _Tp{3},
-      _Tp{1},
-      _Tp{2},
-      _Tp{5},
-      _Tp{10},
-      _Tp{20},
-      _Tp{50},
-      _Tp{100},
+      Tp{0},
+      Tp{1} / Tp{3},
+      Tp{1} / Tp{2},
+      Tp{2} / Tp{3},
+      Tp{1},
+      Tp{2},
+      Tp{5},
+      Tp{10},
+      Tp{20},
+      Tp{50},
+      Tp{100},
     };
 
     for (auto nu : nuvec)
@@ -130,7 +130,7 @@ template<typename _Tp>
 	std::cout << ' ' << std::setw(w) << "N_nu(x)";
 	std::cout << ' ' << std::setw(w) << "I_nu(x)";
 	std::cout << ' ' << std::setw(w) << "K_nu(x)";
-	const auto del = _Tp{1} / _Tp{10};
+	const auto del = Tp{1} / Tp{10};
 	for (int i = 0; i <= 100; ++i)
 	  {
 	    auto x = i * del;

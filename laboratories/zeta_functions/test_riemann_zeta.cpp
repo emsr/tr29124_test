@@ -35,11 +35,11 @@
    *
    * @todo Try vanWijnGaarden summation and maybe even Shanks avter that.
    */
-  template<typename _Tp>
-    _Tp
-    riemann_zeta_alt(_Tp s)
+  template<typename Tp>
+    Tp
+    riemann_zeta_alt(Tp s)
     {
-      using _Val = _Tp;
+      using _Val = Tp;
       using _Real = emsr::num_traits_t<_Val>;
       const auto s_eps = emsr::epsilon(std::real(s));
       const unsigned int s_max_iter = 10000000;
@@ -82,11 +82,11 @@
    *
    * @param s The argument
    */
-  template<typename _Tp>
-    _Tp
-    riemann_zeta_product(_Tp s)
+  template<typename Tp>
+    Tp
+    riemann_zeta_product(Tp s)
     {
-      using _Val = _Tp;
+      using _Val = Tp;
       using _Real = emsr::num_traits_t<_Val>;
 
       const auto s_eps = emsr::epsilon(std::real(s));
@@ -100,11 +100,11 @@
 	  const auto fact = _Val{1}
 			    - std::pow(_Real(emsr::prime(i)), -s);
 	  zeta *= fact;
-	  if (std::abs(_Tp{1} - fact) < s_eps) // Assume zeta near 1.
+	  if (std::abs(Tp{1} - fact) < s_eps) // Assume zeta near 1.
 	    break;
 	}
 
-      zeta = _Tp{1} / zeta;
+      zeta = Tp{1} / zeta;
 
       return zeta;
     }
@@ -120,11 +120,11 @@
    *
    * @param s The argument @f$ s != 1 @f$
    */
-  template<typename _Tp>
-    _Tp
-    riemann_zeta_m_1_sum(_Tp s)
+  template<typename Tp>
+    Tp
+    riemann_zeta_m_1_sum(Tp s)
     {
-      using _Val = _Tp;
+      using _Val = Tp;
       using _Real = emsr::num_traits_t<_Val>;
       const auto s_eps = emsr::epsilon(std::real(s));
       if (emsr::fp_is_integer(s) == _Real{1})
@@ -144,11 +144,11 @@
     }
 
 
-template<typename _Tp>
+template<typename Tp>
   void
-  plot_riemann_zeta(std::string filename, _Tp proto = _Tp{})
+  plot_riemann_zeta(std::string filename, Tp proto = Tp{})
   {
-    using _Val = _Tp;
+    using _Val = Tp;
     using _Real = emsr::num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
@@ -240,11 +240,11 @@ template<typename _Tp>
     data << '\n';
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_riemann_zeta_real(_Tp proto = _Tp{})
+  test_riemann_zeta_real(Tp proto = Tp{})
   {
-    using _Val = _Tp;
+    using _Val = Tp;
     using _Real = emsr::num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 
@@ -274,9 +274,9 @@ template<typename _Tp>
       }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_riemann_zeta(_Tp proto = _Tp{})
+  test_riemann_zeta(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -292,8 +292,8 @@ template<typename _Tp>
 	      << '\n';
     for (int i = i_min; i <= +500; ++i)
       {
-        auto s = _Tp(0.05L * i);
-	if (s == _Tp{1})
+        auto s = Tp(0.05L * i);
+	if (s == Tp{1})
 	  {
 	    std::cout << ' ' << std::setw(w) << s
 		      << ' ' << std::setw(w) << "nan"
@@ -312,13 +312,13 @@ template<typename _Tp>
       }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_nontrivial_zeros(_Tp proto = _Tp{})
+  test_nontrivial_zeros(Tp proto = Tp{})
   {
     using namespace std::complex_literals;
 
-    using _Val = _Tp;
+    using _Val = Tp;
     using _Real = emsr::num_traits_t<_Val>;
     using _Cmplx = std::complex<_Real>;
 

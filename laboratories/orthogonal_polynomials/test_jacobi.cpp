@@ -13,17 +13,17 @@
 #include <emsr/sf_jacobi.h>
 #include <emsr/quadrature_point.h>
 
-  template<typename _Tp>
-    std::vector<emsr::QuadraturePoint<_Tp>>
-    jacobi_zeros(unsigned int n, _Tp alpha, _Tp beta)
+  template<typename Tp>
+    std::vector<emsr::QuadraturePoint<Tp>>
+    jacobi_zeros(unsigned int n, Tp alpha, Tp beta)
     {
       const auto s_eps = emsr::epsilon(alpha);
       const unsigned int s_maxit = 1000u;
 
-      std::vector<emsr::QuadraturePoint<_Tp>> pt(n);
+      std::vector<emsr::QuadraturePoint<Tp>> pt(n);
 
-      _Tp z;
-      _Tp w = _Tp{0};
+      Tp z;
+      Tp w = Tp{0};
       for (auto i = 1u; i <= n; ++i)
 	{
 	  if (i == 1)
@@ -79,35 +79,35 @@
 	  auto alphabeta = alpha + beta;
 	  for (auto its = 1u; its <= s_maxit; ++its)
 	    {
-	      auto temp = _Tp{2} + alphabeta;
-	      auto P1 = (alpha - beta + temp * z) / _Tp{2};
-	      auto P2 = _Tp{1};
+	      auto temp = Tp{2} + alphabeta;
+	      auto P1 = (alpha - beta + temp * z) / Tp{2};
+	      auto P2 = Tp{1};
 	      for (auto j = 2u; j <= n; ++j)
 		{
 		  auto P3 = P2;
 		  P2 = P1;
-		  temp = _Tp{2} * j + alphabeta;
-		  auto a = _Tp{2} * j * (j + alphabeta)
-			   * (temp - _Tp{2});
-		  auto b = (temp - _Tp{1})
+		  temp = Tp{2} * j + alphabeta;
+		  auto a = Tp{2} * j * (j + alphabeta)
+			   * (temp - Tp{2});
+		  auto b = (temp - Tp{1})
 			   * (alpha * alpha - beta * beta
-				+ temp * (temp - _Tp{2}) * z);
-		  auto c = _Tp{2} * (j - 1 + alpha)
+				+ temp * (temp - Tp{2}) * z);
+		  auto c = Tp{2} * (j - 1 + alpha)
 			   * (j - 1 + beta) * temp;
 		  P1 = (b * P2 - c * P3) / a;
 		}
 	      auto Pp = (n * (alpha - beta - temp * z) * P1
-			   + _Tp{2} * (n + alpha) * (n + beta) * P2)
-			/ (temp * (_Tp{1} - z * z));
+			   + Tp{2} * (n + alpha) * (n + beta) * P2)
+			/ (temp * (Tp{1} - z * z));
 	      auto z1 = z;
 	      z = z1 - P1 / Pp;
 	      if (std::abs(z - z1) <= s_eps)
 		{
-		  w = std::exp(std::lgamma(alpha + _Tp(n))
-			       + std::lgamma(beta + _Tp(n))
-			       - std::lgamma(_Tp(n + 1))
-			       - std::lgamma(_Tp(n + 1) + alphabeta))
-		      * temp * std::pow(_Tp{2}, alphabeta) / (Pp * P2);
+		  w = std::exp(std::lgamma(alpha + Tp(n))
+			       + std::lgamma(beta + Tp(n))
+			       - std::lgamma(Tp(n + 1))
+			       - std::lgamma(Tp(n + 1) + alphabeta))
+		      * temp * std::pow(Tp{2}, alphabeta) / (Pp * P2);
 		  break;
 		}
 	      if (its > s_maxit)
@@ -120,9 +120,9 @@
       return pt;
     }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_jacobi(_Tp proto = _Tp{})
+  test_jacobi(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     auto width = std::cout.precision() + 6;
@@ -131,15 +131,15 @@ template<typename _Tp>
       {
 	for (int i = 0; i <= 3; ++i)
 	  {
-            auto alpha = i * _Tp{1};
+            auto alpha = i * Tp{1};
             for (int j = 0; j <= 3; ++j)
               {
-        	auto beta = j * _Tp{1};
+        	auto beta = j * Tp{1};
         	std::cout << "n     = " << n << '\n';
         	std::cout << "alpha = " << alpha << '\n';
         	std::cout << "beta  = " << beta << '\n';
-                Life::Jacobi<_Tp> jac(n, alpha, beta);
-		const auto del01 = _Tp{1} / _Tp{100};
+                Life::Jacobi<Tp> jac(n, alpha, beta);
+		const auto del01 = Tp{1} / Tp{100};
 		for (int k = 0; k <= 200; ++k)
         	  {
         	    auto x = (k - 100) * del01;

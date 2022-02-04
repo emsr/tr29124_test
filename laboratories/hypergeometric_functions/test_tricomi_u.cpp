@@ -23,24 +23,24 @@
    * @param  x  The argument of the confluent hypergeometric function.
    * @return  The Tricomi confluent hypergeometric function.
    */
-  template<typename _Tp>
-    _Tp
-    tricomi_u_naive(_Tp a, _Tp c, _Tp x)
+  template<typename Tp>
+    Tp
+    tricomi_u_naive(Tp a, Tp c, Tp x)
     {
-      auto U1 = _Tp{};
-      auto b = a - c + _Tp{1};
+      auto U1 = Tp{};
+      auto b = a - c + Tp{1};
       auto ib = emsr::fp_is_integer(b);
       if (!ib || ib() > 0)
-	U1 = emsr::detail::gamma(_Tp{1} - c)
+	U1 = emsr::detail::gamma(Tp{1} - c)
 	     * emsr::detail::conf_hyperg(a, c, x)
 	     / emsr::detail::gamma(b);
 
-      auto U2 = _Tp{};
+      auto U2 = Tp{};
       auto ia = emsr::fp_is_integer(a);
       if (!ia || ia() > 0)
-	U2 = emsr::detail::gamma(c - _Tp{1})
-	     * std::pow(x, _Tp{1} - c)
-	     * emsr::detail::conf_hyperg(b, _Tp{2} - c, x)
+	U2 = emsr::detail::gamma(c - Tp{1})
+	     * std::pow(x, Tp{1} - c)
+	     * emsr::detail::conf_hyperg(b, Tp{2} - c, x)
 	     / emsr::detail::gamma(a);
 
       return U1 + U2;
@@ -49,19 +49,19 @@
   /**
    * 
    */
-  template<typename _Tp>
-    _Tp
-    tricomi_u_asymp(_Tp a, _Tp c, _Tp z)
+  template<typename Tp>
+    Tp
+    tricomi_u_asymp(Tp a, Tp c, Tp z)
     {
       const auto s_eps = emsr::epsilon(z);
       const unsigned int s_max_iter = 100000u;
-      auto b = a - c + _Tp{1};
-      auto term = _Tp{1};
-      auto _Usum = _Tp{1};
+      auto b = a - c + Tp{1};
+      auto term = Tp{1};
+      auto _Usum = Tp{1};
       for (auto k = 1u; k < s_max_iter; ++k)
 	{
-	  term *= -(a + _Tp(k - 1)) * (b + _Tp(k - 1))
-		  / _Tp(k) / z;
+	  term *= -(a + Tp(k - 1)) * (b + Tp(k - 1))
+		  / Tp(k) / z;
 	  _Usum += term;
 	  if (std::abs(term) < s_eps * std::abs(_Usum))
 	    break;
@@ -72,40 +72,40 @@
   /**
    * 
    */
-  template<typename _Tp>
-    _Tp
-    tricomi_u_c_pos_int(_Tp a, int m, _Tp z)
+  template<typename Tp>
+    Tp
+    tricomi_u_c_pos_int(Tp a, int m, Tp z)
     {
       const auto s_eps = emsr::epsilon(z);
       const unsigned int s_max_iter = 100000u;
 //std::cout << '\n';
 
-      auto term1 = _Tp{1};
+      auto term1 = Tp{1};
       auto _U1 = term1;
       for (auto k = 1; k <= m - 2; ++k)
 	{
-	  term1 *= (a + _Tp(-m + k)) * z
-		   / _Tp(1 - m + k) / _Tp(k);
+	  term1 *= (a + Tp(-m + k)) * z
+		   / Tp(1 - m + k) / Tp(k);
 	  _U1 += term1;
 //std::cout << "_U1 = " << _U1 << '\n';
 	}
-      _U1 *= emsr::detail::factorial<_Tp>(m - 2)
+      _U1 *= emsr::detail::factorial<Tp>(m - 2)
 	   / emsr::detail::gamma(a)
-	   / std::pow(z, _Tp(m - 1));
+	   / std::pow(z, Tp(m - 1));
 
-      const auto b = a + _Tp(1 - m);
+      const auto b = a + Tp(1 - m);
       auto psi2 = emsr::detail::digamma(a)
-		  - emsr::detail::digamma<_Tp>(1)
-		  - emsr::detail::digamma<_Tp>(m)
+		  - emsr::detail::digamma<Tp>(1)
+		  - emsr::detail::digamma<Tp>(m)
 		  + std::log(z);
-      auto fact2 = _Tp{1};
+      auto fact2 = Tp{1};
       auto _U2 = psi2;
       for (auto k = 1u; k < s_max_iter; ++k)
 	{
-	  psi2 += _Tp{1} / (a + _Tp(k - 1))
-		  - _Tp{1} / _Tp(k)
-		  - _Tp{1} / _Tp(m + k - 1);
-	  fact2 *= (a + _Tp(k)) * z / _Tp(m + k) / _Tp(k);
+	  psi2 += Tp{1} / (a + Tp(k - 1))
+		  - Tp{1} / Tp(k)
+		  - Tp{1} / Tp(m + k - 1);
+	  fact2 *= (a + Tp(k)) * z / Tp(m + k) / Tp(k);
 	  auto term2 = psi2 * fact2;
 	  _U2 += term2;
 //std::cout << "_U2 = " << _U2 << '\n';
@@ -113,7 +113,7 @@
 	    break;
 	}
       _U2 *= ((m & 1) ? -1 : +1)
-	   / emsr::detail::factorial<_Tp>(m - 1)
+	   / emsr::detail::factorial<Tp>(m - 1)
 	   / emsr::detail::gamma(b);
 
       return _U1 + _U2;
@@ -122,29 +122,29 @@
   /**
    * 
    */
-  template<typename _Tp>
-    _Tp
-    tricomi_u_c_nonpos_int(_Tp a, _Tp m, _Tp z)
+  template<typename Tp>
+    Tp
+    tricomi_u_c_nonpos_int(Tp a, Tp m, Tp z)
     {
-      auto b = a + _Tp(1 - m);
-      return std::pow(z, _Tp(1 - m))
+      auto b = a + Tp(1 - m);
+      return std::pow(z, Tp(1 - m))
 	   * tricomi_u_c_pos_int(b, 2 - m, z);
     }
 
   /**
    * 
    */
-  template<typename _Tp>
-    _Tp
-    tricomi_u_ac_int(_Tp n, _Tp m, _Tp z)
+  template<typename Tp>
+    Tp
+    tricomi_u_ac_int(Tp n, Tp m, Tp z)
     {
       const unsigned int s_max_iter = 100000u;
       const auto s_eps = emsr::epsilon(z);
-      auto term = _Tp{1};
-      auto _Usum = _Tp{1};
+      auto term = Tp{1};
+      auto _Usum = Tp{1};
       for (auto k = 1u; k < -n; ++k)
 	{
-	  term *= _Tp(n + k - 1) / _Tp(m + k - 1) / _Tp(k) * z;
+	  term *= Tp(n + k - 1) / Tp(m + k - 1) / Tp(k) * z;
 	  _Usum += term;
 	  if (std::abs(term) < s_eps * std::abs(_Usum))
 	    break;
@@ -156,9 +156,9 @@
   /**
    * 
    */
-  template<typename _Tp>
-    _Tp
-    tricomi_u_series(_Tp a, _Tp c, _Tp z)
+  template<typename Tp>
+    Tp
+    tricomi_u_series(Tp a, Tp c, Tp z)
     {
       return 0;
     }
@@ -166,9 +166,9 @@
   /**
    * 
    */
-  template<typename _Tp>
-    _Tp
-    tricomi_u(_Tp a, _Tp c, _Tp z)
+  template<typename Tp>
+    Tp
+    tricomi_u(Tp a, Tp c, Tp z)
     {
       auto aint = emsr::fp_is_integer(a);
       auto cint = emsr::fp_is_integer(c);
@@ -186,9 +186,9 @@
   /**
    * 
    */
-  template<typename _Tp>
-    _Tp
-    whittaker_m(_Tp kappa, _Tp mu, _Tp z)
+  template<typename Tp>
+    Tp
+    whittaker_m(Tp kappa, Tp mu, Tp z)
     {
       return std::exp(-z / 2) * std::pow(z, 0.5 + mu)
 	   * emsr::conf_hyperg(0.5 + mu - kappa, 1 + 2 * mu, z);
@@ -197,9 +197,9 @@
   /**
    * 
    */
-  template<typename _Tp>
-    _Tp
-    whittaker_w(_Tp kappa, _Tp mu, _Tp z)
+  template<typename Tp>
+    Tp
+    whittaker_w(Tp kappa, Tp mu, Tp z)
     {
       return std::exp(-z / 2) * std::pow(z, 0.5 + mu)
 	   * tricomi_u(0.5 + mu - kappa, 1 + 2 * mu, z);
@@ -208,17 +208,17 @@
 //} // namespace detail
 //} // namespace emsr
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_tricomi_u(_Tp proto = _Tp{})
+  test_tricomi_u(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    const auto a = _Tp{6} / _Tp{5};
-    const auto c = _Tp{1} / _Tp{5};
-    const auto del = _Tp{1} / _Tp{10};
+    const auto a = Tp{6} / Tp{5};
+    const auto c = Tp{1} / Tp{5};
+    const auto del = Tp{1} / Tp{10};
     for (int i = 0; i < +200; ++i)
     {
       auto z = del * i;
@@ -228,13 +228,13 @@ template<typename _Tp>
     }
 
     std::cout << "\nInteger c = m\n";
-    const auto z = _Tp{1} / _Tp{2};
+    const auto z = Tp{1} / Tp{2};
     std::cout << " a = " << std::setw(6) << a << '\n';
     std::cout << " z = " << std::setw(6) << z << '\n';
     for (auto m = 1u; m <= +20; ++m)
     {
       std::cout << ' ' << std::setw(6) << m
-		<< ' ' << std::setw(width) << tricomi_u_naive(a, _Tp(m), z)
+		<< ' ' << std::setw(width) << tricomi_u_naive(a, Tp(m), z)
 		<< ' ' << std::setw(width) << tricomi_u_c_pos_int(a, m, z)
 		<< '\n';
     }

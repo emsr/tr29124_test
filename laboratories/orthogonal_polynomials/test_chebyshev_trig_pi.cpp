@@ -21,10 +21,10 @@
    *   acos_pi(x) = \frac{1}{\pi}acos(x)
    * @f]
    */
-  template<typename _Tp>
-    inline _Tp
-    acos_pi(_Tp x)
-    { return std::acos(x) / emsr::pi_v<_Tp>; }
+  template<typename Tp>
+    inline Tp
+    acos_pi(Tp x)
+    { return std::acos(x) / emsr::pi_v<Tp>; }
 
   /**
    * Return the Chebyshev polynomial of the first kind
@@ -34,9 +34,9 @@
    * @f]
    * where @f$ \theta = \acos(x) @f$.
    */
-  template<typename _Tp>
-    _Tp
-    chebyshev_t_trig(unsigned int n, _Tp x)
+  template<typename Tp>
+    Tp
+    chebyshev_t_trig(unsigned int n, Tp x)
     {
       auto theta_pi = acos_pi(x);
       return emsr::detail::cos_pi(n * theta_pi);
@@ -51,13 +51,13 @@
    *     k \elem {1, ..., n}
    * @f]
    */
-  template<typename _Tp>
-    std::vector<_Tp>
+  template<typename Tp>
+    std::vector<Tp>
     chebyshev_t_zeros(unsigned int n)
     {
-      std::vector<_Tp> zero;
+      std::vector<Tp> zero;
       for (unsigned int k = 0; k < n; ++k)
-	zero.push_back(emsr::cos_pi(_Tp(k + 0.5L) / _Tp(n)));
+	zero.push_back(emsr::cos_pi(Tp(k + 0.5L) / Tp(n)));
       return zero;
     }
 
@@ -69,19 +69,19 @@
    * @f]
    * where @f$ \theta = \acos(x) @f$.
    */
-  template<typename _Tp>
-    _Tp
-    chebyshev_u_trig(unsigned int n, _Tp x)
+  template<typename Tp>
+    Tp
+    chebyshev_u_trig(unsigned int n, Tp x)
     {
       const auto _S_eps = emsr::epsilon(x);
-      if (std::abs(x + _Tp{1}) < _S_eps)
-	return (n % 2 == 0 ? +1 : -1) * _Tp(n + 1);
-      else if (std::abs(x - _Tp{1}) < _S_eps)
-	return _Tp(n + 1);
+      if (std::abs(x + Tp{1}) < _S_eps)
+	return (n % 2 == 0 ? +1 : -1) * Tp(n + 1);
+      else if (std::abs(x - Tp{1}) < _S_eps)
+	return Tp(n + 1);
       else
 	{
 	  const auto theta_pi = acos_pi(x);
-	  return emsr::detail::sin_pi(_Tp(n + 1) * theta_pi)
+	  return emsr::detail::sin_pi(Tp(n + 1) * theta_pi)
 	       / emsr::detail::sin_pi(theta_pi);
 	}
     }
@@ -94,13 +94,13 @@
    *   x_k = \cos\left(\frac{k\pi}{n+1}\right), k \elem {1, ..., n}
    * @f]
    */
-  template<typename _Tp>
-    std::vector<_Tp>
+  template<typename Tp>
+    std::vector<Tp>
     chebyshev_u_zeros(unsigned int n)
     {
-      std::vector<_Tp> zero;
+      std::vector<Tp> zero;
       for (unsigned int k = 1; k <= n; ++k)
-	zero.push_back(emsr::cos_pi(_Tp(k) / _Tp(n + 1)));
+	zero.push_back(emsr::cos_pi(Tp(k) / Tp(n + 1)));
       return zero;
     }
 
@@ -113,18 +113,18 @@
    * @f]
    * where @f$ \theta = \acos(x) @f$.
    */
-  template<typename _Tp>
-    _Tp
-    chebyshev_v_trig(unsigned int n, _Tp x)
+  template<typename Tp>
+    Tp
+    chebyshev_v_trig(unsigned int n, Tp x)
     {
       const auto _S_eps = emsr::epsilon(x);
-      if (std::abs(x + _Tp{1}) < _S_eps)
-	return (n % 2 == 0 ? +1 : -1) * _Tp(2 * n + 1);
+      if (std::abs(x + Tp{1}) < _S_eps)
+	return (n % 2 == 0 ? +1 : -1) * Tp(2 * n + 1);
       else
 	{
 	  const auto theta_pi = acos_pi(x);
-	  return emsr::detail::cos_pi(_Tp(n + 0.5L) * theta_pi)
-	       / emsr::detail::cos_pi(_Tp{0.5L} * theta_pi);
+	  return emsr::detail::cos_pi(Tp(n + 0.5L) * theta_pi)
+	       / emsr::detail::cos_pi(Tp{0.5L} * theta_pi);
 	}
     }
 
@@ -137,13 +137,13 @@
    *       k \elem {1, ..., n}
    * @f]
    */
-  template<typename _Tp>
-    std::vector<_Tp>
+  template<typename Tp>
+    std::vector<Tp>
     chebyshev_v_zeros(unsigned int n)
     {
-      std::vector<_Tp> zero;
+      std::vector<Tp> zero;
       for (unsigned int k = 0; k < n; ++k)
-	zero.push_back(emsr::cos_pi(_Tp(k + 0.5L) / _Tp(n + 0.5L)));
+	zero.push_back(emsr::cos_pi(Tp(k + 0.5L) / Tp(n + 0.5L)));
       return zero;
     }
 
@@ -156,18 +156,18 @@
    * @f]
    * where @f$ \theta = \acos(x) @f$.
    */
-  template<typename _Tp>
-    _Tp
-    chebyshev_w_trig(unsigned int n, _Tp x)
+  template<typename Tp>
+    Tp
+    chebyshev_w_trig(unsigned int n, Tp x)
     {
       const auto _S_eps = emsr::epsilon(x);
-      if (std::abs(x - _Tp{1}) < _S_eps)
-	return _Tp(2 * n + 1);
+      if (std::abs(x - Tp{1}) < _S_eps)
+	return Tp(2 * n + 1);
       else
 	{
 	  const auto theta_pi = acos_pi(x);
-	  return emsr::detail::sin_pi(_Tp(n + 0.5L) * theta_pi)
-	       / emsr::detail::sin_pi(_Tp{0.5L} * theta_pi);
+	  return emsr::detail::sin_pi(Tp(n + 0.5L) * theta_pi)
+	       / emsr::detail::sin_pi(Tp{0.5L} * theta_pi);
 	}
     }
 
@@ -180,13 +180,13 @@
    *       k \elem {1, ..., n}
    * @f]
    */
-  template<typename _Tp>
-    std::vector<_Tp>
+  template<typename Tp>
+    std::vector<Tp>
     chebyshev_w_zeros(unsigned int n)
     {
-      std::vector<_Tp> zero;
+      std::vector<Tp> zero;
       for (unsigned int k = 1; k <= n; ++k)
-	zero.push_back(emsr::cos_pi(_Tp(k) / _Tp(n + 0.5L)));
+	zero.push_back(emsr::cos_pi(Tp(k) / Tp(n + 0.5L)));
       return zero;
     }
 

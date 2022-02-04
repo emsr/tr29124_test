@@ -18,18 +18,18 @@
 int
 main()
 {
-  using _Tp = double;
-  using _RatTp = emsr::Polynomial<emsr::Polynomial<_Tp>>;
+  using Tp = double;
+  using _RatTp = emsr::Polynomial<emsr::Polynomial<Tp>>;
 
-  std::cout.precision(std::numeric_limits<_Tp>::digits10);
+  std::cout.precision(std::numeric_limits<Tp>::digits10);
   auto w = 8 + std::cout.precision();
 
   std::vector<_RatTp> thing1;
-  thing1.push_back({{0}, {_Tp{1}, _Tp{1}}});
+  thing1.push_back({{0}, {Tp{1}, Tp{1}}});
   thing1.push_back({{-1}});
   for (int n = 2; n <= 25; ++n)
     {
-      _RatTp P0{{0}, {_Tp(n + 1), _Tp{1}}};
+      _RatTp P0{{0}, {Tp(n + 1), Tp{1}}};
       thing1.push_back(P0 * thing1[n - 2] + thing1[n - 1]);
       _RatTp P1{{-1}};
       thing1.push_back(P1 * thing1[n - 2]);
@@ -66,10 +66,10 @@ main()
 
   std::vector<_RatTp> thing2;
   thing2.push_back({{-1}});
-  thing2.push_back({{0}, {_Tp{1}, _Tp{1}}});
+  thing2.push_back({{0}, {Tp{1}, Tp{1}}});
   for (int n = 2; n <= 25; ++n)
     {
-      _RatTp Q0{{0}, {_Tp(n), _Tp{1}}};
+      _RatTp Q0{{0}, {Tp(n), Tp{1}}};
       thing2.push_back(Q0 * thing2[n - 2] - thing2[n - 1]);
       _RatTp Q1{{-1}};
       thing2.push_back(Q1 * thing2[n - 2]);

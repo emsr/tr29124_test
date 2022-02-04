@@ -12,11 +12,11 @@
 #include <emsr/float128_io.h>
 #include <emsr/sf_mod_bessel.h>
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_sph_bessel(_Tp proto = _Tp{})
+  test_sph_bessel(Tp proto = Tp{})
   {
-    const auto s_pi = emsr::pi_v<_Tp>;
+    const auto s_pi = emsr::pi_v<Tp>;
 
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -44,12 +44,12 @@ template<typename _Tp>
 	std::cout << ' ' << std::setw(w) << fname("k_", n, "(x)");
 	std::cout << ' ' << std::setw(w) << "-(2x^2/pi) W[i,k]";
 	std::cout << '\n';
-	const auto del = _Tp{1} / _Tp{10};
+	const auto del = Tp{1} / Tp{10};
 	for (int i = 0; i <= 100; ++i)
 	  {
 	    auto x = i * del;
 	    auto Wjn = x * x;
-	    auto Wik = -_Tp{2} * Wjn / s_pi;
+	    auto Wik = -Tp{2} * Wjn / s_pi;
 	    std::cout << ' ' << std::setw(w) << x;
 	    try
 	      {
@@ -82,9 +82,9 @@ template<typename _Tp>
       }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_std_bessel(_Tp proto = _Tp{})
+  test_std_bessel(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -103,7 +103,7 @@ template<typename _Tp>
 	std::cout << ' ' << std::setw(w) << "x";
 	std::cout << ' ' << std::setw(w) << fname("j_", n, "(x)");
 	std::cout << ' ' << std::setw(w) << fname("n_", n, "(x)");
-	const auto del = _Tp{1} / _Tp{10};
+	const auto del = Tp{1} / Tp{10};
 	for (int i = 0; i <= 100; ++i)
 	  {
 	    auto x = i * del;

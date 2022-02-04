@@ -30,21 +30,21 @@ namespace detail
    *      {}_2F_1(-n, n + 1 + \alpha + \beta; \alpha + 1; \frac{1-x}{2})
    * @f]
    *
-   * @tparam _Tp The real type of the argument and degree parameters.
+   * @tparam Tp The real type of the argument and degree parameters.
    * @param[in]  n  The degree of the Jacobi polynomial
    * @param[in]  alpha1  The first parameter of the Jacobi polynomial
    * @param[in]  beta1  The second parameter of the Jacobi polynomial
    */
-  template<typename _Tp>
-    emsr::Polynomial<_Tp>
-    jacobi_poly(unsigned int n, _Tp alpha1, _Tp beta1)
+  template<typename Tp>
+    emsr::Polynomial<Tp>
+    jacobi_poly(unsigned int n, Tp alpha1, Tp beta1)
     {
-      emsr::Polynomial<_Tp> poly;
+      emsr::Polynomial<Tp> poly;
 
       if (std::isnan(alpha1) || std::isnan(beta1))
 	return poly;
 
-      auto term = emsr::Polynomial<_Tp>{1};
+      auto term = emsr::Polynomial<Tp>{1};
       poly += term;
       if (n == 0)
 	return poly;
@@ -56,17 +56,17 @@ namespace detail
 	  pint && pint() <= 0 && -pint() < m)
 	m = -pint();
 
-      const emsr::Polynomial<_Tp> arg({_Tp{1}/_Tp{2}, _Tp{-1}/_Tp{2}});
+      const emsr::Polynomial<Tp> arg({Tp{1}/Tp{2}, Tp{-1}/Tp{2}});
 
-      auto fact = _Tp{1};
+      auto fact = Tp{1};
       for (unsigned int k = 1; k <= n; ++k)
-	fact *= _Tp(alpha1 + k) / _Tp(k);
+	fact *= Tp(alpha1 + k) / Tp(k);
 
       for (int k = 1; k <= m; ++k)
 	{
 
-	  term *= (_Tp(-int(n) + k - 1) / _Tp(k))
-		  * (_Tp(n + k + apb) / _Tp(alpha1 + k))
+	  term *= (Tp(-int(n) + k - 1) / Tp(k))
+		  * (Tp(n + k + apb) / Tp(alpha1 + k))
 		  * arg;
 
 	  poly += term;
@@ -78,25 +78,25 @@ namespace detail
   /**
    * Highest degree term coefficient.
    */
-  template<typename _Tp>
-    _Tp
-    jacobi_norm(unsigned int n, _Tp alpha1, _Tp beta1)
+  template<typename Tp>
+    Tp
+    jacobi_norm(unsigned int n, Tp alpha1, Tp beta1)
     {
       int sgam1, sgam2;
-      const auto lgam1 = lgamma_r(_Tp(2 * n + alpha1 + beta1 + 1), &sgam1);
-      const auto lgam2 = lgamma_r(_Tp(n + alpha1 + beta1 + 1), &sgam2);
-      return sgam1 * sgam2 * std::exp(lgam1 - std::lgamma(_Tp(n + 1))
-   				    - lgam2 - _Tp(n) * std::log(_Tp{2}));
+      const auto lgam1 = lgamma_r(Tp(2 * n + alpha1 + beta1 + 1), &sgam1);
+      const auto lgam2 = lgamma_r(Tp(n + alpha1 + beta1 + 1), &sgam2);
+      return sgam1 * sgam2 * std::exp(lgam1 - std::lgamma(Tp(n + 1))
+   				    - lgam2 - Tp(n) * std::log(Tp{2}));
     }
 
 } // namespace detail
 } // namespace emsr
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_neg_parm_jacobi_roots(unsigned n, _Tp alpha1, _Tp beta1, std::ofstream& gp)
+  test_neg_parm_jacobi_roots(unsigned n, Tp alpha1, Tp beta1, std::ofstream& gp)
   {
-    const auto prec = std::numeric_limits<_Tp>::digits10;
+    const auto prec = std::numeric_limits<Tp>::digits10;
     const auto w = 6 + prec;
 
     std::cout << std::setprecision(prec);
@@ -159,58 +159,58 @@ template<typename _Tp>
 /**
  * Numerical Methods for Special Functions, Gil, Segura, Temme, pp. 192.
  */
-template<typename _Tp>
+template<typename Tp>
   void
   run()
   {
     std::ofstream gp("jacobi_roots.gp");
 
     unsigned n = 50;
-    _Tp alpha1, beta1;
+    Tp alpha1, beta1;
 
-    alpha1 = _Tp{2};
-    beta1 = _Tp{-83} / _Tp{2};
+    alpha1 = Tp{2};
+    beta1 = Tp{-83} / Tp{2};
     test_neg_parm_jacobi_roots(n, alpha1, beta1, gp);
 
-    alpha1 = _Tp{2};
-    beta1 = _Tp{-52};
+    alpha1 = Tp{2};
+    beta1 = Tp{-52};
     test_neg_parm_jacobi_roots(n, alpha1, beta1, gp);
 
-    alpha1 = _Tp{2};
-    beta1 = _Tp{-127} / _Tp{2};
+    alpha1 = Tp{2};
+    beta1 = Tp{-127} / Tp{2};
     test_neg_parm_jacobi_roots(n, alpha1, beta1, gp);
 
     // Flip alpha and beta.
 
-    alpha1 = _Tp{2};
-    beta1 = _Tp{-83} / _Tp{2};
+    alpha1 = Tp{2};
+    beta1 = Tp{-83} / Tp{2};
     test_neg_parm_jacobi_roots(n, beta1, alpha1, gp);
 
-    alpha1 = _Tp{2};
-    beta1 = _Tp{-52};
+    alpha1 = Tp{2};
+    beta1 = Tp{-52};
     test_neg_parm_jacobi_roots(n, beta1, alpha1, gp);
 
-    alpha1 = _Tp{2};
-    beta1 = _Tp{-127} / _Tp{2};
+    alpha1 = Tp{2};
+    beta1 = Tp{-127} / Tp{2};
     test_neg_parm_jacobi_roots(n, beta1, alpha1, gp);
   }
 
 /*
  * Test polynomial evaluations against good ol' recursion.
  */
-template<typename _Tp>
+template<typename Tp>
   void
   test_poly()
   {
-    const auto prec = std::numeric_limits<_Tp>::digits10;
+    const auto prec = std::numeric_limits<Tp>::digits10;
     const auto w = 6 + prec;
 
     std::cout << std::setprecision(prec);
 emsr::jacobi(10, 2.0, -12.0, -1.0);
     std::cout << "\n\n";
     for (int n : {10, 15, 20})
-      for (_Tp alpha : {1, 2})
-	for (_Tp beta : {1, 2})
+      for (Tp alpha : {1, 2})
+	for (Tp beta : {1, 2})
 	  {
 	    auto P = emsr::detail::jacobi_poly(n, alpha, beta);
 	    std::cout << " n = " << n
@@ -220,7 +220,7 @@ emsr::jacobi(10, 2.0, -12.0, -1.0);
 		      << '\n';
 	    for (int i = -10; i <= +10; ++i)
 	      {
-		const auto x = _Tp(i * 0.1L);
+		const auto x = Tp(i * 0.1L);
 		std::cout << ' ' << x
 			  << ' ' << std::setw(w) << P(x)
 			  << ' ' << std::setw(w) << emsr::jacobi(n, alpha, beta, x)
@@ -230,7 +230,7 @@ emsr::jacobi(10, 2.0, -12.0, -1.0);
 	  }
 
     std::cout << "\n\n";
-    const auto alpha = _Tp{2};
+    const auto alpha = Tp{2};
     for (int n : {10, 15, 20})
       for (int m : {0, 1, 2, 3})
 	{
@@ -243,7 +243,7 @@ emsr::jacobi(10, 2.0, -12.0, -1.0);
 		    << '\n';
 	  for (int i = -10; i <= +10; ++i)
 	    {
-	      const auto x = _Tp(i * 0.1L);
+	      const auto x = Tp(i * 0.1L);
 	      std::cout << ' ' << x
 			<< ' ' << std::setw(w) << P(x)
 			//<< ' ' << std::setw(w) << emsr::jacobi(n, alpha, beta, x)

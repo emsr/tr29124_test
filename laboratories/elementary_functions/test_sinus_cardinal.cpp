@@ -13,15 +13,15 @@
 #include <wrap_gsl.h>
 
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_sinc(_Tp proto = _Tp{})
+  test_sinc(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    const auto pi = emsr::pi_v<_Tp>;
+    const auto pi = emsr::pi_v<Tp>;
 
     std::cout << '\n';
     std::cout << std::setw(width) << "x"
@@ -38,7 +38,7 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << std::setw(width) << "==============="
 	      << '\n';
-    const auto del = _Tp{1} / _Tp{10};
+    const auto del = Tp{1} / Tp{10};
     for (int i = -40; i <= +40; ++i)
       {
 	auto x = del * i * pi;
@@ -57,9 +57,9 @@ template<typename _Tp>
       }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_sinc_pi(_Tp proto = _Tp{})
+  test_sinc_pi(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -80,7 +80,7 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << std::setw(width) << "==============="
 	      << '\n';
-    const auto del = _Tp{1} / _Tp{10};
+    const auto del = Tp{1} / Tp{10};
     for (int i = -40; i <= +40; ++i)
       {
 	auto x = del * i;
@@ -99,9 +99,9 @@ template<typename _Tp>
       }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_sinhc(_Tp proto = _Tp{})
+  test_sinhc(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -123,7 +123,7 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << '\n';
 
-    const auto del = _Tp{1} / _Tp{10};
+    const auto del = Tp{1} / Tp{10};
     for (int i = -40; i <= +40; ++i)
       {
 	auto x = del * i;
@@ -142,9 +142,9 @@ template<typename _Tp>
       }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_sinhc_pi(_Tp proto = _Tp{})
+  test_sinhc_pi(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -165,7 +165,7 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << std::setw(width) << "==============="
 	      << '\n';
-    const auto del = _Tp{1} / _Tp{10};
+    const auto del = Tp{1} / Tp{10};
     for (int i = -40; i <= +40; ++i)
       {
 	auto x = del * i;

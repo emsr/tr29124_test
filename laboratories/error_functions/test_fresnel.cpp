@@ -10,11 +10,11 @@
 
 #include <fresnel.tcc>
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_fresnel(_Tp proto = _Tp{})
+  test_fresnel(Tp proto = Tp{})
   {
-    //using _Val = _Tp;
+    //using _Val = Tp;
     //using _Real = emsr::num_traits_t<_Val>;
 
     std::cout.precision(emsr::digits10(proto));
@@ -25,7 +25,7 @@ template<typename _Tp>
     std::cout << "  " << std::setw(width) << "C(x)";
     std::cout << "  " << std::setw(width) << "S(x)";
     std::cout << '\n';
-    const auto del = _Tp{1} / _Tp{100};
+    const auto del = Tp{1} / Tp{100};
     for (int i = 0; i <= 1000; ++i)
       {
 	auto x = i * del;

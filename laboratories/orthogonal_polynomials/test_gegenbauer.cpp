@@ -13,19 +13,19 @@
 #include <emsr/numeric_limits.h>
 #include <emsr/quadrature_point.h>
 #include <emsr/sf_gegenbauer.h>
-#include <emsr/sf_gamma.h> / factorial
+#include <emsr/sf_gamma.h> // factorial
 #include <emsr/sf_jacobi.h>
 
-  template<typename _Tp>
-    std::vector<emsr::QuadraturePoint<_Tp>>
-    gegenbauer_zeros(unsigned int n, _Tp alpha)
+  template<typename Tp>
+    std::vector<emsr::QuadraturePoint<Tp>>
+    gegenbauer_zeros(unsigned int n, Tp alpha)
     {
       const auto _S_eps = emsr::epsilon(alpha);
       const unsigned int _S_maxit = 1000u;
-      std::vector<emsr::QuadraturePoint<_Tp>> pt(n);
+      std::vector<emsr::QuadraturePoint<Tp>> pt(n);
 
-      _Tp z;
-      _Tp w = _Tp{0};
+      Tp z;
+      Tp w = Tp{0};
       for (auto i = 1u; i <= n; ++i)
 	{
 	  if (i == 1)
@@ -75,37 +75,37 @@
 	    z = 3.0 * pt[i - 2].point
 		- 3.0 * pt[i - 3].point + pt[i - 4].point;
 
-	  auto __2alpha = _Tp{2} * alpha;
+	  auto __2alpha = Tp{2} * alpha;
 	  for (auto its = 1u; its <= _S_maxit; ++its)
 	    {
-	      auto temp = _Tp{2} + __2alpha;
-	      auto C1 = (temp * z) / _Tp{2};
-	      auto C2 = _Tp{1};
+	      auto temp = Tp{2} + __2alpha;
+	      auto C1 = (temp * z) / Tp{2};
+	      auto C2 = Tp{1};
 	      for (auto j = 2u; j <= n; ++j)
 		{
 		  auto C3 = C2;
 		  C2 = C1;
-		  temp = _Tp{2} * j + __2alpha;
-		  auto a = _Tp{2} * j * (j + __2alpha)
-			   * (temp - _Tp{2});
-		  auto b = (temp - _Tp{1})
-			   * temp * (temp - _Tp{2}) * z;
-		  auto c = _Tp{2} * (j - 1 + alpha)
+		  temp = Tp{2} * j + __2alpha;
+		  auto a = Tp{2} * j * (j + __2alpha)
+			   * (temp - Tp{2});
+		  auto b = (temp - Tp{1})
+			   * temp * (temp - Tp{2}) * z;
+		  auto c = Tp{2} * (j - 1 + alpha)
 			   * (j - 1 + alpha) * temp;
 		  C1 = (b * C2 - c * C3) / a;
 		}
 	      auto Cp = (n * (-temp * z) * C1
-			   + _Tp{2} * (n + alpha) * (n + alpha) * C2)
-			/ (temp * (_Tp{1} - z * z));
+			   + Tp{2} * (n + alpha) * (n + alpha) * C2)
+			/ (temp * (Tp{1} - z * z));
 	      auto z1 = z;
 	      z = z1 - C1 / Cp;
 	      if (std::abs(z - z1) <= _S_eps)
 		{
-		  w = std::exp(std::lgamma(alpha + _Tp(n))
-			       + std::lgamma(alpha + _Tp(n))
-			       - std::lgamma(_Tp(n + 1))
-			       - std::lgamma(_Tp(n + 1) + __2alpha))
-		      * temp * std::pow(_Tp{2}, __2alpha) / (Cp * C2);
+		  w = std::exp(std::lgamma(alpha + Tp(n))
+			       + std::lgamma(alpha + Tp(n))
+			       - std::lgamma(Tp(n + 1))
+			       - std::lgamma(Tp(n + 1) + __2alpha))
+		      * temp * std::pow(Tp{2}, __2alpha) / (Cp * C2);
 		  break;
 		}
 	      if (its > _S_maxit)
@@ -118,9 +118,9 @@
       return pt;
     }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_gegenbauer(_Tp proto = _Tp{})
+  test_gegenbauer(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     auto width = std::cout.precision() + 6;
@@ -130,14 +130,14 @@ template<typename _Tp>
       {
 	for (int i = 0; i <= 3; ++i)
 	  {
-            auto alpha = i * _Tp{1};
-            auto jalpha = alpha - _Tp{1}/_Tp{2};
-            auto jnorm = emsr::rising_factorial(_Tp{2} * alpha, n)
-			/ emsr::rising_factorial(alpha + _Tp{1}/_Tp{2}, n);
+            auto alpha = i * Tp{1};
+            auto jalpha = alpha - Tp{1}/Tp{2};
+            auto jnorm = emsr::rising_factorial(Tp{2} * alpha, n)
+			/ emsr::rising_factorial(alpha + Tp{1}/Tp{2}, n);
             std::cout << "n     = " << n << '\n';
             std::cout << "alpha = " << alpha << '\n';
-            Life::Jacobi<_Tp> jac(n, jalpha, jalpha);
-	    const auto del = _Tp{1} / _Tp{100};
+            Life::Jacobi<Tp> jac(n, jalpha, jalpha);
+	    const auto del = Tp{1} / Tp{100};
 	    for (int k = 0; k <= 200; ++k)
               {
         	auto x = (k - 100) * del;

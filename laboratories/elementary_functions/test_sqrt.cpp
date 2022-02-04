@@ -12,16 +12,16 @@
 /**
  * 
  */
-template<typename _Tp>
-  constexpr _Tp
-  __sqrt_newton(_Tp __x)
+template<typename Tp>
+  constexpr Tp
+  __sqrt_newton(Tp __x)
   {
-    const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-    const auto _S_digs = std::numeric_limits<_Tp>::digits;
-    constexpr auto __rsqrt2 = _Tp{1} / emsr::sqrt2_v<_Tp>;
+    const auto _S_eps = std::numeric_limits<Tp>::epsilon();
+    const auto _S_digs = std::numeric_limits<Tp>::digits;
+    constexpr auto __rsqrt2 = Tp{1} / emsr::sqrt2_v<Tp>;
 
-    if (__x == _Tp{0})
-      return _Tp{0};
+    if (__x == Tp{0})
+      return Tp{0};
 
     int __e;
     auto __xx = std::frexp(__x, &__e);
@@ -30,7 +30,7 @@ template<typename _Tp>
 
     for (int i = 0; i < _S_digs; ++i)
       {
-	__f -= _Tp{0.5L} * (__f - __xx / __f);
+	__f -= Tp{0.5L} * (__f - __xx / __f);
 	if (std::abs(__f * __f - __xx) < _S_eps * __f)
 	  break;
       }
@@ -43,15 +43,15 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
-  constexpr _Tp
-  __sqrt_recip_newton(_Tp __x)
+template<typename Tp>
+  constexpr Tp
+  __sqrt_recip_newton(Tp __x)
   {
-    const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-    const auto _S_digs = std::numeric_limits<_Tp>::digits;
+    const auto _S_eps = std::numeric_limits<Tp>::epsilon();
+    const auto _S_digs = std::numeric_limits<Tp>::digits;
 
-    if (__x == _Tp{0})
-      return _Tp{0};
+    if (__x == Tp{0})
+      return Tp{0};
 
     // TODO: Argument reduction...
 
@@ -59,7 +59,7 @@ template<typename _Tp>
     auto __ff = __f * __f;
     for (int i = 0; i < _S_digs; ++i)
       {
-	__f *= (_Tp{3} - __x * __ff) / _Tp{2};
+	__f *= (Tp{3} - __x * __ff) / Tp{2};
 	__ff = __f * __f;
 	if (std::abs(__ff - __x) < _S_eps * __f)
 	  break;
@@ -71,16 +71,16 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
+template<typename Tp>
   void
   test_sqrt()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::max_digits10);
+    std::cout.precision(std::numeric_limits<Tp>::max_digits10);
     const auto w = 6 + std::cout.precision();
 
     for (int i = 0; i <= 1000; ++i)
       {
-	auto x = _Tp{1.0L} * i;
+	auto x = Tp{1.0L} * i;
 	auto sqrtr = x * __sqrt_recip_newton(x);
 	auto sqrtcw = __sqrt_newton(x);
 	auto sqrt = std::sqrt(x);

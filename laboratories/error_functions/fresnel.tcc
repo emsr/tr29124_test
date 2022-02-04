@@ -6,29 +6,29 @@
     ///  @brief This routine returns the Fresnel cosine and sine integrals
     ///         as a pair by series expansion for positive argument.
     ///
-    template <typename _Tp>
+    template <typename Tp>
     void
-    fresnel_series(const _Tp ax, _Tp & c, _Tp & s)
+    fresnel_series(const Tp ax, Tp & c, Tp & s)
     {
       const int max_iter = 100;
-      const _Tp eps = _Tp(5) * std::numeric_limits<_Tp>::epsilon();
-      const _Tp PIO2 = _Tp(M_PI / 2.0);
+      const Tp eps = Tp(5) * std::numeric_limits<Tp>::epsilon();
+      const Tp PIO2 = Tp(M_PI / 2.0);
 
       //  Evaluate S and C by series expansion.
-      _Tp sum = _Tp(0);
-      _Tp sums = _Tp(0);
-      _Tp sumc = ax;
-      _Tp sign = _Tp(1);
-      _Tp fact = PIO2 * ax * ax;
+      Tp sum = Tp(0);
+      Tp sums = Tp(0);
+      Tp sumc = ax;
+      Tp sign = Tp(1);
+      Tp fact = PIO2 * ax * ax;
       bool odd = true;
-      _Tp term = ax;
+      Tp term = ax;
       int n = 3;
       int k = 0;
       for (k = 1; k <= max_iter; ++k)
         {
           term *= fact / k;
           sum += sign * term / n;
-          _Tp test = std::abs(sum) * eps;
+          Tp test = std::abs(sum) * eps;
           if ( odd )
             {
               sign = -sign;
@@ -63,33 +63,33 @@
     ///  @brief This routine computes the Fresnel cosine and sine integrals
     ///         by continued fractions for positive argument.
     ///
-    template <typename _Tp>
+    template <typename Tp>
     void
-    fresnel_cont_frac(const _Tp ax, _Tp & c, _Tp & s)
+    fresnel_cont_frac(const Tp ax, Tp & c, Tp & s)
     {
       const int max_iter = 100;
-      const _Tp eps = _Tp(5) * std::numeric_limits<_Tp>::epsilon();
-      const _Tp fp_min = std::numeric_limits<_Tp>::min();
-      const _Tp PI = _Tp(M_PI);
+      const Tp eps = Tp(5) * std::numeric_limits<Tp>::epsilon();
+      const Tp fp_min = std::numeric_limits<Tp>::min();
+      const Tp PI = Tp(M_PI);
 
       //  Evaluate S and C by Lentz's complex continued fraction method.
-      const _Tp pix2 = PI * ax * ax;
-      std::complex<_Tp> b(_Tp(1), -pix2);
-      std::complex<_Tp> cc(_Tp(1) / fp_min, _Tp(0));
-      std::complex<_Tp> h = _Tp(1) / b;
-      std::complex<_Tp> d = h;
+      const Tp pix2 = PI * ax * ax;
+      std::complex<Tp> b(Tp(1), -pix2);
+      std::complex<Tp> cc(Tp(1) / fp_min, Tp(0));
+      std::complex<Tp> h = Tp(1) / b;
+      std::complex<Tp> d = h;
       int n = -1;
       int k = 0;
       for (k = 2; k <= max_iter; ++k)
         {
           n += 2;
-          const _Tp a = -_Tp(n * (n + 1));
-          b += _Tp(4);
-          d = _Tp(1) / (a * d + b);
+          const Tp a = -Tp(n * (n + 1));
+          b += Tp(4);
+          d = Tp(1) / (a * d + b);
           cc = b + a / cc;
-          const std::complex<_Tp> del = cc * d;
+          const std::complex<Tp> del = cc * d;
           h *= del;
-          if (std::abs(del.real() - _Tp(1))
+          if (std::abs(del.real() - Tp(1))
             + std::abs(del.imag()) < eps)
             break;
         }
@@ -97,10 +97,10 @@
         throw std::runtime_error("Continued fraction evaluation"
                                  " failed in fresnel_cont_frac.");
 
-      h = std::complex<_Tp>(ax, -ax) * h;
-      std::complex<_Tp> phase = std::polar(_Tp(1), pix2/_Tp(2));
-      std::complex<_Tp> cs = std::complex<_Tp>(_Tp(0.5L), _Tp(0.5L))
-                             * (_Tp(1) - phase * h);
+      h = std::complex<Tp>(ax, -ax) * h;
+      std::complex<Tp> phase = std::polar(Tp(1), pix2/Tp(2));
+      std::complex<Tp> cs = std::complex<Tp>(Tp(0.5L), Tp(0.5L))
+                             * (Tp(1) - phase * h);
       c = cs.real();
       s = cs.imag();
 
@@ -122,29 +122,29 @@
     ///      S(x) = \int_0^x \sin(\frac{\pi}{2}t^2) dt
     ///  @f]
     ///
-    template <typename _Tp>
-    std::pair<_Tp, _Tp>
-    fresnel(const _Tp x)
+    template <typename Tp>
+    std::pair<Tp, Tp>
+    fresnel(const Tp x)
     {
 
-      const _Tp fp_min = std::numeric_limits<_Tp>::min();
-      const _Tp x_min = _Tp(1.5L);
+      const Tp fp_min = std::numeric_limits<Tp>::min();
+      const Tp x_min = Tp(1.5L);
 
-      _Tp c = _Tp(0);
-      _Tp s = _Tp(0);
+      Tp c = Tp(0);
+      Tp s = Tp(0);
 
-      const _Tp ax = std::abs(x);
+      const Tp ax = std::abs(x);
       if (ax < std::sqrt(fp_min))
         {
           c = ax;
-          s = _Tp(0);
+          s = Tp(0);
         }
       else if (ax < x_min)
         fresnel_series(ax, c, s);
       else
         fresnel_cont_frac(ax, c, s);
 
-      if (x < _Tp(0))
+      if (x < Tp(0))
         {
           c = -c;
           s = -s;

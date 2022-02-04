@@ -88,25 +88,25 @@ struve(double nu, double x)
 int
 main()
 {
-  using _Tp = double;
+  using Tp = double;
 
-  std::cout.precision(emsr::digits10<_Tp>());
+  std::cout.precision(emsr::digits10<Tp>());
   std::cout << std::showpoint << std::scientific;
   auto width = 8 + std::cout.precision();
 
-  std::vector<_Tp> nuvec
+  std::vector<Tp> nuvec
   {
-    _Tp{0},
-    _Tp{1} / _Tp{3},
-    _Tp{1} / _Tp{2},
-    _Tp{2} / _Tp{3},
-    _Tp{1},
-    _Tp{2},
-    _Tp{5},
-    _Tp{10},
-    _Tp{20},
-    _Tp{50},
-    _Tp{100},
+    Tp{0},
+    Tp{1} / Tp{3},
+    Tp{1} / Tp{2},
+    Tp{2} / Tp{3},
+    Tp{1},
+    Tp{2},
+    Tp{5},
+    Tp{10},
+    Tp{20},
+    Tp{50},
+    Tp{100},
   };
   for (auto nu : nuvec)
     {
@@ -116,7 +116,7 @@ main()
       std::cout << '\n';
       for (unsigned int i = 0; i <= 1000; ++i)
         {
-          auto x = _Tp(i) / _Tp{100};
+          auto x = Tp(i) / Tp{100};
           std::cout << ' ' << std::setw(width) << x;
           try
             {

@@ -77,32 +77,32 @@ namespace __detail
    *  	     \sum_{k=0}^{n} (-1)^k \frac{n!}{(n-k)!k!} (x+k)^{-s}
    *  @f]
    */
-  template<typename _Tp>
-    _Tp
-    hurwitz_zeta_glob(const _Tp a, const _Tp s)
+  template<typename Tp>
+    Tp
+    hurwitz_zeta_glob(const Tp a, const Tp s)
     {
-      _Tp zeta = _Tp(0);
+      Tp zeta = Tp(0);
 
       //  Max e exponent before overflow.
-      const _Tp max_binom = std::numeric_limits<_Tp>::max_exponent10
-                            * std::log(_Tp(10)) - _Tp(1);
+      const Tp max_binom = std::numeric_limits<Tp>::max_exponent10
+                            * std::log(Tp(10)) - Tp(1);
 
       const unsigned int maxit = 10000;
       for (unsigned int i = 0; i < maxit; ++i)
 	{
           bool punt = false;
-          _Tp sgn = _Tp(1);
-          _Tp term = _Tp(0);
+          Tp sgn = Tp(1);
+          Tp term = Tp(0);
           for (unsigned int j = 0; j <= i; ++j)
             {
 #if _GLIBCXX_USE_C99_MATH_TR1
-              _Tp binom = std::lgamma(_Tp(1 + i))
-                          - std::lgamma(_Tp(1 + j))
-                          - std::lgamma(_Tp(1 + i - j));
+              Tp binom = std::lgamma(Tp(1 + i))
+                          - std::lgamma(Tp(1 + j))
+                          - std::lgamma(Tp(1 + i - j));
 #else
-              _Tp binom = log_gamma(_Tp(1 + i))
-                          - log_gamma(_Tp(1 + j))
-                          - log_gamma(_Tp(1 + i - j));
+              Tp binom = log_gamma(Tp(1 + i))
+                          - log_gamma(Tp(1 + j))
+                          - log_gamma(Tp(1 + i - j));
 #endif
               if (binom > max_binom)
                 {
@@ -111,18 +111,18 @@ namespace __detail
                   break;
                 }
               binom = std::exp(binom);
-              term += sgn * binom * std::pow(_Tp(a + j), -s);
-              sgn *= _Tp(-1);
+              term += sgn * binom * std::pow(Tp(a + j), -s);
+              sgn *= Tp(-1);
             }
           if (punt)
             break;
-          term /= _Tp(i + 1);
-          if (std::abs(term / zeta) < std::numeric_limits<_Tp>::epsilon())
+          term /= Tp(i + 1);
+          if (std::abs(term / zeta) < std::numeric_limits<Tp>::epsilon())
             break;
           zeta += term;
         }
 
-      zeta /= s - _Tp(1);
+      zeta /= s - Tp(1);
 
       return zeta;
     }
@@ -141,9 +141,9 @@ namespace __detail
    *     \zeta(s) = \zeta(1,s)
    *   @f]
    */
-  template<typename _Tp>
-    _Tp
-    hurwitz_zeta(const _Tp a, const _Tp s)
+  template<typename Tp>
+    Tp
+    hurwitz_zeta(const Tp a, const Tp s)
     {
       return hurwitz_zeta_glob(a, s);
     }
@@ -156,9 +156,9 @@ namespace __detail
    *     psi(x) = \frac{Gamma'(x)}{\Gamma(x)}
    *   @f]
    */
-  template<typename _Tp>
-    _Tp
-    digamma(const _Tp x)
+  template<typename Tp>
+    Tp
+    digamma(const Tp x)
     {
       ///  @todo Finish me!!!
     }
@@ -167,17 +167,17 @@ namespace __detail
   /**
    * 
    */
-  template<typename _Tp>
-    _Tp
-    digamma_1(const _Tp x)
+  template<typename Tp>
+    Tp
+    digamma_1(const Tp x)
     {
       int n = std::nearbyint(x);
 
-      if (x == _Tp(n))
+      if (x == Tp(n))
         {
-          _Tp digamma = -numeric_constants<_Tp>::euler();
+          Tp digamma = -numeric_constants<Tp>::euler();
           for (int i = 1; i <= n; ++i )
-            digamma += _Tp(1) / i;
+            digamma += Tp(1) / i;
           return digamma;
         }
       else
@@ -195,11 +195,11 @@ namespace __detail
    *     psi^{(n)}(x) = (-1)^{n+1} m! \zeta(m+1,x)
    *   @f]
    */
-  template<typename _Tp>
-    _Tp
-    polygamma(const unsigned int n, const _Tp x)
+  template<typename Tp>
+    Tp
+    polygamma(const unsigned int n, const Tp x)
     {
-      if (x <= _Tp(0))
+      if (x <= Tp(0))
         throw_domain_error("polygamma: srgument out of range");
       else if (n == 0)
         return polygamma(x);
@@ -207,13 +207,13 @@ namespace __detail
         return digamma_1(x);
       else
         {
-          const _Tp hzeta = hurwitz_zeta(_Tp(n + 1), x);
+          const Tp hzeta = hurwitz_zeta(Tp(n + 1), x);
 #if _GLIBCXX_USE_C99_MATH_TR1
-          const _Tp ln_nfact = std::lgamma(_Tp(n + 1));
+          const Tp ln_nfact = std::lgamma(Tp(n + 1));
 #else
-          const _Tp ln_nfact = log_gamma(_Tp(n + 1));
+          const Tp ln_nfact = log_gamma(Tp(n + 1));
 #endif
-          _Tp result = std::exp(ln_nfact) * hzeta;
+          Tp result = std::exp(ln_nfact) * hzeta;
           if (n % 2 == 1)
             result = -result;
           return result;

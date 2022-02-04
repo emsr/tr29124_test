@@ -17,11 +17,11 @@
 
 #include <wrap_boost.h>
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_beta(_Tp proto = _Tp{})
+  test_beta(Tp proto = Tp{})
   {
-    //using _Val = _Tp;
+    //using _Val = Tp;
     //using _Real = emsr::num_traits_t<_Val>;
 
     std::cout.precision(emsr::digits10(proto));
@@ -38,11 +38,11 @@ template<typename _Tp>
     int i_min = 1;
     for (int i = i_min; i <= +500; ++i)
       {
-	auto a = _Tp{0.1Q} * i;
+	auto a = Tp{0.1Q} * i;
 	int j_min = 1;
 	for (int j = j_min; j <= +500; ++j)
 	  {
-	    auto b = _Tp{0.1Q} * j;
+	    auto b = Tp{0.1Q} * j;
 	    auto gbet = emsr::detail::beta(a, b);
 	    auto bbet = beast::beta(a, b);
 	    std::cout << ' ' << std::setw(width) << a
@@ -55,11 +55,11 @@ template<typename _Tp>
       }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
   plot_beta(std::string filename)
   {
-    using _Val = _Tp;
+    using _Val = Tp;
     using _Real = emsr::num_traits_t<_Val>;
 
     auto data = std::ofstream(filename);
@@ -71,12 +71,12 @@ template<typename _Tp>
     int i_min = -150;
     for (int i = i_min; i <= +150; ++i)
       {
-	auto a = _Tp{0.02L} * i;
+	auto a = Tp{0.02L} * i;
 	int j_min = -150;
 	data << '\n';
 	for (int j = j_min; j <= +150; ++j)
 	  {
-	    auto b = _Tp{0.02L} * j;
+	    auto b = Tp{0.02L} * j;
 	    auto gbet = emsr::detail::beta(a, b);
 	    data << ' ' << std::setw(width) << a
 		 << ' ' << std::setw(width) << b

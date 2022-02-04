@@ -9,23 +9,23 @@
 /**
  * Integer powers.
  */
-template<typename _Tp>
-  _Tp
-  pow(_Tp x, int n)
+template<typename Tp>
+  Tp
+  pow(Tp x, int n)
   {
-    _Tp val = _Tp{1};
+    Tp val = Tp{1};
 
     if (n < 0)
       {
 	n = -n;
-	if (x == _Tp{})
+	if (x == Tp{})
 	  {
-	    auto u = _Tp{1} / x;
+	    auto u = Tp{1} / x;
 	    // Correct sign of infinity.
 	    val = (n % 2) ? u : (u * u) ;
           }
 
-	x = _Tp{1} / x;
+	x = Tp{1} / x;
       }
 
     // Repeated squaring method

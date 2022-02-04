@@ -13,22 +13,22 @@
 
 #include <emsr/special_functions.h>
 
-template<typename _Tp, typename _Bessel>
+template<typename Tp, typename _Bessel>
   void
   plot_bessel(std::string filename, _Bessel bessel)
   {
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Tp>::digits10);
+    data.precision(std::numeric_limits<Tp>::digits10);
     data << std::showpoint << std::scientific;
     auto w = 8 + data.precision();
 
     for (int n = 0; n <= 300; ++n)
       {
-        auto nu = _Tp(n) / _Tp{3};
+        auto nu = Tp(n) / Tp{3};
 	for (int i = 0; i <= 1000; ++i)
 	  {
-	    auto x = _Tp(0.10L * i);
+	    auto x = Tp(0.10L * i);
 	    auto j = bessel(nu, x);
 	    data << ' ' << std::setw(w) << nu
 		 << ' ' << std::setw(w) << x

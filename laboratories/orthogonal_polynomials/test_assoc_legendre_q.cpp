@@ -12,11 +12,11 @@
 /**
  * 
  */
-template<typename _Tp>
+template<typename Tp>
   void
   test_assoc_legendre_q()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -28,7 +28,7 @@ template<typename _Tp>
 		      << "  m = " << std::setw(2) << m << '\n';
 	    for (int i = -100; i <= 100; ++i)
 	      {
-		const auto x = _Tp(0.01 * i);
+		const auto x = Tp(0.01 * i);
 		//const auto Q = emsr::assoc_legendre_q(l, m, x);
 		const auto Q = emsr::detail::assoc_legendre_q(l, m, x);
 		std::cout << ' ' << std::setw(w) << x

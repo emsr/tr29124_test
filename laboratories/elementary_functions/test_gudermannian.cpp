@@ -18,9 +18,9 @@
  *    invgd(\phi) = asinh(tan(\phi))
  * @f]
  */
-template<typename _Tp>
-  _Tp
-  invgd_trig(_Tp phi)
+template<typename Tp>
+  Tp
+  invgd_trig(Tp phi)
   {
     return std::asinh(std::tan(phi));
   }
@@ -33,9 +33,9 @@ template<typename _Tp>
  * @f]
  * wnere @f$ E_n @f$ are the Euler numbers.
  */
-template<typename _Tp>
-  _Tp
-  invgd_series(_Tp x)
+template<typename Tp>
+  Tp
+  invgd_series(Tp x)
   {
     const auto xx = -x * x;
     auto term = x;
@@ -43,8 +43,8 @@ template<typename _Tp>
     for (int i = 1; i < 20; ++i)
       {
 	term *= xx
-	     / _Tp(2 * i) / _Tp(2 * i + 1);
-	sum += term * emsr::euler<_Tp>(2 * i);
+	     / Tp(2 * i) / Tp(2 * i + 1);
+	sum += term * emsr::euler<Tp>(2 * i);
       }
     return sum;
   }
@@ -55,11 +55,11 @@ template<typename _Tp>
  *    invgd(\phi) = F(1,\phi)
  * @f]
  */
-template<typename _Tp>
-  _Tp
-  invgd_ellint_2(_Tp x)
+template<typename Tp>
+  Tp
+  invgd_ellint_2(Tp x)
   {
-    return emsr::ellint_2(_Tp{1}, x);
+    return emsr::ellint_2(Tp{1}, x);
   }
 
 /**
@@ -69,9 +69,9 @@ template<typename _Tp>
  *    gd(x) = atan(sinh(x))
  * @f]
  */
-template<typename _Tp>
-  _Tp
-  gd_trig(_Tp x)
+template<typename Tp>
+  Tp
+  gd_trig(Tp x)
   {
     return std::atan(std::sinh(x));
   }
@@ -84,9 +84,9 @@ template<typename _Tp>
  * @f]
  * wnere @f$ E_n @f$ are the Euler numbers.
  */
-template<typename _Tp>
-  _Tp
-  gd_series(_Tp x)
+template<typename Tp>
+  Tp
+  gd_series(Tp x)
   {
     const auto xx = x * x;
     auto term = x;
@@ -94,36 +94,36 @@ template<typename _Tp>
     for (int i = 1; i < 20; ++i)
       {
 	term *= xx
-	     / _Tp(2 * i) / _Tp(2 * i + 1);
-	sum += term * emsr::euler<_Tp>(2 * i);
+	     / Tp(2 * i) / Tp(2 * i + 1);
+	sum += term * emsr::euler<Tp>(2 * i);
       }
     return sum;
   }
 
-template<typename _Tp>
-  _Tp
-  gd(_Tp x)
+template<typename Tp>
+  Tp
+  gd(Tp x)
   {
     const auto _S_pi = __const_2_pi(x);
 
     if (std::isnan(x))
       return x;
-    else if (x == -std::numeric_limits<_Tp>::infinity())
-      return -_S_pi / _Tp{2};
-    else if (x == +std::numeric_limits<_Tp>::infinity())
-      return +_S_pi / _Tp{2};
+    else if (x == -std::numeric_limits<Tp>::infinity())
+      return -_S_pi / Tp{2};
+    else if (x == +std::numeric_limits<Tp>::infinity())
+      return +_S_pi / Tp{2};
     else
       return gd_trig(x);
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_gudermannian()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto w = std::cout.precision() + 8;
 
-    const auto _S_pi = emsr::tau_v<_Tp>;
+    const auto _S_pi = emsr::tau_v<Tp>;
     const auto del = _S_pi / 400;
     for (int i = -200; i <= 200; ++i)
       {

@@ -81,73 +81,73 @@
     2329089562800ULL
   };
 
-  template<typename _Tp>
-    _Tp
+  template<typename Tp>
+    Tp
     harmonic_number(unsigned int n)
     {
       if (n <= s_num_harmonic_numer)
-	return _Tp{s_harmonic_numer[n - 1]} / _Tp{s_harmonic_denom[n - 1]};
+	return Tp{s_harmonic_numer[n - 1]} / Tp{s_harmonic_denom[n - 1]};
       else
         {
 	  unsigned int k = s_num_harmonic_numer - 1;
-	  auto _H_k = _Tp{s_harmonic_numer[k]} / _Tp{s_harmonic_denom[k]};
+	  auto _H_k = Tp{s_harmonic_numer[k]} / Tp{s_harmonic_denom[k]};
           for (k = s_num_harmonic_numer; k <= n; ++k)
-	    _H_k += _Tp{1} / _Tp(k);
+	    _H_k += Tp{1} / Tp(k);
 	}
     }
 
   //  From sf_gamma.tcc
-  template<typename _Tp>
-    _Tp
+  template<typename Tp>
+    Tp
     bernoulli_series(unsigned int n)
     {
       constexpr std::size_t num_bernoulli_numbers = 24;
-      constexpr _Tp
+      constexpr Tp
       bernoulli_numbers[num_bernoulli_numbers]
       {
-		     _Tp{1ULL},			-_Tp{1ULL} / _Tp{2ULL},
-		     _Tp{1ULL} /     _Tp{6ULL},  _Tp{0ULL},
-		    -_Tp{1ULL} /    _Tp{30ULL},  _Tp{0ULL},
-		     _Tp{1ULL} /    _Tp{42ULL},  _Tp{0ULL},
-		    -_Tp{1ULL} /    _Tp{30ULL},  _Tp{0ULL},
-		     _Tp{5ULL} /    _Tp{66ULL},  _Tp{0ULL},
-		  -_Tp{691ULL} /  _Tp{2730ULL},  _Tp{0ULL},
-	             _Tp{7ULL} /     _Tp{6ULL},  _Tp{0ULL},
-	         -_Tp{3617ULL} /   _Tp{510ULL},  _Tp{0ULL},
-	         _Tp{43867ULL} /   _Tp{798ULL},  _Tp{0ULL},
-	       -_Tp{174611ULL} /   _Tp{330ULL},  _Tp{0ULL},
-	        _Tp{854513ULL} /   _Tp{138ULL},  _Tp{0ULL}
+		     Tp{1ULL},			-Tp{1ULL} / Tp{2ULL},
+		     Tp{1ULL} /     Tp{6ULL},  Tp{0ULL},
+		    -Tp{1ULL} /    Tp{30ULL},  Tp{0ULL},
+		     Tp{1ULL} /    Tp{42ULL},  Tp{0ULL},
+		    -Tp{1ULL} /    Tp{30ULL},  Tp{0ULL},
+		     Tp{5ULL} /    Tp{66ULL},  Tp{0ULL},
+		  -Tp{691ULL} /  Tp{2730ULL},  Tp{0ULL},
+	             Tp{7ULL} /     Tp{6ULL},  Tp{0ULL},
+	         -Tp{3617ULL} /   Tp{510ULL},  Tp{0ULL},
+	         Tp{43867ULL} /   Tp{798ULL},  Tp{0ULL},
+	       -Tp{174611ULL} /   Tp{330ULL},  Tp{0ULL},
+	        Tp{854513ULL} /   Tp{138ULL},  Tp{0ULL}
       };
 
       if (n == 0)
-	return _Tp{1};
+	return Tp{1};
       else if (n == 1)
-	return -_Tp{1} / _Tp{2};
+	return -Tp{1} / Tp{2};
       else if (n % 2 == 1) // Take care of the rest of the odd ones.
-	return _Tp{0};
+	return Tp{0};
       else if (n < num_bernoulli_numbers) // Return small evens that are painful for the series.
 	return bernoulli_numbers[n];
       else
 	{
-	  _Tp fact = _Tp{1};
+	  Tp fact = Tp{1};
 	  if ((n / 2) % 2 == 0)
-	    fact *= -_Tp{1};
+	    fact *= -Tp{1};
 	  for (unsigned int k = 1; k <= n; ++k)
-	    fact *= k / (_Tp{2} * emsr::pi_v<_Tp>);
-	  fact *= _Tp{2};
+	    fact *= k / (Tp{2} * emsr::pi_v<Tp>);
+	  fact *= Tp{2};
 
-	  _Tp sum = _Tp{0};
+	  Tp sum = Tp{0};
 	  for (unsigned int i = 1; i < 1000; ++i)
 	    {
-	      _Tp term = std::pow(_Tp(i), -_Tp(n));
-	      if (term < std::numeric_limits<_Tp>::epsilon())
+	      Tp term = std::pow(Tp(i), -Tp(n));
+	      if (term < std::numeric_limits<Tp>::epsilon())
 		break;
 	      sum += term;
 	    }
 
 	  return fact * sum;
 	}
-      return _Tp{0};
+      return Tp{0};
     }
 
   /**
@@ -262,22 +262,22 @@
   };
 
 
-  template<typename _Tp>
-    _Tp
-    hurwitz_zeta_euler_maclaurin(_Tp s, _Tp a)
+  template<typename Tp>
+    Tp
+    hurwitz_zeta_euler_maclaurin(Tp s, Tp a)
     {
-      constexpr auto s_eps = std::numeric_limits<_Tp>::epsilon();
-      constexpr auto s_N = 10 + std::numeric_limits<_Tp>::digits10 / 2;
+      constexpr auto s_eps = std::numeric_limits<Tp>::epsilon();
+      constexpr auto s_N = 10 + std::numeric_limits<Tp>::digits10 / 2;
       constexpr auto s_jmax = 99;
 
-      const auto pmax  = std::pow(_Tp(s_N) + a, -s);
+      const auto pmax  = std::pow(Tp(s_N) + a, -s);
       const auto denom = (s_N + a) * (s_N + a);
-      auto ans = pmax * ((s_N + a) / (s - _Tp{1}) + _Tp{0.5L});
+      auto ans = pmax * ((s_N + a) / (s - Tp{1}) + Tp{0.5L});
       for(auto k = 0; k < s_N; ++k)
         ans += std::pow(k + a, -s);
 
       auto fact = pmax * s / (s_N + a);
-      auto delta_prev = std::numeric_limits<_Tp>::max();
+      auto delta_prev = std::numeric_limits<Tp>::max();
       for(auto j = 0; j <= s_jmax; ++j)
         {
 	  auto delta = s_Euler_Maclaurin_zeta[j + 1] * fact;
@@ -285,31 +285,31 @@
 	    break;
 	  delta_prev = std::abs(delta);
 	  ans += delta;
-	  if(std::abs(delta / ans) < _Tp{0.5L} * s_eps)
+	  if(std::abs(delta / ans) < Tp{0.5L} * s_eps)
 	    break;
-	  fact *= (s + _Tp(2 * j + 1)) * (s + _Tp(2 * j + 2))
+	  fact *= (s + Tp(2 * j + 1)) * (s + Tp(2 * j + 2))
 		  / denom;
         }
 
       return ans;
     }
 
-  template<typename _Tp>
-    _Tp
-    riemann_zeta_euler_maclaurin(_Tp s)
+  template<typename Tp>
+    Tp
+    riemann_zeta_euler_maclaurin(Tp s)
     {
-      constexpr auto s_eps = std::numeric_limits<_Tp>::epsilon();
-      constexpr auto s_N = 10 + std::numeric_limits<_Tp>::digits10 / 2;
+      constexpr auto s_eps = std::numeric_limits<Tp>::epsilon();
+      constexpr auto s_N = 10 + std::numeric_limits<Tp>::digits10 / 2;
       constexpr auto s_jmax = 99;
 
-      const auto pmax  = std::pow(_Tp(s_N) + _Tp{1}, -s);
-      const auto denom = (s_N + _Tp{1}) * (s_N + _Tp{1});
-      auto ans = pmax * ((s_N + _Tp{1}) / (s - _Tp{1}) + _Tp{0.5L});
+      const auto pmax  = std::pow(Tp(s_N) + Tp{1}, -s);
+      const auto denom = (s_N + Tp{1}) * (s_N + Tp{1});
+      auto ans = pmax * ((s_N + Tp{1}) / (s - Tp{1}) + Tp{0.5L});
       for(auto k = 0; k < s_N; ++k)
-        ans += std::pow(k + _Tp{1}, -s);
+        ans += std::pow(k + Tp{1}, -s);
 
-      auto fact = pmax * s / (s_N + _Tp{1});
-      auto delta_prev = std::numeric_limits<_Tp>::max();
+      auto fact = pmax * s / (s_N + Tp{1});
+      auto delta_prev = std::numeric_limits<Tp>::max();
       for(auto j = 0; j <= s_jmax; ++j)
         {
 	  auto delta = s_Euler_Maclaurin_zeta[j + 1] * fact;
@@ -317,36 +317,36 @@
 	    break;
 	  delta_prev = std::abs(delta);
 	  ans += delta;
-	  if(std::abs(delta / ans) < _Tp{0.5L} * s_eps)
+	  if(std::abs(delta / ans) < Tp{0.5L} * s_eps)
 	    break;
-	  fact *= (s + _Tp(2 * j + 1)) * (s + _Tp(2 * j + 2))
+	  fact *= (s + Tp(2 * j + 1)) * (s + Tp(2 * j + 2))
 		  / denom;
         }
 
       return ans;
     }
 
-  template<typename _Tp>
-    _Tp
-    hurwitz_zeta_glob(_Tp s, _Tp a)
+  template<typename Tp>
+    Tp
+    hurwitz_zeta_glob(Tp s, Tp a)
     {
-      const auto s_eps = std::numeric_limits<_Tp>::epsilon();
+      const auto s_eps = std::numeric_limits<Tp>::epsilon();
       // Max before overflow?
-      const auto s_max = std::numeric_limits<_Tp>::max();
-      const auto s_inf = std::numeric_limits<_Tp>::infinity();
+      const auto s_max = std::numeric_limits<Tp>::max();
+      const auto s_inf = std::numeric_limits<Tp>::infinity();
 
-      //std::cout.precision(std::numeric_limits<_Tp>::max_digits10);
+      //std::cout.precision(std::numeric_limits<Tp>::max_digits10);
 
-      if (s == +_Tp{0})
+      if (s == +Tp{0})
 	return s_inf;
 
-      std::vector<_Tp> apow;
+      std::vector<Tp> apow;
 
       constexpr unsigned int s_maxit = 1000;
       // Zeroth order contribution already calculated.
-      const auto a1ms = std::pow(a, _Tp{1} - s);
+      const auto a1ms = std::pow(a, Tp{1} - s);
       apow.push_back(a1ms);
-      auto zeta = _Tp(a1ms);
+      auto zeta = Tp(a1ms);
 #ifdef DEBUG_SERIES
       std::cout << "    n=" << 0 << " term=" << zeta << " zeta=" << zeta << '\n';
 #endif
@@ -354,19 +354,19 @@
 	{
 	  bool punt = false;
 	  // Again, the zeroth order contribution already calculated.
-	  auto termp = _Tp(a1ms);
-	  auto termm = _Tp{0};
-	  auto binom = _Tp{1};
+	  auto termp = Tp(a1ms);
+	  auto termm = Tp{0};
+	  auto binom = Tp{1};
 #ifdef DEBUG_SERIES
 	  std::cout << "        n=" << setw(4) << n << " k=" << setw(4) << 0
 		    << " binom=" << setw(20) << binom
 		    << " termp=" << setw(20) << termp
 		    << " termm=" << setw(20) << termm << '\n';
 #endif
-	  apow.push_back(std::pow(_Tp(n) + a, _Tp{1} - s));
+	  apow.push_back(std::pow(Tp(n) + a, Tp{1} - s));
 	  for (unsigned int k = 1; k <= n; ++k)
 	    {
-	      binom *= _Tp(n - k + 1) / _Tp(k);
+	      binom *= Tp(n - k + 1) / Tp(k);
 	      if (std::abs(binom) > s_max)
 		{
 		  punt = true;
@@ -391,41 +391,41 @@
 #endif
 	}
 
-      zeta /= s - _Tp{1};
+      zeta /= s - Tp{1};
 
       return zeta;
     }
 
-  //  I bet you could analytically continue this with gamma(_Tp(m + 1))
-  template<typename _Tp>
-    _Tp
-    polygamma(unsigned int m, _Tp z)
+  //  I bet you could analytically continue this with gamma(Tp(m + 1))
+  template<typename Tp>
+    Tp
+    polygamma(unsigned int m, Tp z)
     {
       auto sign = (m % 2 == 0 ? -1 : +1);
-      _Tp factorial{1};
+      Tp factorial{1};
       for (unsigned int k = 1; k <= m; ++k)
 	factorial *= k;
-      return sign * factorial * hurwitz_zeta_euler_maclaurin(_Tp(m + 1), z);
+      return sign * factorial * hurwitz_zeta_euler_maclaurin(Tp(m + 1), z);
     }
 
 
-  template<typename _Tp>
-    _Tp
-    riemann_zeta_m_1_basic_sum(_Tp s)
+  template<typename Tp>
+    Tp
+    riemann_zeta_m_1_basic_sum(Tp s)
     {
-      constexpr auto s_eps = emsr::epsilon<_Tp>();
+      constexpr auto s_eps = emsr::epsilon<Tp>();
       // A user shouldn't get to this.
-      if (s < _Tp{1})
+      if (s < Tp{1})
 	throw std::domain_error("Bad argument in zeta sum.");
 
-      int k_max = std::min(1000000, int(std::pow(_Tp{1} / s_eps, _Tp{1} / s)));
+      int k_max = std::min(1000000, int(std::pow(Tp{1} / s_eps, Tp{1} / s)));
 #ifdef DEBUG_SERIES
       std::cerr << "s = " << s << "  k_max = " << k_max << '\n';
 #endif
-      auto zeta_m_1 = _Tp{0};
+      auto zeta_m_1 = Tp{0};
       for (int k = k_max; k >= 2; --k)
 	{
-	  auto term = std::pow(_Tp(k), -s);
+	  auto term = std::pow(Tp(k), -s);
 	  zeta_m_1 += term;
 	  if (term < s_eps * zeta_m_1)
 	    break;
@@ -435,23 +435,23 @@
     }
 
 
-  template<typename _Tp>
-    _Tp
-    riemann_zeta_m_1_vanwg_sum(_Tp s)
+  template<typename Tp>
+    Tp
+    riemann_zeta_m_1_vanwg_sum(Tp s)
     {
-      constexpr auto s_eps = emsr::epsilon<_Tp>();
+      constexpr auto s_eps = emsr::epsilon<Tp>();
       // A user shouldn't get to this.
-      if (s < _Tp{1})
+      if (s < Tp{1})
 	throw std::domain_error("Bad argument in zeta sum.");
 
-      int k_max = std::min(1000000, int(std::pow(_Tp{1} / s_eps, _Tp{1} / s)));
+      int k_max = std::min(1000000, int(std::pow(Tp{1} / s_eps, Tp{1} / s)));
 #ifdef DEBUG_SERIES
       std::cerr << "s = " << s << "  k_max = " << k_max << '\n';
 #endif
-      auto zeta_m_1 = _Tp{0};
+      auto zeta_m_1 = Tp{0};
       for (int k = k_max; k >= 2; --k)
 	{
-	  auto term = std::pow(_Tp(k), -s);
+	  auto term = std::pow(Tp(k), -s);
 	  zeta_m_1 += term;
 	  if (term < s_eps * zeta_m_1)
 	    break;
@@ -461,17 +461,17 @@
     }
 
 
-  template<typename _Tp>
-    _Tp
-    riemann_zeta_m_1_kahan_sum(_Tp s)
+  template<typename Tp>
+    Tp
+    riemann_zeta_m_1_kahan_sum(Tp s)
     {
-      constexpr auto s_eps = emsr::epsilon<_Tp>();
+      constexpr auto s_eps = emsr::epsilon<Tp>();
       // A user shouldn't get to this.
-      if (s < _Tp{1})
+      if (s < Tp{1})
 	throw std::domain_error("Bad argument in zeta sum.");
 
-      emsr::KahanSum<_Tp> zeta_m_1;
-      int k_max = std::min(1000000, int(std::pow(_Tp{1} / s_eps, _Tp{1} / s)));
+      emsr::KahanSum<Tp> zeta_m_1;
+      int k_max = std::min(1000000, int(std::pow(Tp{1} / s_eps, Tp{1} / s)));
 #ifdef DEBUG_SERIES
       std::cerr << "s = " << s << "  k_max = " << k_max << '\n';
 #endif
@@ -479,7 +479,7 @@
       //int k_max = 10000;
       //for (int k = k_max; k >= 2; --k)
 	{
-	  auto term = std::pow(_Tp(k), -s);
+	  auto term = std::pow(Tp(k), -s);
 	  zeta_m_1 += term;
 	  if (term < s_eps * zeta_m_1())
 	    break;
@@ -489,42 +489,42 @@
     }
 
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_hurwitz_zeta_new()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::max_digits10);
-    auto width = std::numeric_limits<_Tp>::max_digits10 + 6;
+    std::cout.precision(std::numeric_limits<Tp>::max_digits10);
+    auto width = std::numeric_limits<Tp>::max_digits10 + 6;
 
     // Build the harmonic numbers H_n.
     std::cout << "\nBuild the H_n numbers\n";
-    auto hn = _Tp{0};
+    auto hn = Tp{0};
     for (auto i = 1; i < 100; ++i)
       {
-	std::cout << (hn += _Tp{1} / i) << '\n';
+	std::cout << (hn += Tp{1} / i) << '\n';
       }
 
     // Build the B_{2j} numbers.
     std::cout << "\nBuild the B_{2j} numbers\n";
     for (auto i = 1; i < 100; ++i)
       {
-	std::cout << bernoulli_series<_Tp>(2 * i) << '\n';
+	std::cout << bernoulli_series<Tp>(2 * i) << '\n';
       }
 
     // Build the B_{2j}/(2j)! numbers.
     std::cout << "\nBuild the B_{2j}/(2j)! numbers\n";
-    _Tp fact{1};
+    Tp fact{1};
     for (auto i = 1; i < 100; ++i)
       {
 	fact /= (2 * i - 1) * (2 * i);
-	std::cout << fact * bernoulli_series<_Tp>(2 * i) << '\n';
+	std::cout << fact * bernoulli_series<Tp>(2 * i) << '\n';
       }
 
     // Test zeta - 1 function with both simple and Kahan summation.
     std::cout << "\nTest zeta - 1 function with both simple and Kahan summation\n";
     for (auto is = 10; is < 100; ++is)
       {
-	_Tp s = 0.1L * is;
+	Tp s = 0.1L * is;
 	auto zetam1s = riemann_zeta_m_1_basic_sum(s);
 	auto zetam1k = riemann_zeta_m_1_kahan_sum(s);
 	std::cout << ' ' << std::setw(width) << s
@@ -538,7 +538,7 @@ template<typename _Tp>
     std::cout << "\nTest zeta - 1 function with both simple and Kahan summation\n";
     for (auto is = 1; is <= 100; ++is)
       {
-	_Tp s = 1.0L * is;
+	Tp s = 1.0L * is;
 	auto zetam1s = riemann_zeta_m_1_basic_sum(s);
 	auto zetam1k = riemann_zeta_m_1_kahan_sum(s);
 	std::cout << ' ' << std::setw(width) << s
@@ -552,8 +552,8 @@ template<typename _Tp>
     std::cout << "\nBernoulli sum regular zeta function\n";
     for (auto is = -9; is < 100; ++is)
       {
-	_Tp s = 0.1L * is;
-	auto hzeta = hurwitz_zeta_euler_maclaurin(s, _Tp{1});
+	Tp s = 0.1L * is;
+	auto hzeta = hurwitz_zeta_euler_maclaurin(s, Tp{1});
 	auto rzeta = riemann_zeta_euler_maclaurin(s);
 	std::cout << ' ' << std::setw(width) << s
 		  << ' ' << std::setw(width) << hzeta
@@ -564,20 +564,20 @@ template<typename _Tp>
 
     // Test a Hurwitz zeta function.
     std::cout << "\nHurwitz zeta function\n";
-    std::cout << "\n a = " << _Tp{4} << '\n';//'\n';
-    std::cout << ' ' << std::setw(width) << _Tp{10}
-	      << ' ' << std::setw(width) << hurwitz_zeta_euler_maclaurin(_Tp{10}, _Tp{4})
-	      << ' ' << std::setw(width) << hurwitz_zeta_glob(_Tp{10}, _Tp{4})
+    std::cout << "\n a = " << Tp{4} << '\n';//'\n';
+    std::cout << ' ' << std::setw(width) << Tp{10}
+	      << ' ' << std::setw(width) << hurwitz_zeta_euler_maclaurin(Tp{10}, Tp{4})
+	      << ' ' << std::setw(width) << hurwitz_zeta_glob(Tp{10}, Tp{4})
 	      << '\n';
 
     std::cout << "\nHurwitz zeta function\n";
     for (auto ia = 1; ia < 100; ++ia)
       {
-	_Tp a = 0.1L * ia;
+	Tp a = 0.1L * ia;
 	std::cout << "\n a = " << a << '\n';//'\n';
 	for (auto is = 0; is < 100; ++is)
 	  {
-	    _Tp s = 0.1L * is;
+	    Tp s = 0.1L * is;
 	    if (s == 1)
 	      continue;
 	    std::cout << ' ' << std::setw(width) << s

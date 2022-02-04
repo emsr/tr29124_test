@@ -10,40 +10,40 @@
 #include <emsr/numeric_limits.h>
 #include <emsr/sf_hyperg.h>
 
-  template<typename _Tp>
-    _Tp
-    conf_hyperg_limit_sum(_Tp c, _Tp z)
+  template<typename Tp>
+    Tp
+    conf_hyperg_limit_sum(Tp c, Tp z)
     {
       constexpr int s_max_iter = 10000;
-      _Tp term{1};
-      _Tp sum = term;
+      Tp term{1};
+      Tp sum = term;
       for (int i = 0; i < s_max_iter; ++i)
 	{
 	  term *=  z / ((c + i) * (i + 1));
 	  sum += term;
-	  if (std::abs(term) < std::numeric_limits<_Tp>::epsilon())
+	  if (std::abs(term) < std::numeric_limits<Tp>::epsilon())
 	    break;
 	}
       return sum;
     }
 
-  template<typename _Tp>
-    _Tp
-    conf_hyperg_limit(_Tp c, _Tp z)
+  template<typename Tp>
+    Tp
+    conf_hyperg_limit(Tp c, Tp z)
     {
       return conf_hyperg_limit_sum(c, z);
     }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_conf_hyperg_limit(_Tp proto = _Tp{})
+  test_conf_hyperg_limit(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    const auto c = _Tp{0.2Q};
-    const auto del = _Tp{1} / _Tp{10};
+    const auto c = Tp{0.2Q};
+    const auto del = Tp{1} / Tp{10};
     for (int i = -200; i < +200; ++i)
     {
       auto z = del * i;

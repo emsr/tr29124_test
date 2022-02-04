@@ -12,18 +12,18 @@
 
 #include <wrap_boost.h>
 
-template<typename _Tp>
+template<typename Tp>
   void
-  RunSphHankel1(_Tp proto = _Tp{})
+  RunSphHankel1(Tp proto = Tp{})
   {
-    std::cout.precision(emsr::digits10<_Tp>(proto));
+    std::cout.precision(emsr::digits10<Tp>(proto));
     std::cout.flags(std::ios::showpoint);
     auto width = 8 + std::cout.precision();
 
-    auto max_max_abs_frac = _Tp{-1};
+    auto max_max_abs_frac = Tp{-1};
     for (int inu = 0; inu <= +500; ++inu)
       {
-	auto max_abs_frac = _Tp{-1};
+	auto max_abs_frac = Tp{-1};
 	auto nu = inu * 0.1;
 	std::cout << '\n';
 	for (int iz = 1; iz <= +1000; ++iz)

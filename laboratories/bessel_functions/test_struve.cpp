@@ -21,20 +21,20 @@
 /**
  * Take a hard look at the series/asymptotic transition.
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  test_struve_transition(_Tp proto = _Tp{})
+  test_struve_transition(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    const auto del = _Tp{1} / _Tp{100};
+    const auto del = Tp{1} / Tp{100};
     for (int i = 500; i <= +5500; ++i)
       {
 	auto t = del * i;
 	std::cout << std::setw(width) << t;
-	const auto ndel = _Tp{1};
+	const auto ndel = Tp{1};
 	for (int n = 0; n <= 5; ++n)
 	  {
 	    auto nu = ndel * n;
@@ -55,9 +55,9 @@ template<typename _Tp>
 /**
  * Plot the Struve functions.
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  plot_struve(std::string filename, _Tp proto = _Tp{})
+  plot_struve(std::string filename, Tp proto = Tp{})
   {
     auto data = std::ofstream(filename);
 
@@ -76,12 +76,12 @@ template<typename _Tp>
 	 << std::setw(width) << "========="
 	 << std::setw(width) << "========="
 	 << '\n';
-    const auto del = _Tp{1} / _Tp{100};
+    const auto del = Tp{1} / Tp{100};
     for (int i = 0; i <= +3000; ++i)
       {
 	auto t = del * i;
 	data << std::setw(width) << t;
-	const auto ndel = _Tp{1};
+	const auto ndel = Tp{1};
 	for (int n = 0; n <= 20; ++n)
 	  {
 	    auto nu = ndel * n;
@@ -107,7 +107,7 @@ template<typename _Tp>
       {
 	auto t = del * i;
 	data << std::setw(width) << t;
-	const auto ndel = _Tp{1};
+	const auto ndel = Tp{1};
 	for (int n = 0; n <= 20; ++n)
 	  {
 	    auto nu = ndel * n;

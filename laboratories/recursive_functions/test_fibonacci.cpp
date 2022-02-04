@@ -61,27 +61,27 @@ template<typename _UIntTp>
  * Note that the Fibonacci numbers for negative integers are given
  * by @f$ F_{-n} = (-1)^{n+1} F_n @f$.
  */
-template<typename _Tp>
-  _Tp
-  fibonacci(_Tp nu)
+template<typename Tp>
+  Tp
+  fibonacci(Tp nu)
   {
-    if constexpr (std::is_integral_v<_Tp>)
+    if constexpr (std::is_integral_v<Tp>)
       {
-	if (std::is_unsigned_v<_Tp>)
+	if (std::is_unsigned_v<Tp>)
 	  return fibonacci_recur(nu);
 	else
 	  {
 	    if (nu < 0)
-	      return emsr::parity<_Tp>(-nu + 1)
+	      return emsr::parity<Tp>(-nu + 1)
 		   * fibonacci_recur(-nu);
 	    else
 	      return fibonacci_recur(nu);
 	  }
       }
-    else if constexpr (std::is_floating_point_v<_Tp>)
+    else if constexpr (std::is_floating_point_v<Tp>)
       {
-	const auto _S_phi = emsr::phi_v<_Tp>;
-	const auto _S_sqrt5 = emsr::sqrt5_v<_Tp>;
+	const auto _S_phi = emsr::phi_v<Tp>;
+	const auto _S_sqrt5 = emsr::sqrt5_v<Tp>;
 	const auto phinu = std::pow(_S_phi, nu);
 	return (phinu - emsr::cos_pi(nu) / phinu) / _S_sqrt5;
       }
@@ -153,25 +153,25 @@ template<typename _UIntTp>
  * Note that the Lucas numbers for negative integers are given
  * by @f$ L_{-n} = (-1)^n L_n @f$.
  */
-template<typename _Tp>
-  _Tp
-  lucas(_Tp nu)
+template<typename Tp>
+  Tp
+  lucas(Tp nu)
   {
-    if constexpr (std::is_integral_v<_Tp>)
+    if constexpr (std::is_integral_v<Tp>)
       {
-	if (std::is_unsigned_v<_Tp>)
+	if (std::is_unsigned_v<Tp>)
 	  return lucas_recur(nu);
 	else
 	  {
 	    if (nu < 0)
-	      return emsr::parity<_Tp>(nu) * lucas_recur(-nu);
+	      return emsr::parity<Tp>(nu) * lucas_recur(-nu);
 	    else
 	      return lucas_recur(nu);
 	  }
       }
-    else if constexpr (std::is_floating_point_v<_Tp>)
+    else if constexpr (std::is_floating_point_v<Tp>)
       {
-	const auto _S_phi = emsr::phi_v<_Tp>;
+	const auto _S_phi = emsr::phi_v<Tp>;
 	const auto phinu = std::pow(_S_phi, nu);
 	return phinu + emsr::cos_pi(nu) / phinu;
       }
@@ -205,16 +205,16 @@ template<typename _UIntTp, typename _RealTp>
     return Ln;
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_fibonacci()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
     const auto max_number = 50ll;
-    const auto delnu = _Tp{1} / _Tp{50};
+    const auto delnu = Tp{1} / Tp{50};
     const auto max_order = 50ll;
 
     std::cout << "\n\n Fibonacci numbers\n";
@@ -240,7 +240,7 @@ template<typename _Tp>
     for (auto n = 0; n <= max_order; ++n)
       {
 	std::cout << '\n' << '\n' << ' ' << std::setw(4) << n << '\n';
-	const auto del = _Tp{1} / _Tp{10};
+	const auto del = Tp{1} / Tp{10};
 	for (int i = -50; i <= 50; ++i)
 	  {
 	    auto x = del * i;
@@ -274,7 +274,7 @@ template<typename _Tp>
     for (auto n = 0; n <= max_order; ++n)
       {
 	std::cout << '\n' << '\n' << ' ' << std::setw(4) << n << '\n';
-	const auto del = _Tp{1} / _Tp{10};
+	const auto del = Tp{1} / Tp{10};
 	for (int i = -50; i <= 50; ++i)
 	  {
 	    auto x = del * i;

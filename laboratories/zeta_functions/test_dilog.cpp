@@ -16,37 +16,37 @@ namespace emsr
 namespace detail
 {
 
-  template<typename _Tp>
-    _Tp
-    dilog(_Tp x)
+  template<typename Tp>
+    Tp
+    dilog(Tp x)
     {
       static constexpr unsigned long long s_maxit = 100000ULL;
       static const auto s_eps = 10 * emsr::epsilon(x);
-      static const auto s_pipio6 = emsr::pi_sqr_div_6_v<_Tp>;
+      static const auto s_pipio6 = emsr::pi_sqr_div_6_v<Tp>;
       if (std::isnan(x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (x > _Tp(+1))
+	return std::numeric_limits<Tp>::quiet_NaN();
+      else if (x > Tp(+1))
 	throw std::range_error(__N("dilog: argument greater than one"));
-      else if (x < _Tp(-1))
+      else if (x < Tp(-1))
 	{
-	  auto lnfact = std::log(_Tp(1) - x);
-	  return -dilog(_Tp(1) - _Tp(1) / (_Tp(1) - x))
-		 - _Tp(0.5L) * lnfact * lnfact;
+	  auto lnfact = std::log(Tp(1) - x);
+	  return -dilog(Tp(1) - Tp(1) / (Tp(1) - x))
+		 - Tp(0.5L) * lnfact * lnfact;
 	}
-      else if (x == _Tp(1))
+      else if (x == Tp(1))
 	return s_pipio6;
-      else if (x == -_Tp(1))
-	return -_Tp(0.5L) * s_pipio6;
-      else if (x > _Tp(0.5))
-	return s_pipio6 - std::log(x) * std::log(_Tp(1) - x)
-	     - dilog(_Tp(1) - x);
-      else if (x < -_Tp(0.5))
-	return -_Tp(0.5L) * s_pipio6 - std::log(_Tp(1) + x) * std::log(-x)
-	     + dilog(_Tp(1) + x) - dilog(_Tp(1) - x * x);
+      else if (x == -Tp(1))
+	return -Tp(0.5L) * s_pipio6;
+      else if (x > Tp(0.5))
+	return s_pipio6 - std::log(x) * std::log(Tp(1) - x)
+	     - dilog(Tp(1) - x);
+      else if (x < -Tp(0.5))
+	return -Tp(0.5L) * s_pipio6 - std::log(Tp(1) + x) * std::log(-x)
+	     + dilog(Tp(1) + x) - dilog(Tp(1) - x * x);
       else
 	{
-	  _Tp sum = 0;
-	  _Tp fact = 1;
+	  Tp sum = 0;
+	  Tp fact = 1;
 	  for (auto i = 1ULL; i < s_maxit; ++i)
 	    {
 	      fact *= x;
@@ -80,11 +80,11 @@ namespace emsr
   dilogl(long double x)
   { return emsr::detail::dilog<long double>(x); }
 
-  template<typename _Tp>
-    inline typename emsr::promote<_Tp>::type
-    dilog(_Tp x)
+  template<typename Tp>
+    inline typename emsr::promote<Tp>::type
+    dilog(Tp x)
     {
-      typedef typename emsr::promote<_Tp>::type type;
+      typedef typename emsr::promote<Tp>::type type;
       return emsr::detail::dilog<type>(x);
     }
 

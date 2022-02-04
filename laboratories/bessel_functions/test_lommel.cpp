@@ -19,20 +19,20 @@ namespace detail
   /**
    * 
    */
-  template<typename _Tp>
-    _Tp
-    lommel_1_series(_Tp mu, _Tp nu, _Tp z)
+  template<typename Tp>
+    Tp
+    lommel_1_series(Tp mu, Tp nu, Tp z)
     {
       const auto s_eps = emsr::epsilon(z);
       const unsigned int s_max_iter = 100000u;
       const auto z2 = z * z;
       const auto nu2 = nu * nu;
 
-      auto term = _Tp{1};
+      auto term = Tp{1};
       auto _S1 = term;
       for (auto k = 1u; k < s_max_iter; ++k)
 	{
-	  const auto mu1 = mu + _Tp(2 * k - 1);
+	  const auto mu1 = mu + Tp(2 * k - 1);
 	  term *= -z2 / (mu1 * mu1 - nu2);
 	  _S1 += term;
 	  if (std::abs(term) < s_eps * std::abs(_S1))
@@ -53,14 +53,14 @@ namespace detail
    *    a_{k+1}(\mu,\nu) = \prod_{m=1}^{k}\left[(\mu+2m-1)^2-\nu^2\right]
    * @f]
    */
-  template<typename _Tp>
-    inline _Tp
-    lommel_1(_Tp mu, _Tp nu, _Tp z)
+  template<typename Tp>
+    inline Tp
+    lommel_1(Tp mu, Tp nu, Tp z)
     {
       auto s_NaN = emsr::quiet_NaN(z);
       if (std::isnan(mu) || std::isnan(nu) || std::isnan(z))
 	return s_NaN;
-      else if (nu < _Tp{0})
+      else if (nu < Tp{0})
 	return lommel_1(mu, -nu, z);
       else
 	return lommel_1_series(mu, nu, z);
@@ -77,14 +77,14 @@ namespace detail
    *        - \cos\left(\frac{(\mu-\nu)\pi}{2}\right)N_\nu(z0  \right]
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    lommel_2(_Tp mu, _Tp nu, _Tp z)
+  template<typename Tp>
+    Tp
+    lommel_2(Tp mu, Tp nu, Tp z)
     {
       auto s_NaN = emsr::quiet_NaN(z);
       if (std::isnan(mu) || std::isnan(nu) || std::isnan(z))
 	return s_NaN;
-      else if (nu < _Tp{0})
+      else if (nu < Tp{0})
 	return lommel_2(mu, -nu, z);
       else
 	{
@@ -92,21 +92,21 @@ namespace detail
 	  const auto ip = emsr::fp_is_odd_integer(mu + nu);
 	  if (im && im() < 0)
             {
-	      return _Tp{0};
+	      return Tp{0};
 	    }
 	  else if (ip && ip() < 0)
             {
-	      return _Tp{0};
+	      return Tp{0};
 	    }
 	  else
             {
 	      const auto _S1 = lommel_1(mu, nu, z);
-	      const auto sc = emsr::detail::sincos_pi((mu - nu) / _Tp{2});
+	      const auto sc = emsr::detail::sincos_pi((mu - nu) / Tp{2});
 	      const auto Bess = emsr::detail::cyl_bessel_jn(nu, z);
 	      const auto _S2 = _S1
-			     + std::pow(_Tp{2}, mu - 1)
-			      * emsr::detail::gamma((mu + nu + 1)/ _Tp{2})
-			      * emsr::detail::gamma((mu - nu + 1)/ _Tp{2})
+			     + std::pow(Tp{2}, mu - 1)
+			      * emsr::detail::gamma((mu + nu + 1)/ Tp{2})
+			      * emsr::detail::gamma((mu - nu + 1)/ Tp{2})
 		    * (sc.sin_v * Bess.J_value
 		     - sc.cos_v * Bess.N_value);
 	      return _S2;
@@ -117,20 +117,20 @@ namespace detail
   /**
    * 
    */
-  template<typename _Tp>
-    _Tp
-    lommel_2_asymp(_Tp mu, _Tp nu, _Tp z)
+  template<typename Tp>
+    Tp
+    lommel_2_asymp(Tp mu, Tp nu, Tp z)
     {
       const auto s_eps = emsr::epsilon(z);
       const unsigned int s_max_iter = 100000u;
-      const auto zm2 = _Tp{1} / (z * z);
+      const auto zm2 = Tp{1} / (z * z);
       const auto nu2 = nu * nu;
 
-      auto term = _Tp{1};
+      auto term = Tp{1};
       auto _S2 = term;
       for (auto k = 1; k < s_max_iter; ++k)
 	{
-	  const auto mu1 = -mu + _Tp(2 * k - 1);
+	  const auto mu1 = -mu + Tp(2 * k - 1);
 	  term *= -(mu1 * mu1 - nu2) * zm2;
 	  _S2 += term;
 	  if (std::abs(term) < s_eps * std::abs(_S2))
@@ -176,11 +176,11 @@ namespace emsr
    *    a_{k+1}(\mu,\nu) = \prod_{m=1}^{k}\left[(\mu+2m-1)^2-\nu^2\right]
    * @f]
    */
-  template<typename _Tmu, typename _Tnu, typename _Tp>
-    inline emsr::fp_promote_t<_Tmu, _Tnu, _Tp>
-    lommel_1(_Tmu mu, _Tnu nu, _Tp z)
+  template<typename _Tmu, typename _Tnu, typename Tp>
+    inline emsr::fp_promote_t<_Tmu, _Tnu, Tp>
+    lommel_1(_Tmu mu, _Tnu nu, Tp z)
     {
-      using type = emsr::fp_promote_t<_Tmu, _Tnu, _Tp>;
+      using type = emsr::fp_promote_t<_Tmu, _Tnu, Tp>;
       return emsr::detail::lommel_1<type>(mu, nu, z);
     }
 
@@ -218,27 +218,27 @@ namespace emsr
    * @see cyl_bessel_j and @f$ N_\nu(z) @f$ is the cylindrical Neumann function
    * @see cyl_neumann.
    */
-  template<typename _Tmu, typename _Tnu, typename _Tp>
-    inline emsr::fp_promote_t<_Tmu, _Tnu, _Tp>
-    lommel_2(_Tmu mu, _Tnu nu, _Tp z)
+  template<typename _Tmu, typename _Tnu, typename Tp>
+    inline emsr::fp_promote_t<_Tmu, _Tnu, Tp>
+    lommel_2(_Tmu mu, _Tnu nu, Tp z)
     {
-      using type = emsr::fp_promote_t<_Tmu, _Tnu, _Tp>;
+      using type = emsr::fp_promote_t<_Tmu, _Tnu, Tp>;
       return emsr::detail::lommel_2<type>(mu, nu, z);
     }
 
 } // namespace emsr
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_lommel_1(_Tp proto = _Tp{})
+  test_lommel_1(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    auto mu = _Tp{6}/_Tp{5};
-    auto nu = _Tp{1}/_Tp{5};
-    const auto del = _Tp{1} / _Tp{10};
+    auto mu = Tp{6}/Tp{5};
+    auto nu = Tp{1}/Tp{5};
+    const auto del = Tp{1} / Tp{10};
     std::cout << "\n\n";
     for (int i = 0; i <= +200; ++i)
     {
@@ -249,17 +249,17 @@ template<typename _Tp>
     }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_lommel_2(_Tp proto = _Tp{})
+  test_lommel_2(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    auto mu = _Tp{6}/_Tp{5};
-    auto nu = _Tp{1}/_Tp{5};
-    const auto del = _Tp{1} / _Tp{10};
+    auto mu = Tp{6}/Tp{5};
+    auto nu = Tp{1}/Tp{5};
+    const auto del = Tp{1} / Tp{10};
     std::cout << "\n\n";
     for (int i = 0; i <= +200; ++i)
     {

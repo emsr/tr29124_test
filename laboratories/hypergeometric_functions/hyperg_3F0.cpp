@@ -6,39 +6,39 @@
 #include <cmath>
 #include <stdexcept>
 
-template<typename _Tp>
-  _Tp
-  hyperg_3f0(_Tp a, _Tp b, _Tp c, _Tp x, _Tp& err)
+template<typename Tp>
+  Tp
+  hyperg_3f0(Tp a, Tp b, Tp c, Tp x, Tp& err)
   {
     constexpr auto s_max_iter = 200;
-    const auto s_eps = std::numeric_limits<_Tp>::epsilon();
-    const auto s_huge = std::numeric_limits<_Tp>::max() / _Tp{1000};
+    const auto s_eps = std::numeric_limits<Tp>::epsilon();
+    const auto s_huge = std::numeric_limits<Tp>::max() / Tp{1000};
     auto an = a;
     auto bn = b;
     auto cn = c;
-    auto a0 = _Tp{1};
-    auto sum = _Tp{1};
+    auto a0 = Tp{1};
+    auto sum = Tp{1};
     auto n = 1;
-    auto t = _Tp{1};
-    auto max = _Tp{0};
-    auto conv = std::numeric_limits<_Tp>::max() / _Tp{2};
+    auto t = Tp{1};
+    auto max = Tp{0};
+    auto conv = std::numeric_limits<Tp>::max() / Tp{2};
     auto conv1 = conv;
-    const auto stop = std::numeric_limits<_Tp>::epsilon();
+    const auto stop = std::numeric_limits<Tp>::epsilon();
 
     do
       {
-	if (an == _Tp{0})
+	if (an == Tp{0})
 	  break;
-	if (bn == _Tp{0})
+	if (bn == Tp{0})
 	  break;
-	if (cn == _Tp{0})
+	if (cn == Tp{0})
 	  break;
 	if (a0 > s_huge || n > s_max_iter)
 	  throw std::runtime_error("hyperg_3f0: series failed");
 	a0 *= (an * bn * cn * x) / n;
-	an += _Tp{1};
-	bn += _Tp{1};
-	cn += _Tp{1};
+	an += Tp{1};
+	bn += Tp{1};
+	cn += Tp{1};
 	++n;
 	auto z = std::abs(a0);
 	if (z > max)

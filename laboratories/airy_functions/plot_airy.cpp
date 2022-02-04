@@ -13,11 +13,11 @@
 
 /**
  * 
-template<typename _Tp>
+template<typename Tp>
   void
   plot_airy(std::string filename)
   {
-    using _Val = emsr::num_traits_t<_Tp>;
+    using _Val = emsr::num_traits_t<Tp>;
 
     auto data = std::ofstream(filename);
 
@@ -44,7 +44,7 @@ template<typename _Tp>
 	 << '\n';
     for (int i = -2000; i <= +500; ++i)
       {
-	auto t = _Tp(0.01Q * i);
+	auto t = Tp(0.01Q * i);
 	auto airy0 = emsr::airy(t);
 	data << std::setw(w) << std::real(airy0.z)
 	     << std::setw(w) << std::real(airy0.Ai)
@@ -62,11 +62,11 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
+template<typename Tp>
   void
   splot_airy(std::string filename)
   {
-    using _Val = emsr::num_traits_t<_Tp>;
+    using _Val = emsr::num_traits_t<Tp>;
 
     auto data = std::ofstream(filename);
 
@@ -78,7 +78,7 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = Tp(0.10Q * i, 0.10Q * j);
 	    auto Ai = emsr::airy_ai(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
@@ -93,7 +93,7 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = Tp(0.10Q * i, 0.10Q * j);
 	    auto Ai = emsr::airy_ai(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
@@ -108,7 +108,7 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = Tp(0.10Q * i, 0.10Q * j);
 	    auto Ai = emsr::airy_ai(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
@@ -123,7 +123,7 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = Tp(0.10Q * i, 0.10Q * j);
 	    auto Ai = emsr::airy_ai(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
@@ -138,7 +138,7 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = Tp(0.10Q * i, 0.10Q * j);
 	    auto Bi = emsr::airy_bi(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
@@ -153,7 +153,7 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = Tp(0.10Q * i, 0.10Q * j);
 	    auto Bi = emsr::airy_bi(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
@@ -168,7 +168,7 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = Tp(0.10Q * i, 0.10Q * j);
 	    auto Bi = emsr::airy_bi(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
@@ -183,7 +183,7 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = Tp(0.10Q * i, 0.10Q * j);
 	    auto Bi = emsr::airy_bi(t);
 	    data << std::setw(w) << std::real(t)
 	         << std::setw(w) << std::imag(t)
@@ -198,7 +198,7 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = Tp(0.10Q * i, 0.10Q * j);
 	    auto airy0 = airy(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
@@ -213,11 +213,11 @@ template<typename _Tp>
 
 /**
  * 
-template<typename _Tp>
+template<typename Tp>
   void
   plot_scorer(std::string filename)
   {
-    using _Val = emsr::num_traits_t<_Tp>;
+    using _Val = emsr::num_traits_t<Tp>;
 
     auto data = std::ofstream(filename);
 
@@ -225,7 +225,7 @@ template<typename _Tp>
     data << std::showpoint << std::scientific;
     auto w = 8 + data.precision();
 
-    _Scorer<_Tp> scorer;
+    _Scorer<Tp> scorer;
 
     data << "\n\n";
     data << "#"
@@ -246,7 +246,7 @@ template<typename _Tp>
 	 << '\n';
     for (int i = -2000; i <= +500; ++i)
       {
-	auto t = _Tp(0.01Q * i);
+	auto t = Tp(0.01Q * i);
 	auto scorer0 = scorer(t);
 	data << std::setw(w) << std::real(scorer0.z)
 	     << std::setw(w) << std::real(scorer0.Ai)
@@ -263,11 +263,11 @@ template<typename _Tp>
 
 /**
  * 
-template<typename _Tp>
+template<typename Tp>
   void
   plot_fgh(std::string filename)
   {
-    using _Val = emsr::num_traits_t<_Tp>;
+    using _Val = emsr::num_traits_t<Tp>;
 
     auto data = std::ofstream(filename);
 
@@ -296,7 +296,7 @@ template<typename _Tp>
 	 << '\n';
     for (int i = -2000; i <= +500; ++i)
       {
-	auto t = _Tp(0.01Q * i);
+	auto t = Tp(0.01Q * i);
 	auto fgh0 = _Airy_series<_Val>::s_FGH(t);
 	data << std::setw(w) << std::real(fgh0.z)
 	     << std::setw(w) << std::real(fgh0.fai)

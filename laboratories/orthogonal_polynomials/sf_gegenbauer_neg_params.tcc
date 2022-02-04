@@ -51,14 +51,14 @@ namespace lab
    * and @f$ C_0^{(\lambda)}(x) = 1 @f$, @f$ C_1^{(\lambda)}(x) = 2\lambda x @f$.
    * This works for @f$ \lambda > -1/2 @f$
    *
-   * @tparam  _Tp  The real type of the argument and order
+   * @tparam  Tp  The real type of the argument and order
    * @param  n  The non-negative integral degree
    * @param  lambda  The order of the Gegenbauer polynomial
    * @param  x  The real argument
    */
-  template<typename _Tp>
-    emsr::gegenbauer_t<_Tp>
-    gegenbauer_recur(unsigned int n, _Tp lambda, _Tp x)
+  template<typename Tp>
+    emsr::gegenbauer_t<Tp>
+    gegenbauer_recur(unsigned int n, Tp lambda, Tp x)
     {
       const auto _S_NaN = emsr::quiet_NaN(x);
 
@@ -67,27 +67,27 @@ namespace lab
 
       auto m = int(n);
       if (const auto
-	    pint = emsr::fp_is_integer(n + _Tp{2} * lambda);
+	    pint = emsr::fp_is_integer(n + Tp{2} * lambda);
 	  pint && pint() <= 0 && m > -pint())
 	m = -pint();
 
-      auto C_nm2 = _Tp{1};
+      auto C_nm2 = Tp{1};
       if (m == 0)
-	return {n, lambda, x, C_nm2, _Tp{0}, _Tp{0}};
+	return {n, lambda, x, C_nm2, Tp{0}, Tp{0}};
 
-      auto C_nm1 = _Tp{2} * lambda * x;
+      auto C_nm1 = Tp{2} * lambda * x;
       if (m == 1)
-	return {n, lambda, x, C_nm1, C_nm2, _Tp{0}};
+	return {n, lambda, x, C_nm1, C_nm2, Tp{0}};
 
-      auto C_n = (_Tp{2} * (_Tp{1} + lambda) * x * C_nm1
-		 - _Tp{2} * lambda * C_nm2) / _Tp(2);
+      auto C_n = (Tp{2} * (Tp{1} + lambda) * x * C_nm1
+		 - Tp{2} * lambda * C_nm2) / Tp(2);
       for (auto k = 3; k <= m; ++k)
 	{
 	  C_nm2 = C_nm1;
 	  C_nm1 = C_n;
-	  C_n = (_Tp{2} * (_Tp(k) - _Tp{1} + lambda) * x * C_nm1
-		- (_Tp(k) - _Tp{2} + _Tp{2} * lambda) * C_nm2)
-	      / _Tp(k);
+	  C_n = (Tp{2} * (Tp(k) - Tp{1} + lambda) * x * C_nm1
+		- (Tp(k) - Tp{2} + Tp{2} * lambda) * C_nm2)
+	      / Tp(k);
 	}
       return {n, lambda, x, C_n, C_nm1, C_nm2};
     }
@@ -97,20 +97,20 @@ namespace lab
    * polynomial @f$ C_n^{(\lambda)}@f$.
    * This works for @f$ \lambda > -1/2 @f$
    *
-   * @tparam  _Tp  The real type of the order
+   * @tparam  Tp  The real type of the order
    * @param[in]  n  The degree of the Gegenbauer polynomial
    * @param[in]  lambda  The order of the Gegenbauer polynomial
    */
-  template<typename _Tp>
-    std::vector<emsr::QuadraturePoint<_Tp>>
-    gegenbauer_zeros(unsigned int n, _Tp lambda)
+  template<typename Tp>
+    std::vector<emsr::QuadraturePoint<Tp>>
+    gegenbauer_zeros(unsigned int n, Tp lambda)
     {
       const auto _S_eps = emsr::epsilon(lambda);
       const unsigned int _S_maxit = 1000u;
-      std::vector<emsr::QuadraturePoint<_Tp>> pt(n);
+      std::vector<emsr::QuadraturePoint<Tp>> pt(n);
 
-      _Tp z;
-      _Tp w;
+      Tp z;
+      Tp w;
       for (auto i = 1u; i <= n; ++i)
 	{
 	  if (i == 1)
@@ -160,37 +160,37 @@ namespace lab
 	    z = 3.0 * pt[i - 2].point
 		- 3.0 * pt[i - 3].point + pt[i - 4].point;
 
-	  auto __2lambda = _Tp{2} * lambda;
+	  auto __2lambda = Tp{2} * lambda;
 	  for (auto its = 1u; its <= _S_maxit; ++its)
 	    {
-	      auto temp = _Tp{2} + __2lambda;
-	      auto C1 = (temp * z) / _Tp{2};
-	      auto C2 = _Tp{1};
+	      auto temp = Tp{2} + __2lambda;
+	      auto C1 = (temp * z) / Tp{2};
+	      auto C2 = Tp{1};
 	      for (auto j = 2u; j <= n; ++j)
 		{
 		  auto C3 = C2;
 		  C2 = C1;
-		  temp = _Tp(2 * j) + __2lambda;
-		  auto a = _Tp(2 * j) * (j + __2lambda)
-			   * (temp - _Tp{2});
-		  auto b = (temp - _Tp{1})
-			   * temp * (temp - _Tp{2}) * z;
-		  auto c = _Tp{2} * (j - 1 + lambda)
+		  temp = Tp(2 * j) + __2lambda;
+		  auto a = Tp(2 * j) * (j + __2lambda)
+			   * (temp - Tp{2});
+		  auto b = (temp - Tp{1})
+			   * temp * (temp - Tp{2}) * z;
+		  auto c = Tp{2} * (j - 1 + lambda)
 			   * (j - 1 + lambda) * temp;
 		  C1 = (b * C2 - c * C3) / a;
 		}
 	      auto Cp = (n * (-temp * z) * C1
-			+ _Tp{2} * (n + lambda) * (n + lambda) * C2)
-			/ (temp * (_Tp{1} - z * z));
+			+ Tp{2} * (n + lambda) * (n + lambda) * C2)
+			/ (temp * (Tp{1} - z * z));
 	      auto z1 = z;
 	      z = z1 - C1 / Cp;
 	      if (std::abs(z - z1) <= _S_eps)
 		{
-		  w = std::exp(std::lgamma(lambda + _Tp(n))
-			       + std::lgamma(lambda + _Tp(n))
-			       - std::lgamma(_Tp(n + 1))
-			       - std::lgamma(_Tp(n + 1) + __2lambda))
-		      * temp * std::pow(_Tp{2}, __2lambda) / (Cp * C2);
+		  w = std::exp(std::lgamma(lambda + Tp(n))
+			       + std::lgamma(lambda + Tp(n))
+			       - std::lgamma(Tp(n + 1))
+			       - std::lgamma(Tp(n + 1) + __2lambda))
+		      * temp * std::pow(Tp{2}, __2lambda) / (Cp * C2);
 		  break;
 		}
 	      if (its > _S_maxit)

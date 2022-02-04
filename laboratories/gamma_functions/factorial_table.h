@@ -33,18 +33,18 @@ namespace emsr
 {
 
   // Look-up table for storing and obtaining factorials
-  template<typename _Tp>
+  template<typename Tp>
     class factorial_table
     {
 
     private:
 
-      static std::vector<_Tp> s_ft;
+      static std::vector<Tp> s_ft;
       factorial_table() = delete;
 
     public:
 
-      static _Tp
+      static Tp
       get(std::size_t n)
       {
 	if (n >= s_ft.size())
@@ -56,30 +56,30 @@ namespace emsr
       add_factorials(std::size_t max_fact)
       {
 	if (s_ft.size() == 0)
-	  s_ft.push_back(_Tp(1));
+	  s_ft.push_back(Tp(1));
 
-	for (_Tp ii = s_ft.size(); ii <= _Tp(max_fact); ++ii)
+	for (Tp ii = s_ft.size(); ii <= Tp(max_fact); ++ii)
 	  s_ft.push_back(ii * s_ft[s_ft.size() - 1]);
       }
     };
 
-  template<typename _Tp>
-    std::vector<_Tp>
-    factorial_table<_Tp>::s_ft = std::vector<_Tp>();
+  template<typename Tp>
+    std::vector<Tp>
+    factorial_table<Tp>::s_ft = std::vector<Tp>();
 
   // Look-up table for storing and obtaining logarithms of factorials
-  template<typename _Tp>
+  template<typename Tp>
     class lnfactorial_table
     {
 
     private:
 
-      static std::vector<_Tp> s_lnft;
+      static std::vector<Tp> s_lnft;
       lnfactorial_table() = delete;
 
     public:
 
-      static _Tp
+      static Tp
       get(std::size_t n)
       {
 	if (n >= s_lnft.size())
@@ -91,21 +91,21 @@ namespace emsr
       add_factorials(std::size_t max_fact)
       {
 	if (s_lnft.size() == 0)
-	  s_lnft.push_back(_Tp(0));
+	  s_lnft.push_back(Tp(0));
 
-	for (_Tp ii = s_lnft.size(); ii <= _Tp(max_fact); ++ii)
+	for (Tp ii = s_lnft.size(); ii <= Tp(max_fact); ++ii)
 	  s_lnft.push_back(std::log(ii) + s_lnft[s_lnft.size() - 1]);
       }
     };
 
-  template<typename _Tp>
-    std::vector<_Tp>
-    lnfactorial_table<_Tp>::s_lnft = std::vector<_Tp>();
+  template<typename Tp>
+    std::vector<Tp>
+    lnfactorial_table<Tp>::s_lnft = std::vector<Tp>();
 
-  template<typename _Tp>
-    inline _Tp
+  template<typename Tp>
+    inline Tp
     factorial(std::size_t n)
-    { return factorial_table<_Tp>::get(n); }
+    { return factorial_table<Tp>::get(n); }
 
   inline float
   factorialf(std::size_t n)
@@ -131,10 +131,10 @@ namespace emsr
   factorialll(std::size_t n)
   { return factorial<long long>(n); }
 
-  template<typename _Tp>
-    inline _Tp
+  template<typename Tp>
+    inline Tp
     lnfactorial(std::size_t n)
-    { return lnfactorial_table<_Tp>::get(n); }
+    { return lnfactorial_table<Tp>::get(n); }
 
   inline float
   lnfactorialf(std::size_t n)

@@ -31,14 +31,14 @@
    * polynomials and the related generalized Hermite polynomials,
    * Math. Comp. 18 (1964), no. 88, 598{616. MR 0166397 (29 #3674)
    */
-  template<typename _Tp>
-    _Tp
-    laguerre_ratio(unsigned int n, _Tp x)
+  template<typename Tp>
+    Tp
+    laguerre_ratio(unsigned int n, Tp x)
     {
-      auto frac = _Tp{0};
+      auto frac = Tp{0};
       for (auto i = n - 1; i >= 0; --i)
-	frac = _Tp(n - i) * _Tp(n - i)
-		/ (_Tp(2 * (n - i) - 1) - x - frac);
+	frac = Tp(n - i) * Tp(n - i)
+		/ (Tp(2 * (n - i) - 1) - x - frac);
       frac = x / (n - frac);
       return frac;
     }
@@ -61,14 +61,14 @@
    * polynomials and the related generalized Hermite polynomials,
    * Math. Comp. 18 (1964), no. 88, 598{616. MR 0166397 (29 #3674)
    */
-  template<typename _Tp, typename _Ta>
-    _Tp
-    laguerre_ratio(unsigned int n, _Ta alpha, _Tp x)
+  template<typename Tp, typename _Ta>
+    Tp
+    laguerre_ratio(unsigned int n, _Ta alpha, Tp x)
     {
-      auto frac = _Tp{0};
+      auto frac = Tp{0};
       for (auto i = n - 1; i >= 0; --i)
-	frac = _Tp(n - i + alpha) * _Tp(n - i)
-		/ (_Tp(2 * (n - i) - 1 + alpha) - x - frac);
+	frac = Tp(n - i + alpha) * Tp(n - i)
+		/ (Tp(2 * (n - i) - 1 + alpha) - x - frac);
       frac = x / (n - frac);
       return frac;
     }
@@ -76,17 +76,17 @@
   /**
    * Return a vector of zeros of the Laguerre polynomial of degree n.
    */
-  template<typename _Tp>
-    std::vector<emsr::QuadraturePoint<_Tp>>
-    laguerre_zeros(unsigned int n, _Tp proto)
+  template<typename Tp>
+    std::vector<emsr::QuadraturePoint<Tp>>
+    laguerre_zeros(unsigned int n, Tp proto)
     {
       const auto s_eps = emsr::epsilon(proto);
       const unsigned int s_maxit = 1000u;
 
-      std::vector<emsr::QuadraturePoint<_Tp>> pt(n);
+      std::vector<emsr::QuadraturePoint<Tp>> pt(n);
 
-      auto z = _Tp{0};
-      auto w = _Tp{0};
+      auto z = Tp{0};
+      auto w = Tp{0};
       for (auto i = 1u; i <= n; ++i)
 	{
 	  // Clever approximations for roots.
@@ -103,23 +103,23 @@
 	  // Iterate TTRR for polynomial values
 	  for (auto its = 1u; its <= s_maxit; ++its)
 	    {
-	      auto L2 = _Tp{0};
-	      auto L1 = _Tp{1};
+	      auto L2 = Tp{0};
+	      auto L1 = Tp{1};
 	      for (auto j = 1u; j <= n; ++j)
 		{
 		  auto L3 = L2;
 		  L2 = L1;
-		  L1 = ((_Tp(2 * j - 1) - z) * L2
-		       - (_Tp(j - 1)) * L3) / _Tp(j);
+		  L1 = ((Tp(2 * j - 1) - z) * L2
+		       - (Tp(j - 1)) * L3) / Tp(j);
 		}
 	      // Derivative.
-	      auto Lp = (_Tp(n) * L1 - _Tp(n) * L2) / z;
+	      auto Lp = (Tp(n) * L1 - Tp(n) * L2) / z;
 	      // Newton's rule for root.
 	      auto z1 = z;
 	      z = z1 - L1 / Lp;
 	      if (std::abs(z - z1) <= s_eps)
 		{
-		  w = _Tp{-1} / (Lp * n * L2);
+		  w = Tp{-1} / (Lp * n * L2);
 		  break;
 		}
 	      if (its > s_maxit)
@@ -134,19 +134,19 @@
   /**
    * Return an array of abscissae and weights for the Gauss-Laguerre rule.
    */
-  template<typename _Tp, typename _Tn>
-    std::vector<emsr::QuadraturePoint<_Tp>>
-    laguerre_zeros(unsigned int n, _Tn alpha, _Tp proto)
+  template<typename Tp, typename _Tn>
+    std::vector<emsr::QuadraturePoint<Tp>>
+    laguerre_zeros(unsigned int n, _Tn alpha, Tp proto)
     {
       const auto s_eps = emsr::epsilon(proto);
       const unsigned int s_maxit = 1000;
 
-      std::vector<emsr::QuadraturePoint<_Tp>> pt(n);
+      std::vector<emsr::QuadraturePoint<Tp>> pt(n);
 
       for (auto i = 1u; i <= n; ++i)
 	{
-	  auto z = _Tp{0};
-	  auto w = _Tp{0};
+	  auto z = Tp{0};
+	  auto w = Tp{0};
 	  // Clever approximations for roots.
 	  if (i == 1)
 	    z += (1.0 + alpha)
@@ -163,24 +163,24 @@
 	  // Iterate TTRR for polynomial values
 	  for (auto its = 1u; its <= s_maxit; ++its)
 	    {
-	      auto L2 = _Tp{0};
-	      auto L1 = _Tp{1};
+	      auto L2 = Tp{0};
+	      auto L1 = Tp{1};
 	      for (auto j = 1u; j <= n; ++j)
 		{
 		  auto L3 = L2;
 		  L2 = L1;
-		  L1 = ((_Tp(2 * j - 1 + alpha) - z) * L2
-			- (_Tp(j - 1 + alpha)) * L3) / _Tp(j);
+		  L1 = ((Tp(2 * j - 1 + alpha) - z) * L2
+			- (Tp(j - 1 + alpha)) * L3) / Tp(j);
 		}
 	      // Derivative.
-	      auto Lp = (_Tp(n) * L1 - _Tp(n + alpha) * L2) / z;
+	      auto Lp = (Tp(n) * L1 - Tp(n + alpha) * L2) / z;
 	      // Newton's rule for root.
 	      auto z1 = z;
 	      z = z1 - L1 / Lp;
 	      if (std::abs(z - z1) <= s_eps)
 		{
-		  auto exparg = std::lgamma(_Tp(alpha + n))
-				- std::lgamma(_Tp(n));
+		  auto exparg = std::lgamma(Tp(alpha + n))
+				- std::lgamma(Tp(n));
 		  w = -std::exp(exparg) / (Lp * n * L2);
 		  break;
 		}
@@ -193,9 +193,9 @@
     return pt;
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_laguerre(_Tp proto = _Tp{})
+  test_laguerre(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;

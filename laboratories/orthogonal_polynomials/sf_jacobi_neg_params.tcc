@@ -55,15 +55,15 @@ namespace lab
    * @f]
    * This works for @f$ \alpha,\beta > -1 @f$
    *
-   * @tparam  _Tp  The real type of the argument
+   * @tparam  Tp  The real type of the argument
    * @param[in]  n  The degree of the Jacobi polynomial
    * @param[in]  alpha1  The first order parameter of the Jacobi polynomial
    * @param[in]  beta1  The second order parameter of the Jacobi polynomial
    * @param[in]  x  The argument
    */
-  template<typename _Tp>
-    emsr::jacobi_t<_Tp>
-    jacobi_recur(unsigned int n, _Tp alpha1, _Tp beta1, _Tp x)
+  template<typename Tp>
+    emsr::jacobi_t<Tp>
+    jacobi_recur(unsigned int n, Tp alpha1, Tp beta1, Tp x)
     {
       const auto _S_NaN = emsr::quiet_NaN(x);
 
@@ -76,35 +76,35 @@ namespace lab
 	  pint && pint() <= 0 && m + 1 > -pint())
 	m = -pint();
 
-      auto P_nm2 = _Tp{1};
+      auto P_nm2 = Tp{1};
       if (n == 0)
-	return {n, alpha1, beta1, x, P_nm2, _Tp{0}, _Tp{0}};
+	return {n, alpha1, beta1, x, P_nm2, Tp{0}, Tp{0}};
 
       const auto amb = alpha1 - beta1;
-      auto P_nm1 = (amb + (apb + _Tp{2}) * x) / _Tp{2};
+      auto P_nm1 = (amb + (apb + Tp{2}) * x) / Tp{2};
       if (n == 1)
-	return {n, alpha1, beta1, x, P_nm1, P_nm2, _Tp{0}};
+	return {n, alpha1, beta1, x, P_nm1, P_nm2, Tp{0}};
 
       const auto a2mb2 = amb * apb;
-      const auto bah = ((apb + _Tp{2}) + _Tp{2});
-      const auto poo = (bah - _Tp{1});
+      const auto bah = ((apb + Tp{2}) + Tp{2});
+      const auto poo = (bah - Tp{1});
       auto P_n = (((poo * a2mb2)
-		     + ((poo - _Tp{1}) * poo * bah) * x)
-		    * P_nm1 - (_Tp{2} * (alpha1 + _Tp{1})
-			    * (beta1 + _Tp{1}) * bah) * P_nm2)
-		 / (_Tp{4} * (apb + _Tp{2}) * (poo - _Tp{1}));
+		     + ((poo - Tp{1}) * poo * bah) * x)
+		    * P_nm1 - (Tp{2} * (alpha1 + Tp{1})
+			    * (beta1 + Tp{1}) * bah) * P_nm2)
+		 / (Tp{4} * (apb + Tp{2}) * (poo - Tp{1}));
       for (auto k = 3u; k <= n; ++k )
 	{
-	  const auto apbpk = apb + _Tp(k);
-	  const auto apbp2k = apbpk + _Tp(k);
-	  const auto apbp2km1 = apbp2k - _Tp{1};
-	  const auto apbp2km2 = apbp2km1 - _Tp{1};
-	  const auto d = _Tp{2} * k * apbpk * apbp2km2;
+	  const auto apbpk = apb + Tp(k);
+	  const auto apbp2k = apbpk + Tp(k);
+	  const auto apbp2km1 = apbp2k - Tp{1};
+	  const auto apbp2km2 = apbp2km1 - Tp{1};
+	  const auto d = Tp{2} * k * apbpk * apbp2km2;
 	  const auto a = apbp2km2 * apbp2km1 * apbp2k;
 	  const auto b = apbp2km1 * a2mb2;
-	  const auto c = _Tp{2} * (alpha1 + _Tp(k - 1))
-				  * (beta1 + _Tp(k - 1)) * apbp2k;
-	  if (d == _Tp{0})
+	  const auto c = Tp{2} * (alpha1 + Tp(k - 1))
+				  * (beta1 + Tp(k - 1)) * apbp2k;
+	  if (d == Tp{0})
 {
 std::cerr << '\n' << '*' << ' ' << n << ' ' << alpha1 << ' ' << beta1 << ' ' << m << ' ' << k << '\n';
 break;
@@ -115,8 +115,8 @@ break;
 	  P_n = ((b + a * x) * P_nm1 - c * P_nm2) / d;
 	}
       //auto Pp_n = (n * (alpha1 - beta1 - apbp2k * x) * P_nm1
-	//	   + _Tp{2} * (n + alpha1) * (n + beta1) * P_nm2)
-	//	/ (apbp2k * (_Tp{1} - x * x));
+	//	   + Tp{2} * (n + alpha1) * (n + beta1) * P_nm2)
+	//	/ (apbp2k * (Tp{1} - x * x));
       return {n, alpha1, beta1, x, P_n, P_nm1, P_nm2};
     }
 /*
@@ -138,22 +138,22 @@ break;
    * @f$ P_n^{(\alpha,\beta)}(x) @f$.
    * Thias works for @f$ \alpha, \beta > -1 @f$.
    *
-   * @tparam  _Tp  The real type of the parameters
+   * @tparam  Tp  The real type of the parameters
    * @param[in]  n  The degree of the Jacobi polynomial
    * @param[in]  alpha1  The first order parameter of the Jacobi polynomial
    * @param[in]  beta1  The second order parameter of the Jacobi polynomial
    */
-  template<typename _Tp>
-    std::vector<emsr::QuadraturePoint<_Tp>>
-    jacobi_zeros(unsigned int n, _Tp alpha1, _Tp beta1)
+  template<typename Tp>
+    std::vector<emsr::QuadraturePoint<Tp>>
+    jacobi_zeros(unsigned int n, Tp alpha1, Tp beta1)
     {
       const auto _S_eps = emsr::epsilon(alpha1);
       const unsigned int _S_maxit = 1000u;
 
-      std::vector<emsr::QuadraturePoint<_Tp>> pt(n);
+      std::vector<emsr::QuadraturePoint<Tp>> pt(n);
 
-      _Tp z;
-      _Tp w;
+      Tp z;
+      Tp w;
       for (auto i = 1u; i <= n; ++i)
 	{
 	  if (i == 1)
@@ -214,35 +214,35 @@ break;
 	  auto alphabeta = alpha1 + beta1;
 	  for (auto its = 1u; its <= _S_maxit; ++its)
 	    {
-	      auto temp = _Tp{2} + alphabeta;
-	      auto P1 = (alpha1 - beta1 + temp * z) / _Tp{2};
-	      auto P2 = _Tp{1};
+	      auto temp = Tp{2} + alphabeta;
+	      auto P1 = (alpha1 - beta1 + temp * z) / Tp{2};
+	      auto P2 = Tp{1};
 	      for (auto j = 2u; j <= n; ++j)
 		{
 		  auto P3 = P2;
 		  P2 = P1;
-		  temp = _Tp{2} * j + alphabeta;
-		  auto a = _Tp{2} * j * (j + alphabeta)
-			   * (temp - _Tp{2});
-		  auto b = (temp - _Tp{1})
+		  temp = Tp{2} * j + alphabeta;
+		  auto a = Tp{2} * j * (j + alphabeta)
+			   * (temp - Tp{2});
+		  auto b = (temp - Tp{1})
 			   * (alpha1 * alpha1 - beta1 * beta1
-				+ temp * (temp - _Tp{2}) * z);
-		  auto c = _Tp{2} * (j - 1 + alpha1)
+				+ temp * (temp - Tp{2}) * z);
+		  auto c = Tp{2} * (j - 1 + alpha1)
 			   * (j - 1 + beta1) * temp;
 		  P1 = (b * P2 - c * P3) / a;
 		}
 	      auto Pp = (n * (alpha1 - beta1 - temp * z) * P1
-			   + _Tp{2} * (n + alpha1) * (n + beta1) * P2)
-			/ (temp * (_Tp{1} - z * z));
+			   + Tp{2} * (n + alpha1) * (n + beta1) * P2)
+			/ (temp * (Tp{1} - z * z));
 	      auto z1 = z;
 	      z = z1 - P1 / Pp;
 	      if (std::abs(z - z1) <= _S_eps)
 		{
-		  w = std::exp(std::lgamma(alpha1 + _Tp(n))
-			       + std::lgamma(beta1 + _Tp(n))
-			       - std::lgamma(_Tp(n + 1))
-			       - std::lgamma(_Tp(n + 1) + alphabeta))
-		      * temp * std::pow(_Tp{2}, alphabeta) / (Pp * P2);
+		  w = std::exp(std::lgamma(alpha1 + Tp(n))
+			       + std::lgamma(beta1 + Tp(n))
+			       - std::lgamma(Tp(n + 1))
+			       - std::lgamma(Tp(n + 1) + alphabeta))
+		      * temp * std::pow(Tp{2}, alphabeta) / (Pp * P2);
 		  break;
 		}
 	      if (its > _S_maxit)
@@ -291,14 +291,14 @@ break;
    *      Philip Greengard, Kirill Serkh,
    *      Technical Report YALEU/DCS/TR-1539, February 20, 2018
    *
-   * @tparam _Tp The real type of the radial coordinate
+   * @tparam Tp The real type of the radial coordinate
    * @param n The non-negative degree.
    * @param m The non-negative azimuthal order
    * @param rho The radial argument
    */
-  template<typename _Tp>
-    _Tp
-    radial_jacobi(unsigned int n, unsigned int m, _Tp rho)
+  template<typename Tp>
+    Tp
+    radial_jacobi(unsigned int n, unsigned int m, Tp rho)
     {
       const auto _S_NaN = emsr::quiet_NaN(rho);
 
@@ -307,15 +307,15 @@ break;
 
       const int nmm = int(n) - int(m);
       if (nmm < 0)
-	return _Tp{0}; // FIXME: Is this true?
+	return Tp{0}; // FIXME: Is this true?
       else if (nmm % 2 == 1)
-	return _Tp{0};
+	return Tp{0};
       else
 	{
 	  auto k = nmm / 2;
 	  return (k % 2 == 0 ? +1 : -1) * std::pow(rho, m)
-	       * jacobi_recur(k, _Tp(m), _Tp{0},
-				_Tp{1} - _Tp{2} * rho * rho).P_n;
+	       * jacobi_recur(k, Tp(m), Tp{0},
+				Tp{1} - Tp{2} * rho * rho).P_n;
 	}
     }
 
@@ -323,25 +323,25 @@ break;
    * Return a vector containing the zeros of the radial Jacobi polynomial
    * @f$ P_n^{(\alpha,\beta)}(1 - 2\rho^2) @f$.
    *
-   * @tparam _Tp The real type of the radial coordinate
+   * @tparam Tp The real type of the radial coordinate
    * @param[in]  n  The order of the Jacobi polynomial
    * @param[in]  alpha1  The first parameter of the Jacobi polynomial
    * @param[in]  beta1  The second parameter of the Jacobi polynomial
    */
-  template<typename _Tp>
-    std::vector<emsr::QuadraturePoint<_Tp>>
+  template<typename Tp>
+    std::vector<emsr::QuadraturePoint<Tp>>
     radial_jacobi_zeros(unsigned int n, unsigned int m)
     {
       const int nmm = int(n) - int(m);
       if (nmm % 2 != 0)
-	return std::vector<emsr::QuadraturePoint<_Tp>>();
+	return std::vector<emsr::QuadraturePoint<Tp>>();
       else
 	{
 	  auto k = (int(n) - int(m)) / 2;
-          auto roots = jacobi_zeros(k, _Tp(m), _Tp{0});
+          auto roots = jacobi_zeros(k, Tp(m), Tp{0});
 	  for (auto& z : roots)
 	    {
-	      z.point = std::sqrt((_Tp{1} - z.point) / _Tp{2});
+	      z.point = std::sqrt((Tp{1} - z.point) / Tp{2});
 	      // weight?
 	    }
 	  return roots;
@@ -369,15 +369,15 @@ break;
    * @see Principals of Optics, 7th edition, Max Born and Emil Wolf,
    * Cambridge University Press, 1999, pp 523-525 and 905-910.
    *
-   * @tparam _Tp The real type of the radial coordinate and azimuthal angle
+   * @tparam Tp The real type of the radial coordinate and azimuthal angle
    * @param n The non-negative integral degree.
    * @param m The integral azimuthal order
    * @param rho The radial coordinate
    * @param phi The azimuthal angle
    */
-  template<typename _Tp>
-    emsr::fp_promote_t<_Tp>
-    zernike(unsigned int n, int m, _Tp rho, _Tp phi)
+  template<typename Tp>
+    emsr::fp_promote_t<Tp>
+    zernike(unsigned int n, int m, Tp rho, Tp phi)
     {
       const auto _S_NaN = emsr::quiet_NaN(rho);
 

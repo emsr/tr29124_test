@@ -24,18 +24,18 @@
  *        \sum_{k=1-M}^{\infty}\left(\frac{a}{b}\right)^k I_k(ab)
  * @f]
  */
-template<typename _Tp>
-  std::pair<_Tp, _Tp>
-  marcum_q_bessel_series(unsigned int m, _Tp a, _Tp b)
+template<typename Tp>
+  std::pair<Tp, Tp>
+  marcum_q_bessel_series(unsigned int m, Tp a, Tp b)
   {
-    const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-    if (b == _Tp{0})
-      return std::make_pair(_Tp{0}, _Tp{1});
+    const auto _S_eps = std::numeric_limits<Tp>::epsilon();
+    if (b == Tp{0})
+      return std::make_pair(Tp{0}, Tp{1});
 
-    auto q1 = _Tp{0};
+    auto q1 = Tp{0};
     const auto arg = a * b;
     const auto ab = a / b;
-    auto temp = _Tp{1};
+    auto temp = Tp{1};
     unsigned int k = 0;
     while (true)
       {
@@ -49,17 +49,17 @@ template<typename _Tp>
 
     auto q = q1;
 
-    const _Tp ba = b / a;
-    temp = _Tp{1};
+    const Tp ba = b / a;
+    temp = Tp{1};
     for (unsigned int k = 1; k < m; ++k)
       {
 	temp *= ba;
 	q += temp * emsr::cyl_bessel_i(k, arg);
       }
 
-    q *= std::exp(-(a * a + b * b) / _Tp{2});
+    q *= std::exp(-(a * a + b * b) / Tp{2});
 
-    return std::make_pair(_Tp{1} - q, q);
+    return std::make_pair(Tp{1} - q, q);
   }
 
 /**
@@ -79,15 +79,15 @@ template<typename _Tp>
  * @see Recent software developments for special functions
  * in the Santander-Amsterdam project.
  */
-template<typename _Tp>
-  std::pair<_Tp, _Tp>
-  marcum_q_gamma_series(_Tp mu, _Tp a, _Tp b)
+template<typename Tp>
+  std::pair<Tp, Tp>
+  marcum_q_gamma_series(Tp mu, Tp a, Tp b)
   {
-    const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
+    const auto _S_eps = std::numeric_limits<Tp>::epsilon();
     unsigned int _S_max_iter = 100u;
-    a *= a / _Tp{2};
-    b *= b / _Tp{2};
-    auto fact = _Tp{1};
+    a *= a / Tp{2};
+    b *= b / Tp{2};
+    auto fact = Tp{1};
     auto [_MP, _MQ] = emsr::detail::gamma(mu, b);
     for (unsigned int k = 1; k < _S_max_iter; ++k)
       {
@@ -111,32 +111,32 @@ template<typename _Tp>
 // Recent software developments for special functions
 // in the Santander-Amsterdam project
 //
-template<typename _Tp>
-  _Tp
-  marcum_q_integral(unsigned int m, _Tp a, _Tp b)
+template<typename Tp>
+  Tp
+  marcum_q_integral(unsigned int m, Tp a, Tp b)
   {
-    //auto rho = [](_Tp theta, _Tp xi)
-	//	 -> _Tp
+    //auto rho = [](Tp theta, Tp xi)
+	//	 -> Tp
 	//	 { return ; };
 
     //return q;
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_marcum_q()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto w = std::cout.precision() + 8;
 
     int m = 2;
-    auto a = _Tp{1};
-    //auto b = _Tp{2};
+    auto a = Tp{1};
+    //auto b = Tp{2};
     for (int i = 0; i <= 100; ++i)
       {
-	auto b = _Tp{i * 0.1};
+	auto b = Tp{i * 0.1};
 	auto [p1, q1] = marcum_q_bessel_series(m, a, b);
-	auto [p2, q2] = marcum_q_gamma_series(_Tp(m), a, b);
+	auto [p2, q2] = marcum_q_gamma_series(Tp(m), a, b);
 	std::cout << ' ' << std::setw(w) << b
 		  << ' ' << std::setw(w) << q1
 		  << ' ' << std::setw(w) << q2

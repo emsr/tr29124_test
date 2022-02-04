@@ -72,20 +72,20 @@
    *   @param gampl  The output function \f$ \Gamma(1 + \mu) \f$
    *   @param gammi  The output function \f$ \Gamma(1 - \mu) \f$
    */
-  template <typename _Tp>
+  template <typename Tp>
     void
-    gamma_temme(const _Tp mu,
-		   _Tp & gam1, _Tp & gam2, _Tp & gampl, _Tp & gammi)
+    gamma_temme(const Tp mu,
+		   Tp & gam1, Tp & gam2, Tp & gampl, Tp & gammi)
     {
-      gampl = _Tp{1} / std::::tgamma(_Tp{1} + mu);
-      gammi = _Tp{1} / std::tgamma(_Tp{1} - mu);
+      gampl = Tp{1} / std::::tgamma(Tp{1} + mu);
+      gammi = Tp{1} / std::tgamma(Tp{1} - mu);
 
-      if (std::abs(mu) < std::numeric_limits<_Tp>::epsilon())
-	gam1 = -_Tp(GAMMA_E);
+      if (std::abs(mu) < std::numeric_limits<Tp>::epsilon())
+	gam1 = -Tp(GAMMA_E);
       else
-	gam1 = (gammi - gampl) / (_Tp{2} * mu);
+	gam1 = (gammi - gampl) / (Tp{2} * mu);
 
-      gam2 = (gammi + gampl) / (_Tp{2});
+      gam2 = (gammi + gampl) / (Tp{2});
 
       return;
     }
@@ -105,57 +105,57 @@
    *   @param  _Jpnu  The output derivative of the Bessel function of the first kind.
    *   @param  _Npnu  The output derivative of the Neumann function.
    */
-  template <typename _Tp>
+  template <typename Tp>
     void
-    bessel_jn(const _Tp nu, const _Tp x,
-		_Tp & _Jnu, _Tp & _Nnu, _Tp & _Jpnu, _Tp & _Npnu)
+    bessel_jn(const Tp nu, const Tp x,
+		Tp & _Jnu, Tp & _Nnu, Tp & _Jpnu, Tp & _Npnu)
     {
 
       //if (std::isnan(nu) || std::isnan(x))
-      //  return std::numeric_limits<_Tp>::quiet_NaN();
+      //  return std::numeric_limits<Tp>::quiet_NaN();
 
-      if (x == _Tp{0})
+      if (x == Tp{0})
 	{
-	  if (nu == _Tp{0})
+	  if (nu == Tp{0})
 	    {
-	      _Jnu = _Tp{1};
-	      _Nnu = -std::numeric_limits<_Tp>::infinity();
-	      _Jpnu = _Tp{0};
-	      _Npnu = std::numeric_limits<_Tp>::infinity();
+	      _Jnu = Tp{1};
+	      _Nnu = -std::numeric_limits<Tp>::infinity();
+	      _Jpnu = Tp{0};
+	      _Npnu = std::numeric_limits<Tp>::infinity();
 	    }
 	  else
 	    {
-	      _Jnu = _Tp{0};
-	      _Nnu = -std::numeric_limits<_Tp>::infinity();
+	      _Jnu = Tp{0};
+	      _Nnu = -std::numeric_limits<Tp>::infinity();
 	      //_Jpnu = ???
 	      //_Npnu = ???
 	    }
 	  return;
 	}
 
-      const auto eps = std::numeric_limits<_Tp>::epsilon();
-      const auto fp_min = _Tp(10) * std::numeric_limits<_Tp>::min();
+      const auto eps = std::numeric_limits<Tp>::epsilon();
+      const auto fp_min = Tp(10) * std::numeric_limits<Tp>::min();
       const int max_iter = 15000;
-      const auto x_min = _Tp{2};
+      const auto x_min = Tp{2};
 
-      if (x < _Tp{0} || nu < _Tp{0})
+      if (x < Tp{0} || nu < Tp{0})
 	throw std::runtime_error("Bad arguments in bessel_jn.");
 
       const int nl = (x < x_min
-		    ? static_cast<int>(nu + _Tp{0.5L})
-		    : std::max(0, static_cast<int>(nu - x + _Tp(1.5L))));
+		    ? static_cast<int>(nu + Tp{0.5L})
+		    : std::max(0, static_cast<int>(nu - x + Tp(1.5L))));
 
       const auto mu = nu - nl;
       const auto mu2 = mu * mu;
-      const auto xi = _Tp{1} / x;
-      const auto xi2 = _Tp{2} * xi;
-      auto w = xi2 / _Tp(PI);
+      const auto xi = Tp{1} / x;
+      const auto xi2 = Tp{2} * xi;
+      auto w = xi2 / Tp(PI);
       int isign = 1;
       auto h = nu * xi;
       if (h < fp_min)
 	h = fp_min;
       auto b = xi2 * nu;
-      auto d = _Tp{0};
+      auto d = Tp{0};
       auto c = h;
       int i;
       for (i = 1; i <= max_iter; ++i)
@@ -164,15 +164,15 @@
 	  d = b - d;
 	  if (std::abs(d) < fp_min)
 	    d = fp_min;
-	  c = b - _Tp{1} / c;
+	  c = b - Tp{1} / c;
 	  if (std::abs(c) < fp_min)
 	    c = fp_min;
-	  d = _Tp{1} / d;
+	  d = Tp{1} / d;
 	  const auto del = c * d;
 	  h = del * h;
-	  if (d < _Tp{0})
+	  if (d < Tp{0})
 	    isign = -isign;
-	  if (std::abs(del - _Tp{1}) < eps)
+	  if (std::abs(del - Tp{1}) < eps)
 	    break;
 	}
       if (i > max_iter)
@@ -190,46 +190,46 @@
 	  _Jpnul = fact * _Jnutemp - _Jnul;
 	  _Jnul = _Jnutemp;
 	}
-      if (_Jnul == _Tp{0})
+      if (_Jnul == Tp{0})
 	_Jnul = eps;
       auto f = _Jpnul / _Jnul;
-      _Tp _Nmu, _Nnu1, _Npmu, _Jmu;
+      Tp _Nmu, _Nnu1, _Npmu, _Jmu;
       if (x < x_min)
 	{
-	  const auto x2 = x / _Tp{2};
-	  const auto pimu = _Tp(PI) * mu;
+	  const auto x2 = x / Tp{2};
+	  const auto pimu = Tp(PI) * mu;
 	  auto fact = (std::abs(pimu) < eps
-		      ? _Tp{1} : pimu / std::sin(pimu));
+		      ? Tp{1} : pimu / std::sin(pimu));
 	  auto d = -std::log(x2);
 	  auto e = mu * d;
 	  auto fact2 = (std::abs(e) < eps
-		       ? _Tp{1} : std::sinh(e) / e);
-	  _Tp gam1, gam2, gampl, gammi;
+		       ? Tp{1} : std::sinh(e) / e);
+	  Tp gam1, gam2, gampl, gammi;
 	  gamma_temme(mu, gam1, gam2, gampl, gammi);
-	  auto ff = (_Tp{2} / _Tp(PI))
+	  auto ff = (Tp{2} / Tp(PI))
 		   * fact * (gam1 * std::cosh(e) + gam2 * fact2 * d);
 	  e = std::exp(e);
-	  auto p = e / (_Tp(PI) * gampl);
-	  auto q = _Tp{1} / (e * _Tp(PI) * gammi);
-	  const auto pimu2 = pimu / _Tp{2};
+	  auto p = e / (Tp(PI) * gampl);
+	  auto q = Tp{1} / (e * Tp(PI) * gammi);
+	  const auto pimu2 = pimu / Tp{2};
 	  auto fact3 = (std::abs(pimu2) < eps
-		       ? _Tp{1} : std::sin(pimu2) / pimu2 );
-	  auto r = _Tp(PI) * pimu2 * fact3 * fact3;
-	  auto c = _Tp{1};
+		       ? Tp{1} : std::sin(pimu2) / pimu2 );
+	  auto r = Tp(PI) * pimu2 * fact3 * fact3;
+	  auto c = Tp{1};
 	  d = -x2 * x2;
 	  auto sum = ff + r * q;
 	  auto sum1 = p;
 	  for (i = 1; i <= max_iter; ++i)
 	    {
 	      ff = (i * ff + p + q) / (i * i - mu2);
-	      c *= d / _Tp(i);
-	      p /= _Tp(i) - mu;
-	      q /= _Tp(i) + mu;
+	      c *= d / Tp(i);
+	      p /= Tp(i) - mu;
+	      q /= Tp(i) + mu;
 	      const auto del = c * (ff + r * q);
 	      sum += del; 
 	      const auto del1 = c * p - i * del;
 	      sum1 += del1;
-	      if ( std::abs(del) < eps * (_Tp{1} + std::abs(sum)) )
+	      if ( std::abs(del) < eps * (Tp{1} + std::abs(sum)) )
 		break;
 	    }
 	  if ( i > max_iter )
@@ -242,11 +242,11 @@
 	}
       else
 	{
-	  auto a = _Tp{0.25L} - mu2;
-	  auto q = _Tp{1};
-	  auto p = -xi / _Tp{2};
-	  auto br = _Tp{2} * x;
-	  auto bi = _Tp{2};
+	  auto a = Tp{0.25L} - mu2;
+	  auto q = Tp{1};
+	  auto p = -xi / Tp{2};
+	  auto br = Tp{2} * x;
+	  auto bi = Tp{2};
 	  auto fact = a * xi / (p * p + q * q);
 	  auto cr = br + q * fact;
 	  auto ci = bi + p * fact;
@@ -261,8 +261,8 @@
 	  int i;
 	  for (i = 2; i <= max_iter; ++i)
 	    {
-	      a += _Tp(2 * (i - 1));
-	      bi += _Tp{2};
+	      a += Tp(2 * (i - 1));
+	      bi += Tp{2};
 	      dr = a * dr + br;
 	      di = a * di + bi;
 	      if (std::abs(dr) + std::abs(di) < fp_min)
@@ -280,7 +280,7 @@
 	      temp = p * dlr - q * dli;
 	      q = p * dli + q * dlr;
 	      p = temp;
-	      if (std::abs(dlr - _Tp{1}) + std::abs(dli) < eps)
+	      if (std::abs(dlr - Tp{1}) + std::abs(dli) < eps)
 		break;
 	  }
 	  if (i > max_iter)
@@ -311,63 +311,63 @@
 
 
 
-  template <typename _Tp>
+  template <typename Tp>
     void
-    bessel_ik(const _Tp nu, const _Tp x,
-		_Tp & _Inu, _Tp & _Knu, _Tp & _Ipnu, _Tp & _Kpnu)
+    bessel_ik(const Tp nu, const Tp x,
+		Tp & _Inu, Tp & _Knu, Tp & _Ipnu, Tp & _Kpnu)
     {
 
       //if (std::isnan(nu) || std::isnan(x))
-      //  return std::numeric_limits<_Tp>::quiet_NaN();
+      //  return std::numeric_limits<Tp>::quiet_NaN();
 
-      if (x == _Tp{0})
+      if (x == Tp{0})
 	{
-	  if (nu == _Tp{0})
+	  if (nu == Tp{0})
 	    {
-	      _Inu = _Tp{1};
-	      _Knu = std::numeric_limits<_Tp>::infinity();
-	      _Ipnu = _Tp{0};
-	      _Kpnu = -std::numeric_limits<_Tp>::infinity();
+	      _Inu = Tp{1};
+	      _Knu = std::numeric_limits<Tp>::infinity();
+	      _Ipnu = Tp{0};
+	      _Kpnu = -std::numeric_limits<Tp>::infinity();
 	    }
 	  else
 	    {
-	      _Inu = _Tp{0};
-	      _Knu = std::numeric_limits<_Tp>::infinity();
+	      _Inu = Tp{0};
+	      _Knu = std::numeric_limits<Tp>::infinity();
 	      //_Ipnu = ???
 	      //_Kpnu = ???
 	    }
 	  return;
 	}
 
-      if (x < _Tp{0} || nu < _Tp{0})
+      if (x < Tp{0} || nu < Tp{0})
 	throw std::runtime_error("Bad arguments in bessel_ik.");
 
-      const _Tp eps = std::numeric_limits<_Tp>::epsilon();
-      const _Tp fp_min = _Tp(10) * std::numeric_limits<_Tp>::epsilon();
+      const Tp eps = std::numeric_limits<Tp>::epsilon();
+      const Tp fp_min = Tp(10) * std::numeric_limits<Tp>::epsilon();
       const int max_iter = 15000;
-      const _Tp x_min = _Tp{2};
+      const Tp x_min = Tp{2};
 
-      const int nl = static_cast<int>(nu + _Tp{0.5L});
+      const int nl = static_cast<int>(nu + Tp{0.5L});
 
       const auto mu = nu - nl;
       const auto mu2 = mu * mu;
-      const auto xi = _Tp{1} / x;
-      const auto xi2 = _Tp{2} * xi;
+      const auto xi = Tp{1} / x;
+      const auto xi2 = Tp{2} * xi;
       auto h = nu * xi;
       if ( h < fp_min )
 	h = fp_min;
       auto b = xi2 * nu;
-      auto d = _Tp{0};
+      auto d = Tp{0};
       auto c = h;
       int i;
       for ( i = 1; i <= max_iter; ++i )
 	{
 	  b += xi2;
-	  d = _Tp{1} / (b + d);
-	  c = b + _Tp{1} / c;
+	  d = Tp{1} / (b + d);
+	  c = b + Tp{1} / c;
 	  const auto del = c * d;
 	  h = del * h;
-	  if (std::abs(del - _Tp{1}) < eps)
+	  if (std::abs(del - Tp{1}) < eps)
 	    break;
 	}
       if (i > max_iter)
@@ -380,7 +380,7 @@
       auto fact = nu * xi;
       for (int l = nl; l >= 1; --l)
 	{
-	  const _Tp _Inutemp = fact * _Inul + _Ipnul;
+	  const Tp _Inutemp = fact * _Inul + _Ipnul;
 	  fact -= xi;
 	  _Ipnul = fact * _Inutemp + _Inul;
 	  _Inul = _Inutemp;
@@ -389,22 +389,22 @@
       auto _Kmu, _Knu1;
       if (x < x_min)
 	{
-	  const auto x2 = x / _Tp{2};
-	  const auto pimu = _Tp(PI) * mu;
+	  const auto x2 = x / Tp{2};
+	  const auto pimu = Tp(PI) * mu;
 	  const auto fact = (std::abs(pimu) < eps
-			    ? _Tp{1} : pimu / std::sin(pimu));
+			    ? Tp{1} : pimu / std::sin(pimu));
 	  auto d = -std::log(x2);
 	  auto e = mu * d;
 	  const auto fact2 = (std::abs(e) < eps
-			    ? _Tp{1} : std::sinh(e) / e);
+			    ? Tp{1} : std::sinh(e) / e);
 	  auto gam1, gam2, gampl, gammi;
 	  gamma_temme(mu, gam1, gam2, gampl, gammi);
 	  auto ff = fact * (gam1 * std::cosh(e) + gam2 * fact2 * d);
 	  auto sum = ff;
 	  e = std::exp(e);
-	  auto p = e / (_Tp{2} * gampl);
-	  auto q = _Tp{1} / (_Tp{2} * e * gammi);
-	  auto c = _Tp{1};
+	  auto p = e / (Tp{2} * gampl);
+	  auto q = Tp{1} / (Tp{2} * e * gammi);
+	  auto c = Tp{1};
 	  d = x2 * x2;
 	  auto sum1 = p;
 	  int i;
@@ -429,16 +429,16 @@
 	}
       else
 	{
-	  _Tp b = _Tp{2} * (_Tp{1} + x);
-	  _Tp d = _Tp{1} / b;
-	  _Tp delh = d;
-	  _Tp h = delh;
-	  _Tp q1 = _Tp{0};
-	  _Tp q2 = _Tp{1};
-	  _Tp a1 = _Tp{0.25L} - mu2;
-	  _Tp q = c = a1;
-	  _Tp a = -a1;
-	  _Tp s = _Tp{1} + q * delh;
+	  Tp b = Tp{2} * (Tp{1} + x);
+	  Tp d = Tp{1} / b;
+	  Tp delh = d;
+	  Tp h = delh;
+	  Tp q1 = Tp{0};
+	  Tp q2 = Tp{1};
+	  Tp a1 = Tp{0.25L} - mu2;
+	  Tp q = c = a1;
+	  Tp a = -a1;
+	  Tp s = Tp{1} + q * delh;
 	  int i;
 	  for (i = 2; i <= max_iter; ++i)
 	    {
@@ -448,9 +448,9 @@
 	      q1 = q2;
 	      q2 = qnew;
 	      q += c * qnew;
-	      b += _Tp{2};
-	      d = _Tp{1} / (b + a * d);
-	      delh = (b * d - _Tp{1}) * delh;
+	      b += Tp{2};
+	      d = Tp{1} / (b + a * d);
+	      delh = (b * d - Tp{1}) * delh;
 	      h += delh;
 	      const auto dels = q * delh;
 	      s += dels;
@@ -460,17 +460,17 @@
 	  if (i > max_iter)
 	    throw std::runtime_error("Steed's method failed in bessel_jn.");
 	  h = a1 * h;
-	  _Kmu = std::sqrt(_Tp(PI) / (_Tp{2} * x)) * std::exp(-x) / s;
-	  _Knu1 = _Kmu * (mu + x + _Tp{0.5L} - h) * xi;
+	  _Kmu = std::sqrt(Tp(PI) / (Tp{2} * x)) * std::exp(-x) / s;
+	  _Knu1 = _Kmu * (mu + x + Tp{0.5L} - h) * xi;
 	}
 
-      _Tp _Kpmu = mu * xi * _Kmu - _Knu1;
-      _Tp _Inumu = xi / (f * _Kmu - _Kpmu);
+      Tp _Kpmu = mu * xi * _Kmu - _Knu1;
+      Tp _Inumu = xi / (f * _Kmu - _Kpmu);
       _Inu = _Inumu * _Inul1 / _Inul;
       _Ipnu = _Inumu * _Ipnu1 / _Inul;
       for ( i = 1; i <= nl; ++i )
 	{
-	  const _Tp _Knutemp = (mu + i) * xi2 * _Knu1 + _Kmu;
+	  const Tp _Knutemp = (mu + i) * xi2 * _Knu1 + _Kmu;
 	  _Kmu = _Knu1;
 	  _Knu1 = _Knutemp;
 	}
@@ -484,49 +484,49 @@
   ///
   ///
   ///
-  template <typename _Tp>
+  template <typename Tp>
     void
-    airy(const _Tp x,
-	   _Tp & _Ai, _Tp & _Bi, _Tp & _Aip, _Tp & _Bip)
+    airy(const Tp x,
+	   Tp & _Ai, Tp & _Bi, Tp & _Aip, Tp & _Bip)
     {
-      const auto SQRT3 = std::sqrt(_Tp{3});
+      const auto SQRT3 = std::sqrt(Tp{3});
       const auto absx = std::abs(x);
       const auto rootx = std::sqrt(absx);
-      const auto z = _Tp{2} * absx * rootx / _Tp{3};
-      if (x > _Tp{0})
+      const auto z = Tp{2} * absx * rootx / Tp{3};
+      if (x > Tp{0})
 	{
-	  _Tp _Inu, _Ipnu, _Knu, _Kpnu;
+	  Tp _Inu, _Ipnu, _Knu, _Kpnu;
 
-	  bessel_jn(_Tp{1}/_Tp{3}, z, _Inu, _Knu, _Ipnu, _Kpnu);
-	  _Ai = rootx * _Knu / (_Tp(SQRT3) * PI);
-	  _Bi = rootx * (_Knu / PI + _Tp{2} * _Inu / _Tp(SQRT3));
+	  bessel_jn(Tp{1}/Tp{3}, z, _Inu, _Knu, _Ipnu, _Kpnu);
+	  _Ai = rootx * _Knu / (Tp(SQRT3) * PI);
+	  _Bi = rootx * (_Knu / PI + Tp{2} * _Inu / Tp(SQRT3));
 
-	  bessel_jn(_Tp{2}/_Tp{3}, z, _Inu, _Knu, _Ipnu, _Kpnu);
-	  _Aip = -x * _Knu / (_Tp(SQRT3) * PI);
-	  _Bip = x * (_Knu / PI + _Tp{2} * _Inu / _Tp(SQRT3));
+	  bessel_jn(Tp{2}/Tp{3}, z, _Inu, _Knu, _Ipnu, _Kpnu);
+	  _Aip = -x * _Knu / (Tp(SQRT3) * PI);
+	  _Bip = x * (_Knu / PI + Tp{2} * _Inu / Tp(SQRT3));
 	}
-      else if (x < _Tp{0})
+      else if (x < Tp{0})
 	{
-	  _Tp _Jnu, _Jpnu, _Nnu, _Npnu;
+	  Tp _Jnu, _Jpnu, _Nnu, _Npnu;
 
-	  bessel_jn(_Tp{1}/_Tp{3}, z, _Jnu, _Nnu, _Jpnu, _Npnu);
-	  _Ai = rootx * (_Jnu - _Nnu / _Tp(SQRT3)) / _Tp{2};
-	  _Bi = -rootx * (_Nnu + _Jnu / _Tp(SQRT3)) / _Tp{2};
+	  bessel_jn(Tp{1}/Tp{3}, z, _Jnu, _Nnu, _Jpnu, _Npnu);
+	  _Ai = rootx * (_Jnu - _Nnu / Tp(SQRT3)) / Tp{2};
+	  _Bi = -rootx * (_Nnu + _Jnu / Tp(SQRT3)) / Tp{2};
 
-	  bessel_jn(_Tp{2}/_Tp{3}, z, _Jnu, _Nnu, _Jpnu, _Npnu);
-	  _Aip = absx * (_Nnu / _Tp(SQRT3) + _Jnu) / _Tp{2};
-	  _Bip = absx * (_Jnu / _Tp(SQRT3) - _Nnu) / _Tp{2};
+	  bessel_jn(Tp{2}/Tp{3}, z, _Jnu, _Nnu, _Jpnu, _Npnu);
+	  _Aip = absx * (_Nnu / Tp(SQRT3) + _Jnu) / Tp{2};
+	  _Bip = absx * (_Jnu / Tp(SQRT3) - _Nnu) / Tp{2};
 	}
       else
 	{
 	  // References : Abramowitz & Stegun, page 446 section 10.4.4 on Airy functions.
 	  // The number is Ai(0) or 3**(-2/3)/Gamma(2/3).
-	  _Ai = _Tp{0.3550280538878172392600631860041831763979791741991772L};
+	  _Ai = Tp{0.3550280538878172392600631860041831763979791741991772L};
 	  _Bi = _Ai * SQRT3;
 
 	  // References : Abramowitz & Stegun, page 446 section 10.4.5 on Airy functions.
 	  // The number is Ai'(0) or -3**(-1/3)/Gamma(1/3)
-	  _Aip = -_Tp{0.25881940379280679840518356018920396347909113835493L};
+	  _Aip = -Tp{0.25881940379280679840518356018920396347909113835493L};
 	  _Bip = -_Aip * SQRT3;
 	}
 
@@ -537,26 +537,26 @@
   ///
   ///
   ///
-  template <typename _Tp>
+  template <typename Tp>
   void
-    sph_bessel_jn(const int n, const _Tp x,
-		    _Tp & jn, _Tp & nn, _Tp & jpn, _Tp & npn)
+    sph_bessel_jn(const int n, const Tp x,
+		    Tp & jn, Tp & nn, Tp & jpn, Tp & npn)
     {
 
-      if ( n < 0 || x < _Tp{0} )
+      if ( n < 0 || x < Tp{0} )
 	throw std::runtime_error( "Bad arguments in sph_bessel." );
 
-      const auto nu = _Tp(n) + _Tp{0.5L};
+      const auto nu = Tp(n) + Tp{0.5L};
 
-      _Tp _Jnu, _Jpnu, _Nnu, _Npnu;
+      Tp _Jnu, _Jpnu, _Nnu, _Npnu;
       bessel_jn( x, nu, _Jnu, _Nnu, _Jpnu, _Npnu );
 
-      const auto factor = _Tp(SQRTPIO2) / std::sqrt(x);
+      const auto factor = Tp(SQRTPIO2) / std::sqrt(x);
 
       jn = factor * _Jnu;
       nn = factor * _Nnu;
-      jpn = factor * _Jpnu - jn / (_Tp{2} * x);
-      npn = factor * _Npnu - nn / (_Tp{2} * x);
+      jpn = factor * _Jpnu - jn / (Tp{2} * x);
+      npn = factor * _Npnu - nn / (Tp{2} * x);
 
       return;
     }
@@ -565,26 +565,26 @@
   ///
   ///
   ///
-  template <typename _Tp>
+  template <typename Tp>
   void
-    sph_bessel_ik(const int n, const _Tp x,
-		    _Tp & in, _Tp & kn, _Tp & ipn, _Tp & kpn)
+    sph_bessel_ik(const int n, const Tp x,
+		    Tp & in, Tp & kn, Tp & ipn, Tp & kpn)
     {
 
-      if ( n < 0 || x < _Tp{0} )
+      if ( n < 0 || x < Tp{0} )
 	throw std::runtime_error( "Bad arguments in sph_bessel." );
 
-      const auto order = _Tp(n) + _Tp{0.5L};
+      const auto order = Tp(n) + Tp{0.5L};
 
-      _Tp _Inu, _Ipnu, _Knu, _Kpnu;
+      Tp _Inu, _Ipnu, _Knu, _Kpnu;
       bessel_ik( x, order, _Inu, _Knu, _Ipnu, _Kpnu );
 
-      const auto factor = _Tp(SQRTPIO2) / std::sqrt(x);
+      const auto factor = Tp(SQRTPIO2) / std::sqrt(x);
 
       in = factor * _Inu;
       kn = factor * _Knu;
-      ipn = factor * _Ipnu - in / (_Tp{2} * x);
-      kpn = factor * _Kpnu - kn / (_Tp{2} * x);
+      ipn = factor * _Ipnu - in / (Tp{2} * x);
+      kpn = factor * _Kpnu - kn / (Tp{2} * x);
 
       return;
     }

@@ -17,12 +17,12 @@
   /**
    * This C-fraction is almost useless as AFAICT.
    */
-  template<typename _Tnu, typename _Tp, typename _Tzeta>
+  template<typename _Tnu, typename Tp, typename _Tzeta>
     std::complex<emsr::num_traits_t<
-		emsr::fp_promote_t<_Tnu, _Tp, _Tzeta>>>
-    cyl_hankel_ratio_c_frac(_Tnu nu, _Tp z, _Tzeta zeta)
+		emsr::fp_promote_t<_Tnu, Tp, _Tzeta>>>
+    cyl_hankel_ratio_c_frac(_Tnu nu, Tp z, _Tzeta zeta)
     {
-      using _Val = emsr::fp_promote_t<_Tnu, _Tp, _Tzeta>;
+      using _Val = emsr::fp_promote_t<_Tnu, Tp, _Tzeta>;
       using _Real = emsr::num_traits_t<_Val>;
 
       auto c
@@ -36,7 +36,7 @@
 	  };
 
       auto a_H1
-	= [nu, zeta, c](std::size_t k, _Tp)
+	= [nu, zeta, c](std::size_t k, Tp)
 	  {
 	    using type = decltype(_Tnu{} * _Tzeta{});
 	    if (k == 1)
@@ -46,11 +46,11 @@
 	  };
       using _NumFun = decltype(a_H1);
 
-      auto b_H1 = [](std::size_t, _Tp) -> _Real { return _Real{1}; };
+      auto b_H1 = [](std::size_t, Tp) -> _Real { return _Real{1}; };
       using _DenFun = decltype(b_H1);
 
       auto w_H1
-	= [nu, zeta, c](std::size_t k, _Tp)
+	= [nu, zeta, c](std::size_t k, Tp)
 	  {
 	    return (_Real{-1}
 		    + std::sqrt(_Real{1} + _Real{8} * c(k) * zeta))
@@ -58,7 +58,7 @@
 	  };
       using _TailFun = decltype(w_H1);
 
-      emsr::SteedContinuedFraction<_Tp, _NumFun, _DenFun, _TailFun>
+      emsr::SteedContinuedFraction<Tp, _NumFun, _DenFun, _TailFun>
       _H1(a_H1, b_H1, w_H1);
 
       // b_0 is 0 not 1 so subtract 1.
@@ -68,12 +68,12 @@
   /**
    * This C-fraction is almost useless as AFAICT.
    */
-  template<typename _Tnu, typename _Tp>
+  template<typename _Tnu, typename Tp>
     std::complex<emsr::num_traits_t<
-		emsr::fp_promote_t<_Tnu, _Tp>>>
-    cyl_hankel_1_ratio_c_frac(_Tnu nu, _Tp z)
+		emsr::fp_promote_t<_Tnu, Tp>>>
+    cyl_hankel_1_ratio_c_frac(_Tnu nu, Tp z)
     {
-      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      using _Val = emsr::fp_promote_t<_Tnu, Tp>;
       using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
@@ -84,12 +84,12 @@
   /**
    * This C-fraction is almost useless as AFAICT.
    */
-  template<typename _Tnu, typename _Tp>
+  template<typename _Tnu, typename Tp>
     std::complex<emsr::num_traits_t<
-		emsr::fp_promote_t<_Tnu, _Tp>>>
-    cyl_hankel_2_ratio_c_frac(_Tnu nu, _Tp z)
+		emsr::fp_promote_t<_Tnu, Tp>>>
+    cyl_hankel_2_ratio_c_frac(_Tnu nu, Tp z)
     {
-      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      using _Val = emsr::fp_promote_t<_Tnu, Tp>;
       using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
 
@@ -100,16 +100,16 @@
   /**
    * This C-fraction is almost useless as AFAICT.
    */
-  template<typename _Tnu, typename _Tp>
+  template<typename _Tnu, typename Tp>
     std::complex<emsr::num_traits_t<
-		emsr::fp_promote_t<_Tnu, _Tp>>>
-    cyl_bessel_k_ratio_c_frac(_Tnu nu, _Tp z)
+		emsr::fp_promote_t<_Tnu, Tp>>>
+    cyl_bessel_k_ratio_c_frac(_Tnu nu, Tp z)
     {
-      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      using _Val = emsr::fp_promote_t<_Tnu, Tp>;
       using _Real = emsr::num_traits_t<_Val>;
 
       const auto zeta = _Real{1} / (_Real{2} * z);
-      if constexpr (!emsr::is_complex_v<_Tp>)
+      if constexpr (!emsr::is_complex_v<Tp>)
 	return std::real(cyl_hankel_ratio_c_frac(nu, z, zeta));
       else
 	return cyl_hankel_ratio_c_frac(nu, z, zeta);
@@ -119,19 +119,19 @@
   /**
    * Compute ratios of Hankel functions using the J-fraction.
    */
-  template<typename _Tnu, typename _Tp>
+  template<typename _Tnu, typename Tp>
     std::complex<emsr::num_traits_t<
-		 emsr::fp_promote_t<_Tnu, _Tp>>>
-    cyl_hankel_ratio_j_frac(_Tnu nu, _Tp z, _Tp sgn)
+		 emsr::fp_promote_t<_Tnu, Tp>>>
+    cyl_hankel_ratio_j_frac(_Tnu nu, Tp z, Tp sgn)
     {
-      using _Val = emsr::fp_promote_t<_Tnu, _Tp>;
+      using _Val = emsr::fp_promote_t<_Tnu, Tp>;
       using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
       const auto zeta = _Cmplx{0, 2} * z;
       using _Tzeta = decltype(zeta);
 
       auto a_H
-	= [nu](std::size_t k, _Tp)
+	= [nu](std::size_t k, Tp)
 	  {
 	    const auto kk = _Tnu(2 * k - 1) / _Tnu{2};
 	    return (nu - kk) * (nu + kk);
@@ -139,50 +139,50 @@
       using _NumFun = decltype(a_H);
 
       auto b_H
-	= [zeta, sgn](std::size_t k, _Tp)
+	= [zeta, sgn](std::size_t k, Tp)
 	  { return sgn * _Tzeta(2 * k) + zeta; };
       using _DenFun = decltype(b_H);
 
       auto w_H
-	= [zeta](std::size_t k, _Tp)
+	= [zeta](std::size_t k, Tp)
 	  { return _Tzeta(k) + zeta / _Tzeta{2}; };
       using _TailFun = decltype(w_H);
 
-      emsr::SteedContinuedFraction<_Tp, _NumFun, _DenFun, _TailFun>
+      emsr::SteedContinuedFraction<Tp, _NumFun, _DenFun, _TailFun>
       _H(a_H, b_H, w_H);
 
-      return (_Tzeta(2 * nu + 1) + sgn * zeta) / (_Tp{2} * z)
-	   + sgn * (_H(z) - b_H(0, _Tp{})) / z;
+      return (_Tzeta(2 * nu + 1) + sgn * zeta) / (Tp{2} * z)
+	   + sgn * (_H(z) - b_H(0, Tp{})) / z;
     }
 
   /**
    * Return the Hankel function ratio of the first kind from the J-fraction.
    */
-  template<typename _Tnu, typename _Tp>
+  template<typename _Tnu, typename Tp>
     inline std::complex<emsr::num_traits_t<
-			emsr::fp_promote_t<_Tnu, _Tp>>>
-    cyl_hankel_1_ratio_j_frac(_Tnu nu, _Tp z)
-    { return cyl_hankel_ratio_j_frac(nu, z, _Tp{-1}); }
+			emsr::fp_promote_t<_Tnu, Tp>>>
+    cyl_hankel_1_ratio_j_frac(_Tnu nu, Tp z)
+    { return cyl_hankel_ratio_j_frac(nu, z, Tp{-1}); }
 
   /**
    * Return the Hankel function ratio of the second kind from the J-fraction.
    */
-  template<typename _Tnu, typename _Tp>
+  template<typename _Tnu, typename Tp>
     inline std::complex<emsr::num_traits_t<
-			emsr::fp_promote_t<_Tnu, _Tp>>>
-    cyl_hankel_2_ratio_j_frac(_Tnu nu, _Tp z)
-    { return cyl_hankel_ratio_j_frac(nu, z, _Tp{+1}); }
+			emsr::fp_promote_t<_Tnu, Tp>>>
+    cyl_hankel_2_ratio_j_frac(_Tnu nu, Tp z)
+    { return cyl_hankel_ratio_j_frac(nu, z, Tp{+1}); }
 
   /**
    * Return the modified Bessel function ratio of the second kind
    * from the J-fraction ratios of Hankel functions.
    */
-  template<typename _Tnu, typename _Tp,
-	   typename _Val = emsr::fp_promote_t<_Tnu, _Tp>>
+  template<typename _Tnu, typename Tp,
+	   typename _Val = emsr::fp_promote_t<_Tnu, Tp>>
     std::conditional_t<emsr::is_complex_v<_Val>,
 			std::complex<emsr::num_traits_t<_Val>>,
 			_Val>
-    cyl_bessel_k_ratio_j_frac(_Tnu nu, _Tp z)
+    cyl_bessel_k_ratio_j_frac(_Tnu nu, Tp z)
     {
       using _Real = emsr::num_traits_t<_Val>;
       using _Cmplx = std::complex<_Real>;
@@ -203,23 +203,23 @@
     }
 
 
-template<typename _Tp>
-  std::complex<_Tp>
-  cyl_bessel_j_cf2(_Tp nu, _Tp x)
+template<typename Tp>
+  std::complex<Tp>
+  cyl_bessel_j_cf2(Tp nu, Tp x)
   {
-    const auto s_i = std::complex<_Tp>{0, 1};
+    const auto s_i = std::complex<Tp>{0, 1};
     const auto s_fp_min = emsr::sqrt_min(nu);
     const auto s_eps = emsr::epsilon(x);
     constexpr int s_max_iter = 15000;
 
-    //const int n = std::max(0, static_cast<int>(nu - x + _Tp{1.5L}));
-    //const auto mu = nu - _Tp(n);
+    //const int n = std::max(0, static_cast<int>(nu - x + Tp{1.5L}));
+    //const auto mu = nu - Tp(n);
     const auto mu = nu;
     const auto mu2 = mu * mu;
-    const auto xi = _Tp{1} / x;
-    auto a = _Tp{0.25L} - mu2;
-    auto pq = std::complex<_Tp>(-xi / _Tp{2}, _Tp{1});
-    auto b = std::complex<_Tp>(_Tp{2} * x, _Tp{2});
+    const auto xi = Tp{1} / x;
+    auto a = Tp{0.25L} - mu2;
+    auto pq = std::complex<Tp>(-xi / Tp{2}, Tp{1});
+    auto b = std::complex<Tp>(Tp{2} * x, Tp{2});
     auto fact = a * xi / std::norm(pq);
     auto c = b + s_i * fact * std::conj(pq);
     auto d = std::conj(b) / std::norm(b);
@@ -228,8 +228,8 @@ template<typename _Tp>
     int i;
     for (i = 2; i <= s_max_iter; ++i)
       {
-	a += _Tp(2 * (i - 1));
-	b += s_i * _Tp{2};
+	a += Tp(2 * (i - 1));
+	b += s_i * Tp{2};
 	d = a * d + b;
 	if (std::abs(d) < s_fp_min)
 	  d = s_fp_min;
@@ -240,45 +240,45 @@ template<typename _Tp>
 	d = std::conj(d) / std::norm(d);
 	dl = c * d;
 	pq *= dl;
-	if (std::abs(dl - _Tp{1}) < s_eps)
+	if (std::abs(dl - Tp{1}) < s_eps)
 	  break;
       }
     return pq;
   }
 
 
-template<typename _Tp>
-  _Tp
-  cyl_bessel_k_cf2(_Tp nu, _Tp x)
+template<typename Tp>
+  Tp
+  cyl_bessel_k_cf2(Tp nu, Tp x)
   {
     const auto s_eps = emsr::epsilon(x);
     constexpr int s_max_iter = 15000;
 
     const auto mu = nu;
     const auto mu2 = mu * mu;
-    auto b = _Tp{2} * (_Tp{1} + x);
-    auto d = _Tp{1} / b;
+    auto b = Tp{2} * (Tp{1} + x);
+    auto d = Tp{1} / b;
     auto delh = d;
     auto h = delh;
-    auto q1 = _Tp{0};
-    auto q2 = _Tp{1};
-    const auto a1 = _Tp{0.25L} - mu2;
+    auto q1 = Tp{0};
+    auto q2 = Tp{1};
+    const auto a1 = Tp{0.25L} - mu2;
     auto c = a1;
     auto q = c;
     auto a = -a1;
-    auto s = _Tp{1} + q * delh;
+    auto s = Tp{1} + q * delh;
     int i;
     for (i = 2; i <= s_max_iter; ++i)
       {
-	a -= _Tp{2 * (i - 1)};
+	a -= Tp{2 * (i - 1)};
 	c = -a * c / i;
 	const auto qnew = (q1 - b * q2) / a;
 	q1 = q2;
 	q2 = qnew;
 	q += c * qnew;
-	b += _Tp{2};
-	d = _Tp{1} / (b + a * d);
-	delh = (b * d - _Tp{1}) * delh;
+	b += Tp{2};
+	d = Tp{1} / (b + a * d);
+	delh = (b * d - Tp{1}) * delh;
 	h += delh;
 	const auto dels = q * delh;
 	s += dels;
@@ -292,19 +292,19 @@ template<typename _Tp>
     return h;
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_cyl_hankel_ratio()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto wr = 6 + std::cout.precision();
     auto wc = 4 + 2 * wr;
-    using Ret = decltype(cyl_hankel_1_ratio_j_frac(_Tp{1}, _Tp{1}));
+    using Ret = decltype(cyl_hankel_1_ratio_j_frac(Tp{1}, Tp{1}));
 
-    std::vector<_Tp> nu_vec{_Tp{0}, _Tp{1}/_Tp{3}, _Tp{1}/_Tp{2}, _Tp{2}/_Tp{3},
-			    _Tp{1}, _Tp{2}, _Tp{5}, _Tp{10}, _Tp{20}, _Tp{50}, _Tp{100},
-			    _Tp{128},
-			    _Tp{200}, _Tp{500}, _Tp{1000}};
+    std::vector<Tp> nu_vec{Tp{0}, Tp{1}/Tp{3}, Tp{1}/Tp{2}, Tp{2}/Tp{3},
+			    Tp{1}, Tp{2}, Tp{5}, Tp{10}, Tp{20}, Tp{50}, Tp{100},
+			    Tp{128},
+			    Tp{200}, Tp{500}, Tp{1000}};
 
     std::cout << "\n\nRatio H^{(1)}_{\\nu+1}(z) / H^{(1)}_{\\nu}(z)\n";
     std::cout << ' ' << std::setw(wr) << "z"
@@ -320,7 +320,7 @@ template<typename _Tp>
 	std::cout << "\n nu = " << std::setw(wr) << nu << '\n';
 	for (int i = 1; i <= 20; ++i)
 	  {
-	    auto z = _Tp(i) / _Tp{10};
+	    auto z = Tp(i) / Tp{10};
 	    Ret r{};
 	    try
 	      {
@@ -365,7 +365,7 @@ template<typename _Tp>
 	std::cout << "\n nu = " << std::setw(wr) << nu << '\n';
 	for (int i = 1; i <= 20; ++i)
 	  {
-	    auto z = _Tp(i) / _Tp{10};
+	    auto z = Tp(i) / Tp{10};
 	    Ret r{};
 	    try
 	      {
@@ -408,7 +408,7 @@ template<typename _Tp>
 	std::cout << "\n nu = " << std::setw(wr) << nu << '\n';
 	for (int i = 1; i <= 20; ++i)
 	  {
-	    auto z = _Tp(i) / _Tp{10};
+	    auto z = Tp(i) / Tp{10};
 	    Ret r{};
 	    try
 	      {

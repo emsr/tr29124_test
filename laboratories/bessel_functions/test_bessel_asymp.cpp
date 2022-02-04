@@ -13,20 +13,20 @@
 
 bool VERBOSE = false;
 
-  template <typename _Tp>
+  template <typename Tp>
     void
-    cyl_bessel_jn_asymp_old(_Tp nu, _Tp x,
-			      _Tp & Jnu, _Tp & Nnu)
+    cyl_bessel_jn_asymp_old(Tp nu, Tp x,
+			      Tp & Jnu, Tp & Nnu)
     {
       const auto __2nu = 2 * nu;
       const auto x8 = 8 * x;
       auto k = 1;
       auto k2m1 = 1;
-      auto P = _Tp(1);
+      auto P = Tp(1);
       auto Q = (__2nu - k2m1) * (__2nu + k2m1) / x8;
       ++k;
-      const auto eps = std::numeric_limits<_Tp>::epsilon();
-      auto t = _Tp(1);
+      const auto eps = std::numeric_limits<Tp>::epsilon();
+      auto t = Tp(1);
       do
         {
           k2m1 += 2;
@@ -41,18 +41,18 @@ bool VERBOSE = false;
           Q += t;
           ++k;
 
-          if (convP && convQ && k > (nu / _Tp(2)))
+          if (convP && convQ && k > (nu / Tp(2)))
             break;
         }
       while (k < 50 * nu);
 
-      auto chi = x - (nu + _Tp(0.5L))
-        	       * emsr::pi_v<_Tp> / _Tp{2};
+      auto chi = x - (nu + Tp(0.5L))
+        	       * emsr::pi_v<Tp> / Tp{2};
       auto c = std::cos(chi);
       auto s = std::sin(chi);
 
-      auto coef = std::sqrt(_Tp(2)
-        	  / (emsr::pi_v<_Tp> * x));
+      auto coef = std::sqrt(Tp(2)
+        	  / (emsr::pi_v<Tp> * x));
       Jnu = coef * (c * P - s * Q);
       Nnu = coef * (s * P + c * Q);
 
@@ -96,22 +96,22 @@ bool VERBOSE = false;
    * @return A struct containing the cylindrical Bessel functions
    *         of the first and second kinds and their derivatives.
    */
-  template<typename _Tnu, typename _Tp>
-    emsr::cyl_bessel_t<_Tnu, _Tp, _Tp>
-    cyl_bessel_jn_asymp(_Tnu nu, _Tp x)
+  template<typename _Tnu, typename Tp>
+    emsr::cyl_bessel_t<_Tnu, Tp, Tp>
+    cyl_bessel_jn_asymp(_Tnu nu, Tp x)
     {
-      using bess_t = emsr::cyl_bessel_t<_Tp, _Tp, _Tp>;
+      using bess_t = emsr::cyl_bessel_t<Tp, Tp, Tp>;
 
       const auto s_eps = emsr::epsilon(x);
-      const auto s_pi = emsr::pi_v<_Tp>;
-      const auto s_pi_2 = s_pi / _Tp{2};
-      const auto __2nu = _Tp{2} * nu;
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto s_pi_2 = s_pi / Tp{2};
+      const auto __2nu = Tp{2} * nu;
       const auto __4nu2 = __2nu * __2nu;
-      const auto __8x = _Tp{8} * x;
+      const auto __8x = Tp{8} * x;
       auto k = 0;
-      auto bk_xk = _Tp{1};
+      auto bk_xk = Tp{1};
       auto _Rsum = bk_xk;
-      auto ak_xk = _Tp{1};
+      auto ak_xk = Tp{1};
 if (VERBOSE) std::cout << ' ' << std::setw(20) << ak_xk << '\n';
       auto _Psum = ak_xk;
       auto convP = false;
@@ -132,7 +132,7 @@ if (VERBOSE) std::cout << ' ' << std::setw(20) << ak_xk << '\n';
 	  _Rsum += bk_xk;
 	  ak_xk *= -(__2nu - __2km1) * (__2nu + __2km1) / (k * __8x);
 if (VERBOSE) std::cout << ' ' << std::setw(20) << ak_xk << '\n';
-	  if (k > nu / _Tp{2} && std::abs(ak_xk) > ak_xk_prev)
+	  if (k > nu / Tp{2} && std::abs(ak_xk) > ak_xk_prev)
 	    break;
 	  _Psum += ak_xk;
 	  ak_xk_prev = std::abs(ak_xk);
@@ -144,7 +144,7 @@ if (VERBOSE) std::cout << ' ' << std::setw(20) << ak_xk << '\n';
 	  _Ssum += bk_xk;
 	  ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (k * __8x);
 if (VERBOSE) std::cout << ' ' << std::setw(20) << ak_xk << '\n';
-	  if (k > nu / _Tp{2} && std::abs(ak_xk) > ak_xk_prev)
+	  if (k > nu / Tp{2} && std::abs(ak_xk) > ak_xk_prev)
 	    break;
 	  _Qsum += ak_xk;
 	  ak_xk_prev = std::abs(ak_xk);
@@ -153,13 +153,13 @@ if (VERBOSE) std::cout << ' ' << std::setw(20) << ak_xk << '\n';
 	  if (convP && convQ)
 	    break;
 	}
-      while (k < _Tp{20} * nu);
+      while (k < Tp{20} * nu);
 
-      const auto omega = x - (nu + _Tp{0.5L}) * s_pi_2;
+      const auto omega = x - (nu + Tp{0.5L}) * s_pi_2;
       const auto c = std::cos(omega);
       const auto s = std::sin(omega);
 
-      const auto coef = std::sqrt(_Tp{2} / (s_pi * x));
+      const auto coef = std::sqrt(Tp{2} / (s_pi * x));
       return bess_t{nu, x,
 		coef * (c * _Psum - s * _Qsum),
 		-coef * (s * _Rsum + c * _Ssum),
@@ -183,21 +183,21 @@ if (VERBOSE) std::cout << ' ' << std::setw(20) << ak_xk << '\n';
    * @return A struct containing the modified cylindrical Bessel functions
    *         of the first and second kinds and their derivatives.
    */
-  template<typename _Tnu, typename _Tp>
-    emsr::cyl_mod_bessel_t<_Tnu, _Tp, _Tp>
-    cyl_bessel_ik_asymp(_Tnu nu, _Tp x)
+  template<typename _Tnu, typename Tp>
+    emsr::cyl_mod_bessel_t<_Tnu, Tp, Tp>
+    cyl_bessel_ik_asymp(_Tnu nu, Tp x)
     {
-      using bess_t = emsr::cyl_mod_bessel_t<_Tp, _Tp, _Tp>;
+      using bess_t = emsr::cyl_mod_bessel_t<Tp, Tp, Tp>;
       const auto s_eps = emsr::epsilon(x);
-      const auto s_pi = emsr::pi_v<_Tp>;
-      const auto s_pi_2 = s_pi / _Tp{2};
-      const auto __2nu = _Tp{2} * nu;
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto s_pi_2 = s_pi / Tp{2};
+      const auto __2nu = Tp{2} * nu;
       const auto __4nu2 = __2nu * __2nu;
-      const auto __8x = _Tp{8} * x;
+      const auto __8x = Tp{8} * x;
       auto k = 0;
-      auto bk_xk = _Tp{1};
+      auto bk_xk = Tp{1};
       auto _Rsum = bk_xk;
-      auto ak_xk = _Tp{1};
+      auto ak_xk = Tp{1};
 if (VERBOSE) std::cout << ' ' << std::setw(20) << ak_xk << '\n';
       auto _Psum = ak_xk;
       auto convP = false;
@@ -218,7 +218,7 @@ if (VERBOSE) std::cout << ' ' << std::setw(20) << ak_xk << '\n';
 	  _Rsum += bk_xk;
 	  ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (k * __8x);
 if (VERBOSE) std::cout << ' ' << std::setw(20) << ak_xk << '\n';
-	  if (k > nu / _Tp{2} && std::abs(ak_xk) > ak_xk_prev)
+	  if (k > nu / Tp{2} && std::abs(ak_xk) > ak_xk_prev)
 	    break;
 	  _Psum += ak_xk;
 	  ak_xk_prev = std::abs(ak_xk);
@@ -230,7 +230,7 @@ if (VERBOSE) std::cout << ' ' << std::setw(20) << ak_xk << '\n';
 	  _Ssum += bk_xk;
 	  ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) / (k * __8x);
 if (VERBOSE) std::cout << ' ' << std::setw(20) << ak_xk << '\n';
-	  if (k > nu / _Tp{2} && std::abs(ak_xk) > ak_xk_prev)
+	  if (k > nu / Tp{2} && std::abs(ak_xk) > ak_xk_prev)
 	    break;
 	  _Qsum += ak_xk;
 	  ak_xk_prev = std::abs(ak_xk);
@@ -239,9 +239,9 @@ if (VERBOSE) std::cout << ' ' << std::setw(20) << ak_xk << '\n';
 	  if (convP && convQ)
 	    break;
 	}
-      while (k < _Tp{20} * nu);
+      while (k < Tp{20} * nu);
 
-      const auto coef = std::sqrt(_Tp{1} / (_Tp{2} * s_pi * x));
+      const auto coef = std::sqrt(Tp{1} / (Tp{2} * s_pi * x));
       return bess_t{nu, x,
 		      coef * std::exp(x) * (_Psum - _Qsum),
 		      coef * std::exp(x) * (_Rsum - _Ssum),
@@ -249,12 +249,12 @@ if (VERBOSE) std::cout << ' ' << std::setw(20) << ak_xk << '\n';
 		      -s_pi * coef * std::exp(-x) * (_Rsum + _Ssum)};
     }
 
-template<typename _Tnu, typename _Tp>
+template<typename _Tnu, typename Tp>
   void
-  test_bessel_asymp(_Tnu nu, _Tp x, bool use_internal, bool use_internal_old)
+  test_bessel_asymp(_Tnu nu, Tp x, bool use_internal, bool use_internal_old)
   {
-    const auto s_pi_2 = emsr::pi_v<_Tp> / _Tp{2};
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    const auto s_pi_2 = emsr::pi_v<Tp> / Tp{2};
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto w = 8 + std::cout.precision();
 
     if (use_internal)
@@ -303,7 +303,7 @@ template<typename _Tnu, typename _Tp>
 
     do
       {
-	emsr::cyl_bessel_t<_Tp, _Tp, _Tp> Bess;
+	emsr::cyl_bessel_t<Tp, Tp, Tp> Bess;
 	try
 	{
 	  Bess = emsr::detail::cyl_bessel_jn(nu, x);
@@ -313,12 +313,12 @@ template<typename _Tnu, typename _Tp>
 	  std::cout << '\n' << "Couldn't run main Bessel function." << '\n';
 	}
 
-	emsr::cyl_bessel_t<_Tp, _Tp, _Tp> BessAsym;
+	emsr::cyl_bessel_t<Tp, Tp, Tp> BessAsym;
 	if (use_internal)
 	  BessAsym = cyl_bessel_jn_asymp(nu, x);
 	else if (use_internal_old)
 	  {
-            _Tp Jnua = 0.0, Nnua = 0.0, Jpnua = 0.0, Npnua = 0.0;
+            Tp Jnua = 0.0, Nnua = 0.0, Jpnua = 0.0, Npnua = 0.0;
             cyl_bessel_jn_asymp_old(nu, x, Jnua, Nnua);
             BessAsym.nu_arg = nu;
             BessAsym.x_arg = x;

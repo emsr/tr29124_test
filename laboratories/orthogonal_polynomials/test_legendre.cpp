@@ -19,15 +19,15 @@
    * Build a list of zeros and weights for the Gauss-Legendre integration rule
    * for the Legendre polynomial of degree @c l.
    */
-  template<typename _Tp>
-    std::vector<emsr::QuadraturePoint<_Tp>>
-    legendre_zeros(unsigned int l, _Tp proto = _Tp{})
+  template<typename Tp>
+    std::vector<emsr::QuadraturePoint<Tp>>
+    legendre_zeros(unsigned int l, Tp proto = Tp{})
     {
       const auto _S_eps = emsr::epsilon(proto);
-      const auto _S_pi = emsr::pi_v<_Tp>;
+      const auto _S_pi = emsr::pi_v<Tp>;
       const unsigned int _S_maxit = 1000u;
 
-      std::vector<emsr::QuadraturePoint<_Tp>> pt(l);
+      std::vector<emsr::QuadraturePoint<Tp>> pt(l);
 
       auto m = l / 2;
 
@@ -37,65 +37,65 @@
       // for large order.
       if (l & 1)
 	{
-	  if (l < emsr::detail::s_num_factorials<_Tp>)
+	  if (l < emsr::detail::s_num_factorials<Tp>)
 	    {
 	      const auto lm = l - 1;
-	      const auto lmfact = emsr::detail::factorial<_Tp>(lm);
+	      const auto lmfact = emsr::detail::factorial<Tp>(lm);
 	      const auto mm = lm / 2;
-	      const auto mmfact = emsr::detail::factorial<_Tp>(mm);
+	      const auto mmfact = emsr::detail::factorial<Tp>(mm);
 	      auto Plm1 = ((lm & 1) ? -1 : 1)
 			    * lmfact / mmfact / mmfact
-			    / std::exp2(_Tp(lm));
+			    / std::exp2(Tp(lm));
 	      auto Ppl = l * Plm1;
-	      pt[m].point = _Tp{0};
-	      pt[m].weight = _Tp{2} / Ppl / Ppl;
+	      pt[m].point = Tp{0};
+	      pt[m].weight = Tp{2} / Ppl / Ppl;
 	    }
 	  else
 	    {
-	      const auto _S_ln2 = emsr::ln2_v<_Tp>;
+	      const auto _S_ln2 = emsr::ln2_v<Tp>;
 	      const auto lm = l - 1;
-	      const auto lmfact = emsr::detail::log_factorial<_Tp>(lm);
+	      const auto lmfact = emsr::detail::log_factorial<Tp>(lm);
 	      const auto mm = lm / 2;
-	      const auto mmfact = emsr::detail::log_factorial<_Tp>(mm);
+	      const auto mmfact = emsr::detail::log_factorial<Tp>(mm);
 	      auto Plm1 = (lm & 1 ? -1 : 1)
 			  * std::exp(lmfact - 2 * mmfact - lm * _S_ln2);
 	      auto Ppl = l * Plm1;
-	      pt[m].point = _Tp{0};
-	      pt[m].weight = _Tp{2} / Ppl / Ppl;
+	      pt[m].point = Tp{0};
+	      pt[m].weight = Tp{2} / Ppl / Ppl;
 	    }
 	}
 
       for (auto i = 1u; i <= m; ++i)
 	{
 	  // Clever approximation of root.
-	  auto z = std::cos(_S_pi * (i - _Tp{1} / _Tp{4})
-				    / (l + _Tp{1} / _Tp{2}));
+	  auto z = std::cos(_S_pi * (i - Tp{1} / Tp{4})
+				    / (l + Tp{1} / Tp{2}));
 	  auto z1 = z;
-	  auto w = _Tp{0};
+	  auto w = Tp{0};
 	  for (auto its = 0u; its < _S_maxit; ++its)
 	    {
 	      // Compute P, P1, and P2 the Legendre polynomials of order
 	      // l, l-1, l-2 respectively by iterating through the recursion
 	      // relation for the Legendre polynomials.
 	      // Compute Pp the derivative of the Legendre polynomial of order l.
-	      auto P1 = _Tp{0};
-	      auto P = _Tp{1};
+	      auto P1 = Tp{0};
+	      auto P = Tp{1};
 	      for  (auto k = 1u; k <= l; ++k)
 		{
 		  auto P2 = P1;
 		  P1 = P;
 		  // Recursion for Legendre polynomials.
-		  P = ((_Tp{2} * k - _Tp{1}) * z * P1
-		      - (k - _Tp{1}) * P2) / k;
+		  P = ((Tp{2} * k - Tp{1}) * z * P1
+		      - (k - Tp{1}) * P2) / k;
 		}
 	      // Recursion for the derivative of The Legendre polynomial.
-	      auto Pp = l * (z * P - P1) / (z * z - _Tp{1});
+	      auto Pp = l * (z * P - P1) / (z * z - Tp{1});
 	      z1 = z;
 	      // Converge on root by Newton's method.
 	      z = z1 - P / Pp;
 	      if (std::abs(z - z1) < _S_eps)
 		{
-		  w = _Tp{2} / ((_Tp{1} - z * z) * Pp * Pp);
+		  w = Tp{2} / ((Tp{1} - z * z) * Pp * Pp);
 		  break;
 		}
 	      if (its > _S_maxit)
@@ -114,9 +114,9 @@
 /**
  * 
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  test_legendre(_Tp proto = _Tp{})
+  test_legendre(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -128,7 +128,7 @@ template<typename _Tp>
 	std::cout << ' ' << std::setw(w) << "x";
 	std::cout << ' ' << std::setw(w) << "P_" << l << "(x)";
 	std::cout << '\n';
-	const auto del = _Tp{1} / _Tp{100};
+	const auto del = Tp{1} / Tp{100};
 	for (int i = -120; i <= 120; ++i)
 	  {
 	    auto x = i * del;
@@ -152,7 +152,7 @@ template<typename _Tp>
 	    std::cout << ' ' << std::setw(w) << "x";
 	    std::cout << ' ' << std::setw(w) << "P_" << l << "_" << m << "(x)";
 	    std::cout << '\n';
-	    const auto del = _Tp{1} / _Tp{100};
+	    const auto del = Tp{1} / Tp{100};
 	    for (int i = -120; i <= 120; ++i)
 	      {
 		const auto x = i * del;

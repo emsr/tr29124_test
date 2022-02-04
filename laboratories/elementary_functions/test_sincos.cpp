@@ -12,20 +12,20 @@
   /**
    * A struct to store a cosine and a sine value.
    */
-  template<typename _Tp>
+  template<typename Tp>
     struct sincos_t
     {
-      _Tp sin_v;
-      _Tp cos_v;
+      Tp sin_v;
+      Tp cos_v;
     };
 
   /**
    * Default implementation of sincos.
    */
-  template<typename _Tp>
-    inline sincos_t<_Tp>
-    sincos(_Tp x)
-    { return sincos_t<_Tp>{std::sin(x), std::cos(x)}; }
+  template<typename Tp>
+    inline sincos_t<Tp>
+    sincos(Tp x)
+    { return sincos_t<Tp>{std::sin(x), std::cos(x)}; }
 
   template<>
     inline sincos_t<float>
@@ -70,40 +70,40 @@
   /**
    * Reperiodized sincos.
    */
-  template<typename _Tp>
-    sincos_t<_Tp>
-    sincos_pi(_Tp x)
+  template<typename Tp>
+    sincos_t<Tp>
+    sincos_pi(Tp x)
     {
-      const auto _S_pi = emsr::pi_v<_Tp>;
-      const auto _S_NaN = emsr::quiet_NaN<_Tp>(x);
+      const auto _S_pi = emsr::pi_v<Tp>;
+      const auto _S_NaN = emsr::quiet_NaN<Tp>(x);
       if (std::isnan(x))
-	return sincos_t<_Tp>{_S_NaN, _S_NaN};
-      else if (x < _Tp{0})
+	return sincos_t<Tp>{_S_NaN, _S_NaN};
+      else if (x < Tp{0})
 	{
-	  sincos_t<_Tp> tempsc = sincos_pi(-x);
-	  return sincos_t<_Tp>{-tempsc.sin_v,
+	  sincos_t<Tp> tempsc = sincos_pi(-x);
+	  return sincos_t<Tp>{-tempsc.sin_v,
 					     tempsc.cos_v};
 	}
-      else if (x < _Tp{0.5L})
+      else if (x < Tp{0.5L})
 	return sincos(_S_pi * x);
-      else if (x < _Tp{1})
+      else if (x < Tp{1})
 	{
-	  sincos_t<_Tp>
-	    tempsc = sincos(_S_pi * (_Tp{1} - x));
-	  return sincos_t<_Tp>{tempsc.sin_v,
+	  sincos_t<Tp>
+	    tempsc = sincos(_S_pi * (Tp{1} - x));
+	  return sincos_t<Tp>{tempsc.sin_v,
 					   -tempsc.cos_v};
 	}
       else
 	{
 	  auto nu = std::floor(x);
 	  auto arg = x - nu;
-	  auto sign = (int(nu) & 1) == 1 ? _Tp{-1} : _Tp{+1};
+	  auto sign = (int(nu) & 1) == 1 ? Tp{-1} : Tp{+1};
 
-	  auto sinval = (arg < _Tp{0.5L})
+	  auto sinval = (arg < Tp{0.5L})
 			? std::sin(_S_pi * arg)
-			: std::sin(_S_pi * (_Tp{1} - arg));
+			: std::sin(_S_pi * (Tp{1} - arg));
 	  auto cosval = std::cos(_S_pi * arg);
-	  return sincos_t<_Tp>{sign * sinval,
+	  return sincos_t<Tp>{sign * sinval,
 					    sign * cosval};
 	}
     }
@@ -111,24 +111,24 @@
   /**
    * Reperiodized complex constructor.
    */
-  template<typename _Tp>
-    inline std::complex<_Tp>
-    polar_pi(_Tp rho, _Tp phi_pi)
+  template<typename Tp>
+    inline std::complex<Tp>
+    polar_pi(Tp rho, Tp phi_pi)
     {
-      sincos_t<_Tp> sc = sincos_pi(phi_pi);
-      return std::complex<_Tp>(rho * sc.cos_v, rho * sc.sin_v);
+      sincos_t<Tp> sc = sincos_pi(phi_pi);
+      return std::complex<Tp>(rho * sc.cos_v, rho * sc.sin_v);
     }
 
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_sincos(_Tp proto = _Tp{})
+  test_sincos(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    const auto pi = emsr::pi_v<_Tp>;
+    const auto pi = emsr::pi_v<Tp>;
 
     std::cout << '\n';
     std::cout << std::setw(width) << "x"
@@ -150,7 +150,7 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << std::setw(width) << "==============="
 	      << '\n';
-    const auto del = _Tp{1} / _Tp{10};
+    const auto del = Tp{1} / Tp{10};
     for (int i = -40; i <= +40; ++i)
       {
 	auto x = del * i;

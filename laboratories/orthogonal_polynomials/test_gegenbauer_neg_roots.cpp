@@ -30,44 +30,44 @@ namespace detail
    *      {}_2F_1(-n, n + 2\lambda; \lambda + 1/2; \frac{1-x}{2})
    * @f]
    *
-   * @tparam _Tp The real type of the argument and degree parameters.
+   * @tparam Tp The real type of the argument and degree parameters.
    * @param[in]  n  The degree of the Gegenbauer polynomial
    * @param[in]  lambda  The order of the Gegenbauer polynomial
    */
-  template<typename _Tp>
-    emsr::Polynomial<_Tp>
-    gegenbauer_poly(unsigned int n, _Tp lambda)
+  template<typename Tp>
+    emsr::Polynomial<Tp>
+    gegenbauer_poly(unsigned int n, Tp lambda)
     {
-      emsr::Polynomial<_Tp> poly;
+      emsr::Polynomial<Tp> poly;
 
       if (std::isnan(lambda))
 	return poly;
 
-      auto term = emsr::Polynomial<_Tp>{1};
+      auto term = emsr::Polynomial<Tp>{1};
       poly += term;
       if (n == 0)
 	return poly;
 
-      const auto __2l = _Tp{2} * lambda;
-      const auto lph = lambda + _Tp{1} / _Tp{2};
+      const auto __2l = Tp{2} * lambda;
+      const auto lph = lambda + Tp{1} / Tp{2};
 
       auto m = int(n);
       if (const auto pint = emsr::fp_is_integer(n + __2l);
 	  pint && pint() <= 0 && -pint() < m)
 	m = -pint();
 
-      const emsr::Polynomial<_Tp> arg({_Tp{1}/_Tp{2}, _Tp{-1}/_Tp{2}});
+      const emsr::Polynomial<Tp> arg({Tp{1}/Tp{2}, Tp{-1}/Tp{2}});
 
-      auto fact = _Tp{1};
+      auto fact = Tp{1};
       for (unsigned int k = 1; k <= n; ++k)
-	fact *= _Tp(__2l + _Tp(k - 1)) / _Tp(k);
+	fact *= Tp(__2l + Tp(k - 1)) / Tp(k);
 
       for (int k = 1; k <= m; ++k)
 	{
-	  const auto km1 = _Tp(k - 1);
+	  const auto km1 = Tp(k - 1);
 
-	  term *= (_Tp(-int(n) + km1) / _Tp(k))
-		  * (_Tp(n + __2l + km1) / (lph + km1))
+	  term *= (Tp(-int(n) + km1) / Tp(k))
+		  * (Tp(n + __2l + km1) / (lph + km1))
 		  * arg;
 
 	  poly += term;
@@ -79,25 +79,25 @@ namespace detail
   /**
    * Highest degree term coefficient.
    */
-  template<typename _Tp>
-    _Tp
-    gegenbauer_norm(unsigned int n, _Tp lambda)
+  template<typename Tp>
+    Tp
+    gegenbauer_norm(unsigned int n, Tp lambda)
     {
       int sgam1, sgam2;
-      const auto lgam1 = lgamma_r(_Tp(2 * n + 2 * lambda), &sgam1);
-      const auto lgam2 = lgamma_r(_Tp(n + 2 * lambda), &sgam2);
-      return sgam1 * sgam2 * std::exp(lgam1 - std::lgamma(_Tp(n + 1))
-   				    - lgam2 - _Tp(n) * std::log(_Tp{2}));
+      const auto lgam1 = lgamma_r(Tp(2 * n + 2 * lambda), &sgam1);
+      const auto lgam2 = lgamma_r(Tp(n + 2 * lambda), &sgam2);
+      return sgam1 * sgam2 * std::exp(lgam1 - std::lgamma(Tp(n + 1))
+   				    - lgam2 - Tp(n) * std::log(Tp{2}));
     }
 
 } // namespace detail
 } // namespace emsr
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_neg_parm_gegenbauer_roots(unsigned n, _Tp lambda, std::ofstream& gp)
+  test_neg_parm_gegenbauer_roots(unsigned n, Tp lambda, std::ofstream& gp)
   {
-    const auto prec = std::numeric_limits<_Tp>::digits10;
+    const auto prec = std::numeric_limits<Tp>::digits10;
     const auto w = 6 + prec;
 
     std::cout << std::setprecision(prec);
@@ -158,24 +158,24 @@ template<typename _Tp>
 /**
  * Numerical Methods for Special Functions, Gil, Segura, Temme, pp. 192.
  */
-template<typename _Tp>
+template<typename Tp>
   void
   run()
   {
     std::ofstream gp("gegenbauer_roots.gp");
 
     unsigned n = 50;
-    _Tp lambda;
+    Tp lambda;
 
-    lambda = _Tp(1 - int(n)) / _Tp{2};
+    lambda = Tp(1 - int(n)) / Tp{2};
     test_neg_parm_gegenbauer_roots(n, lambda, gp);
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_poly()
   {
-    const auto prec = std::numeric_limits<_Tp>::digits10;
+    const auto prec = std::numeric_limits<Tp>::digits10;
     const auto w = 6 + prec;
 
     std::cout << std::setprecision(prec);
@@ -184,14 +184,14 @@ template<typename _Tp>
     for (int n : {10, 15, 20})
       for (int m : {0, 1, 2, 3})
 	{
-	  const auto lambda = (1 - n - m) / _Tp{2};
+	  const auto lambda = (1 - n - m) / Tp{2};
 	  auto P = emsr::detail::gegenbauer_poly(n, lambda);
 	  std::cout << " n = " << n
 		    << "; lambda = " << lambda
 		    << '\n';
 	  for (int i = -10; i <= +10; ++i)
 	    {
-	      const auto x = _Tp(i * 0.1L);
+	      const auto x = Tp(i * 0.1L);
 	      std::cout << ' ' << x
 			<< ' ' << std::setw(w) << P(x)
 			//<< ' ' << std::setw(w) << emsr::gegenbauer(n, lambda, x).C_n

@@ -24,7 +24,7 @@
 int
 main()
 {
-    using _TpGSL = double;
+    using TpGSL = double;
     using Real = double;
 
     const auto s_pi = emsr::pi_v<Real>;
@@ -35,8 +35,8 @@ main()
     // Integer orders for various polynomials, harmonics, and spherical bessels.
     std::vector<int> iorder{0, 1, 2, 5, 10, 20, 50, 100};
 
-    //  ... corresponding "_TpGSL" integer orders for GSL.
-    std::vector<_TpGSL> dvorder{std::begin(vorder), std::end(vorder)};
+    //  ... corresponding "TpGSL" integer orders for GSL.
+    std::vector<TpGSL> dvorder{std::begin(vorder), std::end(vorder)};
 
     //  Orders for spherical bessel functions.
     std::vector<unsigned int> sborder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};
@@ -46,20 +46,20 @@ main()
 				    -Real{0.5Q}, -Real{1.0Q/3.0Q}};
 
     //  Orders for cylindrical Bessel functions.
-    std::vector<_TpGSL> cyl_order{0, _TpGSL{1}/_TpGSL{3},
-				 _TpGSL{0.5Q}, _TpGSL{2}/_TpGSL{3},
+    std::vector<TpGSL> cyl_order{0, TpGSL{1}/TpGSL{3},
+				 TpGSL{0.5Q}, TpGSL{2}/TpGSL{3},
 				 1, 2, 3, 5, 10, 20, 50, 100};
 
     // Orders for spherical bessel functions.
     std::vector<unsigned int> sph_order{0, 1, 2, 5, 10, 20, 50, 100};
 
     const unsigned int num_phi = 19; // 0 - 180 degrees.
-    _TpGSL phi[num_phi];
+    TpGSL phi[num_phi];
     for (unsigned int i = 0; i < num_phi; ++i)
-      phi[i] = _TpGSL{10} * i * s_pi / _TpGSL{180};
-    std::vector<_TpGSL> vphid(phi, phi + num_phi);
+      phi[i] = TpGSL{10} * i * s_pi / TpGSL{180};
+    std::vector<TpGSL> vphid(phi, phi + num_phi);
 
-    std::vector<_TpGSL> vab{0, 0.5, 1, 2, 5, 10, 20};
+    std::vector<TpGSL> vab{0, 0.5, 1, 2, 5, 10, 20};
 
     std::string basename;
 
@@ -533,16 +533,16 @@ main()
     std::cout << "dilog" << '\n';
     basename = "diff_dilog";
     rundiff(dilog, gsl::dilog, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{-10}, _TpGSL{1}),
+	    "x", fill_argument(std::make_pair(TpGSL{-10}, TpGSL{1}),
 			       std::make_pair(true, true), 23));
 
     //  Upper incomplete Gamma functions.
     std::cout << "tgamma" << '\n';
     basename = "diff_tgamma";
     rundiff(tgamma, gsl::tgamma, basename,
-	    "a", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
+	    "a", fill_argument(std::make_pair(TpGSL{0}, TpGSL{5}),
 			       std::make_pair(false, true), 11),
-	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
+	    "x", fill_argument(std::make_pair(TpGSL{0}, TpGSL{5}),
 			       std::make_pair(true, true), 11));
 
       // Lower incomplete Gamma functions.
@@ -558,57 +558,57 @@ main()
     std::cout << "ibeta" << '\n';
     basename = "diff_ibeta";
     rundiff(ibeta, gsl::ibeta, basename,
-	    "a", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
+	    "a", fill_argument(std::make_pair(TpGSL{0}, TpGSL{5}),
 			       std::make_pair(false, true), 11),
-	    "b", fill_argument(std::make_pair(_TpGSL{5}, _TpGSL{0}),
+	    "b", fill_argument(std::make_pair(TpGSL{5}, TpGSL{0}),
 			       std::make_pair(true, false), 11),
-	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{1}),
+	    "x", fill_argument(std::make_pair(TpGSL{0}, TpGSL{1}),
 			       std::make_pair(false, false), 21));
 
     //  Complementary incomplete Beta functions.
     std::cout << "ibetac" << '\n';
     basename = "diff_ibetac";
     rundiff(ibetac, beast::ibetac, basename,
-	    "a", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
+	    "a", fill_argument(std::make_pair(TpGSL{0}, TpGSL{5}),
 			       std::make_pair(false, true), 11),
-	    "b", fill_argument(std::make_pair(_TpGSL{5}, _TpGSL{0}),
+	    "b", fill_argument(std::make_pair(TpGSL{5}, TpGSL{0}),
 			       std::make_pair(true, false), 11),
-	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{1}),
+	    "x", fill_argument(std::make_pair(TpGSL{0}, TpGSL{1}),
 			       std::make_pair(false, false), 21));
 
     //  Digamma or psi functions.
     std::cout << "digamma" << '\n';
     basename = "diff_digamma";
     rundiff(digamma, gsl::digamma, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{-9.9375Q}, _TpGSL{10.0625Q}),
+	    "x", fill_argument(std::make_pair(TpGSL{-9.9375Q}, TpGSL{10.0625Q}),
 			       std::make_pair(true, true), 801));
 
     //  Sine integral or Si functions.
     std::cout << "sinint" << '\n';
     basename = "diff_sinint";
     rundiff(sinint, gsl::sinint, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+10}),
+	    "x", fill_argument(std::make_pair(TpGSL{0}, TpGSL{+10}),
 			       std::make_pair(false, true), 101));
 
     //  Cosine integral or Ci functions.
     std::cout << "cosint" << '\n';
     basename = "diff_cosint";
     rundiff(cosint, gsl::cosint, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+10}),
+	    "x", fill_argument(std::make_pair(TpGSL{0}, TpGSL{+10}),
 			       std::make_pair(false, true), 101));
 
     //  Hyperbolic sine integral or Shi functions.
     std::cout << "sinhint" << '\n';
     basename = "diff_sinhint";
     rundiff(sinhint, gsl::sinhint, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
+	    "x", fill_argument(std::make_pair(TpGSL{0}, TpGSL{+5}),
 			       std::make_pair(false, true), 101));
 
     //  Hyperbolic cosine integral or Chi functions.
     std::cout << "coshint" << '\n';
     basename = "diff_coshint";
     rundiff(coshint, gsl::coshint, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
+	    "x", fill_argument(std::make_pair(TpGSL{0}, TpGSL{+5}),
 			       std::make_pair(false, true), 101));
 
     // Dawson integral.
@@ -650,7 +650,7 @@ main()
     basename = "diff_expint_en";
     rundiff(expint, gsl::expint, basename,
 	    "n", {0, 1, 2, 3, 5},
-	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
+	    "x", fill_argument(std::make_pair(TpGSL{0}, TpGSL{+5}),
 			       std::make_pair(false, true), 101));
 
 
@@ -658,21 +658,21 @@ main()
     std::cout << "fresnel_c" << '\n';
     basename = "diff_fresnel_c";
     rundiff(fresnel_c, gsl::fresnel_c, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{-20}, _TpGSL{+20}),
+	    "x", fill_argument(std::make_pair(TpGSL{-20}, TpGSL{+20}),
 			       std::make_pair(false, true), 401));
 
     //  Fresnel sine integral.
     std::cout << "fresnel_s" << '\n';
     basename = "diff_fresnel_s";
     rundiff(fresnel_s, gsl::fresnel_s, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{-20}, _TpGSL{+20}),
+	    "x", fill_argument(std::make_pair(TpGSL{-20}, TpGSL{+20}),
 			       std::make_pair(false, true), 401));
 
     //  Dawson integral.
     std::cout << "dawson" << '\n';
     basename = "diff_dawson";
     rundiff(dawson, gsl::dawson, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
+	    "x", fill_argument(std::make_pair(TpGSL{0}, TpGSL{+5}),
 			       std::make_pair(false, true), 101));
 
     // Normalized sine cardinal function.
@@ -686,7 +686,7 @@ main()
     std::cout << "sinc_pi" << '\n';
     basename = "diff_sinc_pi";
     rundiff(sinc_pi, gsl::sinc_pi, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{-20}, _TpGSL{+20}),
+	    "x", fill_argument(std::make_pair(TpGSL{-20}, TpGSL{+20}),
 			       std::make_pair(false, true), 401));
 
     // Log rising factorial symbol.

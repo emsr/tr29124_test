@@ -28,11 +28,11 @@ large-n works brilliantly for n=0?!?
 
 #include <wrap_boost.h>
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_expint()
   {
-    using _Val = _Tp;
+    using _Val = Tp;
     using _Real = emsr::num_traits_t<_Val>;
     auto _S_NaN = emsr::quiet_NaN<_Real>();
     std::cout.precision(emsr::digits10<_Real>());
@@ -58,12 +58,12 @@ template<typename _Tp>
 		  << ' ' << std::setw(width) << "delta asymp"
 		  << '\n';
 	int i_min = -500;
-	const auto del = _Tp{1} / _Tp{10};
+	const auto del = Tp{1} / Tp{10};
 	for (int i = i_min; i <= +500; ++i)
 	  {
 	    auto x = del * i;
 
-	    _Tp ens = _S_NaN;
+	    Tp ens = _S_NaN;
 	    try
 	    {
 	      ens = emsr::detail::expint_En_series(n, x);
@@ -72,7 +72,7 @@ template<typename _Tp>
 	    {
 	    }
 
-	    _Tp enc = _S_NaN;
+	    Tp enc = _S_NaN;
 	    try
 	    {
 	      enc = emsr::detail::expint_En_cont_frac(n, x);
@@ -81,7 +81,7 @@ template<typename _Tp>
 	    {
 	    }
 
-	    _Tp enn = _S_NaN;
+	    Tp enn = _S_NaN;
 	    try
 	    {
 	      enn = emsr::detail::expint_En_large_n(n, x);
@@ -90,7 +90,7 @@ template<typename _Tp>
 	    {
 	    }
 
-	    _Tp ena = _S_NaN;
+	    Tp ena = _S_NaN;
 	    try
 	    {
 	      ena = emsr::detail::expint_En_asymp(n, x);
@@ -99,7 +99,7 @@ template<typename _Tp>
 	    {
 	    }
 
-	    _Tp enb = _S_NaN;
+	    Tp enb = _S_NaN;
 	    try
 	    {
 	      enb = beast::expint(n, x);

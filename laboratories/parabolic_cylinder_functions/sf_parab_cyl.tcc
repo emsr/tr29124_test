@@ -57,15 +57,15 @@ namespace detail
   /**
    * Return the prefactors used in parabolic cylinder functions.
    */
-  template<typename _Tp>
-    std::tuple<_Tp, _Tp, _Tp, _Tp>
-    parabolic_cylinder_factor(_Tp a)
+  template<typename Tp>
+    std::tuple<Tp, Tp, Tp, Tp>
+    parabolic_cylinder_factor(Tp a)
     {
-      const auto _S_pi = emsr::pi_v<_Tp>;
-      const auto _S_sqrt_pi = _S_pi / _Tp{2};
-      auto __2e14p = std::pow(_Tp{2}, 0.25L + 0.5L * a);
-      auto __2e34p = std::pow(_Tp{2}, 0.75L + 0.5L * a);
-      auto __2e14m = std::pow(_Tp{2}, 0.25L - 0.5L * a);
+      const auto _S_pi = emsr::pi_v<Tp>;
+      const auto _S_sqrt_pi = _S_pi / Tp{2};
+      auto __2e14p = std::pow(Tp{2}, 0.25L + 0.5L * a);
+      auto __2e34p = std::pow(Tp{2}, 0.75L + 0.5L * a);
+      auto __2e14m = std::pow(Tp{2}, 0.25L - 0.5L * a);
       auto gamma34p = gamma(0.75L + 0.5L * a);
       auto gamma34m = gamma(0.75L - 0.5L * a);
       auto gamma14p = gamma(0.25L + 0.5L * a);
@@ -80,25 +80,25 @@ namespace detail
   /**
    * Return the parabolic cylinder functions by series solution.
    */
-  template<typename _Tp>
-    std::pair<_Tp, _Tp>
-    parabolic_cylinder_series(_Tp a, _Tp z)
+  template<typename Tp>
+    std::pair<Tp, Tp>
+    parabolic_cylinder_series(Tp a, Tp z)
     {
       const auto _S_eps = emsr::epsilon(std::real(z));
       constexpr auto _S_max_iter = 1000;
       const auto zz = z * z;
-      const auto ezz4 = std::exp(-zz / _Tp{4});
-      auto term1 = _Tp{1};
+      const auto ezz4 = std::exp(-zz / Tp{4});
+      auto term1 = Tp{1};
       auto sum1 = term1;
       auto term2 = z;
       auto sum2 = term2;
       for (int k = 1; k < _S_max_iter; ++k)
 	{
-	  term1 *= (a + _Tp(4 * k - 3) / _Tp{2})
-		   * zz / _Tp(2 * k * (2 * k - 1));
+	  term1 *= (a + Tp(4 * k - 3) / Tp{2})
+		   * zz / Tp(2 * k * (2 * k - 1));
 	  sum1 += term1;
-	  term2 *= (a + _Tp(4 * k - 1) / _Tp{2})
-		   * zz / _Tp(2 * k * (2 * k + 1));
+	  term2 *= (a + Tp(4 * k - 1) / Tp{2})
+		   * zz / Tp(2 * k * (2 * k + 1));
 	  sum2 += term2;
 	  if (std::abs(term1) < _S_eps * std::abs(sum1)
 	   && std::abs(term2) < _S_eps * std::abs(sum2))
@@ -116,22 +116,22 @@ namespace detail
   /**
    * Return the parabolic cylinder functions by asymptotic series solution.
    */
-  template<typename _Tp>
-    std::pair<_Tp, _Tp>
-    parabolic_cylinder_asymp(_Tp a, _Tp z)
+  template<typename Tp>
+    std::pair<Tp, Tp>
+    parabolic_cylinder_asymp(Tp a, Tp z)
     {
       const auto _S_eps = emsr::epsilon(std::real(z));
       constexpr auto _S_max_iter = 1000;
-      constexpr auto _S_1d2 = _Tp{1} / _Tp{2};
-      const auto _S_sqrt_pi = emsr::sqrtpi_v<_Tp>;
-      const auto _S_2dsqrt_pi = _Tp{2} / _S_sqrt_pi;
+      constexpr auto _S_1d2 = Tp{1} / Tp{2};
+      const auto _S_sqrt_pi = emsr::sqrtpi_v<Tp>;
+      const auto _S_2dsqrt_pi = Tp{2} / _S_sqrt_pi;
       const auto zz = z * z;
-      const auto i2zz = _Tp{1} / (_Tp{2} * z * z);
-      const auto ezz4 = std::exp(-zz / _Tp{4});
+      const auto i2zz = Tp{1} / (Tp{2} * z * z);
+      const auto ezz4 = std::exp(-zz / Tp{4});
       const auto pow = std::pow(z, -a - _S_1d2);
-      auto term1 = _Tp{1};
+      auto term1 = Tp{1};
       auto sum1 = term1;
-      auto term2 = _Tp{1};
+      auto term2 = Tp{1};
       auto sum2 = term2;
       for (auto s = 1; s < _S_max_iter; ++s)
 	{
@@ -154,11 +154,11 @@ namespace detail
   /**
    * 
    */
-  template<typename _Tp>
-    std::pair<_Tp, _Tp>
-    parabolic_cylinder(_Tp a, _Tp z)
+  template<typename Tp>
+    std::pair<Tp, Tp>
+    parabolic_cylinder(Tp a, Tp z)
     {
-      constexpr auto _S_magic_switch = _Tp{10};
+      constexpr auto _S_magic_switch = Tp{10};
       if (std::abs(z) < _S_magic_switch)
 	return parabolic_cylinder_series(a, z);
       else
@@ -168,12 +168,12 @@ namespace detail
   /**
    * 
    */
-  template<typename _Tp>
-    _Tp
-    parabolic_cyl_u(_Tp a, _Tp z)
+  template<typename Tp>
+    Tp
+    parabolic_cyl_u(Tp a, Tp z)
     {
       if (std::isnan(a) || std::isnan(z))
-	return emsr::quiet_NaN<_Tp>();
+	return emsr::quiet_NaN<Tp>();
       else
         return parabolic_cylinder(a, z).first;
     }
@@ -181,12 +181,12 @@ namespace detail
   /**
    * 
    */
-  template<typename _Tp>
-    _Tp
-    parabolic_cyl_v(_Tp a, _Tp z)
+  template<typename Tp>
+    Tp
+    parabolic_cyl_v(Tp a, Tp z)
     {
       if (std::isnan(a) || std::isnan(z))
-	return emsr::quiet_NaN<_Tp>();
+	return emsr::quiet_NaN<Tp>();
       else
         return parabolic_cylinder(a, z).second;
     }
@@ -194,11 +194,11 @@ namespace detail
   /**
    *  
    */
-  template<typename _Tp>
-    _Tp
-    parabolic_cyl_w(_Tp a, _Tp z)
+  template<typename Tp>
+    Tp
+    parabolic_cyl_w(Tp a, Tp z)
     {
-      return _Tp{0};
+      return Tp{0};
     }
 
 } // namespace detail
