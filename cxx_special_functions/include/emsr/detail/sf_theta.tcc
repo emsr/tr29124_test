@@ -1665,9 +1665,9 @@ namespace detail
 	  bool bo = (mc < Tp{0});
 	  if (bo)
 	    {
-	      d = k * k;
-	      mc /= -d;
-	      u *= (d = k);
+              mc /= -k * k;
+              d = k;
+              u *= d;
 	    }
 	  auto a = Tp{1};
 	  auto dn = Tp{1};
