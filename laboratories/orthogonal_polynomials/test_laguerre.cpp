@@ -61,9 +61,9 @@
    * polynomials and the related generalized Hermite polynomials,
    * Math. Comp. 18 (1964), no. 88, 598{616. MR 0166397 (29 #3674)
    */
-  template<typename Tp, typename _Ta>
+  template<typename Tp, typename Ta>
     Tp
-    laguerre_ratio(unsigned int n, _Ta alpha, Tp x)
+    laguerre_ratio(unsigned int n, Ta alpha, Tp x)
     {
       auto frac = Tp{0};
       for (auto i = n - 1; i >= 0; --i)
@@ -134,9 +134,9 @@
   /**
    * Return an array of abscissae and weights for the Gauss-Laguerre rule.
    */
-  template<typename Tp, typename _Tn>
+  template<typename Tp, typename Tn>
     std::vector<emsr::QuadraturePoint<Tp>>
-    laguerre_zeros(unsigned int n, _Tn alpha, Tp proto)
+    laguerre_zeros(unsigned int n, Tn alpha, Tp proto)
     {
       const auto s_eps = emsr::epsilon(proto);
       const unsigned int s_maxit = 1000;

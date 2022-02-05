@@ -10,11 +10,11 @@
 #include <emsr/math_constants.h>
 
 
-constexpr size_t _S_num = 11;
+constexpr size_t s_num = 11;
 
 template<typename Tp>
   constexpr Tp
-  __zeta_even[_S_num]
+  zeta_even[s_num]
   {
                                        -0.5L,
     1.6449340668482264364724151666460251892L,
@@ -31,7 +31,7 @@ template<typename Tp>
 
 template<typename Tp>
   constexpr Tp
-  __eta_even[_S_num]
+  eta_even[s_num]
   {
                                 	 0.5L,
     0.82246703342411321823620758332301259461L,
@@ -48,7 +48,7 @@ template<typename Tp>
 
 template<typename Tp>
   constexpr Tp
-  __lambda_even[_S_num]
+  lambda_even[s_num]
   {
                                         0.0L,
     1.2337005501361698273543113749845188919L,
@@ -65,7 +65,7 @@ template<typename Tp>
 
 template<typename Tp>
   constexpr Tp
-  __beta_odd[_S_num]
+  beta_odd[s_num]
   {
                                 	0.0L,
                                 	0.0L,
@@ -94,17 +94,17 @@ template<typename Tp>
  */
 template<typename Tp>
   Tp
-  cot_pi_zeta(Tp __x)
+  cot_pi_zeta(Tp x)
   {
-    const auto _S_pi = emsr::pi_v<Tp>;
-    const auto __pi_x = _S_pi * __x;
-    const auto __xx = __x * __x;
-    auto __xxk = __xx;
-    unsigned int __k = 2;
-    auto __res = Tp{0};
-    for (unsigned int __k = 0; __k < _S_num; ++__k, __xxk *= __xx)
-      __res += __zeta_even<Tp>[__k] * __xx;
-    return (Tp{1} - Tp{2} * __res) / __pi_x;
+    const auto s_pi = emsr::pi_v<Tp>;
+    const auto pi_x = s_pi * x;
+    const auto xx = x * x;
+    auto xxk = xx;
+    unsigned int k = 2;
+    auto res = Tp{0};
+    for (unsigned int k = 0; k < s_num; ++k, xxk *= xx)
+      res += zeta_even<Tp>[k] * xx;
+    return (Tp{1} - Tp{2} * res) / pi_x;
   }
 
 /**
@@ -120,16 +120,16 @@ template<typename Tp>
  */
 template<typename Tp>
   Tp
-  csc_pi_zeta(Tp __x)
+  csc_pi_zeta(Tp x)
   {
-    const auto _S_pi = emsr::pi_v<Tp>;
-    const auto __pi_x = _S_pi * __x;
-    const auto __xx = __x * __x;
-    auto __xxk = __xx;
-    auto __res = Tp{0};
-    for (unsigned int __k = 0; __k < _S_num; ++__k, __xxk *= __xx)
-      __res += __eta_even<Tp>[__k] * __xx;
-    return (Tp{1} + Tp{2} * __res) / __pi_x;
+    const auto s_pi = emsr::pi_v<Tp>;
+    const auto pi_x = s_pi * x;
+    const auto xx = x * x;
+    auto xxk = xx;
+    auto res = Tp{0};
+    for (unsigned int k = 0; k < s_num; ++k, xxk *= xx)
+      res += eta_even<Tp>[k] * xx;
+    return (Tp{1} + Tp{2} * res) / pi_x;
   }
 
 /**
@@ -145,16 +145,16 @@ template<typename Tp>
  */
 template<typename Tp>
   Tp
-  tan_pi_zeta(Tp __x)
+  tan_pi_zeta(Tp x)
   {
-    const auto _S_pi = emsr::pi_v<Tp>;
-    const auto __pi_x = _S_pi * __x;
-    const auto __xx = __x * __x;
-    auto __xxk = __xx;
-    auto __res = Tp{0};
-    for (unsigned int __k = 0; __k < _S_num; ++__k, __xxk *= __xx)
-      __res += __lambda_even<Tp>[__k] * __xx;
-    return Tp{4} * __res / __pi_x;
+    const auto s_pi = emsr::pi_v<Tp>;
+    const auto pi_x = s_pi * x;
+    const auto xx = x * x;
+    auto xxk = xx;
+    auto res = Tp{0};
+    for (unsigned int k = 0; k < s_num; ++k, xxk *= xx)
+      res += lambda_even<Tp>[k] * xx;
+    return Tp{4} * res / pi_x;
   }
 
 /**
@@ -170,17 +170,17 @@ template<typename Tp>
  */
 template<typename Tp>
   Tp
-  sec_pi_zeta(Tp __x)
+  sec_pi_zeta(Tp x)
   {
-    const auto _S_pi = emsr::pi_v<Tp>;
-    const auto __pi_x = _S_pi * __x;
-    const auto __xx = __x * __x;
-    auto __xxk = __x;
-    unsigned int __k = 1;
-    auto __res = Tp{0};
-    for (unsigned int __k = 0; __k < _S_num; ++__k, __xxk *= __xx)
-      __res += __beta_odd<Tp>[__k] * __xx;
-    return Tp{4} * __res / __pi_x;
+    const auto s_pi = emsr::pi_v<Tp>;
+    const auto pi_x = s_pi * x;
+    const auto xx = x * x;
+    auto xxk = x;
+    unsigned int k = 1;
+    auto res = Tp{0};
+    for (unsigned int k = 0; k < s_num; ++k, xxk *= xx)
+      res += beta_odd<Tp>[k] * xx;
+    return Tp{4} * res / pi_x;
   }
 
 /**
@@ -196,17 +196,17 @@ template<typename Tp>
  */
 template<typename Tp>
   Tp
-  coth_pi_zeta(Tp __x)
+  coth_pi_zeta(Tp x)
   {
-    const auto _S_pi = emsr::pi_v<Tp>;
-    const auto __pi_x = _S_pi * __x;
-    const auto __xx = -__x * __x;
-    auto __xxk = __xx;
-    unsigned int __k = 2;
-    auto __res = Tp{0};
-    for (unsigned int __k = 0; __k < _S_num; ++__k, __xxk *= __xx)
-      __res += __zeta_even<Tp>[__k] * __xx;
-    return (Tp{1} - Tp{2} * __res) / __pi_x;
+    const auto s_pi = emsr::pi_v<Tp>;
+    const auto pi_x = s_pi * x;
+    const auto xx = -x * x;
+    auto xxk = xx;
+    unsigned int k = 2;
+    auto res = Tp{0};
+    for (unsigned int k = 0; k < s_num; ++k, xxk *= xx)
+      res += zeta_even<Tp>[k] * xx;
+    return (Tp{1} - Tp{2} * res) / pi_x;
   }
 
 /**
@@ -222,16 +222,16 @@ template<typename Tp>
  */
 template<typename Tp>
   Tp
-  csch_pi_zeta(Tp __x)
+  csch_pi_zeta(Tp x)
   {
-    const auto _S_pi = emsr::pi_v<Tp>;
-    const auto __pi_x = _S_pi * __x;
-    const auto __xx = -__x * __x;
-    auto __xxk = __xx;
-    auto __res = Tp{0};
-    for (unsigned int __k = 0; __k < _S_num; ++__k, __xxk *= __xx)
-      __res += __eta_even<Tp>[__k] * __xx;
-    return (Tp{1} + Tp{2} * __res) / __pi_x;
+    const auto s_pi = emsr::pi_v<Tp>;
+    const auto pi_x = s_pi * x;
+    const auto xx = -x * x;
+    auto xxk = xx;
+    auto res = Tp{0};
+    for (unsigned int k = 0; k < s_num; ++k, xxk *= xx)
+      res += eta_even<Tp>[k] * xx;
+    return (Tp{1} + Tp{2} * res) / pi_x;
   }
 
 /**
@@ -247,16 +247,16 @@ template<typename Tp>
  */
 template<typename Tp>
   Tp
-  tanh_pi_zeta(Tp __x)
+  tanh_pi_zeta(Tp x)
   {
-    const auto _S_pi = emsr::pi_v<Tp>;
-    const auto __pi_x = _S_pi * __x;
-    const auto __xx = -__x * __x;
-    auto __xxk = __xx;
-    auto __res = Tp{0};
-    for (unsigned int __k = 0; __k < _S_num; ++__k, __xxk *= __xx)
-      __res += __lambda_even<Tp>[__k] * __xx;
-    return -Tp{4} * __res / __pi_x;
+    const auto s_pi = emsr::pi_v<Tp>;
+    const auto pi_x = s_pi * x;
+    const auto xx = -x * x;
+    auto xxk = xx;
+    auto res = Tp{0};
+    for (unsigned int k = 0; k < s_num; ++k, xxk *= xx)
+      res += lambda_even<Tp>[k] * xx;
+    return -Tp{4} * res / pi_x;
   }
 
 /**
@@ -272,16 +272,16 @@ template<typename Tp>
  */
 template<typename Tp>
   Tp
-  sech_pi_zeta(Tp __x)
+  sech_pi_zeta(Tp x)
   {
-    const auto _S_pi = emsr::pi_v<Tp>;
-    const auto __pi_x = _S_pi * __x;
-    const auto __xx = -__x * __x;
-    auto __xxk = __x;
-    auto __res = Tp{0};
-    for (unsigned int __k = 0; __k < _S_num; ++__k, __xxk *= __xx)
-      __res += __beta_odd<Tp>[__k] * __xx;
-    return -Tp{4} * __res / __pi_x;
+    const auto s_pi = emsr::pi_v<Tp>;
+    const auto pi_x = s_pi * x;
+    const auto xx = -x * x;
+    auto xxk = x;
+    auto res = Tp{0};
+    for (unsigned int k = 0; k < s_num; ++k, xxk *= xx)
+      res += beta_odd<Tp>[k] * xx;
+    return -Tp{4} * res / pi_x;
   }
 
 /**

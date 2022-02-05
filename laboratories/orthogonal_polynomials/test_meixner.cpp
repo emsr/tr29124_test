@@ -18,9 +18,9 @@
  * @f]
  * where @f$ M_n(x) = M_n(x; \beta, c) @f$.
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   Tp
-  meixner_recur(int n, Tp beta, Tp c, _TpX x)
+  meixner_recur(int n, Tp beta, Tp c, TpX x)
   {
     auto Mnm1 = Tp{1};
     if (n == 0)
@@ -53,9 +53,9 @@ template<typename Tp, typename _TpX>
  *    M_n(x; \beta, c) = {}_2F_1(-n, -x; \beta; 1 - \frac{1}{c})
  * @f]
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   Tp
-  meixner(int n, Tp beta, Tp c, _TpX x)
+  meixner(int n, Tp beta, Tp c, TpX x)
   {
     if (std::isnan(beta))
       return beta;

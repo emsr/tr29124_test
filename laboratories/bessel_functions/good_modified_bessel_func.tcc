@@ -22,9 +22,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file tr1/sf_mod_bessel.tcc
- *  This is an internal header file, included by other library headers.
- *  You should not attempt to use it directly.
+/** @file good_modified_bessel_func.tcc
  */
 
 //
@@ -33,28 +31,15 @@
 
 // Written by Edward Smith-Rowland based on numerous mathematics books.
 
-#ifndef _TR1_MODIFIED_BESSEL_FUNC_TCC
-#define _TR1_MODIFIED_BESSEL_FUNC_TCC 1
+#ifndef GOOD_MODIFIED_BESSEL_FUNC_TCC
+#define GOOD_MODIFIED_BESSEL_FUNC_TCC 1
 
 #include <emsr/fp_type_util.h>
 
 namespace std
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-  // [5.2] Special functions
-
-  /**
-   * @addtogroup tr1_math_spec_func Mathematical Special Functions
-   * A collection of advanced mathematical special functions.
-   * @{
-   */
-
-  //
-  // Implementation-space details.
-  //
-  namespace __detail
-  {
+namespace detail
+{
 
     ///
     ///  @brief  Compute the modified Bessel functions @f$ I_\nu(x) @f$ and
@@ -371,11 +356,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return;
     }
 
-  } // namespace std::tr1::__detail
+} // namespace detail
+} // namespace emsr
 
-  /* @} */ // group tr1_math_spec_func
-
-_GLIBCXX_END_NAMESPACE_VERSION
-}
-
-#endif // _TR1_MODIFIED_BESSEL_FUNC_TCC
+#endif // GOOD_MODIFIED_BESSEL_FUNC_TCC

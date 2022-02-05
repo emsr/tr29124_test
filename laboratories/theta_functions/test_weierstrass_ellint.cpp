@@ -21,23 +21,23 @@
    *
    * @param q The elliptic nome, @f$ |q| < 1 @f$.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    elliptic_modular_prod(const std::complex<_Tp>& q)
+  template<typename Tp>
+    std::complex<Tp>
+    elliptic_modular_prod(const std::complex<Tp>& q)
     {
-      using _Real = emsr::num_traits_t<_Tp>;
-      using _Cmplx = std::complex<_Real>;
+      using Real = emsr::num_traits_t<Tp>;
+      using Cmplx = std::complex<Real>;
       constexpr std::size_t s_max_iter = 50;
       const auto s_eps = emsr::epsilon(std::abs(q));
 
-      auto qqn =  _Cmplx{1};
-      auto prod = _Cmplx{1};
+      auto qqn =  Cmplx{1};
+      auto prod = Cmplx{1};
       for (std::size_t i = 1; i < s_max_iter; ++i)
 	{
 	  qqn *= q;
-	  auto fact = _Real{1} / (_Real{1} + qqn);
+	  auto fact = Real{1} / (Real{1} + qqn);
 	  qqn *= q;
-	  fact *= (_Real{1} + qqn);
+	  fact *= (Real{1} + qqn);
 	  fact *= fact;
 	  fact *= fact;
 	  fact *= fact;
@@ -45,7 +45,7 @@
 	  if (std::abs(qqn) < s_eps)
 	    break;
 	}
-      return _Real{16} * q * prod;
+      return Real{16} * q * prod;
     }
 
   /**
@@ -56,26 +56,26 @@
    *
    * @param q The elliptic nome, @f$ |q| < 1 @f$.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    dedekind_eta_prod(const std::complex<_Tp>& q)
+  template<typename Tp>
+    std::complex<Tp>
+    dedekind_eta_prod(const std::complex<Tp>& q)
     {
-      using _Real = emsr::num_traits_t<_Tp>;
-      using _Cmplx = std::complex<_Real>;
+      using Real = emsr::num_traits_t<Tp>;
+      using Cmplx = std::complex<Real>;
       constexpr std::size_t s_max_iter = 50;
       const auto s_eps = emsr::epsilon(std::abs(q));
 
       const auto qq = q * q;
-      auto qqn = _Cmplx{1};
-      auto prod = _Cmplx{1};
+      auto qqn = Cmplx{1};
+      auto prod = Cmplx{1};
       for (std::size_t i = 1; i < s_max_iter; ++i)
 	{
 	  qqn *= qq;
-	  prod *= (_Real{1} - qqn);
+	  prod *= (Real{1} - qqn);
 	  if (std::abs(qqn) < s_eps)
 	    break;
 	}
-      return std::pow(q, _Real{1} / _Real{12}) * prod;
+      return std::pow(q, Real{1} / Real{12}) * prod;
     }
 
   /**
@@ -86,32 +86,32 @@
    * @param z The argument.
    */
   template<typename _Tp1, typename _Tp3 = std::complex<_Tp1>,
-	  typename _Tp = typename emsr::detail::jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome>
-    // @todo Include the arg type _Tp.
+	  typename Tp = typename emsr::detail::jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome>
+    // @todo Include the arg type Tp.
     typename emsr::detail::jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome
-    weierstrass_p(_Tp1 omega1, _Tp3 omega3, _Tp z)
+    weierstrass_p(_Tp1 omega1, _Tp3 omega3, Tp z)
     {
-      // @todo Include the arg type _Tp.
+      // @todo Include the arg type Tp.
       //using _Type = typename emsr::detail::jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome;
-      using _Real = emsr::num_traits_t<_Tp>;
-      using _Cmplx = std::complex<_Real>;
-      const auto s_pi = emsr::pi_v<_Tp>;
-      const auto s_i = _Cmplx{0, 1};
+      using Real = emsr::num_traits_t<Tp>;
+      using Cmplx = std::complex<Real>;
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto s_i = Cmplx{0, 1};
 
       const auto lattice = emsr::detail::jacobi_lattice_t(omega1, omega3);
       const auto theta0 = emsr::detail::jacobi_theta_0_t(lattice);
       const auto roots = emsr::detail::weierstrass_roots_t(theta0, omega1);
 
       const auto tau = omega3 / omega1;
-      if (std::imag(tau) <= _Real{0})
+      if (std::imag(tau) <= Real{0})
 	throw std::domain_error("Im(omega3/omega1) must be positive.");
       const auto q = std::exp(s_i * s_pi * tau);
 
-      const _Cmplx arg = s_pi * z / _Real{2} / omega1;
+      const Cmplx arg = s_pi * z / Real{2} / omega1;
       const auto theta2 = emsr::detail::jacobi_theta_2(q, arg);
       const auto numer = s_pi * theta0.th3 * theta0.th4 * theta2;
       const auto theta1 = emsr::detail::jacobi_theta_1(q, arg);
-      const auto denom = _Tp{2} * omega1 * theta1;
+      const auto denom = Tp{2} * omega1 * theta1;
       const auto rat = numer / denom;
 
       return roots.e1 + rat * rat;
@@ -121,10 +121,10 @@
    * 
    */
   template<typename _Tp1, typename _Tp3 = std::complex<_Tp1>,
-	  typename _Tp = typename emsr::detail::jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome>
-    // @todo Include the arg type _Tp.
+	  typename Tp = typename emsr::detail::jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome>
+    // @todo Include the arg type Tp.
     typename emsr::detail::jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome
-    weierstrass_zeta(_Tp1 omega1, _Tp3 omega3, _Tp z)
+    weierstrass_zeta(_Tp1 omega1, _Tp3 omega3, Tp z)
     {
       const auto fancy_P = weierstrass_p(omega1, omega3, z);
       const auto lattice = emsr::detail::jacobi_lattice_t(omega1, omega3);
@@ -132,48 +132,48 @@
       const auto carlson_RG = emsr::detail::ellint_rg(fancy_P - root.e1,
 							 fancy_P - root.e2,
 							 fancy_P - root.e3);
-      return _Tp{2} * carlson_RG - z * fancy_P;
+      return Tp{2} * carlson_RG - z * fancy_P;
     }
 
   /**
    * 
    */
   template<typename _Tp1, typename _Tp3 = std::complex<_Tp1>,
-	  typename _Tp = typename emsr::detail::jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome>
-    // @todo Include the arg type _Tp.
+	  typename Tp = typename emsr::detail::jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome>
+    // @todo Include the arg type Tp.
     typename emsr::detail::jacobi_lattice_t<_Tp1, _Tp3>::_Tp_Nome
-    weierstrass_sigma(_Tp1 omega1, _Tp3 omega3, _Tp z)
+    weierstrass_sigma(_Tp1 omega1, _Tp3 omega3, Tp z)
     {
-      // @todo Include the arg type _Tp.
-      using _Real = emsr::num_traits_t<_Tp>;
-      const auto s_pi = emsr::pi_v<_Tp>;
+      // @todo Include the arg type Tp.
+      using Real = emsr::num_traits_t<Tp>;
+      const auto s_pi = emsr::pi_v<Tp>;
       const auto lattice = emsr::detail::jacobi_lattice_t(omega1, omega3);
       const auto theta0 = emsr::detail::jacobi_theta_0_t(lattice);
       const auto omega_1 = lattice.omega_1();
       const auto eta_1 = theta0.eta_1;
-      const auto fac = s_pi / (_Real{2} * omega_1);
-      return std::exp(eta_1 * z * z / (_Real{2} * omega_1))
+      const auto fac = s_pi / (Real{2} * omega_1);
+      return std::exp(eta_1 * z * z / (Real{2} * omega_1))
 	   * emsr::detail::jacobi_theta_1(lattice.ellnome(), fac * z)
 	   / fac / theta0.th1p;
     }
 
 
 /**/
-template<typename _Tp>
+template<typename Tp>
   void
   test_weierstrass_ellint()
   {
-    using _Real = emsr::num_traits_t<_Tp>;
-    using _Cmplx = std::complex<_Real>;
+    using Real = emsr::num_traits_t<Tp>;
+    using Cmplx = std::complex<Real>;
 
-    std::cout.precision(emsr::digits10<_Real>());
+    std::cout.precision(emsr::digits10<Real>());
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
     std::cout << '\n';
-    const auto omega1 = _Cmplx{2, 0};
-    const auto omega3 = _Cmplx{0, 3};
-    const auto del = _Tp{0.0625};
+    const auto omega1 = Cmplx{2, 0};
+    const auto omega3 = Cmplx{0, 3};
+    const auto del = Tp{0.0625};
     for (int ir = -100; ir <= +100; ++ir)
       {
 	std::cout << '\n';
@@ -182,7 +182,7 @@ template<typename _Tp>
 	    //const auto z = 0.1 * ir + 0.1i * ii;
 	    // The above fails because of C99 complex.
 	    // Which needs to die.
-	    const auto z = _Cmplx(del * ir, del * ii);
+	    const auto z = Cmplx(del * ir, del * ii);
 	    const auto fancyP = weierstrass_p(omega1, omega3, z);
 	    std::cout << ' ' << std::setw(w) << std::real(z)
 		      << ' ' << std::setw(w) << std::imag(z)
@@ -196,21 +196,21 @@ template<typename _Tp>
 
 
 /**/
-template<typename _Tp>
+template<typename Tp>
   void
   test_weierstrass_zeta()
   {
-    using _Real = emsr::num_traits_t<_Tp>;
-    using _Cmplx = std::complex<_Real>;
+    using Real = emsr::num_traits_t<Tp>;
+    using Cmplx = std::complex<Real>;
 
-    std::cout.precision(emsr::digits10<_Real>());
+    std::cout.precision(emsr::digits10<Real>());
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
     std::cout << '\n';
-    const auto omega1 = _Cmplx{2, 0};
-    const auto omega3 = _Cmplx{0, 3};
-    const auto del = _Tp{0.0625};
+    const auto omega1 = Cmplx{2, 0};
+    const auto omega3 = Cmplx{0, 3};
+    const auto del = Tp{0.0625};
     for (int ir = -100; ir <= +100; ++ir)
       {
 	std::cout << '\n';
@@ -219,7 +219,7 @@ template<typename _Tp>
 	    //const auto z = 0.1 * ir + 0.1i * ii;
 	    // The above fails because of C99 complex.
 	    // Which needs to die.
-	    const auto z = _Cmplx(del * ir, del * ii);
+	    const auto z = Cmplx(del * ir, del * ii);
 	    const auto zeta = weierstrass_zeta(omega1, omega3, z);
 	    std::cout << ' ' << std::setw(w) << std::real(z)
 		      << ' ' << std::setw(w) << std::imag(z)
@@ -233,21 +233,21 @@ template<typename _Tp>
 
 
 /**/
-template<typename _Tp>
+template<typename Tp>
   void
   test_weierstrass_sigma()
   {
-    using _Real = emsr::num_traits_t<_Tp>;
-    using _Cmplx = std::complex<_Real>;
+    using Real = emsr::num_traits_t<Tp>;
+    using Cmplx = std::complex<Real>;
 
-    std::cout.precision(emsr::digits10<_Real>());
+    std::cout.precision(emsr::digits10<Real>());
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
     std::cout << '\n';
-    const auto omega1 = _Cmplx{2, 0};
-    const auto omega3 = _Cmplx{0, 3};
-    const auto del = _Tp{0.0625};
+    const auto omega1 = Cmplx{2, 0};
+    const auto omega3 = Cmplx{0, 3};
+    const auto del = Tp{0.0625};
     for (int ir = -100; ir <= +100; ++ir)
       {
 	std::cout << '\n';
@@ -256,7 +256,7 @@ template<typename _Tp>
 	    //const auto z = 0.1 * ir + 0.1i * ii;
 	    // The above fails because of C99 complex.
 	    // Which needs to die.
-	    const auto z = _Cmplx(del * ir, del * ii);
+	    const auto z = Cmplx(del * ir, del * ii);
 	    const auto sigma = weierstrass_sigma(omega1, omega3, z);
 	    std::cout << ' ' << std::setw(w) << std::real(z)
 		      << ' ' << std::setw(w) << std::imag(z)
@@ -269,15 +269,15 @@ template<typename _Tp>
   }
 
 /**/
-template<typename _Tp>
+template<typename Tp>
   void
   test_weierstrass_invariants()
   {
-    using _Real = emsr::num_traits_t<_Tp>;
-    using _Cmplx = std::complex<_Real>;
-    const auto s_pi = emsr::pi_v<_Tp>;
+    using Real = emsr::num_traits_t<Tp>;
+    using Cmplx = std::complex<Real>;
+    const auto s_pi = emsr::pi_v<Tp>;
 
-    std::cout.precision(emsr::digits10<_Real>());
+    std::cout.precision(emsr::digits10<Real>());
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
@@ -285,16 +285,16 @@ template<typename _Tp>
     std::cout << '\n';
     for (int ir = 1; ir < 100; ++ir)
       {
-	const auto r = _Real{0.01L} * ir;
+	const auto r = Real{0.01L} * ir;
 	std::cout << '\n';
 	for (int iphi = 0; iphi <= 360; ++iphi)
 	  {
-	    const auto phi = s_pi * iphi / _Real{180};
+	    const auto phi = s_pi * iphi / Real{180};
 	    const auto q = std::polar(r, phi);
-	    const auto lambda = emsr::detail::jacobi_lattice_t<_Cmplx, _Cmplx>(q);
+	    const auto lambda = emsr::detail::jacobi_lattice_t<Cmplx, Cmplx>(q);
 	    const auto [g2, g3] = emsr::detail::weierstrass_invariants_t(lambda);
 	    // The solvers only deal with real coefficients at this time.
-	    //const auto [e1, e2, e3] = emsr::cubic(-g3, -g2, _Cmplx{0}, _Cmplx{4});
+	    //const auto [e1, e2, e3] = emsr::cubic(-g3, -g2, Cmplx{0}, Cmplx{4});
 	    if (polar)
 	      std::cout << ' ' << std::setw(w) << r
 			<< ' ' << std::setw(w) << phi;

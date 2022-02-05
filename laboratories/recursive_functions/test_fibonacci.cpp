@@ -29,18 +29,18 @@
  *    F_n = F_{n-1} + F_{n-2}, F_0 = 0, F_1 = 1
  * @f]
  */
-template<typename _UIntTp>
-  _UIntTp
-  fibonacci_recur(_UIntTp n)
+template<typename UIntTp>
+  UIntTp
+  fibonacci_recur(UIntTp n)
   {
-    _UIntTp Fnm2 = 0;
+    UIntTp Fnm2 = 0;
     if (n == 0)
       return Fnm2;
-    _UIntTp Fnm1 = 1;
+    UIntTp Fnm1 = 1;
     if (n == 1)
       return Fnm1;
-    _UIntTp Fn = Fnm1 + Fnm2;
-    for (_UIntTp k = 3; k <= n; ++k)
+    UIntTp Fn = Fnm1 + Fnm2;
+    for (UIntTp k = 3; k <= n; ++k)
       {
 	Fnm2 = Fnm1;
 	Fnm1 = Fn;
@@ -93,9 +93,9 @@ template<typename Tp>
  *    F_n(x) = xF_{n-1}(x) + F_{n-2}(x), F_0 = 2, F_1 = 1
  * @f]
  */
-template<typename _UIntTp, typename _RealTp>
+template<typename UIntTp, typename _RealTp>
   _RealTp
-  fibonacci(_UIntTp n, _RealTp x)
+  fibonacci(UIntTp n, _RealTp x)
   {
     //const auto _S_log_phi
     //  = _RealTp{4.812118250596034474977589134243684231358e-1L};
@@ -106,7 +106,7 @@ template<typename _UIntTp, typename _RealTp>
     if (n == 1)
       return Fnm1;
     auto Fn = x * Fnm1 + Fnm2;
-    for (_UIntTp k = 3; k <= n; ++k)
+    for (UIntTp k = 3; k <= n; ++k)
       {
 	Fnm2 = Fnm1;
 	Fnm1 = Fn;
@@ -121,18 +121,18 @@ template<typename _UIntTp, typename _RealTp>
  *    L_n = L_{n-1} + L_{n-2}, L_0 = 2, L_1 = 1
  * @f]
  */
-template<typename _UIntTp>
-  _UIntTp
-  lucas_recur(_UIntTp n)
+template<typename UIntTp>
+  UIntTp
+  lucas_recur(UIntTp n)
   {
-    _UIntTp Lnm2 = 2;
+    UIntTp Lnm2 = 2;
     if (n == 0)
       return Lnm2;
-    _UIntTp Lnm1 = 1;
+    UIntTp Lnm1 = 1;
     if (n == 1)
       return Lnm1;
-    _UIntTp Ln = Lnm1 + Lnm2;
-    for (_UIntTp k = 3; k <= n; ++k)
+    UIntTp Ln = Lnm1 + Lnm2;
+    for (UIntTp k = 3; k <= n; ++k)
       {
 	Lnm2 = Lnm1;
 	Lnm1 = Ln;
@@ -183,9 +183,9 @@ template<typename Tp>
  *    L_n(x) = xL_{n-1}(x) + L_{n-2}(x), L_0 = 2, L_1 = x
  * @f]
  */
-template<typename _UIntTp, typename _RealTp>
+template<typename UIntTp, typename _RealTp>
   _RealTp
-  lucas(_UIntTp n, _RealTp x)
+  lucas(UIntTp n, _RealTp x)
   {
     //const auto _S_log_phi
     //  = _RealTp{4.812118250596034474977589134243684231358e-1L};
@@ -196,7 +196,7 @@ template<typename _UIntTp, typename _RealTp>
     if (n == 1)
       return Lnm1;
     auto Ln = x * Lnm1 + Lnm2;
-    for (_UIntTp k = 3; k <= n; ++k)
+    for (UIntTp k = 3; k <= n; ++k)
       {
 	Lnm2 = Lnm1;
 	Lnm1 = Ln;

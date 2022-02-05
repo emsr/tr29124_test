@@ -73,10 +73,10 @@
     Tp
     chebyshev_u_trig(unsigned int n, Tp x)
     {
-      const auto _S_eps = emsr::epsilon(x);
-      if (std::abs(x + Tp{1}) < _S_eps)
+      const auto s_eps = emsr::epsilon(x);
+      if (std::abs(x + Tp{1}) < s_eps)
 	return (n % 2 == 0 ? +1 : -1) * Tp(n + 1);
-      else if (std::abs(x - Tp{1}) < _S_eps)
+      else if (std::abs(x - Tp{1}) < s_eps)
 	return Tp(n + 1);
       else
 	{
@@ -117,8 +117,8 @@
     Tp
     chebyshev_v_trig(unsigned int n, Tp x)
     {
-      const auto _S_eps = emsr::epsilon(x);
-      if (std::abs(x + Tp{1}) < _S_eps)
+      const auto s_eps = emsr::epsilon(x);
+      if (std::abs(x + Tp{1}) < s_eps)
 	return (n % 2 == 0 ? +1 : -1) * Tp(2 * n + 1);
       else
 	{
@@ -160,8 +160,8 @@
     Tp
     chebyshev_w_trig(unsigned int n, Tp x)
     {
-      const auto _S_eps = emsr::epsilon(x);
-      if (std::abs(x - Tp{1}) < _S_eps)
+      const auto s_eps = emsr::epsilon(x);
+      if (std::abs(x - Tp{1}) < s_eps)
 	return Tp(2 * n + 1);
       else
 	{

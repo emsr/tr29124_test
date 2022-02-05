@@ -30,8 +30,6 @@
 #ifndef COMPLEX128_H
 #define COMPLEX128_H 1
 
-#pragma GCC system_header
-
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
 
 #include <float128.h>
@@ -41,100 +39,100 @@ namespace std
 {
 
   inline __float128
-  abs(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return cabsq(__z); }
+  abs(__complex128 z) noexcept
+  { return cabsq(z); }
 
   inline __float128
-  arg(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return cargq(__z); }
+  arg(__complex128 z) noexcept
+  { return cargq(z); }
 
   inline __float128
-  imag(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return cimagq(__z); }
+  imag(__complex128 z) noexcept
+  { return cimagq(z); }
 
   inline __float128
-  real(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return crealq(__z); }
+  real(__complex128 z) noexcept
+  { return crealq(z); }
 
   inline __complex128
-  acos(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return cacosq(__z); }
+  acos(__complex128 z) noexcept
+  { return cacosq(z); }
 
   inline __complex128
-  acosh(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return cacoshq(__z); }
+  acosh(__complex128 z) noexcept
+  { return cacoshq(z); }
 
   inline __complex128
-  asin(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return casinq(__z); }
+  asin(__complex128 z) noexcept
+  { return casinq(z); }
 
   inline __complex128
-  asinh(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return casinhq(__z); }
+  asinh(__complex128 z) noexcept
+  { return casinhq(z); }
 
   inline __complex128
-  atan(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return catanq(__z); }
+  atan(__complex128 z) noexcept
+  { return catanq(z); }
 
   inline __complex128
-  atanh(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return catanhq(__z); }
+  atanh(__complex128 z) noexcept
+  { return catanhq(z); }
 
   inline __complex128
-  cos(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return ccosq(__z); }
+  cos(__complex128 z) noexcept
+  { return ccosq(z); }
 
   inline __complex128
-  cosh(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return ccoshq(__z); }
+  cosh(__complex128 z) noexcept
+  { return ccoshq(z); }
 
   inline __complex128
-  exp(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return cexpq(__z); }
+  exp(__complex128 z) noexcept
+  { return cexpq(z); }
 
   inline __complex128
-  expi(__float128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return cexpiq(__z); }
+  expi(__float128 z) noexcept
+  { return cexpiq(z); }
 
   inline __complex128
-  log(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return clogq(__z); }
+  log(__complex128 z) noexcept
+  { return clogq(z); }
 
   inline __complex128
-  log10(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return clog10q(__z); }
+  log10(__complex128 z) noexcept
+  { return clog10q(z); }
 
   inline __complex128
-  conj(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return conjq(__z); }
+  conj(__complex128 z) noexcept
+  { return conjq(z); }
 
   inline __complex128
-  pow(__complex128 __z, __complex128 __w) _GLIBCXX_USE_NOEXCEPT
-  { return cpowq(__z, __w); }
+  pow(__complex128 z, __complex128 w) noexcept
+  { return cpowq(z, w); }
 
   inline __complex128
-  proj(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return cprojq(__z); }
+  proj(__complex128 z) noexcept
+  { return cprojq(z); }
 
   inline __complex128
-  sin(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return csinq(__z); }
+  sin(__complex128 z) noexcept
+  { return csinq(z); }
 
   inline __complex128
-  sinh(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return csinhq(__z); }
+  sinh(__complex128 z) noexcept
+  { return csinhq(z); }
 
   inline __complex128
-  sqrt(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return csqrtq(__z); }
+  sqrt(__complex128 z) noexcept
+  { return csqrtq(z); }
 
   inline __complex128
-  tan(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return ctanq(__z); }
+  tan(__complex128 z) noexcept
+  { return ctanq(z); }
 
   inline __complex128
-  tanh(__complex128 __z) _GLIBCXX_USE_NOEXCEPT
-  { return ctanhq(__z); }
+  tanh(__complex128 z) noexcept
+  { return ctanhq(z); }
 
   /// complex<__float128> specialization
   template<>
@@ -146,27 +144,27 @@ namespace std
       //typedef _Complex float __attribute__((mode(TC))) __complex128;
       typedef __complex128 _ComplexT;
 
-      _GLIBCXX_CONSTEXPR complex(_ComplexT __z) : _M_value(__z) { }
+      _GLIBCXX_CONSTEXPR complex(_ComplexT z) : m_value(z) { }
 
-      _GLIBCXX_CONSTEXPR complex(__float128 __r = 0.0Q, 
-				 __float128 __i = 0.0Q)
+      _GLIBCXX_CONSTEXPR complex(__float128 r = 0.0Q, 
+				 __float128 i = 0.0Q)
 #if __cplusplus >= 201103L
-      : _M_value{ __r, __i } { }
+      : m_value{ r, i } { }
 #else
       {
-	__real__ _M_value = __r;
-	__imag__ _M_value = __i;
+	__real__ m_value = r;
+	__imag__ m_value = i;
       }
 #endif
 
-      _GLIBCXX_CONSTEXPR complex(const complex<float>& __z)
-      : _M_value(__z.__rep()) { }
+      _GLIBCXX_CONSTEXPR complex(const complex<float>& z)
+      : m_value(z.__rep()) { }
 
-      _GLIBCXX_CONSTEXPR complex(const complex<double>& __z)
-      : _M_value(__z.__rep()) { }
+      _GLIBCXX_CONSTEXPR complex(const complex<double>& z)
+      : m_value(z.__rep()) { }
 
-      _GLIBCXX_CONSTEXPR complex(const complex<long double>& __z)
-      : _M_value(__z.__rep()) { }
+      _GLIBCXX_CONSTEXPR complex(const complex<long double>& z)
+      : m_value(z.__rep()) { }
 
 #if __cplusplus >= 201103L
       // _GLIBCXX_RESOLVE_LIB_DEFECTS
@@ -174,195 +172,195 @@ namespace std
       __attribute ((__abi_tag__ ("cxx11")))
       constexpr __float128 
       real() const
-      { return __real__ _M_value; }
+      { return __real__ m_value; }
 
       __attribute ((__abi_tag__ ("cxx11")))
       constexpr __float128 
       imag() const
-      { return __imag__ _M_value; }
+      { return __imag__ m_value; }
 #else
       __float128& 
       real()
-      { return __real__ _M_value; }
+      { return __real__ m_value; }
 
       const __float128& 
       real() const
-      { return __real__ _M_value; }
+      { return __real__ m_value; }
 
       __float128& 
       imag()
-      { return __imag__ _M_value; }
+      { return __imag__ m_value; }
 
       const __float128& 
       imag()
-      const { return __imag__ _M_value; }
+      const { return __imag__ m_value; }
 #endif
 
       // _GLIBCXX_RESOLVE_LIB_DEFECTS
       // DR 387. std::complex over-encapsulated.
       void 
-      real(__float128 __val)
-      { __real__ _M_value = __val; }
+      real(__float128 val)
+      { __real__ m_value = val; }
 
       void 
-      imag(__float128 __val)
-      { __imag__ _M_value = __val; }
+      imag(__float128 val)
+      { __imag__ m_value = val; }
 
       complex&
-      operator=(__float128 __r)
+      operator=(__float128 r)
       {
-	_M_value = __r;
+	m_value = r;
 	return *this;
       }
 
       complex&
-      operator+=(__float128 __r)
+      operator+=(__float128 r)
       {
-	_M_value += __r;
+	m_value += r;
 	return *this;
       }
 
       complex&
-      operator-=(__float128 __r)
+      operator-=(__float128 r)
       {
-	_M_value -= __r;
+	m_value -= r;
 	return *this;
       }
 
       complex&
-      operator*=(__float128 __r)
+      operator*=(__float128 r)
       {
-	_M_value *= __r;
+	m_value *= r;
 	return *this;
       }
 
       complex&
-      operator/=(__float128 __r)
+      operator/=(__float128 r)
       {
-	_M_value /= __r;
+	m_value /= r;
 	return *this;
       }
 
       // The compiler knows how to do this efficiently
       // complex& operator=(const complex&);
 
-      template<typename _Tp>
+      template<typename Tp>
         complex&
-        operator=(const complex<_Tp>& __z)
+        operator=(const complex<Tp>& z)
 	{
-	  __real__ _M_value = __z.real();
-	  __imag__ _M_value = __z.imag();
+	  __real__ m_value = z.real();
+	  __imag__ m_value = z.imag();
 	  return *this;
 	}
 
-      template<typename _Tp>
+      template<typename Tp>
         complex&
-	operator+=(const complex<_Tp>& __z)
+	operator+=(const complex<Tp>& z)
 	{
-	  __real__ _M_value += __z.real();
-	  __imag__ _M_value += __z.imag();
+	  __real__ m_value += z.real();
+	  __imag__ m_value += z.imag();
 	  return *this;
 	}
 
-      template<typename _Tp>
+      template<typename Tp>
         complex&
-	operator-=(const complex<_Tp>& __z)
+	operator-=(const complex<Tp>& z)
 	{
-	  __real__ _M_value -= __z.real();
-	  __imag__ _M_value -= __z.imag();
+	  __real__ m_value -= z.real();
+	  __imag__ m_value -= z.imag();
 	  return *this;
 	}
 
-      template<typename _Tp>
+      template<typename Tp>
         complex&
-	operator*=(const complex<_Tp>& __z)
-	{
-	  _ComplexT __t;
-	  __real__ __t = __z.real();
-	  __imag__ __t = __z.imag();
-	  _M_value *= __t;
-	  return *this;
-	}
-
-      template<typename _Tp>
-        complex&
-	operator/=(const complex<_Tp>& __z)
+	operator*=(const complex<Tp>& z)
 	{
 	  _ComplexT __t;
-	  __real__ __t = __z.real();
-	  __imag__ __t = __z.imag();
-	  _M_value /= __t;
+	  __real__ __t = z.real();
+	  __imag__ __t = z.imag();
+	  m_value *= __t;
 	  return *this;
 	}
 
-      _GLIBCXX_CONSTEXPR _ComplexT __rep() const { return _M_value; }
+      template<typename Tp>
+        complex&
+	operator/=(const complex<Tp>& z)
+	{
+	  _ComplexT __t;
+	  __real__ __t = z.real();
+	  __imag__ __t = z.imag();
+	  m_value /= __t;
+	  return *this;
+	}
+
+      _GLIBCXX_CONSTEXPR _ComplexT __rep() const { return m_value; }
 
     private:
-      _ComplexT _M_value;
+      _ComplexT m_value;
     };
 
   // @todo Ctors from larger types are marked explicit in the smaller classes.
   //inline _GLIBCXX_CONSTEXPR
-  //complex<float>::complex(const complex<__float128>& __z)
-  //: _M_value(__z.__rep()) { }
+  //complex<float>::complex(const complex<__float128>& z)
+  //: m_value(z.__rep()) { }
 
   //inline _GLIBCXX_CONSTEXPR
-  //complex<double>::complex(const complex<__float128>& __z)
-  //: _M_value(__z.__rep()) { }
+  //complex<double>::complex(const complex<__float128>& z)
+  //: m_value(z.__rep()) { }
 
   //inline _GLIBCXX_CONSTEXPR
-  //complex<long double>::complex(const complex<__float128>& __z)
-  //: _M_value(__z.__rep()) { }
+  //complex<long double>::complex(const complex<__float128>& z)
+  //: m_value(z.__rep()) { }
 
 #if _GLIBCXX_USE_C99_COMPLEX
 
   inline __float128
-  __complex_abs(__complex128 __z)
-  { return cabsq(__z); }
+  __complex_abs(__complex128 z)
+  { return cabsq(z); }
 
   inline __float128
-  __complex_arg(__complex128 __z)
-  { return cargq(__z); }
+  __complex_arg(__complex128 z)
+  { return cargq(z); }
 
   inline __complex128
-  __complex_cos(__complex128 __z)
-  { return ccosq(__z); }
+  __complex_cos(__complex128 z)
+  { return ccosq(z); }
 
   inline __complex128
-  __complex_cosh(__complex128 __z)
-  { return ccoshq(__z); }
+  __complex_cosh(__complex128 z)
+  { return ccoshq(z); }
 
   inline __complex128
-  __complex_exp(__complex128 __z)
-  { return cexpq(__z); }
+  __complex_exp(__complex128 z)
+  { return cexpq(z); }
 
   inline __complex128
-  __complex_log(__complex128 __z)
-  { return clogq(__z); }
+  __complex_log(__complex128 z)
+  { return clogq(z); }
 
   inline __complex128
-  __complex_sin(__complex128 __z)
-  { return csinq(__z); }
+  __complex_sin(__complex128 z)
+  { return csinq(z); }
 
   inline __complex128
-  __complex_sinh(__complex128 __z)
-  { return csinhq(__z); }      
+  __complex_sinh(__complex128 z)
+  { return csinhq(z); }      
 
   inline __complex128
-  __complex_sqrt(__complex128 __z)
-  { return csqrtq(__z); }
+  __complex_sqrt(__complex128 z)
+  { return csqrtq(z); }
 
   inline __complex128
-  __complex_tan(__complex128 __z)
-  { return ctanq(__z); }
+  __complex_tan(__complex128 z)
+  { return ctanq(z); }
 
   inline __complex128
-  __complex_tanh(__complex128 __z)
-  { return ctanhq(__z); }
+  __complex_tanh(__complex128 z)
+  { return ctanhq(z); }
 
   inline __complex128
-  __complex_pow(__complex128 __x, __complex128 __y)
-  { return cpowq(__x, __y); }
+  __complex_pow(__complex128 x, __complex128 y)
+  { return cpowq(x, y); }
 
 #endif  
 
@@ -372,8 +370,8 @@ inline namespace literals {
 inline namespace complex_literals {
 
   std::complex<__float128>
-  operator""iq(const char* __str)
-  { return complex<__float128>(0.0Q, strtoflt128(__str, 0)); }
+  operator""iq(const char* str)
+  { return complex<__float128>(0.0Q, strtoflt128(str, 0)); }
 
 } // inline namespace complex_literals
 } // inline namespace literals

@@ -19,37 +19,37 @@ template<typename Tp>
 		 std::complex<Tp>& condn)
   {
     using _Cmplx = std::complex<Tp>;
-    const auto _S_NaN = emsr::quiet_NaN(z.real());
-    const auto _S_eps = emsr::epsilon(z.real());
-    const auto _S_pi = emsr::pi_v<Tp>;
-    const auto _S_i = _Cmplx(Tp{0}, Tp{1});
-    const auto _S_0 = _Cmplx{};
+    const auto s_NaN = emsr::quiet_NaN(z.real());
+    const auto s_eps = emsr::epsilon(z.real());
+    const auto s_pi = emsr::pi_v<Tp>;
+    const auto s_i = _Cmplx(Tp{0}, Tp{1});
+    const auto s_0 = _Cmplx{};
     auto [x, y] = reinterpret_cast<const Tp(&)[2]>(z);
-    auto ympi = y - _S_pi;
-    auto yppi = y + _S_pi;
-    const auto _S_near = Tp{0.1};
-    err = _S_0;
-    res = _S_0;
+    auto ympi = y - s_pi;
+    auto yppi = y + s_pi;
+    const auto s_near = Tp{0.1};
+    err = s_0;
+    res = s_0;
 
     if (std::isnan(x) || std::isnan(y))
-      return _Cmplx(_S_NaN, _S_NaN);
+      return _Cmplx(s_NaN, s_NaN);
     else if (std::isinf(x) && (x < Tp{0})
-	  && (-_S_pi < y) && (y <= _S_pi))
+	  && (-s_pi < y) && (y <= s_pi))
       { // Signed zeros between branches.
 	_Cmplx w;
-	if (std::abs(y) <= _S_pi / Tp{2})
+	if (std::abs(y) <= s_pi / Tp{2})
 	  w = +Tp{0};
 	else
 	  w = -Tp{0};
 
 	if (y < Tp{0})
-	  w += -_S_i * Tp{0};
+	  w += -s_i * Tp{0};
 
 	return w;
       }
     else if (std::isinf(x) || std::isinf(y))
       return _Cmplx(x, y);
-    else if (x == Tp{-1} && std::abs(y) == _S_pi)
+    else if (x == Tp{-1} && std::abs(y) == s_pi)
       return _Cmplx(Tp{-1}, Tp{0});
     else
       {
@@ -57,36 +57,36 @@ template<typename Tp>
 
 	_Cmplx w;
 	if ((Tp{-2} < x && x <= Tp{1}
-	  && Tp{1} < y && y < Tp{2} * _S_pi))
+	  && Tp{1} < y && y < Tp{2} * s_pi))
 	  {
 	    // Region 1: upper branch point.
 	    // Series about z = -1 + i*pi.
-	    const auto dz = z + Tp{1} - _S_i * _S_pi;
+	    const auto dz = z + Tp{1} - s_i * s_pi;
 	    const auto pz = std::conj(std::sqrt(std::conj(Tp{2} * dz)));
 
 	    w = Tp{-1}
-		+ (_S_i
+		+ (s_i
 		+ (Tp{1} / Tp{3}
-		+ (Tp{-1} / Tp{36} * _S_i
-		+ (Tp{1} / Tp{270} + Tp{1} / Tp{4320} * _S_i * pz)
+		+ (Tp{-1} / Tp{36} * s_i
+		+ (Tp{1} / Tp{270} + Tp{1} / Tp{4320} * s_i * pz)
 		* pz) * pz) * pz) * pz;
 	  }
 	else if ((Tp{-2} < x && x <= Tp{1}
-	       && Tp{-2} * _S_pi < y && y < Tp{-1}))
+	       && Tp{-2} * s_pi < y && y < Tp{-1}))
 	  {
 	    // Region 2: lower branch point.
 	    // Series about z = -1 - i*pi.
-	    const auto dz = z + Tp{1} + _S_i * _S_pi;
+	    const auto dz = z + Tp{1} + s_i * s_pi;
 	    const auto pz = std::conj(std::sqrt(std::conj(Tp{2} * dz)));
 
 	    w = Tp{-1}
-		+ (-_S_i
+		+ (-s_i
 		+ (Tp{1} / Tp{3}
-		+ (Tp{1} / Tp{36} * _S_i
-		+ (Tp{1} / Tp{270} - Tp{1} / Tp{4320} * _S_i * pz)
+		+ (Tp{1} / Tp{36} * s_i
+		+ (Tp{1} / Tp{270} - Tp{1} / Tp{4320} * s_i * pz)
 		* pz) * pz) * pz) * pz;
 	  }
-	else if (x <= Tp{-2} && -_S_pi < y && y <= _S_pi)
+	else if (x <= Tp{-2} && -s_pi < y && y <= s_pi)
 	  {
 	    // Region 3: between branch cuts.
 	    // Series: About -infinity.
@@ -101,7 +101,7 @@ template<typename Tp>
 	       && (Tp{-1} <= y) && (y <= Tp{1}))
 		|| ((Tp{-2} < x)
 		 && (x - Tp{1}) * (x - Tp{1}) + y * y
-			 <= _S_pi * _S_pi))
+			 <= s_pi * s_pi))
 	  {
 	    // Region 4: Mushroom.
 	    // Series about z = 1.
@@ -113,12 +113,12 @@ template<typename Tp>
 		+ Tp{13} / Tp{61440} * pz) * pz) * pz) * pz * pz;
 	  }
 	else if (x <= -Tp{3} / Tp{2}
-		 && _S_pi < y
-		 && y - _S_pi <= Tp{-3} / Tp{4} * (x + Tp{1}))
+		 && s_pi < y
+		 && y - s_pi <= Tp{-3} / Tp{4} * (x + Tp{1}))
 	  {
 	    // Region 5: Top wing.
 	    // Negative log series.
-	    const auto t = z - _S_i * _S_pi;
+	    const auto t = z - s_i * s_pi;
 	    const auto pz = std::log(-t);
 	    w = ((Tp{1}
 		  + (-Tp{3} / Tp{2}
@@ -129,12 +129,12 @@ template<typename Tp>
 		/ (t * t * t);
 	  }
 	else if (x <= -Tp{3} / Tp{2}
-		 && Tp{3} / Tp{4} * (x + Tp{1}) < y + _S_pi
-				    && y + _S_pi <= Tp{0})
+		 && Tp{3} / Tp{4} * (x + Tp{1}) < y + s_pi
+				    && y + s_pi <= Tp{0})
 	  {
 	    // Region 6: Bottom wing.
 	    // Negative log series.
-	    const auto t = z + _S_i * _S_pi;
+	    const auto t = z + s_i * s_pi;
 	    const auto pz = std::log(-t);
 	    w = ((Tp{1}
 		 + (Tp{-3} / Tp{2}
@@ -160,22 +160,22 @@ template<typename Tp>
 
 	auto sgn = Tp{0};
 	auto zr = z;
-	if (x <= Tp{-1} + _S_near
-	    && (std::abs(ympi) <= _S_near || std::abs(yppi) <= _S_near))
+	if (x <= Tp{-1} + s_near
+	    && (std::abs(ympi) <= s_near || std::abs(yppi) <= s_near))
 	  {
 	    sgn = Tp{-1};
 	    // Regularize if near branch cuts.
-	    if (std::abs(ympi) <= _S_near)
+	    if (std::abs(ympi) <= s_near)
 	      {
 		// Recompute ympi with directed rounding.
 		fesetround(FE_UPWARD);
 
-		ympi = y - _S_pi;
+		ympi = y - s_pi;
 
 		if (ympi <= Tp{0})
 		  {
         	    fesetround(FE_DOWNWARD);
-        	    ympi = y - _S_pi;
+        	    ympi = y - s_pi;
 		  }
 
 		zr = _Cmplx(x, ympi);
@@ -188,12 +188,12 @@ template<typename Tp>
 		// Recompute yppi with directed rounding.
 		fesetround(FE_UPWARD);
 
-		yppi = y + _S_pi;
+		yppi = y + s_pi;
 
 		if (yppi <= Tp{0})
 		  {
         	    fesetround(FE_DOWNWARD);
-        	    yppi = y + _S_pi;
+        	    yppi = y + s_pi;
 		  }
 
 		zr = _Cmplx(x, yppi);
@@ -218,7 +218,7 @@ template<typename Tp>
 	    const auto res4 = std::pow(std::abs(res), Tp{4});
 	    const auto wpol = Tp{-1} + w * (Tp{-8} + Tp{2} * w);
 	    const auto test = std::abs(res4 * wpol);
-	    if (test < _S_eps * Tp{72} * std::pow(std::abs(wp1), Tp{6}))
+	    if (test < s_eps * Tp{72} * std::pow(std::abs(wp1), Tp{6}))
 	      break;
 	  }
 
@@ -264,10 +264,10 @@ template<typename Tp>
   lambert_wp(Tp x)
   {
     using _Cmplx = std::complex<Tp>;
-    const auto _S_1de = emsr::inv_e_v<Tp>;
-    if (x < _S_1de)
+    const auto s_1de = emsr::inv_e_v<Tp>;
+    if (x < s_1de)
       throw std::domain_error("lambert_wp: Argument out of range.");
-    else if (x == _S_1de)
+    else if (x == s_1de)
       return Tp{-1};
     else
       {
@@ -286,18 +286,18 @@ template<typename Tp>
   lambert_wm(Tp x)
   {
     using _Cmplx = std::complex<Tp>;
-    const auto _S_2pi = emsr::tau_v<Tp>;
-    const auto _S_i = _Cmplx(Tp{0}, Tp{1});
-    const auto _S_1de = emsr::inv_e_v<Tp>;
-    if (x < _S_1de || x > Tp{0})
+    const auto s_2pi = emsr::tau_v<Tp>;
+    const auto s_i = _Cmplx(Tp{0}, Tp{1});
+    const auto s_1de = emsr::inv_e_v<Tp>;
+    if (x < s_1de || x > Tp{0})
       throw std::domain_error("lambert_wm: Argument out of range.");
-    else if (x == _S_1de)
+    else if (x == s_1de)
       return Tp{-1};
     else if (x == Tp{0})
       return -std::numeric_limits<Tp>::infinity();
     else
       {
-	_Cmplx z(std::log(_Cmplx(x)) - _S_i * _S_2pi),
+	_Cmplx z(std::log(_Cmplx(x)) - s_i * s_2pi),
 	       err, res, condn;
 	return std::real(wright_omega(z, err, res, condn));
       }

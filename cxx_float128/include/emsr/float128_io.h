@@ -27,10 +27,8 @@
  *  Do not attempt to use it directly. @headername{xxxxx}
  */
 
-#ifndef _GLIBCXX_EXT_FLOAT128_IO_H
-#define _GLIBCXX_EXT_FLOAT128_IO_H 1
-
-#pragma GCC system_header
+#ifndef FLOAT128_IO_H
+#define FLOAT128_IO_H 1
 
 #ifdef _GLIBCXX_USE_FLOAT128
 #if __has_include(<quadmath.h>)
@@ -38,9 +36,8 @@
 #include <iosfwd>
 #include <quadmath.h>
 
-namespace std _GLIBCXX_VISIBILITY(default)
+namespace std
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   template<typename _CharT, typename _Traits = std::char_traits<_CharT>>
     std::basic_ostream<_CharT, _Traits>&
@@ -51,7 +48,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     std::basic_istream<_CharT, _Traits>&
     operator>>(std::basic_istream<_CharT, _Traits>& __is, __float128& __x);
 
-_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
 
 #include <emsr/float128_io.tcc>

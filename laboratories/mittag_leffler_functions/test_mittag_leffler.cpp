@@ -19,16 +19,16 @@
     mittag_leffler_K(Tp alpha, Tp beta, Tp chi,
 		       const std::complex<Tp>& z)
     {
-      const auto _S_pi = emsr::pi_v<Tp>;
+      const auto s_pi = emsr::pi_v<Tp>;
       const auto chip1 = std::pow(chi, Tp{1} / alpha);
       const auto chip2 = std::pow(chi, (Tp{1} - beta) / alpha);
       return chip2
 	   * std::exp(-chip1)
-	   * (chi * std::sin(_S_pi * (Tp{1} - beta))
-	      - z * std::sin(_S_pi * (Tp{1} - beta + alpha)))
-	   / (chi * chi - Tp{2} * chi * z * std::cos(alpha * _S_pi)
+	   * (chi * std::sin(s_pi * (Tp{1} - beta))
+	      - z * std::sin(s_pi * (Tp{1} - beta + alpha)))
+	   / (chi * chi - Tp{2} * chi * z * std::cos(alpha * s_pi)
 		 + z * z)
-	   / _S_pi / alpha;
+	   / s_pi / alpha;
     }
 
   /* Monotone integral for the Mittag-Leffler function. */
@@ -38,12 +38,12 @@
 				Tp chi_min, Tp chi_max,
 				const std::complex<Tp>& z)
     {
-      const auto _S_eps = emsr::epsilon(chi_min);
+      const auto s_eps = emsr::epsilon(chi_min);
       auto func = [alpha, beta, z](Tp chi)
 		    -> std::complex<Tp>
 		    { return mittag_leffler_K(alpha, beta, chi, z); };
 
-      const auto epsabs = Tp{100} * _S_eps;
+      const auto epsabs = Tp{100} * s_eps;
       const auto epsrel = Tp{0};
       auto ws = emsr::cquad_workspace<Tp, std::complex<Tp>>();
 
@@ -60,8 +60,8 @@
     mittag_leffler_P(Tp alpha, Tp beta, Tp epsilon, Tp phi,
 		       const std::complex<Tp>& z)
     {
-      const auto _S_i = std::complex<Tp>{0, 1};
-      const auto _S_pi = emsr::pi_v<Tp>;
+      const auto s_i = std::complex<Tp>{0, 1};
+      const auto s_pi = emsr::pi_v<Tp>;
       const auto epsp1 = std::pow(epsilon, Tp{1} / alpha);
       const auto rat = Tp{1} + (Tp{1} - beta) / alpha;
       const auto epsp2 = std::pow(epsilon, rat);
@@ -69,8 +69,8 @@
       return epsp2
 	   * std::exp(epsp1 * std::cos(phi / alpha))
 	   * std::polar(Tp{1}, omega)
-	   / (epsilon * _S_i - z)
-	   / Tp{2} / _S_pi / alpha;
+	   / (epsilon * s_i - z)
+	   / Tp{2} / s_pi / alpha;
     }
 
   /* Oscillatory integral for the Mittag-Leffler function. */
@@ -80,7 +80,7 @@
 				Tp phi_min, Tp phi_max,
 				const std::complex<Tp>& z)
     {
-      const auto _S_eps = emsr::epsilon(phi_min);
+      const auto s_eps = emsr::epsilon(phi_min);
       auto func = [alpha, beta, epsilon, z](Tp phi)
 		    -> std::complex<Tp>
 		    {
@@ -88,7 +88,7 @@
 						epsilon, phi, z);
 		    };
 
-      const auto epsabs = Tp{100} * _S_eps;
+      const auto epsabs = Tp{100} * s_eps;
       const auto epsrel = Tp{0};
       auto ws = emsr::cquad_workspace<Tp, std::complex<Tp>>();
 
@@ -115,9 +115,9 @@
     mittag_leffler(Tp alpha, Tp beta, const std::complex<Tp>& z)
     {
       using Cmplx = std::complex<Tp>;
-      const auto _S_eps = emsr::epsilon(alpha);
-      const auto _S_2pi = emsr::tau_v<Tp>;
-      const auto _S_pi = emsr::pi_v<Tp>;
+      const auto s_eps = emsr::epsilon(alpha);
+      const auto s_2pi = emsr::tau_v<Tp>;
+      const auto s_pi = emsr::pi_v<Tp>;
 
       const auto az = std::abs(z);
       if (alpha > Tp{1})
@@ -125,7 +125,7 @@
           unsigned int k0 = Tp{1} + std::floor(alpha);
 	  const auto alpha0 = alpha / k0;
 	  const auto rho0 = std::pow(z, Tp{1} / Tp(k0));
-	  const auto lamb = _S_2pi / Tp(k0);
+	  const auto lamb = s_2pi / Tp(k0);
 
 	  auto E = Cmplx{0};
 	  for (auto k = 0u; k < k0; ++k)
@@ -135,12 +135,12 @@
 	    }
 	  return E / Tp(k0);
 	}
-      else if (az < _S_eps)
+      else if (az < s_eps)
 	return emsr::detail::gamma_reciprocal(beta);
       else if (az < Tp{1})
 	{
 	  unsigned int k0 = std::max(std::ceil((Tp{1} - beta) / alpha),
-				std::ceil(std::log(_S_eps * (Tp{1} - az))
+				std::ceil(std::log(s_eps * (Tp{1} - az))
 					    / std::log(az)));
 	  auto E = Cmplx{0};
 	  auto zk = Cmplx{1};
@@ -150,7 +150,7 @@
 	      const auto term = zk
 			* emsr::detail::gamma_reciprocal(arg);
 	      E += term;
-	      if (std::abs(term) < _S_eps)
+	      if (std::abs(term) < s_eps)
 		break;
 	      zk *= z;
 	    }
@@ -158,7 +158,7 @@
 	}
       else if (az > std::floor(Tp{10} + Tp{5} * alpha))
 	{
-	  unsigned int k0 = std::floor(-std::log(_S_eps) / std::log(az));
+	  unsigned int k0 = std::floor(-std::log(s_eps) / std::log(az));
 	  auto E = Cmplx{0};
 	  auto zk = Cmplx{1};
 	  for (auto k = 1u; k <= k0; ++k)
@@ -167,7 +167,7 @@
 	      E += zk * emsr::detail::gamma_reciprocal(beta - alpha * k);
 	    }
 	  if (std::arg(z)
-	      < _S_pi * (alpha / Tp{4} + std::min(Tp{1}, alpha) / Tp{2}))
+	      < s_pi * (alpha / Tp{4} + std::min(Tp{1}, alpha) / Tp{2}))
 	    {
 	      const auto zp1 = std::pow(z, Tp{1} / alpha);
 	      const auto zp2 = std::pow(z, (Tp{1} - beta) / alpha);
@@ -182,35 +182,35 @@
 	  auto chi0 = Tp{0};
 	  if (beta >= Tp{0})
 	    chi0 = std::max({Tp{1}, Tp{2} * az,
-			std::pow(-std::log(_S_pi * _S_eps / Tp{6}), alpha)});
+			std::pow(-std::log(s_pi * s_eps / Tp{6}), alpha)});
 	  else
 	    {
 	      const auto abeta = std::abs(beta);
 	      chi0 = std::max({std::pow(Tp{1} + abeta, alpha),
 			 Tp{2} * az, 
 		std::pow(-Tp{2}
-			  * std::log(_S_pi * _S_eps
+			  * std::log(s_pi * s_eps
 			  / (Tp{6} * (abeta + Tp{2})
 			   * std::pow(Tp{2} * abeta, abeta))),
 			 alpha)});
 	    }
 
 	  const auto absarz = std::abs(std::arg(z));
-	  if (absarz > alpha * _S_pi + _S_eps)
+	  if (absarz > alpha * s_pi + s_eps)
 	    {
 	      if (beta <= Tp{1})
 		return mittag_leffler_K_integral(alpha, beta,
 						   Tp{0}, chi0, z);
 	      else
 		{
-		  const auto api = _S_pi * alpha;
+		  const auto api = s_pi * alpha;
 		  return mittag_leffler_K_integral(alpha, beta,
 						     Tp{1}, chi0, z)
 		       + mittag_leffler_P_integral(alpha, beta, Tp{1},
 						     -api, api, z);
 		}
 	    }
-	  else if (absarz < alpha * _S_pi - _S_eps)
+	  else if (absarz < alpha * s_pi - s_eps)
 	    {
 	      const auto zp1 = std::pow(z, Tp{1} / alpha);
 	      const auto zp2 = std::pow(z, (Tp{1} - beta) / alpha);
@@ -222,7 +222,7 @@
 	      else
 		{
 		  const auto lo = az / Tp{2};
-		  const auto api = _S_pi * alpha;
+		  const auto api = s_pi * alpha;
 		  return mittag_leffler_K_integral(alpha, beta,
 						     lo, chi0, z)
 		       + mittag_leffler_P_integral(alpha, beta, lo,
@@ -233,7 +233,7 @@
 	  else
 	    {
 	      const auto lo = (az + Tp{1}) / Tp{2};
-	      const auto api = _S_pi * alpha;
+	      const auto api = s_pi * alpha;
 	      return mittag_leffler_K_integral(alpha, beta,
 						 lo, chi0, z)
 		   + mittag_leffler_P_integral(alpha, beta, lo,
@@ -259,7 +259,7 @@
 			   const std::complex<Tp>& z)
     {
       using Cmplx = std::complex<Tp>;
-      const auto _S_eps = emsr::epsilon(alpha);
+      const auto s_eps = emsr::epsilon(alpha);
 
       const auto az = std::abs(z);
       if (az < Tp{1})
@@ -283,7 +283,7 @@
 	    }
 	  k1 = std::ceil(k1);
 	  unsigned int k0 = std::max(k1,
-				 std::ceil(std::log(_S_eps * (Tp{1} - az))
+				 std::ceil(std::log(s_eps * (Tp{1} - az))
 					 / std::log(az)));
 	  auto Ep = Cmplx{0};
 	  auto zk = Cmplx{1};
@@ -377,8 +377,8 @@ template<typename Tp>
     {
       const auto alpha = Tp{3} / Tp{4};
       const auto beta = Tp{1};
-      const auto _S_pi = emsr::pi_v<Tp>;
-      const auto phase = alpha * _S_pi / Tp{4};
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto phase = alpha * s_pi / Tp{4};
       std::cout << '\n';
       std::cout << '\n';
       const auto del = Tp{1} / Tp{10};
@@ -399,8 +399,8 @@ template<typename Tp>
     {
       const auto alpha = Tp{3} / Tp{4};
       const auto beta = Tp{1};
-      const auto _S_pi = emsr::pi_v<Tp>;
-      const auto phase = alpha * _S_pi / Tp{2};
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto phase = alpha * s_pi / Tp{2};
       std::cout << '\n';
       std::cout << '\n';
       const auto del = Tp{1} / Tp{10};
@@ -421,8 +421,8 @@ template<typename Tp>
     {
       const auto alpha = Tp{3} / Tp{4};
       const auto beta = Tp{1};
-      const auto _S_pi = emsr::pi_v<Tp>;
-      const auto phase = Tp{3} * alpha * _S_pi / Tp{4};
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto phase = Tp{3} * alpha * s_pi / Tp{4};
       std::cout << '\n';
       std::cout << '\n';
       const auto del = Tp{1} / Tp{10};
@@ -443,8 +443,8 @@ template<typename Tp>
     {
       const auto alpha = Tp{3} / Tp{4};
       const auto beta = Tp{1};
-      const auto _S_pi = emsr::pi_v<Tp>;
-      const auto phase = _S_pi;
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto phase = s_pi;
       std::cout << '\n';
       std::cout << '\n';
       const auto del = Tp{1} / Tp{10};
@@ -465,8 +465,8 @@ template<typename Tp>
     {
       const auto alpha = Tp{5} / Tp{4};
       const auto beta = Tp{1};
-      const auto _S_pi = emsr::pi_v<Tp>;
-      const auto phase = alpha * _S_pi / Tp{4};
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto phase = alpha * s_pi / Tp{4};
       std::cout << '\n';
       std::cout << '\n';
       const auto del = Tp{1} / Tp{10};
@@ -487,8 +487,8 @@ template<typename Tp>
     {
       const auto alpha = Tp{5} / Tp{4};
       const auto beta = Tp{1};
-      const auto _S_pi = emsr::pi_v<Tp>;
-      const auto phase = alpha * _S_pi / Tp{2};
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto phase = alpha * s_pi / Tp{2};
       std::cout << '\n';
       std::cout << '\n';
       const auto del = Tp{1} / Tp{10};
@@ -509,8 +509,8 @@ template<typename Tp>
     {
       const auto alpha = Tp{5} / Tp{4};
       const auto beta = Tp{1};
-      const auto _S_pi = emsr::pi_v<Tp>;
-      const auto phase = Tp{3} * alpha * _S_pi / Tp{4};
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto phase = Tp{3} * alpha * s_pi / Tp{4};
       std::cout << '\n';
       std::cout << '\n';
       const auto del = Tp{1} / Tp{10};
@@ -531,8 +531,8 @@ template<typename Tp>
     {
       const auto alpha = Tp{5} / Tp{4};
       const auto beta = Tp{1};
-      const auto _S_pi = emsr::pi_v<Tp>;
-      const auto phase =  _S_pi;
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto phase =  s_pi;
       std::cout << '\n';
       std::cout << '\n';
       const auto del = Tp{1} / Tp{10};

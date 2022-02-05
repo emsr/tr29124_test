@@ -22,9 +22,9 @@
  *    C_n = n(n - \delta - N - 1)
  * @f]
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   Tp
-  dual_hahn_recur(int n, Tp gamma, Tp delta, int N, _TpX x)
+  dual_hahn_recur(int n, Tp gamma, Tp delta, int N, TpX x)
   {
     auto Rnm1 = Tp{1};
     if (n == 0)
@@ -62,9 +62,9 @@ template<typename Tp, typename _TpX>
  * @f]
  * where @f$ \lambda(x) = x(x + \gamma + \delta + 1) @f$.
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   Tp
-  dual_hahn(int n, Tp gamma, Tp delta, int N, _TpX x)
+  dual_hahn(int n, Tp gamma, Tp delta, int N, TpX x)
   {
     if (std::isnan(gamma))
       return gamma;

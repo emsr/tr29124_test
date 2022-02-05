@@ -240,11 +240,9 @@ namespace std
 #if _GLIBCXX_EXTERN_TEMPLATE
   template istream& operator>>(istream&, complex<__float128>&);
   template ostream& operator<<(ostream&, const complex<__float128>&);
-#ifdef _GLIBCXX_USE_WCHAR_T
   // FIXME!!!
   //template wistream& operator>>(wistream&, complex<__float128>&);
   //template wostream& operator<<(wostream&, const complex<__float128>&);
-#endif // _GLIBCXX_USE_WCHAR_T
 #endif // _GLIBCXX_EXTERN_TEMPLATE
 
 #if __cplusplus > 201103L

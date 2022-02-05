@@ -1,4 +1,3 @@
-// Special functions -*- C++ -*-
 
 // Copyright (C) 2006-2019 Free Software Foundation, Inc.
 // Copyright (C) 2020-2022 Edward M. Smith-Rowland
@@ -43,18 +42,15 @@
 //       W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
 //       2nd ed, pp. 240-245
 
-#ifndef _GLIBCXX_BITS_SF_DIGAMMA_TCC
-#define _GLIBCXX_BITS_SF_DIGAMMA_TCC 1
+#ifndef SF_DIGAMMA_TCC
+#define SF_DIGAMMA_TCC 1
 
 #include <limits>
 #include <emsr/fp_type_util.h>
 
-namespace std _GLIBCXX_VISIBILITY(default)
+namespace emsr
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-// Implementation-space details.
-namespace __detail
+namespace detail
 {
   /**
    *  @brief  Return the Hurwitz zeta function @f$ \zeta(x,s) @f$
@@ -219,9 +215,8 @@ namespace __detail
           return result;
         }
     }
-} // namespace __detail
 
-_GLIBCXX_END_NAMESPACE_VERSION
-}
+} // namespace detail
+} // namespace emsr
 
-#endif // _GLIBCXX_BITS_SF_DIGAMMA_TCC
+#endif // SF_DIGAMMA_TCC

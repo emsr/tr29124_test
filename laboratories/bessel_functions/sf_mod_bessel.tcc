@@ -43,10 +43,8 @@
 //     W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
 //     2nd ed, pp. 246-249.
 
-#ifndef _GLIBCXX_BITS_SF_MOD_BESSEL_TCC
-#define _GLIBCXX_BITS_SF_MOD_BESSEL_TCC 1
-
-#pragma GCC system_header
+#ifndef SF_MOD_BESSEL_TCC
+#define SF_MOD_BESSEL_TCC 1
 
 #include <utility> // For exchange.
 

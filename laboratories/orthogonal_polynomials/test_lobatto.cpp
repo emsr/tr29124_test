@@ -16,9 +16,9 @@
     std::vector<emsr::QuadraturePoint<Tp>>
     lobatto_zeros(unsigned int l, Tp proto = Tp{})
     {
-      const auto _S_eps = emsr::epsilon(proto);
-      const auto _S_pi = emsr::pi_v<Tp>;
-      const unsigned int _S_maxit = 1000u;
+      const auto s_eps = emsr::epsilon(proto);
+      const auto s_pi = emsr::pi_v<Tp>;
+      const unsigned int s_maxit = 1000u;
 
       std::vector<emsr::QuadraturePoint<Tp>> pt(l);
 
@@ -31,47 +31,47 @@
 	  auto lmfact = emsr::detail::factorial<Tp>(lm);
 	  auto mm = lm / 2;
 	  auto mmfact = emsr::detail::factorial<Tp>(mm);
-	  auto __Plm1 = ((lm & 1) ? -1 : 1) * lmfact / mmfact / mmfact
+	  auto Plm1 = ((lm & 1) ? -1 : 1) * lmfact / mmfact / mmfact
 			/ std::pow(Tp{2}, lm);
-	  auto __Ppl = l * __Plm1;
+	  auto Ppl = l * Plm1;
 	  pt[m].point = Tp{0};
-	  pt[m].weight = Tp{2} / __Ppl / __Ppl;
+	  pt[m].weight = Tp{2} / Ppl / Ppl;
 	}
 
       for (auto i = 1u; i <= m; ++i)
 	{
 	  // Clever approximation of root.
-	  auto z = std::cos(_S_pi * (i - Tp{1} / Tp{4})
+	  auto z = std::cos(s_pi * (i - Tp{1} / Tp{4})
 				    / (l + Tp{1} / Tp{2}));
 	  auto z1 = z;
 	  auto w = Tp{0};
-	  for (auto its = 0u; its < _S_maxit; ++its)
+	  for (auto its = 0u; its < s_maxit; ++its)
 	    {
-	      // Compute __P, __P1, and __P2 the Legendre polynomials of order
+	      // Compute P, P1, and P2 the Legendre polynomials of order
 	      // l, l-1, l-2 respectively by iterating through the recursion
 	      // relation for the Legendre polynomials.
-	      // Compute __Pp the derivative of the Legendre polynomial of order l.
-	      auto __P1 = Tp{0};
-	      auto __P = Tp{1};
+	      // Compute Pp the derivative of the Legendre polynomial of order l.
+	      auto P1 = Tp{0};
+	      auto P = Tp{1};
 	      for  (auto k = 1u; k <= l; ++k)
 		{
-		  auto __P2 = __P1;
-		  __P1 = __P;
+		  auto P2 = P1;
+		  P1 = P;
 		  // Recursion for Legendre polynomials.
-		  __P = ((Tp{2} * k - Tp{1}) * z * __P1
-		      - (k - Tp{1}) * __P2) / k;
+		  P = ((Tp{2} * k - Tp{1}) * z * P1
+		      - (k - Tp{1}) * P2) / k;
 		}
 	      // Recursion for the derivative of The Legendre polynomial.
-	      auto __Pp = l * (z * __P - __P1) / (z * z - Tp{1});
+	      auto Pp = l * (z * P - P1) / (z * z - Tp{1});
 	      z1 = z;
 	      // Converge on root by Newton's method.
-	      z = z1 - __P / __Pp;
-	      if (std::abs(z - z1) < _S_eps)
+	      z = z1 - P / Pp;
+	      if (std::abs(z - z1) < s_eps)
 		{
-		  w = Tp{2} / ((Tp{1} - z * z) * __Pp * __Pp);
+		  w = Tp{2} / ((Tp{1} - z * z) * Pp * Pp);
 		  break;
 		}
-	      if (its > _S_maxit)
+	      if (its > s_maxit)
 		throw std::logic_error("lobatto_zeros: Too many iterations");
 	    }
 

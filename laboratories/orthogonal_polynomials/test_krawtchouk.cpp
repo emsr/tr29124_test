@@ -19,9 +19,9 @@
  * @f]
  * where @f$ K_n(x) = K_n(x; p, N) @f$.
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   Tp
-  krawtchouk_recur(int n, Tp p, int N, _TpX x)
+  krawtchouk_recur(int n, Tp p, int N, TpX x)
   {
     auto Knm1 = Tp{1};
     if (n == 0)
@@ -53,9 +53,9 @@ template<typename Tp, typename _TpX>
  *    K_n(x; p, N) = {}_2F_1(-n, -x; -N; \frac{1}{p})
  * @f]
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   Tp
-  krawtchouk(int n, Tp p, int N, _TpX x)
+  krawtchouk(int n, Tp p, int N, TpX x)
   {
     if (std::isnan(p))
       return p;

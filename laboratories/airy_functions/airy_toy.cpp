@@ -96,14 +96,14 @@
    * The lone method computes the Wronskian from the stored functions.
    * A static method returns the correct Wronskian.
    */
-  template<typename _Tx, typename Tp>
+  template<typename Tx, typename Tp>
     struct airy_t
     {
-      using _Arg = _Tx;
+      using Arg = Tx;
       using Val = Tp;
       using Real = emsr::num_traits_t<Val>;
 
-      _Arg x_arg;
+      Arg x_arg;
       Val Ai_value;
       Val Ai_deriv;
       Val Bi_value;
@@ -126,14 +126,14 @@
    * The lone method computes the Wronskian from the stored functions.
    * A static method returns the correct Wronskian.
    */
-  template<typename _Tx, typename Tp>
+  template<typename Tx, typename Tp>
     struct fock_airy_t
     {
-      using _Arg = _Tx;
+      using Arg = Tx;
       using Val = Tp;
       using Real = emsr::num_traits_t<Val>;
 
-      _Arg x_arg;
+      Arg x_arg;
       Val w1_value;
       Val w1_deriv;
       Val w2_value;
@@ -153,14 +153,14 @@
    * A structure containing three auxilliary Airy functions
    * and their derivatives.
    */
-  template<typename _Tx, typename Tp>
+  template<typename Tx, typename Tp>
     struct airy_aux_t
     {
-      using _Arg = _Tx;
+      using Arg = Tx;
       using Val = Tp;
       using Real = emsr::num_traits_t<Val>;
 
-      _Arg x_arg;
+      Arg x_arg;
       Val fai_value;
       Val fai_deriv;
       Val gai_value;
@@ -175,14 +175,14 @@
    * Airy Gi ams Hi functions and their derivatives.
    * The data mambers are directly accessible.
    */
-  template<typename _Tx, typename Tp>
+  template<typename Tx, typename Tp>
     struct scorer_t
     {
-      using _Arg = _Tx;
+      using Arg = Tx;
       using Val = Tp;
       using Real = emsr::num_traits_t<Val>;
 
-      _Arg x_arg;
+      Arg x_arg;
       Val Gi_value;
       Val Gi_deriv;
       Val Hi_value;
@@ -202,46 +202,46 @@
    * iterator-like facade.
    */
   template<typename Tp>
-    struct _Poch
+    struct Poch
     {
     public:
 
-      _Poch()
-      : _M_alpha{Tp{1}}, _M_k{0}, _M_poch{Tp{1}}
+      Poch()
+      : m_alpha{Tp{1}}, m_k{0}, m_poch{Tp{1}}
       { }
 
-      _Poch(Tp alpha)
-      : _M_alpha{alpha}, _M_k{0}, _M_poch{Tp{1}}
+      Poch(Tp alpha)
+      : m_alpha{alpha}, m_k{0}, m_poch{Tp{1}}
       { }
 
       operator Tp() const
-      { return this->_M_poch; }
+      { return this->m_poch; }
 
       Tp
       operator()() const
-      { return this->_M_poch; }
+      { return this->m_poch; }
 
-      _Poch&
+      Poch&
       operator++()
       {
-	this->_M_poch *= Tp(this->_M_k) + this->_M_alpha;
-	++this->_M_k;
+	this->m_poch *= Tp(this->m_k) + this->m_alpha;
+	++this->m_k;
 	return *this;
       }
 
-      _Poch
+      Poch
       operator++(int)
       {
-        _Poch ret(*this);
+        Poch ret(*this);
 	this->operator++();
 	return ret;
       }
 
     private:
 
-      Tp _M_alpha;
-      unsigned _M_k;
-      Tp _M_poch;
+      Tp m_alpha;
+      unsigned m_k;
+      Tp m_poch;
     };
 
 
@@ -266,10 +266,10 @@
       using Cmplx = std::complex<Real>;
 
     public:
-      static constexpr std::size_t _N_FGH = 200;
+      static constexpr std::size_t N_FGH = 200;
     private:
       static constexpr Real
-      _Fai[_N_FGH]
+      Fai[N_FGH]
       {
 	1.666666666666666666666666666666667e-01Q,
 	5.555555555555555555555555555555556e-03Q,
@@ -474,7 +474,7 @@
       };
       static constexpr Real s_slope_F{-2.660Q}, s_intercept_F{-0.778Q};
       static constexpr Real
-      _Faip[_N_FGH]
+      Faip[N_FGH]
       {
 	5.000000000000000000000000000000000e-01Q,
 	3.333333333333333333333333333333333e-02Q,
@@ -679,7 +679,7 @@
       };
       static constexpr Real s_slope_Fp{-2.576Q}, s_intercept_Fp{-0.301Q};
       static constexpr Real
-      _Gai[_N_FGH]
+      Gai[N_FGH]
       {
 	8.333333333333333333333333333333333e-02Q,
 	1.984126984126984126984126984126984e-03Q,
@@ -884,7 +884,7 @@
       };
       static constexpr Real s_slope_G{-2.708Q}, s_intercept_G{-1.079Q};
       static constexpr Real
-      _Gaip[_N_FGH]
+      Gaip[N_FGH]
       {
 	3.333333333333333333333333333333333e-01Q,
 	1.388888888888888888888888888888889e-02Q,
@@ -1089,7 +1089,7 @@
       };
       static constexpr Real s_slope_Gp{-2.632Q}, s_intercept_Gp{-0.477Q};
       static constexpr Real
-      _Hai[_N_FGH]
+      Hai[N_FGH]
       {
 	2.500000000000000000000000000000000e-02Q,
 	4.464285714285714285714285714285714e-04Q,
@@ -1294,7 +1294,7 @@
       };
       static constexpr Real s_slope_H{-2.75Q}, s_intercept_H{-1.25Q};
       static constexpr Real
-      _Haip[_N_FGH]
+      Haip[N_FGH]
       {
 	1.250000000000000000000000000000000e-01Q,
 	3.571428571428571428571428571428571e-03Q,
@@ -1551,38 +1551,38 @@
       s_AiryUV(Val t);
 
       std::pair<Val, Val>
-      static s_AiBi(Val t, std::pair<Val, Val> _Z0);
+      static s_AiBi(Val t, std::pair<Val, Val> Z0);
     };
 
   template<typename Tp>
     constexpr typename Airy_series<Tp>::Real
-    Airy_series<Tp>::_Fai[_N_FGH];
+    Airy_series<Tp>::Fai[N_FGH];
 
   template<typename Tp>
     constexpr typename Airy_series<Tp>::Real
-    Airy_series<Tp>::_Faip[_N_FGH];
+    Airy_series<Tp>::Faip[N_FGH];
 
   template<typename Tp>
     constexpr typename Airy_series<Tp>::Real
-    Airy_series<Tp>::_Gai[_N_FGH];
+    Airy_series<Tp>::Gai[N_FGH];
 
   template<typename Tp>
     constexpr typename Airy_series<Tp>::Real
-    Airy_series<Tp>::_Gaip[_N_FGH];
+    Airy_series<Tp>::Gaip[N_FGH];
 
   template<typename Tp>
     constexpr typename Airy_series<Tp>::Real
-    Airy_series<Tp>::_Hai[_N_FGH];
+    Airy_series<Tp>::Hai[N_FGH];
 
   template<typename Tp>
     constexpr typename Airy_series<Tp>::Real
-    Airy_series<Tp>::_Haip[_N_FGH];
+    Airy_series<Tp>::Haip[N_FGH];
 
   // Type-dependent limits for the arrays.
   // FIXME: Make these limits digits10-based.
   template<typename Tp>
     constexpr std::size_t
-    max_FGH = Airy_series<Tp>::_N_FGH;
+    max_FGH = Airy_series<Tp>::N_FGH;
 
   template<>
     constexpr std::size_t
@@ -1676,8 +1676,8 @@
       const auto ttt = t * t * t;
 
       auto term = Val{1};
-      auto _F = Val{1};
-      auto _G = t;
+      auto F = Val{1};
+      auto G = t;
       for (std::size_t n = 0; n < max_FGH<Real>; ++n)
 	{
 	  if (std::abs(t) < s_eps)
@@ -1687,15 +1687,15 @@
 	  if (xx < s_log10min)
 	    break;
 	  term *= ttt;
-	  _F += _Fai[n] * term;
-	  _G += _Gai[n] * term * t;
+	  F += Fai[n] * term;
+	  G += Gai[n] * term * t;
 	}
-      auto _UU = s_sqrt_pi * (s_Bi0 * _F + s_Bip0 * _G);
-      auto _VV = s_sqrt_pi * (s_Ai0 * _F + s_Aip0 * _G);
+      auto UU = s_sqrt_pi * (s_Bi0 * F + s_Bip0 * G);
+      auto VV = s_sqrt_pi * (s_Ai0 * F + s_Aip0 * G);
 
       term = Val{1};
-      auto _Fp = Val{0};
-      auto _Gp = Val{1};
+      auto Fp = Val{0};
+      auto Gp = Val{1};
       for (std::size_t n = 0; n < max_FGH<Real>; ++n)
 	{
 	  if (std::abs(t) < s_eps)
@@ -1705,13 +1705,13 @@
 	  if (xx < s_log10min)
 	    break;
 	  term *= ttt;
-	  _Fp += _Faip[n] * term / t;
-	  _Gp += _Gaip[n] * term;
+	  Fp += Faip[n] * term / t;
+	  Gp += Gaip[n] * term;
 	}
-      auto _UUp = s_sqrt_pi * (s_Bi0 * _Fp + s_Bip0 * _Gp);
-      auto _VVp = s_sqrt_pi * (s_Ai0 * _Fp + s_Aip0 * _Gp);
+      auto UUp = s_sqrt_pi * (s_Bi0 * Fp + s_Bip0 * Gp);
+      auto VVp = s_sqrt_pi * (s_Ai0 * Fp + s_Aip0 * Gp);
 
-      return airy_t<Val, Val>{t, _UU, _UUp, _VV, _VVp};
+      return airy_t<Val, Val>{t, UU, UUp, VV, VVp};
     }
 
   /**
@@ -1737,8 +1737,7 @@
 	      typename Airy_series<Tp>::Val>
     Airy_series<Tp>::s_Ai(typename Airy_series<Tp>::Val t)
     {
-      return s_AiBi(t, std::make_pair(Val(s_Ai0),
-					 Val(s_Aip0)));
+      return s_AiBi(t, std::make_pair(Val(s_Ai0), Val(s_Aip0)));
     }
 
   /**
@@ -1764,8 +1763,7 @@
 	      typename Airy_series<Tp>::Val>
     Airy_series<Tp>::s_Bi(typename Airy_series<Tp>::Val t)
     {
-      return s_AiBi(t, std::make_pair(Val(s_Bi0),
-					 Val(s_Bip0)));
+      return s_AiBi(t, std::make_pair(Val(s_Bi0), Val(s_Bip0)));
     }
 
   /**
@@ -1792,9 +1790,9 @@
       const auto ttt = t * tt;
 
       auto term = Val{1};
-      auto _F = Val{1};
-      auto _G = t;
-      auto _H = t * t / Real{2};
+      auto F = Val{1};
+      auto G = t;
+      auto H = t * t / Real{2};
       for (std::size_t n = 0; n < max_FGH<Real>; ++n)
 	{
 	  if (std::abs(t) < s_eps)
@@ -1804,15 +1802,15 @@
 	  if (xx < s_log10min)
 	    break;
 	  term *= ttt;
-	  _F += _Fai[n] * term;
-	  _G += _Gai[n] * term * t;
-	  _H += _Hai[n] * term * tt;
+	  F += Fai[n] * term;
+	  G += Gai[n] * term * t;
+	  H += Hai[n] * term * tt;
 	}
 
       term = Val{1};
-      auto _Fp = Val{0};
-      auto _Gp = Val{1};
-      auto _Hp = t;
+      auto Fp = Val{0};
+      auto Gp = Val{1};
+      auto Hp = t;
       for (std::size_t n = 0; n < max_FGH<Real>; ++n)
 	{
 	  if (std::abs(t) < s_eps)
@@ -1822,12 +1820,12 @@
 	  if (xx < s_log10min)
 	    break;
 	  term *= ttt;
-	  _Fp += _Faip[n] * term / t;
-	  _Gp += _Gaip[n] * term;
-	  _Hp += _Haip[n] * term * t;
+	  Fp += Faip[n] * term / t;
+	  Gp += Gaip[n] * term;
+	  Hp += Haip[n] * term * t;
 	}
 
-      return airy_aux_t<Val, Val>{t, _F, _G, _H, _Fp, _Gp, _Hp};
+      return airy_aux_t<Val, Val>{t, F, G, H, Fp, Gp, Hp};
     }
 
   /**
@@ -1864,14 +1862,14 @@
     {
       const auto aux = FGH(t);
 
-      const auto _Hi = s_Hi0 * (aux.fai_value + aux.gai_value + aux.hai_value);
-      const auto _Hip = s_Hip0 * (aux.fai_deriv + aux.gai_deriv + aux.hai_deriv);
-      const auto _Bi = s_Bi0 * aux.fai_value + s_Bip0 * aux.gai_value;
-      const auto _Bip = s_Bi0 * aux.fai_deriv + s_Bip0 * aux.gai_deriv;
-      const auto _Gi = _Bi - _Hi;
-      const auto _Gip = _Bip - _Hip;
+      const auto Hi = s_Hi0 * (aux.fai_value + aux.gai_value + aux.hai_value);
+      const auto Hip = s_Hip0 * (aux.fai_deriv + aux.gai_deriv + aux.hai_deriv);
+      const auto Bi = s_Bi0 * aux.fai_value + s_Bip0 * aux.gai_value;
+      const auto Bip = s_Bi0 * aux.fai_deriv + s_Bip0 * aux.gai_deriv;
+      const auto Gi = Bi - Hi;
+      const auto Gip = Bip - Hip;
 
-      return scorer_t<Val, Val>{t, _Gi, _Gip, _Hi, _Hip};
+      return scorer_t<Val, Val>{t, Gi, Gip, Hi, Hip};
     }
 
   /**
@@ -1908,10 +1906,10 @@
 	cos{ Real{1} / Real{2},
 	       Real{-1},
 	       Real{1} / Real{2} };
-      auto _Hi = Val{std::tgamma(s_1d3)};
-      auto _Hip = Val{std::tgamma(s_2d3)};
-      auto _Gi = Val{cos[2] * std::tgamma(s_1d3)};
-      auto _Gip = Val{cos[0] * std::tgamma(s_2d3)};
+      auto Hi = Val{std::tgamma(s_1d3)};
+      auto Hip = Val{std::tgamma(s_2d3)};
+      auto Gi = Val{cos[2] * std::tgamma(s_1d3)};
+      auto Gip = Val{cos[0] * std::tgamma(s_2d3)};
       auto term = Val{1};
       auto termp = Val{1};
       for (std::size_t k = 1; k < max_FGH<Real>; ++k)
@@ -1923,22 +1921,22 @@
 
 	  const auto gam = std::tgamma(Real(k + 1) /Real{3});
 	  const auto gamp = std::tgamma(Real(k + 2) /Real{3});
-	  _Hi += gam * term;
-	  _Hip += gamp * termp;
-	  _Gi += cos[(k + 2) % 3] * gam * term;
-	  _Gip += cos[k % 3] * gamp * termp;
+	  Hi += gam * term;
+	  Hip += gamp * termp;
+	  Gi += cos[(k + 2) % 3] * gam * term;
+	  Gip += cos[k % 3] * gamp * termp;
 	}
 
       //const auto fact = std::tgamma(s_1d3) / (s_cbrt_3 * s_cbrt_3 * s_pi);
       //const auto factp = std::tgamma(s_2d3) / (s_cbrt_3 * s_pi);
       const auto fact = Real{1} / (s_cbrt_3 * s_cbrt_3 * s_pi);
       const auto factp = Real{1} / (s_cbrt_3 * s_pi);
-      _Gi *= fact;
-      _Gip *= factp;
-      _Hi *= fact;
-      _Hip *= factp;
+      Gi *= fact;
+      Gip *= factp;
+      Hi *= fact;
+      Hip *= factp;
 
-      return scorer_t<Val, Val>{t, _Gi, _Gip, _Hi, _Hip};
+      return scorer_t<Val, Val>{t, Gi, Gip, Hi, Hip};
     }
 
   /**
@@ -1953,14 +1951,14 @@
     std::pair<typename Airy_series<Tp>::Val,
 	      typename Airy_series<Tp>::Val>
     Airy_series<Tp>::s_AiBi(typename Airy_series<Tp>::Val t,
-			       std::pair<Val, Val> _Z0)
+			       std::pair<Val, Val> Z0)
     {
       const auto log10t = std::log10(std::abs(t));
       const auto ttt = t * t * t;
 
-      auto termF = _Z0.first * Val{1};
-      auto termG = _Z0.second * t;
-      auto _Ai = termF + termG;
+      auto termF = Z0.first * Val{1};
+      auto termG = Z0.second * t;
+      auto Ai = termF + termG;
       if (std::abs(t) >= s_eps)
 	for (std::size_t n = 0; n < max_FGH<Real>; ++n)
 	  {
@@ -1970,17 +1968,17 @@
 	      break;
 	    termF *= ttt;
 	    termG *= ttt;
-	    _Ai += _Fai[n] * termF + _Gai[n] * termG;
+	    Ai += Fai[n] * termF + Gai[n] * termG;
 	  }
 
-      termF = _Z0.first * Val{1};
-      termG = _Z0.second * Val{1};
-      auto _Aip = termG;
+      termF = Z0.first * Val{1};
+      termG = Z0.second * Val{1};
+      auto Aip = termG;
       if (std::abs(t) >= s_eps)
 	{
 	  termF *= t * t;
 	  termG *= ttt;
-	  _Aip += _Faip[0] * termF + _Gaip[0] * termG;
+	  Aip += Faip[0] * termF + Gaip[0] * termG;
 	  for (std::size_t n = 1; n < max_FGH<Real>; ++n)
 	    {
 	      auto xx = log10t * Real(3 * (n + 1))
@@ -1989,11 +1987,11 @@
 		break;
 	      termF *= ttt;
 	      termG *= ttt;
-	      _Aip += _Faip[n] * termF + _Gaip[n] * termG;
+	      Aip += Faip[n] * termF + Gaip[n] * termG;
 	    }
 	}
 
-      return std::make_pair(_Ai, _Aip);
+      return std::make_pair(Ai, Aip);
     }
 
   /**
@@ -2052,26 +2050,26 @@
     {
       static constexpr std::size_t s_max_cd = 43;
 
-      template<typename _Up>
+      template<typename Up>
         static constexpr std::size_t
         s_max = s_max_cd;
 
-      template<typename _Up>
-        static constexpr _Up
+      template<typename Up>
+        static constexpr Up
         c(std::size_t i)
         {
-          return i < s_max<_Up>
-               ? static_cast<_Up>(s_c[i])
-               : std::numeric_limits<_Up>::infinity();
+          return i < s_max<Up>
+               ? static_cast<Up>(s_c[i])
+               : std::numeric_limits<Up>::infinity();
         }
 
-      template<typename _Up>
-        static constexpr _Up
+      template<typename Up>
+        static constexpr Up
         d(std::size_t i)
         {
-          return i < s_max<_Up>
-               ? static_cast<_Up>(s_d[i])
-               : -std::numeric_limits<_Up>::infinity();
+          return i < s_max<Up>
+               ? static_cast<Up>(s_d[i])
+               : -std::numeric_limits<Up>::infinity();
         }
 
       static constexpr float
@@ -2200,26 +2198,26 @@
     { 
       static constexpr std::size_t s_max_cd = 198;
 
-      template<typename _Up>
+      template<typename Up>
         static constexpr std::size_t
         s_max = s_max_cd;
 
-      template<typename _Up>
-        static constexpr _Up
+      template<typename Up>
+        static constexpr Up
         c(std::size_t i)
         {
-          return i < s_max<_Up>
-               ? static_cast<_Up>(s_c[i])
-               : std::numeric_limits<_Up>::infinity();
+          return i < s_max<Up>
+               ? static_cast<Up>(s_c[i])
+               : std::numeric_limits<Up>::infinity();
         }
 
-      template<typename _Up>
-        static constexpr _Up
+      template<typename Up>
+        static constexpr Up
         d(std::size_t i)
         {
-          return i < s_max<_Up>
-               ? static_cast<_Up>(s_d[i])
-               : -std::numeric_limits<_Up>::infinity();
+          return i < s_max<Up>
+               ? static_cast<Up>(s_d[i])
+               : -std::numeric_limits<Up>::infinity();
         }
 
       static constexpr double
@@ -2658,26 +2656,26 @@
     {
       static constexpr std::size_t s_max_cd = 201;
 
-      template<typename _Up>
+      template<typename Up>
         static constexpr std::size_t
         s_max = s_max_cd;
 
-      template<typename _Up>
-        static constexpr _Up
+      template<typename Up>
+        static constexpr Up
         c(std::size_t i)
         {
-          return i < s_max<_Up>
-               ? static_cast<_Up>(s_c[i])
-               : std::numeric_limits<_Up>::infinity();
+          return i < s_max<Up>
+               ? static_cast<Up>(s_c[i])
+               : std::numeric_limits<Up>::infinity();
         }
 
-      template<typename _Up>
-        static constexpr _Up
+      template<typename Up>
+        static constexpr Up
         d(std::size_t i)
         {
-          return i < s_max<_Up>
-               ? static_cast<_Up>(s_d[i])
-               : -std::numeric_limits<_Up>::infinity();
+          return i < s_max<Up>
+               ? static_cast<Up>(s_d[i])
+               : -std::numeric_limits<Up>::infinity();
         }
 
       static constexpr long double
@@ -3122,26 +3120,26 @@
     {
       static constexpr std::size_t s_max_cd = 201;
 
-      template<typename _Up>
+      template<typename Up>
         static constexpr std::size_t
         s_max = s_max_cd;
 
-      template<typename _Up>
-        static constexpr _Up
+      template<typename Up>
+        static constexpr Up
         c(std::size_t i)
         {
-          return i < s_max<_Up>
-               ? static_cast<_Up>(s_c[i])
-               : std::numeric_limits<_Up>::infinity();
+          return i < s_max<Up>
+               ? static_cast<Up>(s_c[i])
+               : std::numeric_limits<Up>::infinity();
         }
 
-      template<typename _Up>
-        static constexpr _Up
+      template<typename Up>
+        static constexpr Up
         d(std::size_t i)
         {
-          return i < s_max<_Up>
-               ? static_cast<_Up>(s_d[i])
-               : -std::numeric_limits<_Up>::infinity();
+          return i < s_max<Up>
+               ? static_cast<Up>(s_d[i])
+               : -std::numeric_limits<Up>::infinity();
         }
 
       static constexpr __float128
@@ -3588,7 +3586,7 @@
    * @tparam Tp A real type
    */
   template<typename Tp>
-    class _Airy_asymp : public Airy_asymp_data<Tp>
+    class Airy_asymp : public Airy_asymp_data<Tp>
     {
 
     public:
@@ -3597,7 +3595,7 @@
       using Real = emsr::num_traits_t<Val>;
       using Cmplx = std::complex<Real>;
 
-      constexpr _Airy_asymp() = default;
+      constexpr Airy_asymp() = default;
 
       airy_t<Cmplx, Cmplx>
       operator()(Cmplx t) const;
@@ -3623,9 +3621,9 @@
    * @tparam Tp A real type
    */
   template<typename Tp>
-    airy_t<typename _Airy_asymp<Tp>::Cmplx,
-	     typename _Airy_asymp<Tp>::Cmplx>
-    _Airy_asymp<Tp>::operator()(typename _Airy_asymp<Tp>::Cmplx t) const
+    airy_t<typename Airy_asymp<Tp>::Cmplx,
+	     typename Airy_asymp<Tp>::Cmplx>
+    Airy_asymp<Tp>::operator()(typename Airy_asymp<Tp>::Cmplx t) const
     {
       constexpr auto s_pi = emsr::pi_v<Real>;
       constexpr auto s_sqrt_pi = emsr::sqrtpi_v<Real>;
@@ -3635,8 +3633,8 @@
 	  auto zeta0 = Real{2} * std::pow(t, Real{1.5L}) / Real{3};
 	  auto t0p1d4 = std::pow(t, Real{0.25L});
 	  auto ezeta0 = std::exp(-zeta0);
-	  auto _Ai = Cmplx{1};
-	  auto _Aip = Cmplx{1};
+	  auto Ai = Cmplx{1};
+	  auto Aip = Cmplx{1};
 	  auto fact0 = Real{-1} / zeta0;
 	  auto izeta0 = Cmplx{1};
 	  auto prev_Ai0 = Real{1};
@@ -3651,11 +3649,11 @@
 		break;
 	      prev_Ai0 = std::abs(term0);
 	      prev_Aip0 = std::abs(term0p);
-	      _Ai += term0;
-	      _Aip += term0p;
+	      Ai += term0;
+	      Aip += term0p;
 	    }
-	  _Ai *= Real{0.5L} * ezeta0 / t0p1d4 / s_sqrt_pi;
-	  _Aip *= Real{-0.5L} * t0p1d4 * ezeta0 / s_sqrt_pi;
+	  Ai *= Real{0.5L} * ezeta0 / t0p1d4 / s_sqrt_pi;
+	  Aip *= Real{-0.5L} * t0p1d4 * ezeta0 / s_sqrt_pi;
 
 	  auto t1 = t * std::exp(Real{+2} * s_pi * s_i / Real{3});
 	  auto t2 = t * std::exp(Real{-2} * s_pi * s_i / Real{3});
@@ -3665,10 +3663,10 @@
 	  auto t2p1d4 = std::pow(t2, Real(+0.25L));
 	  auto ezeta1 = std::exp(-zeta1);
 	  auto ezeta2 = std::exp(-zeta2);
-	  auto _Ai1 = Cmplx{1};
-	  auto _Ai1p = Cmplx{1};
-	  auto _Ai2 = _Ai1;
-	  auto _Ai2p = _Ai1p;
+	  auto Ai1 = Cmplx{1};
+	  auto Ai1p = Cmplx{1};
+	  auto Ai2 = Ai1;
+	  auto Ai2p = Ai1p;
 	  auto sign = Real{1};
 	  auto izeta1 = Cmplx{1};
 	  auto izeta2 = Cmplx{1};
@@ -3694,22 +3692,22 @@
 	      prev_Ai2 = std::abs(term2);
 	      prev_Ai1p = std::abs(term1p);
 	      prev_Ai2p = std::abs(term2p);
-	      _Ai1 += sign * term1;
-	      _Ai2 += sign * term2;
-	      _Ai1p += sign * term1p;
-	      _Ai2p += sign * term2p;
+	      Ai1 += sign * term1;
+	      Ai2 += sign * term2;
+	      Ai1p += sign * term1p;
+	      Ai2p += sign * term2p;
 	    }
-	  _Ai1 *= Real(+0.5L) * ezeta1 / t1p1d4 / s_sqrt_pi;
-	  _Ai2 *= Real(+0.5L) * ezeta2 / t2p1d4 / s_sqrt_pi;
-	  _Ai1p *= Real(-0.5L) * t1p1d4 * ezeta1 / s_sqrt_pi;
-	  _Ai2p *= Real(-0.5L) * t2p1d4 * ezeta2 / s_sqrt_pi;
+	  Ai1 *= Real(+0.5L) * ezeta1 / t1p1d4 / s_sqrt_pi;
+	  Ai2 *= Real(+0.5L) * ezeta2 / t2p1d4 / s_sqrt_pi;
+	  Ai1p *= Real(-0.5L) * t1p1d4 * ezeta1 / s_sqrt_pi;
+	  Ai2p *= Real(-0.5L) * t2p1d4 * ezeta2 / s_sqrt_pi;
 
-	  const auto _Bi = std::exp(+s_i * s_pi / Real{6}) * _Ai1
-			 + std::exp(-s_i * s_pi / Real{6}) * _Ai2;
-	  const auto _Bip = std::exp(s_i * Real{5} * s_pi / Real{6}) * _Ai1p
-			+ std::exp(-s_i * Real{5} * s_pi / Real{6}) * _Ai2p;
+	  const auto Bi = std::exp(+s_i * s_pi / Real{6}) * Ai1
+			 + std::exp(-s_i * s_pi / Real{6}) * Ai2;
+	  const auto Bip = std::exp(s_i * Real{5} * s_pi / Real{6}) * Ai1p
+			+ std::exp(-s_i * Real{5} * s_pi / Real{6}) * Ai2p;
 
-	  return airy_t<Cmplx, Cmplx>{t, _Ai, _Aip, _Bi, _Bip};
+	  return airy_t<Cmplx, Cmplx>{t, Ai, Aip, Bi, Bip};
 	}
       else // Argument t is on or left of the imaginary axis.
 	{
@@ -3722,12 +3720,12 @@
 	  const auto w2 = fock.w2_value;
 	  const auto w2p = fock.w2_deriv;
 //#endif
-	  const auto _Bi = (w1 + w2) / (Real{2} * s_sqrt_pi);
-	  const auto _Ai = (w2 - w1) / (Real{2} * s_i * s_sqrt_pi);
-	  const auto _Bip = (w1p + w2p) / (Real{2} * s_sqrt_pi);
-	  const auto _Aip = (w2p - w1p) / (Real{2} * s_i * s_sqrt_pi);
+	  const auto Bi = (w1 + w2) / (Real{2} * s_sqrt_pi);
+	  const auto Ai = (w2 - w1) / (Real{2} * s_i * s_sqrt_pi);
+	  const auto Bip = (w1p + w2p) / (Real{2} * s_sqrt_pi);
+	  const auto Aip = (w2p - w1p) / (Real{2} * s_i * s_sqrt_pi);
 
-	  return airy_t<Cmplx, Cmplx>{t, _Ai, _Aip, _Bi, _Bip};
+	  return airy_t<Cmplx, Cmplx>{t, Ai, Aip, Bi, Bip};
 	}
     }
 
@@ -3739,28 +3737,28 @@
    * @tparam Tp A real type
    */
   template<typename Tp>
-    fock_airy_t<typename _Airy_asymp<Tp>::Cmplx,
-		  typename _Airy_asymp<Tp>::Cmplx>
-    _Airy_asymp<Tp>::s_fock_airy(typename _Airy_asymp<Tp>::Cmplx t) const
+    fock_airy_t<typename Airy_asymp<Tp>::Cmplx,
+		  typename Airy_asymp<Tp>::Cmplx>
+    Airy_asymp<Tp>::s_fock_airy(typename Airy_asymp<Tp>::Cmplx t) const
     {
       constexpr auto s_pi = emsr::pi_v<Real>;
       constexpr auto s_sqrt_pi = emsr::sqrtpi_v<Real>;
       constexpr auto s_i = Cmplx(0, 1);
       if (std::real(t) > Real{0})
 	{
-	  const auto airy = _Airy_asymp<Tp>::operator()(t);
+	  const auto airy = Airy_asymp<Tp>::operator()(t);
 //#if cpp_structured_bindings
-//	  const auto& [tx, _Ai, _Aip, _Bi, _Bip] = airy;
+//	  const auto& [tx, Ai, Aip, Bi, Bip] = airy;
 //#else
-	  const auto _Ai = airy.Ai_value;
-	  const auto _Aip = airy.Ai_deriv;
-	  const auto _Bi = airy.Bi_value;
-	  const auto _Bip = airy.Bi_deriv;
+	  const auto Ai = airy.Ai_value;
+	  const auto Aip = airy.Ai_deriv;
+	  const auto Bi = airy.Bi_value;
+	  const auto Bip = airy.Bi_deriv;
 //#endif
-	  const auto w1 = s_sqrt_pi * (_Bi - s_i * _Ai);
-	  const auto w2 = s_sqrt_pi * (_Bi + s_i * _Ai);
-	  const auto w1p = s_sqrt_pi * (_Bip - s_i * _Aip);
-	  const auto w2p = s_sqrt_pi * (_Bip + s_i * _Aip);
+	  const auto w1 = s_sqrt_pi * (Bi - s_i * Ai);
+	  const auto w2 = s_sqrt_pi * (Bi + s_i * Ai);
+	  const auto w1p = s_sqrt_pi * (Bip - s_i * Aip);
+	  const auto w2p = s_sqrt_pi * (Bip + s_i * Aip);
 
 	  return fock_airy_t<Cmplx, Cmplx>{t, w1, w1p, w2, w2p};
 	}
@@ -3841,8 +3839,8 @@
    *         and the derivative @f$ Ai'(z) @f$ or @f$ Bi'(x) @f$
    */
   template<typename Tp>
-    std::pair<typename _Airy_asymp<Tp>::Cmplx, typename _Airy_asymp<Tp>::Cmplx>
-    _Airy_asymp<Tp>::s_absarg_ge_pio3_help(typename _Airy_asymp<Tp>::Cmplx z,
+    std::pair<typename Airy_asymp<Tp>::Cmplx, typename Airy_asymp<Tp>::Cmplx>
+    Airy_asymp<Tp>::s_absarg_ge_pio3_help(typename Airy_asymp<Tp>::Cmplx z,
 					     int sign) const
     {
       constexpr auto s_sqrt_pi = emsr::sqrtpi_v<Real>;
@@ -3876,14 +3874,14 @@
       emsr::Polynomial<Real>
 	cpoly(std::begin(Airy_asymp_data<Real>::s_c),
 		std::begin(Airy_asymp_data<Real>::s_c) + nterm);
-      auto _Ai = fact * cpoly(zetam);
+      auto Ai = fact * cpoly(zetam);
 
       emsr::Polynomial<Real>
 	dpoly(std::begin(Airy_asymp_data<Real>::s_d),
 		std::begin(Airy_asymp_data<Real>::s_d) + nterm);
-      auto _Aip = factp * dpoly(zetam);
+      auto Aip = factp * dpoly(zetam);
 
-      return std::make_pair(_Ai, _Aip);
+      return std::make_pair(Ai, Aip);
     }
 
 
@@ -3899,15 +3897,15 @@
    * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
    */
   template<typename Tp>
-    airy_t<typename _Airy_asymp<Tp>::Cmplx,
-	     typename _Airy_asymp<Tp>::Cmplx>
-    _Airy_asymp<Tp>::s_absarg_ge_pio3(typename _Airy_asymp<Tp>::Cmplx z) const
+    airy_t<typename Airy_asymp<Tp>::Cmplx,
+	     typename Airy_asymp<Tp>::Cmplx>
+    Airy_asymp<Tp>::s_absarg_ge_pio3(typename Airy_asymp<Tp>::Cmplx z) const
     {
-      Cmplx _Ai, _Aip;
-      std::tie(_Ai, _Aip) = s_absarg_ge_pio3_help(z, -1);
-      Cmplx _Bi, _Bip;
-      std::tie(_Bi, _Bip) = s_absarg_ge_pio3_help(z, +1);
-      return airy_t<Cmplx, Cmplx>{z, _Ai, _Aip, _Bi, _Bip};
+      Cmplx Ai, Aip;
+      std::tie(Ai, Aip) = s_absarg_ge_pio3_help(z, -1);
+      Cmplx Bi, Bip;
+      std::tie(Bi, Bip) = s_absarg_ge_pio3_help(z, +1);
+      return airy_t<Cmplx, Cmplx>{z, Ai, Aip, Bi, Bip};
     }
 
 
@@ -3930,9 +3928,9 @@
    * @return A struct containing @f$ z, Ai(z), Ai'(z), Bi(z), Bi'(z) @f$.
    */
   template<typename Tp>
-    airy_t<typename _Airy_asymp<Tp>::Cmplx,
-	     typename _Airy_asymp<Tp>::Cmplx>
-    _Airy_asymp<Tp>::s_absarg_lt_pio3(typename _Airy_asymp<Tp>::Cmplx z) const
+    airy_t<typename Airy_asymp<Tp>::Cmplx,
+	     typename Airy_asymp<Tp>::Cmplx>
+    Airy_asymp<Tp>::s_absarg_lt_pio3(typename Airy_asymp<Tp>::Cmplx z) const
     {
       constexpr Real s_pimh
 	= Real{1} / emsr::sqrtpi_v<Real>;
@@ -3971,21 +3969,21 @@
 
       // Complete evaluation of the Airy functions.
       zeta = s_zone / zeta;
-      auto _Ai = coszeta * cpoly.eval_even(zetam2)
+      auto Ai = coszeta * cpoly.eval_even(zetam2)
 	       + sinzeta * cpoly.eval_odd(zetam2);
-      _Ai *= s_pimh / z1d4;
-      auto _Aip = sinzeta * dpoly.eval_even(zetam2)
+      Ai *= s_pimh / z1d4;
+      auto Aip = sinzeta * dpoly.eval_even(zetam2)
 		- coszeta * dpoly.eval_odd(zetam2);
-      _Aip *= s_pimh * z1d4;
-      auto _Bi = -sinzeta * cpoly.eval_even(zetam2)
+      Aip *= s_pimh * z1d4;
+      auto Bi = -sinzeta * cpoly.eval_even(zetam2)
 	       + coszeta * cpoly.eval_odd(zetam2);
-      _Bi *= s_pimh / z1d4;
-      auto _Bip = coszeta * dpoly.eval_even(zetam2)
+      Bi *= s_pimh / z1d4;
+      auto Bip = coszeta * dpoly.eval_even(zetam2)
 		+ sinzeta * dpoly.eval_odd(zetam2);
-      _Bip *= s_pimh * z1d4;
+      Bip *= s_pimh * z1d4;
 
       // I think we're computing d/d(-z) above.
-      return airy_t<Cmplx, Cmplx>{z, _Ai, -_Aip, _Bi, -_Bip};
+      return airy_t<Cmplx, Cmplx>{z, Ai, -Aip, Bi, -Bip};
     }
 
 
@@ -4019,8 +4017,8 @@
   template<typename Tp>
     void
     airy_asymp_absarg_ge_pio3_help(std::complex<Tp> z,
-				     std::complex<Tp>& _Ai,
-				     std::complex<Tp>& _Aip,
+				     std::complex<Tp>& Ai,
+				     std::complex<Tp>& Aip,
 				     int sign = -1)
     {
       using Val = Tp;
@@ -4117,8 +4115,8 @@
 	         - s * std::exchange(alphap, betap + r * alphap);
 	}
 
-      _Ai = fact * alpha * zetam + beta;
-      _Aip = factp * alphap * zetam + betap;
+      Ai = fact * alpha * zetam + beta;
+      Aip = factp * alphap * zetam + betap;
 
       return;
     }
@@ -4140,11 +4138,11 @@
     airy_asymp_absarg_ge_pio3(std::complex<Tp> z)
     {
       using Cmplx = std::complex<Tp>;
-      Cmplx _Ai, _Aip;
-      airy_asymp_absarg_ge_pio3_help(z, _Ai, _Aip, -1);
-      Cmplx _Bi, _Bip;
-      airy_asymp_absarg_ge_pio3_help(z, _Bi, _Bip, +1);
-      return airy_t<Cmplx, Cmplx>{z, _Ai, _Aip, _Bi, _Bip};
+      Cmplx Ai, Aip;
+      airy_asymp_absarg_ge_pio3_help(z, Ai, Aip, -1);
+      Cmplx Bi, Bip;
+      airy_asymp_absarg_ge_pio3_help(z, Bi, Bip, +1);
+      return airy_t<Cmplx, Cmplx>{z, Ai, Aip, Bi, Bip};
     }
 
 
@@ -4326,20 +4324,20 @@
 
       // Complete evaluation of the Airy functions.
       zeta = s_zone / zeta;
-      auto _Ai = sinzeta * alphas * zetam2 + betas
+      auto Ai = sinzeta * alphas * zetam2 + betas
 	       - zeta * coszeta * alphac * zetam2 + betac;
-      _Ai *= s_pimh / z1d4;
-      auto _Aip = coszeta * alphapc * z + betapc
+      Ai *= s_pimh / z1d4;
+      auto Aip = coszeta * alphapc * z + betapc
 		+ zeta * sinzeta * alphaps * z + betaps;
-      _Aip *= -s_pimh * z1d4;
-      auto _Bi = sinzeta * alphas * z + betas
+      Aip *= -s_pimh * z1d4;
+      auto Bi = sinzeta * alphas * z + betas
 	       + zeta * coszeta * alphac * zetam2 + betac;
-      _Bi *= s_pimh / z1d4;
-      auto _Bip = coszeta * alphaps * z + betaps
+      Bi *= s_pimh / z1d4;
+      auto Bip = coszeta * alphaps * z + betaps
 		+ zeta * sinzeta * alphapc * zetam2 + betapc;
-      _Bip *= s_pimh * z1d4;
+      Bip *= s_pimh * z1d4;
 
-      return airy_t<Cmplx, Cmplx>{z, _Ai, _Aip, _Bi, _Bip};
+      return airy_t<Cmplx, Cmplx>{z, Ai, Aip, Bi, Bip};
     }
 
 
@@ -4412,7 +4410,7 @@
       // Check to see if z^3 will underflow and act accordingly.
       auto zzz = z * z * z;
 
-      Val _Fp1d3, _Fm1d3, _Fp2d3, _Fm2d3;
+      Val Fp1d3, Fm1d3, Fp2d3, Fm2d3;
 
       if (std::abs(zzz) < Real{10} * emsr::lim_min<Real>())
 	return airy_t<Val, Val>{z, s_Ai0, s_Aip0, s_Bi0, s_Bip0};
@@ -4447,22 +4445,20 @@
 
 	  // Compute the confluent hypergeometric limit functions related to ...
 	  // ... the modified Bessel function of order +1/3: _0F_1(;;z^3/9).
-	  _Fp1d3 = horner(s_ap1d3) / horner(s_bp1d3);
+	  Fp1d3 = horner(s_ap1d3) / horner(s_bp1d3);
 	  // ... the modified Bessel function of order -1/3: _0F_1(;;z^3/9).
-	  _Fm1d3 = horner(s_am1d3) / horner(s_bm1d3);
+	  Fm1d3 = horner(s_am1d3) / horner(s_bm1d3);
 	  // ... the modified Bessel function of order +2/3: _0F_1(;;z^3/9).
-	  _Fp2d3 = horner(s_ap2d3) / horner(s_bp2d3);
+	  Fp2d3 = horner(s_ap2d3) / horner(s_bp2d3);
 	  // ... the modified Bessel function of order -2/3: _0F_1(;;z^3/9).
-	  _Fm2d3 = horner(s_am2d3) / horner(s_bm2d3);
+	  Fm2d3 = horner(s_am2d3) / horner(s_bm2d3);
 
-	  auto _Ai = s_Ai0 * _Fm1d3 + s_Aip0 * z * _Fp1d3;
-	  auto _Aip = s_Ai0 * z * z * _Fp2d3 / Real{2}
-		    + s_Aip0 * _Fm2d3;
-	  auto _Bi = s_Bi0 * _Fm1d3 + s_Bip0 * z * _Fp1d3;
-	  auto _Bip = s_Bi0 * z * z * _Fp2d3 / Real{2}
-		    + s_Bip0 * _Fm2d3;
+	  auto Ai = s_Ai0 * Fm1d3 + s_Aip0 * z * Fp1d3;
+	  auto Aip = s_Ai0 * z * z * Fp2d3 / Real{2} + s_Aip0 * Fm2d3;
+	  auto Bi = s_Bi0 * Fm1d3 + s_Bip0 * z * Fp1d3;
+	  auto Bip = s_Bi0 * z * z * Fp2d3 / Real{2} + s_Bip0 * Fm2d3;
 
-	  return airy_t<Val, Val>{z, _Ai, _Aip, _Bi, _Bip};
+	  return airy_t<Val, Val>{z, Ai, Aip, Bi, Bip};
 	}
     }
 
@@ -4470,26 +4466,26 @@
   /**
    * Class to manage the asymptotic series for Airy functions.
    *
-   * @tparam _Sum A sum type
+   * @tparam Sum A sum type
    */
-  template<typename _Sum>
-    class _Airy_asymp_series
+  template<typename Sum>
+    class Airy_asymp_series
     {
     public:
 
-      using Val = typename _Sum::value_type;
+      using Val = typename Sum::value_type;
       using Real = emsr::num_traits_t<Val>;
       static constexpr Real s_sqrt_pi
 	   = emsr::sqrtpi_v<Real>;
 
-      _Airy_asymp_series(_Sum proto)
-      : _M_Asum(proto),
-	_M_Bsum(proto),
-	_M_Csum(proto),
-	_M_Dsum(proto)
+      Airy_asymp_series(Sum proto)
+      : m_Asum(proto),
+	m_Bsum(proto),
+	m_Csum(proto),
+	m_Dsum(proto)
       { }
-      _Airy_asymp_series(const _Airy_asymp_series&) = default;
-      _Airy_asymp_series(_Airy_asymp_series&&) = default;
+      Airy_asymp_series(const Airy_asymp_series&) = default;
+      Airy_asymp_series(Airy_asymp_series&&) = default;
 
       airy_t<Val, Val>
       operator()(Val y);
@@ -4500,40 +4496,40 @@
       static constexpr Real s_eps
 	   = std::numeric_limits<Real>::epsilon();
 
-      _Sum _M_Asum;
-      _Sum _M_Bsum;
-      _Sum _M_Csum;
-      _Sum _M_Dsum;
+      Sum m_Asum;
+      Sum m_Bsum;
+      Sum m_Csum;
+      Sum m_Dsum;
     };
 
-  template<typename _Sum>
+  template<typename Sum>
     constexpr std::size_t
-    _Airy_asymp_series<_Sum>::s_max_iter;
+    Airy_asymp_series<Sum>::s_max_iter;
 
-  template<typename _Sum>
-    constexpr typename _Airy_asymp_series<_Sum>::Real
-    _Airy_asymp_series<_Sum>::s_eps;
+  template<typename Sum>
+    constexpr typename Airy_asymp_series<Sum>::Real
+    Airy_asymp_series<Sum>::s_eps;
 
-  template<typename _Sum>
-    constexpr typename _Airy_asymp_series<_Sum>::Real
-    _Airy_asymp_series<_Sum>::s_sqrt_pi;
+  template<typename Sum>
+    constexpr typename Airy_asymp_series<Sum>::Real
+    Airy_asymp_series<Sum>::s_sqrt_pi;
 
 
   /**
    * Return an airy_t containing, not actual Airy functions, but
    * four asymptotic Airy components:
    *
-   * @tparam _Sum A sum type
+   * @tparam Sum A sum type
    */
-  template<typename _Sum>
-    airy_t<typename _Airy_asymp_series<_Sum>::Val,
-	     typename _Airy_asymp_series<_Sum>::Val>
-    _Airy_asymp_series<_Sum>::operator()(typename _Sum::value_type y)
+  template<typename Sum>
+    airy_t<typename Airy_asymp_series<Sum>::Val,
+	     typename Airy_asymp_series<Sum>::Val>
+    Airy_asymp_series<Sum>::operator()(typename Sum::value_type y)
     {
-      _M_Asum.reset(Real{1});
-      _M_Bsum.reset(Real{1});
-      _M_Csum.reset(Real{1});
-      _M_Dsum.reset(Real{1});
+      m_Asum.reset(Real{1});
+      m_Bsum.reset(Real{1});
+      m_Csum.reset(Real{1});
+      m_Dsum.reset(Real{1});
 
       auto zeta = Real{2} * std::pow(y, Real{1.5L})
 		  / Real{3};
@@ -4545,63 +4541,63 @@
 	  sign = -sign;
 	  auto denom = Val(2 * k) * zeta;
 	  numerAB *= Real(k + Real{1} / Real{6})
-		     * Real(k + Real{5} / Real{6})
+		   * Real(k + Real{5} / Real{6})
 		     / denom;
 	  numerCD *= Real(k - Real{1} / Real{6})
-		     * Real(k + Real{7} / Real{6})
-		     / denom;
-	  if (k > 1 && (std::abs(_M_Asum.term()) < std::abs(numerAB)
+		   * Real(k + Real{7} / Real{6})
+		   / denom;
+	  if (k > 1 && (std::abs(m_Asum.term()) < std::abs(numerAB)
 		|| std::isinf(numerAB)))
 	    break;
-	  auto _Aterm = sign * numerAB;
-	  _M_Asum += _Aterm;
-	  auto _Bterm = numerAB;
-	  _M_Bsum += _Bterm;
-	  if (k > 1 && (std::abs(_M_Csum.term()) < std::abs(numerCD)
+	  auto Aterm = sign * numerAB;
+	  m_Asum += Aterm;
+	  auto Bterm = numerAB;
+	  m_Bsum += Bterm;
+	  if (k > 1 && (std::abs(m_Csum.term()) < std::abs(numerCD)
 		|| std::isinf(numerCD)))
 	    break;
-	  auto _Cterm = sign * numerCD;
-	  _M_Csum += _Cterm;
-	  auto _Dterm = numerCD;
-	  _M_Dsum += _Dterm;
-	  if (std::abs(_Aterm) < std::abs(_M_Asum()) * s_eps
-	   && std::abs(_Bterm) < std::abs(_M_Bsum()) * s_eps
-	   && std::abs(_Cterm) < std::abs(_M_Csum()) * s_eps
-	   && std::abs(_Dterm) < std::abs(_M_Dsum()) * s_eps)
+	  auto Cterm = sign * numerCD;
+	  m_Csum += Cterm;
+	  auto Dterm = numerCD;
+	  m_Dsum += Dterm;
+	  if (std::abs(Aterm) < std::abs(m_Asum()) * s_eps
+	   && std::abs(Bterm) < std::abs(m_Bsum()) * s_eps
+	   && std::abs(Cterm) < std::abs(m_Csum()) * s_eps
+	   && std::abs(Dterm) < std::abs(m_Dsum()) * s_eps)
 	    break;
 	}
 
       auto expzeta = std::exp(zeta);
       auto y1o4 = std::pow(y, Real{0.25L});
-      auto _AA = Real{0.5L} * _M_Asum() / s_sqrt_pi / y1o4 / expzeta;
-      auto _BB = Real{0.5L} * expzeta * _M_Bsum() / s_sqrt_pi / y1o4;
-      auto _CC = Real{-0.5L} * y1o4 * _M_Csum() / s_sqrt_pi / expzeta;
-      auto _DD = Real{0.5L} * y1o4 * expzeta * _M_Dsum() / s_sqrt_pi;
+      auto AA = Real{0.5L} * m_Asum() / s_sqrt_pi / y1o4 / expzeta;
+      auto BB = Real{0.5L} * expzeta * m_Bsum() / s_sqrt_pi / y1o4;
+      auto CC = Real{-0.5L} * y1o4 * m_Csum() / s_sqrt_pi / expzeta;
+      auto DD = Real{0.5L} * y1o4 * expzeta * m_Dsum() / s_sqrt_pi;
 
-      return airy_t<Val, Val>{y, _AA, _CC, _BB, _DD};
+      return airy_t<Val, Val>{y, AA, CC, BB, DD};
     }
 
 
   template<typename Tp>
-    struct _Airy_default_radii
+    struct Airy_default_radii
     {};
 
   template<>
-    struct _Airy_default_radii<float>
+    struct Airy_default_radii<float>
     {
       constexpr static float inner_radius{2.0F};
       constexpr static float outer_radius{6.0F};
     };
 
   template<>
-    struct _Airy_default_radii<double>
+    struct Airy_default_radii<double>
     {
       constexpr static double inner_radius{4.0};
       constexpr static double outer_radius{12.0};
     };
 
   template<>
-    struct _Airy_default_radii<long double>
+    struct Airy_default_radii<long double>
     {
       constexpr static long double inner_radius{5.0L};
       constexpr static long double outer_radius{15.0L};
@@ -4637,8 +4633,8 @@
       constexpr airy_t<Cmplx, Cmplx>
       operator()(Val y) const;
 
-      Real inner_radius{_Airy_default_radii<Real>::inner_radius};
-      Real outer_radius{_Airy_default_radii<Real>::outer_radius};
+      Real inner_radius{Airy_default_radii<Real>::inner_radius};
+      Real outer_radius{Airy_default_radii<Real>::outer_radius};
     };
 
   template<typename Tp>
@@ -4666,9 +4662,9 @@
 	     typename Airy<Tp>::Cmplx>
     Airy<Tp>::operator()(typename Airy<Tp>::Val y) const
     {
-      using _OuterSum = emsr::KahanSum<Val>;
-      using _InnerSum = emsr::WenigerDeltaSum<_OuterSum>;
-      //using _InnerSum = emsr::AitkenDeltaSquaredSum<_OuterSum>;
+      using OuterSum = emsr::KahanSum<Val>;
+      using InnerSum = emsr::WenigerDeltaSum<OuterSum>;
+      //using InnerSum = emsr::AitkenDeltaSquaredSum<OuterSum>;
 
       if (std::isnan(y))
 	return airy_t<Cmplx, Cmplx>{y, s_NaN, s_NaN, s_NaN, s_NaN};
@@ -4684,91 +4680,91 @@
 	  if (absy < outer_radius)
 	    {
 	      auto beta = Real{1};
-	      _Airy_asymp_series<_InnerSum> asymp(_InnerSum{beta});
+	      Airy_asymp_series<InnerSum> asymp(InnerSum{beta});
 	      sums = asymp(y);
 	    }
 	  else
 	    {
-	      _Airy_asymp_series<_OuterSum> asymp(_OuterSum{});
+	      Airy_asymp_series<OuterSum> asymp(OuterSum{});
 	      sums = asymp(y);
 	    }
 	}
 
-      Cmplx _Bi{}, _Bip{};
+      Cmplx Bi{}, Bip{};
       if (absy < inner_radius
 	  || (absy < outer_radius && absargy < s_pi_3))
-	std::tie(_Bi, _Bip) = Airy_series<Val>::s_Bi(y);
+	std::tie(Bi, Bip) = Airy_series<Val>::s_Bi(y);
       else if (absy < outer_radius)
 	{
-	  _Bi = Real{2} * sums.Bi_value + sign * s_i * sums.Ai_value;
-	  _Bip = Real{2} * sums.Bi_deriv + sign * s_i * sums.Ai_deriv;
+	  Bi = Real{2} * sums.Bi_value + sign * s_i * sums.Ai_value;
+	  Bip = Real{2} * sums.Bi_deriv + sign * s_i * sums.Ai_deriv;
 	  if (absargy > s_5pi_6)
 	    {
-	      _Bi -= sums.Bi_value;
-	      _Bip -= sums.Bi_deriv;
+	      Bi -= sums.Bi_value;
+	      Bip -= sums.Bi_deriv;
 	    }
 	}
       else
 	{
-	  _Bi = Real{2} * sums.Bi_value;
-	  _Bip = Real{2} * sums.Bi_deriv;
+	  Bi = Real{2} * sums.Bi_value;
+	  Bip = Real{2} * sums.Bi_deriv;
 	  if (absargy > s_pi_6)
 	    {
-	      _Bi += sign * s_i * sums.Ai_value;
-	      _Bip += sign * s_i * sums.Ai_deriv;
+	      Bi += sign * s_i * sums.Ai_value;
+	      Bip += sign * s_i * sums.Ai_deriv;
 	    }
 	  if (absargy > s_5pi_6)
 	    {
-	      _Bi -= sums.Bi_value;
-	      _Bip -= sums.Bi_deriv;
+	      Bi -= sums.Bi_value;
+	      Bip -= sums.Bi_deriv;
 	    }
 	}
 
-      Cmplx _Ai{}, _Aip{};
+      Cmplx Ai{}, Aip{};
       if ((absy < inner_radius
 	          + outer_radius * absargy / s_pi && absargy < s_2pi_3)
 	  || (absy < outer_radius && absargy >= s_2pi_3))
-	std::tie(_Ai, _Aip) = Airy_series<Val>::s_Ai(y);
+	std::tie(Ai, Aip) = Airy_series<Val>::s_Ai(y);
       else if (absy < outer_radius)
 	{
-	  _Ai = sums.Ai_value;
-	  _Aip = sums.Ai_deriv;
+	  Ai = sums.Ai_value;
+	  Aip = sums.Ai_deriv;
 	}
       else
 	{
-	  _Ai = sums.Ai_value;
-	  _Aip = sums.Ai_deriv;
+	  Ai = sums.Ai_value;
+	  Aip = sums.Ai_deriv;
 	  if (absargy >= s_5pi_6)
 	    {
-	      _Ai += sign * s_i * sums.Bi_value;
-	      _Aip += sign * s_i * sums.Bi_deriv;
+	      Ai += sign * s_i * sums.Bi_value;
+	      Aip += sign * s_i * sums.Bi_deriv;
 	    }
 	}
 
-      return airy_t<Cmplx, Cmplx>{y, _Ai, _Aip, _Bi, _Bip};
+      return airy_t<Cmplx, Cmplx>{y, Ai, Aip, Bi, Bip};
     }
 
 
   /**
    * Class to manage the asymptotic series for Scorer functions.
    *
-   * @tparam _Sum A sum type
+   * @tparam Sum A sum type
    */
-  template<typename _Sum>
-    class _Scorer_asymp_series
+  template<typename Sum>
+    class Scorer_asymp_series
     {
     public:
 
-      using Val = typename _Sum::value_type;
+      using Val = typename Sum::value_type;
       using Real = emsr::num_traits_t<Val>;
       static constexpr Real s_pi
 	   = emsr::pi_v<Real>;
 
-      _Scorer_asymp_series(_Sum proto)
-      : _M_Hsum(proto), _M_Hpsum(proto)
+      Scorer_asymp_series(Sum proto)
+      : m_Hsum(proto), m_Hpsum(proto)
       { }
-      _Scorer_asymp_series(const _Scorer_asymp_series&) = default;
-      _Scorer_asymp_series(_Scorer_asymp_series&&) = default;
+      Scorer_asymp_series(const Scorer_asymp_series&) = default;
+      Scorer_asymp_series(Scorer_asymp_series&&) = default;
 
       std::pair<Val, Val>
       operator()(Val y);
@@ -4779,36 +4775,36 @@
       static constexpr Real s_eps
 	   = Real{0.01L} * std::numeric_limits<Real>::epsilon();
 
-      _Sum _M_Hsum;
-      _Sum _M_Hpsum;
+      Sum m_Hsum;
+      Sum m_Hpsum;
     };
 
-  template<typename _Sum>
+  template<typename Sum>
     constexpr std::size_t
-    _Scorer_asymp_series<_Sum>::s_max_iter;
+    Scorer_asymp_series<Sum>::s_max_iter;
 
-  template<typename _Sum>
-    constexpr typename _Scorer_asymp_series<_Sum>::Real
-    _Scorer_asymp_series<_Sum>::s_eps;
+  template<typename Sum>
+    constexpr typename Scorer_asymp_series<Sum>::Real
+    Scorer_asymp_series<Sum>::s_eps;
 
-  template<typename _Sum>
-    constexpr typename _Scorer_asymp_series<_Sum>::Real
-    _Scorer_asymp_series<_Sum>::s_pi;
+  template<typename Sum>
+    constexpr typename Scorer_asymp_series<Sum>::Real
+    Scorer_asymp_series<Sum>::s_pi;
 
 
   /**
    * Return the asymptotic expansion of the Scorer Hi function
    * and its derivaive.
    *
-   * @tparam _Sum A sum type
+   * @tparam Sum A sum type
    */
-  template<typename _Sum>
-    std::pair<typename _Scorer_asymp_series<_Sum>::Val,
-	      typename _Scorer_asymp_series<_Sum>::Val>
-    _Scorer_asymp_series<_Sum>::operator()(typename _Sum::value_type y)
+  template<typename Sum>
+    std::pair<typename Scorer_asymp_series<Sum>::Val,
+	      typename Scorer_asymp_series<Sum>::Val>
+    Scorer_asymp_series<Sum>::operator()(typename Sum::value_type y)
     {
-      _M_Hsum.reset(Real{1});
-      _M_Hpsum.reset(Real{1});
+      m_Hsum.reset(Real{1});
+      m_Hpsum.reset(Real{1});
 
       auto yy = y * y;
       auto yyy = y * yy;
@@ -4819,18 +4815,18 @@
 	  numer *= Real(3 * k + 1)
 		   * Real(3 * k + 2);
 	  denom *= yyy;
-	  auto _Hterm = numer / denom;
-	  _M_Hsum += _Hterm;
-	  _Hterm *= Real(k + 1) / Real(k);
-	  _M_Hpsum += _Hterm;
-	  if (std::abs(_M_Hsum()) * s_eps < std::abs(_Hterm))
+	  auto Hterm = numer / denom;
+	  m_Hsum += Hterm;
+	  Hterm *= Real(k + 1) / Real(k);
+	  m_Hpsum += Hterm;
+	  if (std::abs(m_Hsum()) * s_eps < std::abs(Hterm))
 	    break;
 	}
 
-      auto _Hi = -_M_Hsum() / (s_pi * y);
-      auto _Hip = _M_Hpsum() / (s_pi * yy);
+      auto Hi = -m_Hsum() / (s_pi * y);
+      auto Hip = m_Hpsum() / (s_pi * yy);
 
-      return std::make_pair(_Hi, _Hip);
+      return std::make_pair(Hi, Hip);
     }
 
 
@@ -4839,7 +4835,7 @@
    * The parameters describing the various regions are adjustable.
    */
   template<typename Tp>
-    class _Scorer
+    class Scorer
     {
     public:
 
@@ -4858,28 +4854,28 @@
       constexpr scorer_t<Val, Val>
       operator()(Val y) const;
 
-      Real inner_radius{_Airy_default_radii<Real>::inner_radius};
-      Real outer_radius{_Airy_default_radii<Real>::outer_radius};
+      Real inner_radius{Airy_default_radii<Real>::inner_radius};
+      Real outer_radius{Airy_default_radii<Real>::outer_radius};
     };
 
   template<typename Tp>
-    constexpr typename _Scorer<Tp>::Real
-    _Scorer<Tp>::s_pi_3;
+    constexpr typename Scorer<Tp>::Real
+    Scorer<Tp>::s_pi_3;
 
   template<typename Tp>
-    constexpr typename _Scorer<Tp>::Cmplx
-    _Scorer<Tp>::s_i;
+    constexpr typename Scorer<Tp>::Cmplx
+    Scorer<Tp>::s_i;
 
   /**
    * Return the Scorer functions for complex argument.
    */
   template<typename Tp>
-    constexpr scorer_t<typename _Scorer<Tp>::Val,
-			 typename _Scorer<Tp>::Val>
-    _Scorer<Tp>::operator()(typename _Scorer<Tp>::Val y) const
+    constexpr scorer_t<typename Scorer<Tp>::Val,
+			 typename Scorer<Tp>::Val>
+    Scorer<Tp>::operator()(typename Scorer<Tp>::Val y) const
     {
-      using _OuterSum = emsr::KahanSum<Val>;
-      using _InnerSum = emsr::WenigerDeltaSum<_OuterSum>;
+      using OuterSum = emsr::KahanSum<Val>;
+      using InnerSum = emsr::WenigerDeltaSum<OuterSum>;
 
       if (std::isnan(y))
 	return scorer_t<Val, Val>{y, s_NaN, s_NaN, s_NaN, s_NaN};
@@ -4888,16 +4884,16 @@
       auto absy = std::abs(y);
 
       airy_t<Cmplx, Cmplx> airy_sums = Airy<Val>()(y);
-      Val _Bi{}, _Bip{};
+      Val Bi{}, Bip{};
       if constexpr (emsr::is_complex_v<Val>)
 	{
-	  _Bi = airy_sums.Bi_value;
-	  _Bip = airy_sums.Bi_deriv;
+	  Bi = airy_sums.Bi_value;
+	  Bip = airy_sums.Bi_deriv;
 	}
       else
 	{
-	  _Bi = std::real(airy_sums.Bi_value);
-	  _Bip = std::real(airy_sums.Bi_deriv);
+	  Bi = std::real(airy_sums.Bi_value);
+	  Bip = std::real(airy_sums.Bi_deriv);
 	}
 
       std::pair<Val, Val> scorer_sums;
@@ -4906,12 +4902,12 @@
 	  if (absy < outer_radius)
 	    {
 	      auto beta = Real{1};
-	      _Scorer_asymp_series<_InnerSum> scorer(_InnerSum{beta});
+	      Scorer_asymp_series<InnerSum> scorer(InnerSum{beta});
 	      scorer_sums = scorer(y);
 	    }
 	  else
 	    {
-	      _Scorer_asymp_series<_OuterSum> scorer(_OuterSum{});
+	      Scorer_asymp_series<OuterSum> scorer(OuterSum{});
 	      scorer_sums = scorer(y);
 	    }
 	}
@@ -4922,19 +4918,19 @@
 	{
 	  if (absargy >= s_2pi_3)
 	    {
-	      auto _Hi = scorer_sums.first;
- 	      auto _Hip = scorer_sums.second;
-	      auto _Gi = _Bi - _Hi;
-	      auto _Gip = _Bip - _Hip;
-	      return scorer_t<Val, Val>{y, _Gi, _Gip, _Hi, _Hip};
+	      auto Hi = scorer_sums.first;
+ 	      auto Hip = scorer_sums.second;
+	      auto Gi = Bi - Hi;
+	      auto Gip = Bip - Hip;
+	      return scorer_t<Val, Val>{y, Gi, Gip, Hi, Hip};
 	    }
 	  else
 	    {
-	      auto _Gi = -scorer_sums.first;
-	      auto _Gip = -scorer_sums.second;
-	      auto _Hi = _Bi - _Gi;
-	      auto _Hip = _Bip - _Gip;
-	      return scorer_t<Val, Val>{y, _Gi, _Gip, _Hi, _Hip};
+	      auto Gi = -scorer_sums.first;
+	      auto Gip = -scorer_sums.second;
+	      auto Hi = Bi - Gi;
+	      auto Hip = Bip - Gip;
+	      return scorer_t<Val, Val>{y, Gi, Gip, Hi, Hip};
 	    }
 	}
     }
@@ -5005,13 +5001,13 @@ template<typename Tp>
 
     std::cout << '\n';
     std::cout << '\n';
-    std::vector<Tp> _Fai, _Faip, _Gai, _Gaip, _Hai, _Haip;
-    _Fai.push_back(Tp{1});
-    _Faip.push_back(Tp{0});
-    _Gai.push_back(Tp{1});
-    _Gaip.push_back(Tp{1});
-    _Hai.push_back(Tp{1} / Tp{2});
-    _Haip.push_back(Tp{1});
+    std::vector<Tp> Fai, Faip, Gai, Gaip, Hai, Haip;
+    Fai.push_back(Tp{1});
+    Faip.push_back(Tp{0});
+    Gai.push_back(Tp{1});
+    Gaip.push_back(Tp{1});
+    Hai.push_back(Tp{1} / Tp{2});
+    Haip.push_back(Tp{1});
     auto Fai_numer = Tp{1};
     auto Fai_denom = Tp{1};
     auto Gai_numer = Tp{1};
@@ -5028,42 +5024,42 @@ template<typename Tp>
 	Fai_denom *= (3ULL * k - 1ULL) * (3ULL * k);
 	if (Fai_numer / Fai_denom < Tp{10} * s_min)
 	  break;
-	_Fai.push_back(Fai_numer / Fai_denom);
-	_Faip.push_back(3ULL * k * _Fai.back());
+	Fai.push_back(Fai_numer / Fai_denom);
+	Faip.push_back(3ULL * k * Fai.back());
 
 	std::cout << '\t' << ' ' << std::setw(width) << Gai_numer << '/' << std::setw(width) << Gai_denom;
 	//Gai_denom *= (3ULL * k - 1ULL) * (3ULL * k) * (3ULL * k + 1ULL);
 	//Gai_numer *= 2ULL + 3ULL * (k - 1ULL);
 	Gai_denom *= (3ULL * k) * (3ULL * k + 1ULL);
-	_Gai.push_back(Gai_numer / Gai_denom);
-	_Gaip.push_back((3ULL * k + 1ULL) * _Gai.back());
+	Gai.push_back(Gai_numer / Gai_denom);
+	Gaip.push_back((3ULL * k + 1ULL) * Gai.back());
 
 	std::cout << '\t' << ' ' << std::setw(width) << Hai_numer << '/' << std::setw(width) << Hai_denom;
 	//Hai_denom *= (3ULL * k) * (3ULL * k + 1ULL) * (3ULL * k + 2ULL);
 	//Hai_numer *= 3ULL + 3ULL * (k - 1ULL);
 	Hai_denom *= (3ULL * k + 1ULL) * (3ULL * k + 2ULL);
-	_Hai.push_back(Hai_numer / Hai_denom);
-	_Haip.push_back((3ULL * k + 2ULL) * _Hai.back());
+	Hai.push_back(Hai_numer / Hai_denom);
+	Haip.push_back((3ULL * k + 2ULL) * Hai.back());
       }
     std::cout << '\n';
 
-    std::cout << "\nF[" << _Fai.size() << "]\n";
-    for (const auto& c : _Fai)
+    std::cout << "\nF[" << Fai.size() << "]\n";
+    for (const auto& c : Fai)
       std::cout << c << '\n';
-    std::cout << "\nFp[" << _Faip.size() << "]\n";
-    for (const auto& c : _Faip)
+    std::cout << "\nFp[" << Faip.size() << "]\n";
+    for (const auto& c : Faip)
       std::cout << c << '\n';
-    std::cout << "\nG[" << _Gai.size() << "]\n";
-    for (const auto& c : _Gai)
+    std::cout << "\nG[" << Gai.size() << "]\n";
+    for (const auto& c : Gai)
       std::cout << c << '\n';
-    std::cout << "\nGp[" << _Gaip.size() << "]\n";
-    for (const auto& c : _Gaip)
+    std::cout << "\nGp[" << Gaip.size() << "]\n";
+    for (const auto& c : Gaip)
       std::cout << c << '\n';
-    std::cout << "\nH[" << _Hai.size() << "]\n";
-    for (const auto& c : _Hai)
+    std::cout << "\nH[" << Hai.size() << "]\n";
+    for (const auto& c : Hai)
       std::cout << c << '\n';
-    std::cout << "\nHp[" << _Haip.size() << "]\n";
-    for (const auto& c : _Haip)
+    std::cout << "\nHp[" << Haip.size() << "]\n";
+    for (const auto& c : Haip)
       std::cout << c << '\n';
   }
 
@@ -5118,7 +5114,7 @@ template<typename Tp>
   run_airy_asymp_p()
   {
     using Cmplx = std::complex<Tp>;
-    _Airy_asymp<Tp> airy_asymp;
+    Airy_asymp<Tp> airy_asymp;
 
     std::cout.precision(std::numeric_limits<Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
@@ -5164,7 +5160,7 @@ template<typename Tp>
   run_airy_asymp_m()
   {
     using Cmplx = std::complex<Tp>;
-    _Airy_asymp<Tp> airy_asymp;
+    Airy_asymp<Tp> airy_asymp;
 
     std::cout.precision(std::numeric_limits<Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
@@ -5266,7 +5262,7 @@ template<typename Tp>
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    _Scorer<Val> scorer_asymp;
+    Scorer<Val> scorer_asymp;
 
     std::cout << "\n\nPrint Scorer functions computed by various means for all 'real' z\n";
     std::cout << "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++\n";
@@ -5411,7 +5407,7 @@ template<typename Tp>
     using Real = emsr::num_traits_t<Val>;
     using Cmplx = std::complex<Real>;
 
-    _Airy_asymp<Cmplx> airy_asymp;
+    Airy_asymp<Cmplx> airy_asymp;
 
     std::cout.precision(std::numeric_limits<Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
@@ -5480,7 +5476,7 @@ template<typename Tp>
     using Real = emsr::num_traits_t<Val>;
     using Cmplx = std::complex<Real>;
 
-    _Airy_asymp<Cmplx> airy_asymp;
+    Airy_asymp<Cmplx> airy_asymp;
 
     std::cout.precision(std::numeric_limits<Real>::digits10);
     std::cout << std::showpoint << std::scientific;
@@ -5918,7 +5914,7 @@ template<typename Tp>
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
-    _Scorer<Tp> scorer;
+    Scorer<Tp> scorer;
 
     data << "\n\n";
     data << "#"
@@ -6050,7 +6046,7 @@ namespace detail
 	return s_nan;
       else
 	{
-	  auto scorer = _Scorer<Tp>{}(x);
+	  auto scorer = Scorer<Tp>{}(x);
 	  return scorer.Gi_value;
 	}
     }
@@ -6070,7 +6066,7 @@ namespace detail
 	return s_nan;
       else
 	{
-	  auto scorer = _Scorer<Tp>{}(x);
+	  auto scorer = Scorer<Tp>{}(x);
 	  return scorer.Hi_value;
 	}
     }

@@ -9,14 +9,14 @@
 
 #include <emsr/sf_ellint.h>
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_carlson_std()
   {
     using namespace std::literals::complex_literals;
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
-    constexpr auto s_i = std::complex<_Tp>{0, 1};
-    constexpr auto s_z = std::complex<_Tp>{0, 0};
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
+    constexpr auto s_i = std::complex<Tp>{0, 1};
+    constexpr auto s_z = std::complex<Tp>{0, 0};
 
     std::cout << "R_F(1, 2, 0)         = " << emsr::ellint_rf(1.0, 2.0, 0.0) << '\n';  //  1.3110287771461
     std::cout << "R_F(i, -i, 0)        = " << emsr::ellint_rf(s_i, -s_i, 0.0) << '\n';  //  1.8540746773014;
@@ -70,7 +70,7 @@ template<typename _Tp>
 
     std::cout << '\n';
 
-    _Tp pi_2 = emsr::pi_v<_Tp> / _Tp{2};
+    Tp pi_2 = emsr::pi_v<Tp> / Tp{2};
     // Adding complex zero makes these complex k.
     std::cout << "K(pi/2)  = " << emsr::detail::comp_ellint_1(pi_2 + s_z) << '\n';  //  1.5887715763658593607082818553065 - i 1.3986463677643598308560440635658
     std::cout << "K(-1)    = " << emsr::detail::comp_ellint_1(-1.0 + s_z) << '\n';  //  1.31102877714605990523242

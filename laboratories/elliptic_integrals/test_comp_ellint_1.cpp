@@ -13,17 +13,17 @@
 #include <emsr/float128_io.h>
 
 //  Use AGM to do an ab initio calculation of K(k).
-template<typename _Tp>
-  _Tp
-  comp_ellint_1_agm(_Tp k)
+template<typename Tp>
+  Tp
+  comp_ellint_1_agm(Tp k)
   {
     constexpr auto s_max_iter = 100;
-    auto am = (_Tp{1} + k) / _Tp{2};
+    auto am = (Tp{1} + k) / Tp{2};
     auto gm = std::sqrt(k);
     for (int i = 0; i < s_max_iter; ++i)
       {
-	gm = std::sqrt(gm * std::exchange(am, (am + gm) / _Tp{2}));
-	if (std::abs(am - gm) < std::numeric_limits<_Tp>::epsilon())
+	gm = std::sqrt(gm * std::exchange(am, (am + gm) / Tp{2}));
+	if (std::abs(am - gm) < std::numeric_limits<Tp>::epsilon())
 	  break;
       }
     return gm;
@@ -33,28 +33,28 @@ template<typename _Tp>
  *  Use MacLaurin series to calculate the elliptic nome
  *  given the , k.
  */
-template<typename _Tp>
-  _Tp
-  ellint_nome_series(_Tp k)
+template<typename Tp>
+  Tp
+  ellint_nome_series(Tp k)
   {
     auto m = k * k; 
-    return m * ((_Tp{1} / _Tp{16})
-	 + m * ((_Tp{1} / _Tp{32})
-	 + m * ((_Tp{21} / _Tp{1024})
-	 + m * ((_Tp{31} / _Tp{2048})
-	 + m * (_Tp{6257} / _Tp{524288})))));
+    return m * ((Tp{1} / Tp{16})
+	 + m * ((Tp{1} / Tp{32})
+	 + m * ((Tp{21} / Tp{1024})
+	 + m * ((Tp{31} / Tp{2048})
+	 + m * (Tp{6257} / Tp{524288})))));
   }
 
 /**
  *  Use the arithmetic-geometric mean to calculate the elliptic nome
  *  given the , k.
  */
-template<typename _Tp>
-  _Tp
-  ellint_nome_agm(_Tp k)
+template<typename Tp>
+  Tp
+  ellint_nome_agm(Tp k)
   {
-    const auto s_pi = emsr::pi_v<_Tp>;
-    auto kp = std::sqrt((_Tp{1} - k) * (_Tp{1} + k));
+    const auto s_pi = emsr::pi_v<Tp>;
+    auto kp = std::sqrt((Tp{1} - k) * (Tp{1} + k));
     auto K = comp_ellint_1_agm(k);
     auto Kp = comp_ellint_1_agm(kp);
     return std::exp(-s_pi * Kp / K);
@@ -63,26 +63,26 @@ template<typename _Tp>
 /**
  *  Return the elliptic nome given the , k.
  */
-template<typename _Tp>
-  _Tp
-  ellint_nome(_Tp k)
+template<typename Tp>
+  Tp
+  ellint_nome(Tp k)
   {
-    const auto s_eps = std::numeric_limits<_Tp>::epsilon();
-    if (k < std::pow(_Tp{67} * s_eps, _Tp{1}/_Tp{8}))
+    const auto s_eps = std::numeric_limits<Tp>::epsilon();
+    if (k < std::pow(Tp{67} * s_eps, Tp{1}/Tp{8}))
       return ellint_nome_series(k);
     else
       return ellint_nome_agm(k);
   }
 
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_K(_Tp proto = _Tp{})
+  test_K(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
 
     auto width = 6 + std::cout.precision();
-    const auto del = _Tp{1} / _Tp{1000};
+    const auto del = Tp{1} / Tp{1000};
     for (int i = 0; i <= 1000; ++i)
       {
 	auto k = i * del;

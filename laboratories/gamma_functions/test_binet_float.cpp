@@ -60,20 +60,20 @@ namespace detail
       using Val = Tp;
       using Real = emsr::num_traits_t<Val>;
 
-      const int _N = 100;
+      const int N = 100;
 
       std::vector<Real> F;
-      Tp _Fprev{1}, _Gprev{0}, _Hprev{0};
-      F.push_back(_Fprev);
-      for (int n = _N; n > 0; --n)
+      Tp Fprev{1}, Gprev{0}, Hprev{0};
+      F.push_back(Fprev);
+      for (int n = N; n > 0; --n)
 	{
-	  auto _Fcurr = _Fprev + _Hprev * c / (2 * n);
-	  auto _Gcurr = ((2 * n) * _Gprev + c * _Fcurr) / (2 * n - 1);
-	  auto _Hcurr = _Hprev + _Gcurr;
-	  _Fprev = _Fcurr;
-	  _Gprev = _Gcurr;
-	  _Hprev = _Hcurr;
-	  F.push_back(_Fprev);
+	  auto Fcurr = Fprev + Hprev * c / (2 * n);
+	  auto Gcurr = ((2 * n) * Gprev + c * Fcurr) / (2 * n - 1);
+	  auto Hcurr = Hprev + Gcurr;
+	  Fprev = Fcurr;
+	  Gprev = Gcurr;
+	  Hprev = Hcurr;
+	  F.push_back(Fprev);
 	}
       return F;
     }
@@ -271,7 +271,7 @@ namespace detail
     series_reciprocal_vanWijn(std::vector<Real> c)
     {
 std::cerr << std::showpoint;
-//      using _WijnSum = emsr::_VanWijngaardenSum<Real>;
+//      using WijnSum = emsr::VanWijngaardenSum<Real>;
       if (c.size() == 0)
 	return std::vector<Real>{};
       else if (c[0] == Real{0})
@@ -287,7 +287,7 @@ std::cerr << std::showpoint;
 	  for (auto k = 1u; k < m; ++k)
 	    {
 std::cerr << '\n';
-//	      _WijnSum sum(8);
+//	      WijnSum sum(8);
 emsr::BasicSum<Real> sum;
 	      for (auto i = 0u; i < k; ++i)
 	        if (k - i < n)

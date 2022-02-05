@@ -26,9 +26,9 @@ template<typename Tp>
  * @f]
  * where @f$ P_n(x) = P^{(\lambda)}_n(x;\phi) @f$
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   meixner_pollaczek_t<Tp>
-  meixner_pollaczek_recur(int n, Tp lambda, Tp phi, _TpX x)
+  meixner_pollaczek_recur(int n, Tp lambda, Tp phi, TpX x)
   {
     std::complex<Tp> Pnm1 = Tp{1};
     if (n == 0)
@@ -68,9 +68,9 @@ template<typename Tp, typename _TpX>
  *             {}_2F_1(-n, \lambda + ix; 2\lambda; 1 - e^{-i2\phi})
  * @f]
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   meixner_pollaczek_t<Tp>
-  meixner_pollaczek(int n, Tp lambda, Tp phi, _TpX x)
+  meixner_pollaczek(int n, Tp lambda, Tp phi, TpX x)
   {
     if (std::isnan(lambda))
       return {std::complex<Tp>(lambda), std::complex<Tp>{}};

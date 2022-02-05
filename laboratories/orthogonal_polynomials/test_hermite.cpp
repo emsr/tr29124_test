@@ -34,16 +34,16 @@
     hermite_ratio(unsigned int n, Tp x)
     {
       auto a = [n](std::size_t k, Tp) { return Tp(-2 * (n - k)); };
-      using _AFun = decltype(a);
+      using AFun = decltype(a);
 
       auto b = [x](std::size_t, Tp) { return Tp{2} * x; };
-      using _BFun = decltype(b);
+      using BFun = decltype(b);
 
       auto w = [](std::size_t, Tp) { return Tp{0}; };
-      using _TailFun = decltype(w);
+      using TailFun = decltype(w);
 
-      using _CFrac = emsr::LentzContinuedFraction<Tp, _AFun, _BFun, _TailFun>;
-      _CFrac Hrat(a, b, w);
+      using CFrac = emsr::LentzContinuedFraction<Tp, AFun, BFun, TailFun>;
+      CFrac Hrat(a, b, w);
 
       return Hrat();
     }

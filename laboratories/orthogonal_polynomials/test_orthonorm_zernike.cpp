@@ -25,9 +25,9 @@ template<typename Tp>
   Tp
   integrand(int n1, int m1, int n2, int m2, Tp rho)
   {
-    const auto _S_eps_factor = 1 << (std::numeric_limits<Tp>::digits / 3);
-    const auto _S_eps = _S_eps_factor * std::numeric_limits<Tp>::epsilon();
-    const auto _S_2pi = Tp{2} * emsr::pi_v<Tp>;
+    const auto s_eps_factor = 1 << (std::numeric_limits<Tp>::digits / 3);
+    const auto s_eps = s_eps_factor * std::numeric_limits<Tp>::epsilon();
+    const auto s_2pi = Tp{2} * emsr::pi_v<Tp>;
 
     // Normalized Zernike polynomials.
     auto nz1 = [n1, m1, rho](Tp phi)
@@ -42,12 +42,12 @@ template<typename Tp>
 		{ return rho * nz1(phi) * nz2(phi); };
 
     auto val
-	= emsr::integrate_tanh_sinh(fun, Tp{0}, Tp{_S_2pi},
-			      _S_eps, _S_eps, 8);
-	//= emsr::integrate_oscillatory(fun, Tp{0}, Tp{_S_2pi},
-	//			_S_eps, _S_eps, 1024);
+	= emsr::integrate_tanh_sinh(fun, Tp{0}, Tp{s_2pi},
+			      s_eps, s_eps, 8);
+	//= emsr::integrate_oscillatory(fun, Tp{0}, Tp{s_2pi},
+	//			s_eps, s_eps, 1024);
 
-    return Tp{2} * val.result / _S_2pi / epsilon<Tp>(m1);
+    return Tp{2} * val.result / s_2pi / epsilon<Tp>(m1);
   }
 
 template<typename Tp>

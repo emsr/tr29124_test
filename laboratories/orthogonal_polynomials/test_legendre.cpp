@@ -23,9 +23,9 @@
     std::vector<emsr::QuadraturePoint<Tp>>
     legendre_zeros(unsigned int l, Tp proto = Tp{})
     {
-      const auto _S_eps = emsr::epsilon(proto);
-      const auto _S_pi = emsr::pi_v<Tp>;
-      const unsigned int _S_maxit = 1000u;
+      const auto s_eps = emsr::epsilon(proto);
+      const auto s_pi = emsr::pi_v<Tp>;
+      const unsigned int s_maxit = 1000u;
 
       std::vector<emsr::QuadraturePoint<Tp>> pt(l);
 
@@ -52,13 +52,13 @@
 	    }
 	  else
 	    {
-	      const auto _S_ln2 = emsr::ln2_v<Tp>;
+	      const auto s_ln2 = emsr::ln2_v<Tp>;
 	      const auto lm = l - 1;
 	      const auto lmfact = emsr::detail::log_factorial<Tp>(lm);
 	      const auto mm = lm / 2;
 	      const auto mmfact = emsr::detail::log_factorial<Tp>(mm);
 	      auto Plm1 = (lm & 1 ? -1 : 1)
-			  * std::exp(lmfact - 2 * mmfact - lm * _S_ln2);
+			  * std::exp(lmfact - 2 * mmfact - lm * s_ln2);
 	      auto Ppl = l * Plm1;
 	      pt[m].point = Tp{0};
 	      pt[m].weight = Tp{2} / Ppl / Ppl;
@@ -68,11 +68,11 @@
       for (auto i = 1u; i <= m; ++i)
 	{
 	  // Clever approximation of root.
-	  auto z = std::cos(_S_pi * (i - Tp{1} / Tp{4})
+	  auto z = std::cos(s_pi * (i - Tp{1} / Tp{4})
 				    / (l + Tp{1} / Tp{2}));
 	  auto z1 = z;
 	  auto w = Tp{0};
-	  for (auto its = 0u; its < _S_maxit; ++its)
+	  for (auto its = 0u; its < s_maxit; ++its)
 	    {
 	      // Compute P, P1, and P2 the Legendre polynomials of order
 	      // l, l-1, l-2 respectively by iterating through the recursion
@@ -93,12 +93,12 @@
 	      z1 = z;
 	      // Converge on root by Newton's method.
 	      z = z1 - P / Pp;
-	      if (std::abs(z - z1) < _S_eps)
+	      if (std::abs(z - z1) < s_eps)
 		{
 		  w = Tp{2} / ((Tp{1} - z * z) * Pp * Pp);
 		  break;
 		}
-	      if (its > _S_maxit)
+	      if (its > s_maxit)
 		throw std::logic_error("legendre_zeros: Too many iterations");
 	    }
 

@@ -29,9 +29,7 @@
 #ifndef NUMERIC_LIMITS_H
 #define NUMERIC_LIMITS_H 1
 
-#define _GLIBCXX_NO_SPECFUN 1
 #include <cmath>
-#undef _GLIBCXX_NO_SPECFUN
 
 #include <limits>
 

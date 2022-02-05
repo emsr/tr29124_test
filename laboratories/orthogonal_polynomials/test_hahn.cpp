@@ -24,9 +24,9 @@
  *               {(2n + \alpha + \beta)(2n + \alpha + \beta + 1)}
  * @f]
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   Tp
-  hahn_recur(int n, Tp alpha, Tp beta, int N, _TpX x)
+  hahn_recur(int n, Tp alpha, Tp beta, int N, TpX x)
   {
     auto Qnm1 = Tp{1};
     if (n == 0)
@@ -65,9 +65,9 @@ template<typename Tp, typename _TpX>
  *     = {}_3F_2(-n, n + \alpha + \beta + 1, -x; \alpha + 1, -N; 1)
  * @f]
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   Tp
-  hahn(int n, Tp alpha, Tp beta, int N, _TpX x)
+  hahn(int n, Tp alpha, Tp beta, int N, TpX x)
   {
     if (std::isnan(alpha))
       return alpha;

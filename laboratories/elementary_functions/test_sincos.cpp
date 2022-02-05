@@ -74,10 +74,10 @@
     sincos_t<Tp>
     sincos_pi(Tp x)
     {
-      const auto _S_pi = emsr::pi_v<Tp>;
-      const auto _S_NaN = emsr::quiet_NaN<Tp>(x);
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto s_NaN = emsr::quiet_NaN<Tp>(x);
       if (std::isnan(x))
-	return sincos_t<Tp>{_S_NaN, _S_NaN};
+	return sincos_t<Tp>{s_NaN, s_NaN};
       else if (x < Tp{0})
 	{
 	  sincos_t<Tp> tempsc = sincos_pi(-x);
@@ -85,11 +85,11 @@
 					     tempsc.cos_v};
 	}
       else if (x < Tp{0.5L})
-	return sincos(_S_pi * x);
+	return sincos(s_pi * x);
       else if (x < Tp{1})
 	{
 	  sincos_t<Tp>
-	    tempsc = sincos(_S_pi * (Tp{1} - x));
+	    tempsc = sincos(s_pi * (Tp{1} - x));
 	  return sincos_t<Tp>{tempsc.sin_v,
 					   -tempsc.cos_v};
 	}
@@ -100,9 +100,9 @@
 	  auto sign = (int(nu) & 1) == 1 ? Tp{-1} : Tp{+1};
 
 	  auto sinval = (arg < Tp{0.5L})
-			? std::sin(_S_pi * arg)
-			: std::sin(_S_pi * (Tp{1} - arg));
-	  auto cosval = std::cos(_S_pi * arg);
+			? std::sin(s_pi * arg)
+			: std::sin(s_pi * (Tp{1} - arg));
+	  auto cosval = std::cos(s_pi * arg);
 	  return sincos_t<Tp>{sign * sinval,
 					    sign * cosval};
 	}

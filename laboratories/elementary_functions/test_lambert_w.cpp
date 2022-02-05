@@ -17,16 +17,16 @@
     Tp
     lambert_w_series(Tp z)
     {
-      const auto _S_eps = emsr::epsilon(z);
-      const auto _S_max_iter = 1000u;
+      const auto s_eps = emsr::epsilon(z);
+      const auto s_max_iter = 1000u;
 
       auto _W = z * (Tp{1} - z);
       auto term = -z * z;
-      for (auto k = 3u; k < _S_max_iter; ++k)
+      for (auto k = 3u; k < s_max_iter; ++k)
 	{
 	  term *= -z * std::pow(Tp(k) / Tp(k - 1), k - 2);
 	  _W += term;
-	  if (std::abs(term) < _S_eps * std::abs(_W))
+	  if (std::abs(term) < s_eps * std::abs(_W))
 	    break;
 	}
       return _W;
@@ -39,11 +39,11 @@
     Tp
     lambert_w_newton(Tp z, Tp _W = Tp{1})
     {
-      const auto _S_eps = emsr::epsilon(z);
-      const auto _S_max_iter = 1000u;
+      const auto s_eps = emsr::epsilon(z);
+      const auto s_max_iter = 1000u;
 
       auto wk = _W;
-      for (auto k = 0u; k < _S_max_iter; ++k)
+      for (auto k = 0u; k < s_max_iter; ++k)
 	{
           const auto expwk = std::exp(wk);
           const auto wexpwk = wk * expwk;
@@ -51,7 +51,7 @@
 				   / (Tp{1} + wk) / expwk;
 	  const auto del = std::abs(wkp1 - wk);
 	  wk = wkp1;
-	  if (del < _S_eps)
+	  if (del < s_eps)
 	    break;
 	}
       return wk;
@@ -64,11 +64,11 @@
     Tp
     lambert_w_halley(Tp z, Tp _W = Tp{1})
     {
-      const auto _S_eps = emsr::epsilon(z);
-      const auto _S_max_iter = 1000u;
+      const auto s_eps = emsr::epsilon(z);
+      const auto s_max_iter = 1000u;
 
       auto wk = _W;
-      for (auto k = 0u; k < _S_max_iter; ++k)
+      for (auto k = 0u; k < s_max_iter; ++k)
 	{
           const auto expwk = std::exp(wk);
 	  const auto fact = wk * expwk - z;
@@ -76,7 +76,7 @@
 		      / ((wk + 1) * expwk - (wk + 2) * fact / (2 * wk + 2));
 	  const auto del = std::abs(wkp1 - wk);
 	  wk = wkp1;
-	  if (del < _S_eps)
+	  if (del < s_eps)
 	    break;
 	}
       return wk;
@@ -152,17 +152,17 @@ template<typename Tp>
     std::cout << std::showpoint << std::scientific;
 
     const int N0 = 100;
-    const auto _S_e = emsr::e_v<Tp>;
-    const auto _S_1_e = Tp{1} / _S_e;
-    const auto del0 = (_S_e + _S_1_e) / N0;
+    const auto s_e = emsr::e_v<Tp>;
+    const auto s_1_e = Tp{1} / s_e;
+    const auto del0 = (s_e + s_1_e) / N0;
 
     const int Nm1 = 50;
-    const auto delm1 = _S_1_e / Nm1;
+    const auto delm1 = s_1_e / Nm1;
 
     std::cout << '\n';
     for (int i = 0; i <= N0; ++i)
       {
-	auto z = -_S_1_e  + del0 * i;
+	auto z = -s_1_e  + del0 * i;
         auto W_newton = lambert_w_newton(z);
         auto W_halley = lambert_w_halley(z);
         auto W_series = lambert_w_series(z);
@@ -177,7 +177,7 @@ template<typename Tp>
     std::cout << '\n';
     for (int i = 0; i <= Nm1; ++i)
       {
-	auto z = -_S_1_e  + delm1 * i;
+	auto z = -s_1_e  + delm1 * i;
         auto W_newton = lambert_w_newton(z, Tp{-2});
         auto W_halley = lambert_w_halley(z, Tp{-2});
 	std::cout << ' ' << std::setw(w) << z

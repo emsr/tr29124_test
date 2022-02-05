@@ -24,11 +24,11 @@ namespace emsr
    * @f]
    * @see Consult jacobi_sn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline emsr::fp_promote_t<_Kp, _Up>
-    jacobi_am(_Kp k, _Up u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_am(Kp k, Up u)
     {
-      using type = emsr::fp_promote_t<_Kp, _Up>;
+      using type = emsr::fp_promote_t<Kp, Up>;
       return emsr::detail::jacobi_ellint<type>(k, u).am();
     }
 
@@ -39,11 +39,11 @@ namespace emsr
    * @f]
    * @see Consult jacobi_sn and jacobi_cn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline emsr::fp_promote_t<_Kp, _Up>
-    jacobi_sc(_Kp k, _Up u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_sc(Kp k, Up u)
     {
-      using type = emsr::fp_promote_t<_Kp, _Up>;
+      using type = emsr::fp_promote_t<Kp, Up>;
       return emsr::detail::jacobi_ellint<type>(k, u).sc();
     }
 
@@ -54,11 +54,11 @@ namespace emsr
    * @f]
    * @see Consult jacobi_sn and jacobi_dn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline emsr::fp_promote_t<_Kp, _Up>
-    jacobi_sd(_Kp k, _Up u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_sd(Kp k, Up u)
     {
-      using type = emsr::fp_promote_t<_Kp, _Up>;
+      using type = emsr::fp_promote_t<Kp, Up>;
       return emsr::detail::jacobi_ellint<type>(k, u).sd();
     }
 
@@ -69,11 +69,11 @@ namespace emsr
    * @f]
    * @see Consult jacobi_cn and jacobi_dn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline emsr::fp_promote_t<_Kp, _Up>
-    jacobi_cd(_Kp k, _Up u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_cd(Kp k, Up u)
     {
-      using type = emsr::fp_promote_t<_Kp, _Up>;
+      using type = emsr::fp_promote_t<Kp, Up>;
       return emsr::detail::jacobi_ellint<type>(k, u).cd();
     }
 
@@ -84,11 +84,11 @@ namespace emsr
    * @f]
    * @see Consult jacobi_cn and jacobi_sn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline emsr::fp_promote_t<_Kp, _Up>
-    jacobi_cs(_Kp k, _Up u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_cs(Kp k, Up u)
     {
-      using type = emsr::fp_promote_t<_Kp, _Up>;
+      using type = emsr::fp_promote_t<Kp, Up>;
       return emsr::detail::jacobi_ellint<type>(k, u).cs();
     }
 
@@ -99,11 +99,11 @@ namespace emsr
    * @f]
    * @see Consult jacobi_dn and jacobi_cn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline emsr::fp_promote_t<_Kp, _Up>
-    jacobi_dc(_Kp k, _Up u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_dc(Kp k, Up u)
     {
-      using type = emsr::fp_promote_t<_Kp, _Up>;
+      using type = emsr::fp_promote_t<Kp, Up>;
       return emsr::detail::jacobi_ellint<type>(k, u).dc();
     }
 
@@ -114,11 +114,11 @@ namespace emsr
    * @f]
    * @see Consult jacobi_dn and jacobi_sn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline emsr::fp_promote_t<_Kp, _Up>
-    jacobi_ds(_Kp k, _Up u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_ds(Kp k, Up u)
     {
-      using type = emsr::fp_promote_t<_Kp, _Up>;
+      using type = emsr::fp_promote_t<Kp, Up>;
       return emsr::detail::jacobi_ellint<type>(k, u).ds();
     }
 
@@ -129,11 +129,11 @@ namespace emsr
    * @f]
    * @see Consult jacobi_cn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline emsr::fp_promote_t<_Kp, _Up>
-    jacobi_nc(_Kp k, _Up u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_nc(Kp k, Up u)
     {
-      using type = emsr::fp_promote_t<_Kp, _Up>;
+      using type = emsr::fp_promote_t<Kp, Up>;
       return emsr::detail::jacobi_ellint<type>(k, u).nc();
     }
 
@@ -144,11 +144,11 @@ namespace emsr
    * @f]
    * @see Consult jacobi_dn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline emsr::fp_promote_t<_Kp, _Up>
-    jacobi_nd(_Kp k, _Up u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_nd(Kp k, Up u)
     {
-      using type = emsr::fp_promote_t<_Kp, _Up>;
+      using type = emsr::fp_promote_t<Kp, Up>;
       return emsr::detail::jacobi_ellint<type>(k, u).nd();
     }
 
@@ -159,11 +159,11 @@ namespace emsr
    * @f]
    * @see Consult jacobi_sn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline emsr::fp_promote_t<_Kp, _Up>
-    jacobi_ns(_Kp k, _Up u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_ns(Kp k, Up u)
     {
-      using type = emsr::fp_promote_t<_Kp, _Up>;
+      using type = emsr::fp_promote_t<Kp, Up>;
       return emsr::detail::jacobi_ellint<type>(k, u).ns();
     }
 

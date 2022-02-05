@@ -18,32 +18,32 @@
  * or
  *   ldexp(1, digits)
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  test_maxint(_Tp proto = _Tp{})
+  test_maxint(Tp proto = Tp{})
   {
     std::cout.precision(emsr::max_digits10(proto));
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
     // Try 2/epsilon.
-    auto maxint = _Tp{2} / emsr::epsilon(proto);
+    auto maxint = Tp{2} / emsr::epsilon(proto);
     std::cout << "\n\nTrying maxint = " << std::setw(width) << maxint << '\n';
     if (maxint + 1 == maxint)
       std::cout << "\nmaxint FAIL\n";
-    for (int i = 1; i < 100; ++i, maxint += _Tp{1})
+    for (int i = 1; i < 100; ++i, maxint += Tp{1})
       if (maxint + 1 == maxint)
 	{
 	  std::cout << "\nmaxint FAIL at " << maxint << "\n";
 	  break;
 	}
 
-    // Try ldexp(1, std::numeric_limis<_Tp>::digits);
-    auto maxint2 = std::ldexp(_Tp{1}, emsr::digits(proto));
+    // Try ldexp(1, std::numeric_limis<Tp>::digits);
+    auto maxint2 = std::ldexp(Tp{1}, emsr::digits(proto));
     std::cout << "\n\nTrying maxint2 = " << std::setw(width) << maxint2 << '\n';
     if (maxint2 + 1 == maxint2)
       std::cout << "\nmaxint2 FAIL\n";
-    for (int i = 1; i < 100; ++i, maxint2 += _Tp{1})
+    for (int i = 1; i < 100; ++i, maxint2 += Tp{1})
       if (maxint2 + 1 == maxint2)
 	{
 	  std::cout << "\nmaxint2 FAIL at " << maxint2 << "\n";

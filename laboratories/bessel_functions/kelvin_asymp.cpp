@@ -67,6 +67,6 @@ main()
   for (int i = 100; i < 400; ++i)
     {
       const auto x = i * double(0.01);
-      const auto kvn = __kelvin_asymp(x);
+      const auto kvn = kelvin_asymp(x);
     }
 }

@@ -22,8 +22,8 @@
 // expexted results for the testsuite.
 //
 
-#ifndef _GLIBCXX_SPECFUN_TESTCASE_H
-#define _GLIBCXX_SPECFUN_TESTCASE_H
+#ifndef SPECFUN_TESTCASE_H
+#define SPECFUN_TESTCASE_H
 
 #include <complex>
 
@@ -806,4 +806,4 @@ template<typename _Tp>
     _Tp f;
   };
 
-#endif // _GLIBCXX_SPECFUN_TESTCASE_H
+#endif // SPECFUN_TESTCASE_H

@@ -27,10 +27,8 @@
  *  Do not attempt to use it directly. @headername{limits}
  */
 
-#ifndef _GLIBCXX_EXT_FLOAT128_LIMITS_H
-#define _GLIBCXX_EXT_FLOAT128_LIMITS_H 1
-
-#pragma GCC system_header
+#ifndef FLOAT128_LIMITS_H
+#define FLOAT128_LIMITS_H 1
 
 #ifdef _GLIBCXX_USE_FLOAT128
 
@@ -48,27 +46,6 @@
 
 #include <limits>
 
-// long double
-
-// Default values.  Should be overridden in configuration files if necessary.
-
-#ifndef __glibcxx_float128_has_denorm_loss
-#  define __glibcxx_float128_has_denorm_loss false
-#endif
-#ifndef __glibcxx_float128_traps
-#  define __glibcxx_float128_traps false
-#endif
-#ifndef __glibcxx_float128_tinyness_before
-#  define __glibcxx_float128_tinyness_before false
-#endif
-
-// The fraction 643/2136 approximates log10(2) to 7 significant digits.
-#define __glibcxx_digits10_b(T,B)		\
-  (__glibcxx_digits_b (T,B) * 643L / 2136)
-
-#define __glibcxx_max_digits10(T) \
-  (2 + (T) * 643L / 2136)
-
 namespace std _GLIBCXX_VISIBILITY(default)
 {
 _GLIBCXX_BEGIN_NAMESPACE_VERSION
@@ -77,83 +54,68 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
   template<>
     struct numeric_limits<__float128>
     {
-      static _GLIBCXX_USE_CONSTEXPR bool is_specialized = true;
+      static constexpr bool is_specialized = true;
 
-      static _GLIBCXX_CONSTEXPR __float128 
-      min() _GLIBCXX_USE_NOEXCEPT { return FLT128_MIN; }
+      static constexpr __float128 
+      min() noexcept { return FLT128_MIN; }
 
-      static _GLIBCXX_CONSTEXPR __float128 
-      max() _GLIBCXX_USE_NOEXCEPT { return FLT128_MAX; }
+      static constexpr __float128 
+      max() noexcept { return FLT128_MAX; }
 
-#if __cplusplus >= 201103L
-      static _GLIBCXX_CONSTEXPR __float128 
-      lowest() _GLIBCXX_USE_NOEXCEPT { return -FLT128_MAX; }
-#endif
+      static constexpr __float128 
+      lowest() noexcept { return -FLT128_MAX; }
 
-      static _GLIBCXX_USE_CONSTEXPR int digits = FLT128_MANT_DIG;
-      static _GLIBCXX_USE_CONSTEXPR int digits10 = FLT128_DIG;
-#if __cplusplus >= 201103L
-      static _GLIBCXX_USE_CONSTEXPR int max_digits10
-	 = __glibcxx_max_digits10 (FLT128_MANT_DIG);
-#endif
-      static _GLIBCXX_USE_CONSTEXPR bool is_signed = true;
-      static _GLIBCXX_USE_CONSTEXPR bool is_integer = false;
-      static _GLIBCXX_USE_CONSTEXPR bool is_exact = false;
-      static _GLIBCXX_USE_CONSTEXPR int radix = __FLT_RADIX__;
+      static constexpr int digits = FLT128_MANT_DIG;
+      static constexpr int digits10 = FLT128_DIG;
+      // The fraction 643/2136 approximates log10(2) to 7 significant digits.
+      static constexpr int max_digits10 = (2 + (FLT128_MANT_DIG) * 643L / 2136);
+      static constexpr bool is_signed = true;
+      static constexpr bool is_integer = false;
+      static constexpr bool is_exact = false;
+      static constexpr int radix = __FLT_RADIX__;
 
-      static _GLIBCXX_CONSTEXPR __float128 
-      epsilon() _GLIBCXX_USE_NOEXCEPT { return FLT128_EPSILON; }
+      static constexpr __float128 
+      epsilon() noexcept { return FLT128_EPSILON; }
 
-      static _GLIBCXX_CONSTEXPR __float128 
-      round_error() _GLIBCXX_USE_NOEXCEPT { return 0.5Q; }
+      static constexpr __float128 
+      round_error() noexcept { return 0.5Q; }
 
-      static _GLIBCXX_USE_CONSTEXPR int min_exponent = FLT128_MIN_EXP;
-      static _GLIBCXX_USE_CONSTEXPR int min_exponent10 = FLT128_MIN_10_EXP;
-      static _GLIBCXX_USE_CONSTEXPR int max_exponent = FLT128_MAX_EXP;
-      static _GLIBCXX_USE_CONSTEXPR int max_exponent10 = FLT128_MAX_10_EXP;
+      static constexpr int min_exponent = FLT128_MIN_EXP;
+      static constexpr int min_exponent10 = FLT128_MIN_10_EXP;
+      static constexpr int max_exponent = FLT128_MAX_EXP;
+      static constexpr int max_exponent10 = FLT128_MAX_10_EXP;
 
-      static _GLIBCXX_USE_CONSTEXPR bool has_infinity = true;
-      static _GLIBCXX_USE_CONSTEXPR bool has_quiet_NaN = true;
-      static _GLIBCXX_USE_CONSTEXPR bool has_signaling_NaN = has_quiet_NaN;
-      static _GLIBCXX_USE_CONSTEXPR float_denorm_style has_denorm
-	= denorm_present;
-      static _GLIBCXX_USE_CONSTEXPR bool has_denorm_loss
-	= __glibcxx_float128_has_denorm_loss;
+      static constexpr bool has_infinity = true;
+      static constexpr bool has_quiet_NaN = true;
+      static constexpr bool has_signaling_NaN = has_quiet_NaN;
+      static constexpr float_denorm_style has_denorm = denorm_present;
+      static constexpr bool has_denorm_loss = false; // FIXME: Check
 
-      static _GLIBCXX_CONSTEXPR __float128
-      infinity() _GLIBCXX_USE_NOEXCEPT { return __builtin_infq(); }
+      static constexpr __float128
+      infinity() noexcept { return __builtin_infq(); }
 
-      static _GLIBCXX_CONSTEXPR __float128 
-      quiet_NaN() _GLIBCXX_USE_NOEXCEPT { return __builtin_nanq(""); }
+      static constexpr __float128 
+      quiet_NaN() noexcept { return __builtin_nanq(""); }
 
-      static _GLIBCXX_CONSTEXPR __float128 
-      signaling_NaN() _GLIBCXX_USE_NOEXCEPT { return __builtin_nansq(""); }
+      static constexpr __float128 
+      signaling_NaN() noexcept { return __builtin_nansq(""); }
 
-      static _GLIBCXX_CONSTEXPR __float128 
-      denorm_min() _GLIBCXX_USE_NOEXCEPT { return FLT128_DENORM_MIN; }
+      static constexpr __float128 
+      denorm_min() noexcept { return FLT128_DENORM_MIN; }
 
-      static _GLIBCXX_USE_CONSTEXPR bool is_iec559
+      static constexpr bool is_iec559
 	= has_infinity && has_quiet_NaN && has_denorm == denorm_present;
-      static _GLIBCXX_USE_CONSTEXPR bool is_bounded = true;
-      static _GLIBCXX_USE_CONSTEXPR bool is_modulo = false;
+      static constexpr bool is_bounded = true;
+      static constexpr bool is_modulo = false;
 
-      static _GLIBCXX_USE_CONSTEXPR bool traps = __glibcxx_float128_traps;
-      static _GLIBCXX_USE_CONSTEXPR bool tinyness_before
-	= __glibcxx_float128_tinyness_before;
-      static _GLIBCXX_USE_CONSTEXPR float_round_style round_style
+      static constexpr bool traps = false; // FIXME: Check
+      static constexpr bool tinyness_before = false; // FIXME: Check
+      static constexpr float_round_style round_style
 	= round_to_nearest;
     };
 
-_GLIBCXX_END_NAMESPACE_VERSION
 } // namespace std
-
-#undef __glibcxx_digits10
-#undef __glibcxx_max_digits10
-
-#undef __glibcxx_float128_has_denorm_loss
-#undef __glibcxx_float128_traps
-#undef __glibcxx_float128_tinyness_before
 
 #endif // _GLIBCXX_USE_FLOAT128
 
-#endif // _GLIBCXX_EXT_FLOAT128_LIMITS_H
+#endif // FLOAT128_LIMITS_H

@@ -242,7 +242,7 @@ std::cout << "Npnu  =" << ryp << '\n';
 
 template<typename Tp>
   void
-  new_bessel_chunk(Tp nu, Tp x, Tp& _Jnu, Tp& _Jpnu, Tp& _Nnu, Tp& _Npnu)
+  new_bessel_chunk(Tp nu, Tp x, Tp& Jnu, Tp& Jpnu, Tp& Nnu, Tp& Npnu)
   {
       constexpr Tp s_pi = emsr::pi_v<Tp>;
       constexpr Tp s_inf = std::numeric_limits<Tp>::infinity();
@@ -251,21 +251,21 @@ template<typename Tp>
 	{
 	  if (nu == Tp{0})
 	    {
-	      _Jnu = Tp{1};
-	      _Jpnu = Tp{0};
+	      Jnu = Tp{1};
+	      Jpnu = Tp{0};
 	    }
 	  else if (nu == Tp{1})
 	    {
-	      _Jnu = Tp{0};
-	      _Jpnu = Tp{0.5L};
+	      Jnu = Tp{0};
+	      Jpnu = Tp{0.5L};
 	    }
 	  else
 	    {
-	      _Jnu = Tp{0};
-	      _Jpnu = Tp{0};
+	      Jnu = Tp{0};
+	      Jpnu = Tp{0};
 	    }
-	  _Nnu = -s_inf;
-	  _Npnu = s_inf;
+	  Nnu = -s_inf;
+	  Npnu = s_inf;
 	  return;
 	}
 
@@ -283,13 +283,13 @@ std::cout << '\n';
       const Tp mu2 = mu * mu;
       const Tp xi = Tp{1} / x;
       const Tp xi2 = Tp{2} * xi;
-      const Tp _Wronski = xi2 / s_pi;
+      const Tp Wronski = xi2 / s_pi;
 std::cout << "n    =" << n << '\n';
 std::cout << "xmu  =" << mu << '\n';
 std::cout << "xmu2 =" << mu2 << '\n';
 std::cout << "xi   =" << xi << '\n';
 std::cout << "xi2  =" << xi2 << '\n';
-std::cout << "w    =" << _Wronski << '\n';
+std::cout << "w    =" << Wronski << '\n';
       int isign = 1;
       Tp h = nu * xi;
       if (h < s_fp_min)
@@ -326,28 +326,28 @@ std::cout << "h   =" << h << '\n';
 std::cout << "b   =" << b << '\n';
 std::cout << "d   =" << d << '\n';
 std::cout << "c   =" << c << '\n';
-      Tp _Jnul = isign * s_fp_min;
-      Tp _Jpnul = h * _Jnul;
-      Tp _Jnul1 = _Jnul;
-      Tp _Jpnu1 = _Jpnul;
+      Tp Jnul = isign * s_fp_min;
+      Tp Jpnul = h * Jnul;
+      Tp Jnul1 = Jnul;
+      Tp Jpnu1 = Jpnul;
       Tp fact = nu * xi;
       for (int l = n; l >= 1; --l)
 	{
-	  const Tp _Jnutemp = fact * _Jnul + _Jpnul;
+	  const Tp Jnutemp = fact * Jnul + Jpnul;
 	  fact -= xi;
-	  _Jpnul = fact * _Jnutemp - _Jnul;
-	  _Jnul = _Jnutemp;
+	  Jpnul = fact * Jnutemp - Jnul;
+	  Jnul = Jnutemp;
 	}
-      if (_Jnul == Tp{0})
-	_Jnul = s_eps;
-std::cout << "Jnul   =" << _Jnul << '\n';
-std::cout << "Jpnul  =" << _Jpnul << '\n';
-std::cout << "Jnul1  =" << _Jnul1 << '\n';
-std::cout << "Jpnu1  =" << _Jpnu1 << '\n';
+      if (Jnul == Tp{0})
+	Jnul = s_eps;
+std::cout << "Jnul   =" << Jnul << '\n';
+std::cout << "Jpnul  =" << Jpnul << '\n';
+std::cout << "Jnul1  =" << Jnul1 << '\n';
+std::cout << "Jpnu1  =" << Jpnu1 << '\n';
 
-      Tp f = _Jpnul / _Jnul;
+      Tp f = Jpnul / Jnul;
 std::cout << "f   =" << f << '\n';
-      Tp _Nmu = Tp{0}, _Nnu1 = Tp{0}, _Npmu, _Jmu;
+      Tp Nmu = Tp{0}, Nnu1 = Tp{0}, Npmu, Jmu;
       if (x < s_x_min)
 	{
 	  const Tp x2 = x / Tp{2};
@@ -414,33 +414,33 @@ std::cout << "p     =" << p << '\n';
 std::cout << "q     =" << q << '\n';
 std::cout << "sum   =" << sum << '\n';
 std::cout << "sum1  =" << sum1 << '\n';
-	  _Nmu = -sum;
-	  _Nnu1 = -sum1 * xi2;
-	  _Npmu = mu * xi * _Nmu - _Nnu1;
-	  _Jmu = _Wronski / (_Npmu - f * _Nmu);
-std::cout << "Nmu   =" << _Nmu << '\n';
-std::cout << "Nnu1  =" << _Nnu1 << '\n';
-std::cout << "Npmu  =" << _Npmu << '\n';
-std::cout << "Jmu   =" << _Jmu << '\n';
+	  Nmu = -sum;
+	  Nnu1 = -sum1 * xi2;
+	  Npmu = mu * xi * Nmu - Nnu1;
+	  Jmu = Wronski / (Npmu - f * Nmu);
+std::cout << "Nmu   =" << Nmu << '\n';
+std::cout << "Nnu1  =" << Nnu1 << '\n';
+std::cout << "Npmu  =" << Npmu << '\n';
+std::cout << "Jmu   =" << Jmu << '\n';
 	}
-      fact = _Jmu / _Jnul;
-      _Jnu = fact * _Jnul1;
-      _Jpnu = fact * _Jpnu1;
+      fact = Jmu / Jnul;
+      Jnu = fact * Jnul1;
+      Jpnu = fact * Jpnu1;
 std::cout << "fact  =" << fact << '\n';
-std::cout << "Jnu   =" << _Jnu << '\n';
-std::cout << "Jpnu  =" << _Jpnu << '\n';
+std::cout << "Jnu   =" << Jnu << '\n';
+std::cout << "Jpnu  =" << Jpnu << '\n';
 std::cout << "n     =" << n << '\n';
       for (int i = 1; i <= n; ++i)
 	{
-	  const Tp _Nnutemp = (mu + i) * xi2 * _Nnu1 - _Nmu;
-	  _Nmu = _Nnu1;
-	  _Nnu1 = _Nnutemp;
-std::cout << "  i =" << i << "  Nmu=" << _Nmu << "  Nnu1=" << _Nnu1 << '\n';
+	  const Tp Nnutemp = (mu + i) * xi2 * Nnu1 - Nmu;
+	  Nmu = Nnu1;
+	  Nnu1 = Nnutemp;
+std::cout << "  i =" << i << "  Nmu=" << Nmu << "  Nnu1=" << Nnu1 << '\n';
 	}
-      _Nnu = _Nmu;
-      _Npnu = nu * xi * _Nmu - _Nnu1;
-std::cout << "Nnu   =" << _Nnu << '\n';
-std::cout << "Npnu  =" << _Npnu << '\n';
+      Nnu = Nmu;
+      Npnu = nu * xi * Nmu - Nnu1;
+std::cout << "Nnu   =" << Nnu << '\n';
+std::cout << "Npnu  =" << Npnu << '\n';
   }
 
 int

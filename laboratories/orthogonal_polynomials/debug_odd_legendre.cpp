@@ -16,12 +16,12 @@ template<typename Tp>
     std::cout.precision(emsr::digits10<Tp>());
     auto w = 8 + std::cout.precision();
 
-    const auto _S_ln2 = emsr::ln2_v<Tp>;
+    const auto s_ln2 = emsr::ln2_v<Tp>;
 
     //std::cout << std::setfill('0');
 
     std::cout << "ln(2) = " << std::log(Tp{2}) << '\n';
-    std::cout << "ln(2) = " << _S_ln2 << '\n';
+    std::cout << "ln(2) = " << s_ln2 << '\n';
 
     for (auto l = 1u; l < emsr::detail::s_num_factorials<Tp>; l += 2)
       {
@@ -44,7 +44,7 @@ template<typename Tp>
 	    const auto mm = lm / 2;
 	    const auto mmfact = emsr::detail::log_factorial<Tp>(mm);
 	    auto Plm1 = ((mm & 1) ? -1 : 1)
-			* std::exp(lmfact - 2 * mmfact - lm * _S_ln2);
+			* std::exp(lmfact - 2 * mmfact - lm * s_ln2);
 
 	    auto Ppl = l * Plm1;
 	    auto weight = Tp{2} / Ppl / Ppl;
@@ -54,10 +54,10 @@ template<typename Tp>
 	  {
 	    const auto lm = l - 1;
 	    const auto mm = lm / 2;
-	    auto _Am = Tp{1};
+	    auto Am = Tp{1};
 	    for (auto m = 1u; m <= mm; ++m)
-	      _Am *= -Tp(2 * m - 1) / Tp(2 * m);
-	    auto Plm1 = _Am;
+	      Am *= -Tp(2 * m - 1) / Tp(2 * m);
+	    auto Plm1 = Am;
 	    auto Ppl = l * Plm1;
 	    auto weight = Tp{2} / Ppl / Ppl;
 	    std::cout << ' ' << std::setw(w) << Plm1 << ' ' << std::setw(w) << Ppl << ' ' << std::setw(w) << weight << '\n';

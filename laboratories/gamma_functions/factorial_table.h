@@ -150,4 +150,4 @@ namespace emsr
 
 } // namespace
 
-#endif
+#endif // FACTORIAL_TABLE_H

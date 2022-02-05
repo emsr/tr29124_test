@@ -27,10 +27,8 @@
  *  Do not attempt to use it directly. @headername{xxxxx}
  */
 
-#ifndef _GLIBCXX_EXT_COMPLEX128_MATH_H
-#define _GLIBCXX_EXT_COMPLEX128_MATH_H 1
-
-#pragma GCC system_header
+#ifndef COMPLEX128_MATH_H
+#define COMPLEX128_MATH_H 1
 
 #ifdef _GLIBCXX_USE_FLOAT128
 
@@ -40,32 +38,32 @@ typedef _Complex float __attribute__((mode(TC))) __complex128;
 #ifdef __cplusplus
 extern "C" {
 #endif
-  __float128 strtoflt128 (const char*, char**) _GLIBCXX_NOEXCEPT;
+  __float128 strtoflt128 (const char*, char**) noexcept;
 
-  __float128 cabsq (__complex128) _GLIBCXX_NOEXCEPT;
-  __float128 cargq (__complex128) _GLIBCXX_NOEXCEPT;
-  __float128 cimagq (__complex128) _GLIBCXX_NOEXCEPT;
-  __float128 crealq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 cacosq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 cacoshq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 casinq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 casinhq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 catanq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 catanhq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 ccosq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 ccoshq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 cexpq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 cexpiq (__float128) _GLIBCXX_NOEXCEPT;
-  __complex128 clogq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 clog10q (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 conjq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 cpowq (__complex128, __complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 cprojq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 csinq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 csinhq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 csqrtq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 ctanq (__complex128) _GLIBCXX_NOEXCEPT;
-  __complex128 ctanhq (__complex128) _GLIBCXX_NOEXCEPT;
+  __float128 cabsq (__complex128) noexcept;
+  __float128 cargq (__complex128) noexcept;
+  __float128 cimagq (__complex128) noexcept;
+  __float128 crealq (__complex128) noexcept;
+  __complex128 cacosq (__complex128) noexcept;
+  __complex128 cacoshq (__complex128) noexcept;
+  __complex128 casinq (__complex128) noexcept;
+  __complex128 casinhq (__complex128) noexcept;
+  __complex128 catanq (__complex128) noexcept;
+  __complex128 catanhq (__complex128) noexcept;
+  __complex128 ccosq (__complex128) noexcept;
+  __complex128 ccoshq (__complex128) noexcept;
+  __complex128 cexpq (__complex128) noexcept;
+  __complex128 cexpiq (__float128) noexcept;
+  __complex128 clogq (__complex128) noexcept;
+  __complex128 clog10q (__complex128) noexcept;
+  __complex128 conjq (__complex128) noexcept;
+  __complex128 cpowq (__complex128, __complex128) noexcept;
+  __complex128 cprojq (__complex128) noexcept;
+  __complex128 csinq (__complex128) noexcept;
+  __complex128 csinhq (__complex128) noexcept;
+  __complex128 csqrtq (__complex128) noexcept;
+  __complex128 ctanq (__complex128) noexcept;
+  __complex128 ctanhq (__complex128) noexcept;
 #ifdef __cplusplus
 }
 #endif
@@ -74,9 +72,9 @@ namespace std
 {
 
 // Pre-declare some real __float128 functions in std.
-  __float128 log(__float128 __x) _GLIBCXX_USE_NOEXCEPT;
-  __float128 sin(__float128 __x) _GLIBCXX_USE_NOEXCEPT;
-  __float128 cos(__float128 __x) _GLIBCXX_USE_NOEXCEPT;
+  __float128 log(__float128 __x) noexcept;
+  __float128 sin(__float128 __x) noexcept;
+  __float128 cos(__float128 __x) noexcept;
 
 #if _GLIBCXX_USE_C99_COMPLEX
 
@@ -128,8 +126,6 @@ namespace std
   __complex_pow(const __complex128& __x, const __complex128& __y)
   { return cpowq(__x, __y); }
 
-#if __cplusplus >= 201103L
-
   inline __complex128
   __complex_acos(const __complex128& __z)
   { return cacosq(__z); }
@@ -158,12 +154,10 @@ namespace std
   __complex_proj(const __complex128& __z)
   { return cprojq(__z); }
 
-#endif // C++11
-
 #endif // _GLIBCXX_USE_C99_COMPLEX
 
 } // namespace std
 
 #endif // _GLIBCXX_USE_FLOAT128
 
-#endif // _GLIBCXX_EXT_COMPLEX128_MATH_H
+#endif // COMPLEX128_MATH_H

@@ -27,64 +27,64 @@ template<typename Tp>
   Tp
   bernoulli_2n_2x(unsigned int n, Tp x)
   {
-    std::vector<Tp> _B;
+    std::vector<Tp> B;
 
     //Tp fact =  * bernoulli(0);
-    _B.push_back(Tp{1});
-    if (n == _B.size() - 1)
-      return _B.back();
+    B.push_back(Tp{1});
+    if (n == B.size() - 1)
+      return B.back();
 
-    _B.push_back(-x / Tp{6});
-    if (n == _B.size() - 1)
-      return _B.back();
+    B.push_back(-x / Tp{6});
+    if (n == B.size() - 1)
+      return B.back();
 
-    _B.push_back(x * (Tp{1} + x * Tp{5}) / Tp{60});
-    if (n == _B.size() - 1)
-      return _B.back();
+    B.push_back(x * (Tp{1} + x * Tp{5}) / Tp{60});
+    if (n == B.size() - 1)
+      return B.back();
 
-    _B.push_back(-x * (Tp{4}
+    B.push_back(-x * (Tp{4}
 		+ x * (Tp{21}
 		+ x * Tp{35})) / Tp{504});
-    if (n == _B.size() - 1)
-      return _B.back();
+    if (n == B.size() - 1)
+      return B.back();
 
-    _B.push_back(x * (Tp{18}
+    B.push_back(x * (Tp{18}
 	       + x * (Tp{101}
 	       + x * (Tp{210}
 	       + x * Tp{175}))) / Tp{2160});
-    if (n == _B.size() - 1)
-      return _B.back();
+    if (n == B.size() - 1)
+      return B.back();
 
-    _B.push_back(-x * (Tp{48}
+    B.push_back(-x * (Tp{48}
 		+ x * (Tp{286}
 		+ x * (Tp{671}
 		+ x * (Tp{770}
 		+ x * Tp{385})))) / Tp{3168});
-    if (n == _B.size() - 1)
-      return _B.back();
+    if (n == B.size() - 1)
+      return B.back();
 
-    _B.push_back(x * (Tp{33168}
+    B.push_back(x * (Tp{33168}
 	       + x * (Tp{207974}
 	       + x * (Tp{531531}
 	       + x * (Tp{715715}
 	       + x * (Tp{525525}
 	       + x * Tp{175175}))))) / Tp{786240});
-    if (n == _B.size() - 1)
-      return _B.back();
+    if (n == B.size() - 1)
+      return B.back();
 
-    for (unsigned k = _B.size(); k <= n; ++k)
+    for (unsigned k = B.size(); k <= n; ++k)
       {
-	_B.push_back(Tp{0});
-	for (unsigned i = 0; i < _B.size() - 1; ++i)
+	B.push_back(Tp{0});
+	for (unsigned i = 0; i < B.size() - 1; ++i)
 	  {
-	    _B.back() += emsr::detail::binomial<Tp>(2 * k - 1, 2 * i + 1)
+	    B.back() += emsr::detail::binomial<Tp>(2 * k - 1, 2 * i + 1)
 			 * emsr::detail::bernoulli_2n<Tp>(i + 1)
-			 * _B[k - i - 1] / Tp(2 * i + 2);
+			 * B[k - i - 1] / Tp(2 * i + 2);
 	  }
-	_B.back() *= -Tp{2} * x;
+	B.back() *= -Tp{2} * x;
       }
 
-    return _B.back();
+    return B.back();
   }
 
   /**
@@ -144,9 +144,9 @@ template<typename Tp>
    *          + O(n^{-M-1})
    * @f]
    */
-  template<typename _Tn, typename Tp>
+  template<typename Tn, typename Tp>
     Tp
-    gamma_ratio_buhring(_Tn n, Tp a, Tp b, Tp c,
+    gamma_ratio_buhring(Tn n, Tp a, Tp b, Tp c,
 			  int s_M = 20, buhring_mode mode = automatic)
     {
       const auto s_eps = 10 * emsr::epsilon(a);
@@ -319,23 +319,23 @@ template<typename Tp>
   {
     const auto s_max_iter = 1000;
     auto fact = Tp{1};
-    auto _Fnm1 = Tp{1};
-    auto sum = fact * _Fnm1;
+    auto Fnm1 = Tp{1};
+    auto sum = fact * Fnm1;
     fact *= (b - a);
-    auto _Fn = -b / z;
-    auto term = fact * _Fn;
+    auto Fn = -b / z;
+    auto term = fact * Fn;
     sum += term;
     auto prev_term = std::abs(term);
     for (auto n = 2; n < s_max_iter; ++n)
       {
 	fact *= (b - a + n - 1) / n;
-	auto _Fnp1 = (-(n + b) * _Fn + n * _Fnm1) / z;
-	term = fact * _Fnp1;
+	auto Fnp1 = (-(n + b) * Fn + n * Fnm1) / z;
+	term = fact * Fnp1;
 	if (std::abs(term) > prev_term)
 	  break;
 	sum += term;
-	_Fnm1 = _Fn;
-	_Fn = _Fnp1;
+	Fnm1 = Fn;
+	Fn = Fnp1;
       }
     return sum * std::pow(z, a - b);
   }

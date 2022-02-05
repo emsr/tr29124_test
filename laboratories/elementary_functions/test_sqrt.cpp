@@ -14,30 +14,30 @@
  */
 template<typename Tp>
   constexpr Tp
-  __sqrt_newton(Tp __x)
+  sqrt_newton(Tp x)
   {
-    const auto _S_eps = std::numeric_limits<Tp>::epsilon();
-    const auto _S_digs = std::numeric_limits<Tp>::digits;
-    constexpr auto __rsqrt2 = Tp{1} / emsr::sqrt2_v<Tp>;
+    const auto s_eps = std::numeric_limits<Tp>::epsilon();
+    const auto s_digs = std::numeric_limits<Tp>::digits;
+    constexpr auto rsqrt2 = Tp{1} / emsr::sqrt2_v<Tp>;
 
-    if (__x == Tp{0})
+    if (x == Tp{0})
       return Tp{0};
 
-    int __e;
-    auto __xx = std::frexp(__x, &__e);
+    int e;
+    auto xx = std::frexp(x, &e);
 
-    auto __f = 0.4 + 0.6 * __xx;
+    auto f = 0.4 + 0.6 * xx;
 
-    for (int i = 0; i < _S_digs; ++i)
+    for (int i = 0; i < s_digs; ++i)
       {
-	__f -= Tp{0.5L} * (__f - __xx / __f);
-	if (std::abs(__f * __f - __xx) < _S_eps * __f)
+	f -= Tp{0.5L} * (f - xx / f);
+	if (std::abs(f * f - xx) < s_eps * f)
 	  break;
       }
-    if (__e & 1)
-      return __rsqrt2 * std::ldexp(__f, (__e + 1) >> 1);
+    if (e & 1)
+      return rsqrt2 * std::ldexp(f, (e + 1) >> 1);
     else
-      return std::ldexp(__f, __e >> 1);
+      return std::ldexp(f, e >> 1);
   }
 
 /**
@@ -45,27 +45,27 @@ template<typename Tp>
  */
 template<typename Tp>
   constexpr Tp
-  __sqrt_recip_newton(Tp __x)
+  sqrt_recip_newton(Tp x)
   {
-    const auto _S_eps = std::numeric_limits<Tp>::epsilon();
-    const auto _S_digs = std::numeric_limits<Tp>::digits;
+    const auto s_eps = std::numeric_limits<Tp>::epsilon();
+    const auto s_digs = std::numeric_limits<Tp>::digits;
 
-    if (__x == Tp{0})
+    if (x == Tp{0})
       return Tp{0};
 
     // TODO: Argument reduction...
 
-    auto __f = 0.01;
-    auto __ff = __f * __f;
-    for (int i = 0; i < _S_digs; ++i)
+    auto f = 0.01;
+    auto ff = f * f;
+    for (int i = 0; i < s_digs; ++i)
       {
-	__f *= (Tp{3} - __x * __ff) / Tp{2};
-	__ff = __f * __f;
-	if (std::abs(__ff - __x) < _S_eps * __f)
+	f *= (Tp{3} - x * ff) / Tp{2};
+	ff = f * f;
+	if (std::abs(ff - x) < s_eps * f)
 	  break;
       }
 
-    return __f;
+    return f;
   }
 
 /**
@@ -81,8 +81,8 @@ template<typename Tp>
     for (int i = 0; i <= 1000; ++i)
       {
 	auto x = Tp{1.0L} * i;
-	auto sqrtr = x * __sqrt_recip_newton(x);
-	auto sqrtcw = __sqrt_newton(x);
+	auto sqrtr = x * sqrt_recip_newton(x);
+	auto sqrtcw = sqrt_newton(x);
 	auto sqrt = std::sqrt(x);
 	auto deltar = sqrtr - sqrt;
 	auto deltacw = sqrtcw - sqrt;

@@ -17,20 +17,20 @@
     Tp
     ibeta_cont_frac(Tp a, Tp b, Tp x)
     {
-      constexpr auto _S_itmax = 100;
-      const auto _S_fpmin = 1000 * std::numeric_limits<Tp>::min();
-      const auto _S_eps = std::numeric_limits<Tp>::epsilon();
+      constexpr auto s_itmax = 100;
+      const auto s_fpmin = 1000 * std::numeric_limits<Tp>::min();
+      const auto s_eps = std::numeric_limits<Tp>::epsilon();
       auto apb = a + b;
       auto ap1 = a + Tp{1};
       auto am1 = a - Tp{1};
       auto c = Tp{1};
       //  First step of Lentz's method.
       auto d = Tp{1} - apb * x / ap1;
-      if (std::abs(d) < _S_fpmin)
-	d = _S_fpmin;
+      if (std::abs(d) < s_fpmin)
+	d = s_fpmin;
       d = Tp{1} / d;
       auto h = d;
-      for (int m = 1; m <= _S_itmax; ++m)
+      for (int m = 1; m <= s_itmax; ++m)
 	{
 	  auto m2 = 2 * m;
 
@@ -38,11 +38,11 @@
 	  auto aa = Tp(m) * (b - Tp(m)) * x
 		     / ((am1 + Tp(m2)) * (a + Tp(m2)));
 	  d = Tp{1} + aa * d;
-	  if (std::abs(d) < _S_fpmin)
-	    d = _S_fpmin;
+	  if (std::abs(d) < s_fpmin)
+	    d = s_fpmin;
 	  c = Tp{1} + aa / c;
-	  if (std::abs(c) < _S_fpmin)
-	    c = _S_fpmin;
+	  if (std::abs(c) < s_fpmin)
+	    c = s_fpmin;
 	  d = Tp{1} / d;
 	  h *= d * c;
 
@@ -50,19 +50,19 @@
 	  aa = -(a + Tp(m)) * (apb + Tp(m)) * x
 		/ ((a + Tp(m2)) * (ap1 + Tp(m2)));
 	  d = Tp{1} + aa * d;
-	  if (std::abs(d) < _S_fpmin)
-	    d = _S_fpmin;
+	  if (std::abs(d) < s_fpmin)
+	    d = s_fpmin;
 	  c = Tp{1} + aa / c;
-	  if (std::abs(c) < _S_fpmin)
-	    c = _S_fpmin;
+	  if (std::abs(c) < s_fpmin)
+	    c = s_fpmin;
 	  d = Tp{1} / d;
 	  auto del = d * c;
 	  h *= del;
 
-	  if (std::abs(del - Tp{1}) < _S_eps)
+	  if (std::abs(del - Tp{1}) < s_eps)
 	    return h;
 	}
-      throw std::runtime_error("ibeta_cont_frac: a or b too big, or _S_itmax too small");
+      throw std::runtime_error("ibeta_cont_frac: a or b too big, or s_itmax too small");
     }
 
   ///  Returns the incomplete beta function I_x(a;b).
@@ -70,13 +70,13 @@
     Tp
     ibeta(Tp a, Tp b, Tp x)
     {
-      const auto _S_NaN = emsr::quiet_NaN(x);
+      const auto s_NaN = emsr::quiet_NaN(x);
       if (x < Tp{0} || x > Tp{1})
 	throw std::domain_error("ibeta: argument out of range");
       else if (std::isnan(x) || std::isnan(a) || std::isnan(b))
-	return _S_NaN;
+	return s_NaN;
       else if (a == Tp{0} && b == Tp{0})
-	return _S_NaN;
+	return s_NaN;
       else if (a == Tp{0})
 	{
 	  if (x > Tp{0})

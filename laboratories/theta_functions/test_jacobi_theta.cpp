@@ -13,18 +13,18 @@
 /**
  * Plot the thetas over x= [0, 2pi] for q = 0, 0.1, ..., 0.9
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  test_jacobi_theta(_Tp proto = _Tp{})
+  test_jacobi_theta(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    const auto s_pi = emsr::pi_v<_Tp>;
+    const auto s_pi = emsr::pi_v<Tp>;
 
-    const auto del1 = _Tp{1} / _Tp{10};
-    const auto del01 = _Tp{1} / _Tp{100};
+    const auto del1 = Tp{1} / Tp{10};
+    const auto del01 = Tp{1} / Tp{100};
     for (int i = 0; i <= 9; ++i)
       {
 	auto q = i * del1;
@@ -58,22 +58,22 @@ template<typename _Tp>
 /**
  * Reproduce DLMF plots.
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  plot_jacobi_theta(_Tp proto = _Tp{})
+  plot_jacobi_theta(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    const auto s_pi = emsr::pi_v<_Tp>;
+    const auto s_pi = emsr::pi_v<Tp>;
 
     std::cout << "\n\n\n";
-    _Tp q0 = _Tp{0.15L};
+    Tp q0 = Tp{0.15L};
     std::cout << "q = " << q0 << '\n';
     for (int i = 0; i <= 200; ++i)
       {
-	auto x = _Tp(i) / _Tp{100};
+	auto x = Tp(i) / Tp{100};
 	std::cout << ' ' << std::setw(w) << x
 		  << ' ' << std::setw(w) << emsr::detail::jacobi_theta_1(q0, s_pi * x)
 		  << ' ' << std::setw(w) << emsr::detail::jacobi_theta_2(q0, s_pi * x)
@@ -85,15 +85,15 @@ template<typename _Tp>
 
     // Vary x for fixed q.
     int nx = 400;
-    auto delx = 2 / _Tp(nx);
+    auto delx = 2 / Tp(nx);
 
     std::cout << "\n\n\n";
     std::cout << "theta_1; q = 0.05, 0.5, 0.7, 0.9\n";
     for (int i = 0; i <= nx; ++i)
       {
-	auto x = _Tp(i) * delx;
+	auto x = Tp(i) * delx;
 	std::cout << ' ' << std::setw(w) << x;
-	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
+	for (auto q : {Tp{0.05L}, Tp{0.5L}, Tp{0.7L}, Tp{0.9L}})
 	  std::cout << ' ' << std::setw(w) << emsr::detail::jacobi_theta_1(q, s_pi * x);
 	std::cout << '\n';
       }
@@ -103,9 +103,9 @@ template<typename _Tp>
     std::cout << "theta_2; q = 0.05, 0.5, 0.7, 0.9\n";
     for (int i = 0; i <= nx; ++i)
       {
-	auto x = _Tp(i) * delx;
+	auto x = Tp(i) * delx;
 	std::cout << ' ' << std::setw(w) << x;
-	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
+	for (auto q : {Tp{0.05L}, Tp{0.5L}, Tp{0.7L}, Tp{0.9L}})
 	  std::cout << ' ' << std::setw(w) << emsr::detail::jacobi_theta_2(q, s_pi * x);
 	std::cout << '\n';
       }
@@ -115,9 +115,9 @@ template<typename _Tp>
     std::cout << "theta_3; q = 0.05, 0.5, 0.7, 0.9\n";
     for (int i = 0; i <= nx; ++i)
       {
-	auto x = _Tp(i) * delx;
+	auto x = Tp(i) * delx;
 	std::cout << ' ' << std::setw(w) << x;
-	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
+	for (auto q : {Tp{0.05L}, Tp{0.5L}, Tp{0.7L}, Tp{0.9L}})
 	  std::cout << ' ' << std::setw(w) << emsr::detail::jacobi_theta_3(q, s_pi * x);
 	std::cout << '\n';
       }
@@ -127,9 +127,9 @@ template<typename _Tp>
     std::cout << "theta_4; q = 0.05, 0.5, 0.7, 0.9\n";
     for (int i = 0; i <= nx; ++i)
       {
-	auto x = _Tp(i) * delx;
+	auto x = Tp(i) * delx;
 	std::cout << ' ' << std::setw(w) << x;
-	for (auto q : {_Tp{0.05L}, _Tp{0.5L}, _Tp{0.7L}, _Tp{0.9L}})
+	for (auto q : {Tp{0.05L}, Tp{0.5L}, Tp{0.7L}, Tp{0.9L}})
 	  std::cout << ' ' << std::setw(w) << emsr::detail::jacobi_theta_4(q, s_pi * x);
 	std::cout << '\n';
       }
@@ -137,7 +137,7 @@ template<typename _Tp>
 
     // Vary q for fixed x.
     int nq = 200;
-    auto delq = 1 / _Tp(nq);
+    auto delq = 1 / Tp(nq);
 
     std::cout << "\n\n\n";
     std::cout << "theta_1; x = 0, 0.4, 5, 10, 40\n";
@@ -145,7 +145,7 @@ template<typename _Tp>
       {
 	auto q = i * delq;
 	std::cout << ' ' << std::setw(w) << q;
-	for (auto x : {_Tp{0.0L}, _Tp{0.4L}, _Tp{5.0L}, _Tp{10.0L}, _Tp{40.0L}})
+	for (auto x : {Tp{0.0L}, Tp{0.4L}, Tp{5.0L}, Tp{10.0L}, Tp{40.0L}})
 	  std::cout << ' ' << std::setw(w) << emsr::detail::jacobi_theta_1(q, x);
 	std::cout << '\n';
       }
@@ -157,7 +157,7 @@ template<typename _Tp>
       {
 	auto q = i * delq;
 	std::cout << ' ' << std::setw(w) << q;
-	for (auto x : {_Tp{0.0L}, _Tp{0.4L}, _Tp{5.0L}, _Tp{10.0L}, _Tp{40.0L}})
+	for (auto x : {Tp{0.0L}, Tp{0.4L}, Tp{5.0L}, Tp{10.0L}, Tp{40.0L}})
 	  std::cout << ' ' << std::setw(w) << emsr::detail::jacobi_theta_2(q, x);
 	std::cout << '\n';
       }
@@ -169,7 +169,7 @@ template<typename _Tp>
       {
 	auto q = i * delq;
 	std::cout << ' ' << std::setw(w) << q;
-	for (auto x : {_Tp{0.0L}, _Tp{0.4L}, _Tp{5.0L}, _Tp{10.0L}, _Tp{40.0L}})
+	for (auto x : {Tp{0.0L}, Tp{0.4L}, Tp{5.0L}, Tp{10.0L}, Tp{40.0L}})
 	  std::cout << ' ' << std::setw(w) << emsr::detail::jacobi_theta_3(q, x);
 	std::cout << '\n';
       }
@@ -181,7 +181,7 @@ template<typename _Tp>
       {
 	auto q = i * delq;
 	std::cout << ' ' << std::setw(w) << q;
-	for (auto x : {_Tp{0.0L}, _Tp{0.4L}, _Tp{5.0L}, _Tp{10.0L}, _Tp{40.0L}})
+	for (auto x : {Tp{0.0L}, Tp{0.4L}, Tp{5.0L}, Tp{10.0L}, Tp{40.0L}})
 	  std::cout << ' ' << std::setw(w) << emsr::detail::jacobi_theta_4(q, x);
 	std::cout << '\n';
       }

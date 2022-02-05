@@ -22,21 +22,21 @@ namespace detail
    * using the Akiyama-Tanigawa algorithm.
    * This might be unstable.
    */
-  template<typename _Rat>
-    std::vector<_Rat>
+  template<typename Rat>
+    std::vector<Rat>
     bernoulli_a_t(std::size_t len)
     {
       auto n = 2 * len + 1;
-      std::vector<_Rat> t;
-      std::vector<_Rat> a;
+      std::vector<Rat> t;
+      std::vector<Rat> a;
 
       t.emplace_back(1LL);
 
       for (std::size_t m = 1; m < n; ++m)
 	{
-	  t.push_back(_Rat(1, m + 1));
+	  t.push_back(Rat(1, m + 1));
 	  for (std::size_t j = m; j > 0; --j)
-            t[j - 1] = _Rat(j) * (t[j - 1] - t[j]);
+            t[j - 1] = Rat(j) * (t[j - 1] - t[j]);
 
 	  // Get all Bernoulli numbers by deleting the 'if' clause.
 	  if ((m & 1) == 0)
@@ -50,14 +50,14 @@ namespace detail
    * Scales the even Bernoulli numbers @f$ B_{2m} @f$ with weights
    * @f$ (-1)^m/((2m - 1)2m) @f$, m > 0.
    */
-  template<typename _Rat>
-    std::vector<_Rat>
-    weights(std::vector<_Rat> b)
+  template<typename Rat>
+    std::vector<Rat>
+    weights(std::vector<Rat> b)
     {
       int sgn = 1;
       for (std::size_t m = 0; m < b.size(); ++m)
 	{
-	  b[m] *= _Rat(sgn, (2 * m + 1) * (2 * m + 2));
+	  b[m] *= Rat(sgn, (2 * m + 1) * (2 * m + 2));
 	  sgn = -sgn;
 	}
 
@@ -65,18 +65,18 @@ namespace detail
     }
 
   // Computes Rutishauser's Quotient-Difference (QD) algorithm
-  template<typename _Rat>
-    std::vector<_Rat>
-    quotient_difference(std::vector<_Rat> s)
+  template<typename Rat>
+    std::vector<Rat>
+    quotient_difference(std::vector<Rat> s)
     {
       auto len = s.size();
-      auto zero = _Rat(0);
-      std::vector<std::vector<_Rat>> m;
-      std::vector<_Rat> r;
+      auto zero = Rat(0);
+      std::vector<std::vector<Rat>> m;
+      std::vector<Rat> r;
 
       for (std::size_t n = 0; n < len; ++n)
 	{
-	  m.push_back(std::vector<_Rat>());
+	  m.push_back(std::vector<Rat>());
 	  m.back().push_back(zero);
 	}
       for (std::size_t n = 0; n < len - 1; ++n)
@@ -104,10 +104,10 @@ namespace detail
 
   // Computes the Stieltjes continued fraction for the
   // Gamma function using Rutishauser's QD-algorithm.
-  template<typename _Rat>
-    std::vector<_Rat>
+  template<typename Rat>
+    std::vector<Rat>
     stieltjes_cont_frac_seq(int len)
-    { return quotient_difference(weights(bernoulli_a_t<_Rat>(len))); }
+    { return quotient_difference(weights(bernoulli_a_t<Rat>(len))); }
 
   /**
    *
@@ -237,7 +237,7 @@ template<typename Tp>
   void
   test()
   {
-    using _Rat = emsr::Rational<Tp>;
+    using Rat = emsr::Rational<Tp>;
 
     using Real = long double;
 
@@ -245,7 +245,7 @@ template<typename Tp>
     auto width = std::cout.precision() + 6;
 
     std::cout << "\nBernoulli numbers\n";
-    auto bern = emsr::detail::bernoulli_a_t<_Rat>(20);
+    auto bern = emsr::detail::bernoulli_a_t<Rat>(20);
     for (auto& b : bern)
       std::cout << b << '\n';
 
@@ -256,7 +256,7 @@ template<typename Tp>
 
     std::cout << "\nStieltjes partial numerators\n";
     int len = 7;
-    auto cf = emsr::detail::stieltjes_cont_frac_seq<_Rat>(len);
+    auto cf = emsr::detail::stieltjes_cont_frac_seq<Rat>(len);
     for (int k = 0; k < len; ++k)
       std::cout << k + 1 << ": " << cf[k]
 		<< " = " << emsr::Rational_cast<Real>(cf[k]) << '\n';

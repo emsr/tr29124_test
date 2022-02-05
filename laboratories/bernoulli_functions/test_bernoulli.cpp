@@ -18,16 +18,16 @@
 #include <wrap_burkhardt.h>
 
 
-  //template<typename _RealTp, typename _IntTp,
-//	   _IntTp _Num = 1, _IntTp _Den = 1>
-//    constexpr _RealTp
-//    frac = _RealTp(_Num) / _RealTp(_Den);
+  //template<typename RealTp, typename IntTp,
+//	   IntTp Num = 1, IntTp Den = 1>
+//    constexpr RealTp
+//    frac = RealTp(Num) / RealTp(Den);
 
-  template<typename _RealTp,
-	   unsigned long long _Num = 1,
-           unsigned long long _Den = 1>
-    constexpr _RealTp
-    frac = _RealTp(_Num) / _RealTp(_Den);
+  template<typename RealTp,
+	   unsigned long long Num = 1,
+           unsigned long long Den = 1>
+    constexpr RealTp
+    frac = RealTp(Num) / RealTp(Den);
 
   /**
    * According to Modern Computer Arithmetic a stable recursion
@@ -132,15 +132,15 @@
 	return std::numeric_limits<Tp>::quiet_NaN();
       else
 	{
-	  auto _B_n = emsr::detail::bernoulli<Tp>(0);
+	  auto B_n = emsr::detail::bernoulli<Tp>(0);
 	  auto binomial = Tp{1};
 	  for (auto k = 1u; k <= n; ++k)
 	    {
 	      binomial *= Tp(n + 1 - k) / Tp(k);
-	      _B_n = x * _B_n + binomial
+	      B_n = x * B_n + binomial
 		   * emsr::detail::bernoulli<Tp>(k);
 	    }
-	  return _B_n;
+	  return B_n;
 	}
     }
 
@@ -228,23 +228,23 @@
 	return s_num[n];
       else
 	{
-	  std::vector<Tp> _En(n + 1);
-	  _En[0] = Tp{1};
-	  _En[1] = Tp{0};
-	  _En[2] = Tp{-1};
+	  std::vector<Tp> En(n + 1);
+	  En[0] = Tp{1};
+	  En[1] = Tp{0};
+	  En[2] = Tp{-1};
 
 	  for (auto i = 3u; i <= n; ++i)
 	    {
-	      _En[i] = 0;
+	      En[i] = 0;
 
 	      if (i % 2 == 0)
 		{
 		  for (auto j = 2u; j <= i; j += 2u)
-		    _En[i] -= binomial<Tp>(i, j)
-			      * _En[i - j];
+		    En[i] -= binomial<Tp>(i, j)
+			      * En[i - j];
 		}
 	    }
-	  return _En[n];
+	  return En[n];
 	}
     }
 
@@ -313,10 +313,10 @@
 	  auto bx1 = bernoulli(n + 1, x );
 	  auto bx2 = bernoulli(n + 1, Tp{0.5L} * x );
 
-	  auto _E_n = Tp{2} * (bx1 - bx2 * std::pow(Tp{2}, Tp(n + 1)))
+	  auto E_n = Tp{2} * (bx1 - bx2 * std::pow(Tp{2}, Tp(n + 1)))
 		    / Tp(n + 1);
 
-	  return _E_n;
+	  return E_n;
 	}
     }
 
@@ -357,22 +357,22 @@
       using emsr::detail::factorial;
       if (m > emsr::detail::s_num_factorials<Tp>)
 	{
-	  auto _S2 = Tp{0};
+	  auto S2 = Tp{0};
 	  for (auto k = 0u; k <= m; ++k)
 	    {
 	      auto lf1 = log_factorial<Tp>(k);
 	      auto lf2 = log_factorial<Tp>(m - k);
-	      _S2 += (((m - k) & 1) ? Tp{-1} : Tp{1})
+	      S2 += (((m - k) & 1) ? Tp{-1} : Tp{1})
 		   * std::exp(n * std::log(k) - lf1 - lf2);
 	    }
-	  return _S2;
+	  return S2;
 	}
       else
 	{
-	  auto _S2 = Tp{0};
+	  auto S2 = Tp{0};
 	  for (auto k = 0u; k <= m; ++k)
 	    {
-	      _S2 += (((m - k) & 1) ? Tp{-1} : Tp{1})
+	      S2 += (((m - k) & 1) ? Tp{-1} : Tp{1})
 		   * std::pow(k, n)
 		   / factorial<Tp>(k)
 		   / factorial<Tp>(m - k);
@@ -380,7 +380,7 @@
 	  // @todo Only round if the sum is less than
 	  // the maximum representable integer.
 	  // Find or make a tool for this.
-	  return std::nearbyint(_S2);
+	  return std::nearbyint(S2);
 	}
       // Why this warning?
       return Tp{0};
@@ -492,7 +492,7 @@
       using emsr::detail::binomial;
       if (2 * n - m > emsr::detail::s_num_factorials<Tp> / 2)
 	{
-	  auto _S1 = Tp{0};
+	  auto S1 = Tp{0};
 	  for (auto k = 0u; k <= n - m; ++k)
 	    {
 	      const auto nmpk = n - m + k;
@@ -501,19 +501,19 @@
 	      const auto slbc1 = log_binomial_sign<Tp>(n - 1 + k, nmpk);
 	      const auto lbc2 = log_binomial<Tp>(2 * n - m, nmmk);
 	      const auto slbc2 = log_binomial_sign<Tp>(2 * n - m, nmmk);
-	      _S1 += emsr::parity<Tp>(k) * slbc1 * slbc2
+	      S1 += emsr::parity<Tp>(k) * slbc1 * slbc2
 		   * std::exp(lbc1 + lbc2 + log_stirling_2<Tp>(nmpk, k));
 	    }
-	  return _S1;
+	  return S1;
 	}
       else
 	{
-	  auto _S1 = Tp{0};
+	  auto S1 = Tp{0};
 	  for (auto k = 0u; k <= n - m; ++k)
 	    {
 	      const auto nmpk = n - m + k;
 	      const auto nmmk = n - m - k;
-	      _S1 += emsr::parity<Tp>(k)
+	      S1 += emsr::parity<Tp>(k)
 		   * binomial<Tp>(n - 1 + k, nmpk)
 		   * binomial<Tp>(2 * n - m, nmmk)
 		   * stirling_2<Tp>(nmpk, k);
@@ -521,7 +521,7 @@
 	  // @todo Only round if the sum is less than
 	  // the maximum representable integer.
 	  // Find or make a tool for this.
-	  return std::nearbyint(_S1);
+	  return std::nearbyint(S1);
 	}
     }
 
@@ -550,17 +550,17 @@
 	return Tp(n == 0);
       else
 	{
-	  std::vector<Tp> _Sold(m + 1), _Snew(m + 1);
-	  _Sold[1] = Tp{1};
+	  std::vector<Tp> Sold(m + 1), Snew(m + 1);
+	  Sold[1] = Tp{1};
 	  if (n == 1)
-	    return _Sold[m];
+	    return Sold[m];
 	  for (auto in = 1u; in <= n; ++in)
 	    {
 	      for (auto im = 1u; im <= m; ++im)
-		_Snew[im] = _Sold[im - 1] - in * _Sold[im];
-	      std::swap(_Sold, _Snew);
+		Snew[im] = Sold[im - 1] - in * Sold[im];
+	      std::swap(Sold, Snew);
 	    }
-	  return _Snew[m];
+	  return Snew[m];
 	}
     }
 
@@ -651,18 +651,18 @@
       else
 	{
 	  // Start recursion with n == 2 (already returned above).
-	  std::vector<Tp> _Aold(m + 1), _Anew(m + 1);
-	  _Aold[0] = Tp{1};
-	  _Anew[0] = Tp{1};
-	  _Anew[1] = Tp{1};
+	  std::vector<Tp> Aold(m + 1), Anew(m + 1);
+	  Aold[0] = Tp{1};
+	  Anew[0] = Tp{1};
+	  Anew[1] = Tp{1};
 	  for (auto in = 3u; in <= n; ++in)
 	    {
-	      std::swap(_Aold, _Anew);
+	      std::swap(Aold, Anew);
 	      for (auto im = 1u; im <= m; ++im)
-		_Anew[im] = (in - im) * _Aold[im - 1]
-			    + (im + 1) * _Aold[im];
+		Anew[im] = (in - im) * Aold[im - 1]
+			    + (im + 1) * Aold[im];
 	    }
-	  return _Anew[m];
+	  return Anew[m];
 	}
     }
 
@@ -698,17 +698,17 @@
       else
 	{
 	  // Start recursion with n == 2 (already returned above).
-	  std::vector<Tp> _Aold(n + 1), _Anew(n + 1);
-	  _Aold[0] = _Anew[0] = Tp{1};
-	  _Anew[1] = Tp{1};
+	  std::vector<Tp> Aold(n + 1), Anew(n + 1);
+	  Aold[0] = Anew[0] = Tp{1};
+	  Anew[1] = Tp{1};
 	  for (auto in = 3u; in <= n; ++in)
 	    {
-	      std::swap(_Aold, _Anew);
+	      std::swap(Aold, Anew);
 	      for (auto im = 1u; im <= n; ++im)
-		_Anew[im] = (in - im) * _Aold[im - 1]
-			    + (im + 1) * _Aold[im];
+		Anew[im] = (in - im) * Aold[im - 1]
+			    + (im + 1) * Aold[im];
 	    }
-	  return _Anew;
+	  return Anew;
 	}
     }
 
@@ -744,18 +744,18 @@
       else
 	{
 	  // Start recursion with n == 2 (already returned above).
-	  std::vector<Tp> _Aold(m + 1), _Anew(m + 1);
-	  _Aold[0] = Tp{1};
-	  _Anew[0] = Tp{1};
-	  _Anew[1] = Tp{2};
+	  std::vector<Tp> Aold(m + 1), Anew(m + 1);
+	  Aold[0] = Tp{1};
+	  Anew[0] = Tp{1};
+	  Anew[1] = Tp{2};
 	  for (auto in = 3u; in <= n; ++in)
 	    {
-	      std::swap(_Aold, _Anew);
+	      std::swap(Aold, Anew);
 	      for (auto im = 1u; im <= m; ++im)
-		_Anew[im] = (2 * in - im - 1) * _Aold[im - 1]
-			    + (im + 1) * _Aold[im];
+		Anew[im] = (2 * in - im - 1) * Aold[im - 1]
+			    + (im + 1) * Aold[im];
 	    }
-	  return _Anew[m];
+	  return Anew[m];
 	}
     }
 
@@ -791,17 +791,17 @@
       else
 	{
 	  // Start recursion with n == 2 (already returned above).
-	  std::vector<Tp> _Aold(n + 1), _Anew(n + 1);
-	  _Aold[0] = _Anew[0] = Tp{1};
-	  _Anew[1] = Tp{2};
+	  std::vector<Tp> Aold(n + 1), Anew(n + 1);
+	  Aold[0] = Anew[0] = Tp{1};
+	  Anew[1] = Tp{2};
 	  for (auto in = 3u; in <= n; ++in)
 	    {
-	      std::swap(_Aold, _Anew);
+	      std::swap(Aold, Anew);
 	      for (auto im = 1u; im <= n; ++im)
-		_Anew[im] = (2 * in - im - 1) * _Aold[im - 1]
-			    + (im + 1) * _Aold[im];
+		Anew[im] = (2 * in - im - 1) * Aold[im - 1]
+			    + (im + 1) * Aold[im];
 	    }
-	  return _Anew;
+	  return Anew;
 	}
     }
 
@@ -833,10 +833,10 @@
 	return (k == 0 ? Tp{1} : Tp{0});
       else
 	{
-	  Tp _Lnn = 1;
+	  Tp Lnn = 1;
 	  for (unsigned int i = 1u; i <= n - k; ++i)
-	    _Lnn *= Tp(n - i + 1) * Tp(n - i) / Tp(i);
-	  return _Lnn;
+	    Lnn *= Tp(n - i + 1) * Tp(n - i) / Tp(i);
+	  return Lnn;
 	}
     }
 
@@ -854,15 +854,15 @@
 	return std::vector<Tp>(1, Tp{1});
       else
 	{
-	  std::vector<Tp> _L(n + 1);
-	  Tp _Lnn = 1;
-	  _L[n] = _Lnn;
+	  std::vector<Tp> L(n + 1);
+	  Tp Lnn = 1;
+	  L[n] = Lnn;
 	  for (unsigned int i = 1u; i <= n; ++i)
 	    {
-	      _Lnn *= Tp(n - i + 1) * Tp(n - i) / Tp(i);
-	      _L[n - i] = _Lnn;
+	      Lnn *= Tp(n - i + 1) * Tp(n - i) / Tp(i);
+	      L[n - i] = Lnn;
 	    }
-	  return _L;
+	  return L;
 	}
     }
 
@@ -915,14 +915,14 @@
    * @f]
    * where @f$ S_n^{(k)} @f$ are the Stirling numbers of the second kind.
    */
-  template<typename Tp, typename _Up>
-    inline _Up
-    bell(unsigned int n, _Up x)
+  template<typename Tp, typename Up>
+    inline Up
+    bell(unsigned int n, Up x)
     {
-      const auto _Sn = stirling_2<Tp>(n);
-      auto bell = _Sn[n];
+      const auto Sn = stirling_2<Tp>(n);
+      auto bell = Sn[n];
       for (unsigned int i = 1; i < n; ++i)
-	bell = _Sn[n - i] + x * bell;
+	bell = Sn[n - i] + x * bell;
       return bell;
     }
 
@@ -975,11 +975,11 @@ template<typename Tp>
 	for (auto i = 0u; i <= 50; ++i)
 	  {
 	    auto x = del * i;
-	    auto _B_n = bernoulli(n, x);
-	    auto _tildeB_n = bernoulli_period(n, x);
+	    auto B_n = bernoulli(n, x);
+	    auto tildeB_n = bernoulli_period(n, x);
 	    std::cout << ' ' << std::setw(width) << x
-		      << ' ' << std::setw(width) << _B_n
-		      << ' ' << std::setw(width) << _tildeB_n
+		      << ' ' << std::setw(width) << B_n
+		      << ' ' << std::setw(width) << tildeB_n
 		      << '\n';
 	  }
       }
@@ -998,11 +998,11 @@ template<typename Tp>
 	for (auto i = 0u; i <= 50; ++i)
 	  {
 	    auto x = del * i;
-	    auto _E_n = euler(n, x);
-	    auto _tildeE_n = euler_period(n, x);
+	    auto E_n = euler(n, x);
+	    auto tildeE_n = euler_period(n, x);
 	    std::cout << ' ' << std::setw(width) << x
-		      << ' ' << std::setw(width) << _E_n
-		      << ' ' << std::setw(width) << _tildeE_n
+		      << ' ' << std::setw(width) << E_n
+		      << ' ' << std::setw(width) << tildeE_n
 		      << '\n';
 	  }
       }

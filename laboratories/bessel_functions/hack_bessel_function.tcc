@@ -1,4 +1,3 @@
-// Special functions -*- C++ -*-
 
 // Copyright (C) 2006-2019 Free Software Foundation, Inc.
 // Copyright (C) 2020-2022 Edward M. Smith-Rowland
@@ -22,9 +21,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file tr1/sf_bessel.tcc
- *  This is an internal header file, included by other library headers.
- *  You should not attempt to use it directly.
+/** @file hack_bessel_function.tcc
  */
 
 //
@@ -41,28 +38,15 @@
 //   (2) Numerical Recipes in C,
 //       
 
-#ifndef _TR1_BESSEL_FUNCTION_TCC
-#define _TR1_BESSEL_FUNCTION_TCC 1
+#ifndef HACK_BESSEL_FUNCTION_TCC
+#define HACK_BESSEL_FUNCTION_TCC 1
 
 #include <emsr/fp_type_util.h>
 
 namespace std
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-  // [5.2] Special functions
-
-  /**
-   * @addtogroup tr1_math_spec_func Mathematical Special Functions
-   * A collection of advanced mathematical special functions.
-   * @{
-   */
-
-  //
-  // Implementation-space details.
-  //
-  namespace __detail
-  {
+namespace detail
+{
 
     ///
     ///  @brief  Compute the Bessel @f$ J_\nu(x) @f$ and Neumann
@@ -74,7 +58,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     template <typename Tp>
     void
     bessel_jn(const Tp nu, const Tp x,
-                Tp & J_nu, Tp & N_nu, Tp & Jp_nu, Tp & Np_nu)
+              Tp & J_nu, Tp & N_nu, Tp & Jp_nu, Tp & Np_nu)
     {
 
       if (x < Tp(0) || nu < Tp(0))
@@ -415,11 +399,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return n_n;
     }
 
-  } // namespace std::tr1::__detail
+} // namespace detail
+} // namespace emsr
 
-  /* @} */ // group tr1_math_spec_func
-
-_GLIBCXX_END_NAMESPACE_VERSION
-}
-
-#endif // _TR1_BESSEL_FUNCTION_TCC
+#endif // HACK_BESSEL_FUNCTION_TCC

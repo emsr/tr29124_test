@@ -27,10 +27,8 @@
  *  You should not attempt to use it directly.
  */
 
-#ifndef _GLIBCXX_BITS_HANKEL_H
-#define _GLIBCXX_BITS_HANKEL_H 1
-
-#pragma GCC system_header
+#ifndef HANKEL_H
+#define HANKEL_H 1
 
 #include <cmath>
 #include <complex>
@@ -39,7 +37,7 @@
 //#include <emsr/sf_hankel.tcc>
 #include <emsr/sf_hankel_new.tcc>
 
-namespace emsr _GLIBCXX_VISIBILITY(default)
+namespace emsr
 {
 
   inline std::complex<float>
@@ -221,4 +219,4 @@ namespace emsr _GLIBCXX_VISIBILITY(default)
 
 } // namespace emsr
 
-#endif // _GLIBCXX_BITS_HANKEL_H
+#endif // HANKEL_H

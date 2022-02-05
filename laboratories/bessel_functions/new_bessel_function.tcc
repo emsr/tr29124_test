@@ -1,4 +1,3 @@
-// Special functions -*- C++ -*-
 
 // Copyright (C) 2006-2019 Free Software Foundation, Inc.
 // Copyright (C) 2020-2022 Edward M. Smith-Rowland
@@ -27,9 +26,7 @@
 // invalidate any other reasons why the executable file might be covered by
 // the GNU General Public License.
 
-/** @file tr1/sf_bessel.tcc
- *  This is an internal header file, included by other library headers.
- *  You should not attempt to use it directly.
+/** @file new_bessel_function.tcc
  */
 
 //
@@ -46,28 +43,15 @@
 //   (2) Numerical Recipes in C,
 //       
 
-#ifndef _TR1_BESSEL_FUNCTION_TCC
-#define _TR1_BESSEL_FUNCTION_TCC 1
+#ifndef NEW_BESSEL_FUNCTION_TCC
+#define NEW_BESSEL_FUNCTION_TCC 1
 
 #include <emsr/fp_type_util.h>
 
 namespace std
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-  // [5.2] Special functions
-
-  /**
-   * @addtogroup tr1_math_spec_func Mathematical Special Functions
-   * A collection of advanced mathematical special functions.
-   * @{
-   */
-
-  //
-  // Implementation-space details.
-  //
-  namespace __detail
-  {
+namespace detail
+{
 
     ///
     ///
@@ -311,12 +295,8 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return;
     }
 
-  } // namespace std::tr1::__detail
+} // detail
+} // emsr
 
-  /* @} */ // group tr1_math_spec_func
-
-_GLIBCXX_END_NAMESPACE_VERSION
-}
-
-#endif // _TR1_BESSEL_FUNCTION_TCC
+#endif // NEW_BESSEL_FUNCTION_TCC
 

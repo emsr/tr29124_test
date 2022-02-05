@@ -34,9 +34,9 @@ template<typename Tp>
  *               {(2n + a + b + c + d - 2)(2n + a + b + c + d - 1)}
  * @f]
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   wilson_t<Tp>
-  wilson_recur(int n, Tp a, Tp b, Tp c, Tp d, _TpX x)
+  wilson_recur(int n, Tp a, Tp b, Tp c, Tp d, TpX x)
   {
     auto Wnm1 = Tp{1};
     if (n == 0)
@@ -96,9 +96,9 @@ template<typename Tp, typename _TpX>
  *                                   a + b, a + c, a + d; 1)
  * @f]
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   wilson_t<Tp>
-  wilson(int n, Tp a, Tp b, Tp c, Tp d, _TpX x)
+  wilson(int n, Tp a, Tp b, Tp c, Tp d, TpX x)
   {
     if (std::isnan(a))
       return {a, Tp{}};

@@ -27,10 +27,8 @@
  *  You should not attempt to use it directly.
  */
 
-#ifndef _GLIBCXX_BITS_SF_HANKEL_OLD_TCC
-#define _GLIBCXX_BITS_SF_HANKEL_OLD_TCC 1
-
-#pragma GCC system_header
+#ifndef SF_HANKEL_OLD_TCC
+#define SF_HANKEL_OLD_TCC 1
 
 #include <complex>
 #include <limits>
@@ -38,13 +36,11 @@
 
 #include <emsr/complex_util.h>
 
-namespace std _GLIBCXX_VISIBILITY(default)
+namespace emsr
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
+namespace detail
+{
 
-// Implementation-space details.
-namespace __detail
-{
   /**
    * Compute the Debye region in te complex plane.
    */
@@ -1323,9 +1319,8 @@ namespace __detail
       sph_hankel(n, z, _H1, _H1p, _H2, _H2p);
       return (_H1 - _H2) / std::complex<Tp>{0, 2};
     }
-} // namespace __detail
 
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace std
+} // namespace detail
+} // namespace emsr
 
-#endif // _GLIBCXX_BITS_SF_HANKEL_OLD_TCC
+#endif // SF_HANKEL_OLD_TCC

@@ -104,14 +104,14 @@ template<typename Tp>
   Tp
   gd(Tp x)
   {
-    const auto _S_pi = __const_2_pi(x);
+    const auto s_pi = const_2_pi(x);
 
     if (std::isnan(x))
       return x;
     else if (x == -std::numeric_limits<Tp>::infinity())
-      return -_S_pi / Tp{2};
+      return -s_pi / Tp{2};
     else if (x == +std::numeric_limits<Tp>::infinity())
-      return +_S_pi / Tp{2};
+      return +s_pi / Tp{2};
     else
       return gd_trig(x);
   }
@@ -123,8 +123,8 @@ template<typename Tp>
     std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto w = std::cout.precision() + 8;
 
-    const auto _S_pi = emsr::tau_v<Tp>;
-    const auto del = _S_pi / 400;
+    const auto s_pi = emsr::tau_v<Tp>;
+    const auto del = s_pi / 400;
     for (int i = -200; i <= 200; ++i)
       {
 	auto x = i * del;

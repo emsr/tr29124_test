@@ -32,15 +32,15 @@ template<typename Tp>
   constexpr Tp
   exp_bailey(Tp x, int _J = 8)
   {
-    constexpr auto _S_N = (std::numeric_limits<Tp>::max_digits10 + 1) / 2;
-    constexpr auto _S_log_2 = emsr::ln2_v<Tp>;
+    constexpr auto s_N = (std::numeric_limits<Tp>::max_digits10 + 1) / 2;
+    constexpr auto s_log_2 = emsr::ln2_v<Tp>;
     if (_J <= 0)
-      _J = _S_N - 1;
-    const int n = x / _S_log_2;
-    const auto r = (x - n * _S_log_2) / pow2<Tp>(_J);
+      _J = s_N - 1;
+    const int n = x / s_log_2;
+    const auto r = (x - n * s_log_2) / pow2<Tp>(_J);
     auto term = Tp{1};
     auto expr = term;
-    for (int k = 1; k < _S_N; ++k)
+    for (int k = 1; k < s_N; ++k)
       expr += (term *= r / Tp(k));
     for (int i = 0; i < _J; ++i)
       expr *= expr;

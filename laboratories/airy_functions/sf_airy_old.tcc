@@ -27,19 +27,14 @@
  * You should not attempt to use it directly.
  */
 
-#ifndef _GLIBCXX_BITS_SF_AIRY_TCC
-#define _GLIBCXX_BITS_SF_AIRY_TCC 1
-
-#pragma GCC system_header
+#ifndef SF_AIRY_TCC
+#define SF_AIRY_TCC 1
 
 #include <bits/complex_util.h>
 
-namespace std _GLIBCXX_VISIBILITY(default)
+namespace emnsr
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-// Implementation-space details.
-namespace __detail
+namespace detail
 {
   /**
    * @brief This function evaluates @f$ Ai(z) @f$ and @f$ Ai'(z) @f$ from their asymptotic
@@ -57,8 +52,8 @@ namespace __detail
    * @param[in]  z Complex input variable set equal to the value at which
    *  	    @f$ Ai(z) @f$ and @f$ Bi(z) @f$ and their derivative are evaluated.
    *  	    This function assumes @f$ |z| > 15 @f$ and @f$ |arg(z)| < 2\pi/3 @f$.
-   * @param[inout] _Ai  The value computed for @f$ Ai(z) @f$.
-   * @param[inout] _Aip The value computed for @f$ Ai'(z) @f$.
+   * @param[inout] Ai  The value computed for @f$ Ai(z) @f$.
+   * @param[inout] Aip The value computed for @f$ Ai'(z) @f$.
    * @param[in]    sign  The sign of the series terms amd exponent.
    *                    The default (-1) gives the Airy Ai functions
    *                    for @f$ |arg(z)| < \pi @f$.
@@ -68,8 +63,8 @@ namespace __detail
   template<typename Tp>
     void
     airy_asymp_absarg_ge_pio3(std::complex<Tp> z,
-				std::complex<Tp>& _Ai,
-				std::complex<Tp>& _Aip,
+				std::complex<Tp>& Ai,
+				std::complex<Tp>& Aip,
 				int sign = -1)
     {
       constexpr Tp s_2d3   = Tp{2} / Tp{3};
@@ -158,8 +153,8 @@ namespace __detail
 	  bepr = s_v[k] - term;
 	}
 
-      _Ai = zout * al * zetam + be;
-      _Aip = zoutpr * alpr * zetam + bepr;
+      Ai = zout * al * zetam + be;
+      Aip = zoutpr * alpr * zetam + bepr;
 
       return;
     }
@@ -177,14 +172,14 @@ namespace __detail
    *
    * @param[in] z  The value at which the Airy function and its derivative
    *              are evaluated.
-   * @param[out] _Ai  The computed value of the Airy function @f$ Ai(z) @f$.
-   * @param[out] _Aip The computed value of the Airy function derivative @f$ Ai'(z) @f$.
+   * @param[out] Ai  The computed value of the Airy function @f$ Ai(z) @f$.
+   * @param[out] Aip The computed value of the Airy function derivative @f$ Ai'(z) @f$.
    */
   template<typename Tp>
     void
     airy_asymp_absarg_lt_pio3(std::complex<Tp> z,
-				std::complex<Tp>& _Ai,
-				std::complex<Tp>& _Aip)
+				std::complex<Tp>& Ai,
+				std::complex<Tp>& Aip)
     {
       constexpr Tp s_2d3 {Tp{2} / Tp{3}};
       constexpr Tp s_9d4 {Tp{9} / Tp{4}};
@@ -306,12 +301,12 @@ namespace __detail
 
       // Complete evaluation of the Airy functions.
       zeta = s_zone / zeta;
-      _Ai = sinzeta * als * z + bes
+      Ai = sinzeta * als * z + bes
            - zeta * coszeta * alc * z + bec;
-      _Ai *= s_pimh / z1d4;
-      _Aip = coszeta * alprc * z + beprc
+      Ai *= s_pimh / z1d4;
+      Aip = coszeta * alprc * z + beprc
 	   + zeta * sinzeta * alprs * z + beprs;
-      _Aip *= -s_pimh * z1d4;
+      Aip *= -s_pimh * z1d4;
 
       return;
     }
@@ -379,18 +374,18 @@ namespace __detail
    *
    * @param[in]  z     The argument of the modified Bessel functions.
    * @param[in]  eps   The maximum relative error required in the results.
-   * @param[out] _Ip1d3 The value of @f$ I_(+1/3)(z) @f$.
-   * @param[out] _Im1d3 The value of @f$ I_(-1/3)(z) @f$.
-   * @param[out] _Ip2d3 The value of @f$ I_(+2/3)(z) @f$.
-   * @param[out] _Im2d3 The value of @f$ I_(-2/3)(z) @f$.
+   * @param[out] Ip1d3 The value of @f$ I_(+1/3)(z) @f$.
+   * @param[out] Im1d3 The value of @f$ I_(-1/3)(z) @f$.
+   * @param[out] Ip2d3 The value of @f$ I_(+2/3)(z) @f$.
+   * @param[out] Im2d3 The value of @f$ I_(-2/3)(z) @f$.
    */
   template<typename Tp>
     void
     airy_bessel_i(const std::complex<Tp>& z, Tp eps,
-		    std::complex<Tp>& _Ip1d3,
-		    std::complex<Tp>& _Im1d3,
-		    std::complex<Tp>& _Ip2d3,
-		    std::complex<Tp>& _Im2d3)
+		    std::complex<Tp>& Ip1d3,
+		    std::complex<Tp>& Im1d3,
+		    std::complex<Tp>& Ip2d3,
+		    std::complex<Tp>& Im2d3)
     {
       using cmplx = std::complex<Tp>;
 
@@ -534,7 +529,7 @@ namespace __detail
       pold1 = zd2pow * std::exp(-z);
       sum1 *= s_gamma4d3 * pold1;
       plast1 /= sum1;
-      _Ip1d3 = p1 / sum1;
+      Ip1d3 = p1 / sum1;
 
       // Perform last two recurrence steps for order 2/3
       auto pold2 = plast2;
@@ -549,13 +544,13 @@ namespace __detail
       // Compute scale factor and scale results for order 2/3 case
       sum2 *= s_gamma5d3 * zd2pow * pold1;
       plast2 /= sum2;
-      _Ip2d3 = p2 / sum2;
+      Ip2d3 = p2 / sum2;
 
       // Recur back one step from order +1/3 to get order -2/3
-      _Im2d3 = s_2d3 * _Ip1d3 * __1dz + plast1;
+      Im2d3 = s_2d3 * Ip1d3 * __1dz + plast1;
 
       // Recur back one step from order +2/3 to get order -1/3
-      _Im1d3 = s_4d3 * _Ip2d3 * __1dz + plast2;
+      Im1d3 = s_4d3 * Ip2d3 * __1dz + plast2;
 
       return;
     }
@@ -592,8 +587,8 @@ namespace __detail
    * @param[in] eps The maximum relative error allowable in the computed
    *   	     results. The relative error test is based on the
    *   	     comparison of successive iterates.
-   * @param[out] _Kp1d3 The value computed for @f$ E_{+1/3}(z) @f$.
-   * @param[out] _Kp2d3 The value computed for @f$ E_{+2/3}(z) @f$.
+   * @param[out] Kp1d3 The value computed for @f$ E_{+1/3}(z) @f$.
+   * @param[out] Kp2d3 The value computed for @f$ E_{+2/3}(z) @f$.
    *
    * @note In the worst case, say, @f$ z=2 @f$ and @f$ \arg(z) = 3pi/4 @f$,
    * 20 iterations should give 7 or 8 decimals of accuracy.
@@ -601,8 +596,8 @@ namespace __detail
   template<typename Tp>
     void
     airy_bessel_k(const std::complex<Tp>& z, Tp eps,
-		    std::complex<Tp>& _Kp1d3,
-		    std::complex<Tp>& _Kp2d3)
+		    std::complex<Tp>& Kp1d3,
+		    std::complex<Tp>& Kp2d3)
     {
       using cmplx = std::complex<Tp>;
 
@@ -700,8 +695,8 @@ namespace __detail
 	  if (std::abs(ratnew - ratold) < eps * std::abs(ratnew))
 	    {
 	      // Convergence.
-	      _Kp2d3 = ratnew;
-	      _Kp1d3 = phi13 / f13;
+	      Kp2d3 = ratnew;
+	      Kp1d3 = phi13 / f13;
 	      return;
 	    }
 
@@ -775,18 +770,18 @@ namespace __detail
    *  		above is to be evaluated.  Since the approximation
    *  		is of fixed order, @f$ |z| @f$ must be small to ensure
    *  		sufficient accuracy of the computed results.
-   * @param[out] _Ai  The Airy function @f$ Ai(z) @f$.
-   * @param[out] _Aip The Airy function derivative @f$ Ai'(z) @f$.
-   * @param[out] _Bi  The Airy function @f$ Bi(z) @f$.
-   * @param[out] _Bip The Airy function derivative @f$ Bi'(z) @f$.
+   * @param[out] Ai  The Airy function @f$ Ai(z) @f$.
+   * @param[out] Aip The Airy function derivative @f$ Ai'(z) @f$.
+   * @param[out] Bi  The Airy function @f$ Bi(z) @f$.
+   * @param[out] Bip The Airy function derivative @f$ Bi'(z) @f$.
    */
   template<typename Tp>
     void
     airy_hyperg_rational(const std::complex<Tp>& z,
-			   std::complex<Tp>& _Ai,
-			   std::complex<Tp>& _Aip,
-			   std::complex<Tp>& _Bi,
-			   std::complex<Tp>& _Bip)
+			   std::complex<Tp>& Ai,
+			   std::complex<Tp>& Aip,
+			   std::complex<Tp>& Bi,
+			   std::complex<Tp>& Bip)
     {
       using cmplx = std::complex<Tp>;
 
@@ -811,13 +806,13 @@ namespace __detail
       // The confluent hypergeometric limit functions related to
       // the modified Bessel functions of order +1/3, -1/3, +2/3, and -2/3
       // respectively.
-      std::complex<Tp> _Fp1d3, _Fm1d3, _Fp2d3, _Fm2d3;
+      std::complex<Tp> Fp1d3, Fm1d3, Fp2d3, Fm2d3;
       if (std::abs(zzz) < Tp{10} * emsr::min<Tp>())
 	{
-	  _Fp1d3  = s_zone;
-	  _Fm1d3 = s_zone;
-	  _Fp2d3  = s_zone;
-	  _Fm2d3 = s_zone;
+	  Fp1d3  = s_zone;
+	  Fm1d3 = s_zone;
+	  Fp2d3  = s_zone;
+	  Fm2d3 = s_zone;
 	}
       else
 	{
@@ -848,16 +843,16 @@ namespace __detail
 	    }
 	  };
 
-	  _Fp1d3 = horner(s_ap1d3) / horner(s_bp1d3);
-	  _Fm1d3 = horner(s_am1d3) / horner(s_bm1d3);
-	  _Fp2d3 = horner(s_ap2d3) / horner(s_bp2d3);
-	  _Fm2d3 = horner(s_am2d3) / horner(s_bm2d3);
+	  Fp1d3 = horner(s_ap1d3) / horner(s_bp1d3);
+	  Fm1d3 = horner(s_am1d3) / horner(s_bm1d3);
+	  Fp2d3 = horner(s_ap2d3) / horner(s_bp2d3);
+	  Fm2d3 = horner(s_am2d3) / horner(s_bm2d3);
 	}
 
-      _Ai = s_Ai0 * _Fm1d3 + s_Aip0 * z * _Fp1d3;
-      _Aip = s_Ai0 * z * z * _Fp2d3 / Tp{2} + s_Aip0 * _Fm2d3;
-      _Bi = s_Bi0 * _Fm1d3 + s_Bip0 * z * _Fp1d3;
-      _Bip = s_Bi0 * z * z * _Fp2d3 / Tp{2} + s_Bip0 * _Fm2d3;
+      Ai = sAi0 * Fm1d3 + sAip0 * z * Fp1d3;
+      Aip = sAi0 * z * z * Fp2d3 / Tp{2} + sAip0 * Fm2d3;
+      Bi = sBi0 * Fm1d3 + sBip0 * z * Fp1d3;
+      Bip = sBi0 * z * z * Fp2d3 / Tp{2} + sBip0 * Fm2d3;
 
       return;
     }
@@ -992,18 +987,18 @@ namespace __detail
    *  	     are computed.
    * @param[in] eps Relative error required.  Currently, eps is used only
    *		     in the backward recursion algorithms.
-   * @param[out] _Ai  The value computed for Ai(z).
-   * @param[out] _Aip The value computed for Ai'(z).
-   * @param[out] _Bi  The value computed for Bi(z).
-   * @param[out] _Bip The value computed for Bi'(z).
+   * @param[out] Ai  The value computed for Ai(z).
+   * @param[out] Aip The value computed for Ai'(z).
+   * @param[out] Bi  The value computed for Bi(z).
+   * @param[out] Bip The value computed for Bi'(z).
    */
   template<typename Tp>
     void
     airy(const std::complex<Tp>& z, Tp eps,
-           std::complex<Tp>& _Ai,
-           std::complex<Tp>& _Aip,
-           std::complex<Tp>& _Bi,
-           std::complex<Tp>& _Bip)
+           std::complex<Tp>& Ai,
+           std::complex<Tp>& Aip,
+           std::complex<Tp>& Bi,
+           std::complex<Tp>& Bip)
     {
       using cmplx = std::complex<Tp>;
 
@@ -1039,14 +1034,14 @@ namespace __detail
 		{
 		  // Use rational approximation for modified Bessel functions
 		  // of orders 1/3 and 2/3.
-		  airy_bessel_k(zeta, eps, _Ai, _Aip/* , _Bi, _Bip*/); // FIXME
+		  airy_bessel_k(zeta, eps, Ai, Aip/* , Bi, Bip*/); // FIXME
 		  // Recover Ai(z) and Ai'(z).
 		  auto p1d4c = std::sqrt(sqrtz);
 		  zeta = s_rsqpi * std::exp(-zeta);
-		  _Ai *= zeta / p1d4c;
-		  _Aip *= -zeta * p1d4c;
-		  // FIXME: _Bi *= 
-		  // FIXME: _Bip *= 
+		  Ai *= zeta / p1d4c;
+		  Aip *= -zeta * p1d4c;
+		  // FIXME: Bi *= 
+		  // FIXME: Bip *= 
 		}
 	      else
 		{
@@ -1054,19 +1049,19 @@ namespace __detail
 		  if (absz <= s_small)
 		    {
 		      // Use rational approximation along with (1) and (4).
-		      airy_hyperg_rational(z, _Ai, _Aip, _Bi, _Bip);
+		      airy_hyperg_rational(z, Ai, Aip, Bi, Bip);
 		    }
 		  else
 		    {
 		      // Use Miller's backward recurrence along with (1), (4).
-		      cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
+		      cmplx Ip1d3, Im1d3, Ip2d3, Im2d3;
 		      airy_bessel_i(zeta, eps,
-				      _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
+				      Ip1d3, Im1d3, Ip2d3, Im2d3);
 		      // Recover Ai(z) and Ai'(z), Bi(z) and Bi'(z).
-		      _Ai = sqrtz * (_Im1d3 - _Ip1d3) / Tp{3};
-		      _Aip = z * (_Ip2d3 - _Im2d3) / Tp{3};
-		      _Bi = sqrtz * (_Im2d3 * _Ip2d3) / s_sqrt3;
-		      _Bip = z * (_Im2d3 + _Ip2d3) / s_sqrt3;
+		      Ai = sqrtz * (Im1d3 - Ip1d3) / Tp{3};
+		      Aip = z * (Ip2d3 - Im2d3) / Tp{3};
+		      Bi = sqrtz * (Im2d3 * Ip2d3) / s_sqrt3;
+		      Bip = z * (Im2d3 + Ip2d3) / s_sqrt3;
 		    }
 		}
 	    }
@@ -1103,19 +1098,19 @@ namespace __detail
 		{
 		  // Use rational approximation.
 		  zeta = -z;
-		  airy_hyperg_rational(z, _Ai, _Aip, _Bi, _Bip);
+		  airy_hyperg_rational(z, Ai, Aip, Bi, Bip);
 		}
 	      else
 		{
 		  // Use Miller's backward recurrence.
-		  cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
+		  cmplx Ip1d3, Im1d3, Ip2d3, Im2d3;
 		  airy_bessel_i(z2zeta, eps,
-				  _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
+				  Ip1d3, Im1d3, Ip2d3, Im2d3);
 		  // Recover Ai(z) and Ai'(z).
-		  _Ai = sqrtz * (m1d3f * _Im1d3 + p1d3f * _Ip1d3) / Tp{3};
-		  _Aip = z * (m2d3f * _Im2d3 - p2d3f * _Ip2d3) / Tp{3};
-		  // FIXME: _Bi = sqrtz * (m2d3f * _Im2d3 + p2d3f * _Ip2d3) / s_sqrt3;
-		  // FIXME: _Bip = z * (I_{2/3}(\zeta) + I_{-2/3}(\zeta)) / s_sqrt3
+		  Ai = sqrtz * (m1d3f * Im1d3 + p1d3f * Ip1d3) / Tp{3};
+		  Aip = z * (m2d3f * Im2d3 - p2d3f * Ip2d3) / Tp{3};
+		  // FIXME: Bi = sqrtz * (m2d3f * Im2d3 + p2d3f * Ip2d3) / s_sqrt3;
+		  // FIXME: Bip = z * (I_{2/3}(\zeta) + I_{-2/3}(\zeta)) / s_sqrt3
 		}
 	    }
 	}
@@ -1123,9 +1118,9 @@ namespace __detail
 	{ // abs(z) is large...
 	  // Check arg(z) to see which asymptotic form is appropriate.
 	  if (std::abs(std::arg(z)) < Tp{2} * s_pi / Tp{3})
-	    airy_asymp_absarg_ge_pio3(z, _Ai, _Aip/* , _Bi, _Bip*/); // FIXME
+	    airy_asymp_absarg_ge_pio3(z, Ai, Aip/* , Bi, Bip*/); // FIXME
 	  else
-	    airy_asymp_absarg_lt_pio3(z, _Ai, _Aip/* , _Bi, _Bip*/); // FIXME
+	    airy_asymp_absarg_lt_pio3(z, Ai, Aip/* , Bi, Bip*/); // FIXME
 	}
       return;
   }
@@ -1138,9 +1133,9 @@ namespace __detail
     std::complex<Tp>
     airy_ai(std::complex<Tp> z)
     {
-      std::complex<Tp> _Ai, _Aip, _Bi, _Bip;
-      airy(z, _Ai, _Aip, _Bi, _Bip);
-      return _Ai;
+      std::complex<Tp> Ai, Aip, Bi, Bip;
+      airy(z, Ai, Aip, Bi, Bip);
+      return Ai;
     }
 
 
@@ -1151,13 +1146,12 @@ namespace __detail
     std::complex<Tp>
     airy_bi(std::complex<Tp> z)
     {
-      std::complex<Tp> _Ai, _Aip, _Bi, _Bip;
-      airy(z, _Ai, _Aip, _Bi, _Bip);
-      return _Bi;
+      std::complex<Tp> Ai, Aip, Bi, Bip;
+      airy(z, Ai, Aip, Bi, Bip);
+      return Bi;
     }
-} // namespace __detail
 
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace std
+} // namespace detail
+} // namespace emsr
 
-#endif // _GLIBCXX_BITS_SF_AIRY_TCC
+#endif // SF_AIRY_TCC

@@ -17,9 +17,9 @@
  * @f]
  * where @f$ C_n(x) = C_n(x; a) @f$.
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   Tp
-  charlier_recur(int n, Tp a, _TpX x)
+  charlier_recur(int n, Tp a, TpX x)
   {
     auto Cnm1 = Tp{1};
     if (n == 0)
@@ -46,9 +46,9 @@ template<typename Tp, typename _TpX>
  *    C_n(x; a) = {}_2F_0(-n, -x; ; -\frac{1}{a})
  * @f]
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   Tp
-  charlier(int n, Tp a, _TpX x)
+  charlier(int n, Tp a, TpX x)
   {
     if (std::isnan(a))
       return a;

@@ -13,8 +13,8 @@ template<typename Tp>
   Tp
   integrand(int l1, int m1, int l2, int m2, Tp theta)
   {
-    const auto _S_pi = emsr::pi_v<Tp>;
-    return Tp{2} * _S_pi * std::sin(theta)
+    const auto s_pi = emsr::pi_v<Tp>;
+    return Tp{2} * s_pi * std::sin(theta)
 	 * emsr::sph_legendre(l1, m1, theta)
 	 * emsr::sph_legendre(l2, m2, theta);
   }
@@ -30,7 +30,7 @@ template<typename Tp>
   {
     const auto eps_factor = 1 << (std::numeric_limits<Tp>::digits / 3);
     const auto eps = std::numeric_limits<Tp>::epsilon();
-    const auto _S_pi = emsr::pi_v<Tp>;
+    const auto s_pi = emsr::pi_v<Tp>;
     const auto abs_precision = eps_factor * eps;
     const auto rel_precision = eps_factor * eps;
     const auto cmp_precision = Tp{10} * rel_precision;
@@ -51,9 +51,9 @@ template<typename Tp>
 			{ return integrand(l1, m1, l2, m2, theta); };
 
 	    auto [result, error]
-		//= emsr::integrate(func, Tp{0}, _S_pi,
+		//= emsr::integrate(func, Tp{0}, s_pi,
 		//			abs_precision, rel_precision);
-		= emsr::integrate_tanh_sinh(func, Tp{0}, _S_pi,
+		= emsr::integrate_tanh_sinh(func, Tp{0}, s_pi,
 						 abs_precision, rel_precision, 6);
 
 	    if (std::abs(delta<Tp>(l1, l2) * delta<Tp>(m1, m2) - result) > cmp_precision)
@@ -86,9 +86,9 @@ template<typename Tp>
 			{ return integrand(l1, m1, l2, m2, theta); };
 
 	    auto [result, error]
-		//= emsr::integrate(func, Tp{0}, _S_pi,
+		//= emsr::integrate(func, Tp{0}, s_pi,
 		//			abs_precision, rel_precision);
-		= emsr::integrate_tanh_sinh(func, Tp{0}, _S_pi,
+		= emsr::integrate_tanh_sinh(func, Tp{0}, s_pi,
 						 abs_precision, rel_precision, 6);
 
 	    if (std::abs(delta<Tp>(n1_upper, l2) * delta<Tp>(m1, m2) - result) > cmp_precision)

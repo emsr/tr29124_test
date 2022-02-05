@@ -20,8 +20,8 @@
     std::vector<emsr::QuadraturePoint<Tp>>
     gegenbauer_zeros(unsigned int n, Tp alpha)
     {
-      const auto _S_eps = emsr::epsilon(alpha);
-      const unsigned int _S_maxit = 1000u;
+      const auto s_eps = emsr::epsilon(alpha);
+      const unsigned int s_maxit = 1000u;
       std::vector<emsr::QuadraturePoint<Tp>> pt(n);
 
       Tp z;
@@ -76,7 +76,7 @@
 		- 3.0 * pt[i - 3].point + pt[i - 4].point;
 
 	  auto __2alpha = Tp{2} * alpha;
-	  for (auto its = 1u; its <= _S_maxit; ++its)
+	  for (auto its = 1u; its <= s_maxit; ++its)
 	    {
 	      auto temp = Tp{2} + __2alpha;
 	      auto C1 = (temp * z) / Tp{2};
@@ -99,7 +99,7 @@
 			/ (temp * (Tp{1} - z * z));
 	      auto z1 = z;
 	      z = z1 - C1 / Cp;
-	      if (std::abs(z - z1) <= _S_eps)
+	      if (std::abs(z - z1) <= s_eps)
 		{
 		  w = std::exp(std::lgamma(alpha + Tp(n))
 			       + std::lgamma(alpha + Tp(n))
@@ -108,7 +108,7 @@
 		      * temp * std::pow(Tp{2}, __2alpha) / (Cp * C2);
 		  break;
 		}
-	      if (its > _S_maxit)
+	      if (its > s_maxit)
 		throw std::logic_error("jacobi_zeros: Too many iterations");
 	    }
 	  pt[i - 1].point = z;

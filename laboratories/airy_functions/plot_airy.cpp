@@ -17,11 +17,11 @@ template<typename Tp>
   void
   plot_airy(std::string filename)
   {
-    using _Val = emsr::num_traits_t<Tp>;
+    using Val = emsr::num_traits_t<Tp>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Val>::digits10);
+    data.precision(std::numeric_limits<Val>::digits10);
     data << std::showpoint << std::scientific;
     auto w = 8 + data.precision();
 
@@ -66,11 +66,11 @@ template<typename Tp>
   void
   splot_airy(std::string filename)
   {
-    using _Val = emsr::num_traits_t<Tp>;
+    using Val = emsr::num_traits_t<Tp>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Val>::digits10);
+    data.precision(std::numeric_limits<Val>::digits10);
     data << std::showpoint << std::scientific;
     auto w = 8 + data.precision();
 
@@ -82,7 +82,7 @@ template<typename Tp>
 	    auto Ai = emsr::airy_ai(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
-		 << std::setw(w) << std::pow(std::abs(Ai), _Val{1} / _Val{6})
+		 << std::setw(w) << std::pow(std::abs(Ai), Val{1} / Val{6})
 		 << '\n';
 	  }
 	data << '\n';
@@ -142,7 +142,7 @@ template<typename Tp>
 	    auto Bi = emsr::airy_bi(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
-		 << std::setw(w) << std::pow(std::abs(Bi), _Val{1} / _Val{6})
+		 << std::setw(w) << std::pow(std::abs(Bi), Val{1} / Val{6})
 		 << '\n';
 	  }
 	data << '\n';
@@ -217,15 +217,15 @@ template<typename Tp>
   void
   plot_scorer(std::string filename)
   {
-    using _Val = emsr::num_traits_t<Tp>;
+    using Val = emsr::num_traits_t<Tp>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Val>::digits10);
+    data.precision(std::numeric_limits<Val>::digits10);
     data << std::showpoint << std::scientific;
     auto w = 8 + data.precision();
 
-    _Scorer<Tp> scorer;
+    Scorer<Tp> scorer;
 
     data << "\n\n";
     data << "#"
@@ -267,11 +267,11 @@ template<typename Tp>
   void
   plot_fgh(std::string filename)
   {
-    using _Val = emsr::num_traits_t<Tp>;
+    using Val = emsr::num_traits_t<Tp>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Val>::digits10);
+    data.precision(std::numeric_limits<Val>::digits10);
     data << std::showpoint << std::scientific;
     auto w = 8 + data.precision();
 
@@ -297,7 +297,7 @@ template<typename Tp>
     for (int i = -2000; i <= +500; ++i)
       {
 	auto t = Tp(0.01Q * i);
-	auto fgh0 = _Airy_series<_Val>::s_FGH(t);
+	auto fgh0 = Airy_series<Val>::s_FGH(t);
 	data << std::setw(w) << std::real(fgh0.z)
 	     << std::setw(w) << std::real(fgh0.fai)
 	     << std::setw(w) << std::real(fgh0.faip)

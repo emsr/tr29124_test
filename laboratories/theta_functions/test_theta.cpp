@@ -10,9 +10,9 @@
 #include <emsr/numeric_limits.h>
 #include <emsr/sf_theta.h>
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_theta(_Tp proto = _Tp{})
+  test_theta(Tp proto = Tp{})
   {
     std::cout.precision(emsr::digits10(proto));
     auto width = 8 + std::cout.precision();
@@ -20,8 +20,8 @@ template<typename _Tp>
 
     std::cout << "\n\n Theta function values\n";
     std::cout << " =====================\n";
-    const auto del1 = _Tp{1} / _Tp{10};
-    const auto del01 = _Tp{1} / _Tp{100};
+    const auto del1 = Tp{1} / Tp{10};
+    const auto del01 = Tp{1} / Tp{100};
     for (int i = 0; i <= 20; ++i)
       {
 	auto nu = i * del1;
@@ -52,7 +52,7 @@ template<typename _Tp>
 
     std::cout << "\n\n Theta function values and compares with Jacobi elliptic functions\n";
     std::cout << " =================================================================\n";
-    auto k = _Tp{1} / _Tp{3};
+    auto k = Tp{1} / Tp{3};
     std::cout << '\n' << " k    = " << std::setw(width) << k;
     std::cout << '\n' << " q(k) = " << std::setw(width) << emsr::ellnome(k) << '\n';
     std::cout << ' ' << std::setw(width) << "x"

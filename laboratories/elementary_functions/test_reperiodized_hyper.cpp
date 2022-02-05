@@ -10,11 +10,11 @@
 #include <emsr/float128_io.h>
 #include <emsr/sf_trig.h>
 
-template<typename _Tp>
+template<typename Tp>
   void
-  run_sin_cosh_pi(_Tp proto = _Tp{})
+  run_sin_cosh_pi(Tp proto = Tp{})
   {
-    const _Tp _S_pi = emsr::pi_v<_Tp>;
+    const Tp s_pi = emsr::pi_v<Tp>;
 
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -37,7 +37,7 @@ template<typename _Tp>
 	      << std::setw(width) << " ==============="
 	      << std::setw(width) << " ==============="
 	      << '\n';
-    const auto del = _Tp{1}/_Tp{10};
+    const auto del = Tp{1}/Tp{10};
     for (int i = -1600; i <= +1600; ++i)
       {
 	auto x = del * i;
@@ -46,11 +46,11 @@ template<typename _Tp>
 	auto tanh_pi_g = emsr::tanh_pi(x);
 	std::cout << ' ' << std::setw(width) << x
 		  << ' ' << std::setw(width) << sinh_pi_g
-		  << ' ' << std::setw(width) << sinh_pi_g - std::sinh(_S_pi * x)
+		  << ' ' << std::setw(width) << sinh_pi_g - std::sinh(s_pi * x)
 		  << ' ' << std::setw(width) << cosh_pi_g
-		  << ' ' << std::setw(width) << cosh_pi_g - std::cosh(_S_pi * x)
+		  << ' ' << std::setw(width) << cosh_pi_g - std::cosh(s_pi * x)
 		  << ' ' << std::setw(width) << tanh_pi_g
-		  << ' ' << std::setw(width) << tanh_pi_g - std::tanh(_S_pi * x)
+		  << ' ' << std::setw(width) << tanh_pi_g - std::tanh(s_pi * x)
 		  << '\n';
       }
     std::cout << '\n';

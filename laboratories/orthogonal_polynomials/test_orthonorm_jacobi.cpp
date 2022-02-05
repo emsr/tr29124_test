@@ -14,8 +14,8 @@ template<typename Tp>
   Tp
   gamma_ratio(int n, Tp alpha, Tp beta)
   {
-    const auto _S_eps = std::numeric_limits<Tp>::epsilon();
-    if (std::abs(Tp(1) + alpha + beta) < _S_eps)
+    const auto s_eps = std::numeric_limits<Tp>::epsilon();
+    if (std::abs(Tp(1) + alpha + beta) < s_eps)
       return Tp(0);
     else
       {

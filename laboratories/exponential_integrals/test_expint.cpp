@@ -32,10 +32,10 @@ template<typename Tp>
   void
   test_expint()
   {
-    using _Val = Tp;
-    using _Real = emsr::num_traits_t<_Val>;
-    auto _S_NaN = emsr::quiet_NaN<_Real>();
-    std::cout.precision(emsr::digits10<_Real>());
+    using Val = Tp;
+    using Real = emsr::num_traits_t<Val>;
+    auto s_NaN = emsr::quiet_NaN<Real>();
+    std::cout.precision(emsr::digits10<Real>());
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
     std::vector<unsigned int>
@@ -63,7 +63,7 @@ template<typename Tp>
 	  {
 	    auto x = del * i;
 
-	    Tp ens = _S_NaN;
+	    Tp ens = s_NaN;
 	    try
 	    {
 	      ens = emsr::detail::expint_En_series(n, x);
@@ -72,7 +72,7 @@ template<typename Tp>
 	    {
 	    }
 
-	    Tp enc = _S_NaN;
+	    Tp enc = s_NaN;
 	    try
 	    {
 	      enc = emsr::detail::expint_En_cont_frac(n, x);
@@ -81,7 +81,7 @@ template<typename Tp>
 	    {
 	    }
 
-	    Tp enn = _S_NaN;
+	    Tp enn = s_NaN;
 	    try
 	    {
 	      enn = emsr::detail::expint_En_large_n(n, x);
@@ -90,7 +90,7 @@ template<typename Tp>
 	    {
 	    }
 
-	    Tp ena = _S_NaN;
+	    Tp ena = s_NaN;
 	    try
 	    {
 	      ena = emsr::detail::expint_En_asymp(n, x);
@@ -99,7 +99,7 @@ template<typename Tp>
 	    {
 	    }
 
-	    Tp enb = _S_NaN;
+	    Tp enb = s_NaN;
 	    try
 	    {
 	      enb = beast::expint(n, x);

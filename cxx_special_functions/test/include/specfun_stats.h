@@ -21,8 +21,8 @@
 // These are little tools for special function output statistics.
 //
 
-#ifndef _GLIBCXX_SPECFUN_STATS_H
-#define _GLIBCXX_SPECFUN_STATS_H
+#ifndef SPECFUN_STATS_H
+#define SPECFUN_STATS_H
 
 #include <utility> // For pair.
 
@@ -71,4 +71,4 @@ template<typename Tp>
     Tp max_abs_frac = Tp{};
   };
 
-#endif // _GLIBCXX_SPECFUN_STATS_H
+#endif // SPECFUN_STATS_H

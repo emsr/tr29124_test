@@ -21,8 +21,8 @@ template<typename Tp>
   void
   test_beta(Tp proto = Tp{})
   {
-    //using _Val = Tp;
-    //using _Real = emsr::num_traits_t<_Val>;
+    //using Val = Tp;
+    //using Real = emsr::num_traits_t<Val>;
 
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -59,12 +59,12 @@ template<typename Tp>
   void
   plot_beta(std::string filename)
   {
-    using _Val = Tp;
-    using _Real = emsr::num_traits_t<_Val>;
+    using Val = Tp;
+    using Real = emsr::num_traits_t<Val>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Real>::digits10);
+    data.precision(std::numeric_limits<Real>::digits10);
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 

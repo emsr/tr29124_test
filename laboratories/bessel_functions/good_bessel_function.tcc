@@ -22,9 +22,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file tr1/sf_bessel.tcc
- *  This is an internal header file, included by other library headers.
- *  You should not attempt to use it directly.
+/** @file good_bessel_function.tcc
  */
 
 //
@@ -41,28 +39,14 @@
 //   (2) Numerical Recipes in C,
 //       
 
-#ifndef _TR1_BESSEL_FUNCTION_TCC
-#define _TR1_BESSEL_FUNCTION_TCC 1
+#ifndef GOOD_BESSEL_FUNCTION_TCC
+#define GOOD_BESSEL_FUNCTION_TCC 1
 
 #include <emsr/fp_type_util.h>
 
-namespace std
+namespace emsr
+namespace detail
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-  // [5.2] Special functions
-
-  /**
-   * @addtogroup tr1_math_spec_func Mathematical Special Functions
-   * A collection of advanced mathematical special functions.
-   * @{
-   */
-
-  //
-  // Implementation-space details.
-  //
-  namespace __detail
-  {
 
     ///
     ///  @brief  Compute the Bessel @f$ J_\nu(x) @f$ and Neumann
@@ -405,11 +389,7 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
       return n_n;
     }
 
-  } // namespace std::tr1::__detail
+} // namespace detail
+} // namespace emsr
 
-  /* @} */ // group tr1_math_spec_func
-
-_GLIBCXX_END_NAMESPACE_VERSION
-}
-
-#endif // _TR1_BESSEL_FUNCTION_TCC
+#endif // GOOD_BESSEL_FUNCTION_TCC

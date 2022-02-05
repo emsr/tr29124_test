@@ -41,55 +41,55 @@ namespace std
 
   template<typename _CharT, typename _Traits = std::char_traits<_CharT>>
     std::basic_ostream<_CharT, _Traits>&
-    operator<<(std::basic_ostream<_CharT, _Traits>& __os,
-	       __float128 __x)
+    operator<<(std::basic_ostream<_CharT, _Traits>& os,
+	       __float128 x)
     {
-      auto __sci = __os.flags() & std::ios::scientific;
-      auto __hex = __os.flags() & std::ios::fixed
-		&& __os.flags() & std::ios::scientific;
-      //auto __hex = __os.flags() & (std::ios::fixed | std::ios::scientific);
-      auto __upper = __os.flags() & std::ios::uppercase;
-      auto __width = __os.width();
-      std::ostringstream __fmt;
-      __fmt << '%';
+      auto sci = os.flags() & std::ios::scientific;
+      auto hex = os.flags() & std::ios::fixed
+		&& os.flags() & std::ios::scientific;
+      //auto hex = os.flags() & (std::ios::fixed | std::ios::scientific);
+      auto upper = os.flags() & std::ios::uppercase;
+      //auto width = os.width();
+      std::ostringstream fmt;
+      fmt << '%';
 
-      if (__os.flags() & std::ios::showpos)
-	__fmt << '+';
+      if (os.flags() & std::ios::showpos)
+	fmt << '+';
       else
-	__fmt << ' '; // Space instead of plus standard?
+	fmt << ' '; // Space instead of plus standard?
 
-      if (__os.flags() & std::ios::left)
-	__fmt << '-';
+      if (os.flags() & std::ios::left)
+	fmt << '-';
 
-      __fmt << __os.width() << '.' << __os.precision() << 'Q';
+      fmt << os.width() << '.' << os.precision() << 'Q';
 
-      if (__hex)
-	__fmt << (__upper ? 'A' : 'a');
-      else if (__sci)
-	__fmt << (__upper ? 'E' : 'e');
+      if (hex)
+	fmt << (upper ? 'A' : 'a');
+      else if (sci)
+	fmt << (upper ? 'E' : 'e');
       else
-	__fmt << (__upper ? 'G' : 'g');
+	fmt << (upper ? 'G' : 'g');
 
-      constexpr int __strlen = 1000;
-      char __str[__strlen];
-      quadmath_snprintf(__str, __strlen, __fmt.str().c_str(), __x) ;
-      __os << __str;
-      return __os;
+      constexpr int strlen = 1000;
+      char str[strlen];
+      quadmath_snprintf(str, strlen, fmt.str().c_str(), x) ;
+      os << str;
+      return os;
     }
 
   template<typename _CharT, typename _Traits = std::char_traits<_CharT>>
     std::basic_istream<_CharT, _Traits>&
-    operator>>(std::basic_istream<_CharT, _Traits>& __is, __float128& __x)
+    operator>>(std::basic_istream<_CharT, _Traits>& is, __float128& x)
     {
-      constexpr int __strlen = 160;
-      char __str[__strlen];
-      __is >> std::setw(__strlen) >> __str;
-      __x = strtoflt128(__str, 0);
-      return __is;
+      constexpr int strlen = 160;
+      char str[strlen];
+      is >> std::setw(strlen) >> str;
+      x = strtoflt128(str, 0);
+      return is;
     }
 
 } // namespace std
 
-#endif _GLIBCXX_USE_FLOAT128
+#endif // _GLIBCXX_USE_FLOAT128
 
 #endif // EXT_FLOAT128_IO_TCC

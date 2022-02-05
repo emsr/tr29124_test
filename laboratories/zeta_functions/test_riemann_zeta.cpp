@@ -39,23 +39,23 @@
     Tp
     riemann_zeta_alt(Tp s)
     {
-      using _Val = Tp;
-      using _Real = emsr::num_traits_t<_Val>;
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
       const auto s_eps = emsr::epsilon(std::real(s));
       const unsigned int s_max_iter = 10000000;
-      auto sgn = _Real{1};
-      auto zeta = _Val{0};
+      auto sgn = Real{1};
+      auto zeta = Val{0};
       for (unsigned int i = 1; i < s_max_iter; ++i)
 	{
-	  const auto term = sgn / std::pow(_Val(i), s);
+	  const auto term = sgn / std::pow(Val(i), s);
 	  zeta += term;
 	  sgn = -sgn;
 	  if (std::abs(term) < s_eps * std::abs(zeta)
 	      || std::abs(term) < s_eps
-		 && std::abs(zeta) < _Real{100} * s_eps)
+		 && std::abs(zeta) < Real{100} * s_eps)
 	    break;
 	}
-      zeta /= _Val{1} - std::pow(_Val{2}, _Val{1} - s);
+      zeta /= Val{1} - std::pow(Val{2}, Val{1} - s);
 
       return zeta;
     }
@@ -86,19 +86,19 @@
     Tp
     riemann_zeta_product(Tp s)
     {
-      using _Val = Tp;
-      using _Real = emsr::num_traits_t<_Val>;
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
 
       const auto s_eps = emsr::epsilon(std::real(s));
       constexpr unsigned long
         s_num_primes = sizeof(unsigned long) != 8 ? 256 : 256 + 48;
 
-      auto zeta = _Val{1};
+      auto zeta = Val{1};
       for (unsigned long i = 0;
 	   i < emsr::detail::s_num_primes; ++i)
 	{
-	  const auto fact = _Val{1}
-			    - std::pow(_Real(emsr::prime(i)), -s);
+	  const auto fact = Val{1}
+			    - std::pow(Real(emsr::prime(i)), -s);
 	  zeta *= fact;
 	  if (std::abs(Tp{1} - fact) < s_eps) // Assume zeta near 1.
 	    break;
@@ -124,19 +124,19 @@
     Tp
     riemann_zeta_m_1_sum(Tp s)
     {
-      using _Val = Tp;
-      using _Real = emsr::num_traits_t<_Val>;
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
       const auto s_eps = emsr::epsilon(std::real(s));
-      if (emsr::fp_is_integer(s) == _Real{1})
+      if (emsr::fp_is_integer(s) == Real{1})
        return emsr::quiet_NaN(std::real(s));
       else
        {
 	 const auto arg = -std::log10(s_eps) / std::abs(s);
-	 int k_max = arg > _Real{6} ? 1000000 : std::pow(_Real{10}, arg);
-	 auto zeta_m_1 = _Val{0};
+	 int k_max = arg > Real{6} ? 1000000 : std::pow(Real{10}, arg);
+	 auto zeta_m_1 = Val{0};
 	 for (int k = k_max; k >= 2; --k)
 	   {
-	     auto term = std::pow(_Real(k), -s);
+	     auto term = std::pow(Real(k), -s);
 	     zeta_m_1 += term;
 	   }
 	 return zeta_m_1;
@@ -148,11 +148,11 @@ template<typename Tp>
   void
   plot_riemann_zeta(std::string filename, Tp proto = Tp{})
   {
-    using _Val = Tp;
-    using _Real = emsr::num_traits_t<_Val>;
-    using _Cmplx = std::complex<_Real>;
+    using Val = Tp;
+    using Real = emsr::num_traits_t<Val>;
+    using Cmplx = std::complex<Real>;
 
-    const auto deg = emsr::deg_v<_Real>;
+    const auto deg = emsr::deg_v<Real>;
 
     auto data = std::ofstream(filename);
 
@@ -160,7 +160,7 @@ template<typename Tp>
     data << std::showpoint << std::scientific;
     auto w = 8 + data.precision();
 
-    using zetaT = decltype(emsr::detail::riemann_zeta(_Cmplx{}));
+    using zetaT = decltype(emsr::detail::riemann_zeta(Cmplx{}));
     std::vector<std::vector<zetaT>> sv;
     std::vector<std::vector<zetaT>> zetav;
 
@@ -173,7 +173,7 @@ template<typename Tp>
 	zetav.push_back(std::vector<zetaT>{});
 	for (int j = j_min; j <= +50; ++j)
 	  {
-	    auto s = _Cmplx(0.10L * i, 0.10L * j);
+	    auto s = Cmplx(0.10L * i, 0.10L * j);
 	    sv.back().push_back(s);
 	    zetav.back().push_back(emsr::detail::riemann_zeta(s));
 	  }
@@ -242,11 +242,11 @@ template<typename Tp>
 
 template<typename Tp>
   void
-  test_riemann_zeta_real(Tp proto = Tp{})
+  test_riemann_zetaReal(Tp proto = Tp{})
   {
-    using _Val = Tp;
-    using _Real = emsr::num_traits_t<_Val>;
-    using _Cmplx = std::complex<_Real>;
+    using Val = Tp;
+    using Real = emsr::num_traits_t<Val>;
+    using Cmplx = std::complex<Real>;
 
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -262,9 +262,9 @@ template<typename Tp>
 	      << '\n';
     for (int i = i_min; i <= +250; ++i)
       {
-        auto sc = _Cmplx(0.10L * i, 0.0L);
+        auto sc = Cmplx(0.10L * i, 0.0L);
 	auto zetac = emsr::detail::riemann_zeta(sc);
-        auto s = _Real(0.10L * i);
+        auto s = Real(0.10L * i);
 	auto zeta = emsr::detail::riemann_zeta(s);
 	std::cout << ' ' << std::setw(w) << s
 		  << ' ' << std::setw(4 + 2 * w) << zetac
@@ -318,9 +318,9 @@ template<typename Tp>
   {
     using namespace std::complex_literals;
 
-    using _Val = Tp;
-    using _Real = emsr::num_traits_t<_Val>;
-    using _Cmplx = std::complex<_Real>;
+    using Val = Tp;
+    using Real = emsr::num_traits_t<Val>;
+    using Cmplx = std::complex<Real>;
 
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -334,7 +334,7 @@ template<typename Tp>
 	      << '\n';
     for (int i = i_min; i <= +500; ++i)
       {
-        auto s = _Cmplx(0.5L, 0.05L * i);
+        auto s = Cmplx(0.5L, 0.05L * i);
 	auto zeta = emsr::detail::riemann_zeta(s);
 	std::cout << ' ' << std::setw(w) << std::imag(s)
 		  << ' ' << std::setw(w) << std::real(zeta)
@@ -343,7 +343,7 @@ template<typename Tp>
 		  << '\n';
       }
 
-    _Cmplx
+    Cmplx
     zeros[10]
     {
       0.5l + 14.134725141734693790457251983562470270784257115699il,
@@ -386,7 +386,7 @@ main(int n_app_args, char** arg)
 
   test_riemann_zeta(1.0);
 
-  test_riemann_zeta_real<long double>();
+  test_riemann_zetaReal<long double>();
 
   test_nontrivial_zeros<long double>();
 

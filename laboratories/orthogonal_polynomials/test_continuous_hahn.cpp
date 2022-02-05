@@ -33,9 +33,9 @@ template<typename Tp>
  *               {(2n + a + b + c + d - 2)(2n + a + b + c + d - 1)}
  * @f]
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   continuous_hahn_t<Tp>
-  continuous_hahn_recur(int n, Tp a, Tp b, Tp c, Tp d, _TpX x)
+  continuous_hahn_recur(int n, Tp a, Tp b, Tp c, Tp d, TpX x)
   {
     auto pnm1 = std::complex<Tp>{1};
     if (n == 0)
@@ -92,9 +92,9 @@ template<typename Tp, typename _TpX>
  *               a + c, a + d; 1)
  * @f]
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   continuous_hahn_t<Tp>
-  continuous_hahn(int n, Tp a, Tp b, Tp c, Tp d, _TpX x)
+  continuous_hahn(int n, Tp a, Tp b, Tp c, Tp d, TpX x)
   {
     if (std::isnan(a))
       return {std::complex<Tp>(a), std::complex<Tp>{}};

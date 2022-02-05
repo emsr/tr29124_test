@@ -27,9 +27,9 @@
  *             {(2n + \alpha + \beta)(2n + \alpha + \beta + 1)}
  * @f]
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   Tp
-  racah_recur(int n, Tp a, Tp b, Tp c, Tp d, _TpX x)
+  racah_recur(int n, Tp a, Tp b, Tp c, Tp d, TpX x)
   {
     auto Rnm1 = Tp{1};
     if (n == 0)
@@ -75,9 +75,9 @@ template<typename Tp, typename _TpX>
  * @f]
  * where @f$ \lambda(x) = x(x + \gamma + \delta + 1) @f$.
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   Tp
-  racah(int n, Tp a, Tp b, Tp c, Tp d, _TpX x)
+  racah(int n, Tp a, Tp b, Tp c, Tp d, TpX x)
   {
     if (std::isnan(a))
       return a;

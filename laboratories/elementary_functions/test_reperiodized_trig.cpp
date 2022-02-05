@@ -15,7 +15,7 @@ template<typename Tp>
   void
   run_sin_cos_pi(Tp proto = Tp{})
   {
-    const Tp _S_pi = emsr::pi_v<Tp>;
+    const Tp s_pi = emsr::pi_v<Tp>;
 
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
@@ -59,13 +59,13 @@ template<typename Tp>
 		  << std::setw(width) << sin_pi_g
 		  << std::setw(width) << sin_pi_b
 		  << std::setw(width) << sin_pi_g - sin_pi_b
-		  << std::setw(width) << sin_pi_g - std::sin(_S_pi * x)
+		  << std::setw(width) << sin_pi_g - std::sin(s_pi * x)
 		  << std::setw(width) << cos_pi_g
 		  << std::setw(width) << cos_pi_b
 		  << std::setw(width) << cos_pi_g - cos_pi_b
-		  << std::setw(width) << cos_pi_g - std::cos(_S_pi * x)
+		  << std::setw(width) << cos_pi_g - std::cos(s_pi * x)
 		  << std::setw(width) << tan_pi_g
-		  << std::setw(width) << tan_pi_g - std::tan(_S_pi * x)
+		  << std::setw(width) << tan_pi_g - std::tan(s_pi * x)
 		  << '\n';
       }
     std::cout << '\n';
@@ -108,13 +108,13 @@ template<typename Tp>
 		  << std::setw(width) << sin_pi_g
 		  << std::setw(width) << sin_pi_b
 		  << std::setw(width) << sin_pi_g - sin_pi_b
-		  << std::setw(width) << sin_pi_g - std::sin(_S_pi * x)
+		  << std::setw(width) << sin_pi_g - std::sin(s_pi * x)
 		  << std::setw(width) << cos_pi_g
 		  << std::setw(width) << cos_pi_b
 		  << std::setw(width) << cos_pi_g - cos_pi_b
-		  << std::setw(width) << cos_pi_g - std::cos(_S_pi * x)
+		  << std::setw(width) << cos_pi_g - std::cos(s_pi * x)
 		  << std::setw(width) << tan_pi_g
-		  << std::setw(width) << tan_pi_g - std::tan(_S_pi * x)
+		  << std::setw(width) << tan_pi_g - std::tan(s_pi * x)
 		  << '\n';
       }
     std::cout << '\n';

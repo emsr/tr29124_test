@@ -32,9 +32,9 @@ template<typename Tp>
  *    C_n = n(n + b + c - 1)
  * @f]
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   continuous_dual_hahn_t<Tp>
-  continuous_dual_hahn_recur(int n, Tp a, Tp b, Tp c, _TpX x)
+  continuous_dual_hahn_recur(int n, Tp a, Tp b, Tp c, TpX x)
   {
     auto Snm1 = Tp{1};
     if (n == 0)
@@ -83,9 +83,9 @@ template<typename Tp, typename _TpX>
  *            {}_3F_2(-n, a + ix, a - ix, a + b, a + c; 1)
  * @f]
  */
-template<typename Tp, typename _TpX>
+template<typename Tp, typename TpX>
   continuous_dual_hahn_t<Tp>
-  continuous_dual_hahn(int n, Tp a, Tp b, Tp c, _TpX x)
+  continuous_dual_hahn(int n, Tp a, Tp b, Tp c, TpX x)
   {
     if (std::isnan(a))
       return {a, Tp{}};
