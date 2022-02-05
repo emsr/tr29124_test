@@ -101,7 +101,7 @@ main()
   test_numeric_limits(1.0F);
   test_numeric_limits(1.0);
   test_numeric_limits(1.0L);
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
   //test_numeric_limits(1.0Q);
 #endif
 

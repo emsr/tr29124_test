@@ -10,12 +10,15 @@
 #include <quadmath.h>
 
 #include <emsr/float128_io.h>
-#include <emsr/float128_math.h> // Must come before <cmath>.
+#include <emsr/float128_math.h>
+#include <emsr/float128_limits.h>
 
 int
 main()
 {
+#ifdef EMSR_HAVE_FLOAT128
   std::cout.precision(std::numeric_limits<__float128>::max_digits10);
+  std::cout << "precision = " << std::cout.precision() << '\n';
   //auto width = 8 + std::cout.precision();
 
   auto x = 0.00004472229441850588228136889483397204368247Q;
@@ -104,4 +107,5 @@ main()
   std::cout << "y0(x)		= " << std::y0(x) << '\n';
   std::cout << "y1(x)		= " << std::y1(x) << '\n';
   std::cout << "yn(n, x)	= " << std::yn(n, x) << '\n';
+#endif // EMSR_HAVE_FLOAT128
 }

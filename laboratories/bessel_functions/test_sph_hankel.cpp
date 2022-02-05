@@ -54,5 +54,7 @@ main()
   RunSphHankel1<float>();
   RunSphHankel1<double>();
   RunSphHankel1<long double>();
+#ifdef EMSR_HAVE_FLOAT128
   RunSphHankel1<__float128>();
+#endif
 }

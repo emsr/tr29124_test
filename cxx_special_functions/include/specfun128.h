@@ -29,7 +29,7 @@
 #ifndef SPECFUN128_H
 #define SPECFUN128_H 1
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
 
 namespace emsr
 {
@@ -579,6 +579,6 @@ namespace emsr
 
 } // namespace emsr
 
-#endif // FLOAT128
+#endif // EMSR_HAVE_FLOAT128
 
 #endif // SPECFUN128_H

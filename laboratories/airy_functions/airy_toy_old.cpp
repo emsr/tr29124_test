@@ -2973,6 +2973,7 @@ main()
   diff_airy_asymp_p<long double>();
 
   std::cout << "\nfloat128\n==========\n";
+#ifdef EMSR_HAVE_FLOAT128
   run_toy<__float128>();
   //run_airy_asymp_m<__float128>();
   //run_airy_series<__float128>();
@@ -2980,7 +2981,7 @@ main()
   //diff_airy_asymp_m<__float128>();
   //diff_airy_series<__float128>();
   //diff_airy_asymp_p<__float128>();
-
+#endif // EMSR_HAVE_FLOAT128
   std::cout << "\nfloat\n=====\n\n";
   using fcmplx = std::complex<float>;
   using fsum = emsr::WenigerDeltaSum<emsr::KahanSum<fcmplx>>;

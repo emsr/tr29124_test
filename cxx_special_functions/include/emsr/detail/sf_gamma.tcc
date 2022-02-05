@@ -80,7 +80,7 @@ template<>
   constexpr std::size_t s_num_factorials<double> = 171;
 template<>
   constexpr std::size_t s_num_factorials<long double> = 171;
-#ifdef _GLIBCXX_USE_FLOAT128
+#ifdef EMSR_HAVE_FLOAT128
 template<>
   constexpr std::size_t s_num_factorials<__float128> = 171;
 #endif
@@ -270,7 +270,7 @@ template<>
   constexpr std::size_t s_num_double_factorials<double> = 301;
 template<>
   constexpr std::size_t s_num_double_factorials<long double> = 301;
-#ifdef _GLIBCXX_USE_FLOAT128
+#ifdef EMSR_HAVE_FLOAT128
 template<>
   constexpr std::size_t s_num_double_factorials<__float128> = 301;
 #endif
@@ -590,7 +590,7 @@ template<>
   constexpr std::size_t s_num_neg_double_factorials<double> = 150;
 template<>
   constexpr std::size_t s_num_neg_double_factorials<long double> = 999;
-#ifdef _GLIBCXX_USE_FLOAT128
+#ifdef EMSR_HAVE_FLOAT128
 template<>
   constexpr std::size_t s_num_neg_double_factorials<__float128> = 999;
 #endif
@@ -1868,7 +1868,7 @@ s_neg_double_factorial_table[999]
       };
     };
 
-#ifdef _GLIBCXX_USE_FLOAT128
+#ifdef EMSR_HAVE_FLOAT128
   template<>
     struct gamma_spouge_data<__float128>
     {
@@ -2077,7 +2077,7 @@ s_neg_double_factorial_table[999]
       };
     };
 
-#ifdef _GLIBCXX_USE_FLOAT128
+#ifdef EMSR_HAVE_FLOAT128
   template<>
     struct gamma_lanczos_data<__float128>
     {

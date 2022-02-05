@@ -1,4 +1,3 @@
-// -*- C++ -*- header.
 
 // Copyright (C) 2016-2019 Free Software Foundation, Inc.
 // Copyright (C) 2020-2022 Edward M. Smith-Rowland
@@ -30,7 +29,9 @@
 #ifndef FLOAT128_IO_H
 #define FLOAT128_IO_H 1
 
-#ifdef _GLIBCXX_USE_FLOAT128
+#include <emsr/float128.h>
+
+#ifdef EMSR_HAVE_FLOAT128
 #if __has_include(<quadmath.h>)
 
 #include <iosfwd>
@@ -39,20 +40,20 @@
 namespace std
 {
 
-  template<typename _CharT, typename _Traits = std::char_traits<_CharT>>
-    std::basic_ostream<_CharT, _Traits>&
-    operator<<(std::basic_ostream<_CharT, _Traits>& __os,
-	       __float128 __x);
+  template<typename CharT, typename Traits = std::char_traits<CharT>>
+    std::basic_ostream<CharT, Traits>&
+    operator<<(std::basic_ostream<CharT, Traits>& os,
+	       __float128 x);
 
-  template<typename _CharT, typename _Traits = std::char_traits<_CharT>>
-    std::basic_istream<_CharT, _Traits>&
-    operator>>(std::basic_istream<_CharT, _Traits>& __is, __float128& __x);
+  template<typename CharT, typename Traits = std::char_traits<CharT>>
+    std::basic_istream<CharT, Traits>&
+    operator>>(std::basic_istream<CharT, Traits>& is, __float128& x);
 
 } // namespace std
 
 #include <emsr/float128_io.tcc>
 
 #endif // __has_include(<quadmath.h>)
-#endif // _GLIBCXX_USE_FLOAT128
+#endif // EMSR_HAVE_FLOAT128
 
-#endif // _GLIBCXX_EXT_FLOAT128_IO_H
+#endif // FLOAT128_IO_H

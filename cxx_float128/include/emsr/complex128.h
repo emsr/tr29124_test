@@ -1,4 +1,3 @@
-// -*- C++ -*- header.
 
 // Copyright (C) 2017-2019 Free Software Foundation, Inc.
 // Copyright (C) 2020-2022 Edward M. Smith-Rowland
@@ -30,7 +29,9 @@
 #ifndef COMPLEX128_H
 #define COMPLEX128_H 1
 
-#ifdef _GLIBCXX_USE_FLOAT128
+#include <emsr/float128.h>
+
+#ifdef EMSR_HAVE_FLOAT128
 
 #include <emsr/float128_io.h>
 
@@ -56,37 +57,37 @@ namespace std
       //typedef _Complex float __attribute__((mode(TC))) __complex128;
       typedef __complex128 _ComplexT;
 
-      _GLIBCXX_CONSTEXPR
-      complex(_ComplexT __z)
-      : _M_value(__z)
+      constexpr
+      complex(_ComplexT z)
+      : _M_value(z)
       { }
 
-      _GLIBCXX_CONSTEXPR
-      complex(__float128 __r = 0.0Q, 
-	      __float128 __i = 0.0Q)
+      constexpr
+      complex(__float128 r = 0.0Q, 
+	      __float128 i = 0.0Q)
 #if __cplusplus >= 201103L
-      : _M_value{ __r, __i }
+      : _M_value{ r, i }
       { }
 #else
       {
-	__real__ _M_value = __r;
-	__imag__ _M_value = __i;
+	__real__ _M_value = r;
+	__imag__ _M_value = i;
       }
 #endif
 
-      _GLIBCXX_CONSTEXPR
-      complex(const complex<float>& __z)
-      : _M_value(__z.__rep())
+      constexpr
+      complex(const complex<float>& z)
+      : _M_value(z.__rep())
       { }
 
-      _GLIBCXX_CONSTEXPR
-      complex(const complex<double>& __z)
-      : _M_value(__z.__rep())
+      constexpr
+      complex(const complex<double>& z)
+      : _M_value(z.__rep())
       { }
 
-      _GLIBCXX_CONSTEXPR
-      complex(const complex<long double>& __z)
-      : _M_value(__z.__rep())
+      constexpr
+      complex(const complex<long double>& z)
+      : _M_value(z.__rep())
       { }
 
 #if __cplusplus >= 201103L
@@ -130,37 +131,37 @@ namespace std
       { __imag__ _M_value = __val; }
 
       complex&
-      operator=(__float128 __r)
+      operator=(__float128 r)
       {
-	_M_value = __r;
+	_M_value = r;
 	return *this;
       }
 
       complex&
-      operator+=(__float128 __r)
+      operator+=(__float128 r)
       {
-	_M_value += __r;
+	_M_value += r;
 	return *this;
       }
 
       complex&
-      operator-=(__float128 __r)
+      operator-=(__float128 r)
       {
-	_M_value -= __r;
+	_M_value -= r;
 	return *this;
       }
 
       complex&
-      operator*=(__float128 __r)
+      operator*=(__float128 r)
       {
-	_M_value *= __r;
+	_M_value *= r;
 	return *this;
       }
 
       complex&
-      operator/=(__float128 __r)
+      operator/=(__float128 r)
       {
-	_M_value /= __r;
+	_M_value /= r;
 	return *this;
       }
 
@@ -169,54 +170,54 @@ namespace std
 
       template<typename _Tp>
         complex&
-        operator=(const complex<_Tp>& __z)
+        operator=(const complex<_Tp>& z)
 	{
-	  __real__ _M_value = __z.real();
-	  __imag__ _M_value = __z.imag();
+	  __real__ _M_value = z.real();
+	  __imag__ _M_value = z.imag();
 	  return *this;
 	}
 
       template<typename _Tp>
         complex&
-	operator+=(const complex<_Tp>& __z)
+	operator+=(const complex<_Tp>& z)
 	{
-	  __real__ _M_value += __z.real();
-	  __imag__ _M_value += __z.imag();
+	  __real__ _M_value += z.real();
+	  __imag__ _M_value += z.imag();
 	  return *this;
 	}
 
       template<typename _Tp>
         complex&
-	operator-=(const complex<_Tp>& __z)
+	operator-=(const complex<_Tp>& z)
 	{
-	  __real__ _M_value -= __z.real();
-	  __imag__ _M_value -= __z.imag();
+	  __real__ _M_value -= z.real();
+	  __imag__ _M_value -= z.imag();
 	  return *this;
 	}
 
       template<typename _Tp>
         complex&
-	operator*=(const complex<_Tp>& __z)
+	operator*=(const complex<_Tp>& z)
 	{
 	  _ComplexT __t;
-	  __real__ __t = __z.real();
-	  __imag__ __t = __z.imag();
+	  __real__ __t = z.real();
+	  __imag__ __t = z.imag();
 	  _M_value *= __t;
 	  return *this;
 	}
 
       template<typename _Tp>
         complex&
-	operator/=(const complex<_Tp>& __z)
+	operator/=(const complex<_Tp>& z)
 	{
 	  _ComplexT __t;
-	  __real__ __t = __z.real();
-	  __imag__ __t = __z.imag();
+	  __real__ __t = z.real();
+	  __imag__ __t = z.imag();
 	  _M_value /= __t;
 	  return *this;
 	}
 
-      _GLIBCXX_CONSTEXPR _ComplexT
+      constexpr _ComplexT
       __rep() const
       { return _M_value; }
 
@@ -225,25 +226,23 @@ namespace std
       _ComplexT _M_value;
     };
 
-  inline _GLIBCXX_CONSTEXPR
-  complex<float>::complex(const complex<__float128>& __z)
-  : _M_value(__z.__rep()) { }
+  inline constexpr
+  complex<float>::complex(const complex<__float128>& z)
+  : _M_value(z.__rep()) { }
 
-  inline _GLIBCXX_CONSTEXPR
-  complex<double>::complex(const complex<__float128>& __z)
-  : _M_value(__z.__rep()) { }
+  inline constexpr
+  complex<double>::complex(const complex<__float128>& z)
+  : _M_value(z.__rep()) { }
 
-  inline _GLIBCXX_CONSTEXPR
-  complex<long double>::complex(const complex<__float128>& __z)
-  : _M_value(__z.__rep()) { }
+  inline constexpr
+  complex<long double>::complex(const complex<__float128>& z)
+  : _M_value(z.__rep()) { }
 
-#if _GLIBCXX_EXTERN_TEMPLATE
   template istream& operator>>(istream&, complex<__float128>&);
   template ostream& operator<<(ostream&, const complex<__float128>&);
   // FIXME!!!
   //template wistream& operator>>(wistream&, complex<__float128>&);
   //template wostream& operator<<(wostream&, const complex<__float128>&);
-#endif // _GLIBCXX_EXTERN_TEMPLATE
 
 #if __cplusplus > 201103L
 
@@ -269,6 +268,6 @@ inline namespace complex_literals {
 
 } // namespace std
 
-#endif // _GLIBCXX_USE_FLOAT128
+#endif // EMSR_HAVE_FLOAT128
 
 #endif // COMPLEX128_H

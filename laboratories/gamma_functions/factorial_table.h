@@ -1,6 +1,4 @@
-// -*- C++ -*-
-// Integration utilities for the C++ library testsuite.
-//
+
 // Copyright (C) 2011-2019 Free Software Foundation, Inc.
 // Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //

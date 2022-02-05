@@ -7,11 +7,14 @@
 #include <iomanip>
 
 #include <emsr/float128_io.h>
+#include <emsr/float128_limits.h>
 #include <emsr/polynomial.h>
+
 
 int
 main()
 {
+#ifdef EMSR_HAVE_FLOAT128
   using Tp = __float128;
 
   auto index = 0;
@@ -136,4 +139,6 @@ main()
 	std::cout << std::setw(width) << *c << '\n';
 
   // Try these:  << std::showpos << std::uppercase << std::hexfloat << std::showpos
+#endif // EMSR_HAVE_FLOAT128
 }
+

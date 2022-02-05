@@ -28,7 +28,7 @@
     struct fp_promote_help<long double>
     { using type = long double; };
 
-#if !defined(STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
   template<>
     struct fp_promote_help<__float128>
     { using type = __float128; };

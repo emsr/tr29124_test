@@ -1,4 +1,3 @@
-// -*- C++ -*- header.
 
 // Copyright (C) 2017-2019 Free Software Foundation, Inc.
 // Copyright (C) 2020-2022 Edward M. Smith-Rowland
@@ -30,7 +29,9 @@
 #ifndef COMPLEX128_MATH_H
 #define COMPLEX128_MATH_H 1
 
-#ifdef _GLIBCXX_USE_FLOAT128
+#include <emsr/float128.h>
+
+#ifdef EMSR_HAVE_FLOAT128
 
 typedef _Complex float __attribute__((mode(TC))) __complex128;
 
@@ -79,85 +80,85 @@ namespace std
 #if _GLIBCXX_USE_C99_COMPLEX
 
   inline __float128
-  __complex_abs(const __complex128& __z)
-  { return cabsq(__z); }
+  __complex_abs(const __complex128& z)
+  { return cabsq(z); }
 
   inline __float128
-  __complex_arg(const __complex128& __z)
-  { return cargq(__z); }
+  __complex_arg(const __complex128& z)
+  { return cargq(z); }
 
   inline __complex128
-  __complex_cos(const __complex128& __z)
-  { return ccosq(__z); }
+  __complex_cos(const __complex128& z)
+  { return ccosq(z); }
 
   inline __complex128
-  __complex_cosh(const __complex128& __z)
-  { return ccoshq(__z); }
+  __complex_cosh(const __complex128& z)
+  { return ccoshq(z); }
 
   inline __complex128
-  __complex_exp(const __complex128& __z)
-  { return cexpq(__z); }
+  __complex_exp(const __complex128& z)
+  { return cexpq(z); }
 
   inline __complex128
-  __complex_log(const __complex128& __z)
-  { return clogq(__z); }
+  __complex_log(const __complex128& z)
+  { return clogq(z); }
 
   inline __complex128
-  __complex_sin(const __complex128& __z)
-  { return csinq(__z); }
+  __complex_sin(const __complex128& z)
+  { return csinq(z); }
 
   inline __complex128
-  __complex_sinh(const __complex128& __z)
-  { return csinhq(__z); }      
+  __complex_sinh(const __complex128& z)
+  { return csinhq(z); }      
 
   inline __complex128
-  __complex_sqrt(const __complex128& __z)
-  { return csqrtq(__z); }
+  __complex_sqrt(const __complex128& z)
+  { return csqrtq(z); }
 
   inline __complex128
-  __complex_tan(const __complex128& __z)
-  { return ctanq(__z); }
+  __complex_tan(const __complex128& z)
+  { return ctanq(z); }
 
   inline __complex128
-  __complex_tanh(const __complex128& __z)
-  { return ctanhq(__z); }
+  __complex_tanh(const __complex128& z)
+  { return ctanhq(z); }
 
   inline __complex128
   __complex_pow(const __complex128& __x, const __complex128& __y)
   { return cpowq(__x, __y); }
 
   inline __complex128
-  __complex_acos(const __complex128& __z)
-  { return cacosq(__z); }
+  __complex_acos(const __complex128& z)
+  { return cacosq(z); }
 
   inline __complex128
-  __complex_asin(const __complex128& __z)
-  { return casinq(__z); }
+  __complex_asin(const __complex128& z)
+  { return casinq(z); }
 
   inline __complex128
-  __complex_atan(const __complex128& __z)
-  { return catanq(__z); }
+  __complex_atan(const __complex128& z)
+  { return catanq(z); }
 
   inline __complex128
-  __complex_acosh(const __complex128& __z)
-  { return cacoshq(__z); }
+  __complex_acosh(const __complex128& z)
+  { return cacoshq(z); }
 
   inline __complex128
-  __complex_asinh(const __complex128& __z)
-  { return casinhq(__z); }
+  __complex_asinh(const __complex128& z)
+  { return casinhq(z); }
 
   inline __complex128
-  __complex_atanh(const __complex128& __z)
-  { return catanhq(__z); }
+  __complex_atanh(const __complex128& z)
+  { return catanhq(z); }
 
   inline __complex128
-  __complex_proj(const __complex128& __z)
-  { return cprojq(__z); }
+  __complex_proj(const __complex128& z)
+  { return cprojq(z); }
 
 #endif // _GLIBCXX_USE_C99_COMPLEX
 
 } // namespace std
 
-#endif // _GLIBCXX_USE_FLOAT128
+#endif // EMSR_HAVE_FLOAT128
 
 #endif // COMPLEX128_MATH_H

@@ -94,14 +94,14 @@ template<>
     { return std::string("_l.txt"); }
   };
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
 template<>
   class filename_end<__float128>
   {
   public:
     static const std::string suffix() { return std::string("_q.txt"); }
 };
-#endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
+#endif // EMSR_HAVE_FLOAT128
 
 
 ///

@@ -1,4 +1,3 @@
-// -*- C++ -*- header.
 
 // Copyright (C) 2016-2019 Free Software Foundation, Inc.
 // Copyright (C) 2020-2022 Edward M. Smith-Rowland
@@ -22,7 +21,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file ext/limits_float128.h
+/** @file limits_float128.h
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{limits}
  */
@@ -30,7 +29,9 @@
 #ifndef FLOAT128_LIMITS_H
 #define FLOAT128_LIMITS_H 1
 
-#ifdef _GLIBCXX_USE_FLOAT128
+#include <emsr/float128.h>
+
+#ifdef EMSR_HAVE_FLOAT128
 
 //#include <quadmath.h>
 #define FLT128_MAX 1.18973149535723176508575932662800702e4932Q
@@ -116,6 +117,6 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
 
 } // namespace std
 
-#endif // _GLIBCXX_USE_FLOAT128
+#endif // EMSR_HAVE_FLOAT128
 
 #endif // FLOAT128_LIMITS_H

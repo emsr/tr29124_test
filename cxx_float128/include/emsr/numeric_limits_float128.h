@@ -1,4 +1,3 @@
-// -*- C++ -*- header.
 
 // Copyright (C) 2016-2019 Free Software Foundation, Inc.
 // Copyright (C) 2020-2022 Edward M. Smith-Rowland
@@ -28,7 +27,9 @@
 #ifndef NUMERIC_LIMITS_FLOAT128_H
 #define NUMERIC_LIMITS_FLOAT128_H 1
 
-#ifdef _GLIBCXX_USE_FLOAT128
+#include <emsr/float128.h>
+
+#ifdef EMSR_HAVE_FLOAT128
 
 #include <emsr/float128_limits.h>
 #include <emsr/float128_math.h>
@@ -296,6 +297,6 @@ namespace emsr
 
 } // namespace emsr
 
-#endif // _GLIBCXX_USE_FLOAT128
+#endif // EMSR_HAVE_FLOAT128
 
 #endif // NUMERIC_LIMITS_FLOAT128_H

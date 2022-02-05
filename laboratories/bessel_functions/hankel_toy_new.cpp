@@ -534,7 +534,10 @@ main()
 
   std::cout << "\nRunning long double\n-------------------\n";
   run_toy<long double>();
-
-  std::cout << "\nSkipping __float128\n-------------------\n";
+#ifdef EMSR_HAVE_FLOAT128
+  std::cout << "\nRunning __float128\n-------------------\n";
   run_toy<__float128>();
+#else
+  std::cout << "\nSkipping __float128\n-------------------\n";
+#endif // EMSR_HAVE_FLOAT128
 }

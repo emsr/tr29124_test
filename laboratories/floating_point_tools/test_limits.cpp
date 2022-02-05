@@ -143,7 +143,7 @@ main()
   std::cout << "\nlong double\n" << std::flush;
   test_limits<long double>();
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
   //std::cout << "\n__float128\n" << std::flush;
   //test_limits<__float128>();
 #endif

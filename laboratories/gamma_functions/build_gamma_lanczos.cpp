@@ -218,7 +218,7 @@
       };
     };
 
-#if !defined(STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
   template<>
     class _GammaLanczos<__float128>
     {
@@ -244,7 +244,7 @@
 	-3.352799410216973507737605805778536e-17Q,
       };
     };
-#endif
+#endif // EMSR_HAVE_FLOAT128
 
 int
 main()
@@ -256,7 +256,7 @@ main()
   lanczos<double>();
   std::cout << "\nlanczos<long double>\n";
   lanczos<long double>();
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
   //FIXME!!! std::cout << "\nlanczos<__float128>\n";
   //FIXME!!! lanczos<__float128>();
 #endif

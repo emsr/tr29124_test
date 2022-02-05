@@ -405,7 +405,7 @@ main(int n_app_args, char** arg)
   std::cout << "\nriemann_zeta<long double>\n";
   plot_riemann_zeta<long double>(plot_data_dir + '/' + "riemann_zeta_long_double.txt");
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
   //std::cout << "\nriemann_zeta<__float128>\n";
   //plot_riemann_zeta<__float128>(plot_data_dir + '/' + "riemann_zetafloat128.txt");
 #endif

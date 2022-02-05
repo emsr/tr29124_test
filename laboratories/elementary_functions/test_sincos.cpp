@@ -54,7 +54,7 @@
       return sincos_t<long double>{sin, cos};
     }
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
 /*
   template<>
     inline sincos_t<__float128>

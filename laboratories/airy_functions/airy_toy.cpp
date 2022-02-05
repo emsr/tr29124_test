@@ -2180,7 +2180,7 @@
   template<>
     constexpr std::size_t
     Airy_asymp_data<float>::s_max<long double> = 43;
-#ifdef _GLIBCXX_USE_FLOAT128
+#ifdef EMSR_HAVE_FLOAT128
   template<>
     constexpr std::size_t
     Airy_asymp_data<float>::s_max<__float128> = 43;
@@ -2638,7 +2638,7 @@
   template<>
     constexpr std::size_t
     Airy_asymp_data<double>::s_max<long double> = 198;
-#ifdef _GLIBCXX_USE_FLOAT128
+#ifdef EMSR_HAVE_FLOAT128
   template<>
     constexpr std::size_t
     Airy_asymp_data<double>::s_max<__float128> = 198;
@@ -3102,7 +3102,7 @@
   template<>
     constexpr std::size_t
     Airy_asymp_data<long double>::s_max<long double> = 201;
-#ifdef _GLIBCXX_USE_FLOAT128
+#ifdef EMSR_HAVE_FLOAT128
   template<>
     constexpr std::size_t
     Airy_asymp_data<long double>::s_max<__float128> = 201;
@@ -3114,7 +3114,7 @@
   constexpr long double
   Airy_asymp_data<long double>::s_d[Airy_asymp_data<long double>::s_max_cd];
 
-#ifdef _GLIBCXX_USE_FLOAT128
+#ifdef EMSR_HAVE_FLOAT128
   template<>
     struct Airy_asymp_data<__float128>
     {
@@ -6205,7 +6205,7 @@ main(int n_app_args, char** arg)
   diff_airy_asymp_m<long double>();
   diff_airy_series<long double>();
   diff_airy_asymp_p<long double>();
-#ifdef _GLIBCXX_USE_FLOAT128
+#ifdef EMSR_HAVE_FLOAT128
   std::cout << "\nfloat128\n==========\n";
   run_toy<__float128>();
   //run_airy_asymp_m<__float128>();

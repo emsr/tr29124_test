@@ -451,7 +451,7 @@ main()
   test_hypot<float>();
   test_hypot<double>();
   test_hypot<long double>();
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
   //test_hypot<__float128>();
 #endif
 

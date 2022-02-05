@@ -1,4 +1,3 @@
-// Special functions -*- C++ -*-
 
 // Copyright (C) 2016-2019 Free Software Foundation, Inc.
 // Copyright (C) 2020-2022 Edward M. Smith-Rowland

@@ -89,7 +89,7 @@ main()
   run_bose_einstein<long double>();
 
 // This works but takes too long.
-#if 0 && !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
   //run_bose_einstein<__float128>();
 #endif
 }

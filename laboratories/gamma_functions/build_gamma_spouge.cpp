@@ -213,7 +213,7 @@
     };
 
 
-#if !defined(STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
   template<>
     class _GammaSpouge<__float128>
     {
@@ -264,7 +264,7 @@
 	-1.332629445370080503706686280760692e-46Q,
       };
     };
-#endif
+#endif // EMSR_HAVE_FLOAT128
 
 int
 main()
@@ -276,7 +276,7 @@ main()
   spouge<double>();
   std::cout << "\nspouge<long double>\n";
   spouge<long double>();
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
   //FIXME!!! std::cout << "\nspouge<__float128>\n";
   //FIXME!!! spouge<__float128>();
 #endif

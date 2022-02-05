@@ -81,7 +81,7 @@ main()
   run_fermi_dirac<long double>();
 
 // This works but takes too long.
-#if 0 && !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
   //run_fermi_dirac<__float128>();
 #endif
 }

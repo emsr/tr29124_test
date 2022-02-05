@@ -1,4 +1,3 @@
-// -*- C++ -*- header.
 
 // Copyright (C) 2016-2019 Free Software Foundation, Inc.
 // Copyright (C) 2020-2022 Edward M. Smith-Rowland
@@ -30,7 +29,9 @@
 #ifndef FLOAT128_MATH_H
 #define FLOAT128_MATH_H 1
 
-#ifdef _GLIBCXX_USE_FLOAT128
+#include <emsr/float128.h>
+
+#ifdef EMSR_HAVE_FLOAT128
 
 #include <quadmath.h>
 
@@ -314,6 +315,6 @@ namespace std
 } // namespace std
 } // extern "C++"
 
-#endif // _GLIBCXX_USE_FLOAT128
+#endif // EMSR_HAVE_FLOAT128
 
 #endif // FLOAT128_MATH_H

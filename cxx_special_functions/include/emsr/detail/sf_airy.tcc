@@ -1563,7 +1563,7 @@ namespace detail
     };
 
 
-#ifdef _GLIBCXX_USE_FLOAT128
+#ifdef EMSR_HAVE_FLOAT128
   template<>
     struct Airy_asymp_data<__float128>
     {
@@ -1981,7 +1981,7 @@ namespace detail
 	-3.909325877634014064587453253641059e+311Q,
       };
     };
-#endif // _GLIBCXX_USE_FLOAT128
+#endif // EMSR_HAVE_FLOAT128
 
 
   /**

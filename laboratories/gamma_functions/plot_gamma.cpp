@@ -223,7 +223,7 @@ main(int n_app_args, char** arg)
   plot_lanczos<double>(plot_data_dir + '/' + "log_gamma_lanczos_double.txt");
   std::cout << "\nlanczos<long double>\n";
   plot_lanczos<long double>(plot_data_dir + '/' + "log_gamma_lanczos_long_double.txt");
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
   //std::cout << "\nlanczos<__float128>\n";
   //plot_lanczos<__float128>(plot_data_dir + '/' + "log_gamma_lanczosfloat128.txt");
 #endif
@@ -235,7 +235,7 @@ main(int n_app_args, char** arg)
   plot_spouge<double>(plot_data_dir + '/' + "log_gamma_spouge_double.txt");
   std::cout << "\nspouge<long double>\n";
   plot_spouge<long double>(plot_data_dir + '/' + "log_gamma_spouge_long_double.txt");
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
   //std::cout << "\nspouge<__float128>\n";
   //plot_spouge<__float128>(plot_data_dir + '/' + "log_gamma_spougefloat128.txt");
 #endif

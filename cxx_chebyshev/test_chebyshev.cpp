@@ -33,6 +33,7 @@ main()
   std::cout << cdilog << '\n';
 
   //
+#ifdef EMSR_HAVE_FLOAT128
   emsr::Chebyshev<__float128>
   cquad(-4.0Q, +7.0Q, 40, [](__float128 x){return 3.5Q + x * (13.25Q + x * 6.375Q);});
   std::cout << cquad << '\n';
@@ -44,6 +45,6 @@ main()
     }
   cquad.truncate<float>();
   std::cout << cquad << '\n';
-
+#endif
   return 0;
 }

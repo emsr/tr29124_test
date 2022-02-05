@@ -138,7 +138,7 @@ main()
   std::cout << "K' = " << c64.k_hyperbolic() << '\n';
   c64.atanh_table();
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
   //std::cout << "\ncordic<128>\n";
   //cordic<128> c128;
   //std::cout << "K = " << c128.k_circular() << '\n';
