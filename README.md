@@ -23,7 +23,7 @@ to the C++ Standard Library, Paul A Bristow]
 (http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0081r0.pdf)
 
 This work began as a project to add math extensions to libstdc++.
-At this point I am abandoning that idea in favor of a general math library.  Those still wishing to look at the libstdc++ support should check out the last_libstdc++_support tag. I may create a branch later.
+At this point I am abandoning that idea in favor of a general math library. Those still wishing to look at the libstdc++ support should check out the last_libstdc++_support tag. I may create a branch later.
 
 <b>This library and sub-libraries are experiencing a lot of churn right now but in the
 end I expect a set of smaller components that are more independent.
