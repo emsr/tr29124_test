@@ -8,6 +8,11 @@ project(
 
 set(CMAKE_CXX_STANDARD 17)
 
+# Include BoostLib module .. Can't get it to work.
+#set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/node_modules/boost-lib/cmake")
+#include(BoostLib)
+#require_boost_libs(">= 1.74.0" "")
+
 enable_testing()
 
 add_subdirectory(wrappers)
