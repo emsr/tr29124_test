@@ -1,0 +1,73 @@
+\hypertarget{classemsr_1_1detail_1_1__Terminator}{}\doxysection{emsr\+::detail\+::\+\_\+\+Terminator$<$ Tp $>$ Class Template Reference}
+\label{classemsr_1_1detail_1_1__Terminator}\index{emsr::detail::\_Terminator$<$ Tp $>$@{emsr::detail::\_Terminator$<$ Tp $>$}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classemsr_1_1detail_1_1__Terminator_a75c83544564fb811020f56fd0cb948bc}{\+\_\+\+Terminator}} (std\+::size\+\_\+t max\+\_\+iter, \+\_\+\+Real mul=\+\_\+\+Real\{1\})
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classemsr_1_1detail_1_1__Terminator_af85714685d00c800a521eca61984a10e}{num\+\_\+terms}} () const
+\begin{DoxyCompactList}\small\item\em Return the current number of terms summed. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classemsr_1_1detail_1_1__Terminator_a7afeab26cf19c6be5e5b55b8f5a8ed8b}{operator()}} (Tp term, Tp sum)
+\begin{DoxyCompactList}\small\item\em Detect if the sum should terminate either because the incoming term is small enough or the maximum number of terms has been reached. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Tp$>$\newline
+class emsr\+::detail\+::\+\_\+\+Terminator$<$ Tp $>$}
+
+This class manages the termination of series. Termination conditions involve both a maximum iteration count and a relative precision. 
+
+Definition at line 61 of file sf\+\_\+polylog.\+tcc.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classemsr_1_1detail_1_1__Terminator_a75c83544564fb811020f56fd0cb948bc}\label{classemsr_1_1detail_1_1__Terminator_a75c83544564fb811020f56fd0cb948bc}} 
+\index{emsr::detail::\_Terminator$<$ Tp $>$@{emsr::detail::\_Terminator$<$ Tp $>$}!\_Terminator@{\_Terminator}}
+\index{\_Terminator@{\_Terminator}!emsr::detail::\_Terminator$<$ Tp $>$@{emsr::detail::\_Terminator$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{\_Terminator()}{\_Terminator()}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+\mbox{\hyperlink{classemsr_1_1detail_1_1__Terminator}{emsr\+::detail\+::\+\_\+\+Terminator}}$<$ Tp $>$\+::\mbox{\hyperlink{classemsr_1_1detail_1_1__Terminator}{\+\_\+\+Terminator}} (\begin{DoxyParamCaption}\item[{std\+::size\+\_\+t}]{max\+\_\+iter,  }\item[{\+\_\+\+Real}]{mul = {\ttfamily \+\_\+Real\{1\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 72 of file sf\+\_\+polylog.\+tcc.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classemsr_1_1detail_1_1__Terminator_af85714685d00c800a521eca61984a10e}\label{classemsr_1_1detail_1_1__Terminator_af85714685d00c800a521eca61984a10e}} 
+\index{emsr::detail::\_Terminator$<$ Tp $>$@{emsr::detail::\_Terminator$<$ Tp $>$}!num\_terms@{num\_terms}}
+\index{num\_terms@{num\_terms}!emsr::detail::\_Terminator$<$ Tp $>$@{emsr::detail::\_Terminator$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{num\_terms()}{num\_terms()}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+std\+::size\+\_\+t \mbox{\hyperlink{classemsr_1_1detail_1_1__Terminator}{emsr\+::detail\+::\+\_\+\+Terminator}}$<$ Tp $>$\+::num\+\_\+terms (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the current number of terms summed. 
+
+
+
+Definition at line 79 of file sf\+\_\+polylog.\+tcc.
+
+\mbox{\Hypertarget{classemsr_1_1detail_1_1__Terminator_a7afeab26cf19c6be5e5b55b8f5a8ed8b}\label{classemsr_1_1detail_1_1__Terminator_a7afeab26cf19c6be5e5b55b8f5a8ed8b}} 
+\index{emsr::detail::\_Terminator$<$ Tp $>$@{emsr::detail::\_Terminator$<$ Tp $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!emsr::detail::\_Terminator$<$ Tp $>$@{emsr::detail::\_Terminator$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+bool \mbox{\hyperlink{classemsr_1_1detail_1_1__Terminator}{emsr\+::detail\+::\+\_\+\+Terminator}}$<$ Tp $>$\+::operator() (\begin{DoxyParamCaption}\item[{Tp}]{term,  }\item[{Tp}]{sum }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Detect if the sum should terminate either because the incoming term is small enough or the maximum number of terms has been reached. 
+
+
+
+Definition at line 85 of file sf\+\_\+polylog.\+tcc.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cxx\+\_\+special\+\_\+functions/include/emsr/detail/\mbox{\hyperlink{sf__polylog_8tcc}{sf\+\_\+polylog.\+tcc}}\end{DoxyCompactItemize}

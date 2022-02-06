@@ -1,10 +1,33 @@
+/*
+ @licstart  The following is the entire license notice for the JavaScript code in this file.
+
+ The MIT License (MIT)
+
+ Copyright (C) 1997-2020 by Dimitri van Heesch
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+ and associated documentation files (the "Software"), to deal in the Software without restriction,
+ including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all copies or
+ substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+ BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ @licend  The above is the entire license notice for the JavaScript code in this file
+*/
 var NAVTREE =
 [
   [ "C++ Special Math Functions", "index.html", [
     [ "Todo List", "todo.html", null ],
-    [ "Modules", "modules.html", "modules" ],
-    [ "Namespaces", null, [
-      [ "Namespace List", "namespaces.html", "namespaces" ],
+    [ "Namespaces", "namespaces.html", [
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", "namespacemembers_dup" ],
         [ "Functions", "namespacemembers_func.html", "namespacemembers_func" ],
@@ -24,8 +47,8 @@ var NAVTREE =
         [ "Typedefs", "functions_type.html", null ]
       ] ]
     ] ],
-    [ "Files", null, [
-      [ "File List", "files.html", "files" ],
+    [ "Files", "files.html", [
+      [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Macros", "globals_defs.html", null ]
@@ -37,13 +60,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"group__mathsf__gnu.html#ga5a5d9c5e7ab822f84578415be8609f49",
-"group__mathsf__std.html#ga0b33e0ac3066f2353861ce2f34b43f57",
-"sf__ellint_8tcc.html#a82449d0f05d40ba2cef6b8fc57dd5bae",
-"sf__polylog_8tcc.html#ab7d250f236ef63ed8bd260881b73524d",
-"specfun_8h.html#ga414c8374b4579aa14e38f5401304b6fa",
-"specfun_8h.html#gacd36403ae64b89840b1504f97024dcee",
-"struct____gnu__cxx_1_1____laguerre__t.html#a8aa1b08deed3b739c3de21953f2c5494"
+"namespaceemsr_1_1detail.html#a5717f8555e7aa79f496771b3a084428c",
+"namespaceemsr_1_1detail.html#af19abde00da463e5e8dd9b44c8a951b7",
+"sf__gamma_8tcc.html#a2836804a066fed2bcfbd03a0a03d6246",
+"sf__theta_8tcc.html#af536b0268353ba0a597bf4773f542093",
+"structemsr_1_1fock__airy__t.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

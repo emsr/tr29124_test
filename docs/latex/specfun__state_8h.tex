@@ -1,13 +1,14 @@
-\hypertarget{specfun__state_8h}{}\section{include/bits/specfun\+\_\+state.h File Reference}
-\label{specfun__state_8h}\index{include/bits/specfun\+\_\+state.\+h@{include/bits/specfun\+\_\+state.\+h}}
+\hypertarget{specfun__state_8h}{}\doxysection{cxx\+\_\+special\+\_\+functions/include/emsr/specfun\+\_\+state.h File Reference}
+\label{specfun__state_8h}\index{cxx\_special\_functions/include/emsr/specfun\_state.h@{cxx\_special\_functions/include/emsr/specfun\_state.h}}
 {\ttfamily \#include $<$cmath$>$}\newline
 {\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
 Include dependency graph for specfun\+\_\+state.\+h\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=186pt]{specfun__state_8h__incl}
+\includegraphics[width=255pt]{specfun__state_8h__incl}
 \end{center}
 \end{figure}
 This graph shows which files directly or indirectly include this file\+:
@@ -15,89 +16,79 @@ This graph shows which files directly or indirectly include this file\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=192pt]{specfun__state_8h__dep__incl}
+\includegraphics[width=350pt]{specfun__state_8h__dep__incl}
 \end{center}
 \end{figure}
-\subsection*{Classes}
+\doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____airy__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+airy\+\_\+t$<$ \+\_\+\+Tx, \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1airy__t}{emsr\+::airy\+\_\+t$<$ Tx, Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____assoc__legendre__p__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+p\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1assoc__legendre__p__t}{emsr\+::assoc\+\_\+legendre\+\_\+p\+\_\+t$<$ Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____assoc__legendre__q__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+assoc\+\_\+legendre\+\_\+q\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1assoc__legendre__q__t}{emsr\+::assoc\+\_\+legendre\+\_\+q\+\_\+t$<$ Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____chebyshev__t__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+t\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1chebyshev__t__t}{emsr\+::chebyshev\+\_\+t\+\_\+t$<$ Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____chebyshev__u__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+u\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1chebyshev__u__t}{emsr\+::chebyshev\+\_\+u\+\_\+t$<$ Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____chebyshev__v__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+v\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1chebyshev__v__t}{emsr\+::chebyshev\+\_\+v\+\_\+t$<$ Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____chebyshev__w__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+chebyshev\+\_\+w\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1chebyshev__w__t}{emsr\+::chebyshev\+\_\+w\+\_\+t$<$ Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____coulomb__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+coulomb\+\_\+t$<$ \+\_\+\+Teta, \+\_\+\+Trho, \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1coulomb__t}{emsr\+::coulomb\+\_\+t$<$ Teta, Trho, Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____cyl__bessel__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+bessel\+\_\+t$<$ \+\_\+\+Tnu, \+\_\+\+Tx, \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1cyl__bessel__t}{emsr\+::cyl\+\_\+bessel\+\_\+t$<$ Tnu, Tx, Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____cyl__hankel__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+hankel\+\_\+t$<$ \+\_\+\+Tnu, \+\_\+\+Tx, \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1cyl__hankel__t}{emsr\+::cyl\+\_\+hankel\+\_\+t$<$ Tnu, Tx, Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____cyl__mod__bessel__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+cyl\+\_\+mod\+\_\+bessel\+\_\+t$<$ \+\_\+\+Tnu, \+\_\+\+Tx, \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1cyl__mod__bessel__t}{emsr\+::cyl\+\_\+mod\+\_\+bessel\+\_\+t$<$ Tnu, Tx, Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____fock__airy__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+fock\+\_\+airy\+\_\+t$<$ \+\_\+\+Tx, \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1fock__airy__t}{emsr\+::fock\+\_\+airy\+\_\+t$<$ Tx, Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____gamma__inc__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+inc\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1gamma__inc__t}{emsr\+::gamma\+\_\+inc\+\_\+t$<$ Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____gamma__temme__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gamma\+\_\+temme\+\_\+t$<$ \+\_\+\+Tp $>$}
-\begin{DoxyCompactList}\small\item\em A structure for the gamma functions required by the Temme series expansions of $ N_\nu(x) $ and $ K_\nu(x) $. \[ \Gamma_1 = \frac{1}{2\mu} \left[\frac{1}{\Gamma(1 - \mu)} - \frac{1}{\Gamma(1 + \mu)}\right] \] and \[ \Gamma_2 = \frac{1}{2} \left[\frac{1}{\Gamma(1 - \mu)} + \frac{1}{\Gamma(1 + \mu)}\right] \] where $ -1/2 <= \mu <= 1/2 $ is $ \mu = \nu - N $ and $ N $. is the nearest integer to $ \nu $. The values of $ \Gamma(1 + \mu) $ and $ \Gamma(1 - \mu) $ are returned as well. \end{DoxyCompactList}\item 
-struct \hyperlink{struct____gnu__cxx_1_1____gappa__pq__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gappa\+\_\+pq\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1gamma__temme__t}{emsr\+::gamma\+\_\+temme\+\_\+t$<$ Tp $>$}}
+\begin{DoxyCompactList}\small\item\em A structure for the gamma functions required by the Temme series expansions of $ N_\nu(x) $ and $ K_\nu(x) $. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structemsr_1_1gappa__pq__t}{emsr\+::gappa\+\_\+pq\+\_\+t$<$ Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____gegenbauer__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+gegenbauer\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1gegenbauer__t}{emsr\+::gegenbauer\+\_\+t$<$ Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____hermite__he__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+he\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1hermite__he__t}{emsr\+::hermite\+\_\+he\+\_\+t$<$ Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____hermite__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+hermite\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1hermite__t}{emsr\+::hermite\+\_\+t$<$ Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____jacobi__ellint__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+ellint\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1jacobi__t}{emsr\+::jacobi\+\_\+t$<$ Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____jacobi__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+jacobi\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1laguerre__t}{emsr\+::laguerre\+\_\+t$<$ Tpa, Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____laguerre__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+laguerre\+\_\+t$<$ \+\_\+\+Tpa, \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1legendre__p__t}{emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____legendre__p__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+p\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1legendre__q__t}{emsr\+::legendre\+\_\+q\+\_\+t$<$ Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____legendre__q__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+legendre\+\_\+q\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1lgamma__t}{emsr\+::lgamma\+\_\+t$<$ Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____lgamma__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+lgamma\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1sph__bessel__t}{emsr\+::sph\+\_\+bessel\+\_\+t$<$ Tn, Tx, Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____quadrature__point__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+quadrature\+\_\+point\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1sph__hankel__t}{emsr\+::sph\+\_\+hankel\+\_\+t$<$ Tn, Tx, Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1sph__mod__bessel__t}{emsr\+::sph\+\_\+mod\+\_\+bessel\+\_\+t$<$ Tn, Tx, Tp $>$}}
 \item 
-struct \hyperlink{struct____gnu__cxx_1_1____sph__bessel__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+bessel\+\_\+t$<$ \+\_\+\+Tn, \+\_\+\+Tx, \+\_\+\+Tp $>$}
-\item 
-struct \hyperlink{struct____gnu__cxx_1_1____sph__hankel__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+hankel\+\_\+t$<$ \+\_\+\+Tn, \+\_\+\+Tx, \+\_\+\+Tp $>$}
-\item 
-struct \hyperlink{struct____gnu__cxx_1_1____sph__mod__bessel__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sph\+\_\+mod\+\_\+bessel\+\_\+t$<$ \+\_\+\+Tn, \+\_\+\+Tx, \+\_\+\+Tp $>$}
-\item 
-struct \hyperlink{struct____gnu__cxx_1_1____stirling__1__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+stirling\+\_\+1\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1stirling__1__t}{emsr\+::stirling\+\_\+1\+\_\+t$<$ Tp $>$}}
 \begin{DoxyCompactList}\small\item\em A structure for Stirling numbers of the first kind. \end{DoxyCompactList}\item 
-struct \hyperlink{struct____gnu__cxx_1_1____stirling__2__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+stirling\+\_\+2\+\_\+t$<$ \+\_\+\+Tp $>$}
+struct \mbox{\hyperlink{structemsr_1_1stirling__2__t}{emsr\+::stirling\+\_\+2\+\_\+t$<$ Tp $>$}}
 \begin{DoxyCompactList}\small\item\em A structure for Stirling numbers of the first kind. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Namespaces}
+\doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
- \hyperlink{namespace____gnu__cxx}{\+\_\+\+\_\+gnu\+\_\+cxx}
+ \mbox{\hyperlink{namespaceemsr}{emsr}}
 \end{DoxyCompactItemize}
-\subsection*{Enumerations}
+\doxysubsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum \hyperlink{namespace____gnu__cxx_a2ed4d746fa11452ef08bae893e031cb3}{\+\_\+\+\_\+gnu\+\_\+cxx\+::gauss\+\_\+quad\+\_\+type} \{ \hyperlink{namespace____gnu__cxx_a2ed4d746fa11452ef08bae893e031cb3ad00ef6cda3d451846a98f19dfe9b84c5}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+Gauss}, 
-\hyperlink{namespace____gnu__cxx_a2ed4d746fa11452ef08bae893e031cb3a38d16e167c31511553bf782c0c331076}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+Gauss\+\_\+\+Lobatto}, 
-\hyperlink{namespace____gnu__cxx_a2ed4d746fa11452ef08bae893e031cb3a901202872614ca163f6351106b642981}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+Gauss\+\_\+\+Radau\+\_\+lower}, 
-\hyperlink{namespace____gnu__cxx_a2ed4d746fa11452ef08bae893e031cb3ab93f55d4c8c412ce64cc234d8eedccbd}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+Gauss\+\_\+\+Radau\+\_\+upper}
- \}\begin{DoxyCompactList}\small\item\em Enumeration gor differing types of Gauss quadrature. The gauss\+\_\+quad\+\_\+type is used to determine the boundary condition modifications applied to orthogonal polynomials for quadrature rules. \end{DoxyCompactList}
-\end{DoxyCompactItemize}
-
-
-\subsection{Detailed Description}
-This is an internal header file, included by other library headers. Do not attempt to use it directly. Instead, include $<$cmath$>$. 
+enum \mbox{\hyperlink{namespaceemsr_a7853ff2b5740cba706c0d0a76fd14612}{emsr\+::gauss\+\_\+quad\+\_\+type}} \{ \mbox{\hyperlink{namespaceemsr_a7853ff2b5740cba706c0d0a76fd14612a4f3004d72b0fd389f49b8c81326ca358}{emsr\+::\+Gauss}}
+, \mbox{\hyperlink{namespaceemsr_a7853ff2b5740cba706c0d0a76fd14612af1792bfaddacba0a2a1d2a35ad5fded4}{emsr\+::\+Gauss\+\_\+\+Lobatto}}
+, \mbox{\hyperlink{namespaceemsr_a7853ff2b5740cba706c0d0a76fd14612a31a3a2be99ea6533db7c9f33c79416c6}{emsr\+::\+Gauss\+\_\+\+Radau\+\_\+lower}}
+, \mbox{\hyperlink{namespaceemsr_a7853ff2b5740cba706c0d0a76fd14612aab175cffec80f1cd26658c4a3d694c1b}{emsr\+::\+Gauss\+\_\+\+Radau\+\_\+upper}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration for differing types of Gauss quadrature. The gauss\+\_\+quad\+\_\+type is used to determine the boundary condition modifications applied to orthogonal polynomials for quadrature rules. \end{DoxyCompactList}\end{DoxyCompactItemize}

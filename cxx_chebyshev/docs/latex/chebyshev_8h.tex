@@ -1,10 +1,10 @@
-\hypertarget{chebyshev_8h}{}\section{include/ext/chebyshev.h File Reference}
-\label{chebyshev_8h}\index{include/ext/chebyshev.\+h@{include/ext/chebyshev.\+h}}
+\hypertarget{chebyshev_8h}{}\doxysection{include/emsr/chebyshev.h File Reference}
+\label{chebyshev_8h}\index{include/emsr/chebyshev.h@{include/emsr/chebyshev.h}}
 {\ttfamily \#include $<$initializer\+\_\+list$>$}\newline
 {\ttfamily \#include $<$vector$>$}\newline
 {\ttfamily \#include $<$iosfwd$>$}\newline
-{\ttfamily \#include $<$ext/polynomial.\+h$>$}\newline
-{\ttfamily \#include $<$ext/chebyshev.\+tcc$>$}\newline
+{\ttfamily \#include $<$emsr/polynomial.\+h$>$}\newline
+{\ttfamily \#include $<$emsr/chebyshev.\+tcc$>$}\newline
 Include dependency graph for chebyshev.\+h\+:
 \nopagebreak
 \begin{figure}[H]
@@ -13,17 +13,17 @@ Include dependency graph for chebyshev.\+h\+:
 \includegraphics[width=350pt]{chebyshev_8h__incl}
 \end{center}
 \end{figure}
-\subsection*{Classes}
+\doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+Chebyshev$<$ \+\_\+\+Tp $>$}
-\begin{DoxyCompactList}\small\item\em \hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+Chebyshev} represents a Chebyshev fit of a function. Given a function {\ttfamily func}, the lower limit {\ttfamily a}, the upper limit {\ttfamily b}, and the number of points {\ttfamily n} \hyperlink{class____gnu__cxx_1_1__Chebyshev}{\+\_\+\+Chebyshev} contains the coefficients of a Chebyshev polynomial expansion such that \[ f(x) = k\sum_{0}^{n-1} c_k T_k(x) - c_0/2. \] Use these constructors with moderately large n of 30 or 50. Then truncate the Chebyshev fit to a smaller number of terms to satisfy the accuracy requirements. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Namespaces}
+class \mbox{\hyperlink{classemsr_1_1Chebyshev}{emsr\+::\+Chebyshev$<$ Tp $>$}}
+\begin{DoxyCompactList}\small\item\em \+\_\+\+Chebyshev represents a \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} fit of a function. Given a function {\ttfamily func}, the lower limit {\ttfamily a}, the upper limit {\ttfamily b}, and the number of points {\ttfamily n} \+\_\+\+Chebyshev contains the coefficients of a \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} polynomial expansion such that \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
- \hyperlink{namespace____gnu__cxx}{\+\_\+\+\_\+gnu\+\_\+cxx}
+ \mbox{\hyperlink{namespaceemsr}{emsr}}
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 Interface for C++ Chebyshev methods. 

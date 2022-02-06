@@ -1,8 +1,8 @@
 var sf__cardinal_8tcc =
 [
-    [ "_GLIBCXX_BITS_SF_CARDINAL_TCC", "sf__cardinal_8tcc.html#a1e9bb8201f62b2303ba941ea920790b6", null ],
-    [ "__sinc", "sf__cardinal_8tcc.html#ad0730b2b26df36cc8876a1152d895523", null ],
-    [ "__sinc_pi", "sf__cardinal_8tcc.html#ae73746d4ab5c5087c5d302e428490396", null ],
-    [ "__sinhc", "sf__cardinal_8tcc.html#a65db661ebfae979e916e2f4481e6866c", null ],
-    [ "__sinhc_pi", "sf__cardinal_8tcc.html#a3478d06aa615f1efb0fd86fd4eb59195", null ]
+    [ "SF_CARDINAL_TCC", "sf__cardinal_8tcc.html#af82a8536ca9fa342ae927511104d4905", null ],
+    [ "sinc", "sf__cardinal_8tcc.html#a6109dd73d16408bd5a9fdca4f5c1f83a", null ],
+    [ "sinc_pi", "sf__cardinal_8tcc.html#a7e1d51b0321e662985036f922610e902", null ],
+    [ "sinhc", "sf__cardinal_8tcc.html#a71ad177320ac7c420bccbb806f1f60c0", null ],
+    [ "sinhc_pi", "sf__cardinal_8tcc.html#a030bfff2fd347ccd11146673d009e484", null ]
 ];

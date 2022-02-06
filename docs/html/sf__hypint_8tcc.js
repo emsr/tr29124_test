@@ -1,7 +1,7 @@
 var sf__hypint_8tcc =
 [
-    [ "_GLIBCXX_BITS_SF_HYPINT_TCC", "sf__hypint_8tcc.html#ab91dbc8208427facb5b049391e050aaa", null ],
-    [ "__chshint", "sf__hypint_8tcc.html#aa07abc4dac6cf589ccd12d3ce40277cf", null ],
-    [ "__chshint_cont_frac", "sf__hypint_8tcc.html#a07da2303d36d77bfad393a7b8ebdf686", null ],
-    [ "__chshint_series", "sf__hypint_8tcc.html#a16055b6e4baa35ffe5c6d9495d9d0158", null ]
+    [ "SF_HYPINT_TCC", "sf__hypint_8tcc.html#a04850a20d78434102369e61fc183ad2a", null ],
+    [ "chshint", "sf__hypint_8tcc.html#ab1711c57800824d355f0577579da9c05", null ],
+    [ "chshint_cont_frac", "sf__hypint_8tcc.html#ae8e1879ea31fee3fcdedc84e8c4ff3b4", null ],
+    [ "chshint_series", "sf__hypint_8tcc.html#a37527e44105163234f445780c4d88e7b", null ]
 ];

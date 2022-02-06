@@ -760,39 +760,39 @@ WARN_LOGFILE           = docs/doxywarn.txt
 # spaces.
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = include/bits/specfun.h \
-			 include/bits/specfun_state.h \
-			 include/bits/sf_airy.tcc \
-			 include/bits/sf_bernoulli.tcc \
-			 include/bits/sf_bessel.tcc \
-			 include/bits/sf_beta.tcc \
-			 include/bits/sf_cardinal.tcc \
-			 include/bits/sf_chebyshev.tcc \
-			 include/bits/sf_coulomb.tcc \
-			 include/bits/sf_dawson.tcc \
-			 include/bits/sf_distributions.tcc \
-			 include/bits/sf_ellint.tcc \
-			 include/bits/sf_euler.tcc \
-			 include/bits/sf_expint.tcc \
-			 include/bits/sf_fresnel.tcc \
-			 include/bits/sf_gamma.tcc \
-			 include/bits/sf_gegenbauer.tcc \
-			 include/bits/sf_hankel.tcc \
-			 include/bits/sf_hermite.tcc \
-			 include/bits/sf_hyperg.tcc \
-			 include/bits/sf_hypint.tcc \
-			 include/bits/sf_jacobi.tcc \
-			 include/bits/sf_laguerre.tcc \
-			 include/bits/sf_legendre.tcc \
-			 include/bits/sf_mod_bessel.tcc \
-			 include/bits/sf_owens_t.tcc \
-			 include/bits/sf_polylog.tcc \
-			 include/bits/sf_stirling.tcc \
-			 include/bits/sf_theta.tcc \
-			 include/bits/sf_trigint.tcc \
-			 include/bits/sf_trig.tcc \
-			 include/bits/sf_zeta.tcc \
-			 cxx_fp_utils/include/ext/math_util.h
+INPUT                  = cxx_special_functions/include/emsr/specfun.h \
+			 cxx_special_functions/include/emsr/specfun_state.h \
+			 cxx_special_functions/include/emsr/detail/sf_airy.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_bernoulli.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_bessel.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_beta.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_cardinal.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_chebyshev.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_coulomb.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_dawson.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_distributions.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_ellint.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_euler.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_expint.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_fresnel.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_gamma.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_gegenbauer.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_hankel.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_hermite.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_hyperg.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_hypint.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_jacobi.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_laguerre.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_legendre.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_mod_bessel.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_owens_t.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_polylog.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_stirling.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_theta.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_trigint.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_trig.tcc \
+			 cxx_special_functions/include/emsr/detail/sf_zeta.tcc \
+			 cxx_fp_utils/include/emsr/math_util.h
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
@@ -1025,7 +1025,7 @@ VERBATIM_HEADERS       = NO
 # compiled with the --with-libclang option.
 # The default value is: NO.
 
-CLANG_ASSISTED_PARSING = NO
+CLANG_ASSISTED_PARSING = YES
 
 # If clang assisted parsing is enabled you can provide the compiler with command
 # line options that you would normally use when invoking the compiler. Note that
@@ -1033,7 +1033,7 @@ CLANG_ASSISTED_PARSING = NO
 # specified with INPUT and INCLUDE_PATH.
 # This tag requires that the tag CLANG_ASSISTED_PARSING is set to YES.
 
-CLANG_OPTIONS          =
+CLANG_OPTIONS          = -std=c++17
 
 #---------------------------------------------------------------------------
 # Configuration options related to the alphabetical class index

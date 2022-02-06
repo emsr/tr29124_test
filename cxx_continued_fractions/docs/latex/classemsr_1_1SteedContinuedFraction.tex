@@ -1,0 +1,124 @@
+\hypertarget{classemsr_1_1SteedContinuedFraction}{}\doxysection{emsr\+::Steed\+Continued\+Fraction$<$ Tp, AFun, BFun, Tail\+Fun $>$ Class Template Reference}
+\label{classemsr_1_1SteedContinuedFraction}\index{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_adec1ecf5af26b7af8a08a76846b9ee90}{ARet}} = decltype(m\+\_\+num(0ull, Tp\{\}))
+\item 
+using \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a21c7c8c66d120c7712eeed8a3d40fd96}{BRet}} = decltype(m\+\_\+den(0ull, Tp\{\}))
+\item 
+using \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_ac0b864473c84ed59f8990229c4b30fb2}{Ret}} = decltype(m\+\_\+num(0ull, Tp\{\})/m\+\_\+den(0ull, Tp\{\}))
+\item 
+using \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a2aa9e8c04716c03544e8723671691891}{Val}} = emsr\+::fp\+\_\+promote\+\_\+t$<$ Tp, \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_adec1ecf5af26b7af8a08a76846b9ee90}{ARet}}, \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a21c7c8c66d120c7712eeed8a3d40fd96}{BRet}} $>$
+\item 
+using \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a349f410f21059f07f45bc6bbf02bb6dc}{Real}} = emsr\+::num\+\_\+traits\+\_\+t$<$ \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a2aa9e8c04716c03544e8723671691891}{Val}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a2da2d01f5d3703e72fea15d62f4a83d0}{Steed\+Continued\+Fraction}} (AFun a, BFun b, Tail\+Fun w)
+\item 
+\mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_ac0b864473c84ed59f8990229c4b30fb2}{Ret}} \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a4b212ea85f1d1ec631f5c7b6950ed194}{operator()}} (Tp x) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a349f410f21059f07f45bc6bbf02bb6dc}{Real}} \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a319da123fcccbe093cfa31edaeed5892}{s\+\_\+fp\+\_\+min}} = \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a349f410f21059f07f45bc6bbf02bb6dc}{Real}}\{1000\} $\ast$ std\+::numeric\+\_\+limits$<$\mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a349f410f21059f07f45bc6bbf02bb6dc}{Real}}$>$\+::min()
+\item 
+\mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a349f410f21059f07f45bc6bbf02bb6dc}{Real}} \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a68d5afa3934d363d53f1c4cffa61aa5d}{m\+\_\+rel\+\_\+error}} = std\+::numeric\+\_\+limits$<$\mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a349f410f21059f07f45bc6bbf02bb6dc}{Real}}$>$\+::epsilon()
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a1fa424357154384cb2bf1122759c8b02}{m\+\_\+max\+\_\+iter}} = 1000
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Tp, typename AFun, typename BFun, typename Tail\+Fun$>$\newline
+class emsr\+::\+Steed\+Continued\+Fraction$<$ Tp, AFun, BFun, Tail\+Fun $>$}
+
+A Steed continued fraction evaluator. This class requires three functors\+: A partial numerator function $ a_k(x) $ A partial denominator function $ b_k(x) $ A tail function $ w_n(x) $ 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classemsr_1_1SteedContinuedFraction_adec1ecf5af26b7af8a08a76846b9ee90}\label{classemsr_1_1SteedContinuedFraction_adec1ecf5af26b7af8a08a76846b9ee90}} 
+\index{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}!ARet@{ARet}}
+\index{ARet@{ARet}!emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}}
+\doxysubsubsection{\texorpdfstring{ARet}{ARet}}
+{\footnotesize\ttfamily template$<$typename Tp , typename AFun , typename BFun , typename Tail\+Fun $>$ \\
+using \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction}{emsr\+::\+Steed\+Continued\+Fraction}}$<$ Tp, AFun, BFun, Tail\+Fun $>$\+::\mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_adec1ecf5af26b7af8a08a76846b9ee90}{ARet}} =  decltype(m\+\_\+num(0ull, Tp\{\}))}
+
+\mbox{\Hypertarget{classemsr_1_1SteedContinuedFraction_a21c7c8c66d120c7712eeed8a3d40fd96}\label{classemsr_1_1SteedContinuedFraction_a21c7c8c66d120c7712eeed8a3d40fd96}} 
+\index{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}!BRet@{BRet}}
+\index{BRet@{BRet}!emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}}
+\doxysubsubsection{\texorpdfstring{BRet}{BRet}}
+{\footnotesize\ttfamily template$<$typename Tp , typename AFun , typename BFun , typename Tail\+Fun $>$ \\
+using \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction}{emsr\+::\+Steed\+Continued\+Fraction}}$<$ Tp, AFun, BFun, Tail\+Fun $>$\+::\mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a21c7c8c66d120c7712eeed8a3d40fd96}{BRet}} =  decltype(m\+\_\+den(0ull, Tp\{\}))}
+
+\mbox{\Hypertarget{classemsr_1_1SteedContinuedFraction_a349f410f21059f07f45bc6bbf02bb6dc}\label{classemsr_1_1SteedContinuedFraction_a349f410f21059f07f45bc6bbf02bb6dc}} 
+\index{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}!Real@{Real}}
+\index{Real@{Real}!emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}}
+\doxysubsubsection{\texorpdfstring{Real}{Real}}
+{\footnotesize\ttfamily template$<$typename Tp , typename AFun , typename BFun , typename Tail\+Fun $>$ \\
+using \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction}{emsr\+::\+Steed\+Continued\+Fraction}}$<$ Tp, AFun, BFun, Tail\+Fun $>$\+::\mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a349f410f21059f07f45bc6bbf02bb6dc}{Real}} =  emsr\+::num\+\_\+traits\+\_\+t$<$\mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a2aa9e8c04716c03544e8723671691891}{Val}}$>$}
+
+\mbox{\Hypertarget{classemsr_1_1SteedContinuedFraction_ac0b864473c84ed59f8990229c4b30fb2}\label{classemsr_1_1SteedContinuedFraction_ac0b864473c84ed59f8990229c4b30fb2}} 
+\index{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}!Ret@{Ret}}
+\index{Ret@{Ret}!emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}}
+\doxysubsubsection{\texorpdfstring{Ret}{Ret}}
+{\footnotesize\ttfamily template$<$typename Tp , typename AFun , typename BFun , typename Tail\+Fun $>$ \\
+using \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction}{emsr\+::\+Steed\+Continued\+Fraction}}$<$ Tp, AFun, BFun, Tail\+Fun $>$\+::\mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_ac0b864473c84ed59f8990229c4b30fb2}{Ret}} =  decltype(m\+\_\+num(0ull, Tp\{\}) / m\+\_\+den(0ull, Tp\{\}))}
+
+\mbox{\Hypertarget{classemsr_1_1SteedContinuedFraction_a2aa9e8c04716c03544e8723671691891}\label{classemsr_1_1SteedContinuedFraction_a2aa9e8c04716c03544e8723671691891}} 
+\index{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}!Val@{Val}}
+\index{Val@{Val}!emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}}
+\doxysubsubsection{\texorpdfstring{Val}{Val}}
+{\footnotesize\ttfamily template$<$typename Tp , typename AFun , typename BFun , typename Tail\+Fun $>$ \\
+using \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction}{emsr\+::\+Steed\+Continued\+Fraction}}$<$ Tp, AFun, BFun, Tail\+Fun $>$\+::\mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a2aa9e8c04716c03544e8723671691891}{Val}} =  emsr\+::fp\+\_\+promote\+\_\+t$<$Tp, \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_adec1ecf5af26b7af8a08a76846b9ee90}{ARet}}, \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a21c7c8c66d120c7712eeed8a3d40fd96}{BRet}}$>$}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classemsr_1_1SteedContinuedFraction_a2da2d01f5d3703e72fea15d62f4a83d0}\label{classemsr_1_1SteedContinuedFraction_a2da2d01f5d3703e72fea15d62f4a83d0}} 
+\index{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}!SteedContinuedFraction@{SteedContinuedFraction}}
+\index{SteedContinuedFraction@{SteedContinuedFraction}!emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}}
+\doxysubsubsection{\texorpdfstring{SteedContinuedFraction()}{SteedContinuedFraction()}}
+{\footnotesize\ttfamily template$<$typename Tp , typename AFun , typename BFun , typename Tail\+Fun $>$ \\
+constexpr \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction}{emsr\+::\+Steed\+Continued\+Fraction}}$<$ Tp, AFun, BFun, Tail\+Fun $>$\+::\mbox{\hyperlink{classemsr_1_1SteedContinuedFraction}{Steed\+Continued\+Fraction}} (\begin{DoxyParamCaption}\item[{AFun}]{a,  }\item[{BFun}]{b,  }\item[{Tail\+Fun}]{w }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classemsr_1_1SteedContinuedFraction_a4b212ea85f1d1ec631f5c7b6950ed194}\label{classemsr_1_1SteedContinuedFraction_a4b212ea85f1d1ec631f5c7b6950ed194}} 
+\index{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename Tp , typename AFun , typename BFun , typename Tail\+Fun $>$ \\
+\mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_ac0b864473c84ed59f8990229c4b30fb2}{Ret}} \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction}{emsr\+::\+Steed\+Continued\+Fraction}}$<$ Tp, AFun, BFun, Tail\+Fun $>$\+::operator() (\begin{DoxyParamCaption}\item[{Tp}]{x }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classemsr_1_1SteedContinuedFraction_a1fa424357154384cb2bf1122759c8b02}\label{classemsr_1_1SteedContinuedFraction_a1fa424357154384cb2bf1122759c8b02}} 
+\index{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}!m\_max\_iter@{m\_max\_iter}}
+\index{m\_max\_iter@{m\_max\_iter}!emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}}
+\doxysubsubsection{\texorpdfstring{m\_max\_iter}{m\_max\_iter}}
+{\footnotesize\ttfamily template$<$typename Tp , typename AFun , typename BFun , typename Tail\+Fun $>$ \\
+std\+::size\+\_\+t \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction}{emsr\+::\+Steed\+Continued\+Fraction}}$<$ Tp, AFun, BFun, Tail\+Fun $>$\+::m\+\_\+max\+\_\+iter = 1000}
+
+\mbox{\Hypertarget{classemsr_1_1SteedContinuedFraction_a68d5afa3934d363d53f1c4cffa61aa5d}\label{classemsr_1_1SteedContinuedFraction_a68d5afa3934d363d53f1c4cffa61aa5d}} 
+\index{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}!m\_rel\_error@{m\_rel\_error}}
+\index{m\_rel\_error@{m\_rel\_error}!emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}}
+\doxysubsubsection{\texorpdfstring{m\_rel\_error}{m\_rel\_error}}
+{\footnotesize\ttfamily template$<$typename Tp , typename AFun , typename BFun , typename Tail\+Fun $>$ \\
+\mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a349f410f21059f07f45bc6bbf02bb6dc}{Real}} \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction}{emsr\+::\+Steed\+Continued\+Fraction}}$<$ Tp, AFun, BFun, Tail\+Fun $>$\+::m\+\_\+rel\+\_\+error = std\+::numeric\+\_\+limits$<$\mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a349f410f21059f07f45bc6bbf02bb6dc}{Real}}$>$\+::epsilon()}
+
+\mbox{\Hypertarget{classemsr_1_1SteedContinuedFraction_a319da123fcccbe093cfa31edaeed5892}\label{classemsr_1_1SteedContinuedFraction_a319da123fcccbe093cfa31edaeed5892}} 
+\index{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}!s\_fp\_min@{s\_fp\_min}}
+\index{s\_fp\_min@{s\_fp\_min}!emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$@{emsr::SteedContinuedFraction$<$ Tp, AFun, BFun, TailFun $>$}}
+\doxysubsubsection{\texorpdfstring{s\_fp\_min}{s\_fp\_min}}
+{\footnotesize\ttfamily template$<$typename Tp , typename AFun , typename BFun , typename Tail\+Fun $>$ \\
+const \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a349f410f21059f07f45bc6bbf02bb6dc}{Real}} \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction}{emsr\+::\+Steed\+Continued\+Fraction}}$<$ Tp, AFun, BFun, Tail\+Fun $>$\+::s\+\_\+fp\+\_\+min = \mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a349f410f21059f07f45bc6bbf02bb6dc}{Real}}\{1000\} $\ast$ std\+::numeric\+\_\+limits$<$\mbox{\hyperlink{classemsr_1_1SteedContinuedFraction_a349f410f21059f07f45bc6bbf02bb6dc}{Real}}$>$\+::min()}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/emsr/\mbox{\hyperlink{cfrac__steed_8tcc}{cfrac\+\_\+steed.\+tcc}}\end{DoxyCompactItemize}

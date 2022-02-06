@@ -1,7 +1,7 @@
 var sf__fresnel_8tcc =
 [
-    [ "_GLIBCXX_BITS_SF_FRESNEL_TCC", "sf__fresnel_8tcc.html#adbcd2dc06ad79716112c456abd18d171", null ],
-    [ "__fresnel", "sf__fresnel_8tcc.html#a322045015cfbde5a45e7718d533de60d", null ],
-    [ "__fresnel_cont_frac", "sf__fresnel_8tcc.html#aeae8420e2fa1671f004066525adc99b6", null ],
-    [ "__fresnel_series", "sf__fresnel_8tcc.html#aae7775bc46d621e54fb9d994c2f35e2a", null ]
+    [ "SF_FRESNEL_TCC", "sf__fresnel_8tcc.html#a97751e38203ead6889619905a3b251d0", null ],
+    [ "fresnel", "sf__fresnel_8tcc.html#a6d301a08e3d74df9cdc521cba003f4ef", null ],
+    [ "fresnel_cont_frac", "sf__fresnel_8tcc.html#a69bdd17ca02e5aec93e6fc55f8c3c66f", null ],
+    [ "fresnel_series", "sf__fresnel_8tcc.html#a2379308ea2e49e7839f0e7a73a6e4973", null ]
 ];

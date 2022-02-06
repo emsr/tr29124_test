@@ -1,16 +1,16 @@
 var sf__hyperg_8tcc =
 [
-    [ "_GLIBCXX_BITS_SF_HYPERG_TCC", "sf__hyperg_8tcc.html#a44f11aa09d05c90efbd3f7e1184f3a92", null ],
-    [ "__conf_hyperg", "sf__hyperg_8tcc.html#a3cb3151857e9ac01bc442c90301365ee", null ],
-    [ "__conf_hyperg_lim", "sf__hyperg_8tcc.html#adc839c2b3faad5d78bf64236c5c7af73", null ],
-    [ "__conf_hyperg_lim_series", "sf__hyperg_8tcc.html#a44b73ec79e0a8cfd1f29a21cb39f2bdc", null ],
-    [ "__conf_hyperg_luke", "sf__hyperg_8tcc.html#ac3b4c72998f9d7deb6d79bda93220e58", null ],
-    [ "__conf_hyperg_series", "sf__hyperg_8tcc.html#a5f701a63e17238132405dd209660fc1d", null ],
-    [ "__hyperg", "sf__hyperg_8tcc.html#a316589a60d5e5f50201c2d42b980678c", null ],
-    [ "__hyperg_luke", "sf__hyperg_8tcc.html#a0c1ec62b5c39c93ad70a8229a7a6d84d", null ],
-    [ "__hyperg_recur", "sf__hyperg_8tcc.html#a945aec89969c51a4778c63eba8741fab", null ],
-    [ "__hyperg_reflect", "sf__hyperg_8tcc.html#a3c3baddc93bfaf1cb368d4b74e53542d", null ],
-    [ "__hyperg_series", "sf__hyperg_8tcc.html#ad234e0d31f55cd3748169dccb2533c6a", null ],
-    [ "__tricomi_u", "sf__hyperg_8tcc.html#ae67133e463041158ebbffe6c54af6e0a", null ],
-    [ "__tricomi_u_naive", "sf__hyperg_8tcc.html#adc131cec2eae93bacc28d6afd89def2f", null ]
+    [ "SF_HYPERG_TCC", "sf__hyperg_8tcc.html#a4a4e391dacd901b1b5a2f8c4251af0b6", null ],
+    [ "conf_hyperg", "sf__hyperg_8tcc.html#a93b0db44829c28a42adf3800831aae68", null ],
+    [ "conf_hyperg_lim", "sf__hyperg_8tcc.html#a71735c35a77ac7a528c9a3218101de7c", null ],
+    [ "conf_hyperg_lim_series", "sf__hyperg_8tcc.html#ae77a326638bd76db826a9a4a3fc027db", null ],
+    [ "conf_hyperg_luke", "sf__hyperg_8tcc.html#a8b3296aad58701ec768b4e26442c5e4c", null ],
+    [ "conf_hyperg_series", "sf__hyperg_8tcc.html#a6730af49e014074c7703f6db7a616f6b", null ],
+    [ "hyperg", "sf__hyperg_8tcc.html#a534b5cb2286d57b0eaf375b5d70c9db1", null ],
+    [ "hyperg_luke", "sf__hyperg_8tcc.html#a3ef3127649e7814975106f8c9abbe3ee", null ],
+    [ "hyperg_recur", "sf__hyperg_8tcc.html#ade5de4140aef8537d722ce0b33b1cc11", null ],
+    [ "hyperg_reflect", "sf__hyperg_8tcc.html#acd1546d7f0871fb6a225faeff9204588", null ],
+    [ "hyperg_series", "sf__hyperg_8tcc.html#a9e085acad3ec48ebb7bef692e6388ae7", null ],
+    [ "tricomi_u", "sf__hyperg_8tcc.html#acadc5c031a10a44c85af64dd4c555d70", null ],
+    [ "tricomi_u_naive", "sf__hyperg_8tcc.html#a3bc67d9d78aa295fd783a1bde2e0297c", null ]
 ];

@@ -1,2 +1,7 @@
-<map id="include/ext/differentiation.tcc" name="include/ext/differentiation.tcc">
+<map id="include/emsr/differentiation.tcc" name="include/emsr/differentiation.tcc">
+<area shape="rect" id="node1" title=" " alt="" coords="49,5,275,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,68,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="93,80,151,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="175,80,231,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="256,80,335,107"/>
 </map>

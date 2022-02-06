@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['iterator',['iterator',['../struct____gnu__cxx_1_1____stirling__1__t.html#a4dad153706e77f66c38d2a620230ac35',1,'__gnu_cxx::__stirling_1_t::iterator()'],['../struct____gnu__cxx_1_1____stirling__2__t.html#aa7fda155fac4d993df6fc7deb4a66e84',1,'__gnu_cxx::__stirling_2_t::iterator()']]]
+  ['iterator_1316',['iterator',['../structemsr_1_1stirling__1__t.html#a28663ea66a6a38511a48904e54ab25e7',1,'emsr::stirling_1_t::iterator()'],['../structemsr_1_1stirling__2__t.html#aa7b03a68e688b83597998022e6b621e6',1,'emsr::stirling_2_t::iterator()']]]
 ];

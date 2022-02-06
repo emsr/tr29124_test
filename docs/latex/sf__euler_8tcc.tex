@@ -1,72 +1,62 @@
-\hypertarget{sf__euler_8tcc}{}\section{include/bits/sf\+\_\+euler.tcc File Reference}
-\label{sf__euler_8tcc}\index{include/bits/sf\+\_\+euler.\+tcc@{include/bits/sf\+\_\+euler.\+tcc}}
+\hypertarget{sf__euler_8tcc}{}\doxysection{cxx\+\_\+special\+\_\+functions/include/emsr/detail/sf\+\_\+euler.tcc File Reference}
+\label{sf__euler_8tcc}\index{cxx\_special\_functions/include/emsr/detail/sf\_euler.tcc@{cxx\_special\_functions/include/emsr/detail/sf\_euler.tcc}}
 {\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$emsr/sf\+\_\+gamma.\+h$>$}\newline
 Include dependency graph for sf\+\_\+euler.\+tcc\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=200pt]{sf__euler_8tcc__incl}
+\includegraphics[width=250pt]{sf__euler_8tcc__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=200pt]{sf__euler_8tcc__dep__incl}
-\end{center}
-\end{figure}
-\subsection*{Namespaces}
+\doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
- \hyperlink{namespacestd}{std}
+ \mbox{\hyperlink{namespaceemsr}{emsr}}
 \item 
- \hyperlink{namespacestd_1_1____detail}{std\+::\+\_\+\+\_\+detail}
-\begin{DoxyCompactList}\small\item\em Implementation-\/space details. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Macros}
-\begin{DoxyCompactItemize}
-\item 
-\#define \hyperlink{sf__euler_8tcc_a210115accb5094cbfd706ac2e4288414}{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+U\+L\+E\+R\+\_\+\+T\+CC}~1
+ \mbox{\hyperlink{namespaceemsr_1_1detail}{emsr\+::detail}}
 \end{DoxyCompactItemize}
-\subsection*{Functions}
+\doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a38f2ed4541c9876b8549c3917aad3b08}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+euler} (unsigned int \+\_\+\+\_\+n)
+\#define \mbox{\hyperlink{sf__euler_8tcc_ae441cde3849cb37fea54547f69be531a}{SF\+\_\+\+EULER\+\_\+\+TCC}}~1
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_ae744b0b4f7b11066d4428e035144631d}{emsr\+::detail\+::euler}} (unsigned int n)
 \begin{DoxyCompactList}\small\item\em This returns Euler number $ E_n $. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_aa44d18f565c3c36ba0351374dc4af09d}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+euler} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a03b2ba0180648d7613cf9c9ddd886c5b}{emsr\+::detail\+::euler}} (unsigned int n, Tp x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a2e3eb67dee4d0b5c96824a4e8e9c227e}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+euler\+\_\+series} (unsigned int \+\_\+\+\_\+n)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a4fc7b532f78002dffd704e304523be40}{emsr\+::detail\+::euler\+\_\+series}} (unsigned int n)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a4556229d8792527574bfc6fa135908dd}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+eulerian\+\_\+1} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
+{\footnotesize template$<$typename Tp $>$ }\\std\+::vector$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_1_1detail_a849f43b4ad6715bf6771650a6298817e}{emsr\+::detail\+::eulerian\+\_\+1}} (unsigned int n)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_ad0759105350d0c440c1b5e8957223438}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+eulerian\+\_\+1} (unsigned int \+\_\+\+\_\+n)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a6496926c036a5397702e0ab85dce172b}{emsr\+::detail\+::eulerian\+\_\+1}} (unsigned int n, unsigned int m)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_afab99319465d188432fa8357d65129e0}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
+{\footnotesize template$<$typename Tp $>$ }\\std\+::vector$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_1_1detail_a560a4036c98229c8221f1537abc2a4bb}{emsr\+::detail\+::eulerian\+\_\+1\+\_\+recur}} (unsigned int n)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_acab0c44030d62f8ff1576a33b90aa9e3}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+eulerian\+\_\+1\+\_\+recur} (unsigned int \+\_\+\+\_\+n)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_ae5bff1f1e4163eeae963d72f188eea99}{emsr\+::detail\+::eulerian\+\_\+1\+\_\+recur}} (unsigned int n, unsigned int m)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_aa93423478ed5fd1fc260cc30466bef73}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+eulerian\+\_\+2} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
+{\footnotesize template$<$typename Tp $>$ }\\std\+::vector$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_1_1detail_a314ad71925718ddab450b73bf4a64e5a}{emsr\+::detail\+::eulerian\+\_\+2}} (unsigned int n)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a9c1abae84b487289ce8f798bcfe4b7e0}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+eulerian\+\_\+2} (unsigned int \+\_\+\+\_\+n)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a8b596a9691d67b4fe1417553b75eb8a3}{emsr\+::detail\+::eulerian\+\_\+2}} (unsigned int n, unsigned int m)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a8a2a09c66c530759ae98ac1f3c1d93e5}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur} (unsigned int \+\_\+\+\_\+n, unsigned int \+\_\+\+\_\+m)
+{\footnotesize template$<$typename Tp $>$ }\\std\+::vector$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_1_1detail_a36841e17508a3031ac729173cfc70ace}{emsr\+::detail\+::eulerian\+\_\+2\+\_\+recur}} (unsigned int n)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a5609870200a041b3ace18c15e212a275}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+eulerian\+\_\+2\+\_\+recur} (unsigned int \+\_\+\+\_\+n)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_abffa38f62c196c2003bc649a7e72daea}{emsr\+::detail\+::eulerian\+\_\+2\+\_\+recur}} (unsigned int n, unsigned int m)
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-This is an internal header file, included by other library headers. Do not attempt to use it directly. Instead, include $<$cmath$>$. 
-
-\subsection{Macro Definition Documentation}
-\mbox{\Hypertarget{sf__euler_8tcc_a210115accb5094cbfd706ac2e4288414}\label{sf__euler_8tcc_a210115accb5094cbfd706ac2e4288414}} 
-\index{sf\+\_\+euler.\+tcc@{sf\+\_\+euler.\+tcc}!\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+U\+L\+E\+R\+\_\+\+T\+CC@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+U\+L\+E\+R\+\_\+\+T\+CC}}
-\index{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+U\+L\+E\+R\+\_\+\+T\+CC@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+U\+L\+E\+R\+\_\+\+T\+CC}!sf\+\_\+euler.\+tcc@{sf\+\_\+euler.\+tcc}}
-\subsubsection{\texorpdfstring{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+U\+L\+E\+R\+\_\+\+T\+CC}{\_GLIBCXX\_BITS\_SF\_EULER\_TCC}}
-{\footnotesize\ttfamily \#define \+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+U\+L\+E\+R\+\_\+\+T\+CC~1}
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sf__euler_8tcc_ae441cde3849cb37fea54547f69be531a}\label{sf__euler_8tcc_ae441cde3849cb37fea54547f69be531a}} 
+\index{sf\_euler.tcc@{sf\_euler.tcc}!SF\_EULER\_TCC@{SF\_EULER\_TCC}}
+\index{SF\_EULER\_TCC@{SF\_EULER\_TCC}!sf\_euler.tcc@{sf\_euler.tcc}}
+\doxysubsubsection{\texorpdfstring{SF\_EULER\_TCC}{SF\_EULER\_TCC}}
+{\footnotesize\ttfamily \#define SF\+\_\+\+EULER\+\_\+\+TCC~1}
 
 
 
-Definition at line 35 of file sf\+\_\+euler.\+tcc.
+Definition at line 34 of file sf\+\_\+euler.\+tcc.
 

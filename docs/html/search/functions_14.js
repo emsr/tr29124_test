@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['zernike',['zernike',['../group__mathsf__gnu.html#gaaed33f29c1eb1d2c5b9590fe2e57151c',1,'__gnu_cxx']]],
-  ['zernikef',['zernikef',['../group__mathsf__gnu.html#gababce1066ecef7258070b9b7fcea975f',1,'__gnu_cxx']]],
-  ['zernikel',['zernikel',['../group__mathsf__gnu.html#ga9236dd8545b448da9cb05dd8b7cf6811',1,'__gnu_cxx']]]
+  ['zernike_1123',['zernike',['../namespaceemsr_1_1detail.html#a778ac41047d437ade9756b0e1cab769c',1,'emsr::detail']]],
+  ['znorm1_1124',['znorm1',['../namespaceemsr_1_1detail.html#a1617e85e47fc81a9c26ac3bf660258a3',1,'emsr::detail']]],
+  ['znorm2_1125',['znorm2',['../namespaceemsr_1_1detail.html#a7a3091870fc0ba308030316c9685e97a',1,'emsr::detail']]]
 ];

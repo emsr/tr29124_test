@@ -1,10 +1,10 @@
 var sf__beta_8tcc =
 [
-    [ "_GLIBCXX_BITS_SF_BETA_TCC", "sf__beta_8tcc.html#a41fb0de3283ace5ea2b676d932ff3d32", null ],
-    [ "__beta", "sf__beta_8tcc.html#a090d2f0920e0d208c467609b2a81d717", null ],
-    [ "__beta_gamma", "sf__beta_8tcc.html#a93cfa67cc3f14564925ed3153e055cd1", null ],
-    [ "__beta_inc", "sf__beta_8tcc.html#aedfe43a9c0065cc3883df50536a625e4", null ],
-    [ "__beta_lgamma", "sf__beta_8tcc.html#ac4f233100713779d93e4eee7665bd0a5", null ],
-    [ "__beta_product", "sf__beta_8tcc.html#a9baa688a27befab7fa48ccfb4a87a9ca", null ],
-    [ "__ibeta_cont_frac", "sf__beta_8tcc.html#a96a5a5205553de07f98b89b2e1f18000", null ]
+    [ "SF_BETA_TCC", "sf__beta_8tcc.html#a10efbc9e4ad8ea9ff86705ac592c879b", null ],
+    [ "beta", "sf__beta_8tcc.html#af4ecafc9d67d01dd3f4dbdbf0fc4f7fb", null ],
+    [ "beta_gamma", "sf__beta_8tcc.html#a70c57db8459bfabe318c8dbd243bc34b", null ],
+    [ "beta_inc", "sf__beta_8tcc.html#a58bb194e0f08ef9d7434153b4966dc75", null ],
+    [ "beta_lgamma", "sf__beta_8tcc.html#a4f936f65d0a39b284d23703f24b878c5", null ],
+    [ "beta_product", "sf__beta_8tcc.html#a3a444f5ae83dbf7ec4554ebbcb9a614c", null ],
+    [ "ibeta_cont_frac", "sf__beta_8tcc.html#a14f00b9ad2abf73e0445ce9b66ee906c", null ]
 ];

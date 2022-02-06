@@ -1,0 +1,209 @@
+\hypertarget{structemsr_1_1detail_1_1weierstrass__roots__t}{}\doxysection{emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$ Struct Template Reference}
+\label{structemsr_1_1detail_1_1weierstrass__roots__t}\index{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}}
+
+
+Collaboration diagram for emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{structemsr_1_1detail_1_1weierstrass__roots__t__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a530a54472e30b6d3a94966234648fb34}{\+\_\+\+Type}} = typename \mbox{\hyperlink{structemsr_1_1detail_1_1jacobi__lattice__t}{jacobi\+\_\+lattice\+\_\+t}}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::\+\_\+\+Tp\+\_\+\+Nome
+\item 
+using \mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a1ae4f38f540e7c28d00011e81d8fe116}{Cmplx}} = std\+::complex$<$ \mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a6865aa33d765203d7b861cebc93290e7}{Real}} $>$
+\item 
+using \mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a6865aa33d765203d7b861cebc93290e7}{Real}} = emsr\+::num\+\_\+traits\+\_\+t$<$ \mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a530a54472e30b6d3a94966234648fb34}{\+\_\+\+Type}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a29e84af6d543f7fc3ac3f272c4a8dcea}{weierstrass\+\_\+roots\+\_\+t}} (const \mbox{\hyperlink{structemsr_1_1detail_1_1jacobi__lattice__t}{jacobi\+\_\+lattice\+\_\+t}}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$ \&lattice)
+\item 
+\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a9a8e123635ce924ef9f4103090f9562b}{weierstrass\+\_\+roots\+\_\+t}} (const \mbox{\hyperlink{structemsr_1_1detail_1_1jacobi__theta__0__t}{jacobi\+\_\+theta\+\_\+0\+\_\+t}}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$ \&theta0, \+\_\+\+Tp1 omega1)
+\item 
+\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a530a54472e30b6d3a94966234648fb34}{\+\_\+\+Type}} \mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_ab4fa765580d4f0c6078401f8b8ee6541}{delta}} () const
+\begin{DoxyCompactList}\small\item\em Return the discriminant $ \Delta = 16(e_2 - e_3)^2(e_3 - e_1)^2(e_1 - e_2)^2 $. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a530a54472e30b6d3a94966234648fb34}{\+\_\+\+Type}} \mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a6c8e276d3bc03d69e5df44a9755e149b}{e1}}
+\item 
+\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a530a54472e30b6d3a94966234648fb34}{\+\_\+\+Type}} \mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_acd40e354acbbede410ff219b5fdcc257}{e2}}
+\item 
+\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a530a54472e30b6d3a94966234648fb34}{\+\_\+\+Type}} \mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a8407d7c7b20f81b6b1737a1c6f6ee1f0}{e3}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Tp1, typename \+\_\+\+Tp3 = std\+::complex$<$\+\_\+\+Tp1$>$$>$\newline
+struct emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$}
+
+A struct of the Weierstrass elliptic function roots. \[ e_1 = \frac{\pi^2}{12\omega_1^2}(\theta_2^4(q,0) + 2\theta_4^4(q,0)) \] \[ e_2 = \frac{\pi^2}{12\omega_1^2}(\theta_2^4(q,0) - \theta_4^4(q,0)) \] \[ e_3 = \frac{\pi^2}{12\omega_1^2}(-2\theta_2^4(q,0) - \theta_4^4(q,0)) \] Note that $ e_1 + e_2 + e_3 = 0 $ 
+
+Definition at line 733 of file sf\+\_\+theta.\+tcc.
+
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{structemsr_1_1detail_1_1weierstrass__roots__t_a530a54472e30b6d3a94966234648fb34}\label{structemsr_1_1detail_1_1weierstrass__roots__t_a530a54472e30b6d3a94966234648fb34}} 
+\index{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}!\_Type@{\_Type}}
+\index{\_Type@{\_Type}!emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}}
+\doxysubsubsection{\texorpdfstring{\_Type}{\_Type}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+Tp3  = std\+::complex$<$\+\_\+\+Tp1$>$$>$ \\
+using \mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t}{emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t}}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a530a54472e30b6d3a94966234648fb34}{\+\_\+\+Type}} =  typename \mbox{\hyperlink{structemsr_1_1detail_1_1jacobi__lattice__t}{jacobi\+\_\+lattice\+\_\+t}}$<$\+\_\+\+Tp1, \+\_\+\+Tp3$>$\+::\+\_\+\+Tp\+\_\+\+Nome}
+
+
+
+Definition at line 735 of file sf\+\_\+theta.\+tcc.
+
+\mbox{\Hypertarget{structemsr_1_1detail_1_1weierstrass__roots__t_a1ae4f38f540e7c28d00011e81d8fe116}\label{structemsr_1_1detail_1_1weierstrass__roots__t_a1ae4f38f540e7c28d00011e81d8fe116}} 
+\index{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}!Cmplx@{Cmplx}}
+\index{Cmplx@{Cmplx}!emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}}
+\doxysubsubsection{\texorpdfstring{Cmplx}{Cmplx}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+Tp3  = std\+::complex$<$\+\_\+\+Tp1$>$$>$ \\
+using \mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t}{emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t}}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a1ae4f38f540e7c28d00011e81d8fe116}{Cmplx}} =  std\+::complex$<$\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a6865aa33d765203d7b861cebc93290e7}{Real}}$>$}
+
+
+
+Definition at line 737 of file sf\+\_\+theta.\+tcc.
+
+\mbox{\Hypertarget{structemsr_1_1detail_1_1weierstrass__roots__t_a6865aa33d765203d7b861cebc93290e7}\label{structemsr_1_1detail_1_1weierstrass__roots__t_a6865aa33d765203d7b861cebc93290e7}} 
+\index{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}!Real@{Real}}
+\index{Real@{Real}!emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}}
+\doxysubsubsection{\texorpdfstring{Real}{Real}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+Tp3  = std\+::complex$<$\+\_\+\+Tp1$>$$>$ \\
+using \mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t}{emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t}}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a6865aa33d765203d7b861cebc93290e7}{Real}} =  emsr\+::num\+\_\+traits\+\_\+t$<$\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a530a54472e30b6d3a94966234648fb34}{\+\_\+\+Type}}$>$}
+
+
+
+Definition at line 736 of file sf\+\_\+theta.\+tcc.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structemsr_1_1detail_1_1weierstrass__roots__t_a29e84af6d543f7fc3ac3f272c4a8dcea}\label{structemsr_1_1detail_1_1weierstrass__roots__t_a29e84af6d543f7fc3ac3f272c4a8dcea}} 
+\index{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}!weierstrass\_roots\_t@{weierstrass\_roots\_t}}
+\index{weierstrass\_roots\_t@{weierstrass\_roots\_t}!emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}}
+\doxysubsubsection{\texorpdfstring{weierstrass\_roots\_t()}{weierstrass\_roots\_t()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+Tp3 $>$ \\
+\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t}{emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t}}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t}{weierstrass\+\_\+roots\+\_\+t}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structemsr_1_1detail_1_1jacobi__lattice__t}{jacobi\+\_\+lattice\+\_\+t}}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$ \&}]{lattice }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Constructor for the Weierstrass roots.
+
+
+\begin{DoxyParams}{Parameters}
+{\em lattice} & The Jacobi lattice. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 766 of file sf\+\_\+theta.\+tcc.
+
+
+
+References emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::weierstrass\+\_\+roots\+\_\+t().
+
+
+
+Referenced by emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::weierstrass\+\_\+roots\+\_\+t().
+
+\mbox{\Hypertarget{structemsr_1_1detail_1_1weierstrass__roots__t_a9a8e123635ce924ef9f4103090f9562b}\label{structemsr_1_1detail_1_1weierstrass__roots__t_a9a8e123635ce924ef9f4103090f9562b}} 
+\index{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}!weierstrass\_roots\_t@{weierstrass\_roots\_t}}
+\index{weierstrass\_roots\_t@{weierstrass\_roots\_t}!emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}}
+\doxysubsubsection{\texorpdfstring{weierstrass\_roots\_t()}{weierstrass\_roots\_t()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+Tp3 $>$ \\
+\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t}{emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t}}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t}{weierstrass\+\_\+roots\+\_\+t}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structemsr_1_1detail_1_1jacobi__theta__0__t}{jacobi\+\_\+theta\+\_\+0\+\_\+t}}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$ \&}]{theta0,  }\item[{\+\_\+\+Tp1}]{omega\+\_\+1 }\end{DoxyParamCaption})}
+
+Constructor for the Weierstrass roots.
+
+
+\begin{DoxyParams}{Parameters}
+{\em theta0} & Exponential theta functions of argument 0. \\
+\hline
+{\em omega\+\_\+1} & The first lattice parameter. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 785 of file sf\+\_\+theta.\+tcc.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structemsr_1_1detail_1_1weierstrass__roots__t_ab4fa765580d4f0c6078401f8b8ee6541}\label{structemsr_1_1detail_1_1weierstrass__roots__t_ab4fa765580d4f0c6078401f8b8ee6541}} 
+\index{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}!delta@{delta}}
+\index{delta@{delta}!emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}}
+\doxysubsubsection{\texorpdfstring{delta()}{delta()}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+Tp3  = std\+::complex$<$\+\_\+\+Tp1$>$$>$ \\
+\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a530a54472e30b6d3a94966234648fb34}{\+\_\+\+Type}} \mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t}{emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t}}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::delta (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the discriminant $ \Delta = 16(e_2 - e_3)^2(e_3 - e_1)^2(e_1 - e_2)^2 $. 
+
+
+
+Definition at line 750 of file sf\+\_\+theta.\+tcc.
+
+
+
+References emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::e1, emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::e2, and emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::e3.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structemsr_1_1detail_1_1weierstrass__roots__t_a6c8e276d3bc03d69e5df44a9755e149b}\label{structemsr_1_1detail_1_1weierstrass__roots__t_a6c8e276d3bc03d69e5df44a9755e149b}} 
+\index{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}!e1@{e1}}
+\index{e1@{e1}!emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}}
+\doxysubsubsection{\texorpdfstring{e1}{e1}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+Tp3  = std\+::complex$<$\+\_\+\+Tp1$>$$>$ \\
+\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a530a54472e30b6d3a94966234648fb34}{\+\_\+\+Type}} \mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t}{emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t}}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::e1}
+
+
+
+Definition at line 739 of file sf\+\_\+theta.\+tcc.
+
+
+
+Referenced by emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::delta().
+
+\mbox{\Hypertarget{structemsr_1_1detail_1_1weierstrass__roots__t_acd40e354acbbede410ff219b5fdcc257}\label{structemsr_1_1detail_1_1weierstrass__roots__t_acd40e354acbbede410ff219b5fdcc257}} 
+\index{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}!e2@{e2}}
+\index{e2@{e2}!emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}}
+\doxysubsubsection{\texorpdfstring{e2}{e2}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+Tp3  = std\+::complex$<$\+\_\+\+Tp1$>$$>$ \\
+\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a530a54472e30b6d3a94966234648fb34}{\+\_\+\+Type}} \mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t}{emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t}}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::e2}
+
+
+
+Definition at line 739 of file sf\+\_\+theta.\+tcc.
+
+
+
+Referenced by emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::delta().
+
+\mbox{\Hypertarget{structemsr_1_1detail_1_1weierstrass__roots__t_a8407d7c7b20f81b6b1737a1c6f6ee1f0}\label{structemsr_1_1detail_1_1weierstrass__roots__t_a8407d7c7b20f81b6b1737a1c6f6ee1f0}} 
+\index{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}!e3@{e3}}
+\index{e3@{e3}!emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$@{emsr::detail::weierstrass\_roots\_t$<$ \_Tp1, \_Tp3 $>$}}
+\doxysubsubsection{\texorpdfstring{e3}{e3}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Tp1 , typename \+\_\+\+Tp3  = std\+::complex$<$\+\_\+\+Tp1$>$$>$ \\
+\mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t_a530a54472e30b6d3a94966234648fb34}{\+\_\+\+Type}} \mbox{\hyperlink{structemsr_1_1detail_1_1weierstrass__roots__t}{emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t}}$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::e3}
+
+
+
+Definition at line 739 of file sf\+\_\+theta.\+tcc.
+
+
+
+Referenced by emsr\+::detail\+::weierstrass\+\_\+roots\+\_\+t$<$ \+\_\+\+Tp1, \+\_\+\+Tp3 $>$\+::delta().
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cxx\+\_\+special\+\_\+functions/include/emsr/detail/\mbox{\hyperlink{sf__theta_8tcc}{sf\+\_\+theta.\+tcc}}\end{DoxyCompactItemize}

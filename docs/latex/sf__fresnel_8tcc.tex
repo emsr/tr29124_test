@@ -1,57 +1,46 @@
-\hypertarget{sf__fresnel_8tcc}{}\section{include/bits/sf\+\_\+fresnel.tcc File Reference}
-\label{sf__fresnel_8tcc}\index{include/bits/sf\+\_\+fresnel.\+tcc@{include/bits/sf\+\_\+fresnel.\+tcc}}
+\hypertarget{sf__fresnel_8tcc}{}\doxysection{cxx\+\_\+special\+\_\+functions/include/emsr/detail/sf\+\_\+fresnel.tcc File Reference}
+\label{sf__fresnel_8tcc}\index{cxx\_special\_functions/include/emsr/detail/sf\_fresnel.tcc@{cxx\_special\_functions/include/emsr/detail/sf\_fresnel.tcc}}
+{\ttfamily \#include $<$stdexcept$>$}\newline
 {\ttfamily \#include $<$complex$>$}\newline
-{\ttfamily \#include $<$ext/math\+\_\+const.\+h$>$}\newline
 Include dependency graph for sf\+\_\+fresnel.\+tcc\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=244pt]{sf__fresnel_8tcc__incl}
+\includegraphics[width=222pt]{sf__fresnel_8tcc__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=208pt]{sf__fresnel_8tcc__dep__incl}
-\end{center}
-\end{figure}
-\subsection*{Namespaces}
+\doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
- \hyperlink{namespacestd}{std}
+ \mbox{\hyperlink{namespaceemsr}{emsr}}
 \item 
- \hyperlink{namespacestd_1_1____detail}{std\+::\+\_\+\+\_\+detail}
-\begin{DoxyCompactList}\small\item\em Implementation-\/space details. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Macros}
-\begin{DoxyCompactItemize}
-\item 
-\#define \hyperlink{sf__fresnel_8tcc_adbcd2dc06ad79716112c456abd18d171}{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+F\+R\+E\+S\+N\+E\+L\+\_\+\+T\+CC}~1
+ \mbox{\hyperlink{namespaceemsr_1_1detail}{emsr\+::detail}}
 \end{DoxyCompactItemize}
-\subsection*{Functions}
+\doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a322045015cfbde5a45e7718d533de60d}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+fresnel} (const \+\_\+\+Tp \+\_\+\+\_\+x)
+\#define \mbox{\hyperlink{sf__fresnel_8tcc_a97751e38203ead6889619905a3b251d0}{SF\+\_\+\+FRESNEL\+\_\+\+TCC}}~1
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Tp $>$ }\\std\+::complex$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_1_1detail_a6d301a08e3d74df9cdc521cba003f4ef}{emsr\+::detail\+::fresnel}} (const Tp x)
 \begin{DoxyCompactList}\small\item\em Return the Fresnel cosine and sine integrals as a complex number \$f\mbox{[} C(x) + i\+S(x) \$f\mbox{]}. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_aeae8420e2fa1671f004066525adc99b6}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+fresnel\+\_\+cont\+\_\+frac} (const \+\_\+\+Tp \+\_\+\+\_\+ax, \+\_\+\+Tp \&\+\_\+\+Cf, \+\_\+\+Tp \&\+\_\+\+Sf)
+{\footnotesize template$<$typename Tp $>$ }\\void \mbox{\hyperlink{namespaceemsr_1_1detail_a69bdd17ca02e5aec93e6fc55f8c3c66f}{emsr\+::detail\+::fresnel\+\_\+cont\+\_\+frac}} (const Tp ax, Tp \&\+\_\+\+Cf, Tp \&\+\_\+\+Sf)
 \begin{DoxyCompactList}\small\item\em This function computes the Fresnel cosine and sine integrals by continued fractions for positive argument. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\void \hyperlink{namespacestd_1_1____detail_aae7775bc46d621e54fb9d994c2f35e2a}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+fresnel\+\_\+series} (const \+\_\+\+Tp \+\_\+\+\_\+ax, \+\_\+\+Tp \&\+\_\+\+Cf, \+\_\+\+Tp \&\+\_\+\+Sf)
+{\footnotesize template$<$typename Tp $>$ }\\void \mbox{\hyperlink{namespaceemsr_1_1detail_a2379308ea2e49e7839f0e7a73a6e4973}{emsr\+::detail\+::fresnel\+\_\+series}} (const Tp ax, Tp \&\+\_\+\+Cf, Tp \&\+\_\+\+Sf)
 \begin{DoxyCompactList}\small\item\em This function returns the Fresnel cosine and sine integrals as a pair by series expansion for positive argument. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-This is an internal header file, included by other library headers. Do not attempt to use it directly. Instead, include $<$cmath$>$. 
-
-\subsection{Macro Definition Documentation}
-\mbox{\Hypertarget{sf__fresnel_8tcc_adbcd2dc06ad79716112c456abd18d171}\label{sf__fresnel_8tcc_adbcd2dc06ad79716112c456abd18d171}} 
-\index{sf\+\_\+fresnel.\+tcc@{sf\+\_\+fresnel.\+tcc}!\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+F\+R\+E\+S\+N\+E\+L\+\_\+\+T\+CC@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+F\+R\+E\+S\+N\+E\+L\+\_\+\+T\+CC}}
-\index{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+F\+R\+E\+S\+N\+E\+L\+\_\+\+T\+CC@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+F\+R\+E\+S\+N\+E\+L\+\_\+\+T\+CC}!sf\+\_\+fresnel.\+tcc@{sf\+\_\+fresnel.\+tcc}}
-\subsubsection{\texorpdfstring{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+F\+R\+E\+S\+N\+E\+L\+\_\+\+T\+CC}{\_GLIBCXX\_BITS\_SF\_FRESNEL\_TCC}}
-{\footnotesize\ttfamily \#define \+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+F\+R\+E\+S\+N\+E\+L\+\_\+\+T\+CC~1}
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sf__fresnel_8tcc_a97751e38203ead6889619905a3b251d0}\label{sf__fresnel_8tcc_a97751e38203ead6889619905a3b251d0}} 
+\index{sf\_fresnel.tcc@{sf\_fresnel.tcc}!SF\_FRESNEL\_TCC@{SF\_FRESNEL\_TCC}}
+\index{SF\_FRESNEL\_TCC@{SF\_FRESNEL\_TCC}!sf\_fresnel.tcc@{sf\_fresnel.tcc}}
+\doxysubsubsection{\texorpdfstring{SF\_FRESNEL\_TCC}{SF\_FRESNEL\_TCC}}
+{\footnotesize\ttfamily \#define SF\+\_\+\+FRESNEL\+\_\+\+TCC~1}
 
 
 
-Definition at line 31 of file sf\+\_\+fresnel.\+tcc.
+Definition at line 30 of file sf\+\_\+fresnel.\+tcc.
 

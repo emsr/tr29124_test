@@ -1,93 +1,85 @@
-\hypertarget{sf__ellint_8tcc}{}\section{include/bits/sf\+\_\+ellint.tcc File Reference}
-\label{sf__ellint_8tcc}\index{include/bits/sf\+\_\+ellint.\+tcc@{include/bits/sf\+\_\+ellint.\+tcc}}
+\hypertarget{sf__ellint_8tcc}{}\doxysection{cxx\+\_\+special\+\_\+functions/include/emsr/detail/sf\+\_\+ellint.tcc File Reference}
+\label{sf__ellint_8tcc}\index{cxx\_special\_functions/include/emsr/detail/sf\_ellint.tcc@{cxx\_special\_functions/include/emsr/detail/sf\_ellint.tcc}}
+{\ttfamily \#include $<$stdexcept$>$}\newline
 {\ttfamily \#include $<$complex$>$}\newline
-{\ttfamily \#include $<$ext/math\+\_\+const.\+h$>$}\newline
+{\ttfamily \#include $<$emsr/complex\+\_\+util.\+h$>$}\newline
+{\ttfamily \#include $<$emsr/numeric\+\_\+limits.\+h$>$}\newline
+{\ttfamily \#include $<$emsr/math\+\_\+constants.\+h$>$}\newline
 Include dependency graph for sf\+\_\+ellint.\+tcc\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=244pt]{sf__ellint_8tcc__incl}
+\includegraphics[width=350pt]{sf__ellint_8tcc__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=199pt]{sf__ellint_8tcc__dep__incl}
-\end{center}
-\end{figure}
-\subsection*{Namespaces}
+\doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
- \hyperlink{namespacestd}{std}
+ \mbox{\hyperlink{namespaceemsr}{emsr}}
 \item 
- \hyperlink{namespacestd_1_1____detail}{std\+::\+\_\+\+\_\+detail}
-\begin{DoxyCompactList}\small\item\em Implementation-\/space details. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Macros}
-\begin{DoxyCompactItemize}
-\item 
-\#define \hyperlink{sf__ellint_8tcc_a4b6f21b1d48bfb7a988fe3346437ccce}{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+L\+L\+I\+N\+T\+\_\+\+T\+CC}~1
+ \mbox{\hyperlink{namespaceemsr_1_1detail}{emsr\+::detail}}
 \end{DoxyCompactItemize}
-\subsection*{Functions}
+\doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a7b23bcf7e9f20b1e353a047126e13af1}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+comp\+\_\+ellint\+\_\+1} (\+\_\+\+Tp \+\_\+\+\_\+k)
+\#define \mbox{\hyperlink{sf__ellint_8tcc_a47f07e04ad6589e5385e65e9b1e29af3}{SF\+\_\+\+ELLINT\+\_\+\+TCC}}~1
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_ab1aa60036de06771bacbefcb0bf9404c}{emsr\+::detail\+::comp\+\_\+ellint\+\_\+1}} (Tp k)
 \begin{DoxyCompactList}\small\item\em Return the complete elliptic integral of the first kind $ K(k) $ using the Carlson formulation. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a4836f4db24abd037705100750f82d375}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+comp\+\_\+ellint\+\_\+2} (\+\_\+\+Tp \+\_\+\+\_\+k)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_adb4dfac024ab0c6583c614ae23d6f391}{emsr\+::detail\+::comp\+\_\+ellint\+\_\+2}} (Tp k)
 \begin{DoxyCompactList}\small\item\em Return the complete elliptic integral of the second kind $ E(k) $ using the Carlson formulation. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a26b35b5d72366d30ac4644db8f2f8be4}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+comp\+\_\+ellint\+\_\+3} (\+\_\+\+Tp \+\_\+\+\_\+k, \+\_\+\+Tp \+\_\+\+\_\+nu)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a0d418239058c66b8eb712395da76e41b}{emsr\+::detail\+::comp\+\_\+ellint\+\_\+3}} (Tp k, Tp nu)
 \begin{DoxyCompactList}\small\item\em Return the complete elliptic integral of the third kind $ \Pi(k,\nu) = \Pi(k,\nu,\pi/2) $ using the Carlson formulation. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_add5220a1ab03915e4a45dc547bb8eef6}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+comp\+\_\+ellint\+\_\+d} (\+\_\+\+Tp \+\_\+\+\_\+k)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a2849d3a45a1aacf82d706cfac849a0fb}{emsr\+::detail\+::comp\+\_\+ellint\+\_\+d}} (Tp k)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a41ecec8820344d3575b464ecd4db5171}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+comp\+\_\+ellint\+\_\+rf} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \+\_\+\+\_\+y)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_acdd2761dd86595bb512e8e3990f24cfb}{emsr\+::detail\+::comp\+\_\+ellint\+\_\+rf}} (Tp x, Tp y)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a31bb5a6e359c88b5bece8dd73f76a2f9}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+comp\+\_\+ellint\+\_\+rg} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \+\_\+\+\_\+y)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a022d16fc45eb86045e7a74d38ae26fb3}{emsr\+::detail\+::comp\+\_\+ellint\+\_\+rg}} (Tp x, Tp y)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_aa349fe5bcf36d29cfacf6cd3e8aa65b0}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+ellint\+\_\+1} (\+\_\+\+Tp \+\_\+\+\_\+k, \+\_\+\+Tp \+\_\+\+\_\+phi)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_ad5e834b10518ac80ba08d6bbb7f0c6d2}{emsr\+::detail\+::ellint\+\_\+1}} (Tp k, Tp phi)
 \begin{DoxyCompactList}\small\item\em Return the incomplete elliptic integral of the first kind $ F(k,\phi) $ using the Carlson formulation. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_ad3687a38e74e5fbf08265501add0b56a}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+ellint\+\_\+2} (\+\_\+\+Tp \+\_\+\+\_\+k, \+\_\+\+Tp \+\_\+\+\_\+phi)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a6953b810388bbf4ceb5abca6f00add30}{emsr\+::detail\+::ellint\+\_\+2}} (Tp k, Tp phi)
 \begin{DoxyCompactList}\small\item\em Return the incomplete elliptic integral of the second kind $ E(k,\phi) $ using the Carlson formulation. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a9c6ea96cd5d6907fce278010b992499a}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+ellint\+\_\+3} (\+\_\+\+Tp \+\_\+\+\_\+k, \+\_\+\+Tp \+\_\+\+\_\+nu, \+\_\+\+Tp \+\_\+\+\_\+phi)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a590cbbdcc24e3c9818a925eecd21baed}{emsr\+::detail\+::ellint\+\_\+3}} (Tp k, Tp nu, Tp phi)
 \begin{DoxyCompactList}\small\item\em Return the incomplete elliptic integral of the third kind $ \Pi(k,\nu,\phi) $ using the Carlson formulation. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a7c7d04715f0d40e054299312db35e32d}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+ellint\+\_\+cel} (\+\_\+\+Tp \+\_\+\+\_\+k\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+p, \+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a028ac58bb3005f373a38000f11a493d7}{emsr\+::detail\+::ellint\+\_\+cel}} (Tp k\+\_\+c, Tp p, Tp a, Tp b)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a00da42d89830fd51e9934fe0c5e08b7f}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+ellint\+\_\+d} (\+\_\+\+Tp \+\_\+\+\_\+k, \+\_\+\+Tp \+\_\+\+\_\+phi)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a966550b7ea59245606d744359c579294}{emsr\+::detail\+::ellint\+\_\+d}} (Tp k, Tp phi)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_aa17b1b382a89552f49fbb8c5eda1d50f}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+ellint\+\_\+el1} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \+\_\+\+\_\+k\+\_\+c)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a8e03d966d5656d7a3ec333d3118dcd69}{emsr\+::detail\+::ellint\+\_\+el1}} (Tp x, Tp k\+\_\+c)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a82449d0f05d40ba2cef6b8fc57dd5bae}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+ellint\+\_\+el2} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \+\_\+\+\_\+k\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a313af8788f0f24fc35f367c8f62872d0}{emsr\+::detail\+::ellint\+\_\+el2}} (Tp x, Tp k\+\_\+c, Tp a, Tp b)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a2a2b5b80edd39b3d1f852f10c5f277fc}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+ellint\+\_\+el3} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \+\_\+\+\_\+k\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+p)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_aaecd698a0cac216eefd33aea239edce0}{emsr\+::detail\+::ellint\+\_\+el3}} (Tp x, Tp k\+\_\+c, Tp p)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_aa7d81e41240a6d031414c6b117889e36}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+ellint\+\_\+rc} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \+\_\+\+\_\+y)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a76ddddcfaf820686f5a1358b9f70dcbc}{emsr\+::detail\+::ellint\+\_\+rc}} (Tp x, Tp y)
 \begin{DoxyCompactList}\small\item\em Return the Carlson elliptic function $ R_C(x,y) = R_F(x,y,y) $ where $ R_F(x,y,z) $ is the Carlson elliptic function of the first kind. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_ac05883415a662fc6f9855dd8d1da921f}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+ellint\+\_\+rd} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \+\_\+\+\_\+y, \+\_\+\+Tp \+\_\+\+\_\+z)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a72001bacffcc0964ff05ec3cd285fb8b}{emsr\+::detail\+::ellint\+\_\+rd}} (Tp x, Tp y, Tp z)
 \begin{DoxyCompactList}\small\item\em Return the Carlson elliptic function of the second kind $ R_D(x,y,z) = R_J(x,y,z,z) $ where $ R_J(x,y,z,p) $ is the Carlson elliptic function of the third kind. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a2cca271dcbdf22923219eab7a02450d5}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+ellint\+\_\+rf} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \+\_\+\+\_\+y, \+\_\+\+Tp \+\_\+\+\_\+z)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_ac26a8244e5669fdd47ee0696622e79c5}{emsr\+::detail\+::ellint\+\_\+rf}} (Tp x, Tp y, Tp z)
 \begin{DoxyCompactList}\small\item\em Return the Carlson elliptic function $ R_F(x,y,z) $ of the first kind. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_aaceff1eb320e0602afee36c60b80f87a}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+ellint\+\_\+rg} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \+\_\+\+\_\+y, \+\_\+\+Tp \+\_\+\+\_\+z)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_af61565b467509c4faa081bb23af4bb52}{emsr\+::detail\+::ellint\+\_\+rg}} (Tp x, Tp y, Tp z)
 \begin{DoxyCompactList}\small\item\em Return the symmetric Carlson elliptic function of the second kind $ R_G(x,y,z) $. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_afe05ce66130b5f47389137c3f9aa6949}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+ellint\+\_\+rj} (\+\_\+\+Tp \+\_\+\+\_\+x, \+\_\+\+Tp \+\_\+\+\_\+y, \+\_\+\+Tp \+\_\+\+\_\+z, \+\_\+\+Tp \+\_\+\+\_\+p)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a1ae86cd42c7a92eb6aaf53974c3d8afa}{emsr\+::detail\+::ellint\+\_\+rj}} (Tp x, Tp y, Tp z, Tp p)
 \begin{DoxyCompactList}\small\item\em Return the Carlson elliptic function $ R_J(x,y,z,p) $ of the third kind. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a90938823a16cabc06031ebf209066a94}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+heuman\+\_\+lambda} (\+\_\+\+Tp \+\_\+\+\_\+k, \+\_\+\+Tp \+\_\+\+\_\+phi)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a350fea440dbd09d7937c3a52170cdb9c}{emsr\+::detail\+::heuman\+\_\+lambda}} (Tp k, Tp phi)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a1d5fc69202703d72974c4370fd7ade03}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+jacobi\+\_\+zeta} (\+\_\+\+Tp \+\_\+\+\_\+k, \+\_\+\+Tp \+\_\+\+\_\+phi)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_ae3bf08ffe4f91dde71aac51af2315adc}{emsr\+::detail\+::jacobi\+\_\+zeta}} (Tp k, Tp phi)
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-This is an internal header file, included by other library headers. Do not attempt to use it directly. Instead, include $<$cmath$>$. 
-
-\subsection{Macro Definition Documentation}
-\mbox{\Hypertarget{sf__ellint_8tcc_a4b6f21b1d48bfb7a988fe3346437ccce}\label{sf__ellint_8tcc_a4b6f21b1d48bfb7a988fe3346437ccce}} 
-\index{sf\+\_\+ellint.\+tcc@{sf\+\_\+ellint.\+tcc}!\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+L\+L\+I\+N\+T\+\_\+\+T\+CC@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+L\+L\+I\+N\+T\+\_\+\+T\+CC}}
-\index{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+L\+L\+I\+N\+T\+\_\+\+T\+CC@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+L\+L\+I\+N\+T\+\_\+\+T\+CC}!sf\+\_\+ellint.\+tcc@{sf\+\_\+ellint.\+tcc}}
-\subsubsection{\texorpdfstring{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+L\+L\+I\+N\+T\+\_\+\+T\+CC}{\_GLIBCXX\_BITS\_SF\_ELLINT\_TCC}}
-{\footnotesize\ttfamily \#define \+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+E\+L\+L\+I\+N\+T\+\_\+\+T\+CC~1}
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sf__ellint_8tcc_a47f07e04ad6589e5385e65e9b1e29af3}\label{sf__ellint_8tcc_a47f07e04ad6589e5385e65e9b1e29af3}} 
+\index{sf\_ellint.tcc@{sf\_ellint.tcc}!SF\_ELLINT\_TCC@{SF\_ELLINT\_TCC}}
+\index{SF\_ELLINT\_TCC@{SF\_ELLINT\_TCC}!sf\_ellint.tcc@{sf\_ellint.tcc}}
+\doxysubsubsection{\texorpdfstring{SF\_ELLINT\_TCC}{SF\_ELLINT\_TCC}}
+{\footnotesize\ttfamily \#define SF\+\_\+\+ELLINT\+\_\+\+TCC~1}
 
 
 
-Definition at line 47 of file sf\+\_\+ellint.\+tcc.
+Definition at line 46 of file sf\+\_\+ellint.\+tcc.
 

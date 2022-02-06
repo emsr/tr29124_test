@@ -1,88 +1,80 @@
-\hypertarget{sf__trig_8tcc}{}\section{include/bits/sf\+\_\+trig.tcc File Reference}
-\label{sf__trig_8tcc}\index{include/bits/sf\+\_\+trig.\+tcc@{include/bits/sf\+\_\+trig.\+tcc}}
-{\ttfamily \#include $<$bits/complex\+\_\+util.\+h$>$}\newline
+\hypertarget{sf__trig_8tcc}{}\doxysection{cxx\+\_\+special\+\_\+functions/include/emsr/detail/sf\+\_\+trig.tcc File Reference}
+\label{sf__trig_8tcc}\index{cxx\_special\_functions/include/emsr/detail/sf\_trig.tcc@{cxx\_special\_functions/include/emsr/detail/sf\_trig.tcc}}
+{\ttfamily \#include $<$complex$>$}\newline
+{\ttfamily \#include $<$emsr/numeric\+\_\+limits.\+h$>$}\newline
+{\ttfamily \#include $<$emsr/math\+\_\+constants.\+h$>$}\newline
 Include dependency graph for sf\+\_\+trig.\+tcc\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=193pt]{sf__trig_8tcc__incl}
+\includegraphics[width=350pt]{sf__trig_8tcc__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=193pt]{sf__trig_8tcc__dep__incl}
-\end{center}
-\end{figure}
-\subsection*{Namespaces}
+\doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
- \hyperlink{namespacestd}{std}
-\item 
- \hyperlink{namespacestd_1_1____detail}{std\+::\+\_\+\+\_\+detail}
-\begin{DoxyCompactList}\small\item\em Implementation-\/space details. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Macros}
-\begin{DoxyCompactItemize}
-\item 
-\#define \hyperlink{sf__trig_8tcc_a6e1b0eff1758b4646af73ac467f1b629}{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+R\+I\+G\+\_\+\+T\+CC}~1
+struct \mbox{\hyperlink{structemsr_1_1sincos__t}{emsr\+::sincos\+\_\+t$<$ Tp $>$}}
 \end{DoxyCompactItemize}
-\subsection*{Functions}
+\doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_abfdaa500e1321747a0ad391ca3416a0b}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+cos\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+ \mbox{\hyperlink{namespaceemsr}{emsr}}
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a0332c7fb29ed7be543103adc8d04d39d}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+cos\+\_\+pi} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z)
+ \mbox{\hyperlink{namespaceemsr_1_1detail}{emsr\+::detail}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_ae6e440447e88191b3cd19daaf7fda96e}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+cosh\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+\#define \mbox{\hyperlink{sf__trig_8tcc_af135d05bdd62c11bdd0005c355d1e6ee}{SF\+\_\+\+TRIG\+\_\+\+TCC}}~1
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a257e13bd4fa9711a87ea68a783ee40d9}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+cosh\+\_\+pi} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z)
+{\footnotesize template$<$typename Tp $>$ }\\std\+::complex$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_1_1detail_ab6fcd709f8503a7eda058cc6e23b123c}{emsr\+::detail\+::cos\+\_\+pi}} (std\+::complex$<$ Tp $>$ z)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_ac69e259ad511fcc7a54c6ec315adcfa4}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polar\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+rho, \+\_\+\+Tp \+\_\+\+\_\+phi\+\_\+pi)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a5d582add28f4d3629ec6c8a2dc4a0dc5}{emsr\+::detail\+::cos\+\_\+pi}} (Tp x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a627c0e19f6b3e90af25735f351662d53}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+polar\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+rho, const std\+::complex$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+phi\+\_\+pi)
+{\footnotesize template$<$typename Tp $>$ }\\std\+::complex$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_1_1detail_a4c90dac69a2e82939ae2f71f482e0641}{emsr\+::detail\+::cosh\+\_\+pi}} (std\+::complex$<$ Tp $>$ z)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a763249defff6377195818c2fc6e7bca2}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sin\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_aff59ce93ea063e87c85bb07dd1c15f75}{emsr\+::detail\+::cosh\+\_\+pi}} (Tp x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a5f26e85b3d646e5c69be173baebd4185}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sin\+\_\+pi} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z)
+{\footnotesize template$<$typename Tp $>$ }\\std\+::complex$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_1_1detail_ab043d41738012c21accedc68abeb52f9}{emsr\+::detail\+::sin\+\_\+pi}} (std\+::complex$<$ Tp $>$ z)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a59a9ff6922faa1a88da8b485ee9d37cb}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sincos} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a9b301a4619a9c0c17ece9d571579b504}{emsr\+::detail\+::sin\+\_\+pi}} (Tp x)
 \item 
-{\footnotesize template$<$$>$ }\\\hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}$<$ float $>$ \hyperlink{namespacestd_1_1____detail_a8cfd8b8345ebc359e31ac1631e29aeea}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sincos} (float \+\_\+\+\_\+x)
+template$<$$>$ \mbox{\hyperlink{structemsr_1_1sincos__t}{emsr\+::sincos\+\_\+t}}$<$ double $>$ \mbox{\hyperlink{namespaceemsr_1_1detail_afaa260dd98af295001c4aaee73b466b6}{emsr\+::detail\+::sincos}} (double x)
 \item 
-{\footnotesize template$<$$>$ }\\\hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}$<$ double $>$ \hyperlink{namespacestd_1_1____detail_a76c185b3a0156ecf557afdbf552a8916}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sincos} (double \+\_\+\+\_\+x)
+template$<$$>$ \mbox{\hyperlink{structemsr_1_1sincos__t}{emsr\+::sincos\+\_\+t}}$<$ float $>$ \mbox{\hyperlink{namespaceemsr_1_1detail_a75e7b7318a341763aba846d1176064ec}{emsr\+::detail\+::sincos}} (float x)
 \item 
-{\footnotesize template$<$$>$ }\\\hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}$<$ long double $>$ \hyperlink{namespacestd_1_1____detail_aade98e6318f4459f37e1f79f4c871cf6}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sincos} (long double \+\_\+\+\_\+x)
+template$<$$>$ \mbox{\hyperlink{structemsr_1_1sincos__t}{emsr\+::sincos\+\_\+t}}$<$ long double $>$ \mbox{\hyperlink{namespaceemsr_1_1detail_ae67ded765b924be7156d0c2cf9b28f12}{emsr\+::detail\+::sincos}} (long double x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____sincos__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+sincos\+\_\+t}$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_af17af8caca5ba47597cc314e93ba49cd}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sincos\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename Tp $>$ }\\\mbox{\hyperlink{structemsr_1_1sincos__t}{emsr\+::sincos\+\_\+t}}$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_1_1detail_ad69832cdaf4fc11a9376561e97383412}{emsr\+::detail\+::sincos}} (Tp x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a6dd7153012cc7885e76a47a5162981da}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sinh\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename Tp $>$ }\\\mbox{\hyperlink{structemsr_1_1sincos__t}{emsr\+::sincos\+\_\+t}}$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_1_1detail_a189f52ea769330eb34dfd53701e22772}{emsr\+::detail\+::sincos\+\_\+pi}} (Tp x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_aa8fe06b3d9584ea9c81b0349ba7eb2dc}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+sinh\+\_\+pi} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z)
+{\footnotesize template$<$typename Tp $>$ }\\std\+::complex$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_1_1detail_afb2a67592281c99816cc33a96c74d5dd}{emsr\+::detail\+::sinh\+\_\+pi}} (std\+::complex$<$ Tp $>$ z)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a72fd3b7fcf9f49ade9411d782e8dbe4e}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+tan\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_acfcf03529a46c1bda0731c7a768310c3}{emsr\+::detail\+::sinh\+\_\+pi}} (Tp x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_ae19d579db4245c9c4e53a70a0513bb00}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+tan\+\_\+pi} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z)
+{\footnotesize template$<$typename Tp $>$ }\\std\+::complex$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_1_1detail_a6f6405bfcd63ffe566b24d1f03f134aa}{emsr\+::detail\+::tan\+\_\+pi}} (std\+::complex$<$ Tp $>$ z)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_ab0c02d3c15b8297df52b74807f22169b}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+tanh\+\_\+pi} (\+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_aab17a4a505ac26e90e96dcef20c407d6}{emsr\+::detail\+::tan\+\_\+pi}} (Tp x)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::complex$<$ \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_a75775747d40813d5d54c0b7a7d0c39f0}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+tanh\+\_\+pi} (std\+::complex$<$ \+\_\+\+Tp $>$ \+\_\+\+\_\+z)
+{\footnotesize template$<$typename Tp $>$ }\\std\+::complex$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_1_1detail_aab8025906281f5200b67a5e6e0eefe0b}{emsr\+::detail\+::tanh\+\_\+pi}} (std\+::complex$<$ Tp $>$ z)
+\item 
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_ab9dae921d41b1c6b2c29579075aab102}{emsr\+::detail\+::tanh\+\_\+pi}} (Tp x)
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-This is an internal header file, included by other library headers. You should not attempt to use it directly. 
-
-\subsection{Macro Definition Documentation}
-\mbox{\Hypertarget{sf__trig_8tcc_a6e1b0eff1758b4646af73ac467f1b629}\label{sf__trig_8tcc_a6e1b0eff1758b4646af73ac467f1b629}} 
-\index{sf\+\_\+trig.\+tcc@{sf\+\_\+trig.\+tcc}!\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+R\+I\+G\+\_\+\+T\+CC@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+R\+I\+G\+\_\+\+T\+CC}}
-\index{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+R\+I\+G\+\_\+\+T\+CC@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+R\+I\+G\+\_\+\+T\+CC}!sf\+\_\+trig.\+tcc@{sf\+\_\+trig.\+tcc}}
-\subsubsection{\texorpdfstring{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+R\+I\+G\+\_\+\+T\+CC}{\_GLIBCXX\_BITS\_SF\_TRIG\_TCC}}
-{\footnotesize\ttfamily \#define \+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+T\+R\+I\+G\+\_\+\+T\+CC~1}
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sf__trig_8tcc_af135d05bdd62c11bdd0005c355d1e6ee}\label{sf__trig_8tcc_af135d05bdd62c11bdd0005c355d1e6ee}} 
+\index{sf\_trig.tcc@{sf\_trig.tcc}!SF\_TRIG\_TCC@{SF\_TRIG\_TCC}}
+\index{SF\_TRIG\_TCC@{SF\_TRIG\_TCC}!sf\_trig.tcc@{sf\_trig.tcc}}
+\doxysubsubsection{\texorpdfstring{SF\_TRIG\_TCC}{SF\_TRIG\_TCC}}
+{\footnotesize\ttfamily \#define SF\+\_\+\+TRIG\+\_\+\+TCC~1}
 
 
 
-Definition at line 31 of file sf\+\_\+trig.\+tcc.
+Definition at line 30 of file sf\+\_\+trig.\+tcc.
 

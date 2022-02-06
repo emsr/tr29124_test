@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['scalar_5ftype',['scalar_type',['../classstd_1_1____detail_1_1__Airy__asymp__series.html#ac2d0fa6d86d7a83c06dca057d0dfec3a',1,'std::__detail::_Airy_asymp_series::scalar_type()'],['../classstd_1_1____detail_1_1__Airy.html#a4b2b920ead7adcf08d49420c24e491b5',1,'std::__detail::_Airy::scalar_type()']]]
+  ['real_1317',['Real',['../structemsr_1_1detail_1_1AiryState.html#a979ed244a7db1fea24bf51afe90515a2',1,'emsr::detail::AiryState::Real()'],['../structemsr_1_1detail_1_1jacobi__lattice__t.html#a3629c74f59a02f7981ee3de930b3c9a4',1,'emsr::detail::jacobi_lattice_t::Real()'],['../structemsr_1_1detail_1_1jacobi__theta__0__t.html#aebe9a6c2111030bf97c26a4e5a8c78a0',1,'emsr::detail::jacobi_theta_0_t::Real()'],['../structemsr_1_1detail_1_1weierstrass__roots__t.html#a6865aa33d765203d7b861cebc93290e7',1,'emsr::detail::weierstrass_roots_t::Real()'],['../structemsr_1_1detail_1_1weierstrass__invariants__t.html#a3ea12d42d72cb88c36a831052ba39f4d',1,'emsr::detail::weierstrass_invariants_t::Real()']]]
 ];

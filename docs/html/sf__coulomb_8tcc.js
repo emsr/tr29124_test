@@ -1,10 +1,10 @@
 var sf__coulomb_8tcc =
 [
-    [ "_GLIBCXX_BITS_SF_COULOMB_TCC", "sf__coulomb_8tcc.html#a162e29800b43ed4d5f024cda4a7a6531", null ],
-    [ "__coulomb_CF1", "sf__coulomb_8tcc.html#a0737f268d024ed5d66d3e926239a5c49", null ],
-    [ "__coulomb_CF2", "sf__coulomb_8tcc.html#a400332397b6d529764b61bdd7726f75c", null ],
-    [ "__coulomb_f_recur", "sf__coulomb_8tcc.html#ab6a730206fba9db024f3c1c26fe6a954", null ],
-    [ "__coulomb_g_recur", "sf__coulomb_8tcc.html#ad3bcd9e0587db5699088065900382e8b", null ],
-    [ "__coulomb_norm", "sf__coulomb_8tcc.html#a568c1e2b831de815e9ffb1b9c9fe1170", null ],
-    [ "__hydrogen", "sf__coulomb_8tcc.html#aba60bcf9f002dc900042065999546bc9", null ]
+    [ "SF_COULOMB_TCC", "sf__coulomb_8tcc.html#aeb1d3e1e74fbb373986634dcb43c861a", null ],
+    [ "coulomb_CF1", "sf__coulomb_8tcc.html#a83ba6ee95088936b59f1db49f3c40056", null ],
+    [ "coulomb_CF2", "sf__coulomb_8tcc.html#aeaa8b53fc374f0151f8b2b4e946ea2ed", null ],
+    [ "coulomb_f_recur", "sf__coulomb_8tcc.html#ac1d3d3e787fd51b8f55c845bafcdae95", null ],
+    [ "coulomb_g_recur", "sf__coulomb_8tcc.html#a9497dc9420ad097fb484fb4a5b8fb1fe", null ],
+    [ "coulomb_norm", "sf__coulomb_8tcc.html#a392306a3f753692bee44068e4b2b2b07", null ],
+    [ "hydrogen", "sf__coulomb_8tcc.html#a1e40b52e8d8c878d515e854c1140cbb8", null ]
 ];

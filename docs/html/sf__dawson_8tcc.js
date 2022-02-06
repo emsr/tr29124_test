@@ -1,7 +1,7 @@
 var sf__dawson_8tcc =
 [
-    [ "_GLIBCXX_BITS_SF_DAWSON_TCC", "sf__dawson_8tcc.html#af030b68c7e9ef1dea782931637073b46", null ],
-    [ "__dawson", "sf__dawson_8tcc.html#a6384fb4c5af31b41a38c120869a548c7", null ],
-    [ "__dawson_cont_frac", "sf__dawson_8tcc.html#a3ad3b7b4dcebdf69778dbf7a5ba2427c", null ],
-    [ "__dawson_series", "sf__dawson_8tcc.html#a033d91cc1c67280385ff3d1d809a21d1", null ]
+    [ "SF_DAWSON_TCC", "sf__dawson_8tcc.html#a1b8484d746c590fbce7c4ba494977d54", null ],
+    [ "dawson", "sf__dawson_8tcc.html#a08ba87d32240bf0264844fc76ca70b2f", null ],
+    [ "dawson_cont_frac", "sf__dawson_8tcc.html#a02d76dba24794b55d7e79deb06215b59", null ],
+    [ "dawson_series", "sf__dawson_8tcc.html#ad58085df3f0b9e00948622f575a302d1", null ]
 ];

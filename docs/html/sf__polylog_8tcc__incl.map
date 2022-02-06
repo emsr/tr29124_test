@@ -1,2 +1,9 @@
-<map id="include/bits/sf_polylog.tcc" name="include/bits/sf_polylog.tcc">
+<map id="cxx_special_functions/include/emsr/detail/sf_polylog.tcc" name="cxx_special_functions/include/emsr/detail/sf_polylog.tcc">
+<area shape="rect" id="node1" title=" " alt="" coords="302,5,467,61"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,109,92,136"/>
+<area shape="rect" id="node3" title=" " alt="" coords="116,109,195,136"/>
+<area shape="rect" id="node4" title=" " alt="" coords="219,109,374,136"/>
+<area shape="rect" id="node5" title=" " alt="" coords="399,109,547,136"/>
+<area shape="rect" id="node6" title=" " alt="" coords="571,109,683,136"/>
+<area shape="rect" id="node7" title=" " alt="" coords="707,109,825,136"/>
 </map>

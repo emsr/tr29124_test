@@ -1,2 +1,11 @@
-<map id="include/bits/sf_gamma.tcc" name="include/bits/sf_gamma.tcc">
+<map id="cxx_special_functions/include/emsr/detail/sf_gamma.tcc" name="cxx_special_functions/include/emsr/detail/sf_gamma.tcc">
+<area shape="rect" id="node1" title=" " alt="" coords="313,5,478,61"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,109,92,136"/>
+<area shape="rect" id="node3" title=" " alt="" coords="117,109,173,136"/>
+<area shape="rect" id="node4" title=" " alt="" coords="197,109,271,136"/>
+<area shape="rect" id="node5" title=" " alt="" coords="296,109,375,136"/>
+<area shape="rect" id="node6" title=" " alt="" coords="399,109,512,136"/>
+<area shape="rect" id="node7" title=" " alt="" coords="537,109,649,136"/>
+<area shape="rect" id="node8" title=" " alt="" coords="673,109,819,136"/>
+<area shape="rect" id="node9" title=" " alt="" coords="843,109,998,136"/>
 </map>

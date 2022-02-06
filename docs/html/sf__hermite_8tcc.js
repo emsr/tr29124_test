@@ -1,9 +1,9 @@
 var sf__hermite_8tcc =
 [
-    [ "_GLIBCXX_BITS_SF_HERMITE_TCC", "sf__hermite_8tcc.html#a0f8ec646afa7a1f2821820df783ca594", null ],
-    [ "__hermite", "sf__hermite_8tcc.html#aeb57881dd224320629e184c9118c910b", null ],
-    [ "__hermite_asymp", "sf__hermite_8tcc.html#ae44761bc16e62979edeccf4535ec553a", null ],
-    [ "__hermite_recur", "sf__hermite_8tcc.html#addad9d3f5ca8a7ddae63c9e7c5374e70", null ],
-    [ "__hermite_zeros", "sf__hermite_8tcc.html#a34e064cf8ddf0680ce559ba3f976c6dd", null ],
-    [ "__prob_hermite_recur", "sf__hermite_8tcc.html#a15e668e86c18d01134aded2a1657b1b2", null ]
+    [ "SF_HERMITE_TCC", "sf__hermite_8tcc.html#ae158f82ecf028dbf21cf791b178a38c2", null ],
+    [ "hermite", "sf__hermite_8tcc.html#a03abf76d2e35071dbc117d4fe9795edb", null ],
+    [ "hermite_asymp", "sf__hermite_8tcc.html#a0f610062e38f0b9e807e5066eebb7652", null ],
+    [ "hermite_recur", "sf__hermite_8tcc.html#a2961ca16a5c8e04d40805e22ef857c90", null ],
+    [ "hermite_zeros", "sf__hermite_8tcc.html#a64a65b5b97d8ab594efb9a2f897bcb10", null ],
+    [ "prob_hermite_recur", "sf__hermite_8tcc.html#a56900d6e6c17e94dcdf175c8fe17fc0b", null ]
 ];

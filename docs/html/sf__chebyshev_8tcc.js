@@ -1,9 +1,9 @@
 var sf__chebyshev_8tcc =
 [
-    [ "_GLIBCXX_BITS_SF_CHEBYSHEV_TCC", "sf__chebyshev_8tcc.html#af93a8a3778aadae3937c7f4b1aa86123", null ],
-    [ "__chebyshev_recur", "sf__chebyshev_8tcc.html#a5fa9d67b4e0af4e0e018a06d198f0280", null ],
-    [ "__chebyshev_t", "sf__chebyshev_8tcc.html#ac23b4d357a95f4ba24503350999fd52d", null ],
-    [ "__chebyshev_u", "sf__chebyshev_8tcc.html#a0ed32bbc4a1eaf32dc1dc5f423527008", null ],
-    [ "__chebyshev_v", "sf__chebyshev_8tcc.html#a2ed217a1032c75d07ff34949de36d653", null ],
-    [ "__chebyshev_w", "sf__chebyshev_8tcc.html#ab2a0ec347e56c0fae435c8da507c578c", null ]
+    [ "SF_CHEBYSHEV_TCC", "sf__chebyshev_8tcc.html#a640c14ae9a34d1edd7ff3035da7d8c3f", null ],
+    [ "chebyshev_recur", "sf__chebyshev_8tcc.html#ad23b663b46047487a868cc47c63e8ab1", null ],
+    [ "chebyshev_t", "sf__chebyshev_8tcc.html#ac60fb5a502b7d6ef95d1fcad77adae46", null ],
+    [ "chebyshev_u", "sf__chebyshev_8tcc.html#a391b2b9152d9bfb6c0f9c95547f0182f", null ],
+    [ "chebyshev_v", "sf__chebyshev_8tcc.html#a1baae45b1ec5ad3bbb59932c93235965", null ],
+    [ "chebyshev_w", "sf__chebyshev_8tcc.html#a9bb4db3339400bfc265b1d923c9de21d", null ]
 ];

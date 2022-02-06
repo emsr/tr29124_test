@@ -1,2 +1,11 @@
-<map id="include/bits/sf_theta.tcc" name="include/bits/sf_theta.tcc">
+<map id="cxx_special_functions/include/emsr/detail/sf_theta.tcc" name="cxx_special_functions/include/emsr/detail/sf_theta.tcc">
+<area shape="rect" id="node1" title=" " alt="" coords="306,5,471,61"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,109,92,136"/>
+<area shape="rect" id="node3" title=" " alt="" coords="116,109,179,136"/>
+<area shape="rect" id="node4" title=" " alt="" coords="203,109,257,136"/>
+<area shape="rect" id="node5" title=" " alt="" coords="281,109,360,136"/>
+<area shape="rect" id="node6" title=" " alt="" coords="384,109,532,136"/>
+<area shape="rect" id="node7" title=" " alt="" coords="557,109,725,136"/>
+<area shape="rect" id="node8" title=" " alt="" coords="749,109,871,136"/>
+<area shape="rect" id="node9" title=" " alt="" coords="895,109,1007,136"/>
 </map>

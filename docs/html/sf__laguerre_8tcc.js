@@ -1,11 +1,11 @@
 var sf__laguerre_8tcc =
 [
-    [ "_GLIBCXX_BITS_SF_LAGUERRE_TCC", "sf__laguerre_8tcc.html#a6d5a7e97abaa68b4a97764d871fb5314", null ],
-    [ "__assoc_laguerre", "sf__laguerre_8tcc.html#a85319f12c991f6b19511d17413400b52", null ],
-    [ "__laguerre", "sf__laguerre_8tcc.html#a9e0b69452cb6c0ca0115c516afd46816", null ],
-    [ "__laguerre", "sf__laguerre_8tcc.html#aa714c4983a3cb7d9d18e0c2c5a8f6826", null ],
-    [ "__laguerre_hyperg", "sf__laguerre_8tcc.html#a7908be328a4546d77802076196ae4396", null ],
-    [ "__laguerre_large_n", "sf__laguerre_8tcc.html#abfce1c88345c266f5bcc9831766ed760", null ],
-    [ "__laguerre_recur", "sf__laguerre_8tcc.html#ab5344b00cf4ed8b39c9132ce0b9287af", null ],
-    [ "__laguerre_zeros", "sf__laguerre_8tcc.html#a12f5145d6544afee991b30a30020e86b", null ]
+    [ "SF_LAGUERRE_TCC", "sf__laguerre_8tcc.html#a74c053ea1e154b96baf8ea0ae2c7cbea", null ],
+    [ "assoc_laguerre", "sf__laguerre_8tcc.html#a85bcc66a59156a3f453863c4c0ee699a", null ],
+    [ "laguerre", "sf__laguerre_8tcc.html#a54b0272e6fb3f0282942ad92475cd739", null ],
+    [ "laguerre", "sf__laguerre_8tcc.html#a1cb366c7f8f1b3994f925c6c288130af", null ],
+    [ "laguerre_hyperg", "sf__laguerre_8tcc.html#add61bc117411ac7232d50f083005e30c", null ],
+    [ "laguerre_large_n", "sf__laguerre_8tcc.html#a5479d9d8c1500923f189fb7f9b6e6511", null ],
+    [ "laguerre_recur", "sf__laguerre_8tcc.html#aab9532fb965cef0e0261124f6bb0df37", null ],
+    [ "laguerre_zeros", "sf__laguerre_8tcc.html#a6f8a677196a347c9456cdc88dd1f01f8", null ]
 ];

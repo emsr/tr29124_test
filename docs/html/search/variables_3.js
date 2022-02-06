@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['outer_5fradius',['outer_radius',['../structstd_1_1____detail_1_1__Airy__default__radii_3_01float_01_4.html#ad8ea3a344f9748cf9bf32bcc17ca5d0b',1,'std::__detail::_Airy_default_radii&lt; float &gt;::outer_radius()'],['../structstd_1_1____detail_1_1__Airy__default__radii_3_01double_01_4.html#a0d0c981d84c034afb18aa533bd6a9a52',1,'std::__detail::_Airy_default_radii&lt; double &gt;::outer_radius()'],['../structstd_1_1____detail_1_1__Airy__default__radii_3_01long_01double_01_4.html#ab46784c2c76dc0f43aeb85d22f8b21a7',1,'std::__detail::_Airy_default_radii&lt; long double &gt;::outer_radius()'],['../classstd_1_1____detail_1_1__Airy.html#af688e5d14ed305f95f0e9d9d58d3bf9a',1,'std::__detail::_Airy::outer_radius()']]]
+  ['c_5fn_1136',['C_n',['../structemsr_1_1gegenbauer__t.html#abd95f3a362816f4f3af84e55ec17c24e',1,'emsr::gegenbauer_t']]],
+  ['c_5fnm1_1137',['C_nm1',['../structemsr_1_1gegenbauer__t.html#a9512683a5d245dc17a2cff6fe3841dd0',1,'emsr::gegenbauer_t']]],
+  ['c_5fnm2_1138',['C_nm2',['../structemsr_1_1gegenbauer__t.html#a9fe36339f2f4843dcc2f96e1244e3ce7',1,'emsr::gegenbauer_t']]],
+  ['cos_5fv_1139',['cos_v',['../structemsr_1_1sincos__t.html#aab3624eeb82831927d7dea1da893e1f1',1,'emsr::sincos_t']]]
 ];

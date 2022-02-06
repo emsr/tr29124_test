@@ -1,75 +1,68 @@
-\hypertarget{sf__hyperg_8tcc}{}\section{include/bits/sf\+\_\+hyperg.tcc File Reference}
-\label{sf__hyperg_8tcc}\index{include/bits/sf\+\_\+hyperg.\+tcc@{include/bits/sf\+\_\+hyperg.\+tcc}}
-{\ttfamily \#include $<$ext/math\+\_\+const.\+h$>$}\newline
-{\ttfamily \#include $<$bits/notsospecfun.\+h$>$}\newline
+\hypertarget{sf__hyperg_8tcc}{}\doxysection{cxx\+\_\+special\+\_\+functions/include/emsr/detail/sf\+\_\+hyperg.tcc File Reference}
+\label{sf__hyperg_8tcc}\index{cxx\_special\_functions/include/emsr/detail/sf\_hyperg.tcc@{cxx\_special\_functions/include/emsr/detail/sf\_hyperg.tcc}}
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include $<$emsr/notsospecfun.\+h$>$}\newline
+{\ttfamily \#include $<$emsr/numeric\+\_\+limits.\+h$>$}\newline
+{\ttfamily \#include $<$emsr/math\+\_\+constants.\+h$>$}\newline
+{\ttfamily \#include $<$emsr/math\+\_\+util.\+h$>$}\newline
+{\ttfamily \#include $<$emsr/sf\+\_\+gamma.\+h$>$}\newline
 Include dependency graph for sf\+\_\+hyperg.\+tcc\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=292pt]{sf__hyperg_8tcc__incl}
+\includegraphics[width=350pt]{sf__hyperg_8tcc__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=208pt]{sf__hyperg_8tcc__dep__incl}
-\end{center}
-\end{figure}
-\subsection*{Namespaces}
+\doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
- \hyperlink{namespacestd}{std}
+ \mbox{\hyperlink{namespaceemsr}{emsr}}
 \item 
- \hyperlink{namespacestd_1_1____detail}{std\+::\+\_\+\+\_\+detail}
-\begin{DoxyCompactList}\small\item\em Implementation-\/space details. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Macros}
-\begin{DoxyCompactItemize}
-\item 
-\#define \hyperlink{sf__hyperg_8tcc_a44f11aa09d05c90efbd3f7e1184f3a92}{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+E\+R\+G\+\_\+\+T\+CC}~1
+ \mbox{\hyperlink{namespaceemsr_1_1detail}{emsr\+::detail}}
 \end{DoxyCompactItemize}
-\subsection*{Functions}
+\doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a3cb3151857e9ac01bc442c90301365ee}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+conf\+\_\+hyperg} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
+\#define \mbox{\hyperlink{sf__hyperg_8tcc_a4a4e391dacd901b1b5a2f8c4251af0b6}{SF\+\_\+\+HYPERG\+\_\+\+TCC}}~1
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a93b0db44829c28a42adf3800831aae68}{emsr\+::detail\+::conf\+\_\+hyperg}} (Tp a, Tp c, Tp x)
 \begin{DoxyCompactList}\small\item\em Return the confluent hypergeometric function $ {}_1F_1(a;c;x) = M(a,c,x) $. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_adc839c2b3faad5d78bf64236c5c7af73}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+conf\+\_\+hyperg\+\_\+lim} (\+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a71735c35a77ac7a528c9a3218101de7c}{emsr\+::detail\+::conf\+\_\+hyperg\+\_\+lim}} (Tp c, Tp x)
 \begin{DoxyCompactList}\small\item\em Return the confluent hypergeometric limit function $ {}_0F_1(-;c;x) $. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a44b73ec79e0a8cfd1f29a21cb39f2bdc}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+conf\+\_\+hyperg\+\_\+lim\+\_\+series} (\+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_ae77a326638bd76db826a9a4a3fc027db}{emsr\+::detail\+::conf\+\_\+hyperg\+\_\+lim\+\_\+series}} (Tp c, Tp x)
 \begin{DoxyCompactList}\small\item\em This routine returns the confluent hypergeometric limit function by series expansion. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_ac3b4c72998f9d7deb6d79bda93220e58}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+conf\+\_\+hyperg\+\_\+luke} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+xin)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a8b3296aad58701ec768b4e26442c5e4c}{emsr\+::detail\+::conf\+\_\+hyperg\+\_\+luke}} (Tp a, Tp c, Tp xin)
 \begin{DoxyCompactList}\small\item\em Return the hypergeometric function $ {}_1F_1(a;c;x) $ by an iterative procedure described in Luke, Algorithms for the Computation of Mathematical Functions. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a5f701a63e17238132405dd209660fc1d}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+conf\+\_\+hyperg\+\_\+series} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a6730af49e014074c7703f6db7a616f6b}{emsr\+::detail\+::conf\+\_\+hyperg\+\_\+series}} (Tp a, Tp c, Tp x)
 \begin{DoxyCompactList}\small\item\em This routine returns the confluent hypergeometric function by series expansion. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a316589a60d5e5f50201c2d42b980678c}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+hyperg} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a534b5cb2286d57b0eaf375b5d70c9db1}{emsr\+::detail\+::hyperg}} (Tp a, Tp b, Tp c, Tp x)
 \begin{DoxyCompactList}\small\item\em Return the hypergeometric function $ {}_2F_1(a,b;c;x) $. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a0c1ec62b5c39c93ad70a8229a7a6d84d}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+hyperg\+\_\+luke} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+xin)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a3ef3127649e7814975106f8c9abbe3ee}{emsr\+::detail\+::hyperg\+\_\+luke}} (Tp a, Tp b, Tp c, Tp xin)
 \begin{DoxyCompactList}\small\item\em Return the hypergeometric function $ {}_2F_1(a,b;c;x) $ by an iterative procedure described in Luke, Algorithms for the Computation of Mathematical Functions. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a945aec89969c51a4778c63eba8741fab}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+hyperg\+\_\+recur} (int \+\_\+\+\_\+m, \+\_\+\+Tp \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_ade5de4140aef8537d722ce0b33b1cc11}{emsr\+::detail\+::hyperg\+\_\+recur}} (int m, Tp b, Tp c, Tp x)
 \begin{DoxyCompactList}\small\item\em Return the hypergeometric polynomial $ {}_2F_1(-m,b;c;x) $ by Holm recursion. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a3c3baddc93bfaf1cb368d4b74e53542d}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+hyperg\+\_\+reflect} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_acd1546d7f0871fb6a225faeff9204588}{emsr\+::detail\+::hyperg\+\_\+reflect}} (Tp a, Tp b, Tp c, Tp x)
 \begin{DoxyCompactList}\small\item\em Return the hypergeometric function $ {}_2F_1(a,b;c;x) $ by the reflection formulae in Abramowitz \& Stegun formula 15.\+3.\+6 for d = c -\/ a -\/ b not integral and formula 15.\+3.\+11 for d = c -\/ a -\/ b integral. This assumes a, b, c != negative integer. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_ad234e0d31f55cd3748169dccb2533c6a}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+hyperg\+\_\+series} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b, \+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a9e085acad3ec48ebb7bef692e6388ae7}{emsr\+::detail\+::hyperg\+\_\+series}} (Tp a, Tp b, Tp c, Tp x)
 \begin{DoxyCompactList}\small\item\em Return the hypergeometric function $ {}_2F_1(a,b;c;x) $ by series expansion. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_ae67133e463041158ebbffe6c54af6e0a}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+tricomi\+\_\+u} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
-\begin{DoxyCompactList}\small\item\em Return the Tricomi confluent hypergeometric function \[ U(a,c,x) = \frac{\Gamma(1-c)}{\Gamma(a-c+1)} {}_1F_1(a;c;x) + \frac{\Gamma(c-1)}{\Gamma(a)} x^{1-c} {}_1F_1(a-c+1;2-c;x) \]. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_adc131cec2eae93bacc28d6afd89def2f}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+tricomi\+\_\+u\+\_\+naive} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+c, \+\_\+\+Tp \+\_\+\+\_\+x)
-\begin{DoxyCompactList}\small\item\em Return the Tricomi confluent hypergeometric function \[ U(a,c,x) = \frac{\Gamma(1-c)}{\Gamma(a-c+1)} {}_1F_1(a;c;x) + \frac{\Gamma(c-1)}{\Gamma(a)} x^{1-c} {}_1F_1(a-c+1;2-c;x) \]. \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_acadc5c031a10a44c85af64dd4c555d70}{emsr\+::detail\+::tricomi\+\_\+u}} (Tp a, Tp c, Tp x)
+\begin{DoxyCompactList}\small\item\em Return the Tricomi confluent hypergeometric function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a3bc67d9d78aa295fd783a1bde2e0297c}{emsr\+::detail\+::tricomi\+\_\+u\+\_\+naive}} (Tp a, Tp c, Tp x)
+\begin{DoxyCompactList}\small\item\em Return the Tricomi confluent hypergeometric function. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-This is an internal header file, included by other library headers. Do not attempt to use it directly. Instead, include $<$cmath$>$. 
-
-\subsection{Macro Definition Documentation}
-\mbox{\Hypertarget{sf__hyperg_8tcc_a44f11aa09d05c90efbd3f7e1184f3a92}\label{sf__hyperg_8tcc_a44f11aa09d05c90efbd3f7e1184f3a92}} 
-\index{sf\+\_\+hyperg.\+tcc@{sf\+\_\+hyperg.\+tcc}!\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+E\+R\+G\+\_\+\+T\+CC@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+E\+R\+G\+\_\+\+T\+CC}}
-\index{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+E\+R\+G\+\_\+\+T\+CC@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+E\+R\+G\+\_\+\+T\+CC}!sf\+\_\+hyperg.\+tcc@{sf\+\_\+hyperg.\+tcc}}
-\subsubsection{\texorpdfstring{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+E\+R\+G\+\_\+\+T\+CC}{\_GLIBCXX\_BITS\_SF\_HYPERG\_TCC}}
-{\footnotesize\ttfamily \#define \+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+H\+Y\+P\+E\+R\+G\+\_\+\+T\+CC~1}
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sf__hyperg_8tcc_a4a4e391dacd901b1b5a2f8c4251af0b6}\label{sf__hyperg_8tcc_a4a4e391dacd901b1b5a2f8c4251af0b6}} 
+\index{sf\_hyperg.tcc@{sf\_hyperg.tcc}!SF\_HYPERG\_TCC@{SF\_HYPERG\_TCC}}
+\index{SF\_HYPERG\_TCC@{SF\_HYPERG\_TCC}!sf\_hyperg.tcc@{sf\_hyperg.tcc}}
+\doxysubsubsection{\texorpdfstring{SF\_HYPERG\_TCC}{SF\_HYPERG\_TCC}}
+{\footnotesize\ttfamily \#define SF\+\_\+\+HYPERG\+\_\+\+TCC~1}
 
 
 
-Definition at line 44 of file sf\+\_\+hyperg.\+tcc.
+Definition at line 43 of file sf\+\_\+hyperg.\+tcc.
 

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['economize_5fpolynomial',['economize_polynomial',['../namespace____gnu__cxx.html#a917fd750f0e3fb9fd440bf3ecf72c97b',1,'__gnu_cxx']]]
+  ['integral_7',['integral',['../classemsr_1_1Chebyshev.html#a10393ad7049348db5df1a7e22924de3c',1,'emsr::Chebyshev']]]
 ];

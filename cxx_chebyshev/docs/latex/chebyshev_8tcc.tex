@@ -1,14 +1,16 @@
-\hypertarget{chebyshev_8tcc}{}\section{include/ext/chebyshev.tcc File Reference}
-\label{chebyshev_8tcc}\index{include/ext/chebyshev.\+tcc@{include/ext/chebyshev.\+tcc}}
+\hypertarget{chebyshev_8tcc}{}\doxysection{include/emsr/chebyshev.tcc File Reference}
+\label{chebyshev_8tcc}\index{include/emsr/chebyshev.tcc@{include/emsr/chebyshev.tcc}}
 {\ttfamily \#include $<$utility$>$}\newline
 {\ttfamily \#include $<$iterator$>$}\newline
 {\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$numbers$>$}\newline
+{\ttfamily \#include $<$emsr/math\+\_\+constants.\+h$>$}\newline
 Include dependency graph for chebyshev.\+tcc\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=260pt]{chebyshev_8tcc__incl}
+\includegraphics[width=350pt]{chebyshev_8tcc__incl}
 \end{center}
 \end{figure}
 This graph shows which files directly or indirectly include this file\+:
@@ -16,35 +18,35 @@ This graph shows which files directly or indirectly include this file\+:
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=211pt]{chebyshev_8tcc__dep__incl}
+\includegraphics[width=232pt]{chebyshev_8tcc__dep__incl}
 \end{center}
 \end{figure}
-\subsection*{Namespaces}
+\doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
- \hyperlink{namespace____gnu__cxx}{\+\_\+\+\_\+gnu\+\_\+cxx}
+ \mbox{\hyperlink{namespaceemsr}{emsr}}
 \end{DoxyCompactItemize}
-\subsection*{Macros}
+\doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{chebyshev_8tcc_a2939e7430b81afbbf33383ef6e6993a6}{\+\_\+\+C\+H\+E\+B\+Y\+S\+H\+E\+V\+\_\+\+T\+CC}~1
+\#define \mbox{\hyperlink{chebyshev_8tcc_a0788fa38c6b9d4eb7df643be62450253}{CHEBYSHEV\+\_\+\+TCC}}~1
 \end{DoxyCompactItemize}
-\subsection*{Functions}
+\doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp , typename \+\_\+\+CharT , typename \+\_\+\+Traits  = std\+::char\+\_\+traits$<$\+\_\+\+Char\+T$>$$>$ }\\std\+::basic\+\_\+ostream$<$ \+\_\+\+CharT, \+\_\+\+Traits $>$ \& \hyperlink{namespace____gnu__cxx_ae90394e47a70b69b61486e43a7c13116}{\+\_\+\+\_\+gnu\+\_\+cxx\+::operator$<$$<$} (std\+::basic\+\_\+ostream$<$ \+\_\+\+CharT, \+\_\+\+Traits $>$ \&\+\_\+\+\_\+os, const \+\_\+\+Chebyshev$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+cheb)
+{\footnotesize template$<$typename Tp , typename CharT , typename Traits  = std\+::char\+\_\+traits$<$\+Char\+T$>$$>$ }\\std\+::basic\+\_\+ostream$<$ CharT, Traits $>$ \& \mbox{\hyperlink{namespaceemsr_a8a93baa6d2517ab89f043177ff745e9f}{emsr\+::operator$<$$<$}} (std\+::basic\+\_\+ostream$<$ CharT, Traits $>$ \&os, const Chebyshev$<$ Tp $>$ \&cheb)
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Polynomial$<$ \+\_\+\+Tp $>$ \hyperlink{namespace____gnu__cxx_a917fd750f0e3fb9fd440bf3ecf72c97b}{\+\_\+\+\_\+gnu\+\_\+cxx\+::economize\+\_\+polynomial} (\+\_\+\+Tp \+\_\+\+\_\+a, \+\_\+\+Tp \+\_\+\+\_\+b, const \+\_\+\+Polynomial$<$ \+\_\+\+Tp $>$ \&\+\_\+\+\_\+poly, \+\_\+\+Tp \+\_\+\+\_\+eps)
+{\footnotesize template$<$typename Tp $>$ }\\emsr\+::\+Polynomial$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_a8a4fd383c8dbd6443f1332ccff289a80}{emsr\+::economize\+\_\+polynomial}} (Tp a, Tp b, const emsr\+::\+Polynomial$<$ Tp $>$ \&poly, Tp eps)
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 Implementation for C++ Chebyshev methods. 
 
-\subsection{Macro Definition Documentation}
-\mbox{\Hypertarget{chebyshev_8tcc_a2939e7430b81afbbf33383ef6e6993a6}\label{chebyshev_8tcc_a2939e7430b81afbbf33383ef6e6993a6}} 
-\index{chebyshev.\+tcc@{chebyshev.\+tcc}!\+\_\+\+C\+H\+E\+B\+Y\+S\+H\+E\+V\+\_\+\+T\+CC@{\+\_\+\+C\+H\+E\+B\+Y\+S\+H\+E\+V\+\_\+\+T\+CC}}
-\index{\+\_\+\+C\+H\+E\+B\+Y\+S\+H\+E\+V\+\_\+\+T\+CC@{\+\_\+\+C\+H\+E\+B\+Y\+S\+H\+E\+V\+\_\+\+T\+CC}!chebyshev.\+tcc@{chebyshev.\+tcc}}
-\subsubsection{\texorpdfstring{\+\_\+\+C\+H\+E\+B\+Y\+S\+H\+E\+V\+\_\+\+T\+CC}{\_CHEBYSHEV\_TCC}}
-{\footnotesize\ttfamily \#define \+\_\+\+C\+H\+E\+B\+Y\+S\+H\+E\+V\+\_\+\+T\+CC~1}
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{chebyshev_8tcc_a0788fa38c6b9d4eb7df643be62450253}\label{chebyshev_8tcc_a0788fa38c6b9d4eb7df643be62450253}} 
+\index{chebyshev.tcc@{chebyshev.tcc}!CHEBYSHEV\_TCC@{CHEBYSHEV\_TCC}}
+\index{CHEBYSHEV\_TCC@{CHEBYSHEV\_TCC}!chebyshev.tcc@{chebyshev.tcc}}
+\doxysubsubsection{\texorpdfstring{CHEBYSHEV\_TCC}{CHEBYSHEV\_TCC}}
+{\footnotesize\ttfamily \#define CHEBYSHEV\+\_\+\+TCC~1}
 

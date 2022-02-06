@@ -1,0 +1,199 @@
+\hypertarget{classemsr_1_1Chebyshev}{}\doxysection{emsr\+::Chebyshev$<$ Tp $>$ Class Template Reference}
+\label{classemsr_1_1Chebyshev}\index{emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}}
+
+
+\+\_\+\+Chebyshev represents a \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} fit of a function. Given a function {\ttfamily func}, the lower limit {\ttfamily a}, the upper limit {\ttfamily b}, and the number of points {\ttfamily n} \+\_\+\+Chebyshev contains the coefficients of a \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} polynomial expansion such that  
+
+
+
+
+{\ttfamily \#include $<$chebyshev.\+h$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classemsr_1_1Chebyshev_a4c4e5cf34ea1696d32468eb506b05283}{value\+\_\+type}} = Tp
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classemsr_1_1Chebyshev_ac828c03718ae79a243e399b61fecf127}{Chebyshev}} ()
+\item 
+\mbox{\hyperlink{classemsr_1_1Chebyshev_a0595edc4b2a444d7dbf6d9c534216684}{Chebyshev}} (Tp a, Tp b, unsigned n, Tp func(Tp))
+\begin{DoxyCompactList}\small\item\em Construct a \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} fit of a function. Given a function {\ttfamily func}, the lower limit {\ttfamily a}, the upper limit {\ttfamily b}, and the number of points {\ttfamily n} this routine computes the coefficients of a \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} polynomial expansion such that. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classemsr_1_1Chebyshev_a992b594c3575a4342fe535e63c4a8da7}{Chebyshev}} (Tp a, Tp b, std\+::initializer\+\_\+list$<$ Tp $>$ il)
+\item 
+\mbox{\hyperlink{classemsr_1_1Chebyshev_ac01f7ef42b9863b16d2e4472e53b7187}{Chebyshev}} (Tp a, Tp b, const std\+::vector$<$ Tp $>$ \&coeff)
+\item 
+\mbox{\hyperlink{classemsr_1_1Chebyshev_ada14cf9764a8f1ac0d3f02da885318a7}{Chebyshev}} (Tp a, Tp b, std\+::vector$<$ Tp $>$ \&\&coeff)
+\item 
+{\footnotesize template$<$typename Up $>$ }\\\mbox{\hyperlink{classemsr_1_1Chebyshev_af74b25e338fea41787c41cb71d184330}{Chebyshev}} (Up a, Up b, const emsr\+::\+Polynomial$<$ Up $>$ \&poly)
+\item 
+\mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} \mbox{\hyperlink{classemsr_1_1Chebyshev_ad118b1453d4e1d9dd0ca6f42e8883d90}{derivative}} () const
+\item 
+\mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} \mbox{\hyperlink{classemsr_1_1Chebyshev_a10393ad7049348db5df1a7e22924de3c}{integral}} () const
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classemsr_1_1Chebyshev_a1e2f591259f0c8d6032a8ff27829ac9d}{order}} () const
+\item 
+\mbox{\hyperlink{classemsr_1_1Chebyshev_a4c4e5cf34ea1696d32468eb506b05283}{value\+\_\+type}} \mbox{\hyperlink{classemsr_1_1Chebyshev_ad1ca6616396aa7aaa298d14d6ab48d21}{lower}} () const
+\item 
+\mbox{\hyperlink{classemsr_1_1Chebyshev_a4c4e5cf34ea1696d32468eb506b05283}{value\+\_\+type}} \mbox{\hyperlink{classemsr_1_1Chebyshev_a5f2bea7dbaccb2d37ecbc7d4a217032d}{upper}} () const
+\item 
+emsr\+::\+Polynomial$<$ Tp $>$ \mbox{\hyperlink{classemsr_1_1Chebyshev_a021b7237ef63d66bd6a4747bb0571ca7}{to\+\_\+polynomial}} () const
+\item 
+\mbox{\hyperlink{classemsr_1_1Chebyshev_a4c4e5cf34ea1696d32468eb506b05283}{value\+\_\+type}} \mbox{\hyperlink{classemsr_1_1Chebyshev_a9358a2c72bdcf2139849d3ff992d4773}{operator()}} (\mbox{\hyperlink{classemsr_1_1Chebyshev_a4c4e5cf34ea1696d32468eb506b05283}{value\+\_\+type}} x) const
+\item 
+{\footnotesize template$<$typename Up $>$ }\\void \mbox{\hyperlink{classemsr_1_1Chebyshev_ac7f10a2450adbf3e5c72a17de993c068}{truncate}} (Up eps=std\+::numeric\+\_\+limits$<$ Up $>$\+::epsilon())
+\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Tp1 , typename CharT , typename Traits $>$ }\\std\+::basic\+\_\+ostream$<$ CharT, Traits $>$ \& \mbox{\hyperlink{classemsr_1_1Chebyshev_a101bfd7b3c21a0d34ceb7e9aa2ec5fa9}{operator$<$$<$}} (std\+::basic\+\_\+ostream$<$ CharT, Traits $>$ \&os, const \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}}$<$ Tp1 $>$ \&cheb)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Tp$>$\newline
+class emsr\+::\+Chebyshev$<$ Tp $>$}
+
+\+\_\+\+Chebyshev represents a \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} fit of a function. Given a function {\ttfamily func}, the lower limit {\ttfamily a}, the upper limit {\ttfamily b}, and the number of points {\ttfamily n} \+\_\+\+Chebyshev contains the coefficients of a \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} polynomial expansion such that 
+
+\[ f(x) = k\sum_{0}^{n-1} c_k T_k(x) - c_0/2. \] Use these constructors with moderately large n of 30 or 50. Then truncate the \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} fit to a smaller number of terms to satisfy the accuracy requirements. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classemsr_1_1Chebyshev_a4c4e5cf34ea1696d32468eb506b05283}\label{classemsr_1_1Chebyshev_a4c4e5cf34ea1696d32468eb506b05283}} 
+\index{emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}!value\_type@{value\_type}}
+\index{value\_type@{value\_type}!emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{value\_type}{value\_type}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+using \mbox{\hyperlink{classemsr_1_1Chebyshev}{emsr\+::\+Chebyshev}}$<$ Tp $>$\+::\mbox{\hyperlink{classemsr_1_1Chebyshev_a4c4e5cf34ea1696d32468eb506b05283}{value\+\_\+type}} =  Tp}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classemsr_1_1Chebyshev_ac828c03718ae79a243e399b61fecf127}\label{classemsr_1_1Chebyshev_ac828c03718ae79a243e399b61fecf127}} 
+\index{emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}!Chebyshev@{Chebyshev}}
+\index{Chebyshev@{Chebyshev}!emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{Chebyshev()}{Chebyshev()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+\mbox{\hyperlink{classemsr_1_1Chebyshev}{emsr\+::\+Chebyshev}}$<$ Tp $>$\+::\mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classemsr_1_1Chebyshev_a0595edc4b2a444d7dbf6d9c534216684}\label{classemsr_1_1Chebyshev_a0595edc4b2a444d7dbf6d9c534216684}} 
+\index{emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}!Chebyshev@{Chebyshev}}
+\index{Chebyshev@{Chebyshev}!emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{Chebyshev()}{Chebyshev()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+\mbox{\hyperlink{classemsr_1_1Chebyshev}{emsr\+::\+Chebyshev}}$<$ Tp $>$\+::\mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} (\begin{DoxyParamCaption}\item[{Tp}]{a,  }\item[{Tp}]{b,  }\item[{unsigned}]{n,  }\item[{Tp }]{funcTp }\end{DoxyParamCaption})}
+
+
+
+Construct a \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} fit of a function. Given a function {\ttfamily func}, the lower limit {\ttfamily a}, the upper limit {\ttfamily b}, and the number of points {\ttfamily n} this routine computes the coefficients of a \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} polynomial expansion such that. 
+
+\[ f(x) = k\sum_{0}^{n-1} c_k T_k(x) - c_0/2. \] Use this routine with moderately large n of 30 or 50. Then truncate the series to a smaller number of terms to satisfy the accuracy requirements. \mbox{\Hypertarget{classemsr_1_1Chebyshev_a992b594c3575a4342fe535e63c4a8da7}\label{classemsr_1_1Chebyshev_a992b594c3575a4342fe535e63c4a8da7}} 
+\index{emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}!Chebyshev@{Chebyshev}}
+\index{Chebyshev@{Chebyshev}!emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{Chebyshev()}{Chebyshev()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+\mbox{\hyperlink{classemsr_1_1Chebyshev}{emsr\+::\+Chebyshev}}$<$ Tp $>$\+::\mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} (\begin{DoxyParamCaption}\item[{Tp}]{a,  }\item[{Tp}]{b,  }\item[{std\+::initializer\+\_\+list$<$ Tp $>$}]{il }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classemsr_1_1Chebyshev_ac01f7ef42b9863b16d2e4472e53b7187}\label{classemsr_1_1Chebyshev_ac01f7ef42b9863b16d2e4472e53b7187}} 
+\index{emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}!Chebyshev@{Chebyshev}}
+\index{Chebyshev@{Chebyshev}!emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{Chebyshev()}{Chebyshev()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+\mbox{\hyperlink{classemsr_1_1Chebyshev}{emsr\+::\+Chebyshev}}$<$ Tp $>$\+::\mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} (\begin{DoxyParamCaption}\item[{Tp}]{a,  }\item[{Tp}]{b,  }\item[{const std\+::vector$<$ Tp $>$ \&}]{coeff }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classemsr_1_1Chebyshev_ada14cf9764a8f1ac0d3f02da885318a7}\label{classemsr_1_1Chebyshev_ada14cf9764a8f1ac0d3f02da885318a7}} 
+\index{emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}!Chebyshev@{Chebyshev}}
+\index{Chebyshev@{Chebyshev}!emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{Chebyshev()}{Chebyshev()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+\mbox{\hyperlink{classemsr_1_1Chebyshev}{emsr\+::\+Chebyshev}}$<$ Tp $>$\+::\mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} (\begin{DoxyParamCaption}\item[{Tp}]{a,  }\item[{Tp}]{b,  }\item[{std\+::vector$<$ Tp $>$ \&\&}]{coeff }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classemsr_1_1Chebyshev_af74b25e338fea41787c41cb71d184330}\label{classemsr_1_1Chebyshev_af74b25e338fea41787c41cb71d184330}} 
+\index{emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}!Chebyshev@{Chebyshev}}
+\index{Chebyshev@{Chebyshev}!emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{Chebyshev()}{Chebyshev()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+template$<$typename Up $>$ \\
+\mbox{\hyperlink{classemsr_1_1Chebyshev}{emsr\+::\+Chebyshev}}$<$ Tp $>$\+::\mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} (\begin{DoxyParamCaption}\item[{Up}]{a,  }\item[{Up}]{b,  }\item[{const emsr\+::\+Polynomial$<$ Up $>$ \&}]{poly }\end{DoxyParamCaption})}
+
+Constructs a \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} expansion from a polynomial.
+
+A polynomial valid in the range x=a to x=b is specified by coefficients d\mbox{[}0..m-\/1\mbox{]}. An equivalent array of \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} coefficients, c\mbox{[}0..m-\/1\mbox{]}, is output. The index mfew will be set to the index of the first nonzero \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} coefficient smaller than err. Then the polynomial is approximated by the first mfew cefficients c\mbox{[}0..mfew-\/1\mbox{]}. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classemsr_1_1Chebyshev_ad118b1453d4e1d9dd0ca6f42e8883d90}\label{classemsr_1_1Chebyshev_ad118b1453d4e1d9dd0ca6f42e8883d90}} 
+\index{emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}!derivative@{derivative}}
+\index{derivative@{derivative}!emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{derivative()}{derivative()}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+\mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}}$<$ Tp $>$ \mbox{\hyperlink{classemsr_1_1Chebyshev}{emsr\+::\+Chebyshev}}$<$ Tp $>$\+::derivative}
+
+This routine returns a \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} fit of the derivative of this \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} fit. \mbox{\Hypertarget{classemsr_1_1Chebyshev_a10393ad7049348db5df1a7e22924de3c}\label{classemsr_1_1Chebyshev_a10393ad7049348db5df1a7e22924de3c}} 
+\index{emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}!integral@{integral}}
+\index{integral@{integral}!emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{integral()}{integral()}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+\mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}}$<$ Tp $>$ \mbox{\hyperlink{classemsr_1_1Chebyshev}{emsr\+::\+Chebyshev}}$<$ Tp $>$\+::integral}
+
+This routine returns the \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} fit of the integral of this \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} fit. The constant of integration is set so that the integral vanishes at a. \mbox{\Hypertarget{classemsr_1_1Chebyshev_ad1ca6616396aa7aaa298d14d6ab48d21}\label{classemsr_1_1Chebyshev_ad1ca6616396aa7aaa298d14d6ab48d21}} 
+\index{emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}!lower@{lower}}
+\index{lower@{lower}!emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{lower()}{lower()}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+\mbox{\hyperlink{classemsr_1_1Chebyshev_a4c4e5cf34ea1696d32468eb506b05283}{value\+\_\+type}} \mbox{\hyperlink{classemsr_1_1Chebyshev}{emsr\+::\+Chebyshev}}$<$ Tp $>$\+::lower (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classemsr_1_1Chebyshev_a9358a2c72bdcf2139849d3ff992d4773}\label{classemsr_1_1Chebyshev_a9358a2c72bdcf2139849d3ff992d4773}} 
+\index{emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+Tp \mbox{\hyperlink{classemsr_1_1Chebyshev}{emsr\+::\+Chebyshev}}$<$ Tp $>$\+::operator() (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classemsr_1_1Chebyshev_a4c4e5cf34ea1696d32468eb506b05283}{value\+\_\+type}}}]{x }\end{DoxyParamCaption}) const}
+
+\mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} evaluation. \mbox{\Hypertarget{classemsr_1_1Chebyshev_a1e2f591259f0c8d6032a8ff27829ac9d}\label{classemsr_1_1Chebyshev_a1e2f591259f0c8d6032a8ff27829ac9d}} 
+\index{emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}!order@{order}}
+\index{order@{order}!emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{order()}{order()}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+std\+::size\+\_\+t \mbox{\hyperlink{classemsr_1_1Chebyshev}{emsr\+::\+Chebyshev}}$<$ Tp $>$\+::order (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classemsr_1_1Chebyshev_a021b7237ef63d66bd6a4747bb0571ca7}\label{classemsr_1_1Chebyshev_a021b7237ef63d66bd6a4747bb0571ca7}} 
+\index{emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}!to\_polynomial@{to\_polynomial}}
+\index{to\_polynomial@{to\_polynomial}!emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{to\_polynomial()}{to\_polynomial()}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+emsr\+::\+Polynomial$<$ Tp $>$ \mbox{\hyperlink{classemsr_1_1Chebyshev}{emsr\+::\+Chebyshev}}$<$ Tp $>$\+::to\+\_\+polynomial}
+
+This routine returns the array d\mbox{[}0..n-\/1\mbox{]}, of coefficients of a polynomial expansion which is equivalent to the \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} fit. \mbox{\Hypertarget{classemsr_1_1Chebyshev_ac7f10a2450adbf3e5c72a17de993c068}\label{classemsr_1_1Chebyshev_ac7f10a2450adbf3e5c72a17de993c068}} 
+\index{emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}!truncate@{truncate}}
+\index{truncate@{truncate}!emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{truncate()}{truncate()}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+template$<$typename Up $>$ \\
+void \mbox{\hyperlink{classemsr_1_1Chebyshev}{emsr\+::\+Chebyshev}}$<$ Tp $>$\+::truncate (\begin{DoxyParamCaption}\item[{Up}]{eps = {\ttfamily std\+:\+:numeric\+\_\+limits$<$Up$>$\+:\+:epsilon()} }\end{DoxyParamCaption})}
+
+Truncate the \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} series so that the first nonzero neglected term is less than eps. Skipping zero coefficients takes care of series with alternating zero and nonzero terms. \mbox{\Hypertarget{classemsr_1_1Chebyshev_a5f2bea7dbaccb2d37ecbc7d4a217032d}\label{classemsr_1_1Chebyshev_a5f2bea7dbaccb2d37ecbc7d4a217032d}} 
+\index{emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}!upper@{upper}}
+\index{upper@{upper}!emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{upper()}{upper()}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+\mbox{\hyperlink{classemsr_1_1Chebyshev_a4c4e5cf34ea1696d32468eb506b05283}{value\+\_\+type}} \mbox{\hyperlink{classemsr_1_1Chebyshev}{emsr\+::\+Chebyshev}}$<$ Tp $>$\+::upper (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classemsr_1_1Chebyshev_a101bfd7b3c21a0d34ceb7e9aa2ec5fa9}\label{classemsr_1_1Chebyshev_a101bfd7b3c21a0d34ceb7e9aa2ec5fa9}} 
+\index{emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!emsr::Chebyshev$<$ Tp $>$@{emsr::Chebyshev$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+template$<$typename Tp1 , typename CharT , typename Traits $>$ \\
+std\+::basic\+\_\+ostream$<$CharT, Traits$>$\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::basic\+\_\+ostream$<$ CharT, Traits $>$ \&}]{os,  }\item[{const \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}}$<$ Tp1 $>$ \&}]{cheb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/emsr/\mbox{\hyperlink{chebyshev_8h}{chebyshev.\+h}}\item 
+include/emsr/\mbox{\hyperlink{chebyshev_8tcc}{chebyshev.\+tcc}}\end{DoxyCompactItemize}

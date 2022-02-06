@@ -1,65 +1,58 @@
-\hypertarget{sf__laguerre_8tcc}{}\section{include/bits/sf\+\_\+laguerre.tcc File Reference}
-\label{sf__laguerre_8tcc}\index{include/bits/sf\+\_\+laguerre.\+tcc@{include/bits/sf\+\_\+laguerre.\+tcc}}
+\hypertarget{sf__laguerre_8tcc}{}\doxysection{cxx\+\_\+special\+\_\+functions/include/emsr/detail/sf\+\_\+laguerre.tcc File Reference}
+\label{sf__laguerre_8tcc}\index{cxx\_special\_functions/include/emsr/detail/sf\_laguerre.tcc@{cxx\_special\_functions/include/emsr/detail/sf\_laguerre.tcc}}
+{\ttfamily \#include $<$stdexcept$>$}\newline
 {\ttfamily \#include $<$vector$>$}\newline
-{\ttfamily \#include $<$ext/math\+\_\+const.\+h$>$}\newline
+{\ttfamily \#include $<$emsr/specfun\+\_\+state.\+h$>$}\newline
+{\ttfamily \#include $<$emsr/quadrature\+\_\+point.\+h$>$}\newline
+{\ttfamily \#include $<$emsr/sf\+\_\+trig.\+h$>$}\newline
+{\ttfamily \#include $<$emsr/sf\+\_\+gamma.\+h$>$}\newline
 Include dependency graph for sf\+\_\+laguerre.\+tcc\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=236pt]{sf__laguerre_8tcc__incl}
+\includegraphics[width=350pt]{sf__laguerre_8tcc__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=214pt]{sf__laguerre_8tcc__dep__incl}
-\end{center}
-\end{figure}
-\subsection*{Namespaces}
+\doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
- \hyperlink{namespacestd}{std}
+ \mbox{\hyperlink{namespaceemsr}{emsr}}
 \item 
- \hyperlink{namespacestd_1_1____detail}{std\+::\+\_\+\+\_\+detail}
-\begin{DoxyCompactList}\small\item\em Implementation-\/space details. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{Macros}
-\begin{DoxyCompactItemize}
-\item 
-\#define \hyperlink{sf__laguerre_8tcc_a6d5a7e97abaa68b4a97764d871fb5314}{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+A\+G\+U\+E\+R\+R\+E\+\_\+\+T\+CC}~1
+ \mbox{\hyperlink{namespaceemsr_1_1detail}{emsr\+::detail}}
 \end{DoxyCompactItemize}
-\subsection*{Functions}
+\doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename \+\_\+\+Tpa , typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a85319f12c991f6b19511d17413400b52}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+assoc\+\_\+laguerre} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tpa \+\_\+\+\_\+alpha, \+\_\+\+Tp \+\_\+\+\_\+x)
+\#define \mbox{\hyperlink{sf__laguerre_8tcc_a74c053ea1e154b96baf8ea0ae2c7cbea}{SF\+\_\+\+LAGUERRE\+\_\+\+TCC}}~1
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Tpa , typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a85bcc66a59156a3f453863c4c0ee699a}{emsr\+::detail\+::assoc\+\_\+laguerre}} (unsigned int n, Tpa alpha, Tp x)
 \begin{DoxyCompactList}\small\item\em This routine returns the associated Laguerre polynomial of degree n, order m\+: $ L_n^{(m)}(x) $. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tpa , typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a9e0b69452cb6c0ca0115c516afd46816}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+laguerre} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tpa \+\_\+\+\_\+alpha1, \+\_\+\+Tp \+\_\+\+\_\+x)
-\begin{DoxyCompactList}\small\item\em This routine returns the associated Laguerre polynomial of degree n, order $ \alpha $\+: $ L_n^{(\alpha)}(x) $. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_aa714c4983a3cb7d9d18e0c2c5a8f6826}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+laguerre} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a54b0272e6fb3f0282942ad92475cd739}{emsr\+::detail\+::laguerre}} (unsigned int n, Tp x)
 \begin{DoxyCompactList}\small\item\em This routine returns the Laguerre polynomial of degree n\+: $ L_n(x) $. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tpa , typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_a7908be328a4546d77802076196ae4396}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+laguerre\+\_\+hyperg} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tpa \+\_\+\+\_\+alpha1, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename Tpa , typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a1cb366c7f8f1b3994f925c6c288130af}{emsr\+::detail\+::laguerre}} (unsigned int n, Tpa alpha1, Tp x)
+\begin{DoxyCompactList}\small\item\em This routine returns the associated Laguerre polynomial of degree n, order $ \alpha $\+: $ L_n^{(\alpha)}(x) $. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Tpa , typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_add61bc117411ac7232d50f083005e30c}{emsr\+::detail\+::laguerre\+\_\+hyperg}} (unsigned int n, Tpa alpha1, Tp x)
 \begin{DoxyCompactList}\small\item\em Evaluate the polynomial based on the confluent hypergeometric function in a safe way, with no restriction on the arguments. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tpa , typename \+\_\+\+Tp $>$ }\\\+\_\+\+Tp \hyperlink{namespacestd_1_1____detail_abfce1c88345c266f5bcc9831766ed760}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+laguerre\+\_\+large\+\_\+n} (unsigned \+\_\+\+\_\+n, \+\_\+\+Tpa \+\_\+\+\_\+alpha1, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename Tpa , typename Tp $>$ }\\Tp \mbox{\hyperlink{namespaceemsr_1_1detail_a5479d9d8c1500923f189fb7f9b6e6511}{emsr\+::detail\+::laguerre\+\_\+large\+\_\+n}} (unsigned n, Tpa alpha1, Tp x)
 \begin{DoxyCompactList}\small\item\em This routine returns the associated Laguerre polynomial of degree $ n $, order $ \alpha > -1 $ for large n. Abramowitz \& Stegun, 13.\+5.\+21. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tpa , typename \+\_\+\+Tp $>$ }\\\hyperlink{struct____gnu__cxx_1_1____laguerre__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+laguerre\+\_\+t}$<$ \+\_\+\+Tpa, \+\_\+\+Tp $>$ \hyperlink{namespacestd_1_1____detail_ab5344b00cf4ed8b39c9132ce0b9287af}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+laguerre\+\_\+recur} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tpa \+\_\+\+\_\+alpha1, \+\_\+\+Tp \+\_\+\+\_\+x)
+{\footnotesize template$<$typename Tpa , typename Tp $>$ }\\\mbox{\hyperlink{structemsr_1_1laguerre__t}{emsr\+::laguerre\+\_\+t}}$<$ Tpa, Tp $>$ \mbox{\hyperlink{namespaceemsr_1_1detail_aab9532fb965cef0e0261124f6bb0df37}{emsr\+::detail\+::laguerre\+\_\+recur}} (unsigned int n, Tpa alpha1, Tp x)
 \begin{DoxyCompactList}\small\item\em This routine returns the associated Laguerre polynomial of degree {\ttfamily n}, order {\ttfamily $ \alpha $}\+: $ L_n^{(\alpha)}(x) $ by recursion. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename \+\_\+\+Tp $>$ }\\std\+::vector$<$ \hyperlink{struct____gnu__cxx_1_1____quadrature__point__t}{\+\_\+\+\_\+gnu\+\_\+cxx\+::\+\_\+\+\_\+quadrature\+\_\+point\+\_\+t}$<$ \+\_\+\+Tp $>$ $>$ \hyperlink{namespacestd_1_1____detail_a12f5145d6544afee991b30a30020e86b}{std\+::\+\_\+\+\_\+detail\+::\+\_\+\+\_\+laguerre\+\_\+zeros} (unsigned int \+\_\+\+\_\+n, \+\_\+\+Tp \+\_\+\+\_\+alpha1)
+{\footnotesize template$<$typename Tp $>$ }\\std\+::vector$<$ emsr\+::\+Quadrature\+Point$<$ Tp $>$ $>$ \mbox{\hyperlink{namespaceemsr_1_1detail_a6f8a677196a347c9456cdc88dd1f01f8}{emsr\+::detail\+::laguerre\+\_\+zeros}} (unsigned int n, Tp alpha1)
 \end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
-This is an internal header file, included by other library headers. Do not attempt to use it directly. Instead, include $<$cmath$>$. 
-
-\subsection{Macro Definition Documentation}
-\mbox{\Hypertarget{sf__laguerre_8tcc_a6d5a7e97abaa68b4a97764d871fb5314}\label{sf__laguerre_8tcc_a6d5a7e97abaa68b4a97764d871fb5314}} 
-\index{sf\+\_\+laguerre.\+tcc@{sf\+\_\+laguerre.\+tcc}!\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+A\+G\+U\+E\+R\+R\+E\+\_\+\+T\+CC@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+A\+G\+U\+E\+R\+R\+E\+\_\+\+T\+CC}}
-\index{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+A\+G\+U\+E\+R\+R\+E\+\_\+\+T\+CC@{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+A\+G\+U\+E\+R\+R\+E\+\_\+\+T\+CC}!sf\+\_\+laguerre.\+tcc@{sf\+\_\+laguerre.\+tcc}}
-\subsubsection{\texorpdfstring{\+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+A\+G\+U\+E\+R\+R\+E\+\_\+\+T\+CC}{\_GLIBCXX\_BITS\_SF\_LAGUERRE\_TCC}}
-{\footnotesize\ttfamily \#define \+\_\+\+G\+L\+I\+B\+C\+X\+X\+\_\+\+B\+I\+T\+S\+\_\+\+S\+F\+\_\+\+L\+A\+G\+U\+E\+R\+R\+E\+\_\+\+T\+CC~1}
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{sf__laguerre_8tcc_a74c053ea1e154b96baf8ea0ae2c7cbea}\label{sf__laguerre_8tcc_a74c053ea1e154b96baf8ea0ae2c7cbea}} 
+\index{sf\_laguerre.tcc@{sf\_laguerre.tcc}!SF\_LAGUERRE\_TCC@{SF\_LAGUERRE\_TCC}}
+\index{SF\_LAGUERRE\_TCC@{SF\_LAGUERRE\_TCC}!sf\_laguerre.tcc@{sf\_laguerre.tcc}}
+\doxysubsubsection{\texorpdfstring{SF\_LAGUERRE\_TCC}{SF\_LAGUERRE\_TCC}}
+{\footnotesize\ttfamily \#define SF\+\_\+\+LAGUERRE\+\_\+\+TCC~1}
 
 
 
-Definition at line 44 of file sf\+\_\+laguerre.\+tcc.
+Definition at line 43 of file sf\+\_\+laguerre.\+tcc.
 
