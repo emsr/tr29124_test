@@ -1,16 +1,9 @@
 var searchData=
 [
-  ['n_393',['n',['../structemsr_1_1hermite__he__t.html#af60aaefff350e3f9f25a390fe9f974ce',1,'emsr::hermite_he_t::n()'],['../structemsr_1_1laguerre__t.html#afb6ce182ef036c904fdb5ec06de15bb6',1,'emsr::laguerre_t::n()'],['../structemsr_1_1jacobi__t.html#a000712dd984569c59c14d51c6fb27488',1,'emsr::jacobi_t::n()'],['../structemsr_1_1gegenbauer__t.html#ae93f33226da6a7e73e0c2d9f46992272',1,'emsr::gegenbauer_t::n()'],['../structemsr_1_1chebyshev__t__t.html#a5a6a67ed25ad9b0b209d4e841b6afee1',1,'emsr::chebyshev_t_t::n()'],['../structemsr_1_1chebyshev__u__t.html#a7747b5b882b4f98e9dc77460732bb8bf',1,'emsr::chebyshev_u_t::n()'],['../structemsr_1_1chebyshev__v__t.html#a813322d7cf087cfa38e6c79201ec86bf',1,'emsr::chebyshev_v_t::n()'],['../structemsr_1_1chebyshev__w__t.html#a2b7b9b8bc03c098cae6400141ee44856',1,'emsr::chebyshev_w_t::n()'],['../structemsr_1_1detail_1_1__Factorial__table.html#af62809d617156f4c2c080f727c7da813',1,'emsr::detail::_Factorial_table::n()'],['../structemsr_1_1detail_1_1jacobi__lattice__t_1_1arg__t.html#a2110ce0f988351c6193d642dcb5970d6',1,'emsr::detail::jacobi_lattice_t::arg_t::n()'],['../structemsr_1_1hermite__t.html#afd2d172f5f420172f77ddcda132b4116',1,'emsr::hermite_t::n()']]],
-  ['n_5farg_394',['n_arg',['../structemsr_1_1sph__bessel__t.html#a61fac9c5288a3ab28d2aae782a009060',1,'emsr::sph_bessel_t::n_arg()'],['../structemsr_1_1sph__mod__bessel__t.html#a34d64922e388e8336469ced5140329b9',1,'emsr::sph_mod_bessel_t::n_arg()'],['../structemsr_1_1sph__hankel__t.html#ac0c268d8e4d5bbc80ca573fce4669ea9',1,'emsr::sph_hankel_t::n_arg()']]],
-  ['n_5fderiv_395',['N_deriv',['../structemsr_1_1cyl__bessel__t.html#a814dfe0261ab469f91d66418b9655610',1,'emsr::cyl_bessel_t']]],
-  ['n_5fderiv_396',['n_deriv',['../structemsr_1_1sph__bessel__t.html#a87fcf3d0ee82271d64011950bdb0ec43',1,'emsr::sph_bessel_t']]],
-  ['n_5ffgh_397',['N_FGH',['../classemsr_1_1detail_1_1AirySeries.html#ae591c420c4dec17c53e94e59e9fc3925',1,'emsr::detail::AirySeries']]],
-  ['n_5fvalue_398',['n_value',['../structemsr_1_1sph__bessel__t.html#a085146d382dcdb9ac2778bf52deb2349',1,'emsr::sph_bessel_t']]],
-  ['n_5fvalue_399',['N_value',['../structemsr_1_1cyl__bessel__t.html#ad766e792923f1d69c22c397f1c606aec',1,'emsr::cyl_bessel_t']]],
-  ['normal_5fp_400',['normal_p',['../namespaceemsr_1_1detail.html#ac81da3562e3d79c8ad74680bb0a2958b',1,'emsr::detail']]],
-  ['normal_5fpdf_401',['normal_pdf',['../namespaceemsr_1_1detail.html#a5bff7dab525f4b49b67d40b05edc6a96',1,'emsr::detail']]],
-  ['nu_5farg_402',['nu_arg',['../structemsr_1_1cyl__bessel__t.html#ae4fbccb94ae11466b56400ec7b05b159',1,'emsr::cyl_bessel_t::nu_arg()'],['../structemsr_1_1cyl__mod__bessel__t.html#a2e6328208c5b6ceb30822e034007088f',1,'emsr::cyl_mod_bessel_t::nu_arg()'],['../structemsr_1_1cyl__hankel__t.html#af8c270a20c51ced8e4d23292ea5b293d',1,'emsr::cyl_hankel_t::nu_arg()']]],
-  ['num_5feuler_5fmaclaurin_5fzeta_403',['Num_Euler_Maclaurin_zeta',['../namespaceemsr_1_1detail.html#a13ab6043ce5336c7fb1a2809deec46fc',1,'emsr::detail']]],
-  ['num_5fstieltjes_404',['Num_Stieltjes',['../namespaceemsr_1_1detail.html#ac36e0ba36f7dda83fd9cf278f527e274',1,'emsr::detail']]],
-  ['num_5fterms_405',['num_terms',['../classemsr_1_1detail_1_1__Terminator.html#af85714685d00c800a521eca61984a10e',1,'emsr::detail::_Terminator::num_terms()'],['../classemsr_1_1detail_1_1__AsympTerminator.html#a96a62e22d70bbb72c514b383f3dd3919',1,'emsr::detail::_AsympTerminator::num_terms()']]]
+  ['operator_20bool_419',['operator bool',['../structemsr_1_1fp__is__integer__t.html#a3a6b7f824f1ad63b734bacb7ee0cc5d3',1,'emsr::fp_is_integer_t']]],
+  ['operator_28_29_420',['operator()',['../structemsr_1_1stirling__1__t.html#a9898bcfba0313613008c5ce89be23e07',1,'emsr::stirling_1_t::operator()()'],['../structemsr_1_1stirling__2__t.html#acc6bd21e24795c7529907fed4f2b298a',1,'emsr::stirling_2_t::operator()()'],['../structemsr_1_1fp__is__integer__t.html#a4b9f1c3f80fca823f656af798973f9d8',1,'emsr::fp_is_integer_t::operator()()']]],
+  ['operator_5b_5d_421',['operator[]',['../structemsr_1_1stirling__1__t.html#ab637b8db562c30cbb25c4b61857406dc',1,'emsr::stirling_1_t::operator[]()'],['../structemsr_1_1stirling__2__t.html#a9a34e05701a1044de51d8c1d4b3fbc91',1,'emsr::stirling_2_t::operator[]()']]],
+  ['owens_5ft_422',['owens_t',['../namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0',1,'emsr']]],
+  ['owens_5ftf_423',['owens_tf',['../namespaceemsr.html#a28fcef197ad45214f982cdc59b4da8d9',1,'emsr']]],
+  ['owens_5ftl_424',['owens_tl',['../namespaceemsr.html#aa70c906b97d421dd08135baf74330890',1,'emsr']]]
 ];

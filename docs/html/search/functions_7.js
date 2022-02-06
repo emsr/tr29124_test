@@ -1,15 +1,16 @@
 var searchData=
 [
-  ['gamma_931',['gamma',['../namespaceemsr_1_1detail.html#ace1f717500ebfa2c2f7ab249aa319924',1,'emsr::detail::gamma(Tp a)'],['../namespaceemsr_1_1detail.html#ae74001b81aa00501b60befc60b0800d2',1,'emsr::detail::gamma(Tp a, Tp x)']]],
-  ['gamma_5fcont_5ffrac_932',['gamma_cont_frac',['../namespaceemsr_1_1detail.html#a66443bea3671bb3e2eb0d6c2cc1cece2',1,'emsr::detail']]],
-  ['gamma_5fp_933',['gamma_p',['../namespaceemsr_1_1detail.html#a29c1ecace83dff2bcc595ae4146e871f',1,'emsr::detail::gamma_p(Tp alpha, Tp beta, Tp x)'],['../namespaceemsr_1_1detail.html#aca43eb2df1ade95fdd8628ab9a245de5',1,'emsr::detail::gamma_p(Tp a, Tp x)']]],
-  ['gamma_5fpdf_934',['gamma_pdf',['../namespaceemsr_1_1detail.html#ae9896c515545a1dc16a3224386576c8f',1,'emsr::detail']]],
-  ['gamma_5fq_935',['gamma_q',['../namespaceemsr_1_1detail.html#ad4fa4c8b3dbabc628d1f3e07ac415d07',1,'emsr::detail::gamma_q(Tp alpha, Tp beta, Tp x)'],['../namespaceemsr_1_1detail.html#ad8fa92fc9997c751f4e9b241fab33c89',1,'emsr::detail::gamma_q(Tp a, Tp x)']]],
-  ['gamma_5freciprocal_936',['gamma_reciprocal',['../namespaceemsr_1_1detail.html#afe7c5eae5a378aecb64079b5d3b6228e',1,'emsr::detail']]],
-  ['gamma_5freciprocal_5fseries_937',['gamma_reciprocal_series',['../namespaceemsr_1_1detail.html#adec5da1f6ac2c200f62d73b5da5a67a5',1,'emsr::detail']]],
-  ['gamma_5fseries_938',['gamma_series',['../namespaceemsr_1_1detail.html#af19abde00da463e5e8dd9b44c8a951b7',1,'emsr::detail']]],
-  ['gamma_5ftemme_939',['gamma_temme',['../namespaceemsr_1_1detail.html#a9fb4df348835eb89968e74318bd6725a',1,'emsr::detail']]],
-  ['gauss_940',['gauss',['../namespaceemsr_1_1detail.html#a5013da0538551d508db2f5c31f27e8f1',1,'emsr::detail']]],
-  ['gegenbauer_5frecur_941',['gegenbauer_recur',['../namespaceemsr_1_1detail.html#a50ca755c0c62879bde9a00ed145e60ca',1,'emsr::detail']]],
-  ['gegenbauer_5fzeros_942',['gegenbauer_zeros',['../namespaceemsr_1_1detail.html#a65f31111f8db58d173ea51bdd64461c4',1,'emsr::detail']]]
+  ['harmonic_927',['harmonic',['../namespaceemsr.html#ab7fc035040b56be7ee256d7119676797',1,'emsr']]],
+  ['hermite_928',['hermite',['../namespaceemsr.html#ab6a033f9dcc3e1a4a4f68d2043b5afbd',1,'emsr']]],
+  ['hermitef_929',['hermitef',['../namespaceemsr.html#a42c73cd225d30119156bb2bf95648ee5',1,'emsr']]],
+  ['hermitel_930',['hermitel',['../namespaceemsr.html#adf91f30d36dbfff48e0bb24254a0871e',1,'emsr']]],
+  ['heuman_5flambda_931',['heuman_lambda',['../namespaceemsr.html#aaa8ad5b400c56e7a0aeb0a66bb7924ab',1,'emsr']]],
+  ['heuman_5flambdaf_932',['heuman_lambdaf',['../namespaceemsr.html#a776c5a34aee641c7f92eaa60fee5e5c4',1,'emsr']]],
+  ['heuman_5flambdal_933',['heuman_lambdal',['../namespaceemsr.html#ad8d9619b5d30ed503445e0d6c4bc4caf',1,'emsr']]],
+  ['hurwitz_5fzeta_934',['hurwitz_zeta',['../namespaceemsr.html#a392ef8905222cfbfc10d554244f9229e',1,'emsr::hurwitz_zeta(Tp s, std::complex&lt; Up &gt; a)'],['../namespaceemsr.html#ab4788490ede88f98d942d05674e3f92f',1,'emsr::hurwitz_zeta(Tp s, _Up a)']]],
+  ['hurwitz_5fzetaf_935',['hurwitz_zetaf',['../namespaceemsr.html#acdba7452369c8e34fe8ae049fba7bf5f',1,'emsr']]],
+  ['hurwitz_5fzetal_936',['hurwitz_zetal',['../namespaceemsr.html#a20ee124fc6106f7f46ccc1208fda9be9',1,'emsr']]],
+  ['hyperg_937',['hyperg',['../namespaceemsr.html#a09444237cac14fa16d23bea4f5cd790c',1,'emsr']]],
+  ['hypergf_938',['hypergf',['../namespaceemsr.html#a797a39d43972f71c8ca286c5171050e9',1,'emsr']]],
+  ['hypergl_939',['hypergl',['../namespaceemsr.html#ac440f914cb4d93306ec324daae09024d',1,'emsr']]]
 ];

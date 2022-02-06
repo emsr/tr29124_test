@@ -26,12 +26,12 @@ var NAVTREE =
 [
   [ "C++ Special Math Functions", "index.html", [
     [ "Todo List", "todo.html", null ],
+    [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", "namespacemembers_dup" ],
         [ "Functions", "namespacemembers_func.html", "namespacemembers_func" ],
-        [ "Variables", "namespacemembers_vars.html", null ],
         [ "Enumerations", "namespacemembers_enum.html", null ],
         [ "Enumerator", "namespacemembers_eval.html", null ]
       ] ]
@@ -39,20 +39,15 @@ var NAVTREE =
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
-      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", "functions_vars" ],
+        [ "Variables", "functions_vars.html", null ],
         [ "Typedefs", "functions_type.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ],
-      [ "File Members", "globals.html", [
-        [ "All", "globals.html", null ],
-        [ "Macros", "globals_defs.html", null ]
-      ] ]
+      [ "File List", "files.html", "files_dup" ]
     ] ]
   ] ]
 ];
@@ -60,11 +55,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"namespaceemsr_1_1detail.html#a5717f8555e7aa79f496771b3a084428c",
-"namespaceemsr_1_1detail.html#af19abde00da463e5e8dd9b44c8a951b7",
-"sf__gamma_8tcc.html#a2836804a066fed2bcfbd03a0a03d6246",
-"sf__theta_8tcc.html#af536b0268353ba0a597bf4773f542093",
-"structemsr_1_1fock__airy__t.html"
+"namespaceemsr.html#a6dd26cd96d9c823489d2a871e7beac65",
+"namespaceemsr.html#ae82b2fb20ac59fa281b533ee18f8b3a8",
+"sf__ellint_8h.html#afa5d108e1deafab1a6ae0e7b192307f4",
+"sf__polylog_8h.html#ae6e16fbd98bcfbd37ee582c25aba3d73",
+"structemsr_1_1gegenbauer__t.html#a9512683a5d245dc17a2cff6fe3841dd0"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

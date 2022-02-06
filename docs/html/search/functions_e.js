@@ -1,11 +1,15 @@
 var searchData=
 [
-  ['omega_5f1_1020',['omega_1',['../structemsr_1_1detail_1_1jacobi__lattice__t.html#a86107ae9eba54f1e73a083bcadd6f0fb',1,'emsr::detail::jacobi_lattice_t']]],
-  ['omega_5f2_1021',['omega_2',['../structemsr_1_1detail_1_1jacobi__lattice__t.html#af08b4d9d035c4e146305c8999e5238c3',1,'emsr::detail::jacobi_lattice_t']]],
-  ['omega_5f3_1022',['omega_3',['../structemsr_1_1detail_1_1jacobi__lattice__t.html#a672562cd2781b33a4307a66ced990d08',1,'emsr::detail::jacobi_lattice_t']]],
-  ['operator_20bool_1023',['operator bool',['../structemsr_1_1fp__is__integer__t.html#a3a6b7f824f1ad63b734bacb7ee0cc5d3',1,'emsr::fp_is_integer_t']]],
-  ['operator_28_29_1024',['operator()',['../structemsr_1_1stirling__1__t.html#a9898bcfba0313613008c5ce89be23e07',1,'emsr::stirling_1_t::operator()()'],['../structemsr_1_1stirling__2__t.html#acc6bd21e24795c7529907fed4f2b298a',1,'emsr::stirling_2_t::operator()()'],['../classemsr_1_1detail_1_1Airy__asymp.html#a06962453d606c2a11c39873f52f5d97c',1,'emsr::detail::Airy_asymp::operator()()'],['../classemsr_1_1detail_1_1Airy__asymp__series.html#a592d7cd14497985def5a8ff80222fa9c',1,'emsr::detail::Airy_asymp_series::operator()()'],['../classemsr_1_1detail_1_1Airy.html#a9edbd4c75ee09995c887ec9b3ced1194',1,'emsr::detail::Airy::operator()()'],['../classemsr_1_1detail_1_1__Terminator.html#a7afeab26cf19c6be5e5b55b8f5a8ed8b',1,'emsr::detail::_Terminator::operator()()'],['../classemsr_1_1detail_1_1__AsympTerminator.html#adfa210f1e9c41bdfcf0fc1e9f2079e15',1,'emsr::detail::_AsympTerminator::operator()()'],['../structemsr_1_1fp__is__integer__t.html#a4b9f1c3f80fca823f656af798973f9d8',1,'emsr::fp_is_integer_t::operator()()']]],
-  ['operator_3c_3c_1025',['operator&lt;&lt;',['../classemsr_1_1detail_1_1__AsympTerminator.html#abc5a2bce4d94f5fb5c2c093becc7f9e4',1,'emsr::detail::_AsympTerminator']]],
-  ['operator_5b_5d_1026',['operator[]',['../structemsr_1_1stirling__1__t.html#ab637b8db562c30cbb25c4b61857406dc',1,'emsr::stirling_1_t::operator[]()'],['../structemsr_1_1stirling__2__t.html#a9a34e05701a1044de51d8c1d4b3fbc91',1,'emsr::stirling_2_t::operator[]()']]],
-  ['owens_5ft_1027',['owens_t',['../namespaceemsr_1_1detail.html#afd0b8cc3aa6a590b82822526df76f6d9',1,'emsr::detail']]]
+  ['parity_1025',['parity',['../namespaceemsr.html#acfd42d96b7aef8bdda8ccc8c28135a1e',1,'emsr']]],
+  ['periodic_5fzeta_1026',['periodic_zeta',['../namespaceemsr.html#af7166037d0e7892c1310955670c613c4',1,'emsr::periodic_zeta(Tp x, Up s)'],['../namespaceemsr.html#a15da64eeb1b9e9a7a482a0fea948e03b',1,'emsr::periodic_zeta(std::complex&lt; Up &gt; z, Tp s)']]],
+  ['periodic_5fzetaf_1027',['periodic_zetaf',['../namespaceemsr.html#a6f2ef90b2afd663ed3807e45e65cc7be',1,'emsr']]],
+  ['periodic_5fzetal_1028',['periodic_zetal',['../namespaceemsr.html#a5438ed4cc5f1d4affbe57b6aea210630',1,'emsr']]],
+  ['polar_5fpi_1029',['polar_pi',['../namespaceemsr.html#ab23405a03984d80d87a3a48066197ca0',1,'emsr::polar_pi(Tp rho, Tp phi_pi)'],['../namespaceemsr.html#a494cfd3d0ea65b66ad8e742140a1c643',1,'emsr::polar_pi(Tp rho, const std::complex&lt; Tp &gt; &amp;phi_pi)']]],
+  ['polygamma_1030',['polygamma',['../namespaceemsr.html#a9b4cd503610b344f9760b64d1710a53a',1,'emsr']]],
+  ['polygammaf_1031',['polygammaf',['../namespaceemsr.html#a5f5dd9122b92786c99551ead4402995a',1,'emsr']]],
+  ['polygammal_1032',['polygammal',['../namespaceemsr.html#a12ee9be8d19b535ac0834c0abdda64fe',1,'emsr']]],
+  ['polylog_1033',['polylog',['../namespaceemsr.html#aef513b0660fae66cf4852de466ba3c07',1,'emsr::polylog(Tp s, _Wp w)'],['../namespaceemsr.html#a73accbf9ea7c5499be0c32097e1b7a98',1,'emsr::polylog(Tp s, std::complex&lt; Tp &gt; w)']]],
+  ['polylogf_1034',['polylogf',['../namespaceemsr.html#a0de053d6a64fe1608410cbf47eaf6888',1,'emsr::polylogf(float s, float w)'],['../namespaceemsr.html#a913952a65c28212817189af594efd0e2',1,'emsr::polylogf(float s, std::complex&lt; float &gt; w)']]],
+  ['polylogl_1035',['polylogl',['../namespaceemsr.html#a05e846bf30f9af45e235cfeadafdd208',1,'emsr::polylogl(long double s, long double w)'],['../namespaceemsr.html#a1772e70ec75b4c5d03208e208d57f8cb',1,'emsr::polylogl(long double s, std::complex&lt; long double &gt; w)']]],
+  ['prime_1036',['prime',['../namespaceemsr.html#ad857bdf46c2b0a58289555e0fdd30fb4',1,'emsr']]]
 ];

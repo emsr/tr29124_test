@@ -1,27 +1,9 @@
 var searchData=
 [
-  ['p_5fl_415',['P_l',['../structemsr_1_1legendre__p__t.html#a16f292940995d2a854b79be3ec3467df',1,'emsr::legendre_p_t']]],
-  ['p_5flm_416',['P_lm',['../structemsr_1_1assoc__legendre__p__t.html#ad6cb8b80e6f4fda7457d165836e871a1',1,'emsr::assoc_legendre_p_t']]],
-  ['p_5flm1_417',['P_lm1',['../structemsr_1_1legendre__p__t.html#a342e849f4fdf995d0d9635bc1eb33dd5',1,'emsr::legendre_p_t']]],
-  ['p_5flm1m_418',['P_lm1m',['../structemsr_1_1assoc__legendre__p__t.html#adb45dcb8a873aa322e19c8a86183c14b',1,'emsr::assoc_legendre_p_t']]],
-  ['p_5flm2_419',['P_lm2',['../structemsr_1_1legendre__p__t.html#a2ce9a160750194f08089024865c01f84',1,'emsr::legendre_p_t']]],
-  ['p_5flm2m_420',['P_lm2m',['../structemsr_1_1assoc__legendre__p__t.html#a8d683127d8fdae7ddebd12d95f0da21b',1,'emsr::assoc_legendre_p_t']]],
-  ['p_5fn_421',['P_n',['../structemsr_1_1jacobi__t.html#a5697feb59464f6864f74ae98eee8a67a',1,'emsr::jacobi_t']]],
-  ['p_5fnm1_422',['P_nm1',['../structemsr_1_1jacobi__t.html#ae9c63a8d3e57dd4cf03bcad73cad1585',1,'emsr::jacobi_t']]],
-  ['p_5fnm2_423',['P_nm2',['../structemsr_1_1jacobi__t.html#a2903c8618e620bf3dd6ed581c138455b',1,'emsr::jacobi_t']]],
-  ['parity_424',['parity',['../namespaceemsr.html#acfd42d96b7aef8bdda8ccc8c28135a1e',1,'emsr']]],
-  ['periodic_5fzeta_425',['periodic_zeta',['../namespaceemsr_1_1detail.html#a8184c9b27232e8b1e7a95aacdc208109',1,'emsr::detail']]],
-  ['phase_426',['phase',['../structemsr_1_1assoc__legendre__p__t.html#a98f1c2b654b51dd1d80fac9f8bbdc18b',1,'emsr::assoc_legendre_p_t::phase()'],['../structemsr_1_1assoc__legendre__q__t.html#a284bdb164a41c85088ddc310c6ff76eb',1,'emsr::assoc_legendre_q_t::phase()']]],
-  ['polygamma_427',['polygamma',['../namespaceemsr_1_1detail.html#a90f75857d1a391ae5cc1d4ddae746ec1',1,'emsr::detail']]],
-  ['polylog_428',['polylog',['../namespaceemsr_1_1detail.html#ad8ca1580f4a8247c29a089a35ceea0bb',1,'emsr::detail::polylog(Tp s, Tp x)'],['../namespaceemsr_1_1detail.html#afaf2ec8ab085dbd179ff446e424ac175',1,'emsr::detail::polylog(Tp s, std::complex&lt; Tp &gt; w)']]],
-  ['polylog_5fexp_429',['polylog_exp',['../namespaceemsr_1_1detail.html#a7cb6459b7462e868d3b05f580c1214ea',1,'emsr::detail']]],
-  ['polylog_5fexp_5fasymp_430',['polylog_exp_asymp',['../namespaceemsr_1_1detail.html#a98a48b84b132d9d01975934e124a9e77',1,'emsr::detail']]],
-  ['polylog_5fexp_5fneg_431',['polylog_exp_neg',['../namespaceemsr_1_1detail.html#a189d7cb7d94f5fd952fb61ed32eabadf',1,'emsr::detail::polylog_exp_neg(Tp s, std::complex&lt; Tp &gt; w)'],['../namespaceemsr_1_1detail.html#ab7fc7cc2babf46df26fc75a27cee1c1c',1,'emsr::detail::polylog_exp_neg(int n, std::complex&lt; Tp &gt; w)']]],
-  ['polylog_5fexp_5fneg_5fint_432',['polylog_exp_neg_int',['../namespaceemsr_1_1detail.html#aa79c992e72a918f65dbbf338e7cfd7dc',1,'emsr::detail::polylog_exp_neg_int(int s, std::complex&lt; Tp &gt; w)'],['../namespaceemsr_1_1detail.html#ad227d32fb6e2e692a8083786bb0c5c0b',1,'emsr::detail::polylog_exp_neg_int(int s, Tp w)']]],
-  ['polylog_5fexp_5fneg_5freal_433',['polylog_exp_neg_real',['../namespaceemsr_1_1detail.html#a288082cfd1be2a4002dd2ca553f2e744',1,'emsr::detail::polylog_exp_neg_real(Tp s, std::complex&lt; Tp &gt; w)'],['../namespaceemsr_1_1detail.html#a318709d20a75dc5426ff93370d0f7e8a',1,'emsr::detail::polylog_exp_neg_real(Tp s, Tp w)']]],
-  ['polylog_5fexp_5fpos_434',['polylog_exp_pos',['../namespaceemsr_1_1detail.html#aaa5878a64cbe71457e465561d0dab734',1,'emsr::detail::polylog_exp_pos(unsigned int s, std::complex&lt; Tp &gt; w)'],['../namespaceemsr_1_1detail.html#ae70144097bb83ce6b4268362b424aa1b',1,'emsr::detail::polylog_exp_pos(unsigned int s, Tp w)'],['../namespaceemsr_1_1detail.html#ae8e6c7f178d25f25c7f997097c70c1a7',1,'emsr::detail::polylog_exp_pos(Tp s, std::complex&lt; Tp &gt; w)']]],
-  ['polylog_5fexp_5fpos_5fint_435',['polylog_exp_pos_int',['../namespaceemsr_1_1detail.html#ac04da4c571e8eae0d81ec3fd78beff70',1,'emsr::detail::polylog_exp_pos_int(unsigned int s, std::complex&lt; Tp &gt; w)'],['../namespaceemsr_1_1detail.html#ab1aaaab457c611bba11a7ae543a8f5aa',1,'emsr::detail::polylog_exp_pos_int(unsigned int s, Tp w)']]],
-  ['polylog_5fexp_5fpos_5freal_436',['polylog_exp_pos_real',['../namespaceemsr_1_1detail.html#a40228dfb1d852332f45dd7fc2d8474d9',1,'emsr::detail::polylog_exp_pos_real(Tp s, std::complex&lt; Tp &gt; w)'],['../namespaceemsr_1_1detail.html#a5911bd9f074cd586f9babf8dbae690c8',1,'emsr::detail::polylog_exp_pos_real(Tp s, Tp w)']]],
-  ['polylog_5fexp_5fsum_437',['polylog_exp_sum',['../namespaceemsr_1_1detail.html#a36fa7ad7c7e827ac2f75d37b8f150a15',1,'emsr::detail']]],
-  ['prob_5fhermite_5frecur_438',['prob_hermite_recur',['../namespaceemsr_1_1detail.html#a56900d6e6c17e94dcdf175c8fe17fc0b',1,'emsr::detail']]]
+  ['q_5fl_447',['Q_l',['../structemsr_1_1legendre__q__t.html#ab508997eae0d21c80692dc69907f2785',1,'emsr::legendre_q_t']]],
+  ['q_5flm_448',['Q_lm',['../structemsr_1_1assoc__legendre__q__t.html#ac67fd6f7e93cb9f56631d255ab3dcda9',1,'emsr::assoc_legendre_q_t']]],
+  ['q_5flm1_449',['Q_lm1',['../structemsr_1_1legendre__q__t.html#af27bb71c151e4049fe72e3f5f7233100',1,'emsr::legendre_q_t']]],
+  ['q_5flm2_450',['Q_lm2',['../structemsr_1_1legendre__q__t.html#aad5b5e5ba5af027f2b15bebb88b03a2d',1,'emsr::legendre_q_t']]],
+  ['q_5flmm1_451',['Q_lmm1',['../structemsr_1_1assoc__legendre__q__t.html#aaa6fc886409b973484e9b924d3c7322a',1,'emsr::assoc_legendre_q_t']]],
+  ['q_5flmm2_452',['Q_lmm2',['../structemsr_1_1assoc__legendre__q__t.html#afd469748233fda544bac463f93380fdb',1,'emsr::assoc_legendre_q_t']]]
 ];

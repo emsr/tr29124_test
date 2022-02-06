@@ -1,11 +1,16 @@
 var searchData=
 [
-  ['m_385',['m',['../structemsr_1_1assoc__legendre__p__t.html#a6b37da9e5804f2c42925030ce26d78dc',1,'emsr::assoc_legendre_p_t::m()'],['../structemsr_1_1assoc__legendre__q__t.html#a099b85207b4c1edf4e6aa1a57afe6ade',1,'emsr::assoc_legendre_q_t::m()'],['../structemsr_1_1detail_1_1jacobi__lattice__t_1_1arg__t.html#ad46b08a75b67eedd7c754c0ba0ddee64',1,'emsr::detail::jacobi_lattice_t::arg_t::m()']]],
-  ['m_5fomega_5f1_386',['m_omega_1',['../structemsr_1_1detail_1_1jacobi__lattice__t.html#a0ac1f8bc96484dbf1938abec1316a3f3',1,'emsr::detail::jacobi_lattice_t']]],
-  ['m_5fomega_5f3_387',['m_omega_3',['../structemsr_1_1detail_1_1jacobi__lattice__t.html#a2b7d7787df6f5fd91ad3b546da0bd8e6',1,'emsr::detail::jacobi_lattice_t']]],
-  ['math_5futil_2eh_388',['math_util.h',['../math__util_8h.html',1,'']]],
-  ['max_5ffgh_389',['max_FGH',['../namespaceemsr_1_1detail.html#a01449649c2f43aff7451077feaed3632',1,'emsr::detail']]],
-  ['max_5ffgh_3c_20double_20_3e_390',['max_FGH&lt; double &gt;',['../namespaceemsr_1_1detail.html#a567d5cf91b2157b470627967adfa147b',1,'emsr::detail']]],
-  ['max_5ffgh_3c_20float_20_3e_391',['max_FGH&lt; float &gt;',['../namespaceemsr_1_1detail.html#aea5e8636cbdf097f28e41cf6b37c6d8b',1,'emsr::detail']]],
-  ['mu_5farg_392',['mu_arg',['../structemsr_1_1gamma__temme__t.html#ae3feb37b1c292ba238062c54d6110d26',1,'emsr::gamma_temme_t']]]
+  ['n_406',['n',['../structemsr_1_1hermite__he__t.html#af60aaefff350e3f9f25a390fe9f974ce',1,'emsr::hermite_he_t::n()'],['../structemsr_1_1laguerre__t.html#afb6ce182ef036c904fdb5ec06de15bb6',1,'emsr::laguerre_t::n()'],['../structemsr_1_1jacobi__t.html#a000712dd984569c59c14d51c6fb27488',1,'emsr::jacobi_t::n()'],['../structemsr_1_1gegenbauer__t.html#ae93f33226da6a7e73e0c2d9f46992272',1,'emsr::gegenbauer_t::n()'],['../structemsr_1_1chebyshev__t__t.html#a5a6a67ed25ad9b0b209d4e841b6afee1',1,'emsr::chebyshev_t_t::n()'],['../structemsr_1_1chebyshev__u__t.html#a7747b5b882b4f98e9dc77460732bb8bf',1,'emsr::chebyshev_u_t::n()'],['../structemsr_1_1chebyshev__v__t.html#a813322d7cf087cfa38e6c79201ec86bf',1,'emsr::chebyshev_v_t::n()'],['../structemsr_1_1chebyshev__w__t.html#a2b7b9b8bc03c098cae6400141ee44856',1,'emsr::chebyshev_w_t::n()'],['../structemsr_1_1hermite__t.html#afd2d172f5f420172f77ddcda132b4116',1,'emsr::hermite_t::n()']]],
+  ['n_5farg_407',['n_arg',['../structemsr_1_1sph__bessel__t.html#a61fac9c5288a3ab28d2aae782a009060',1,'emsr::sph_bessel_t::n_arg()'],['../structemsr_1_1sph__mod__bessel__t.html#a34d64922e388e8336469ced5140329b9',1,'emsr::sph_mod_bessel_t::n_arg()'],['../structemsr_1_1sph__hankel__t.html#ac0c268d8e4d5bbc80ca573fce4669ea9',1,'emsr::sph_hankel_t::n_arg()']]],
+  ['n_5fderiv_408',['N_deriv',['../structemsr_1_1cyl__bessel__t.html#a814dfe0261ab469f91d66418b9655610',1,'emsr::cyl_bessel_t']]],
+  ['n_5fderiv_409',['n_deriv',['../structemsr_1_1sph__bessel__t.html#a87fcf3d0ee82271d64011950bdb0ec43',1,'emsr::sph_bessel_t']]],
+  ['n_5fvalue_410',['n_value',['../structemsr_1_1sph__bessel__t.html#a085146d382dcdb9ac2778bf52deb2349',1,'emsr::sph_bessel_t']]],
+  ['n_5fvalue_411',['N_value',['../structemsr_1_1cyl__bessel__t.html#ad766e792923f1d69c22c397f1c606aec',1,'emsr::cyl_bessel_t']]],
+  ['nc_412',['nc',['../structemsr_1_1jacobi__ellint__t.html#a4601941e2cf8c633d4336a53c03a4e12',1,'emsr::jacobi_ellint_t']]],
+  ['nd_413',['nd',['../structemsr_1_1jacobi__ellint__t.html#ae7470aead71be7fdaeb314e57ee8368b',1,'emsr::jacobi_ellint_t']]],
+  ['normal_5fp_414',['normal_p',['../namespaceemsr.html#aec3ef2182334fcf183d6e4a7223f2289',1,'emsr']]],
+  ['normal_5fpdf_415',['normal_pdf',['../namespaceemsr.html#a79296e67445a75e8dd3cf61ea6a994bd',1,'emsr']]],
+  ['ns_416',['ns',['../structemsr_1_1jacobi__ellint__t.html#acf119f59caf587977dd7a8fc8165b106',1,'emsr::jacobi_ellint_t']]],
+  ['nu_5farg_417',['nu_arg',['../structemsr_1_1cyl__bessel__t.html#ae4fbccb94ae11466b56400ec7b05b159',1,'emsr::cyl_bessel_t::nu_arg()'],['../structemsr_1_1cyl__mod__bessel__t.html#a2e6328208c5b6ceb30822e034007088f',1,'emsr::cyl_mod_bessel_t::nu_arg()'],['../structemsr_1_1cyl__hankel__t.html#af8c270a20c51ced8e4d23292ea5b293d',1,'emsr::cyl_hankel_t::nu_arg()']]],
+  ['num_5fprimes_418',['num_primes',['../namespaceemsr.html#a873e227fd890fa1c62a21e82e1511cce',1,'emsr']]]
 ];

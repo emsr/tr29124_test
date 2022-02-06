@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['beta1_1133',['beta1',['../structemsr_1_1jacobi__t.html#a063100baa7820f71a5f5e2c34e13fb2e',1,'emsr::jacobi_t']]],
-  ['bi_5fderiv_1134',['Bi_deriv',['../structemsr_1_1airy__t.html#a9012bdf3c149ac5806b35c6107f1e5ea',1,'emsr::airy_t::Bi_deriv()'],['../structemsr_1_1detail_1_1AiryState.html#a89246f5771649536e48d61e7baa15620',1,'emsr::detail::AiryState::Bi_deriv()']]],
-  ['bi_5fvalue_1135',['Bi_value',['../structemsr_1_1airy__t.html#ad5cbe5d8c6a97fbf4bf1e50bcc392850',1,'emsr::airy_t::Bi_value()'],['../structemsr_1_1detail_1_1AiryState.html#a577eb0f2dd86be3af915c78c08bbe300',1,'emsr::detail::AiryState::Bi_value()']]]
+  ['c_5fn_1158',['C_n',['../structemsr_1_1gegenbauer__t.html#abd95f3a362816f4f3af84e55ec17c24e',1,'emsr::gegenbauer_t']]],
+  ['c_5fnm1_1159',['C_nm1',['../structemsr_1_1gegenbauer__t.html#a9512683a5d245dc17a2cff6fe3841dd0',1,'emsr::gegenbauer_t']]],
+  ['c_5fnm2_1160',['C_nm2',['../structemsr_1_1gegenbauer__t.html#a9fe36339f2f4843dcc2f96e1244e3ce7',1,'emsr::gegenbauer_t']]],
+  ['cn_5fvalue_1161',['cn_value',['../structemsr_1_1jacobi__ellint__t.html#ae85edf74efddf018d4a84e588dbfba3b',1,'emsr::jacobi_ellint_t']]]
 ];

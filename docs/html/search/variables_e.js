@@ -1,4 +1,13 @@
 var searchData=
 [
-  ['outer_5fradius_1220',['outer_radius',['../structemsr_1_1detail_1_1Airy__default__radii_3_01float_01_4.html#adb2e88fb438dad77546500c15e345b04',1,'emsr::detail::Airy_default_radii&lt; float &gt;::outer_radius()'],['../structemsr_1_1detail_1_1Airy__default__radii_3_01double_01_4.html#aa4f5b51f24ab3897fed1e390d5ee353d',1,'emsr::detail::Airy_default_radii&lt; double &gt;::outer_radius()'],['../structemsr_1_1detail_1_1Airy__default__radii_3_01long_01double_01_4.html#a5cef338b20d8090827d3e52e64e7bc57',1,'emsr::detail::Airy_default_radii&lt; long double &gt;::outer_radius()'],['../classemsr_1_1detail_1_1Airy.html#a648e5debc46d8b1034c15610d6e61a4a',1,'emsr::detail::Airy::outer_radius()']]]
+  ['p_5fl_1217',['P_l',['../structemsr_1_1legendre__p__t.html#a16f292940995d2a854b79be3ec3467df',1,'emsr::legendre_p_t']]],
+  ['p_5flm_1218',['P_lm',['../structemsr_1_1assoc__legendre__p__t.html#ad6cb8b80e6f4fda7457d165836e871a1',1,'emsr::assoc_legendre_p_t']]],
+  ['p_5flm1_1219',['P_lm1',['../structemsr_1_1legendre__p__t.html#a342e849f4fdf995d0d9635bc1eb33dd5',1,'emsr::legendre_p_t']]],
+  ['p_5flm1m_1220',['P_lm1m',['../structemsr_1_1assoc__legendre__p__t.html#adb45dcb8a873aa322e19c8a86183c14b',1,'emsr::assoc_legendre_p_t']]],
+  ['p_5flm2_1221',['P_lm2',['../structemsr_1_1legendre__p__t.html#a2ce9a160750194f08089024865c01f84',1,'emsr::legendre_p_t']]],
+  ['p_5flm2m_1222',['P_lm2m',['../structemsr_1_1assoc__legendre__p__t.html#a8d683127d8fdae7ddebd12d95f0da21b',1,'emsr::assoc_legendre_p_t']]],
+  ['p_5fn_1223',['P_n',['../structemsr_1_1jacobi__t.html#a5697feb59464f6864f74ae98eee8a67a',1,'emsr::jacobi_t']]],
+  ['p_5fnm1_1224',['P_nm1',['../structemsr_1_1jacobi__t.html#ae9c63a8d3e57dd4cf03bcad73cad1585',1,'emsr::jacobi_t']]],
+  ['p_5fnm2_1225',['P_nm2',['../structemsr_1_1jacobi__t.html#a2903c8618e620bf3dd6ed581c138455b',1,'emsr::jacobi_t']]],
+  ['phase_1226',['phase',['../structemsr_1_1assoc__legendre__p__t.html#a98f1c2b654b51dd1d80fac9f8bbdc18b',1,'emsr::assoc_legendre_p_t::phase()'],['../structemsr_1_1assoc__legendre__q__t.html#a284bdb164a41c85088ddc310c6ff76eb',1,'emsr::assoc_legendre_q_t::phase()']]]
 ];

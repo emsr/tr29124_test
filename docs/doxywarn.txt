@@ -1,125 +1,81 @@
-warning: source 'cxx_special_functions/include/emsr/specfun.h' is not a readable file or directory... skipping.
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/special_functions.h:32:10: fatal error: 'emsr/sf_trig.h' file not found [clang]
+/home/ed/cxx_math/cxx_special_functions/include/emsr/special_functions.h:317: warning: unbalanced grouping commands
 error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
 error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_bernoulli.tcc:33:10: fatal error: 'emsr/numeric_limits.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_cardinal.tcc:32:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_chebyshev.tcc:34:10: fatal error: 'emsr/specfun_state.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:53:11: error: use of undeclared identifier 'std' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:53:34: error: no member named 'epsilon' in namespace 'emsr' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:69:32: error: no member named 'epsilon' in namespace 'emsr' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:190:17: error: use of undeclared identifier 'std' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:193:17: error: use of undeclared identifier 'std' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:202:11: error: use of undeclared identifier 'std' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:202:36: error: use of undeclared identifier 'std' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:208:14: error: use of undeclared identifier 'std' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:208:28: error: use of undeclared identifier 'std' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:230:32: error: no member named 'quiet_NaN' in namespace 'emsr' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:233:11: error: use of undeclared identifier 'std' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:235:16: error: use of undeclared identifier 'std' [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_euler.tcc:38:10: fatal error: 'emsr/sf_gamma.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_bernoulli.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
 error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_owens_t.tcc:32:10: fatal error: 'emsr/math_constants.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_stirling.tcc:38:10: fatal error: 'emsr/sf_gamma.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_beta.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_cardinal.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_chebyshev.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_coulomb.h:4:10: fatal error: 'emsr/detail/sf_coulomb.tcc' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_dawson.h:5:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_distributions.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_ellint.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_euler.h:4:10: fatal error: 'emsr/detail/sf_euler.tcc' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_expint.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_fresnel.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
 error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_gegenbauer.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
 error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_hermite.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_hyperg.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_hypint.h:4:10: fatal error: 'emsr/detail/sf_hypint.tcc' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_jacobi.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_laguerre.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_lerch.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_mod_bessel.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_owens_t.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_prime.h:4:10: fatal error: 'emsr/detail/sf_prime.tcc' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_stirling.h:4:10: fatal error: 'emsr/detail/sf_stirling.tcc' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_theta.h:5:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_trigint.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_zeta.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
+/home/ed/cxx_math/cxx_special_functions/include/emsr/special_functions.h:24: warning: the name 'bits/specfun.h' supplied as the argument in the \file statement is not an input file
 /home/ed/cxx_math/cxx_special_functions/include/emsr/specfun_state.h:24: warning: the name 'bits/specfun_state.h' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_airy.tcc:24: warning: the name 'bits/sf_airy.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_bernoulli.tcc:24: warning: the name 'bits/sf_bernoulli.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_bessel.tcc:24: warning: the name 'bits/sf_bessel.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_beta.tcc:24: warning: the name 'bits/sf_beta.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_cardinal.tcc:24: warning: the name 'bits/sf_airy.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_chebyshev.tcc:24: warning: the name 'bits/sf_chebyshev.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_coulomb.tcc:24: warning: the name 'bits/sf_coulomb.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:24: warning: the name 'bits/sf_dawson.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_distributions.tcc:24: warning: the name 'bits/sf_distributions.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_ellint.tcc:24: warning: the name 'bits/sf_ellint.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_euler.tcc:24: warning: the name 'bits/sf_euler.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_expint.tcc:24: warning: the name 'bits/sf_expint.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_fresnel.tcc:24: warning: the name 'bits/sf_fresnel.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_gamma.tcc:24: warning: the name 'bits/sf_gamma.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_gegenbauer.tcc:24: warning: the name 'bits/sf_gegenbauer.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_hankel.tcc:24: warning: the name 'bits/sf_hankel.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_hermite.tcc:24: warning: the name 'bits/sf_hermite.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_hyperg.tcc:24: warning: the name 'bits/sf_hyperg.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_hypint.tcc:24: warning: the name 'bits/sf_hypint.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_jacobi.tcc:24: warning: the name 'bits/sf_jacobi.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_laguerre.tcc:24: warning: the name 'bits/sf_laguerre.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_legendre.tcc:24: warning: the name 'bits/sf_legendre.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_mod_bessel.tcc:24: warning: the name 'bits/sf_mod_bessel.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_owens_t.tcc:24: warning: the name 'bits/sf_owens_t.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_polylog.tcc:24: warning: the name 'bits/sf_polylog.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_stirling.tcc:24: warning: the name 'bits/sf_stirling.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_theta.tcc:24: warning: the name 'bits/sf_theta.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_trigint.tcc:24: warning: the name 'bits/sf_trigint.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_trig.tcc:24: warning: the name 'bits/sf_trig.tcc' supplied as the argument in the \file statement is not an input file
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_zeta.tcc:24: warning: the name 'bits/sf_zeta.tcc' supplied as the argument in the \file statement is not an input file
-error: Problems running gs. Check your installation!
 error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
 error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_bernoulli.tcc:33:10: fatal error: 'emsr/numeric_limits.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_cardinal.tcc:32:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_chebyshev.tcc:34:10: fatal error: 'emsr/specfun_state.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:53:11: error: use of undeclared identifier 'std' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:53:34: error: no member named 'epsilon' in namespace 'emsr' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:69:32: error: no member named 'epsilon' in namespace 'emsr' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:190:17: error: use of undeclared identifier 'std' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:193:17: error: use of undeclared identifier 'std' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:202:11: error: use of undeclared identifier 'std' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:202:36: error: use of undeclared identifier 'std' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:208:14: error: use of undeclared identifier 'std' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:208:28: error: use of undeclared identifier 'std' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:230:32: error: no member named 'quiet_NaN' in namespace 'emsr' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:233:11: error: use of undeclared identifier 'std' [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_dawson.tcc:235:16: error: use of undeclared identifier 'std' [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_euler.tcc:38:10: fatal error: 'emsr/sf_gamma.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_bernoulli.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
 error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_owens_t.tcc:32:10: fatal error: 'emsr/math_constants.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_stirling.tcc:38:10: fatal error: 'emsr/sf_gamma.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_beta.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_cardinal.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_chebyshev.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_coulomb.h:4:10: fatal error: 'emsr/detail/sf_coulomb.tcc' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_dawson.h:5:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_distributions.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_ellint.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_euler.h:4:10: fatal error: 'emsr/detail/sf_euler.tcc' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_expint.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_fresnel.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
 error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
-error: /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/cxxabi_init_exception.h:38:10: fatal error: 'stddef.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_gegenbauer.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
 error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_bessel.tcc:203: warning: The following parameter of emsr::detail::cyl_bessel_asymp_sums(Tnu nu, Tp x, int sgn) is not documented:
-  parameter 'sgn'
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_mod_bessel.tcc:312: warning: The following parameter of emsr::detail::cyl_bessel_ik(Tp nu, Tp x, bool do_scaled=false) is not documented:
-  parameter 'do_scaled'
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_hyperg.tcc:481: warning: Found unknown command '@fixme'
-/home/ed/cxx_math/cxx_special_functions/include/emsr/detail/sf_zeta.tcc:533: warning: Found unknown command '\Re'
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_hermite.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_hyperg.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_hypint.h:4:10: fatal error: 'emsr/detail/sf_hypint.tcc' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_jacobi.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_laguerre.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_lerch.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_mod_bessel.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_owens_t.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_prime.h:4:10: fatal error: 'emsr/detail/sf_prime.tcc' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_stirling.h:4:10: fatal error: 'emsr/detail/sf_stirling.tcc' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_theta.h:5:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_trigint.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/sf_zeta.h:4:10: fatal error: 'emsr/fp_type_util.h' file not found [clang]
+error: /usr/include/stdlib.h:31:10: fatal error: 'stddef.h' file not found [clang]
+error: /home/ed/cxx_math/cxx_special_functions/include/emsr/special_functions.h:32:10: fatal error: 'emsr/sf_trig.h' file not found [clang]
+/home/ed/cxx_math/cxx_special_functions/include/emsr/sf_airy.h:13: warning: argument 'x' of command @param is not found in the argument list of emsr::airy_ai(const std::complex< Tp > &z)
+/home/ed/cxx_math/cxx_special_functions/include/emsr/sf_airy.h:26: warning: The following parameter of emsr::airy_ai(const std::complex< Tp > &z) is not documented:
+  parameter 'z'
+/home/ed/cxx_math/cxx_special_functions/include/emsr/sf_airy.h:33: warning: argument 'x' of command @param is not found in the argument list of emsr::airy_bi(const std::complex< Tp > &z)
+/home/ed/cxx_math/cxx_special_functions/include/emsr/sf_airy.h:47: warning: The following parameter of emsr::airy_bi(const std::complex< Tp > &z) is not documented:
+  parameter 'z'

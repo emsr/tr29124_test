@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['hermite_5fhe_5ft_717',['hermite_he_t',['../structemsr_1_1hermite__he__t.html',1,'emsr']]],
-  ['hermite_5ft_718',['hermite_t',['../structemsr_1_1hermite__t.html',1,'emsr']]]
+  ['jacobi_5fellint_5ft_652',['jacobi_ellint_t',['../structemsr_1_1jacobi__ellint__t.html',1,'emsr']]],
+  ['jacobi_5ft_653',['jacobi_t',['../structemsr_1_1jacobi__t.html',1,'emsr']]]
 ];

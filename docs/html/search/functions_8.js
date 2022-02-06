@@ -1,25 +1,9 @@
 var searchData=
 [
-  ['hankel_943',['hankel',['../namespaceemsr_1_1detail.html#aaffe7ab5cebecc482b73d85fe617fcab',1,'emsr::detail']]],
-  ['hankel_5fdebye_944',['hankel_debye',['../namespaceemsr_1_1detail.html#ac1464696b6c3b0f1797094acaea889d0',1,'emsr::detail']]],
-  ['hankel_5fparams_945',['hankel_params',['../namespaceemsr_1_1detail.html#a695a6f0518c6cfab1daabd356938cfd8',1,'emsr::detail']]],
-  ['hankel_5funiform_946',['hankel_uniform',['../namespaceemsr_1_1detail.html#a98257346d148ce2569cf095ba631c689',1,'emsr::detail']]],
-  ['hankel_5funiform_5folver_947',['hankel_uniform_olver',['../namespaceemsr_1_1detail.html#abf7a17fd0c15433dd54546944ce772cf',1,'emsr::detail']]],
-  ['hankel_5funiform_5fouter_948',['hankel_uniform_outer',['../namespaceemsr_1_1detail.html#a47d54d2a7e437bb701382225c0d6e16a',1,'emsr::detail']]],
-  ['hankel_5funiform_5fsum_949',['hankel_uniform_sum',['../namespaceemsr_1_1detail.html#ad9f46748ebcf27d0a33b882526e2e33c',1,'emsr::detail']]],
-  ['harmonic_5fnumber_950',['harmonic_number',['../namespaceemsr_1_1detail.html#a092ab36f2efb5a0e9db29ff51453827c',1,'emsr::detail']]],
-  ['hermite_951',['hermite',['../namespaceemsr_1_1detail.html#a03abf76d2e35071dbc117d4fe9795edb',1,'emsr::detail']]],
-  ['hermite_5fasymp_952',['hermite_asymp',['../namespaceemsr_1_1detail.html#a0f610062e38f0b9e807e5066eebb7652',1,'emsr::detail']]],
-  ['hermite_5frecur_953',['hermite_recur',['../namespaceemsr_1_1detail.html#a2961ca16a5c8e04d40805e22ef857c90',1,'emsr::detail']]],
-  ['hermite_5fzeros_954',['hermite_zeros',['../namespaceemsr_1_1detail.html#a64a65b5b97d8ab594efb9a2f897bcb10',1,'emsr::detail']]],
-  ['heuman_5flambda_955',['heuman_lambda',['../namespaceemsr_1_1detail.html#a350fea440dbd09d7937c3a52170cdb9c',1,'emsr::detail']]],
-  ['hurwitz_5fzeta_956',['hurwitz_zeta',['../namespaceemsr_1_1detail.html#a0d2385fffff0cdea6f79511e96188354',1,'emsr::detail']]],
-  ['hurwitz_5fzeta_5feuler_5fmaclaurin_957',['hurwitz_zeta_euler_maclaurin',['../namespaceemsr_1_1detail.html#ad4df19f9305e724491081ad01ab3fee2',1,'emsr::detail']]],
-  ['hurwitz_5fzeta_5fpolylog_958',['hurwitz_zeta_polylog',['../namespaceemsr_1_1detail.html#a6601807b5cd703d784ca3420fcab7e74',1,'emsr::detail']]],
-  ['hydrogen_959',['hydrogen',['../namespaceemsr_1_1detail.html#a1e40b52e8d8c878d515e854c1140cbb8',1,'emsr::detail']]],
-  ['hyperg_960',['hyperg',['../namespaceemsr_1_1detail.html#a534b5cb2286d57b0eaf375b5d70c9db1',1,'emsr::detail']]],
-  ['hyperg_5fluke_961',['hyperg_luke',['../namespaceemsr_1_1detail.html#a3ef3127649e7814975106f8c9abbe3ee',1,'emsr::detail']]],
-  ['hyperg_5frecur_962',['hyperg_recur',['../namespaceemsr_1_1detail.html#ade5de4140aef8537d722ce0b33b1cc11',1,'emsr::detail']]],
-  ['hyperg_5freflect_963',['hyperg_reflect',['../namespaceemsr_1_1detail.html#acd1546d7f0871fb6a225faeff9204588',1,'emsr::detail']]],
-  ['hyperg_5fseries_964',['hyperg_series',['../namespaceemsr_1_1detail.html#a9e085acad3ec48ebb7bef692e6388ae7',1,'emsr::detail']]]
+  ['ibeta_940',['ibeta',['../namespaceemsr.html#a5ba14c880c48b4f6637443e45793193e',1,'emsr']]],
+  ['ibetac_941',['ibetac',['../namespaceemsr.html#a9646ebda0489a8d51e0e38a54add8223',1,'emsr']]],
+  ['ibetacf_942',['ibetacf',['../namespaceemsr.html#a62f35ef64e88a9b45c233ed167b40006',1,'emsr']]],
+  ['ibetacl_943',['ibetacl',['../namespaceemsr.html#a3f32181a39ef9c867c6e679893e93001',1,'emsr']]],
+  ['ibetaf_944',['ibetaf',['../namespaceemsr.html#a72734c077c7426590eeb61f698703f40',1,'emsr']]],
+  ['ibetal_945',['ibetal',['../namespaceemsr.html#a8824b96ffc3fd8e406572ced31edd188',1,'emsr']]]
 ];

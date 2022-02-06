@@ -1,9 +1,5 @@
 <map id="cxx_special_functions/include/emsr/specfun_state.h" name="cxx_special_functions/include/emsr/specfun_state.h">
-<area shape="rect" id="node1" title=" " alt="" coords="479,5,644,61"/>
-<area shape="rect" id="node2" href="$sf__bessel_8tcc.html" title=" " alt="" coords="5,109,171,165"/>
-<area shape="rect" id="node3" href="$sf__chebyshev_8tcc.html" title=" " alt="" coords="195,109,360,165"/>
-<area shape="rect" id="node4" href="$sf__gegenbauer_8tcc.html" title=" " alt="" coords="384,109,549,165"/>
-<area shape="rect" id="node5" href="$sf__jacobi_8tcc.html" title=" " alt="" coords="573,109,739,165"/>
-<area shape="rect" id="node6" href="$sf__laguerre_8tcc.html" title=" " alt="" coords="763,109,928,165"/>
-<area shape="rect" id="node7" href="$sf__legendre_8tcc.html" title=" " alt="" coords="952,109,1117,165"/>
+<area shape="rect" id="node1" title=" " alt="" coords="24,5,189,61"/>
+<area shape="rect" id="node2" href="$sf__legendre_8h.html" title=" " alt="" coords="5,109,208,151"/>
+<area shape="rect" id="node3" href="$special__functions_8h.html" title=" " alt="" coords="24,199,189,255"/>
 </map>

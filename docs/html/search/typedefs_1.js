@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['cmplx_1314',['Cmplx',['../classemsr_1_1detail_1_1AirySeries.html#a3256f6ac9559836e9ca1bd1b581db864',1,'emsr::detail::AirySeries::Cmplx()'],['../classemsr_1_1detail_1_1Airy__asymp.html#afde9edf978396590fef525a0f8535cbe',1,'emsr::detail::Airy_asymp::Cmplx()'],['../structemsr_1_1detail_1_1jacobi__lattice__t.html#a5f9f9ac180c0d17baefbfcf46dc0be59',1,'emsr::detail::jacobi_lattice_t::Cmplx()'],['../structemsr_1_1detail_1_1jacobi__theta__0__t.html#a236a47625ae4c2dc86d1b1cc92b1d611',1,'emsr::detail::jacobi_theta_0_t::Cmplx()'],['../structemsr_1_1detail_1_1weierstrass__roots__t.html#a1ae4f38f540e7c28d00011e81d8fe116',1,'emsr::detail::weierstrass_roots_t::Cmplx()'],['../structemsr_1_1detail_1_1weierstrass__invariants__t.html#af969a24b8a5709d50ac12fff146d2c12',1,'emsr::detail::weierstrass_invariants_t::Cmplx()']]],
-  ['const_5fiterator_1315',['const_iterator',['../structemsr_1_1stirling__1__t.html#a8fcdc0f792fdea752adb64db20244f5a',1,'emsr::stirling_1_t::const_iterator()'],['../structemsr_1_1stirling__2__t.html#afcdf4f05c67f3ea23cb79a5e7d939344',1,'emsr::stirling_2_t::const_iterator()']]]
+  ['iterator_1258',['iterator',['../structemsr_1_1stirling__1__t.html#a28663ea66a6a38511a48904e54ab25e7',1,'emsr::stirling_1_t::iterator()'],['../structemsr_1_1stirling__2__t.html#aa7b03a68e688b83597998022e6b621e6',1,'emsr::stirling_2_t::iterator()']]]
 ];

@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['fock_5fairy_5ft_703',['fock_airy_t',['../structemsr_1_1fock__airy__t.html',1,'emsr']]],
-  ['fp_5fis_5finteger_5ft_704',['fp_is_integer_t',['../structemsr_1_1fp__is__integer__t.html',1,'emsr']]]
+  ['gamma_5finc_5ft_646',['gamma_inc_t',['../structemsr_1_1gamma__inc__t.html',1,'emsr']]],
+  ['gamma_5ftemme_5ft_647',['gamma_temme_t',['../structemsr_1_1gamma__temme__t.html',1,'emsr']]],
+  ['gappa_5fpq_5ft_648',['gappa_pq_t',['../structemsr_1_1gappa__pq__t.html',1,'emsr']]],
+  ['gegenbauer_5ft_649',['gegenbauer_t',['../structemsr_1_1gegenbauer__t.html',1,'emsr']]]
 ];
