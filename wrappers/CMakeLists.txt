@@ -32,10 +32,12 @@ set(EMSR_LIBRARIES
   cxx_integration
   cxx_float128)
 
+find_package(Boost REQUIRED)
+
 add_library(wrap_boost SHARED wrap_boost.cpp)
 target_link_libraries(wrap_boost ${EMSR_LIBRARIES})
-target_include_directories(wrap_boost PUBLIC .)
-
+target_include_directories(wrap_boost PUBLIC . ${Boost_INCLUDE_DIRS})
+message(STATUS "Boost_INCLUDE_DIRS = ${Boost_INCLUDE_DIRS}")
 
 set(GSL_ROOT_DIR /usr/local)
 find_package(GSL REQUIRED)
