@@ -24,7 +24,7 @@ jobs:
         submodules: recursive
 
     - name: Doxygen
-      run: npm install -g doxygen
+      uses: mattnotmitt/doxygen-action@v1.9.2
 
     # Download and install boost
     - name: Install boost
