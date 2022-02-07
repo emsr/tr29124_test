@@ -58,21 +58,21 @@ namespace detail
       using value_type = Tp;
 
       lerch_term(value_type z, value_type s, value_type a)
-      : _M_z{z}, _M_s{s}, _M_a{a}
+      : m_z{z}, m_s{s}, m_a{a}
       { }
 
       value_type
       operator()(std::size_t i) const
       {
-	return std::pow(_M_z, value_type(i))
-	     / std::pow(_M_a + value_type(i), _M_s);
+	return std::pow(m_z, value_type(i))
+	     / std::pow(m_a + value_type(i), m_s);
       }
 
     private:
 
-      value_type _M_z;
-      value_type _M_s;
-      value_type _M_a;
+      value_type m_z;
+      value_type m_s;
+      value_type m_a;
     };
 
   /**
@@ -128,32 +128,32 @@ namespace detail
       const auto s_eps = emsr::epsilon(s);
       constexpr auto s_maxit = 1000u;
 
-      emsr::WenigerDeltaSum<emsr::VanWijngaardenSum<Tp>> _WDvW;
+      emsr::WenigerDeltaSum<emsr::VanWijngaardenSum<Tp>> WDvW;
       if (z >= Tp{0})
 	{
 	  using lerch_t = lerch_term<Tp>;
 	  using lerch_cmp_t = emsr::VanWijngaardenCompressor<lerch_t>;
-	  auto _VwT = lerch_cmp_t(lerch_t(z, s, a));
+	  auto VwT = lerch_cmp_t(lerch_t(z, s, a));
 	  for (auto k = 0u; k < s_maxit; ++k)
 	    {
-	      auto term = _VwT[k];
-	      _WDvW += term;
-	      if (std::abs(term) < s_eps * std::abs(_WDvW()))
+	      auto term = VwT[k];
+	      WDvW += term;
+	      if (std::abs(term) < s_eps * std::abs(WDvW()))
 		break;
 	    }
-	  return _WDvW();
+	  return WDvW();
 	}
       else
 	{
-	  auto _LT = lerch_term<Tp>(z, s, a);
+	  auto LT = lerch_term<Tp>(z, s, a);
 	  for (auto k = 0u; k < s_maxit; ++k)
 	    {
-	      auto term = _LT(k);
-	      _WDvW += term;
-	      if (std::abs(term) < s_eps * std::abs(_WDvW()))
+	      auto term = LT(k);
+	      WDvW += term;
+	      if (std::abs(term) < s_eps * std::abs(WDvW()))
 		break;
 	    }
-	  return _WDvW();
+	  return WDvW();
 	}
     }
 

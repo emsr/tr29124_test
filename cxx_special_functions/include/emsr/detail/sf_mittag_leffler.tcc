@@ -140,7 +140,7 @@ namespace detail
     std::complex<Tp>
     mittag_leffler(Tp alpha, Tp beta, const std::complex<Tp>& z)
     {
-      using _Cmplx = std::complex<Tp>;
+      using Cmplx = std::complex<Tp>;
       const auto s_eps = emsr::epsilon(alpha);
       const auto s_2pi = emsr::tau_v<Tp>;
       const auto s_pi = emsr::pi_v<Tp>;
@@ -166,7 +166,7 @@ namespace detail
 	  const auto rho0 = std::pow(z, Tp{1} / Tp(k0));
 	  const auto lamb = s_2pi / Tp(k0);
 
-	  auto E = _Cmplx{0};
+	  auto E = Cmplx{0};
 	  for (auto k = 0u; k < k0; ++k)
 	    {
 	      auto zk = rho0 * std::polar(Tp{1}, lamb * Tp(k));
@@ -181,8 +181,8 @@ namespace detail
 	  unsigned int k0 = std::max(std::ceil((Tp{1} - beta) / alpha),
 				std::ceil(std::log(s_eps * (Tp{1} - az))
 					    / std::log(az)));
-	  auto E = _Cmplx{0};
-	  auto zk = _Cmplx{1};
+	  auto E = Cmplx{0};
+	  auto zk = Cmplx{1};
 	  for (auto k = 0u; k <= k0; ++k)
 	    {
 	      const auto arg = beta + alpha * k;
@@ -197,8 +197,8 @@ namespace detail
       else if (az > std::floor(Tp{10} + Tp{5} * alpha))
 	{
 	  unsigned int k0 = std::floor(-std::log(s_eps) / std::log(az));
-	  auto E = _Cmplx{0};
-	  auto zk = _Cmplx{1};
+	  auto E = Cmplx{0};
+	  auto zk = Cmplx{1};
 	  for (auto k = 1u; k <= k0; ++k)
 	    {
 	      zk /= z;
@@ -295,7 +295,7 @@ namespace detail
     mittag_leffler_deriv(Tp alpha, Tp beta,
 			   const std::complex<Tp>& z)
     {
-      using _Cmplx = std::complex<Tp>;
+      using Cmplx = std::complex<Tp>;
       const auto s_eps = emsr::epsilon(alpha);
 
       const auto az = std::abs(z);
@@ -322,8 +322,8 @@ namespace detail
 	  unsigned int k0 = std::max(k1,
 				 std::ceil(std::log(s_eps * (Tp{1} - az))
 					 / std::log(az)));
-	  auto Ep = _Cmplx{0};
-	  auto zk = _Cmplx{1};
+	  auto Ep = Cmplx{0};
+	  auto zk = Cmplx{1};
 	  for (auto k = 0u; k <= k0; ++k)
 	    {
 	      Ep += Tp(k + 1) * zk

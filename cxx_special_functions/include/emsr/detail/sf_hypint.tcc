@@ -45,7 +45,7 @@ namespace detail
   ////FIXME!!!!
   template<typename Tp>
     void
-    chshint_cont_frac(Tp t, Tp& _Chi, Tp& _Shi)
+    chshint_cont_frac(Tp t, Tp& Chi, Tp& Shi)
     {
       const unsigned int s_max_iter = 100;
       const auto s_eps = Tp{5} * emsr::epsilon(t);
@@ -73,8 +73,8 @@ namespace detail
 	  ++i;
 	}
       h *= std::polar(Tp{1}, -t);
-      _Chi = -h.real();
-      _Shi = s_pi_2 + h.imag();
+      Chi = -h.real();
+      Shi = s_pi_2 + h.imag();
 
       return;
     }
@@ -87,7 +87,7 @@ namespace detail
    */
   template<typename Tp>
     void
-    chshint_series(Tp t, Tp& _Chi, Tp& _Shi)
+    chshint_series(Tp t, Tp& Chi, Tp& Shi)
     {
       const auto s_max_iter = 100;
       const auto s_eps = Tp{5} * emsr::epsilon(t);
@@ -95,12 +95,12 @@ namespace detail
       const auto s_gamma_e = emsr::egamma_v<Tp>;
 
       // Evaluate Chi and Shi by series simultaneously.
-      Tp _Csum(0), _Ssum(0);
+      Tp Csum(0), Ssum(0);
       if (t * t < s_fp_min)
 	{
 	  // Avoid underflow.
-	  _Csum = Tp{0};
-	  _Ssum = t;
+	  Csum = Tp{0};
+	  Ssum = t;
 	}
       else
 	{
@@ -117,13 +117,13 @@ namespace detail
 	      Tp err = term / std::abs(sum);
 	      if (odd)
 		{
-		  _Ssum = sum;
-		  sum = _Csum;
+		  Ssum = sum;
+		  sum = Csum;
 		}
 	      else
 		{
-		  _Csum = sum;
-		  sum = _Ssum;
+		  Csum = sum;
+		  sum = Ssum;
 		}
 	      if (err < s_eps)
 		break;
@@ -133,8 +133,8 @@ namespace detail
 		throw std::runtime_error("chshint_series: Series evaluation failed");
 	    }
 	}
-      _Chi = s_gamma_e + std::log(t) + _Csum;
-      _Shi = _Ssum;
+      Chi = s_gamma_e + std::log(t) + Csum;
+      Shi = Ssum;
 
       return;
     }
@@ -156,7 +156,7 @@ namespace detail
    */
   template<typename Tp>
     std::pair<Tp, Tp>
-    chshint(Tp x, Tp& _Chi, Tp& _Shi)
+    chshint(Tp x, Tp& Chi, Tp& Shi)
     {
       const auto s_NaN = emsr::quiet_NaN(x);
       if (std::isnan(x))
@@ -165,18 +165,18 @@ namespace detail
       auto t = std::abs(x);
       if (t == Tp{0})
 	{
-	  _Chi = -emsr::infinity(x);
-	  _Shi = Tp{0};
+	  Chi = -emsr::infinity(x);
+	  Shi = Tp{0};
 	}
       else if (t > Tp{2})
-	chshint_cont_frac(t, _Chi, _Shi);
+	chshint_cont_frac(t, Chi, Shi);
       else
-	chshint_series(t, _Chi, _Shi);
+	chshint_series(t, Chi, Shi);
 
       if (x < Tp{0})
-	_Shi = -_Shi;
+	Shi = -Shi;
 
-      return std::make_pair(_Chi, _Shi);
+      return std::make_pair(Chi, Shi);
     }
 
 } // namespace detail

@@ -85,23 +85,23 @@ namespace detail
 	return s_num[n];
       else
 	{
-	  std::vector<Tp> _En(n + 1);
-	  _En[0] = Tp{1};
-	  _En[1] = Tp{0};
-	  _En[2] = Tp{-1};
+	  std::vector<Tp> En(n + 1);
+	  En[0] = Tp{1};
+	  En[1] = Tp{0};
+	  En[2] = Tp{-1};
 
 	  for (auto i = 3u; i <= n; ++i)
 	    {
-	      _En[i] = 0;
+	      En[i] = 0;
 
 	      if (i % 2 == 0)
 		{
 		  for (auto j = 2u; j <= i; j += 2u)
-		    _En[i] -= binomial<Tp>(i, j)
-			      * _En[i - j];
+		    En[i] -= binomial<Tp>(i, j)
+			      * En[i - j];
 		}
 	    }
-	  return _En[n];
+	  return En[n];
 	}
     }
 
@@ -140,10 +140,10 @@ namespace detail
 	  auto bx1 = bernoulli(n + 1, x );
 	  auto bx2 = bernoulli(n + 1, Tp{0.5L} * x );
 
-	  auto _E_n = Tp{2} * (bx1 - bx2 * std::pow(Tp{2}, Tp(n + 1)))
+	  auto E_n = Tp{2} * (bx1 - bx2 * std::pow(Tp{2}, Tp(n + 1)))
 		    / Tp(n + 1);
 
-	  return _E_n;
+	  return E_n;
 	}
     }
 
@@ -173,18 +173,18 @@ namespace detail
       else
 	{
 	  // Start recursion with n == 2 (already returned above).
-	  std::vector<Tp> _Aold(m + 1), _Anew(m + 1);
-	  _Aold[0] = Tp{1};
-	  _Anew[0] = Tp{1};
-	  _Anew[1] = Tp{1};
+	  std::vector<Tp> Aold(m + 1), Anew(m + 1);
+	  Aold[0] = Tp{1};
+	  Anew[0] = Tp{1};
+	  Anew[1] = Tp{1};
 	  for (auto in = 3u; in <= n; ++in)
 	    {
-	      std::swap(_Aold, _Anew);
+	      std::swap(Aold, Anew);
 	      for (auto im = 1u; im <= m; ++im)
-		_Anew[im] = (in - im) * _Aold[im - 1]
-			    + (im + 1) * _Aold[im];
+		Anew[im] = (in - im) * Aold[im - 1]
+			    + (im + 1) * Aold[im];
 	    }
-	  return _Anew[m];
+	  return Anew[m];
 	}
     }
 
@@ -224,17 +224,17 @@ namespace detail
       else
 	{
 	  // Start recursion with n == 2 (already returned above).
-	  std::vector<Tp> _Aold(n + 1), _Anew(n + 1);
-	  _Aold[0] = _Anew[0] = Tp{1};
-	  _Anew[1] = Tp{1};
+	  std::vector<Tp> Aold(n + 1), Anew(n + 1);
+	  Aold[0] = Anew[0] = Tp{1};
+	  Anew[1] = Tp{1};
 	  for (auto in = 3u; in <= n; ++in)
 	    {
-	      std::swap(_Aold, _Anew);
+	      std::swap(Aold, Anew);
 	      for (auto im = 1u; im <= n; ++im)
-		_Anew[im] = (in - im) * _Aold[im - 1]
-			    + (im + 1) * _Aold[im];
+		Anew[im] = (in - im) * Aold[im - 1]
+			    + (im + 1) * Aold[im];
 	    }
-	  return _Anew;
+	  return Anew;
 	}
     }
 
@@ -274,18 +274,18 @@ namespace detail
       else
 	{
 	  // Start recursion with n == 2 (already returned above).
-	  std::vector<Tp> _Aold(m + 1), _Anew(m + 1);
-	  _Aold[0] = Tp{1};
-	  _Anew[0] = Tp{1};
-	  _Anew[1] = Tp{2};
+	  std::vector<Tp> Aold(m + 1), Anew(m + 1);
+	  Aold[0] = Tp{1};
+	  Anew[0] = Tp{1};
+	  Anew[1] = Tp{2};
 	  for (auto in = 3u; in <= n; ++in)
 	    {
-	      std::swap(_Aold, _Anew);
+	      std::swap(Aold, Anew);
 	      for (auto im = 1u; im <= m; ++im)
-		_Anew[im] = (2 * in - im - 1) * _Aold[im - 1]
-			    + (im + 1) * _Aold[im];
+		Anew[im] = (2 * in - im - 1) * Aold[im - 1]
+			    + (im + 1) * Aold[im];
 	    }
-	  return _Anew[m];
+	  return Anew[m];
 	}
     }
 
@@ -330,17 +330,17 @@ namespace detail
       else
 	{
 	  // Start recursion with n == 2 (already returned above).
-	  std::vector<Tp> _Aold(n + 1), _Anew(n + 1);
-	  _Aold[0] = _Anew[0] = Tp{1};
-	  _Anew[1] = Tp{2};
+	  std::vector<Tp> Aold(n + 1), Anew(n + 1);
+	  Aold[0] = Anew[0] = Tp{1};
+	  Anew[1] = Tp{2};
 	  for (auto in = 3u; in <= n; ++in)
 	    {
-	      std::swap(_Aold, _Anew);
+	      std::swap(Aold, Anew);
 	      for (auto im = 1u; im <= n; ++im)
-		_Anew[im] = (2 * in - im - 1) * _Aold[im - 1]
-			    + (im + 1) * _Aold[im];
+		Anew[im] = (2 * in - im - 1) * Aold[im - 1]
+			    + (im + 1) * Aold[im];
 	    }
-	  return _Anew;
+	  return Anew;
 	}
     }
 

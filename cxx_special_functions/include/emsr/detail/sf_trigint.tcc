@@ -47,7 +47,7 @@ namespace detail
    */
   template<typename Tp>
     void
-    sincosint_cont_frac(Tp t, Tp& _Si, Tp& _Ci)
+    sincosint_cont_frac(Tp t, Tp& Si, Tp& Ci)
     {
       const auto s_max_iter = 100;
       const auto s_eps = Tp{5} * emsr::epsilon(t);
@@ -75,8 +75,8 @@ namespace detail
 	  ++i;
 	}
       h *= std::polar(Tp{1}, -t);
-      _Ci = -h.real();
-      _Si = s_pi_2 + h.imag();
+      Ci = -h.real();
+      Si = s_pi_2 + h.imag();
 
       return;
     }
@@ -89,7 +89,7 @@ namespace detail
    */
   template<typename Tp>
     void
-    sincosint_series(Tp t, Tp& _Si, Tp& _Ci)
+    sincosint_series(Tp t, Tp& Si, Tp& Ci)
     {
       const auto s_max_iter = 100;
       const auto s_eps = Tp{5} * emsr::epsilon(t);
@@ -136,8 +136,8 @@ namespace detail
 		throw std::runtime_error("sincosint_series: series evaluation failed");
 	    }
 	}
-      _Si = sums;
-      _Ci = s_gamma_e + std::log(t) + sumc;
+      Si = sums;
+      Ci = s_gamma_e + std::log(t) + sumc;
 
       return;
     }
@@ -152,7 +152,7 @@ namespace detail
    */
   template<typename Tp>
     void
-    sincosint_asymp(Tp t, Tp& _Si, Tp& _Ci)
+    sincosint_asymp(Tp t, Tp& Si, Tp& Ci)
     {
       const auto s_max_iter = 100;
       const auto s_eps = Tp{5} * emsr::epsilon(t);
@@ -192,10 +192,10 @@ namespace detail
 
       auto sint = std::sin(t);
       auto cost = std::cos(t);
-      _Si = s_pi_2
+      Si = s_pi_2
 	  - cost * invt * sume
 	  - sint * invt * sumo;
-      _Ci = sint * invt * sume
+      Ci = sint * invt * sume
 	  - cost * invt * sumo;
 
       return;
@@ -225,23 +225,23 @@ namespace detail
 	return std::make_pair(s_NaN, s_NaN);
 
       auto t = std::abs(x);
-      Tp _Ci, _Si;
+      Tp Ci, Si;
       if (t == Tp{0})
 	{
-	  _Si = Tp{0};
-	  _Ci = -emsr::infinity(x);
+	  Si = Tp{0};
+	  Ci = -emsr::infinity(x);
 	}
       else if (t > Tp{1000}) // Check this!
-	sincosint_asymp(t, _Si, _Ci);
+	sincosint_asymp(t, Si, Ci);
       else if (t > Tp{2})
-	sincosint_cont_frac(t, _Si, _Ci);
+	sincosint_cont_frac(t, Si, Ci);
       else
-	sincosint_series(t, _Si, _Ci);
+	sincosint_series(t, Si, Ci);
 
       if (x < Tp{0})
-	_Si = -_Si;
+	Si = -Si;
 
-      return std::make_pair(_Si, _Ci);
+      return std::make_pair(Si, Ci);
     }
 
 } // namespace detail

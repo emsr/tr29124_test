@@ -64,22 +64,22 @@ namespace detail
     {
       if (m > s_num_factorials<Tp>)
 	{
-	  auto _S2 = Tp{0};
+	  auto S2 = Tp{0};
 	  for (auto k = 0u; k <= m; ++k)
 	    {
 	      auto lf1 = log_factorial<Tp>(k);
 	      auto lf2 = log_factorial<Tp>(m - k);
-	      _S2 += ((m - k) & 1 ? Tp{-1} : Tp{1})
+	      S2 += ((m - k) & 1 ? Tp{-1} : Tp{1})
 		   * std::exp(n * std::log(k) - lf1 - lf2);
 	    }
-	  return _S2;
+	  return S2;
 	}
       else
 	{
-	  auto _S2 = Tp{0};
+	  auto S2 = Tp{0};
 	  for (auto k = 0u; k <= m; ++k)
 	    {
-	      _S2 += ((m - k) & 1 ? Tp{-1} : Tp{1})
+	      S2 += ((m - k) & 1 ? Tp{-1} : Tp{1})
 		   * std::pow(k, n)
 		   / factorial<Tp>(k)
 		   / factorial<Tp>(m - k);
@@ -87,7 +87,7 @@ namespace detail
 	  // @todo Only round if the sum is less than
 	  // the maximum representable integer.
 	  // Find or make a tool for this.
-	  return std::nearbyint(_S2);
+	  return std::nearbyint(S2);
 	}
     }
 
@@ -265,17 +265,17 @@ namespace detail
 	return Tp(n == 0);
       else
 	{
-	  std::vector<Tp> _Sold(m + 1), _Snew(m + 1);
-	  _Sold[1] = Tp{1};
+	  std::vector<Tp> Sold(m + 1), Snew(m + 1);
+	  Sold[1] = Tp{1};
 	  if (n == 1)
-	    return _Sold[m];
+	    return Sold[m];
 	  for (auto in = 1u; in <= n; ++in)
 	    {
 	      for (auto im = 1u; im <= m; ++im)
-		_Snew[im] = _Sold[im - 1] - in * _Sold[im];
-	      std::swap(_Sold, _Snew);
+		Snew[im] = Sold[im - 1] - in * Sold[im];
+	      std::swap(Sold, Snew);
 	    }
-	  return _Snew[m];
+	  return Snew[m];
 	}
     }
 
@@ -340,18 +340,18 @@ namespace detail
 	return std::vector<Tp>(1, Tp{1});
       else
 	{
-	  std::vector<Tp> _Sold(n + 1), _Snew(n + 1);
-	  _Sold[0] = _Snew[0] = Tp{0};
-	  _Sold[1] = Tp{1};
+	  std::vector<Tp> Sold(n + 1), Snew(n + 1);
+	  Sold[0] = Snew[0] = Tp{0};
+	  Sold[1] = Tp{1};
 	  if (n == 1)
-	    return _Sold;
+	    return Sold;
 	  for (auto in = 1u; in <= n; ++in)
 	    {
 	      for (auto im = 1u; im <= n; ++im)
-		_Snew[im] = _Sold[im - 1] - in * _Sold[im];
-	      std::swap(_Sold, _Snew);
+		Snew[im] = Sold[im - 1] - in * Sold[im];
+	      std::swap(Sold, Snew);
 	    }
-	  return _Snew;
+	  return Snew;
 	}
     }
 
@@ -418,10 +418,10 @@ namespace detail
 	return (k == 0 ? Tp{1} : Tp{0});
       else
 	{
-	  Tp _Lnn = 1;
+	  Tp Lnn = 1;
 	  for (unsigned int i = 1u; i <= n - k; ++i)
-	    _Lnn *= Tp(n - i + 1) * Tp(n - i) / Tp(i);
-	  return _Lnn;
+	    Lnn *= Tp(n - i + 1) * Tp(n - i) / Tp(i);
+	  return Lnn;
 	}
     }
 
@@ -451,15 +451,15 @@ namespace detail
 	return std::vector<Tp>(1, Tp{1});
       else
 	{
-	  std::vector<Tp> _L(n + 1);
-	  Tp _Lnn = 1;
-	  _L[n] = _Lnn;
+	  std::vector<Tp> L(n + 1);
+	  Tp Lnn = 1;
+	  L[n] = Lnn;
 	  for (unsigned int i = 1u; i <= n; ++i)
 	    {
-	      _Lnn *= Tp(n - i + 1) * Tp(n - i) / Tp(i);
-	      _L[n - i] = _Lnn;
+	      Lnn *= Tp(n - i + 1) * Tp(n - i) / Tp(i);
+	      L[n - i] = Lnn;
 	    }
-	  return _L;
+	  return L;
 	}
     }
 
@@ -512,14 +512,14 @@ namespace detail
    * @f]
    * where @f$ S_n^{(k)} @f$ are the Stirling numbers of the second kind.
    */
-  template<typename Tp, typename _Up>
-    inline _Up
-    bell(unsigned int n, _Up x)
+  template<typename Tp, typename Up>
+    inline Up
+    bell(unsigned int n, Up x)
     {
-      const auto _Sn = stirling_2<Tp>(n);
-      auto bell = _Sn[n];
+      const auto Sn = stirling_2<Tp>(n);
+      auto bell = Sn[n];
       for (unsigned int i = 1; i < n; ++i)
-	bell = _Sn[n - i] + x * bell;
+	bell = Sn[n - i] + x * bell;
       return bell;
     }
 

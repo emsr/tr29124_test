@@ -241,8 +241,8 @@ namespace detail
 			   std::complex<Tp>& num1d3, std::complex<Tp>& num2d3,
 			   std::complex<Tp>& p, std::complex<Tp>& p2,
 			   std::complex<Tp>& etm3h, std::complex<Tp>& etrat,
-			   std::complex<Tp>& _Aip, std::complex<Tp>& o4dp,
-			   std::complex<Tp>& _Aim, std::complex<Tp>& o4dm,
+			   std::complex<Tp>& Aip, std::complex<Tp>& o4dp,
+			   std::complex<Tp>& Aim, std::complex<Tp>& o4dm,
 			   std::complex<Tp>& od2p, std::complex<Tp>& od0dp,
 			   std::complex<Tp>& od2m, std::complex<Tp>& od0dm)
     {
@@ -270,8 +270,8 @@ namespace detail
 	  auto airyp = Airy<Cmplx>()(argp);
 	  auto airym = Airy<Cmplx>()(argm);
 	  // Compute partial outer terms in expansions.
-	  _Aip = airyp.Ai_value;
-	  _Aim = airym.Ai_value;
+	  Aip = airyp.Ai_value;
+	  Aim = airym.Ai_value;
 	  o4dp = -zetamhf * num4d3 * e2pd3 * airyp.Ai_deriv;
 	  o4dm = -zetamhf * num4d3 * d2pd3 * airym.Ai_deriv;
 	  od2p = -zetaphf * num2d3 * airyp.Ai_value;
@@ -298,31 +298,31 @@ namespace detail
    * @param[in] p2     
    * @param[in] num2   
    * @param[in] zetam3hf 
-   * @param[in] _Aip     The Airy function value @f$ Ai() @f$.
+   * @param[in] Aip     The Airy function value @f$ Ai() @f$.
    * @param[in] o4dp   
-   * @param[in] _Aim     The Airy function value @f$ Ai() @f$.
+   * @param[in] Aim     The Airy function value @f$ Ai() @f$.
    * @param[in] o4dm   
    * @param[in] od2p   
    * @param[in] od0dp  
    * @param[in] od2m   
    * @param[in] od0dm  
    * @param[in] eps    The error tolerance
-   * @param[out] _H1sum  The Hankel function of the first kind.
-   * @param[out] _H1psum The derivative of the Hankel function of the first kind.
-   * @param[out] _H2sum  The Hankel function of the second kind.
-   * @param[out] _H2psum The derivative of the Hankel function of the second kind.
+   * @param[out] H1sum  The Hankel function of the first kind.
+   * @param[out] H1psum The derivative of the Hankel function of the first kind.
+   * @param[out] H2sum  The Hankel function of the second kind.
+   * @param[out] H2psum The derivative of the Hankel function of the second kind.
    */
   template<typename Tp>
     void
     hankel_uniform_sum(const std::complex<Tp>& p, const std::complex<Tp>& p2,
 			const std::complex<Tp>& num2, const std::complex<Tp>& zetam3hf,
-			const std::complex<Tp>& _Aip, const std::complex<Tp>& o4dp,
-			const std::complex<Tp>& _Aim, const std::complex<Tp>& o4dm,
+			const std::complex<Tp>& Aip, const std::complex<Tp>& o4dp,
+			const std::complex<Tp>& Aim, const std::complex<Tp>& o4dm,
 			const std::complex<Tp>& od2p, const std::complex<Tp>& od0dp,
 			const std::complex<Tp>& od2m, const std::complex<Tp>& od0dm,
 			 Tp eps,
-			 std::complex<Tp>& _H1sum, std::complex<Tp>& _H1psum,
-			 std::complex<Tp>& _H2sum, std::complex<Tp>& _H2psum)
+			 std::complex<Tp>& H1sum, std::complex<Tp>& H1psum,
+			 std::complex<Tp>& H2sum, std::complex<Tp>& H2psum)
     {
       using Cmplx = std::complex<Tp>;
 
@@ -567,57 +567,57 @@ namespace detail
       // B_k and C_k are computed up to -zeta^(-1/2) -zeta^(1/2) factors,
       // respectively.  These recurring factors are included as appropriate
       // in the outer factors, thus saving repeated multiplications by them.
-      auto _A0 = zone;
-      auto _Ak = u[1]
+      auto A0 = zone;
+      auto Ak = u[1]
 	      + zetam3hf * (s_mu[1] * zetam3hf + s_mu[0] * u[0]);
-      auto _B0 = u[0] + s_lambda[0] * zetam3hf;
-      auto _Bk = u[2] + zetam3hf * (zetam3hf * (s_lambda[2] * zetam3hf
+      auto B0 = u[0] + s_lambda[0] * zetam3hf;
+      auto Bk = u[2] + zetam3hf * (zetam3hf * (s_lambda[2] * zetam3hf
 					 + s_lambda[1] * u[0])
 		     + s_lambda[0] * u[1]);
-      auto _C0 = v[0] + s_mu[0] * zetam3hf;
-      auto _Ck = v[2] + zetam3hf * (zetam3hf * (s_mu[2] * zetam3hf
+      auto C0 = v[0] + s_mu[0] * zetam3hf;
+      auto Ck = v[2] + zetam3hf * (zetam3hf * (s_mu[2] * zetam3hf
 					 + s_mu[1] * v[0])
 		     + s_mu[0] * v[1]);
-      auto _D0 = zone;
-      auto _Dk = v[1] + zetam3hf * (s_lambda[1] * zetam3hf
+      auto D0 = zone;
+      auto Dk = v[1] + zetam3hf * (s_lambda[1] * zetam3hf
 			+ s_lambda[0] * v[0]);
 
       // Compute sum of first two terms to initialize the Kahan summing scheme.
-      emsr::KahanSum<Cmplx> _Asum;
-      emsr::KahanSum<Cmplx> _Bsum;
-      emsr::KahanSum<Cmplx> _Csum;
-      emsr::KahanSum<Cmplx> _Dsum;
-      _Asum += _A0;
-      _Bsum += _B0;
-      _Csum += _C0;
-      _Dsum += _D0;
-      _Asum += _Ak * num2;
-      _Bsum += _Bk * num2;
-      _Csum += _Ck * num2;
-      _Dsum += _Dk * num2;
+      emsr::KahanSum<Cmplx> Asum;
+      emsr::KahanSum<Cmplx> Bsum;
+      emsr::KahanSum<Cmplx> Csum;
+      emsr::KahanSum<Cmplx> Dsum;
+      Asum += A0;
+      Bsum += B0;
+      Csum += C0;
+      Dsum += D0;
+      Asum += Ak * num2;
+      Bsum += Bk * num2;
+      Csum += Ck * num2;
+      Dsum += Dk * num2;
 
       // Combine sums in form appearing in expansions.
-      _H1sum = _Aip * _Asum() + o4dp * _Bsum();
-      _H2sum = _Aim * _Asum() + o4dm * _Bsum();
-      _H1psum = od2p * _Csum() + od0dp * _Dsum();
-      _H2psum = od2m * _Csum() + od0dm * _Dsum();
+      H1sum = Aip * Asum() + o4dp * Bsum();
+      H2sum = Aim * Asum() + o4dm * Bsum();
+      H1psum = od2p * Csum() + od0dp * Dsum();
+      H2psum = od2m * Csum() + od0dm * Dsum();
 
-      auto _H1save = _Aip * _A0 + o4dp * _B0;
-      auto _H2save = _Aim * _A0 + o4dm * _B0;
-      auto _H1psave = od2p * _C0 + od0dp * _D0;
-      auto _H2psave = od2m * _C0 + od0dm * _D0;
+      auto H1save = Aip * A0 + o4dp * B0;
+      auto H2save = Aim * A0 + o4dm * B0;
+      auto H1psave = od2p * C0 + od0dp * D0;
+      auto H2psave = od2m * C0 + od0dm * D0;
 
       auto converged
-	= (emsr::l1_norm(_H1sum - _H1save) < eps * emsr::l1_norm(_H1sum)
-	&& emsr::l1_norm(_H2sum - _H2save) < eps * emsr::l1_norm(_H2sum)
-	&& emsr::l1_norm(_H1psum - _H1psave) < eps * emsr::l1_norm(_H1psum)
-	&& emsr::l1_norm(_H2psum - _H2psave) < eps * emsr::l1_norm(_H2psum));
+	= (emsr::l1_norm(H1sum - H1save) < eps * emsr::l1_norm(H1sum)
+	&& emsr::l1_norm(H2sum - H2save) < eps * emsr::l1_norm(H2sum)
+	&& emsr::l1_norm(H1psum - H1psave) < eps * emsr::l1_norm(H1psum)
+	&& emsr::l1_norm(H2psum - H2psave) < eps * emsr::l1_norm(H2psum));
 
       // Save current sums for next convergence test.
-      _H1save = _H1sum;
-      _H2save = _H2sum;
-      _H1psave = _H1psum;
-      _H2psave = _H2psum;
+      H1save = H1sum;
+      H2save = H2sum;
+      H1psave = H1psum;
+      H2psave = H2psum;
 
       // Maintain index into u_k and v_k coefficients.
       auto index = 10;
@@ -690,48 +690,48 @@ namespace detail
 	  indexp += i2kp1 + 3;
 
 	  // Start Horner's rule evaluation of A, B, C, and D polynomials.
-	  _Ak = s_mu[i2k] * zetam3hf + s_mu[i2km1] * u[0];
-	  _Dk = s_lambda[i2k] * zetam3hf + s_lambda[i2km1] * v[0];
-	  _Bk = s_lambda[i2kp1] * zetam3hf + s_lambda[i2k] * u[0];
-	  _Ck = s_mu[i2kp1] * zetam3hf + s_mu[i2k] * v[0];
+	  Ak = s_mu[i2k] * zetam3hf + s_mu[i2km1] * u[0];
+	  Dk = s_lambda[i2k] * zetam3hf + s_lambda[i2km1] * v[0];
+	  Bk = s_lambda[i2kp1] * zetam3hf + s_lambda[i2k] * u[0];
+	  Ck = s_mu[i2kp1] * zetam3hf + s_mu[i2k] * v[0];
 
 	  // Do partial Horner's rule evaluations of A, B, C, and D.
 	  for(auto l = 1; l <= i2km1; ++l)
 	    {
 	      auto i2kl = i2km1 - l;
-	      _Ak = _Ak * zetam3hf + s_mu[i2kl] * u[l];
-	      _Dk = _Dk * zetam3hf + s_lambda[i2kl] * v[l];
+	      Ak = Ak * zetam3hf + s_mu[i2kl] * u[l];
+	      Dk = Dk * zetam3hf + s_lambda[i2kl] * v[l];
 	      i2kl = i2k - l;
-	      _Bk = _Bk * zetam3hf + s_lambda[i2kl] * u[l];
-	      _Ck = _Ck * zetam3hf + s_mu[i2kl] * v[l];
+	      Bk = Bk * zetam3hf + s_lambda[i2kl] * u[l];
+	      Ck = Ck * zetam3hf + s_mu[i2kl] * v[l];
 	    }
 
 	  // Complete the evaluations of A, B, C, and D.
-	  _Ak = _Ak * zetam3hf + u[i2k];
-	  _Dk = _Dk * zetam3hf + v[i2k];
-	  _Bk = zetam3hf
-	      * (_Bk * zetam3hf + s_lambda[0] * u[i2k]) + u[i2kp1];
-	  _Ck = zetam3hf
-	      * (_Ck * zetam3hf + s_mu[0] * v[i2k]) + v[i2kp1];
+	  Ak = Ak * zetam3hf + u[i2k];
+	  Dk = Dk * zetam3hf + v[i2k];
+	  Bk = zetam3hf
+	      * (Bk * zetam3hf + s_lambda[0] * u[i2k]) + u[i2kp1];
+	  Ck = zetam3hf
+	      * (Ck * zetam3hf + s_mu[0] * v[i2k]) + v[i2kp1];
 
 	  // Evaluate new terms for sums.
 	  num2k *= num2;
-	  _Asum += _Ak * num2k;
-	  _Bsum += _Bk * num2k;
-	  _Csum += _Ck * num2k;
-	  _Dsum += _Dk * num2k;
+	  Asum += Ak * num2k;
+	  Bsum += Bk * num2k;
+	  Csum += Ck * num2k;
+	  Dsum += Dk * num2k;
 
 	  // Combine sums in form appearing in expansions.
-	  _H1sum  = _Aip  * _Asum()  + o4dp * _Bsum();
-	  _H2sum  = _Aim  * _Asum()  + o4dm * _Bsum();
-	  _H1psum = od2p * _Csum() + od0dp * _Dsum();
-	  _H2psum = od2m * _Csum() + od0dm * _Dsum();
+	  H1sum  = Aip  * Asum()  + o4dp * Bsum();
+	  H2sum  = Aim  * Asum()  + o4dm * Bsum();
+	  H1psum = od2p * Csum() + od0dp * Dsum();
+	  H2psum = od2m * Csum() + od0dm * Dsum();
 
 	  // If convergence criteria met this term, see if it was before.
-	  if (emsr::l1_norm(_H1sum - _H1save) < eps * emsr::l1_norm(_H1sum)
-	   && emsr::l1_norm(_H2sum - _H2save) < eps * emsr::l1_norm(_H2sum)
-	   && emsr::l1_norm(_H1psum - _H1psave) < eps * emsr::l1_norm(_H1psum)
-	   && emsr::l1_norm(_H2psum - _H2psave) < eps * emsr::l1_norm(_H2psum))
+	  if (emsr::l1_norm(H1sum - H1save) < eps * emsr::l1_norm(H1sum)
+	   && emsr::l1_norm(H2sum - H2save) < eps * emsr::l1_norm(H2sum)
+	   && emsr::l1_norm(H1psum - H1psave) < eps * emsr::l1_norm(H1psum)
+	   && emsr::l1_norm(H2psum - H2psave) < eps * emsr::l1_norm(H2psum))
 	    {
 	      if (converged) // Converged twice in a row - done!
 		return;
@@ -741,10 +741,10 @@ namespace detail
 	  else
 	    converged = false;
 	  // Save combined sums for comparison next iteration.
-	  _H1save = _H1sum;
-	  _H2save = _H2sum;
-	  _H1psave = _H1psum;
-	  _H2psave = _H2psum;
+	  H1save = H1sum;
+	  H2save = H2sum;
+	  H1psave = H1psum;
+	  H2psave = H2psum;
 	}
 
       throw std::runtime_error("hankel_uniform_sum: all allowable terms used");
@@ -794,40 +794,40 @@ namespace detail
       // for the Hankel functions and their derivatives along with
       // other important functions of nu and z.
       Cmplx p, p2,
-	    __1dnsq, etm3h, _Aip, o4dp, _Aim, o4dm,
+	    __1dnsq, etm3h, Aip, o4dp, Aim, o4dm,
 	    od2p, od0dp, od0dm, tmp, zhat, num1d3,
 	    num2d3, etrat, od2m, r_factor;
       hankel_uniform_outer(nu, z, epsai, zhat, __1dnsq, num1d3,
 			     num2d3, p, p2, etm3h, etrat,
-			     _Aip, o4dp, _Aim, o4dm, od2p,
+			     Aip, o4dp, Aim, o4dm, od2p,
 			     od0dp, od2m, od0dm);
 
       // Compute further terms in the expansions in their appropriate linear combinations.
-      Cmplx _H1, _H2, _H1p, _H2p;
+      Cmplx H1, H2, H1p, H2p;
       hankel_uniform_sum(p, p2, __1dnsq, etm3h,
-			   _Aip, o4dp, _Aim, o4dm,
+			   Aip, o4dp, Aim, o4dm,
 			   od2p, od0dp, od2m, od0dm, eps,
-			   _H1, _H1p, _H2, _H2p);
+			   H1, H1p, H2, H2p);
 
       // Assemble approximations.
       tmp = etrat * num1d3;
-      _H1 = con1m * tmp * _H1;
-      _H2 = con1p * tmp * _H2;
+      H1 = con1m * tmp * H1;
+      H2 = con1p * tmp * H2;
       tmp = num2d3 / (zhat * etrat);
-      _H1p = con2p * tmp * _H1p;
-      _H2p = con2m * tmp * _H2p;
+      H1p = con2p * tmp * H1p;
+      H2p = con2m * tmp * H2p;
 
       if (nuswitch)
 	{
 	  r_factor = std::exp(s_j * nu * s_pi);
-	  _H1  *= r_factor;
-	  _H1p *= r_factor;
-	  _H2  /= r_factor;
-	  _H2p /= r_factor;
+	  H1  *= r_factor;
+	  H1p *= r_factor;
+	  H2  /= r_factor;
+	  H2p /= r_factor;
 	  nu  = -nu;
 	}
 
-      return hank_t{nu, z, _H1, _H1p, _H2, _H2p};
+      return hank_t{nu, z, H1, H1p, H2, H2p};
     }
 
 
@@ -864,24 +864,24 @@ namespace detail
 			   nu - Cmplx{r, Tp()},
 			   nu - Cmplx{Tp(), r}};
 
-	  auto _H1  = Cmplx{};
-	  auto _H2  = Cmplx{};
-	  auto _H1p = Cmplx{};
-	  auto _H2p = Cmplx{};
+	  auto H1  = Cmplx{};
+	  auto H2  = Cmplx{};
+	  auto H1p = Cmplx{};
+	  auto H2p = Cmplx{};
 	  for (auto tnu : s_anu)
 	    {
 	      auto ho = hankel_uniform_olver(tnu, z);
-	      _H1  += ho.H1_value;
-	      _H1p += ho.H1_deriv;
-	      _H2  += ho.H2_value;
-	      _H2p += ho.H2_deriv;
+	      H1  += ho.H1_value;
+	      H1p += ho.H1_deriv;
+	      H2  += ho.H2_value;
+	      H2p += ho.H2_deriv;
 	    }
-	  _H1  /= Tp{4};
-	  _H2  /= Tp{4};
-	  _H1p /= Tp{4};
-	  _H2p /= Tp{4};
+	  H1  /= Tp{4};
+	  H2  /= Tp{4};
+	  H1p /= Tp{4};
+	  H2p /= Tp{4};
 
-	  return hank_t{nu, z, _H1, _H1p, _H2, _H2p};
+	  return hank_t{nu, z, H1, H1p, H2, H2p};
 	}
     }
 
@@ -927,51 +927,51 @@ namespace detail
       auto s2 = std::exp(-nu * (thalpa - alpha) + s_j * s_pi / Tp{4})
 		/ denom;
 
-      Cmplx _H1, _H1p, _H2, _H2p;
+      Cmplx H1, H1p, H2, H2p;
       if (indexr == 0)
 	{
-	  _H1 = Tp{0.5L} * s1 - s2;
-	  _H2 = Tp{0.5L} * s1 + s2;
-	  _H1p = snhalp * (Tp{0.5L} * s1 + s2);
-	  _H2p = snhalp * (Tp{0.5L} * s1 - s2);
+	  H1 = Tp{0.5L} * s1 - s2;
+	  H2 = Tp{0.5L} * s1 + s2;
+	  H1p = snhalp * (Tp{0.5L} * s1 + s2);
+	  H2p = snhalp * (Tp{0.5L} * s1 - s2);
 	}
       else if (indexr == 1)
 	{
-	  _H1 = s1;
-	  _H2 = s2;
-	  _H1p = +snhalp * s1;
-	  _H2p = -snhalp * s2;
+	  H1 = s1;
+	  H2 = s2;
+	  H1p = +snhalp * s1;
+	  H2p = -snhalp * s2;
 	}
       else if (indexr == 2)
 	{
 	  auto jdbye = s1 / Tp{2};
-	  _H2 = s2;
-	  _H1 = Tp{2} * jdbye - _H2;
-	  _H1p = +snhalp * (s1 + s2);
-	  _H2p = -snhalp * s2;
+	  H2 = s2;
+	  H1 = Tp{2} * jdbye - H2;
+	  H1p = +snhalp * (s1 + s2);
+	  H2p = -snhalp * s2;
 	}
       else if (indexr == 3)
 	{
-	  _H1 = s1;
-	  _H2 = s2 - s1;
-	  _H1p = +snhalp * s1;
-	  _H2p = -snhalp * (s1 + s2);
+	  H1 = s1;
+	  H2 = s2 - s1;
+	  H1p = +snhalp * s1;
+	  H2p = -snhalp * (s1 + s2);
 	}
       else if (indexr == 4)
 	{
-	  _H1 = s1;
-	  _H2 = s2 - std::exp(+Tp{2} * s_j * nu * s_pi) * s1;
-	  _H1p = +snhalp * s1;
-	  _H2p = -snhalp
+	  H1 = s1;
+	  H2 = s2 - std::exp(+Tp{2} * s_j * nu * s_pi) * s1;
+	  H1p = +snhalp * s1;
+	  H2p = -snhalp
 		* (s2 + std::exp(+Tp{2} * s_j * nu * s_pi) * s1);
 	}
       else if (indexr == 5)
 	{
-	  _H1 = s1 - std::exp(-Tp{2} * s_j * nu * s_pi) * s2;
-	  _H2 = s2;
-	  _H1p = +snhalp
+	  H1 = s1 - std::exp(-Tp{2} * s_j * nu * s_pi) * s2;
+	  H2 = s2;
+	  H1p = +snhalp
 		* (s1 + std::exp(-Tp{2} * s_j * nu * s_pi) * s2);
-	  _H2p = -snhalp * s2;
+	  H2p = -snhalp * s2;
 	}
       else if (aorb == 'A')
 	{
@@ -983,27 +983,27 @@ namespace detail
 	    sinrat = emsr::sin_pi(Tp(morn) * nu) / emsr::sin_pi(nu);
 	  if (indexr == 6)
 	    {
-	      _H2 = s2
+	      H2 = s2
 		   - std::exp(s_j * Tp(morn + 1) * nu * s_pi)
 		   * sinrat * s1;
-	      _H1 = s1 - _H2;
-	      _H2p = -snhalp
+	      H1 = s1 - H2;
+	      H2p = -snhalp
 		    * (s2 + std::exp(s_j * Tp(morn + 1) * nu * s_pi)
 			     * sinrat * s1);
-	      _H1p = +snhalp
+	      H1p = +snhalp
 		    * ((Tp{1} + std::exp(s_j * Tp(morn + 1) * nu * s_pi)
 			  * sinrat) * s1 + s2);
 	    }
 	  else if (indexr == 7)
 	    {
-	      _H1 = s1
+	      H1 = s1
 		   - std::exp(-s_j * Tp(morn + 1) * nu * s_pi)
 		    * sinrat * s2;
-	      _H2 = s2 - _H1;
-	      _H1p = +snhalp
+	      H2 = s2 - H1;
+	      H1p = +snhalp
 		    * (s1 + std::exp(-s_j * Tp(morn + 1) * nu * s_pi)
 			     * sinrat * s2);
-	      _H2p = -snhalp
+	      H2p = -snhalp
 		     * ((Tp{1} + std::exp(-s_j * Tp(morn + 1) * nu * s_pi)
 			   * sinrat) * s2 + s1);
 	    }
@@ -1020,27 +1020,27 @@ namespace detail
 	    sinrat = emsr::sin_pi(Tp(morn) * nu) / emsr::sin_pi(nu);
 	  if (indexr == 6)
 	    {
-	      _H1 = s1 - std::exp(s_j * Tp(morn - 1) * nu * s_pi)
+	      H1 = s1 - std::exp(s_j * Tp(morn - 1) * nu * s_pi)
 		   * sinrat * s2;
-	      _H2 = s2 - std::exp(Tp{2} * s_j * nu * s_pi) * _H2;
-	      _H1p = +snhalp
+	      H2 = s2 - std::exp(Tp{2} * s_j * nu * s_pi) * H2;
+	      H1p = +snhalp
 		    * (s1 + std::exp(s_j * Tp(morn - 1) * nu * s_pi)
 			    * sinrat * s2);
-	      _H2p = -snhalp
+	      H2p = -snhalp
 		    * ((Tp{1} + std::exp(s_j * Tp(morn + 1) * nu * s_pi)
 			  * sinrat) * s2
 		      + std::exp(Tp{2} * s_j * nu * s_pi) * s1);
 	    }
 	  else if (indexr == 7)
 	    {
-	      _H2 = s2
+	      H2 = s2
 		   - std::exp(-s_j * Tp(morn - 1) * nu * s_pi)
 		   * sinrat * s1;
-	      _H1 = s1 - std::exp(-Tp{2} * s_j * nu * s_pi) * _H2;
-	      _H2p = -snhalp
+	      H1 = s1 - std::exp(-Tp{2} * s_j * nu * s_pi) * H2;
+	      H2p = -snhalp
 		    * (s2 + std::exp(-s_j * Tp(morn - 1) * nu * s_pi)
 			    * sinrat * s1);
-	      _H1p = +snhalp
+	      H1p = +snhalp
 		    * ((Tp{1} + std::exp(-s_j * Tp(morn + 1) * nu * s_pi)
 				    * sinrat) * s1
 				+ std::exp(-Tp{2} * s_j * nu * s_pi) * s2);
@@ -1049,7 +1049,7 @@ namespace detail
 	    throw std::runtime_error("hankel_debye: unexpected region");
 	}
 
-      return hank_t{nu, z, _H1, _H1p, _H2, _H2p};
+      return hank_t{nu, z, H1, H1p, H2, H2p};
     }
 
 

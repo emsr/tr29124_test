@@ -56,12 +56,12 @@ namespace detail
 {
 
 /*
-  template<typename Tp, typename _Iter>
+  template<typename Tp, typename Iter>
     Tp
-    gamma_ratio(_Iter a, _Iter b)
+    gamma_ratio(Iter a, Iter b)
     {
-      auto _sign_F = Tp{1};
-      auto _F = Tp{0};
+      auto sign_F = Tp{1};
+      auto F = Tp{0};
       for (auto bb : b)
 	{
 	  bool ok = true;
@@ -73,8 +73,8 @@ namespace detail
 	    {
 	      try
 		{
-		  _sign_F *= emsr::detail::log_gamma_sign(bb);
-		  _F -= emsr::detail::log_gamma(bb);
+		  sign_F *= emsr::detail::log_gamma_sign(bb);
+		  F -= emsr::detail::log_gamma(bb);
 		}
 	      catch (...)
 		{
@@ -93,8 +93,8 @@ namespace detail
 	    {
 	      try
 		{
-		  _sign_F *= emsr::detail::log_gamma_sign(aa);
-		  _F += emsr::detail::log_gamma(aa);
+		  sign_F *= emsr::detail::log_gamma_sign(aa);
+		  F += emsr::detail::log_gamma(aa);
 		}
 	      catch (...)
 		{
@@ -103,7 +103,7 @@ namespace detail
 		}
 	    }
 	}
-      if (_F > s_log_max)
+      if (F > s_log_max)
 	throw std::runtime_error("gamma_ratio: overflow of gamma function ratios");
     }
 */

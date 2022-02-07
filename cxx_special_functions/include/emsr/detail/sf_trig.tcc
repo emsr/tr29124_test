@@ -59,8 +59,8 @@ namespace detail
     Tp
     sin_pi(Tp x)
     {
-      using _Val = emsr::num_traits_t<Tp>;
-      const auto s_pi = emsr::pi_v<_Val>;
+      using Val = emsr::num_traits_t<Tp>;
+      const auto s_pi = emsr::pi_v<Val>;
       if (std::isnan(x))
 	return emsr::quiet_NaN(x);
       else if (x < Tp{0})
@@ -91,8 +91,8 @@ namespace detail
     Tp
     sinh_pi(Tp x)
     {
-      using _Val = emsr::num_traits_t<Tp>;
-      const auto s_pi = emsr::pi_v<_Val>;
+      using Val = emsr::num_traits_t<Tp>;
+      const auto s_pi = emsr::pi_v<Val>;
       if (std::isnan(x))
 	return emsr::quiet_NaN(x);
       else if (x < Tp{0})
@@ -111,8 +111,8 @@ namespace detail
     Tp
     cos_pi(Tp x)
     {
-      using _Val = emsr::num_traits_t<Tp>;
-      const auto s_pi = emsr::pi_v<_Val>;
+      using Val = emsr::num_traits_t<Tp>;
+      const auto s_pi = emsr::pi_v<Val>;
       if (std::isnan(x))
 	return emsr::quiet_NaN(x);
       else if (x < Tp{0})
@@ -140,8 +140,8 @@ namespace detail
     Tp
     cosh_pi(Tp x)
     {
-      using _Val = emsr::num_traits_t<Tp>;
-      const auto s_pi = emsr::pi_v<_Val>;
+      using Val = emsr::num_traits_t<Tp>;
+      const auto s_pi = emsr::pi_v<Val>;
       if (std::isnan(x))
 	return emsr::quiet_NaN(x);
       else if (x < Tp{0})
@@ -160,9 +160,9 @@ namespace detail
     Tp
     tan_pi(Tp x)
     {
-      using _Val = Tp;
-      using _Real = emsr::num_traits_t<_Val>;
-      const auto s_pi = emsr::pi_v<_Real>;
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_pi = emsr::pi_v<Real>;
       return std::tan(s_pi * (x - std::floor(x)));
     }
 
@@ -176,9 +176,9 @@ namespace detail
     Tp
     tanh_pi(Tp x)
     {
-      using _Val = Tp;
-      using _Real = emsr::num_traits_t<_Val>;
-      const auto s_pi = emsr::pi_v<_Real>;
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_pi = emsr::pi_v<Real>;
       return std::tanh(s_pi * x);
     }
 
@@ -194,9 +194,9 @@ namespace detail
     std::complex<Tp>
     sin_pi(std::complex<Tp> z)
     {
-      using _Val = Tp;
-      using _Real = emsr::num_traits_t<_Val>;
-      const auto s_pi = emsr::pi_v<_Real>;
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_pi = emsr::pi_v<Real>;
       const auto s_i = std::complex<Tp>{0, 1};
       auto x = std::real(z);
       auto y = std::imag(z);
@@ -216,9 +216,9 @@ namespace detail
     std::complex<Tp>
     sinh_pi(std::complex<Tp> z)
     {
-      using _Val = Tp;
-      using _Real = emsr::num_traits_t<_Val>;
-      const auto s_pi = emsr::pi_v<_Real>;
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_pi = emsr::pi_v<Real>;
       const auto s_i = std::complex<Tp>{0, 1};
       auto x = std::real(z);
       auto y = std::imag(z);
@@ -238,9 +238,9 @@ namespace detail
     std::complex<Tp>
     cos_pi(std::complex<Tp> z)
     {
-      using _Val = Tp;
-      using _Real = emsr::num_traits_t<_Val>;
-      const auto s_pi = emsr::pi_v<_Real>;
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_pi = emsr::pi_v<Real>;
       const auto s_i = std::complex<Tp>{0, 1};
       auto x = std::real(z);
       auto y = std::imag(z);
@@ -260,9 +260,9 @@ namespace detail
     std::complex<Tp>
     cosh_pi(std::complex<Tp> z)
     {
-      using _Val = Tp;
-      using _Real = emsr::num_traits_t<_Val>;
-      const auto s_pi = emsr::pi_v<_Real>;
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_pi = emsr::pi_v<Real>;
       const auto s_i = std::complex<Tp>{0, 1};
       auto x = std::real(z);
       auto y = std::imag(z);
@@ -282,15 +282,15 @@ namespace detail
     std::complex<Tp>
     tan_pi(std::complex<Tp> z)
     {
-      using _Val = Tp;
-      using _Real = emsr::num_traits_t<_Val>;
-      const auto s_pi = emsr::pi_v<_Real>;
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_pi = emsr::pi_v<Real>;
       const auto s_i = std::complex<Tp>{0, 1};
       auto x = std::real(z);
       auto y = std::imag(z);
       auto tan = tan_pi(x);
       auto tanh = std::tanh(s_pi * y);
-      return (tan + s_i * tanh) / (_Val{1} - s_i * tan * tanh);
+      return (tan + s_i * tanh) / (Val{1} - s_i * tan * tanh);
     }
 
   /**
@@ -305,15 +305,15 @@ namespace detail
     std::complex<Tp>
     tanh_pi(std::complex<Tp> z)
     {
-      using _Val = Tp;
-      using _Real = emsr::num_traits_t<_Val>;
-      const auto s_pi = emsr::pi_v<_Real>;
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_pi = emsr::pi_v<Real>;
       const auto s_i = std::complex<Tp>{0, 1};
       auto x = std::real(z);
       auto y = std::imag(z);
       auto tanh = std::tanh(s_pi * x);
       auto tan = tan_pi(y);
-      return (tanh + s_i * tan) / (_Val{1} + s_i * tanh * tan);
+      return (tanh + s_i * tan) / (Val{1} + s_i * tanh * tan);
     }
 
   /**

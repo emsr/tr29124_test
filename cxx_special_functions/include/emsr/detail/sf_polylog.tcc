@@ -58,36 +58,36 @@ namespace detail
    * and a relative precision.
    */
   template<typename Tp>
-    class _Terminator
+    class Terminator
     {
     private:
 
-      using _Real = emsr::num_traits_t<Tp>;
-      const std::size_t _M_max_iter;
-      std::size_t _M_curr_iter;
-      _Real _M_toler;
+      using Real = emsr::num_traits_t<Tp>;
+      const std::size_t m_max_iter;
+      std::size_t m_curr_iter;
+      Real m_toler;
 
     public:
 
-      _Terminator(std::size_t max_iter, _Real mul = _Real{1})
-      : _M_max_iter(max_iter), _M_curr_iter{0},
-	_M_toler(std::abs(mul) * std::numeric_limits<_Real>::epsilon())
+      Terminator(std::size_t max_iter, Real mul = Real{1})
+      : m_max_iter(max_iter), m_curr_iter{0},
+	m_toler(std::abs(mul) * std::numeric_limits<Real>::epsilon())
       { }
 
       /// Return the current number of terms summed.
       std::size_t
       num_terms() const
-      { return this->_M_curr_iter; }
+      { return this->m_curr_iter; }
 
       /// Detect if the sum should terminate either because the incoming term
       /// is small enough or the maximum number of terms has been reached.
       bool
       operator()(Tp term, Tp sum)
       {
-	if (this->_M_curr_iter >= this->_M_max_iter
-	    || ++this->_M_curr_iter == this->_M_max_iter)
+	if (this->m_curr_iter >= this->m_max_iter
+	    || ++this->m_curr_iter == this->m_max_iter)
 	  return true;
-	else if (std::abs(term) < this->_M_toler * std::abs(sum))
+	else if (std::abs(term) < this->m_toler * std::abs(sum))
 	  return true;
 	else
 	  return false;
@@ -103,31 +103,31 @@ namespace detail
    * and a relative precision.
    */
   template<typename Tp>
-    class _AsympTerminator
+    class AsympTerminator
     {
     private:
 
-      using _Real = emsr::num_traits_t<Tp>;
-      const std::size_t _M_max_iter;
-      std::size_t _M_curr_iter;
-      _Real _M_toler;
-      _Real _M_prev_term = std::numeric_limits<_Real>::max();
-      bool _M_stop_asymp = false;
+      using Real = emsr::num_traits_t<Tp>;
+      const std::size_t m_max_iter;
+      std::size_t m_curr_iter;
+      Real m_toler;
+      Real m_prev_term = std::numeric_limits<Real>::max();
+      bool m_stop_asymp = false;
 
     public:
 
-      _AsympTerminator(std::size_t max_iter, _Real mul = _Real{1})
-      : _M_max_iter(max_iter), _M_curr_iter{0},
-	_M_toler(std::abs(mul) * std::numeric_limits<_Real>::epsilon())
+      AsympTerminator(std::size_t max_iter, Real mul = Real{1})
+      : m_max_iter(max_iter), m_curr_iter{0},
+	m_toler(std::abs(mul) * std::numeric_limits<Real>::epsilon())
       { }
 
       /// Filter a term before applying it to the sum.
       Tp
       operator<<(Tp term)
       {
-	if (std::abs(term) > this->_M_prev_term)
+	if (std::abs(term) > this->m_prev_term)
 	  {
-	    this->_M_stop_asymp = true;
+	    this->m_stop_asymp = true;
 	    return Tp{0};
 	  }
 	else
@@ -137,7 +137,7 @@ namespace detail
       /// Return the current number of terms summed.
       std::size_t
       num_terms() const
-      { return this->_M_curr_iter; }
+      { return this->m_curr_iter; }
 
       /// Detect if the sum should terminate either because the incoming term
       /// is small enough or because the terms are starting to grow or
@@ -145,19 +145,19 @@ namespace detail
       bool
       operator()(Tp term, Tp sum)
       {
-	if (this->_M_stop_asymp)
+	if (this->m_stop_asymp)
 	  return true;
 	else
 	  {
 	    const auto aterm = std::abs(term);
-	    this->_M_stop_asymp = (aterm > this->_M_prev_term);
-	    this->_M_prev_term = aterm;
-	    if (this->_M_curr_iter >= this->_M_max_iter
-	    || ++this->_M_curr_iter == this->_M_max_iter)
+	    this->m_stop_asymp = (aterm > this->m_prev_term);
+	    this->m_prev_term = aterm;
+	    if (this->m_curr_iter >= this->m_max_iter
+	    || ++this->m_curr_iter == this->m_max_iter)
 	      return true;
-	    else if (aterm < this->_M_toler * std::abs(sum))
+	    else if (aterm < this->m_toler * std::abs(sum))
 	      return true;
-	    else if (this->_M_stop_asymp)
+	    else if (this->m_stop_asymp)
 	      return true;
 	    else
 	      return false;
@@ -169,8 +169,8 @@ namespace detail
     std::complex<Tp>
     clamp_pi(std::complex<Tp> z)
     {
-      using _Real = emsr::num_traits_t<Tp>;
-      const auto s_pi = emsr::pi_v<_Real>;
+      using Real = emsr::num_traits_t<Tp>;
+      const auto s_pi = emsr::pi_v<Real>;
       const auto s_i2pi = std::complex<Tp>{0, Tp{2} * s_pi};
       while (z.imag() > s_pi)
 	z -= s_i2pi;
@@ -183,8 +183,8 @@ namespace detail
     std::complex<Tp>
     clamp_0_m2pi(std::complex<Tp> z)
     {
-      using _Real = emsr::num_traits_t<Tp>;
-      const auto s_2pi = emsr::tau_v<_Real>;
+      using Real = emsr::num_traits_t<Tp>;
+      const auto s_2pi = emsr::tau_v<Real>;
       while (z.imag() > Tp{0})
 	z = std::complex<Tp>(z.real(), z.imag() - s_2pi);
       while (z.imag() <= -s_2pi)
@@ -216,10 +216,10 @@ namespace detail
     std::complex<Tp>
     polylog_exp_pos(unsigned int s, std::complex<Tp> w)
     {
-      using _Real = emsr::num_traits_t<Tp>;
-      const auto s_2pi = emsr::tau_v<_Real>;
-      const auto s_pi = emsr::pi_v<_Real>;
-      const auto s_pipio6 = emsr::pi_sqr_div_6_v<_Real>;
+      using Real = emsr::num_traits_t<Tp>;
+      const auto s_2pi = emsr::tau_v<Real>;
+      const auto s_pi = emsr::pi_v<Real>;
+      const auto s_pipio6 = emsr::pi_sqr_div_6_v<Real>;
       std::complex<Tp> res = emsr::detail::riemann_zeta<Tp>(s);
       auto wk = w;
       auto fact = Tp{1};
@@ -250,7 +250,7 @@ namespace detail
       auto w2k = w2;
       auto rzarg = Tp{2};
       const unsigned int maxit = 200;
-      _Terminator<std::complex<Tp>> done(maxit);
+      Terminator<std::complex<Tp>> done(maxit);
       while (true)
 	{
 	  rzarg += Tp{2};
@@ -327,7 +327,7 @@ namespace detail
       auto w2k = w2;
       auto rzarg = Tp{2};
       const unsigned int maxit = 200;
-      _Terminator<Tp> done(maxit);
+      Terminator<Tp> done(maxit);
       while (true)
 	{
 	  rzarg += Tp{2};
@@ -400,7 +400,7 @@ namespace detail
       unsigned int j = 1;
       gam *= (Tp{1} - s);
       constexpr unsigned int maxit = 200;
-      _Terminator<std::complex<Tp>> done(maxit);
+      Terminator<std::complex<Tp>> done(maxit);
       while (true)
 	{
 	  const auto rzarg = Tp(1 + j) - s;
@@ -466,7 +466,7 @@ namespace detail
 	  auto res = pfact * std::pow(-w, Tp(-pp));
 	  auto sum = std::complex<Tp>{};
 	  constexpr unsigned int maxit = 300;
-	  _Terminator<std::complex<Tp>> done(maxit);
+	  Terminator<std::complex<Tp>> done(maxit);
 	  while (true)
 	    {
 	      const auto id = (p + __2k + 1) / 2;
@@ -537,7 +537,7 @@ namespace detail
       // Now comes the remainder of the series
       unsigned int j = 0;
       constexpr unsigned int maxit = 100;
-      _Terminator<std::complex<Tp>> done(maxit);
+      Terminator<std::complex<Tp>> done(maxit);
       auto wup = w / s_2pi;
       auto wbark = std::pow(wup, Tp(m + 1));
       // It is 1 < 2 - s + m < 2 => Gamma(2-s+m) will not overflow
@@ -604,7 +604,7 @@ namespace detail
       // wgamma = w^s / Gamma(s+1)
       wgamma *= w / s;
       constexpr unsigned int maxiter = 100;
-      _AsympTerminator<std::complex<Tp>> done(maxiter);
+      AsympTerminator<std::complex<Tp>> done(maxiter);
       // zeta(0) w^s / Gamma(s + 1)
       std::complex<Tp> oldterm = -Tp{0.5L} * wgamma;
       res += Tp{2} * oldterm;
@@ -637,15 +637,15 @@ namespace detail
    * @param w something with a negative real part.
    * @return the value of the polylogarithm.
    */
-  template<typename _PowTp, typename Tp>
+  template<typename PowTp, typename Tp>
     Tp
-    polylog_exp_sum(_PowTp s, Tp w)
+    polylog_exp_sum(PowTp s, Tp w)
     {
       auto ew = std::exp(w);
       const auto up = ew;
       auto res = ew;
       unsigned int maxiter = 500;
-      _Terminator<Tp> done(maxiter);
+      Terminator<Tp> done(maxiter);
       bool terminate = false;
       unsigned int k = 2;
       while (!terminate)
@@ -672,11 +672,11 @@ namespace detail
     std::complex<Tp>
     polylog_exp_pos_int(unsigned int s, std::complex<Tp> w)
     {
-      using _Val = Tp;
-      using _Real = emsr::num_traits_t<_Val>;
-      const auto s_2pi = emsr::tau_v<_Real>;
-      const auto s_pi = emsr::pi_v<_Real>;
-      const auto s_pi_2 = emsr::pi_v<_Real> / _Real{2};
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_2pi = emsr::tau_v<Real>;
+      const auto s_pi = emsr::pi_v<Real>;
+      const auto s_pi_2 = emsr::pi_v<Real> / Real{2};
       const auto s_max_asymp = Tp{5};
       const auto rw = w.real();
       const auto iw = w.imag();
@@ -733,10 +733,10 @@ namespace detail
     std::complex<Tp>
     polylog_exp_pos_int(unsigned int s, Tp w)
     {
-      using _Val = Tp;
-      using _Real = emsr::num_traits_t<_Val>;
-      const auto s_pi = emsr::pi_v<_Real>;
-      const auto s_pi_2 = emsr::pi_v<_Real> / _Real{2};
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_pi = emsr::pi_v<Real>;
+      const auto s_pi_2 = emsr::pi_v<Real> / Real{2};
       const auto s_max_asymp = Tp{5};
       if (emsr::fp_is_zero(w))
 	{
@@ -783,11 +783,11 @@ namespace detail
     std::complex<Tp>
     polylog_exp_neg_int(int s, std::complex<Tp> w)
     {
-      using _Val = Tp;
-      using _Real = emsr::num_traits_t<_Val>;
-      const auto s_2pi = emsr::tau_v<_Real>;
-      const auto s_pi = emsr::pi_v<_Real>;
-      const auto s_pi_2 = emsr::pi_v<_Real> / _Real{2};
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_2pi = emsr::tau_v<Real>;
+      const auto s_pi = emsr::pi_v<Real>;
+      const auto s_pi_2 = emsr::pi_v<Real> / Real{2};
       const auto s_max_asymp = Tp{5};
       if ((((-s) & 1) == 0) && emsr::fp_is_imag(w))
 	{
@@ -985,9 +985,9 @@ namespace detail
    * @param w  The real or complex argument.
    * @return  The real or complex value of Li_s(e^w).
    */
-  template<typename Tp, typename _ArgType>
-    emsr::fp_promote_t<std::complex<Tp>, _ArgType>
-    polylog_exp(Tp s, _ArgType w)
+  template<typename Tp, typename ArgType>
+    emsr::fp_promote_t<std::complex<Tp>, ArgType>
+    polylog_exp(Tp s, ArgType w)
     {
       if (std::isnan(s) || std::isnan(w))
 	return std::numeric_limits<Tp>::quiet_NaN();
@@ -1091,12 +1091,12 @@ namespace detail
   * @param z  The real or complex argument.
   * @return The complex value of the periodic zeta function.
   */
-  template<typename Tp, typename _ArgType>
-    emsr::fp_promote_t<std::complex<Tp>, _ArgType>
-    periodic_zeta(_ArgType z, Tp s)
+  template<typename Tp, typename ArgType>
+    emsr::fp_promote_t<std::complex<Tp>, ArgType>
+    periodic_zeta(ArgType z, Tp s)
     {
-      using _Cmplx = std::complex<Tp>;
-      const auto s_i = _Cmplx{0, 1};
+      using Cmplx = std::complex<Tp>;
+      const auto s_i = Cmplx{0, 1};
       const auto s_pi = emsr::pi_v<Tp>;
       if (std::isnan(s) || std::isnan(z))
 	return emsr::quiet_NaN(s);
@@ -1120,10 +1120,10 @@ namespace detail
     std::complex<Tp>
     hurwitz_zeta_polylog(Tp s, std::complex<Tp> a)
     {
-      using _Cmplx = std::complex<Tp>;
+      using Cmplx = std::complex<Tp>;
       const auto s_pi_2 = emsr::pi_v<Tp> / Tp{2};
       const auto s_2pi = emsr::tau_v<Tp>;
-      const auto s_i2pi = _Cmplx{0, s_2pi};
+      const auto s_i2pi = Cmplx{0, s_2pi};
       if ((a.imag() >= Tp{0}
 		&& (a.real() >= Tp{0} && a.real() <  Tp{1}))
        || (a.imag() <  Tp{0}
@@ -1133,7 +1133,7 @@ namespace detail
 	  const auto lpe = polylog_exp(t, s_i2pi * a);
 	  /// @todo This hurwitz_zeta_polylog prefactor is prone to overflow.
 	  /// positive integer orders s?
-	  const auto thing = std::exp(_Cmplx(Tp{0}, -s_pi_2 * t));
+	  const auto thing = std::exp(Cmplx(Tp{0}, -s_pi_2 * t));
 	  return gamma(t)
 	       * std::pow(s_2pi, -t)
 	       * (lpe * thing + std::conj(lpe * thing));

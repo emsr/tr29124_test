@@ -93,9 +93,9 @@ namespace detail
 			   unsigned int max_iter)
     {
       // FIXME: This will promote float to double if Tnu is integral.
-      using _Val = emsr::fp_promote_t<Tnu, Tp>;
-      using _Real = emsr::num_traits_t<_Val>;
-      const auto s_eps = emsr::epsilon<_Real>();
+      using Val = emsr::fp_promote_t<Tnu, Tp>;
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_eps = emsr::epsilon<Real>();
       if (std::abs(x) < s_eps)
 	{
 	  if (nu == Tnu{0})
@@ -105,23 +105,23 @@ namespace detail
 	}
       else
 	{
-	  const auto x2 = x / _Real{2};
+	  const auto x2 = x / Real{2};
 
-	  const auto xx4 = _Val(sgn) * x2 * x2;
-	  auto _Jn = _Val{1};
-	  auto term = _Val{1};
+	  const auto xx4 = Val(sgn) * x2 * x2;
+	  auto Jn = Val{1};
+	  auto term = Val{1};
 	  for (unsigned int i = 1; i < max_iter; ++i)
 	    {
-	      term *= xx4 / (_Val(i) * (_Val(nu) + _Val(i)));
-	      _Jn += term;
-	      if (std::abs(term / _Jn) < s_eps)
+	      term *= xx4 / (Val(i) * (Val(nu) + Val(i)));
+	      Jn += term;
+	      if (std::abs(term / Jn) < s_eps)
 		break;
 	    }
 
-	  auto fact = _Val(nu) * std::log(x2);
-	  fact -= emsr::detail::log_gamma(_Real{1} + nu);
+	  auto fact = Val(nu) * std::log(x2);
+	  fact -= emsr::detail::log_gamma(Real{1} + nu);
 	  fact = std::exp(fact);
-	  return fact * _Jn;
+	  return fact * Jn;
 	}
     }
 
@@ -132,11 +132,11 @@ namespace detail
     struct cyl_bessel_asymp_sums_t
     {
       // FIXME: This will promote float to double if Tnu is integral.
-      using _Val = emsr::fp_promote_t<Tnu, Tp>;
-      _Val _Psum;
-      _Val _Qsum;
-      _Val _Rsum;
-      _Val _Ssum;
+      using Val = emsr::fp_promote_t<Tnu, Tp>;
+      Val Psum;
+      Val Qsum;
+      Val Rsum;
+      Val Ssum;
     };
 
   /**
@@ -203,61 +203,61 @@ namespace detail
     cyl_bessel_asymp_sums(Tnu nu, Tp x, int sgn)
     {
       // FIXME: This will promote float to double if Tnu is integral.
-      using _Val = emsr::fp_promote_t<Tnu, Tp>;
-      using _Real = emsr::num_traits_t<_Val>;
+      using Val = emsr::fp_promote_t<Tnu, Tp>;
+      using Real = emsr::num_traits_t<Val>;
       using bess_t = cyl_bessel_asymp_sums_t<Tnu, Tp>;
-      const auto s_eps = emsr::epsilon<_Real>();
-      const auto __2nu = _Real{2} * nu;
+      const auto s_eps = emsr::epsilon<Real>();
+      const auto __2nu = Real{2} * nu;
       const auto __4nu2 = __2nu * __2nu;
-      const auto r8x = Tp{1} / (_Real{8} * x);
-      const auto nu_min = std::real(nu / _Real{2});
-      const auto nu_max = std::abs(_Real{100} * (nu + Tnu{1}));
+      const auto r8x = Tp{1} / (Real{8} * x);
+      const auto nu_min = std::real(nu / Real{2});
+      const auto nu_max = std::abs(Real{100} * (nu + Tnu{1}));
       auto k = 0;
-      auto bk_xk = _Val{1};
-      auto _Rsum = bk_xk;
-      auto ak_xk = _Val{1};
-      auto _Psum = ak_xk;
+      auto bk_xk = Val{1};
+      auto Rsum = bk_xk;
+      auto ak_xk = Val{1};
+      auto Psum = ak_xk;
       auto convP = false;
       ++k;
       auto __2km1 = 1;
       bk_xk *= (__4nu2 + 3) * r8x;
-      auto _Ssum = bk_xk;
+      auto Ssum = bk_xk;
       ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) * r8x;
-      auto _Qsum = ak_xk;
+      auto Qsum = ak_xk;
       auto convQ = false;
       auto ak_xk_prev = std::abs(ak_xk);
       do
 	{
 	  ++k;
-	  auto rk8x = r8x / _Real(k);
+	  auto rk8x = r8x / Real(k);
 	  __2km1 += 2;
 	  bk_xk = sgn * (__4nu2 + __2km1 * (__2km1 + 2)) * ak_xk * rk8x;
-	  _Rsum += bk_xk;
+	  Rsum += bk_xk;
 	  ak_xk *= sgn * (__2nu - __2km1) * (__2nu + __2km1) * rk8x;
 	  if (k > nu_min && std::abs(ak_xk) > ak_xk_prev)
 	    break;
-	  _Psum += ak_xk;
+	  Psum += ak_xk;
 	  ak_xk_prev = std::abs(ak_xk);
-	  convP = std::abs(ak_xk) < s_eps * std::abs(_Psum);
+	  convP = std::abs(ak_xk) < s_eps * std::abs(Psum);
 
 	  ++k;
-	  rk8x = r8x / _Real(k);
+	  rk8x = r8x / Real(k);
 	  __2km1 += 2;
 	  bk_xk = (__4nu2 + __2km1 * (__2km1 + 2)) * ak_xk * rk8x;
-	  _Ssum += bk_xk;
+	  Ssum += bk_xk;
 	  ak_xk *= (__2nu - __2km1) * (__2nu + __2km1) * rk8x;
 	  if (k > nu_min && std::abs(ak_xk) > ak_xk_prev)
 	    break;
-	  _Qsum += ak_xk;
+	  Qsum += ak_xk;
 	  ak_xk_prev = std::abs(ak_xk);
-	  convQ = std::abs(ak_xk) < s_eps * std::abs(_Qsum);
+	  convQ = std::abs(ak_xk) < s_eps * std::abs(Qsum);
 
 	  if (convP && convQ)
 	    break;
 	}
       while (k < nu_max);
 
-      return bess_t{_Psum, _Qsum, _Rsum, _Ssum};
+      return bess_t{Psum, Qsum, Rsum, Ssum};
     }
 
   /**
@@ -268,24 +268,24 @@ namespace detail
     cyl_bessel_jn_asymp(Tnu nu, Tp x)
     {
       // FIXME: This will promote float to double if Tnu is integral.
-      using _Val = emsr::fp_promote_t<Tnu, Tp>;
-      using _Real = emsr::num_traits_t<_Val>;
+      using Val = emsr::fp_promote_t<Tnu, Tp>;
+      using Real = emsr::num_traits_t<Val>;
       using bess_t = emsr::cyl_bessel_t<Tnu, Tp, Tp>;
-      const auto s_pi = emsr::pi_v<_Real>;
-      const auto s_pi_2 = emsr::pi_v<_Real> / _Real{2};
+      const auto s_pi = emsr::pi_v<Real>;
+      const auto s_pi_2 = emsr::pi_v<Real> / Real{2};
 
       const auto sums = cyl_bessel_asymp_sums(nu, x, -1);
 
-      const auto omega = x - (nu + _Real{0.5L}) * s_pi_2;
+      const auto omega = x - (nu + Real{0.5L}) * s_pi_2;
       const auto c = std::cos(omega);
       const auto s = std::sin(omega);
 
-      const auto coef = std::sqrt(_Real{2} / (s_pi * x));
+      const auto coef = std::sqrt(Real{2} / (s_pi * x));
       return bess_t{nu, x,
-		 coef * (c * sums._Psum - s * sums._Qsum),
-		-coef * (s * sums._Rsum + c * sums._Ssum),
-		 coef * (s * sums._Psum + c * sums._Qsum),
-		 coef * (c * sums._Rsum - s * sums._Ssum)};
+		 coef * (c * sums.Psum - s * sums.Qsum),
+		-coef * (s * sums.Rsum + c * sums.Ssum),
+		 coef * (s * sums.Psum + c * sums.Qsum),
+		 coef * (c * sums.Rsum - s * sums.Ssum)};
     }
 
   /**
@@ -377,7 +377,7 @@ namespace detail
       const auto mu2 = mu * mu;
       const auto xi = Tp{1} / x;
       const auto xi2 = Tp{2} * xi;
-      const auto _Wronski = xi2 / s_pi;
+      const auto Wronski = xi2 / s_pi;
       int isign = 1;
       auto h = std::max(s_fp_min, nu * xi);
       auto b = xi2 * nu;
@@ -404,23 +404,23 @@ namespace detail
       if (i > s_max_iter)
 	return cyl_bessel_jn_asymp(nu, x);
 
-      auto _Jnul = isign * s_fp_min;
-      auto _Jpnul = h * _Jnul;
-      auto _Jnul1 = _Jnul;
-      auto _Jpnu1 = _Jpnul;
+      auto Jnul = isign * s_fp_min;
+      auto Jpnul = h * Jnul;
+      auto Jnul1 = Jnul;
+      auto Jpnu1 = Jpnul;
       auto fact = nu * xi;
       for (int l = n; l >= 1; --l)
 	{
-	  const auto _Jnutemp = fact * _Jnul + _Jpnul;
+	  const auto Jnutemp = fact * Jnul + Jpnul;
 	  fact -= xi;
-	  _Jpnul = fact * _Jnutemp - _Jnul;
-	  _Jnul = _Jnutemp;
+	  Jpnul = fact * Jnutemp - Jnul;
+	  Jnul = Jnutemp;
 	}
-      if (_Jnul == Tp{0})
-	_Jnul = s_eps;
+      if (Jnul == Tp{0})
+	Jnul = s_eps;
 
-      const auto f = _Jpnul / _Jnul;
-      Tp _Nmu, _Nnu1, _Npmu, _Jmu;
+      const auto f = Jpnul / Jnul;
+      Tp Nmu, Nnu1, Npmu, Jmu;
       if (x < s_x_min)
 	{
 	  const auto x2 = x / Tp{2};
@@ -464,10 +464,10 @@ namespace detail
 	    }
 	  if (i > s_max_iter)
 	    throw std::runtime_error("cyl_bessel_jn_steed: Y-series failed to converge");
-	  _Nmu = -sum;
-	  _Nnu1 = -sum1 * xi2;
-	  _Npmu = mu * xi * _Nmu - _Nnu1;
-	  _Jmu = _Wronski / (_Npmu - f * _Nmu);
+	  Nmu = -sum;
+	  Nnu1 = -sum1 * xi2;
+	  Npmu = mu * xi * Nmu - Nnu1;
+	  Jmu = Wronski / (Npmu - f * Nmu);
 	}
       else
 	{
@@ -503,25 +503,25 @@ namespace detail
 	  //const auto [p, q] = pq; // This should be a thing.
 	  const auto [p, q] = reinterpret_cast<Tp(&)[2]>(pq);
 	  const auto gam = (p - f) / q;
-	  _Jmu = std::sqrt(_Wronski / ((p - f) * gam + q));
-	  _Jmu = std::copysign(_Jmu, _Jnul);
-	  _Nmu = gam * _Jmu;
-	  _Npmu = (p + q / gam) * _Nmu;
-	  _Nnu1 = mu * xi * _Nmu - _Npmu;
+	  Jmu = std::sqrt(Wronski / ((p - f) * gam + q));
+	  Jmu = std::copysign(Jmu, Jnul);
+	  Nmu = gam * Jmu;
+	  Npmu = (p + q / gam) * Nmu;
+	  Nnu1 = mu * xi * Nmu - Npmu;
         }
-      fact = _Jmu / _Jnul;
-      const auto _Jnu = fact * _Jnul1;
-      const auto _Jpnu = fact * _Jpnu1;
-      if (std::abs(s_pi * x * _Jnu / Tp{2}) > s_tiny)
+      fact = Jmu / Jnul;
+      const auto Jnu = fact * Jnul1;
+      const auto Jpnu = fact * Jpnu1;
+      if (std::abs(s_pi * x * Jnu / Tp{2}) > s_tiny)
 	{
 	  for (int i = 1; i <= n; ++i)
-	    _Nmu = std::exchange(_Nnu1, (mu + i) * xi2 * _Nnu1 - _Nmu);
-	  const auto _Nnu = _Nmu;
-	  const auto _Npnu = nu * xi * _Nmu - _Nnu1;
-	  return bess_t{nu, x, _Jnu, _Jpnu, _Nnu, _Npnu};
+	    Nmu = std::exchange(Nnu1, (mu + i) * xi2 * Nnu1 - Nmu);
+	  const auto Nnu = Nmu;
+	  const auto Npnu = nu * xi * Nmu - Nnu1;
+	  return bess_t{nu, x, Jnu, Jpnu, Nnu, Npnu};
 	}
       else
-	return bess_t{nu, x, _Jnu, _Jpnu, -s_inf, s_inf};
+	return bess_t{nu, x, Jnu, Jpnu, -s_inf, s_inf};
     }
 
   /**
@@ -537,51 +537,51 @@ namespace detail
       const auto s_inf = emsr::infinity(x);
       if (nu < Tp{0})
 	{
-	  const auto _Bess = cyl_bessel_jn(-nu, x);
+	  const auto Bess = cyl_bessel_jn(-nu, x);
 	  const auto sinnupi = emsr::sin_pi(-nu);
 	  const auto cosnupi = emsr::cos_pi(-nu);
 	  if (std::abs(sinnupi) < s_eps)
 	    { // Carefully preserve +-inf.
 	      const auto sign = std::copysign(Tp{1}, cosnupi);
 	      return bess_t{nu, x,
-			sign * _Bess.J_value, sign * _Bess.J_deriv,
-			sign * _Bess.N_value, sign * _Bess.N_deriv};
+			sign * Bess.J_value, sign * Bess.J_deriv,
+			sign * Bess.N_value, sign * Bess.N_deriv};
 	    }
 	  else if (std::abs(cosnupi) < s_eps)
 	    { // Carefully preserve +-inf.
 	      const auto sign = std::copysign(Tp{1}, sinnupi);
 	      return bess_t{nu, x,
-			-sign * _Bess.N_value, -sign * _Bess.N_deriv,
-			 sign * _Bess.J_value,  sign * _Bess.J_deriv};
+			-sign * Bess.N_value, -sign * Bess.N_deriv,
+			 sign * Bess.J_value,  sign * Bess.J_deriv};
 	    }
 	  else
 	    {
 	      return bess_t{nu, x,
-		cosnupi * _Bess.J_value - sinnupi * _Bess.N_value,
-		cosnupi * _Bess.J_deriv - sinnupi * _Bess.N_deriv,
-		sinnupi * _Bess.J_value + cosnupi * _Bess.N_value,
-		sinnupi * _Bess.J_deriv + cosnupi * _Bess.N_deriv};
+		cosnupi * Bess.J_value - sinnupi * Bess.N_value,
+		cosnupi * Bess.J_deriv - sinnupi * Bess.N_deriv,
+		sinnupi * Bess.J_value + cosnupi * Bess.N_value,
+		sinnupi * Bess.J_deriv + cosnupi * Bess.N_deriv};
 	    }
 	}
       else if (x == Tp{0})
 	{
-	  Tp _Jnu, _Jpnu;
+	  Tp Jnu, Jpnu;
 	  if (nu == Tp{0})
 	    {
-	      _Jnu = Tp{1};
-	      _Jpnu = Tp{0};
+	      Jnu = Tp{1};
+	      Jpnu = Tp{0};
 	    }
 	  else if (nu == Tp{1})
 	    {
-	      _Jnu = Tp{0};
-	      _Jpnu = Tp{0.5L};
+	      Jnu = Tp{0};
+	      Jpnu = Tp{0.5L};
 	    }
 	  else
 	    {
-	      _Jnu = Tp{0};
-	      _Jpnu = Tp{0};
+	      Jnu = Tp{0};
+	      Jpnu = Tp{0};
 	    }
-	  return bess_t{nu, x, _Jnu, _Jpnu, -s_inf, s_inf};
+	  return bess_t{nu, x, Jnu, Jpnu, -s_inf, s_inf};
 	}
       else if (x > Tp{1000})
 	return cyl_bessel_jn_asymp(nu, x);
@@ -597,24 +597,24 @@ namespace detail
     emsr::cyl_bessel_t<Tp, Tp, std::complex<Tp>>
     cyl_bessel_jn_neg_arg(Tp nu, Tp x)
     {
-      using _Cmplx = std::complex<Tp>;
-      using bess_t = emsr::cyl_bessel_t<Tp, Tp, _Cmplx>;
-      constexpr _Cmplx s_i{0, 1};
+      using Cmplx = std::complex<Tp>;
+      using bess_t = emsr::cyl_bessel_t<Tp, Tp, Cmplx>;
+      constexpr Cmplx s_i{0, 1};
       if (x >= Tp{0})
 	throw std::domain_error("cyl_bessel_jn_neg_arg: non-negative argument");
       else
 	{
-	  const auto _Bess = cyl_bessel_jn(nu, -x);
+	  const auto Bess = cyl_bessel_jn(nu, -x);
 	  const auto phm = emsr::polar_pi(Tp{1}, -nu);
 	  const auto php = emsr::polar_pi(Tp{1}, nu);
 	  const auto cosp = emsr::cos_pi(nu);
 	  return bess_t{nu, x,
-			  php * _Bess.J_value,
-			  -php * _Bess.J_deriv,
-			  phm * _Bess.N_value
-				+ s_i * Tp{2} * cosp * _Bess.J_value,
-			  -phm * _Bess.N_deriv
-				- s_i * Tp{2} * cosp * _Bess.J_deriv};
+			  php * Bess.J_value,
+			  -php * Bess.J_deriv,
+			  phm * Bess.N_value
+				+ s_i * Tp{2} * cosp * Bess.J_value,
+			  -phm * Bess.N_deriv
+				- s_i * Tp{2} * cosp * Bess.J_deriv};
 	}
     }
 
@@ -685,10 +685,10 @@ namespace detail
     emsr::cyl_hankel_t<Tp, Tp, std::complex<Tp>>
     cyl_hankel_h1h2(Tp nu, Tp x)
     {
-      using _Cmplx = std::complex<Tp>;
-      constexpr _Cmplx s_i{0, 1};
+      using Cmplx = std::complex<Tp>;
+      constexpr Cmplx s_i{0, 1};
 
-      _Cmplx ph1 = Tp{1}, ph2 = Tp{1};
+      Cmplx ph1 = Tp{1}, ph2 = Tp{1};
       if (nu < Tp{0})
 	{
 	  ph1 = emsr::polar_pi(Tp{1}, -nu);
@@ -696,25 +696,25 @@ namespace detail
 	  nu = -nu;
 	}
 
-      // The two _Bess types are different.
+      // The two Bess types are different.
       // We might still be able to assign the real output to the complex one.
       if (x < Tp{0})
 	{
-	  const auto _Bess = cyl_bessel_jn_neg_arg(nu, x);
-	  const auto _H1 = ph1 * (_Bess.J_value + s_i * _Bess.N_value);
-	  const auto _dH1 = ph1 * (_Bess.J_deriv + s_i * _Bess.N_deriv);
-	  const auto _H2 = ph2 * (_Bess.J_value - s_i * _Bess.N_value);
-	  const auto _dH2 = ph2 * (_Bess.J_deriv - s_i * _Bess.N_deriv);
-	  return {nu, x, _H1, _dH1, _H2, _dH2};
+	  const auto Bess = cyl_bessel_jn_neg_arg(nu, x);
+	  const auto H1 = ph1 * (Bess.J_value + s_i * Bess.N_value);
+	  const auto H1p = ph1 * (Bess.J_deriv + s_i * Bess.N_deriv);
+	  const auto H2 = ph2 * (Bess.J_value - s_i * Bess.N_value);
+	  const auto H2p = ph2 * (Bess.J_deriv - s_i * Bess.N_deriv);
+	  return {nu, x, H1, H1p, H2, H2p};
 	}
       else
 	{
-	  const auto _Bess = cyl_bessel_jn(nu, x);
-	  const auto _H1 = ph1 * _Cmplx{_Bess.J_value, _Bess.N_value};
-	  const auto _dH1 = ph1 * _Cmplx{_Bess.J_deriv, _Bess.N_deriv};
-	  const auto _H2 = ph2 * _Cmplx{_Bess.J_value, -_Bess.N_value};
-	  const auto _dH2 = ph2 * _Cmplx{_Bess.J_deriv, -_Bess.N_deriv};
-	  return {nu, x, _H1, _dH1, _H2, _dH2};
+	  const auto Bess = cyl_bessel_jn(nu, x);
+	  const auto H1 = ph1 * Cmplx{Bess.J_value, Bess.N_value};
+	  const auto H1p = ph1 * Cmplx{Bess.J_deriv, Bess.N_deriv};
+	  const auto H2 = ph2 * Cmplx{Bess.J_value, -Bess.N_value};
+	  const auto H2p = ph2 * Cmplx{Bess.J_deriv, -Bess.N_deriv};
+	  return {nu, x, H1, H1p, H2, H2p};
 	}
     }
 
@@ -735,23 +735,23 @@ namespace detail
     std::complex<Tp>
     cyl_hankel_1(Tp nu, Tp x)
     {
-      using _Cmplx = std::complex<Tp>;
+      using Cmplx = std::complex<Tp>;
       const auto s_nan = emsr::quiet_NaN(x);
-      constexpr _Cmplx s_i{0, 1};
+      constexpr Cmplx s_i{0, 1};
       if (nu < Tp{0})
 	return emsr::polar_pi(Tp{1}, -nu)
 	     * cyl_hankel_1(-nu, x);
       else if (std::isnan(x))
-	return _Cmplx{s_nan, s_nan};
+	return Cmplx{s_nan, s_nan};
       else if (x < Tp{0})
 	{
-	  const auto _Bess = cyl_bessel_jn_neg_arg(nu, x);
-	  return _Bess.J_value + s_i * _Bess.N_value;
+	  const auto Bess = cyl_bessel_jn_neg_arg(nu, x);
+	  return Bess.J_value + s_i * Bess.N_value;
 	}
       else
 	{
-	  const auto _Bess = cyl_bessel_jn(nu, x);
-	  return _Cmplx{_Bess.J_value, _Bess.N_value};
+	  const auto Bess = cyl_bessel_jn(nu, x);
+	  return Cmplx{Bess.J_value, Bess.N_value};
 	}
     }
 
@@ -773,23 +773,23 @@ namespace detail
     std::complex<Tp>
     cyl_hankel_2(Tp nu, Tp x)
     {
-      using _Cmplx = std::complex<Tp>;
+      using Cmplx = std::complex<Tp>;
       const auto s_nan = emsr::quiet_NaN(x);
-      constexpr _Cmplx s_i{0, 1};
+      constexpr Cmplx s_i{0, 1};
       if (nu < Tp{0})
 	return emsr::polar_pi(Tp{1}, nu)
 	     * cyl_hankel_2(-nu, x);
       else if (std::isnan(x))
-	return _Cmplx{s_nan, s_nan};
+	return Cmplx{s_nan, s_nan};
       else if (x < Tp{0})
 	{
-	  const auto _Bess = cyl_bessel_jn_neg_arg(nu, x);
-	  return _Bess.J_value - s_i * _Bess.N_value;
+	  const auto Bess = cyl_bessel_jn_neg_arg(nu, x);
+	  return Bess.J_value - s_i * Bess.N_value;
 	}
       else
 	{
-	  const auto _Bess = cyl_bessel_jn(nu, x);
-	  return _Cmplx{_Bess.J_value, -_Bess.N_value};
+	  const auto Bess = cyl_bessel_jn(nu, x);
+	  return Cmplx{Bess.J_value, -Bess.N_value};
 	}
     }
 
@@ -811,15 +811,15 @@ namespace detail
       using bess_t = emsr::sph_bessel_t<unsigned int, Tp, Tp>;
       const auto nu = Tp(n + 0.5L);
 
-      const auto _Bess = cyl_bessel_jn(nu, x);
+      const auto Bess = cyl_bessel_jn(nu, x);
 
       const auto factor = (emsr::sqrtpi_v<Tp> / emsr::sqrt2_v<Tp>)
 			  / std::sqrt(x);
 
-      const auto j_n = factor * _Bess.J_value;
-      const auto jp_n = factor * _Bess.J_deriv - j_n / (Tp{2} * x);
-      const auto n_n = factor * _Bess.N_value;
-      const auto np_n = factor * _Bess.N_deriv - n_n / (Tp{2} * x);
+      const auto j_n = factor * Bess.J_value;
+      const auto jp_n = factor * Bess.J_deriv - j_n / (Tp{2} * x);
+      const auto n_n = factor * Bess.N_value;
+      const auto np_n = factor * Bess.N_deriv - n_n / (Tp{2} * x);
 
       return bess_t{n, x, j_n, jp_n, n_n, np_n};
     }
@@ -832,24 +832,24 @@ namespace detail
     emsr::sph_bessel_t<unsigned int, Tp, std::complex<Tp>>
     sph_bessel_jn_neg_arg(unsigned int n, Tp x)
     {
-      using _Cmplx = std::complex<Tp>;
-      using bess_t = emsr::sph_bessel_t<unsigned int, Tp, _Cmplx>;
+      using Cmplx = std::complex<Tp>;
+      using bess_t = emsr::sph_bessel_t<unsigned int, Tp, Cmplx>;
       if (x >= Tp{0})
 	throw std::domain_error("sph_bessel_jn_neg_arg: non-negative argument");
       else
 	{
 	  const auto nu = Tp(n + 0.5L);
-	  const auto _Bess = cyl_bessel_jn_neg_arg(nu, x);
+	  const auto Bess = cyl_bessel_jn_neg_arg(nu, x);
 
 	  const auto factor
 	    = (emsr::sqrtpi_v<Tp> / emsr::sqrt2_v<Tp>)
-	      / std::sqrt(_Cmplx(x));
+	      / std::sqrt(Cmplx(x));
 
-	  const auto j_n = factor * _Bess.J_value;
-	  const auto jp_n = factor * _Bess.J_deriv
+	  const auto j_n = factor * Bess.J_value;
+	  const auto jp_n = factor * Bess.J_deriv
 			    - j_n / (Tp{2} * x);
-	  const auto n_n = factor * _Bess.N_value;
-	  const auto np_n = factor * _Bess.N_deriv
+	  const auto n_n = factor * Bess.N_value;
+	  const auto np_n = factor * Bess.N_deriv
 			    - n_n / (Tp{2} * x);
 
 	  return bess_t{n, x, j_n, jp_n, n_n, np_n};
@@ -935,20 +935,20 @@ namespace detail
     std::complex<Tp>
     sph_hankel_1(unsigned int n, Tp x)
     {
-      using _Cmplx = std::complex<Tp>;
-      constexpr _Cmplx s_i{0, 1};
+      using Cmplx = std::complex<Tp>;
+      constexpr Cmplx s_i{0, 1};
       const auto s_nan = emsr::quiet_NaN(x);
       if (std::isnan(x))
-	return _Cmplx{s_nan, s_nan};
+	return Cmplx{s_nan, s_nan};
       else if (x < Tp{0})
 	{
-	  const auto _Bess = sph_bessel_jn_neg_arg(n, x);
-	  return _Bess.j_value + s_i * _Bess.n_value;
+	  const auto Bess = sph_bessel_jn_neg_arg(n, x);
+	  return Bess.j_value + s_i * Bess.n_value;
 	}
       else
 	{
-	  const auto _Bess = sph_bessel_jn(n, x);
-	  return _Cmplx{_Bess.j_value, _Bess.n_value};
+	  const auto Bess = sph_bessel_jn(n, x);
+	  return Cmplx{Bess.j_value, Bess.n_value};
 	}
     }
 
@@ -970,20 +970,20 @@ namespace detail
     std::complex<Tp>
     sph_hankel_2(unsigned int n, Tp x)
     {
-      using _Cmplx = std::complex<Tp>;
-      constexpr _Cmplx s_i{0, 1};
+      using Cmplx = std::complex<Tp>;
+      constexpr Cmplx s_i{0, 1};
       const auto s_nan = emsr::quiet_NaN(x);
       if (std::isnan(x))
-	return _Cmplx{s_nan, s_nan};
+	return Cmplx{s_nan, s_nan};
       else if (x < Tp{0})
 	{
-	  const auto _Bess = sph_bessel_jn_neg_arg(n, x);
-	  return _Bess.j_value - s_i * _Bess.n_value;
+	  const auto Bess = sph_bessel_jn_neg_arg(n, x);
+	  return Bess.j_value - s_i * Bess.n_value;
 	}
       else
 	{
-	  const auto _Bess = sph_bessel_jn(n, x);
-	  return _Cmplx{_Bess.j_value, -_Bess.n_value};
+	  const auto Bess = sph_bessel_jn(n, x);
+	  return Cmplx{Bess.j_value, -Bess.n_value};
 	}
     }
 

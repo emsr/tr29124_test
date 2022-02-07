@@ -81,18 +81,18 @@ namespace detail
     Tp
     ellint_rc(Tp x, Tp y)
     {
-      using _Real = emsr::num_traits_t<Tp>;
-      const auto s_NaN = emsr::quiet_NaN(_Real{});
-      const auto s_min = emsr::lim_min(_Real{});
-      const auto s_eps = emsr::epsilon(_Real{});
-      const auto s_lolim = _Real{5} * s_min;
+      using Real = emsr::num_traits_t<Tp>;
+      const auto s_NaN = emsr::quiet_NaN(Real{});
+      const auto s_min = emsr::lim_min(Real{});
+      const auto s_eps = emsr::epsilon(Real{});
+      const auto s_lolim = Real{5} * s_min;
 
       bool neg_x = false, neg_y = false;
       if constexpr (!emsr::is_complex_v<Tp>)
 	{
-	  if (std::real(x) < _Real{0})
+	  if (std::real(x) < Real{0})
 	    neg_x = true;
-	  if (std::real(y) < _Real{0})
+	  if (std::real(y) < Real{0})
 	    neg_y = true;
 	}
 
@@ -104,7 +104,7 @@ namespace detail
         throw std::domain_error("ellint_rc: arguments too small");
       else if (neg_y)
 	{
-	  if (std::abs(x) == _Real{0})
+	  if (std::abs(x) == Real{0})
 	    return Tp{};
 	  else
 	    return std::sqrt(x / (x - y)) * ellint_rc(x - y, -y);
@@ -113,29 +113,29 @@ namespace detail
 	{
 	  auto xt = x;
 	  auto yt = y;
-	  auto _A0 = (x + _Real{2} * y) / _Real{3};
-	  auto _Q = std::pow(_Real{3} * s_eps, -_Real{1} / _Real{8})
-		  * std::abs(_A0 - x);
-	  auto _A = _A0;
-	  auto f = _Real{1};
+	  auto A0 = (x + Real{2} * y) / Real{3};
+	  auto Q = std::pow(Real{3} * s_eps, -Real{1} / Real{8})
+		  * std::abs(A0 - x);
+	  auto A = A0;
+	  auto f = Real{1};
 
 	  while (true)
 	    {
-	      auto lambda = _Real{2} * std::sqrt(xt) * std::sqrt(yt)
+	      auto lambda = Real{2} * std::sqrt(xt) * std::sqrt(yt)
 			    + yt;
-	      _A = (_A + lambda) / _Real{4};
-	      xt = (xt + lambda) / _Real{4};
-	      yt = (yt + lambda) / _Real{4};
-	      f *= _Real{4};
-	      if (_Q < f * std::abs(_A))
+	      A = (A + lambda) / Real{4};
+	      xt = (xt + lambda) / Real{4};
+	      yt = (yt + lambda) / Real{4};
+	      f *= Real{4};
+	      if (Q < f * std::abs(A))
 		{
-		  auto s = (y - _A0) / (f * _A);
-		  return (_Real{1} + s * s * (_Real{3} / _Real{10}
-			+ s * (_Real{1} / _Real{7}
-			+ s * (_Real{3} / _Real{8}
-			+ s * (_Real{9} / _Real{22}
-			+ s * (_Real{159} / _Real{208}
-			+ s * (_Real{9} / _Real{8}))))))) / std::sqrt(_A);
+		  auto s = (y - A0) / (f * A);
+		  return (Real{1} + s * s * (Real{3} / Real{10}
+			+ s * (Real{1} / Real{7}
+			+ s * (Real{3} / Real{8}
+			+ s * (Real{9} / Real{22}
+			+ s * (Real{159} / Real{208}
+			+ s * (Real{9} / Real{8}))))))) / std::sqrt(A);
 		}
 	    }
 
@@ -170,17 +170,17 @@ namespace detail
     Tp
     ellint_rd(Tp x, Tp y, Tp z)
     {
-      using _Real = emsr::num_traits_t<Tp>;
-      const auto s_NaN = emsr::quiet_NaN(_Real{});
-      const auto s_min = emsr::lim_min(_Real{});
-      const auto s_eps = emsr::epsilon(_Real{});
-      const auto s_lolim = _Real{5} * s_min;
+      using Real = emsr::num_traits_t<Tp>;
+      const auto s_NaN = emsr::quiet_NaN(Real{});
+      const auto s_min = emsr::lim_min(Real{});
+      const auto s_eps = emsr::epsilon(Real{});
+      const auto s_lolim = Real{5} * s_min;
 
       bool neg_arg = false;
       if constexpr (!emsr::is_complex_v<Tp>)
-	if (std::real(x) < _Real{0}
-	 || std::real(y) < _Real{0}
-	 || std::real(z) < _Real{0})
+	if (std::real(x) < Real{0}
+	 || std::real(y) < Real{0}
+	 || std::real(z) < Real{0})
 	  neg_arg = true;
 
       if (std::isnan(x) || std::isnan(y) || std::isnan(z))
@@ -195,13 +195,13 @@ namespace detail
 	  auto xt = x;
 	  auto yt = y;
 	  auto zt = z;
-	  auto _A0 = (x + y + _Real{3} * z) / _Real{5};
-	  auto _Q = std::pow(s_eps / _Real{4}, -_Real{1} / _Real{6})
-		  * std::max(std::abs(_A0 - z),
-			     std::max(std::abs(_A0 - x),
-				      std::abs(_A0 - y)));
-	  auto _A = _A0;
-	  auto f = _Real{1};
+	  auto A0 = (x + y + Real{3} * z) / Real{5};
+	  auto Q = std::pow(s_eps / Real{4}, -Real{1} / Real{6})
+		  * std::max(std::abs(A0 - z),
+			     std::max(std::abs(A0 - x),
+				      std::abs(A0 - y)));
+	  auto A = A0;
+	  auto f = Real{1};
 	  auto sum = Tp{0};
 
 	  while (true)
@@ -209,31 +209,31 @@ namespace detail
 	      auto lambda = std::sqrt(xt) * std::sqrt(yt)
 			    + std::sqrt(yt) * std::sqrt(zt)
 			    + std::sqrt(zt) * std::sqrt(xt);
-	      sum += _Real{1} / f / std::sqrt(zt) / (zt + lambda);
-	      _A = (_A + lambda) / _Real{4};
-	      xt = (xt + lambda) / _Real{4};
-	      yt = (yt + lambda) / _Real{4};
-	      zt = (zt + lambda) / _Real{4};
-	      f *= _Real{4};
-	      if (_Q < f * std::abs(_A))
+	      sum += Real{1} / f / std::sqrt(zt) / (zt + lambda);
+	      A = (A + lambda) / Real{4};
+	      xt = (xt + lambda) / Real{4};
+	      yt = (yt + lambda) / Real{4};
+	      zt = (zt + lambda) / Real{4};
+	      f *= Real{4};
+	      if (Q < f * std::abs(A))
 		{
-		  auto _Xi = (_A0 - x) / (f * _A);
-		  auto _Yi = (_A0 - y) / (f * _A);
-		  auto _Zi = -(_Xi + _Yi) / _Real{3};
-		  auto _ZZ = _Zi * _Zi;
-		  auto _XY = _Xi * _Yi;
-		  auto _E2 = _XY - _Real{6} * _ZZ;
-		  auto _E3 = (_Real{3} * _XY - _Real{8} * _ZZ) * _Zi;
-		  auto _E4 = _Real{3} * (_XY - _ZZ) * _ZZ;
-		  auto _E5 = _XY * _Zi * _ZZ;
-		  return (_Real{1}
-			- _Real{3} * _E2 / _Real{14}
-			+ _E3 / _Real{6}
-			+ _Real{9} * _E2 * _E2 / _Real{88}
-			- _Real{3} * _E4 / _Real{22}
-			- _Real{9} * _E2 * _E3 / _Real{52}
-			+ _Real{3} * _E5 / _Real{26}) / f / _A / std::sqrt(_A)
-			+ _Real{3} * sum;
+		  auto Xi = (A0 - x) / (f * A);
+		  auto Yi = (A0 - y) / (f * A);
+		  auto Zi = -(Xi + Yi) / Real{3};
+		  auto ZZ = Zi * Zi;
+		  auto XY = Xi * Yi;
+		  auto E2 = XY - Real{6} * ZZ;
+		  auto E3 = (Real{3} * XY - Real{8} * ZZ) * Zi;
+		  auto E4 = Real{3} * (XY - ZZ) * ZZ;
+		  auto E5 = XY * Zi * ZZ;
+		  return (Real{1}
+			- Real{3} * E2 / Real{14}
+			+ E3 / Real{6}
+			+ Real{9} * E2 * E2 / Real{88}
+			- Real{3} * E4 / Real{22}
+			- Real{9} * E2 * E3 / Real{52}
+			+ Real{3} * E5 / Real{26}) / f / A / std::sqrt(A)
+			+ Real{3} * sum;
 		}
 	    }
 
@@ -245,10 +245,10 @@ namespace detail
     Tp
     comp_ellint_rf(Tp x, Tp y)
     {
-      using _Real = emsr::num_traits_t<Tp>;
-      const auto s_NaN = emsr::quiet_NaN(_Real{});
-      const auto s_pi = emsr::pi_v<_Real>;
-      const auto s_tolfact = _Real{2.7L} * emsr::sqrt_eps(_Real{});
+      using Real = emsr::num_traits_t<Tp>;
+      const auto s_NaN = emsr::quiet_NaN(Real{});
+      const auto s_pi = emsr::pi_v<Real>;
+      const auto s_tolfact = Real{2.7L} * emsr::sqrt_eps(Real{});
 
       if (std::isnan(x) || std::isnan(y))
 	return s_NaN;
@@ -259,7 +259,7 @@ namespace detail
 	  while (true)
 	    {
 	      auto xt = x;
-	      x = (x + y) / _Real{2};
+	      x = (x + y) / Real{2};
 	      y = std::sqrt(xt) * std::sqrt(y);
 	      if (std::abs(x - y) < s_tolfact * std::abs(x))
 		return s_pi / (x + y);
@@ -286,17 +286,17 @@ namespace detail
     Tp
     ellint_rf(Tp x, Tp y, Tp z)
     {
-      using _Real = emsr::num_traits_t<Tp>;
-      const auto s_NaN = emsr::quiet_NaN(_Real{});
-      const auto s_min = emsr::lim_min(_Real{});
-      const auto s_eps = emsr::epsilon(_Real{});
-      const auto s_lolim = _Real(5) * s_min;
+      using Real = emsr::num_traits_t<Tp>;
+      const auto s_NaN = emsr::quiet_NaN(Real{});
+      const auto s_min = emsr::lim_min(Real{});
+      const auto s_eps = emsr::epsilon(Real{});
+      const auto s_lolim = Real(5) * s_min;
 
       bool neg_arg = false;
       if constexpr (!emsr::is_complex_v<Tp>)
-	if (std::real(x) < _Real{0}
-	 || std::real(y) < _Real{0}
-	 || std::real(z) < _Real{0})
+	if (std::real(x) < Real{0}
+	 || std::real(y) < Real{0}
+	 || std::real(z) < Real{0})
 	  neg_arg = true;
 
       if (std::isnan(x) || std::isnan(y) || std::isnan(z))
@@ -317,36 +317,36 @@ namespace detail
 	  auto xt = x;
 	  auto yt = y;
 	  auto zt = z;
-	  auto _A0 = (x + y + z) / _Real{3};
-	  auto _Q = std::pow(_Real{3} * s_eps, -_Real{1} / _Real{6})
-		  * std::max(std::abs(_A0 - z),
-			     std::max(std::abs(_A0 - x),
-				      std::abs(_A0 - y)));
-	  auto _A = _A0;
-	  auto f = _Real{1};
+	  auto A0 = (x + y + z) / Real{3};
+	  auto Q = std::pow(Real{3} * s_eps, -Real{1} / Real{6})
+		  * std::max(std::abs(A0 - z),
+			     std::max(std::abs(A0 - x),
+				      std::abs(A0 - y)));
+	  auto A = A0;
+	  auto f = Real{1};
 
 	  while (true)
 	    {
 	      auto lambda = std::sqrt(xt) * std::sqrt(yt)
 			    + std::sqrt(yt) * std::sqrt(zt)
 			    + std::sqrt(zt) * std::sqrt(xt);
-	      _A = (_A + lambda) / _Real{4};
-	      xt = (xt + lambda) / _Real{4};
-	      yt = (yt + lambda) / _Real{4};
-	      zt = (zt + lambda) / _Real{4};
-	      f *= _Real{4};
-	      if (_Q < f * std::abs(_A))
+	      A = (A + lambda) / Real{4};
+	      xt = (xt + lambda) / Real{4};
+	      yt = (yt + lambda) / Real{4};
+	      zt = (zt + lambda) / Real{4};
+	      f *= Real{4};
+	      if (Q < f * std::abs(A))
 		{
-		  auto _Xi = (_A0 - x) / (f * _A);
-		  auto _Yi = (_A0 - y) / (f * _A);
-		  auto _Zi = -(_Xi + _Yi);
-		  auto _E2 = _Xi * _Yi - _Zi * _Zi;
-		  auto _E3 = _Xi * _Yi * _Zi;
-		  return (_Real{1}
-			- _E2 / _Real{10}
-			+ _E3 / _Real{14}
-			+ _E2 * _E2 / _Real{24}
-			- _Real{3} * _E2 * _E3 / _Real{44}) / std::sqrt(_A);
+		  auto Xi = (A0 - x) / (f * A);
+		  auto Yi = (A0 - y) / (f * A);
+		  auto Zi = -(Xi + Yi);
+		  auto E2 = Xi * Yi - Zi * Zi;
+		  auto E3 = Xi * Yi * Zi;
+		  return (Real{1}
+			- E2 / Real{10}
+			+ E3 / Real{14}
+			+ E2 * E2 / Real{24}
+			- Real{3} * E2 * E3 / Real{44}) / std::sqrt(A);
 		}
 	    }
 
@@ -358,36 +358,36 @@ namespace detail
     Tp
     comp_ellint_rg(Tp x, Tp y)
     {
-      using _Real = emsr::num_traits_t<Tp>;
-      const auto s_NaN = emsr::quiet_NaN(_Real{});
-      const auto s_pi = emsr::pi_v<_Real>;
-      const auto s_tolfact = _Real{2.7L} * emsr::sqrt_eps(_Real{});
+      using Real = emsr::num_traits_t<Tp>;
+      const auto s_NaN = emsr::quiet_NaN(Real{});
+      const auto s_pi = emsr::pi_v<Real>;
+      const auto s_tolfact = Real{2.7L} * emsr::sqrt_eps(Real{});
 
       if (std::isnan(x) || std::isnan(y))
 	return s_NaN;
       else if (x == Tp{0} && y == Tp{})
 	return Tp{};
       else if (x == Tp{0})
-	return std::sqrt(y) / _Real{2};
+	return std::sqrt(y) / Real{2};
       else if (y == Tp{0})
-	return std::sqrt(x) / _Real{2};
+	return std::sqrt(x) / Real{2};
       else
 	{
 	  auto xt = std::sqrt(x);
 	  auto yt = std::sqrt(y);
-	  const auto _A = (xt + yt) / _Real{2};
+	  const auto A = (xt + yt) / Real{2};
 	  auto sum = Tp{};
-	  auto sf = _Real{1} / _Real{2};
+	  auto sf = Real{1} / Real{2};
 	  while (true)
 	    {
 	      auto xtt = xt;
-	      xt = (xt + yt) / _Real{2};
+	      xt = (xt + yt) / Real{2};
 	      yt = std::sqrt(xtt) * std::sqrt(yt);
 	      auto del = xt - yt;
 	      if (std::abs(del) < s_tolfact * std::abs(xt))
-		return (_A * _A - sum) * s_pi / (xt + yt) / _Real{2};
+		return (A * A - sum) * s_pi / (xt + yt) / Real{2};
 	      sum += sf * del * del;
-	      sf *= _Real{2};
+	      sf *= Real{2};
 	    }
 	}
     }
@@ -419,8 +419,8 @@ namespace detail
     Tp
     ellint_rg(Tp x, Tp y, Tp z)
     {
-      using _Real = emsr::num_traits_t<Tp>;
-      const auto s_NaN = emsr::quiet_NaN(_Real{});
+      using Real = emsr::num_traits_t<Tp>;
+      const auto s_NaN = emsr::quiet_NaN(Real{});
 
       if (std::isnan(x) || std::isnan(y) || std::isnan(z))
 	return s_NaN;
@@ -432,13 +432,13 @@ namespace detail
 	return comp_ellint_rg(z, x);
       else
 	//return (z * ellint_rf(x, y, z)
-	//     - (x - z) * (y - z) * ellint_rd(x, y, z) / _Real{3}
-	//     + (std::sqrt(x) * std::sqrt(y) / std::sqrt(z))) / _Real{2};
+	//     - (x - z) * (y - z) * ellint_rd(x, y, z) / Real{3}
+	//     + (std::sqrt(x) * std::sqrt(y) / std::sqrt(z))) / Real{2};
 	// There is a symmetric version that is less subject to cancellation loss
 	// when the arguments are real:
 	return (x * (y + z) * ellint_rd(y, z, x)
 	      + y * (z + x) * ellint_rd(z, x, y)
-	      + z * (x + y) * ellint_rd(x, y, z)) / _Real{6};
+	      + z * (x + y) * ellint_rd(x, y, z)) / Real{6};
     }
 
   /**
@@ -467,17 +467,17 @@ namespace detail
     Tp
     ellint_rj(Tp x, Tp y, Tp z, Tp p)
     {
-      using _Real = emsr::num_traits_t<Tp>;
-      const auto s_NaN = emsr::quiet_NaN(_Real{});
-      const auto s_min = emsr::lim_min(_Real{});
-      const auto s_eps = emsr::epsilon(_Real{});
-      const auto s_lolim = _Real(5) * s_min;
+      using Real = emsr::num_traits_t<Tp>;
+      const auto s_NaN = emsr::quiet_NaN(Real{});
+      const auto s_min = emsr::lim_min(Real{});
+      const auto s_eps = emsr::epsilon(Real{});
+      const auto s_lolim = Real(5) * s_min;
 
       bool neg_arg = false;
       if constexpr (!emsr::is_complex_v<Tp>)
-	if (std::real(x) < _Real{0}
-	 || std::real(y) < _Real{0}
-	 || std::real(z) < _Real{0})
+	if (std::real(x) < Real{0}
+	 || std::real(y) < Real{0}
+	 || std::real(z) < Real{0})
 	  neg_arg = true;
 
       if (std::isnan(x) || std::isnan(y) || std::isnan(z) || std::isnan(p))
@@ -497,15 +497,15 @@ namespace detail
 	  auto yt = y;
 	  auto zt = z;
 	  auto pt = p;
-	  auto _A0 = (x + y + z + _Real{2} * p) / _Real{5};
+	  auto A0 = (x + y + z + Real{2} * p) / Real{5};
 	  auto delta = (p - x) * (p - y) * (p - z);
-	  auto _Q = std::pow(s_eps / _Real{4}, -_Real{1} / _Real{6})
-		  * std::max(std::abs(_A0 - z),
-		      std::max(std::abs(_A0 - x),
-			std::max(std::abs(_A0 - y), std::abs(_A0 - p))));
-	  auto _A = _A0;
-	  auto f = _Real{1};
-	  auto fe = _Real{1};
+	  auto Q = std::pow(s_eps / Real{4}, -Real{1} / Real{6})
+		  * std::max(std::abs(A0 - z),
+		      std::max(std::abs(A0 - x),
+			std::max(std::abs(A0 - y), std::abs(A0 - p))));
+	  auto A = A0;
+	  auto f = Real{1};
+	  auto fe = Real{1};
 	  auto sum = Tp{0};
 
 	  while (true)
@@ -517,42 +517,42 @@ namespace detail
 	      auto lambda = xroot * yroot
 			    + yroot * zroot
 			    + zroot * xroot;
-	      _A = (_A + lambda) / _Real{4};
-	      xt = (xt + lambda) / _Real{4};
-	      yt = (yt + lambda) / _Real{4};
-	      zt = (zt + lambda) / _Real{4};
-	      pt = (pt + lambda) / _Real{4};
+	      A = (A + lambda) / Real{4};
+	      xt = (xt + lambda) / Real{4};
+	      yt = (yt + lambda) / Real{4};
+	      zt = (zt + lambda) / Real{4};
+	      pt = (pt + lambda) / Real{4};
 	      auto d = (proot + xroot)
 		       * (proot + yroot)
 		       * (proot + zroot);
-	      auto _E = delta / (fe * d * d);
-	      sum += ellint_rc(Tp{1}, Tp{1} + _E) / (f * d);
-	      f *= _Real{4};
-	      fe *= _Real{64};
-	      if (_Q < f * std::abs(_A))
+	      auto E = delta / (fe * d * d);
+	      sum += ellint_rc(Tp{1}, Tp{1} + E) / (f * d);
+	      f *= Real{4};
+	      fe *= Real{64};
+	      if (Q < f * std::abs(A))
 		{
-		  auto _Xi = (_A0 - x) / (f * _A);
-		  auto _Yi = (_A0 - y) / (f * _A);
-		  auto _Zi = (_A0 - z) / (f * _A);
-		  auto _XYZ = _Xi * _Yi * _Zi;
-		  auto _Pi = -(_Xi + _Yi + _Zi) / _Real{2};
-		  auto _PP = _Pi * _Pi;
-		  auto _PPP = _PP * _Pi;
-		  auto _E2 = _Xi * _Yi
-			   + _Yi * _Zi
-			   + _Zi * _Xi
-			   - _Real{3} * _PP;
-		  auto _E3 = _XYZ + _Real{2} * _E2 * _Pi + Tp{4} * _PPP;
-		  auto _E4 = _Pi
-			   * (_Real{2} * _XYZ + _E2 * _Pi + _Real{3} * _PPP);
-		  auto _E5 = _XYZ * _PP;
-		  return (_Real{1} - _Real{3} * _E2 / _Real{14}
-			+ _E3 / _Real{6}
-			+ _Real{9} * _E2 * _E2 / _Real{88}
-			- _Real{3} * _E4 / _Real{22}
-			- _Real{9} * _E2 * _E3 / _Real{52}
-			+ _Real{3} * _E5 / _Real{26}) / f / _A / std::sqrt(_A)
-			+ _Real{6} * sum;
+		  auto Xi = (A0 - x) / (f * A);
+		  auto Yi = (A0 - y) / (f * A);
+		  auto Zi = (A0 - z) / (f * A);
+		  auto XYZ = Xi * Yi * Zi;
+		  auto Pi = -(Xi + Yi + Zi) / Real{2};
+		  auto PP = Pi * Pi;
+		  auto PPP = PP * Pi;
+		  auto E2 = Xi * Yi
+			   + Yi * Zi
+			   + Zi * Xi
+			   - Real{3} * PP;
+		  auto E3 = XYZ + Real{2} * E2 * Pi + Tp{4} * PPP;
+		  auto E4 = Pi
+			   * (Real{2} * XYZ + E2 * Pi + Real{3} * PPP);
+		  auto E5 = XYZ * PP;
+		  return (Real{1} - Real{3} * E2 / Real{14}
+			+ E3 / Real{6}
+			+ Real{9} * E2 * E2 / Real{88}
+			- Real{3} * E4 / Real{22}
+			- Real{9} * E2 * E3 / Real{52}
+			+ Real{3} * E5 / Real{26}) / f / A / std::sqrt(A)
+			+ Real{6} * sum;
 		}
 	    }
 
@@ -579,12 +579,12 @@ namespace detail
     Tp
     comp_ellint_1(Tp k)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_NaN = emsr::quiet_NaN(k);
 
       if (std::isnan(k))
 	return s_NaN;
-      else if (std::abs(k) == _Real{1})
+      else if (std::abs(k) == Real{1})
 	return s_NaN;
       else
 	return comp_ellint_rf(Tp{1} - k * k, Tp{1});
@@ -608,18 +608,18 @@ namespace detail
     Tp
     ellint_1(Tp k, Tp phi)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_NaN = emsr::quiet_NaN(k);
-      const auto s_pi = emsr::pi_v<_Real>;
+      const auto s_pi = emsr::pi_v<Real>;
 
       if (std::isnan(k) || std::isnan(phi))
 	return s_NaN;
-      else if (std::abs(k) > _Real{1})
+      else if (std::abs(k) > Real{1})
 	throw std::domain_error("ellint_1: bad argument");
       else
 	{
 	  // Reduce phi to -pi/2 < phi < +pi/2.
-	  const int n = std::floor(std::real(phi) / s_pi + _Real{0.5L});
+	  const int n = std::floor(std::real(phi) / s_pi + Real{0.5L});
 	  const auto phi_red = phi - n * s_pi;
 
 	  const auto s = std::sin(phi_red);
@@ -653,14 +653,14 @@ namespace detail
     Tp
     comp_ellint_2(Tp k)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_NaN = emsr::quiet_NaN(k);
 
       if (std::isnan(k))
 	return s_NaN;
-      else if (std::abs(k) == _Real{1})
+      else if (std::abs(k) == Real{1})
 	return Tp{1};
-      else if (std::abs(k) > _Real{1})
+      else if (std::abs(k) > Real{1})
 	throw std::domain_error("comp_ellint_2: bad argument");
       else
 	{
@@ -689,18 +689,18 @@ namespace detail
     Tp
     ellint_2(Tp k, Tp phi)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_NaN = emsr::quiet_NaN(k);
-      const auto s_pi = emsr::pi_v<_Real>;
+      const auto s_pi = emsr::pi_v<Real>;
 
       if (std::isnan(k) || std::isnan(phi))
 	return s_NaN;
-      else if (std::abs(k) > _Real{1})
+      else if (std::abs(k) > Real{1})
 	throw std::domain_error("ellint_2: bad argument");
       else
 	{
 	  // Reduce phi to -pi/2 < phi < +pi/2.
-	  const int n = std::floor(std::real(phi) / s_pi + _Real{0.5L});
+	  const int n = std::floor(std::real(phi) / s_pi + Real{0.5L});
 	  const auto phi_red = phi - n * s_pi;
 
 	  const auto kk = k * k;
@@ -710,16 +710,16 @@ namespace detail
 	  const auto c = std::cos(phi_red);
 	  const auto cc = c * c;
 
-	  const auto _E = s
+	  const auto E = s
 		        * ellint_rf(cc, Tp{1} - kk * ss, Tp{1})
 		        - kk * sss
 		        * ellint_rd(cc, Tp{1} - kk * ss, Tp{1})
 		        / Tp{3};
 
 	  if (n == 0)
-	    return _E;
+	    return E;
 	  else
-	    return _E + Tp{2} * n * comp_ellint_2(k);
+	    return E + Tp{2} * n * comp_ellint_2(k);
 	}
     }
 
@@ -743,14 +743,14 @@ namespace detail
     Tp
     comp_ellint_3(Tp k, Tp nu)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_NaN = emsr::quiet_NaN(k);
 
       if (std::isnan(k) || std::isnan(nu))
 	return s_NaN;
       else if (nu == Tp{1})
 	return emsr::infinity(k);
-      else if (std::abs(k) > _Real{1})
+      else if (std::abs(k) > Real{1})
 	throw std::domain_error("comp_ellint_3: bad argument");
       else
 	{
@@ -782,18 +782,18 @@ namespace detail
     Tp
     ellint_3(Tp k, Tp nu, Tp phi)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_NaN = emsr::quiet_NaN(k);
-      const auto s_pi = emsr::pi_v<_Real>;
+      const auto s_pi = emsr::pi_v<Real>;
 
       if (std::isnan(k) || std::isnan(nu) || std::isnan(phi))
 	return s_NaN;
-      else if (std::abs(k) > _Real{1})
+      else if (std::abs(k) > Real{1})
 	throw std::domain_error("ellint_3: bad argument");
       else
 	{
 	  // Reduce phi to -pi/2 < phi < +pi/2.
-	  const int n = std::floor(std::real(phi) / s_pi + _Real{0.5L});
+	  const int n = std::floor(std::real(phi) / s_pi + Real{0.5L});
 	  const auto phi_red = phi - n * s_pi;
 
 	  const auto kk = k * k;
@@ -803,16 +803,16 @@ namespace detail
 	  const auto c = std::cos(phi_red);
 	  const auto cc = c * c;
 
-	  const auto _Pi = s
+	  const auto Pi = s
 			 * ellint_rf(cc, Tp{1} - kk * ss, Tp{1})
 			 + nu * sss
 			 * ellint_rj(cc, Tp{1} - kk * ss, Tp{1},
 				       Tp{1} - nu * ss) / Tp{3};
 
 	  if (n == 0)
-	    return _Pi;
+	    return Pi;
 	  else
-	    return _Pi + Tp{2} * n * comp_ellint_3(k, nu);
+	    return Pi + Tp{2} * n * comp_ellint_3(k, nu);
 	}
     }
 
@@ -823,12 +823,12 @@ namespace detail
     Tp
     ellint_d(Tp k, Tp phi)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_NaN = emsr::quiet_NaN(k);
 
       if (std::isnan(k) || std::isnan(phi))
 	return s_NaN;
-      else if (std::abs(k) > _Real{1})
+      else if (std::abs(k) > Real{1})
 	throw std::domain_error("ellint_d: bad argument");
       else
 	{
@@ -849,13 +849,13 @@ namespace detail
     Tp
     comp_ellint_d(Tp k)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_NaN = emsr::quiet_NaN(k);
 
       if (std::isnan(k))
 	return s_NaN;
       else
-	return ellint_rd(Tp{0}, Tp{1} - k * k, Tp{1}) / _Real{3};
+	return ellint_rd(Tp{0}, Tp{1} - k * k, Tp{1}) / Real{3};
     }
 
   /**
@@ -865,8 +865,8 @@ namespace detail
     Tp
     ellint_el1(Tp x, Tp k_c)
     {
-      using _Real = emsr::num_traits_t<Tp>;
-      const auto s_NaN = emsr::quiet_NaN(_Real{});
+      using Real = emsr::num_traits_t<Tp>;
+      const auto s_NaN = emsr::quiet_NaN(Real{});
 
       if (std::isnan(x) || std::isnan(k_c))
 	return s_NaN;
@@ -886,8 +886,8 @@ namespace detail
     Tp
     ellint_el2(Tp x, Tp k_c, Tp a, Tp b)
     {
-      using _Real = emsr::num_traits_t<Tp>;
-      const auto s_NaN = emsr::quiet_NaN(_Real{});
+      using Real = emsr::num_traits_t<Tp>;
+      const auto s_NaN = emsr::quiet_NaN(Real{});
 
       if (std::isnan(x) || std::isnan(k_c) || std::isnan(a) || std::isnan(b))
 	return s_NaN;
@@ -911,8 +911,8 @@ namespace detail
     Tp
     ellint_el3(Tp x, Tp k_c, Tp p)
     {
-      using _Real = emsr::num_traits_t<Tp>;
-      const auto s_NaN = emsr::quiet_NaN(_Real{});
+      using Real = emsr::num_traits_t<Tp>;
+      const auto s_NaN = emsr::quiet_NaN(Real{});
 
       if (std::isnan(x) || std::isnan(k_c) || std::isnan(p))
 	return s_NaN;
@@ -924,7 +924,7 @@ namespace detail
 	  auto arg2 = Tp{1} + k2_c * x2;
 	  auto arg3 = Tp{1} + x2;
 	  auto arg4 = Tp{1} + p * x2;
-	  return x * ellint_rf(_Real{1}, arg2, arg3)
+	  return x * ellint_rf(Real{1}, arg2, arg3)
 	       + (Tp{1} - p) * x3
 		 * ellint_rj(Tp{1}, arg2, arg3, arg4) / Tp{3};
 	}
@@ -957,20 +957,20 @@ namespace detail
     Tp
     jacobi_zeta(Tp k, Tp phi)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_NaN = emsr::quiet_NaN(k);
       const auto s_pi_2 = emsr::pi_v<Tp> / Tp{2};
       const auto s_eps = emsr::epsilon(k);
 
       if (std::isnan(k) || std::isnan(phi))
 	return s_NaN;
-      else if (std::abs(k) > _Real{1})
+      else if (std::abs(k) > Real{1})
 	throw std::domain_error("jacobi_zeta: bad argument");
       else if (std::abs(k) < s_eps)
 	return Tp{0};
-      else if (std::abs(k - _Real{1}) < s_eps)
+      else if (std::abs(k - Real{1}) < s_eps)
 	return std::sin(phi);
-      else if (std::real(phi) < _Real{0})
+      else if (std::real(phi) < Real{0})
 	return -jacobi_zeta(k, -phi);
       else if (std::abs(phi) < s_eps || std::abs(phi - s_pi_2) < s_eps)
 	return Tp{0};
@@ -982,7 +982,7 @@ namespace detail
 	  auto m = Tp{1} - mc;
 	  auto arg4 = Tp{1} - mc  * sinphi * sinphi;
 	  return mc * cosphi * sinphi * std::sqrt(arg4)
-	       * ellint_rj(Tp{0}, m, _Real{1}, arg4)
+	       * ellint_rj(Tp{0}, m, Real{1}, arg4)
 	       / (Tp{3} * comp_ellint_1(k));
 	}
     }
@@ -994,7 +994,7 @@ namespace detail
     Tp
     heuman_lambda(Tp k, Tp phi)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
       const auto s_NaN = emsr::quiet_NaN(k);
       const auto s_pi = emsr::pi_v<Tp>;
       const auto s_pi_2 = emsr::pi_v<Tp> / Tp{2};
@@ -1008,7 +1008,7 @@ namespace detail
 	return phi / s_pi_2;
       else if (std::abs(k) < s_eps)
 	return std::sin(phi);
-      else if (std::real(phi) < _Real{0})
+      else if (std::real(phi) < Real{0})
 	return -heuman_lambda(k, -phi);
       else if (std::abs(phi - s_pi_2) < Tp{5} * s_eps)
 	return Tp{1};
@@ -1020,13 +1020,13 @@ namespace detail
 	  auto m = Tp{1} - mc;
 	  auto cosphi = std::cos(phi);
 	  auto sinphi = std::sin(phi);
-	  auto _Delta2 = Tp{1} - m * sinphi * sinphi;
-	  if (std::abs(_Delta2) < _Real{0})
-	    _Delta2 = Tp{0};
+	  auto Delta2 = Tp{1} - m * sinphi * sinphi;
+	  if (std::abs(Delta2) < Real{0})
+	    Delta2 = Tp{0};
 	  auto fact = Tp{2} * m * cosphi * sinphi
-		      / (s_pi * std::sqrt(_Delta2));
-	  auto arg4 = Tp{1} - mc / _Delta2;
-	  auto fact2 = mc / (Tp{3} * _Delta2);
+		      / (s_pi * std::sqrt(Delta2));
+	  auto arg4 = Tp{1} - mc / Delta2;
+	  auto fact2 = mc / (Tp{3} * Delta2);
 
 	  return fact * (ellint_rf(Tp{0}, m, Tp{1})
 			+ fact2 * ellint_rj(Tp{0}, m, Tp{1}, arg4));
