@@ -166,7 +166,7 @@ namespace detail
 	    break;
 	}
       if (i > s_max_iter)
-	return cyl_bessel_ik_asymp(nu, x);
+	return cyl_bessel_ik_asymp(nu, x, do_scaled);
 
       auto Inul = s_fp_min;
       auto Ipnul = h * Inul;
@@ -304,6 +304,7 @@ namespace detail
    *
    * @param  nu  The order of the Bessel functions.
    * @param  x   The argument of the Bessel functions.
+   * @param  do_scaled  If true, scale I, I' by exp(-x) and K, K' by exp(+x).
    * @return A struct containing the modified cylindrical Bessel functions
    *         of the first and second kinds and their derivatives.
    */
@@ -317,7 +318,7 @@ namespace detail
       const auto s_pi = emsr::pi_v<Tp>;
       if (nu < Tp{0})
 	{
-	  const auto Bessm = cyl_bessel_ik(-nu, x);
+	  const auto Bessm = cyl_bessel_ik(-nu, x, do_scaled);
 	  const auto sinnupi = emsr::sin_pi(-nu);
 	  if (std::abs(sinnupi) < s_eps) // Carefully preserve +-inf.
 	    return bess_t{nu, x, Bessm.I_value, Bessm.I_deriv,
@@ -493,12 +494,15 @@ namespace detail
    * 	     respectively.
    *
    * @param  z  The argument of the Airy functions.
+   * @param  do_scaled  If true, scale @f$ Ai @f$, @f$ Ai' @f$ by @f$ \exp(+\xi) @f$
+   *                    and @f$ Bi @f$, @f$ Bi' @f$ by @f$ \exp(-\xi) @f$
+   *                    where @f$ \xi = 2 x^{3/2} / 3 @f$.
    * @return A struct containing the Airy functions
    *         of the first and second kinds and their derivatives.
    */
   template<typename Tp>
     emsr::airy_t<Tp, Tp>
-    airy(Tp z)
+    airy(Tp z, bool do_scaled = false)
     {
       using ai_t = emsr::airy_t<Tp, Tp>;
       const auto s_NaN = emsr::quiet_NaN(z);
@@ -517,12 +521,12 @@ namespace detail
 	return ai_t{z, Tp{0}, Tp{0}, Tp{0}, Tp{0}};
       else if (z > Tp{0})
 	{
-	  const auto Bess13 = cyl_bessel_ik(Tp{1} / Tp{3}, xi);
+	  const auto Bess13 = cyl_bessel_ik(Tp{1} / Tp{3}, xi, do_scaled);
 	  const auto Ai = rootz * Bess13.K_value / (s_sqrt3 * s_pi);
 	  const auto Bi = rootz * (Bess13.K_value / s_pi
 				    + Tp{2} * Bess13.I_value / s_sqrt3);
 
-	  const auto Bess23 = cyl_bessel_ik(Tp{2} / Tp{3}, xi);
+	  const auto Bess23 = cyl_bessel_ik(Tp{2} / Tp{3}, xi, do_scaled);
 	  const auto Aip = -z * Bess23.K_value / (s_sqrt3 * s_pi);
 	  const auto Bip = z * (Bess23.K_value / s_pi
 				 + Tp{2} * Bess23.I_value / s_sqrt3);
@@ -543,7 +547,11 @@ namespace detail
 	  const auto Bip = absz * (Bess23.J_value / s_sqrt3
 				    - Bess23.N_value) / Tp{2};
 
-	  return ai_t{z, Ai, Aip, Bi, Bip};
+          auto exp = Tp{1};
+          if (do_scaled)
+            exp = std::exp(xi);
+
+	  return ai_t{z, Ai * exp, Aip * exp, Bi / exp, Bip / exp};
 	}
       else
 	{

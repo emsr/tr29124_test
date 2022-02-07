@@ -292,6 +292,28 @@ namespace emsr
       return emsr::detail::airy<type>(x).Ai_value;
     }
 
+  /**
+   * Return the scaled Airy function @f$ \tilde{Ai}(x) = \exp(2x^{3/2}/3)Ai(x) @f$
+   * of real argument @c x.
+   * @note This is more useful in the evanescent region x >= 0.
+   *
+   * The Airy function is defined by:
+   * @f[
+   *    Ai(x) = \frac{1}{\pi}\int_0^\infty
+   *      \cos \left(\frac{t^3}{3} + xt \right)dt
+   * @f]
+   *
+   * @tparam Tp The real type of the argument
+   * @param x The argument
+   */
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    airy_ai_scaled(Tp x)
+    {
+      using type = emsr::fp_promote_t<Tp>;
+      return emsr::detail::airy<type>(x, true).Ai_value;
+    }
+
   // Airy functions of the second kind
 
   /**
@@ -332,6 +354,29 @@ namespace emsr
     {
       using type = emsr::fp_promote_t<Tp>;
       return emsr::detail::airy<type>(x).Bi_value;
+    }
+
+  /**
+   * Return the scaled Airy function @f$ \tilde{Bi}(x) = \exp(-2x^{3/2}/3)Bi(x) @f$
+   * of real argument @c x.
+   * @note This is more useful in the evanescent region x >= 0.
+   *
+   * The Airy function is defined by:
+   * @f[
+   *    Bi(x) = \frac{1}{\pi}\int_0^\infty \left[
+   *           \exp \left(-\frac{t^3}{3} + xt \right)
+   *          + \sin \left(\frac{t^3}{3} + xt \right) \right] dt
+   * @f]
+   *
+   * @tparam Tp The real type of the argument
+   * @param x The argument
+   */
+  template<typename Tp>
+    inline emsr::fp_promote_t<Tp>
+    airy_bi_scaled(Tp x)
+    {
+      using type = emsr::fp_promote_t<Tp>;
+      return emsr::detail::airy<type>(x, true).Bi_value;
     }
 
 } // namespace emsr
