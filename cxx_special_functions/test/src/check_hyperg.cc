@@ -12285,7 +12285,7 @@ template<typename Ret, unsigned int Num>
 	  }
       }
     int num_errors = 0;
-    VERIFY(max_abs_frac < toler);
+    VERIFY(!failure && max_abs_frac < toler);
     return num_errors;
   }
 
@@ -12538,5 +12538,4 @@ main()
   num_errors += test(data243, toler243);
   num_errors += test(data244, toler244);
   num_errors += test(data245, toler245);
-  return num_errors;
 }

@@ -69,8 +69,8 @@ data001[55] =
   { 0.65985466267981696, 0.80000000000000071, 0.0 },
 };
 const double toler001 = 2.5000000000000020e-13;
-//  dirichlet_eta
 
+//  dirichlet_eta
 
 // Test data.
 // max(|f - f_GSL|): 6.6613381477509392e-16 at index 2

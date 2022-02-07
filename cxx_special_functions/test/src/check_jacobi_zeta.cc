@@ -430,7 +430,7 @@ template<typename Ret, unsigned int Num>
 	  }
       }
     int num_errors = 0;
-    VERIFY(max_abs_frac < toler);
+    VERIFY(!failure && max_abs_frac < toler);
     return num_errors;
   }
 

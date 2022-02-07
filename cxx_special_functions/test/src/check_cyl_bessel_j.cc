@@ -197,6 +197,7 @@ data006[20] =
   { 0.0043398906180296230, -0.33333333333333331, 5.0000000000000000, 0.0 },
 };
 const double toler006 = 2.5000000000000015e-12;
+
 //  cyl_bessel_j
 
 // Test data for nu=0.0000000000000000.
@@ -495,6 +496,7 @@ data015[21] =
   { 2.7703300521289416e-11, 20.000000000000000, 5.0000000000000000, 0.0 },
 };
 const double toler015 = 1.0000000000000008e-12;
+
 //  cyl_bessel_j
 
 // Test data for nu=0.0000000000000000.
@@ -859,6 +861,7 @@ data026[21] =
   { 0.096366673295861557, 100.00000000000000, 100.00000000000000, 0.0 },
 };
 const double toler026 = 1.0000000000000006e-11;
+
 //  cyl_bessel_j
 
 // Test data for nu=100.00000000000000.
@@ -915,7 +918,7 @@ template<typename Ret, unsigned int Num>
 	  }
       }
     int num_errors = 0;
-    VERIFY(max_abs_frac < toler);
+    VERIFY(!failure && max_abs_frac < toler);
     return num_errors;
   }
 

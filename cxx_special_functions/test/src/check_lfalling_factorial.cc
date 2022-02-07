@@ -63,9 +63,9 @@ data003[8] =
 };
 const double toler003 = 2.5000000000000020e-13;
 
-// Divergence at a=1.0000000000000000 x=1.0000000000000000 f=-inf f_Boost=0.0000000000000000
 // Divergence at a=1.0000000000000000 x=2.0000000000000000 f=-inf f_Boost=inf
 // Divergence at a=1.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=inf
+// Divergence at a=1.0000000000000000 x=10.000000000000000 f=-inf f_Boost=inf
 // ...
 // Divergence at a=1.0000000000000000 x=100.00000000000000 f=-inf f_Boost=inf
 // Test data for a=1.2500000000000000.
@@ -128,9 +128,9 @@ data006[8] =
 };
 const double toler006 = 2.5000000000000020e-13;
 
-// Divergence at a=2.0000000000000000 x=2.0000000000000000 f=-inf f_Boost=0.69314718055994529
 // Divergence at a=2.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=inf
 // Divergence at a=2.0000000000000000 x=10.000000000000000 f=-inf f_Boost=inf
+// Divergence at a=2.0000000000000000 x=20.000000000000000 f=-inf f_Boost=inf
 // ...
 // Divergence at a=2.0000000000000000 x=100.00000000000000 f=-inf f_Boost=inf
 // Test data for a=2.0000000000000000.
@@ -368,17 +368,16 @@ data018[8] =
 };
 const double toler018 = 2.5000000000000020e-13;
 
-// Divergence at a=5.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=4.7874917427820458
 // Divergence at a=5.0000000000000000 x=10.000000000000000 f=-inf f_Boost=inf
 // Divergence at a=5.0000000000000000 x=20.000000000000000 f=-inf f_Boost=inf
-// ...
+// Divergence at a=5.0000000000000000 x=50.000000000000000 f=-inf f_Boost=inf
 // Divergence at a=5.0000000000000000 x=100.00000000000000 f=-inf f_Boost=inf
 // Test data for a=5.0000000000000000.
 // max(|f - f_Boost|): 2.2204460492503131e-16 at index 1
 // max(|f - f_Boost| / |f_Boost|): 1.3796407007040920e-16
-// mean(f - f_Boost): -7.4014868308343765e-17
-// variance(f - f_Boost): 4.1086505480261029e-33
-// stddev(f - f_Boost): 6.4098756212785461e-17
+// mean(f - f_Boost): -5.5511151231257827e-17
+// variance(f - f_Boost): 1.3695501826753676e-33
+// stddev(f - f_Boost): 3.7007434154171883e-17
 const testcase_lfalling_factorial<double>
 data019[4] =
 {
@@ -420,7 +419,7 @@ template<typename Ret, unsigned int Num>
 	  }
       }
     int num_errors = 0;
-    VERIFY(max_abs_frac < toler);
+    VERIFY(!failure && max_abs_frac < toler);
     return num_errors;
   }
 

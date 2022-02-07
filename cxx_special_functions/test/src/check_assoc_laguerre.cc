@@ -2823,7 +2823,6 @@ template<typename Ret, unsigned int Num>
   int
   test(const testcase_assoc_laguerre<unsigned int, Ret> (&data)[Num], Ret toler)
   {
-    int num_errors = 0;
     const Ret eps = std::numeric_limits<Ret>::epsilon();
     Ret max_abs_diff = Ret(-1);
     Ret max_abs_frac = Ret(-1);
@@ -2851,7 +2850,8 @@ template<typename Ret, unsigned int Num>
 	      }
 	  }
       }
-    VERIFY(max_abs_frac < toler);
+    int num_errors = 0;
+    VERIFY(!failure && max_abs_frac < toler);
     return num_errors;
   }
 

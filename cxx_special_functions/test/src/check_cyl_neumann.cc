@@ -194,6 +194,7 @@ data006[20] =
   { -0.35632951153715792, -0.33333333333333331, 5.0000000000000000, 0.0 },
 };
 const double toler006 = 2.5000000000000020e-13;
+
 //  cyl_neumann
 
 // Test data for nu=0.0000000000000000.
@@ -547,6 +548,7 @@ data017[20] =
   { -5.0848639160196196e+115, 100.00000000000000, 5.0000000000000000, 0.0 },
 };
 const double toler017 = 2.5000000000000014e-11;
+
 //  cyl_neumann
 
 // Test data for nu=0.0000000000000000.
@@ -900,6 +902,7 @@ data028[20] =
   { -0.16692141141757652, 100.00000000000000, 100.00000000000000, 0.0 },
 };
 const double toler028 = 1.0000000000000006e-11;
+
 //  cyl_neumann
 
 // Test data for nu=100.00000000000000.
@@ -955,7 +958,7 @@ template<typename Ret, unsigned int Num>
 	  }
       }
     int num_errors = 0;
-    VERIFY(max_abs_frac < toler);
+    VERIFY(!failure && max_abs_frac < toler);
     return num_errors;
   }
 

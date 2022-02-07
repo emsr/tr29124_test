@@ -63,17 +63,12 @@ data003[8] =
 };
 const double toler003 = 2.5000000000000020e-13;
 
-// Divergence at a=1.0000000000000000 x=2.0000000000000000 f=-inf f_Boost=0.0000000000000000
-// Divergence at a=1.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=0.0000000000000000
-// Divergence at a=1.0000000000000000 x=10.000000000000000 f=-inf f_Boost=0.0000000000000000
-// ...
-// Divergence at a=1.0000000000000000 x=100.00000000000000 f=-inf f_Boost=0.0000000000000000
 // Test data for a=1.0000000000000000.
-// max(|f - f_Boost|): 1.0000000000000000 at index 1
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
-// mean(f - f_Boost): -0.50000000000000000
-// variance(f - f_Boost): 0.50000000000000000
-// stddev(f - f_Boost): 0.70710678118654757
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_falling_factorial<double>
 data004[8] =
 {
@@ -148,17 +143,12 @@ data007[8] =
 };
 const double toler007 = 2.5000000000000020e-13;
 
-// Divergence at a=2.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=0.0000000000000000
-// Divergence at a=2.0000000000000000 x=10.000000000000000 f=-inf f_Boost=0.0000000000000000
-// Divergence at a=2.0000000000000000 x=20.000000000000000 f=-inf f_Boost=0.0000000000000000
-// ...
-// Divergence at a=2.0000000000000000 x=100.00000000000000 f=-inf f_Boost=0.0000000000000000
 // Test data for a=2.0000000000000000.
-// max(|f - f_Boost|): 2.0000000000000000 at index 2
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
-// mean(f - f_Boost): -0.66666666666666663
-// variance(f - f_Boost): 1.3333333333333333
-// stddev(f - f_Boost): 1.1547005383792515
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_falling_factorial<double>
 data008[8] =
 {
@@ -233,11 +223,6 @@ data011[8] =
 };
 const double toler011 = 2.5000000000000020e-13;
 
-// Divergence at a=3.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=0.0000000000000000
-// Divergence at a=3.0000000000000000 x=10.000000000000000 f=-inf f_Boost=0.0000000000000000
-// Divergence at a=3.0000000000000000 x=20.000000000000000 f=-inf f_Boost=0.0000000000000000
-// ...
-// Divergence at a=3.0000000000000000 x=100.00000000000000 f=-inf f_Boost=0.0000000000000000
 // Test data for a=3.0000000000000000.
 // max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
@@ -318,11 +303,6 @@ data015[8] =
 };
 const double toler015 = 2.5000000000000020e-13;
 
-// Divergence at a=4.0000000000000000 x=5.0000000000000000 f=-inf f_Boost=0.0000000000000000
-// Divergence at a=4.0000000000000000 x=10.000000000000000 f=-inf f_Boost=0.0000000000000000
-// Divergence at a=4.0000000000000000 x=20.000000000000000 f=-inf f_Boost=0.0000000000000000
-// ...
-// Divergence at a=4.0000000000000000 x=100.00000000000000 f=-inf f_Boost=0.0000000000000000
 // Test data for a=4.0000000000000000.
 // max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
@@ -403,16 +383,12 @@ data019[8] =
 };
 const double toler019 = 2.5000000000000020e-13;
 
-// Divergence at a=5.0000000000000000 x=10.000000000000000 f=-inf f_Boost=0.0000000000000000
-// Divergence at a=5.0000000000000000 x=20.000000000000000 f=-inf f_Boost=0.0000000000000000
-// Divergence at a=5.0000000000000000 x=50.000000000000000 f=-inf f_Boost=0.0000000000000000
-// Divergence at a=5.0000000000000000 x=100.00000000000000 f=-inf f_Boost=0.0000000000000000
 // Test data for a=5.0000000000000000.
-// max(|f - f_Boost|): 120.00000000000000 at index 3
+// max(|f - f_Boost|): 0.0000000000000000 at index 0
 // max(|f - f_Boost| / |f_Boost|): 0.0000000000000000
-// mean(f - f_Boost): -30.000000000000000
-// variance(f - f_Boost): 3600.0000000000000
-// stddev(f - f_Boost): 60.000000000000000
+// mean(f - f_Boost): 0.0000000000000000
+// variance(f - f_Boost): 0.0000000000000000
+// stddev(f - f_Boost): 0.0000000000000000
 const testcase_falling_factorial<double>
 data020[8] =
 {
@@ -458,7 +434,7 @@ template<typename Ret, unsigned int Num>
 	  }
       }
     int num_errors = 0;
-    VERIFY(max_abs_frac < toler);
+    VERIFY(!failure && max_abs_frac < toler);
     return num_errors;
   }
 

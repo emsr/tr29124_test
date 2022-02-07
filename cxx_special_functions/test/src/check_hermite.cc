@@ -1706,6 +1706,7 @@ data008[201] =
   { -1.8738689223256612e+115, 100, 10.000000000000000, 0.0 },
 };
 const double toler008 = 2.5000000000000020e-13;
+
 //  hermite
 
 // Test data for n=8.
@@ -1897,7 +1898,7 @@ template<typename Ret, unsigned int Num>
 	  }
       }
     int num_errors = 0;
-    VERIFY(max_abs_frac < toler);
+    VERIFY(!failure && max_abs_frac < toler);
     return num_errors;
   }
 

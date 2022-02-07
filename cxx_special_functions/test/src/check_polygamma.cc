@@ -1280,6 +1280,7 @@ data006[201] =
   { -5.4049365907102439e-05, 10, 10.062500000000000, 0.0 },
 };
 const double toler006 = 1.0000000000000008e-12;
+
 //  polygamma
 
 // Test data for m=0.
@@ -2579,7 +2580,7 @@ template<typename Ret, unsigned int Num>
 	  }
       }
     int num_errors = 0;
-    VERIFY(max_abs_frac < toler);
+    VERIFY(!failure && max_abs_frac < toler);
     return num_errors;
   }
 

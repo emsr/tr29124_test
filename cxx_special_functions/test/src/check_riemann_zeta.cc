@@ -1,13 +1,6 @@
 
 //  riemann_zeta
 
-// This can take long on simulators, timing out the test.
-// { dg-additional-options "-DMAX_ITERATIONS=5" { target simulator } }
-
-#ifndef MAX_ITERATIONS
-#define MAX_ITERATIONS (sizeof(data001) / sizeof(testcase_riemann_zeta<double>))
-#endif
-
 #include "verify.h"
 
 // Test data.
@@ -76,15 +69,8 @@ data001[55] =
   { -4.4375384158955686, 0.80000000000000071, 0.0 },
 };
 const double toler001 = 2.5000000000000020e-13;
+
 //  riemann_zeta
-
-// This can take long on simulators, timing out the test.
-// { dg-additional-options "-DMAX_ITERATIONS=5" { target simulator } }
-
-#ifndef MAX_ITERATIONS
-#define MAX_ITERATIONS (sizeof(data001) / sizeof(testcase_riemann_zeta<double>))
-#endif
-
 
 // Test data.
 // max(|f - f_Boost|): 4.4408920985006262e-16 at index 1
@@ -251,7 +237,7 @@ template<typename Ret, unsigned int Num>
     Ret max_abs_diff = Ret(-1);
     Ret max_abs_frac = Ret(-1);
     bool failure = false;
-    unsigned int num_datum = MAX_ITERATIONS;
+    unsigned int num_datum = Num;
     for (unsigned int i = 0; i < num_datum; ++i)
       {
 	const Ret f = emsr::riemann_zeta(data[i].s);

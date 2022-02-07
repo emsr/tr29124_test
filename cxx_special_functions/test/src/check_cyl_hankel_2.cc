@@ -194,6 +194,7 @@ data006[20] =
   { std::complex<double>(0.0043398906180296230,0.35632951153715792), -0.33333333333333331, 5.0000000000000000, 0.0 },
 };
 const double toler006 = 2.5000000000000020e-13;
+
 //  cyl_hankel_2
 
 // Test data for nu=0.0000000000000000.
@@ -547,6 +548,7 @@ data017[20] =
   { std::complex<double>(6.2677893955418763e-119,5.0848639160202233e+115), 100.00000000000000, 5.0000000000000000, 0.0 },
 };
 const double toler017 = 5.0000000000000039e-13;
+
 //  cyl_hankel_2
 
 // Test data for nu=-5.0000000000000000.
@@ -628,6 +630,7 @@ data022[4] =
   { std::complex<double>(-7.6095484762417244e-07,-251309.48151852371), 5.0000000000000000, -0.25000000000000000, 0.0 },
 };
 const double toler022 = 2.5000000000000020e-13;
+
 //  cyl_hankel_2
 
 // Test data for nu=0.0000000000000000.
@@ -1013,7 +1016,7 @@ template<typename Ret, unsigned int Num>
 	  }
       }
     int num_errors = 0;
-    VERIFY(max_abs_frac < toler);
+    VERIFY(!failure && max_abs_frac < toler);
     return num_errors;
   }
 

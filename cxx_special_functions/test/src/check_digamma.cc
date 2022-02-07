@@ -215,8 +215,8 @@ data001[201] =
   { 2.2583039972732655, 10.062500000000000, 0.0 },
 };
 const double toler001 = 2.5000000000000014e-11;
-//  digamma
 
+//  digamma
 
 // Test data.
 // max(|f - f_Boost|): 3.5527136788005009e-15 at index 183
