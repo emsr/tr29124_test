@@ -28,782 +28,782 @@
 #include <complex>
 
 // Associated Laguerre polynomials.
-template<typename _Tpa, typename _Tp>
+template<typename _Tpa, typename Tp>
   struct testcase_assoc_laguerre
   {
     unsigned int n;
     _Tpa alpha;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Associated Legendre functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_assoc_legendre
   {
     unsigned int l;
     unsigned int m;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Beta function.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_beta
   {
-    _Tp x;
-    _Tp y;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp y;
+    Tp f0;
+    Tp f;
   };
 
 // Complete elliptic integrals of the first kind.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_comp_ellint_1
   {
-    _Tp k;
-    _Tp f0;
-    _Tp f;
+    Tp k;
+    Tp f0;
+    Tp f;
   };
 
 // Complete elliptic integrals of the second kind.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_comp_ellint_2
   {
-    _Tp k;
-    _Tp f0;
-    _Tp f;
+    Tp k;
+    Tp f0;
+    Tp f;
   };
 
 // Complete elliptic integrals of the third kind.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_comp_ellint_3
   {
-    _Tp k;
-    _Tp nu;
-    _Tp f0;
-    _Tp f;
+    Tp k;
+    Tp nu;
+    Tp f0;
+    Tp f;
   };
 
 // Complete elliptic D integrals.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_comp_ellint_d
   {
-    _Tp k;
-    _Tp f0;
-    _Tp f;
+    Tp k;
+    Tp f0;
+    Tp f;
   };
 
 // Confluent hypergeometric functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_conf_hyperg
   {
-    _Tp a;
-    _Tp c;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp a;
+    Tp c;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Confluent hypergeometric functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_conf_hyperg_lim
   {
-    _Tp c;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp c;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Generic cylindrical Bessel functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_cyl_bessel
   {
-    _Tp nu;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp nu;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Cylindrical Bessel functions (of the first kind).
-template<typename _Tp>
+template<typename Tp>
   struct testcase_cyl_bessel
   {
-    _Tp nu;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp nu;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Elliptic integrals of the first kind.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_ellint_1
   {
-    _Tp k;
-    _Tp phi;
-    _Tp f0;
-    _Tp f;
+    Tp k;
+    Tp phi;
+    Tp f0;
+    Tp f;
   };
 
 // Elliptic integrals of the second kind.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_ellint_2
   {
-    _Tp k;
-    _Tp phi;
-    _Tp f0;
-    _Tp f;
+    Tp k;
+    Tp phi;
+    Tp f0;
+    Tp f;
   };
 
 // Elliptic integrals of the third kind.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_ellint_3
   {
-    _Tp k;
-    _Tp nu;
-    _Tp phi;
-    _Tp f0;
-    _Tp f;
+    Tp k;
+    Tp nu;
+    Tp phi;
+    Tp f0;
+    Tp f;
   };
 
 // Elliptic D integrals.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_ellint_d
   {
-    _Tp k;
-    _Tp phi;
-    _Tp f0;
-    _Tp f;
+    Tp k;
+    Tp phi;
+    Tp f0;
+    Tp f;
   };
 
 // Heuman lambda functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_heuman_lambda
   {
-    _Tp k;
-    _Tp phi;
-    _Tp f0;
-    _Tp f;
+    Tp k;
+    Tp phi;
+    Tp f0;
+    Tp f;
   };
 
 // Jacobi zeta functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_jacobi_zeta
   {
-    _Tp k;
-    _Tp phi;
-    _Tp f0;
-    _Tp f;
+    Tp k;
+    Tp phi;
+    Tp f0;
+    Tp f;
   };
 
 // Exponential integral.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_expint
   {
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Hermite polynomials
-template<typename _Tp>
+template<typename Tp>
   struct testcase_hermite
   {
     unsigned int n;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Hypergeometric functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_hyperg
   {
-    _Tp a;
-    _Tp b;
-    _Tp c;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp a;
+    Tp b;
+    Tp c;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Laguerre polynomials.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_laguerre
   {
     unsigned int n;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Legendre polynomials.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_legendre
   {
     unsigned int l;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Riemann zeta function.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_riemann_zeta
   {
-    _Tp s;
-    _Tp f0;
-    _Tp f;
+    Tp s;
+    Tp f0;
+    Tp f;
   };
 
 // Hurwitz zeta function.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_hurwitz_zeta
   {
-    _Tp s;
-    _Tp a;
-    _Tp f0;
-    _Tp f;
+    Tp s;
+    Tp a;
+    Tp f0;
+    Tp f;
   };
 
 // Spherical Bessel functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_sph_bessel
   {
     unsigned int n;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Spherical Legendre functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_sph_legendre
   {
     unsigned int l;
     unsigned int m;
-    _Tp theta;
-    _Tp f0;
-    _Tp f;
+    Tp theta;
+    Tp f0;
+    Tp f;
   };
 
 // Airy functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_airy
   {
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Incomplete gamma functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_gamma_inc
   {
-    _Tp a;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp a;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Regularized incomplete gamma functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_xgamma
   {
-    _Tp a;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp a;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Dilogarithm functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_dilog
   {
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Gamma function.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_gamma
   {
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Reciprocal Gamma function.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_gamma_reciprocal
   {
-    _Tp f0;
-    _Tp x;
-    _Tp f;
+    Tp f0;
+    Tp x;
+    Tp f;
   };
 
-template<typename _Tp>
+template<typename Tp>
   struct testcase_ellint_rc
   {
-    _Tp x;
-    _Tp y;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp y;
+    Tp f0;
+    Tp f;
   };
 
-template<typename _Tp>
+template<typename Tp>
   struct testcase_ellint_rd
   {
-    _Tp x;
-    _Tp y;
-    _Tp z;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp y;
+    Tp z;
+    Tp f0;
+    Tp f;
   };
 
-template<typename _Tp>
+template<typename Tp>
   struct testcase_comp_ellint_rf
   {
-    _Tp x;
-    _Tp y;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp y;
+    Tp f0;
+    Tp f;
   };
 
-template<typename _Tp>
+template<typename Tp>
   struct testcase_ellint_rf
   {
-    _Tp x;
-    _Tp y;
-    _Tp z;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp y;
+    Tp z;
+    Tp f0;
+    Tp f;
   };
 
-template<typename _Tp>
+template<typename Tp>
   struct testcase_comp_ellint_rg
   {
-    _Tp x;
-    _Tp y;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp y;
+    Tp f0;
+    Tp f;
   };
 
-template<typename _Tp>
+template<typename Tp>
   struct testcase_ellint_rg
   {
-    _Tp x;
-    _Tp y;
-    _Tp z;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp y;
+    Tp z;
+    Tp f0;
+    Tp f;
   };
 
-template<typename _Tp>
+template<typename Tp>
   struct testcase_ellint_rj
   {
-    _Tp x;
-    _Tp y;
-    _Tp z;
-    _Tp p;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp y;
+    Tp z;
+    Tp p;
+    Tp f0;
+    Tp f;
   };
 
-template<typename _Tp>
+template<typename Tp>
   struct testcase_digamma
   {
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
-template<typename _Tp>
+template<typename Tp>
   struct testcase_polygamma
   {
     unsigned int m;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
-template<typename _Tp>
+template<typename Tp>
   struct testcase_sinint
   {
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
-template<typename _Tp>
+template<typename Tp>
   struct testcase_cosint
   {
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
-template<typename _Tp>
+template<typename Tp>
   struct testcase_sinhint
   {
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
-template<typename _Tp>
+template<typename Tp>
   struct testcase_coshint
   {
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
-template<typename _Tp>
+template<typename Tp>
   struct testcase_dawson
   {
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Jacobi elliptic functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_jacobi_xn
   {
-    _Tp k;
-    _Tp u;
-    _Tp f0;
-    _Tp f;
+    Tp k;
+    Tp u;
+    Tp f0;
+    Tp f;
   };
 
-template<typename _Tp>
+template<typename Tp>
   struct testcase_expint_en
   {
     unsigned int n;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Fresnel functions
-template<typename _Tp>
+template<typename Tp>
   struct testcase_fresnel
   {
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
-template<typename _Tp>
+template<typename Tp>
   struct testcase_sinc
   {
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
-template<typename _Tp>
+template<typename Tp>
   struct testcase_sinc_pi
   {
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Log rising factorials.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_lrising_factorial
   {
-    _Tp a;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp a;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Rising factorials.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_rising_factorial
   {
-    _Tp a;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp a;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Log falling factorials.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_lfalling_factorial
   {
-    _Tp a;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp a;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Falling factorials.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_falling_factorial
   {
-    _Tp a;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp a;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Factorial type functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_factorial
   {
     unsigned int n;
-    _Tp f0;
-    _Tp f;
+    Tp f0;
+    Tp f;
   };
 
 // Binomial coefficients.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_binomial
   {
     unsigned int n;
     unsigned int k;
-    _Tp f0;
-    _Tp f;
+    Tp f0;
+    Tp f;
   };
 
 // Gegenbauer polynomials.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_gegenbauer
   {
     unsigned int n;
-    _Tp lambda;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp lambda;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Chebyshev polynomials.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_chebyshev
   {
     unsigned int n;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Zernike polynomials.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_zernike
   {
     unsigned int n;
     int m;
-    _Tp rho;
-    _Tp phi;
-    _Tp f0;
-    _Tp f;
+    Tp rho;
+    Tp phi;
+    Tp f0;
+    Tp f;
   };
 
 // Radial polynomials.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_radpoly
   {
     unsigned int n;
     int m;
-    _Tp rho;
-    _Tp f0;
-    _Tp f;
+    Tp rho;
+    Tp f0;
+    Tp f;
   };
 
 // Incomplete beta functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_ibeta
   {
-    _Tp a;
-    _Tp b;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp a;
+    Tp b;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Cylindrical Hankel functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_cyl_hankel
   {
-    _Tp nu;
-    _Tp x;
-    std::complex<_Tp> f0;
-    std::complex<_Tp> f;
+    Tp nu;
+    Tp x;
+    std::complex<Tp> f0;
+    std::complex<Tp> f;
   };
 
 // Spherical Hankel functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_sph_hankel
   {
     unsigned int n;
-    _Tp x;
-    std::complex<_Tp> f0;
-    std::complex<_Tp> f;
+    Tp x;
+    std::complex<Tp> f0;
+    std::complex<Tp> f;
   };
 
 // Spherical Harmonic functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_sph_harmonic
   {
     unsigned int l;
     int m;
-    _Tp theta;
-    _Tp phi;
-    std::complex<_Tp> f0;
-    std::complex<_Tp> f;
+    Tp theta;
+    Tp phi;
+    std::complex<Tp> f0;
+    std::complex<Tp> f;
   };
 
 // Jacobi polynomials.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_jacobi
   {
     unsigned int n;
-    _Tp alpha;
-    _Tp beta;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp alpha;
+    Tp beta;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Polylogarithm functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_polylog
   {
-    _Tp s;
-    std::complex<_Tp> w;
-    std::complex<_Tp> f0;
-    std::complex<_Tp> f;
+    Tp s;
+    std::complex<Tp> w;
+    std::complex<Tp> f0;
+    std::complex<Tp> f;
   };
 
 // Clausen functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_clausen
   {
     unsigned int m;
-    std::complex<_Tp> w;
-    std::complex<_Tp> f0;
-    std::complex<_Tp> f;
+    std::complex<Tp> w;
+    std::complex<Tp> f0;
+    std::complex<Tp> f;
   };
 
 // Dirichlet eta function.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_dirichlet_eta
   {
-    _Tp s;
-    _Tp f0;
-    _Tp f;
+    Tp s;
+    Tp f0;
+    Tp f;
   };
 
 // Dirichlet beta function.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_dirichlet_beta
   {
-    _Tp s;
-    _Tp f0;
-    _Tp f;
+    Tp s;
+    Tp f0;
+    Tp f;
   };
 
 // Dirichlet lambda function.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_dirichlet_lambda
   {
-    _Tp s;
-    _Tp f0;
-    _Tp f;
+    Tp s;
+    Tp f0;
+    Tp f;
   };
 
 // Owens T functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_owens_t
   {
-    _Tp h;
-    _Tp a;
-    _Tp f0;
-    _Tp f;
+    Tp h;
+    Tp a;
+    Tp f0;
+    Tp f;
   };
 
 // Clausen Cl_m function.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_clausen_cl
   {
     unsigned int m;
-    _Tp w;
-    _Tp f0;
-    _Tp f;
+    Tp w;
+    Tp f0;
+    Tp f;
   };
 
 // Exponential theta_N functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_theta
   {
-    _Tp nu;
-    _Tp x;
-    _Tp f0;
-    _Tp f;
+    Tp nu;
+    Tp x;
+    Tp f0;
+    Tp f;
   };
 
 // Elliptic nome.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_ellnome
   {
-    _Tp k;
-    _Tp f0;
-    _Tp f;
+    Tp k;
+    Tp f0;
+    Tp f;
   };
 
 // Debye functions.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_debye
   {
-    _Tp f0;
+    Tp f0;
     unsigned int n;
-    _Tp x;
-    _Tp f;
+    Tp x;
+    Tp f;
   };
 
 // Bernoulli numbers.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_bernoulli
   {
-    _Tp f0;
+    Tp f0;
     unsigned int n;
-    _Tp f;
+    Tp f;
   };
 
 // Euler numbers.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_euler
   {
     unsigned int n;
-    _Tp f0;
-    _Tp f;
+    Tp f0;
+    Tp f;
   };
 
 // Eulerian numbers.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_eulerian
   {
     unsigned int n;
     unsigned int m;
-    _Tp f0;
-    _Tp f;
+    Tp f0;
+    Tp f;
   };
 
 // Stirling numbers.
-template<typename _Tp>
+template<typename Tp>
   struct testcase_stirling
   {
     unsigned int n;
     unsigned int m;
-    _Tp f0;
-    _Tp f;
+    Tp f0;
+    Tp f;
   };
 
 #endif // SPECFUN_TESTCASE_H

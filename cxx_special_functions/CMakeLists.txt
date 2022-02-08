@@ -45,10 +45,20 @@ target_include_directories(check_airy_ai PRIVATE .)
 target_link_libraries(check_airy_ai ${EMSR_LIBRARIES} quadmath)
 add_test(NAME check_airy_ai COMMAND check_airy_ai)
 
+add_executable(check_airy_ai_scaled test/src/check_airy_ai_scaled.cc)
+target_include_directories(check_airy_ai_scaled PRIVATE .)
+target_link_libraries(check_airy_ai_scaled ${EMSR_LIBRARIES} quadmath)
+add_test(NAME check_airy_ai_scaled COMMAND check_airy_ai_scaled)
+
 add_executable(check_airy_bi test/src/check_airy_bi.cc)
 target_include_directories(check_airy_bi PRIVATE .)
 target_link_libraries(check_airy_bi ${EMSR_LIBRARIES} quadmath)
 add_test(NAME check_airy_bi COMMAND check_airy_bi)
+
+add_executable(check_airy_bi_scaled test/src/check_airy_bi_scaled.cc)
+target_include_directories(check_airy_bi_scaled PRIVATE .)
+target_link_libraries(check_airy_bi_scaled ${EMSR_LIBRARIES} quadmath)
+add_test(NAME check_airy_bi_scaled COMMAND check_airy_bi_scaled)
 
 add_executable(check_assoc_laguerre test/src/check_assoc_laguerre.cc)
 target_include_directories(check_assoc_laguerre PRIVATE .)
