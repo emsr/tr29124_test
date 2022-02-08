@@ -11,19 +11,19 @@
 
 /// A class to abstract the scalar data type in a generic way.
 template<typename Tp>
-  struct __num_traits
+  struct num_traits
   {
-    using __value_type = Tp;
+    using value_type = Tp;
   };
 
 template<typename Tp>
-  struct __num_traits<std::complex<Tp>>
+  struct num_traits<std::complex<Tp>>
   {
-    using __value_type = typename std::complex<Tp>::value_type;
+    using value_type = typename std::complex<Tp>::value_type;
   };
 
 template<typename Tp>
-  using __num_traits_t = typename __num_traits<Tp>::__value_type;
+  using __num_traits_t = typename num_traits<Tp>::value_type;
 
 template<typename Tp>
   struct type_strings
@@ -198,7 +198,7 @@ template<typename Tp>
 ///
 template<typename Tp>
   Tp
-  get_tolerance(Tp delta, Tp min_tol, bool & ok)
+  get_tolerance(Tp delta, Tp min_tol, bool& ok)
   {
     using Val = __num_traits_t<Tp>;
 
