@@ -13,7 +13,7 @@
 #include <emsr/math_constants.h>
 #include <emsr/quadrature_point.h>
 #include <emsr/sf_legendre.h>
-#include <emsr/sf_gamma.h> / factorial
+#include <emsr/sf_gamma.h> // factorial
 
   /**
    * Build a list of zeros and weights for the Gauss-Legendre integration rule
