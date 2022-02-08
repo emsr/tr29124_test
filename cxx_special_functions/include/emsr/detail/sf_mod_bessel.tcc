@@ -521,7 +521,9 @@ namespace detail
 	return ai_t{z, Tp{0}, Tp{0}, Tp{0}, Tp{0}};
       else if (z > Tp{0})
 	{
-	  const auto Bess13 = cyl_bessel_ik(Tp{1} / Tp{3}, xi, do_scaled);
+          // FIXME: propagating do_scaled should work. It does for Ai but not Bi. I give up.
+
+	  const auto Bess13 = cyl_bessel_ik(Tp{1} / Tp{3}, xi, false/*do_scaled*/);
 	  const auto Ai = rootz * Bess13.K_value / (s_sqrt3 * s_pi);
 	  const auto Bi = rootz * (Bess13.K_value / s_pi
 				    + Tp{2} * Bess13.I_value / s_sqrt3);
@@ -531,7 +533,11 @@ namespace detail
 	  const auto Bip = z * (Bess23.K_value / s_pi
 				 + Tp{2} * Bess23.I_value / s_sqrt3);
 
-	  return ai_t{z, Ai, Aip, Bi, Bip};
+          auto exp = Tp{1};
+          if (do_scaled)
+            exp = std::exp(xi);
+
+	  return ai_t{z, Ai * exp, Aip * exp, Bi / exp, Bip / exp};
 	}
       else if (z < Tp{0})
 	{

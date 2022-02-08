@@ -68,14 +68,14 @@ namespace detail
    * @return A struct containing the modified cylindrical Bessel functions
    *         of the first and second kinds and their derivatives.
    */
-  template<typename _Tnu, typename Tp>
-    constexpr emsr::cyl_mod_bessel_t<_Tnu, Tp, Tp>
-    cyl_bessel_ik_scaled_asymp(_Tnu nu, Tp x)
+  template<typename Tnu, typename Tp>
+    constexpr emsr::cyl_mod_bessel_t<Tnu, Tp, Tp>
+    cyl_bessel_ik_scaled_asymp(Tnu nu, Tp x)
     {
-      // FIXME: This will promote float to double if _Tnu is integral.
-      using _Val = emsr::fp_promote_t<_Tnu, Tp>;
+      // FIXME: This will promote float to double if Tnu is integral.
+      using _Val = emsr::fp_promote_t<Tnu, Tp>;
       using _Real = emsr::num_traits_t<_Val>;
-      using bess_t = emsr::cyl_mod_bessel_t<_Tnu, Tp, Tp>;
+      using bess_t = emsr::cyl_mod_bessel_t<Tnu, Tp, Tp>;
       const auto s_pi = emsr::pi_v<_Real>;
 
       const auto sums = cyl_bessel_asymp_sums(nu, x, +1);
@@ -93,11 +93,11 @@ namespace detail
    * @param  x   The argument of the Bessel functions.
    * @param  do_scaled  If true, scale I, I' by exp(-x) and K, K' by exp(+x).
    */
-  template<typename _Tnu, typename Tp>
-    constexpr emsr::cyl_mod_bessel_t<_Tnu, Tp, Tp>
-    cyl_bessel_ik_asymp(_Tnu nu, Tp x, bool do_scaled = false)
+  template<typename Tnu, typename Tp>
+    constexpr emsr::cyl_mod_bessel_t<Tnu, Tp, Tp>
+    cyl_bessel_ik_asymp(Tnu nu, Tp x, bool do_scaled = false)
     {
-      using bess_t = emsr::cyl_mod_bessel_t<_Tnu, Tp, Tp>;
+      using bess_t = emsr::cyl_mod_bessel_t<Tnu, Tp, Tp>;
 
       auto ik = cyl_bessel_ik_scaled_asymp(nu, x);
 
@@ -155,29 +155,29 @@ namespace detail
 	}
 
       // Recur recessive solution downward to |mu| < 1/2.
-      auto _Inul = s_fp_min;
-      auto _Ipnul = h * _Inul;
-      auto _Inul1 = _Inul;
-      auto _Ipnu1 = _Ipnul;
+      auto Inul = s_fp_min;
+      auto Ipnul = h * Inul;
+      auto Inul1 = Inul;
+      auto Ipnu1 = Ipnul;
       auto fact = nu * xi;
       for (int l = n; l >= 1; --l)
 	{
-	  const auto _Inutemp = fact * _Inul + _Ipnul;
+	  const auto Inutemp = fact * Inul + Ipnul;
 	  fact -= xi;
-	  _Ipnul = fact * _Inutemp + _Inul;
-	  _Inul = _Inutemp;
+	  Ipnul = fact * Inutemp + Inul;
+	  Inul = Inutemp;
 	}
 
-      const auto f = _Ipnul / _Inul;
+      const auto f = Ipnul / Inul;
       const auto mu = nu - Tp(n);
       const auto mu2 = mu * mu;
       bool scaled = false;
-      Tp _Kmu, _Kmu1;
+      Tp Kmu, Kmu1;
       if (x < s_x_min)
 	{
-	  const auto _Z = cyl_bessel_nk_series(mu, x, true);
-	  _Kmu = _Z._Z_mu;
-	  _Kmu1 = _Z._Z_mup1;
+	  const auto Z = cyl_bessel_nk_series(mu, x, true);
+	  Kmu = Z.Z_mu;
+	  Kmu1 = Z.Z_mup1;
 	}
       else
 	{
@@ -216,40 +216,40 @@ namespace detail
 	  h = a1 * h;
 	  // We are scaling this branch to prevent under/overflow. Removing...
 	  // * std::exp(-x)
-	  _Kmu = std::sqrt(s_pi / (Tp{2} * x)) / s;
-	  _Kmu1 = _Kmu * (mu + x + Tp{0.5L} - h) * xi;
+	  Kmu = std::sqrt(s_pi / (Tp{2} * x)) / s;
+	  Kmu1 = Kmu * (mu + x + Tp{0.5L} - h) * xi;
 	}
 
-      auto _Kpmu = mu * xi * _Kmu - _Kmu1;
-      auto _Inumu = xi / (f * _Kmu - _Kpmu);
-      auto _Inu = _Inumu * _Inul1 / _Inul;
-      auto _Ipnu = _Inumu * _Ipnu1 / _Inul;
+      auto Kpmu = mu * xi * Kmu - Kmu1;
+      auto Inumu = xi / (f * Kmu - Kpmu);
+      auto Inu = Inumu * Inul1 / Inul;
+      auto Ipnu = Inumu * Ipnu1 / Inul;
       for (int i = 1; i <= n; ++i)
-	_Kmu = std::exchange(_Kmu1, (mu + Tp(i)) * xi2 * _Kmu1 + _Kmu);
-      auto _Knu = _Kmu;
-      auto _Kpnu = nu * xi * _Kmu - _Kmu1;
+	Kmu = std::exchange(Kmu1, (mu + Tp(i)) * xi2 * Kmu1 + Kmu);
+      auto Knu = Kmu;
+      auto Kpnu = nu * xi * Kmu - Kmu1;
 
       if (do_scaled && !scaled)
 	{
 	  const auto exp = std::exp(x);
 	  const auto iexp = Tp{1} / exp;
-	  _Inu *= iexp;
-	  _Ipnu *= iexp;
-	  _Knu *= exp;
-	  _Kpnu *= exp;
+	  Inu *= iexp;
+	  Ipnu *= iexp;
+	  Knu *= exp;
+	  Kpnu *= exp;
 	}
       else if (!do_scaled && scaled)
 	{
 	  const auto exp = std::exp(x);
 	  const auto iexp = Tp{1} / exp;
 	  /// @todo Check for over/underflow for large-argument modified Bessel.
-	  _Inu *= exp;
-	  _Ipnu *= exp;
-	  _Knu *= iexp;
-	  _Kpnu *= iexp;
+	  Inu *= exp;
+	  Ipnu *= exp;
+	  Knu *= iexp;
+	  Kpnu *= iexp;
 	}
 
-      return bess_t{nu, x, _Inu, _Ipnu, _Knu, _Kpnu};
+      return bess_t{nu, x, Inu, Ipnu, Knu, Kpnu};
     }
 
   /**
@@ -271,37 +271,37 @@ namespace detail
       const auto s_pi = emsr::pi_v<Tp>;
       if (nu < Tp{0})
 	{
-	  const auto _Bessm = cyl_bessel_ik(-nu, x);
+	  const auto Bessm = cyl_bessel_ik(-nu, x);
 	  const auto arg = -nu * s_pi;
 	  const auto sinnupi = sin_pi(-nu);
 	  if (std::abs(sinnupi) < s_eps) // Carefully preserve +-inf.
-	    return bess_t{nu, x, _Bessm.I_value, _Bessm.I_deriv,
-					_Bessm.K_value, _Bessm.K_deriv};
+	    return bess_t{nu, x, Bessm.I_value, Bessm.I_deriv,
+					Bessm.K_value, Bessm.K_deriv};
 	  else
 	    return bess_t{nu, x,
-	      _Bessm.I_value + Tp{2} * sinnupi * _Bessm.K_value / s_pi,
-	      _Bessm.I_deriv + Tp{2} * sinnupi * _Bessm.K_deriv / s_pi,
-	      _Bessm.K_value, _Bessm.K_deriv};
+	      Bessm.I_value + Tp{2} * sinnupi * Bessm.K_value / s_pi,
+	      Bessm.I_deriv + Tp{2} * sinnupi * Bessm.K_deriv / s_pi,
+	      Bessm.K_value, Bessm.K_deriv};
 	}
       else if (x == Tp{0})
 	{
-	  Tp _Inu, _Ipnu;
+	  Tp Inu, Ipnu;
 	  if (nu == Tp{0})
 	    {
-	      _Inu = Tp{1};
-	      _Ipnu = Tp{0};
+	      Inu = Tp{1};
+	      Ipnu = Tp{0};
 	    }
 	  else if (nu == Tp{1})
 	    {
-	      _Inu = Tp{0};
-	      _Ipnu = Tp{0.5L};
+	      Inu = Tp{0};
+	      Ipnu = Tp{0.5L};
 	    }
 	  else
 	    {
-	      _Inu = Tp{0};
-	      _Ipnu = Tp{0};
+	      Inu = Tp{0};
+	      Ipnu = Tp{0};
 	    }
-	  return bess_t{nu, x, _Inu, _Ipnu, s_inf, -s_inf};
+	  return bess_t{nu, x, Inu, Ipnu, s_inf, -s_inf};
 	}
       else if (x > Tp{1000})
 	return cyl_bessel_ik_asymp(nu, x, do_scaled);
@@ -424,16 +424,16 @@ namespace detail
       else
 	{
 	  const auto nu = Tp(n + 0.5L);
-	  auto _Bess = cyl_bessel_ik(nu, x);
+	  auto Bess = cyl_bessel_ik(nu, x);
 
 	  const auto factor = (emsr::sqrtpi_v<Tp> / emsr::sqrt2_v<Tp>)
 			      / std::sqrt(x);
 
-	  const auto i_n = factor * _Bess.I_value;
-	  const auto ip_n = factor * _Bess.I_deriv
+	  const auto i_n = factor * Bess.I_value;
+	  const auto ip_n = factor * Bess.I_deriv
 			    - i_n / (Tp{2} * x);
-	  const auto k_n = factor * _Bess.K_value;
-	  const auto kp_n = factor * _Bess.K_deriv
+	  const auto k_n = factor * Bess.K_value;
+	  const auto kp_n = factor * Bess.K_deriv
 			    - k_n / (Tp{2} * x);
 
 	  return sph_t{n, x, i_n, ip_n, k_n, kp_n};
@@ -472,51 +472,51 @@ namespace detail
 	return ai_t{z, Tp{0}, Tp{0}, Tp{0}, Tp{0}};
       else if (z > Tp{0})
 	{
-	  const auto _Bess13 = cyl_bessel_ik(Tp{1} / Tp{3}, xi);
-	  const auto _Ai = rootz * _Bess13.K_value / (s_sqrt3 * s_pi);
-	  const auto _Bi = rootz * (_Bess13.K_value / s_pi
-				    + Tp{2} * _Bess13.I_value / s_sqrt3);
+	  const auto Bess13 = cyl_bessel_ik(Tp{1} / Tp{3}, xi);
+	  const auto Ai = rootz * Bess13.K_value / (s_sqrt3 * s_pi);
+	  const auto Bi = rootz * (Bess13.K_value / s_pi
+				    + Tp{2} * Bess13.I_value / s_sqrt3);
 
-	  const auto _Bess23 = cyl_bessel_ik(Tp{2} / Tp{3}, xi);
-	  const auto _Aip = -z * _Bess23.K_value / (s_sqrt3 * s_pi);
-	  const auto _Bip = z * (_Bess23.K_value / s_pi
-				 + Tp{2} * _Bess23.I_value / s_sqrt3);
+	  const auto Bess23 = cyl_bessel_ik(Tp{2} / Tp{3}, xi);
+	  const auto Aip = -z * Bess23.K_value / (s_sqrt3 * s_pi);
+	  const auto Bip = z * (Bess23.K_value / s_pi
+				 + Tp{2} * Bess23.I_value / s_sqrt3);
 
-	  return ai_t{z, _Ai, _Aip, _Bi, _Bip};
+	  return ai_t{z, Ai, Aip, Bi, Bip};
 	}
       else if (z < Tp{0})
 	{
-	  const auto _Bess13 = cyl_bessel_jn(Tp{1} / Tp{3}, xi);
-	  const auto _Ai = +rootz * (_Bess13.J_value
-				     - _Bess13.N_value / s_sqrt3) / Tp{2};
-	  const auto _Bi = -rootz * (_Bess13.N_value
-				     + _Bess13.J_value / s_sqrt3) / Tp{2};
+	  const auto Bess13 = cyl_bessel_jn(Tp{1} / Tp{3}, xi);
+	  const auto Ai = +rootz * (Bess13.J_value
+				     - Bess13.N_value / s_sqrt3) / Tp{2};
+	  const auto Bi = -rootz * (Bess13.N_value
+				     + Bess13.J_value / s_sqrt3) / Tp{2};
 
-	  const auto _Bess23 = cyl_bessel_jn(Tp{2} / Tp{3}, xi);
-	  const auto _Aip = absz * (_Bess23.N_value / s_sqrt3
-				    + _Bess23.J_value) / Tp{2};
-	  const auto _Bip = absz * (_Bess23.J_value / s_sqrt3
-				    - _Bess23.N_value) / Tp{2};
+	  const auto Bess23 = cyl_bessel_jn(Tp{2} / Tp{3}, xi);
+	  const auto Aip = absz * (Bess23.N_value / s_sqrt3
+				    + Bess23.J_value) / Tp{2};
+	  const auto Bip = absz * (Bess23.J_value / s_sqrt3
+				    - Bess23.N_value) / Tp{2};
 
-	  return ai_t{z, _Ai, _Aip, _Bi, _Bip};
+	  return ai_t{z, Ai, Aip, Bi, Bip};
 	}
       else
 	{
 	  // Reference:
 	  //  Abramowitz & Stegun, page 446 section 10.4.4 on Airy functions.
 	  // The number is Ai(0) = 3^{-2/3}/\Gamma(2/3).
-	  const auto _Ai
+	  const auto Ai
 	    = Tp{0.3550280538878172392600631860041831763979791741991772L};
-	  const auto _Bi = _Ai * s_sqrt3;
+	  const auto Bi = Ai * s_sqrt3;
 
 	  // Reference:
 	  //  Abramowitz & Stegun, page 446 section 10.4.5 on Airy functions.
 	  // The number is Ai'(0) = -3^{-1/3}/\Gamma(1/3).
-	  const auto _Aip
+	  const auto Aip
 	    = -Tp{0.25881940379280679840518356018920396347909113835493L};
-	  const auto _Bip = -_Aip * s_sqrt3;
+	  const auto Bip = -Aip * s_sqrt3;
 
-	  return ai_t{z, _Ai, _Aip, _Bi, _Bip};
+	  return ai_t{z, Ai, Aip, Bi, Bip};
 	}
     }
 
@@ -540,16 +540,16 @@ namespace detail
     emsr::fock_airy_t<Tp, std::complex<Tp>>
     fock_airy(Tp x)
     {
-      using _Cmplx = std::complex<Tp>;
-      using fock_t = emsr::fock_airy_t<Tp, _Cmplx>;
+      using Cmplx = std::complex<Tp>;
+      using fock_t = emsr::fock_airy_t<Tp, Cmplx>;
       const auto s_sqrtpi = emsr::sqrtpi_v<Tp>;
 
-      const auto _Ai = airy(x);
+      const auto Ai = airy(x);
 
-      const auto w1 = s_sqrtpi * _Cmplx(_Ai.Ai_value, _Ai.Bi_value);
-      const auto w1p = s_sqrtpi * _Cmplx(_Ai.Ai_deriv, _Ai.Bi_deriv);
-      const auto w2 = s_sqrtpi * _Cmplx(_Ai.Ai_value, -_Ai.Bi_value);
-      const auto w2p = s_sqrtpi * _Cmplx(_Ai.Ai_deriv, -_Ai.Bi_deriv);
+      const auto w1 = s_sqrtpi * Cmplx(Ai.Ai_value, Ai.Bi_value);
+      const auto w1p = s_sqrtpi * Cmplx(Ai.Ai_deriv, Ai.Bi_deriv);
+      const auto w2 = s_sqrtpi * Cmplx(Ai.Ai_value, -Ai.Bi_value);
+      const auto w2p = s_sqrtpi * Cmplx(Ai.Ai_deriv, -Ai.Bi_deriv);
 
       return fock_t{x, w1, w1p, w2, w2p};
     }
