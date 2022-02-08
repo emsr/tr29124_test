@@ -473,7 +473,7 @@ normal_pdouble mu, double sigma, double x);
 
 /// Lognormal probability density function.
 lognormal_pdf(double mu, double sigma, double x);
-lognormal_pdouble mu, double sigma, double x);
+lognormal_p(double mu, double sigma, double x);
 
 /// Exponential probability density function.
 exponential_pdf(double lambda, double x);
