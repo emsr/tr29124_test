@@ -44,7 +44,9 @@ target_link_libraries(test_airy_roots ${EMSR_LIBRARIES} quadmath)
 add_test(NAME run_test_airy_roots COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_airy_roots > output/test_airy_roots.txt")
 
 add_executable(test_little_airy test_little_airy.cpp)
-target_include_directories(test_little_airy PRIVATE
-  .)
+target_include_directories(test_little_airy PRIVATE .)
 target_link_libraries(test_little_airy quadmath ${EMSR_LIBRARIES} wrap_gsl)
 add_test(NAME run_test_little_airy COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_little_airy > output/test_little_airy.txt")
+
+add_executable(test_airy_scaled test_airy_scaled.cpp)
+target_link_libraries(test_airy_scaled ${EMSR_LIBRARIES} wrap_gsl)

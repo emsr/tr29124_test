@@ -521,8 +521,7 @@ namespace detail
 	return ai_t{z, Tp{0}, Tp{0}, Tp{0}, Tp{0}};
       else if (z > Tp{0})
 	{
-          // FIXME: propagating do_scaled should work. It does for Ai but not Bi. I give up.
-
+          // I and K have the opposite scaling factor so propagating scaling can't work.
 	  const auto Bess13 = cyl_bessel_ik(Tp{1} / Tp{3}, xi, false/*do_scaled*/);
 	  const auto Ai = rootz * Bess13.K_value / (s_sqrt3 * s_pi);
 	  const auto Bi = rootz * (Bess13.K_value / s_pi
