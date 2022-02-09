@@ -8,25 +8,6 @@ namespace emsr
 {
 
   /**
-   * Return the Lerch transcendent @f$ \Phi(z,s,a) @f$ for @c float arguments.
-   *
-   * @see lerch_phi for details.
-   */
-  inline float
-  lerch_phif(float z, float s, float a)
-  { return emsr::detail::lerch_phi<float>(z, s, a); }
-
-  /**
-   * Return the Lerch transcendent @f$ \Phi(z,s,a) @f$
-   * for <tt> long double </tt> arguments.
-   *
-   * @see lerch_phi for details.
-   */
-  inline long double
-  lerch_phil(long double z, long double s, long double a)
-  { return emsr::detail::lerch_phi<long double>(z, s, a); }
-
-  /**
    * Return the Lerch transcendent @f$ \Phi(z,s,a) @f$.
    *
    * The series is:

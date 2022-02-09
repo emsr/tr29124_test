@@ -10,26 +10,6 @@ namespace emsr
   // Chebyshev polynomials of the first kind
 
   /**
-   * Return the Chebyshev polynomials of the first kind @f$ T_n(x) @f$
-   * of non-negative order @c n and @c float argument @c x.
-   *
-   * @see chebyshev_t for details.
-   */
-  inline float
-  chebyshev_tf(unsigned int n, float x)
-  { return emsr::detail::chebyshev_t<float>(n, x).T_n; }
-
-  /**
-   * Return the Chebyshev polynomials of the first kind @f$ T_n(x) @f$
-   * of non-negative order @c n and real argument @c x.
-   *
-   * @see chebyshev_t for details.
-   */
-  inline long double
-  chebyshev_tl(unsigned int n, long double x)
-  { return emsr::detail::chebyshev_t<long double>(n, x).T_n; }
-
-  /**
    * Return the Chebyshev polynomial of the first kind @f$ T_n(x) @f$
    * of non-negative order @c n and real argument @c x.
    *
@@ -52,26 +32,6 @@ namespace emsr
     }
 
   // Chebyshev polynomials of the second kind
-
-  /**
-   * Return the Chebyshev polynomials of the second kind @f$ U_n(x) @f$
-   * of non-negative order @c n and @c float argument @c x.
-   *
-   * @see chebyshev_u for details.
-   */
-  inline float
-  chebyshev_uf(unsigned int n, float x)
-  { return emsr::detail::chebyshev_u<float>(n, x).U_n; }
-
-  /**
-   * Return the Chebyshev polynomials of the second kind  @f$ U_n(x) @f$
-   * of non-negative order @c n and real argument @c x.
-   *
-   * @see chebyshev_u for details.
-   */
-  inline long double
-  chebyshev_ul(unsigned int n, long double x)
-  { return emsr::detail::chebyshev_u<long double>(n, x).U_n; }
 
   /**
    * Return the Chebyshev polynomial of the second kind @f$ U_n(x) @f$
@@ -98,26 +58,6 @@ namespace emsr
   // Chebyshev polynomials of the third kind
 
   /**
-   * Return the Chebyshev polynomials of the third kind @f$ V_n(x) @f$
-   * of non-negative order @c n and @c float argument @c x.
-   *
-   * @see chebyshev_v for details.
-   */
-  inline float
-  chebyshev_vf(unsigned int n, float x)
-  { return emsr::detail::chebyshev_v<float>(n, x).V_n; }
-
-  /**
-   * Return the Chebyshev polynomials of the third kind @f$ V_n(x) @f$
-   * of non-negative order @c n and real argument @c x.
-   *
-   * @see chebyshev_v for details.
-   */
-  inline long double
-  chebyshev_vl(unsigned int n, long double x)
-  { return emsr::detail::chebyshev_v<long double>(n, x).V_n; }
-
-  /**
    * Return the Chebyshev polynomial of the third kind @f$ V_n(x) @f$
    * of non-negative order @c n and real argument @c x.
    *
@@ -141,26 +81,6 @@ namespace emsr
     }
 
   // Chebyshev polynomials of the fourth kind
-
-  /**
-   * Return the Chebyshev polynomials of the fourth kind @f$ W_n(x) @f$
-   * of non-negative order @c n and @c float argument @c x.
-   *
-   * @see chebyshev_w for details.
-   */
-  inline float
-  chebyshev_wf(unsigned int n, float x)
-  { return emsr::detail::chebyshev_w<float>(n, x).W_n; }
-
-  /**
-   * Return the Chebyshev polynomials of the fourth kind @f$ W_n(x) @f$
-   * of non-negative order @c n and real argument @c x.
-   *
-   * @see chebyshev_w for details.
-   */
-  inline long double
-  chebyshev_wl(unsigned int n, long double x)
-  { return emsr::detail::chebyshev_w<long double>(n, x).W_n; }
 
   /**
    * Return the Chebyshev polynomial of the fourth kind @f$ W_n(x) @f$

@@ -12,24 +12,6 @@ namespace emsr
   // Factorial
 
   /**
-   * Return the factorial @f$ n! @f$ of the argument as a @c float.
-   *
-   * @see factorial for more details
-   */
-  inline float
-  factorialf(unsigned int n)
-  { return emsr::detail::factorial<float>(n); }
-
-  /**
-   * Return the factorial @f$ n! @f$ of the argument as a <tt>long double</tt>.
-   *
-   * @see factorial for more details
-   */
-  inline long double
-  factoriall(unsigned int n)
-  { return emsr::detail::factorial<long double>(n); }
-
-  /**
    * @brief Return the factorial @f$ n! @f$ of the argument as a real number.
    * @f[
    *   n! = 1 \times 2 \times ... \times n, 0! = 1
@@ -44,25 +26,6 @@ namespace emsr
     }
 
   // Double factorial
-
-  /**
-   * Return the double factorial @f$ n!! @f$ of the argument as a @c float.
-   *
-   * @see double_factorial for more details
-   */
-  inline float
-  double_factorialf(int n)
-  { return emsr::detail::double_factorial<float>(n); }
-
-  /**
-   * Return the double factorial @f$ n!! @f$ of the argument
-   * as a <tt> long double </tt>.
-   *
-   * @see double_factorial for more details
-   */
-  inline long double
-  double_factoriall(int n)
-  { return emsr::detail::double_factorial<long double>(n); }
 
   /**
    * @brief Return the double factorial @f$ n!! @f$ of the argument
@@ -87,26 +50,6 @@ namespace emsr
   // Log factorial
 
   /**
-   * Return the logarithm of the factorial @f$ ln(n!) @f$ of the argument
-   * as a @c float.
-   *
-   * @see lfactorial for more details
-   */
-  inline float
-  lfactorialf(unsigned int n)
-  { return emsr::detail::log_factorial<float>(n); }
-
-  /**
-   * Return the logarithm of the factorial @f$ ln(n!) @f$ of the argument
-   * as a <tt>long double</tt>.
-   *
-   * @see lfactorial for more details
-   */
-  inline long double
-  lfactoriall(unsigned int n)
-  { return emsr::detail::log_factorial<long double>(n); }
-
-  /**
    * @brief Return the logarithm of the factorial @f$ ln(n!) @f$ of the argument
    * as a real number.
    * @f[
@@ -122,26 +65,6 @@ namespace emsr
     }
 
   // Log double factorial
-
-  /**
-   * Return the logarithm of the double factorial @f$ ln(n!!) @f$
-   * of the argument as a @c float.
-   *
-   * @see ldouble_factorial for more details
-   */
-  inline float
-  ldouble_factorialf(int n)
-  { return emsr::detail::log_double_factorial<float>(n); }
-
-  /**
-   * Return the logarithm of the double factorial @f$ ln(n!!) @f$
-   * of the argument as a <tt> long double </tt>.
-   *
-   * @see double_factorial for more details
-   */
-  inline long double
-  ldouble_factoriall(int n)
-  { return emsr::detail::log_double_factorial<long double>(n); }
 
   /**
    * @brief Return the logarithm of the double factorial @f$ ln(n!!) @f$
@@ -164,26 +87,6 @@ namespace emsr
     }
 
   //  Log rising factorials
-
-  /**
-   * Return the logarithm of the rising factorial @f$ a^{\overline{\nu}} @f$
-   * for float arguments.
-   *
-   * @see lrising_factorial for details.
-   */
-  inline float
-  lrising_factorialf(float a, float nu)
-  { return emsr::detail::log_rising_factorial<float>(a, nu); }
-
-  /**
-   * Return the logarithm of the rising factorial @f$ ln(a^{\overline{\nu}}) @f$
-   * for <tt> long double </tt> arguments.
-   *
-   * @see lrising_factorial for details.
-   */
-  inline long double
-  lrising_factoriall(long double a, long double nu)
-  { return emsr::detail::log_rising_factorial<long double>(a, nu); }
 
   /**
    * @brief  Return the logarithm of the rising factorial function
@@ -214,26 +117,6 @@ namespace emsr
     }
 
   //  Log falling factorials
-
-  /**
-   * Return the logarithm of the falling factorial @f$ ln(a^{\overline{\nu}})@f$
-   * for float arguments.
-   *
-   * @see lfalling_factorial for details.
-   */
-  inline float
-  lfalling_factorialf(float a, float nu)
-  { return emsr::detail::log_falling_factorial<float>(a, nu); }
-
-  /**
-   * Return the logarithm of the falling factorial @f$ ln(a^{\overline{\nu}})@f$
-   * for float arguments.
-   *
-   * @see lfalling_factorial for details.
-   */
-  inline long double
-  lfalling_factoriall(long double a, long double nu)
-  { return emsr::detail::log_falling_factorial<long double>(a, nu); }
 
   /**
    * @brief  Return the logarithm of the falling factorial function
@@ -268,26 +151,6 @@ namespace emsr
   //  Rising factorials
 
   /**
-   * Return the rising factorial @f$ a^{\overline{\nu}} @f$
-   * for float arguments.
-   *
-   * @see rising_factorial for details.
-   */
-  inline float
-  rising_factorialf(float a, float nu)
-  { return emsr::detail::rising_factorial<float>(a, nu); }
-
-  /**
-   * Return the rising factorial @f$ a^{\overline{\nu}} @f$
-   * for <tt> long double </tt> arguments.
-   *
-   * @see rising_factorial for details.
-   */
-  inline long double
-  rising_factoriall(long double a, long double nu)
-  { return emsr::detail::rising_factorial<long double>(a, nu); }
-
-  /**
    * @brief  Return the rising factorial function
    * or the (upper) Pochhammer function.
    * The rising factorial function is defined by
@@ -312,26 +175,6 @@ namespace emsr
   //  Falling factorials
 
   /**
-   * Return the falling factorial @f$ a^{\underline{\nu}} @f$
-   * for float arguments.
-   *
-   * @see falling_factorial for details.
-   */
-  inline float
-  falling_factorialf(float a, float nu)
-  { return emsr::detail::falling_factorial<float>(a, nu); }
-
-  /**
-   * Return the falling factorial @f$ a^{\underline{\nu}} @f$
-   * for <tt> long double </tt> arguments.
-   *
-   * @see falling_factorial for details.
-   */
-  inline long double
-  falling_factoriall(long double a, long double nu)
-  { return emsr::detail::falling_factorial<long double>(a, nu); }
-
-  /**
    * @brief  Return the falling factorial function
    * or the lower Pochhammer symbol for real argument @c a
    * and integral order @c n.
@@ -352,24 +195,6 @@ namespace emsr
     }
 
   // Binomial coefficient
-
-  /**
-   * Return the binomial coefficient as a @c float.
-   *
-   * @see binomial for details.
-   */
-  inline float
-  binomialf(unsigned int n, unsigned int k)
-  { return emsr::detail::binomial<float>(n, k); }
-
-  /**
-   * Return the binomial coefficient as a <tt>long double</tt>.
-   *
-   * @see binomial for details.
-   */
-  inline long double
-  binomiall(unsigned int n, unsigned int k)
-  { return emsr::detail::binomial<long double>(n, k); }
 
   /**
    * @brief Return the binomial coefficient as a real number.
@@ -397,24 +222,6 @@ namespace emsr
   // Log binomial coefficient
 
   /**
-   * Return the logarithm of the binomial coefficient as a @c float.
-   *
-   * @see lbinomial for details.
-   */
-  inline float
-  lbinomialf(unsigned int n, unsigned int k)
-  { return emsr::detail::log_binomial<float>(n, k); }
-
-  /**
-   * Return the logarithm of the binomial coefficient as a <tt>long double</tt>.
-   *
-   * @see lbinomial for details.
-   */
-  inline long double
-  lbinomiall(unsigned int n, unsigned int k)
-  { return emsr::detail::log_binomial<long double>(n, k); }
-
-  /**
    * @brief Return the logarithm of the binomial coefficient as a real number.
    * The binomial coefficient is given by:
    * @f[
@@ -440,26 +247,6 @@ namespace emsr
   // Log Gamma function for real argument.
 
   /**
-   * Return the logarithm of the gamma function for
-   * <tt> float </tt> argument.
-   *
-   * @see lgamma for details.
-   */
-  inline float
-  lgammaf(float a)
-  { return emsr::detail::log_gamma<float>(a); }
-
-  /**
-   * Return the logarithm of the gamma function for
-   * <tt> long double </tt> argument.
-   *
-   * @see lgamma for details.
-   */
-  inline long double
-  lgammal(long double a)
-  { return emsr::detail::log_gamma<long double>(a); }
-
-  /**
    * Return the logarithm of the gamma function for real argument.
    */
   template<typename _Ta>
@@ -471,26 +258,6 @@ namespace emsr
     }
 
   // Log Gamma function for complex argument.
-
-  /**
-   * Return the logarithm of the gamma function for
-   * <tt> std::complex<float> </tt> argument.
-   *
-   * @see lgamma for details.
-   */
-  inline std::complex<float>
-  lgammaf(std::complex<float> a)
-  { return emsr::detail::log_gamma<std::complex<float>>(a); }
-
-  /**
-   * Return the logarithm of the gamma function for
-   * <tt> std::complex<long double> </tt> argument.
-   *
-   * @see lgamma for details.
-   */
-  inline std::complex<long double>
-  lgammal(std::complex<long double> a)
-  { return emsr::detail::log_gamma<std::complex<long double>>(a); }
 
   /**
    * Return the logarithm of the gamma function for complex argument.
@@ -506,25 +273,6 @@ namespace emsr
   // Gamma function for real argument.
 
   /**
-   * Return the gamma function for <tt> float </tt> argument.
-   *
-   * @see lgamma for details.
-   */
-  inline float
-  tgammaf(float a)
-  { return emsr::detail::gamma<float>(a); }
-
-  /**
-   * Return the gamma function for <tt> long double </tt>
-   * argument.
-   *
-   * @see lgamma for details.
-   */
-  inline long double
-  tgammal(long double a)
-  { return emsr::detail::gamma<long double>(a); }
-
-  /**
    * Return the gamma function for real argument.
    */
   template<typename _Ta>
@@ -538,25 +286,6 @@ namespace emsr
   // Gamma function for complex argument.
 
   /**
-   * Return the gamma function for <tt> std::complex<float> </tt> argument.
-   *
-   * @see lgamma for details.
-   */
-  inline std::complex<float>
-  tgammaf(std::complex<float> a)
-  { return emsr::detail::gamma<std::complex<float>>(a); }
-
-  /**
-   * Return the gamma function for <tt> std::complex<long double> </tt>
-   * argument.
-   *
-   * @see lgamma for details.
-   */
-  inline std::complex<long double>
-  tgammal(std::complex<long double> a)
-  { return emsr::detail::gamma<std::complex<long double>>(a); }
-
-  /**
    * Return the gamma function for complex argument.
    */
   template<typename _Ta>
@@ -568,26 +297,6 @@ namespace emsr
     }
 
   // Upper incomplete gamma functions
-
-  /**
-   * Return the upper incomplete gamma function @f$ \Gamma(a,x) @f$
-   * for @c float argument.
-   *
-   * @see tgamma for details.
-   */
-  inline float
-  tgammaf(float a, float x)
-  { return emsr::detail::tgamma<float>(a, x); }
-
-  /**
-   * Return the upper incomplete gamma function @f$ \Gamma(a,x) @f$
-   * for <tt>long double</tt> argument.
-   *
-   * @see tgamma for details.
-   */
-  inline long double
-  tgammal(long double a, long double x)
-  { return emsr::detail::tgamma<long double>(a, x); }
 
   /**
    * Return the upper incomplete gamma function @f$ \Gamma(a,x) @f$.
@@ -607,26 +316,6 @@ namespace emsr
   // Lower incomplete gamma functions
 
   /**
-   * Return the lower incomplete gamma function @f$ \gamma(a,x) @f$
-   * for @c float argument.
-   *
-   * @see tgamma_lower for details.
-   */
-  inline float
-  tgamma_lowerf(float a, float x)
-  { return emsr::detail::tgamma_lower<float>(a, x); }
-
-  /**
-   * Return the lower incomplete gamma function @f$ \gamma(a,x) @f$
-   * for <tt>long double</tt> argument.
-   *
-   * @see tgamma_lower for details.
-   */
-  inline long double
-  tgamma_lowerl(long double a, long double x)
-  { return emsr::detail::tgamma_lower<long double>(a, x); }
-
-  /**
    * Return the lower incomplete gamma function @f$ \gamma(a,x) @f$.
    * The lower incomplete gamma function is defined by
    * @f[
@@ -642,25 +331,6 @@ namespace emsr
     }
 
   // Digamma or psi functions
-
-  /**
-   * Return the digamma or psi function of @c float argument @c x.
-   *
-   * @see digamma for details.
-   */
-  inline float
-  digammaf(float x)
-  { return emsr::detail::digamma<float>(x); }
-
-  /**
-   * Return the digamma or psi function of <tt>long double</tt> argument
-   * @c x.
-   *
-   * @see digamma for details.
-   */
-  inline long double
-  digammal(long double x)
-  { return emsr::detail::digamma<long double>(x); }
 
   /**
    * Return the digamma or psi function of argument @c x.
@@ -685,25 +355,6 @@ namespace emsr
   // Polygamma or psi functions
 
   /**
-   * Return the polygamma function of @c float argument @c x.
-   *
-   * @see polygamma for details.
-   */
-  inline float
-  polygammaf(unsigned int m, float x)
-  { return emsr::detail::polygamma<float>(m, x); }
-
-  /**
-   * Return the polygamma function of <tt>long double</tt> argument
-   * @c x.
-   *
-   * @see polygamma for details.
-   */
-  inline long double
-  polygammal(unsigned int m, long double x)
-  { return emsr::detail::polygamma<long double>(m, x); }
-
-  /**
    * Return the polygamma function of argument @c x.
    *
    * The the polygamma or digamma function is defined by
@@ -726,25 +377,6 @@ namespace emsr
   // Reciprocal Gamma function.
 
   /**
-   * Return the reciprocal gamma function for <tt> float </tt> argument.
-   *
-   * @see gamma_reciprocal for details.
-   */
-  inline float
-  gamma_reciprocalf(float a)
-  { return emsr::detail::gamma_reciprocal<float>(a); }
-
-  /**
-   * Return the reciprocal gamma function for <tt> long double </tt>
-   * argument.
-   *
-   * @see gamma_reciprocal for details.
-   */
-  inline long double
-  gamma_reciprocall(long double a)
-  { return emsr::detail::gamma_reciprocal<long double>(a); }
-
-  /**
    * Return the reciprocal gamma function for real argument.
    *
    * The reciprocal of the Gamma function is what you'd expect:
@@ -763,14 +395,6 @@ namespace emsr
     }
 
   // Scaled lower incomplete gamma
-
-  inline float
-  gamma_pf(float a, float x)
-  { return emsr::detail::gamma_p<float>(a, x); }
-
-  inline long double
-  gamma_pl(long double a, long double x)
-  { return emsr::detail::gamma_p<long double>(a, x); }
 
   /**
    * @brief Return the gamma cumulative propability distribution function
@@ -791,14 +415,6 @@ namespace emsr
     }
 
   // Scaled upper incomplete gamma
-
-  inline float
-  gamma_qf(float a, float x)
-  { return emsr::detail::gamma_q<float>(a, x); }
-
-  inline long double
-  gamma_ql(long double a, long double x)
-  { return emsr::detail::gamma_q<long double>(a, x); }
 
   /**
    * @brief Return the gamma complementary cumulative propability distribution

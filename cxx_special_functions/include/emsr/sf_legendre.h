@@ -14,27 +14,6 @@ namespace emsr
 
   /**
    * Return the associated Legendre function @f$ P_l^m(x) @f$
-   * of degree @c l, order @c m, and @c float argument @c x.
-   *
-   * @see assoc_legendre for more details.
-   */
-  inline float
-  assoc_legendref(unsigned int l, unsigned int m, float x)
-  { return emsr::detail::assoc_legendre_p<float>(l, m, x).P_lm; }
-
-  /**
-   * Return the associated Legendre function @f$ P_l^m(x) @f$
-   * of degree @c l, order @c m, and @c <tt>long double</tt>
-   * argument @c x.
-   *
-   * @see assoc_legendre for more details.
-   */
-  inline long double
-  assoc_legendrel(unsigned int l, unsigned int m, long double x)
-  { return emsr::detail::assoc_legendre_p<long double>(l, m, x).P_lm; }
-
-  /**
-   * Return the associated Legendre function @f$ P_l^m(x) @f$
    * of degree @c l, order @c m, and real argument @c x.
    *
    * The associated Legendre function is derived from the Legendre function
@@ -63,26 +42,6 @@ namespace emsr
 
   /**
    * Return the Legendre polynomial @f$ P_l(x) @f$ of nonnegative
-   * degree @c l and @c float argument @f$ |x| <= 0 @f$.
-   *
-   * @see legendre for more details.
-   */
-  inline float
-  legendref(unsigned int l, float x)
-  { return emsr::detail::legendre_p<float>(l, x).P_l; }
-
-  /**
-   * Return the Legendre polynomial @f$ P_l(x) @f$ of nonnegative
-   * degree @c l and <tt>long double</tt> argument @f$ |x| <= 0 @f$.
-   *
-   * @see legendre for more details.
-   */
-  inline long double
-  legendrel(unsigned int l, long double x)
-  { return emsr::detail::legendre_p<long double>(l, x).P_l; }
-
-  /**
-   * Return the Legendre polynomial @f$ P_l(x) @f$ of nonnegative
    * degree @c l and real argument @f$ |x| <= 0 @f$.
    *
    * The Legendre function of order @c l and argument @c x,
@@ -105,27 +64,6 @@ namespace emsr
     }
 
   // Spherical associated Legendre functions
-
-  /**
-   * Return the spherical Legendre function of nonnegative integral
-   * degree @c l and order @c m and float angle @f$ \theta @f$ in radians.
-   *
-   * @see sph_legendre for details.
-   */
-  inline float
-  sph_legendref(unsigned int l, unsigned int m, float theta)
-  { return detail::sph_legendre<float>(l, m, theta); }
-
-  /**
-   * Return the spherical Legendre function of nonnegative integral
-   * degree @c l and order @c m and <tt>long double</tt> angle @f$ \theta @f$
-   * in radians.
-   *
-   * @see sph_legendre for details.
-   */
-  inline long double
-  sph_legendrel(unsigned int l, unsigned int m, long double theta)
-  { return detail::sph_legendre<long double>(l, m, theta); }
 
   /**
    * Return the spherical Legendre function of nonnegative integral
@@ -161,26 +99,6 @@ namespace emsr
   // Legendre functions of the second kind
 
   /**
-   * Return the Legendre function of the second kind @f$ Q_l(x) @f$
-   * of nonnegative degree @c l and @c float argument.
-   *
-   * @see legendre_q for details.
-   */
-  inline float
-  legendre_qf(unsigned int l, float x)
-  { return emsr::detail::legendre_q<float>(l, x).Q_l; }
-
-  /**
-   * Return the Legendre function of the second kind @f$ Q_l(x) @f$
-   * of nonnegative degree @c l and <tt>long double</tt> argument.
-   *
-   * @see legendre_q for details.
-   */
-  inline long double
-  legendre_ql(unsigned int l, long double x)
-  { return emsr::detail::legendre_q<long double>(l, x).Q_l; }
-
-  /**
    * Return the Legendre function of the second kind @f$ Q_l(x) @f$ of
    * nonnegative degree @c l and real argument @f$ |x| <= 0 @f$.
    *
@@ -213,29 +131,6 @@ namespace emsr
 
   /**
    * Return the associated Legendre function @f$ Q_l^m(x) @f$
-   * of degree @c l, order @c m, and @c float argument @c x.
-   *
-   * @see assoc_legendre_q for more details.
-   */
-  inline float
-  assoc_legendre_qf(unsigned int l, unsigned int m, float x)
-  { return emsr::detail::assoc_legendre_q<float>(l, m, x).Q_lm; }
-
-  /**
-   * Return the associated Legendre function @f$ Q_l^m(x) @f$
-   * of degree @c l, order @c m, and @c <tt>long double</tt>
-   * argument @c x.
-   *
-   * @see assoc_legendre_q for more details.
-   */
-  inline long double
-  assoc_legendre_ql(unsigned int l, unsigned int m, long double x)
-  {
-    return emsr::detail::assoc_legendre_q<long double>(l, m, x).Q_lm;
-  }
-
-  /**
-   * Return the associated Legendre function @f$ Q_l^m(x) @f$
    * of degree @c l, order @c m, and real argument @c x.
    *
    * The associated Legendre function is derived from the Legendre function
@@ -261,32 +156,6 @@ namespace emsr
     }
 
   // Spherical harmonic functions
-
-  /**
-   * Return the complex spherical harmonic function of degree @c l,
-   * order @c m, and @c float zenith angle @f$ \theta @f$,
-   * and azimuth angle @f$ \phi @f$.
-   *
-   * @see sph_harmonic for details.
-   */
-  inline std::complex<float>
-  sph_harmonicf(unsigned int l, int m,
-		float theta, float phi)
-  { return emsr::detail::sph_harmonic<float>(l, m, theta, phi); }
-
-  /**
-   * Return the complex spherical harmonic function of degree @c l,
-   * order @c m, and <tt>long double</tt> zenith angle @f$ \theta @f$,
-   * and azimuth angle @f$ \phi @f$.
-   *
-   * @see sph_harmonic for details.
-   */
-  inline std::complex<long double>
-  sph_harmonicl(unsigned int l, int m,
-		long double theta, long double phi)
-  {
-    return emsr::detail::sph_harmonic<long double>(l, m, theta, phi);
-  }
 
   /**
    * Return the complex spherical harmonic function of degree @c l,

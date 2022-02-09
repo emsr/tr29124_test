@@ -10,26 +10,6 @@ namespace emsr
   // Beta functions
 
   /**
-   * Return the beta function, @f$ B(a,b) @f$, for @c float parameters
-   * @c a, @c b.
-   *
-   * @see beta for more details.
-   */
-  inline float
-  betaf(float a, float b)
-  { return emsr::detail::beta<float>(a, b); }
-
-  /**
-   * Return the beta function, @f$B(a,b)@f$, for long double
-   * parameters @c a, @c b.
-   *
-   * @see beta for more details.
-   */
-  inline long double
-  betal(long double a, long double b)
-  { return emsr::detail::beta<long double>(a, b); }
-
-  /**
    * Return the beta function, @f$B(a,b)@f$, for real parameters
    * @c a, @c b.
    *
@@ -55,26 +35,6 @@ namespace emsr
     }
 
   // Incomplete beta functions
-
-  /**
-   * Return the regularized incomplete beta function of parameters
-   * @c a, @c b, and argument @c x.
-   *
-   * See ibeta for details.
-   */
-  inline float
-  ibetaf(float a, float b, float x)
-  { return emsr::detail::beta_inc<float>(a, b, x); }
-
-  /**
-   * Return the regularized incomplete beta function of parameters @c a, @c b,
-   * and argument @c x.
-   *
-   * See ibeta for details.
-   */
-  inline long double
-  ibetal(long double a, long double b, long double x)
-  { return emsr::detail::beta_inc<long double>(a, b, x); }
 
   /**
    * Return the regularized incomplete beta function of parameters @c a, @c b,
@@ -104,14 +64,6 @@ namespace emsr
     }
 
   // Complementary incomplete beta functions
-
-  inline float
-  ibetacf(float a, float b, float x)
-  { return 1.0F - emsr::ibetaf(a, b, x); }
-
-  inline long double
-  ibetacl(long double a, long double b, long double x)
-  { return 1.0L - emsr::ibetal(a, b, x); }
 
   /**
    * Return the regularized complementary incomplete beta function

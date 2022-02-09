@@ -13,26 +13,6 @@ namespace emsr
 
   /**
    * Return the reperiodized sine function @f$ \sin_\pi(x) @f$
-   * for @c float argument @c x.
-   *
-   * @see sin_pi for more details.
-   */
-  inline float
-  sin_pif(float x)
-  { return emsr::detail::sin_pi<float>(x); }
-
-  /**
-   * Return the reperiodized sine function @f$ \sin_\pi(x) @f$
-   * for <tt>long double</tt> argument @c x.
-   *
-   * @see sin_pi for more details.
-   */
-  inline long double
-  sin_pil(long double x)
-  { return emsr::detail::sin_pi<long double>(x); }
-
-  /**
-   * Return the reperiodized sine function @f$ \sin_\pi(x) @f$
    * for real argument @c x.
    *
    * The reperiodized sine function is defined by:
@@ -65,26 +45,6 @@ namespace emsr
     { return emsr::detail::sin_pi(z); }
 
   // Reperiodized hyperbolic sine function.
-
-  /**
-   * Return the reperiodized hyperbolic sine function @f$ \sinh_\pi(x) @f$
-   * for @c float argument @c x.
-   *
-   * @see sinh_pi for more details.
-   */
-  inline float
-  sinh_pif(float x)
-  { return emsr::detail::sinh_pi<float>(x); }
-
-  /**
-   * Return the reperiodized hyperbolic sine function @f$ \sinh_\pi(x) @f$
-   * for <tt>long double</tt> argument @c x.
-   *
-   * @see sinh_pi for more details.
-   */
-  inline long double
-  sinh_pil(long double x)
-  { return emsr::detail::sinh_pi<long double>(x); }
 
   /**
    * Return the reperiodized hyperbolic sine function @f$ \sinh_\pi(x) @f$
@@ -123,26 +83,6 @@ namespace emsr
 
   /**
    * Return the reperiodized cosine function @f$ \cos_\pi(x) @f$
-   * for @c float argument @c x.
-   *
-   * @see cos_pi for more details.
-   */
-  inline float
-  cos_pif(float x)
-  { return emsr::detail::cos_pi<float>(x); }
-
-  /**
-   * Return the reperiodized cosine function @f$ \cos_\pi(x) @f$
-   * for <tt>long double</tt> argument @c x.
-   *
-   * @see cos_pi for more details.
-   */
-  inline long double
-  cos_pil(long double x)
-  { return emsr::detail::cos_pi<long double>(x); }
-
-  /**
-   * Return the reperiodized cosine function @f$ \cos_\pi(x) @f$
    * for real argument @c x.
    *
    * The reperiodized cosine function is defined by:
@@ -175,26 +115,6 @@ namespace emsr
     { return emsr::detail::cos_pi(z); }
 
   // Reperiodized hyperbolic cosine function.
-
-  /**
-   * Return the reperiodized hyperbolic cosine function @f$ \cosh_\pi(x) @f$
-   * for @c float argument @c x.
-   *
-   * @see cosh_pi for more details.
-   */
-  inline float
-  cosh_pif(float x)
-  { return emsr::detail::cosh_pi<float>(x); }
-
-  /**
-   * Return the reperiodized hyperbolic cosine function @f$ \cosh_\pi(x) @f$
-   * for <tt>long double</tt> argument @c x.
-   *
-   * @see cosh_pi for more details.
-   */
-  inline long double
-  cosh_pil(long double x)
-  { return emsr::detail::cosh_pi<long double>(x); }
 
   /**
    * Return the reperiodized hyperbolic cosine function @f$ \cosh_\pi(x) @f$
@@ -233,26 +153,6 @@ namespace emsr
 
   /**
    * Return the reperiodized tangent function @f$ \tan_\pi(x) @f$
-   * for @c float argument @c x.
-   *
-   * @see tan_pi for more details.
-   */
-  inline float
-  tan_pif(float x)
-  { return emsr::detail::tan_pi<float>(x); }
-
-  /**
-   * Return the reperiodized tangent function @f$ \tan_\pi(x) @f$
-   * for <tt>long double</tt> argument @c x.
-   *
-   * @see tan_pi for more details.
-   */
-  inline long double
-  tan_pil(long double x)
-  { return emsr::detail::tan_pi<long double>(x); }
-
-  /**
-   * Return the reperiodized tangent function @f$ \tan_\pi(x) @f$
    * for real argument @c x.
    *
    * The reperiodized tangent function is defined by:
@@ -288,26 +188,6 @@ namespace emsr
 
   /**
    * Return the reperiodized hyperbolic tangent function @f$ \tanh_\pi(x) @f$
-   * for @c float argument @c x.
-   *
-   * @see tanh_pi for more details.
-   */
-  inline float
-  tanh_pif(float x)
-  { return emsr::detail::tanh_pi<float>(x); }
-
-  /**
-   * Return the reperiodized hyperbolic tangent function @f$ \tanh_\pi(x) @f$
-   * for <tt>long double</tt> argument @c x.
-   *
-   * @see tanh_pi for more details.
-   */
-  inline long double
-  tanh_pil(long double x)
-  { return emsr::detail::tanh_pi<long double>(x); }
-
-  /**
-   * Return the reperiodized hyperbolic tangent function @f$ \tanh_\pi(x) @f$
    * for real argument @c x.
    *
    * The reperiodized hyperbolic tangent function is defined by:
@@ -339,21 +219,7 @@ namespace emsr
     tanh_pi(std::complex<Tp> z)
     { return emsr::detail::tanh_pi(z); }
 
-  /**
-   * Return both the sine and the cosine of a @c float argument.
-   */
-  inline sincos_t<float>
-  sincosf(float x)
-  { return emsr::detail::sincos<float>(x); }
-
-  /**
-   * Return both the sine and the cosine of a <tt> long double </tt> argument.
-   *
-   * @see sincos for details.
-   */
-  inline sincos_t<long double>
-  sincosl(long double x)
-  { return emsr::detail::sincos<long double>(x); }
+  // Sincos functions.
 
   /**
    * Return both the sine and the cosine of a @c double argument.
@@ -378,24 +244,7 @@ namespace emsr
       return emsr::detail::sincos<type>(x);
     }
 
-  /**
-   * Return both the sine and the cosine of a reperiodized @c float argument.
-   *
-   * @see sincos_pi for details.
-   */
-  inline sincos_t<float>
-  sincos_pif(float x)
-  { return emsr::detail::sincos_pi<float>(x); }
-
-  /**
-   * Return both the sine and the cosine of a reperiodized
-   * <tt> long double </tt> argument.
-   *
-   * @see sincos_pi for details.
-   */
-  inline sincos_t<long double>
-  sincos_pil(long double x)
-  { return emsr::detail::sincos_pi<long double>(x); }
+  // Reperiodized sincos functions.
 
   /**
    * Return both the sine and the cosine of a reperiodized real argument.

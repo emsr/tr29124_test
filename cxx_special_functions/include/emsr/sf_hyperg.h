@@ -11,28 +11,6 @@ namespace emsr
 
   /**
    * Return the confluent hypergeometric function @f$ {}_1F_1(a;c;x) @f$
-   * of @c float numerator parameter @c a, denominator parameter @c c,
-   * and argument @c x.
-   *
-   * @see conf_hyperg for details.
-   */
-  inline float
-  conf_hypergf(float a, float c, float x)
-  { return emsr::detail::conf_hyperg<float>(a, c, x); }
-
-  /**
-   * Return the confluent hypergeometric function @f$ {}_1F_1(a;c;x) @f$
-   * of <tt>long double</tt> numerator parameter @c a,
-   * denominator parameter @c c, and argument @c x.
-   *
-   * @see conf_hyperg for details.
-   */
-  inline long double
-  conf_hypergl(long double a, long double c, long double x)
-  { return emsr::detail::conf_hyperg<long double>(a, c, x); }
-
-  /**
-   * Return the confluent hypergeometric function @f$ {}_1F_1(a;c;x) @f$
    * of real numerator parameter @c a, denominator parameter @c c,
    * and argument @c x.
    *
@@ -56,28 +34,6 @@ namespace emsr
     }
 
   // Confluent hypergeometric functions
-
-  /**
-   * Return the Tricomi confluent hypergeometric function @f$ U(a,c,x) @f$
-   * of @c float numerator parameter @c a, denominator parameter @c c,
-   * and argument @c x.
-   *
-   * @see tricomi_u for details.
-   */
-  inline float
-  tricomi_uf(float a, float c, float x)
-  { return emsr::detail::tricomi_u<float>(a, c, x); }
-
-  /**
-   * Return the Tricomi confluent hypergeometric function @f$ U(a,c,x) @f$
-   * of <tt>long double</tt> numerator parameter @c a,
-   * denominator parameter @c c, and argument @c x.
-   *
-   * @see tricomi_u for details.
-   */
-  inline long double
-  tricomi_ul(long double a, long double c, long double x)
-  { return emsr::detail::tricomi_u<long double>(a, c, x); }
 
   /**
    * Return the Tricomi confluent hypergeometric function @f$ U(a,c,x) @f$
@@ -109,28 +65,6 @@ namespace emsr
 
   /**
    * Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$
-   * of @c float numerator parameters @c a and @c b,
-   * denominator parameter @c c, and argument @c x.
-   *
-   * @see hyperg for details.
-   */
-  inline float
-  hypergf(float a, float b, float c, float x)
-  { return emsr::detail::hyperg<float>(a, b, c, x); }
-
-  /**
-   * Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$
-   * of <tt>long double</tt> numerator parameters @c a and @c b,
-   * denominator parameter @c c, and argument @c x.
-   *
-   * @see hyperg for details.
-   */
-  inline long double
-  hypergl(long double a, long double b, long double c, long double x)
-  { return emsr::detail::hyperg<long double>(a, b, c, x); }
-
-  /**
-   * Return the hypergeometric function @f$ {}_2F_1(a,b;c;x) @f$
    * of real numerator parameters @c a and @c b,
    * denominator parameter @c c, and argument @c x.
    *
@@ -155,26 +89,6 @@ namespace emsr
     }
 
   // Confluent hypergeometric limit functions
-
-  /**
-   * Return the confluent hypergeometric limit function @f$ {}_0F_1(;c;x) @f$
-   * of @c float numerator parameter @c c and argument @c x.
-   *
-   * @see conf_hyperg_lim for details.
-   */
-  inline float
-  conf_hyperg_limf(float c, float x)
-  { return emsr::detail::conf_hyperg_lim<float>(c, x); }
-
-  /**
-   * Return the confluent hypergeometric limit function @f$ {}_0F_1(;c;x) @f$
-   * of <tt>long double</tt> numerator parameter @c c and argument @c x.
-   *
-   * @see conf_hyperg_lim for details.
-   */
-  inline long double
-  conf_hyperg_liml(long double c, long double x)
-  { return emsr::detail::conf_hyperg_lim<long double>(c, x); }
 
   /**
    * Return the confluent hypergeometric limit function @f$ {}_0F_1(;c;x) @f$

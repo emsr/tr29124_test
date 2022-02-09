@@ -10,25 +10,6 @@ namespace emsr
   // Bernoulli numbers
 
   /**
-   * Return the Bernoulli number of integer order @c n as a @c float.
-   *
-   * @see bernoulli for details.
-   */
-  inline float
-  bernoullif(unsigned int n)
-  { return emsr::detail::bernoulli<float>(n); }
-
-  /**
-   * Return the Bernoulli number of integer order @c n as a
-   * <tt>long double</tt>.
-   *
-   * @see bernoulli for details.
-   */
-  inline long double
-  bernoullil(unsigned int n)
-  { return emsr::detail::bernoulli<long double>(n); }
-
-  /**
    * Return the Bernoulli number of integer order @c n.
    *
    * The Bernoulli numbers are defined by

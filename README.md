@@ -25,6 +25,10 @@ to the C++ Standard Library, Paul A Bristow]
 This work began as a project to add math extensions to libstdc++.
 At this point I am abandoning that idea in favor of a general math library. Those still wishing to look at the libstdc++ support should check out the last_libstdc++_support tag. I may create a branch later.
 
+This library has abandoned the 'f' and 'l' suffixed functioned of C++17. These were for C 'compatibility' which never came.
+They were a source of noise and bitrot. I briefly thought about retaining them for functions of integer argument that can't
+figure out a floating point type by ADL. But I chose not to do thet either.
+
 <b>This library and sub-libraries are experiencing a lot of churn right now but in the
 end I expect a set of smaller components that are more independent.
 It does seem to be in the nature of this work that some interdependencies creep in. In particular, the functions in these libraries are now in namespace emsr and in include/emsr.</b>

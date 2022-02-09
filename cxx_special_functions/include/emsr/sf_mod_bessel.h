@@ -11,26 +11,6 @@ namespace emsr
 
   /**
    * Return the regular modified Bessel function @f$ I_{\nu}(x) @f$
-   * for @c float order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
-   *
-   * @see cyl_bessel_i for setails.
-   */
-  inline float
-  cyl_bessel_if(float nu, float x)
-  { return detail::cyl_bessel_i<float>(nu, x); }
-
-  /**
-   * Return the regular modified Bessel function @f$ I_{\nu}(x) @f$
-   * for <tt>long double</tt> order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
-   *
-   * @see cyl_bessel_i for setails.
-   */
-  inline long double
-  cyl_bessel_il(long double nu, long double x)
-  { return detail::cyl_bessel_i<long double>(nu, x); }
-
-  /**
-   * Return the regular modified Bessel function @f$ I_{\nu}(x) @f$
    * for real order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
    *
    * The regular modified cylindrical Bessel function is:
@@ -54,26 +34,6 @@ namespace emsr
     }
 
   // Irregular modified cylindrical Bessel functions
-
-  /**
-   * Return the irregular modified Bessel function @f$ K_{\nu}(x) @f$
-   * for @c float order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
-   *
-   * @see cyl_bessel_k for setails.
-   */
-  inline float
-  cyl_bessel_kf(float nu, float x)
-  { return detail::cyl_bessel_k<float>(nu, x); }
-
-  /**
-   * Return the irregular modified Bessel function @f$ K_{\nu}(x) @f$
-   * for <tt>long double</tt> order @f$ \nu @f$ and argument @f$ x >= 0 @f$.
-   *
-   * @see cyl_bessel_k for setails.
-   */
-  inline long double
-  cyl_bessel_kl(long double nu, long double x)
-  { return detail::cyl_bessel_k<long double>(nu, x); }
 
   /**
    * Return the irregular modified Bessel function @f$ K_{\nu}(x) @f$
@@ -167,26 +127,6 @@ namespace emsr
 
   /**
    * Return the regular modified spherical Bessel function @f$ i_n(x) @f$
-   * of nonnegative order n and @c float argument @f$ x >= 0 @f$.
-   *
-   * @see sph_bessel_i for details.
-   */
-  inline float
-  sph_bessel_if(unsigned int n, float x)
-  { return emsr::detail::sph_bessel_ik<float>(n, x).i_value; }
-
-  /**
-   * Return the regular modified spherical Bessel function @f$ i_n(x) @f$
-   * of nonnegative order n and <tt>long double</tt> argument @f$ x >= 0 @f$.
-   *
-   * @see sph_bessel_i for details.
-   */
-  inline long double
-  sph_bessel_il(unsigned int n, long double x)
-  { return emsr::detail::sph_bessel_ik<long double>(n, x).i_value; }
-
-  /**
-   * Return the regular modified spherical Bessel function @f$ i_n(x) @f$
    * of nonnegative order n and real argument @f$ x >= 0 @f$.
    *
    * The spherical Bessel function is defined by:
@@ -211,26 +151,6 @@ namespace emsr
 
   /**
    * Return the irregular modified spherical Bessel function @f$ k_n(x) @f$
-   * of nonnegative order n and @c float argument @f$ x >= 0 @f$.
-   *
-   * @see sph_bessel_k for more details.
-   */
-  inline float
-  sph_bessel_kf(unsigned int n, float x)
-  { return emsr::detail::sph_bessel_ik<float>(n, x).k_value; }
-
-  /**
-   * Return the irregular modified spherical Bessel function @f$ k_n(x) @f$
-   * of nonnegative order n and <tt>long double</tt> argument @f$ x >= 0 @f$.
-   *
-   * @see sph_bessel_k for more details.
-   */
-  inline long double
-  sph_bessel_kl(unsigned int n, long double x)
-  { return emsr::detail::sph_bessel_ik<long double>(n, x).k_value; }
-
-  /**
-   * Return the irregular modified spherical Bessel function @f$ k_n(x) @f$
    * of nonnegative order n and real argument @f$ x >= 0 @f$.
    *
    * The spherical Bessel function is defined by:
@@ -252,25 +172,6 @@ namespace emsr
     }
 
   // Airy functions of the first kind
-
-  /**
-   * Return the Airy function @f$ Ai(x) @f$ for @c float argument @c x.
-   *
-   * @see airy_ai for details.
-   */
-  inline float
-  airy_aif(float x)
-  { return emsr::detail::airy<float>(x).Ai_value; }
-
-  /**
-   * Return the Airy function @f$ Ai(x) @f$ for <tt>long double</tt>
-   * argument @c x.
-   *
-   * @see airy_ai for details.
-   */
-  inline long double
-  airy_ail(long double x)
-  { return emsr::detail::airy<long double>(x).Ai_value; }
 
   /**
    * Return the Airy function @f$ Ai(x) @f$ of real argument @c x.
@@ -315,25 +216,6 @@ namespace emsr
     }
 
   // Airy functions of the second kind
-
-  /**
-   * Return the Airy function @f$ Bi(x) @f$ for @c float argument @c x.
-   *
-   * @see airy_bi for details.
-   */
-  inline float
-  airy_bif(float x)
-  { return emsr::detail::airy<float>(x).Bi_value; }
-
-  /**
-   * Return the Airy function @f$ Bi(x) @f$ for <tt>long double</tt>
-   * argument @c x.
-   *
-   * @see airy_bi for details.
-   */
-  inline long double
-  airy_bil(long double x)
-  { return emsr::detail::airy<long double>(x).Bi_value; }
 
   /**
    * Return the Airy function @f$ Bi(x) @f$ of real argument @c x.

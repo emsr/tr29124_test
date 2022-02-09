@@ -98,49 +98,29 @@ $(document).ready(function(){initNavTree('sf__owens__t_8h_source.html',''); init
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;  <span class="comment">// Owens T functions.</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;  <span class="comment">/**</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">   * Return the Owens T function @f$ T(h,a) @f$</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">   * of shape factor @c h and integration limit @c a.</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">   * Return the Owens T function @f$ T(h,a) @f$ of shape factor @c h</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">   * and integration limit @c a.</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">   * @see owens_t for details.</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;  <span class="keyword">inline</span> <span class="keywordtype">float</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="namespaceemsr.html#a28fcef197ad45214f982cdc59b4da8d9">   19</a></span>&#160;  <a class="code" href="namespaceemsr.html#a28fcef197ad45214f982cdc59b4da8d9">owens_tf</a>(<span class="keywordtype">float</span> h, <span class="keywordtype">float</span> a)</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  { <span class="keywordflow">return</span> emsr::detail::owens_t&lt;<span class="keywordtype">float</span>&gt;(h, a); }</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  <span class="comment">/**</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">   * Return the Owens T function @f$ T(h,a) @f$ of &lt;tt&gt;long double&lt;/tt&gt;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">   * shape factor @c h and integration limit @c a.</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">   * @see owens_t for details.</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  <span class="keyword">inline</span> <span class="keywordtype">long</span> <span class="keywordtype">double</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="namespaceemsr.html#aa70c906b97d421dd08135baf74330890">   29</a></span>&#160;  <a class="code" href="namespaceemsr.html#aa70c906b97d421dd08135baf74330890">owens_tl</a>(<span class="keywordtype">long</span> <span class="keywordtype">double</span> h, <span class="keywordtype">long</span> <span class="keywordtype">double</span> a)</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  { <span class="keywordflow">return</span> emsr::detail::owens_t&lt;<span class="keywordtype">long</span> <span class="keywordtype">double</span>&gt;(h, a); }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="comment">/**</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">   * Return the Owens T function @f$ T(h,a) @f$ of shape factor @c h</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">   * and integration limit @c a.</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">   * The Owens T function is defined by</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">   * @f[</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">   *    T(h,a) = \frac{1}{2\pi}\int_0^a</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">   *           \frac{\exp\left[-\frac{1}{2}h^2(1+x^2)\right]}{1+x^2} dx</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">   * @f]</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">   *</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">   * @param h The shape factor</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">   * @param a The integration limit</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">   */</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Tp&gt;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">inline</span> <a class="code" href="namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0">emsr</a>::<a class="code" href="namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0">fp_promote_t</a>&lt;<a class="code" href="namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0">Tp</a>&gt;</div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0">   47</a></span>&#160;    <a class="code" href="namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0">owens_t</a>(<a class="code" href="namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0">Tp</a> <a class="code" href="namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0">h</a>, <a class="code" href="namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0">Tp</a> <a class="code" href="namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0">a</a>)</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      <span class="keyword">using</span> type = emsr::fp_promote_t&lt;Tp&gt;;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;      <span class="keywordflow">return</span> emsr::detail::owens_t&lt;type&gt;(h, a);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;} <span class="comment">// namespace emsr</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">endif</span> <span class="comment">// SF_OWENS_T_H</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">   * The Owens T function is defined by</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">   * @f[</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">   *    T(h,a) = \frac{1}{2\pi}\int_0^a</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">   *           \frac{\exp\left[-\frac{1}{2}h^2(1+x^2)\right]}{1+x^2} dx</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">   * @f]</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">   *</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">   * @param h The shape factor</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">   * @param a The integration limit</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">   */</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;  <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Tp&gt;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">inline</span> <a class="code" href="namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0">emsr</a>::<a class="code" href="namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0">fp_promote_t</a>&lt;<a class="code" href="namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0">Tp</a>&gt;</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0">   27</a></span>&#160;    <a class="code" href="namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0">owens_t</a>(<a class="code" href="namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0">Tp</a> <a class="code" href="namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0">h</a>, <a class="code" href="namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0">Tp</a> <a class="code" href="namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0">a</a>)</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;      <span class="keyword">using</span> type = emsr::fp_promote_t&lt;Tp&gt;;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;      <span class="keywordflow">return</span> emsr::detail::owens_t&lt;type&gt;(h, a);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;} <span class="comment">// namespace emsr</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#</span><span class="preprocessor">endif</span> <span class="comment">// SF_OWENS_T_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

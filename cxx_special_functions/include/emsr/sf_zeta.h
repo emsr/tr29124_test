@@ -11,26 +11,6 @@ namespace emsr
 
   /**
    * Return the Riemann zeta function @f$ \zeta(s) @f$
-   * for @c float argument @c s.
-   *
-   * @see riemann_zeta for more details.
-   */
-  inline float
-  riemann_zetaf(float s)
-  { return emsr::detail::riemann_zeta<float>(s); }
-
-  /**
-   * Return the Riemann zeta function @f$ \zeta(s) @f$
-   * for <tt>long double</tt> argument @c s.
-   *
-   * @see riemann_zeta for more details.
-   */
-  inline long double
-  riemann_zetal(long double s)
-  { return emsr::detail::riemann_zeta<long double>(s); }
-
-  /**
-   * Return the Riemann zeta function @f$ \zeta(s) @f$
    * for real argument @c s.
    *
    * The Riemann zeta function is defined by:
@@ -61,26 +41,6 @@ namespace emsr
   // Hurwitz zeta functions
 
   /**
-   * Return the Hurwitz zeta function of @c float argument @c s,
-   * and parameter @c a.
-   *
-   * @see hurwitz_zeta for details.
-   */
-  inline float
-  hurwitz_zetaf(float s, float a)
-  { return emsr::detail::hurwitz_zeta<float>(s, a); }
-
-  /**
-   * Return the Hurwitz zeta function of <tt>long double</tt>
-   * argument @c s, and parameter @c a.
-   *
-   * @see hurwitz_zeta for details.
-   */
-  inline long double
-  hurwitz_zetal(long double s, long double a)
-  { return emsr::detail::hurwitz_zeta<long double>(s, a); }
-
-  /**
    * Return the Hurwitz zeta function of real argument @c s,
    * and parameter @c a.
    *
@@ -104,26 +64,6 @@ namespace emsr
 
   /**
    * Return the dilogarithm function @f$ Li_2(z) @f$
-   * for @c float argument.
-   *
-   * @see dilog for details.
-   */
-  inline float
-  dilogf(float x)
-  { return emsr::detail::dilog<float>(x); }
-
-  /**
-   * Return the dilogarithm function @f$ Li_2(z) @f$
-   * for <tt>long double</tt> argument.
-   *
-   * @see dilog for details.
-   */
-  inline long double
-  dilogl(long double x)
-  { return emsr::detail::dilog<long double>(x); }
-
-  /**
-   * Return the dilogarithm function @f$ Li_2(z) @f$
    * for real argument.
    *
    * The dilogarithm is defined by:
@@ -142,26 +82,6 @@ namespace emsr
     }
 
   // Debye functions.
-
-  /**
-   * Return the Debye function @f$ D_n(x) @f$
-   * of positive order @c n and @c float argument @c x.
-   *
-   * @see debye for details.
-   */
-  inline float
-  debyef(unsigned int n, float x)
-  { return emsr::detail::debye<float>(n, x); }
-
-  /**
-   * Return the Debye function @f$ D_n(x) @f$
-   * of positive order @c n and real argument @c x.
-   *
-   * @see debye for details.
-   */
-  inline long double
-  debyel(unsigned int n, long double x)
-  { return emsr::detail::debye<long double>(n, x); }
 
   /**
    * Return the Debye function @f$ D_n(x) @f$

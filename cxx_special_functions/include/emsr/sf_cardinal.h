@@ -11,26 +11,6 @@ namespace emsr
 
   /**
    * Return the sinus cardinal function @f$ sinc_\pi(x) @f$
-   * for @c float argument @c x.
-   *
-   * @see sinc_pi for details.
-   */
-  inline float
-  sincf(float x)
-  { return emsr::detail::sinc<float>(x); }
-
-  /**
-   * Return the sinus cardinal function @f$ sinc_\pi(x) @f$
-   * for <tt>long double</tt> argument @c x.
-   *
-   * @see sinc_pi for details.
-   */
-  inline long double
-  sincl(long double x)
-  { return emsr::detail::sinc<long double>(x); }
-
-  /**
-   * Return the sinus cardinal function @f$ sinc_\pi(x) @f$
    * for real argument @c x.
    * The sinus cardinal function is defined by:
    * @f[
@@ -49,26 +29,6 @@ namespace emsr
     }
 
   // Normalized sinus cardinal functions
-
-  /**
-   * Return the reperiodized sinus cardinal function @f$ sinc(x) @f$
-   * for @c float argument @c x.
-   *
-   * @see sinc for details.
-   */
-  inline float
-  sinc_pif(float x)
-  { return emsr::detail::sinc_pi<float>(x); }
-
-  /**
-   * Return the reperiodized sinus cardinal function @f$ sinc(x) @f$
-   * for <tt>long double</tt> argument @c x.
-   *
-   * @see sinc for details.
-   */
-  inline long double
-  sinc_pil(long double x)
-  { return emsr::detail::sinc_pi<long double>(x); }
 
   /**
    * Return the reperiodized sinus cardinal function @f$ sinc(x) @f$
@@ -93,26 +53,6 @@ namespace emsr
 
   /**
    * Return the hyperbolic sinus cardinal function @f$ sinhc_\pi(x) @f$
-   * for @c float argument @c x.
-   *
-   * @see sinhc_pi for details.
-   */
-  inline float
-  sinhc_pif(float x)
-  { return emsr::detail::sinhc_pi<float>(x); }
-
-  /**
-   * Return the hyperbolic sinus cardinal function @f$ sinhc_\pi(x) @f$
-   * for <tt>long double</tt> argument @c x.
-   *
-   * @see sinhc_pi for details.
-   */
-  inline long double
-  sinhc_pil(long double x)
-  { return emsr::detail::sinhc_pi<long double>(x); }
-
-  /**
-   * Return the hyperbolic sinus cardinal function @f$ sinhc_\pi(x) @f$
    * for real argument @c x.
    * The sinus cardinal function is defined by:
    * @f[
@@ -131,26 +71,6 @@ namespace emsr
     }
 
   // Normalized hyperbolic sinus cardinal functions
-
-  /**
-   * Return the normalized hyperbolic sinus cardinal function @f$ sinhc(x) @f$
-   * for @c float argument @c x.
-   *
-   * @see sinhc for details.
-   */
-  inline float
-  sinhcf(float x)
-  { return emsr::detail::sinhc<float>(x); }
-
-  /**
-   * Return the normalized hyperbolic sinus cardinal function @f$ sinhc(x) @f$
-   * for <tt>long double</tt> argument @c x.
-   *
-   * @see sinhc for details.
-   */
-  inline long double
-  sinhcl(long double x)
-  { return emsr::detail::sinhc<long double>(x); }
 
   /**
    * Return the normalized hyperbolic sinus cardinal function @f$ sinhc(x) @f$

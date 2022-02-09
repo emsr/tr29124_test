@@ -10,26 +10,6 @@ namespace emsr
   // Owens T functions.
 
   /**
-   * Return the Owens T function @f$ T(h,a) @f$
-   * of shape factor @c h and integration limit @c a.
-   *
-   * @see owens_t for details.
-   */
-  inline float
-  owens_tf(float h, float a)
-  { return emsr::detail::owens_t<float>(h, a); }
-
-  /**
-   * Return the Owens T function @f$ T(h,a) @f$ of <tt>long double</tt>
-   * shape factor @c h and integration limit @c a.
-   *
-   * @see owens_t for details.
-   */
-  inline long double
-  owens_tl(long double h, long double a)
-  { return emsr::detail::owens_t<long double>(h, a); }
-
-  /**
    * Return the Owens T function @f$ T(h,a) @f$ of shape factor @c h
    * and integration limit @c a.
    *

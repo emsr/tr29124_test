@@ -10,26 +10,6 @@ namespace emsr
   // Hermite polynomials
 
   /**
-   * Return the Hermite polynomial @f$ H_n(x) @f$ of nonnegative order n
-   * and float argument @c x.
-   *
-   * @see hermite for details.
-   */
-  inline float
-  hermitef(unsigned int n, float x)
-  { return emsr::detail::hermite<float>(n, x); }
-
-  /**
-   * Return the Hermite polynomial @f$ H_n(x) @f$ of nonnegative order n
-   * and <tt>long double</tt> argument @c x.
-   *
-   * @see hermite for details.
-   */
-  inline long double
-  hermitel(unsigned int n, long double x)
-  { return emsr::detail::hermite<long double>(n, x); }
-
-  /**
    * Return the Hermite polynomial @f$ H_n(x) @f$ of order n
    * and @c real argument @c x.
    *

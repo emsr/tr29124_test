@@ -10,26 +10,6 @@ namespace emsr
   // Complete elliptic integrals of the first kind
 
   /**
-   * Return the complete elliptic integral of the first kind @f$ E(k) @f$
-   * for @c float modulus @c k.
-   *
-   * @see comp_ellint_1 for details.
-   */
-  inline float
-  comp_ellint_1f(float k)
-  { return emsr::detail::comp_ellint_1<float>(k); }
-
-  /**
-   * Return the complete elliptic integral of the first kind @f$ E(k) @f$
-   * for <tt>long double</tt> modulus @c k.
-   *
-   * @see comp_ellint_1 for details.
-   */
-  inline long double
-  comp_ellint_1l(long double k)
-  { return emsr::detail::comp_ellint_1<long double>(k); }
-
-  /**
    * Return the complete elliptic integral of the first kind
    * @f$ K(k) @f$ for real modulus @c k.
    *
@@ -59,26 +39,6 @@ namespace emsr
 
   /**
    * Return the complete elliptic integral of the second kind @f$ E(k) @f$
-   * for @c float modulus @c k.
-   *
-   * @see comp_ellint_2 for details.
-   */
-  inline float
-  comp_ellint_2f(float k)
-  { return emsr::detail::comp_ellint_2<float>(k); }
-
-  /**
-   * Return the complete elliptic integral of the second kind @f$ E(k) @f$
-   * for <tt>long double</tt> modulus @c k.
-   *
-   * @see comp_ellint_2 for details.
-   */
-  inline long double
-  comp_ellint_2l(long double k)
-  { return emsr::detail::comp_ellint_2<long double>(k); }
-
-  /**
-   * Return the complete elliptic integral of the second kind @f$ E(k) @f$
    * for real modulus @c k.
    *
    * The complete elliptic integral of the second kind is defined as
@@ -103,26 +63,6 @@ namespace emsr
     }
 
   // Complete elliptic integrals of the third kind
-
-  /**
-   * @brief Return the complete elliptic integral of the third kind
-   * @f$ \Pi(k,\nu) @f$ for @c float modulus @c k.
-   *
-   * @see comp_ellint_3 for details.
-   */
-  inline float
-  comp_ellint_3f(float k, float nu)
-  { return emsr::detail::comp_ellint_3<float>(k, nu); }
-
-  /**
-   * @brief Return the complete elliptic integral of the third kind
-   * @f$ \Pi(k,\nu) @f$ for <tt>long double</tt> modulus @c k.
-   *
-   * @see comp_ellint_3 for details.
-   */
-  inline long double
-  comp_ellint_3l(long double k, long double nu)
-  { return emsr::detail::comp_ellint_3<long double>(k, nu); }
 
   /**
    * Return the complete elliptic integral of the third kind
@@ -156,26 +96,6 @@ namespace emsr
   // Incomplete elliptic integrals of the first kind
 
   /**
-   * Return the incomplete elliptic integral of the first kind @f$ E(k,\phi) @f$
-   * for @c float modulus @c k and angle @f$ \phi @f$.
-   *
-   * @see ellint_1 for details.
-   */
-  inline float
-  ellint_1f(float k, float phi)
-  { return emsr::detail::ellint_1<float>(k, phi); }
-
-  /**
-   * Return the incomplete elliptic integral of the first kind @f$ E(k,\phi) @f$
-   * for <tt>long double</tt> modulus @c k and angle @f$ \phi @f$.
-   *
-   * @see ellint_1 for details.
-   */
-  inline long double
-  ellint_1l(long double k, long double phi)
-  { return emsr::detail::ellint_1<long double>(k, phi); }
-
-  /**
    * Return the incomplete elliptic integral of the first kind @f$ F(k,\phi) @f$
    * for @c real modulus @c k and angle @f$ \phi @f$.
    *
@@ -204,26 +124,6 @@ namespace emsr
   // Incomplete elliptic integrals of the second kind
 
   /**
-   * @brief Return the incomplete elliptic integral of the second kind
-   * @f$ E(k,\phi) @f$ for @c float argument.
-   *
-   * @see ellint_2 for details.
-   */
-  inline float
-  ellint_2f(float k, float phi)
-  { return emsr::detail::ellint_2<float>(k, phi); }
-
-  /**
-   * @brief Return the incomplete elliptic integral of the second kind
-   * @f$ E(k,\phi) @f$.
-   *
-   * @see ellint_2 for details.
-   */
-  inline long double
-  ellint_2l(long double k, long double phi)
-  { return emsr::detail::ellint_2<long double>(k, phi); }
-
-  /**
    * Return the incomplete elliptic integral of the second kind
    * @f$ E(k,\phi) @f$.
    *
@@ -250,26 +150,6 @@ namespace emsr
     }
 
   // Incomplete elliptic integrals of the third kind
-
-  /**
-   * @brief Return the incomplete elliptic integral of the third kind
-   * @f$ \Pi(k,\nu,\phi) @f$ for @c float argument.
-   *
-   * @see ellint_3 for details.
-   */
-  inline float
-  ellint_3f(float k, float nu, float phi)
-  { return emsr::detail::ellint_3<float>(k, nu, phi); }
-
-  /**
-   * @brief Return the incomplete elliptic integral of the third kind
-   * @f$ \Pi(k,\nu,\phi) @f$.
-   *
-   * @see ellint_3 for details.
-   */
-  inline long double
-  ellint_3l(long double k, long double nu, long double phi)
-  { return emsr::detail::ellint_3<long double>(k, nu, phi); }
 
   /**
    * @brief Return the incomplete elliptic integral of the third kind
@@ -305,26 +185,6 @@ namespace emsr
   // Complete Carlson elliptic R_F functions
 
   /**
-   * Return the complete Carlson elliptic function @f$ R_F(x,y,z) @f$
-   * for @c float arguments.
-   *
-   * @see comp_ellint_rf for details.
-   */
-  inline float
-  comp_ellint_rf(float x, float y)
-  { return emsr::detail::comp_ellint_rf<float>(x, y); }
-
-  /**
-   * Return the complete Carlson elliptic function @f$ R_F(x,y) @f$
-   * for <tt>long double</tt> arguments.
-   *
-   * @see comp_ellint_rf for details.
-   */
-  inline long double
-  comp_ellint_rf(long double x, long double y)
-  { return emsr::detail::comp_ellint_rf<long double>(x, y); }
-
-  /**
    * Return the complete Carlson elliptic function @f$ R_F(x,y) @f$
    * for real arguments.
    *
@@ -349,26 +209,6 @@ namespace emsr
 
   /**
    * Return the Carlson elliptic function @f$ R_F(x,y,z) @f$
-   * of the first kind for @c float arguments.
-   *
-   * @see ellint_rf for details.
-   */
-  inline float
-  ellint_rff(float x, float y, float z)
-  { return emsr::detail::ellint_rf<float>(x, y, z); }
-
-  /**
-   * Return the Carlson elliptic function @f$ R_F(x,y,z) @f$
-   * of the first kind for <tt>long double</tt> arguments.
-   *
-   * @see ellint_rf for details.
-   */
-  inline long double
-  ellint_rfl(long double x, long double y, long double z)
-  { return emsr::detail::ellint_rf<long double>(x, y, z); }
-
-  /**
-   * Return the Carlson elliptic function @f$ R_F(x,y,z) @f$
    * of the first kind for real arguments.
    *
    * The Carlson elliptic function of the first kind is defined by:
@@ -390,24 +230,6 @@ namespace emsr
     }
 
   // Carlson elliptic R_C functions
-
-  /**
-   * Return the Carlson elliptic function @f$ R_C(x,y) @f$.
-   *
-   * @see ellint_rc for details.
-   */
-  inline float
-  ellint_rcf(float x, float y)
-  { return emsr::detail::ellint_rc<float>(x, y); }
-
-  /**
-   * Return the Carlson elliptic function @f$ R_C(x,y) @f$.
-   *
-   * @see ellint_rc for details.
-   */
-  inline long double
-  ellint_rcl(long double x, long double y)
-  { return emsr::detail::ellint_rc<long double>(x, y); }
 
   /**
    * Return the Carlson elliptic function @f$ R_C(x,y) = R_F(x,y,y) @f$
@@ -440,24 +262,6 @@ namespace emsr
   // Carlson elliptic R_J functions
 
   /**
-   * Return the Carlson elliptic function @f$ R_J(x,y,z,p) @f$.
-   *
-   * @see ellint_rj for details.
-   */
-  inline float
-  ellint_rjf(float x, float y, float z, float p)
-  { return emsr::detail::ellint_rj<float>(x, y, z, p); }
-
-  /**
-   * Return the Carlson elliptic function @f$ R_J(x,y,z,p) @f$.
-   *
-   * @see ellint_rj for details.
-   */
-  inline long double
-  ellint_rjl(long double x, long double y, long double z, long double p)
-  { return emsr::detail::ellint_rj<long double>(x, y, z, p); }
-
-  /**
    * Return the Carlson elliptic function @f$ R_J(x,y,z,p) @f$
    * 	     of the third kind.
    *
@@ -487,24 +291,6 @@ namespace emsr
     }
 
   // Carlson elliptic R_D functions
-
-  /**
-   * Return the Carlson elliptic function @f$ R_D(x,y,z) @f$.
-   *
-   * @see ellint_rd for details.
-   */
-  inline float
-  ellint_rdf(float x, float y, float z)
-  { return emsr::detail::ellint_rd<float>(x, y, z); }
-
-  /**
-   * Return the Carlson elliptic function @f$ R_D(x,y,z) @f$.
-   *
-   * @see ellint_rd for details.
-   */
-  inline long double
-  ellint_rdl(long double x, long double y, long double z)
-  { return emsr::detail::ellint_rd<long double>(x, y, z); }
 
   /**
    * Return the Carlson elliptic function of the second kind
@@ -539,24 +325,6 @@ namespace emsr
   // Complete Carlson elliptic R_G functions
 
   /**
-   * Return the Carlson complementary elliptic function @f$ R_G(x,y) @f$.
-   *
-   * @see comp_ellint_rg for details.
-   */
-  inline float
-  comp_ellint_rg(float x, float y)
-  { return emsr::detail::comp_ellint_rg<float>(x, y); }
-
-  /**
-   * Return the Carlson complementary elliptic function @f$ R_G(x,y) @f$.
-   *
-   * @see comp_ellint_rg for details.
-   */
-  inline long double
-  comp_ellint_rg(long double x, long double y)
-  { return emsr::detail::comp_ellint_rg<long double>(x, y); }
-
-  /**
    * Return the complete Carlson elliptic function @f$ R_G(x,y) @f$
    * for real arguments.
    *
@@ -579,24 +347,6 @@ namespace emsr
     }
 
   // Carlson elliptic R_G functions
-
-  /**
-   * Return the Carlson elliptic function @f$ R_G(x,y) @f$.
-   *
-   * @see ellint_rg for details.
-   */
-  inline float
-  ellint_rgf(float x, float y, float z)
-  { return emsr::detail::ellint_rg<float>(x, y, z); }
-
-  /**
-   * Return the Carlson elliptic function @f$ R_G(x,y) @f$.
-   *
-   * @see ellint_rg for details.
-   */
-  inline long double
-  ellint_rgl(long double x, long double y, long double z)
-  { return emsr::detail::ellint_rg<long double>(x, y, z); }
 
   /**
    * Return the symmetric Carlson elliptic function of the second kind
@@ -629,14 +379,6 @@ namespace emsr
 
   // Jacobi zeta functions.
 
-  inline float
-  jacobi_zetaf(float k, float phi)
-  { return emsr::detail::jacobi_zeta<float>(k, phi); }
-
-  inline long double
-  jacobi_zetal(long double k, long double phi)
-  { return emsr::detail::jacobi_zeta<long double>(k, phi); }
-
   /**
    * Return the Jacobi zeta function of @c k and @f$ \phi @f$.
    *
@@ -662,14 +404,6 @@ namespace emsr
     }
 
   // Heuman lambda functions.
-
-  inline float
-  heuman_lambdaf(float k, float phi)
-  { return emsr::detail::heuman_lambda<float>(k, phi); }
-
-  inline long double
-  heuman_lambdal(long double k, long double phi)
-  { return emsr::detail::heuman_lambda<long double>(k, phi); }
 
   /**
    * Return the Heuman lambda function @f$ \Lambda(k,\phi) @f$
@@ -700,26 +434,6 @@ namespace emsr
 
   /**
    * Return the complete Legendre elliptic integral @f$ D(k) @f$
-   * of @c float modulus @c k.
-   *
-   * @see comp_ellint_d for details.
-   */
-  inline float
-  comp_ellint_df(float k)
-  { return emsr::detail::comp_ellint_d<float>(k); }
-
-  /**
-   * Return the complete Legendre elliptic integral @f$ D(k) @f$
-   * of <tt>long double</tt> modulus @c k.
-   *
-   * @see comp_ellint_d for details.
-   */
-  inline long double
-  comp_ellint_dl(long double k)
-  { return emsr::detail::comp_ellint_d<long double>(k); }
-
-  /**
-   * Return the complete Legendre elliptic integral @f$ D(k) @f$
    * of real modulus @c k.
    *
    * The complete Legendre elliptic integral D is defined by
@@ -739,26 +453,6 @@ namespace emsr
     }
 
   // Legendre elliptic integrals D.
-
-  /**
-   * Return the incomplete Legendre elliptic integral @f$ D(k, \phi) @f$
-   * of @c float modulus @c k and angular limit @f$ \phi @f$.
-   *
-   * @see ellint_d for details.
-   */
-  inline float
-  ellint_df(float k, float phi)
-  { return emsr::detail::ellint_d<float>(k, phi); }
-
-  /**
-   * Return the incomplete Legendre elliptic integral @f$ D(k, \phi) @f$
-   * of <tt>long double</tt> modulus @c k and angular limit @f$ \phi @f$.
-   *
-   * @see ellint_d for details.
-   */
-  inline long double
-  ellint_dl(long double k, long double phi)
-  { return emsr::detail::ellint_d<long double>(k, phi); }
 
   /**
    * Return the incomplete Legendre elliptic integral @f$ D(k,\phi) @f$
@@ -782,28 +476,6 @@ namespace emsr
     }
 
   // Bulirsch elliptic integrals of the first kind.
-
-  /**
-   * Return the Bulirsch elliptic integral @f$ el1(x,k_c) @f$
-   * of the first kind of @c float tangent limit @c x
-   * and complementary modulus @f$ k_c @f$.
-   *
-   * @see ellint_el1 for details.
-   */
-  inline float
-  ellint_el1f(float x, float k_c)
-  { return emsr::detail::ellint_el1<float>(x, k_c); }
-
-  /**
-   * Return the Bulirsch elliptic integral @f$ el1(x,k_c) @f$
-   * of the first kind of real tangent limit @c x
-   * and complementary modulus @f$ k_c @f$.
-   *
-   * @see ellint_el1 for details.
-   */
-  inline long double
-  ellint_el1l(long double x, long double k_c)
-  { return emsr::detail::ellint_el1<long double>(x, k_c); }
 
   /**
    * Return the Bulirsch elliptic integral @f$ el1(x,k_c) @f$
@@ -833,27 +505,6 @@ namespace emsr
    * Return the Bulirsch elliptic integral of the second kind
    * @f$ el2(x,k_c,a,b) @f$.
    *
-   * @see ellint_el2 for details.
-   */
-  inline float
-  ellint_el2f(float x, float k_c, float a, float b)
-  { return emsr::detail::ellint_el2<float>(x, k_c, a, b); }
-
-  /**
-   * Return the Bulirsch elliptic integral of the second kind
-   * @f$ el2(x,k_c,a,b) @f$.
-   *
-   * @see ellint_el2 for details.
-   */
-  inline long double
-  ellint_el2l(long double x, long double k_c,
-	      long double a, long double b)
-  { return emsr::detail::ellint_el2<long double>(x, k_c, a, b); }
-
-  /**
-   * Return the Bulirsch elliptic integral of the second kind
-   * @f$ el2(x,k_c,a,b) @f$.
-   *
    * The Bulirsch elliptic integral of the second kind is defined by
    * @f[
    *    el2(x,k_c,a,b) = \int_0^{\arctan x} \frac{a+b\tan^2\theta}
@@ -874,28 +525,6 @@ namespace emsr
     }
 
   // Bulirsch elliptic integrals of the third kind.
-
-  /**
-   * Return the Bulirsch elliptic integral of the third kind
-   * @f$ el3(x,k_c,p) @f$ of @c float tangent limit @c x,
-   * complementary modulus @f$ k_c @f$, and parameter @c p.
-   *
-   * @see ellint_el3 for details.
-   */
-  inline float
-  ellint_el3f(float x, float k_c, float p)
-  { return emsr::detail::ellint_el3<float>(x, k_c, p); }
-
-  /**
-   * Return the Bulirsch elliptic integral of the third kind
-   * @f$ el3(x,k_c,p) @f$ of <tt>long double</tt> tangent limit @c x,
-   * complementary modulus @f$ k_c @f$, and parameter @c p.
-   *
-   * @see ellint_el3 for details.
-   */
-  inline long double
-  ellint_el3l(long double x, long double k_c, long double p)
-  { return emsr::detail::ellint_el3<long double>(x, k_c, p); }
 
   /**
    * Return the Bulirsch elliptic integral of the third kind
@@ -921,27 +550,6 @@ namespace emsr
     }
 
   // Bulirsch complete elliptic integrals.
-
-  /**
-   * Return the Bulirsch complete elliptic integral @f$ cel(k_c,p,a,b) @f$
-   * of real complementary modulus @f$ k_c @f$, and parameters @c p,
-   * @c a, and @c b.
-   *
-   * @see ellint_cel for details.
-   */
-  inline float
-  ellint_celf(float k_c, float p, float a, float b)
-  { return emsr::detail::ellint_cel<float>(k_c, p, a, b); }
-
-  /**
-   * Return the Bulirsch complete elliptic integral @f$ cel(k_c,p,a,b) @f$.
-   *
-   * @see ellint_cel for details.
-   */
-  inline long double
-  ellint_cell(long double k_c, long double p,
-	      long double a, long double b)
-  { return emsr::detail::ellint_cel<long double>(k_c, p, a, b); }
 
   /**
    * Return the Bulirsch complete elliptic integral @f$ cel(k_c,p,a,b) @f$

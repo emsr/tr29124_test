@@ -82,26 +82,6 @@ namespace emsr
    * Return the exponential theta-1 function @f$ \theta_1(\nu,x) @f$
    * of period @f$ \nu @f$ and argument @c x.
    *
-   * @see theta_1 for details.
-   */
-  inline float
-  theta_1f(float nu, float x)
-  { return emsr::detail::theta_1<float>(nu, x); }
-
-  /**
-   * Return the exponential theta-1 function @f$ \theta_1(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @c x.
-   *
-   * @see theta_1 for details.
-   */
-  inline long double
-  theta_1l(long double nu, long double x)
-  { return emsr::detail::theta_1<long double>(nu, x); }
-
-  /**
-   * Return the exponential theta-1 function @f$ \theta_1(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @c x.
-   *
    * The exponential theta-1 function is defined by
    * @f[
    *    \theta_1(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
@@ -120,26 +100,6 @@ namespace emsr
     }
 
   // Exponential theta_2 functions.
-
-  /**
-   * Return the exponential theta-2 function @f$ \theta_2(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @c x.
-   *
-   * @see theta_2 for details.
-   */
-  inline float
-  theta_2f(float nu, float x)
-  { return emsr::detail::theta_2<float>(nu, x); }
-
-  /**
-   * Return the exponential theta-2 function @f$ \theta_2(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @c x.
-   *
-   * @see theta_2 for details.
-   */
-  inline long double
-  theta_2l(long double nu, long double x)
-  { return emsr::detail::theta_2<long double>(nu, x); }
 
   /**
    * Return the exponential theta-2 function @f$ \theta_2(\nu,x) @f$
@@ -168,26 +128,6 @@ namespace emsr
    * Return the exponential theta-3 function @f$ \theta_3(\nu,x) @f$
    * of period @f$ \nu @f$ and argument @c x.
    *
-   * @see theta_3 for details.
-   */
-  inline float
-  theta_3f(float nu, float x)
-  { return emsr::detail::theta_3<float>(nu, x); }
-
-  /**
-   * Return the exponential theta-3 function @f$ \theta_3(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @c x.
-   *
-   * @see theta_3 for details.
-   */
-  inline long double
-  theta_3l(long double nu, long double x)
-  { return emsr::detail::theta_3<long double>(nu, x); }
-
-  /**
-   * Return the exponential theta-3 function @f$ \theta_3(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @c x.
-   *
    * The exponential theta-3 function is defined by
    * @f[
    *    \theta_3(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
@@ -206,26 +146,6 @@ namespace emsr
     }
 
   // Exponential theta_4 functions.
-
-  /**
-   * Return the exponential theta-4 function @f$ \theta_4(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @c x.
-   *
-   * @see theta_4 for details.
-   */
-  inline float
-  theta_4f(float nu, float x)
-  { return emsr::detail::theta_4<float>(nu, x); }
-
-  /**
-   * Return the exponential theta-4 function @f$ \theta_4(\nu,x) @f$
-   * of period @f$ \nu @f$ and argument @c x.
-   *
-   * @see theta_4 for details.
-   */
-  inline long double
-  theta_4l(long double nu, long double x)
-  { return emsr::detail::theta_4<long double>(nu, x); }
 
   /**
    * Return the exponential theta-4 function @f$ \theta_4(\nu,x) @f$
@@ -251,26 +171,6 @@ namespace emsr
   // Elliptic nome function
 
   /**
-   * Return the elliptic nome function @f$ q(k) @f$
-   * of modulus @c k.
-   *
-   * @see ellnome for details.
-   */
-  inline float
-  ellnomef(float k)
-  { return emsr::detail::ellnome<float>(k); }
-
-  /**
-   * Return the elliptic nome function @f$ q(k) @f$
-   * of <tt>long double</tt> modulus @c k.
-   *
-   * @see ellnome for details.
-   */
-  inline long double
-  ellnomel(long double k)
-  { return emsr::detail::ellnome<long double>(k); }
-
-  /**
    * Return the elliptic nome function @f$ q(k) @f$ of modulus @c k.
    *
    * The elliptic nome function is defined by
@@ -291,26 +191,6 @@ namespace emsr
     }
 
   // Neville theta_s functions.
-
-  /**
-   * Return the Neville theta-s function @f$ \theta_s(k,x) @f$
-   * of modulus @c k and argument @c x.
-   *
-   * @see theta_s for details.
-   */
-  inline float
-  theta_sf(float k, float x)
-  { return emsr::detail::theta_s<float>(k, x); }
-
-  /**
-   * Return the Neville theta-s function @f$ \theta_s(k,x) @f$
-   * of <tt>long double</tt> modulus @c k and argument @c x.
-   *
-   * @see theta_s for details.
-   */
-  inline long double
-  theta_sl(long double k, long double x)
-  { return emsr::detail::theta_s<long double>(k, x); }
 
   /**
    * Return the Neville theta-s function @f$ \theta_s(k,x) @f$
@@ -343,26 +223,6 @@ namespace emsr
    * Return the Neville theta-c function @f$ \theta_c(k,x) @f$
    * of modulus @c k and argument @c x.
    *
-   * @see theta_c for details.
-   */
-  inline float
-  theta_cf(float k, float x)
-  { return emsr::detail::theta_c<float>(k, x); }
-
-  /**
-   * Return the Neville theta-c function @f$ \theta_c(k,x) @f$
-   * of <tt>long double</tt> modulus @c k and argument @c x.
-   *
-   * @see theta_c for details.
-   */
-  inline long double
-  theta_cl(long double k, long double x)
-  { return emsr::detail::theta_c<long double>(k, x); }
-
-  /**
-   * Return the Neville theta-c function @f$ \theta_c(k,x) @f$
-   * of modulus @c k and argument @c x.
-   *
    * The Neville theta-c function is defined by
    * @f[
    *    \theta_c(k,x) = \sqrt{\frac{\pi}{2 k K(k)}}
@@ -385,26 +245,6 @@ namespace emsr
     }
 
   // Neville theta_d functions.
-
-  /**
-   * Return the Neville theta-d function @f$ \theta_d(k,x) @f$
-   * of modulus @c k and argument @c x.
-   *
-   * @see theta_d for details.
-   */
-  inline float
-  theta_df(float k, float x)
-  { return emsr::detail::theta_d<float>(k, x); }
-
-  /**
-   * Return the Neville theta-d function @f$ \theta_d(k,x) @f$
-   * of <tt>long double</tt> modulus @c k and argument @c x.
-   *
-   * @see theta_d for details.
-   */
-  inline long double
-  theta_dl(long double k, long double x)
-  { return emsr::detail::theta_d<long double>(k, x); }
 
   /**
    * Return the Neville theta-d function @f$ \theta_d(k,x) @f$
@@ -437,26 +277,6 @@ namespace emsr
    * Return the Neville theta-n function @f$ \theta_n(k,x) @f$
    * of modulus @c k and argument @c x.
    *
-   * @see theta_n for details.
-   */
-  inline float
-  theta_nf(float k, float x)
-  { return emsr::detail::theta_n<float>(k, x); }
-
-  /**
-   * Return the Neville theta-n function @f$ \theta_n(k,x) @f$
-   * of <tt>long double</tt> modulus @c k and argument @c x.
-   *
-   * @see theta_n for details.
-   */
-  inline long double
-  theta_nl(long double k, long double x)
-  { return emsr::detail::theta_n<long double>(k, x); }
-
-  /**
-   * Return the Neville theta-n function @f$ \theta_n(k,x) @f$
-   * of modulus @c k and argument @c x.
-   *
    * The Neville theta-n function is defined by
    * @f[
    *  \theta_n(k,x) = \sqrt{\frac{\pi}{2k'K(k)}}
@@ -479,26 +299,6 @@ namespace emsr
     }
 
   // Jacobi theta_1 functions.
-
-  /**
-   * Return the Jacobi theta-1 function @f$ \theta_1(q,x) @f$
-   * of nome @c q and argument @c x.
-   *
-   * @see jacobi_theta_1 for details.
-   */
-  inline float
-  jacobi_theta_1f(float q, float x)
-  { return emsr::detail::jacobi_theta_1<float>(q, x); }
-
-  /**
-   * Return the Jacobi theta-1 function @f$ \theta_1(q,x) @f$
-   * of nome @c q and argument @c x.
-   *
-   * @see jacobi_theta_1 for details.
-   */
-  inline long double
-  jacobi_theta_1l(long double q, long double x)
-  { return emsr::detail::jacobi_theta_1<long double>(q, x); }
 
   /**
    * Return the Jacobi theta-1 function @f$ \theta_1(q,x) @f$
@@ -527,26 +327,6 @@ namespace emsr
    * Return the Jacobi theta-2 function @f$ \theta_2(q,x) @f$
    * of nome @c q and argument @c x.
    *
-   * @see jacobi_theta_2 for details.
-   */
-  inline float
-  jacobi_theta_2f(float q, float x)
-  { return emsr::detail::jacobi_theta_2<float>(q, x); }
-
-  /**
-   * Return the Jacobi theta-2 function @f$ \theta_2(q,x) @f$
-   * of nome @c q and argument @c x.
-   *
-   * @see jacobi_theta_2 for details.
-   */
-  inline long double
-  jacobi_theta_2l(long double q, long double x)
-  { return emsr::detail::jacobi_theta_2<long double>(q, x); }
-
-  /**
-   * Return the Jacobi theta-2 function @f$ \theta_2(q,x) @f$
-   * of nome @c q and argument @c x.
-   *
    * The Jacobi theta-2 function is defined by
    * @f[
    *    \theta_2(q,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
@@ -565,26 +345,6 @@ namespace emsr
     }
 
   // Jacobi theta_3 functions.
-
-  /**
-   * Return the Jacobi theta-3 function @f$ \theta_3(q,x) @f$
-   * of nome @c q and argument @c x.
-   *
-   * @see jacobi_theta_3 for details.
-   */
-  inline float
-  jacobi_theta_3f(float q, float x)
-  { return emsr::detail::jacobi_theta_3<float>(q, x); }
-
-  /**
-   * Return the Jacobi theta-3 function @f$ \theta_3(q,x) @f$
-   * of nome @c q and argument @c x.
-   *
-   * @see jacobi_theta_3 for details.
-   */
-  inline long double
-  jacobi_theta_3l(long double q, long double x)
-  { return emsr::detail::jacobi_theta_3<long double>(q, x); }
 
   /**
    * Return the Jacobi theta-3 function @f$ \theta_3(q,x) @f$
@@ -613,26 +373,6 @@ namespace emsr
    * Return the Jacobi theta-4 function @f$ \theta_4(q,x) @f$
    * of nome @c q and argument @c x.
    *
-   * @see jacobi_theta_4 for details.
-   */
-  inline float
-  jacobi_theta_4f(float q, float x)
-  { return emsr::detail::jacobi_theta_4<float>(q, x); }
-
-  /**
-   * Return the Jacobi theta-4 function @f$ \theta_4(q,x) @f$
-   * of nome @c q and argument @c x.
-   *
-   * @see jacobi_theta_4 for details.
-   */
-  inline long double
-  jacobi_theta_4l(long double q, long double x)
-  { return emsr::detail::jacobi_theta_4<long double>(q, x); }
-
-  /**
-   * Return the Jacobi theta-4 function @f$ \theta_4(q,x) @f$
-   * of nome @c q and argument @c x.
-   *
    * The Jacobi theta-4 function is defined by
    * @f[
    *    \theta_4(q,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty}
@@ -651,30 +391,6 @@ namespace emsr
     }
 
   // Jacobi elliptic sine amplitude functions.
-
-  /**
-   * Return the Jacobi elliptic sine amplitude function @f$ sn(k,u) @f$
-   * of @c float modulus @c k and argument @c u.
-   *
-   * @see jacobi_sn for details.
-   */
-  inline float
-  jacobi_snf(float k, float u)
-  {
-    return emsr::detail::jacobi_ellint<float>(k, u).sn_value;
-  }
-
-  /**
-   * Return the Jacobi elliptic sine amplitude function @f$ sn(k,u) @f$
-   * of <tt>long double</tt> modulus @c k and argument @c u.
-   *
-   * @see jacobi_sn for details.
-   */
-  inline long double
-  jacobi_snl(long double k, long double u)
-  {
-    return emsr::detail::jacobi_ellint<long double>(k, u).sn_value;
-  }
 
   /**
    * Return the Jacobi elliptic sine amplitude function @f$ sn(k,u) @f$
@@ -704,30 +420,6 @@ namespace emsr
 
   /**
    * Return the Jacobi elliptic cosine amplitude function @f$ cn(k,u) @f$
-   * of @c float modulus @c k and argument @c u.
-   *
-   * @see jacobi_cn for details.
-   */
-  inline float
-  jacobi_cnf(float k, float u)
-  {
-    return emsr::detail::jacobi_ellint<float>(k, u).cn_value;
-  }
-
-  /**
-   * Return the Jacobi elliptic cosine amplitude function @f$ cn(k,u) @f$
-   * of <tt>long double</tt> modulus @c k and argument @c u.
-   *
-   * @see jacobi_cn for details.
-   */
-  inline long double
-  jacobi_cnl(long double k, long double u)
-  {
-    return emsr::detail::jacobi_ellint<long double>(k, u).cn_value;
-  }
-
-  /**
-   * Return the Jacobi elliptic cosine amplitude function @f$ cn(k,u) @f$
    * of real modulus @c k and argument @c u.
    *
    * The Jacobi elliptic @c cn integral is defined by
@@ -751,30 +443,6 @@ namespace emsr
     }
 
   // Jacobi elliptic delta amplitude functions.
-
-  /**
-   * Return the Jacobi elliptic delta amplitude function @f$ dn(k,u) @f$
-   * of @c float modulus @c k and argument @c u.
-   *
-   * @see jacobi_dn for details.
-   */
-  inline float
-  jacobi_dnf(float k, float u)
-  {
-    return emsr::detail::jacobi_ellint<float>(k, u).dn_value;
-  }
-
-  /**
-   * Return the Jacobi elliptic delta amplitude function @f$ dn(k,u) @f$
-   * of <tt>long double</tt> modulus @c k and argument @c u.
-   *
-   * @see jacobi_dn for details.
-   */
-  inline long double
-  jacobi_dnl(long double k, long double u)
-  {
-    return emsr::detail::jacobi_ellint<long double>(k, u).dn_value;
-  }
 
   /**
    * Return the Jacobi elliptic delta amplitude function @f$ dn(k,u) @f$

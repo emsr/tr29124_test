@@ -10,25 +10,6 @@ namespace emsr
   // Exponential integrals
 
   /**
-   * Return the exponential integral @f$ Ei(x) @f$ for @c float argument @c x.
-   *
-   * @see expint for details.
-   */
-  inline float
-  expintf(float x)
-  { return emsr::detail::expint<float>(x); }
-
-  /**
-   * Return the exponential integral @f$ Ei(x) @f$
-   * for <tt>long double</tt> argument @c x.
-   *
-   * @see expint for details.
-   */
-  inline long double
-  expintl(long double x)
-  { return emsr::detail::expint<long double>(x); }
-
-  /**
    * Return the exponential integral @f$ Ei(x) @f$ for @c real argument @c x.
    *
    * The exponential integral is given by
@@ -48,26 +29,6 @@ namespace emsr
     }
 
   //  Exponential integrals
-
-  /**
-   * Return the exponential integral @f$ E_n(x) @f$ for integral
-   * order @c n and @c float argument @c x.
-   *
-   * @see expint for details.
-   */
-  inline float
-  expintf(unsigned int n, float x)
-  { return emsr::detail::expint<float>(n, x); }
-
-  /**
-   * Return the exponential integral @f$ E_n(x) @f$ for integral
-   * order @c n and <tt>long double</tt> argument @c x.
-   *
-   * @see expint for details.
-   */
-  inline long double
-  expintl(unsigned int n, long double x)
-  { return emsr::detail::expint<long double>(n, x); }
 
   /**
    * Return the exponential integral @f$ E_n(x) @f$ of integral
@@ -98,24 +59,6 @@ namespace emsr
   /**
    * Return the logarithmic integral of argument @c x.
    *
-   * @see logint for details.
-   */
-  inline float
-  logintf(float x)
-  { return emsr::detail::logint<float>(x); }
-
-  /**
-   * Return the logarithmic integral of argument @c x.
-   *
-   * @see logint for details.
-   */
-  inline long double
-  logintl(long double x)
-  { return emsr::detail::logint<long double>(x); }
-
-  /**
-   * Return the logarithmic integral of argument @c x.
-   *
    * The logarithmic integral is defined by
    * @f[
    *    li(x) = \int_0^x \frac{dt}{ln(t)} = Ei(ln(x))
@@ -133,25 +76,6 @@ namespace emsr
     }
 
   // Hyperbolic sine integrals
-
-  /**
-   * Return the hyperbolic sine integral of @c float argument @c x.
-   *
-   * @see sinhint for details.
-   */
-  inline float
-  sinhintf(float x)
-  { return emsr::detail::sinhint<float>(x); }
-
-  /**
-   * Return the hyperbolic sine integral @f$ Shi(x) @f$ of <tt>long double</tt>
-   * argument @c x.
-   *
-   * @see sinhint for details.
-   */
-  inline long double
-  sinhintl(long double x)
-  { return emsr::detail::sinhint<long double>(x); }
 
   /**
    * Return the hyperbolic sine integral @f$ Shi(x) @f$
@@ -174,25 +98,6 @@ namespace emsr
     }
 
   // Hyperbolic cosine integrals
-
-  /**
-   * Return the hyperbolic cosine integral of @c float argument @c x.
-   *
-   * @see coshint for details.
-   */
-  inline float
-  coshintf(float x)
-  { return emsr::detail::coshint<float>(x); }
-
-  /**
-   * Return the hyperbolic cosine integral @f$ Chi(x) @f$
-   * of <tt>long double</tt> argument @c x.
-   *
-   * @see coshint for details.
-   */
-  inline long double
-  coshintl(long double x)
-  { return emsr::detail::coshint<long double>(x); }
 
   /**
    * Return the hyperbolic cosine integral @f$ Chi(x) @f$

@@ -10,25 +10,6 @@ namespace emsr
   // Sine integrals
 
   /**
-   * Return the sine integral @f$ Si(x) @f$ of @c float argument @c x.
-   *
-   * @see sinint for details.
-   */
-  inline float
-  sinintf(float x)
-  { return emsr::detail::sincosint<float>(x).first; }
-
-  /**
-   * Return the sine integral @f$ Si(x) @f$ of <tt>long double</tt>
-   * argument @c x.
-   *
-   * @see sinint for details.
-   */
-  inline long double
-  sinintl(long double x)
-  { return emsr::detail::sincosint<long double>(x).first; }
-
-  /**
    * Return the sine integral @f$ Si(x) @f$ of real argument @c x.
    *
    * The sine integral is defined by
@@ -47,25 +28,6 @@ namespace emsr
     }
 
   // Cosine integrals
-
-  /**
-   * Return the cosine integral @f$ Ci(x) @f$ of @c float argument @c x.
-   *
-   * @see cosint for details.
-   */
-  inline float
-  cosintf(float x)
-  { return emsr::detail::sincosint<float>(x).second; }
-
-  /**
-   * Return the cosine integral @f$ Ci(x) @f$ of <tt>long double</tt>
-   * argument @c x.
-   *
-   * @see cosint for details.
-   */
-  inline long double
-  cosintl(long double x)
-  { return emsr::detail::sincosint<long double>(x).second; }
 
   /**
    * Return the cosine integral @f$ Ci(x) @f$ of real argument @c x.

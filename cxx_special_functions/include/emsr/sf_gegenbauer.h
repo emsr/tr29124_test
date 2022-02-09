@@ -10,30 +10,6 @@ namespace emsr
   // Gegenbauer polynomials
 
   /**
-   * Return the Gegenbauer polynomial @f$ C_n^{(\lambda)}(x) @f$ of degree @c n
-   * and @c float order @f$ \lambda > -1/2, \lambda \neq 0 @f$
-   * and argument @c x.
-   *
-   * @see gegenbauer for details.
-   */
-  inline float
-  gegenbauerf(unsigned int n, float lambda, float x)
-  { return emsr::detail::gegenbauer_recur<float>(n, lambda, x).C_n; }
-
-  /**
-   * Return the Gegenbauer polynomial @f$ C_n^{\lambda}(x) @f$ of degree @c n
-   * and <tt>long double</tt> order @f$ \lambda > -1/2, \lambda \neq 0 @f$
-   * and argument @c x.
-   *
-   * @see gegenbauer for details.
-   */
-  inline long double
-  gegenbauerl(unsigned int n, long double lambda, long double x)
-  {
-    return emsr::detail::gegenbauer_recur<long double>(n, lambda, x).C_n;
-  }
-
-  /**
    * Return the Gegenbauer polynomial @f$ C_n^{\lambda}(x) @f$ of degree @c n
    * and real order @f$ \lambda > -1/2, \lambda \neq 0 @f$ and argument
    * @c x.

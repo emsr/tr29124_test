@@ -13,28 +13,6 @@ namespace emsr
 
   /**
    * Return the complex cylindrical Hankel function of the first kind
-   * @f$ H^{(1)}_\nu(x) @f$ of <tt>std::complex<float></tt> order @f$ \nu @f$
-   * and argument @c x.
-   *
-   * @see cyl_hankel_1 for more details.
-   */
-  inline std::complex<float>
-  cyl_hankel_1f(std::complex<float> nu, std::complex<float> x)
-  { return emsr::detail::cyl_hankel_1<float>(nu, x); }
-
-  /**
-   * Return the complex cylindrical Hankel function of the first kind
-   * @f$ H^{(1)}_\nu(x) @f$ of <tt>std::complex<long double></tt>
-   * order @f$ \nu @f$ and argument @c x.
-   *
-   * @see cyl_hankel_1 for more details.
-   */
-  inline std::complex<long double>
-  cyl_hankel_1l(std::complex<long double> nu, std::complex<long double> x)
-  { return emsr::detail::cyl_hankel_1<long double>(nu, x); }
-
-  /**
-   * Return the complex cylindrical Hankel function of the first kind
    * @f$ H^{(1)}_\nu(x) @f$ of complex order @f$ \nu @f$
    * and argument @c x.
    *
@@ -57,28 +35,6 @@ namespace emsr
     }
 
   // Cylindrical Hankel functions of the second kind.
-
-  /**
-   * Return the complex cylindrical Hankel function of the second kind
-   * @f$ H^{(2)}_\nu(x) @f$ of <tt>std::complex<float></tt> order @f$ \nu @f$
-   * and argument @c x.
-   *
-   * @see cyl_hankel_2 for more details.
-   */
-  inline std::complex<float>
-  cyl_hankel_2f(std::complex<float> nu, std::complex<float> x)
-  { return emsr::detail::cyl_hankel_2<float>(nu, x); }
-
-  /**
-   * Return the complex cylindrical Hankel function of the second kind
-   * @f$ H^{(2)}_\nu(x) @f$ of <tt>std::complex<long double></tt>
-   * order @f$ \nu @f$ and argument @c x.
-   *
-   * @see cyl_hankel_2 for more details.
-   */
-  inline std::complex<long double>
-  cyl_hankel_2l(std::complex<long double> nu, std::complex<long double> x)
-  { return emsr::detail::cyl_hankel_2<long double>(nu, x); }
 
   /**
    * Return the complex cylindrical Hankel function of the second kind
@@ -108,28 +64,6 @@ namespace emsr
   /**
    * Return the complex spherical Hankel function of the first kind
    * @f$ h^{(1)}_n(x) @f$ of non-negative integral @c n
-   * and <tt>std::complex<float></tt> argument @c x.
-   *
-   * @see sph_hankel_1 for more details.
-   */
-  inline std::complex<float>
-  sph_hankel_1f(unsigned int n, std::complex<float> x)
-  { return emsr::detail::sph_hankel_1<float>(n, x); }
-
-  /**
-   * Return the complex spherical Hankel function of the first kind
-   * @f$ h^{(1)}_n(x) @f$ of non-negative integral @c n
-   * and <tt>std::complex<long double></tt> argument @c x.
-   *
-   * @see sph_hankel_1 for more details.
-   */
-  inline std::complex<long double>
-  sph_hankel_1l(unsigned int n, std::complex<long double> x)
-  { return emsr::detail::sph_hankel_1<long double>(n, x); }
-
-  /**
-   * Return the complex spherical Hankel function of the first kind
-   * @f$ h^{(1)}_n(x) @f$ of non-negative integral @c n
    * and complex argument @c x.
    *
    * The spherical Hankel function of the first kind is defined by
@@ -152,28 +86,6 @@ namespace emsr
     }
 
   // Spherical Hankel functions of the second kind.
-
-  /**
-   * Return the complex spherical Hankel function of the second kind
-   * @f$ h^{(2)}_n(x) @f$ of non-negative integral @c n
-   * and <tt>std::complex<float></tt> argument @c x.
-   *
-   * @see sph_hankel_2 for more details.
-   */
-  inline std::complex<float>
-  sph_hankel_2f(unsigned int n, std::complex<float> x)
-  { return emsr::detail::sph_hankel_2<float>(n, x); }
-
-  /**
-   * Return the complex spherical Hankel function of the second kind
-   * @f$ h^{(2)}_n(x) @f$ of non-negative integral @c n
-   * and <tt>std::complex<long double></tt> argument @c x.
-   *
-   * @see sph_hankel_2 for more details.
-   */
-  inline std::complex<long double>
-  sph_hankel_2l(unsigned int n, std::complex<long double> x)
-  { return emsr::detail::sph_hankel_2<long double>(n, x); }
 
   /**
    * Return the complex spherical Hankel function of the second kind

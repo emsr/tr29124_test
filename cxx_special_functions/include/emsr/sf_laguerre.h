@@ -11,27 +11,6 @@ namespace emsr
 
   /**
    * Return the associated Laguerre polynomial @f$ L_n^{(m)}(x) @f$
-   * of order @c n, degree @c m, and @c float argument @c x.
-   *
-   * @see assoc_laguerre for more details.
-   */
-  inline float
-  assoc_laguerref(unsigned int n, unsigned int m, float x)
-  { return emsr::detail::assoc_laguerre<float>(n, m, x); }
-
-  /**
-   * Return the associated Laguerre polynomial @f$ L_n^{(m)}(x) @f$
-   * of order @c n, degree @c m and <tt>long double</tt>
-   * argument @c x.
-   *
-   * @see assoc_laguerre for more details.
-   */
-  inline long double
-  assoc_laguerrel(unsigned int n, unsigned int m, long double x)
-  { return emsr::detail::assoc_laguerre<long double>(n, m, x); }
-
-  /**
-   * Return the associated Laguerre polynomial @f$ L_n^{(m)}(x) @f$
    * of nonnegative degree @c n, nonnegative order @c m
    * and real argument @c x.
    *
@@ -88,26 +67,6 @@ namespace emsr
     }
 
   // Laguerre polynomials
-
-  /**
-   * Returns the Laguerre polynomial @f$ L_n(x) @f$ of nonnegative degree @c n
-   * and @c float argument  @f$ x >= 0 @f$.
-   *
-   * @see laguerre for more details.
-   */
-  inline float
-  laguerref(unsigned int n, float x)
-  { return emsr::detail::laguerre<float>(n, x); }
-
-  /**
-   * Returns the Laguerre polynomial @f$ L_n(x) @f$ of nonnegative degree @c n
-   * and <tt>long double</tt> argument @f$ x >= 0 @f$.
-   *
-   * @see laguerre for more details.
-   */
-  inline long double
-  laguerrel(unsigned int n, long double x)
-  { return emsr::detail::laguerre<long double>(n, x); }
 
   /**
    * Returns the Laguerre polynomial @f$ L_n(x) @f$

@@ -9,14 +9,6 @@ namespace emsr
 
   // Fresnel sine integral
 
-  inline float
-  fresnel_sf(float x)
-  { return std::imag(emsr::detail::fresnel<float>(x)); }
-
-  inline long double
-  fresnel_sl(long double x)
-  { return std::imag(emsr::detail::fresnel<long double>(x)); }
-
   /**
    * Return the Fresnel sine integral of argument @c x.
    *
@@ -36,14 +28,6 @@ namespace emsr
     }
 
   // Fresnel cosine integral
-
-  inline float
-  fresnel_cf(float x)
-  { return std::real(emsr::detail::fresnel<float>(x)); }
-
-  inline long double
-  fresnel_cl(long double x)
-  { return std::real(emsr::detail::fresnel<long double>(x)); }
 
   /**
    * Return the Fresnel cosine integral of argument @c x.

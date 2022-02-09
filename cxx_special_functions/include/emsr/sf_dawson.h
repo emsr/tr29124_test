@@ -11,25 +11,6 @@ namespace emsr
   // Dawson integral
 
   /**
-   * Return the Dawson integral, @f$ F(x) @f$, for @c float argument @c x.
-   *
-   * @see dawson for details.
-   */
-  inline float
-  dawsonf(float x)
-  { return emsr::detail::dawson<float>(x); }
-
-  /**
-   * Return the Dawson integral, @f$ F(x) @f$,
-   * for <tt>long double</tt> argument @c x.
-   *
-   * @see dawson for details.
-   */
-  inline long double
-  dawsonl(long double x)
-  { return emsr::detail::dawson<long double>(x); }
-
-  /**
    * Return the Dawson integral, @f$ F(x) @f$, for real argument @c x.
    *
    * The Dawson integral is defined by:
