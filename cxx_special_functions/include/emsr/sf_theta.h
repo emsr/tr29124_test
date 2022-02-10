@@ -204,7 +204,7 @@ namespace emsr
    * where @f$ q(k) @f$ is the elliptic nome, @f$ K(k) @f$ is
    * the complete Legendre elliptic integral of the first kind,
    * and @f$ \theta_1(\nu,x) @f$ is the exponential theta-1 function.
-   * @see ellnome, std::comp_ellint_1, and theta_1 for details.
+   * @see ellnome, comp_ellint_1, and theta_1 for details.
    *
    * @param k The modulus @f$ -1 <= k <= +1 @f$
    * @param x The argument
@@ -231,7 +231,7 @@ namespace emsr
    * where @f$ q(k) @f$ is the elliptic nome, @f$ K(k) @f$ is
    * the complete Legendre elliptic integral of the first kind,
    * and @f$ \theta_1(\nu,x) @f$ is the exponential theta-1 function.
-   * @see ellnome, std::comp_ellint_1, and theta_1 for details.
+   * @see ellnome, comp_ellint_1, and theta_1 for details.
    *
    * @param k The modulus @f$ -1 <= k <= +1 @f$
    * @param x The argument
@@ -258,7 +258,7 @@ namespace emsr
    * where @f$ q(k) @f$ is the elliptic nome, @f$ K(k) @f$ is
    * the complete Legendre elliptic integral of the first kind,
    * and @f$ \theta_3(\nu,x) @f$ is the exponential theta-3 function.
-   * @see ellnome, std::comp_ellint_1, and theta_3 for details.
+   * @see ellnome, comp_ellint_1, and theta_3 for details.
    *
    * @param k The modulus @f$ -1 <= k <= +1 @f$
    * @param x The argument
@@ -285,7 +285,7 @@ namespace emsr
    * where @f$ q(k) @f$ is the elliptic nome, @f$ K(k) @f$ is
    * the complete Legendre elliptic integral of the first kind,
    * and @f$ \theta_4(\nu,x) @f$ is the exponential theta-4 function.
-   * @see ellnome, std::comp_ellint_1, and theta_4 for details.
+   * @see ellnome, comp_ellint_1, and theta_4 for details.
    *
    * @param k The modulus @f$ -1 <= k <= +1 @f$
    * @param x The argument
