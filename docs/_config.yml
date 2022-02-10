@@ -16,8 +16,10 @@
 title: Excellent Math System Revisited
 email: esmithrowland@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  This project seeks to build a suite of mathematical modern C++ tools for special function evaluation, numerical integration, differentiation,
-sequence transformation, etc. It began as an effort to support the C++ TR29214 Special Mathematical Functions effort that was adopted in C++17 but has since moved on to greater heights.
+  This project seeks to build a suite of mathematical modern C++ tools for special function evaluation,
+  numerical integration, differentiation,
+  sequence transformation, etc. It began as an effort to support the C++ TR29214 Special Mathematical Functions
+  effort that was adopted in C++17 but has since moved on to greater heights.
 domain: "emsr.github.io"
 baseurl: "/tr29124_test" # the subpath of your site, e.g. /blog
 url: "https://emsr.github.io" # the base hostname & protocol for your site, e.g. http://example.com
