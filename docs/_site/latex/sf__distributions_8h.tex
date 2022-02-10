@@ -1,0 +1,62 @@
+\hypertarget{sf__distributions_8h}{}\doxysection{cxx\+\_\+special\+\_\+functions/include/emsr/sf\+\_\+distributions.h File Reference}
+\label{sf__distributions_8h}\index{cxx\_special\_functions/include/emsr/sf\_distributions.h@{cxx\_special\_functions/include/emsr/sf\_distributions.h}}
+{\ttfamily \#include $<$emsr/fp\+\_\+type\+\_\+util.\+h$>$}\newline
+{\ttfamily \#include $<$emsr/detail/sf\+\_\+distributions.\+tcc$>$}\newline
+Include dependency graph for sf\+\_\+distributions.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sf__distributions_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=250pt]{sf__distributions_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespaceemsr}{emsr}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Tp $>$ }\\emsr\+::fp\+\_\+promote\+\_\+t$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_aad3bfec48efcd13d67930ccd3a45638f}{emsr\+::binomial\+\_\+p}} (Tp p, unsigned int n, unsigned int k)
+\begin{DoxyCompactList}\small\item\em Return the binomial cumulative distribution function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Tp $>$ }\\emsr\+::fp\+\_\+promote\+\_\+t$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_a6dd26cd96d9c823489d2a871e7beac65}{emsr\+::binomial\+\_\+pdf}} (Tp p, unsigned int n, unsigned int k)
+\begin{DoxyCompactList}\small\item\em Return the binomial probability mass function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tlam , typename Tp $>$ }\\emsr\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tlam, Tp $>$ \mbox{\hyperlink{namespaceemsr_a8b02e0283c7b3a312322e22cb48a8f7d}{emsr\+::exponential\+\_\+p}} (\+\_\+\+Tlam lambda, Tp x)
+\begin{DoxyCompactList}\small\item\em Return the exponential cumulative probability density function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tlam , typename Tp $>$ }\\emsr\+::fp\+\_\+promote\+\_\+t$<$ \+\_\+\+Tlam, Tp $>$ \mbox{\hyperlink{namespaceemsr_a060cc2e891eb9a6ae78c96586d9db997}{emsr\+::exponential\+\_\+pdf}} (\+\_\+\+Tlam lambda, Tp x)
+\begin{DoxyCompactList}\small\item\em Return the exponential probability density function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Tp $>$ }\\emsr\+::fp\+\_\+promote\+\_\+t$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_aa8e3e2c7f3cecf377eeb10d1710491b6}{emsr\+::fisher\+\_\+f\+\_\+p}} (Tp F, unsigned int nu1, unsigned int nu2)
+\begin{DoxyCompactList}\small\item\em Return the F-\/distribution propability function. This returns the probability that the observed chi-\/square for a correct model exceeds the value $ \chi^2 $. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Tp $>$ }\\emsr\+::fp\+\_\+promote\+\_\+t$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_a96594d63056fc7ddf590ffbf11828a98}{emsr\+::fisher\+\_\+f\+\_\+pdf}} (Tp F, unsigned int nu1, unsigned int nu2)
+\begin{DoxyCompactList}\small\item\em Return the F-\/distribution propability function. This returns the probability that the observed chi-\/square for a correct model exceeds the value $ \chi^2 $. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Ta , typename Tb , typename Tp $>$ }\\emsr\+::fp\+\_\+promote\+\_\+t$<$ Ta, Tb, Tp $>$ \mbox{\hyperlink{namespaceemsr_a8d55f02cc63bfee22b8a374e51fbc7df}{emsr\+::gamma\+\_\+pdf}} (Ta alpha, Tb beta, Tp x)
+\begin{DoxyCompactList}\small\item\em Return the gamma propability distribution function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Ta , typename Tb , typename Tp $>$ }\\emsr\+::fp\+\_\+promote\+\_\+t$<$ Ta, Tb, Tp $>$ \mbox{\hyperlink{namespaceemsr_a8c7bb1fc0fb724d7280ccdac7e8c30dd}{emsr\+::logistic\+\_\+p}} (Ta a, Tb b, Tp x)
+\begin{DoxyCompactList}\small\item\em Return the logistic cumulative distribution function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Ta , typename Tb , typename Tp $>$ }\\emsr\+::fp\+\_\+promote\+\_\+t$<$ Ta, Tb, Tp $>$ \mbox{\hyperlink{namespaceemsr_a90152f23dd51a4525959cf159e106594}{emsr\+::logistic\+\_\+pdf}} (Ta a, Tb b, Tp x)
+\begin{DoxyCompactList}\small\item\em Return the logistic probability density function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Tmu , typename Tsig , typename Tp $>$ }\\emsr\+::fp\+\_\+promote\+\_\+t$<$ Tmu, Tsig, Tp $>$ \mbox{\hyperlink{namespaceemsr_a0d389794973d8a48b1bb733c0c2a3d91}{emsr\+::lognormal\+\_\+p}} (Tmu mu, Tsig sigma, Tp x)
+\begin{DoxyCompactList}\small\item\em Return the lognormal cumulative probability density function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Tmu , typename Tsig , typename Tp $>$ }\\emsr\+::fp\+\_\+promote\+\_\+t$<$ Tmu, Tsig, Tp $>$ \mbox{\hyperlink{namespaceemsr_a7ca740d66eb2a5c073e718d48b1054db}{emsr\+::lognormal\+\_\+pdf}} (Tmu mu, Tsig sigma, Tp x)
+\begin{DoxyCompactList}\small\item\em Return the lognormal probability density function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Tmu , typename Tsig , typename Tp $>$ }\\emsr\+::fp\+\_\+promote\+\_\+t$<$ Tmu, Tsig, Tp $>$ \mbox{\hyperlink{namespaceemsr_aec3ef2182334fcf183d6e4a7223f2289}{emsr\+::normal\+\_\+p}} (Tmu mu, Tsig sigma, Tp x)
+\begin{DoxyCompactList}\small\item\em Return the normal cumulative probability density function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Tmu , typename Tsig , typename Tp $>$ }\\emsr\+::fp\+\_\+promote\+\_\+t$<$ Tmu, Tsig, Tp $>$ \mbox{\hyperlink{namespaceemsr_a79296e67445a75e8dd3cf61ea6a994bd}{emsr\+::normal\+\_\+pdf}} (Tmu mu, Tsig sigma, Tp x)
+\begin{DoxyCompactList}\small\item\em Return the gamma cumulative propability distribution function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tt , typename Tp $>$ }\\emsr\+::fp\+\_\+promote\+\_\+t$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_aa351e4387247845c8c8c65fc570fbf04}{emsr\+::student\+\_\+t\+\_\+p}} (\+\_\+\+Tt t, unsigned int nu)
+\begin{DoxyCompactList}\small\item\em Return the Students T probability function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename \+\_\+\+Tt , typename Tp $>$ }\\emsr\+::fp\+\_\+promote\+\_\+t$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_ae82b2fb20ac59fa281b533ee18f8b3a8}{emsr\+::student\+\_\+t\+\_\+pdf}} (\+\_\+\+Tt t, unsigned int nu)
+\begin{DoxyCompactList}\small\item\em Return the complement of the Students T probability function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Ta , typename Tb , typename Tp $>$ }\\emsr\+::fp\+\_\+promote\+\_\+t$<$ Ta, Tb, Tp $>$ \mbox{\hyperlink{namespaceemsr_a5577ac71e3b35a0e8f7919f40eb4699d}{emsr\+::weibull\+\_\+p}} (Ta a, Tb b, Tp x)
+\begin{DoxyCompactList}\small\item\em Return the Weibull cumulative probability density function. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Ta , typename Tb , typename Tp $>$ }\\emsr\+::fp\+\_\+promote\+\_\+t$<$ Ta, Tb, Tp $>$ \mbox{\hyperlink{namespaceemsr_a96b8365af56fa7ee017d835b2f3c5c8f}{emsr\+::weibull\+\_\+pdf}} (Ta a, Tb b, Tp x)
+\begin{DoxyCompactList}\small\item\em Return the Weibull probability density function. \end{DoxyCompactList}\end{DoxyCompactItemize}

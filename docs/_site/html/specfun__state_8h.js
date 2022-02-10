@@ -1,0 +1,37 @@
+var specfun__state_8h =
+[
+    [ "airy_t", "structemsr_1_1airy__t.html", "structemsr_1_1airy__t" ],
+    [ "assoc_legendre_p_t", "structemsr_1_1assoc__legendre__p__t.html", "structemsr_1_1assoc__legendre__p__t" ],
+    [ "assoc_legendre_q_t", "structemsr_1_1assoc__legendre__q__t.html", "structemsr_1_1assoc__legendre__q__t" ],
+    [ "chebyshev_t_t", "structemsr_1_1chebyshev__t__t.html", "structemsr_1_1chebyshev__t__t" ],
+    [ "chebyshev_u_t", "structemsr_1_1chebyshev__u__t.html", "structemsr_1_1chebyshev__u__t" ],
+    [ "chebyshev_v_t", "structemsr_1_1chebyshev__v__t.html", "structemsr_1_1chebyshev__v__t" ],
+    [ "chebyshev_w_t", "structemsr_1_1chebyshev__w__t.html", "structemsr_1_1chebyshev__w__t" ],
+    [ "coulomb_t", "structemsr_1_1coulomb__t.html", "structemsr_1_1coulomb__t" ],
+    [ "cyl_bessel_t", "structemsr_1_1cyl__bessel__t.html", "structemsr_1_1cyl__bessel__t" ],
+    [ "cyl_hankel_t", "structemsr_1_1cyl__hankel__t.html", "structemsr_1_1cyl__hankel__t" ],
+    [ "cyl_mod_bessel_t", "structemsr_1_1cyl__mod__bessel__t.html", "structemsr_1_1cyl__mod__bessel__t" ],
+    [ "fock_airy_t", "structemsr_1_1fock__airy__t.html", "structemsr_1_1fock__airy__t" ],
+    [ "gamma_inc_t", "structemsr_1_1gamma__inc__t.html", "structemsr_1_1gamma__inc__t" ],
+    [ "gamma_temme_t", "structemsr_1_1gamma__temme__t.html", "structemsr_1_1gamma__temme__t" ],
+    [ "gappa_pq_t", "structemsr_1_1gappa__pq__t.html", "structemsr_1_1gappa__pq__t" ],
+    [ "gegenbauer_t", "structemsr_1_1gegenbauer__t.html", "structemsr_1_1gegenbauer__t" ],
+    [ "hermite_he_t", "structemsr_1_1hermite__he__t.html", "structemsr_1_1hermite__he__t" ],
+    [ "hermite_t", "structemsr_1_1hermite__t.html", "structemsr_1_1hermite__t" ],
+    [ "jacobi_t", "structemsr_1_1jacobi__t.html", "structemsr_1_1jacobi__t" ],
+    [ "laguerre_t", "structemsr_1_1laguerre__t.html", "structemsr_1_1laguerre__t" ],
+    [ "legendre_p_t", "structemsr_1_1legendre__p__t.html", "structemsr_1_1legendre__p__t" ],
+    [ "legendre_q_t", "structemsr_1_1legendre__q__t.html", "structemsr_1_1legendre__q__t" ],
+    [ "lgamma_t", "structemsr_1_1lgamma__t.html", "structemsr_1_1lgamma__t" ],
+    [ "sph_bessel_t", "structemsr_1_1sph__bessel__t.html", "structemsr_1_1sph__bessel__t" ],
+    [ "sph_hankel_t", "structemsr_1_1sph__hankel__t.html", "structemsr_1_1sph__hankel__t" ],
+    [ "sph_mod_bessel_t", "structemsr_1_1sph__mod__bessel__t.html", "structemsr_1_1sph__mod__bessel__t" ],
+    [ "stirling_1_t", "structemsr_1_1stirling__1__t.html", "structemsr_1_1stirling__1__t" ],
+    [ "stirling_2_t", "structemsr_1_1stirling__2__t.html", "structemsr_1_1stirling__2__t" ],
+    [ "gauss_quad_type", "specfun__state_8h.html#a7853ff2b5740cba706c0d0a76fd14612", [
+      [ "Gauss", "specfun__state_8h.html#a7853ff2b5740cba706c0d0a76fd14612a4f3004d72b0fd389f49b8c81326ca358", null ],
+      [ "Gauss_Lobatto", "specfun__state_8h.html#a7853ff2b5740cba706c0d0a76fd14612af1792bfaddacba0a2a1d2a35ad5fded4", null ],
+      [ "Gauss_Radau_lower", "specfun__state_8h.html#a7853ff2b5740cba706c0d0a76fd14612a31a3a2be99ea6533db7c9f33c79416c6", null ],
+      [ "Gauss_Radau_upper", "specfun__state_8h.html#a7853ff2b5740cba706c0d0a76fd14612aab175cffec80f1cd26658c4a3d694c1b", null ]
+    ] ]
+];

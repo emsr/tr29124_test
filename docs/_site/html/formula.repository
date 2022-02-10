@@ -1,0 +1,388 @@
+\_form#0=54x31:\[ \frac{|f - f_{test}|}{|f_{test}|} \]
+\_form#1=246x16:\[ Lo_l(x) = (1 - x^2)P'_l(x) = l \left[ P_{l - 1}(x) - x P_l(x) \right] \]
+\_form#2=31x14:$ N_\nu(x) $
+\_form#3=33x14:$ K_\nu(x) $
+\_form#4=174x31:\[ \Gamma_1 = \frac{1}{2\mu} \left[\frac{1}{\Gamma(1 - \mu)} - \frac{1}{\Gamma(1 + \mu)}\right] \]
+\_form#5=166x31:\[ \Gamma_2 = \frac{1}{2} \left[\frac{1}{\Gamma(1 - \mu)} + \frac{1}{\Gamma(1 + \mu)}\right] \]
+\_form#6=108x14:$ -1/2 <= \mu <= 1/2 $
+\_form#7=59x13:$ \mu = \nu - N $
+\_form#8=11x10:$ N $
+\_form#9=6x6:$ \nu $
+\_form#10=46x14:$ \Gamma(1 + \mu) $
+\_form#11=46x14:$ \Gamma(1 - \mu) $
+\_form#12=38x14:$ |\mu| < 0 $
+\_form#13=58x14:$ 1/\Gamma(1 + \mu) $
+\_form#14=58x14:$ 1/\Gamma(1 - \mu) $
+\_form#15=31x14:$ \Gamma_1(\mu) $
+\_form#16=31x14:$ \Gamma_2(\mu) $
+\_form#17=30x14:$ Ai(x) $
+\_form#18=176x33:\[ Ai(x) = \frac{1}{\pi}\int_0^\infty \cos \left(\frac{t^3}{3} + xt \right)dt \]
+\_form#19=30x14:$ Bi(x) $
+\_form#20=291x33:\[ Bi(x) = \frac{1}{\pi}\int_0^\infty \left[ \exp \left(-\frac{t^3}{3} + xt \right) + \sin \left(\frac{t^3}{3} + xt \right) \right] dt \]
+\_form#21=224x31:\[ B_{2n} = (-1)^{n+1} 2\frac{(2n)!}{(2\pi)^{2n}} \zeta(2n), B_1 = -1/2 \]
+\_form#22=14x13:$ B_1 $
+\_form#23=31x14:$ B_n(x) $
+\_form#24=114x14:\[ B_n(0) = B_n(1) = B_n \]
+\_form#25=103x15:\[ B_n'(x) = n B_{n-1}(x) \]
+\_form#26=138x36:\[ B_n(x) = \sum_{k=0}^{n} B_k \binom{n}{k} x^{n-k} \]
+\_form#27=153x16:\[ B_n(x+1) - B_n(x) = n x^{n-1} \]
+\_form#28=29x14:$ J_{\nu}(x) $
+\_form#29=41x10:$ x >= 0 $
+\_form#30=154x36:\[ J_{\nu}(x) = \sum_{k=0}^{\infty} \frac{(-1)^k (x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)} \]
+\_form#31=31x14:$ N_{\nu}(x) $
+\_form#32=170x28:\[ N_{\nu}(x) = \frac{J_{\nu}(x) \cos \nu\pi - J_{-\nu}(x)} {\sin \nu\pi} \]
+\_form#33=31x6:$ \nu = n $
+\_form#34=41x13:$ lim_{\nu \to n} $
+\_form#35=29x14:$ j_n(x) $
+\_form#36=148x28:\[ j_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} J_{n+1/2}(x) \]
+\_form#37=41x10:$ n >= 0 $
+\_form#38=153x28:\[ n_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} N_{n+1/2}(x) \]
+\_form#39=40x18:$ H^{(1)}_n(x) $
+\_form#40=140x16:\[ H^{(1)}_\nu(x) = J_\nu(x) + iN_\nu(x) \]
+\_form#41=98x14:$ J_\nu(x) @c and N_\nu(x) $
+\_form#42=40x18:$ H^{(2)}_n(x) $
+\_form#43=140x16:\[ H^{(2)}_\nu(x) = J_\nu(x) - iN_\nu(x) \]
+\_form#44=36x18:$ h^{(1)}_n(x) $
+\_form#45=159x28:\[ h^{(1)}_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} H^{(1)}_{n+1/2}(x) \]
+\_form#46=240x28:\[ h^{(1)}_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} \left[ J_{n+1/2}(x) + iN_{n+1/2}(x) \right] \]
+\_form#47=36x18:$ h^{(2)}_n(x)$
+\_form#48=159x28:\[ h^{(2)}_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} H^{(2)}_{n+1/2}(x) \]
+\_form#49=240x28:\[ h^{(2)}_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} \left[ J_{n+1/2}(x) - iN_{n+1/2}(x) \right] \]
+\_form#50=36x14:$B(a,b)$
+\_form#51=228x33:\[ B(a,b) = \int_0^1 t^{a - 1} (1 - t)^{b - 1} dt = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)} \]
+\_form#52=29x10:$ a > 0 $
+\_form#53=28x11:$ b > 0 $
+\_form#54=100x31:\[ I_x(a, b) = \frac{B_x(a,b)}{B(a,b)} \]
+\_form#55=169x31:\[ B_x(a,b) = \int_0^x t^{a - 1} (1 - t)^{b - 1} dt \]
+\_form#56=36x14:$ B(a,b) $
+\_form#57=94x14:\[ I_x(a, b) = I_x(a, b) \]
+\_form#58=45x14:$ sinc_\pi(x) $
+\_form#59=93x28:\[ sinc(x) = \frac{sin(x)}{x} \]
+\_form#60=39x14:$ sinc(x) $
+\_form#61=108x28:\[ sinc_\pi(x) = \frac{sin(\pi x)}{\pi x} \]
+\_form#62=53x14:$ sinhc_\pi(x) $
+\_form#63=111x28:\[ sinhc_\pi(x) = \frac{\sinh(x)}{x} \]
+\_form#64=46x14:$ sinhc(x) $
+\_form#65=113x28:\[ sinhc(x) = \frac{\sinh(\pi x)}{\pi x} \]
+\_form#66=31x14:$ T_n(x) $
+\_form#67=88x14:\[ T_n(x) = \cos(n \theta) \]
+\_form#68=71x14:$ \theta = \arccos(x) $
+\_form#69=91x10:$ -1 <= x <= +1 $
+\_form#70=31x14:$ U_n(x) $
+\_form#71=120x31:\[ U_n(x) = \frac{\sin \left[(n+1)\theta \right]}{\sin(\theta)} \]
+\_form#72=30x14:$ V_n(x) $
+\_form#73=129x35:\[ V_n(x) = \frac{\cos \left[ \left(n+\frac{1}{2}\right)\theta \right]} {\cos \left(\frac{\theta}{2}\right)} \]
+\_form#74=34x14:$ W_n(x) $
+\_form#75=133x35:\[ W_n(x) = \frac{\sin \left[ \left(n+\frac{1}{2}\right)\theta \right]} {\sin \left(\frac{\theta}{2}\right)} \]
+\_form#76=25x14:$ F(x) $
+\_form#77=121x31:\[ F(x) = e^{-x^2}\int_0^x e^{y^2}dy \]
+\_form#78=108x15:\[ F'(x) = 1 - 2xF(x) \]
+\_form#79=89x13:$ -inf < x < inf $
+\_form#80=184x30:\[ \Gamma(x|\alpha,\beta) = \frac{1}{\beta\Gamma(\alpha)} (x/\beta)^{\alpha - 1} e^{-x/\beta} \]
+\_form#81=126x34:\[ f(x|\mu,\sigma) = \frac{e^{(x-\mu)^2/2\sigma^2}}{\sigma\sqrt{2\pi}} \]
+\_form#82=171x31:\[ F(x|\mu,\sigma) = \frac{1}{2}\left[ 1-erf(\frac{x-\mu}{\sqrt{2}\sigma}) \right] \]
+\_form#83=136x34:\[ f(x|\mu,\sigma) = \frac{e^{(\ln{x}-\mu)^2/2\sigma^2}}{\sigma\sqrt{2\pi}} \]
+\_form#84=196x31:\[ F(x|\mu,\sigma) = \frac{1}{2}\left[1-erf\left( \frac{\ln{x}-\mu}{\sqrt{2}\sigma}\right)\right] \]
+\_form#85=148x16:\[ f(x|\lambda) = \lambda e^{-\lambda x} \mbox{ for } x >= 0 \]
+\_form#86=164x16:\[ F(x|\lambda) = 1 - e^{-\lambda x} \mbox{ for } x >= 0 \]
+\_form#87=246x28:\[ f(x | a, b) = \frac{a}{b} \left(\frac{x}{b} \right)^{a-1} \exp{-\left(\frac{x}{b}\right)^a} \mbox{ for } x >= 0 \]
+\_form#88=181x16:\[ F(x|\lambda) = 1 - e^{-(x / b)^a} \mbox{ for } x >= 0 \]
+\_form#89=190x26:\[ A_c(t|\nu) = I_{\frac{\nu}{\nu + t^2}}(\frac{\nu}{2}, \frac{1}{2}) = 1 - A(t|\nu) \]
+\_form#90=135x26:\[ A(t|\nu) = 1 - I_{\frac{\nu}{\nu + t^2}}(\frac{\nu}{2}, \frac{1}{2}) \]
+\_form#91=14x14:$ \chi^2 $
+\_form#92=284x24:\[ P(F|\nu_1, \nu_2) = 1 - I_{\frac{\nu_2}{\nu_2 + \nu_1 F}} (\frac{\nu_2}{2}, \frac{\nu_1}{2}) = 1 - Q(F|\nu_1, \nu_2) \]
+\_form#93=164x24:\[ Q(F|\nu_1, \nu_2) = I_{\frac{\nu_2}{\nu_2 + \nu_1 F}} (\frac{\nu_2}{2}, \frac{\nu_1}{2}) \]
+\_form#94=159x31:\[ f(k|n,p) = \binom{n}{k}p^k(1-p)^{n-k} \]
+\_form#95=149x14:\[ P(k|n,p) = I_p(k, n-k+1) \]
+\_form#96=146x33:\[ f(x| a, b) = \frac{e^{(x - a)/b}}{b[1 + e^{(x - a)/b}]^2} \]
+\_form#97=28x11:$b > 0$
+\_form#98=130x31:\[ P(x| a, b) = \frac{e^{(x - a)/b}}{1 + e^{(x - a)/b}} \]
+\_form#99=28x14:$ K(k) $
+\_form#100=220x34:\[ K(k) = F(k,\pi/2) = \int_0^{\pi/2}\frac{d\theta} {\sqrt{1 - k^2 sin^2\theta}} \]
+\_form#101=39x14:$ F(k,\phi) $
+\_form#102=45x14:$ |k| <= 1 $
+\_form#103=25x14:$ E(k) $
+\_form#104=220x34:\[ E(k) = E(k,\pi/2) = \int_0^{\pi/2}\sqrt{1 - k^2 sin^2\theta} \]
+\_form#105=39x14:$ E(k,\phi) $
+\_form#106=119x14:$ \Pi(k,\nu) = \Pi(k,\nu,\pi/2) $
+\_form#107=315x38:\[ \Pi(k,\nu) = \Pi(k,\nu,\pi/2) = \int_0^{\pi/2} \frac{d\theta} {(1 - \nu \sin^2\theta)\sqrt{1 - k^2 \sin^2\theta}} \]
+\_form#108=51x14:$ \Pi(k,\nu,\phi) $
+\_form#109=8x13:$ \phi $
+\_form#110=153x33:\[ F(k,\phi) = \int_0^{\phi}\frac{d\theta} {\sqrt{1 - k^2 sin^2\theta}} \]
+\_form#111=44x14:$ \phi= \pi/2 $
+\_form#112=154x33:\[ E(k,\phi) = \int_0^{\phi} \sqrt{1 - k^2 sin^2\theta} \]
+\_form#113=238x36:\[ \Pi(k,\nu,\phi) = \int_0^{\phi} \frac{d\theta} {(1 - \nu \sin^2\theta) \sqrt{1 - k^2 \sin^2\theta}} \]
+\_form#114=39x14:$ \Pi(k,\nu) $
+\_form#115=45x14:$ R_F(x,y) $
+\_form#116=265x31:\[ R_F(x,y) = R_F(x,y,y) = \frac{1}{2} \int_0^\infty \frac{dt}{(t + x)^{1/2}(t + y)} \]
+\_form#117=58x14:$ R_F(x,y,z) $
+\_form#118=269x31:\[ R_F(x,y,z) = \frac{1}{2} \int_0^\infty \frac{dt}{(t + x)^{1/2}(t + y)^{1/2}(t + z)^{1/2}} \]
+\_form#119=121x14:$ R_C(x,y) = R_F(x,y,y) $
+\_form#120=190x31:\[ R_C(x,y) = \frac{1}{2} \int_0^\infty \frac{dt}{(t + x)^{1/2}(t + y)} \]
+\_form#121=69x14:$ R_J(x,y,z,p) $
+\_form#122=315x31:\[ R_J(x,y,z,p) = \frac{3}{2} \int_0^\infty \frac{dt}{(t + x)^{1/2}(t + y)^{1/2}(t + z)^{1/2}(t + p)} \]
+\_form#123=144x14:$ R_D(x,y,z) = R_J(x,y,z,z) $
+\_form#124=270x31:\[ R_D(x,y,z) = \frac{3}{2} \int_0^\infty \frac{dt}{(t + x)^{1/2}(t + y)^{1/2}(t + z)^{3/2}} \]
+\_form#125=46x14:$ R_G(x,y) $
+\_form#126=393x31:\[ R_G(x,y) = R_G(x,y,y) = \frac{1}{4} \int_0^\infty dt t (t + x)^{-1/2}(t + y)^{-1} \left(\frac{x}{t + x} + \frac{2y}{t + y}\right) \]
+\_form#127=58x14:$ R_G(x,y,z) $
+\_form#128=394x31:\[ R_G(x,y,z) = \frac{1}{4} \int_0^\infty dt t [(t + x)(t + y)(t + z)]^{-1/2} (\frac{x}{t + x} + \frac{y}{t + y} + \frac{z}{t + z}) \]
+\_form#129=194x31:\[ Z(m,\phi) = E(m,\phi) - \frac{E(m)F(m,\phi)}{K(m)} \]
+\_form#130=43x14:$ E(m,\phi) $
+\_form#131=30x14:$ E(m) $
+\_form#132=43x14:$ F(m,\phi) $
+\_form#133=39x14:$ \Lambda(k,\phi) $
+\_form#134=244x31:\[ \Lambda(k,\phi) = \frac{F(1-m,\phi)}{K(1-m)} + \frac{2}{\pi} K(m) Z(1-m,\phi) \]
+\_form#135=40x11:$ m = k^2 $
+\_form#136=38x14:$ Z(k,\phi) $
+\_form#137=26x14:$ D(k) $
+\_form#138=151x34:\[ D(k) = \int_0^{\pi/2} \frac{\sin^2\theta d\theta}{\sqrt{1-k^2sin2\theta}} \]
+\_form#139=39x14:$ D(k,\phi) $
+\_form#140=154x33:\[ D(k,\phi) = \int_0^\phi \frac{\sin^2\theta d\theta}{\sqrt{1-k^2sin^2\theta}} \]
+\_form#141=49x14:$ el1(x,k_c) $
+\_form#142=11x13:$ k_c $
+\_form#143=376x35:\[ el1(x,k_c) = el2(x,k_c,1,1) = \int_0^{\arctan x} \frac{1+1\tan^2\theta} {\sqrt{(1+\tan^2\theta)(1+k_c^2\tan^2\theta)}}d\theta \]
+\_form#144=73x14:$ k_c = \sqrt{1 - k^2} $
+\_form#145=73x14:$ el2(x,k_c,a,b) $
+\_form#146=309x35:\[ el2(x,k_c,a,b) = \int_0^{\arctan x} \frac{a+b\tan^2\theta} {\sqrt{(1+\tan^2\theta)(1+k_c^2\tan^2\theta)}}d\theta \]
+\_form#147=61x14:$ el3(x,k_c,p) $
+\_form#148=323x43:\[ el3(x,k_c,p) = \int_0^{\arctan x} \frac{d\theta} {(cos^2\theta+p\sin^2\theta)\sqrt{cos^2\theta+k_c^2\sin^2\theta}} \]
+\_form#149=70x14:$ cel(k_c,p,a,b) $
+\_form#150=316x44:\[ cel(k_c,p,a,b)=\int_0^{\pi/2} \frac{a\cos^2\theta + b\sin^2\theta}{cos^2\theta + p\sin^2\theta} \frac{d\theta}{\sqrt{cos^2\theta + k_c^2\sin^2\theta}} \]
+\_form#151=15x11:$ E_n $
+\_form#152=298x31:\[ \genfrac{\langle}{\rangle}{0pt}{0}{n}{m} = (n-m)\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m-1} + (m+1)\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m} \mbox{ for } n > 0 \]
+\_form#153=44x14:$ A(n,m) $
+\_form#154=388x31:\[ \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n}{m}\right\rangle = (2n-m-1) \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m-1}\right\rangle + (m+1) \left\langle\genfrac{\langle}{\rangle}{0pt}{0}{n-1}{m}\right\rangle \mbox{ for } n > 0 \]
+\_form#155=30x14:$ Ei(x) $
+\_form#156=109x31:\[ Ei(x) = -\int_{-x}^\infty \frac{e^t}{t} dt \]
+\_form#157=31x14:$ E_n(x) $
+\_form#158=113x31:\[ E_n(x) = \int_1^\infty \frac{e^{-tx}}{t^n}dt \]
+\_form#159=178x31:\[ E_1(x) = \int_1^\infty \frac{e^{-tx}}{t}dt = -Ei(-x) \]
+\_form#160=159x31:\[ li(x) = \int_0^x \frac{dt}{ln(t)} = Ei(ln(x)) \]
+\_form#161=35x14:$ Shi(x) $
+\_form#162=124x31:\[ Shi(x) = \int_0^x \frac{\sinh(t)}{t}dt \]
+\_form#163=38x14:$ Chi(x) $
+\_form#164=328x31:\[ Chi(x) = -\int_x^\infty \frac{\cosh(t)}{t}dt = \gamma_E + ln(x) + \int_0^x \frac{\cosh(t)-1}{t}dt \]
+\_form#165=119x31:\[ S(x) = \int_0^x \sin(\frac{\pi}{2}t^2) dt \]
+\_form#166=123x31:\[ C(x) = \int_0^x \cos(\frac{\pi}{2}t^2) dt \]
+\_form#167=11x10:$ n! $
+\_form#168=141x13:\[ n! = 1 \times 2 \times ... \times n, 0! = 1 \]
+\_form#169=15x10:$ n!! $
+\_form#170=145x14:\[ n!! = n(n-2)...(2), 0!! = 1 \]
+\_form#171=164x14:\[ n!! = n(n-2)...(1), (-1)!! = 1 \]
+\_form#172=31x14:$ ln(n!) $
+\_form#173=35x14:$ ln(n!!) $
+\_form#174=221x38:\[ a^{\overline{\nu}} = \Gamma(a + \nu) / \Gamma(n) = \prod_{k=0}^{\nu-1} (a + k), a^{\overline{0}} \equiv 1 \]
+\_form#175=229x18:\[ ln[a^{\overline{\nu}}] = ln[\Gamma(a + \nu)] - ln[\Gamma(\nu)], ln[a^{\overline{0}}] \equiv 0 \]
+\_form#176=21x14:$ (a)_\nu $
+\_form#177=28x31:\[ \left[ \begin{array}{c} a \\ \nu \end{array} \right] \]
+\_form#178=174x38:\[ a^{\underline{n}} = \frac{\Gamma(a + 1)}{\Gamma(a - \nu + 1)} = \prod_{k=0}^{n-1} (a - k) \]
+\_form#179=34x11:$ a^{\underline{0}} \equiv 1 $
+\_form#180=43x10:$ n^{\underline{n}} = n! $
+\_form#181=213x14:\[ ln[a^{\underline{n}}] = ln[\Gamma(a + 1)] - ln[\Gamma(a - \nu + 1)] \]
+\_form#182=53x15:$ ln[a^{\underline{0}}] \equiv 0 $
+\_form#183=31x23:\[ \{ \begin{array}{c} a \\ \nu \end{array} \} \]
+\_form#184=106x15:\[ a^{\overline{\nu}} = \Gamma(a + \nu) / \Gamma(\nu) \]
+\_form#185=224x38:\[ a^{\underline{n}} = \prod_{k=0}^{n-1} (a - k) = \Gamma(a + 1) / \Gamma(a - n + 1) \]
+\_form#186=95x31:\[ \binom{n}{k} = \frac{n!}{(n-k)! k!} \]
+\_form#187=114x36:\[ \left(1 + t\right)^n = \sum_{k=0}^n \binom{n}{k} t^k \]
+\_form#188=36x14:$ \Gamma(a,x) $
+\_form#189=131x30:\[ \Gamma(a,x) = \int_x^\infty t^{a-1}e^{-t}dt \]
+\_form#190=36x14:$ \gamma(a,x) $
+\_form#191=126x31:\[ \gamma(a,x) = \int_0^x t^{a-1}e^{-t}dt \]
+\_form#192=163x31:\[ \psi(x) = \frac{d}{dx}log\left(\Gamma(x)\right) = \frac{\Gamma'(x)}{\Gamma(x)}, \]
+\_form#193=159x31:\[ \psi(x) = \frac{d}{dx}log\left(\Gamma(x)\right) = \frac{\Gamma'(x)}{\Gamma(x)} \]
+\_form#194=73x30:\[ \Gamma_r(a) = \frac{1}{\Gamma(a)} \]
+\_form#195=16x13:$ H_n $
+\_form#196=63x36:\[ H_n = \sum_{k=1}^{n}\frac{1}{k} \]
+\_form#197=33x15:$ C_n^{\lambda}(x) $
+\_form#198=88x14:$ \lambda > -1/2, \lambda \neq 0 $
+\_form#199=319x26:\[ C_n^{\lambda}(x) = \frac{1}{n}\left[ 2x(n+\lambda-1)C_{n-1}^{\lambda}(x) - (n+2\lambda-2)C_{n-2}^{\lambda}(x) \right] \]
+\_form#200=55x15:$ C_0^{\lambda}(x) = 1 $
+\_form#201=70x15:$ C_1^{\lambda}(x) = 2\lambda x $
+\_form#202=40x18:$ H^{(1)}_\nu(x) $
+\_form#203=140x16:\[ H^{(1)}_\nu(x) = J_\nu(x) + i N_\nu(x) \]
+\_form#204=40x18:$ H^{(2)}_\nu(x) $
+\_form#205=140x16:\[ H^{(2)}_\nu(x) = J_\nu(x) - i N_\nu(x) \]
+\_form#206=254x28:\[ h^{(1)}_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} H^{(1)}_{n+1/2}(x) = j_n(x) + i n_n(x) \]
+\_form#207=95x14:$ j_n(x) @c and n_n(x) $
+\_form#208=36x18:$ h^{(2)}_n(x) $
+\_form#209=254x28:\[ h^{(2)}_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} H^{(2)}_{n+1/2}(x) = j_n(x) - i n_n(x) \]
+\_form#210=33x14:$ H_n(x) $
+\_form#211=148x28:\[ H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2} \]
+\_form#212=126x14:\[ H_n(-x) = (-1)^n H_n(x) \]
+\_form#213=58x14:$ {}_1F_1(a;c;x) $
+\_form#214=136x35:\[ {}_1F_1(a;c;x) = \sum_{n=0}^{\infty} \frac{(a)_n x^n}{(c)_n n!} \]
+\_form#215=165x14:$ (x)_k = (x)(x+1)...(x+k-1) $
+\_form#216=45x14:$ (x)_0 = 1 $
+\_form#217=49x14:$ U(a,c,x) $
+\_form#218=404x31:\[ U(a,c,x) = \frac{\Gamma(1-c)}{\Gamma(a-c+1)} {}_1F_1(a;c;x) + \frac{\Gamma(c-1)}{\Gamma(a)} x^{1-c} {}_1F_1(a-c+1;2-c;x) \]
+\_form#219=69x14:$ {}_2F_1(a,b;c;x) $
+\_form#220=169x35:\[ {}_2F_1(a,b;c;x) = \sum_{n=0}^{\infty} \frac{(a)_n (b)_n x^n}{(c)_n n!} \]
+\_form#221=51x14:$ {}_0F_1(;c;x) $
+\_form#222=125x35:\[ {}_0F_1(;c;x) = \sum_{n=0}^{\infty} \frac{x^n}{(c)_n n!} \]
+\_form#223=50x18:$ P_n^{(\alpha,\beta)}(x) $
+\_form#224=53x13:$ \alpha, \beta > -1 $
+\_form#225=598x18:\[ 2 n(\alpha + \beta + n) (\alpha + \beta + 2n - 2) P^{(\alpha, \beta)}_{n}(x) = (\alpha + \beta + 2n - 1) [(\alpha^2 - \beta^2) + x(\alpha + \beta + 2n - 2)(\alpha + \beta + 2n)] P^{(\alpha, \beta)}_{n-1}(x) - 2 (\alpha + n - 1)(\beta + n - 1)(\alpha + \beta + 2n) P^{(\alpha, \beta)}_{n-2}(x) \]
+\_form#226=73x19:$ P_0^{(\alpha,\beta)}(x) = 1 $
+\_form#227=211x18:$ P_1^{(\alpha,\beta)}(x) = [(\alpha - \beta) + (\alpha + \beta + 2) x] / 2 $
+\_form#228=8x6:$ \alpha $
+\_form#229=9x13:$ \beta $
+\_form#230=46x14:$ Z_n^m(\rho,\phi) $
+\_form#231=8x9:$ \rho $
+\_form#232=146x14:\[ Z_n^m(\rho,\phi) = R_n^m(\rho)\cos(m\phi) \]
+\_form#233=153x14:\[ Z_n^{-m}(\rho,\phi) = R_n^m(\rho)\sin(m\phi) \]
+\_form#234=46x9:$ m <= n $
+\_form#235=34x14:$ R_n^m(\rho) $
+\_form#236=243x41:\[ R_n^m(\rho) = \sum_{k=0}^{\frac{n-m}{2}} \frac{(-1)^k(n-k)!}{k!(\frac{n+m}{2}-k)!(\frac{n-m}{2}-k)!} \rho^{n-2k} \]
+\_form#237=35x6:$ n - m $
+\_form#238=184x20:\[ R_n^m(\rho) = (-1)^{(n-m)/2} \rho^m P_{(n-m)/2}^{(m,0)} \]
+\_form#239=41x18:$ L_n^{(m)}(x) $
+\_form#240=39x18:$ L_n^{(\alpha)}(x) $
+\_form#241=199x28:\[ L_n^{(\alpha)}(x) = \frac{(\alpha + 1)_n}{n!} {}_1F_1(-n; \alpha + 1; x) \]
+\_form#242=24x14:$ (\alpha)_n $
+\_form#243=58x14:$ {}_1F_1(a; c; x) $
+\_form#244=35x6:$ \alpha = m $
+\_form#245=168x28:\[ L_n^{(m)}(x) = (-1)^m \frac{d^m}{dx^m} L_{n + m}(x) \]
+\_form#246=130x28:\[ L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} (x^ne^{-x}) \]
+\_form#247=31x14:$ L_n(x) $
+\_form#248=35x14:$ P_l^m(x) $
+\_form#249=28x14:$ P_l(x) $
+\_form#250=170x28:\[ P_l^m(x) = (1 - x^2)^{m/2}\frac{d^m}{dx^m}P_l(x) \]
+\_form#251=116x14:$ P_l^m(x) = 0 @c if m > l $
+\_form#252=46x14:$ |x| <= 0 $
+\_form#253=134x29:\[ P_l(x) = \frac{1}{2^l l!}\frac{d^l}{dx^l}(x^2 - 1)^{l} \]
+\_form#254=36x11:$ l >= 0 $
+\_form#255=6x10:$ \theta $
+\_form#256=243x31:\[ Y_l^m(\theta,0) = (-1)^m\frac{(2l+1)}{4\pi} \frac{(l-m)!}{(l+m)!} P_l^m(\cos\theta) \]
+\_form#257=136x16:\[ Y_l^m(\theta,\phi) = Y_l^m(\theta,0) e^{im\phi} \]
+\_form#258=29x14:$ Q_l(x) $
+\_form#259=413x39:\[ Q_l(x) = \frac{1}{2} \log{\frac{x+1}{x-1}} P_l(x) - \sum_{k=0}^{l-1}\frac{(l+k)!}{(l-k)!(k!)^2 s^k} \left[\psi(l+1) - \psi(k+1)\right](x-1)^k \]
+\_form#260=25x14:$ \psi(x) $
+\_form#261=100x14:$ \psi(n) = -\gamma_E + H_n $
+\_form#262=35x14:$ Q_l^m(x) $
+\_form#263=171x28:\[ Q_l^m(x) = (1 - x^2)^{m/2}\frac{d^m}{dx^m}Q_l(x) \]
+\_form#264=120x14:$ Q_l^m(x) != 0 @c if m > l $
+\_form#265=290x31:\[ Y_l^m(\theta,\phi) = (-1)^m\frac{(2l+1)}{4\pi} \frac{(l-m)!}{(l+m)!} P_l^{|m|}(\cos\theta) \exp^{im\phi} \]
+\_form#266=138x14:$ Y_l^m(\theta,\phi) = 0 @c if |m| > l $
+\_form#267=48x14:$ \Phi(z,s,a) $
+\_form#268=131x36:\[ \Phi(z,s,a) = \sum_{k=0}^{\infty}\frac{z^k}{(k+a)^s} \]
+\_form#269=31x10:$ s != 1 $
+\_form#270=39x10:$ a > -1 $
+\_form#271=251x36:\[ E_{\alpha,\beta}(z) = \sum_{k=0}^\infty \frac{z^k}{\Gamma(\beta + \alpha k)}, \mbox{ } \alpha > 0, \beta \in \mathbb{C}, z \in \mathbb{C} \]
+\_form#272=40x14:$ E_{\alpha,\beta}(z) $
+\_form#273=29x14:$ I_{\nu}(x) $
+\_form#274=215x36:\[ I_{\nu}(x) = i^{-\nu}J_\nu(ix) = \sum_{k=0}^{\infty} \frac{(x/2)^{\nu + 2k}}{k!\Gamma(\nu+k+1)} \]
+\_form#275=33x14:$ K_{\nu}(x) $
+\_form#276=144x28:\[ K_{\nu}(x) = \frac{\pi}{2} \frac{I_{-\nu}(x) - I_{\nu}(x)}{\sin \nu\pi} \]
+\_form#277=91x14:\[ K_{-\nu}(x) = K_{\nu}(x) \]
+\_form#278=48x14:$ e^{-x} I_{\nu}(x) $
+\_form#279=45x14:$ e^{x} K_{\nu}(x) $
+\_form#280=8x6:$ x $
+\_form#281=28x14:$ i_n(x) $
+\_form#282=145x28:\[ i_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} I_{n+1/2}(x) \]
+\_form#283=29x14:$ k_n(x) $
+\_form#284=151x28:\[ k_n(x) = \left(\frac{\pi}{2x} \right) ^{1/2} K_{n+1/2}(x) \]
+\_form#285=148x16:$ \tilde{Ai}(x) = \exp(2x^{3/2}/3)Ai(x) $
+\_form#286=158x16:$ \tilde{Bi}(x) = \exp(-2x^{3/2}/3)Bi(x) $
+\_form#287=39x14:$ T(h,a) $
+\_form#288=216x33:\[ T(h,a) = \frac{1}{2\pi}\int_0^a \frac{\exp\left[-\frac{1}{2}h^2(1+x^2)\right]}{1+x^2} dx \]
+\_form#289=91x36:\[ Li_s(w) = \sum_{k=1}^{\infty} \frac{w^k}{k^s} \]
+\_form#290=191x36:\[ \eta(s) = \sum_{k=1}^\infty \frac{(-1)^k}{k^s} = \left( 1 - 2^{1-s} \right) \zeta(s) \]
+\_form#291=260x29:\[ \eta(-s) = 2 \frac{1-2^{-s-1}}{1-2^{-s}} \pi^{-s-1} s \sin(\frac{\pi s}{2}) \Gamma(s) \eta(s+1) \]
+\_form#292=108x14:\[ \eta(s) = -\Re[Li_s(-1)] \]
+\_form#293=113x36:\[ \beta(s) = \sum_{k=0}^\infty \frac{(-1)^k}{(2k+1)^s} \]
+\_form#294=185x33:\[ \beta(1-s) = \left( \frac{2}{\pi}\right)^s \sin(\frac{\pi s}{2}) \Gamma(s) \beta(s) \]
+\_form#295=88x14:\[ \beta(s) = \Im[Li_s(i)] \]
+\_form#296=204x36:\[ \lambda(s) = \sum_{k=0}^\infty \frac{1}{(2k+1)^s} = \left( 1 - 2^{-s} \right) \zeta(s) \]
+\_form#297=116x26:\[ \lambda(s) = \frac{1}{2}(\zeta(s) + \eta(s)) \]
+\_form#298=38x14:$ Sl_m(x) $
+\_form#299=116x36:\[ Sl_m(x) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^m} \]
+\_form#300=39x14:$ Cl_m(x) $
+\_form#301=119x36:\[ Cl_m(x) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^m} \]
+\_form#302=34x14:$ C_m(x) $
+\_form#303=426x36:\[ C_m(x) = Sl_m(x) = \sum_{k=1}^\infty\frac{\sin(kx)}{k^m} \mbox{ for even } m = Cl_m(x) = \sum_{k=1}^\infty\frac{\cos(kx)}{k^m} \mbox{ for odd } m \]
+\_form#304=34x14:$ C_m(z) $
+\_form#305=424x36:\[ C_m(z) = Sl_m(z) = \sum_{k=1}^\infty\frac{\sin(kz)}{k^m} \mbox{ for even } m = Cl_m(z) = \sum_{k=1}^\infty\frac{\cos(kz)}{k^m} \mbox{ for odd } m \]
+\_form#306=269x31:\[ F_s(x) = \frac{1}{\Gamma(s+1)}\int_0^\infty \frac{t^s}{e^{t-x} + 1}dt = -Li_{s+1}(-e^x) \]
+\_form#307=251x31:\[ G_s(x) = \frac{1}{\Gamma(s+1)}\int_0^\infty \frac{t^s}{e^{t-x} - 1}dt = Li_{s+1}(e^x) \]
+\_form#308=110x35:\[ F(x, s) = \sum_{n=1}^{\infty}\frac{e^{i2\pi nx}}{n^s} \]
+\_form#309=94x36:\[ (x)_n = \sum_{k=0}^{n} \genfrac{[}{]}{0pt}{0}{n}{k} x^k \]
+\_form#310=146x31:\[ \genfrac{[}{]}{0pt}{0}{n+1}{m} = \genfrac{[}{]}{0pt}{0}{n}{m-1} - n \genfrac{[}{]}{0pt}{0}{n}{m} \]
+\_form#311=121x31:\[ \genfrac{[}{]}{0pt}{0}{0}{0\rightarrow m} = {1, 0, 0, ..., 0} \]
+\_form#312=118x31:\[ \genfrac{[}{]}{0pt}{0}{0\rightarrow n}{0} = {1, 0, 0, ..., 0} \]
+\_form#313=24x16:$ S_n^{(m)} $
+\_form#314=173x36:\[ \sigma_n^{(m)} = \genfrac{\{}{\}}{0pt}{0}{n}{m} = \sum_{k=0}^{m}\frac{(-1)^{m-k}k^n}{(m-k)!k!} \]
+\_form#315=24x16:$ \sigma_n^{(m)} $
+\_form#316=23x16:$ \textit{S}_n^{(m)} $
+\_form#317=235x29:\[ L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k); L(n,n) = 1 \]
+\_form#318=85x36:\[ B(n) = \sum_{k=0}^{n}S_n^{(k)} \]
+\_form#319=21x16:$ S_n^{(k)} $
+\_form#320=111x36:\[ B(n,x) = \sum_{k=0}^{n}S_n^{(k)}x^k \]
+\_form#321=39x14:$ \theta_1(\nu,x) $
+\_form#322=278x39:\[ \theta_1(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty} (-1)^j \exp\left( \frac{-(\nu + j - 1/2)^2}{x} \right) \]
+\_form#323=39x14:$ \theta_2(\nu,x) $
+\_form#324=244x39:\[ \theta_2(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty} (-1)^j \exp\left( \frac{-(\nu + j)^2}{x} \right) \]
+\_form#325=39x14:$ \theta_3(\nu,x) $
+\_form#326=213x39:\[ \theta_3(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty} \exp\left( \frac{-(\nu+j)^2}{x} \right) \]
+\_form#327=39x14:$ \theta_4(\nu,x) $
+\_form#328=246x39:\[ \theta_4(\nu,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty} \exp\left( \frac{-(\nu + j + 1/2)^2}{x} \right) \]
+\_form#329=21x14:$ q(k) $
+\_form#330=164x39:\[ q(k) = \exp \left(-\pi\frac{K(\sqrt{1-k^2})}{K(k)} \right) \]
+\_form#331=91x11:$ -1 <= k <= +1 $
+\_form#332=39x14:$ \theta_s(k,x) $
+\_form#333=220x33:\[ \theta_s(k,x) = \sqrt{\frac{\pi}{2 k k' K(k)}} \theta_1\left(q(k),\frac{\pi x}{2K(k)}\right) \]
+\_form#334=39x14:$ \theta_c(k,x) $
+\_form#335=209x33:\[ \theta_c(k,x) = \sqrt{\frac{\pi}{2 k K(k)}} \theta_1\left(q(k),\frac{\pi x}{2K(k)}\right) \]
+\_form#336=40x14:$ \theta_d(k,x) $
+\_form#337=203x33:\[ \theta_d(k,x) = \sqrt{\frac{\pi}{2K(k)}} \theta_3\left(q(k),\frac{\pi x}{2K(k)}\right) \]
+\_form#338=41x14:$ \theta_n(k,x) $
+\_form#339=214x33:\[ \theta_n(k,x) = \sqrt{\frac{\pi}{2k'K(k)}} \theta_4\left(q(k),\frac{\pi x}{2K(k)}\right) \]
+\_form#340=39x14:$ \theta_1(q,x) $
+\_form#341=276x39:\[ \theta_1(q,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty} (-1)^j \exp\left( \frac{-(q + j - 1/2)^2}{x} \right) \]
+\_form#342=39x14:$ \theta_2(q,x) $
+\_form#343=243x39:\[ \theta_2(q,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty} (-1)^j \exp\left( \frac{-(q + j)^2}{x} \right) \]
+\_form#344=39x14:$ \theta_3(q,x) $
+\_form#345=211x39:\[ \theta_3(q,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty} \exp\left( \frac{-(q+j)^2}{x} \right) \]
+\_form#346=39x14:$ \theta_4(q,x) $
+\_form#347=245x39:\[ \theta_4(q,x) = \frac{1}{\sqrt{\pi x}} \sum_{j=-\infty}^{+\infty} \exp\left( \frac{-(q + j + 1/2)^2}{x} \right) \]
+\_form#348=41x14:$ sn(k,u) $
+\_form#349=123x14:\[ \sin(\phi) = sn(k, F(k,\phi)) \]
+\_form#350=41x14:$ cn(k,u) $
+\_form#351=124x14:\[ \cos(\phi) = cn(k, F(k,\phi)) \]
+\_form#352=43x14:$ dn(k,u) $
+\_form#353=171x16:\[ \sqrt{1 - k^2\sin(\phi)} = dn(k, F(k,\phi)) \]
+\_form#354=29x14:$ Si(x) $
+\_form#355=113x31:\[ Si(x) = \int_0^x \frac{sin(t)}{t}dt \]
+\_form#356=30x14:$ Ci(x) $
+\_form#357=308x31:\[ Ci(x) = -\int_x^\infty \frac{cos(t)}{t}dt = \gamma_E + ln(x) + \int_0^x \frac{cos(t)-1}{t}dt \]
+\_form#358=39x14:$ \sin_\pi(x) $
+\_form#359=95x14:\[ \sin_\pi(x) = \sin(\pi x) \]
+\_form#360=300x14:\[ \mathrm{sin_\pi}(z) = \sin(\pi z) = \mathrm{sin_\pi}(x) \mathrm{cosh_\pi}(y) + i \mathrm{cos_\pi}(x) \mathrm{sinh_\pi}(y) \]
+\_form#361=46x14:$ \sinh_\pi(x) $
+\_form#362=109x14:\[ \sinh_\pi(x) = \sinh(\pi x) \]
+\_form#363=314x14:\[ \mathrm{sinh_\pi}(z) = \sinh(\pi z) = \mathrm{\sinh_\pi}(x) \mathrm{cos_\pi}(y) + i \mathrm{\cosh_\pi}(x) \mathrm{sin_\pi}(y) \]
+\_form#364=40x14:$ \cos_\pi(x) $
+\_form#365=98x14:\[ \cos_\pi(x) = \cos(\pi x) \]
+\_form#366=303x14:\[ \mathrm{cos_\pi}(z) = \cos(\pi z) = \mathrm{cos_\pi}(x) \mathrm{cosh_\pi}(y) - i \mathrm{sin_\pi}(x) \mathrm{sinh_\pi}(y) \]
+\_form#367=48x14:$ \cosh_\pi(x) $
+\_form#368=111x14:\[ \cosh_\pi(x) = \cosh(\pi x) \]
+\_form#369=316x14:\[ \mathrm{cosh_\pi}(z) = \mathrm{cosh_\pi}(z) = \mathrm{cosh_\pi}(x) \mathrm{cos_\pi}(y) + i \mathrm{sinh_\pi}(x) \mathrm{sin_\pi}(y) \]
+\_form#370=41x14:$ \tan_\pi(x) $
+\_form#371=100x14:\[ \tan_\pi(x) = \tan(\pi x) \]
+\_form#372=233x31:\[ \mathrm{tan_\pi}(z) = \tan(\pi z) = \frac{\mathrm{tan_\pi}(x) + i \mathrm{tanh_\pi}(y)} {1 - i \mathrm{tan_\pi}(x) \mathrm{tanh_\pi}(y)} \]
+\_form#373=49x14:$ \tanh_\pi(x) $
+\_form#374=114x14:\[ \tanh_\pi(x) = \tanh(\pi x) \]
+\_form#375=248x31:\[ \mathrm{tanh_\pi}(z) = \tanh(\pi z) = \frac{\mathrm{tanh_\pi}(x) + i \mathrm{tan_\pi}(y)} {1 + i \mathrm{tanh_\pi}(x) \mathrm{tan_\pi}(y)} \]
+\_form#376=139x14:\[ sincos(x) = {\sin(x), \cos(x)} \]
+\_form#377=160x14:\[ sincos_\pi(x) = {\sin(\pi x), \cos(\pi x)} \]
+\_form#378=21x14:$ \zeta(s) $
+\_form#379=131x36:\[ \zeta(s) = \sum_{k=1}^{\infty} k^{-s} \mbox{ for } s > 1 \]
+\_form#380=256x36:\[ \zeta(s) = \frac{1}{1-2^{1-s}}\sum_{k=1}^{\infty}(-1)^{k-1}k^{-s} \mbox{ for } 0 <= s < 1 \]
+\_form#381=206x24:\[ \zeta(s) = 2^s \pi^{s-1} \sin(\frac{\pi s}{2}) \Gamma(1-s) \zeta(1-s) \]
+\_form#382=118x35:\[ \zeta(s, a) = \sum_{n=0}^{\infty}\frac{1}{(a + n)^s} \]
+\_form#383=34x14:$ Li_2(z) $
+\_form#384=88x36:\[ Li_2(x) = \sum_{k=1}^{\infty}\frac{x^k}{k^2} \]
+\_form#385=33x14:$ D_n(x) $
+\_form#386=136x31:\[ D_n(x) = \frac{n}{x^n}\int_{0}^{x}\frac{t^n}{e^t-1}dt \]
+\_form#387=139x14:$ max(a,b) * mul * epsilon $
