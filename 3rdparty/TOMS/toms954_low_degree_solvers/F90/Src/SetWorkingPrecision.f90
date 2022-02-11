@@ -1,5 +1,5 @@
     MODULE SetWorkingPrecision
-USE, INTRINSIC :: f90_kind
+!USE, INTRINSIC :: f90_kind
 ! ..
 ! .. Intrinsic Functions ..
       INTRINSIC KIND
@@ -8,9 +8,10 @@ USE, INTRINSIC :: f90_kind
 ! For IEEE standard arithmetic we could also use
 !     INTEGER, PARAMETER :: skind = SELECTED_REAL_KIND(p=6, r=37)
 !     INTEGER, PARAMETER :: dkind = SELECTED_REAL_KIND(p=15, r=307)
+!     INTEGER, PARAMETER :: qkind = SELECTED_REAL_KIND(p=33, r=4931)
       INTEGER, PARAMETER :: spKind = KIND(0.0E0)
       INTEGER, PARAMETER :: dpKind = KIND(0.0D0)
-      INTEGER, PARAMETER :: qpKind = quad
+      INTEGER, PARAMETER :: qpKind = KIND(0.0Q0)
 ! Set the precision for the whole package
       INTEGER, PARAMETER :: wp = dpkind
 ! To change the default package precision to single precision
