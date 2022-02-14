@@ -35,11 +35,7 @@ set(EMSR_LIBRARIES
 #find_package(Boost REQUIRED)
 find_package(Boost)
 
-set(HAVE_BOOST FALSE CACHE BOOL "Have working boost" FORCE)
 if (Boost_FOUND)
-  set(HAVE_BOOST TRUE CACHE BOOL "Have working boost" FORCE)
-  message(STATUS "Boost enabled!")
-
   add_library(wrap_boost SHARED wrap_boost.cpp)
   target_link_libraries(wrap_boost ${EMSR_LIBRARIES})
   target_include_directories(wrap_boost PUBLIC . ${Boost_INCLUDE_DIRS})

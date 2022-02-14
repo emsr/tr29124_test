@@ -12,6 +12,45 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 enable_testing()
 
+# See if we can have Boost...
+
+#find_package(Boost REQUIRED)
+find_package(Boost)
+
+set(HAVE_BOOST FALSE CACHE BOOL "Have working boost" FORCE)
+if (Boost_FOUND)
+  set(HAVE_BOOST TRUE CACHE BOOL "Have working boost" FORCE)
+  message(STATUS "Boost found!")
+else()
+  message(WARNING "Boost not found!")
+endif(Boost_FOUND)
+
+# See if we can have mpreal...
+
+find_package(GMP)
+if (GMP_FOUND)
+  message(STATUS "GMP found!")
+else()
+  message(WARNING "GMP not found!")
+endif()
+
+find_package(MPFR)
+if (MPFR_FOUND)
+  message(STATUS "MPFR found!")
+else()
+  message(WARNING "MPFR not found!")
+endif()
+
+set(HAVE_MPREAL FALSE CACHE BOOL "Have working mpreal" FORCE)
+if (GMP_FOUND AND MPFR_FOUND)
+  set(HAVE_MPREAL TRUE CACHE BOOL "Have working mpreal" FORCE)
+  message(STATUS "MPReal enabled!")
+else()
+  message(WARNING "MPReal not enabled!")
+endif()
+
+# Add all the subdirectories...
+
 add_subdirectory(wrappers)
 add_subdirectory(laboratories)
 
