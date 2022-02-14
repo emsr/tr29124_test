@@ -1760,17 +1760,17 @@ s_neg_double_factorial_table[999]
     log_gamma_bernoulli(Tp x)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
-      const auto s_eps = _Real{0.01L} * emsr::epsilon(_Real{});
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_eps = Real{0.01L} * emsr::epsilon(Real{});
       const auto s_ln2pi
-	= emsr::ln2_v<_Real>
-	+ emsr::lnpi_v<_Real>;
+	= emsr::ln2_v<Real>
+	+ emsr::lnpi_v<Real>;
 
-      auto lg = (x - _Real{0.5L}) * std::log(x)
-		- x + _Real{0.5L} * s_ln2pi;
+      auto lg = (x - Real{0.5L}) * std::log(x)
+		- x + Real{0.5L} * s_ln2pi;
 
-      const auto xx = _Real{1} / (x * x);
-      auto xk = _Real{1} / x;
+      const auto xx = Real{1} / (x * x);
+      auto xk = Real{1} / x;
       for ( unsigned int i = 1; i < 100; ++i )
 	{
 	  const auto __2i = Tp(2 * i);
@@ -1942,13 +1942,13 @@ s_neg_double_factorial_table[999]
     spouge_binet1p(Tp z)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
-      const auto s_sqrt_2pi = emsr::sqrttau_v<_Real>;
-      const auto c = gamma_spouge_data<_Real>::s_cheby;
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_sqrt_2pi = emsr::sqrttau_v<Real>;
+      const auto c = gamma_spouge_data<Real>::s_cheby;
 
       Val sum = s_sqrt_2pi;
       for (auto k = 0ull; k < c.size(); ++k)
-	sum += c[k] / (z + _Real(k + 1));
+	sum += c[k] / (z + Real(k + 1));
       return sum;
     }
 
@@ -1986,18 +1986,18 @@ s_neg_double_factorial_table[999]
     spouge_log_gamma1p(Tp z)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
-      const auto s_ln_pi = emsr::lnpi_v<_Real>;
-      auto a = _Real{gamma_spouge_data<_Real>::s_cheby.size() + 1};
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_ln_pi = emsr::lnpi_v<Real>;
+      auto a = Real{gamma_spouge_data<Real>::s_cheby.size() + 1};
 
       // Reflection for z < -1.
-      if (std::real(z) < _Real{-1})
+      if (std::real(z) < Real{-1})
 	{
 	  auto sin_fact = emsr::sin_pi(z);
 	  if (!emsr::is_complex_v<Val>)
 	    sin_fact = std::abs(sin_fact);
 	  return s_ln_pi - std::log(sin_fact)
-			  - spouge_log_gamma1p(-_Real{1} - z);
+			  - spouge_log_gamma1p(-Real{1} - z);
 	}
       else
 	{
@@ -2005,7 +2005,7 @@ s_neg_double_factorial_table[999]
 	  if (!emsr::is_complex_v<Val>)
 	    sum = std::abs(sum);
 	  return std::log(sum)
-	       + (z + _Real{0.5L}) * std::log(z + a)
+	       + (z + Real{0.5L}) * std::log(z + a)
 	       - (z + a);
 	}
     }
@@ -2125,16 +2125,16 @@ s_neg_double_factorial_table[999]
     lanczos_binet1p(Tp z)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
-      const auto s_sqrt_2pi = emsr::sqrttau_v<_Real>;
-      const auto c = gamma_lanczos_data<_Real>::s_cheby;
-      //auto g =  gamma_lanczos_data<_Real>::s_g;
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_sqrt_2pi = emsr::sqrttau_v<Real>;
+      const auto c = gamma_lanczos_data<Real>::s_cheby;
+      //auto g =  gamma_lanczos_data<Real>::s_g;
 
       auto fact = Val{1};
       auto sum = Val{0.5L} * c[0];
       for (unsigned int k = 1, n = c.size(); k < n; ++k)
 	{
-	  fact *= (z - _Real(k - 1)) / (z + _Real(k));
+	  fact *= (z - Real(k - 1)) / (z + Real(k));
 	  sum += fact * c[k];
 	}
       return s_sqrt_2pi * sum;
@@ -2158,17 +2158,17 @@ s_neg_double_factorial_table[999]
     lanczos_log_gamma1p(Tp z)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
-      const auto s_ln_pi = emsr::lnpi_v<_Real>;
-      auto g =  gamma_lanczos_data<_Real>::s_g;
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_ln_pi = emsr::lnpi_v<Real>;
+      auto g =  gamma_lanczos_data<Real>::s_g;
       // Reflection for z < -1.
-      if (std::real(z) < _Real{-1})
+      if (std::real(z) < Real{-1})
         {
 	  auto sin_fact = emsr::sin_pi(z);
 	  if (!emsr::is_complex_v<Val>)
 	    sin_fact = std::abs(sin_fact);
 	  return s_ln_pi - std::log(sin_fact)
-			  - lanczos_log_gamma1p(-_Real{1} - z);
+			  - lanczos_log_gamma1p(-Real{1} - z);
 	}
       else
         {
@@ -2176,8 +2176,8 @@ s_neg_double_factorial_table[999]
 	  if (!emsr::is_complex_v<Val>)
 	    sum = std::abs(sum);
 	  return std::log(sum)
-	       + (z + _Real{0.5L}) * std::log(z + g + _Real{0.5L})
-	       - (z + g + _Real{0.5L});
+	       + (z + Real{0.5L}) * std::log(z + g + Real{0.5L})
+	       - (z + g + Real{0.5L});
 	}
     }
 
@@ -2201,7 +2201,7 @@ s_neg_double_factorial_table[999]
     Tp
     gamma_reciprocal_series(Tp a)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
 
       static constexpr std::array<long double, 31>
       s_c
@@ -2238,7 +2238,7 @@ s_neg_double_factorial_table[999]
 	-0.0000000000000000002298745684435370206592L,
 	 0.0000000000000000000171440632192733743338L,
       }};
-      const auto s_eps = emsr::epsilon(_Real{});
+      const auto s_eps = emsr::epsilon(Real{});
       auto ak = Tp{1};
       auto gam = Tp{0};
       for (auto k = 1u; k < s_c.size(); ++k)
@@ -2269,42 +2269,42 @@ s_neg_double_factorial_table[999]
     Tp
     gamma_reciprocal(Tp a)
     {
-      using _Real = emsr::num_traits_t<Tp>;
+      using Real = emsr::num_traits_t<Tp>;
 
       if (std::isnan(a))
 	return emsr::quiet_NaN(a);
       else
 	{
-	  const auto s_pi = emsr::pi_v<_Real>;
+	  const auto s_pi = emsr::pi_v<Real>;
 	  const auto an = emsr::fp_is_integer(a);
 	  if (an)
 	    {
 	      auto n = an();
 	      if (n <= 0)
 		return Tp{0};
-	      else if (n < int(s_num_factorials<_Real>))
+	      else if (n < int(s_num_factorials<Real>))
 		return Tp{1}
-		  / _Real(s_factorial_table[n - 1].factorial);
+		  / Real(s_factorial_table[n - 1].factorial);
 	      else
 	        {
-		  auto k = int(s_num_factorials<_Real>);
+		  auto k = int(s_num_factorials<Real>);
 		  auto rgam = Tp{1}
-			      / _Real(s_factorial_table[k - 1].factorial);
-		  while (k < n && std::abs(rgam) > _Real{0})
-		    rgam /= _Real(k++);
+			      / Real(s_factorial_table[k - 1].factorial);
+		  while (k < n && std::abs(rgam) > Real{0})
+		    rgam /= Real(k++);
 		  return rgam;
 		}
 	    }
-	  else if (std::real(a) > _Real{1})
+	  else if (std::real(a) > Real{1})
 	    {
 	      auto n = int(std::floor(std::real(a)));
 	      auto nu = a - Tp(n);
 	      auto rgam = gamma_reciprocal_series(nu);
-	      while (std::real(a) > _Real{1} && std::abs(rgam) > Tp{0})
-	        rgam /= (a -= _Real{1});
+	      while (std::real(a) > Real{1} && std::abs(rgam) > Tp{0})
+	        rgam /= (a -= Real{1});
 	      return rgam;
 	    }
-	  else if (std::real(a) > _Real{0})
+	  else if (std::real(a) > Real{0})
 	    return gamma_reciprocal_series(a);
 	  else
 	    return emsr::sin_pi(a)
@@ -2326,28 +2326,28 @@ s_neg_double_factorial_table[999]
     log_gamma(Tp a)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
-      const auto s_eps = emsr::epsilon(_Real{});
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_eps = emsr::epsilon(Real{});
       const auto s_logpi = emsr::lnpi_v<Tp>;
-      if (std::real(a) < _Real{0.5L})
+      if (std::real(a) < Real{0.5L})
 	{
 	  const auto sin_fact = std::abs(emsr::sin_pi(a));
 	  if (sin_fact < s_eps)
-	    return emsr::infinity<_Real>();
+	    return emsr::infinity<Real>();
 	  else
 	    return s_logpi - std::log(sin_fact) - log_gamma(Val{1} - a);
 	}
-      else if (std::real(a) > _Real{1}
+      else if (std::real(a) > Real{1}
 	    && std::abs(a) < s_num_factorials<Tp>)
 	{
 	  auto fact = Tp{1};
 	  auto arg = a;
-	  while (std::real(arg) > _Real{1})
-	    fact *= (arg -= _Real{1});
+	  while (std::real(arg) > Real{1})
+	    fact *= (arg -= Real{1});
 	  return std::log(fact) + log_gamma(arg);
 	}
       else
-	return spouge_log_gamma1p(a - _Real{1});
+	return spouge_log_gamma1p(a - Real{1});
     }
 
   /**
@@ -2361,28 +2361,28 @@ s_neg_double_factorial_table[999]
     log_gamma(std::complex<Tp> a)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
-      using _Cmplx = std::complex<_Real>;
-      const auto s_eps = emsr::epsilon(_Real{});
-      const auto s_logpi = emsr::lnpi_v<_Real>;
+      using Real = emsr::num_traits_t<Val>;
+      using _Cmplx = std::complex<Real>;
+      const auto s_eps = emsr::epsilon(Real{});
+      const auto s_logpi = emsr::lnpi_v<Real>;
       auto an = emsr::fp_is_integer(a);
       if (an)
 	{
 	  auto n = an();
 	  if (n <= 0)
-	    return emsr::quiet_NaN(_Real{});
-	  else if (n < static_cast<int>(s_num_factorials<_Real>))
-	    return _Real((s_factorial_table[n - 1].log_factorial));
+	    return emsr::quiet_NaN(Real{});
+	  else if (n < static_cast<int>(s_num_factorials<Real>))
+	    return Real((s_factorial_table[n - 1].log_factorial));
 	  else
-	    return log_gamma(_Real(n));
+	    return log_gamma(Real(n));
 	}
-      else if (std::real(a) >= _Real{0.5L})
-	return spouge_log_gamma1p(a - _Real{1});
+      else if (std::real(a) >= Real{0.5L})
+	return spouge_log_gamma1p(a - Real{1});
       else
 	{
 	  const auto sin_fact = emsr::sin_pi(a);
 	  if (std::abs(sin_fact) < s_eps)
-	    return _Cmplx(emsr::quiet_NaN(_Real{}), _Real{0});
+	    return _Cmplx(emsr::quiet_NaN(Real{}), Real{0});
 	  else
 	    return s_logpi - std::log(sin_fact) - log_gamma(Val{1} - a);
 	}
@@ -2435,13 +2435,13 @@ s_neg_double_factorial_table[999]
     log_binomial(unsigned int n, unsigned int k)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
+      using Real = emsr::num_traits_t<Val>;
       if (k > n)
-	return -Val(emsr::infinity<_Real>());
+	return -Val(emsr::infinity<Real>());
       else if (k == 0 || k == n)
 	return Val{0};
-      else if (n < s_num_factorials<_Real>
-      	    && k < s_num_factorials<_Real>)
+      else if (n < s_num_factorials<Real>
+      	    && k < s_num_factorials<Real>)
 	return log_factorial<Val>(n)
 	     - log_factorial<Val>(k) - log_factorial<Val>(n - k);
       else
@@ -2539,11 +2539,11 @@ s_neg_double_factorial_table[999]
     binomial(unsigned int n, unsigned int k)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
+      using Real = emsr::num_traits_t<Val>;
       // Max e exponent before overflow.
       const auto max_binom
-                      = emsr::max_exponent10<_Real>()
-                      * std::log(_Real(10)) - _Real(1);
+                      = emsr::max_exponent10<Real>()
+                      * std::log(Real(10)) - Real(1);
 
       if (k > n)
 	return Tp{0};
@@ -2562,9 +2562,9 @@ s_neg_double_factorial_table[999]
 	      m = (k > nmk ? k : nmk);
 	    }
 #endif
-	  if (n < s_num_factorials<_Real>
-      	   && k < s_num_factorials<_Real>
-	   && nmk < s_num_factorials<_Real>)
+	  if (n < s_num_factorials<Real>
+      	   && k < s_num_factorials<Real>
+	   && nmk < s_num_factorials<Real>)
 	    return factorial<Tp>(n)
 	         / factorial<Tp>(k) / factorial<Tp>(nmk);
 	  else
@@ -2599,15 +2599,15 @@ s_neg_double_factorial_table[999]
     binomial(Tp nu, unsigned int k)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
+      using Real = emsr::num_traits_t<Val>;
       // Max e exponent before overflow.
       auto n = int(std::nearbyint(nu));
       if (std::isnan(nu))
 	return emsr::quiet_NaN(nu);
-      else if (nu == n && n >= 0 && n < s_num_factorials<_Real>)
+      else if (nu == n && n >= 0 && n < s_num_factorials<Real>)
 	return binomial<Tp>(static_cast<unsigned int>(n), k);
-      else if (std::abs(nu) < s_num_factorials<_Real>
-      	    && k < s_num_factorials<_Real>)
+      else if (std::abs(nu) < s_num_factorials<Real>
+      	    && k < s_num_factorials<Real>)
 	return gamma(nu + Tp{1})
 	     / gamma(Tp(k + 1)) / gamma(nu - Tp(k + 1));
       else
@@ -2640,25 +2640,25 @@ s_neg_double_factorial_table[999]
     gamma(Tp a)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
+      using Real = emsr::num_traits_t<Val>;
       auto an = emsr::fp_is_integer(a);
       if (an)
 	{
 	  auto n = an();
 	  if (n <= 0)
-	    return emsr::quiet_NaN(_Real{});
-	  else if (n < static_cast<int>(s_num_factorials<_Real>))
-	    return static_cast<_Real>(s_factorial_table[n - 1].factorial);
+	    return emsr::quiet_NaN(Real{});
+	  else if (n < static_cast<int>(s_num_factorials<Real>))
+	    return static_cast<Real>(s_factorial_table[n - 1].factorial);
 	  else
-	    return emsr::infinity(_Real{});
+	    return emsr::infinity(Real{});
 	}
-      else if (std::real(a) > _Real{1}
+      else if (std::real(a) > Real{1}
 	    && std::abs(a) < s_num_factorials<Tp>)
 	{
 	  auto fact = Tp{1};
 	  auto arg = a;
-	  while (std::real(arg) > _Real{1})
-	    fact *= (arg -= _Real{1});
+	  while (std::real(arg) > Real{1})
+	    fact *= (arg -= Real{1});
 	  return fact /gamma_reciprocal_series(arg);
 	  //return fact * std::exp(lanczos_log_gamma1p(arg - Tp{1}));
 	}
@@ -2677,8 +2677,8 @@ s_neg_double_factorial_table[999]
     gamma_series(Tp a, Tp x)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
-      const auto s_eps = _Real{3} * emsr::epsilon(a);
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_eps = Real{3} * emsr::epsilon(a);
       unsigned int s_itmax = 10 * int(10 + std::sqrt(std::abs(a)));
 
       auto lngam = log_gamma(a);
@@ -2687,9 +2687,9 @@ s_neg_double_factorial_table[999]
 
       if (ia && ia() <= 0)
 	throw std::domain_error("gamma_series: non-positive integer argument a");
-      else if (x == _Real{0})
+      else if (x == Real{0})
 	return std::make_pair(Val{0}, lngam);
-      else if (std::real(x) < _Real{0})
+      else if (std::real(x) < Real{0})
 	throw std::domain_error("gamma_series: negative argument x");
       else
 	{
@@ -2698,7 +2698,7 @@ s_neg_double_factorial_table[999]
 	  term = sum = Tp{1} / a;
 	  for (unsigned int n = 1; n <= s_itmax; ++n)
 	    {
-	      aa += _Real{1};
+	      aa += Real{1};
 	      term *= x / aa;
 	      sum += term;
 	      if (std::abs(term) < s_eps * std::abs(sum))
@@ -2720,32 +2720,32 @@ s_neg_double_factorial_table[999]
     gamma_cont_frac(Tp a, Tp x)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
-      const auto s_fpmin = _Real{3} * emsr::lim_min(a);
-      const auto s_eps = _Real{3} * emsr::epsilon(a);
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_fpmin = Real{3} * emsr::lim_min(a);
+      const auto s_eps = Real{3} * emsr::epsilon(a);
       unsigned int s_itmax = 10 * int(10 + std::sqrt(std::abs(a)));
 
       auto lngam = log_gamma(a);
       auto sign = log_gamma_sign(a);
 
-      auto b = x + _Real{1} - a;
-      auto c = _Real{1} / s_fpmin;
-      auto d = _Real{1} / b;
+      auto b = x + Real{1} - a;
+      auto c = Real{1} / s_fpmin;
+      auto d = Real{1} / b;
       auto h = d;
       for (unsigned int n = 1; n <= s_itmax; ++n)
 	{
-	  auto an = -_Real(n) * (_Real(n) - a);
-	  b += _Real{2};
+	  auto an = -Real(n) * (Real(n) - a);
+	  b += Real{2};
 	  d = an * d + b;
 	  if (std::abs(d) < s_fpmin)
 	    d = s_fpmin;
 	  c = b + an / c;
 	  if (std::abs(c) < s_fpmin)
 	    c = s_fpmin;
-	  d = _Real{1} / d;
+	  d = Real{1} / d;
 	  auto del = d * c;
 	  h *= del;
-	  if (std::abs(del - _Real{1}) < s_eps)
+	  if (std::abs(del - Real{1}) < s_eps)
 	    {
 	      auto gamcf = std::exp(-x + a * std::log(x) - lngam)
 			  * h * sign;
@@ -2764,7 +2764,7 @@ s_neg_double_factorial_table[999]
     gamma(Tp a, Tp x)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
+      using Real = emsr::num_traits_t<Val>;
       const auto s_NaN = emsr::quiet_NaN(a);
 
       if (std::isnan(a) || std::isnan(x))
@@ -2773,7 +2773,7 @@ s_neg_double_factorial_table[999]
       auto ia = emsr::fp_is_integer(a);
       if (ia && ia() <= 0)
 	throw std::domain_error("gamma: non-positive integer argument a");
-      else if (std::real(x) < std::real(a + _Real{1}))
+      else if (std::real(x) < std::real(a + Real{1}))
 	{
 	  auto _Pgam = gamma_series(a, x).first;
 	  return std::make_pair(_Pgam, Val{1} - _Pgam);
@@ -2802,7 +2802,7 @@ s_neg_double_factorial_table[999]
     gamma_p(Tp a, Tp x)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
+      using Real = emsr::num_traits_t<Val>;
       const auto s_NaN = emsr::quiet_NaN(a);
 
       if (std::isnan(a) || std::isnan(x))
@@ -2811,7 +2811,7 @@ s_neg_double_factorial_table[999]
       auto ia = emsr::fp_is_integer(a);
       if (ia && ia() <= 0)
 	throw std::domain_error("gamma_p: non-positive integer argument a");
-      else if (std::real(x) < std::real(a + _Real{1}))
+      else if (std::real(x) < std::real(a + Real{1}))
 	return gamma_series(a, x).first;
       else
 	return Val{1} - gamma_cont_frac(a, x).first;
@@ -2835,7 +2835,7 @@ s_neg_double_factorial_table[999]
     gamma_q(Tp a, Tp x)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
+      using Real = emsr::num_traits_t<Val>;
       const auto s_NaN = emsr::quiet_NaN(a);
 
       if (std::isnan(a) || std::isnan(x))
@@ -2844,7 +2844,7 @@ s_neg_double_factorial_table[999]
       auto ia = emsr::fp_is_integer(a);
       if (ia && ia() <= 0)
 	throw std::domain_error("gamma_q: non-positive integer argument a");
-      else if (std::real(x) < std::real(a + _Real{1}))
+      else if (std::real(x) < std::real(a + Real{1}))
 	return Val{1} - gamma_series(a, x).first;
       else
 	return gamma_cont_frac(a, x).first;
@@ -2863,7 +2863,7 @@ s_neg_double_factorial_table[999]
     tgamma_lower(Tp a, Tp x)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
+      using Real = emsr::num_traits_t<Val>;
       const auto s_NaN = emsr::quiet_NaN(a);
 
       if (std::isnan(a) || std::isnan(x))
@@ -2872,7 +2872,7 @@ s_neg_double_factorial_table[999]
       auto ia = emsr::fp_is_integer(a);
       if (ia && ia() <= 0)
 	throw std::domain_error("tgamma_lower: non-positive integer argument a");
-      else if (std::real(x) < std::real(a + _Real{1}))
+      else if (std::real(x) < std::real(a + Real{1}))
 	{
 	  std::pair<Tp, Tp> gp = gamma_series(a, x);
 	  return std::exp(gp.second) * gp.first;
@@ -2897,7 +2897,7 @@ s_neg_double_factorial_table[999]
     tgamma(Tp a, Tp x)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
+      using Real = emsr::num_traits_t<Val>;
       const auto s_NaN = emsr::quiet_NaN(a);
 
       if (std::isnan(a) || std::isnan(x))
@@ -2906,7 +2906,7 @@ s_neg_double_factorial_table[999]
       auto ia = emsr::fp_is_integer(a);
       if (ia && ia() <= 0)
 	throw std::domain_error("tgamma: non-positive integer argument a");
-      else if (std::real(x) < std::real(a + _Real{1}))
+      else if (std::real(x) < std::real(a + Real{1}))
 	{
 	  auto gp = gamma_series(a, x);
 	  return std::exp(gp.second) * (Tp{1} - gp.first);
@@ -2934,11 +2934,11 @@ s_neg_double_factorial_table[999]
     falling_factorial(Tp a, int n)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
+      using Real = emsr::num_traits_t<Val>;
       const auto ia = emsr::fp_is_integer(a);
 
       if (std::isnan(a))
-	return emsr::quiet_NaN(_Real{});
+	return emsr::quiet_NaN(Real{});
       else if (n == 0)
 	return Tp{1};
       else if (ia)
@@ -2946,15 +2946,15 @@ s_neg_double_factorial_table[999]
 	  auto na = ia();
 	  if (na < n)
 	    return Tp{0};
-	  else if (na < static_cast<int>(s_num_factorials<_Real>)
-	      && na - n < static_cast<int>(s_num_factorials<_Real>))
-	    return factorial<_Real>(na) / factorial<_Real>(na - n);
+	  else if (na < static_cast<int>(s_num_factorials<Real>)
+	      && na - n < static_cast<int>(s_num_factorials<Real>))
+	    return factorial<Real>(na) / factorial<Real>(na - n);
 	  else
-	    return std::exp(log_factorial<_Real>(na)
-			  - log_factorial<_Real>(na - n));
+	    return std::exp(log_factorial<Real>(na)
+			  - log_factorial<Real>(na - n));
 	}
-      else if (std::abs(a) < s_num_factorials<_Real>
-      	    && std::abs(a - n) < s_num_factorials<_Real>)
+      else if (std::abs(a) < s_num_factorials<Real>
+      	    && std::abs(a - n) < s_num_factorials<Real>)
 	{
 	  auto prod = a;
 	  for (int k = 1; k < n; ++k)
@@ -2988,12 +2988,12 @@ s_neg_double_factorial_table[999]
     falling_factorial(Tp a, Tp nu)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
+      using Real = emsr::num_traits_t<Val>;
       const auto inu = emsr::fp_is_integer(nu);
       const auto ia = emsr::fp_is_integer(a);
 
       if (std::isnan(nu) || std::isnan(a))
-	return emsr::quiet_NaN(_Real{});
+	return emsr::quiet_NaN(Real{});
       else if (nu == Tp{0})
 	return Tp{1};
       else if (inu)
@@ -3040,7 +3040,7 @@ s_neg_double_factorial_table[999]
     log_falling_factorial(Tp a, Tp nu)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
+      using Real = emsr::num_traits_t<Val>;
       const auto s_NaN = emsr::quiet_NaN<Val>();
       const auto s_inf = emsr::infinity<Val>();
       const auto inu = emsr::fp_is_integer(nu);
@@ -3063,8 +3063,8 @@ s_neg_double_factorial_table[999]
 	  else
 	    return std::log(std::abs(falling_factorial(a, inu())));
 	}
-      else if (std::abs(a) < s_num_factorials<_Real>
-	    && std::abs(a - nu) < s_num_factorials<_Real>)
+      else if (std::abs(a) < s_num_factorials<Real>
+	    && std::abs(a - nu) < s_num_factorials<Real>)
 	return std::log(std::abs(falling_factorial(a, nu)));
       else
 	return log_gamma(a + Tp{1}) - log_gamma(a - nu + Tp{1});
@@ -3089,26 +3089,26 @@ s_neg_double_factorial_table[999]
     rising_factorial(Tp a, int n)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
-      const auto s_eps = emsr::epsilon<_Real>();
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_eps = emsr::epsilon<Real>();
 
       if (std::isnan(a))
-	return emsr::quiet_NaN(_Real{});
+	return emsr::quiet_NaN(Real{});
       else if (n == 0)
 	return Tp{1};
       else if (std::abs(a - std::nearbyint(a)) < s_eps)
 	{
 	  auto na = int(std::nearbyint(a));
-	  if (na < static_cast<int>(s_num_factorials<_Real>)
-	      && a + n < static_cast<int>(s_num_factorials<_Real>))
-	    return factorial<_Real>(na + n - _Real{1})
-		 / factorial<_Real>(na - _Real{1});
+	  if (na < static_cast<int>(s_num_factorials<Real>)
+	      && a + n < static_cast<int>(s_num_factorials<Real>))
+	    return factorial<Real>(na + n - Real{1})
+		 / factorial<Real>(na - Real{1});
 	  else
-	    return std::exp(log_factorial<_Real>(na + n - _Real{1})
-			  - log_factorial<_Real>(na) - _Real{1});
+	    return std::exp(log_factorial<Real>(na + n - Real{1})
+			  - log_factorial<Real>(na) - Real{1});
 	}
-      else if (std::abs(a) < s_num_factorials<_Real>
-      	    && std::abs(a + n) < s_num_factorials<_Real>)
+      else if (std::abs(a) < s_num_factorials<Real>
+      	    && std::abs(a + n) < s_num_factorials<Real>)
 	{
 	  auto prod = a;
 	  for (int k = 1; k < n; ++k)
@@ -3188,14 +3188,14 @@ s_neg_double_factorial_table[999]
     log_rising_factorial(Tp a, Tp nu)
     {
       using Val = Tp;
-      using _Real = emsr::num_traits_t<Val>;
+      using Real = emsr::num_traits_t<Val>;
 
       if (std::isnan(nu) || std::isnan(a))
 	return emsr::quiet_NaN(a);
       else if (nu == Tp{0})
 	return Tp{0};
-      else if (std::abs(a) < s_num_factorials<_Real>
-	    && std::abs(a + nu) < s_num_factorials<_Real>)
+      else if (std::abs(a) < s_num_factorials<Real>
+	    && std::abs(a + nu) < s_num_factorials<Real>)
 	return std::log(rising_factorial(a, nu));
       else
 	return log_gamma(a + nu) - log_gamma(a);
@@ -3369,8 +3369,7 @@ s_neg_double_factorial_table[999]
       const unsigned int max_iter = 100;
       for (unsigned int k = 1; k < max_iter; ++k)
 	{
-	  const Tp term = bernoulli<Val>(2 * k)
-			   / (Val(2 * k) * xp);
+	  const Tp term = bernoulli<Val>(2 * k) / (Val(2 * k) * xp);
 	  sum -= term;
 	  if (std::abs(term / sum) < emsr::epsilon<Val>())
 	    break;
