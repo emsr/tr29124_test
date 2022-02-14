@@ -117,6 +117,28 @@ template<typename Tp>
     Tp f;
   };
 
+// Regular Coulomb functions.
+template<typename Tp>
+  struct testcase_coulomb_f
+  {
+    Tp f0;
+    Tp lambda;
+    Tp eta;
+    Tp rho;
+    Tp f;
+  };
+
+// Regular Coulomb functions.
+template<typename Tp>
+  struct testcase_coulomb_g
+  {
+    Tp f0;
+    Tp lambda;
+    Tp eta;
+    Tp rho;
+    Tp f;
+  };
+
 // Generic cylindrical Bessel functions.
 template<typename Tp>
   struct testcase_cyl_bessel

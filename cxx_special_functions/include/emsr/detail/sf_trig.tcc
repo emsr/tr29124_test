@@ -46,6 +46,7 @@ namespace emsr
       Tp sin_v;
       Tp cos_v;
     };
+
 namespace detail
 {
 

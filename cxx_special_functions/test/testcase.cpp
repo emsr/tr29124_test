@@ -158,6 +158,8 @@ template<typename Real>
     using emsr::clausen;
     using emsr::clausen_cl;
     using emsr::clausen_sl;
+    using emsr::coulomb_f;
+    using emsr::coulomb_g;
     using emsr::comp_ellint_d;
     using emsr::comp_ellint_1;
     using emsr::comp_ellint_2;
@@ -1778,6 +1780,51 @@ template<typename Real>
 				std::make_pair(true, true), 21),
 	     "Boost",
 	     file_owens_t, true);
+
+    // Coulomb F functions.
+    basename = "coulomb_f";
+    std::cout << basename << '\n' << std::flush;
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_coulomb_f(filename);
+    maketest(coulomb_f, gsl::coulomb_f,
+             "testcase_coulomb_f", nsname, basename,
+             "lambda", std::vector<Real>({Real{0}, Real{0.5}, Real{1}}),
+             "eta", std::vector<Real>({Real{-2}, Real{0}, Real{2}, Real{10}}),
+             "rho", fill_argument(std::make_pair(Real{0}, Real{20}),
+				  std::make_pair(false, true), 41),
+	     "GSL",
+             file_coulomb_f, true);
+
+    // Coulomb G functions.
+    basename = "coulomb_g";
+    std::cout << basename << '\n' << std::flush;
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_coulomb_g(filename);
+    maketest(coulomb_g, gsl::coulomb_g,
+             "testcase_coulomb_g", nsname, basename,
+             "lambda", std::vector<Real>({Real{0}, Real{0.5}, Real{1}}),
+             "eta", std::vector<Real>({Real{-2}, Real{0}, Real{2}, Real{10}}),
+             "rho", fill_argument(std::make_pair(Real{0}, Real{20}),
+				  std::make_pair(false, true), 41),
+	     "GSL",
+             file_coulomb_g, true);
+
+    // Clausen Sl function?
+    // Seems GSL only has Cl
+    /*
+    std::cout << "clausen_sl\n" << std::flush;
+    basename = "clausen_sl";
+    filename = get_filename(path, prefix, basename, "",  ".cc");
+    std::ofstream file_clausen_sl(filename);
+    maketest(clausen_sl<Real>, gsl::clausen_sl,
+	     "testcase_clausen_sl", nsname, basename,
+	     "m", fill_argument(std::make_pair(2U, 2U),
+				std::make_pair(true, true), 1),
+	     "w", fill_argument(std::make_pair(Real{-10}, Real{+10}),
+				std::make_pair(true, true), 41),
+	     "GSL",
+	     file_clausen_sl, true);
+    */
 
     // Clausen Cl function.
     std::cout << "clausen_cl\n" << std::flush;

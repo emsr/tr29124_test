@@ -165,6 +165,16 @@ target_include_directories(check_cos_pi PRIVATE .)
 target_link_libraries(check_cos_pi ${EMSR_LIBRARIES} quadmath)
 add_test(NAME check_cos_pi COMMAND check_cos_pi)
 
+add_executable(check_coulomb_f test/src/check_coulomb_f.cc)
+target_include_directories(check_coulomb_f PRIVATE .)
+target_link_libraries(check_coulomb_f ${EMSR_LIBRARIES} quadmath)
+add_test(NAME check_coulomb_f COMMAND check_coulomb_f)
+
+add_executable(check_coulomb_g test/src/check_coulomb_g.cc)
+target_include_directories(check_coulomb_g PRIVATE .)
+target_link_libraries(check_coulomb_g ${EMSR_LIBRARIES} quadmath)
+add_test(NAME check_coulomb_g COMMAND check_coulomb_g)
+
 add_executable(check_cyl_bessel_i test/src/check_cyl_bessel_i.cc)
 target_include_directories(check_cyl_bessel_i PRIVATE .)
 target_link_libraries(check_cyl_bessel_i ${EMSR_LIBRARIES} quadmath)
