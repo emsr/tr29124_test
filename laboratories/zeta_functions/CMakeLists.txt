@@ -23,47 +23,49 @@ enable_testing()
 add_custom_target(make_lab_zeta_functions_output_dir ALL
   COMMAND ${CMAKE_COMMAND} -E make_directory output)
 
-add_executable(build_etam1_table build_etam1_table.cpp)
-target_link_libraries(build_etam1_table
-  ${EMSR_LIBRARIES}
-  quadmath
-  mpreal mpfr gmp)
-add_test(NAME run_build_etam1_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_etam1_table > output/build_etam1_table.txt")
+if (HAVE_MPREAL)
+  add_executable(build_etam1_table build_etam1_table.cpp)
+  target_link_libraries(build_etam1_table
+    ${EMSR_LIBRARIES}
+    quadmath
+    mpreal mpfr gmp)
+  add_test(NAME run_build_etam1_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_etam1_table > output/build_etam1_table.txt")
 
-add_executable(build_nfact_zetanp1 build_nfact_zetanp1.cpp)
-target_link_libraries(build_nfact_zetanp1
-  ${EMSR_LIBRARIES}
-  quadmath
-  mpreal mpfr gmp)
-add_test(NAME run_build_nfact_zetanp1 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_nfact_zetanp1 > output/build_nfact_zetanp1.txt")
+  add_executable(build_nfact_zetanp1 build_nfact_zetanp1.cpp)
+  target_link_libraries(build_nfact_zetanp1
+    ${EMSR_LIBRARIES}
+    quadmath
+    mpreal mpfr gmp)
+  add_test(NAME run_build_nfact_zetanp1 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_nfact_zetanp1 > output/build_nfact_zetanp1.txt")
 
-add_executable(build_zeta_deriv_table build_zeta_deriv_table.cpp)
-target_link_libraries(build_zeta_deriv_table
-  ${EMSR_LIBRARIES}
-  quadmath
-  mpreal mpfr gmp)
-add_test(NAME run_build_zeta_deriv_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_zeta_deriv_table > output/build_zeta_deriv_table.txt")
+  add_executable(build_zeta_deriv_table build_zeta_deriv_table.cpp)
+  target_link_libraries(build_zeta_deriv_table
+    ${EMSR_LIBRARIES}
+    quadmath
+    mpreal mpfr gmp)
+  add_test(NAME run_build_zeta_deriv_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_zeta_deriv_table > output/build_zeta_deriv_table.txt")
 
-add_executable(build_zetahalfm1_table build_zetahalfm1_table.cpp)
-target_link_libraries(build_zetahalfm1_table
-  ${EMSR_LIBRARIES}
-  quadmath
-  mpreal mpfr gmp)
-add_test(NAME run_build_zetahalfm1_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_zetahalfm1_table > output/build_zetahalfm1_table.txt")
+  add_executable(build_zetahalfm1_table build_zetahalfm1_table.cpp)
+  target_link_libraries(build_zetahalfm1_table
+    ${EMSR_LIBRARIES}
+    quadmath
+    mpreal mpfr gmp)
+  add_test(NAME run_build_zetahalfm1_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_zetahalfm1_table > output/build_zetahalfm1_table.txt")
 
-add_executable(build_zetam1_table build_zetam1_table.cpp)
-target_link_libraries(build_zetam1_table
-  ${EMSR_LIBRARIES}
-  quadmath
-  mpreal mpfr gmp)
-add_test(NAME run_build_zetam1_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_zetam1_table > output/build_zetam1_table.txt")
+  add_executable(build_zetam1_table build_zetam1_table.cpp)
+  target_link_libraries(build_zetam1_table
+    ${EMSR_LIBRARIES}
+    quadmath
+    mpreal mpfr gmp)
+  add_test(NAME run_build_zetam1_table COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_zetam1_table > output/build_zetam1_table.txt")
 
-add_executable(build_zeta_trig_tables build_zeta_trig_tables.cpp)
-target_link_libraries(build_zeta_trig_tables
-  ${EMSR_LIBRARIES}
-  quadmath
-  mpreal mpfr gmp)
-add_test(NAME run_build_zeta_trig_tables COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_zeta_trig_tables > output/build_zeta_trig_tables.txt")
+  add_executable(build_zeta_trig_tables build_zeta_trig_tables.cpp)
+  target_link_libraries(build_zeta_trig_tables
+    ${EMSR_LIBRARIES}
+    quadmath
+    mpreal mpfr gmp)
+  add_test(NAME run_build_zeta_trig_tables COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_zeta_trig_tables > output/build_zeta_trig_tables.txt")
+endif(HAVE_MPREAL)
 
 add_executable(debug_dirichlet_eta debug_dirichlet_eta.cpp)
 target_link_libraries(debug_dirichlet_eta ${EMSR_LIBRARIES} quadmath)
@@ -121,16 +123,18 @@ add_executable(test_hurwitz_zeta_new test_hurwitz_zeta_new.cpp)
 target_link_libraries(test_hurwitz_zeta_new ${EMSR_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_hurwitz_zeta_new COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hurwitz_zeta_new > output/test_hurwitz_zeta_new.txt")
 
-add_executable(test_lerch test_lerch.cpp)
-target_include_directories(test_lerch PRIVATE
-  ../.. # For statistics.h
-)
-target_link_libraries(test_lerch
-  ${EMSR_LIBRARIES}
-  mpreal mpfr gmp
-  quadmath
-  wrap_lerchphi)
-add_test(NAME run_test_lerch COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_lerch > output/test_lerch.txt")
+if (HAVE_MPREAL)
+  add_executable(test_lerch test_lerch.cpp)
+  target_include_directories(test_lerch PRIVATE
+    ../.. # For statistics.h
+  )
+  target_link_libraries(test_lerch
+    ${EMSR_LIBRARIES}
+    mpreal mpfr gmp
+    quadmath
+    wrap_lerchphi)
+  add_test(NAME run_test_lerch COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_lerch > output/test_lerch.txt")
+endif(HAVE_MPREAL)
 
 add_executable(test_polylog test_polylog.cpp)
 target_link_libraries(test_polylog

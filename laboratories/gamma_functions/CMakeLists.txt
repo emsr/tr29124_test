@@ -30,9 +30,11 @@ target_include_directories(build_gamma_lanczos PRIVATE
 target_link_libraries(build_gamma_lanczos ${EMSR_LIBRARIES} quadmath)
 add_test(NAME run_build_gamma_lanczos COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_gamma_lanczos > output/build_gamma_lanczos.txt")
 
-add_executable(build_gamma_recip build_gamma_recip.cpp)
-target_link_libraries(build_gamma_recip ${EMSR_LIBRARIES} quadmath mpreal mpfr gmp)
-add_test(NAME run_build_gamma_recip COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_gamma_recip > output/build_gamma_recip.txt")
+if (HAVE_MPREAL)
+  add_executable(build_gamma_recip build_gamma_recip.cpp)
+  target_link_libraries(build_gamma_recip ${EMSR_LIBRARIES} quadmath mpreal mpfr gmp)
+  add_test(NAME run_build_gamma_recip COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_gamma_recip > output/build_gamma_recip.txt")
+endif(HAVE_MPREAL)
 
 add_executable(build_gamma_spouge build_gamma_spouge.cpp)
 target_link_libraries(build_gamma_spouge ${EMSR_LIBRARIES} cxx_float128 quadmath)
@@ -64,7 +66,7 @@ add_executable(test_factorial test_factorial.cpp)
 target_link_libraries(test_factorial ${EMSR_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_factorial COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_factorial > output/test_factorial.txt")
 
-if (Boost_FOUND)
+if (HAVE_BOOST)
   add_executable(test_falling_factorial test_falling_factorial.cpp)
   target_link_libraries(test_falling_factorial
     ${EMSR_LIBRARIES}
@@ -78,7 +80,7 @@ if (Boost_FOUND)
   add_executable(test_gamma_ratio test_gamma_ratio.cpp)
   target_link_libraries(test_gamma_ratio ${EMSR_LIBRARIES} cxx_float128 quadmath wrap_boost)
   add_test(NAME run_test_gamma_ratio COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_gamma_ratio > output/test_gamma_ratio.txt")
-endif(Boost_FOUND)
+endif(HAVE_BOOST)
 
 add_executable(test_gamma_reciprocal test_gamma_reciprocal.cpp)
 target_link_libraries(test_gamma_reciprocal ${EMSR_LIBRARIES} cxx_float128 quadmath)
@@ -94,7 +96,7 @@ target_include_directories(test_inv_lgamma PRIVATE
 target_link_libraries(test_inv_lgamma ${EMSR_LIBRARIES} quadmath)
 add_test(NAME run_test_inv_lgamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_inv_lgamma > output/test_inv_lgamma.txt")
 
-if (Boost_FOUND)
+if (HAVE_BOOST)
   add_executable(test_polygamma test_polygamma.cpp)
   target_link_libraries(test_polygamma ${EMSR_LIBRARIES} quadmath wrap_boost)
   add_test(NAME run_test_polygamma COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_polygamma > output/test_polygamma.txt")
@@ -102,4 +104,4 @@ if (Boost_FOUND)
   add_executable(test_rising_factorial test_rising_factorial.cpp)
   target_link_libraries(test_rising_factorial ${EMSR_LIBRARIES} quadmath wrap_boost)
   add_test(NAME run_test_rising_factorial COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_rising_factorial > output/test_rising_factorial.txt")
-endif(Boost_FOUND)
+endif(HAVE_BOOST)

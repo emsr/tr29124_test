@@ -27,7 +27,7 @@ add_executable(test_csint test_csint.cpp)
 target_link_libraries(test_csint ${EMSR_LIBRARIES} quadmath)
 add_test(NAME run_test_csint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_csint > output/test_csint.txt")
 
-if (Boost_FOUND)
+if (HAVE_BOOST)
   add_executable(test_expint test_expint.cpp)
   target_link_libraries(test_expint
     ${EMSR_LIBRARIES}
@@ -35,4 +35,4 @@ if (Boost_FOUND)
     quadmath
     wrap_boost)
   add_test(NAME run_test_expint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_expint > output/test_expint.txt")
-endif(Boost_FOUND)
+endif(HAVE_BOOST)
