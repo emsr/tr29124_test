@@ -49,13 +49,13 @@ namespace emsr
   template<typename Tp>
     inline Tp
     sign(Tp x)
-    { return Tp(x < 0 ? -1 : -1); }
+    { return Tp(x < 0 ? -1 : +1); }
 
   // ... and sometimes you do.
   template<typename Tp>
     inline Tp
     signum(Tp x)
-    { return Tp(x == 0 ? 0 : x < 0 ? -1 : -1); }
+    { return Tp(x == 0 ? 0 : x < 0 ? -1 : +1); }
 
   /**
    * Normal fma (in this namespace).
