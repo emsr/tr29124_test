@@ -74,21 +74,19 @@ add_executable(test_reperiodized_hyper test_reperiodized_hyper.cpp)
 target_link_libraries(test_reperiodized_hyper ${EMSR_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_reperiodized_hyper COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_reperiodized_hyper > output/test_reperiodized_hyper.txt")
 
-add_executable(test_reperiodized_trig test_reperiodized_trig.cpp)
-target_link_libraries(test_reperiodized_trig ${EMSR_LIBRARIES} cxx_float128 quadmath wrap_boost)
-add_test(NAME run_test_reperiodized_trig COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_reperiodized_trig > output/test_reperiodized_trig.txt")
+if (Boost_FOUND)
+  add_executable(test_reperiodized_trig test_reperiodized_trig.cpp)
+  target_link_libraries(test_reperiodized_trig ${EMSR_LIBRARIES} cxx_float128 quadmath wrap_boost)
+  add_test(NAME run_test_reperiodized_trig COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_reperiodized_trig > output/test_reperiodized_trig.txt")
+
+  add_executable(test_sinus_cardinal test_sinus_cardinal.cpp)
+  target_link_libraries(test_sinus_cardinal ${EMSR_LIBRARIES} cxx_float128 quadmath wrap_gsl wrap_boost)
+  add_test(NAME run_test_sinus_cardinal COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_sinus_cardinal > output/test_sinus_cardinal.txt")
+endif(Boost_FOUND)
 
 add_executable(test_sincos test_sincos.cpp)
 target_link_libraries(test_sincos ${EMSR_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_sincos COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_sincos > output/test_sincos.txt")
-
-add_executable(test_sinus_cardinal test_sinus_cardinal.cpp)
-target_link_libraries(test_sinus_cardinal
-  ${EMSR_LIBRARIES}
-  cxx_float128
-  quadmath
-  wrap_gsl wrap_boost)
-add_test(NAME run_test_sinus_cardinal COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_sinus_cardinal > output/test_sinus_cardinal.txt")
 
 add_executable(test_sqrt test_sqrt.cpp)
 target_link_libraries(test_sqrt ${EMSR_LIBRARIES})

@@ -31,13 +31,11 @@ target_link_libraries(build_inv_erf_coefs
   mpreal gmp mpfr)
 add_test(NAME run_build_inv_erf_coefs COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/build_inv_erf_coefs > output/build_inv_erf_coefs.txt")
 
-add_executable(test_dawson test_dawson.cpp)
-target_link_libraries(test_dawson
-  ${EMSR_LIBRARIES}
-  cxx_float128
-  quadmath
-  wrap_boost)
-add_test(NAME run_test_dawson COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_dawson > output/test_dawson.txt")
+if (Boost_FOUND)
+  add_executable(test_dawson test_dawson.cpp)
+  target_link_libraries(test_dawson ${EMSR_LIBRARIES} cxx_float128 quadmath wrap_boost)
+  add_test(NAME run_test_dawson COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_dawson > output/test_dawson.txt")
+endif(Boost_FOUND)
 
 add_executable(test_erfc test_erfc.cpp)
 target_link_libraries(test_erfc ${EMSR_LIBRARIES} cxx_float128 quadmath)
@@ -45,38 +43,27 @@ add_test(NAME run_test_erfc COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_erfc >
 
 add_executable(test_experfc test_experfc.cpp)
 target_link_libraries(test_experfc
-  ${EMSR_LIBRARIES}
-  cxx_float128
-  quadmath
-  mpreal mpfr gmp)
+  ${EMSR_LIBRARIES} cxx_float128 quadmath mpreal mpfr gmp)
 add_test(NAME run_test_experfc COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_experfc > output/test_experfc.txt")
 
 add_executable(test_faddeeva test_faddeeva.cpp)
-target_link_libraries(test_faddeeva
-  wrap_faddeeva)
+target_link_libraries(test_faddeeva wrap_faddeeva)
 add_test(NAME run_test_faddeeva COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_faddeeva > output/test_faddeeva.txt")
 
 add_executable(test_fresnel test_fresnel.cpp)
 target_include_directories(test_fresnel PRIVATE
   .)
 target_link_libraries(test_fresnel
-  ${EMSR_LIBRARIES}
-  cxx_float128
-  quadmath)
+  ${EMSR_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_fresnel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_fresnel > output/test_fresnel.txt")
 
 add_executable(test_inv_erf test_inv_erf.cpp)
 target_compile_definitions(test_inv_erf PRIVATE STANDALONE)
-target_link_libraries(test_inv_erf
-  ${EMSR_LIBRARIES}
-  cxx_float128
-  quadmath)
+target_link_libraries(test_inv_erf ${EMSR_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_inv_erf COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_inv_erf > output/test_inv_erf.txt")
 
-add_executable(test_owens_t test_owens_t.cpp)
-target_link_libraries(test_owens_t
-  ${EMSR_LIBRARIES}
-  cxx_float128
-  quadmath
-  wrap_boost)
-add_test(NAME run_test_owens_t COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_owens_t > output/test_owens_t.txt")
+if (Boost_FOUND)
+  add_executable(test_owens_t test_owens_t.cpp)
+  target_link_libraries(test_owens_t ${EMSR_LIBRARIES} cxx_float128 quadmath wrap_boost)
+  add_test(NAME run_test_owens_t COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_owens_t > output/test_owens_t.txt")
+endif(Boost_FOUND)

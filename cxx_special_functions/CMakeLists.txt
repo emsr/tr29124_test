@@ -21,9 +21,11 @@ target_link_libraries(cxx_special_functions INTERFACE cxx_complex_math cxx_numer
 add_library(test_support INTERFACE)
 target_include_directories(test_support INTERFACE test/include)
 
-add_executable(testcase test/testcase.cpp)
-target_link_libraries(testcase wrap_gsl wrap_boost wrap_burkhardt test_support)
-target_include_directories(testcase PRIVATE .)
+if (Boost_FOUND)
+  add_executable(testcase test/testcase.cpp)
+  target_link_libraries(testcase wrap_gsl wrap_boost wrap_burkhardt test_support)
+  target_include_directories(testcase PRIVATE .)
+endif(Boost_FOUND)
 
 # Function checks...
 

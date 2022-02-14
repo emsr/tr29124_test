@@ -48,29 +48,19 @@ target_link_libraries(carlson_std ${EMSR_LIBRARIES} quadmath)
 add_test(NAME run_carlson_std COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/carlson_std > output/carlson_std.txt")
 
 add_executable(test_comp_ellint_1 test_comp_ellint_1.cpp)
-target_link_libraries(test_comp_ellint_1
-  ${EMSR_LIBRARIES}
-  cxx_float128
-  quadmath)
+target_link_libraries(test_comp_ellint_1 ${EMSR_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_comp_ellint_1 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_comp_ellint_1 > output/test_comp_ellint_1.txt")
 
-add_executable(test_heuman_lambda test_heuman_lambda.cpp)
-target_link_libraries(test_heuman_lambda
-  ${EMSR_LIBRARIES}
-  quadmath
-  wrap_boost)
-add_test(NAME run_test_heuman_lambda COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_heuman_lambda > output/test_heuman_lambda.txt")
+if (Boost_FOUND)
+  add_executable(test_heuman_lambda test_heuman_lambda.cpp)
+  target_link_libraries(test_heuman_lambda ${EMSR_LIBRARIES} quadmath wrap_boost)
+  add_test(NAME run_test_heuman_lambda COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_heuman_lambda > output/test_heuman_lambda.txt")
 
-add_executable(test_jacobi_zeta test_jacobi_zeta.cpp)
-target_link_libraries(test_jacobi_zeta
-  ${EMSR_LIBRARIES}
-  quadmath
-  wrap_boost)
-add_test(NAME run_test_jacobi_zeta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_zeta > output/test_jacobi_zeta.txt")
+  add_executable(test_jacobi_zeta test_jacobi_zeta.cpp)
+  target_link_libraries(test_jacobi_zeta ${EMSR_LIBRARIES} quadmath wrap_boost)
+  add_test(NAME run_test_jacobi_zeta COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_jacobi_zeta > output/test_jacobi_zeta.txt")
+endif(Boost_FOUND)
 
 add_executable(test_legendre_ellint test_legendre_ellint.cpp)
-target_link_libraries(test_legendre_ellint
-  ${EMSR_LIBRARIES}
-  quadmath
-  wrap_gsl)
+target_link_libraries(test_legendre_ellint ${EMSR_LIBRARIES} quadmath wrap_gsl)
 add_test(NAME run_test_legendre_ellint COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_legendre_ellint > output/test_legendre_ellint.txt")

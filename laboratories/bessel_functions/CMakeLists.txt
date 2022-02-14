@@ -77,17 +77,19 @@ add_executable(test_cyl_bessel_zeros test_cyl_bessel_zeros.cpp)
 target_link_libraries(test_cyl_bessel_zeros ${EMSR_LIBRARIES} quadmath)
 add_test(NAME run_test_cyl_bessel_zeros COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_cyl_bessel_zeros > output/test_cyl_bessel_zeros.txt")
 
-add_executable(test_cyl_hankel test_cyl_hankel.cpp)
-target_link_libraries(test_cyl_hankel quadmath ${EMSR_LIBRARIES} wrap_boost)
-add_test(NAME run_test_cyl_hankel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_cyl_hankel > output/test_cyl_hankel.txt")
-
 add_executable(test_hankel test_hankel.cpp)
 target_link_libraries(test_hankel ${EMSR_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_hankel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hankel > output/test_hankel.txt")
 
-add_executable(test_hankel_real_arg test_hankel_real_arg.cpp)
-target_link_libraries(test_hankel_real_arg ${EMSR_LIBRARIES} quadmath wrap_boost)
-add_test(NAME run_test_hankel_real_arg COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hankel_real_arg > output/test_hankel_real_arg.txt")
+if (Boost_FOUND)
+  add_executable(test_cyl_hankel test_cyl_hankel.cpp)
+  target_link_libraries(test_cyl_hankel quadmath ${EMSR_LIBRARIES} wrap_boost)
+  add_test(NAME run_test_cyl_hankel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_cyl_hankel > output/test_cyl_hankel.txt")
+
+  add_executable(test_hankel_real_arg test_hankel_real_arg.cpp)
+  target_link_libraries(test_hankel_real_arg ${EMSR_LIBRARIES} quadmath wrap_boost)
+  add_test(NAME run_test_hankel_real_arg COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hankel_real_arg > output/test_hankel_real_arg.txt")
+endif(Boost_FOUND)
 
 add_executable(test_kelvin test_kelvin.cpp)
 target_link_libraries(test_kelvin ${EMSR_LIBRARIES} quadmath)
@@ -113,11 +115,13 @@ add_executable(test_sph_bessel test_sph_bessel.cpp)
 target_link_libraries(test_sph_bessel ${EMSR_LIBRARIES} cxx_float128 quadmath)
 add_test(NAME run_test_sph_bessel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_sph_bessel > output/test_sph_bessel.txt")
 
-add_executable(test_sph_hankel test_sph_hankel.cpp)
-target_link_libraries(test_sph_hankel ${EMSR_LIBRARIES} cxx_float128
-  quadmath
-  wrap_boost)
-add_test(NAME run_test_sph_hankel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_sph_hankel > output/test_sph_hankel.txt")
+if (Boost_FOUND)
+  add_executable(test_sph_hankel test_sph_hankel.cpp)
+  target_link_libraries(test_sph_hankel ${EMSR_LIBRARIES} cxx_float128
+    quadmath
+    wrap_boost)
+  add_test(NAME run_test_sph_hankel COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_sph_hankel > output/test_sph_hankel.txt")
+endif(Boost_FOUND)
 
 add_executable(test_struve test_struve.cpp)
 target_include_directories(test_struve PRIVATE
