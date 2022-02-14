@@ -19,19 +19,6 @@ if (NOT MSVC)
   endif ()
 endif ()
 
-set(EMSR_LIBRARIES
-  cxx_numeric_limits
-  cxx_special_functions
-  cxx_math_constants
-  cxx_fp_utils
-  cxx_complex_utils
-  cxx_complex_math
-  cxx_continued_fractions
-  cxx_summation
-  cxx_polynomial
-  cxx_integration
-  cxx_float128)
-
 #find_package(Boost REQUIRED)
 find_package(Boost)
 
@@ -50,15 +37,11 @@ find_library(GFORTRAN_LIBRARY NAMES gfortran)
 add_library(wrap_gsl SHARED
             wrap_gsl.cpp
 	    ../3rdparty/gslextras/Fresnel/fresnel.c
-	    ../3rdparty/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.cpp
-	    ../3rdparty/gslextras/Hermite/gsl_sf_hermite.c
-	   )
+	    ../3rdparty/gslextras/Jacobi/jacobi-0.9.2/src/jacobi.cpp)
 target_include_directories(wrap_gsl
-PUBLIC
-  .
-PRIVATE
-  ../3rdparty/gslextras)
-target_link_libraries(wrap_gsl ${EMSR_LIBRARIES} gsl gslcblas)
+  PUBLIC .
+  PRIVATE ../3rdparty/gslextras)
+target_link_libraries(wrap_gsl gsl gslcblas)
 
 
 add_library(wrap_gst SHARED wrap_gst.cpp)
@@ -73,45 +56,36 @@ target_link_libraries(wrap_gst
 
 add_library(wrap_cephes SHARED wrap_cephes.cpp)
 target_include_directories(wrap_cephes PUBLIC .)
-target_link_libraries(wrap_cephes ${EMSR_LIBRARIES} maths_cephes)
+target_link_libraries(wrap_cephes maths_cephes)
 
 
 add_library(wrap_burkhardt SHARED wrap_burkhardt.cpp)
 target_include_directories(wrap_burkhardt PUBLIC .)
-target_link_libraries(wrap_burkhardt ${EMSR_LIBRARIES} maths_burkhardt)
+target_link_libraries(wrap_burkhardt maths_burkhardt cxx_math_constants cxx_integration)
 
 
 add_library(wrap_lerchphi SHARED
             wrap_lerch.cpp
-	    ../3rdparty/lerchphi/Source/lerchphi.cpp
-	   )
+	    ../3rdparty/lerchphi/Source/lerchphi.cpp)
 target_include_directories(wrap_lerchphi
-PUBLIC
-  .
-PRIVATE
-  ../3rdparty/lerchphi/Source)
-target_link_libraries(wrap_lerchphi ${EMSR_LIBRARIES})
+  PUBLIC .
+  PRIVATE ../3rdparty/lerchphi/Source)
+target_link_libraries(wrap_lerchphi)
 
 
 add_library(wrap_faddeeva SHARED
             wrap_faddeeva.cpp
-	    ../3rdparty/Faddeeva/Faddeeva.cc
-	   )
+	    ../3rdparty/Faddeeva/Faddeeva.cc)
 target_include_directories(wrap_faddeeva
-PUBLIC
-  .
-PRIVATE
-  ../3rdparty/Faddeeva)
-target_link_libraries(wrap_faddeeva ${EMSR_LIBRARIES})
+  PUBLIC .
+  PRIVATE ../3rdparty/Faddeeva)
+target_link_libraries(wrap_faddeeva cxx_math_constants)
 
 
 add_library(wrap_lambert SHARED
             wrap_lambert.cpp
-	    ../3rdparty/LambertW/LambertW.cc
-	   )
-target_link_libraries(wrap_lambert ${EMSR_LIBRARIES})
+	    ../3rdparty/LambertW/LambertW.cc)
+target_link_libraries(wrap_lambert)
 target_include_directories(wrap_lambert
-PUBLIC
-  .
-PRIVATE
-  ../3rdparty/LambertW)
+  PUBLIC .
+  PRIVATE ../3rdparty/LambertW)

@@ -7,7 +7,6 @@
 #include <gsl/gsl_sf.h>
 #include <Fresnel/fresnel.h>
 #include <Jacobi/jacobi-0.9.2/src/jacobi.h>
-#include <Hermite/gsl_sf_hermite.h>
 
 #include <wrap_gsl.h>
 
@@ -526,6 +525,22 @@ hermite(unsigned int n, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_hermite_phys_e(n, x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in hermite:");
+      msg << " n=" << n << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+/// Probabilist Hermite polynomials.
+double
+hermite_he(unsigned int n, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_hermite_prob_e(n, x, &result);
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in hermite:");

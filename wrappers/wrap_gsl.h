@@ -108,6 +108,9 @@ double expint(unsigned int n, double x);
 /// Hermite polynomials.
 double hermite(unsigned int n, double x);
 
+/// Probabilist Hermite polynomials.
+double hermite_he(unsigned int n, double x);
+
 /// Hypergeometric functions.
 double hyperg(double a, double b, double c, double x);
 
