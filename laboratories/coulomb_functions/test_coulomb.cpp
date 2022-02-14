@@ -308,23 +308,25 @@ template<typename Tp>
   test_coulomb()
   {
     Func func = Coulomb;
-    Tp lambda = 0;
-    for (auto eta : {Tp{-2}, Tp{0}, Tp{2}, Tp{10}})
+    for (auto lambda : {Tp{0}, Tp{0.5L}, Tp{1}})
       {
-	std::cout << "\n\neta = " << eta << '\n';
-	for (int irho = 1; irho <= 200; ++irho)
+	for (auto eta : {Tp{-2}, Tp{0}, Tp{2}, Tp{10}})
 	  {
-	    auto rho = irho * Tp{0.1};
-	    Tp fc = 0, gc = 0, fcp = 0, gcp = 0;
-	    int ifail = 0;
-	    coulomb_steed(func, lambda, eta, rho, fc, gc, fcp, gcp, ifail);
-	    std::cout << ' ' << std::setw(16) << rho
-		      << ' ' << std::setw(16) << fc
-		      << ' ' << std::setw(16) << gc
-		      << ' ' << std::setw(16) << fcp
-		      << ' ' << std::setw(16) << gcp
-		      << ' ' << std::setw(4) << ifail
-		      << '\n';
+	    std::cout << "\n\nlambda = " << lambda << "; eta = " << eta << '\n';
+	    for (int irho = 1; irho <= 200; ++irho)
+	      {
+		auto rho = irho * Tp{0.1};
+		Tp fc = 0, gc = 0, fcp = 0, gcp = 0;
+		int ifail = 0;
+		coulomb_steed(func, lambda, eta, rho, fc, gc, fcp, gcp, ifail);
+		std::cout << ' ' << std::setw(16) << rho
+			  << ' ' << std::setw(16) << fc
+			  << ' ' << std::setw(16) << gc
+			  << ' ' << std::setw(16) << fcp
+			  << ' ' << std::setw(16) << gcp
+			  << ' ' << std::setw(4) << ifail
+			  << '\n';
+	      }
 	  }
       }
   }
