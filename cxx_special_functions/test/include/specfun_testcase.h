@@ -279,6 +279,16 @@ template<typename Tp>
     Tp f;
   };
 
+// Probabilist Hermite polynomials
+template<typename Tp>
+  struct testcase_hermite_he
+  {
+    Tp f0;
+    unsigned int n;
+    Tp x;
+    Tp f;
+  };
+
 // Hypergeometric functions.
 template<typename Tp>
   struct testcase_hyperg

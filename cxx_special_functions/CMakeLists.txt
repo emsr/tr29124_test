@@ -16,14 +16,14 @@ enable_testing()
 
 add_library(cxx_special_functions INTERFACE)
 target_include_directories(cxx_special_functions INTERFACE include)
-target_link_libraries(cxx_special_functions INTERFACE cxx_complex_math cxx_numeric_limits)
+target_link_libraries(cxx_special_functions INTERFACE cxx_complex_math cxx_numeric_limits cxx_polynomial cxx_summation)
 
 add_library(test_support INTERFACE)
 target_include_directories(test_support INTERFACE test/include)
 
 if (HAVE_BOOST)
   add_executable(testcase test/testcase.cpp)
-  target_link_libraries(testcase wrap_gsl wrap_boost wrap_burkhardt test_support)
+  target_link_libraries(testcase wrap_gsl wrap_boost wrap_burkhardt test_support cxx_special_functions)
   target_include_directories(testcase PRIVATE .)
 endif(HAVE_BOOST)
 
@@ -374,6 +374,11 @@ add_executable(check_hermite test/src/check_hermite.cc)
 target_include_directories(check_hermite PRIVATE .)
 target_link_libraries(check_hermite ${EMSR_LIBRARIES} quadmath)
 add_test(NAME check_hermite COMMAND check_hermite)
+
+add_executable(check_hermite_he test/src/check_hermite_he.cc)
+target_include_directories(check_hermite_he PRIVATE .)
+target_link_libraries(check_hermite_he ${EMSR_LIBRARIES} quadmath)
+add_test(NAME check_hermite_he COMMAND check_hermite_he)
 
 add_executable(check_heuman_lambda test/src/check_heuman_lambda.cc)
 target_include_directories(check_heuman_lambda PRIVATE .)

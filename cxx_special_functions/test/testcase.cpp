@@ -141,123 +141,6 @@ template<typename Real>
   {
     namespace fsys = std::filesystem;
 
-    using emsr::airy_ai;
-    using emsr::airy_ai_scaled;
-    using emsr::airy_bi;
-    using emsr::airy_bi_scaled;
-    using emsr::assoc_laguerre;
-    using emsr::assoc_legendre;
-    using emsr::bell;
-    using emsr::bernoulli;
-    using emsr::beta;
-    using emsr::binomial;
-    using emsr::chebyshev_t;
-    using emsr::chebyshev_u;
-    using emsr::chebyshev_v;
-    using emsr::chebyshev_w;
-    using emsr::clausen;
-    using emsr::clausen_cl;
-    using emsr::clausen_sl;
-    using emsr::coulomb_f;
-    using emsr::coulomb_g;
-    using emsr::comp_ellint_d;
-    using emsr::comp_ellint_1;
-    using emsr::comp_ellint_2;
-    using emsr::comp_ellint_3;
-    using emsr::conf_hyperg;
-    using emsr::conf_hyperg_lim;
-    using emsr::coshint;
-    using emsr::cosint;
-    using emsr::cos_pi;
-    using emsr::cyl_bessel_i;
-    using emsr::cyl_bessel_i_scaled;
-    using emsr::cyl_bessel_j;
-    using emsr::cyl_bessel_k;
-    using emsr::cyl_bessel_k_scaled;
-    using emsr::cyl_hankel_1;
-    using emsr::cyl_hankel_2;
-    using emsr::cyl_neumann;
-    using emsr::dawson;
-    using emsr::debye;
-    using emsr::dilog;
-    using emsr::dirichlet_beta;
-    using emsr::dirichlet_eta;
-    using emsr::double_factorial;
-    using emsr::ellint_1;
-    using emsr::ellint_2;
-    using emsr::ellint_3;
-    using emsr::ellint_d;
-    using emsr::ellint_rc;
-    using emsr::ellint_rd;
-    using emsr::ellint_rf;
-    using emsr::ellint_rg;
-    using emsr::ellint_rj;
-    using emsr::euler;
-    using emsr::eulerian_1;
-    using emsr::expint;
-    using emsr::expint;
-    using emsr::factorial;
-    using emsr::falling_factorial;
-    using emsr::fresnel_c;
-    using emsr::fresnel_s;
-    using emsr::gegenbauer;
-    using emsr::hermite;
-    using emsr::heuman_lambda;
-    using emsr::hurwitz_zeta;
-    using emsr::hyperg;
-    using emsr::ibeta;
-    using emsr::ibetac;
-    using emsr::jacobi;
-    using emsr::jacobi_sn;
-    using emsr::jacobi_cn;
-    using emsr::jacobi_dn;
-    using emsr::jacobi_zeta;
-    using emsr::laguerre;
-    using emsr::lah;
-    using emsr::lbinomial;
-    using emsr::ldouble_factorial;
-    using emsr::legendre;
-    using emsr::legendre_q;
-    using emsr::lfactorial;
-    using emsr::lfalling_factorial;
-    using emsr::lrising_factorial;
-    using emsr::owens_t;
-    using emsr::gamma_p;
-    using emsr::polygamma;
-    using emsr::digamma;
-    using emsr::gamma_q;
-    using emsr::radpoly;
-    using emsr::riemann_zeta;
-    using emsr::rising_factorial;
-    using emsr::sinc;
-    using emsr::sinc_pi;
-    using emsr::sinhc;
-    using emsr::sinhc_pi;
-    using emsr::sinhint;
-    using emsr::sinint;
-    using emsr::sin_pi;
-    using emsr::sph_bessel;
-    using emsr::sph_bessel_i;
-    using emsr::sph_bessel_k;
-    using emsr::sph_hankel_1;
-    using emsr::sph_hankel_2;
-    using emsr::sph_harmonic;
-    using emsr::sph_legendre;
-    using emsr::sph_neumann;
-    using emsr::stirling_1;
-    using emsr::stirling_2;
-    using emsr::tgamma_lower;
-    using emsr::tgamma;
-    using emsr::theta_1;
-    using emsr::theta_2;
-    using emsr::theta_3;
-    using emsr::theta_4;
-    using emsr::theta_s;
-    using emsr::theta_c;
-    using emsr::theta_d;
-    using emsr::theta_n;
-    using emsr::zernike;
-
     const auto _S_pi = emsr::pi_v<Real>;
 
     // Unsigned integer orders for various polynomials, harmonics.
@@ -308,7 +191,7 @@ template<typename Real>
     basename = "airy_ai";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_airy_ai(filename);
-    maketest(airy_ai, gsl::airy_ai,
+    maketest(emsr::airy_ai, gsl::airy_ai,
 	     "testcase_airy_ai", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 				std::make_pair(true, true), 41),
@@ -320,7 +203,7 @@ template<typename Real>
     basename = "airy_ai_scaled";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_airy_ai_scaled(filename);
-    maketest(airy_ai_scaled, gsl::airy_ai_scaled,
+    maketest(emsr::airy_ai_scaled, gsl::airy_ai_scaled,
 	     "testcase_airy_ai_scaled", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{10}),
 				std::make_pair(true, true), 21),
@@ -332,7 +215,7 @@ template<typename Real>
     basename = "airy_bi";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_airy_bi(filename);
-    maketest(airy_bi, gsl::airy_bi,
+    maketest(emsr::airy_bi, gsl::airy_bi,
 	     "testcase_airy_bi", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 				std::make_pair(true, true), 41),
@@ -344,7 +227,7 @@ template<typename Real>
     basename = "airy_bi_scaled";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_airy_bi_scaled(filename);
-    maketest(airy_bi_scaled, gsl::airy_bi_scaled,
+    maketest(emsr::airy_bi_scaled, gsl::airy_bi_scaled,
 	     "testcase_airy_bi_scaled", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{10}),
 				std::make_pair(true, true), 21),
@@ -356,7 +239,7 @@ template<typename Real>
     basename = "assoc_laguerre";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_assoc_laguerre(filename);
-    maketest(assoc_laguerre, gsl::assoc_laguerre,
+    maketest(emsr::assoc_laguerre, gsl::assoc_laguerre,
 	     "testcase_assoc_laguerre", nsname, basename,
 	     "n", vorder, "alpha", vorder,
 	     "x", fill_argument(std::make_pair(Real{-50}, Real{100}),
@@ -369,7 +252,7 @@ template<typename Real>
     basename = "assoc_legendre";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_assoc_legendre(filename);
-    maketest(assoc_legendre, beast::assoc_legendre,
+    maketest(emsr::assoc_legendre, beast::assoc_legendre,
 	     "testcase_assoc_legendre", nsname, basename,
 	     "l", vorder, "m", vorder,
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
@@ -382,7 +265,7 @@ template<typename Real>
     basename = "beta";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_beta(filename);
-    maketest(beta, gsl::beta,
+    maketest(emsr::beta, gsl::beta,
 	     "testcase_beta", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(false, true), 11),
@@ -397,7 +280,7 @@ template<typename Real>
     basename = "comp_ellint_1";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_comp_ellint_1(filename);
-    maketest(comp_ellint_1, beast::comp_ellint_1,
+    maketest(emsr::comp_ellint_1, beast::comp_ellint_1,
 	     "testcase_comp_ellint_1", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
@@ -410,7 +293,7 @@ template<typename Real>
     basename = "comp_ellint_2";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_comp_ellint_2(filename);
-    maketest(comp_ellint_2, beast::comp_ellint_2,
+    maketest(emsr::comp_ellint_2, beast::comp_ellint_2,
 	     "testcase_comp_ellint_2", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
@@ -423,7 +306,7 @@ template<typename Real>
     basename = "comp_ellint_3";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_comp_ellint_3(filename);
-    maketest(comp_ellint_3, beast::comp_ellint_3,
+    maketest(emsr::comp_ellint_3, beast::comp_ellint_3,
 	     "testcase_comp_ellint_3", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
@@ -438,7 +321,7 @@ template<typename Real>
     basename = "conf_hyperg";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_conf_hyperg(filename);
-    maketest(conf_hyperg, gsl::conf_hyperg,
+    maketest(emsr::conf_hyperg, gsl::conf_hyperg,
 	     "testcase_conf_hyperg",
 	     "emsr",
 	      basename, "a", vab,
@@ -455,7 +338,7 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cyl_bessel_i(filename);
     test =
-    maketest(cyl_bessel_i, beast::cyl_bessel_i,
+    maketest(emsr::cyl_bessel_i, beast::cyl_bessel_i,
 	     "testcase_cyl_bessel_i", nsname, basename,
 	     "nu", cyl_neg_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -463,14 +346,14 @@ template<typename Real>
 	     "Boost",
 	     file_cyl_bessel_i, false);
     test =
-    maketest(cyl_bessel_i, gsl::cyl_bessel_i,
+    maketest(emsr::cyl_bessel_i, gsl::cyl_bessel_i,
 	     "testcase_cyl_bessel_i", nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     "GSL",
 	     file_cyl_bessel_i, false, test);
-    maketest(cyl_bessel_i, gsl::cyl_bessel_i,
+    maketest(emsr::cyl_bessel_i, gsl::cyl_bessel_i,
 	     "testcase_cyl_bessel_i", nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -484,7 +367,7 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cyl_bessel_i_scaled(filename);
     test =
-    maketest(cyl_bessel_i_scaled, gsl::cyl_bessel_i_scaled,
+    maketest(emsr::cyl_bessel_i_scaled, gsl::cyl_bessel_i_scaled,
 	     "testcase_cyl_bessel_i_scaled", nsname, basename,
 	     "nu", {100},
 	     "x", fill_argument(std::make_pair(Real{1000}, Real{2000}),
@@ -498,7 +381,7 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cyl_bessel_j(filename);
     test =
-    maketest(cyl_bessel_j, beast::cyl_bessel_j,
+    maketest(emsr::cyl_bessel_j, beast::cyl_bessel_j,
 	     "testcase_cyl_bessel_j", nsname, basename,
 	     "nu", cyl_neg_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -506,7 +389,7 @@ template<typename Real>
 	     "Boost",
 	     file_cyl_bessel_j, false);
     test =
-    maketest(cyl_bessel_j, beast::cyl_bessel_j,//gsl::cyl_bessel_j,
+    maketest(emsr::cyl_bessel_j, beast::cyl_bessel_j,//gsl::cyl_bessel_j,
 	     "testcase_cyl_bessel_j", nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -514,14 +397,14 @@ template<typename Real>
 	     "Boost",//"GSL",
 	     file_cyl_bessel_j, false, test);
     test =
-    maketest(cyl_bessel_j, beast::cyl_bessel_j,//gsl::cyl_bessel_j,
+    maketest(emsr::cyl_bessel_j, beast::cyl_bessel_j,//gsl::cyl_bessel_j,
 	     "testcase_cyl_bessel_j", nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(true, true), 21),
 	     "Boost",//"GSL",
 	     file_cyl_bessel_j, false, test);
-    maketest(cyl_bessel_j, beast::cyl_bessel_j,//gsl::cyl_bessel_j,
+    maketest(emsr::cyl_bessel_j, beast::cyl_bessel_j,//gsl::cyl_bessel_j,
 	     "testcase_cyl_bessel_j", nsname, basename,
 	     "nu", {100},
 	     "x", fill_argument(std::make_pair(Real{1000}, Real{2000}),
@@ -536,7 +419,7 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cyl_bessel_k(filename);
     test =
-    maketest(cyl_bessel_k, beast::cyl_bessel_k,
+    maketest(emsr::cyl_bessel_k, beast::cyl_bessel_k,
 	     "testcase_cyl_bessel_k", nsname, basename,
 	     "nu", cyl_neg_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -544,14 +427,14 @@ template<typename Real>
 	     "Boost",
 	     file_cyl_bessel_k, false);
     test =
-    maketest(cyl_bessel_k, gsl::cyl_bessel_k,
+    maketest(emsr::cyl_bessel_k, gsl::cyl_bessel_k,
 	     "testcase_cyl_bessel_k", nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     "GSL",
 	     file_cyl_bessel_k, false, test);
-    maketest(cyl_bessel_k, gsl::cyl_bessel_k,
+    maketest(emsr::cyl_bessel_k, gsl::cyl_bessel_k,
 	     "testcase_cyl_bessel_k", nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -565,7 +448,7 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cyl_bessel_k_scaled(filename);
     test =
-    maketest(cyl_bessel_k_scaled, gsl::cyl_bessel_k_scaled,
+    maketest(emsr::cyl_bessel_k_scaled, gsl::cyl_bessel_k_scaled,
 	     "testcase_cyl_bessel_k_scaled", nsname, basename,
 	     "nu", {100},
 	     "x", fill_argument(std::make_pair(Real{1000}, Real{2000}),
@@ -580,7 +463,7 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cyl_neumann(filename);
     test =
-    maketest(cyl_neumann, beast::cyl_neumann,
+    maketest(emsr::cyl_neumann, beast::cyl_neumann,
 	     "testcase_cyl_neumann", nsname, basename,
 	     "nu", cyl_neg_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -588,7 +471,7 @@ template<typename Real>
 	     "Boost",
 	     file_cyl_neumann, false);
     test =
-    maketest(cyl_neumann, gsl::cyl_neumann,
+    maketest(emsr::cyl_neumann, gsl::cyl_neumann,
 	     "testcase_cyl_neumann", nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -596,14 +479,14 @@ template<typename Real>
 	     "GSL",
 	     file_cyl_neumann, false, test);
     test =
-    maketest(cyl_neumann, gsl::cyl_neumann,
+    maketest(emsr::cyl_neumann, gsl::cyl_neumann,
 	     "testcase_cyl_neumann", nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 				std::make_pair(false, true), 21),
 	     "GSL",
 	     file_cyl_neumann, false, test);
-    maketest(cyl_neumann, gsl::cyl_neumann,
+    maketest(emsr::cyl_neumann, gsl::cyl_neumann,
 	     "testcase_cyl_neumann", nsname, basename,
 	     "nu", {100},
 	     "x", fill_argument(std::make_pair(Real{1000}, Real{2000}),
@@ -617,7 +500,7 @@ template<typename Real>
     basename = "ellint_1";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_1(filename);
-    maketest(ellint_1, beast::ellint_1,
+    maketest(emsr::ellint_1, beast::ellint_1,
 	     "testcase_ellint_1", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
@@ -631,7 +514,7 @@ template<typename Real>
     basename = "ellint_2";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_2(filename);
-    maketest(ellint_2, beast::ellint_2,
+    maketest(emsr::ellint_2, beast::ellint_2,
 	     "testcase_ellint_2", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
@@ -645,7 +528,7 @@ template<typename Real>
     basename = "ellint_3";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_ellint_3(filename);
-    maketest(ellint_3, beast::ellint_3,
+    maketest(emsr::ellint_3, beast::ellint_3,
 	     "testcase_ellint_3", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
@@ -662,13 +545,13 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_expint(filename);
     test =
-    maketest(expint, gsl::expint,
+    maketest(emsr::expint, gsl::expint,
 	     "testcase_expint", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{-50}, Real{0}),
 				std::make_pair(true, false), 51),
 	     "GSL",
 	     file_expint, false);
-    maketest(expint, gsl::expint,
+    maketest(emsr::expint, gsl::expint,
 	     "testcase_expint", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{50}),
 				std::make_pair(false, true), 51),
@@ -681,20 +564,41 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_hermite(filename);
     test =
-    maketest(hermite, gsl::hermite,
+    maketest(emsr::hermite, gsl::hermite,
 	     "testcase_hermite", nsname, basename,
 	     "n", vorder,
 	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
 				std::make_pair(true, true), 201),
 	     "GSL",
 	     file_hermite, false);
-    maketest(hermite, gsl::hermite,
+    maketest(emsr::hermite, gsl::hermite,
 	     "testcase_hermite", nsname, basename,
 	     "n", {8, 18, 32, 50, 72, 128, 200, 1250, 5000},
 	     "x", {Real{4}, Real{6}, Real{8}, Real{10}, Real{12},
 		   Real{16}, Real{20}, Real{50}, Real{100}},
 	     "GSL",
 	     file_hermite, true, test);
+
+    // Propabilist Hermite polynomials
+    std::cout << "hermite_he\n" << std::flush;
+    basename = "hermite_he";
+    filename = get_filename(path, prefix, basename, "", ".cc");
+    std::ofstream file_hermite_he(filename);
+    test =
+    maketest(emsr::hermite_he, gsl::hermite_he,
+	     "testcase_hermite_he", nsname, basename,
+	     "n", vorder,
+	     "x", fill_argument(std::make_pair(Real{-10}, Real{10}),
+				std::make_pair(true, true), 201),
+	     "GSL",
+	     file_hermite_he, false);
+    maketest(emsr::hermite_he, gsl::hermite_he,
+	     "testcase_hermite_he", nsname, basename,
+	     "n", {8, 18, 32, 50, 72, 128, 200, 1250, 5000},
+	     "x", {Real{4}, Real{6}, Real{8}, Real{10}, Real{12},
+		   Real{16}, Real{20}, Real{50}, Real{100}},
+	     "GSL",
+	     file_hermite_he, true, test);
 
     // Hypergeometric functions.
     // Skip the singularity at c = 0.
@@ -703,7 +607,7 @@ template<typename Real>
     basename = "hyperg";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_hyperg(filename);
-    maketest(hyperg, gsl::hyperg, "testcase_hyperg",
+    maketest(emsr::hyperg, gsl::hyperg, "testcase_hyperg",
 	     "emsr",
 	     basename, "a", vab,
 	     "b", vab,
@@ -719,7 +623,7 @@ template<typename Real>
     basename = "laguerre";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_laguerre(filename);
-    maketest(laguerre, gsl::laguerre,
+    maketest(emsr::laguerre, gsl::laguerre,
 	     "testcase_laguerre", nsname, basename,
 	     "n", vorder,
 	     "x", fill_argument(std::make_pair(Real{-50}, Real{100}),
@@ -732,7 +636,7 @@ template<typename Real>
     basename = "legendre";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_legendre(filename);
-    maketest(legendre, beast::legendre_p,
+    maketest(emsr::legendre, beast::legendre_p,
 	     "testcase_legendre", nsname, basename,
 	     "l", vorder,
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
@@ -747,13 +651,13 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_riemann_zeta(filename);
     test =
-    maketest(riemann_zeta, beast::riemann_zeta,
+    maketest(emsr::riemann_zeta, beast::riemann_zeta,
 	     "testcase_riemann_zeta", nsname, basename,
 	     "s", fill_argument(std::make_pair(Real{-10}, Real{1}),
 				std::make_pair(true, false), 56),
 	     "Boost",
 	     file_riemann_zeta, false);
-    maketest(riemann_zeta, beast::riemann_zeta,
+    maketest(emsr::riemann_zeta, beast::riemann_zeta,
 	     "testcase_riemann_zeta", nsname, basename,
 	     "s", fill_argument(std::make_pair(Real{1}, Real{30}),
 				std::make_pair(false, true), 146),
@@ -766,7 +670,7 @@ template<typename Real>
     basename = "hurwitz_zeta";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_hurwitz_zeta(filename);
-    maketest(hurwitz_zeta, gsl::hurwitz_zeta,
+    maketest(emsr::hurwitz_zeta, gsl::hurwitz_zeta,
 	     "testcase_hurwitz_zeta", nsname, basename,
 	     "s", fill_argument(std::make_pair(Real{1}, Real{30}),
 				std::make_pair(false, true), 146),
@@ -781,14 +685,14 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_sph_bessel(filename);
     test =
-    maketest(sph_bessel, gsl::sph_bessel,
+    maketest(emsr::sph_bessel, gsl::sph_bessel,
 	     "testcase_sph_bessel", nsname, basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     "GSL",
 	     file_sph_bessel, false);
-    maketest(sph_bessel, gsl::sph_bessel,
+    maketest(emsr::sph_bessel, gsl::sph_bessel,
 	     "testcase_sph_bessel", nsname, basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -801,7 +705,7 @@ template<typename Real>
     basename = "sph_legendre";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_sph_legendre(filename);
-    maketest(sph_legendre, beast::sph_legendre,
+    maketest(emsr::sph_legendre, beast::sph_legendre,
 	     "testcase_sph_legendre", nsname, basename,
 	     "l", vorder, "m", vorder,
 	     "theta", fill_argument(std::make_pair(Real{0}, _S_pi),
@@ -816,14 +720,14 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_sph_neumann(filename);
     test =
-    maketest(sph_neumann, gsl::sph_neumann,
+    maketest(emsr::sph_neumann, gsl::sph_neumann,
 	     "testcase_sph_neumann", nsname, basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     "GSL",
 	     file_sph_neumann, false);
-    maketest(sph_neumann, gsl::sph_neumann,
+    maketest(emsr::sph_neumann, gsl::sph_neumann,
 	     "testcase_sph_neumann", nsname, basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -836,7 +740,7 @@ template<typename Real>
     basename = "ellint_rc";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rc(filename);
-    maketest(ellint_rc, beast::ellint_rc,
+    maketest(emsr::ellint_rc, beast::ellint_rc,
 	     "testcase_ellint_rc", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(false, true), 11),
@@ -850,7 +754,7 @@ template<typename Real>
     basename = "ellint_rd";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rd(filename);
-    maketest(ellint_rd, beast::ellint_rd,
+    maketest(emsr::ellint_rd, beast::ellint_rd,
 	     "testcase_ellint_rd", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(false, true), 11),
@@ -866,7 +770,7 @@ template<typename Real>
     basename = "ellint_rf";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rf(filename);
-    maketest(ellint_rf, beast::ellint_rf,
+    maketest(emsr::ellint_rf, beast::ellint_rf,
 	     "testcase_ellint_rf", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(false, true), 11),
@@ -882,7 +786,7 @@ template<typename Real>
     basename = "ellint_rg";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rg(filename);
-    maketest(ellint_rg, beast::ellint_rg,
+    maketest(emsr::ellint_rg, beast::ellint_rg,
 	     "testcase_ellint_rg", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(false, true), 11),
@@ -898,7 +802,7 @@ template<typename Real>
     basename = "ellint_rj";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_rj(filename);
-    maketest(ellint_rj, beast::ellint_rj,
+    maketest(emsr::ellint_rj, beast::ellint_rj,
 	     "testcase_ellint_rj", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{0}, +Real{5}),
 				std::make_pair(false, true), 11),
@@ -916,7 +820,7 @@ template<typename Real>
     basename = "dilog";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_dilog(filename);
-    maketest(dilog, gsl::dilog,
+    maketest(emsr::dilog, gsl::dilog,
 	     "testcase_dilog", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{-10}, Real{1}),
 				std::make_pair(true, true), 45),
@@ -928,7 +832,7 @@ template<typename Real>
     basename = "lgamma";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_lgamma(filename);
-    maketest(lgamma, beast::lgamma,
+    maketest(emsr::lgamma, beast::lgamma,
 	     "testcase_lgamma", nsname, basename,
 	     "a", fill_argument(std::make_pair(Real{-10}, Real{20}),
 				std::make_pair(false, true), 151),
@@ -941,7 +845,7 @@ template<typename Real>
     basename = "tgamma";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_tgamma(filename);
-    maketest(tgamma, beast::tgamma,
+    maketest(emsr::tgamma, beast::tgamma,
 	     "testcase_tgamma", nsname, basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 11),
@@ -953,7 +857,7 @@ template<typename Real>
     basename = "tgamma";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_tgamma(filename);
-    maketest(tgamma, beast::tgamma,
+    maketest(emsr::tgamma, beast::tgamma,
 	     "testcase_tgamma", nsname, basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 11),
@@ -967,7 +871,7 @@ template<typename Real>
     basename = "tgamma_lower";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_tgamma_lower(filename);
-    maketest(tgamma_lower, beast::tgamma_lower,
+    maketest(emsr::tgamma_lower, beast::tgamma_lower,
 	     "testcase_tgamma_lower", nsname, basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 11),
@@ -981,7 +885,7 @@ template<typename Real>
     basename = "gamma_p";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_gamma_p(filename);
-    maketest(gamma_p, gsl::gamma_p,
+    maketest(emsr::gamma_p, gsl::gamma_p,
 	     "testcase_gamma_p", nsname, basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 11),
@@ -995,7 +899,7 @@ template<typename Real>
     basename = "gamma_q";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_gamma_q(filename);
-    maketest(gamma_q, gsl::gamma_q,
+    maketest(emsr::gamma_q, gsl::gamma_q,
 	     "testcase_gamma_q", nsname, basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 11),
@@ -1009,7 +913,7 @@ template<typename Real>
     basename = "ibeta";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ibeta(filename);
-    maketest<Real, Real, Real, Real>(ibeta, gsl::ibeta,
+    maketest<Real, Real, Real, Real>(emsr::ibeta, gsl::ibeta,
 	     "testcase_ibeta", nsname, basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 11),
@@ -1025,7 +929,7 @@ template<typename Real>
     basename = "ibetac";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ibetac(filename);
-    maketest<Real, Real, Real, Real>(ibetac, beast::ibetac,
+    maketest<Real, Real, Real, Real>(emsr::ibetac, beast::ibetac,
 	     "testcase_ibetac", nsname, basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 11),
@@ -1043,13 +947,13 @@ template<typename Real>
     std::ofstream file_digamma(filename);
     const auto skip = Real{1} / Real{16};
     test =
-    maketest(digamma, beast::digamma,
+    maketest(emsr::digamma, beast::digamma,
 	     "testcase_digamma", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{-10} + skip, Real{+10} + skip),
 				std::make_pair(true, true), 201),
 	     "Boost",
 	     file_digamma, false);
-    maketest(digamma, beast::digamma,
+    maketest(emsr::digamma, beast::digamma,
 	     "testcase_digamma", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{1}, Real{100}),
 				std::make_pair(true, true), 199),
@@ -1062,14 +966,14 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_polygamma(filename);
     test =
-    maketest(polygamma, beast::polygamma,
+    maketest(emsr::polygamma, beast::polygamma,
 	     "testcase_polygamma", nsname, basename,
 	     "m", {0U, 1U, 2U, 3U, 5U, 10U},
 	     "x", fill_argument(std::make_pair(Real{-10} + skip, Real{+10} + skip),
 				std::make_pair(true, true), 201),
 	     "Boost",
 	     file_polygamma, false);
-    maketest(polygamma, beast::polygamma,
+    maketest(emsr::polygamma, beast::polygamma,
 	     "testcase_polygamma", nsname, basename,
 	     "m", {0U, 1U, 2U, 3U, 5U, 10U},
 	     "x", fill_argument(std::make_pair(Real{1}, Real{100}),
@@ -1082,7 +986,7 @@ template<typename Real>
     basename = "sinint";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_sinint(filename);
-    maketest(sinint, gsl::sinint,
+    maketest(emsr::sinint, gsl::sinint,
 	     "testcase_sinint", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{+10}),
 				std::make_pair(false, true), 101),
@@ -1094,7 +998,7 @@ template<typename Real>
     basename = "cosint";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cosint(filename);
-    maketest(cosint, gsl::cosint,
+    maketest(emsr::cosint, gsl::cosint,
 	     "testcase_cosint", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{+10}),
 				std::make_pair(false, true), 101),
@@ -1106,7 +1010,7 @@ template<typename Real>
     basename = "sinhint";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_sinhint(filename);
-    maketest(sinhint, gsl::sinhint,
+    maketest(emsr::sinhint, gsl::sinhint,
 	     "testcase_sinhint", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{+5}),
 				std::make_pair(false, true), 101),
@@ -1118,7 +1022,7 @@ template<typename Real>
     basename = "coshint";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_coshint(filename);
-    maketest(coshint, gsl::coshint,
+    maketest(emsr::coshint, gsl::coshint,
 	     "testcase_coshint", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{+5}),
 				std::make_pair(false, true), 101),
@@ -1130,7 +1034,7 @@ template<typename Real>
     basename = "dawson";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_dawson(filename);
-    maketest(dawson, gsl::dawson,
+    maketest(emsr::dawson, gsl::dawson,
 	     "testcase_dawson", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{+20}),
 				std::make_pair(false, true), 201),
@@ -1142,7 +1046,7 @@ template<typename Real>
     basename = "jacobi_sn";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_jacobi_sn(filename);
-    maketest(jacobi_sn, beast::jacobi_sn,
+    maketest(emsr::jacobi_sn, beast::jacobi_sn,
 	     "testcase_jacobi_sn", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{+1}),
 				std::make_pair(true, true), 21),
@@ -1156,7 +1060,7 @@ template<typename Real>
     basename = "jacobi_cn";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_jacobi_cn(filename);
-    maketest(jacobi_cn, beast::jacobi_cn,
+    maketest(emsr::jacobi_cn, beast::jacobi_cn,
 	     "testcase_jacobi_cn", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{+1}),
 				std::make_pair(true, true), 21),
@@ -1170,7 +1074,7 @@ template<typename Real>
     basename = "jacobi_dn";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_jacobi_dn(filename);
-    maketest(jacobi_dn, beast::jacobi_dn,
+    maketest(emsr::jacobi_dn, beast::jacobi_dn,
 	     "testcase_jacobi_dn", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{+1}),
 				std::make_pair(true, true), 21),
@@ -1185,7 +1089,7 @@ template<typename Real>
     basename = "expint";
     filename = get_filename(path, prefix, basename, "_en", ".cc");
     std::ofstream file_expint_en(filename);
-    maketest(expint, gsl::expint,
+    maketest(emsr::expint, gsl::expint,
 	     "testcase_expint_en", nsname, basename,
 	     "n", {0, 1, 2, 3, 5},
 	     "x", fill_argument(std::make_pair(Real{0}, Real{50}),
@@ -1198,7 +1102,7 @@ template<typename Real>
     basename = "fresnel_c";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_fresnel_c(filename);
-    maketest(fresnel_c, gsl::fresnel_c,
+    maketest(emsr::fresnel_c, gsl::fresnel_c,
 	     "testcase_fresnel_c", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{-20}, Real{+20}),
 				std::make_pair(false, true), 401),
@@ -1210,7 +1114,7 @@ template<typename Real>
     basename = "fresnel_s";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_fresnel_s(filename);
-    maketest(fresnel_s, gsl::fresnel_s,
+    maketest(emsr::fresnel_s, gsl::fresnel_s,
 	     "testcase_fresnel_s", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{-20}, Real{+20}),
 				std::make_pair(false, true), 401),
@@ -1222,7 +1126,7 @@ template<typename Real>
     basename = "sinc";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_sinc(filename);
-    maketest(sinc, gsl::sinc,
+    maketest(emsr::sinc, gsl::sinc,
 	     "testcase_sinc", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{-20}, Real{+20}),
 				std::make_pair(true, true), 401),
@@ -1234,7 +1138,7 @@ template<typename Real>
     basename = "sinc_pi";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_sinc_pi(filename);
-    maketest(sinc_pi, gsl::sinc_pi,
+    maketest(emsr::sinc_pi, gsl::sinc_pi,
 	     "testcase_sinc_pi", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{-20}, Real{+20}),
 				std::make_pair(true, true), 401),
@@ -1246,7 +1150,7 @@ template<typename Real>
     basename = "lrising_factorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_lrising_factorial(filename);
-    maketest(lrising_factorial, beast::lrising_factorial,
+    maketest(emsr::lrising_factorial, beast::lrising_factorial,
 	     "testcase_lrising_factorial", nsname, basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
@@ -1259,7 +1163,7 @@ template<typename Real>
     basename = "lfalling_factorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_lfalling_factorial(filename);
-    maketest(lfalling_factorial, beast::lfalling_factorial,
+    maketest(emsr::lfalling_factorial, beast::lfalling_factorial,
 	     "testcase_lfalling_factorial", nsname, basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
@@ -1272,7 +1176,7 @@ template<typename Real>
     basename = "rising_factorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_rising_factorial(filename);
-    maketest(rising_factorial, beast::rising_factorial,
+    maketest(emsr::rising_factorial, beast::rising_factorial,
 	     "testcase_rising_factorial", nsname, basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
@@ -1285,7 +1189,7 @@ template<typename Real>
     basename = "falling_factorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_falling_factorial(filename);
-    maketest(falling_factorial, beast::falling_factorial,
+    maketest(emsr::falling_factorial, beast::falling_factorial,
 	     "testcase_falling_factorial", nsname, basename,
 	     "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
@@ -1299,14 +1203,14 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_sph_bessel_i(filename);
     test =
-    maketest(sph_bessel_i, gsl::sph_bessel_i,
+    maketest(emsr::sph_bessel_i, gsl::sph_bessel_i,
 	     "testcase_sph_bessel_i", nsname, basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(true, true), 21),
 	     "GSL",
 	     file_sph_bessel_i, false);
-    maketest(sph_bessel_i, gsl::sph_bessel_i,
+    maketest(emsr::sph_bessel_i, gsl::sph_bessel_i,
 	     "testcase_sph_bessel_i", nsname, basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -1320,14 +1224,14 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_sph_bessel_k(filename);
     test =
-    maketest(sph_bessel_k, gsl::sph_bessel_k,
+    maketest(emsr::sph_bessel_k, gsl::sph_bessel_k,
 	     "testcase_sph_bessel_k", nsname, basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
 				std::make_pair(false, true), 21),
 	     "GSL",
 	     file_sph_bessel_k, false);
-    maketest(sph_bessel_k, gsl::sph_bessel_k,
+    maketest(emsr::sph_bessel_k, gsl::sph_bessel_k,
 	     "testcase_sph_bessel_k", nsname, basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -1340,7 +1244,7 @@ template<typename Real>
     basename = "legendre_q";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_legendre_q(filename);
-    maketest(legendre_q, gsl::legendre_q,
+    maketest(emsr::legendre_q, gsl::legendre_q,
 	     "testcase_legendre_q", nsname, basename,
 	     "l", vorder,
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{1}),
@@ -1353,7 +1257,7 @@ template<typename Real>
     basename = "factorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_factorial(filename);
-    maketest(factorial<Real>, gsl::factorial,
+    maketest(emsr::factorial<Real>, gsl::factorial,
 	     "testcase_factorial", nsname, basename,
 	     "n", fill_argument(std::make_pair(0U, 50U),
 				std::make_pair(true, true), 51),
@@ -1365,7 +1269,7 @@ template<typename Real>
     basename = "lfactorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_lfactorial(filename);
-    maketest(lfactorial<Real>, gsl::lfactorial,
+    maketest(emsr::lfactorial<Real>, gsl::lfactorial,
 	     "testcase_lfactorial", nsname, basename,
 	     "n", fill_argument(std::make_pair(0U, 500U),
 				std::make_pair(true, true), 501),
@@ -1377,7 +1281,7 @@ template<typename Real>
     basename = "double_factorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_double_factorial(filename);
-    maketest(double_factorial<Real>, gsl::double_factorial,
+    maketest(emsr::double_factorial<Real>, gsl::double_factorial,
 	     "testcase_double_factorial", nsname, basename,
 	     "n", fill_argument(std::make_pair(0, 50),
 				std::make_pair(true, true), 51),
@@ -1389,7 +1293,7 @@ template<typename Real>
     basename = "ldouble_factorial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_ldouble_factorial(filename);
-    maketest(ldouble_factorial<Real>, gsl::ldouble_factorial,
+    maketest(emsr::ldouble_factorial<Real>, gsl::ldouble_factorial,
 	     "testcase_ldouble_factorial", nsname, basename,
 	     "n", fill_argument(std::make_pair(0, 500),
 				std::make_pair(true, true), 501),
@@ -1401,7 +1305,7 @@ template<typename Real>
     basename = "binomial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_binomial(filename);
-    maketest(binomial<Real>, gsl::binomial,
+    maketest(emsr::binomial<Real>, gsl::binomial,
 	     "testcase_binomial", nsname, basename,
 	     "n", fill_argument(std::make_pair(0U, 50U),
 				std::make_pair(true, true), 51),
@@ -1415,7 +1319,7 @@ template<typename Real>
     basename = "lbinomial";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_lbinomial(filename);
-    maketest(lbinomial<Real>, gsl::lbinomial,
+    maketest(emsr::lbinomial<Real>, gsl::lbinomial,
 	     "testcase_lbinomial", nsname, basename,
 	     "n", fill_argument(std::make_pair(0U, 200U),
 				std::make_pair(true, true), 201),
@@ -1429,7 +1333,7 @@ template<typename Real>
     basename = "gegenbauer";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_gegenbauer(filename);
-    maketest(gegenbauer, gsl::gegenbauer,
+    maketest(emsr::gegenbauer, gsl::gegenbauer,
 	     "testcase_gegenbauer", nsname, basename,
 	     "n", vorder,
 	     "lambda", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -1444,7 +1348,7 @@ template<typename Real>
     basename = "chebyshev_t";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_chebyshev_t(filename);
-    maketest(chebyshev_t, chebyshev_t_trig<double>,
+    maketest(emsr::chebyshev_t, chebyshev_t_trig<double>,
 	     "testcase_chebyshev_t", nsname, basename,
 	     "n", {0U, 1U, 5U, 8U, 10U, 20U, 40U, 100U},
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{+1}),
@@ -1457,7 +1361,7 @@ template<typename Real>
     basename = "chebyshev_u";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_chebyshev_u(filename);
-    maketest(chebyshev_u, chebyshev_u_trig<double>,
+    maketest(emsr::chebyshev_u, chebyshev_u_trig<double>,
 	     "testcase_chebyshev_u", nsname, basename,
 	     "n", {0U, 1U, 5U, 8U, 10U, 20U, 40U, 100U},
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{+1}),
@@ -1470,7 +1374,7 @@ template<typename Real>
     basename = "chebyshev_v";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_chebyshev_v(filename);
-    maketest(chebyshev_v, chebyshev_v_trig<double>,
+    maketest(emsr::chebyshev_v, chebyshev_v_trig<double>,
 	     "testcase_chebyshev_v", nsname, basename,
 	     "n", {0U, 1U, 5U, 8U, 10U, 20U, 40U, 100U},
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{+1}),
@@ -1483,7 +1387,7 @@ template<typename Real>
     basename = "chebyshev_w";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_chebyshev_w(filename);
-    maketest(chebyshev_w, chebyshev_w_trig<double>,
+    maketest(emsr::chebyshev_w, chebyshev_w_trig<double>,
 	     "testcase_chebyshev_w", nsname, basename,
 	     "n", {0U, 1U, 5U, 8U, 10U, 20U, 40U, 100U},
 	     "x", fill_argument(std::make_pair(Real{-1}, Real{+1}),
@@ -1496,7 +1400,7 @@ template<typename Real>
     basename = "jacobi";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_jacobi(filename);
-    maketest(jacobi, gsl::jacobi,
+    maketest(emsr::jacobi, gsl::jacobi,
 	     "testcase_jacobi", nsname, basename,
 	     "n", vorder,
 	     "alpha", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -1513,7 +1417,7 @@ template<typename Real>
     basename = "radpoly";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_radpoly(filename);
-    maketest(radpoly, gsl::radpoly,
+    maketest(emsr::radpoly, gsl::radpoly,
 	     "testcase_radpoly", nsname, basename,
 	     "n", vorder, "m", vorder,
              "rho", fill_argument(std::make_pair(Real{0}, Real{1}),
@@ -1526,7 +1430,7 @@ template<typename Real>
     basename = "zernike";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_zernike(filename);
-    maketest(zernike, gsl::zernike,
+    maketest(emsr::zernike, gsl::zernike,
 	     "testcase_zernike", nsname, basename,
 	     "n", vorder, "m", iorder,
              "rho", fill_argument(std::make_pair(Real{0}, Real{1}),
@@ -1541,7 +1445,7 @@ template<typename Real>
     basename = "conf_hyperg_lim";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_conf_hyperg_lim(filename);
-    maketest(conf_hyperg_lim, gsl::conf_hyperg_lim,
+    maketest(emsr::conf_hyperg_lim, gsl::conf_hyperg_lim,
 	     "testcase_conf_hyperg_lim", nsname, basename,
 	     "c", fill_argument(std::make_pair(Real{0}, Real{10}),
 				std::make_pair(false, true), 11),
@@ -1556,7 +1460,7 @@ template<typename Real>
     basename = "heuman_lambda";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_heuman_lambda(filename);
-    maketest(heuman_lambda, beast::heuman_lambda,
+    maketest(emsr::heuman_lambda, beast::heuman_lambda,
 	     "testcase_heuman_lambda", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
@@ -1570,7 +1474,7 @@ template<typename Real>
     basename = "ellint_d";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_ellint_d(filename);
-    maketest(ellint_d, beast::ellint_d,
+    maketest(emsr::ellint_d, beast::ellint_d,
 	     "testcase_ellint_d", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
@@ -1584,7 +1488,7 @@ template<typename Real>
     basename = "comp_ellint_d";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_comp_ellint_d(filename);
-    maketest(comp_ellint_d, beast::comp_ellint_d,
+    maketest(emsr::comp_ellint_d, beast::comp_ellint_d,
 	     "testcase_comp_ellint_d", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
@@ -1597,7 +1501,7 @@ template<typename Real>
     basename = "jacobi_zeta";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_jacobi_zeta(filename);
-    maketest(jacobi_zeta, beast::jacobi_zeta,
+    maketest(emsr::jacobi_zeta, beast::jacobi_zeta,
 	     "testcase_jacobi_zeta", nsname, basename,
 	     "k", fill_argument(std::make_pair(Real{-1}, Real{1}),
 				std::make_pair(false, false), 21),
@@ -1611,7 +1515,7 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cyl_hankel_1(filename);
     test =
-    maketest(cyl_hankel_1, beast::cyl_hankel_1,
+    maketest(emsr::cyl_hankel_1, beast::cyl_hankel_1,
 	     "testcase_cyl_hankel_1", nsname, basename,
 	     "nu", cyl_neg_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -1619,7 +1523,7 @@ template<typename Real>
 	     "Boost",
 	     file_cyl_hankel_1, false);
     test =
-    maketest(cyl_hankel_1, beast::cyl_hankel_1,
+    maketest(emsr::cyl_hankel_1, beast::cyl_hankel_1,
 	     "testcase_cyl_hankel_1", nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -1627,13 +1531,13 @@ template<typename Real>
 	     "Boost",
 	     file_cyl_hankel_1, false, test);
     test =
-    maketest(cyl_hankel_1, beast::cyl_hankel_1,
+    maketest(emsr::cyl_hankel_1, beast::cyl_hankel_1,
 	     "testcase_cyl_hankel_1", nsname, basename,
 	     "nu", {Real{-5}, Real{-2}, Real{0}, Real{2}, Real{5}},
 	     "x", {Real{-10}, Real{-5}, Real{-2}, Real{-0.25}},
 	     "Boost",
 	     file_cyl_hankel_1, false, test);
-    maketest(cyl_hankel_1, beast::cyl_hankel_1,
+    maketest(emsr::cyl_hankel_1, beast::cyl_hankel_1,
 	     "testcase_cyl_hankel_1", nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -1647,7 +1551,7 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cyl_hankel_2(filename);
     test =
-    maketest(cyl_hankel_2, beast::cyl_hankel_2,
+    maketest(emsr::cyl_hankel_2, beast::cyl_hankel_2,
 	     "testcase_cyl_hankel_2", nsname, basename,
 	     "nu", cyl_neg_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -1655,7 +1559,7 @@ template<typename Real>
 	     "Boost",
 	     file_cyl_hankel_2, false);
     test =
-    maketest(cyl_hankel_2, beast::cyl_hankel_2,
+    maketest(emsr::cyl_hankel_2, beast::cyl_hankel_2,
 	     "testcase_cyl_hankel_2", nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -1663,13 +1567,13 @@ template<typename Real>
 	     "Boost",
 	     file_cyl_hankel_2, false, test);
     test =
-    maketest(cyl_hankel_2, beast::cyl_hankel_2,
+    maketest(emsr::cyl_hankel_2, beast::cyl_hankel_2,
 	     "testcase_cyl_hankel_2", nsname, basename,
 	     "nu", {Real{-5}, Real{-2}, Real{0}, Real{2}, Real{5}},
 	     "x", {Real{-10}, Real{-5}, Real{-2}, Real{-0.25}},
 	     "Boost",
 	     file_cyl_hankel_2, false, test);
-    maketest(cyl_hankel_2, beast::cyl_hankel_2,
+    maketest(emsr::cyl_hankel_2, beast::cyl_hankel_2,
 	     "testcase_cyl_hankel_2", nsname, basename,
 	     "nu", cyl_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -1683,7 +1587,7 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_sph_hankel_1(filename);
     test =
-    maketest(sph_hankel_1, beast::sph_hankel_1,
+    maketest(emsr::sph_hankel_1, beast::sph_hankel_1,
 	     "testcase_sph_hankel_1", nsname, basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -1691,13 +1595,13 @@ template<typename Real>
 	     "Boost",
 	     file_sph_hankel_1, false);
     test =
-    maketest(sph_hankel_1, beast::sph_hankel_1,
+    maketest(emsr::sph_hankel_1, beast::sph_hankel_1,
 	     "testcase_sph_hankel_1", nsname, basename,
 	     "nu", {0, 2, 5},
 	     "x", {Real{-10}, Real{-5}, Real{-2}, Real{-0.25}},
 	     "Boost",
 	     file_sph_hankel_1, false, test);
-    maketest(sph_hankel_1, beast::sph_hankel_1,
+    maketest(emsr::sph_hankel_1, beast::sph_hankel_1,
 	     "testcase_sph_hankel_1", nsname, basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -1711,7 +1615,7 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_sph_hankel_2(filename);
     test =
-    maketest(sph_hankel_2, beast::sph_hankel_2,
+    maketest(emsr::sph_hankel_2, beast::sph_hankel_2,
 	     "testcase_sph_hankel_2", nsname, basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{5}),
@@ -1719,13 +1623,13 @@ template<typename Real>
 	     "Boost",
 	     file_sph_hankel_2, false);
     test =
-    maketest(sph_hankel_2, beast::sph_hankel_2,
+    maketest(emsr::sph_hankel_2, beast::sph_hankel_2,
 	     "testcase_sph_hankel_2", nsname, basename,
 	     "nu", {0, 2, 5},
 	     "x", {Real{-10}, Real{-5}, Real{-2}, Real{-0.25}},
 	     "Boost",
 	     file_sph_hankel_2, false, test);
-    maketest(sph_hankel_2, beast::sph_hankel_2,
+    maketest(emsr::sph_hankel_2, beast::sph_hankel_2,
 	     "testcase_sph_hankel_2", nsname, basename,
 	     "n", sph_order,
 	     "x", fill_argument(std::make_pair(Real{0}, Real{100}),
@@ -1738,7 +1642,7 @@ template<typename Real>
     basename = "sph_harmonic";
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_sph_harmonic(filename);
-    maketest(sph_harmonic, beast::sph_harmonic,
+    maketest(emsr::sph_harmonic, beast::sph_harmonic,
 	     "testcase_sph_harmonic", nsname, basename,
 	     "l", vorder, "m", iorder,
 	     "theta", fill_argument(std::make_pair(Real{0}, _S_pi),
@@ -1754,13 +1658,13 @@ template<typename Real>
     filename = get_filename(path, prefix, basename, "", ".cc");
     std::ofstream file_dirichlet_eta(filename);
     test =
-    maketest(dirichlet_eta, gsl::dirichlet_eta,
+    maketest(emsr::dirichlet_eta, gsl::dirichlet_eta,
 	     "testcase_dirichlet_eta", nsname, basename,
 	     "s", fill_argument(std::make_pair(Real{-10}, Real{1}),
 				std::make_pair(true, false), 56),
 	     "GSL",
 	     file_dirichlet_eta, false);
-    maketest(dirichlet_eta, gsl::dirichlet_eta,
+    maketest(emsr::dirichlet_eta, gsl::dirichlet_eta,
 	     "testcase_dirichlet_eta", nsname, basename,
 	     "s", fill_argument(std::make_pair(Real{1}, Real{30}),
 				std::make_pair(false, true), 146),
@@ -1772,7 +1676,7 @@ template<typename Real>
     basename = "owens_t";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_owens_t(filename);
-    maketest(owens_t, beast::owens_t,
+    maketest(emsr::owens_t, beast::owens_t,
 	     "testcase_owens_t", nsname, basename,
 	     "h", fill_argument(std::make_pair(Real{-5}, Real{5}),
 				std::make_pair(true, true), 41),
@@ -1786,7 +1690,7 @@ template<typename Real>
     std::cout << basename << '\n' << std::flush;
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_coulomb_f(filename);
-    maketest(coulomb_f, gsl::coulomb_f,
+    maketest(emsr::coulomb_f, gsl::coulomb_f,
              "testcase_coulomb_f", nsname, basename,
              "lambda", std::vector<Real>({Real{0}, Real{0.5}, Real{1}}),
              "eta", std::vector<Real>({Real{-2}, Real{0}, Real{2}, Real{10}}),
@@ -1800,7 +1704,7 @@ template<typename Real>
     std::cout << basename << '\n' << std::flush;
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_coulomb_g(filename);
-    maketest(coulomb_g, gsl::coulomb_g,
+    maketest(emsr::coulomb_g, gsl::coulomb_g,
              "testcase_coulomb_g", nsname, basename,
              "lambda", std::vector<Real>({Real{0}, Real{0.5}, Real{1}}),
              "eta", std::vector<Real>({Real{-2}, Real{0}, Real{2}, Real{10}}),
@@ -1816,7 +1720,7 @@ template<typename Real>
     basename = "clausen_sl";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_clausen_sl(filename);
-    maketest(clausen_sl<Real>, gsl::clausen_sl,
+    maketest(emsr::clausen_sl<Real>, gsl::clausen_sl,
 	     "testcase_clausen_sl", nsname, basename,
 	     "m", fill_argument(std::make_pair(2U, 2U),
 				std::make_pair(true, true), 1),
@@ -1831,7 +1735,7 @@ template<typename Real>
     basename = "clausen_cl";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_clausen_cl(filename);
-    maketest(clausen_cl<Real>, gsl::clausen_cl,
+    maketest(emsr::clausen_cl<Real>, gsl::clausen_cl,
 	     "testcase_clausen_cl", nsname, basename,
 	     "m", fill_argument(std::make_pair(2U, 2U),
 				std::make_pair(true, true), 1),
@@ -1845,7 +1749,7 @@ template<typename Real>
     basename = "bernoulli";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_bernoulli(filename);
-    maketest(bernoulli<Real>, beast::bernoulli,
+    maketest(emsr::bernoulli<Real>, beast::bernoulli,
 	     "testcase_bernoulli", nsname, basename,
 	     "n", fill_argument(std::make_pair(0U, 100U),
 				std::make_pair(true, true), 101),
@@ -1857,7 +1761,7 @@ template<typename Real>
     basename = "euler";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_euler(filename);
-    maketest(euler<Real>, burkhardt::euler,
+    maketest(emsr::euler<Real>, burkhardt::euler,
 	     "testcase_euler", nsname, basename,
 	     "n", fill_argument(std::make_pair(0U, 50U),
 				std::make_pair(true, true), 51),
@@ -1869,7 +1773,7 @@ template<typename Real>
     basename = "eulerian_1";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_eulerian_1(filename);
-    maketest(eulerian_1<Real>, burkhardt::eulerian_1,
+    maketest(emsr::eulerian_1<Real>, burkhardt::eulerian_1,
 	     "testcase_eulerian_1", nsname, basename,
 	     "n", fill_argument(std::make_pair(0U, 10U),
 				std::make_pair(true, true), 11),
@@ -1883,7 +1787,7 @@ template<typename Real>
     basename = "stirling_1";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_stirling_1(filename);
-    maketest(stirling_1<Real>, burkhardt::stirling_1,
+    maketest(emsr::stirling_1<Real>, burkhardt::stirling_1,
 	     "testcase_stirling_1", nsname, basename,
 	     "n", fill_argument(std::make_pair(0U, 10U),
 				std::make_pair(true, true), 11),
@@ -1897,7 +1801,7 @@ template<typename Real>
     basename = "stirling_2";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_stirling_2(filename);
-    maketest(stirling_2<Real>, burkhardt::stirling_2,
+    maketest(emsr::stirling_2<Real>, burkhardt::stirling_2,
 	     "testcase_stirling_2", nsname, basename,
 	     "n", fill_argument(std::make_pair(0U, 10U),
 				std::make_pair(true, true), 11),
@@ -1911,7 +1815,7 @@ template<typename Real>
     basename = "sin_pi";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_sin_pi(filename);
-    maketest(sin_pi, beast::sin_pi,
+    maketest(emsr::sin_pi, beast::sin_pi,
 	     "testcase_sin_pi", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{-20}, Real{+50}),
 				std::make_pair(false, true), 701),
@@ -1923,7 +1827,7 @@ template<typename Real>
     basename = "cos_pi";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_cos_pi(filename);
-    maketest(cos_pi, beast::cos_pi,
+    maketest(emsr::cos_pi, beast::cos_pi,
 	     "testcase_cos_pi", nsname, basename,
 	     "x", fill_argument(std::make_pair(Real{-20}, Real{+50}),
 				std::make_pair(false, true), 701),
@@ -1935,7 +1839,7 @@ template<typename Real>
     basename = "debye";
     filename = get_filename(path, prefix, basename, "",  ".cc");
     std::ofstream file_debye(filename);
-    maketest(debye, gsl::debye,
+    maketest(emsr::debye, gsl::debye,
 	     "testcase_debye", nsname, basename,
 	     "n", {1U, 2U, 3U, 4U, 5U, 6U},
 	     "x", fill_argument(std::make_pair(Real{0}, Real{10}),
