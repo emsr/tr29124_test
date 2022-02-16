@@ -23,7 +23,7 @@ c ./run > run.txt
           call dtorh3(x(ix),11,11,mmax,nmax,pl,ql,mnew,nnew)
           do m=0,mmax
             do n=0,nmax
-              write(6,'(f21.6)', advance="no") pl(m,n)
+              write(6, '(f24.6)', advance='no') pl(m,n)
             end do
             write(6,*)
           end do
