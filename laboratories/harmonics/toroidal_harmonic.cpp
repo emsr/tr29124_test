@@ -1016,7 +1016,7 @@ main()
   int m_new, n_new;
   for (double x : {1.01, 2.0, 5.0})
   {
-    toroidal_harmonic_dual(x, m_max, n_max, P, Q, m_new, n_new);
+    toroidal_harmonic(x, m_max, n_max, P, Q, m_new, n_new);
     std::cout << "\nx = " << x;
     for (unsigned int m = 0; m <= m_max; ++m)
     {
