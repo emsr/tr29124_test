@@ -17,8 +17,8 @@ double factconew(int n, double pn, int m);
  *    x        Argument of the functions
  *    m        Degree of the spheroidal harmonics
  *    nmax     Maximum order of the functions:
- *   	       We shall get functions of all the orders below
- *   	       min(nmax,nuevo). Nuevo is defined below.
+ *             We shall get functions of all the orders below
+ *             min(nmax,nuevo). Nuevo is defined below.
  *    mode     Mode of calculation (see below)
  *
  * If mode is equal to 0:
@@ -54,7 +54,7 @@ prolate_harmonic(double x, int m, int nmax, int mode, std::vector<double> &Pl, s
     const auto sqrttiny = std::sqrt(tiny);
     if (x <= 1.0)
     {
-        std::cout << "improper argument. x must be greater than 1";
+        std::cout << "prolate_harmonic: x must be greater than 1";
         return;
     }
     const auto fl = m / 2.0;
@@ -88,7 +88,7 @@ prolate_harmonic(double x, int m, int nmax, int mode, std::vector<double> &Pl, s
     {
         if (std::abs(m * std::log(dzm)) > std::log(huge))
         {
-            std::cout << "better try mode=2";
+            std::cout << "prolate_harmonic: better try mode=2";
             return;
         }
         if (m > 0)
@@ -126,7 +126,7 @@ prolate_harmonic(double x, int m, int nmax, int mode, std::vector<double> &Pl, s
         }
         if (nmax <= 0)
         {
-            std::cout << "try another m";
+            std::cout << "prolate_harmonic: try another m";
             return;
         }
     }
@@ -143,21 +143,32 @@ prolate_harmonic(double x, int m, int nmax, int mode, std::vector<double> &Pl, s
     auto fc = sqrttiny;
     auto c0 = fc;
     auto d0 = 0.0;
-_10:
-    d0 = b + a * d0;
-    if (std::abs(d0) < sqrttiny)
-        d0 = sqrttiny;
-    c0 = b + a / c0;
-    if (std::abs(c0) < sqrttiny)
-        c0 = sqrttiny;
-    d0 = 1.0 / d0;
-    auto delta = c0 * d0;
-    fc *= delta;
-    ++mm;
-    a = -double(n + mm + 1) / double(n + 2 * m + mm);
-    b = (1.0 + double(n + mm + 2) / double(2 * m + n + mm + 1)) * x;
-    if (std::abs(delta - 1.0) > eps)
-        goto _10;
+
+    const auto max_iter = 500;
+    int iter = 0;
+    for (; iter < max_iter; ++iter)
+    {
+        d0 = b + a * d0;
+        if (std::abs(d0) < sqrttiny)
+            d0 = sqrttiny;
+        c0 = b + a / c0;
+        if (std::abs(c0) < sqrttiny)
+            c0 = sqrttiny;
+        d0 = 1.0 / d0;
+        auto delta = c0 * d0;
+        fc *= delta;
+        ++mm;
+        a = -double(n + mm + 1) / double(n + 2 * m + mm);
+        b = (1.0 + double(n + mm + 2) / double(2 * m + n + mm + 1)) * x;
+        if (std::abs(delta - 1.0) < eps)
+            break;
+    }
+    if (iter == max_iter)
+    {
+        std::cout << "oblate_harmonic: Maximum number of iterations exceeded in continued fraction";
+        return;
+    }
+
     // We evaluate Ql[nmax+1] and Ql[nmax] using :
     // The Wronskian : W{Pl[nmax],Ql[nmax]} = 1 / (1 - x^2)
     // The known values of Pl[nmax+1] and Pl[nmax]
@@ -180,18 +191,18 @@ factco(int i, double pn, int m, double huge)
     double fact = 1.0 / pn;
     if (m > 0)
     {
-	int j = 2 * m;
-	while (j > 1 && fact < huge)
+        int j = 2 * m;
+        while (j > 1 && fact < huge)
         {
             fact *= double(i + j);
             --j;
-	}
-	if (j > 2)
+        }
+        if (j > 2)
             fact = 0.0;
     }
     else
     {
-	fact = 1.0 / (i + 1.0) / pn;
+        fact = 1.0 / (i + 1.0) / pn;
     }
     return fact;
 }
@@ -202,8 +213,8 @@ factconew(int n, double pn, int m)
     double fact = 1.0 / (n + 1.0) / pn;
     if (m > 0)
     {
-	int j = 2 * m;
-	for (int l = 1; l <= n; ++l)
+        int j = 2 * m;
+        for (int l = 1; l <= n; ++l)
             fact *= double(j + l) / double(l);
     }
     return fact;
@@ -212,25 +223,25 @@ factconew(int n, double pn, int m)
 int
 main()
 {
-  unsigned int m = 3;
-  unsigned int n_max = 10;
-  int mode = 0, nuevo = 0;
-  std::vector<double> P(n_max + 2);
-  std::vector<double> Q(n_max + 2);
-  for (double x : {1.1, 1.5, 2.0, 5.0, 10.0})
-  {
-    prolate_harmonic(x, m, n_max, mode, P, Q, nuevo);
-    std::cout << "\nx = " << x;
-    std::cout << '\n';
-    for (unsigned int n = 0; n <= n_max; ++n)
+    unsigned int m = 3;
+    unsigned int n_max = 10;
+    int mode = 0, nuevo = 0;
+    std::vector<double> P(n_max + 2);
+    std::vector<double> Q(n_max + 2);
+    for (double x : {1.1, 1.5, 2.0, 5.0, 10.0})
     {
-      std::cout << ' ' << std::setw(12) << P[n];
+        prolate_harmonic(x, m, n_max, mode, P, Q, nuevo);
+        std::cout << "\nx = " << x;
+        std::cout << '\n';
+        for (unsigned int n = 0; n <= n_max; ++n)
+        {
+            std::cout << ' ' << std::setw(12) << P[n];
+        }
+        std::cout << '\n';
+        for (unsigned int n = 0; n <= n_max; ++n)
+        {
+            std::cout << ' ' << std::setw(12) << Q[n];
+        }
     }
     std::cout << '\n';
-    for (unsigned int n = 0; n <= n_max; ++n)
-    {
-      std::cout << ' ' << std::setw(12) << Q[n];
-    }
-  }
-  std::cout << '\n';
 }

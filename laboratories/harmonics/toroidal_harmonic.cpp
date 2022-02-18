@@ -1,6 +1,6 @@
 /*
-g++ -Wall -Wextra -o tor toroidal_harmonic.cpp
-./tor > tor.txt
+g++ -Wall -Wextra -o toroidal_harmonic toroidal_harmonic.cpp
+./toroidal_harmonic > toroidal_harmonic.txt
 */
 
 #include <cmath>
@@ -15,8 +15,8 @@ double factco(int n, double pl, int m);
 double expan(double z, int mode, int iprec, double huge, double qargu, int m);
 double psi(int m, int k);
 double factor(int m, int k);
-void series(double a, int m, double &sa, double &sb);
-double asexpan(double z, int m, int mode, double gammapr);
+void toroidal_asymp_series(double a, int m, double &sa, double &sb);
+double toroidal_asymp(double z, int m, int mode, double gammapr);
 void
 toroidal_harmonic_dual(double z, int m_max, int n_max, std::vector<std::vector<double>> &Pl,
                        std::vector<std::vector<double>> &Ql, int &m_new, int &n_new);
@@ -95,8 +95,8 @@ toroidal_harmonic_dual(double z, int m_max, int n_max, std::vector<std::vector<d
     }
     else
     {
-        Pl[0][0] = Pl[0][0] / sqrtpi;
-        Pl[0][1] = Pl[0][1] / sqrtpi;
+        Pl[0][0] /= sqrtpi;
+        Pl[0][1] /= sqrtpi;
         int np = 1;
         while (np <= n_max && abs(Pl[0][np]) < huge)
         {
@@ -180,7 +180,7 @@ toroidal_harmonic_dual(double z, int m_max, int n_max, std::vector<std::vector<d
             goto _50;
         }
         const auto dfac = pi3d2 / sqrt2 * std::pow(xl * xl - 1.0, 0.25);
-        const auto pl0 = asexpan(xl, n_max, 0, gammapr);
+        const auto pl0 = toroidal_asymp(xl, n_max, 0, gammapr);
         Ql[0][n_max] = (pl0 / gamma) * dfac;
         if (mode == 0)
         {
@@ -217,10 +217,9 @@ toroidal_harmonic_dual(double z, int m_max, int n_max, std::vector<std::vector<d
     }
     // Evaluation of the set {Ql(m,n)}
     // We apply forward recurrence in m for Q's
-    int mp;
     if (mode == 0)
     {
-        mp = 1;
+        int mp = 1;
         while (mp <= m_max && std::abs(Ql[mp][n_max]) < hugeq)
         {
             Ql[mp + 1][n_max]
@@ -235,10 +234,12 @@ toroidal_harmonic_dual(double z, int m_max, int n_max, std::vector<std::vector<d
                 = -2.0 * mp * qargu * Ql[mp][n_max + 1] - (mp - n_max - 1.5) * (mp + n_max + 0.5) * Ql[mp - 1][n_max + 1];
             ++mp;
         }
+        if (mp - 1 < m_max)
+            m_max = mp - 1;
     }
     else
     {
-        mp = 1;
+        int mp = 1;
         while (mp <= m_max && std::abs(Ql[mp][n_max]) < huge)
         {
             const auto d1 = mp + 0.5;
@@ -257,9 +258,9 @@ toroidal_harmonic_dual(double z, int m_max, int n_max, std::vector<std::vector<d
                                     - (mp - n_max - 1.5) * (mp + n_max + 0.5) * Ql[mp - 1][n_max + 1] / (d1 * d2);
             ++mp;
         }
+        if (mp - 1 < m_max)
+            m_max = mp - 1;
     }
-    if (mp - 1 < m_max)
-        m_max = mp - 1;
     m_new = m_max + 1;
 
     // Finally, for each m=0,...,m_max applying recurrence backwards, obtain the set {Ql(m,n)}
@@ -307,9 +308,9 @@ toroidal_harmonic_dual(double z, int m_max, int n_max, std::vector<std::vector<d
     qm0 = Ql[m_max + 1][0];
     double dfacc;
     if (mode == 0)
-      dfacc = (0.5 + m_max);
+        dfacc = (0.5 + m_max);
     else
-      dfacc = 1.0 / (0.5 + m_max);
+        dfacc = 1.0 / (0.5 + m_max);
     dfac3 = -(gamma / qm0) * gamma * dfacc / pi;
     const auto fc2 = frac(z, m_max + 1, 0, s_eps, sqrttiny);
     Pl[m_max + 1][1] = Pl[m_max + 1][0] * fc2 + dfac3;
@@ -384,32 +385,32 @@ toroidal_harmonic_dual(double z, int m_max, int n_max, std::vector<std::vector<d
  *    Pl[m][n] Array of P
  *    Ql[m][n] Array of Q
  *
- * @param m_new     Maximum  order of functions calculated when
- *             Ql (m_max,0)   IS LARGER THAN 1/tiny
+ * @param m_new  Maximum order of functions calculated when
+ *               Ql[m_max][0] is larger than 1/tiny
  *              (overflow limit = 1/tiny, tiny is defined below).
- * @param n_new     Maximum  degree of functions calculated when
- *             Pl (m,n_max)   is larger than 1/tiny  for some
- *             m=0,...,m_new
+ * @param n_new  Maximum degree of functions calculated when
+ *               Pl[m][n_max] is larger than 1/tiny for some
+ *               m = 0, ... , m_new
  *              (overflow limit = 1/tiny, tiny is defined below).
- *    NOTE1: FOR A PRECISION OF 10**(-12), if z>5 AND (z/m)>0.22
- *           THE CODE USES A SERIES EXPANSION FOR Pl[m][0]. WHEN
- *           z<20 AND (z/m)<0.22 A CONTINUED FRACTION IS APPLIED.
- *    NOTE2: FOR A PRECISION OF 10**(-8), if z>5 AND (z/m)>0.12
- *           THE CODE USES A SERIES EXPANSION FOR Pl[m][0]. WHEN
- *           z<20 AND (z/m)<0.12 A CONTINUED FRACTION IS APPLIED.
+ * Note1: For a precision of 10**(-12), if z>5 and (z/m)>0.22
+ *        the code uses a series expansion for Pl[m][0]. When
+ *        z<20 and (z/m) < 0.22 a continued fraction is applied.
+ * Note2: For a precision of 10**(-8), if z>5 and (z/m)>0.12
+ *        the code uses a series expansion for Pl[m][0]. When
+ *        z<20 and (z/m) < 0.12 a continued fraction is applied.
  *
- *   *If mode is equal to 1:
- *      the set of functions evaluated is:
- *                 Pl[m][n]/gamma(m+1/2),Ql[m][n]/gamma(m+1/2),
- *      WHICH ARE RESPECTIVELY STORED IN THE ARRAYS Pl[m][n],Ql[m][n]
- *      m_new AND n_new REFER TO THIS NEW SET OF FUNCTIONS
- *      NOTE1 AND NOTE2 ALSO APPLY IN THIS CASE
- *   *If mode is equal to 2:
- *      the code performs as for mode 1, but the restriction z<20
- *      for the evaluation of the continued fraction is not
- *      considered
- *      Warning: Use only if high m's for z>20 are required. The
- *      evaluation of the CF may fail to converge for too high z's
+ * If mode is equal to 1:
+ *   The set of functions evaluated is:
+ *     Pl[m][n]/gamma(m+1/2), Ql[m][n]/gamma(m+1/2),
+ *     which are respectively stored in the arrays Pl[m][n],Ql[m][n]
+ *     m_new and n_new refer to this new set of functions
+ *     note1 and note2 also apply in this case
+ * If mode is equal to 2:
+ *     The code performs as for mode 1, but the restriction z<20
+ *     for the evaluation of the continued fraction is not
+ *     considered
+ *     Warning: Use only if high m's for z>20 are required. The
+ *     evaluation of the CF may fail to converge for too high z's
  *  PARAMETERS:
  *   mode: Enables the enlargement of the range of orders and degrees that can be evaluated.
  *   iprec: Required precision in the evaluation of toroidal harmonics.
@@ -541,7 +542,7 @@ toroidal_harmonic_primal(double z, int m_max, int n_max, std::vector<std::vector
         if (ical == 2)
             Pl0 = expan(z, mode, iprec, huge, qargu, m_max);
         else // ical == 0
-            Pl0 = asexpan(z, m_max, mode, gammapr);
+            Pl0 = toroidal_asymp(z, m_max, mode, gammapr);
         Pl[m_max][0] = Pl0;
         const auto dd = m_max + 0.5;
         if (mode != 0)
@@ -664,7 +665,7 @@ toroidal_harmonic_primal(double z, int m_max, int n_max, std::vector<std::vector
             }
             else
             {
-                mp = 1;
+                int mp = 1;
                 while (mp <= m_max)
                 {
                     const auto d1 = mp + 0.5;
@@ -780,8 +781,9 @@ fracps(double qz, int m, int n, double eps, double sqrttiny)
     double c0 = fc;
     double d0 = 0.0;
 
+    const int max_iter = 10000;
     int mm = 0;
-    while (mm < 10000)
+    while (mm < max_iter)
     {
         d0 = b + a * d0;
         if (std::abs(d0) < sqrttiny)
@@ -798,7 +800,7 @@ fracps(double qz, int m, int n, double eps, double sqrttiny)
         if (std::abs(delta - 1.0) < eps)
             break;
     }
-    if (mm == 10000)
+    if (mm == max_iter)
     {
         std::cout << "CF convergence fails\n";
         return fc;
@@ -821,6 +823,9 @@ factco(int n, double pl, int m)
     return fact;
 }
 
+/**
+ * Evaluate @f$ P_{-1/2}^M(x) @f$ by series expansion.
+ */
 double
 expan(double z, int mode, int iprec, double huge, double qargu, int m)
 {
@@ -855,8 +860,9 @@ expan(double z, int mode, int iprec, double huge, double qargu, int m)
     double da2 = factor(m, 0);
     double da1 = db + psi(m, 0);
 
+    const int max_iter = 1000;
     int k = 0;
-    while (k < 1000)
+    while (k < max_iter)
     {
         delta = (df1 + da1) * da2 * a0;
         sum += delta;
@@ -864,7 +870,7 @@ expan(double z, int mode, int iprec, double huge, double qargu, int m)
         double dccp = dcc + 1.0;
         double dkk = k + 1.0;
         da2 = da2 * dccp * dcc / (dkk * dkk);
-        da1 = da1 + 1.0 / dkk - 1.0 / dccp - 1.0 / dcc;
+        da1 += 1.0 / dkk - 1.0 / dccp - 1.0 / dcc;
         ++k;
         a0 *= 0.25 * z2i;
         if (std::abs(delta / sum) < preci[iprec])
@@ -926,10 +932,16 @@ factor(int m, int k)
 }
 
 /**
- * Evaluation of  P^m_{-1/2}(z)
+ * Evaluation of @f$ P^m_{-1/2}(z) @f$ by asymptotic expansion.
+ * @f[
+ *    P^m_{-1/2}(z) \simeq (-1)^m \frac{\Gamma(m+1/2)}{\pi^{3/2}} \xi
+ *     \sum_{l=0}^{1}K_l(m\alpha/2))\sum_{k=0}^{\infty}\frac{a_{2k+l}}{m^{2k+l}}
+ * @f]
+ * where @f$ \xi = (x-1)/2 @f$ and @f$ \alpha = ln[(x+1)/(x-1)] @f$.
+ * @f$ K_0 @f$ and @f$ K_1 @f$ are the modified Bessel functions.
  */
 double
-asexpan(double z, int m, int mode, double gammapr)
+toroidal_asymp(double z, int m, int mode, double gammapr)
 {
     constexpr double pi = 3.14159265358979323;
     const double sqrtpi = std::sqrt(pi);
@@ -939,7 +951,7 @@ asexpan(double z, int m, int mode, double gammapr)
     const double rmalfa = m * alfa;
 
     double sa, sb;
-    series(alfa, m, sa, sb);
+    toroidal_asymp_series(alfa, m, sa, sb);
 
     // Bessel functions K_0, K_1
     const double argu = rmalfa * 0.5;
@@ -957,8 +969,16 @@ asexpan(double z, int m, int mode, double gammapr)
     return pm12;
 }
 
+/**
+ * Inner sum for evaluation of @f$ P^m_{-1/2}(z) @f$ by asymptotic expansion.
+ * @f[
+ *     Sum = \sum_{k=0}^{\infty}\frac{a_{2k+1}}{m^{2k+1}}
+ * @f]
+ * where @f$ a_0 = \sqrt{\alpha/(e^\alpha - 1)} @f$.
+ * @see GST p368 for other terms.
+ */
 void
-series(double a, int m, double &sa, double &sb)
+toroidal_asymp_series(double a, int m, double &sa, double &sb)
 {
     using Tp = double;
 
@@ -1009,23 +1029,23 @@ series(double a, int m, double &sa, double &sb)
 int
 main()
 {
-  unsigned int m_max = 10;
-  unsigned int n_max = 10;
-  std::vector<std::vector<double>> P(m_max + 2, std::vector<double>(n_max + 2));
-  std::vector<std::vector<double>> Q(m_max + 2, std::vector<double>(n_max + 2));
-  int m_new, n_new;
-  for (double x : {1.01, 2.0, 5.0})
-  {
-    toroidal_harmonic(x, m_max, n_max, P, Q, m_new, n_new);
-    std::cout << "\nx = " << x;
-    for (unsigned int m = 0; m <= m_max; ++m)
+    unsigned int m_max = 10;
+    unsigned int n_max = 10;
+    std::vector<std::vector<double>> P(m_max + 2, std::vector<double>(n_max + 2));
+    std::vector<std::vector<double>> Q(m_max + 2, std::vector<double>(n_max + 2));
+    int m_new, n_new;
+    for (double x : {1.01, 2.0, 5.0})
     {
-      std::cout << '\n';
-      for (unsigned int n = 0; n <= n_max; ++n)
-      {
-        std::cout << ' ' << std::setw(12) << P[m][n];
-      }
+        toroidal_harmonic(x, m_max, n_max, P, Q, m_new, n_new);
+        std::cout << "\nx = " << x;
+        for (unsigned int m = 0; m <= m_max; ++m)
+        {
+            std::cout << '\n';
+            for (unsigned int n = 0; n <= n_max; ++n)
+            {
+                std::cout << ' ' << std::setw(12) << P[m][n];
+            }
+        }
     }
-  }
-  std::cout << '\n';
+    std::cout << '\n';
 }
