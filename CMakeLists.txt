@@ -67,6 +67,7 @@ add_subdirectory(cxx_root_search)
 add_subdirectory(cxx_summation)
 add_subdirectory(cxx_traits_utils)
 add_subdirectory(cxx_special_functions)
+add_subdirectory(cxx_matrix_math)
 
 add_subdirectory(3rdparty)
 
