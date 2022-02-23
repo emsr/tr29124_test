@@ -1,7 +1,6 @@
 
 // See NRiC about rational Chebyshev fits.
-// I set the denom with b_0 = 0 to explicitly capture the 1/x behaviour near the origin.
-// Great success.
+// The rationals there have a denom with b_0 = 1.
 
 #include <iostream>
 #include <vector>
@@ -86,7 +85,7 @@ std::cout << "denom: " << denom << '\n';
     for (int j = 0; j < num_points; ++j)
     {
       //err[j] = rat(xs[j]) - fs[j];
-      err[j] = rat.numer(xs[j]) / (Real{0} + xs[j] * rat.denom(xs[j])) - fs[j];
+      err[j] = rat.numer(xs[j]) / (Real{1} + xs[j] * rat.denom(xs[j])) - fs[j];
       wt[j] = std::abs(err[j]);
       sum += wt[j];
       if (wt[j] > dev_max)
@@ -128,7 +127,7 @@ main()
   {
     auto x = 0.01 * i * pi;
     //auto r = rat(x);
-    auto r = rat.numer(x) / (0.0 + x * rat.denom(x));
+    auto r = rat.numer(x) / (1.0 + x * rat.denom(x));
     auto f = fun(x);
     std::cout << ' ' << x << ' ' << r << ' ' << f << ' ' << r - f << '\n';
   }

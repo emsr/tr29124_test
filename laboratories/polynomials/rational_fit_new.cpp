@@ -1,7 +1,21 @@
 
 // See NRiC about rational Chebyshev fits.
-// I set the denom with b_0 = 0 to explicitly capture the 1/x behaviour near the origin.
-// Great success.
+// I was hoping that generalized numer and denom polynomials
+// would drive toward a tiny b_0 to model a 1/x. But alas, no.
+// The denom u and/or bb might be the problem.
+
+// What I actualy solved was p(x)/[q(x) - 1]
+// because b_0 appears on both the left and rhs.
+// The original set b_0 to 1 and it was the rhs.
+// I combobulated the answer but this gets into the loss of precision 1 +/- small.
+
+// Crazy idea: these fitters look at absolute errors. What about relative errors?
+// What happens if f(x) is at or near 0? Probably sadness.
+// OTOH, that Canadian paper has a weight function with the two most useful choices:
+// w(x) = 1 for absolute error
+// w(x) = f(x) for relative error.
+// They don't mention |f(x)| for some reason.
+// If w(x) = f(x) is near 0 then you could eliminate the point - downdate it somehow.
 
 #include <iostream>
 #include <vector>
@@ -11,9 +25,9 @@
 #include <emsr/matrix_sv_decomp.h>
 #include <emsr/rational_polynomial.h>
 
-template<typename Real, typename Func>
+template<typename Real, typename Func, typename FuncWt>
 void
-rational_fit(Func func, Real a, Real b, int deg_numer, int deg_denom,
+rational_fit(Func func, FuncWt weight, Real a, Real b, int deg_numer, int deg_denom,
              std::vector<Real>& coeff, Real& dev)
 {
   const int num_pts_per_coeff = 8;
@@ -21,10 +35,11 @@ rational_fit(Func func, Real a, Real b, int deg_numer, int deg_denom,
   const Real huge = 1.0e+30;
   const Real pi_2 = std::numbers::pi_v<Real> / Real{2};
 
-  int num_coeffs = deg_numer + deg_denom + 1;
+  int num_coeffs = deg_numer + deg_denom + 2;
   int num_points = num_pts_per_coeff * num_coeffs;
   std::vector<Real> err(num_points);
   std::vector<Real> fs(num_points);
+  std::vector<Real> wts(num_points);
   std::vector<Real> wt(num_points);
   std::vector<Real> xs(num_points);
 
@@ -46,8 +61,9 @@ rational_fit(Func func, Real a, Real b, int deg_numer, int deg_denom,
       xs[i] = b - (b - a) * sinhth * sinhth;
     }
     fs[i] = func(xs[i]);
-    wt[i] = Real{1};
-    err[i] = Real{1};
+    wts[i] = weight(xs[i]);
+    err[i] = Real{1} / wts[i];
+    wt[i] = std::abs(err[i]);
   }
 
   using MatTp = std::vector<std::vector<Real>>;
@@ -69,8 +85,8 @@ rational_fit(Func func, Real a, Real b, int deg_numer, int deg_denom,
       power = -bb[i];
       for (int j = deg_numer + 1; j < num_coeffs; ++j)
       {
-        power *= xs[i];
         u[i][j] = power;
+        power *= xs[i];
       }
     }
     std::vector<Real> coeff_temp(num_coeffs);
@@ -79,14 +95,17 @@ rational_fit(Func func, Real a, Real b, int deg_numer, int deg_denom,
     auto dev_max = Real{0};
     auto sum = Real{0};
     emsr::Polynomial numer(coeff_temp.begin(), coeff_temp.begin() + deg_numer + 1),
-                     denom(coeff_temp.begin() + deg_numer + 1, coeff_temp.begin() + deg_numer + deg_denom + 1);
+                     denom(coeff_temp.begin() + deg_numer + 1, coeff_temp.begin() + deg_numer + deg_denom + 2);
 std::cout << "numer: " << numer << '\n';
 std::cout << "denom: " << denom << '\n';
     emsr::RationalPolynomial rat(numer, denom);
     for (int j = 0; j < num_points; ++j)
     {
       //err[j] = rat(xs[j]) - fs[j];
-      err[j] = rat.numer(xs[j]) / (Real{0} + xs[j] * rat.denom(xs[j])) - fs[j];
+      //err[j] = rat.numer(xs[j]) / (Real{0} + xs[j] * rat.denom(xs[j])) - fs[j];
+      // This thing actually solves for b_0 - 1.
+      err[j] = rat.numer(xs[j]) / (Real{1} + rat.denom(xs[j])) - fs[j];
+      err[j] /= wts[j];
       wt[j] = std::abs(err[j]);
       sum += wt[j];
       if (wt[j] > dev_max)
@@ -106,29 +125,37 @@ int
 main()
 {
   const auto pi = std::numbers::pi_v<double>;
+
   auto fun = [](double x) -> double { return std::cos(x)/(1.0 - std::exp(x)); };
+  // Possible weight functions
+  auto one = [](double) -> double { return 1.0; };
+  auto rel = [fun](double x) -> double { return fun(x); };
+
   double dev;
   int deg_numer = 4;
   int deg_denom = 4;
-  std::vector<double> coeff(deg_numer + deg_denom + 1);
-  rational_fit(fun, 0.01, pi, deg_numer, deg_denom, coeff, dev);
+  std::vector<double> coeff(deg_numer + deg_denom + 2);
+
+  rational_fit(fun, rel, 0.01, pi, deg_numer, deg_denom, coeff, dev);
+
   std::cout << "dev = " << dev << '\n';
   for (int k = 0; k < deg_numer + 1; ++k)
     std::cout << ' ' << coeff[k];
   std::cout << '\n';
-  for (int k = deg_numer + 1; k < deg_numer + deg_denom + 1; ++k)
+  for (int k = deg_numer + 1; k < deg_numer + deg_denom + 2; ++k)
     std::cout << ' ' << coeff[k];
   std::cout << '\n';
 
   emsr::Polynomial<double> numer(coeff.begin(), coeff.begin() + deg_numer + 1),
-                           denom(coeff.begin() + deg_numer + 1, coeff.begin() + deg_numer + deg_denom + 1);
+                           denom(coeff.begin() + deg_numer + 1, coeff.begin() + deg_numer + deg_denom + 2);
   emsr::RationalPolynomial rat(numer, denom);
   std::cout << '\n';
   for (int i = 1; i <= 100; ++i)
   {
     auto x = 0.01 * i * pi;
     //auto r = rat(x);
-    auto r = rat.numer(x) / (0.0 + x * rat.denom(x));
+    //auto r = rat.numer(x) / (0.0 + x * rat.denom(x));
+    auto r = rat.numer(x) / (1.0 + rat.denom(x));
     auto f = fun(x);
     std::cout << ' ' << x << ' ' << r << ' ' << f << ' ' << r - f << '\n';
   }
