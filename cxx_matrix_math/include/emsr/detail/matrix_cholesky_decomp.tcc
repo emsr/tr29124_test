@@ -26,8 +26,7 @@ template<typename HermitianMatrix, typename Vector>
 	    if (i == j)
 	      {
 		if (sum <= 0)
-		  std::__throw_logic_error("cholesky_decomp: "
-					   "Matrix must be positive definite");
+		  throw std::logic_error("cholesky_decomp: Matrix must be positive definite");
 		d[i] = std::sqrt(sum);
 	      }
 	    else

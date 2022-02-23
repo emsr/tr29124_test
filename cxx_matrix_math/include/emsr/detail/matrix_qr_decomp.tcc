@@ -22,7 +22,7 @@ template<typename Matrix, typename Vector>
 	    Matrix& a,
 	    Vector& c, Vector& d, bool& singular)
   {
-    using NumTp = std::remove_reference_t<decltype(a[0][0])>;
+    using NumTp = std::decay_t<decltype(a[0][0])>;
 
     NumTp sigma, sum, tau;
 
@@ -107,7 +107,7 @@ template<typename Matrix, typename Vector, typename VectorB>
  * This routine solves the set of equations Ax = b.
  * The inputs are the QR decomposition of the matrix in a[0..n_rows - 1][0..n_cols - 1],
  * c[0..n_cols - 1], and d[0..n_cols - 1].
- * The vector b[0..n_rows - 1] is input as the "RHS" and output and the solution.
+ * The vector b[0..n_rows - 1] is input as the "RHS" and output as the solution.
  * Here n_rows >= n_cols.
  */
 template<typename Matrix, typename Vector, typename VectorB>
@@ -175,7 +175,7 @@ template<typename Matrix, typename Vector>
 	    Matrix& r, Matrix& qt,
 	    Vector& u, Vector& v)
   {
-    using NumTp = std::remove_reference_t<decltype(qt[0][0])>;
+    using NumTp = std::decay_t<decltype(qt[0][0])>;
 
     //  Find largest k such that uk != 0.
     std::ptrdiff_t k;
@@ -254,6 +254,65 @@ template<typename NumTp, typename Matrix, typename Vector>
     return;
   }
 
+// Implement the class...
+
+template<typename Matrix>
+  qr_decomposition<Matrix>::
+  qr_decomposition(std::size_t n_rows, std::size_t n_cols, Matrix& a)
+  : m_n_rows(n_rows), m_n_cols(n_cols), m_a(a), m_c(n_cols), m_d(n_cols), m_singular(false)
+  {
+    qr_decomp(this->m_n_rows, this->m_n_cols,
+	      this->m_a, this->m_c, this->m_d, this->m_singular);
+  }
+
+template<typename Matrix>
+  template<typename Matrix2>
+  qr_decomposition<Matrix>::
+  qr_decomposition(std::size_t n_rows, std::size_t n_cols, Matrix2& a)
+  : m_n_rows(n_rows), m_n_cols(n_cols),
+    m_a(n_rows, std::vector<NumTp>(n_cols)),
+    m_c(n_cols), m_d(n_cols), m_singular(false)
+  {
+    // Copy a.
+    for (std::size_t i_row = 0; i_row < this->m_n_rows; ++i_row)
+      for (std::size_t i_col = 0; i_col < this->m_n_cols; ++i_col)
+        this->m_a[i_row][i_col] = a[i_row][i_col];
+    qr_decomp(this->m_n_rows, this->m_n_cols,
+	      this->m_a, this->m_c, this->m_d, this->m_singular);
+  }
+
+template<typename Matrix>
+  template<typename Vector2>
+  void
+  qr_decomposition<Matrix>::
+  backsubstitution(Vector2& b)
+  {
+    qr_backsub(this->m_n_rows, this->m_n_cols,
+	       this->m_a, this->m_c, this->m_d,
+	       b);
+  }
+
+template<typename Matrix>
+  template<typename Matrix2>
+  void
+  qr_decomposition<Matrix>::
+  inverse(Matrix2& a_inv)
+  {
+    qr_invert(this->m_n_rows, this->m_n_cols,
+	    this->m_a, this->m_c, this->m_d,
+	    a_inv);
+  }
+/*
+template<typename Matrix>
+  void
+  qr_decomposition<Matrix>::
+  update()
+  {
+    qr_update(this->m_n_rows, this->m_n_cols,
+	    Matrix& r, Matrix& qt,
+	    Vector& u, Vector& v)
+  }
+*/
 } // namespace emsr
 
 #endif // MATRIX_QR_DECOMP_TCC

@@ -9,25 +9,22 @@ namespace emsr
 /**
  *  This class represents an QR decomposition.
  */
-template<typename NumTp, typename Matrix>
+template<typename Matrix>
   class qr_decomposition
   {
 
   public:
 
-    using value_type = std::decay_t<decltype(Matrix{}[0][0])>;
+    using NumTp = std::decay_t<decltype(Matrix{}[0][0])>;
+
+    qr_decomposition(std::size_t n_rows, std::size_t n_cols, Matrix& a);
 
     template<typename Matrix2>
-      qr_decomposition(std::size_t m_n_rows, std::size_t n_cols,
+      qr_decomposition(std::size_t n_rows, std::size_t n_cols,
 		       Matrix2& a);
 
-    template<typename Vector2, typename VectorOut>
-      void backsubstitution(Vector2& b, VectorOut& x);
-
-    template<typename InVecIter, typename OutVecIter>
-      void
-      backsubstitution(InVecIter b_begin, InVecIter b_end,
-		       OutVecIter x_begin) const;
+    template<typename Vector2>
+      void backsubstitution(Vector2& b);
 
     template<typename Matrix2>
       void inverse(Matrix2& a_inv);
@@ -44,9 +41,9 @@ template<typename NumTp, typename Matrix>
 
     Matrix m_a;
 
-    std::vector<std::size_t> m_c;
+    std::vector<NumTp> m_c;
 
-    std::vector<std::size_t> m_d;
+    std::vector<NumTp> m_d;
 
     bool m_singular;
   };

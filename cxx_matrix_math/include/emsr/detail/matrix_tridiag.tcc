@@ -20,7 +20,7 @@ template<typename Tp>
     std::vector<Tp> gam(n);
 
     if (b[0] == Tp{0})
-      std::__throw_runtime_error("First diagonal must be non-zero.");
+      throw std::runtime_error("tridiagonal: First diagonal must be non-zero.");
     Tp bet = b[0];
     x[0] = r[0] / bet;
 
@@ -30,7 +30,7 @@ template<typename Tp>
 	gam[j] = c[j - 1] / bet;
 	bet = b[j] - a[j] * gam[j];
 	if (bet == Tp{0})
-	  std::__throw_runtime_error("Matrix must be non-singular.");
+	  throw std::runtime_error("tridiagonal: Matrix must be non-singular.");
 	x[j] = (r[j] - a[j] * x[j - 1]) / bet;
       }
 
@@ -47,12 +47,12 @@ template<typename Tp>
  */
 template<typename Tp>
   void
-  cyclic(const Tp* a, const Tp* b, const Tp* c,
-	 Tp alpha, Tp beta,
-	 const Tp* r, Tp* x, std::size_t n)
+  cyclic_tridiagonal(const Tp* a, const Tp* b, const Tp* c,
+                     Tp alpha, Tp beta,
+                     const Tp* r, Tp* x, std::size_t n)
   {
     if (n <= 2)
-      std::__throw_domain_error("cyclic: n must be greater than 2.");
+      throw std::domain_error("cyclic: n must be greater than 2.");
 
     const auto gamma = -b[0];
 

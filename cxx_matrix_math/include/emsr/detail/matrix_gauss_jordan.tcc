@@ -47,7 +47,7 @@ template<typename NumTp, typename SquareMatrix, typename Matrix>
 			}
 		    }
 		  else if (index_pivot[k] > 0)
-		    std::__throw_runtime_error("gauss_jordan: Singular matrix");
+		    throw std::runtime_error("gauss_jordan: Singular matrix");
 		}
 	  }
 	++index_pivot[icol];
@@ -70,7 +70,7 @@ template<typename NumTp, typename SquareMatrix, typename Matrix>
 	index_row[i] = irow;
 	index_col[i] = icol;
 	if (a[icol][icol] == NumTp{})
-	  std::__throw_runtime_error("gauss_jordan: Singular matrix");
+	  throw std::runtime_error("gauss_jordan: Singular matrix");
 	const auto pivinv = NumTp{1} / a[icol][icol];
 	a[icol][icol] = NumTp{1};
 	for (auto l = 0u; l < n; ++l)

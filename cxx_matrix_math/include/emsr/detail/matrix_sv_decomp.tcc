@@ -22,7 +22,7 @@ template<typename Matrix, typename Vector>
     int l;
     NumTp c, f, h, s;
 
-    const int ITS = 30;
+    const int max_iters = 30;
 
     std::vector<NumTp> rv1(n_cols);
 
@@ -155,7 +155,7 @@ template<typename Matrix, typename Vector>
     //  Diagonalization of the bidiagonal form;
     for (std::ptrdiff_t k = n_cols - 1; k >= 0; --k)
       {
-	for (std::size_t its = 1; its <= ITS; ++its)
+	for (std::size_t iter = 1; iter <= max_iters; ++iter)
 	  {
 	    bool flag = true;
 	    std::ptrdiff_t l, nm;
@@ -208,11 +208,11 @@ template<typename Matrix, typename Vector>
 		  }
 		break;
 	      }
-	    if (its == ITS)
+	    if (iter == max_iters)
 	      {
 		std::ostringstream msg;
-		msg << "No convergence in " << ITS << " sv_decomp iterations.";
-		std::__throw_logic_error(msg.str().c_str());
+		msg << "sv_decomp: No convergence in " << max_iters << " iterations.";
+		throw std::logic_error(msg.str().c_str());
 	      }
 
 	    //  Shift from bottom 2x2 minor.
@@ -326,7 +326,7 @@ template<typename Matrix, typename Vector>
 	     const Vector& w, const Matrix& v,
 	     const Vector& b, Vector& x)
   {
-    using NumTp = std::remove_reference_t<decltype(a[0][0])>;
+    using NumTp = std::decay_t<decltype(a[0][0])>;
 
     std::vector<NumTp> r(n_rows);
     std::vector<NumTp> dx(n_cols);

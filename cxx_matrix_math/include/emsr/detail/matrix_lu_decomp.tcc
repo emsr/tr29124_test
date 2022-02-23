@@ -37,7 +37,7 @@ template<typename NumTp, typename SquareMatrix, typename Vector>
 	  if (const auto temp = std::abs(a[i][j]); temp > big)
 	    big = temp;
 	if (big == NumTp{0})
-	  std::__throw_logic_error("lu_decomp: singular matrix");
+	  throw std::logic_error("lu_decomp: singular matrix");
 
 	// Save the scaling for the row.
 	scale[i] = NumTp{1} / big;
@@ -110,7 +110,7 @@ template<typename SquareMatrix, typename VectorInt, typename Vector>
 	     const VectorInt& index,
 	     Vector& b)
   {
-    using NumTp = std::remove_reference_t<decltype(a[0][0])>;
+    using NumTp = std::decay_t<decltype(a[0][0])>;
 
     //  When i_start is set to a non-negative value, it will become the index
     //  of the first nonvanishing element of b[0..n-1].
@@ -153,7 +153,7 @@ template<typename SquareMatrix, typename VectorInt, typename Vector>
 	     const SquareMatrix& a_lu,
 	     const VectorInt& index, const Vector& b, Vector& x)
   {
-    using NumTp = std::remove_reference_t<decltype(a[0][0])>;
+    using NumTp = std::decay_t<decltype(a[0][0])>;
 
     std::vector<NumTp> r(n);
 
@@ -182,7 +182,7 @@ template<typename SquareMatrix, typename VectorInt>
   lu_invert(const std::size_t n, const SquareMatrix& a_lu,
 	    const VectorInt& index, SquareMatrix& a_inv)
   {
-    using NumTp = std::remove_reference_t<decltype(a_inv[0][0])>;
+    using NumTp = std::decay_t<decltype(a_inv[0][0])>;
 
     for (std::size_t j = 0; j < n; ++j)
       {
@@ -220,7 +220,7 @@ template<typename SquareMatrix>
   auto
   lu_trace(const std::size_t n, const SquareMatrix& a_lu)
   {
-    using NumTp = std::remove_reference_t<decltype(a_lu[0][0])>;
+    using NumTp = std::decay_t<decltype(a_lu[0][0])>;
 
     auto trace = NumTp{0};
 
@@ -232,6 +232,67 @@ template<typename SquareMatrix>
       }
 
     return trace;
+  }
+
+// Implement class methods.
+
+template<typename SquareMatrix>
+  lu_decomposition<SquareMatrix>::
+  lu_decomposition(std::size_t n, const SquareMatrix& a)
+  : m_n(n), m_a(a), m_index(std::vector<std::size_t>(n)), m_parity(+1)
+  {
+    lu_decomp(this->m_n, this->m_a, this->m_index, this->m_parity);
+  }
+
+template<typename SquareMatrix>
+  template<typename SquareMatrix2>
+  lu_decomposition<SquareMatrix>::
+  lu_decomposition(std::size_t n, const SquareMatrix2& a)
+  : m_n(n), m_a(n, std::vector<NumTp>(n)),
+    m_index(std::vector<std::size_t>(n)), m_parity(+1)
+  {
+    // Copy a.
+    for (std::size_t i_row = 0; i_row < this->m_n; ++i_row)
+      for (std::size_t i_col = 0; i_col < this->m_n; ++i_col)
+        this->m_a[i_row][i_col] = a[i_row][i_col];
+    lu_decomp(this->m_n, this->m_a, this->m_index, this->m_parity);
+  }
+
+template<typename SquareMatrix>
+  template<typename Vector>
+  void
+  lu_decomposition<SquareMatrix>::
+  backsubstitute(Vector& b) const
+  {
+    lu_backsub(this->m_n, this->m_a, this->m_index, b);
+  }
+
+template<typename SquareMatrix>
+  template<typename SquareMatrix2, typename Vector, typename VectorOut>
+  void
+  lu_decomposition<SquareMatrix>::
+  improve(const SquareMatrix2& a_orig,
+	  const Vector& b, VectorOut& x) const
+  {
+    lu_improve(this->m_n, a_orig,
+	       this->m_a, this->m_index,
+	       b, x);
+  }
+
+template<typename SquareMatrix>
+  typename lu_decomposition<SquareMatrix>::NumTp
+  lu_decomposition<SquareMatrix>::
+  determinant() const
+  {
+    return lu_determinant(this->m_n, this->m_a, this->m_parity);
+  }
+
+template<typename SquareMatrix>
+  typename lu_decomposition<SquareMatrix>::NumTp
+  lu_decomposition<SquareMatrix>::
+  trace() const
+  {
+    return lu_trace(this->m_n, this->m_a);
   }
 
 } // namespace emsr

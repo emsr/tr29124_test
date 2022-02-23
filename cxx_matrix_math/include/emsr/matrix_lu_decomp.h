@@ -9,19 +9,22 @@ namespace emsr
 /**
  * This class represents an lower-upper decomposition of a square matrix.
  */
-template<typename NumTp, typename SquareMatrix>
+template<typename SquareMatrix>
   class lu_decomposition
   {
 
   public:
 
-    using value_type = std::decay_t<decltype(SquareMatrix{}[0][0])>;
+    using NumTp = std::decay_t<decltype(SquareMatrix{}[0][0])>;
+
+    lu_decomposition(std::size_t n, const SquareMatrix& a);
 
     template<typename SquareMatrix2>
       lu_decomposition(std::size_t n, const SquareMatrix2& a);
 
-    template<typename Vector, typename VectorOut>
-      void backsubstitute(const Vector& b, VectorOut& x) const;
+    /// In-place backsubstitution.
+    template<typename Vector>
+      void backsubstitute(Vector& b) const;
 
     template<typename SquareMatrix2, typename Vector, typename VectorOut>
       void
