@@ -12,10 +12,10 @@ namespace emsr
 /**
  *  
  */
-template<typename Matrix, typename Vector>
+template<typename Matrix, typename Vector, typename MatrixV>
   void
   sv_decomp(const std::size_t n_rows, const std::size_t n_cols,
-	    Matrix& a, Vector& w, Matrix& v)
+	    Matrix& a, Vector& w, MatrixV& v)
   {
     using NumTp = std::decay_t<decltype(a[0][0])>;
 
@@ -280,11 +280,11 @@ template<typename Matrix, typename Vector>
 /**
  *  
  */
-template<typename Matrix, typename Vector>
+template<typename Matrix, typename Vector, typename MatrixV>
   void
   sv_backsub(std::size_t n_rows, std::size_t n_cols,
 	     const Matrix& u,
-	     const Vector& w, const Matrix& v,
+	     const Vector& w, const MatrixV& v,
 	     const Vector& b, Vector& x)
   {
     using NumTp = std::decay_t<decltype(u[0][0])>;
@@ -319,11 +319,11 @@ template<typename Matrix, typename Vector>
  *  right-hand side Vector are input along with the solution vector x.
  *  The solution vector x is improved and modified on output.
  */
-template<typename Matrix, typename Vector>
+template<typename Matrix, typename Vector, typename MatrixV>
   void
   sv_improve(std::size_t n_rows, std::size_t n_cols,
 	     const Matrix& a, const Matrix& u,
-	     const Vector& w, const Matrix& v,
+	     const Vector& w, const MatrixV& v,
 	     const Vector& b, Vector& x)
   {
     using NumTp = std::decay_t<decltype(a[0][0])>;

@@ -70,9 +70,10 @@ main()
     {3.285281, 0.729572, 5.104705, 5.308507, 0.320573},
   };
 
-  // Gauss-Jordan
 
-  std::cout << "\n Gauss-Jordan Elimination";
+  // Gauss-Jordan Elimination
+
+  std::cout << "\n\n Gauss-Jordan Elimination";
   std::cout << "\n ------------------------\n";
 
   double A_GJ[3][3];
@@ -102,9 +103,10 @@ main()
   std::cout << "\n Verify A.X = B for Gauss-Jordan:\n";
   emsr::print_matrix(B_test);
 
+
   // Lower-Upper Decomposition
 
-  std::cout << "\n Lower-Upper Decomposition";
+  std::cout << "\n\n Lower-Upper Decomposition";
   std::cout << "\n -------------------------\n";
 
   double A_LU[3][3];
@@ -147,9 +149,10 @@ main()
   std::cout << "\n Verify A^{-1}.A = I\n";
   emsr::print_matrix(I_LU);
 
+
   // Singular Value Decomposition
 
-  std::cout << "\n Singular Value Decomposition";
+  std::cout << "\n\n Singular Value Decomposition";
   std::cout << "\n ----------------------------\n";
 
   double A_SV[3][3];
@@ -194,9 +197,10 @@ main()
   std::cout << "\n Reconstruction of input matrix from SV decomposition:\n";
   emsr::print_matrix(R);
 
+
   // Cholesky Decomposition
 
-  std::cout << "\n Cholesky Decomposition";
+  std::cout << "\n\n Cholesky Decomposition";
   std::cout << "\n ----------------------\n";
 
   double A_C[3][3];
@@ -275,9 +279,10 @@ main()
   std::cout << "\n Verify A^{-1}.A = I\n";
   emsr::print_matrix(I_C);
 
+
   // QR Decomposition
 
-  std::cout << "\n QR Decomposition";
+  std::cout << "\n\n QR Decomposition";
   std::cout << "\n ----------------\n";
 
   double A_QR[3][3];

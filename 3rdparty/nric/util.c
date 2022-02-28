@@ -27,11 +27,11 @@ double dsign( double a, double b ) {
 }
 
 float fsign( float a, float b ) {
-    return a == 0.0 ? 0.0 : ( b >= 0.0 ? fabsf(a) : -fabsf(a) );
+    return a == 0.0f ? 0.0f : ( b >= 0.0f ? fabsf(a) : -fabsf(a) );
 }
 
 int isign( int a, int b ) {
-    return a == 0.0 ? 0 : ( b >= 0 ? (a >= 0 ? a : -a) : -(a >= 0 ? a : -a) );
+    return a == 0 ? 0 : ( b >= 0 ? (a >= 0 ? a : -a) : -(a >= 0 ? a : -a) );
 }
 
 

@@ -97,7 +97,7 @@ OBJS = \
  $(OBJ_DIR)/tridiag.o util.o \
  $(OBJ_DIR)/wave_function.o
 
-all: libnric.a graph integrate cheb matrix u vec lin
+all: libnric.a graph integrate cheb matrix u vec lin ratlsq
 
 libnric.a: $(OBJ_DIR) $(OBJS)
 	ar cr libnric.a  $(OBJS)
@@ -122,6 +122,9 @@ vec: vec.c dvector.c fvector.c memory.c nric.c
 
 lin: lin.c dlinear.c dvector.c fvector.c memory.c nric.c
 	gcc -std=c11 -o lin lin.c dlinear.c dvector.c fvector.c memory.c nric.c -lm
+
+ratlsq: ratlsq.c sv_decomp.c util.c memory.c nric.c
+	gcc -std=c11 -o ratlsq ratlsq.c sv_decomp.c util.c memory.c nric.c -lm
 
 
 $(OBJ_DIR)/bessel_general.o: bessel_general.c
