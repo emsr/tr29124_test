@@ -18,12 +18,12 @@ template<typename Tp>
 		 std::complex<Tp>& err, std::complex<Tp>& res,
 		 std::complex<Tp>& condn)
   {
-    using _Cmplx = std::complex<Tp>;
+    using Cmplx = std::complex<Tp>;
     const auto s_NaN = emsr::quiet_NaN(z.real());
     const auto s_eps = emsr::epsilon(z.real());
     const auto s_pi = emsr::pi_v<Tp>;
-    const auto s_i = _Cmplx(Tp{0}, Tp{1});
-    const auto s_0 = _Cmplx{};
+    const auto s_i = Cmplx(Tp{0}, Tp{1});
+    const auto s_0 = Cmplx{};
     auto [x, y] = reinterpret_cast<const Tp(&)[2]>(z);
     auto ympi = y - s_pi;
     auto yppi = y + s_pi;
@@ -32,11 +32,11 @@ template<typename Tp>
     res = s_0;
 
     if (std::isnan(x) || std::isnan(y))
-      return _Cmplx(s_NaN, s_NaN);
+      return Cmplx(s_NaN, s_NaN);
     else if (std::isinf(x) && (x < Tp{0})
 	  && (-s_pi < y) && (y <= s_pi))
       { // Signed zeros between branches.
-	_Cmplx w;
+	Cmplx w;
 	if (std::abs(y) <= s_pi / Tp{2})
 	  w = +Tp{0};
 	else
@@ -48,14 +48,14 @@ template<typename Tp>
 	return w;
       }
     else if (std::isinf(x) || std::isinf(y))
-      return _Cmplx(x, y);
+      return Cmplx(x, y);
     else if (x == Tp{-1} && std::abs(y) == s_pi)
-      return _Cmplx(Tp{-1}, Tp{0});
+      return Cmplx(Tp{-1}, Tp{0});
     else
       {
 	//  Choose approximation based on region.
 
-	_Cmplx w;
+	Cmplx w;
 	if ((Tp{-2} < x && x <= Tp{1}
 	  && Tp{1} < y && y < Tp{2} * s_pi))
 	  {
@@ -178,7 +178,7 @@ template<typename Tp>
         	    ympi = y - s_pi;
 		  }
 
-		zr = _Cmplx(x, ympi);
+		zr = Cmplx(x, ympi);
 
 		// Return rounding to default.
 		fesetround(FE_TONEAREST);
@@ -196,7 +196,7 @@ template<typename Tp>
         	    yppi = y + s_pi;
 		  }
 
-		zr = _Cmplx(x, yppi);
+		zr = Cmplx(x, yppi);
 
 		//  Return rounding to default.
 		fesetround(FE_TONEAREST);
@@ -250,8 +250,8 @@ template<typename Tp>
   Tp
   wright_omega(Tp x)
   {
-    using _Cmplx = std::complex<Tp>;
-    _Cmplx z(x), err, res, condn;
+    using Cmplx = std::complex<Tp>;
+    Cmplx z(x), err, res, condn;
     return std::real(wright_omega(z, err, res, condn));
   }
 
@@ -263,7 +263,7 @@ template<typename Tp>
   Tp
   lambert_wp(Tp x)
   {
-    using _Cmplx = std::complex<Tp>;
+    using Cmplx = std::complex<Tp>;
     const auto s_1de = emsr::inv_e_v<Tp>;
     if (x < s_1de)
       throw std::domain_error("lambert_wp: Argument out of range.");
@@ -271,7 +271,7 @@ template<typename Tp>
       return Tp{-1};
     else
       {
-	_Cmplx z(std::log(_Cmplx(x))),
+	Cmplx z(std::log(Cmplx(x))),
 	       err, res, condn;
 	return std::real(wright_omega(z, err, res, condn));
       }
@@ -285,9 +285,9 @@ template<typename Tp>
   Tp
   lambert_wm(Tp x)
   {
-    using _Cmplx = std::complex<Tp>;
+    using Cmplx = std::complex<Tp>;
     const auto s_2pi = emsr::tau_v<Tp>;
-    const auto s_i = _Cmplx(Tp{0}, Tp{1});
+    const auto s_i = Cmplx(Tp{0}, Tp{1});
     const auto s_1de = emsr::inv_e_v<Tp>;
     if (x < s_1de || x > Tp{0})
       throw std::domain_error("lambert_wm: Argument out of range.");
@@ -297,7 +297,7 @@ template<typename Tp>
       return -std::numeric_limits<Tp>::infinity();
     else
       {
-	_Cmplx z(std::log(_Cmplx(x)) - s_i * s_2pi),
+	Cmplx z(std::log(Cmplx(x)) - s_i * s_2pi),
 	       err, res, condn;
 	return std::real(wright_omega(z, err, res, condn));
       }
@@ -1001,18 +1001,27 @@ template<typename Tp>
   void
   test_wright_omega(Tp proto = Tp{})
   {
+    using Cmplx = std::complex<Tp>;
+
     std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
     std::cout << '\n';
-    for (int i = -40; i <= 100; ++i)
+    for (int i = -100; i <= 100; ++i)
       {
+        std::cout << '\n';
 	auto x = i * Tp{0.1L};
-	auto y = wright_omega(x);
-	std::cout << ' ' << std::setw(w) << x
-		  << ' ' << std::setw(w) << y
-		  << '\n';
+        for (int j = -100; j <= +100; ++j)
+          {
+            auto y = j * Tp{0.1L};
+	    auto wo = wright_omega(Cmplx(x, y));
+	    std::cout << ' ' << std::setw(w) << x
+		      << ' ' << std::setw(w) << y
+                      << ' ' << std::setw(w) << std::real(wo)
+                      << ' ' << std::setw(w) << std::imag(wo)
+		      << '\n';
+          }
       }
   }
 
