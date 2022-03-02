@@ -264,14 +264,15 @@ template<typename Tp>
   lambert_wp(Tp x)
   {
     using Cmplx = std::complex<Tp>;
+    const auto s_i = Cmplx(Tp{0}, Tp{1});
     const auto s_1de = emsr::inv_e_v<Tp>;
-    if (x < s_1de)
-      throw std::domain_error("lambert_wp: Argument out of range.");
-    else if (x == s_1de)
+    if (x < -s_1de)
+      return std::numeric_limits<Tp>::quiet_NaN();
+    else if (x == -s_1de)
       return Tp{-1};
     else
       {
-	Cmplx z(std::log(Cmplx(x))),
+	Cmplx z(std::log(Cmplx(x + s_i * std::numeric_limits<Tp>::epsilon()))),
 	       err, res, condn;
 	return std::real(wright_omega(z, err, res, condn));
       }
@@ -289,15 +290,15 @@ template<typename Tp>
     const auto s_2pi = emsr::tau_v<Tp>;
     const auto s_i = Cmplx(Tp{0}, Tp{1});
     const auto s_1de = emsr::inv_e_v<Tp>;
-    if (x < s_1de || x > Tp{0})
-      throw std::domain_error("lambert_wm: Argument out of range.");
-    else if (x == s_1de)
+    if (x < -s_1de || x > Tp{0})
+      return std::numeric_limits<Tp>::quiet_NaN();
+    else if (x == -s_1de)
       return Tp{-1};
     else if (x == Tp{0})
       return -std::numeric_limits<Tp>::infinity();
     else
       {
-	Cmplx z(std::log(Cmplx(x)) - s_i * s_2pi),
+	Cmplx z(std::log(Cmplx(x + s_i * std::numeric_limits<Tp>::epsilon())) - s_i * s_2pi),
 	       err, res, condn;
 	return std::real(wright_omega(z, err, res, condn));
       }
@@ -307,7 +308,7 @@ template<typename Tp>
  * Burkhardt driver.
  */
 void
-driver(std::complex <double> z)
+driver(std::complex<double> z)
 {
   std::complex <double> condn;
   std::complex <double> err;
@@ -1002,26 +1003,84 @@ template<typename Tp>
   test_wright_omega(Tp proto = Tp{})
   {
     using Cmplx = std::complex<Tp>;
+    const std::string path = "test_wright_omega.txt";
+    std::ofstream out(path);
 
-    std::cout.precision(emsr::digits10(proto));
-    std::cout << std::showpoint << std::scientific;
-    auto w = 8 + std::cout.precision();
+    out.precision(emsr::digits10(proto));
+    out << std::showpoint << std::scientific;
+    auto w = 8 + out.precision();
 
-    std::cout << '\n';
+    out << '\n';
     for (int i = -100; i <= 100; ++i)
       {
-        std::cout << '\n';
+        out << '\n';
 	auto x = i * Tp{0.1L};
         for (int j = -100; j <= +100; ++j)
           {
             auto y = j * Tp{0.1L};
 	    auto wo = wright_omega(Cmplx(x, y));
-	    std::cout << ' ' << std::setw(w) << x
-		      << ' ' << std::setw(w) << y
-                      << ' ' << std::setw(w) << std::real(wo)
-                      << ' ' << std::setw(w) << std::imag(wo)
-		      << '\n';
+	    out << ' ' << std::setw(w) << x
+		<< ' ' << std::setw(w) << y
+                << ' ' << std::setw(w) << std::real(wo)
+                << ' ' << std::setw(w) << std::imag(wo)
+		<< '\n';
           }
+      }
+  }
+
+/**
+ *
+ */
+template<typename Tp>
+  void
+  test_lambert_wm(Tp proto = Tp{})
+  {
+    const std::string path = "test_lambert_wm.txt";
+    std::ofstream out(path);
+
+    out.precision(emsr::digits10(proto));
+    out << std::showpoint << std::scientific;
+    auto w = 8 + out.precision();
+
+    const auto s_1de = emsr::inv_e_v<Tp>;
+
+    out << '\n';
+    for (int i = 0; i <= 100; ++i)
+      {
+	auto x = -s_1de + i * Tp{0.005L};
+        if (x >= Tp{0})
+          break;
+        auto y = lambert_wm(x);
+	out << ' ' << std::setw(w) << x
+	    << ' ' << std::setw(w) << y
+            << '\n';
+      }
+  }
+
+/**
+ *
+ */
+template<typename Tp>
+  void
+  test_lambert_wp(Tp proto = Tp{})
+  {
+    const std::string path = "test_lambert_wp.txt";
+    std::ofstream out(path);
+
+    out.precision(emsr::digits10(proto));
+    out << std::showpoint << std::scientific;
+    auto w = 8 + out.precision();
+
+    const auto s_1de = emsr::inv_e_v<Tp>;
+
+    out << '\n';
+    for (int i = 0; i <= 400; ++i)
+      {
+	auto x = -s_1de + i * Tp{0.01L};
+        auto y = lambert_wp(x);
+	out << ' ' << std::setw(w) << x
+	    << ' ' << std::setw(w) << y
+            << '\n';
       }
   }
 
@@ -1032,4 +1091,8 @@ main()
   test_burkhardt_boundary();
 
   test_wright_omega<double>();
+
+  test_lambert_wm<double>();
+
+  test_lambert_wp<double>();
 }
