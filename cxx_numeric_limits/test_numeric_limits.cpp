@@ -12,7 +12,6 @@
 #include <mpreal.h>
 
 #include <emsr/numeric_limits.h>
-#include <emsr/float128_io.h>
 #include <emsr/numeric_limits_mpreal.h>
 
 template<typename _Tp>
@@ -101,9 +100,6 @@ main()
   test_numeric_limits(1.0F);
   test_numeric_limits(1.0);
   test_numeric_limits(1.0L);
-#ifdef EMSR_HAVE_FLOAT128
-  //test_numeric_limits(1.0Q);
-#endif
 
   const volatile auto x = 6.66666F;
   test_numeric_limits(x);

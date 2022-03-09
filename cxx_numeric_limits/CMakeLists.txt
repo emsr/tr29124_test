@@ -21,6 +21,6 @@ if (HAVE_MPREAL)
   target_link_libraries(cxx_numeric_limits INTERFACE mpreal multiprecision)
 
   add_executable(test_numeric_limits test_numeric_limits.cpp)
-  target_link_libraries(test_numeric_limits cxx_numeric_limits cxx_fp_utils cxx_float128 quadmath mpreal gmp mpfr)
+  target_link_libraries(test_numeric_limits cxx_numeric_limits cxx_fp_utils quadmath mpreal gmp mpfr)
   add_test(NAME run_test_numeric_limits COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_numeric_limits > output/test_numeric_limits.txt")
 endif(HAVE_MPREAL)
