@@ -172,4 +172,19 @@ main()
       auto f = fun(x);
       std::cout << ' ' << x << ' ' << r << ' ' << f << ' ' << r - f << '\n';
     }
+
+  // Look for extrema..
+  for (int i = 2; i < 100; ++i)
+    {
+      auto xm = 0.01 * (i - 1) * pi;
+      auto x = 0.01 * i * pi;
+      auto xp = 0.01 * (i + 1) * pi;
+      auto delm = rat.numer(xm) / (1.0 + rat.denom(xm)) - fun(xm);
+      auto del = rat.numer(x) / (1.0 + rat.denom(x)) - fun(x);
+      auto delp = rat.numer(xp) / (1.0 + rat.denom(xp)) - fun(xp);
+      if (del > delm && del > delp)
+        std::cout << "max: x = " << x << ";  del = " << del << '\n';
+      if (del < delm && del < delp)
+        std::cout << "min: x = " << x << ";  del = " << del << '\n';
+    }
 }

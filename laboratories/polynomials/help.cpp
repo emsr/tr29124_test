@@ -3,6 +3,8 @@
 
 #include <emsr/special_functions.h>
 
+// Figure out what these points are...
+// They are extrema of Chebyshev polynomials of the first kind: T_{n-1}(x).
 int
 main()
 {
