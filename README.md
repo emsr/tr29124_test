@@ -67,9 +67,8 @@ Check out the [API documentation](https://emsr.github.io/tr29124_test/html/index
 
 ## Building
 
-Because there are several submodules, when you first clone this package you'll neeed to go
-into the main project directory and update the submodules:
-*   git submodule update --init --recursive
-
-From then on:
-*   git submodule update --recursive --remote
+Because there are several submodules, you'll want to clone like this:  
+*   git clone --recurse-submodules https://github.com/emsr/tr29124_test.git  
+If you forget, as I often do, and do a normal clone then go
+into the main project directory and update the submodules:  
+*   git submodule update --init --recursive  
