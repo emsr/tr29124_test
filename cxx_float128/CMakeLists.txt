@@ -23,4 +23,5 @@ add_custom_target(make_cxx_float128_output_dir ALL
 
 # Header-only library.
 add_library(cxx_float128 INTERFACE)
+target_link_libraries(cxx_float128 INTERFACE cxx_numeric_limits)
 target_include_directories(cxx_float128 INTERFACE include)
