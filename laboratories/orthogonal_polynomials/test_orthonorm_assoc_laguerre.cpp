@@ -1,22 +1,3 @@
-// -*- C++ -*-
-// Integration utilities for the C++ library testsuite.
-//
-// Copyright (C) 2016-2019 Free Software Foundation, Inc.
-//
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
-//
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License along
-// with this library; see the file COPYING3.  If not see
-// <http://www.gnu.org/licenses/>.
 
 #include <iostream>
 #include <cmath>
@@ -24,72 +5,80 @@
 #include <sstream>
 #include <string>
 
-#include <ext/integration.h>
+#include <emsr/integration.h>
+#include <emsr/special_functions.h>
 
 /* Orthonormality only works for integer alpha. */
 
 // Try to manage the gamma ratio.
-template<typename _Tp>
-  _Tp
-  gamma_ratio(int n, _Tp alpha)
+template<typename Tp>
+  Tp
+  gamma_ratio(int n, Tp alpha)
   {
-    auto gaman1 = std::tgamma(_Tp(1) + alpha);
+    auto gaman1 = emsr::tgamma(Tp(1) + alpha);
     auto fact = gaman1;
     for (int k = 1; k <= n; ++k)
-      fact *= (_Tp(k) + alpha) / _Tp(k);
+      fact *= (Tp(k) + alpha) / Tp(k);
     return fact;
   }
 
-// Function which should integrate to 1 for n1 == n2, 0 otherwise.
-template<typename _Tp>
-  _Tp
-  normalized_assoc_laguerre(int n1, int n2, _Tp alpha, _Tp x)
+// Normalized associated Laguerre polynomial.
+template<typename Tp>
+  Tp
+  normalized_assoc_laguerre(int n, Tp alpha, Tp x)
   {
-    auto norm = gamma_ratio(n1, alpha);
-    return std::pow(x, alpha) * std::exp(-x)
-	 * std::assoc_laguerre(n1, alpha, x)
-	 * std::assoc_laguerre(n2, alpha, x) / norm;
+    auto norm = std::sqrt(gamma_ratio(n, alpha));
+    return emsr::assoc_laguerre(n, alpha, x) / norm;
   }
 
-template<typename _Tp>
-  _Tp
-  delta(int n1, int n2)
-  { return n1 == n2 ? _Tp{1} : _Tp{0}; }
-
-template<typename _Tp>
-  void
-  test_assoc_laguerre(_Tp alpha)
+// Function which should integrate to 1 for n1 == n2, 0 otherwise.
+template<typename Tp>
+  Tp
+  integrand(int n1, int n2, Tp alpha, Tp x)
   {
-    const auto eps_factor = 1 << (std::numeric_limits<_Tp>::digits / 3);
-    const auto eps = std::numeric_limits<_Tp>::epsilon();
+    return std::pow(x, alpha) * std::exp(-x)
+         * normalized_assoc_laguerre(n1, alpha, x)
+         * normalized_assoc_laguerre(n2, alpha, x);
+  }
+
+template<typename Tp>
+  Tp
+  delta(int n1, int n2)
+  { return n1 == n2 ? Tp{1} : Tp{0}; }
+
+template<typename Tp>
+  void
+  test_assoc_laguerre(Tp alpha)
+  {
+    const auto eps_factor = 1 << (std::numeric_limits<Tp>::digits / 3);
+    const auto eps = std::numeric_limits<Tp>::epsilon();
     const auto abs_precision = eps_factor * eps;
     const auto rel_precision = eps_factor * eps;
-    const auto cmp_precision = _Tp{10} * rel_precision;
+    const auto cmp_precision = Tp{10} * rel_precision;
 
     int n1 = 0;
     for (; n1 <= 128; ++n1)
       {
 	for (int n2 = 0; n2 <= n1; ++n2)
 	  {
-	    auto func = [n1, n2, alpha](_Tp x)
-			-> _Tp
-			{ return normalized_assoc_laguerre<_Tp>(n1, n2, alpha, x); };
+	    auto func = [n1, n2, alpha](Tp x)
+			-> Tp
+			{ return integrand<Tp>(n1, n2, alpha, x); };
 
 	    auto [result, error]
-		//= __gnu_cxx::integrate_lower_pinf(func, _Tp{0},
+		//= emsr::integrate_lower_pinf(func, Tp{0},
 		//				  abs_precision, rel_precision);
-		= __gnu_cxx::integrate_exp_sinh(func, _Tp{0},
-						abs_precision, rel_precision);
+		= emsr::integrate_exp_sinh(func, Tp{0}, abs_precision, rel_precision);
 
-	    if (std::abs(delta<_Tp>(n1, n2) - result) > cmp_precision)
+	    if (std::abs(delta<Tp>(n1, n2) - result) > cmp_precision)
 	      {
 		std::stringstream ss;
-		ss.precision(std::numeric_limits<_Tp>::digits10);
+		ss.precision(std::numeric_limits<Tp>::digits10);
 		ss << std::showpoint << std::scientific;
 		ss << "Integration failed at n1=" << n1 << ", n2=" << n2
 		   << ", returning result " << result
 		   << ", with error " << error
-		   << " instead of the expected " << delta<_Tp>(n1, n2) << '\n';
+		   << " instead of the expected " << delta<Tp>(n1, n2) << '\n';
 		throw std::logic_error(ss.str());
 	      }
 	  }
@@ -106,17 +95,17 @@ template<typename _Tp>
 	RESTART:
 	for (int n2 = 0; n2 <= n1_upper; n2 += del)
 	  {
-	    auto func = [n1 = n1_upper, n2, alpha](_Tp x)
-			-> _Tp
-			{ return normalized_assoc_laguerre<_Tp>(n1, n2, alpha, x); };
+	    auto func = [n1 = n1_upper, n2, alpha](Tp x)
+			-> Tp
+			{ return integrand<Tp>(n1, n2, alpha, x); };
 
 	    auto [result, error]
-		//= __gnu_cxx::integrate_lower_pinf(func, _Tp{0},
+		//= emsr::integrate_lower_pinf(func, Tp{0},
 		//				  abs_precision, rel_precision);
-		= __gnu_cxx::integrate_exp_sinh(func, _Tp{0},
+		= emsr::integrate_exp_sinh(func, Tp{0},
 						abs_precision, rel_precision);
 
-	    if (std::abs(delta<_Tp>(n1_upper, n2) - result) > cmp_precision)
+	    if (std::abs(delta<Tp>(n1_upper, n2) - result) > cmp_precision)
 	      {
 		if ((n1_lower + n1_upper) / 2 < n1_upper)
 		  {
@@ -159,7 +148,7 @@ main()
     {
       test_assoc_laguerre<float>(0.0F);
     }
-  catch (__gnu_cxx::__integration_error<float>& ierr)
+  catch (emsr::integration_error<float, float>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -174,7 +163,7 @@ main()
     {
       test_assoc_laguerre<double>(0.0);
     }
-  catch (__gnu_cxx::__integration_error<double>& ierr)
+  catch (emsr::integration_error<double, double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -189,7 +178,7 @@ main()
     {
       test_assoc_laguerre<long double>(0.0L);
     }
-  catch (__gnu_cxx::__integration_error<long double>& ierr)
+  catch (emsr::integration_error<long double, long double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';

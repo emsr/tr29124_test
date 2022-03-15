@@ -9,17 +9,9 @@
 #include <limits>
 #include <stdexcept>
 
-#define STD 1
-
-#if STD
-#  include <cmath>
-#  include <array>
-#else
-#  include <cmath>
-#  include <tr1/cmath>
-#  include <tr1/array>
-#endif
-#include <bits/specfun.h>
+#include <cmath>
+#include <array>
+#include <emsr/special_functions.h>
 #include <wrap_gsl.h>
 #include <wrap_boost.h>
 #include <wrap_burkhardt.h>
@@ -32,10 +24,10 @@
 int
 main()
 {
-    using _TpGSL = double;
+    using TpGSL = double;
     using Real = double;
 
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<Real>;
+    const auto s_pi = emsr::pi_v<Real>;
 
     //  Unsigned integer orders for various polynomials, harmonics, and spherical bessels.
     std::vector<unsigned int> vorder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};
@@ -43,8 +35,8 @@ main()
     // Integer orders for various polynomials, harmonics, and spherical bessels.
     std::vector<int> iorder{0, 1, 2, 5, 10, 20, 50, 100};
 
-    //  ... corresponding "_TpGSL" integer orders for GSL.
-    std::vector<_TpGSL> dvorder{std::begin(vorder), std::end(vorder)};
+    //  ... corresponding "TpGSL" integer orders for GSL.
+    std::vector<TpGSL> dvorder{std::begin(vorder), std::end(vorder)};
 
     //  Orders for spherical bessel functions.
     std::vector<unsigned int> sborder{0, 1, 2, 3, 4, 5, 10, 20, 50, 100};
@@ -54,156 +46,129 @@ main()
 				    -Real{0.5Q}, -Real{1.0Q/3.0Q}};
 
     //  Orders for cylindrical Bessel functions.
-    std::vector<_TpGSL> cyl_order{0, _TpGSL{1}/_TpGSL{3},
-				 _TpGSL{0.5Q}, _TpGSL{2}/_TpGSL{3},
+    std::vector<TpGSL> cyl_order{0, TpGSL{1}/TpGSL{3},
+				 TpGSL{0.5Q}, TpGSL{2}/TpGSL{3},
 				 1, 2, 3, 5, 10, 20, 50, 100};
 
     // Orders for spherical bessel functions.
     std::vector<unsigned int> sph_order{0, 1, 2, 5, 10, 20, 50, 100};
 
     const unsigned int num_phi = 19; // 0 - 180 degrees.
-    _TpGSL phi[num_phi];
+    TpGSL phi[num_phi];
     for (unsigned int i = 0; i < num_phi; ++i)
-      phi[i] = _TpGSL{10} * i * _S_pi / _TpGSL{180};
-    std::vector<_TpGSL> vphid(phi, phi + num_phi);
+      phi[i] = TpGSL{10} * i * s_pi / TpGSL{180};
+    std::vector<TpGSL> vphid(phi, phi + num_phi);
 
-    std::vector<_TpGSL> vab{0, 0.5, 1, 2, 5, 10, 20};
+    std::vector<TpGSL> vab{0, 0.5, 1, 2, 5, 10, 20};
 
     std::string basename;
 
-#if STD
-    using __gnu_cxx::airy_ai;
-    using __gnu_cxx::airy_bi;
-    using       std::assoc_laguerre;
-    using       std::assoc_legendre;
-    using __gnu_cxx::bernoulli;
-    using       std::beta;
-    using __gnu_cxx::binomial;
-    using __gnu_cxx::chebyshev_t;
-    using __gnu_cxx::chebyshev_u;
-    using __gnu_cxx::chebyshev_v;
-    using __gnu_cxx::chebyshev_w;
-    using __gnu_cxx::clausen;
-    using __gnu_cxx::clausen_cl;
-    using __gnu_cxx::clausen_sl;
-    using __gnu_cxx::comp_ellint_d;
-    using       std::comp_ellint_1;
-    using       std::comp_ellint_2;
-    using       std::comp_ellint_3;
-    using __gnu_cxx::conf_hyperg;
-    using __gnu_cxx::conf_hyperg_lim;
-    using __gnu_cxx::coshint;
-    using __gnu_cxx::cosint;
-    using __gnu_cxx::cos_pi;
-    using       std::cyl_bessel_i;
-    using       std::cyl_bessel_j;
-    using       std::cyl_bessel_k;
-    using __gnu_cxx::cyl_hankel_1;
-    using __gnu_cxx::cyl_hankel_2;
-    using       std::cyl_neumann;
-    using __gnu_cxx::dawson;
-    using __gnu_cxx::debye;
-    using __gnu_cxx::digamma;
-    using __gnu_cxx::dilog;
-    using __gnu_cxx::dirichlet_beta;
-    using __gnu_cxx::dirichlet_eta;
-    using __gnu_cxx::double_factorial;
-    using       std::ellint_1;
-    using       std::ellint_2;
-    using       std::ellint_3;
-    using __gnu_cxx::ellint_d;
-    using __gnu_cxx::ellint_rc;
-    using __gnu_cxx::ellint_rd;
-    using __gnu_cxx::ellint_rf;
-    using __gnu_cxx::ellint_rg;
-    using __gnu_cxx::ellint_rj;
-    using       std::expint;
-    using __gnu_cxx::expint;
-    using __gnu_cxx::factorial;
-    using __gnu_cxx::falling_factorial;
-    using __gnu_cxx::fresnel_c;
-    using __gnu_cxx::fresnel_s;
-    using __gnu_cxx::gegenbauer;
-    using       std::hermite;
-    using __gnu_cxx::heuman_lambda;
-    using __gnu_cxx::hurwitz_zeta;
-    using __gnu_cxx::hyperg;
-    using __gnu_cxx::ibeta;
-    using __gnu_cxx::ibetac;
-    using __gnu_cxx::jacobi;
-    using __gnu_cxx::jacobi_sn;
-    using __gnu_cxx::jacobi_cn;
-    using __gnu_cxx::jacobi_dn;
-    using __gnu_cxx::jacobi_zeta;
-    using       std::laguerre;
-    using __gnu_cxx::lbinomial;
-    using __gnu_cxx::ldouble_factorial;
-    using       std::legendre;
-    using __gnu_cxx::legendre_q;
-    using __gnu_cxx::lfactorial;
-    using __gnu_cxx::lfalling_factorial;
-    using __gnu_cxx::lrising_factorial;
-    using __gnu_cxx::owens_t;
-    using __gnu_cxx::gamma_p;
-    using __gnu_cxx::gamma_q;
-    using __gnu_cxx::radpoly;
-    using       std::riemann_zeta;
-    using __gnu_cxx::rising_factorial;
-    using __gnu_cxx::sinhc;
-    using __gnu_cxx::sinhc_pi;
-    using __gnu_cxx::sinc;
-    using __gnu_cxx::sinc_pi;
-    using __gnu_cxx::sinhc;
-    using __gnu_cxx::sinhc_pi;
-    using __gnu_cxx::sinhint;
-    using __gnu_cxx::sinint;
-    using __gnu_cxx::sin_pi;
-    using       std::sph_bessel;
-    using __gnu_cxx::sph_bessel_i;
-    using __gnu_cxx::sph_bessel_k;
-    using __gnu_cxx::sph_hankel_1;
-    using __gnu_cxx::sph_hankel_2;
-    using __gnu_cxx::sph_harmonic;
-    using       std::sph_legendre;
-    using       std::sph_neumann;
-    using __gnu_cxx::tgamma_lower;
-    using __gnu_cxx::tgamma;
-    using __gnu_cxx::theta_1;
-    using __gnu_cxx::theta_2;
-    using __gnu_cxx::theta_3;
-    using __gnu_cxx::theta_4;
-    using __gnu_cxx::theta_s;
-    using __gnu_cxx::theta_c;
-    using __gnu_cxx::theta_d;
-    using __gnu_cxx::theta_n;
-    using __gnu_cxx::zernike;
-#else
-    using  std::tr1::assoc_laguerre;
-    using  std::tr1::assoc_legendre;
-    using  std::tr1::beta;
-    using  std::tr1::comp_ellint_1;
-    using  std::tr1::comp_ellint_2;
-    using  std::tr1::comp_ellint_3;
-    using  std::tr1::conf_hyperg;
-    using  std::tr1::cyl_bessel_i;
-    using  std::tr1::cyl_bessel_j;
-    using  std::tr1::cyl_bessel_k;
-    using  std::tr1::cyl_neumann;
-    using  std::tr1::ellint_1;
-    using  std::tr1::ellint_2;
-    using  std::tr1::ellint_3;
-    using  std::tr1::expint;
-    using  std::tr1::hermite;
-    using  std::tr1::hyperg;
-    using  std::tr1::laguerre;
-    using  std::tr1::legendre;
-    using  std::tr1::riemann_zeta;
-    using  std::tr1::sph_bessel;
-    using  std::tr1::sph_legendre;
-    using  std::tr1::sph_neumann;
-#endif // STD
+    using emsr::airy_ai;
+    using emsr::airy_bi;
+    using emsr::assoc_laguerre;
+    using emsr::assoc_legendre;
+    using emsr::bernoulli;
+    using emsr::beta;
+    using emsr::binomial;
+    using emsr::chebyshev_t;
+    using emsr::chebyshev_u;
+    using emsr::chebyshev_v;
+    using emsr::chebyshev_w;
+    using emsr::clausen;
+    using emsr::clausen_cl;
+    using emsr::clausen_sl;
+    using emsr::comp_ellint_d;
+    using emsr::comp_ellint_1;
+    using emsr::comp_ellint_2;
+    using emsr::comp_ellint_3;
+    using emsr::conf_hyperg;
+    using emsr::conf_hyperg_lim;
+    using emsr::coshint;
+    using emsr::cosint;
+    using emsr::cos_pi;
+    using emsr::cyl_bessel_i;
+    using emsr::cyl_bessel_j;
+    using emsr::cyl_bessel_k;
+    using emsr::cyl_hankel_1;
+    using emsr::cyl_hankel_2;
+    using emsr::cyl_neumann;
+    using emsr::dawson;
+    using emsr::debye;
+    using emsr::digamma;
+    using emsr::dilog;
+    using emsr::dirichlet_beta;
+    using emsr::dirichlet_eta;
+    using emsr::double_factorial;
+    using emsr::ellint_1;
+    using emsr::ellint_2;
+    using emsr::ellint_3;
+    using emsr::ellint_d;
+    using emsr::ellint_rc;
+    using emsr::ellint_rd;
+    using emsr::ellint_rf;
+    using emsr::ellint_rg;
+    using emsr::ellint_rj;
+    using emsr::expint;
+    using emsr::expint;
+    using emsr::factorial;
+    using emsr::falling_factorial;
+    using emsr::fresnel_c;
+    using emsr::fresnel_s;
+    using emsr::gegenbauer;
+    using emsr::hermite;
+    using emsr::heuman_lambda;
+    using emsr::hurwitz_zeta;
+    using emsr::hyperg;
+    using emsr::ibeta;
+    using emsr::ibetac;
+    using emsr::jacobi;
+    using emsr::jacobi_sn;
+    using emsr::jacobi_cn;
+    using emsr::jacobi_dn;
+    using emsr::jacobi_zeta;
+    using emsr::laguerre;
+    using emsr::lbinomial;
+    using emsr::ldouble_factorial;
+    using emsr::legendre;
+    using emsr::legendre_q;
+    using emsr::lfactorial;
+    using emsr::lfalling_factorial;
+    using emsr::lrising_factorial;
+    using emsr::owens_t;
+    using emsr::gamma_p;
+    using emsr::gamma_q;
+    using emsr::radpoly;
+    using emsr::riemann_zeta;
+    using emsr::rising_factorial;
+    using emsr::sinhc;
+    using emsr::sinhc_pi;
+    using emsr::sinc;
+    using emsr::sinc_pi;
+    using emsr::sinhc;
+    using emsr::sinhc_pi;
+    using emsr::sinhint;
+    using emsr::sinint;
+    using emsr::sin_pi;
+    using emsr::sph_bessel;
+    using emsr::sph_bessel_i;
+    using emsr::sph_bessel_k;
+    using emsr::sph_hankel_1;
+    using emsr::sph_hankel_2;
+    using emsr::sph_harmonic;
+    using emsr::sph_legendre;
+    using emsr::sph_neumann;
+    using emsr::tgamma_lower;
+    using emsr::tgamma;
+    using emsr::theta_1;
+    using emsr::theta_2;
+    using emsr::theta_3;
+    using emsr::theta_4;
+    using emsr::theta_s;
+    using emsr::theta_c;
+    using emsr::theta_d;
+    using emsr::theta_n;
+    using emsr::zernike;
 
-#if STD
     //  Airy Ai functions.
     std::cout << "airy_ai" << '\n';
     basename = "diff_airy_ai";
@@ -217,7 +182,6 @@ main()
     rundiff(airy_bi, gsl::airy_bi, basename,
 	    "x", fill_argument(std::make_pair(Real{-10}, Real{+10}),
 			       std::make_pair(true, true), 41));
-#endif // STD
 
     //  Associated Laguerre polynomials.
     std::cout << "assoc_laguerre" << '\n';
@@ -247,7 +211,6 @@ main()
 			       std::make_pair(false, true), 101));
 
 
-#if STD
     // Binomial coefficient.
     std::cout << "binomial" << '\n';
     basename = "diff_binomial";
@@ -265,7 +228,6 @@ main()
 			       std::make_pair(true, true), 201),
 	    "k", fill_argument(std::make_pair(0U, 200U),
 			       std::make_pair(true, true), 201));
-#endif // STD
 
 
     //  Complete elliptic integrals of the first kind.
@@ -336,7 +298,7 @@ main()
 	    "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 			       std::make_pair(false, true), 1001));
 
-#if STD
+
     // Cylindrical Hankel functions of the first kind.
     std::cout << "cyl_hankel_1" << '\n';
     basename = "cyl_hankel_1";
@@ -356,7 +318,6 @@ main()
 					     std::make_pair(false, true), 21),
 			       fill_argument(std::make_pair(Real{0}, Real{100}),
 					     std::make_pair(false, true), 21)));
-#endif // STD
 
 
     //  Cylindrical Neumann functions.
@@ -473,7 +434,7 @@ main()
 	    "x", fill_argument(std::make_pair(Real{1}, Real{30}),
 			       std::make_pair(false, true), 146));
 
-#if STD
+
     //  Hurwitz zeta function.
     std::cout << "hurwitz_zeta" << '\n';
     //  Skip the pole at 1.
@@ -483,7 +444,6 @@ main()
 			       std::make_pair(false, true), 146),
 	    "a", fill_argument(std::make_pair(Real{0}, Real{5}),
 			       std::make_pair(false, true), 26));
-#endif // STD
 
 
     //  Spherical Bessel functions.
@@ -500,7 +460,7 @@ main()
     basename = "diff_sph_legendre";
     rundiff(sph_legendre, gsl::sph_legendre, basename,
 	    "l", vorder, "m", vorder,
-	    "theta", fill_argument(std::make_pair(Real{0}, _S_pi),
+	    "theta", fill_argument(std::make_pair(Real{0}, s_pi),
 	    			   std::make_pair(true, true), 1001));
 
 
@@ -513,7 +473,7 @@ main()
 	    "x", fill_argument(std::make_pair(Real{0}, Real{100}),
 	  		       std::make_pair(false, true), 1001));
 
-#if STD
+
     //  Carlson elliptic functions R_C.
     std::cout << "ellint_rc" << '\n';
     basename = "diff_ellint_rc";
@@ -573,16 +533,16 @@ main()
     std::cout << "dilog" << '\n';
     basename = "diff_dilog";
     rundiff(dilog, gsl::dilog, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{-10}, _TpGSL{1}),
+	    "x", fill_argument(std::make_pair(TpGSL{-10}, TpGSL{1}),
 			       std::make_pair(true, true), 23));
 
     //  Upper incomplete Gamma functions.
     std::cout << "tgamma" << '\n';
     basename = "diff_tgamma";
     rundiff(tgamma, gsl::tgamma, basename,
-	    "a", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
+	    "a", fill_argument(std::make_pair(TpGSL{0}, TpGSL{5}),
 			       std::make_pair(false, true), 11),
-	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
+	    "x", fill_argument(std::make_pair(TpGSL{0}, TpGSL{5}),
 			       std::make_pair(true, true), 11));
 
       // Lower incomplete Gamma functions.
@@ -598,57 +558,57 @@ main()
     std::cout << "ibeta" << '\n';
     basename = "diff_ibeta";
     rundiff(ibeta, gsl::ibeta, basename,
-	    "a", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
+	    "a", fill_argument(std::make_pair(TpGSL{0}, TpGSL{5}),
 			       std::make_pair(false, true), 11),
-	    "b", fill_argument(std::make_pair(_TpGSL{5}, _TpGSL{0}),
+	    "b", fill_argument(std::make_pair(TpGSL{5}, TpGSL{0}),
 			       std::make_pair(true, false), 11),
-	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{1}),
+	    "x", fill_argument(std::make_pair(TpGSL{0}, TpGSL{1}),
 			       std::make_pair(false, false), 21));
 
     //  Complementary incomplete Beta functions.
     std::cout << "ibetac" << '\n';
     basename = "diff_ibetac";
     rundiff(ibetac, beast::ibetac, basename,
-	    "a", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{5}),
+	    "a", fill_argument(std::make_pair(TpGSL{0}, TpGSL{5}),
 			       std::make_pair(false, true), 11),
-	    "b", fill_argument(std::make_pair(_TpGSL{5}, _TpGSL{0}),
+	    "b", fill_argument(std::make_pair(TpGSL{5}, TpGSL{0}),
 			       std::make_pair(true, false), 11),
-	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{1}),
+	    "x", fill_argument(std::make_pair(TpGSL{0}, TpGSL{1}),
 			       std::make_pair(false, false), 21));
 
     //  Digamma or psi functions.
     std::cout << "digamma" << '\n';
     basename = "diff_digamma";
     rundiff(digamma, gsl::digamma, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{-9.9375Q}, _TpGSL{10.0625Q}),
+	    "x", fill_argument(std::make_pair(TpGSL{-9.9375Q}, TpGSL{10.0625Q}),
 			       std::make_pair(true, true), 801));
 
     //  Sine integral or Si functions.
     std::cout << "sinint" << '\n';
     basename = "diff_sinint";
     rundiff(sinint, gsl::sinint, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+10}),
+	    "x", fill_argument(std::make_pair(TpGSL{0}, TpGSL{+10}),
 			       std::make_pair(false, true), 101));
 
     //  Cosine integral or Ci functions.
     std::cout << "cosint" << '\n';
     basename = "diff_cosint";
     rundiff(cosint, gsl::cosint, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+10}),
+	    "x", fill_argument(std::make_pair(TpGSL{0}, TpGSL{+10}),
 			       std::make_pair(false, true), 101));
 
     //  Hyperbolic sine integral or Shi functions.
     std::cout << "sinhint" << '\n';
     basename = "diff_sinhint";
     rundiff(sinhint, gsl::sinhint, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
+	    "x", fill_argument(std::make_pair(TpGSL{0}, TpGSL{+5}),
 			       std::make_pair(false, true), 101));
 
     //  Hyperbolic cosine integral or Chi functions.
     std::cout << "coshint" << '\n';
     basename = "diff_coshint";
     rundiff(coshint, gsl::coshint, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
+	    "x", fill_argument(std::make_pair(TpGSL{0}, TpGSL{+5}),
 			       std::make_pair(false, true), 101));
 
     // Dawson integral.
@@ -690,7 +650,7 @@ main()
     basename = "diff_expint_en";
     rundiff(expint, gsl::expint, basename,
 	    "n", {0, 1, 2, 3, 5},
-	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
+	    "x", fill_argument(std::make_pair(TpGSL{0}, TpGSL{+5}),
 			       std::make_pair(false, true), 101));
 
 
@@ -698,21 +658,21 @@ main()
     std::cout << "fresnel_c" << '\n';
     basename = "diff_fresnel_c";
     rundiff(fresnel_c, gsl::fresnel_c, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{-20}, _TpGSL{+20}),
+	    "x", fill_argument(std::make_pair(TpGSL{-20}, TpGSL{+20}),
 			       std::make_pair(false, true), 401));
 
     //  Fresnel sine integral.
     std::cout << "fresnel_s" << '\n';
     basename = "diff_fresnel_s";
     rundiff(fresnel_s, gsl::fresnel_s, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{-20}, _TpGSL{+20}),
+	    "x", fill_argument(std::make_pair(TpGSL{-20}, TpGSL{+20}),
 			       std::make_pair(false, true), 401));
 
     //  Dawson integral.
     std::cout << "dawson" << '\n';
     basename = "diff_dawson";
     rundiff(dawson, gsl::dawson, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{0}, _TpGSL{+5}),
+	    "x", fill_argument(std::make_pair(TpGSL{0}, TpGSL{+5}),
 			       std::make_pair(false, true), 101));
 
     // Normalized sine cardinal function.
@@ -726,7 +686,7 @@ main()
     std::cout << "sinc_pi" << '\n';
     basename = "diff_sinc_pi";
     rundiff(sinc_pi, gsl::sinc_pi, basename,
-	    "x", fill_argument(std::make_pair(_TpGSL{-20}, _TpGSL{+20}),
+	    "x", fill_argument(std::make_pair(TpGSL{-20}, TpGSL{+20}),
 			       std::make_pair(false, true), 401));
 
     // Log rising factorial symbol.
@@ -991,7 +951,7 @@ main()
     basename = "diff_sph_harmonic";
     rundiff(sph_harmonic, beast::sph_harmonic, basename,
 	    "l", vorder, "m", iorder,
-	    "theta", fill_argument(std::make_pair(Real{0}, _S_pi),
+	    "theta", fill_argument(std::make_pair(Real{0}, s_pi),
 				   std::make_pair(true, true), 21),
 	    "phi", vphid);
 
@@ -1052,8 +1012,6 @@ main()
 	     "n", {1U, 2U, 3U, 4U, 5U, 6U},
 	     "x", fill_argument(std::make_pair(Real{0}, Real{10}),
 				std::make_pair(true, true), 41));
-
-#endif // STD
 
   return 0;
 }

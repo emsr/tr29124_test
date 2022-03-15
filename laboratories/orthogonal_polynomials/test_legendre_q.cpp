@@ -7,13 +7,13 @@
 #include <limits>
 #include <cmath>
 
-#include <bits/sf_legendre.tcc>
+#include <emsr/sf_legendre.h>
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_legendre_q()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -22,9 +22,9 @@ template<typename _Tp>
 	std::cout << "\n\n l = " << std::setw(2) << l << '\n';
 	for (int i = -120; i <= +120; ++i)
 	  {
-	    auto x = _Tp(0.01L * i);
+	    auto x = Tp(0.01L * i);
 	    std::cout << ' ' << std::setw(w) << x
-		      << ' ' << std::setw(w) << __gnu_cxx::legendre_q(l, x)
+		      << ' ' << std::setw(w) << emsr::legendre_q(l, x)
 		      << '\n';
 	  }
       }

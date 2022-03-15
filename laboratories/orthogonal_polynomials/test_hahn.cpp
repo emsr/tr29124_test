@@ -24,35 +24,35 @@
  *               {(2n + \alpha + \beta)(2n + \alpha + \beta + 1)}
  * @f]
  */
-template<typename _Tp, typename _TpX>
-  _Tp
-  __hahn_recur(int n, _Tp alpha, _Tp beta, int N, _TpX x)
+template<typename Tp, typename TpX>
+  Tp
+  hahn_recur(int n, Tp alpha, Tp beta, int N, TpX x)
   {
-    auto Qnm1 = _Tp{1};
+    auto Qnm1 = Tp{1};
     if (n == 0)
       return Qnm1;
 
     const auto ab = alpha + beta;
 
-    auto Qn = _Tp{1} - _Tp(x) * (ab + _Tp{2}) / (alpha + _Tp{1}) / _Tp(N);
+    auto Qn = Tp{1} - Tp(x) * (ab + Tp{2}) / (alpha + Tp{1}) / Tp(N);
     if (n == 1)
       return Qn;
 
-    auto An = (ab + _Tp{2}) * (alpha + _Tp{2}) * _Tp(N - 1)
-	    / (ab + _Tp{4}) / (ab + _Tp{3});
-    auto Cn = (ab + _Tp(N + 2)) * (beta + _Tp{1})
-	    / (ab + _Tp{3}) / (ab + _Tp{2});
-    auto Qnp1 = ((An + Cn - _Tp(x)) * Qn - Cn * Qnm1) / An;
+    auto An = (ab + Tp{2}) * (alpha + Tp{2}) * Tp(N - 1)
+	    / (ab + Tp{4}) / (ab + Tp{3});
+    auto Cn = (ab + Tp(N + 2)) * (beta + Tp{1})
+	    / (ab + Tp{3}) / (ab + Tp{2});
+    auto Qnp1 = ((An + Cn - Tp(x)) * Qn - Cn * Qnm1) / An;
 
     for (int k = 2; k < n; ++k)
       {
-	auto An = (ab + _Tp(k + 1)) * (alpha + _Tp(k + 1)) * _Tp(N - k)
-		/ (ab + _Tp(2 * k + 2)) / (ab + _Tp(2 * k + 1));
-	auto Cn = _Tp(k) * (ab + _Tp(N + k + 1)) * (beta + _Tp(k))
-		/ (ab + _Tp(2 * k + 1)) / (ab + _Tp(2 * k));
+	auto An = (ab + Tp(k + 1)) * (alpha + Tp(k + 1)) * Tp(N - k)
+		/ (ab + Tp(2 * k + 2)) / (ab + Tp(2 * k + 1));
+	auto Cn = Tp(k) * (ab + Tp(N + k + 1)) * (beta + Tp(k))
+		/ (ab + Tp(2 * k + 1)) / (ab + Tp(2 * k));
 	Qnm1 = Qn;
 	Qn = Qnp1;
-        Qnp1 = ((An + Cn - _Tp(x)) * Qn - Cn * Qnm1) / An;
+        Qnp1 = ((An + Cn - Tp(x)) * Qn - Cn * Qnm1) / An;
       }
 
     return Qnp1;
@@ -65,9 +65,9 @@ template<typename _Tp, typename _TpX>
  *     = {}_3F_2(-n, n + \alpha + \beta + 1, -x; \alpha + 1, -N; 1)
  * @f]
  */
-template<typename _Tp, typename _TpX>
-  _Tp
-  __hahn(int n, _Tp alpha, _Tp beta, int N, _TpX x)
+template<typename Tp, typename TpX>
+  Tp
+  hahn(int n, Tp alpha, Tp beta, int N, TpX x)
   {
     if (std::isnan(alpha))
       return alpha;
@@ -76,20 +76,19 @@ template<typename _Tp, typename _TpX>
     else if (std::isnan(x))
       return x;
     else if (n > N)
-      std::__throw_domain_error(__N("__hahn: "
-				"Degree must be less than or equal to big N."));
+      throw std::domain_error("hahn: Degree must be less than or equal to big N.");
     else
-      return __hahn_recur(n, alpha, beta, N, x);
+      return hahn_recur(n, alpha, beta, N, x);
   }
 
 /**
  * 
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  test_hahn(_Tp alpha, _Tp beta, int N)
+  test_hahn(Tp alpha, Tp beta, int N)
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto w = std::cout.precision() + 8;
 
     for (int n = 0; n <= N; ++n)
@@ -97,8 +96,8 @@ template<typename _Tp>
 	std::cout << '\n' << '\n' << " n = " << n << '\n';
 	for (int i = 0; i <= 400; ++i)
 	  {
-	    auto x = i * _Tp{0.05L};
-	    auto Q = __hahn(n, alpha, beta, N, x);
+	    auto x = i * Tp{0.05L};
+	    auto Q = hahn(n, alpha, beta, N, x);
 	    std::cout << ' ' << std::setw(w) << x
 		      << ' ' << std::setw(w) << Q
 		      << '\n';

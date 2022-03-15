@@ -7,13 +7,16 @@
 #include <iomanip>
 #include <algorithm>
 #include <cmath>
-#include <ext/fp_type_util.h>
+#include <complex>
 
-//#define __cpp_lib_hypot 201603L
+#include <emsr/fp_type_util.h>
+#include <emsr/complex_util.h> // isnan
 
-namespace std
+//#define cpp_lib_hypot 201603L
+
+namespace emsr
 {
-namespace __detail
+namespace detail
 {
 #if LAMBDA
 
@@ -24,29 +27,29 @@ namespace __detail
    * @f]
    * avoiding underflow/overflow with small/large arguments.
    */
-  template<typename _Tp>
-    constexpr _Tp
-    __hypot3(_Tp __x, _Tp __y, _Tp __z)
+  template<typename Tp>
+    constexpr Tp
+    hypot3(Tp x, Tp y, Tp z)
     {
-      if (std::isnan(__x) || std::isnan(__y) || std::isnan(__z))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+      if (std::isnan(x) || std::isnan(y) || std::isnan(z))
+	return std::numeric_limits<Tp>::quiet_NaN();
       else
 	{
-	  auto __abs_max = [](_Tp __a, _Tp __b)
+	  auto abs_max = [](Tp a, Tp b)
 			    -> bool
-			    { return std::abs(__a) < std::abs(__b); };
+			    { return std::abs(a) < std::abs(b); };
 
-	  const auto __amax = std::max({__x, __y, __z}, __abs_max);
-	  if (__amax == _Tp{0})
-	    return _Tp{0};
-	  else if (std::isinf(__amax))
-	    return std::numeric_limits<_Tp>::infinity();
+	  const auto amax = std::max({x, y, z}, abs_max);
+	  if (amax == Tp{0})
+	    return Tp{0};
+	  else if (std::isinf(amax))
+	    return std::numeric_limits<Tp>::infinity();
 	  else
 	    {
-	      __x /= __amax;
-	      __y /= __amax;
-	      __z /= __amax;
-	      return __amax * std::sqrt(__x * __x + __y * __y + __z * __z);
+	      x /= amax;
+	      y /= amax;
+	      z /= amax;
+	      return amax * std::sqrt(x * x + y * y + z * z);
             }
 	}
     }
@@ -54,11 +57,11 @@ namespace __detail
 #else
 
   // Avoid including all of <algorithm>
-  template<typename _Tp>
-    constexpr _Tp
-    __max3(_Tp __x, _Tp __y, _Tp __z)
+  template<typename Tp>
+    constexpr Tp
+    max3(Tp x, Tp y, Tp z)
     {
-      return std::max(std::max(__x, __y), std::max(__y, __z));
+      return std::max(std::max(x, y), std::max(y, z));
     }
 
   /**
@@ -68,28 +71,28 @@ namespace __detail
    * @f]
    * avoiding underflow/overflow with small/large arguments.
    */
-  template<typename _Tp>
-    constexpr _Tp
-    __hypot3(_Tp __x, _Tp __y, _Tp __z)
+  template<typename Tp>
+    constexpr Tp
+    hypot3(Tp x, Tp y, Tp z)
     {
-      if (std::isnan(__x) || std::isnan(__y) || std::isnan(__z))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+      if (std::isnan(x) || std::isnan(y) || std::isnan(z))
+	return std::numeric_limits<Tp>::quiet_NaN();
       else
 	{
-	  __x = std::abs(__x);
-	  __y = std::abs(__y);
-	  __z = std::abs(__z);
-	  const auto __amax = __max3(__x, __y, __z);
-	  if (__amax == _Tp{0})
-	    return _Tp{0};
-	  else if (std::isinf(__amax))
-	    return std::numeric_limits<_Tp>::infinity();
+	  x = std::abs(x);
+	  y = std::abs(y);
+	  z = std::abs(z);
+	  const auto amax = max3(x, y, z);
+	  if (amax == Tp{0})
+	    return Tp{0};
+	  else if (std::isinf(amax))
+	    return std::numeric_limits<Tp>::infinity();
 	  else
 	    {
-	      __x /= __amax;
-	      __y /= __amax;
-	      __z /= __amax;
-	      return __amax * std::sqrt(__x * __x + __y * __y + __z * __z);
+	      x /= amax;
+	      y /= amax;
+	      z /= amax;
+	      return amax * std::sqrt(x * x + y * y + z * z);
             }
 	}
     }
@@ -103,26 +106,26 @@ namespace __detail
    * @f]
    * avoiding underflow/overflow with small/large arguments.
    */
-  template<typename _Tp>
-    constexpr __gnu_cxx::fp_promote_t<_Tp>
-    __hypot3(const std::complex<_Tp>& __x, const std::complex<_Tp>& __y)
+  template<typename Tp>
+    constexpr emsr::fp_promote_t<Tp>
+    hypot3(const std::complex<Tp>& x, const std::complex<Tp>& y)
     {
-      if (std::isnan(__x) || std::isnan(__y))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+      if (std::isnan(x) || std::isnan(y))
+	return std::numeric_limits<Tp>::quiet_NaN();
       else
 	{
-	  auto __ax = std::abs(__x);
-	  auto __ay = std::abs(__y);
-	  const auto __amax = std::max<_Tp>(__ax, __ay);
-	  if (__amax == _Tp{0})
-	    return _Tp{0};
-	  else if (std::isinf(__amax))
-	    return std::numeric_limits<_Tp>::infinity();
+	  auto ax = std::abs(x);
+	  auto ay = std::abs(y);
+	  const auto amax = std::max<Tp>(ax, ay);
+	  if (amax == Tp{0})
+	    return Tp{0};
+	  else if (std::isinf(amax))
+	    return std::numeric_limits<Tp>::infinity();
 	  else
 	    {
-	      __ax /= __amax;
-	      __ay /= __amax;
-	      return __amax * std::sqrt(__ax * __ax + __ay * __ay);
+	      ax /= amax;
+	      ay /= amax;
+	      return amax * std::sqrt(ax * ax + ay * ay);
             }
 	}
     }
@@ -135,235 +138,235 @@ namespace __detail
    * @f]
    * avoiding underflow/overflow with small/large arguments.
    */
-  template<typename _Tp>
-    constexpr __gnu_cxx::fp_promote_t<_Tp>
-    __hypot3(const std::complex<_Tp>& __x, const std::complex<_Tp>& __y,
-	     const std::complex<_Tp>& __z)
+  template<typename Tp>
+    constexpr emsr::fp_promote_t<Tp>
+    hypot3(const std::complex<Tp>& x, const std::complex<Tp>& y,
+	     const std::complex<Tp>& z)
     {
-      if (std::isnan(__x) || std::isnan(__y))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+      if (std::isnan(x) || std::isnan(y))
+	return std::numeric_limits<Tp>::quiet_NaN();
       else
 	{
-	  auto __ax = std::abs(__x);
-	  auto __ay = std::abs(__y);
-	  auto __az = std::abs(__z);
-	  const auto __amax = std::max<_Tp>({__ax, __ay, __az});
-	  if (__amax == _Tp{0})
-	    return _Tp{0};
-	  else if (std::isinf(__amax))
-	    return std::numeric_limits<_Tp>::infinity();
+	  auto ax = std::abs(x);
+	  auto ay = std::abs(y);
+	  auto az = std::abs(z);
+	  const auto amax = std::max<Tp>({ax, ay, az});
+	  if (amax == Tp{0})
+	    return Tp{0};
+	  else if (std::isinf(amax))
+	    return std::numeric_limits<Tp>::infinity();
 	  else
 	    {
-	      __ax /= __amax;
-	      __ay /= __amax;
-	      __az /= __amax;
-	      return __amax
-		   * std::sqrt(__ax * __ax + __ay * __ay + __az * __az);
+	      ax /= amax;
+	      ay /= amax;
+	      az /= amax;
+	      return amax
+		   * std::sqrt(ax * ax + ay * ay + az * az);
             }
 	}
     }
 
-} // namespace __detail
-} // namespace std
+} // namespace detail
+} // namespace emsr
 
   constexpr inline float
-  hypot(float __x, float __y, float __z)
-  { return std::__detail::__hypot3<float>(__x, __y, __z); }
+  hypot(float x, float y, float z)
+  { return emsr::detail::hypot3<float>(x, y, z); }
 
   constexpr inline double
-  hypot(double __x, double __y, double __z)
-  { return std::__detail::__hypot3<double>(__x, __y, __z); }
+  hypot(double x, double y, double z)
+  { return emsr::detail::hypot3<double>(x, y, z); }
 
   constexpr inline long double
-  hypot(long double __x, long double __y, long double __z)
-  { return std::__detail::__hypot3<long double>(__x, __y, __z); }
+  hypot(long double x, long double y, long double z)
+  { return emsr::detail::hypot3<long double>(x, y, z); }
 
-  template<typename _Tpx, typename _Tpy, typename _Tpz>
-    constexpr inline __gnu_cxx::fp_promote_t<_Tpx, _Tpy, _Tpz>
-    hypot(_Tpx __x, _Tpy __y, _Tpz __z)
+  template<typename Tpx, typename Tpy, typename Tpz>
+    constexpr inline emsr::fp_promote_t<Tpx, Tpy, Tpz>
+    hypot(Tpx x, Tpy y, Tpz z)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Tpx, _Tpy, _Tpz>;
-      return std::__detail::__hypot3<__type>(__x, __y, __z);
+      using type = emsr::fp_promote_t<Tpx, Tpy, Tpz>;
+      return emsr::detail::hypot3<type>(x, y, z);
     }
 
 
   constexpr inline float
-  hypot(const std::complex<float>& __x, const std::complex<float>& __y)
-  { return std::__detail::__hypot3<float>(__x, __y); }
+  hypot(const std::complex<float>& x, const std::complex<float>& y)
+  { return emsr::detail::hypot3<float>(x, y); }
 
   constexpr inline double
-  hypot(const std::complex<double>& __x, const std::complex<double>& __y)
-  { return std::__detail::__hypot3<double>(__x, __y); }
+  hypot(const std::complex<double>& x, const std::complex<double>& y)
+  { return emsr::detail::hypot3<double>(x, y); }
 
   constexpr inline long double
-  hypot(const std::complex<long double>& __x,
-	const std::complex<long double>& __y)
-  { return std::__detail::__hypot3<long double>(__x, __y); }
+  hypot(const std::complex<long double>& x,
+	const std::complex<long double>& y)
+  { return emsr::detail::hypot3<long double>(x, y); }
 
-  template<typename _Tpx, typename _Tpy>
-    constexpr inline __gnu_cxx::fp_promote_t<_Tpx, _Tpy>
-    hypot(const std::complex<_Tpx>& __x, const std::complex<_Tpy>& __y)
+  template<typename Tpx, typename Tpy>
+    constexpr inline emsr::fp_promote_t<Tpx, Tpy>
+    hypot(const std::complex<Tpx>& x, const std::complex<Tpy>& y)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Tpx, _Tpy>;
-      return std::__detail::__hypot3<__type>(__x, __y);
+      using type = emsr::fp_promote_t<Tpx, Tpy>;
+      return emsr::detail::hypot3<type>(x, y);
     }
 
   constexpr inline float
-  hypot(const std::complex<float>& __x, const std::complex<float>& __y,
-	const std::complex<float>& __z)
-  { return std::__detail::__hypot3<float>(__x, __y, __z); }
+  hypot(const std::complex<float>& x, const std::complex<float>& y,
+	const std::complex<float>& z)
+  { return emsr::detail::hypot3<float>(x, y, z); }
 
   constexpr inline double
-  hypot(const std::complex<double>& __x, const std::complex<double>& __y,
-	const std::complex<double>& __z)
-  { return std::__detail::__hypot3<double>(__x, __y, __z); }
+  hypot(const std::complex<double>& x, const std::complex<double>& y,
+	const std::complex<double>& z)
+  { return emsr::detail::hypot3<double>(x, y, z); }
 
   constexpr inline long double
-  hypot(const std::complex<long double>& __x,
-	const std::complex<long double>& __y,
-	const std::complex<long double>& __z)
-  { return std::__detail::__hypot3<long double>(__x, __y, __z); }
+  hypot(const std::complex<long double>& x,
+	const std::complex<long double>& y,
+	const std::complex<long double>& z)
+  { return emsr::detail::hypot3<long double>(x, y, z); }
 
-  template<typename _Tpx, typename _Tpy, typename _Tpz>
-    constexpr inline __gnu_cxx::fp_promote_t<_Tpx, _Tpy, _Tpz>
-    hypot(const std::complex<_Tpx>& __x, const std::complex<_Tpy>& __y,
-	  const std::complex<_Tpz>& __z)
+  template<typename Tpx, typename Tpy, typename Tpz>
+    constexpr inline emsr::fp_promote_t<Tpx, Tpy, Tpz>
+    hypot(const std::complex<Tpx>& x, const std::complex<Tpy>& y,
+	  const std::complex<Tpz>& z)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Tpx, _Tpy, _Tpz>;
-      return std::__detail::__hypot3<__type>(__x, __y, __z);
+      using type = emsr::fp_promote_t<Tpx, Tpy, Tpz>;
+      return emsr::detail::hypot3<type>(x, y, z);
     }
 
 
-//} // namespace std
+//} // namespace emsr
 
-template<typename _Tp>
+template<typename Tp>
   void
   test()
   {
-    constexpr auto tiny = _Tp{8} * std::numeric_limits<_Tp>::lowest();
-    constexpr auto huge = _Tp{0.125L} * std::numeric_limits<_Tp>::max();
-    constexpr auto inf = std::numeric_limits<_Tp>::infinity();
-    constexpr auto bigexp = std::numeric_limits<_Tp>::max_exponent - 2;
-    constexpr auto big1 = std::ldexp(_Tp{1}, bigexp);
-    constexpr auto big2 = std::ldexp(_Tp{2}, bigexp);
-    constexpr auto big3 = std::ldexp(_Tp{3}, bigexp);
-    constexpr auto smallexp = std::numeric_limits<_Tp>::min_exponent + 2;
-    constexpr auto small1 = std::ldexp(_Tp{1}, smallexp);
-    constexpr auto small2 = std::ldexp(_Tp{2}, smallexp);
-    constexpr auto small3 = std::ldexp(_Tp{3}, smallexp);
+    constexpr auto tiny = Tp{8} * std::numeric_limits<Tp>::lowest();
+    constexpr auto huge = Tp{0.125L} * std::numeric_limits<Tp>::max();
+    constexpr auto inf = std::numeric_limits<Tp>::infinity();
+    constexpr auto bigexp = std::numeric_limits<Tp>::max_exponent - 2;
+    constexpr auto big1 = std::ldexp(Tp{1}, bigexp);
+    constexpr auto big2 = std::ldexp(Tp{2}, bigexp);
+    constexpr auto big3 = std::ldexp(Tp{3}, bigexp);
+    constexpr auto smallexp = std::numeric_limits<Tp>::min_exponent + 2;
+    constexpr auto small1 = std::ldexp(Tp{1}, smallexp);
+    constexpr auto small2 = std::ldexp(Tp{2}, smallexp);
+    constexpr auto small3 = std::ldexp(Tp{3}, smallexp);
 
-    constexpr auto m123 = hypot(_Tp{1}, _Tp{2}, _Tp{3});
-    constexpr auto m1inf = hypot(_Tp{1}, _Tp{2}, inf);
-    constexpr auto m2inf = hypot(inf, _Tp{2}, inf);
+    constexpr auto m123 = hypot(Tp{1}, Tp{2}, Tp{3});
+    constexpr auto m1inf = hypot(Tp{1}, Tp{2}, inf);
+    constexpr auto m2inf = hypot(inf, Tp{2}, inf);
     constexpr auto m3inf = hypot(inf, -inf, inf);
-    constexpr auto m1huge = hypot(huge, _Tp{2}, _Tp{3});
-    constexpr auto m2huge = hypot(huge, _Tp{2} * huge, _Tp{3});
-    constexpr auto m3huge = hypot(huge, _Tp{2} * huge, _Tp{3} * huge);
-    constexpr auto m1tiny = hypot(tiny, _Tp{2}, _Tp{3});
-    constexpr auto m2tiny = hypot(tiny, _Tp{2} * tiny, _Tp{3});
-    constexpr auto m3tiny = hypot(tiny, _Tp{2} * tiny, _Tp{3} * tiny);
-    if constexpr (std::numeric_limits<_Tp>::has_denorm == std::denorm_present)
+    constexpr auto m1huge = hypot(huge, Tp{2}, Tp{3});
+    constexpr auto m2huge = hypot(huge, Tp{2} * huge, Tp{3});
+    constexpr auto m3huge = hypot(huge, Tp{2} * huge, Tp{3} * huge);
+    constexpr auto m1tiny = hypot(tiny, Tp{2}, Tp{3});
+    constexpr auto m2tiny = hypot(tiny, Tp{2} * tiny, Tp{3});
+    constexpr auto m3tiny = hypot(tiny, Tp{2} * tiny, Tp{3} * tiny);
+    if constexpr (std::numeric_limits<Tp>::has_denorm == std::denorm_present)
     {
-      constexpr auto denorm = std::numeric_limits<_Tp>::denorm_min();
-      constexpr auto denorm1 = _Tp{1} * denorm;
-      constexpr auto denorm2 = _Tp{2} * denorm;
-      constexpr auto denorm3 = _Tp{3} * denorm;
+      constexpr auto denorm = std::numeric_limits<Tp>::denorm_min();
+      constexpr auto denorm1 = Tp{1} * denorm;
+      constexpr auto denorm2 = Tp{2} * denorm;
+      constexpr auto denorm3 = Tp{3} * denorm;
     }
   }
 
-template<typename _Tp>
+template<typename Tp>
   int
   test_hypot()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto w = 8 + std::cout.precision();
 
-    constexpr auto inf = std::numeric_limits<_Tp>::infinity();
-    constexpr auto bigexp = std::numeric_limits<_Tp>::max_exponent - 2;
-    const auto big1 = std::ldexp(_Tp{1}, bigexp);
-    const auto big2 = std::ldexp(_Tp{2}, bigexp);
-    const auto big3 = std::ldexp(_Tp{3}, bigexp);
-    constexpr auto smallexp = std::numeric_limits<_Tp>::min_exponent + 2;
-    const auto small1 = std::ldexp(_Tp{1}, smallexp);
-    const auto small2 = std::ldexp(_Tp{2}, smallexp);
-    const auto small3 = std::ldexp(_Tp{3}, smallexp);
+    constexpr auto inf = std::numeric_limits<Tp>::infinity();
+    constexpr auto bigexp = std::numeric_limits<Tp>::max_exponent - 2;
+    const auto big1 = std::ldexp(Tp{1}, bigexp);
+    const auto big2 = std::ldexp(Tp{2}, bigexp);
+    const auto big3 = std::ldexp(Tp{3}, bigexp);
+    constexpr auto smallexp = std::numeric_limits<Tp>::min_exponent + 2;
+    const auto small1 = std::ldexp(Tp{1}, smallexp);
+    const auto small2 = std::ldexp(Tp{2}, smallexp);
+    const auto small3 = std::ldexp(Tp{3}, smallexp);
 
     std::cout << '\n';
 
-    auto m123 = hypot(_Tp{1}, _Tp{2}, _Tp{3});
+    auto m123 = hypot(Tp{1}, Tp{2}, Tp{3});
     std::cout << "m123      = " << std::setw(w) << m123 << '\n';
 
-    auto m1inf = hypot(_Tp{1}, _Tp{2}, inf);
+    auto m1inf = hypot(Tp{1}, Tp{2}, inf);
     std::cout << "m1inf     = " << std::setw(w) << m1inf << '\n';
 
-    auto m2inf = hypot(inf, _Tp{2}, inf);
+    auto m2inf = hypot(inf, Tp{2}, inf);
     std::cout << "m2inf     = " << std::setw(w) << m2inf << '\n';
 
     auto m3inf = hypot(inf, -inf, inf);
     std::cout << "m3inf     = " << std::setw(w) << m3inf << '\n';
 
-    auto m1big = hypot(big1, _Tp{2}, _Tp{3});
+    auto m1big = hypot(big1, Tp{2}, Tp{3});
     std::cout << "m1big     = " << std::setw(w) << m1big << '\n';
 
-    auto m2big = hypot(big1, big2, _Tp{3});
+    auto m2big = hypot(big1, big2, Tp{3});
     std::cout << "m2big     = " << std::setw(w) << m2big << '\n';
 
     auto m3big = hypot(big1, big2, big3);
     std::cout << "m3big     = " << std::setw(w) << m3big << '\n';
     std::cout << "m3big*    = " << std::setw(w) << m3big / big1 / m123 << '\n';
 
-    auto m1small = hypot(small1, _Tp{2}, _Tp{3});
+    auto m1small = hypot(small1, Tp{2}, Tp{3});
     std::cout << "m1small   = " << std::setw(w) << m1small << '\n';
 
-    auto m2small = hypot(small1, small2, _Tp{3});
+    auto m2small = hypot(small1, small2, Tp{3});
     std::cout << "m2small   = " << std::setw(w) << m2small << '\n';
 
     auto m3small = hypot(small1, small2, small3);
     std::cout << "m3small   = " << std::setw(w) << m3small << '\n';
     std::cout << "m3small*  = " << std::setw(w) << m3small / small1 / m123 << '\n';
 
-    auto m3zero = hypot(_Tp{0}, _Tp{0}, _Tp{0});
+    auto m3zero = hypot(Tp{0}, Tp{0}, Tp{0});
     std::cout << "m3zero    = " << std::setw(w) << m3zero << '\n';
 
-    if constexpr (std::numeric_limits<_Tp>::has_denorm == std::denorm_present)
+    if constexpr (std::numeric_limits<Tp>::has_denorm == std::denorm_present)
     {
-      constexpr auto denorm = std::numeric_limits<_Tp>::denorm_min();
-      constexpr auto denorm1 = _Tp{1} * denorm;
-      constexpr auto denorm2 = _Tp{2} * denorm;
-      constexpr auto denorm3 = _Tp{3} * denorm;
+      constexpr auto denorm = std::numeric_limits<Tp>::denorm_min();
+      constexpr auto denorm1 = Tp{1} * denorm;
+      constexpr auto denorm2 = Tp{2} * denorm;
+      constexpr auto denorm3 = Tp{3} * denorm;
       auto m3denorm = hypot(denorm1, denorm2, denorm3);
       std::cout << "m3denorm  = " << std::setw(w) << m3denorm << '\n';
       std::cout << "m3denorm* = " << std::setw(w) << m3denorm / denorm / m123 << '\n';
     }
 
     // x^2 + (x+1)^2 + [x(x+1)]^2 = [x(x+1) + 1]^2
-    auto m236 = hypot(_Tp{2}, _Tp{3}, _Tp{6});
+    auto m236 = hypot(Tp{2}, Tp{3}, Tp{6});
     std::cout << "m236      = " << std::setw(w) << m236 << '\n';
 
     return 0;
   }
 
-template<typename _Tp>
+template<typename Tp>
   int
   test_hypot_complex()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto w = 8 + std::cout.precision();
 
-    constexpr auto inf = std::numeric_limits<_Tp>::infinity();
-    constexpr auto bigexp = std::numeric_limits<_Tp>::max_exponent - 2;
-    const auto big1 = std::ldexp(_Tp{1}, bigexp);
-    const auto big2 = std::ldexp(_Tp{2}, bigexp);
-    const auto big3 = std::ldexp(_Tp{3}, bigexp);
-    constexpr auto smallexp = std::numeric_limits<_Tp>::min_exponent + 2;
-    const auto small1 = std::ldexp(_Tp{1}, smallexp);
-    const auto small2 = std::ldexp(_Tp{2}, smallexp);
-    const auto small3 = std::ldexp(_Tp{3}, smallexp);
+    constexpr auto inf = std::numeric_limits<Tp>::infinity();
+    constexpr auto bigexp = std::numeric_limits<Tp>::max_exponent - 2;
+    const auto big1 = std::ldexp(Tp{1}, bigexp);
+    const auto big2 = std::ldexp(Tp{2}, bigexp);
+    const auto big3 = std::ldexp(Tp{3}, bigexp);
+    constexpr auto smallexp = std::numeric_limits<Tp>::min_exponent + 2;
+    const auto small1 = std::ldexp(Tp{1}, smallexp);
+    const auto small2 = std::ldexp(Tp{2}, smallexp);
+    const auto small3 = std::ldexp(Tp{3}, smallexp);
 
-    std::complex<_Tp> q(1, -2);
-    std::complex<_Tp> x(-3, 4);
-    std::complex<_Tp> y(-5, 6);
-    std::complex<_Tp> z(-8, 8);
+    std::complex<Tp> q(1, -2);
+    std::complex<Tp> x(-3, 4);
+    std::complex<Tp> y(-5, 6);
+    std::complex<Tp> z(-8, 8);
 
     auto hxy = hypot(x, y);
     std::cout << "hxy   = " << std::setw(w) << hxy << '\n';
@@ -381,62 +384,62 @@ template<typename _Tp>
     auto hqzx = hypot(q, z, x);
     std::cout << "hqzx   = " << std::setw(w) << hqzx << '\n';
 
-    using _Cmplx = std::complex<_Tp>;
-    auto m1rinf = hypot(_Cmplx(_Tp{1}), _Cmplx(_Tp{2}), _Cmplx(inf));
+    using Cmplx = std::complex<Tp>;
+    auto m1rinf = hypot(Cmplx(Tp{1}), Cmplx(Tp{2}), Cmplx(inf));
     std::cout << "m1rinf    = " << std::setw(w) << m1rinf << '\n';
-    auto m1iinf = hypot(_Cmplx(_Tp{0}, _Tp{1}), _Cmplx(_Tp{0}, _Tp{2}), _Cmplx(_Tp{0}, inf));
+    auto m1iinf = hypot(Cmplx(Tp{0}, Tp{1}), Cmplx(Tp{0}, Tp{2}), Cmplx(Tp{0}, inf));
     std::cout << "m1iinf    = " << std::setw(w) << m1iinf << '\n';
 
-    auto m2rinf = hypot(_Cmplx(inf), _Cmplx(_Tp{2}), _Cmplx(inf));
+    auto m2rinf = hypot(Cmplx(inf), Cmplx(Tp{2}), Cmplx(inf));
     std::cout << "m2rinf    = " << std::setw(w) << m2rinf << '\n';
-    auto m2iinf = hypot(_Cmplx(_Tp{0}, inf), _Cmplx(_Tp{0}, _Tp{2}), _Cmplx(_Tp{0}, inf));
+    auto m2iinf = hypot(Cmplx(Tp{0}, inf), Cmplx(Tp{0}, Tp{2}), Cmplx(Tp{0}, inf));
     std::cout << "m2iinf    = " << std::setw(w) << m2iinf << '\n';
 
-    auto m3rinf = hypot(_Cmplx(inf), _Cmplx(-inf), _Cmplx(inf));
+    auto m3rinf = hypot(Cmplx(inf), Cmplx(-inf), Cmplx(inf));
     std::cout << "m3rinf    = " << std::setw(w) << m3rinf << '\n';
-    auto m3iinf = hypot(_Cmplx(_Tp{0}, inf), _Cmplx(_Tp{0}, -inf), _Cmplx(_Tp{0}, inf));
+    auto m3iinf = hypot(Cmplx(Tp{0}, inf), Cmplx(Tp{0}, -inf), Cmplx(Tp{0}, inf));
     std::cout << "m3iinf    = " << std::setw(w) << m3iinf << '\n';
 
-    auto m1rbig = hypot(_Cmplx(big1), _Cmplx(_Tp{2}), _Cmplx(_Tp{3}));
+    auto m1rbig = hypot(Cmplx(big1), Cmplx(Tp{2}), Cmplx(Tp{3}));
     std::cout << "m1rbig    = " << std::setw(w) << m1rbig << '\n';
-    auto m1ibig = hypot(_Cmplx(_Tp{0}, big1), _Cmplx(_Tp{0}, _Tp{2}), _Cmplx(_Tp{0}, _Tp{3}));
+    auto m1ibig = hypot(Cmplx(Tp{0}, big1), Cmplx(Tp{0}, Tp{2}), Cmplx(Tp{0}, Tp{3}));
     std::cout << "m1ibig    = " << std::setw(w) << m1ibig << '\n';
-    auto m1abig = hypot(_Cmplx(big1, big1), _Cmplx(_Tp{2}, _Tp{2}), _Cmplx(_Tp{3}, _Tp{3}));
+    auto m1abig = hypot(Cmplx(big1, big1), Cmplx(Tp{2}, Tp{2}), Cmplx(Tp{3}, Tp{3}));
     std::cout << "m1abig    = " << std::setw(w) << m1abig << '\n';
 
-    auto m2rbig = hypot(_Cmplx(big1), _Cmplx(big2), _Cmplx(_Tp{3}));
+    auto m2rbig = hypot(Cmplx(big1), Cmplx(big2), Cmplx(Tp{3}));
     std::cout << "m2rbig    = " << std::setw(w) << m2rbig << '\n';
-    auto m2ibig = hypot(_Cmplx(_Tp{0}, big1), _Cmplx(_Tp{0}, big2), _Cmplx(_Tp{0}, _Tp{3}));
+    auto m2ibig = hypot(Cmplx(Tp{0}, big1), Cmplx(Tp{0}, big2), Cmplx(Tp{0}, Tp{3}));
     std::cout << "m2ibig    = " << std::setw(w) << m2ibig << '\n';
-    auto m2abig = hypot(_Cmplx(big1, big1), _Cmplx(big2, big2), _Cmplx(_Tp{3}, _Tp{3}));
+    auto m2abig = hypot(Cmplx(big1, big1), Cmplx(big2, big2), Cmplx(Tp{3}, Tp{3}));
     std::cout << "m2abig    = " << std::setw(w) << m2abig << '\n';
 
-    auto m3rbig = hypot(_Cmplx(big1), _Cmplx(big2), _Cmplx(big3));
+    auto m3rbig = hypot(Cmplx(big1), Cmplx(big2), Cmplx(big3));
     std::cout << "m3rbig    = " << std::setw(w) << m3rbig << '\n';
-    auto m3ibig = hypot(_Cmplx(_Tp{0}, big1), _Cmplx(_Tp{0}, big2), _Cmplx(_Tp{0}, big3));
+    auto m3ibig = hypot(Cmplx(Tp{0}, big1), Cmplx(Tp{0}, big2), Cmplx(Tp{0}, big3));
     std::cout << "m3ibig    = " << std::setw(w) << m3ibig << '\n';
-    auto m3abig = hypot(_Cmplx(big1, big1), _Cmplx(big2, big2), _Cmplx(big3, big3));
+    auto m3abig = hypot(Cmplx(big1, big1), Cmplx(big2, big2), Cmplx(big3, big3));
     std::cout << "m3abig    = " << std::setw(w) << m3abig << '\n';
 
-    auto m1rsmall = hypot(_Cmplx(small1), _Cmplx(_Tp{2}), _Cmplx(_Tp{3}));
+    auto m1rsmall = hypot(Cmplx(small1), Cmplx(Tp{2}), Cmplx(Tp{3}));
     std::cout << "m1rsmall  = " << std::setw(w) << m1rsmall << '\n';
-    auto m1ismall = hypot(_Cmplx(_Tp{0}, small1), _Cmplx(_Tp{0}, _Tp{2}), _Cmplx(_Tp{0}, _Tp{3}));
+    auto m1ismall = hypot(Cmplx(Tp{0}, small1), Cmplx(Tp{0}, Tp{2}), Cmplx(Tp{0}, Tp{3}));
     std::cout << "m1ismall  = " << std::setw(w) << m1ismall << '\n';
-    auto m1asmall = hypot(_Cmplx(small1, small1), _Cmplx(_Tp{2}, _Tp{2}), _Cmplx(_Tp{3}, _Tp{3}));
+    auto m1asmall = hypot(Cmplx(small1, small1), Cmplx(Tp{2}, Tp{2}), Cmplx(Tp{3}, Tp{3}));
     std::cout << "m1asmall  = " << std::setw(w) << m1asmall << '\n';
 
-    auto m2rsmall = hypot(_Cmplx(small1), _Cmplx(small2), _Cmplx(_Tp{3}));
+    auto m2rsmall = hypot(Cmplx(small1), Cmplx(small2), Cmplx(Tp{3}));
     std::cout << "m2rsmall  = " << std::setw(w) << m2rsmall << '\n';
-    auto m2ismall = hypot(_Cmplx(_Tp{0}, small1), _Cmplx(_Tp{0}, small2), _Cmplx(_Tp{0}, _Tp{3}));
+    auto m2ismall = hypot(Cmplx(Tp{0}, small1), Cmplx(Tp{0}, small2), Cmplx(Tp{0}, Tp{3}));
     std::cout << "m2ismall  = " << std::setw(w) << m2ismall << '\n';
-    auto m2asmall = hypot(_Cmplx(small1, small1), _Cmplx(small2, small2), _Cmplx(_Tp{3}, _Tp{3}));
+    auto m2asmall = hypot(Cmplx(small1, small1), Cmplx(small2, small2), Cmplx(Tp{3}, Tp{3}));
     std::cout << "m2asmall  = " << std::setw(w) << m2asmall << '\n';
 
-    auto m3rsmall = hypot(_Cmplx(small1), _Cmplx(small2), _Cmplx(small3));
+    auto m3rsmall = hypot(Cmplx(small1), Cmplx(small2), Cmplx(small3));
     std::cout << "m3rsmall  = " << std::setw(w) << m3rsmall << '\n';
-    auto m3ismall = hypot(_Cmplx(_Tp{0}, small1), _Cmplx(_Tp{0}, small2), _Cmplx(_Tp{0}, small3));
+    auto m3ismall = hypot(Cmplx(Tp{0}, small1), Cmplx(Tp{0}, small2), Cmplx(Tp{0}, small3));
     std::cout << "m3ismall  = " << std::setw(w) << m3ismall << '\n';
-    auto m3asmall = hypot(_Cmplx(small1, small1), _Cmplx(small2, small2), _Cmplx(small3, small3));
+    auto m3asmall = hypot(Cmplx(small1, small1), Cmplx(small2, small2), Cmplx(small3, small3));
     std::cout << "m3asmall  = " << std::setw(w) << m3asmall << '\n';
 
     return 0;
@@ -448,7 +451,7 @@ main()
   test_hypot<float>();
   test_hypot<double>();
   test_hypot<long double>();
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
   //test_hypot<__float128>();
 #endif
 

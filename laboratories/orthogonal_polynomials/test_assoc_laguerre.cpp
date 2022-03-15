@@ -6,6 +6,8 @@
 #include <iostream>
 #include <iomanip>
 
+#include <emsr/special_functions.h>
+
 int
 main()
 {
@@ -19,7 +21,7 @@ main()
 	    {
 	      double x = 0.1 * i;
 	      std::cout << ' ' << std::setw(12) << x
-			<< ' ' << std::setw(12) << std::assoc_laguerre(n, alpha, x)
+			<< ' ' << std::setw(12) << emsr::assoc_laguerre(n, alpha, x)
 			<< '\n';
 	    }
 	}
@@ -36,7 +38,7 @@ main()
 	    {
 	      double x = 0.1 * i;
 	      std::cout << ' ' << std::setw(12) << x
-			<< ' ' << std::setw(12) << std::assoc_laguerre(n, alpha, x)
+			<< ' ' << std::setw(12) << emsr::assoc_laguerre(n, alpha, x)
 			<< '\n';
 	    }
 	}

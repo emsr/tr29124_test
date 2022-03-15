@@ -6,7 +6,9 @@
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include <ext/float128_io.h>
+
+#include <emsr/float128_io.h>
+#include <emsr/sf_gamma.h>
 
 template<typename Tp>
   std::string
@@ -116,32 +118,32 @@ template<typename Tp>
 int
 main()
 {
-  __gnu_cxx::factorial<double>(5);
+  emsr::factorial<double>(5);
 
-  std::cout << "\n_S_factorial_table<float>\n";
+  std::cout << "\ns_factorial_table<float>\n";
   factorial<float>();
-  std::cout << "\n_S_factorial_table<double>\n";
+  std::cout << "\ns_factorial_table<double>\n";
   factorial<double>();
-  std::cout << "\n_S_factorial_table<long double>\n";
+  std::cout << "\ns_factorial_table<long double>\n";
   factorial<long double>();
-  //std::cout << "\n_S_factorial_table<__float128>\n";
+  //std::cout << "\ns_factorial_table<__float128>\n";
   //factorial<__float128>();
 
-  std::cout << "\n_S_double_factorial_table<float>\n";
+  std::cout << "\ns_double_factorial_table<float>\n";
   double_factorial<float>();
-  std::cout << "\n_S_double_factorial_table<double>\n";
+  std::cout << "\ns_double_factorial_table<double>\n";
   double_factorial<double>();
-  std::cout << "\n_S_double_factorial_table<long double>\n";
+  std::cout << "\ns_double_factorial_table<long double>\n";
   double_factorial<long double>();
-  //std::cout << "\n_S_double_factorial_table<__float128>\n";
+  //std::cout << "\ns_double_factorial_table<__float128>\n";
   //double_factorial<__float128>();
 
-  std::cout << "\n_S_neg_double_factorial_table<float>\n";
+  std::cout << "\ns_neg_double_factorial_table<float>\n";
   neg_double_factorial<float>();
-  std::cout << "\n_S_neg_double_factorial_table<double>\n";
+  std::cout << "\ns_neg_double_factorial_table<double>\n";
   neg_double_factorial<double>();
-  std::cout << "\n_S_neg_double_factorial_table<long double>\n";
+  std::cout << "\ns_neg_double_factorial_table<long double>\n";
   neg_double_factorial<long double>();
-  //std::cout << "\n_S_neg_double_factorial_table<__float128>\n";
+  //std::cout << "\ns_neg_double_factorial_table<__float128>\n";
   //neg_double_factorial<__float128>();
 }

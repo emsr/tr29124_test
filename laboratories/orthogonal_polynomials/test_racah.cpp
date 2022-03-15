@@ -27,36 +27,36 @@
  *             {(2n + \alpha + \beta)(2n + \alpha + \beta + 1)}
  * @f]
  */
-template<typename _Tp, typename _TpX>
-  _Tp
-  __racah_recur(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
+template<typename Tp, typename TpX>
+  Tp
+  racah_recur(int n, Tp a, Tp b, Tp c, Tp d, TpX x)
   {
-    auto Rnm1 = _Tp{1};
+    auto Rnm1 = Tp{1};
     if (n == 0)
       return Rnm1;
 
-    auto lambda = _Tp(x) * (_Tp(x) + c + d + _Tp{1});
+    auto lambda = Tp(x) * (Tp(x) + c + d + Tp{1});
 
-    auto Rn = _Tp{1} + (a + b + _Tp{2}) * lambda
-		     / (a + _Tp{1}) / (b + d + _Tp{1}) / (c + _Tp{1});
+    auto Rn = Tp{1} + (a + b + Tp{2}) * lambda
+		     / (a + Tp{1}) / (b + d + Tp{1}) / (c + Tp{1});
     if (n == 1)
       return Rn;
 
-    auto An = (a + _Tp{3}) * (a + b + _Tp{3}) * (b + d + _Tp{3}) * (c + _Tp{3})
-	    / (a + b + _Tp{5}) / (a + b + _Tp{6});
-    auto Cn = _Tp{2} * (a + b - c + _Tp{2}) * (a - d + _Tp{2}) * (b + _Tp{2})
-		/ (a + b + _Tp{4}) / (a + b + _Tp{5});
+    auto An = (a + Tp{3}) * (a + b + Tp{3}) * (b + d + Tp{3}) * (c + Tp{3})
+	    / (a + b + Tp{5}) / (a + b + Tp{6});
+    auto Cn = Tp{2} * (a + b - c + Tp{2}) * (a - d + Tp{2}) * (b + Tp{2})
+		/ (a + b + Tp{4}) / (a + b + Tp{5});
     auto Rnp1 = ((An + Cn + lambda) * Rn - Cn * Rnm1) / An;
 
     for (int k = 2; k < n; ++k)
       {
-	auto An = (a + _Tp(k + 1)) * (a + b + _Tp(k + 1))
-		* (b + d + _Tp(k + 1)) * (c + _Tp(k + 1))
-		/ (a + b + _Tp(2 * k + 1)) / (a + b + _Tp(2 * k + 2));
+	auto An = (a + Tp(k + 1)) * (a + b + Tp(k + 1))
+		* (b + d + Tp(k + 1)) * (c + Tp(k + 1))
+		/ (a + b + Tp(2 * k + 1)) / (a + b + Tp(2 * k + 2));
 
-	auto Cn = _Tp(k) * (a + b - c + _Tp(k))
-		* (a - d + _Tp(k)) * (b + _Tp(k))
-		/ (a + b + _Tp(2 * k)) / (a + b + _Tp(2 * k + 1));
+	auto Cn = Tp(k) * (a + b - c + Tp(k))
+		* (a - d + Tp(k)) * (b + Tp(k))
+		/ (a + b + Tp(2 * k)) / (a + b + Tp(2 * k + 1));
 
 	Rnm1 = Rn;
 	Rn = Rnp1;
@@ -75,9 +75,9 @@ template<typename _Tp, typename _TpX>
  * @f]
  * where @f$ \lambda(x) = x(x + \gamma + \delta + 1) @f$.
  */
-template<typename _Tp, typename _TpX>
-  _Tp
-  __racah(int n, _Tp a, _Tp b, _Tp c, _Tp d, _TpX x)
+template<typename Tp, typename TpX>
+  Tp
+  racah(int n, Tp a, Tp b, Tp c, Tp d, TpX x)
   {
     if (std::isnan(a))
       return a;
@@ -90,29 +90,29 @@ template<typename _Tp, typename _TpX>
     else if (std::isnan(x))
       return x;
     else
-      return __racah_recur(n, a, b, c, d, x);
+      return racah_recur(n, a, b, c, d, x);
   }
 
 /**
  * 
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  test_racah(int n_max, _Tp a, _Tp b, _Tp c, _Tp d)
+  test_racah(int n_max, Tp a, Tp b, Tp c, Tp d)
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto w = std::cout.precision() + 8;
 
-    auto lambda = [c, d](_Tp x)
-		  { return x * (x + c + d + _Tp{1}); };
+    auto lambda = [c, d](Tp x)
+		  { return x * (x + c + d + Tp{1}); };
 
     for (int n = 0; n <= n_max; ++n)
       {
 	std::cout << '\n' << '\n' << " n = " << n << '\n';
 	for (int i = 0; i <= 200; ++i)
 	  {
-	    auto x = i * _Tp{0.05L};
-	    auto R = __racah(n, a, b, c, d, x);
+	    auto x = i * Tp{0.05L};
+	    auto R = racah(n, a, b, c, d, x);
 	    std::cout << ' ' << std::setw(w) << lambda(x)
 		      << ' ' << std::setw(w) << R
 		      << '\n';

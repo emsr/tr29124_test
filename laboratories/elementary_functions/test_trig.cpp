@@ -4,53 +4,55 @@
 
 #include <cmath>
 
+#include <emsr/math_constants.h>
+
 /**
  * naive Taylor-series implementation of sin(x).
  */
-template<typename _Tp>
-  _Tp
-  __sin_taylor(_Tp __x)
+template<typename Tp>
+  Tp
+  sin_taylor(Tp x)
   {
-    if (__fp_is_zero(__x))
-      return _Tp{0};
+    if (fp_is_zero(x))
+      return Tp{0};
     else
       {
-	const auto __xx = __x * __x;
-	auto __term = _Tp{1};
-	auto __sum = _Tp{1};
-	for (auto __k = 0; __k < 100; ++__k)
+	const auto xx = x * x;
+	auto term = Tp{1};
+	auto sum = Tp{1};
+	for (auto k = 0; k < 100; ++k)
 	  {
-	    __term *= -__xx / (2 * __k + 1) / (2 * __k + 2);
-	    __sum += __term;
+	    term *= -xx / (2 * k + 1) / (2 * k + 2);
+	    sum += term;
 	  }
-	return __x * __sum;
+	return x * sum;
       }
   }
 
-template<typename _Tp>
-  _Tp
-  __sin(_Tp __x)
+template<typename Tp>
+  Tp
+  sin(Tp x)
   {
-    const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-    const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
-    const auto _S_pi_4 = __gnu_cxx::numbers::__pi_quarter_v<_Tp>;
-    int __sgn = 1;
-    if (__x < _Tp{0})
+    const auto s_2pi = emsr::tau_v<Tp>;
+    const auto s_pi = emsr::pi_v<Tp>;
+    const auto s_pi_2 = emsr::pi_v<Tp> / Tp{2};
+    const auto s_pi_4 = emsr::pi_v<Tp> / Tp{4};
+    int sgn = 1;
+    if (x < Tp{0})
       {
-	__x = -__x;
-	__sgn = -1;
+	x = -x;
+	sgn = -1;
       }
-    __x = fmod(__x, _S_2pi);
-    if (__x > _S_pi)
+    x = fmod(x, s_2pi);
+    if (x > s_pi)
       {
-	__x -= _S_pi;
-	__sgn *= -1;
+	x -= s_pi;
+	sgn *= -1;
       }
-    if (__x < _S_pi_4)
-	return __sin_taylor(__x);
-    else if (__x < _S_pi_2)
-	return __cos_taylor(__x);
+    if (x < s_pi_4)
+	return sin_taylor(x);
+    else if (x < s_pi_2)
+	return cos_taylor(x);
   }
 
 int

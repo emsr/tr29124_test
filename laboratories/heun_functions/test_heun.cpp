@@ -10,6 +10,7 @@ $HOME/bin/bin/g++ -std=gnu++17 -o test_heun test_heun.cpp
 #include <vector>
 #include <algorithm> // For minmax.
 #include <tuple> // For tie.
+#include <numbers>
 
 template<typename Tp>
   struct dist_t
@@ -19,7 +20,14 @@ template<typename Tp>
   };
 
 template<typename Tp>
-  constexpr Tp pi = Tp{3.141592654};
+  Tp Heun_cont_coef = Tp{0};
+
+template<typename... _Args>
+  void
+  HeunOpts(_Args... varargin);
+
+template<typename Tp>
+  constexpr Tp pi = std::numbers::pi_v<Tp>;
 
 // distance from point P to AB
 template<typename Tp>

@@ -113,10 +113,10 @@ int lerchphi(const double *z, const double *s, const double *v, const double *ac
 	const double machmin = std::numeric_limits<double>::min();
 	const double macheps = std::numeric_limits<double>::epsilon();
 	const unsigned short int beta = 1, n = 0, imax = 100;
-	unsigned short int j, m; 
+	unsigned short int j, m = 0; 
 	int i, sign, flag;
-	double v1, sn, eps0, eps, skn, skn0, omega, *num, *den, *StoreAj,
-	    factor, factor1, x, est, iom, sum1, cacc;
+	double v1, sn, eps0, eps, skn, skn0, omega, *num, *den, *StoreAj = NULL,
+	    factor, factor1, x, est, iom, sum1 = 0.0, cacc;
 	
 	/* Local copy of v. */
 

@@ -6,6 +6,11 @@
 #include <iomanip>
 #include <limits>
 #include <cmath>
+
+#include <emsr/numeric_limits.h>
+#include <emsr/sf_gamma.h> // factorial
+#include <emsr/sf_zeta.h>
+
 #include <wrap_gsl.h>
 
   /**
@@ -32,27 +37,27 @@
    *
    * @todo: We should return both the Debye function and it's complement.
    */
-  template<typename _Tp>
-    _Tp
-    __debye(unsigned int __n, _Tp __x)
+  template<typename Tp>
+    Tp
+    debye(unsigned int n, Tp x)
     {
-      if (std::isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
-      else if (__n < 1)
-	std::__throw_domain_error("__debye: Degree n must be positive.");
-      else if (__x >= _Tp{3})
+      if (std::isnan(x))
+	return std::numeric_limits<Tp>::quiet_NaN();
+      else if (n < 1)
+	throw std::domain_error("debye: Degree n must be positive.");
+      else if (x >= Tp{3})
 	{
 	  // For values up to 4.80 the list of zeta functions
 	  // and the sum up to k < K are huge enough to gain
 	  // numeric stability in the sum
 
 	  // n!zeta(n) is the integral for x=inf, Abramowitz & Stegun 27.1.3
-	  auto __sum = _Tp{0};
-	  if (__n < std::__detail::_S_num_factorials<_Tp>)
-	    __sum += std::__detail::__factorial<_Tp>(__n)
-		   * std::__detail::__riemann_zeta<_Tp>(__n + 1);
+	  auto sum = Tp{0};
+	  if (n < emsr::detail::s_num_factorials<Tp>)
+	    sum += emsr::detail::factorial<Tp>(n)
+		   * emsr::detail::riemann_zeta<Tp>(n + 1);
 	  else
-	    return __gnu_cxx::__infinity(__x);
+	    return emsr::infinity(x);
 
 	  /**
 	   * Compute the Debye function:
@@ -62,27 +67,27 @@
 	   * @f]
 	   * Abramowitz & Stegun 27.1.2
 	   */
-	  const std::size_t _S_max_iter = 100;
-	  auto __term = _Tp{0};
-	  const auto __expmx = std::exp(-__x);
-	  auto __expmkx = _Tp{1};
-	  const auto __xn = std::pow(__x, _Tp(__n));
-	  for(unsigned int __k = 1; __k < _S_max_iter; ++__k)
+	  const std::size_t s_max_iter = 100;
+	  auto term = Tp{0};
+	  const auto expmx = std::exp(-x);
+	  auto expmkx = Tp{1};
+	  const auto xn = std::pow(x, Tp(n));
+	  for(unsigned int k = 1; k < s_max_iter; ++k)
 	    {
-	      const auto __kx = __k * __x;
-	      __expmkx *= __expmx;
-	      auto __ksum = _Tp{1};
-	      auto __kterm = _Tp(__n) * __ksum / __kx;  // n / (xk)^2
-	      for (unsigned int __m = 1; __m <= __n; ++__m)
-		__ksum += std::exchange(__kterm,
-					_Tp(__n - __m) * __kterm / __kx);
+	      const auto kx = k * x;
+	      expmkx *= expmx;
+	      auto ksum = Tp{1};
+	      auto kterm = Tp(n) * ksum / kx;  // n / (xk)^2
+	      for (unsigned int m = 1; m <= n; ++m)
+		ksum += std::exchange(kterm,
+					Tp(n - m) * kterm / kx);
 
-	      __term -= __expmkx * __ksum * __xn / _Tp(__k);
+	      term -= expmkx * ksum * xn / Tp(k);
 	    }
-	  __sum += __term;
-	  return _Tp(__n) * __sum / __xn;
+	  sum += term;
+	  return Tp(n) * sum / xn;
 	}
-      else if (std::abs(__x) < _Tp{2} * __gnu_cxx::numbers::__pi_v<_Tp>)
+      else if (std::abs(x) < Tp{2} * emsr::pi_v<Tp>)
 	{
 	  /**
 	   * Compute the Debye function:
@@ -93,36 +98,36 @@
            * for @f$ |x| < 2\pi @f$.
 	   * Abramowitz-Stegun 27.1.1
 	   */
-	  const auto _S_eps = __gnu_cxx::__epsilon(__x);
-	  const std::size_t _S_max_iter = 200;
-	  const auto _S_1_2pi = __gnu_cxx::numbers::__one_div_2_pi_v<_Tp>;
-	  const auto __x2pi = __x * _S_1_2pi;
-	  const auto __x2pi2 = __x2pi * __x2pi;
-	  auto __x2pi2k = __x2pi2;
-	  auto __sum = _Tp{0};
-	  for(unsigned int __k = 1; __k < _S_max_iter; ++__k)
+	  const auto s_eps = emsr::epsilon(x);
+	  const std::size_t s_max_iter = 200;
+	  const auto s_1_2pi = emsr::inv_tau_v<Tp>;
+	  const auto x2pi = x * s_1_2pi;
+	  const auto x2pi2 = x2pi * x2pi;
+	  auto x2pi2k = x2pi2;
+	  auto sum = Tp{0};
+	  for(unsigned int k = 1; k < s_max_iter; ++k)
 	    {
-	      const auto __term = _Tp{2}
-				* std::__detail::__riemann_zeta<_Tp>(2 * __k)
-				* __x2pi2k / _Tp(2 * __k + __n);
-	      __sum += __term;
-	      if (std::abs(__term) < _S_eps * std::abs(__sum))
+	      const auto term = Tp{2}
+				* emsr::detail::riemann_zeta<Tp>(2 * k)
+				* x2pi2k / Tp(2 * k + n);
+	      sum += term;
+	      if (std::abs(term) < s_eps * std::abs(sum))
         	break;
-	      __x2pi2k *= -__x2pi2;
+	      x2pi2k *= -x2pi2;
 	    }
-	  __sum *= _Tp(__n);
-	  __sum += _Tp{1} - _Tp(__n) * __x / _Tp(2 * (__n + 1));
-	  return __sum;
+	  sum *= Tp(n);
+	  sum += Tp{1} - Tp(n) * x / Tp(2 * (n + 1));
+	  return sum;
 	}
       else
-	return _Tp{0}; /// @todo Find Debye for x < -2pi!
+	return Tp{0}; /// @todo Find Debye for x < -2pi!
     }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_debye(_Tp __proto = _Tp{})
+  test_debye(Tp proto = Tp{})
   {
-    std::cout.precision(__gnu_cxx::__max_digits10(__proto));
+    std::cout.precision(emsr::max_digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -137,19 +142,19 @@ template<typename _Tp>
 	      << '\n';
     for (int i = -50; i <= +200; ++i)
       {
-	auto x = _Tp{0.1L} * i;
+	auto x = Tp{0.1L} * i;
 	std::cout << ' ' << std::setw(width) << x;
 	for (int n = 1; n <= 6; ++n)
-	  std::cout << ' ' << std::setw(width) << __debye(n, x);
+	  std::cout << ' ' << std::setw(width) << debye(n, x);
 	std::cout << '\n';
       }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_debye_gsl(_Tp __proto = _Tp{})
+  test_debye_gsl(Tp proto = Tp{})
   {
-    std::cout.precision(__gnu_cxx::__max_digits10(__proto));
+    std::cout.precision(emsr::max_digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -164,7 +169,7 @@ template<typename _Tp>
 	      << '\n';
     for (int i = 0; i <= +200; ++i)
       {
-	auto x = _Tp{0.1L} * i;
+	auto x = Tp{0.1L} * i;
 	std::cout << ' ' << std::setw(width) << x;
 	for (int n = 1; n <= 6; ++n)
 	  std::cout << ' ' << std::setw(width) << gsl::debye(n, x);

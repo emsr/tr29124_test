@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['economize_5fpolynomial',['economize_polynomial',['../namespace____gnu__cxx.html#a917fd750f0e3fb9fd440bf3ecf72c97b',1,'__gnu_cxx']]]
+  ['economize_5fpolynomial_22',['economize_polynomial',['../namespaceemsr.html#a8a4fd383c8dbd6443f1332ccff289a80',1,'emsr']]]
 ];

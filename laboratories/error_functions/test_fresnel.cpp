@@ -6,18 +6,18 @@
 #include <iostream>
 #include <iomanip>
 #include <stdexcept>
-#include <bits/numeric_limits.h>
+#include <emsr/numeric_limits.h>
 
 #include <fresnel.tcc>
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_fresnel(_Tp proto = _Tp{})
+  test_fresnel(Tp proto = Tp{})
   {
-    //using _Val = _Tp;
-    //using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    //using _Val = Tp;
+    //using _Real = emsr::num_traits_t<_Val>;
 
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -25,11 +25,11 @@ template<typename _Tp>
     std::cout << "  " << std::setw(width) << "C(x)";
     std::cout << "  " << std::setw(width) << "S(x)";
     std::cout << '\n';
-    const auto del = _Tp{1} / _Tp{100};
+    const auto del = Tp{1} / Tp{100};
     for (int i = 0; i <= 1000; ++i)
       {
 	auto x = i * del;
-	auto frnl = __fresnel(x);
+	auto frnl = fresnel(x);
 	std::cout << "  " << std::setw(width) << x;
 	std::cout << "  " << std::setw(width) << frnl.first;
 	std::cout << "  " << std::setw(width) << frnl.second;

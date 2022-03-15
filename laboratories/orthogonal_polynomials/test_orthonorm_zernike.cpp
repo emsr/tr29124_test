@@ -1,22 +1,3 @@
-// -*- C++ -*-
-// Integration utilities for the C++ library testsuite.
-//
-// Copyright (C) 2016-2019 Free Software Foundation, Inc.
-//
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
-//
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License along
-// with this library; see the file COPYING3.  If not see
-// <http://www.gnu.org/licenses/>.
 
 #include <iostream>
 #include <iomanip>
@@ -26,65 +7,65 @@
 #include <string>
 #include <vector>
 
-#include <ext/integration.h>
+#include <emsr/integration.h>
+#include <emsr/special_functions.h>
 
 // Neumann's number
-template<typename _Tp>
-  _Tp
+template<typename Tp>
+  Tp
   epsilon(int m)
-  { return m == 0 ? _Tp{2} : _Tp{1}; }
+  { return m == 0 ? Tp{2} : Tp{1}; }
 
 // Azimuthal integral of zernike product.
-
 
 // Function which should integrate to 1 for n1 == n2, 0 otherwise.
 // This does the angular integral.
 // FIXME: Try an FFTish integral here. Fail.
-template<typename _Tp>
-  _Tp
-  normalized_zernike(int n1, int m1, int n2, int m2, _Tp rho)
+template<typename Tp>
+  Tp
+  integrand(int n1, int m1, int n2, int m2, Tp rho)
   {
-    const auto _S_eps_factor = 1 << (std::numeric_limits<_Tp>::digits / 3);
-    const auto _S_eps = _S_eps_factor * std::numeric_limits<_Tp>::epsilon();
-    const auto _S_2pi = _Tp{2} * __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto s_eps_factor = 1 << (std::numeric_limits<Tp>::digits / 3);
+    const auto s_eps = s_eps_factor * std::numeric_limits<Tp>::epsilon();
+    const auto s_2pi = Tp{2} * emsr::pi_v<Tp>;
 
-    auto z1 = [n1, m1, rho](_Tp phi)
-	      -> _Tp
-	      { return __gnu_cxx::zernike(n1, m1, rho, phi); };
-    auto z2 = [n2, m2, rho](_Tp phi)
-	      -> _Tp
-	      { return __gnu_cxx::zernike(n2, m2, rho, phi); };
+    // Normalized Zernike polynomials.
+    auto nz1 = [n1, m1, rho](Tp phi)
+	       -> Tp
+	       { return std::sqrt(Tp(2 * n1 + 2)) * emsr::zernike(n1, m1, rho, phi); };
+    auto nz2 = [n2, m2, rho](Tp phi)
+	       -> Tp
+	       { return std::sqrt(Tp(2 * n2 + 2)) * emsr::zernike(n2, m2, rho, phi); };
 
-    auto norm = _Tp{1} / std::sqrt(_Tp(2 * n1 + 2) * _Tp(2 * n2 + 2));
-    auto fun = [n1, m1, rho, z1, z2, norm](_Tp phi)
-		-> _Tp
-		{ return rho * z1(phi) * z2(phi) / norm; };
+    auto fun = [rho, nz1, nz2](Tp phi)
+		-> Tp
+		{ return rho * nz1(phi) * nz2(phi); };
 
     auto val
-	= __gnu_cxx::integrate_tanh_sinh(fun, _Tp{0}, _Tp{_S_2pi},
-			      _S_eps, _S_eps, 8);
-	//= __gnu_cxx::integrate_oscillatory(fun, _Tp{0}, _Tp{_S_2pi},
-	//			_S_eps, _S_eps, 1024);
+	= emsr::integrate_tanh_sinh(fun, Tp{0}, Tp{s_2pi},
+			      s_eps, s_eps, 8);
+	//= emsr::integrate_oscillatory(fun, Tp{0}, Tp{s_2pi},
+	//			s_eps, s_eps, 1024);
 
-    return _Tp{2} * val.__result / _S_2pi / epsilon<_Tp>(m1);
+    return Tp{2} * val.result / s_2pi / epsilon<Tp>(m1);
   }
 
-template<typename _Tp>
-  _Tp
+template<typename Tp>
+  Tp
   delta(int n1, int m1, int n2, int m2)
-  { return (n1 == n2 && m1 == m2) ? _Tp{1} : _Tp{0}; }
+  { return (n1 == n2 && m1 == m2) ? Tp{1} : Tp{0}; }
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_zernike()
   {
     bool full_range = false;
 
-    const auto eps_factor = 1 << (std::numeric_limits<_Tp>::digits / 3);
-    const auto eps = std::numeric_limits<_Tp>::epsilon();
+    const auto eps_factor = 1 << (std::numeric_limits<Tp>::digits / 3);
+    const auto eps = std::numeric_limits<Tp>::epsilon();
     const auto abs_precision = eps_factor * eps;
     const auto rel_precision = eps_factor * eps;
-    const auto cmp_precision = _Tp{10} * rel_precision;
+    const auto cmp_precision = Tp{10} * rel_precision;
 
     std::vector<int> degree{0, 1, 2, 3, 4, 5, 8, 9, 16, 17};
 
@@ -103,25 +84,25 @@ template<typename _Tp>
 		  {
 		    if (m2 > n2 || (n2 - m2) & 1)
 		      continue;
-		    auto func = [n1, m1, n2, m2](_Tp x)
-				-> _Tp
-				{ return normalized_zernike(n1, m1, n2, m2, x); };
+		    auto func = [n1, m1, n2, m2](Tp x)
+				-> Tp
+				{ return integrand(n1, m1, n2, m2, x); };
 
 		    auto [result, error]
-			= __gnu_cxx::integrate_tanh_sinh(func, _Tp{0}, _Tp{1},
+			= emsr::integrate_tanh_sinh(func, Tp{0}, Tp{1},
 					      abs_precision, rel_precision, 8);
 
-		    if (std::abs(delta<_Tp>(n1, m1, n2, m2) - result) > cmp_precision)
+		    if (std::abs(delta<Tp>(n1, m1, n2, m2) - result) > cmp_precision)
 		      {
 			std::stringstream ss;
-			ss.precision(std::numeric_limits<_Tp>::digits10);
+			ss.precision(std::numeric_limits<Tp>::digits10);
 			auto w = 8 + ss.precision();
 			ss << std::showpoint << std::scientific;
 			ss << "Integration failed at n1=" << n1 << ", m1=" << m1
 			   << ", n2=" << n2 << ", m2=" << m2
 			   << ", returning result = " << std::setw(w) << result
 			   << ", with error = " << std::setw(w) << error
-			   << " instead of the expected " << delta<_Tp>(n1, m1, n2, m2) << '\n';
+			   << " instead of the expected " << delta<Tp>(n1, m1, n2, m2) << '\n';
 			std::cerr << ss.str();
 		      }
 		  }
@@ -152,15 +133,15 @@ template<typename _Tp>
 		  {
 		    if (m2 > n2 || (n2 - m2) & 1)
 		      continue;
-		    auto func = [n1 = n1_upper, m1, n2, m2](_Tp x)
-				-> _Tp
-				{ return normalized_zernike(n1, m1, n2, m2, x); };
+		    auto func = [n1 = n1_upper, m1, n2, m2](Tp x)
+				-> Tp
+				{ return integrand(n1, m1, n2, m2, x); };
 
 		    auto [result, error]
-			= __gnu_cxx::integrate_tanh_sinh(func, _Tp{0}, _Tp{1},
+			= emsr::integrate_tanh_sinh(func, Tp{0}, Tp{1},
 					      abs_precision, rel_precision, 8);
 
-		    if (std::abs(delta<_Tp>(n1_upper, m1, n2, m2) - result) > cmp_precision)
+		    if (std::abs(delta<Tp>(n1_upper, m1, n2, m2) - result) > cmp_precision)
 		      {
 			if ((n1_lower + n1_upper) / 2 < n1_upper)
 			  {
@@ -207,7 +188,7 @@ main()
     {
       test_zernike<float>();
     }
-  catch (__gnu_cxx::__integration_error<float>& ierr)
+  catch (emsr::integration_error<float, float>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -222,7 +203,7 @@ main()
     {
       test_zernike<double>();
     }
-  catch (__gnu_cxx::__integration_error<double>& ierr)
+  catch (emsr::integration_error<double, double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -237,7 +218,7 @@ main()
     {
       test_zernike<long double>();
     }
-  catch (__gnu_cxx::__integration_error<long double>& ierr)
+  catch (emsr::integration_error<long double, long double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';

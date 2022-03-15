@@ -956,13 +956,13 @@ lambert_w(double x)
 }
 
 /// Gauss-Chebyshev T rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_chebyshev_t_rule(std::size_t n)
 {
   std::vector<double> x(n);
   std::vector<double> w(n);
   chebyshev1_compute(n, x.data(), w.data());
-  std::vector<__gnu_cxx::__quadrature_point_t<double>> rule;
+  std::vector<emsr::QuadraturePoint<double>> rule;
   rule.reserve(n);
   for (auto i = 0u; i < n; ++i)
     rule.emplace_back(x[i], w[i]);
@@ -970,13 +970,13 @@ gauss_chebyshev_t_rule(std::size_t n)
 }
 
 /// Gauss-Chebyshev U rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_chebyshev_u_rule(std::size_t n)
 {
   std::vector<double> x(n);
   std::vector<double> w(n);
   chebyshev2_compute(n, x.data(), w.data());
-  std::vector<__gnu_cxx::__quadrature_point_t<double>> rule;
+  std::vector<emsr::QuadraturePoint<double>> rule;
   rule.reserve(n);
   for (auto i = 0u; i < n; ++i)
     rule.emplace_back(x[i], w[i]);
@@ -984,13 +984,13 @@ gauss_chebyshev_u_rule(std::size_t n)
 }
 
 /// Gauss-Chebyshev V rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_chebyshev_v_rule(std::size_t n)
 {
   std::vector<double> x(n);
   std::vector<double> w(n);
   chebyshev3_compute(n, x.data(), w.data());
-  std::vector<__gnu_cxx::__quadrature_point_t<double>> rule;
+  std::vector<emsr::QuadraturePoint<double>> rule;
   rule.reserve(n);
   for (auto i = 0u; i < n; ++i)
     rule.emplace_back(x[i], w[i]);
@@ -998,13 +998,13 @@ gauss_chebyshev_v_rule(std::size_t n)
 }
 
 /// Gauss-Radau rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_legendre_radau_rule(std::size_t n)
 {
   std::vector<double> x(n);
   std::vector<double> w(n);
   radau_compute(n, x.data(), w.data());
-  std::vector<__gnu_cxx::__quadrature_point_t<double>> rule;
+  std::vector<emsr::QuadraturePoint<double>> rule;
   rule.reserve(n);
   for (auto i = 0u; i < n; ++i)
     rule.emplace_back(x[i], w[i]);
@@ -1012,13 +1012,13 @@ gauss_legendre_radau_rule(std::size_t n)
 }
 
 /// Gauss-Lobatto rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_legendre_lobatto_rule(std::size_t n)
 {
   std::vector<double> x(n);
   std::vector<double> w(n);
   lobatto_compute(n, x.data(), w.data());
-  std::vector<__gnu_cxx::__quadrature_point_t<double>> rule;
+  std::vector<emsr::QuadraturePoint<double>> rule;
   rule.reserve(n);
   for (auto i = 0u; i < n; ++i)
     rule.emplace_back(x[i], w[i]);
@@ -1026,13 +1026,13 @@ gauss_legendre_lobatto_rule(std::size_t n)
 }
 
 /// Gauss-Laguerre rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_laguerre_rule(std::size_t n)
 {
   std::vector<double> x(n);
   std::vector<double> w(n);
   laguerre_ss_compute (n, x.data(), w.data());
-  std::vector<__gnu_cxx::__quadrature_point_t<double>> rule;
+  std::vector<emsr::QuadraturePoint<double>> rule;
   rule.reserve(n);
   for (auto i = 0u; i < n; ++i)
     rule.emplace_back(x[i], w[i]);
@@ -1040,13 +1040,13 @@ gauss_laguerre_rule(std::size_t n)
 }
 
 /// Gauss-Associative Laguerre rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_laguerre_rule(std::size_t n, double alpha)
 {
   std::vector<double> x(n);
   std::vector<double> w(n);
   gen_laguerre_ss_compute (n, alpha, x.data(), w.data());
-  std::vector<__gnu_cxx::__quadrature_point_t<double>> rule;
+  std::vector<emsr::QuadraturePoint<double>> rule;
   rule.reserve(n);
   for (auto i = 0u; i < n; ++i)
     rule.emplace_back(x[i], w[i]);
@@ -1054,13 +1054,13 @@ gauss_laguerre_rule(std::size_t n, double alpha)
 }
 
 /// Gauss-Jacobi rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_jacobi_rule(std::size_t n, double alpha, double beta)
 {
   std::vector<double> x(n);
   std::vector<double> w(n);
   jacobi_ss_compute(n, alpha, beta, x.data(), w.data());
-  std::vector<__gnu_cxx::__quadrature_point_t<double>> rule;
+  std::vector<emsr::QuadraturePoint<double>> rule;
   rule.reserve(n);
   for (auto i = 0u; i < n; ++i)
     rule.emplace_back(x[i], w[i]);
@@ -1068,13 +1068,13 @@ gauss_jacobi_rule(std::size_t n, double alpha, double beta)
 }
 
 /// Gauss-Gegenbauer rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_gegenbauer_rule(std::size_t n, double lambda)
 {
   std::vector<double> x(n);
   std::vector<double> w(n);
   gegenbauer_ss_compute(n, lambda, x.data(), w.data());
-  std::vector<__gnu_cxx::__quadrature_point_t<double>> rule;
+  std::vector<emsr::QuadraturePoint<double>> rule;
   rule.reserve(n);
   for (auto i = 0u; i < n; ++i)
     rule.emplace_back(x[i], w[i]);
@@ -1082,13 +1082,13 @@ gauss_gegenbauer_rule(std::size_t n, double lambda)
 }
 
 /// Gauss-Hermite rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 gauss_hermite_rule(std::size_t n)
 {
   std::vector<double> x(n);
   std::vector<double> w(n);
   hermite_ss_compute(n, x.data(), w.data());
-  std::vector<__gnu_cxx::__quadrature_point_t<double>> rule;
+  std::vector<emsr::QuadraturePoint<double>> rule;
   rule.reserve(n);
   for (auto i = 0u; i < n; ++i)
     rule.emplace_back(x[i], w[i]);
@@ -1096,13 +1096,13 @@ gauss_hermite_rule(std::size_t n)
 }
 
 /// Clenshaw-Curtis rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 clenshaw_curtis_rule(std::size_t n)
 {
   std::vector<double> x(n);
   std::vector<double> w(n);
   clenshaw_curtis_compute(n, x.data(), w.data());
-  std::vector<__gnu_cxx::__quadrature_point_t<double>> rule;
+  std::vector<emsr::QuadraturePoint<double>> rule;
   rule.reserve(n);
   for (auto i = 0u; i < n; ++i)
     rule.emplace_back(x[i], w[i]);
@@ -1110,13 +1110,13 @@ clenshaw_curtis_rule(std::size_t n)
 }
 
 /// Fejer 1 rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 fejer_1_rule(std::size_t n)
 {
   std::vector<double> x(n);
   std::vector<double> w(n);
   fejer1_compute(n, x.data(), w.data());
-  std::vector<__gnu_cxx::__quadrature_point_t<double>> rule;
+  std::vector<emsr::QuadraturePoint<double>> rule;
   rule.reserve(n);
   for (auto i = 0u; i < n; ++i)
     rule.emplace_back(x[i], w[i]);
@@ -1124,13 +1124,13 @@ fejer_1_rule(std::size_t n)
 }
 
 /// Fejer 2 rule.
-std::vector<__gnu_cxx::__quadrature_point_t<double>>
+std::vector<emsr::QuadraturePoint<double>>
 fejer_2_rule(std::size_t n)
 {
   std::vector<double> x(n);
   std::vector<double> w(n);
   fejer2_compute(n, x.data(), w.data());
-  std::vector<__gnu_cxx::__quadrature_point_t<double>> rule;
+  std::vector<emsr::QuadraturePoint<double>> rule;
   rule.reserve(n);
   for (auto i = 0u; i < n; ++i)
     rule.emplace_back(x[i], w[i]);

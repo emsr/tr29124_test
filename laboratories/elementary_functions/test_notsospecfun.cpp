@@ -2,7 +2,7 @@
  *
  */
 
-#include <bits/notsospecfun.h>
+#include <emsr/notsospecfun.h>
 
 int
 main()

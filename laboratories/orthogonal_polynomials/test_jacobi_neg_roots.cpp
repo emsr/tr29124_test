@@ -7,21 +7,20 @@
 #include <fstream>
 #include <iostream>
 #include <iomanip>
-
 #include <cmath> // FIXME: For isnan for math_util.h
-#include <ext/math_util.h>
-#include <ext/solver_jenkins_traub.h>
-#include <ext/solver_madsen_reid.h>
-#include <ext/polynomial.h>
 
-#include <ext/float128_io.h>
-#include <ext/float128_math.h>
+#include <emsr/math_util.h>
+#include <emsr/solver_jenkins_traub.h>
+#include <emsr/polynomial.h>
+
+#include <emsr/float128_io.h>
+#include <emsr/float128_math.h>
 
 #include <sf_jacobi_neg_params.tcc>
 
-namespace std
+namespace emsr
 {
-namespace __detail
+namespace detail
 {
 
   /**
@@ -31,76 +30,71 @@ namespace __detail
    *      {}_2F_1(-n, n + 1 + \alpha + \beta; \alpha + 1; \frac{1-x}{2})
    * @f]
    *
-   * @tparam _Tp The real type of the argument and degree parameters.
+   * @tparam Tp The real type of the argument and degree parameters.
    * @param[in]  n  The degree of the Jacobi polynomial
    * @param[in]  alpha1  The first parameter of the Jacobi polynomial
    * @param[in]  beta1  The second parameter of the Jacobi polynomial
    */
-  template<typename _Tp>
-    __gnu_cxx::_Polynomial<_Tp>
-    __jacobi_poly(unsigned int __n, _Tp __alpha1, _Tp __beta1)
+  template<typename Tp>
+    emsr::Polynomial<Tp>
+    jacobi_poly(unsigned int n, Tp alpha1, Tp beta1)
     {
-      __gnu_cxx::_Polynomial<_Tp> __poly;
+      emsr::Polynomial<Tp> poly;
 
-      if (std::isnan(__alpha1) || std::isnan(__beta1))
-	return __poly;
+      if (std::isnan(alpha1) || std::isnan(beta1))
+	return poly;
 
-      auto __term = __gnu_cxx::_Polynomial<_Tp>{1};
-      __poly += __term;
-      if (__n == 0)
-	return __poly;
+      auto term = emsr::Polynomial<Tp>{1};
+      poly += term;
+      if (n == 0)
+	return poly;
 
-      const auto __apb = __alpha1 + __beta1;
+      const auto apb = alpha1 + beta1;
 
-      auto __m = int(__n);
-      if (const auto __pint = __gnu_cxx::__fp_is_integer(__n + 1 + __apb);
-	  __pint && __pint() <= 0 && -__pint() < __m)
-	__m = -__pint();
+      auto m = int(n);
+      if (const auto pint = emsr::fp_is_integer(n + 1 + apb);
+	  pint && pint() <= 0 && -pint() < m)
+	m = -pint();
 
-      const __gnu_cxx::_Polynomial<_Tp> __arg({_Tp{1}/_Tp{2}, _Tp{-1}/_Tp{2}});
+      const emsr::Polynomial<Tp> arg({Tp{1}/Tp{2}, Tp{-1}/Tp{2}});
 
-      auto __fact = _Tp{1};
-      for (unsigned int __k = 1; __k <= __n; ++__k)
-	__fact *= _Tp(__alpha1 + __k) / _Tp(__k);
+      auto fact = Tp{1};
+      for (unsigned int k = 1; k <= n; ++k)
+	fact *= Tp(alpha1 + k) / Tp(k);
 
-      for (int __k = 1; __k <= __m; ++__k)
+      for (int k = 1; k <= m; ++k)
 	{
 
-	  __term *= (_Tp(-int(__n) + __k - 1) / _Tp(__k))
-		  * (_Tp(__n + __k + __apb) / _Tp(__alpha1 + __k))
-		  * __arg;
+	  term *= (Tp(-int(n) + k - 1) / Tp(k))
+		  * (Tp(n + k + apb) / Tp(alpha1 + k))
+		  * arg;
 
-	  __poly += __term;
+	  poly += term;
 	}
 
-      return __fact * __poly;
+      return fact * poly;
     }
 
   /**
    * Highest degree term coefficient.
    */
-  template<typename _Tp>
-    _Tp
-    __jacobi_norm(unsigned int __n, _Tp __alpha1, _Tp __beta1)
+  template<typename Tp>
+    Tp
+    jacobi_norm(unsigned int n, Tp alpha1, Tp beta1)
     {
       int sgam1, sgam2;
-      const auto lgam1 = lgamma_r(_Tp(2 * __n + __alpha1 + __beta1 + 1), &sgam1);
-      const auto lgam2 = lgamma_r(_Tp(__n + __alpha1 + __beta1 + 1), &sgam2);
-      return sgam1 * sgam2 * std::exp(lgam1 - std::lgamma(_Tp(__n + 1))
-   				    - lgam2 - _Tp(__n) * std::log(_Tp{2}));
+      const auto lgam1 = lgamma_r(Tp(2 * n + alpha1 + beta1 + 1), &sgam1);
+      const auto lgam2 = lgamma_r(Tp(n + alpha1 + beta1 + 1), &sgam2);
+      return sgam1 * sgam2 * std::exp(lgam1 - std::lgamma(Tp(n + 1))
+   				    - lgam2 - Tp(n) * std::log(Tp{2}));
     }
 
-} // namespace std
-} // namespace __detail
+} // namespace detail
+} // namespace emsr
 
-/**
- * Write roots.
- */
 template<typename Tp>
   void
-  write_roots(unsigned n, Tp alpha, Tp beta, const std::vector<Tp>& coef,
-              const __gnu_cxx::_Polynomial<Tp>& poly,
-              const std::vector<__gnu_cxx::solution_t<Tp>>& roots, std::ofstream& gp)
+  test_neg_parm_jacobi_roots(unsigned n, Tp alpha1, Tp beta1, std::ofstream& gp)
   {
     const auto prec = std::numeric_limits<Tp>::digits10;
     const auto w = 6 + prec;
@@ -111,12 +105,18 @@ template<typename Tp>
 	      << "; alpha = " << alpha << "; beta = " << beta
 	      << '\n';
 
+    const auto poly = emsr::detail::jacobi_poly(n, alpha1, beta1);
+    auto coef = poly.coefficients();
     std::cout << "\nThe polynomial coefficients are:\n";
     for (const auto& c : coef)
       std::cout << std::setw(w) << c << '\n';
-    std::cout << "\nMax coefficient: " << std::__detail::__jacobi_norm(n, alpha, beta) << '\n';
+    std::cout << "\nMax coefficient: " << emsr::detail::jacobi_norm(n, alpha1, beta1) << '\n';
     std::cout << std::flush;
 
+    std::reverse(coef.begin(), coef.end());
+
+    auto jt = emsr::JenkinsTraubSolver(coef);
+    auto roots = jt.solve();
     std::cout << "\nThe roots are:\n";
     for (const auto& z : roots)
       {
@@ -286,13 +286,13 @@ template<typename Tp>
     const auto w = 6 + prec;
 
     std::cout << std::setprecision(prec);
-__gnu_cxx::jacobi(10, 2.0, -12.0, -1.0);
+emsr::jacobi(10, 2.0, -12.0, -1.0);
     std::cout << "\n\n";
     for (int n : {10, 15, 20})
       for (Tp alpha : {1, 2})
 	for (Tp beta : {1, 2})
 	  {
-	    auto P = std::__detail::__jacobi_poly(n, alpha, beta);
+	    auto P = emsr::detail::jacobi_poly(n, alpha, beta);
 	    std::cout << " n = " << n
 		      << "; alpha = " << alpha
 		      << "; beta = " << beta
@@ -303,7 +303,7 @@ __gnu_cxx::jacobi(10, 2.0, -12.0, -1.0);
 		const auto x = Tp(i * 0.1L);
 		std::cout << ' ' << x
 			  << ' ' << std::setw(w) << P(x)
-			  << ' ' << std::setw(w) << __gnu_cxx::jacobi(n, alpha, beta, x)
+			  << ' ' << std::setw(w) << emsr::jacobi(n, alpha, beta, x)
 			  << '\n';
 	      }
 	    std::cout << '\n';
@@ -315,7 +315,7 @@ __gnu_cxx::jacobi(10, 2.0, -12.0, -1.0);
       for (int m : {0, 1, 2, 3})
 	{
 	  const auto beta = -n - m - alpha;
-	  auto P = std::__detail::__jacobi_poly(n, alpha, beta);
+	  auto P = emsr::detail::jacobi_poly(n, alpha, beta);
 	  std::cout << " n = " << n
 		    << "; alpha = " << alpha
 		    << "; beta = " << beta
@@ -326,8 +326,8 @@ __gnu_cxx::jacobi(10, 2.0, -12.0, -1.0);
 	      const auto x = Tp(i * 0.1L);
 	      std::cout << ' ' << x
 			<< ' ' << std::setw(w) << P(x)
-			//<< ' ' << std::setw(w) << __gnu_cxx::jacobi(n, alpha, beta, x)
-			<< ' ' << std::setw(w) << lab::__jacobi_recur(n, alpha, beta, x).__P_n
+			//<< ' ' << std::setw(w) << emsr::jacobi(n, alpha, beta, x)
+			<< ' ' << std::setw(w) << lab::jacobi_recur(n, alpha, beta, x).P_n
 			<< '\n';
 	    }
 	  std::cout << '\n';

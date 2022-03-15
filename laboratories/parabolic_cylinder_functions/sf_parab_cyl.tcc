@@ -1,12 +1,11 @@
-// Special functions -*- C++ -*-
 
 // Copyright (C) 2016-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,7 +21,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/sf_parab_cyl.tcc
+/** @file emsr/sf_parab_cyl.tcc
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{cmath}
  */
@@ -41,73 +40,74 @@
 //     W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
 //     2nd ed, pp. 240-245
 
-#ifndef _GLIBCXX_BITS_SF_PARAB_CYL_TCC
-#define _GLIBCXX_BITS_SF_PARAB_CYL_TCC 1
+#ifndef SF_PARAB_CYL_TCC
+#define SF_PARAB_CYL_TCC 1
 
-#include <ext/math_constants.h>
+#include <complex>
 
-namespace std _GLIBCXX_VISIBILITY(default)
+#include <emsr/math_constants.h>
+#include <emsr/numeric_limits.h>
+
+namespace emsr
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-// Implementation-space details.
-namespace __detail
+namespace detail
 {
+
   /**
    * Return the prefactors used in parabolic cylinder functions.
    */
-  template<typename _Tp>
-    std::tuple<_Tp, _Tp, _Tp, _Tp>
-    __parabolic_cylinder_factor(_Tp __a)
+  template<typename Tp>
+    std::tuple<Tp, Tp, Tp, Tp>
+    parabolic_cylinder_factor(Tp a)
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-      const auto _S_sqrt_pi = __gnu_cxx::numbers::__pi_half_v<_Tp>;
-      auto __2e14p = std::pow(_Tp{2}, 0.25L + 0.5L * __a);
-      auto __2e34p = std::pow(_Tp{2}, 0.75L + 0.5L * __a);
-      auto __2e14m = std::pow(_Tp{2}, 0.25L - 0.5L * __a);
-      auto __gamma34p = __gamma(0.75L + 0.5L * __a);
-      auto __gamma34m = __gamma(0.75L - 0.5L * __a);
-      auto __gamma14p = __gamma(0.25L + 0.5L * __a);
-      auto __gamma14m = __gamma(0.25L - 0.5L * __a);
-      auto __U0 = _S_sqrt_pi / (__2e14p * __gamma34p);
-      auto __V0 = -_S_sqrt_pi * __2e14m / __gamma14p;
-      auto __Up0 = _S_pi * __2e14p / (__gamma34m * __gamma34m * __gamma14p);
-      auto __Vp0 = _S_pi * __2e34p / (__gamma14m * __gamma14m * __gamma34p);
-      return std::make_tuple(__U0, __V0, __Up0, __Vp0);
+      const auto _S_pi = emsr::pi_v<Tp>;
+      const auto _S_sqrt_pi = _S_pi / Tp{2};
+      auto __2e14p = std::pow(Tp{2}, 0.25L + 0.5L * a);
+      auto __2e34p = std::pow(Tp{2}, 0.75L + 0.5L * a);
+      auto __2e14m = std::pow(Tp{2}, 0.25L - 0.5L * a);
+      auto gamma34p = gamma(0.75L + 0.5L * a);
+      auto gamma34m = gamma(0.75L - 0.5L * a);
+      auto gamma14p = gamma(0.25L + 0.5L * a);
+      auto gamma14m = gamma(0.25L - 0.5L * a);
+      auto U0 = _S_sqrt_pi / (__2e14p * gamma34p);
+      auto V0 = -_S_sqrt_pi * __2e14m / gamma14p;
+      auto Up0 = _S_pi * __2e14p / (gamma34m * gamma34m * gamma14p);
+      auto Vp0 = _S_pi * __2e34p / (gamma14m * gamma14m * gamma34p);
+      return std::make_tuple(U0, V0, Up0, Vp0);
     }
 
   /**
    * Return the parabolic cylinder functions by series solution.
    */
-  template<typename _Tp>
-    std::pair<_Tp, _Tp>
-    __parabolic_cylinder_series(_Tp __a, _Tp __z)
+  template<typename Tp>
+    std::pair<Tp, Tp>
+    parabolic_cylinder_series(Tp a, Tp z)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__z));
+      const auto _S_eps = emsr::epsilon(std::real(z));
       constexpr auto _S_max_iter = 1000;
-      const auto __zz = __z * __z;
-      const auto __ezz4 = std::exp(-__zz / _Tp{4});
-      auto __term1 = _Tp{1};
-      auto __sum1 = __term1;
-      auto __term2 = __z;
-      auto __sum2 = __term2;
-      for (int __k = 1; __k < _S_max_iter; ++__k)
+      const auto zz = z * z;
+      const auto ezz4 = std::exp(-zz / Tp{4});
+      auto term1 = Tp{1};
+      auto sum1 = term1;
+      auto term2 = z;
+      auto sum2 = term2;
+      for (int k = 1; k < _S_max_iter; ++k)
 	{
-	  __term1 *= (__a + _Tp(4 * __k - 3) / _Tp{2})
-		   * __zz / _Tp(2 * __k * (2 * __k - 1));
-	  __sum1 += __term1;
-	  __term2 *= (__a + _Tp(4 * __k - 1) / _Tp{2})
-		   * __zz / _Tp(2 * __k * (2 * __k + 1));
-	  __sum2 += __term2;
-	  if (std::abs(__term1) < _S_eps * std::abs(__sum1)
-	   && std::abs(__term2) < _S_eps * std::abs(__sum2))
+	  term1 *= (a + Tp(4 * k - 3) / Tp{2})
+		   * zz / Tp(2 * k * (2 * k - 1));
+	  sum1 += term1;
+	  term2 *= (a + Tp(4 * k - 1) / Tp{2})
+		   * zz / Tp(2 * k * (2 * k + 1));
+	  sum2 += term2;
+	  if (std::abs(term1) < _S_eps * std::abs(sum1)
+	   && std::abs(term2) < _S_eps * std::abs(sum2))
 	    break;
 	}
-      __sum1 *= __ezz4;
-      __sum2 *= __ezz4;
-      auto __fact = __parabolic_cylinder_factor(__a);
-      auto _U = std::get<0>(__fact) * __sum1 + std::get<2>(__fact) * __sum2;
-      auto _V = std::get<1>(__fact) * __sum1 + std::get<3>(__fact) * __sum2;
+      sum1 *= ezz4;
+      sum2 *= ezz4;
+      auto fact = parabolic_cylinder_factor(a);
+      auto _U = std::get<0>(fact) * sum1 + std::get<2>(fact) * sum2;
+      auto _V = std::get<1>(fact) * sum1 + std::get<3>(fact) * sum2;
 
       return std::make_pair(_U, _V);
     }
@@ -115,37 +115,37 @@ namespace __detail
   /**
    * Return the parabolic cylinder functions by asymptotic series solution.
    */
-  template<typename _Tp>
-    std::pair<_Tp, _Tp>
-    __parabolic_cylinder_asymp(_Tp __a, _Tp __z)
+  template<typename Tp>
+    std::pair<Tp, Tp>
+    parabolic_cylinder_asymp(Tp a, Tp z)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__z));
+      const auto _S_eps = emsr::epsilon(std::real(z));
       constexpr auto _S_max_iter = 1000;
-      constexpr auto _S_1d2 = _Tp{1} / _Tp{2};
-      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
-      const auto _S_2dsqrt_pi = _Tp{2} / _S_sqrt_pi;
-      const auto __zz = __z * __z;
-      const auto __i2zz = _Tp{1} / (_Tp{2} * __z * __z);
-      const auto __ezz4 = std::exp(-__zz / _Tp{4});
-      const auto __pow = std::pow(__z, -__a - _S_1d2);
-      auto __term1 = _Tp{1};
-      auto __sum1 = __term1;
-      auto __term2 = _Tp{1};
-      auto __sum2 = __term2;
-      for (auto __s = 1; __s < _S_max_iter; ++__s)
+      constexpr auto _S_1d2 = Tp{1} / Tp{2};
+      const auto _S_sqrt_pi = emsr::sqrtpi_v<Tp>;
+      const auto _S_2dsqrt_pi = Tp{2} / _S_sqrt_pi;
+      const auto zz = z * z;
+      const auto i2zz = Tp{1} / (Tp{2} * z * z);
+      const auto ezz4 = std::exp(-zz / Tp{4});
+      const auto pow = std::pow(z, -a - _S_1d2);
+      auto term1 = Tp{1};
+      auto sum1 = term1;
+      auto term2 = Tp{1};
+      auto sum2 = term2;
+      for (auto s = 1; s < _S_max_iter; ++s)
 	{
-	  __term1 *= -(__a + _S_1d2 + 2 * (__s - 1))
-		  * (__a + _S_1d2 + 2 * (__s - 1) + 1) * __i2zz / __s;
-	  __sum1 += __term1;
-	  __term2 *= (__a - _S_1d2 + 2 * (__s - 1))
-		  * (__a - _S_1d2 + 2 * (__s - 1) + 1) * __i2zz / __s;
-	  __sum2 += __term2;
-	  if (std::abs(__term1) < _S_eps * std::abs(__sum1)
-	   && std::abs(__term2) < _S_eps * std::abs(__sum2))
+	  term1 *= -(a + _S_1d2 + 2 * (s - 1))
+		  * (a + _S_1d2 + 2 * (s - 1) + 1) * i2zz / s;
+	  sum1 += term1;
+	  term2 *= (a - _S_1d2 + 2 * (s - 1))
+		  * (a - _S_1d2 + 2 * (s - 1) + 1) * i2zz / s;
+	  sum2 += term2;
+	  if (std::abs(term1) < _S_eps * std::abs(sum1)
+	   && std::abs(term2) < _S_eps * std::abs(sum2))
 	    break;
 	}
-      auto _U = __ezz4 * __pow * __sum1;
-      auto _V = _S_2dsqrt_pi * __sum2 / __ezz4 / __pow / __z;
+      auto _U = ezz4 * pow * sum1;
+      auto _V = _S_2dsqrt_pi * sum2 / ezz4 / pow / z;
 
       return std::make_pair(_U, _V);
     }
@@ -153,55 +153,54 @@ namespace __detail
   /**
    * 
    */
-  template<typename _Tp>
-    std::pair<_Tp, _Tp>
-    __parabolic_cylinder(_Tp __a, _Tp __z)
+  template<typename Tp>
+    std::pair<Tp, Tp>
+    parabolic_cylinder(Tp a, Tp z)
     {
-      constexpr auto _S_magic_switch = _Tp{10};
-      if (std::abs(__z) < _S_magic_switch)
-	return __parabolic_cylinder_series(__a, __z);
+      constexpr auto _S_magic_switch = Tp{10};
+      if (std::abs(z) < _S_magic_switch)
+	return parabolic_cylinder_series(a, z);
       else
-	return __parabolic_cylinder_asymp(__a, __z);
+	return parabolic_cylinder_asymp(a, z);
     }
 
   /**
    * 
    */
-  template<typename _Tp>
-    _Tp
-    __parabolic_cyl_u(_Tp __a, _Tp __z)
+  template<typename Tp>
+    Tp
+    parabolic_cyl_u(Tp a, Tp z)
     {
-      if (std::isnan(__a) || std::isnan(__z))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+      if (std::isnan(a) || std::isnan(z))
+	return emsr::quiet_NaN<Tp>();
       else
-        return __parabolic_cylinder(__a, __z).first;
+        return parabolic_cylinder(a, z).first;
     }
 
   /**
    * 
    */
-  template<typename _Tp>
-    _Tp
-    __parabolic_cyl_v(_Tp __a, _Tp __z)
+  template<typename Tp>
+    Tp
+    parabolic_cyl_v(Tp a, Tp z)
     {
-      if (std::isnan(__a) || std::isnan(__z))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
+      if (std::isnan(a) || std::isnan(z))
+	return emsr::quiet_NaN<Tp>();
       else
-        return __parabolic_cylinder(__a, __z).second;
+        return parabolic_cylinder(a, z).second;
     }
 
   /**
    *  
    */
-  template<typename _Tp>
-    _Tp
-    __parabolic_cyl_w(_Tp __a, _Tp __z)
+  template<typename Tp>
+    Tp
+    parabolic_cyl_w(Tp a, Tp z)
     {
-      return _Tp{0};
+      return Tp{0};
     }
-} // namespace __detail
 
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace std
+} // namespace detail
+} // namespace emsr
 
-#endif // _GLIBCXX_BITS_SF_PARAB_CYL_TCC
+#endif // SF_PARAB_CYL_TCC

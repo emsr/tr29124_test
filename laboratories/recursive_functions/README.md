@@ -1,0 +1,3 @@
+More broadly, these could be generating functions...
+
+See the book generatingfunctionology by Wilf.

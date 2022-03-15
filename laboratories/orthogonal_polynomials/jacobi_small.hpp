@@ -26,8 +26,8 @@
    \author Christophe Prud'homme <christophe.prudhomme@ujf-grenoble.fr>
    \date 2005-07-26
  */
-#ifndef __Jacobi_H
-#define __Jacobi_H 1
+#ifndef Jacobi_H
+#define Jacobi_H 1
 
 
 namespace Life
@@ -214,5 +214,5 @@ namespace Life
   }
 
 } // Life
-#endif /* __Jacobi_H */
+#endif /* Jacobi_H */
 

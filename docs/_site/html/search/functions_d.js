@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['normal_5fp',['normal_p',['../group__mathsf__gnu.html#gaeb735b0fb98c7684ba61b8940f50193c',1,'__gnu_cxx']]],
-  ['normal_5fpdf',['normal_pdf',['../group__mathsf__gnu.html#gab795379781dea732cbc7556351760401',1,'__gnu_cxx']]],
-  ['num_5fterms',['num_terms',['../classstd_1_1____detail_1_1__Terminator.html#a8797a4fa304ad360f9b101bd340d614d',1,'std::__detail::_Terminator::num_terms()'],['../classstd_1_1____detail_1_1__AsympTerminator.html#a463f9e4e87d22b9839c12cc28b085117',1,'std::__detail::_AsympTerminator::num_terms()']]]
+  ['operator_20bool_585',['operator bool',['../structemsr_1_1fp__is__integer__t.html#a3a6b7f824f1ad63b734bacb7ee0cc5d3',1,'emsr::fp_is_integer_t']]],
+  ['operator_28_29_586',['operator()',['../structemsr_1_1stirling__1__t.html#a9898bcfba0313613008c5ce89be23e07',1,'emsr::stirling_1_t::operator()()'],['../structemsr_1_1stirling__2__t.html#acc6bd21e24795c7529907fed4f2b298a',1,'emsr::stirling_2_t::operator()()'],['../structemsr_1_1fp__is__integer__t.html#a4b9f1c3f80fca823f656af798973f9d8',1,'emsr::fp_is_integer_t::operator()()']]],
+  ['operator_5b_5d_587',['operator[]',['../structemsr_1_1stirling__1__t.html#ab637b8db562c30cbb25c4b61857406dc',1,'emsr::stirling_1_t::operator[]()'],['../structemsr_1_1stirling__2__t.html#a9a34e05701a1044de51d8c1d4b3fbc91',1,'emsr::stirling_2_t::operator[]()']]],
+  ['owens_5ft_588',['owens_t',['../namespaceemsr.html#acc0b28dcecdf4c1012bcab4fa44ee8e0',1,'emsr']]]
 ];

@@ -24,5 +24,5 @@ add_custom_target(make_lab_distribution_functions_output_dir ALL
   COMMAND ${CMAKE_COMMAND} -E make_directory output)
 
 add_executable(test_marcum_q test_marcum_q.cpp)
-target_link_libraries(test_marcum_q ${TR29124_LIBRARIES} quadmath)
+target_link_libraries(test_marcum_q ${EMSR_LIBRARIES} quadmath)
 add_test(NAME run_test_marcum_q COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_marcum_q > output/test_marcum_q.txt")

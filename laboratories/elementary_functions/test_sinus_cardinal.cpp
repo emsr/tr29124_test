@@ -5,21 +5,23 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-#include <ext/float128_io.h>
+
+#include <emsr/float128_io.h>
+#include <emsr/sf_cardinal.h>
 
 #include <wrap_boost.h>
 #include <wrap_gsl.h>
 
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_sinc(_Tp proto = _Tp{})
+  test_sinc(Tp proto = Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    const auto pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto pi = emsr::pi_v<Tp>;
 
     std::cout << '\n';
     std::cout << std::setw(width) << "x"
@@ -36,11 +38,11 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << std::setw(width) << "==============="
 	      << '\n';
-    const auto del = _Tp{1} / _Tp{10};
+    const auto del = Tp{1} / Tp{10};
     for (int i = -40; i <= +40; ++i)
       {
 	auto x = del * i * pi;
-	auto sinc = __gnu_cxx::sinc(x);
+	auto sinc = emsr::sinc(x);
 	auto sinc_gsl = gsl::sinc(x);
 	auto sinc_boost = beast::sinc(x);
 	auto delta_gsl = sinc - sinc_gsl;
@@ -55,11 +57,11 @@ template<typename _Tp>
       }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_sinc_pi(_Tp proto = _Tp{})
+  test_sinc_pi(Tp proto = Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -78,11 +80,11 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << std::setw(width) << "==============="
 	      << '\n';
-    const auto del = _Tp{1} / _Tp{10};
+    const auto del = Tp{1} / Tp{10};
     for (int i = -40; i <= +40; ++i)
       {
 	auto x = del * i;
-	auto sinc_pi = __gnu_cxx::sinc_pi(x);
+	auto sinc_pi = emsr::sinc_pi(x);
 	auto sinc_pi_gsl = gsl::sinc_pi(x);
 	auto sinc_pi_boost = beast::sinc_pi(x);
 	auto delta_gsl = sinc_pi - sinc_pi_gsl;
@@ -97,11 +99,11 @@ template<typename _Tp>
       }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_sinhc(_Tp proto = _Tp{})
+  test_sinhc(Tp proto = Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -121,11 +123,11 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << '\n';
 
-    const auto del = _Tp{1} / _Tp{10};
+    const auto del = Tp{1} / Tp{10};
     for (int i = -40; i <= +40; ++i)
       {
 	auto x = del * i;
-	auto sinhc = __gnu_cxx::sinhc(x);
+	auto sinhc = emsr::sinhc(x);
 	auto sinhc_gsl = gsl::sinhc(x);
 	auto sinhc_boost = beast::sinhc(x);
 	auto delta_gsl = sinhc - sinhc_gsl;
@@ -140,11 +142,11 @@ template<typename _Tp>
       }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_sinhc_pi(_Tp proto = _Tp{})
+  test_sinhc_pi(Tp proto = Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -163,11 +165,11 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << std::setw(width) << "==============="
 	      << '\n';
-    const auto del = _Tp{1} / _Tp{10};
+    const auto del = Tp{1} / Tp{10};
     for (int i = -40; i <= +40; ++i)
       {
 	auto x = del * i;
-	auto sinhc_pi = __gnu_cxx::sinhc_pi(x);
+	auto sinhc_pi = emsr::sinhc_pi(x);
 	auto sinhc_pi_gsl = gsl::sinhc_pi(x);
 	auto sinhc_pi_boost = beast::sinhc_pi(x);
 	auto delta_gsl = sinhc_pi - sinhc_pi_gsl;

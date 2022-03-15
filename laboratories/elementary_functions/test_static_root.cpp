@@ -6,96 +6,96 @@
 #include <iostream>
 #include <iomanip>
 
-template<typename _Tp>
-  constexpr _Tp
-  __static_sqrt(_Tp __x)
+template<typename Tp>
+  constexpr Tp
+  static_sqrt(Tp x)
   {
-    if (__x < _Tp{0})
-      return std::numeric_limits<_Tp>::quiet_NaN();
-    else if (__x > _Tp{1})
-      return __x * __static_sqrt(_Tp{1} / __x);
+    if (x < Tp{0})
+      return std::numeric_limits<Tp>::quiet_NaN();
+    else if (x > Tp{1})
+      return x * static_sqrt(Tp{1} / x);
     else
       {
-	auto __lo = __x;
-	auto __hi = _Tp{1};
-	auto __mid = (__lo + __hi) / _Tp{2};
-	for (int __i = 0; __i < std::numeric_limits<_Tp>::digits; ++__i)
+	auto lo = x;
+	auto hi = Tp{1};
+	auto mid = (lo + hi) / Tp{2};
+	for (int i = 0; i < std::numeric_limits<Tp>::digits; ++i)
 	  {
-	    if (__mid * __mid > __x)
-	      __hi = __mid;
+	    if (mid * mid > x)
+	      hi = mid;
 	    else
-	      __lo = __mid;
-	    __mid = (__lo + __hi) / _Tp{2};
+	      lo = mid;
+	    mid = (lo + hi) / Tp{2};
 	  }
-	return __mid;
+	return mid;
       }
   }
 
-template<typename _Tp>
-  constexpr _Tp
-  __static_cbrt(_Tp __x)
+template<typename Tp>
+  constexpr Tp
+  static_cbrt(Tp x)
   {
-    if (__x < _Tp{0})
-      return std::numeric_limits<_Tp>::quiet_NaN();
-    else if (__x > _Tp{1})
-      return _Tp{1} / __static_cbrt(_Tp{1} / __x);
+    if (x < Tp{0})
+      return std::numeric_limits<Tp>::quiet_NaN();
+    else if (x > Tp{1})
+      return Tp{1} / static_cbrt(Tp{1} / x);
     else
       {
-	auto __lo = __x;
-	auto __hi = _Tp{1};
-	auto __mid = (__lo + __hi) / _Tp{2};
-	for (int __i = 0; __i < std::numeric_limits<_Tp>::digits; ++__i)
+	auto lo = x;
+	auto hi = Tp{1};
+	auto mid = (lo + hi) / Tp{2};
+	for (int i = 0; i < std::numeric_limits<Tp>::digits; ++i)
 	  {
-	    if (__mid * __mid * __mid > __x)
-	      __hi = __mid;
+	    if (mid * mid * mid > x)
+	      hi = mid;
 	    else
-	      __lo = __mid;
-	    __mid = (__lo + __hi) / _Tp{2};
+	      lo = mid;
+	    mid = (lo + hi) / Tp{2};
 	  }
-	return __mid;
+	return mid;
       }
   }
 
-template<typename _Tp>
-  constexpr _Tp
-  __static_powi(_Tp __x, unsigned int __r)
+template<typename Tp>
+  constexpr Tp
+  static_powi(Tp x, unsigned int r)
   {
     // There are better ways...
-    _Tp __pp = _Tp{1};
-    for (unsigned int __i = 0; __i < __r; ++__i)
-      __pp *= __x;
-    return __pp;
+    Tp pp = Tp{1};
+    for (unsigned int i = 0; i < r; ++i)
+      pp *= x;
+    return pp;
   }
 
-template<typename _Tp>
-  constexpr _Tp
-  __static_root(unsigned int __r, _Tp __x)
+template<typename Tp>
+  constexpr Tp
+  static_root(unsigned int r, Tp x)
   {
-    if (__x < _Tp{0})
-      return std::numeric_limits<_Tp>::quiet_NaN();
-    else if (__x > _Tp{1})
-      return _Tp{1} / __static_cbrt(_Tp{1} / __x);
+    if (x < Tp{0})
+      return std::numeric_limits<Tp>::quiet_NaN();
+    else if (x > Tp{1})
+      return Tp{1} / static_cbrt(Tp{1} / x);
     else
       {
-	auto __lo = __x;
-	auto __hi = _Tp{1};
-	auto __mid = (__lo + __hi) / _Tp{2};
-	for (int __i = 0; __i < std::numeric_limits<_Tp>::digits; ++__i)
+	auto lo = x;
+	auto hi = Tp{1};
+	auto mid = (lo + hi) / Tp{2};
+	for (int i = 0; i < std::numeric_limits<Tp>::digits; ++i)
 	  {
-	    if (__static_powi(__mid, __r) > __x)
-	      __hi = __mid;
+	    if (static_powi(mid, r) > x)
+	      hi = mid;
 	    else
-	      __lo = __mid;
-	    __mid = (__lo + __hi) / _Tp{2};
+	      lo = mid;
+	    mid = (lo + hi) / Tp{2};
 	  }
-	return __mid;
+	return mid;
       }
   }
 
 int
 main()
 {
-  std::cout << __static_sqrt(std::numeric_limits<double>::epsilon()) << '\n';
-  std::cout << __static_cbrt(std::numeric_limits<double>::epsilon()) << '\n';
-  std::cout << __static_root(6, std::numeric_limits<double>::epsilon()) << '\n';
+  std::cout << static_sqrt(std::numeric_limits<double>::epsilon()) << '\n';
+  std::cout << static_cbrt(std::numeric_limits<double>::epsilon()) << '\n';
+  std::cout << static_root(6, std::numeric_limits<double>::epsilon()) << '\n';
 }

@@ -7,20 +7,23 @@
 #include <iomanip>
 #include <cmath>
 
-template<typename _Tp>
-  _Tp
-  __mod2pi_cheap(_Tp x)
+#include <emsr/math_constants.h>
+#include <emsr/numeric_limits.h>
+
+template<typename Tp>
+  Tp
+  mod2pi_cheap(Tp x)
   {
-    const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
-    return x - _S_2pi * std::floor(x / _S_2pi);
+    const auto s_2pi = emsr::tau_v<Tp>;
+    return x - s_2pi * std::floor(x / s_2pi);
   }
 
-template<typename _Tp>
-  _Tp
-  __mod2pi_cephes_wtf(_Tp x)
+template<typename Tp>
+  Tp
+  mod2pi_cephes_wtf(Tp x)
   {
-    const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
-    const auto n = std::floor(x / _S_2pi);
+    const auto s_2pi = emsr::tau_v<Tp>;
+    const auto n = std::floor(x / s_2pi);
     auto a = x - ldexp(n, 2);  /* 4n */
     a -= ldexp( n, 1);    /* 2n */
     a -= ldexp( n, -2 );  /* n/4 */
@@ -43,25 +46,25 @@ template<typename _Tp>
     return a;
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_mod2pi(_Tp proto = _Tp{})
+  test_mod2pi(Tp proto = Tp{})
   {
-    std::cout.precision(__gnu_cxx::__max_digits10(proto));
+    std::cout.precision(emsr::max_digits10(proto));
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    auto x = _Tp{12.34567895432Q};
+    auto x = Tp{12.34567895432Q};
     std::cout << '\n';
     std::cout << "x         = " << std::setw(w) << x << '\n';
-    std::cout << "mod2pi(x) = " << std::setw(w) << __mod2pi_cheap(x) << '\n';
-    std::cout << "mod2pi(x) = " << std::setw(w) << __mod2pi_cephes_wtf(x) << '\n';
+    std::cout << "mod2pi(x) = " << std::setw(w) << mod2pi_cheap(x) << '\n';
+    std::cout << "mod2pi(x) = " << std::setw(w) << mod2pi_cephes_wtf(x) << '\n';
 
-    auto y = _Tp{123456.78954326521Q};
+    auto y = Tp{123456.78954326521Q};
     std::cout << '\n';
     std::cout << "y         = " << std::setw(w) << y << '\n';
-    std::cout << "mod2pi(y) = " << std::setw(w) << __mod2pi_cheap(y) << '\n';
-    std::cout << "mod2pi(y) = " << std::setw(w) << __mod2pi_cephes_wtf(y) << '\n';
+    std::cout << "mod2pi(y) = " << std::setw(w) << mod2pi_cheap(y) << '\n';
+    std::cout << "mod2pi(y) = " << std::setw(w) << mod2pi_cephes_wtf(y) << '\n';
   }
 
 int

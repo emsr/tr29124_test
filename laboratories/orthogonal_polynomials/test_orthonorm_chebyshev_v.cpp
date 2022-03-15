@@ -1,22 +1,3 @@
-// -*- C++ -*-
-// Integration utilities for the C++ library testsuite.
-//
-// Copyright (C) 2016-2019 Free Software Foundation, Inc.
-//
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
-//
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License along
-// with this library; see the file COPYING3.  If not see
-// <http://www.gnu.org/licenses/>.
 
 #include <iostream>
 #include <cmath>
@@ -24,65 +5,75 @@
 #include <sstream>
 #include <string>
 
-#include <ext/integration.h>
+#include <emsr/integration.h>
+#include <emsr/special_functions.h>
+#include <emsr/math_constants.h>
 
-// Function which should integrate to 1 for n1 == n2, 0 otherwise.
-template<typename _Tp>
-  _Tp
-  normalized_chebyshev_v(int n1, int n2, _Tp x)
+// Normailized Chebyshev polynomial of the third kind.
+template<typename Tp>
+  Tp
+  normalized_chebyshev_v(int n, Tp x)
   {
-    const auto _S_eps = std::numeric_limits<_Tp>::epsilon();
-    const auto _S_inf = std::numeric_limits<_Tp>::infinity();
-    if (std::abs(x - _Tp{1}) < _S_eps)
-      return ((n1 + n2) & 1) ? -_S_inf : _S_inf;
-    else
-      return __gnu_cxx::chebyshev_v(n1, x)
-	   * __gnu_cxx::chebyshev_v(n2, x)
-	   * std::sqrt((_Tp{1} + x) / (_Tp{1} - x))
-	   / _Tp{2};
+    constexpr Tp s_sqrt2 = emsr::sqrt2_v<Tp>;
+    return emsr::chebyshev_v(n, x) / s_sqrt2;
   }
 
-template<typename _Tp>
-  _Tp
-  delta(int n1, int n2)
-  { return n1 == n2 ? _Tp{1} : _Tp{0}; }
+// Function which should integrate to 1 for n1 == n2, 0 otherwise.
+template<typename Tp>
+  Tp
+  integrand(int n1, int n2, Tp x)
+  {
+    const auto s_eps = std::numeric_limits<Tp>::epsilon();
+    const auto s_inf = std::numeric_limits<Tp>::infinity();
+    if (std::abs(x - Tp{1}) < s_eps)
+      return (n1 + n2) & 1 ? -s_inf : s_inf;
+    else
+      return normalized_chebyshev_v(n1, x)
+	   * normalized_chebyshev_v(n2, x)
+	   * std::sqrt((Tp{1} + x) / (Tp{1} - x));
+  }
 
-template<typename _Tp>
+template<typename Tp>
+  Tp
+  delta(int n1, int n2)
+  { return n1 == n2 ? Tp{1} : Tp{0}; }
+
+template<typename Tp>
   void
   test_chebyshev_v()
   {
-    const auto eps_factor = 1 << (std::numeric_limits<_Tp>::digits / 3);
-    const auto eps = std::numeric_limits<_Tp>::epsilon();
+    const auto eps_factor = 1 << (std::numeric_limits<Tp>::digits / 3);
+    const auto eps = std::numeric_limits<Tp>::epsilon();
     const auto abs_precision = eps_factor * eps;
     const auto rel_precision = eps_factor * eps;
-    const auto cmp_precision = _Tp{10} * rel_precision;
+    const auto cmp_precision = Tp{10} * rel_precision;
 
     int n1 = 0;
     for (; n1 <= 128; ++n1)
       {
 	for (int n2 = 0; n2 <= n1; ++n2)
 	  {
-	    auto func = [n1, n2](_Tp x)->_Tp{return normalized_chebyshev_v(n1, n2, x);};
+	    auto func = [n1, n2](Tp x)->Tp{return integrand(n1, n2, x);};
 
 	    auto [result, error]
-		//= __gnu_cxx::integrate(func, _Tp{-1}, _Tp{1},
+		//= emsr::integrate(func, Tp{-1}, Tp{1},
 		//			abs_precision, rel_precision);
-		//= __gnu_cxx::integrate_singular(func, _Tp{-1}, _Tp{1},
+		//= emsr::integrate_singular(func, Tp{-1}, Tp{1},
 		//				abs_precision, rel_precision);
-		= __gnu_cxx::integrate_singular_endpoints(func,
-				 _Tp{-1}, _Tp{1},
-				 _Tp{0.5}, _Tp{-0.5}, 0, 0,
+		= emsr::integrate_singular_endpoints(func,
+				 Tp{-1}, Tp{1},
+				 Tp{0.5}, Tp{-0.5}, 0, 0,
 				 abs_precision, rel_precision);
 
-	    if (std::abs(delta<_Tp>(n1, n2) - result) > cmp_precision)
+	    if (std::abs(delta<Tp>(n1, n2) - result) > cmp_precision)
 	      {
 		std::stringstream ss;
-		ss.precision(std::numeric_limits<_Tp>::digits10);
+		ss.precision(std::numeric_limits<Tp>::digits10);
 		ss << std::showpoint << std::scientific;
 		ss << "Integration failed at n1=" << n1 << ", n2=" << n2
 		   << ", returning result " << result
 		   << ", with error " << error
-		   << " instead of the expected " << delta<_Tp>(n1, n2) << '\n';
+		   << " instead of the expected " << delta<Tp>(n1, n2) << '\n';
 		throw std::logic_error(ss.str());
 	      }
 	  }
@@ -99,19 +90,19 @@ template<typename _Tp>
 	RESTART:
 	for (int n2 = 0; n2 <= n1_upper; n2 += del)
 	  {
-	    auto func = [n1 = n1_upper, n2](_Tp x)->_Tp{return normalized_chebyshev_v(n1, n2, x);};
+	    auto func = [n1 = n1_upper, n2](Tp x)->Tp{return integrand(n1, n2, x);};
 
 	    auto [result, error]
-		//= __gnu_cxx::integrate(func, _Tp{-1}, _Tp{1},
+		//= emsr::integrate(func, Tp{-1}, Tp{1},
 		//			abs_precision, rel_precision);
-		//= __gnu_cxx::integrate_singular(func, _Tp{-1}, _Tp{1},
+		//= emsr::integrate_singular(func, Tp{-1}, Tp{1},
 		//				abs_precision, rel_precision);
-		= __gnu_cxx::integrate_singular_endpoints(func,
-				 _Tp{-1}, _Tp{1},
-				 _Tp{0.5}, _Tp{-0.5}, 0, 0,
+		= emsr::integrate_singular_endpoints(func,
+				 Tp{-1}, Tp{1},
+				 Tp{0.5}, Tp{-0.5}, 0, 0,
 				 abs_precision, rel_precision);
 
-	    if (std::abs(delta<_Tp>(n1_upper, n2) - result) > cmp_precision)
+	    if (std::abs(delta<Tp>(n1_upper, n2) - result) > cmp_precision)
 	      {
 		if ((n1_lower + n1_upper) / 2 < n1_upper)
 		  {
@@ -154,7 +145,7 @@ main()
     {
       test_chebyshev_v<float>();
     }
-  catch (__gnu_cxx::__integration_error<float>& ierr)
+  catch (emsr::integration_error<float, float>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -169,7 +160,7 @@ main()
     {
       test_chebyshev_v<double>();
     }
-  catch (__gnu_cxx::__integration_error<double>& ierr)
+  catch (emsr::integration_error<double, double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -184,7 +175,7 @@ main()
     {
       test_chebyshev_v<long double>();
     }
-  catch (__gnu_cxx::__integration_error<long double>& ierr)
+  catch (emsr::integration_error<long double, long double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';

@@ -1,12 +1,11 @@
-// TR29124 math special functions -*- C++ -*-
 
 // Copyright (C) 2016-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,78 +21,74 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/sf_hankel.tcc
+/** @file emsr/sf_hankel.tcc
  *  This is an internal header file, included by other library headers.
  *  You should not attempt to use it directly.
  */
 
-#ifndef _GLIBCXX_BITS_SF_HANKEL_OLD_TCC
-#define _GLIBCXX_BITS_SF_HANKEL_OLD_TCC 1
-
-#pragma GCC system_header
+#ifndef SF_HANKEL_OLD_TCC
+#define SF_HANKEL_OLD_TCC 1
 
 #include <complex>
 #include <limits>
 #include <vector>
 
-#include <bits/complex_util.h>
+#include <emsr/complex_util.h>
 
-namespace std _GLIBCXX_VISIBILITY(default)
+namespace emsr
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
+namespace detail
+{
 
-// Implementation-space details.
-namespace __detail
-{
   /**
    * Compute the Debye region in te complex plane.
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    __debye_region(std::complex<_Tp> __alpha, int& __indexr, char& __aorb)
+    debye_region(std::complex<Tp> alpha, int& indexr, char& aorb)
     {
-      static constexpr _Tp
-	_S_pi(3.141592653589793238462643383279502884195e+0L);
+      static constexpr Tp
+	s_pi(3.141592653589793238462643383279502884195e+0L);
 
-      __aorb = ' ';
+      aorb = ' ';
 
-      auto __alphar = std::real(__alpha);
-      auto __alphai = std::imag(__alpha);
+      auto alphar = std::real(alpha);
+      auto alphai = std::imag(alpha);
 
-      auto __f1 = _Tp{1}
-		- __alphai * std::cos(__alphai) / std::sin(__alphai)
-		- __alphar * std::sinh(__alphar) / std::cosh(__alphar);
+      auto f1 = Tp{1}
+		- alphai * std::cos(alphai) / std::sin(alphai)
+		- alphar * std::sinh(alphar) / std::cosh(alphar);
 
-      auto __f2 = _Tp{1}
-		+ (_S_pi - __alphai) * std::cos(__alphai) / std::sin(__alphai)
-		- __alphar * std::sinh(__alphar) / std::cosh(__alphar);
+      auto f2 = Tp{1}
+		+ (s_pi - alphai) * std::cos(alphai) / std::sin(alphai)
+		- alphar * std::sinh(alphar) / std::cosh(alphar);
 
-      if (__f1 > _Tp{0} && __f2 > _Tp{0})
-	__indexr = 1;
-      else if (__f2 > _Tp{0})
+      if (f1 > Tp{0} && f2 > Tp{0})
+	indexr = 1;
+      else if (f2 > Tp{0})
 	{
-	  if (__alphar > _Tp{0})
-	    __indexr = 2;
+	  if (alphar > Tp{0})
+	    indexr = 2;
 	  else
-	    __indexr = 3;
+	    indexr = 3;
 	}
-      else if (__f1 > _Tp{0})
+      else if (f1 > Tp{0})
 	{
-	  if (__alphar > _Tp{0})
-	    __indexr = 4;
+	  if (alphar > Tp{0})
+	    indexr = 4;
 	  else
-	    __indexr = 5;
+	    indexr = 5;
 	}
       else
 	{
-	  if (__alphar > _Tp{0})
-            __indexr = 6;
+	  if (alphar > Tp{0})
+            indexr = 6;
 	  else
-            __indexr = 7;
-          if (__alphai <= (_S_pi / _Tp{2}))
-            __aorb = 'A';
+            indexr = 7;
+          if (alphai <= (s_pi / Tp{2}))
+            aorb = 'A';
           else
-            __aorb = 'B';
+            aorb = 'B';
 	}
       return;
     }
@@ -104,119 +99,116 @@ namespace __detail
    * in the uniform asymptotic expansions of the Hankel functions
    * and their derivatives, except the arguments to the Airy functions.
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    __hankel_params(std::complex<_Tp> __nu, std::complex<_Tp> __zhat,
-		    std::complex<_Tp>& __p, std::complex<_Tp>& __p2,
-		    std::complex<_Tp>& __nup2, std::complex<_Tp>& __num2,
-		    std::complex<_Tp>& __num1d3, std::complex<_Tp>& __num2d3,
-		    std::complex<_Tp>& __num4d3, std::complex<_Tp>& __zeta,
-		    std::complex<_Tp>& __zetaphf, std::complex<_Tp>& __zetamhf,
-		    std::complex<_Tp>& __zetam3hf, std::complex<_Tp>& __zetrat)
+    hankel_params(std::complex<Tp> nu, std::complex<Tp> zhat,
+		    std::complex<Tp>& p, std::complex<Tp>& p2,
+		    std::complex<Tp>& nup2, std::complex<Tp>& num2,
+		    std::complex<Tp>& num1d3, std::complex<Tp>& num2d3,
+		    std::complex<Tp>& num4d3, std::complex<Tp>& zeta,
+		    std::complex<Tp>& zetaphf, std::complex<Tp>& zetamhf,
+		    std::complex<Tp>& zetam3hf, std::complex<Tp>& zetrat)
     {
-      using __cmplx = std::complex<_Tp>;
+      using cmplx = std::complex<Tp>;
 
-      static constexpr auto _S_inf     = __gnu_cxx::__max<_Tp>();
-      static constexpr auto _S_sqrt_max = __gnu_cxx::__sqrt_max<_Tp>();
+      static constexpr auto s_inf     = emsr::max<Tp>();
+      static constexpr auto s_sqrt_max = emsr::sqrt_max<Tp>();
 
-      static constexpr auto _S_1d4   = _Tp{0.25L};
-      static constexpr auto _S_1d3   = _Tp{0.3333333333333333333333333333333333333333L};
-      static constexpr auto _S_1d2   = _Tp{0.5L};
-      static constexpr auto _S_2d3   = _Tp{0.6666666666666666666666666666666666666666L};
-      static constexpr auto _S_2pi   = _Tp{6.283185307179586476925286766559005768391L};
-      static constexpr auto _S_lncon = _Tp{0.2703100720721095879853420769762327577152L}; // -(2/3)ln(2/3)
-      static constexpr auto _S_sqrt2 = _Tp{1.414213562373095048801688724209698078569L};
-      static constexpr auto _S_4d3   = _Tp{1.333333333333333333333333333333333333333L};
+      static constexpr auto s_1d4   = Tp{0.25L};
+      static constexpr auto s_1d3   = Tp{0.3333333333333333333333333333333333333333L};
+      static constexpr auto s_1d2   = Tp{0.5L};
+      static constexpr auto s_2d3   = Tp{0.6666666666666666666666666666666666666666L};
+      static constexpr auto s_2pi   = Tp{6.283185307179586476925286766559005768391L};
+      static constexpr auto s_lncon = Tp{0.2703100720721095879853420769762327577152L}; // -(2/3)ln(2/3)
+      static constexpr auto s_sqrt2 = Tp{1.414213562373095048801688724209698078569L};
+      static constexpr auto s_4d3   = Tp{1.333333333333333333333333333333333333333L};
 
-      static constexpr __cmplx __zone{_Tp{1}, _Tp{0}};
-      static constexpr __cmplx _S_j{_Tp{0}, _Tp{1}};
+      static constexpr cmplx zone{Tp{1}, Tp{0}};
+      static constexpr cmplx s_j{Tp{0}, Tp{1}};
 
       // Separate real and imaginary parts of zhat.
-      auto __rezhat = std::real(__zhat);
-      auto __imzhat = std::imag(__zhat);
-      auto __abs_rezhat = std::abs(__rezhat);
-      auto __abs_imzhat = std::abs(__imzhat);
+      auto rezhat = std::real(zhat);
+      auto imzhat = std::imag(zhat);
+      auto abs_rezhat = std::abs(rezhat);
+      auto abs_imzhat = std::abs(imzhat);
 
       // If 1 - zhat^2 can be computed without overflow.
-      if (__abs_rezhat < _S_sqrt_max && __abs_imzhat < _S_sqrt_max)
+      if (abs_rezhat < s_sqrt_max && abs_imzhat < s_sqrt_max)
 	{
 	  // Find max and min of abs(dx) and abs(dy).
-	  auto __du = __abs_rezhat;
-	  auto __dv = __abs_imzhat;
-	  if (__du < __dv)
-	    std::swap(__du, __dv);
-	  if (__du >= _S_1d2 && __dv > _S_inf / (_Tp{2} * __du))
-	    std::__throw_runtime_error(__N("__hankel_params: "
-					   "unable to compute 1-zhat^2"));
+	  auto du = abs_rezhat;
+	  auto dv = abs_imzhat;
+	  if (du < dv)
+	    std::swap(du, dv);
+	  if (du >= s_1d2 && dv > s_inf / (Tp{2} * du))
+	    throw std::runtime_error("hankel_params: unable to compute 1-zhat^2");
 	}
       else
-	std::__throw_runtime_error(__N("__hankel_params: "
-				       "unable to compute 1-zhat^2"));
+	throw std::runtime_error("hankel_params: unable to compute 1-zhat^2");
 
       // Compute 1 - zhat^2 and related constants.
-      auto __w = __cmplx{_Tp{1} - (__rezhat - __imzhat) * (__rezhat + __imzhat),
-			-_Tp{2} * __rezhat * __imzhat};
-      __w = std::sqrt(__w);
-      __p = _Tp{1} / __w;
-      __p2 = __p * __p;
+      auto w = cmplx{Tp{1} - (rezhat - imzhat) * (rezhat + imzhat),
+			-Tp{2} * rezhat * imzhat};
+      w = std::sqrt(w);
+      p = Tp{1} / w;
+      p2 = p * p;
 
       // If nu^2 can be computed without overflow.
-      if (std::abs(__nu) <= _S_sqrt_max)
+      if (std::abs(nu) <= s_sqrt_max)
 	{
-	  __nup2 = __nu * __nu;
-	  __num2 = _Tp{1} / __nup2;
+	  nup2 = nu * nu;
+	  num2 = Tp{1} / nup2;
 	  // Compute nu^(-1/3), nu^(-2/3), nu^(-4/3).
-	  __num4d3 = -std::log(__nu);
-	  __num1d3 = std::exp(_S_1d3 * __num4d3);
-	  __num2d3 = std::exp(_S_2d3 * __num4d3);
-	  __num4d3 = std::exp(_S_4d3 * __num4d3);
+	  num4d3 = -std::log(nu);
+	  num1d3 = std::exp(s_1d3 * num4d3);
+	  num2d3 = std::exp(s_2d3 * num4d3);
+	  num4d3 = std::exp(s_4d3 * num4d3);
 	}
       else
-	std::__throw_runtime_error(__N("__hankel_params: "
-				       "unable to compute nu^2"));
+	throw std::runtime_error("hankel_params: unable to compute nu^2");
 
       // Compute xi = ln(1+(1-zhat^2)^(1/2)) - ln(zhat) - (1-zhat^2)^(1/2)
       // using default branch of logarithm and square root.
-      auto __xi = std::log(__zone + __w) - std::log(__zhat) - __w;
-      __zetam3hf = _S_2d3 / __xi;
+      auto xi = std::log(zone + w) - std::log(zhat) - w;
+      zetam3hf = s_2d3 / xi;
 
       // Compute principal value of ln(xi) and then adjust imaginary part.
-      auto __lnxi = std::log(__xi);
+      auto lnxi = std::log(xi);
 
       // Prepare to adjust logarithm of xi to appropriate Riemann sheet.
-      auto __npi = _Tp{0};
+      auto npi = Tp{0};
 
       // Find adjustment necessary to get on proper Riemann sheet.
-      if (__imzhat == _Tp{0})  // zhat is real.
+      if (imzhat == Tp{0})  // zhat is real.
 	{
-	  if (__rezhat > _Tp{1})
-	    __npi = _S_2pi;
+	  if (rezhat > Tp{1})
+	    npi = s_2pi;
 	}
       else // zhat is not real.
 	{
 	  // zhat is in upper half-plane.
-	  if (__imzhat > _Tp{0})
+	  if (imzhat > Tp{0})
 	    {
 	      // xi lies in upper half-plane.
-	      if (std::imag(__xi) > _Tp{0})
-		__npi = -_S_2pi;
+	      if (std::imag(xi) > Tp{0})
+		npi = -s_2pi;
 	      else
-		__npi = +_S_2pi;
+		npi = +s_2pi;
 	    }
 	}
 
       // Adjust logarithm of xi.
-      __lnxi += __npi * _S_j;
+      lnxi += npi * s_j;
 
       // Compute ln(zeta), zeta, zeta^(+1/2), zeta^(-1/2).
-      auto __lnzeta = _S_2d3 * __lnxi + _S_lncon;
-      __zeta = std::exp(__lnzeta);
-      __zetaphf = std::sqrt(__zeta);
-      __zetamhf = _Tp{1} / __zetaphf;
+      auto lnzeta = s_2d3 * lnxi + s_lncon;
+      zeta = std::exp(lnzeta);
+      zetaphf = std::sqrt(zeta);
+      zetamhf = Tp{1} / zetaphf;
 
       // Compute (4 * zeta / (1 - zhat^2))^(1/4).
-      __w = std::log(__w);
-      __zetrat = _S_sqrt2 * std::exp(_S_1d4 * __lnzeta - _S_1d2 * __w);
+      w = std::log(w);
+      zetrat = s_sqrt2 * std::exp(s_1d4 * lnzeta - s_1d2 * w);
 
       return;
     }
@@ -228,34 +220,33 @@ namespace __detail
    * major work here is in @c safe_div.  A faster, but less safe
    * implementation can be obtained without use of safe_div.
    *
-   * @param[in] __num2d3 @f$ \nu^{-2/3} @f$ - output from hankel_params
-   * @param[in] __zeta   zeta in the uniform asymptotic expansions - output
+   * @param[in] num2d3 @f$ \nu^{-2/3} @f$ - output from hankel_params
+   * @param[in] zeta   zeta in the uniform asymptotic expansions - output
    *    		 from hankel_params
-   * @param[out] __argp @f$ e^{+i2\pi/3} \nu^{2/3} \zeta @f$
-   * @param[out] __argm @f$ e^{-i2\pi/3} \nu^{2/3} \zeta @f$
+   * @param[out] argp @f$ e^{+i2\pi/3} \nu^{2/3} \zeta @f$
+   * @param[out] argm @f$ e^{-i2\pi/3} \nu^{2/3} \zeta @f$
    * @throws std::runtime_error if unable to compute Airy function arguments
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    __airy_arg(std::complex<_Tp> __num2d3, std::complex<_Tp> __zeta,
-	       std::complex<_Tp>& __argp, std::complex<_Tp>& __argm)
+    airy_arg(std::complex<Tp> num2d3, std::complex<Tp> zeta,
+	       std::complex<Tp>& argp, std::complex<Tp>& argm)
     {
-      using __cmplx = std::complex<_Tp>;
+      using cmplx = std::complex<Tp>;
 
       // expp and expm are exp(2*pi*i/3) and its reciprocal, respectively.
-      static constexpr auto __expp = __cmplx{-0.5L,  0.8660254037844386467637231707529361834727L};
-      static constexpr auto __expm = __cmplx{-0.5L, -0.8660254037844386467637231707529361834727L};
+      static constexpr auto expp = cmplx{-0.5L,  0.8660254037844386467637231707529361834727L};
+      static constexpr auto expm = cmplx{-0.5L, -0.8660254037844386467637231707529361834727L};
 
       try
 	{
-	  __argm = __safe_div(__num2d3, __zeta);
-	  __argp = __expp * __argm;
-	  __argm = __expm * __argm;
+	  argm = safe_div(num2d3, zeta);
+	  argp = expp * argm;
+	  argm = expm * argm;
 	}
       catch (...)
 	{
-	   std::__throw_runtime_error(__N("__airy_arg: unable to"
-				          " compute Airy function arguments"));
+	   throw std::runtime_error("airy_arg: unable to compute Airy function arguments");
 	}
     }
 
@@ -267,52 +258,51 @@ namespace __detail
    * The various functions of z and nu returned by @c hankel_uniform_outer
    * are available for use in computing further terms in the expansions.
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    __hankel_uniform_outer(std::complex<_Tp> __nu, std::complex<_Tp> __z, _Tp __eps,
-			   std::complex<_Tp>& __zhat, std::complex<_Tp>& __1dnsq,
-			   std::complex<_Tp>& __num1d3, std::complex<_Tp>& __num2d3,
-			   std::complex<_Tp>& __p, std::complex<_Tp>& __p2,
-			   std::complex<_Tp>& __etm3h, std::complex<_Tp>& __etrat,
-			   std::complex<_Tp>& _Aip, std::complex<_Tp>& __o4dp,
-			   std::complex<_Tp>& _Aim, std::complex<_Tp>& __o4dm,
-			   std::complex<_Tp>& __od2p, std::complex<_Tp>& __od0dp,
-			   std::complex<_Tp>& __od2m, std::complex<_Tp>& __od0dm)
+    hankel_uniform_outer(std::complex<Tp> nu, std::complex<Tp> z, Tp eps,
+			   std::complex<Tp>& zhat, std::complex<Tp>& __1dnsq,
+			   std::complex<Tp>& num1d3, std::complex<Tp>& num2d3,
+			   std::complex<Tp>& p, std::complex<Tp>& p2,
+			   std::complex<Tp>& etm3h, std::complex<Tp>& etrat,
+			   std::complex<Tp>& _Aip, std::complex<Tp>& o4dp,
+			   std::complex<Tp>& _Aim, std::complex<Tp>& o4dm,
+			   std::complex<Tp>& od2p, std::complex<Tp>& od0dp,
+			   std::complex<Tp>& od2m, std::complex<Tp>& od0dm)
     {
-      using __cmplx = std::complex<_Tp>;
+      using cmplx = std::complex<Tp>;
 
-      static constexpr __cmplx __e2pd3{-0.5L,  0.8660254037844386467637231707529361834727L};
-      static constexpr __cmplx __d2pd3{-0.5L, -0.8660254037844386467637231707529361834727L};
+      static constexpr cmplx e2pd3{-0.5L,  0.8660254037844386467637231707529361834727L};
+      static constexpr cmplx d2pd3{-0.5L, -0.8660254037844386467637231707529361834727L};
 
       try
 	{
-	  __zhat = __safe_div(__z, __nu);
+	  zhat = safe_div(z, nu);
 	  // Try to compute other nu and z dependent parameters except args to Airy functions.
-	  __cmplx __num4d3, __nup2, __zeta, __zetaphf, __zetamhf;
-	  __hankel_params(__nu, __zhat, __p, __p2, __nup2,
-			  __1dnsq, __num1d3, __num2d3, __num4d3,
-			  __zeta, __zetaphf, __zetamhf, __etm3h, __etrat);
+	  cmplx num4d3, nup2, zeta, zetaphf, zetamhf;
+	  hankel_params(nu, zhat, p, p2, nup2,
+			  __1dnsq, num1d3, num2d3, num4d3,
+			  zeta, zetaphf, zetamhf, etm3h, etrat);
 
 
 	  // Try to compute Airy function arguments.
-	  __cmplx __argp, __argm;
-	  __airy_arg(__num2d3, __zeta, __argp, __argm);
+	  cmplx argp, argm;
+	  airy_arg(num2d3, zeta, argp, argm);
 
 	  // Compute Airy functions and derivatives.
-	  auto __airyp = _Airy<std::complex<_Tp>>()(__argp);
-	  auto __airym = _Airy<std::complex<_Tp>>()(__argm);
+	  auto airyp = _Airy<std::complex<Tp>>()(argp);
+	  auto airym = _Airy<std::complex<Tp>>()(argm);
 	  // Compute partial outer terms in expansions.
-	  __o4dp = -__zetamhf * __num4d3 * __e2pd3 * __airyp.Aip;
-	  __o4dm = -__zetamhf * __num4d3 * __d2pd3 * __airym.Aip;
-	  __od2p = -__zetaphf * __num2d3 * __airyp.Ai;
-	  __od0dp = __e2pd3 * __airyp.Aip;
-	  __od2m = -__zetaphf * __num2d3 * __airym.Ai;
-	  __od0dm = __d2pd3 * __airym.Aip;
+	  o4dp = -zetamhf * num4d3 * e2pd3 * airyp.Aip;
+	  o4dm = -zetamhf * num4d3 * d2pd3 * airym.Aip;
+	  od2p = -zetaphf * num2d3 * airyp.Ai;
+	  od0dp = e2pd3 * airyp.Aip;
+	  od2m = -zetaphf * num2d3 * airym.Ai;
+	  od0dm = d2pd3 * airym.Aip;
 	}
       catch (...)
 	{
-	  std::__throw_runtime_error(__N("__hankel_uniform_outer: "
-					 "unable to compute z/nu"));
+	  throw std::runtime_error("hankel_uniform_outer: unable to compute z/nu");
 	}
 
       return;
@@ -325,48 +315,48 @@ namespace __detail
    * of the first and second kinds and their derivatives, using up to
    * nterms (less than 5) to achieve relative error @c eps.
    *
-   * @param[in] __p      
-   * @param[in] __p2     
-   * @param[in] __num2   
-   * @param[in] __zetam3hf 
+   * @param[in] p      
+   * @param[in] p2     
+   * @param[in] num2   
+   * @param[in] zetam3hf 
    * @param[in] _Aip     The Airy function value @f$ Ai() @f$.
-   * @param[in] __o4dp   
+   * @param[in] o4dp   
    * @param[in] _Aim     The Airy function value @f$ Ai() @f$.
-   * @param[in] __o4dm   
-   * @param[in] __od2p   
-   * @param[in] __od0dp  
-   * @param[in] __od2m   
-   * @param[in] __od0dm  
-   * @param[in] __eps    The error tolerance
+   * @param[in] o4dm   
+   * @param[in] od2p   
+   * @param[in] od0dp  
+   * @param[in] od2m   
+   * @param[in] od0dm  
+   * @param[in] eps    The error tolerance
    * @param[out] _H1sum  The Hankel function of the first kind.
    * @param[out] _H1psum The derivative of the Hankel function of the first kind.
    * @param[out] _H2sum  The Hankel function of the second kind.
    * @param[out] _H2psum The derivative of the Hankel function of the second kind.
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    __hankel_uniform_sum(std::complex<_Tp> __p, std::complex<_Tp> __p2,
-			 std::complex<_Tp> __num2, std::complex<_Tp> __zetam3hf,
-			 std::complex<_Tp> _Aip, std::complex<_Tp> __o4dp,
-			 std::complex<_Tp> _Aim, std::complex<_Tp> __o4dm,
-			 std::complex<_Tp> __od2p, std::complex<_Tp> __od0dp,
-			 std::complex<_Tp> __od2m, std::complex<_Tp> __od0dm,
-			 _Tp __eps,
-			 std::complex<_Tp>& _H1sum, std::complex<_Tp>& _H1psum,
-			 std::complex<_Tp>& _H2sum, std::complex<_Tp>& _H2psum)
+    hankel_uniform_sum(std::complex<Tp> p, std::complex<Tp> p2,
+			 std::complex<Tp> num2, std::complex<Tp> zetam3hf,
+			 std::complex<Tp> _Aip, std::complex<Tp> o4dp,
+			 std::complex<Tp> _Aim, std::complex<Tp> o4dm,
+			 std::complex<Tp> od2p, std::complex<Tp> od0dp,
+			 std::complex<Tp> od2m, std::complex<Tp> od0dm,
+			 Tp eps,
+			 std::complex<Tp>& _H1sum, std::complex<Tp>& _H1psum,
+			 std::complex<Tp>& _H2sum, std::complex<Tp>& _H2psum)
     {
-      using __cmplx = std::complex<_Tp>;
+      using cmplx = std::complex<Tp>;
 
-      int __nterms = 4;
+      int nterms = 4;
 
-      static constexpr auto __zone = __cmplx{1, 0};
+      static constexpr auto zone = cmplx{1, 0};
 
       // Coefficients for u and v polynomials appearing in Olver's
       // uniform asymptotic expansions for the Hankel functions
       // and their derivatives.
 
-      static constexpr _Tp
-      _S_a[66]
+      static constexpr Tp
+      s_a[66]
       {
 	 0.1000000000000000e+01,
 	-0.2083333333333333e+00,
@@ -436,8 +426,8 @@ namespace __detail
 	 0.1100171432495117e+03
       };
 
-      static constexpr _Tp
-      _S_b[66]
+      static constexpr Tp
+      s_b[66]
       {  0.1000000000000000e+01,
 	 0.2916666666666667e+00,
 	-0.3750000000000000e+00,
@@ -507,8 +497,8 @@ namespace __detail
       };
 
       // lambda and mu coefficients appearing in the expansions.
-      static constexpr _Tp
-      _S_lambda[21]
+      static constexpr Tp
+      s_lambda[21]
       {
 	 0.1041666666666667e+00,
 	 0.8355034722222222e-01,
@@ -533,8 +523,8 @@ namespace __detail
 	 0.9148694223435640e+15
       };
 
-      static constexpr _Tp
-      _S_mu[21]
+      static constexpr Tp
+      s_mu[21]
       {
 	-0.1458333333333333e+00,
 	-0.9874131944444445e-01,
@@ -559,64 +549,64 @@ namespace __detail
 	-0.9295073331010611e+15
       };
 
-      std::vector<__cmplx> __u;
-      __u.reserve(100);
-      std::vector<__cmplx> __v;
-      __v.reserve(100);
+      std::vector<cmplx> u;
+      u.reserve(100);
+      std::vector<cmplx> v;
+      v.reserve(100);
 
-      auto __xtsq = std::real(__p2);
-      auto __ytsq = std::imag(__p2);
-      auto __ytsq2 = __ytsq * __ytsq;
-      auto __dr = _Tp{2} * __xtsq;
-      auto __ds = std::norm(__p2);
+      auto xtsq = std::real(p2);
+      auto ytsq = std::imag(p2);
+      auto ytsq2 = ytsq * ytsq;
+      auto dr = Tp{2} * xtsq;
+      auto ds = std::norm(p2);
 
       // Compute Debye polynomials u_0,1,2 and v_0,1,2.
-      auto __pk = __p;
-      __u.push_back(__pk * (_S_a[1] * __p2 + _S_a[2]));
-      __v.push_back(__pk * (_S_b[1] * __p2 + _S_b[2]));
-      __pk *= __p;
-      __u.push_back(__pk * __cmplx((_S_a[3] * __xtsq + _S_a[4])
-				   * __xtsq + _S_a[5] - _S_a[3] * __ytsq2,
-			(_Tp{2} * _S_a[3] * __xtsq + _S_a[4]) * __ytsq));
-      __v.push_back(__pk * __cmplx((_S_b[3] * __xtsq + _S_b[4])
-				   * __xtsq + _S_b[5] - _S_b[3] * __ytsq2,
-			(_Tp{2} * _S_b[3] * __xtsq + _S_b[4]) * __ytsq));
-      __pk *= __p;
-      __u.push_back(__pk * __cmplx(((_S_a[6] * __xtsq + _S_a[7])
-				   * __xtsq + _S_a[8]) * __xtsq
-     			+ _S_a[9] - (_Tp{3} * _S_a[6] * __xtsq + _S_a[7]) * __ytsq2,
-     			((_Tp{3} * _S_a[6] * __xtsq + _Tp{2} * _S_a[7]) * __xtsq + _S_a[8]
-     			- _S_a[6] * __ytsq2) * __ytsq));
-      __v.push_back(__pk * __cmplx(((_S_b[6] * __xtsq + _S_b[7])
-				   * __xtsq + _S_b[8]) * __xtsq
-     			+ _S_b[9] - (_Tp{3} * _S_b[6] * __xtsq + _S_b[7]) * __ytsq2,
-     			((_Tp{3} * _S_b[6] * __xtsq + _Tp{2} * _S_b[7]) * __xtsq + _S_b[8]
-     			- _S_b[6] * __ytsq2) * __ytsq));
+      auto pk = p;
+      u.push_back(pk * (s_a[1] * p2 + s_a[2]));
+      v.push_back(pk * (s_b[1] * p2 + s_b[2]));
+      pk *= p;
+      u.push_back(pk * cmplx((s_a[3] * xtsq + s_a[4])
+				   * xtsq + s_a[5] - s_a[3] * ytsq2,
+			(Tp{2} * s_a[3] * xtsq + s_a[4]) * ytsq));
+      v.push_back(pk * cmplx((s_b[3] * xtsq + s_b[4])
+				   * xtsq + s_b[5] - s_b[3] * ytsq2,
+			(Tp{2} * s_b[3] * xtsq + s_b[4]) * ytsq));
+      pk *= p;
+      u.push_back(pk * cmplx(((s_a[6] * xtsq + s_a[7])
+				   * xtsq + s_a[8]) * xtsq
+     			+ s_a[9] - (Tp{3} * s_a[6] * xtsq + s_a[7]) * ytsq2,
+     			((Tp{3} * s_a[6] * xtsq + Tp{2} * s_a[7]) * xtsq + s_a[8]
+     			- s_a[6] * ytsq2) * ytsq));
+      v.push_back(pk * cmplx(((s_b[6] * xtsq + s_b[7])
+				   * xtsq + s_b[8]) * xtsq
+     			+ s_b[9] - (Tp{3} * s_b[6] * xtsq + s_b[7]) * ytsq2,
+     			((Tp{3} * s_b[6] * xtsq + Tp{2} * s_b[7]) * xtsq + s_b[8]
+     			- s_b[6] * ytsq2) * ytsq));
 
       // Compute A_0,1, B_0,1, C_0,1, D_0,1 ... note that
       // B_k and C_k are computed up to -zeta^(-1/2) -zeta^(1/2) factors,
       // respectively.  These recurring factors are included as appropriate
       // in the outer factors, thus saving repeated multiplications by them.
-      auto _A0 = __zone;
-      auto _Ak = __u[1]
-	      + __zetam3hf * (_S_mu[1] * __zetam3hf + _S_mu[0] * __u[0]);
-      auto _B0 = __u[0] + _S_lambda[0] * __zetam3hf;
-      auto _Bk = __u[2] + __zetam3hf * (__zetam3hf * (_S_lambda[2] * __zetam3hf
-					 + _S_lambda[1] * __u[0])
-		     + _S_lambda[0] * __u[1]);
-      auto _C0 = __v[0] + _S_mu[0] * __zetam3hf;
-      auto _Ck = __v[2] + __zetam3hf * (__zetam3hf * (_S_mu[2] * __zetam3hf
-					 + _S_mu[1] * __v[0])
-		     + _S_mu[0] * __v[1]);
-      auto _D0 = __zone;
-      auto _Dk = __v[1] + __zetam3hf * (_S_lambda[1] * __zetam3hf
-			+ _S_lambda[0] * __v[0]);
+      auto _A0 = zone;
+      auto _Ak = u[1]
+	      + zetam3hf * (s_mu[1] * zetam3hf + s_mu[0] * u[0]);
+      auto _B0 = u[0] + s_lambda[0] * zetam3hf;
+      auto _Bk = u[2] + zetam3hf * (zetam3hf * (s_lambda[2] * zetam3hf
+					 + s_lambda[1] * u[0])
+		     + s_lambda[0] * u[1]);
+      auto _C0 = v[0] + s_mu[0] * zetam3hf;
+      auto _Ck = v[2] + zetam3hf * (zetam3hf * (s_mu[2] * zetam3hf
+					 + s_mu[1] * v[0])
+		     + s_mu[0] * v[1]);
+      auto _D0 = zone;
+      auto _Dk = v[1] + zetam3hf * (s_lambda[1] * zetam3hf
+			+ s_lambda[0] * v[0]);
 
       // Compute terms.
-      auto _Aterm = _Ak * __num2;
-      auto _Bterm = _Bk * __num2;
-      auto _Cterm = _Ck * __num2;
-      auto _Dterm = _Dk * __num2;
+      auto _Aterm = _Ak * num2;
+      auto _Bterm = _Bk * num2;
+      auto _Cterm = _Ck * num2;
+      auto _Dterm = _Dk * num2;
       // Compute sum of first two terms to initialize the Kahan summing scheme.
       auto _Asum = _A0 + _Aterm;
       auto _Atemp = _Aterm - (_Asum - _A0);
@@ -628,20 +618,20 @@ namespace __detail
       auto _Dtemp = _Dterm - (_Dsum - _D0);
 
       // Combine sums in form appearing in expansions.
-      _H1sum = _Aip * _Asum + __o4dp * _Bsum;
-      _H2sum = _Aim * _Asum + __o4dm * _Bsum;
-      _H1psum = __od2p * _Csum + __od0dp * _Dsum;
-      _H2psum = __od2m * _Csum + __od0dm * _Dsum;
-      auto _H1save = _Aip * _A0 + __o4dp * _B0;
-      auto _H2save = _Aim * _A0 + __o4dm * _B0;
-      auto _H1psave = __od2p * _C0 + __od0dp * _D0;
-      auto _H2psave = __od2m * _C0 + __od0dm * _D0;
+      _H1sum = _Aip * _Asum + o4dp * _Bsum;
+      _H2sum = _Aim * _Asum + o4dm * _Bsum;
+      _H1psum = od2p * _Csum + od0dp * _Dsum;
+      _H2psum = od2m * _Csum + od0dm * _Dsum;
+      auto _H1save = _Aip * _A0 + o4dp * _B0;
+      auto _H2save = _Aim * _A0 + o4dm * _B0;
+      auto _H1psave = od2p * _C0 + od0dp * _D0;
+      auto _H2psave = od2m * _C0 + od0dm * _D0;
 
-      auto __converged
-	= (__l1_norm(_H1sum - _H1save) < __eps * __l1_norm(_H1sum)
-	&& __l1_norm(_H2sum - _H2save) < __eps * __l1_norm(_H2sum)
-	&& __l1_norm(_H1psum - _H1psave) < __eps * __l1_norm(_H1psum)
-	&& __l1_norm(_H2psum - _H2psave) < __eps * __l1_norm(_H2psum));
+      auto converged
+	= (l1_norm(_H1sum - _H1save) < eps * l1_norm(_H1sum)
+	&& l1_norm(_H2sum - _H2save) < eps * l1_norm(_H2sum)
+	&& l1_norm(_H1psum - _H1psave) < eps * l1_norm(_H1psum)
+	&& l1_norm(_H2psum - _H2psave) < eps * l1_norm(_H2psum));
 
       // Save current sums for next convergence test.
       _H1save = _H1sum;
@@ -650,106 +640,106 @@ namespace __detail
       _H2psave = _H2psum;
 
       // Maintain index into u_k and v_k coefficients.
-      auto __index = 10;
-      auto __indexp = 15;
+      auto index = 10;
+      auto indexp = 15;
       // Maintain power of nu^(-2).
-      auto __num2k = __num2;
+      auto num2k = num2;
 
-      for (auto __k = 2; __k <= __nterms; ++__k)
+      for (auto k = 2; k <= nterms; ++k)
 	{
 	  // Initialize for evaluation of two new u and v polynomials
 	  // via Horner's rule modified for complex arguments
           // and real coefficients.
-	  auto __indexend = __indexp;
-	  auto __ukta = _S_a[__index];
-	  auto __vkta = _S_b[__index];
-	  ++__index;
-	  auto __uktb = _S_a[__index];
-	  auto __vktb = _S_b[__index];
-	  ++__index;
-	  auto __ukpta = _S_a[__indexp];
-	  auto __vkpta = _S_b[__indexp];
-	  ++__indexp;
-	  auto __ukptb = _S_a[__indexp];
-	  auto __vkptb = _S_b[__indexp];
-	  ++__indexp;
+	  auto indexend = indexp;
+	  auto ukta = s_a[index];
+	  auto vkta = s_b[index];
+	  ++index;
+	  auto uktb = s_a[index];
+	  auto vktb = s_b[index];
+	  ++index;
+	  auto ukpta = s_a[indexp];
+	  auto vkpta = s_b[indexp];
+	  ++indexp;
+	  auto ukptb = s_a[indexp];
+	  auto vkptb = s_b[indexp];
+	  ++indexp;
 
 	  // Loop until quantities to evaluate lowest order u and v 
 	  // polynomials and partial quantities to evaluate
 	  // next highest order polynomials computed.
-	  for (; __index < __indexend; ++__index, ++__indexp)
+	  for (; index < indexend; ++index, ++indexp)
 	    {
-	      auto __term = __ds * __ukta;
-	      __ukta = __uktb + __dr * __ukta;
-	      __uktb = _S_a[__index] - __term;
-	      __term = __ds * __vkta;
-	      __vkta = __vktb + __dr * __vkta;
-	      __vktb = _S_b[__index] - __term;
+	      auto term = ds * ukta;
+	      ukta = uktb + dr * ukta;
+	      uktb = s_a[index] - term;
+	      term = ds * vkta;
+	      vkta = vktb + dr * vkta;
+	      vktb = s_b[index] - term;
 
-	      __term = __ds * __ukpta;
-	      __ukpta = __ukptb + __dr * __ukpta;
-	      __ukptb = _S_a[__indexp] - __term;
-	      __term = __ds * __vkpta;
-	      __vkpta = __vkptb + __dr * __vkpta;
-	      __vkptb = _S_b[__indexp] - __term;
+	      term = ds * ukpta;
+	      ukpta = ukptb + dr * ukpta;
+	      ukptb = s_a[indexp] - term;
+	      term = ds * vkpta;
+	      vkpta = vkptb + dr * vkpta;
+	      vkptb = s_b[indexp] - term;
 	    }
 
 	  // One more iteration for highest order polynomials.
-	  auto __term = __ds * __ukpta;
-	  __ukpta = __ukptb + __dr * __ukpta;
-	  __ukptb = _S_a[__indexp] - __term;
-	  __term = __ds * __vkpta;
-	  __vkpta = __vkptb + __dr * __vkpta;
-	  __vkptb = _S_b[__indexp] - __term;
-	  ++__indexp;
+	  auto term = ds * ukpta;
+	  ukpta = ukptb + dr * ukpta;
+	  ukptb = s_a[indexp] - term;
+	  term = ds * vkpta;
+	  vkpta = vkptb + dr * vkpta;
+	  vkptb = s_b[indexp] - term;
+	  ++indexp;
 
 	  // Post multiply and form new polynomials.
-	  __pk *= __p;
-	  __u.push_back(__pk * (__ukta * __p2 + __uktb));
-	  __v.push_back(__pk * (__vkta * __p2 + __vktb));
+	  pk *= p;
+	  u.push_back(pk * (ukta * p2 + uktb));
+	  v.push_back(pk * (vkta * p2 + vktb));
 
-	  __pk *= __p;
-	  __u.push_back(__pk * (__ukpta * __p2 + __ukptb));
-	  __v.push_back(__pk * (__vkpta * __p2 + __vkptb));
+	  pk *= p;
+	  u.push_back(pk * (ukpta * p2 + ukptb));
+	  v.push_back(pk * (vkpta * p2 + vkptb));
 
 	  // Update indices in preparation for next iteration.
-	  __index = __indexp;
-	  auto __i2k = 2 * __k - 1;
-	  auto __i2km1 = __i2k - 1;
-	  auto __i2kp1 = __i2k + 1;
-	  __indexp += __i2kp1 + 3;
+	  index = indexp;
+	  auto i2k = 2 * k - 1;
+	  auto i2km1 = i2k - 1;
+	  auto i2kp1 = i2k + 1;
+	  indexp += i2kp1 + 3;
 
 	  // Start Horner's rule evaluation of A, B, C, and D polynomials.
-	  _Ak = _S_mu[__i2k] * __zetam3hf + _S_mu[__i2km1] * __u[0];
-	  _Dk = _S_lambda[__i2k] * __zetam3hf + _S_lambda[__i2km1] * __v[0];
-	  _Bk = _S_lambda[__i2kp1] * __zetam3hf + _S_lambda[__i2k] * __u[0];
-	  _Ck = _S_mu[__i2kp1] * __zetam3hf + _S_mu[__i2k] * __v[0];
+	  _Ak = s_mu[i2k] * zetam3hf + s_mu[i2km1] * u[0];
+	  _Dk = s_lambda[i2k] * zetam3hf + s_lambda[i2km1] * v[0];
+	  _Bk = s_lambda[i2kp1] * zetam3hf + s_lambda[i2k] * u[0];
+	  _Ck = s_mu[i2kp1] * zetam3hf + s_mu[i2k] * v[0];
 
 	  // Do partial Horner's rule evaluations of A, B, C, and D.
-	  for(auto __l = 1; __l <= __i2km1; ++__l)
+	  for(auto l = 1; l <= i2km1; ++l)
 	    {
-	      auto __i2kl = __i2km1 - __l;
-	      _Ak = _Ak * __zetam3hf + _S_mu[__i2kl] * __u[__l];
-	      _Dk = _Dk * __zetam3hf + _S_lambda[__i2kl] * __v[__l];
-	      __i2kl = __i2k - __l;
-	      _Bk = _Bk * __zetam3hf + _S_lambda[__i2kl] * __u[__l];
-	      _Ck = _Ck * __zetam3hf + _S_mu[__i2kl] * __v[__l];
+	      auto i2kl = i2km1 - l;
+	      _Ak = _Ak * zetam3hf + s_mu[i2kl] * u[l];
+	      _Dk = _Dk * zetam3hf + s_lambda[i2kl] * v[l];
+	      i2kl = i2k - l;
+	      _Bk = _Bk * zetam3hf + s_lambda[i2kl] * u[l];
+	      _Ck = _Ck * zetam3hf + s_mu[i2kl] * v[l];
 	    }
 
 	  // Complete the evaluations of A, B, C, and D.
-	  _Ak = _Ak * __zetam3hf + __u[__i2k];
-	  _Dk = _Dk * __zetam3hf + __v[__i2k];
-	  _Bk = __zetam3hf
-	      * (_Bk * __zetam3hf + _S_lambda[0] * __u[__i2k]) + __u[__i2kp1];
-	  _Ck = __zetam3hf
-	      * (_Ck * __zetam3hf + _S_mu[0] * __v[__i2k]) + __v[__i2kp1];
+	  _Ak = _Ak * zetam3hf + u[i2k];
+	  _Dk = _Dk * zetam3hf + v[i2k];
+	  _Bk = zetam3hf
+	      * (_Bk * zetam3hf + s_lambda[0] * u[i2k]) + u[i2kp1];
+	  _Ck = zetam3hf
+	      * (_Ck * zetam3hf + s_mu[0] * v[i2k]) + v[i2kp1];
 
 	  // Evaluate new terms for sums.
-	  __num2k *= __num2;
-	  _Aterm = _Ak * __num2k + _Atemp;
-	  _Bterm = _Bk * __num2k + _Btemp;
-	  _Cterm = _Ck * __num2k + _Ctemp;
-	  _Dterm = _Dk * __num2k + _Dtemp;
+	  num2k *= num2;
+	  _Aterm = _Ak * num2k + _Atemp;
+	  _Bterm = _Bk * num2k + _Btemp;
+	  _Cterm = _Ck * num2k + _Ctemp;
+	  _Dterm = _Dk * num2k + _Dtemp;
 
 	  // Update sums using Kahan summing scheme.
 	  _Atemp = _Asum;
@@ -766,24 +756,24 @@ namespace __detail
 	  _Dtemp = _Dterm - (_Dsum - _Dtemp);
 
 	  // Combine sums in form appearing in expansions.
-	  _H1sum  = _Aip  * _Asum  + __o4dp * _Bsum;
-	  _H2sum  = _Aim  * _Asum  + __o4dm * _Bsum;
-	  _H1psum = __od2p * _Csum + __od0dp * _Dsum;
-	  _H2psum = __od2m * _Csum + __od0dm * _Dsum;
+	  _H1sum  = _Aip  * _Asum  + o4dp * _Bsum;
+	  _H2sum  = _Aim  * _Asum  + o4dm * _Bsum;
+	  _H1psum = od2p * _Csum + od0dp * _Dsum;
+	  _H2psum = od2m * _Csum + od0dm * _Dsum;
 
 	  // If convergence criteria met this term, see if it was before.
-	  if (__l1_norm(_H1sum - _H1save) < __eps * __l1_norm(_H1sum)
-	   && __l1_norm(_H2sum - _H2save) < __eps * __l1_norm(_H2sum)
-	   && __l1_norm(_H1psum - _H1psave) < __eps * __l1_norm(_H1psum)
-	   && __l1_norm(_H2psum - _H2psave) < __eps * __l1_norm(_H2psum))
+	  if (l1_norm(_H1sum - _H1save) < eps * l1_norm(_H1sum)
+	   && l1_norm(_H2sum - _H2save) < eps * l1_norm(_H2sum)
+	   && l1_norm(_H1psum - _H1psave) < eps * l1_norm(_H1psum)
+	   && l1_norm(_H2psum - _H2psave) < eps * l1_norm(_H2psum))
 	    {
-	      if (__converged) // Converged twice in a row - done!
+	      if (converged) // Converged twice in a row - done!
 		return;
 	      else // Converged once...
-		__converged = true;
+		converged = true;
 	    }
 	  else
-	    __converged = false;
+	    converged = false;
 	  // Save combined sums for comparison next iteration.
 	  _H1save = _H1sum;
 	  _H2save = _H2sum;
@@ -791,8 +781,7 @@ namespace __detail
 	  _H2psave = _H2psum;
 	}
 
-      std::__throw_runtime_error(__N("__hankel_uniform_sum: "
-				     "all allowable terms used"));
+      throw std::runtime_error("hankel_uniform_sum: all allowable terms used");
 
       return;
     }
@@ -803,77 +792,77 @@ namespace __detail
    * of the first and second kinds using Olver's uniform asymptotic
    * expansion to of order @c nu along with their derivatives.
    *
-   * @param[in] __nu The order for which the Hankel functions are evaluated.
-   * @param[in] __z  The argument at which the Hankel functions are evaluated.
+   * @param[in] nu The order for which the Hankel functions are evaluated.
+   * @param[in] z  The argument at which the Hankel functions are evaluated.
    * @param[out] _H1  The Hankel function of the first kind.
    * @param[out] _H1p The derivative of the Hankel function of the first kind.
    * @param[out] _H2  The Hankel function of the second kind.
    * @param[out] _H2p The derivative of the Hankel function of the second kind.
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    __hankel_uniform_olver(std::complex<_Tp> __nu, std::complex<_Tp> __z,
-			   std::complex<_Tp>& _H1, std::complex<_Tp>& _H2,
-			   std::complex<_Tp>& _H1p, std::complex<_Tp>& _H2p)
+    hankel_uniform_olver(std::complex<Tp> nu, std::complex<Tp> z,
+			   std::complex<Tp>& _H1, std::complex<Tp>& _H2,
+			   std::complex<Tp>& _H1p, std::complex<Tp>& _H2p)
     {
       using namespace std::literals::complex_literals;
-      using __cmplx = std::complex<_Tp>;
+      using cmplx = std::complex<Tp>;
 
-      static constexpr _Tp
-	_S_pi(3.141592653589793238462643383279502884195e+0L);
-      static constexpr _Tp
-	_S_pi_3(1.047197551196597746154214461093167628063e+0L);
-      static constexpr __cmplx _S_j{1il};
-      static constexpr __cmplx __con1p{ 1.0L, 1.732050807568877293527446341505872366945L}; // 2*exp( pi*j/3) (1,sqrt(3))
-      static constexpr __cmplx __con1m{ 1.0L,-1.732050807568877293527446341505872366945L}; // 2*exp(-pi*j/3)
-      static constexpr __cmplx __con2p{-2.0L, 3.464101615137754587054892683011744733891L}; // 4*exp( 2*pi*j/3) (-2,2sqrt(3))
-      static constexpr __cmplx __con2m{-2.0L,-3.464101615137754587054892683011744733891L}; // 4*exp(-2*pi*j/3)
-      static constexpr _Tp __eps   = 1.0e-06L;
-      static constexpr _Tp __epsai = 1.0e-12L;
+      static constexpr Tp
+	s_pi(3.141592653589793238462643383279502884195e+0L);
+      static constexpr Tp
+	s_pi_3(1.047197551196597746154214461093167628063e+0L);
+      static constexpr cmplx s_j{1il};
+      static constexpr cmplx con1p{ 1.0L, 1.732050807568877293527446341505872366945L}; // 2*exp( pi*j/3) (1,sqrt(3))
+      static constexpr cmplx con1m{ 1.0L,-1.732050807568877293527446341505872366945L}; // 2*exp(-pi*j/3)
+      static constexpr cmplx con2p{-2.0L, 3.464101615137754587054892683011744733891L}; // 4*exp( 2*pi*j/3) (-2,2sqrt(3))
+      static constexpr cmplx con2m{-2.0L,-3.464101615137754587054892683011744733891L}; // 4*exp(-2*pi*j/3)
+      static constexpr Tp eps   = 1.0e-06L;
+      static constexpr Tp epsai = 1.0e-12L;
 
       // Extended to accommodate negative real orders.
-      bool __nuswitch = false;
-      if (std::real(__nu) < _Tp{0})
+      bool nuswitch = false;
+      if (std::real(nu) < Tp{0})
 	{
-	  __nuswitch = true;
-	  __nu = -__nu;
+	  nuswitch = true;
+	  nu = -nu;
 	}
 
       // Compute outer factors in the uniform asymptotic expansions
       // for the Hankel functions and their derivatives along with
       // other important functions of nu and z.
-      __cmplx __p, __p2,
-	    __1dnsq, __etm3h, _Aip, __o4dp, _Aim, __o4dm,
-	    __od2p, __od0dp, __od0dm, __tmp, __zhat, __num1d3,
-	    __num2d3, __etrat, __od2m, __r_factor;
-      __hankel_uniform_outer(__nu, __z, __epsai, __zhat, __1dnsq, __num1d3,
-			     __num2d3, __p, __p2, __etm3h, __etrat,
-			     _Aip, __o4dp, _Aim, __o4dm, __od2p,
-			     __od0dp, __od2m, __od0dm);
+      cmplx p, p2,
+	    __1dnsq, etm3h, _Aip, o4dp, _Aim, o4dm,
+	    od2p, od0dp, od0dm, tmp, zhat, num1d3,
+	    num2d3, etrat, od2m, r_factor;
+      hankel_uniform_outer(nu, z, epsai, zhat, __1dnsq, num1d3,
+			     num2d3, p, p2, etm3h, etrat,
+			     _Aip, o4dp, _Aim, o4dm, od2p,
+			     od0dp, od2m, od0dm);
 
       // Compute further terms in the expansions in their appropriate linear combinations.
 
-      __hankel_uniform_sum(__p, __p2, __1dnsq, __etm3h,
-			   _Aip, __o4dp, _Aim, __o4dm,
-			   __od2p, __od0dp, __od2m, __od0dm, __eps,
+      hankel_uniform_sum(p, p2, __1dnsq, etm3h,
+			   _Aip, o4dp, _Aim, o4dm,
+			   od2p, od0dp, od2m, od0dm, eps,
 			   _H1, _H1p, _H2, _H2p);
 
       // Assemble approximations.
-      __tmp = __etrat * __num1d3;
-      _H1 = __con1m * __tmp * _H1;
-      _H2 = __con1p * __tmp * _H2;
-      __tmp = __num2d3 / (__zhat * __etrat);
-      _H1p = __con2p * __tmp * _H1p;
-      _H2p = __con2m * __tmp * _H2p;
+      tmp = etrat * num1d3;
+      _H1 = con1m * tmp * _H1;
+      _H2 = con1p * tmp * _H2;
+      tmp = num2d3 / (zhat * etrat);
+      _H1p = con2p * tmp * _H1p;
+      _H2p = con2m * tmp * _H2p;
 
-      if (__nuswitch)
+      if (nuswitch)
 	{
-	  __r_factor = std::exp(_S_j * __nu * _S_pi);
-	  _H1  *= __r_factor;
-	  _H1p *= __r_factor;
-	  _H2  /= __r_factor;
-	  _H2p /= __r_factor;
-	  __nu  = -__nu;
+	  r_factor = std::exp(s_j * nu * s_pi);
+	  _H1  *= r_factor;
+	  _H1p *= r_factor;
+	  _H2  /= r_factor;
+	  _H2p /= r_factor;
+	  nu  = -nu;
 	}
 
       return;
@@ -889,49 +878,49 @@ namespace __detail
    * averages results from four surrounding points in the complex plane
    * to obtain the result in such cases.
    *
-   * @param[in] __nu The order for which the Hankel functions are evaluated.
-   * @param[in] __z  The argument at which the Hankel functions are evaluated.
+   * @param[in] nu The order for which the Hankel functions are evaluated.
+   * @param[in] z  The argument at which the Hankel functions are evaluated.
    * @param[out] _H1  The Hankel function of the first kind.
    * @param[out] _H1p The derivative of the Hankel function of the first kind.
    * @param[out] _H2  The Hankel function of the second kind.
    * @param[out] _H2p The derivative of the Hankel function of the second kind.
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    __hankel_uniform(std::complex<_Tp> __nu, std::complex<_Tp> __z,
-		     std::complex<_Tp>& _H1, std::complex<_Tp>& _H2,
-		     std::complex<_Tp>& _H1p, std::complex<_Tp>& _H2p)
+    hankel_uniform(std::complex<Tp> nu, std::complex<Tp> z,
+		     std::complex<Tp>& _H1, std::complex<Tp>& _H2,
+		     std::complex<Tp>& _H1p, std::complex<Tp>& _H2p)
     {
-      using __cmplx = std::complex<_Tp>;
-      _Tp __test = std::pow(std::abs(__nu), _Tp{1} / _Tp{3}) / _Tp{5};
+      using cmplx = std::complex<Tp>;
+      Tp test = std::pow(std::abs(nu), Tp{1} / Tp{3}) / Tp{5};
 
-      if (std::abs(__z - __nu) > __test)
-	__hankel_uniform_olver(__nu, __z, _H1, _H2, _H1p, _H2p);
+      if (std::abs(z - nu) > test)
+	hankel_uniform_olver(nu, z, _H1, _H2, _H1p, _H2p);
       else
 	{
-	  _Tp __r = _Tp{2} * __test;
-	  std::complex<_Tp> _S_anu[4]{__nu + __cmplx{__r, _Tp()},
-				      __nu + __cmplx{_Tp(), __r},
-				      __nu - __cmplx{__r, _Tp()},
-				      __nu - __cmplx{_Tp(), __r}};
+	  Tp r = Tp{2} * test;
+	  std::complex<Tp> s_anu[4]{nu + cmplx{r, Tp()},
+				      nu + cmplx{Tp(), r},
+				      nu - cmplx{r, Tp()},
+				      nu - cmplx{Tp(), r}};
 
-	  _H1  = __cmplx{};
-	  _H2  = __cmplx{};
-	  _H1p = __cmplx{};
-	  _H2p = __cmplx{};
-	  for (auto __tnu : _S_anu)
+	  _H1  = cmplx{};
+	  _H2  = cmplx{};
+	  _H1p = cmplx{};
+	  _H2p = cmplx{};
+	  for (auto tnu : s_anu)
 	    {
-	      std::complex<_Tp> __th1, __th2, __th1p, __th2p;
-	      __hankel_uniform_olver(__tnu, __z, __th1, __th2, __th1p, __th2p);
-	      _H1  += __th1;
-	      _H2  += __th2;
-	      _H1p += __th1p;
-	      _H2p += __th2p;
+	      std::complex<Tp> th1, th2, th1p, th2p;
+	      hankel_uniform_olver(tnu, z, th1, th2, th1p, th2p);
+	      _H1  += th1;
+	      _H2  += th2;
+	      _H1p += th1p;
+	      _H2p += th2p;
 	    }
-	  _H1  /= _Tp{4};
-	  _H2  /= _Tp{4};
-	  _H1p /= _Tp{4};
-	  _H2p /= _Tp{4};
+	  _H1  /= Tp{4};
+	  _H2  /= Tp{4};
+	  _H1p /= Tp{4};
+	  _H2p /= Tp{4};
 	}
 
       return;
@@ -940,170 +929,169 @@ namespace __detail
 
   /**
    *
-   * @param[in] __nu The order for which the Hankel functions are evaluated.
-   * @param[in] __z  The argument at which the Hankel functions are evaluated.
-   * @param[in] __alpha
-   * @param[in] __indexr
-   * @param[out] __aorb
-   * @param[out] __morn
+   * @param[in] nu The order for which the Hankel functions are evaluated.
+   * @param[in] z  The argument at which the Hankel functions are evaluated.
+   * @param[in] alpha
+   * @param[in] indexr
+   * @param[out] aorb
+   * @param[out] morn
    * @param[out] _H1  The Hankel function of the first kind.
    * @param[out] _H1p The derivative of the Hankel function of the first kind.
    * @param[out] _H2  The Hankel function of the second kind.
    * @param[out] _H2p The derivative of the Hankel function of the second kind.
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    __hankel_debye(std::complex<_Tp> __nu, std::complex<_Tp> __z,
-		   std::complex<_Tp> __alpha,
-		   int __indexr, char& __aorb, int& __morn,
-		   std::complex<_Tp>& _H1, std::complex<_Tp>& _H2,
-		   std::complex<_Tp>& _H1p, std::complex<_Tp>& _H2p)
+    hankel_debye(std::complex<Tp> nu, std::complex<Tp> z,
+		   std::complex<Tp> alpha,
+		   int indexr, char& aorb, int& morn,
+		   std::complex<Tp>& _H1, std::complex<Tp>& _H2,
+		   std::complex<Tp>& _H1p, std::complex<Tp>& _H2p)
     {
       using namespace std::literals::complex_literals;
-      using __cmplx = std::complex<_Tp>;
+      using cmplx = std::complex<Tp>;
 
-      static constexpr _Tp
-	_S_pi(3.141592653589793238462643383279502884195e+0L);
-      static constexpr __cmplx _S_j{1.0il};
-      static constexpr _Tp _S_toler = _Tp{1.0e-8L};
-      const auto __maxexp
-	= std::floor(std::numeric_limits<_Tp>::max_exponent
-		   * std::log(std::numeric_limits<_Tp>::radix));
+      static constexpr Tp
+	s_pi(3.141592653589793238462643383279502884195e+0L);
+      static constexpr cmplx s_j{1.0il};
+      static constexpr Tp s_toler = Tp{1.0e-8L};
+      const auto maxexp
+	= std::floor(std::numeric_limits<Tp>::max_exponent
+		   * std::log(std::numeric_limits<Tp>::radix));
 
-      auto __alphar = std::real(__alpha);
-      auto __alphai = std::imag(__alpha);
-      auto __thalpa = std::sinh(__alpha) / std::cosh(__alpha);
-      auto __snhalp = std::sinh(__alpha);
-      auto __denom = std::sqrt(_S_pi * __z / _Tp{2})
-		   * std::sqrt(-_S_j * std::sinh(__alpha));
-      if (std::abs(std::real(__nu * (__thalpa - __alpha))) > __maxexp)
-	std::__throw_runtime_error(__N("__hankel_debye: argument would overflow"
-				       " Hankel function evaluation"));
-      auto __s1 = std::exp(+__nu * (__thalpa - __alpha) - _S_j * _S_pi / _Tp{4})
-		/ __denom;
-      auto __s2 = std::exp(-__nu * (__thalpa - __alpha) + _S_j * _S_pi / _Tp{4})
-		/ __denom;
-      auto __exparg = __nu * (__thalpa - __alpha) - _S_j * _S_pi / _Tp{4};
-      if (__indexr == 0)
+      auto alphar = std::real(alpha);
+      auto alphai = std::imag(alpha);
+      auto thalpa = std::sinh(alpha) / std::cosh(alpha);
+      auto snhalp = std::sinh(alpha);
+      auto denom = std::sqrt(s_pi * z / Tp{2})
+		   * std::sqrt(-s_j * std::sinh(alpha));
+      if (std::abs(std::real(nu * (thalpa - alpha))) > maxexp)
+	throw std::runtime_error("hankel_debye: argument would overflow Hankel function evaluation");
+      auto s1 = std::exp(+nu * (thalpa - alpha) - s_j * s_pi / Tp{4})
+		/ denom;
+      auto s2 = std::exp(-nu * (thalpa - alpha) + s_j * s_pi / Tp{4})
+		/ denom;
+      auto exparg = nu * (thalpa - alpha) - s_j * s_pi / Tp{4};
+      if (indexr == 0)
 	{
-	  _H1 = _Tp{0.5L} * __s1 - __s2;
-	  _H2 = _Tp{0.5L} * __s1 + __s2;
-	  _H1p = __snhalp * (_Tp{0.5L} * __s1 + __s2);
-	  _H2p = __snhalp * (_Tp{0.5L} * __s1 - __s2);
+	  _H1 = Tp{0.5L} * s1 - s2;
+	  _H2 = Tp{0.5L} * s1 + s2;
+	  _H1p = snhalp * (Tp{0.5L} * s1 + s2);
+	  _H2p = snhalp * (Tp{0.5L} * s1 - s2);
 	}
-      else if (__indexr == 1)
+      else if (indexr == 1)
 	{
-	  _H1 = __s1;
-	  _H2 = __s2;
-	  _H1p = +__snhalp * __s1;
-	  _H2p = -__snhalp * __s2;
+	  _H1 = s1;
+	  _H2 = s2;
+	  _H1p = +snhalp * s1;
+	  _H2p = -snhalp * s2;
 	}
-      else if (__indexr == 2)
+      else if (indexr == 2)
 	{
-	  auto __jdbye = __s1 / _Tp{2};
-	  _H2 = __s2;
-	  _H1 = _Tp{2} * __jdbye - _H2;
-	  _H1p = +__snhalp * (__s1 + __s2);
-	  _H2p = -__snhalp * __s2;
+	  auto jdbye = s1 / Tp{2};
+	  _H2 = s2;
+	  _H1 = Tp{2} * jdbye - _H2;
+	  _H1p = +snhalp * (s1 + s2);
+	  _H2p = -snhalp * s2;
 	}
-      else if (__indexr == 3)
+      else if (indexr == 3)
 	{
-	  _H1 = __s1;
-	  _H2 = __s2 - __s1;
-	  _H1p = +__snhalp * __s1;
-	  _H2p = -__snhalp * (__s1 + __s2);
+	  _H1 = s1;
+	  _H2 = s2 - s1;
+	  _H1p = +snhalp * s1;
+	  _H2p = -snhalp * (s1 + s2);
 	}
-      else if (__indexr == 4)
+      else if (indexr == 4)
 	{
-	  _H1 = __s1;
-	  _H2 = __s2 - std::exp(+_Tp{2} * _S_j * __nu * _S_pi) * __s1;
-	  _H1p = +__snhalp * __s1;
-	  _H2p = -__snhalp
-		* (__s2 + std::exp(+_Tp{2} * _S_j * __nu * _S_pi) * __s1);
+	  _H1 = s1;
+	  _H2 = s2 - std::exp(+Tp{2} * s_j * nu * s_pi) * s1;
+	  _H1p = +snhalp * s1;
+	  _H2p = -snhalp
+		* (s2 + std::exp(+Tp{2} * s_j * nu * s_pi) * s1);
 	}
-      else if (__indexr == 5)
+      else if (indexr == 5)
 	{
-	  _H1 = __s1 - std::exp(-_Tp{2} * _S_j * __nu * _S_pi) * __s2;
-	  _H2 = __s2;
-	  _H1p = +__snhalp
-		* (__s1 + std::exp(-_Tp{2} * _S_j * __nu * _S_pi) * __s2);
-	  _H2p = -__snhalp * __s2;
+	  _H1 = s1 - std::exp(-Tp{2} * s_j * nu * s_pi) * s2;
+	  _H2 = s2;
+	  _H1p = +snhalp
+		* (s1 + std::exp(-Tp{2} * s_j * nu * s_pi) * s2);
+	  _H2p = -snhalp * s2;
 	}
-      else if (__aorb == 'A')
+      else if (aorb == 'A')
 	{
-	  __cmplx __sinrat;
-	  if ((std::abs(std::imag(__nu)) < _S_toler)
-	   && (std::abs(std::fmod(std::real(__nu), 1)) < _S_toler))
-	    __sinrat = __morn;
+	  cmplx sinrat;
+	  if ((std::abs(std::imag(nu)) < s_toler)
+	   && (std::abs(std::fmod(std::real(nu), 1)) < s_toler))
+	    sinrat = morn;
 	  else
-	    __sinrat = std::sin(_Tp(__morn) * __nu * _S_pi)
-		    / std::sin(__nu * _S_pi);
-	  if (__indexr == 6)
+	    sinrat = std::sin(Tp(morn) * nu * s_pi)
+		    / std::sin(nu * s_pi);
+	  if (indexr == 6)
 	    {
-	      _H2 = __s2
-		   - std::exp(_S_j * _Tp(__morn + 1) * __nu * _S_pi)
-		   * __sinrat * __s1;
-	      _H1 = __s1 - _H2;
-	      _H2p = -__snhalp
-		    * (__s2 + std::exp(_S_j * _Tp(__morn + 1) * __nu * _S_pi)
-			     * __sinrat * __s1);
-	      _H1p = +__snhalp
-		    * ((_Tp{1} + std::exp(_S_j * _Tp(__morn + 1) * __nu * _S_pi)
-			  * __sinrat) * __s1 + __s2);
+	      _H2 = s2
+		   - std::exp(s_j * Tp(morn + 1) * nu * s_pi)
+		   * sinrat * s1;
+	      _H1 = s1 - _H2;
+	      _H2p = -snhalp
+		    * (s2 + std::exp(s_j * Tp(morn + 1) * nu * s_pi)
+			     * sinrat * s1);
+	      _H1p = +snhalp
+		    * ((Tp{1} + std::exp(s_j * Tp(morn + 1) * nu * s_pi)
+			  * sinrat) * s1 + s2);
 	    }
-	  else if (__indexr == 7)
+	  else if (indexr == 7)
 	    {
-	      _H1 = __s1
-		   - std::exp(-_S_j * _Tp(__morn + 1) * __nu * _S_pi)
-		    * __sinrat * __s2;
-	      _H2 = __s2 - _H1;
-	      _H1p = +__snhalp
-		    * (__s1 + std::exp(-_S_j * _Tp(__morn + 1) * __nu * _S_pi)
-			     * __sinrat * __s2);
-	      _H2p = -__snhalp
-		     * ((_Tp{1} + std::exp(-_S_j * _Tp(__morn + 1) * __nu * _S_pi)
-			   * __sinrat) * __s2 + __s1);
+	      _H1 = s1
+		   - std::exp(-s_j * Tp(morn + 1) * nu * s_pi)
+		    * sinrat * s2;
+	      _H2 = s2 - _H1;
+	      _H1p = +snhalp
+		    * (s1 + std::exp(-s_j * Tp(morn + 1) * nu * s_pi)
+			     * sinrat * s2);
+	      _H2p = -snhalp
+		     * ((Tp{1} + std::exp(-s_j * Tp(morn + 1) * nu * s_pi)
+			   * sinrat) * s2 + s1);
 	    }
 	  else
-	    std::__throw_runtime_error(__N("__hankel_debye: unexpected region"));
+	    throw std::runtime_error("hankel_debye: unexpected region");
 	}
       else
 	{
-	  __cmplx __sinrat;
-	  if ((std::abs(std::imag(__nu)) < _S_toler)
-	   && (std::abs(std::fmod(std::real(__nu), 1)) < _S_toler))
-	    __sinrat = -__morn;
+	  cmplx sinrat;
+	  if ((std::abs(std::imag(nu)) < s_toler)
+	   && (std::abs(std::fmod(std::real(nu), 1)) < s_toler))
+	    sinrat = -morn;
 	  else
-	    __sinrat = std::sin(_Tp(__morn) * __nu * _S_pi) / std::sin(__nu * _S_pi);
-	  if (__indexr == 6)
+	    sinrat = std::sin(Tp(morn) * nu * s_pi) / std::sin(nu * s_pi);
+	  if (indexr == 6)
 	    {
-	      _H1 = __s1 - std::exp(_S_j * _Tp(__morn - 1) * __nu * _S_pi)
-		   * __sinrat * __s2;
-	      _H2 = __s2 - std::exp(_Tp{2} * _S_j * __nu * _S_pi) * _H2;
-	      _H1p = +__snhalp
-		    * (__s1 + std::exp(_S_j * _Tp(__morn - 1) * __nu * _S_pi)
-			    * __sinrat * __s2);
-	      _H2p = -__snhalp
-		    * ((_Tp{1} + std::exp(_S_j * _Tp(__morn + 1) * __nu * _S_pi)
-			  * __sinrat) * __s2
-		      + std::exp(_Tp{2} * _S_j * __nu * _S_pi) * __s1);
+	      _H1 = s1 - std::exp(s_j * Tp(morn - 1) * nu * s_pi)
+		   * sinrat * s2;
+	      _H2 = s2 - std::exp(Tp{2} * s_j * nu * s_pi) * _H2;
+	      _H1p = +snhalp
+		    * (s1 + std::exp(s_j * Tp(morn - 1) * nu * s_pi)
+			    * sinrat * s2);
+	      _H2p = -snhalp
+		    * ((Tp{1} + std::exp(s_j * Tp(morn + 1) * nu * s_pi)
+			  * sinrat) * s2
+		      + std::exp(Tp{2} * s_j * nu * s_pi) * s1);
 	    }
-	  else if (__indexr == 7)
+	  else if (indexr == 7)
 	    {
-	      _H2 = __s2
-		   - std::exp(-_S_j * _Tp(__morn - 1) * __nu * _S_pi)
-		   * __sinrat * __s1;
-	      _H1 = __s1 - std::exp(-_Tp{2} * _S_j * __nu * _S_pi) * _H2;
-	      _H2p = -__snhalp
-		    * (__s2 + std::exp(-_S_j * _Tp(__morn - 1) * __nu * _S_pi)
-			    * __sinrat * __s1);
-	      _H1p = +__snhalp
-		    * ((_Tp{1} + std::exp(-_S_j * _Tp(__morn + 1) * __nu * _S_pi)
-				    * __sinrat) * __s1
-				+ std::exp(-_Tp{2} * _S_j * __nu * _S_pi) * __s2);
+	      _H2 = s2
+		   - std::exp(-s_j * Tp(morn - 1) * nu * s_pi)
+		   * sinrat * s1;
+	      _H1 = s1 - std::exp(-Tp{2} * s_j * nu * s_pi) * _H2;
+	      _H2p = -snhalp
+		    * (s2 + std::exp(-s_j * Tp(morn - 1) * nu * s_pi)
+			    * sinrat * s1);
+	      _H1p = +snhalp
+		    * ((Tp{1} + std::exp(-s_j * Tp(morn + 1) * nu * s_pi)
+				    * sinrat) * s1
+				+ std::exp(-Tp{2} * s_j * nu * s_pi) * s2);
 	    }
 	  else
-	    std::__throw_runtime_error(__N("__hankel_debye: unexpected region"));
+	    throw std::runtime_error("hankel_debye: unexpected region");
 	}
 
       return;
@@ -1112,62 +1100,62 @@ namespace __detail
 
   /**
    *
-   * @param[in] __nu The order for which the Hankel functions are evaluated.
-   * @param[in] __z  The argument at which the Hankel functions are evaluated.
+   * @param[in] nu The order for which the Hankel functions are evaluated.
+   * @param[in] z  The argument at which the Hankel functions are evaluated.
    * @param[out] _H1  The Hankel function of the first kind.
    * @param[out] _H1p The derivative of the Hankel function of the first kind.
    * @param[out] _H2  The Hankel function of the second kind.
    * @param[out] _H2p The derivative of the Hankel function of the second kind.
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    __hankel(std::complex<_Tp> __nu, std::complex<_Tp> __z,
-	     std::complex<_Tp>& _H1, std::complex<_Tp>& _H2,
-	     std::complex<_Tp>& _H1p, std::complex<_Tp>& _H2p)
+    hankel(std::complex<Tp> nu, std::complex<Tp> z,
+	     std::complex<Tp>& _H1, std::complex<Tp>& _H2,
+	     std::complex<Tp>& _H1p, std::complex<Tp>& _H2p)
     {
-      static constexpr _Tp
-	_S_pi(3.141592653589793238462643383279502884195e+0L);
+      static constexpr Tp
+	s_pi(3.141592653589793238462643383279502884195e+0L);
 
-      int __indexr;
+      int indexr;
 
-      auto __test = std::abs((__nu - __z) / std::pow(__nu, _Tp{1}/_Tp{3}));
-      if (__test < _Tp{4})
-	__hankel_uniform(__z, __nu, _H1, _H2, _H1p, _H2p);
+      auto test = std::abs((nu - z) / std::pow(nu, Tp{1}/Tp{3}));
+      if (test < Tp{4})
+	hankel_uniform(z, nu, _H1, _H2, _H1p, _H2p);
       else
 	{
-	  auto __sqtrm = std::sqrt((__nu / __z) * (__nu / __z) - _Tp{1});
-	  auto __alpha = std::log((__nu / __z) + __sqtrm);
-	  if (std::imag(__alpha) < _Tp{0})
-	    __alpha = -__alpha;
-	  auto __alphar = std::real(__alpha);
-	  auto __alphai = std::imag(__alpha);
-	  char __aorb;
-	  if (std::real(__nu) > std::real(__z)
-	   && std::abs(std::imag(__nu / __z)) <= _Tp{0})
+	  auto sqtrm = std::sqrt((nu / z) * (nu / z) - Tp{1});
+	  auto alpha = std::log((nu / z) + sqtrm);
+	  if (std::imag(alpha) < Tp{0})
+	    alpha = -alpha;
+	  auto alphar = std::real(alpha);
+	  auto alphai = std::imag(alpha);
+	  char aorb;
+	  if (std::real(nu) > std::real(z)
+	   && std::abs(std::imag(nu / z)) <= Tp{0})
 	    {
-	      __indexr = 0;
-	      __aorb = ' ';
+	      indexr = 0;
+	      aorb = ' ';
 	    }
 	  else
-	    __debye_region(__alpha, __indexr, __aorb);
-	  auto __morn = 0;
-	  if (__aorb == 'A')
+	    debye_region(alpha, indexr, aorb);
+	  auto morn = 0;
+	  if (aorb == 'A')
 	    {
-	      auto __mfun = ((__alphar * std::tanh(__alphar) - _Tp{1})
-			  * std::tan(__alphai) + __alphai) / _S_pi;
-	      __morn = int(__mfun);
-	      if (__mfun < 0 && std::fmod(__mfun, 1) != _Tp{0})
-		--__morn;
+	      auto mfun = ((alphar * std::tanh(alphar) - Tp{1})
+			  * std::tan(alphai) + alphai) / s_pi;
+	      morn = int(mfun);
+	      if (mfun < 0 && std::fmod(mfun, 1) != Tp{0})
+		--morn;
 	    }
-	  else if (__aorb == 'B')
+	  else if (aorb == 'B')
 	    {
-	      auto __nfun = ((_Tp{1} - __alphar * std::tanh(__alphar))
-			  * std::tan(__alphai) - __alphai) / _S_pi;
-	      __morn = int(__nfun) + 1;
-	      if (__nfun < _Tp{0} && std::fmod(__nfun, _Tp{1}) != _Tp{0})
-		--__morn;
+	      auto nfun = ((Tp{1} - alphar * std::tanh(alphar))
+			  * std::tan(alphai) - alphai) / s_pi;
+	      morn = int(nfun) + 1;
+	      if (nfun < Tp{0} && std::fmod(nfun, Tp{1}) != Tp{0})
+		--morn;
 	    }
-	  __hankel_debye(__nu, __z, __alpha, __indexr, __aorb, __morn,
+	  hankel_debye(nu, z, alpha, indexr, aorb, morn,
 			 _H1, _H2, _H1p, _H2p);
 	}
 
@@ -1178,161 +1166,160 @@ namespace __detail
   /**
    * @brief Return the complex cylindrical Hankel function of the first kind.
    *
-   * @param[in] __nu The order for which the cylindrical Hankel function of the first kind is evaluated.
-   * @param[in] __z  The argument at which the cylindrical Hankel function of the first kind is evaluated.
+   * @param[in] nu The order for which the cylindrical Hankel function of the first kind is evaluated.
+   * @param[in] z  The argument at which the cylindrical Hankel function of the first kind is evaluated.
    * @return The complex cylindrical Hankel function of the first kind.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __cyl_hankel_1(std::complex<_Tp> __nu, std::complex<_Tp> __z)
+  template<typename Tp>
+    std::complex<Tp>
+    cyl_hankel_1(std::complex<Tp> nu, std::complex<Tp> z)
     {
-      std::complex<_Tp> _H1, _H1p, _H2, _H2p;
-      __hankel(__nu, __z, _H1, _H1p, _H2, _H2p);
+      std::complex<Tp> _H1, _H1p, _H2, _H2p;
+      hankel(nu, z, _H1, _H1p, _H2, _H2p);
       return _H1;
     }
 
   /**
    * @brief Return the complex cylindrical Hankel function of the second kind.
    *
-   * @param[in] __nu The order for which the cylindrical Hankel function of the second kind is evaluated.
-   * @param[in] __z  The argument at which the cylindrical Hankel function of the second kind is evaluated.
+   * @param[in] nu The order for which the cylindrical Hankel function of the second kind is evaluated.
+   * @param[in] z  The argument at which the cylindrical Hankel function of the second kind is evaluated.
    * @return The complex cylindrical Hankel function of the second kind.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __cyl_hankel_2(std::complex<_Tp> __nu, std::complex<_Tp> __z)
+  template<typename Tp>
+    std::complex<Tp>
+    cyl_hankel_2(std::complex<Tp> nu, std::complex<Tp> z)
     {
-      std::complex<_Tp> _H1, _H1p, _H2, _H2p;
-      __hankel(__nu, __z, _H1, _H1p, _H2, _H2p);
+      std::complex<Tp> _H1, _H1p, _H2, _H2p;
+      hankel(nu, z, _H1, _H1p, _H2, _H2p);
       return _H2;
     }
 
   /**
    * @brief Return the complex cylindrical Bessel function.
    *
-   * @param[in] __nu The order for which the cylindrical Bessel function is evaluated.
-   * @param[in] __z  The argument at which the cylindrical Bessel function is evaluated.
+   * @param[in] nu The order for which the cylindrical Bessel function is evaluated.
+   * @param[in] z  The argument at which the cylindrical Bessel function is evaluated.
    * @return The complex cylindrical Bessel function.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __cyl_bessel(std::complex<_Tp> __nu, std::complex<_Tp> __z)
+  template<typename Tp>
+    std::complex<Tp>
+    cyl_bessel(std::complex<Tp> nu, std::complex<Tp> z)
     {
-      std::complex<_Tp> _H1, _H1p, _H2, _H2p;
-      __hankel(__nu, __z, _H1, _H1p, _H2, _H2p);
-      return (_H1 + _H2) / _Tp{2};
+      std::complex<Tp> _H1, _H1p, _H2, _H2p;
+      hankel(nu, z, _H1, _H1p, _H2, _H2p);
+      return (_H1 + _H2) / Tp{2};
     }
 
   /**
    * @brief Return the complex cylindrical Neumann function.
    *
-   * @param[in] __nu The order for which the cylindrical Neumann function is evaluated.
-   * @param[in] __z  The argument at which the cylindrical Neumann function is evaluated.
+   * @param[in] nu The order for which the cylindrical Neumann function is evaluated.
+   * @param[in] z  The argument at which the cylindrical Neumann function is evaluated.
    * @return The complex cylindrical Neumann function.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __cyl_neumann(std::complex<_Tp> __nu, std::complex<_Tp> __z)
+  template<typename Tp>
+    std::complex<Tp>
+    cyl_neumann(std::complex<Tp> nu, std::complex<Tp> z)
     {
-      std::complex<_Tp> _H1, _H1p, _H2, _H2p;
-      __hankel(__nu, __z, _H1, _H1p, _H2, _H2p);
-      return (_H1 - _H2) / std::complex<_Tp>{0, 2};
+      std::complex<Tp> _H1, _H1p, _H2, _H2p;
+      hankel(nu, z, _H1, _H1p, _H2, _H2p);
+      return (_H1 - _H2) / std::complex<Tp>{0, 2};
     }
 
   /**
    * @brief Helper to compute complex spherical Hankel functions
    *        and their derivatives.
    *
-   * @param[in] __n The order for which the spherical Hankel functions are evaluated.
-   * @param[in] __z The argument at which the spherical Hankel functions are evaluated.
+   * @param[in] n The order for which the spherical Hankel functions are evaluated.
+   * @param[in] z The argument at which the spherical Hankel functions are evaluated.
    * @param[out] _H1  The spherical Hankel function of the first kind.
    * @param[out] _H1p The derivative of the spherical Hankel function of the first kind.
    * @param[out] _H2  The spherical Hankel function of the second kind.
    * @param[out] _H2p The derivative of the spherical Hankel function of the second kind.
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    __sph_hankel(unsigned int __n, std::complex<_Tp> __z,
-		 std::complex<_Tp>& _H1, std::complex<_Tp>& _H1p,
-		 std::complex<_Tp>& _H2, std::complex<_Tp>& _H2p)
+    sph_hankel(unsigned int n, std::complex<Tp> z,
+		 std::complex<Tp>& _H1, std::complex<Tp>& _H1p,
+		 std::complex<Tp>& _H2, std::complex<Tp>& _H2p)
     {
-      static constexpr _Tp
-	_S_pi(3.141592653589793238462643383279502884195e+0L);
-      std::complex<_Tp> __nu(__n + _Tp{0.5});
-      __hankel(__nu, __z, _H1, _H1p, _H2, _H2p);
-      std::complex<_Tp> __fact = std::sqrt(_S_pi / (_Tp{2} * __z));
-      _H1 *= __fact;
-      _H1p = __fact * _H1p - _H1 / (_Tp{2} * __z);
-      _H2 *= __fact;
-      _H2p = __fact * _H2p - _H2 / (_Tp{2} * __z);
+      static constexpr Tp
+	s_pi(3.141592653589793238462643383279502884195e+0L);
+      std::complex<Tp> nu(n + Tp{0.5});
+      hankel(nu, z, _H1, _H1p, _H2, _H2p);
+      std::complex<Tp> fact = std::sqrt(s_pi / (Tp{2} * z));
+      _H1 *= fact;
+      _H1p = fact * _H1p - _H1 / (Tp{2} * z);
+      _H2 *= fact;
+      _H2p = fact * _H2p - _H2 / (Tp{2} * z);
     }
 
   /**
    * @brief Return the complex spherical Hankel function of the first kind.
    *
-   * @param[in] __n The order for which the spherical Hankel function of the first kind is evaluated.
-   * @param[in] __z The argument at which the spherical Hankel function of the first kind is evaluated.
+   * @param[in] n The order for which the spherical Hankel function of the first kind is evaluated.
+   * @param[in] z The argument at which the spherical Hankel function of the first kind is evaluated.
    * @return The complex spherical Hankel function of the first kind.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __sph_hankel_1(unsigned int __n, std::complex<_Tp> __z)
+  template<typename Tp>
+    std::complex<Tp>
+    sph_hankel_1(unsigned int n, std::complex<Tp> z)
     {
-      std::complex<_Tp> _H1, _H1p, _H2, _H2p;
-      __sph_hankel(__n, __z, _H1, _H1p, _H2, _H2p);
+      std::complex<Tp> _H1, _H1p, _H2, _H2p;
+      sph_hankel(n, z, _H1, _H1p, _H2, _H2p);
       return _H1;
     }
 
   /**
    * @brief Return the complex spherical Hankel function of the second kind.
    *
-   * @param[in] __n The order for which the spherical Hankel function of the second kind is evaluated.
-   * @param[in] __z The argument at which the spherical Hankel function of the second kind is evaluated.
+   * @param[in] n The order for which the spherical Hankel function of the second kind is evaluated.
+   * @param[in] z The argument at which the spherical Hankel function of the second kind is evaluated.
    * @return The complex spherical Hankel function of the second kind.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __sph_hankel_2(unsigned int __n, std::complex<_Tp> __z)
+  template<typename Tp>
+    std::complex<Tp>
+    sph_hankel_2(unsigned int n, std::complex<Tp> z)
     {
-      std::complex<_Tp> _H1, _H1p, _H2, _H2p;
-      __sph_hankel(__n, __z, _H1, _H1p, _H2, _H2p);
+      std::complex<Tp> _H1, _H1p, _H2, _H2p;
+      sph_hankel(n, z, _H1, _H1p, _H2, _H2p);
       return _H2;
     }
 
   /**
    * @brief Return the complex spherical Bessel function.
    *
-   * @param[in] __n The order for which the spherical Bessel function is evaluated.
-   * @param[in] __z The argument at which the spherical Bessel function is evaluated.
+   * @param[in] n The order for which the spherical Bessel function is evaluated.
+   * @param[in] z The argument at which the spherical Bessel function is evaluated.
    * @return The complex spherical Bessel function.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __sph_bessel(unsigned int __n, std::complex<_Tp> __z)
+  template<typename Tp>
+    std::complex<Tp>
+    sph_bessel(unsigned int n, std::complex<Tp> z)
     {
-      std::complex<_Tp> _H1, _H1p, _H2, _H2p;
-      __sph_hankel(__n, __z, _H1, _H1p, _H2, _H2p);
-      return (_H1 + _H2) / _Tp{2};
+      std::complex<Tp> _H1, _H1p, _H2, _H2p;
+      sph_hankel(n, z, _H1, _H1p, _H2, _H2p);
+      return (_H1 + _H2) / Tp{2};
     }
 
   /**
    * @brief Return the complex spherical Neumann function.
    *
-   * @param[in] __n The order for which the spherical Neumann function is evaluated.
-   * @param[in] __z The argument at which the spherical Neumann function is evaluated.
+   * @param[in] n The order for which the spherical Neumann function is evaluated.
+   * @param[in] z The argument at which the spherical Neumann function is evaluated.
    * @return The complex spherical Neumann function.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __sph_neumann(unsigned int __n, std::complex<_Tp> __z)
+  template<typename Tp>
+    std::complex<Tp>
+    sph_neumann(unsigned int n, std::complex<Tp> z)
     {
-      std::complex<_Tp> _H1, _H1p, _H2, _H2p;
-      __sph_hankel(__n, __z, _H1, _H1p, _H2, _H2p);
-      return (_H1 - _H2) / std::complex<_Tp>{0, 2};
+      std::complex<Tp> _H1, _H1p, _H2, _H2p;
+      sph_hankel(n, z, _H1, _H1p, _H2, _H2p);
+      return (_H1 - _H2) / std::complex<Tp>{0, 2};
     }
-} // namespace __detail
 
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace std
+} // namespace detail
+} // namespace emsr
 
-#endif // _GLIBCXX_BITS_SF_HANKEL_OLD_TCC
+#endif // SF_HANKEL_OLD_TCC

@@ -1,5 +1,4 @@
 
-#include <ext/float128_math.h>
 #include <cmath>
 #include <cstdlib>
 #include <vector>
@@ -8,44 +7,47 @@
 #include <iostream>
 #include <iomanip>
 
-#include <ext/float128_io.h>
-#include <ext/summation.h>
+#include <emsr/float128_math.h>
+#include <emsr/float128_io.h>
+#include <emsr/summation.h>
+#include <emsr/math_constants.h>
+#include <emsr/sf_expint.h>
 
 template<typename Tp>
   void
   test(Tp proto = Tp{})
   {
-    const auto _S_max_log = __gnu_cxx::__log_max(proto);
+    const auto _S_max_log = emsr::log_max(proto);
 
-    using ABS_t = __gnu_cxx::_AitkenDeltaSquaredSum<__gnu_cxx::_BasicSum<Tp>>;
-    using ShankS_t = __gnu_cxx::_AitkenDeltaSquaredSum<ABS_t>;
+    using ABS_t = emsr::AitkenDeltaSquaredSum<emsr::BasicSum<Tp>>;
+    using ShankS_t = emsr::AitkenDeltaSquaredSum<ABS_t>;
 
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     auto w = 8 + std::cout.precision();
-    __gnu_cxx::_BasicSum<Tp> BS;
-    __gnu_cxx::_AitkenDeltaSquaredSum<__gnu_cxx::_BasicSum<Tp>> ABS;
-    __gnu_cxx::_AitkenDeltaSquaredSum<__gnu_cxx::_KahanSum<Tp>> AKS;
+    emsr::BasicSum<Tp> BS;
+    emsr::AitkenDeltaSquaredSum<emsr::BasicSum<Tp>> ABS;
+    emsr::AitkenDeltaSquaredSum<emsr::KahanSum<Tp>> AKS;
     ShankS_t ShankS;
-    __gnu_cxx::_WinnEpsilonSum<__gnu_cxx::_BasicSum<Tp>> WBS;
-    __gnu_cxx::_WinnEpsilonSum<__gnu_cxx::_KahanSum<Tp>> WKS;
-    __gnu_cxx::_BrezinskiThetaSum<__gnu_cxx::_BasicSum<Tp>> BTS;
+    emsr::WinnEpsilonSum<emsr::BasicSum<Tp>> WBS;
+    emsr::WinnEpsilonSum<emsr::KahanSum<Tp>> WKS;
+    emsr::BrezinskiThetaSum<emsr::BasicSum<Tp>> BTS;
 
-    //__gnu_cxx::_LevinUSum<__gnu_cxx::_BasicSum<Tp>> LUS;
-    __gnu_cxx::_LevinTSum<__gnu_cxx::_BasicSum<Tp>> LTS;
-    __gnu_cxx::_LevinDSum<__gnu_cxx::_BasicSum<Tp>> LDS;
-    __gnu_cxx::_LevinVSum<__gnu_cxx::_BasicSum<Tp>> LVS;
+    //emsr::LevinUSum<emsr::BasicSum<Tp>> LUS;
+    emsr::LevinTSum<emsr::BasicSum<Tp>> LTS;
+    emsr::LevinDSum<emsr::BasicSum<Tp>> LDS;
+    emsr::LevinVSum<emsr::BasicSum<Tp>> LVS;
 
-    __gnu_cxx::_WenigerTauSum<__gnu_cxx::_BasicSum<Tp>> WTS;
-    __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_BasicSum<Tp>> WDS;
-    __gnu_cxx::_WenigerPhiSum<__gnu_cxx::_BasicSum<Tp>> WPS;
-    __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<Tp>> WDvW; // Start term: (8)
+    emsr::WenigerTauSum<emsr::BasicSum<Tp>> WTS;
+    emsr::WenigerDeltaSum<emsr::BasicSum<Tp>> WDS;
+    emsr::WenigerPhiSum<emsr::BasicSum<Tp>> WPS;
+    emsr::WenigerDeltaSum<emsr::VanWijngaardenSum<Tp>> WDvW; // Start term: (8)
 
     auto s = Tp{1.2};
     auto zetaterm = [s, _S_max_log](std::size_t k)
 		    -> Tp
 		    { return (s * std::log(Tp(k + 1)) < _S_max_log ? std::pow(Tp(k + 1), -s) : Tp{0}); };
 
-    auto VwT = __gnu_cxx::_VanWijngaardenCompressor<decltype(zetaterm)>(zetaterm);
+    auto VwT = emsr::VanWijngaardenCompressor<decltype(zetaterm)>(zetaterm);
 
     auto zeta = Tp{5.591582441177750776536563193423143277642L};
     std::cout << "\n\nzeta(1.2) = " << std::setw(w) << zeta << '\n';
@@ -119,7 +121,7 @@ template<typename Tp>
     // 2F0(1,1;;-1/z) = z e^z E_1(z)
     const auto expint_scaled
       = [](Tp z)->Tp
-        { return z * std::exp(z)* __gnu_cxx::expint(1,z); };
+        { return z * std::exp(z)* emsr::expint(1,z); };
 
     // 2F0(1,1;;-1/z) = z e^zE_1(z)
     for (auto z : {Tp{3}, Tp{0.5L}})
@@ -214,7 +216,7 @@ template<typename Tp>
 	auto b = Tp{1};
 	auto c = Tp{2};
 	std::cout << "\n\n";
-	//std::cout << "  2F1(1,1;2;" << -z << ") = " << std::setw(w) << __gnu_cxx::hyperg(a, b, c, z) << "\n";
+	//std::cout << "  2F1(1,1;2;" << -z << ") = " << std::setw(w) << emsr::hyperg(a, b, c, z) << "\n";
 	std::cout << "  log(1 + " << z << ") / (" << z << ") = " << std::log1p(z) / z << '\n';
 	auto term = Tp{1};
 	BS.reset(term);

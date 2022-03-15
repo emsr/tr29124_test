@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['integral',['integral',['../class____gnu__cxx_1_1__Chebyshev.html#ad6238062674a4ab03fda28c8d1e3774b',1,'__gnu_cxx::_Chebyshev']]]
+  ['integral_23',['integral',['../classemsr_1_1Chebyshev.html#a10393ad7049348db5df1a7e22924de3c',1,'emsr::Chebyshev']]]
 ];

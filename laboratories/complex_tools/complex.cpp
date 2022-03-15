@@ -16,7 +16,7 @@ main()
   //std::cout << " z = " << z << "  w = " << w << '\n';
 
   std::complex<double> Jnu, Nnu, Jpnu, Npnu;
-  std::tr1::__detail::__bessel_jn(std::complex<double>(nu), z, Jnu, Nnu, Jpnu, Npnu);
+  emsr::detail::bessel_jn(std::complex<double>(nu), z, Jnu, Nnu, Jpnu, Npnu);
   std::cout << " z = " << z << '\n';
   std::cout << " Jnu = " << Jnu << '\n';
   std::cout << " Nnu = " << Nnu << '\n';

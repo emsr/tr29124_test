@@ -9,12 +9,12 @@
 #include <cmath>
 #include <complex>
 
-template<typename _Tp>
+template<typename Tp>
   struct
-  __meixner_pollaczek_t
+  meixner_pollaczek_t
   {
-    std::complex<_Tp> __value;
-    std::complex<_Tp> __factor;
+    std::complex<Tp> value;
+    std::complex<Tp> factor;
   };
 
 /**
@@ -26,36 +26,36 @@ template<typename _Tp>
  * @f]
  * where @f$ P_n(x) = P^{(\lambda)}_n(x;\phi) @f$
  */
-template<typename _Tp, typename _TpX>
-  __meixner_pollaczek_t<_Tp>
-  __meixner_pollaczek_recur(int n, _Tp lambda, _Tp phi, _TpX x)
+template<typename Tp, typename TpX>
+  meixner_pollaczek_t<Tp>
+  meixner_pollaczek_recur(int n, Tp lambda, Tp phi, TpX x)
   {
-    std::complex<_Tp> Pnm1 = _Tp{1};
+    std::complex<Tp> Pnm1 = Tp{1};
     if (n == 0)
-      return {Pnm1, _Tp{1}};
+      return {Pnm1, Tp{1}};
 
-    constexpr std::complex<_Tp> i{0, 1};
-    const auto ix = i * _Tp(x);
+    constexpr std::complex<Tp> i{0, 1};
+    const auto ix = i * Tp(x);
     const auto sinphi = std::sin(phi);
     const auto cosphi = std::cos(phi);
 
-    auto fact = std::complex<_Tp>{1};
+    auto fact = std::complex<Tp>{1};
 
-    std::complex<_Tp> Pn = _Tp{2} * lambda * std::polar(_Tp{1}, phi)
-			 - _Tp{2} * i * (lambda + ix) * std::sin(phi);
+    std::complex<Tp> Pn = Tp{2} * lambda * std::polar(Tp{1}, phi)
+			 - Tp{2} * i * (lambda + ix) * std::sin(phi);
 
     if (n == 1)
       return {Pn, fact};
 
-    auto Pnp1 = (_Tp{2} * (_Tp(x) * sinphi + (lambda + _Tp{1}) * cosphi) * Pn
-		 - _Tp{2} * lambda * Pnm1) / _Tp{2};
+    auto Pnp1 = (Tp{2} * (Tp(x) * sinphi + (lambda + Tp{1}) * cosphi) * Pn
+		 - Tp{2} * lambda * Pnm1) / Tp{2};
 
     for (int k = 2; k < n; ++k)
       {
 	Pnm1 = Pn;
 	Pn = Pnp1;
-	Pnp1 = (_Tp{2} * (_Tp(x) * sinphi + (lambda + _Tp(k)) * cosphi) * Pn
-		 - (_Tp{2} * lambda + _Tp(k - 1)) * Pnm1) / _Tp(k + 1);
+	Pnp1 = (Tp{2} * (Tp(x) * sinphi + (lambda + Tp(k)) * cosphi) * Pn
+		 - (Tp{2} * lambda + Tp(k - 1)) * Pnm1) / Tp(k + 1);
       }
 
     return {Pnp1, fact};
@@ -68,25 +68,25 @@ template<typename _Tp, typename _TpX>
  *             {}_2F_1(-n, \lambda + ix; 2\lambda; 1 - e^{-i2\phi})
  * @f]
  */
-template<typename _Tp, typename _TpX>
-  __meixner_pollaczek_t<_Tp>
-  __meixner_pollaczek(int n, _Tp lambda, _Tp phi, _TpX x)
+template<typename Tp, typename TpX>
+  meixner_pollaczek_t<Tp>
+  meixner_pollaczek(int n, Tp lambda, Tp phi, TpX x)
   {
     if (std::isnan(lambda))
-      return {std::complex<_Tp>(lambda), std::complex<_Tp>{}};
+      return {std::complex<Tp>(lambda), std::complex<Tp>{}};
     else if (std::isnan(phi))
-      return {std::complex<_Tp>(phi), std::complex<_Tp>{}};
+      return {std::complex<Tp>(phi), std::complex<Tp>{}};
     else if (std::isnan(x))
-      return {std::complex<_Tp>(x), std::complex<_Tp>{}};
+      return {std::complex<Tp>(x), std::complex<Tp>{}};
     else
-      return __meixner_pollaczek_recur(n, lambda, phi, x);
+      return meixner_pollaczek_recur(n, lambda, phi, x);
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_meixner_pollaczek(int n_max, _Tp lambda, _Tp phi)
+  test_meixner_pollaczek(int n_max, Tp lambda, Tp phi)
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto w = std::cout.precision() + 8;
 
     for (int n = 0; n <= n_max; ++n)
@@ -94,11 +94,11 @@ template<typename _Tp>
 	std::cout << '\n' << '\n' << " n = " << n << '\n';
 	for (int i = -320; i <= 320; ++i)
 	  {
-	    auto x = i * _Tp{0.01L};
-	    auto P = __meixner_pollaczek(n, lambda, phi, x);
+	    auto x = i * Tp{0.01L};
+	    auto P = meixner_pollaczek(n, lambda, phi, x);
 	    std::cout << ' ' << std::setw(w) << x
-		      << ' ' << std::setw(w) << std::real(P.__value)
-		      << ' ' << std::setw(w) << std::imag(P.__value)
+		      << ' ' << std::setw(w) << std::real(P.value)
+		      << ' ' << std::setw(w) << std::imag(P.value)
 		      << '\n';
 	  }
       }

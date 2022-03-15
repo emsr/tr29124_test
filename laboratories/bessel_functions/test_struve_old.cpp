@@ -12,7 +12,11 @@ These are from cephes.
 #include <cmath>
 #include <stdexcept>
 #include <vector>
+
 #include <test_struve_old.h>
+
+#include <emsr/sf_bessel.h>
+#include <emsr/numeric_limits.h>
 
 #include "hyperg_1F2.cpp"
 #include "hyperg_2F0.cpp"
@@ -22,11 +26,11 @@ double PI = 3.141592653589793238462643383279502884195;
 
 double
 yv(double nu, double x)
-{ return std::cyl_neumann(nu, x); }
+{ return emsr::cyl_neumann(nu, x); }
 
 double
 jv(double nu, double x)
-{ return std::cyl_bessel_j(nu, x); }
+{ return emsr::cyl_bessel_j(nu, x); }
 
 double
 struve(double nu, double x)
@@ -53,7 +57,7 @@ struve(double nu, double x)
       y = 0.0;
     }
   else
-    y = __hyperg_1f2(1.0, 1.5, 1.5 + nu, -t, onef2err);
+    y = hyperg_1f2(1.0, 1.5, 1.5 + nu, -t, onef2err);
 
   if (f < 18.0 || x < 0.0)
     {
@@ -61,7 +65,7 @@ struve(double nu, double x)
       ya = 0.0;
     }
   else
-    ya = __hyperg_3f0(1.0, 0.5, 0.5 - nu, -1.0 / t, threef0err);
+    ya = hyperg_3f0(1.0, 0.5, 0.5 - nu, -1.0 / t, threef0err);
 
   f = std::sqrt(PI);
   double h = std::pow(0.5 * x, nu - 1.0);
@@ -84,25 +88,25 @@ struve(double nu, double x)
 int
 main()
 {
-  using _Tp = double;
+  using Tp = double;
 
-  std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+  std::cout.precision(emsr::digits10<Tp>());
   std::cout << std::showpoint << std::scientific;
   auto width = 8 + std::cout.precision();
 
-  std::vector<_Tp> nuvec
+  std::vector<Tp> nuvec
   {
-    _Tp{0},
-    _Tp{1} / _Tp{3},
-    _Tp{1} / _Tp{2},
-    _Tp{2} / _Tp{3},
-    _Tp{1},
-    _Tp{2},
-    _Tp{5},
-    _Tp{10},
-    _Tp{20},
-    _Tp{50},
-    _Tp{100},
+    Tp{0},
+    Tp{1} / Tp{3},
+    Tp{1} / Tp{2},
+    Tp{2} / Tp{3},
+    Tp{1},
+    Tp{2},
+    Tp{5},
+    Tp{10},
+    Tp{20},
+    Tp{50},
+    Tp{100},
   };
   for (auto nu : nuvec)
     {
@@ -112,7 +116,7 @@ main()
       std::cout << '\n';
       for (unsigned int i = 0; i <= 1000; ++i)
         {
-          auto x = _Tp(i) / _Tp{100};
+          auto x = Tp(i) / Tp{100};
           std::cout << ' ' << std::setw(width) << x;
           try
             {

@@ -10,6 +10,9 @@
 #include <limits>
 #include <vector>
 
+#include <emsr/quadrature_point.h>
+#include <emsr/numeric_limits.h>
+
   /**
    * Compute the Laguerre polynomial ratio by continued fraction:
    * @f[
@@ -28,16 +31,16 @@
    * polynomials and the related generalized Hermite polynomials,
    * Math. Comp. 18 (1964), no. 88, 598{616. MR 0166397 (29 #3674)
    */
-  template<typename _Tp>
-    _Tp
-    __laguerre_ratio(unsigned int __n, _Tp __x)
+  template<typename Tp>
+    Tp
+    laguerre_ratio(unsigned int n, Tp x)
     {
-      auto __frac = _Tp{0};
-      for (auto __i = __n - 1; __i >= 0; --__i)
-	__frac = _Tp(__n - __i) * _Tp(__n - __i)
-		/ (_Tp(2 * (__n - __i) - 1) - __x - __frac);
-      __frac = __x / (__n - __frac);
-      return __frac;
+      auto frac = Tp{0};
+      for (auto i = n - 1; i >= 0; --i)
+	frac = Tp(n - i) * Tp(n - i)
+		/ (Tp(2 * (n - i) - 1) - x - frac);
+      frac = x / (n - frac);
+      return frac;
     }
 
   /**
@@ -58,151 +61,149 @@
    * polynomials and the related generalized Hermite polynomials,
    * Math. Comp. 18 (1964), no. 88, 598{616. MR 0166397 (29 #3674)
    */
-  template<typename _Tp, typename _Ta>
-    _Tp
-    __laguerre_ratio(unsigned int __n, _Ta __alpha, _Tp __x)
+  template<typename Tp, typename Ta>
+    Tp
+    laguerre_ratio(unsigned int n, Ta alpha, Tp x)
     {
-      auto __frac = _Tp{0};
-      for (auto __i = __n - 1; __i >= 0; --__i)
-	__frac = _Tp(__n - __i + __alpha) * _Tp(__n - __i)
-		/ (_Tp(2 * (__n - __i) - 1 + __alpha) - __x - __frac);
-      __frac = __x / (__n - __frac);
-      return __frac;
+      auto frac = Tp{0};
+      for (auto i = n - 1; i >= 0; --i)
+	frac = Tp(n - i + alpha) * Tp(n - i)
+		/ (Tp(2 * (n - i) - 1 + alpha) - x - frac);
+      frac = x / (n - frac);
+      return frac;
     }
 
   /**
    * Return a vector of zeros of the Laguerre polynomial of degree n.
    */
-  template<typename _Tp>
-    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
-    __laguerre_zeros(unsigned int __n, _Tp __proto)
+  template<typename Tp>
+    std::vector<emsr::QuadraturePoint<Tp>>
+    laguerre_zeros(unsigned int n, Tp proto)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__proto);
-      const unsigned int _S_maxit = 1000u;
+      const auto s_eps = emsr::epsilon(proto);
+      const unsigned int s_maxit = 1000u;
 
-      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
+      std::vector<emsr::QuadraturePoint<Tp>> pt(n);
 
-      auto __z = _Tp{0};
-      auto __w = _Tp{0};
-      for (auto __i = 1u; __i <= __n; ++__i)
+      auto z = Tp{0};
+      auto w = Tp{0};
+      for (auto i = 1u; i <= n; ++i)
 	{
 	  // Clever approximations for roots.
-	  if (__i == 1)
-	    __z += (3.0) / (1.0 + 2.4 * __n);
-	  else if (__i == 2)
-	    __z += (15.0) / (1.0 + 2.5 * __n);
+	  if (i == 1)
+	    z += (3.0) / (1.0 + 2.4 * n);
+	  else if (i == 2)
+	    z += (15.0) / (1.0 + 2.5 * n);
 	  else
 	    {
-	      auto __ai = __i - 2;
-	      __z += ((1.0 + 2.55 * __ai) / (1.9 * __ai))
-		   * (__z - __pt[__i - 3].__point);
+	      auto ai = i - 2;
+	      z += ((1.0 + 2.55 * ai) / (1.9 * ai))
+		   * (z - pt[i - 3].point);
 	    }
 	  // Iterate TTRR for polynomial values
-	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
+	  for (auto its = 1u; its <= s_maxit; ++its)
 	    {
-	      auto __L2 = _Tp{0};
-	      auto __L1 = _Tp{1};
-	      for (auto __j = 1u; __j <= __n; ++__j)
+	      auto L2 = Tp{0};
+	      auto L1 = Tp{1};
+	      for (auto j = 1u; j <= n; ++j)
 		{
-		  auto __L3 = __L2;
-		  __L2 = __L1;
-		  __L1 = ((_Tp(2 * __j - 1) - __z) * __L2
-		       - (_Tp(__j - 1)) * __L3) / _Tp(__j);
+		  auto L3 = L2;
+		  L2 = L1;
+		  L1 = ((Tp(2 * j - 1) - z) * L2
+		       - (Tp(j - 1)) * L3) / Tp(j);
 		}
 	      // Derivative.
-	      auto __Lp = (_Tp(__n) * __L1 - _Tp(__n) * __L2) / __z;
+	      auto Lp = (Tp(n) * L1 - Tp(n) * L2) / z;
 	      // Newton's rule for root.
-	      auto __z1 = __z;
-	      __z = __z1 - __L1 / __Lp;
-	      if (std::abs(__z - __z1) <= _S_eps)
+	      auto z1 = z;
+	      z = z1 - L1 / Lp;
+	      if (std::abs(z - z1) <= s_eps)
 		{
-		  __w = _Tp{-1} / (__Lp * __n * __L2);
+		  w = Tp{-1} / (Lp * n * L2);
 		  break;
 		}
-	      if (__its > _S_maxit)
-		std::__throw_logic_error("__laguerre_zeros: "
-					 "Too many iterations");
+	      if (its > s_maxit)
+		throw std::logic_error("laguerre_zeros: Too many iterations");
 	   }
-	  __pt[__i - 1].__point = __z;
-	  __pt[__i - 1].__weight = __w;
+	  pt[i - 1].point = z;
+	  pt[i - 1].weight = w;
 	}
-      return __pt;
+      return pt;
     }
 
   /**
    * Return an array of abscissae and weights for the Gauss-Laguerre rule.
    */
-  template<typename _Tp, typename _Tn>
-    std::vector<__gnu_cxx::__quadrature_point_t<_Tp>>
-    __laguerre_zeros(unsigned int __n, _Tn __alpha, _Tp __proto)
+  template<typename Tp, typename Tn>
+    std::vector<emsr::QuadraturePoint<Tp>>
+    laguerre_zeros(unsigned int n, Tn alpha, Tp proto)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__proto);
-      const unsigned int _S_maxit = 1000;
+      const auto s_eps = emsr::epsilon(proto);
+      const unsigned int s_maxit = 1000;
 
-      std::vector<__gnu_cxx::__quadrature_point_t<_Tp>> __pt(__n);
+      std::vector<emsr::QuadraturePoint<Tp>> pt(n);
 
-      for (auto __i = 1u; __i <= __n; ++__i)
+      for (auto i = 1u; i <= n; ++i)
 	{
-	  auto __z = _Tp{0};
-	  auto __w = _Tp{0};
+	  auto z = Tp{0};
+	  auto w = Tp{0};
 	  // Clever approximations for roots.
-	  if (__i == 1)
-	    __z += (1.0 + __alpha)
-		 * (3.0 + 0.92 * __alpha) / (1.0 + 2.4 * __n + 1.8 * __alpha);
-	  else if (__i == 2)
-	    __z += (15.0 + 6.25 * __alpha) / (1.0 + 2.5 * __n + 0.9 * __alpha);
+	  if (i == 1)
+	    z += (1.0 + alpha)
+		 * (3.0 + 0.92 * alpha) / (1.0 + 2.4 * n + 1.8 * alpha);
+	  else if (i == 2)
+	    z += (15.0 + 6.25 * alpha) / (1.0 + 2.5 * n + 0.9 * alpha);
 	  else
 	    {
-	      auto __ai = __i - 2;
-	      __z += ((1.0 + 2.55 * __ai) / (1.9 * __ai)
-		     + 1.26 * __ai * __alpha / (1.0 + 3.5 * __ai))
-		   * (__z - __pt[__i - 3].__point) / (1.0 + 0.3 * __alpha);
+	      auto ai = i - 2;
+	      z += ((1.0 + 2.55 * ai) / (1.9 * ai)
+		     + 1.26 * ai * alpha / (1.0 + 3.5 * ai))
+		   * (z - pt[i - 3].point) / (1.0 + 0.3 * alpha);
 	    }
 	  // Iterate TTRR for polynomial values
-	  for (auto __its = 1u; __its <= _S_maxit; ++__its)
+	  for (auto its = 1u; its <= s_maxit; ++its)
 	    {
-	      auto __L2 = _Tp{0};
-	      auto __L1 = _Tp{1};
-	      for (auto __j = 1u; __j <= __n; ++__j)
+	      auto L2 = Tp{0};
+	      auto L1 = Tp{1};
+	      for (auto j = 1u; j <= n; ++j)
 		{
-		  auto __L3 = __L2;
-		  __L2 = __L1;
-		  __L1 = ((_Tp(2 * __j - 1 + __alpha) - __z) * __L2
-			- (_Tp(__j - 1 + __alpha)) * __L3) / _Tp(__j);
+		  auto L3 = L2;
+		  L2 = L1;
+		  L1 = ((Tp(2 * j - 1 + alpha) - z) * L2
+			- (Tp(j - 1 + alpha)) * L3) / Tp(j);
 		}
 	      // Derivative.
-	      auto __Lp = (_Tp(__n) * __L1 - _Tp(__n + __alpha) * __L2) / __z;
+	      auto Lp = (Tp(n) * L1 - Tp(n + alpha) * L2) / z;
 	      // Newton's rule for root.
-	      auto __z1 = __z;
-	      __z = __z1 - __L1 / __Lp;
-	      if (std::abs(__z - __z1) <= _S_eps)
+	      auto z1 = z;
+	      z = z1 - L1 / Lp;
+	      if (std::abs(z - z1) <= s_eps)
 		{
-		  auto __exparg = std::lgamma(_Tp(__alpha + __n))
-				- std::lgamma(_Tp(__n));
-		  __w = -std::exp(__exparg) / (__Lp * __n * __L2);
+		  auto exparg = std::lgamma(Tp(alpha + n))
+				- std::lgamma(Tp(n));
+		  w = -std::exp(exparg) / (Lp * n * L2);
 		  break;
 		}
-	      if (__its > _S_maxit)
-		std::__throw_logic_error("__laguerre_zeros: "
-					 "Too many iterations");
+	      if (its > s_maxit)
+		throw std::logic_error("laguerre_zeros: Too many iterations");
 	   }
-	  __pt[__i - 1].__point = __z;
-	  __pt[__i - 1].__weight = __w;
+	  pt[i - 1].point = z;
+	  pt[i - 1].weight = w;
 	}
-    return __pt;
+    return pt;
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_laguerre(_Tp proto = _Tp{})
+  test_laguerre(Tp proto = Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
     for (int n = 0; n <= 50; ++n)
       {
-	auto pt = __laguerre_zeros(n, proto);
+	auto pt = laguerre_zeros(n, proto);
 	std::cout << "\nl = " << std::setw(4) << n << ":\n";
 	for (auto [z, w] : pt)
 	  std::cout << ' ' << std::setw(width) << z

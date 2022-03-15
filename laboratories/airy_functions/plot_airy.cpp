@@ -9,17 +9,19 @@
 #include <complex>
 #include <string>
 
+#include <emsr/sf_airy.h>
+
 /**
  * 
-template<typename _Tp>
+template<typename Tp>
   void
   plot_airy(std::string filename)
   {
-    using _Val = __gnu_cxx::__num_traits_t<_Tp>;
+    using Val = emsr::num_traits_t<Tp>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Val>::digits10);
+    data.precision(std::numeric_limits<Val>::digits10);
     data << std::showpoint << std::scientific;
     auto w = 8 + data.precision();
 
@@ -42,8 +44,8 @@ template<typename _Tp>
 	 << '\n';
     for (int i = -2000; i <= +500; ++i)
       {
-	auto t = _Tp(0.01Q * i);
-	auto airy0 = __gnu_cxx::airy(t);
+	auto t = Tp(0.01Q * i);
+	auto airy0 = emsr::airy(t);
 	data << std::setw(w) << std::real(airy0.z)
 	     << std::setw(w) << std::real(airy0.Ai)
 	     << std::setw(w) << std::real(airy0.Aip)
@@ -60,15 +62,15 @@ template<typename _Tp>
 /**
  * 
  */
-template<typename _Tp>
+template<typename Tp>
   void
   splot_airy(std::string filename)
   {
-    using _Val = __gnu_cxx::__num_traits_t<_Tp>;
+    using Val = emsr::num_traits_t<Tp>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Val>::digits10);
+    data.precision(std::numeric_limits<Val>::digits10);
     data << std::showpoint << std::scientific;
     auto w = 8 + data.precision();
 
@@ -76,11 +78,11 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
-	    auto Ai = __gnu_cxx::airy_ai(t);
+	    auto t = Tp(0.10Q * i, 0.10Q * j);
+	    auto Ai = emsr::airy_ai(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
-		 << std::setw(w) << std::pow(std::abs(Ai), _Val{1} / _Val{6})
+		 << std::setw(w) << std::pow(std::abs(Ai), Val{1} / Val{6})
 		 << '\n';
 	  }
 	data << '\n';
@@ -91,8 +93,8 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
-	    auto Ai = __gnu_cxx::airy_ai(t);
+	    auto t = Tp(0.10Q * i, 0.10Q * j);
+	    auto Ai = emsr::airy_ai(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
 		 << std::setw(w) << std::real(Ai)
@@ -106,8 +108,8 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
-	    auto Ai = __gnu_cxx::airy_ai(t);
+	    auto t = Tp(0.10Q * i, 0.10Q * j);
+	    auto Ai = emsr::airy_ai(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
 		 << std::setw(w) << std::imag(Ai)
@@ -121,8 +123,8 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
-	    auto Ai = __gnu_cxx::airy_ai(t);
+	    auto t = Tp(0.10Q * i, 0.10Q * j);
+	    auto Ai = emsr::airy_ai(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
 		 << std::setw(w) << std::arg(Ai)
@@ -136,11 +138,11 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
-	    auto Bi = __gnu_cxx::airy_bi(t);
+	    auto t = Tp(0.10Q * i, 0.10Q * j);
+	    auto Bi = emsr::airy_bi(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
-		 << std::setw(w) << std::pow(std::abs(Bi), _Val{1} / _Val{6})
+		 << std::setw(w) << std::pow(std::abs(Bi), Val{1} / Val{6})
 		 << '\n';
 	  }
 	data << '\n';
@@ -151,8 +153,8 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
-	    auto Bi = __gnu_cxx::airy_bi(t);
+	    auto t = Tp(0.10Q * i, 0.10Q * j);
+	    auto Bi = emsr::airy_bi(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
 		 << std::setw(w) << std::real(Bi)
@@ -166,8 +168,8 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
-	    auto Bi = __gnu_cxx::airy_bi(t);
+	    auto t = Tp(0.10Q * i, 0.10Q * j);
+	    auto Bi = emsr::airy_bi(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
 		 << std::setw(w) << std::imag(Bi)
@@ -181,8 +183,8 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
-	    auto Bi = __gnu_cxx::airy_bi(t);
+	    auto t = Tp(0.10Q * i, 0.10Q * j);
+	    auto Bi = emsr::airy_bi(t);
 	    data << std::setw(w) << std::real(t)
 	         << std::setw(w) << std::imag(t)
 		 << std::setw(w) << std::arg(Bi)
@@ -196,7 +198,7 @@ template<typename _Tp>
       {
 	for (int j = -50; j <= +50; ++j)
 	  {
-	    auto t = _Tp(0.10Q * i, 0.10Q * j);
+	    auto t = Tp(0.10Q * i, 0.10Q * j);
 	    auto airy0 = airy(t);
 	    data << std::setw(w) << std::real(t)
 		 << std::setw(w) << std::imag(t)
@@ -211,19 +213,19 @@ template<typename _Tp>
 
 /**
  * 
-template<typename _Tp>
+template<typename Tp>
   void
   plot_scorer(std::string filename)
   {
-    using _Val = __gnu_cxx::__num_traits_t<_Tp>;
+    using Val = emsr::num_traits_t<Tp>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Val>::digits10);
+    data.precision(std::numeric_limits<Val>::digits10);
     data << std::showpoint << std::scientific;
     auto w = 8 + data.precision();
 
-    _Scorer<_Tp> scorer;
+    Scorer<Tp> scorer;
 
     data << "\n\n";
     data << "#"
@@ -244,7 +246,7 @@ template<typename _Tp>
 	 << '\n';
     for (int i = -2000; i <= +500; ++i)
       {
-	auto t = _Tp(0.01Q * i);
+	auto t = Tp(0.01Q * i);
 	auto scorer0 = scorer(t);
 	data << std::setw(w) << std::real(scorer0.z)
 	     << std::setw(w) << std::real(scorer0.Ai)
@@ -261,15 +263,15 @@ template<typename _Tp>
 
 /**
  * 
-template<typename _Tp>
+template<typename Tp>
   void
   plot_fgh(std::string filename)
   {
-    using _Val = __gnu_cxx::__num_traits_t<_Tp>;
+    using Val = emsr::num_traits_t<Tp>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Val>::digits10);
+    data.precision(std::numeric_limits<Val>::digits10);
     data << std::showpoint << std::scientific;
     auto w = 8 + data.precision();
 
@@ -294,8 +296,8 @@ template<typename _Tp>
 	 << '\n';
     for (int i = -2000; i <= +500; ++i)
       {
-	auto t = _Tp(0.01Q * i);
-	auto fgh0 = _Airy_series<_Val>::_S_FGH(t);
+	auto t = Tp(0.01Q * i);
+	auto fgh0 = Airy_series<Val>::s_FGH(t);
 	data << std::setw(w) << std::real(fgh0.z)
 	     << std::setw(w) << std::real(fgh0.fai)
 	     << std::setw(w) << std::real(fgh0.faip)

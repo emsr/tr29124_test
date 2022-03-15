@@ -6,27 +6,30 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-#include <ext/float128_io.h>
+
+#include <emsr/float128_io.h>
+#include <emsr/sf_bessel.h>
+
 #include <wrap_boost.h>
 
-template<typename _Tp>
+template<typename Tp>
   void
-  RunSphHankel1(_Tp proto = _Tp{})
+  RunSphHankel1(Tp proto = Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>(proto));
+    std::cout.precision(emsr::digits10<Tp>(proto));
     std::cout.flags(std::ios::showpoint);
     auto width = 8 + std::cout.precision();
 
-    auto max_max_abs_frac = _Tp{-1};
+    auto max_max_abs_frac = Tp{-1};
     for (int inu = 0; inu <= +500; ++inu)
       {
-	auto max_abs_frac = _Tp{-1};
+	auto max_abs_frac = Tp{-1};
 	auto nu = inu * 0.1;
 	std::cout << '\n';
 	for (int iz = 1; iz <= +1000; ++iz)
 	  {
 	    auto z = iz * 0.01;
-	    auto h1s = __gnu_cxx::sph_hankel_1(nu, z);
+	    auto h1s = emsr::sph_hankel_1(nu, z);
 	    auto h1b = beast::sph_hankel_1(nu, z);
 	    auto abs_frac = std::abs((h1s - h1b) / h1b);
 	    std::cout << ' ' << std::setw(width) << nu
@@ -51,5 +54,7 @@ main()
   RunSphHankel1<float>();
   RunSphHankel1<double>();
   RunSphHankel1<long double>();
+#ifdef EMSR_HAVE_FLOAT128
   RunSphHankel1<__float128>();
+#endif
 }

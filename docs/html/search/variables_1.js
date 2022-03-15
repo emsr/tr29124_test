@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['eta_5f1',['eta_1',['../structstd_1_1____detail_1_1____jacobi__theta__0__t.html#a663d939080f2993e305ee57de3682269',1,'std::__detail::__jacobi_theta_0_t']]],
-  ['eta_5f2',['eta_2',['../structstd_1_1____detail_1_1____jacobi__theta__0__t.html#a51f352f17b7ac03bc49555c50cb868fd',1,'std::__detail::__jacobi_theta_0_t']]],
-  ['eta_5f3',['eta_3',['../structstd_1_1____detail_1_1____jacobi__theta__0__t.html#a5b78b926a66c08ad2067f21aa5264a39',1,'std::__detail::__jacobi_theta_0_t']]]
+  ['beta1_643',['beta1',['../structemsr_1_1jacobi__t.html#a063100baa7820f71a5f5e2c34e13fb2e',1,'emsr::jacobi_t']]],
+  ['bi_5fderiv_644',['Bi_deriv',['../structemsr_1_1airy__t.html#a9012bdf3c149ac5806b35c6107f1e5ea',1,'emsr::airy_t']]],
+  ['bi_5fvalue_645',['Bi_value',['../structemsr_1_1airy__t.html#ad5cbe5d8c6a97fbf4bf1e50bcc392850',1,'emsr::airy_t']]]
 ];

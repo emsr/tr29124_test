@@ -1,5 +1,35 @@
 var annotated_dup =
 [
-    [ "__gnu_cxx", "namespace____gnu__cxx.html", "namespace____gnu__cxx" ],
-    [ "std", "namespacestd.html", "namespacestd" ]
+    [ "emsr", "namespaceemsr.html", [
+      [ "airy_t", "structemsr_1_1airy__t.html", "structemsr_1_1airy__t" ],
+      [ "assoc_legendre_p_t", "structemsr_1_1assoc__legendre__p__t.html", "structemsr_1_1assoc__legendre__p__t" ],
+      [ "assoc_legendre_q_t", "structemsr_1_1assoc__legendre__q__t.html", "structemsr_1_1assoc__legendre__q__t" ],
+      [ "chebyshev_t_t", "structemsr_1_1chebyshev__t__t.html", "structemsr_1_1chebyshev__t__t" ],
+      [ "chebyshev_u_t", "structemsr_1_1chebyshev__u__t.html", "structemsr_1_1chebyshev__u__t" ],
+      [ "chebyshev_v_t", "structemsr_1_1chebyshev__v__t.html", "structemsr_1_1chebyshev__v__t" ],
+      [ "chebyshev_w_t", "structemsr_1_1chebyshev__w__t.html", "structemsr_1_1chebyshev__w__t" ],
+      [ "coulomb_t", "structemsr_1_1coulomb__t.html", "structemsr_1_1coulomb__t" ],
+      [ "cyl_bessel_t", "structemsr_1_1cyl__bessel__t.html", "structemsr_1_1cyl__bessel__t" ],
+      [ "cyl_hankel_t", "structemsr_1_1cyl__hankel__t.html", "structemsr_1_1cyl__hankel__t" ],
+      [ "cyl_mod_bessel_t", "structemsr_1_1cyl__mod__bessel__t.html", "structemsr_1_1cyl__mod__bessel__t" ],
+      [ "fock_airy_t", "structemsr_1_1fock__airy__t.html", "structemsr_1_1fock__airy__t" ],
+      [ "fp_is_integer_t", "structemsr_1_1fp__is__integer__t.html", "structemsr_1_1fp__is__integer__t" ],
+      [ "gamma_inc_t", "structemsr_1_1gamma__inc__t.html", "structemsr_1_1gamma__inc__t" ],
+      [ "gamma_temme_t", "structemsr_1_1gamma__temme__t.html", "structemsr_1_1gamma__temme__t" ],
+      [ "gappa_pq_t", "structemsr_1_1gappa__pq__t.html", "structemsr_1_1gappa__pq__t" ],
+      [ "gegenbauer_t", "structemsr_1_1gegenbauer__t.html", "structemsr_1_1gegenbauer__t" ],
+      [ "hermite_he_t", "structemsr_1_1hermite__he__t.html", "structemsr_1_1hermite__he__t" ],
+      [ "hermite_t", "structemsr_1_1hermite__t.html", "structemsr_1_1hermite__t" ],
+      [ "jacobi_ellint_t", "structemsr_1_1jacobi__ellint__t.html", "structemsr_1_1jacobi__ellint__t" ],
+      [ "jacobi_t", "structemsr_1_1jacobi__t.html", "structemsr_1_1jacobi__t" ],
+      [ "laguerre_t", "structemsr_1_1laguerre__t.html", "structemsr_1_1laguerre__t" ],
+      [ "legendre_p_t", "structemsr_1_1legendre__p__t.html", "structemsr_1_1legendre__p__t" ],
+      [ "legendre_q_t", "structemsr_1_1legendre__q__t.html", "structemsr_1_1legendre__q__t" ],
+      [ "lgamma_t", "structemsr_1_1lgamma__t.html", "structemsr_1_1lgamma__t" ],
+      [ "sph_bessel_t", "structemsr_1_1sph__bessel__t.html", "structemsr_1_1sph__bessel__t" ],
+      [ "sph_hankel_t", "structemsr_1_1sph__hankel__t.html", "structemsr_1_1sph__hankel__t" ],
+      [ "sph_mod_bessel_t", "structemsr_1_1sph__mod__bessel__t.html", "structemsr_1_1sph__mod__bessel__t" ],
+      [ "stirling_1_t", "structemsr_1_1stirling__1__t.html", "structemsr_1_1stirling__1__t" ],
+      [ "stirling_2_t", "structemsr_1_1stirling__2__t.html", "structemsr_1_1stirling__2__t" ]
+    ] ]
 ];

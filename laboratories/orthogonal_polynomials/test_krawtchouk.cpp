@@ -19,29 +19,29 @@
  * @f]
  * where @f$ K_n(x) = K_n(x; p, N) @f$.
  */
-template<typename _Tp, typename _TpX>
-  _Tp
-  __krawtchouk_recur(int n, _Tp p, int N, _TpX x)
+template<typename Tp, typename TpX>
+  Tp
+  krawtchouk_recur(int n, Tp p, int N, TpX x)
   {
-    auto Knm1 = _Tp{1};
+    auto Knm1 = Tp{1};
     if (n == 0)
       return Knm1;
 
-    auto Kn = _Tp{1} - _Tp(x) / p / _Tp(N);
+    auto Kn = Tp{1} - Tp(x) / p / Tp(N);
     if (n == 1)
       return Kn;
 
-    const auto q = _Tp{1} - p;
-    auto pnn = p * _Tp(N - 1);
+    const auto q = Tp{1} - p;
+    auto pnn = p * Tp(N - 1);
     auto nq = q;
-    auto Knp1 = ((pnn + nq - _Tp(x)) * Kn - nq * Knm1) / pnn;
+    auto Knp1 = ((pnn + nq - Tp(x)) * Kn - nq * Knm1) / pnn;
     for (int k = 2; k < n; ++k)
       {
-	pnn = p * _Tp(N - k);
-	nq = _Tp(k) * q;
+	pnn = p * Tp(N - k);
+	nq = Tp(k) * q;
 	Knm1 = Kn;
 	Kn = Knp1;
-	Knp1 = ((pnn + nq - _Tp(x)) * Kn - nq * Knm1) / pnn;
+	Knp1 = ((pnn + nq - Tp(x)) * Kn - nq * Knm1) / pnn;
       }
 
     return Knp1;
@@ -53,29 +53,28 @@ template<typename _Tp, typename _TpX>
  *    K_n(x; p, N) = {}_2F_1(-n, -x; -N; \frac{1}{p})
  * @f]
  */
-template<typename _Tp, typename _TpX>
-  _Tp
-  __krawtchouk(int n, _Tp p, int N, _TpX x)
+template<typename Tp, typename TpX>
+  Tp
+  krawtchouk(int n, Tp p, int N, TpX x)
   {
     if (std::isnan(p))
       return p;
     else if (std::isnan(x))
       return x;
     else if (n > N)
-      std::__throw_domain_error(__N("__krawtchouk: "
-				"Degree must be less than or equal to big N."));
+      throw std::domain_error("krawtchouk: Degree must be less than or equal to big N.");
     else
-      return __krawtchouk_recur(n, p, N, x);
+      return krawtchouk_recur(n, p, N, x);
   }
 
 /**
  * 
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  test_krawtchouk(_Tp p, int N)
+  test_krawtchouk(Tp p, int N)
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto w = std::cout.precision() + 8;
 
     for (int n = 0; n <= N; ++n)
@@ -83,8 +82,8 @@ template<typename _Tp>
 	std::cout << '\n' << '\n' << " n = " << n << '\n';
 	for (int i = 0; i <= 400; ++i)
 	  {
-	    auto x = i * _Tp{0.05L};
-	    auto K = __krawtchouk(n, p, N, x);
+	    auto x = i * Tp{0.05L};
+	    auto K = krawtchouk(n, p, N, x);
 	    auto K_test = burkhardt::krawtchouk(n, p, N, x);
 	    std::cout << ' ' << std::setw(w) << x
 		      << ' ' << std::setw(w) << K

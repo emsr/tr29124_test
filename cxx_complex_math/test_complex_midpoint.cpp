@@ -7,6 +7,6 @@ main()
 {
 #if __cpp_lib_interpolate >=  201902L
   std::complex<double> a{1, 2}, b{3, 4};
-  auto m = std::midpoint(a, b);
-#endif // __cpp_lib_interpolate >=  201902L
+  auto m = emsr::midpoint(a, b);
+#endif // __cpp_lib_interpolate
 }

@@ -22,30 +22,30 @@
  *    C_n = n(n - \delta - N - 1)
  * @f]
  */
-template<typename _Tp, typename _TpX>
-  _Tp
-  __dual_hahn_recur(int n, _Tp gamma, _Tp delta, int N, _TpX x)
+template<typename Tp, typename TpX>
+  Tp
+  dual_hahn_recur(int n, Tp gamma, Tp delta, int N, TpX x)
   {
-    auto Rnm1 = _Tp{1};
+    auto Rnm1 = Tp{1};
     if (n == 0)
       return Rnm1;
 
     const auto cd = gamma + delta;
 
-    auto lambda = _Tp(x) * (_Tp(x) + cd + _Tp{1});
+    auto lambda = Tp(x) * (Tp(x) + cd + Tp{1});
 
-    auto Rn = _Tp{1} - lambda / (gamma + _Tp{1}) / _Tp(N);
+    auto Rn = Tp{1} - lambda / (gamma + Tp{1}) / Tp(N);
     if (n == 1)
       return Rn;
 
-    auto An = (gamma + _Tp{2}) * _Tp(1 - N);
-    auto Cn = -(delta + _Tp(N));
+    auto An = (gamma + Tp{2}) * Tp(1 - N);
+    auto Cn = -(delta + Tp(N));
     auto Rnp1 = ((An + Cn + lambda) * Rn - Cn * Rnm1) / An;
 
     for (int k = 2; k < n; ++k)
       {
-	auto An = (gamma + _Tp(k + 1)) * _Tp(k - N);
-	auto Cn = -_Tp(k) * (delta + _Tp(N - k + 1));
+	auto An = (gamma + Tp(k + 1)) * Tp(k - N);
+	auto Cn = -Tp(k) * (delta + Tp(N - k + 1));
 	Rnm1 = Rn;
 	Rn = Rnp1;
         Rnp1 = ((An + Cn + lambda) * Rn - Cn * Rnm1) / An;
@@ -62,9 +62,9 @@ template<typename _Tp, typename _TpX>
  * @f]
  * where @f$ \lambda(x) = x(x + \gamma + \delta + 1) @f$.
  */
-template<typename _Tp, typename _TpX>
-  _Tp
-  __dual_hahn(int n, _Tp gamma, _Tp delta, int N, _TpX x)
+template<typename Tp, typename TpX>
+  Tp
+  dual_hahn(int n, Tp gamma, Tp delta, int N, TpX x)
   {
     if (std::isnan(gamma))
       return gamma;
@@ -73,32 +73,31 @@ template<typename _Tp, typename _TpX>
     else if (std::isnan(x))
       return x;
     else if (n > N)
-      std::__throw_domain_error(__N("__dual_hahn: "
-				"Degree must be less than or equal to big N."));
+      throw std::domain_error("dual_hahn: Degree must be less than or equal to big N.");
     else
-      return __dual_hahn_recur(n, gamma, delta, N, x);
+      return dual_hahn_recur(n, gamma, delta, N, x);
   }
 
 /**
  * 
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  test_dual_hahn(_Tp gamma, _Tp delta, int N)
+  test_dual_hahn(Tp gamma, Tp delta, int N)
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto w = std::cout.precision() + 8;
 
-    auto lambda = [gamma, delta, N](_Tp x)
-		  { return x * (x + gamma + delta + _Tp{1}); };
+    auto lambda = [gamma, delta, N](Tp x)
+		  { return x * (x + gamma + delta + Tp{1}); };
 
     for (int n = 0; n <= N; ++n)
       {
 	std::cout << '\n' << '\n' << " n = " << n << '\n';
 	for (int i = 0; i <= 200; ++i)
 	  {
-	    auto x = i * _Tp{0.05L};
-	    auto R = __dual_hahn(n, gamma, delta, N, x);
+	    auto x = i * Tp{0.05L};
+	    auto R = dual_hahn(n, gamma, delta, N, x);
 	    std::cout << ' ' << std::setw(w) << lambda(x)
 		      << ' ' << std::setw(w) << R
 		      << '\n';

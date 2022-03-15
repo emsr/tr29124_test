@@ -10,7 +10,11 @@
 #include <vector>
 #include <string>
 #include <complex>
-#include <ext/float128_io.h>
+
+#include <emsr/float128_io.h>
+#include <emsr/fp_type_util.h>
+#include <emsr/numeric_limits.h>
+#include <emsr/sf_expint.h>
 
 /*
                  series     asymp     large-n
@@ -24,14 +28,14 @@ large-n works brilliantly for n=0?!?
 
 #include <wrap_boost.h>
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_expint()
   {
-    using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
-    auto _S_NaN = __gnu_cxx::__quiet_NaN<_Real>();
-    std::cout.precision(__gnu_cxx::__digits10<_Real>());
+    using Val = Tp;
+    using Real = emsr::num_traits_t<Val>;
+    auto s_NaN = emsr::quiet_NaN<Real>();
+    std::cout.precision(emsr::digits10<Real>());
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
     std::vector<unsigned int>
@@ -54,48 +58,48 @@ template<typename _Tp>
 		  << ' ' << std::setw(width) << "delta asymp"
 		  << '\n';
 	int i_min = -500;
-	const auto del = _Tp{1} / _Tp{10};
+	const auto del = Tp{1} / Tp{10};
 	for (int i = i_min; i <= +500; ++i)
 	  {
 	    auto x = del * i;
 
-	    _Tp ens = _S_NaN;
+	    Tp ens = s_NaN;
 	    try
 	    {
-	      ens = std::__detail::__expint_En_series(n, x);
+	      ens = emsr::detail::expint_En_series(n, x);
 	    }
 	    catch (...)
 	    {
 	    }
 
-	    _Tp enc = _S_NaN;
+	    Tp enc = s_NaN;
 	    try
 	    {
-	      enc = std::__detail::__expint_En_cont_frac(n, x);
+	      enc = emsr::detail::expint_En_cont_frac(n, x);
 	    }
 	    catch (...)
 	    {
 	    }
 
-	    _Tp enn = _S_NaN;
+	    Tp enn = s_NaN;
 	    try
 	    {
-	      enn = std::__detail::__expint_En_large_n(n, x);
+	      enn = emsr::detail::expint_En_large_n(n, x);
 	    }
 	    catch (...)
 	    {
 	    }
 
-	    _Tp ena = _S_NaN;
+	    Tp ena = s_NaN;
 	    try
 	    {
-	      ena = std::__detail::__expint_En_asymp(n, x);
+	      ena = emsr::detail::expint_En_asymp(n, x);
 	    }
 	    catch (...)
 	    {
 	    }
 
-	    _Tp enb = _S_NaN;
+	    Tp enb = s_NaN;
 	    try
 	    {
 	      enb = beast::expint(n, x);

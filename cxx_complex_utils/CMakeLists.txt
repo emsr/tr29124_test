@@ -17,8 +17,7 @@ add_custom_target(make_cxx_complex_utils_output_dir ALL
 
 add_library(cxx_complex_utils INTERFACE)
 target_include_directories(cxx_complex_utils INTERFACE include)
+target_link_libraries(cxx_complex_utils INTERFACE cxx_fp_utils)
 
 add_executable(test_is_complex test_is_complex.cpp)
-target_include_directories(test_is_complex PRIVATE
-  ../include)
 target_link_libraries(test_is_complex cxx_complex_utils cxx_fp_utils quadmath)

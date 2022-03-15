@@ -4,7 +4,7 @@
 #include <Faddeeva.hh>
 
 #include <wrap_faddeeva.h>
-#include <ext/math_constants.h>
+#include <emsr/math_constants.h>
 
 namespace faddeeva
 {
@@ -140,22 +140,22 @@ namespace faddeeva
    * @f]
    * where
    * @f[
-   *   U(x,t) = \frac{1}{\sqrt{4t}} \int_{-\infty}^{+\infty}
-   *            \frac{e^{(x - y)^2 / (4t)}}{1 + y^2} dy
+   *   U(x,t) = \sqrt{\frac{\pi}{4t}} e^{z^2}erfc(z) = \sqrt{\frac{\pi}{4t}} w(iz)
    * @f]
-   * and
+   * where
    * @f[
-   *   V(x,t) = \frac{1}{\sqrt{4t}} \int_{-\infty}^{+\infty}
-   *            \frac{y e^{(x - y)^2 / (4t)}}{1 + y^2} dy
+   *   z = (1-ix)/\sqrt{4t}
    * @f]
    */
   std::complex<double>
   voigt(double x, double t)
   {
-    const auto _S_sqrt_pi = 2 * __gnu_cxx::numbers::__root_pi_div_2_v<double>;
+    using namespace std::complex_literals;
+    constexpr auto sqrt_pi = emsr::sqrtpi_v<double>;
+    constexpr auto i = 1.0i;
     auto s = 1.0 / (2.0 * std::sqrt(t));
-    std::complex<double> z(s, -s * x);
-    return _S_sqrt_pi * s * faddeeva(z);
+    const auto z = s * (1.0 - i * x);
+    return sqrt_pi * s * faddeeva(i * z);
   }
 
   /**

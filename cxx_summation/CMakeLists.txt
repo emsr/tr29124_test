@@ -25,6 +25,7 @@ add_executable(test_summation test_summation.cpp)
 target_include_directories(test_summation PRIVATE
   ../include)
 target_link_libraries(test_summation
+  cxx_special_functions
   cxx_math_constants
   cxx_fp_utils
   cxx_complex_utils

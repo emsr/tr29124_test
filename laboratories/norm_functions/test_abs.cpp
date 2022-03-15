@@ -7,45 +7,45 @@
 #include <algorithm>
 #include <iostream>
 
-template<typename _Tp>
+template<typename Tp>
   constexpr bool
-  lessabs(const _Tp& __a, const _Tp& __b)
-  { return std::abs(__a) < std::abs(__b); }
+  lessabs(const Tp& a, const Tp& b)
+  { return std::abs(a) < std::abs(b); }
 
-template<typename _Tp>
-  constexpr _Tp
-  minabs(const _Tp& __a, const _Tp& __b)
-  { return std::abs(std::min(__a, __b, lessabs<_Tp>)); }
+template<typename Tp>
+  constexpr Tp
+  minabs(const Tp& a, const Tp& b)
+  { return std::abs(std::min(a, b, lessabs<Tp>)); }
 
-template<typename _Tp>
-  constexpr _Tp
-  minabs(std::initializer_list<_Tp> __il)
-  { return std::abs(std::min(__il, lessabs<_Tp>)); }
+template<typename Tp>
+  constexpr Tp
+  minabs(std::initializer_list<Tp> il)
+  { return std::abs(std::min(il, lessabs<Tp>)); }
 
-template<typename _Tp>
-  constexpr _Tp
-  maxabs(const _Tp& __a, const _Tp& __b)
-  { return std::abs(std::max(__a, __b, lessabs<_Tp>)); }
+template<typename Tp>
+  constexpr Tp
+  maxabs(const Tp& a, const Tp& b)
+  { return std::abs(std::max(a, b, lessabs<Tp>)); }
 
-template<typename _Tp>
-  constexpr _Tp
-  maxabs(std::initializer_list<_Tp> __il)
-  { return std::abs(std::max(__il, lessabs<_Tp>)); }
+template<typename Tp>
+  constexpr Tp
+  maxabs(std::initializer_list<Tp> il)
+  { return std::abs(std::max(il, lessabs<Tp>)); }
 
-template<typename _Tp>
-  constexpr std::pair<_Tp, _Tp>
-  minmaxabs(const _Tp& __a, const _Tp& __b)
+template<typename Tp>
+  constexpr std::pair<Tp, Tp>
+  minmaxabs(const Tp& a, const Tp& b)
   {
-    auto [__c, __d] = std::minmax(__a, __b, lessabs<_Tp>);
-    return {std::abs(__c), std::abs(__d)};
+    auto [c, d] = std::minmax(a, b, lessabs<Tp>);
+    return {std::abs(c), std::abs(d)};
   }
 
-template<typename _Tp>
-  constexpr std::pair<_Tp, _Tp>
-  minmaxabs(std::initializer_list<_Tp> __il)
+template<typename Tp>
+  constexpr std::pair<Tp, Tp>
+  minmaxabs(std::initializer_list<Tp> il)
   {
-    auto [__c, __d] = std::minmax(__il, lessabs<_Tp>);
-    return {std::abs(__c), std::abs(__d)};
+    auto [c, d] = std::minmax(il, lessabs<Tp>);
+    return {std::abs(c), std::abs(d)};
   }
 
 int

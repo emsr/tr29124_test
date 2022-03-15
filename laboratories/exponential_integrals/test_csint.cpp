@@ -8,6 +8,8 @@
 #include <cmath>
 #include <complex>
 
+#include <emsr/sf_trigint.h>
+
 int
 main()
 {
@@ -22,7 +24,7 @@ main()
   for (int i = 0; i <= 1000; ++i)
     {
       double x = i * 0.01;
-      auto [Ci, Si] = std::__detail::__sincosint(x);
+      auto [Ci, Si] = emsr::detail::sincosint(x);
       std::cout << ' ' << std::setw(w) << x
 		<< ' ' << std::setw(w) << Ci
 		<< ' ' << std::setw(w) << Si

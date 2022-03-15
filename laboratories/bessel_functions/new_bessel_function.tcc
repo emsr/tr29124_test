@@ -1,12 +1,11 @@
-// Special functions -*- C++ -*-
 
 // Copyright (C) 2006-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 2, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -27,9 +26,7 @@
 // invalidate any other reasons why the executable file might be covered by
 // the GNU General Public License.
 
-/** @file tr1/sf_bessel.tcc
- *  This is an internal header file, included by other library headers.
- *  You should not attempt to use it directly.
+/** @file new_bessel_function.tcc
  */
 
 //
@@ -46,238 +43,225 @@
 //   (2) Numerical Recipes in C,
 //       
 
-#ifndef _TR1_BESSEL_FUNCTION_TCC
-#define _TR1_BESSEL_FUNCTION_TCC 1
+#ifndef NEW_BESSEL_FUNCTION_TCC
+#define NEW_BESSEL_FUNCTION_TCC 1
 
-#include <ext/fp_type_util.h>
+#include <emsr/fp_type_util.h>
 
 namespace std
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-  // [5.2] Special functions
-
-  /**
-   * @addtogroup tr1_math_spec_func Mathematical Special Functions
-   * A collection of advanced mathematical special functions.
-   * @{
-   */
-
-  //
-  // Implementation-space details.
-  //
-  namespace __detail
-  {
+namespace detail
+{
 
     ///
     ///
     ///
-    template <typename _Tp>
+    template <typename Tp>
     void
-    __bessel_jn(const _Tp __nu, const _Tp __x,
-                _Tp & __J_nu, _Tp & __N_nu, _Tp & __Jp_nu, _Tp & __Np_nu)
+    bessel_jn(const Tp nu, const Tp x,
+                Tp & J_nu, Tp & N_nu, Tp & Jp_nu, Tp & Np_nu)
     {
 
-      if (std::isnan(__nu) || std::isnan(__x))
+      if (std::isnan(nu) || std::isnan(x))
         {
-          __J_nu = std::numeric_limits<_Tp>::quiet_NaN();
-          __N_nu = std::numeric_limits<_Tp>::quiet_NaN();
-          __Jp_nu = std::numeric_limits<_Tp>::quiet_NaN();
-          __Np_nu = std::numeric_limits<_Tp>::quiet_NaN();
+          J_nu = std::numeric_limits<Tp>::quiet_NaN();
+          N_nu = std::numeric_limits<Tp>::quiet_NaN();
+          Jp_nu = std::numeric_limits<Tp>::quiet_NaN();
+          Np_nu = std::numeric_limits<Tp>::quiet_NaN();
           return;
         }
 
-      if (__x == _Tp(0))
+      if (x == Tp(0))
         {
-          if (__nu == _Tp(0))
+          if (nu == Tp(0))
             {
-              __J_nu = _Tp(1);
-              __N_nu = -std::numeric_limits<_Tp>::infinity();
-              __Jp_nu = _Tp(0);
-              __Np_nu = std::numeric_limits<_Tp>::infinity();
+              J_nu = Tp(1);
+              N_nu = -std::numeric_limits<Tp>::infinity();
+              Jp_nu = Tp(0);
+              Np_nu = std::numeric_limits<Tp>::infinity();
             }
           else
             {
-              __J_nu = _Tp(0);
-              __N_nu = -std::numeric_limits<_Tp>::infinity();
-              //__Jp_nu = ???
-              //__Np_nu = ???
+              J_nu = Tp(0);
+              N_nu = -std::numeric_limits<Tp>::infinity();
+              //Jp_nu = ???
+              //Np_nu = ???
             }
           return;
         }
 
-      const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
-      const _Tp __fp_min = _Tp(10) * std::numeric_limits<_Tp>::min();
-      const int __max_iter = 15000;
-      const _Tp __x_min = _Tp(2);
-      const _Tp __PI = _Tp(3.1415926535897932384626433832795029L);
+      const Tp eps = std::numeric_limits<Tp>::epsilon();
+      const Tp fp_min = Tp(10) * std::numeric_limits<Tp>::min();
+      const int max_iter = 15000;
+      const Tp x_min = Tp(2);
+      const Tp PI = Tp(3.1415926535897932384626433832795029L);
 
-      if (__x < _Tp(0) || __nu < _Tp(0))
-        __throw_runtime_error(__N("Bad arguments in __bessel_jn."));
+      if (x < Tp(0) || nu < Tp(0))
+        throw_runtime_error(N("Bad arguments in bessel_jn."));
 
-      const int __nl = (__x < __x_min
-                    ? static_cast<int>(__nu + _Tp(0.5L))
-                    : std::max(0, static_cast<int>(__nu - __x + _Tp(1.5L))));
+      const int nl = (x < x_min
+                    ? static_cast<int>(nu + Tp(0.5L))
+                    : std::max(0, static_cast<int>(nu - x + Tp(1.5L))));
 
-      const _Tp __mu = __nu - __nl;
-      const _Tp __mu2 = __mu * __mu;
-      const _Tp __xi = _Tp(1) / __x;
-      const _Tp __xi2 = _Tp(2) * __xi;
-      _Tp __w = __xi2 / __PI;
-      int __isign = 1;
-      _Tp __h = __nu * __xi;
-      if (__h < __fp_min)
-        __h = __fp_min;
-      _Tp __b = __xi2 * __nu;
-      _Tp __d = _Tp(0);
-      _Tp __c = __h;
-      int __i;
-      for (__i = 1; __i <= __max_iter; ++__i)
+      const Tp mu = nu - nl;
+      const Tp mu2 = mu * mu;
+      const Tp xi = Tp(1) / x;
+      const Tp xi2 = Tp(2) * xi;
+      Tp w = xi2 / PI;
+      int isign = 1;
+      Tp h = nu * xi;
+      if (h < fp_min)
+        h = fp_min;
+      Tp b = xi2 * nu;
+      Tp d = Tp(0);
+      Tp c = h;
+      int i;
+      for (i = 1; i <= max_iter; ++i)
         {
-          __b += __xi2;
-          __d = __b - __d;
-          if (std::abs(__d) < __fp_min)
-            __d = __fp_min;
-          __c = __b - _Tp(1) / __c;
-          if (std::abs(__c) < __fp_min)
-            __c = __fp_min;
-          __d = _Tp(1) / __d;
-          const _Tp __del = __c * __d;
-          __h = __del * __h;
-          if (__d < _Tp(0))
-            __isign = -__isign;
-          if (std::abs(__del - _Tp(1)) < __eps)
+          b += xi2;
+          d = b - d;
+          if (std::abs(d) < fp_min)
+            d = fp_min;
+          c = b - Tp(1) / c;
+          if (std::abs(c) < fp_min)
+            c = fp_min;
+          d = Tp(1) / d;
+          const Tp del = c * d;
+          h = del * h;
+          if (d < Tp(0))
+            isign = -isign;
+          if (std::abs(del - Tp(1)) < eps)
             break;
         }
-      if (__i > __max_iter)
-        __throw_runtime_error(__N("Argument x too large in __bessel_jn; "
+      if (i > max_iter)
+        throw_runtime_error(N("Argument x too large in bessel_jn; "
                                   "try asymptotic expansion."));
-      _Tp __J_nul = __isign * __fp_min;
-      _Tp __Jp_nul = __h * __J_nul;
-      _Tp __J_nul1 = __J_nul;
-      _Tp __Jp_nu1 = __Jp_nul;
-      _Tp __fact = __nu * __xi;
-      for ( int __l = __nl; __l >= 1; --__l )
+      Tp J_nul = isign * fp_min;
+      Tp Jp_nul = h * J_nul;
+      Tp J_nul1 = J_nul;
+      Tp Jp_nu1 = Jp_nul;
+      Tp fact = nu * xi;
+      for ( int l = nl; l >= 1; --l )
         {
-          const _Tp __J_nutemp = __fact * __J_nul + __Jp_nul;
-          __fact -= __xi;
-          __Jp_nul = __fact * __J_nutemp - __J_nul;
-          __J_nul = __J_nutemp;
+          const Tp J_nutemp = fact * J_nul + Jp_nul;
+          fact -= xi;
+          Jp_nul = fact * J_nutemp - J_nul;
+          J_nul = J_nutemp;
         }
-      if (__J_nul == _Tp(0))
-        __J_nul = __eps;
-      _Tp __f= __Jp_nul / __J_nul;
-      _Tp __N_mu, __N_nu1, __N_mup, __J_mu;
-      if (__x < __x_min)
+      if (J_nul == Tp(0))
+        J_nul = eps;
+      Tp f= Jp_nul / J_nul;
+      Tp N_mu, N_nu1, N_mup, J_mu;
+      if (x < x_min)
         {
-          const _Tp __x2 = __x / _Tp(2);
-          const _Tp __pimu = __PI * __mu;
-          _Tp __fact = (std::abs(__pimu) < __eps ? _Tp(1)
-                      : __pimu / std::sin(__pimu));
-          _Tp __d = -std::log(__x2);
-          _Tp __e = __mu * __d;
-          _Tp __fact2 = (std::abs(__e) < __eps
-                       ? _Tp(1) : std::sinh(__e) / __e);
-          _Tp __gam1, __gam2, __gampl, __gammi;
-          __gamma_temme(__mu, __gampl, __gammi, __gam1, __gam2);
-          _Tp __ff = (_Tp(2) / __PI) * __fact
-                   * (__gam1 * std::cosh(__e) + __gam2 * __fact2 * __d);
-          __e = std::exp(__e);
-          _Tp __p = __e / (__PI * __gampl);
-          _Tp __q = _Tp(1) / (__e * __PI * __gammi);
-          const _Tp __pimu2 = __pimu / _Tp(2);
-          _Tp __fact3 = (std::abs(__pimu2) < __eps
-                       ? _Tp(1) : std::sin(__pimu2) / __pimu2 );
-          _Tp __r = __PI * __pimu2 * __fact3 * __fact3;
-          _Tp __c = _Tp(1);
-          __d = -__x2 * __x2;
-          _Tp __sum = __ff + __r * __q;
-          _Tp __sum1 = __p;
-          for (__i = 1; __i <= __max_iter; ++__i)
+          const Tp x2 = x / Tp(2);
+          const Tp pimu = PI * mu;
+          Tp fact = (std::abs(pimu) < eps ? Tp(1)
+                      : pimu / std::sin(pimu));
+          Tp d = -std::log(x2);
+          Tp e = mu * d;
+          Tp fact2 = (std::abs(e) < eps
+                       ? Tp(1) : std::sinh(e) / e);
+          Tp gam1, gam2, gampl, gammi;
+          gamma_temme(mu, gampl, gammi, gam1, gam2);
+          Tp ff = (Tp(2) / PI) * fact
+                   * (gam1 * std::cosh(e) + gam2 * fact2 * d);
+          e = std::exp(e);
+          Tp p = e / (PI * gampl);
+          Tp q = Tp(1) / (e * PI * gammi);
+          const Tp pimu2 = pimu / Tp(2);
+          Tp fact3 = (std::abs(pimu2) < eps
+                       ? Tp(1) : std::sin(pimu2) / pimu2 );
+          Tp r = PI * pimu2 * fact3 * fact3;
+          Tp c = Tp(1);
+          d = -x2 * x2;
+          Tp sum = ff + r * q;
+          Tp sum1 = p;
+          for (i = 1; i <= max_iter; ++i)
             {
-              __ff = (__i * __ff + __p + __q) / (__i * __i - __mu2);
-              __c *= __d / _Tp(__i);
-              __p /= _Tp(__i) - __mu;
-              __q /= _Tp(__i) + __mu;
-              const _Tp __del = __c * (__ff + __r * __q);
-              __sum += __del; 
-              const _Tp __del1 = __c * __p - __i * __del;
-              __sum1 += __del1;
-              if ( std::abs(__del) < __eps * (_Tp(1) + std::abs(__sum)) )
+              ff = (i * ff + p + q) / (i * i - mu2);
+              c *= d / Tp(i);
+              p /= Tp(i) - mu;
+              q /= Tp(i) + mu;
+              const Tp del = c * (ff + r * q);
+              sum += del; 
+              const Tp del1 = c * p - i * del;
+              sum1 += del1;
+              if ( std::abs(del) < eps * (Tp(1) + std::abs(sum)) )
                 break;
             }
-          if ( __i > __max_iter )
-            __throw_runtime_error(__N("Bessel y series failed to converge "
-                                      "in __bessel_jn."));
-          __N_mu = -__sum;
-          __N_nu1 = -__sum1 * __xi2;
-          __N_mup = __mu * __xi * __N_mu - __N_nu1;
-          __J_mu = __w / (__N_mup - __f * __N_mu);
+          if ( i > max_iter )
+            throw_runtime_error(N("Bessel y series failed to converge "
+                                      "in bessel_jn."));
+          N_mu = -sum;
+          N_nu1 = -sum1 * xi2;
+          N_mup = mu * xi * N_mu - N_nu1;
+          J_mu = w / (N_mup - f * N_mu);
         }
       else
         {
-          _Tp __a = _Tp(0.25L) - __mu2;
-          _Tp __q = _Tp(1);
-          _Tp __p = -__xi / _Tp(2);
-          _Tp __br = _Tp(2) * __x;
-          _Tp __bi = _Tp(2);
-          _Tp __fact = __a * __xi / (__p * __p + __q * __q);
-          _Tp __cr = __br + __q * __fact;
-          _Tp __ci = __bi + __p * __fact;
-          _Tp __den = __br * __br + __bi * __bi;
-          _Tp __dr = __br / __den;
-          _Tp __di = -__bi / __den;
-          _Tp __dlr = __cr * __dr - __ci * __di;
-          _Tp __dli = __cr * __di + __ci * __dr;
-          _Tp __temp = __p * __dlr - __q * __dli;
-          __q = __p * __dli + __q * __dlr;
-          __p = __temp;
-          int __i;
-          for (__i = 2; __i <= __max_iter; ++__i)
+          Tp a = Tp(0.25L) - mu2;
+          Tp q = Tp(1);
+          Tp p = -xi / Tp(2);
+          Tp br = Tp(2) * x;
+          Tp bi = Tp(2);
+          Tp fact = a * xi / (p * p + q * q);
+          Tp cr = br + q * fact;
+          Tp ci = bi + p * fact;
+          Tp den = br * br + bi * bi;
+          Tp dr = br / den;
+          Tp di = -bi / den;
+          Tp dlr = cr * dr - ci * di;
+          Tp dli = cr * di + ci * dr;
+          Tp temp = p * dlr - q * dli;
+          q = p * dli + q * dlr;
+          p = temp;
+          int i;
+          for (i = 2; i <= max_iter; ++i)
             {
-              __a += _Tp(2 * (__i - 1));
-              __bi += _Tp(2);
-              __dr = __a * __dr + __br;
-              __di = __a * __di + __bi;
-              if (std::abs(__dr) + std::abs(__di) < __fp_min)
-                __dr = __fp_min;
-              __fact = __a / (__cr * __cr + __ci * __ci);
-              __cr = __br + __cr * __fact;
-              __ci = __bi - __ci * __fact;
-              if (std::abs(__cr) + std::abs(__ci) < __fp_min)
-                __cr = __fp_min;
-              __den = __dr * __dr + __di * __di;
-              __dr /= __den;
-              __di /= -__den;
-              __dlr = __cr * __dr - __ci * __di;
-              __dli = __cr * __di + __ci * __dr;
-              __temp = __p * __dlr - __q * __dli;
-              __q = __p * __dli + __q * __dlr;
-              __p = __temp;
-              if (std::abs(__dlr - _Tp(1)) + std::abs(__dli) < __eps)
+              a += Tp(2 * (i - 1));
+              bi += Tp(2);
+              dr = a * dr + br;
+              di = a * di + bi;
+              if (std::abs(dr) + std::abs(di) < fp_min)
+                dr = fp_min;
+              fact = a / (cr * cr + ci * ci);
+              cr = br + cr * fact;
+              ci = bi - ci * fact;
+              if (std::abs(cr) + std::abs(ci) < fp_min)
+                cr = fp_min;
+              den = dr * dr + di * di;
+              dr /= den;
+              di /= -den;
+              dlr = cr * dr - ci * di;
+              dli = cr * di + ci * dr;
+              temp = p * dlr - q * dli;
+              q = p * dli + q * dlr;
+              p = temp;
+              if (std::abs(dlr - Tp(1)) + std::abs(dli) < eps)
                 break;
           }
-          if (__i > __max_iter)
-            __throw_runtime_error(__N("Lentz's method failed "
-                                      "in __bessel_jn."));
-          const _Tp __gam = (__p - __f) / __q;
-          __J_mu = std::sqrt(__w / ((__p - __f) * __gam + __q));
-          __J_mu = ::copysign( __J_mu, __J_nul );
-          __N_mu = __J_mu * __gam;
-          __N_mup = __N_mu * (__p + __q / __gam);
-          __N_nu1 = __mu * __xi * __N_mu - __N_mup;
+          if (i > max_iter)
+            throw_runtime_error(N("Lentz's method failed "
+                                      "in bessel_jn."));
+          const Tp gam = (p - f) / q;
+          J_mu = std::sqrt(w / ((p - f) * gam + q));
+          J_mu = ::copysign( J_mu, J_nul );
+          N_mu = J_mu * gam;
+          N_mup = N_mu * (p + q / gam);
+          N_nu1 = mu * xi * N_mu - N_mup;
       }
-      __fact = __J_mu / __J_nul;
-      __J_nu = __J_nul1 * __fact;
-      __Jp_nu = __Jp_nu1 * __fact;
-      for (__i = 1; __i <= __nl; ++__i)
+      fact = J_mu / J_nul;
+      J_nu = J_nul1 * fact;
+      Jp_nu = Jp_nu1 * fact;
+      for (i = 1; i <= nl; ++i)
         {
-          const _Tp __N_nutemp = (__mu + __i) * __xi2 * __N_nu1 - __N_mu;
-          __N_mu = __N_nu1;
-          __N_nu1 = __N_nutemp;
+          const Tp N_nutemp = (mu + i) * xi2 * N_nu1 - N_mu;
+          N_mu = N_nu1;
+          N_nu1 = N_nutemp;
         }
-      __N_nu = __N_mu;
-      __Np_nu = __nu * __xi * __N_mu - __N_nu1;
+      N_nu = N_mu;
+      Np_nu = nu * xi * N_mu - N_nu1;
 
       return;
     }
@@ -286,37 +270,33 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     ///
     ///
     ///
-    template <typename _Tp>
+    template <typename Tp>
     void
-    __sph_bessel_jn(const int __n, const _Tp __x,
-                    _Tp & __j_n, _Tp & __n_n, _Tp & __jp_n, _Tp & __np_n)
+    sph_bessel_jn(const int n, const Tp x,
+                    Tp & j_n, Tp & n_n, Tp & jp_n, Tp & np_n)
     {
 
-      if ( __n < 0 || __x < _Tp(0) )
-        __throw_runtime_error(__N("Bad arguments in sph_bessel."));
+      if ( n < 0 || x < Tp(0) )
+        throw_runtime_error(N("Bad arguments in sph_bessel."));
 
-      const _Tp __nu = _Tp(__n) + _Tp(0.5L);
+      const Tp nu = Tp(n) + Tp(0.5L);
 
-      _Tp __J_nu, __Jp_nu, __N_nu, __Np_nu;
-      __bessel_jn(__nu, __x, __J_nu, __N_nu, __Jp_nu, __Np_nu);
+      Tp J_nu, Jp_nu, N_nu, Np_nu;
+      bessel_jn(nu, x, J_nu, N_nu, Jp_nu, Np_nu);
 
-      const _Tp __SQRTPIO2 = _Tp(1.2533141373155002512078826424055226L);
-      const _Tp __factor = __SQRTPIO2 / std::sqrt(__x);
+      const Tp SQRTPIO2 = Tp(1.2533141373155002512078826424055226L);
+      const Tp factor = SQRTPIO2 / std::sqrt(x);
 
-      __j_n = __factor * __J_nu;
-      __n_n = __factor * __N_nu;
-      __jp_n = __factor * __Jp_nu - __j_n / (_Tp(2) * __x);
-      __np_n = __factor * __Np_nu - __n_n / (_Tp(2) * __x);
+      j_n = factor * J_nu;
+      n_n = factor * N_nu;
+      jp_n = factor * Jp_nu - j_n / (Tp(2) * x);
+      np_n = factor * Np_nu - n_n / (Tp(2) * x);
 
       return;
     }
 
-  } // namespace std::tr1::__detail
+} // detail
+} // emsr
 
-  /* @} */ // group tr1_math_spec_func
-
-_GLIBCXX_END_NAMESPACE_VERSION
-}
-
-#endif // _TR1_BESSEL_FUNCTION_TCC
+#endif // NEW_BESSEL_FUNCTION_TCC
 

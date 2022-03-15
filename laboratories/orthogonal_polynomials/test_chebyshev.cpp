@@ -7,11 +7,13 @@
 #include <vector>
 #include <cmath>
 
+#include <emsr/special_functions.h>
+
 template<typename Tp>
   void
   test_chebyshev(Tp proto = Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -34,18 +36,18 @@ template<typename Tp>
 	for (int i = -100; i <= 100; ++i)
 	  {
 	    auto x = del * i;
-	    auto Ts = std::__detail::__chebyshev_t(n, x);
-	    auto Us = std::__detail::__chebyshev_u(n, x);
-	    auto Vs = std::__detail::__chebyshev_v(n, x);
-	    auto Ws = std::__detail::__chebyshev_w(n, x);
+	    auto Ts = emsr::detail::chebyshev_t(n, x);
+	    auto Us = emsr::detail::chebyshev_u(n, x);
+	    auto Vs = emsr::detail::chebyshev_v(n, x);
+	    auto Ws = emsr::detail::chebyshev_w(n, x);
 	    std::cout << ' ' << std::setw(width) << x
-		      << ' ' << std::setw(width) << Ts.__T_n
+		      << ' ' << std::setw(width) << Ts.T_n
 		      << ' ' << std::setw(width) << Ts.deriv()
-		      << ' ' << std::setw(width) << Us.__U_n
+		      << ' ' << std::setw(width) << Us.U_n
 		      << ' ' << std::setw(width) << Us.deriv()
-		      << ' ' << std::setw(width) << Vs.__V_n
+		      << ' ' << std::setw(width) << Vs.V_n
 		      << ' ' << std::setw(width) << Vs.deriv()
-		      << ' ' << std::setw(width) << Ws.__W_n
+		      << ' ' << std::setw(width) << Ws.W_n
 		      << ' ' << std::setw(width) << Ws.deriv()
 		      << '\n';
 	  }

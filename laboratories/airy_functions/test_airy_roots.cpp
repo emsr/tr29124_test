@@ -8,17 +8,19 @@
 #include <iomanip>
 #include <cmath>
 
-template<typename _Tp>
+#include <emsr/sf_mod_bessel.h>
+
+template<typename Tp>
   void
   test_airy_roots()
   {
-    const auto _S_eps = _Tp{10} * std::numeric_limits<_Tp>::epsilon();
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    const auto s_eps = Tp{10} * std::numeric_limits<Tp>::epsilon();
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     const auto w = 6 + std::cout.precision();
     const auto max_iter = 10000;
 
     // Roots of Ai(-x)
-    std::vector<_Tp> zai
+    std::vector<Tp> zai
     {
        2.33811f,  4.08795f,  5.52056f,  6.78671f,  7.94413f,
        9.02265f, 10.04017f, 11.00852f, 11.93602f, 12.82878f,
@@ -33,7 +35,7 @@ template<typename _Tp>
     };
 
     // Roots of Ai'(-x)
-    std::vector<_Tp> zaip
+    std::vector<Tp> zaip
     {
        1.01879f,  3.24820f,  4.82010f,  6.16331f,  7.37218f,
        8.48849f,  9.53545f, 10.52766f, 11.47506f, 12.38479f,
@@ -56,20 +58,20 @@ template<typename _Tp>
       {
 	auto xai = -zai[i];
 	auto xai_prev = xai;
-	auto aip_prev = _Tp(0);
-	auto ai_prev = _Tp(0);
+	auto aip_prev = Tp(0);
+	auto ai_prev = Tp(0);
 	auto iter = 0;
 	do
 	  {
 	    xai_prev = xai;
-	    auto [x, ai, aip, bi, bip] = std::__detail::__airy(xai);
+	    auto [x, ai, aip, bi, bip] = emsr::detail::airy(xai);
 	    xai -= ai / aip;
 	    aip_prev = aip;
 	    ai_prev = ai;
 	    if (++iter > max_iter)
 	      break;
 	  }
-	while (std::abs(xai - xai_prev) >= _S_eps * std::abs(xai));
+	while (std::abs(xai - xai_prev) >= s_eps * std::abs(xai));
 	zai[i] = -xai;
 	std::cout << ' ' << std::setw(w) << xai
 		  << ' ' << std::setw(w) << aip_prev
@@ -86,14 +88,14 @@ template<typename _Tp>
       {
 	auto xaip = -zaip[i];
 	auto xaip_prev = xaip;
-	auto ai_prev = _Tp(0);
-	auto aip_prev = _Tp(0);
-	//auto aipp_prev = _Tp(0);
+	auto ai_prev = Tp(0);
+	auto aip_prev = Tp(0);
+	//auto aipp_prev = Tp(0);
 	auto iter = 0;
 	do
 	  {
 	    xaip_prev = xaip;
-	    auto [x, ai, aip, bi, bip] = std::__detail::__airy(xaip);
+	    auto [x, ai, aip, bi, bip] = emsr::detail::airy(xaip);
 	    auto aipp = xaip * ai; // Ai''(x) = xAi(x)
 	    xaip -= aip / aipp;
 	    ai_prev = ai;
@@ -102,7 +104,7 @@ template<typename _Tp>
 	    if (++iter > max_iter)
 	      break;
 	  }
-	while (std::abs(xaip - xaip_prev) >= 2 * _S_eps * std::abs(xaip));
+	while (std::abs(xaip - xaip_prev) >= 2 * s_eps * std::abs(xaip));
 	zaip[i] = -xaip;
 	std::cout << ' ' << std::setw(w) << xaip
 		  << ' ' << std::setw(w) << ai_prev
@@ -112,31 +114,31 @@ template<typename _Tp>
 
     // The roots of Bi(x) interlace those of Ai(x)
     // and are close to the roots of Ai'(x).
-    std::vector<_Tp> zbi;
+    std::vector<Tp> zbi;
     std::cout << '\n'
 	      << ' ' << std::setw(w) << "x"
 	      << ' ' << std::setw(w) << "Bi'(x)"
 	      << ' ' << std::setw(w) << "Bi(x)"
 	      << '\n';
-    auto zai_lower = _Tp(0);
+    auto zai_lower = Tp(0);
     for (unsigned i = 0; i < zai.size() - 1; ++i)
       {
 	auto xbi = (-zai_lower - zai[i]) / 2;
 	auto xbi_prev = xbi;
-	auto bip_prev = _Tp(0);
-	auto bi_prev = _Tp(0);
+	auto bip_prev = Tp(0);
+	auto bi_prev = Tp(0);
 	auto iter = 0;
 	do
 	  {
 	    xbi_prev = xbi;
-	    auto [x, ai, aip, bi, bip] = std::__detail::__airy(xbi);
+	    auto [x, ai, aip, bi, bip] = emsr::detail::airy(xbi);
 	    xbi -= bi / bip;
 	    bip_prev = bip;
 	    bi_prev = bi;
 	    if (++iter > max_iter)
 	      break;
 	  }
-	while (std::abs(xbi - xbi_prev) >= _S_eps * std::abs(xbi));
+	while (std::abs(xbi - xbi_prev) >= s_eps * std::abs(xbi));
 	zbi.push_back(-xbi);
 	std::cout << ' ' << std::setw(w) << xbi
 		  << ' ' << std::setw(w) << bip_prev
@@ -147,7 +149,7 @@ template<typename _Tp>
 
     // The roots of Bi'(x) interlace those of Ai'(x)
     // and are close to the roots of Ai(x).
-    std::vector<_Tp> zbip;
+    std::vector<Tp> zbip;
     std::cout << '\n'
 	      << ' ' << std::setw(w) << "x'"
 	      << ' ' << std::setw(w) << "Bi(x')"
@@ -157,14 +159,14 @@ template<typename _Tp>
       {
 	auto xbip = -zai[i];
 	auto xbip_prev = xbip;
-	auto bi_prev = _Tp(0);
-	auto bip_prev = _Tp(0);
-	//auto bipp_prev = _Tp(0);
+	auto bi_prev = Tp(0);
+	auto bip_prev = Tp(0);
+	//auto bipp_prev = Tp(0);
 	auto iter = 0;
 	do
 	  {
 	    xbip_prev = xbip;
-	    auto [x, ai, aip, bi, bip] = std::__detail::__airy(xbip);
+	    auto [x, ai, aip, bi, bip] = emsr::detail::airy(xbip);
 	    auto bipp = xbip * bi; // Bi''(x) = xBi(x)
 	    xbip -= bip / bipp;
 	    bi_prev = bi;
@@ -173,7 +175,7 @@ template<typename _Tp>
 	    if (++iter > max_iter)
 	      break;
 	  }
-	while (std::abs(xbip - xbip_prev) >= _S_eps * std::abs(xbip));
+	while (std::abs(xbip - xbip_prev) >= s_eps * std::abs(xbip));
 	zbip.push_back(-xbip);
 	std::cout << ' ' << std::setw(w) << xbip
 		  << ' ' << std::setw(w) << bi_prev

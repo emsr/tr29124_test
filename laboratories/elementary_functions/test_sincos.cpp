@@ -5,74 +5,64 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-#include <ext/float128_io.h>
 
-//namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
-//{
+#include <emsr/float128_io.h>
+#include <emsr/special_functions.h>
 
   /**
    * A struct to store a cosine and a sine value.
    */
-  template<typename _Tp>
-    struct __sincos_t
+  template<typename Tp>
+    struct sincos_t
     {
-      _Tp sin_v;
-      _Tp cos_v;
+      Tp sin_v;
+      Tp cos_v;
     };
-
-//} // namespace __gnu_cxx
-
-//namespace std _GLIBCXX_VISIBILITY(default)
-//{
-//// Implementation-space details.
-//namespace __detail
-//{
-//_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Default implementation of sincos.
    */
-  template<typename _Tp>
-    inline __gnu_cxx::__sincos_t<_Tp>
-    __sincos(_Tp __x)
-    { return __gnu_cxx::__sincos_t<_Tp>{std::sin(__x), std::cos(__x)}; }
+  template<typename Tp>
+    inline sincos_t<Tp>
+    sincos(Tp x)
+    { return sincos_t<Tp>{std::sin(x), std::cos(x)}; }
 
   template<>
-    inline __gnu_cxx::__sincos_t<float>
-    __sincos(float __x)
+    inline sincos_t<float>
+    sincos(float x)
     {
-      float __sin, __cos;
-      __builtin_sincosf(__x, &__sin, &__cos);
-      return __gnu_cxx::__sincos_t<float>{__sin, __cos};
+      float sin, cos;
+      __builtin_sincosf(x, &sin, &cos);
+      return sincos_t<float>{sin, cos};
     }
 
   template<>
-    inline __gnu_cxx::__sincos_t<double>
-    __sincos(double __x)
+    inline sincos_t<double>
+    sincos(double x)
     {
-      double __sin, __cos;
-      __builtin_sincos(__x, &__sin, &__cos);
-      return __gnu_cxx::__sincos_t<double>{__sin, __cos};
+      double sin, cos;
+      __builtin_sincos(x, &sin, &cos);
+      return sincos_t<double>{sin, cos};
     }
 
   template<>
-    inline __gnu_cxx::__sincos_t<long double>
-    __sincos(long double __x)
+    inline sincos_t<long double>
+    sincos(long double x)
     {
-      long double __sin, __cos;
-      __builtin_sincosl(__x, &__sin, &__cos);
-      return __gnu_cxx::__sincos_t<long double>{__sin, __cos};
+      long double sin, cos;
+      __builtin_sincosl(x, &sin, &cos);
+      return sincos_t<long double>{sin, cos};
     }
 
-#if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
+#ifdef EMSR_HAVE_FLOAT128
 /*
   template<>
-    inline __gnu_cxx::__sincos_t<__float128>
-    __sincos(__float128 __x)
+    inline sincos_t<__float128>
+    sincos(__float128 x)
     {
-      __float128 __sin, __cos;
-      ::sincosq(__x, &__sin, &__cos);
-      return __gnu_cxx::__sincos_t<__float128>{__sin, __cos};
+      __float128 sin, cos;
+      ::sincosq(x, &sin, &cos);
+      return sincos_t<__float128>{sin, cos};
     }
 */
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
@@ -80,69 +70,65 @@
   /**
    * Reperiodized sincos.
    */
-  template<typename _Tp>
-    __gnu_cxx::__sincos_t<_Tp>
-    __sincos_pi(_Tp __x)
+  template<typename Tp>
+    sincos_t<Tp>
+    sincos_pi(Tp x)
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-      const auto _S_NaN = __gnu_cxx::__quiet_NaN<_Tp>(__x);
-      if (std::isnan(__x))
-	return __gnu_cxx::__sincos_t<_Tp>{_S_NaN, _S_NaN};
-      else if (__x < _Tp{0})
+      const auto s_pi = emsr::pi_v<Tp>;
+      const auto s_NaN = emsr::quiet_NaN<Tp>(x);
+      if (std::isnan(x))
+	return sincos_t<Tp>{s_NaN, s_NaN};
+      else if (x < Tp{0})
 	{
-	  __gnu_cxx::__sincos_t<_Tp> __tempsc = __sincos_pi(-__x);
-	  return __gnu_cxx::__sincos_t<_Tp>{-__tempsc.__sin_v,
-					     __tempsc.__cos_v};
+	  sincos_t<Tp> tempsc = sincos_pi(-x);
+	  return sincos_t<Tp>{-tempsc.sin_v,
+					     tempsc.cos_v};
 	}
-      else if (__x < _Tp{0.5L})
-	return __sincos(_S_pi * __x);
-      else if (__x < _Tp{1})
+      else if (x < Tp{0.5L})
+	return sincos(s_pi * x);
+      else if (x < Tp{1})
 	{
-	  __gnu_cxx::__sincos_t<_Tp>
-	    __tempsc = __sincos(_S_pi * (_Tp{1} - __x));
-	  return __gnu_cxx::__sincos_t<_Tp>{__tempsc.__sin_v,
-					   -__tempsc.__cos_v};
+	  sincos_t<Tp>
+	    tempsc = sincos(s_pi * (Tp{1} - x));
+	  return sincos_t<Tp>{tempsc.sin_v,
+					   -tempsc.cos_v};
 	}
       else
 	{
-	  auto __nu = std::floor(__x);
-	  auto __arg = __x - __nu;
-	  auto __sign = (int(__nu) & 1) == 1 ? _Tp{-1} : _Tp{+1};
+	  auto nu = std::floor(x);
+	  auto arg = x - nu;
+	  auto sign = (int(nu) & 1) == 1 ? Tp{-1} : Tp{+1};
 
-	  auto __sinval = (__arg < _Tp{0.5L})
-			? std::sin(_S_pi * __arg)
-			: std::sin(_S_pi * (_Tp{1} - __arg));
-	  auto __cosval = std::cos(_S_pi * __arg);
-	  return __gnu_cxx::__sincos_t<_Tp>{__sign * __sinval,
-					    __sign * __cosval};
+	  auto sinval = (arg < Tp{0.5L})
+			? std::sin(s_pi * arg)
+			: std::sin(s_pi * (Tp{1} - arg));
+	  auto cosval = std::cos(s_pi * arg);
+	  return sincos_t<Tp>{sign * sinval,
+					    sign * cosval};
 	}
     }
 
   /**
    * Reperiodized complex constructor.
    */
-  template<typename _Tp>
-    inline std::complex<_Tp>
-    __polar_pi(_Tp __rho, _Tp __phi_pi)
+  template<typename Tp>
+    inline std::complex<Tp>
+    polar_pi(Tp rho, Tp phi_pi)
     {
-      __gnu_cxx::__sincos_t<_Tp> __sc = __sincos_pi(__phi_pi);
-      return std::complex<_Tp>(__rho * __sc.cos_v, __rho * __sc.sin_v);
+      sincos_t<Tp> sc = sincos_pi(phi_pi);
+      return std::complex<Tp>(rho * sc.cos_v, rho * sc.sin_v);
     }
 
-//_GLIBCXX_END_NAMESPACE_VERSION
-//} // namespace __detail
-//} // namespace std
 
-
-template<typename _Tp>
+template<typename Tp>
   void
-  test_sincos(_Tp proto = _Tp{})
+  test_sincos(Tp proto = Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    const auto pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto pi = emsr::pi_v<Tp>;
 
     std::cout << '\n';
     std::cout << std::setw(width) << "x"
@@ -164,21 +150,21 @@ template<typename _Tp>
 	      << std::setw(width) << "==============="
 	      << std::setw(width) << "==============="
 	      << '\n';
-    const auto del = _Tp{1} / _Tp{10};
+    const auto del = Tp{1} / Tp{10};
     for (int i = -40; i <= +40; ++i)
       {
 	auto x = del * i;
-	auto sc = std::__detail::__sincos(pi * x);
-	auto scpi = std::__detail::__sincos_pi(x);
+	auto sc = emsr::detail::sincos(pi * x);
+	auto scpi = emsr::detail::sincos_pi(x);
 	std::cout << std::setw(width) << x
-		  << std::setw(width) << sc.__sin_v
-		  << std::setw(width) << scpi.__sin_v
-		  << std::setw(width) << sc.__sin_v - scpi.__sin_v
-		  << std::setw(width) << scpi.__sin_v - std::sin(pi * x)
-		  << std::setw(width) << sc.__cos_v
-		  << std::setw(width) << scpi.__cos_v
-		  << std::setw(width) << sc.__cos_v - scpi.__cos_v
-		  << std::setw(width) << scpi.__cos_v - std::cos(pi * x)
+		  << std::setw(width) << sc.sin_v
+		  << std::setw(width) << scpi.sin_v
+		  << std::setw(width) << sc.sin_v - scpi.sin_v
+		  << std::setw(width) << scpi.sin_v - std::sin(pi * x)
+		  << std::setw(width) << sc.cos_v
+		  << std::setw(width) << scpi.cos_v
+		  << std::setw(width) << sc.cos_v - scpi.cos_v
+		  << std::setw(width) << scpi.cos_v - std::cos(pi * x)
 		  << '\n';
       }
   }
@@ -186,25 +172,25 @@ template<typename _Tp>
 int
 main()
 {
-  constexpr auto pif = __gnu_cxx::numbers::__pi_v<float>;
-  constexpr auto pi = __gnu_cxx::numbers::__pi_v<double>;
-  constexpr auto pil = __gnu_cxx::numbers::__pi_v<long double>;
+  constexpr auto pif = emsr::pi_v<float>;
+  constexpr auto pi = emsr::pi_v<double>;
+  constexpr auto pil = emsr::pi_v<long double>;
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  //constexpr auto piq = __gnu_cxx::numbers::__pi_v<__float128>;
+  //constexpr auto piq = emsr::pi_v<__float128>;
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
-  auto a1 [[maybe_unused]] = /*std::__detail::*/__sincos(pif * 1.5f);
-  auto a2 [[maybe_unused]] = /*std::__detail::*/__sincos_pi(1.5f);
+  auto a1 [[maybe_unused]] = /*emsr::detail::*/sincos(pif * 1.5f);
+  auto a2 [[maybe_unused]] = /*emsr::detail::*/sincos_pi(1.5f);
 
-  auto b1 [[maybe_unused]] = /*std::__detail::*/__sincos(pi * 1.5);
-  auto b2 [[maybe_unused]] = /*std::__detail::*/__sincos_pi(1.5);
+  auto b1 [[maybe_unused]] = /*emsr::detail::*/sincos(pi * 1.5);
+  auto b2 [[maybe_unused]] = /*emsr::detail::*/sincos_pi(1.5);
 
-  auto c1 [[maybe_unused]] = /*std::__detail::*/__sincos(pil * 1.5l);
-  auto c2 [[maybe_unused]] = /*std::__detail::*/__sincos_pi(1.5l);
+  auto c1 [[maybe_unused]] = /*emsr::detail::*/sincos(pil * 1.5l);
+  auto c2 [[maybe_unused]] = /*emsr::detail::*/sincos_pi(1.5l);
 
 #if !defined(__STRICT_ANSI__) && defined(_GLIBCXX_USE_FLOAT128)
-  //auto d1 [[maybe_unused]] = /*std::__detail::*/__sincos(piq * 1.5q);
-  //auto d2 [[maybe_unused]] = /*std::__detail::*/__sincos_pi(1.5q);
+  //auto d1 [[maybe_unused]] = /*emsr::detail::*/sincos(piq * 1.5q);
+  //auto d2 [[maybe_unused]] = /*emsr::detail::*/sincos_pi(1.5q);
 #endif // __STRICT_ANSI__ && _GLIBCXX_USE_FLOAT128
 
   test_sincos<double>();

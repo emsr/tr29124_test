@@ -9,8 +9,14 @@ namespace gsl
 /// Airy Ai function.
 double airy_ai(double x);
 
+/// Airy Ai function.
+double airy_ai_scaled(double x);
+
 /// Airy Bi function.
 double airy_bi(double x);
+
+/// Airy Bi function.
+double airy_bi_scaled(double x);
 
 /// Associated Laguerre polynomials.
 double assoc_laguerre(unsigned int n, unsigned int alpha, double x);
@@ -101,6 +107,9 @@ double expint(unsigned int n, double x);
 
 /// Hermite polynomials.
 double hermite(unsigned int n, double x);
+
+/// Probabilist Hermite polynomials.
+double hermite_he(unsigned int n, double x);
 
 /// Hypergeometric functions.
 double hyperg(double a, double b, double c, double x);

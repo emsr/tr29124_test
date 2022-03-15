@@ -25,5 +25,5 @@ add_custom_target(make_lab_parabolic_cylinder_functions_output_dir ALL
 
 add_executable(test_parab_cyl test_parab_cyl.cpp)
 target_include_directories(test_parab_cyl PRIVATE .)
-target_link_libraries(test_parab_cyl ${TR29124_LIBRARIES} quadmath)
+target_link_libraries(test_parab_cyl ${EMSR_LIBRARIES} quadmath)
 add_test(NAME run_test_parab_cyl COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_parab_cyl > output/test_parab_cyl.txt")

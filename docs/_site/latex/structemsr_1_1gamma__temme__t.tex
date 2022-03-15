@@ -1,0 +1,121 @@
+\hypertarget{structemsr_1_1gamma__temme__t}{}\doxysection{emsr\+::gamma\+\_\+temme\+\_\+t$<$ Tp $>$ Struct Template Reference}
+\label{structemsr_1_1gamma__temme__t}\index{emsr::gamma\_temme\_t$<$ Tp $>$@{emsr::gamma\_temme\_t$<$ Tp $>$}}
+
+
+A structure for the gamma functions required by the Temme series expansions of $ N_\nu(x) $ and $ K_\nu(x) $.  
+
+
+
+
+{\ttfamily \#include $<$specfun\+\_\+state.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Tp \mbox{\hyperlink{structemsr_1_1gamma__temme__t_ae63fdcba9d443ee26930d9d59dd3ec24}{gamma\+\_\+1\+\_\+value}}
+\begin{DoxyCompactList}\small\item\em The output function $ \Gamma_1(\mu) $. \end{DoxyCompactList}\item 
+Tp \mbox{\hyperlink{structemsr_1_1gamma__temme__t_ac22956fc65929372b0901066a6b30e6a}{gamma\+\_\+2\+\_\+value}}
+\begin{DoxyCompactList}\small\item\em The output function $ \Gamma_2(\mu) $. \end{DoxyCompactList}\item 
+Tp \mbox{\hyperlink{structemsr_1_1gamma__temme__t_a9525b85a2add0035942b0e2df717220b}{gamma\+\_\+minus\+\_\+value}}
+\begin{DoxyCompactList}\small\item\em The output function $ 1/\Gamma(1 - \mu) $. \end{DoxyCompactList}\item 
+Tp \mbox{\hyperlink{structemsr_1_1gamma__temme__t_a3799a05e1fbd62433b6c9b8289cba394}{gamma\+\_\+plus\+\_\+value}}
+\begin{DoxyCompactList}\small\item\em The output function $ 1/\Gamma(1 + \mu) $. \end{DoxyCompactList}\item 
+Tp \mbox{\hyperlink{structemsr_1_1gamma__temme__t_ae3feb37b1c292ba238062c54d6110d26}{mu\+\_\+arg}}
+\begin{DoxyCompactList}\small\item\em The input parameter of the gamma functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Tp$>$\newline
+struct emsr\+::gamma\+\_\+temme\+\_\+t$<$ Tp $>$}
+
+A structure for the gamma functions required by the Temme series expansions of $ N_\nu(x) $ and $ K_\nu(x) $. 
+
+\[ \Gamma_1 = \frac{1}{2\mu} \left[\frac{1}{\Gamma(1 - \mu)} - \frac{1}{\Gamma(1 + \mu)}\right] \] and \[ \Gamma_2 = \frac{1}{2} \left[\frac{1}{\Gamma(1 - \mu)} + \frac{1}{\Gamma(1 + \mu)}\right] \] where $ -1/2 <= \mu <= 1/2 $ is $ \mu = \nu - N $ and $ N $. is the nearest integer to $ \nu $. The values of $ \Gamma(1 + \mu) $ and $ \Gamma(1 - \mu) $ are returned as well.
+
+The accuracy requirements on this are high for $ |\mu| < 0 $. 
+
+Definition at line 715 of file specfun\+\_\+state.\+h.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structemsr_1_1gamma__temme__t_ae63fdcba9d443ee26930d9d59dd3ec24}\label{structemsr_1_1gamma__temme__t_ae63fdcba9d443ee26930d9d59dd3ec24}} 
+\index{emsr::gamma\_temme\_t$<$ Tp $>$@{emsr::gamma\_temme\_t$<$ Tp $>$}!gamma\_1\_value@{gamma\_1\_value}}
+\index{gamma\_1\_value@{gamma\_1\_value}!emsr::gamma\_temme\_t$<$ Tp $>$@{emsr::gamma\_temme\_t$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{gamma\_1\_value}{gamma\_1\_value}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+Tp \mbox{\hyperlink{structemsr_1_1gamma__temme__t}{emsr\+::gamma\+\_\+temme\+\_\+t}}$<$ Tp $>$\+::gamma\+\_\+1\+\_\+value}
+
+
+
+The output function $ \Gamma_1(\mu) $. 
+
+
+
+Definition at line 727 of file specfun\+\_\+state.\+h.
+
+\mbox{\Hypertarget{structemsr_1_1gamma__temme__t_ac22956fc65929372b0901066a6b30e6a}\label{structemsr_1_1gamma__temme__t_ac22956fc65929372b0901066a6b30e6a}} 
+\index{emsr::gamma\_temme\_t$<$ Tp $>$@{emsr::gamma\_temme\_t$<$ Tp $>$}!gamma\_2\_value@{gamma\_2\_value}}
+\index{gamma\_2\_value@{gamma\_2\_value}!emsr::gamma\_temme\_t$<$ Tp $>$@{emsr::gamma\_temme\_t$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{gamma\_2\_value}{gamma\_2\_value}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+Tp \mbox{\hyperlink{structemsr_1_1gamma__temme__t}{emsr\+::gamma\+\_\+temme\+\_\+t}}$<$ Tp $>$\+::gamma\+\_\+2\+\_\+value}
+
+
+
+The output function $ \Gamma_2(\mu) $. 
+
+
+
+Definition at line 730 of file specfun\+\_\+state.\+h.
+
+\mbox{\Hypertarget{structemsr_1_1gamma__temme__t_a9525b85a2add0035942b0e2df717220b}\label{structemsr_1_1gamma__temme__t_a9525b85a2add0035942b0e2df717220b}} 
+\index{emsr::gamma\_temme\_t$<$ Tp $>$@{emsr::gamma\_temme\_t$<$ Tp $>$}!gamma\_minus\_value@{gamma\_minus\_value}}
+\index{gamma\_minus\_value@{gamma\_minus\_value}!emsr::gamma\_temme\_t$<$ Tp $>$@{emsr::gamma\_temme\_t$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{gamma\_minus\_value}{gamma\_minus\_value}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+Tp \mbox{\hyperlink{structemsr_1_1gamma__temme__t}{emsr\+::gamma\+\_\+temme\+\_\+t}}$<$ Tp $>$\+::gamma\+\_\+minus\+\_\+value}
+
+
+
+The output function $ 1/\Gamma(1 - \mu) $. 
+
+
+
+Definition at line 724 of file specfun\+\_\+state.\+h.
+
+\mbox{\Hypertarget{structemsr_1_1gamma__temme__t_a3799a05e1fbd62433b6c9b8289cba394}\label{structemsr_1_1gamma__temme__t_a3799a05e1fbd62433b6c9b8289cba394}} 
+\index{emsr::gamma\_temme\_t$<$ Tp $>$@{emsr::gamma\_temme\_t$<$ Tp $>$}!gamma\_plus\_value@{gamma\_plus\_value}}
+\index{gamma\_plus\_value@{gamma\_plus\_value}!emsr::gamma\_temme\_t$<$ Tp $>$@{emsr::gamma\_temme\_t$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{gamma\_plus\_value}{gamma\_plus\_value}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+Tp \mbox{\hyperlink{structemsr_1_1gamma__temme__t}{emsr\+::gamma\+\_\+temme\+\_\+t}}$<$ Tp $>$\+::gamma\+\_\+plus\+\_\+value}
+
+
+
+The output function $ 1/\Gamma(1 + \mu) $. 
+
+
+
+Definition at line 721 of file specfun\+\_\+state.\+h.
+
+\mbox{\Hypertarget{structemsr_1_1gamma__temme__t_ae3feb37b1c292ba238062c54d6110d26}\label{structemsr_1_1gamma__temme__t_ae3feb37b1c292ba238062c54d6110d26}} 
+\index{emsr::gamma\_temme\_t$<$ Tp $>$@{emsr::gamma\_temme\_t$<$ Tp $>$}!mu\_arg@{mu\_arg}}
+\index{mu\_arg@{mu\_arg}!emsr::gamma\_temme\_t$<$ Tp $>$@{emsr::gamma\_temme\_t$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{mu\_arg}{mu\_arg}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+Tp \mbox{\hyperlink{structemsr_1_1gamma__temme__t}{emsr\+::gamma\+\_\+temme\+\_\+t}}$<$ Tp $>$\+::mu\+\_\+arg}
+
+
+
+The input parameter of the gamma functions. 
+
+
+
+Definition at line 718 of file specfun\+\_\+state.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cxx\+\_\+special\+\_\+functions/include/emsr/\mbox{\hyperlink{specfun__state_8h}{specfun\+\_\+state.\+h}}\end{DoxyCompactItemize}

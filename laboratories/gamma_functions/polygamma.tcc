@@ -1,12 +1,11 @@
-// Special functions -*- C++ -*-
 
 // Copyright (C) 2006-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,7 +21,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/sf_polygamma.tcc
+/** @file emsr/sf_polygamma.tcc
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{cmath}
  */
@@ -43,18 +42,15 @@
 //       W. T. Vetterling, B. P. Flannery, Cambridge University Press (1992),
 //       2nd ed, pp. 240-245
 
-#ifndef _GLIBCXX_BITS_SF_DIGAMMA_TCC
-#define _GLIBCXX_BITS_SF_DIGAMMA_TCC 1
+#ifndef SF_DIGAMMA_TCC
+#define SF_DIGAMMA_TCC 1
 
 #include <limits>
-#include <ext/fp_type_util.h>
+#include <emsr/fp_type_util.h>
 
-namespace std _GLIBCXX_VISIBILITY(default)
+namespace emsr
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-// Implementation-space details.
-namespace __detail
+namespace detail
 {
   /**
    *  @brief  Return the Hurwitz zeta function @f$ \zeta(x,s) @f$
@@ -77,54 +73,54 @@ namespace __detail
    *  	     \sum_{k=0}^{n} (-1)^k \frac{n!}{(n-k)!k!} (x+k)^{-s}
    *  @f]
    */
-  template<typename _Tp>
-    _Tp
-    __hurwitz_zeta_glob(const _Tp __a, const _Tp __s)
+  template<typename Tp>
+    Tp
+    hurwitz_zeta_glob(const Tp a, const Tp s)
     {
-      _Tp __zeta = _Tp(0);
+      Tp zeta = Tp(0);
 
       //  Max e exponent before overflow.
-      const _Tp __max_binom = std::numeric_limits<_Tp>::max_exponent10
-                            * std::log(_Tp(10)) - _Tp(1);
+      const Tp max_binom = std::numeric_limits<Tp>::max_exponent10
+                            * std::log(Tp(10)) - Tp(1);
 
-      const unsigned int __maxit = 10000;
-      for (unsigned int __i = 0; __i < __maxit; ++__i)
+      const unsigned int maxit = 10000;
+      for (unsigned int i = 0; i < maxit; ++i)
 	{
-          bool __punt = false;
-          _Tp __sgn = _Tp(1);
-          _Tp __term = _Tp(0);
-          for (unsigned int __j = 0; __j <= __i; ++__j)
+          bool punt = false;
+          Tp sgn = Tp(1);
+          Tp term = Tp(0);
+          for (unsigned int j = 0; j <= i; ++j)
             {
 #if _GLIBCXX_USE_C99_MATH_TR1
-              _Tp __binom = std::lgamma(_Tp(1 + __i))
-                          - std::lgamma(_Tp(1 + __j))
-                          - std::lgamma(_Tp(1 + __i - __j));
+              Tp binom = std::lgamma(Tp(1 + i))
+                          - std::lgamma(Tp(1 + j))
+                          - std::lgamma(Tp(1 + i - j));
 #else
-              _Tp __binom = __log_gamma(_Tp(1 + __i))
-                          - __log_gamma(_Tp(1 + __j))
-                          - __log_gamma(_Tp(1 + __i - __j));
+              Tp binom = log_gamma(Tp(1 + i))
+                          - log_gamma(Tp(1 + j))
+                          - log_gamma(Tp(1 + i - j));
 #endif
-              if (__binom > __max_binom)
+              if (binom > max_binom)
                 {
                   //  This only gets hit for x << 0.
-                  __punt = true;
+                  punt = true;
                   break;
                 }
-              __binom = std::exp(__binom);
-              __term += __sgn * __binom * std::pow(_Tp(__a + __j), -__s);
-              __sgn *= _Tp(-1);
+              binom = std::exp(binom);
+              term += sgn * binom * std::pow(Tp(a + j), -s);
+              sgn *= Tp(-1);
             }
-          if (__punt)
+          if (punt)
             break;
-          __term /= _Tp(__i + 1);
-          if (std::abs(__term / __zeta) < std::numeric_limits<_Tp>::epsilon())
+          term /= Tp(i + 1);
+          if (std::abs(term / zeta) < std::numeric_limits<Tp>::epsilon())
             break;
-          __zeta += __term;
+          zeta += term;
         }
 
-      __zeta /= __s - _Tp(1);
+      zeta /= s - Tp(1);
 
-      return __zeta;
+      return zeta;
     }
 
 
@@ -141,11 +137,11 @@ namespace __detail
    *     \zeta(s) = \zeta(1,s)
    *   @f]
    */
-  template<typename _Tp>
-    _Tp
-    __hurwitz_zeta(const _Tp __a, const _Tp __s)
+  template<typename Tp>
+    Tp
+    hurwitz_zeta(const Tp a, const Tp s)
     {
-      return __hurwitz_zeta_glob(__a, __s);
+      return hurwitz_zeta_glob(a, s);
     }
 
 
@@ -156,9 +152,9 @@ namespace __detail
    *     psi(x) = \frac{Gamma'(x)}{\Gamma(x)}
    *   @f]
    */
-  template<typename _Tp>
-    _Tp
-    __digamma(const _Tp __x)
+  template<typename Tp>
+    Tp
+    digamma(const Tp x)
     {
       ///  @todo Finish me!!!
     }
@@ -167,18 +163,18 @@ namespace __detail
   /**
    * 
    */
-  template<typename _Tp>
-    _Tp
-    __digamma_1(const _Tp __x)
+  template<typename Tp>
+    Tp
+    digamma_1(const Tp x)
     {
-      int __n = std::nearbyint(__x);
+      int n = std::nearbyint(x);
 
-      if (__x == _Tp(__n))
+      if (x == Tp(n))
         {
-          _Tp __digamma = -__numeric_constants<_Tp>::euler();
-          for (int __i = 1; __i <= __n; ++__i )
-            __digamma += _Tp(1) / __i;
-          return __digamma;
+          Tp digamma = -numeric_constants<Tp>::euler();
+          for (int i = 1; i <= n; ++i )
+            digamma += Tp(1) / i;
+          return digamma;
         }
       else
         {
@@ -195,33 +191,32 @@ namespace __detail
    *     psi^{(n)}(x) = (-1)^{n+1} m! \zeta(m+1,x)
    *   @f]
    */
-  template<typename _Tp>
-    _Tp
-    __polygamma(const unsigned int __n, const _Tp __x)
+  template<typename Tp>
+    Tp
+    polygamma(const unsigned int n, const Tp x)
     {
-      if (__x <= _Tp(0))
-        __throw_domain_error("__polygamma: srgument out of range");
-      else if (__n == 0)
-        return __polygamma(__x);
-      else if (__n == 1)
-        return __digamma_1(__x);
+      if (x <= Tp(0))
+        throw_domain_error("polygamma: srgument out of range");
+      else if (n == 0)
+        return polygamma(x);
+      else if (n == 1)
+        return digamma_1(x);
       else
         {
-          const _Tp __hzeta = __hurwitz_zeta(_Tp(__n + 1), __x);
+          const Tp hzeta = hurwitz_zeta(Tp(n + 1), x);
 #if _GLIBCXX_USE_C99_MATH_TR1
-          const _Tp __ln_nfact = std::lgamma(_Tp(__n + 1));
+          const Tp ln_nfact = std::lgamma(Tp(n + 1));
 #else
-          const _Tp __ln_nfact = __log_gamma(_Tp(__n + 1));
+          const Tp ln_nfact = log_gamma(Tp(n + 1));
 #endif
-          _Tp __result = std::exp(__ln_nfact) * __hzeta;
-          if (__n % 2 == 1)
-            __result = -__result;
-          return __result;
+          Tp result = std::exp(ln_nfact) * hzeta;
+          if (n % 2 == 1)
+            result = -result;
+          return result;
         }
     }
-} // namespace __detail
 
-_GLIBCXX_END_NAMESPACE_VERSION
-}
+} // namespace detail
+} // namespace emsr
 
-#endif // _GLIBCXX_BITS_SF_DIGAMMA_TCC
+#endif // SF_DIGAMMA_TCC

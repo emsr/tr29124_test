@@ -8,15 +8,17 @@
 #include <cmath>
 #include <stdexcept>
 #include <limits>
-#include <ext/float128_io.h>
 
-template<typename _Tp>
+#include <emsr/float128_io.h>
+#include <emsr/sf_mod_bessel.h>
+
+template<typename Tp>
   void
-  test_sph_bessel(_Tp proto = _Tp{})
+  test_sph_bessel(Tp proto = Tp{})
   {
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto s_pi = emsr::pi_v<Tp>;
 
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -42,21 +44,21 @@ template<typename _Tp>
 	std::cout << ' ' << std::setw(w) << fname("k_", n, "(x)");
 	std::cout << ' ' << std::setw(w) << "-(2x^2/pi) W[i,k]";
 	std::cout << '\n';
-	const auto del = _Tp{1} / _Tp{10};
+	const auto del = Tp{1} / Tp{10};
 	for (int i = 0; i <= 100; ++i)
 	  {
 	    auto x = i * del;
 	    auto Wjn = x * x;
-	    auto Wik = -_Tp{2} * Wjn / _S_pi;
+	    auto Wik = -Tp{2} * Wjn / s_pi;
 	    std::cout << ' ' << std::setw(w) << x;
 	    try
 	      {
-		auto Sph = std::__detail::__sph_bessel_jn(n, x);
-		std::cout << ' ' << std::setw(w) << Sph.__j_value;
-		std::cout << ' ' << std::setw(w) << Sph.__j_deriv;
-		std::cout << ' ' << std::setw(w) << Sph.__n_value;
-		std::cout << ' ' << std::setw(w) << Sph.__n_deriv;
-		std::cout << ' ' << std::setw(w) << Wjn * Sph.__Wronskian();
+		auto Sph = emsr::detail::sph_bessel_jn(n, x);
+		std::cout << ' ' << std::setw(w) << Sph.j_value;
+		std::cout << ' ' << std::setw(w) << Sph.j_deriv;
+		std::cout << ' ' << std::setw(w) << Sph.n_value;
+		std::cout << ' ' << std::setw(w) << Sph.n_deriv;
+		std::cout << ' ' << std::setw(w) << Wjn * Sph.Wronskian();
 	      }
 	    catch (std::exception& err)
 	      {
@@ -64,12 +66,12 @@ template<typename _Tp>
 	      }
 	    try
 	      {
-		auto Sph = std::__detail::__sph_bessel_ik(n, x);
-		std::cout << ' ' << std::setw(w) << Sph.__i_value;
-		std::cout << ' ' << std::setw(w) << Sph.__i_deriv;
-		std::cout << ' ' << std::setw(w) << Sph.__k_value;
-		std::cout << ' ' << std::setw(w) << Sph.__k_deriv;
-		std::cout << ' ' << std::setw(w) << Wik * Sph.__Wronskian();
+		auto Sph = emsr::detail::sph_bessel_ik(n, x);
+		std::cout << ' ' << std::setw(w) << Sph.i_value;
+		std::cout << ' ' << std::setw(w) << Sph.i_deriv;
+		std::cout << ' ' << std::setw(w) << Sph.k_value;
+		std::cout << ' ' << std::setw(w) << Sph.k_deriv;
+		std::cout << ' ' << std::setw(w) << Wik * Sph.Wronskian();
 	      }
 	    catch (std::exception& err)
 	      {
@@ -80,11 +82,11 @@ template<typename _Tp>
       }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_std_bessel(_Tp proto = _Tp{})
+  test_std_bessel(Tp proto = Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto w = 8 + std::cout.precision();
 
@@ -101,15 +103,15 @@ template<typename _Tp>
 	std::cout << ' ' << std::setw(w) << "x";
 	std::cout << ' ' << std::setw(w) << fname("j_", n, "(x)");
 	std::cout << ' ' << std::setw(w) << fname("n_", n, "(x)");
-	const auto del = _Tp{1} / _Tp{10};
+	const auto del = Tp{1} / Tp{10};
 	for (int i = 0; i <= 100; ++i)
 	  {
 	    auto x = i * del;
 	    std::cout << ' ' << std::setw(w) << x;
 	    try
 	      {
-		auto jx = std::sph_bessel(n, x);
-		auto nx = std::sph_neumann(n, x);
+		auto jx = emsr::sph_bessel(n, x);
+		auto nx = emsr::sph_neumann(n, x);
 		std::cout << ' ' << std::setw(w) << jx;
 		std::cout << ' ' << std::setw(w) << nx;
 	      }

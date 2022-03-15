@@ -6,27 +6,29 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
-#include <ext/float128_io.h>
+
+#include <emsr/float128_io.h>
+#include <emsr/numeric_limits.h>
 
 int
 main()
 {
   //using _Tp = __float128;
   using _Tp = long double;
-  std::cout.precision(__gnu_cxx::__digits10<_Tp>());
-  //constexpr auto _S_1_sqrtpi{0.5641895835477562869480794515607726L};
-  constexpr auto _S_H{0.2L};
+  std::cout.precision(emsr::digits10<_Tp>());
+  //constexpr auto s_1_sqrtpi{0.5641895835477562869480794515607726L};
+  constexpr auto s_H{0.2L};
   /// @todo this needs some compile-time construction!
-  constexpr auto _S_n_max = 100;
-  static _Tp _S_c[_S_n_max];
-  //static auto __init = false;
-  _S_c[0] = _Tp{1};
-  for (unsigned int __i = 0; __i < _S_n_max; ++__i)
+  constexpr auto s_n_max = 100;
+  static _Tp s_c[s_n_max];
+  //static auto init = false;
+  s_c[0] = _Tp{1};
+  for (unsigned int i = 0; i < s_n_max; ++i)
    {
-     _Tp __y = _Tp(2 * __i + 1) * _S_H;
-     _S_c[__i] = std::exp(-__y * __y);
+     _Tp y = _Tp(2 * i + 1) * s_H;
+     s_c[i] = std::exp(-y * y);
    }
   std::cout << std::scientific;
-  for (auto __CC : _S_c)
-    std::cout << '\t' << __CC << "L,\n";
+  for (auto CC : s_c)
+    std::cout << '\t' << CC << "L,\n";
 }

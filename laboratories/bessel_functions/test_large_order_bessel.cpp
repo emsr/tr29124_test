@@ -7,84 +7,88 @@
 #include <iostream>
 #include <iomanip>
 
-template<typename _Tp>
+#include <emsr/numeric_limits.h>
+#include <emsr/sf_bessel.h>
+#include <emsr/sf_mod_bessel.h>
+
+template<typename Tp>
   void
   test_cyl_bessel()
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    std::cout.precision(emsr::digits10<Tp>());
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    const auto pi = _Tp{3.1415926535897932384626433832795029L};
-    auto wronski = [pi](_Tp, _Tp x) ->_Tp { return 2 / (pi * x); };
+    const auto pi = Tp{3.1415926535897932384626433832795029L};
+    auto wronski = [pi](Tp, Tp x) ->Tp { return 2 / (pi * x); };
 
-    std::vector<_Tp> nu_vals{120, 128, 136, 160, 200};
+    std::vector<Tp> nu_vals{120, 128, 136, 160, 200};
     for (auto nu : nu_vals)
       {
 	std::cout << '\n';
 	for (int i = -10; i <= +10; ++i)
 	  {
-	    auto x = nu + i * nu / _Tp{100};
-	    auto bessel = std::__detail::__cyl_bessel_jn(nu, x);
+	    auto x = nu + i * nu / Tp{100};
+	    auto bessel = emsr::detail::cyl_bessel_jn(nu, x);
 	    auto Wtrue = wronski(nu, x);
-	    auto Wcalc = bessel.__Wronskian();
+	    auto Wcalc = bessel.Wronskian();
 	    std::cout << ' ' << std::setw(w) << Wtrue
 		      << ' ' << std::setw(w) << Wcalc
 		      << ' ' << std::setw(w) << (Wcalc - Wtrue) / Wtrue
-		      << ' ' << std::setw(w) << bessel.__nu_arg
-		      << ' ' << std::setw(w) << bessel.__x_arg
-		      << ' ' << std::setw(w) << bessel.__J_value
-		      << ' ' << std::setw(w) << bessel.__J_deriv
-		      << ' ' << std::setw(w) << bessel.__N_value
-		      << ' ' << std::setw(w) << bessel.__N_deriv
+		      << ' ' << std::setw(w) << bessel.nu_arg
+		      << ' ' << std::setw(w) << bessel.x_arg
+		      << ' ' << std::setw(w) << bessel.J_value
+		      << ' ' << std::setw(w) << bessel.J_deriv
+		      << ' ' << std::setw(w) << bessel.N_value
+		      << ' ' << std::setw(w) << bessel.N_deriv
 		      << '\n';
 	  }
       }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_mod_cyl_bessel()
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    std::cout.precision(emsr::digits10<Tp>());
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    auto wronski = [](_Tp, _Tp x) ->_Tp { return -1 / x; };
+    auto wronski = [](Tp, Tp x) ->Tp { return -1 / x; };
 
-    std::vector<_Tp> nu_vals{120, 128, 136, 160, 200};
+    std::vector<Tp> nu_vals{120, 128, 136, 160, 200};
     for (auto nu : nu_vals)
       {
 	std::cout << '\n';
 	for (int i = -10; i <= +10; ++i)
 	  {
-	    auto x = nu + i * nu / _Tp{100};
-	    auto bessel = std::__detail::__cyl_bessel_ik(nu, x);
+	    auto x = nu + i * nu / Tp{100};
+	    auto bessel = emsr::detail::cyl_bessel_ik(nu, x);
 	    auto Wtrue = wronski(nu, x);
-	    auto Wcalc = bessel.__Wronskian();
+	    auto Wcalc = bessel.Wronskian();
 	    std::cout << ' ' << std::setw(w) << Wtrue
 		      << ' ' << std::setw(w) << Wcalc
 		      << ' ' << std::setw(w) << (Wcalc - Wtrue) / Wtrue
-		      << ' ' << std::setw(w) << bessel.__nu_arg
-		      << ' ' << std::setw(w) << bessel.__x_arg
-		      << ' ' << std::setw(w) << bessel.__I_value
-		      << ' ' << std::setw(w) << bessel.__I_deriv
-		      << ' ' << std::setw(w) << bessel.__K_value
-		      << ' ' << std::setw(w) << bessel.__K_deriv
+		      << ' ' << std::setw(w) << bessel.nu_arg
+		      << ' ' << std::setw(w) << bessel.x_arg
+		      << ' ' << std::setw(w) << bessel.I_value
+		      << ' ' << std::setw(w) << bessel.I_deriv
+		      << ' ' << std::setw(w) << bessel.K_value
+		      << ' ' << std::setw(w) << bessel.K_deriv
 		      << '\n';
 	  }
       }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_sph_bessel()
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    std::cout.precision(emsr::digits10<Tp>());
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    auto wronski = [](int, _Tp x) ->_Tp { return 1 / (x * x); };
+    auto wronski = [](int, Tp x) ->Tp { return 1 / (x * x); };
 
     std::vector<int> n_vals{120, 128, 136, 160, 200};
     for (auto n : n_vals)
@@ -92,54 +96,54 @@ template<typename _Tp>
 	std::cout << '\n';
 	for (int i = -10; i <= +10; ++i)
 	  {
-	    auto x = n + i * n / _Tp{100};
-	    auto bessel = std::__detail::__sph_bessel_jn(n, x);
+	    auto x = n + i * n / Tp{100};
+	    auto bessel = emsr::detail::sph_bessel_jn(n, x);
 	    auto Wtrue = wronski(n, x);
-	    auto Wcalc = bessel.__Wronskian();
+	    auto Wcalc = bessel.Wronskian();
 	    std::cout << ' ' << std::setw(w) << Wtrue
 		      << ' ' << std::setw(w) << Wcalc
 		      << ' ' << std::setw(w) << (Wcalc - Wtrue) / Wtrue
-		      << ' ' << std::setw(w) << bessel.__n_arg
-		      << ' ' << std::setw(w) << bessel.__x_arg
-		      << ' ' << std::setw(w) << bessel.__j_value
-		      << ' ' << std::setw(w) << bessel.__j_deriv
-		      << ' ' << std::setw(w) << bessel.__n_value
-		      << ' ' << std::setw(w) << bessel.__n_deriv
+		      << ' ' << std::setw(w) << bessel.n_arg
+		      << ' ' << std::setw(w) << bessel.x_arg
+		      << ' ' << std::setw(w) << bessel.j_value
+		      << ' ' << std::setw(w) << bessel.j_deriv
+		      << ' ' << std::setw(w) << bessel.n_value
+		      << ' ' << std::setw(w) << bessel.n_deriv
 		      << '\n';
 	  }
       }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_mod_sph_bessel()
   {
-    std::cout.precision(__gnu_cxx::__digits10<_Tp>());
+    std::cout.precision(emsr::digits10<Tp>());
     auto w = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    const auto pi = _Tp{3.1415926535897932384626433832795029L};
-    auto wronski = [pi](_Tp, _Tp x) ->_Tp { return -pi / (2 * x * x); };
+    const auto pi = Tp{3.1415926535897932384626433832795029L};
+    auto wronski = [pi](Tp, Tp x) ->Tp { return -pi / (2 * x * x); };
 
-    std::vector<_Tp> n_vals{120, 128, 136, 160, 200};
+    std::vector<Tp> n_vals{120, 128, 136, 160, 200};
     for (auto n : n_vals)
       {
 	std::cout << '\n';
 	for (int i = -10; i <= +10; ++i)
 	  {
-	    auto x = n + i * n / _Tp{100};
-	    auto bessel = std::__detail::__sph_bessel_ik(n, x);
+	    auto x = n + i * n / Tp{100};
+	    auto bessel = emsr::detail::sph_bessel_ik(n, x);
 	    auto Wtrue = wronski(n, x);
-	    auto Wcalc = bessel.__Wronskian();
+	    auto Wcalc = bessel.Wronskian();
 	    std::cout << ' ' << std::setw(w) << Wtrue
 		      << ' ' << std::setw(w) << Wcalc
 		      << ' ' << std::setw(w) << (Wcalc - Wtrue) / Wtrue
-		      << ' ' << std::setw(w) << bessel.__n_arg
-		      << ' ' << std::setw(w) << bessel.__x_arg
-		      << ' ' << std::setw(w) << bessel.__i_value
-		      << ' ' << std::setw(w) << bessel.__i_deriv
-		      << ' ' << std::setw(w) << bessel.__k_value
-		      << ' ' << std::setw(w) << bessel.__k_deriv
+		      << ' ' << std::setw(w) << bessel.n_arg
+		      << ' ' << std::setw(w) << bessel.x_arg
+		      << ' ' << std::setw(w) << bessel.i_value
+		      << ' ' << std::setw(w) << bessel.i_deriv
+		      << ' ' << std::setw(w) << bessel.k_value
+		      << ' ' << std::setw(w) << bessel.k_deriv
 		      << '\n';
 	  }
       }

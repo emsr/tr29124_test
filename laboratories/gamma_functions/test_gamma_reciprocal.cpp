@@ -16,39 +16,46 @@
 #include <string>
 #include <complex>
 
-#include <ext/float128_io.h>
+#include <emsr/float128_io.h>
+#include <emsr/math_constants.h>
+#include <emsr/sf_gamma.h>
 
 //#include <mpreal.h>
-//#include <ext/math_const_mpreal.h>
+//#include <emsr/math_const_mpreal.h>
 //#include <math_mpreal.h>
-//#include <bits/numeric_limits_mpreal.h>
+//#include <emsr/numeric_limits_mpreal.h>
+#include <emsr/numeric_limits.h>
+#include <emsr/sf_gamma.h>
+#include <emsr/sf_zeta.h>
+#include <emsr/specfun_state.h>
+#include <emsr/sf_bessel.h> // gamma_temme
 
   /**
    * 
    */
-  template<typename _Tp>
-    std::vector<__gnu_cxx::__num_traits_t<_Tp>>
-    __gamma_reciprocal_series_coef(std::size_t __n, _Tp __proto = _Tp{})
+  template<typename Tp>
+    std::vector<emsr::num_traits_t<Tp>>
+    gamma_reciprocal_series_coef(std::size_t n, Tp proto = Tp{})
     {
-      using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__proto));
-      const auto _S_gamma_e = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
-      auto __sign = [](std::size_t __i){ return (__i & 1u) == 1u ? -1 : +1; };
-      std::vector<_Real> __c;
-      __c.push_back(_Real{0});
-      __c.push_back(_Real{1});
-      for (auto __j = 1u; __j < __n; ++__j)
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
+      const auto s_eps = emsr::epsilon(std::real(proto));
+      const auto s_gamma_e = emsr::egamma_v<Tp>;
+      auto sign = [](std::size_t i){ return (i & 1u) == 1u ? -1 : +1; };
+      std::vector<Real> c;
+      c.push_back(Real{0});
+      c.push_back(Real{1});
+      for (auto j = 1u; j < n; ++j)
 	{
-	  auto __sum = _Real{0};
-	  for (auto __k = 1u; __k < __j; ++__k)
-	    __sum += __sign(__k) * __c[__k]
-		   * (_Real{1} + std::__detail::__riemann_zeta_m_1(_Real(__j + 1 - __k)));
-	  __c.push_back((_S_gamma_e * __c[__j] + __sign(__j) * __sum) / __j);
-	  if (std::abs(__c.back()) < _S_eps)
+	  auto sum = Real{0};
+	  for (auto k = 1u; k < j; ++k)
+	    sum += sign(k) * c[k]
+		   * (Real{1} + emsr::detail::riemann_zeta_m_1(Real(j + 1 - k)));
+	  c.push_back((s_gamma_e * c[j] + sign(j) * sum) / j);
+	  if (std::abs(c.back()) < s_eps)
 	    break;
 	}
-      return __c;
+      return c;
     }
 
   /**
@@ -64,12 +71,12 @@
    * @f]
    * where @f$ c_1 = 1 @f$
    */
-  template<typename _Tp>
-    _Tp
-    __gamma_reciprocal_series(_Tp __a)
+  template<typename Tp>
+    Tp
+    gamma_reciprocal_series(Tp a)
     {
       static constexpr std::array<__float128, 50>
-      _S_c
+      s_c
       {{
 	 0.0000000000000000000000000000000000000000Q,
 	 1.0000000000000000000000000000000000000000Q,
@@ -122,18 +129,18 @@
 	-0.0000000000000000000000000000000000000013Q,
 	 0.0000000000000000000000000000000000000002Q,
       }};
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
-      auto __ak = _Tp{1};
-      auto __gam = _Tp{0};
-      for (auto __k = 1u; __k < _S_c.size(); ++__k)
+      const auto s_eps = emsr::epsilon(std::real(a));
+      auto ak = Tp{1};
+      auto gam = Tp{0};
+      for (auto k = 1u; k < s_c.size(); ++k)
 	{
-	  __ak *= __a;
-	  auto __term = _S_c[__k] * __ak;
-	  __gam += __term;
-	  if (std::abs(__term) < _S_eps)
+	  ak *= a;
+	  auto term = s_c[k] * ak;
+	  gam += term;
+	  if (std::abs(term) < s_eps)
 	    break;
 	}
-      return __gam;
+      return gam;
     }
 
   /**
@@ -144,22 +151,22 @@
    *                     (\left 1+\frac{a}{k}\right)e^{-a/k}
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    __gamma_reciprocal_prod(_Tp __a)
+  template<typename Tp>
+    Tp
+    gamma_reciprocal_prod(Tp a)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(std::real(__a));
-      const auto _S_gamma_e = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
-      const auto _S_max_iter = 10000;
-      auto __gam = __a * std::exp(_S_gamma_e * __a);
-      for (auto __k = 1u; __k < _S_max_iter; ++__k)
+      const auto s_eps = emsr::epsilon(std::real(a));
+      const auto s_gamma_e = emsr::egamma_v<Tp>;
+      const auto s_max_iter = 10000;
+      auto gam = a * std::exp(s_gamma_e * a);
+      for (auto k = 1u; k < s_max_iter; ++k)
 	{
-	  const auto __rat = __a / _Tp(__k);
-	  __gam *= (_Tp{1} + __rat) * std::exp(-__rat);
-	  if (std::abs(__rat) < _S_eps)
+	  const auto rat = a / Tp(k);
+	  gam *= (Tp{1} + rat) * std::exp(-rat);
+	  if (std::abs(rat) < s_eps)
 	    break;
 	}
-      return __gam;
+      return gam;
     }
 
   /**
@@ -168,53 +175,53 @@
    *   \frac{1}{\Gamma(a)}
    * @f]
    *
-   * @param __a The argument of the reciprocal of the gamma function.
+   * @param a The argument of the reciprocal of the gamma function.
    * @return  The reciprocal of the gamma function.
    */
-  template<typename _Tp>
-    _Tp
-    __gamma_reciprocal(_Tp __a)
+  template<typename Tp>
+    Tp
+    gamma_reciprocal(Tp a)
     {
-      using _Real = __gnu_cxx::__num_traits_t<_Tp>;
+      using Real = emsr::num_traits_t<Tp>;
 
-      if (std::isnan(__a))
-	return __gnu_cxx::__quiet_NaN(__a);
+      if (std::isnan(a))
+	return emsr::quiet_NaN(a);
       else
 	{
-	  const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-	  const auto __an = __gnu_cxx::__fp_is_integer(__a);
-	  if (__an)
+	  const auto s_pi = emsr::pi_v<Tp>;
+	  const auto an = emsr::fp_is_integer(a);
+	  if (an)
 	    {
-	      auto __n = __an();
-	      if (__n <= 0)
-		return _Tp{0};
-	      else if (__n < int(std::__detail::_S_num_factorials<_Real>))
-		return _Tp{1}
-		    / _Real(std::__detail::_S_factorial_table[__n - 1].__factorial);
+	      auto n = an();
+	      if (n <= 0)
+		return Tp{0};
+	      else if (n < int(emsr::detail::s_num_factorials<Real>))
+		return Tp{1}
+		    / Real(emsr::detail::s_factorial_table[n - 1].factorial);
 	      else
 	        {
-		  auto __k = int(std::__detail::_S_num_factorials<_Real>);
-		  auto __rgam = _Tp{1}
-			      / _Real(std::__detail::_S_factorial_table[__k - 1].__factorial);
-		  while (__k < __n && std::abs(__rgam) > _Real{0})
-		    __rgam /= _Real(__k++);
-		  return __rgam;
+		  auto k = int(emsr::detail::s_num_factorials<Real>);
+		  auto rgam = Tp{1}
+			      / Real(emsr::detail::s_factorial_table[k - 1].factorial);
+		  while (k < n && std::abs(rgam) > Real{0})
+		    rgam /= Real(k++);
+		  return rgam;
 		}
 	    }
-	  else if (std::real(__a) > _Real{1})
+	  else if (std::real(a) > Real{1})
 	    {
-	      auto __n = int(std::floor(std::real(__a)));
-	      auto __nu = __a - _Tp(__n);
-	      auto __rgam = __gamma_reciprocal_series(__nu);
-	      while (std::real(__a) > _Real{1} && std::abs(__rgam) > _Tp{0})
-	        __rgam /= (__a -= _Real{1});
-	      return __rgam;
+	      auto n = int(std::floor(std::real(a)));
+	      auto nu = a - Tp(n);
+	      auto rgam = gamma_reciprocal_series(nu);
+	      while (std::real(a) > Real{1} && std::abs(rgam) > Tp{0})
+	        rgam /= (a -= Real{1});
+	      return rgam;
 	    }
-	  else if (std::real(__a) > _Real{0})
-	    return __gamma_reciprocal_series(__a);
+	  else if (std::real(a) > Real{0})
+	    return gamma_reciprocal_series(a);
 	  else
-	    return std::__detail::__sin_pi(__a)
-		 * std::__detail::__gamma(_Tp{1} - __a) / _S_pi;
+	    return emsr::detail::sin_pi(a)
+		 * emsr::detail::gamma(Tp{1} - a) / s_pi;
 	}
     }
 
@@ -237,19 +244,19 @@
    *
    * The accuracy requirements on this are high for @f$ |\mu| < 0 @f$.
    */
-  template<typename _Tp>
-    struct __gamma_temme_t
+  template<typename Tp>
+    struct gamma_temme_t
     {
       /// The input parameter of the gamma functions
-      _Tp __mu_arg;
+      Tp mu_arg;
       /// The output function @f$ 1/\Gamma(1 + \mu) @f$
-      _Tp __gamma_plus_value;
+      Tp gamma_plus_value;
       /// The output function @f$ 1/\Gamma(1 - \mu) @f$
-      _Tp __gamma_minus_value;
+      Tp gamma_minus_value;
       /// The output function @f$ \Gamma_1(\mu) @f$
-      _Tp __gamma_1_value;
+      Tp gamma_1_value;
       /// The output function @f$ \Gamma_2(\mu) @f$
-      _Tp __gamma_2_value;
+      Tp gamma_2_value;
     };
 
   /**
@@ -271,99 +278,99 @@
    *
    * The accuracy requirements on this are exquisite.
    *
-   * @param __mu     The input parameter of the gamma functions.
-   * @param[out] __gam1   The output function @f$ \Gamma_1(\mu) @f$
-   * @param[out] __gam2   The output function @f$ \Gamma_2(\mu) @f$
-   * @param[out] __gamp  The output function @f$ 1/\Gamma(1 + \mu) @f$
-   * @param[out] __gamm  The output function @f$ 1/\Gamma(1 - \mu) @f$
+   * @param mu     The input parameter of the gamma functions.
+   * @param[out] gam1   The output function @f$ \Gamma_1(\mu) @f$
+   * @param[out] gam2   The output function @f$ \Gamma_2(\mu) @f$
+   * @param[out] gamp  The output function @f$ 1/\Gamma(1 + \mu) @f$
+   * @param[out] gamm  The output function @f$ 1/\Gamma(1 - \mu) @f$
    */
-  template<typename _Tp>
-    __gnu_cxx::__gamma_temme_t<_Tp>
-    __gamma_temme(_Tp __mu)
+  template<typename Tp>
+    emsr::gamma_temme_t<Tp>
+    gamma_temme(Tp mu)
     {
-      using __gammat_t = __gnu_cxx::__gamma_temme_t<_Tp>;
-      const auto _S_eps = __gnu_cxx::__epsilon(__mu);
-      const auto _S_gamma_E = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
+      using gammat_t = emsr::gamma_temme_t<Tp>;
+      const auto s_eps = emsr::epsilon(mu);
+      const auto s_gamma_E = emsr::egamma_v<Tp>;
 
-      if (std::abs(__mu) < _S_eps)
-	return __gammat_t{__mu, _Tp{1}, _Tp{1}, -_S_gamma_E, _Tp{1}};
+      if (std::abs(mu) < s_eps)
+	return gammat_t{mu, Tp{1}, Tp{1}, -s_gamma_E, Tp{1}};
       else
 	{
-	  _Tp __gamp, __gamm;
-	  if (std::real(__mu) <= _Tp{0})
+	  Tp gamp, gamm;
+	  if (std::real(mu) <= Tp{0})
 	    {
-	      __gamp = __gamma_reciprocal_series(_Tp{1} + __mu);
-	      __gamm = -__gamma_reciprocal_series(-__mu) / __mu;
+	      gamp = gamma_reciprocal_series(Tp{1} + mu);
+	      gamm = -gamma_reciprocal_series(-mu) / mu;
 	    }
 	  else
 	    {
-	      __gamp = __gamma_reciprocal_series(__mu) / __mu;
-	      __gamm = __gamma_reciprocal_series(_Tp{1} - __mu);
+	      gamp = gamma_reciprocal_series(mu) / mu;
+	      gamm = gamma_reciprocal_series(Tp{1} - mu);
 	    }
-	  auto __gam1 = (__gamm - __gamp) / (_Tp{2} * __mu);
-	  auto __gam2 = (__gamm + __gamp) / _Tp{2};
-	  return __gammat_t{__mu, __gamp, __gamm, __gam1, __gam2};
+	  auto gam1 = (gamm - gamp) / (Tp{2} * mu);
+	  auto gam2 = (gamm + gamp) / Tp{2};
+	  return gammat_t{mu, gamp, gamm, gam1, gam2};
 	}
     }
 
-  template<typename _Tp>
-    __gamma_temme_t<_Tp>
-    __gamma_temme_std(_Tp __mu)
+  template<typename Tp>
+    gamma_temme_t<Tp>
+    gamma_temme_std(Tp mu)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__mu);
-      const auto _S_gamma_E = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
-      auto __gamp = _Tp{1} / std::tgamma(_Tp{1} + __mu);
-      auto __gamm = _Tp{1} / std::tgamma(_Tp{1} - __mu);
-      auto __gam1 = (std::abs(__mu) < _S_eps)
-		  ? -_S_gamma_E
-		  : (__gamm - __gamp) / (_Tp{2} * __mu);
-      auto __gam2 = (__gamm + __gamp) / _Tp{2};
+      const auto s_eps = emsr::epsilon(mu);
+      const auto s_gamma_E = emsr::egamma_v<Tp>;
+      auto gamp = Tp{1} / std::tgamma(Tp{1} + mu);
+      auto gamm = Tp{1} / std::tgamma(Tp{1} - mu);
+      auto gam1 = (std::abs(mu) < s_eps)
+		  ? -s_gamma_E
+		  : (gamm - gamp) / (Tp{2} * mu);
+      auto gam2 = (gamm + gamp) / Tp{2};
 
-      return __gamma_temme_t<_Tp>{__mu, __gamp, __gamm, __gam1, __gam2};
+      return gamma_temme_t<Tp>{mu, gamp, gamm, gam1, gam2};
     }
 
 
-template<typename _Tp>
+template<typename Tp>
   void
-  plot_gamma_reciprocal(_Tp __proto)
+  plot_gamma_reciprocal(Tp proto)
   {
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
-    const auto del = _Tp{1} / _Tp{100};
-    for (auto __k = -500; __k <= 1000; ++__k)
+    const auto del = Tp{1} / Tp{100};
+    for (auto k = -500; k <= 1000; ++k)
       {
-	auto __a = __k * del;
-	auto __gammar = __gamma_reciprocal(__a);
-	std::cout << ' ' << std::setw(width) << __a
-		<< ' ' << std::setw(width) << __gammar
+	auto a = k * del;
+	auto gammar = gamma_reciprocal(a);
+	std::cout << ' ' << std::setw(width) << a
+		<< ' ' << std::setw(width) << gammar
     		<< '\n';
       }
     std::cout << "\n\n";
   }
 
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_gamma_reciprocal(_Tp __proto)
+  test_gamma_reciprocal(Tp proto)
   {
-    using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using Val = Tp;
+    using Real = emsr::num_traits_t<Val>;
 
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
-    std::size_t __n = 50;
-    auto __c = __gamma_reciprocal_series_coef<_Real>(__n, __proto);
+    std::size_t n = 50;
+    auto c = gamma_reciprocal_series_coef<Real>(n, proto);
 
     std::cout << '\n'
 	      << ' ' << std::setw(4) << "k"
 	      << ' ' << std::setw(width) << "c"
     	      << '\n';
-    for (auto __k = 0u; __k < __c.size(); ++__k)
-      std::cout << ' ' << std::setw(4) << __k
-		<< ' ' << std::setw(width) << __c[__k]
+    for (auto k = 0u; k < c.size(); ++k)
+      std::cout << ' ' << std::setw(4) << k
+		<< ' ' << std::setw(width) << c[k]
     		<< '\n';
 
     std::cout << '\n'
@@ -376,31 +383,31 @@ template<typename _Tp>
 	      << ' ' << std::setw(width) << "del prd"
 	      << ' ' << std::setw(width) << "del"
     	      << '\n';
-    const auto del = _Tp{1} / _Tp{100};
-    for (auto __k = -500; __k <= 1000; ++__k)
+    const auto del = Tp{1} / Tp{100};
+    for (auto k = -500; k <= 1000; ++k)
       {
-	auto __a = __k * del;
-	auto __gammargs = __gamma_reciprocal_series(__a);
-	auto __gammargp = __gamma_reciprocal_prod(__a);
-	auto __gammarstd = _Tp{1} / std::tgamma(__a);
-	auto __gammar = __gamma_reciprocal(__a);
-	std::cout << ' ' << std::setw(width) << __a
-		<< ' ' << std::setw(width) << __gammargs
-		<< ' ' << std::setw(width) << __gammargp
-		<< ' ' << std::setw(width) << __gammarstd
-		<< ' ' << std::setw(width) << __gammar
-		<< ' ' << std::setw(width) << (__gammargs - __gammarstd) / __gammarstd
-		<< ' ' << std::setw(width) << (__gammargp - __gammarstd) / __gammarstd
-		<< ' ' << std::setw(width) << (__gammar - __gammarstd) / __gammarstd
+	auto a = k * del;
+	auto gammargs = gamma_reciprocal_series(a);
+	auto gammargp = gamma_reciprocal_prod(a);
+	auto gammarstd = Tp{1} / std::tgamma(a);
+	auto gammar = gamma_reciprocal(a);
+	std::cout << ' ' << std::setw(width) << a
+		<< ' ' << std::setw(width) << gammargs
+		<< ' ' << std::setw(width) << gammargp
+		<< ' ' << std::setw(width) << gammarstd
+		<< ' ' << std::setw(width) << gammar
+		<< ' ' << std::setw(width) << (gammargs - gammarstd) / gammarstd
+		<< ' ' << std::setw(width) << (gammargp - gammarstd) / gammarstd
+		<< ' ' << std::setw(width) << (gammar - gammarstd) / gammarstd
     		<< '\n';
       }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_gamma_temme(_Tp __proto)
+  test_gamma_temme(Tp proto)
   {
-    std::cout.precision(__gnu_cxx::__digits10(__proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -419,25 +426,25 @@ template<typename _Tp>
 	      << ' ' << std::setw(width) << "delta 1"
 	      << ' ' << std::setw(width) << "delta 2"
     	      << '\n';
-    const auto del = _Tp{1} / _Tp{100};
+    const auto del = Tp{1} / Tp{100};
     for (auto k = -100; k <= 100; ++k)
       {
 	auto mu = k * del;
-	auto tggnu = __gamma_temme(mu);
-	auto tgstd = __gamma_temme_std(mu);
+	auto tggnu = gamma_temme(mu);
+	auto tgstd = gamma_temme_std(mu);
 	std::cout << ' ' << std::setw(width) << mu
-		<< ' ' << std::setw(width) << tggnu.__gamma_plus_value
-		<< ' ' << std::setw(width) << tggnu.__gamma_minus_value
-		<< ' ' << std::setw(width) << tggnu.__gamma_1_value
-		<< ' ' << std::setw(width) << tggnu.__gamma_2_value
-		<< ' ' << std::setw(width) << tgstd.__gamma_plus_value
-		<< ' ' << std::setw(width) << tgstd.__gamma_minus_value
-		<< ' ' << std::setw(width) << tgstd.__gamma_1_value
-		<< ' ' << std::setw(width) << tgstd.__gamma_2_value
-		<< ' ' << std::setw(width) << (tggnu.__gamma_plus_value - tgstd.__gamma_plus_value) / tgstd.__gamma_plus_value
-		<< ' ' << std::setw(width) << (tggnu.__gamma_minus_value - tgstd.__gamma_minus_value) / tgstd.__gamma_minus_value
-		<< ' ' << std::setw(width) << (tggnu.__gamma_1_value - tgstd.__gamma_1_value) / tgstd.__gamma_1_value
-		<< ' ' << std::setw(width) << (tggnu.__gamma_2_value - tgstd.__gamma_2_value) / tgstd.__gamma_2_value
+		<< ' ' << std::setw(width) << tggnu.gamma_plus_value
+		<< ' ' << std::setw(width) << tggnu.gamma_minus_value
+		<< ' ' << std::setw(width) << tggnu.gamma_1_value
+		<< ' ' << std::setw(width) << tggnu.gamma_2_value
+		<< ' ' << std::setw(width) << tgstd.gamma_plus_value
+		<< ' ' << std::setw(width) << tgstd.gamma_minus_value
+		<< ' ' << std::setw(width) << tgstd.gamma_1_value
+		<< ' ' << std::setw(width) << tgstd.gamma_2_value
+		<< ' ' << std::setw(width) << (tggnu.gamma_plus_value - tgstd.gamma_plus_value) / tgstd.gamma_plus_value
+		<< ' ' << std::setw(width) << (tggnu.gamma_minus_value - tgstd.gamma_minus_value) / tgstd.gamma_minus_value
+		<< ' ' << std::setw(width) << (tggnu.gamma_1_value - tgstd.gamma_1_value) / tgstd.gamma_1_value
+		<< ' ' << std::setw(width) << (tggnu.gamma_2_value - tgstd.gamma_2_value) / tgstd.gamma_2_value
     		<< '\n';
       }
   }

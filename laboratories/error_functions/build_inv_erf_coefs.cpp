@@ -2,8 +2,11 @@
  *
  */
 
+#include <iostream>
+#include <iomanip>
+
 #include <mpreal.h>
-#include <bits/numeric_limits_mpreal.h>
+#include <emsr/numeric_limits_mpreal.h>
 
 
 int
@@ -11,7 +14,7 @@ main()
 {
   int prec = 256;
   mpfr::mpreal p(0, prec);
-  //std::cout.precision(__gnu_cxx::__digits10(p));
+  //std::cout.precision(emsr::digits10(p));
   std::cout.precision(40);
   auto w = 8 + std::cout.precision();
   std::cout << std::scientific;
@@ -33,8 +36,8 @@ main()
     }
 
   std::cout << "\n\n" << ' ' << std::setw(w) << "a_k" << '\n';
-  for (auto __aa : a)
-    std::cout << ' ' << std::setw(w) << __aa << '\n';
+  for (auto aa : a)
+    std::cout << ' ' << std::setw(w) << aa << '\n';
 
   std::vector<mpfr::mpreal> c;
   mpfr::mpreal cstart(1, prec);
@@ -50,6 +53,6 @@ main()
     c[n] /= (2 * n + 1);
 
   std::cout << "\n\n" << ' ' << std::setw(w) << "c_k" << '\n';
-  for (auto __cc : c)
-    std::cout << ' ' << std::setw(w) << __cc << '\n';
+  for (auto cc : c)
+    std::cout << ' ' << std::setw(w) << cc << '\n';
 }

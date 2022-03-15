@@ -9,302 +9,13 @@
 #include <iostream>
 #include <iomanip>
 
-template<typename _Tp>
-  std::complex<_Tp>
-  __wright_omega(const std::complex<_Tp>& __z,
-		 std::complex<_Tp>& __err, std::complex<_Tp>& __res,
-		 std::complex<_Tp>& __condn)
-  {
-    using _Cmplx = std::complex<_Tp>;
-    const auto _S_NaN = __gnu_cxx::__quiet_NaN(__z.real());
-    const auto _S_eps = __gnu_cxx::__epsilon(__z.real());
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-    const auto _S_i = _Cmplx(_Tp{0}, _Tp{1});
-    const auto _S_0 = _Cmplx{};
-    auto [__x, __y] = reinterpret_cast<const _Tp(&)[2]>(__z);
-    auto __ympi = __y - _S_pi;
-    auto __yppi = __y + _S_pi;
-    const auto _S_near = _Tp{0.1};
-    __err = _S_0;
-    __res = _S_0;
-
-    if (std::isnan(__x) || std::isnan(__y))
-      return _Cmplx(_S_NaN, _S_NaN);
-    else if (std::isinf(__x) && (__x < _Tp{0})
-	  && (-_S_pi < __y) && (__y <= _S_pi))
-      { // Signed zeros between branches.
-	_Cmplx __w;
-	if (std::abs(__y) <= _S_pi / _Tp{2})
-	  __w = +_Tp{0};
-	else
-	  __w = -_Tp{0};
-
-	if (__y < _Tp{0})
-	  __w += -_S_i * _Tp{0};
-
-	return __w;
-      }
-    else if (std::isinf(__x) || std::isinf(__y))
-      return _Cmplx(__x, __y);
-    else if (__x == _Tp{-1} && std::abs(__y) == _S_pi)
-      return _Cmplx(_Tp{-1}, _Tp{0});
-    else
-      {
-	//  Choose approximation based on region.
-
-	_Cmplx __w;
-	if ((_Tp{-2} < __x && __x <= _Tp{1}
-	  && _Tp{1} < __y && __y < _Tp{2} * _S_pi))
-	  {
-	    // Region 1: upper branch point.
-	    // Series about z = -1 + i*pi.
-	    const auto __dz = __z + _Tp{1} - _S_i * _S_pi;
-	    const auto __pz = std::conj(std::sqrt(std::conj(_Tp{2} * __dz)));
-
-	    __w = _Tp{-1}
-		+ (_S_i
-		+ (_Tp{1} / _Tp{3}
-		+ (_Tp{-1} / _Tp{36} * _S_i
-		+ (_Tp{1} / _Tp{270} + _Tp{1} / _Tp{4320} * _S_i * __pz)
-		* __pz) * __pz) * __pz) * __pz;
-	  }
-	else if ((_Tp{-2} < __x && __x <= _Tp{1}
-	       && _Tp{-2} * _S_pi < __y && __y < _Tp{-1}))
-	  {
-	    // Region 2: lower branch point.
-	    // Series about z = -1 - i*pi.
-	    const auto __dz = __z + _Tp{1} + _S_i * _S_pi;
-	    const auto __pz = std::conj(std::sqrt(std::conj(_Tp{2} * __dz)));
-
-	    __w = _Tp{-1}
-		+ (-_S_i
-		+ (_Tp{1} / _Tp{3}
-		+ (_Tp{1} / _Tp{36} * _S_i
-		+ (_Tp{1} / _Tp{270} - _Tp{1} / _Tp{4320} * _S_i * __pz)
-		* __pz) * __pz) * __pz) * __pz;
-	  }
-	else if (__x <= _Tp{-2} && -_S_pi < __y && __y <= _S_pi)
-	  {
-	    // Region 3: between branch cuts.
-	    // Series: About -infinity.
-	    const auto __pz = std::exp(__z);
-	    __w = (_Tp{1}
-		+ (_Tp{-1}
-		+ (_Tp{3} / _Tp{2}
-		+ (_Tp{-8} / _Tp{3}
-		+ _Tp{125} / _Tp{24} * __pz) * __pz) * __pz) * __pz) * __pz;
-	  }
-	else if (((_Tp{-2} < __x) && (__x <= _Tp{1})
-	       && (_Tp{-1} <= __y) && (__y <= _Tp{1}))
-		|| ((_Tp{-2} < __x)
-		 && (__x - _Tp{1}) * (__x - _Tp{1}) + __y * __y
-			 <= _S_pi * _S_pi))
-	  {
-	    // Region 4: Mushroom.
-	    // Series about z = 1.
-	    const auto __pz = __z - _Tp{1};
-	    __w = _Tp{1} / _Tp{2} + _Tp{1} / _Tp{2} * __z
-		+ (_Tp{1} / _Tp{16}
-		+ (_Tp{-1} / _Tp{192}
-		+ (_Tp{-1} / _Tp{3072}
-		+ _Tp{13} / _Tp{61440} * __pz) * __pz) * __pz) * __pz * __pz;
-	  }
-	else if (__x <= -_Tp{3} / _Tp{2}
-		 && _S_pi < __y
-		 && __y - _S_pi <= _Tp{-3} / _Tp{4} * (__x + _Tp{1}))
-	  {
-	    // Region 5: Top wing.
-	    // Negative log series.
-	    const auto __t = __z - _S_i * _S_pi;
-	    const auto __pz = std::log(-__t);
-	    __w = ((_Tp{1}
-		  + (-_Tp{3} / _Tp{2}
-		  + _Tp{1} / _Tp{3} * __pz) * __pz) * __pz
-		 + ((_Tp{-1}
-		  + _Tp{1} / _Tp{2} * __pz) * __pz
-		  + (__pz + (-__pz + __t) * __t) * __t) * __t)
-		/ (__t * __t * __t);
-	  }
-	else if (__x <= -_Tp{3} / _Tp{2}
-		 && _Tp{3} / _Tp{4} * (__x + _Tp{1}) < __y + _S_pi
-				    && __y + _S_pi <= _Tp{0})
-	  {
-	    // Region 6: Bottom wing.
-	    // Negative log series.
-	    const auto __t = __z + _S_i * _S_pi;
-	    const auto __pz = std::log(-__t);
-	    __w = ((_Tp{1}
-		 + (_Tp{-3} / _Tp{2}
-		 + _Tp{1} / _Tp{3} * __pz) * __pz) * __pz
-		+ ((_Tp{-1}
-		 + _Tp{1} / _Tp{2} * __pz) * __pz
-		 + (__pz + (-__pz + __t) * __t) * __t) * __t)
-		/ (__t * __t * __t);
-	  }
-	else
-	  {
-	    // Region 7: Everywhere else.
-	    // Series solution about infinity.
-	    const auto __pz = std::log(__z);
-	    __w = ((_Tp{1}
-		 + (_Tp{-3} / _Tp{2}
-		 + _Tp{1} / _Tp{3} * __pz) * __pz) * __pz
-		+ ((_Tp{-1}
-		 + _Tp{1} / _Tp{2} * __pz) * __pz
-		 + (__pz + (-__pz + __z) * __z) * __z) * __z)
-		/ (__z * __z * __z);
-	  }
-
-	auto __sgn = _Tp{0};
-	auto __zr = __z;
-	if (__x <= _Tp{-1} + _S_near
-	    && (std::abs(__ympi) <= _S_near || std::abs(__yppi) <= _S_near))
-	  {
-	    __sgn = _Tp{-1};
-	    // Regularize if near branch cuts.
-	    if (std::abs(__ympi) <= _S_near)
-	      {
-		// Recompute ympi with directed rounding.
-		fesetround(FE_UPWARD);
-
-		__ympi = __y - _S_pi;
-
-		if (__ympi <= _Tp{0})
-		  {
-        	    fesetround(FE_DOWNWARD);
-        	    __ympi = __y - _S_pi;
-		  }
-
-		__zr = _Cmplx(__x, __ympi);
-
-		// Return rounding to default.
-		fesetround(FE_TONEAREST);
-	      }
-	    else
-	      {
-		// Recompute yppi with directed rounding.
-		fesetround(FE_UPWARD);
-
-		__yppi = __y + _S_pi;
-
-		if (__yppi <= _Tp{0})
-		  {
-        	    fesetround(FE_DOWNWARD);
-        	    __yppi = __y + _S_pi;
-		  }
-
-		__zr = _Cmplx(__x, __yppi);
-
-		//  Return rounding to default.
-		fesetround(FE_TONEAREST);
-	      }
-	  }
-	else
-	  __sgn = _Tp{+1};
-
-	__w *= __sgn;
-
-	while (true)
-	  {
-	    const auto __res = __zr - __sgn * __w - std::log(__w);
-	    const auto __wp1 = __sgn * __w + _Tp{1};
-	    const auto __yy = _Tp{2} * __wp1 * (__wp1 + _Tp{2} / _Tp{3} * __res);
-	    const auto __err = __res / __wp1 * (__yy - __res)
-				/ (__yy - _Tp{2} * __res);
-	    __w *= _Tp{1} + __err;
-	    const auto __res4 = std::pow(std::abs(__res), _Tp{4});
-	    const auto __wpol = _Tp{-1} + __w * (_Tp{-8} + _Tp{2} * __w);
-	    const auto __test = std::abs(__res4 * __wpol);
-	    if (__test < _S_eps * _Tp{72} * std::pow(std::abs(__wp1), _Tp{6}))
-	      break;
-	  }
-
-	// Undo regularization.
-	__w *= __sgn;
-
-	// Provide condition number estimate.
-	__condn = __zr / (_Tp{1} + __w);
-
-	return __w;
-      }
-  }
-
-/**
- * Return the Wright omega function for complex argument.
- */
-template<typename _Tp>
-  std::complex<_Tp>
-  wright_omega(const std::complex<_Tp>& __z)
-  {
-    std::complex<_Tp> __err, __res, __condn;
-    return __wright_omega(__z, __err, __res, __condn);
-  }
-
-/**
- * Return the Wright omega function for real argument.
- */
-template<typename _Tp>
-  _Tp
-  wright_omega(_Tp __x)
-  {
-    using _Cmplx = std::complex<_Tp>;
-    _Cmplx __z(__x), __err, __res, __condn;
-    return std::real(__wright_omega(__z, __err, __res, __condn));
-  }
-
-/**
- * Return the 0-branch of the Lambert W function of real argument.
- * This is denoted Wp in the DLMF.
- */
-template<typename _Tp>
-  _Tp
-  lambert_wp(_Tp __x)
-  {
-    using _Cmplx = std::complex<_Tp>;
-    const auto _S_1de = __gnu_cxx::numbers::__one_div_e_v<_Tp>;
-    if (__x < _S_1de)
-      std::__throw_domain_error("lambert_wp: Argument out of range.");
-    else if (__x == _S_1de)
-      return _Tp{-1};
-    else
-      {
-	_Cmplx __z(std::log(_Cmplx(__x))),
-	       __err, __res, __condn;
-	return std::real(__wright_omega(__z, __err, __res, __condn));
-      }
-  }
-
-/**
- * Return the -1-branch of the Lambert W function of real argument.
- * This is denoted Wm in the DLMF.
- */
-template<typename _Tp>
-  _Tp
-  lambert_wm(_Tp __x)
-  {
-    using _Cmplx = std::complex<_Tp>;
-    const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
-    const auto _S_i = _Cmplx(_Tp{0}, _Tp{1});
-    const auto _S_1de = __gnu_cxx::numbers::__one_div_e_v<_Tp>;
-    if (__x < _S_1de || __x > _Tp{0})
-      std::__throw_domain_error("lambert_wm: Argument out of range.");
-    else if (__x == _S_1de)
-      return _Tp{-1};
-    else if (__x == _Tp{0})
-      return -std::numeric_limits<_Tp>::infinity();
-    else
-      {
-	_Cmplx __z(std::log(_Cmplx(__x)) - _S_i * _S_2pi),
-	       __err, __res, __condn;
-	return std::real(__wright_omega(__z, __err, __res, __condn));
-      }
-  }
+#include "sf_elementary.h"
 
 /*
  * Burkhardt driver.
  */
 void
-driver(std::complex <double> z)
+driver(std::complex<double> z)
 {
   std::complex <double> condn;
   std::complex <double> err;
@@ -317,7 +28,7 @@ driver(std::complex <double> z)
   std::cout << "  Demonstrate simple and extended Wright Omega evaluators.\n";
 
   // Simple evaluator.
-  w = wright_omega(z);
+  w = emsr::wright_omega(z);
 
   std::cout << "\n";
   std::cout << "  Calling:\n";
@@ -329,7 +40,7 @@ driver(std::complex <double> z)
        << ", " << std::imag ( w ) << ")\n";
 
   // Extended evaluator.
-  w = __wright_omega(z, err, res, condn);
+  w = emsr::detail::wright_omega(z, err, res, condn);
 
   std::cout << "\n";
   std::cout << "  Calling:\n";
@@ -462,7 +173,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0] + td *double(i), y[0] );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -479,7 +190,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0], ( y[1] + td *double(i) ) );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -496,7 +207,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[1] + td *double(i), y[0] );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -513,7 +224,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0], ( y[0] + td *double(i) ) );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -530,7 +241,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0] + td *double(i), y[0] );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -547,7 +258,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0], ( y[0] + td *double(i) ) );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -564,7 +275,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[1] + td *double(i), y[0] );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -581,7 +292,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0], ( y[1] + td *double(i) ) );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -598,7 +309,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0], ( y[0] + td *double(i) ) );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -615,7 +326,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0] + td *double(i), y[0] );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -631,7 +342,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0], ( y[0] + td *double(i) ) );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -650,7 +361,7 @@ test_burkhardt_boundary()
              + std::nextafter ( 1.0, - 1.0 );
     double b = std::nextafter ( pi, -1.0 ) * sin ( x[0] - td *double(i) );
     z = std::complex<double> ( a, b );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -667,7 +378,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0], ( y[0] + td *double(i) ) );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -684,7 +395,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0] + td *double(i), y[0] );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -698,7 +409,7 @@ test_burkhardt_boundary()
     x[0] = std::nextafter ( - 1.0 - exp (double( n - 1 - i ) / exp_num ), HUGE_VAL );
     y[0] = std::nextafter ( pi - 0.75 * ( x[0] + 1.0 ), HUGE_VAL );
     z = std::complex<double> ( x[0], y[0] );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -714,7 +425,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0], ( y[0] + td *double(i) ) );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -731,7 +442,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0] + td *double(i), y[0] );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -748,7 +459,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0], ( y[1] + td *double(i) ) );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -773,7 +484,7 @@ test_burkhardt_boundary()
     {
       z = std::complex<double> ( std::nextafter ( x[0], HUGE_VAL ), std::nextafter ( y[1], HUGE_VAL ) );
     } 
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -790,7 +501,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0], ( y[1] + td *double(i) ) );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -807,7 +518,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[1] + td *double(i), y[0] );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -823,7 +534,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0], ( y[1] + td *double(i) ) );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -837,7 +548,7 @@ test_burkhardt_boundary()
     x[0] = std::nextafter ( - 1.0 - exp (double( i ) / exp_num ), HUGE_VAL );
     y[0] = std::nextafter ( - pi + 0.75 * ( x[0] + 1.0 ), - HUGE_VAL );
     z = std::complex<double> ( x[0], y[0] );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -851,7 +562,7 @@ test_burkhardt_boundary()
     x[0] = std::nextafter ( - 1.0 - exp (double( n - 1 - i ) / exp_num ), - HUGE_VAL );
     y[0] = std::nextafter ( - pi + 0.75 * ( x[0] + 1.0 ), HUGE_VAL );
     z = std::complex<double> ( x[0], y[0] );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -867,7 +578,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0], ( y[1] + td * double(i) ) );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -882,7 +593,7 @@ test_burkhardt_boundary()
   {
     x[0] = - 1.0 - exp (double( i ) / exp_num );
     z = std::complex<double> ( x[0], y[0] );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -897,7 +608,7 @@ test_burkhardt_boundary()
   {
     x[0] = - 1.0 - exp (double( n - 1 - i ) / exp_num );
     z = std::complex<double> ( x[0], y[0] );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -913,7 +624,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0], ( y[0] + td *double(i) ) );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -928,7 +639,7 @@ test_burkhardt_boundary()
   {
     x[0] = - 1.0 - exp (double( i ) / exp_num );
     z = std::complex<double> ( x[0], y[0] );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -943,7 +654,7 @@ test_burkhardt_boundary()
   {
     x[0] = - 1.0 - exp (double( n - 1 - i ) / exp_num );
     z = std::complex<double> ( x[0], y[0] );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -959,7 +670,7 @@ test_burkhardt_boundary()
   for ( i = 0; i < n; i++ )
   {
     z = std::complex<double> ( x[0], ( y[0] + td *double(i) ) );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -973,7 +684,7 @@ test_burkhardt_boundary()
     x[0] = -1.0 - exp (double( n - 1 - i ) / exp_num );
     y[0] = std::nextafter ( pi - 0.75 * ( x[0] + 1.0 ), 0.1 );
     z = std::complex<double> ( x[0], y[0] );
-    w = __wright_omega( z,  e, r, cond );
+    w = emsr::detail::wright_omega(z, e, r, cond );
     fp << std::real ( z ) << " " 
        << std::imag ( z ) << " " 
        << std::real ( w ) << " "
@@ -994,22 +705,89 @@ test_burkhardt_boundary()
 /**
  *
  */
-template<typename _Tp>
+template<typename Tp>
   void
-  test_wright_omega(_Tp proto = _Tp{})
+  test_wright_omega(Tp proto = Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
-    std::cout << std::showpoint << std::scientific;
-    auto w = 8 + std::cout.precision();
+    using Cmplx = std::complex<Tp>;
+    const std::string path = "test_wright_omega.txt";
+    std::ofstream out(path);
 
-    std::cout << '\n';
-    for (int i = -40; i <= 100; ++i)
+    out.precision(emsr::digits10(proto));
+    out << std::showpoint << std::scientific;
+    auto w = 8 + out.precision();
+
+    out << '\n';
+    for (int i = -100; i <= 100; ++i)
       {
-	auto x = i * _Tp{0.1L};
-	auto y = wright_omega(x);
-	std::cout << ' ' << std::setw(w) << x
-		  << ' ' << std::setw(w) << y
-		  << '\n';
+        out << '\n';
+	auto x = i * Tp{0.1L};
+        for (int j = -100; j <= +100; ++j)
+          {
+            auto y = j * Tp{0.1L};
+	    auto wo = emsr::wright_omega(Cmplx(x, y));
+	    out << ' ' << std::setw(w) << x
+		<< ' ' << std::setw(w) << y
+                << ' ' << std::setw(w) << std::real(wo)
+                << ' ' << std::setw(w) << std::imag(wo)
+		<< '\n';
+          }
+      }
+  }
+
+/**
+ *
+ */
+template<typename Tp>
+  void
+  test_lambert_wm(Tp proto = Tp{})
+  {
+    const std::string path = "test_lambert_wm.txt";
+    std::ofstream out(path);
+
+    out.precision(emsr::digits10(proto));
+    out << std::showpoint << std::scientific;
+    auto w = 8 + out.precision();
+
+    const auto s_1de = emsr::inv_e_v<Tp>;
+
+    out << '\n';
+    for (int i = 0; i <= 250; ++i)
+      {
+	auto x = -s_1de + i * Tp{0.002L};
+        if (x >= Tp{0})
+          break;
+        auto y = emsr::lambert_wm(x);
+	out << ' ' << std::setw(w) << x
+	    << ' ' << std::setw(w) << y
+            << '\n';
+      }
+  }
+
+/**
+ *
+ */
+template<typename Tp>
+  void
+  test_lambert_wp(Tp proto = Tp{})
+  {
+    const std::string path = "test_lambert_wp.txt";
+    std::ofstream out(path);
+
+    out.precision(emsr::digits10(proto));
+    out << std::showpoint << std::scientific;
+    auto w = 8 + out.precision();
+
+    const auto s_1de = emsr::inv_e_v<Tp>;
+
+    out << '\n';
+    for (int i = 0; i <= 400; ++i)
+      {
+	auto x = -s_1de + i * Tp{0.01L};
+        auto y = emsr::lambert_wp(x);
+	out << ' ' << std::setw(w) << x
+	    << ' ' << std::setw(w) << y
+            << '\n';
       }
   }
 
@@ -1020,4 +798,8 @@ main()
   test_burkhardt_boundary();
 
   test_wright_omega<double>();
+
+  test_lambert_wm<double>();
+
+  test_lambert_wp<double>();
 }

@@ -7,17 +7,17 @@
 #include <limits>
 #include <cmath>
 
-template<typename _Tp>
-  _Tp
-  __appell_f1_series(_Tp alpha, _Tp betax, _Tp betay, _Tp gamma, _Tp x, _Tp y)
+template<typename Tp>
+  Tp
+  appell_f1_series(Tp alpha, Tp betax, Tp betay, Tp gamma, Tp x, Tp y)
   {
-    const _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
+    const Tp _S_eps = std::numeric_limits<Tp>::epsilon();
     const int N = 100;
-    auto f1 = _Tp{0};
-    auto termx = _Tp{1};
+    auto f1 = Tp{0};
+    auto termx = Tp{1};
     for (int m = 0; m < N; ++m)
       {
-	auto termy = _Tp{1};
+	auto termy = Tp{1};
 	for (int n = 0; n < N; ++n)
 	  {
 	    const auto term = termx * termy;
@@ -31,39 +31,39 @@ template<typename _Tp>
     return f1;
   }
 
-template<typename _Tp>
-  _Tp
-  __appell_f2_series(_Tp alpha, _Tp beta, _Tp betap, _Tp gamma, _Tp gammap, _Tp x, _Tp y)
+template<typename Tp>
+  Tp
+  appell_f2_series(Tp alpha, Tp beta, Tp betap, Tp gamma, Tp gammap, Tp x, Tp y)
   {
   }
 
-template<typename _Tp>
-  _Tp
-  __appell_f3_series(_Tp alpha, _Tp alphap, _Tp beta, _Tp betap, _Tp gamma, _Tp x, _Tp y)
+template<typename Tp>
+  Tp
+  appell_f3_series(Tp alpha, Tp alphap, Tp beta, Tp betap, Tp gamma, Tp x, Tp y)
   {
   }
 
-template<typename _Tp>
-  _Tp
-  __appell_f4_series(_Tp alpha, _Tp beta, _Tp gamma, _Tp gammap, _Tp x, _Tp y)
+template<typename Tp>
+  Tp
+  appell_f4_series(Tp alpha, Tp beta, Tp gamma, Tp gammap, Tp x, Tp y)
   {
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_appell_f1(_Tp alpha, _Tp betax, _Tp betay, _Tp gamma)
+  test_appell_f1(Tp alpha, Tp betax, Tp betay, Tp gamma)
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto w = 8 + std::cout.precision();
 
-    const auto del = _Tp{0.01};
+    const auto del = Tp{0.01};
     for (int m = -99; m <= 99; ++m)
       {
         auto x = m * del;
 	for (int n = -99; n <= 99; ++n)
 	  {
 	    auto y = n * del;
-	    auto f1 = __appell_f1_series(alpha, betax, betay, gamma, x, y);
+	    auto f1 = appell_f1_series(alpha, betax, betay, gamma, x, y);
 	    std::cout << ' ' << std::setw(w) << x
 		      << ' ' << std::setw(w) << y
 		      << ' ' << std::setw(w) << f1

@@ -6,8 +6,10 @@
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include <ext/math_constants.h>
-#include <ext/math_util.h>
+
+#include <emsr/math_constants.h>
+#include <emsr/math_util.h>
+#include <emsr/sf_trig.h>
 
 /**
  * @todo Test these relations between the Lucas and Fibonacci numbers
@@ -27,26 +29,25 @@
  *    F_n = F_{n-1} + F_{n-2}, F_0 = 0, F_1 = 1
  * @f]
  */
-template<typename _UIntTp>
-  _UIntTp
-  __fibonacci_recur(_UIntTp __n)
+template<typename UIntTp>
+  UIntTp
+  fibonacci_recur(UIntTp n)
   {
-    _UIntTp __Fnm2 = 0;
-    if (__n == 0)
-      return __Fnm2;
-    _UIntTp __Fnm1 = 1;
-    if (__n == 1)
-      return __Fnm1;
-    _UIntTp __Fn = __Fnm1 + __Fnm2;
-    for (_UIntTp __k = 3; __k <= __n; ++__k)
+    UIntTp Fnm2 = 0;
+    if (n == 0)
+      return Fnm2;
+    UIntTp Fnm1 = 1;
+    if (n == 1)
+      return Fnm1;
+    UIntTp Fn = Fnm1 + Fnm2;
+    for (UIntTp k = 3; k <= n; ++k)
       {
-	__Fnm2 = __Fnm1;
-	__Fnm1 = __Fn;
-	if (__builtin_add_overflow(__Fnm1, __Fnm2, &__Fn))
-	    std::__throw_runtime_error(__N("__fibonacci: "
-					   "integer overflow"));
+	Fnm2 = Fnm1;
+	Fnm1 = Fn;
+	if (__builtin_add_overflow(Fnm1, Fnm2, &Fn))
+	    throw std::runtime_error("fibonacci: integer overflow");
       }
-    return __Fn;
+    return Fn;
   }
 
 /**
@@ -60,29 +61,29 @@ template<typename _UIntTp>
  * Note that the Fibonacci numbers for negative integers are given
  * by @f$ F_{-n} = (-1)^{n+1} F_n @f$.
  */
-template<typename _Tp>
-  _Tp
-  __fibonacci(_Tp __nu)
+template<typename Tp>
+  Tp
+  fibonacci(Tp nu)
   {
-    if constexpr (std::is_integral_v<_Tp>)
+    if constexpr (std::is_integral_v<Tp>)
       {
-	if (std::is_unsigned_v<_Tp>)
-	  return __fibonacci_recur(__nu);
+	if (std::is_unsigned_v<Tp>)
+	  return fibonacci_recur(nu);
 	else
 	  {
-	    if (__nu < 0)
-	      return __gnu_cxx::__parity<_Tp>(-__nu + 1)
-		   * __fibonacci_recur(-__nu);
+	    if (nu < 0)
+	      return emsr::parity<Tp>(-nu + 1)
+		   * fibonacci_recur(-nu);
 	    else
-	      return __fibonacci_recur(__nu);
+	      return fibonacci_recur(nu);
 	  }
       }
-    else if constexpr (std::is_floating_point_v<_Tp>)
+    else if constexpr (std::is_floating_point_v<Tp>)
       {
-	const auto _S_phi = __gnu_cxx::numbers::__phi_v<_Tp>;
-	const auto _S_sqrt5 = __gnu_cxx::numbers::__root_5_v<_Tp>;
-	const auto __phinu = std::pow(_S_phi, __nu);
-	return (__phinu - __gnu_cxx::cos_pi(__nu) / __phinu) / _S_sqrt5;
+	const auto _S_phi = emsr::phi_v<Tp>;
+	const auto _S_sqrt5 = emsr::sqrt5_v<Tp>;
+	const auto phinu = std::pow(_S_phi, nu);
+	return (phinu - emsr::cos_pi(nu) / phinu) / _S_sqrt5;
       }
   }
 
@@ -92,26 +93,26 @@ template<typename _Tp>
  *    F_n(x) = xF_{n-1}(x) + F_{n-2}(x), F_0 = 2, F_1 = 1
  * @f]
  */
-template<typename _UIntTp, typename _RealTp>
+template<typename UIntTp, typename _RealTp>
   _RealTp
-  __fibonacci(_UIntTp __n, _RealTp __x)
+  fibonacci(UIntTp n, _RealTp x)
   {
     //const auto _S_log_phi
     //  = _RealTp{4.812118250596034474977589134243684231358e-1L};
-    auto __Fnm2 = _RealTp{0};
-    if (__n == 0)
-      return __Fnm2;
-    auto __Fnm1 = _RealTp{1};
-    if (__n == 1)
-      return __Fnm1;
-    auto __Fn = __x * __Fnm1 + __Fnm2;
-    for (_UIntTp __k = 3; __k <= __n; ++__k)
+    auto Fnm2 = _RealTp{0};
+    if (n == 0)
+      return Fnm2;
+    auto Fnm1 = _RealTp{1};
+    if (n == 1)
+      return Fnm1;
+    auto Fn = x * Fnm1 + Fnm2;
+    for (UIntTp k = 3; k <= n; ++k)
       {
-	__Fnm2 = __Fnm1;
-	__Fnm1 = __Fn;
-	__Fn = __x * __Fnm1 + __Fnm2;
+	Fnm2 = Fnm1;
+	Fnm1 = Fn;
+	Fn = x * Fnm1 + Fnm2;
       }
-    return __Fn;
+    return Fn;
   }
 
 /**
@@ -120,26 +121,25 @@ template<typename _UIntTp, typename _RealTp>
  *    L_n = L_{n-1} + L_{n-2}, L_0 = 2, L_1 = 1
  * @f]
  */
-template<typename _UIntTp>
-  _UIntTp
-  __lucas_recur(_UIntTp __n)
+template<typename UIntTp>
+  UIntTp
+  lucas_recur(UIntTp n)
   {
-    _UIntTp __Lnm2 = 2;
-    if (__n == 0)
-      return __Lnm2;
-    _UIntTp __Lnm1 = 1;
-    if (__n == 1)
-      return __Lnm1;
-    _UIntTp __Ln = __Lnm1 + __Lnm2;
-    for (_UIntTp __k = 3; __k <= __n; ++__k)
+    UIntTp Lnm2 = 2;
+    if (n == 0)
+      return Lnm2;
+    UIntTp Lnm1 = 1;
+    if (n == 1)
+      return Lnm1;
+    UIntTp Ln = Lnm1 + Lnm2;
+    for (UIntTp k = 3; k <= n; ++k)
       {
-	__Lnm2 = __Lnm1;
-	__Lnm1 = __Ln;
-	if (__builtin_add_overflow(__Lnm1, __Lnm2, &__Ln))
-	    std::__throw_runtime_error(__N("__lucas: "
-					   "integer overflow"));
+	Lnm2 = Lnm1;
+	Lnm1 = Ln;
+	if (__builtin_add_overflow(Lnm1, Lnm2, &Ln))
+	    throw std::runtime_error("lucas: integer overflow");
       }
-    return __Ln;
+    return Ln;
   }
 
 /**
@@ -153,27 +153,27 @@ template<typename _UIntTp>
  * Note that the Lucas numbers for negative integers are given
  * by @f$ L_{-n} = (-1)^n L_n @f$.
  */
-template<typename _Tp>
-  _Tp
-  __lucas(_Tp __nu)
+template<typename Tp>
+  Tp
+  lucas(Tp nu)
   {
-    if constexpr (std::is_integral_v<_Tp>)
+    if constexpr (std::is_integral_v<Tp>)
       {
-	if (std::is_unsigned_v<_Tp>)
-	  return __lucas_recur(__nu);
+	if (std::is_unsigned_v<Tp>)
+	  return lucas_recur(nu);
 	else
 	  {
-	    if (__nu < 0)
-	      return __gnu_cxx::__parity<_Tp>(__nu) * __lucas_recur(-__nu);
+	    if (nu < 0)
+	      return emsr::parity<Tp>(nu) * lucas_recur(-nu);
 	    else
-	      return __lucas_recur(__nu);
+	      return lucas_recur(nu);
 	  }
       }
-    else if constexpr (std::is_floating_point_v<_Tp>)
+    else if constexpr (std::is_floating_point_v<Tp>)
       {
-	const auto _S_phi = __gnu_cxx::numbers::__phi_v<_Tp>;
-	const auto __phinu = std::pow(_S_phi, __nu);
-	return __phinu + __gnu_cxx::cos_pi(__nu) / __phinu;
+	const auto _S_phi = emsr::phi_v<Tp>;
+	const auto phinu = std::pow(_S_phi, nu);
+	return phinu + emsr::cos_pi(nu) / phinu;
       }
   }
 
@@ -183,44 +183,44 @@ template<typename _Tp>
  *    L_n(x) = xL_{n-1}(x) + L_{n-2}(x), L_0 = 2, L_1 = x
  * @f]
  */
-template<typename _UIntTp, typename _RealTp>
+template<typename UIntTp, typename _RealTp>
   _RealTp
-  __lucas(_UIntTp __n, _RealTp __x)
+  lucas(UIntTp n, _RealTp x)
   {
     //const auto _S_log_phi
     //  = _RealTp{4.812118250596034474977589134243684231358e-1L};
-    auto __Lnm2 = _RealTp{2};
-    if (__n == 0)
-      return __Lnm2;
-    auto __Lnm1 = __x;
-    if (__n == 1)
-      return __Lnm1;
-    auto __Ln = __x * __Lnm1 + __Lnm2;
-    for (_UIntTp __k = 3; __k <= __n; ++__k)
+    auto Lnm2 = _RealTp{2};
+    if (n == 0)
+      return Lnm2;
+    auto Lnm1 = x;
+    if (n == 1)
+      return Lnm1;
+    auto Ln = x * Lnm1 + Lnm2;
+    for (UIntTp k = 3; k <= n; ++k)
       {
-	__Lnm2 = __Lnm1;
-	__Lnm1 = __Ln;
-	__Ln = __x * __Lnm1 + __Lnm2;
+	Lnm2 = Lnm1;
+	Lnm1 = Ln;
+	Ln = x * Lnm1 + Lnm2;
       }
-    return __Ln;
+    return Ln;
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_fibonacci()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
     const auto max_number = 50ll;
-    const auto delnu = _Tp{1} / _Tp{50};
+    const auto delnu = Tp{1} / Tp{50};
     const auto max_order = 50ll;
 
     std::cout << "\n\n Fibonacci numbers\n";
     for (auto n = -max_number; n <= max_number; ++n)
       {
-	auto _F_n = __fibonacci(n);
+	auto _F_n = fibonacci(n);
 	std::cout << ' ' << std::setw(4) << n
 		  << ' ' << std::setw(width) << _F_n
 		  << '\n';
@@ -230,7 +230,7 @@ template<typename _Tp>
     for (int n = -500; n <= 500; ++n)
       {
 	auto nu = n * delnu;
-	auto F_nu = __fibonacci(nu);
+	auto F_nu = fibonacci(nu);
 	std::cout << ' ' << std::setw(width) << nu
 		  << ' ' << std::setw(width) << F_nu
 		  << '\n';
@@ -240,11 +240,11 @@ template<typename _Tp>
     for (auto n = 0; n <= max_order; ++n)
       {
 	std::cout << '\n' << '\n' << ' ' << std::setw(4) << n << '\n';
-	const auto del = _Tp{1} / _Tp{10};
+	const auto del = Tp{1} / Tp{10};
 	for (int i = -50; i <= 50; ++i)
 	  {
 	    auto x = del * i;
-	    auto _F_n = __fibonacci(n, x);
+	    auto _F_n = fibonacci(n, x);
 	    std::cout << ' ' << std::setw(width) << x
 		      << ' ' << std::setw(width) << _F_n
 		      << '\n';
@@ -254,7 +254,7 @@ template<typename _Tp>
     std::cout << "\n\n Lucas numbers\n";
     for (auto n = -max_number; n <= max_number; ++n)
       {
-	auto _L_n = __lucas(n);
+	auto _L_n = lucas(n);
 	std::cout << ' ' << std::setw(4) << n
 		  << ' ' << std::setw(width) << _L_n
 		  << '\n';
@@ -264,7 +264,7 @@ template<typename _Tp>
     for (int n = -500; n <= 500; ++n)
       {
 	auto nu = n * delnu;
-	auto L_nu = __lucas(nu);
+	auto L_nu = lucas(nu);
 	std::cout << ' ' << std::setw(width) << nu
 		  << ' ' << std::setw(width) << L_nu
 		  << '\n';
@@ -274,11 +274,11 @@ template<typename _Tp>
     for (auto n = 0; n <= max_order; ++n)
       {
 	std::cout << '\n' << '\n' << ' ' << std::setw(4) << n << '\n';
-	const auto del = _Tp{1} / _Tp{10};
+	const auto del = Tp{1} / Tp{10};
 	for (int i = -50; i <= 50; ++i)
 	  {
 	    auto x = del * i;
-	    auto _L_n = __lucas(n, x);
+	    auto _L_n = lucas(n, x);
 	    std::cout << ' ' << std::setw(width) << x
 		      << ' ' << std::setw(width) << _L_n
 		      << '\n';

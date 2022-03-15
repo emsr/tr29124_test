@@ -1,4 +1,4 @@
 var modules =
 [
-    [ "Mathematical Special Functions", "group__mathsf.html", "group__mathsf" ]
+    [ "Mathematical Special Functions", "group__emsr__specfun.html", null ]
 ];

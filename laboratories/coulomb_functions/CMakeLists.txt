@@ -30,5 +30,5 @@ add_executable(test_coulomb test_coulomb.cpp)
 add_test(NAME run_test_coulomb COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_coulomb > output/test_coulomb.txt")
 
 add_executable(test_hydrogen test_hydrogen.cpp)
-target_link_libraries(test_hydrogen ${TR29124_LIBRARIES} wrap_gsl quadmath)
+target_link_libraries(test_hydrogen ${EMSR_LIBRARIES} wrap_gsl quadmath)
 add_test(NAME run_test_hydrogen COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hydrogen > output/test_hydrogen.txt")

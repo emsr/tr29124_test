@@ -8,22 +8,26 @@
 #include <stdexcept>
 #include <limits>
 #include <vector>
-#include <ext/float128_math.h>
-#include <ext/float128_io.h>
+
+#include <emsr/float128_math.h>
+#include <emsr/float128_io.h>
+#include <emsr/math_constants.h>
+#include <emsr/numeric_limits.h>
+#include <emsr/special_functions.h>
 
 #include <wrap_burkhardt.h>
 
 
-  template<typename _RealTp, typename _IntTp,
-	   _IntTp _Num = 1, _IntTp _Den = 1>
-    constexpr _RealTp
-    __frac = _RealTp(_Num) / _RealTp(_Den);
+  //template<typename RealTp, typename IntTp,
+//	   IntTp Num = 1, IntTp Den = 1>
+//    constexpr RealTp
+//    frac = RealTp(Num) / RealTp(Den);
 
-  template<typename _RealTp,
-	   unsigned long long _Num = 1,
-           unsigned long long _Den = 1>
-    constexpr _RealTp
-    frac = __frac<_RealTp, unsigned long long, _Num, _Den>;
+  template<typename RealTp,
+	   unsigned long long Num = 1,
+           unsigned long long Den = 1>
+    constexpr RealTp
+    frac = RealTp(Num) / RealTp(Den);
 
   /**
    * According to Modern Computer Arithmetic a stable recursion
@@ -33,67 +37,67 @@
    * @f]
    * where @f$ C_k = B_{2k} / (2k)! @f$ is the scaled Bernoulli number.
    */
-  template<typename _Tp>
-    _Tp
-    __bernoulli_scaled_recur(unsigned int __n)
+  template<typename Tp>
+    Tp
+    bernoulli_scaled_recur(unsigned int n)
     {
-      return _Tp{0};
+      return Tp{0};
     }
 
 
   /**
    * Return the Bernoulli number from lookup or by series expansion.
    */
-  template<typename _Tp>
-    _Tp
-    __bernoulli_series(unsigned int __n)
+  template<typename Tp>
+    Tp
+    bernoulli_series(unsigned int n)
     {
-      static constexpr std::size_t _S_len = 24;
-      static constexpr _Tp
-      _S_num[_S_len]
+      static constexpr std::size_t s_len = 24;
+      static constexpr Tp
+      s_num[s_len]
       {
-	 frac<_Tp>,
-	-frac<_Tp, 1ull, 2ull>,
-	 frac<_Tp, 1ull, 6ull>,            _Tp(0ull),
-	-frac<_Tp, 1ull, 30ull>,           _Tp(0ull),
-	 frac<_Tp, 1ull, 42ull>,           _Tp(0ull),
-	-frac<_Tp, 1ull, 30ull>,           _Tp(0ull),
-	 frac<_Tp, 5ull, 66ull>,           _Tp(0ull),
-	-frac<_Tp, 691ull, 2730ull>,       _Tp(0ull),
-	 frac<_Tp, 7ull, 6ull>,            _Tp(0ull),
-	-frac<_Tp, 3617ull, 510ull>,       _Tp(0ull),
-	 frac<_Tp, 43867ull, 798ull>,      _Tp(0ull),
-	-frac<_Tp, 174611ull, 330ull>,     _Tp(0ull),
-	 frac<_Tp, 854513ull, 138ull>,     _Tp(0ull)
+	 frac<Tp>,
+	-frac<Tp, 1ull, 2ull>,
+	 frac<Tp, 1ull, 6ull>,            Tp(0ull),
+	-frac<Tp, 1ull, 30ull>,           Tp(0ull),
+	 frac<Tp, 1ull, 42ull>,           Tp(0ull),
+	-frac<Tp, 1ull, 30ull>,           Tp(0ull),
+	 frac<Tp, 5ull, 66ull>,           Tp(0ull),
+	-frac<Tp, 691ull, 2730ull>,       Tp(0ull),
+	 frac<Tp, 7ull, 6ull>,            Tp(0ull),
+	-frac<Tp, 3617ull, 510ull>,       Tp(0ull),
+	 frac<Tp, 43867ull, 798ull>,      Tp(0ull),
+	-frac<Tp, 174611ull, 330ull>,     Tp(0ull),
+	 frac<Tp, 854513ull, 138ull>,     Tp(0ull)
       };
 
-      if (__n == 0)
-	return frac<_Tp>;
-      else if (__n == 1)
-	return -frac<_Tp, 1, 2>;
-      else if (__n % 2 == 1) // Take care of the rest of the odd ones.
-	return _Tp(0);
-      else if (__n < _S_len) // return small evens that are painful for the series.
-	return _S_num[__n];
+      if (n == 0)
+	return frac<Tp>;
+      else if (n == 1)
+	return -frac<Tp, 1, 2>;
+      else if (n % 2 == 1) // Take care of the rest of the odd ones.
+	return Tp(0);
+      else if (n < s_len) // return small evens that are painful for the series.
+	return s_num[n];
       else
 	{
-	  _Tp __fact = _Tp(1);
-	  if ((__n / 2) % 2 == 0)
-	    __fact *= -1;
-	  for (auto __k = 1u; __k <= __n; ++__k)
-	    __fact *= __k / __gnu_cxx::numbers::__pi_v<_Tp>;
-	  __fact *= _Tp(2);
+	  Tp fact = Tp(1);
+	  if ((n / 2) % 2 == 0)
+	    fact *= -1;
+	  for (auto k = 1u; k <= n; ++k)
+	    fact *= k / emsr::pi_v<Tp>;
+	  fact *= Tp(2);
 
-	  _Tp __sum = _Tp(0);
-	  for (auto __i = 1u; __i < 1000; ++__i)
+	  Tp sum = Tp(0);
+	  for (auto i = 1u; i < 1000; ++i)
 	    {
-	      _Tp __term = std::pow(_Tp(__i), -_Tp(__n));
-	      if (__term < __gnu_cxx::__epsilon<_Tp>())
+	      Tp term = std::pow(Tp(i), -Tp(n));
+	      if (term < emsr::epsilon<Tp>())
         	break;
-	      __sum += __term;
+	      sum += term;
 	    }
 
-	  return __fact * __sum;
+	  return fact * sum;
 	}
     }
 
@@ -120,23 +124,23 @@
    *   B_n(x+1) - B_n(x) = n * x^{n-1}
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    __bernoulli(unsigned int __n, _Tp __x)
+  template<typename Tp>
+    Tp
+    bernoulli(unsigned int n, Tp x)
     {
-      if (std::isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+      if (std::isnan(x))
+	return std::numeric_limits<Tp>::quiet_NaN();
       else
 	{
-	  auto _B_n = std::__detail::__bernoulli<_Tp>(0);
-	  auto __binomial = _Tp{1};
-	  for (auto __k = 1u; __k <= __n; ++__k)
+	  auto B_n = emsr::detail::bernoulli<Tp>(0);
+	  auto binomial = Tp{1};
+	  for (auto k = 1u; k <= n; ++k)
 	    {
-	      __binomial *= _Tp(__n + 1 - __k) / _Tp(__k);
-	      _B_n = __x * _B_n + __binomial
-		   * std::__detail::__bernoulli<_Tp>(__k);
+	      binomial *= Tp(n + 1 - k) / Tp(k);
+	      B_n = x * B_n + binomial
+		   * emsr::detail::bernoulli<Tp>(k);
 	    }
-	  return _B_n;
+	  return B_n;
 	}
     }
 
@@ -150,12 +154,12 @@
    *   \tilde{B}_n(x+1) = \tilde{B}_n(x), x >= 1
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    __bernoulli_period(unsigned int __n, _Tp __x)
+  template<typename Tp>
+    Tp
+    bernoulli_period(unsigned int n, Tp x)
     {
-      int __p = int(__x);
-      return __bernoulli(__n, __x - _Tp(__p));
+      int p = int(x);
+      return bernoulli(n, x - Tp(p));
     }
 
   /**
@@ -168,12 +172,12 @@
    * @f]
    * Starting with @f$ B^{(a)}_0(x) = 1 @f$, @f$  @f$.
    */
-  template<typename _Tp>
-    _Tp
-    __bernoulli(unsigned int __n, _Tp __a, _Tp __x)
+  template<typename Tp>
+    Tp
+    bernoulli(unsigned int n, Tp a, Tp x)
     {
-      if (std::isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+      if (std::isnan(x))
+	return std::numeric_limits<Tp>::quiet_NaN();
       else
 	{
 	  /* Not so easy after all :-( */;
@@ -191,14 +195,14 @@
    *
    * @todo Find a way to predict the maximum Euler number for a type.
    */
-  template<typename _Tp>
-    _Tp
-    __euler_series(unsigned int __n)
+  template<typename Tp>
+    Tp
+    euler_series(unsigned int n)
     {
-      using std::__detail::__binomial;
-      static constexpr std::size_t _S_len = 22;
-      static constexpr _Tp
-      _S_num[_S_len]
+      using emsr::detail::binomial;
+      static constexpr std::size_t s_len = 22;
+      static constexpr Tp
+      s_num[s_len]
       {
 	 1ll, 0,
 	-1ll, 0ll,
@@ -214,33 +218,33 @@
 	//-69348874393137901ll, 0ll,
       };
 
-      if (__n == 0)
-	return _Tp{1};
-      else if (__n & 1)
-	return _Tp{0};
-      else if (__n == 2)
-        return _Tp{-1};
-      else if (__n < _S_len)
-	return _S_num[__n];
+      if (n == 0)
+	return Tp{1};
+      else if (n & 1)
+	return Tp{0};
+      else if (n == 2)
+        return Tp{-1};
+      else if (n < s_len)
+	return s_num[n];
       else
 	{
-	  std::vector<_Tp> _En(__n + 1);
-	  _En[0] = _Tp{1};
-	  _En[1] = _Tp{0};
-	  _En[2] = _Tp{-1};
+	  std::vector<Tp> En(n + 1);
+	  En[0] = Tp{1};
+	  En[1] = Tp{0};
+	  En[2] = Tp{-1};
 
-	  for (auto __i = 3u; __i <= __n; ++__i)
+	  for (auto i = 3u; i <= n; ++i)
 	    {
-	      _En[__i] = 0;
+	      En[i] = 0;
 
-	      if (__i % 2 == 0)
+	      if (i % 2 == 0)
 		{
-		  for (auto __j = 2u; __j <= __i; __j += 2u)
-		    _En[__i] -= __binomial<_Tp>(__i, __j)
-			      * _En[__i - __j];
+		  for (auto j = 2u; j <= i; j += 2u)
+		    En[i] -= binomial<Tp>(i, j)
+			      * En[i - j];
 		}
 	    }
-	  return _En[__n];
+	  return En[n];
 	}
     }
 
@@ -252,38 +256,38 @@
    *   \left( \frac{4n}{\pi e} \frac{480n^2+9}{480n^2-1} \right)^{2n}
    * @f]
    *
-   * @param __n the order n of the Euler number.
+   * @param n the order n of the Euler number.
    * @return  The Euler number of order n.
    */
-  template<typename _Tp>
-    inline _Tp
-    __euler_asymp(unsigned int __n)
+  template<typename Tp>
+    inline Tp
+    euler_asymp(unsigned int n)
     {
-      if (__n & 1)
-	return _Tp{0};
+      if (n & 1)
+	return Tp{0};
       else
 	{
-	  const auto _S_e = __gnu_cxx::numbers::__e_v<_Tp>;
-	  const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-	  const auto __n2 = _Tp(__n * __n);
-	  return __gnu_cxx::__parity<_Tp>(__n / 2) * _Tp{8}
-		* std::sqrt(_Tp(__n) / _S_pi)
-		* std::pow(_Tp(4 * __n) / (_S_pi * _S_e)
-			 * (__n2 + _Tp{9} / _Tp{480})
-			 / (__n2 - _Tp{1} / _Tp{480}), _Tp(2 * __n));
+	  const auto s_e = emsr::e_v<Tp>;
+	  const auto s_pi = emsr::pi_v<Tp>;
+	  const auto n2 = Tp(n * n);
+	  return emsr::parity<Tp>(n / 2) * Tp{8}
+		* std::sqrt(Tp(n) / s_pi)
+		* std::pow(Tp(4 * n) / (s_pi * s_e)
+			 * (n2 + Tp{9} / Tp{480})
+			 / (n2 - Tp{1} / Tp{480}), Tp(2 * n));
 	}
     }
 
   /**
    * @brief This returns Euler number @f$ E_n @f$.
    *
-   * @param __n the order n of the Euler number.
+   * @param n the order n of the Euler number.
    * @return  The Euler number of order n.
    */
-  template<typename _Tp>
-    inline _Tp
-    __euler(unsigned int __n)
-    { return __euler_series<_Tp>(__n); }
+  template<typename Tp>
+    inline Tp
+    euler(unsigned int n)
+    { return euler_series<Tp>(n); }
 
   /**
    * Return the Euler polynomial @f$ E_n(x) @f$ of order n at argument x.
@@ -298,21 +302,21 @@
    *             \mbox{ is the n-th Euler number.}
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    __euler(unsigned int __n, _Tp __x)
+  template<typename Tp>
+    Tp
+    euler(unsigned int n, Tp x)
     {
-      if (std::isnan(__x))
-	return std::numeric_limits<_Tp>::quiet_NaN();
+      if (std::isnan(x))
+	return std::numeric_limits<Tp>::quiet_NaN();
       else
 	{
-	  auto __bx1 = __bernoulli(__n + 1, __x );
-	  auto __bx2 = __bernoulli(__n + 1, _Tp{0.5L} * __x );
+	  auto bx1 = bernoulli(n + 1, x );
+	  auto bx2 = bernoulli(n + 1, Tp{0.5L} * x );
 
-	  auto _E_n = _Tp{2} * (__bx1 - __bx2 * std::pow(_Tp{2}, _Tp(__n + 1)))
-		    / _Tp(__n + 1);
+	  auto E_n = Tp{2} * (bx1 - bx2 * std::pow(Tp{2}, Tp(n + 1)))
+		    / Tp(n + 1);
 
-	  return _E_n;
+	  return E_n;
 	}
     }
 
@@ -327,12 +331,12 @@
    *   \tilde{E}_n(x+1) = -\tilde{E}_n(x), x >= 1
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    __euler_period(unsigned int __n, _Tp __x)
+  template<typename Tp>
+    Tp
+    euler_period(unsigned int n, Tp x)
     {
-      int __p = int(__x);
-      return ((__p & 1) ? -1 : +1) * __euler(__n, __x - _Tp(__p));
+      int p = int(x);
+      return ((p & 1) ? -1 : +1) * euler(n, x - Tp(p));
     }
 
   /**
@@ -345,39 +349,41 @@
    * @todo Find a way to predict the maximum Stirling number supported
    *       for a given type.
    */
-  template<typename _Tp>
-    _Tp
-    __stirling_2_series(unsigned int __n, unsigned int __m)
+  template<typename Tp>
+    Tp
+    stirling_2_series(unsigned int n, unsigned int m)
     {
-      using std::__detail::__log_factorial;
-      using std::__detail::__factorial;
-      if (__m > std::__detail::_S_num_factorials<_Tp>)
+      using emsr::detail::log_factorial;
+      using emsr::detail::factorial;
+      if (m > emsr::detail::s_num_factorials<Tp>)
 	{
-	  auto _S2 = _Tp{0};
-	  for (auto __k = 0u; __k <= __m; ++__k)
+	  auto S2 = Tp{0};
+	  for (auto k = 0u; k <= m; ++k)
 	    {
-	      auto __lf1 = __log_factorial<_Tp>(__k);
-	      auto __lf2 = __log_factorial<_Tp>(__m - __k);
-	      _S2 += (((__m - __k) & 1) ? _Tp{-1} : _Tp{1})
-		   * std::exp(__n * std::log(__k) - __lf1 - __lf2);
+	      auto lf1 = log_factorial<Tp>(k);
+	      auto lf2 = log_factorial<Tp>(m - k);
+	      S2 += (((m - k) & 1) ? Tp{-1} : Tp{1})
+		   * std::exp(n * std::log(k) - lf1 - lf2);
 	    }
-	  return _S2;
+	  return S2;
 	}
       else
 	{
-	  auto _S2 = _Tp{0};
-	  for (auto __k = 0u; __k <= __m; ++__k)
+	  auto S2 = Tp{0};
+	  for (auto k = 0u; k <= m; ++k)
 	    {
-	      _S2 += (((__m - __k) & 1) ? _Tp{-1} : _Tp{1})
-		   * std::pow(__k, __n)
-		   / __factorial<_Tp>(__k)
-		   / __factorial<_Tp>(__m - __k);
+	      S2 += (((m - k) & 1) ? Tp{-1} : Tp{1})
+		   * std::pow(k, n)
+		   / factorial<Tp>(k)
+		   / factorial<Tp>(m - k);
 	    }
 	  // @todo Only round if the sum is less than
 	  // the maximum representable integer.
 	  // Find or make a tool for this.
-	  return std::nearbyint(_S2);
+	  return std::nearbyint(S2);
 	}
+      // Why this warning?
+      return Tp{0};
     }
 
   /**
@@ -402,28 +408,28 @@
    * in the literature: 
    * @f$ \sigma_n^{(m)} @f$, @f$ \textit{S}_n^{(m)} @f$ and others.
    */
-  template<typename _Tp>
-    _Tp
-    __stirling_2_recur(unsigned int __n, unsigned int __m)
+  template<typename Tp>
+    Tp
+    stirling_2_recur(unsigned int n, unsigned int m)
     {
-      if (__n == 0)
-	return _Tp(__m == 0);
-      else if (__m == 0)
-	return _Tp(__n == 0);
+      if (n == 0)
+	return Tp(m == 0);
+      else if (m == 0)
+	return Tp(n == 0);
       else
 	{
-	  std::vector<_Tp> __sigold(__m + 1), __signew(__m + 1);
-	  __sigold[1] = _Tp{1};
-	  if (__n == 1)
-	    return __sigold[__m];
-	  for (auto __in = 1u; __in <= __n; ++__in)
+	  std::vector<Tp> sigold(m + 1), signew(m + 1);
+	  sigold[1] = Tp{1};
+	  if (n == 1)
+	    return sigold[m];
+	  for (auto in = 1u; in <= n; ++in)
 	    {
-	      __signew[1] = __sigold[1];
-	      for (auto __im = 2u; __im <= __m; ++__im)
-		__signew[__im] = __im * __sigold[__im] + __sigold[__im - 1];
-	      std::swap(__sigold, __signew);
+	      signew[1] = sigold[1];
+	      for (auto im = 2u; im <= m; ++im)
+		signew[im] = im * sigold[im] + sigold[im - 1];
+	      std::swap(sigold, signew);
 	    }
-	  return __signew[__m];
+	  return signew[m];
 	}
     }
 
@@ -438,18 +444,18 @@
    *
    * @todo Find asymptotic expressions for the Stirling numbers.
    */
-  template<typename _Tp>
-    _Tp
-    __stirling_2(unsigned int __n, unsigned int __m)
+  template<typename Tp>
+    Tp
+    stirling_2(unsigned int n, unsigned int m)
     {
-      if (__m > __n)
-	return _Tp{0};
-      else if (__m == __n)
-	return _Tp{1};
-      else if (__m == 0 && __n >= 1)
-	return _Tp{0};
+      if (m > n)
+	return Tp{0};
+      else if (m == n)
+	return Tp{1};
+      else if (m == 0 && n >= 1)
+	return Tp{0};
       else
-	return __stirling_2_recur<_Tp>(__n, __m);
+	return stirling_2_recur<Tp>(n, m);
     }
 
   /**
@@ -457,18 +463,18 @@
    *
    * @todo Find asymptotic expressions for the Stirling numbers.
    */
-  template<typename _Tp>
-    _Tp
-    __log_stirling_2(unsigned int __n, unsigned int __m)
+  template<typename Tp>
+    Tp
+    log_stirling_2(unsigned int n, unsigned int m)
     {
-      if (__m > __n)
-	return -std::numeric_limits<_Tp>::infinity();
-      else if (__m == __n)
-	return _Tp{0};
-      else if (__m == 0 && __n >= 1)
-	return -std::numeric_limits<_Tp>::infinity();
+      if (m > n)
+	return -std::numeric_limits<Tp>::infinity();
+      else if (m == n)
+	return Tp{0};
+      else if (m == 0 && n >= 1)
+	return -std::numeric_limits<Tp>::infinity();
       else
-	return std::log(__stirling_2<_Tp>(__n, __m));
+	return std::log(stirling_2<Tp>(n, m));
     }
 
   /**
@@ -477,46 +483,45 @@
    * Maybe accumulate the positive and negative terms separately
    * and add them att the end.
    */
-  template<typename _Tp>
-    _Tp
-    __stirling_1_series(unsigned int __n, unsigned int __m)
+  template<typename Tp>
+    Tp
+    stirling_1_series(unsigned int n, unsigned int m)
     {
-      using std::__detail::__log_binomial;
-      using std::__detail::__log_binomial_sign;
-      using std::__detail::__binomial;
-      using __gnu_cxx::__parity;
-      if (2 * __n - __m > std::__detail::_S_num_factorials<_Tp> / 2)
+      using emsr::detail::log_binomial;
+      using emsr::detail::log_binomial_sign;
+      using emsr::detail::binomial;
+      if (2 * n - m > emsr::detail::s_num_factorials<Tp> / 2)
 	{
-	  auto _S1 = _Tp{0};
-	  for (auto __k = 0u; __k <= __n - __m; ++__k)
+	  auto S1 = Tp{0};
+	  for (auto k = 0u; k <= n - m; ++k)
 	    {
-	      const auto __nmpk = __n - __m + __k;
-	      const auto __nmmk = __n - __m - __k;
-	      const auto __lbc1 = __log_binomial<_Tp>(__n - 1 + __k, __nmpk);
-	      const auto __slbc1 = __log_binomial_sign<_Tp>(__n - 1 + __k, __nmpk);
-	      const auto __lbc2 = __log_binomial<_Tp>(2 * __n - __m, __nmmk);
-	      const auto __slbc2 = __log_binomial_sign<_Tp>(2 * __n - __m, __nmmk);
-	      _S1 += __parity<_Tp>(__k) * __slbc1 * __slbc2
-		   * std::exp(__lbc1 + __lbc2 + __log_stirling_2<_Tp>(__nmpk, __k));
+	      const auto nmpk = n - m + k;
+	      const auto nmmk = n - m - k;
+	      const auto lbc1 = log_binomial<Tp>(n - 1 + k, nmpk);
+	      const auto slbc1 = log_binomial_sign<Tp>(n - 1 + k, nmpk);
+	      const auto lbc2 = log_binomial<Tp>(2 * n - m, nmmk);
+	      const auto slbc2 = log_binomial_sign<Tp>(2 * n - m, nmmk);
+	      S1 += emsr::parity<Tp>(k) * slbc1 * slbc2
+		   * std::exp(lbc1 + lbc2 + log_stirling_2<Tp>(nmpk, k));
 	    }
-	  return _S1;
+	  return S1;
 	}
       else
 	{
-	  auto _S1 = _Tp{0};
-	  for (auto __k = 0u; __k <= __n - __m; ++__k)
+	  auto S1 = Tp{0};
+	  for (auto k = 0u; k <= n - m; ++k)
 	    {
-	      const auto __nmpk = __n - __m + __k;
-	      const auto __nmmk = __n - __m - __k;
-	      _S1 += __parity<_Tp>(__k)
-		   * __binomial<_Tp>(__n - 1 + __k, __nmpk)
-		   * __binomial<_Tp>(2 * __n - __m, __nmmk)
-		   * __stirling_2<_Tp>(__nmpk, __k);
+	      const auto nmpk = n - m + k;
+	      const auto nmmk = n - m - k;
+	      S1 += emsr::parity<Tp>(k)
+		   * binomial<Tp>(n - 1 + k, nmpk)
+		   * binomial<Tp>(2 * n - m, nmmk)
+		   * stirling_2<Tp>(nmpk, k);
 	    }
 	  // @todo Only round if the sum is less than
 	  // the maximum representable integer.
 	  // Find or make a tool for this.
-	  return std::nearbyint(_S1);
+	  return std::nearbyint(S1);
 	}
     }
 
@@ -535,27 +540,27 @@
    *   S_{0\rightarrow n}^{(0)} = {1, 0, 0, ..., 0}
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    __stirling_1_recur(unsigned int __n, unsigned int __m)
+  template<typename Tp>
+    Tp
+    stirling_1_recur(unsigned int n, unsigned int m)
     {
-      if (__n == 0)
-	return _Tp(__m == 0);
-      else if (__m == 0)
-	return _Tp(__n == 0);
+      if (n == 0)
+	return Tp(m == 0);
+      else if (m == 0)
+	return Tp(n == 0);
       else
 	{
-	  std::vector<_Tp> _Sold(__m + 1), _Snew(__m + 1);
-	  _Sold[1] = _Tp{1};
-	  if (__n == 1)
-	    return _Sold[__m];
-	  for (auto __in = 1u; __in <= __n; ++__in)
+	  std::vector<Tp> Sold(m + 1), Snew(m + 1);
+	  Sold[1] = Tp{1};
+	  if (n == 1)
+	    return Sold[m];
+	  for (auto in = 1u; in <= n; ++in)
 	    {
-	      for (auto __im = 1u; __im <= __m; ++__im)
-		_Snew[__im] = _Sold[__im - 1] - __in * _Sold[__im];
-	      std::swap(_Sold, _Snew);
+	      for (auto im = 1u; im <= m; ++im)
+		Snew[im] = Sold[im - 1] - in * Sold[im];
+	      std::swap(Sold, Snew);
 	    }
-	  return _Snew[__m];
+	  return Snew[m];
 	}
     }
 
@@ -583,46 +588,46 @@
    *
    * @todo Find asymptotic expressions for the Stirling numbers.
    */
-  template<typename _Tp>
-    _Tp
-    __stirling_1(unsigned int __n, unsigned int __m)
+  template<typename Tp>
+    Tp
+    stirling_1(unsigned int n, unsigned int m)
     {
-      if (__m > __n)
-	return _Tp{0};
-      else if (__m == __n)
-	return _Tp{1};
-      else if (__m == 0 && __n >= 1)
-	return _Tp{0};
+      if (m > n)
+	return Tp{0};
+      else if (m == n)
+	return Tp{1};
+      else if (m == 0 && n >= 1)
+	return Tp{0};
       else
-        return __stirling_1_recur<_Tp>(__n, __m);
+        return stirling_1_recur<Tp>(n, m);
     }
 
   /**
    * Return the logarithm of the absolute value of Stirling number
    * of the first kind.
    */
-  template<typename _Tp>
-    _Tp
-    __log_stirling_1(unsigned int __n, unsigned int __m)
+  template<typename Tp>
+    Tp
+    log_stirling_1(unsigned int n, unsigned int m)
     {
-      if (__m > __n)
-	return -std::numeric_limits<_Tp>::infinity();
-      else if (__m == __n)
-	return _Tp{0};
-      else if (__m == 0 && __n >= 1)
-	return -std::numeric_limits<_Tp>::infinity();
+      if (m > n)
+	return -std::numeric_limits<Tp>::infinity();
+      else if (m == n)
+	return Tp{0};
+      else if (m == 0 && n >= 1)
+	return -std::numeric_limits<Tp>::infinity();
       else
-	return std::log(std::abs(__stirling_1<_Tp>(__n, __m)));
+	return std::log(std::abs(stirling_1<Tp>(n, m)));
     }
 
   /**
    * Return the sign of the exponent of the logarithm of the Stirling number
    * of the first kind.
    */
-  template<typename _Tp>
-    inline _Tp
-    __log_stirling_1_sign(unsigned int __n, unsigned int __m)
-    { return ((__n + __m) & 1) ? _Tp{-1} : _Tp{+1}; }
+  template<typename Tp>
+    inline Tp
+    log_stirling_1_sign(unsigned int n, unsigned int m)
+    { return ((n + m) & 1) ? Tp{-1} : Tp{+1}; }
 
   /**
    * Return the Eulerian number of the first kind by recursion.
@@ -631,33 +636,33 @@
    *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    __eulerian_1_recur(unsigned int __n, unsigned int __m)
+  template<typename Tp>
+    Tp
+    eulerian_1_recur(unsigned int n, unsigned int m)
     {
-      if (__m == 0)
-	return _Tp{1};
-      else if (__m >= __n)
-	return _Tp{0};
-      else if (__m == __n - 1)
-	return _Tp{1};
-      else if (__n - __m - 1 < __m) // Symmetry.
-	return __eulerian_1_recur<_Tp>(__n, __n - __m - 1);
+      if (m == 0)
+	return Tp{1};
+      else if (m >= n)
+	return Tp{0};
+      else if (m == n - 1)
+	return Tp{1};
+      else if (n - m - 1 < m) // Symmetry.
+	return eulerian_1_recur<Tp>(n, n - m - 1);
       else
 	{
 	  // Start recursion with n == 2 (already returned above).
-	  std::vector<_Tp> _Aold(__m + 1), _Anew(__m + 1);
-	  _Aold[0] = _Tp{1};
-	  _Anew[0] = _Tp{1};
-	  _Anew[1] = _Tp{1};
-	  for (auto __in = 3u; __in <= __n; ++__in)
+	  std::vector<Tp> Aold(m + 1), Anew(m + 1);
+	  Aold[0] = Tp{1};
+	  Anew[0] = Tp{1};
+	  Anew[1] = Tp{1};
+	  for (auto in = 3u; in <= n; ++in)
 	    {
-	      std::swap(_Aold, _Anew);
-	      for (auto __im = 1u; __im <= __m; ++__im)
-		_Anew[__im] = (__in - __im) * _Aold[__im - 1]
-			    + (__im + 1) * _Aold[__im];
+	      std::swap(Aold, Anew);
+	      for (auto im = 1u; im <= m; ++im)
+		Anew[im] = (in - im) * Aold[im - 1]
+			    + (im + 1) * Aold[im];
 	    }
-	  return _Anew[__m];
+	  return Anew[m];
 	}
     }
 
@@ -668,10 +673,10 @@
    *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
    * @f]
    */
-  template<typename _Tp>
-    inline _Tp
-    __eulerian_1(unsigned int __n, unsigned int __m)
-    { return __eulerian_1_recur<_Tp>(__n, __m); }
+  template<typename Tp>
+    inline Tp
+    eulerian_1(unsigned int n, unsigned int m)
+    { return eulerian_1_recur<Tp>(n, m); }
 
   /**
    * Return a vector Eulerian numbers of the first kind by recursion.
@@ -680,30 +685,30 @@
    *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
    * @f]
    */
-  template<typename _Tp>
-    std::vector<_Tp>
-    __eulerian_1_recur(unsigned int __n)
+  template<typename Tp>
+    std::vector<Tp>
+    eulerian_1_recur(unsigned int n)
     {
-      if (__n == 0)
-	return std::vector<_Tp>(1, _Tp{1});
-      //else if (__m == __n - 1)
-	//return _Tp{1};
-      //else if (__n - __m - 1 < __m) // Symmetry.
-	//return __eulerian_1_recur<_Tp>(__n, __n - __m - 1);
+      if (n == 0)
+	return std::vector<Tp>(1, Tp{1});
+      //else if (m == n - 1)
+	//return Tp{1};
+      //else if (n - m - 1 < m) // Symmetry.
+	//return eulerian_1_recur<Tp>(n, n - m - 1);
       else
 	{
 	  // Start recursion with n == 2 (already returned above).
-	  std::vector<_Tp> _Aold(__n + 1), _Anew(__n + 1);
-	  _Aold[0] = _Anew[0] = _Tp{1};
-	  _Anew[1] = _Tp{1};
-	  for (auto __in = 3u; __in <= __n; ++__in)
+	  std::vector<Tp> Aold(n + 1), Anew(n + 1);
+	  Aold[0] = Anew[0] = Tp{1};
+	  Anew[1] = Tp{1};
+	  for (auto in = 3u; in <= n; ++in)
 	    {
-	      std::swap(_Aold, _Anew);
-	      for (auto __im = 1u; __im <= __n; ++__im)
-		_Anew[__im] = (__in - __im) * _Aold[__im - 1]
-			    + (__im + 1) * _Aold[__im];
+	      std::swap(Aold, Anew);
+	      for (auto im = 1u; im <= n; ++im)
+		Anew[im] = (in - im) * Aold[im - 1]
+			    + (im + 1) * Aold[im];
 	    }
-	  return _Anew;
+	  return Anew;
 	}
     }
 
@@ -714,10 +719,10 @@
    *   A(n,m) = (n-m)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
    * @f]
    */
-  template<typename _Tp>
-    inline std::vector<_Tp>
-    __eulerian_1(unsigned int __n)
-    { return __eulerian_1_recur<_Tp>(__n); }
+  template<typename Tp>
+    inline std::vector<Tp>
+    eulerian_1(unsigned int n)
+    { return eulerian_1_recur<Tp>(n); }
 
   /**
    * Return the Eulerian number of the second kind by recursion.
@@ -726,31 +731,31 @@
    *   A(n,m) = (2n-m-1)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    __eulerian_2_recur(unsigned int __n, unsigned int __m)
+  template<typename Tp>
+    Tp
+    eulerian_2_recur(unsigned int n, unsigned int m)
     {
-      if (__m == 0)
-	return _Tp{1};
-      else if (__m >= __n)
-	return _Tp{0};
-      else if (__n == 0)
-	return _Tp{1};
+      if (m == 0)
+	return Tp{1};
+      else if (m >= n)
+	return Tp{0};
+      else if (n == 0)
+	return Tp{1};
       else
 	{
 	  // Start recursion with n == 2 (already returned above).
-	  std::vector<_Tp> _Aold(__m + 1), _Anew(__m + 1);
-	  _Aold[0] = _Tp{1};
-	  _Anew[0] = _Tp{1};
-	  _Anew[1] = _Tp{2};
-	  for (auto __in = 3u; __in <= __n; ++__in)
+	  std::vector<Tp> Aold(m + 1), Anew(m + 1);
+	  Aold[0] = Tp{1};
+	  Anew[0] = Tp{1};
+	  Anew[1] = Tp{2};
+	  for (auto in = 3u; in <= n; ++in)
 	    {
-	      std::swap(_Aold, _Anew);
-	      for (auto __im = 1u; __im <= __m; ++__im)
-		_Anew[__im] = (2 * __in - __im - 1) * _Aold[__im - 1]
-			    + (__im + 1) * _Aold[__im];
+	      std::swap(Aold, Anew);
+	      for (auto im = 1u; im <= m; ++im)
+		Anew[im] = (2 * in - im - 1) * Aold[im - 1]
+			    + (im + 1) * Aold[im];
 	    }
-	  return _Anew[__m];
+	  return Anew[m];
 	}
     }
 
@@ -761,10 +766,10 @@
    *   A(n,m) = (2n-m-1)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
    * @f]
    */
-  template<typename _Tp>
-    inline _Tp
-    __eulerian_2(unsigned int __n, unsigned int __m)
-    { return __eulerian_2_recur<_Tp>(__n, __m); }
+  template<typename Tp>
+    inline Tp
+    eulerian_2(unsigned int n, unsigned int m)
+    { return eulerian_2_recur<Tp>(n, m); }
 
   /**
    * Return the Eulerian number of the second kind by recursion.
@@ -773,30 +778,30 @@
    *   A(n,m) = (2n-m-1)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
    * @f]
    */
-  template<typename _Tp>
-    std::vector<_Tp>
-    __eulerian_2_recur(unsigned int __n)
+  template<typename Tp>
+    std::vector<Tp>
+    eulerian_2_recur(unsigned int n)
     {
-      if (__n == 0)
-	return std::vector<_Tp>(1, _Tp{1});
-      //else if (__m >= __n)
-	//return _Tp{0};
-      //else if (__n == 0)
-	//return _Tp{1};
+      if (n == 0)
+	return std::vector<Tp>(1, Tp{1});
+      //else if (m >= n)
+	//return Tp{0};
+      //else if (n == 0)
+	//return Tp{1};
       else
 	{
 	  // Start recursion with n == 2 (already returned above).
-	  std::vector<_Tp> _Aold(__n + 1), _Anew(__n + 1);
-	  _Aold[0] = _Anew[0] = _Tp{1};
-	  _Anew[1] = _Tp{2};
-	  for (auto __in = 3u; __in <= __n; ++__in)
+	  std::vector<Tp> Aold(n + 1), Anew(n + 1);
+	  Aold[0] = Anew[0] = Tp{1};
+	  Anew[1] = Tp{2};
+	  for (auto in = 3u; in <= n; ++in)
 	    {
-	      std::swap(_Aold, _Anew);
-	      for (auto __im = 1u; __im <= __n; ++__im)
-		_Anew[__im] = (2 * __in - __im - 1) * _Aold[__im - 1]
-			    + (__im + 1) * _Aold[__im];
+	      std::swap(Aold, Anew);
+	      for (auto im = 1u; im <= n; ++im)
+		Anew[im] = (2 * in - im - 1) * Aold[im - 1]
+			    + (im + 1) * Aold[im];
 	    }
-	  return _Anew;
+	  return Anew;
 	}
     }
 
@@ -807,10 +812,10 @@
    *   A(n,m) = (2n-m-1)A(n-1,m-1) + (m+1)A(n-1,m) \mbox{ for } n > 0
    * @f]
    */
-  template<typename _Tp>
-    inline std::vector<_Tp>
-    __eulerian_2(unsigned int __n)
-    { return __eulerian_2_recur<_Tp>(__n); }
+  template<typename Tp>
+    inline std::vector<Tp>
+    eulerian_2(unsigned int n)
+    { return eulerian_2_recur<Tp>(n); }
 
   /**
    * Return the Lah number by downward recurrence.
@@ -818,20 +823,20 @@
    *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    __lah_recur(unsigned int __n, unsigned int __k)
+  template<typename Tp>
+    Tp
+    lah_recur(unsigned int n, unsigned int k)
     {
-      if (__k > __n)
-	return _Tp{0};
-      else if (__n == 0)
-	return (__k == 0 ? _Tp{1} : _Tp{0});
+      if (k > n)
+	return Tp{0};
+      else if (n == 0)
+	return (k == 0 ? Tp{1} : Tp{0});
       else
 	{
-	  _Tp _Lnn = 1;
-	  for (unsigned int __i = 1u; __i <= __n - __k; ++__i)
-	    _Lnn *= _Tp(__n - __i + 1) * _Tp(__n - __i) / _Tp(__i);
-	  return _Lnn;
+	  Tp Lnn = 1;
+	  for (unsigned int i = 1u; i <= n - k; ++i)
+	    Lnn *= Tp(n - i + 1) * Tp(n - i) / Tp(i);
+	  return Lnn;
 	}
     }
 
@@ -841,23 +846,23 @@
    *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
    * @f]
    */
-  template<typename _Tp>
-    std::vector<_Tp>
-    __lah_recur(unsigned int __n)
+  template<typename Tp>
+    std::vector<Tp>
+    lah_recur(unsigned int n)
     {
-      if (__n == 0)
-	return std::vector<_Tp>(1, _Tp{1});
+      if (n == 0)
+	return std::vector<Tp>(1, Tp{1});
       else
 	{
-	  std::vector<_Tp> _L(__n + 1);
-	  _Tp _Lnn = 1;
-	  _L[__n] = _Lnn;
-	  for (unsigned int __i = 1u; __i <= __n; ++__i)
+	  std::vector<Tp> L(n + 1);
+	  Tp Lnn = 1;
+	  L[n] = Lnn;
+	  for (unsigned int i = 1u; i <= n; ++i)
 	    {
-	      _Lnn *= _Tp(__n - __i + 1) * _Tp(__n - __i) / _Tp(__i);
-	      _L[__n - __i] = _Lnn;
+	      Lnn *= Tp(n - i + 1) * Tp(n - i) / Tp(i);
+	      L[n - i] = Lnn;
 	    }
-	  return _L;
+	  return L;
 	}
     }
 
@@ -867,10 +872,10 @@
    *   L(n,k-1) = \frac{k(k-1)}{n-k+1}L(n,k);  L(n,n) = 1
    * @f]
    */
-  template<typename _Tp>
-    inline std::vector<_Tp>
-    __lah(unsigned int __n)
-    { return __lah_recur<_Tp>(__n); }
+  template<typename Tp>
+    inline std::vector<Tp>
+    lah(unsigned int n)
+    { return lah_recur<Tp>(n); }
 
   /**
    * Return a vector of the Bell numbers by summation.
@@ -879,29 +884,29 @@
    * @f]
    * where @f$ S_n^{(k)} @f$ are the Stirling numbers of the second kind.
    */
-  template<typename _Tp>
-    std::vector<_Tp>
-    __bell_series(unsigned int __n)
+  template<typename Tp>
+    std::vector<Tp>
+    bell_series(unsigned int n)
     {
-      std::vector<_Tp> __bell(__n + 1);
-      __bell[0] = _Tp{1};
+      std::vector<Tp> bell(n + 1);
+      bell[0] = Tp{1};
 
       /// @todo Test for blowup in Bell number summation.
-      for (unsigned int __i = 1; __i <= __n; ++__i)
-	for (unsigned int __j = 1; __j <= __i; ++__j)
-	  __bell[__i] += __bell[__i - __j]
-		       * __gnu_cxx::binomial<_Tp>(__i - 1, __j - 1);
+      for (unsigned int i = 1; i <= n; ++i)
+	for (unsigned int j = 1; j <= i; ++j)
+	  bell[i] += bell[i - j]
+		       * emsr::binomial<Tp>(i - 1, j - 1);
 
-      return __bell;
+      return bell;
     }
 
   /**
    * Return a vector of the Bell numbers.
    */
-  template<typename _Tp>
-    inline std::vector<_Tp>
-    __bell(unsigned int __n)
-    { return __bell_series<_Tp>(__n); }
+  template<typename Tp>
+    inline std::vector<Tp>
+    bell(unsigned int n)
+    { return bell_series<Tp>(n); }
 
   /**
    * Evaluate the Bell polynomial
@@ -910,29 +915,29 @@
    * @f]
    * where @f$ S_n^{(k)} @f$ are the Stirling numbers of the second kind.
    */
-  template<typename _Tp, typename _Up>
-    inline _Up
-    __bell(unsigned int __n, _Up __x)
+  template<typename Tp, typename Up>
+    inline Up
+    bell(unsigned int n, Up x)
     {
-      const auto _Sn = __stirling_2<_Tp>(__n);
-      auto __bell = _Sn[__n];
-      for (unsigned int __i = 1; __i < __n; ++__i)
-	__bell = _Sn[__n - __i] + __x * __bell;
-      return __bell;
+      const auto Sn = stirling_2<Tp>(n);
+      auto bell = Sn[n];
+      for (unsigned int i = 1; i < n; ++i)
+	bell = Sn[n - i] + x * bell;
+      return bell;
     }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_bernoulli(_Tp proto = _Tp{})
+  test_bernoulli(Tp proto = Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
     std::cout << "\n\n Bell numbers\n";
     for (auto n = 1u; n <= 20; ++n)
       {
-	auto bell = __bell_series<long long>(n);
+	auto bell = bell_series<long long>(n);
         auto bellv = burkhardt::bell(n);
 	std::cout << '\n';
 	for (auto k = 0u; k <= n; ++k)
@@ -946,12 +951,12 @@ template<typename _Tp>
     std::cout << "\n\n Lah numbers\n";
     for (auto n = 1u; n <= 20; ++n)
       {
-	const auto lahv = __lah<_Tp>(n);
+	const auto lahv = lah<Tp>(n);
 	std::cout << '\n';
 	for (auto k = 0u; k <= n; ++k)
 	  std::cout << ' ' << std::setw(4) << n
 	       	    << ' ' << std::setw(4) << k
-		    << ' ' << std::setw(width) << __lah_recur<_Tp>(n, k)
+		    << ' ' << std::setw(width) << lah_recur<Tp>(n, k)
 		    << ' ' << std::setw(width) << lahv[k]
 		    << '\n';
       }
@@ -959,22 +964,22 @@ template<typename _Tp>
     std::cout << "\n\n Bernoulli numbers\n";
     for (auto n = 0u; n <= 200; ++n)
       std::cout << ' ' << std::setw(4) << n
-		<< ' ' << std::setw(width) << __bernoulli_series<_Tp>(n)
+		<< ' ' << std::setw(width) << bernoulli_series<Tp>(n)
 		<< '\n';
 
     std::cout << "\n\n Bernoulli polynomials\n";
     for (auto n = 0u; n <= 50; ++n)
       {
 	std::cout << '\n' << ' ' << std::setw(4) << n << '\n';
-	const auto del = _Tp{1} / _Tp{10};
+	const auto del = Tp{1} / Tp{10};
 	for (auto i = 0u; i <= 50; ++i)
 	  {
 	    auto x = del * i;
-	    auto _B_n = __bernoulli(n, x);
-	    auto _tildeB_n = __bernoulli_period(n, x);
+	    auto B_n = bernoulli(n, x);
+	    auto tildeB_n = bernoulli_period(n, x);
 	    std::cout << ' ' << std::setw(width) << x
-		      << ' ' << std::setw(width) << _B_n
-		      << ' ' << std::setw(width) << _tildeB_n
+		      << ' ' << std::setw(width) << B_n
+		      << ' ' << std::setw(width) << tildeB_n
 		      << '\n';
 	  }
       }
@@ -982,22 +987,22 @@ template<typename _Tp>
     std::cout << "\n\n Euler numbers\n";
     for (auto n = 0u; n <= 200; ++n)
       std::cout << ' ' << std::setw(4) << n
-		<< ' ' << std::setw(width) << __euler<_Tp>(n)
+		<< ' ' << std::setw(width) << euler<Tp>(n)
 		<< '\n';
 
     std::cout << "\n\n Euler polynomials\n";
     for (auto n = 0u; n <= 50; ++n)
       {
 	std::cout << '\n' << ' ' << std::setw(4) << n << '\n';
-	const auto del = _Tp{1} / _Tp{10};
+	const auto del = Tp{1} / Tp{10};
 	for (auto i = 0u; i <= 50; ++i)
 	  {
 	    auto x = del * i;
-	    auto _E_n = __euler(n, x);
-	    auto _tildeE_n = __euler_period(n, x);
+	    auto E_n = euler(n, x);
+	    auto tildeE_n = euler_period(n, x);
 	    std::cout << ' ' << std::setw(width) << x
-		      << ' ' << std::setw(width) << _E_n
-		      << ' ' << std::setw(width) << _tildeE_n
+		      << ' ' << std::setw(width) << E_n
+		      << ' ' << std::setw(width) << tildeE_n
 		      << '\n';
 	  }
       }
@@ -1005,13 +1010,13 @@ template<typename _Tp>
     std::cout << "\n\n Stirling numbers of the second kind";
     for (auto n = 0u; n <= 100; ++n)
       {
-        const auto s2v = std::__detail::__stirling_2<_Tp>(n);
+        const auto s2v = emsr::detail::stirling_2<Tp>(n);
 	std::cout << '\n';
 	for (auto m = 0u; m <= n; ++m)
 	  std::cout << ' ' << std::setw(4) << n
 		    << ' ' << std::setw(4) << m
-		    << ' ' << std::setw(width) << __stirling_2_series<_Tp>(n, m)
-		    << ' ' << std::setw(width) << __stirling_2_recur<_Tp>(n, m)
+		    << ' ' << std::setw(width) << stirling_2_series<Tp>(n, m)
+		    << ' ' << std::setw(width) << stirling_2_recur<Tp>(n, m)
 		    << ' ' << std::setw(width) << s2v[m]
 		    << '\n';
       }
@@ -1019,13 +1024,13 @@ template<typename _Tp>
     std::cout << "\n\n Stirling numbers of the first kind";
     for (auto n = 0u; n <= 100; ++n)
       {
-        const auto s1v = std::__detail::__stirling_1<_Tp>(n);
+        const auto s1v = emsr::detail::stirling_1<Tp>(n);
 	std::cout << '\n';
 	for (auto m = 0u; m <= n; ++m)
 	  std::cout << ' ' << std::setw(4) << n
 		    << ' ' << std::setw(4) << m
-		    << ' ' << std::setw(width) << __stirling_1_series<_Tp>(n, m)
-		    << ' ' << std::setw(width) << __stirling_1_recur<_Tp>(n, m)
+		    << ' ' << std::setw(width) << stirling_1_series<Tp>(n, m)
+		    << ' ' << std::setw(width) << stirling_1_recur<Tp>(n, m)
 		    << ' ' << std::setw(width) << s1v[m]
 		    << '\n';
       }
@@ -1033,13 +1038,13 @@ template<typename _Tp>
     std::cout << "\n\n Eulerian numbers of the first kind";
     for (auto n = 1u; n <= 10; ++n)
       {
-        const auto e1v = __eulerian_1<_Tp>(n);
+        const auto e1v = eulerian_1<Tp>(n);
 	std::cout << '\n';
 	for (auto m = 0u; m < n; ++m)
 	  std::cout << ' ' << std::setw(4) << n
 		    << ' ' << std::setw(4) << m
-		  //  << ' ' << std::setw(width) << __eulerian_1_series<_Tp>(n, m)
-		    << ' ' << std::setw(width) << __eulerian_1_recur<_Tp>(n, m)
+		  //  << ' ' << std::setw(width) << eulerian_1_series<Tp>(n, m)
+		    << ' ' << std::setw(width) << eulerian_1_recur<Tp>(n, m)
 		    << ' ' << std::setw(width) << burkhardt::eulerian_1(n, m)
 		    << ' ' << std::setw(width) << e1v[m]
 		    << '\n';
@@ -1048,13 +1053,13 @@ template<typename _Tp>
     std::cout << "\n\n Eulerian numbers of the second kind";
     for (auto n = 1u; n <= 10; ++n)
       {
-        const auto e2v = __eulerian_2<_Tp>(n);
+        const auto e2v = eulerian_2<Tp>(n);
 	std::cout << '\n';
 	for (auto m = 0u; m < n; ++m)
 	  std::cout << ' ' << std::setw(4) << n
 		    << ' ' << std::setw(4) << m
-		  //  << ' ' << std::setw(width) << __eulerian_2_series<_Tp>(n, m)
-		    << ' ' << std::setw(width) << __eulerian_2_recur<_Tp>(n, m)
+		  //  << ' ' << std::setw(width) << eulerian_2_series<Tp>(n, m)
+		    << ' ' << std::setw(width) << eulerian_2_recur<Tp>(n, m)
 		  //  << ' ' << std::setw(width) << burkhardt::eulerian_2(n, m)
 		    << ' ' << std::setw(width) << e2v[m]
 		    << '\n';

@@ -1,3 +1,0 @@
-doesn't have fabs()
-
-make everything math constexpr

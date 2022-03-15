@@ -4,59 +4,63 @@
 
 #include <cmath>
 #include <iostream>
+#include <vector>
 
-template<typename _Tp, typename _Hfun>
-  std::vector<_Tp>
-  cyl_bessel_zeros(_Hfun __cyl_ratio, _Tp __nu, _Tp __a, _Tp __b)
+#include <emsr/math_constants.h>
+#include <emsr/numeric_limits.h>
+
+template<typename Tp, typename _Hfun>
+  std::vector<Tp>
+  cyl_bessel_zeros(_Hfun cyl_ratio, Tp nu, Tp a, Tp b)
   {
-    const auto _S_pi_2 = __gnu_cxx::numbers::__pi_half_v<_Tp>;
-    const auto _S_eps = __gnu_cxx::__epsilon(__nu);
-    auto _Delta = _S_pi_2;
-    std::vector<_Tp> __zeros;
+    const auto s_pi_2 = emsr::pi_v<Tp> / Tp{2};
+    const auto s_eps = emsr::epsilon(nu);
+    auto _Delta = s_pi_2;
+    std::vector<Tp> zeros;
 
     // Backward sweep: nu > 1/2
-    if (__nu > 0.5)
+    if (nu > 0.5)
       {
-	bool __keep = true;
-	auto __x = (__cyl_ratio(__nu, __b) < _Tp{0} ? __b -  _S_pi_2: __b);
-	while (__x >= __a)
+	bool keep = true;
+	auto x = (cyl_ratio(nu, b) < Tp{0} ? b -  s_pi_2: b);
+	while (x >= a)
 	  {
-	    auto _E = _Tp{1} + _S_eps;
-	    while (__keep && _E > _S_eps)
+	    auto _E = Tp{1} + s_eps;
+	    while (keep && _E > s_eps)
 	      {
-		const auto __xp = __x;
-		__x -= std::atan(__cyl_ratio(__nu, __x));
-		_E = std::abs(_Tp{1} = __x / __xp);
-		if (__x < __a)
-		  __keep = false;
+		const auto xp = x;
+		x -= std::atan(cyl_ratio(nu, x));
+		_E = std::abs(Tp{1} = x / xp);
+		if (x < a)
+		  keep = false;
 	      }
-	    if (__keep)
+	    if (keep)
 	      {
-		__zeros.push_back(__x);
-		__x -= _Delta;
+		zeros.push_back(x);
+		x -= _Delta;
 	      }
 	  }
       }
     // Forward sweep: nu > 1/2
-    else if (__nu < 0.5)
+    else if (nu < 0.5)
       {
-	bool __keep = true;
-	auto __x = (__cyl_ratio(__nu, __a) > _Tp{0} ? __a +  _S_pi_2: __a);
-	while (__x <= __b)
+	bool keep = true;
+	auto x = (cyl_ratio(nu, a) > Tp{0} ? a +  s_pi_2: a);
+	while (x <= b)
 	  {
-	    auto _E = _Tp{1} + _S_eps;
-	    while (__keep && _E > _S_eps)
+	    auto _E = Tp{1} + s_eps;
+	    while (keep && _E > s_eps)
 	      {
-		const auto __xp = __x;
-		__x -= std::atan(__cyl_ratio(__nu, __x));
-		_E = std::abs(_Tp{1} = __x / __xp);
-		if (__x > __b)
-		  __keep = false;
+		const auto xp = x;
+		x -= std::atan(cyl_ratio(nu, x));
+		_E = std::abs(Tp{1} = x / xp);
+		if (x > b)
+		  keep = false;
 	      }
-	    if (__keep)
+	    if (keep)
 	      {
-		__zeros.push_back(__x);
-		__x += _Delta;
+		zeros.push_back(x);
+		x += _Delta;
 	      }
 	  }
       }

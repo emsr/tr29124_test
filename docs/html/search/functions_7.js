@@ -1,16 +1,8 @@
 var searchData=
 [
-  ['gamma_5fp',['gamma_p',['../group__mathsf__gnu.html#ga692601fa7508c0b97bf549e6362a49b9',1,'__gnu_cxx']]],
-  ['gamma_5fpdf',['gamma_pdf',['../group__mathsf__gnu.html#ga55f530c37387a6c10c601c5838f3be00',1,'__gnu_cxx']]],
-  ['gamma_5fpf',['gamma_pf',['../group__mathsf__gnu.html#gac9a59be05877d3c14fa95bebcf15e8df',1,'__gnu_cxx']]],
-  ['gamma_5fpl',['gamma_pl',['../group__mathsf__gnu.html#gaa37f4adf9942ce8e095f440963b330a6',1,'__gnu_cxx']]],
-  ['gamma_5fq',['gamma_q',['../group__mathsf__gnu.html#ga10c246b2fa2ce000dc5d7c81e9e98c58',1,'__gnu_cxx']]],
-  ['gamma_5fqf',['gamma_qf',['../group__mathsf__gnu.html#ga3ee8d2c40b904952538709cbb0e664a4',1,'__gnu_cxx']]],
-  ['gamma_5fql',['gamma_ql',['../group__mathsf__gnu.html#ga5364a098596681809294d25741539ffc',1,'__gnu_cxx']]],
-  ['gamma_5freciprocal',['gamma_reciprocal',['../group__mathsf__gnu.html#ga641f9bcdb8fc32a9a0ce7a15b5040076',1,'__gnu_cxx']]],
-  ['gamma_5freciprocalf',['gamma_reciprocalf',['../group__mathsf__gnu.html#ga10cccd5045490ac24590c094c43107d8',1,'__gnu_cxx']]],
-  ['gamma_5freciprocall',['gamma_reciprocall',['../group__mathsf__gnu.html#ga73bfcace13daa8b50e7e7e3f583a2eb0',1,'__gnu_cxx']]],
-  ['gegenbauer',['gegenbauer',['../group__mathsf__gnu.html#ga512e7981e328d6184f604de1892048b6',1,'__gnu_cxx']]],
-  ['gegenbauerf',['gegenbauerf',['../group__mathsf__gnu.html#ga3eda0a3546848c5b3a2d4d9b5910d6b1',1,'__gnu_cxx']]],
-  ['gegenbauerl',['gegenbauerl',['../group__mathsf__gnu.html#ga1f1110d7a116bd5636924bb96d24ecc3',1,'__gnu_cxx']]]
+  ['harmonic_545',['harmonic',['../namespaceemsr.html#ab7fc035040b56be7ee256d7119676797',1,'emsr']]],
+  ['hermite_546',['hermite',['../namespaceemsr.html#ab6a033f9dcc3e1a4a4f68d2043b5afbd',1,'emsr']]],
+  ['heuman_5flambda_547',['heuman_lambda',['../namespaceemsr.html#aaa8ad5b400c56e7a0aeb0a66bb7924ab',1,'emsr']]],
+  ['hurwitz_5fzeta_548',['hurwitz_zeta',['../namespaceemsr.html#a392ef8905222cfbfc10d554244f9229e',1,'emsr::hurwitz_zeta(Tp s, std::complex&lt; Up &gt; a)'],['../namespaceemsr.html#ab4788490ede88f98d942d05674e3f92f',1,'emsr::hurwitz_zeta(Tp s, _Up a)']]],
+  ['hyperg_549',['hyperg',['../namespaceemsr.html#a09444237cac14fa16d23bea4f5cd790c',1,'emsr']]]
 ];

@@ -1,0 +1,162 @@
+\hypertarget{structemsr_1_1legendre__p__t}{}\doxysection{emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$ Struct Template Reference}
+\label{structemsr_1_1legendre__p__t}\index{emsr::legendre\_p\_t$<$ Tp $>$@{emsr::legendre\_p\_t$<$ Tp $>$}}
+
+
+{\ttfamily \#include $<$specfun\+\_\+state.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+constexpr Tp \mbox{\hyperlink{structemsr_1_1legendre__p__t_a23c0bac2bc0b1c1954eb42db2403c77f}{deriv}} () const noexcept
+\item 
+constexpr Tp \mbox{\hyperlink{structemsr_1_1legendre__p__t_a40fb5b393afdab3df0cd4799c73e9a64}{lobatto}} () const noexcept
+\begin{DoxyCompactList}\small\item\em P\+\_\+\{l-\/2\}(x) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \mbox{\hyperlink{structemsr_1_1legendre__p__t_a8b64b159877a048908b4794ccd30d1ed}{l}}
+\item 
+Tp \mbox{\hyperlink{structemsr_1_1legendre__p__t_a16f292940995d2a854b79be3ec3467df}{P\+\_\+l}}
+\item 
+Tp \mbox{\hyperlink{structemsr_1_1legendre__p__t_a342e849f4fdf995d0d9635bc1eb33dd5}{P\+\_\+lm1}}
+\begin{DoxyCompactList}\small\item\em P\+\_\+l(x) \end{DoxyCompactList}\item 
+Tp \mbox{\hyperlink{structemsr_1_1legendre__p__t_a2ce9a160750194f08089024865c01f84}{P\+\_\+lm2}}
+\begin{DoxyCompactList}\small\item\em P\+\_\+\{l-\/1\}(x) \end{DoxyCompactList}\item 
+Tp \mbox{\hyperlink{structemsr_1_1legendre__p__t_a899c3db9d7551266595d35b0e18faf9c}{x}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Tp$>$\newline
+struct emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$}
+
+A type describing the state of a Legendre polynomial.
+
+The method \mbox{\hyperlink{structemsr_1_1legendre__p__t_a40fb5b393afdab3df0cd4799c73e9a64}{lobatto()}} will return the Lobatto polynomial\+: \[ Lo_l(x) = (1 - x^2)P\textnormal{\textquotesingle}_l(x) = l \left[ P_{l - 1}(x) - x P_l(x) \right] \] 
+
+Definition at line 104 of file specfun\+\_\+state.\+h.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structemsr_1_1legendre__p__t_a23c0bac2bc0b1c1954eb42db2403c77f}\label{structemsr_1_1legendre__p__t_a23c0bac2bc0b1c1954eb42db2403c77f}} 
+\index{emsr::legendre\_p\_t$<$ Tp $>$@{emsr::legendre\_p\_t$<$ Tp $>$}!deriv@{deriv}}
+\index{deriv@{deriv}!emsr::legendre\_p\_t$<$ Tp $>$@{emsr::legendre\_p\_t$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{deriv()}{deriv()}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+constexpr Tp \mbox{\hyperlink{structemsr_1_1legendre__p__t}{emsr\+::legendre\+\_\+p\+\_\+t}}$<$ Tp $>$\+::deriv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+Definition at line 118 of file specfun\+\_\+state.\+h.
+
+
+
+References emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$\+::l, emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$\+::\+P\+\_\+l, emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$\+::\+P\+\_\+lm1, and emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$\+::x.
+
+\mbox{\Hypertarget{structemsr_1_1legendre__p__t_a40fb5b393afdab3df0cd4799c73e9a64}\label{structemsr_1_1legendre__p__t_a40fb5b393afdab3df0cd4799c73e9a64}} 
+\index{emsr::legendre\_p\_t$<$ Tp $>$@{emsr::legendre\_p\_t$<$ Tp $>$}!lobatto@{lobatto}}
+\index{lobatto@{lobatto}!emsr::legendre\_p\_t$<$ Tp $>$@{emsr::legendre\_p\_t$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{lobatto()}{lobatto()}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+constexpr Tp \mbox{\hyperlink{structemsr_1_1legendre__p__t}{emsr\+::legendre\+\_\+p\+\_\+t}}$<$ Tp $>$\+::lobatto (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [constexpr]}, {\ttfamily [noexcept]}}
+
+
+
+P\+\_\+\{l-\/2\}(x) 
+
+
+
+Definition at line 114 of file specfun\+\_\+state.\+h.
+
+
+
+References emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$\+::l, emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$\+::\+P\+\_\+l, emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$\+::\+P\+\_\+lm1, and emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$\+::x.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structemsr_1_1legendre__p__t_a8b64b159877a048908b4794ccd30d1ed}\label{structemsr_1_1legendre__p__t_a8b64b159877a048908b4794ccd30d1ed}} 
+\index{emsr::legendre\_p\_t$<$ Tp $>$@{emsr::legendre\_p\_t$<$ Tp $>$}!l@{l}}
+\index{l@{l}!emsr::legendre\_p\_t$<$ Tp $>$@{emsr::legendre\_p\_t$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{l}{l}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+unsigned int \mbox{\hyperlink{structemsr_1_1legendre__p__t}{emsr\+::legendre\+\_\+p\+\_\+t}}$<$ Tp $>$\+::l}
+
+
+
+Definition at line 106 of file specfun\+\_\+state.\+h.
+
+
+
+Referenced by emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$\+::deriv(), and emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$\+::lobatto().
+
+\mbox{\Hypertarget{structemsr_1_1legendre__p__t_a16f292940995d2a854b79be3ec3467df}\label{structemsr_1_1legendre__p__t_a16f292940995d2a854b79be3ec3467df}} 
+\index{emsr::legendre\_p\_t$<$ Tp $>$@{emsr::legendre\_p\_t$<$ Tp $>$}!P\_l@{P\_l}}
+\index{P\_l@{P\_l}!emsr::legendre\_p\_t$<$ Tp $>$@{emsr::legendre\_p\_t$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{P\_l}{P\_l}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+Tp \mbox{\hyperlink{structemsr_1_1legendre__p__t}{emsr\+::legendre\+\_\+p\+\_\+t}}$<$ Tp $>$\+::P\+\_\+l}
+
+
+
+Definition at line 108 of file specfun\+\_\+state.\+h.
+
+
+
+Referenced by emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$\+::deriv(), and emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$\+::lobatto().
+
+\mbox{\Hypertarget{structemsr_1_1legendre__p__t_a342e849f4fdf995d0d9635bc1eb33dd5}\label{structemsr_1_1legendre__p__t_a342e849f4fdf995d0d9635bc1eb33dd5}} 
+\index{emsr::legendre\_p\_t$<$ Tp $>$@{emsr::legendre\_p\_t$<$ Tp $>$}!P\_lm1@{P\_lm1}}
+\index{P\_lm1@{P\_lm1}!emsr::legendre\_p\_t$<$ Tp $>$@{emsr::legendre\_p\_t$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{P\_lm1}{P\_lm1}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+Tp \mbox{\hyperlink{structemsr_1_1legendre__p__t}{emsr\+::legendre\+\_\+p\+\_\+t}}$<$ Tp $>$\+::P\+\_\+lm1}
+
+
+
+P\+\_\+l(x) 
+
+
+
+Definition at line 109 of file specfun\+\_\+state.\+h.
+
+
+
+Referenced by emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$\+::deriv(), and emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$\+::lobatto().
+
+\mbox{\Hypertarget{structemsr_1_1legendre__p__t_a2ce9a160750194f08089024865c01f84}\label{structemsr_1_1legendre__p__t_a2ce9a160750194f08089024865c01f84}} 
+\index{emsr::legendre\_p\_t$<$ Tp $>$@{emsr::legendre\_p\_t$<$ Tp $>$}!P\_lm2@{P\_lm2}}
+\index{P\_lm2@{P\_lm2}!emsr::legendre\_p\_t$<$ Tp $>$@{emsr::legendre\_p\_t$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{P\_lm2}{P\_lm2}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+Tp \mbox{\hyperlink{structemsr_1_1legendre__p__t}{emsr\+::legendre\+\_\+p\+\_\+t}}$<$ Tp $>$\+::P\+\_\+lm2}
+
+
+
+P\+\_\+\{l-\/1\}(x) 
+
+
+
+Definition at line 110 of file specfun\+\_\+state.\+h.
+
+\mbox{\Hypertarget{structemsr_1_1legendre__p__t_a899c3db9d7551266595d35b0e18faf9c}\label{structemsr_1_1legendre__p__t_a899c3db9d7551266595d35b0e18faf9c}} 
+\index{emsr::legendre\_p\_t$<$ Tp $>$@{emsr::legendre\_p\_t$<$ Tp $>$}!x@{x}}
+\index{x@{x}!emsr::legendre\_p\_t$<$ Tp $>$@{emsr::legendre\_p\_t$<$ Tp $>$}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+Tp \mbox{\hyperlink{structemsr_1_1legendre__p__t}{emsr\+::legendre\+\_\+p\+\_\+t}}$<$ Tp $>$\+::x}
+
+
+
+Definition at line 107 of file specfun\+\_\+state.\+h.
+
+
+
+Referenced by emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$\+::deriv(), and emsr\+::legendre\+\_\+p\+\_\+t$<$ Tp $>$\+::lobatto().
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+cxx\+\_\+special\+\_\+functions/include/emsr/\mbox{\hyperlink{specfun__state_8h}{specfun\+\_\+state.\+h}}\end{DoxyCompactItemize}

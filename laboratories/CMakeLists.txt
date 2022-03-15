@@ -8,7 +8,7 @@ project(
 
 enable_testing()
 
-set(TR29124_LIBRARIES
+set(EMSR_LIBRARIES
   cxx_math_constants
   cxx_fp_utils
   cxx_complex_utils
@@ -46,3 +46,6 @@ add_subdirectory(parabolic_cylinder_functions)
 add_subdirectory(theta_functions)
 add_subdirectory(zeta_functions)
 add_subdirectory(recursive_functions)
+add_subdirectory(multiprecision)
+add_subdirectory(harmonics)
+add_subdirectory(polynomials)

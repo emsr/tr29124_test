@@ -36,15 +36,15 @@ target_compile_definitions(hyperg_3F0 PRIVATE MAIN_3F0)
 add_test(NAME run_hyperg_3F0 COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/hyperg_3F0 > output/hyperg_3F0.txt")
 
 add_executable(test_conf_hyperg test_conf_hyperg.cpp)
-target_link_libraries(test_conf_hyperg ${TR29124_LIBRARIES} quadmath)
+target_link_libraries(test_conf_hyperg ${EMSR_LIBRARIES} quadmath)
 add_test(NAME run_test_conf_hyperg COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_conf_hyperg > output/test_conf_hyperg.txt")
 
 add_executable(test_conf_hyperg_limit test_conf_hyperg_limit.cpp)
-target_link_libraries(test_conf_hyperg_limit ${TR29124_LIBRARIES} quadmath)
+target_link_libraries(test_conf_hyperg_limit ${EMSR_LIBRARIES} quadmath)
 add_test(NAME run_test_conf_hyperg_limit COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_conf_hyperg_limit > output/test_conf_hyperg_limit.txt")
 
 add_executable(test_hyperg test_hyperg.cpp)
-target_link_libraries(test_hyperg ${TR29124_LIBRARIES} cxx_float128
+target_link_libraries(test_hyperg ${EMSR_LIBRARIES} cxx_float128
   quadmath
   wrap_gsl)
 #FIXME add_test(NAME run_test_hyperg COMMAND bash -c "${CMAKE_BINARY_DIR}/bin/test_hyperg > output/test_hyperg.txt")

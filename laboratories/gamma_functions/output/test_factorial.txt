@@ -1,5 +1,5 @@
 
-_S_factorial_table<float>
+s_factorial_table<float>
 {
   {   0, 1.000000e+00F, 0.000000e+00F},
   {   1, 1.000000e+00F, 0.000000e+00F},
@@ -38,7 +38,7 @@ _S_factorial_table<float>
   {  34, 2.952328e+38F, 8.858083e+01F},
 };
 
-_S_factorial_table<double>
+s_factorial_table<double>
 {
   {   0, 1.000000000000000e+00, 0.000000000000000e+00},
   {   1, 1.000000000000000e+00, 0.000000000000000e+00},
@@ -213,7 +213,7 @@ _S_factorial_table<double>
   { 170, 7.257415615307994e+306, 7.065730622457874e+02},
 };
 
-_S_factorial_table<long double>
+s_factorial_table<long double>
 {
   {   0, 1.000000000000000000e+00L, 0.000000000000000000e+00L},
   {   1, 1.000000000000000000e+00L, 0.000000000000000000e+00L},
@@ -1216,7 +1216,7 @@ _S_factorial_table<long double>
   { 998, 4.027900501272209942e+2561L, 5.898313668430532658e+03L},
 };
 
-_S_double_factorial_table<float>
+s_double_factorial_table<float>
 {
   {   0, 1.000000e+00F, 0.000000e+00F},
   {   1, 1.000000e+00F, 0.000000e+00F},
@@ -1277,7 +1277,7 @@ _S_double_factorial_table<float>
   {  56, 8.184285e+37F, 8.729787e+01F},
 };
 
-_S_double_factorial_table<double>
+s_double_factorial_table<double>
 {
   {   0, 1.000000000000000e+00, 0.000000000000000e+00},
   {   1, 1.000000000000000e+00, 0.000000000000000e+00},
@@ -1582,7 +1582,7 @@ _S_double_factorial_table<double>
   { 300, 8.154414069380588e+307, 7.089921829334155e+02},
 };
 
-_S_double_factorial_table<long double>
+s_double_factorial_table<long double>
 {
   {   0, 1.000000000000000000e+00L, 0.000000000000000000e+00L},
   {   1, 1.000000000000000000e+00L, 0.000000000000000000e+00L},
@@ -3584,7 +3584,7 @@ _S_double_factorial_table<long double>
   {1997, 3.847670457698467757e+2863L, 6.593648589131197698e+03L},
 };
 
-_S_neg_double_factorial_table<float>
+s_neg_double_factorial_table<float>
 {
   {  -1, 1.000000e+00F, 0.000000e+00F},
   {  -3, -3.333333e-01F, -1.098612e+00F},
@@ -3616,7 +3616,7 @@ _S_neg_double_factorial_table<float>
   { -55, -1.151097e-37F, -8.505493e+01F},
 };
 
-_S_neg_double_factorial_table<double>
+s_neg_double_factorial_table<double>
 {
   {  -1, 1.000000000000000e+00, 0.000000000000000e+00},
   {  -3, -3.333333333333333e-01, -1.098612288668110e+00},
@@ -3770,7 +3770,7 @@ _S_neg_double_factorial_table<double>
   {-299, -2.664340440568529e-307, -7.059136670116525e+02},
 };
 
-_S_neg_double_factorial_table<long double>
+s_neg_double_factorial_table<long double>
 {
   {  -1, 1.000000000000000000e+00L, 0.000000000000000000e+00L},
   {  -3, -3.333333333333333333e-01L, -1.098612288668109691e+00L},

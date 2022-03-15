@@ -6,7 +6,9 @@
 #include <iomanip>
 #include <limits>
 #include <cmath>
-#include <bits/specfun.h>
+
+#include <emsr/special_functions.h>
+
 #include <wrap_gsl.h>
 
 double
@@ -62,22 +64,22 @@ bessel_cheb(double x, double& gam1, double& gam2, double& gampl, double& gammi)
   gammi = gam2 + x * gam1;
 }
 
-  template<typename _Tp>
+  template<typename Tp>
     void
-    __gamma_temme(_Tp __mu,
-		  _Tp & __gam1, _Tp & __gam2, _Tp & __gampl, _Tp & __gammi)
+    gamma_temme(Tp mu,
+		  Tp & gam1, Tp & gam2, Tp & gampl, Tp & gammi)
     {
-      constexpr _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
-      constexpr _Tp _S_gamma_E = __gnu_cxx::numbers::__gamma_e_v<_Tp>;
-      __gampl = _Tp{1} / std::tgamma(_Tp{1} + __mu);
-      __gammi = _Tp{1} / std::tgamma(_Tp{1} - __mu);
+      constexpr Tp s_eps = std::numeric_limits<Tp>::epsilon();
+      constexpr Tp s_gamma_E = emsr::egamma_v<Tp>;
+      gampl = Tp{1} / std::tgamma(Tp{1} + mu);
+      gammi = Tp{1} / std::tgamma(Tp{1} - mu);
 
-      if (std::abs(__mu) < _S_eps)
-	__gam1 = -_S_gamma_E;
+      if (std::abs(mu) < s_eps)
+	gam1 = -s_gamma_E;
       else
-	__gam1 = (__gammi - __gampl) / (_Tp{2} * __mu);
+	gam1 = (gammi - gampl) / (Tp{2} * mu);
 
-      __gam2 = (__gammi + __gampl) / _Tp{2};
+      gam2 = (gammi + gampl) / Tp{2};
 
       return;
     }
@@ -238,207 +240,207 @@ std::cout << "Npnu  =" << ryp << '\n';
     }
 }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  new_bessel_chunk(_Tp __nu, _Tp __x, _Tp& _Jnu, _Tp& _Jpnu, _Tp& _Nnu, _Tp& _Npnu)
+  new_bessel_chunk(Tp nu, Tp x, Tp& Jnu, Tp& Jpnu, Tp& Nnu, Tp& Npnu)
   {
-      constexpr _Tp _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-      constexpr _Tp _S_inf = std::numeric_limits<_Tp>::infinity();
-      constexpr _Tp _S_eps = std::numeric_limits<_Tp>::epsilon();
-      if (__x == _Tp{0})
+      constexpr Tp s_pi = emsr::pi_v<Tp>;
+      constexpr Tp s_inf = std::numeric_limits<Tp>::infinity();
+      constexpr Tp s_eps = std::numeric_limits<Tp>::epsilon();
+      if (x == Tp{0})
 	{
-	  if (__nu == _Tp{0})
+	  if (nu == Tp{0})
 	    {
-	      _Jnu = _Tp{1};
-	      _Jpnu = _Tp{0};
+	      Jnu = Tp{1};
+	      Jpnu = Tp{0};
 	    }
-	  else if (__nu == _Tp{1})
+	  else if (nu == Tp{1})
 	    {
-	      _Jnu = _Tp{0};
-	      _Jpnu = _Tp{0.5L};
+	      Jnu = Tp{0};
+	      Jpnu = Tp{0.5L};
 	    }
 	  else
 	    {
-	      _Jnu = _Tp{0};
-	      _Jpnu = _Tp{0};
+	      Jnu = Tp{0};
+	      Jpnu = Tp{0};
 	    }
-	  _Nnu = -_S_inf;
-	  _Npnu = _S_inf;
+	  Nnu = -s_inf;
+	  Npnu = s_inf;
 	  return;
 	}
 
-      constexpr _Tp _S_fp_min = std::sqrt(std::numeric_limits<_Tp>::min());
-      constexpr int _S_max_iter = 15000;
-      constexpr _Tp _S_x_min = _Tp{2};
+      constexpr Tp s_fp_min = std::sqrt(std::numeric_limits<Tp>::min());
+      constexpr int s_max_iter = 15000;
+      constexpr Tp s_x_min = Tp{2};
 
 std::cout << '\n';
-      const int __n = (__x < _S_x_min
-		    ? std::nearbyint(__nu)
+      const int n = (x < s_x_min
+		    ? std::nearbyint(nu)
 		    : std::max(0,
-			       static_cast<int>(__nu - __x + _Tp{1.5L})));
+			       static_cast<int>(nu - x + Tp{1.5L})));
 
-      const _Tp __mu = __nu - __n;
-      const _Tp __mu2 = __mu * __mu;
-      const _Tp __xi = _Tp{1} / __x;
-      const _Tp __xi2 = _Tp{2} * __xi;
-      const _Tp _Wronski = __xi2 / _S_pi;
-std::cout << "n    =" << __n << '\n';
-std::cout << "xmu  =" << __mu << '\n';
-std::cout << "xmu2 =" << __mu2 << '\n';
-std::cout << "xi   =" << __xi << '\n';
-std::cout << "xi2  =" << __xi2 << '\n';
-std::cout << "w    =" << _Wronski << '\n';
-      int __isign = 1;
-      _Tp __h = __nu * __xi;
-      if (__h < _S_fp_min)
-	__h = _S_fp_min;
-      _Tp __b = __xi2 * __nu;
-      _Tp __d = _Tp{0};
-      _Tp __c = __h;
-std::cout << "h   =" << __h << '\n';
-std::cout << "b   =" << __b << '\n';
-std::cout << "d   =" << __d << '\n';
-std::cout << "c   =" << __c << '\n';
-      int __i;
-      for (__i = 1; __i <= _S_max_iter; ++__i)
+      const Tp mu = nu - n;
+      const Tp mu2 = mu * mu;
+      const Tp xi = Tp{1} / x;
+      const Tp xi2 = Tp{2} * xi;
+      const Tp Wronski = xi2 / s_pi;
+std::cout << "n    =" << n << '\n';
+std::cout << "xmu  =" << mu << '\n';
+std::cout << "xmu2 =" << mu2 << '\n';
+std::cout << "xi   =" << xi << '\n';
+std::cout << "xi2  =" << xi2 << '\n';
+std::cout << "w    =" << Wronski << '\n';
+      int isign = 1;
+      Tp h = nu * xi;
+      if (h < s_fp_min)
+	h = s_fp_min;
+      Tp b = xi2 * nu;
+      Tp d = Tp{0};
+      Tp c = h;
+std::cout << "h   =" << h << '\n';
+std::cout << "b   =" << b << '\n';
+std::cout << "d   =" << d << '\n';
+std::cout << "c   =" << c << '\n';
+      int i;
+      for (i = 1; i <= s_max_iter; ++i)
 	{
-	  __b += __xi2;
-	  __d = __b - __d;
-	  if (std::abs(__d) < _S_fp_min)
-	    __d = _S_fp_min;
-	  __c = __b - _Tp{1} / __c;
-	  if (std::abs(__c) < _S_fp_min)
-	    __c = _S_fp_min;
-	  __d = _Tp{1} / __d;
-	  const _Tp __del = __c * __d;
-	  __h *= __del;
-	  if (__d < _Tp{0})
-	    __isign = -__isign;
-	  if (std::abs(__del - _Tp{1}) < _S_eps)
+	  b += xi2;
+	  d = b - d;
+	  if (std::abs(d) < s_fp_min)
+	    d = s_fp_min;
+	  c = b - Tp{1} / c;
+	  if (std::abs(c) < s_fp_min)
+	    c = s_fp_min;
+	  d = Tp{1} / d;
+	  const Tp del = c * d;
+	  h *= del;
+	  if (d < Tp{0})
+	    isign = -isign;
+	  if (std::abs(del - Tp{1}) < s_eps)
 	    break;
 	}
-      if (__i > _S_max_iter)
-	std::cout << "__bessel_jn: argument x too large;"
+      if (i > s_max_iter)
+	std::cout << "bessel_jn: argument x too large;"
 				       " try asymptotic expansion\n";
-std::cout << "h   =" << __h << '\n';
-std::cout << "b   =" << __b << '\n';
-std::cout << "d   =" << __d << '\n';
-std::cout << "c   =" << __c << '\n';
-      _Tp _Jnul = __isign * _S_fp_min;
-      _Tp _Jpnul = __h * _Jnul;
-      _Tp _Jnul1 = _Jnul;
-      _Tp _Jpnu1 = _Jpnul;
-      _Tp __fact = __nu * __xi;
-      for (int __l = __n; __l >= 1; --__l)
+std::cout << "h   =" << h << '\n';
+std::cout << "b   =" << b << '\n';
+std::cout << "d   =" << d << '\n';
+std::cout << "c   =" << c << '\n';
+      Tp Jnul = isign * s_fp_min;
+      Tp Jpnul = h * Jnul;
+      Tp Jnul1 = Jnul;
+      Tp Jpnu1 = Jpnul;
+      Tp fact = nu * xi;
+      for (int l = n; l >= 1; --l)
 	{
-	  const _Tp _Jnutemp = __fact * _Jnul + _Jpnul;
-	  __fact -= __xi;
-	  _Jpnul = __fact * _Jnutemp - _Jnul;
-	  _Jnul = _Jnutemp;
+	  const Tp Jnutemp = fact * Jnul + Jpnul;
+	  fact -= xi;
+	  Jpnul = fact * Jnutemp - Jnul;
+	  Jnul = Jnutemp;
 	}
-      if (_Jnul == _Tp{0})
-	_Jnul = _S_eps;
-std::cout << "Jnul   =" << _Jnul << '\n';
-std::cout << "Jpnul  =" << _Jpnul << '\n';
-std::cout << "Jnul1  =" << _Jnul1 << '\n';
-std::cout << "Jpnu1  =" << _Jpnu1 << '\n';
+      if (Jnul == Tp{0})
+	Jnul = s_eps;
+std::cout << "Jnul   =" << Jnul << '\n';
+std::cout << "Jpnul  =" << Jpnul << '\n';
+std::cout << "Jnul1  =" << Jnul1 << '\n';
+std::cout << "Jpnu1  =" << Jpnu1 << '\n';
 
-      _Tp __f = _Jpnul / _Jnul;
-std::cout << "f   =" << __f << '\n';
-      _Tp _Nmu, _Nnu1, _Npmu, _Jmu;
-      if (__x < _S_x_min)
+      Tp f = Jpnul / Jnul;
+std::cout << "f   =" << f << '\n';
+      Tp Nmu = Tp{0}, Nnu1 = Tp{0}, Npmu, Jmu;
+      if (x < s_x_min)
 	{
-	  const _Tp __x2 = __x / _Tp{2};
-	  const _Tp __pimu = _S_pi * __mu;
-	  const _Tp __fact = (std::abs(__pimu) < _S_eps
-		      ? _Tp{1}
-		      : __pimu / std::sin(__pimu));
-	  _Tp __d = -std::log(__x2);
-	  _Tp __e = __mu * __d;
-	  const _Tp __fact2 = (std::abs(__e) < _S_eps
-			    ? _Tp{1}
-			    : std::sinh(__e) / __e);
-	  _Tp __gam1, __gam2, __gampl, __gammi;
-	  __gamma_temme(__mu, __gam1, __gam2, __gampl, __gammi);
-	  _Tp __ff = (_Tp{2} / _S_pi) * __fact
-		   * (__gam1 * std::cosh(__e) + __gam2 * __fact2 * __d);
-	  __e = std::exp(__e);
-	  _Tp __p = __e / (_S_pi * __gampl);
-	  _Tp __q = _Tp{1} / (__e * _S_pi * __gammi);
-	  const _Tp __pimu2 = __pimu / _Tp{2};
-	  _Tp __fact3 = (std::abs(__pimu2) < _S_eps
-		       ? _Tp{1} : std::sin(__pimu2) / __pimu2 );
-	  _Tp __r = _S_pi * __pimu2 * __fact3 * __fact3;
-	  _Tp __c = _Tp{1};
-	  __d = -__x2 * __x2;
-std::cout << "x2  =" << __x2 << '\n';
-std::cout << "pimu  =" << __pimu << '\n';
-std::cout << "fact  =" << __fact << '\n';
-std::cout << "fact2 =" << __fact2 << '\n';
-std::cout << "fact3 =" << __fact3 << '\n';
-std::cout << "ff    =" << __ff << '\n';
-std::cout << "gam1  =" << __gam1 << '\n';
-std::cout << "gam2  =" << __gam2 << '\n';
-std::cout << "gampl =" << __gampl << '\n';
-std::cout << "gammi =" << __gammi << '\n';
-std::cout << "d     =" << __d << '\n';
-std::cout << "e     =" << __e << '\n';
-std::cout << "p     =" << __p << '\n';
-std::cout << "q     =" << __q << '\n';
-std::cout << "r     =" << __r << '\n';
-	  _Tp __sum = __ff + __r * __q;
-	  _Tp __sum1 = __p;
-	  int __i;
-	  for (__i = 1; __i <= _S_max_iter; ++__i)
+	  const Tp x2 = x / Tp{2};
+	  const Tp pimu = s_pi * mu;
+	  const Tp fact = (std::abs(pimu) < s_eps
+		      ? Tp{1}
+		      : pimu / std::sin(pimu));
+	  Tp d = -std::log(x2);
+	  Tp e = mu * d;
+	  const Tp fact2 = (std::abs(e) < s_eps
+			    ? Tp{1}
+			    : std::sinh(e) / e);
+	  Tp gam1, gam2, gampl, gammi;
+	  gamma_temme(mu, gam1, gam2, gampl, gammi);
+	  Tp ff = (Tp{2} / s_pi) * fact
+		   * (gam1 * std::cosh(e) + gam2 * fact2 * d);
+	  e = std::exp(e);
+	  Tp p = e / (s_pi * gampl);
+	  Tp q = Tp{1} / (e * s_pi * gammi);
+	  const Tp pimu2 = pimu / Tp{2};
+	  Tp fact3 = (std::abs(pimu2) < s_eps
+		       ? Tp{1} : std::sin(pimu2) / pimu2 );
+	  Tp r = s_pi * pimu2 * fact3 * fact3;
+	  Tp c = Tp{1};
+	  d = -x2 * x2;
+std::cout << "x2  =" << x2 << '\n';
+std::cout << "pimu  =" << pimu << '\n';
+std::cout << "fact  =" << fact << '\n';
+std::cout << "fact2 =" << fact2 << '\n';
+std::cout << "fact3 =" << fact3 << '\n';
+std::cout << "ff    =" << ff << '\n';
+std::cout << "gam1  =" << gam1 << '\n';
+std::cout << "gam2  =" << gam2 << '\n';
+std::cout << "gampl =" << gampl << '\n';
+std::cout << "gammi =" << gammi << '\n';
+std::cout << "d     =" << d << '\n';
+std::cout << "e     =" << e << '\n';
+std::cout << "p     =" << p << '\n';
+std::cout << "q     =" << q << '\n';
+std::cout << "r     =" << r << '\n';
+	  Tp sum = ff + r * q;
+	  Tp sum1 = p;
+	  int i;
+	  for (i = 1; i <= s_max_iter; ++i)
 	    {
-	      __ff = (__i * __ff + __p + __q) / (__i * __i - __mu2);
-	      __c *= __d / _Tp(__i);
-	      __p /= _Tp(__i) - __mu;
-	      __q /= _Tp(__i) + __mu;
-	      const _Tp __del = __c * (__ff + __r * __q);
-	      __sum += __del;
-	      const _Tp __del1 = __c * __p - _Tp(__i) * __del;
-	      __sum1 += __del1;
-std::cout << "  i =" << __i <<  "  del = " << __del <<  "  del1 = " << __del1 << '\n';
-	      if (std::abs(__del) < _S_eps * (_Tp{1} + std::abs(__sum)))
+	      ff = (i * ff + p + q) / (i * i - mu2);
+	      c *= d / Tp(i);
+	      p /= Tp(i) - mu;
+	      q /= Tp(i) + mu;
+	      const Tp del = c * (ff + r * q);
+	      sum += del;
+	      const Tp del1 = c * p - Tp(i) * del;
+	      sum1 += del1;
+std::cout << "  i =" << i <<  "  del = " << del <<  "  del1 = " << del1 << '\n';
+	      if (std::abs(del) < s_eps * (Tp{1} + std::abs(sum)))
 		break;
 	    }
-	  if (__i > _S_max_iter)
-	    std::cout << "__bessel_jn: Y-series failed to converge\n";
-std::cout << "i     =" << __i << '\n';
-std::cout << "ff    =" << __ff << '\n';
-std::cout << "c     =" << __c << '\n';
-std::cout << "p     =" << __p << '\n';
-std::cout << "q     =" << __q << '\n';
-std::cout << "sum   =" << __sum << '\n';
-std::cout << "sum1  =" << __sum1 << '\n';
-	  _Nmu = -__sum;
-	  _Nnu1 = -__sum1 * __xi2;
-	  _Npmu = __mu * __xi * _Nmu - _Nnu1;
-	  _Jmu = _Wronski / (_Npmu - __f * _Nmu);
-std::cout << "Nmu   =" << _Nmu << '\n';
-std::cout << "Nnu1  =" << _Nnu1 << '\n';
-std::cout << "Npmu  =" << _Npmu << '\n';
-std::cout << "Jmu   =" << _Jmu << '\n';
+	  if (i > s_max_iter)
+	    std::cout << "bessel_jn: Y-series failed to converge\n";
+std::cout << "i     =" << i << '\n';
+std::cout << "ff    =" << ff << '\n';
+std::cout << "c     =" << c << '\n';
+std::cout << "p     =" << p << '\n';
+std::cout << "q     =" << q << '\n';
+std::cout << "sum   =" << sum << '\n';
+std::cout << "sum1  =" << sum1 << '\n';
+	  Nmu = -sum;
+	  Nnu1 = -sum1 * xi2;
+	  Npmu = mu * xi * Nmu - Nnu1;
+	  Jmu = Wronski / (Npmu - f * Nmu);
+std::cout << "Nmu   =" << Nmu << '\n';
+std::cout << "Nnu1  =" << Nnu1 << '\n';
+std::cout << "Npmu  =" << Npmu << '\n';
+std::cout << "Jmu   =" << Jmu << '\n';
 	}
-      __fact = _Jmu / _Jnul;
-      _Jnu = __fact * _Jnul1;
-      _Jpnu = __fact * _Jpnu1;
-std::cout << "fact  =" << __fact << '\n';
-std::cout << "Jnu   =" << _Jnu << '\n';
-std::cout << "Jpnu  =" << _Jpnu << '\n';
-std::cout << "n     =" << __n << '\n';
-      for (int __i = 1; __i <= __n; ++__i)
+      fact = Jmu / Jnul;
+      Jnu = fact * Jnul1;
+      Jpnu = fact * Jpnu1;
+std::cout << "fact  =" << fact << '\n';
+std::cout << "Jnu   =" << Jnu << '\n';
+std::cout << "Jpnu  =" << Jpnu << '\n';
+std::cout << "n     =" << n << '\n';
+      for (int i = 1; i <= n; ++i)
 	{
-	  const _Tp _Nnutemp = (__mu + __i) * __xi2 * _Nnu1 - _Nmu;
-	  _Nmu = _Nnu1;
-	  _Nnu1 = _Nnutemp;
-std::cout << "  i =" << __i << "  Nmu=" << _Nmu << "  Nnu1=" << _Nnu1 << '\n';
+	  const Tp Nnutemp = (mu + i) * xi2 * Nnu1 - Nmu;
+	  Nmu = Nnu1;
+	  Nnu1 = Nnutemp;
+std::cout << "  i =" << i << "  Nmu=" << Nmu << "  Nnu1=" << Nnu1 << '\n';
 	}
-      _Nnu = _Nmu;
-      _Npnu = __nu * __xi * _Nmu - _Nnu1;
-std::cout << "Nnu   =" << _Nnu << '\n';
-std::cout << "Npnu  =" << _Npnu << '\n';
+      Nnu = Nmu;
+      Npnu = nu * xi * Nmu - Nnu1;
+std::cout << "Nnu   =" << Nnu << '\n';
+std::cout << "Npnu  =" << Npnu << '\n';
   }
 
 int
@@ -450,12 +452,12 @@ main()
   for (auto i = -200; i <= +200; ++i)
     {
       auto x = i * 0.05;
-      auto Ai = __gnu_cxx::airy_ai(x);
-      auto Bi = __gnu_cxx::airy_bi(x);
+      auto Ai = emsr::airy_ai(x);
+      auto Bi = emsr::airy_bi(x);
       auto Ai_gsl = gsl::airy_ai(x);
       auto Bi_gsl = gsl::airy_bi(x);
       //double Ai_tr1, Bi_tr1, Aip_tr1, Bip_tr1;
-      //std::tr1::__detail::__airy(x, Ai_tr1, Bi_tr1, Aip_tr1, Bip_tr1);
+      //std::tr1::detail::airy(x, Ai_tr1, Bi_tr1, Aip_tr1, Bip_tr1);
       std::cout << ' ' << std::setw(8) << x
                 << ' ' << std::setw(20) << Ai
                 << ' ' << std::setw(20) << Bi
@@ -476,7 +478,7 @@ main()
                 << ' ' << std::setw(20) << gam2
                 << ' ' << std::setw(20) << gampl
                 << ' ' << std::setw(20) << gammi << '\n';
-      __gamma_temme(x, gam1, gam2, gampl, gammi);
+      gamma_temme(x, gam1, gam2, gampl, gammi);
       std::cout << ' ' << std::setw(8) << x
                 << ' ' << std::setw(20) << gam1
                 << ' ' << std::setw(20) << gam2

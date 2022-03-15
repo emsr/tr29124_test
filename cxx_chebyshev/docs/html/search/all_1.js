@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['chebyshev_2eh',['chebyshev.h',['../chebyshev_8h.html',1,'']]],
-  ['chebyshev_2etcc',['chebyshev.tcc',['../chebyshev_8tcc.html',1,'']]]
+  ['derivative_4',['derivative',['../classemsr_1_1Chebyshev.html#ad118b1453d4e1d9dd0ca6f42e8883d90',1,'emsr::Chebyshev']]]
 ];

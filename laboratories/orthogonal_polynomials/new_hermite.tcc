@@ -1,12 +1,11 @@
-// Special functions -*- C++ -*-
 
 // Copyright (C) 2006-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,7 +21,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/sf_hermite.tcc
+/** @file emsr/sf_hermite.tcc
  *  This is an internal header file, included by other library headers.
  *  Do not attempt to use it directly. @headername{cmath}
  */
@@ -31,25 +30,25 @@
 // ISO C++ 14882 TR29124: Mathematical Special Functions
 //
 
-#ifndef _GLIBCXX_BITS_NEW_HERMITE_TCC
-#define _GLIBCXX_BITS_NEW_HERMITE_TCC 1
+#ifndef NEW_HERMITE_TCC
+#define NEW_HERMITE_TCC 1
 
-#pragma GCC system_header
+#include <emsr/math_constants.h>
+#include <emsr/sf_gamma.h>
+#include <emsr/sf_mod_bessel.h> // airy
 
-//namespace std _GLIBCXX_VISIBILITY(default)
+//namespace emsr
 //{
-//// Implementation-space details.
-//namespace __detail
+//namespace detail
 //{
-//_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * 
    */
   struct _sqrt_n_t
   {
-    unsigned int __n;
-    long double __value;
+    unsigned int n;
+    long double value;
   };
 
   /**
@@ -165,12 +164,12 @@
   /**
    * Return the square root of the integer argument @c  n.
    */
-  template<typename _Tp>
-    _Tp
-    __sqrt_n(unsigned int __n)
+  template<typename Tp>
+    Tp
+    sqrt_n(unsigned int n)
     {
-      if (__n < _S_sqrt_len)
-	return _S_sqrt[__n].__value;
+      if (n < _S_sqrt_len)
+	return _S_sqrt[n].value;
       else
 	return 0.0;
     };
@@ -288,12 +287,12 @@
   /**
    * Return the square root of the factorial of the integer argument @c  n.
    */
-  template<typename _Tp>
-    _Tp
-    __sqrt_factorial(unsigned int __n)
+  template<typename Tp>
+    Tp
+    sqrt_factorial(unsigned int n)
     {
-      if (__n < _S_sqrt_factorial_len)
-	return _S_sqrt_factorial[__n].__value;
+      if (n < _S_sqrt_factorial_len)
+	return _S_sqrt_factorial[n].value;
       else
 	return 0.0;
     };
@@ -307,30 +306,30 @@
    *   H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} e^{-x^2}
    * @f]
    *
-   * @param __n The order of the Hermite polynomial.
-   * @param __x The argument of the Hermite polynomial.
+   * @param n The order of the Hermite polynomial.
+   * @param x The argument of the Hermite polynomial.
    * @return The value of the Hermite polynomial of order n
    * 	     and argument x.
    */
-  template<typename _Tp>
-    _Tp
-    __poly_hermite_recursion(unsigned int __n, _Tp __x)
+  template<typename Tp>
+    Tp
+    poly_hermite_recursion(unsigned int n, Tp x)
     {
       // Compute H_0.
-      auto __H_nm2 = _Tp{1};
-      if (__n == 0)
+      auto __H_nm2 = Tp{1};
+      if (n == 0)
 	return __H_nm2;
 
       // Compute H_1.
-      auto __H_nm1 = _Tp{2} * __x;
-      if (__n == 1)
+      auto __H_nm1 = Tp{2} * x;
+      if (n == 1)
 	return __H_nm1;
 
       // Compute H_n.
-      _Tp __H_n;
-      for (unsigned int __i = 2; __i <= __n; ++__i)
+      Tp __H_n;
+      for (unsigned int i = 2; i <= n; ++i)
 	{
-	  __H_n = _Tp{2} * (__x * __H_nm1 - _Tp(__i - 1) * __H_nm2);
+	  __H_n = Tp{2} * (x * __H_nm1 - Tp(i - 1) * __H_nm2);
 	  __H_nm2 = __H_nm1;
 	  __H_nm1 = __H_n;
 	}
@@ -351,52 +350,52 @@
    * @see "Asymptotic analysis of the Hermite polynomials
    * 	  from their differential-difference equation", 
    * 	  Diego Dominici, arXiv:math/0601078v1 [math.CA] 4 Jan 2006
-   * @param __n The order of the Hermite polynomial.
-   * @param __x The argument of the Hermite polynomial.
+   * @param n The order of the Hermite polynomial.
+   * @param x The argument of the Hermite polynomial.
    * @return The value of the Hermite polynomial of order n
    * 	     and argument x.
    */
-  template<typename _Tp>
-    _Tp
-    __poly_hermite_asymp_old(unsigned int __n, _Tp __x)
+  template<typename Tp>
+    Tp
+    poly_hermite_asymp_old(unsigned int n, Tp x)
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
-      const auto _S_sqrt_2pi = __gnu_cxx::numbers::__root_2_pi_v<_Tp>;
-      // __x >= 0 in this routine.
-      const auto __xturn = std::sqrt(_Tp(2 * __n));
-      if (std::abs(__x - __xturn) < _Tp{0.05L} * __xturn)
+      const auto _S_pi = emsr::pi_v<Tp>;
+      const auto _S_sqrt_2 = emsr::sqrt2_v<Tp>;
+      const auto _S_sqrt_2pi = emsr::sqrttau_v<Tp>;
+      // x >= 0 in this routine.
+      const auto xturn = std::sqrt(Tp(2 * n));
+      if (std::abs(x - xturn) < Tp{0.05L} * xturn)
 	{
 	  // Transition region x ~ sqrt(2n).
-	  const auto __n_2 = _Tp(__n) / _Tp{2};
-	  const auto __n6th = std::pow(_Tp(__n), _Tp{1} / _Tp{6});
-	  const auto __exparg = _Tp(__n) * std::log(__xturn) - _Tp{3} * __n_2
-			      + __xturn * __x;
-	  const auto __airyarg = _S_sqrt_2 * (__x - __xturn) * __n6th;
-	  auto _Airy = std::__detail::__airy(__airyarg);
-	  return _S_sqrt_2pi * __n6th * std::exp(__exparg) * _Airy.__Ai_value;
+	  const auto n_2 = Tp(n) / Tp{2};
+	  const auto n6th = std::pow(Tp(n), Tp{1} / Tp{6});
+	  const auto exparg = Tp(n) * std::log(xturn) - Tp{3} * n_2
+			      + xturn * x;
+	  const auto airyarg = _S_sqrt_2 * (x - xturn) * n6th;
+	  auto _Airy = emsr::detail::airy(airyarg);
+	  return _S_sqrt_2pi * n6th * std::exp(exparg) * _Airy.Ai_value;
 	}
-      else if (__x < __xturn)
+      else if (x < xturn)
 	{
 	  // Oscillatory region |x| < sqrt(2n).
-	  const auto __theta = std::asin(__x / __xturn);
-	  const auto __2theta = _Tp{2} * __theta;
-	  const auto __n_2 = _Tp(__n) / _Tp{2};
-	  const auto __exparg = __n_2 * (_Tp{2} * std::log(__xturn)
+	  const auto theta = std::asin(x / xturn);
+	  const auto __2theta = Tp{2} * theta;
+	  const auto n_2 = Tp(n) / Tp{2};
+	  const auto exparg = n_2 * (Tp{2} * std::log(xturn)
 					- std::cos(__2theta));
-	  const auto __arg = __theta / _Tp{2}
-			   + __n_2 * (std::sin(__2theta) + __2theta - _S_pi);
-	  return std::sqrt(_Tp{2} / std::cos(__theta))
-	       * std::exp(__exparg) * std::cos(__arg);
+	  const auto arg = theta / Tp{2}
+			   + n_2 * (std::sin(__2theta) + __2theta - _S_pi);
+	  return std::sqrt(Tp{2} / std::cos(theta))
+	       * std::exp(exparg) * std::cos(arg);
 	}
       else
 	{
 	  // Exponential region |x| > sqrt(2n).
-	  const auto __sigma = std::sqrt((__x - __xturn) * (__x + __xturn));
-	  const auto __exparg = _Tp{0.5L} * (__x * (__x - __sigma) - __n)
-			      + __n * std::log(__sigma + __x);
-	  return std::exp(__exparg)
-	       * std::sqrt(_Tp{0.5L} * (_Tp{1} + __x / __sigma));
+	  const auto sigma = std::sqrt((x - xturn) * (x + xturn));
+	  const auto exparg = Tp{0.5L} * (x * (x - sigma) - n)
+			      + n * std::log(sigma + x);
+	  return std::exp(exparg)
+	       * std::sqrt(Tp{0.5L} * (Tp{1} + x / sigma));
 	}
     }
 
@@ -404,58 +403,58 @@
    * @see Szego, ORTHOGONAL POLYNOMIALS, AMERICAN MATHEMATICAL SOCIETY
    * COLLOQUIUM PUBLICATIONS, VOLUME XXIII, 1939, pp 201.
    */
-  template<typename _Tp>
-    _Tp
-    __poly_hermite_asymp(unsigned int __n, _Tp __x)
+  template<typename Tp>
+    Tp
+    poly_hermite_asymp(unsigned int n, Tp x)
     {
-      const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
-      const auto _S_sqrt_pi = __gnu_cxx::numbers::__root_pi_v<_Tp>;
-      const auto _S_Ai0 = _Tp{-2.3381074104597670384891972524467L};
-      const bool __n_odd = __n % 2 == 1;
-      const auto __z = std::abs(__x);
-      const auto __z_turn = std::sqrt(_Tp(2 * __n + 1));
+      const auto _S_pi = emsr::pi_v<Tp>;
+      const auto _S_sqrt_2 = emsr::sqrt2_v<Tp>;
+      const auto _S_sqrt_pi = emsr::sqrtpi_v<Tp>;
+      const auto _S_Ai0 = Tp{-2.3381074104597670384891972524467L};
+      const bool n_odd = n % 2 == 1;
+      const auto z = std::abs(x);
+      const auto z_turn = std::sqrt(Tp(2 * n + 1));
       // delta < 0
-      const auto __delta = _S_Ai0 / _S_sqrt_2 / std::pow(__n, _Tp{1} / _Tp{6});
-      const auto __sign = __n_odd && (__x < _Tp{0}) ? _Tp{-1} : _Tp{1};
+      const auto delta = _S_Ai0 / _S_sqrt_2 / std::pow(n, Tp{1} / Tp{6});
+      const auto sign = n_odd && (x < Tp{0}) ? Tp{-1} : Tp{1};
       /// @todo Speed up the sqrt(factorial) here.
-      auto __f = _Tp{1};
-      for (int __j = 1; __j <= __n; ++__j)
-        __f *= std::sqrt(_Tp(__j));
+      auto f = Tp{1};
+      for (unsigned int j = 1; j <= n; ++j)
+        f *= std::sqrt(Tp(j));
 
-      if (__z < __z_turn + __delta)
+      if (z < z_turn + delta)
 	{
-	  const auto __phi = std::acos(__z / __z_turn);
-	  const auto __2phi = _Tp{2} * __phi;
-	  return __f * __sign
-		     * std::pow(_S_sqrt_2, _Tp(__n))
-		     * std::pow(_Tp{2} / _Tp(__n) / _S_pi, _Tp{0.25})
-		     / std::sqrt(std::sin(__phi))
-		     * std::sin(_S_pi * _Tp{0.75} + (__n / _Tp{2} + _Tp{0.25})
+	  const auto phi = std::acos(z / z_turn);
+	  const auto __2phi = Tp{2} * phi;
+	  return f * sign
+		     * std::pow(_S_sqrt_2, Tp(n))
+		     * std::pow(Tp{2} / Tp(n) / _S_pi, Tp{0.25})
+		     / std::sqrt(std::sin(phi))
+		     * std::sin(_S_pi * Tp{0.75} + (n / Tp{2} + Tp{0.25})
 				   * (std::sin(__2phi) - __2phi))
-		     * std::exp(__z * __z / _Tp{2});
+		     * std::exp(z * z / Tp{2});
 	}
-      else if (__z > __z_turn - __delta)
+      else if (z > z_turn - delta)
 	{
-	  const auto __phi = std::acosh(__z / __z_turn);
-	  return __f * __sign
-		     * std::pow(_S_sqrt_2, _Tp(__n))
-		     * std::pow(_Tp(__n), _Tp{-0.25})
-		     / std::sqrt(_S_sqrt_2 * _S_sqrt_pi * std::sinh(__phi))
-		     * std::exp((_Tp(__n) / _Tp{2} + _Tp{0.25})
-			       * (_Tp{2} * __phi - std::sinh(_Tp{2} * __phi)))
-		     * std::exp(__z * __z / _Tp{2});
+	  const auto phi = std::acosh(z / z_turn);
+	  return f * sign
+		     * std::pow(_S_sqrt_2, Tp(n))
+		     * std::pow(Tp(n), Tp{-0.25})
+		     / std::sqrt(_S_sqrt_2 * _S_sqrt_pi * std::sinh(phi))
+		     * std::exp((Tp(n) / Tp{2} + Tp{0.25})
+			       * (Tp{2} * phi - std::sinh(Tp{2} * phi)))
+		     * std::exp(z * z / Tp{2});
 	}
       else
 	{
-	  const auto __arg = (__z - __z_turn)
-			   * _S_sqrt_2 * std::pow(_Tp(__n), _Tp{1} / _Tp{6});
-	  const auto __airy = std::__detail::__airy(__arg);
-	  return __f * __sign
+	  const auto arg = (z - z_turn)
+			   * _S_sqrt_2 * std::pow(Tp(n), Tp{1} / Tp{6});
+	  const auto airy = emsr::detail::airy(arg);
+	  return f * sign
 		     * std::sqrt(_S_sqrt_pi * _S_sqrt_2)
-		     * std::pow(_S_sqrt_2, _Tp(__n))
-		     * std::pow(_Tp(__n), _Tp{-1} / _Tp{12})
-		     * __airy.__Ai_value * std::exp(__z * __z / _Tp{2});
+		     * std::pow(_S_sqrt_2, Tp(n))
+		     * std::pow(Tp(n), Tp{-1} / Tp{12})
+		     * airy.Ai_value * std::exp(z * z / Tp{2});
 	}
     }
 
@@ -468,14 +467,14 @@
    *   H_n(x) = \pi^{1/4} 2^{n/2} \sqrt{n!} \tilde{H}_n(x)
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    __hermite_norm_factor(unsigned int __n)
+  template<typename Tp>
+    Tp
+    hermite_norm_factor(unsigned int n)
     {
-      const auto _S_root4_pi = _Tp{1.331335363800389712797534917950280853312L};
-      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
+      const auto _S_root4_pi = Tp{1.331335363800389712797534917950280853312L};
+      const auto _S_sqrt_2 = emsr::sqrt2_v<Tp>;
       return _S_root4_pi
-	   * std::pow(_S_sqrt_2, _Tp(__n)) * __sqrt_factorial<_Tp>(__n);
+	   * std::pow(_S_sqrt_2, Tp(n)) * sqrt_factorial<Tp>(n);
     }
 
   /**
@@ -488,16 +487,16 @@
    *   H_n(x) = \pi^{1/4} 2^{n/2} \sqrt{n!} \tilde{H}_n(x)
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    __log_hermite_norm_factor(unsigned int __n)
+  template<typename Tp>
+    Tp
+    log_hermite_norm_factor(unsigned int n)
     {
-      const auto _S_lsqrt_2 = __gnu_cxx::numbers::__ln_2_v<_Tp>;
-      const auto _S_lsqrt_2pi = __gnu_cxx::numbers::__ln_root_2_pi_v<_Tp>;
+      const auto _S_lsqrt_2 = emsr::ln2_v<Tp>;
+      const auto _S_lsqrt_2pi = emsr::lnsqrttau_v<Tp>;
       const auto _S_lsqrt_pi = _S_lsqrt_2pi - _S_lsqrt_2;
-      const auto _S_ln_2 = __gnu_cxx::numbers::__ln_2_v<_Tp>;
-      return (_S_lsqrt_pi + _Tp(__n) * _S_ln_2
-	   + std::__detail::__log_factorial<_Tp>(__n)) / _Tp{2};
+      const auto _S_ln_2 = emsr::ln2_v<Tp>;
+      return (_S_lsqrt_pi + Tp(n) * _S_ln_2
+	   + emsr::detail::log_factorial<Tp>(n)) / Tp{2};
     }
 
   /**
@@ -510,27 +509,27 @@
    *   H_n(x) = \pi^{1/4} 2^{n/2} \sqrt{n!} \tilde{H}_n(x)
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    __poly_hermite_norm_recursion(unsigned int __n, _Tp __x)
+  template<typename Tp>
+    Tp
+    poly_hermite_norm_recursion(unsigned int n, Tp x)
     {
-      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
+      const auto _S_sqrt_2 = emsr::sqrt2_v<Tp>;
       const auto _S_inv_root4_pi
-	= _Tp{7.511255444649424828587030047762276930510e-1L};
+	= Tp{7.511255444649424828587030047762276930510e-1L};
 
       auto __Hn_nm2 = _S_inv_root4_pi;
-      if (__n == 0)
+      if (n == 0)
 	return __Hn_nm2;
 
-      auto __Hn_nm1 = _S_sqrt_2 * __x * __Hn_nm2;
-      if (__n == 1)
+      auto __Hn_nm1 = _S_sqrt_2 * x * __Hn_nm2;
+      if (n == 1)
 	return __Hn_nm1;
 
-      _Tp __Hn_n;
-      for (unsigned int __i = 2; __i <= __n; ++__i)
+      Tp __Hn_n;
+      for (unsigned int i = 2; i <= n; ++i)
 	{
-	  __Hn_n = (_S_sqrt_2 * __x * __Hn_nm1
-		   - __sqrt_n<_Tp>(__i - 1) * __Hn_nm2) / __sqrt_n<_Tp>(__i);
+	  __Hn_n = (_S_sqrt_2 * x * __Hn_nm1
+		   - sqrt_n<Tp>(i - 1) * __Hn_nm2) / sqrt_n<Tp>(i);
 	  __Hn_nm2 = __Hn_nm1;
 	  __Hn_nm1 = __Hn_n;
 	}
@@ -552,30 +551,30 @@
    * @f]
    * where @f$ H_n(x) @f$ is the Physicists Hermite function.
    *
-   * @param __n The order of the Hermite polynomial.
-   * @param __x The argument of the Hermite polynomial.
+   * @param n The order of the Hermite polynomial.
+   * @param x The argument of the Hermite polynomial.
    * @return The value of the Hermite polynomial of order n
    * 	     and argument x.
    */
-  template<typename _Tp>
-    _Tp
-    __poly_prob_hermite_recursion(unsigned int __n, _Tp __x)
+  template<typename Tp>
+    Tp
+    poly_prob_hermite_recursion(unsigned int n, Tp x)
     {
       // Compute He_0.
-      auto __He_nm2 = _Tp{1};
-      if (__n == 0)
+      auto __He_nm2 = Tp{1};
+      if (n == 0)
 	return __He_nm2;
 
       // Compute He_1.
-      auto __He_nm1 = __x;
-      if (__n == 1)
+      auto __He_nm1 = x;
+      if (n == 1)
 	return __He_nm1;
 
       // Compute He_n.
-      _Tp __He_n;
-      for (unsigned int __i = 2; __i <= __n; ++__i)
+      Tp __He_n;
+      for (unsigned int i = 2; i <= n; ++i)
 	{
-	  __He_n = __x * __He_nm1 - _Tp(__i - 1) * __He_nm2;
+	  __He_n = x * __He_nm1 - Tp(i - 1) * __He_nm2;
 	  __He_nm2 = __He_nm1;
 	  __He_nm1 = __He_n;
 	}
@@ -586,30 +585,29 @@
   /**
    * @brief Compute the normalized probabalists Hermite polynomial by recursion.
    */
-  template<typename _Tp>
-    _Tp
-    __poly_prob_hermite_norm_recursion(unsigned int __n, _Tp __x)
+  template<typename Tp>
+    Tp
+    poly_prob_hermite_norm_recursion(unsigned int n, Tp x)
     {
-      const auto _S_root4_2pi
-	= _Tp{1.583233487086159538579903034454558455660L};
-      const auto _S_sqrt_2 = __gnu_cxx::numbers::__root_2_v<_Tp>;
+      // Fourth root of 2pi.
+      const auto _S_root4_2pi = Tp{1.583233487086159538579903034454558455660L};
 
       // Compute Hen_0.
-      auto __Hen_nm2 = _Tp{1} / _S_root4_2pi;
-      if (__n == 0)
+      auto __Hen_nm2 = Tp{1} / _S_root4_2pi;
+      if (n == 0)
 	return __Hen_nm2;
 
       // Compute Hen_1.
-      auto __Hen_nm1 = __x * __Hen_nm2;
-      if (__n == 1)
+      auto __Hen_nm1 = x * __Hen_nm2;
+      if (n == 1)
 	return __Hen_nm1;
 
       // Compute Hen_n.
-      _Tp __Hen_n;
-      for (unsigned int __i = 2; __i <= __n; ++__i)
+      Tp __Hen_n;
+      for (unsigned int i = 2; i <= n; ++i)
 	{
-	  __Hen_n = (__x * __Hen_nm1 - __sqrt_n<_Tp>(__i - 1) * __Hen_nm2)
-		  / __sqrt_n<_Tp>(__i);
+	  __Hen_n = (x * __Hen_nm1 - sqrt_n<Tp>(i - 1) * __Hen_nm2)
+		  / sqrt_n<Tp>(i);
 	  __Hen_nm2 = __Hen_nm1;
 	  __Hen_nm1 = __Hen_n;
 	}
@@ -626,13 +624,13 @@
    *   He_n(x) = (2\pi)^{1/4} \sqrt{n!} \tilde{He}_n(x)
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    __prob_hermite_norm_factor(unsigned int __n)
+  template<typename Tp>
+    Tp
+    prob_hermite_norm_factor(unsigned int n)
     {
       const auto _S_root4_2pi
-	= _Tp{1.583233487086159538579903034454558455660L};
-      return _S_root4_2pi * __sqrt_factorial<_Tp>(__n);
+	= Tp{1.583233487086159538579903034454558455660L};
+      return _S_root4_2pi * sqrt_factorial<Tp>(n);
     }
 
   /**
@@ -645,13 +643,13 @@
    *   He_n(x) = (2\pi)^{1/4} \sqrt{n!} \tilde{He}_n(x)
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    __log_prob_hermite_norm_factor(unsigned int __n)
+  template<typename Tp>
+    Tp
+    log_prob_hermite_norm_factor(unsigned int n)
     {
-      const auto _S_lsqrt_2pi = __gnu_cxx::numbers::__ln_root_2_pi_v<_Tp>;
+      const auto _S_lsqrt_2pi = emsr::lnsqrttau_v<Tp>;
       return (_S_lsqrt_2pi
-	    + std::__detail::__log_factorial<_Tp>(__n)) / _Tp{2};
+	    + emsr::detail::log_factorial<Tp>(n)) / Tp{2};
     }
 
   /**
@@ -668,27 +666,26 @@
    *   H_n(-x) = (-1)^n H_n(x)
    * @f]
    *
-   * @param __n The order of the Hermite polynomial.
-   * @param __x The argument of the Hermite polynomial.
+   * @param n The order of the Hermite polynomial.
+   * @param x The argument of the Hermite polynomial.
    * @return The value of the Hermite polynomial of order n
    * 	     and argument x.
    */
-  template<typename _Tp>
-    _Tp
-    __poly_hermite(unsigned int __n, _Tp __x)
+  template<typename Tp>
+    Tp
+    poly_hermite(unsigned int n, Tp x)
     {
-      if (std::isnan(__x))
-	return __gnu_cxx::__quiet_NaN(__x);
-      else if (__x < _Tp{0})
-	return (__n % 2 == 1 ? -1 : +1) * __poly_hermite(__n, -__x);
-      else if (__n > 10000)
-	return __poly_hermite_asymp(__n, __x);
+      if (std::isnan(x))
+	return emsr::quiet_NaN(x);
+      else if (x < Tp{0})
+	return (n % 2 == 1 ? -1 : +1) * poly_hermite(n, -x);
+      else if (n > 10000)
+	return poly_hermite_asymp(n, x);
       else
-	return __poly_hermite_recursion(__n, __x);
+	return poly_hermite_recursion(n, x);
     }
 
-//_GLIBCXX_END_NAMESPACE_VERSION
-//} // namespace __detail
-//} // namespace std
+//} // namespace detail
+//} // namespace emsr
 
-#endif // _GLIBCXX_BITS_NEW_HERMITE_TCC
+#endif // NEW_HERMITE_TCC

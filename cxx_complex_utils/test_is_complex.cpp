@@ -1,23 +1,23 @@
 
 #include <complex>
-#include <ext/complex_util.h>
+#include <emsr/complex_util.h>
 
 template<typename _Tp>
   struct
   test_is_complex_neg
   {
-    static_assert(!__gnu_cxx::is_complex_v<_Tp>);
-    static_assert(!__gnu_cxx::is_complex_v<const _Tp>);
-    static_assert(!__gnu_cxx::is_complex_v<volatile _Tp>);
+    static_assert(!emsr::is_complex_v<_Tp>);
+    static_assert(!emsr::is_complex_v<const _Tp>);
+    static_assert(!emsr::is_complex_v<volatile _Tp>);
   };
 
 template<typename _Tp>
   struct
   test_is_complex
   {
-    static_assert(__gnu_cxx::is_complex_v<_Tp>);
-    static_assert(__gnu_cxx::is_complex_v<const _Tp>);
-    static_assert(__gnu_cxx::is_complex_v<volatile _Tp>);
+    static_assert(emsr::is_complex_v<_Tp>);
+    static_assert(emsr::is_complex_v<const _Tp>);
+    static_assert(emsr::is_complex_v<volatile _Tp>);
   };
 
 test_is_complex_neg<int> i;

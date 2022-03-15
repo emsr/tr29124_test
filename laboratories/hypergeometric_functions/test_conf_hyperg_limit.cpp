@@ -7,45 +7,48 @@
 #include <iostream>
 #include <iomanip>
 
-  template<typename _Tp>
-    _Tp
-    __conf_hyperg_limit_sum(_Tp __c, _Tp __z)
+#include <emsr/numeric_limits.h>
+#include <emsr/sf_hyperg.h>
+
+  template<typename Tp>
+    Tp
+    conf_hyperg_limit_sum(Tp c, Tp z)
     {
-      constexpr int _S_max_iter = 10000;
-      _Tp __term{1};
-      _Tp __sum = __term;
-      for (int __i = 0; __i < _S_max_iter; ++__i)
+      constexpr int s_max_iter = 10000;
+      Tp term{1};
+      Tp sum = term;
+      for (int i = 0; i < s_max_iter; ++i)
 	{
-	  __term *=  __z / ((__c + __i) * (__i + 1));
-	  __sum += __term;
-	  if (std::abs(__term) < std::numeric_limits<_Tp>::epsilon())
+	  term *=  z / ((c + i) * (i + 1));
+	  sum += term;
+	  if (std::abs(term) < std::numeric_limits<Tp>::epsilon())
 	    break;
 	}
-      return __sum;
+      return sum;
     }
 
-  template<typename _Tp>
-    _Tp
-    __conf_hyperg_limit(_Tp __c, _Tp __z)
+  template<typename Tp>
+    Tp
+    conf_hyperg_limit(Tp c, Tp z)
     {
-      return conf_hyperg_limit_sum(__c, __z);
+      return conf_hyperg_limit_sum(c, z);
     }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_conf_hyperg_limit(_Tp proto = _Tp{})
+  test_conf_hyperg_limit(Tp proto = Tp{})
   {
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     auto width = std::cout.precision() + 8;
     std::cout << std::showpoint << std::scientific;
 
-    const auto c = _Tp{0.2Q};
-    const auto del = _Tp{1} / _Tp{10};
+    const auto c = Tp{0.2Q};
+    const auto del = Tp{1} / Tp{10};
     for (int i = -200; i < +200; ++i)
     {
       auto z = del * i;
       std::cout << ' ' << std::setw(6) << z
-		<< ' ' << std::setw(width) << __gnu_cxx::conf_hyperg_lim(c, z)
+		<< ' ' << std::setw(width) << emsr::conf_hyperg_lim(c, z)
 		<< '\n';
     }
   }

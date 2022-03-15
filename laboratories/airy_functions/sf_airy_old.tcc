@@ -1,12 +1,11 @@
-// TR29124 math special functions -*- C++ -*-
 
 // Copyright (C) 2016-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,24 +21,19 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file bits/sf_airy.tcc
+/** @file emsr/sf_airy.tcc
  * This is an internal header file, included by other library headers.
  * You should not attempt to use it directly.
  */
 
-#ifndef _GLIBCXX_BITS_SF_AIRY_TCC
-#define _GLIBCXX_BITS_SF_AIRY_TCC 1
-
-#pragma GCC system_header
+#ifndef SF_AIRY_TCC
+#define SF_AIRY_TCC 1
 
 #include <bits/complex_util.h>
 
-namespace std _GLIBCXX_VISIBILITY(default)
+namespace emnsr
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-// Implementation-space details.
-namespace __detail
+namespace detail
 {
   /**
    * @brief This function evaluates @f$ Ai(z) @f$ and @f$ Ai'(z) @f$ from their asymptotic
@@ -54,34 +48,34 @@ namespace __detail
    * @see Digital Library of Mathematical Functions Sec. 9.7 Asymptotic Expansions
    *     http://dlmf.nist.gov/9.7
    *
-   * @param[in]  __z Complex input variable set equal to the value at which
+   * @param[in]  z Complex input variable set equal to the value at which
    *  	    @f$ Ai(z) @f$ and @f$ Bi(z) @f$ and their derivative are evaluated.
    *  	    This function assumes @f$ |z| > 15 @f$ and @f$ |arg(z)| < 2\pi/3 @f$.
-   * @param[inout] _Ai  The value computed for @f$ Ai(z) @f$.
-   * @param[inout] _Aip The value computed for @f$ Ai'(z) @f$.
-   * @param[in]    __sign  The sign of the series terms amd exponent.
+   * @param[inout] Ai  The value computed for @f$ Ai(z) @f$.
+   * @param[inout] Aip The value computed for @f$ Ai'(z) @f$.
+   * @param[in]    sign  The sign of the series terms amd exponent.
    *                    The default (-1) gives the Airy Ai functions
    *                    for @f$ |arg(z)| < \pi @f$.
    *                    The value +1 gives the Airy Bi functions
    *                    for @f$ |arg(z)| < \pi/3 @f$.
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    __airy_asymp_absarg_ge_pio3(std::complex<_Tp> __z,
-				std::complex<_Tp>& _Ai,
-				std::complex<_Tp>& _Aip,
-				int __sign = -1)
+    airy_asymp_absarg_ge_pio3(std::complex<Tp> z,
+				std::complex<Tp>& Ai,
+				std::complex<Tp>& Aip,
+				int sign = -1)
     {
-      constexpr _Tp _S_2d3   = _Tp{2} / _Tp{3};
+      constexpr Tp s_2d3   = Tp{2} / Tp{3};
       // 1/(2 sqrt(pi)))
-      constexpr _Tp _S_pmhd2 = _Tp{2.820947917738781434740397257803862929219e-01L};
-      constexpr int _S_ncoeffs = 15;
-      constexpr int _S_numnterms = 5;
-      constexpr int _S_nterms[5]{ _S_ncoeffs, 12, 11, 11, 9 };
+      constexpr Tp s_pmhd2 = Tp{2.820947917738781434740397257803862929219e-01L};
+      constexpr int s_ncoeffs = 15;
+      constexpr int s_numnterms = 5;
+      constexpr int s_nterms[5]{ s_ncoeffs, 12, 11, 11, 9 };
 
       // Coefficients for the expansion.
-      constexpr _Tp
-      _S_u[_S_ncoeffs]
+      constexpr Tp
+      s_u[s_ncoeffs]
       {
 	0.5989251356587907e+05,
 	0.9207206599726415e+04,
@@ -100,8 +94,8 @@ namespace __detail
 	0.1000000000000000e+01
       };
 
-      constexpr _Tp
-      _S_v[_S_ncoeffs]
+      constexpr Tp
+      s_v[s_ncoeffs]
       {
 	-0.6133570666385206e+05,
 	-0.9446354823095932e+04,
@@ -121,45 +115,45 @@ namespace __detail
       };
 
       // Compute -zeta and z^(1/4).
-      auto __z1d4 = std::sqrt(__z);
-      auto __zetam = __z * __z1d4;
-      __zetam *= _S_2d3;
-      __z1d4 = std::sqrt(__z1d4);
+      auto z1d4 = std::sqrt(z);
+      auto zetam = z * z1d4;
+      zetam *= s_2d3;
+      z1d4 = std::sqrt(z1d4);
 
       // Compute outer factors in the expansions.
-      auto __zoutpr = std::exp(_Tp(__sign) * __zetam);
-      __zoutpr *= _S_pmhd2;
-      auto __zout = __zoutpr / __z1d4;
-      __zoutpr *= -__z1d4;
+      auto zoutpr = std::exp(Tp(sign) * zetam);
+      zoutpr *= s_pmhd2;
+      auto zout = zoutpr / z1d4;
+      zoutpr *= -z1d4;
 
       // Determine number of terms to use.
-      auto __nterm = _S_nterms[std::min(_S_numnterms - 1,
-					(int(std::abs(__z)) - 10) / 5)];
+      auto nterm = s_nterms[std::min(s_numnterms - 1,
+					(int(std::abs(z)) - 10) / 5)];
       // Initialize for modified Horner's rule evaluation of sums.
       // It is assumed that at least three terms are used.
-      __zetam = _Tp(__sign) / __zetam;
-      auto __r = _Tp{2} * std::real(__zetam);
-      auto __s = std::norm(__zetam);
-      auto __index = _S_ncoeffs - __nterm;// + 1;
-      auto __al = _S_u[__index];
-      auto __alpr = _S_v[__index];
-      ++__index;
-      auto __be = _S_u[__index];
-      auto __bepr = _S_v[__index];
-      ++__index;
+      zetam = Tp(sign) / zetam;
+      auto r = Tp{2} * std::real(zetam);
+      auto s = std::norm(zetam);
+      auto index = s_ncoeffs - nterm;// + 1;
+      auto al = s_u[index];
+      auto alpr = s_v[index];
+      ++index;
+      auto be = s_u[index];
+      auto bepr = s_v[index];
+      ++index;
 
-      for (int __k = __index; __k < _S_ncoeffs; ++__k)
+      for (int k = index; k < s_ncoeffs; ++k)
 	{
-	  auto __term = __s * __al;
-	  __al = __be + __r * __al;
-	  __be = _S_u[__k] - __term;
-	  __term = __s * __alpr;
-	  __alpr = __bepr + __r * __alpr;
-	  __bepr = _S_v[__k] - __term;
+	  auto term = s * al;
+	  al = be + r * al;
+	  be = s_u[k] - term;
+	  term = s * alpr;
+	  alpr = bepr + r * alpr;
+	  bepr = s_v[k] - term;
 	}
 
-      _Ai = __zout * __al * __zetam + __be;
-      _Aip = __zoutpr * __alpr * __zetam + __bepr;
+      Ai = zout * al * zetam + be;
+      Aip = zoutpr * alpr * zetam + bepr;
 
       return;
     }
@@ -175,30 +169,30 @@ namespace __detail
    * checks for valid arguments are not made.
    * This function assumes @f$ |z| > 15 @f$ and @f$ |arg(-z)| < pi/3 @f$.
    *
-   * @param[in] __z  The value at which the Airy function and its derivative
+   * @param[in] z  The value at which the Airy function and its derivative
    *              are evaluated.
-   * @param[out] _Ai  The computed value of the Airy function @f$ Ai(z) @f$.
-   * @param[out] _Aip The computed value of the Airy function derivative @f$ Ai'(z) @f$.
+   * @param[out] Ai  The computed value of the Airy function @f$ Ai(z) @f$.
+   * @param[out] Aip The computed value of the Airy function derivative @f$ Ai'(z) @f$.
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    __airy_asymp_absarg_lt_pio3(std::complex<_Tp> __z,
-				std::complex<_Tp>& _Ai,
-				std::complex<_Tp>& _Aip)
+    airy_asymp_absarg_lt_pio3(std::complex<Tp> z,
+				std::complex<Tp>& Ai,
+				std::complex<Tp>& Aip)
     {
-      constexpr _Tp _S_2d3 {_Tp{2} / _Tp{3}};
-      constexpr _Tp _S_9d4 {_Tp{9} / _Tp{4}};
-      constexpr _Tp _S_pimh{5.641895835477562869480794515607725858438e-01};
-      constexpr _Tp _S_pid4 = __gnu_cxx::__math_constants<_Tp>::__pi_quarter;
+      constexpr Tp s_2d3 {Tp{2} / Tp{3}};
+      constexpr Tp s_9d4 {Tp{9} / Tp{4}};
+      constexpr Tp s_pimh{5.641895835477562869480794515607725858438e-01};
+      constexpr Tp s_pid4 = emsr::math_constants<Tp>::pi_quarter;
 
-      constexpr std::complex<_Tp> _S_zone{1};
-      constexpr int _S_ncoeffs = 9;
-      constexpr int _S_numnterms = 5;
-      constexpr int _S_nterms[_S_numnterms]{ _S_ncoeffs, 7, 6, 6, 5 };
+      constexpr std::complex<Tp> s_zone{1};
+      constexpr int s_ncoeffs = 9;
+      constexpr int s_numnterms = 5;
+      constexpr int s_nterms[s_numnterms]{ s_ncoeffs, 7, 6, 6, 5 };
 
       // coefficients for the expansion.
-      constexpr _Tp
-      _S_u_cos[_S_ncoeffs]
+      constexpr Tp
+      s_u_cos[s_ncoeffs]
       {
 	0.2519891987160237e+08,
 	0.4195248751165511e+06,
@@ -210,8 +204,8 @@ namespace __detail
 	0.3799305912780064e-01,
 	0.6944444444444444e-01
       };
-      constexpr _Tp
-      _S_u_sin[_S_ncoeffs]
+      constexpr Tp
+      s_u_sin[s_ncoeffs]
       {
 	0.3148257417866826e+07,
 	0.5989251356587907e+05,
@@ -224,8 +218,8 @@ namespace __detail
 	0.1000000000000000e+01
       };
 
-      constexpr _Tp
-      _S_v_sin[_S_ncoeffs]
+      constexpr Tp
+      s_v_sin[s_ncoeffs]
       {
 	-0.2569790838391133e+08,
 	-0.4289524004000691e+06,
@@ -237,8 +231,8 @@ namespace __detail
 	-0.4246283078989483e-01,
 	-0.9722222222222222e-01
       };
-      constexpr _Tp
-      _S_v_cos[_S_ncoeffs]
+      constexpr Tp
+      s_v_cos[s_ncoeffs]
       {
 	-0.3214536521400865e+07,
 	-0.6133570666385206e+05,
@@ -252,66 +246,66 @@ namespace __detail
       };
 
       // Set up working value of z.
-      __z = -__z;
+      z = -z;
       // Compute zeta and z^(1/4).
-      auto __z1d4 = std::sqrt(__z);
-      auto __zeta = __z * __z1d4;
-      __zeta *= _S_2d3;
-      __z1d4 = std::sqrt(__z1d4);
+      auto z1d4 = std::sqrt(z);
+      auto zeta = z * z1d4;
+      zeta *= s_2d3;
+      z1d4 = std::sqrt(z1d4);
 
       // Compute sine and cosine factors in the expansions.
-      auto __zetaarg = __zeta + _S_pid4;
-      auto __sinzeta = std::sin(__zetaarg);
-      auto __coszeta = std::cos(__zetaarg);
+      auto zetaarg = zeta + s_pid4;
+      auto sinzeta = std::sin(zetaarg);
+      auto coszeta = std::cos(zetaarg);
 
       // Determine number of terms to use.
-      auto __nterm = _S_nterms[std::min(_S_numnterms - 1,
-					(int(std::abs(__z)) - 10) / 5)];
+      auto nterm = s_nterms[std::min(s_numnterms - 1,
+					(int(std::abs(z)) - 10) / 5)];
       // Initialize for modified Horner's rule evaluation of sums
       // it is assumed that at least three terms are used.
-      __z = std::pow(_S_zone / __z, _Tp(3));
-      __z *= _S_9d4;
-      auto __r = -2 * std::real(__z);
-      auto __s = std::norm(__z);
-      auto __index = _S_ncoeffs - __nterm;
+      z = std::pow(s_zone / z, Tp(3));
+      z *= s_9d4;
+      auto r = -2 * std::real(z);
+      auto s = std::norm(z);
+      auto index = s_ncoeffs - nterm;
 
-      auto __als = _S_u_sin[__index];
-      auto __alc = _S_u_cos[__index];
-      auto __alprs = _S_v_sin[__index];
-      auto __alprc = _S_v_cos[__index];
-      ++__index;
+      auto als = s_u_sin[index];
+      auto alc = s_u_cos[index];
+      auto alprs = s_v_sin[index];
+      auto alprc = s_v_cos[index];
+      ++index;
 
-      auto __bes = _S_u_sin[__index];
-      auto __bec = _S_u_cos[__index];
-      auto __beprs = _S_v_sin[__index];
-      auto __beprc = _S_v_cos[__index];
-      ++__index;
+      auto bes = s_u_sin[index];
+      auto bec = s_u_cos[index];
+      auto beprs = s_v_sin[index];
+      auto beprc = s_v_cos[index];
+      ++index;
 
       // Loop until components contributing to sums are computed.
-      for (int __k = __index; __k < _S_ncoeffs; ++__k)
+      for (int k = index; k < s_ncoeffs; ++k)
 	{
-	  auto __term = __s * __als;
-	  __als = __bes + __r * __als;
-	  __bes = _S_u_sin[__k] - __term;
-	  __term = __s * __alc;
-	  __alc = __bec + __r * __alc;
-	  __bec = _S_u_cos[__k] - __term;
-	  __term = __s * __alprs;
-	  __alprs = __beprs + __r * __alprs;
-	  __beprs = _S_v_sin[__k] - __term;
-	  __term = __s * __alprc;
-	  __alprc = __beprc + __r * __alprc;
-	  __beprc = _S_v_cos[__k] - __term;
+	  auto term = s * als;
+	  als = bes + r * als;
+	  bes = s_u_sin[k] - term;
+	  term = s * alc;
+	  alc = bec + r * alc;
+	  bec = s_u_cos[k] - term;
+	  term = s * alprs;
+	  alprs = beprs + r * alprs;
+	  beprs = s_v_sin[k] - term;
+	  term = s * alprc;
+	  alprc = beprc + r * alprc;
+	  beprc = s_v_cos[k] - term;
 	}
 
       // Complete evaluation of the Airy functions.
-      __zeta = _S_zone / __zeta;
-      _Ai = __sinzeta * __als * __z + __bes
-           - __zeta * __coszeta * __alc * __z + __bec;
-      _Ai *= _S_pimh / __z1d4;
-      _Aip = __coszeta * __alprc * __z + __beprc
-	   + __zeta * __sinzeta * __alprs * __z + __beprs;
-      _Aip *= -_S_pimh * __z1d4;
+      zeta = s_zone / zeta;
+      Ai = sinzeta * als * z + bes
+           - zeta * coszeta * alc * z + bec;
+      Ai *= s_pimh / z1d4;
+      Aip = coszeta * alprc * z + beprc
+	   + zeta * sinzeta * alprs * z + beprs;
+      Aip *= -s_pimh * z1d4;
 
       return;
     }
@@ -377,185 +371,185 @@ namespace __detail
    *  |x| + |y| <= \sqrt(2) \sqrt(x^2 + y^2) 
    * @f]
    *
-   * @param[in]  __z     The argument of the modified Bessel functions.
-   * @param[in]  __eps   The maximum relative error required in the results.
-   * @param[out] _Ip1d3 The value of @f$ I_(+1/3)(z) @f$.
-   * @param[out] _Im1d3 The value of @f$ I_(-1/3)(z) @f$.
-   * @param[out] _Ip2d3 The value of @f$ I_(+2/3)(z) @f$.
-   * @param[out] _Im2d3 The value of @f$ I_(-2/3)(z) @f$.
+   * @param[in]  z     The argument of the modified Bessel functions.
+   * @param[in]  eps   The maximum relative error required in the results.
+   * @param[out] Ip1d3 The value of @f$ I_(+1/3)(z) @f$.
+   * @param[out] Im1d3 The value of @f$ I_(-1/3)(z) @f$.
+   * @param[out] Ip2d3 The value of @f$ I_(+2/3)(z) @f$.
+   * @param[out] Im2d3 The value of @f$ I_(-2/3)(z) @f$.
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    __airy_bessel_i(const std::complex<_Tp>& __z, _Tp __eps,
-		    std::complex<_Tp>& _Ip1d3,
-		    std::complex<_Tp>& _Im1d3,
-		    std::complex<_Tp>& _Ip2d3,
-		    std::complex<_Tp>& _Im2d3)
+    airy_bessel_i(const std::complex<Tp>& z, Tp eps,
+		    std::complex<Tp>& Ip1d3,
+		    std::complex<Tp>& Im1d3,
+		    std::complex<Tp>& Ip2d3,
+		    std::complex<Tp>& Im2d3)
     {
-      using __cmplx = std::complex<_Tp>;
+      using cmplx = std::complex<Tp>;
 
-      constexpr __cmplx _S_zero{0}, _S_zone{1};
-      constexpr _Tp
-    	_S_1d3  {_Tp{1} / _Tp{3}}, _S_2d3  {_Tp{2} / _Tp{3}},
-    	_S_4d3  {_Tp{4} / _Tp{3}}, _S_5d3  {_Tp{5} / _Tp{3}},
-    	_S_8d3  {_Tp{8} / _Tp{3}}, _S_10d3 {_Tp{10} / _Tp{3}},
-    	_S_14d3 {_Tp{14} / _Tp{3}}, _S_16d3 {_Tp{16} / _Tp{3}},
-    	_S_gamma4d3{8.929795115692492112185643136582258813769e-1L},
-	_S_gamma5d3{9.027452929509336112968586854363425236809e-1L},
-    	_S_sqrt2 = __gnu_cxx::__math_constants<_Tp>::__root_2;
+      constexpr cmplx s_zero{0}, s_zone{1};
+      constexpr Tp
+    	s_1d3  {Tp{1} / Tp{3}}, s_2d3  {Tp{2} / Tp{3}},
+    	s_4d3  {Tp{4} / Tp{3}}, s_5d3  {Tp{5} / Tp{3}},
+    	s_8d3  {Tp{8} / Tp{3}}, s_10d3 {Tp{10} / Tp{3}},
+    	s_14d3 {Tp{14} / Tp{3}}, s_16d3 {Tp{16} / Tp{3}},
+    	s_gamma4d3{8.929795115692492112185643136582258813769e-1L},
+	s_gamma5d3{9.027452929509336112968586854363425236809e-1L},
+    	s_sqrt2 = emsr::math_constants<Tp>::root_2;
 
       // Compute 1/z for use in recurrence for speed and abs(z).
-      auto __1dz = __safe_div(_Tp{1}, __z);
+      auto __1dz = safe_div(Tp{1}, z);
 
       // Initialize for forward recursion based on order 2/3.
-      int __n = 0;
-      auto __d2n = _Tp(2 * __n) + _S_4d3;
-      auto __plast2 = _S_zone;
-      auto __p2 = __d2n * __1dz;
+      int n = 0;
+      auto d2n = Tp(2 * n) + s_4d3;
+      auto plast2 = s_zone;
+      auto p2 = d2n * __1dz;
 
-      auto __weak_test = 20 * _S_sqrt2 / __eps;
-      bool __converged = false;
+      auto weak_test = 20 * s_sqrt2 / eps;
+      bool converged = false;
 
       while (true)
 	{
 	  do
 	    {
     	      // Update n dependent quantities.
-    	      ++__n;
-    	      __d2n += 2;
+    	      ++n;
+    	      d2n += 2;
     	      // Interchange values.
-    	      auto __pold2 = __plast2;
-    	      __plast2 = __p2;
+    	      auto pold2 = plast2;
+    	      plast2 = p2;
     	      // Recur forward one step.
-    	      __p2 = __1dz * __d2n * __plast2 + __pold2;
+    	      p2 = __1dz * d2n * plast2 + pold2;
 	    }
-	  while (__l1_norm(__p2) < __weak_test);
+	  while (l1_norm(p2) < weak_test);
 
 	  // If strong convergence, then weak and strong convergence.
-	  if (__converged)
+	  if (converged)
     	    break;
 
 	  // Calculate strong convergence test.
 	  // See the Olver and Sookne papers cited for details.
-	  auto __rep2 = std::real(__p2);
-	  auto __imp2 = std::imag(__p2);
-	  auto __replast2 = std::real(__plast2);
-	  auto __implast2 = std::imag(__plast2);
+	  auto rep2 = std::real(p2);
+	  auto imp2 = std::imag(p2);
+	  auto replast2 = std::real(plast2);
+	  auto implast2 = std::imag(plast2);
 	  // Compute scale factor to avoid possible overflow.
-	  auto __lamn = __linf_norm(__p2);
+	  auto lamn = linf_norm(p2);
 	  // Compute the kappa_n of strong convergence lemma.
-	  auto __kapn = std::sqrt(((__rep2 / __lamn) * (__rep2 / __lamn)
-    			       + (__imp2 / __lamn) * (__imp2 / __lamn))
-    			     / ((__replast2 / __lamn) * (__replast2 / __lamn)
-    			      + (__implast2 / __lamn) * (__implast2 / __lamn)));
+	  auto kapn = std::sqrt(((rep2 / lamn) * (rep2 / lamn)
+    			       + (imp2 / lamn) * (imp2 / lamn))
+    			     / ((replast2 / lamn) * (replast2 / lamn)
+    			      + (implast2 / lamn) * (implast2 / lamn)));
 	  // Compute quantity needed for lambda_n of strong convergence lemma
-	  __lamn = _Tp(__n + 1) / std::abs(__z);
+	  lamn = Tp(n + 1) / std::abs(z);
 	  // Determine appropriate value for rho_n of lemma
-	  if (__kapn + 1 / __kapn > 2 * __lamn)
-    	    __kapn = __lamn + std::sqrt(__lamn * __lamn - 1);
+	  if (kapn + 1 / kapn > 2 * lamn)
+    	    kapn = lamn + std::sqrt(lamn * lamn - 1);
 	  // Compute test value - sqrt(2) multiple already included.
-	  __weak_test *= std::sqrt(__kapn - 1 / __kapn);
+	  weak_test *= std::sqrt(kapn - 1 / kapn);
 	  // Set strong convergence test flag.
-	  __converged = true;
+	  converged = true;
 	}
 
       // Prepare for backward recurrence for both orders 1/3 and 2/3.
-      auto __rn = _Tp(__n);
-      ++__n;
-      __d2n = _Tp(2 * __n);
-      auto __plast1 = _S_zero;
-      __plast2 = _S_zero;
+      auto rn = Tp(n);
+      ++n;
+      d2n = Tp(2 * n);
+      auto plast1 = s_zero;
+      plast2 = s_zero;
       // Carefully compute 1/p2 to avoid overflow in complex divide.
-      auto __p1 = __safe_div(_Tp{1}, __p2);
-      __p2 = __p1;
+      auto p1 = safe_div(Tp{1}, p2);
+      p2 = p1;
       // Set up n dependent parameters used in normalization sum.
-      auto __rnpn1 = __rn + _S_1d3;
-      auto __rnpn2 = __rn + _S_2d3;
-      auto __rnp2n1 = (__rn - _Tp(1)) + _S_2d3;
-      auto __rnp2n2 = (__rn - _Tp(1)) + _S_4d3;
+      auto rnpn1 = rn + s_1d3;
+      auto rnpn2 = rn + s_2d3;
+      auto rnp2n1 = (rn - Tp(1)) + s_2d3;
+      auto rnp2n2 = (rn - Tp(1)) + s_4d3;
       // Initialize normalization sum
-      auto __fact1 = __rnpn1 * __rnp2n1 / __rn;
-      auto __sum1 = __fact1 * __p1;
-      auto __fact2 = __rnpn2 * __rnp2n2 / __rn;
-      auto __sum2 = __fact2 * __p2;
+      auto fact1 = rnpn1 * rnp2n1 / rn;
+      auto sum1 = fact1 * p1;
+      auto fact2 = rnpn2 * rnp2n2 / rn;
+      auto sum2 = fact2 * p2;
       // Set ending loop index to correspond to k=1 term of the
       // normalization relationship.
-      auto __nend = __n - 3;
+      auto nend = n - 3;
 
       // If backward recurrence loop will be nontrivial...
-      if (__nend > 0)
+      if (nend > 0)
 	{
 	  // ...loop until backward recursion to k=1 term of normalization.
-	  for (int __l = 1; __l <= __nend; ++__l)
+	  for (int l = 1; l <= nend; ++l)
 	    {
     	      // Update n dependent quantities.
-    	      --__n;
-    	      __d2n -= 2;
-    	      __fact1 = __d2n + _S_2d3;
-    	      __fact2 = __d2n + _S_4d3;
+    	      --n;
+    	      d2n -= 2;
+    	      fact1 = d2n + s_2d3;
+    	      fact2 = d2n + s_4d3;
     	      // Interchanges for order 1/3 recurrence.
-    	      auto __pold1 = __plast1;
-    	      __plast1 = __p1;
+    	      auto pold1 = plast1;
+    	      plast1 = p1;
     	      // Recur back one step for order 1/3.
-    	      __p1 = __1dz * __fact1 * __plast1 + __pold1;
+    	      p1 = __1dz * fact1 * plast1 + pold1;
     	      // Interchanges for order 2/3 recurrence
-    	      auto __pold2 = __plast2;
-    	      __plast2 = __p2;
+    	      auto pold2 = plast2;
+    	      plast2 = p2;
     	      // Recur back one step for order 2/3.
-    	      __p2 = __1dz * __fact2 * __plast2 + __pold2;
+    	      p2 = __1dz * fact2 * plast2 + pold2;
     	      // Update quantities for computing normalization sums.
-    	      __rn -= _Tp(1);
-    	      __rnpn1 = __rn + _S_1d3;
-    	      __rnp2n1 = __rn - _S_1d3;
-    	      __rnpn2 = __rn + _S_2d3;
-    	      __rnp2n2 = __rnpn1;
-    	      __fact1 = __rnp2n1 / __rn;
-    	      __fact2 = __rnp2n2 / __rn;
+    	      rn -= Tp(1);
+    	      rnpn1 = rn + s_1d3;
+    	      rnp2n1 = rn - s_1d3;
+    	      rnpn2 = rn + s_2d3;
+    	      rnp2n2 = rnpn1;
+    	      fact1 = rnp2n1 / rn;
+    	      fact2 = rnp2n2 / rn;
     	      // Update normalization sums.
-    	      __sum1 += __rnpn1 * __p1;
-    	      __sum1 *= __fact1;
-    	      __sum2 += __rnpn2 * __p2;
-    	      __sum2 *= __fact2;
+    	      sum1 += rnpn1 * p1;
+    	      sum1 *= fact1;
+    	      sum2 += rnpn2 * p2;
+    	      sum2 *= fact2;
 	    }
 	}
 
       // Perform last two recurrence steps for order 1/3
-      auto __pold1 = __plast1;
-      __plast1 = __p1;
-      __p1 = _S_14d3 * __plast1 * __1dz + __pold1;
-      __sum1 += _S_4d3 * __p1;
-      __pold1 = __plast1;
-      __plast1 = __p1;
-      __p1 = _S_8d3 * __plast1 * __1dz + __pold1;
-      __sum1 = _Tp(2) * __sum1 + __p1;
+      auto pold1 = plast1;
+      plast1 = p1;
+      p1 = s_14d3 * plast1 * __1dz + pold1;
+      sum1 += s_4d3 * p1;
+      pold1 = plast1;
+      plast1 = p1;
+      p1 = s_8d3 * plast1 * __1dz + pold1;
+      sum1 = Tp(2) * sum1 + p1;
 
       // Compute scale factor and scale results for order 1/3 case
-      auto __zd2pow = std::pow(_Tp(0.5L) * __z, -_S_1d3);
-      __pold1 = __zd2pow * std::exp(-__z);
-      __sum1 *= _S_gamma4d3 * __pold1;
-      __plast1 /= __sum1;
-      _Ip1d3 = __p1 / __sum1;
+      auto zd2pow = std::pow(Tp(0.5L) * z, -s_1d3);
+      pold1 = zd2pow * std::exp(-z);
+      sum1 *= s_gamma4d3 * pold1;
+      plast1 /= sum1;
+      Ip1d3 = p1 / sum1;
 
       // Perform last two recurrence steps for order 2/3
-      auto __pold2 = __plast2;
-      __plast2 = __p2;
-      __p2 = _S_16d3 * __plast2 * __1dz + __pold2;
-      __sum2 += _S_5d3 * __p2;
-      __pold2 = __plast2;
-      __plast2 = __p2;
-      __p2 = _S_10d3 * __plast2 * __1dz + __pold2;
-      __sum2 = _Tp(2) * __sum2 + __p2;
+      auto pold2 = plast2;
+      plast2 = p2;
+      p2 = s_16d3 * plast2 * __1dz + pold2;
+      sum2 += s_5d3 * p2;
+      pold2 = plast2;
+      plast2 = p2;
+      p2 = s_10d3 * plast2 * __1dz + pold2;
+      sum2 = Tp(2) * sum2 + p2;
 
       // Compute scale factor and scale results for order 2/3 case
-      __sum2 *= _S_gamma5d3 * __zd2pow * __pold1;
-      __plast2 /= __sum2;
-      _Ip2d3 = __p2 / __sum2;
+      sum2 *= s_gamma5d3 * zd2pow * pold1;
+      plast2 /= sum2;
+      Ip2d3 = p2 / sum2;
 
       // Recur back one step from order +1/3 to get order -2/3
-      _Im2d3 = _S_2d3 * _Ip1d3 * __1dz + __plast1;
+      Im2d3 = s_2d3 * Ip1d3 * __1dz + plast1;
 
       // Recur back one step from order +2/3 to get order -1/3
-      _Im1d3 = _S_4d3 * _Ip2d3 * __1dz + __plast2;
+      Im1d3 = s_4d3 * Ip2d3 * __1dz + plast2;
 
       return;
     }
@@ -586,159 +580,158 @@ namespace __detail
    * Hence, certain considerations of overflow, underflow, and
    * loss of significance are unimportant for our purpose.
    *
-   * @param[in] __z The value for which the quantity @f$ E_\nu @f$ is to be computed.
+   * @param[in] z The value for which the quantity @f$ E_\nu @f$ is to be computed.
    *  	     it is recommended that abs(z) not be too small and that
    *   	     @f$ |\arg(z)| <= 3pi/4 @f$.
-   * @param[in] __eps The maximum relative error allowable in the computed
+   * @param[in] eps The maximum relative error allowable in the computed
    *   	     results. The relative error test is based on the
    *   	     comparison of successive iterates.
-   * @param[out] _Kp1d3 The value computed for @f$ E_{+1/3}(z) @f$.
-   * @param[out] _Kp2d3 The value computed for @f$ E_{+2/3}(z) @f$.
+   * @param[out] Kp1d3 The value computed for @f$ E_{+1/3}(z) @f$.
+   * @param[out] Kp2d3 The value computed for @f$ E_{+2/3}(z) @f$.
    *
    * @note In the worst case, say, @f$ z=2 @f$ and @f$ \arg(z) = 3pi/4 @f$,
    * 20 iterations should give 7 or 8 decimals of accuracy.
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    __airy_bessel_k(const std::complex<_Tp>& __z, _Tp __eps,
-		    std::complex<_Tp>& _Kp1d3,
-		    std::complex<_Tp>& _Kp2d3)
+    airy_bessel_k(const std::complex<Tp>& z, Tp eps,
+		    std::complex<Tp>& Kp1d3,
+		    std::complex<Tp>& Kp2d3)
     {
-      using __cmplx = std::complex<_Tp>;
+      using cmplx = std::complex<Tp>;
 
-      constexpr _Tp _S_an1i{  _Tp{437} /  _Tp{9}},
-		    _S_an2i{  _Tp{425} /  _Tp{9}},
-		    _S_p12i{  _Tp{283} /  _Tp{9}},
-		    _S_p22i{  _Tp{295} /  _Tp{9}},
-		    _S_p13i{-  _Tp{25} / _Tp{27}},
-		    _S_p23i{   _Tp{35} / _Tp{27}},
-		    _S_p11i{-_Tp{2135} / _Tp{27}},
-		    _S_p21i{-_Tp{2195} / _Tp{27}};
+      constexpr Tp s_an1i{  Tp{437} /  Tp{9}},
+		    s_an2i{  Tp{425} /  Tp{9}},
+		    s_p12i{  Tp{283} /  Tp{9}},
+		    s_p22i{  Tp{295} /  Tp{9}},
+		    s_p13i{-  Tp{25} / Tp{27}},
+		    s_p23i{   Tp{35} / Tp{27}},
+		    s_p11i{-Tp{2135} / Tp{27}},
+		    s_p21i{-Tp{2195} / Tp{27}};
 
-      constexpr std::complex<_Tp> _S_zone{1};
-      constexpr int _S_iter_max = 100;
+      constexpr std::complex<Tp> s_zone{1};
+      constexpr int s_iter_max = 100;
 
-      constexpr _Tp
-      _S_f[8]
+      constexpr Tp
+      s_f[8]
       { 144, 77, 62208, 95472, 17017, 65, 90288, 13585 };
 
-      constexpr _Tp
-      _S_phi[6]
+      constexpr Tp
+      s_phi[6]
       { 67, 91152, 12697, 79, 96336, 19633 };
 
 
       // Initialize polynomials for recurrence
-      auto __f10 = _S_zone;
-      auto __f20 = _S_zone;
-      auto __f11 = _S_zone + _S_f[0] * __z / _S_f[1];
-      auto __f12 = __z * (_S_f[2] * __z + _S_f[3]);
-      __f12 = _S_zone + __f12 / _S_f[4];
-      auto __f21 = _S_zone + _S_f[0] * __z / _S_f[5];
-      auto __f22 = __z * (_S_f[2] * __z + _S_f[6]);
-      __f22 = _S_zone + __f22 / _S_f[7];
+      auto f10 = s_zone;
+      auto f20 = s_zone;
+      auto f11 = s_zone + s_f[0] * z / s_f[1];
+      auto f12 = z * (s_f[2] * z + s_f[3]);
+      f12 = s_zone + f12 / s_f[4];
+      auto f21 = s_zone + s_f[0] * z / s_f[5];
+      auto f22 = z * (s_f[2] * z + s_f[6]);
+      f22 = s_zone + f22 / s_f[7];
 
-      auto __phi10 = _S_zone;
-      auto __phi20 = _S_zone;
-      auto __phi11 = __cmplx((_S_f[0] * std::real(__z) + _S_phi[0]) / _S_f[1],
-			     std::imag(__f11));
-      auto __phi12 = __z * (_S_f[2] * __z + _S_phi[1]);
-      __phi12 = (__phi12 + _S_phi[2]) / _S_f[4];
-      auto __phi21 = __cmplx((_S_f[0] * std::real(__z) + _S_phi[3]) / _S_f[5],
-			      std::imag(__f21));
-      auto __phi22 = __z * (_S_f[2] * __z + _S_phi[4]);
-      __phi22 = (__phi22 + _S_phi[5]) / _S_f[7];
+      auto phi10 = s_zone;
+      auto phi20 = s_zone;
+      auto phi11 = cmplx((s_f[0] * std::real(z) + s_phi[0]) / s_f[1],
+			     std::imag(f11));
+      auto phi12 = z * (s_f[2] * z + s_phi[1]);
+      phi12 = (phi12 + s_phi[2]) / s_f[4];
+      auto phi21 = cmplx((s_f[0] * std::real(z) + s_phi[3]) / s_f[5],
+			      std::imag(f21));
+      auto phi22 = z * (s_f[2] * z + s_phi[4]);
+      phi22 = (phi22 + s_phi[5]) / s_f[7];
 
       // Initialize for recursion
-      auto __ratold = __phi22 / __f22;
-      auto __rat1 = __phi12 / __f12;
-      auto __delt = _Tp{32};
-      auto __an1 = _S_an1i;
-      auto __an2 = _S_an2i;
-      auto __p11 = _S_p11i;
-      auto __p12 = _S_p12i;
-      auto __p13 = _S_p13i;
-      auto __p21 = _S_p21i;
-      auto __p22 = _S_p22i;
-      auto __p23 = _S_p23i;
-      auto __eta = _Tp{24};
-      auto __gamm = _Tp{3};
-      auto __gam = _Tp{5};
-      auto __q = _Tp{16} * __gam;
+      auto ratold = phi22 / f22;
+      auto rat1 = phi12 / f12;
+      auto delt = Tp{32};
+      auto an1 = s_an1i;
+      auto an2 = s_an2i;
+      auto p11 = s_p11i;
+      auto p12 = s_p12i;
+      auto p13 = s_p13i;
+      auto p21 = s_p21i;
+      auto p22 = s_p22i;
+      auto p23 = s_p23i;
+      auto eta = Tp{24};
+      auto gamm = Tp{3};
+      auto gam = Tp{5};
+      auto q = Tp{16} * gam;
 
       // Loop until maximum iterations used or convergence.
-      for (int __i = 1; __i < _S_iter_max; ++__i)
+      for (int i = 1; i < s_iter_max; ++i)
 	{
 	  // Evaluate next term in recurrence for order 1/3 polynomials.
-	  auto __qz = __q * __z;
-	  auto __fact1 = __qz - __p11;
-	  auto __fact2 = __qz - __p12;
-	  auto __f13 = __fact1 * __f12
-		     + __fact2 * __f11
-		     - __p13 * __f10;
-	  __f13 /= __an1;
-	  auto __phi13 = __fact1 * __phi12
-		       + __fact2 * __phi11
-		       - __p13 * __phi10;
-	  __phi13 /= __an1;
+	  auto qz = q * z;
+	  auto fact1 = qz - p11;
+	  auto fact2 = qz - p12;
+	  auto f13 = fact1 * f12
+		     + fact2 * f11
+		     - p13 * f10;
+	  f13 /= an1;
+	  auto phi13 = fact1 * phi12
+		       + fact2 * phi11
+		       - p13 * phi10;
+	  phi13 /= an1;
 
 	  // Evaluate next term in recurrence for order 2/3 polynomials.
-	  __fact1 = __qz - __p21;
-	  __fact2 = __qz - __p22;
-	  auto __f23 = __fact1 * __f22
-		     + __fact2 * __f21
-		     - __p23 * __f20;
-	  __f23 /= __an2;
-	  auto __phi23 = __fact1 * __phi22
-		       + __fact2 * __phi21
-		       - __p23 * __phi20;
-	  __phi23 /= __an2;
+	  fact1 = qz - p21;
+	  fact2 = qz - p22;
+	  auto f23 = fact1 * f22
+		     + fact2 * f21
+		     - p23 * f20;
+	  f23 /= an2;
+	  auto phi23 = fact1 * phi22
+		       + fact2 * phi21
+		       - p23 * phi20;
+	  phi23 /= an2;
 
 	  // Check for convergence.
-	  auto __ratnew = __phi23 / __f23;
-	  __rat1 = __phi13 / __f13;
+	  auto ratnew = phi23 / f23;
+	  rat1 = phi13 / f13;
 
-	  if (std::abs(__ratnew - __ratold) < __eps * std::abs(__ratnew))
+	  if (std::abs(ratnew - ratold) < eps * std::abs(ratnew))
 	    {
 	      // Convergence.
-	      _Kp2d3 = __ratnew;
-	      _Kp1d3 = __phi13 / __f13;
+	      Kp2d3 = ratnew;
+	      Kp1d3 = phi13 / f13;
 	      return;
 	    }
 
 	  // Prepare for next iteration.
-	  __ratold = __ratnew;
-	  __f20 = __f21;
-	  __f21 = __f22;
-	  __f22 = __f23;
-	  __phi20 = __phi21;
-	  __phi21 = __phi22;
-	  __phi22 = __phi23;
-	  __f10 = __f11;
-	  __f11 = __f12;
-	  __f12 = __f13;
-	  __phi10 = __phi11;
-	  __phi11 = __phi12;
-	  __phi12 = __phi13;
-	  __delt = __delt + _Tp{24};
-	  __p12 = __p12 + __delt;
-	  __p22 = __p22 + __delt;
-	  __eta += _Tp{8};
-	  __an1 += __eta;
-	  __an2 += __eta;
-	  auto __anm1 = __an1 - __delt - _Tp{16};
-	  auto __anm2 = __an2 - __delt - _Tp{16};
-	  __gamm = __gam;
-	  __gam += _Tp{2};
-	  __p23 = -__gam / __gamm;
-	  __p13 = __p23 * __anm1;
-	  __p23 = __p23 * __anm2;
-	  __p11 = -__an1 - __p12 - __p13;
-	  __p21 = -__an2 - __p22 - __p23;
-	  __q = _Tp{16} * __gam;
+	  ratold = ratnew;
+	  f20 = f21;
+	  f21 = f22;
+	  f22 = f23;
+	  phi20 = phi21;
+	  phi21 = phi22;
+	  phi22 = phi23;
+	  f10 = f11;
+	  f11 = f12;
+	  f12 = f13;
+	  phi10 = phi11;
+	  phi11 = phi12;
+	  phi12 = phi13;
+	  delt = delt + Tp{24};
+	  p12 = p12 + delt;
+	  p22 = p22 + delt;
+	  eta += Tp{8};
+	  an1 += eta;
+	  an2 += eta;
+	  auto anm1 = an1 - delt - Tp{16};
+	  auto anm2 = an2 - delt - Tp{16};
+	  gamm = gam;
+	  gam += Tp{2};
+	  p23 = -gam / gamm;
+	  p13 = p23 * anm1;
+	  p23 = p23 * anm2;
+	  p11 = -an1 - p12 - p13;
+	  p21 = -an2 - p22 - p23;
+	  q = Tp{16} * gam;
 	}
 
-      std::__throw_runtime_error(__N("__airy_bessel_k:"
-				     " maximum iterations exceeded"));
+      throw std::runtime_error("airy_bessel_k: maximum iterations exceeded");
 
       return;
     }
@@ -772,58 +765,58 @@ namespace __detail
    * Note also that for speed and since this function is called by another,
    * checks that are not absolutely necessary are not made.
    *
-   * @param[in] __z The argument at which the hypergeometric given
+   * @param[in] z The argument at which the hypergeometric given
    *  		above is to be evaluated.  Since the approximation
    *  		is of fixed order, @f$ |z| @f$ must be small to ensure
    *  		sufficient accuracy of the computed results.
-   * @param[out] _Ai  The Airy function @f$ Ai(z) @f$.
-   * @param[out] _Aip The Airy function derivative @f$ Ai'(z) @f$.
-   * @param[out] _Bi  The Airy function @f$ Bi(z) @f$.
-   * @param[out] _Bip The Airy function derivative @f$ Bi'(z) @f$.
+   * @param[out] Ai  The Airy function @f$ Ai(z) @f$.
+   * @param[out] Aip The Airy function derivative @f$ Ai'(z) @f$.
+   * @param[out] Bi  The Airy function @f$ Bi(z) @f$.
+   * @param[out] Bip The Airy function derivative @f$ Bi'(z) @f$.
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    __airy_hyperg_rational(const std::complex<_Tp>& __z,
-			   std::complex<_Tp>& _Ai,
-			   std::complex<_Tp>& _Aip,
-			   std::complex<_Tp>& _Bi,
-			   std::complex<_Tp>& _Bip)
+    airy_hyperg_rational(const std::complex<Tp>& z,
+			   std::complex<Tp>& Ai,
+			   std::complex<Tp>& Aip,
+			   std::complex<Tp>& Bi,
+			   std::complex<Tp>& Bip)
     {
-      using __cmplx = std::complex<_Tp>;
+      using cmplx = std::complex<Tp>;
 
-      constexpr __cmplx _S_zone{1};
+      constexpr cmplx s_zone{1};
 
-      constexpr _Tp _S_ap1d3[4]{  81, 32400,  2585520,  37920960};
-      constexpr _Tp _S_bp1d3[4]{ -35,  5040,  -574560,  37920960};
-      constexpr _Tp _S_am1d3[4]{  81, 22680,  1156680,   7711200};
-      constexpr _Tp _S_bm1d3[4]{ -10,  1260,  -128520,   7711200};
-      constexpr _Tp _S_ap2d3[4]{ 162, 75735,  7270560, 139352400};
-      constexpr _Tp _S_bp2d3[4]{-110, 16830, -2019600, 139352400};
-      constexpr _Tp _S_am2d3[4]{ 162, 36855,  1415232,   4481568};
-      constexpr _Tp _S_bm2d3[4]{  -7,	819,   -78624,   4481568};
-      constexpr _Tp _S_Ai0{3.550280538878172392600631860041831763980e-1L};
-      constexpr _Tp _S_Aip0{-2.588194037928067984051835601892039634793e-1L};
-      constexpr _Tp _S_Bi0{6.149266274460007351509223690936135535960e-1L};
-      constexpr _Tp _S_Bip0{4.482883573538263579148237103988283908668e-1L};
+      constexpr Tp s_ap1d3[4]{  81, 32400,  2585520,  37920960};
+      constexpr Tp s_bp1d3[4]{ -35,  5040,  -574560,  37920960};
+      constexpr Tp s_am1d3[4]{  81, 22680,  1156680,   7711200};
+      constexpr Tp s_bm1d3[4]{ -10,  1260,  -128520,   7711200};
+      constexpr Tp s_ap2d3[4]{ 162, 75735,  7270560, 139352400};
+      constexpr Tp s_bp2d3[4]{-110, 16830, -2019600, 139352400};
+      constexpr Tp s_am2d3[4]{ 162, 36855,  1415232,   4481568};
+      constexpr Tp s_bm2d3[4]{  -7,	819,   -78624,   4481568};
+      constexpr Tp s_Ai0{3.550280538878172392600631860041831763980e-1L};
+      constexpr Tp s_Aip0{-2.588194037928067984051835601892039634793e-1L};
+      constexpr Tp s_Bi0{6.149266274460007351509223690936135535960e-1L};
+      constexpr Tp s_Bip0{4.482883573538263579148237103988283908668e-1L};
 
       // Check to see if z^3 will underflow and act accordingly.
-      auto __zzz = __z * __z * __z;
+      auto zzz = z * z * z;
 
       // The confluent hypergeometric limit functions related to
       // the modified Bessel functions of order +1/3, -1/3, +2/3, and -2/3
       // respectively.
-      std::complex<_Tp> _Fp1d3, _Fm1d3, _Fp2d3, _Fm2d3;
-      if (std::abs(__zzz) < _Tp{10} * __gnu_cxx::__min<_Tp>())
+      std::complex<Tp> Fp1d3, Fm1d3, Fp2d3, Fm2d3;
+      if (std::abs(zzz) < Tp{10} * emsr::min<Tp>())
 	{
-	  _Fp1d3  = _S_zone;
-	  _Fm1d3 = _S_zone;
-	  _Fp2d3  = _S_zone;
-	  _Fm2d3 = _S_zone;
+	  Fp1d3  = s_zone;
+	  Fm1d3 = s_zone;
+	  Fp2d3  = s_zone;
+	  Fm2d3 = s_zone;
 	}
       else
 	{
-	  auto __r = _Tp{2} * std::real(__zzz);
-	  auto __s = std::norm(__zzz);
+	  auto r = Tp{2} * std::real(zzz);
+	  auto s = std::norm(zzz);
 
 	  // The following polynomial evaluations are done using
 	  // a modified of Horner's rule which exploits the fact that
@@ -834,31 +827,31 @@ namespace __detail
 	  //
 	  // If n is the degree of the polynomial, n - 3 multiplies are
 	  // saved and 4 * n - 6 additions are saved.
-	  auto __horner
+	  auto horner
 	  {
-	    [__r, __s, __zzz](const auto (&_S_c)[4])
+	    [r, s, zzz](const auto (&s_c)[4])
 	    {
-	      auto __aa = _S_c[0];
-	      auto __t  = __s * __aa;
-	      __aa = _S_c[1] + __r * __aa;
-	      auto __bb = _S_c[2] - __t;
-	      __t  = __s * __aa;
-	      __aa = __bb + __r * __aa;
-	      __bb = _S_c[3] - __t;
-	      return __aa * __zzz + __bb;
+	      auto aa = s_c[0];
+	      auto t  = s * aa;
+	      aa = s_c[1] + r * aa;
+	      auto bb = s_c[2] - t;
+	      t  = s * aa;
+	      aa = bb + r * aa;
+	      bb = s_c[3] - t;
+	      return aa * zzz + bb;
 	    }
 	  };
 
-	  _Fp1d3 = __horner(_S_ap1d3) / __horner(_S_bp1d3);
-	  _Fm1d3 = __horner(_S_am1d3) / __horner(_S_bm1d3);
-	  _Fp2d3 = __horner(_S_ap2d3) / __horner(_S_bp2d3);
-	  _Fm2d3 = __horner(_S_am2d3) / __horner(_S_bm2d3);
+	  Fp1d3 = horner(s_ap1d3) / horner(s_bp1d3);
+	  Fm1d3 = horner(s_am1d3) / horner(s_bm1d3);
+	  Fp2d3 = horner(s_ap2d3) / horner(s_bp2d3);
+	  Fm2d3 = horner(s_am2d3) / horner(s_bm2d3);
 	}
 
-      _Ai = _S_Ai0 * _Fm1d3 + _S_Aip0 * __z * _Fp1d3;
-      _Aip = _S_Ai0 * __z * __z * _Fp2d3 / _Tp{2} + _S_Aip0 * _Fm2d3;
-      _Bi = _S_Bi0 * _Fm1d3 + _S_Bip0 * __z * _Fp1d3;
-      _Bip = _S_Bi0 * __z * __z * _Fp2d3 / _Tp{2} + _S_Bip0 * _Fm2d3;
+      Ai = sAi0 * Fm1d3 + sAip0 * z * Fp1d3;
+      Aip = sAi0 * z * z * Fp2d3 / Tp{2} + sAip0 * Fm2d3;
+      Bi = sBi0 * Fm1d3 + sBip0 * z * Fp1d3;
+      Bip = sBi0 * z * z * Fp2d3 / Tp{2} + sBip0 * Fm2d3;
 
       return;
     }
@@ -989,85 +982,85 @@ namespace __detail
    * @see Wimp, J., On the computation of Tricomi's psi function, Computing,
    * Vol 13, pp 195-203, 1974.
    *
-   * @param[in] __z   The argument at which the Airy function and its derivative
+   * @param[in] z   The argument at which the Airy function and its derivative
    *  	     are computed.
-   * @param[in] __eps Relative error required.  Currently, eps is used only
+   * @param[in] eps Relative error required.  Currently, eps is used only
    *		     in the backward recursion algorithms.
-   * @param[out] _Ai  The value computed for Ai(z).
-   * @param[out] _Aip The value computed for Ai'(z).
-   * @param[out] _Bi  The value computed for Bi(z).
-   * @param[out] _Bip The value computed for Bi'(z).
+   * @param[out] Ai  The value computed for Ai(z).
+   * @param[out] Aip The value computed for Ai'(z).
+   * @param[out] Bi  The value computed for Bi(z).
+   * @param[out] Bip The value computed for Bi'(z).
    */
-  template<typename _Tp>
+  template<typename Tp>
     void
-    __airy(const std::complex<_Tp>& __z, _Tp __eps,
-           std::complex<_Tp>& _Ai,
-           std::complex<_Tp>& _Aip,
-           std::complex<_Tp>& _Bi,
-           std::complex<_Tp>& _Bip)
+    airy(const std::complex<Tp>& z, Tp eps,
+           std::complex<Tp>& Ai,
+           std::complex<Tp>& Aip,
+           std::complex<Tp>& Bi,
+           std::complex<Tp>& Bip)
     {
-      using __cmplx = std::complex<_Tp>;
+      using cmplx = std::complex<Tp>;
 
-      static constexpr _Tp
-	_S_sqrt3 = __gnu_cxx::__math_constants<_Tp>::__root_3;
-      static constexpr __cmplx _S_j{0, 1},
-	_S_eppid6{_S_sqrt3 / _Tp{2},  _Tp{0.5L}},
-	_S_empid6{_S_sqrt3 / _Tp{2}, -_Tp{0.5L}},
-	_S_eppid3{_Tp{0.5L},  _S_sqrt3 / _Tp{2}},
-	_S_empid3{_Tp{0.5L}, -_S_sqrt3 / _Tp{2}};
-      static constexpr _Tp
-	_S_2d3{_Tp{2} / _Tp{3}},
-	_S_rsqpi{2.820947917738781434740397257803862929219e-01L}, // 1/(2sqrt(pi))
-	_S_pi = __gnu_cxx::__math_constants<_Tp>::__pi;
-      static constexpr _Tp _S_small{0.25}, _S_big{15};
+      static constexpr Tp
+	s_sqrt3 = emsr::math_constants<Tp>::root_3;
+      static constexpr cmplx s_j{0, 1},
+	s_eppid6{s_sqrt3 / Tp{2},  Tp{0.5L}},
+	s_empid6{s_sqrt3 / Tp{2}, -Tp{0.5L}},
+	s_eppid3{Tp{0.5L},  s_sqrt3 / Tp{2}},
+	s_empid3{Tp{0.5L}, -s_sqrt3 / Tp{2}};
+      static constexpr Tp
+	s_2d3{Tp{2} / Tp{3}},
+	s_rsqpi{2.820947917738781434740397257803862929219e-01L}, // 1/(2sqrt(pi))
+	s_pi = emsr::math_constants<Tp>::pi;
+      static constexpr Tp s_small{0.25}, s_big{15};
 
-      auto __absz = std::abs(__z);
+      auto absz = std::abs(z);
       // Check size of abs(z) and select appropriate methods.
-      if (__absz < _S_big)
+      if (absz < s_big)
 	{
 	  // Moderate or small abs(z)
 	  // Check argument for right or left half plane.
-	  if (std::real(__z) >= _Tp{0})
+	  if (std::real(z) >= Tp{0})
 	    {
 	      // Argument in closed right half plane. Compute zeta as defined
 	      // in the representations in terms of Bessel functions.
-	      auto __sqrtz = std::sqrt(__z);
-	      auto __zeta = _S_2d3 * __z * __sqrtz;
+	      auto sqrtz = std::sqrt(z);
+	      auto zeta = s_2d3 * z * sqrtz;
 
 	      // Check for abs(z) too large for accuracy of
 	      // representations (1) and (4).
-	      if (__absz >= _Tp{2})
+	      if (absz >= Tp{2})
 		{
 		  // Use rational approximation for modified Bessel functions
 		  // of orders 1/3 and 2/3.
-		  __airy_bessel_k(__zeta, __eps, _Ai, _Aip/* , _Bi, _Bip*/); // FIXME
+		  airy_bessel_k(zeta, eps, Ai, Aip/* , Bi, Bip*/); // FIXME
 		  // Recover Ai(z) and Ai'(z).
-		  auto __p1d4c = std::sqrt(__sqrtz);
-		  __zeta = _S_rsqpi * std::exp(-__zeta);
-		  _Ai *= __zeta / __p1d4c;
-		  _Aip *= -__zeta * __p1d4c;
-		  // FIXME: _Bi *= 
-		  // FIXME: _Bip *= 
+		  auto p1d4c = std::sqrt(sqrtz);
+		  zeta = s_rsqpi * std::exp(-zeta);
+		  Ai *= zeta / p1d4c;
+		  Aip *= -zeta * p1d4c;
+		  // FIXME: Bi *= 
+		  // FIXME: Bip *= 
 		}
 	      else
 		{
 		  // Check for abs(z) small enough for rational approximation.
-		  if (__absz <= _S_small)
+		  if (absz <= s_small)
 		    {
 		      // Use rational approximation along with (1) and (4).
-		      __airy_hyperg_rational(__z, _Ai, _Aip, _Bi, _Bip);
+		      airy_hyperg_rational(z, Ai, Aip, Bi, Bip);
 		    }
 		  else
 		    {
 		      // Use Miller's backward recurrence along with (1), (4).
-		      __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
-		      __airy_bessel_i(__zeta, __eps,
-				      _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
+		      cmplx Ip1d3, Im1d3, Ip2d3, Im2d3;
+		      airy_bessel_i(zeta, eps,
+				      Ip1d3, Im1d3, Ip2d3, Im2d3);
 		      // Recover Ai(z) and Ai'(z), Bi(z) and Bi'(z).
-		      _Ai = __sqrtz * (_Im1d3 - _Ip1d3) / _Tp{3};
-		      _Aip = __z * (_Ip2d3 - _Im2d3) / _Tp{3};
-		      _Bi = __sqrtz * (_Im2d3 * _Ip2d3) / _S_sqrt3;
-		      _Bip = __z * (_Im2d3 + _Ip2d3) / _S_sqrt3;
+		      Ai = sqrtz * (Im1d3 - Ip1d3) / Tp{3};
+		      Aip = z * (Ip2d3 - Im2d3) / Tp{3};
+		      Bi = sqrtz * (Im2d3 * Ip2d3) / s_sqrt3;
+		      Bip = z * (Im2d3 + Ip2d3) / s_sqrt3;
 		    }
 		}
 	    }
@@ -1075,58 +1068,58 @@ namespace __detail
 	    {
 	      // Argument lies in left half plane.  Compute zeta as defined
 	      // in the representations in terms of Bessel functions.
-	      auto __sqrtz = std::sqrt(-__z);
-	      auto __zeta = -_S_2d3 * __z * __sqrtz;
+	      auto sqrtz = std::sqrt(-z);
+	      auto zeta = -s_2d3 * z * sqrtz;
 	      // Set up arguments to recover Bessel functions of the first kind
 	      // in (3) and (6).
-	      __cmplx __z2zeta, __p1d3f, __m1d3f, __p2d3f, __m2d3f;
-	      if (std::imag(__zeta) >= _Tp{0})
+	      cmplx z2zeta, p1d3f, m1d3f, p2d3f, m2d3f;
+	      if (std::imag(zeta) >= Tp{0})
 		{
 		  // Argument lies in the second quadrant.
-		  __z2zeta = -_S_j * __zeta;
-		  __p1d3f = _S_eppid6;
-		  __m1d3f = _S_empid6;
-		  __p2d3f = _S_eppid3;
-		  __m2d3f = _S_empid3;
+		  z2zeta = -s_j * zeta;
+		  p1d3f = s_eppid6;
+		  m1d3f = s_empid6;
+		  p2d3f = s_eppid3;
+		  m2d3f = s_empid3;
 		}
 	      else
 		{
 		  // Argument lies in the third quadrant.
-		  __z2zeta = _S_j * __zeta;
-		  __p1d3f = _S_empid6;
-		  __m1d3f = _S_eppid6;
-		  __p2d3f = _S_empid3;
-		  __m2d3f = _S_eppid3;
+		  z2zeta = s_j * zeta;
+		  p1d3f = s_empid6;
+		  m1d3f = s_eppid6;
+		  p2d3f = s_empid3;
+		  m2d3f = s_eppid3;
 		}
 
 	      // Use approximation depending on size of z.
-	      if (__absz <= _S_small)
+	      if (absz <= s_small)
 		{
 		  // Use rational approximation.
-		  __zeta = -__z;
-		  __airy_hyperg_rational(__z, _Ai, _Aip, _Bi, _Bip);
+		  zeta = -z;
+		  airy_hyperg_rational(z, Ai, Aip, Bi, Bip);
 		}
 	      else
 		{
 		  // Use Miller's backward recurrence.
-		  __cmplx _Ip1d3, _Im1d3, _Ip2d3, _Im2d3;
-		  __airy_bessel_i(__z2zeta, __eps,
-				  _Ip1d3, _Im1d3, _Ip2d3, _Im2d3);
+		  cmplx Ip1d3, Im1d3, Ip2d3, Im2d3;
+		  airy_bessel_i(z2zeta, eps,
+				  Ip1d3, Im1d3, Ip2d3, Im2d3);
 		  // Recover Ai(z) and Ai'(z).
-		  _Ai = __sqrtz * (__m1d3f * _Im1d3 + __p1d3f * _Ip1d3) / _Tp{3};
-		  _Aip = __z * (__m2d3f * _Im2d3 - __p2d3f * _Ip2d3) / _Tp{3};
-		  // FIXME: _Bi = __sqrtz * (__m2d3f * _Im2d3 + __p2d3f * _Ip2d3) / _S_sqrt3;
-		  // FIXME: _Bip = __z * (I_{2/3}(\zeta) + I_{-2/3}(\zeta)) / _S_sqrt3
+		  Ai = sqrtz * (m1d3f * Im1d3 + p1d3f * Ip1d3) / Tp{3};
+		  Aip = z * (m2d3f * Im2d3 - p2d3f * Ip2d3) / Tp{3};
+		  // FIXME: Bi = sqrtz * (m2d3f * Im2d3 + p2d3f * Ip2d3) / s_sqrt3;
+		  // FIXME: Bip = z * (I_{2/3}(\zeta) + I_{-2/3}(\zeta)) / s_sqrt3
 		}
 	    }
 	}
       else
 	{ // abs(z) is large...
 	  // Check arg(z) to see which asymptotic form is appropriate.
-	  if (std::abs(std::arg(__z)) < _Tp{2} * _S_pi / _Tp{3})
-	    __airy_asymp_absarg_ge_pio3(__z, _Ai, _Aip/* , _Bi, _Bip*/); // FIXME
+	  if (std::abs(std::arg(z)) < Tp{2} * s_pi / Tp{3})
+	    airy_asymp_absarg_ge_pio3(z, Ai, Aip/* , Bi, Bip*/); // FIXME
 	  else
-	    __airy_asymp_absarg_lt_pio3(__z, _Ai, _Aip/* , _Bi, _Bip*/); // FIXME
+	    airy_asymp_absarg_lt_pio3(z, Ai, Aip/* , Bi, Bip*/); // FIXME
 	}
       return;
   }
@@ -1135,30 +1128,29 @@ namespace __detail
   /**
    * @brief  Return the complex Airy Ai function.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __airy_ai(std::complex<_Tp> __z)
+  template<typename Tp>
+    std::complex<Tp>
+    airy_ai(std::complex<Tp> z)
     {
-      std::complex<_Tp> _Ai, _Aip, _Bi, _Bip;
-      __airy(__z, _Ai, _Aip, _Bi, _Bip);
-      return _Ai;
+      std::complex<Tp> Ai, Aip, Bi, Bip;
+      airy(z, Ai, Aip, Bi, Bip);
+      return Ai;
     }
 
 
   /**
    * @brief  Return the complex Airy Bi function.
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    __airy_bi(std::complex<_Tp> __z)
+  template<typename Tp>
+    std::complex<Tp>
+    airy_bi(std::complex<Tp> z)
     {
-      std::complex<_Tp> _Ai, _Aip, _Bi, _Bip;
-      __airy(__z, _Ai, _Aip, _Bi, _Bip);
-      return _Bi;
+      std::complex<Tp> Ai, Aip, Bi, Bip;
+      airy(z, Ai, Aip, Bi, Bip);
+      return Bi;
     }
-} // namespace __detail
 
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace std
+} // namespace detail
+} // namespace emsr
 
-#endif // _GLIBCXX_BITS_SF_AIRY_TCC
+#endif // SF_AIRY_TCC

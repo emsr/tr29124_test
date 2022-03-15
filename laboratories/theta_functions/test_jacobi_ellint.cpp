@@ -11,9 +11,11 @@
 #include <wrap_boost.h>
 #include <wrap_gsl.h>
 
-namespace __gnu_cxx _GLIBCXX_VISIBILITY(default)
+#include <emsr/fp_type_util.h>
+#include <emsr/sf_theta.h>
+
+namespace emsr
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
 
   /**
    * Return the Jacobi amplitude function of modulus k and argument u.
@@ -22,12 +24,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * @see Consult jacobi_sn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
-    jacobi_am(_Kp __k, _Up __u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_am(Kp k, Up u)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).__am();
+      using type = emsr::fp_promote_t<Kp, Up>;
+      return emsr::detail::jacobi_ellint<type>(k, u).am();
     }
 
   /**
@@ -37,12 +39,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * @see Consult jacobi_sn and jacobi_cn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
-    jacobi_sc(_Kp __k, _Up __u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_sc(Kp k, Up u)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).__sc();
+      using type = emsr::fp_promote_t<Kp, Up>;
+      return emsr::detail::jacobi_ellint<type>(k, u).sc();
     }
 
   /**
@@ -52,12 +54,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * @see Consult jacobi_sn and jacobi_dn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
-    jacobi_sd(_Kp __k, _Up __u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_sd(Kp k, Up u)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).__sd();
+      using type = emsr::fp_promote_t<Kp, Up>;
+      return emsr::detail::jacobi_ellint<type>(k, u).sd();
     }
 
   /**
@@ -67,12 +69,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * @see Consult jacobi_cn and jacobi_dn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
-    jacobi_cd(_Kp __k, _Up __u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_cd(Kp k, Up u)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).__cd();
+      using type = emsr::fp_promote_t<Kp, Up>;
+      return emsr::detail::jacobi_ellint<type>(k, u).cd();
     }
 
   /**
@@ -82,12 +84,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * @see Consult jacobi_cn and jacobi_sn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
-    jacobi_cs(_Kp __k, _Up __u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_cs(Kp k, Up u)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).__cs();
+      using type = emsr::fp_promote_t<Kp, Up>;
+      return emsr::detail::jacobi_ellint<type>(k, u).cs();
     }
 
   /**
@@ -97,12 +99,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * @see Consult jacobi_dn and jacobi_cn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
-    jacobi_dc(_Kp __k, _Up __u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_dc(Kp k, Up u)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).__dc();
+      using type = emsr::fp_promote_t<Kp, Up>;
+      return emsr::detail::jacobi_ellint<type>(k, u).dc();
     }
 
   /**
@@ -112,12 +114,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * @see Consult jacobi_dn and jacobi_sn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
-    jacobi_ds(_Kp __k, _Up __u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_ds(Kp k, Up u)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).__ds();
+      using type = emsr::fp_promote_t<Kp, Up>;
+      return emsr::detail::jacobi_ellint<type>(k, u).ds();
     }
 
   /**
@@ -127,12 +129,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * @see Consult jacobi_cn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
-    jacobi_nc(_Kp __k, _Up __u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_nc(Kp k, Up u)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).__nc();
+      using type = emsr::fp_promote_t<Kp, Up>;
+      return emsr::detail::jacobi_ellint<type>(k, u).nc();
     }
 
   /**
@@ -142,12 +144,12 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * @see Consult jacobi_dn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
-    jacobi_nd(_Kp __k, _Up __u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_nd(Kp k, Up u)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).__nd();
+      using type = emsr::fp_promote_t<Kp, Up>;
+      return emsr::detail::jacobi_ellint<type>(k, u).nd();
     }
 
   /**
@@ -157,16 +159,15 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
    * @f]
    * @see Consult jacobi_sn for more details.
    */
-  template<typename _Kp, typename _Up>
-    inline __gnu_cxx::fp_promote_t<_Kp, _Up>
-    jacobi_ns(_Kp __k, _Up __u)
+  template<typename Kp, typename Up>
+    inline emsr::fp_promote_t<Kp, Up>
+    jacobi_ns(Kp k, Up u)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Kp, _Up>;
-      return std::__detail::__jacobi_ellint<__type>(__k, __u).__ns();
+      using type = emsr::fp_promote_t<Kp, Up>;
+      return emsr::detail::jacobi_ellint<type>(k, u).ns();
     }
 
-_GLIBCXX_END_NAMESPACE_VERSION
-} // namespace __gnu_cxx
+} // namespace emsr
 
 void
 test_gsl()
@@ -183,7 +184,7 @@ test_gsl()
     for (int i = -50; i <= 50; ++i)
       {
 	auto u = 0.2 * i;
-	auto fgnu = __gnu_cxx::jacobi_sn(k, u);
+	auto fgnu = emsr::jacobi_sn(k, u);
 	auto fgsl = gsl::jacobi_sn(k, u);
 	std::cout << ' ' << std::setw(width) << u;
 	  std::cout << ' ' << std::setw(width) << fgnu
@@ -198,7 +199,7 @@ test_gsl()
     for (int i = -50; i <= 50; ++i)
       {
 	auto u = 0.2 * i;
-	auto fgnu = __gnu_cxx::jacobi_cn(k, u);
+	auto fgnu = emsr::jacobi_cn(k, u);
 	auto fgsl = gsl::jacobi_cn(k, u);
 	std::cout << ' ' << std::setw(width) << u;
 	  std::cout << ' ' << std::setw(width) << fgnu
@@ -213,7 +214,7 @@ test_gsl()
     for (int i = -50; i <= 50; ++i)
       {
 	auto u = 0.2 * i;
-	auto fgnu = __gnu_cxx::jacobi_dn(k, u);
+	auto fgnu = emsr::jacobi_dn(k, u);
 	auto fgsl = gsl::jacobi_dn(k, u);
 	std::cout << ' ' << std::setw(width) << u;
 	  std::cout << ' ' << std::setw(width) << fgnu
@@ -239,7 +240,7 @@ main()
       auto u = 0.05 * i;
       std::cout << ' ' << std::setw(width) << u;
       for (auto k : kvals)
-	std::cout << ' ' << std::setw(width) << __gnu_cxx::jacobi_sn(k, u);
+	std::cout << ' ' << std::setw(width) << emsr::jacobi_sn(k, u);
       std::cout << '\n';
     }
 
@@ -250,7 +251,7 @@ main()
       auto u = 0.05 * i;
       std::cout << ' ' << std::setw(width) << u;
       for (auto k : kvals)
-	std::cout << ' ' << std::setw(width) << __gnu_cxx::jacobi_cn(k, u);
+	std::cout << ' ' << std::setw(width) << emsr::jacobi_cn(k, u);
       std::cout << '\n';
     }
 
@@ -261,7 +262,7 @@ main()
       auto u = 0.05 * i;
       std::cout << ' ' << std::setw(width) << u;
       for (auto k : kvals)
-	std::cout << ' ' << std::setw(width) << __gnu_cxx::jacobi_dn(k, u);
+	std::cout << ' ' << std::setw(width) << emsr::jacobi_dn(k, u);
       std::cout << '\n';
     }
 
@@ -272,7 +273,7 @@ main()
       auto u = 0.05 * i;
       std::cout << ' ' << std::setw(width) << u;
       for (auto k : kvals)
-	std::cout << ' ' << std::setw(width) << __gnu_cxx::jacobi_am(k, u);
+	std::cout << ' ' << std::setw(width) << emsr::jacobi_am(k, u);
       std::cout << '\n';
     }
 

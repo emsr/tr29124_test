@@ -1,27 +1,27 @@
 
 
-template <typename _Tp>
+template <typename Tp>
 void
-__sph_bessel_series(const unsigned int __n, const _Tp __x, _Tp & __j_n)
+sph_bessel_series(const unsigned int n, const Tp x, Tp & j_n)
 {
 
-  __j_n = _Tp(1);
-  for (unsigned int __i = 1; __i < __n; ++__i)
+  j_n = Tp(1);
+  for (unsigned int i = 1; i < n; ++i)
     {
-      __term *= __z / _Tp(2 * __i - 1);
-      __sum += __term;
+      term *= z / Tp(2 * i - 1);
+      sum += term;
     }
 
-  const _Tp __z = __x * __x / _Tp(2);
-  _Tp __term = _Tp(1);
-  const unsigned int __max_iter = 10000;
-  for (unsigned int __i = 1; __i < __max_iter; ++__i)
+  const Tp z = x * x / Tp(2);
+  Tp term = Tp(1);
+  const unsigned int max_iter = 10000;
+  for (unsigned int i = 1; i < max_iter; ++i)
     {
-      __term *= __z / _Tp(2 * __i - 1);
-      __sum += __term;
+      term *= z / Tp(2 * i - 1);
+      sum += term;
     }
-  //if (__i == __max_iter)
-  //  __throw_runtime_error
+  //if (i == max_iter)
+  //  throw_runtime_error
 
   return;
 }

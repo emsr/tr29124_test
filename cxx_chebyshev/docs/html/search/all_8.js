@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['upper',['upper',['../class____gnu__cxx_1_1__Chebyshev.html#a7adf49552809774d062c892174491a3f',1,'__gnu_cxx::_Chebyshev']]]
+  ['value_5ftype_15',['value_type',['../classemsr_1_1Chebyshev.html#a4c4e5cf34ea1696d32468eb506b05283',1,'emsr::Chebyshev']]]
 ];

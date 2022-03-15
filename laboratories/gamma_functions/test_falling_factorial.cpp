@@ -8,57 +8,59 @@
 #include <iomanip>
 #include <cmath>
 
+#include <emsr/sf_gamma.h>
+
 #include <wrap_boost.h>
 
-namespace __gnu_cxx
+namespace emsr
 {
 
-  template<typename _Tp>
-    _Tp
-    __falling_factorial_prod(int __a, int __n)
+  template<typename Tp>
+    Tp
+    falling_factorial_prod(int a, int n)
     {
-      if (__a < __n)
-	return _Tp{0};
+      if (a < n)
+	return Tp{0};
       else
 	{
-	  auto __prod = 1;
-	  for (int __k = 0; __k < __n; ++__k)
-	    __prod *= __a--;
-	  return __prod;
+	  auto prod = 1;
+	  for (int k = 0; k < n; ++k)
+	    prod *= a--;
+	  return prod;
 	}
     }
 
-  template<typename _Tp>
-    _Tp
-    __falling_factorial_prod(_Tp __a, int __n)
+  template<typename Tp>
+    Tp
+    falling_factorial_prod(Tp a, int n)
     {
-      auto __prod = _Tp{1};
-      for (int __k = 0; __k < __n; ++__k)
-	__prod *= __a--;
-      return __prod;
+      auto prod = Tp{1};
+      for (int k = 0; k < n; ++k)
+	prod *= a--;
+      return prod;
     }
 
-  template<typename _Tp>
-    _Tp
-    __falling_factorial_fake(_Tp __a, _Tp __x)
+  template<typename Tp>
+    Tp
+    falling_factorial_fake(Tp a, Tp x)
     {
-      auto __n = int(std::nearbyint(__x));
-      if (_Tp(__n) == __x)
+      auto n = int(std::nearbyint(x));
+      if (Tp(n) == x)
 	{
-	  if (__n == 0)
-	    return _Tp{1};
+	  if (n == 0)
+	    return Tp{1};
 	  else
 	    {
-	      auto __m = int(std::nearbyint(__a));
-	      if (int(__m) == __a)
-		return __falling_factorial_prod<_Tp>(__m, __n);
+	      auto m = int(std::nearbyint(a));
+	      if (int(m) == a)
+		return falling_factorial_prod<Tp>(m, n);
 	      else
-		return __falling_factorial_prod(__a, __n);
+		return falling_factorial_prod(a, n);
 	    }
 	}
       else
-	return std::__detail::__gamma(__a + _Tp{1})
-	     / std::__detail::__gamma(__a - __x + _Tp{1});
+	return emsr::detail::gamma(a + Tp{1})
+	     / emsr::detail::gamma(a - x + Tp{1});
     }
 
 }
@@ -80,7 +82,7 @@ main()
       std::cout << '\n';
       for (auto x : xv)
 	{
-	  auto pochg = __gnu_cxx::falling_factorial(a, x);
+	  auto pochg = emsr::falling_factorial(a, x);
 	  auto pochb = beast::falling_factorial(a, x);
 	  std::cout << ' ' << std::setw(width) << a
 		    << ' ' << std::setw(width) << x
@@ -100,7 +102,7 @@ main()
       std::cout << '\n';
       for (auto x : xv)
 	{
-	  auto pochg = __gnu_cxx::__falling_factorial_fake(a, x);
+	  auto pochg = emsr::falling_factorial_fake(a, x);
 	  auto pochb = beast::falling_factorial(a, x);
 	  std::cout << ' ' << std::setw(width) << a
 		    << ' ' << std::setw(width) << x

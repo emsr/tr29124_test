@@ -6,10 +6,12 @@
 #include <iostream>
 #include <iomanip>
 
+#include <emsr/sf_polylog.h>
+
 int
 main()
 {
-  std::cout.precision(__gnu_cxx::__digits10(1.0));
+  std::cout.precision(emsr::digits10(1.0));
   std::cout << std::scientific;
   const auto w = 8 + std::cout.precision();
 
@@ -17,10 +19,10 @@ main()
     {
       auto s = i * (0.01);
       std::cout << ' ' << s
-		<< ' ' << std::setw(w) << std::riemann_zeta(s)
-		<< ' ' << std::setw(w) << __gnu_cxx::dirichlet_eta(s)
-		<< ' ' << std::setw(w) << __gnu_cxx::dirichlet_beta(s)
-		<< ' ' << std::setw(w) << __gnu_cxx::dirichlet_lambda(s)
+		<< ' ' << std::setw(w) << emsr::riemann_zeta(s)
+		<< ' ' << std::setw(w) << emsr::dirichlet_eta(s)
+		<< ' ' << std::setw(w) << emsr::dirichlet_beta(s)
+		<< ' ' << std::setw(w) << emsr::dirichlet_lambda(s)
 		<< '\n';
     }
 }

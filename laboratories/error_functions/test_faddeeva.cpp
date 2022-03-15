@@ -7,7 +7,7 @@
 
 #include <wrap_faddeeva.h>
 
-namespace __gnu_cxx
+namespace emsr
 {
 
   /**
@@ -17,9 +17,9 @@ namespace __gnu_cxx
    *    w(z) = exp(-z^2) erfc(-iz)
    * @f]
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    faddeeva(std::complex<_Tp> __z);
+  template<typename Tp>
+    std::complex<Tp>
+    faddeeva(std::complex<Tp> z);
 
   /**
    * Compute the Faddeeva or scaled complex complementary error function
@@ -28,9 +28,9 @@ namespace __gnu_cxx
    *    w(x) = exp(-x^2) erfc(-ix)
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    faddeeva(_Tp __x);
+  template<typename Tp>
+    Tp
+    faddeeva(Tp x);
 
   /**
    * Compute the scaled complementary error function of complex argument:
@@ -38,9 +38,9 @@ namespace __gnu_cxx
    *    erfcx(z) = exp^{z^2} erfc(z).
    * @f]
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    erfc_scaled(std::complex<_Tp> __z);
+  template<typename Tp>
+    std::complex<Tp>
+    erfc_scaled(std::complex<Tp> z);
 
   /**
    * Compute the scaled complementary error function of real argument:
@@ -48,9 +48,9 @@ namespace __gnu_cxx
    *    erfcx(x) = exp^{x^2} erfc(x).
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    erfc_scaled(_Tp __x);
+  template<typename Tp>
+    Tp
+    erfc_scaled(Tp x);
 
   /**
    * Compute the error function of complex argument:
@@ -58,9 +58,9 @@ namespace __gnu_cxx
    *    erf(z) = \frac{2}{\sqrt{\pi}}\int_{0}^{z} e^{-t^2} dt
    * @f]
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    erf(std::complex<_Tp> __z);
+  template<typename Tp>
+    std::complex<Tp>
+    erf(std::complex<Tp> z);
 
   /**
    * Compute the error function of real argument:
@@ -68,9 +68,9 @@ namespace __gnu_cxx
    *    erf(x) = \frac{2}{\sqrt{\pi}}\int_{0}^{x} e^{-t^2} dt
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    erf(_Tp __x);
+  template<typename Tp>
+    Tp
+    erf(Tp x);
 
   /**
    * Compute the imaginary error function for complex argument:
@@ -78,9 +78,9 @@ namespace __gnu_cxx
    *   erfi(z) = -i erf(iz)
    * @f]
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    erfi(std::complex<_Tp> __z);
+  template<typename Tp>
+    std::complex<Tp>
+    erfi(std::complex<Tp> z);
 
   /**
    * Compute the imaginary error function of real argument:
@@ -88,9 +88,9 @@ namespace __gnu_cxx
    *    erfi(x) = -i erf(ix)
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    erfi(_Tp __x);
+  template<typename Tp>
+    Tp
+    erfi(Tp x);
 
   /**
    * Compute the complementary error function for complex argument:
@@ -98,9 +98,9 @@ namespace __gnu_cxx
    *    erfc(z) = 1 - erf(z) = \frac{2}{\sqrt{\pi}}\int_{z}^{\infty} e^{-t^2} dt
    * @f]
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    erfc(std::complex<_Tp> __z);
+  template<typename Tp>
+    std::complex<Tp>
+    erfc(std::complex<Tp> z);
 
   /**
    * Compute the complementary error function for real argument:
@@ -108,9 +108,9 @@ namespace __gnu_cxx
    *   erfc(x) = 1 - erf(x) = \frac{2}{\sqrt{\pi}}\int_{x}^{\infty} e^{-t^2} dt
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    erfc(_Tp __x);
+  template<typename Tp>
+    Tp
+    erfc(Tp x);
 
   /**
    * Compute the Dawson integral for complex argument:
@@ -119,9 +119,9 @@ namespace __gnu_cxx
    *         = \frac{\sqrt{\pi}}{2} exp^{-z^2} erfi(z).
    * @f]
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    dawson(std::complex<_Tp> __z);
+  template<typename Tp>
+    std::complex<Tp>
+    dawson(std::complex<Tp> z);
 
   /**
    * Compute the Dawson integral for real argument:
@@ -130,9 +130,9 @@ namespace __gnu_cxx
    *         = \frac{\sqrt{\pi}}{2} exp^{-x^2} erfi(x).
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    dawson(_Tp __x);
+  template<typename Tp>
+    Tp
+    dawson(Tp x);
 
   /**
    * Compute Voigt function for real shape parameter t and argument x:
@@ -150,9 +150,9 @@ namespace __gnu_cxx
    *            \frac{y e^{(x - y)^2 / (4t)}}{1 + y^2} dy
    * @f]
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    voigt(_Tp __x, _Tp __t);
+  template<typename Tp>
+    std::complex<Tp>
+    voigt(Tp x, Tp t);
 
   /**
    * Compute the Voigt U function for real shape parameter t and argument x:
@@ -161,9 +161,9 @@ namespace __gnu_cxx
    *            \frac{e^{(x - y)^2 / (4t)}}{1 + y^2} dy
    * @f]
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    voigt_u(_Tp __x, _Tp __t);
+  template<typename Tp>
+    std::complex<Tp>
+    voigt_u(Tp x, Tp t);
 
   /**
    * Compute the Voigt V function for real shape parameter t and argument x:
@@ -172,11 +172,11 @@ namespace __gnu_cxx
    *            \frac{y e^{(x - y)^2 / (4t)}}{1 + y^2} dy
    * @f]
    */
-  template<typename _Tp>
-    std::complex<_Tp>
-    voigt_v(_Tp __x, _Tp __t);
+  template<typename Tp>
+    std::complex<Tp>
+    voigt_v(Tp x, Tp t);
 
-} // namespace __gnu_cxx
+} // namespace emsr
 
 bool
 not_zero(double x)

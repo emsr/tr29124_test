@@ -39,7 +39,7 @@ template<typename Tp>
     constexpr Tp dpid4 = dpi / Tp{4};
     constexpr Tp phase_lim = Tp{5} * dpi / Tp{9};
     constexpr cmplx j{Tp{0}, Tp{1}};
-    constexpr Tp _S_small = 1.0e-6;
+    constexpr Tp s_small = 1.0e-6;
     constexpr Tp sqrt_pi = 1.772453850905516027298167483341145182798L;
     constexpr Tp sqrt_3 = 1.732050807568877293527446341505872366945L;
     constexpr Tp Ai_value_0 = 3.550280538878172392600631860041831763980e-1L;
@@ -204,14 +204,14 @@ template<typename Tp>
                     if (kk == FockAiryType::Value)
                       {
                         w2 = (a + j * b) / z4;
-                        if (std::abs(fa - Tp{1}) >= _S_small)
+                        if (std::abs(fa - Tp{1}) >= s_small)
                           a = s * sum1;
                         w1 = a / z4;
                       }
                     else
                       {
                         w2 = (a - j * b) * z4;
-                        if (std::abs(fa - Tp{1}) >= _S_small)
+                        if (std::abs(fa - Tp{1}) >= s_small)
                           a = s * sum1;
                         w1 = a * z4;
                       }
@@ -221,14 +221,14 @@ template<typename Tp>
                     if (kk == FockAiryType::Value)
                       {
                         w1 = (a - j * b) / z4;
-                        if (std::abs(fa - Tp{1}) >= _S_small)
+                        if (std::abs(fa - Tp{1}) >= s_small)
                           a = s * sum1;
                         w2 = a / z4;
                       }
                     else
                       {
                         w1 = (a + j * b) * z4;
-                        if (std::abs(fa - Tp{1}) >= _S_small)
+                        if (std::abs(fa - Tp{1}) >= s_small)
                           a = s * sum1;
                         w2 = a * z4;
                       }

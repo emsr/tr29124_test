@@ -7,7 +7,6 @@
 #include <gsl/gsl_sf.h>
 #include <Fresnel/fresnel.h>
 #include <Jacobi/jacobi-0.9.2/src/jacobi.h>
-#include <Hermite/gsl_sf_hermite.h>
 
 #include <wrap_gsl.h>
 
@@ -31,6 +30,23 @@ airy_ai(double x)
     return result.val;
 }
 
+/// Scaled Airy Ai function.
+double
+airy_ai_scaled(double x)
+{
+  const gsl_mode_t mode = GSL_PREC_DOUBLE;
+  gsl_sf_result result;
+  int stat = gsl_sf_airy_Ai_scaled_e(x, mode, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in airy_ai_scaled:");
+      msg << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
 /// Airy Bi function.
 double
 airy_bi(double x)
@@ -41,6 +57,23 @@ airy_bi(double x)
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in airy_bi:");
+      msg << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+/// Scaled Airy Bi function.
+double
+airy_bi_scaled(double x)
+{
+  const gsl_mode_t mode = GSL_PREC_DOUBLE;
+  gsl_sf_result result;
+  int stat = gsl_sf_airy_Bi_scaled_e(x, mode, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in airy_bi_scaled:");
       msg << " x=" << x;
       throw std::runtime_error(msg.str());
     }
@@ -233,7 +266,7 @@ cyl_bessel_i(double nu, double x)
     return result.val;
 }
 
-/// Regular modified cylindrical Bessel functions (scaled).
+/// Scaled regular modified cylindrical Bessel functions (scaled).
 double
 cyl_bessel_i_scaled(double nu, double x)
 {
@@ -281,7 +314,7 @@ cyl_bessel_k(double nu, double x)
     return result.val;
 }
 
-/// Irregular modified cylindrical Bessel functions (scaled).
+/// Scaled irregular modified cylindrical Bessel functions (scaled).
 double
 cyl_bessel_k_scaled(double nu, double x)
 {
@@ -492,6 +525,22 @@ hermite(unsigned int n, double x)
 {
   gsl_sf_result result;
   int stat = gsl_sf_hermite_phys_e(n, x, &result);
+  if (stat != GSL_SUCCESS)
+    {
+      std::ostringstream msg("Error in hermite:");
+      msg << " n=" << n << " x=" << x;
+      throw std::runtime_error(msg.str());
+    }
+  else
+    return result.val;
+}
+
+/// Probabilist Hermite polynomials.
+double
+hermite_he(unsigned int n, double x)
+{
+  gsl_sf_result result;
+  int stat = gsl_sf_hermite_prob_e(n, x, &result);
   if (stat != GSL_SUCCESS)
     {
       std::ostringstream msg("Error in hermite:");
@@ -1166,7 +1215,7 @@ double_factorial(int n)
     return result.val;
 }
 
-/// Regular modified spherical bessel functions.
+/// Scaled regular modified spherical bessel functions.
 double
 sph_bessel_i(unsigned int n, double x)
 {
@@ -1182,7 +1231,7 @@ sph_bessel_i(unsigned int n, double x)
     return std::exp(std::abs(x)) * result.val;
 }
 
-/// Irregular modified spherical bessel functions.
+/// Scaled irregular modified spherical bessel functions.
 double
 sph_bessel_k(unsigned int n, double x)
 {

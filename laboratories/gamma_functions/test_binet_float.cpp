@@ -7,13 +7,18 @@
 #include <iomanip>
 #include <vector>
 #include <cmath>
-#include <ext/float128_io.h>
 #include <complex>
-#include <ext/polynomial.h>
 
-namespace std
+#include <emsr/float128_io.h>
+#include <emsr/polynomial.h>
+#include <emsr/summation.h>
+#include <emsr/fp_type_util.h>
+#include <emsr/math_constants.h>
+#include <emsr/sf_gamma.h>
+
+namespace emsr
 {
-namespace __detail
+namespace detail
 {
 
   /**
@@ -21,71 +26,71 @@ namespace __detail
    * using the Akiyama-Tanigawa algorithm.
    * This is unstable.
    */
-  template<typename _Real>
-    std::vector<_Real>
-    __bernoulli_a_t(std::size_t __len)
+  template<typename Real>
+    std::vector<Real>
+    bernoulli_a_t(std::size_t len)
     {
-      auto __n = 2 * __len + 1;
-      std::vector<_Real> __t;
-      std::vector<_Real> __a;
+      auto n = 2 * len + 1;
+      std::vector<Real> t;
+      std::vector<Real> a;
 
-      __t.emplace_back(1LL);
+      t.emplace_back(1LL);
 
-      for (std::size_t __m = 1; __m < __n; ++__m)
+      for (std::size_t m = 1; m < n; ++m)
 	{
-	  __t.push_back(_Real{1} / _Real(__m + 1));
-	  for (int __j = __m; __j > 0; --__j)
-            __t[__j - 1] = _Real(__j) * (__t[__j - 1] - __t[__j]);
+	  t.push_back(Real{1} / Real(m + 1));
+	  for (int j = m; j > 0; --j)
+            t[j - 1] = Real(j) * (t[j - 1] - t[j]);
 
 	  // Get all Bernoulli numbers by deleting the 'if' clause.
-	  if ((__m & 1) == 0)
-	    __a.push_back(__t[0]);
+	  if ((m & 1) == 0)
+	    a.push_back(t[0]);
 	}
 
-      return __a;
+      return a;
     }
 
   /**
    * @see The Gamma function revisited.
    */
-  template<typename _Tp>
-    std::vector<_Tp>
-    __recursive_thing(_Tp __c)
+  template<typename Tp>
+    std::vector<Tp>
+    recursive_thing(Tp c)
     {
-      using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
 
-      const int _N = 100;
+      const int N = 100;
 
-      std::vector<_Real> __F;
-      _Tp _Fprev{1}, _Gprev{0}, _Hprev{0};
-      __F.push_back(_Fprev);
-      for (int __n = _N; __n > 0; --__n)
+      std::vector<Real> F;
+      Tp Fprev{1}, Gprev{0}, Hprev{0};
+      F.push_back(Fprev);
+      for (int n = N; n > 0; --n)
 	{
-	  auto _Fcurr = _Fprev + _Hprev * __c / (2 * __n);
-	  auto _Gcurr = ((2 * __n) * _Gprev + __c * _Fcurr) / (2 * __n - 1);
-	  auto _Hcurr = _Hprev + _Gcurr;
-	  _Fprev = _Fcurr;
-	  _Gprev = _Gcurr;
-	  _Hprev = _Hcurr;
-	  __F.push_back(_Fprev);
+	  auto Fcurr = Fprev + Hprev * c / (2 * n);
+	  auto Gcurr = ((2 * n) * Gprev + c * Fcurr) / (2 * n - 1);
+	  auto Hcurr = Hprev + Gcurr;
+	  Fprev = Fcurr;
+	  Gprev = Gcurr;
+	  Hprev = Hcurr;
+	  F.push_back(Fprev);
 	}
-      return __F;
+      return F;
     }
 
   /**
    * @see The Gamma function revisited.
    */
-  template<typename _Tp>
-    _Tp
-    __binet_recursive(_Tp __z)
+  template<typename Tp>
+    Tp
+    binet_recursive(Tp z)
     {
-      const auto _S_2pi = __gnu_cxx::numbers::__2_pi_v<_Tp>;
-      const auto __c = _S_2pi * __z;
-      for (int __k = 1; __k < 10; ++__k)
+      const auto s_2pi = emsr::tau_v<Tp>;
+      const auto c = s_2pi * z;
+      for (int k = 1; k < 10; ++k)
 	{
-          std::vector<_Tp> __F = __recursive_thing(__c * __k);
-	  //for (auto __f : __F)
+          std::vector<Tp> F = recursive_thing(c * k);
+	  //for (auto f : F)
 	  //  
 	}
     }
@@ -95,73 +100,73 @@ namespace __detail
    * Computes the sequence of even Bernoulli numbers @f$ B_{2m} @f$ (m > 0)
    * using the old Riemann zeta function series.
    */
-  template<typename _Real>
-    std::vector<_Real>
-    __bernoulli_vec(std::size_t __len)
+  template<typename Real>
+    std::vector<Real>
+    bernoulli_vec(std::size_t len)
     {
-      std::vector<_Real> __a;
-      for (std::size_t __m = 1; __m <= __len; ++__m)
-	__a.push_back(__bernoulli<_Real>(2 * __m));
-      return __a;
+      std::vector<Real> a;
+      for (std::size_t m = 1; m <= len; ++m)
+	a.push_back(bernoulli<Real>(2 * m));
+      return a;
     }
 
   /**
    * Scales the even Bernoulli numbers @f$ B_{2m+2} @f$ with weights
    * @f$ (-1)^m/((2m + 1)(2m + 2)) @f$, m >= 0.
    */
-  template<typename _Real>
-    std::vector<_Real>
-    __weights(std::vector<_Real> __b)
+  template<typename Real>
+    std::vector<Real>
+    weights(std::vector<Real> b)
     {
-      int __sgn = 1;
-      for (std::size_t __m = 0; __m < __b.size(); ++__m)
+      int sgn = 1;
+      for (std::size_t m = 0; m < b.size(); ++m)
 	{
-	  __b[__m] *= _Real(__sgn) / _Real(2 * __m + 1) / _Real(2 * __m + 2);
-	  __sgn = -__sgn;
+	  b[m] *= Real(sgn) / Real(2 * m + 1) / Real(2 * m + 2);
+	  sgn = -sgn;
 	}
 
-      return __b;
+      return b;
     }
 
   /**
    * Computes the partial numerators for the Binet function
    * using Rutishauser's Quotient-Difference (QD) algorithm.
    */
-  template<typename _Real>
-    std::vector<_Real>
-    __quotient_difference(std::vector<_Real> __s)
+  template<typename Real>
+    std::vector<Real>
+    quotient_difference(std::vector<Real> s)
     {
-      auto __len = __s.size();
-      auto __zero = _Real{0};
-      std::vector<std::vector<_Real>> __m;
-      std::vector<_Real> __r;
+      auto len = s.size();
+      auto zero = Real{0};
+      std::vector<std::vector<Real>> m;
+      std::vector<Real> r;
 
-      for (std::size_t __n = 0; __n < __len; ++__n)
+      for (std::size_t n = 0; n < len; ++n)
 	{
-	  __m.push_back(std::vector<_Real>());
-	  __m.back().push_back(__zero); // e[k+1,0] = 0, k >= 0
+	  m.push_back(std::vector<Real>());
+	  m.back().push_back(zero); // e[k+1,0] = 0, k >= 0
 	}
-      for (std::size_t __n = 0; __n < __len - 1; ++__n)
-	__m[__n].push_back(__s[__n + 1] / __s[__n]); // q[k,1] = c[k+1]/c[k], k >= 0
+      for (std::size_t n = 0; n < len - 1; ++n)
+	m[n].push_back(s[n + 1] / s[n]); // q[k,1] = c[k+1]/c[k], k >= 0
 
-      __r.push_back(__s[0]);
-      __r.push_back(__m[0][1]);
+      r.push_back(s[0]);
+      r.push_back(m[0][1]);
 
-      for (std::size_t __k = 2; __k < __len; ++__k)
+      for (std::size_t k = 2; k < len; ++k)
 	{
-	  for (std::size_t __n = 0; __n < __len - __k; ++__n)
+	  for (std::size_t n = 0; n < len - k; ++n)
             {
-              auto __a = __m[__n + 1][__k - 2];
-              auto __b = __m[__n + 1][__k - 1];
-              auto __c = __m[__n][__k - 1];
-              __m[__n].push_back((__k & 1) == 0
-				 ? __a + __b - __c
-				 : __a * __b / __c);
+              auto a = m[n + 1][k - 2];
+              auto b = m[n + 1][k - 1];
+              auto c = m[n][k - 1];
+              m[n].push_back((k & 1) == 0
+				 ? a + b - c
+				 : a * b / c);
             }
-	  __r.push_back(__m[0][__k]);
+	  r.push_back(m[0][k]);
 	}
 
-      return __r;
+      return r;
     }
 
   /**
@@ -174,44 +179,43 @@ namespace __detail
    *  \frac{1}{\Lambda(x)} = \sum_{k=0}^{N} d_k x^k
    * @f]
    */
-  template<typename _Real>
-    std::vector<_Real>
-    __series_reciprocal_old(std::vector<_Real> __c)
+  template<typename Real>
+    std::vector<Real>
+    series_reciprocal_old(std::vector<Real> c)
     {
-      if (__c.size() == 0)
-	return std::vector<_Real>{};
-      else if (__c[0] == _Real{0})
-	std::__throw_domain_error("__series_reciprocal: "
-				  "first (constant) coefficient is zero.");
-      else if (__c.size() == 1)
-	return std::vector<_Real>{{_Real{1} / __c[0]}};
+      if (c.size() == 0)
+	return std::vector<Real>{};
+      else if (c[0] == Real{0})
+	throw std::domain_error("series_reciprocal: first (constant) coefficient is zero.");
+      else if (c.size() == 1)
+	return std::vector<Real>{{Real{1} / c[0]}};
       else
 	{
-	  auto __n = __c.size();
-	  auto __m = __n + 1;
-	  std::vector<_Real> __lambda(__n);
-	  __lambda[0] = _Real{0};
-	  for (unsigned __i = 1; __i < __n; ++__i)
-	    __lambda[__i] = __c[__i] / __c[0];
+	  auto n = c.size();
+	  auto m = n + 1;
+	  std::vector<Real> lambda(n);
+	  lambda[0] = Real{0};
+	  for (unsigned i = 1; i < n; ++i)
+	    lambda[i] = c[i] / c[0];
 
-	  std::vector<_Real> __lambdak(__m);
-	  std::vector<_Real> __d(__m);
-	  __d[0] = __lambdak[0] = _Real{1}; // k == 0
-	  for (unsigned __k = 1; __k < __m; ++__k)
+	  std::vector<Real> lambdak(m);
+	  std::vector<Real> d(m);
+	  d[0] = lambdak[0] = Real{1}; // k == 0
+	  for (unsigned k = 1; k < m; ++k)
 	    {
-	      std::vector<_Real> __work(__m);
-	      for (unsigned __i = 1; __i < __n; ++__i)
-		for (unsigned __j = __k - 1; __j < __m; ++__j)
-		  if (__i + __j < __m)
-		    __work[__i + __j] += __lambda[__i] * __lambdak[__j];
-	      std::swap(__work, __lambdak);
-	      auto __sign = (__k % 2 == 0 ? +1 : -1);
-	      for (unsigned __j = __k; __j < __m; ++__j)
-		__d[__j] += __sign * __lambdak[__j];
+	      std::vector<Real> work(m);
+	      for (unsigned i = 1; i < n; ++i)
+		for (unsigned j = k - 1; j < m; ++j)
+		  if (i + j < m)
+		    work[i + j] += lambda[i] * lambdak[j];
+	      std::swap(work, lambdak);
+	      auto sign = (k % 2 == 0 ? +1 : -1);
+	      for (unsigned j = k; j < m; ++j)
+		d[j] += sign * lambdak[j];
 	    }
-	  for (unsigned __j = 0; __j < __m; ++__j)
-	    __d[__j] /= __c[0];
-	  return __d;
+	  for (unsigned j = 0; j < m; ++j)
+	    d[j] /= c[0];
+	  return d;
 	}
     }
 
@@ -225,31 +229,30 @@ namespace __detail
    *  \frac{1}{\Lambda(x)} = \sum_{k=0}^{N} d_k x^k
    * @f]
    */
-  template<typename _Real>
-    std::vector<_Real>
-    __series_reciprocal(std::vector<_Real> __c)
+  template<typename Real>
+    std::vector<Real>
+    series_reciprocal(std::vector<Real> c)
     {
-      if (__c.size() == 0)
-	return std::vector<_Real>{};
-      else if (__c[0] == _Real{0})
-	std::__throw_domain_error("__series_reciprocal: "
-				  "first (constant) coefficient is zero.");
-      else if (__c.size() == 1)
-	return std::vector<_Real>{{_Real{1} / __c[0]}};
+      if (c.size() == 0)
+	return std::vector<Real>{};
+      else if (c[0] == Real{0})
+	throw std::domain_error("series_reciprocal: first (constant) coefficient is zero.");
+      else if (c.size() == 1)
+	return std::vector<Real>{{Real{1} / c[0]}};
       else
 	{
-	  auto __n = __c.size();
-	  auto __m = __n + 1;
-	  std::vector<_Real> __d(__m);
-	  __d[0] = _Real{1} / __c[0];
-	  for (auto __k = 1u; __k < __m; ++__k)
+	  auto n = c.size();
+	  auto m = n + 1;
+	  std::vector<Real> d(m);
+	  d[0] = Real{1} / c[0];
+	  for (auto k = 1u; k < m; ++k)
 	    {
-	      for (auto __i = 0u; __i < __k; ++__i)
-	        if (__k - __i < __n)
-		  __d[__k] += __c[__k - __i] * __d[__i];
-	      __d[__k] *= -__d[0];
+	      for (auto i = 0u; i < k; ++i)
+	        if (k - i < n)
+		  d[k] += c[k - i] * d[i];
+	      d[k] *= -d[0];
 	    }
-	  return __d;
+	  return d;
 	}
     }
 
@@ -263,39 +266,38 @@ namespace __detail
    *  \frac{1}{\Lambda(x)} = \sum_{k=0}^{N} d_k x^k
    * @f]
    */
-  template<typename _Real>
-    std::vector<_Real>
-    __series_reciprocal_vanWijn(std::vector<_Real> __c)
+  template<typename Real>
+    std::vector<Real>
+    series_reciprocal_vanWijn(std::vector<Real> c)
     {
 std::cerr << std::showpoint;
-//      using _WijnSum = __gnu_cxx::_VanWijngaardenSum<_Real>;
-      if (__c.size() == 0)
-	return std::vector<_Real>{};
-      else if (__c[0] == _Real{0})
-	std::__throw_domain_error("__series_reciprocal_vanWijn: "
-				  "first (constant) coefficient is zero.");
-      else if (__c.size() == 1)
-	return std::vector<_Real>{{_Real{1} / __c[0]}};
+//      using WijnSum = emsr::VanWijngaardenSum<Real>;
+      if (c.size() == 0)
+	return std::vector<Real>{};
+      else if (c[0] == Real{0})
+	throw std::domain_error("series_reciprocal_vanWijn: first (constant) coefficient is zero.");
+      else if (c.size() == 1)
+	return std::vector<Real>{{Real{1} / c[0]}};
       else
 	{
-	  auto __n = __c.size();
-	  auto __m = __n + 1;
-	  std::vector<_Real> __d(__m);
-	  __d[0] = _Real{1} / __c[0];
-	  for (auto __k = 1u; __k < __m; ++__k)
+	  auto n = c.size();
+	  auto m = n + 1;
+	  std::vector<Real> d(m);
+	  d[0] = Real{1} / c[0];
+	  for (auto k = 1u; k < m; ++k)
 	    {
 std::cerr << '\n';
-//	      _WijnSum __sum(8);
-__gnu_cxx::_BasicSum<_Real> __sum;
-	      for (auto __i = 0u; __i < __k; ++__i)
-	        if (__k - __i < __n)
+//	      WijnSum sum(8);
+emsr::BasicSum<Real> sum;
+	      for (auto i = 0u; i < k; ++i)
+	        if (k - i < n)
 {
-std::cerr << std::setw(12) << __c[__k - __i] * __d[__i] << '\t' << std::setw(12) << __c[__k - __i] << '\t' << std::setw(12) << __d[__i] << '\n';
-		  __sum += __c[__k - __i] * __d[__i];
+std::cerr << std::setw(12) << c[k - i] * d[i] << '\t' << std::setw(12) << c[k - i] << '\t' << std::setw(12) << d[i] << '\n';
+		  sum += c[k - i] * d[i];
 }
-	      __d[__k] = -__d[0] * __sum();
+	      d[k] = -d[0] * sum();
 	    }
-	  return __d;
+	  return d;
 	}
     }
 
@@ -304,79 +306,79 @@ std::cerr << std::setw(12) << __c[__k - __i] * __d[__i] << '\t' << std::setw(12)
    * using Rutishauser's Quotient-Difference (QD) algorithm.
    * Use the more numerically stable progressive version.
    */
-  template<typename _Real>
-    std::vector<_Real>
-    __quotient_difference_prog(std::vector<_Real> __s)
+  template<typename Real>
+    std::vector<Real>
+    quotient_difference_prog(std::vector<Real> s)
     {
-      auto __n = __s.size();
-      auto __zero = _Real{0};
-      std::vector<_Real> __r;
+      auto n = s.size();
+      auto zero = Real{0};
+      std::vector<Real> r;
 
-      std::vector<std::vector<_Real>> __q;
-      __q.push_back(std::vector<_Real>{});
-      __q.back().push_back(-__s[1] / __s[0]);
-      for (unsigned __l = 1; __l < __n; ++__l)
-	__q.back().push_back(__zero);
+      std::vector<std::vector<Real>> q;
+      q.push_back(std::vector<Real>{});
+      q.back().push_back(-s[1] / s[0]);
+      for (unsigned l = 1; l < n; ++l)
+	q.back().push_back(zero);
 
-      std::vector<std::vector<_Real>> __e;
-      __e.push_back(std::vector<_Real>{});
-      __e.back().push_back(_Real{0});
-      for (unsigned __l = 1; __l < __n - 1; ++__l)
-	__e.back().push_back(__s[__l + 1] / __s[__l]);
+      std::vector<std::vector<Real>> e;
+      e.push_back(std::vector<Real>{});
+      e.back().push_back(Real{0});
+      for (unsigned l = 1; l < n - 1; ++l)
+	e.back().push_back(s[l + 1] / s[l]);
 
-      __r.push_back(__e[0][0]);
+      r.push_back(e[0][0]);
 
-      for (unsigned __k = 1; __k < __n - 2; ++__k)
+      for (unsigned k = 1; k < n - 2; ++k)
 	{
-	  __q.push_back(std::vector<_Real>{});
-	  for (unsigned __l = 0; __l < __n - 2 * __k; ++__l)
-	    __q.back().push_back(__q[__k - 1][__l] + __e[__k - 1][__l + 1] - __e[__k - 1][__l]);
+	  q.push_back(std::vector<Real>{});
+	  for (unsigned l = 0; l < n - 2 * k; ++l)
+	    q.back().push_back(q[k - 1][l] + e[k - 1][l + 1] - e[k - 1][l]);
 
-	  if (__q[__k].size() > 0)
-	    __r.push_back(__q[__k][0]);
+	  if (q[k].size() > 0)
+	    r.push_back(q[k][0]);
 
-	  __e.push_back(std::vector<_Real>{});
-	  for (unsigned __l = 0; __l < __n - 2 * __k - 1; ++__l)
-	    __e.back().push_back(__q[__k][__l + 1] * __e[__k - 1][__l + 1] / __q[__k][__l]);
+	  e.push_back(std::vector<Real>{});
+	  for (unsigned l = 0; l < n - 2 * k - 1; ++l)
+	    e.back().push_back(q[k][l + 1] * e[k - 1][l + 1] / q[k][l]);
 
-	  if (__e[__k].size() > 0)
-	    __r.push_back(__e[__k][0]);
+	  if (e[k].size() > 0)
+	    r.push_back(e[k][0]);
 	  else
 	    break;
 	}
 
-      return __r;
+      return r;
     }
 
   // Computes the Stieltjes continued fraction for the
   // Gamma function using Rutishauser's QD-algorithm.
-  template<typename _Real>
-    std::vector<_Real>
-    __stieltjes_cont_frac_seq(int __len)
-    { return __quotient_difference(__weights(__bernoulli_vec<_Real>(__len))); }
+  template<typename Real>
+    std::vector<Real>
+    stieltjes_cont_frac_seq(int len)
+    { return quotient_difference(weights(bernoulli_vec<Real>(len))); }
 
   // Computes the Stieltjes continued fraction for the
   // Gamma function using the progressive QD-algorithm.
-  template<typename _Real>
-    std::vector<_Real>
-    __stieltjes_cont_frac_seq_prog(int __len)
-    { return __quotient_difference_prog(__series_reciprocal(__weights(__bernoulli_vec<_Real>(__len)))); }
+  template<typename Real>
+    std::vector<Real>
+    stieltjes_cont_frac_seq_prog(int len)
+    { return quotient_difference_prog(series_reciprocal(weights(bernoulli_vec<Real>(len)))); }
 
   /**
    * Compute the Binet function using the asymptotic series
    */
-  template<typename _Tp>
-    _Tp
-    __binet_asymp(_Tp __z)
+  template<typename Tp>
+    Tp
+    binet_asymp(Tp z)
     {
-      using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
-      constexpr auto _S_eps = std::numeric_limits<_Real>::epsilon();
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
+      constexpr auto s_eps = std::numeric_limits<Real>::epsilon();
 
       // Weighted Bernoulli numbers: (-1)^k B_{2k + 2} / ((2k + 1)(2k + 2)), k >= 0.
-      constexpr std::size_t _S_n = 50;
-      constexpr _Real
-      _S_b[_S_n]
+      constexpr std::size_t s_n = 50;
+      constexpr Real
+      s_b[s_n]
       {
 	 0.0833333333333333333333333333333333Q,
 	-0.00277777777777777777777777777777778Q,
@@ -430,35 +432,35 @@ std::cerr << std::setw(12) << __c[__k - __i] * __d[__i] << '\t' << std::setw(12)
 	-2.86689389602966736504472887935303e+74Q,
       };
 
-      auto __z2 = _Real{1} / (__z * __z);
-      auto __J = _Val{};
-      auto __zk = _Real{1} / __z;
-      for (auto __b : _S_b)
+      auto z2 = Real{1} / (z * z);
+      auto J = Val{};
+      auto zk = Real{1} / z;
+      for (auto b : s_b)
 	{
-	  auto __term = __b * __zk;
-	  __J += __term;
-	  if (std::abs(__term) < _S_eps * std::abs(__J))
+	  auto term = b * zk;
+	  J += term;
+	  if (std::abs(term) < s_eps * std::abs(J))
 	    break;
-	  __zk *= __z2;
+	  zk *= z2;
 	}
 
-      return __J;
+      return J;
     }
 
   /**
    *
    */
-  template<typename _Tp>
-    _Tp
-    __binet_cont_frac(_Tp __z)
+  template<typename Tp>
+    Tp
+    binet_cont_frac(Tp z)
     {
-      using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
 
       // Stieltjes partial numerators.
-      constexpr std::size_t _S_n = 96;
-      constexpr _Real
-      _S_a[_S_n]
+      constexpr std::size_t s_n = 96;
+      constexpr Real
+      s_a[s_n]
       {
 	0.0833333333333333333333333333333333Q,
 	0.0333333333333333333333333333333333Q,
@@ -559,12 +561,12 @@ std::cerr << std::setw(12) << __c[__k - __i] * __d[__i] << '\t' << std::setw(12)
       };
 
       // Backward recurrence.
-      auto __w = _Val{}; // The tail function.
-      auto __J = __w;
-      for (std::ptrdiff_t __k = _S_n - 1; __k >= 0; --__k)
-        __J = _S_a[__k] / (__z + __J);
+      auto w = Val{}; // The tail function.
+      auto J = w;
+      for (std::ptrdiff_t k = s_n - 1; k >= 0; --k)
+        J = s_a[k] / (z + J);
 
-      return __J;
+      return J;
     }
 
   /**
@@ -575,17 +577,17 @@ std::cerr << std::setw(12) << __c[__k - __i] * __d[__i] << '\t' << std::setw(12)
    *    J(z) = J(z+1) + z + \frac{1}{2}ln(1+\frac{1}{z}) - 1
    * @f]
    */
-  template<typename _Tp>
-    _Tp
-    __binet_recur(_Tp __z)
+  template<typename Tp>
+    Tp
+    binet_recur(Tp z)
     {
-      _Tp stuff{};
-      while (std::real(__z) < _Tp{10})
+      Tp stuff{};
+      while (std::real(z) < Tp{10})
         {
-	  stuff += __z + _Tp{0.5} * std::log1p(_Tp{1} / __z) - _Tp{1};
-	  __z += _Tp{1};
+	  stuff += z + Tp{0.5} * std::log1p(Tp{1} / z) - Tp{1};
+	  z += Tp{1};
         }
-      return stuff + __binet_cont_frac(__z);
+      return stuff + binet_cont_frac(z);
     }
 
   /**
@@ -600,29 +602,29 @@ std::cerr << std::setw(12) << __c[__k - __i] * __d[__i] << '\t' << std::setw(12)
    * @f]
    * where @f$ \Gamma(z) @f$ is the gamma function.
    */
-  template<typename _Tp>
-    _Tp
-    __binet(_Tp __z)
+  template<typename Tp>
+    Tp
+    binet(Tp z)
     {
-      using _Val = _Tp;
-      using _Real = __gnu_cxx::__num_traits_t<_Val>;
+      using Val = Tp;
+      using Real = emsr::num_traits_t<Val>;
 
       /// @todo Find Binet function switch.
-      constexpr auto _S_switchover = _Real{10};
+      constexpr auto s_switchover = Real{10};
 
-      if (std::isnan(__z))
-	return __gnu_cxx::__quiet_NaN<_Tp>();
-      else if (__z < _S_switchover)
-	return __binet_cont_frac(__z);
+      if (std::isnan(z))
+	return emsr::quiet_NaN<Tp>();
+      else if (z < s_switchover)
+	return binet_cont_frac(z);
       else
-	return __binet_asymp(__z);
+	return binet_asymp(z);
     }
 
-} // namespace __detail
-} // namespace std
+} // namespace detail
+} // namespace emsr
 
 
-namespace __gnu_cxx
+namespace emsr
 {
 
   /**
@@ -631,8 +633,8 @@ namespace __gnu_cxx
    *
    * @see lgamma_scaled for details.
   float
-  lgamma_scaledf(float __z)
-  { return std::__detail::__binet<float>(__z); }
+  lgamma_scaledf(float z)
+  { return emsr::detail::binet<float>(z); }
    */
 
   /**
@@ -642,8 +644,8 @@ namespace __gnu_cxx
    * @see lgamma_scaled for details.
    */
   long double
-  lgamma_scaledl(long double __z)
-  { return std::__detail::__binet<long double>(__z); }
+  lgamma_scaledl(long double z)
+  { return emsr::detail::binet<long double>(z); }
 
   /**
    * Return the Binet function @f$ J(z) @f$ or the scaled log gamma function
@@ -658,10 +660,10 @@ namespace __gnu_cxx
    * @f]
    * where @f$ \Gamma(z) @f$ is the gamma function.
    */
-  template<typename _Tp>
-    _Tp
-    lgamma_scaled(_Tp __z)
-    { return std::__detail::__binet(__z); }
+  template<typename Tp>
+    Tp
+    lgamma_scaled(Tp z)
+    { return emsr::detail::binet(z); }
 
 
   /**
@@ -670,8 +672,8 @@ namespace __gnu_cxx
    *
    * @see tgamma_scaled for details.
   float
-  tgamma_scaledf(float __z)
-  { return std::exp(std::__detail::__binet<float>(__z)); }
+  tgamma_scaledf(float z)
+  { return std::exp(emsr::detail::binet<float>(z)); }
    */
 
   /**
@@ -681,8 +683,8 @@ namespace __gnu_cxx
    * @see tgamma_scaled for details.
    */
   long double
-  tgamma_scaledl(long double __z)
-  { return std::exp(std::__detail::__binet<long double>(__z)); }
+  tgamma_scaledl(long double z)
+  { return std::exp(emsr::detail::binet<long double>(z)); }
 
   /**
    * Return the exponential of the Binet function or the scaled gamma function
@@ -696,33 +698,31 @@ namespace __gnu_cxx
    * @f]
    * where @f$ \Gamma(z) @f$ is the gamma function.
    */
-  template<typename _Tp>
-    _Tp
-    tgamma_scaled(_Tp __z)
-    { return std::exp(std::__detail::__binet(__z)); }
+  template<typename Tp>
+    Tp
+    tgamma_scaled(Tp z)
+    { return std::exp(emsr::detail::binet(z)); }
 
-} // namespace__gnu_cxx
+} // namespace emsr
 
 
-template<typename _Tp>
+template<typename Tp>
   void
   test()
   {
-    using _Real = _Tp;
-    constexpr auto _S_ln2pi
-      = __gnu_cxx::numbers::__ln_2_v<_Real>
-      + __gnu_cxx::numbers::__ln_pi_v<_Real>;
+    using Real = Tp;
+    constexpr auto s_ln2pi = emsr::ln2_v<Real> + emsr::lnpi_v<Real>;
 
-    std::cout.precision(std::numeric_limits<_Real>::digits10);
+    std::cout.precision(std::numeric_limits<Real>::digits10);
     auto width = std::cout.precision() + 8;
 
     std::cout << "\nBernoulli numbers\n";
-    auto bern = std::__detail::__bernoulli_vec<_Real>(50);
+    auto bern = emsr::detail::bernoulli_vec<Real>(50);
     for (auto& b : bern)
       std::cout << ' ' << std::setw(width) << b << '\n';
 
     std::cout << "\nBernoulli numbers\n";
-    auto bern_a_t = std::__detail::__bernoulli_a_t<_Real>(bern.size());
+    auto bern_a_t = emsr::detail::bernoulli_a_t<Real>(bern.size());
     std::cout << ' ' << std::setw(4) << "k"
 	      << ' ' << std::setw(width) << "B"
 	      << ' ' << std::setw(width) << "B_AT"
@@ -736,24 +736,24 @@ template<typename _Tp>
       }
 
     std::cout << "\nWeighted Bernoulli numbers\n";
-    auto wts = std::__detail::__weights(bern);
+    auto wts = emsr::detail::weights(bern);
     for (auto& w : wts)
       std::cout << ' ' << std::setw(width) << w << '\n';
 
     std::cout << "\nStieltjes partial numerators\n";
     int len = 100;
-    auto cf = std::__detail::__stieltjes_cont_frac_seq<_Real>(len);
+    auto cf = emsr::detail::stieltjes_cont_frac_seq<Real>(len);
     for (std::size_t k = 0; k < cf.size(); ++k)
       std::cout << ' ' << std::setw(2) << k + 1 << ": "
 		<< ' ' << std::setw(width) << cf[k]
-		<< ' ' << std::setw(width) << cf[k] / ((k+1) * (k+1) / _Tp{16}) << '\n';
+		<< ' ' << std::setw(width) << cf[k] / ((k+1) * (k+1) / Tp{16}) << '\n';
 
     std::cout << "\nStieltjes partial numerators (progressive)\n";
-    auto cfp = std::__detail::__stieltjes_cont_frac_seq_prog<_Real>(len);
+    auto cfp = emsr::detail::stieltjes_cont_frac_seq_prog<Real>(len);
     for (std::size_t k = 0; k < cfp.size(); ++k)
       std::cout << ' ' << std::setw(2) << k + 1 << ": "
 		<< ' ' << std::setw(width) << cfp[k]
-		<< ' ' << std::setw(width) << cfp[k] / ((k+1) * (k+1) / _Tp{16}) << '\n';
+		<< ' ' << std::setw(width) << cfp[k] / ((k+1) * (k+1) / Tp{16}) << '\n';
 
     std::cout << "\nBinet asymptotic\n";
     std::cout << ' ' << std::setw(4) << "x"
@@ -765,17 +765,17 @@ template<typename _Tp>
 	      << ' ' << std::setw(width) << "(J_cf - J_f) / J_f"
 	      << ' ' << std::setw(width) << "(J_bern - J_f) / J_f"
 	      << '\n';
-    const auto half = _Real{1} / _Real{2};
-    const auto del = _Real{1} / _Real{10};
+    const auto half = Real{1} / Real{2};
+    const auto del = Real{1} / Real{10};
     for (int k = 1; k <= 5000; ++k)
       {
 	auto x = del * k;
-	auto j_as = std::__detail::__binet_asymp(x);
-	auto j_cf = std::__detail::__binet_cont_frac(x);
+	auto j_as = emsr::detail::binet_asymp(x);
+	auto j_cf = emsr::detail::binet_cont_frac(x);
 	auto j_fake = std::lgamma(x)
-		    - (x - half) * std::log(x) + x - _S_ln2pi / _Real{2};
-	auto j_bern = std::__detail::__log_gamma_bernoulli(x)
-		    - (x - half) * std::log(x) + x - _S_ln2pi / _Real{2};
+		    - (x - half) * std::log(x) + x - s_ln2pi / Real{2};
+	auto j_bern = emsr::detail::log_gamma_bernoulli(x)
+		    - (x - half) * std::log(x) + x - s_ln2pi / Real{2};
 	std::cout << ' ' << std::setw(4) << x
 		  << ' ' << std::setw(width) << j_as
 		  << ' ' << std::setw(width) << j_cf
@@ -789,31 +789,31 @@ template<typename _Tp>
   }
 
 // Test polynomial reciprocal...
-template<typename _Tp>
+template<typename Tp>
   void
   test_exp()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto width = std::cout.precision() + 8;
 
-    std::vector<_Tp> coeff;
-    _Tp fact = 1;
-    coeff.push_back(_Tp{1} / fact);
+    std::vector<Tp> coeff;
+    Tp fact = 1;
+    coeff.push_back(Tp{1} / fact);
     for (int i = 1; i <= width; ++i) // Width as number of terms... Why not.
-      coeff.push_back(_Tp{1} / (fact *= _Tp(i)));
+      coeff.push_back(Tp{1} / (fact *= Tp(i)));
 
     std::cout << "\n exp(x) oefficients:\n";
     for (auto cf : coeff)
       std::cout << std::setw(width) << cf << '\n';
 
-    std::vector<_Tp> recip = std::__detail::__series_reciprocal(coeff);
+    std::vector<Tp> recip = emsr::detail::series_reciprocal(coeff);
     std::cout << "\n Reciprocal (hopefully exp(-x)) coefficients:\n";
     for (auto cf : recip)
       std::cout << std::setw(width) << cf << '\n';
 
 /* Failed experiment
     std::cout << "\n Reciprocal (hopefully exp(-x)) coefficients using vanWijngaarden:\n";
-    std::vector<_Tp> recip_vW = std::__detail::__series_reciprocal_vanWijn(coeff);
+    std::vector<Tp> recip_vW = emsr::detail::series_reciprocal_vanWijn(coeff);
     for (auto k = 0u; k < recip_vW.size(); ++k)
       {
 	std::cout << std::setw(width) << recip[k]
@@ -825,10 +825,10 @@ template<typename _Tp>
 
 /* Try to build Pade approximants someday.
     std::cout << "\nTest exp(x)\n";
-    __gnu_cxx::_Polynomial<_Tp> expoly(std::begin(coeff), std::end(coeff));
-    __gnu_cxx::_Polynomial<_Tp> rat_numer(std::begin(coeff), std::begin(coeff) + 10);
-    __gnu_cxx::_Polynomial<_Tp> rat_denom(std::begin(recip), std::begin(recip) + 10);
-    const auto del = _Tp{1} / _Tp{10};
+    emsr::Polynomial<Tp> expoly(std::begin(coeff), std::end(coeff));
+    emsr::Polynomial<Tp> rat_numer(std::begin(coeff), std::begin(coeff) + 10);
+    emsr::Polynomial<Tp> rat_denom(std::begin(recip), std::begin(recip) + 10);
+    const auto del = Tp{1} / Tp{10};
     for (int k = 0; k <= 500; ++k)
       {
 	auto x = del * k;
@@ -862,6 +862,6 @@ main()
   std::cout << "\nlong double\n===========\n";
   test<long double>();
 
-  //std::cout << "\n__float128\n===========\n";
+  //std::cout << "\nfloat128\n===========\n";
   //test<__float128>();
 }

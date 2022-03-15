@@ -3,7 +3,6 @@
  */
 
 #include <cmath>
-#include <ext/float128_io.h>
 #include <limits>
 #include <iostream>
 #include <fstream>
@@ -12,35 +11,39 @@
 #include <string>
 #include <complex>
 
+#include <emsr/float128_io.h>
+#include <emsr/numeric_limits.h>
+#include <emsr/sf_beta.h>
+
 #include <wrap_boost.h>
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_beta(_Tp proto = _Tp{})
+  test_beta(Tp proto = Tp{})
   {
-    //using _Val = _Tp;
-    //using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    //using Val = Tp;
+    //using Real = emsr::num_traits_t<Val>;
 
-    std::cout.precision(__gnu_cxx::__digits10(proto));
+    std::cout.precision(emsr::digits10(proto));
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
     std::cout << '\n'
 	      << ' ' << std::setw(width) << "a"
 	      << ' ' << std::setw(width) << "b"
-	      << ' ' << std::setw(width) << "__beta"
+	      << ' ' << std::setw(width) << "beta"
 	      << ' ' << std::setw(width) << "boost::beta"
 	      << ' ' << std::setw(width) << "delta_boost"
 	      << '\n';
     int i_min = 1;
     for (int i = i_min; i <= +500; ++i)
       {
-	auto a = _Tp{0.1Q} * i;
+	auto a = Tp{0.1Q} * i;
 	int j_min = 1;
 	for (int j = j_min; j <= +500; ++j)
 	  {
-	    auto b = _Tp{0.1Q} * j;
-	    auto gbet = std::__detail::__beta(a, b);
+	    auto b = Tp{0.1Q} * j;
+	    auto gbet = emsr::detail::beta(a, b);
 	    auto bbet = beast::beta(a, b);
 	    std::cout << ' ' << std::setw(width) << a
 		      << ' ' << std::setw(width) << b
@@ -52,29 +55,29 @@ template<typename _Tp>
       }
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
   plot_beta(std::string filename)
   {
-    using _Val = _Tp;
-    using _Real = __gnu_cxx::__num_traits_t<_Val>;
+    using Val = Tp;
+    using Real = emsr::num_traits_t<Val>;
 
     auto data = std::ofstream(filename);
 
-    data.precision(std::numeric_limits<_Real>::digits10);
+    data.precision(std::numeric_limits<Real>::digits10);
     data << std::showpoint << std::scientific;
     auto width = 8 + data.precision();
 
     int i_min = -150;
     for (int i = i_min; i <= +150; ++i)
       {
-	auto a = _Tp{0.02L} * i;
+	auto a = Tp{0.02L} * i;
 	int j_min = -150;
 	data << '\n';
 	for (int j = j_min; j <= +150; ++j)
 	  {
-	    auto b = _Tp{0.02L} * j;
-	    auto gbet = std::__detail::__beta(a, b);
+	    auto b = Tp{0.02L} * j;
+	    auto gbet = emsr::detail::beta(a, b);
 	    data << ' ' << std::setw(width) << a
 		 << ' ' << std::setw(width) << b
 		 << ' ' << std::setw(width) << gbet
@@ -90,8 +93,8 @@ main(int n_app_args, char** arg)
   if (n_app_args > 1)
     plot_data_dir = arg[1];
 
-  std::__detail::__beta(0.1F, 1.9F);
-  std::__detail::__beta(0.1F, 35.1F);
+  emsr::detail::beta(0.1F, 1.9F);
+  emsr::detail::beta(0.1F, 35.1F);
 
   test_beta<float>();
 

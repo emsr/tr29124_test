@@ -6,16 +6,19 @@
 #include <iomanip>
 #include <cmath>
 #include <limits>
+
+#include <emsr/special_functions.h>
+
 #include <wrap_gsl.h>
 
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_clausen_cl()
   {
-    using __cmplx = std::complex<_Tp>;
+    using cmplx = std::complex<Tp>;
 
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -38,30 +41,30 @@ template<typename _Tp>
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
-    const auto del = _Tp{1} / _Tp{100};
+    const auto del = Tp{1} / Tp{100};
     for (int i = -1000; i <= +1000; ++i)
       {
-	auto w = __cmplx{del * i};
-	auto clausen1 = __gnu_cxx::clausen(1, w);
-	auto clausen2 = __gnu_cxx::clausen(2, w);
+	auto w = cmplx{del * i};
+	auto clausen1 = emsr::clausen(1, w);
+	auto clausen2 = emsr::clausen(2, w);
 	std::cout << std::setw(width) << std::real(w)
 		  << std::setw(width) << std::imag(clausen1)
 		  << std::setw(width) << std::real(clausen1)
 		  << std::setw(width) << std::real(clausen2)
 		  << std::setw(width) << std::imag(clausen2)
 		  << std::setw(width) << gsl::clausen_cl(2, std::real(w))
-		  << std::setw(width) << __gnu_cxx::clausen(2, std::real(w))
-		  << std::setw(width) << __gnu_cxx::clausen_cl(2, std::real(w))
+		  << std::setw(width) << emsr::clausen(2, std::real(w))
+		  << std::setw(width) << emsr::clausen_cl(2, std::real(w))
 		  << '\n';
       }
     std::cout << '\n' << std::flush;
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
   plot_clausen()
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     std::cout << std::showpoint << std::scientific;
     auto width = 8 + std::cout.precision();
 
@@ -80,16 +83,16 @@ template<typename _Tp>
 	      << std::setw(width) << "========="
 	      << std::setw(width) << "========="
 	      << '\n';
-    const auto del = _Tp{1} / _Tp{100};
+    const auto del = Tp{1} / Tp{100};
     for (int i = -1000; i <= +1000; ++i)
       {
 	auto w = del * i;
 	std::cout << std::setw(width) << w
-		  << std::setw(width) << __gnu_cxx::clausen_cl(1, w)
-		  << std::setw(width) << __gnu_cxx::clausen_cl(2, w)
-		  << std::setw(width) << __gnu_cxx::clausen_cl(3, w)
-		  << std::setw(width) << __gnu_cxx::clausen_cl(4, w)
-		  << std::setw(width) << __gnu_cxx::clausen_cl(5, w)
+		  << std::setw(width) << emsr::clausen_cl(1, w)
+		  << std::setw(width) << emsr::clausen_cl(2, w)
+		  << std::setw(width) << emsr::clausen_cl(3, w)
+		  << std::setw(width) << emsr::clausen_cl(4, w)
+		  << std::setw(width) << emsr::clausen_cl(5, w)
 		  << '\n';
       }
     std::cout << '\n' << std::flush;

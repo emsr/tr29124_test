@@ -2,15 +2,17 @@ cmake_minimum_required (VERSION 3.10)
 
 include(CheckCXXCompilerFlag)
 
+# Project xxxxx
+
 project(
-  specfun_laboratories
+  lab_xxxxx
   VERSION 0.5
   LANGUAGES CXX
 )
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_COMPILER "/home/ed/bin/bin/g++")
-set(CMAKE_CXX_FLAGS -Wno-psabi)
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-psabi -Wno-deprecated-declarations -Wold-style-cast")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 if (NOT MSVC)
   if (NOT CMAKE_CROSSCOMPILING)
@@ -19,6 +21,9 @@ if (NOT MSVC)
 endif ()
 
 enable_testing()
+
+add_custom_target(make_lab_xxxxx_output_dir ALL
+  COMMAND ${CMAKE_COMMAND} -E make_directory output)
 
 #add_executable( )
 #target_include_directories( PRIVATE )

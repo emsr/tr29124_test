@@ -1,22 +1,3 @@
-// -*- C++ -*-
-// Integration utilities for the C++ library testsuite.
-//
-// Copyright (C) 2016-2019 Free Software Foundation, Inc.
-//
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
-//
-// This library is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License along
-// with this library; see the file COPYING3.  If not see
-// <http://www.gnu.org/licenses/>.
 
 #include <iostream>
 #include <cmath>
@@ -24,34 +5,35 @@
 #include <sstream>
 #include <string>
 
-#include <ext/integration.h>
+#include <emsr/integration.h>
+#include <emsr/special_functions.h>
 
 // Function which should integrate to 1 for l1 == l2, 0 otherwise.
-template<typename _Tp>
-  _Tp
-  norm_sph_legendre(int l1, int m1, int l2, int m2, _Tp theta)
+template<typename Tp>
+  Tp
+  integrand(int l1, int m1, int l2, int m2, Tp theta)
   {
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-    return _Tp{2} * _S_pi * std::sin(theta)
-	 * std::sph_legendre(l1, m1, theta)
-	 * std::sph_legendre(l2, m2, theta);
+    const auto s_pi = emsr::pi_v<Tp>;
+    return Tp{2} * s_pi * std::sin(theta)
+	 * emsr::sph_legendre(l1, m1, theta)
+	 * emsr::sph_legendre(l2, m2, theta);
   }
 
-template<typename _Tp>
-  _Tp
+template<typename Tp>
+  Tp
   delta(int l1, int l2)
-  { return l1 == l2 ? _Tp{1} : _Tp{0}; }
+  { return l1 == l2 ? Tp{1} : Tp{0}; }
 
-template<typename _Tp>
+template<typename Tp>
   void
   test_sph_legendre(int m1, int m2)
   {
-    const auto eps_factor = 1 << (std::numeric_limits<_Tp>::digits / 3);
-    const auto eps = std::numeric_limits<_Tp>::epsilon();
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
+    const auto eps_factor = 1 << (std::numeric_limits<Tp>::digits / 3);
+    const auto eps = std::numeric_limits<Tp>::epsilon();
+    const auto s_pi = emsr::pi_v<Tp>;
     const auto abs_precision = eps_factor * eps;
     const auto rel_precision = eps_factor * eps;
-    const auto cmp_precision = _Tp{10} * rel_precision;
+    const auto cmp_precision = Tp{10} * rel_precision;
 
     int l1 = 0;
     for (; l1 <= 128; ++l1)
@@ -64,25 +46,25 @@ template<typename _Tp>
 	    if (m2 > l2)
 	      continue;
 
-	    auto func = [l1, m1, l2, m2](_Tp theta)
-			-> _Tp
-			{ return norm_sph_legendre(l1, m1, l2, m2, theta); };
+	    auto func = [l1, m1, l2, m2](Tp theta)
+			-> Tp
+			{ return integrand(l1, m1, l2, m2, theta); };
 
 	    auto [result, error]
-		//= __gnu_cxx::integrate(func, _Tp{0}, _S_pi,
+		//= emsr::integrate(func, Tp{0}, s_pi,
 		//			abs_precision, rel_precision);
-		= __gnu_cxx::integrate_tanh_sinh(func, _Tp{0}, _S_pi,
+		= emsr::integrate_tanh_sinh(func, Tp{0}, s_pi,
 						 abs_precision, rel_precision, 6);
 
-	    if (std::abs(delta<_Tp>(l1, l2) * delta<_Tp>(m1, m2) - result) > cmp_precision)
+	    if (std::abs(delta<Tp>(l1, l2) * delta<Tp>(m1, m2) - result) > cmp_precision)
 	      {
 		std::stringstream ss;
-		ss.precision(std::numeric_limits<_Tp>::digits10);
+		ss.precision(std::numeric_limits<Tp>::digits10);
 		ss << std::showpoint << std::scientific;
 		ss << "Integration failed at l1=" << l1 << ", l2=" << l2
 		   << ", returning result " << result
 		   << ", with error " << error
-		   << " instead of the expected " << delta<_Tp>(l1, l2) << '\n';
+		   << " instead of the expected " << delta<Tp>(l1, l2) << '\n';
 		throw std::logic_error(ss.str());
 	      }
 	  }
@@ -99,17 +81,17 @@ template<typename _Tp>
 	RESTART:
 	for (int l2 = 0; l2 <= n1_upper; l2 += del)
 	  {
-	    auto func = [l1 = n1_upper, m1, l2, m2](_Tp theta)
-			-> _Tp
-			{ return norm_sph_legendre(l1, m1, l2, m2, theta); };
+	    auto func = [l1 = n1_upper, m1, l2, m2](Tp theta)
+			-> Tp
+			{ return integrand(l1, m1, l2, m2, theta); };
 
 	    auto [result, error]
-		//= __gnu_cxx::integrate(func, _Tp{0}, _S_pi,
+		//= emsr::integrate(func, Tp{0}, s_pi,
 		//			abs_precision, rel_precision);
-		= __gnu_cxx::integrate_tanh_sinh(func, _Tp{0}, _S_pi,
+		= emsr::integrate_tanh_sinh(func, Tp{0}, s_pi,
 						 abs_precision, rel_precision, 6);
 
-	    if (std::abs(delta<_Tp>(n1_upper, l2) * delta<_Tp>(m1, m2) - result) > cmp_precision)
+	    if (std::abs(delta<Tp>(n1_upper, l2) * delta<Tp>(m1, m2) - result) > cmp_precision)
 	      {
 		if ((n1_lower + n1_upper) / 2 < n1_upper)
 		  {
@@ -152,7 +134,7 @@ main()
     {
       test_sph_legendre<float>(0, 0);
     }
-  catch (__gnu_cxx::__integration_error<float>& ierr)
+  catch (emsr::integration_error<float, float>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -167,7 +149,7 @@ main()
     {
       test_sph_legendre<double>(0, 0);
     }
-  catch (__gnu_cxx::__integration_error<double>& ierr)
+  catch (emsr::integration_error<double, double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';
@@ -182,7 +164,7 @@ main()
     {
       test_sph_legendre<long double>(0, 0);
     }
-  catch (__gnu_cxx::__integration_error<long double>& ierr)
+  catch (emsr::integration_error<long double, long double>& ierr)
     {
       std::cerr << ierr.what() << '\n';
       std::cerr << " result = " << ierr.result() << " abserr = " << ierr.abserr() << '\n';

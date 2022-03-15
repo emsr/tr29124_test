@@ -6,27 +6,28 @@
 #include <iomanip>
 
 #include <cmath>
-#include <ext/complex_util.h>
-#include <ext/complex_safe_math.h>
+#include <emsr/complex_util.h>
+#include <emsr/complex_safe_math.h>
 //#include <hankel.h>
-#include <ext/float128_io.h>
+#include <emsr/float128_io.h>
+#include <emsr/special_functions.h>
 
-
-  template<typename _Tp>
-    inline std::complex<_Tp>
-    operator/(const std::complex<_Tp>& __x, const __complex__ & __y)
+/*
+  template<typename Tp>
+    inline std::complex<Tp>
+    operator/(const std::complex<Tp>& x, const complex__ & y)
     {
-      std::complex<_Tp> __r = __x;
-      __r /= std::complex<_Tp>(__y);
-      return __r;
+      std::complex<Tp> r = x;
+      r /= std::complex<Tp>(y);
+      return r;
     }
-
+*/
 int
 main()
 {
   using namespace std::literals::complex_literals;
   std::complex<double> z, nu;
-  std::__detail::_Airy<std::complex<double>> airy_thing;
+  emsr::detail::Airy<std::complex<double>> airy_thing;
 
   std::cout.precision(std::numeric_limits<double>::max_digits10);
   auto width = 6 + std::cout.precision();
@@ -37,7 +38,7 @@ main()
   try
   {
     // Cool but we nead an eater.
-    auto [zx, nux, h1, h2, h1p, h2p] = std::__detail::__hankel_uniform(nu, z);
+    auto [zx, nux, h1, h2, h1p, h2p] = emsr::detail::hankel_uniform(nu, z);
 
     std::cout << '\n';
     std::cout << " nu     = " << std::setw(width) << nu << '\n';
@@ -60,11 +61,11 @@ main()
   {
     auto Airy = airy_thing(z);
     std::cout << '\n';
-    std::cout << " z      = " << std::setw(width) << Airy.__z << '\n';
-    std::cout << " Ai(z)  = " << std::setw(width) << Airy.__Ai_value << '\n';
-    std::cout << " Ai'(z) = " << std::setw(width) << Airy.__Ai_deriv << '\n';
-    std::cout << " Bi(z)  = " << std::setw(width) << Airy.__Bi_value << '\n';
-    std::cout << " Bi'(z) = " << std::setw(width) << Airy.__Bi_deriv << '\n';
+    std::cout << " z      = " << std::setw(width) << Airy.z << '\n';
+    std::cout << " Ai(z)  = " << std::setw(width) << Airy.Ai_value << '\n';
+    std::cout << " Ai'(z) = " << std::setw(width) << Airy.Ai_deriv << '\n';
+    std::cout << " Bi(z)  = " << std::setw(width) << Airy.Bi_value << '\n';
+    std::cout << " Bi'(z) = " << std::setw(width) << Airy.Bi_deriv << '\n';
   }
   catch (std::exception & err)
   {

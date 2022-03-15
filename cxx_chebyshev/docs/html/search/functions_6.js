@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['to_5fpolynomial',['to_polynomial',['../class____gnu__cxx_1_1__Chebyshev.html#a0039dec54cff971242eb501fd76eec81',1,'__gnu_cxx::_Chebyshev']]],
-  ['truncate',['truncate',['../class____gnu__cxx_1_1__Chebyshev.html#af50304bc19f6383599c4169720ef0a97',1,'__gnu_cxx::_Chebyshev']]]
+  ['to_5fpolynomial_28',['to_polynomial',['../classemsr_1_1Chebyshev.html#a021b7237ef63d66bd6a4747bb0571ca7',1,'emsr::Chebyshev']]],
+  ['truncate_29',['truncate',['../classemsr_1_1Chebyshev.html#ac7f10a2450adbf3e5c72a17de993c068',1,'emsr::Chebyshev']]]
 ];

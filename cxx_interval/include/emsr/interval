@@ -1,0 +1,1121 @@
+#ifndef INTERVAL
+#define INTERVAL 1
+
+#include <algorithm>
+#include <iostream>
+#include <sstream>
+#include <ios>
+
+//#include "rounding_tools.h"
+#include "rounded_cmath.h"
+
+/// The four different interval classification
+/// # ZERO	a=0 && b=0
+/// # POSITIVE	a>=0 && b>0
+/// # NEGATIVE	a<0 && b<=0
+/// # MIXED	a<0 && b>0
+enum int_class
+{
+  NO_CLASS,
+  ZERO,
+  POSITIVE,
+  NEGATIVE,
+  MIXED
+};
+
+//
+// Interval class
+//
+template<typename _FloatTp>
+  class interval
+  {
+    _FloatTp m_lower;
+    _FloatTp m_upper;
+
+  public:
+
+    typedef _FloatTp value_type;
+
+    // constructor. zero, one or two arguments for type _FloatTp
+    interval()
+    : m_lower{0}, m_upper{0}
+    { }
+
+    interval(const _FloatTp& d)
+    : m_lower(d), m_upper(d)
+    { }
+
+    interval(const _FloatTp& lo, const _FloatTp& up)
+    {
+      if (lo < up)
+	{
+	  this->m_lower = lo;
+	  this->m_upper = up;
+	}
+      else
+	{
+	  this->m_lower = up;
+	  this->m_upper = lo;
+	}
+    }
+
+    interval(const interval&) = default;
+    interval(interval&&) = default;
+
+    interval&
+    operator=(const interval&) = default;
+    interval&
+    operator=(interval&&) = default;
+
+    // Constrcutor for mixed type _FloatTp != _X (base types).
+    // Allows auto construction of e.g. interval<float_precision> x(float)
+    template<typename _X>
+      interval(const _X& x)
+      : m_lower(_FloatTp(x)), m_upper(_FloatTp(x))
+      { }
+
+    // constructor for any other type to _FloatTp. Both up and down conversion possible
+    template<typename X>
+      interval(const interval<X>& a)
+      {
+	if (a.lower() < a.upper())
+          {
+	    fpdown();
+	    this->m_lower = _FloatTp(a.lower());
+	    fpup();
+	    this->m_upper = _FloatTp(a.upper());
+	    fpnear();
+	  }
+	else
+	  {
+	    fpdown();
+	    this->m_lower = _FloatTp(a.upper());
+	    fpup();
+	    this->m_upper = _FloatTp(a.lower());
+	    fpnear();
+	  }
+      }
+	
+    // Coordinate functions
+    _FloatTp
+    upper() const
+    { return this->m_upper; }
+
+    _FloatTp
+    lower() const
+    { return this->m_lower; }
+
+    _FloatTp
+    upper(const _FloatTp& up)
+    { return (this->m_upper = up); }
+
+    _FloatTp
+    lower(const _FloatTp& lo)
+    { return (this->m_lower = lo); }
+
+
+    _FloatTp
+    center() const
+    { return (this->m_upper + this->m_lower) / _FloatTp{2}; }
+
+    _FloatTp
+    radius() const
+    {
+      auto r = (this->m_upper - this->m_lower) / _FloatTp{2};
+      if (r < _FloatTp{0})
+        r = -r;
+      return r;
+    }
+
+    _FloatTp
+    width() const
+    {
+      _FloatTp r = this->m_upper - this->m_lower;
+      if (r < _FloatTp{0})
+	r = -r;
+      return r;
+    }
+
+    bool
+    contain_zero() const
+    { return this->m_lower <= _FloatTp{0} && _FloatTp{0} <= this->m_upper; }  // Obsolete. use contains() instead.
+
+    bool
+    contain(const _FloatTp& f=_FloatTp{0})
+    { return this->m_lower <= f && f <= this->m_upper;  }
+
+    bool contain(const interval<_FloatTp>& i)
+    { return this->m_lower <= i.lower() && i.upper() <= this->m_upper; }
+
+    bool
+    is_empty() const
+    { return this->m_upper < this->m_lower; }
+
+    enum int_class
+    is_class() const
+    {
+      if (this->m_lower == _FloatTp{0} && this->m_upper == _FloatTp{0})
+	return ZERO;
+      if (this->m_lower >= _FloatTp{0} && this->m_upper > _FloatTp{0})
+	return POSITIVE;
+      if (this->m_lower < _FloatTp{0} && this->m_upper <= _FloatTp{0})
+	return NEGATIVE;
+      if (this->m_lower < _FloatTp{0} && this->m_upper > _FloatTp{0})
+	return MIXED;
+      return NO_CLASS;
+    }
+
+    // Operators
+    operator short() const
+    { return static_cast<short>((this->m_upper + this->m_lower) / _FloatTp{2}); }
+
+    operator int() const
+    { return static_cast<int>(center()); }
+
+    operator long() const
+    { return static_cast<long>((this->m_upper + this->m_lower) / _FloatTp{2}); }
+
+    operator unsigned short() const
+    { return static_cast<unsigned short>((this->m_upper + this->m_lower) / _FloatTp{2}); }
+
+    operator unsigned int() const
+    { return static_cast<unsigned int>((this->m_upper + this->m_lower) / _FloatTp{2}); }
+
+    operator unsigned long() const
+    { return static_cast<unsigned long>((this->m_upper + this->m_lower) / _FloatTp{2}); }
+
+    operator double() const
+    { return static_cast<double>((this->m_upper + this->m_lower) / _FloatTp{2}); }
+
+    operator float() const
+    { return this->m_upper == this->m_lower
+	   ? static_cast<float>(this->m_lower)
+	   : static_cast<float>((this->m_upper + this->m_lower) / _FloatTp{2}); }
+
+    interval<_FloatTp>& operator+=(const interval<_FloatTp>&);
+    interval<_FloatTp>& operator-=(const interval<_FloatTp>&);
+    interval<_FloatTp>& operator*=(const interval<_FloatTp>&);
+    interval<_FloatTp>& operator/=(const interval<_FloatTp>&);
+    interval<_FloatTp>& operator&=(const interval<_FloatTp>&);
+    interval<_FloatTp>& operator|=(const interval<_FloatTp>&);
+    interval<_FloatTp>& operator^=(const interval<_FloatTp>&);
+  };
+
+
+template<typename _FloatTp, typename _X>
+  interval<_FloatTp>
+  operator+(const interval<_FloatTp>&, const _X&);
+
+template<typename _FloatTp, typename _X>
+  interval<_FloatTp>
+  operator+(const _X&, const interval<_FloatTp>&);
+
+template<typename _FloatTp>
+  interval<_FloatTp>
+  operator+(const interval<_FloatTp>&, const interval<_FloatTp>&);
+
+template<typename _FloatTp>
+  interval<_FloatTp>
+  operator+(const interval<_FloatTp>&);
+
+
+template<typename _FloatTp, typename _X>
+  interval<_FloatTp>
+  operator-(const interval<_FloatTp>&, const _X&);
+
+template<typename _FloatTp, typename _X>
+  interval<_FloatTp>
+  operator-(const _X&, const interval<_FloatTp>&);
+
+template<typename _FloatTp>
+  interval<_FloatTp>
+  operator-(const interval<_FloatTp>&, const interval<_FloatTp>&);
+
+template<typename _FloatTp>
+  interval<_FloatTp>
+  operator-(const interval<_FloatTp>&);
+
+
+template<typename _FloatTp, typename _X>
+  interval<_FloatTp>
+  operator*(const interval<_FloatTp>&, const _X&);
+
+template<typename _FloatTp, typename _X>
+  interval<_FloatTp>
+  operator*(const _X&, const interval<_FloatTp>&);
+
+template<typename _FloatTp>
+  interval<_FloatTp>
+  operator*(const interval<_FloatTp>&, const interval<_FloatTp>&);
+
+
+template<typename _FloatTp, typename _X>
+  interval<_FloatTp>
+  operator/(const interval<_FloatTp>&, const _X&);
+
+template<typename _FloatTp, typename _X>
+  interval<_FloatTp>
+  operator/(const _X&, const interval<_FloatTp>&);
+
+template<typename _FloatTp>
+  interval<_FloatTp>
+  operator/(const interval<_FloatTp>&, const interval<_FloatTp>&);
+
+template<typename _FloatTp, typename _X>
+  bool
+  operator==(const interval<_FloatTp>&, const _X&);
+
+template<typename _FloatTp, typename _X>
+  bool
+  operator==(const _X&, const interval<_FloatTp>&);
+
+template<typename _FloatTp, typename _X>
+  bool
+  operator==(const interval<_FloatTp>&, const interval<_X>&);
+
+template<typename _FloatTp, typename _X>
+  bool
+  operator!=(const interval<_FloatTp>&, const _X&);
+
+template<typename _FloatTp, typename _X>
+  bool
+  operator!=(const _X&, const interval<_FloatTp>&);
+
+template<typename _FloatTp, typename _X>
+  bool
+  operator!=(const interval<_FloatTp>&, const interval<_X>&);
+
+
+template<typename _FloatTp>
+  interval<_FloatTp> abs(const interval<_FloatTp>&);
+
+template<typename _Tp>
+  interval<_Tp> sqrt(const interval<_Tp>&);
+
+template<typename _Tp>
+  interval<_Tp> cbrt(const interval<_Tp>&);
+
+template<typename _Tp>
+  interval<_Tp> log(const interval<_Tp>&);
+
+template<typename _Tp>
+  interval<_Tp> log10(const interval<_Tp>&);
+
+template<typename _Tp>
+  interval<_Tp> log2(const interval<_Tp>&);
+
+template<typename _Tp>
+  interval<_Tp> exp(const interval<float>&, const _Tp);
+
+template<typename _Tp>
+  interval<_Tp> exp10(const interval<float>&, const _Tp);
+
+template<typename _Tp>
+  interval<_Tp> exp2(const interval<float>&, const _Tp);
+
+template<typename _Tp>
+  interval<_Tp> pow(const interval<float>&, const _Tp);
+
+template<typename _Tp>
+  interval<_Tp> sin(const interval<_Tp>&);
+
+template<typename _Tp>
+  interval<_Tp> cos(const interval<_Tp>&);
+
+template<typename _Tp>
+  interval<_Tp> tan(const interval<_Tp>&);
+
+template<typename _Tp>
+  interval<_Tp> asin(const interval<_Tp>&);
+
+template<typename _Tp>
+  interval<_Tp> acos(const interval<_Tp>&);
+
+template<typename _Tp>
+  interval<_Tp> atan(const interval<_Tp>&);
+
+template<typename _Tp>
+  interval<_Tp> sinh(const interval<_Tp>&);
+
+template<typename _Tp>
+  interval<_Tp> cosh(const interval<_Tp>&);
+
+template<typename _Tp>
+  interval<_Tp> tanh(const interval<_Tp>&);
+
+template<typename _Tp>
+  interval<_Tp> asinh(const interval<_Tp>&);
+
+template<typename _Tp>
+  interval<_Tp> acosh(const interval<_Tp>&);
+
+template<typename _Tp>
+  interval<_Tp> atanh(const interval<_Tp>&);
+
+
+template<typename _Tp, typename _CharT,
+	 typename _Traits = std::char_traits<_CharT>>
+  std::basic_ostream<_CharT, _Traits>&
+  operator<<(std::basic_ostream<_CharT, _Traits>& os, const interval<_Tp>& ivl)
+  {
+    std::basic_ostringstream<_CharT, _Traits> s;
+    s.flags(os.flags());
+    s.imbue(os.getloc());
+    s.precision(os.precision());
+    s << '[' << ivl.lower() << ',' << ivl.upper() << ']';
+    return os << s.str();
+  }
+
+template<typename _Tp, typename _CharT,
+	 typename _Traits = std::char_traits<_CharT>>
+  std::basic_istream<_CharT, _Traits>&
+  operator>>(std::basic_istream<_CharT, _Traits>& is, interval<_Tp>& ivl)
+  {
+    bool fail = true;
+    _CharT ch;
+    if (is >> ch)
+      {
+	if (_Traits::eq(ch, is.widen('[')))
+	  {
+	    _Tp lower;
+	    if (is >> lower >> ch)
+	      {
+		const _CharT rbrace = is.widen(']');
+		if (_Traits::eq(ch, rbrace))
+		  {
+		    ivl = lower;
+		    fail = false;
+		  }
+		else if (_Traits::eq(ch, is.widen(',')))
+		  {
+		    _Tp upper;
+		    if (is >> upper >> ch)
+		      {
+			if (_Traits::eq(ch, rbrace))
+			  {
+			    ivl = interval<_Tp>(lower, upper);
+			    fail = false;
+			  }
+			else
+			  is.putback(ch);
+		      }
+		  }
+		else
+		  is.putback(ch);
+	      }
+	  }
+	else
+	  {
+	    is.putback(ch);
+	    _Tp lower;
+	    if (is >> lower)
+	      {
+		ivl = lower;
+		fail = false;
+	      }
+	  }
+      }
+    if (fail)
+      is.setstate(std::ios_base::failbit);
+    return is;
+  }
+
+template<typename _FloatTp>
+  inline interval<_FloatTp>&
+  interval<_FloatTp>::operator+=(const interval<_FloatTp>& a)
+  {
+    fpdown();
+    this->m_lower += a.lower();
+    fpup();
+    this->m_upper += a.upper();
+    fpnear();
+    return *this;
+  }
+
+template<typename _FloatTp>
+  inline interval<_FloatTp>&
+  interval<_FloatTp>::operator-=(const interval<_FloatTp>& a)
+  {
+    fpdown();
+    this->m_lower -= a.upper();
+    fpup();
+    this->m_upper -= a.lower();
+    fpnear();
+    return *this;
+  }
+
+// Works all other classes.
+// Please note that this is for all interger classes. interval<int>, interval<long>,
+// were there is no loss of precision
+// Instead of doing
+//   lo = min(lo*a.up, lo*a.lo, up*a.lo, up*a.up)
+//   up = max(lo*a.up, lo*a.lo, up*a.lo, up*a.up)
+// requiring a total of 8 multiplications
+// do the logic instead:
+//   lo, up, a.lo, a.up    result
+//    +      +	      +        +       +  +  [ lo*a.lo, up*a.up ]
+//    +      +	      -        +       -  +  [ up*a.lo, up*a.up ]
+//    +      +	      -        -       -  -  [ up*a.lo, lo*a.up ]
+//    -      +	      +        +       -  +  [ lo*a.up, up*a.up ]
+//    -      +	      -        +       -  +  [ min(lo*a.up, up*a.lo),
+//                                             max(lo*a.lo, up*a.up) ]
+//    -      +	      -        -       -  -  [ up*a.lo, lo*a.lo ]
+//    -      -	      +        +       -  -  [ lo*a.up, up*a.lo ]
+//    -      -	      -        +       -  -  [ lo*a.up, lo*a.lo ]
+//    -      -	      -        -       +  +  [ up*a.up, lo*a.lo ]
+//
+template<typename _FloatTp>
+  inline interval<_FloatTp>&
+  interval<_FloatTp>::operator*=(const interval<_FloatTp>& a)
+  {
+    _FloatTp lo, up;
+
+    if (this->m_lower >= 0)
+      { // both lower and upper >= 0
+	if (a.lower() >= 0)
+	  { // a.lower >=0, a.upper >= 0
+	    fpdown();
+	    lo = this->m_lower * a.lower();
+	    fpup();
+	    up = this->m_upper * a.upper();
+	  }
+	else if (a.upper() >= 0)
+	  { // a.lower < 0, a.upper >= 0
+	    fpdown();
+	    lo = this->m_upper * a.lower();
+	    fpup();
+	    up = this->m_upper * a.upper();
+	  }
+	else
+	  { // a.lower and a.upper < 0
+	    fpdown();
+	    lo = this->m_upper * a.lower();
+	    fpup();
+	    up = this->m_lower * a.upper();
+	  }
+      }
+    else if (this->m_upper >= 0)
+      { // lower < 0, upper >= 0
+	if (a.lower() >= 0)
+	  { // a.lower >=0, a.upper >= 0
+	    fpdown();
+	    lo = this->m_lower * a.upper();
+	    fpup();
+	    up = this->m_upper * a.upper();
+	  }
+	else if (a.upper() >= 0)
+	  { // a.lower < 0, a.upper >= 0
+	    fpdown();
+	    lo = this->m_lower * a.upper();
+	    if (auto t = this->m_upper * a.lower(); lo > t)
+	      lo = t;
+	    fpup();
+	    up = this->m_upper * a.upper();
+	    if (auto t = this->m_lower * a.lower(); up < t)
+	      up = t;
+	  }
+	else
+	  { // a.lower and a.upper < 0
+	    fpdown();
+	    lo = this->m_upper * a.lower();
+	    fpup();
+	    up = this->m_lower * a.lower();
+	  }
+      }
+    else
+      { // lower and upper are < 0
+	if (a.lower() >= 0)
+	  { // a.lower >=0, a.upper >= 0
+	    fpdown();
+	    lo = this->m_lower * a.upper();
+	    fpup();
+	    up = this->m_upper * a.lower();
+	  }
+	else if (a.upper() >= 0)
+	  { // a.lower < 0, a.upper >= 0
+	    fpdown();
+	    lo = this->m_lower * a.upper();
+	    fpup();
+	    up = this->m_lower * a.lower();
+	  }
+	else
+	  { // a.lower and a.upper < 0
+	    fpdown();
+	    lo = this->m_upper * a.upper();
+	    fpup();
+	    up = this->m_lower * a.lower();
+	  }
+      }
+
+    this->m_lower = lo;
+    this->m_upper = up;
+
+    fpnear();
+
+    return *this;
+  }
+
+// Works for all other classes
+// Please note that this is for all interger classes. interval<int>, interval<long>
+// were there is no loss of precision
+// Actually there is specialization for both <int>
+template<typename _FloatTp>
+  inline interval<_FloatTp>&
+  interval<_FloatTp>::operator/=(const interval<_FloatTp>& b)
+  {
+    interval<_FloatTp> c;
+
+    fpdown();
+    c.m_lower = _FloatTp{1} / b.upper();
+    fpup();
+    c.m_upper = _FloatTp{1} / b.lower();
+    fpnear();
+    auto a = interval(this->m_lower, this->m_upper);
+    c *= a;
+
+    this->m_lower = c.lower();
+    this->m_upper = c.upper();
+
+    return *this;
+  }
+
+// Specialization for int and /=
+//
+template<>
+  inline interval<int>&
+  interval<int>::operator/=(const interval<int>& b)
+  {
+    long double tlow, thigh;
+    interval<int> a;
+    interval<long double> c;
+
+    tlow = 1 / static_cast<long double>(b.upper());
+    thigh = 1 / static_cast<long double>(b.lower());
+
+    a = interval(this->m_lower, this->m_upper);
+    c = interval<long double>(tlow, thigh);
+    c *= a;
+
+    this->m_lower = int(std::floor(c.lower()));
+    this->m_upper = int(std::ceil(c.upper()));
+
+    return *this;
+  }
+
+// Return the intersection
+template<typename _FloatTp>
+  inline interval<_FloatTp>&
+  interval<_FloatTp>::operator&=(const interval<_FloatTp>& a)
+  {
+    if (a.lower() > this->m_lower)
+      this->m_lower = a.lower();
+    if (a.upper() < this->m_upper)
+      this->m_upper = a.upper();
+    if (this->m_lower > this->m_upper) // Empty set
+      {
+	this->m_lower = 0;
+	this->m_upper = 0;
+      }
+
+    return *this;
+  }
+
+// Return the union
+template<typename _FloatTp>
+  inline interval<_FloatTp>&
+  interval<_FloatTp>::operator|=(const interval<_FloatTp>& a)
+  {
+    if (this->m_lower > a.upper() || this->m_upper < a.lower())
+      {
+	if (a.upper() - a.lower() > this->m_upper - this->m_lower)
+	  { // return the largest set
+	    this->m_lower = a.lower();
+	    this->m_upper = a.upper();
+	  }
+      }
+    else
+      { // non empty intersection
+	if (a.lower() < this->m_lower)
+	  this->m_lower = a.lower();
+	if (a.upper() > this->m_upper)
+	  this->m_upper = a.upper();
+      }
+
+    return *this;
+  }
+
+	
+// Return the set minus
+template<typename _FloatTp>
+  inline interval<_FloatTp>&
+  interval<_FloatTp>::operator^=(const interval<_FloatTp>& a)
+  {
+    if (a.lower() < this->m_upper && a.upper() > this->m_lower)
+      { // intersection is not empty
+	if (a.upper() <= this->m_lower)
+	  this->m_lower = a.upper();
+	else if (a.upper() >= this->m_upper)
+	  this->m_upper = a.lower();
+      }
+
+    return *this;
+  }
+
+template<typename _FloatTp,class _X>
+  inline interval<_FloatTp>
+  operator+(const interval<_FloatTp>& a, const _X& b)
+  {
+    interval<_FloatTp> c(a);
+
+    c += interval<_FloatTp>(_FloatTp(b));
+    return c;
+  }
+
+template<typename _FloatTp,class _X>
+  inline interval<_FloatTp>
+  operator+(const _X& a, const interval<_FloatTp>& b)
+  {
+    interval<_FloatTp> c(b);
+    return c += interval<_FloatTp>(_FloatTp(a));
+  }
+
+template<typename _FloatTp>
+  inline interval<_FloatTp>
+  operator+(const interval<_FloatTp>& a, const interval<_FloatTp>& b)
+  {
+    interval<_FloatTp> c(a);
+    return c += b;
+  }
+
+template<typename _FloatTp>
+   inline interval<_FloatTp>
+   operator+(const interval<_FloatTp>& a)
+   { return a; }
+
+template<typename _FloatTp, typename _X>
+  inline interval<_FloatTp>
+  operator-(const interval<_FloatTp>& a, const _X& b)
+  {
+    interval<_FloatTp> c(a);
+    return c -= interval<_FloatTp>(_FloatTp(b));
+  }
+
+template<typename _FloatTp, typename _X>
+  inline interval<_FloatTp>
+  operator-(const _X& a, const interval<_FloatTp>& b)
+  {
+    interval<_FloatTp> c(a);
+    return c -= b;
+  }
+
+template<typename _FloatTp>
+  inline interval<_FloatTp>
+  operator-(const interval<_FloatTp>& a, const interval<_FloatTp>& b)
+  {
+    interval<_FloatTp> c(a);
+    return c -= b;
+  }
+
+template<typename _FloatTp> inline interval<_FloatTp>
+  operator-(const interval<_FloatTp>& a)
+  {
+    interval<_FloatTp> c(0);
+    return c -= a;
+  }
+
+template<typename _FloatTp, typename _X>
+  inline interval<_FloatTp>
+  operator*(const interval<_FloatTp>& a, const _X& b)
+  {
+    interval<_FloatTp> c(a);
+    return c *= interval<_FloatTp>(_FloatTp(b));
+  }
+
+template<typename _FloatTp, typename _X>
+  inline interval<_FloatTp>
+  operator*(const _X& a, const interval<_FloatTp>& b)
+  {
+    interval<_FloatTp> c(b);
+    return c *= interval<_FloatTp>(_FloatTp(a));
+  }
+
+template<typename _FloatTp>
+  inline interval<_FloatTp>
+  operator*(const interval<_FloatTp>& a, const interval<_FloatTp>& b)
+  {
+    interval<_FloatTp> c(a);
+    return c *= b;
+  }
+
+template<typename _FloatTp, typename _X>
+  inline interval<_FloatTp>
+  operator/(const interval<_FloatTp>& a, const _X& b)
+  {
+    interval<_FloatTp> c(a);
+    return c /= interval<_FloatTp>(_FloatTp(b));
+  }
+
+template<typename _FloatTp, typename _X>
+  inline interval<_FloatTp>
+  operator/(const _X& a, const interval<_FloatTp>& b)
+  {
+    interval<_FloatTp> c(a);
+    return c /= b;
+  }
+
+template<typename _FloatTp>
+  inline interval<_FloatTp>
+  operator/(const interval<_FloatTp>& a, const interval<_FloatTp>& b)
+  {
+    interval<_FloatTp> c(a);
+
+    if (c == b && b.is_class() != ZERO)
+      c = interval<_FloatTp>(1,1);
+    else
+      c /= b;
+
+    return c;
+  }
+
+template<typename _FloatTp>
+  inline interval<_FloatTp>
+  operator&(const interval<_FloatTp>& a, const interval<_FloatTp>& b)
+  {
+    interval<_FloatTp> c(a);
+    return c &= b;
+  }
+
+template<typename _FloatTp>
+  inline interval<_FloatTp>
+  operator|(const interval<_FloatTp>& a, const interval<_FloatTp>& b)
+  {
+    interval<_FloatTp> c(a);
+    return c |= b;
+  }
+
+template<typename _FloatTp>
+  inline interval<_FloatTp>
+  operator^(const interval<_FloatTp>& a, const interval<_FloatTp>& b)
+  {
+    interval<_FloatTp> c(a);
+    return c ^= b;
+  }
+
+
+template<typename _FloatTp, typename _X>
+  inline bool
+  operator==(const interval<_FloatTp>& a, const _X& b)
+  {
+    interval<_FloatTp> c(b);
+    return c.lower() == a.lower() && c.upper() == a.upper();
+  }
+
+template<typename _FloatTp, typename _X>
+  inline bool
+  operator==(const _X& a, const interval<_FloatTp>& b)
+  {
+    interval<_FloatTp> c(a);
+    return c.lower() == b.lower() && c.upper() == b.upper();
+  }
+
+template<typename _FloatTp1, typename _FloatTp2>
+  inline bool
+  operator==(const interval<_FloatTp1>& a, const interval<_FloatTp2>& b)
+  {
+    return a.lower() == b.lower() && a.upper() == b.upper();
+  }
+
+
+template<typename _FloatTp, typename _X>
+  inline bool
+  operator!=(const interval<_FloatTp>& a, const _X& b)
+  {
+    interval<_FloatTp> c(b);
+    return c.lower() != a.lower() || c.upper() != a.upper();
+  }
+
+template<typename _FloatTp, typename _X>
+  inline bool
+  operator!=(const _X& a, const interval<_FloatTp>& b)
+  {
+    interval<_FloatTp> c(a);
+    return c.lower() != b.lower() || c.upper() != b.upper();
+  }
+
+template<typename _FloatTp1, typename _FloatTp2>
+  inline bool
+  operator!=(const interval<_FloatTp1>& a, const interval<_FloatTp2>& b)
+  { return a.lower() != b.lower() || a.upper() != b.upper(); }
+
+
+template<typename _FloatTp>
+  inline interval<_FloatTp>
+  abs(const interval<_FloatTp>& a)
+  {
+    if (a.lower() >= _FloatTp{0})
+      return a;
+    else if (a.upper() <= _FloatTp{0})
+      return -a;
+    else
+      return interval<_FloatTp>(_FloatTp{0}, (a.upper() > -a.lower() ? a.upper() : -a.lower()));
+  }
+
+
+inline double
+ln2double(fpround rm)
+{
+  long double res = 2;
+
+  round_sentinel rs(rm);
+
+  //FIXME!
+  res = std::log(res);
+
+  return res;
+}
+
+// Log(10) for double
+inline double
+ln10double(fpround rm)
+{
+  long double res = 10;
+
+  round_sentinel rs(rm);
+
+  //FIXME!
+  res = std::log(res);
+
+  return res;
+}
+
+// PI for double
+inline double
+pidouble(fpround rm)
+{
+  long double res = 1;
+
+  round_sentinel rs(rm);
+
+  //FIXME!
+  res = 4 * std::atan(res);
+
+  return res;
+}
+
+template<typename _FloatTp>
+  inline interval<_FloatTp>
+  sqrt(const interval<_FloatTp>& x)
+  {
+    auto lo = sqrt(x.lower(), fpround::downward);
+    auto up = sqrt(x.upper(), fpround::upward);
+    return interval<_FloatTp>(lo, up);
+  }
+
+
+template<typename _FloatTp>
+  inline interval<_FloatTp>
+  log(const interval<_FloatTp>& x)
+  {
+    auto lo = log(x.lower(), fpround::downward);
+    auto up = log(x.upper(), fpround::upward);
+    return interval<_FloatTp>(lo, up);
+  }
+
+template<typename _FloatTp>
+  inline interval<_FloatTp>
+  log10(const interval<_FloatTp>& x)
+  {
+    auto lo = log10(x.lower(), fpround::downward);
+    auto up = log10(x.upper(), fpround::upward);
+    return interval<_FloatTp>(lo, up);
+  }
+
+
+template<typename _FloatTp>
+  inline interval<_FloatTp>
+  exp(const interval<_FloatTp>& x)
+  {
+    auto lo = log10(x.lower(), fpround::downward);
+    auto up = log10(x.upper(), fpround::upward);
+    return interval<_FloatTp>(lo, up);
+  }
+
+template<typename _FloatTp>
+  inline interval<_FloatTp>
+  pow(const interval<_FloatTp>& x, const _FloatTp y)
+  {
+    interval<_FloatTp> c;
+
+    // FIXME! This blows.
+    c = std::log(x);
+    c *= interval<_FloatTp>(y);
+    c = std::exp(c);
+
+    return c;
+  }
+
+template<typename _Float>
+  inline interval<_Float>
+  sin(const interval<_Float>& x)
+  {
+    auto lo = sin(x.lower(), fpround::downward);
+    auto up = sin(x.upper(), fpround::upward);
+    return interval<float>(lo, up);
+  }
+
+template<typename _Float>
+  inline interval<_Float>
+  cos(const interval<_Float>& x)
+  {
+    auto lo = cos(x.lower(), fpround::downward);
+    auto up = cos(x.upper(), fpround::upward);
+    return interval<float>(lo, up);
+  }
+
+template<typename _Float>
+  inline interval<_Float>
+  tan(const interval<_Float>& x)
+  {
+    auto lo = tan(x.lower(), fpround::downward);
+    auto up = tan(x.upper(), fpround::upward);
+    return interval<float>(lo, up);
+  }
+
+template<typename _Float>
+  inline interval<_Float>
+  atan(const interval<_Float>& x)
+  {
+    auto lo = atan(x.lower(), fpround::downward);
+    auto up = atan(x.upper(), fpround::upward);
+    return interval<float>(lo, up);
+  }
+
+///   Use a Taylor series until their is no more change in the result
+///   asin(x) == x + x^3/(2*3)+(1*3)x^5/(2*4*5)+(1*3*5)x^7/(2*4*6*7)....
+///   Use argument reduction via the identity arcsin(x)=2arcsin(x)/(sqrt(2)+sqrt(1-x*x))
+//	  This function replace the other function using Newton iteration. Taylor series is significant
+//    faster e.g 50% for 10 digits, 3x for 100 digits and 5x for 1000 digits.
+//
+inline interval<double>
+asin(const interval<double>& x)
+{
+  int k, sign;
+  interval<double> r, u, v, v2, sqrt2;
+  const double c1(1), c2(2);
+
+  if (x.lower() >= c1 || x.upper() <= -c1)
+    throw std::domain_error("asin");
+
+  v = x;
+  if (v.lower() < -c1)
+    v.lower(-c1);
+  if (v.upper() > c1)
+    v.upper(c1);
+
+  sign = v.is_class();
+  if (sign == NEGATIVE)
+    v = -v;
+
+  // Now use the identity arcsin(x)=2arcsin(x)/(sqrt(2)+sqrt(1-x*x))
+  // until argument is less than dlimit
+  // Reduce the argument to below 0.5 to make the Newton run faster
+  sqrt2 = interval<double>(c2);  // Ensure correct number of digits
+  sqrt2 = sqrt(sqrt2);	// Now calculate sqrt2 with precision digits
+  for (k = 0; v.lower() > 0.5; ++k)
+    v /= sqrt2 * sqrt(interval<double>(c1)
+			+ sqrt(interval<double>(c1) - v * v));
+
+  v2 = v * v;
+  r = v;
+  u = v;
+  // Now iterate using Taylor expansion
+  for (unsigned int j = 3; ; j += 2)
+    {
+      auto uc = interval<double>((j - 2) * (j - 2));
+      auto lc = interval<double>(j * j - j);
+      v = uc * v2 / lc;
+      r *= v;
+      if (u.lower() + r.lower() == u.lower()
+	  || u.upper() + r.upper() == u.upper())
+	break;
+      u += r;
+    }
+
+  if (k > 0)
+    u *= interval<double>(1 << k);
+
+  if (sign == NEGATIVE)
+    u = -u;
+
+  return u;
+}
+
+inline interval<float>
+asin(const interval<float>& x)
+{
+  interval<double> asin(const interval<double>&);
+  interval<double> fx(x);
+
+  fx = asin(fx);
+  auto lo = to_float(fx.lower(), fpround::downward);
+  auto up = to_float(fx.upper(), fpround::upward);
+  return interval<float>(lo, up);
+}
+
+inline interval<double>
+acos(const interval<double>& x)
+{
+  interval<double> pi, res;
+  const double c1(1);
+
+  if (x.lower() >= c1 || x.upper() <= -c1)
+    throw std::domain_error("acos");
+
+  pi.lower(pidouble(fpround::downward));
+  pi.upper(pidouble(fpround::upward));
+  res = pi * interval<double>(0.5) - asin(x);
+  return res;
+}
+
+
+inline interval<float>
+acos(const interval<float>& x)
+{
+  interval<double> acos(const interval<double>&);
+  interval<double> fx(x);
+
+  fx = acos(fx);
+  auto lo = to_float(fx.lower(), fpround::downward);
+  auto up = to_float(fx.upper(), fpround::upward);
+  return interval<float>(lo, up);
+}
+
+
+template<typename _Float>
+  inline interval<_Float>
+  sinh(const interval<_Float>& x)
+  {
+    auto lo = sinh(x.lower(), fpround::downward);
+    auto up = sinh(x.upper(), fpround::upward);
+    return interval<float>(lo, up);
+  }
+
+template<typename _Float>
+  inline interval<_Float>
+  cosh(const interval<_Float>& x)
+  {
+    auto lo = cosh(x.lower(), fpround::downward);
+    auto up = cosh(x.upper(), fpround::upward);
+    return interval<float>(lo, up);
+  }
+
+template<typename _Float>
+  inline interval<_Float>
+  tanh(const interval<_Float>& x)
+  {
+    auto lo = tanh(x.lower(), fpround::downward);
+    auto up = tanh(x.upper(), fpround::upward);
+    return interval<float>(lo, up);
+  }
+
+#endif // INTERVAL

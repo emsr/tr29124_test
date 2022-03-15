@@ -1,0 +1,32 @@
+\hypertarget{namespaceemsr}{}\doxysection{emsr Namespace Reference}
+\label{namespaceemsr}\index{emsr@{emsr}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}}
+\begin{DoxyCompactList}\small\item\em \+\_\+\+Chebyshev represents a \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} fit of a function. Given a function {\ttfamily func}, the lower limit {\ttfamily a}, the upper limit {\ttfamily b}, and the number of points {\ttfamily n} \+\_\+\+Chebyshev contains the coefficients of a \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} polynomial expansion such that \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Tp , typename CharT , typename Traits  = std\+::char\+\_\+traits$<$\+Char\+T$>$$>$ }\\std\+::basic\+\_\+ostream$<$ CharT, Traits $>$ \& \mbox{\hyperlink{namespaceemsr_a8a93baa6d2517ab89f043177ff745e9f}{operator$<$$<$}} (std\+::basic\+\_\+ostream$<$ CharT, Traits $>$ \&os, const \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}}$<$ Tp $>$ \&cheb)
+\item 
+{\footnotesize template$<$typename Tp $>$ }\\emsr\+::\+Polynomial$<$ Tp $>$ \mbox{\hyperlink{namespaceemsr_a8a4fd383c8dbd6443f1332ccff289a80}{economize\+\_\+polynomial}} (Tp a, Tp b, const emsr\+::\+Polynomial$<$ Tp $>$ \&poly, Tp eps)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespaceemsr_a8a4fd383c8dbd6443f1332ccff289a80}\label{namespaceemsr_a8a4fd383c8dbd6443f1332ccff289a80}} 
+\index{emsr@{emsr}!economize\_polynomial@{economize\_polynomial}}
+\index{economize\_polynomial@{economize\_polynomial}!emsr@{emsr}}
+\doxysubsubsection{\texorpdfstring{economize\_polynomial()}{economize\_polynomial()}}
+{\footnotesize\ttfamily template$<$typename Tp $>$ \\
+emsr\+::\+Polynomial$<$Tp$>$ emsr\+::economize\+\_\+polynomial (\begin{DoxyParamCaption}\item[{Tp}]{a,  }\item[{Tp}]{b,  }\item[{const emsr\+::\+Polynomial$<$ Tp $>$ \&}]{poly,  }\item[{Tp}]{eps }\end{DoxyParamCaption})}
+
+Economize a polynomial poly over a range \mbox{[}a, b\mbox{]} by returning a new lower-\/order polynomial so that evaluations of the new polynomial will equal those of the old polynomial within the specified tolerance eps over the requested range. \mbox{\Hypertarget{namespaceemsr_a8a93baa6d2517ab89f043177ff745e9f}\label{namespaceemsr_a8a93baa6d2517ab89f043177ff745e9f}} 
+\index{emsr@{emsr}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!emsr@{emsr}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily template$<$typename Tp , typename CharT , typename Traits  = std\+::char\+\_\+traits$<$\+Char\+T$>$$>$ \\
+std\+::basic\+\_\+ostream$<$CharT, Traits$>$\& emsr\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::basic\+\_\+ostream$<$ CharT, Traits $>$ \&}]{os,  }\item[{const \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}}$<$ Tp $>$ \&}]{cheb }\end{DoxyParamCaption})}
+
+Write the \mbox{\hyperlink{classemsr_1_1Chebyshev}{Chebyshev}} expansion to an output stream. 

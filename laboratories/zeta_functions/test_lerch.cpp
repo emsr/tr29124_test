@@ -8,33 +8,36 @@
 #include <limits>
 #include <iostream>
 #include <iomanip>
-#include <ext/summation.h>
-#include <ext/fp_type_util.h>
+
 #include <statistics.h>
+
+#include <emsr/summation.h>
+#include <emsr/fp_type_util.h>
+#include <emsr/sf_zeta.h>
 
 #include <3rdparty/lerchphi/Source/lerchphi.h>
 
   /**
    * A functor for a vanWijnGaarden compressor.
    * vanWijnGaarden requires:
-   *   _Tp operator()(int) that returns a term in the original defining series.
+   *   Tp operator()(int) that returns a term in the original defining series.
    */
-  template<typename _Tp>
-    class __lerch_term
+  template<typename Tp>
+    class lerch_term
     {
     public:
 
-      using value_type = _Tp;
+      using value_type = Tp;
 
-      __lerch_term(value_type __z, value_type __s, value_type __a)
-      : _M_z{__z}, _M_s{__s}, _M_a{__a}
+      lerch_term(value_type z, value_type s, value_type a)
+      : _M_z{z}, _M_s{s}, _M_a{a}
       { }
 
       value_type
-      operator()(std::size_t __i) const
+      operator()(std::size_t i) const
       {
-	return std::pow(_M_z, value_type(__i))
-	     / std::pow(_M_a + value_type(__i), _M_s);
+	return std::pow(_M_z, value_type(i))
+	     / std::pow(_M_a + value_type(i), _M_s);
       }
 
     private:
@@ -47,86 +50,86 @@
   /**
    * This function blows up on nonpositive integeral a.
    */
-  template<typename _Tp>
-    _Tp
-    __lerch_sum(_Tp __z, _Tp __s, _Tp __a)
+  template<typename Tp>
+    Tp
+    lerch_sum(Tp z, Tp s, Tp a)
     {
-      const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
-      const auto _S_eps = __gnu_cxx::__epsilon(__s);
+      const auto s_nan = emsr::quiet_NaN(s);
+      const auto s_eps = emsr::epsilon(s);
 
-      const auto __aint = __gnu_cxx::__fp_is_integer(__a);
-      if (__aint && __aint() <= 0)
-	return _S_nan;
-      else if (std::abs(std::abs(__z) - _Tp{1}) < _S_eps
-		&& std::real(__s) <= _Tp{1} + _S_eps)
-	return _S_nan;
-      else if (std::abs(__z) > _Tp{1} + _S_eps)
-	return _S_nan;
+      const auto aint = emsr::fp_is_integer(a);
+      if (aint && aint() <= 0)
+	return s_nan;
+      else if (std::abs(std::abs(z) - Tp{1}) < s_eps
+		&& std::real(s) <= Tp{1} + s_eps)
+	return s_nan;
+      else if (std::abs(z) > Tp{1} + s_eps)
+	return s_nan;
       else
 	{
-	  constexpr auto _S_maxit = 100000u;
-	  auto __zpow = _Tp{1};
-	  auto __sum = std::pow(__a, -__s);
-	  for (auto __k = 1u; __k < _S_maxit; ++__k)
+	  constexpr auto s_maxit = 100000u;
+	  auto zpow = Tp{1};
+	  auto sum = std::pow(a, -s);
+	  for (auto k = 1u; k < s_maxit; ++k)
 	    {
-	      __zpow *= __z;
-	      auto __term = __zpow * std::pow(__a + __k, -__s);
-	      __sum += __term;
-	      if (std::abs(__term / __sum) < _S_eps)
+	      zpow *= z;
+	      auto term = zpow * std::pow(a + k, -s);
+	      sum += term;
+	      if (std::abs(term / sum) < s_eps)
 		break;
 	    }
-	  return __sum;
+	  return sum;
 	}
     }
 
   /**
    * This function blows up on nonpositive integeral a.
    */
-  template<typename _Tp>
-    _Tp
-    __lerch_vanwijngaarden_sum(_Tp __z, _Tp __s, _Tp __a)
+  template<typename Tp>
+    Tp
+    lerch_vanwijngaarden_sum(Tp z, Tp s, Tp a)
     {
-      const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
-      const auto _S_eps = __gnu_cxx::__epsilon(__s);
+      const auto s_nan = emsr::quiet_NaN(s);
+      const auto s_eps = emsr::epsilon(s);
 
-      const auto __aint = __gnu_cxx::__fp_is_integer(__a);
-      if (__aint && __aint() <= 0)
-	return _S_nan;
-      else if (std::abs(std::abs(__z) - _Tp{1}) < _S_eps
-		&& std::real(__s) <= _Tp{1} + _S_eps)
-	return _S_nan;
-      else if (std::abs(__z) > _Tp{1} + _S_eps)
-	return _S_nan;
-      else if (__z < _Tp{0})
+      const auto aint = emsr::fp_is_integer(a);
+      if (aint && aint() <= 0)
+	return s_nan;
+      else if (std::abs(std::abs(z) - Tp{1}) < s_eps
+		&& std::real(s) <= Tp{1} + s_eps)
+	return s_nan;
+      else if (std::abs(z) > Tp{1} + s_eps)
+	return s_nan;
+      else if (z < Tp{0})
 	{
-	  constexpr auto _S_maxit = 100000u;
-	  using __lerch_t = __lerch_term<_Tp>;
-	  auto __lerch_fun = __lerch_t(__z, __s, __a);
-	  __gnu_cxx::_VanWijngaardenSum<_Tp> __sum;
-	  for (auto __k = 0u; __k < _S_maxit; ++__k)
+	  constexpr auto s_maxit = 100000u;
+	  using lerch_t = lerch_term<Tp>;
+	  auto lerch_fun = lerch_t(z, s, a);
+	  emsr::VanWijngaardenSum<Tp> sum;
+	  for (auto k = 0u; k < s_maxit; ++k)
 	    {
-	      auto __temp = __lerch_fun(__k);
-	      __sum += __temp;
-	      if (std::abs(__temp / __sum) < _S_eps)
+	      auto temp = lerch_fun(k);
+	      sum += temp;
+	      if (std::abs(temp / sum) < s_eps)
 		break;
 	    }
-	  return __sum();
+	  return sum();
 	}
       else
 	{
-	  constexpr auto _S_maxit = 100000u;
-	  using __lerch_t = __lerch_term<_Tp>;
-	  auto __lerch_fun = __lerch_t(__z, __s, __a);
-	  __gnu_cxx::_VanWijngaardenCompressor<__lerch_t> __term(__lerch_fun);
-	  __gnu_cxx::_VanWijngaardenSum<_Tp> __sum;
-	  for (auto __k = 0u; __k < _S_maxit; ++__k)
+	  constexpr auto s_maxit = 100000u;
+	  using lerch_t = lerch_term<Tp>;
+	  auto lerch_fun = lerch_t(z, s, a);
+	  emsr::VanWijngaardenCompressor<lerch_t> term(lerch_fun);
+	  emsr::VanWijngaardenSum<Tp> sum;
+	  for (auto k = 0u; k < s_maxit; ++k)
 	    {
-	      auto __temp = __term[__k];
-	      __sum += __temp;
-	      if (std::abs(__temp / __sum) < _S_eps)
+	      auto temp = term[k];
+	      sum += temp;
+	      if (std::abs(temp / sum) < s_eps)
 		break;
 	    }
-	  return __sum();
+	  return sum();
 	}
     }
 
@@ -134,81 +137,81 @@
    * This function blows up on nonpositive integeral a.
    *  As usual, the binomial coefficient kills this for practical purposes.
    */
-  template<typename _Tp>
-    _Tp
-    __lerch_double_sum(_Tp __z, _Tp __s, _Tp __a)
+  template<typename Tp>
+    Tp
+    lerch_double_sum(Tp z, Tp s, Tp a)
     {
-      const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
-      const auto _S_eps = __gnu_cxx::__epsilon(__s);
+      const auto s_nan = emsr::quiet_NaN(s);
+      const auto s_eps = emsr::epsilon(s);
 
-      const auto __aint = __gnu_cxx::__fp_is_integer(__a);
-      if (__aint && __aint() <= 0)
-	return _S_nan;
-      else if (std::abs(std::abs(__z) - _Tp{1}) < _S_eps
-		&& std::real(__s) <= _Tp{1} + _S_eps)
-	return _S_nan;
-      else if (std::abs(__z) > _Tp{1} + _S_eps)
-	return _S_nan;
+      const auto aint = emsr::fp_is_integer(a);
+      if (aint && aint() <= 0)
+	return s_nan;
+      else if (std::abs(std::abs(z) - Tp{1}) < s_eps
+		&& std::real(s) <= Tp{1} + s_eps)
+	return s_nan;
+      else if (std::abs(z) > Tp{1} + s_eps)
+	return s_nan;
       else
 	{
-	  constexpr auto _S_maxit = 10000u;
-	  auto __lerch = std::pow(__a, -__s);
-	  const auto __zfrac = -__z / (_Tp{1} - __z);
-	  auto __zfact = _Tp{1};
-	  for (auto __n = 1u; __n < _S_maxit; ++__n)
+	  constexpr auto s_maxit = 10000u;
+	  auto lerch = std::pow(a, -s);
+	  const auto zfrac = -z / (Tp{1} - z);
+	  auto zfact = Tp{1};
+	  for (auto n = 1u; n < s_maxit; ++n)
 	    {
-	      auto __term = std::pow(__a, -__s);
-	      auto __binomial = _Tp{1};
-	      __gnu_cxx::_VanWijngaardenSum<_Tp> __sum(__term);
-	      for (auto __k = 1; __k <= __n; ++__k)
+	      auto term = std::pow(a, -s);
+	      auto binomial = Tp{1};
+	      emsr::VanWijngaardenSum<Tp> sum(term);
+	      for (auto k = 1; k <= n; ++k)
 		{
-		  __binomial *= -_Tp(__n - __k + 1) / _Tp(__k);
-		  __term *= __z * __binomial * std::pow(__a + __k, -__s);
-		  __sum += __term;
+		  binomial *= -Tp(n - k + 1) / Tp(k);
+		  term *= z * binomial * std::pow(a + k, -s);
+		  sum += term;
 		}
-	      __zfact *= __zfrac;
-	      __lerch += __zfact * __sum();
-	      if (std::abs(__zfact * __sum() / __lerch) < _S_eps)
+	      zfact *= zfrac;
+	      lerch += zfact * sum();
+	      if (std::abs(zfact * sum() / lerch) < s_eps)
 		break;
 	    }
-	  __lerch /= (_Tp{1} - __z);
-	  return __lerch;
+	  lerch /= (Tp{1} - z);
+	  return lerch;
 	}
     }
 
   /**
    * Try the WenigerDelta<MonotoneVanWijngaarden> composition.
    */
-  template<typename _Tp>
-    _Tp
-    __lerch_delta_vanwijngaarden_sum(_Tp __z, _Tp __s, _Tp __a)
+  template<typename Tp>
+    Tp
+    lerch_delta_vanwijngaarden_sum(Tp z, Tp s, Tp a)
     {
-      const auto _S_eps = __gnu_cxx::__epsilon(__s);
-      constexpr auto _S_maxit = 1000u;
+      const auto s_eps = emsr::epsilon(s);
+      constexpr auto s_maxit = 1000u;
 
-      __gnu_cxx::_WenigerDeltaSum<__gnu_cxx::_VanWijngaardenSum<_Tp>> _WDvW;
-      if (__z >= _Tp{0})
+      emsr::WenigerDeltaSum<emsr::VanWijngaardenSum<Tp>> _WDvW;
+      if (z >= Tp{0})
 	{
-	  using __lerch_t = __lerch_term<_Tp>;
-	  using __lerch_cmp_t = __gnu_cxx::_VanWijngaardenCompressor<__lerch_t>;
-	  auto _VwT = __lerch_cmp_t(__lerch_t(__z, __s, __a));
-	  for (auto __k = 0u; __k < _S_maxit; ++__k)
+	  using lerch_t = lerch_term<Tp>;
+	  using lerch_cmp_t = emsr::VanWijngaardenCompressor<lerch_t>;
+	  auto _VwT = lerch_cmp_t(lerch_t(z, s, a));
+	  for (auto k = 0u; k < s_maxit; ++k)
 	    {
-	      auto __term = _VwT[__k];
-	      _WDvW += __term;
-	      if (std::abs(__term) < _S_eps * std::abs(_WDvW()))
+	      auto term = _VwT[k];
+	      _WDvW += term;
+	      if (std::abs(term) < s_eps * std::abs(_WDvW()))
 		break;
 	    }
 	  return _WDvW();
 	}
       else
 	{
-	  auto _LT = __lerch_term<_Tp>(__z, __s, __a);
-	  for (auto __k = 0u; __k < _S_maxit; ++__k)
+	  auto _LT = lerch_term<Tp>(z, s, a);
+	  for (auto k = 0u; k < s_maxit; ++k)
 	    {
-	      auto __term = _LT(__k);
-	      _WDvW += __term;
-	      if (std::abs(__term) < _S_eps * std::abs(_WDvW()))
+	      auto term = _LT(k);
+	      _WDvW += term;
+	      if (std::abs(term) < s_eps * std::abs(_WDvW()))
 		break;
 	    }
 	  return _WDvW();
@@ -218,73 +221,73 @@
   /**
    * This function blows up on nonpositive integeral a.
    */
-  template<typename _Tp>
-    _Tp
-    __lerch_phi(_Tp __z, _Tp __s, _Tp __a)
+  template<typename Tp>
+    Tp
+    lerch_phi(Tp z, Tp s, Tp a)
     {
-      const auto _S_nan = __gnu_cxx::__quiet_NaN(__s);
-      const auto _S_eps = __gnu_cxx::__epsilon(__s);
+      const auto s_nan = emsr::quiet_NaN(s);
+      const auto s_eps = emsr::epsilon(s);
 
-      if (std::isnan(__z) || std::isnan(__s) || std::isnan(__a))
-	return _S_nan;
-      else if (std::abs(std::abs(__z) - _Tp{1}) < _S_eps
-		&& std::real(__s) <= _Tp{1} + _S_eps)
-	return _S_nan;
-      else if (std::abs(__z) > _Tp{1} + _S_eps)
-	return _S_nan;
+      if (std::isnan(z) || std::isnan(s) || std::isnan(a))
+	return s_nan;
+      else if (std::abs(std::abs(z) - Tp{1}) < s_eps
+		&& std::real(s) <= Tp{1} + s_eps)
+	return s_nan;
+      else if (std::abs(z) > Tp{1} + s_eps)
+	return s_nan;
       else
 	{
-	  const auto __aint = __gnu_cxx::__fp_is_integer(__a);
+	  const auto aint = emsr::fp_is_integer(a);
 
-	  const auto __sint = __gnu_cxx::__fp_is_integer(__s);
-	  const bool __tinyz = std::abs(__z) < _S_eps; // _S_min?
-	  const bool __smallz = !__tinyz && (std::abs(__z) < _Tp{0.5});
+	  const auto sint = emsr::fp_is_integer(s);
+	  const bool tinyz = std::abs(z) < s_eps; // s_min?
+	  const bool smallz = !tinyz && (std::abs(z) < Tp{0.5});
 
-	  if (__aint && __aint() <= 0)
-	    return _S_nan;
-	  else if (__a < _Tp{0})
+	  if (aint && aint() <= 0)
+	    return s_nan;
+	  else if (a < Tp{0})
 	    {
-	      if (__sint)
+	      if (sint)
 		{
-		  int __sign = __sint() % 2 == 0 ? +1 : -1;
-		  if (__tinyz)
-		    return __sign * _Tp{1} / std::pow(std::abs(__a), __s);
+		  int sign = sint() % 2 == 0 ? +1 : -1;
+		  if (tinyz)
+		    return sign * Tp{1} / std::pow(std::abs(a), s);
 		  else
 		    {
-		      auto __m = -int(std::floor(__a));
-		      auto __a1 = __a + _Tp(__m);
-		      auto __sum1 = _Tp{0};
-		      for (int __i = 0; __i < __m; ++__i)
+		      auto m = -int(std::floor(a));
+		      auto a1 = a + Tp(m);
+		      auto sum1 = Tp{0};
+		      for (int i = 0; i < m; ++i)
 			{
-			  __sum1 += __sign * std::pow(std::abs(__z), __i)
-				  / std::pow(std::abs(__a + __i), _Tp(__sint()));
-			  if (__z < _Tp{0})
-			    __sign = -__sign;
+			  sum1 += sign * std::pow(std::abs(z), i)
+				  / std::pow(std::abs(a + i), Tp(sint()));
+			  if (z < Tp{0})
+			    sign = -sign;
 			}
-		      auto __sum = _Tp{0};
-		      if (__smallz)
-			__sum = __lerch_sum(__z, __s, __a1);
+		      auto sum = Tp{0};
+		      if (smallz)
+			sum = lerch_sum(z, s, a1);
 		      else
-			__sum
-			  = __lerch_delta_vanwijngaarden_sum(__z, __s, __a1);
-		      __sign = 1;
-		      if (__z < _Tp{0} && __m % 2 != 0)
-			__sign = -1;
-		      return __sum1
-			   + __sum * __sign * std::pow(std::abs(__z), __m);
+			sum
+			  = lerch_delta_vanwijngaarden_sum(z, s, a1);
+		      sign = 1;
+		      if (z < Tp{0} && m % 2 != 0)
+			sign = -1;
+		      return sum1
+			   + sum * sign * std::pow(std::abs(z), m);
 		    }
 		}
 	      else // s is not an integer - Phi is complex.
-		return _S_nan;
+		return s_nan;
 	    }
-	  else if (__tinyz)
-	    return _Tp{1} / std::pow(__a, __s);
+	  else if (tinyz)
+	    return Tp{1} / std::pow(a, s);
 	  else // a > 0
 	    {
-	      if (__smallz)
-		return __lerch_sum(__z, __s, __a);
+	      if (smallz)
+		return lerch_sum(z, s, a);
 	      else
-		return __lerch_delta_vanwijngaarden_sum(__z, __s, __a);
+		return lerch_delta_vanwijngaarden_sum(z, s, a);
 	    }
 	}
     }
@@ -294,14 +297,14 @@
    * @f[
    *   \zeta(s,a) = \Phi(1,s,a)
    * @f]
-   * @param[in] __s The argument s > 1
-   * @param[in] __a The parameter
+   * @param[in] s The argument s > 1
+   * @param[in] a The parameter
    */
-  template<typename _Tp>
-    _Tp
-    __hurwitz_zeta_lerch(_Tp __s, _Tp __a)
+  template<typename Tp>
+    Tp
+    hurwitz_zeta_lerch(Tp s, Tp a)
     {
-      return __lerch_phi(_Tp{1}, __s, __a);
+      return lerch_phi(Tp{1}, s, a);
     }
 
   /**
@@ -309,13 +312,13 @@
    * @f[
    *   \zeta(s) = \Phi(1,s,1)
    * @f]
-   * @param[in] __s The argument s > 1
+   * @param[in] s The argument s > 1
    */
-  template<typename _Tp>
-    _Tp
-    __riemann_zeta_lerch(_Tp __s)
+  template<typename Tp>
+    Tp
+    riemann_zeta_lerch(Tp s)
     {
-      return __lerch_phi(_Tp{1}, __s, _Tp{1});
+      return lerch_phi(Tp{1}, s, Tp{1});
     }
 
   /**
@@ -323,13 +326,13 @@
    * @f[
    *   \beta(s) = \frac{1}{2^s}\Phi(-1,s,\frac{1}{2})
    * @f]
-   * @param[in] __s The argument s > 1
+   * @param[in] s The argument s > 1
    */
-  template<typename _Tp>
-    _Tp
-    __dirichlet_beta_lerch(_Tp __s)
+  template<typename Tp>
+    Tp
+    dirichlet_beta_lerch(Tp s)
     {
-      return __lerch_phi(_Tp{-1}, __s, _Tp{0.5L}) / std::pow(_Tp{2}, __s);
+      return lerch_phi(Tp{-1}, s, Tp{0.5L}) / std::pow(Tp{2}, s);
     }
 
   /**
@@ -337,13 +340,13 @@
    * @f[
    *   \eta(s) = \Phi(-1,s,1)
    * @f]
-   * @param[in] __s The argument s > 1
+   * @param[in] s The argument s > 1
    */
-  template<typename _Tp>
-    _Tp
-    __dirichlet_eta_lerch(_Tp __s)
+  template<typename Tp>
+    Tp
+    dirichlet_eta_lerch(Tp s)
     {
-      return __lerch_phi(_Tp{-1}, __s, _Tp{1});
+      return lerch_phi(Tp{-1}, s, Tp{1});
     }
 
   /**
@@ -351,13 +354,13 @@
    * @f[
    *   \beta(s) = \frac{1}{2^s}\Phi(1,s,\frac{1}{2})
    * @f]
-   * @param[in] __s The argument s > 1
+   * @param[in] s The argument s > 1
    */
-  template<typename _Tp>
-    _Tp
-    __dirichlet_lambda_lerch(_Tp __s)
+  template<typename Tp>
+    Tp
+    dirichlet_lambda_lerch(Tp s)
     {
-      return __lerch_phi(_Tp{1}, __s, _Tp{0.5L}) / std::pow(_Tp{2}, __s);
+      return lerch_phi(Tp{1}, s, Tp{0.5L}) / std::pow(Tp{2}, s);
     }
 
   /**
@@ -365,13 +368,13 @@
    * @f[
    *   \L_s(z) = \Phi(z,s,1)
    * @f]
-   * @param[in] __s The argument s > 1
+   * @param[in] s The argument s > 1
    */
-  template<typename _Tp>
-    _Tp
-    __polylog_lerch(_Tp __s, _Tp __z)
+  template<typename Tp>
+    Tp
+    polylog_lerch(Tp s, Tp z)
     {
-      return __lerch_phi(__z, __s, _Tp{1});
+      return lerch_phi(z, s, Tp{1});
     }
 
   /**
@@ -379,54 +382,54 @@
    * @f[
    *   \chi_\nu(z) = \frac{z}{2^\nu}\Phi(z^2,\nu,1)
    * @f]
-   * @param[in] __s The argument s > 1
+   * @param[in] s The argument s > 1
    */
-  template<typename _Tp>
-    _Tp
-    __legendre_chi(_Tp __nu, _Tp __z)
+  template<typename Tp>
+    Tp
+    legendre_chi(Tp nu, Tp z)
     {
-      return __z * __lerch_phi(__z * __z, __nu, _Tp{0.5L})
-	   / std::pow(_Tp{2}, __nu);
+      return z * lerch_phi(z * z, nu, Tp{0.5L})
+	   / std::pow(Tp{2}, nu);
     }
 
   /**
    * 
    */
-  template<typename _Tp>
-    _Tp
-    __fermi_dirac_lerch(_Tp __s, _Tp __mu)
+  template<typename Tp>
+    Tp
+    fermi_dirac_lerch(Tp s, Tp mu)
     {
-      auto __expmu = std::exp(-__mu);
-      auto __gamsp1 = std::tgamma(_Tp{1} + __s);
-      return __gamsp1 * __lerch_phi(-__expmu, _Tp{1} + __s, _Tp{1}) / __expmu;
+      auto expmu = std::exp(-mu);
+      auto gamsp1 = std::tgamma(Tp{1} + s);
+      return gamsp1 * lerch_phi(-expmu, Tp{1} + s, Tp{1}) / expmu;
     }
 
   /**
    * 
    */
-  template<typename _Tp>
-    _Tp
-    __bose_einstein_lerch(_Tp __s, _Tp __mu)
+  template<typename Tp>
+    Tp
+    bose_einstein_lerch(Tp s, Tp mu)
     {
-      auto __expmu = std::exp(__mu);
-      auto __gamsp1 = std::tgamma(_Tp{1} + __s);
-      return __expmu * __gamsp1 * __lerch_phi(__expmu, _Tp{1} + __s, _Tp{1});
+      auto expmu = std::exp(mu);
+      auto gamsp1 = std::tgamma(Tp{1} + s);
+      return expmu * gamsp1 * lerch_phi(expmu, Tp{1} + s, Tp{1});
     }
 
   float
-  lerch_phif(float __z, float __s, float __a)
-  { return __lerch_phi<float>(__z, __s, __a); }
+  lerch_phif(float z, float s, float a)
+  { return lerch_phi<float>(z, s, a); }
 
   long double
-  lerch_phil(long double __z, long double __s, long double __a)
-  { return __lerch_phi<long double>(__z, __s, __a); }
+  lerch_phil(long double z, long double s, long double a)
+  { return lerch_phi<long double>(z, s, a); }
 
   template<typename _Tpz, typename _Tps, typename _Tpa>
-    __gnu_cxx::fp_promote_t<_Tpz, _Tps, _Tpa>
-    lerch_phi(_Tpz __z, _Tps __s, _Tpa __a)
+    emsr::fp_promote_t<_Tpz, _Tps, _Tpa>
+    lerch_phi(_Tpz z, _Tps s, _Tpa a)
     {
-      using __type = __gnu_cxx::fp_promote_t<_Tpz, _Tps, _Tpa>;
-      return __lerch_phi<__type>(__z, __s, __a);
+      using type = emsr::fp_promote_t<_Tpz, _Tps, _Tpa>;
+      return lerch_phi<type>(z, s, a);
     }
 
 
@@ -460,7 +463,7 @@ int
 main()
 {
   using Tp = double;
-  constexpr auto _S_nan = std::numeric_limits<Tp>::quiet_NaN();
+  constexpr auto s_nan = std::numeric_limits<Tp>::quiet_NaN();
 
   std::cout.precision(std::numeric_limits<Tp>::digits10);
   auto width = 8 + std::numeric_limits<Tp>::digits10;
@@ -510,7 +513,7 @@ main()
 	{
 	  std::cout << std::setw(width) << "fail";
 	  std::cout << std::setw(width) << "fail";
-	  phi = _S_nan;
+	  phi = s_nan;
 	}
       double acc = 2 * std::numeric_limits<Tp>::epsilon();
       double lphi = 0.0;
@@ -538,16 +541,16 @@ main()
   for (int iz = -99; iz <= +99; ++iz)
     {
       auto z = 0.01 * iz;
-      auto lerch1 = __lerch_sum(z, s, a);
-      auto lerch2 = __lerch_vanwijngaarden_sum(z, s, a);
-      //auto lerch3 = __lerch_double_sum(z, s, a);
-      auto lerch4 = __lerch_delta_vanwijngaarden_sum(z, s, a);
+      auto lerch1 = lerch_sum(z, s, a);
+      auto lerch2 = lerch_vanwijngaarden_sum(z, s, a);
+      //auto lerch3 = lerch_double_sum(z, s, a);
+      auto lerch4 = lerch_delta_vanwijngaarden_sum(z, s, a);
       double acc = 2 * std::numeric_limits<Tp>::epsilon();
       double lphi = 0.0;
       int iter = 0;
       auto ok = lerchphi(&z, &s, &a, &acc, &lphi, &iter);
       if (ok != 0)
-	lphi = _S_nan;
+	lphi = s_nan;
       std::cout << ' ' << std::setw(width) << z
 		<< ' ' << std::setw(width) << lerch1
 		<< ' ' << std::setw(width) << lerch2
@@ -567,16 +570,16 @@ main()
   for (int iz = -99; iz <= +99; ++iz)
     {
       auto z = 0.01 * iz;
-      auto lerch1 = __lerch_sum(z, s, a);
-      auto lerch2 = __lerch_vanwijngaarden_sum(z, s, a);
-      //auto lerch3 = __lerch_double_sum(z, s, a);
-      auto lerch4 = __lerch_delta_vanwijngaarden_sum(z, s, a);
+      auto lerch1 = lerch_sum(z, s, a);
+      auto lerch2 = lerch_vanwijngaarden_sum(z, s, a);
+      //auto lerch3 = lerch_double_sum(z, s, a);
+      auto lerch4 = lerch_delta_vanwijngaarden_sum(z, s, a);
       double acc = 2 * std::numeric_limits<Tp>::epsilon();
       double lphi = 0.0;
       int iter = 0;
       auto ok = lerchphi(&z, &s, &a, &acc, &lphi, &iter);
       if (ok != 0)
-	lphi = _S_nan;
+	lphi = s_nan;
       std::cout << ' ' << std::setw(width) << z
 		<< ' ' << std::setw(width) << lerch1
 		<< ' ' << std::setw(width) << lerch2
@@ -603,7 +606,7 @@ main()
   for (int iz = -99; iz <= +99; ++iz)
     {
       auto z = 0.01 * iz;
-      auto zlerch = _S_nan;
+      auto zlerch = s_nan;
       try
 	{
 	  zlerch = z * lerch_phi(z, s, a);
@@ -612,7 +615,7 @@ main()
 	{
 	  std::cout << " fail\n";
 	}
-      auto dilog = __gnu_cxx::dilog(z);
+      auto dilog = emsr::dilog(z);
       auto delta = zlerch - dilog;
       dilog_stats << delta;
       std::cout << ' ' << std::setw(width) << z
@@ -640,7 +643,7 @@ main()
   for (int is = 101; is <= 200; ++is)
     {
       auto s = 0.01 * is;
-      auto lerch = _S_nan;
+      auto lerch = s_nan;
       try
 	{
 	  lerch = lerch_phi(z, s, a);
@@ -648,7 +651,7 @@ main()
       catch (...)
 	{
 	}
-      auto zeta = std::riemann_zeta(s);
+      auto zeta = emsr::riemann_zeta(s);
       auto delta = lerch - zeta;
       riemann_stats << delta;
       std::cout << ' ' << std::setw(width) << s
@@ -678,7 +681,7 @@ main()
       for (int is = 101; is <= 200; ++is)
 	{
 	  auto s = 0.01 * is;
-	  auto lerch = _S_nan;
+	  auto lerch = s_nan;
 	  try
 	    {
 	      lerch = lerch_phi(z, s, a);
@@ -686,7 +689,7 @@ main()
 	  catch (...)
 	    {
 	    }
-	  auto zeta = __gnu_cxx::hurwitz_zeta(s, a);
+	  auto zeta = emsr::hurwitz_zeta(s, a);
 	  auto delta = lerch - zeta;
 	  hurwitz_stats << delta;
 	  std::cout << ' ' << std::setw(width) << s
@@ -712,16 +715,16 @@ main()
 	  for (int iz = -99; iz <= +99; ++iz)
 	    {
 	      auto z = 0.01 * iz;
-	      auto lerch1 = __lerch_sum(z, s, a);
-	      auto lerch2 = __lerch_vanwijngaarden_sum(z, s, a);
-	      //auto lerch3 = __lerch_double_sum(z, s, a);
-	      auto lerch4 = __lerch_delta_vanwijngaarden_sum(z, s, a);
+	      auto lerch1 = lerch_sum(z, s, a);
+	      auto lerch2 = lerch_vanwijngaarden_sum(z, s, a);
+	      //auto lerch3 = lerch_double_sum(z, s, a);
+	      auto lerch4 = lerch_delta_vanwijngaarden_sum(z, s, a);
 	      double acc = 2 * std::numeric_limits<Tp>::epsilon();
 	      double lphi = 0.0;
 	      int iter = 0;
 	      auto ok = lerchphi(&z, &s, &a, &acc, &lphi, &iter);
 	      if (ok != 0)
-	        lphi = _S_nan;
+	        lphi = s_nan;
 	      std::cout << ' ' << std::setw(width) << z
 			<< ' ' << std::setw(width) << lerch1
 			<< ' ' << std::setw(width) << lerch2
@@ -735,6 +738,6 @@ main()
 	}
     }
 
-  //auto lerch1 = __lerch_vanwijngaarden_sum(-0.75, Tp{1}, Tp{2});
-  //auto lerch2 = __lerch_vanwijngaarden_sum(-0.5, Tp{0}, Tp{1});
+  //auto lerch1 = lerch_vanwijngaarden_sum(-0.75, Tp{1}, Tp{2});
+  //auto lerch2 = lerch_vanwijngaarden_sum(-0.5, Tp{0}, Tp{1});
 }

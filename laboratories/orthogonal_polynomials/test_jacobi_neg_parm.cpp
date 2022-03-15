@@ -22,9 +22,9 @@ template<typename Tp>
       {
 	auto x = i * Tp{0.01L};
 	std::cout << ' ' << std::setw(w) << x
-		  << ' ' << std::setw(w) << lab::__jacobi_recur(n, alpha - 0.001, beta, x).__P_n
-		  << ' ' << std::setw(w) << lab::__jacobi_recur(n, alpha, beta, x).__P_n
-		  << ' ' << std::setw(w) << lab::__jacobi_recur(n, alpha + 0.001, beta, x).__P_n
+		  << ' ' << std::setw(w) << lab::jacobi_recur(n, alpha - 0.001, beta, x).P_n
+		  << ' ' << std::setw(w) << lab::jacobi_recur(n, alpha, beta, x).P_n
+		  << ' ' << std::setw(w) << lab::jacobi_recur(n, alpha + 0.001, beta, x).P_n
 		  << '\n';
       }
   }

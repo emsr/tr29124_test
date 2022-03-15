@@ -18,30 +18,30 @@
  * @f]
  * where @f$ M_n(x) = M_n(x; \beta, c) @f$.
  */
-template<typename _Tp, typename _TpX>
-  _Tp
-  __meixner_recur(int n, _Tp beta, _Tp c, _TpX x)
+template<typename Tp, typename TpX>
+  Tp
+  meixner_recur(int n, Tp beta, Tp c, TpX x)
   {
-    auto Mnm1 = _Tp{1};
+    auto Mnm1 = Tp{1};
     if (n == 0)
       return Mnm1;
 
-    auto Mn = _Tp{1} + (_Tp{1} - _Tp{1} / c) * _Tp(x) / beta;
+    auto Mn = Tp{1} + (Tp{1} - Tp{1} / c) * Tp(x) / beta;
     if (n == 1)
       return Mn;
 
-    const auto cc = _Tp{1} - c;
-    auto nn = _Tp{1};
+    const auto cc = Tp{1} - c;
+    auto nn = Tp{1};
     auto cbnn = c * (beta + nn);
-    auto Mnp1 = ((cbnn + nn - cc * _Tp(x)) * Mn - nn * Mnm1) / cbnn;
+    auto Mnp1 = ((cbnn + nn - cc * Tp(x)) * Mn - nn * Mnm1) / cbnn;
 
     for (int k = 2; k < n; ++k)
       {
-	nn = _Tp(k);
+	nn = Tp(k);
 	cbnn = c * (beta + nn);
 	Mnm1 = Mn;
 	Mn = Mnp1;
-	Mnp1 = ((cbnn + nn - cc * _Tp(x)) * Mn - nn * Mnm1) / cbnn;
+	Mnp1 = ((cbnn + nn - cc * Tp(x)) * Mn - nn * Mnm1) / cbnn;
       }
 
     return Mnp1;
@@ -53,9 +53,9 @@ template<typename _Tp, typename _TpX>
  *    M_n(x; \beta, c) = {}_2F_1(-n, -x; \beta; 1 - \frac{1}{c})
  * @f]
  */
-template<typename _Tp, typename _TpX>
-  _Tp
-  __meixner(int n, _Tp beta, _Tp c, _TpX x)
+template<typename Tp, typename TpX>
+  Tp
+  meixner(int n, Tp beta, Tp c, TpX x)
   {
     if (std::isnan(beta))
       return beta;
@@ -64,14 +64,14 @@ template<typename _Tp, typename _TpX>
     if (std::isnan(x))
       return x;
     else
-      return __meixner_recur(n, beta, c, x);
+      return meixner_recur(n, beta, c, x);
   }
 
-template<typename _Tp>
+template<typename Tp>
   void
-  test_meixner(int n_max, _Tp beta, _Tp c)
+  test_meixner(int n_max, Tp beta, Tp c)
   {
-    std::cout.precision(std::numeric_limits<_Tp>::digits10);
+    std::cout.precision(std::numeric_limits<Tp>::digits10);
     auto w = std::cout.precision() + 8;
 
     for (int n = 0; n <= n_max; ++n)
@@ -79,8 +79,8 @@ template<typename _Tp>
 	std::cout << '\n' << '\n' << " n = " << n << '\n';
 	for (int i = 0; i <= 400; ++i)
 	  {
-	    auto x = i * _Tp{0.05L};
-	    auto M = __meixner(n, beta, c, x);
+	    auto x = i * Tp{0.05L};
+	    auto M = meixner(n, beta, c, x);
 	    auto M_test = burkhardt::meixner(n, beta, c, x);
 	    std::cout << ' ' << std::setw(w) << x
 		      << ' ' << std::setw(w) << M

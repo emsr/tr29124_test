@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['weibull_5fp',['weibull_p',['../group__mathsf__gnu.html#ga9afb3065fea6ef3a91126d67f726f7af',1,'__gnu_cxx']]],
-  ['weibull_5fpdf',['weibull_pdf',['../group__mathsf__gnu.html#gacfbb6ca9df8e0aa092ff4406baff597c',1,'__gnu_cxx']]],
-  ['wronskian',['Wronskian',['../structstd_1_1____detail_1_1__AiryState.html#a565f891531681d918aa85320ad776428',1,'std::__detail::_AiryState']]]
+  ['u_5fn_357',['U_n',['../structemsr_1_1chebyshev__u__t.html#acafae5d30dc63c699d58af349956796e',1,'emsr::chebyshev_u_t']]],
+  ['u_5fnm1_358',['U_nm1',['../structemsr_1_1chebyshev__u__t.html#ab66defe5d3e14cd8b3cc62112a1a3cc5',1,'emsr::chebyshev_u_t']]],
+  ['u_5fnm2_359',['U_nm2',['../structemsr_1_1chebyshev__u__t.html#aa3d7f1e57db8946ae2296e985ee64b95',1,'emsr::chebyshev_u_t']]]
 ];

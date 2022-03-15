@@ -1,11 +1,18 @@
 var searchData=
 [
-  ['ibeta',['ibeta',['../group__mathsf__gnu.html#ga1fa9e260ba85fc043e3d2ada99c0143c',1,'__gnu_cxx']]],
-  ['ibetac',['ibetac',['../group__mathsf__gnu.html#ga2ccfb7026771d75bcc1a588edb8b0165',1,'__gnu_cxx']]],
-  ['ibetacf',['ibetacf',['../group__mathsf__gnu.html#gabd7fa090deead18b167c26b8994b9f53',1,'__gnu_cxx']]],
-  ['ibetacl',['ibetacl',['../group__mathsf__gnu.html#ga48995d537b82e426362a4831ffa1be39',1,'__gnu_cxx']]],
-  ['ibetaf',['ibetaf',['../group__mathsf__gnu.html#ga97a5e3afdd990a2d3e199df6856bcf9f',1,'__gnu_cxx']]],
-  ['ibetal',['ibetal',['../group__mathsf__gnu.html#ga5c9c5b583e4f1c9785a1c4582551c97f',1,'__gnu_cxx']]],
-  ['inner_5fradius',['inner_radius',['../structstd_1_1____detail_1_1__Airy__default__radii_3_01float_01_4.html#a798f4ff51a7e6a7dc5d0e5a670899c3a',1,'std::__detail::_Airy_default_radii&lt; float &gt;::inner_radius()'],['../structstd_1_1____detail_1_1__Airy__default__radii_3_01double_01_4.html#a1c16ae812de7fce0a39bc3b094767b87',1,'std::__detail::_Airy_default_radii&lt; double &gt;::inner_radius()'],['../structstd_1_1____detail_1_1__Airy__default__radii_3_01long_01double_01_4.html#a59d4d304728aa4ac3669fc967a9e69a9',1,'std::__detail::_Airy_default_radii&lt; long double &gt;::inner_radius()'],['../classstd_1_1____detail_1_1__Airy.html#ae619970f4c54b7f80340f05b7ead83e1',1,'std::__detail::_Airy::inner_radius()']]],
-  ['iterator',['iterator',['../struct____gnu__cxx_1_1____stirling__1__t.html#a4dad153706e77f66c38d2a620230ac35',1,'__gnu_cxx::__stirling_1_t::iterator()'],['../struct____gnu__cxx_1_1____stirling__2__t.html#aa7fda155fac4d993df6fc7deb4a66e84',1,'__gnu_cxx::__stirling_2_t::iterator()']]]
+  ['j_5fderiv_176',['j_deriv',['../structemsr_1_1sph__bessel__t.html#ae737590e1fc861a286d23bd478be5acc',1,'emsr::sph_bessel_t']]],
+  ['j_5fderiv_177',['J_deriv',['../structemsr_1_1cyl__bessel__t.html#a54213ac2510c5c256497cb9683d15f4b',1,'emsr::cyl_bessel_t']]],
+  ['j_5fvalue_178',['j_value',['../structemsr_1_1sph__bessel__t.html#a9a81711d082596228dce2468c2b89d4d',1,'emsr::sph_bessel_t']]],
+  ['j_5fvalue_179',['J_value',['../structemsr_1_1cyl__bessel__t.html#a0dc69134629c80376df80b97a7098c96',1,'emsr::cyl_bessel_t']]],
+  ['jacobi_180',['jacobi',['../namespaceemsr.html#a226ab2889ccd7d5e60f24b3031204b26',1,'emsr']]],
+  ['jacobi_5fcn_181',['jacobi_cn',['../namespaceemsr.html#a11a2a619541b9ab20162f44d0d9f8227',1,'emsr']]],
+  ['jacobi_5fdn_182',['jacobi_dn',['../namespaceemsr.html#a7d26825253e61a695abe994e39e93c93',1,'emsr']]],
+  ['jacobi_5fellint_5ft_183',['jacobi_ellint_t',['../structemsr_1_1jacobi__ellint__t.html',1,'emsr']]],
+  ['jacobi_5fsn_184',['jacobi_sn',['../namespaceemsr.html#a5d33ebab6cfc84db9ecfd6af00f22549',1,'emsr']]],
+  ['jacobi_5ft_185',['jacobi_t',['../structemsr_1_1jacobi__t.html',1,'emsr']]],
+  ['jacobi_5ftheta_5f1_186',['jacobi_theta_1',['../namespaceemsr.html#ab984ad80c88293ea967e899d8dfd4270',1,'emsr']]],
+  ['jacobi_5ftheta_5f2_187',['jacobi_theta_2',['../namespaceemsr.html#aadd9988f41b3d4ed34b4627533df2d54',1,'emsr']]],
+  ['jacobi_5ftheta_5f3_188',['jacobi_theta_3',['../namespaceemsr.html#af4e1ee71faf7319df6daaf21356383e4',1,'emsr']]],
+  ['jacobi_5ftheta_5f4_189',['jacobi_theta_4',['../namespaceemsr.html#ad923ad914c51eddbcad1d3af253b36d9',1,'emsr']]],
+  ['jacobi_5fzeta_190',['jacobi_zeta',['../namespaceemsr.html#a866801fe03dc77bb98591a95e74e8ddd',1,'emsr']]]
 ];

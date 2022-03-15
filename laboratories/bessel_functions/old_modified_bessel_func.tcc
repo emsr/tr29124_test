@@ -1,12 +1,11 @@
-// Special functions -*- C++ -*-
 
 // Copyright (C) 2006-2019 Free Software Foundation, Inc.
+// Copyright (C) 2020-2022 Edward M. Smith-Rowland
 //
-// This file is part of the GNU ISO C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the
-// terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 3, or (at your option)
-// any later version.
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 3 of the License, or (at
+// your option) any later version.
 //
 // This library is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,9 +21,7 @@
 // see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 // <http://www.gnu.org/licenses/>.
 
-/** @file tr1/sf_mod_bessel.tcc
- *  This is an internal header file, included by other library headers.
- *  You should not attempt to use it directly.
+/** @file old_modified_bessel_func.tcc
  */
 
 //
@@ -33,80 +30,67 @@
 
 // Written by Edward Smith-Rowland based on numerous mathematics books.
 
-#ifndef _TR1_MODIFIED_BESSEL_FUNC_TCC
-#define _TR1_MODIFIED_BESSEL_FUNC_TCC 1
+#ifndef OLD_MODIFIED_BESSEL_FUNC_TCC
+#define OLD_MODIFIED_BESSEL_FUNC_TCC 1
 
-#include <ext/fp_type_util.h>
+#include <emsr/fp_type_util.h>
 
-namespace std
+namespace emsr
 {
-_GLIBCXX_BEGIN_NAMESPACE_VERSION
-
-  // [5.2] Special functions
-
-  /**
-   * @addtogroup tr1_math_spec_func Mathematical Special Functions
-   * A collection of advanced mathematical special functions.
-   * @{
-   */
-
-  //
-  // Implementation-space details.
-  //
-  namespace __detail
-  {
+namespace detail
+{
 
     ///
     ///
     ///
-    template <typename _Tp>
+    template <typename Tp>
     void
-    __cyl_bessel_k_scaled_temme(const _Tp __nu, const _Tp __x,
-                                _Tp & __K_nu, _Tp & __K_nup1, _Tp & __Kp_nu)
+    cyl_bessel_k_scaled_temme(const Tp nu, const Tp x,
+                                Tp & K_nu, Tp & K_nup1, Tp & Kp_nu)
     {
-      const _Tp __x2    = __x / _Tp(2);
-      const _Tp __ln_x2 = std::log(__x2);
-      const _Tp __x2_nu = std::exp(__nu * __ln_x2);
-      const _Tp __pi_nu   = _TR1_M_PI * __nu;
-      const _Tp __sigma   = -__nu * __ln_x2;
-      const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
-      const _Tp __sinrat  = (std::abs(__pi_nu) < __eps ? _Tp(1) : __pi_nu / std::sin(__pi_nu));
-      const _Tp __sinhrat = (std::abs(__sigma) < __eps ? _Tp(1) : ::sinh(__sigma) / __sigma);
-      const _Tp __ex = std::exp(__x);
+      const Tp x2    = x / Tp(2);
+      const Tp ln_x2 = std::log(x2);
+      const Tp x2_nu = std::exp(nu * ln_x2);
+      const Tp pi_nu   = _TR1_M_PI * nu;
+      const Tp sigma   = -nu * ln_x2;
+      const Tp eps = std::numeric_limits<Tp>::epsilon();
+      const Tp sinrat  = (std::abs(pi_nu) < eps ? Tp(1) : pi_nu / std::sin(pi_nu));
+      const Tp sinhrat = (std::abs(sigma) < eps ? Tp(1) : ::sinh(sigma) / sigma);
+      const Tp ex = std::exp(x);
 
-      _Tp __g_1pnu, __g_1mnu, __g1, __g2;
-      __gamma_temme(__nu, __g_1pnu, __g_1mnu, __g1, __g2);
+      Tp g_1pnu, g_1mnu, g1, g2;
+      gamma_temme(nu, g_1pnu, g_1mnu, g1, g2);
 
-      _Tp __fk = __sinrat * (::cosh(__sigma) * __g1
-                           - __sinhrat * __ln_x2 * __g2);
-      _Tp __pk = 0.5 / __x2_nu * __g_1pnu;
-      _Tp __qk = 0.5 * __x2_nu * __g_1mnu;
-      _Tp __hk = __pk;
-      _Tp __ck = _Tp(1);
-      _Tp __sum0 = __fk;
-      _Tp __sum1 = __hk;
+      Tp fk = sinrat * (::cosh(sigma) * g1
+                           - sinhrat * ln_x2 * g2);
+      Tp pk = 0.5 / x2_nu * g_1pnu;
+      Tp qk = 0.5 * x2_nu * g_1mnu;
+      Tp hk = pk;
+      Tp ck = Tp(1);
+      Tp sum0 = fk;
+      Tp sum1 = hk;
 
-      const unsigned int __max_iter = 15000;
-      unsigned int __k = 0;
-      while(__k < __max_iter)
+      const unsigned int max_iter = 15000;
+      unsigned int k = 0;
+      while(k < max_iter)
         {
-          ++__k;
-          __fk  = (__k * __fk + __pk + __qk) / (__k * __k - __nu * __nu);
-          __ck *= __x2 * __x2 / __k;
-          __pk /= (__k - __nu);
-          __qk /= (__k + __nu);
-          __hk  = -__k * __fk + __pk;
-          const _Tp __del0 = __ck * __fk;
-          const _Tp __del1 = __ck * __hk;
-          __sum0 += __del0;
-          __sum1 += __del1;
-          if (std::abs(__del0) < 0.5L * std::abs(__sum0) * __eps)
+          ++k;
+          fk  = (k * fk + pk + qk) / (k * k - nu * nu);
+          ck *= x2 * x2 / k;
+          pk /= (k - nu);
+          qk /= (k + nu);
+          hk  = -k * fk + pk;
+          const Tp del0 = ck * fk;
+          const Tp del1 = ck * hk;
+          sum0 += del0;
+          sum1 += del1;
+          if (std::abs(del0) < 0.5L * std::abs(sum0) * eps)
             break;
         }
   
-      __K_nu   = __sum0 * __ex;
-      __K_nup1 = __sum1 * (_Tp(2) / __x) * __ex;
-      __Kp_nu  = - __K_nup1 + (__nu / __x) * __K_nu;
+      K_nu   = sum0 * ex;
+      K_nup1 = sum1 * (Tp(2) / x) * ex;
+      Kp_nu  = - K_nup1 + (nu / x) * K_nu;
 
       return;
     }
@@ -116,143 +100,143 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     ///  @brief  Return the A series used in the asymptotic expansions
     ///          of the Bessel functions.
     ///
-    template<typename _Tp>
-    _Tp
-    __cyl_mod_bessel_a_series(const _Tp __nu, const _Tp __x,
-                              const bool __alternate)
+    template<typename Tp>
+    Tp
+    cyl_mod_bessel_a_series(const Tp nu, const Tp x,
+                              const bool alternate)
     {
 
-      _Tp __sign = _Tp(1);
-      if (__alternate)
-        __sign = _Tp(-1);
+      Tp sign = Tp(1);
+      if (alternate)
+        sign = Tp(-1);
 
-      const _Tp __fnu2 = _Tp(4) * __nu * __nu;
-      const _Tp __xx = _Tp(8) * __x;
+      const Tp fnu2 = Tp(4) * nu * nu;
+      const Tp xx = Tp(8) * x;
 
-      _Tp __term = _Tp(1);
-      _Tp __sum = _Tp(1);
-      for (unsigned int __i = 1; __i < 20; ++__i)
+      Tp term = Tp(1);
+      Tp sum = Tp(1);
+      for (unsigned int i = 1; i < 20; ++i)
         {
-          const _Tp __i2 = _Tp(2 * __i);
-          const _Tp __i4 = _Tp(4 * __i);
-          const _Tp __b = __i4 - _Tp(1);
-          const _Tp __numer = __sign * (__fnu2 - __b * __b);
-          const _Tp __denom = __i2 * __xx;
-          __term *= __numer / __denom;
-          if (std::abs(__term) < std::numeric_limits<_Tp>::epsilon())
+          const Tp i2 = Tp(2 * i);
+          const Tp i4 = Tp(4 * i);
+          const Tp b = i4 - Tp(1);
+          const Tp numer = sign * (fnu2 - b * b);
+          const Tp denom = i2 * xx;
+          term *= numer / denom;
+          if (std::abs(term) < std::numeric_limits<Tp>::epsilon())
             {
               break;
             }
-          __sum += __term;
+          sum += term;
         }
 
-      return __sum;
+      return sum;
     }
 
 
     ///
     ///  @brief  Return the asymptotic solution of the Bessel function.
     ///
-    template<typename _Tp>
-    _Tp
-    __cyl_bessel_i_asymp(const _Tp __n, const _Tp __x)
+    template<typename Tp>
+    Tp
+    cyl_bessel_i_asymp(const Tp n, const Tp x)
     {
 
-      _Tp __sum = __cyl_mod_bessel_a_series(__n, __x, true);
+      Tp sum = cyl_mod_bessel_a_series(n, x, true);
 
-      return std::exp(__x) * __sum / std::sqrt(2 * _TR1_M_PI * __x);
+      return std::exp(x) * sum / std::sqrt(2 * _TR1_M_PI * x);
     }
 
 
     ///
     /// x >> nu*nu+1
     ///
-    template<typename _Tp>
-    _Tp
-    __cyl_bessel_i_scaled_asymp(const _Tp __nu, const _Tp __x)
+    template<typename Tp>
+    Tp
+    cyl_bessel_i_scaled_asymp(const Tp nu, const Tp x)
     {
-      const _Tp __mu = _Tp(4) * __nu * __nu;
-      const _Tp __mum1 = __mu - _Tp(1);
-      const _Tp __mum9 = __mu - _Tp(9);
-      const _Tp __pre = _Tp(1) / std::sqrt(_Tp(2) * _TR1_M_PI * __x);
-      const _Tp __r = __mu / __x;
-      const _Tp __I = __pre * (_Tp(1) - __mum1 / (_Tp(8) * __x)
-                    + __mum1*__mum9 / (_Tp(128) * __x * __x));
+      const Tp mu = Tp(4) * nu * nu;
+      const Tp mum1 = mu - Tp(1);
+      const Tp mum9 = mu - Tp(9);
+      const Tp pre = Tp(1) / std::sqrt(Tp(2) * _TR1_M_PI * x);
+      const Tp r = mu / x;
+      const Tp I = pre * (Tp(1) - mum1 / (Tp(8) * x)
+                    + mum1*mum9 / (Tp(128) * x * x));
 
-      return __I;
+      return I;
     }
 
 
     //
     //  Debye functions Abramowitz & Stegun, 9.3.9-10
     //
-    template<typename _Tp>
-    _Tp 
-    __debye_u1(const std::vector<_Tp> & __tpow)
+    template<typename Tp>
+    Tp 
+    debye_u1(const std::vector<Tp> & tpow)
     {
-      return (_Tp(3UL) * __tpow[1]
-            - _Tp(5UL) * __tpow[3]) / _Tp(24UL);
+      return (Tp(3UL) * tpow[1]
+            - Tp(5UL) * tpow[3]) / Tp(24UL);
     }
 
-    template<typename _Tp>
-    _Tp 
-    __debye_u2(const std::vector<_Tp> & __tpow)
+    template<typename Tp>
+    Tp 
+    debye_u2(const std::vector<Tp> & tpow)
     {
-      return (_Tp(81UL) * __tpow[2]
-           - _Tp(462UL) * __tpow[4]
-           + _Tp(385UL) * __tpow[6]) / _Tp(1152UL);
+      return (Tp(81UL) * tpow[2]
+           - Tp(462UL) * tpow[4]
+           + Tp(385UL) * tpow[6]) / Tp(1152UL);
     }
 
-    template<typename _Tp>
-    _Tp
-    __debye_u3(const std::vector<_Tp> & __tpow)
+    template<typename Tp>
+    Tp
+    debye_u3(const std::vector<Tp> & tpow)
     {
-      return (_Tp(30375UL) * __tpow[3]
-           - _Tp(369603UL) * __tpow[5]
-           + _Tp(765765UL) * __tpow[7]
-           - _Tp(425425UL) * __tpow[9]) / _Tp(414720UL);
+      return (Tp(30375UL) * tpow[3]
+           - Tp(369603UL) * tpow[5]
+           + Tp(765765UL) * tpow[7]
+           - Tp(425425UL) * tpow[9]) / Tp(414720UL);
     }
 
-    template<typename _Tp>
-    _Tp
-    __debye_u4(const std::vector<_Tp> & __tpow)
+    template<typename Tp>
+    Tp
+    debye_u4(const std::vector<Tp> & tpow)
     {
-      return (_Tp(4465125UL) * __tpow[4]
-           - _Tp(94121676UL) * __tpow[6]
-          + _Tp(349922430UL) * __tpow[8]
-          - _Tp(446185740UL) * __tpow[10]
-          + _Tp(185910725UL) * __tpow[12]) / _Tp(39813120UL);
+      return (Tp(4465125UL) * tpow[4]
+           - Tp(94121676UL) * tpow[6]
+          + Tp(349922430UL) * tpow[8]
+          - Tp(446185740UL) * tpow[10]
+          + Tp(185910725UL) * tpow[12]) / Tp(39813120UL);
     }
 
-    template<typename _Tp>
-    _Tp
-    __debye_u5(const std::vector<_Tp> & __tpow)
+    template<typename Tp>
+    Tp
+    debye_u5(const std::vector<Tp> & tpow)
     {
-      return (_Tp(1519035525UL) * __tpow[5]
-           - _Tp(49286948607UL) * __tpow[7]
-          + _Tp(284499769554UL) * __tpow[9]
-          - _Tp(614135872350UL) * __tpow[11]
-          + _Tp(566098157625UL) * __tpow[13]
-          - _Tp(188699385875UL) * __tpow[15]) / _Tp(6688604160UL);
+      return (Tp(1519035525UL) * tpow[5]
+           - Tp(49286948607UL) * tpow[7]
+          + Tp(284499769554UL) * tpow[9]
+          - Tp(614135872350UL) * tpow[11]
+          + Tp(566098157625UL) * tpow[13]
+          - Tp(188699385875UL) * tpow[15]) / Tp(6688604160UL);
     }
 
 
 #if ! _GLIBCXX_USE_C99_MATH_TR1
-    template<typename _Tp>
-    _Tp
-    __xhypot(const _Tp __x, const _Tp __y)
+    template<typename Tp>
+    Tp
+    xhypot(const Tp x, const Tp y)
     {
-      const _Tp __ax = std::abs(__x);
-      const _Tp __ay = std::abs(__y);
-      if (__ay > __ax)
+      const Tp ax = std::abs(x);
+      const Tp ay = std::abs(y);
+      if (ay > ax)
         {
-          const _Tp __rho = __ax / __ay;
-          return __ay * std::sqrt(_Tp(1) + __rho * __rho);
+          const Tp rho = ax / ay;
+          return ay * std::sqrt(Tp(1) + rho * rho);
         }
       else
         {
-          const _Tp __rho = __ay / __ax;
-          return __ax * std::sqrt(_Tp(1) + __rho * __rho);
+          const Tp rho = ay / ax;
+          return ax * std::sqrt(Tp(1) + rho * rho);
         }
     }
 #endif
@@ -264,39 +248,39 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     ///
     ///  nu -> Inf; uniform in x > 0.  (See Abramowitz & Stegun, 9.7.7)
     ///
-    template<typename _Tp>
-    _Tp
-    __cyl_bessel_i_scaled_asymp_unif(const _Tp __nu, const _Tp __x)
+    template<typename Tp>
+    Tp
+    cyl_bessel_i_scaled_asymp_unif(const Tp nu, const Tp x)
     {
-      const _Tp __z = __x / __nu;
+      const Tp z = x / nu;
 #if _GLIBCXX_USE_C99_MATH_TR1
-      const _Tp __hypot = std::tr1::hypot(_Tp(1), __z);
+      const Tp hypot = std::tr1::hypot(Tp(1), z);
 #else
-      const _Tp __hypot = __xhypot(_Tp(1), __z);
+      const Tp hypot = xhypot(Tp(1), z);
 #endif
-      const _Tp __pre = _Tp(1) / std::sqrt(_Tp(2) * _TR1_M_PI * __nu * __hypot);
-      const _Tp __eta = __hypot + std::log(__z / (_Tp(1) + __hypot));
-      const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
-      const _Tp __root3_eps = std::exp(std::log(__eps) / _Tp(3));
-      const _Tp __arg = ( __z < _Tp(1) / __root3_eps
-                          ? __nu * (-__z + __eta)
-                          : -_Tp(0.5L) * __nu / __z * (_Tp(1) - _Tp(1) / (_Tp(12) * __z * __z)) );
-      const _Tp __ex = std::exp(__arg);
-      const _Tp __t = _Tp(1) / __hypot;
-      std::vector<_Tp> __tpow;
-      __tpow.push_back(_Tp(1));
-      for (int __i = 1; __i < 16; ++__i)
-        __tpow.push_back(__t * __tpow.back());
-      _Tp __sum = _Tp(1);
-                + __debye_u1(__tpow) / (__nu)
-                + __debye_u2(__tpow) / (__nu*__nu)
-                + __debye_u3(__tpow) / (__nu*__nu*__nu)
-                + __debye_u4(__tpow) / (__nu*__nu*__nu*__nu)
-                + __debye_u5(__tpow) / (__nu*__nu*__nu*__nu*__nu);
-      const _Tp __I = __pre * __ex * __sum;
-      return __I;
-      //On exponent failure: _Tp __I = _Tp(0);
-      //return __I;
+      const Tp pre = Tp(1) / std::sqrt(Tp(2) * _TR1_M_PI * nu * hypot);
+      const Tp eta = hypot + std::log(z / (Tp(1) + hypot));
+      const Tp eps = std::numeric_limits<Tp>::epsilon();
+      const Tp root3_eps = std::exp(std::log(eps) / Tp(3));
+      const Tp arg = ( z < Tp(1) / root3_eps
+                          ? nu * (-z + eta)
+                          : -Tp(0.5L) * nu / z * (Tp(1) - Tp(1) / (Tp(12) * z * z)) );
+      const Tp ex = std::exp(arg);
+      const Tp t = Tp(1) / hypot;
+      std::vector<Tp> tpow;
+      tpow.push_back(Tp(1));
+      for (int i = 1; i < 16; ++i)
+        tpow.push_back(t * tpow.back());
+      Tp sum = Tp(1);
+                + debye_u1(tpow) / (nu)
+                + debye_u2(tpow) / (nu*nu)
+                + debye_u3(tpow) / (nu*nu*nu)
+                + debye_u4(tpow) / (nu*nu*nu*nu)
+                + debye_u5(tpow) / (nu*nu*nu*nu*nu);
+      const Tp I = pre * ex * sum;
+      return I;
+      //On exponent failure: Tp I = Tp(0);
+      //return I;
     }
 
 
@@ -306,38 +290,38 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     ///
     ///  nu -> Inf; uniform in x > 0.  (See Abramowitz & Stegun, 9.7.8)
     ///
-    template<typename _Tp>
-    _Tp
-    gsl_sf_bessel_k_scaled_asymp_unif(const _Tp __nu, const _Tp __x)
+    template<typename Tp>
+    Tp
+    gsl_sf_bessel_k_scaled_asymp_unif(const Tp nu, const Tp x)
     {
-      const _Tp __z = __x / __nu;
+      const Tp z = x / nu;
 #if _GLIBCXX_USE_C99_MATH_TR1
-      const _Tp __hypot = std::tr1::hypot(_Tp(1), __z);
+      const Tp hypot = std::tr1::hypot(Tp(1), z);
 #else
-      const _Tp __hypot = __xhypot(_Tp(1), __z);
+      const Tp hypot = xhypot(Tp(1), z);
 #endif
-      const _Tp __pre = std::sqrt(_TR1_M_PI / (_Tp(2) * __nu * __hypot));
-      const _Tp __eta = __hypot + std::log(__z / (_Tp(1) + __hypot));
-      const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
-      const _Tp __root3_eps = std::exp(std::log(__eps) / _Tp(3));
-      const _Tp __arg = ( __z < _Tp(1) / __root3_eps
-                          ? __nu * (__z - __eta)
-                          : _Tp(0.5L) * __nu / __z * (_Tp(1) + _Tp(1) / (_Tp(12) * __z * __z)) );
-      const _Tp __ex = std::exp(__arg);
-      const _Tp __t = _Tp(1) / __hypot;
-      std::vector<_Tp> __tpow;
-      __tpow.push_back(_Tp(1));
-      for(int __i = 1; __i < 16; ++__i)
-        __tpow.push_back(__t * __tpow.back());
-      _Tp __fact = _Tp(1);
-      _Tp __sum = _Tp(1)
-                - __debye_u1(__tpow) / (__nu)
-                + __debye_u2(__tpow) / (__nu*__nu)
-                - __debye_u3(__tpow) / (__nu*__nu*__nu)
-                + __debye_u4(__tpow) / (__nu*__nu*__nu*__nu)
-                - __debye_u5(__tpow) / (__nu*__nu*__nu*__nu*__nu);
-      const _Tp __K = __pre * __ex * __sum;
-      return __K;
+      const Tp pre = std::sqrt(_TR1_M_PI / (Tp(2) * nu * hypot));
+      const Tp eta = hypot + std::log(z / (Tp(1) + hypot));
+      const Tp eps = std::numeric_limits<Tp>::epsilon();
+      const Tp root3_eps = std::exp(std::log(eps) / Tp(3));
+      const Tp arg = ( z < Tp(1) / root3_eps
+                          ? nu * (z - eta)
+                          : Tp(0.5L) * nu / z * (Tp(1) + Tp(1) / (Tp(12) * z * z)) );
+      const Tp ex = std::exp(arg);
+      const Tp t = Tp(1) / hypot;
+      std::vector<Tp> tpow;
+      tpow.push_back(Tp(1));
+      for(int i = 1; i < 16; ++i)
+        tpow.push_back(t * tpow.back());
+      Tp fact = Tp(1);
+      Tp sum = Tp(1)
+                - debye_u1(tpow) / (nu)
+                + debye_u2(tpow) / (nu*nu)
+                - debye_u3(tpow) / (nu*nu*nu)
+                + debye_u4(tpow) / (nu*nu*nu*nu)
+                - debye_u5(tpow) / (nu*nu*nu*nu*nu);
+      const Tp K = pre * ex * sum;
+      return K;
     }
 
 
@@ -345,33 +329,33 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     ///  @brief  Evaluate the continued fraction CF1 for @f$ I_{nu+1}/I_nu @f$
     ///          using Gautschi (Euler) equivalent series.
     ///
-    template<typename _Tp>
-    _Tp
-    __cyl_bessel_i_cont_frac_1_series(const _Tp __nu, const _Tp __x)
+    template<typename Tp>
+    Tp
+    cyl_bessel_i_cont_frac_1_series(const Tp nu, const Tp x)
     {
-      const int __maxk = 20000;
-      _Tp __tk = _Tp(1);
-      _Tp __sum = _Tp(1);
-      _Tp __rhok = _Tp(0);
+      const int maxk = 20000;
+      Tp tk = Tp(1);
+      Tp sum = Tp(1);
+      Tp rhok = Tp(0);
 
-      for (int __k = 1; __k < __maxk; ++__k)
+      for (int k = 1; k < maxk; ++k)
         {
-          _Tp __ak = (__x / (__nu + __k))
-                   * __x / (_Tp(4) * (__nu + _Tp(__k + 1)));
-          __rhok = -__ak * (_Tp(1) + __rhok)
-                 / (_Tp(1) + __ak * (_Tp(1) + __rhok));
-          __tk *= __rhok;
-          __sum += __tk;
-          if (std::abs(__tk / __sum) < std::numeric_limits<_Tp>::epsilon())
+          Tp ak = (x / (nu + k))
+                   * x / (Tp(4) * (nu + Tp(k + 1)));
+          rhok = -ak * (Tp(1) + rhok)
+                 / (Tp(1) + ak * (Tp(1) + rhok));
+          tk *= rhok;
+          sum += tk;
+          if (std::abs(tk / sum) < std::numeric_limits<Tp>::epsilon())
             break;
         }
 
-      _Tp __ratio = __x / (_Tp(2) * (__nu + _Tp(1))) * __sum;
+      Tp ratio = x / (Tp(2) * (nu + Tp(1))) * sum;
 
-      //if (__k == __maxk)
-      //  __throw_logic;
+      //if (k == maxk)
+      //  throw_logic;
 
-      return __ratio;
+      return ratio;
     }
 
 
@@ -380,54 +364,54 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     ///
     /// This is unstable for small x; x > 2 is a good cutoff.
     /// Also requires |nu| < 1/2.
-    template<typename _Tp>
+    template<typename Tp>
     void
-    __cyl_bessel_k_scaled_steed_temme_cont_frac_2(const _Tp __nu,
-                                                  const _Tp __x,
-                                                  _Tp & __K_nu,
-                                                  _Tp & __K_nup1,
-                                                  _Tp & __Kp_nu)
+    cyl_bessel_k_scaled_steed_temme_cont_frac_2(const Tp nu,
+                                                  const Tp x,
+                                                  Tp & K_nu,
+                                                  Tp & K_nup1,
+                                                  Tp & Kp_nu)
     {
-      const int __max_iter = 10000;
+      const int max_iter = 10000;
 
-      _Tp __bi = _Tp(2) * (_Tp(1) + __x);
-      _Tp __di = _Tp(1) / __bi;
-      _Tp __delhi = __di;
-      _Tp __hi = __di;
+      Tp bi = Tp(2) * (Tp(1) + x);
+      Tp di = Tp(1) / bi;
+      Tp delhi = di;
+      Tp hi = di;
 
-      _Tp __qi   = _Tp(0);
-      _Tp __qip1 = _Tp(1);
+      Tp qi   = Tp(0);
+      Tp qip1 = Tp(1);
 
-      _Tp __ai = -(_Tp(0.25L) - __nu * __nu);
-      _Tp __a1 = __ai;
-      _Tp __ci = -__ai;
-      _Tp __Qi = -__ai;
+      Tp ai = -(Tp(0.25L) - nu * nu);
+      Tp a1 = ai;
+      Tp ci = -ai;
+      Tp Qi = -ai;
 
-      _Tp __s = _Tp(1) + __Qi * __delhi;
+      Tp s = Tp(1) + Qi * delhi;
 
-      for (int __i = 2; __i <= __max_iter; ++__i)
+      for (int i = 2; i <= max_iter; ++i)
         {
-          __ai -= _Tp(2 * (__i - 1));
-          __ci  = -__ai * __ci / __i;
-          const _Tp __tmp = (__qi - __bi * __qip1) / __ai;
-          __qi = __qip1;
-          __qip1 = __tmp;
-          __Qi += __ci * __qip1;
-          __bi += _Tp(2);
-          __di = _Tp(1) / (__bi + __ai * __di);
-          __delhi = (__bi * __di - _Tp(1)) * __delhi;
-          __hi += __delhi;
-          const _Tp __dels = __Qi * __delhi;
-          __s += __dels;
-          if (std::abs(__dels / __s) < std::numeric_limits<_Tp>::epsilon())
+          ai -= Tp(2 * (i - 1));
+          ci  = -ai * ci / i;
+          const Tp tmp = (qi - bi * qip1) / ai;
+          qi = qip1;
+          qip1 = tmp;
+          Qi += ci * qip1;
+          bi += Tp(2);
+          di = Tp(1) / (bi + ai * di);
+          delhi = (bi * di - Tp(1)) * delhi;
+          hi += delhi;
+          const Tp dels = Qi * delhi;
+          s += dels;
+          if (std::abs(dels / s) < std::numeric_limits<Tp>::epsilon())
             break;
         }
 
-      __hi *= -__a1;
+      hi *= -a1;
 
-      __K_nu = std::sqrt(_TR1_M_PI/(_Tp(2) * __x)) / __s;
-      __K_nup1 = __K_nu * (__nu + __x + _Tp(0.5L) - __hi) / __x;
-      __Kp_nu = - __K_nup1 + __nu / __x * __K_nu;
+      K_nu = std::sqrt(_TR1_M_PI/(Tp(2) * x)) / s;
+      K_nup1 = K_nu * (nu + x + Tp(0.5L) - hi) / x;
+      Kp_nu = - K_nup1 + nu / x * K_nu;
       //if(i == max_iter)
       //  GSL_ERROR ("error", GSL_EMAXITER);
 
@@ -439,76 +423,75 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     ///  @brief  Return the modified Bessel function of order \f$ \nu \f$:
     ///          \f$ I_{\nu} \f$.
     ///
-    template<typename _Tp>
-    _Tp
-    __cyl_bessel_i_scaled(const _Tp __nu, const _Tp __x)
+    template<typename Tp>
+    Tp
+    cyl_bessel_i_scaled(const Tp nu, const Tp x)
     {
 
-      if (__x < _Tp(0))
-        std::__throw_domain_error(__N("Bad argument in "
-                                      "__cyl_bessel_i_scaled."));
+      if (x < Tp(0))
+        throw std::domain_error("Bad argument in cyl_bessel_i_scaled.");
 
-      if (std::isnan(__x))
-        return -std::numeric_limits<_Tp>::quiet_NaN();
+      if (std::isnan(x))
+        return -std::numeric_limits<Tp>::quiet_NaN();
 
-      if (__x == _Tp(0))
+      if (x == Tp(0))
         {
-          if (__nu == _Tp(0))
-            return _Tp(1);
+          if (nu == Tp(0))
+            return Tp(1);
           else
-            return _Tp(0);
+            return Tp(0);
         }
 
-      const _Tp __eps = std::numeric_limits<_Tp>::epsilon();
-      const _Tp __root3_eps = std::exp(std::log(__eps) / _Tp(3));
+      const Tp eps = std::numeric_limits<Tp>::epsilon();
+      const Tp root3_eps = std::exp(std::log(eps) / Tp(3));
 
-      if (__x * __x < _Tp(10) * (__nu + _Tp(1)))
+      if (x * x < Tp(10) * (nu + Tp(1)))
         {
-          const _Tp __ex = exp(-__x);
-          const _Tp __b = __cyl_bessel_ij_series(__nu, __x, _Tp(1), 100);
-          return __b * __ex;
+          const Tp ex = exp(-x);
+          const Tp b = cyl_bessel_ij_series(nu, x, Tp(1), 100);
+          return b * ex;
         }
-      else if (_Tp(0.5L) / (__nu * __nu + __x * __x) < __root3_eps)
+      else if (Tp(0.5L) / (nu * nu + x * x) < root3_eps)
         {
-      //  return __cyl_bessel_i_asymp(__nu, __x);
-          return __cyl_bessel_i_scaled_asymp_unif(__nu, __x);
+      //  return cyl_bessel_i_asymp(nu, x);
+          return cyl_bessel_i_scaled_asymp_unif(nu, x);
         }
       else
         {
-          int __Nmu = static_cast<int>(__nu + _Tp(0.5L));
-          _Tp __mu = __nu - __Nmu;  // -1/2 <= mu <= 1/2
-          _Tp __K_mu, __K_mup1, __Kp_mu;
-          _Tp __K_nu, __K_nup1, __K_num1;
-          _Tp __I_nu_ratio;
+          int Nmu = static_cast<int>(nu + Tp(0.5L));
+          Tp mu = nu - Nmu;  // -1/2 <= mu <= 1/2
+          Tp K_mu, K_mup1, Kp_mu;
+          Tp K_nu, K_nup1, K_num1;
+          Tp I_nu_ratio;
 
           //  Obtain K_mu, K_mup1
-          if (__x < _Tp(2))
+          if (x < Tp(2))
             {
-              __cyl_bessel_k_scaled_temme(__mu, __x, __K_mu, __K_mup1, __Kp_mu);
+              cyl_bessel_k_scaled_temme(mu, x, K_mu, K_mup1, Kp_mu);
             }
           else
             {
-              __cyl_bessel_k_scaled_steed_temme_cont_frac_2(__mu, __x, __K_mu, __K_mup1, __Kp_mu);
+              cyl_bessel_k_scaled_steed_temme_cont_frac_2(mu, x, K_mu, K_mup1, Kp_mu);
             }
 
           //  Recurse forward to obtain K_num1, K_nu
-          __K_nu   = __K_mu;
-          __K_nup1 = __K_mup1;
+          K_nu   = K_mu;
+          K_nup1 = K_mup1;
 
-          for(int __n = 0; __n < __Nmu; ++__n)
+          for(int n = 0; n < Nmu; ++n)
             {
-              __K_num1 = __K_nu;
-              __K_nu   = __K_nup1;
-              __K_nup1 = _Tp(2) * (__mu + _Tp(__n + 1)) * __K_nu / __x + __K_num1;
+              K_num1 = K_nu;
+              K_nu   = K_nup1;
+              K_nup1 = Tp(2) * (mu + Tp(n + 1)) * K_nu / x + K_num1;
             }
 
           //  Calculate I_{nu+1}/I_nu
-          __I_nu_ratio = __cyl_bessel_i_cont_frac_1_series(__nu, __x);
+          I_nu_ratio = cyl_bessel_i_cont_frac_1_series(nu, x);
 
           // solve for I_nu
-          _Tp __I_nu = _Tp(1) / (__x * (__K_nup1 + __I_nu_ratio * __K_nu));
-          __I_nu = __eps * (_Tp(0.5L) * __Nmu + _Tp(2)) * std::abs(__I_nu);
-          return __I_nu;
+          Tp I_nu = Tp(1) / (x * (K_nup1 + I_nu_ratio * K_nu));
+          I_nu = eps * (Tp(0.5L) * Nmu + Tp(2)) * std::abs(I_nu);
+          return I_nu;
        }
     }
 
@@ -516,19 +499,18 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     ///
     ///
     ///
-    template<typename _Tp>
-    _Tp
-    __cyl_bessel_i(_Tp __nu, _Tp __x)
+    template<typename Tp>
+    Tp
+    cyl_bessel_i(Tp nu, Tp x)
     {
-      if (std::isnan(__nu) || std::isnan(__x))
-        return -std::numeric_limits<_Tp>::quiet_NaN();
+      if (std::isnan(nu) || std::isnan(x))
+        return -std::numeric_limits<Tp>::quiet_NaN();
 
-      if (__x < _Tp(0))
-        std::__throw_domain_error(__N("Bad argument "
-                                      "in __cyl_bessel_i."));
+      if (x < Tp(0))
+        throw std::domain_error("Bad argument in cyl_bessel_i.");
 
-      _Tp __I_scaled = __cyl_bessel_i_scaled(__nu, __x);
-      return __I_scaled * std::exp(__x);
+      Tp I_scaled = cyl_bessel_i_scaled(nu, x);
+      return I_scaled * std::exp(x);
     }
 
 
@@ -536,32 +518,32 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     ///  @brief  Return the asymptotic solution of the modified
     ///          Bessel function \f$ K_{\nu} \f$.
     ///
-    template<typename _Tp>
-    _Tp
-    __cyl_bessel_k_asymp(const _Tp __n, const _Tp __x)
+    template<typename Tp>
+    Tp
+    cyl_bessel_k_asymp(const Tp n, const Tp x)
     {
 
-      _Tp __sum = __cyl_mod_bessel_a_series(__n, __x, false);
+      Tp sum = cyl_mod_bessel_a_series(n, x, false);
 
-      return std::sqrt(_TR1_M_PI_2 / __x) * std::exp(-__x) * __sum;
+      return std::sqrt(_TR1_M_PI_2 / x) * std::exp(-x) * sum;
     }
 
 
     ///
     ///  x >> nu*nu + 1
     ///
-    template<typename _Tp>
-    _Tp
-    __cyl_bessel_k_scaled_asymp(const _Tp __nu, const _Tp __x)
+    template<typename Tp>
+    Tp
+    cyl_bessel_k_scaled_asymp(const Tp nu, const Tp x)
     {
-      const _Tp __mu = _Tp(4) * __nu * __nu;
-      const _Tp __mum1 = __mu - _Tp(1);
-      const _Tp __mum9 = __mu - _Tp(9);
-      const _Tp __pre = std::sqrt(_TR1_M_PI / (_Tp(2) * __x));
-      const _Tp __r = __nu / __x;
-      const _Tp __K = __pre * (_Tp(1) + __mum1 / (_Tp(8) * __x) + __mum1 * __mum9 / (_Tp(128) * __x * __x));
+      const Tp mu = Tp(4) * nu * nu;
+      const Tp mum1 = mu - Tp(1);
+      const Tp mum9 = mu - Tp(9);
+      const Tp pre = std::sqrt(_TR1_M_PI / (Tp(2) * x));
+      const Tp r = nu / x;
+      const Tp K = pre * (Tp(1) + mum1 / (Tp(8) * x) + mum1 * mum9 / (Tp(128) * x * x));
 
-      return __K;
+      return K;
     }
 
 
@@ -569,40 +551,39 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     ///  @brief  Return the scaled modified Bessel function of order \f$ \nu \f$:
     ///          \f$ K_{\nu} \f$.
     ///
-    template<typename _Tp>
-    _Tp
-    __cyl_bessel_k_scaled(const _Tp __nu, const _Tp __x)
+    template<typename Tp>
+    Tp
+    cyl_bessel_k_scaled(const Tp nu, const Tp x)
     {
 
-      if (std::isnan(__nu) || std::isnan(__x))
-        return -std::numeric_limits<_Tp>::quiet_NaN();
+      if (std::isnan(nu) || std::isnan(x))
+        return -std::numeric_limits<Tp>::quiet_NaN();
 
-      if (__x < _Tp(0))
-        std::__throw_domain_error(__N("Bad argument "
-                                      "in __cyl_bessel_k_scaled."));
+      if (x < Tp(0))
+        throw std::domain_error("Bad argument in cyl_bessel_k_scaled.");
 
-      int __Nmu = static_cast<int>(__nu + _Tp(0.5L));
-      _Tp __mu = __nu - __Nmu;  // -1/2 <= mu <= 1/2
-      _Tp __K_mu, __K_mup1, __Kp_mu;
+      int Nmu = static_cast<int>(nu + Tp(0.5L));
+      Tp mu = nu - Nmu;  // -1/2 <= mu <= 1/2
+      Tp K_mu, K_mup1, Kp_mu;
 
-      if (__x < _Tp(2))
-        __cyl_bessel_k_scaled_temme(__mu, __x, __K_mu, __K_mup1, __Kp_mu);
+      if (x < Tp(2))
+        cyl_bessel_k_scaled_temme(mu, x, K_mu, K_mup1, Kp_mu);
       else
-        __cyl_bessel_k_scaled_steed_temme_cont_frac_2(__mu, __x, __K_mu, __K_mup1, __Kp_mu);
+        cyl_bessel_k_scaled_steed_temme_cont_frac_2(mu, x, K_mu, K_mup1, Kp_mu);
 
       //  Recurse forward to obtain K_num1, K_nu.
 
-      _Tp __K_nu   = __K_mu;
-      _Tp __K_nup1 = __K_mup1;
+      Tp K_nu   = K_mu;
+      Tp K_nup1 = K_mup1;
 
-      for (int __n = 0; __n < __Nmu; ++__n)
+      for (int n = 0; n < Nmu; ++n)
         {
-          const _Tp __K_num1 = __K_nu;
-          __K_nu   = __K_nup1;
-          __K_nup1 = _Tp(2) * (__mu + __n + 1) / __x * __K_nu + __K_num1;
+          const Tp K_num1 = K_nu;
+          K_nu   = K_nup1;
+          K_nup1 = Tp(2) * (mu + n + 1) / x * K_nu + K_num1;
         }
 
-      return __K_nu;
+      return K_nu;
     }
 
 
@@ -610,26 +591,21 @@ _GLIBCXX_BEGIN_NAMESPACE_VERSION
     ///  @brief  Return the modified Bessel function of order \f$ \nu \f$:
     ///          \f$ K_{\nu} \f$.
     ///
-    template<typename _Tp>
-    _Tp
-    __cyl_bessel_k(const _Tp __nu, const _Tp __x)
+    template<typename Tp>
+    Tp
+    cyl_bessel_k(const Tp nu, const Tp x)
     {
-      if (std::isnan(__nu) || std::isnan(__x))
-        return -std::numeric_limits<_Tp>::quiet_NaN();
+      if (std::isnan(nu) || std::isnan(x))
+        return -std::numeric_limits<Tp>::quiet_NaN();
 
-      if (__x < _Tp(0))
-        std::__throw_domain_error(__N("Bad argument "
-                                      "in __cyl_bessel_k."));
+      if (x < Tp(0))
+        throw std::domain_error("Bad argument in cyl_bessel_k.");
 
-      _Tp __K_scaled = __cyl_bessel_k_scaled(__nu, __x);
-      return __K_scaled * std::exp(-__x);
+      Tp K_scaled = cyl_bessel_k_scaled(nu, x);
+      return K_scaled * std::exp(-x);
     }
 
-  } // namespace std::tr1::__detail
+} // namespace detail
+} // namespace emsr
 
-  /* @} */ // group tr1_math_spec_func
-
-_GLIBCXX_END_NAMESPACE_VERSION
-}
-
-#endif // _TR1_MODIFIED_BESSEL_FUNC_TCC
+#endif // OLD_MODIFIED_BESSEL_FUNC_TCC

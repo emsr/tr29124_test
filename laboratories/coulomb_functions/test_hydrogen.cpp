@@ -10,36 +10,33 @@
 #include <cmath>
 #include <iostream>
 #include <iomanip>
-#include <ext/math_constants.h>
-#include <ext/fp_type_util.h>
-#include <ext/complex_util.h>
-#include <bits/numeric_limits.h>
-#include <bits/specfun_state.h>
-#include <bits/sf_trig.tcc>
-#include <bits/sf_bernoulli.tcc>
-#include <bits/sf_gamma.tcc>
-#include <bits/sf_coulomb.tcc>
+#include <emsr/math_constants.h>
+#include <emsr/fp_type_util.h>
+#include <emsr/complex_util.h>
+#include <emsr/numeric_limits.h>
+#include <emsr/specfun_state.h>
+#include <emsr/sf_coulomb.h>
 #include <wrap_gsl.h>
 
-template <typename _Tp>
+template <typename Tp>
   void
   test01()
   {
-    const auto _S_pi = __gnu_cxx::numbers::__pi_v<_Tp>;
-    const _Tp c = _Tp{2.99792458e8L};  //  Speed of light in m/s.
-    const _Tp hbar = _Tp{1.0546e-27L};  //  Planck's constant in J s.
-    const _Tp hbarc = hbar * c;
-    const _Tp epsilon0 = _Tp{8.8542e-12L};  //  Permittivity of free space C^2 / J m.
-    const _Tp mu0 = _Tp{4.0e-7L} * _S_pi;  //  Permeability of free space in N / A^2.
-    const _Tp e = _Tp{1.6e-19L};  //  Charge of the electron in C.
-    const _Tp me = _Tp{9.1095e-31L};  // Mass of the electron in kg.
-    const _Tp alpha = e * e / (_Tp{4} * _S_pi * epsilon0);
-    const _Tp a0 = hbarc * hbarc / (me * c * c * alpha);  //  Bohr radius.
+    const auto s_pi = emsr::pi_v<Tp>;
+    const Tp c = Tp{2.99792458e8L};  //  Speed of light in m/s.
+    const Tp hbar = Tp{1.0546e-27L};  //  Planck's constant in J s.
+    const Tp hbarc = hbar * c;
+    const Tp epsilon0 = Tp{8.8542e-12L};  //  Permittivity of free space C^2 / J m.
+    const Tp mu0 = Tp{4.0e-7L} * s_pi;  //  Permeability of free space in N / A^2.
+    const Tp e = Tp{1.6e-19L};  //  Charge of the electron in C.
+    const Tp me = Tp{9.1095e-31L};  // Mass of the electron in kg.
+    const Tp alpha = e * e / (Tp{4} * s_pi * epsilon0);
+    const Tp a0 = hbarc * hbarc / (me * c * c * alpha);  //  Bohr radius.
 
     return;
   }
 
-template <typename _Tp>
+template <typename Tp>
   void
   test_norm()
   {
@@ -50,8 +47,8 @@ template <typename _Tp>
     for (unsigned int l = 0; l <= 100; ++l)
       for (int k = 0; k <= 20; ++k)
 	{
-	  auto eta = k * _Tp{1};
-	  auto C_cxx = std::__detail::__coulomb_norm(l, eta);
+	  auto eta = k * Tp{1};
+	  auto C_cxx = emsr::coulomb_norm(l, eta);
 	  auto C_gsl = gsl::coulomb_norm(l, eta);
 	  std::cout << std::setw(4) << l
 		    << std::setw(w) << eta
