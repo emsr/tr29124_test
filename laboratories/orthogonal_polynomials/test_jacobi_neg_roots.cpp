@@ -11,6 +11,7 @@
 #include <cmath> // FIXME: For isnan for math_util.h
 #include <ext/math_util.h>
 #include <ext/solver_jenkins_traub.h>
+#include <ext/solver_madsen_reid.h>
 #include <ext/polynomial.h>
 
 #include <ext/float128_io.h>
@@ -92,32 +93,30 @@ namespace __detail
 } // namespace std
 } // namespace __detail
 
-template<typename _Tp>
+/**
+ * Write roots.
+ */
+template<typename Tp>
   void
-  test_neg_parm_jacobi_roots(unsigned n, _Tp alpha1, _Tp beta1, std::ofstream& gp)
+  write_roots(unsigned n, Tp alpha, Tp beta, const std::vector<Tp>& coef,
+              const __gnu_cxx::_Polynomial<Tp>& poly,
+              const std::vector<__gnu_cxx::solution_t<Tp>>& roots, std::ofstream& gp)
   {
-    const auto prec = std::numeric_limits<_Tp>::digits10;
+    const auto prec = std::numeric_limits<Tp>::digits10;
     const auto w = 6 + prec;
 
     std::cout << std::setprecision(prec);
     std::cout << "\n\n";
     std::cout << " n = " << n
-	      << "; alpha = " << alpha1
-	      << "; beta = " << beta1
+	      << "; alpha = " << alpha << "; beta = " << beta
 	      << '\n';
 
-    const auto poly = std::__detail::__jacobi_poly(n, alpha1, beta1);
-    auto coef = poly.coefficients();
     std::cout << "\nThe polynomial coefficients are:\n";
     for (const auto& c : coef)
       std::cout << std::setw(w) << c << '\n';
-    std::cout << "\nMax coefficient: " << std::__detail::__jacobi_norm(n, alpha1, beta1) << '\n';
+    std::cout << "\nMax coefficient: " << std::__detail::__jacobi_norm(n, alpha, beta) << '\n';
     std::cout << std::flush;
 
-    std::reverse(coef.begin(), coef.end());
-
-    auto jt = __gnu_cxx::_JenkinsTraubSolver(coef);
-    auto roots = jt.solve();
     std::cout << "\nThe roots are:\n";
     for (const auto& z : roots)
       {
@@ -138,8 +137,7 @@ template<typename _Tp>
     gp << std::setprecision(prec);
     gp << "\n\n";
     gp << "# n = " << n
-       << "; alpha = " << alpha1
-       << "; beta = " << beta1 << '\n';
+       << "; alpha = " << alpha << "; beta = " << beta << '\n';
     for (const auto& z : roots)
       {
 	if (z.index() == 0)
@@ -157,60 +155,142 @@ template<typename _Tp>
   }
 
 /**
+ * Write roots.
+ */
+template<typename Tp>
+  void
+  write_roots(unsigned n, Tp alpha, Tp beta, const std::vector<std::complex<Tp>>& coef,
+              const __gnu_cxx::_Polynomial<Tp>& poly,
+              const std::vector<std::complex<Tp>>& roots, std::ofstream& gp)
+  {
+    const auto prec = std::numeric_limits<Tp>::digits10;
+    const auto w = 6 + prec;
+
+    std::cout << std::setprecision(prec);
+    std::cout << "\n\n";
+    std::cout << " n = " << n
+	      << "; alpha = " << alpha << "; beta = " << beta
+	      << '\n';
+
+    std::cout << "\nThe polynomial coefficients are:\n";
+    for (const auto& c : coef)
+      std::cout << std::setw(w) << c << '\n';
+    std::cout << "\nMax coefficient: " << std::__detail::__jacobi_norm(n, alpha, beta) << '\n';
+    std::cout << std::flush;
+
+    std::cout << "\nThe roots are:\n";
+    for (const auto& z : roots)
+      {
+	std::cout << ' ' << std::setw(w) << std::real(z)
+		  << ' ' << std::setw(w) << std::imag(z)
+		  << ' ' << std::setw(w) << poly(z)
+		  << '\n';
+      }
+
+    gp << std::setprecision(prec);
+    gp << "\n\n";
+    gp << "# n = " << n
+       << "; alpha = " << alpha << "; beta = " << beta << '\n';
+    for (const auto& z : roots)
+      {
+	  gp << ' ' << std::setw(w) << std::real(z)
+	     << ' ' << std::setw(w) << std::imag(z)
+	     << '\n';
+      }
+    gp << std::flush;
+  }
+
+/**
+ * Test negative parm roots.
+ */
+template<typename Tp>
+  void
+  test_neg_parm_jacobi_roots(unsigned n, Tp alpha1, Tp beta1, std::ofstream& gp)
+  {
+    const auto poly = std::__detail::__jacobi_poly(n, alpha1, beta1);
+    auto coef = poly.coefficients();
+
+    std::reverse(coef.begin(), coef.end());
+
+    std::cout << "\n  Jenkins-Traub solver...\n";
+    gp << "\n#  Jenkins-Traub solver...";
+    auto jt = __gnu_cxx::_JenkinsTraubSolver(coef);
+    auto roots_jt = jt.solve();
+    write_roots(n, alpha1, beta1, coef, poly, roots_jt, gp);
+
+    // Try complex solvers...
+    std::vector<std::complex<Tp>> ccoef(coef.size());
+    for (size_t c = 0; c < coef.size(); ++c)
+      ccoef[c] = coef[c];
+
+    std::cout << "\n  Complex Jenkins-Traub solver...\n";
+    gp << "\n#  Complex Jenkins-Traub solver...";
+    auto jtc = __gnu_cxx::_JenkinsTraubSolver(ccoef);
+    auto roots_jtc = jtc.solve();
+    write_roots(n, alpha1, beta1, ccoef, poly, roots_jtc, gp);
+
+    std::cout << "\n  Madsen-Reid solver...\n";
+    gp << "\n#  Madsen-Reid solver...";
+    auto mr = SolverMadsenReid(ccoef);
+    auto roots_mr = mr.solve();
+    write_roots(n, alpha1, beta1, ccoef, poly, roots_mr, gp);
+  }
+
+/**
  * Numerical Methods for Special Functions, Gil, Segura, Temme, pp. 192.
  */
-template<typename _Tp>
+template<typename Tp>
   void
   run()
   {
     std::ofstream gp("jacobi_roots.gp");
 
     unsigned n = 50;
-    _Tp alpha1, beta1;
+    Tp alpha1, beta1;
 
-    alpha1 = _Tp{2};
-    beta1 = _Tp{-83} / _Tp{2};
+    alpha1 = Tp{2};
+    beta1 = Tp{-83} / Tp{2};
     test_neg_parm_jacobi_roots(n, alpha1, beta1, gp);
 
-    alpha1 = _Tp{2};
-    beta1 = _Tp{-52};
+    alpha1 = Tp{2};
+    beta1 = Tp{-52};
     test_neg_parm_jacobi_roots(n, alpha1, beta1, gp);
 
-    alpha1 = _Tp{2};
-    beta1 = _Tp{-127} / _Tp{2};
+    alpha1 = Tp{2};
+    beta1 = Tp{-127} / Tp{2};
     test_neg_parm_jacobi_roots(n, alpha1, beta1, gp);
 
     // Flip alpha and beta.
 
-    alpha1 = _Tp{2};
-    beta1 = _Tp{-83} / _Tp{2};
+    alpha1 = Tp{2};
+    beta1 = Tp{-83} / Tp{2};
     test_neg_parm_jacobi_roots(n, beta1, alpha1, gp);
 
-    alpha1 = _Tp{2};
-    beta1 = _Tp{-52};
+    alpha1 = Tp{2};
+    beta1 = Tp{-52};
     test_neg_parm_jacobi_roots(n, beta1, alpha1, gp);
 
-    alpha1 = _Tp{2};
-    beta1 = _Tp{-127} / _Tp{2};
+    alpha1 = Tp{2};
+    beta1 = Tp{-127} / Tp{2};
     test_neg_parm_jacobi_roots(n, beta1, alpha1, gp);
   }
 
 /*
  * Test polynomial evaluations against good ol' recursion.
  */
-template<typename _Tp>
+template<typename Tp>
   void
   test_poly()
   {
-    const auto prec = std::numeric_limits<_Tp>::digits10;
+    const auto prec = std::numeric_limits<Tp>::digits10;
     const auto w = 6 + prec;
 
     std::cout << std::setprecision(prec);
 __gnu_cxx::jacobi(10, 2.0, -12.0, -1.0);
     std::cout << "\n\n";
     for (int n : {10, 15, 20})
-      for (_Tp alpha : {1, 2})
-	for (_Tp beta : {1, 2})
+      for (Tp alpha : {1, 2})
+	for (Tp beta : {1, 2})
 	  {
 	    auto P = std::__detail::__jacobi_poly(n, alpha, beta);
 	    std::cout << " n = " << n
@@ -220,7 +300,7 @@ __gnu_cxx::jacobi(10, 2.0, -12.0, -1.0);
 		      << '\n';
 	    for (int i = -10; i <= +10; ++i)
 	      {
-		const auto x = _Tp(i * 0.1L);
+		const auto x = Tp(i * 0.1L);
 		std::cout << ' ' << x
 			  << ' ' << std::setw(w) << P(x)
 			  << ' ' << std::setw(w) << __gnu_cxx::jacobi(n, alpha, beta, x)
@@ -230,7 +310,7 @@ __gnu_cxx::jacobi(10, 2.0, -12.0, -1.0);
 	  }
 
     std::cout << "\n\n";
-    const auto alpha = _Tp{2};
+    const auto alpha = Tp{2};
     for (int n : {10, 15, 20})
       for (int m : {0, 1, 2, 3})
 	{
@@ -243,7 +323,7 @@ __gnu_cxx::jacobi(10, 2.0, -12.0, -1.0);
 		    << '\n';
 	  for (int i = -10; i <= +10; ++i)
 	    {
-	      const auto x = _Tp(i * 0.1L);
+	      const auto x = Tp(i * 0.1L);
 	      std::cout << ' ' << x
 			<< ' ' << std::setw(w) << P(x)
 			//<< ' ' << std::setw(w) << __gnu_cxx::jacobi(n, alpha, beta, x)

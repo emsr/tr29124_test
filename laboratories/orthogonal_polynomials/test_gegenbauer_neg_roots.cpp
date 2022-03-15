@@ -48,11 +48,11 @@ namespace __detail
       if (__n == 0)
 	return __poly;
 
-      const auto __2l = _Tp{2} * __lambda;
-      const auto __lph = __lambda + _Tp{1} / _Tp{2};
+      const auto __2lambda = _Tp{2} * __lambda;
+      const auto __lambdaph = __lambda + _Tp{1} / _Tp{2};
 
       auto __m = int(__n);
-      if (const auto __pint = __gnu_cxx::__fp_is_integer(__n + __2l);
+      if (const auto __pint = __gnu_cxx::__fp_is_integer(__n + __2lambda);
 	  __pint && __pint() <= 0 && -__pint() < __m)
 	__m = -__pint();
 
@@ -60,14 +60,14 @@ namespace __detail
 
       auto __fact = _Tp{1};
       for (unsigned int __k = 1; __k <= __n; ++__k)
-	__fact *= _Tp(__2l + _Tp(__k - 1)) / _Tp(__k);
+	__fact *= _Tp(__2lambda + _Tp(__k - 1)) / _Tp(__k);
 
       for (int __k = 1; __k <= __m; ++__k)
 	{
 	  const auto __km1 = _Tp(__k - 1);
 
 	  __term *= (_Tp(-int(__n) + __km1) / _Tp(__k))
-		  * (_Tp(__n + __2l + __km1) / (__lph + __km1))
+		  * (_Tp(__n + __2lambda + __km1) / (__lambdaph + __km1))
 		  * __arg;
 
 	  __poly += __term;
