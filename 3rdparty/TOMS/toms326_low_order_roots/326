@@ -1,0 +1,315 @@
+#! /bin/sh
+# This is a shell archive, meaning:
+# 1. Remove everything above the #! /bin/sh line.
+# 2. Save the resulting text in a file.
+# 3. Execute the file with /bin/sh (not csh) to create the files:
+#	Drivers/
+#	Drivers/C/
+#	Drivers/C/Dp/
+#	Drivers/C/Dp/RES
+#	Drivers/C/Dp/driver.c
+#	Src/
+#	Src/C/
+#	Src/C/Dp/
+#	Src/C/Dp/src.c
+# This archive created: Thu Nov 12 15:01:23 1998
+export PATH; PATH=/bin:$PATH
+if test ! -d 'Drivers'
+then
+	mkdir 'Drivers'
+fi
+cd 'Drivers'
+if test ! -d 'C'
+then
+	mkdir 'C'
+fi
+cd 'C'
+if test ! -d 'Dp'
+then
+	mkdir 'Dp'
+fi
+cd 'Dp'
+if test -f 'RES'
+then
+	echo shar: will not over-write existing file "'RES'"
+else
+cat << SHAR_EOF > 'RES'
+Testing quadratic
+ Re=  1.0000000000 Im=  1.0000000000 
+ Re=  1.0000000000 Im= -1.0000000000 
+
+Testing cubic
+ Re=  1.0000000000 Im=  0.0000000000 
+ Re=  2.0000000000 Im=  0.0000000000 
+ Re=  3.0000000000 Im=  0.0000000000 
+
+Testing biquadratic
+ Re=  0.0000000000 Im=  1.4142135624 
+ Re=  0.0000000000 Im= -1.4142135624 
+ Re= -0.0000000000 Im=  1.4142135624 
+ Re= -0.0000000000 Im= -1.4142135624 
+SHAR_EOF
+fi # end of overwriting check
+if test -f 'driver.c'
+then
+	echo shar: will not over-write existing file "'driver.c'"
+else
+cat << SHAR_EOF > 'driver.c'
+#include <stdio.h>
+/*
+Driver program to demponstrate QUADROOTS, CUBICROOTS, BIQUADROOTS
+*/
+void main()
+{
+  int i,k,n;
+  double p[5],r[3][5];
+  int QUADROOTS(double[],double[][]);
+  int CUBICROOTS(double[],double[][]);
+  int BIQUADROOTS(double[],double[][]);
+
+  for (n=2; n<=4; n++){
+/* Various test cases */
+  if(n==4)
+  { p[0]=1; p[1]=-10; p[2]=35; p[3]=-50; p[4]=24; /* 1,2,3,4 */
+    p[0]=1; p[1]=0; p[2]=4; p[3]=0; p[4]=4; /* +-i sqrt(2) */
+  }
+  if(n==3) { p[0]=1; p[1]=-6; p[2]=11; p[3]=-6; } /* 1,2,3 */
+  if(n==2) { p[0]=1; p[1]=-2; p[2]=2;} /* 1+- i */
+
+  if(n==2){
+    printf("Testing quadratic\n");
+    i=QUADROOTS(p,r);
+  }
+  else if(n==3){
+    printf("\nTesting cubic\n");
+    i=CUBICROOTS(p,r);
+  }
+  else if(n==4){
+    printf("\nTesting biquadratic\n");
+    i=BIQUADROOTS(p,r);
+  }
+
+  for(k=1;k<=n;k++)printf(" Re=%14.10f Im=%14.10f \n",r[1][k],r[2][k]);
+ }
+}
+SHAR_EOF
+fi # end of overwriting check
+cd ..
+cd ..
+cd ..
+if test ! -d 'Src'
+then
+	mkdir 'Src'
+fi
+cd 'Src'
+if test ! -d 'C'
+then
+	mkdir 'C'
+fi
+cd 'C'
+if test ! -d 'Dp'
+then
+	mkdir 'Dp'
+fi
+cd 'Dp'
+if test -f 'src.c'
+then
+	echo shar: will not over-write existing file "'src.c'"
+else
+cat << SHAR_EOF > 'src.c'
+/* CACM Algorithm 326
+   Roots of low order polynomials
+   Author: Terence R.F.Nonweiler
+   CACM  (Apr 1968) p269
+   Translated into c and programmed by M.Dow
+   ANUSF, Australian National University, Canberra, Australia
+   m.dow@anu.edu.au
+
+Suite of procedures for finding the (complex) roots of the
+quadratic, cubic or quartic polynomials by explicit algebraic methods.
+Each Returns
+x=r[1][k] + i r[2][k]  k=1,...,n, where n={2,3,4}
+as roots of
+sum_{k=0:n} p[k] x^(n-k) =0
+Assume p[0]<>0 (overflows otherwise)
+*/
+#include <stdio.h>
+#include <math.h>
+int QUADROOTS(p,r)
+  double p[5],r[3][5];
+  {
+/*
+Array r[3][5]  p[5]
+Roots of poly p[0] x^2 + p[1] x+p[2]=0
+x=r[1][k] + i r[2][k]  k=1,2
+*/
+  double b,c,d;
+  b=-p[1]/p[0]/2;
+  c=p[2]/p[0];
+  d=b*b-c;
+  if(d>0)
+  {
+    if(b>0) b=r[1][2]=sqrt(d)+b;
+    else    b=r[1][2]=-sqrt(d)+b;
+    r[1][1]=c/b; r[2][1]=r[2][2]=0;
+  }
+  else
+  {
+    d=r[2][1]=sqrt(-d); r[2][2]=-d;
+    r[1][1]=r[1][2]=b;
+  }
+  return(0);
+}
+int CUBICROOTS(p,r)
+  double p[5],r[3][5];
+  {
+/*
+Array r[3][5]  p[5]
+Roots of poly p[0] x^3 + p[1] x^2...+p[3]=0
+x=r[1][k] + i r[2][k]  k=1,...,3
+Assumes 0<arctan(x)<pi/2 for x>0
+*/
+
+  double s,t,b,c,d;
+  int k;
+  if(p[0]!=1)
+   for(k=1;k<4;k++) p[k]=p[k]/p[0]; p[0]=1;
+   s=p[1]/3.0; t=s*p[1];
+   b=0.5*(s*(t/1.5-p[2])+p[3]); t=(t-p[2])/3.0;
+   c=t*t*t; d=b*b-c;
+   if(d>=0)
+   {
+     d=pow((sqrt(d)+fabs(b)),1.0/3.0);
+     printf("d=%f\n",d);
+     if(d!=0)
+     {
+       if(b>0) b=-d;
+       else b=d;
+       c=t/b;
+     }
+     d=r[2][2]=sqrt(0.75)*(b-c); b=b+c;
+     c=r[1][2]=-0.5*b-s;
+     if((b>0 && s<=0) || (b<0 && s>0))
+     {
+       r[1][1]=c; r[2][1]=-d; r[1][3]=b-s;
+       r[2][3]=0;
+     }
+     else
+     {
+       r[1][1]=b-s; r[2][1]=0; r[1][3]=c;
+       r[2][3]=-d;
+     }
+   }  /* end 2 equal or complex roots */
+   else
+   {
+     if(b==0)
+       d=atan(1.0)/1.5;
+     else
+       d=atan(sqrt(-d)/fabs(b))/3.0;
+     if(b<0)
+       b=sqrt(t)*2.0;
+     else
+       b=-2.0*sqrt(t);
+     c=cos(d)*b; t=-sqrt(0.75)*sin(d)*b-0.5*c;
+     d=-t-c-s; c=c-s; t=t-s;
+     if(fabs(c)>fabs(t))
+       r[1][3]=c;
+     else
+       {
+       r[1][3]=t; t=c;
+       }
+     if(fabs(d)>fabs(t))
+       r[1][2]=d;
+     else
+     {
+       r[1][2]=t; t=d;
+     }
+     r[1][1]=t;
+     for(k=1;k<4;k++) r[2][k]=0;
+   }
+     return(0);
+}
+int BIQUADROOTS(p,r)
+/* add _ if calling from fortran */
+/*
+Array r[3][5]  p[5]
+Roots of poly p[0] x^4 + p[1] x^3...+p[4]=0
+x=r[1][k] + i r[2][k]  k=1,...,4
+*/
+
+  double p[5],r[3][5];
+{
+  double a,b,c,d,e;
+  int k,j;
+  if(p[0] != 1.0)
+  {
+    for(k=1;k<5;k++) p[k]=p[k]/p[0];
+    p[0]=1;
+  }
+  e=0.25*p[1];
+  b=2*e;
+  c=b*b;
+  d=0.75*c;
+  b=p[3]+b*(c-p[2]);
+  a=p[2]-d;
+  c=p[4]+e*(e*a-p[3]);
+  a=a-d;
+  p[1]=0.5*a;
+  p[2]=(p[1]*p[1]-c)*0.25;
+  p[3]=b*b/(-64.0);
+  if(p[3]<-1e-6)
+  {
+    CUBICROOTS(p,r);
+    for(k=1;k<4;k++)
+    {
+      if(r[2][k]==0 && r[1][k]>0)
+      {
+	d=r[1][k]*4; a=a+d;
+	if(a>=0 && b>=0)
+	  p[1]=sqrt(d);
+	else if(a<=0 && b<=0)
+	  p[1]=sqrt(d);
+	else p[1]=-sqrt(d);
+	b=0.5*(a+b/p[1]);
+	goto QUAD;
+      }
+    }
+  }
+  if(p[2]<0)
+  {
+    b=sqrt(c); d=b+b-a;
+    p[1]=0; if(d>0) p[1]=sqrt(d);
+  }
+  else
+  {
+    if(p[1]>0)
+      b=sqrt(p[2])*2.0+p[1];
+    else
+      b=-sqrt(p[2])*2.0+p[1];
+    if(b!=0)
+      p[1]=0;
+    else
+      {
+	for(k=1;k<5;k++)
+	{
+	  r[1][k]=-e;
+	  r[2][k]=0;
+	}
+	goto END;
+      }
+    }
+QUAD:p[2]=c/b; QUADROOTS(p,r);
+  for(k=1;k<3;k++)
+  for(j=1;j<3;j++) r[j][k+2]=r[j][k];
+  p[1]=-p[1]; p[2]=b; QUADROOTS(p,r);
+  for(k=1;k<5;k++) r[1][k]=r[1][k]-e;
+  END:;
+  return(0);
+}
+SHAR_EOF
+fi # end of overwriting check
+cd ..
+cd ..
+cd ..
+#       End of shell archive
+exit 0
