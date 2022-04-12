@@ -1659,9 +1659,9 @@ namespace detail
 	  std::vector<Tp> n;
 	  m.reserve(20);
 	  n.reserve(20);
-	  Tp c, d;
+	  Tp c, d = Tp{1};
 	  auto mc = Tp{1} - k * k;
-	  bool bo = (mc < Tp{0});
+	  const bool bo = (mc < Tp{0});
 	  if (bo)
 	    {
               mc /= -k * k;
