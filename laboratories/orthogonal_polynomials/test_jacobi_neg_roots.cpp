@@ -102,7 +102,7 @@ template<typename Tp>
     std::cout << std::setprecision(prec);
     std::cout << "\n\n";
     std::cout << " n = " << n
-	      << "; alpha = " << alpha << "; beta = " << beta
+	      << "; alpha = " << alpha1 << "; beta = " << beta1
 	      << '\n';
 
     const auto poly = emsr::detail::jacobi_poly(n, alpha1, beta1);
@@ -137,7 +137,7 @@ template<typename Tp>
     gp << std::setprecision(prec);
     gp << "\n\n";
     gp << "# n = " << n
-       << "; alpha = " << alpha << "; beta = " << beta << '\n';
+       << "; alpha = " << alpha1 << "; beta = " << beta1 << '\n';
     for (const auto& z : roots)
       {
 	if (z.index() == 0)
@@ -160,7 +160,7 @@ template<typename Tp>
 template<typename Tp>
   void
   write_roots(unsigned n, Tp alpha, Tp beta, const std::vector<std::complex<Tp>>& coef,
-              const __gnu_cxx::_Polynomial<Tp>& poly,
+              const emsr::Polynomial<Tp>& poly,
               const std::vector<std::complex<Tp>>& roots, std::ofstream& gp)
   {
     const auto prec = std::numeric_limits<Tp>::digits10;
@@ -175,7 +175,7 @@ template<typename Tp>
     std::cout << "\nThe polynomial coefficients are:\n";
     for (const auto& c : coef)
       std::cout << std::setw(w) << c << '\n';
-    std::cout << "\nMax coefficient: " << std::__detail::__jacobi_norm(n, alpha, beta) << '\n';
+    std::cout << "\nMax coefficient: " << emsr::detail::jacobi_norm(n, alpha, beta) << '\n';
     std::cout << std::flush;
 
     std::cout << "\nThe roots are:\n";
@@ -202,19 +202,20 @@ template<typename Tp>
 
 /**
  * Test negative parm roots.
+ * Use all the solvers.
  */
 template<typename Tp>
   void
-  test_neg_parm_jacobi_roots(unsigned n, Tp alpha1, Tp beta1, std::ofstream& gp)
+  test_neg_parm_jacobi_roots_all(unsigned n, Tp alpha1, Tp beta1, std::ofstream& gp)
   {
-    const auto poly = std::__detail::__jacobi_poly(n, alpha1, beta1);
+    const auto poly = emsr::detail::jacobi_poly(n, alpha1, beta1);
     auto coef = poly.coefficients();
 
     std::reverse(coef.begin(), coef.end());
 
     std::cout << "\n  Jenkins-Traub solver...\n";
     gp << "\n#  Jenkins-Traub solver...";
-    auto jt = __gnu_cxx::_JenkinsTraubSolver(coef);
+    auto jt = emsr::JenkinsTraubSolver(coef);
     auto roots_jt = jt.solve();
     write_roots(n, alpha1, beta1, coef, poly, roots_jt, gp);
 
@@ -225,7 +226,7 @@ template<typename Tp>
 
     std::cout << "\n  Complex Jenkins-Traub solver...\n";
     gp << "\n#  Complex Jenkins-Traub solver...";
-    auto jtc = __gnu_cxx::_JenkinsTraubSolver(ccoef);
+    auto jtc = emsr::JenkinsTraubSolver(ccoef);
     auto roots_jtc = jtc.solve();
     write_roots(n, alpha1, beta1, ccoef, poly, roots_jtc, gp);
 
