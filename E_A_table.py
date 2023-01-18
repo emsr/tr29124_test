@@ -24,11 +24,14 @@ solution aren't known. Mechanisms are speculation I think. Moon and sun
 forces produce extremely tiny displacements of atomic dimensions, but 
 are continuous and changing 360 deg every day everywhere over all time,
 and the moon was much closer 300 million years ago. Not usually mentioned.   
-   
+  When combining pressure solution and low-permeability models, the 
+montmorillionite semi-permeable membrane phenomena should be mentioned as
+impeding compaction. 
+ 
 E_A_table
 
 The forward model of shale deposition requires and defines parameters
-E, A, m and n.
+E, A, m and n. Minimum t = 25 deg C.  
 Derived parameters E and A for deposition rates between 0.2 km/My and
 10 km/My for all six "wells" are put in the 'E_A_table' here. The parameters
 m and n are the same as in the original paper. Parameter A encompasses
@@ -37,42 +40,44 @@ morphology, mineral relative distributions in the section,geometrical
 relationship between pores and minerals, etc.. Six varieties of quartz
 have different solubilities at 25 deg C, and perhaps different E and A for
 pressure solution Source: http://www.quartzpage.de/gen_chem.html. Google 
-"The Quartz Page".      
+"The Quartz Page.  ""A Colmpilation of Rate Parameters.." J L Palandri,Y K 
+Kharaka, USGSopen file report 2004-1068.   
+    
 
 @author: ed
 """
 
 from pandas import DataFrame
 #import pandas as pd
-
+print( 'Deposition Rates With Parameters m,n,A and E: Forward Model ' )
 title = 'Parameters E and A for different matrix deposition rates'
-data = {'Example':['Akita','5.-146 My','m=.95','n=1.','',
-                   'Macran1','2.6-66 My','m=.85','n=1.','',  \
-                   'Makran2','2.6-66 My','m=.85','n=.95','', \
-                   '"SuluSea"','0.-23 My','m=.9','n=.8','',\
-                   'Oklahoma','254-323 My','m=.85','n=1.','',\
-                   'Maracaibo','2.6-66 My','m=.9','n=.9',''    ], 
+data = {'Example':['Akita','5.-146 My','m,n=.95,1.','t>=25C','','',     \
+                   'Macran1','2.6-66 My','m,n=.85,1.','t>=25C','','',   \
+                   'Makran2','2.6-66 My','m,n=.85,.95','t>=25C','','',  \
+                   '"SuluSea"','0.-23 My','m,n=.9,.8','t>=25C','','',   \
+                   'Oklahoma','254-323 My','m,n=.85,1.','t>=25C','','', \
+                   'Maracaibo','2.6-66 My','m,n=.9,.9','t>=25C','',''   ], 
         
-        'Km/My':[.2, .3, 1., 4., 10,\
-                 .2, .3, 1., 4., 10,\
-                 .2, .3, 1., 4., 10,\
-                 .2, .3, 1., 4., 10,\
-                 .2, .3, 1., 4., 10,\
-                 .2, .3, 1., 4., 10   ],
+        '   Km/My':[.2, .3, 1., 4, 20,'',\
+                 .2, .3, 1., 4, 20,'', \
+                 .2, .3, 1., 4, 20,'', \
+                 .2, .3, 1., 4, 20,'', \
+                 .2, .3, 1., 4, 20,'',\
+                 .2, .3, 1., 4, 20 ,'' ],
             
-        'E /KJ/m':[28.8,29.2,29.7,29.8,29.9,\
-                   16.6,17.5,19.2,19.8,19.9,\
-                   12.2,13.2,14.8,15.5,15.6,\
-                   11.9,13.4,16.9,18.6,19.0,
-                   32.8,32.9,33.1,33.1,33.1,\
-                   19.8,20.4,21.4,21.7,21.8],
+        '   E kJ/m':[30.8,31.1,31.6,31.8,31.8,'',\
+                   17.2,18.1,19.7,20.3,20.4,'',\
+                   14.4,15.4,17.0,17.5,17.7,'',\
+                   12.3,13.9,17.4,19.0,19.5,'',\
+                   31.7,31.8,31.9,31.9,31.9,  '',\
+                   18.4,19.1,20.0,20.3,20.4,'' ],
             
-        'A /s *10^-12': [18, 21, 25, 27, 27,\
-                         1.2,1.7,3.4,4.4,4.7,\
-                         .4, .61,1.2,1.6, 1.7,\
-                         .49,.96,4.0,8.0,9.3,\
-                         69.,71.,75.,76.,77.,\
-                         3.7,4.8,7.2,8.3,8.5 ],
+        '    A/s*10^-12': [43,49,59,62,64,      '',\
+                         1.4,2.1,4.0,5.1,5.4, '',\
+                         .86,1.3,2.5,3.2,3.4, '',\
+                         .55,1.1,4.6,8.9,11.0,'',\
+                         48.,49.,52.,52.,53., '',\
+                         2.4,3.1,4.5,5.2,5.3, '' ],
         }
 frame = DataFrame(data)
 
